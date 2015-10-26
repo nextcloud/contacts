@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<info>
+    <id>contactsrework</id>
+    <name>Contacts Rework</name>
+    <description>My first ownCloud app</description>
+    <licence>AGPL</licence>
+    <author>Hendrik Leppelsack</author>
+    <version>0.0.1</version>
+    <namespace>ContactsRework</namespace>
+    <category>other</category>
+    <dependencies>
+        <owncloud min-version="8.1" />
+    </dependencies>
+</info>

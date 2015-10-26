@@ -1,0 +1,29 @@
+{
+  "name": "vcard",
+  "version": "0.2.3",
+  "authors": [
+    "Aleksandr Kitov <kitov.nn@gmail.com>"
+  ],
+  "description": "Simple vСard parser and generator",
+  "main": "dist/vcard.min.js",
+  "keywords": [
+    "vcard"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "gulpfile.js",
+    "test/*",
+    "node_modules"
+  ],
+  "homepage": "https://github.com/Heymdall/vcard",
+  "_release": "0.2.3",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.2.3",
+    "commit": "ff7576fca32030ca96561ebada21587f05831811"
+  },
+  "_source": "git://github.com/Heymdall/vcard.git",
+  "_target": "~0.2.3",
+  "_originalSource": "vcard",
+  "_direct": true
+}

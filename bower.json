@@ -1,0 +1,25 @@
+{
+  "name": "contactsrework",
+  "authors": [
+    "Hendrik Leppelsack <hendrik@leppelsack.de>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "AGPL",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "core/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.7",
+    "dav": "git@github.com:gaye/dav.git#~1.7.8",
+    "angular-ui-router": "~0.2.15"
+  }
+}

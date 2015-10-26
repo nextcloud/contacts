@@ -1,0 +1,11 @@
+SabreDAV/
+
+/*.zip
+/coverage/
+/Makefile
+/.git
+/.gitignore
+/.jshintrc
+/.travis.yml
+/node_modules
+/test
