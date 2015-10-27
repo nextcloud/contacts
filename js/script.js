@@ -8,7 +8,7 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-(function (angular, $, vCard) {
+(function (OC, angular, $, vCard) {
 
 	var app = angular.module('contactsApp', ['ui.router']);
 
@@ -72,7 +72,7 @@
 			controller: 'addressbooklistCtrl',
 			controllerAs: 'ctrl',
 			bindToController: {},
-			templateUrl: '/apps/contactsrework/templates/addressBookList.html'
+			templateUrl: OC.linkTo('contactsrework', 'templates/addressBookList.html')
 		}
 	});
 
@@ -85,7 +85,7 @@
 			bindToController: {
 				addressBook: "=data"
 			},
-			templateUrl: '/apps/contactsrework/templates/addressBook.html'
+			templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
 
 		}
 	});
@@ -113,7 +113,7 @@
 			bindToController: {
 				addressbook: '='
 			},
-			templateUrl: '/apps/contactsrework/templates/contactlist.html'
+			templateUrl: OC.linkTo('contactsrework', 'templates/contactList.html')
 		};
 	});
 
@@ -129,7 +129,7 @@
 			bindToController: {
 				data: '='
 			},
-			templateUrl: '/apps/contactsrework/templates/contact.html'
+			templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
 		}
 	});
 
@@ -162,4 +162,4 @@
 		}
 	});
 
-})(angular, jQuery, vCard);
+})(OC, angular, jQuery, vCard);
