@@ -54,7 +54,7 @@
 	app.service('DavService', ['xhr', function(xhr) {
 
 		return dav.createAccount({
-			server: "/remote.php/carddav/",
+			server: OC.linkToRemoteBase('carddav'),
 			xhr: xhr,
 			accountType: 'carddav'
 		});
