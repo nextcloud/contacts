@@ -28,12 +28,12 @@
 				url: '/:addressBookId',
 				template: '<contactlist data-addressbook="addressBook"></contactlist>',
 				resolve: {
-					addressBook: function(AddressBookService, xhr, $stateParams) {
+					addressBook: function(AddressBookService, DavClient, $stateParams) {
 						return AddressBookService.then(function (addressBooks) {
 							var addressBook = addressBooks.filter(function (element) {
 								return element.displayName === $stateParams.addressBookId;
 							})[0];
-							return dav.syncAddressBook(addressBook, {xhr: xhr});
+							return DavClient.syncAddressBook(addressBook, {accept: 'application/vCard+json'});
 						}).then(function (addressBook) {
 							return addressBook;
 						});
@@ -45,17 +45,16 @@
 			})
 	}]);
 
-	app.service('xhr', function() {
-		return new dav.transport.Basic(
+	app.service('DavClient', function() {
+		var xhr = new dav.transport.Basic(
 			new dav.Credentials()
 		);
+		return new dav.Client(xhr);
 	});
 
-	app.service('DavService', ['xhr', function(xhr) {
-
-		return dav.createAccount({
+	app.service('DavService', ['DavClient', function(client) {
+		return client.createAccount({
 			server: OC.linkToRemoteBase('carddav'),
-			xhr: xhr,
 			accountType: 'carddav'
 		});
 	}]);
