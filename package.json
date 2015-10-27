@@ -1,0 +1,24 @@
+{
+  "name": "contactsrework",
+  "version": "0.1.0",
+  "description": "Place this app in **owncloud/apps/**",
+  "author": {
+    "name": "Hendrik Leppelsack",
+    "email": "hendrik@leppelsack.de"
+  },
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Henni/contactsrework.git"
+  },
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Henni/contactsrework/issues"
+  },
+  "homepage": "https://github.com/Henni/contactsrework#readme",
+  "devDependencies": {
+    "gulp": "^3.9.0",
+    "gulp-concat": "^2.6.0",
+    "gulp-notify": "^2.2.0"
+  }
+}

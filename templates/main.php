@@ -3,7 +3,7 @@ script('contactsrework', 'vendor/angular/angular');
 script('contactsrework', 'vendor/angular-ui-router/release/angular-ui-router');
 script('contactsrework', 'vendor/dav/dav');
 script('contactsrework', 'vendor/vcard/src/vcard');
-script('contactsrework', 'script');
+script('contactsrework', 'public/script');
 style('contactsrework', 'style');
 ?>
 
