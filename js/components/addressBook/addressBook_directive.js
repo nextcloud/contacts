@@ -8,6 +8,5 @@ app.directive('addressbook', function() {
 			addressBook: "=data"
 		},
 		templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
-
-	}
+	};
 });

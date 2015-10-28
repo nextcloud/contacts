@@ -5,5 +5,5 @@ app.directive('addressbooklist', function() {
 		controllerAs: 'ctrl',
 		bindToController: {},
 		templateUrl: OC.linkTo('contactsrework', 'templates/addressBookList.html')
-	}
+	};
 });

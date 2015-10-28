@@ -40,7 +40,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 			controller: function($scope, addressBook) {
 				$scope.addressBook = addressBook;
 			}
-		})
+		});
 }]);
 
 app.service('DavClient', function() {
@@ -82,7 +82,7 @@ app.filter('vCard2JSON', function() {
 		} else {
 			return result.value;
 		}
-	}
+	};
 });
 
 app.controller('addressbookCtrl', function() {
@@ -98,8 +98,7 @@ app.directive('addressbook', function() {
 			addressBook: "=data"
 		},
 		templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
-
-	}
+	};
 });
 app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', function(scope, AddressBookService) {
 	var ctrl = this;
@@ -117,7 +116,7 @@ app.directive('addressbooklist', function() {
 		controllerAs: 'ctrl',
 		bindToController: {},
 		templateUrl: OC.linkTo('contactsrework', 'templates/addressBookList.html')
-	}
+	};
 });
 app.controller('contactCtrl', ['$filter', function($filter) {
 	var ctrl = this;
@@ -134,7 +133,7 @@ app.directive('contact', function() {
 			data: '='
 		},
 		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
-	}
+	};
 });
 app.controller('contactlistCtrl', function() {
 	var ctrl = this;

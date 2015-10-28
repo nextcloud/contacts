@@ -40,7 +40,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 			controller: function($scope, addressBook) {
 				$scope.addressBook = addressBook;
 			}
-		})
+		});
 }]);
 
 app.service('DavClient', function() {
@@ -82,5 +82,5 @@ app.filter('vCard2JSON', function() {
 		} else {
 			return result.value;
 		}
-	}
+	};
 });

@@ -7,5 +7,5 @@ app.directive('contact', function() {
 			data: '='
 		},
 		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
-	}
+	};
 });
