@@ -6,7 +6,9 @@ var gulp = require('gulp'),
 gulp.task('js', function() {
 	return gulp.src([
 			'js/main.js',
-			'js/components/**/*.js'
+			'js/components/**/*.js',
+			'js/services/**/*.js',
+			'js/models/**/*.js'
 			])
 		.pipe(jshint('.jshintrc'))
 		.pipe(jshint.reporter('default'))

@@ -1,6 +1,8 @@
-app.controller('contactCtrl', ['$filter', function($filter) {
+app.controller('contactCtrl', ['Contact', function(Contact) {
 	var ctrl = this;
 
-	console.log($filter('vCard2JSON')(ctrl.data.addressData));
+	ctrl.contact = new Contact(ctrl.data);
+
+	console.log(ctrl.contact);
 
 }]);

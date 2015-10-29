@@ -10,10 +10,6 @@
 
 var app = angular.module('contactsApp', ['ui.router']);
 
-app.run(function($rootScope) {
-	$rootScope.addressBooks = [];
-});
-
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
 
@@ -31,9 +27,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 						var addressBook = addressBooks.filter(function (element) {
 							return element.displayName === $stateParams.addressBookId;
 						})[0];
-						return DavClient.syncAddressBook(addressBook, {accept: 'application/vCard+json'});
-					}).then(function (addressBook) {
-						return addressBook;
+						return DavClient.syncAddressBook(addressBook, {json: true});
 					});
 				}
 			},
@@ -43,44 +37,3 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		});
 }]);
 
-app.service('DavClient', function() {
-	var xhr = new dav.transport.Basic(
-		new dav.Credentials()
-	);
-	return new dav.Client(xhr);
-});
-
-app.service('DavService', ['DavClient', function(client) {
-	return client.createAccount({
-		server: OC.linkToRemoteBase('carddav'),
-		accountType: 'carddav'
-	});
-}]);
-
-app.service('AddressBookService', ['DavService', function(DavService){
-	return DavService.then(function(account) {
-		return account.addressBooks;
-	});
-}]);
-
-app.filter('JSON2vCard', function() {
-	return vCard.generate;
-});
-
-app.filter('vCard2JSON', function() {
-	return function(input, prop) {
-		var result = vCard.parse(input);
-		if(prop === undefined) {
-			return result;
-		}
-		if(result[prop] === undefined) {
-			return undefined;
-		}
-		result = result[prop][0];
-		if(result.value instanceof Array) {
-			return result.value.join(' ');
-		} else {
-			return result.value;
-		}
-	};
-});
