@@ -1,6 +1,6 @@
 var gulp = require('gulp'),
-    concat = require('gulp-concat'),
-    notify = require('gulp-notify'),
+	concat = require('gulp-concat'),
+	notify = require('gulp-notify'),
 	jshint = require('gulp-jshint');
 
 gulp.task('js', function() {
@@ -18,8 +18,19 @@ gulp.task('js', function() {
 		.pipe(notify({message: 'Scripts task complete'}));
 });
 
-gulp.task('watch', function() {
-	gulp.watch('js/**/*.js', ['js']);
+gulp.task('css', function() {
+	return gulp.src([
+			'css/**/*.css',
+			'!css/public/**.css'
+			])
+		.pipe(concat('style.css'))
+		.pipe(gulp.dest('css/public'))
+		.pipe(notify({message: 'Styles task complete'}));
 });
 
-gulp.task('default', ['js']);
+gulp.task('watch', function() {
+	gulp.watch('js/**/*.js', ['js']);
+	gulp.watch('css/**/*.css', ['css']);
+});
+
+gulp.task('default', ['js', 'css']);

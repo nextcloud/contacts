@@ -1,0 +1,11 @@
+.contactdetails__header {
+	height:100px;
+	display: flex;
+	color: white;
+	font-weight: bold;
+	align-items: center;
+}
+
+.contactdetails__name {
+
+}

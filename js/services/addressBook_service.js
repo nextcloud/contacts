@@ -17,7 +17,6 @@ app.service('AddressBookService', ['DavClient', 'DavService', 'AddressBook', 'Co
 	};
 
 	this.sync = function(addressBook) {
-		console.log('hi');
 		return DavClient.syncAddressBook(addressBook).then(function(addressBook) {
 			// parse contacts
 			addressBook.contacts = [];

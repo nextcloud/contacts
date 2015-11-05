@@ -1,6 +1,14 @@
-List:
-<ul>
-	<li ng-repeat="contact in ctrl.addressbook.contacts">
-		<contact data="contact"></contact>
-	</li>
-</ul>
+<table id="contactstable">
+	<thead>
+		<tr>
+			<th class="contact__name">
+				<input type="checkbox" id="check-all" class="checkbox" />
+				<label for="check-all"></label>
+			</th>
+			<th>Name</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="contact in ctrl.addressbook.contacts" contact data="contact"></tr>
+	</tbody>
+</table>

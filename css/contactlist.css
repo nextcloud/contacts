@@ -1,0 +1,41 @@
+#contactstable {
+	width: 100%;
+}
+
+#contactstable th {
+	color: #999;
+}
+
+#contactstable th,
+#contactstable td {
+	border-bottom: 1px solid #eee;
+	color: #999;
+	height: 50px;
+}
+
+#contactstable th:first-child,
+#contactstable td:first-child
+{
+	padding-left: 50px;
+}
+
+#check-all + label:before {
+	position: absolute;
+	top: 18px;
+	left: 68px;
+}
+
+.contact__icon {
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	line-height: 40px;
+	border-radius: 20px;
+	vertical-align: middle;
+	margin-right: 10px;
+	color: white;
+	text-align: center;
+	font-weight: bold;
+	font-size: 1.5em;
+	text-transform: capitalize;
+}
