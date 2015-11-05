@@ -14,8 +14,7 @@ style('contactsrework', 'style');
 	</div>
 
 	<div id="app-content">
-		<div id="app-content-wrapper" ui-view>
-			<?php /*print_unescaped($this->inc('part.content')); */ ?>
-		</div>
+		<div id="app-sidebar" ui-view="sidebar"></div>
+		<div id="app-content-wrapper" ui-view></div>
 	</div>
 </div>

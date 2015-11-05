@@ -16,29 +16,72 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 	$stateProvider
 		.state('home', {
 			url: '/',
-			template: '<div>Home</div>'
+			views: {
+				'': {
+					template: '<div>Home</div>'
+				},
+
+				'sidebar': {
+					template: '<div>none</div>'
+				}
+			}
 		})
-		.state('contactlist',{
+		.state('contacts',{
 			url: '/:addressBookId',
-			template: '<contactlist data-adrbook="addressBook"></contactlist>',
+			views: {
+				'': {
+					template: '<contactlist data-adrbook="addressBook"></contactlist>',
+					controller: function($scope, addressBook) {
+						$scope.addressBook = addressBook;
+					}
+				},
+				'sidebar': {
+					template: '1'
+				}
+			},
 			resolve: {
 				addressBook: function(AddressBookService, $stateParams) {
 					return AddressBookService.get($stateParams.addressBookId).then(function(addressBook) {
 						return AddressBookService.sync(addressBook);
 					});
 				}
-			},
-			controller: function($scope, addressBook) {
-				$scope.addressBook = addressBook;
 			}
 		})
-		.state('contactlist.contact', {
-			url: '/:contact',
-			template: '<div>Test</div>'
+		.state('contacts.detail', {
+			url: '/:uid',
+			views: {
+				'sidebar@': {
+					template: '<contactdetails data="contact"></contactdetails>',
+					controller: function($scope, contact) {
+						$scope.contact = contact;
+					}
+				}
+			},
+			resolve: {
+				contact: function(addressBook, $stateParams) {
+					return addressBook.getContact($stateParams.uid);
+				}
+			}
 		});
 }]);
 
 
+app.controller('addressbookCtrl', function() {
+	var ctrl = this;
+	console.log(this);
+});
+app.directive('addressbook', function() {
+	return {
+		restrict: 'A', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'addressbookCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			addressBook: "=data"
+		},
+		templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
+	};
+});
 app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', function(scope, AddressBookService) {
 	var ctrl = this;
 
@@ -59,26 +102,8 @@ app.directive('addressbooklist', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/addressBookList.html')
 	};
 });
-app.controller('addressbookCtrl', function() {
+app.controller('contactCtrl', ['Contact', function() {
 	var ctrl = this;
-	console.log(this);
-});
-app.directive('addressbook', function() {
-	return {
-		restrict: 'A', // has to be an attribute to work with core css
-		scope: {},
-		controller: 'addressbookCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			addressBook: "=data"
-		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
-	};
-});
-app.controller('contactCtrl', ['Contact', function(Contact) {
-	var ctrl = this;
-
-	ctrl.contact = new Contact(ctrl.data);
 
 	console.log("Contact: ",ctrl.contact);
 
@@ -89,9 +114,24 @@ app.directive('contact', function() {
 		controller: 'contactCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {
-			data: '='
+			contact: '=data'
 		},
 		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
+	};
+});
+app.controller('contactdetailsCtrl', function() {
+	var ctrl = this;
+});
+app.directive('contactdetails', function() {
+	return {
+		priority: 1,
+		scope: {},
+		controller: 'contactdetailsCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			contact: '=data'
+		},
+		templateUrl: OC.linkTo('contactsrework', 'templates/contactDetails.html')
 	};
 });
 app.controller('contactlistCtrl', function() {
@@ -114,9 +154,17 @@ app.factory('AddressBook', function()
 	return function AddressBook(data) {
 		angular.extend(this, {
 
-			baseUrl: "",
 			displayName: "",
-			contacts: []
+			contacts: [],
+
+			getContact: function(uid) {
+				for(var i in this.contacts) {
+					if(this.contacts[i].uid() === uid) {
+						return this.contacts[i];
+					}
+				}
+				return undefined;
+			}
 
 		});
 		angular.extend(this, data);
@@ -183,11 +231,13 @@ app.factory('Contact', [ 'ContactService', '$filter', function(ContactService, $
 		angular.extend(this.props, $filter('vCard2JSON')(this.data.addressData));
 	};
 }]);
-app.service('AddressBookService', ['DavClient', 'DavService', 'Contact', function(DavClient, DavService, Contact){
+app.service('AddressBookService', ['DavClient', 'DavService', 'AddressBook', 'Contact', function(DavClient, DavService, AddressBook, Contact){
 
 	this.getAll = function() {
 		return DavService.then(function(account) {
-			return account.addressBooks;
+			return account.addressBooks.map(function(addressBook) {
+				return new AddressBook(addressBook);
+			});
 		});
 	};
 
@@ -200,14 +250,15 @@ app.service('AddressBookService', ['DavClient', 'DavService', 'Contact', functio
 	};
 
 	this.sync = function(addressBook) {
+		console.log('hi');
 		return DavClient.syncAddressBook(addressBook).then(function(addressBook) {
-			/*addressBook.contacts = [];
-			console.log(addressBook.objects);
-			for(i in addressBook.objects) {
+			// parse contacts
+			addressBook.contacts = [];
+			for(var i in addressBook.objects) {
 				addressBook.contacts.push(
-					new Contact(addressBook.objects[i].data)
+					new Contact(addressBook.objects[i])
 				);
-			}*/
+			}
 			return addressBook;
 		});
 	};
@@ -251,6 +302,27 @@ app.filter('JSON2vCard', function() {
 		return vCard.generate(input);
 	};
 });
+app.filter('contactColor', function() {
+	return function(input) {
+		var colors = [
+			'#001f3f',
+			'#0074D9',
+			'#39CCCC',
+			'#3D9970',
+			'#2ECC40',
+			'#FF851B',
+			'#FF4136',
+			'#85144b',
+			'#F012BE',
+			'#B10DC9'
+		], asciiSum = 0;
+		for(var i in input) {
+			asciiSum += input.charCodeAt(i);
+		}
+		return colors[asciiSum % colors.length];
+	};
+});
+
 app.filter('vCard2JSON', function() {
 	return function(input) {
 		return vCard.parse(input);

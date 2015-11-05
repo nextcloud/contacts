@@ -16,25 +16,52 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 	$stateProvider
 		.state('home', {
 			url: '/',
-			template: '<div>Home</div>'
+			views: {
+				'': {
+					template: '<div>Home</div>'
+				},
+
+				'sidebar': {
+					template: '<div>none</div>'
+				}
+			}
 		})
-		.state('contactlist',{
+		.state('contacts',{
 			url: '/:addressBookId',
-			template: '<contactlist data-adrbook="addressBook"></contactlist>',
+			views: {
+				'': {
+					template: '<contactlist data-adrbook="addressBook"></contactlist>',
+					controller: function($scope, addressBook) {
+						$scope.addressBook = addressBook;
+					}
+				},
+				'sidebar': {
+					template: '1'
+				}
+			},
 			resolve: {
 				addressBook: function(AddressBookService, $stateParams) {
 					return AddressBookService.get($stateParams.addressBookId).then(function(addressBook) {
 						return AddressBookService.sync(addressBook);
 					});
 				}
-			},
-			controller: function($scope, addressBook) {
-				$scope.addressBook = addressBook;
 			}
 		})
-		.state('contactlist.contact', {
-			url: '/:contact',
-			template: '<div>Test</div>'
+		.state('contacts.detail', {
+			url: '/:uid',
+			views: {
+				'sidebar@': {
+					template: '<contactdetails data="contact"></contactdetails>',
+					controller: function($scope, contact) {
+						$scope.contact = contact;
+					}
+				}
+			},
+			resolve: {
+				contact: function(addressBook, $stateParams) {
+					return addressBook.getContact($stateParams.uid);
+				}
+			}
 		});
 }]);
 

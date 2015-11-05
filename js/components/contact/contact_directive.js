@@ -4,7 +4,7 @@ app.directive('contact', function() {
 		controller: 'contactCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {
-			data: '='
+			contact: '=data'
 		},
 		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
 	};

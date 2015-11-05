@@ -1,8 +1,10 @@
-app.service('AddressBookService', ['DavClient', 'DavService', 'Contact', function(DavClient, DavService, Contact){
+app.service('AddressBookService', ['DavClient', 'DavService', 'AddressBook', 'Contact', function(DavClient, DavService, AddressBook, Contact){
 
 	this.getAll = function() {
 		return DavService.then(function(account) {
-			return account.addressBooks;
+			return account.addressBooks.map(function(addressBook) {
+				return new AddressBook(addressBook);
+			});
 		});
 	};
 
@@ -15,14 +17,15 @@ app.service('AddressBookService', ['DavClient', 'DavService', 'Contact', functio
 	};
 
 	this.sync = function(addressBook) {
+		console.log('hi');
 		return DavClient.syncAddressBook(addressBook).then(function(addressBook) {
-			/*addressBook.contacts = [];
-			console.log(addressBook.objects);
-			for(i in addressBook.objects) {
+			// parse contacts
+			addressBook.contacts = [];
+			for(var i in addressBook.objects) {
 				addressBook.contacts.push(
-					new Contact(addressBook.objects[i].data)
+					new Contact(addressBook.objects[i])
 				);
-			}*/
+			}
 			return addressBook;
 		});
 	};
