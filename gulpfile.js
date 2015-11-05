@@ -7,8 +7,9 @@ gulp.task('js', function() {
 	return gulp.src([
 			'js/main.js',
 			'js/components/**/*.js',
+			'js/models/**/*.js',
 			'js/services/**/*.js',
-			'js/models/**/*.js'
+			'js/filters/**/*.js'
 			])
 		.pipe(jshint('.jshintrc'))
 		.pipe(jshint.reporter('default'))

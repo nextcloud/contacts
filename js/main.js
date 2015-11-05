@@ -20,20 +20,21 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		})
 		.state('contactlist',{
 			url: '/:addressBookId',
-			template: '<contactlist data-addressbook="addressBook"></contactlist>',
+			template: '<contactlist data-adrbook="addressBook"></contactlist>',
 			resolve: {
-				addressBook: function(AddressBookService, DavClient, $stateParams) {
-					return AddressBookService.then(function (addressBooks) {
-						var addressBook = addressBooks.filter(function (element) {
-							return element.displayName === $stateParams.addressBookId;
-						})[0];
-						return DavClient.syncAddressBook(addressBook, {json: true});
+				addressBook: function(AddressBookService, $stateParams) {
+					return AddressBookService.get($stateParams.addressBookId).then(function(addressBook) {
+						return AddressBookService.sync(addressBook);
 					});
 				}
 			},
 			controller: function($scope, addressBook) {
 				$scope.addressBook = addressBook;
 			}
+		})
+		.state('contactlist.contact', {
+			url: '/:contact',
+			template: '<div>Test</div>'
 		});
 }]);
 

@@ -1,6 +1,6 @@
 app.directive('addressbook', function() {
 	return {
-		restrict: 'E',
+		restrict: 'A', // has to be an attribute to work with core css
 		scope: {},
 		controller: 'addressbookCtrl',
 		controllerAs: 'ctrl',

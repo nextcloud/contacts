@@ -3,6 +3,6 @@ app.controller('contactCtrl', ['Contact', function(Contact) {
 
 	ctrl.contact = new Contact(ctrl.data);
 
-	console.log(ctrl.contact);
+	console.log("Contact: ",ctrl.contact);
 
 }]);

@@ -1,40 +1,46 @@
-app.factory('Contact', function(ContactService)
-{
-	return function Contact(jCard) {
+app.factory('Contact', [ 'ContactService', '$filter', function(ContactService, $filter) {
+	return function Contact(vCard) {
 		angular.extend(this, {
 
-			jCard: [],
+			data: {},
+			props: {},
 
-			name: function(value) {
-				var name = this.getProperty('n');
+			uid: function(value) {
 				if (angular.isDefined(value)) {
 					// setter
-					this.setPropertyValue(name, value);
+					return this.setProperty('uid', { value: value });
 				} else {
 					// getter
-					return this.getPropertyValue(name);
+					return this.getProperty('uid').value;
 				}
+			},
 
+			fullName: function(value) {
+				if (angular.isDefined(value)) {
+					// setter
+					return this.setProperty('fn', { value: value });
+				} else {
+					// getter
+					return this.getProperty('fn').value;
+				}
 			},
 
 			getProperty: function(name) {
-				var contact = this;
-				if(!angular.isDefined(contact.jCard.addressData[1])) {
-					return undefined;
-				}
-				var properties = contact.jCard.addressData[1];
-				for(var i in properties) {
-					if(properties[i][0] === name)
-						return properties[i];
-				}
-				return undefined;
+				return this.props[name][0];
 			},
 
-			getPropertyValue: function(property) {
-				if(property[3] instanceof Array) {
-					return property[3].join(' ');
+			setProperty: function(name, data) {
+				angular.extend(this.props[name][0], data);
+
+				// keep vCard in sync
+				this.data.addressData = $filter('JSON2vCard')(this.props);
+			}
+
+			/*getPropertyValue: function(property) {
+				if(property.value instanceof Array) {
+					return property.value.join(' ');
 				} else {
-					return property[3];
+					return property.value;
 				}
 			},
 
@@ -45,9 +51,11 @@ app.factory('Contact', function(ContactService)
 
 			update: function() {
 				ContactService.update(this.jCard);
-			}
+			}*/
 
 		});
-		angular.extend(this.jCard, jCard);
+
+		angular.extend(this.data, vCard);
+		angular.extend(this.props, $filter('vCard2JSON')(this.data.addressData));
 	};
-});
+}]);

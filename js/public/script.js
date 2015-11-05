@@ -20,30 +20,52 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		})
 		.state('contactlist',{
 			url: '/:addressBookId',
-			template: '<contactlist data-addressbook="addressBook"></contactlist>',
+			template: '<contactlist data-adrbook="addressBook"></contactlist>',
 			resolve: {
-				addressBook: function(AddressBookService, DavClient, $stateParams) {
-					return AddressBookService.then(function (addressBooks) {
-						var addressBook = addressBooks.filter(function (element) {
-							return element.displayName === $stateParams.addressBookId;
-						})[0];
-						return DavClient.syncAddressBook(addressBook, {json: true});
+				addressBook: function(AddressBookService, $stateParams) {
+					return AddressBookService.get($stateParams.addressBookId).then(function(addressBook) {
+						return AddressBookService.sync(addressBook);
 					});
 				}
 			},
 			controller: function($scope, addressBook) {
 				$scope.addressBook = addressBook;
 			}
+		})
+		.state('contactlist.contact', {
+			url: '/:contact',
+			template: '<div>Test</div>'
 		});
 }]);
 
 
+app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', function(scope, AddressBookService) {
+	var ctrl = this;
+
+	console.log(AddressBookService);
+	AddressBookService.getAll().then(function(addressBooks) {
+		scope.$apply(function() {
+			ctrl.addressBooks = addressBooks;
+		});
+	});
+}]);
+app.directive('addressbooklist', function() {
+	return {
+		restrict: 'A', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'addressbooklistCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {},
+		templateUrl: OC.linkTo('contactsrework', 'templates/addressBookList.html')
+	};
+});
 app.controller('addressbookCtrl', function() {
 	var ctrl = this;
+	console.log(this);
 });
 app.directive('addressbook', function() {
 	return {
-		restrict: 'E',
+		restrict: 'A', // has to be an attribute to work with core css
 		scope: {},
 		controller: 'addressbookCtrl',
 		controllerAs: 'ctrl',
@@ -53,30 +75,12 @@ app.directive('addressbook', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
 	};
 });
-app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', function(scope, AddressBookService) {
-	var ctrl = this;
-
-	AddressBookService.then(function(addressBooks) {
-		scope.$apply(function() {
-			ctrl.addressBooks = addressBooks;
-		});
-	});
-}]);
-app.directive('addressbooklist', function() {
-	return {
-		scope: {},
-		controller: 'addressbooklistCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {},
-		templateUrl: OC.linkTo('contactsrework', 'templates/addressBookList.html')
-	};
-});
 app.controller('contactCtrl', ['Contact', function(Contact) {
 	var ctrl = this;
 
 	ctrl.contact = new Contact(ctrl.data);
 
-	console.log(ctrl.contact);
+	console.log("Contact: ",ctrl.contact);
 
 }]);
 app.directive('contact', function() {
@@ -100,16 +104,114 @@ app.directive('contactlist', function() {
 		controller: 'contactlistCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {
-			addressbook: '='
+			addressbook: '=adrbook'
 		},
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactList.html')
 	};
 });
-app.service('AddressBookService', ['DavService', function(DavService){
+app.factory('AddressBook', function()
+{
+	return function AddressBook(data) {
+		angular.extend(this, {
 
-	return DavService.then(function(account) {
-		return account.addressBooks;
-	});
+			baseUrl: "",
+			displayName: "",
+			contacts: []
+
+		});
+		angular.extend(this, data);
+	};
+});
+app.factory('Contact', [ 'ContactService', '$filter', function(ContactService, $filter) {
+	return function Contact(vCard) {
+		angular.extend(this, {
+
+			data: {},
+			props: {},
+
+			uid: function(value) {
+				if (angular.isDefined(value)) {
+					// setter
+					return this.setProperty('uid', { value: value });
+				} else {
+					// getter
+					return this.getProperty('uid').value;
+				}
+			},
+
+			fullName: function(value) {
+				if (angular.isDefined(value)) {
+					// setter
+					return this.setProperty('fn', { value: value });
+				} else {
+					// getter
+					return this.getProperty('fn').value;
+				}
+			},
+
+			getProperty: function(name) {
+				return this.props[name][0];
+			},
+
+			setProperty: function(name, data) {
+				angular.extend(this.props[name][0], data);
+
+				// keep vCard in sync
+				this.data.addressData = $filter('JSON2vCard')(this.props);
+			}
+
+			/*getPropertyValue: function(property) {
+				if(property.value instanceof Array) {
+					return property.value.join(' ');
+				} else {
+					return property.value;
+				}
+			},
+
+			setPropertyValue: function(property, propertyValue) {
+				property[3] = propertyValue;
+				this.update();
+			},
+
+			update: function() {
+				ContactService.update(this.jCard);
+			}*/
+
+		});
+
+		angular.extend(this.data, vCard);
+		angular.extend(this.props, $filter('vCard2JSON')(this.data.addressData));
+	};
+}]);
+app.service('AddressBookService', ['DavClient', 'DavService', 'Contact', function(DavClient, DavService, Contact){
+
+	this.getAll = function() {
+		return DavService.then(function(account) {
+			return account.addressBooks;
+		});
+	};
+
+	this.get = function(displayName) {
+		return this.getAll().then(function(addressBooks){
+			return addressBooks.filter(function (element) {
+				return element.displayName === displayName;
+			})[0];
+		});
+	};
+
+	this.sync = function(addressBook) {
+		return DavClient.syncAddressBook(addressBook).then(function(addressBook) {
+			/*addressBook.contacts = [];
+			console.log(addressBook.objects);
+			for(i in addressBook.objects) {
+				addressBook.contacts.push(
+					new Contact(addressBook.objects[i].data)
+				);
+			}*/
+			return addressBook;
+		});
+	};
+
 }]);
 app.service('ContactService', [ 'DavClient', function(DavClient) {
 
@@ -144,57 +246,13 @@ app.service('DavService', ['DavClient', function(client) {
 		accountType: 'carddav'
 	});
 }]);
-
-app.factory('Contact', function(ContactService)
-{
-	return function Contact(jCard) {
-		angular.extend(this, {
-
-			jCard: [],
-
-			name: function(value) {
-				var name = this.getProperty('n');
-				if (angular.isDefined(value)) {
-					// setter
-					this.setPropertyValue(name, value);
-				} else {
-					// getter
-					return this.getPropertyValue(name);
-				}
-
-			},
-
-			getProperty: function(name) {
-				var contact = this;
-				if(!angular.isDefined(contact.jCard.addressData[1])) {
-					return undefined;
-				}
-				var properties = contact.jCard.addressData[1];
-				for(var i in properties) {
-					if(properties[i][0] === name)
-						return properties[i];
-				}
-				return undefined;
-			},
-
-			getPropertyValue: function(property) {
-				if(property[3] instanceof Array) {
-					return property[3].join(' ');
-				} else {
-					return property[3];
-				}
-			},
-
-			setPropertyValue: function(property, propertyValue) {
-				property[3] = propertyValue;
-				this.update();
-			},
-
-			update: function() {
-				ContactService.update(this.jCard);
-			}
-
-		});
-		angular.extend(this.jCard, jCard);
+app.filter('JSON2vCard', function() {
+	return function(input) {
+		return vCard.generate(input);
+	};
+});
+app.filter('vCard2JSON', function() {
+	return function(input) {
+		return vCard.parse(input);
 	};
 });
