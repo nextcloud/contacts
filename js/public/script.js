@@ -65,7 +65,22 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 		});
 }]);
 
-
+app.controller('addressbookCtrl', function() {
+	var ctrl = this;
+	console.log(this);
+});
+app.directive('addressbook', function() {
+	return {
+		restrict: 'A', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'addressbookCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			addressBook: "=data"
+		},
+		templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
+	};
+});
 app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', function(scope, AddressBookService) {
 	var ctrl = this;
 
@@ -131,22 +146,6 @@ app.directive('contactlist', function() {
 			addressbook: '=adrbook'
 		},
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactList.html')
-	};
-});
-app.controller('addressbookCtrl', function() {
-	var ctrl = this;
-	console.log(this);
-});
-app.directive('addressbook', function() {
-	return {
-		restrict: 'A', // has to be an attribute to work with core css
-		scope: {},
-		controller: 'addressbookCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			addressBook: "=data"
-		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
 	};
 });
 app.factory('AddressBook', function()
@@ -254,15 +253,18 @@ app.service('AddressBookService', ['DavClient', 'DavService', 'AddressBook', 'Co
 			// parse contacts
 			addressBook.contacts = [];
 			for(var i in addressBook.objects) {
-				addressBook.contacts.push(
-					new Contact(addressBook.objects[i])
-				);
+				if(typeof addressBook.objects[i] === 'object') {
+					addressBook.contacts.push(
+						new Contact(addressBook.objects[i])
+					);
+				}
 			}
 			return addressBook;
 		});
 	};
 
 }]);
+
 app.service('ContactService', [ 'DavClient', function(DavClient) {
 
 	this.create = function(addressBook) {

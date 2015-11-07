@@ -21,9 +21,11 @@ app.service('AddressBookService', ['DavClient', 'DavService', 'AddressBook', 'Co
 			// parse contacts
 			addressBook.contacts = [];
 			for(var i in addressBook.objects) {
-				addressBook.contacts.push(
-					new Contact(addressBook.objects[i])
-				);
+				if(typeof addressBook.objects[i] === 'object') {
+					addressBook.contacts.push(
+						new Contact(addressBook.objects[i])
+					);
+				}
 			}
 			return addressBook;
 		});
