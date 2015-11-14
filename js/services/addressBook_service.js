@@ -8,6 +8,24 @@ app.service('AddressBookService', ['DavClient', 'DavService', 'AddressBook', 'Co
 		});
 	};
 
+	this.create = function(displayName) {
+		return DavService.then(function(account) {
+			return DavClient.createAddressBook({displayName:displayName, url:account.homeUrl});
+		});
+	};
+
+	this.delete = function(addressBook) {
+		return DavService.then(function(account) {
+			return DavClient.deleteAddressBook(addressBook);
+		});
+	};
+
+	this.rename = function(addressBook, displayName) {
+		return DavService.then(function(account) {
+			return DavClient.renameAddressBook(addressBook, {displayName:displayName, url:account.homeUrl});
+		});
+	};
+
 	this.get = function(displayName) {
 		return this.getAll().then(function(addressBooks){
 			return addressBooks.filter(function (element) {
