@@ -9,27 +9,6 @@
 .contactdetails__name {
 
 }
-#contactstable {
-	width: 100%;
-}
-
-#contactstable th {
-	color: #999;
-}
-
-#contactstable th,
-#contactstable td {
-	border-bottom: 1px solid #eee;
-	color: #999;
-	height: 50px;
-}
-
-#contactstable th:first-child,
-#contactstable td:first-child
-{
-	padding-left: 50px;
-}
-
 #check-all + label:before {
 	position: absolute;
 	top: 18px;
@@ -38,15 +17,90 @@
 
 .contact__icon {
 	display: inline-block;
-	height: 40px;
-	width: 40px;
-	line-height: 40px;
-	border-radius: 20px;
+	height: 32px;
+	width: 32px;
+	line-height: 32px;
+	border-radius: 50%;
 	vertical-align: middle;
 	margin-right: 10px;
 	color: white;
 	text-align: center;
-	font-weight: bold;
 	font-size: 1.5em;
 	text-transform: capitalize;
+}
+
+
+
+
+/* app content list & detail view */
+/* TO BE MOVED TO CORE apps.css ONCE STANDARDIZED ACROSS APPS */
+
+.app-content-list {
+	width: 30%;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
+}
+
+.app-content-detail {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 70%;
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.app-content-list-button {
+	display: block;
+	margin: 10px auto;
+	padding: 10px;
+}
+
+.app-content-list-item {
+	position: relative;
+	height: 68px;
+	border-top: 1px solid #eee;
+	cursor: pointer;
+}
+.app-content-list-item:hover,
+.app-content-list-item:focus,
+.app-content-list-item.active {
+	background-color: #f8f8f8;
+}
+
+.app-content-list-item-icon {
+	position: absolute;
+	display: inline-block;
+	left: 10px;
+	top: 5px;
+}
+
+.app-content-list-item-star {
+	position: absolute;
+	display: inline-block;
+	left: 16px;
+	top: 28px;
+	padding: 20px;
+	background-size: 16px;
+	z-index: 100;
+}
+
+.app-content-list-item-line-one,
+.app-content-list-item-line-two {
+	position: absolute;
+	display: inline-block;
+	width: 100%;
+	padding: 12px;
+	padding-left: 50px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+.app-content-list-item-line-one {
+}
+.app-content-list-item-line-two {
+	top: 25px;
+	opacity: .5;
 }

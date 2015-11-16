@@ -27,7 +27,7 @@ style('contactsrework', 'public/style');
 	</div>
 
 	<div id="app-content">
-		<div id="app-sidebar" ui-view="sidebar"></div>
-		<div id="app-content-wrapper" ui-view></div>
+		<div class="app-content-list" ui-view></div>
+		<div class="app-content-detail" ui-view="sidebar"></div>
 	</div>
 </div>
