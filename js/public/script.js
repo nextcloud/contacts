@@ -81,7 +81,7 @@ app.directive('addressbook', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
 	};
 });
-app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', function(scope, AddressBookService) {
+app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'settingsService', function(scope, AddressBookService) {
 	var ctrl = this;
 
 	console.log(AddressBookService);
@@ -90,10 +90,16 @@ app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', function(
 			ctrl.addressBooks = addressBooks;
 		});
 	});
+
+	ctrl.createAddressBook = function() {
+		AddressBookService.create('newAddressBook');
+	};
+
 }]);
+
 app.directive('addressbooklist', function() {
 	return {
-		restrict: 'A', // has to be an attribute to work with core css
+		restrict: 'EA', // has to be an attribute to work with core css
 		scope: {},
 		controller: 'addressbooklistCtrl',
 		controllerAs: 'ctrl',
@@ -101,6 +107,7 @@ app.directive('addressbooklist', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/addressBookList.html')
 	};
 });
+
 app.controller('contactCtrl', ['Contact', function() {
 	var ctrl = this;
 
@@ -285,6 +292,10 @@ app.service('AddressBookService', ['DavClient', 'DavService', 'AddressBook', 'Co
 
 app.service('ContactService', [ 'DavClient', function(DavClient) {
 
+	this.getAll = function() {
+		return 
+	};
+
 	this.create = function(addressBook) {
 		// push contact to server
 		return DavClient.createCard(addressBook);
@@ -304,6 +315,7 @@ app.service('ContactService', [ 'DavClient', function(DavClient) {
 		// from array to contact
 	};
 }]);
+
 app.service('DavClient', function() {
 	var xhr = new dav.transport.Basic(
 		new dav.Credentials()
@@ -315,6 +327,27 @@ app.service('DavService', ['DavClient', function(client) {
 		server: OC.linkToRemoteBase('dav/addressbooks'),
 		accountType: 'carddav'
 	});
+}]);
+
+app.service('SettingsService', [ function() {
+
+  var settings = {
+    addressBooks: [
+      "Kontakte"
+    ]
+  };
+
+	this.set = function(key, value) {
+    settings[key] = value;
+  };
+
+  this.get = function(key) {
+    return settings[key];
+  };
+
+  this.getAll = function() {
+    return settings
+  }
 }]);
 
 app.filter('JSON2vCard', function() {

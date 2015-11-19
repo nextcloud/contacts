@@ -1,4 +1,4 @@
-app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', function(scope, AddressBookService) {
+app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'settingsService', function(scope, AddressBookService) {
 	var ctrl = this;
 
 	console.log(AddressBookService);
@@ -7,4 +7,9 @@ app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', function(
 			ctrl.addressBooks = addressBooks;
 		});
 	});
+
+	ctrl.createAddressBook = function() {
+		AddressBookService.create('newAddressBook');
+	};
+
 }]);

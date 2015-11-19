@@ -1,5 +1,9 @@
 app.service('ContactService', [ 'DavClient', function(DavClient) {
 
+	this.getAll = function() {
+		return 
+	};
+
 	this.create = function(addressBook) {
 		// push contact to server
 		return DavClient.createCard(addressBook);

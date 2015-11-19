@@ -9,8 +9,19 @@ style('contactsrework', 'public/style');
 
 <div id="app" ng-app="contactsApp">
 	<div id="app-navigation">
+		
 		<ul addressBookList></ul>
-		<?php print_unescaped($this->inc('part.settings')); ?>
+
+		<div id="app-settings">
+			<div id="app-settings-header">
+				<button class="settings-button"
+						data-apps-slide-toggle="#app-settings-content"
+				></button>
+			</div>
+			<div id="app-settings-content">
+				<addressBookList></addressBookList>
+			</div>
+		</div>
 	</div>
 
 	<div id="app-content">
