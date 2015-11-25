@@ -294,10 +294,11 @@ app.service('DavClient', function() {
 });
 app.service('DavService', ['DavClient', function(client) {
 	return client.createAccount({
-		server: OC.linkToRemoteBase('carddav'),
+		server: OC.linkToRemoteBase('dav/addressbooks'),
 		accountType: 'carddav'
 	});
 }]);
+
 app.filter('JSON2vCard', function() {
 	return function(input) {
 		return vCard.generate(input);
