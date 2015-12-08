@@ -73,6 +73,20 @@ export function collectionQuery(requestData, options) {
   });
 }
 
+export function mkcol(options) {
+  let requestData = template.mkcol({ props: options.props });
+
+  function transformRequest(xhr) {
+    setRequestHeaders(xhr, options);
+  }
+
+  return new Request({
+    method: 'MKCOL',
+    requestData: requestData,
+    transformRequest: transformRequest
+  });
+}
+
 /**
  * Options:
  *
@@ -193,5 +207,13 @@ export function setRequestHeaders(request, options) {
 
   if ('etag' in options) {
     request.setRequestHeader('If-Match', options.etag);
+  }
+
+  if ('destination' in options) {
+    request.setRequestHeader('Destination', options.destination);
+  }
+
+  if ('overwrite' in options) {
+    request.setRequestHeader('Overwrite', options.overwrite);
   }
 }

@@ -73,6 +73,21 @@ export class Client {
     return calendars.syncCaldavAccount(account, options);
   }
 
+  createAddressBook(options={}) {
+    options.xhr = options.xhr || this.xhr;
+    return contacts.createAddressBook(options);
+  }
+
+  deleteAddressBook(addressBook, options={}) {
+    options.xhr = options.xhr || this.xhr;
+    return contacts.deleteAddressBook(addressBook, options);
+  }
+
+  renameAddressBook(addressBook, options={}) {
+    options.xhr = options.xhr || this.xhr;
+    return contacts.renameAddressBook(addressBook, options);
+  }
+
   createCard(addressBook, options={}) {
     options.xhr = options.xhr || this.xhr;
     return contacts.createCard(addressBook, options);

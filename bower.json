@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "angular": "~1.4.7",
-    "dav": "git@github.com:gaye/dav.git#~1.7.8",
+    "dav": "git@github.com:irgendwie/dav.git#343baa9",
     "angular-ui-router": "~0.2.15",
     "vcard": "~0.2.3"
   }

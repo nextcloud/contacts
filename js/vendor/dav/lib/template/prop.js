@@ -39,6 +39,10 @@ export default function prop(item) {
   return `<${xmlnsPrefix(item.namespace)}:${item.name} />`;
 }
 
+export default function putProp(item, value) {
+  return `<${xmlnsPrefix(item.namespace)}:${item.name}>${item.value}</${xmlnsPrefix(item.namespace)}:${item.name}>`;
+}
+
 function xmlnsPrefix(namespace) {
   switch (namespace) {
     case ns.DAV:

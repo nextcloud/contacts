@@ -45,6 +45,23 @@ export function syncCollection(collection, options) {
   }
 }
 
+export function createCollection(objectUrl, objectData, options) {
+  var req = request.mkcol({
+	  props: [ { name: 'displayname', value: options.displayname, namespace: ns.DAV } ],
+  });
+  return options.xhr.send(req, objectUrl, { sandbox: options.sandbox });
+}
+
+export function deleteCollection(objectUrl, objectData, options) {
+  var req = request.basic({ method: 'DELETE', data: objectData });
+  return options.xhr.send(req, objectUrl, { sandBox: options.sandbox });
+}
+
+export function moveCollection(objectUrl, objectData, options) {
+  var req = request.basic({ method: 'MOVE', overwrite: 'F', destination: options.destination, data:objectData });
+  return options.xhr.send(req, objectUrl, { sandBox: options.sandbox });
+}
+
 /**
  * @param {dav.DAVCollection} collection to fetch report set for.
  */

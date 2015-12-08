@@ -938,7 +938,7 @@ exports.createAccount = _co2['default'].wrap(regeneratorRuntime.mark(function ca
 }));
 
 // http redirect.
-},{"./calendars":2,"./contacts":5,"./debug":6,"./fuzzy_url_equals":7,"./model":9,"./namespace":10,"./request":12,"co":29,"url":28}],2:[function(require,module,exports){
+},{"./calendars":2,"./contacts":5,"./debug":6,"./fuzzy_url_equals":7,"./model":9,"./namespace":10,"./request":12,"co":25,"url":30}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1329,7 +1329,7 @@ var webdavSync = _co2['default'].wrap(regeneratorRuntime.mark(function callee$0$
     }
   }, callee$0$0, this);
 }));
-},{"./debug":6,"./fuzzy_url_equals":7,"./model":9,"./namespace":10,"./request":12,"./webdav":22,"co":29,"url":28}],3:[function(require,module,exports){
+},{"./debug":6,"./fuzzy_url_equals":7,"./model":9,"./namespace":10,"./request":12,"./webdav":23,"co":25,"url":30}],3:[function(require,module,exports){
 /**
  * @fileoverview Camelcase something.
  */
@@ -1476,6 +1476,30 @@ var Client = (function () {
       return calendars.syncCaldavAccount(account, options);
     }
   }, {
+    key: 'createAddressBook',
+    value: function createAddressBook() {
+      var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+      options.xhr = options.xhr || this.xhr;
+      return contacts.createAddressBook(options);
+    }
+  }, {
+    key: 'deleteAddressBook',
+    value: function deleteAddressBook(addressBook) {
+      var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+      options.xhr = options.xhr || this.xhr;
+      return contacts.deleteAddressBook(addressBook, options);
+    }
+  }, {
+    key: 'renameAddressBook',
+    value: function renameAddressBook(addressBook) {
+      var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
+
+      options.xhr = options.xhr || this.xhr;
+      return contacts.renameAddressBook(addressBook, options);
+    }
+  }, {
     key: 'createCard',
     value: function createCard(addressBook) {
       var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
@@ -1521,12 +1545,15 @@ var Client = (function () {
 })();
 
 exports.Client = Client;
-},{"./accounts":1,"./calendars":2,"./contacts":5,"url":28}],5:[function(require,module,exports){
+},{"./accounts":1,"./calendars":2,"./contacts":5,"url":30}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+exports.createAddressBook = createAddressBook;
+exports.deleteAddressBook = deleteAddressBook;
+exports.renameAddressBook = renameAddressBook;
 exports.createCard = createCard;
 exports.updateCard = updateCard;
 exports.deleteCard = deleteCard;
@@ -1627,6 +1654,53 @@ var listAddressBooks = _co2['default'].wrap(regeneratorRuntime.mark(function cal
 }));
 
 exports.listAddressBooks = listAddressBooks;
+/**
+ * @return {Promise} promise will resolve when the addressBook has been created.
+ *
+ * Options:
+ *
+ *   (String) url
+ *   (String) displayName - name for the address book.
+ *   (dav.Sandbox) sandbox - optional request sandbox.
+ *   (dav.Transport) xhr - request sender.
+ */
+
+function createAddressBook(options) {
+  var objectUrl = _url2['default'].resolve(options.url, options.displayName);
+  return webdav.createCollection(objectUrl, options.data, options);
+}
+
+/**
+ * @param {dav.AddressBook} addressBook the address book to be deleted.
+ * @return {Promise} promise will resolve when the addressBook has been deleted.
+ *
+ * Options:
+ *
+ *   (dav.Sandbox) sandbox - optional request sandbox.
+ *   (dav.Transport) xhr - request sender.
+ */
+
+function deleteAddressBook(addressBook, options) {
+  return webdav.deleteCollection(addressBook.url, options.data, options);
+}
+
+/**
+ * @param {dav.AddressBook} addressBook the address book to be renamed.
+ * @return {Promise} promise will resolve when the addressBook has been renamed.
+ *
+ * Options:
+ *
+ *   (String) displayName - new name for the address book.
+ *   (dav.Sandbox) sandbox - optional request sandbox.
+ *   (dav.Transport) xhr - request sender.
+ */
+
+function renameAddressBook(addressBook, options) {
+  var destinationUrl = _url2['default'].resolve(options.url, options.displayName);
+  options.destination = destinationUrl;
+  return webdav.moveCollection(addressBook.url, options.data, options);
+}
+
 /**
  * @param {dav.AddressBook} addressBook the address book to put the object on.
  * @return {Promise} promise will resolve when the card has been created.
@@ -1880,7 +1954,7 @@ var webdavSync = _co2['default'].wrap(regeneratorRuntime.mark(function callee$0$
     }
   }, callee$0$0, this);
 }));
-},{"./debug":6,"./fuzzy_url_equals":7,"./model":9,"./namespace":10,"./request":12,"./webdav":22,"co":29,"url":28}],6:[function(require,module,exports){
+},{"./debug":6,"./fuzzy_url_equals":7,"./model":9,"./namespace":10,"./request":12,"./webdav":23,"co":25,"url":30}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2009,14 +2083,14 @@ exports.debug = _debug2['default'];
 exports.ns = ns;
 exports.request = request;
 exports.transport = transport;
-},{"../package":33,"./accounts":1,"./calendars":2,"./client":4,"./contacts":5,"./debug":6,"./model":9,"./namespace":10,"./request":12,"./sandbox":13,"./transport":21}],9:[function(require,module,exports){
+},{"../package":34,"./accounts":1,"./calendars":2,"./client":4,"./contacts":5,"./debug":6,"./model":9,"./namespace":10,"./request":12,"./sandbox":13,"./transport":22}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x, _x2, _x3) { var _again = true; _function: while (_again) { var object = _x, property = _x2, receiver = _x3; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x = parent; _x2 = property; _x3 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ("value" in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
@@ -2375,7 +2449,7 @@ function children(node, localName) {
 function child(node, localName) {
   return children(node, localName)[0];
 }
-},{"./camelize":3,"./debug":6,"xmldom":30}],12:[function(require,module,exports){
+},{"./camelize":3,"./debug":6,"xmldom":31}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2385,6 +2459,7 @@ exports.addressBookQuery = addressBookQuery;
 exports.basic = basic;
 exports.calendarQuery = calendarQuery;
 exports.collectionQuery = collectionQuery;
+exports.mkcol = mkcol;
 exports.propfind = propfind;
 exports.syncCollection = syncCollection;
 exports.mergeProps = mergeProps;
@@ -2467,6 +2542,20 @@ function collectionQuery(requestData, options) {
     requestData: requestData,
     transformRequest: transformRequest,
     transformResponse: transformResponse
+  });
+}
+
+function mkcol(options) {
+  var requestData = template.mkcol({ props: options.props });
+
+  function transformRequest(xhr) {
+    setRequestHeaders(xhr, options);
+  }
+
+  return new Request({
+    method: 'MKCOL',
+    requestData: requestData,
+    transformRequest: transformRequest
   });
 }
 
@@ -2601,6 +2690,14 @@ function setRequestHeaders(request, options) {
   if ('etag' in options) {
     request.setRequestHeader('If-Match', options.etag);
   }
+
+  if ('destination' in options) {
+    request.setRequestHeader('Destination', options.destination);
+  }
+
+  if ('overwrite' in options) {
+    request.setRequestHeader('Overwrite', options.overwrite);
+  }
 }
 },{"./parser":11,"./template":17}],13:[function(require,module,exports){
 /**
@@ -2680,7 +2777,7 @@ function addressBookQuery(object) {
 }
 
 module.exports = exports['default'];
-},{"./prop":18}],15:[function(require,module,exports){
+},{"./prop":19}],15:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2703,7 +2800,7 @@ function calendarQuery(object) {
 }
 
 module.exports = exports['default'];
-},{"./filter":16,"./prop":18}],16:[function(require,module,exports){
+},{"./filter":16,"./prop":19}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2737,13 +2834,34 @@ exports.addressBookQuery = require('./address_book_query');
 exports.calendarQuery = require('./calendar_query');
 exports.propfind = require('./propfind');
 exports.syncCollection = require('./sync_collection');
-},{"./address_book_query":14,"./calendar_query":15,"./propfind":19,"./sync_collection":20}],18:[function(require,module,exports){
+exports.mkcol = require('./mkcol');
+},{"./address_book_query":14,"./calendar_query":15,"./mkcol":18,"./propfind":20,"./sync_collection":21}],18:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, '__esModule', {
+  value: true
+});
+exports['default'] = mkcol;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+
+var _prop = require('./prop');
+
+var _prop2 = _interopRequireDefault(_prop);
+
+function mkcol(object) {
+  return '<d:mkcol xmlns:c="urn:ietf:params:xml:ns:caldav"\n              xmlns:card="urn:ietf:params:xml:ns:carddav"\n              xmlns:cs="http://calendarserver.org/ns/"\n              xmlns:d="DAV:">\n    <d:set>\n      <d:prop>\n      \t<d:resourcetype>\n      \t  <d:collection/>\n          <card:addressbook/>\n      \t</d:resourcetype>\n        ' + object.props.map(_prop2['default']) + '\n      </d:prop>\n    </d:set>\n  </d:mkcol>';
+}
+
+module.exports = exports['default'];
+},{"./prop":19}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports['default'] = prop;
+exports['default'] = putProp;
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
@@ -2791,6 +2909,10 @@ function prop(item) {
   return '<' + xmlnsPrefix(item.namespace) + ':' + item.name + ' />';
 }
 
+function putProp(item, value) {
+  return '<' + xmlnsPrefix(item.namespace) + ':' + item.name + '>' + item.value + '</' + xmlnsPrefix(item.namespace) + ':' + item.name + '>';
+}
+
 function xmlnsPrefix(namespace) {
   switch (namespace) {
     case ns.DAV:
@@ -2806,7 +2928,7 @@ function xmlnsPrefix(namespace) {
   }
 }
 module.exports = exports['default'];
-},{"../namespace":10}],19:[function(require,module,exports){
+},{"../namespace":10}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2825,7 +2947,7 @@ function propfind(object) {
 }
 
 module.exports = exports['default'];
-},{"./prop":18}],20:[function(require,module,exports){
+},{"./prop":19}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2844,14 +2966,14 @@ function syncCollection(object) {
 }
 
 module.exports = exports['default'];
-},{"./prop":18}],21:[function(require,module,exports){
+},{"./prop":19}],22:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 
-var _get = function get(_x2, _x3, _x4) { var _again = true; _function: while (_again) { var object = _x2, property = _x3, receiver = _x4; desc = parent = getter = undefined; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x2 = parent; _x3 = property; _x4 = receiver; _again = true; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
+var _get = function get(_x2, _x3, _x4) { var _again = true; _function: while (_again) { var object = _x2, property = _x3, receiver = _x4; _again = false; if (object === null) object = Function.prototype; var desc = Object.getOwnPropertyDescriptor(object, property); if (desc === undefined) { var parent = Object.getPrototypeOf(object); if (parent === null) { return undefined; } else { _x2 = parent; _x3 = property; _x4 = receiver; _again = true; desc = parent = undefined; continue _function; } } else if ('value' in desc) { return desc.value; } else { var getter = desc.get; if (getter === undefined) { return undefined; } return getter.call(receiver); } } };
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
@@ -3154,7 +3276,7 @@ var refreshAccessToken = _co2['default'].wrap(regeneratorRuntime.mark(function c
     }
   }, callee$0$0, this);
 }));
-},{"./xmlhttprequest":23,"co":29,"querystring":27}],22:[function(require,module,exports){
+},{"./xmlhttprequest":24,"co":25,"querystring":29}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -3164,6 +3286,9 @@ exports.createObject = createObject;
 exports.updateObject = updateObject;
 exports.deleteObject = deleteObject;
 exports.syncCollection = syncCollection;
+exports.createCollection = createCollection;
+exports.deleteCollection = deleteCollection;
+exports.moveCollection = moveCollection;
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj['default'] = obj; return newObj; } }
 
@@ -3224,6 +3349,23 @@ function syncCollection(collection, options) {
     debug('basic sync.');
     return options.basicSync(collection, options);
   }
+}
+
+function createCollection(objectUrl, objectData, options) {
+  var req = request.mkcol({
+    props: [{ name: 'displayname', value: options.displayname, namespace: ns.DAV }]
+  });
+  return options.xhr.send(req, objectUrl, { sandbox: options.sandbox });
+}
+
+function deleteCollection(objectUrl, objectData, options) {
+  var req = request.basic({ method: 'DELETE', data: objectData });
+  return options.xhr.send(req, objectUrl, { sandBox: options.sandbox });
+}
+
+function moveCollection(objectUrl, objectData, options) {
+  var req = request.basic({ method: 'MOVE', overwrite: 'F', destination: options.destination, data: objectData });
+  return options.xhr.send(req, objectUrl, { sandBox: options.sandbox });
 }
 
 /**
@@ -3308,7 +3450,7 @@ var isCollectionDirty = _co2['default'].wrap(regeneratorRuntime.mark(function ca
   }, callee$0$0, this);
 }));
 exports.isCollectionDirty = isCollectionDirty;
-},{"./debug":6,"./fuzzy_url_equals":7,"./namespace":10,"./request":12,"co":29}],23:[function(require,module,exports){
+},{"./debug":6,"./fuzzy_url_equals":7,"./namespace":10,"./request":12,"co":25}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -3432,7 +3574,246 @@ var XMLHttpRequest = (function () {
 
 exports['default'] = XMLHttpRequest;
 module.exports = exports['default'];
-},{"./debug":6}],24:[function(require,module,exports){
+},{"./debug":6}],25:[function(require,module,exports){
+
+/**
+ * slice() reference.
+ */
+
+var slice = Array.prototype.slice;
+
+/**
+ * Expose `co`.
+ */
+
+module.exports = co['default'] = co.co = co;
+
+/**
+ * Wrap the given generator `fn` into a
+ * function that returns a promise.
+ * This is a separate function so that
+ * every `co()` call doesn't create a new,
+ * unnecessary closure.
+ *
+ * @param {GeneratorFunction} fn
+ * @return {Function}
+ * @api public
+ */
+
+co.wrap = function (fn) {
+  createPromise.__generatorFunction__ = fn;
+  return createPromise;
+  function createPromise() {
+    return co.call(this, fn.apply(this, arguments));
+  }
+};
+
+/**
+ * Execute the generator function or a generator
+ * and return a promise.
+ *
+ * @param {Function} fn
+ * @return {Promise}
+ * @api public
+ */
+
+function co(gen) {
+  var ctx = this;
+  var args = slice.call(arguments, 1)
+
+  // we wrap everything in a promise to avoid promise chaining,
+  // which leads to memory leak errors.
+  // see https://github.com/tj/co/issues/180
+  return new Promise(function(resolve, reject) {
+    if (typeof gen === 'function') gen = gen.apply(ctx, args);
+    if (!gen || typeof gen.next !== 'function') return resolve(gen);
+
+    onFulfilled();
+
+    /**
+     * @param {Mixed} res
+     * @return {Promise}
+     * @api private
+     */
+
+    function onFulfilled(res) {
+      var ret;
+      try {
+        ret = gen.next(res);
+      } catch (e) {
+        return reject(e);
+      }
+      next(ret);
+    }
+
+    /**
+     * @param {Error} err
+     * @return {Promise}
+     * @api private
+     */
+
+    function onRejected(err) {
+      var ret;
+      try {
+        ret = gen.throw(err);
+      } catch (e) {
+        return reject(e);
+      }
+      next(ret);
+    }
+
+    /**
+     * Get the next value in the generator,
+     * return a promise.
+     *
+     * @param {Object} ret
+     * @return {Promise}
+     * @api private
+     */
+
+    function next(ret) {
+      if (ret.done) return resolve(ret.value);
+      var value = toPromise.call(ctx, ret.value);
+      if (value && isPromise(value)) return value.then(onFulfilled, onRejected);
+      return onRejected(new TypeError('You may only yield a function, promise, generator, array, or object, '
+        + 'but the following object was passed: "' + String(ret.value) + '"'));
+    }
+  });
+}
+
+/**
+ * Convert a `yield`ed value into a promise.
+ *
+ * @param {Mixed} obj
+ * @return {Promise}
+ * @api private
+ */
+
+function toPromise(obj) {
+  if (!obj) return obj;
+  if (isPromise(obj)) return obj;
+  if (isGeneratorFunction(obj) || isGenerator(obj)) return co.call(this, obj);
+  if ('function' == typeof obj) return thunkToPromise.call(this, obj);
+  if (Array.isArray(obj)) return arrayToPromise.call(this, obj);
+  if (isObject(obj)) return objectToPromise.call(this, obj);
+  return obj;
+}
+
+/**
+ * Convert a thunk to a promise.
+ *
+ * @param {Function}
+ * @return {Promise}
+ * @api private
+ */
+
+function thunkToPromise(fn) {
+  var ctx = this;
+  return new Promise(function (resolve, reject) {
+    fn.call(ctx, function (err, res) {
+      if (err) return reject(err);
+      if (arguments.length > 2) res = slice.call(arguments, 1);
+      resolve(res);
+    });
+  });
+}
+
+/**
+ * Convert an array of "yieldables" to a promise.
+ * Uses `Promise.all()` internally.
+ *
+ * @param {Array} obj
+ * @return {Promise}
+ * @api private
+ */
+
+function arrayToPromise(obj) {
+  return Promise.all(obj.map(toPromise, this));
+}
+
+/**
+ * Convert an object of "yieldables" to a promise.
+ * Uses `Promise.all()` internally.
+ *
+ * @param {Object} obj
+ * @return {Promise}
+ * @api private
+ */
+
+function objectToPromise(obj){
+  var results = new obj.constructor();
+  var keys = Object.keys(obj);
+  var promises = [];
+  for (var i = 0; i < keys.length; i++) {
+    var key = keys[i];
+    var promise = toPromise.call(this, obj[key]);
+    if (promise && isPromise(promise)) defer(promise, key);
+    else results[key] = obj[key];
+  }
+  return Promise.all(promises).then(function () {
+    return results;
+  });
+
+  function defer(promise, key) {
+    // predefine the key in the result
+    results[key] = undefined;
+    promises.push(promise.then(function (res) {
+      results[key] = res;
+    }));
+  }
+}
+
+/**
+ * Check if `obj` is a promise.
+ *
+ * @param {Object} obj
+ * @return {Boolean}
+ * @api private
+ */
+
+function isPromise(obj) {
+  return 'function' == typeof obj.then;
+}
+
+/**
+ * Check if `obj` is a generator.
+ *
+ * @param {Mixed} obj
+ * @return {Boolean}
+ * @api private
+ */
+
+function isGenerator(obj) {
+  return 'function' == typeof obj.next && 'function' == typeof obj.throw;
+}
+
+/**
+ * Check if `obj` is a generator function.
+ *
+ * @param {Mixed} obj
+ * @return {Boolean}
+ * @api private
+ */
+function isGeneratorFunction(obj) {
+  var constructor = obj.constructor;
+  if (!constructor) return false;
+  if ('GeneratorFunction' === constructor.name || 'GeneratorFunction' === constructor.displayName) return true;
+  return isGenerator(constructor.prototype);
+}
+
+/**
+ * Check for plain object.
+ *
+ * @param {Mixed} val
+ * @return {Boolean}
+ * @api private
+ */
+
+function isObject(val) {
+  return Object == val.constructor;
+}
+
+},{}],26:[function(require,module,exports){
 (function (global){
 /*! https://mths.be/punycode v1.3.2 by @mathias */
 ;(function(root) {
@@ -3966,7 +4347,7 @@ module.exports = exports['default'];
 }(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],25:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4052,7 +4433,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],26:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4139,13 +4520,13 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],27:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":25,"./encode":26}],28:[function(require,module,exports){
+},{"./decode":27,"./encode":28}],30:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4854,246 +5235,7 @@ function isNullOrUndefined(arg) {
   return  arg == null;
 }
 
-},{"punycode":24,"querystring":27}],29:[function(require,module,exports){
-
-/**
- * slice() reference.
- */
-
-var slice = Array.prototype.slice;
-
-/**
- * Expose `co`.
- */
-
-module.exports = co['default'] = co.co = co;
-
-/**
- * Wrap the given generator `fn` into a
- * function that returns a promise.
- * This is a separate function so that
- * every `co()` call doesn't create a new,
- * unnecessary closure.
- *
- * @param {GeneratorFunction} fn
- * @return {Function}
- * @api public
- */
-
-co.wrap = function (fn) {
-  createPromise.__generatorFunction__ = fn;
-  return createPromise;
-  function createPromise() {
-    return co.call(this, fn.apply(this, arguments));
-  }
-};
-
-/**
- * Execute the generator function or a generator
- * and return a promise.
- *
- * @param {Function} fn
- * @return {Promise}
- * @api public
- */
-
-function co(gen) {
-  var ctx = this;
-  var args = slice.call(arguments, 1)
-
-  // we wrap everything in a promise to avoid promise chaining,
-  // which leads to memory leak errors.
-  // see https://github.com/tj/co/issues/180
-  return new Promise(function(resolve, reject) {
-    if (typeof gen === 'function') gen = gen.apply(ctx, args);
-    if (!gen || typeof gen.next !== 'function') return resolve(gen);
-
-    onFulfilled();
-
-    /**
-     * @param {Mixed} res
-     * @return {Promise}
-     * @api private
-     */
-
-    function onFulfilled(res) {
-      var ret;
-      try {
-        ret = gen.next(res);
-      } catch (e) {
-        return reject(e);
-      }
-      next(ret);
-    }
-
-    /**
-     * @param {Error} err
-     * @return {Promise}
-     * @api private
-     */
-
-    function onRejected(err) {
-      var ret;
-      try {
-        ret = gen.throw(err);
-      } catch (e) {
-        return reject(e);
-      }
-      next(ret);
-    }
-
-    /**
-     * Get the next value in the generator,
-     * return a promise.
-     *
-     * @param {Object} ret
-     * @return {Promise}
-     * @api private
-     */
-
-    function next(ret) {
-      if (ret.done) return resolve(ret.value);
-      var value = toPromise.call(ctx, ret.value);
-      if (value && isPromise(value)) return value.then(onFulfilled, onRejected);
-      return onRejected(new TypeError('You may only yield a function, promise, generator, array, or object, '
-        + 'but the following object was passed: "' + String(ret.value) + '"'));
-    }
-  });
-}
-
-/**
- * Convert a `yield`ed value into a promise.
- *
- * @param {Mixed} obj
- * @return {Promise}
- * @api private
- */
-
-function toPromise(obj) {
-  if (!obj) return obj;
-  if (isPromise(obj)) return obj;
-  if (isGeneratorFunction(obj) || isGenerator(obj)) return co.call(this, obj);
-  if ('function' == typeof obj) return thunkToPromise.call(this, obj);
-  if (Array.isArray(obj)) return arrayToPromise.call(this, obj);
-  if (isObject(obj)) return objectToPromise.call(this, obj);
-  return obj;
-}
-
-/**
- * Convert a thunk to a promise.
- *
- * @param {Function}
- * @return {Promise}
- * @api private
- */
-
-function thunkToPromise(fn) {
-  var ctx = this;
-  return new Promise(function (resolve, reject) {
-    fn.call(ctx, function (err, res) {
-      if (err) return reject(err);
-      if (arguments.length > 2) res = slice.call(arguments, 1);
-      resolve(res);
-    });
-  });
-}
-
-/**
- * Convert an array of "yieldables" to a promise.
- * Uses `Promise.all()` internally.
- *
- * @param {Array} obj
- * @return {Promise}
- * @api private
- */
-
-function arrayToPromise(obj) {
-  return Promise.all(obj.map(toPromise, this));
-}
-
-/**
- * Convert an object of "yieldables" to a promise.
- * Uses `Promise.all()` internally.
- *
- * @param {Object} obj
- * @return {Promise}
- * @api private
- */
-
-function objectToPromise(obj){
-  var results = new obj.constructor();
-  var keys = Object.keys(obj);
-  var promises = [];
-  for (var i = 0; i < keys.length; i++) {
-    var key = keys[i];
-    var promise = toPromise.call(this, obj[key]);
-    if (promise && isPromise(promise)) defer(promise, key);
-    else results[key] = obj[key];
-  }
-  return Promise.all(promises).then(function () {
-    return results;
-  });
-
-  function defer(promise, key) {
-    // predefine the key in the result
-    results[key] = undefined;
-    promises.push(promise.then(function (res) {
-      results[key] = res;
-    }));
-  }
-}
-
-/**
- * Check if `obj` is a promise.
- *
- * @param {Object} obj
- * @return {Boolean}
- * @api private
- */
-
-function isPromise(obj) {
-  return 'function' == typeof obj.then;
-}
-
-/**
- * Check if `obj` is a generator.
- *
- * @param {Mixed} obj
- * @return {Boolean}
- * @api private
- */
-
-function isGenerator(obj) {
-  return 'function' == typeof obj.next && 'function' == typeof obj.throw;
-}
-
-/**
- * Check if `obj` is a generator function.
- *
- * @param {Mixed} obj
- * @return {Boolean}
- * @api private
- */
-function isGeneratorFunction(obj) {
-  var constructor = obj.constructor;
-  if (!constructor) return false;
-  if ('GeneratorFunction' === constructor.name || 'GeneratorFunction' === constructor.displayName) return true;
-  return isGenerator(constructor.prototype);
-}
-
-/**
- * Check for plain object.
- *
- * @param {Mixed} val
- * @return {Boolean}
- * @api private
- */
-
-function isObject(val) {
-  return Object == val.constructor;
-}
-
-},{}],30:[function(require,module,exports){
+},{"punycode":26,"querystring":29}],31:[function(require,module,exports){
 function DOMParser(options){
 	this.options = options ||{locator:{}};
 	
@@ -5350,7 +5492,7 @@ if(typeof require == 'function'){
 	exports.DOMParser = DOMParser;
 }
 
-},{"./dom":31,"./sax":32}],31:[function(require,module,exports){
+},{"./dom":32,"./sax":33}],32:[function(require,module,exports){
 /*
  * DOM Level 2
  * Object DOMException
@@ -6490,7 +6632,7 @@ if(typeof require == 'function'){
 	exports.XMLSerializer = XMLSerializer;
 }
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 //[4]   	NameStartChar	   ::=   	":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6] | [#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] | [#x10000-#xEFFFF]
 //[4a]   	NameChar	   ::=   	NameStartChar | "-" | "." | [0-9] | #xB7 | [#x0300-#x036F] | [#x203F-#x2040]
 //[5]   	Name	   ::=   	NameStartChar (NameChar)*
@@ -7076,10 +7218,10 @@ if(typeof require == 'function'){
 }
 
 
-},{}],33:[function(require,module,exports){
+},{}],34:[function(require,module,exports){
 module.exports={
   "name": "dav",
-  "version": "1.7.7",
+  "version": "1.7.8",
   "author": "Gareth Aye [:gaye] <gaye@mozilla.com>",
   "description": "WebDAV, CalDAV, and CardDAV client for nodejs and the browser",
   "license": "MPL-2.0",

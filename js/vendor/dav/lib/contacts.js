@@ -54,6 +54,50 @@ export let listAddressBooks = co.wrap(function *(account, options) {
 });
 
 /**
+ * @return {Promise} promise will resolve when the addressBook has been created.
+ *
+ * Options:
+ *
+ *   (String) url
+ *   (String) displayName - name for the address book.
+ *   (dav.Sandbox) sandbox - optional request sandbox.
+ *   (dav.Transport) xhr - request sender.
+ */
+export function createAddressBook(options) {
+  let objectUrl = url.resolve(options.url, options.displayName);
+  return webdav.createCollection(objectUrl, options.data, options);
+}
+
+/**
+ * @param {dav.AddressBook} addressBook the address book to be deleted.
+ * @return {Promise} promise will resolve when the addressBook has been deleted.
+ *
+ * Options:
+ *
+ *   (dav.Sandbox) sandbox - optional request sandbox.
+ *   (dav.Transport) xhr - request sender.
+ */
+export function deleteAddressBook(addressBook, options) {
+  return webdav.deleteCollection(addressBook.url, options.data, options);
+}
+
+/**
+ * @param {dav.AddressBook} addressBook the address book to be renamed.
+ * @return {Promise} promise will resolve when the addressBook has been renamed.
+ *
+ * Options:
+ *
+ *   (String) displayName - new name for the address book.
+ *   (dav.Sandbox) sandbox - optional request sandbox.
+ *   (dav.Transport) xhr - request sender.
+ */
+export function renameAddressBook(addressBook, options) {
+  let destinationUrl = url.resolve(options.url, options.displayName);
+  options.destination = destinationUrl;
+  return webdav.moveCollection(addressBook.url, options.data, options);
+}
+
+/**
  * @param {dav.AddressBook} addressBook the address book to put the object on.
  * @return {Promise} promise will resolve when the card has been created.
  *
