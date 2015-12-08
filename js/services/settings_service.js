@@ -1,4 +1,4 @@
-app.service('SettingsService', [ function() {
+app.service('SettingsService', function() {
 
   var settings = {
     addressBooks: [
@@ -15,6 +15,6 @@ app.service('SettingsService', [ function() {
   };
 
   this.getAll = function() {
-    return settings
-  }
-}]);
+    return settings;
+  };
+});

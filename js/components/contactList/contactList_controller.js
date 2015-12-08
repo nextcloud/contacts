@@ -1,3 +1,5 @@
-app.controller('contactlistCtrl', function() {
+app.controller('contactlistCtrl', ['ContactService', function(ContactService) {
 	var ctrl = this;
-});
+
+	ctrl.contacts = ContactService.getAll();
+}]);

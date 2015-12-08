@@ -1,4 +1,4 @@
-app.factory('Contact', [ 'ContactService', '$filter', function(ContactService, $filter) {
+app.factory('Contact', [ '$filter', function($filter) {
 	return function Contact(vCard) {
 		angular.extend(this, {
 

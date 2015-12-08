@@ -8,6 +8,16 @@ app.service('AddressBookService', ['DavClient', 'DavService', 'AddressBook', 'Co
 		});
 	};
 
+	this.getEnabled = function() {
+		return DavService.then(function(account) {
+			return account.addressBooks.filter(function(addressBook) {
+				return SettingsService.get('addressBooks').indexOf(addressBook.displayName) > -1;
+			}).map(function(addressBook) {
+				return new AddressBook(addressBook);
+			});
+		});
+	};
+
 	this.create = function(displayName) {
 		return DavService.then(function(account) {
 			return DavClient.createAddressBook({displayName:displayName, url:account.homeUrl});
@@ -35,7 +45,8 @@ app.service('AddressBookService', ['DavClient', 'DavService', 'AddressBook', 'Co
 	};
 
 	this.sync = function(addressBook) {
-		return DavClient.syncAddressBook(addressBook).then(function(addressBook) {
+		return DavClient.syncAddressBook(addressBook);/*.then(function(addressBook) {
+
 			// parse contacts
 			addressBook.contacts = [];
 			for(var i in addressBook.objects) {
@@ -46,7 +57,7 @@ app.service('AddressBookService', ['DavClient', 'DavService', 'AddressBook', 'Co
 				}
 			}
 			return addressBook;
-		});
+		});*/
 	};
 
 }]);

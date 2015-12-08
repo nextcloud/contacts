@@ -81,7 +81,7 @@ app.directive('addressbook', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
 	};
 });
-app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'settingsService', function(scope, AddressBookService) {
+app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'SettingsService', function(scope, AddressBookService, SettingsService) {
 	var ctrl = this;
 
 	console.log(AddressBookService);
@@ -140,9 +140,12 @@ app.directive('contactdetails', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactDetails.html')
 	};
 });
-app.controller('contactlistCtrl', function() {
+app.controller('contactlistCtrl', ['ContactService', function(ContactService) {
 	var ctrl = this;
-});
+
+	ctrl.contacts = ContactService.getAll();
+}]);
+
 app.directive('contactlist', function() {
 	return {
 		priority: 1,
@@ -176,7 +179,7 @@ app.factory('AddressBook', function()
 		angular.extend(this, data);
 	};
 });
-app.factory('Contact', [ 'ContactService', '$filter', function(ContactService, $filter) {
+app.factory('Contact', [ '$filter', function($filter) {
 	return function Contact(vCard) {
 		angular.extend(this, {
 
@@ -237,11 +240,22 @@ app.factory('Contact', [ 'ContactService', '$filter', function(ContactService, $
 		angular.extend(this.props, $filter('vCard2JSON')(this.data.addressData));
 	};
 }]);
+
 app.service('AddressBookService', ['DavClient', 'DavService', 'AddressBook', 'Contact', function(DavClient, DavService, AddressBook, Contact){
 
 	this.getAll = function() {
 		return DavService.then(function(account) {
 			return account.addressBooks.map(function(addressBook) {
+				return new AddressBook(addressBook);
+			});
+		});
+	};
+
+	this.getEnabled = function() {
+		return DavService.then(function(account) {
+			return account.addressBooks.filter(function(addressBook) {
+				return SettingsService.get('addressBooks').indexOf(addressBook.displayName) > -1;
+			}).map(function(addressBook) {
 				return new AddressBook(addressBook);
 			});
 		});
@@ -274,7 +288,8 @@ app.service('AddressBookService', ['DavClient', 'DavService', 'AddressBook', 'Co
 	};
 
 	this.sync = function(addressBook) {
-		return DavClient.syncAddressBook(addressBook).then(function(addressBook) {
+		return DavClient.syncAddressBook(addressBook);/*.then(function(addressBook) {
+
 			// parse contacts
 			addressBook.contacts = [];
 			for(var i in addressBook.objects) {
@@ -285,15 +300,41 @@ app.service('AddressBookService', ['DavClient', 'DavService', 'AddressBook', 'Co
 				}
 			}
 			return addressBook;
-		});
+		});*/
 	};
 
 }]);
 
-app.service('ContactService', [ 'DavClient', function(DavClient) {
+var contacts = [];
+app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$q', function(DavClient, AddressBookService, Contact, $q) {
 
 	this.getAll = function() {
-		return 
+		return AddressBookService.getEnabled().then(function(enabledAddressBooks) {
+
+			var promises = [];
+
+			enabledAddressBooks.forEach(function(addressBook) {
+				var prom = AddressBookService.sync(addressBook).then(function(addressBook) {
+					var contacts = [];
+					for(var i in addressBook.objects) {
+						contacts.push(new Contact(addressBook.objects[i]));
+					}
+					return contacts;
+				});
+				console.log(prom);
+				promises.push(prom);
+			});
+
+			return $q.all(promises).then(function(test) {
+				var flattened = test.reduce(function(a, b) {
+				return a.concat(b);
+				}, []);
+				console.log('hi');
+				console.log(test, flattened);
+				return flattened;
+			});
+
+		});
 	};
 
 	this.create = function(addressBook) {
@@ -329,7 +370,7 @@ app.service('DavService', ['DavClient', function(client) {
 	});
 }]);
 
-app.service('SettingsService', [ function() {
+app.service('SettingsService', function() {
 
   var settings = {
     addressBooks: [
@@ -346,9 +387,9 @@ app.service('SettingsService', [ function() {
   };
 
   this.getAll = function() {
-    return settings
-  }
-}]);
+    return settings;
+  };
+});
 
 app.filter('JSON2vCard', function() {
 	return function(input) {
