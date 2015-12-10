@@ -9,6 +9,6 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="contact in ctrl.addressbook.contacts" contact data="contact"></tr>
+		<tr ng-repeat="contact in ctrl.addressbook.contacts | orderBy:'fullName()'" contact data="contact"></tr>
 	</tbody>
 </table>
