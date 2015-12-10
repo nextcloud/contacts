@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <info>
     <id>contactsrework</id>
-    <name>Contacts Rework</name>
-    <description>My first ownCloud app</description>
+    <name>Contacts</name>
+    <description>The new and improved app for your Contacts.</description>
     <licence>AGPL</licence>
     <author>Hendrik Leppelsack</author>
     <version>0.0.1</version>
