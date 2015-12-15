@@ -3353,7 +3353,7 @@ function syncCollection(collection, options) {
 
 function createCollection(objectUrl, objectData, options) {
   var req = request.mkcol({
-    props: [{ name: 'displayname', value: options.displayname, namespace: ns.DAV }]
+    props: [{ name: 'displayname', value: options.displayName, namespace: ns.DAV }]
   });
   return options.xhr.send(req, objectUrl, { sandbox: options.sandbox });
 }

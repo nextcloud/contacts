@@ -1,12 +1,12 @@
 {
   "name": "dav",
   "homepage": "https://github.com/irgendwie/dav",
-  "_release": "343baa9",
+  "_release": "b5f7f9273d",
   "_resolution": {
     "type": "commit",
-    "commit": "343baa9"
+    "commit": "b5f7f9273d23f5ccf55a6c428e9d3760c0984db9"
   },
   "_source": "git@github.com:irgendwie/dav.git",
-  "_target": "343baa9",
+  "_target": "b5f7f9273d23f5ccf55a6c428e9d3760c0984db9",
   "_originalSource": "git@github.com:irgendwie/dav.git"
 }
