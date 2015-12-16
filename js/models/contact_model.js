@@ -55,7 +55,15 @@ app.factory('Contact', [ '$filter', function($filter) {
 
 		});
 
-		angular.extend(this.data, vCard);
-		angular.extend(this.props, $filter('vCard2JSON')(this.data.addressData));
+		if(angular.isDefined(vCard)) {
+			angular.extend(this.data, vCard);
+			angular.extend(this.props, $filter('vCard2JSON')(this.data.addressData));
+		} else {
+			angular.extend(this.props, {
+				version: [{value: "4.0"}],
+				fn: [{value: "Max Mustermann"}]
+			});
+			this.data.addressData = $filter('JSON2vCard')(this.props);
+		}
 	};
 }]);

@@ -8,7 +8,7 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-var app = angular.module('contactsApp', ['ui.router']);
+var app = angular.module('contactsApp', ['ui.router', 'uuid4']);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
@@ -18,7 +18,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 			url: '/',
 			views: {
 				'': {
-					template: '<div>Home</div>'
+					template: '<contactlist data-adrbook="addressBook"></contactlist>'
 				},
 
 				'sidebar': {
@@ -26,28 +26,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 				}
 			}
 		})
-		.state('contacts',{
-			url: '/:addressBookId',
-			views: {
-				'': {
-					template: '<contactlist data-adrbook="addressBook"></contactlist>',
-					controller: function($scope, addressBook) {
-						$scope.addressBook = addressBook;
-					}
-				},
-				'sidebar': {
-					template: '1'
-				}
-			},
-			resolve: {
-				addressBook: function(AddressBookService, $stateParams) {
-					return AddressBookService.get($stateParams.addressBookId).then(function(addressBook) {
-						return AddressBookService.sync(addressBook);
-					});
-				}
-			}
-		})
-		.state('contacts.detail', {
+		.state('home.detail', {
 			url: '/:uid',
 			views: {
 				'sidebar@': {
@@ -58,8 +37,8 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 				}
 			},
 			resolve: {
-				contact: function(addressBook, $stateParams) {
-					return addressBook.getContact($stateParams.uid);
+				contact: function(ContactService, $stateParams) {
+					return ContactService.getById($stateParams.uid);
 				}
 			}
 		});

@@ -1,6 +1,9 @@
 <ul>
 	<li ng-repeat="addressBook in ctrl.addressBooks" addressbook data="addressBook"></li>
 	<li>
-		<a ng-click="ctrl.newAddressBook()">new</a>
+		<form ng-submit="ctrl.createAddressBook()">
+			<input id="newList" ng-model="ctrl.newAddressBookName" type="text" />
+			<input type="submit" value="" class="action icon-checkmark svg" />
+		</form>
 	</li>
 </ul>

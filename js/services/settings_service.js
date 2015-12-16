@@ -2,7 +2,7 @@ app.service('SettingsService', function() {
 
   var settings = {
     addressBooks: [
-      "Kontakte"
+      "testAddr"
     ]
   };
 
@@ -16,5 +16,5 @@ app.service('SettingsService', function() {
 
   this.getAll = function() {
     return settings;
-  };
+  }
 });

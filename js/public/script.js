@@ -8,7 +8,7 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-var app = angular.module('contactsApp', ['ui.router']);
+var app = angular.module('contactsApp', ['ui.router', 'uuid4']);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
@@ -18,7 +18,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 			url: '/',
 			views: {
 				'': {
-					template: '<div>Home</div>'
+					template: '<contactlist data-adrbook="addressBook"></contactlist>'
 				},
 
 				'sidebar': {
@@ -26,28 +26,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 				}
 			}
 		})
-		.state('contacts',{
-			url: '/:addressBookId',
-			views: {
-				'': {
-					template: '<contactlist data-adrbook="addressBook"></contactlist>',
-					controller: function($scope, addressBook) {
-						$scope.addressBook = addressBook;
-					}
-				},
-				'sidebar': {
-					template: '1'
-				}
-			},
-			resolve: {
-				addressBook: function(AddressBookService, $stateParams) {
-					return AddressBookService.get($stateParams.addressBookId).then(function(addressBook) {
-						return AddressBookService.sync(addressBook);
-					});
-				}
-			}
-		})
-		.state('contacts.detail', {
+		.state('home.detail', {
 			url: '/:uid',
 			views: {
 				'sidebar@': {
@@ -58,8 +37,8 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
 				}
 			},
 			resolve: {
-				contact: function(addressBook, $stateParams) {
-					return addressBook.getContact($stateParams.uid);
+				contact: function(ContactService, $stateParams) {
+					return ContactService.getById($stateParams.uid);
 				}
 			}
 		});
@@ -92,7 +71,9 @@ app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'Settings
 	});
 
 	ctrl.createAddressBook = function() {
-		AddressBookService.create('newAddressBook');
+		if(ctrl.newAddressBookName) {
+			AddressBookService.create(ctrl.newAddressBookName);
+		}
 	};
 
 }]);
@@ -140,10 +121,18 @@ app.directive('contactdetails', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactDetails.html')
 	};
 });
-app.controller('contactlistCtrl', ['ContactService', function(ContactService) {
+app.controller('contactlistCtrl', ['$scope', 'ContactService', 'Contact', function($scope, ContactService, Contact) {
 	var ctrl = this;
 
-	ctrl.contacts = ContactService.getAll();
+	ContactService.getAll().then(function(contacts) {
+		$scope.$apply(function(){
+			ctrl.contacts = contacts;
+		});
+	});
+
+	ctrl.createContact = function() {
+		ContactService.create();
+	}
 }]);
 
 app.directive('contactlist', function() {
@@ -236,77 +225,100 @@ app.factory('Contact', [ '$filter', function($filter) {
 
 		});
 
-		angular.extend(this.data, vCard);
-		angular.extend(this.props, $filter('vCard2JSON')(this.data.addressData));
+		if(angular.isDefined(vCard)) {
+			angular.extend(this.data, vCard);
+			angular.extend(this.props, $filter('vCard2JSON')(this.data.addressData));
+		} else {
+			angular.extend(this.props, {
+				version: [{value: "4.0"}],
+				fn: [{value: "Max Mustermann"}]
+			});
+			this.data.addressData = $filter('JSON2vCard')(this.props);
+		}
 	};
 }]);
 
-app.service('AddressBookService', ['DavClient', 'DavService', 'AddressBook', 'Contact', function(DavClient, DavService, AddressBook, Contact){
+app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService', 'AddressBook', 'Contact', function(DavClient, DavService, SettingsService, AddressBook, Contact){
 
-	this.getAll = function() {
+	var addressBooks = [];
+
+	var loadAll = function() {
 		return DavService.then(function(account) {
-			return account.addressBooks.map(function(addressBook) {
+			addressBooks = account.addressBooks.map(function(addressBook) {
 				return new AddressBook(addressBook);
 			});
 		});
 	};
 
-	this.getEnabled = function() {
-		return DavService.then(function(account) {
-			return account.addressBooks.filter(function(addressBook) {
-				return SettingsService.get('addressBooks').indexOf(addressBook.displayName) > -1;
-			}).map(function(addressBook) {
-				return new AddressBook(addressBook);
+	return {
+		getAll: function() {
+			return loadAll().then(function() {
+				console.log(addressBooks);
+				return addressBooks;
 			});
-		});
-	};
+		},
 
-	this.create = function(displayName) {
-		return DavService.then(function(account) {
-			return DavClient.createAddressBook({displayName:displayName, url:account.homeUrl});
-		});
-	};
+		getEnabled: function() {
+			return DavService.then(function(account) {
+				return account.addressBooks.filter(function(addressBook) {
+					return SettingsService.get('addressBooks').indexOf(addressBook.displayName) > -1;
+				}).map(function(addressBook) {
+					return new AddressBook(addressBook);
+				});
+			});
+		},
 
-	this.delete = function(addressBook) {
-		return DavService.then(function(account) {
-			return DavClient.deleteAddressBook(addressBook);
-		});
-	};
+		getDefaultAddressBook: function() {
+			return addressBooks[0];
+		},
 
-	this.rename = function(addressBook, displayName) {
-		return DavService.then(function(account) {
-			return DavClient.renameAddressBook(addressBook, {displayName:displayName, url:account.homeUrl});
-		});
-	};
+		create: function(displayName) {
+			return DavService.then(function(account) {
+				return DavClient.createAddressBook({displayName:displayName, url:account.homeUrl});
+			});
+		},
 
-	this.get = function(displayName) {
-		return this.getAll().then(function(addressBooks){
-			return addressBooks.filter(function (element) {
-				return element.displayName === displayName;
-			})[0];
-		});
-	};
+		delete: function(addressBook) {
+			return DavService.then(function(account) {
+				return DavClient.deleteAddressBook(addressBook);
+			});
+		},
 
-	this.sync = function(addressBook) {
-		return DavClient.syncAddressBook(addressBook);/*.then(function(addressBook) {
+		rename: function(addressBook, displayName) {
+			return DavService.then(function(account) {
+				return DavClient.renameAddressBook(addressBook, {displayName:displayName, url:account.homeUrl});
+			});
+		},
 
-			// parse contacts
-			addressBook.contacts = [];
-			for(var i in addressBook.objects) {
-				if(typeof addressBook.objects[i] === 'object') {
-					addressBook.contacts.push(
-						new Contact(addressBook.objects[i])
-					);
+		get: function(displayName) {
+			return this.getAll().then(function(addressBooks){
+				return addressBooks.filter(function (element) {
+					return element.displayName === displayName;
+				})[0];
+			});
+		},
+
+		sync: function(addressBook) {
+			return DavClient.syncAddressBook(addressBook);/*.then(function(addressBook) {
+
+				// parse contacts
+				addressBook.contacts = [];
+				for(var i in addressBook.objects) {
+					if(typeof addressBook.objects[i] === 'object') {
+						addressBook.contacts.push(
+							new Contact(addressBook.objects[i])
+						);
+					}
 				}
-			}
-			return addressBook;
-		});*/
+				return addressBook;
+			});*/
+		}
 	};
 
 }]);
 
 var contacts = [];
-app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$q', function(DavClient, AddressBookService, Contact, $q) {
+app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$q', 'uuid4', function(DavClient, AddressBookService, Contact, $q, uuid4) {
 
 	this.getAll = function() {
 		return AddressBookService.getEnabled().then(function(enabledAddressBooks) {
@@ -321,7 +333,6 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 					}
 					return contacts;
 				});
-				console.log(prom);
 				promises.push(prom);
 			});
 
@@ -329,7 +340,6 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 				var flattened = test.reduce(function(a, b) {
 				return a.concat(b);
 				}, []);
-				console.log('hi');
 				console.log(test, flattened);
 				return flattened;
 			});
@@ -337,9 +347,25 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		});
 	};
 
-	this.create = function(addressBook) {
-		// push contact to server
-		return DavClient.createCard(addressBook);
+	this.getById = function(uid){
+		return this.getAll().then(function(contacts) {
+			return contacts.filter(function(contact) {
+				return contact.uid() === uid;
+			})[0];
+		});
+	}
+
+	this.create = function(newContact, addressBook) {
+		newContact = newContact || new Contact();
+		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
+
+		return DavClient.createCard(
+			addressBook,
+			{
+				data: newContact.data.addressData,
+				filename: uuid4.generate() + '.vcf'
+			}
+		);
 	};
 
 	this.update = function(contact) {
@@ -374,7 +400,7 @@ app.service('SettingsService', function() {
 
   var settings = {
     addressBooks: [
-      "Kontakte"
+      "testAddr"
     ]
   };
 
@@ -388,7 +414,7 @@ app.service('SettingsService', function() {
 
   this.getAll = function() {
     return settings;
-  };
+  }
 });
 
 app.filter('JSON2vCard', function() {

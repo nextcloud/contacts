@@ -9,7 +9,9 @@ app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'Settings
 	});
 
 	ctrl.createAddressBook = function() {
-		AddressBookService.create('newAddressBook');
+		if(ctrl.newAddressBookName) {
+			AddressBookService.create(ctrl.newAddressBookName);
+		}
 	};
 
 }]);

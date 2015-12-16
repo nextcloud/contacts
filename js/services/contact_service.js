@@ -1,5 +1,5 @@
 var contacts = [];
-app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$q', function(DavClient, AddressBookService, Contact, $q) {
+app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$q', 'uuid4', function(DavClient, AddressBookService, Contact, $q, uuid4) {
 
 	this.getAll = function() {
 		return AddressBookService.getEnabled().then(function(enabledAddressBooks) {
@@ -14,7 +14,6 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 					}
 					return contacts;
 				});
-				console.log(prom);
 				promises.push(prom);
 			});
 
@@ -22,7 +21,6 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 				var flattened = test.reduce(function(a, b) {
 				return a.concat(b);
 				}, []);
-				console.log('hi');
 				console.log(test, flattened);
 				return flattened;
 			});
@@ -30,9 +28,25 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		});
 	};
 
-	this.create = function(addressBook) {
-		// push contact to server
-		return DavClient.createCard(addressBook);
+	this.getById = function(uid){
+		return this.getAll().then(function(contacts) {
+			return contacts.filter(function(contact) {
+				return contact.uid() === uid;
+			})[0];
+		});
+	}
+
+	this.create = function(newContact, addressBook) {
+		newContact = newContact || new Contact();
+		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
+
+		return DavClient.createCard(
+			addressBook,
+			{
+				data: newContact.data.addressData,
+				filename: uuid4.generate() + '.vcf'
+			}
+		);
 	};
 
 	this.update = function(contact) {
