@@ -22,6 +22,7 @@
     "dav": "git@github.com:irgendwie/dav.git#b5f7f9273d23f5ccf55a6c428e9d3760c0984db9",
     "angular-ui-router": "~0.2.15",
     "vcard": "~0.2.3",
-    "angular-uuid4": "~0.3.1"
+    "angular-uuid4": "~0.3.1",
+    "angular-cache": "~4.4.3"
   }
 }

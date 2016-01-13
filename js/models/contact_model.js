@@ -21,19 +21,50 @@ app.factory('Contact', [ '$filter', function($filter) {
 					return this.setProperty('fn', { value: value });
 				} else {
 					// getter
-					return this.getProperty('fn').value;
+					var property = this.getProperty('fn');
+					if(property) {
+						return property.value;
+					} else {
+						return undefined;
+					}
+				}
+			},
+
+			email: function(value) {
+				if (angular.isDefined(value)) {
+					// setter
+					return this.setProperty('email', { value: value });
+				} else {
+					// getter
+					var property = this.getProperty('email');
+					if(property) {
+						return property.value;
+					} else {
+						return undefined;
+					}
 				}
 			},
 
 			getProperty: function(name) {
-				return this.props[name][0];
+				if (this.props[name]) {
+					return this.props[name][0];
+				} else {
+					return undefined;
+				}
 			},
 
 			setProperty: function(name, data) {
-				angular.extend(this.props[name][0], data);
+				if(!this.props[name]) {
+					this.props[name] = [];
+				}
+				this.props[name][0] = data;
 
 				// keep vCard in sync
 				this.data.addressData = $filter('JSON2vCard')(this.props);
+			},
+
+			delete: function() {
+				console.log('deleting...');
 			}
 
 			/*getPropertyValue: function(property) {
@@ -54,6 +85,8 @@ app.factory('Contact', [ '$filter', function($filter) {
 			}*/
 
 		});
+
+		console.log('create');
 
 		if(angular.isDefined(vCard)) {
 			angular.extend(this.data, vCard);

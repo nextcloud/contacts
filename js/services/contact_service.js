@@ -1,40 +1,41 @@
-var contacts = [];
-app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$q', 'uuid4', function(DavClient, AddressBookService, Contact, $q, uuid4) {
+var contacts;
+app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$q', 'CacheFactory', 'uuid4', function(DavClient, AddressBookService, Contact, $q, CacheFactory, uuid4) {
 
-	this.getAll = function() {
+	contacts = CacheFactory('contacts');
+
+	this.fillCache = function() {
 		return AddressBookService.getEnabled().then(function(enabledAddressBooks) {
-
 			var promises = [];
-
 			enabledAddressBooks.forEach(function(addressBook) {
-				var prom = AddressBookService.sync(addressBook).then(function(addressBook) {
-					var contacts = [];
-					for(var i in addressBook.objects) {
-						contacts.push(new Contact(addressBook.objects[i]));
-					}
-					return contacts;
-				});
-				promises.push(prom);
+				promises.push(
+					AddressBookService.sync(addressBook).then(function(addressBook) {
+						for(var i in addressBook.objects) {
+							contact = new Contact(addressBook.objects[i]);
+							contacts.put(contact.uid(), contact);
+						}
+					})
+				);
 			});
-
-			return $q.all(promises).then(function(test) {
-				var flattened = test.reduce(function(a, b) {
-				return a.concat(b);
-				}, []);
-				console.log(test, flattened);
-				return flattened;
-			});
-
+			return $q.all(promises);
 		});
 	};
 
-	this.getById = function(uid){
-		return this.getAll().then(function(contacts) {
-			return contacts.filter(function(contact) {
-				return contact.uid() === uid;
-			})[0];
+	this.getAll = function() {
+		return this.fillCache().then(function() {
+			var contactsArray = [];
+			var keys = contacts.keys();
+
+			keys.forEach(function(key) {
+				contactsArray.push(contacts.get(key));
+			});
+
+			return contactsArray;
 		});
-	}
+	};
+
+	this.getById = function(uid) {
+		return contacts.get(uid);
+	};
 
 	this.create = function(newContact, addressBook) {
 		newContact = newContact || new Contact();
@@ -54,7 +55,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		return DavClient.updateCard(contact, {json: true});
 	};
 
-	this.remove = function(contact) {
+	this.delete = function(contact) {
 		// delete contact from server
 		return DavClient.deleteCard(contact);
 	};

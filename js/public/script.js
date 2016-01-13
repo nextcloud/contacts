@@ -8,7 +8,7 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-var app = angular.module('contactsApp', ['ui.router', 'uuid4']);
+var app = angular.module('contactsApp', ['ui.router', 'uuid4', 'angular-cache']);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');
@@ -106,9 +106,15 @@ app.directive('contact', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
 	};
 });
-app.controller('contactdetailsCtrl', function() {
+app.controller('contactdetailsCtrl', ['ContactService', function(ContactService) {
 	var ctrl = this;
-});
+
+	ctrl.deleteContact = function() {
+		ContactService.delete(ctrl.contact.data);
+		console.log('Deleting Contact');
+	};
+}]);
+
 app.directive('contactdetails', function() {
 	return {
 		priority: 1,
@@ -191,19 +197,50 @@ app.factory('Contact', [ '$filter', function($filter) {
 					return this.setProperty('fn', { value: value });
 				} else {
 					// getter
-					return this.getProperty('fn').value;
+					var property = this.getProperty('fn');
+					if(property) {
+						return property.value;
+					} else {
+						return undefined;
+					}
+				}
+			},
+
+			email: function(value) {
+				if (angular.isDefined(value)) {
+					// setter
+					return this.setProperty('email', { value: value });
+				} else {
+					// getter
+					var property = this.getProperty('email');
+					if(property) {
+						return property.value;
+					} else {
+						return undefined;
+					}
 				}
 			},
 
 			getProperty: function(name) {
-				return this.props[name][0];
+				if (this.props[name]) {
+					return this.props[name][0];
+				} else {
+					return undefined;
+				}
 			},
 
 			setProperty: function(name, data) {
-				angular.extend(this.props[name][0], data);
+				if(!this.props[name]) {
+					this.props[name] = [];
+				}
+				this.props[name][0] = data;
 
 				// keep vCard in sync
 				this.data.addressData = $filter('JSON2vCard')(this.props);
+			},
+
+			delete: function() {
+				console.log('deleting...');
 			}
 
 			/*getPropertyValue: function(property) {
@@ -224,6 +261,8 @@ app.factory('Contact', [ '$filter', function($filter) {
 			}*/
 
 		});
+
+		console.log('create');
 
 		if(angular.isDefined(vCard)) {
 			angular.extend(this.data, vCard);
@@ -317,43 +356,44 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 
 }]);
 
-var contacts = [];
-app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$q', 'uuid4', function(DavClient, AddressBookService, Contact, $q, uuid4) {
+var contacts;
+app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$q', 'CacheFactory', 'uuid4', function(DavClient, AddressBookService, Contact, $q, CacheFactory, uuid4) {
 
-	this.getAll = function() {
+	contacts = CacheFactory('contacts');
+
+	this.fillCache = function() {
 		return AddressBookService.getEnabled().then(function(enabledAddressBooks) {
-
 			var promises = [];
-
 			enabledAddressBooks.forEach(function(addressBook) {
-				var prom = AddressBookService.sync(addressBook).then(function(addressBook) {
-					var contacts = [];
-					for(var i in addressBook.objects) {
-						contacts.push(new Contact(addressBook.objects[i]));
-					}
-					return contacts;
-				});
-				promises.push(prom);
+				promises.push(
+					AddressBookService.sync(addressBook).then(function(addressBook) {
+						for(var i in addressBook.objects) {
+							contact = new Contact(addressBook.objects[i]);
+							contacts.put(contact.uid(), contact);
+						}
+					})
+				);
 			});
-
-			return $q.all(promises).then(function(test) {
-				var flattened = test.reduce(function(a, b) {
-				return a.concat(b);
-				}, []);
-				console.log(test, flattened);
-				return flattened;
-			});
-
+			return $q.all(promises);
 		});
 	};
 
-	this.getById = function(uid){
-		return this.getAll().then(function(contacts) {
-			return contacts.filter(function(contact) {
-				return contact.uid() === uid;
-			})[0];
+	this.getAll = function() {
+		return this.fillCache().then(function() {
+			var contactsArray = [];
+			var keys = contacts.keys();
+
+			keys.forEach(function(key) {
+				contactsArray.push(contacts.get(key));
+			});
+
+			return contactsArray;
 		});
-	}
+	};
+
+	this.getById = function(uid) {
+		return contacts.get(uid);
+	};
 
 	this.create = function(newContact, addressBook) {
 		newContact = newContact || new Contact();
@@ -373,7 +413,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		return DavClient.updateCard(contact, {json: true});
 	};
 
-	this.remove = function(contact) {
+	this.delete = function(contact) {
 		// delete contact from server
 		return DavClient.deleteCard(contact);
 	};

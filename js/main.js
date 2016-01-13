@@ -8,7 +8,7 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-var app = angular.module('contactsApp', ['ui.router', 'uuid4']);
+var app = angular.module('contactsApp', ['ui.router', 'uuid4', 'angular-cache']);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
 	$urlRouterProvider.otherwise('/');

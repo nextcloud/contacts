@@ -4,6 +4,7 @@ script('contactsrework', 'vendor/angular-ui-router/release/angular-ui-router');
 script('contactsrework', 'vendor/dav/dav');
 script('contactsrework', 'vendor/vcard/src/vcard');
 script('contactsrework', 'vendor/angular-uuid4/angular-uuid4');
+script('contactsrework', 'vendor/angular-cache/dist/angular-cache');
 script('contactsrework', 'public/script');
 style('contactsrework', 'public/style');
 ?>
