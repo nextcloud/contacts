@@ -143,7 +143,7 @@ app.controller('contactlistCtrl', ['$scope', 'ContactService', 'Contact', functi
 
 	ctrl.createContact = function() {
 		ContactService.create();
-	}
+	};
 }]);
 
 app.directive('contactlist', function() {
@@ -442,24 +442,23 @@ app.service('DavService', ['DavClient', function(client) {
 }]);
 
 app.service('SettingsService', function() {
-
-  var settings = {
-    addressBooks: [
-      "testAddr"
-    ]
-  };
+	var settings = {
+		addressBooks: [
+			"testAddr"
+		]
+	};
 
 	this.set = function(key, value) {
-    settings[key] = value;
-  };
+		settings[key] = value;
+	};
 
-  this.get = function(key) {
-    return settings[key];
-  };
+	this.get = function(key) {
+		return settings[key];
+	};
 
-  this.getAll = function() {
-    return settings;
-  }
+	this.getAll = function() {
+		return settings;
+	};
 });
 
 app.filter('JSON2vCard', function() {

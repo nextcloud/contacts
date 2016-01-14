@@ -9,5 +9,5 @@ app.controller('contactlistCtrl', ['$scope', 'ContactService', 'Contact', functi
 
 	ctrl.createContact = function() {
 		ContactService.create();
-	}
+	};
 }]);
