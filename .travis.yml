@@ -3,6 +3,7 @@ php:
   - 5.4
   - 5.5
   - 5.6
+  - 7
   - hhvm
 
 env:
@@ -11,15 +12,14 @@ env:
   matrix:
     - DB=mysql
 
+branches:
+  only:
+    - master
+    - /^stable\d*$/
+
 matrix:
   allow_failures:
     - php: hhvm
-  include:
-    - php: 5.4
-      env: DB=sqlite
-    - php: 5.4
-      env: DB=pgsql
-
 
 install:
   # install ocdev
