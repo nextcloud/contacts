@@ -1,6 +1,5 @@
 var gulp = require('gulp'),
 	concat = require('gulp-concat'),
-	notify = require('gulp-notify'),
 	jshint = require('gulp-jshint');
 
 gulp.task('js', function() {
@@ -14,8 +13,7 @@ gulp.task('js', function() {
 		.pipe(jshint('.jshintrc'))
 		.pipe(jshint.reporter('default'))
 		.pipe(concat('script.js'))
-		.pipe(gulp.dest('js/public'))
-		.pipe(notify({message: 'Scripts task complete'}));
+		.pipe(gulp.dest('js/public'));
 });
 
 gulp.task('css', function() {
@@ -24,8 +22,7 @@ gulp.task('css', function() {
 			'!css/public/**.css'
 			])
 		.pipe(concat('style.css'))
-		.pipe(gulp.dest('css/public'))
-		.pipe(notify({message: 'Styles task complete'}));
+		.pipe(gulp.dest('css/public'));
 });
 
 gulp.task('watch', function() {
