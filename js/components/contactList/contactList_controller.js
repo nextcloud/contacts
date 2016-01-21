@@ -8,6 +8,10 @@ app.controller('contactlistCtrl', ['$scope', 'ContactService', 'Contact', functi
 	});
 
 	ctrl.createContact = function() {
-		ContactService.create();
+		ContactService.create().then(function(newContact){
+			$scope.$apply(function(){
+				ctrl.contacts.push(newContact);
+			});
+		});
 	};
 }]);

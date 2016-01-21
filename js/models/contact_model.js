@@ -65,7 +65,13 @@ app.factory('Contact', [ '$filter', function($filter) {
 
 			delete: function() {
 				console.log('deleting...');
+			},
+
+			setETag: function(etag) {
+				this.data.etag = etag;
+				this.data.props.getetag = etag;
 			}
+
 
 			/*getPropertyValue: function(property) {
 				if(property.value instanceof Array) {
