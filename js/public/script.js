@@ -110,7 +110,7 @@ app.controller('contactdetailsCtrl', ['ContactService', function(ContactService)
 	var ctrl = this;
 
 	ctrl.updateContact = function() {
-		ContactService.update(ctrl.contact.data);
+		ContactService.update(ctrl.contact);
 		console.log('updating Contact');
 	};
 
@@ -142,7 +142,11 @@ app.controller('contactlistCtrl', ['$scope', 'ContactService', 'Contact', functi
 	});
 
 	ctrl.createContact = function() {
-		ContactService.create();
+		ContactService.create().then(function(newContact){
+			$scope.$apply(function(){
+				ctrl.contacts.push(newContact);
+			});
+		});
 	};
 }]);
 
@@ -246,7 +250,13 @@ app.factory('Contact', [ '$filter', function($filter) {
 
 			delete: function() {
 				console.log('deleting...');
+			},
+
+			setETag: function(etag) {
+				this.data.etag = etag;
+				this.data.props.getetag = etag;
 			}
+
 
 			/*getPropertyValue: function(property) {
 				if(property.value instanceof Array) {
@@ -402,20 +412,36 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 
 	this.create = function(newContact, addressBook) {
 		newContact = newContact || new Contact();
+		var newUid = uuid4.generate();
+		newContact.uid(newUid);
 		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
 
 		return DavClient.createCard(
 			addressBook,
 			{
 				data: newContact.data.addressData,
-				filename: uuid4.generate() + '.vcf'
+				filename: newUid + '.vcf'
 			}
-		);
+		).then(function() {
+			console.log("Successfully created");
+			contacts.put(newUid, contact);
+			return newContact;
+		}).catch(function() {
+			console.log("Couldn't create");
+		});
 	};
 
 	this.update = function(contact) {
+		console.log('a', contact);
 		// update contact on server
-		return DavClient.updateCard(contact, {json: true});
+		return DavClient.updateCard(contact.data, {json: true}).then(function(xhr){
+			console.log('hello!!!!');
+			var newEtag = xhr.getResponseHeader('ETag');
+			console.log('hello2', contact);
+			contact.setETag(newEtag);
+			console.log('hello3');
+			console.log('b', contact);
+		});
 	};
 
 	this.delete = function(contact) {

@@ -39,20 +39,36 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 
 	this.create = function(newContact, addressBook) {
 		newContact = newContact || new Contact();
+		var newUid = uuid4.generate();
+		newContact.uid(newUid);
 		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
 
 		return DavClient.createCard(
 			addressBook,
 			{
 				data: newContact.data.addressData,
-				filename: uuid4.generate() + '.vcf'
+				filename: newUid + '.vcf'
 			}
-		);
+		).then(function() {
+			console.log("Successfully created");
+			contacts.put(newUid, contact);
+			return newContact;
+		}).catch(function() {
+			console.log("Couldn't create");
+		});
 	};
 
 	this.update = function(contact) {
+		console.log('a', contact);
 		// update contact on server
-		return DavClient.updateCard(contact, {json: true});
+		return DavClient.updateCard(contact.data, {json: true}).then(function(xhr){
+			console.log('hello!!!!');
+			var newEtag = xhr.getResponseHeader('ETag');
+			console.log('hello2', contact);
+			contact.setETag(newEtag);
+			console.log('hello3');
+			console.log('b', contact);
+		});
 	};
 
 	this.delete = function(contact) {
