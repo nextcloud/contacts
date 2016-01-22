@@ -3,6 +3,7 @@ php:
   - 5.4
   - 5.5
   - 5.6
+  - 7
   - hhvm
 
 env:
@@ -11,19 +12,20 @@ env:
   matrix:
     - DB=mysql
 
+branches:
+  only:
+    - master
+    - /^stable\d*$/
+
 matrix:
   allow_failures:
     - php: hhvm
-  include:
-    - php: 5.4
-      env: DB=sqlite
-    - php: 5.4
-      env: DB=pgsql
-
 
 install:
   # install ocdev
-  - sudo apt-get -y install python3-jinja2 python3-setuptools
+  - sudo add-apt-repository -y ppa:chris-lea/node.js
+  - sudo apt-get update
+  - sudo apt-get -y install nodejs python3-jinja2 python3-setuptools
   - sudo easy_install3 requests
   - sudo easy_install3 ocdev
   # set up postgresql
@@ -40,10 +42,10 @@ install:
   - cd owncloud
   - ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --database-pass --admin-user admin --admin-pass admin --database $DB
   - ./occ app:enable contactsrework
-
-before_script:
   - cd apps/contactsrework
+  - npm install --deps
 
 script:
   - phpunit -c phpunit.xml
   - phpunit -c phpunit.integration.xml
+  - node_modules/gulp/bin/gulp.js
