@@ -8,7 +8,7 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute']);
+var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute', 'ui.bootstrap']);
 
 app.config(['$routeProvider', function($routeProvider){
 

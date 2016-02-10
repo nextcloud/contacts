@@ -12,6 +12,9 @@ script('contactsrework', 'vendor/vcard/src/vcard');
 // compiled version of app javascript
 script('contactsrework', 'public/script');
 
+script('contactsrework', 'vendor/angular-bootstrap/ui-bootstrap.min');
+script('contactsrework', 'vendor/angular-bootstrap/ui-bootstrap-tpls.min');
+
 // all styles
 style('contactsrework', 'public/style');
 style('contactsrework', 'addressbooklist');

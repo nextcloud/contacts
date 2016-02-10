@@ -16,7 +16,12 @@ app.factory('AddressBook', function()
 				return undefined;
 			},
 
-			
+			sharedWith: {
+				users: [{displayname: 'tom'}],
+				groups: []
+			}
+
+
 
 		});
 		angular.extend(this, data);
