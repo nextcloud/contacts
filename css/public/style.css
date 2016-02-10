@@ -1,3 +1,7 @@
+span.addressbooklist-icon {
+    display: inline-block;
+}
+
 .contactdetails__header {
 	height: 100px;
 	padding-left: 30px;

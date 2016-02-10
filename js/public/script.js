@@ -319,8 +319,6 @@ app.factory('AddressBook', function()
 				groups: []
 			}
 
-
-
 		});
 		angular.extend(this, data);
 	};
