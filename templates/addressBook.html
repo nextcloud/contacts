@@ -1,1 +1,57 @@
 {{ctrl.addressBook.displayName}}
+<span
+    class="addressbooklist-icon icon-share"
+    title="<?php p($l->t('Share Addressbook')) ?>"
+    ng-click="ctrl.toggleSharesEditor(ctrl.addressBook)">
+</span>
+<div class="addressBookShares">
+	<i ng-show="loadingSharees" class="glyphicon glyphicon-refresh"></i>
+	<input
+		type="text"
+		class="shareeInput"
+		uib-typeahead="sharee.display for sharee in ctrl.findSharee($viewValue, ctrl.addressBook)"
+		typeahead-on-select="ctrl.onSelectSharee($item, $model, $label, calendar)"
+		typeahead-loading="loadingSharees"
+		ng-model="ctrl.addressBook.selectedSharee"
+		placeholder="Share with users or groups">
+	<ul class="addressBook-share-list">
+		<li ng-repeat="userShare in ctrl.addressBook.sharedWith.users" class="addressBook-share-item">
+			{{ userShare.displayname }} -
+			<input type="checkbox" name="editable"
+				   id="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"
+				   ng-model="userShare.writable" value="edit"
+				   ng-change="ctrl.updateExistingUserShare(ctrl.addressBook, userShare.id, userShare.writable)">
+			<label for="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"> <?php p($l->t('can edit')); ?></label>
+			<span class="utils hide">
+				<span class="action">
+					<span href="#"
+						  id="addressBooklist-icon delete"
+						  data-id="{{ ctrl.addressBook.uri }}"
+						  title="Delete"
+						  class="icon-delete"
+						  ng-click="ctrl.unshareFromUser(ctrl.addressBook, userShare.id)">
+					</span>
+				</span>
+			</span>
+		</li>
+		<li ng-repeat="groupShare in ctrl.addressBook.sharedWith.groups" class="calendar-share-item">
+			{{ groupShare.displayname }} (<?php p($l->t('group')); ?>) -
+			<input type="checkbox" name="editable"
+				   id="checkbox_sharedWithGroup_{{ctrl.addressBook.tmpId}}_{{$id}}"
+				   ng-model="groupShare.writable" value="edit"
+				   ng-change="ctrl.updateExistingGroupShare(ctrl.addressBook, groupShare.id, groupShare.writable)">
+			<label for="checkbox_sharedWithGroup_{{ctrl.addressBook.tmpId}}_{{$id}}"> <?php p($l->t('can edit')); ?></label>
+			<span class="utils hide">
+				<span class="action">
+					<span href="#"
+						  id="addressBooklist-icon delete"
+						  data-id="{{ ctrl.addressBook.uri }}"
+						  title="Delete"
+						  class="icon-delete"
+						  ng-click="ctrl.unshareFromGroup(ctrl.addressBook, groupShare.id)">
+					</span>
+				</span>
+			</span>
+		</li>
+	</ul>
+</div>

@@ -14,6 +14,8 @@ script('contactsrework', 'public/script');
 
 // all styles
 style('contactsrework', 'public/style');
+style('contactsrework', 'addressbooklist');
+
 ?>
 
 <div id="app" ng-app="contactsApp">
