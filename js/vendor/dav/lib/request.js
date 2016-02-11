@@ -87,6 +87,20 @@ export function mkcol(options) {
   });
 }
 
+export function proppatch(options) {
+  let requestData = template.proppatch({ props: options.props });
+
+  function transformRequest(xhr) {
+    setRequestHeaders(xhr, options);
+  }
+
+  return new Request({
+    method: 'PROPPATCH',
+    requestData: requestData,
+    transformRequest: transformRequest
+  });
+}
+
 /**
  * Options:
  *

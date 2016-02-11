@@ -45,21 +45,28 @@ export function syncCollection(collection, options) {
   }
 }
 
-export function createCollection(objectUrl, objectData, options) {
-  var req = request.mkcol({
-	  props: [ { name: 'displayname', value: options.displayName, namespace: ns.DAV } ],
+export function updateProperties(objectUrl, options) {
+  var req = request.proppatch({
+      props: options.props
   });
   return options.xhr.send(req, objectUrl, { sandbox: options.sandbox });
 }
 
-export function deleteCollection(objectUrl, objectData, options) {
-  var req = request.basic({ method: 'DELETE', data: objectData });
-  return options.xhr.send(req, objectUrl, { sandBox: options.sandbox });
+export function createCollection(collectionUrl, options) {
+  var req = request.mkcol({
+	  props: options.props
+  });
+  return options.xhr.send(req, collectionUrl, { sandbox: options.sandbox });
 }
 
-export function moveCollection(objectUrl, objectData, options) {
+export function deleteCollection(collectionUrl, options) {
+  var req = request.basic({ method: 'DELETE', data: objectData });
+  return options.xhr.send(req, collectionUrl, { sandbox: options.sandbox });
+}
+
+export function moveCollection(collectionUrl, options) {
   var req = request.basic({ method: 'MOVE', overwrite: 'F', destination: options.destination, data:objectData });
-  return options.xhr.send(req, objectUrl, { sandBox: options.sandbox });
+  return options.xhr.send(req, collectionUrl, { sandbox: options.sandbox });
 }
 
 /**

@@ -1,7 +1,7 @@
 import prop from './prop';
 
-export default function mkcol(object) {
-  return `<d:mkcol xmlns:c="urn:ietf:params:xml:ns:caldav"
+export default function proppatch(object) {
+  return `<d:propertyupdate xmlns:c="urn:ietf:params:xml:ns:caldav"
               xmlns:card="urn:ietf:params:xml:ns:carddav"
               xmlns:cs="http://calendarserver.org/ns/"
               xmlns:d="DAV:">
@@ -10,5 +10,5 @@ export default function mkcol(object) {
         ${object.props.map(prop)}
       </d:prop>
     </d:set>
-  </d:mkcol>`;
+  </d:propertyupdate>`;
 }
