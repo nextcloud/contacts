@@ -1,11 +1,11 @@
 <header class="contactdetails__header"
 		ng-style="{'background-color': (ctrl.contact.uid() | contactColor)}">
 	<h2 style="font-size: 1.7em; margin-left: 1em;">
-		<input type="text" id="details-email" name="email" ng-model="ctrl.contact.fullName" ng-model-options="{ getterSetter: true }" ng-change="ctrl.updateContact()" value="" />
+		<input type="text" id="details-email" name="email" ng-model="ctrl.contact.fullName" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
 	</h2>
 	<button ng-click="ctrl.deleteContact()">Delete</button>
 </header>
 <section>
 	<label for="details-email">E-Mail:</label>
-	<input type="text" id="details-email" name="email" ng-model="ctrl.contact.email" ng-model-options="{ getterSetter: true }" value="" />
+	<input type="text" id="details-email" name="email" ng-model="ctrl.contact.email" ng-model-options="{ getterSetter: true, debounce: 500 }" value="" />
 </section>
