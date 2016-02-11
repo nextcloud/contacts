@@ -69,7 +69,10 @@ app.factory('Contact', [ '$filter', function($filter) {
 
 			setETag: function(etag) {
 				this.data.etag = etag;
-				this.data.props.getetag = etag;
+			},
+
+			setUrl: function(addressBook, uid) {
+				this.data.url = addressBook.url + uid + ".vcf";
 			}
 
 

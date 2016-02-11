@@ -64,8 +64,16 @@ export let listAddressBooks = co.wrap(function *(account, options) {
  *   (dav.Transport) xhr - request sender.
  */
 export function createAddressBook(options) {
-  let objectUrl = url.resolve(options.url, options.displayName);
-  return webdav.createCollection(objectUrl, options.data, options);
+  let collectionUrl = url.resolve(options.url, options.displayName);
+  options.props = [
+    { name: 'resourcetype', namespace: ns.DAV, children: [
+        { name: 'collection', namespace: ns.DAV },
+        { name: 'addressbook', namespace: ns.CARDDAV }
+      ]
+    },
+    { name: 'displayname', value: options.displayName, namespace: ns.DAV }
+  ]
+  return webdav.createCollection(collectionUrl, options);
 }
 
 /**
@@ -78,7 +86,7 @@ export function createAddressBook(options) {
  *   (dav.Transport) xhr - request sender.
  */
 export function deleteAddressBook(addressBook, options) {
-  return webdav.deleteCollection(addressBook.url, options.data, options);
+  return webdav.deleteCollection(addressBook.url, options);
 }
 
 /**
@@ -92,9 +100,10 @@ export function deleteAddressBook(addressBook, options) {
  *   (dav.Transport) xhr - request sender.
  */
 export function renameAddressBook(addressBook, options) {
-  let destinationUrl = url.resolve(options.url, options.displayName);
-  options.destination = destinationUrl;
-  return webdav.moveCollection(addressBook.url, options.data, options);
+  options.props = [
+     { name: 'displayname', value: options.displayName, namespace: ns.DAV }
+  ]
+  return webdav.updateProperties(addressBook.url, options);
 }
 
 /**

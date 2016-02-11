@@ -36,11 +36,17 @@ import * as ns from '../namespace';
  *     }
  */
 export default function prop(item) {
-  return `<${xmlnsPrefix(item.namespace)}:${item.name} />`;
-}
+  if (!item.children || !item.children.length) {
+    if (typeof item.value === "undefined") {
+      return `<${xmlnsPrefix(item.namespace)}:${item.name} />`;
+    }
+    return `<${xmlnsPrefix(item.namespace)}:${item.name}>${item.value}</${xmlnsPrefix(item.namespace)}:${item.name}>`;
+  }
 
-export default function putProp(item, value) {
-  return `<${xmlnsPrefix(item.namespace)}:${item.name}>${item.value}</${xmlnsPrefix(item.namespace)}:${item.name}>`;
+  let children = item.children.map(prop);
+  return `<${xmlnsPrefix(item.namespace)}:${item.name}>
+            ${children}
+          </${xmlnsPrefix(item.namespace)}:${item.name}>`;
 }
 
 function xmlnsPrefix(namespace) {

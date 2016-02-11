@@ -32,15 +32,15 @@
   "dependencies": {
     "angular": ">=1.x"
   },
-  "version": "4.4.3",
-  "_release": "4.4.3",
+  "version": "4.5.0",
+  "_release": "4.5.0",
   "_resolution": {
     "type": "version",
-    "tag": "4.4.3",
-    "commit": "bf14ca2242ec9bd4fbac3aca2af8a9252c6540c6"
+    "tag": "4.5.0",
+    "commit": "e1e61c94d9028d0dfccdf9462333371c847560c6"
   },
   "_source": "git://github.com/jmdobry/angular-cache.git",
-  "_target": "~4.4.3",
+  "_target": "~4.5.0",
   "_originalSource": "angular-cache",
   "_direct": true
 }

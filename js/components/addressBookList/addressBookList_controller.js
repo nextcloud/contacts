@@ -3,9 +3,7 @@ app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'Settings
 
 	console.log(AddressBookService);
 	AddressBookService.getAll().then(function(addressBooks) {
-		scope.$apply(function() {
 			ctrl.addressBooks = addressBooks;
-		});
 	});
 
 	ctrl.createAddressBook = function() {

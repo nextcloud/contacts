@@ -7,7 +7,7 @@ app.controller('contactdetailsCtrl', ['ContactService', function(ContactService)
 	};
 
 	ctrl.deleteContact = function() {
-		ContactService.delete(ctrl.contact.data);
+		ContactService.delete(ctrl.contact);
 		console.log('Deleting Contact');
 	};
 }]);

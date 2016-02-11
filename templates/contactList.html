@@ -9,7 +9,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		<tr ng-repeat="contact in ctrl.contacts | orderBy:'fullName()'" contact data="contact"></tr>
+		<tr ng-repeat="contact in ctrl.contacts | orderBy:'fullName()' track by contact.uid()" contact data="contact"></tr>
 	</tbody>
 </table>
 <button type="button" name="button" ng-click="ctrl.createContact()">New Card</button>

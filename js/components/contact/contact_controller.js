@@ -1,4 +1,4 @@
-app.controller('contactCtrl', ['Contact', function() {
+app.controller('contactCtrl', [function() {
 	var ctrl = this;
 
 	console.log("Contact: ",ctrl.contact);

@@ -1,5 +1,11 @@
-app.controller('contactlistCtrl', ['$scope', 'ContactService', 'Contact', function($scope, ContactService, Contact) {
+app.controller('contactlistCtrl', ['$scope', 'ContactService', function($scope, ContactService) {
 	var ctrl = this;
+
+	ContactService.registerObserverCallback(function(contacts) {
+		$scope.$apply(function() {
+			ctrl.contacts = contacts;
+		});
+	});
 
 	ContactService.getAll().then(function(contacts) {
 		$scope.$apply(function(){
@@ -8,10 +14,6 @@ app.controller('contactlistCtrl', ['$scope', 'ContactService', 'Contact', functi
 	});
 
 	ctrl.createContact = function() {
-		ContactService.create().then(function(newContact){
-			$scope.$apply(function(){
-				ctrl.contacts.push(newContact);
-			});
-		});
+		ContactService.create();
 	};
 }]);

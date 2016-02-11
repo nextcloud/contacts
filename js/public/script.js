@@ -65,9 +65,7 @@ app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'Settings
 
 	console.log(AddressBookService);
 	AddressBookService.getAll().then(function(addressBooks) {
-		scope.$apply(function() {
 			ctrl.addressBooks = addressBooks;
-		});
 	});
 
 	ctrl.createAddressBook = function() {
@@ -89,12 +87,13 @@ app.directive('addressbooklist', function() {
 	};
 });
 
-app.controller('contactCtrl', ['Contact', function() {
+app.controller('contactCtrl', [function() {
 	var ctrl = this;
 
 	console.log("Contact: ",ctrl.contact);
 
 }]);
+
 app.directive('contact', function() {
 	return {
 		scope: {},
@@ -115,7 +114,7 @@ app.controller('contactdetailsCtrl', ['ContactService', function(ContactService)
 	};
 
 	ctrl.deleteContact = function() {
-		ContactService.delete(ctrl.contact.data);
+		ContactService.delete(ctrl.contact);
 		console.log('Deleting Contact');
 	};
 }]);
@@ -132,8 +131,14 @@ app.directive('contactdetails', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactDetails.html')
 	};
 });
-app.controller('contactlistCtrl', ['$scope', 'ContactService', 'Contact', function($scope, ContactService, Contact) {
+app.controller('contactlistCtrl', ['$scope', 'ContactService', function($scope, ContactService) {
 	var ctrl = this;
+
+	ContactService.registerObserverCallback(function(contacts) {
+		$scope.$apply(function() {
+			ctrl.contacts = contacts;
+		});
+	});
 
 	ContactService.getAll().then(function(contacts) {
 		$scope.$apply(function(){
@@ -142,11 +147,7 @@ app.controller('contactlistCtrl', ['$scope', 'ContactService', 'Contact', functi
 	});
 
 	ctrl.createContact = function() {
-		ContactService.create().then(function(newContact){
-			$scope.$apply(function(){
-				ctrl.contacts.push(newContact);
-			});
-		});
+		ContactService.create();
 	};
 }]);
 
@@ -254,7 +255,10 @@ app.factory('Contact', [ '$filter', function($filter) {
 
 			setETag: function(etag) {
 				this.data.etag = etag;
-				this.data.props.getetag = etag;
+			},
+
+			setUrl: function(addressBook, uid) {
+				this.data.url = addressBook.url + uid + ".vcf";
 			}
 
 
@@ -376,6 +380,18 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 
 	contacts = CacheFactory('contacts');
 
+	var observerCallbacks = [];
+
+	this.registerObserverCallback = function(callback) {
+		observerCallbacks.push(callback);
+	};
+
+	var notifyObservers = function() {
+		angular.forEach(observerCallbacks, function(callback){
+			callback(contacts.values());
+		});
+	};
+
 	this.fillCache = function() {
 		return AddressBookService.getEnabled().then(function(enabledAddressBooks) {
 			var promises = [];
@@ -395,14 +411,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 
 	this.getAll = function() {
 		return this.fillCache().then(function() {
-			var contactsArray = [];
-			var keys = contacts.keys();
-
-			keys.forEach(function(key) {
-				contactsArray.push(contacts.get(key));
-			});
-
-			return contactsArray;
+			return contacts.values();
 		});
 	};
 
@@ -412,9 +421,10 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 
 	this.create = function(newContact, addressBook) {
 		newContact = newContact || new Contact();
+		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
 		var newUid = uuid4.generate();
 		newContact.uid(newUid);
-		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
+		newContact.setUrl(addressBook, newUid);
 
 		return DavClient.createCard(
 			addressBook,
@@ -422,35 +432,30 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 				data: newContact.data.addressData,
 				filename: newUid + '.vcf'
 			}
-		).then(function() {
-			console.log("Successfully created");
-			contacts.put(newUid, contact);
+		).then(function(xhr) {
+			newContact.setETag(xhr.getResponseHeader('ETag'));
+			contacts.put(newUid, newContact);
+			notifyObservers();
 			return newContact;
-		}).catch(function() {
-			console.log("Couldn't create");
+		}).catch(function(e) {
+			console.log("Couldn't create", e);
 		});
 	};
 
 	this.update = function(contact) {
-		console.log('a', contact);
 		// update contact on server
 		return DavClient.updateCard(contact.data, {json: true}).then(function(xhr){
-			console.log('hello!!!!');
 			var newEtag = xhr.getResponseHeader('ETag');
-			console.log('hello2', contact);
 			contact.setETag(newEtag);
-			console.log('hello3');
-			console.log('b', contact);
 		});
 	};
 
 	this.delete = function(contact) {
 		// delete contact from server
-		return DavClient.deleteCard(contact);
-	};
-
-	this.fromArray = function(array) {
-		// from array to contact
+		return DavClient.deleteCard(contact.data).then(function(xhr) {
+			contacts.remove(contact.uid());
+			notifyObservers();
+		});
 	};
 }]);
 
