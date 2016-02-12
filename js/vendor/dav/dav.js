@@ -1601,7 +1601,7 @@ var listAddressBooks = _co2['default'].wrap(regeneratorRuntime.mark(function cal
       case 0:
         debug('Fetch address books from home url ' + account.homeUrl);
         req = request.propfind({
-          props: [{ name: 'displayname', namespace: ns.DAV }, { name: 'getctag', namespace: ns.CALENDAR_SERVER }, { name: 'resourcetype', namespace: ns.DAV }, { name: 'sync-token', namespace: ns.DAV }, {name: 'groups', namespace: ns.OC}],
+          props: [{ name: 'displayname', namespace: ns.DAV }, { name: 'getctag', namespace: ns.CALENDAR_SERVER }, { name: 'resourcetype', namespace: ns.DAV }, { name: 'sync-token', namespace: ns.DAV }],
           depth: 1
         });
         context$1$0.next = 4;
@@ -2259,9 +2259,6 @@ var CARDDAV = 'urn:ietf:params:xml:ns:carddav';
 exports.CARDDAV = CARDDAV;
 var DAV = 'DAV:';
 exports.DAV = DAV;
-var OC = 'http://owncloud.org/ns/';
-exports.OC = OC;
-
 },{}],11:[function(require,module,exports){
 'use strict';
 
@@ -2946,8 +2943,6 @@ function xmlnsPrefix(namespace) {
       return 'c';
     case ns.CARDDAV:
       return 'card';
-    case ns.OC:
-      return 'oc';
     default:
       throw new Error('Unrecognized xmlns ' + namespace);
   }
@@ -2968,7 +2963,7 @@ var _prop = require('./prop');
 var _prop2 = _interopRequireDefault(_prop);
 
 function propfind(object) {
-  return '<d:propfind xmlns:c="urn:ietf:params:xml:ns:caldav"\n              xmlns:card="urn:ietf:params:xml:ns:carddav"\n              xmlns:cs="http://calendarserver.org/ns/"\n              xmlns:d="DAV:"\n    xmlns:oc="http://owncloud.org/ns">\n    <d:prop>\n      ' + object.props.map(_prop2['default']) + '\n    </d:prop>\n  </d:propfind>';
+  return '<d:propfind xmlns:c="urn:ietf:params:xml:ns:caldav"\n              xmlns:card="urn:ietf:params:xml:ns:carddav"\n              xmlns:cs="http://calendarserver.org/ns/"\n              xmlns:d="DAV:">\n    <d:prop>\n      ' + object.props.map(_prop2['default']) + '\n    </d:prop>\n  </d:propfind>';
 }
 
 module.exports = exports['default'];
