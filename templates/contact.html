@@ -1,4 +1,4 @@
-<a ui-sref=".detail({ uid: ctrl.contact.uid() })">
+<a class="app-content-list-item-link" ui-sref=".detail({ uid: ctrl.contact.uid() })">
 <div class="app-content-list-item-icon contact__icon" ng-style="{'background-color': (ctrl.contact.uid() | contactColor) }">{{ ctrl.contact.fullName() | firstCharacter }}</div>
 
 <div class="app-content-list-item-star icon-star" data-starred="false"></div>

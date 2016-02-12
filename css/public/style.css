@@ -89,6 +89,10 @@
 .app-content-list-item.active {
 	background-color: #f8f8f8;
 }
+.app-content-list-item-link {
+	display: block;
+	height: 100%;
+}
 
 .app-content-list-item-icon {
 	position: absolute;
