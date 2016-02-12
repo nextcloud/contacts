@@ -47,6 +47,17 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 
 	};
 
+	this.getGroups = function () {
+		return this.getAll().then(function(contacts){
+			return ['All'].concat(
+				contacts.map(function (element) {
+					return element.categories();
+				}).reduce(function(a, b){
+					return a.concat(b);
+				}));
+		});
+	};
+
 	this.getById = function(uid) {
 		if(cacheFilled === false) {
 			return this.fillCache().then(function() {

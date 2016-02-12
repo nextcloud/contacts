@@ -45,6 +45,21 @@ app.factory('Contact', [ '$filter', function($filter) {
 				}
 			},
 
+			categories: function(value) {
+				if (angular.isDefined(value)) {
+					// setter
+					return this.setProperty('categories', { value: value });
+				} else {
+					// getter
+					var property = this.getProperty('categories');
+					if(property) {
+						return property.value.split(',');
+					} else {
+						return [];
+					}
+				}
+			},
+
 			getProperty: function(name) {
 				if (this.props[name]) {
 					return this.props[name][0];

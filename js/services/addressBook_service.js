@@ -18,6 +18,17 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 			});
 		},
 
+		getGroups: function () {
+			return this.getAll().then(function(addressBooks){
+				return ['All'].concat(
+					addressBooks.map(function (element) {
+						return element.groups;
+					}).reduce(function(a, b){
+						return a.concat(b);
+					}));
+			});
+		},
+
 		getEnabled: function() {
 			return DavService.then(function(account) {
 				return account.addressBooks.filter(function(addressBook) {

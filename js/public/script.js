@@ -23,7 +23,7 @@ app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'Settings
 
 	console.log(AddressBookService);
 	AddressBookService.getAll().then(function(addressBooks) {
-			ctrl.addressBooks = addressBooks;
+		ctrl.addressBooks = addressBooks;
 	});
 
 	ctrl.createAddressBook = function() {
@@ -148,6 +148,45 @@ app.directive('contactlist', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactList.html')
 	};
 });
+app.controller('groupCtrl', function() {
+	var ctrl = this;
+	console.log(this);
+});
+
+app.directive('group', function() {
+	return {
+		restrict: 'A', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'groupCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			addressBook: "=data"
+		},
+		templateUrl: OC.linkTo('contactsrework', 'templates/group.html')
+	};
+});
+
+app.controller('grouplistCtrl', ['$scope', 'ContactService', function($scope, ContactService) {
+
+	$scope.groups = [];
+
+	ContactService.getGroups().then(function(groups) {
+		$scope.groups = groups;
+	});
+
+}]);
+
+app.directive('grouplist', function() {
+	return {
+		restrict: 'EA', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'grouplistCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {},
+		templateUrl: OC.linkTo('contactsrework', 'templates/groupList.html')
+	};
+});
+
 app.factory('AddressBook', function()
 {
 	return function AddressBook(data) {
@@ -155,6 +194,7 @@ app.factory('AddressBook', function()
 
 			displayName: "",
 			contacts: [],
+			groups: data.data.props.groups,
 
 			getContact: function(uid) {
 				for(var i in this.contacts) {
@@ -212,6 +252,21 @@ app.factory('Contact', [ '$filter', function($filter) {
 						return property.value;
 					} else {
 						return undefined;
+					}
+				}
+			},
+
+			categories: function(value) {
+				if (angular.isDefined(value)) {
+					// setter
+					return this.setProperty('categories', { value: value });
+				} else {
+					// getter
+					var property = this.getProperty('categories');
+					if(property) {
+						return property.value.split(',');
+					} else {
+						return [];
 					}
 				}
 			},
@@ -298,6 +353,17 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 			return loadAll().then(function() {
 				console.log(addressBooks);
 				return addressBooks;
+			});
+		},
+
+		getGroups: function () {
+			return this.getAll().then(function(addressBooks){
+				return ['All'].concat(
+					addressBooks.map(function (element) {
+						return element.groups;
+					}).reduce(function(a, b){
+						return a.concat(b);
+					}));
 			});
 		},
 
@@ -407,6 +473,17 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 			return $q.when(contacts.values());
 		}
 
+	};
+
+	this.getGroups = function () {
+		return this.getAll().then(function(contacts){
+			return ['All'].concat(
+				contacts.map(function (element) {
+					return element.categories();
+				}).reduce(function(a, b){
+					return a.concat(b);
+				}));
+		});
 	};
 
 	this.getById = function(uid) {

@@ -19,7 +19,7 @@ style('contactsrework', 'public/style');
 <div id="app" ng-app="contactsApp">
 	<div id="app-navigation">
 
-		<ul addressBookList></ul>
+		<ul groupList></ul>
 
 		<div id="app-settings">
 			<div id="app-settings-header">
