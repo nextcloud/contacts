@@ -16,18 +16,8 @@ gulp.task('js', function() {
 		.pipe(gulp.dest('js/public'));
 });
 
-gulp.task('css', function() {
-	return gulp.src([
-			'css/**/*.css',
-			'!css/public/**.css'
-			])
-		.pipe(concat('style.css'))
-		.pipe(gulp.dest('css/public'));
-});
-
 gulp.task('watch', function() {
 	gulp.watch('js/**/*.js', ['js']);
-	gulp.watch('css/**/*.css', ['css']);
 });
 
-gulp.task('default', ['js', 'css']);
+gulp.task('default', ['js']);
