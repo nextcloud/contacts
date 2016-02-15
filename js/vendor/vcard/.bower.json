@@ -24,6 +24,5 @@
   },
   "_source": "git://github.com/Heymdall/vcard.git",
   "_target": "~0.2.3",
-  "_originalSource": "vcard",
-  "_direct": true
+  "_originalSource": "vcard"
 }

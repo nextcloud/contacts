@@ -1,5 +1,17 @@
-app.controller('contactdetailsCtrl', ['ContactService', function(ContactService) {
+app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope', function(ContactService, $routeParams, $scope) {
 	var ctrl = this;
+
+	ctrl.uid = $routeParams.uid;
+
+	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
+		ctrl.changeContact(newValue);
+	});
+
+	ctrl.changeContact = function(uid) {
+		ContactService.getById(uid).then(function(contact) {
+			ctrl.contact = contact;
+		});
+	};
 
 	ctrl.updateContact = function() {
 		ContactService.update(ctrl.contact);

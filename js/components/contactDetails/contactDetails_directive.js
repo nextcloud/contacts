@@ -4,9 +4,7 @@ app.directive('contactdetails', function() {
 		scope: {},
 		controller: 'contactdetailsCtrl',
 		controllerAs: 'ctrl',
-		bindToController: {
-			contact: '=data'
-		},
+		bindToController: {},
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactDetails.html')
 	};
 });

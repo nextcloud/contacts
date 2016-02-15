@@ -1,6 +1,8 @@
 var contacts;
 app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$q', 'CacheFactory', 'uuid4', function(DavClient, AddressBookService, Contact, $q, CacheFactory, uuid4) {
 
+	var cacheFilled = false;
+
 	contacts = CacheFactory('contacts');
 
 	var observerCallbacks = [];
@@ -28,18 +30,31 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 					})
 				);
 			});
-			return $q.all(promises);
+			return $q.all(promises).then(function() {
+				cacheFilled = true;
+			});
 		});
 	};
 
 	this.getAll = function() {
-		return this.fillCache().then(function() {
-			return contacts.values();
-		});
+		if(cacheFilled === false) {
+			return this.fillCache().then(function() {
+				return contacts.values();
+			});
+		} else {
+			return $q.when(contacts.values());
+		}
+
 	};
 
 	this.getById = function(uid) {
-		return contacts.get(uid);
+		if(cacheFilled === false) {
+			return this.fillCache().then(function() {
+				return contacts.get(uid);
+			});
+		} else {
+			return $q.when(contacts.get(uid));
+		}
 	};
 
 	this.create = function(newContact, addressBook) {
