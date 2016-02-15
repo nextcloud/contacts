@@ -18,11 +18,11 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.4.7",
-    "dav": "git@github.com:irgendwie/dav.git#d33ecad1e64202ec5b35b6911708d1253064b5a7",
-    "angular-ui-router": "~0.2.15",
-    "vcard": "~0.2.3",
+    "angular": "~1.5.0",
     "angular-uuid4": "~0.3.1",
-    "angular-cache": "~4.5.0"
+    "angular-cache": "~4.5.0",
+    "angular-route": "^1.5.0",
+    "dav": "git@github.com:irgendwie/dav.git#d33ecad1e64202ec5b35b6911708d1253064b5a7",
+    "vcard": "~0.2.3"
   }
 }

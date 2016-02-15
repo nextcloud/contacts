@@ -8,40 +8,14 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-var app = angular.module('contactsApp', ['ui.router', 'uuid4', 'angular-cache']);
+var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute']);
 
-app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider){
-	$urlRouterProvider.otherwise('/');
+app.config(['$routeProvider', function($routeProvider){
 
-	$stateProvider
-		.state('home', {
-			url: '/',
-			views: {
-				'': {
-					template: '<contactlist data-adrbook="addressBook"></contactlist>'
-				},
+	$routeProvider.when("/:uid", {
+		template: '<contactdetails></contactdetails>'
+	});
 
-				'sidebar': {
-					template: '<div>none</div>'
-				}
-			}
-		})
-		.state('home.detail', {
-			url: '/:uid',
-			views: {
-				'sidebar@': {
-					template: '<contactdetails data="contact"></contactdetails>',
-					controller: function($scope, contact) {
-						$scope.contact = contact;
-					}
-				}
-			},
-			resolve: {
-				contact: function(ContactService, $stateParams) {
-					return ContactService.getById($stateParams.uid);
-				}
-			}
-		});
 }]);
 
 app.controller('addressbookCtrl', function() {
@@ -105,8 +79,20 @@ app.directive('contact', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
 	};
 });
-app.controller('contactdetailsCtrl', ['ContactService', function(ContactService) {
+app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope', function(ContactService, $routeParams, $scope) {
 	var ctrl = this;
+
+	ctrl.uid = $routeParams.uid;
+
+	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
+		ctrl.changeContact(newValue);
+	});
+
+	ctrl.changeContact = function(uid) {
+		ContactService.getById(uid).then(function(contact) {
+			ctrl.contact = contact;
+		});
+	};
 
 	ctrl.updateContact = function() {
 		ContactService.update(ctrl.contact);
@@ -125,12 +111,11 @@ app.directive('contactdetails', function() {
 		scope: {},
 		controller: 'contactdetailsCtrl',
 		controllerAs: 'ctrl',
-		bindToController: {
-			contact: '=data'
-		},
+		bindToController: {},
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactDetails.html')
 	};
 });
+
 app.controller('contactlistCtrl', ['$scope', 'ContactService', function($scope, ContactService) {
 	var ctrl = this;
 
@@ -378,6 +363,8 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 var contacts;
 app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$q', 'CacheFactory', 'uuid4', function(DavClient, AddressBookService, Contact, $q, CacheFactory, uuid4) {
 
+	var cacheFilled = false;
+
 	contacts = CacheFactory('contacts');
 
 	var observerCallbacks = [];
@@ -405,18 +392,31 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 					})
 				);
 			});
-			return $q.all(promises);
+			return $q.all(promises).then(function() {
+				cacheFilled = true;
+			});
 		});
 	};
 
 	this.getAll = function() {
-		return this.fillCache().then(function() {
-			return contacts.values();
-		});
+		if(cacheFilled === false) {
+			return this.fillCache().then(function() {
+				return contacts.values();
+			});
+		} else {
+			return $q.when(contacts.values());
+		}
+
 	};
 
 	this.getById = function(uid) {
-		return contacts.get(uid);
+		if(cacheFilled === false) {
+			return this.fillCache().then(function() {
+				return contacts.get(uid);
+			});
+		} else {
+			return $q.when(contacts.get(uid));
+		}
 	};
 
 	this.create = function(newContact, addressBook) {

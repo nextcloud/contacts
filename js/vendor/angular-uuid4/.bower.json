@@ -28,6 +28,5 @@
   },
   "_source": "git://github.com/monicao/angular-uuid4.git",
   "_target": "~0.3.1",
-  "_originalSource": "angular-uuid4",
-  "_direct": true
+  "_originalSource": "angular-uuid4"
 }

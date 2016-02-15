@@ -1,11 +1,18 @@
 <?php
+// angular + components
 script('contactsrework', 'vendor/angular/angular');
-script('contactsrework', 'vendor/angular-ui-router/release/angular-ui-router');
-script('contactsrework', 'vendor/dav/dav');
-script('contactsrework', 'vendor/vcard/src/vcard');
+script('contactsrework', 'vendor/angular-route/angular-route');
 script('contactsrework', 'vendor/angular-uuid4/angular-uuid4');
 script('contactsrework', 'vendor/angular-cache/dist/angular-cache');
+
+// DAV libraries
+script('contactsrework', 'vendor/dav/dav');
+script('contactsrework', 'vendor/vcard/src/vcard');
+
+// compiled version of app javascript
 script('contactsrework', 'public/script');
+
+// all styles
 style('contactsrework', 'public/style');
 ?>
 
@@ -27,7 +34,9 @@ style('contactsrework', 'public/style');
 	</div>
 
 	<div id="app-content">
-		<div class="app-content-list" ui-view></div>
-		<div class="app-content-detail" ui-view="sidebar"></div>
+		<div class="app-content-list">
+			<contactlist></contactlist>
+		</div>
+		<div class="app-content-detail" ng-view></div>
 	</div>
 </div>
