@@ -12,7 +12,11 @@ var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider){
 
-	$routeProvider.when("/:uid", {
+	$routeProvider.when("/:gid", {
+		template: '<contactdetails></contactdetails>'
+	});
+
+	$routeProvider.when("/:gid/:uid", {
 		template: '<contactdetails></contactdetails>'
 	});
 

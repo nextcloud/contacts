@@ -1,5 +1,7 @@
-app.controller('contactlistCtrl', ['$scope', 'ContactService', function($scope, ContactService) {
+app.controller('contactlistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 	var ctrl = this;
+
+	$scope.gid = $routeParams.gid;
 
 	ContactService.registerObserverCallback(function(contacts) {
 		$scope.$apply(function() {

@@ -12,7 +12,11 @@ var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider){
 
-	$routeProvider.when("/:uid", {
+	$routeProvider.when("/:gid", {
+		template: '<contactdetails></contactdetails>'
+	});
+
+	$routeProvider.when("/:gid/:uid", {
 		template: '<contactdetails></contactdetails>'
 	});
 
@@ -89,6 +93,9 @@ app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope'
 	});
 
 	ctrl.changeContact = function(uid) {
+		if (typeof uid === "undefined") {
+			return;
+		}
 		ContactService.getById(uid).then(function(contact) {
 			ctrl.contact = contact;
 		});
@@ -116,8 +123,10 @@ app.directive('contactdetails', function() {
 	};
 });
 
-app.controller('contactlistCtrl', ['$scope', 'ContactService', function($scope, ContactService) {
+app.controller('contactlistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 	var ctrl = this;
+
+	$scope.gid = $routeParams.gid;
 
 	ContactService.registerObserverCallback(function(contacts) {
 		$scope.$apply(function() {
@@ -594,6 +603,29 @@ app.filter('contactColor', function() {
 		return colors[asciiSum % colors.length];
 	};
 });
+
+app.filter('contactGroupFilter', [
+	function() {
+		'use strict';
+		return function (contacts, group) {
+			if (typeof contacts === "undefined") {
+				return contacts;
+			}
+			if (typeof group === "undefined" || group === 'all') {
+				return contacts;
+			}
+			var filter = [];
+			if (contacts.length > 0) {
+				for (var i = 0; i < contacts.length; i++) {
+					if (contacts[i].categories().indexOf(group) >= 0) {
+						filter.push(contacts[i]);
+					}
+				}
+			}
+			return filter;
+		};
+	}
+]);
 
 app.filter('firstCharacter', function() {
 	return function(input) {

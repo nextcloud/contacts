@@ -8,6 +8,9 @@ app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope'
 	});
 
 	ctrl.changeContact = function(uid) {
+		if (typeof uid === "undefined") {
+			return;
+		}
 		ContactService.getById(uid).then(function(contact) {
 			ctrl.contact = contact;
 		});
