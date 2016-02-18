@@ -152,6 +152,13 @@ app.controller('contactlistCtrl', ['$scope', 'ContactService', '$routeParams', f
 		ContactService.create();
 	};
 
+	ctrl.hasContacts = function () {
+		if (!ctrl.contacts) {
+			return false;
+		}
+		return ctrl.contacts.length > 0;
+	};
+
 	$scope.selectedContactId = $routeParams.uid;
 	$scope.setSelected = function (selectedContactId) {
 		$scope.selectedContactId = selectedContactId;
@@ -191,7 +198,7 @@ app.directive('group', function() {
 
 app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 
-	$scope.groups = [];
+	$scope.groups = ['All'];
 
 	ContactService.getGroups().then(function(groups) {
 		$scope.groups = groups;
