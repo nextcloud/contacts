@@ -67,30 +67,6 @@ app.directive('addressbooklist', function() {
 	};
 });
 
-app.controller('contactCtrl', ['$route', '$routeParams', function($route, $routeParams) {
-	var ctrl = this;
-
-	ctrl.openContact = function() {
-		$route.updateParams({
-			gid: $routeParams.gid,
-			uid: ctrl.contact.uid()});
-	};
-
-	console.log("Contact: ",ctrl.contact);
-
-}]);
-
-app.directive('contact', function() {
-	return {
-		scope: {},
-		controller: 'contactCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			contact: '=data'
-		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
-	};
-});
 app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope', function(ContactService, $routeParams, $scope) {
 	var ctrl = this;
 
@@ -131,6 +107,30 @@ app.directive('contactdetails', function() {
 	};
 });
 
+app.controller('contactCtrl', ['$route', '$routeParams', function($route, $routeParams) {
+	var ctrl = this;
+
+	ctrl.openContact = function() {
+		$route.updateParams({
+			gid: $routeParams.gid,
+			uid: ctrl.contact.uid()});
+	};
+
+	console.log("Contact: ",ctrl.contact);
+
+}]);
+
+app.directive('contact', function() {
+	return {
+		scope: {},
+		controller: 'contactCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			contact: '=data'
+		},
+		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
+	};
+});
 app.controller('contactlistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 	var ctrl = this;
 
@@ -579,7 +579,8 @@ app.service('DavClient', function() {
 app.service('DavService', ['DavClient', function(client) {
 	return client.createAccount({
 		server: OC.linkToRemoteBase('dav/addressbooks'),
-		accountType: 'carddav'
+		accountType: 'carddav',
+		useProvidedPath: true
 	});
 }]);
 
