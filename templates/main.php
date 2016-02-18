@@ -30,7 +30,7 @@ style('contactsrework', 'addressbooklist');
 			<div id="app-settings-header">
 				<button class="settings-button"
 						data-apps-slide-toggle="#app-settings-content"
-				></button>
+				>Settings</button>
 			</div>
 			<div id="app-settings-content">
 				<addressBookList></addressBookList>

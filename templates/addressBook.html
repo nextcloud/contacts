@@ -1,9 +1,21 @@
-{{ctrl.addressBook.displayName}}
-<span
-    class="addressbooklist-icon icon-share"
-    title="Share Addressbook"
-    ng-click="ctrl.toggleSharesEditor(ctrl.addressBook)">
+<span class="addressBookName">{{ctrl.addressBook.displayName}}</span>
+<span class="utils">
+    <span class="action">
+        <span
+            class="addressbooklist-icon icon-share"
+            title="Share Addressbook"
+            ng-click="ctrl.toggleSharesEditor(ctrl.addressBook)">
+        </span>
+    </span>
+    <span class="action">
+        <span
+            class="addressbooklist-icon icon-delete"
+            title="Delete Addressbook"
+            ng-click="ctrl.deleteAddressBook(ctrl.addressBook)">
+        </span>
+    </span>
 </span>
+
 <div class="addressBookShares" ng-show="ctrl.addressBook.editingShares">
 	<i ng-show="loadingSharees" class="glyphicon glyphicon-refresh"></i>
 	<input
@@ -16,7 +28,7 @@
 		placeholder="Share with users or groups">
 	<ul class="addressBook-share-list">
 		<li ng-repeat="userShare in ctrl.addressBook.sharedWith.users" class="addressBook-share-item">
-			{{ userShare.displayname }} -
+			<span class="shareeIdentifier">{{ userShare.displayname }}</span> -
 			<input type="checkbox" name="editable"
 				   id="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"
 				   ng-model="userShare.writable" value="edit"

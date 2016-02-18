@@ -1,3 +1,66 @@
+ul.addressBookList li {
+    margin-bottom: 5px;
+}
+
 span.addressbooklist-icon {
     display: inline-block;
+    opacity: 0.5;
+    margin-right: 5px;
+}
+
+span.addressbooklist-icon:hover {
+    opacity: 1;
+}
+
+ul.addressBook-share-list {
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+ul.addressBook-share-list li {
+    margin-left: 15px;
+}
+
+div.addressBookShares ul.dropdown-menu {
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    width: 229px;
+    height: 200px;
+    margin-top: -5px;
+    overflow: scroll;
+}
+
+div.addressBookShares ul.dropdown-menu li > a {
+    height: 30px !important;
+    min-height: 30px !important;
+    line-height: 30px !important;
+}
+
+ul.dropdown-menu li.active {
+    background: #eee;
+}
+
+div.app-contactsrework span.utils {
+    padding: 0 !important;
+}
+
+input.newAddressBookInput, input.shareeInput {
+    width: 100% !important;
+}
+
+input.newAddressBookSubmit {
+    margin-bottom: 10px;
+}
+
+ul.addressBookList li[addressbook] > span.addressBookName {
+    padding-left: 7px;
+}
+
+li.addressBook-share-item span.shareeIdentifier {
+    max-width: 50px;
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    display: inline-block;
+    vertical-align: top;
 }

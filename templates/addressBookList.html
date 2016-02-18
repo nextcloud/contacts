@@ -1,9 +1,9 @@
-<ul>
+<ul class="addressBookList">
 	<li ng-repeat="addressBook in ctrl.addressBooks" addressbook data="addressBook"></li>
 	<li>
 		<form ng-submit="ctrl.createAddressBook()">
-			<input id="newList" ng-model="ctrl.newAddressBookName" type="text" />
-			<input type="submit" value="" class="action icon-checkmark svg" />
+			<input id="newList" placeholder="Adressbook name" class="newAddressBookInput" ng-model="ctrl.newAddressBookName" type="text" />
+			<input type="submit" value="Create" class="newAddressBookSubmit action pull-right" />
 		</form>
 	</li>
 </ul>
