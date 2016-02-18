@@ -18,22 +18,6 @@ app.config(['$routeProvider', function($routeProvider){
 
 }]);
 
-app.controller('addressbookCtrl', function() {
-	var ctrl = this;
-	console.log(this);
-});
-app.directive('addressbook', function() {
-	return {
-		restrict: 'A', // has to be an attribute to work with core css
-		scope: {},
-		controller: 'addressbookCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			addressBook: "=data"
-		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
-	};
-});
 app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'SettingsService', function(scope, AddressBookService, SettingsService) {
 	var ctrl = this;
 
@@ -61,6 +45,22 @@ app.directive('addressbooklist', function() {
 	};
 });
 
+app.controller('addressbookCtrl', function() {
+	var ctrl = this;
+	console.log(this);
+});
+app.directive('addressbook', function() {
+	return {
+		restrict: 'A', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'addressbookCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			addressBook: "=data"
+		},
+		templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
+	};
+});
 app.controller('contactCtrl', [function() {
 	var ctrl = this;
 
