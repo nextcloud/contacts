@@ -17,7 +17,6 @@ script('contactsrework', 'vendor/angular-bootstrap/ui-bootstrap-tpls.min');
 
 // all styles
 style('contactsrework', 'public/style');
-style('contactsrework', 'addressbooklist');
 
 ?>
 
