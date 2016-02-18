@@ -23,5 +23,8 @@ app.factory('AddressBook', function()
 
 		});
 		angular.extend(this, data);
+		angular.extend(this, {
+			owner: data.url.split('/').slice(-3, -2)[0]
+		});
 	};
 });

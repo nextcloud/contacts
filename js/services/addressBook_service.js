@@ -83,7 +83,48 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 				}
 				return addressBook;
 			});*/
+		},
+
+		share: function(addressBook, shareType, shareWith, writable, existingShare) {
+			var xmlDoc = document.implementation.createDocument('', '', null);
+			var oShare = xmlDoc.createElement('o:share');
+			oShare.setAttribute('xmlns:d', 'DAV:');
+			oShare.setAttribute('xmlns:o', 'http://owncloud.org/ns');
+			xmlDoc.appendChild(oShare);
+
+			var oSet = xmlDoc.createElement('o:set');
+			oShare.appendChild(oSet);
+
+			var dHref = xmlDoc.createElement('d:href');
+			if (shareType === OC.Share.SHARE_TYPE_USER) {
+				dHref.textContent = 'principal:principals/users/';
+			} else if (shareType === OC.Share.SHARE_TYPE_GROUP) {
+				dHref.textContent = 'principal:principals/groups/';
+			}
+			dHref.textContent += shareWith;
+			oSet.appendChild(dHref);
+
+			var oSummary = xmlDoc.createElement('o:summary');
+			oSummary.textContent = t('contacts', '{addressbook} shared by {owner}', {
+				addressbook: addressBook.displayName,
+				owner: addressBook.owner
+			});
+			oSet.appendChild(oSummary);
+
+			if (writable) {
+				var oRW = xmlDoc.createElement('o:read-write');
+				oSet.appendChild(oRW);
+			}
+
+			var body = oShare.outerHTML;
+
+			DavClient.xhr.send(dav.request.basic({method: 'POST', data: body}), addressBook.url).then(function(response) {
+				// Push to sahredWith array and update the UI
+			});
+
 		}
+
+
 	};
 
 }]);
