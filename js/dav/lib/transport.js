@@ -53,6 +53,7 @@ export class Basic extends Transport {
 
       let result;
       try {
+        xhr.setRequestHeader('requesttoken', oc_requesttoken);
         yield xhr.send(request.requestData);
         result = transformResponse ? transformResponse(xhr) : xhr;
       } catch (error) {
@@ -90,6 +91,7 @@ export class OAuth2 extends Transport {
         xhr.open(request.method, url, true /* async */);
         xhr.setRequestHeader('Authorization', `Bearer ${token}`);
         if (transformRequest) transformRequest(xhr);
+        xhr.setRequestHeader('requesttoken', oc_requesttoken);
         yield xhr.send(request.requestData);
         result = transformResponse ? transformResponse(xhr) : xhr;
       } catch (error) {
