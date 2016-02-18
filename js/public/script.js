@@ -126,7 +126,7 @@ app.directive('contactdetails', function() {
 app.controller('contactlistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 	var ctrl = this;
 
-	$scope.gid = $routeParams.gid;
+	ctrl.routeParams = $routeParams;
 
 	ContactService.registerObserverCallback(function(contacts) {
 		$scope.$apply(function() {
@@ -611,7 +611,7 @@ app.filter('contactGroupFilter', [
 			if (typeof contacts === "undefined") {
 				return contacts;
 			}
-			if (typeof group === "undefined" || group === 'all') {
+			if (typeof group === "undefined" || group.toLowerCase() === 'all') {
 				return contacts;
 			}
 			var filter = [];
