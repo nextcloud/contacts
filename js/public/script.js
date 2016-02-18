@@ -24,7 +24,7 @@ app.config(['$routeProvider', function($routeProvider){
 
 }]);
 
-app.controller('addressbookCtrl', ['AddressBookService', function(AddressBookService) {
+app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($scope, AddressBookService) {
 	var ctrl = this;
 	console.log(this);
 
@@ -97,8 +97,35 @@ app.controller('addressbookCtrl', ['AddressBookService', function(AddressBookSer
 	};
 
 	ctrl.onSelectSharee = function (item, model, label, addressBook) {
-		ctrl.selectedSharee = null;
-		AddressBookService.share(addressBook, item.type, item.identifier, false, false);
+		ctrl.addressBook.selectedSharee = null;
+		AddressBookService.share(addressBook, item.type, item.identifier, false, false).then(function() {
+			$scope.$apply();
+		});
+
+	};
+
+	ctrl.updateExistingUserShare = function(addressBook, userId, writable) {
+		AddressBookService.share(addressBook, OC.Share.SHARE_TYPE_USER, userId, writable, true).then(function() {
+			$scope.$apply();
+		});
+	};
+
+	ctrl.updateExistingGroupShare = function(calendar, groupId, writable) {
+		AddressBookService.share(addressBook, OC.Share.SHARE_TYPE_GROUP, groupId, writable, true).then(function() {
+			$scope.$apply();
+		});
+	};
+
+	ctrl.unshareFromUser = function(addressBook, userId) {
+		AddressBookService.unshare(addressBook, OC.Share.SHARE_TYPE_USER, userId).then(function() {
+			$scope.$apply();
+		});
+	};
+
+	ctrl.unshareFromGroup = function(addressBook, groupId) {
+		AddressBookService.unshare(addressBook, OC.Share.SHARE_TYPE_GROUP, groupId).then(function() {
+			$scope.$apply();
+		});
 	};
 
 }]);
@@ -323,6 +350,51 @@ app.factory('AddressBook', function()
 		angular.extend(this, {
 			owner: data.url.split('/').slice(-3, -2)[0]
 		});
+
+		/*
+		var shares = props['{http://owncloud.org/ns}invite'];
+		if (typeof shares !== 'undefined') {
+			for (var j=0; j < shares.length; j++) {
+				var href = shares[j].getElementsByTagNameNS('DAV:', 'href');
+				if (href.length === 0) {
+					continue;
+				}
+				href = href[0].textContent;
+
+				var access = shares[j].getElementsByTagNameNS('http://owncloud.org/ns', 'access');
+				if (access.length === 0) {
+					continue;
+				}
+				access = access[0];
+
+				var readWrite = access.getElementsByTagNameNS('http://owncloud.org/ns', 'read-write');
+				readWrite = readWrite.length !== 0;
+
+				if (href.startsWith('principal:principals/users/')) {
+					this.sharedWith.users.push({
+						id: href.substr(27),
+						displayname: href.substr(27),
+						writable: readWrite
+					});
+				} else if (href.startsWith('principal:principals/groups/')) {
+					this.sharedWith.groups.push({
+						id: href.substr(28),
+						displayname: href.substr(28),
+						writable: readWrite
+					});
+				}
+			}
+		}
+
+		var owner = props['{DAV:}owner'];
+		if (typeof owner !== 'undefined' && owner.length !== 0) {
+			owner = owner[0].textContent.slice(0, -1);
+			if (owner.startsWith('/remote.php/dav/principals/users/')) {
+				this._properties.owner = owner.substr(33);
+			}
+		}
+		*/
+
 	};
 });
 
@@ -573,8 +645,71 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 
 			var body = oShare.outerHTML;
 
-			DavClient.xhr.send(dav.request.basic({method: 'POST', data: body}), addressBook.url).then(function(response) {
-				// Push to sahredWith array and update the UI
+			DavClient.xhr.send(
+				dav.request.basic({method: 'POST', data: body}),
+				addressBook.url
+			).then(function(response) {
+				if (response.status === 200) {
+					if (!existingShare) {
+						if (shareType === OC.Share.SHARE_TYPE_USER) {
+							addressBook.sharedWith.users.push({
+								id: shareWith,
+								displayname: shareWith,
+								writable: writable
+							});
+						} else if (shareType === OC.Share.SHARE_TYPE_GROUP) {
+							addressBook.sharedWith.groups.push({
+								id: shareWith,
+								displayname: shareWith,
+								writable: writable
+							});
+						}
+					}
+				}
+			});
+
+		},
+
+		unshare: function(addressBook, shareType, shareWith) {
+			var xmlDoc = document.implementation.createDocument('', '', null);
+			var oShare = xmlDoc.createElement('o:share');
+			oShare.setAttribute('xmlns:d', 'DAV:');
+			oShare.setAttribute('xmlns:o', 'http://owncloud.org/ns');
+			xmlDoc.appendChild(oShare);
+
+			var oRemove = xmlDoc.createElement('o:remove');
+			oShare.appendChild(oRemove);
+
+			var dHref = xmlDoc.createElement('d:href');
+			if (shareType === OC.Share.SHARE_TYPE_USER) {
+				dHref.textContent = 'principal:principals/users/';
+			} else if (shareType === OC.Share.SHARE_TYPE_GROUP) {
+				dHref.textContent = 'principal:principals/groups/';
+			}
+			dHref.textContent += shareWith;
+			oRemove.appendChild(dHref);
+			var body = oShare.outerHTML;
+
+
+			DavClient.xhr.send(
+				dav.request.basic({method: 'POST', data: body}),
+				addressBook.url
+			).then(function(response) {
+				if (response.status === 200) {
+					if (shareType === OC.Share.SHARE_TYPE_USER) {
+						addressBook.sharedWith.users = addressBook.sharedWith.users.filter(function(user) {
+							return user.id !== shareWith;
+						});
+					} else if (shareType === OC.Share.SHARE_TYPE_GROUP) {
+						addressBook.sharedWith.groups = addressBook.sharedWith.groups.filter(function(groups) {
+							return groups.id !== shareWith;
+						});
+					}
+					//todo - remove entry from addressbook object
+					return true;
+				} else {
+					return false;
+				}
 			});
 
 		}

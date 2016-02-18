@@ -16,7 +16,7 @@
     </span>
 </span>
 <div class="addressBookShares" ng-show="ctrl.addressBook.editingShares">
-	<i ng-show="loadingSharees" class="glyphicon glyphicon-refresh"></i>
+	<i ng-show="ctrl.addressBook.loadingSharees" class="glyphicon glyphicon-refresh"></i>
 	<input
 		type="text"
 		class="shareeInput"
@@ -33,7 +33,7 @@
 				   ng-model="userShare.writable" value="edit"
 				   ng-change="ctrl.updateExistingUserShare(ctrl.addressBook, userShare.id, userShare.writable)">
 			<label for="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"> can edit</label>
-			<span class="utils hide">
+			<span class="utils">
 				<span class="action">
 					<span href="#"
 						  id="addressBooklist-icon delete"

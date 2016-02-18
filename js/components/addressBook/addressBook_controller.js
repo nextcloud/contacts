@@ -1,4 +1,4 @@
-app.controller('addressbookCtrl', ['AddressBookService', function(AddressBookService) {
+app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($scope, AddressBookService) {
 	var ctrl = this;
 	console.log(this);
 
@@ -71,8 +71,35 @@ app.controller('addressbookCtrl', ['AddressBookService', function(AddressBookSer
 	};
 
 	ctrl.onSelectSharee = function (item, model, label, addressBook) {
-		ctrl.selectedSharee = null;
-		AddressBookService.share(addressBook, item.type, item.identifier, false, false);
+		ctrl.addressBook.selectedSharee = null;
+		AddressBookService.share(addressBook, item.type, item.identifier, false, false).then(function() {
+			$scope.$apply();
+		});
+
+	};
+
+	ctrl.updateExistingUserShare = function(addressBook, userId, writable) {
+		AddressBookService.share(addressBook, OC.Share.SHARE_TYPE_USER, userId, writable, true).then(function() {
+			$scope.$apply();
+		});
+	};
+
+	ctrl.updateExistingGroupShare = function(calendar, groupId, writable) {
+		AddressBookService.share(addressBook, OC.Share.SHARE_TYPE_GROUP, groupId, writable, true).then(function() {
+			$scope.$apply();
+		});
+	};
+
+	ctrl.unshareFromUser = function(addressBook, userId) {
+		AddressBookService.unshare(addressBook, OC.Share.SHARE_TYPE_USER, userId).then(function() {
+			$scope.$apply();
+		});
+	};
+
+	ctrl.unshareFromGroup = function(addressBook, groupId) {
+		AddressBookService.unshare(addressBook, OC.Share.SHARE_TYPE_GROUP, groupId).then(function() {
+			$scope.$apply();
+		});
 	};
 
 }]);

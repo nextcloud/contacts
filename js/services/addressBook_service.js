@@ -118,8 +118,71 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 
 			var body = oShare.outerHTML;
 
-			DavClient.xhr.send(dav.request.basic({method: 'POST', data: body}), addressBook.url).then(function(response) {
-				// Push to sahredWith array and update the UI
+			DavClient.xhr.send(
+				dav.request.basic({method: 'POST', data: body}),
+				addressBook.url
+			).then(function(response) {
+				if (response.status === 200) {
+					if (!existingShare) {
+						if (shareType === OC.Share.SHARE_TYPE_USER) {
+							addressBook.sharedWith.users.push({
+								id: shareWith,
+								displayname: shareWith,
+								writable: writable
+							});
+						} else if (shareType === OC.Share.SHARE_TYPE_GROUP) {
+							addressBook.sharedWith.groups.push({
+								id: shareWith,
+								displayname: shareWith,
+								writable: writable
+							});
+						}
+					}
+				}
+			});
+
+		},
+
+		unshare: function(addressBook, shareType, shareWith) {
+			var xmlDoc = document.implementation.createDocument('', '', null);
+			var oShare = xmlDoc.createElement('o:share');
+			oShare.setAttribute('xmlns:d', 'DAV:');
+			oShare.setAttribute('xmlns:o', 'http://owncloud.org/ns');
+			xmlDoc.appendChild(oShare);
+
+			var oRemove = xmlDoc.createElement('o:remove');
+			oShare.appendChild(oRemove);
+
+			var dHref = xmlDoc.createElement('d:href');
+			if (shareType === OC.Share.SHARE_TYPE_USER) {
+				dHref.textContent = 'principal:principals/users/';
+			} else if (shareType === OC.Share.SHARE_TYPE_GROUP) {
+				dHref.textContent = 'principal:principals/groups/';
+			}
+			dHref.textContent += shareWith;
+			oRemove.appendChild(dHref);
+			var body = oShare.outerHTML;
+
+
+			DavClient.xhr.send(
+				dav.request.basic({method: 'POST', data: body}),
+				addressBook.url
+			).then(function(response) {
+				if (response.status === 200) {
+					if (shareType === OC.Share.SHARE_TYPE_USER) {
+						addressBook.sharedWith.users = addressBook.sharedWith.users.filter(function(user) {
+							return user.id !== shareWith;
+						});
+					} else if (shareType === OC.Share.SHARE_TYPE_GROUP) {
+						addressBook.sharedWith.groups = addressBook.sharedWith.groups.filter(function(groups) {
+							return groups.id !== shareWith;
+						});
+					}
+					//todo - remove entry from addressbook object
+					return true;
+				} else {
+					return false;
+				}
 			});
 
 		}
