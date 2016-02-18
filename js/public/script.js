@@ -129,6 +129,24 @@ app.directive('contactdetails', function() {
 	};
 });
 
+app.controller('groupCtrl', function() {
+	var ctrl = this;
+	console.log(this);
+});
+
+app.directive('group', function() {
+	return {
+		restrict: 'A', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'groupCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			addressBook: "=data"
+		},
+		templateUrl: OC.linkTo('contactsrework', 'templates/group.html')
+	};
+});
+
 app.controller('contactlistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 	var ctrl = this;
 
@@ -163,24 +181,6 @@ app.directive('contactlist', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactList.html')
 	};
 });
-app.controller('groupCtrl', function() {
-	var ctrl = this;
-	console.log(this);
-});
-
-app.directive('group', function() {
-	return {
-		restrict: 'A', // has to be an attribute to work with core css
-		scope: {},
-		controller: 'groupCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			addressBook: "=data"
-		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/group.html')
-	};
-});
-
 app.controller('grouplistCtrl', ['$scope', 'ContactService', function($scope, ContactService) {
 
 	$scope.groups = [];
@@ -189,6 +189,10 @@ app.controller('grouplistCtrl', ['$scope', 'ContactService', function($scope, Co
 		$scope.groups = groups;
 	});
 
+	$scope.selectedGroup = null;
+	$scope.setSelected = function (selectedGroup) {
+		$scope.selectedGroup = selectedGroup;
+	};
 }]);
 
 app.directive('grouplist', function() {

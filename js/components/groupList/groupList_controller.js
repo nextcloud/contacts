@@ -6,4 +6,8 @@ app.controller('grouplistCtrl', ['$scope', 'ContactService', function($scope, Co
 		$scope.groups = groups;
 	});
 
+	$scope.selectedGroup = null;
+	$scope.setSelected = function (selectedGroup) {
+		$scope.selectedGroup = selectedGroup;
+	};
 }]);
