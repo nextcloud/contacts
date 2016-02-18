@@ -19,7 +19,7 @@ app.controller('contactlistCtrl', ['$scope', 'ContactService', '$routeParams', f
 		ContactService.create();
 	};
 
-	$scope.selectedContactId = null;
+	$scope.selectedContactId = $routeParams.uid;
 	$scope.setSelected = function (selectedContactId) {
 		$scope.selectedContactId = selectedContactId;
 	};
