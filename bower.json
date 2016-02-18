@@ -23,8 +23,6 @@
     "angular-cache": "~4.5.0",
     "angular-route": "^1.5.0",
     "vcard": "~0.2.3",
-    "dav": "git@github.com:irgendwie/dav.git#d33ecad1e64202ec5b35b6911708d1253064b5a7",
-    "vcard": "~0.2.3",
     "angular-bootstrap": "^1.1.2"
   }
 }
