@@ -490,12 +490,12 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 
 	this.getGroups = function () {
 		return this.getAll().then(function(contacts){
-			return ['All'].concat(
-				contacts.map(function (element) {
-					return element.categories();
-				}).reduce(function(a, b){
-					return a.concat(b);
-				}));
+			var groups = _.uniq(contacts.map(function (element) {
+				return element.categories();
+			}).reduce(function(a, b){
+				return a.concat(b);
+			}).sort(), true);
+			return ['All'].concat(groups);
 		});
 	};
 
