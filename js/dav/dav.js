@@ -3106,6 +3106,7 @@ var Basic = (function (_Transport) {
               result = undefined;
               context$3$0.prev = 9;
               context$3$0.next = 12;
+              xhr.setRequestHeader('requesttoken', oc_requesttoken);
               return xhr.send(request.requestData);
 
             case 12:
