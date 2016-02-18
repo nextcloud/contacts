@@ -645,7 +645,7 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 
 			var body = oShare.outerHTML;
 
-			DavClient.xhr.send(
+			return DavClient.xhr.send(
 				dav.request.basic({method: 'POST', data: body}),
 				addressBook.url
 			).then(function(response) {
@@ -691,7 +691,7 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 			var body = oShare.outerHTML;
 
 
-			DavClient.xhr.send(
+			return DavClient.xhr.send(
 				dav.request.basic({method: 'POST', data: body}),
 				addressBook.url
 			).then(function(response) {
