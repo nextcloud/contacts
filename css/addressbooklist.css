@@ -44,6 +44,7 @@ input.newAddressBookSubmit {
 
 ul.addressBookList li[addressbook] > span.addressBookName {
     padding-left: 7px;
+    font-weight: 600;
 }
 
 li.addressBook-share-item span.shareeIdentifier {

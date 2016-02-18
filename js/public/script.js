@@ -341,7 +341,7 @@ app.factory('AddressBook', function()
 			},
 
 			sharedWith: {
-				users: [{displayname: 'tom'}],
+				users: [],
 				groups: []
 			}
 
