@@ -129,24 +129,6 @@ app.directive('contactdetails', function() {
 	};
 });
 
-app.controller('groupCtrl', function() {
-	var ctrl = this;
-	console.log(this);
-});
-
-app.directive('group', function() {
-	return {
-		restrict: 'A', // has to be an attribute to work with core css
-		scope: {},
-		controller: 'groupCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			addressBook: "=data"
-		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/group.html')
-	};
-});
-
 app.controller('contactlistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 	var ctrl = this;
 
@@ -167,6 +149,12 @@ app.controller('contactlistCtrl', ['$scope', 'ContactService', '$routeParams', f
 	ctrl.createContact = function() {
 		ContactService.create();
 	};
+
+	$scope.selectedContactId = null;
+	$scope.setSelected = function (selectedContactId) {
+		$scope.selectedContactId = selectedContactId;
+	};
+
 }]);
 
 app.directive('contactlist', function() {
@@ -181,6 +169,24 @@ app.directive('contactlist', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactList.html')
 	};
 });
+app.controller('groupCtrl', function() {
+	var ctrl = this;
+	console.log(this);
+});
+
+app.directive('group', function() {
+	return {
+		restrict: 'A', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'groupCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			addressBook: "=data"
+		},
+		templateUrl: OC.linkTo('contactsrework', 'templates/group.html')
+	};
+});
+
 app.controller('grouplistCtrl', ['$scope', 'ContactService', function($scope, ContactService) {
 
 	$scope.groups = [];

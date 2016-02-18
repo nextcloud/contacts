@@ -18,4 +18,10 @@ app.controller('contactlistCtrl', ['$scope', 'ContactService', '$routeParams', f
 	ctrl.createContact = function() {
 		ContactService.create();
 	};
+
+	$scope.selectedContactId = null;
+	$scope.setSelected = function (selectedContactId) {
+		$scope.selectedContactId = selectedContactId;
+	};
+
 }]);
