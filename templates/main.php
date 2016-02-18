@@ -6,7 +6,7 @@ script('contactsrework', 'vendor/angular-uuid4/angular-uuid4');
 script('contactsrework', 'vendor/angular-cache/dist/angular-cache');
 
 // DAV libraries
-script('contactsrework', 'vendor/dav/dav');
+script('contactsrework', 'dav/dav');
 script('contactsrework', 'vendor/vcard/src/vcard');
 
 // compiled version of app javascript
