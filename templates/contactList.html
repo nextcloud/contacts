@@ -1,4 +1,4 @@
-<div style="height: 90%" ng-class="{loading: ctrl.loading}">
+<div style="height: 90%" class="contacts-list" ng-class="{loading: ctrl.loading, 'mobile-show': ctrl.show}">
         <button ng-show="!ctrl.loading" class="app-content-list-button" type="button" name="button" ng-click="ctrl.createContact()">{{ctrl.t.addContact}}</button>
         <div class="app-content-list-item"
 	     ng-repeat="contact in ctrl.contactList = (ctrl.contacts | contactGroupFilter:ctrl.routeParams.gid | orderBy:'fullName()' | filter:query) track by contact.uid()"

@@ -1,35 +1,38 @@
-<div ng-if="ctrl.contact===undefined && !ctrl.loading">
-	<div id="emptycontent" class="">
-		<div class="icon-contacts-dark"></div>
-		<h2>{{ctrl.t.noContacts}}</h2>
+<div class="contact-details-wrapper wrapper-show" ng-class="{'mobile-show':ctrl.show}">
+	<div id="app-navigation-toggle-back" class="details-back icon-download" ng-click="ctrl.clearContact()"></div>
+	<div ng-if="ctrl.contact===undefined && !ctrl.loading">
+		<div id="emptycontent" class="">
+			<div class="icon-contacts-dark"></div>
+			<h2>{{ctrl.t.noContacts}}</h2>
+		</div>
 	</div>
-</div>
-<div ng-if="ctrl.contact!==undefined">
-<header class="contactdetails__header" ng-style="{'background-color': (ctrl.contact.uid() | contactColor)}">
-	<img ng-if="ctrl.photo!==undefined" class="contactdetails__logo avatar" data-ng-src="data:image/png;base64,{{ctrl.photo}}" />
-	<h2>
-		<input type="text" id="details-fullName" class="contactdetails__name" placeholder="{{ctrl.t.placeholderName}}" autocomplete="off"
-		name="email" ng-model="ctrl.contact.fullName" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
-	</h2>
-	<div>
-		<input type="text" id="details-org" class="contactdetails__org" placeholder="{{ctrl.t.placeholderOrg}}" autocomplete="off"
-			   name="email" ng-model="ctrl.contact.org" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
-		<input type="text" id="details-title" class="contactdetails__title" placeholder="{{ctrl.t.placeholderTitle}}" autocomplete="off"
-			   name="email" ng-model="ctrl.contact.title" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
+	<div ng-if="ctrl.contact!==undefined">
+		<header class="contactdetails__header" ng-style="{'background-color': (ctrl.contact.uid() | contactColor)}">
+			<img ng-if="ctrl.photo!==undefined" class="contactdetails__logo avatar" data-ng-src="data:image/png;base64,{{ctrl.photo}}" />
+			<h2>
+				<input type="text" id="details-fullName" class="contactdetails__name" placeholder="{{ctrl.t.placeholderName}}" autocomplete="off"
+				name="email" ng-model="ctrl.contact.fullName" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
+			</h2>
+			<div>
+				<input type="text" id="details-org" class="contactdetails__org" placeholder="{{ctrl.t.placeholderOrg}}" autocomplete="off"
+					   name="email" ng-model="ctrl.contact.org" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
+				<input type="text" id="details-title" class="contactdetails__title" placeholder="{{ctrl.t.placeholderTitle}}" autocomplete="off"
+					   name="email" ng-model="ctrl.contact.title" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
+			</div>
+			<button ng-click="ctrl.deleteContact()" class="icon-delete-white" title="Delete"></button>
+		</header>
+		<section>
+			<div ng-repeat="prop in ctrl.contact.props | toArray | orderDetailItems:'$key'">
+				<detailsItem ng-repeat="propData in prop" name="prop.$key" data="propData" model="ctrl" index="$index" ng-class="[ 'details-item-' + prop.$key ]"></detailsItem>
+			</div>
+			<div class="select-addressbook" ng-if="ctrl.addressBooks.length > 1">
+				<select ng-model="ctrl.addressBook" ng-change="ctrl.changeAddressBook(ctrl.addressBook)" ng-options="book.displayName for book in ctrl.addressBooks">
+				</select>
+			</div>
+			<select class="add-field" ng-model="ctrl.field" ng-change="ctrl.addField(ctrl.field)">
+				<option value=''>{{ctrl.t.selectField}}</option>
+				<option ng-repeat="field in ctrl.fieldDefinitions | fieldFilter: ctrl.contact | orderBy : 'name'" value="{{field.id}}">{{field.name}}</option>
+			</select>
+		</section>
 	</div>
-	<button ng-click="ctrl.deleteContact()" class="icon-delete-white" title="Delete"></button>
-</header>
-<section>
-	<div ng-repeat="prop in ctrl.contact.props | toArray | orderDetailItems:'$key'" ng-class="prop.length > 1 ? '' : 'last-details'">
-		<detailsItem ng-repeat="propData in prop" name="prop.$key" data="propData" model="ctrl" index="$index" ng-class="[ 'details-item-' + prop.$key ]"></detailsItem>
-	</div>
-	<div class="select-addressbook" ng-if="ctrl.addressBooks.length > 1">
-		<select ng-model="ctrl.addressBook" ng-change="ctrl.changeAddressBook(ctrl.addressBook)" ng-options="book.displayName for book in ctrl.addressBooks">
-		</select>
-	</div>
-	<select class="add-field" ng-model="ctrl.field" ng-change="ctrl.addField(ctrl.field)">
-		<option value=''>{{ctrl.t.selectField}}</option>
-		<option ng-repeat="field in ctrl.fieldDefinitions | fieldFilter: ctrl.contact | orderBy : 'name'" value="{{field.id}}">{{field.name}}</option>
-	</select>
-</section>
 </div>

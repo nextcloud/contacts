@@ -1,8 +1,19 @@
 angular.module('contactsApp')
-.controller('contactdetailsCtrl', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
+.controller('contactdetailsCtrl', function(ContactService, AddressBookService, vCardPropertiesService, $route, $routeParams, $scope) {
+
 	var ctrl = this;
 
 	ctrl.loading = true;
+	ctrl.show = false;
+
+	ctrl.clearContact = function() {
+		$route.updateParams({
+			gid: $routeParams.gid,
+			uid: undefined
+		});
+		ctrl.show = false;
+		ctrl.contact = undefined;
+	};
 
 	ctrl.uid = $routeParams.uid;
 	ctrl.t = {
@@ -35,11 +46,16 @@ angular.module('contactsApp')
 
 	ctrl.changeContact = function(uid) {
 		if (typeof uid === 'undefined') {
+			ctrl.show = false;
+			$('#app-navigation-toggle').removeClass('showdetails');
 			return;
 		}
 		ContactService.getById(uid).then(function(contact) {
 			ctrl.contact = contact;
 			ctrl.photo = ctrl.contact.photo();
+			ctrl.show = true;
+			$('#app-navigation-toggle').addClass('showdetails');
+
 			ctrl.addressBook = _.find(ctrl.addressBooks, function(book) {
 				return book.displayName === ctrl.contact.addressBookId;
 			});
