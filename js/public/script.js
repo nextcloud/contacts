@@ -20,6 +20,8 @@ app.config(['$routeProvider', function($routeProvider){
 		template: '<contactdetails></contactdetails>'
 	});
 
+	$routeProvider.otherwise("/All");
+
 }]);
 
 app.controller('addressbookCtrl', function() {
