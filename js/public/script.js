@@ -12,18 +12,40 @@ var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute']);
 
 app.config(['$routeProvider', function($routeProvider){
 
-	$routeProvider.when("/:uid", {
+	$routeProvider.when("/:gid", {
 		template: '<contactdetails></contactdetails>'
 	});
 
+	$routeProvider.when("/:gid/:uid", {
+		template: '<contactdetails></contactdetails>'
+	});
+
+	$routeProvider.otherwise("/All");
+
 }]);
 
+app.controller('addressbookCtrl', function() {
+	var ctrl = this;
+	console.log(this);
+});
+app.directive('addressbook', function() {
+	return {
+		restrict: 'A', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'addressbookCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			addressBook: "=data"
+		},
+		templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
+	};
+});
 app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'SettingsService', function(scope, AddressBookService, SettingsService) {
 	var ctrl = this;
 
 	console.log(AddressBookService);
 	AddressBookService.getAll().then(function(addressBooks) {
-			ctrl.addressBooks = addressBooks;
+		ctrl.addressBooks = addressBooks;
 	});
 
 	ctrl.createAddressBook = function() {
@@ -45,24 +67,14 @@ app.directive('addressbooklist', function() {
 	};
 });
 
-app.controller('addressbookCtrl', function() {
+app.controller('contactCtrl', ['$route', '$routeParams', function($route, $routeParams) {
 	var ctrl = this;
-	console.log(this);
-});
-app.directive('addressbook', function() {
-	return {
-		restrict: 'A', // has to be an attribute to work with core css
-		scope: {},
-		controller: 'addressbookCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			addressBook: "=data"
-		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
+
+	ctrl.openContact = function() {
+		$route.updateParams({
+			gid: $routeParams.gid,
+			uid: ctrl.contact.uid()});
 	};
-});
-app.controller('contactCtrl', [function() {
-	var ctrl = this;
 
 	console.log("Contact: ",ctrl.contact);
 
@@ -89,6 +101,9 @@ app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope'
 	});
 
 	ctrl.changeContact = function(uid) {
+		if (typeof uid === "undefined") {
+			return;
+		}
 		ContactService.getById(uid).then(function(contact) {
 			ctrl.contact = contact;
 		});
@@ -116,8 +131,10 @@ app.directive('contactdetails', function() {
 	};
 });
 
-app.controller('contactlistCtrl', ['$scope', 'ContactService', function($scope, ContactService) {
+app.controller('contactlistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 	var ctrl = this;
+
+	ctrl.routeParams = $routeParams;
 
 	ContactService.registerObserverCallback(function(contacts) {
 		$scope.$apply(function() {
@@ -134,6 +151,19 @@ app.controller('contactlistCtrl', ['$scope', 'ContactService', function($scope, 
 	ctrl.createContact = function() {
 		ContactService.create();
 	};
+
+	ctrl.hasContacts = function () {
+		if (!ctrl.contacts) {
+			return false;
+		}
+		return ctrl.contacts.length > 0;
+	};
+
+	$scope.selectedContactId = $routeParams.uid;
+	$scope.setSelected = function (selectedContactId) {
+		$scope.selectedContactId = selectedContactId;
+	};
+
 }]);
 
 app.directive('contactlist', function() {
@@ -148,6 +178,49 @@ app.directive('contactlist', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactList.html')
 	};
 });
+app.controller('groupCtrl', function() {
+	var ctrl = this;
+	console.log(this);
+});
+
+app.directive('group', function() {
+	return {
+		restrict: 'A', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'groupCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			group: "=data"
+		},
+		templateUrl: OC.linkTo('contactsrework', 'templates/group.html')
+	};
+});
+
+app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
+
+	$scope.groups = ['All'];
+
+	ContactService.getGroups().then(function(groups) {
+		$scope.groups = groups;
+	});
+
+	$scope.selectedGroup = $routeParams.gid;
+	$scope.setSelected = function (selectedGroup) {
+		$scope.selectedGroup = selectedGroup;
+	};
+}]);
+
+app.directive('grouplist', function() {
+	return {
+		restrict: 'EA', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'grouplistCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {},
+		templateUrl: OC.linkTo('contactsrework', 'templates/groupList.html')
+	};
+});
+
 app.factory('AddressBook', function()
 {
 	return function AddressBook(data) {
@@ -155,6 +228,7 @@ app.factory('AddressBook', function()
 
 			displayName: "",
 			contacts: [],
+			groups: data.data.props.groups,
 
 			getContact: function(uid) {
 				for(var i in this.contacts) {
@@ -212,6 +286,21 @@ app.factory('Contact', [ '$filter', function($filter) {
 						return property.value;
 					} else {
 						return undefined;
+					}
+				}
+			},
+
+			categories: function(value) {
+				if (angular.isDefined(value)) {
+					// setter
+					return this.setProperty('categories', { value: value });
+				} else {
+					// getter
+					var property = this.getProperty('categories');
+					if(property) {
+						return property.value.split(',');
+					} else {
+						return [];
 					}
 				}
 			},
@@ -298,6 +387,17 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 			return loadAll().then(function() {
 				console.log(addressBooks);
 				return addressBooks;
+			});
+		},
+
+		getGroups: function () {
+			return this.getAll().then(function(addressBooks){
+				return ['All'].concat(
+					addressBooks.map(function (element) {
+						return element.groups;
+					}).reduce(function(a, b){
+						return a.concat(b);
+					}));
 			});
 		},
 
@@ -409,6 +509,17 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 
 	};
 
+	this.getGroups = function () {
+		return this.getAll().then(function(contacts){
+			var groups = _.uniq(contacts.map(function (element) {
+				return element.categories();
+			}).reduce(function(a, b){
+				return a.concat(b);
+			}).sort(), true);
+			return ['All'].concat(groups);
+		});
+	};
+
 	this.getById = function(uid) {
 		if(cacheFilled === false) {
 			return this.fillCache().then(function() {
@@ -517,6 +628,29 @@ app.filter('contactColor', function() {
 		return colors[asciiSum % colors.length];
 	};
 });
+
+app.filter('contactGroupFilter', [
+	function() {
+		'use strict';
+		return function (contacts, group) {
+			if (typeof contacts === "undefined") {
+				return contacts;
+			}
+			if (typeof group === "undefined" || group.toLowerCase() === 'all') {
+				return contacts;
+			}
+			var filter = [];
+			if (contacts.length > 0) {
+				for (var i = 0; i < contacts.length; i++) {
+					if (contacts[i].categories().indexOf(group) >= 0) {
+						filter.push(contacts[i]);
+					}
+				}
+			}
+			return filter;
+		};
+	}
+]);
 
 app.filter('firstCharacter', function() {
 	return function(input) {

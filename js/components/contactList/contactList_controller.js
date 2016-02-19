@@ -1,5 +1,7 @@
-app.controller('contactlistCtrl', ['$scope', 'ContactService', function($scope, ContactService) {
+app.controller('contactlistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 	var ctrl = this;
+
+	ctrl.routeParams = $routeParams;
 
 	ContactService.registerObserverCallback(function(contacts) {
 		$scope.$apply(function() {
@@ -16,4 +18,17 @@ app.controller('contactlistCtrl', ['$scope', 'ContactService', function($scope, 
 	ctrl.createContact = function() {
 		ContactService.create();
 	};
+
+	ctrl.hasContacts = function () {
+		if (!ctrl.contacts) {
+			return false;
+		}
+		return ctrl.contacts.length > 0;
+	};
+
+	$scope.selectedContactId = $routeParams.uid;
+	$scope.setSelected = function (selectedContactId) {
+		$scope.selectedContactId = selectedContactId;
+	};
+
 }]);

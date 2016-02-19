@@ -1,3 +1,10 @@
+<div ng-if="ctrl.contact===undefined">
+	<div id="emptycontent" class="">
+		<div class="icon-contacts-dark"></div>
+		<h2>No contacts in here</h2>
+	</div>
+</div>
+<div ng-if="ctrl.contact!==undefined">
 <header class="contactdetails__header"
 		ng-style="{'background-color': (ctrl.contact.uid() | contactColor)}">
 	<h2>
@@ -307,3 +314,4 @@
 	<label for="details-note">Note:</label>
 	<textarea col="25" row="5" id="details-note" name="note" value="" />
 </section>
+</div>

@@ -5,6 +5,7 @@ app.factory('AddressBook', function()
 
 			displayName: "",
 			contacts: [],
+			groups: data.data.props.groups,
 
 			getContact: function(uid) {
 				for(var i in this.contacts) {
