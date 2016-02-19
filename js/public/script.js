@@ -190,7 +190,7 @@ app.directive('group', function() {
 		controller: 'groupCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {
-			addressBook: "=data"
+			group: "=data"
 		},
 		templateUrl: OC.linkTo('contactsrework', 'templates/group.html')
 	};
