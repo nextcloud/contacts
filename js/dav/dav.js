@@ -683,7 +683,7 @@ var serviceDiscovery = _co2['default'].wrap(regeneratorRuntime.mark(function cal
         uri = _url2['default'].format({
           protocol: endpoint.protocol,
           host: endpoint.host,
-          pathname: '/.well-known/' + options.accountType
+          pathname: !options.useProvidedPath ? '/.well-known/' + options.accountType : endpoint.pathname
         });
         req = request.basic({ method: 'GET' });
         context$1$0.prev = 5;

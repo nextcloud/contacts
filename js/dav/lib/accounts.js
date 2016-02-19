@@ -30,7 +30,7 @@ let serviceDiscovery = co.wrap(function *(account, options) {
   let uri = url.format({
     protocol: endpoint.protocol,
     host: endpoint.host,
-    pathname: `/.well-known/${options.accountType}`
+    pathname: (!options.useProvidedPath ? '/.well-known/' + options.accountType : endpoint.pathname)
   });
 
   let req = request.basic({ method: 'GET' });
