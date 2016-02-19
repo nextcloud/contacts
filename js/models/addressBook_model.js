@@ -27,24 +27,19 @@ app.factory('AddressBook', function()
 			owner: data.url.split('/').slice(-3, -2)[0]
 		});
 
-		/*
-		var shares = props['{http://owncloud.org/ns}invite'];
+		var shares = this.data.props.invite;
 		if (typeof shares !== 'undefined') {
 			for (var j=0; j < shares.length; j++) {
-				var href = shares[j].getElementsByTagNameNS('DAV:', 'href');
+				var href = shares[j].href;
 				if (href.length === 0) {
 					continue;
 				}
-				href = href[0].textContent;
-
-				var access = shares[j].getElementsByTagNameNS('http://owncloud.org/ns', 'access');
+				var access = shares[j].access;
 				if (access.length === 0) {
 					continue;
 				}
-				access = access[0];
 
-				var readWrite = access.getElementsByTagNameNS('http://owncloud.org/ns', 'read-write');
-				readWrite = readWrite.length !== 0;
+				var readWrite = (typeof access.readWrite !== 'undefined');
 
 				if (href.startsWith('principal:principals/users/')) {
 					this.sharedWith.users.push({
@@ -62,14 +57,13 @@ app.factory('AddressBook', function()
 			}
 		}
 
-		var owner = props['{DAV:}owner'];
-		if (typeof owner !== 'undefined' && owner.length !== 0) {
-			owner = owner[0].textContent.slice(0, -1);
-			if (owner.startsWith('/remote.php/dav/principals/users/')) {
-				this._properties.owner = owner.substr(33);
-			}
-		}
-		*/
+		//var owner = this.data.props.owner;
+		//if (typeof owner !== 'undefined' && owner.length !== 0) {
+		//	owner = owner.trim();
+		//	if (owner.startsWith('/remote.php/dav/principals/users/')) {
+		//		this._properties.owner = owner.substr(33);
+		//	}
+		//}
 
 	};
 });
