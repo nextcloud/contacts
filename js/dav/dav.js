@@ -1601,7 +1601,9 @@ var listAddressBooks = _co2['default'].wrap(regeneratorRuntime.mark(function cal
       case 0:
         debug('Fetch address books from home url ' + account.homeUrl);
         req = request.propfind({
-          props: [{ name: 'displayname', namespace: ns.DAV }, { name: 'getctag', namespace: ns.CALENDAR_SERVER }, { name: 'resourcetype', namespace: ns.DAV }, { name: 'sync-token', namespace: ns.DAV }],
+          props: [{ name: 'displayname', namespace: ns.DAV }, { name: 'owner', namespace: ns.DAV }, { name: 'getctag', namespace: ns.CALENDAR_SERVER }, { name: 'resourcetype', namespace: ns.DAV }, { name: 'sync-token', namespace: ns.DAV },
+          //{ name: 'groups', namespace: ns.OC },
+          { name: 'invite', namespace: ns.OC }],
           depth: 1
         });
         context$1$0.next = 4;
@@ -2259,6 +2261,8 @@ var CARDDAV = 'urn:ietf:params:xml:ns:carddav';
 exports.CARDDAV = CARDDAV;
 var DAV = 'DAV:';
 exports.DAV = DAV;
+var OC = 'http://owncloud.org/ns';
+exports.OC = OC;
 },{}],11:[function(require,module,exports){
 'use strict';
 
@@ -2318,7 +2322,9 @@ var traverse = {
       resourcetype: false,
       supportedCalendarComponentSet: false,
       supportedReportSet: false,
-      currentUserPrincipal: false
+      currentUserPrincipal: false,
+      groups: false,
+      invite: false
     });
   },
 
@@ -2327,6 +2333,27 @@ var traverse = {
       return childNode.localName;
     });
   },
+
+  groups: function groups(node) {
+    return complex(node, { group: true }, 'group');
+  },
+  group: function group(node) {
+    return childNodes(node).map(function (childNode) {
+      return childNode.nodeValue;
+    });
+  },
+  invite: function invite(node) {
+    return complex(node, { user: true }, 'user');
+  },
+  user: function user(node) {
+    return complex(node, { href: false, access: false });
+  },
+  access: function access(node) {
+    return complex(node, {});
+  },
+  //access: node => {
+  //  return childNodes(node).map(childNode => childNode.localName);
+  //},
 
   // [x, y, z]
   supportedCalendarComponentSet: function supportedCalendarComponentSet(node) {
@@ -2943,6 +2970,8 @@ function xmlnsPrefix(namespace) {
       return 'c';
     case ns.CARDDAV:
       return 'card';
+    case ns.OC:
+      return 'oc';
     default:
       throw new Error('Unrecognized xmlns ' + namespace);
   }
@@ -2963,7 +2992,7 @@ var _prop = require('./prop');
 var _prop2 = _interopRequireDefault(_prop);
 
 function propfind(object) {
-  return '<d:propfind xmlns:c="urn:ietf:params:xml:ns:caldav"\n              xmlns:card="urn:ietf:params:xml:ns:carddav"\n              xmlns:cs="http://calendarserver.org/ns/"\n              xmlns:d="DAV:">\n    <d:prop>\n      ' + object.props.map(_prop2['default']) + '\n    </d:prop>\n  </d:propfind>';
+  return '<d:propfind xmlns:c="urn:ietf:params:xml:ns:caldav"\n              xmlns:card="urn:ietf:params:xml:ns:carddav"\n              xmlns:cs="http://calendarserver.org/ns/"\n              xmlns:oc="http://owncloud.org/ns"\n              xmlns:d="DAV:">\n    <d:prop>\n      ' + object.props.map(_prop2['default']) + '\n    </d:prop>\n  </d:propfind>';
 }
 
 module.exports = exports['default'];

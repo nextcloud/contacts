@@ -11,6 +11,7 @@ export default docs;
   'current_user_principal',
   'calendar_query',
   'propfind',
+  'propfind_oc',
   'sync_collection'
 ].forEach(function(responseType) {
   var camelCase = camelize(responseType);
