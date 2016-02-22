@@ -1,0 +1,14 @@
+<label for="details-phone">
+    <select ng-model="ctrl.data[0].meta.type[0]">
+        <option>Home</option>
+        <option>Mobile</option>
+        <option>Work</option>
+        <option>Voice</option>
+        <option>Message</option>
+        <option>Fax</option>
+        <option>Video</option>
+        <option>Pager</option>
+        <option>Other</option>
+    </select>
+</label>
+<input type="tel" id="details-{{ctrl.name}}" name="phone" ng-model="ctrl.data[0].value" tel-model value="" />

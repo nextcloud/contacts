@@ -13,6 +13,8 @@
 	<button ng-click="ctrl.deleteContact()" class="icon-delete-white" title="Delete"></button>
 </header>
 <section>
+	<detailsItem ng-repeat="prop in ctrl.singleProperties" name="prop.name" data="prop.data"></detailsItem>
+	<hr>
 	<label for="details-nickname">Nickname:</label>
 	<input type="text" id="details-nickname" name="nickname" value="" />
 	<br />

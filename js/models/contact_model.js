@@ -5,6 +5,19 @@ app.factory('Contact', [ '$filter', function($filter) {
 			data: {},
 			props: {},
 
+			getSingleProperties: function() {
+				var singleProperties = [];
+				for(var prop in this.props) {
+					if(this.props.hasOwnProperty(prop)) {
+						this.props[prop].forEach(function(propData) {
+							singleProperties.push({ name: prop, data: propData });
+						});
+					}
+				}
+				console.log('!!!', singleProperties);
+				return singleProperties;
+			},
+
 			uid: function(value) {
 				if (angular.isDefined(value)) {
 					// setter
@@ -109,8 +122,6 @@ app.factory('Contact', [ '$filter', function($filter) {
 			}*/
 
 		});
-
-		console.log('create');
 
 		if(angular.isDefined(vCard)) {
 			angular.extend(this.data, vCard);

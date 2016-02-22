@@ -192,6 +192,7 @@ app.directive('contact', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
 	};
 });
+
 app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope', function(ContactService, $routeParams, $scope) {
 	var ctrl = this;
 
@@ -210,6 +211,7 @@ app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope'
 		}
 		ContactService.getById(uid).then(function(contact) {
 			ctrl.contact = contact;
+			ctrl.singleProperties = ctrl.contact.getSingleProperties();
 		});
 	};
 
@@ -285,6 +287,38 @@ app.directive('contactlist', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactList.html')
 	};
 });
+app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService', function($templateRequest, vCardPropertiesService) {
+	var ctrl = this;
+
+    ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
+
+    console.log(ctrl);
+
+    ctrl.getTemplate = function() {
+        var templateUrl = OC.linkTo('contactsrework', 'templates/detailItems/'+ ctrl.meta.template +'.html');
+        return $templateRequest(templateUrl);
+    };
+}]);
+
+app.directive('detailsitem', ['$compile', function($compile) {
+	return {
+		scope: {},
+		controller: 'detailsItemCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			name: '=',
+			data: '='
+		},
+		link: function(scope, element, attrs, ctrl) {
+			ctrl.getTemplate().then(function(html) {
+				var template = angular.element(html);
+				element.append(template);
+				$compile(template)(scope);
+			});
+		}
+	};
+}]);
+
 app.controller('groupCtrl', function() {
 	var ctrl = this;
 	console.log(this);
@@ -326,6 +360,21 @@ app.directive('grouplist', function() {
 		bindToController: {},
 		templateUrl: OC.linkTo('contactsrework', 'templates/groupList.html')
 	};
+});
+
+app.directive('telModel', function(){
+    return{
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, element, attr, ngModel) {
+            ngModel.$formatters.push(function(value) {
+                return value;
+            });
+            ngModel.$parsers.push(function(value) {
+                return value;
+            });
+        }
+    };
 });
 
 app.factory('AddressBook', function()
@@ -404,6 +453,19 @@ app.factory('Contact', [ '$filter', function($filter) {
 
 			data: {},
 			props: {},
+
+			getSingleProperties: function() {
+				var singleProperties = [];
+				for(var prop in this.props) {
+					if(this.props.hasOwnProperty(prop)) {
+						this.props[prop].forEach(function(propData) {
+							singleProperties.push({ name: prop, data: propData });
+						});
+					}
+				}
+				console.log('!!!', singleProperties);
+				return singleProperties;
+			},
 
 			uid: function(value) {
 				if (angular.isDefined(value)) {
@@ -509,8 +571,6 @@ app.factory('Contact', [ '$filter', function($filter) {
 			}*/
 
 		});
-
-		console.log('create');
 
 		if(angular.isDefined(vCard)) {
 			angular.extend(this.data, vCard);
@@ -862,6 +922,45 @@ app.service('SettingsService', function() {
 		return settings;
 	};
 });
+
+app.service('vCardPropertiesService', [function() {
+	/* map vCard attributes to internal attributes */
+	this.vCardMeta = {
+		fn: {
+			readableName: 'Full Name', // needs translation
+			template: 'text'
+		},
+		version: {
+			template: 'hidden'
+		},
+		org: {
+			readableName: 'Organisation',
+			template: 'text'
+		},
+		note: {
+			readableName: 'Note',
+			template: 'textarea'
+		},
+		tel: {
+			readableName: 'Telephone',
+			template: 'tel'
+		}
+	};
+
+	this.fallbackMeta = function(property) {
+		function capitalize(string) { return string.charAt(0).toUpperCase() + string.slice(1); }
+		return {
+			name: "unknown-" + property,
+			readableName: capitalize(property),
+			template: 'text',
+			necessity: 'optional'
+		};
+	};
+
+	this.getMeta = function(property) {
+		return this.vCardMeta[property] || this.fallbackMeta(property);
+	};
+}]);
 
 app.filter('JSON2vCard', function() {
 	return function(input) {
