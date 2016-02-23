@@ -15,21 +15,6 @@
 <section>
 	<detailsItem ng-repeat="prop in ctrl.singleProperties" name="prop.name" data="prop.data" model="ctrl"></detailsItem>
 	<hr>
-	<label for="details-nickname">Nickname:</label>
-	<input type="text" id="details-nickname" name="nickname" value="" />
-	<br />
-	<label for="details-title">Title:</label>
-	<input type="text" id="details-title" name="title" value="" />
-	<br />
-	<label for="details-email">E-Mail:</label>
-	<input type="email" id="details-email" name="email" ng-model="ctrl.contact.email" ng-model-options="{ getterSetter: true, debounce: 500 }" value="" />
-	<br />
-	<label for="details-organization">Organization:</label>
-	<input type="text" id="details-organization" name="organization" value="" />
-	<br />
-	<label for="details-birthday">Birthday:</label>
-	<input type="date" id="details-birthday" name="birthday" value="" />
-	<br />
 	<label for="details-phone">
 		<select>
 			<option>Home</option>
@@ -309,11 +294,5 @@
 		<option value="ZM">Zambia</option>
 		<option value="ZW">Zimbabwe</option>
 	</select>
-	<br />
-	<label for="details-website">Website:</label>
-	<input type="url" id="details-website" name="website" value="" />
-	<br />
-	<label for="details-note">Note:</label>
-	<textarea col="25" row="5" id="details-note" name="note" value="" />
 </section>
 </div>

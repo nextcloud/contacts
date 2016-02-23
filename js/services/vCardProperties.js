@@ -41,6 +41,14 @@ app.service('vCardPropertiesService', [function() {
 			readableName: 'Birthday',
 			template: 'date'
 		},
+		email: {
+			readableName: 'E-Mail',
+			template: 'date'
+		},
+		impp: {
+			readableName: 'Instant Messaging',
+			template: 'date'
+		},
 		tel: {
 			readableName: 'Telephone',
 			template: 'tel'
