@@ -49,7 +49,9 @@
 	text-transform: capitalize;
 }
 
-
+detailsitem {
+	display: block;
+}
 
 
 /* app content list & detail view */
