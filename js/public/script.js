@@ -287,6 +287,24 @@ app.directive('contactlist', function() {
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactList.html')
 	};
 });
+app.controller('groupCtrl', function() {
+	var ctrl = this;
+	console.log(this);
+});
+
+app.directive('group', function() {
+	return {
+		restrict: 'A', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'groupCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			group: "=data"
+		},
+		templateUrl: OC.linkTo('contactsrework', 'templates/group.html')
+	};
+});
+
 app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService', function($templateRequest, vCardPropertiesService) {
 	var ctrl = this;
 
@@ -319,24 +337,6 @@ app.directive('detailsitem', ['$compile', function($compile) {
 		}
 	};
 }]);
-
-app.controller('groupCtrl', function() {
-	var ctrl = this;
-	console.log(this);
-});
-
-app.directive('group', function() {
-	return {
-		restrict: 'A', // has to be an attribute to work with core css
-		scope: {},
-		controller: 'groupCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			group: "=data"
-		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/group.html')
-	};
-});
 
 app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 
@@ -959,6 +959,18 @@ app.service('vCardPropertiesService', [function() {
 		role: {
 			readableName: 'Role',
 			template: 'text'
+		},
+		adr: {
+			readableName: 'Address',
+			template: 'text'
+		},
+		categories: {
+			readableName: 'Categories',
+			template: 'text'
+		},
+		bday: {
+			readableName: 'Birthday',
+			template: 'date'
 		},
 		tel: {
 			readableName: 'Telephone',

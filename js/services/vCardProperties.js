@@ -29,6 +29,18 @@ app.service('vCardPropertiesService', [function() {
 			readableName: 'Role',
 			template: 'text'
 		},
+		adr: {
+			readableName: 'Address',
+			template: 'text'
+		},
+		categories: {
+			readableName: 'Categories',
+			template: 'text'
+		},
+		bday: {
+			readableName: 'Birthday',
+			template: 'date'
+		},
 		tel: {
 			readableName: 'Telephone',
 			template: 'tel'
