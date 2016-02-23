@@ -8,6 +8,12 @@ app.service('vCardPropertiesService', [function() {
 		version: {
 			template: 'hidden'
 		},
+		uid: {
+			template: 'hidden'
+		},
+		prodid: {
+			template: 'hidden'
+		},
 		org: {
 			readableName: 'Organisation',
 			template: 'text'
