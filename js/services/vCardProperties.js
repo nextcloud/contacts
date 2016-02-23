@@ -5,14 +5,9 @@ app.service('vCardPropertiesService', [function() {
 			readableName: 'Full Name', // needs translation
 			template: 'text'
 		},
-		version: {
-			template: 'hidden'
-		},
-		uid: {
-			template: 'hidden'
-		},
-		prodid: {
-			template: 'hidden'
+		nickname: {
+			readableName: 'Nickname',
+			template: 'text'
 		},
 		org: {
 			readableName: 'Organisation',
@@ -21,6 +16,18 @@ app.service('vCardPropertiesService', [function() {
 		note: {
 			readableName: 'Note',
 			template: 'textarea'
+		},
+		url: {
+			readableName: 'Url',
+			template: 'url'
+		},
+		title: {
+			readableName: 'Title',
+			template: 'text'
+		},
+		role: {
+			readableName: 'Role',
+			template: 'text'
 		},
 		tel: {
 			readableName: 'Telephone',
@@ -33,7 +40,7 @@ app.service('vCardPropertiesService', [function() {
 		return {
 			name: "unknown-" + property,
 			readableName: capitalize(property),
-			template: 'text',
+			template: 'hidden',
 			necessity: 'optional'
 		};
 	};

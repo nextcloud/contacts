@@ -1,2 +1,2 @@
 <label for="details-{{ctrl.name}}">{{ctrl.meta.readableName}}:</label>
-<textarea id="details-{{ctrl.name}} name="{{ctrl.name}}" ng-model="ctrl.data.value" rows="8" cols="40"></textarea>
+<textarea id="details-{{ctrl.name}} name="{{ctrl.name}}" ng-model="ctrl.data.value" rows="8" cols="40" ng-model-options="{ debounce: 500 }" ng-change="ctrl.model.updateContact()"></textarea>

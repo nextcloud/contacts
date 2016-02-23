@@ -11,4 +11,4 @@
         <option>Other</option>
     </select>
 </label>
-<input type="tel" id="details-{{ctrl.name}}" name="phone" ng-model="ctrl.data[0].value" tel-model value="" />
+<input type="tel" id="details-{{ctrl.name}}" name="phone" ng-model="ctrl.data[0].value" tel-model ng-model-options="{ debounce: 500 }" ng-change="ctrl.model.updateContact()" value="" />
