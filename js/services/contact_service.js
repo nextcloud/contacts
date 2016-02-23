@@ -92,6 +92,8 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 	};
 
 	this.update = function(contact) {
+		contact.syncVCard();
+
 		// update contact on server
 		return DavClient.updateCard(contact.data, {json: true}).then(function(xhr){
 			var newEtag = xhr.getResponseHeader('ETag');

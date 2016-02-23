@@ -168,31 +168,6 @@ app.directive('addressbooklist', function() {
 	};
 });
 
-app.controller('contactCtrl', ['$route', '$routeParams', function($route, $routeParams) {
-	var ctrl = this;
-
-	ctrl.openContact = function() {
-		$route.updateParams({
-			gid: $routeParams.gid,
-			uid: ctrl.contact.uid()});
-	};
-
-	console.log("Contact: ",ctrl.contact);
-
-}]);
-
-app.directive('contact', function() {
-	return {
-		scope: {},
-		controller: 'contactCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			contact: '=data'
-		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
-	};
-});
-
 app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope', function(ContactService, $routeParams, $scope) {
 	var ctrl = this;
 
@@ -234,6 +209,31 @@ app.directive('contactdetails', function() {
 		controllerAs: 'ctrl',
 		bindToController: {},
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactDetails.html')
+	};
+});
+
+app.controller('contactCtrl', ['$route', '$routeParams', function($route, $routeParams) {
+	var ctrl = this;
+
+	ctrl.openContact = function() {
+		$route.updateParams({
+			gid: $routeParams.gid,
+			uid: ctrl.contact.uid()});
+	};
+
+	console.log("Contact: ",ctrl.contact);
+
+}]);
+
+app.directive('contact', function() {
+	return {
+		scope: {},
+		controller: 'contactCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			contact: '=data'
+		},
+		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
 	};
 });
 
@@ -307,7 +307,8 @@ app.directive('detailsitem', ['$compile', function($compile) {
 		controllerAs: 'ctrl',
 		bindToController: {
 			name: '=',
-			data: '='
+			data: '=',
+			model: '='
 		},
 		link: function(scope, element, attrs, ctrl) {
 			ctrl.getTemplate().then(function(html) {
@@ -876,6 +877,8 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 	};
 
 	this.update = function(contact) {
+		contact.syncVCard();
+
 		// update contact on server
 		return DavClient.updateCard(contact.data, {json: true}).then(function(xhr){
 			var newEtag = xhr.getResponseHeader('ETag');

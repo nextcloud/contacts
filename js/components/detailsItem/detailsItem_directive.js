@@ -5,7 +5,8 @@ app.directive('detailsitem', ['$compile', function($compile) {
 		controllerAs: 'ctrl',
 		bindToController: {
 			name: '=',
-			data: '='
+			data: '=',
+			model: '='
 		},
 		link: function(scope, element, attrs, ctrl) {
 			ctrl.getTemplate().then(function(html) {
