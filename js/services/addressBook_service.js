@@ -20,7 +20,7 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 
 		getGroups: function () {
 			return this.getAll().then(function(addressBooks){
-				return ['All'].concat(
+				return [t('contactsrework', 'All contacts')].concat(
 					addressBooks.map(function (element) {
 						return element.groups;
 					}).reduce(function(a, b){

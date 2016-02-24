@@ -2,6 +2,9 @@ app.controller('contactlistCtrl', ['$scope', 'ContactService', '$routeParams', f
 	var ctrl = this;
 
 	ctrl.routeParams = $routeParams;
+	ctrl.t = {
+		addContact : t('contactsrework', 'Add contact')
+	};
 
 	ContactService.registerObserverCallback(function(contacts) {
 		$scope.$apply(function() {

@@ -2,6 +2,9 @@ app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope'
 	var ctrl = this;
 
 	ctrl.uid = $routeParams.uid;
+	ctrl.t = {
+		'noContacts' : t('contactsrework', 'No contacts in here')
+	};
 
 	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
 		ctrl.changeContact(newValue);
