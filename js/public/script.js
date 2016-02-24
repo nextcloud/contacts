@@ -20,7 +20,7 @@ app.config(['$routeProvider', function($routeProvider){
 		template: '<contactdetails></contactdetails>'
 	});
 
-	$routeProvider.otherwise("/All");
+	$routeProvider.otherwise("/" + t('contactsrework', 'All contacts'));
 
 }]);
 
@@ -168,10 +168,37 @@ app.directive('addressbooklist', function() {
 	};
 });
 
+app.controller('contactCtrl', ['$route', '$routeParams', function($route, $routeParams) {
+	var ctrl = this;
+
+	ctrl.openContact = function() {
+		$route.updateParams({
+			gid: $routeParams.gid,
+			uid: ctrl.contact.uid()});
+	};
+
+	console.log("Contact: ",ctrl.contact);
+
+}]);
+
+app.directive('contact', function() {
+	return {
+		scope: {},
+		controller: 'contactCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			contact: '=data'
+		},
+		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
+	};
+});
 app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope', function(ContactService, $routeParams, $scope) {
 	var ctrl = this;
 
 	ctrl.uid = $routeParams.uid;
+	ctrl.t = {
+		'noContacts' : t('contactsrework', 'No contacts in here')
+	};
 
 	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
 		ctrl.changeContact(newValue);
@@ -208,34 +235,13 @@ app.directive('contactdetails', function() {
 	};
 });
 
-app.controller('contactCtrl', ['$route', '$routeParams', function($route, $routeParams) {
-	var ctrl = this;
-
-	ctrl.openContact = function() {
-		$route.updateParams({
-			gid: $routeParams.gid,
-			uid: ctrl.contact.uid()});
-	};
-
-	console.log("Contact: ",ctrl.contact);
-
-}]);
-
-app.directive('contact', function() {
-	return {
-		scope: {},
-		controller: 'contactCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			contact: '=data'
-		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
-	};
-});
 app.controller('contactlistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 	var ctrl = this;
 
 	ctrl.routeParams = $routeParams;
+	ctrl.t = {
+		addContact : t('contactsrework', 'Add contact')
+	};
 
 	ContactService.registerObserverCallback(function(contacts) {
 		$scope.$apply(function() {
@@ -299,7 +305,7 @@ app.directive('group', function() {
 
 app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 
-	$scope.groups = ['All'];
+	$scope.groups = [t('contactsrework', 'All contacts')];
 
 	ContactService.getGroups().then(function(groups) {
 		$scope.groups = groups;
@@ -541,7 +547,7 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 
 		getGroups: function () {
 			return this.getAll().then(function(addressBooks){
-				return ['All'].concat(
+				return [t('contactsrework', 'All contacts')].concat(
 					addressBooks.map(function (element) {
 						return element.groups;
 					}).reduce(function(a, b){
@@ -769,7 +775,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 			}).reduce(function(a, b){
 				return a.concat(b);
 			}).sort(), true);
-			return ['All'].concat(groups);
+			return [t('contactsrework', 'All contacts')].concat(groups);
 		});
 	};
 
@@ -890,7 +896,7 @@ app.filter('contactGroupFilter', [
 			if (typeof contacts === "undefined") {
 				return contacts;
 			}
-			if (typeof group === "undefined" || group.toLowerCase() === 'all') {
+			if (typeof group === "undefined" || group.toLowerCase() === t('contactsrework', 'All contacts').toLowerCase()) {
 				return contacts;
 			}
 			var filter = [];
