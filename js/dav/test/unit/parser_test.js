@@ -63,4 +63,31 @@ suite('parser.multistatus', function() {
       syncToken: 'http://sabre.io/ns/sync/3'
     });
   });
+
+  test('propfind (oc-groups and oc-invites)', function() {
+    let propfind = data.propfindOc;
+    assert.deepEqual(multistatus(propfind), {
+      response: [{
+        href: '/calendars/admin/',
+        propstat: [{
+          prop: {
+            owner: '/remote.php/dav/principals/users/admin/',
+            invite: [{
+              href: 'principal:principals/users/user01',
+              access: {'read':''},
+              commonName: 'user01',
+              inviteAccepted: ''
+            }, {
+              href: 'principal:principals/users/user02',
+              access: {'read':''},
+              commonName: 'user02',
+              inviteAccepted: ''
+            }],
+            groups: ['Friends', 'Co-Workers']
+          },
+          status: 'HTTP/1.1 200 OK'
+        }]
+      }],
+    });
+  });
 });

@@ -22,6 +22,7 @@
     "angular-uuid4": "~0.3.1",
     "angular-cache": "~4.5.0",
     "angular-route": "^1.5.0",
-    "vcard": "~0.2.3"
+    "vcard": "~0.2.3",
+    "angular-bootstrap": "^1.1.2"
   }
 }

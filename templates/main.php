@@ -12,8 +12,12 @@ script('contactsrework', 'vendor/vcard/src/vcard');
 // compiled version of app javascript
 script('contactsrework', 'public/script');
 
+script('contactsrework', 'vendor/angular-bootstrap/ui-bootstrap.min');
+script('contactsrework', 'vendor/angular-bootstrap/ui-bootstrap-tpls.min');
+
 // all styles
 style('contactsrework', 'public/style');
+
 ?>
 
 <div id="app" ng-app="contactsApp">
@@ -25,7 +29,7 @@ style('contactsrework', 'public/style');
 			<div id="app-settings-header">
 				<button class="settings-button"
 						data-apps-slide-toggle="#app-settings-content"
-				></button>
+				>Settings</button>
 			</div>
 			<div id="app-settings-content">
 				<addressBookList></addressBookList>

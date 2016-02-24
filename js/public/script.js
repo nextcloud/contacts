@@ -8,7 +8,7 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute']);
+var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute', 'ui.bootstrap']);
 
 app.config(['$routeProvider', function($routeProvider){
 
@@ -24,10 +24,112 @@ app.config(['$routeProvider', function($routeProvider){
 
 }]);
 
-app.controller('addressbookCtrl', function() {
+app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($scope, AddressBookService) {
 	var ctrl = this;
 	console.log(this);
-});
+
+	ctrl.toggleSharesEditor = function(addressBook) {
+		addressBook.editingShares = !addressBook.editingShares;
+		addressBook.selectedSharee = null;
+	};
+
+	/* From Calendar-Rework - js/app/controllers/calendarlistcontroller.js */
+	ctrl.findSharee = function (val, addressBook) {
+		return $.get(
+				OC.linkToOCS('apps/files_sharing/api/v1') + 'sharees',
+				{
+					format: 'json',
+					search: val.trim(),
+					perPage: 200,
+					itemType: 'principals'
+				}
+		).then(function(result) {
+			// Todo - filter out current user, existing sharees
+			var users   = result.ocs.data.exact.users.concat(result.ocs.data.users);
+			var groups  = result.ocs.data.exact.groups.concat(result.ocs.data.groups);
+
+			var userShares = addressBook.sharedWith.users;
+			var groupShares = addressBook.sharedWith.groups;
+			var userSharesLength = userShares.length;
+			var groupSharesLength = groupShares.length;
+			var i, j;
+
+			// Filter out current user
+			var usersLength = users.length;
+			for (i = 0 ; i < usersLength; i++) {
+				if (users[i].value.shareWith === OC.currentUser) {
+					users.splice(i, 1);
+					break;
+				}
+			}
+
+			// Now filter out all sharees that are already shared with
+			for (i = 0; i < userSharesLength; i++) {
+				var share = userShares[i];
+				usersLength = users.length;
+				for (j = 0; j < usersLength; j++) {
+					if (users[j].value.shareWith === share.id) {
+						users.splice(j, 1);
+						break;
+					}
+				}
+			}
+
+			// Combine users and groups
+			users = users.map(function(item){
+				return {
+					display: item.value.shareWith,
+					type: OC.Share.SHARE_TYPE_USER,
+					identifier: item.value.shareWith
+				};
+			});
+
+			groups = groups.map(function(item){
+				return {
+					display: item.value.shareWith + ' (group)',
+					type: OC.Share.SHARE_TYPE_GROUP,
+					identifier: item.value.shareWith
+				};
+			});
+
+			return groups.concat(users);
+		});
+	};
+
+	ctrl.onSelectSharee = function (item, model, label, addressBook) {
+		ctrl.addressBook.selectedSharee = null;
+		AddressBookService.share(addressBook, item.type, item.identifier, false, false).then(function() {
+			$scope.$apply();
+		});
+
+	};
+
+	ctrl.updateExistingUserShare = function(addressBook, userId, writable) {
+		AddressBookService.share(addressBook, OC.Share.SHARE_TYPE_USER, userId, writable, true).then(function() {
+			$scope.$apply();
+		});
+	};
+
+	ctrl.updateExistingGroupShare = function(calendar, groupId, writable) {
+		AddressBookService.share(addressBook, OC.Share.SHARE_TYPE_GROUP, groupId, writable, true).then(function() {
+			$scope.$apply();
+		});
+	};
+
+	ctrl.unshareFromUser = function(addressBook, userId) {
+		AddressBookService.unshare(addressBook, OC.Share.SHARE_TYPE_USER, userId).then(function() {
+			$scope.$apply();
+		});
+	};
+
+	ctrl.unshareFromGroup = function(addressBook, groupId) {
+		AddressBookService.unshare(addressBook, OC.Share.SHARE_TYPE_GROUP, groupId).then(function() {
+			$scope.$apply();
+		});
+	};
+
+}]);
+
 app.directive('addressbook', function() {
 	return {
 		restrict: 'A', // has to be an attribute to work with core css
@@ -53,7 +155,6 @@ app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'Settings
 			AddressBookService.create(ctrl.newAddressBookName);
 		}
 	};
-
 }]);
 
 app.directive('addressbooklist', function() {
@@ -237,12 +338,60 @@ app.factory('AddressBook', function()
 					}
 				}
 				return undefined;
+			},
+
+			sharedWith: {
+				users: [],
+				groups: []
 			}
 
 		});
 		angular.extend(this, data);
+		angular.extend(this, {
+			owner: data.url.split('/').slice(-3, -2)[0]
+		});
+
+		var shares = this.data.props.invite;
+		if (typeof shares !== 'undefined') {
+			for (var j=0; j < shares.length; j++) {
+				var href = shares[j].href;
+				if (href.length === 0) {
+					continue;
+				}
+				var access = shares[j].access;
+				if (access.length === 0) {
+					continue;
+				}
+
+				var readWrite = (typeof access.readWrite !== 'undefined');
+
+				if (href.startsWith('principal:principals/users/')) {
+					this.sharedWith.users.push({
+						id: href.substr(27),
+						displayname: href.substr(27),
+						writable: readWrite
+					});
+				} else if (href.startsWith('principal:principals/groups/')) {
+					this.sharedWith.groups.push({
+						id: href.substr(28),
+						displayname: href.substr(28),
+						writable: readWrite
+					});
+				}
+			}
+		}
+
+		//var owner = this.data.props.owner;
+		//if (typeof owner !== 'undefined' && owner.length !== 0) {
+		//	owner = owner.trim();
+		//	if (owner.startsWith('/remote.php/dav/principals/users/')) {
+		//		this._properties.owner = owner.substr(33);
+		//	}
+		//}
+
 	};
 });
+
 app.factory('Contact', [ '$filter', function($filter) {
 	return function Contact(vCard) {
 		angular.extend(this, {
@@ -455,7 +604,111 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 				}
 				return addressBook;
 			});*/
+		},
+
+		share: function(addressBook, shareType, shareWith, writable, existingShare) {
+			var xmlDoc = document.implementation.createDocument('', '', null);
+			var oShare = xmlDoc.createElement('o:share');
+			oShare.setAttribute('xmlns:d', 'DAV:');
+			oShare.setAttribute('xmlns:o', 'http://owncloud.org/ns');
+			xmlDoc.appendChild(oShare);
+
+			var oSet = xmlDoc.createElement('o:set');
+			oShare.appendChild(oSet);
+
+			var dHref = xmlDoc.createElement('d:href');
+			if (shareType === OC.Share.SHARE_TYPE_USER) {
+				dHref.textContent = 'principal:principals/users/';
+			} else if (shareType === OC.Share.SHARE_TYPE_GROUP) {
+				dHref.textContent = 'principal:principals/groups/';
+			}
+			dHref.textContent += shareWith;
+			oSet.appendChild(dHref);
+
+			var oSummary = xmlDoc.createElement('o:summary');
+			oSummary.textContent = t('contacts', '{addressbook} shared by {owner}', {
+				addressbook: addressBook.displayName,
+				owner: addressBook.owner
+			});
+			oSet.appendChild(oSummary);
+
+			if (writable) {
+				var oRW = xmlDoc.createElement('o:read-write');
+				oSet.appendChild(oRW);
+			}
+
+			var body = oShare.outerHTML;
+
+			return DavClient.xhr.send(
+				dav.request.basic({method: 'POST', data: body}),
+				addressBook.url
+			).then(function(response) {
+				if (response.status === 200) {
+					if (!existingShare) {
+						if (shareType === OC.Share.SHARE_TYPE_USER) {
+							addressBook.sharedWith.users.push({
+								id: shareWith,
+								displayname: shareWith,
+								writable: writable
+							});
+						} else if (shareType === OC.Share.SHARE_TYPE_GROUP) {
+							addressBook.sharedWith.groups.push({
+								id: shareWith,
+								displayname: shareWith,
+								writable: writable
+							});
+						}
+					}
+				}
+			});
+
+		},
+
+		unshare: function(addressBook, shareType, shareWith) {
+			var xmlDoc = document.implementation.createDocument('', '', null);
+			var oShare = xmlDoc.createElement('o:share');
+			oShare.setAttribute('xmlns:d', 'DAV:');
+			oShare.setAttribute('xmlns:o', 'http://owncloud.org/ns');
+			xmlDoc.appendChild(oShare);
+
+			var oRemove = xmlDoc.createElement('o:remove');
+			oShare.appendChild(oRemove);
+
+			var dHref = xmlDoc.createElement('d:href');
+			if (shareType === OC.Share.SHARE_TYPE_USER) {
+				dHref.textContent = 'principal:principals/users/';
+			} else if (shareType === OC.Share.SHARE_TYPE_GROUP) {
+				dHref.textContent = 'principal:principals/groups/';
+			}
+			dHref.textContent += shareWith;
+			oRemove.appendChild(dHref);
+			var body = oShare.outerHTML;
+
+
+			return DavClient.xhr.send(
+				dav.request.basic({method: 'POST', data: body}),
+				addressBook.url
+			).then(function(response) {
+				if (response.status === 200) {
+					if (shareType === OC.Share.SHARE_TYPE_USER) {
+						addressBook.sharedWith.users = addressBook.sharedWith.users.filter(function(user) {
+							return user.id !== shareWith;
+						});
+					} else if (shareType === OC.Share.SHARE_TYPE_GROUP) {
+						addressBook.sharedWith.groups = addressBook.sharedWith.groups.filter(function(groups) {
+							return groups.id !== shareWith;
+						});
+					}
+					//todo - remove entry from addressbook object
+					return true;
+				} else {
+					return false;
+				}
+			});
+
 		}
+
+
 	};
 
 }]);

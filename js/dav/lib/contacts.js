@@ -17,9 +17,12 @@ export let listAddressBooks = co.wrap(function *(account, options) {
   var req = request.propfind({
     props: [
       { name: 'displayname', namespace: ns.DAV },
+      { name: 'owner', namespace: ns.DAV },
       { name: 'getctag', namespace: ns.CALENDAR_SERVER },
       { name: 'resourcetype', namespace: ns.DAV },
-      { name: 'sync-token', namespace: ns.DAV }
+      { name: 'sync-token', namespace: ns.DAV },
+      //{ name: 'groups', namespace: ns.OC },
+      { name: 'invite', namespace: ns.OC }
     ],
     depth: 1
   });

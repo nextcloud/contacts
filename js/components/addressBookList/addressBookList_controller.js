@@ -11,5 +11,4 @@ app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'Settings
 			AddressBookService.create(ctrl.newAddressBookName);
 		}
 	};
-
 }]);
