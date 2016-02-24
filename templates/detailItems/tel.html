@@ -1,5 +1,5 @@
-<label for="details-phone">
-    <select ng-model="ctrl.data[0].meta.type[0]">
+<label for="details-{{ctrl.name}}">
+    <select ng-model="ctrl.data.meta.type[0]">
         <option>Home</option>
         <option>Mobile</option>
         <option>Work</option>
@@ -11,4 +11,4 @@
         <option>Other</option>
     </select>
 </label>
-<input type="tel" id="details-{{ctrl.name}}" name="phone" ng-model="ctrl.data[0].value" tel-model ng-model-options="{ debounce: 500 }" ng-change="ctrl.model.updateContact()" value="" />
+<input type="tel" id="details-{{ctrl.name}}" name="phone" ng-model="ctrl.data.value" tel-model ng-model-options="{ debounce: 500 }" ng-change="ctrl.model.updateContact()" value="" />
