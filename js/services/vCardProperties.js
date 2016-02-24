@@ -31,7 +31,7 @@ app.service('vCardPropertiesService', [function() {
 		},
 		adr: {
 			readableName: 'Address',
-			template: 'text'
+			template: 'adr'
 		},
 		categories: {
 			readableName: 'Categories',
