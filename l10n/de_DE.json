@@ -1,0 +1,8 @@
+{ "translations": {
+    "Contacts" : "Kontakte",
+    "No contacts in here" : "Keine Kontakte vorhanden",
+    "Add contact" : "Kontakt hinzufügen",
+    "All contacts" : "Alle Kontakte",
+    "{addressbook} shared by {owner}" : "{addressbook} geteilt von {owner}"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

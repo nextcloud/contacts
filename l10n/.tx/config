@@ -1,0 +1,9 @@
+[main]
+host = https://www.transifex.com
+lang_map = ja_JP: ja
+
+[owncloud.contactsrework]
+file_filter = <lang>/contactsrework.po
+source_file = templates/contactsrework.pot
+source_lang = en
+type = PO
