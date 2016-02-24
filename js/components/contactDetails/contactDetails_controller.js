@@ -17,6 +17,7 @@ app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope'
 		ContactService.getById(uid).then(function(contact) {
 			ctrl.contact = contact;
 			ctrl.singleProperties = ctrl.contact.getSingleProperties();
+			ctrl.photo = ctrl.contact.photo();
 		});
 	};
 

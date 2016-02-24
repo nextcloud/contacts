@@ -29,6 +29,10 @@
 	opacity: .5;
 }
 
+.contactdetails__logo {
+	height: 90px;
+}
+
 #check-all + label:before {
 	position: absolute;
 	top: 18px;

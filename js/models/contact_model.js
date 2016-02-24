@@ -58,6 +58,15 @@ app.factory('Contact', [ '$filter', function($filter) {
 				}
 			},
 
+			photo: function() {
+				var property = this.getProperty('photo');
+				if(property) {
+					return property.value;
+				} else {
+					return undefined;
+				}
+			},
+
 			categories: function(value) {
 				if (angular.isDefined(value)) {
 					// setter
