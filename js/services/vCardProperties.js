@@ -2,55 +2,55 @@ app.service('vCardPropertiesService', [function() {
 	/* map vCard attributes to internal attributes */
 	this.vCardMeta = {
 		fn: {
-			readableName: 'Full Name', // needs translation
+			readableName: t('contactsrework', 'Full Name'),
 			template: 'text'
 		},
 		nickname: {
-			readableName: 'Nickname',
+			readableName: t('contactsrework', 'Nickname'),
 			template: 'text'
 		},
 		org: {
-			readableName: 'Organisation',
+			readableName: t('contactsrework', 'Organisation'),
 			template: 'text'
 		},
 		note: {
-			readableName: 'Note',
+			readableName: t('contactsrework', 'Note'),
 			template: 'textarea'
 		},
 		url: {
-			readableName: 'Url',
+			readableName: t('contactsrework', 'Url'),
 			template: 'url'
 		},
 		title: {
-			readableName: 'Title',
+			readableName: t('contactsrework', 'Title'),
 			template: 'text'
 		},
 		role: {
-			readableName: 'Role',
+			readableName: t('contactsrework', 'Role'),
 			template: 'text'
 		},
 		adr: {
-			readableName: 'Address',
+			readableName: t('contactsrework', 'Address'),
 			template: 'adr'
 		},
 		categories: {
-			readableName: 'Categories',
+			readableName: t('contactsrework', 'Categories'),
 			template: 'text'
 		},
 		bday: {
-			readableName: 'Birthday',
+			readableName: t('contactsrework', 'Birthday'),
 			template: 'date'
 		},
 		email: {
-			readableName: 'E-Mail',
+			readableName: t('contactsrework', 'E-Mail'),
 			template: 'date'
 		},
 		impp: {
-			readableName: 'Instant Messaging',
+			readableName: t('contactsrework', 'Instant Messaging'),
 			template: 'date'
 		},
 		tel: {
-			readableName: 'Telephone',
+			readableName: t('contactsrework', 'Telephone'),
 			template: 'tel'
 		}
 	};
