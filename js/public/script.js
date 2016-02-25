@@ -168,6 +168,31 @@ app.directive('addressbooklist', function() {
 	};
 });
 
+app.controller('contactCtrl', ['$route', '$routeParams', function($route, $routeParams) {
+	var ctrl = this;
+
+	ctrl.openContact = function() {
+		$route.updateParams({
+			gid: $routeParams.gid,
+			uid: ctrl.contact.uid()});
+	};
+
+	console.log("Contact: ",ctrl.contact);
+
+}]);
+
+app.directive('contact', function() {
+	return {
+		scope: {},
+		controller: 'contactCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			contact: '=data'
+		},
+		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
+	};
+});
+
 app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope', function(ContactService, $routeParams, $scope) {
 	var ctrl = this;
 
@@ -210,31 +235,6 @@ app.directive('contactdetails', function() {
 		controllerAs: 'ctrl',
 		bindToController: {},
 		templateUrl: OC.linkTo('contactsrework', 'templates/contactDetails.html')
-	};
-});
-
-app.controller('contactCtrl', ['$route', '$routeParams', function($route, $routeParams) {
-	var ctrl = this;
-
-	ctrl.openContact = function() {
-		$route.updateParams({
-			gid: $routeParams.gid,
-			uid: ctrl.contact.uid()});
-	};
-
-	console.log("Contact: ",ctrl.contact);
-
-}]);
-
-app.directive('contact', function() {
-	return {
-		scope: {},
-		controller: 'contactCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			contact: '=data'
-		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
 	};
 });
 
@@ -292,6 +292,16 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
 	var ctrl = this;
 
     ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
+    ctrl.t = {
+        country : t('contactsrework', 'Country'),
+    };
+
+    ctrl.availableOptions = ctrl.meta.options || [];
+    if (!_.isUndefined(ctrl.data.meta)) {
+        if (!ctrl.availableOptions.some(function(e){ return e.id === ctrl.data.meta.type[0];})) {
+            ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.data.meta.type[0], name: ctrl.data.meta.type[0]}]);
+        }
+    }
 
     console.log(ctrl);
 
@@ -942,57 +952,68 @@ app.service('SettingsService', function() {
 app.service('vCardPropertiesService', [function() {
 	/* map vCard attributes to internal attributes */
 	this.vCardMeta = {
-		fn: {
-			readableName: 'Full Name', // needs translation
-			template: 'text'
-		},
 		nickname: {
-			readableName: 'Nickname',
+			readableName: t('contactsrework', 'Nickname'),
 			template: 'text'
 		},
 		org: {
-			readableName: 'Organisation',
+			readableName: t('contactsrework', 'Organisation'),
 			template: 'text'
 		},
 		note: {
-			readableName: 'Note',
+			readableName: t('contactsrework', 'Note'),
 			template: 'textarea'
 		},
 		url: {
-			readableName: 'Url',
+			readableName: t('contactsrework', 'Url'),
 			template: 'url'
 		},
 		title: {
-			readableName: 'Title',
+			readableName: t('contactsrework', 'Title'),
 			template: 'text'
 		},
 		role: {
-			readableName: 'Role',
+			readableName: t('contactsrework', 'Role'),
 			template: 'text'
 		},
 		adr: {
-			readableName: 'Address',
-			template: 'adr'
+			readableName: t('contactsrework', 'Address'),
+			template: 'adr',
+			options: [
+				{id: 'HOME', name: t('contactsrework', 'Home')},
+				{id: 'WORK', name: t('contactsrework', 'Work')},
+				{id: 'OTHER', name: t('contactsrework', 'Other')}
+			]
 		},
 		categories: {
-			readableName: 'Categories',
+			readableName: t('contactsrework', 'Categories'),
 			template: 'text'
 		},
 		bday: {
-			readableName: 'Birthday',
+			readableName: t('contactsrework', 'Birthday'),
 			template: 'date'
 		},
 		email: {
-			readableName: 'E-Mail',
+			readableName: t('contactsrework', 'E-Mail'),
 			template: 'date'
 		},
 		impp: {
-			readableName: 'Instant Messaging',
+			readableName: t('contactsrework', 'Instant Messaging'),
 			template: 'date'
 		},
 		tel: {
-			readableName: 'Telephone',
-			template: 'tel'
+			readableName: t('contactsrework', 'Telephone'),
+			template: 'tel',
+			options: [
+				{id: 'HOME,VOICE', name: t('contactsrework', 'Home, voice')},
+				{id: 'WORK,VOICE', name: t('contactsrework', 'Work, voice')},
+				{id: 'HOME,FAX', name: t('contactsrework', 'Home, fax')},
+				{id: 'WORK,FAX', name: t('contactsrework', 'Work, fax')},
+				{id: 'PAGER', name: t('contactsrework', 'Pager')},
+				{id: 'VOICE', name: t('contactsrework', 'Voice')},
+				{id: 'FAX', name: t('contactsrework', 'Fax')},
+				{id: 'CELL', name: t('contactsrework', 'Mobile')}
+			]
 		}
 	};
 

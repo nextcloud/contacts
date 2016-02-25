@@ -1,3 +1,8 @@
+<select ng-model="ctrl.data.meta.type[0]">
+	<option ng-repeat="option in ctrl.availableOptions" value="{{option.id}}">{{option.name}}</option>
+</select>
+<label for="details-pobox">Post office box:</label>
+<input type="text" id="details-pobox" name="address" ng-model="ctrl.data.value[0]" value="" />
 <label for="details-address">Street address:</label>
 <input type="text" id="details-address" name="address" ng-model="ctrl.data.value[2]" value="" />
 <label for="details-postal-code">Postal code:</label>
@@ -6,5 +11,5 @@
 <input type="text" id="details-city" name="city" ng-model="ctrl.data.value[3]" value="" />
 <label for="details-state">State or province:</label>
 <input type="text" id="details-state" name="state" ng-model="ctrl.data.value[4]" value="" />
-<label for="details-country">Country:</label>
+<label for="details-country">{{ctrl.t.country}}</label>
 <input type="text" id="details-country" name="state" ng-model="ctrl.data.value[6]" value="" />

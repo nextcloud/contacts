@@ -1,14 +1,6 @@
 <label for="details-{{ctrl.name}}">
     <select ng-model="ctrl.data.meta.type[0]">
-        <option>Home</option>
-        <option>Mobile</option>
-        <option>Work</option>
-        <option>Voice</option>
-        <option>Message</option>
-        <option>Fax</option>
-        <option>Video</option>
-        <option>Pager</option>
-        <option>Other</option>
+        <option ng-repeat="option in ctrl.availableOptions" value="{{option.id}}">{{option.name}}</option>
     </select>
 </label>
 <input type="tel" id="details-{{ctrl.name}}" name="phone" ng-model="ctrl.data.value" tel-model ng-model-options="{ debounce: 500 }" ng-change="ctrl.model.updateContact()" value="" />
