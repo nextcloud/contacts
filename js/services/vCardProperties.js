@@ -1,10 +1,6 @@
 app.service('vCardPropertiesService', [function() {
 	/* map vCard attributes to internal attributes */
 	this.vCardMeta = {
-		fn: {
-			readableName: t('contactsrework', 'Full Name'),
-			template: 'text'
-		},
 		nickname: {
 			readableName: t('contactsrework', 'Nickname'),
 			template: 'text'
@@ -31,7 +27,12 @@ app.service('vCardPropertiesService', [function() {
 		},
 		adr: {
 			readableName: t('contactsrework', 'Address'),
-			template: 'adr'
+			template: 'adr',
+			options: [
+				{id: 'HOME', name: t('contactsrework', 'Home')},
+				{id: 'WORK', name: t('contactsrework', 'Work')},
+				{id: 'OTHER', name: t('contactsrework', 'Other')}
+			]
 		},
 		categories: {
 			readableName: t('contactsrework', 'Categories'),
@@ -51,7 +52,17 @@ app.service('vCardPropertiesService', [function() {
 		},
 		tel: {
 			readableName: t('contactsrework', 'Telephone'),
-			template: 'tel'
+			template: 'tel',
+			options: [
+				{id: 'HOME,VOICE', name: t('contactsrework', 'Home, voice')},
+				{id: 'WORK,VOICE', name: t('contactsrework', 'Work, voice')},
+				{id: 'HOME,FAX', name: t('contactsrework', 'Home, fax')},
+				{id: 'WORK,FAX', name: t('contactsrework', 'Work, fax')},
+				{id: 'PAGER', name: t('contactsrework', 'Pager')},
+				{id: 'VOICE', name: t('contactsrework', 'Voice')},
+				{id: 'FAX', name: t('contactsrework', 'Fax')},
+				{id: 'CELL', name: t('contactsrework', 'Mobile')}
+			]
 		}
 	};
 
