@@ -6,7 +6,7 @@
 </div>
 <div ng-if="ctrl.contact!==undefined">
 <header class="contactdetails__header" ng-style="{'background-color': (ctrl.contact.uid() | contactColor)}">
-	<img class="contactdetails__logo" data-ng-src="data:image/png;base64,{{ctrl.photo}}" />
+	<img class="contactdetails__logo avatar" data-ng-src="data:image/png;base64,{{ctrl.photo}}" />
 	<h2>
 		<input type="text" id="details-email" class="contactdetails__name" name="email" ng-model="ctrl.contact.fullName" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
 	</h2>
