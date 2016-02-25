@@ -5,6 +5,19 @@ app.factory('Contact', [ '$filter', function($filter) {
 			data: {},
 			props: {},
 
+			getSingleProperties: function() {
+				var singleProperties = [];
+				for(var prop in this.props) {
+					if(this.props.hasOwnProperty(prop)) {
+						this.props[prop].forEach(function(propData) {
+							singleProperties.push({ name: prop, data: propData });
+						});
+					}
+				}
+				console.log('!!!', singleProperties);
+				return singleProperties;
+			},
+
 			uid: function(value) {
 				if (angular.isDefined(value)) {
 					// setter
@@ -42,6 +55,15 @@ app.factory('Contact', [ '$filter', function($filter) {
 					} else {
 						return undefined;
 					}
+				}
+			},
+
+			photo: function() {
+				var property = this.getProperty('photo');
+				if(property) {
+					return property.value;
+				} else {
+					return undefined;
 				}
 			},
 
@@ -88,29 +110,32 @@ app.factory('Contact', [ '$filter', function($filter) {
 
 			setUrl: function(addressBook, uid) {
 				this.data.url = addressBook.url + uid + ".vcf";
+			},
+
+			syncVCard: function() {
+				// keep vCard in sync
+				this.data.addressData = $filter('JSON2vCard')(this.props);
 			}
 
 
-			/*getPropertyValue: function(property) {
-				if(property.value instanceof Array) {
-					return property.value.join(' ');
-				} else {
-					return property.value;
-				}
-			},
+		/*getPropertyValue: function(property) {
+			if(property.value instanceof Array) {
+				return property.value.join(' ');
+			} else {
+				return property.value;
+			}
+		},
 
-			setPropertyValue: function(property, propertyValue) {
-				property[3] = propertyValue;
-				this.update();
-			},
+		setPropertyValue: function(property, propertyValue) {
+			property[3] = propertyValue;
+			this.update();
+		},
 
-			update: function() {
-				ContactService.update(this.jCard);
-			}*/
+		update: function() {
+			ContactService.update(this.jCard);
+		}*/
 
 		});
-
-		console.log('create');
 
 		if(angular.isDefined(vCard)) {
 			angular.extend(this.data, vCard);

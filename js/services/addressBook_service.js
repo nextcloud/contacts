@@ -31,9 +31,7 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 
 		getEnabled: function() {
 			return DavService.then(function(account) {
-				return account.addressBooks.filter(function(addressBook) {
-					return SettingsService.get('addressBooks').indexOf(addressBook.displayName) > -1;
-				}).map(function(addressBook) {
+				return account.addressBooks.map(function(addressBook) {
 					return new AddressBook(addressBook);
 				});
 			});
