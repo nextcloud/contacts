@@ -198,7 +198,8 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 
 	ctrl.uid = $routeParams.uid;
 	ctrl.t = {
-		'noContacts' : t('contactsrework', 'No contacts in here')
+		noContacts : t('contactsrework', 'No contacts in here'),
+		placeholderName : t('contactsrework', 'Name')
 	};
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
