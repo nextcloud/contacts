@@ -66,6 +66,11 @@ app.service('vCardPropertiesService', [function() {
 		}
 	};
 
+	this.fieldDefinitions = [];
+	for (var prop in this.vCardMeta) {
+		this.fieldDefinitions.push({id: prop, name: this.vCardMeta[prop].readableName});
+	}
+
 	this.fallbackMeta = function(property) {
 		function capitalize(string) { return string.charAt(0).toUpperCase() + string.slice(1); }
 		return {
@@ -79,4 +84,5 @@ app.service('vCardPropertiesService', [function() {
 	this.getMeta = function(property) {
 		return this.vCardMeta[property] || this.fallbackMeta(property);
 	};
+
 }]);
