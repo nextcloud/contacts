@@ -193,13 +193,15 @@ app.directive('contact', function() {
 	};
 });
 
-app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope', function(ContactService, $routeParams, $scope) {
+app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService', '$routeParams', '$scope', function(ContactService, vCardPropertiesService, $routeParams, $scope) {
 	var ctrl = this;
 
 	ctrl.uid = $routeParams.uid;
 	ctrl.t = {
 		'noContacts' : t('contactsrework', 'No contacts in here')
 	};
+
+	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
 
 	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
 		ctrl.changeContact(newValue);
@@ -225,6 +227,11 @@ app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope'
 		ContactService.delete(ctrl.contact);
 		console.log('Deleting Contact');
 	};
+
+	ctrl.addField = function(field) {
+		ctrl.contact.setProperty(field, {value: ''});
+		ctrl.singleProperties = ctrl.contact.getSingleProperties();
+	}
 }]);
 
 app.directive('contactdetails', function() {
@@ -1017,6 +1024,11 @@ app.service('vCardPropertiesService', [function() {
 		}
 	};
 
+	this.fieldDefinitions = [];
+	for (var prop in this.vCardMeta) {
+		this.fieldDefinitions.push({id: prop, name: this.vCardMeta[prop].readableName});
+	}
+
 	this.fallbackMeta = function(property) {
 		function capitalize(string) { return string.charAt(0).toUpperCase() + string.slice(1); }
 		return {
@@ -1030,6 +1042,7 @@ app.service('vCardPropertiesService', [function() {
 	this.getMeta = function(property) {
 		return this.vCardMeta[property] || this.fallbackMeta(property);
 	};
+
 }]);
 
 app.filter('JSON2vCard', function() {

@@ -1,10 +1,12 @@
-app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope', function(ContactService, $routeParams, $scope) {
+app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService', '$routeParams', '$scope', function(ContactService, vCardPropertiesService, $routeParams, $scope) {
 	var ctrl = this;
 
 	ctrl.uid = $routeParams.uid;
 	ctrl.t = {
 		'noContacts' : t('contactsrework', 'No contacts in here')
 	};
+
+	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
 
 	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
 		ctrl.changeContact(newValue);
@@ -30,4 +32,9 @@ app.controller('contactdetailsCtrl', ['ContactService', '$routeParams', '$scope'
 		ContactService.delete(ctrl.contact);
 		console.log('Deleting Contact');
 	};
+
+	ctrl.addField = function(field) {
+		ctrl.contact.setProperty(field, {value: ''});
+		ctrl.singleProperties = ctrl.contact.getSingleProperties();
+	}
 }]);
