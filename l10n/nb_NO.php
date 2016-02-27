@@ -1,0 +1,33 @@
+<?php
+$TRANSLATIONS = array(
+"Contacts" => "Kontakter",
+"No contacts in here" => "Ingen kontakter her",
+"Add contact" => "Ny kontakt",
+"Country" => "Land",
+"All contacts" => "Alle kontakter",
+"{addressbook} shared by {owner}" => "{addressbook} delt av {owner}",
+"Nickname" => "Kallenavn",
+"Organisation" => "Organisasjon",
+"Note" => "Bemerk",
+"Url" => "Url",
+"Title" => "Tittel",
+"Role" => "Rolle",
+"Address" => "Adresse",
+"Home" => "Hjem",
+"Work" => "Arbeid",
+"Other" => "Annet",
+"Categories" => "Kategorier",
+"Birthday" => "Bursdag",
+"E-Mail" => "E-post",
+"Instant Messaging" => "Lynmelding",
+"Telephone" => "Telefon",
+"Home, voice" => "Hjemme, tale",
+"Work, voice" => "Jobb, tale",
+"Home, fax" => "Hjemme, faks",
+"Work, fax" => "Jobb, faks",
+"Pager" => "Pager",
+"Voice" => "Svarer",
+"Fax" => "Faks",
+"Mobile" => "Mobil"
+);
+$PLURAL_FORMS = "nplurals=2; plural=(n != 1);";

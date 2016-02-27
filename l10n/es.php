@@ -1,0 +1,33 @@
+<?php
+$TRANSLATIONS = array(
+"Contacts" => "Contactos",
+"No contacts in here" => "No hay contactos aquí",
+"Add contact" => "Añadir contacto",
+"Country" => "País",
+"All contacts" => "Todos los contactos",
+"{addressbook} shared by {owner}" => "{addressbook} compartido por {owner}",
+"Nickname" => "Apodo",
+"Organisation" => "Organización",
+"Note" => "Nota",
+"Url" => "Url",
+"Title" => "Título",
+"Role" => "Rol",
+"Address" => "Dirección",
+"Home" => "Inicio",
+"Work" => "Trabajo",
+"Other" => "Otro",
+"Categories" => "Categorías",
+"Birthday" => "Fecha de nacimiento",
+"E-Mail" => "Correo electrónico",
+"Instant Messaging" => "Mensajería instantánea",
+"Telephone" => "Teléfono",
+"Home, voice" => "Casa, voz",
+"Work, voice" => "Trabajo, voz",
+"Home, fax" => "Casa, fax",
+"Work, fax" => "Trabajo, fax",
+"Pager" => "Localizador",
+"Voice" => "Voz",
+"Fax" => "Fax",
+"Mobile" => "Móvil"
+);
+$PLURAL_FORMS = "nplurals=2; plural=(n != 1);";
