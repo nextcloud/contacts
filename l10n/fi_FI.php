@@ -2,6 +2,7 @@
 $TRANSLATIONS = array(
 "Contacts" => "Yhteystiedot",
 "No contacts in here" => "Ei yhteytietoja",
+"Name" => "Nimi",
 "Add contact" => "Lisää yhteystieto",
 "Country" => "Maa",
 "All contacts" => "Kaikki yhteystiedot",

@@ -2,9 +2,11 @@
 $TRANSLATIONS = array(
 "Contacts" => "Kontakty",
 "No contacts in here" => "Nejsou zde žádné kontakty",
+"Name" => "Název",
 "Add contact" => "Přidat kontakt",
 "Country" => "Země",
 "All contacts" => "Všechny kontakty",
+"{addressbook} shared by {owner}" => "{addressbook} sdílí {owner}",
 "Nickname" => "Přezdívka",
 "Organisation" => "Organizace",
 "Note" => "Poznámka",

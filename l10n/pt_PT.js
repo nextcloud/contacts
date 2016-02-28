@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Contacts" : "Contatos",
     "No contacts in here" : "Nenhum contato aqui",
+    "Name" : "Nome",
     "Add contact" : "Adicionar contacto",
     "Country" : "País",
     "All contacts" : "Todos os contatos",

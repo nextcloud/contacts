@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakte",
     "No contacts in here" : "S’ka kontakte këtu",
+    "Name" : "Emër",
     "Add contact" : "Shtoni kontakt",
     "Country" : "Vend",
     "All contacts" : "Krejt kontaktet",

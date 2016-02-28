@@ -2,6 +2,7 @@
 $TRANSLATIONS = array(
 "Contacts" => "Contatos",
 "No contacts in here" => "Nenhum contato aqui",
+"Name" => "Nome",
 "Add contact" => "Adicionar contatos",
 "Country" => "País",
 "All contacts" => "Todos os contatos",
