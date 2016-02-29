@@ -15,6 +15,7 @@
 <section>
 	<detailsItem ng-repeat="prop in ctrl.singleProperties" name="prop.name" data="prop.data" model="ctrl"></detailsItem>
 	<select ng-model="field" ng-change="ctrl.addField(field)">
+		<option value=''>{{ctrl.t.selectField}}</option>
 		<option ng-repeat="field in ctrl.fieldDefinitions" value="{{field.id}}">{{field.name}}</option>
 	</select>
 </section>
