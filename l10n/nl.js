@@ -1,5 +1,5 @@
 OC.L10N.register(
-    "contactsrework",
+    "contacts",
     {
     "Contacts" : "Contactpersonen",
     "No contacts in here" : "Hier geen contactpersonen gevonden",

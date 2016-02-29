@@ -1,5 +1,5 @@
 OC.L10N.register(
-    "contactsrework",
+    "contacts",
     {
     "Contacts" : "Επαφές",
     "No contacts in here" : "Δεν υπάρχουν επαφές εδώ",

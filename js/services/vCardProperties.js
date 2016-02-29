@@ -2,66 +2,66 @@ app.service('vCardPropertiesService', [function() {
 	/* map vCard attributes to internal attributes */
 	this.vCardMeta = {
 		nickname: {
-			readableName: t('contactsrework', 'Nickname'),
+			readableName: t('contacts', 'Nickname'),
 			template: 'text'
 		},
 		org: {
-			readableName: t('contactsrework', 'Organisation'),
+			readableName: t('contacts', 'Organisation'),
 			template: 'text'
 		},
 		note: {
-			readableName: t('contactsrework', 'Note'),
+			readableName: t('contacts', 'Note'),
 			template: 'textarea'
 		},
 		url: {
-			readableName: t('contactsrework', 'Url'),
+			readableName: t('contacts', 'Url'),
 			template: 'url'
 		},
 		title: {
-			readableName: t('contactsrework', 'Title'),
+			readableName: t('contacts', 'Title'),
 			template: 'text'
 		},
 		role: {
-			readableName: t('contactsrework', 'Role'),
+			readableName: t('contacts', 'Role'),
 			template: 'text'
 		},
 		adr: {
-			readableName: t('contactsrework', 'Address'),
+			readableName: t('contacts', 'Address'),
 			template: 'adr',
 			options: [
-				{id: 'HOME', name: t('contactsrework', 'Home')},
-				{id: 'WORK', name: t('contactsrework', 'Work')},
-				{id: 'OTHER', name: t('contactsrework', 'Other')}
+				{id: 'HOME', name: t('contacts', 'Home')},
+				{id: 'WORK', name: t('contacts', 'Work')},
+				{id: 'OTHER', name: t('contacts', 'Other')}
 			]
 		},
 		categories: {
-			readableName: t('contactsrework', 'Categories'),
+			readableName: t('contacts', 'Categories'),
 			template: 'text'
 		},
 		bday: {
-			readableName: t('contactsrework', 'Birthday'),
+			readableName: t('contacts', 'Birthday'),
 			template: 'date'
 		},
 		email: {
-			readableName: t('contactsrework', 'E-Mail'),
+			readableName: t('contacts', 'E-Mail'),
 			template: 'date'
 		},
 		impp: {
-			readableName: t('contactsrework', 'Instant Messaging'),
+			readableName: t('contacts', 'Instant Messaging'),
 			template: 'date'
 		},
 		tel: {
-			readableName: t('contactsrework', 'Telephone'),
+			readableName: t('contacts', 'Telephone'),
 			template: 'tel',
 			options: [
-				{id: 'HOME,VOICE', name: t('contactsrework', 'Home, voice')},
-				{id: 'WORK,VOICE', name: t('contactsrework', 'Work, voice')},
-				{id: 'HOME,FAX', name: t('contactsrework', 'Home, fax')},
-				{id: 'WORK,FAX', name: t('contactsrework', 'Work, fax')},
-				{id: 'PAGER', name: t('contactsrework', 'Pager')},
-				{id: 'VOICE', name: t('contactsrework', 'Voice')},
-				{id: 'FAX', name: t('contactsrework', 'Fax')},
-				{id: 'CELL', name: t('contactsrework', 'Mobile')}
+				{id: 'HOME,VOICE', name: t('contacts', 'Home, voice')},
+				{id: 'WORK,VOICE', name: t('contacts', 'Work, voice')},
+				{id: 'HOME,FAX', name: t('contacts', 'Home, fax')},
+				{id: 'WORK,FAX', name: t('contacts', 'Work, fax')},
+				{id: 'PAGER', name: t('contacts', 'Pager')},
+				{id: 'VOICE', name: t('contacts', 'Voice')},
+				{id: 'FAX', name: t('contacts', 'Fax')},
+				{id: 'CELL', name: t('contacts', 'Mobile')}
 			]
 		}
 	};

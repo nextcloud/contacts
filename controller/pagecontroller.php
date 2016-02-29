@@ -1,6 +1,6 @@
 <?php
 /**
- * ownCloud - contactsrework
+ * ownCloud - contacts
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -9,7 +9,7 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-namespace OCA\ContactsRework\Controller;
+namespace OCA\Contacts\Controller;
 
 use OCP\IRequest;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -38,7 +38,7 @@ class PageController extends Controller {
 	 */
 	public function index() {
 		$params = ['user' => $this->userId];
-		return new TemplateResponse('contactsrework', 'main', $params);  // templates/main.php
+		return new TemplateResponse('contacts', 'main', $params);  // templates/main.php
 	}
 
 	/**

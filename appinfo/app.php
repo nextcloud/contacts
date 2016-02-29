@@ -1,6 +1,6 @@
 <?php
 /**
- * ownCloud - contactsrework
+ * ownCloud - contacts
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -9,11 +9,11 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-namespace OCA\ContactsRework\AppInfo;
+namespace OCA\Contacts\AppInfo;
 
 use OCP\AppFramework\App;
 
-$app = new App('contactsrework');
+$app = new App('contacts');
 $container = $app->getContainer();
 
 $container->query('OCP\INavigationManager')->add(function () use ($container) {
@@ -21,18 +21,18 @@ $container->query('OCP\INavigationManager')->add(function () use ($container) {
 	$l10n = $container->query('OCP\IL10N');
 	return [
 		// the string under which your app will be referenced in owncloud
-		'id' => 'contactsrework',
+		'id' => 'contacts',
 
 		// sorting weight for the navigation. The higher the number, the higher
 		// will it be listed in the navigation
 		'order' => 10,
 
 		// the route that will be shown on startup
-		'href' => $urlGenerator->linkToRoute('contactsrework.page.index'),
+		'href' => $urlGenerator->linkToRoute('contacts.page.index'),
 
 		// the icon that will be shown in the navigation
 		// this file needs to exist in img/
-		'icon' => $urlGenerator->imagePath('contactsrework', 'app.svg'),
+		'icon' => $urlGenerator->imagePath('contacts', 'app.svg'),
 
 		// the title of your application. This will be used in the
 		// navigation or on the settings page of your app

@@ -3,7 +3,7 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
 
     ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
     ctrl.t = {
-        country : t('contactsrework', 'Country'),
+        country : t('contacts', 'Country'),
     };
 
     ctrl.availableOptions = ctrl.meta.options || [];
@@ -16,7 +16,7 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
     console.log(ctrl);
 
     ctrl.getTemplate = function() {
-        var templateUrl = OC.linkTo('contactsrework', 'templates/detailItems/'+ ctrl.meta.template +'.html');
+        var templateUrl = OC.linkTo('contacts', 'templates/detailItems/'+ ctrl.meta.template +'.html');
         return $templateRequest(templateUrl);
     };
 }]);

@@ -7,6 +7,6 @@ app.directive('group', function() {
 		bindToController: {
 			group: "=data"
 		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/group.html')
+		templateUrl: OC.linkTo('contacts', 'templates/group.html')
 	};
 });

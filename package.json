@@ -1,5 +1,5 @@
 {
-  "name": "contactsrework",
+  "name": "contacts",
   "version": "0.1.0",
   "description": "Place this app in **owncloud/apps/**",
   "author": {
@@ -9,13 +9,13 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Henni/contactsrework.git"
+    "url": "git+https://github.com/owncloud/contacts.git"
   },
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/Henni/contactsrework/issues"
+    "url": "https://github.com/owncloud/contacts/issues"
   },
-  "homepage": "https://github.com/Henni/contactsrework#readme",
+  "homepage": "https://github.com/owncloud/contacts#readme",
   "devDependencies": {
     "gulp": "^3.9.0",
     "gulp-concat": "^2.6.0",

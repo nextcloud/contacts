@@ -29,13 +29,13 @@ install:
 - mysql -u root -e "grant all on oc_autotest.* to 'oc_autotest'@'localhost';"
 - cd ..
 - ocdev setup core --dir owncloud --branch $BRANCH --no-history
-- mv contactsrework owncloud/apps
-- phpenv config-add owncloud/apps/contactsrework/tests/travis/php.ini
+- mv contacts owncloud/apps
+- phpenv config-add owncloud/apps/contacts/tests/travis/php.ini
 - cd owncloud
 - "./occ maintenance:install --database-name oc_autotest --database-user oc_autotest
   --database-pass --admin-user admin --admin-pass admin --database $DB"
-- "./occ app:enable contactsrework"
-- cd apps/contactsrework
+- "./occ app:enable contacts"
+- cd apps/contacts
 - npm install --deps
 script:
 - phpunit -c phpunit.xml
@@ -46,9 +46,9 @@ deploy:
   provider: releases
   api_key:
     secure: IBNQc4MsBqOc6bj2fD1PnMFfELFpP2GqpZjmBsqP43dWixo8vZzafg7JwlsfnuC0rfcOE/2NwHQl43d+37sXMbMl+ZXgz2ax/wOyLAS2PK/EQEDkzYOdI0E/8u2D7V7m9LlCQ8MOGSGmjYwFcDLzcmgU8AOWg4N85ktpOkaiVF1287Rr+wcRZ0o4/VTVvykYzfKDIBaACAX+EaXtpBtD0cTr1lFN4vKuUma2+iX+MyPVZcvIbCWv2bTzqXzfkT3NagZuFXcooXhvPGFoOb8AisxRSoVP48Vpt8ziG+7wDFlIrNe+fjNJxOEMDEP8cYljoUU6MaOxcm012s/CqHjWBuTI5MRAWlH4w9YJ/1BhFoSJOUb21401zp255puPZJ+Vq8i720F21xm7g7Vc/1NsEAwmTzLgaG8cnV98SonITVDuR4qIaMWpHwTMhap6sHMW7UfH4QnCKypo1mgITFdjM9ANYbcfF8GBfrK4MZtuw75AcLoytFia+KnAOO7OpC93eo6Czcqu6ILOBz1XNWZcFQJTrkLKkFslZLhSSrgPrTL4Py0zVmBurxdOmoZkDcxyKmk/1ggQmZKhh7OS1TGW/7tckscwMhukLwnQiXBCQJ7VWAJ/2eaolym1+fDbqJ4z8t9q2KEfZyqlYAL4VxPqQzxwO9O19ej1WtncvpFHlQw=
-  file: build/artifacts/appstore/contactsrework.tar.gz
+  file: build/artifacts/appstore/contacts.tar.gz
   skip_cleanup: true
   on:
-    repo: owncloud/contactsrework
+    repo: owncloud/contacts
     tags: true
     php: 5.6

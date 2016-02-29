@@ -6,6 +6,6 @@ app.directive('contact', function() {
 		bindToController: {
 			contact: '=data'
 		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
+		templateUrl: OC.linkTo('contacts', 'templates/contact.html')
 	};
 });

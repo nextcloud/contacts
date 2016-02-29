@@ -1,4 +1,4 @@
-# Contacts Rework
+# Contacts
 Place this app in **owncloud/apps/**
 
 ## Publish to App Store

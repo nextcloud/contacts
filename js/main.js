@@ -1,5 +1,5 @@
 /**
- * ownCloud - contactsrework
+ * ownCloud - contacts
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -20,6 +20,6 @@ app.config(['$routeProvider', function($routeProvider){
 		template: '<contactdetails></contactdetails>'
 	});
 
-	$routeProvider.otherwise("/" + t('contactsrework', 'All contacts'));
+	$routeProvider.otherwise("/" + t('contacts', 'All contacts'));
 
 }]);
