@@ -7,6 +7,6 @@ app.directive('contactlist', function() {
 		bindToController: {
 			addressbook: '=adrbook'
 		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/contactList.html')
+		templateUrl: OC.linkTo('contacts', 'templates/contactList.html')
 	};
 });

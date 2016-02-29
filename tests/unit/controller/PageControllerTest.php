@@ -1,6 +1,6 @@
 <?php
 /**
- * ownCloud - contactsrework
+ * ownCloud - contacts
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -9,7 +9,7 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-namespace OCA\ContactsRework\Controller;
+namespace OCA\Contacts\Controller;
 
 use PHPUnit_Framework_TestCase;
 
@@ -25,7 +25,7 @@ class PageControllerTest extends PHPUnit_Framework_TestCase {
 		$request = $this->getMockBuilder('OCP\IRequest')->getMock();
 
 		$this->controller = new PageController(
-			'contactsrework', $request, $this->userId
+			'contacts', $request, $this->userId
 		);
 	}
 

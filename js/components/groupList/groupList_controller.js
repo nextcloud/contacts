@@ -1,6 +1,6 @@
 app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 
-	$scope.groups = [t('contactsrework', 'All contacts')];
+	$scope.groups = [t('contacts', 'All contacts')];
 
 	ContactService.getGroups().then(function(groups) {
 		$scope.groups = groups;

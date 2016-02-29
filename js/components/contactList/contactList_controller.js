@@ -3,7 +3,7 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 
 	ctrl.routeParams = $routeParams;
 	ctrl.t = {
-		addContact : t('contactsrework', 'Add contact')
+		addContact : t('contacts', 'Add contact')
 	};
 
 	ctrl.contactList = [];

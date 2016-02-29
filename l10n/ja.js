@@ -1,5 +1,5 @@
 OC.L10N.register(
-    "contactsrework",
+    "contacts",
     {
     "Contacts" : "アドレス帳",
     "No contacts in here" : "連絡先がありません",

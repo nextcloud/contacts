@@ -5,7 +5,7 @@ app.filter('contactGroupFilter', [
 			if (typeof contacts === "undefined") {
 				return contacts;
 			}
-			if (typeof group === "undefined" || group.toLowerCase() === t('contactsrework', 'All contacts').toLowerCase()) {
+			if (typeof group === "undefined" || group.toLowerCase() === t('contacts', 'All contacts').toLowerCase()) {
 				return contacts;
 			}
 			var filter = [];

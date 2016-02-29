@@ -1,5 +1,5 @@
 /**
- * ownCloud - contactsrework
+ * ownCloud - contacts
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -20,7 +20,7 @@ app.config(['$routeProvider', function($routeProvider){
 		template: '<contactdetails></contactdetails>'
 	});
 
-	$routeProvider.otherwise("/" + t('contactsrework', 'All contacts'));
+	$routeProvider.otherwise("/" + t('contacts', 'All contacts'));
 
 }]);
 
@@ -139,9 +139,10 @@ app.directive('addressbook', function() {
 		bindToController: {
 			addressBook: "=data"
 		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/addressBook.html')
+		templateUrl: OC.linkTo('contacts', 'templates/addressBook.html')
 	};
 });
+
 app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'SettingsService', function(scope, AddressBookService, SettingsService) {
 	var ctrl = this;
 
@@ -164,7 +165,7 @@ app.directive('addressbooklist', function() {
 		controller: 'addressbooklistCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {},
-		templateUrl: OC.linkTo('contactsrework', 'templates/addressBookList.html')
+		templateUrl: OC.linkTo('contacts', 'templates/addressBookList.html')
 	};
 });
 
@@ -189,7 +190,7 @@ app.directive('contact', function() {
 		bindToController: {
 			contact: '=data'
 		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/contact.html')
+		templateUrl: OC.linkTo('contacts', 'templates/contact.html')
 	};
 });
 
@@ -198,8 +199,8 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 
 	ctrl.uid = $routeParams.uid;
 	ctrl.t = {
-		noContacts : t('contactsrework', 'No contacts in here'),
-		placeholderName : t('contactsrework', 'Name')
+		noContacts : t('contacts', 'No contacts in here'),
+		placeholderName : t('contacts', 'Name')
 	};
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
@@ -242,7 +243,7 @@ app.directive('contactdetails', function() {
 		controller: 'contactdetailsCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {},
-		templateUrl: OC.linkTo('contactsrework', 'templates/contactDetails.html')
+		templateUrl: OC.linkTo('contacts', 'templates/contactDetails.html')
 	};
 });
 
@@ -251,7 +252,7 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 
 	ctrl.routeParams = $routeParams;
 	ctrl.t = {
-		addContact : t('contactsrework', 'Add contact')
+		addContact : t('contacts', 'Add contact')
 	};
 
 	ctrl.contactList = [];
@@ -316,15 +317,16 @@ app.directive('contactlist', function() {
 		bindToController: {
 			addressbook: '=adrbook'
 		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/contactList.html')
+		templateUrl: OC.linkTo('contacts', 'templates/contactList.html')
 	};
 });
+
 app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService', function($templateRequest, vCardPropertiesService) {
 	var ctrl = this;
 
     ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
     ctrl.t = {
-        country : t('contactsrework', 'Country'),
+        country : t('contacts', 'Country'),
     };
 
     ctrl.availableOptions = ctrl.meta.options || [];
@@ -337,7 +339,7 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
     console.log(ctrl);
 
     ctrl.getTemplate = function() {
-        var templateUrl = OC.linkTo('contactsrework', 'templates/detailItems/'+ ctrl.meta.template +'.html');
+        var templateUrl = OC.linkTo('contacts', 'templates/detailItems/'+ ctrl.meta.template +'.html');
         return $templateRequest(templateUrl);
     };
 }]);
@@ -376,13 +378,13 @@ app.directive('group', function() {
 		bindToController: {
 			group: "=data"
 		},
-		templateUrl: OC.linkTo('contactsrework', 'templates/group.html')
+		templateUrl: OC.linkTo('contacts', 'templates/group.html')
 	};
 });
 
 app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 
-	$scope.groups = [t('contactsrework', 'All contacts')];
+	$scope.groups = [t('contacts', 'All contacts')];
 
 	ContactService.getGroups().then(function(groups) {
 		$scope.groups = groups;
@@ -401,7 +403,7 @@ app.directive('grouplist', function() {
 		controller: 'grouplistCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {},
-		templateUrl: OC.linkTo('contactsrework', 'templates/groupList.html')
+		templateUrl: OC.linkTo('contacts', 'templates/groupList.html')
 	};
 });
 
@@ -664,7 +666,7 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 
 		getGroups: function () {
 			return this.getAll().then(function(addressBooks){
-				return [t('contactsrework', 'All contacts')].concat(
+				return [t('contacts', 'All contacts')].concat(
 					addressBooks.map(function (element) {
 						return element.groups;
 					}).reduce(function(a, b){
@@ -890,7 +892,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 			}).reduce(function(a, b){
 				return a.concat(b);
 			}).sort(), true);
-			return [t('contactsrework', 'All contacts')].concat(groups);
+			return [t('contacts', 'All contacts')].concat(groups);
 		});
 	};
 
@@ -984,66 +986,66 @@ app.service('vCardPropertiesService', [function() {
 	/* map vCard attributes to internal attributes */
 	this.vCardMeta = {
 		nickname: {
-			readableName: t('contactsrework', 'Nickname'),
+			readableName: t('contacts', 'Nickname'),
 			template: 'text'
 		},
 		org: {
-			readableName: t('contactsrework', 'Organisation'),
+			readableName: t('contacts', 'Organisation'),
 			template: 'text'
 		},
 		note: {
-			readableName: t('contactsrework', 'Note'),
+			readableName: t('contacts', 'Note'),
 			template: 'textarea'
 		},
 		url: {
-			readableName: t('contactsrework', 'Url'),
+			readableName: t('contacts', 'Url'),
 			template: 'url'
 		},
 		title: {
-			readableName: t('contactsrework', 'Title'),
+			readableName: t('contacts', 'Title'),
 			template: 'text'
 		},
 		role: {
-			readableName: t('contactsrework', 'Role'),
+			readableName: t('contacts', 'Role'),
 			template: 'text'
 		},
 		adr: {
-			readableName: t('contactsrework', 'Address'),
+			readableName: t('contacts', 'Address'),
 			template: 'adr',
 			options: [
-				{id: 'HOME', name: t('contactsrework', 'Home')},
-				{id: 'WORK', name: t('contactsrework', 'Work')},
-				{id: 'OTHER', name: t('contactsrework', 'Other')}
+				{id: 'HOME', name: t('contacts', 'Home')},
+				{id: 'WORK', name: t('contacts', 'Work')},
+				{id: 'OTHER', name: t('contacts', 'Other')}
 			]
 		},
 		categories: {
-			readableName: t('contactsrework', 'Categories'),
+			readableName: t('contacts', 'Categories'),
 			template: 'text'
 		},
 		bday: {
-			readableName: t('contactsrework', 'Birthday'),
+			readableName: t('contacts', 'Birthday'),
 			template: 'date'
 		},
 		email: {
-			readableName: t('contactsrework', 'E-Mail'),
+			readableName: t('contacts', 'E-Mail'),
 			template: 'date'
 		},
 		impp: {
-			readableName: t('contactsrework', 'Instant Messaging'),
+			readableName: t('contacts', 'Instant Messaging'),
 			template: 'date'
 		},
 		tel: {
-			readableName: t('contactsrework', 'Telephone'),
+			readableName: t('contacts', 'Telephone'),
 			template: 'tel',
 			options: [
-				{id: 'HOME,VOICE', name: t('contactsrework', 'Home, voice')},
-				{id: 'WORK,VOICE', name: t('contactsrework', 'Work, voice')},
-				{id: 'HOME,FAX', name: t('contactsrework', 'Home, fax')},
-				{id: 'WORK,FAX', name: t('contactsrework', 'Work, fax')},
-				{id: 'PAGER', name: t('contactsrework', 'Pager')},
-				{id: 'VOICE', name: t('contactsrework', 'Voice')},
-				{id: 'FAX', name: t('contactsrework', 'Fax')},
-				{id: 'CELL', name: t('contactsrework', 'Mobile')}
+				{id: 'HOME,VOICE', name: t('contacts', 'Home, voice')},
+				{id: 'WORK,VOICE', name: t('contacts', 'Work, voice')},
+				{id: 'HOME,FAX', name: t('contacts', 'Home, fax')},
+				{id: 'WORK,FAX', name: t('contacts', 'Work, fax')},
+				{id: 'PAGER', name: t('contacts', 'Pager')},
+				{id: 'VOICE', name: t('contacts', 'Voice')},
+				{id: 'FAX', name: t('contacts', 'Fax')},
+				{id: 'CELL', name: t('contacts', 'Mobile')}
 			]
 		}
 	};
@@ -1102,7 +1104,7 @@ app.filter('contactGroupFilter', [
 			if (typeof contacts === "undefined") {
 				return contacts;
 			}
-			if (typeof group === "undefined" || group.toLowerCase() === t('contactsrework', 'All contacts').toLowerCase()) {
+			if (typeof group === "undefined" || group.toLowerCase() === t('contacts', 'All contacts').toLowerCase()) {
 				return contacts;
 			}
 			var filter = [];

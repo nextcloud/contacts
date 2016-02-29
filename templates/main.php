@@ -1,22 +1,22 @@
 <?php
 // angular + components
-script('contactsrework', 'vendor/angular/angular');
-script('contactsrework', 'vendor/angular-route/angular-route');
-script('contactsrework', 'vendor/angular-uuid4/angular-uuid4');
-script('contactsrework', 'vendor/angular-cache/dist/angular-cache');
+script('contacts', 'vendor/angular/angular');
+script('contacts', 'vendor/angular-route/angular-route');
+script('contacts', 'vendor/angular-uuid4/angular-uuid4');
+script('contacts', 'vendor/angular-cache/dist/angular-cache');
 
 // DAV libraries
-script('contactsrework', 'dav/dav');
-script('contactsrework', 'vendor/vcard/src/vcard');
+script('contacts', 'dav/dav');
+script('contacts', 'vendor/vcard/src/vcard');
 
 // compiled version of app javascript
-script('contactsrework', 'public/script');
+script('contacts', 'public/script');
 
-script('contactsrework', 'vendor/angular-bootstrap/ui-bootstrap.min');
-script('contactsrework', 'vendor/angular-bootstrap/ui-bootstrap-tpls.min');
+script('contacts', 'vendor/angular-bootstrap/ui-bootstrap.min');
+script('contacts', 'vendor/angular-bootstrap/ui-bootstrap-tpls.min');
 
 // all styles
-style('contactsrework', 'public/style');
+style('contacts', 'public/style');
 
 ?>
 

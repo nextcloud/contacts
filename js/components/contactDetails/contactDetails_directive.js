@@ -5,6 +5,6 @@ app.directive('contactdetails', function() {
 		controller: 'contactdetailsCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {},
-		templateUrl: OC.linkTo('contactsrework', 'templates/contactDetails.html')
+		templateUrl: OC.linkTo('contacts', 'templates/contactDetails.html')
 	};
 });

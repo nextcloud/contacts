@@ -5,6 +5,6 @@ app.directive('grouplist', function() {
 		controller: 'grouplistCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {},
-		templateUrl: OC.linkTo('contactsrework', 'templates/groupList.html')
+		templateUrl: OC.linkTo('contacts', 'templates/groupList.html')
 	};
 });

@@ -5,6 +5,6 @@ app.directive('addressbooklist', function() {
 		controller: 'addressbooklistCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {},
-		templateUrl: OC.linkTo('contactsrework', 'templates/addressBookList.html')
+		templateUrl: OC.linkTo('contacts', 'templates/addressBookList.html')
 	};
 });

@@ -1,5 +1,5 @@
 OC.L10N.register(
-    "contactsrework",
+    "contacts",
     {
     "Contacts" : "Stiki",
     "No contacts in here" : "Ni dodanega nobenega stika!",

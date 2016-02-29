@@ -54,7 +54,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 			}).reduce(function(a, b){
 				return a.concat(b);
 			}).sort(), true);
-			return [t('contactsrework', 'All contacts')].concat(groups);
+			return [t('contacts', 'All contacts')].concat(groups);
 		});
 	};
 
