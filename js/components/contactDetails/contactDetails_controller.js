@@ -1,4 +1,4 @@
-app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService', '$routeParams', '$scope', function(ContactService, vCardPropertiesService, $routeParams, $scope) {
+app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'vCardPropertiesService', '$routeParams', '$scope', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
 	var ctrl = this;
 
 	ctrl.uid = $routeParams.uid;
@@ -8,6 +8,17 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 	};
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
+	$scope.addressBooks = [];
+
+	AddressBookService.getAll().then(function(addressBooks) {
+		//$scope.addressBooks = addressBooks.map(function (element) {
+		//	return {
+		//		id: element.displayName,
+		//		name: element.displayName
+		//	};
+		//});
+		$scope.addressBooks = addressBooks;
+	});
 
 	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
 		ctrl.changeContact(newValue);
@@ -21,6 +32,7 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 			ctrl.contact = contact;
 			ctrl.singleProperties = ctrl.contact.getSingleProperties();
 			ctrl.photo = ctrl.contact.photo();
+			$scope.addressBook = ctrl.contact.addressBook;
 		});
 	};
 
@@ -37,5 +49,9 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 	ctrl.addField = function(field) {
 		ctrl.contact.setProperty(field, {value: ''});
 		ctrl.singleProperties = ctrl.contact.getSingleProperties();
-	}
+	};
+
+	ctrl.changeAddressBook = function (addressBook) {
+		ContactService.moveContact(ctrl.contact, addressBook);
+	};
 }]);

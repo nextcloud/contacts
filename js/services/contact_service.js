@@ -29,7 +29,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 				promises.push(
 					AddressBookService.sync(addressBook).then(function(addressBook) {
 						for(var i in addressBook.objects) {
-							contact = new Contact(addressBook.objects[i]);
+							contact = new Contact(addressBook, addressBook.objects[i]);
 							contacts.put(contact.uid(), contact);
 						}
 					})
@@ -94,6 +94,17 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		}).catch(function(e) {
 			console.log("Couldn't create", e);
 		});
+	};
+
+	this.moveContact = function (contact, addressbook) {
+		contact.syncVCard();
+		var clone = angular.copy(contact);
+
+		// create the contact in the new target addressbook
+		this.create(clone, addressbook);
+
+		// delete the old one
+		this.delete(contact);
 	};
 
 	this.update = function(contact) {
