@@ -1,51 +1,54 @@
 language: php
 php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7
-  - hhvm
-
+- 5.4
+- 5.5
+- 5.6
+- 7
+- hhvm
 env:
   global:
-    - BRANCH=master
+  - BRANCH=master
   matrix:
-    - DB=mysql
-
+  - DB=mysql
 branches:
   only:
-    - master
-    - /^stable\d*$/
-
+  - master
+  - "/^stable\\d*$/"
 matrix:
   allow_failures:
-    - php: hhvm
-
+  - php: hhvm
 install:
-  # install ocdev
-  - sudo add-apt-repository -y ppa:chris-lea/node.js
-  - sudo apt-get update
-  - sudo apt-get -y install nodejs python3-jinja2 python3-setuptools
-  - sudo easy_install3 requests
-  - sudo easy_install3 ocdev
-  # set up postgresql
-  - createuser -U travis -s oc_autotest
-  # set up mysql
-  - mysql -e 'create database oc_autotest;'
-  - mysql -u root -e "CREATE USER 'oc_autotest'@'localhost' IDENTIFIED BY '';"
-  - mysql -u root -e "grant all on oc_autotest.* to 'oc_autotest'@'localhost';"
-  # install owncloud
-  - cd ..
-  - ocdev setup core --dir owncloud --branch $BRANCH --no-history
-  - mv contactsrework owncloud/apps
-  - phpenv config-add owncloud/apps/contactsrework/tests/travis/php.ini
-  - cd owncloud
-  - ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --database-pass --admin-user admin --admin-pass admin --database $DB
-  - ./occ app:enable contactsrework
-  - cd apps/contactsrework
-  - npm install --deps
-
+- sudo add-apt-repository -y ppa:chris-lea/node.js
+- sudo apt-get update
+- sudo apt-get -y install nodejs python3-jinja2 python3-setuptools
+- sudo easy_install3 requests
+- sudo easy_install3 ocdev
+- createuser -U travis -s oc_autotest
+- mysql -e 'create database oc_autotest;'
+- mysql -u root -e "CREATE USER 'oc_autotest'@'localhost' IDENTIFIED BY '';"
+- mysql -u root -e "grant all on oc_autotest.* to 'oc_autotest'@'localhost';"
+- cd ..
+- ocdev setup core --dir owncloud --branch $BRANCH --no-history
+- mv contactsrework owncloud/apps
+- phpenv config-add owncloud/apps/contactsrework/tests/travis/php.ini
+- cd owncloud
+- "./occ maintenance:install --database-name oc_autotest --database-user oc_autotest
+  --database-pass --admin-user admin --admin-pass admin --database $DB"
+- "./occ app:enable contactsrework"
+- cd apps/contactsrework
+- npm install --deps
 script:
-  - phpunit -c phpunit.xml
-  - phpunit -c phpunit.integration.xml
-  - node_modules/gulp/bin/gulp.js
+- phpunit -c phpunit.xml
+- phpunit -c phpunit.integration.xml
+- node_modules/gulp/bin/gulp.js
+- make appstore_package
+deploy:
+  provider: releases
+  api_key:
+    secure: IBNQc4MsBqOc6bj2fD1PnMFfELFpP2GqpZjmBsqP43dWixo8vZzafg7JwlsfnuC0rfcOE/2NwHQl43d+37sXMbMl+ZXgz2ax/wOyLAS2PK/EQEDkzYOdI0E/8u2D7V7m9LlCQ8MOGSGmjYwFcDLzcmgU8AOWg4N85ktpOkaiVF1287Rr+wcRZ0o4/VTVvykYzfKDIBaACAX+EaXtpBtD0cTr1lFN4vKuUma2+iX+MyPVZcvIbCWv2bTzqXzfkT3NagZuFXcooXhvPGFoOb8AisxRSoVP48Vpt8ziG+7wDFlIrNe+fjNJxOEMDEP8cYljoUU6MaOxcm012s/CqHjWBuTI5MRAWlH4w9YJ/1BhFoSJOUb21401zp255puPZJ+Vq8i720F21xm7g7Vc/1NsEAwmTzLgaG8cnV98SonITVDuR4qIaMWpHwTMhap6sHMW7UfH4QnCKypo1mgITFdjM9ANYbcfF8GBfrK4MZtuw75AcLoytFia+KnAOO7OpC93eo6Czcqu6ILOBz1XNWZcFQJTrkLKkFslZLhSSrgPrTL4Py0zVmBurxdOmoZkDcxyKmk/1ggQmZKhh7OS1TGW/7tckscwMhukLwnQiXBCQJ7VWAJ/2eaolym1+fDbqJ4z8t9q2KEfZyqlYAL4VxPqQzxwO9O19ej1WtncvpFHlQw=
+  file: build/artifacts/appstore/contactsrework.tar.gz
+  skip_cleanup: true
+  on:
+    repo: owncloud/contactsrework
+    tags: true
+    php: 5.6
