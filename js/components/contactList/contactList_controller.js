@@ -54,8 +54,8 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 							gid: $routeParams.gid,
 							uid: ctrl.contactList[0].uid()
 						});
-						unbindWatch(); // unbind as we only want one update
 					}
+					unbindWatch(); // unbind as we only want one update
 				});
 			}
 		}
@@ -71,8 +71,8 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 					gid: $routeParams.gid,
 					uid: ctrl.contactList[0].uid()
 				});
-				unbindWatch(); // unbind as we only want one update
 			}
+			unbindWatch(); // unbind as we only want one update
 		});
 	});
 
