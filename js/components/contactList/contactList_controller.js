@@ -8,9 +8,27 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 
 	ctrl.contactList = [];
 
-	ContactService.registerObserverCallback(function(contacts) {
+	ContactService.registerObserverCallback(function(ev) {
 		$scope.$apply(function() {
-			ctrl.contacts = contacts;
+			if (ev.event === 'delete') {
+				if (ctrl.contactList.length === 1) {
+					$route.updateParams({
+						gid: $routeParams.gid,
+						uid: undefined
+					});
+				} else {
+					for (var i = 0, length = ctrl.contactList.length; i < length; i++) {
+						if (ctrl.contactList[i].uid() === ev.uid) {
+							$route.updateParams({
+								gid: $routeParams.gid,
+								uid: (ctrl.contactList[i+1]) ? ctrl.contactList[i+1].uid() : ctrl.contactList[i-1].uid()
+							});
+							break;
+						}
+					}
+				}
+			}
+			ctrl.contacts = ev.contacts;
 		});
 	});
 

@@ -11,9 +11,14 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		observerCallbacks.push(callback);
 	};
 
-	var notifyObservers = function() {
+	var notifyObservers = function(eventName, uid) {
+		var ev = {
+			event: eventName,
+			uid: uid,
+			contacts: contacts.values()
+		};
 		angular.forEach(observerCallbacks, function(callback){
-			callback(contacts.values());
+			callback(ev);
 		});
 	};
 
@@ -84,7 +89,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		).then(function(xhr) {
 			newContact.setETag(xhr.getResponseHeader('ETag'));
 			contacts.put(newUid, newContact);
-			notifyObservers();
+			notifyObservers('create', newUid);
 			return newContact;
 		}).catch(function(e) {
 			console.log("Couldn't create", e);
@@ -105,7 +110,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		// delete contact from server
 		return DavClient.deleteCard(contact.data).then(function(xhr) {
 			contacts.remove(contact.uid());
-			notifyObservers();
+			notifyObservers('delete', contact.uid());
 		});
 	};
 }]);

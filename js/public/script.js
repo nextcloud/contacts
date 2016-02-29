@@ -257,9 +257,27 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 
 	ctrl.contactList = [];
 
-	ContactService.registerObserverCallback(function(contacts) {
+	ContactService.registerObserverCallback(function(ev) {
 		$scope.$apply(function() {
-			ctrl.contacts = contacts;
+			if (ev.event === 'delete') {
+				if (ctrl.contactList.length === 1) {
+					$route.updateParams({
+						gid: $routeParams.gid,
+						uid: undefined
+					});
+				} else {
+					for (var i = 0, length = ctrl.contactList.length; i < length; i++) {
+						if (ctrl.contactList[i].uid() === ev.uid) {
+							$route.updateParams({
+								gid: $routeParams.gid,
+								uid: (ctrl.contactList[i+1]) ? ctrl.contactList[i+1].uid() : ctrl.contactList[i-1].uid()
+							});
+							break;
+						}
+					}
+				}
+			}
+			ctrl.contacts = ev.contacts;
 		});
 	});
 
@@ -399,21 +417,6 @@ app.directive('group', function() {
 	};
 });
 
-app.directive('telModel', function(){
-    return{
-        restrict: 'A',
-        require: 'ngModel',
-        link: function(scope, element, attr, ngModel) {
-            ngModel.$formatters.push(function(value) {
-                return value;
-            });
-            ngModel.$parsers.push(function(value) {
-                return value;
-            });
-        }
-    };
-});
-
 app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 
 	$scope.groups = [t('contacts', 'All contacts')];
@@ -437,6 +440,21 @@ app.directive('grouplist', function() {
 		bindToController: {},
 		templateUrl: OC.linkTo('contacts', 'templates/groupList.html')
 	};
+});
+
+app.directive('telModel', function(){
+    return{
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, element, attr, ngModel) {
+            ngModel.$formatters.push(function(value) {
+                return value;
+            });
+            ngModel.$parsers.push(function(value) {
+                return value;
+            });
+        }
+    };
 });
 
 app.factory('AddressBook', function()
@@ -866,9 +884,14 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		observerCallbacks.push(callback);
 	};
 
-	var notifyObservers = function() {
+	var notifyObservers = function(eventName, uid) {
+		var ev = {
+			event: eventName,
+			uid: uid,
+			contacts: contacts.values()
+		};
 		angular.forEach(observerCallbacks, function(callback){
-			callback(contacts.values());
+			callback(ev);
 		});
 	};
 
@@ -939,7 +962,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		).then(function(xhr) {
 			newContact.setETag(xhr.getResponseHeader('ETag'));
 			contacts.put(newUid, newContact);
-			notifyObservers();
+			notifyObservers('create', newUid);
 			return newContact;
 		}).catch(function(e) {
 			console.log("Couldn't create", e);
@@ -960,7 +983,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		// delete contact from server
 		return DavClient.deleteCard(contact.data).then(function(xhr) {
 			contacts.remove(contact.uid());
-			notifyObservers();
+			notifyObservers('delete', contact.uid());
 		});
 	};
 }]);
