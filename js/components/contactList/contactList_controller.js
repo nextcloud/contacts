@@ -23,22 +23,39 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 	$scope.$watch('ctrl.routeParams.uid', function(newValue) {
 		if(newValue === undefined) {
 			// we might have to wait until ng-repeat filled the contactList
-			if(ctrl.contactList.length > 0) {
+			if(ctrl.contactList && ctrl.contactList.length > 0) {
 				$route.updateParams({
 					gid: $routeParams.gid,
 					uid: ctrl.contactList[0].uid()
 				});
 			} else {
 				// watch for next contactList update
-				var unbindWatch = $scope.$watch('ctrl.contactList', function(newValue) {
-					$route.updateParams({
-						gid: $routeParams.gid,
-						uid: ctrl.contactList[0].uid()
-					});
-					unbindWatch(); // unbind as we only want one update
+				var unbindWatch = $scope.$watch('ctrl.contactList', function() {
+					if(ctrl.contactList && ctrl.contactList.length > 0) {
+						$route.updateParams({
+							gid: $routeParams.gid,
+							uid: ctrl.contactList[0].uid()
+						});
+						unbindWatch(); // unbind as we only want one update
+					}
 				});
 			}
 		}
+	});
+
+	$scope.$watch('ctrl.routeParams.gid', function() {
+		// we might have to wait until ng-repeat filled the contactList
+		ctrl.contactList = [];
+		// watch for next contactList update
+		var unbindWatch = $scope.$watch('ctrl.contactList', function() {
+			if(ctrl.contactList && ctrl.contactList.length > 0) {
+				$route.updateParams({
+					gid: $routeParams.gid,
+					uid: ctrl.contactList[0].uid()
+				});
+				unbindWatch(); // unbind as we only want one update
+			}
+		});
 	});
 
 	ctrl.createContact = function() {
