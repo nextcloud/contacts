@@ -18,7 +18,7 @@ app.factory('Contact', [ '$filter', function($filter) {
 				return singleProperties;
 			},
 
-			addressBook: addressBook,
+			addressBookId: addressBook.displayName,
 
 			uid: function(value) {
 				if (angular.isDefined(value)) {

@@ -79,7 +79,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		var newUid = uuid4.generate();
 		newContact.uid(newUid);
 		newContact.setUrl(addressBook, newUid);
-		newContact.addressBook = addressBook;
+		newContact.addressBookId = addressBook.displayName;
 
 		return DavClient.createCard(
 			addressBook,
@@ -98,7 +98,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 	};
 
 	this.moveContact = function (contact, addressbook) {
-		if (contact.addressBook.displayName === addressbook.displayName) {
+		if (contact.addressBookId === addressbook.displayName) {
 			return;
 		}
 		contact.syncVCard();

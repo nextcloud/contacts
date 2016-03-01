@@ -15,7 +15,7 @@
 <section>
 	<detailsItem ng-repeat="prop in ctrl.singleProperties" name="prop.name" data="prop.data" model="ctrl"></detailsItem>
 	<div ng-if="addressBooks.length > 1">
-		<select ng-model="addressBook" ng-change="ctrl.changeAddressBook(addressBook)" ng-options="book as book.displayName for book in addressBooks track by book.displayName">
+		<select ng-model="addressBook" ng-change="ctrl.changeAddressBook(addressBook)" ng-options="book.id for book in addressBooks track by book.id">
 		</select>
 	</div>
 	<select ng-model="field" ng-change="ctrl.addField(field)">

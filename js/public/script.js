@@ -205,15 +205,19 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
 	$scope.addressBooks = [];
+	ctrl.addressBooks = [];
 
 	AddressBookService.getAll().then(function(addressBooks) {
-		//$scope.addressBooks = addressBooks.map(function (element) {
-		//	return {
-		//		id: element.displayName,
-		//		name: element.displayName
-		//	};
-		//});
-		$scope.addressBooks = addressBooks;
+		ctrl.addressBooks = addressBooks;
+		$scope.addressBooks = addressBooks.map(function (element) {
+			return {
+				id: element.displayName,
+				name: element.displayName
+			};
+		});
+		$scope.addressBook = _.find($scope.addressBooks, function(book) {
+			return book.id === ctrl.contact.addressBookId;
+		});
 	});
 
 	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
@@ -228,7 +232,9 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 			ctrl.contact = contact;
 			ctrl.singleProperties = ctrl.contact.getSingleProperties();
 			ctrl.photo = ctrl.contact.photo();
-			$scope.addressBook = ctrl.contact.addressBook;
+			$scope.addressBook = _.find($scope.addressBooks, function(book) {
+				return book.id === ctrl.contact.addressBookId;
+			});
 		});
 	};
 
@@ -248,6 +254,9 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 	};
 
 	ctrl.changeAddressBook = function (addressBook) {
+		addressBook = _.find(ctrl.addressBooks, function(book) {
+			return book.displayName === addressBook.id;
+		});
 		ContactService.moveContact(ctrl.contact, addressBook);
 	};
 }]);
@@ -563,7 +572,7 @@ app.factory('Contact', [ '$filter', function($filter) {
 				return singleProperties;
 			},
 
-			addressBook: addressBook,
+			addressBookId: addressBook.displayName,
 
 			uid: function(value) {
 				if (angular.isDefined(value)) {
@@ -970,7 +979,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		var newUid = uuid4.generate();
 		newContact.uid(newUid);
 		newContact.setUrl(addressBook, newUid);
-		newContact.addressBook = addressBook;
+		newContact.addressBookId = addressBook.displayName;
 
 		return DavClient.createCard(
 			addressBook,
@@ -989,7 +998,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 	};
 
 	this.moveContact = function (contact, addressbook) {
-		if (contact.addressBook.displayName === addressbook.displayName) {
+		if (contact.addressBookId === addressbook.displayName) {
 			return;
 		}
 		contact.syncVCard();
