@@ -192,7 +192,7 @@ app.directive('contact', function() {
 	};
 });
 
-app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService', '$routeParams', '$scope', function(ContactService, vCardPropertiesService, $routeParams, $scope) {
+app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'vCardPropertiesService', '$routeParams', '$scope', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
 	var ctrl = this;
 
 	ctrl.uid = $routeParams.uid;
@@ -202,6 +202,21 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 	};
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
+	$scope.addressBooks = [];
+	ctrl.addressBooks = [];
+
+	AddressBookService.getAll().then(function(addressBooks) {
+		ctrl.addressBooks = addressBooks;
+		$scope.addressBooks = addressBooks.map(function (element) {
+			return {
+				id: element.displayName,
+				name: element.displayName
+			};
+		});
+		$scope.addressBook = _.find($scope.addressBooks, function(book) {
+			return book.id === ctrl.contact.addressBookId;
+		});
+	});
 
 	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
 		ctrl.changeContact(newValue);
@@ -215,6 +230,9 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 			ctrl.contact = contact;
 			ctrl.singleProperties = ctrl.contact.getSingleProperties();
 			ctrl.photo = ctrl.contact.photo();
+			$scope.addressBook = _.find($scope.addressBooks, function(book) {
+				return book.id === ctrl.contact.addressBookId;
+			});
 		});
 	};
 
@@ -229,7 +247,14 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 	ctrl.addField = function(field) {
 		ctrl.contact.setProperty(field, {value: ''});
 		ctrl.singleProperties = ctrl.contact.getSingleProperties();
-	}
+	};
+
+	ctrl.changeAddressBook = function (addressBook) {
+		addressBook = _.find(ctrl.addressBooks, function(book) {
+			return book.displayName === addressBook.id;
+		});
+		ContactService.moveContact(ctrl.contact, addressBook);
+	};
 }]);
 
 app.directive('contactdetails', function() {
@@ -521,7 +546,7 @@ app.factory('AddressBook', function()
 });
 
 app.factory('Contact', [ '$filter', function($filter) {
-	return function Contact(vCard) {
+	return function Contact(addressBook, vCard) {
 		angular.extend(this, {
 
 			data: {},
@@ -538,6 +563,8 @@ app.factory('Contact', [ '$filter', function($filter) {
 				}
 				return singleProperties;
 			},
+
+			addressBookId: addressBook.displayName,
 
 			uid: function(value) {
 				if (angular.isDefined(value)) {
@@ -859,7 +886,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 				promises.push(
 					AddressBookService.sync(addressBook).then(function(addressBook) {
 						for(var i in addressBook.objects) {
-							contact = new Contact(addressBook.objects[i]);
+							contact = new Contact(addressBook, addressBook.objects[i]);
 							contacts.put(contact.uid(), contact);
 						}
 					})
@@ -909,6 +936,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		var newUid = uuid4.generate();
 		newContact.uid(newUid);
 		newContact.setUrl(addressBook, newUid);
+		newContact.addressBookId = addressBook.displayName;
 
 		return DavClient.createCard(
 			addressBook,
@@ -924,6 +952,20 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		}).catch(function(e) {
 			console.log("Couldn't create", e);
 		});
+	};
+
+	this.moveContact = function (contact, addressbook) {
+		if (contact.addressBookId === addressbook.displayName) {
+			return;
+		}
+		contact.syncVCard();
+		var clone = angular.copy(contact);
+
+		// create the contact in the new target addressbook
+		this.create(clone, addressbook);
+
+		// delete the old one
+		this.delete(contact);
 	};
 
 	this.update = function(contact) {

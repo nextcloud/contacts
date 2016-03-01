@@ -1,5 +1,5 @@
 app.factory('Contact', [ '$filter', function($filter) {
-	return function Contact(vCard) {
+	return function Contact(addressBook, vCard) {
 		angular.extend(this, {
 
 			data: {},
@@ -16,6 +16,8 @@ app.factory('Contact', [ '$filter', function($filter) {
 				}
 				return singleProperties;
 			},
+
+			addressBookId: addressBook.displayName,
 
 			uid: function(value) {
 				if (angular.isDefined(value)) {
