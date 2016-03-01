@@ -14,7 +14,6 @@ app.factory('Contact', [ '$filter', function($filter) {
 						});
 					}
 				}
-				console.log('!!!', singleProperties);
 				return singleProperties;
 			},
 
@@ -100,10 +99,6 @@ app.factory('Contact', [ '$filter', function($filter) {
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
 
-			delete: function() {
-				console.log('deleting...');
-			},
-
 			setETag: function(etag) {
 				this.data.etag = etag;
 			},
@@ -116,24 +111,6 @@ app.factory('Contact', [ '$filter', function($filter) {
 				// keep vCard in sync
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			}
-
-
-		/*getPropertyValue: function(property) {
-			if(property.value instanceof Array) {
-				return property.value.join(' ');
-			} else {
-				return property.value;
-			}
-		},
-
-		setPropertyValue: function(property, propertyValue) {
-			property[3] = propertyValue;
-			this.update();
-		},
-
-		update: function() {
-			ContactService.update(this.jCard);
-		}*/
 
 		});
 

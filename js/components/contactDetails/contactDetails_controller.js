@@ -26,12 +26,10 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 
 	ctrl.updateContact = function() {
 		ContactService.update(ctrl.contact);
-		console.log('updating Contact');
 	};
 
 	ctrl.deleteContact = function() {
 		ContactService.delete(ctrl.contact);
-		console.log('Deleting Contact');
 	};
 
 	ctrl.addField = function(field) {

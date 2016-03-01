@@ -13,7 +13,6 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 	return {
 		getAll: function() {
 			return loadAll().then(function() {
-				console.log(addressBooks);
 				return addressBooks;
 			});
 		},
@@ -68,19 +67,7 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 		},
 
 		sync: function(addressBook) {
-			return DavClient.syncAddressBook(addressBook);/*.then(function(addressBook) {
-
-				// parse contacts
-				addressBook.contacts = [];
-				for(var i in addressBook.objects) {
-					if(typeof addressBook.objects[i] === 'object') {
-						addressBook.contacts.push(
-							new Contact(addressBook.objects[i])
-						);
-					}
-				}
-				return addressBook;
-			});*/
+			return DavClient.syncAddressBook(addressBook);
 		},
 
 		share: function(addressBook, shareType, shareWith, writable, existingShare) {
