@@ -19,6 +19,7 @@
 		</select>
 	</div>
 	<select ng-model="field" ng-change="ctrl.addField(field)">
+		<option value=''>{{ctrl.t.selectField}}</option>
 		<option ng-repeat="field in ctrl.fieldDefinitions" value="{{field.id}}">{{field.name}}</option>
 	</select>
 </section>

@@ -198,7 +198,8 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 	ctrl.uid = $routeParams.uid;
 	ctrl.t = {
 		noContacts : t('contacts', 'No contacts in here'),
-		placeholderName : t('contacts', 'Name')
+		placeholderName : t('contacts', 'Name'),
+		selectField : t('contacts', 'Add field ...')
 	};
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
