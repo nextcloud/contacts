@@ -13,8 +13,6 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
         }
     }
 
-    console.log(ctrl);
-
     ctrl.getTemplate = function() {
         var templateUrl = OC.linkTo('contacts', 'templates/detailItems/'+ ctrl.meta.template +'.html');
         return $templateRequest(templateUrl);
