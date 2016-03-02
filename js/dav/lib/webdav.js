@@ -60,7 +60,7 @@ export function createCollection(collectionUrl, options) {
 }
 
 export function deleteCollection(collectionUrl, options) {
-  var req = request.basic({ method: 'DELETE', data: objectData });
+  var req = request.basic({ method: 'DELETE' });
   return options.xhr.send(req, collectionUrl, { sandbox: options.sandbox });
 }
 
