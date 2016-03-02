@@ -44,21 +44,6 @@ app.factory('Contact', [ '$filter', function($filter) {
 				}
 			},
 
-			email: function(value) {
-				if (angular.isDefined(value)) {
-					// setter
-					return this.setProperty('email', { value: value });
-				} else {
-					// getter
-					var property = this.getProperty('email');
-					if(property) {
-						return property.value;
-					} else {
-						return undefined;
-					}
-				}
-			},
-
 			photo: function() {
 				var property = this.getProperty('photo');
 				if(property) {
@@ -89,6 +74,17 @@ app.factory('Contact', [ '$filter', function($filter) {
 				} else {
 					return undefined;
 				}
+			},
+			addProperty: function(name, data) {
+				if(!this.props[name]) {
+					this.props[name] = [];
+				}
+				var idx = this.props[name].length;
+				this.props[name][idx] = data;
+
+				// keep vCard in sync
+				this.data.addressData = $filter('JSON2vCard')(this.props);
+				return idx;
 			},
 
 			setProperty: function(name, data) {
