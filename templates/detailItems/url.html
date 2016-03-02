@@ -1,3 +1,7 @@
 <label for="details-{{ctrl.name}}">{{ctrl.meta.readableName}}:</label>
-<input type="text" id="details-{{ctrl.name}}" name="{{ctrl.name}}" ng-model="ctrl.data.value" ng-model-options="{ debounce: 500 }" ng-change="ctrl.model.updateContact()" value="" />
+<input type="text" id="details-{{ctrl.name}}" name="{{ctrl.name}}"
+	   ng-model="ctrl.data.value" ng-model-options="{ debounce: 500 }"
+	   ng-change="ctrl.model.updateContact()" value=""
+	   focus-expression="$parent.ctrl.focus === ctrl.name"
+/>
 <a target="_blank" href="{{ctrl.data.value}}">Open</a>

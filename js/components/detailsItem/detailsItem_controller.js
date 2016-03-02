@@ -3,7 +3,7 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
 
     ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
     ctrl.t = {
-        country : t('contacts', 'Country'),
+        country : t('contacts', 'Country')
     };
 
     ctrl.availableOptions = ctrl.meta.options || [];

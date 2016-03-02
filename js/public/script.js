@@ -24,6 +24,26 @@ app.config(['$routeProvider', function($routeProvider){
 
 }]);
 
+app.directive('focusExpression', function ($timeout) {
+	return {
+		restrict: 'A',
+		link: {
+			post: function postLink(scope, element, attrs) {
+				scope.$watch(attrs.focusExpression, function (value) {
+
+					if (attrs.focusExpression) {
+						if (scope.$eval(attrs.focusExpression)) {
+							$timeout(function () {
+								element[0].focus();
+							}, 100); //need some delay to work with ng-disabled
+						}
+					}
+				});
+			}
+		}
+	};
+});
+
 app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($scope, AddressBookService) {
 	var ctrl = this;
 
@@ -203,6 +223,7 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 	};
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
+	ctrl.focus = undefined;
 
 	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
 		ctrl.changeContact(newValue);
@@ -230,7 +251,8 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 	ctrl.addField = function(field) {
 		ctrl.contact.setProperty(field, {value: ''});
 		ctrl.singleProperties = ctrl.contact.getSingleProperties();
-	}
+		ctrl.focus = field;
+	};
 }]);
 
 app.directive('contactdetails', function() {
@@ -366,7 +388,7 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
 
     ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
     ctrl.t = {
-        country : t('contacts', 'Country'),
+        country : t('contacts', 'Country')
     };
 
     ctrl.availableOptions = ctrl.meta.options || [];
