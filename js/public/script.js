@@ -44,31 +44,6 @@ app.directive('focusExpression', function ($timeout) {
 	};
 });
 
-app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'SettingsService', function(scope, AddressBookService, SettingsService) {
-	var ctrl = this;
-
-	AddressBookService.getAll().then(function(addressBooks) {
-		ctrl.addressBooks = addressBooks;
-	});
-
-	ctrl.createAddressBook = function() {
-		if(ctrl.newAddressBookName) {
-			AddressBookService.create(ctrl.newAddressBookName);
-		}
-	};
-}]);
-
-app.directive('addressbooklist', function() {
-	return {
-		restrict: 'EA', // has to be an attribute to work with core css
-		scope: {},
-		controller: 'addressbooklistCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {},
-		templateUrl: OC.linkTo('contacts', 'templates/addressBookList.html')
-	};
-});
-
 app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($scope, AddressBookService) {
 	var ctrl = this;
 
@@ -184,6 +159,31 @@ app.directive('addressbook', function() {
 			addressBook: "=data"
 		},
 		templateUrl: OC.linkTo('contacts', 'templates/addressBook.html')
+	};
+});
+
+app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'SettingsService', function(scope, AddressBookService, SettingsService) {
+	var ctrl = this;
+
+	AddressBookService.getAll().then(function(addressBooks) {
+		ctrl.addressBooks = addressBooks;
+	});
+
+	ctrl.createAddressBook = function() {
+		if(ctrl.newAddressBookName) {
+			AddressBookService.create(ctrl.newAddressBookName);
+		}
+	};
+}]);
+
+app.directive('addressbooklist', function() {
+	return {
+		restrict: 'EA', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'addressbooklistCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {},
+		templateUrl: OC.linkTo('contacts', 'templates/addressBookList.html')
 	};
 });
 
@@ -480,23 +480,6 @@ app.directive('detailsitem', ['$compile', function($compile) {
 	};
 }]);
 
-app.controller('groupCtrl', function() {
-	var ctrl = this;
-});
-
-app.directive('group', function() {
-	return {
-		restrict: 'A', // has to be an attribute to work with core css
-		scope: {},
-		controller: 'groupCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			group: "=data"
-		},
-		templateUrl: OC.linkTo('contacts', 'templates/group.html')
-	};
-});
-
 app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 
 	$scope.groups = [t('contacts', 'All contacts')];
@@ -519,6 +502,23 @@ app.directive('grouplist', function() {
 		controllerAs: 'ctrl',
 		bindToController: {},
 		templateUrl: OC.linkTo('contacts', 'templates/groupList.html')
+	};
+});
+
+app.controller('groupCtrl', function() {
+	var ctrl = this;
+});
+
+app.directive('group', function() {
+	return {
+		restrict: 'A', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'groupCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			group: "=data"
+		},
+		templateUrl: OC.linkTo('contacts', 'templates/group.html')
 	};
 });
 
@@ -1083,20 +1083,26 @@ app.service('SettingsService', function() {
 });
 
 app.service('vCardPropertiesService', [function() {
-	/* map vCard attributes to internal attributes */
+	/**
+	 * map vCard attributes to internal attributes
+	 *
+	 * propName: {
+	 * 		multiple: [Boolean], // is this prop allowed more than once? (default = false)
+	 * 		readableName: [String], // internationalized readable name of prop
+	 * 		template: [String], // template name found in /templates/detailItems
+	 * 		[...] // optional additional information which might get used by the template
+	 * }
+	 */
 	this.vCardMeta = {
 		nickname: {
-			multiple: false,
 			readableName: t('contacts', 'Nickname'),
 			template: 'text'
 		},
 		org: {
-			multiple: false,
 			readableName: t('contacts', 'Organisation'),
 			template: 'text'
 		},
 		note: {
-			multiple: false,
 			readableName: t('contacts', 'Note'),
 			template: 'textarea'
 		},
@@ -1106,12 +1112,10 @@ app.service('vCardPropertiesService', [function() {
 			template: 'url'
 		},
 		title: {
-			multiple: false,
 			readableName: t('contacts', 'Title'),
 			template: 'text'
 		},
 		role: {
-			multiple: false,
 			readableName: t('contacts', 'Role'),
 			template: 'text'
 		},
@@ -1127,12 +1131,10 @@ app.service('vCardPropertiesService', [function() {
 			]
 		},
 		categories: {
-			multiple: false,
 			readableName: t('contacts', 'Categories'),
 			template: 'text'
 		},
 		bday: {
-			multiple: false,
 			readableName: t('contacts', 'Birthday'),
 			template: 'date'
 		},
@@ -1165,7 +1167,7 @@ app.service('vCardPropertiesService', [function() {
 
 	this.fieldDefinitions = [];
 	for (var prop in this.vCardMeta) {
-		this.fieldDefinitions.push({id: prop, name: this.vCardMeta[prop].readableName, multiple: this.vCardMeta[prop].multiple});
+		this.fieldDefinitions.push({id: prop, name: this.vCardMeta[prop].readableName, multiple: !!this.vCardMeta[prop].multiple});
 	}
 
 	this.fallbackMeta = function(property) {

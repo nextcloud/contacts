@@ -1,18 +1,24 @@
 app.service('vCardPropertiesService', [function() {
-	/* map vCard attributes to internal attributes */
+	/**
+	 * map vCard attributes to internal attributes
+	 *
+	 * propName: {
+	 * 		multiple: [Boolean], // is this prop allowed more than once? (default = false)
+	 * 		readableName: [String], // internationalized readable name of prop
+	 * 		template: [String], // template name found in /templates/detailItems
+	 * 		[...] // optional additional information which might get used by the template
+	 * }
+	 */
 	this.vCardMeta = {
 		nickname: {
-			multiple: false,
 			readableName: t('contacts', 'Nickname'),
 			template: 'text'
 		},
 		org: {
-			multiple: false,
 			readableName: t('contacts', 'Organisation'),
 			template: 'text'
 		},
 		note: {
-			multiple: false,
 			readableName: t('contacts', 'Note'),
 			template: 'textarea'
 		},
@@ -22,12 +28,10 @@ app.service('vCardPropertiesService', [function() {
 			template: 'url'
 		},
 		title: {
-			multiple: false,
 			readableName: t('contacts', 'Title'),
 			template: 'text'
 		},
 		role: {
-			multiple: false,
 			readableName: t('contacts', 'Role'),
 			template: 'text'
 		},
@@ -43,12 +47,10 @@ app.service('vCardPropertiesService', [function() {
 			]
 		},
 		categories: {
-			multiple: false,
 			readableName: t('contacts', 'Categories'),
 			template: 'text'
 		},
 		bday: {
-			multiple: false,
 			readableName: t('contacts', 'Birthday'),
 			template: 'date'
 		},
@@ -81,7 +83,7 @@ app.service('vCardPropertiesService', [function() {
 
 	this.fieldDefinitions = [];
 	for (var prop in this.vCardMeta) {
-		this.fieldDefinitions.push({id: prop, name: this.vCardMeta[prop].readableName, multiple: this.vCardMeta[prop].multiple});
+		this.fieldDefinitions.push({id: prop, name: this.vCardMeta[prop].readableName, multiple: !!this.vCardMeta[prop].multiple});
 	}
 
 	this.fallbackMeta = function(property) {
