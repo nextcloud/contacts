@@ -1,4 +1,4 @@
-app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService', '$routeParams', '$scope', function(ContactService, vCardPropertiesService, $routeParams, $scope) {
+app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'vCardPropertiesService', '$routeParams', '$scope', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
 	var ctrl = this;
 
 	ctrl.uid = $routeParams.uid;
@@ -10,6 +10,21 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
 	ctrl.focus = undefined;
+	$scope.addressBooks = [];
+	ctrl.addressBooks = [];
+
+	AddressBookService.getAll().then(function(addressBooks) {
+		ctrl.addressBooks = addressBooks;
+		$scope.addressBooks = addressBooks.map(function (element) {
+			return {
+				id: element.displayName,
+				name: element.displayName
+			};
+		});
+		$scope.addressBook = _.find($scope.addressBooks, function(book) {
+			return book.id === ctrl.contact.addressBookId;
+		});
+	});
 
 	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
 		ctrl.changeContact(newValue);
@@ -23,6 +38,9 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 			ctrl.contact = contact;
 			ctrl.singleProperties = ctrl.contact.getSingleProperties();
 			ctrl.photo = ctrl.contact.photo();
+			$scope.addressBook = _.find($scope.addressBooks, function(book) {
+				return book.id === ctrl.contact.addressBookId;
+			});
 		});
 	};
 
@@ -38,5 +56,12 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 		ctrl.contact.setProperty(field, {value: ''});
 		ctrl.singleProperties = ctrl.contact.getSingleProperties();
 		ctrl.focus = field;
+	};
+
+	ctrl.changeAddressBook = function (addressBook) {
+		addressBook = _.find(ctrl.addressBooks, function(book) {
+			return book.displayName === addressBook.id;
+		});
+		ContactService.moveContact(ctrl.contact, addressBook);
 	};
 }]);
