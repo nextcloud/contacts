@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "אנשי קשר",
     "No contacts in here" : "אין כאן אנשי קשר",
     "Name" : "שם",
+    "Add field ..." : "הוספת שדה...",
     "Add contact" : "הוסף איש קשר",
     "Country" : "מדינה",
     "All contacts" : "כל אנשי הקשר",

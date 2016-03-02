@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Contatti",
     "No contacts in here" : "Nessun contatto qui",
     "Name" : "Nome",
+    "Add field ..." : "Aggiungi campo...",
     "Add contact" : "Aggiungi contatto",
     "Country" : "Stato",
     "All contacts" : "Tuuti i contatti",

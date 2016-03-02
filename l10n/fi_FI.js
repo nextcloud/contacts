@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Yhteystiedot",
     "No contacts in here" : "Ei yhteytietoja",
     "Name" : "Nimi",
+    "Add field ..." : "Lisää kenttä...",
     "Add contact" : "Lisää yhteystieto",
     "Country" : "Maa",
     "All contacts" : "Kaikki yhteystiedot",
