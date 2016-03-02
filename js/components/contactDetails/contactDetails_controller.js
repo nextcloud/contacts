@@ -21,9 +21,11 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 				name: element.displayName
 			};
 		});
-		$scope.addressBook = _.find($scope.addressBooks, function(book) {
-			return book.id === ctrl.contact.addressBookId;
-		});
+		if (!_.isUndefined(ctrl.contact)) {
+			$scope.addressBook = _.find($scope.addressBooks, function(book) {
+				return book.id === ctrl.contact.addressBookId;
+			});
+		}
 	});
 
 	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
