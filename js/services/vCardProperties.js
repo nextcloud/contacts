@@ -28,6 +28,7 @@ app.service('vCardPropertiesService', [function() {
 		adr: {
 			readableName: t('contacts', 'Address'),
 			template: 'adr',
+			defaultValue: ['', '', '', '', '', '', ''],
 			options: [
 				{id: 'HOME', name: t('contacts', 'Home')},
 				{id: 'WORK', name: t('contacts', 'Work')},
