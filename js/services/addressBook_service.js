@@ -49,7 +49,7 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 		delete: function(addressBook) {
 			return DavService.then(function(account) {
 				return DavClient.deleteAddressBook(addressBook).then(function() {
-					addressBooks = _.without(addressBooks, addressBook);
+					angular.copy(_.without(addressBooks, addressBook), addressBooks);
 				});
 			});
 		},
