@@ -1,6 +1,6 @@
 .contactdetails__header {
 	height: 100px;
-	padding-left: 30px;
+	padding-left: 20px;
 	display: flex;
 	color: #fff;
 	font-weight: bold;
@@ -9,6 +9,7 @@
 
 .contactdetails__header h2 {
 	margin-bottom: 6px;
+	margin-left: 8px;
 }
 .contactdetails__header .contactdetails__name {
 	font-size: inherit !important;
@@ -30,7 +31,9 @@
 }
 
 .contactdetails__logo {
-	height: 90px;
+	height: 75px;
+	width: 75px;
+	background-color: rgba(255, 255, 255, .5);
 }
 
 #check-all + label:before {
@@ -53,8 +56,18 @@
 	text-transform: capitalize;
 }
 
+.contactdetails__header + section {
+	padding: 20px;
+}
+
 detailsitem {
 	display: block;
+}
+
+detailsitem label {
+	width: 80px;
+	display: inline-block;
+	text-align: right;
 }
 
 
