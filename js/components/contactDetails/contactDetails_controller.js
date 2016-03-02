@@ -55,7 +55,7 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 	};
 
 	ctrl.addField = function(field) {
-		ctrl.contact.setProperty(field, {value: ''});
+		var idx = ctrl.contact.addProperty(field, {value: ''});
 		ctrl.singleProperties = ctrl.contact.getSingleProperties();
 		ctrl.focus = field;
 	};
