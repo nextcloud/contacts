@@ -34,5 +34,6 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
 
     ctrl.deleteField = function () {
         ctrl.model.deleteField(ctrl.name, ctrl.index);
+		ctrl.model.updateContact();
     };
 }]);

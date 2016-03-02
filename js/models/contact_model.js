@@ -98,6 +98,7 @@ app.factory('Contact', [ '$filter', function($filter) {
 			},
 			removeProperty: function (name, index) {
 				delete this.props[name][index];
+				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
 			setETag: function(etag) {
 				this.data.etag = etag;
