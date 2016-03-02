@@ -962,8 +962,8 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 	};
 
 	this.create = function(newContact, addressBook) {
-		newContact = newContact || new Contact();
 		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
+		newContact = newContact || new Contact(addressBook);
 		var newUid = uuid4.generate();
 		newContact.uid(newUid);
 		newContact.setUrl(addressBook, newUid);
