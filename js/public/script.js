@@ -324,12 +324,12 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 					}
 				}
 			}
-            else if (ev.event === 'create') {
-                $route.updateParams({
-                    gid: $routeParams.gid,
-                    uid: ev.uid
-                });
-            }
+			else if (ev.event === 'create') {
+				$route.updateParams({
+					gid: $routeParams.gid,
+					uid: ev.uid
+				});
+			}
 			ctrl.contacts = ev.contacts;
 		});
 	});
@@ -379,9 +379,11 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 	});
 
 	ctrl.createContact = function() {
-		ContactService.create().then(function() {
-            $('#details-fullName').focus();
-        });
+		ContactService.create().then(function(contact) {
+			if ($routeParams.gid !== t('contacts', 'All contacts'))
+				contact.categories($routeParams.gid);
+				$('#details-fullName').focus();
+		});
 	};
 
 	ctrl.hasContacts = function () {
