@@ -1,8 +1,8 @@
-<label for="details-{{ctrl.name}}">{{ctrl.meta.readableName}}:</label>
+<label for="details-{{ctrl.name}}">{{ctrl.meta.readableName}}</label>
 <input type="text" id="details-{{ctrl.name}}" name="{{ctrl.name}}"
 	   ng-model="ctrl.data.value" ng-model-options="{ debounce: 500 }"
 	   ng-change="ctrl.model.updateContact()" value=""
 	   focus-expression="$parent.ctrl.focus === ctrl.name"
 />
 <button ng-click="ctrl.deleteField()" class="icon-delete" title="Delete"></button>
-<a target="_blank" href="{{ctrl.data.value}}">Open</a>
+<a class="url-link" target="_blank" href="{{ctrl.data.value}}">↗</a>
