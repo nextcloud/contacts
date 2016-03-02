@@ -147,6 +147,12 @@ app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($sco
 		});
 	};
 
+	ctrl.deleteAddressBook = function(addressBook) {
+		AddressBookService.delete(addressBook).then(function() {
+			$scope.$apply();
+		});
+	};
+
 }]);
 
 app.directive('addressbook', function() {
