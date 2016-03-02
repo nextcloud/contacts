@@ -28,6 +28,12 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 					}
 				}
 			}
+            else if (ev.event === 'create') {
+                $route.updateParams({
+                    gid: $routeParams.gid,
+                    uid: ev.uid
+                });
+            }
 			ctrl.contacts = ev.contacts;
 		});
 	});
@@ -77,7 +83,9 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 	});
 
 	ctrl.createContact = function() {
-		ContactService.create();
+		ContactService.create().then(function() {
+            $('#details-fullName').focus();
+        });
 	};
 
 	ctrl.hasContacts = function () {

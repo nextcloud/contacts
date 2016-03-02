@@ -119,8 +119,8 @@ app.factory('Contact', [ '$filter', function($filter) {
 			angular.extend(this.props, $filter('vCard2JSON')(this.data.addressData));
 		} else {
 			angular.extend(this.props, {
-				version: [{value: "4.0"}],
-				fn: [{value: "Max Mustermann"}]
+				version: [{value: "3.0"}],
+				fn: [{value: ""}]
 			});
 			this.data.addressData = $filter('JSON2vCard')(this.props);
 		}
