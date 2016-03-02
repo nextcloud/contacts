@@ -20,7 +20,7 @@
 	</div>
 	<select ng-model="field" ng-change="ctrl.addField(field)">
 		<option value=''>{{ctrl.t.selectField}}</option>
-		<option ng-repeat="field in ctrl.fieldDefinitions | orderBy : 'name'" value="{{field.id}}">{{field.name}}</option>
+		<option ng-repeat="field in ctrl.fieldDefinitions | fieldFilter: ctrl.contact | orderBy : 'name'" value="{{field.id}}">{{field.name}}</option>
 	</select>
 </section>
 </div>

@@ -44,6 +44,31 @@ app.directive('focusExpression', function ($timeout) {
 	};
 });
 
+app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'SettingsService', function(scope, AddressBookService, SettingsService) {
+	var ctrl = this;
+
+	AddressBookService.getAll().then(function(addressBooks) {
+		ctrl.addressBooks = addressBooks;
+	});
+
+	ctrl.createAddressBook = function() {
+		if(ctrl.newAddressBookName) {
+			AddressBookService.create(ctrl.newAddressBookName);
+		}
+	};
+}]);
+
+app.directive('addressbooklist', function() {
+	return {
+		restrict: 'EA', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'addressbooklistCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {},
+		templateUrl: OC.linkTo('contacts', 'templates/addressBookList.html')
+	};
+});
+
 app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($scope, AddressBookService) {
 	var ctrl = this;
 
@@ -159,31 +184,6 @@ app.directive('addressbook', function() {
 			addressBook: "=data"
 		},
 		templateUrl: OC.linkTo('contacts', 'templates/addressBook.html')
-	};
-});
-
-app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'SettingsService', function(scope, AddressBookService, SettingsService) {
-	var ctrl = this;
-
-	AddressBookService.getAll().then(function(addressBooks) {
-		ctrl.addressBooks = addressBooks;
-	});
-
-	ctrl.createAddressBook = function() {
-		if(ctrl.newAddressBookName) {
-			AddressBookService.create(ctrl.newAddressBookName);
-		}
-	};
-}]);
-
-app.directive('addressbooklist', function() {
-	return {
-		restrict: 'EA', // has to be an attribute to work with core css
-		scope: {},
-		controller: 'addressbooklistCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {},
-		templateUrl: OC.linkTo('contacts', 'templates/addressBookList.html')
 	};
 });
 
@@ -1086,30 +1086,37 @@ app.service('vCardPropertiesService', [function() {
 	/* map vCard attributes to internal attributes */
 	this.vCardMeta = {
 		nickname: {
+			multiple: false,
 			readableName: t('contacts', 'Nickname'),
 			template: 'text'
 		},
 		org: {
+			multiple: false,
 			readableName: t('contacts', 'Organisation'),
 			template: 'text'
 		},
 		note: {
+			multiple: false,
 			readableName: t('contacts', 'Note'),
 			template: 'textarea'
 		},
 		url: {
+			multiple: true,
 			readableName: t('contacts', 'Url'),
 			template: 'url'
 		},
 		title: {
+			multiple: false,
 			readableName: t('contacts', 'Title'),
 			template: 'text'
 		},
 		role: {
+			multiple: false,
 			readableName: t('contacts', 'Role'),
 			template: 'text'
 		},
 		adr: {
+			multiple: true,
 			readableName: t('contacts', 'Address'),
 			template: 'adr',
 			defaultValue: ['', '', '', '', '', '', ''],
@@ -1120,22 +1127,27 @@ app.service('vCardPropertiesService', [function() {
 			]
 		},
 		categories: {
+			multiple: false,
 			readableName: t('contacts', 'Categories'),
 			template: 'text'
 		},
 		bday: {
+			multiple: false,
 			readableName: t('contacts', 'Birthday'),
 			template: 'date'
 		},
 		email: {
+			multiple: true,
 			readableName: t('contacts', 'E-Mail'),
 			template: 'date'
 		},
 		impp: {
+			multiple: true,
 			readableName: t('contacts', 'Instant Messaging'),
 			template: 'date'
 		},
 		tel: {
+			multiple: true,
 			readableName: t('contacts', 'Telephone'),
 			template: 'tel',
 			options: [
@@ -1153,7 +1165,7 @@ app.service('vCardPropertiesService', [function() {
 
 	this.fieldDefinitions = [];
 	for (var prop in this.vCardMeta) {
-		this.fieldDefinitions.push({id: prop, name: this.vCardMeta[prop].readableName});
+		this.fieldDefinitions.push({id: prop, name: this.vCardMeta[prop].readableName, multiple: this.vCardMeta[prop].multiple});
 	}
 
 	this.fallbackMeta = function(property) {
@@ -1213,6 +1225,33 @@ app.filter('contactGroupFilter', [
 				for (var i = 0; i < contacts.length; i++) {
 					if (contacts[i].categories().indexOf(group) >= 0) {
 						filter.push(contacts[i]);
+					}
+				}
+			}
+			return filter;
+		};
+	}
+]);
+
+app.filter('fieldFilter', [
+	function() {
+		'use strict';
+		return function (fields, contact) {
+			if (typeof fields === "undefined") {
+				return fields;
+			}
+			if (typeof contact === "undefined") {
+				return fields;
+			}
+			var filter = [];
+			if (fields.length > 0) {
+				for (var i = 0; i < fields.length; i++) {
+					if (fields[i].multiple ) {
+						filter.push(fields[i]);
+						continue;
+					}
+					if (_.isUndefined(contact.getProperty(fields[i].id))) {
+						filter.push(fields[i]);
 					}
 				}
 			}
