@@ -20,6 +20,9 @@ branches:
 matrix:
   allow_failures:
     - php: hhvm
+  include:
+    - php: 5.4
+      env: "DB=mysql BRANCH=stable9"
 
 install:
   - sudo add-apt-repository -y ppa:chris-lea/node.js
