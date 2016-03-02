@@ -275,6 +275,12 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 		ctrl.focus = field;
 	};
 
+	ctrl.deleteField = function (field, index) {
+		ctrl.contact.removeProperty(field, index);
+		ctrl.singleProperties = ctrl.contact.getSingleProperties();
+		ctrl.focus = undefined;
+	};
+
 	ctrl.changeAddressBook = function (addressBook) {
 		addressBook = _.find(ctrl.addressBooks, function(book) {
 			return book.displayName === addressBook.id;
@@ -446,6 +452,10 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
         var templateUrl = OC.linkTo('contacts', 'templates/detailItems/'+ ctrl.meta.template +'.html');
         return $templateRequest(templateUrl);
     };
+
+    ctrl.deleteField = function () {
+        ctrl.model.deleteField(ctrl.name, ctrl.index);
+    };
 }]);
 
 app.directive('detailsitem', ['$compile', function($compile) {
@@ -456,7 +466,8 @@ app.directive('detailsitem', ['$compile', function($compile) {
 		bindToController: {
 			name: '=',
 			data: '=',
-			model: '='
+			model: '=',
+			index: '='
 		},
 		link: function(scope, element, attrs, ctrl) {
 			ctrl.getTemplate().then(function(html) {
@@ -606,8 +617,9 @@ app.factory('Contact', [ '$filter', function($filter) {
 				var singleProperties = [];
 				for(var prop in this.props) {
 					if(this.props.hasOwnProperty(prop)) {
+						var index = 0;
 						this.props[prop].forEach(function(propData) {
-							singleProperties.push({ name: prop, data: propData });
+							singleProperties.push({ name: prop, data: propData, index: index++ });
 						});
 					}
 				}
@@ -683,7 +695,6 @@ app.factory('Contact', [ '$filter', function($filter) {
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 				return idx;
 			},
-
 			setProperty: function(name, data) {
 				if(!this.props[name]) {
 					this.props[name] = [];
@@ -693,7 +704,9 @@ app.factory('Contact', [ '$filter', function($filter) {
 				// keep vCard in sync
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
-
+			removeProperty: function (name, index) {
+				delete this.props[name][index];
+			},
 			setETag: function(etag) {
 				this.data.etag = etag;
 			},

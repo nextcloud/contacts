@@ -61,6 +61,12 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 		ctrl.focus = field;
 	};
 
+	ctrl.deleteField = function (field, index) {
+		ctrl.contact.removeProperty(field, index);
+		ctrl.singleProperties = ctrl.contact.getSingleProperties();
+		ctrl.focus = undefined;
+	};
+
 	ctrl.changeAddressBook = function (addressBook) {
 		addressBook = _.find(ctrl.addressBooks, function(book) {
 			return book.displayName === addressBook.id;

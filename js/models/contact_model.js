@@ -9,8 +9,9 @@ app.factory('Contact', [ '$filter', function($filter) {
 				var singleProperties = [];
 				for(var prop in this.props) {
 					if(this.props.hasOwnProperty(prop)) {
+						var index = 0;
 						this.props[prop].forEach(function(propData) {
-							singleProperties.push({ name: prop, data: propData });
+							singleProperties.push({ name: prop, data: propData, index: index++ });
 						});
 					}
 				}
@@ -86,7 +87,6 @@ app.factory('Contact', [ '$filter', function($filter) {
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 				return idx;
 			},
-
 			setProperty: function(name, data) {
 				if(!this.props[name]) {
 					this.props[name] = [];
@@ -96,7 +96,9 @@ app.factory('Contact', [ '$filter', function($filter) {
 				// keep vCard in sync
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
-
+			removeProperty: function (name, index) {
+				delete this.props[name][index];
+			},
 			setETag: function(etag) {
 				this.data.etag = etag;
 			},

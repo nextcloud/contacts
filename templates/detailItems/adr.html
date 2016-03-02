@@ -14,3 +14,4 @@
 <input type="text" id="details-state" name="state" ng-model="ctrl.data.value[4]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.model.updateContact()" value="" />
 <label for="details-country">{{ctrl.t.country}}</label>
 <input type="text" id="details-country" name="state" ng-model="ctrl.data.value[6]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.model.updateContact()" value="" />
+<button ng-click="ctrl.deleteField()" class="icon-delete" title="Delete"></button>
