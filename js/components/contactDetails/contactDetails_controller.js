@@ -9,6 +9,7 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 	};
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
+	ctrl.focus = undefined;
 
 	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
 		ctrl.changeContact(newValue);
@@ -36,5 +37,6 @@ app.controller('contactdetailsCtrl', ['ContactService', 'vCardPropertiesService'
 	ctrl.addField = function(field) {
 		ctrl.contact.setProperty(field, {value: ''});
 		ctrl.singleProperties = ctrl.contact.getSingleProperties();
-	}
+		ctrl.focus = field;
+	};
 }]);

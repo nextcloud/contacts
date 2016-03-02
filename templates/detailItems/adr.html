@@ -4,7 +4,9 @@
 <label for="details-pobox">Post office box:</label>
 <input type="text" id="details-pobox" name="address" ng-model="ctrl.data.value[0]" value="" />
 <label for="details-address">Street address:</label>
-<input type="text" id="details-address" name="address" ng-model="ctrl.data.value[2]" value="" />
+<input type="text" id="details-address" name="address" ng-model="ctrl.data.value[2]" value=""
+	   focus-expression="$parent.ctrl.focus === ctrl.name"
+/>
 <label for="details-postal-code">Postal code:</label>
 <input type="text" id="details-postal-code" name="postal-code" ng-model="ctrl.data.value[5]" value="" />
 <label for="details-city">City:</label>
