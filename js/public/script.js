@@ -147,6 +147,12 @@ app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($sco
 		});
 	};
 
+	ctrl.deleteAddressBook = function(addressBook) {
+		AddressBookService.delete(addressBook).then(function() {
+			$scope.$apply();
+		});
+	};
+
 }]);
 
 app.directive('addressbook', function() {
@@ -787,7 +793,9 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 
 		delete: function(addressBook) {
 			return DavService.then(function(account) {
-				return DavClient.deleteAddressBook(addressBook);
+				return DavClient.deleteAddressBook(addressBook).then(function() {
+					angular.copy(_.without(addressBooks, addressBook), addressBooks);
+				});
 			});
 		},
 
