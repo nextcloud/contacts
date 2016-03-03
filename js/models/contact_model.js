@@ -5,19 +5,6 @@ app.factory('Contact', [ '$filter', function($filter) {
 			data: {},
 			props: {},
 
-			getSingleProperties: function() {
-				var singleProperties = [];
-				for(var prop in this.props) {
-					if(this.props.hasOwnProperty(prop)) {
-						var index = 0;
-						this.props[prop].forEach(function(propData) {
-							singleProperties.push({ name: prop, data: propData, index: index++ });
-						});
-					}
-				}
-				return singleProperties;
-			},
-
 			addressBookId: addressBook.displayName,
 
 			uid: function(value) {

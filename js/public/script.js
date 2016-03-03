@@ -259,7 +259,6 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 		}
 		ContactService.getById(uid).then(function(contact) {
 			ctrl.contact = contact;
-			ctrl.singleProperties = ctrl.contact.getSingleProperties();
 			ctrl.photo = ctrl.contact.photo();
 			$scope.addressBook = _.find($scope.addressBooks, function(book) {
 				return book.id === ctrl.contact.addressBookId;
@@ -278,7 +277,6 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 	ctrl.addField = function(field) {
 		var defaultValue = vCardPropertiesService.getMeta(field).defaultValue || {value: ''};
 		ctrl.contact.addProperty(field, defaultValue);
-		ctrl.singleProperties = ctrl.contact.getSingleProperties();
 		ctrl.focus = field;
 		ctrl.field = '';
 	};
@@ -621,19 +619,6 @@ app.factory('Contact', [ '$filter', function($filter) {
 
 			data: {},
 			props: {},
-
-			getSingleProperties: function() {
-				var singleProperties = [];
-				for(var prop in this.props) {
-					if(this.props.hasOwnProperty(prop)) {
-						var index = 0;
-						this.props[prop].forEach(function(propData) {
-							singleProperties.push({ name: prop, data: propData, index: index++ });
-						});
-					}
-				}
-				return singleProperties;
-			},
 
 			addressBookId: addressBook.displayName,
 
