@@ -63,7 +63,6 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 
 	ctrl.deleteField = function (field, index) {
 		ctrl.contact.removeProperty(field, index);
-		ctrl.singleProperties = ctrl.contact.getSingleProperties();
 		ctrl.focus = undefined;
 	};
 

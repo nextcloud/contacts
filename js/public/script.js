@@ -283,7 +283,6 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 
 	ctrl.deleteField = function (field, index) {
 		ctrl.contact.removeProperty(field, index);
-		ctrl.singleProperties = ctrl.contact.getSingleProperties();
 		ctrl.focus = undefined;
 	};
 
@@ -440,7 +439,7 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
     };
 
     ctrl.availableOptions = ctrl.meta.options || [];
-    if (!_.isUndefined(ctrl.data.meta)) {
+    if (!_.isUndefined(ctrl.data) && !_.isUndefined(ctrl.data.meta)) {
         ctrl.type = ctrl.data.meta.type[0];
         if (!ctrl.availableOptions.some(function(e){ return e.id === ctrl.data.meta.type[0];})) {
             ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.data.meta.type[0], name: ctrl.data.meta.type[0]}]);
