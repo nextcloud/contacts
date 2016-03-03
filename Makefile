@@ -7,34 +7,31 @@ appstore_dir=$(build_dir)/appstore
 source_dir=$(build_dir)/source
 package_name=$(app_name)
 
-all: dist
+all: appstore
 
 clean:
 	rm -rf $(build_dir)
 
-dist: clean
-	mkdir -p $(source_dir)
-	tar cvzf $(source_dir)/$(package_name).tar.gz $(project_dir) \
-	--exclude-vcs \
-	--exclude=$(project_dir)/build/artifacts \
-	--exclude=$(project_dir)/js/node_modules \
-	--exclude=$(project_dir)/js/coverage
+appstore: appstore_package
 
 appstore_package: clean
 	mkdir -p $(appstore_dir)
-	tar cvzf $(appstore_dir)/$(package_name).tar.gz $(project_dir) \
+	tar cvzf $(appstore_dir)/$(package_name).tar.gz \
 	--exclude-vcs \
-	--exclude=$(project_dir)/build \
-	--exclude=$(project_dir)/js/node_modules \
-	--exclude=$(project_dir)/js/.bowerrc \
-	--exclude=$(project_dir)/js/.jshintrc \
-	--exclude=$(project_dir)/js/Gruntfile.js \
-	--exclude=$(project_dir)/js/*.json \
-	--exclude=$(project_dir)/js/*.conf.js \
-	--exclude=$(project_dir)/js/*.log \
-	--exclude=$(project_dir)/js/README.md \
-	--exclude=$(project_dir)/js/.bowerrc \
-	--exclude=$(project_dir)/.travis.yml \
-	--exclude=$(project_dir)/phpunit*xml \
-	--exclude=$(project_dir)/Makefile \
-	--exclude=$(project_dir)/tests
+	$(project_dir)/appinfo \
+	$(project_dir)/controller \
+	$(project_dir)/css \
+	$(project_dir)/img \
+	$(project_dir)/l10n \
+	$(project_dir)/templates \
+	$(project_dir)/js/public \
+	$(project_dir)/js/dav/dav.js \
+	$(project_dir)/js/vendor/angular/angular.js \
+	$(project_dir)/js/vendor/angular-route/angular-route.js \
+	$(project_dir)/js/vendor/angular-cache/dist/angular-cache.js \
+	$(project_dir)/js/vendor/angular-uuid4/angular-uuid4.js \
+	$(project_dir)/js/vendor/vcard/src/vcard.js \
+	$(project_dir)/js/vendor/angular-bootstrap/ui-bootstrap.min.js \
+	$(project_dir)/js/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js
+
+
