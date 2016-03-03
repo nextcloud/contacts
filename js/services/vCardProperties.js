@@ -57,12 +57,12 @@ app.service('vCardPropertiesService', [function() {
 		email: {
 			multiple: true,
 			readableName: t('contacts', 'Email'),
-			template: 'date'
+			template: 'text'
 		},
 		impp: {
 			multiple: true,
 			readableName: t('contacts', 'Instant messaging'),
-			template: 'date'
+			template: 'text'
 		},
 		tel: {
 			multiple: true,
