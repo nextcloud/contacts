@@ -47,7 +47,7 @@ app.service('vCardPropertiesService', [function() {
 			]
 		},
 		categories: {
-			readableName: t('contacts', 'Categories'),
+			readableName: t('contacts', 'Groups'),
 			template: 'text'
 		},
 		bday: {
