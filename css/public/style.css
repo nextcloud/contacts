@@ -62,6 +62,7 @@
 
 detailsitem {
 	display: block;
+	position: relative;
 }
 
 detailsitem label {
@@ -75,14 +76,31 @@ detailsitem label {
 	text-overflow: ellipsis;
 	vertical-align: middle;
 }
-detailsitem label ~ textarea {
+
+detailsitem.details-item-note label {
+	vertical-align: top;
+	padding-top: 10px;
+}
+detailsitem.details-item-note .icon-delete {
 	vertical-align: top;
 }
-detailsitem .details-item-telephone label {
+detailsitem.details-item-tel label {
 	opacity: 1;
+	padding: 0;
 }
-detailsitem .details-item-telephone select {
+detailsitem.details-item-tel select {
 	width: 80px;
+}
+detailsitem.details-item-tel .icon-delete {
+	vertical-align: middle;
+}
+detailsitem.details-item-adr {
+	padding: 20px 0;
+}
+detailsitem.details-item-adr .icon-delete {
+	position: absolute;
+    top: 57px;
+    left: 290px;
 }
 detailsitem .url-link {
 	padding: 8px 5px;
@@ -112,7 +130,7 @@ detailsitem textarea,
 detailsitem .icon-delete {
 	background-color: transparent;
 	border: none;
-	padding: 20px;
+	padding: 16px;
 	opacity: .3;
 }
 
