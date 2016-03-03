@@ -281,8 +281,8 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 		ctrl.field = '';
 	};
 
-	ctrl.deleteField = function (field, index) {
-		ctrl.contact.removeProperty(field, index);
+	ctrl.deleteField = function (field, prop) {
+		ctrl.contact.removeProperty(field, prop);
 		ctrl.focus = undefined;
 	};
 
@@ -459,7 +459,7 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
     };
 
     ctrl.deleteField = function () {
-        ctrl.model.deleteField(ctrl.name, ctrl.index);
+        ctrl.model.deleteField(ctrl.name, ctrl.data);
 		ctrl.model.updateContact();
     };
 }]);
@@ -472,8 +472,7 @@ app.directive('detailsitem', ['$compile', function($compile) {
 		bindToController: {
 			name: '=',
 			data: '=',
-			model: '=',
-			index: '='
+			model: '='
 		},
 		link: function(scope, element, attrs, ctrl) {
 			ctrl.getTemplate().then(function(html) {
@@ -697,8 +696,8 @@ app.factory('Contact', [ '$filter', function($filter) {
 				// keep vCard in sync
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
-			removeProperty: function (name, index) {
-				delete this.props[name][index];
+			removeProperty: function (name, prop) {
+				angular.copy(_.without(this.props[name], prop), this.props[name]);
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
 			setETag: function(etag) {

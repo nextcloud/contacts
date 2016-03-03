@@ -83,8 +83,8 @@ app.factory('Contact', [ '$filter', function($filter) {
 				// keep vCard in sync
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
-			removeProperty: function (name, index) {
-				delete this.props[name][index];
+			removeProperty: function (name, prop) {
+				angular.copy(_.without(this.props[name], prop), this.props[name]);
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
 			setETag: function(etag) {
