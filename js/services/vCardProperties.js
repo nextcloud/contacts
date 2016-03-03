@@ -60,17 +60,39 @@ app.service('vCardPropertiesService', [function() {
 		email: {
 			multiple: true,
 			readableName: t('contacts', 'Email'),
-			template: 'text'
+			template: 'text',
+			defaultValue: {
+				value:[''],
+				meta:{type:['HOME']}
+			},
+			options: [
+				{id: 'HOME', name: t('contacts', 'Home')},
+				{id: 'WORK', name: t('contacts', 'Work')},
+				{id: 'OTHER', name: t('contacts', 'Other')}
+			]
 		},
 		impp: {
 			multiple: true,
 			readableName: t('contacts', 'Instant messaging'),
-			template: 'text'
+			template: 'text',
+			defaultValue: {
+				value:[''],
+				meta:{type:['HOME']}
+			},
+			options: [
+				{id: 'HOME', name: t('contacts', 'Home')},
+				{id: 'WORK', name: t('contacts', 'Work')},
+				{id: 'OTHER', name: t('contacts', 'Other')}
+			]
 		},
 		tel: {
 			multiple: true,
 			readableName: t('contacts', 'Phone'),
 			template: 'tel',
+			defaultValue: {
+				value:[''],
+				meta:{type:['HOME,VOICE']}
+			},
 			options: [
 				{id: 'HOME,VOICE', name: t('contacts', 'Home')},
 				{id: 'WORK,VOICE', name: t('contacts', 'Work')},
