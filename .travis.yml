@@ -16,6 +16,7 @@ branches:
   only:
     - master
     - /^stable\d+(\.\d+)?$/
+    - /^v\d++(\.\d+)?+(\.\d+)?+(\.\d+)?$/
 
 matrix:
   allow_failures:
