@@ -57,7 +57,7 @@
 }
 
 .contactdetails__header + section {
-	padding: 20px;
+	padding: 20px 20px 100px;
 }
 
 detailsitem {
@@ -68,6 +68,36 @@ detailsitem label {
 	width: 80px;
 	display: inline-block;
 	text-align: right;
+	opacity: .5;
+}
+detailsitem label ~ textarea {
+	vertical-align: top;
+	padding-top: 10px;
+}
+.url-link {
+	padding: 8px 10px;
+    margin-left: -6px;
+	opacity: .5;
+}
+
+.select-addressbook,
+.add-field {
+	margin-left: 83px;
+}
+
+detailsitem input[type="text"],
+detailsitem input[type="password"],
+detailsitem input[type="search"],
+detailsitem input[type="number"],
+detailsitem input[type="email"],
+detailsitem input[type="tel"],
+detailsitem input[type="url"],
+detailsitem input[type="time"],
+detailsitem input[type="date"],
+detailsitem textarea,
+.select-addressbook select,
+.add-field {
+	width: 200px;
 }
 
 
