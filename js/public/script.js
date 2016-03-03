@@ -129,7 +129,7 @@ app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($sco
 		});
 	};
 
-	ctrl.updateExistingGroupShare = function(calendar, groupId, writable) {
+	ctrl.updateExistingGroupShare = function(addressBook, groupId, writable) {
 		AddressBookService.share(addressBook, OC.Share.SHARE_TYPE_GROUP, groupId, writable, true).then(function() {
 			$scope.$apply();
 		});
