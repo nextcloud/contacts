@@ -59,6 +59,7 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 		var idx = ctrl.contact.addProperty(field, {value: defaultValue});
 		ctrl.singleProperties = ctrl.contact.getSingleProperties();
 		ctrl.focus = field;
+		$scope.field = '';
 	};
 
 	ctrl.deleteField = function (field, index) {
