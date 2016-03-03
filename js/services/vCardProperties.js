@@ -24,7 +24,7 @@ app.service('vCardPropertiesService', [function() {
 		},
 		url: {
 			multiple: true,
-			readableName: t('contacts', 'Url'),
+			readableName: t('contacts', 'Website'),
 			template: 'url'
 		},
 		title: {
