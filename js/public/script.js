@@ -480,23 +480,6 @@ app.directive('detailsitem', ['$compile', function($compile) {
 	};
 }]);
 
-app.controller('groupCtrl', function() {
-	var ctrl = this;
-});
-
-app.directive('group', function() {
-	return {
-		restrict: 'A', // has to be an attribute to work with core css
-		scope: {},
-		controller: 'groupCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			group: "=data"
-		},
-		templateUrl: OC.linkTo('contacts', 'templates/group.html')
-	};
-});
-
 app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 
 	$scope.groups = [t('contacts', 'All contacts')];
@@ -519,6 +502,23 @@ app.directive('grouplist', function() {
 		controllerAs: 'ctrl',
 		bindToController: {},
 		templateUrl: OC.linkTo('contacts', 'templates/groupList.html')
+	};
+});
+
+app.controller('groupCtrl', function() {
+	var ctrl = this;
+});
+
+app.directive('group', function() {
+	return {
+		restrict: 'A', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'groupCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			group: "=data"
+		},
+		templateUrl: OC.linkTo('contacts', 'templates/group.html')
 	};
 });
 
@@ -1083,7 +1083,16 @@ app.service('SettingsService', function() {
 });
 
 app.service('vCardPropertiesService', [function() {
-	/* map vCard attributes to internal attributes */
+	/**
+	 * map vCard attributes to internal attributes
+	 *
+	 * propName: {
+	 * 		multiple: [Boolean], // is this prop allowed more than once? (default = false)
+	 * 		readableName: [String], // internationalized readable name of prop
+	 * 		template: [String], // template name found in /templates/detailItems
+	 * 		[...] // optional additional information which might get used by the template
+	 * }
+	 */
 	this.vCardMeta = {
 		nickname: {
 			readableName: t('contacts', 'Nickname'),
@@ -1098,6 +1107,7 @@ app.service('vCardPropertiesService', [function() {
 			template: 'textarea'
 		},
 		url: {
+			multiple: true,
 			readableName: t('contacts', 'Url'),
 			template: 'url'
 		},
@@ -1110,6 +1120,7 @@ app.service('vCardPropertiesService', [function() {
 			template: 'text'
 		},
 		adr: {
+			multiple: true,
 			readableName: t('contacts', 'Address'),
 			template: 'adr',
 			defaultValue: ['', '', '', '', '', '', ''],
@@ -1128,14 +1139,17 @@ app.service('vCardPropertiesService', [function() {
 			template: 'date'
 		},
 		email: {
+			multiple: true,
 			readableName: t('contacts', 'E-Mail'),
 			template: 'date'
 		},
 		impp: {
+			multiple: true,
 			readableName: t('contacts', 'Instant Messaging'),
 			template: 'date'
 		},
 		tel: {
+			multiple: true,
 			readableName: t('contacts', 'Telephone'),
 			template: 'tel',
 			options: [
@@ -1153,7 +1167,7 @@ app.service('vCardPropertiesService', [function() {
 
 	this.fieldDefinitions = [];
 	for (var prop in this.vCardMeta) {
-		this.fieldDefinitions.push({id: prop, name: this.vCardMeta[prop].readableName});
+		this.fieldDefinitions.push({id: prop, name: this.vCardMeta[prop].readableName, multiple: !!this.vCardMeta[prop].multiple});
 	}
 
 	this.fallbackMeta = function(property) {
@@ -1213,6 +1227,33 @@ app.filter('contactGroupFilter', [
 				for (var i = 0; i < contacts.length; i++) {
 					if (contacts[i].categories().indexOf(group) >= 0) {
 						filter.push(contacts[i]);
+					}
+				}
+			}
+			return filter;
+		};
+	}
+]);
+
+app.filter('fieldFilter', [
+	function() {
+		'use strict';
+		return function (fields, contact) {
+			if (typeof fields === "undefined") {
+				return fields;
+			}
+			if (typeof contact === "undefined") {
+				return fields;
+			}
+			var filter = [];
+			if (fields.length > 0) {
+				for (var i = 0; i < fields.length; i++) {
+					if (fields[i].multiple ) {
+						filter.push(fields[i]);
+						continue;
+					}
+					if (_.isUndefined(contact.getProperty(fields[i].id))) {
+						filter.push(fields[i]);
 					}
 				}
 			}
