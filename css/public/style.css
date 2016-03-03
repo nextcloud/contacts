@@ -65,18 +65,27 @@ detailsitem {
 }
 
 detailsitem label {
-	width: 80px;
 	display: inline-block;
+	width: 80px;
+	padding: 7px 0px;
 	text-align: right;
 	opacity: .5;
+	white-space: nowrap;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+	vertical-align: middle;
 }
 detailsitem label ~ textarea {
 	vertical-align: top;
-	padding-top: 10px;
 }
-.url-link {
-	padding: 8px 10px;
-    margin-left: -6px;
+detailsitem .details-item-telephone label {
+	opacity: 1;
+}
+detailsitem .details-item-telephone select {
+	width: 80px;
+}
+detailsitem .url-link {
+	padding: 8px 5px;
 	opacity: .5;
 }
 
@@ -98,6 +107,13 @@ detailsitem textarea,
 .select-addressbook select,
 .add-field {
 	width: 200px;
+}
+
+detailsitem .icon-delete {
+	background-color: transparent;
+	border: none;
+	padding: 20px;
+	opacity: .3;
 }
 
 

@@ -2,10 +2,6 @@
 	<option ng-repeat="option in ctrl.availableOptions" value="{{option.id}}">{{option.name}}</option>
 </select>
 <div>
-	<label for="details-pobox">{{ctrl.t.poBox}}</label>
-	<input type="text" id="details-pobox" name="address" ng-model="ctrl.data.value[0]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.model.updateContact()"  value="" />
-</div>
-<div>
 	<label for="details-address">{{ctrl.t.address}}</label>
 	<input type="text" id="details-address" name="address" ng-model="ctrl.data.value[2]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.model.updateContact()" value=""
 		   focus-expression="$parent.ctrl.focus === ctrl.name" />
