@@ -15,11 +15,11 @@ app.service('vCardPropertiesService', [function() {
 			template: 'text'
 		},
 		org: {
-			readableName: t('contacts', 'Organisation'),
+			readableName: t('contacts', 'Organization'),
 			template: 'text'
 		},
 		note: {
-			readableName: t('contacts', 'Note'),
+			readableName: t('contacts', 'Notes'),
 			template: 'textarea'
 		},
 		url: {
@@ -56,27 +56,27 @@ app.service('vCardPropertiesService', [function() {
 		},
 		email: {
 			multiple: true,
-			readableName: t('contacts', 'E-Mail'),
+			readableName: t('contacts', 'Email'),
 			template: 'date'
 		},
 		impp: {
 			multiple: true,
-			readableName: t('contacts', 'Instant Messaging'),
+			readableName: t('contacts', 'Instant messaging'),
 			template: 'date'
 		},
 		tel: {
 			multiple: true,
-			readableName: t('contacts', 'Telephone'),
+			readableName: t('contacts', 'Phone'),
 			template: 'tel',
 			options: [
-				{id: 'HOME,VOICE', name: t('contacts', 'Home, voice')},
-				{id: 'WORK,VOICE', name: t('contacts', 'Work, voice')},
-				{id: 'HOME,FAX', name: t('contacts', 'Home, fax')},
-				{id: 'WORK,FAX', name: t('contacts', 'Work, fax')},
-				{id: 'PAGER', name: t('contacts', 'Pager')},
-				{id: 'VOICE', name: t('contacts', 'Voice')},
+				{id: 'HOME,VOICE', name: t('contacts', 'Home')},
+				{id: 'WORK,VOICE', name: t('contacts', 'Work')},
+				{id: 'CELL', name: t('contacts', 'Mobile')},
 				{id: 'FAX', name: t('contacts', 'Fax')},
-				{id: 'CELL', name: t('contacts', 'Mobile')}
+				{id: 'HOME,FAX', name: t('contacts', 'Fax home')},
+				{id: 'WORK,FAX', name: t('contacts', 'Fax work')},
+				{id: 'PAGER', name: t('contacts', 'Pager')},
+				{id: 'VOICE', name: t('contacts', 'Voice')}
 			]
 		}
 	};
