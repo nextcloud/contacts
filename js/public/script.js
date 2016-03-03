@@ -230,6 +230,7 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
 	ctrl.focus = undefined;
+	ctrl.field = undefined;
 	$scope.addressBooks = [];
 	ctrl.addressBooks = [];
 
@@ -275,11 +276,11 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 	};
 
 	ctrl.addField = function(field) {
-		var defaultValue = vCardPropertiesService.getMeta(field).defaultValue || '';
-		var idx = ctrl.contact.addProperty(field, {value: defaultValue});
+		var defaultValue = vCardPropertiesService.getMeta(field).defaultValue || {value: ''};
+		ctrl.contact.addProperty(field, defaultValue);
 		ctrl.singleProperties = ctrl.contact.getSingleProperties();
 		ctrl.focus = field;
-		$scope.field = '';
+		ctrl.field = '';
 	};
 
 	ctrl.deleteField = function (field, index) {
@@ -1132,7 +1133,10 @@ app.service('vCardPropertiesService', [function() {
 			multiple: true,
 			readableName: t('contacts', 'Address'),
 			template: 'adr',
-			defaultValue: ['', '', '', '', '', '', ''],
+			defaultValue: {
+				value:['', '', '', '', '', '', ''],
+				meta:{type:['HOME']}
+			},
 			options: [
 				{id: 'HOME', name: t('contacts', 'Home')},
 				{id: 'WORK', name: t('contacts', 'Work')},
