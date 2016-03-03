@@ -39,7 +39,10 @@ app.service('vCardPropertiesService', [function() {
 			multiple: true,
 			readableName: t('contacts', 'Address'),
 			template: 'adr',
-			defaultValue: ['', '', '', '', '', '', ''],
+			defaultValue: {
+				value:['', '', '', '', '', '', ''],
+				meta:{type:['HOME']}
+			},
 			options: [
 				{id: 'HOME', name: t('contacts', 'Home')},
 				{id: 'WORK', name: t('contacts', 'Work')},
