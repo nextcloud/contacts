@@ -31,4 +31,9 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
         var templateUrl = OC.linkTo('contacts', 'templates/detailItems/'+ ctrl.meta.template +'.html');
         return $templateRequest(templateUrl);
     };
+
+    ctrl.deleteField = function () {
+        ctrl.model.deleteField(ctrl.name, ctrl.index);
+		ctrl.model.updateContact();
+    };
 }]);
