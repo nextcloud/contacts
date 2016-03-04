@@ -305,7 +305,7 @@ app.directive('contactdetails', function() {
 	};
 });
 
-app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams', 'ContactService', function($scope, $filter, $route, $routeParams, ContactService) {
+app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams', 'ContactService', 'vCardPropertiesService', function($scope, $filter, $route, $routeParams, ContactService, vCardPropertiesService) {
 	var ctrl = this;
 
 	ctrl.routeParams = $routeParams;
@@ -391,6 +391,10 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 
 	ctrl.createContact = function() {
 		ContactService.create().then(function(contact) {
+			['tel', 'adr', 'email'].forEach(function(field) {
+				var defaultValue = vCardPropertiesService.getMeta(field).defaultValue || {value: ''};
+				contact.addProperty(field, defaultValue);
+			} );
 			if ($routeParams.gid !== t('contacts', 'All contacts'))
 				contact.categories($routeParams.gid);
 				$('#details-fullName').focus();
