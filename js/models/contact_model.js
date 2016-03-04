@@ -5,19 +5,6 @@ app.factory('Contact', [ '$filter', function($filter) {
 			data: {},
 			props: {},
 
-			getSingleProperties: function() {
-				var singleProperties = [];
-				for(var prop in this.props) {
-					if(this.props.hasOwnProperty(prop)) {
-						var index = 0;
-						this.props[prop].forEach(function(propData) {
-							singleProperties.push({ name: prop, data: propData, index: index++ });
-						});
-					}
-				}
-				return singleProperties;
-			},
-
 			addressBookId: addressBook.displayName,
 
 			uid: function(value) {
@@ -96,8 +83,8 @@ app.factory('Contact', [ '$filter', function($filter) {
 				// keep vCard in sync
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
-			removeProperty: function (name, index) {
-				delete this.props[name][index];
+			removeProperty: function (name, prop) {
+				angular.copy(_.without(this.props[name], prop), this.props[name]);
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
 			setETag: function(etag) {

@@ -13,7 +13,7 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
     };
 
     ctrl.availableOptions = ctrl.meta.options || [];
-    if (!_.isUndefined(ctrl.data.meta)) {
+    if (!_.isUndefined(ctrl.data) && !_.isUndefined(ctrl.data.meta)) {
         ctrl.type = ctrl.data.meta.type[0];
         if (!ctrl.availableOptions.some(function(e){ return e.id === ctrl.data.meta.type[0];})) {
             ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.data.meta.type[0], name: ctrl.data.meta.type[0]}]);
@@ -33,7 +33,7 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
     };
 
     ctrl.deleteField = function () {
-        ctrl.model.deleteField(ctrl.name, ctrl.index);
+        ctrl.model.deleteField(ctrl.name, ctrl.data);
 		ctrl.model.updateContact();
     };
 }]);

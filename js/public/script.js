@@ -259,7 +259,6 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 		}
 		ContactService.getById(uid).then(function(contact) {
 			ctrl.contact = contact;
-			ctrl.singleProperties = ctrl.contact.getSingleProperties();
 			ctrl.photo = ctrl.contact.photo();
 			$scope.addressBook = _.find($scope.addressBooks, function(book) {
 				return book.id === ctrl.contact.addressBookId;
@@ -278,14 +277,12 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 	ctrl.addField = function(field) {
 		var defaultValue = vCardPropertiesService.getMeta(field).defaultValue || {value: ''};
 		ctrl.contact.addProperty(field, defaultValue);
-		ctrl.singleProperties = ctrl.contact.getSingleProperties();
 		ctrl.focus = field;
 		ctrl.field = '';
 	};
 
-	ctrl.deleteField = function (field, index) {
-		ctrl.contact.removeProperty(field, index);
-		ctrl.singleProperties = ctrl.contact.getSingleProperties();
+	ctrl.deleteField = function (field, prop) {
+		ctrl.contact.removeProperty(field, prop);
 		ctrl.focus = undefined;
 	};
 
@@ -442,7 +439,7 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
     };
 
     ctrl.availableOptions = ctrl.meta.options || [];
-    if (!_.isUndefined(ctrl.data.meta)) {
+    if (!_.isUndefined(ctrl.data) && !_.isUndefined(ctrl.data.meta)) {
         ctrl.type = ctrl.data.meta.type[0];
         if (!ctrl.availableOptions.some(function(e){ return e.id === ctrl.data.meta.type[0];})) {
             ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.data.meta.type[0], name: ctrl.data.meta.type[0]}]);
@@ -462,7 +459,7 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
     };
 
     ctrl.deleteField = function () {
-        ctrl.model.deleteField(ctrl.name, ctrl.index);
+        ctrl.model.deleteField(ctrl.name, ctrl.data);
 		ctrl.model.updateContact();
     };
 }]);
@@ -475,8 +472,7 @@ app.directive('detailsitem', ['$compile', function($compile) {
 		bindToController: {
 			name: '=',
 			data: '=',
-			model: '=',
-			index: '='
+			model: '='
 		},
 		link: function(scope, element, attrs, ctrl) {
 			ctrl.getTemplate().then(function(html) {
@@ -622,19 +618,6 @@ app.factory('Contact', [ '$filter', function($filter) {
 			data: {},
 			props: {},
 
-			getSingleProperties: function() {
-				var singleProperties = [];
-				for(var prop in this.props) {
-					if(this.props.hasOwnProperty(prop)) {
-						var index = 0;
-						this.props[prop].forEach(function(propData) {
-							singleProperties.push({ name: prop, data: propData, index: index++ });
-						});
-					}
-				}
-				return singleProperties;
-			},
-
 			addressBookId: addressBook.displayName,
 
 			uid: function(value) {
@@ -713,8 +696,8 @@ app.factory('Contact', [ '$filter', function($filter) {
 				// keep vCard in sync
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
-			removeProperty: function (name, index) {
-				delete this.props[name][index];
+			removeProperty: function (name, prop) {
+				angular.copy(_.without(this.props[name], prop), this.props[name]);
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
 			setETag: function(etag) {
