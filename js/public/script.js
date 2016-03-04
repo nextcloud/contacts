@@ -488,6 +488,23 @@ app.directive('detailsitem', ['$compile', function($compile) {
 	};
 }]);
 
+app.controller('groupCtrl', function() {
+	var ctrl = this;
+});
+
+app.directive('group', function() {
+	return {
+		restrict: 'A', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'groupCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			group: "=data"
+		},
+		templateUrl: OC.linkTo('contacts', 'templates/group.html')
+	};
+});
+
 app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 
 	$scope.groups = [t('contacts', 'All contacts')];
@@ -510,23 +527,6 @@ app.directive('grouplist', function() {
 		controllerAs: 'ctrl',
 		bindToController: {},
 		templateUrl: OC.linkTo('contacts', 'templates/groupList.html')
-	};
-});
-
-app.controller('groupCtrl', function() {
-	var ctrl = this;
-});
-
-app.directive('group', function() {
-	return {
-		restrict: 'A', // has to be an attribute to work with core css
-		scope: {},
-		controller: 'groupCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			group: "=data"
-		},
-		templateUrl: OC.linkTo('contacts', 'templates/group.html')
 	};
 });
 
@@ -1226,6 +1226,21 @@ app.service('vCardPropertiesService', [function() {
 		}
 	};
 
+	this.fieldOrder = [
+		'org',
+		'title',
+		'tel',
+		'email',
+		'adr',
+		'impp',
+		'nick',
+		'bday',
+		'url',
+		'note',
+		'categories',
+		'role'
+	];
+
 	this.fieldDefinitions = [];
 	for (var prop in this.vCardMeta) {
 		this.fieldDefinitions.push({id: prop, name: this.vCardMeta[prop].readableName, multiple: !!this.vCardMeta[prop].multiple});
@@ -1327,6 +1342,43 @@ app.filter('firstCharacter', function() {
 	return function(input) {
 		return input.charAt(0);
 	};
+});
+
+app.filter('orderDetailItems', ['vCardPropertiesService', function(vCardPropertiesService) {
+	'use strict';
+	return function(items, field, reverse) {
+
+		var filtered = [];
+		angular.forEach(items, function(item) {
+			filtered.push(item);
+		});
+
+		var fieldOrder = angular.copy(vCardPropertiesService.fieldOrder);
+		// reverse to move custom items to the end (indexOf == -1)
+		fieldOrder.reverse();
+
+		filtered.sort(function (a, b) {
+			if(fieldOrder.indexOf(a[field]) < fieldOrder.indexOf(b[field])) {
+				return 1;
+			}
+			if(fieldOrder.indexOf(a[field]) > fieldOrder.indexOf(b[field])) {
+				return -1;
+			}
+			return 0;
+		});
+
+		if(reverse) filtered.reverse();
+		return filtered;
+	};
+}]);
+
+app.filter('toArray', function() {
+    return function(obj) {
+        if (!(obj instanceof Object)) return obj;
+        return _.map(obj, function(val, key) {
+            return Object.defineProperty(val, '$key', {value: key});
+        });
+    };
 });
 
 app.filter('vCard2JSON', function() {
