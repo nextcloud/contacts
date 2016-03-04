@@ -1,6 +1,8 @@
 app.controller('contactdetailsCtrl', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
 	var ctrl = this;
 
+	ctrl.loading = true;
+
 	ctrl.uid = $routeParams.uid;
 	ctrl.t = {
 		noContacts : t('contacts', 'No contacts in here'),
@@ -29,6 +31,7 @@ app.controller('contactdetailsCtrl', function(ContactService, AddressBookService
 				return book.id === ctrl.contact.addressBookId;
 			});
 		}
+		ctrl.loading = false;
 	});
 
 	$scope.$watch('ctrl.uid', function(newValue, oldValue) {

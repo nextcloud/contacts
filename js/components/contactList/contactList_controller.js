@@ -37,6 +37,8 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 		}
 	});
 
+	ctrl.loading = true;
+
 	ContactService.registerObserverCallback(function(ev) {
 		$scope.$apply(function() {
 			if (ev.event === 'delete') {
@@ -70,6 +72,7 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 	ContactService.getAll().then(function(contacts) {
 		$scope.$apply(function() {
 			ctrl.contacts = contacts;
+			ctrl.loading = false;
 		});
 	});
 
