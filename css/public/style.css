@@ -44,9 +44,9 @@
 
 .contact__icon {
 	display: inline-block;
-	height: 32px;
-	width: 32px;
-	line-height: 32px;
+	height: 40px;
+	width: 40px;
+	line-height: 40px;
 	border-radius: 50%;
 	vertical-align: middle;
 	margin-right: 10px;
@@ -200,13 +200,13 @@ detailsitem.details-item-note .icon-delete {
 .app-content-list-item-icon {
 	position: absolute;
 	display: inline-block;
-	left: 10px;
-	top: 5px;
+	left: 6px;
+	top: 14px;
 }
 
 .app-content-list-item-star {
 	position: absolute;
-	display: inline-block;
+	display: none; /* change to inline-block when we implement it */
 	left: 16px;
 	top: 28px;
 	padding: 20px;
@@ -225,7 +225,9 @@ detailsitem.details-item-note .icon-delete {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.app-content-list-item-line-one {
+.app-content-list-item-line-one.no-line-two {
+	padding-top: 24px;
+	padding-bottom: 24px;
 }
 .app-content-list-item-line-two {
 	top: 25px;
