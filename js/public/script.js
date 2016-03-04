@@ -696,6 +696,7 @@ app.factory('Contact', [ '$filter', function($filter) {
 				}
 			},
 			addProperty: function(name, data) {
+				data = angular.copy(data);
 				if(!this.props[name]) {
 					this.props[name] = [];
 				}
