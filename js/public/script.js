@@ -474,7 +474,7 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
         state : t('contacts', 'State or province'),
         country : t('contacts', 'Country'),
         address: t('contacts', 'Address'),
-        selectGroups: t('contacts', 'Select groups ...')
+        newGroup: t('contacts', '(new group)')
     };
 
     ctrl.availableOptions = ctrl.meta.options || [];
