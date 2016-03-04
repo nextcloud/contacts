@@ -156,8 +156,94 @@ detailsitem.details-item-note .icon-delete {
 }
 
 
+
+/* addressbook settings */
+
+
+ul.addressBookList li {
+	padding: 6px 0;
+}
+
+ul.addressBook-share-list {
+	margin-top: 8px;
+	margin-bottom: 12px;
+}
+
+ul.addressBook-share-list li {
+	margin-left: 15px;
+}
+
+ul.addressBookList li .action .icon-share,
+ul.addressBookList li .action .icon-delete {
+	padding: 10px 18px;
+}
+
+div.addressBookShares ul.dropdown-menu {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	width: 229px;
+	height: 200px;
+	margin-top: -5px;
+	overflow: scroll;
+}
+
+div.addressBookShares ul.dropdown-menu li > a {
+	height: 30px !important;
+	min-height: 30px !important;
+	line-height: 30px !important;
+}
+
+ul.dropdown-menu li.active {
+	background: #eee;
+}
+
+div.app-contacts span.utils {
+	padding: 0 !important;
+}
+
+input.newAddressBookInput, input.shareeInput {
+	width: 100% !important;
+}
+
+.addressBookList form {
+	position: relative;
+}
+.newAddressBookSubmit {
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 6px 13px;
+	background-color: transparent;
+	border: none;
+	opacity: .5;
+}
+
+ul.addressBookList li[addressbook] > span.addressBookName {
+	padding-left: 7px;
+}
+
+li.addressBook-share-item span.shareeIdentifier {
+	max-width: 50px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	display: inline-block;
+	vertical-align: top;
+}
+
+
+
+
+
+
+
+
+
+
+
 /* app content list & detail view */
 /* TO BE MOVED TO CORE apps.css ONCE STANDARDIZED ACROSS APPS */
+/* DO NOT MAKE ANY CHANGES SPECIFIC TO CONTACTS HERE! */
 
 .app-content-list {
 	width: 30%;
@@ -234,77 +320,14 @@ detailsitem.details-item-note .icon-delete {
 	top: 25px;
 	opacity: .5;
 }
-ul.addressBookList li {
-    margin-bottom: 5px;
-}
 
-ul.addressBook-share-list {
-    margin-top: 8px;
-    margin-bottom: 12px;
+#app-navigation .utils .action span {
+	cursor: pointer !important;
 }
-
-ul.addressBook-share-list li {
-    margin-left: 15px;
-}
-
-div.addressBookShares ul.dropdown-menu {
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    width: 229px;
-    height: 200px;
-    margin-top: -5px;
-    overflow: scroll;
-}
-
-div.addressBookShares ul.dropdown-menu li > a {
-    height: 30px !important;
-    min-height: 30px !important;
-    line-height: 30px !important;
-}
-
-ul.dropdown-menu li.active {
-    background: #eee;
-}
-
-div.app-contacts span.utils {
-    padding: 0 !important;
-}
-
-input.newAddressBookInput, input.shareeInput {
-    width: 100% !important;
-}
-
-input.newAddressBookSubmit {
-    margin-bottom: 10px;
-}
-
-ul.addressBookList li[addressbook] > span.addressBookName {
-    padding-left: 7px;
-    font-weight: 600;
-}
-
-li.addressBook-share-item span.shareeIdentifier {
-    max-width: 50px;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    display: inline-block;
-    vertical-align: top;
-}
-
 #app-navigation .utils .action {
-    opacity: 0.5;
+	opacity: .5;
 }
-
-#app-navigation .utils .action:hover {
-    opacity: 1;
-}
-
-#app-navigation li[addressbook]:hover .utils .action span {
-	display: inline-block;
-	line-height: 44px;
-	height: 16px;
-	width: 16px;
-	padding: 14px 2px 14px 2px;
-	cursor: pointer;
+#app-navigation .utils .action:hover,
+#app-navigation .utils .action:focus {
+	opacity: 1;
 }
