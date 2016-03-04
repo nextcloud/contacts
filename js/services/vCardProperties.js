@@ -119,6 +119,21 @@ app.service('vCardPropertiesService', [function() {
 		}
 	};
 
+	this.fieldOrder = [
+		'org',
+		'title',
+		'tel',
+		'email',
+		'adr',
+		'impp',
+		'nick',
+		'bday',
+		'url',
+		'note',
+		'categories',
+		'role'
+	];
+
 	this.fieldDefinitions = [];
 	for (var prop in this.vCardMeta) {
 		this.fieldDefinitions.push({id: prop, name: this.vCardMeta[prop].readableName, multiple: !!this.vCardMeta[prop].multiple});
