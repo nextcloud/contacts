@@ -60,6 +60,10 @@
 	padding: 20px 20px 100px;
 }
 
+
+
+/* General details item styles */
+
 detailsitem {
 	display: block;
 	position: relative;
@@ -75,41 +79,6 @@ detailsitem label {
 	overflow-x: hidden;
 	text-overflow: ellipsis;
 	vertical-align: middle;
-}
-
-detailsitem.details-item-note label {
-	vertical-align: top;
-	padding-top: 10px;
-}
-detailsitem.details-item-note .icon-delete {
-	vertical-align: top;
-}
-detailsitem.details-item-tel label {
-	opacity: 1;
-	padding: 0;
-}
-detailsitem.details-item-tel select {
-	width: 80px;
-}
-detailsitem.details-item-tel .icon-delete {
-	vertical-align: middle;
-}
-detailsitem.details-item-adr {
-	padding: 20px 0;
-}
-detailsitem.details-item-adr .icon-delete {
-	position: absolute;
-    top: 57px;
-    left: 290px;
-}
-detailsitem .url-link {
-	padding: 8px 5px;
-	opacity: .5;
-}
-
-.select-addressbook,
-.add-field {
-	margin-left: 83px;
 }
 
 detailsitem input[type="text"],
@@ -128,10 +97,61 @@ detailsitem textarea,
 }
 
 detailsitem .icon-delete {
+	position: absolute;
+	vertical-align: middle;
+	padding: 16px;
 	background-color: transparent;
 	border: none;
-	padding: 16px;
-	opacity: .3;
+	opacity: .2;
+}
+
+
+
+/* More specific details item styles */
+
+detailsitem.details-item-tel select,
+detailsitem.details-item-email select,
+detailsitem.details-item-adr select,
+detailsitem.details-item-impp select {
+	width: 80px;
+	margin-right: 0;
+}
+
+detailsitem.details-item-tel label {
+	opacity: 1;
+	padding: 0;
+}
+
+detailsitem.details-item-adr {
+	padding: 20px 0;
+}
+detailsitem.details-item-adr .icon-delete {
+	top: 57px;
+	left: 290px;
+}
+
+detailsitem.details-item-email select {
+	margin-right: 0;
+}
+
+detailsitem .url-link {
+	position: absolute;
+	padding: 8px 10px;
+	margin-left: -30px;
+	opacity: .5;
+}
+
+detailsitem.details-item-note label {
+	vertical-align: top;
+	padding-top: 10px;
+}
+detailsitem.details-item-note .icon-delete {
+	vertical-align: top;
+}
+
+.select-addressbook,
+.add-field {
+	margin-left: 83px;
 }
 
 
