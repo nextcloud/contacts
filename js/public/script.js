@@ -193,31 +193,6 @@ app.directive('addressbooklist', function() {
 	};
 });
 
-app.controller('contactCtrl', ['$route', '$routeParams', function($route, $routeParams) {
-	var ctrl = this;
-
-	ctrl.openContact = function() {
-		$route.updateParams({
-			gid: $routeParams.gid,
-			uid: ctrl.contact.uid()});
-	};
-
-	console.log("Contact: ",ctrl.contact);
-
-}]);
-
-app.directive('contact', function() {
-	return {
-		scope: {},
-		controller: 'contactCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			contact: '=data'
-		},
-		templateUrl: OC.linkTo('contacts', 'templates/contact.html')
-	};
-});
-
 app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'vCardPropertiesService', '$routeParams', '$scope', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
 	var ctrl = this;
 
@@ -302,6 +277,31 @@ app.directive('contactdetails', function() {
 		controllerAs: 'ctrl',
 		bindToController: {},
 		templateUrl: OC.linkTo('contacts', 'templates/contactDetails.html')
+	};
+});
+
+app.controller('contactCtrl', ['$route', '$routeParams', function($route, $routeParams) {
+	var ctrl = this;
+
+	ctrl.openContact = function() {
+		$route.updateParams({
+			gid: $routeParams.gid,
+			uid: ctrl.contact.uid()});
+	};
+
+	console.log("Contact: ",ctrl.contact);
+
+}]);
+
+app.directive('contact', function() {
+	return {
+		scope: {},
+		controller: 'contactCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			contact: '=data'
+		},
+		templateUrl: OC.linkTo('contacts', 'templates/contact.html')
 	};
 });
 
@@ -525,6 +525,21 @@ app.directive('grouplist', function() {
 		templateUrl: OC.linkTo('contacts', 'templates/groupList.html')
 	};
 });
+
+app.directive('dateModel', ['$filter', function($filter){
+    return{
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, element, attr, ngModel) {
+            ngModel.$formatters.push(function(value) {
+                return new Date(value);
+            });
+            ngModel.$parsers.push(function(value) {
+                return $filter('date')(value, 'yyyy-MM-dd');
+            });
+        }
+    };
+}]);
 
 app.directive('telModel', function(){
     return{
