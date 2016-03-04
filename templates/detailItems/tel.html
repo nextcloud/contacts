@@ -6,6 +6,7 @@
 <input type="tel" id="details-{{ctrl.name}}" name="phone"
        ng-model="ctrl.data.value" tel-model ng-model-options="{ debounce: 500 }"
        ng-change="ctrl.model.updateContact()" value=""
+       placeholder="{{ctrl.meta.readableName}}"
        focus-expression="$parent.ctrl.focus === ctrl.name"
 />
 <button ng-click="ctrl.deleteField()" class="icon-delete" title="Delete"></button>

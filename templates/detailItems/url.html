@@ -2,6 +2,7 @@
 <input type="url" id="details-{{ctrl.name}}" name="{{ctrl.name}}"
 	   ng-model="ctrl.data.value" ng-model-options="{ debounce: 500 }"
 	   ng-change="ctrl.model.updateContact()" value=""
+	   placeholder="https://…"
 	   focus-expression="$parent.ctrl.focus === ctrl.name"
 />
 <button ng-click="ctrl.deleteField()" class="icon-delete" title="Delete"></button>
