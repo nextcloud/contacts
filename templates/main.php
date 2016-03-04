@@ -4,6 +4,8 @@ script('contacts', 'vendor/angular/angular');
 script('contacts', 'vendor/angular-route/angular-route');
 script('contacts', 'vendor/angular-uuid4/angular-uuid4');
 script('contacts', 'vendor/angular-cache/dist/angular-cache');
+script('contacts', 'vendor/angular-sanitize/angular-sanitize');
+script('contacts', 'vendor/ui-select/dist/select');
 
 // DAV libraries
 script('contacts', 'dav/dav');
@@ -18,7 +20,7 @@ script('contacts', 'vendor/jquery-timepicker/jquery.ui.timepicker');
 
 // all styles
 style('contacts', 'public/style');
-
+vendor_style('select2/select2');
 ?>
 
 <div id="app" ng-app="contactsApp">

@@ -8,7 +8,7 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute', 'ui.bootstrap']);
+var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute', 'ui.bootstrap', 'ui.select', 'ngSanitize']);
 
 app.config(['$routeProvider', function($routeProvider){
 
@@ -462,7 +462,7 @@ app.directive('contactlist', function() {
 	};
 });
 
-app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService', function($templateRequest, vCardPropertiesService) {
+app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService', 'ContactService', function($templateRequest, vCardPropertiesService, ContactService) {
 	var ctrl = this;
 
     ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
@@ -473,7 +473,8 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
         city : t('contacts', 'City'),
         state : t('contacts', 'State or province'),
         country : t('contacts', 'Country'),
-        address: t('contacts', 'Address')
+        address: t('contacts', 'Address'),
+        selectGroups: t('contacts', 'Select groups ...')
     };
 
     ctrl.availableOptions = ctrl.meta.options || [];
@@ -483,6 +484,11 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
             ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.data.meta.type[0], name: ctrl.data.meta.type[0]}]);
         }
     }
+    ctrl.availableGroups = [];
+
+    ContactService.getGroups().then(function(groups) {
+        ctrl.availableGroups = _.unique(groups);
+    });
 
     ctrl.changeType = function (val) {
         ctrl.data.meta = ctrl.data.meta || {};
@@ -544,7 +550,7 @@ app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', fun
 	$scope.groups = [t('contacts', 'All contacts')];
 
 	ContactService.getGroups().then(function(groups) {
-		$scope.groups = groups;
+		$scope.groups = _.unique(groups);
 	});
 
 	$scope.selectedGroup = $routeParams.gid;
@@ -563,6 +569,36 @@ app.directive('grouplist', function() {
 		templateUrl: OC.linkTo('contacts', 'templates/groupList.html')
 	};
 });
+
+app.directive('dateModel', ['$filter', function($filter){
+    return{
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, element, attr, ngModel) {
+            ngModel.$formatters.push(function(value) {
+                return new Date(value);
+            });
+            ngModel.$parsers.push(function(value) {
+                return $filter('date')(value, 'yyyy-MM-dd');
+            });
+        }
+    };
+}]);
+
+app.directive('groupModel', ['$filter', function($filter){
+    return{
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, element, attr, ngModel) {
+            ngModel.$formatters.push(function(value) {
+                return value.split(',');
+            });
+            ngModel.$parsers.push(function(value) {
+                return value.join(",");
+            });
+        }
+    };
+}]);
 
 app.directive('telModel', function(){
     return{
@@ -1203,7 +1239,7 @@ app.service('vCardPropertiesService', [function() {
 		},
 		categories: {
 			readableName: t('contacts', 'Groups'),
-			template: 'text'
+			template: 'groups'
 		},
 		bday: {
 			readableName: t('contacts', 'Birthday'),
