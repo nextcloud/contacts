@@ -181,12 +181,12 @@ detailsitem .icon-delete {
 	position: absolute;
 	display: inline-block;
 	left: 10px;
-	top: 5px;
+	top: 18px; /* change back to 5px when we implement starring */
 }
 
 .app-content-list-item-star {
 	position: absolute;
-	display: inline-block;
+	display: none; /* change to inline-block when we implement it */
 	left: 16px;
 	top: 28px;
 	padding: 20px;
@@ -205,7 +205,9 @@ detailsitem .icon-delete {
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
-.app-content-list-item-line-one {
+.app-content-list-item-line-one.no-line-two {
+	padding-top: 24px;
+	padding-bottom: 24px;
 }
 .app-content-list-item-line-two {
 	top: 25px;
