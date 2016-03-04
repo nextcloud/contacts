@@ -664,6 +664,16 @@ app.factory('Contact', [ '$filter', function($filter) {
 				}
 			},
 
+			email: function() {
+				// getter
+				var property = this.getProperty('email');
+				if(property) {
+					return property.value;
+				} else {
+					return undefined;
+				}
+			},
+
 			photo: function() {
 				var property = this.getProperty('photo');
 				if(property) {
