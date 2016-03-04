@@ -14,7 +14,7 @@
 </header>
 <section>
 	<div ng-repeat="prop in ctrl.contact.props | toArray | orderDetailItems:'$key'">
-		<detailsItem ng-repeat="propData in prop" name="prop.$key" data="prop" model="ctrl" index="$index" ng-class="[ 'details-item-' + prop.name ]"></detailsItem>
+		<detailsItem ng-repeat="propData in prop" name="prop.$key" data="propData" model="ctrl" index="$index" ng-class="[ 'details-item-' + prop.$key ]"></detailsItem>
 	</div>
 	<div class="select-addressbook" ng-if="addressBooks.length > 1">
 		<select ng-model="addressBook" ng-change="ctrl.changeAddressBook(addressBook)" ng-options="book.id for book in addressBooks track by book.id">
