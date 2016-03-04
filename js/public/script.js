@@ -1127,6 +1127,19 @@ app.service('vCardPropertiesService', [function() {
 			readableName: t('contacts', 'Role'),
 			template: 'text'
 		},
+		cloud: {
+			multiple: true,
+			readableName: t('contacts', 'Federated Cloud ID'),
+			template: 'text',
+			defaultValue: {
+				value:[''],
+				meta:{type:['HOME']}
+			},
+			options: [
+				{id: 'HOME', name: t('contacts', 'Home')},
+				{id: 'WORK', name: t('contacts', 'Work')},
+				{id: 'OTHER', name: t('contacts', 'Other')}
+			]		},
 		adr: {
 			multiple: true,
 			readableName: t('contacts', 'Address'),
