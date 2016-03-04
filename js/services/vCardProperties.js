@@ -75,7 +75,7 @@ app.service('vCardPropertiesService', [function() {
 			readableName: t('contacts', 'Email'),
 			template: 'text',
 			defaultValue: {
-				value:[''],
+				value:'',
 				meta:{type:['HOME']}
 			},
 			options: [

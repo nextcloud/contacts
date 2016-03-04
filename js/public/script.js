@@ -488,23 +488,6 @@ app.directive('detailsitem', ['$compile', function($compile) {
 	};
 }]);
 
-app.controller('groupCtrl', function() {
-	var ctrl = this;
-});
-
-app.directive('group', function() {
-	return {
-		restrict: 'A', // has to be an attribute to work with core css
-		scope: {},
-		controller: 'groupCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			group: "=data"
-		},
-		templateUrl: OC.linkTo('contacts', 'templates/group.html')
-	};
-});
-
 app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
 
 	$scope.groups = [t('contacts', 'All contacts')];
@@ -527,6 +510,23 @@ app.directive('grouplist', function() {
 		controllerAs: 'ctrl',
 		bindToController: {},
 		templateUrl: OC.linkTo('contacts', 'templates/groupList.html')
+	};
+});
+
+app.controller('groupCtrl', function() {
+	var ctrl = this;
+});
+
+app.directive('group', function() {
+	return {
+		restrict: 'A', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'groupCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			group: "=data"
+		},
+		templateUrl: OC.linkTo('contacts', 'templates/group.html')
 	};
 });
 
@@ -1181,7 +1181,7 @@ app.service('vCardPropertiesService', [function() {
 			readableName: t('contacts', 'Email'),
 			template: 'text',
 			defaultValue: {
-				value:[''],
+				value:'',
 				meta:{type:['HOME']}
 			},
 			options: [
