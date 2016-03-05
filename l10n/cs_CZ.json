@@ -5,6 +5,8 @@
     "Add field ..." : "Přidat pole...",
     "Add contact" : "Přidat kontakt",
     "All contacts" : "Všechny kontakty",
+    "Post Office Box" : "Poštovní schránka",
+    "Postal Code" : "Poštovní směrovací číslo",
     "City" : "Město",
     "State or province" : "Stát nebo provincie",
     "Country" : "Země",
@@ -27,6 +29,8 @@
     "Phone" : "Telefon",
     "Mobile" : "Mobil",
     "Fax" : "Fax",
+    "Fax home" : "Fax domů",
+    "Fax work" : "Fax do práce",
     "Pager" : "Pager",
     "Voice" : "Hlas"
 },"pluralForm" :"nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;"

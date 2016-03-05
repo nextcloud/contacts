@@ -31,6 +31,8 @@ OC.L10N.register(
     "Phone" : "Téléphone",
     "Mobile" : "Mobile",
     "Fax" : "Fax",
+    "Fax home" : "Fax personnel",
+    "Fax work" : "Fax pro",
     "Pager" : "Bipeur",
     "Voice" : "Voix"
 },

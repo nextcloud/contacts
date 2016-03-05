@@ -20,7 +20,7 @@ OC.L10N.register(
     "Website" : "Website",
     "Title" : "Título",
     "Role" : "Função",
-    "Federated Cloud ID" : "Cloud Id Associada",
+    "Federated Cloud ID" : "ID de núvem Associada",
     "Home" : "Casa",
     "Work" : "Trabalho",
     "Other" : "Outro",

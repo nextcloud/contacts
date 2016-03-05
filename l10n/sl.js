@@ -7,6 +7,7 @@ OC.L10N.register(
     "Add field ..." : "Dodaj polje ...",
     "Add contact" : "Dodaj stik",
     "All contacts" : "Vsi stiki",
+    "Postal Code" : "Poštna številka",
     "City" : "Mesto",
     "State or province" : "Zvezna država ali provinca",
     "Country" : "Država",

@@ -7,6 +7,8 @@ OC.L10N.register(
     "Add field ..." : "Přidat pole...",
     "Add contact" : "Přidat kontakt",
     "All contacts" : "Všechny kontakty",
+    "Post Office Box" : "Poštovní schránka",
+    "Postal Code" : "Poštovní směrovací číslo",
     "City" : "Město",
     "State or province" : "Stát nebo provincie",
     "Country" : "Země",
@@ -29,6 +31,8 @@ OC.L10N.register(
     "Phone" : "Telefon",
     "Mobile" : "Mobil",
     "Fax" : "Fax",
+    "Fax home" : "Fax domů",
+    "Fax work" : "Fax do práce",
     "Pager" : "Pager",
     "Voice" : "Hlas"
 },
