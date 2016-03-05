@@ -4,7 +4,7 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/owncloud/contacts/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/owncloud/contacts/?branch=master)
 [![Code Coverage](https://scrutinizer-ci.com/g/owncloud/contacts/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/owncloud/contacts/?branch=master)
 
-**An contacts app for [ownCloud](https://owncloud.org).**  
+**A contacts app for [ownCloud](https://owncloud.org).**  
 
 It will replace the [old contacts app](https://github.com/owncloudarchive/contacts) with ownCloud 9.0, and is only the frontend for the new CardDAV-Backend which has moved into the [ownCloud Core](https://github.com/owncloud/core). 
 
