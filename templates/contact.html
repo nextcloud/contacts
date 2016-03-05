@@ -4,6 +4,6 @@
 
 <div class="app-content-list-item-star icon-star" data-starred="false"></div>
 
-<div class="app-content-list-item-line-one">{{ctrl.contact.fullName()}}</div>
+<div class="app-content-list-item-line-one" ng-class="{'no-line-two':!ctrl.contact.email()}">{{ctrl.contact.fullName()}}</div>
 <div class="app-content-list-item-line-two">{{ctrl.contact.email()}}</div>
 </a>
