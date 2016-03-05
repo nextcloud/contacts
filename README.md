@@ -1,15 +1,16 @@
-# Contacts
-Place this app in **owncloud/apps/**
+# ownCloud Contacts 
 
-## Publish to App Store
+[![Build Status](https://scrutinizer-ci.com/g/owncloud/contacts/badges/build.png?b=master)](https://scrutinizer-ci.com/g/owncloud/calendar-rework/build-status/master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/owncloud/contacts/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/owncloud/calendar-rework/?branch=master)
+[![Code Coverage](https://scrutinizer-ci.com/g/owncloud/contacts/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/owncloud/calendar-rework/?branch=master)
 
-First get an account for the [App Store](http://apps.owncloud.com/) then run:
+**An contacts app for [ownCloud](https://owncloud.org).**  
 
-    make appstore_package
+It will replace the [old contacts app](https://github.com/owncloudarchive/contacts) with ownCloud 9.0, and is only the frontend for the new CardDAV-Backend which has moved into the [ownCloud Core](https://github.com/owncloud/core). 
 
-The archive is located in build/artifacts/appstore and can then be uploaded to the App Store.
+![](https://raw.githubusercontent.com/owncloud/screenshots/master/contacts/calendar.png)
 
-## Running tests
-After [Installing PHPUnit](http://phpunit.de/getting-started.html) run:
+## Maintainers:
 
-    phpunit -c phpunit.xml
+
+If you’d like to join, just go through the [issue list](https://github.com/owncloud/contacts/issues) and fix some. :) We’re also in [#owncloud-contacts on freenode IRC](https://webchat.freenode.net/?channels=owncloud-contacts).
