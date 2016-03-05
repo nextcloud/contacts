@@ -1,6 +1,6 @@
 <label for="details-{{ctrl.name}}">{{ctrl.meta.readableName}}</label>
 <input type="url" id="details-{{ctrl.name}}" name="{{ctrl.name}}"
-	   ng-model="ctrl.data.value" ng-model-options="{ debounce: 500 }"
+	   ng-model="ctrl.data.value" ng-model-options="{ debounce: 500, allowInvalid: true }"
 	   ng-change="ctrl.model.updateContact()" value=""
 	   placeholder="https://…"
 	   focus-expression="$parent.ctrl.focus === ctrl.name"
