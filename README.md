@@ -8,7 +8,7 @@
 
 It will replace the [old contacts app](https://github.com/owncloudarchive/contacts) with ownCloud 9.0, and is only the frontend for the new CardDAV-Backend which has moved into the [ownCloud Core](https://github.com/owncloud/core). 
 
-![](https://raw.githubusercontent.com/owncloud/screenshots/master/contacts/calendar.png)
+![](https://raw.githubusercontent.com/owncloud/screenshots/master/contacts/contacts.png)
 
 ## Maintainers:
 
