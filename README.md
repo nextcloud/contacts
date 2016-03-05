@@ -12,5 +12,11 @@ It will replace the [old contacts app](https://github.com/owncloudarchive/contac
 
 ## Maintainers:
 
+[Thomas Müller](https://github.com/DeepDiver1975)
+[Hendrik Leppelsack](https://github.com/Henni)
+[Jan-Christoph Borchardt](https://github.com/jancborchardt) 
+[Alexander Weidinger](https://github.com/irgendwie)
+[Tom Needham](https://github.com/tomneedham)
+
 
 If you’d like to join, just go through the [issue list](https://github.com/owncloud/contacts/issues) and fix some. :) We’re also in [#owncloud-contacts on freenode IRC](https://webchat.freenode.net/?channels=owncloud-contacts).
