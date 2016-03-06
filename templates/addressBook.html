@@ -2,6 +2,13 @@
 <span class="utils">
     <span class="action">
         <span
+            class="addressbooklist-icon icon-public"
+            title="Show URL"
+            ng-click="ctrl.toggleShowUrl()">
+        </span>
+    </span>
+    <span class="action">
+        <span
             class="addressbooklist-icon icon-share"
             title="Share Addressbook"
             ng-click="ctrl.toggleSharesEditor(ctrl.addressBook)">
@@ -15,6 +22,7 @@
         </span>
     </span>
 </span>
+    <input class="addressBookUrl" ng-show="ctrl.showUrl" type="url" value="{{ctrl.urlBase + ctrl.addressBook.url}}" readonly />
 <div class="addressBookShares" ng-show="ctrl.addressBook.editingShares">
 	<i ng-show="ctrl.addressBook.loadingSharees" class="glyphicon glyphicon-refresh"></i>
 	<input

@@ -173,6 +173,7 @@ ul.addressBook-share-list li {
 	margin-left: 15px;
 }
 
+ul.addressBookList li .action .icon-public,
 ul.addressBookList li .action .icon-share,
 ul.addressBookList li .action .icon-delete {
 	padding: 10px 18px;
@@ -201,7 +202,7 @@ div.app-contacts span.utils {
 	padding: 0 !important;
 }
 
-input.newAddressBookInput, input.shareeInput {
+input.newAddressBookInput, input.shareeInput, input.addressBookUrl {
 	width: 100% !important;
 }
 
