@@ -22,7 +22,7 @@ OC.L10N.register(
     "Role" : "Rolle",
     "Federated Cloud ID" : "ID for sammenknyttet sky",
     "Home" : "Hjem",
-    "Work" : "Arbeid",
+    "Work" : "Jobb",
     "Other" : "Annet",
     "Groups" : "Grupper",
     "Birthday" : "Bursdag",
@@ -31,6 +31,8 @@ OC.L10N.register(
     "Phone" : "Telefon",
     "Mobile" : "Mobil",
     "Fax" : "Faks",
+    "Fax home" : "Faks hjemme",
+    "Fax work" : "Faks jobb",
     "Pager" : "Pager",
     "Voice" : "Svarer"
 },

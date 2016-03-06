@@ -5,6 +5,7 @@
     "Add field ..." : "Dodaj polje ...",
     "Add contact" : "Dodaj stik",
     "All contacts" : "Vsi stiki",
+    "Post Office Box" : "Poštni predal",
     "Postal Code" : "Poštna številka",
     "City" : "Mesto",
     "State or province" : "Zvezna država ali provinca",
@@ -17,7 +18,7 @@
     "Website" : "Spletna stran",
     "Title" : "Naslov",
     "Role" : "Vloga",
-    "Federated Cloud ID" : "Oznaka Povezanega Oblaka (Federated Cloud ID)",
+    "Federated Cloud ID" : "ID Oblaka s prenosom dovoljenj",
     "Home" : "Domači naslov",
     "Work" : "Službeni naslov",
     "Other" : "Drugo",
@@ -28,6 +29,8 @@
     "Phone" : "Telefon",
     "Mobile" : "Mobilni telefon",
     "Fax" : "Faks",
+    "Fax home" : "Domači faks",
+    "Fax work" : "Službeni faks",
     "Pager" : "Pozivnik",
     "Voice" : "Glas"
 },"pluralForm" :"nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);"
