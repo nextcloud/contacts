@@ -1476,6 +1476,14 @@ var Client = (function () {
       return calendars.syncCaldavAccount(account, options);
     }
   }, {
+    key: 'getAddressBook',
+    value: function getAddressBook() {
+      var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
+
+      options.xhr = options.xhr || this.xhr;
+      return contacts.getAddressBook(options);
+    }
+  }, {
     key: 'createAddressBook',
     value: function createAddressBook() {
       var options = arguments.length <= 0 || arguments[0] === undefined ? {} : arguments[0];
@@ -1551,6 +1559,7 @@ exports.Client = Client;
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
+exports.getAddressBook = getAddressBook;
 exports.createAddressBook = createAddressBook;
 exports.deleteAddressBook = deleteAddressBook;
 exports.renameAddressBook = renameAddressBook;
@@ -1656,6 +1665,19 @@ var listAddressBooks = _co2['default'].wrap(regeneratorRuntime.mark(function cal
 }));
 
 exports.listAddressBooks = listAddressBooks;
+
+function getAddressBook(options) {
+  var addressBookUrl = _url2['default'].resolve(options.url, options.displayName);
+  var req = request.propfind({
+    props: [{ name: 'displayname', namespace: ns.DAV }, { name: 'owner', namespace: ns.DAV }, { name: 'getctag', namespace: ns.CALENDAR_SERVER }, { name: 'resourcetype', namespace: ns.DAV }, { name: 'sync-token', namespace: ns.DAV },
+    //{ name: 'groups', namespace: ns.OC },
+    { name: 'invite', namespace: ns.OC }],
+    depth: 1
+  });
+
+  return options.xhr.send(req, addressBookUrl);
+}
+
 /**
  * @return {Promise} promise will resolve when the addressBook has been created.
  *

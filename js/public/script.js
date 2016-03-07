@@ -177,7 +177,12 @@ app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'Settings
 
 	ctrl.createAddressBook = function() {
 		if(ctrl.newAddressBookName) {
-			AddressBookService.create(ctrl.newAddressBookName);
+			AddressBookService.create(ctrl.newAddressBookName).then(function() {
+				AddressBookService.getAddressBook(ctrl.newAddressBookName).then(function(addressBook) {
+					ctrl.addressBooks.push(addressBook);
+					scope.$apply();
+				});
+			});
 		}
 	};
 }]);
@@ -798,6 +803,19 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 
 		getDefaultAddressBook: function() {
 			return addressBooks[0];
+		},
+
+		getAddressBook: function(displayName) {
+			return DavService.then(function(account) {
+				return DavClient.getAddressBook({displayName:displayName, url:account.homeUrl}).then(function(addressBook) {
+					addressBook = new AddressBook({
+						url: addressBook[0].href,
+						data: addressBook[0]
+					});
+					addressBook.displayName = displayName;
+					return addressBook;
+				});
+			});
 		},
 
 		create: function(displayName) {
