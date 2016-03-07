@@ -1,6 +1,6 @@
-<label for="details-{{ctrl.name}}">{{ctrl.meta.readableName}}</label>
-<input type="date" id="details-{{ctrl.name}}" name="{{ctrl.name}}"
-	   ng-model="ctrl.data.value" date-model ng-model-options="{ debounce: 500 }"
+<label>{{ctrl.meta.readableName}}</label>
+<input type="text" name="{{ctrl.name}}"
+	   ng-model="ctrl.data.value" datepicker ng-model-options="{ debounce: 500 }"
 	   ng-change="ctrl.model.updateContact()" value=""
 	   focus-expression="$parent.ctrl.focus === ctrl.name"
 />
