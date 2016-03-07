@@ -349,6 +349,16 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 	};
 
 	ctrl.contactList = [];
+	ctrl.query = '';
+
+	$scope.query = function(contact) {
+		return contact.fullName().toLowerCase().indexOf(ctrl.query) !== -1;
+	};
+
+	SearchProxy.setFilter(function(query) {
+		ctrl.query = query.toLowerCase();
+		$scope.$apply();
+	});
 
 	ContactService.registerObserverCallback(function(ev) {
 		$scope.$apply(function() {
