@@ -333,3 +333,39 @@ li.addressBook-share-item span.shareeIdentifier {
 #app-navigation .utils .action:focus {
 	opacity: 1;
 }
+
+
+
+
+
+/* SELECT2 styling - MOVE TO CORE FOR 9.1! */
+
+detailsitem .select2-container {
+	width: 200px;
+}
+.select2-container-multi .select2-choices {
+	border-color: #ddd !important;
+	background-image: none !important;
+}
+.select2-container-multi.select2-container-active .select2-choices {
+	border-color: #ddd !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+.select2-container-multi .select2-choices .select2-search-choice {
+	background-color: rgba(240,240,240,.9) !important;
+	border-color: rgba(240,240,240,.9) !important;
+	color: #555 !important;
+	background-image: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
+}
+.select2-drop-active {
+	border-color: #ddd !important;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
+}
+.select2-results .select2-highlighted {
+	background-color: #f8f8f8 !important;
+	color: #555 !important;
+}
