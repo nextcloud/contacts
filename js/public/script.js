@@ -24,6 +24,28 @@ app.config(['$routeProvider', function($routeProvider){
 
 }]);
 
+app.directive('datepicker', function() {
+	return {
+		restrict: 'A',
+		require : 'ngModel',
+		link : function (scope, element, attrs, ngModelCtrl) {
+			$(function(){
+				element.datepicker({
+					dateFormat:'yy-mm-dd',
+					minDate: null,
+					maxDate: null,
+					onSelect:function (date) {
+						ngModelCtrl.$setViewValue(date);
+						scope.$apply();
+					}
+				});
+			});
+		}
+	};
+});
+
+
+
 app.directive('focusExpression', function ($timeout) {
 	return {
 		restrict: 'A',
@@ -541,21 +563,6 @@ app.directive('grouplist', function() {
 		templateUrl: OC.linkTo('contacts', 'templates/groupList.html')
 	};
 });
-
-app.directive('dateModel', ['$filter', function($filter){
-    return{
-        restrict: 'A',
-        require: 'ngModel',
-        link: function(scope, element, attr, ngModel) {
-            ngModel.$formatters.push(function(value) {
-                return new Date(value);
-            });
-            ngModel.$parsers.push(function(value) {
-                return $filter('date')(value, 'yyyy-MM-dd');
-            });
-        }
-    };
-}]);
 
 app.directive('telModel', function(){
     return{
