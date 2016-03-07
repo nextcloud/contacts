@@ -8,8 +8,9 @@
 }
 
 .contactdetails__header h2 {
-	margin-bottom: 6px;
-	margin-left: 8px;
+	position: absolute;
+	top: 25px;
+	left: 103px;
 }
 .contactdetails__header .contactdetails__name {
 	font-size: inherit !important;
