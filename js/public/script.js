@@ -56,7 +56,11 @@ app.directive('focusExpression', function ($timeout) {
 					if (attrs.focusExpression) {
 						if (scope.$eval(attrs.focusExpression)) {
 							$timeout(function () {
-								element[0].focus();
+								if (element.is('input')) {
+									element.focus();
+								} else {
+									element.find('input').focus();
+								}
 							}, 100); //need some delay to work with ng-disabled
 						}
 					}
