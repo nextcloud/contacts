@@ -19,12 +19,11 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 
 		getGroups: function () {
 			return this.getAll().then(function(addressBooks){
-				return [t('contacts', 'All contacts')].concat(
-					addressBooks.map(function (element) {
+				return addressBooks.map(function (element) {
 						return element.groups;
 					}).reduce(function(a, b){
 						return a.concat(b);
-					}));
+					});
 			});
 		},
 

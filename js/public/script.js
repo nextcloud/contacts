@@ -74,7 +74,7 @@ app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($sco
 
 	ctrl.toggleShowUrl = function() {
 		ctrl.showUrl = !ctrl.showUrl;
-	}
+	};
 
 	ctrl.toggleSharesEditor = function(addressBook) {
 		addressBook.editingShares = !addressBook.editingShares;
@@ -550,7 +550,7 @@ app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', fun
 	$scope.groups = [t('contacts', 'All contacts')];
 
 	ContactService.getGroups().then(function(groups) {
-		$scope.groups = _.unique(groups);
+		$scope.groups = _.unique([t('contacts', 'All contacts')].concat(groups));
 	});
 
 	$scope.selectedGroup = $routeParams.gid;
@@ -834,12 +834,11 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 
 		getGroups: function () {
 			return this.getAll().then(function(addressBooks){
-				return [t('contacts', 'All contacts')].concat(
-					addressBooks.map(function (element) {
+				return addressBooks.map(function (element) {
 						return element.groups;
 					}).reduce(function(a, b){
 						return a.concat(b);
-					}));
+					});
 			});
 		},
 
@@ -1058,17 +1057,15 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		} else {
 			return $q.when(contacts.values());
 		}
-
 	};
 
 	this.getGroups = function () {
 		return this.getAll().then(function(contacts){
-			var groups = _.uniq(contacts.map(function (element) {
+			return _.uniq(contacts.map(function (element) {
 				return element.categories();
 			}).reduce(function(a, b){
 				return a.concat(b);
 			}, []).sort(), true);
-			return [t('contacts', 'All contacts')].concat(groups);
 		});
 	};
 
