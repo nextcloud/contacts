@@ -31,6 +31,8 @@ OC.L10N.register(
     "Phone" : "טלפון",
     "Mobile" : "נייד",
     "Fax" : "פקס",
+    "Fax home" : "פקס בבית",
+    "Fax work" : "פקס בעבודה",
     "Pager" : "זימונית",
     "Voice" : "קולי"
 },

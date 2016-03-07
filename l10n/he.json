@@ -29,6 +29,8 @@
     "Phone" : "טלפון",
     "Mobile" : "נייד",
     "Fax" : "פקס",
+    "Fax home" : "פקס בבית",
+    "Fax work" : "פקס בעבודה",
     "Pager" : "זימונית",
     "Voice" : "קולי"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

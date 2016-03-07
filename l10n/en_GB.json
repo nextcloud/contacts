@@ -2,8 +2,11 @@
     "Contacts" : "Contacts",
     "No contacts in here" : "No contacts in here",
     "Name" : "Name",
+    "Add field ..." : "Add field ...",
     "Add contact" : "Add contact",
     "All contacts" : "All contacts",
+    "Post Office Box" : "Post Office Box",
+    "Postal Code" : "Postal Code",
     "City" : "City",
     "State or province" : "State or province",
     "Country" : "Country",
@@ -26,6 +29,8 @@
     "Phone" : "Phone",
     "Mobile" : "Mobile",
     "Fax" : "Fax",
+    "Fax home" : "Fax home",
+    "Fax work" : "Fax work",
     "Pager" : "Pager",
     "Voice" : "Voice"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
