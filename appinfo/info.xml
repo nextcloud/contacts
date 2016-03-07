@@ -4,7 +4,7 @@
     <name>Contacts</name>
     <description>The new and improved app for your Contacts.</description>
     <licence>AGPL</licence>
-    <author>Hendrik Leppelsack</author>
+    <author>Hendrik Leppelsack, Thomas Müller, Alexander Weidinger, Jan-Christoph Borchardt, Tom Needham</author>
     <version>1.0.0.0</version>
     <category>other</category>
     <dependencies>
