@@ -352,6 +352,9 @@ detailsitem .select2-container {
 	-webkit-box-shadow: none !important;
 	box-shadow: none !important;
 }
+.select2-container-multi .select2-choices .select2-search-field input {
+	font-family: inherit !important;
+}
 .select2-container-multi .select2-choices .select2-search-choice {
 	background-color: rgba(240,240,240,.9) !important;
 	border-color: rgba(240,240,240,.9) !important;
@@ -368,4 +371,7 @@ detailsitem .select2-container {
 .select2-results .select2-highlighted {
 	background-color: #f8f8f8 !important;
 	color: #555 !important;
+}
+.select2-results .select2-result-label span {
+	cursor: pointer !important;
 }
