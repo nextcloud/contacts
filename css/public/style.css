@@ -33,7 +33,7 @@
 .contactdetails__logo {
 	height: 75px;
 	width: 75px;
-	background-color: rgba(255, 255, 255, .5);
+	background-color: transparent;
 }
 
 #check-all + label:before {
