@@ -1,6 +1,13 @@
 app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($scope, AddressBookService) {
 	var ctrl = this;
 
+	ctrl.urlBase = window.location.protocol + '//' + window.location.host;
+	ctrl.showUrl = false;
+
+	ctrl.toggleShowUrl = function() {
+		ctrl.showUrl = !ctrl.showUrl;
+	}
+
 	ctrl.toggleSharesEditor = function(addressBook) {
 		addressBook.editingShares = !addressBook.editingShares;
 		addressBook.selectedSharee = null;
