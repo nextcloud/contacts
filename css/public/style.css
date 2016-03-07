@@ -8,8 +8,9 @@
 }
 
 .contactdetails__header h2 {
-	margin-bottom: 6px;
-	margin-left: 8px;
+	position: absolute;
+	top: 25px;
+	left: 103px;
 }
 .contactdetails__header .contactdetails__name {
 	font-size: inherit !important;
@@ -33,7 +34,7 @@
 .contactdetails__logo {
 	height: 75px;
 	width: 75px;
-	background-color: rgba(255, 255, 255, .5);
+	background-color: transparent;
 }
 
 #check-all + label:before {
