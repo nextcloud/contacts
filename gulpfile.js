@@ -16,7 +16,7 @@ gulp.task('js', function() {
 		.pipe(gulp.dest('js/public'));
 });
 
-gulp.task('watch', function() {
+gulp.task('watch', ['js'], function() {
 	gulp.watch('js/**/*.js', ['js']);
 });
 
