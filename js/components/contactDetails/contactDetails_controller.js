@@ -5,6 +5,8 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 	ctrl.t = {
 		noContacts : t('contacts', 'No contacts in here'),
 		placeholderName : t('contacts', 'Name'),
+		placeholderOrg : t('contacts', 'Organization'),
+		placeholderTitle : t('contacts', 'Title'),
 		selectField : t('contacts', 'Add field ...')
 	};
 

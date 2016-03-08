@@ -9,15 +9,52 @@
 
 .contactdetails__header h2 {
 	position: absolute;
-	top: 25px;
-	left: 103px;
+	top: 15px;
+	left: 100px;
 }
-.contactdetails__header .contactdetails__name {
+.contactdetails__header .contactdetails__name,
+.contactdetails__header .contactdetails__org,
+.contactdetails__header .contactdetails__title {
 	font-size: inherit !important;
 	width: 100% !important;
 	color: #fff !important;
 	background: transparent !important;
 	border: none !important;
+}
+.contactdetails__header .contactdetails__org {
+	position: absolute;
+	left: 101px;
+	width: 100px !important;
+}
+.contactdetails__header .contactdetails__title {
+	position: absolute;
+	left: 201px;
+	width: 100px !important;
+}
+/* fix placeholder color */
+.contactdetails__header .contactdetails__name::-webkit-input-placeholder,
+.contactdetails__header .contactdetails__org::-webkit-input-placeholder,
+.contactdetails__header .contactdetails__title::-webkit-input-placeholder { /* WebKit, Blink, Edge */
+	color: #fff;
+	opacity: .8;
+}
+.contactdetails__header .contactdetails__name::-moz-placeholder,
+.contactdetails__header .contactdetails__org::-moz-placeholder,
+.contactdetails__header .contactdetails__title::-moz-placeholder { /* Mozilla Firefox 19+ */
+	color: #fff;
+	opacity: .8;
+}
+.contactdetails__header .contactdetails__name:-ms-input-placeholder,
+.contactdetails__header .contactdetails__org:-ms-input-placeholder,
+.contactdetails__header .contactdetails__title:-ms-input-placeholder { /* Internet Explorer 10-11 */
+	color: #fff;
+	opacity: .8;
+}
+.contactdetails__header .contactdetails__name:placeholder-shown,
+.contactdetails__header .contactdetails__org:placeholder-shown,
+.contactdetails__header .contactdetails__title:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
+	color: #fff;
+	opacity: .8;
 }
 
 .contactdetails__header .icon-delete-white {
@@ -29,6 +66,10 @@
 	background-color: transparent;
 	border: none;
 	opacity: .5;
+}
+.contactdetails__header .icon-delete-white:hover,
+.contactdetails__header .icon-delete-white:focus {
+	opacity: .7
 }
 
 .contactdetails__logo {
