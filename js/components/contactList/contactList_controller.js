@@ -10,7 +10,7 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 	ctrl.query = '';
 
 	$scope.query = function(contact) {
-		return contact.fullName().toLowerCase().indexOf(ctrl.query) !== -1;
+		return contact.matches(ctrl.query);
 	};
 
 	SearchProxy.setFilter(function(query) {

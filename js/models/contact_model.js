@@ -139,7 +139,6 @@ app.factory('Contact', function($filter) {
 			setETag: function(etag) {
 				this.data.etag = etag;
 			},
-
 			setUrl: function(addressBook, uid) {
 				this.data.url = addressBook.url + uid + '.vcf';
 			},
@@ -147,6 +146,13 @@ app.factory('Contact', function($filter) {
 			syncVCard: function() {
 				// keep vCard in sync
 				this.data.addressData = $filter('JSON2vCard')(this.props);
+			},
+
+			matches: function(pattern) {
+				if (_.isUndefined(pattern) || pattern.length === 0) {
+					return true;
+				}
+				return this.data.addressData.toLowerCase().indexOf(pattern.toLowerCase()) !== -1;
 			}
 
 		});
