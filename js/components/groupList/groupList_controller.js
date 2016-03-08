@@ -3,7 +3,7 @@ app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', fun
 	$scope.groups = [t('contacts', 'All contacts')];
 
 	ContactService.getGroups().then(function(groups) {
-		$scope.groups = groups;
+		$scope.groups = _.unique([t('contacts', 'All contacts')].concat(groups));
 	});
 
 	$scope.selectedGroup = $routeParams.gid;

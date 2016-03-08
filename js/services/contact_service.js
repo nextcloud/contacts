@@ -49,17 +49,15 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		} else {
 			return $q.when(contacts.values());
 		}
-
 	};
 
 	this.getGroups = function () {
 		return this.getAll().then(function(contacts){
-			var groups = _.uniq(contacts.map(function (element) {
+			return _.uniq(contacts.map(function (element) {
 				return element.categories();
 			}).reduce(function(a, b){
 				return a.concat(b);
 			}, []).sort(), true);
-			return [t('contacts', 'All contacts')].concat(groups);
 		});
 	};
 

@@ -1,4 +1,4 @@
-app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService', function($templateRequest, vCardPropertiesService) {
+app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService', 'ContactService', function($templateRequest, vCardPropertiesService, ContactService) {
 	var ctrl = this;
 
     ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
@@ -9,7 +9,8 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
         city : t('contacts', 'City'),
         state : t('contacts', 'State or province'),
         country : t('contacts', 'Country'),
-        address: t('contacts', 'Address')
+        address: t('contacts', 'Address'),
+        newGroup: t('contacts', '(new group)')
     };
 
     ctrl.availableOptions = ctrl.meta.options || [];
@@ -19,6 +20,11 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
             ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.data.meta.type[0], name: ctrl.data.meta.type[0]}]);
         }
     }
+    ctrl.availableGroups = [];
+
+    ContactService.getGroups().then(function(groups) {
+        ctrl.availableGroups = _.unique(groups);
+    });
 
     ctrl.changeType = function (val) {
         ctrl.data.meta = ctrl.data.meta || {};

@@ -8,7 +8,7 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute', 'ui.bootstrap']);
+var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute', 'ui.bootstrap', 'ui.select', 'ngSanitize']);
 
 app.config(['$routeProvider', function($routeProvider){
 
@@ -56,7 +56,11 @@ app.directive('focusExpression', function ($timeout) {
 					if (attrs.focusExpression) {
 						if (scope.$eval(attrs.focusExpression)) {
 							$timeout(function () {
-								element[0].focus();
+								if (element.is('input')) {
+									element.focus();
+								} else {
+									element.find('input').focus();
+								}
 							}, 100); //need some delay to work with ng-disabled
 						}
 					}
@@ -74,7 +78,7 @@ app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($sco
 
 	ctrl.toggleShowUrl = function() {
 		ctrl.showUrl = !ctrl.showUrl;
-	}
+	};
 
 	ctrl.toggleSharesEditor = function(addressBook) {
 		addressBook.editingShares = !addressBook.editingShares;
@@ -462,7 +466,7 @@ app.directive('contactlist', function() {
 	};
 });
 
-app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService', function($templateRequest, vCardPropertiesService) {
+app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService', 'ContactService', function($templateRequest, vCardPropertiesService, ContactService) {
 	var ctrl = this;
 
     ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
@@ -473,7 +477,8 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
         city : t('contacts', 'City'),
         state : t('contacts', 'State or province'),
         country : t('contacts', 'Country'),
-        address: t('contacts', 'Address')
+        address: t('contacts', 'Address'),
+        newGroup: t('contacts', '(new group)')
     };
 
     ctrl.availableOptions = ctrl.meta.options || [];
@@ -483,6 +488,11 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
             ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.data.meta.type[0], name: ctrl.data.meta.type[0]}]);
         }
     }
+    ctrl.availableGroups = [];
+
+    ContactService.getGroups().then(function(groups) {
+        ctrl.availableGroups = _.unique(groups);
+    });
 
     ctrl.changeType = function (val) {
         ctrl.data.meta = ctrl.data.meta || {};
@@ -544,7 +554,7 @@ app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', fun
 	$scope.groups = [t('contacts', 'All contacts')];
 
 	ContactService.getGroups().then(function(groups) {
-		$scope.groups = groups;
+		$scope.groups = _.unique([t('contacts', 'All contacts')].concat(groups));
 	});
 
 	$scope.selectedGroup = $routeParams.gid;
@@ -563,6 +573,39 @@ app.directive('grouplist', function() {
 		templateUrl: OC.linkTo('contacts', 'templates/groupList.html')
 	};
 });
+
+app.directive('dateModel', ['$filter', function($filter){
+    return{
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, element, attr, ngModel) {
+            ngModel.$formatters.push(function(value) {
+                return new Date(value);
+            });
+            ngModel.$parsers.push(function(value) {
+                return $filter('date')(value, 'yyyy-MM-dd');
+            });
+        }
+    };
+}]);
+
+app.directive('groupModel', ['$filter', function($filter){
+    return{
+        restrict: 'A',
+        require: 'ngModel',
+        link: function(scope, element, attr, ngModel) {
+            ngModel.$formatters.push(function(value) {
+                if (value.trim().length === 0) {
+                    return [];
+                }
+                return value.split(',');
+            });
+            ngModel.$parsers.push(function(value) {
+                return value.join(",");
+            });
+        }
+    };
+}]);
 
 app.directive('telModel', function(){
     return{
@@ -798,12 +841,11 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 
 		getGroups: function () {
 			return this.getAll().then(function(addressBooks){
-				return [t('contacts', 'All contacts')].concat(
-					addressBooks.map(function (element) {
+				return addressBooks.map(function (element) {
 						return element.groups;
 					}).reduce(function(a, b){
 						return a.concat(b);
-					}));
+					});
 			});
 		},
 
@@ -1022,17 +1064,15 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		} else {
 			return $q.when(contacts.values());
 		}
-
 	};
 
 	this.getGroups = function () {
 		return this.getAll().then(function(contacts){
-			var groups = _.uniq(contacts.map(function (element) {
+			return _.uniq(contacts.map(function (element) {
 				return element.categories();
 			}).reduce(function(a, b){
 				return a.concat(b);
 			}, []).sort(), true);
-			return [t('contacts', 'All contacts')].concat(groups);
 		});
 	};
 
@@ -1203,7 +1243,7 @@ app.service('vCardPropertiesService', [function() {
 		},
 		categories: {
 			readableName: t('contacts', 'Groups'),
-			template: 'text'
+			template: 'groups'
 		},
 		bday: {
 			readableName: t('contacts', 'Birthday'),

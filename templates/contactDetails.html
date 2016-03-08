@@ -8,7 +8,8 @@
 <header class="contactdetails__header" ng-style="{'background-color': (ctrl.contact.uid() | contactColor)}">
 	<img ng-if="ctrl.photo!==undefined" class="contactdetails__logo avatar" data-ng-src="data:image/png;base64,{{ctrl.photo}}" />
 	<h2>
-		<input type="text" id="details-fullName" class="contactdetails__name" placeholder="{{ctrl.t.placeholderName}}" name="email" ng-model="ctrl.contact.fullName" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
+		<input type="text" id="details-fullName" class="contactdetails__name" placeholder="{{ctrl.t.placeholderName}}" autocomplete="off"
+		name="email" ng-model="ctrl.contact.fullName" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
 	</h2>
 	<button ng-click="ctrl.deleteContact()" class="icon-delete-white" title="Delete"></button>
 </header>

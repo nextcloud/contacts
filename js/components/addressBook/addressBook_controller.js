@@ -6,7 +6,7 @@ app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($sco
 
 	ctrl.toggleShowUrl = function() {
 		ctrl.showUrl = !ctrl.showUrl;
-	}
+	};
 
 	ctrl.toggleSharesEditor = function(addressBook) {
 		addressBook.editingShares = !addressBook.editingShares;

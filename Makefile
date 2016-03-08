@@ -32,6 +32,10 @@ appstore_package: clean
 	$(project_dir)/js/vendor/angular-uuid4/angular-uuid4.js \
 	$(project_dir)/js/vendor/vcard/src/vcard.js \
 	$(project_dir)/js/vendor/angular-bootstrap/ui-bootstrap.min.js \
-	$(project_dir)/js/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js
+	$(project_dir)/js/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js \
+	$(project_dir)/js/vendor/angular-sanitize/angular-sanitize.js \
+    $(project_dir)/js/vendor/ui-select/dist/select.js
+
+
 
 
