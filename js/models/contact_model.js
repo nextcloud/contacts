@@ -123,5 +123,10 @@ app.factory('Contact', [ '$filter', function($filter) {
 			});
 			this.data.addressData = $filter('JSON2vCard')(this.props);
 		}
+
+		var property = this.getProperty('categories');
+		if(!property) {
+			this.categories('');
+		}
 	};
 }]);

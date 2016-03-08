@@ -343,6 +343,72 @@ app.directive('contactdetails', function() {
 	};
 });
 
+app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService', 'ContactService', function($templateRequest, vCardPropertiesService, ContactService) {
+	var ctrl = this;
+
+    ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
+    ctrl.type = undefined;
+    ctrl.t = {
+        poBox : t('contacts', 'Post Office Box'),
+        postalCode : t('contacts', 'Postal Code'),
+        city : t('contacts', 'City'),
+        state : t('contacts', 'State or province'),
+        country : t('contacts', 'Country'),
+        address: t('contacts', 'Address'),
+        newGroup: t('contacts', '(new group)')
+    };
+
+    ctrl.availableOptions = ctrl.meta.options || [];
+    if (!_.isUndefined(ctrl.data) && !_.isUndefined(ctrl.data.meta) && !_.isUndefined(ctrl.data.meta.type)) {
+        ctrl.type = ctrl.data.meta.type[0];
+        if (!ctrl.availableOptions.some(function(e){ return e.id === ctrl.data.meta.type[0];})) {
+            ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.data.meta.type[0], name: ctrl.data.meta.type[0]}]);
+        }
+    }
+    ctrl.availableGroups = [];
+
+    ContactService.getGroups().then(function(groups) {
+        ctrl.availableGroups = _.unique(groups);
+    });
+
+    ctrl.changeType = function (val) {
+        ctrl.data.meta = ctrl.data.meta || {};
+        ctrl.data.meta.type = ctrl.data.meta.type || [];
+        ctrl.data.meta.type[0] = val;
+        ctrl.model.updateContact();
+    };
+
+    ctrl.getTemplate = function() {
+        var templateUrl = OC.linkTo('contacts', 'templates/detailItems/'+ ctrl.meta.template +'.html');
+        return $templateRequest(templateUrl);
+    };
+
+    ctrl.deleteField = function () {
+        ctrl.model.deleteField(ctrl.name, ctrl.data);
+		ctrl.model.updateContact();
+    };
+}]);
+
+app.directive('detailsitem', ['$compile', function($compile) {
+	return {
+		scope: {},
+		controller: 'detailsItemCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			name: '=',
+			data: '=',
+			model: '='
+		},
+		link: function(scope, element, attrs, ctrl) {
+			ctrl.getTemplate().then(function(html) {
+				var template = angular.element(html);
+				element.append(template);
+				$compile(template)(scope);
+			});
+		}
+	};
+}]);
+
 app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams', 'ContactService', 'vCardPropertiesService', function($scope, $filter, $route, $routeParams, ContactService, vCardPropertiesService) {
 	var ctrl = this;
 
@@ -433,9 +499,12 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 				var defaultValue = vCardPropertiesService.getMeta(field).defaultValue || {value: ''};
 				contact.addProperty(field, defaultValue);
 			} );
-			if ($routeParams.gid !== t('contacts', 'All contacts'))
+			if ($routeParams.gid !== t('contacts', 'All contacts')) {
 				contact.categories($routeParams.gid);
-				$('#details-fullName').focus();
+			} else {
+				contact.categories('');
+			}
+			$('#details-fullName').focus();
 		});
 	};
 
@@ -466,72 +535,6 @@ app.directive('contactlist', function() {
 	};
 });
 
-app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService', 'ContactService', function($templateRequest, vCardPropertiesService, ContactService) {
-	var ctrl = this;
-
-    ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
-    ctrl.type = undefined;
-    ctrl.t = {
-        poBox : t('contacts', 'Post Office Box'),
-        postalCode : t('contacts', 'Postal Code'),
-        city : t('contacts', 'City'),
-        state : t('contacts', 'State or province'),
-        country : t('contacts', 'Country'),
-        address: t('contacts', 'Address'),
-        newGroup: t('contacts', '(new group)')
-    };
-
-    ctrl.availableOptions = ctrl.meta.options || [];
-    if (!_.isUndefined(ctrl.data) && !_.isUndefined(ctrl.data.meta) && !_.isUndefined(ctrl.data.meta.type)) {
-        ctrl.type = ctrl.data.meta.type[0];
-        if (!ctrl.availableOptions.some(function(e){ return e.id === ctrl.data.meta.type[0];})) {
-            ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.data.meta.type[0], name: ctrl.data.meta.type[0]}]);
-        }
-    }
-    ctrl.availableGroups = [];
-
-    ContactService.getGroups().then(function(groups) {
-        ctrl.availableGroups = _.unique(groups);
-    });
-
-    ctrl.changeType = function (val) {
-        ctrl.data.meta = ctrl.data.meta || {};
-        ctrl.data.meta.type = ctrl.data.meta.type || [];
-        ctrl.data.meta.type[0] = val;
-        ctrl.model.updateContact();
-    };
-
-    ctrl.getTemplate = function() {
-        var templateUrl = OC.linkTo('contacts', 'templates/detailItems/'+ ctrl.meta.template +'.html');
-        return $templateRequest(templateUrl);
-    };
-
-    ctrl.deleteField = function () {
-        ctrl.model.deleteField(ctrl.name, ctrl.data);
-		ctrl.model.updateContact();
-    };
-}]);
-
-app.directive('detailsitem', ['$compile', function($compile) {
-	return {
-		scope: {},
-		controller: 'detailsItemCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			name: '=',
-			data: '=',
-			model: '='
-		},
-		link: function(scope, element, attrs, ctrl) {
-			ctrl.getTemplate().then(function(html) {
-				var template = angular.element(html);
-				element.append(template);
-				$compile(template)(scope);
-			});
-		}
-	};
-}]);
-
 app.controller('groupCtrl', function() {
 	var ctrl = this;
 });
@@ -548,46 +551,6 @@ app.directive('group', function() {
 		templateUrl: OC.linkTo('contacts', 'templates/group.html')
 	};
 });
-
-app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
-
-	$scope.groups = [t('contacts', 'All contacts')];
-
-	ContactService.getGroups().then(function(groups) {
-		$scope.groups = _.unique([t('contacts', 'All contacts')].concat(groups));
-	});
-
-	$scope.selectedGroup = $routeParams.gid;
-	$scope.setSelected = function (selectedGroup) {
-		$scope.selectedGroup = selectedGroup;
-	};
-}]);
-
-app.directive('grouplist', function() {
-	return {
-		restrict: 'EA', // has to be an attribute to work with core css
-		scope: {},
-		controller: 'grouplistCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {},
-		templateUrl: OC.linkTo('contacts', 'templates/groupList.html')
-	};
-});
-
-app.directive('dateModel', ['$filter', function($filter){
-    return{
-        restrict: 'A',
-        require: 'ngModel',
-        link: function(scope, element, attr, ngModel) {
-            ngModel.$formatters.push(function(value) {
-                return new Date(value);
-            });
-            ngModel.$parsers.push(function(value) {
-                return $filter('date')(value, 'yyyy-MM-dd');
-            });
-        }
-    };
-}]);
 
 app.directive('groupModel', ['$filter', function($filter){
     return{
@@ -620,6 +583,31 @@ app.directive('telModel', function(){
             });
         }
     };
+});
+
+app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
+
+	$scope.groups = [t('contacts', 'All contacts')];
+
+	ContactService.getGroups().then(function(groups) {
+		$scope.groups = _.unique([t('contacts', 'All contacts')].concat(groups));
+	});
+
+	$scope.selectedGroup = $routeParams.gid;
+	$scope.setSelected = function (selectedGroup) {
+		$scope.selectedGroup = selectedGroup;
+	};
+}]);
+
+app.directive('grouplist', function() {
+	return {
+		restrict: 'EA', // has to be an attribute to work with core css
+		scope: {},
+		controller: 'grouplistCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {},
+		templateUrl: OC.linkTo('contacts', 'templates/groupList.html')
+	};
 });
 
 app.factory('AddressBook', function()
@@ -816,6 +804,11 @@ app.factory('Contact', [ '$filter', function($filter) {
 				fn: [{value: ""}]
 			});
 			this.data.addressData = $filter('JSON2vCard')(this.props);
+		}
+
+		var property = this.getProperty('categories');
+		if(!property) {
+			this.categories('');
 		}
 	};
 }]);
