@@ -88,9 +88,12 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 				var defaultValue = vCardPropertiesService.getMeta(field).defaultValue || {value: ''};
 				contact.addProperty(field, defaultValue);
 			} );
-			if ($routeParams.gid !== t('contacts', 'All contacts'))
+			if ($routeParams.gid !== t('contacts', 'All contacts')) {
 				contact.categories($routeParams.gid);
-				$('#details-fullName').focus();
+			} else {
+				contact.categories('');
+			}
+			$('#details-fullName').focus();
 		});
 	};
 
