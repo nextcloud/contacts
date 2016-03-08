@@ -19,6 +19,24 @@
 	background: transparent !important;
 	border: none !important;
 }
+.contactdetails__header .contactdetails__org {
+	font-size: inherit !important;
+	width: 100% !important;
+	color: #fff !important;
+	background: transparent !important;
+	border: none !important;
+	position: absolute;
+	left: 102px;
+}
+.contactdetails__header .contactdetails__title {
+	font-size: inherit !important;
+	width: 100% !important;
+	color: #fff !important;
+	background: transparent !important;
+	border: none !important;
+	position: absolute;
+	left: 202px;
+}
 
 .contactdetails__header .icon-delete-white {
 	position: absolute;

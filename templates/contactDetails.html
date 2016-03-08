@@ -12,6 +12,12 @@
 		name="email" ng-model="ctrl.contact.fullName" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
 	</h2>
 	<button ng-click="ctrl.deleteContact()" class="icon-delete-white" title="Delete"></button>
+	<div>
+		<input type="text" id="details-org" class="contactdetails__org" placeholder="{{ctrl.t.placeholderOrg}}" autocomplete="off"
+			   name="email" ng-model="ctrl.contact.org" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
+		<input type="text" id="details-title" class="contactdetails__title" placeholder="{{ctrl.t.placeholderTitle}}" autocomplete="off"
+			   name="email" ng-model="ctrl.contact.title" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
+	</div>
 </header>
 <section>
 	<div ng-repeat="prop in ctrl.contact.props | toArray | orderDetailItems:'$key'">

@@ -14,10 +14,6 @@ app.service('vCardPropertiesService', [function() {
 			readableName: t('contacts', 'Nickname'),
 			template: 'text'
 		},
-		org: {
-			readableName: t('contacts', 'Organization'),
-			template: 'text'
-		},
 		note: {
 			readableName: t('contacts', 'Notes'),
 			template: 'textarea'
@@ -26,14 +22,6 @@ app.service('vCardPropertiesService', [function() {
 			multiple: true,
 			readableName: t('contacts', 'Website'),
 			template: 'url'
-		},
-		title: {
-			readableName: t('contacts', 'Title'),
-			template: 'text'
-		},
-		role: {
-			readableName: t('contacts', 'Role'),
-			template: 'text'
 		},
 		cloud: {
 			multiple: true,

@@ -32,6 +32,36 @@ app.factory('Contact', [ '$filter', function($filter) {
 				}
 			},
 
+			title: function(value) {
+				if (angular.isDefined(value)) {
+					// setter
+					return this.setProperty('title', { value: value });
+				} else {
+					// getter
+					var property = this.getProperty('title');
+					if(property) {
+						return property.value;
+					} else {
+						return undefined;
+					}
+				}
+			},
+
+			org: function(value) {
+				if (angular.isDefined(value)) {
+					// setter
+					return this.setProperty('org', { value: value });
+				} else {
+					// getter
+					var property = this.getProperty('org');
+					if(property) {
+						return property.value;
+					} else {
+						return undefined;
+					}
+				}
+			},
+
 			email: function() {
 				// getter
 				var property = this.getProperty('email');
