@@ -39,7 +39,7 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 	});
 
 	ContactService.getAll().then(function(contacts) {
-		$scope.$apply(function(){
+		$scope.$apply(function() {
 			ctrl.contacts = contacts;
 		});
 	});

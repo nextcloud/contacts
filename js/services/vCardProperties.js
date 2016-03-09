@@ -130,7 +130,7 @@ app.service('vCardPropertiesService', [function() {
 	this.fallbackMeta = function(property) {
 		function capitalize(string) { return string.charAt(0).toUpperCase() + string.slice(1); }
 		return {
-			name: "unknown-" + property,
+			name: 'unknown-' + property,
 			readableName: capitalize(property),
 			template: 'hidden',
 			necessity: 'optional'

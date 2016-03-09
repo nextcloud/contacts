@@ -5,7 +5,7 @@ app.directive('group', function() {
 		controller: 'groupCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {
-			group: "=data"
+			group: '=data'
 		},
 		templateUrl: OC.linkTo('contacts', 'templates/group.html')
 	};

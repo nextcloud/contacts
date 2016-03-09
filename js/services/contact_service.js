@@ -17,7 +17,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 			uid: uid,
 			contacts: contacts.values()
 		};
-		angular.forEach(observerCallbacks, function(callback){
+		angular.forEach(observerCallbacks, function(callback) {
 			callback(ev);
 		});
 	};
@@ -52,10 +52,10 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 	};
 
 	this.getGroups = function () {
-		return this.getAll().then(function(contacts){
+		return this.getAll().then(function(contacts) {
 			return _.uniq(contacts.map(function (element) {
 				return element.categories();
-			}).reduce(function(a, b){
+			}).reduce(function(a, b) {
 				return a.concat(b);
 			}, []).sort(), true);
 		});
@@ -113,7 +113,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		contact.syncVCard();
 
 		// update contact on server
-		return DavClient.updateCard(contact.data, {json: true}).then(function(xhr){
+		return DavClient.updateCard(contact.data, {json: true}).then(function(xhr) {
 			var newEtag = xhr.getResponseHeader('ETag');
 			contact.setETag(newEtag);
 		});

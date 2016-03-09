@@ -16,13 +16,13 @@ app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($sco
 	/* From Calendar-Rework - js/app/controllers/calendarlistcontroller.js */
 	ctrl.findSharee = function (val, addressBook) {
 		return $.get(
-				OC.linkToOCS('apps/files_sharing/api/v1') + 'sharees',
-				{
-					format: 'json',
-					search: val.trim(),
-					perPage: 200,
-					itemType: 'principals'
-				}
+			OC.linkToOCS('apps/files_sharing/api/v1') + 'sharees',
+			{
+				format: 'json',
+				search: val.trim(),
+				perPage: 200,
+				itemType: 'principals'
+			}
 		).then(function(result) {
 			// Todo - filter out current user, existing sharees
 			var users   = result.ocs.data.exact.users.concat(result.ocs.data.users);
@@ -56,7 +56,7 @@ app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($sco
 			}
 
 			// Combine users and groups
-			users = users.map(function(item){
+			users = users.map(function(item) {
 				return {
 					display: item.value.shareWith,
 					type: OC.Share.SHARE_TYPE_USER,
@@ -64,7 +64,7 @@ app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($sco
 				};
 			});
 
-			groups = groups.map(function(item){
+			groups = groups.map(function(item) {
 				return {
 					display: item.value.shareWith + ' (group)',
 					type: OC.Share.SHARE_TYPE_GROUP,

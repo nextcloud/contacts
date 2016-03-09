@@ -2,10 +2,10 @@ app.filter('contactGroupFilter', [
 	function() {
 		'use strict';
 		return function (contacts, group) {
-			if (typeof contacts === "undefined") {
+			if (typeof contacts === 'undefined') {
 				return contacts;
 			}
-			if (typeof group === "undefined" || group.toLowerCase() === t('contacts', 'All contacts').toLowerCase()) {
+			if (typeof group === 'undefined' || group.toLowerCase() === t('contacts', 'All contacts').toLowerCase()) {
 				return contacts;
 			}
 			var filter = [];

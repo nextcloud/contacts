@@ -133,7 +133,7 @@ app.factory('Contact', [ '$filter', function($filter) {
 			},
 
 			setUrl: function(addressBook, uid) {
-				this.data.url = addressBook.url + uid + ".vcf";
+				this.data.url = addressBook.url + uid + '.vcf';
 			},
 
 			syncVCard: function() {
@@ -148,8 +148,8 @@ app.factory('Contact', [ '$filter', function($filter) {
 			angular.extend(this.props, $filter('vCard2JSON')(this.data.addressData));
 		} else {
 			angular.extend(this.props, {
-				version: [{value: "3.0"}],
-				fn: [{value: ""}]
+				version: [{value: '3.0'}],
+				fn: [{value: ''}]
 			});
 			this.data.addressData = $filter('JSON2vCard')(this.props);
 		}

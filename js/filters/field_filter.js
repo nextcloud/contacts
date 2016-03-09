@@ -2,10 +2,10 @@ app.filter('fieldFilter', [
 	function() {
 		'use strict';
 		return function (fields, contact) {
-			if (typeof fields === "undefined") {
+			if (typeof fields === 'undefined') {
 				return fields;
 			}
-			if (typeof contact === "undefined") {
+			if (typeof contact === 'undefined') {
 				return fields;
 			}
 			var filter = [];
