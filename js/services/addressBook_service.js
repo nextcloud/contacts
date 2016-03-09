@@ -1,4 +1,4 @@
-app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService', 'AddressBook', 'Contact', function(DavClient, DavService, SettingsService, AddressBook, Contact){
+app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService', 'AddressBook', 'Contact', function(DavClient, DavService, SettingsService, AddressBook, Contact) {
 
 	var addressBooks = [];
 
@@ -18,12 +18,12 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 		},
 
 		getGroups: function () {
-			return this.getAll().then(function(addressBooks){
+			return this.getAll().then(function(addressBooks) {
 				return addressBooks.map(function (element) {
-						return element.groups;
-					}).reduce(function(a, b){
-						return a.concat(b);
-					});
+					return element.groups;
+				}).reduce(function(a, b) {
+					return a.concat(b);
+				});
 			});
 		},
 
@@ -73,7 +73,7 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 		},
 
 		get: function(displayName) {
-			return this.getAll().then(function(addressBooks){
+			return this.getAll().then(function(addressBooks) {
 				return addressBooks.filter(function (element) {
 					return element.displayName === displayName;
 				})[0];

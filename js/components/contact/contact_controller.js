@@ -7,6 +7,6 @@ app.controller('contactCtrl', ['$route', '$routeParams', function($route, $route
 			uid: ctrl.contact.uid()});
 	};
 
-	console.log("Contact: ",ctrl.contact);
+	console.log('Contact: ', ctrl.contact);
 
 }]);

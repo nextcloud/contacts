@@ -10,17 +10,17 @@
 
 var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute', 'ui.bootstrap', 'ui.select', 'ngSanitize']);
 
-app.config(['$routeProvider', function($routeProvider){
+app.config(['$routeProvider', function($routeProvider) {
 
-	$routeProvider.when("/:gid", {
+	$routeProvider.when('/:gid', {
 		template: '<contactdetails></contactdetails>'
 	});
 
-	$routeProvider.when("/:gid/:uid", {
+	$routeProvider.when('/:gid/:uid', {
 		template: '<contactdetails></contactdetails>'
 	});
 
-	$routeProvider.otherwise("/" + t('contacts', 'All contacts'));
+	$routeProvider.otherwise('/' + t('contacts', 'All contacts'));
 
 }]);
 
@@ -29,7 +29,7 @@ app.directive('datepicker', function() {
 		restrict: 'A',
 		require : 'ngModel',
 		link : function (scope, element, attrs, ngModelCtrl) {
-			$(function(){
+			$(function() {
 				element.datepicker({
 					dateFormat:'yy-mm-dd',
 					minDate: null,
@@ -43,8 +43,6 @@ app.directive('datepicker', function() {
 		}
 	};
 });
-
-
 
 app.directive('focusExpression', function ($timeout) {
 	return {
@@ -88,13 +86,13 @@ app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($sco
 	/* From Calendar-Rework - js/app/controllers/calendarlistcontroller.js */
 	ctrl.findSharee = function (val, addressBook) {
 		return $.get(
-				OC.linkToOCS('apps/files_sharing/api/v1') + 'sharees',
-				{
-					format: 'json',
-					search: val.trim(),
-					perPage: 200,
-					itemType: 'principals'
-				}
+			OC.linkToOCS('apps/files_sharing/api/v1') + 'sharees',
+			{
+				format: 'json',
+				search: val.trim(),
+				perPage: 200,
+				itemType: 'principals'
+			}
 		).then(function(result) {
 			// Todo - filter out current user, existing sharees
 			var users   = result.ocs.data.exact.users.concat(result.ocs.data.users);
@@ -128,7 +126,7 @@ app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($sco
 			}
 
 			// Combine users and groups
-			users = users.map(function(item){
+			users = users.map(function(item) {
 				return {
 					display: item.value.shareWith,
 					type: OC.Share.SHARE_TYPE_USER,
@@ -136,7 +134,7 @@ app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($sco
 				};
 			});
 
-			groups = groups.map(function(item){
+			groups = groups.map(function(item) {
 				return {
 					display: item.value.shareWith + ' (group)',
 					type: OC.Share.SHARE_TYPE_GROUP,
@@ -195,7 +193,7 @@ app.directive('addressbook', function() {
 		controller: 'addressbookCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {
-			addressBook: "=data"
+			addressBook: '=data'
 		},
 		templateUrl: OC.linkTo('contacts', 'templates/addressBook.html')
 	};
@@ -240,7 +238,7 @@ app.controller('contactCtrl', ['$route', '$routeParams', function($route, $route
 			uid: ctrl.contact.uid()});
 	};
 
-	console.log("Contact: ",ctrl.contact);
+	console.log('Contact: ', ctrl.contact);
 
 }]);
 
@@ -294,7 +292,7 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 	});
 
 	ctrl.changeContact = function(uid) {
-		if (typeof uid === "undefined") {
+		if (typeof uid === 'undefined') {
 			return;
 		}
 		ContactService.getById(uid).then(function(contact) {
@@ -386,7 +384,7 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 	});
 
 	ContactService.getAll().then(function(contacts) {
-		$scope.$apply(function(){
+		$scope.$apply(function() {
 			ctrl.contacts = contacts;
 		});
 	});
@@ -474,47 +472,47 @@ app.directive('contactlist', function() {
 app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService', 'ContactService', function($templateRequest, vCardPropertiesService, ContactService) {
 	var ctrl = this;
 
-    ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
-    ctrl.type = undefined;
-    ctrl.t = {
-        poBox : t('contacts', 'Post Office Box'),
-        postalCode : t('contacts', 'Postal Code'),
-        city : t('contacts', 'City'),
-        state : t('contacts', 'State or province'),
-        country : t('contacts', 'Country'),
-        address: t('contacts', 'Address'),
-        newGroup: t('contacts', '(new group)')
-    };
+	ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
+	ctrl.type = undefined;
+	ctrl.t = {
+		poBox : t('contacts', 'Post Office Box'),
+		postalCode : t('contacts', 'Postal Code'),
+		city : t('contacts', 'City'),
+		state : t('contacts', 'State or province'),
+		country : t('contacts', 'Country'),
+		address: t('contacts', 'Address'),
+		newGroup: t('contacts', '(new group)')
+	};
 
-    ctrl.availableOptions = ctrl.meta.options || [];
-    if (!_.isUndefined(ctrl.data) && !_.isUndefined(ctrl.data.meta) && !_.isUndefined(ctrl.data.meta.type)) {
-        ctrl.type = ctrl.data.meta.type[0];
-        if (!ctrl.availableOptions.some(function(e){ return e.id === ctrl.data.meta.type[0];})) {
-            ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.data.meta.type[0], name: ctrl.data.meta.type[0]}]);
-        }
-    }
-    ctrl.availableGroups = [];
+	ctrl.availableOptions = ctrl.meta.options || [];
+	if (!_.isUndefined(ctrl.data) && !_.isUndefined(ctrl.data.meta) && !_.isUndefined(ctrl.data.meta.type)) {
+		ctrl.type = ctrl.data.meta.type[0];
+		if (!ctrl.availableOptions.some(function(e) { return e.id === ctrl.data.meta.type[0]; } )) {
+			ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.data.meta.type[0], name: ctrl.data.meta.type[0]}]);
+		}
+	}
+	ctrl.availableGroups = [];
 
-    ContactService.getGroups().then(function(groups) {
-        ctrl.availableGroups = _.unique(groups);
-    });
+	ContactService.getGroups().then(function(groups) {
+		ctrl.availableGroups = _.unique(groups);
+	});
 
-    ctrl.changeType = function (val) {
-        ctrl.data.meta = ctrl.data.meta || {};
-        ctrl.data.meta.type = ctrl.data.meta.type || [];
-        ctrl.data.meta.type[0] = val;
-        ctrl.model.updateContact();
-    };
-
-    ctrl.getTemplate = function() {
-        var templateUrl = OC.linkTo('contacts', 'templates/detailItems/'+ ctrl.meta.template +'.html');
-        return $templateRequest(templateUrl);
-    };
-
-    ctrl.deleteField = function () {
-        ctrl.model.deleteField(ctrl.name, ctrl.data);
+	ctrl.changeType = function (val) {
+		ctrl.data.meta = ctrl.data.meta || {};
+		ctrl.data.meta.type = ctrl.data.meta.type || [];
+		ctrl.data.meta.type[0] = val;
 		ctrl.model.updateContact();
-    };
+	};
+
+	ctrl.getTemplate = function() {
+		var templateUrl = OC.linkTo('contacts', 'templates/detailItems/' + ctrl.meta.template + '.html');
+		return $templateRequest(templateUrl);
+	};
+
+	ctrl.deleteField = function () {
+		ctrl.model.deleteField(ctrl.name, ctrl.data);
+		ctrl.model.updateContact();
+	};
 }]);
 
 app.directive('detailsitem', ['$compile', function($compile) {
@@ -548,7 +546,7 @@ app.directive('group', function() {
 		controller: 'groupCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {
-			group: "=data"
+			group: '=data'
 		},
 		templateUrl: OC.linkTo('contacts', 'templates/group.html')
 	};
@@ -579,37 +577,37 @@ app.directive('grouplist', function() {
 	};
 });
 
-app.directive('groupModel', ['$filter', function($filter){
-    return{
-        restrict: 'A',
-        require: 'ngModel',
-        link: function(scope, element, attr, ngModel) {
-            ngModel.$formatters.push(function(value) {
-                if (value.trim().length === 0) {
-                    return [];
-                }
-                return value.split(',');
-            });
-            ngModel.$parsers.push(function(value) {
-                return value.join(",");
-            });
-        }
-    };
+app.directive('groupModel', ['$filter', function($filter) {
+	return{
+		restrict: 'A',
+		require: 'ngModel',
+		link: function(scope, element, attr, ngModel) {
+			ngModel.$formatters.push(function(value) {
+				if (value.trim().length === 0) {
+					return [];
+				}
+				return value.split(',');
+			});
+			ngModel.$parsers.push(function(value) {
+				return value.join(',');
+			});
+		}
+	};
 }]);
 
-app.directive('telModel', function(){
-    return{
-        restrict: 'A',
-        require: 'ngModel',
-        link: function(scope, element, attr, ngModel) {
-            ngModel.$formatters.push(function(value) {
-                return value;
-            });
-            ngModel.$parsers.push(function(value) {
-                return value;
-            });
-        }
-    };
+app.directive('telModel', function() {
+	return{
+		restrict: 'A',
+		require: 'ngModel',
+		link: function(scope, element, attr, ngModel) {
+			ngModel.$formatters.push(function(value) {
+				return value;
+			});
+			ngModel.$parsers.push(function(value) {
+				return value;
+			});
+		}
+	};
 });
 
 app.factory('AddressBook', function()
@@ -617,7 +615,7 @@ app.factory('AddressBook', function()
 	return function AddressBook(data) {
 		angular.extend(this, {
 
-			displayName: "",
+			displayName: '',
 			contacts: [],
 			groups: data.data.props.groups,
 
@@ -643,7 +641,7 @@ app.factory('AddressBook', function()
 
 		var shares = this.data.props.invite;
 		if (typeof shares !== 'undefined') {
-			for (var j=0; j < shares.length; j++) {
+			for (var j = 0; j < shares.length; j++) {
 				var href = shares[j].href;
 				if (href.length === 0) {
 					continue;
@@ -817,7 +815,7 @@ app.factory('Contact', [ '$filter', function($filter) {
 			},
 
 			setUrl: function(addressBook, uid) {
-				this.data.url = addressBook.url + uid + ".vcf";
+				this.data.url = addressBook.url + uid + '.vcf';
 			},
 
 			syncVCard: function() {
@@ -832,8 +830,8 @@ app.factory('Contact', [ '$filter', function($filter) {
 			angular.extend(this.props, $filter('vCard2JSON')(this.data.addressData));
 		} else {
 			angular.extend(this.props, {
-				version: [{value: "3.0"}],
-				fn: [{value: ""}]
+				version: [{value: '3.0'}],
+				fn: [{value: ''}]
 			});
 			this.data.addressData = $filter('JSON2vCard')(this.props);
 		}
@@ -845,7 +843,7 @@ app.factory('Contact', [ '$filter', function($filter) {
 	};
 }]);
 
-app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService', 'AddressBook', 'Contact', function(DavClient, DavService, SettingsService, AddressBook, Contact){
+app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService', 'AddressBook', 'Contact', function(DavClient, DavService, SettingsService, AddressBook, Contact) {
 
 	var addressBooks = [];
 
@@ -865,12 +863,12 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 		},
 
 		getGroups: function () {
-			return this.getAll().then(function(addressBooks){
+			return this.getAll().then(function(addressBooks) {
 				return addressBooks.map(function (element) {
-						return element.groups;
-					}).reduce(function(a, b){
-						return a.concat(b);
-					});
+					return element.groups;
+				}).reduce(function(a, b) {
+					return a.concat(b);
+				});
 			});
 		},
 
@@ -920,7 +918,7 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 		},
 
 		get: function(displayName) {
-			return this.getAll().then(function(addressBooks){
+			return this.getAll().then(function(addressBooks) {
 				return addressBooks.filter(function (element) {
 					return element.displayName === displayName;
 				})[0];
@@ -1057,7 +1055,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 			uid: uid,
 			contacts: contacts.values()
 		};
-		angular.forEach(observerCallbacks, function(callback){
+		angular.forEach(observerCallbacks, function(callback) {
 			callback(ev);
 		});
 	};
@@ -1092,10 +1090,10 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 	};
 
 	this.getGroups = function () {
-		return this.getAll().then(function(contacts){
+		return this.getAll().then(function(contacts) {
 			return _.uniq(contacts.map(function (element) {
 				return element.categories();
-			}).reduce(function(a, b){
+			}).reduce(function(a, b) {
 				return a.concat(b);
 			}, []).sort(), true);
 		});
@@ -1153,7 +1151,7 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 		contact.syncVCard();
 
 		// update contact on server
-		return DavClient.updateCard(contact.data, {json: true}).then(function(xhr){
+		return DavClient.updateCard(contact.data, {json: true}).then(function(xhr) {
 			var newEtag = xhr.getResponseHeader('ETag');
 			contact.setETag(newEtag);
 		});
@@ -1185,7 +1183,7 @@ app.service('DavService', ['DavClient', function(client) {
 app.service('SettingsService', function() {
 	var settings = {
 		addressBooks: [
-			"testAddr"
+			'testAddr'
 		]
 	};
 
@@ -1334,7 +1332,7 @@ app.service('vCardPropertiesService', [function() {
 	this.fallbackMeta = function(property) {
 		function capitalize(string) { return string.charAt(0).toUpperCase() + string.slice(1); }
 		return {
-			name: "unknown-" + property,
+			name: 'unknown-' + property,
 			readableName: capitalize(property),
 			template: 'hidden',
 			necessity: 'optional'
@@ -1355,17 +1353,17 @@ app.filter('JSON2vCard', function() {
 app.filter('contactColor', function() {
 	return function(input) {
 		var colors = [
-			'#001f3f',
-			'#0074D9',
-			'#39CCCC',
-			'#3D9970',
-			'#2ECC40',
-			'#FF851B',
-			'#FF4136',
-			'#85144b',
-			'#F012BE',
-			'#B10DC9'
-		], asciiSum = 0;
+				'#001f3f',
+				'#0074D9',
+				'#39CCCC',
+				'#3D9970',
+				'#2ECC40',
+				'#FF851B',
+				'#FF4136',
+				'#85144b',
+				'#F012BE',
+				'#B10DC9'
+			], asciiSum = 0;
 		for(var i in input) {
 			asciiSum += input.charCodeAt(i);
 		}
@@ -1377,10 +1375,10 @@ app.filter('contactGroupFilter', [
 	function() {
 		'use strict';
 		return function (contacts, group) {
-			if (typeof contacts === "undefined") {
+			if (typeof contacts === 'undefined') {
 				return contacts;
 			}
-			if (typeof group === "undefined" || group.toLowerCase() === t('contacts', 'All contacts').toLowerCase()) {
+			if (typeof group === 'undefined' || group.toLowerCase() === t('contacts', 'All contacts').toLowerCase()) {
 				return contacts;
 			}
 			var filter = [];
@@ -1400,10 +1398,10 @@ app.filter('fieldFilter', [
 	function() {
 		'use strict';
 		return function (fields, contact) {
-			if (typeof fields === "undefined") {
+			if (typeof fields === 'undefined') {
 				return fields;
 			}
-			if (typeof contact === "undefined") {
+			if (typeof contact === 'undefined') {
 				return fields;
 			}
 			var filter = [];
@@ -1458,12 +1456,12 @@ app.filter('orderDetailItems', ['vCardPropertiesService', function(vCardProperti
 }]);
 
 app.filter('toArray', function() {
-    return function(obj) {
-        if (!(obj instanceof Object)) return obj;
-        return _.map(obj, function(val, key) {
-            return Object.defineProperty(val, '$key', {value: key});
-        });
-    };
+	return function(obj) {
+		if (!(obj instanceof Object)) return obj;
+		return _.map(obj, function(val, key) {
+			return Object.defineProperty(val, '$key', {value: key});
+		});
+	};
 });
 
 app.filter('vCard2JSON', function() {

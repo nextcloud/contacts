@@ -1,7 +1,7 @@
 app.service('SettingsService', function() {
 	var settings = {
 		addressBooks: [
-			"testAddr"
+			'testAddr'
 		]
 	};
 

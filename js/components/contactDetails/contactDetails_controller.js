@@ -36,7 +36,7 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 	});
 
 	ctrl.changeContact = function(uid) {
-		if (typeof uid === "undefined") {
+		if (typeof uid === 'undefined') {
 			return;
 		}
 		ContactService.getById(uid).then(function(contact) {

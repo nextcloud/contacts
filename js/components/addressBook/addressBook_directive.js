@@ -5,7 +5,7 @@ app.directive('addressbook', function() {
 		controller: 'addressbookCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {
-			addressBook: "=data"
+			addressBook: '=data'
 		},
 		templateUrl: OC.linkTo('contacts', 'templates/addressBook.html')
 	};

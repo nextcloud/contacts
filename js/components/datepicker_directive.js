@@ -3,7 +3,7 @@ app.directive('datepicker', function() {
 		restrict: 'A',
 		require : 'ngModel',
 		link : function (scope, element, attrs, ngModelCtrl) {
-			$(function(){
+			$(function() {
 				element.datepicker({
 					dateFormat:'yy-mm-dd',
 					minDate: null,
@@ -17,5 +17,3 @@ app.directive('datepicker', function() {
 		}
 	};
 });
-
-

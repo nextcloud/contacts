@@ -3,7 +3,7 @@ app.factory('AddressBook', function()
 	return function AddressBook(data) {
 		angular.extend(this, {
 
-			displayName: "",
+			displayName: '',
 			contacts: [],
 			groups: data.data.props.groups,
 
@@ -29,7 +29,7 @@ app.factory('AddressBook', function()
 
 		var shares = this.data.props.invite;
 		if (typeof shares !== 'undefined') {
-			for (var j=0; j < shares.length; j++) {
+			for (var j = 0; j < shares.length; j++) {
 				var href = shares[j].href;
 				if (href.length === 0) {
 					continue;
