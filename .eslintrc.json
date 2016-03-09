@@ -1,0 +1,24 @@
+{
+	"extends": "eslint:recommended",
+	"rules": {
+		"no-undef": "off",
+		"no-unused-vars": "off",
+
+		"eqeqeq": ["warn", "smart"],
+		"no-console": "warn",
+		"no-loop-func": "warn",
+
+		"block-spacing": "error",
+		"camelcase": "error",
+		"comma-spacing": "error",
+		"comma-style": "error",
+		"curly": ["error", "multi-line", "consistent"],
+		"indent": ["error", "tab"],
+		"no-alert": "error",
+		"no-trailing-spaces": "error",
+		"quotes": ["error", "single", "avoid-escape"],
+		"semi": "error",
+		"space-before-blocks": "error"
+
+	}
+}
