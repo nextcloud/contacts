@@ -48,13 +48,21 @@ app.factory('Contact', [ '$filter', function($filter) {
 			},
 
 			org: function(value) {
+				var property = this.getProperty('org');
 				if (angular.isDefined(value)) {
+					var val = value;
 					// setter
-					return this.setProperty('org', { value: value });
+					if(property && Array.isArray(property.value)) {
+						val = property.value;
+						val[0] = value;
+					}
+					return this.setProperty('org', { value: val });
 				} else {
 					// getter
-					var property = this.getProperty('org');
 					if(property) {
+						if (Array.isArray(property.value)) {
+							return property.value[0];
+						}
 						return property.value;
 					} else {
 						return undefined;
