@@ -20,6 +20,9 @@
 	color: #fff !important;
 	background: transparent !important;
 	border: none !important;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
 }
 .contactdetails__header .contactdetails__org {
 	position: absolute;
@@ -29,7 +32,7 @@
 .contactdetails__header .contactdetails__title {
 	position: absolute;
 	left: 201px;
-	width: 100px !important;
+	width: 125px !important;
 }
 /* fix placeholder color */
 .contactdetails__header .contactdetails__name::-webkit-input-placeholder,
