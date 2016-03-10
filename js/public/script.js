@@ -199,6 +199,28 @@ app.directive('addressbook', function() {
 	};
 });
 
+app.controller('contactCtrl', ['$route', '$routeParams', function($route, $routeParams) {
+	var ctrl = this;
+
+	ctrl.openContact = function() {
+		$route.updateParams({
+			gid: $routeParams.gid,
+			uid: ctrl.contact.uid()});
+	};
+}]);
+
+app.directive('contact', function() {
+	return {
+		scope: {},
+		controller: 'contactCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			contact: '=data'
+		},
+		templateUrl: OC.linkTo('contacts', 'templates/contact.html')
+	};
+});
+
 app.controller('addressbooklistCtrl', ['$scope', 'AddressBookService', 'SettingsService', function(scope, AddressBookService, SettingsService) {
 	var ctrl = this;
 
@@ -226,31 +248,6 @@ app.directive('addressbooklist', function() {
 		controllerAs: 'ctrl',
 		bindToController: {},
 		templateUrl: OC.linkTo('contacts', 'templates/addressBookList.html')
-	};
-});
-
-app.controller('contactCtrl', ['$route', '$routeParams', function($route, $routeParams) {
-	var ctrl = this;
-
-	ctrl.openContact = function() {
-		$route.updateParams({
-			gid: $routeParams.gid,
-			uid: ctrl.contact.uid()});
-	};
-
-	console.log('Contact: ', ctrl.contact);
-
-}]);
-
-app.directive('contact', function() {
-	return {
-		scope: {},
-		controller: 'contactCtrl',
-		controllerAs: 'ctrl',
-		bindToController: {
-			contact: '=data'
-		},
-		templateUrl: OC.linkTo('contacts', 'templates/contact.html')
 	};
 });
 
@@ -730,13 +727,21 @@ app.factory('Contact', [ '$filter', function($filter) {
 			},
 
 			org: function(value) {
+				var property = this.getProperty('org');
 				if (angular.isDefined(value)) {
+					var val = value;
 					// setter
-					return this.setProperty('org', { value: value });
+					if(property && Array.isArray(property.value)) {
+						val = property.value;
+						val[0] = value;
+					}
+					return this.setProperty('org', { value: val });
 				} else {
 					// getter
-					var property = this.getProperty('org');
 					if(property) {
+						if (Array.isArray(property.value)) {
+							return property.value[0];
+						}
 						return property.value;
 					} else {
 						return undefined;
