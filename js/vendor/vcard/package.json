@@ -1,6 +1,6 @@
 {
-  "name": "vcard",
-  "version": "0.1.7",
+  "name": "vcard-parser",
+  "version": "0.2.4",
   "description": "Simple vCard parser",
   "main": "src/vcard.js",
   "directories": {
@@ -14,12 +14,13 @@
   "devDependencies": {
     "gulp": "^3.8.10",
     "gulp-bump": "^0.1.11",
-    "gulp-jasmine": "^1.0.1",
+    "gulp-jasmine": "^2.3.0",
     "gulp-rename": "^1.2.0",
     "gulp-uglify": "^1.0.2"
   },
   "scripts": {
-    "test": "gulp test"
+    "test": "gulp test",
+    "build": "gulp build"
   },
   "author": "Aleksandr Kitov <kitov.nn@gmail.com>",
   "license": "MIT"

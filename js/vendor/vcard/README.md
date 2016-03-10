@@ -1,10 +1,22 @@
-vcard
-=====
+# vcard
+===
 
-Simple js vCard parser/generator.
+## Introduction
+vcard allow you to parse vCard data into js object and convert js object into vCard data.
+It can work both in browser and in node.
 
-Example of usage:
+## Installation
+Using bower:
+```sh
+bower install vcard
+```
 
+Using npm:
+```sh
+npm install vcard-parser
+```
+
+## Example of usage:
 ```javascript
 var raw = 'BEGIN:VCARD\r\n' +
           'FN:Forrest Gump\r\n' +
