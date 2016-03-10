@@ -423,8 +423,3 @@ detailsitem .select2-container {
 .select2-results .select2-result-label span {
 	cursor: pointer !important;
 }
-
-div.app-content-list i.icon-loading, div.app-content-detail i.icon-loading{
-	height: 32px;
-	margin: auto;
-}
