@@ -15,6 +15,16 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 
 	SearchProxy.setFilter(function(query) {
 		ctrl.query = query.toLowerCase();
+		if (ctrl.contactList.length !== 0) {
+			$route.updateParams({
+				uid: ctrl.contactList[0].uid()
+			});
+			$scope.selectedContactId = $routeParams.uid;
+		} else {
+			$route.updateParams({
+				uid: undefined
+			});
+		}
 		$scope.$apply();
 	});
 
