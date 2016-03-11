@@ -9,5 +9,7 @@ app.controller('grouplistCtrl', function($scope, ContactService, $routeParams) {
 	$scope.selectedGroup = $routeParams.gid;
 	$scope.setSelected = function (selectedGroup) {
 		$scope.selectedGroup = selectedGroup;
+		$('.searchbox')[0].reset();
+		SearchProxy.filterProxy('');
 	};
 });
