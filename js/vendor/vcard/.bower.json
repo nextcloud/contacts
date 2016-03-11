@@ -1,6 +1,6 @@
 {
   "name": "vcard",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "authors": [
     "Aleksandr Kitov <kitov.nn@gmail.com>"
   ],
@@ -16,13 +16,13 @@
     "node_modules"
   ],
   "homepage": "https://github.com/Heymdall/vcard",
-  "_release": "0.2.3",
+  "_release": "0.2.4",
   "_resolution": {
     "type": "version",
-    "tag": "v0.2.3",
-    "commit": "ff7576fca32030ca96561ebada21587f05831811"
+    "tag": "v0.2.4",
+    "commit": "3baedffd9c5c290620948298256cc151fc9ed440"
   },
   "_source": "git://github.com/Heymdall/vcard.git",
-  "_target": "~0.2.3",
+  "_target": "~0.2.4",
   "_originalSource": "vcard"
 }
