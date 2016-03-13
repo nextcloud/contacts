@@ -15,6 +15,7 @@ OC.L10N.register(
     "State or province" : "State or province",
     "Country" : "Country",
     "Address" : "Address",
+    "(new group)" : "(new group)",
     "{addressbook} shared by {owner}" : "{addressbook} shared by {owner}",
     "Nickname" : "Nickname",
     "Notes" : "Notes",
