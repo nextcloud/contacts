@@ -1,4 +1,4 @@
-app.controller('contactdetailsCtrl', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
+app.controller('contactdetailsCtrl', function(ContactService, AddressBookService, vCardPropertiesService, SearchService, $routeParams, $scope) {
 	var ctrl = this;
 
 	ctrl.uid = $routeParams.uid;

@@ -36,4 +36,3 @@ appstore_package: clean
 	$(project_dir)/js/vendor/angular-sanitize/angular-sanitize.js \
     $(project_dir)/js/vendor/ui-select/dist/select.js \
     $(project_dir)/js/vendor/jquery-timepicker/jquery.ui.timepicker.js \
-    $(project_dir)/js/searchproxy.js

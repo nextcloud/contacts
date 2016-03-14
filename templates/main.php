@@ -18,9 +18,6 @@ script('contacts', 'vendor/angular-bootstrap/ui-bootstrap.min');
 script('contacts', 'vendor/angular-bootstrap/ui-bootstrap-tpls.min');
 script('contacts', 'vendor/jquery-timepicker/jquery.ui.timepicker');
 
-// search
-script('contacts', 'searchproxy');
-
 // all styles
 style('contacts', 'public/style');
 vendor_style('select2/select2');

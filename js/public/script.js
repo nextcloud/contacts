@@ -251,7 +251,7 @@ app.directive('contact', function() {
 	};
 });
 
-app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'vCardPropertiesService', '$routeParams', '$scope', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
+app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'vCardPropertiesService', 'SearchService', '$routeParams', '$scope', function(ContactService, AddressBookService, vCardPropertiesService, SearchService, $routeParams, $scope) {
 	var ctrl = this;
 
 	ctrl.uid = $routeParams.uid;
@@ -340,7 +340,7 @@ app.directive('contactdetails', function() {
 	};
 });
 
-app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams', 'ContactService', 'vCardPropertiesService', function($scope, $filter, $route, $routeParams, ContactService, vCardPropertiesService) {
+app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams', 'ContactService', 'vCardPropertiesService', 'SearchService', function($scope, $filter, $route, $routeParams, ContactService, vCardPropertiesService, SearchService) {
 	var ctrl = this;
 
 	ctrl.routeParams = $routeParams;
@@ -352,22 +352,19 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 	ctrl.query = '';
 
 	$scope.query = function(contact) {
-		return contact.matches(ctrl.query);
+		return contact.matches(SearchService.getSearchTerm());
 	};
 
-	SearchProxy.setFilter(function(query) {
-		ctrl.query = query.toLowerCase();
-		if (ctrl.contactList.length !== 0) {
-			$route.updateParams({
-				uid: ctrl.contactList[0].uid()
-			});
-			$scope.selectedContactId = $routeParams.uid;
-		} else {
-			$route.updateParams({
-				uid: undefined
-			});
-		}
-		$scope.$apply();
+	SearchService.registerObserverCallback(function(ev) {
+		$scope.$apply(function() {
+			if (ev.event === 'enterOnSearch') {
+				$route.updateParams({
+					uid: !_.isEmpty(ctrl.contactList) ? ctrl.contactList[0].uid() : undefined
+				});
+			}
+		});
+		$scope.selectedContactId = $routeParams.uid;
+		$('#details-fullName').focus();
 	});
 
 	ContactService.registerObserverCallback(function(ev) {
@@ -585,7 +582,7 @@ app.directive('group', function() {
 	};
 });
 
-app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
+app.controller('grouplistCtrl', ['$scope', 'ContactService', 'SearchService', '$routeParams', function($scope, ContactService, SearchService, $routeParams) {
 
 	$scope.groups = [t('contacts', 'All contacts')];
 
@@ -595,9 +592,9 @@ app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', fun
 
 	$scope.selectedGroup = $routeParams.gid;
 	$scope.setSelected = function (selectedGroup) {
-		$scope.selectedGroup = selectedGroup;
 		$('.searchbox')[0].reset();
-		SearchProxy.filterProxy('');
+		SearchService.cleanSearch();
+		$scope.selectedGroup = selectedGroup;
 	};
 }]);
 
@@ -1271,6 +1268,57 @@ app.service('DavService', ['DavClient', function(DavClient) {
 		useProvidedPath: true
 	});
 }]);
+
+app.service('SearchService', function($rootScope) {
+	var searchTerm = '';
+
+	var observerCallbacks = [];
+
+	this.registerObserverCallback = function(callback) {
+		observerCallbacks.push(callback);
+	};
+
+	var notifyObservers = function(eventName) {
+		var ev = {
+			event:eventName,
+			searchTerm:this.searchTerm
+		};
+		angular.forEach(observerCallbacks, function(callback) {
+			callback(ev);
+		});
+	};
+
+	SearchProxy = {
+		attach: function(search) {
+			search.setFilter('contacts', this.filterProxy);
+		},
+		filterProxy: function(query) {
+			console.log(query);
+			searchTerm = query;
+			$rootScope.$apply();
+		}
+	};
+
+	this.getSearchTerm = function() {
+		return searchTerm;
+	};
+
+	this.cleanSearch = function() {
+		searchTerm = '';
+	};
+
+	if (!_.isUndefined(OC.Plugins)) {
+		OC.Plugins.register('OCA.Search', SearchProxy);
+	}
+
+	if (!_.isUndefined($('.searchbox'))) {
+		$('.searchbox')[0].addEventListener('keypress', function(e) {
+			if(e.keyCode === 13) {
+				notifyObservers('enterOnSearch');
+			}
+		});
+	}
+});
 
 app.service('SettingsService', function() {
 	var settings = {

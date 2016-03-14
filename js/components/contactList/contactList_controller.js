@@ -1,4 +1,4 @@
-app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, ContactService, vCardPropertiesService) {
+app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, ContactService, vCardPropertiesService, SearchService) {
 	var ctrl = this;
 
 	ctrl.routeParams = $routeParams;
@@ -10,22 +10,19 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 	ctrl.query = '';
 
 	$scope.query = function(contact) {
-		return contact.matches(ctrl.query);
+		return contact.matches(SearchService.getSearchTerm());
 	};
 
-	SearchProxy.setFilter(function(query) {
-		ctrl.query = query.toLowerCase();
-		if (ctrl.contactList.length !== 0) {
-			$route.updateParams({
-				uid: ctrl.contactList[0].uid()
-			});
-			$scope.selectedContactId = $routeParams.uid;
-		} else {
-			$route.updateParams({
-				uid: undefined
-			});
-		}
-		$scope.$apply();
+	SearchService.registerObserverCallback(function(ev) {
+		$scope.$apply(function() {
+			if (ev.event === 'enterOnSearch') {
+				$route.updateParams({
+					uid: !_.isEmpty(ctrl.contactList) ? ctrl.contactList[0].uid() : undefined
+				});
+			}
+		});
+		$scope.selectedContactId = $routeParams.uid;
+		$('#details-fullName').focus();
 	});
 
 	ContactService.registerObserverCallback(function(ev) {

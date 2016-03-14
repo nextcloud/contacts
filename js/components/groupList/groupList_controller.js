@@ -1,4 +1,4 @@
-app.controller('grouplistCtrl', function($scope, ContactService, $routeParams) {
+app.controller('grouplistCtrl', function($scope, ContactService, SearchService, $routeParams) {
 
 	$scope.groups = [t('contacts', 'All contacts')];
 
@@ -8,8 +8,8 @@ app.controller('grouplistCtrl', function($scope, ContactService, $routeParams) {
 
 	$scope.selectedGroup = $routeParams.gid;
 	$scope.setSelected = function (selectedGroup) {
-		$scope.selectedGroup = selectedGroup;
 		$('.searchbox')[0].reset();
-		SearchProxy.filterProxy('');
+		SearchService.cleanSearch();
+		$scope.selectedGroup = selectedGroup;
 	};
 });
