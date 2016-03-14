@@ -78,6 +78,7 @@
 .contactdetails__logo {
 	height: 75px;
 	width: 75px;
+	object-fit: cover;
 	background-color: transparent;
 }
 
@@ -99,6 +100,7 @@
 	text-align: center;
 	font-size: 1.5em;
 	text-transform: capitalize;
+	object-fit: cover;
 }
 
 .contactdetails__header + section {
