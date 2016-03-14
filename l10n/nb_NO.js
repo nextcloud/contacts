@@ -15,6 +15,7 @@ OC.L10N.register(
     "State or province" : "Stat eller fylke",
     "Country" : "Land",
     "Address" : "Adresse",
+    "(new group)" : "(ny gruppe)",
     "{addressbook} shared by {owner}" : "{addressbook} delt av {owner}",
     "Nickname" : "Kallenavn",
     "Notes" : "Notater",
