@@ -10,8 +10,14 @@ app.filter('contactGroupFilter', function() {
 		var filter = [];
 		if (contacts.length > 0) {
 			for (var i = 0; i < contacts.length; i++) {
-				if (contacts[i].categories().indexOf(group) >= 0) {
-					filter.push(contacts[i]);
+				if (group.toLowerCase() === t('contacts', 'Not grouped').toLowerCase()) {
+					if (contacts[i].categories().length === 0) {
+						filter.push(contacts[i]);
+					}
+				} else {
+					if (contacts[i].categories().indexOf(group) >= 0) {
+						filter.push(contacts[i]);
+					}
 				}
 			}
 		}
