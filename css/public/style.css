@@ -248,6 +248,7 @@ ul.dropdown-menu li.active {
 div.app-contacts span.utils {
 	padding: 0 !important;
 	float: right;
+	position: relative !important;
 }
 
 input.newAddressBookInput, input.shareeInput, input.addressBookUrl {
