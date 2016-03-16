@@ -1,16 +1,5 @@
-language: php
-php:
-  - 5.4
-  - 5.5
-  - 5.6
-  - 7
-  - hhvm
-
-env:
-  global:
-    - BRANCH=master
-  matrix:
-    - DB=mysql
+sudo: false
+language: node_js
 
 branches:
   only:
@@ -18,38 +7,8 @@ branches:
     - /^stable\d+(\.\d+)?$/
     - /^v\d++(\.\d+)?+(\.\d+)?+(\.\d+)?$/
 
-matrix:
-  allow_failures:
-    - php: hhvm
-  include:
-    - php: 5.4
-      env: "DB=mysql BRANCH=stable9"
-
-install:
-  - sudo add-apt-repository -y ppa:chris-lea/node.js
-  - sudo apt-get update
-  - sudo apt-get -y install nodejs python3-jinja2 python3-setuptools
-  - sudo easy_install3 requests
-  - sudo easy_install3 ocdev
-  - createuser -U travis -s oc_autotest
-  - mysql -e 'create database oc_autotest;'
-  - mysql -u root -e "CREATE USER 'oc_autotest'@'localhost' IDENTIFIED BY '';"
-  - mysql -u root -e "grant all on oc_autotest.* to 'oc_autotest'@'localhost';"
-  - cd ..
-  - ocdev setup core --dir owncloud --branch $BRANCH --no-history
-  - mv contacts owncloud/apps
-  - phpenv config-add owncloud/apps/contacts/tests/travis/php.ini
-  - cd owncloud
-  - "./occ maintenance:install --database-name oc_autotest --database-user oc_autotest
-    --database-pass --admin-user admin --admin-pass admin --database $DB"
-  - "./occ app:enable contacts"
-  - cd apps/contacts
-  - npm install --deps
-
 script:
-  - phpunit -c phpunit.xml
-  - phpunit -c phpunit.integration.xml
-  - node_modules/gulp/bin/gulp.js
+  - node_modules/.bin/gulp eslint
   - make appstore_package
 
 deploy:
@@ -62,3 +21,5 @@ deploy:
     repo: owncloud/contacts
     tags: true
     php: 5.6
+
+
