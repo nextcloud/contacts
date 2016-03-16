@@ -18,11 +18,14 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "~1.5.0",
-    "angular-uuid4": "~0.3.1",
-    "angular-cache": "~4.5.0",
-    "angular-route": "^1.5.0",
-    "vcard": "~0.2.4",
-    "angular-bootstrap": "^1.1.2"
+    "angular": "1.5.0",
+    "angular-bootstrap": "1.1.2",
+    "angular-cache": "4.5.0",
+    "angular-route": "1.5.0",
+    "angular-sanitize": "1.5.0",
+    "angular-uuid4": "0.3.1",
+    "jquery-timepicker": "883bb2cd94",
+    "ui-select": "angular-ui/ui-select#0.14.9",
+    "vcard": "0.2.4"
   }
 }
