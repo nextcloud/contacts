@@ -2,5 +2,5 @@
 <div class="app-content-list-item"
 	 ng-repeat="contact in ctrl.contactList = (ctrl.contacts | contactGroupFilter:ctrl.routeParams.gid | orderBy:'fullName()' | filter:query) track by contact.uid()"
 	 contact data="contact"
-	 ng-click="setSelected(contact.uid())" ng-class="{active: contact.uid() === selectedContactId}">
+	 ng-click="setSelected(contact.uid())" ng-class="{active: contact.uid() === ctrl.selectedContactId}">
 </div>

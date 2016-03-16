@@ -251,7 +251,7 @@ app.directive('contact', function() {
 	};
 });
 
-app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'vCardPropertiesService', 'SearchService', '$routeParams', '$scope', function(ContactService, AddressBookService, vCardPropertiesService, SearchService, $routeParams, $scope) {
+app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'vCardPropertiesService', '$routeParams', '$scope', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
 	var ctrl = this;
 
 	ctrl.uid = $routeParams.uid;
@@ -350,21 +350,25 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 
 	ctrl.contactList = [];
 	ctrl.query = '';
+	ctrl.selectedContactId = undefined;
 
 	$scope.query = function(contact) {
 		return contact.matches(SearchService.getSearchTerm());
 	};
 
 	SearchService.registerObserverCallback(function(ev) {
-		$scope.$apply(function() {
-			if (ev.event === 'enterOnSearch') {
-				$route.updateParams({
-					uid: !_.isEmpty(ctrl.contactList) ? ctrl.contactList[0].uid() : undefined
-				});
-			}
-		});
-		$scope.selectedContactId = $routeParams.uid;
-		$('#details-fullName').focus();
+		if (ev.event === 'submitSearch') {
+			var uid = !_.isEmpty(ctrl.contactList) ? ctrl.contactList[0].uid() : undefined;
+			$route.updateParams({
+				uid: uid
+			});
+			ctrl.selectedContactId = uid;
+			$scope.$apply();
+		}
+		if (ev.event === 'changeSearch') {
+			ctrl.query = ev.searchTerm;
+			$scope.$apply();
+		}
 	});
 
 	ContactService.registerObserverCallback(function(ev) {
@@ -592,7 +596,6 @@ app.controller('grouplistCtrl', ['$scope', 'ContactService', 'SearchService', '$
 
 	$scope.selectedGroup = $routeParams.gid;
 	$scope.setSelected = function (selectedGroup) {
-		$('.searchbox')[0].reset();
 		SearchService.cleanSearch();
 		$scope.selectedGroup = selectedGroup;
 	};
@@ -1269,7 +1272,7 @@ app.service('DavService', ['DavClient', function(DavClient) {
 	});
 }]);
 
-app.service('SearchService', function($rootScope) {
+app.service('SearchService', function() {
 	var searchTerm = '';
 
 	var observerCallbacks = [];
@@ -1288,14 +1291,13 @@ app.service('SearchService', function($rootScope) {
 		});
 	};
 
-	SearchProxy = {
+	var SearchProxy = {
 		attach: function(search) {
 			search.setFilter('contacts', this.filterProxy);
 		},
 		filterProxy: function(query) {
-			console.log(query);
 			searchTerm = query;
-			$rootScope.$apply();
+			notifyObservers('changeSearch');
 		}
 	};
 
@@ -1304,6 +1306,9 @@ app.service('SearchService', function($rootScope) {
 	};
 
 	this.cleanSearch = function() {
+		if (!_.isUndefined($('.searchbox'))) {
+			$('.searchbox')[0].reset();
+		}
 		searchTerm = '';
 	};
 
@@ -1314,7 +1319,7 @@ app.service('SearchService', function($rootScope) {
 	if (!_.isUndefined($('.searchbox'))) {
 		$('.searchbox')[0].addEventListener('keypress', function(e) {
 			if(e.keyCode === 13) {
-				notifyObservers('enterOnSearch');
+				notifyObservers('submitSearch');
 			}
 		});
 	}

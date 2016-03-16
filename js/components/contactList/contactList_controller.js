@@ -8,21 +8,25 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 
 	ctrl.contactList = [];
 	ctrl.query = '';
+	ctrl.selectedContactId = undefined;
 
 	$scope.query = function(contact) {
 		return contact.matches(SearchService.getSearchTerm());
 	};
 
 	SearchService.registerObserverCallback(function(ev) {
-		$scope.$apply(function() {
-			if (ev.event === 'enterOnSearch') {
-				$route.updateParams({
-					uid: !_.isEmpty(ctrl.contactList) ? ctrl.contactList[0].uid() : undefined
-				});
-			}
-		});
-		$scope.selectedContactId = $routeParams.uid;
-		$('#details-fullName').focus();
+		if (ev.event === 'submitSearch') {
+			var uid = !_.isEmpty(ctrl.contactList) ? ctrl.contactList[0].uid() : undefined;
+			$route.updateParams({
+				uid: uid
+			});
+			ctrl.selectedContactId = uid;
+			$scope.$apply();
+		}
+		if (ev.event === 'changeSearch') {
+			ctrl.query = ev.searchTerm;
+			$scope.$apply();
+		}
 	});
 
 	ContactService.registerObserverCallback(function(ev) {

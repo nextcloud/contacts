@@ -8,7 +8,6 @@ app.controller('grouplistCtrl', function($scope, ContactService, SearchService, 
 
 	$scope.selectedGroup = $routeParams.gid;
 	$scope.setSelected = function (selectedGroup) {
-		$('.searchbox')[0].reset();
 		SearchService.cleanSearch();
 		$scope.selectedGroup = selectedGroup;
 	};
