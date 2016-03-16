@@ -3,7 +3,8 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 
 	ctrl.routeParams = $routeParams;
 	ctrl.t = {
-		addContact : t('contacts', 'Add contact')
+		addContact : t('contacts', 'Add contact'),
+		emptySearch : t('contacts', 'No search result for {ctrl.query}')
 	};
 
 	ctrl.contactList = [];
