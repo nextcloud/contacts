@@ -37,7 +37,7 @@ gulp.task('eslint', function() {
 })
 
 gulp.task('watch', ['js'], function() {
-	gulp.watch('js/**/*.js', ['js']);
+	gulp.watch(['js/**/*.js', '!js/public/**/*.js'], ['js']);
 });
 
 gulp.task('default', ['js']);
