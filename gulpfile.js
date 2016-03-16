@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
 	concat = require('gulp-concat'),
-	eslint = require('gulp-eslint');
+	eslint = require('gulp-eslint'),
+	sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('js', function() {
 	return gulp.src([
@@ -10,9 +11,15 @@ gulp.task('js', function() {
 			'js/services/**/*.js',
 			'js/filters/**/*.js'
 			])
+		// ESlint
 		.pipe(eslint())
 		.pipe(eslint.format())
-		.pipe(concat('script.js'))
+
+		// concat (+sourcemaps)
+		.pipe(sourcemaps.init())
+			.pipe(concat('script.js'))
+		.pipe(sourcemaps.write())
+
 		.pipe(gulp.dest('js/public'));
 });
 
