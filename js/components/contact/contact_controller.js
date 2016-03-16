@@ -1,4 +1,4 @@
-app.controller('contactCtrl', ['$route', '$routeParams', function($route, $routeParams) {
+app.controller('contactCtrl', function($route, $routeParams) {
 	var ctrl = this;
 
 	ctrl.openContact = function() {
@@ -6,4 +6,4 @@ app.controller('contactCtrl', ['$route', '$routeParams', function($route, $route
 			gid: $routeParams.gid,
 			uid: ctrl.contact.uid()});
 	};
-}]);
+});

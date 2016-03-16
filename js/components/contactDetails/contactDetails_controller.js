@@ -1,4 +1,4 @@
-app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'vCardPropertiesService', '$routeParams', '$scope', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
+app.controller('contactdetailsCtrl', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
 	var ctrl = this;
 
 	ctrl.uid = $routeParams.uid;
@@ -74,4 +74,4 @@ app.controller('contactdetailsCtrl', ['ContactService', 'AddressBookService', 'v
 		});
 		ContactService.moveContact(ctrl.contact, addressBook);
 	};
-}]);
+});

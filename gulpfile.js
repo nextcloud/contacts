@@ -1,6 +1,8 @@
 var gulp = require('gulp'),
 	concat = require('gulp-concat'),
-	eslint = require('gulp-eslint');
+	eslint = require('gulp-eslint'),
+	ngAnnotate = require('gulp-ng-annotate'),
+	sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('js', function() {
 	return gulp.src([
@@ -10,9 +12,16 @@ gulp.task('js', function() {
 			'js/services/**/*.js',
 			'js/filters/**/*.js'
 			])
+		// ESlint
 		.pipe(eslint())
 		.pipe(eslint.format())
-		.pipe(concat('script.js'))
+
+		// concat (+sourcemaps)
+		.pipe(sourcemaps.init())
+			.pipe(ngAnnotate({ single_quotes: true }))
+			.pipe(concat('script.js'))
+		.pipe(sourcemaps.write())
+
 		.pipe(gulp.dest('js/public'));
 });
 
@@ -30,7 +39,7 @@ gulp.task('eslint', function() {
 })
 
 gulp.task('watch', ['js'], function() {
-	gulp.watch('js/**/*.js', ['js']);
+	gulp.watch(['js/**/*.js', '!js/public/**/*.js'], ['js']);
 });
 
 gulp.task('default', ['js']);

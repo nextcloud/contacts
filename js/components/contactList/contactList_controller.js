@@ -1,4 +1,4 @@
-app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams', 'ContactService', 'vCardPropertiesService', function($scope, $filter, $route, $routeParams, ContactService, vCardPropertiesService) {
+app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, ContactService, vCardPropertiesService) {
 	var ctrl = this;
 
 	ctrl.routeParams = $routeParams;
@@ -109,4 +109,4 @@ app.controller('contactlistCtrl', ['$scope', '$filter', '$route', '$routeParams'
 		$scope.selectedContactId = selectedContactId;
 	};
 
-}]);
+});

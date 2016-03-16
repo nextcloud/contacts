@@ -1,5 +1,5 @@
 var contacts;
-app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$q', 'CacheFactory', 'uuid4', function(DavClient, AddressBookService, Contact, $q, CacheFactory, uuid4) {
+app.service('ContactService', function(DavClient, AddressBookService, Contact, $q, CacheFactory, uuid4) {
 
 	var cacheFilled = false;
 
@@ -126,4 +126,4 @@ app.service('ContactService', [ 'DavClient', 'AddressBookService', 'Contact', '$
 			notifyObservers('delete', contact.uid());
 		});
 	};
-}]);
+});
