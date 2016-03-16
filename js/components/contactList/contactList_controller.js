@@ -1,12 +1,34 @@
-app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, ContactService, vCardPropertiesService) {
+app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, ContactService, vCardPropertiesService, SearchService) {
 	var ctrl = this;
 
 	ctrl.routeParams = $routeParams;
 	ctrl.t = {
-		addContact : t('contacts', 'Add contact')
+		addContact : t('contacts', 'Add contact'),
+		emptySearch : t('contacts', 'No search result for {ctrl.query}')
 	};
 
 	ctrl.contactList = [];
+	ctrl.query = '';
+	ctrl.selectedContactId = undefined;
+
+	$scope.query = function(contact) {
+		return contact.matches(SearchService.getSearchTerm());
+	};
+
+	SearchService.registerObserverCallback(function(ev) {
+		if (ev.event === 'submitSearch') {
+			var uid = !_.isEmpty(ctrl.contactList) ? ctrl.contactList[0].uid() : undefined;
+			$route.updateParams({
+				uid: uid
+			});
+			ctrl.selectedContactId = uid;
+			$scope.$apply();
+		}
+		if (ev.event === 'changeSearch') {
+			ctrl.query = ev.searchTerm;
+			$scope.$apply();
+		}
+	});
 
 	ContactService.registerObserverCallback(function(ev) {
 		$scope.$apply(function() {
