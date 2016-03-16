@@ -9,6 +9,7 @@ branches:
 
 script:
   - node_modules/.bin/gulp eslint
+  - node_modules/.bin/gulp
   - make appstore_package
 
 deploy:
