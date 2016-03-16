@@ -6,6 +6,7 @@ OC.L10N.register(
     "Name" : "Όνομα",
     "Organization" : "Οργανισμός",
     "Title" : "Τίτλος",
+    "Add field ..." : "Προσθήκη πεδίου...",
     "Add contact" : "Προσθήκη επαφής",
     "All contacts" : "Όλες οι επαφές",
     "City" : "Πόλη",
