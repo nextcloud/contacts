@@ -1,4 +1,4 @@
-app.filter('orderDetailItems', ['vCardPropertiesService', function(vCardPropertiesService) {
+app.filter('orderDetailItems', function(vCardPropertiesService) {
 	'use strict';
 	return function(items, field, reverse) {
 
@@ -24,4 +24,4 @@ app.filter('orderDetailItems', ['vCardPropertiesService', function(vCardProperti
 		if(reverse) filtered.reverse();
 		return filtered;
 	};
-}]);
+});

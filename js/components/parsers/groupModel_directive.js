@@ -1,4 +1,4 @@
-app.directive('groupModel', ['$filter', function($filter) {
+app.directive('groupModel', function($filter) {
 	return{
 		restrict: 'A',
 		require: 'ngModel',
@@ -14,4 +14,4 @@ app.directive('groupModel', ['$filter', function($filter) {
 			});
 		}
 	};
-}]);
+});

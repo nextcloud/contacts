@@ -1,4 +1,4 @@
-app.service('vCardPropertiesService', [function() {
+app.service('vCardPropertiesService', function() {
 	/**
 	 * map vCard attributes to internal attributes
 	 *
@@ -141,4 +141,4 @@ app.service('vCardPropertiesService', [function() {
 		return this.vCardMeta[property] || this.fallbackMeta(property);
 	};
 
-}]);
+});

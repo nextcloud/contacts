@@ -1,4 +1,4 @@
-app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService', 'ContactService', function($templateRequest, vCardPropertiesService, ContactService) {
+app.controller('detailsItemCtrl', function($templateRequest, vCardPropertiesService, ContactService) {
 	var ctrl = this;
 
 	ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
@@ -42,4 +42,4 @@ app.controller('detailsItemCtrl', ['$templateRequest', 'vCardPropertiesService',
 		ctrl.model.deleteField(ctrl.name, ctrl.data);
 		ctrl.model.updateContact();
 	};
-}]);
+});

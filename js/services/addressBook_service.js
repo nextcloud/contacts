@@ -1,4 +1,4 @@
-app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService', 'AddressBook', 'Contact', function(DavClient, DavService, SettingsService, AddressBook, Contact) {
+app.factory('AddressBookService', function(DavClient, DavService, SettingsService, AddressBook, Contact) {
 
 	var addressBooks = [];
 
@@ -189,4 +189,4 @@ app.factory('AddressBookService', ['DavClient', 'DavService', 'SettingsService',
 
 	};
 
-}]);
+});

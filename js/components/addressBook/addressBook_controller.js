@@ -1,4 +1,4 @@
-app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($scope, AddressBookService) {
+app.controller('addressbookCtrl', function($scope, AddressBookService) {
 	var ctrl = this;
 
 	ctrl.urlBase = window.location.protocol + '//' + window.location.host;
@@ -114,4 +114,4 @@ app.controller('addressbookCtrl', ['$scope', 'AddressBookService', function($sco
 		});
 	};
 
-}]);
+});

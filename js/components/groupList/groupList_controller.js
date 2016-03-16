@@ -1,4 +1,4 @@
-app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', function($scope, ContactService, $routeParams) {
+app.controller('grouplistCtrl', function($scope, ContactService, $routeParams) {
 
 	$scope.groups = [t('contacts', 'All contacts')];
 
@@ -10,4 +10,4 @@ app.controller('grouplistCtrl', ['$scope', 'ContactService', '$routeParams', fun
 	$scope.setSelected = function (selectedGroup) {
 		$scope.selectedGroup = selectedGroup;
 	};
-}]);
+});

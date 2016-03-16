@@ -10,7 +10,7 @@
 
 var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute', 'ui.bootstrap', 'ui.select', 'ngSanitize']);
 
-app.config(['$routeProvider', function($routeProvider) {
+app.config(function($routeProvider) {
 
 	$routeProvider.when('/:gid', {
 		template: '<contactdetails></contactdetails>'
@@ -22,4 +22,4 @@ app.config(['$routeProvider', function($routeProvider) {
 
 	$routeProvider.otherwise('/' + t('contacts', 'All contacts'));
 
-}]);
+});

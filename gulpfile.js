@@ -1,6 +1,7 @@
 var gulp = require('gulp'),
 	concat = require('gulp-concat'),
 	eslint = require('gulp-eslint'),
+	ngAnnotate = require('gulp-ng-annotate'),
 	sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('js', function() {
@@ -17,6 +18,7 @@ gulp.task('js', function() {
 
 		// concat (+sourcemaps)
 		.pipe(sourcemaps.init())
+			.pipe(ngAnnotate({ single_quotes: true }))
 			.pipe(concat('script.js'))
 		.pipe(sourcemaps.write())
 

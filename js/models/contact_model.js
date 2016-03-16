@@ -1,4 +1,4 @@
-app.factory('Contact', [ '$filter', function($filter) {
+app.factory('Contact', function($filter) {
 	return function Contact(addressBook, vCard) {
 		angular.extend(this, {
 
@@ -167,4 +167,4 @@ app.factory('Contact', [ '$filter', function($filter) {
 			this.categories('');
 		}
 	};
-}]);
+});
