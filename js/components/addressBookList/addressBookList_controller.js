@@ -1,8 +1,11 @@
 app.controller('addressbooklistCtrl', function($scope, AddressBookService, SettingsService) {
 	var ctrl = this;
 
+	ctrl.loading = true;
+
 	AddressBookService.getAll().then(function(addressBooks) {
 		ctrl.addressBooks = addressBooks;
+		ctrl.loading = false;
 	});
 
 	ctrl.createAddressBook = function() {
