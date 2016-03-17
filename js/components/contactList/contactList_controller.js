@@ -2,14 +2,16 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 	var ctrl = this;
 
 	ctrl.routeParams = $routeParams;
-	ctrl.t = {
-		addContact : t('contacts', 'Add contact'),
-		emptySearch : t('contacts', 'No search result for')
-	};
 
 	ctrl.contactList = [];
 	ctrl.selectedContactId = undefined;
 	ctrl.searchTerm = '';
+
+	ctrl.t = {
+		addContact : t('contacts', 'Add contact'),
+		emptySearch : t('contacts', 'No search result for {query}', {query: ctrl.searchTerm})
+	};
+
 
 	$scope.query = function(contact) {
 		return contact.matches(SearchService.getSearchTerm());
@@ -26,6 +28,11 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 		}
 		if (ev.event === 'changeSearch') {
 			ctrl.searchTerm = ev.searchTerm;
+			ctrl.t.emptySearch;
+			ctrl.t.emptySearch = t('contacts',
+								   'No search result for {query}',
+								   {query: ctrl.searchTerm}
+								  );
 			$scope.$apply();
 		}
 	});
