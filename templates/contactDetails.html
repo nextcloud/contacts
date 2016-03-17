@@ -23,8 +23,8 @@
 	<div ng-repeat="prop in ctrl.contact.props | toArray | orderDetailItems:'$key'">
 		<detailsItem ng-repeat="propData in prop" name="prop.$key" data="propData" model="ctrl" index="$index" ng-class="[ 'details-item-' + prop.$key ]"></detailsItem>
 	</div>
-	<div class="select-addressbook" ng-if="addressBooks.length > 1">
-		<select ng-model="addressBook" ng-change="ctrl.changeAddressBook(addressBook)" ng-options="book.id for book in addressBooks track by book.id">
+	<div class="select-addressbook" ng-if="ctrl.addressBooks.length > 1">
+		<select ng-model="ctrl.addressBook" ng-change="ctrl.changeAddressBook(ctrl.addressBook)" ng-options="book.displayName for book in ctrl.addressBooks">
 		</select>
 	</div>
 	<select class="add-field" ng-model="ctrl.field" ng-change="ctrl.addField(ctrl.field)">
