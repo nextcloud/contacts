@@ -19,4 +19,4 @@ This is the new contacts app that has replaced the [old contacts app](https://gi
 - [Tom Needham](https://github.com/tomneedham)
 
 
-If you’d like to join, just go through the [issue list](https://github.com/owncloud/contacts/issues) and fix some. :) We’re also in [#owncloud-contacts on freenode IRC](https://webchat.freenode.net/?channels=owncloud-contacts).
+If you’d like to join, just go through the [issue list](https://github.com/owncloud/contacts/issues) and fix some. :)
