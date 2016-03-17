@@ -1,7 +1,6 @@
 app.factory('AddressBookService', function(DavClient, DavService, SettingsService, AddressBook, Contact) {
 
 	var addressBooks = [];
-	var loading = true;
 
 	var loadAll = function() {
 		return DavService.then(function(account) {
