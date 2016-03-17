@@ -2,6 +2,7 @@
 
 ![irc](https://img.shields.io/badge/irc%20channel-%23owncloud--contacts%20on%20freenode-blue.svg)
 [![Build Status](https://scrutinizer-ci.com/g/owncloud/contacts/badges/build.png?b=master)](https://scrutinizer-ci.com/g/owncloud/contacts/build-status/master)
+![Dev Dependencies](https://david-dm.org/owncloud/contacts/dev-status.svg)
 
 **A contacts app for [ownCloud](https://owncloud.org).**  
 
