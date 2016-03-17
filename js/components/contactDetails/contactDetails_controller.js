@@ -15,20 +15,14 @@ app.controller('contactdetailsCtrl', function(ContactService, AddressBookService
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
 	ctrl.focus = undefined;
 	ctrl.field = undefined;
-	$scope.addressBooks = [];
 	ctrl.addressBooks = [];
 
 	AddressBookService.getAll().then(function(addressBooks) {
 		ctrl.addressBooks = addressBooks;
-		$scope.addressBooks = addressBooks.map(function (element) {
-			return {
-				id: element.displayName,
-				name: element.displayName
-			};
-		});
+
 		if (!_.isUndefined(ctrl.contact)) {
-			$scope.addressBook = _.find($scope.addressBooks, function(book) {
-				return book.id === ctrl.contact.addressBookId;
+			ctrl.addressBook = _.find(ctrl.addressBooks, function(book) {
+				return book.displayName === ctrl.contact.addressBookId;
 			});
 		}
 		ctrl.loading = false;
@@ -45,8 +39,8 @@ app.controller('contactdetailsCtrl', function(ContactService, AddressBookService
 		ContactService.getById(uid).then(function(contact) {
 			ctrl.contact = contact;
 			ctrl.photo = ctrl.contact.photo();
-			$scope.addressBook = _.find($scope.addressBooks, function(book) {
-				return book.id === ctrl.contact.addressBookId;
+			ctrl.addressBook = _.find(ctrl.addressBooks, function(book) {
+				return book.displayName === ctrl.contact.addressBookId;
 			});
 		});
 	};
@@ -72,9 +66,6 @@ app.controller('contactdetailsCtrl', function(ContactService, AddressBookService
 	};
 
 	ctrl.changeAddressBook = function (addressBook) {
-		addressBook = _.find(ctrl.addressBooks, function(book) {
-			return book.displayName === addressBook.id;
-		});
 		ContactService.moveContact(ctrl.contact, addressBook);
 	};
 });
