@@ -1,8 +1,8 @@
 # ownCloud Contacts 
 
+[![irc](https://img.shields.io/badge/irc%20channel-%23owncloud--contacts%20on%20freenode-blue.svg)](https://webchat.freenode.net/?channels=owncloud-contacts)
 [![Build Status](https://scrutinizer-ci.com/g/owncloud/contacts/badges/build.png?b=master)](https://scrutinizer-ci.com/g/owncloud/contacts/build-status/master)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/owncloud/contacts/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/owncloud/contacts/?branch=master)
-[![Code Coverage](https://scrutinizer-ci.com/g/owncloud/contacts/badges/coverage.png?b=master)](https://scrutinizer-ci.com/g/owncloud/contacts/?branch=master)
+![Dev Dependencies](https://david-dm.org/owncloud/contacts/dev-status.svg)
 
 **A contacts app for [ownCloud](https://owncloud.org).**  
 
