@@ -15,6 +15,7 @@
 		"curly": ["error", "multi-line", "consistent"],
 		"indent": ["error", "tab"],
 		"no-alert": "error",
+		"no-mixed-spaces-and-tabs": ["error", "smart-tabs"],
 		"no-trailing-spaces": "error",
 		"quotes": ["error", "single", "avoid-escape"],
 		"semi": "error",
