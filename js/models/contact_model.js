@@ -96,7 +96,7 @@ app.factory('Contact', function($filter) {
 				} else {
 					// getter
 					var property = this.getProperty('categories');
-					if(property) {
+					if(property && property.value.length > 0) {
 						return property.value.split(',');
 					} else {
 						return [];
