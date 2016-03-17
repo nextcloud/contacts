@@ -1,14 +1,20 @@
 app.controller('grouplistCtrl', function($scope, ContactService, SearchService, $routeParams) {
+	var ctrl = this;
 
-	$scope.groups = [t('contacts', 'All contacts'), t('contacts', 'Not grouped')];
+	var initialGroups = [t('contacts', 'All contacts'), t('contacts', 'Not grouped')];
+
+	ctrl.groups = initialGroups;
 
 	ContactService.getGroups().then(function(groups) {
-		$scope.groups = _.unique([t('contacts', 'All contacts'), t('contacts', 'Not grouped')].concat(groups));
+		ctrl.groups = _.unique(initialGroups.concat(groups));
 	});
 
-	$scope.selectedGroup = $routeParams.gid;
-	$scope.setSelected = function (selectedGroup) {
+	ctrl.getSelected = function() {
+		return $routeParams.gid;
+	};
+
+	ctrl.setSelected = function (selectedGroup) {
 		SearchService.cleanSearch();
-		$scope.selectedGroup = selectedGroup;
+		$routeParams.gid = selectedGroup;
 	};
 });
