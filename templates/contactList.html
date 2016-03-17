@@ -4,7 +4,7 @@
 	     ng-repeat="contact in ctrl.contactList = (ctrl.contacts | contactGroupFilter:ctrl.routeParams.gid | orderBy:'fullName()' | filter:query) track by contact.uid()"
 	     contact data="contact"
 	     ng-click="setSelected(contact.uid())"
-	     ng-class="{active: contact.uid() === ctrl.selectedContactId}">
+	     ng-class="{active: contact.uid() === ctrl.getSelectedId()}">
 	</div>
 	<div ng-show="!ctrl.contactList.length && !ctrl.loading">
 	        <div id="emptysearch" class="">
