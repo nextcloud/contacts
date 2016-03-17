@@ -18,20 +18,20 @@
         <span
             class="addressbooklist-icon icon-delete"
             title="Delete Addressbook"
-            ng-click="ctrl.deleteAddressBook(ctrl.addressBook)">
+            ng-click="ctrl.deleteAddressBook()">
         </span>
     </span>
 </span>
     <input class="addressBookUrl" ng-show="ctrl.showUrl" type="url" value="{{ctrl.urlBase + ctrl.addressBook.url}}" readonly />
-<div class="addressBookShares" ng-show="ctrl.addressBook.editingShares">
-	<i ng-show="ctrl.addressBook.loadingSharees" class="glyphicon glyphicon-refresh"></i>
+<div class="addressBookShares" ng-show="ctrl.editingShares">
+	<i ng-show="ctrl.loadingSharees" class="glyphicon glyphicon-refresh"></i>
 	<input
 		type="text"
 		class="shareeInput"
-		uib-typeahead="sharee.display for sharee in ctrl.findSharee($viewValue, ctrl.addressBook)"
-		typeahead-on-select="ctrl.onSelectSharee($item, $model, $label, ctrl.addressBook)"
-		typeahead-loading="loadingSharees"
-		ng-model="ctrl.addressBook.selectedSharee"
+		uib-typeahead="sharee.display for sharee in ctrl.findSharee($viewValue)"
+		typeahead-on-select="ctrl.onSelectSharee($item, $model, $label)"
+		typeahead-loading="ctrl.loadingSharees"
+		ng-model="ctrl.selectedSharee"
 		placeholder="Share with users or groups">
 	<ul class="addressBook-share-list">
 		<li ng-repeat="userShare in ctrl.addressBook.sharedWith.users" class="addressBook-share-item">
@@ -39,7 +39,7 @@
 			<input type="checkbox" name="editable"
 				   id="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"
 				   ng-model="userShare.writable" value="edit"
-				   ng-change="ctrl.updateExistingUserShare(ctrl.addressBook, userShare.id, userShare.writable)">
+				   ng-change="ctrl.updateExistingUserShare(userShare.id, userShare.writable)">
 			<label for="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"> can edit</label>
 			<span class="utils">
 				<span class="action">
@@ -48,7 +48,7 @@
 						  data-id="{{ ctrl.addressBook.uri }}"
 						  title="Delete"
 						  class="icon-delete"
-						  ng-click="ctrl.unshareFromUser(ctrl.addressBook, userShare.id)">
+						  ng-click="ctrl.unshareFromUser(userShare.id)">
 					</span>
 				</span>
 			</span>
@@ -58,7 +58,7 @@
 			<input type="checkbox" name="editable"
 				   id="checkbox_sharedWithGroup_{{ctrl.addressBook.tmpId}}_{{$id}}"
 				   ng-model="groupShare.writable" value="edit"
-				   ng-change="ctrl.updateExistingGroupShare(ctrl.addressBook, groupShare.id, groupShare.writable)">
+				   ng-change="ctrl.updateExistingGroupShare(groupShare.id, groupShare.writable)">
 			<label for="checkbox_sharedWithGroup_{{ctrl.addressBook.tmpId}}_{{$id}}"> can edit</label>
 			<span class="utils hide">
 				<span class="action">
@@ -67,7 +67,7 @@
 						  data-id="{{ ctrl.addressBook.uri }}"
 						  title="Delete"
 						  class="icon-delete"
-						  ng-click="ctrl.unshareFromGroup(ctrl.addressBook, groupShare.id)">
+						  ng-click="ctrl.unshareFromGroup(groupShare.id)">
 					</span>
 				</span>
 			</span>
