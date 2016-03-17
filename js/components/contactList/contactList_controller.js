@@ -4,7 +4,6 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 	ctrl.routeParams = $routeParams;
 
 	ctrl.contactList = [];
-	ctrl.selectedContactId = undefined;
 	ctrl.searchTerm = '';
 
 	ctrl.t = {
@@ -20,10 +19,7 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 	SearchService.registerObserverCallback(function(ev) {
 		if (ev.event === 'submitSearch') {
 			var uid = !_.isEmpty(ctrl.contactList) ? ctrl.contactList[0].uid() : undefined;
-			$route.updateParams({
-				uid: uid
-			});
-			ctrl.selectedContactId = uid;
+			ctrl.setSelectedId(uid);
 			$scope.$apply();
 		}
 		if (ev.event === 'changeSearch') {
@@ -136,9 +132,14 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 		return ctrl.contacts.length > 0;
 	};
 
-	$scope.selectedContactId = $routeParams.uid;
-	$scope.setSelected = function (selectedContactId) {
-		$scope.selectedContactId = selectedContactId;
+	ctrl.setSelectedId = function (contactId) {
+		$route.updateParams({
+			uid: contactId
+		});
+	};
+
+	ctrl.getSelectedId = function() {
+		return $routeParams.uid;
 	};
 
 });
