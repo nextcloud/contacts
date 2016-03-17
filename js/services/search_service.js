@@ -10,7 +10,7 @@ app.service('SearchService', function() {
 	var notifyObservers = function(eventName) {
 		var ev = {
 			event:eventName,
-			searchTerm:this.searchTerm
+			searchTerm:searchTerm
 		};
 		angular.forEach(observerCallbacks, function(callback) {
 			callback(ev);

@@ -1,12 +1,12 @@
 <button class="app-content-list-button" type="button" name="button" ng-click="ctrl.createContact()">{{ctrl.t.addContact}}</button>
-<div ng-if="ctrl.contactList===[]">
-  <div id="emptysearch" class="">
-    <div class="icon-search"></div>
-    <h2>{{ctrl.t.emptySearch}}</h2>
-  </div>
-</div>
 <div class="app-content-list-item"
 	 ng-repeat="contact in ctrl.contactList = (ctrl.contacts | contactGroupFilter:ctrl.routeParams.gid | orderBy:'fullName()' | filter:query) track by contact.uid()"
 	 contact data="contact"
 	 ng-click="setSelected(contact.uid())" ng-class="{active: contact.uid() === ctrl.selectedContactId}">
+</div>
+<div ng-show="!ctrl.contactList.length">
+  <div id="emptysearch" class="">
+    <div class="icon-search"></div>
+    <h2>{{ctrl.t.emptySearch}} {{ctrl.searchTerm}}</h2>
+  </div>
 </div>
