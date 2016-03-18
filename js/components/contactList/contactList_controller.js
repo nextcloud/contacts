@@ -116,7 +116,7 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 				var defaultValue = vCardPropertiesService.getMeta(field).defaultValue || {value: ''};
 				contact.addProperty(field, defaultValue);
 			} );
-			if ($routeParams.gid !== t('contacts', 'All contacts')) {
+			if ([t('contacts', 'All contacts'), t('contacts', 'Not grouped')].indexOf($routeParams.gid) === -1) {
 				contact.categories($routeParams.gid);
 			} else {
 				contact.categories('');
