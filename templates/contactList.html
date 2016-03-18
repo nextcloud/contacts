@@ -6,7 +6,7 @@
 	     ng-click="setSelected(contact.uid())"
 	     ng-class="{active: contact.uid() === ctrl.getSelectedId()}">
 	</div>
-	<div ng-show="!ctrl.contactList.length && !ctrl.loading">
+	<div ng-show="!ctrl.contactList.length && !ctrl.loading && ctrl.searchTerm !== ''">
 	        <div id="emptysearch" class="">
 		        <div class="icon-search"></div>
 			<h2>{{ctrl.t.emptySearch}}</h2>
