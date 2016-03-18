@@ -15,6 +15,7 @@ OC.L10N.register(
     "State or province" : "Estado o provincia",
     "Country" : "País",
     "Address" : "Dirección",
+    "Not grouped" : "No agrupado",
     "{addressbook} shared by {owner}" : "{addressbook} compartido por {owner}",
     "Nickname" : "Apodo",
     "Notes" : "Notas",

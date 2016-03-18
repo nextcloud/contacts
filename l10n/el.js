@@ -13,6 +13,7 @@ OC.L10N.register(
     "State or province" : "Νομός ή περιφέρεια",
     "Country" : "Χώρα",
     "Address" : "Διεύθυνση",
+    "Not grouped" : "Οχι ομαδοποιημένα",
     "{addressbook} shared by {owner}" : "Το {addressbook} διαμοιράστηκε από τον/την {owner}",
     "Nickname" : "Παρατσούκλι",
     "Notes" : "Σημειώσεις",

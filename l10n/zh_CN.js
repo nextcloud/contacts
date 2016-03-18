@@ -12,6 +12,7 @@ OC.L10N.register(
     "State or province" : "州/省",
     "Country" : "国家",
     "Address" : "地址",
+    "Not grouped" : "未分组",
     "Nickname" : "昵称",
     "Notes" : "说明",
     "Website" : "网站",

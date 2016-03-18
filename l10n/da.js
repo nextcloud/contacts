@@ -14,6 +14,7 @@ OC.L10N.register(
     "State or province" : "Stat eller provins",
     "Country" : "Land",
     "Address" : "Adresse",
+    "Not grouped" : "Ikke i gruppe",
     "{addressbook} shared by {owner}" : "{addressbook} delt af {owner}",
     "Nickname" : "Kaldenavn",
     "Notes" : "Noter",

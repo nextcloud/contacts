@@ -13,6 +13,7 @@
     "State or province" : "州／県",
     "Country" : "国名",
     "Address" : "アドレス",
+    "Not grouped" : "グループ化されていません",
     "{addressbook} shared by {owner}" : " {owner}と共有中の{addressbook} ",
     "Nickname" : "ニックネーム",
     "Notes" : "ノート",

@@ -16,6 +16,7 @@ OC.L10N.register(
     "Country" : "Pays",
     "Address" : "Adresse",
     "(new group)" : "(nouveau groupe)",
+    "Not grouped" : "Non groupés",
     "{addressbook} shared by {owner}" : "{addressbook} partagé par {owner}",
     "Nickname" : "Surnom",
     "Notes" : "Notes",

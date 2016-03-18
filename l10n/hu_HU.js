@@ -16,6 +16,7 @@ OC.L10N.register(
     "Country" : "Ország",
     "Address" : "Cím",
     "(new group)" : "(új csoport)",
+    "Not grouped" : "Nem csoportosított",
     "{addressbook} shared by {owner}" : "{addressbook} megosztója {owner}",
     "Nickname" : "Becenév",
     "Notes" : "Jegyzetek",

@@ -16,6 +16,7 @@ OC.L10N.register(
     "Country" : "Vend",
     "Address" : "Adresë",
     "(new group)" : "(grup i ri)",
+    "Not grouped" : "I pagrupuar",
     "{addressbook} shared by {owner}" : "{addressbook} ndarë nga {owner}",
     "Nickname" : "Nofkë",
     "Notes" : "Shënime",

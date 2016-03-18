@@ -16,6 +16,7 @@ OC.L10N.register(
     "Country" : "Riik",
     "Address" : "Aadress",
     "(new group)" : "(uus grupps)",
+    "Not grouped" : "Pole grupeeritud",
     "{addressbook} shared by {owner}" : "{owner} jagas aadressiraamatut {addressbook}",
     "Nickname" : "Hüüdnimi",
     "Notes" : "Märkmed",

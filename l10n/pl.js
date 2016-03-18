@@ -15,6 +15,7 @@ OC.L10N.register(
     "State or province" : "Województwo ",
     "Country" : "Kraj",
     "Address" : "Adres",
+    "Not grouped" : "Nie zgrupowane",
     "{addressbook} shared by {owner}" : "Książka {addressbook} udostępniona przez {owner}",
     "Nickname" : "Nazwa",
     "Notes" : "Notatki",

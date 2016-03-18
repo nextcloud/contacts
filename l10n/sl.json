@@ -14,6 +14,7 @@
     "Country" : "Država",
     "Address" : "Naslov",
     "(new group)" : "(nova skupina)",
+    "Not grouped" : "Brez skupine",
     "{addressbook} shared by {owner}" : "Souporabo imenika {addressbook} je omogočil uporabnik {owner}",
     "Nickname" : "Vzdevek",
     "Notes" : "Sporočilca",
