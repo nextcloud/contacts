@@ -68,6 +68,11 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 	ContactService.getAll().then(function(contacts) {
 		$scope.$apply(function() {
 			ctrl.contacts = contacts;
+			if (!_.isEmpty(ctrl.contacts)) {
+				ctrl.setSelectedId(_.sortBy(contacts, function(contact) {
+					return contact.fullName();
+				})[0].uid());
+			}
 			ctrl.loading = false;
 		});
 	});
