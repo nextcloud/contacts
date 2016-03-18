@@ -61,7 +61,8 @@ app.factory('AddressBookService', function(DavClient, DavService, SettingsServic
 		delete: function(addressBook) {
 			return DavService.then(function(account) {
 				return DavClient.deleteAddressBook(addressBook).then(function() {
-					angular.copy(_.without(addressBooks, addressBook), addressBooks);
+					var index = addressBooks.indexOf(addressBook);
+					addressBooks.splice(index, 1);
 				});
 			});
 		},
