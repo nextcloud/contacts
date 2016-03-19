@@ -121,7 +121,7 @@ angular.module('contactsApp')
 
 	this.delete = function(contact) {
 		// delete contact from server
-		return DavClient.deleteCard(contact.data).then(function(xhr) {
+		return DavClient.deleteCard(contact.data).then(function() {
 			contacts.remove(contact.uid());
 			notifyObservers('delete', contact.uid());
 		});

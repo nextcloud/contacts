@@ -29,7 +29,7 @@ angular.module('contactsApp')
 		ctrl.loading = false;
 	});
 
-	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
+	$scope.$watch('ctrl.uid', function(newValue) {
 		ctrl.changeContact(newValue);
 	});
 

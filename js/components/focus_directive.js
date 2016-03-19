@@ -4,8 +4,7 @@ angular.module('contactsApp')
 		restrict: 'A',
 		link: {
 			post: function postLink(scope, element, attrs) {
-				scope.$watch(attrs.focusExpression, function (value) {
-
+				scope.$watch(attrs.focusExpression, function () {
 					if (attrs.focusExpression) {
 						if (scope.$eval(attrs.focusExpression)) {
 							$timeout(function () {
