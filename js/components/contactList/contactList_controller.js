@@ -110,6 +110,11 @@ app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams
 					gid: $routeParams.gid,
 					uid: ctrl.contactList[0].uid()
 				});
+			} else {
+				$route.updateParams({
+					gid: $routeParams.gid,
+					uid: undefined
+				});
 			}
 			unbindWatch(); // unbind as we only want one update
 		});
