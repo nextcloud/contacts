@@ -8,6 +8,7 @@ OC.L10N.register(
     "Title" : "כותרת",
     "Add field ..." : "הוספת שדה...",
     "Add contact" : "הוסף איש קשר",
+    "No search result for {query}" : "אין תוצאות חיפוש עבור {query}",
     "All contacts" : "כל אנשי הקשר",
     "Post Office Box" : "תיבת דואר",
     "Postal Code" : "מיקוד",

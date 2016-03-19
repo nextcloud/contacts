@@ -8,6 +8,7 @@ OC.L10N.register(
     "Title" : "Titull",
     "Add field ..." : "Shtoni fushë...",
     "Add contact" : "Shtoni kontakt",
+    "No search result for {query}" : "S’pat përfundime kërkimi për {query}",
     "All contacts" : "Krejt kontaktet",
     "Post Office Box" : "Kuti Zyre Postare",
     "Postal Code" : "Kod Postar",

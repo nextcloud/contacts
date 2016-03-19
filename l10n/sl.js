@@ -8,6 +8,7 @@ OC.L10N.register(
     "Title" : "Naslov",
     "Add field ..." : "Dodaj polje ...",
     "Add contact" : "Dodaj stik",
+    "No search result for {query}" : "Ni zadetkov iskanja za {query}",
     "All contacts" : "Vsi stiki",
     "Post Office Box" : "Poštni predal",
     "Postal Code" : "Poštna številka",

@@ -8,6 +8,7 @@ OC.L10N.register(
     "Title" : "Otsikko",
     "Add field ..." : "Lisää kenttä...",
     "Add contact" : "Lisää yhteystieto",
+    "No search result for {query}" : "Ei tuloksia haulle {query}",
     "All contacts" : "Kaikki yhteystiedot",
     "Post Office Box" : "Postilokero",
     "Postal Code" : "Postinumero",
