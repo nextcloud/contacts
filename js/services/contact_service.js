@@ -95,6 +95,12 @@ app.service('ContactService', function(DavClient, AddressBookService, Contact, $
 		});
 	};
 
+	this.import = function(vCard, addressBook) {
+		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
+		var newContact = new Contact(addressBook, {addressData: vCard});
+		this.create(newContact, addressBook);
+	};
+
 	this.moveContact = function (contact, addressbook) {
 		if (contact.addressBookId === addressbook.displayName) {
 			return;
