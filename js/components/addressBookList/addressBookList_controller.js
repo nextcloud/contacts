@@ -1,4 +1,5 @@
-app.controller('addressbooklistCtrl', function($scope, AddressBookService, SettingsService) {
+angular.module('contactsApp')
+.controller('addressbooklistCtrl', function($scope, AddressBookService, SettingsService) {
 	var ctrl = this;
 
 	ctrl.loading = true;

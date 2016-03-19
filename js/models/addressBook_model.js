@@ -1,4 +1,5 @@
-app.factory('AddressBook', function()
+angular.module('contactsApp')
+.factory('AddressBook', function()
 {
 	return function AddressBook(data) {
 		angular.extend(this, {

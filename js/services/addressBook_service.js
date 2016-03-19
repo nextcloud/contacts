@@ -1,4 +1,5 @@
-app.factory('AddressBookService', function(DavClient, DavService, SettingsService, AddressBook, Contact) {
+angular.module('contactsApp')
+.factory('AddressBookService', function(DavClient, DavService, SettingsService, AddressBook, Contact) {
 
 	var addressBooks = [];
 

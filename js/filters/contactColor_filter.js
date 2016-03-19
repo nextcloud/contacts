@@ -1,4 +1,5 @@
-app.filter('contactColor', function() {
+angular.module('contactsApp')
+.filter('contactColor', function() {
 	return function(input) {
 		var colors = [
 				'#001f3f',

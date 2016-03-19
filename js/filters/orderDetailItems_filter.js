@@ -1,4 +1,5 @@
-app.filter('orderDetailItems', function(vCardPropertiesService) {
+angular.module('contactsApp')
+.filter('orderDetailItems', function(vCardPropertiesService) {
 	'use strict';
 	return function(items, field, reverse) {
 

@@ -1,4 +1,5 @@
-app.service('SearchService', function() {
+angular.module('contactsApp')
+.service('SearchService', function() {
 	var searchTerm = '';
 
 	var observerCallbacks = [];

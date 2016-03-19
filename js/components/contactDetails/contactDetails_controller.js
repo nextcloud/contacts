@@ -1,4 +1,5 @@
-app.controller('contactdetailsCtrl', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
+angular.module('contactsApp')
+.controller('contactdetailsCtrl', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
 	var ctrl = this;
 
 	ctrl.loading = true;

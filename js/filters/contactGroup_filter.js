@@ -1,4 +1,5 @@
-app.filter('contactGroupFilter', function() {
+angular.module('contactsApp')
+.filter('contactGroupFilter', function() {
 	'use strict';
 	return function (contacts, group) {
 		if (typeof contacts === 'undefined') {

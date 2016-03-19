@@ -1,4 +1,5 @@
-app.directive('addressbooklist', function() {
+angular.module('contactsApp')
+.directive('addressbooklist', function() {
 	return {
 		restrict: 'EA', // has to be an attribute to work with core css
 		scope: {},

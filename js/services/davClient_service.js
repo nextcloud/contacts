@@ -1,4 +1,5 @@
-app.service('DavClient', function() {
+angular.module('contactsApp')
+.service('DavClient', function() {
 	var xhr = new dav.transport.Basic(
 		new dav.Credentials()
 	);

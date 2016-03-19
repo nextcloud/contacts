@@ -1,4 +1,5 @@
-app.directive('detailsitem', ['$compile', function($compile) {
+angular.module('contactsApp')
+.directive('detailsitem', ['$compile', function($compile) {
 	return {
 		scope: {},
 		controller: 'detailsItemCtrl',

@@ -1,4 +1,5 @@
-app.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, ContactService, vCardPropertiesService, SearchService) {
+angular.module('contactsApp')
+.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, ContactService, vCardPropertiesService, SearchService) {
 	var ctrl = this;
 
 	ctrl.routeParams = $routeParams;

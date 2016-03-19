@@ -1,4 +1,5 @@
-app.controller('addressbookCtrl', function($scope, AddressBookService) {
+angular.module('contactsApp')
+.controller('addressbookCtrl', function($scope, AddressBookService) {
 	var ctrl = this;
 
 	ctrl.urlBase = window.location.protocol + '//' + window.location.host;

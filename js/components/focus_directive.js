@@ -1,4 +1,5 @@
-app.directive('focusExpression', function ($timeout) {
+angular.module('contactsApp')
+.directive('focusExpression', function ($timeout) {
 	return {
 		restrict: 'A',
 		link: {
