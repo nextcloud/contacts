@@ -1,4 +1,5 @@
-app.controller('contactCtrl', function($route, $routeParams) {
+angular.module('contactsApp')
+.controller('contactCtrl', function($route, $routeParams) {
 	var ctrl = this;
 
 	ctrl.openContact = function() {

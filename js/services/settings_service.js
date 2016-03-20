@@ -1,4 +1,5 @@
-app.service('SettingsService', function() {
+angular.module('contactsApp')
+.service('SettingsService', function() {
 	var settings = {
 		addressBooks: [
 			'testAddr'

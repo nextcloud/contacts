@@ -1,4 +1,5 @@
-app.factory('AddressBookService', function(DavClient, DavService, SettingsService, AddressBook, Contact) {
+angular.module('contactsApp')
+.factory('AddressBookService', function(DavClient, DavService, SettingsService, AddressBook) {
 
 	var addressBooks = [];
 
@@ -59,7 +60,7 @@ app.factory('AddressBookService', function(DavClient, DavService, SettingsServic
 		},
 
 		delete: function(addressBook) {
-			return DavService.then(function(account) {
+			return DavService.then(function() {
 				return DavClient.deleteAddressBook(addressBook).then(function() {
 					var index = addressBooks.indexOf(addressBook);
 					addressBooks.splice(index, 1);

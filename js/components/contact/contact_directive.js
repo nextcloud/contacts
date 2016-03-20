@@ -1,4 +1,5 @@
-app.directive('contact', function() {
+angular.module('contactsApp')
+.directive('contact', function() {
 	return {
 		scope: {},
 		controller: 'contactCtrl',

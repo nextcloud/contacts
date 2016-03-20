@@ -1,4 +1,5 @@
-app.controller('detailsItemCtrl', function($templateRequest, vCardPropertiesService, ContactService) {
+angular.module('contactsApp')
+.controller('detailsItemCtrl', function($templateRequest, vCardPropertiesService, ContactService) {
 	var ctrl = this;
 
 	ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);

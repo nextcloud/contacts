@@ -1,4 +1,5 @@
-app.directive('groupModel', function($filter) {
+angular.module('contactsApp')
+.directive('groupModel', function() {
 	return{
 		restrict: 'A',
 		require: 'ngModel',

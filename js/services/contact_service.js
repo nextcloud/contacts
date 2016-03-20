@@ -1,9 +1,9 @@
-var contacts;
-app.service('ContactService', function(DavClient, AddressBookService, Contact, $q, CacheFactory, uuid4) {
+angular.module('contactsApp')
+.service('ContactService', function(DavClient, AddressBookService, Contact, $q, CacheFactory, uuid4) {
 
 	var cacheFilled = false;
 
-	contacts = CacheFactory('contacts');
+	var contacts = CacheFactory('contacts');
 
 	var observerCallbacks = [];
 
@@ -29,7 +29,7 @@ app.service('ContactService', function(DavClient, AddressBookService, Contact, $
 				promises.push(
 					AddressBookService.sync(addressBook).then(function(addressBook) {
 						for(var i in addressBook.objects) {
-							contact = new Contact(addressBook, addressBook.objects[i]);
+							var contact = new Contact(addressBook, addressBook.objects[i]);
 							contacts.put(contact.uid(), contact);
 						}
 					})
@@ -121,7 +121,7 @@ app.service('ContactService', function(DavClient, AddressBookService, Contact, $
 
 	this.delete = function(contact) {
 		// delete contact from server
-		return DavClient.deleteCard(contact.data).then(function(xhr) {
+		return DavClient.deleteCard(contact.data).then(function() {
 			contacts.remove(contact.uid());
 			notifyObservers('delete', contact.uid());
 		});

@@ -1,4 +1,5 @@
-app.directive('group', function() {
+angular.module('contactsApp')
+.directive('group', function() {
 	return {
 		restrict: 'A', // has to be an attribute to work with core css
 		scope: {},

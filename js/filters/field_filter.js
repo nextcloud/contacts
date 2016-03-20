@@ -1,4 +1,5 @@
-app.filter('fieldFilter', function() {
+angular.module('contactsApp')
+.filter('fieldFilter', function() {
 	'use strict';
 	return function (fields, contact) {
 		if (typeof fields === 'undefined') {

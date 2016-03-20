@@ -8,9 +8,8 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-var app = angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute', 'ui.bootstrap', 'ui.select', 'ngSanitize']);
-
-app.config(function($routeProvider) {
+angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute', 'ui.bootstrap', 'ui.select', 'ngSanitize'])
+.config(function($routeProvider) {
 
 	$routeProvider.when('/:gid', {
 		template: '<contactdetails></contactdetails>'

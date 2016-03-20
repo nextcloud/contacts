@@ -1,4 +1,5 @@
-app.controller('grouplistCtrl', function($scope, ContactService, SearchService, $routeParams) {
+angular.module('contactsApp')
+.controller('grouplistCtrl', function($scope, ContactService, SearchService, $routeParams) {
 	var ctrl = this;
 
 	var initialGroups = [t('contacts', 'All contacts'), t('contacts', 'Not grouped')];

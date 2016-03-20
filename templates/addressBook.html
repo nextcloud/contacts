@@ -29,7 +29,7 @@
 		type="text"
 		class="shareeInput"
 		uib-typeahead="sharee.display for sharee in ctrl.findSharee($viewValue)"
-		typeahead-on-select="ctrl.onSelectSharee($item, $model, $label)"
+		typeahead-on-select="ctrl.onSelectSharee($item)"
 		typeahead-loading="ctrl.loadingSharees"
 		ng-model="ctrl.selectedSharee"
 		placeholder="Share with users or groups">

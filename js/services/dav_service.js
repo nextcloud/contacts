@@ -1,4 +1,5 @@
-app.service('DavService', function(DavClient) {
+angular.module('contactsApp')
+.service('DavService', function(DavClient) {
 	return DavClient.createAccount({
 		server: OC.linkToRemote('dav/addressbooks'),
 		accountType: 'carddav',

@@ -1,4 +1,5 @@
-app.controller('addressbookCtrl', function($scope, AddressBookService) {
+angular.module('contactsApp')
+.controller('addressbookCtrl', function($scope, AddressBookService) {
 	var ctrl = this;
 
 	ctrl.urlBase = window.location.protocol + '//' + window.location.host;
@@ -29,9 +30,7 @@ app.controller('addressbookCtrl', function($scope, AddressBookService) {
 			var groups  = result.ocs.data.exact.groups.concat(result.ocs.data.groups);
 
 			var userShares = ctrl.addressBook.sharedWith.users;
-			var groupShares = ctrl.addressBook.sharedWith.groups;
 			var userSharesLength = userShares.length;
-			var groupSharesLength = groupShares.length;
 			var i, j;
 
 			// Filter out current user
@@ -76,7 +75,7 @@ app.controller('addressbookCtrl', function($scope, AddressBookService) {
 		});
 	};
 
-	ctrl.onSelectSharee = function (item, model, label) {
+	ctrl.onSelectSharee = function (item) {
 		ctrl.selectedSharee = null;
 		AddressBookService.share(ctrl.addressBook, item.type, item.identifier, false, false).then(function() {
 			$scope.$apply();

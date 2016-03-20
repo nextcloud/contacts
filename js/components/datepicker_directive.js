@@ -1,4 +1,5 @@
-app.directive('datepicker', function() {
+angular.module('contactsApp')
+.directive('datepicker', function() {
 	return {
 		restrict: 'A',
 		require : 'ngModel',

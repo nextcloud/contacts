@@ -1,4 +1,5 @@
-app.directive('telModel', function() {
+angular.module('contactsApp')
+.directive('telModel', function() {
 	return{
 		restrict: 'A',
 		require: 'ngModel',

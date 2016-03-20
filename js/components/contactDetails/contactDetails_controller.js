@@ -1,4 +1,5 @@
-app.controller('contactdetailsCtrl', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
+angular.module('contactsApp')
+.controller('contactdetailsCtrl', function(ContactService, AddressBookService, vCardPropertiesService, $routeParams, $scope) {
 	var ctrl = this;
 
 	ctrl.loading = true;
@@ -28,7 +29,7 @@ app.controller('contactdetailsCtrl', function(ContactService, AddressBookService
 		ctrl.loading = false;
 	});
 
-	$scope.$watch('ctrl.uid', function(newValue, oldValue) {
+	$scope.$watch('ctrl.uid', function(newValue) {
 		ctrl.changeContact(newValue);
 	});
 

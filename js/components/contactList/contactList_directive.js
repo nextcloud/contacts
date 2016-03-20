@@ -1,4 +1,5 @@
-app.directive('contactlist', function() {
+angular.module('contactsApp')
+.directive('contactlist', function() {
 	return {
 		priority: 1,
 		scope: {},

@@ -1,12 +1,10 @@
 {
 	"extends": "eslint:recommended",
 	"rules": {
-		"no-undef": "off",
-		"no-unused-vars": "off",
-
 		"eqeqeq": ["warn", "smart"],
 		"no-console": "warn",
 		"no-loop-func": "warn",
+		"no-unused-vars": "warn",
 
 		"block-spacing": "error",
 		"camelcase": "error",
@@ -20,6 +18,17 @@
 		"quotes": ["error", "single", "avoid-escape"],
 		"semi": "error",
 		"space-before-blocks": "error"
-
+	},
+	"env": {
+		"browser": true,
+		"jquery": true
+	},
+	"globals": {
+		"angular": false,
+		"vCard": false,
+		"_": false,
+		"OC": false,
+		"t": false,
+		"dav": false
 	}
 }

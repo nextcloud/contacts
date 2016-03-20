@@ -1,4 +1,5 @@
-app.service('vCardPropertiesService', function() {
+angular.module('contactsApp')
+.service('vCardPropertiesService', function() {
 	/**
 	 * map vCard attributes to internal attributes
 	 *
