@@ -8,6 +8,7 @@ OC.L10N.register(
     "Title" : "Título",
     "Add field ..." : "Adicionar campo...",
     "Add contact" : "Adicionar contatos",
+    "No search result for {query}" : "Nenhum resultado de busca para {query}",
     "All contacts" : "Todos os contatos",
     "Post Office Box" : "Caixa de Correio",
     "Postal Code" : "Código Postal",
