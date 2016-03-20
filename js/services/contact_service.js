@@ -95,10 +95,18 @@ app.service('ContactService', function(DavClient, AddressBookService, Contact, $
 		});
 	};
 
-	this.import = function(vCard, addressBook) {
+	this.import = function(data, type, addressBook) {
 		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
-		var newContact = new Contact(addressBook, {addressData: vCard});
-		this.create(newContact, addressBook);
+
+		if(type === 'text/vcard') {
+			var regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi;
+			var singleVCards = data.match(regexp);
+
+			for(var i in singleVCards) {
+				var newContact = new Contact(addressBook, {addressData: singleVCards[i]});
+				this.create(newContact, addressBook);
+			}
+		}
 	};
 
 	this.moveContact = function (contact, addressbook) {

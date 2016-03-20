@@ -9,7 +9,7 @@ angular.module('contactsApp')
 
 				reader.addEventListener('load', function () {
 					scope.$apply(function() {
-						ContactService.import.call(ContactService, reader.result);
+						ContactService.import.call(ContactService, reader.result, file.type);
 					});
 				}, false);
 
