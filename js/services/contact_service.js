@@ -95,6 +95,20 @@ angular.module('contactsApp')
 		});
 	};
 
+	this.import = function(data, type, addressBook) {
+		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
+
+		if(type === 'text/vcard') {
+			var regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi;
+			var singleVCards = data.match(regexp);
+
+			for(var i in singleVCards) {
+				var newContact = new Contact(addressBook, {addressData: singleVCards[i]});
+				this.create(newContact, addressBook);
+			}
+		}
+	};
+
 	this.moveContact = function (contact, addressbook) {
 		if (contact.addressBookId === addressbook.displayName) {
 			return;

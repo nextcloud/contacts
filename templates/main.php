@@ -36,6 +36,7 @@ vendor_style('select2/select2');
 			</div>
 			<div id="app-settings-content">
 				<addressBookList></addressBookList>
+				<input type="file" id="contact-import" class="hidden-visually" contactimport /><label for="contact-import">Import</label>
 			</div>
 		</div>
 	</div>
