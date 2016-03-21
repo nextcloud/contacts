@@ -22,6 +22,5 @@ deploy:
   on:
     repo: owncloud/contacts
     tags: true
-    php: 5.6
 
 
