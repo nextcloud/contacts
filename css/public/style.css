@@ -152,7 +152,10 @@ detailsitem .icon-delete {
 	opacity: .2;
 }
 
-
+detailsitem  input#details-url {
+    text-overflow: ellipsis;
+    padding-right: 18px;
+}
 
 /* More specific details item styles */
 
