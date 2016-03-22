@@ -3,7 +3,7 @@
 	<li ng-repeat="addressBook in ctrl.addressBooks" addressbook data="addressBook"></li>
 	<li>
 		<form ng-submit="ctrl.createAddressBook()">
-			<input id="newList" placeholder="Adressbook name" class="newAddressBookInput" ng-model="ctrl.newAddressBookName" type="text" />
+			<input id="newList" placeholder="{{ctrl.t.addressBookName}}" class="newAddressBookInput" ng-model="ctrl.newAddressBookName" type="text" />
 			<input type="submit" value="" class="newAddressBookSubmit icon-confirm action pull-right" />
 		</form>
 	</li>
