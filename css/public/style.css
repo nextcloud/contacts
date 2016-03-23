@@ -284,8 +284,20 @@ li.addressBook-share-item span.shareeIdentifier {
 	vertical-align: top;
 }
 
-
-
+#app-settings-content #upload.button {
+	padding: 5px 40px 5px 20px;
+	background-position-x: 80px;
+	position: absolute;
+	top: 2px;
+	right: 2px;
+}
+#app-settings-content #upload.button .icon-upload {
+	display: block;
+	right: 16px;
+	position: absolute;
+	top: 7px;
+	opacity: 0.5;
+}
 
 
 
