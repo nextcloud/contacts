@@ -41,6 +41,10 @@ angular.module('contactsApp')
 
 	if (!_.isUndefined(OC.Plugins)) {
 		OC.Plugins.register('OCA.Search', SearchProxy);
+		if (!_.isUndefined(OCA.Search)) {
+			OC.Search = new OCA.Search($('#searchbox'), $('#searchresults'));
+			$('#searchbox').show();
+		}
 	}
 
 	if (!_.isUndefined($('.searchbox'))) {

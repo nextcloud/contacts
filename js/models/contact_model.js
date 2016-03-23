@@ -9,22 +9,24 @@ angular.module('contactsApp')
 			addressBookId: addressBook.displayName,
 
 			uid: function(value) {
+				var model = this;
 				if (angular.isDefined(value)) {
 					// setter
-					return this.setProperty('uid', { value: value });
+					return model.setProperty('uid', { value: value });
 				} else {
 					// getter
-					return this.getProperty('uid').value;
+					return model.getProperty('uid').value;
 				}
 			},
 
 			fullName: function(value) {
+				var model = this;
 				if (angular.isDefined(value)) {
 					// setter
 					return this.setProperty('fn', { value: value });
 				} else {
 					// getter
-					var property = this.getProperty('fn');
+					var property = model.getProperty('fn');
 					if(property) {
 						return property.value;
 					} else {
@@ -153,7 +155,19 @@ angular.module('contactsApp')
 				if (_.isUndefined(pattern) || pattern.length === 0) {
 					return true;
 				}
-				return this.data.addressData.toLowerCase().indexOf(pattern.toLowerCase()) !== -1;
+				var model = this;
+				var matchingProps = ['fn', 'title', 'org', 'email', 'nickname', 'note', 'url', 'cloud', 'adr', 'impp', 'tel'].filter(function (propName) {
+					if (model.props[propName]) {
+						return model.props[propName].filter(function (property) {
+							if (property.value && _.isString(property.value)) {
+								return property.value.toLowerCase().indexOf(pattern.toLowerCase()) !== -1;
+							}
+							return false;
+						}).length > 0;
+					}
+					return false;
+				});
+				return matchingProps.length > 0;
 			}
 
 		});
