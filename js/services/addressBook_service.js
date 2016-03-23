@@ -1,14 +1,22 @@
 angular.module('contactsApp')
-.factory('AddressBookService', function(DavClient, DavService, SettingsService, AddressBook) {
+.factory('AddressBookService', function(DavClient, DavService, SettingsService, AddressBook, $q) {
 
 	var addressBooks = [];
+	var loadPromise = undefined;
 
 	var loadAll = function() {
-		return DavService.then(function(account) {
-			addressBooks = account.addressBooks.map(function(addressBook) {
-				return new AddressBook(addressBook);
+		if (addressBooks.length > 0) {
+			return $q.when(addressBooks);
+		}
+		if (_.isUndefined(loadPromise)) {
+			loadPromise = DavService.then(function(account) {
+				loadPromise = undefined;
+				addressBooks = account.addressBooks.map(function(addressBook) {
+					return new AddressBook(addressBook);
+				});
 			});
-		});
+		}
+		return loadPromise;
 	};
 
 	return {
@@ -24,14 +32,6 @@ angular.module('contactsApp')
 					return element.groups;
 				}).reduce(function(a, b) {
 					return a.concat(b);
-				});
-			});
-		},
-
-		getEnabled: function() {
-			return DavService.then(function(account) {
-				return account.addressBooks.map(function(addressBook) {
-					return new AddressBook(addressBook);
 				});
 			});
 		},
