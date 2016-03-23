@@ -9,6 +9,10 @@ angular.module('contactsApp')
 		ctrl.loading = false;
 	});
 
+	ctrl.t = {
+		addressBookName : t('contacts', 'Address book name')
+	};
+
 	ctrl.createAddressBook = function() {
 		if(ctrl.newAddressBookName) {
 			AddressBookService.create(ctrl.newAddressBookName).then(function() {

@@ -31,12 +31,17 @@ vendor_style('select2/select2');
 		<div id="app-settings">
 			<div id="app-settings-header">
 				<button class="settings-button"
-						data-apps-slide-toggle="#app-settings-content"
-				>Settings</button>
+						data-apps-slide-toggle="#app-settings-content">
+					<?php p($l->t('Settings'));?>
+				</button>
 			</div>
 			<div id="app-settings-content">
 				<addressBookList></addressBookList>
-				<input type="file" id="contact-import" class="hidden-visually" contactimport /><label for="contact-import">Import</label>
+				<input type="file" id="contact-import" class="hidden-visually" contactimport />
+				<label for="contact-import" class="button" id="upload">
+					<?php p($l->t('Import'));?>
+					<span class="icon-upload"></span>
+				</label>
 			</div>
 		</div>
 	</div>
