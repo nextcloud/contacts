@@ -7,6 +7,8 @@ angular.module('contactsApp')
 
 	var observerCallbacks = [];
 
+	var loadPromise = undefined;
+
 	this.registerObserverCallback = function(callback) {
 		observerCallbacks.push(callback);
 	};
@@ -23,22 +25,25 @@ angular.module('contactsApp')
 	};
 
 	this.fillCache = function() {
-		return AddressBookService.getEnabled().then(function(enabledAddressBooks) {
-			var promises = [];
-			enabledAddressBooks.forEach(function(addressBook) {
-				promises.push(
-					AddressBookService.sync(addressBook).then(function(addressBook) {
-						for(var i in addressBook.objects) {
-							var contact = new Contact(addressBook, addressBook.objects[i]);
-							contacts.put(contact.uid(), contact);
-						}
-					})
-				);
+		if (_.isUndefined(loadPromise)) {
+			loadPromise = AddressBookService.getAll().then(function (enabledAddressBooks) {
+				var promises = [];
+				enabledAddressBooks.forEach(function (addressBook) {
+					promises.push(
+						AddressBookService.sync(addressBook).then(function (addressBook) {
+							for (var i in addressBook.objects) {
+								var contact = new Contact(addressBook, addressBook.objects[i]);
+								contacts.put(contact.uid(), contact);
+							}
+						})
+					);
+				});
+				return $q.all(promises).then(function () {
+					cacheFilled = true;
+				});
 			});
-			return $q.all(promises).then(function() {
-				cacheFilled = true;
-			});
-		});
+		}
+		return loadPromise;
 	};
 
 	this.getAll = function() {
