@@ -5,7 +5,7 @@
     <description>The new and improved app for your Contacts.</description>
     <licence>AGPL</licence>
     <author>Hendrik Leppelsack, Thomas Müller, Alexander Weidinger, Jan-Christoph Borchardt, Tom Needham</author>
-    <version>1.0.0.0</version>
+    <version>1.1.0.0</version>
     <category>other</category>
     <dependencies>
         <owncloud min-version="9.0" max-version="9.1" />
