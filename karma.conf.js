@@ -12,6 +12,7 @@ module.exports = function(config) {
 
 		// list of files / patterns to load in the browser
 		files: [
+			'../../core/vendor/underscore/underscore.js',
 			'js/vendor/angular/angular.js',
 			'js/vendor/angular-route/angular-route.js',
 			'js/vendor/angular-uuid4/angular-uuid4.js',
@@ -85,4 +86,4 @@ module.exports = function(config) {
 		// how many browser should be started simultaneous
 		concurrency: Infinity
 	})
-}
+};
