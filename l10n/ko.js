@@ -32,6 +32,8 @@ OC.L10N.register(
     "Mobile" : "휴대폰",
     "Fax" : "팩스 번호",
     "Pager" : "호출기",
-    "Voice" : "음성 번호"
+    "Voice" : "음성 번호",
+    "Settings" : "설정",
+    "Import" : "가져오기"
 },
 "nplurals=1; plural=0;");

@@ -1,5 +1,6 @@
 { "translations": {
     "Contacts" : "Επαφές",
+    "Address book name" : "Όνομα βιβλίου διευθύνσεων",
     "No contacts in here" : "Δεν υπάρχουν επαφές εδώ",
     "Name" : "Όνομα",
     "Organization" : "Οργανισμός",
@@ -8,6 +9,7 @@
     "Add contact" : "Προσθήκη επαφής",
     "All contacts" : "Όλες οι επαφές",
     "Not grouped" : "Οχι ομαδοποιημένα",
+    "Postal Code" : "Ταχυδρομικός Κωδικός",
     "City" : "Πόλη",
     "State or province" : "Νομός ή περιφέρεια",
     "Country" : "Χώρα",
@@ -28,6 +30,8 @@
     "Mobile" : "Κινητό",
     "Fax" : "Φαξ",
     "Pager" : "Βομβητής",
-    "Voice" : "Ομιλία"
+    "Voice" : "Ομιλία",
+    "Settings" : "Ρυθμίσεις",
+    "Import" : "Εισαγωγή"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

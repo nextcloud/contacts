@@ -34,6 +34,8 @@
     "Fax home" : "פקס בבית",
     "Fax work" : "פקס בעבודה",
     "Pager" : "זימונית",
-    "Voice" : "קולי"
+    "Voice" : "קולי",
+    "Settings" : "הגדרות",
+    "Import" : "יבוא"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -36,6 +36,8 @@ OC.L10N.register(
     "Fax home" : "Fax de casa",
     "Fax work" : "Fax do trabalho",
     "Pager" : "Pager",
-    "Voice" : "Voz"
+    "Voice" : "Voz",
+    "Settings" : "Configurações",
+    "Import" : "Importar"
 },
 "nplurals=2; plural=(n > 1);");

@@ -34,6 +34,8 @@ OC.L10N.register(
     "Fax home" : "Faks kodus",
     "Fax work" : "Faks tööl",
     "Pager" : "Piipar",
-    "Voice" : "Hääl"
+    "Voice" : "Hääl",
+    "Settings" : "Seaded",
+    "Import" : "Impordi"
 },
 "nplurals=2; plural=(n != 1);");

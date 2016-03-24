@@ -34,6 +34,8 @@
     "Fax home" : "Faks shtëpie",
     "Fax work" : "Faks pune",
     "Pager" : "Faques",
-    "Voice" : "Zë"
+    "Voice" : "Zë",
+    "Settings" : "Rregullime",
+    "Import" : "Importoje"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

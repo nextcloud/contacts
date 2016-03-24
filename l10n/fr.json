@@ -34,6 +34,8 @@
     "Fax home" : "Fax personnel",
     "Fax work" : "Fax pro",
     "Pager" : "Bipeur",
-    "Voice" : "Voix"
+    "Voice" : "Voix",
+    "Settings" : "Paramètres",
+    "Import" : "Importer"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

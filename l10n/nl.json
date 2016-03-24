@@ -34,6 +34,8 @@
     "Fax home" : "Fax thuis",
     "Fax work" : "Fax werk",
     "Pager" : "Pieper",
-    "Voice" : "Stem"
+    "Voice" : "Stem",
+    "Settings" : "Instellingen",
+    "Import" : "Importeer"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

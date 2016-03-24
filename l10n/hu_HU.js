@@ -35,6 +35,8 @@ OC.L10N.register(
     "Fax home" : "Otthoni fax",
     "Fax work" : "Munkahelyi fax",
     "Pager" : "Személyhívó",
-    "Voice" : "Hang"
+    "Voice" : "Hang",
+    "Settings" : "Beállítások",
+    "Import" : "Importálás"
 },
 "nplurals=2; plural=(n != 1);");

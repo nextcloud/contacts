@@ -33,6 +33,8 @@ OC.L10N.register(
     "Fax home" : "Fax hjemme",
     "Fax work" : "Fax arbejde",
     "Pager" : "Personsøger",
-    "Voice" : "Telefonsvarer"
+    "Voice" : "Telefonsvarer",
+    "Settings" : "Indstillinger",
+    "Import" : "Importér"
 },
 "nplurals=2; plural=(n != 1);");

@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontakte",
+    "Address book name" : "Adressbuch Name",
     "No contacts in here" : "Keine Kontakte vorhanden",
     "Name" : "Name",
     "Organization" : "Organisation",
@@ -36,6 +37,8 @@ OC.L10N.register(
     "Fax home" : "Fax persönlich",
     "Fax work" : "Fax geschäftlich",
     "Pager" : "Pager",
-    "Voice" : "Anruf"
+    "Voice" : "Anruf",
+    "Settings" : "Einstellungen",
+    "Import" : "Importieren"
 },
 "nplurals=2; plural=(n != 1);");

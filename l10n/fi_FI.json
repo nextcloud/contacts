@@ -34,6 +34,8 @@
     "Fax home" : "Faksi, koti",
     "Fax work" : "Faksi, työ",
     "Pager" : "Hakulaite",
-    "Voice" : "Ääni"
+    "Voice" : "Ääni",
+    "Settings" : "Asetukset",
+    "Import" : "Tuo"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -33,6 +33,8 @@
     "Fax home" : "Faks hjemme",
     "Fax work" : "Faks jobb",
     "Pager" : "Pager",
-    "Voice" : "Svarer"
+    "Voice" : "Svarer",
+    "Settings" : "Innstillinger",
+    "Import" : "Importer"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

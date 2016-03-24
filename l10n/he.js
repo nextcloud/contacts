@@ -36,6 +36,8 @@ OC.L10N.register(
     "Fax home" : "פקס בבית",
     "Fax work" : "פקס בעבודה",
     "Pager" : "זימונית",
-    "Voice" : "קולי"
+    "Voice" : "קולי",
+    "Settings" : "הגדרות",
+    "Import" : "יבוא"
 },
 "nplurals=2; plural=(n != 1);");

@@ -36,6 +36,8 @@ OC.L10N.register(
     "Fax home" : "Heimafax",
     "Fax work" : "Vinnufax",
     "Pager" : "Símboði",
-    "Voice" : "Raddskilaboð"
+    "Voice" : "Raddskilaboð",
+    "Settings" : "Stillingar",
+    "Import" : "Flytja inn"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

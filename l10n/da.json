@@ -31,6 +31,8 @@
     "Fax home" : "Fax hjemme",
     "Fax work" : "Fax arbejde",
     "Pager" : "Personsøger",
-    "Voice" : "Telefonsvarer"
+    "Voice" : "Telefonsvarer",
+    "Settings" : "Indstillinger",
+    "Import" : "Importér"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Επαφές",
+    "Address book name" : "Όνομα βιβλίου διευθύνσεων",
     "No contacts in here" : "Δεν υπάρχουν επαφές εδώ",
     "Name" : "Όνομα",
     "Organization" : "Οργανισμός",
@@ -10,6 +11,7 @@ OC.L10N.register(
     "Add contact" : "Προσθήκη επαφής",
     "All contacts" : "Όλες οι επαφές",
     "Not grouped" : "Οχι ομαδοποιημένα",
+    "Postal Code" : "Ταχυδρομικός Κωδικός",
     "City" : "Πόλη",
     "State or province" : "Νομός ή περιφέρεια",
     "Country" : "Χώρα",
@@ -30,6 +32,8 @@ OC.L10N.register(
     "Mobile" : "Κινητό",
     "Fax" : "Φαξ",
     "Pager" : "Βομβητής",
-    "Voice" : "Ομιλία"
+    "Voice" : "Ομιλία",
+    "Settings" : "Ρυθμίσεις",
+    "Import" : "Εισαγωγή"
 },
 "nplurals=2; plural=(n != 1);");

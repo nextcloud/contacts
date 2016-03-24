@@ -33,6 +33,8 @@
     "Fax home" : "Fax de casa",
     "Fax work" : "Fax do emprego",
     "Pager" : "Pager",
-    "Voice" : "Voz"
+    "Voice" : "Voz",
+    "Settings" : "Definições",
+    "Import" : "Importar"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

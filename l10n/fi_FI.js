@@ -36,6 +36,8 @@ OC.L10N.register(
     "Fax home" : "Faksi, koti",
     "Fax work" : "Faksi, työ",
     "Pager" : "Hakulaite",
-    "Voice" : "Ääni"
+    "Voice" : "Ääni",
+    "Settings" : "Asetukset",
+    "Import" : "Tuo"
 },
 "nplurals=2; plural=(n != 1);");

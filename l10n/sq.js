@@ -36,6 +36,8 @@ OC.L10N.register(
     "Fax home" : "Faks shtëpie",
     "Fax work" : "Faks pune",
     "Pager" : "Faques",
-    "Voice" : "Zë"
+    "Voice" : "Zë",
+    "Settings" : "Rregullime",
+    "Import" : "Importoje"
 },
 "nplurals=2; plural=(n != 1);");

@@ -36,6 +36,8 @@ OC.L10N.register(
     "Fax home" : "自宅FAX",
     "Fax work" : "職場FAX",
     "Pager" : "ポケベル",
-    "Voice" : "音声番号"
+    "Voice" : "音声番号",
+    "Settings" : "設定",
+    "Import" : "インポート"
 },
 "nplurals=1; plural=0;");

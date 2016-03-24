@@ -1,5 +1,6 @@
 { "translations": {
     "Contacts" : "Kontakte",
+    "Address book name" : "Adressbuch Name",
     "No contacts in here" : "Keine Kontakte gefunden",
     "Name" : "Name",
     "Organization" : "Organisation",
@@ -34,6 +35,8 @@
     "Fax home" : "Fax persönlich",
     "Fax work" : "Fax geschäftlich",
     "Pager" : "Pager",
-    "Voice" : "Anruf"
+    "Voice" : "Anruf",
+    "Settings" : "Einstellungen",
+    "Import" : "Importieren"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
