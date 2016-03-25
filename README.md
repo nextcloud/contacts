@@ -5,6 +5,8 @@
 ![Dev Dependencies](https://david-dm.org/owncloud/contacts/dev-status.svg)
 [![codecov.io](https://codecov.io/github/owncloud/contacts/coverage.svg?branch=master)](https://codecov.io/github/owncloud/contacts?branch=master)
 
+![codecov.io](https://codecov.io/github/owncloud/contacts/branch.svg?branch=master)
+
 **A contacts app for [ownCloud](https://owncloud.org).**  
 
 This is the new contacts app that has replaced the [old contacts app](https://github.com/owncloudarchive/contacts) with ownCloud 9.0, and is only the frontend for the new CardDAV-Backend which has moved into the [ownCloud Core](https://github.com/owncloud/core). 
