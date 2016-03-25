@@ -11,6 +11,7 @@ script:
   - node_modules/.bin/bower install
   - node_modules/.bin/gulp eslint
   - node_modules/.bin/gulp
+  - npm test
   - make appstore_package
 
 deploy:
