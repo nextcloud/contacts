@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/owncloud/contacts#readme",
   "scripts": {
-    "test": "karma start karma.conf.js"
+    "test": "karma start karma.conf.js && codecov"
   },
   "devDependencies": {
     "bower": "",
@@ -35,6 +35,7 @@
     "karma-mocha-reporter": "^2.0.0",
     "karma-sinon": "^1.0.4",
     "mocha": "^2.4.5",
-    "sinon": "^1.17.3"
+    "sinon": "^1.17.3",
+    "codecov": ">1.0.0"
   }
 }

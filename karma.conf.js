@@ -51,10 +51,16 @@ module.exports = function(config) {
 		reporters: ['mocha', 'coverage'],
 
 
+		// Configure code coverage reporter
 		coverageReporter: {
-			type: 'text'
+			reporters: [
+				{type: 'text'},
+				// generates ./coverage/lcov.info
+				{type:'lcovonly', subdir: '.'},
+				// generates ./coverage/coverage-final.json
+				{type:'json', subdir: '.'},
+			]
 		},
-
 
 		// web server port
 		port: 9876,
