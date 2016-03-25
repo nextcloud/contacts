@@ -2,3 +2,4 @@ node_modules
 build
 js/public
 js/vendor
+coverage

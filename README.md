@@ -3,6 +3,9 @@
 [![irc](https://img.shields.io/badge/irc%20channel-%23owncloud--contacts%20on%20freenode-blue.svg)](https://webchat.freenode.net/?channels=owncloud-contacts)
 [![Build Status](https://scrutinizer-ci.com/g/owncloud/contacts/badges/build.png?b=master)](https://scrutinizer-ci.com/g/owncloud/contacts/build-status/master)
 ![Dev Dependencies](https://david-dm.org/owncloud/contacts/dev-status.svg)
+[![codecov.io](https://codecov.io/github/owncloud/contacts/coverage.svg?branch=master)](https://codecov.io/github/owncloud/contacts?branch=master)
+
+![codecov.io](https://codecov.io/github/owncloud/contacts/branch.svg?branch=master)
 
 **A contacts app for [ownCloud](https://owncloud.org).**  
 
