@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contacts",
+    "Address book name" : "Nom du carnet d'adresses",
     "No contacts in here" : "Aucun contact",
     "Name" : "Nom",
     "Organization" : "Société",

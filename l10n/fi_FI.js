@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Yhteystiedot",
+    "Address book name" : "Osoitekirjan nimi",
     "No contacts in here" : "Ei yhteytietoja",
     "Name" : "Nimi",
     "Organization" : "Organisaatio",

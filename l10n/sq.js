@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontakte",
+    "Address book name" : "Emër libri adresash",
     "No contacts in here" : "S’ka kontakte këtu",
     "Name" : "Emër",
     "Organization" : "Organizëm",
