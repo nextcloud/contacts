@@ -7,6 +7,10 @@ branches:
     - /^stable\d+(\.\d+)?$/
     - /^v\d++(\.\d+)?+(\.\d+)?+(\.\d+)?$/
 
+before_install:
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
 script:
   - node_modules/.bin/bower install
   - node_modules/.bin/gulp eslint
@@ -23,5 +27,3 @@ deploy:
   on:
     repo: owncloud/contacts
     tags: true
-
-

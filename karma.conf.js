@@ -12,7 +12,6 @@ module.exports = function(config) {
 
 		// list of files / patterns to load in the browser
 		files: [
-			'../../core/vendor/underscore/underscore.js',
 			'js/vendor/angular/angular.js',
 			'js/vendor/angular-route/angular-route.js',
 			'js/vendor/angular-uuid4/angular-uuid4.js',
@@ -23,6 +22,7 @@ module.exports = function(config) {
 			'js/dav/dav.js',
 			'js/vendor/vcard/src/vcard.js',
 
+			'js/vendor/underscore/underscore.js',
 			'js/vendor/angular-mocks/angular-mocks.js',
 
 			'js/public/script.js',
@@ -81,7 +81,7 @@ module.exports = function(config) {
 
 		// start these browsers
 		// available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-		browsers: ['Chrome'],
+		browsers: ['Firefox'],
 
 
 		// Continuous Integration mode
