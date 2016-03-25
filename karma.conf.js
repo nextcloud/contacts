@@ -25,7 +25,11 @@ module.exports = function(config) {
 			'js/vendor/underscore/underscore.js',
 			'js/vendor/angular-mocks/angular-mocks.js',
 
-			'js/public/script.js',
+			'js/main.js',
+			'js/components/**/*.js',
+			'js/models/**/*.js',
+			'js/services/**/*.js',
+			'js/filters/**/*.js',
 
 			'js/vendor/angular-bootstrap/ui-bootstrap.min.js',
 
@@ -41,7 +45,11 @@ module.exports = function(config) {
 		// preprocess matching files before serving them to the browser
 		// available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
 		preprocessors: {
-			'js/public/script.js': 'coverage'
+			'js/main.js': 'coverage',
+			'js/components/**/*.js': 'coverage',
+			'js/models/**/*.js': 'coverage',
+			'js/services/**/*.js': 'coverage',
+			'js/filters/**/*.js': 'coverage'
 		},
 
 
