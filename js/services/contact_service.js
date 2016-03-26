@@ -100,7 +100,7 @@ angular.module('contactsApp')
 		});
 	};
 
-	this.import = function(data, type, addressBook) {
+	this.import = function(data, type, addressBook, progressCallback) {
 		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
 
 		if(type === 'text/vcard') {
@@ -109,7 +109,10 @@ angular.module('contactsApp')
 
 			for(var i in singleVCards) {
 				var newContact = new Contact(addressBook, {addressData: singleVCards[i]});
-				this.create(newContact, addressBook);
+				this.create(newContact, addressBook).then(function() {
+					// Update the progress indicator
+					if (progressCallback) progressCallback(i);
+				});
 			}
 		}
 	};
