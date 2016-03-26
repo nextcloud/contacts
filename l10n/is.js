@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Tengiliðir",
+    "Address book name" : "Heiti nafnaskrár",
     "No contacts in here" : "Engir tengiliðir hér",
     "Name" : "Nafn",
     "Organization" : "Stofnun/félag",

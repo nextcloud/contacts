@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "אנשי קשר",
+    "Address book name" : "שם ספר כתובות",
     "No contacts in here" : "אין כאן אנשי קשר",
     "Name" : "שם",
     "Organization" : "ארגון",
