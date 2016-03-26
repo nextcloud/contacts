@@ -107,11 +107,13 @@ angular.module('contactsApp')
 			var regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi;
 			var singleVCards = data.match(regexp);
 
+			var num = 1;
 			for(var i in singleVCards) {
 				var newContact = new Contact(addressBook, {addressData: singleVCards[i]});
 				this.create(newContact, addressBook).then(function() {
 					// Update the progress indicator
-					if (progressCallback) progressCallback(i);
+					if (progressCallback) progressCallback(num/singleVCards.length);
+					num++;
 				});
 			}
 		}
