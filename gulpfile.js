@@ -2,9 +2,10 @@ var gulp = require('gulp'),
 	concat = require('gulp-concat'),
 	eslint = require('gulp-eslint'),
 	ngAnnotate = require('gulp-ng-annotate'),
+	KarmaServer = require('karma').Server,
 	sourcemaps = require('gulp-sourcemaps');
 
-gulp.task('js', function() {
+gulp.task('default', ['eslint'], function() {
 	return gulp.src([
 			'js/main.js',
 			'js/components/**/*.js',
@@ -12,10 +13,6 @@ gulp.task('js', function() {
 			'js/services/**/*.js',
 			'js/filters/**/*.js'
 			])
-		// ESlint
-		.pipe(eslint())
-		.pipe(eslint.format())
-
 		// concat (+sourcemaps)
 		.pipe(sourcemaps.init())
 			.pipe(ngAnnotate({ single_quotes: true }))
@@ -42,4 +39,9 @@ gulp.task('watch', ['js'], function() {
 	gulp.watch(['js/**/*.js', '!js/public/**/*.js'], ['js']);
 });
 
-gulp.task('default', ['js']);
+gulp.task('karma', (done) => {
+    new KarmaServer({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, done).start();
+});
