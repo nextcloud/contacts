@@ -6,6 +6,7 @@
     "Organization" : "ארגון",
     "Title" : "כותרת",
     "Add field ..." : "הוספת שדה...",
+    "Import" : "יבוא",
     "Add contact" : "הוסף איש קשר",
     "No search result for {query}" : "אין תוצאות חיפוש עבור {query}",
     "All contacts" : "כל אנשי הקשר",
@@ -36,7 +37,6 @@
     "Fax work" : "פקס בעבודה",
     "Pager" : "זימונית",
     "Voice" : "קולי",
-    "Settings" : "הגדרות",
-    "Import" : "יבוא"
+    "Settings" : "הגדרות"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

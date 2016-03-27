@@ -6,6 +6,7 @@
     "Organization" : "Οργανισμός",
     "Title" : "Τίτλος",
     "Add field ..." : "Προσθήκη πεδίου...",
+    "Import" : "Εισαγωγή",
     "Add contact" : "Προσθήκη επαφής",
     "All contacts" : "Όλες οι επαφές",
     "Not grouped" : "Οχι ομαδοποιημένα",
@@ -31,7 +32,6 @@
     "Fax" : "Φαξ",
     "Pager" : "Βομβητής",
     "Voice" : "Ομιλία",
-    "Settings" : "Ρυθμίσεις",
-    "Import" : "Εισαγωγή"
+    "Settings" : "Ρυθμίσεις"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

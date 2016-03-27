@@ -8,6 +8,7 @@ OC.L10N.register(
     "Organization" : "Organizace",
     "Title" : "Název",
     "Add field ..." : "Přidat pole...",
+    "Import" : "Importovat",
     "Add contact" : "Přidat kontakt",
     "No search result for {query}" : "Žádný nález pro {query}",
     "All contacts" : "Všechny kontakty",
@@ -38,7 +39,6 @@ OC.L10N.register(
     "Fax work" : "Fax do práce",
     "Pager" : "Pager",
     "Voice" : "Hlas",
-    "Settings" : "Nastavení",
-    "Import" : "Importovat"
+    "Settings" : "Nastavení"
 },
 "nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;");

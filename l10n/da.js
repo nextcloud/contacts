@@ -7,6 +7,7 @@ OC.L10N.register(
     "Organization" : "Organisation",
     "Title" : "Titel",
     "Add field ..." : "Tilføj felt...",
+    "Import" : "Importér",
     "Add contact" : "Tilføj kontaktpeson.",
     "All contacts" : "Alle kontakter",
     "Not grouped" : "Ikke i gruppe",
@@ -34,7 +35,6 @@ OC.L10N.register(
     "Fax work" : "Fax arbejde",
     "Pager" : "Personsøger",
     "Voice" : "Telefonsvarer",
-    "Settings" : "Indstillinger",
-    "Import" : "Importér"
+    "Settings" : "Indstillinger"
 },
 "nplurals=2; plural=(n != 1);");

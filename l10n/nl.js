@@ -7,6 +7,7 @@ OC.L10N.register(
     "Organization" : "Organisatie",
     "Title" : "Titel",
     "Add field ..." : "Voeg veld toe",
+    "Import" : "Importeer",
     "Add contact" : "Contactpersoon toevoegen",
     "No search result for {query}" : "Geen zoekresultaten voor {query}",
     "All contacts" : "Alle contactpersonen",
@@ -37,7 +38,6 @@ OC.L10N.register(
     "Fax work" : "Fax werk",
     "Pager" : "Pieper",
     "Voice" : "Stem",
-    "Settings" : "Instellingen",
-    "Import" : "Importeer"
+    "Settings" : "Instellingen"
 },
 "nplurals=2; plural=(n != 1);");

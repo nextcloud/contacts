@@ -6,6 +6,7 @@
     "Organization" : "Organisaatio",
     "Title" : "Otsikko",
     "Add field ..." : "Lisää kenttä...",
+    "Import" : "Tuo",
     "Add contact" : "Lisää yhteystieto",
     "No search result for {query}" : "Ei tuloksia haulle {query}",
     "All contacts" : "Kaikki yhteystiedot",
@@ -36,7 +37,6 @@
     "Fax work" : "Faksi, työ",
     "Pager" : "Hakulaite",
     "Voice" : "Ääni",
-    "Settings" : "Asetukset",
-    "Import" : "Tuo"
+    "Settings" : "Asetukset"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

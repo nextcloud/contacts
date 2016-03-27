@@ -8,6 +8,7 @@ OC.L10N.register(
     "Organization" : "Société",
     "Title" : "Titre",
     "Add field ..." : "Ajouter un champ ...",
+    "Import" : "Importer",
     "Add contact" : "Ajouter un contact",
     "No search result for {query}" : "Aucun résultat pour {query}",
     "All contacts" : "Tous les contacts",
@@ -38,7 +39,6 @@ OC.L10N.register(
     "Fax work" : "Fax pro",
     "Pager" : "Bipeur",
     "Voice" : "Voix",
-    "Settings" : "Paramètres",
-    "Import" : "Importer"
+    "Settings" : "Paramètres"
 },
 "nplurals=2; plural=(n > 1);");

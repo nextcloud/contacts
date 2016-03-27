@@ -5,6 +5,7 @@
     "Organization" : "Organisation",
     "Title" : "Rubrik",
     "Add field ..." : "Lägg till fält ...",
+    "Import" : "Importera",
     "Add contact" : "Lägg till en kontakt",
     "No search result for {query}" : "Inget sökresultat för {query}",
     "All contacts" : "Alla kontakter",
@@ -35,7 +36,6 @@
     "Fax work" : "Fax arbete",
     "Pager" : "Personsökare",
     "Voice" : "Röst",
-    "Settings" : "Inställningar",
-    "Import" : "Importera"
+    "Settings" : "Inställningar"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -7,6 +7,7 @@ OC.L10N.register(
     "Organization" : "Organizacja",
     "Title" : "Tytuł",
     "Add field ..." : "Dodaj pole ...",
+    "Import" : "Importuj",
     "Add contact" : "Dodaj kontakt",
     "No search result for {query}" : "Brak wyników wyszukiwania dla zapytania {query}",
     "All contacts" : "Wszystkie kontakty",
@@ -36,7 +37,6 @@ OC.L10N.register(
     "Fax work" : "Fakx pracowy",
     "Pager" : "Pager",
     "Voice" : "Połączenie głosowe",
-    "Settings" : "Ustawienia",
-    "Import" : "Importuj"
+    "Settings" : "Ustawienia"
 },
 "nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

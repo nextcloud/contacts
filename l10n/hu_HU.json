@@ -5,6 +5,7 @@
     "Organization" : "Szervezet",
     "Title" : "Cím",
     "Add field ..." : "Mező hozzáadása",
+    "Import" : "Importálás",
     "Add contact" : "Névjegy hozzáadása",
     "All contacts" : "Összes névjegy",
     "Not grouped" : "Nem csoportosított",
@@ -34,7 +35,6 @@
     "Fax work" : "Munkahelyi fax",
     "Pager" : "Személyhívó",
     "Voice" : "Hang",
-    "Settings" : "Beállítások",
-    "Import" : "Importálás"
+    "Settings" : "Beállítások"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

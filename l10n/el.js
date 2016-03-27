@@ -8,6 +8,7 @@ OC.L10N.register(
     "Organization" : "Οργανισμός",
     "Title" : "Τίτλος",
     "Add field ..." : "Προσθήκη πεδίου...",
+    "Import" : "Εισαγωγή",
     "Add contact" : "Προσθήκη επαφής",
     "All contacts" : "Όλες οι επαφές",
     "Not grouped" : "Οχι ομαδοποιημένα",
@@ -33,7 +34,6 @@ OC.L10N.register(
     "Fax" : "Φαξ",
     "Pager" : "Βομβητής",
     "Voice" : "Ομιλία",
-    "Settings" : "Ρυθμίσεις",
-    "Import" : "Εισαγωγή"
+    "Settings" : "Ρυθμίσεις"
 },
 "nplurals=2; plural=(n != 1);");

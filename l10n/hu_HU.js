@@ -7,6 +7,7 @@ OC.L10N.register(
     "Organization" : "Szervezet",
     "Title" : "Cím",
     "Add field ..." : "Mező hozzáadása",
+    "Import" : "Importálás",
     "Add contact" : "Névjegy hozzáadása",
     "All contacts" : "Összes névjegy",
     "Not grouped" : "Nem csoportosított",
@@ -36,7 +37,6 @@ OC.L10N.register(
     "Fax work" : "Munkahelyi fax",
     "Pager" : "Személyhívó",
     "Voice" : "Hang",
-    "Settings" : "Beállítások",
-    "Import" : "Importálás"
+    "Settings" : "Beállítások"
 },
 "nplurals=2; plural=(n != 1);");

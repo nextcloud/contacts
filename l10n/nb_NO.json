@@ -5,6 +5,7 @@
     "Organization" : "Organisasjon",
     "Title" : "Tittel",
     "Add field ..." : "Nytt felt ...",
+    "Import" : "Importer",
     "Add contact" : "Ny kontakt",
     "All contacts" : "Alle kontakter",
     "Not grouped" : "Ikke gruppert",
@@ -34,7 +35,6 @@
     "Fax work" : "Faks jobb",
     "Pager" : "Pager",
     "Voice" : "Svarer",
-    "Settings" : "Innstillinger",
-    "Import" : "Importer"
+    "Settings" : "Innstillinger"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

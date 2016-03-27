@@ -5,6 +5,7 @@
     "Organization" : "Organización",
     "Title" : "Título",
     "Add field ..." : "Añadiendo campo ...",
+    "Import" : "Importar",
     "Add contact" : "Añadir contacto",
     "All contacts" : "Todos los contactos",
     "Not grouped" : "No agrupado",
@@ -33,7 +34,6 @@
     "Fax work" : "Fax del trabajo",
     "Pager" : "Localizador",
     "Voice" : "Voz",
-    "Settings" : "Ajustes",
-    "Import" : "Importar"
+    "Settings" : "Ajustes"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

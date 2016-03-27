@@ -7,6 +7,7 @@ OC.L10N.register(
     "Organization" : "Organisatsioon",
     "Title" : "Pealkiri",
     "Add field ..." : "Lisa väli ...",
+    "Import" : "Impordi",
     "Add contact" : "Lisa kontakt",
     "All contacts" : "Kõik kontaktid",
     "Not grouped" : "Pole grupeeritud",
@@ -35,7 +36,6 @@ OC.L10N.register(
     "Fax work" : "Faks tööl",
     "Pager" : "Piipar",
     "Voice" : "Hääl",
-    "Settings" : "Seaded",
-    "Import" : "Impordi"
+    "Settings" : "Seaded"
 },
 "nplurals=2; plural=(n != 1);");

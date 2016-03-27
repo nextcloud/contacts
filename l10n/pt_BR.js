@@ -2,11 +2,13 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contatos",
+    "Address book name" : "Nome do livro de endereços",
     "No contacts in here" : "Nenhum contato aqui",
     "Name" : "Nome",
     "Organization" : "Organização",
     "Title" : "Título",
     "Add field ..." : "Adicionar campo...",
+    "Import" : "Importar",
     "Add contact" : "Adicionar contatos",
     "No search result for {query}" : "Nenhum resultado de busca para {query}",
     "All contacts" : "Todos os contatos",
@@ -37,7 +39,6 @@ OC.L10N.register(
     "Fax work" : "Fax do trabalho",
     "Pager" : "Pager",
     "Voice" : "Voz",
-    "Settings" : "Configurações",
-    "Import" : "Importar"
+    "Settings" : "Configurações"
 },
 "nplurals=2; plural=(n > 1);");

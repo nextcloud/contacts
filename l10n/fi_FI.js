@@ -8,6 +8,7 @@ OC.L10N.register(
     "Organization" : "Organisaatio",
     "Title" : "Otsikko",
     "Add field ..." : "Lisää kenttä...",
+    "Import" : "Tuo",
     "Add contact" : "Lisää yhteystieto",
     "No search result for {query}" : "Ei tuloksia haulle {query}",
     "All contacts" : "Kaikki yhteystiedot",
@@ -38,7 +39,6 @@ OC.L10N.register(
     "Fax work" : "Faksi, työ",
     "Pager" : "Hakulaite",
     "Voice" : "Ääni",
-    "Settings" : "Asetukset",
-    "Import" : "Tuo"
+    "Settings" : "Asetukset"
 },
 "nplurals=2; plural=(n != 1);");

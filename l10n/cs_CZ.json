@@ -6,6 +6,7 @@
     "Organization" : "Organizace",
     "Title" : "Název",
     "Add field ..." : "Přidat pole...",
+    "Import" : "Importovat",
     "Add contact" : "Přidat kontakt",
     "No search result for {query}" : "Žádný nález pro {query}",
     "All contacts" : "Všechny kontakty",
@@ -36,7 +37,6 @@
     "Fax work" : "Fax do práce",
     "Pager" : "Pager",
     "Voice" : "Hlas",
-    "Settings" : "Nastavení",
-    "Import" : "Importovat"
+    "Settings" : "Nastavení"
 },"pluralForm" :"nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;"
 }

@@ -5,6 +5,7 @@
     "Organization" : "Organisatie",
     "Title" : "Titel",
     "Add field ..." : "Voeg veld toe",
+    "Import" : "Importeer",
     "Add contact" : "Contactpersoon toevoegen",
     "No search result for {query}" : "Geen zoekresultaten voor {query}",
     "All contacts" : "Alle contactpersonen",
@@ -35,7 +36,6 @@
     "Fax work" : "Fax werk",
     "Pager" : "Pieper",
     "Voice" : "Stem",
-    "Settings" : "Instellingen",
-    "Import" : "Importeer"
+    "Settings" : "Instellingen"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

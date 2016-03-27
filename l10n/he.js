@@ -8,6 +8,7 @@ OC.L10N.register(
     "Organization" : "ארגון",
     "Title" : "כותרת",
     "Add field ..." : "הוספת שדה...",
+    "Import" : "יבוא",
     "Add contact" : "הוסף איש קשר",
     "No search result for {query}" : "אין תוצאות חיפוש עבור {query}",
     "All contacts" : "כל אנשי הקשר",
@@ -38,7 +39,6 @@ OC.L10N.register(
     "Fax work" : "פקס בעבודה",
     "Pager" : "זימונית",
     "Voice" : "קולי",
-    "Settings" : "הגדרות",
-    "Import" : "יבוא"
+    "Settings" : "הגדרות"
 },
 "nplurals=2; plural=(n != 1);");

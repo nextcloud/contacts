@@ -7,6 +7,7 @@ OC.L10N.register(
     "Organization" : "조직",
     "Title" : "제목",
     "Add field ..." : "필드 추가...",
+    "Import" : "가져오기",
     "Add contact" : "연락처 추가",
     "All contacts" : "모든 연락처",
     "Not grouped" : "그룹에 없음",
@@ -33,7 +34,6 @@ OC.L10N.register(
     "Fax" : "팩스 번호",
     "Pager" : "호출기",
     "Voice" : "음성 번호",
-    "Settings" : "설정",
-    "Import" : "가져오기"
+    "Settings" : "설정"
 },
 "nplurals=1; plural=0;");

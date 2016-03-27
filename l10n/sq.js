@@ -8,6 +8,7 @@ OC.L10N.register(
     "Organization" : "Organizëm",
     "Title" : "Titull",
     "Add field ..." : "Shtoni fushë...",
+    "Import" : "Importoje",
     "Add contact" : "Shtoni kontakt",
     "No search result for {query}" : "S’pat përfundime kërkimi për {query}",
     "All contacts" : "Krejt kontaktet",
@@ -38,7 +39,6 @@ OC.L10N.register(
     "Fax work" : "Faks pune",
     "Pager" : "Faques",
     "Voice" : "Zë",
-    "Settings" : "Rregullime",
-    "Import" : "Importoje"
+    "Settings" : "Rregullime"
 },
 "nplurals=2; plural=(n != 1);");

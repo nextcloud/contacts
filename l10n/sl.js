@@ -7,6 +7,7 @@ OC.L10N.register(
     "Organization" : "Ustanova",
     "Title" : "Naslov",
     "Add field ..." : "Dodaj polje ...",
+    "Import" : "Uvozi",
     "Add contact" : "Dodaj stik",
     "No search result for {query}" : "Ni zadetkov iskanja za {query}",
     "All contacts" : "Vsi stiki",
@@ -37,7 +38,6 @@ OC.L10N.register(
     "Fax work" : "Službeni faks",
     "Pager" : "Pozivnik",
     "Voice" : "Glas",
-    "Settings" : "Nastavitve",
-    "Import" : "Uvozi"
+    "Settings" : "Nastavitve"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");

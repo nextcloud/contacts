@@ -6,6 +6,7 @@
     "Organization" : "Organizëm",
     "Title" : "Titull",
     "Add field ..." : "Shtoni fushë...",
+    "Import" : "Importoje",
     "Add contact" : "Shtoni kontakt",
     "No search result for {query}" : "S’pat përfundime kërkimi për {query}",
     "All contacts" : "Krejt kontaktet",
@@ -36,7 +37,6 @@
     "Fax work" : "Faks pune",
     "Pager" : "Faques",
     "Voice" : "Zë",
-    "Settings" : "Rregullime",
-    "Import" : "Importoje"
+    "Settings" : "Rregullime"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

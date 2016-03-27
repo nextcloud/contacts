@@ -8,6 +8,7 @@ OC.L10N.register(
     "Organization" : "Stofnun/félag",
     "Title" : "Titill",
     "Add field ..." : "Bæta við reit...",
+    "Import" : "Flytja inn",
     "Add contact" : "Bæta við tengilið",
     "No search result for {query}" : "Engar leitarniðurstöður fyrir {query}",
     "All contacts" : "Allir tengiliðir",
@@ -38,7 +39,6 @@ OC.L10N.register(
     "Fax work" : "Vinnufax",
     "Pager" : "Símboði",
     "Voice" : "Raddskilaboð",
-    "Settings" : "Stillingar",
-    "Import" : "Flytja inn"
+    "Settings" : "Stillingar"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

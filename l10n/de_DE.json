@@ -6,6 +6,7 @@
     "Organization" : "Organisation",
     "Title" : "Titel",
     "Add field ..." : "Feld hinzufügen …",
+    "Import" : "Importieren",
     "Add contact" : "Kontakt hinzufügen",
     "No search result for {query}" : "Keine Suchergebnisse zu {query}",
     "All contacts" : "Alle Kontakte",
@@ -36,7 +37,6 @@
     "Fax work" : "Fax geschäftlich",
     "Pager" : "Pager",
     "Voice" : "Anruf",
-    "Settings" : "Einstellungen",
-    "Import" : "Importieren"
+    "Settings" : "Einstellungen"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
