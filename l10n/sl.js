@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Stiki",
+    "Address book name" : "Ime imenika",
     "No contacts in here" : "Ni dodanega nobenega stika!",
     "Name" : "Ime",
     "Organization" : "Ustanova",
