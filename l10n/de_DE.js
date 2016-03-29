@@ -25,7 +25,7 @@ OC.L10N.register(
     "Notes" : "Notizen",
     "Website" : "Internetseite",
     "Federated Cloud ID" : "Federated-Cloud-ID",
-    "Home" : "Zuhause",
+    "Home" : "Privat",
     "Work" : "Arbeit",
     "Other" : "Andere",
     "Groups" : "Gruppen",
