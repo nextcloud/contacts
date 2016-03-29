@@ -3,8 +3,6 @@ dist: trusty
 language: php
 php:
     - 5.4
-    - 5.5
-    - 5.6
     - 7
 env:
     global:
@@ -22,9 +20,9 @@ matrix:
     allow_failures:
         - env: DB=pgsql CORE_BRANCH=master
     include:
-        - php: 5.6
+        - php: 5.5
           env: DB=sqlite
-        - php: 5.6
+        - php: 5.5
           env: DB=mysql
         - php: 5.6
           env:  DB=pgsql CORE_BRANCH=master
@@ -79,6 +77,7 @@ deploy:
     on:
         repo: owncloud/contacts
         tags: true
+        php: 7
 
 addons:
     firefox: "latest"
