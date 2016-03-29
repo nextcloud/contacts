@@ -33,13 +33,13 @@ gulp.task('eslint', function() {
 		.pipe(eslint())
 		.pipe(eslint.format())
 		.pipe(eslint.failAfterError());
-})
-
-gulp.task('watch', ['js'], function() {
-	gulp.watch(['js/**/*.js', '!js/public/**/*.js'], ['js']);
 });
 
-gulp.task('karma', (done) => {
+gulp.task('watch', ['default'], function() {
+	gulp.watch(['js/**/*.js', '!js/public/**/*.js'], ['default']);
+});
+
+gulp.task('karma', function(done){
     new KarmaServer({
         configFile: __dirname + '/karma.conf.js',
         singleRun: true

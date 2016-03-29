@@ -171,3 +171,13 @@ else
 	phpunit -c phpunit.xml --coverage-clover build/php-unit.clover
 	phpunit -c phpunit.integration.xml --coverage-clover build/php-unit.clover
 endif
+
+# watch out for changes and rebuild
+.PHONY: watch
+watch:
+ifneq (,$(wildcard $(CURDIR)/js/package.json))
+	cd js && $(npm) run watch
+endif
+ifneq (,$(wildcard $(CURDIR)/package.json))
+	$(npm) run watch
+endif

@@ -19,7 +19,8 @@
   "scripts": {
     "test": "node node_modules/gulp-cli/bin/gulp.js karma",
     "prebuild": "npm install && npm update && node_modules/bower/bin/bower install && node_modules/bower/bin/bower update",
-    "build": "node node_modules/gulp-cli/bin/gulp.js"
+    "build": "node node_modules/gulp-cli/bin/gulp.js",
+    "watch": "node node_modules/gulp-cli/bin/gulp.js watch"
   },
   "devDependencies": {
     "bower": "",
