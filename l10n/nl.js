@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contactpersonen",
+    "Address book name" : "Adresboek naam",
     "No contacts in here" : "Hier geen contactpersonen gevonden",
     "Name" : "Naam",
     "Organization" : "Organisatie",
