@@ -67,22 +67,37 @@ angular.module('contactsApp')
 		});
 	});
 
+	// Get contacts
 	ContactService.getAll().then(function(contacts) {
 		$scope.$apply(function() {
 			ctrl.contacts = contacts;
-			// If desktop version, load first contact (see css for min-width media query)
-			if (!_.isEmpty(ctrl.contacts) && $(window).width() > 768) {
-				ctrl.setSelectedId(_.sortBy(contacts, function(contact) {
-					return contact.fullName();
-				})[0].uid());
+		});
+	});
+
+	// Wait for ctrl.contactList to be updated, load the first contact and kill the watch
+	var unbindListWatch = $scope.$watch('ctrl.contactList', function() {
+		if(ctrl.contactList && ctrl.contactList.length > 0) {
+			// Check if a specific uid is requested
+			if($routeParams.uid && $routeParams.gid) {
+				ctrl.contactList.forEach(function(contact) {
+					if(contact.uid() === $routeParams.uid) {
+						ctrl.setSelectedId($routeParams.uid);
+						ctrl.loading = false;
+					}
+				});
+			}
+			// No contact previously loaded, let's load the first of the list if not in mobile mode
+			if(ctrl.loading && $(window).width() > 768) {
+				ctrl.setSelectedId(ctrl.contactList[0].uid());
 			}
 			ctrl.loading = false;
-		});
+			unbindListWatch();
+		}
 	});
 
 	$scope.$watch('ctrl.routeParams.uid', function(newValue, oldValue) {
 		// Used for mobile view to clear the url
-		if(typeof oldValue != 'undefined' && typeof newValue == 'undefined') {
+		if(typeof oldValue != 'undefined' && typeof newValue == 'undefined' && $(window).width() <= 768) {
 			// no contact selected
 			ctrl.show = true;
 			return;
@@ -115,21 +130,19 @@ angular.module('contactsApp')
 	$scope.$watch('ctrl.routeParams.gid', function() {
 		// we might have to wait until ng-repeat filled the contactList
 		ctrl.contactList = [];
-		// watch for next contactList update
-		var unbindWatch = $scope.$watch('ctrl.contactList', function() {
-			if(ctrl.contactList && ctrl.contactList.length > 0 && $(window).width() > 768) {
-				$route.updateParams({
-					gid: $routeParams.gid,
-					uid: ctrl.contactList[0].uid()
-				});
-			} else {
-				$route.updateParams({
-					gid: $routeParams.gid,
-					uid: undefined
-				});
-			}
-			unbindWatch(); // unbind as we only want one update
-		});
+		// not in mobile mode
+		if($(window).width() > 768) {
+			// watch for next contactList update
+			var unbindWatch = $scope.$watch('ctrl.contactList', function() {
+				if(ctrl.contactList && ctrl.contactList.length > 0) {
+					$route.updateParams({
+						gid: $routeParams.gid,
+						uid: ctrl.contactList[0].uid()
+					});
+				}
+				unbindWatch(); // unbind as we only want one update
+			});
+		}
 	});
 
 	ctrl.createContact = function() {
