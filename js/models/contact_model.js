@@ -159,8 +159,16 @@ angular.module('contactsApp')
 				var matchingProps = ['fn', 'title', 'org', 'email', 'nickname', 'note', 'url', 'cloud', 'adr', 'impp', 'tel'].filter(function (propName) {
 					if (model.props[propName]) {
 						return model.props[propName].filter(function (property) {
-							if (property.value && _.isString(property.value)) {
+							if (!property.value) {
+								return false;
+							}
+							if (_.isString(property.value)) {
 								return property.value.toLowerCase().indexOf(pattern.toLowerCase()) !== -1;
+							}
+							if (_.isArray(property.value)) {
+								return property.value.filter(function(v) {
+									return v.toLowerCase().indexOf(pattern.toLowerCase()) !== -1;
+								}).length > 0;
 							}
 							return false;
 						}).length > 0;
