@@ -76,10 +76,15 @@ angular.module('contactsApp')
 		}
 	};
 
-	this.create = function(newContact, addressBook) {
+	this.create = function(newContact, addressBook, uid) {
 		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
 		newContact = newContact || new Contact(addressBook);
-		var newUid = uuid4.generate();
+		var newUid = '';
+		if(uuid4.validate(uid)) {
+			newUid = uid;
+		} else {
+			newUid = uuid4.generate();
+		}
 		newContact.uid(newUid);
 		newContact.setUrl(addressBook, newUid);
 		newContact.addressBookId = addressBook.displayName;
@@ -125,12 +130,13 @@ angular.module('contactsApp')
 		}
 		contact.syncVCard();
 		var clone = angular.copy(contact);
+		var uid = contact.uid();
+
+		// delete the old one before to avoid conflict
+		this.delete(contact);
 
 		// create the contact in the new target addressbook
-		this.create(clone, addressbook);
-
-		// delete the old one
-		this.delete(contact);
+		this.create(clone, addressbook, uid);
 	};
 
 	this.update = function(contact) {
