@@ -152,6 +152,13 @@ detailsitem .icon-delete {
 	opacity: .2;
 }
 
+/* Prevent delete for last adr/mail/tel item  */
+.last-details > detailsitem.details-item-adr .icon-delete,
+.last-details > detailsitem.details-item-email .icon-delete,
+.last-details > detailsitem.details-item-tel .icon-delete {
+	display: none;
+}
+
 detailsitem  input#details-url {
     text-overflow: ellipsis;
     padding-right: 18px;

@@ -20,7 +20,7 @@
 	<button ng-click="ctrl.deleteContact()" class="icon-delete-white" title="Delete"></button>
 </header>
 <section>
-	<div ng-repeat="prop in ctrl.contact.props | toArray | orderDetailItems:'$key'">
+	<div ng-repeat="prop in ctrl.contact.props | toArray | orderDetailItems:'$key'" ng-class="prop.length > 1 ? '' : 'last-details'">
 		<detailsItem ng-repeat="propData in prop" name="prop.$key" data="propData" model="ctrl" index="$index" ng-class="[ 'details-item-' + prop.$key ]"></detailsItem>
 	</div>
 	<div class="select-addressbook" ng-if="ctrl.addressBooks.length > 1">
