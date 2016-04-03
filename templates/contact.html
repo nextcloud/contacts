@@ -1,9 +1,7 @@
 <a class="app-content-list-item-link" ng-click="ctrl.openContact()">
-<img class="app-content-list-item-icon contact__icon" ng-show="ctrl.contact.photo()!==undefined" data-ng-src="data:image/png;base64,{{ctrl.contact.photo()}}" />
-<div class="app-content-list-item-icon contact__icon" ng-show="ctrl.contact.photo()===undefined" ng-style="{'background-color': (ctrl.contact.uid() | contactColor) }">{{ ctrl.contact.fullName() | firstCharacter }}</div>
-
-<div class="app-content-list-item-star icon-star" data-starred="false"></div>
-
-<div class="app-content-list-item-line-one" ng-class="{'no-line-two':!ctrl.contact.email()}">{{ctrl.contact.fullName()}}</div>
-<div class="app-content-list-item-line-two">{{ctrl.contact.email()}}</div>
+    <img class="app-content-list-item-icon contact__icon" ng-show="ctrl.contact.photo()!==undefined" data-ng-src="data:image/png;base64,{{ctrl.contact.photo()}}" />
+    <div class="app-content-list-item-icon contact__icon" ng-show="ctrl.contact.photo()===undefined" ng-style="{'background-color': (ctrl.contact.uid() | contactColor) }">{{ ctrl.contact.fullName() | firstCharacter }}</div>
+    <div class="app-content-list-item-star icon-star" data-starred="false"></div>
+    <div class="app-content-list-item-line-one" ng-class="{'no-line-two':!ctrl.contact.email()}">{{ctrl.contact.fullName()}}</div>
+    <div class="app-content-list-item-line-two">{{ctrl.contact.email()}}</div>
 </a>

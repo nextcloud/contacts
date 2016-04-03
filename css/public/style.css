@@ -140,7 +140,7 @@ detailsitem input[type="date"],
 detailsitem textarea,
 .select-addressbook select,
 .add-field {
-	width: 200px;
+	width: 245px;
 }
 
 detailsitem .icon-delete {
@@ -393,6 +393,19 @@ li.addressBook-share-item span.shareeIdentifier {
 	opacity: .5;
 }
 
+ul.addressBookList li {
+    margin-bottom: 5px;
+}
+
+ul.addressBook-share-list {
+    margin-top: 8px;
+    margin-bottom: 12px;
+}
+
+ul.addressBook-share-list li {
+    margin-left: 15px;
+}
+
 #app-navigation .utils .action span {
 	cursor: pointer !important;
 }
@@ -404,14 +417,10 @@ li.addressBook-share-item span.shareeIdentifier {
 	opacity: 1;
 }
 
-
-
-
-
 /* SELECT2 styling - MOVE TO CORE FOR 9.1! */
 
 detailsitem .select2-container {
-	width: 200px;
+	width: 245px;
 }
 .select2-container-multi .select2-choices {
 	border-color: #ddd !important;
@@ -444,4 +453,64 @@ detailsitem .select2-container {
 }
 .select2-results .select2-result-label span {
 	cursor: pointer !important;
+}
+
+/* Mobile width < 768px */
+@media only screen and (max-width: 768px) {
+
+	/* full width for message list on mobile */
+	.app-content-list {
+		width: 100%;
+		background: white;
+		position: relative;
+		z-index: 100;
+	}
+
+	/* overlay message detail on top of message list */
+	.app-content-detail {
+		background: #fff;
+		width: 100%;
+		left: 0;
+		height: 100%;
+		top: 0;
+		box-shadow: 0 0 100px rgba(100, 100, 100, .9);
+		position: absolute;
+	}
+	
+	.wrapper-show:not(.mobile-show),
+	.contacts-list:not(.mobile-show) {
+		display: none;
+	}
+	
+	
+	#app-navigation-toggle.showdetails {
+		transform: translate(-50px, 0);
+	}
+	
+	#app-navigation-toggle-back {
+		position: fixed;
+		display: inline-block !important;
+		top: 45px;
+		left: 0;
+		width: 44px;
+		height: 44px;
+		z-index: 149;
+		background-color: rgba(255, 255, 255, .7);
+		cursor: pointer;
+		opacity: .6;
+		transform: rotate(90deg);
+	}
+
+/* end of media query */
+}
+
+.contact-details-wrapper {
+	position: relative;
+	background: white;
+}
+.wrapper-show {
+	z-index: 101;
+}
+#app-navigation-toggle-back {
+	display: none;
 }

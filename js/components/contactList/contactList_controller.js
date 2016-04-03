@@ -6,6 +6,7 @@ angular.module('contactsApp')
 
 	ctrl.contactList = [];
 	ctrl.searchTerm = '';
+	ctrl.show = true;
 
 	ctrl.t = {
 		addContact : t('contacts', 'Add contact'),
@@ -69,7 +70,8 @@ angular.module('contactsApp')
 	ContactService.getAll().then(function(contacts) {
 		$scope.$apply(function() {
 			ctrl.contacts = contacts;
-			if (!_.isEmpty(ctrl.contacts)) {
+			// If desktop version, load first contact (see css for min-width media query)
+			if (!_.isEmpty(ctrl.contacts) && $(window).width() > 768) {
 				ctrl.setSelectedId(_.sortBy(contacts, function(contact) {
 					return contact.fullName();
 				})[0].uid());
@@ -78,7 +80,13 @@ angular.module('contactsApp')
 		});
 	});
 
-	$scope.$watch('ctrl.routeParams.uid', function(newValue) {
+	$scope.$watch('ctrl.routeParams.uid', function(newValue, oldValue) {
+		// Used for mobile view to clear the url
+		if(typeof oldValue != 'undefined' && typeof newValue == 'undefined') {
+			// no contact selected
+			ctrl.show = true;
+			return;
+		}
 		if(newValue === undefined) {
 			// we might have to wait until ng-repeat filled the contactList
 			if(ctrl.contactList && ctrl.contactList.length > 0) {
@@ -98,6 +106,9 @@ angular.module('contactsApp')
 					unbindWatch(); // unbind as we only want one update
 				});
 			}
+		} else {
+			// displaying contact details
+			ctrl.show = false;
 		}
 	});
 
@@ -106,7 +117,7 @@ angular.module('contactsApp')
 		ctrl.contactList = [];
 		// watch for next contactList update
 		var unbindWatch = $scope.$watch('ctrl.contactList', function() {
-			if(ctrl.contactList && ctrl.contactList.length > 0) {
+			if(ctrl.contactList && ctrl.contactList.length > 0 && $(window).width() > 768) {
 				$route.updateParams({
 					gid: $routeParams.gid,
 					uid: ctrl.contactList[0].uid()
