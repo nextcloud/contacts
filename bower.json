@@ -26,7 +26,7 @@
     "angular-uuid4": "0.3.1",
     "jquery-timepicker": "883bb2cd94",
     "ui-select": "angular-ui/ui-select#0.14.9",
-    "vcard": "0.2.4"
+    "vcard": "Heymdall/vcard#85eea2763290ef9d5b8da8d49f49cce79a41b516"
   },
   "devDependencies": {
     "angular-mocks": "1.5.0",
