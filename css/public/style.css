@@ -12,27 +12,31 @@
 	top: 15px;
 	left: 100px;
 }
+.contactdetails__header #details-org-container {
+	position: absolute;
+	display: flex;
+	top: 50px;
+	left: 100px;
+	width: 70%;
+}
 .contactdetails__header .contactdetails__name,
 .contactdetails__header .contactdetails__org,
 .contactdetails__header .contactdetails__title {
 	font-size: inherit !important;
-	width: 100% !important;
+	width: auto !important;
 	color: #fff !important;
 	background: transparent !important;
 	border: none !important;
 	text-overflow: ellipsis;
 	overflow: hidden;
 	white-space: nowrap;
+	max-width: 100%;
+	min-width: 25%;
+	margin: 3px 0;
 }
-.contactdetails__header .contactdetails__org {
-	position: absolute;
-	left: 101px;
-	width: 100px !important;
-}
+.contactdetails__header .contactdetails__org,
 .contactdetails__header .contactdetails__title {
-	position: absolute;
-	left: 201px;
-	width: 125px !important;
+	max-width: 50%;
 }
 /* fix placeholder color */
 .contactdetails__header .contactdetails__name::-webkit-input-placeholder,
