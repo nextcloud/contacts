@@ -11,6 +11,7 @@
 	position: absolute;
 	top: 15px;
 	left: 100px;
+	width: 75%;
 }
 .contactdetails__header #details-org-container {
 	position: absolute;
@@ -37,6 +38,10 @@
 .contactdetails__header .contactdetails__org,
 .contactdetails__header .contactdetails__title {
 	max-width: 50%;
+}
+.contactdetails__header .contactdetails__name {
+    max-width: 100%;
+    width: 100% !important;
 }
 /* fix placeholder color */
 .contactdetails__header .contactdetails__name::-webkit-input-placeholder,
