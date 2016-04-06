@@ -11,8 +11,7 @@
 			<img ng-if="ctrl.photo!==undefined" class="contactdetails__logo avatar" data-ng-src="data:image/png;base64,{{ctrl.photo}}" />
 			<h2>
 				<input type="text" id="details-fullName" class="contactdetails__name" placeholder="{{ctrl.t.placeholderName}}" autocomplete="off"
-					   name="email" ng-model="ctrl.contact.fullName" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value=""
-					   inputresize size="{{ctrl.contact.fullName().length > 1 ? ctrl.contact.fullName().length : '1'}}" />
+					   name="email" ng-model="ctrl.contact.fullName" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
 			</h2>
 			<div id="details-org-container">
 				<input type="text" id="details-org" class="contactdetails__org" placeholder="{{ctrl.t.placeholderOrg}}" autocomplete="off"
