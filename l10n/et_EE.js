@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontaktid",
+    "Address book name" : "Aadressiraamatu nimi",
     "No contacts in here" : "Ühtegi kontakti pole",
     "Name" : "Nimi",
     "Organization" : "Organisatsioon",
@@ -9,6 +10,7 @@ OC.L10N.register(
     "Add field ..." : "Lisa väli ...",
     "Import" : "Impordi",
     "Add contact" : "Lisa kontakt",
+    "No search result for {query}" : "Otsingutulemused sõnadele {query}",
     "All contacts" : "Kõik kontaktid",
     "Not grouped" : "Pole grupeeritud",
     "Post Office Box" : "Postkast postkontoris",

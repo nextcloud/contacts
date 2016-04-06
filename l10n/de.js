@@ -13,7 +13,7 @@ OC.L10N.register(
     "No search result for {query}" : "Kein Ergebnis für {query}",
     "All contacts" : "Alle Kontakte",
     "Not grouped" : "Nicht gruppiert",
-    "Post Office Box" : "Briefkasten",
+    "Post Office Box" : "Postfach",
     "Postal Code" : "Postleitzahl",
     "City" : "Stadt",
     "State or province" : "Staat oder Provinz",
