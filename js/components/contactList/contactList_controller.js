@@ -152,11 +152,7 @@ angular.module('contactsApp')
 
 	// Watch if we have an invalid contact
 	$scope.$watch('ctrl.contactList[0].fullName()', function(fullName) {
-		if(fullName === '') {
-			ctrl.invalid = true;
-		} else {
-			ctrl.invalid = false;
-		}
+		ctrl.invalid = fullName === '';
 	});
 
 	ctrl.createContact = function() {
