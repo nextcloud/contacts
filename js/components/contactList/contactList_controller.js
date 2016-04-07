@@ -7,6 +7,7 @@ angular.module('contactsApp')
 	ctrl.contactList = [];
 	ctrl.searchTerm = '';
 	ctrl.show = true;
+	ctrl.invalid = false;
 
 	ctrl.t = {
 		addContact : t('contacts', 'Add contact'),
@@ -146,6 +147,15 @@ angular.module('contactsApp')
 				}
 				unbindWatch(); // unbind as we only want one update
 			});
+		}
+	});
+
+	// Watch if we have an invalid contact
+	$scope.$watch('ctrl.contactList[0].fullName()', function(fullName) {
+		if(fullName === '') {
+			ctrl.invalid = true;
+		} else {
+			ctrl.invalid = false;
 		}
 	});
 
