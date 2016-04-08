@@ -194,7 +194,7 @@ detailsitem.details-item-adr {
 }
 detailsitem.details-item-adr .icon-delete {
 	top: 57px;
-	left: 290px;
+	left: 331px;
 }
 
 detailsitem.details-item-email select {
@@ -485,17 +485,17 @@ detailsitem .select2-container {
 		box-shadow: 0 0 100px rgba(100, 100, 100, .9);
 		position: absolute;
 	}
-	
+
 	.wrapper-show:not(.mobile-show),
 	.contacts-list:not(.mobile-show) {
 		display: none;
 	}
-	
-	
+
+
 	#app-navigation-toggle.showdetails {
 		transform: translate(-50px, 0);
 	}
-	
+
 	#app-navigation-toggle-back {
 		position: fixed;
 		display: inline-block !important;
