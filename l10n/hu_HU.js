@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Névjegyek",
+    "Address book name" : "Címjegyzék neve",
     "No contacts in here" : "Nincsenek névjegyek",
     "Name" : "Név",
     "Organization" : "Szervezet",
@@ -9,6 +10,7 @@ OC.L10N.register(
     "Add field ..." : "Mező hozzáadása",
     "Import" : "Importálás",
     "Add contact" : "Névjegy hozzáadása",
+    "No search result for {query}" : "{query} keresésre nincs találat.",
     "All contacts" : "Összes névjegy",
     "Not grouped" : "Nem csoportosított",
     "Post Office Box" : "Postaláda",
