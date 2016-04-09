@@ -1,9 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "Contatos",
+    "Contacts" : "Contactos",
     "Address book name" : "Nome do livro de endereços",
-    "No contacts in here" : "Nenhum contato aqui",
+    "No contacts in here" : "Nenhum contacto aqui",
     "Name" : "Nome",
     "Organization" : "Organização",
     "Title" : "Título ",
@@ -11,7 +11,7 @@ OC.L10N.register(
     "Import" : "Importar",
     "Add contact" : "Adicionar contacto",
     "No search result for {query}" : "Sem resultados de procura para {query}",
-    "All contacts" : "Todos os contatos",
+    "All contacts" : "Todos os contactos",
     "Not grouped" : "Não agrupados",
     "Post Office Box" : "Caixa Postal",
     "Postal Code" : "Código Postal",
