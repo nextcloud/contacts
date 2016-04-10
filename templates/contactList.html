@@ -1,10 +1,11 @@
 <div style="height: 90%" class="contacts-list" ng-class="{loading: ctrl.loading, 'mobile-show': ctrl.show}">
-        <button ng-show="!ctrl.loading" class="app-content-list-button" type="button" name="button" ng-click="ctrl.createContact()">{{ctrl.t.addContact}}</button>
+        <button ng-show="!ctrl.loading && !ctrl.invalid" class="app-content-list-button" id="new-contact-button"
+				type="button" name="button" ng-click="ctrl.createContact()">{{ctrl.t.addContact}}</button>
         <div class="app-content-list-item"
-	     ng-repeat="contact in ctrl.contactList = (ctrl.contacts | contactGroupFilter:ctrl.routeParams.gid | orderBy:'fullName()' | filter:query) track by contact.uid()"
-	     contact data="contact"
-	     ng-click="setSelected(contact.uid())"
-	     ng-class="{active: contact.uid() === ctrl.getSelectedId()}">
+			 ng-repeat="contact in ctrl.contactList = (ctrl.contacts | contactGroupFilter:ctrl.routeParams.gid | orderBy:'fullName()' | filter:query) track by contact.uid()"
+			 contact data="contact"
+			 ng-click="setSelected(contact.uid())"
+			 ng-class="{active: contact.uid() === ctrl.getSelectedId()}">
 	</div>
 	<div ng-show="!ctrl.contactList.length && !ctrl.loading && ctrl.searchTerm !== ''">
 	        <div id="emptycontent" class="emptycontent-search">
