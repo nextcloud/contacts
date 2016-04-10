@@ -69,9 +69,13 @@ angular.module('contactsApp')
 
 	// Get contacts
 	ContactService.getAll().then(function(contacts) {
-		$scope.$apply(function() {
-			ctrl.contacts = contacts;
-		});
+		if(contacts.length>0) {
+			$scope.$apply(function() {
+				ctrl.contacts = contacts;
+			});
+		} else {
+			ctrl.loading = false;
+		}
 	});
 
 	// Wait for ctrl.contactList to be updated, load the first contact and kill the watch
