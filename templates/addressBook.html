@@ -1,5 +1,12 @@
 <span class="addressBookName">{{ctrl.addressBook.displayName}}</span>
 <span class="utils">
+	<span class="action" ng-show="ctrl.canExport">
+		<span href="{{ctrl.addressBook.url}}?export"
+			  id="addressBooklist-icon download"
+			  title="Download"
+			  class="icon-download">
+		</span>
+	</span>
     <span class="action">
         <span
             class="addressbooklist-icon icon-public"
