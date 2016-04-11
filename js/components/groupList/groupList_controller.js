@@ -14,6 +14,15 @@ angular.module('contactsApp')
 		return $routeParams.gid;
 	};
 
+	// Update groupList on contact add/delete/update
+	ContactService.registerObserverCallback(function() {
+		$scope.$apply(function() {
+			ContactService.getGroups().then(function(groups) {
+				ctrl.groups = _.unique(initialGroups.concat(groups));
+			});
+		});
+	});
+
 	ctrl.setSelected = function (selectedGroup) {
 		SearchService.cleanSearch();
 		$routeParams.gid = selectedGroup;

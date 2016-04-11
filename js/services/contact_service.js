@@ -146,6 +146,7 @@ angular.module('contactsApp')
 		return DavClient.updateCard(contact.data, {json: true}).then(function(xhr) {
 			var newEtag = xhr.getResponseHeader('ETag');
 			contact.setETag(newEtag);
+			notifyObservers('update', contact.uid());
 		});
 	};
 
