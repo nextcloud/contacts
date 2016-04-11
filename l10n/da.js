@@ -20,6 +20,7 @@ OC.L10N.register(
     "Country" : "Land",
     "Address" : "Adresse",
     "(new group)" : "(new group)",
+    "New contact" : "Ny kontakt",
     "{addressbook} shared by {owner}" : "{addressbook} delt af {owner}",
     "Nickname" : "Kaldenavn",
     "Notes" : "Noter",

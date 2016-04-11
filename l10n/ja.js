@@ -19,6 +19,7 @@ OC.L10N.register(
     "Country" : "国名",
     "Address" : "アドレス",
     "(new group)" : "(新規グループ)",
+    "New contact" : "新しい連絡先",
     "{addressbook} shared by {owner}" : " {owner}と共有中の{addressbook} ",
     "Nickname" : "ニックネーム",
     "Notes" : "ノート",

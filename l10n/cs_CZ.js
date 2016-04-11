@@ -20,6 +20,7 @@ OC.L10N.register(
     "Country" : "Země",
     "Address" : "Adresa",
     "(new group)" : "(nová skupina)",
+    "New contact" : "Nový kontakt",
     "{addressbook} shared by {owner}" : "{addressbook} sdílí {owner}",
     "Nickname" : "Přezdívka",
     "Notes" : "Poznámky",

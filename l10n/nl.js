@@ -20,6 +20,7 @@ OC.L10N.register(
     "Country" : "Land",
     "Address" : "Adres",
     "(new group)" : "(nieuwe groep)",
+    "New contact" : "Nieuwe contactpersoon",
     "{addressbook} shared by {owner}" : "{addressbook} gedeeld door {owner}",
     "Nickname" : "Roepnaam",
     "Notes" : "Notities",

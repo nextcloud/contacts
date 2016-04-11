@@ -20,6 +20,7 @@ OC.L10N.register(
     "Country" : "國家",
     "Address" : "網址",
     "(new group)" : "（新群組）",
+    "New contact" : "新聯絡人",
     "{addressbook} shared by {owner}" : "{addressbook} 由 {owner} 分享",
     "Nickname" : "暱稱",
     "Notes" : "筆記",

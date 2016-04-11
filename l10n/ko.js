@@ -17,6 +17,7 @@ OC.L10N.register(
     "State or province" : "도 및 광역시",
     "Country" : "국가",
     "Address" : "주소",
+    "New contact" : "새 연락처",
     "{addressbook} shared by {owner}" : "{owner} 님이 공유한 {addressbook}",
     "Nickname" : "별명",
     "Notes" : "메모",

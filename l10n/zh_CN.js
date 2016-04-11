@@ -5,6 +5,7 @@ OC.L10N.register(
     "Name" : "名称",
     "Organization" : "组织",
     "Title" : "标题",
+    "Import" : "导入",
     "Add contact" : "添加联系人",
     "Not grouped" : "未分组",
     "Post Office Box" : "邮政信箱",
@@ -13,6 +14,7 @@ OC.L10N.register(
     "State or province" : "州/省",
     "Country" : "国家",
     "Address" : "地址",
+    "New contact" : "新建联系人",
     "Nickname" : "昵称",
     "Notes" : "说明",
     "Website" : "网站",
@@ -27,6 +29,7 @@ OC.L10N.register(
     "Mobile" : "手机",
     "Fax" : "传真",
     "Pager" : "传呼机",
-    "Voice" : "语音"
+    "Voice" : "语音",
+    "Settings" : "设置"
 },
 "nplurals=1; plural=0;");

@@ -20,6 +20,7 @@ OC.L10N.register(
     "Country" : "Ülke",
     "Address" : "Adres",
     "(new group)" : "(yeni grup)",
+    "New contact" : "Yeni kişi",
     "{addressbook} shared by {owner}" : "{owner} tarafından paylaşılmış {addressbook}",
     "Nickname" : "Takma ad",
     "Notes" : "Notlar",

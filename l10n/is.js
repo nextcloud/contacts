@@ -20,6 +20,7 @@ OC.L10N.register(
     "Country" : "Land",
     "Address" : "Slóð",
     "(new group)" : "(nýr hópur)",
+    "New contact" : "Nýr tengiliður",
     "{addressbook} shared by {owner}" : "{addressbook} deilt af {owner}",
     "Nickname" : "Gælunafn",
     "Notes" : "Minnispunktar",

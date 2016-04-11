@@ -20,6 +20,7 @@ OC.L10N.register(
     "Country" : "Država",
     "Address" : "Naslov",
     "(new group)" : "(nova skupina)",
+    "New contact" : "Nov stik",
     "{addressbook} shared by {owner}" : "Souporabo imenika {addressbook} je omogočil uporabnik {owner}",
     "Nickname" : "Vzdevek",
     "Notes" : "Sporočilca",

@@ -20,6 +20,7 @@ OC.L10N.register(
     "Country" : "Χώρα",
     "Address" : "Διεύθυνση",
     "(new group)" : "(νέα ομάδα)",
+    "New contact" : "Νέα επαφή",
     "{addressbook} shared by {owner}" : "Το {addressbook} διαμοιράστηκε από τον/την {owner}",
     "Nickname" : "Παρατσούκλι",
     "Notes" : "Σημειώσεις",

@@ -20,6 +20,7 @@ OC.L10N.register(
     "Country" : "מדינה",
     "Address" : "כתובת",
     "(new group)" : "(קבוצה חדשה)",
+    "New contact" : "איש קשר חדש",
     "{addressbook} shared by {owner}" : "{addressbook} שותף על ידי {owner}",
     "Nickname" : "כינוי",
     "Notes" : "הערות",

@@ -20,6 +20,7 @@ OC.L10N.register(
     "Country" : "Maa",
     "Address" : "Osoite",
     "(new group)" : "(uusi ryhmä)",
+    "New contact" : "Uusi yhteystieto",
     "{addressbook} shared by {owner}" : "Osoitekirjan {addressbook} jakoi {owner}",
     "Nickname" : "Kutsumanimi",
     "Notes" : "Huomiot",
