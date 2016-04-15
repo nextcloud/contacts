@@ -105,6 +105,20 @@ angular.module('contactsApp')
 				{id: 'PAGER', name: t('contacts', 'Pager')},
 				{id: 'VOICE', name: t('contacts', 'Voice')}
 			]
+		},
+		'X-SOCIALPROFILE': {
+			multiple: true,
+			readableName: t('contacts', 'Social Network'),
+			template: 'text',
+			defaultValue: {
+				value:[''],
+				meta:{type:['facebook']}
+			},
+			options: [
+				{id: 'FACEBOOK', name: 'Facebook'},
+				{id: 'TWITTER', name: 'Twitter'}
+			]
+
 		}
 	};
 
@@ -118,6 +132,7 @@ angular.module('contactsApp')
 		'nick',
 		'bday',
 		'url',
+		'X-SOCIALPROFILE',
 		'note',
 		'categories',
 		'role'
