@@ -121,6 +121,8 @@ angular.module('contactsApp')
 					num++;
 				});
 			}
+		} else {
+			OC.Notification.showTemporary(t('contacts', 'Invalid file type.'));
 		}
 	};
 
