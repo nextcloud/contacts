@@ -44,6 +44,7 @@ angular.module('contactsApp')
 			ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.type, name: displayName}]);
 		}
 	}
+
 	if (!_.isUndefined(ctrl.data) && !_.isUndefined(ctrl.data.namespace)) {
 		if (!_.isUndefined(ctrl.model.contact.props['X-ABLABEL'])) {
 			var val = _.find(this.model.contact.props['X-ABLABEL'], function(x) { return x.namespace === ctrl.data.namespace; });
@@ -56,6 +57,13 @@ angular.module('contactsApp')
 			}
 		}
 	}
+
+	if (ctrl.meta.template === 'url') {
+		if (!ctrl.data.value.startsWith('http://') && !ctrl.data.value.startsWith('https://')) {
+			ctrl.data.value = 'http://' + ctrl.data.value;
+		}
+	}
+
 	ctrl.availableGroups = [];
 
 	ContactService.getGroups().then(function(groups) {
