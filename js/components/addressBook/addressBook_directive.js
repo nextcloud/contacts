@@ -6,7 +6,8 @@ angular.module('contactsApp')
 		controller: 'addressbookCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {
-			addressBook: '=data'
+			addressBook: '=data',
+			list: '='
 		},
 		templateUrl: OC.linkTo('contacts', 'templates/addressBook.html')
 	};

@@ -1,6 +1,6 @@
 <i ng-show="ctrl.loading" style="display: block" class="icon-loading"></i>
 <ul class="addressBookList">
-	<li ng-repeat="addressBook in ctrl.addressBooks" addressbook data="addressBook"></li>
+	<li ng-repeat="addressBook in ctrl.addressBooks" addressbook data="addressBook" list="ctrl.addressBooks"></li>
 	<li>
 		<form ng-submit="ctrl.createAddressBook()">
 			<input id="newList" placeholder="{{ctrl.t.addressBookName}}" class="newAddressBookInput" ng-model="ctrl.newAddressBookName" type="text" />
