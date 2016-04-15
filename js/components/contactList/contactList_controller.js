@@ -27,7 +27,6 @@ angular.module('contactsApp')
 		}
 		if (ev.event === 'changeSearch') {
 			ctrl.searchTerm = ev.searchTerm;
-			ctrl.t.emptySearch;
 			ctrl.t.emptySearch = t('contacts',
 								   'No search result for {query}',
 								   {query: ctrl.searchTerm}
@@ -151,8 +150,8 @@ angular.module('contactsApp')
 	});
 
 	// Watch if we have an invalid contact
-	$scope.$watch('ctrl.contactList[0].fullName()', function(fullName) {
-		ctrl.invalid = fullName === '';
+	$scope.$watch('ctrl.contactList[0].displayName()', function(displayName) {
+		ctrl.invalid = (displayName === '');
 	});
 
 	ctrl.createContact = function() {

@@ -19,6 +19,10 @@ angular.module('contactsApp')
 				}
 			},
 
+			displayName: function() {
+				return this.fullName() || this.org() || '';
+			},
+
 			fullName: function(value) {
 				var model = this;
 				if (angular.isDefined(value)) {
