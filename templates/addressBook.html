@@ -17,6 +17,7 @@
     <span class="action">
         <span
             class="addressbooklist-icon icon-delete"
+			ng-class="{hidden: ctrl.list.length === 1}"
             title="Delete Addressbook"
             ng-click="ctrl.deleteAddressBook()">
         </span>
