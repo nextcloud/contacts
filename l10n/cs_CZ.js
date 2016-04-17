@@ -22,6 +22,7 @@ OC.L10N.register(
     "(new group)" : "(nová skupina)",
     "New contact" : "Nový kontakt",
     "{addressbook} shared by {owner}" : "{addressbook} sdílí {owner}",
+    "Invalid file type." : "Neplatný typ souboru.",
     "Nickname" : "Přezdívka",
     "Notes" : "Poznámky",
     "Website" : "Stránka",
