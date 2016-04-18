@@ -22,6 +22,7 @@ OC.L10N.register(
     "(new group)" : "(neue Gruppe)",
     "New contact" : "Neuer Kontakt",
     "{addressbook} shared by {owner}" : "{addressbook} geteilt von {owner}",
+    "Invalid file type." : "Ungültiger Dateityp.",
     "Nickname" : "Spitzname",
     "Notes" : "Notizen",
     "Website" : "Internetseite",
