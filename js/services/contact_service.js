@@ -32,8 +32,13 @@ angular.module('contactsApp')
 					promises.push(
 						AddressBookService.sync(addressBook).then(function (addressBook) {
 							for (var i in addressBook.objects) {
-								var contact = new Contact(addressBook, addressBook.objects[i]);
-								contacts.put(contact.uid(), contact);
+								if (addressBook.objects[i].addressData) {
+									var contact = new Contact(addressBook, addressBook.objects[i]);
+									contacts.put(contact.uid(), contact);
+								} else {
+									// custom console
+									console.log('Invalid contact received: ' + addressBook.objects[i].url);
+								}
 							}
 						})
 					);
