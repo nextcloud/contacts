@@ -264,6 +264,10 @@ ul.addressBookList li .action > span {
 	padding: 10px 14px;
 }
 
+ul.addressBookList li .action > a {
+	padding: 10px 14px;
+}
+
 div.addressBookShares ul.dropdown-menu {
 	border: 1px solid #ddd;
 	border-radius: 3px;
