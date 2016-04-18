@@ -51,6 +51,10 @@ angular.module('contactsApp')
 			return;
 		}
 		ContactService.getById(uid).then(function(contact) {
+			if (angular.isUndefined(contact)) {
+				ctrl.clearContact();
+				return;
+			}
 			ctrl.contact = contact;
 			ctrl.photo = ctrl.contact.photo();
 			ctrl.show = true;
