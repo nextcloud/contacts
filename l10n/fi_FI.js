@@ -41,6 +41,7 @@ OC.L10N.register(
     "Fax work" : "Faksi, työ",
     "Pager" : "Hakulaite",
     "Voice" : "Ääni",
+    "Social Network" : "Sosiaalinen verkko",
     "Settings" : "Asetukset"
 },
 "nplurals=2; plural=(n != 1);");

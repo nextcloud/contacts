@@ -41,6 +41,7 @@ OC.L10N.register(
     "Fax work" : "Fax geschäftlich",
     "Pager" : "Pager",
     "Voice" : "Anruf",
+    "Social Network" : "Soziales Netzwerk",
     "Settings" : "Einstellungen"
 },
 "nplurals=2; plural=(n != 1);");

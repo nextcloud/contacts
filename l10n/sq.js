@@ -41,6 +41,7 @@ OC.L10N.register(
     "Fax work" : "Faks pune",
     "Pager" : "Faques",
     "Voice" : "Zë",
+    "Social Network" : "Rrjet Shoqëror",
     "Settings" : "Rregullime"
 },
 "nplurals=2; plural=(n != 1);");

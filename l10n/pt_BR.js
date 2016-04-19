@@ -41,6 +41,7 @@ OC.L10N.register(
     "Fax work" : "Fax do trabalho",
     "Pager" : "Pager",
     "Voice" : "Voz",
+    "Social Network" : "Rêde Social",
     "Settings" : "Configurações"
 },
 "nplurals=2; plural=(n > 1);");
