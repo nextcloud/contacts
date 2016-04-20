@@ -20,6 +20,7 @@
     "(new group)" : "(nieuwe groep)",
     "New contact" : "Nieuwe contactpersoon",
     "{addressbook} shared by {owner}" : "{addressbook} gedeeld door {owner}",
+    "Invalid file type." : "Ongeldig bestands formaat.",
     "Nickname" : "Roepnaam",
     "Notes" : "Notities",
     "Website" : "Website",
@@ -38,6 +39,7 @@
     "Fax work" : "Fax werk",
     "Pager" : "Pieper",
     "Voice" : "Stem",
+    "Social Network" : "Sociaal Netwerk",
     "Settings" : "Instellingen"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
