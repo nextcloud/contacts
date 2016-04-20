@@ -38,6 +38,18 @@ angular.module('contactsApp')
 			ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.type, name: displayName}]);
 		}
 	}
+	if (!_.isUndefined(ctrl.data) && !_.isUndefined(ctrl.data.namespace)) {
+		if (!_.isUndefined(ctrl.model.contact.props['X-ABLABEL'])) {
+			var val = _.find(this.model.contact.props['X-ABLABEL'], function(x) { return x.namespace === ctrl.data.namespace; });
+			ctrl.type = val.value;
+			if (!_.isUndefined(val)) {
+				// in case the type is not yet in the default list of available options we add it
+				if (!ctrl.availableOptions.some(function(e) { return e.id === val.value; } )) {
+					ctrl.availableOptions = ctrl.availableOptions.concat([{id: val.value, name: val.value}]);
+				}
+			}
+		}
+	}
 	ctrl.availableGroups = [];
 
 	ContactService.getGroups().then(function(groups) {
