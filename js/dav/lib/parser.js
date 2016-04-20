@@ -2,14 +2,7 @@ import camelize from './camelize';
 
 let debug = require('./debug')('dav:parser');
 
-let DOMParser;
-if (typeof self !== 'undefined' && 'DOMParser' in self) {
-  // browser main thread
-  DOMParser = self.DOMParser;
-} else {
-  // nodejs or web worker
-  DOMParser = require('xmldom').DOMParser;
-}
+let DOMParser = require('xmldom').DOMParser;
 
 export function multistatus(string) {
   let parser = new DOMParser();
