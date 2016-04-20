@@ -33,9 +33,12 @@ angular.module('contactsApp')
 					var property = model.getProperty('fn');
 					if(property) {
 						return property.value;
-					} else {
-						return undefined;
 					}
+					property = model.getProperty('n');
+					if(property) {
+						return property.value.join();
+					}
+					return undefined;
 				}
 			},
 
