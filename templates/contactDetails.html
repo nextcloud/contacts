@@ -8,8 +8,8 @@
 	</div>
 	<div ng-if="ctrl.contact!==undefined">
 		<header class="contactdetails__header" ng-style="{'background-color': (ctrl.contact.uid() | contactColor)}">
-			<img ng-if="ctrl.photo!==undefined" class="contactdetails__logo avatar" data-ng-src="data:image/png;base64,{{ctrl.photo}}" />
-			<div ng-if="ctrl.photo===undefined" class="contactdetails__logo contact__icon avatar--missing"></div>
+			<img ng-if="ctrl.contact.photo()!==undefined" class="contactdetails__logo avatar" data-ng-src="{{ctrl.contact.photo()}}" />
+			<avatarupload ng-if="ctrl.contact.photo()===undefined" data="ctrl.contact" class="contactdetails__logo contact__icon avatar--missing"></avatarupload>
 			<div id="details-contact-infos">
 				<h2>
 					<input type="text" id="details-fullName" class="contactdetails__name" placeholder="{{ctrl.t.placeholderName}}" autocomplete="off"

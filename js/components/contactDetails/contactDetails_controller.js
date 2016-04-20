@@ -56,7 +56,6 @@ angular.module('contactsApp')
 				return;
 			}
 			ctrl.contact = contact;
-			ctrl.photo = ctrl.contact.photo();
 			ctrl.show = true;
 			$('#app-navigation-toggle').addClass('showdetails');
 
@@ -88,5 +87,9 @@ angular.module('contactsApp')
 
 	ctrl.changeAddressBook = function (addressBook) {
 		ContactService.moveContact(ctrl.contact, addressBook);
+	};
+
+	ctrl.uploadAvatar = function() {
+		console.log('hi');
 	};
 });
