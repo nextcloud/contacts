@@ -3,6 +3,10 @@ angular.module('contactsApp')
 	var ctrl = this;
 
 	ctrl.showUrl = false;
+	/* globals oc_config */
+	/* eslint-disable camelcase */
+	ctrl.canExport = oc_config.versionstring.split('.') >= [9, 0, 2];
+	/* eslint-enable camelcase */
 
 	ctrl.toggleShowUrl = function() {
 		ctrl.showUrl = !ctrl.showUrl;
