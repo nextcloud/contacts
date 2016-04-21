@@ -4,18 +4,6 @@ angular.module('contactsApp')
 		if (!Array.isArray(array)) return array;
 		if (!sortPredicate) return array;
 
-		var isString = function (value) {
-			return (typeof value === 'string');
-		};
-
-		var isNumber = function (value) {
-			return (typeof value === 'number');
-		};
-
-		var isBoolean = function (value) {
-			return (typeof value === 'boolean');
-		};
-
 		var arrayCopy = [];
 		angular.forEach(array, function (item) {
 			arrayCopy.push(item);
@@ -23,13 +11,19 @@ angular.module('contactsApp')
 
 		arrayCopy.sort(function (a, b) {
 			var valueA = a[sortPredicate];
+			if (angular.isFunction(valueA)) {
+				valueA = a[sortPredicate]();
+			}
 			var valueB = b[sortPredicate];
+			if (angular.isFunction(valueB)) {
+				valueB = b[sortPredicate]();
+			}
 
-			if (isString(valueA)) {
+			if (angular.isString(valueA)) {
 				return !reverseOrder ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
 			}
 
-			if (isNumber(valueA) || isBoolean(valueA)) {
+			if (angular.isNumber(valueA) || angular.isBoolean(valueA)) {
 				return !reverseOrder ? valueA - valueB : valueB - valueA;
 			}
 
