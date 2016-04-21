@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contacts",
+    "Address book name" : "Address book name",
     "No contacts in here" : "No contacts in here",
     "Name" : "Name",
     "Organization" : "Organisation",
@@ -21,6 +22,7 @@ OC.L10N.register(
     "(new group)" : "(new group)",
     "New contact" : "New contact",
     "{addressbook} shared by {owner}" : "{addressbook} shared by {owner}",
+    "Invalid file type." : "Invalid file type.",
     "Nickname" : "Nickname",
     "Notes" : "Notes",
     "Website" : "Website",
@@ -39,6 +41,7 @@ OC.L10N.register(
     "Fax work" : "Fax work",
     "Pager" : "Pager",
     "Voice" : "Voice",
+    "Social Network" : "Social Network",
     "Settings" : "Settings"
 },
 "nplurals=2; plural=(n != 1);");

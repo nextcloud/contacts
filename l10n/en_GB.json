@@ -1,5 +1,6 @@
 { "translations": {
     "Contacts" : "Contacts",
+    "Address book name" : "Address book name",
     "No contacts in here" : "No contacts in here",
     "Name" : "Name",
     "Organization" : "Organisation",
@@ -19,6 +20,7 @@
     "(new group)" : "(new group)",
     "New contact" : "New contact",
     "{addressbook} shared by {owner}" : "{addressbook} shared by {owner}",
+    "Invalid file type." : "Invalid file type.",
     "Nickname" : "Nickname",
     "Notes" : "Notes",
     "Website" : "Website",
@@ -37,6 +39,7 @@
     "Fax work" : "Fax work",
     "Pager" : "Pager",
     "Voice" : "Voice",
+    "Social Network" : "Social Network",
     "Settings" : "Settings"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
