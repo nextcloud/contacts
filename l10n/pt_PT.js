@@ -22,6 +22,7 @@ OC.L10N.register(
     "(new group)" : "(novo grupo)",
     "New contact" : "Novo contacto",
     "{addressbook} shared by {owner}" : "{addressbook} partilhado por {owner}",
+    "Invalid file type." : "Tipo de ficheiro inválido.",
     "Nickname" : "Alcunha",
     "Notes" : "Notas",
     "Website" : "Site da Internet",
@@ -40,6 +41,7 @@ OC.L10N.register(
     "Fax work" : "Fax do emprego",
     "Pager" : "Pager",
     "Voice" : "Voz",
+    "Social Network" : "Rede Social",
     "Settings" : "Definições"
 },
 "nplurals=2; plural=(n != 1);");
