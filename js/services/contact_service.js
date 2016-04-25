@@ -113,24 +113,21 @@ angular.module('contactsApp')
 	this.import = function(data, type, addressBook, progressCallback) {
 		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
 
-		var regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi;
-		var singleVCards = data.match(regexp);
+		if(type === 'text/vcard') {
+			var regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi;
+			var singleVCards = data.match(regexp);
 
-		if (!singleVCards) {
-			OC.Notification.showTemporary(t('contacts', 'No contacts in file. Only VCard files are allowed.'));
-			if (progressCallback) {
-				progressCallback(1);
+			var num = 1;
+			for(var i in singleVCards) {
+				var newContact = new Contact(addressBook, {addressData: singleVCards[i]});
+				this.create(newContact, addressBook).then(function() {
+					// Update the progress indicator
+					if (progressCallback) progressCallback(num/singleVCards.length);
+					num++;
+				});
 			}
-			return;
-		}
-		var num = 1;
-		for(var i in singleVCards) {
-			var newContact = new Contact(addressBook, {addressData: singleVCards[i]});
-			this.create(newContact, addressBook).then(function() {
-				// Update the progress indicator
-				if (progressCallback) progressCallback(num/singleVCards.length);
-				num++;
-			});
+		} else {
+			OC.Notification.showTemporary(t('contacts', 'Invalid file type.'));
 		}
 	};
 
