@@ -22,7 +22,6 @@ OC.L10N.register(
     "(new group)" : "(grup i ri)",
     "New contact" : "Kontakt i ri",
     "{addressbook} shared by {owner}" : "{addressbook} ndarë nga {owner}",
-    "Invalid file type." : "Lloj i pavlefshëm kartele.",
     "Nickname" : "Nofkë",
     "Notes" : "Shënime",
     "Website" : "Sajt",

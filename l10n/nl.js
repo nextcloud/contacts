@@ -22,7 +22,6 @@ OC.L10N.register(
     "(new group)" : "(nieuwe groep)",
     "New contact" : "Nieuwe contactpersoon",
     "{addressbook} shared by {owner}" : "{addressbook} gedeeld door {owner}",
-    "Invalid file type." : "Ongeldig bestands formaat.",
     "Nickname" : "Roepnaam",
     "Notes" : "Notities",
     "Website" : "Website",

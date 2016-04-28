@@ -22,7 +22,6 @@ OC.L10N.register(
     "(new group)" : "(uusi ryhmä)",
     "New contact" : "Uusi yhteystieto",
     "{addressbook} shared by {owner}" : "Osoitekirjan {addressbook} jakoi {owner}",
-    "Invalid file type." : "Virheellinen tiedostotyyppi.",
     "Nickname" : "Kutsumanimi",
     "Notes" : "Huomiot",
     "Website" : "Verkkosivusto",

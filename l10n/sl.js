@@ -22,7 +22,6 @@ OC.L10N.register(
     "(new group)" : "(nova skupina)",
     "New contact" : "Nov stik",
     "{addressbook} shared by {owner}" : "Souporabo imenika {addressbook} je omogočil uporabnik {owner}",
-    "Invalid file type." : "Neveljavna vrsta datoteke.",
     "Nickname" : "Vzdevek",
     "Notes" : "Sporočilca",
     "Website" : "Spletna stran",

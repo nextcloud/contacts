@@ -22,7 +22,6 @@ OC.L10N.register(
     "(new group)" : "(กลุ่มใหม่)",
     "New contact" : "รายชื่อผุ้ติดต่อใหม่",
     "{addressbook} shared by {owner}" : "{addressbook} ถูกแชร์โดย {owner}",
-    "Invalid file type." : "ประเภทไฟล์ไม่ถูกต้อง",
     "Nickname" : "ชื่อเล่น",
     "Notes" : "บันทึกย่อ",
     "Website" : "เว็บไซต์",

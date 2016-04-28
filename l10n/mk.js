@@ -22,7 +22,6 @@ OC.L10N.register(
     "(new group)" : "(нова група)",
     "New contact" : "Нов контакт",
     "{addressbook} shared by {owner}" : "{addressbook} споделено од {owner}",
-    "Invalid file type." : "Неисправен тип на фајл",
     "Nickname" : "Прекар",
     "Notes" : "Белешки",
     "Website" : "Веб сајт",
