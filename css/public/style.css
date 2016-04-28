@@ -86,30 +86,52 @@
 	opacity: .7
 }
 
-.contactdetails__header .contactdetails__logo {
+avatar {
+	position: relative;
 	height: 75px;
 	width: 75px;
-	object-fit: cover;
-	background-color: transparent;
+	border-radius: 50%;
+	overflow: hidden;
 	flex-shrink: 0;
-	margin: 0;
 }
-.contactdetails__logo.contact__icon {
+
+.avatar-upload {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+
 	background-color: rgba(0,0,0,0.2);
-	height: 75px;
-	width: 75px;
 	font-size: 2.5em;
 	line-height: 75px;
+
+	display: none;
+
 }
-.contactdetails__logo.contact__icon > .icon-upload-white {
+
+.avatar-upload > .icon-upload-white {
 	display: block;
 	width: 100%;
 	height: 100%;
 	opacity: 0.5;
 	cursor: pointer;
 }
-.contactdetails__logo.contact__icon:hover > .icon-upload-white {
+.avatar-upload:hover > .icon-upload-white {
 	opacity: 0.7;
+}
+
+avatar:hover .avatar-upload,
+avatar.avatar--missing .avatar-upload {
+	display: block;
+}
+
+.contactdetails__logo {
+	height: 75px;
+	width: 75px;
+	object-fit: cover;
+	background-color: transparent;
+	margin: 0;
 }
 
 #check-all + label:before {

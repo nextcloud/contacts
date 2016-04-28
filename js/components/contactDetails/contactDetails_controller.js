@@ -88,8 +88,4 @@ angular.module('contactsApp')
 	ctrl.changeAddressBook = function (addressBook) {
 		ContactService.moveContact(ctrl.contact, addressBook);
 	};
-
-	ctrl.uploadAvatar = function() {
-		console.log('hi');
-	};
 });

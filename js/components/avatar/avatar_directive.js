@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.directive('avatarupload', function(ContactService) {
+.directive('avatar', function(ContactService) {
 	return {
 		scope: {
 			contact: '=data'
@@ -25,6 +25,6 @@ angular.module('contactsApp')
 				}
 			});
 		},
-		templateUrl: OC.linkTo('contacts', 'templates/avatarUpload.html')
+		templateUrl: OC.linkTo('contacts', 'templates/avatar.html')
 	};
 });
