@@ -22,6 +22,7 @@ OC.L10N.register(
     "(new group)" : "(uusi ryhmä)",
     "New contact" : "Uusi yhteystieto",
     "{addressbook} shared by {owner}" : "Osoitekirjan {addressbook} jakoi {owner}",
+    "No contacts in file. Only VCard files are allowed." : "Ei yhteystietoja tiedostossa. Vain vCard-tiedostot ovat sallittuja.",
     "Nickname" : "Kutsumanimi",
     "Notes" : "Huomiot",
     "Website" : "Verkkosivusto",

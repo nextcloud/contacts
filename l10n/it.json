@@ -20,6 +20,7 @@
     "(new group)" : "(nuovo gruppo)",
     "New contact" : "Nuovo contatto",
     "{addressbook} shared by {owner}" : "{addressbook} condivisa da {owner}",
+    "No contacts in file. Only VCard files are allowed." : "Nessun contatto nel file. Sono consentiti solo file vCard.",
     "Nickname" : "Pseudonimo",
     "Notes" : "Note",
     "Website" : "Sito web",

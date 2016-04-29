@@ -22,6 +22,7 @@ OC.L10N.register(
     "(new group)" : "(grup i ri)",
     "New contact" : "Kontakt i ri",
     "{addressbook} shared by {owner}" : "{addressbook} ndarë nga {owner}",
+    "No contacts in file. Only VCard files are allowed." : "S’ka kontakte në kartelë. Lejohen vetëm kartela VCard.",
     "Nickname" : "Nofkë",
     "Notes" : "Shënime",
     "Website" : "Sajt",
