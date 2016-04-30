@@ -22,6 +22,7 @@ OC.L10N.register(
     "(new group)" : "(nuevo grupo)",
     "New contact" : "Nuevo contacto",
     "{addressbook} shared by {owner}" : "{addressbook} compartido por {owner}",
+    "No contacts in file. Only VCard files are allowed." : "No hay contactos en el archivo. Solamente se permiten archivos VCard.",
     "Nickname" : "Apodo",
     "Notes" : "Notas",
     "Website" : "Sitio web",
@@ -40,6 +41,7 @@ OC.L10N.register(
     "Fax work" : "Fax del trabajo",
     "Pager" : "Localizador",
     "Voice" : "Voz",
+    "Social Network" : "Red social",
     "Settings" : "Ajustes"
 },
 "nplurals=2; plural=(n != 1);");
