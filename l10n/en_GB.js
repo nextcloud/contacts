@@ -22,6 +22,7 @@ OC.L10N.register(
     "(new group)" : "(new group)",
     "New contact" : "New contact",
     "{addressbook} shared by {owner}" : "{addressbook} shared by {owner}",
+    "No contacts in file. Only VCard files are allowed." : "No contacts in file. Only VCard files are allowed.",
     "Nickname" : "Nickname",
     "Notes" : "Notes",
     "Website" : "Website",
