@@ -37,7 +37,7 @@ OC.L10N.register(
     "Phone" : "Teléfono",
     "Mobile" : "Móvil",
     "Fax" : "Fax",
-    "Fax home" : "nº de Fax",
+    "Fax home" : "Fax hogareño",
     "Fax work" : "Fax del trabajo",
     "Pager" : "Localizador",
     "Voice" : "Voz",
