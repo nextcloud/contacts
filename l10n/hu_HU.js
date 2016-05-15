@@ -22,6 +22,7 @@ OC.L10N.register(
     "(new group)" : "(új csoport)",
     "New contact" : "Új névjegy",
     "{addressbook} shared by {owner}" : "{addressbook} megosztója {owner}",
+    "No contacts in file. Only VCard files are allowed." : "A fájl nem tartalmaz névjegyeket. Kizárólag VCard fájlok engedélyezettek.",
     "Nickname" : "Becenév",
     "Notes" : "Jegyzetek",
     "Website" : "Weboldal",
@@ -40,6 +41,7 @@ OC.L10N.register(
     "Fax work" : "Munkahelyi fax",
     "Pager" : "Személyhívó",
     "Voice" : "Hang",
+    "Social Network" : "Közösségi hálózat",
     "Settings" : "Beállítások"
 },
 "nplurals=2; plural=(n != 1);");

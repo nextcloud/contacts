@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "연락처",
+    "Address book name" : "주소록 이름",
     "No contacts in here" : "여기에 연락처 없음",
     "Name" : "이름",
     "Organization" : "조직",
