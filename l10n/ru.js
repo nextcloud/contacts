@@ -22,6 +22,7 @@ OC.L10N.register(
     "(new group)" : "(новая группа)",
     "New contact" : "Новый контакт",
     "{addressbook} shared by {owner}" : "{addressbook} поделился {owner}",
+    "No contacts in file. Only VCard files are allowed." : "Нет контактов в файле. Только VCard файлы разрешены.",
     "Nickname" : "Псевдоним",
     "Notes" : "Заметки",
     "Website" : "Сайт",
@@ -40,6 +41,7 @@ OC.L10N.register(
     "Fax work" : "Факс работы",
     "Pager" : "Пейджер",
     "Voice" : "Голосовая почта",
+    "Social Network" : "Социальная сеть",
     "Settings" : "Настройки"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");
