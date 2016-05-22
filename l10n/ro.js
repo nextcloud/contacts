@@ -26,6 +26,7 @@ OC.L10N.register(
     "Nickname" : "Pseudonim",
     "Notes" : "Notă",
     "Website" : "Website",
+    "Federated Cloud ID" : "Federated Cloud ID",
     "Home" : "Acasă",
     "Work" : "Serviciu",
     "Other" : "Altele",
