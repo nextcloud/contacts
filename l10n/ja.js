@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "アドレス帳",
+    "Address book name" : "アドレス帳名",
     "No contacts in here" : "連絡先がありません",
     "Name" : "名前",
     "Organization" : "所属",
@@ -21,6 +22,7 @@ OC.L10N.register(
     "(new group)" : "(新規グループ)",
     "New contact" : "新しい連絡先",
     "{addressbook} shared by {owner}" : " {owner}と共有中の{addressbook} ",
+    "No contacts in file. Only VCard files are allowed." : "コンタクトがファイルにありません。VCardファイルのみが有効です。",
     "Nickname" : "ニックネーム",
     "Notes" : "ノート",
     "Website" : "ウェブサイト",
@@ -39,6 +41,7 @@ OC.L10N.register(
     "Fax work" : "職場FAX",
     "Pager" : "ポケベル",
     "Voice" : "音声番号",
+    "Social Network" : "ソーシャルネットワーク",
     "Settings" : "設定"
 },
 "nplurals=1; plural=0;");
