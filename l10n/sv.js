@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontakter",
+    "Address book name" : "Adressboknamn",
     "No contacts in here" : "Det finns inga kontakter här",
     "Name" : "Namn",
     "Organization" : "Organisation",
@@ -21,6 +22,7 @@ OC.L10N.register(
     "(new group)" : "(ny grupp)",
     "New contact" : "Ny kontakt",
     "{addressbook} shared by {owner}" : "{addressbook} delad av {owner}",
+    "No contacts in file. Only VCard files are allowed." : "Inga kontakter i filen. Bara VCard-filer är tillåtna.",
     "Nickname" : "Smeknamn",
     "Notes" : "Anteckningar",
     "Website" : "Webbplats",
@@ -39,6 +41,7 @@ OC.L10N.register(
     "Fax work" : "Fax arbete",
     "Pager" : "Personsökare",
     "Voice" : "Röst",
+    "Social Network" : "Socialt nätverk",
     "Settings" : "Inställningar"
 },
 "nplurals=2; plural=(n != 1);");
