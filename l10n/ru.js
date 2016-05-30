@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "Контакты",
     "Address book name" : "Название адресной книги",
+    "Import" : "Импорт",
     "No contacts in here" : "Здесь нет контактов",
     "Name" : "Наименование контакта",
     "Organization" : "Организация",
     "Title" : "Заголовок",
     "Add field ..." : "Добавить поле ...",
-    "Import" : "Импорт",
     "Add contact" : "Добавить контакт",
     "No search result for {query}" : "По запросу {query} ничего не найдено",
     "All contacts" : "Все контакты",

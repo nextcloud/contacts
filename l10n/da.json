@@ -1,12 +1,12 @@
 { "translations": {
     "Contacts" : "Kontakter",
     "Address book name" : "Adressebogsnavn",
+    "Import" : "Importér",
     "No contacts in here" : "Ingen kontaktpersoner her",
     "Name" : "Navn",
     "Organization" : "Organisation",
     "Title" : "Titel",
     "Add field ..." : "Tilføj felt...",
-    "Import" : "Importér",
     "Add contact" : "Tilføj kontaktpeson.",
     "No search result for {query}" : "Ingen søgeresultater for  {query}",
     "All contacts" : "Alle kontakter",

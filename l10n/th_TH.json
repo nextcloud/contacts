@@ -1,12 +1,12 @@
 { "translations": {
     "Contacts" : "ข้อมูลผู้ติดต่อ",
     "Address book name" : "สมุดชื่อที่อยู่",
+    "Import" : "นำเข้า",
     "No contacts in here" : "ไม่มีรายชื่อในที่นี่",
     "Name" : "ชื่อ",
     "Organization" : "หน่วยงาน",
     "Title" : "ชื่อเรื่อง",
     "Add field ..." : "เพิ่มช่อง ...",
-    "Import" : "นำเข้า",
     "Add contact" : "เพิ่มชื่อผู้ติดต่อ",
     "No search result for {query}" : "ไม่พบผลลัพธ์การค้นหาสำหรับ {query}",
     "All contacts" : "รายชื่อทั้งหมด",

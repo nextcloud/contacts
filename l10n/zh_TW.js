@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "通訊錄",
     "Address book name" : "通訊錄名稱",
+    "Import" : "匯入",
     "No contacts in here" : "這裡沒有聯絡人",
     "Name" : "名稱",
     "Organization" : "組織",
     "Title" : "標題",
     "Add field ..." : "新增欄位…",
-    "Import" : "匯入",
     "Add contact" : "新增聯絡人",
     "No search result for {query}" : "沒有結果符合 {query}",
     "All contacts" : "所有聯絡人",

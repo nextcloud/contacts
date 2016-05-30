@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakter",
     "Address book name" : "Adressboknamn",
+    "Import" : "Importera",
     "No contacts in here" : "Det finns inga kontakter här",
     "Name" : "Namn",
     "Organization" : "Organisation",
     "Title" : "Rubrik",
     "Add field ..." : "Lägg till fält ...",
-    "Import" : "Importera",
     "Add contact" : "Lägg till en kontakt",
     "No search result for {query}" : "Inget sökresultat för {query}",
     "All contacts" : "Alla kontakter",

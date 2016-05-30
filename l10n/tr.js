@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "Kişiler",
     "Address book name" : "Adres defteri adı",
+    "Import" : "İçe aktar",
     "No contacts in here" : "Burada kişi yok",
     "Name" : "Ad",
     "Organization" : "Kurum",
     "Title" : "Başlık",
     "Add field ..." : "Alan ekle...",
-    "Import" : "İçe aktar",
     "Add contact" : "Bağlantı ekle",
     "No search result for {query}" : "{query} için arama sonucu yok",
     "All contacts" : "Tüm kişiler",

@@ -1,12 +1,12 @@
 { "translations": {
     "Contacts" : "אנשי קשר",
     "Address book name" : "שם ספר כתובות",
+    "Import" : "יבוא",
     "No contacts in here" : "אין כאן אנשי קשר",
     "Name" : "שם",
     "Organization" : "ארגון",
     "Title" : "כותרת",
     "Add field ..." : "הוספת שדה...",
-    "Import" : "יבוא",
     "Add contact" : "הוסף איש קשר",
     "No search result for {query}" : "אין תוצאות חיפוש עבור {query}",
     "All contacts" : "כל אנשי הקשר",

@@ -2,12 +2,12 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontakter",
+    "Import" : "Importer",
     "No contacts in here" : "Ingen kontakter her",
     "Name" : "Navn",
     "Organization" : "Organisasjon",
     "Title" : "Tittel",
     "Add field ..." : "Nytt felt ...",
-    "Import" : "Importer",
     "Add contact" : "Ny kontakt",
     "All contacts" : "Alle kontakter",
     "Not grouped" : "Ikke gruppert",

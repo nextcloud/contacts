@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "Stiki",
     "Address book name" : "Ime imenika",
+    "Import" : "Uvozi",
     "No contacts in here" : "Ni dodanega nobenega stika!",
     "Name" : "Ime",
     "Organization" : "Ustanova",
     "Title" : "Naslov",
     "Add field ..." : "Dodaj polje ...",
-    "Import" : "Uvozi",
     "Add contact" : "Dodaj stik",
     "No search result for {query}" : "Ni zadetkov iskanja za {query}",
     "All contacts" : "Vsi stiki",

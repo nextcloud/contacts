@@ -1,12 +1,12 @@
 { "translations": {
     "Contacts" : "Yhteystiedot",
     "Address book name" : "Osoitekirjan nimi",
+    "Import" : "Tuo",
     "No contacts in here" : "Ei yhteytietoja",
     "Name" : "Nimi",
     "Organization" : "Organisaatio",
     "Title" : "Otsikko",
     "Add field ..." : "Lisää kenttä...",
-    "Import" : "Tuo",
     "Add contact" : "Lisää yhteystieto",
     "No search result for {query}" : "Ei tuloksia haulle {query}",
     "All contacts" : "Kaikki yhteystiedot",

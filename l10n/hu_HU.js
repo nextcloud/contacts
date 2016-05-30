@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "Névjegyek",
     "Address book name" : "Címjegyzék neve",
+    "Import" : "Importálás",
     "No contacts in here" : "Nincsenek névjegyek",
     "Name" : "Név",
     "Organization" : "Szervezet",
     "Title" : "Cím",
     "Add field ..." : "Mező hozzáadása",
-    "Import" : "Importálás",
     "Add contact" : "Névjegy hozzáadása",
     "No search result for {query}" : "{query} keresésre nincs találat.",
     "All contacts" : "Összes névjegy",

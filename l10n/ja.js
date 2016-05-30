@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "アドレス帳",
     "Address book name" : "アドレス帳名",
+    "Import" : "インポート",
     "No contacts in here" : "連絡先がありません",
     "Name" : "名前",
     "Organization" : "所属",
     "Title" : "タイトル",
     "Add field ..." : "項目を追加",
-    "Import" : "インポート",
     "Add contact" : "連絡先を追加",
     "No search result for {query}" : "{query} に関する検索結果はありません。",
     "All contacts" : "すべての連絡先",

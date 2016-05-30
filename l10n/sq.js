@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakte",
     "Address book name" : "Emër libri adresash",
+    "Import" : "Importoje",
     "No contacts in here" : "S’ka kontakte këtu",
     "Name" : "Emër",
     "Organization" : "Organizëm",
     "Title" : "Titull",
     "Add field ..." : "Shtoni fushë...",
-    "Import" : "Importoje",
     "Add contact" : "Shtoni kontakt",
     "No search result for {query}" : "S’pat përfundime kërkimi për {query}",
     "All contacts" : "Krejt kontaktet",

@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "연락처",
     "Address book name" : "주소록 이름",
+    "Import" : "가져오기",
     "No contacts in here" : "여기에 연락처 없음",
     "Name" : "이름",
     "Organization" : "조직",
     "Title" : "제목",
     "Add field ..." : "필드 추가...",
-    "Import" : "가져오기",
     "Add contact" : "연락처 추가",
     "All contacts" : "모든 연락처",
     "Not grouped" : "그룹에 없음",

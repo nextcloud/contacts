@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "Contacte",
     "Address book name" : "Numele listă de contacte",
+    "Import" : "Importă",
     "No contacts in here" : "Niciun contact aici",
     "Name" : "Nume",
     "Organization" : "Organizație",
     "Title" : "Titlu",
     "Add field ..." : "Adaugă câmp ...",
-    "Import" : "Importă",
     "Add contact" : "Adaugă contact",
     "No search result for {query}" : "Niciun rezultat pentru {query}",
     "All contacts" : "Toate contactele",

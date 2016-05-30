@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakty",
     "Address book name" : "Nazwa książki adresowej",
+    "Import" : "Importuj",
     "No contacts in here" : "Nie ma tu żadnych kontaktów",
     "Name" : "Nazwa",
     "Organization" : "Organizacja",
     "Title" : "Tytuł",
     "Add field ..." : "Dodaj pole ...",
-    "Import" : "Importuj",
     "Add contact" : "Dodaj kontakt",
     "No search result for {query}" : "Brak wyników wyszukiwania dla zapytania {query}",
     "All contacts" : "Wszystkie kontakty",

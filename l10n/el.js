@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "Επαφές",
     "Address book name" : "Όνομα βιβλίου διευθύνσεων",
+    "Import" : "Εισαγωγή",
     "No contacts in here" : "Δεν υπάρχουν επαφές εδώ",
     "Name" : "Όνομα",
     "Organization" : "Οργανισμός",
     "Title" : "Τίτλος",
     "Add field ..." : "Προσθήκη πεδίου...",
-    "Import" : "Εισαγωγή",
     "Add contact" : "Προσθήκη επαφής",
     "No search result for {query}" : "Δεν βρέθηκε αποτέλεσμα αναζήτησης για {query}",
     "All contacts" : "Όλες οι επαφές",

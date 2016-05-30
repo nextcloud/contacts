@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "Tengiliðir",
     "Address book name" : "Heiti nafnaskrár",
+    "Import" : "Flytja inn",
     "No contacts in here" : "Engir tengiliðir hér",
     "Name" : "Nafn",
     "Organization" : "Stofnun/félag",
     "Title" : "Titill",
     "Add field ..." : "Bæta við reit...",
-    "Import" : "Flytja inn",
     "Add contact" : "Bæta við tengilið",
     "No search result for {query}" : "Engar leitarniðurstöður fyrir {query}",
     "All contacts" : "Allir tengiliðir",

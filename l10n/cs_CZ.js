@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakty",
     "Address book name" : "Název adresáře kontaktů",
+    "Import" : "Importovat",
     "No contacts in here" : "Nejsou zde žádné kontakty",
     "Name" : "Název",
     "Organization" : "Organizace",
     "Title" : "Název",
     "Add field ..." : "Přidat pole...",
-    "Import" : "Importovat",
     "Add contact" : "Přidat kontakt",
     "No search result for {query}" : "Žádný nález pro {query}",
     "All contacts" : "Všechny kontakty",

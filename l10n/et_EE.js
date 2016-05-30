@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "Kontaktid",
     "Address book name" : "Aadressiraamatu nimi",
+    "Import" : "Impordi",
     "No contacts in here" : "Ühtegi kontakti pole",
     "Name" : "Nimi",
     "Organization" : "Organisatsioon",
     "Title" : "Pealkiri",
     "Add field ..." : "Lisa väli ...",
-    "Import" : "Impordi",
     "Add contact" : "Lisa kontakt",
     "No search result for {query}" : "Otsingutulemused sõnadele {query}",
     "All contacts" : "Kõik kontaktid",

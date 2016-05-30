@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "Контакти",
     "Address book name" : "Име на адреснакнига ",
+    "Import" : "Внасяне",
     "No contacts in here" : "Тук няма контакти",
     "Name" : "Име",
     "Organization" : "Организация",
     "Title" : "Заглавие",
     "Add field ..." : "Добави приятел",
-    "Import" : "Внасяне",
     "Add contact" : "Добави контакт",
     "No search result for {query}" : "Няма намерени резултати за {query}",
     "All contacts" : "Всички контакти",

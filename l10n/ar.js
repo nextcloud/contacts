@@ -3,12 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "جهات الاتصال",
     "Address book name" : "اسم دفتر العناوين",
+    "Import" : "استيراد",
     "No contacts in here" : "لا توجد أية عناوين",
     "Name" : "الاسم",
     "Organization" : "المؤسسة",
     "Title" : "العنوان",
     "Add field ..." : "أضف حقلاً ...",
-    "Import" : "استيراد",
     "Add contact" : "أضف جهة اتصال",
     "No search result for {query}" : "لم يظهر البحث عن {query} أي نتيجة",
     "All contacts" : "كل الجهات",

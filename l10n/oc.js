@@ -2,11 +2,11 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contactes",
+    "Import" : "Importar",
     "Name" : "Nom",
     "Organization" : "Societat",
     "Title" : "Títol",
     "Add field ..." : "Apondre un camp...",
-    "Import" : "Importar",
     "Add contact" : "Apondre un contacte",
     "All contacts" : "Totes los contactes",
     "Not grouped" : "Pas gropats",
