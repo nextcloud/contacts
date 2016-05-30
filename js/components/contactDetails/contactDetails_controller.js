@@ -56,7 +56,6 @@ angular.module('contactsApp')
 				return;
 			}
 			ctrl.contact = contact;
-			ctrl.photo = ctrl.contact.photo();
 			ctrl.show = true;
 			$('#app-navigation-toggle').addClass('showdetails');
 

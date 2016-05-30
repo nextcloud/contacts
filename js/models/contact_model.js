@@ -90,12 +90,21 @@ angular.module('contactsApp')
 				}
 			},
 
-			photo: function() {
-				var property = this.getProperty('photo');
-				if(property) {
-					return property.value;
+			photo: function(value) {
+				if (angular.isDefined(value)) {
+					// setter
+					// splits image data into "data:image/jpeg" and base 64 encoded image
+					var imageData = value.split(';base64,');
+					var imageType = imageData[0].slice('data:'.length);
+
+					return this.setProperty('photo', { value: imageData[1], meta: {type: [imageType]} });
 				} else {
-					return undefined;
+					var property = this.getProperty('photo');
+					if(property) {
+						return 'data:' + property.meta.type + ';base64,' + property.value;
+					} else {
+						return undefined;
+					}
 				}
 			},
 
