@@ -101,7 +101,14 @@ angular.module('contactsApp')
 				} else {
 					var property = this.getProperty('photo');
 					if(property) {
-						return 'data:' + property.meta.type + ';base64,' + property.value;
+						var type = property.meta.type;
+						if (angular.isArray(type)) {
+							type = type[0];
+						}
+						if (!type.startsWith('image/')) {
+							type = 'image/' + type.toLowerCase();
+						}
+						return 'data:' + type + ';base64,' + property.value;
 					} else {
 						return undefined;
 					}
