@@ -346,21 +346,15 @@ li.addressBook-share-item span.shareeIdentifier {
 }
 
 #app-settings-content #upload.button {
-	padding: 5px 40px 5px 20px;
-	background-position-x: 80px;
-	position: absolute;
-	top: 2px;
-	right: 2px;
-}
-#app-settings-content #upload.button .icon-upload {
+	width: 100%;
+	padding: 7px 10px;
+	padding-left: 34px;
+	background-position: 10px center;
+	text-align: left;
+	margin: 0;
 	display: block;
-	right: 16px;
-	position: absolute;
-	top: 7px;
-	opacity: 0.5;
+	margin-bottom: 10px;
 }
-
-
 
 
 /* Contacts List */
