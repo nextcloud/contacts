@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Yhteystiedot",
     "Address book name" : "Osoitekirjan nimi",
     "Import" : "Tuo",
+    "The selected image is too big (max 1MB)" : "Valittu kuva on liian suuri kooltaan (enintään 1 Mt)",
     "No contacts in here" : "Ei yhteytietoja",
     "Name" : "Nimi",
     "Organization" : "Organisaatio",
