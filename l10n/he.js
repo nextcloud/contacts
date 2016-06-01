@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "אנשי קשר",
     "Address book name" : "שם ספר כתובות",
     "Import" : "יבוא",
+    "The selected image is too big (max 1MB)" : "התמונה הנבחרת גדולה מדי (מקסימום 1 מגה בייט)",
     "No contacts in here" : "אין כאן אנשי קשר",
     "Name" : "שם",
     "Organization" : "ארגון",
@@ -22,6 +23,7 @@ OC.L10N.register(
     "(new group)" : "(קבוצה חדשה)",
     "New contact" : "איש קשר חדש",
     "{addressbook} shared by {owner}" : "{addressbook} שותף על ידי {owner}",
+    "No contacts in file. Only VCard files are allowed." : "אין אנשי קשר בקובץ. רק קובצי VCard ניתנים לשימוש.",
     "Nickname" : "כינוי",
     "Notes" : "הערות",
     "Website" : "אתר אינטרנט",
@@ -40,6 +42,7 @@ OC.L10N.register(
     "Fax work" : "פקס בעבודה",
     "Pager" : "זימונית",
     "Voice" : "קולי",
+    "Social Network" : "רשת חברתית",
     "Settings" : "הגדרות"
 },
 "nplurals=2; plural=(n != 1);");
