@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Contatti",
     "Address book name" : "Nome della rubrica",
     "Import" : "Importa",
+    "The selected image is too big (max 1MB)" : "L'immagine selezionata è troppo grande (max 1MB)",
     "No contacts in here" : "Nessun contatto qui",
     "Name" : "Nome",
     "Organization" : "Organizzazione",
