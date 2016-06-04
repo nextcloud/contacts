@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Stiki",
     "Address book name" : "Ime imenika",
     "Import" : "Uvozi",
+    "The selected image is too big (max 1MB)" : "Izbrana slika je prevelika (omejitev je 1 MB).",
     "No contacts in here" : "Ni dodanega nobenega stika!",
     "Name" : "Ime",
     "Organization" : "Ustanova",
