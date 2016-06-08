@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Kontakter",
     "Address book name" : "Adressebogsnavn",
     "Import" : "Importér",
+    "The selected image is too big (max 1MB)" : "Det valgte billede er for stort (max 1MB)",
     "No contacts in here" : "Ingen kontaktpersoner her",
     "Name" : "Navn",
     "Organization" : "Organisation",
@@ -22,6 +23,7 @@ OC.L10N.register(
     "(new group)" : "(new group)",
     "New contact" : "Ny kontakt",
     "{addressbook} shared by {owner}" : "{addressbook} delt af {owner}",
+    "No contacts in file. Only VCard files are allowed." : "Ingen kontakter i filen. Kun vCard filer accepteres.",
     "Nickname" : "Kaldenavn",
     "Notes" : "Noter",
     "Website" : "Hjemmeside",
@@ -40,6 +42,7 @@ OC.L10N.register(
     "Fax work" : "Fax arbejde",
     "Pager" : "Personsøger",
     "Voice" : "Telefonsvarer",
+    "Social Network" : "Socialt Netværk",
     "Settings" : "Indstillinger"
 },
 "nplurals=2; plural=(n != 1);");
