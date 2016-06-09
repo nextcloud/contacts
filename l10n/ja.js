@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "アドレス帳",
     "Address book name" : "アドレス帳名",
     "Import" : "インポート",
+    "The selected image is too big (max 1MB)" : "選択した画像容量が大きすぎます (最大1 MB)",
     "No contacts in here" : "連絡先がありません",
     "Name" : "名前",
     "Organization" : "所属",
