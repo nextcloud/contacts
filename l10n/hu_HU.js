@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Névjegyek",
     "Address book name" : "Címjegyzék neve",
     "Import" : "Importálás",
+    "The selected image is too big (max 1MB)" : "A kiválasztott kép túl nagy (max. 1 MB)!",
     "No contacts in here" : "Nincsenek névjegyek",
     "Name" : "Név",
     "Organization" : "Szervezet",
