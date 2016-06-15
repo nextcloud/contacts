@@ -6,13 +6,18 @@ angular.module('contactsApp')
 	ctrl.type = undefined;
 	ctrl.isPreferred = false;
 	ctrl.t = {
-		poBox : t('contacts', 'Post Office Box'),
-		postalCode : t('contacts', 'Postal Code'),
+		poBox : t('contacts', 'Post office box'),
+		postalCode : t('contacts', 'Postal code'),
 		city : t('contacts', 'City'),
 		state : t('contacts', 'State or province'),
 		country : t('contacts', 'Country'),
 		address: t('contacts', 'Address'),
-		newGroup: t('contacts', '(new group)')
+		newGroup: t('contacts', '(new group)'),
+		familyName: t('contacts', 'Last name'),
+		firstName: t('contacts', 'First name'),
+		additionalNames: t('contacts', 'Additional names'),
+		honorificPrefix: t('contacts', 'Prefix'),
+		honorificSuffix: t('contacts', 'Suffix')
 	};
 
 	ctrl.availableOptions = ctrl.meta.options || [];
@@ -51,6 +56,28 @@ angular.module('contactsApp')
 		ctrl.data.meta = ctrl.data.meta || {};
 		ctrl.data.meta.type = ctrl.data.meta.type || [];
 		ctrl.data.meta.type[0] = val;
+		ctrl.model.updateContact();
+	};
+
+	ctrl.updateDetailedName = function () {
+		var fn = '';
+		if (ctrl.data.value[3]) {
+			fn += ctrl.data.value[3] + ' ';
+		}
+		if (ctrl.data.value[1]) {
+			fn += ctrl.data.value[1] + ' ';
+		}
+		if (ctrl.data.value[2]) {
+			fn += ctrl.data.value[2] + ' ';
+		}
+		if (ctrl.data.value[0]) {
+			fn += ctrl.data.value[0] + ' ';
+		}
+		if (ctrl.data.value[4]) {
+			fn += ctrl.data.value[4];
+		}
+
+		ctrl.model.contact.fullName(fn);
 		ctrl.model.updateContact();
 	};
 
