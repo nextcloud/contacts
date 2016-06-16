@@ -239,6 +239,10 @@ detailsitem.details-item-adr .icon-delete {
 	top: 57px;
 	left: 331px;
 }
+detailsitem.details-item-n .icon-delete {
+	top: 34px;
+	left: 331px;
+}
 
 detailsitem.details-item-email select {
 	margin-right: 0;

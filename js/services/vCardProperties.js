@@ -15,6 +15,13 @@ angular.module('contactsApp')
 			readableName: t('contacts', 'Nickname'),
 			template: 'text'
 		},
+		n: {
+			readableName: t('contacts', 'Detailed name'),
+			defaultValue: {
+				value:['', '', '', '', '']
+			},
+			template: 'n'
+		},
 		note: {
 			readableName: t('contacts', 'Notes'),
 			template: 'textarea'
@@ -108,7 +115,7 @@ angular.module('contactsApp')
 		},
 		'X-SOCIALPROFILE': {
 			multiple: true,
-			readableName: t('contacts', 'Social Network'),
+			readableName: t('contacts', 'Social network'),
 			template: 'text',
 			defaultValue: {
 				value:[''],
