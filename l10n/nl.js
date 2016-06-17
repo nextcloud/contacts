@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Contactpersonen",
     "Address book name" : "Adresboek naam",
     "Import" : "Importeer",
+    "The selected image is too big (max 1MB)" : "De geselecteerde afbeelding is te groot (max 1MB)",
     "No contacts in here" : "Hier geen contactpersonen gevonden",
     "Name" : "Naam",
     "Organization" : "Organisatie",
@@ -13,8 +14,6 @@ OC.L10N.register(
     "No search result for {query}" : "Geen zoekresultaten voor {query}",
     "All contacts" : "Alle contactpersonen",
     "Not grouped" : "Niet gegroepeerd",
-    "Post Office Box" : "Postbus",
-    "Postal Code" : "Postcode",
     "City" : "Stad",
     "State or province" : "Staat of provincie",
     "Country" : "Land",
@@ -41,7 +40,6 @@ OC.L10N.register(
     "Fax work" : "Fax werk",
     "Pager" : "Pieper",
     "Voice" : "Stem",
-    "Social Network" : "Sociaal Netwerk",
     "Settings" : "Instellingen"
 },
 "nplurals=2; plural=(n != 1);");

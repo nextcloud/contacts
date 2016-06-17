@@ -14,8 +14,6 @@ OC.L10N.register(
     "No search result for {query}" : "Ei tuloksia haulle {query}",
     "All contacts" : "Kaikki yhteystiedot",
     "Not grouped" : "Ei ryhmitelty",
-    "Post Office Box" : "Postilokero",
-    "Postal Code" : "Postinumero",
     "City" : "Paikkakunta",
     "State or province" : "Maakunta tai osavaltio",
     "Country" : "Maa",
@@ -42,7 +40,6 @@ OC.L10N.register(
     "Fax work" : "Faksi, työ",
     "Pager" : "Hakulaite",
     "Voice" : "Ääni",
-    "Social Network" : "Sosiaalinen verkko",
     "Settings" : "Asetukset"
 },
 "nplurals=2; plural=(n != 1);");

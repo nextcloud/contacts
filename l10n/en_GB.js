@@ -14,8 +14,6 @@ OC.L10N.register(
     "No search result for {query}" : "No search result for {query}",
     "All contacts" : "All contacts",
     "Not grouped" : "Not grouped",
-    "Post Office Box" : "Post Office Box",
-    "Postal Code" : "Postal Code",
     "City" : "City",
     "State or province" : "State or province",
     "Country" : "Country",
@@ -42,7 +40,6 @@ OC.L10N.register(
     "Fax work" : "Fax work",
     "Pager" : "Pager",
     "Voice" : "Voice",
-    "Social Network" : "Social Network",
     "Settings" : "Settings"
 },
 "nplurals=2; plural=(n != 1);");

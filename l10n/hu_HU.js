@@ -14,8 +14,6 @@ OC.L10N.register(
     "No search result for {query}" : "{query} keresésre nincs találat.",
     "All contacts" : "Összes névjegy",
     "Not grouped" : "Nem csoportosított",
-    "Post Office Box" : "Postaláda",
-    "Postal Code" : "Irányítószám",
     "City" : "Város",
     "State or province" : "Megye vagy tartomány",
     "Country" : "Ország",
@@ -42,7 +40,6 @@ OC.L10N.register(
     "Fax work" : "Munkahelyi fax",
     "Pager" : "Személyhívó",
     "Voice" : "Hang",
-    "Social Network" : "Közösségi hálózat",
     "Settings" : "Beállítások"
 },
 "nplurals=2; plural=(n != 1);");

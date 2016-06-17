@@ -13,8 +13,6 @@ OC.L10N.register(
     "No search result for {query}" : "Engar leitarniðurstöður fyrir {query}",
     "All contacts" : "Allir tengiliðir",
     "Not grouped" : "Ekki hópað",
-    "Post Office Box" : "Pósthólf",
-    "Postal Code" : "Póstnúmer",
     "City" : "Borg",
     "State or province" : "Ríki eða fylki",
     "Country" : "Land",

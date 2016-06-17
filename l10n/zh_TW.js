@@ -13,8 +13,6 @@ OC.L10N.register(
     "No search result for {query}" : "沒有結果符合 {query}",
     "All contacts" : "所有聯絡人",
     "Not grouped" : "不在群組裡",
-    "Post Office Box" : "郵政信箱",
-    "Postal Code" : "郵遞區號",
     "City" : "城市",
     "State or province" : "州或省",
     "Country" : "國家",

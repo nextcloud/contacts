@@ -13,8 +13,6 @@ OC.L10N.register(
     "No search result for {query}" : "ไม่พบผลลัพธ์การค้นหาสำหรับ {query}",
     "All contacts" : "รายชื่อทั้งหมด",
     "Not grouped" : "ไม่ถูกจัดกลุ่ม",
-    "Post Office Box" : "กล่องจดหมาย",
-    "Postal Code" : "รหัสไปรษณีย์",
     "City" : "เมือง",
     "State or province" : "รัฐหรือจังหวัด",
     "Country" : "ประเทศ",
@@ -41,7 +39,6 @@ OC.L10N.register(
     "Fax work" : "แฟกซ์ที่ทำงาน",
     "Pager" : "เพจเจอร์",
     "Voice" : "เสียงพูด",
-    "Social Network" : "เครือข่ายสังคม",
     "Settings" : "ตั้งค่า"
 },
 "nplurals=1; plural=0;");

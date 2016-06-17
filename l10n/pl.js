@@ -14,8 +14,6 @@ OC.L10N.register(
     "No search result for {query}" : "Brak wyników wyszukiwania dla zapytania {query}",
     "All contacts" : "Wszystkie kontakty",
     "Not grouped" : "Nie zgrupowane",
-    "Post Office Box" : "Skrytka Pocztowa",
-    "Postal Code" : "Kod Pocztowy",
     "City" : "Miasto",
     "State or province" : "Województwo ",
     "Country" : "Kraj",

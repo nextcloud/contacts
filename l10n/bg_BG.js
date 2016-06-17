@@ -13,8 +13,6 @@ OC.L10N.register(
     "No search result for {query}" : "Няма намерени резултати за {query}",
     "All contacts" : "Всички контакти",
     "Not grouped" : "Негрупирани",
-    "Post Office Box" : "Офисна пощенска кутия",
-    "Postal Code" : "Пощенски код",
     "City" : "Град",
     "State or province" : "Страна или област",
     "Country" : "Държава",
@@ -40,7 +38,6 @@ OC.L10N.register(
     "Fax work" : "Факс служебен",
     "Pager" : "Пейджър",
     "Voice" : "Гласов",
-    "Social Network" : "Социялна мрежа",
     "Settings" : "Настройки"
 },
 "nplurals=2; plural=(n != 1);");

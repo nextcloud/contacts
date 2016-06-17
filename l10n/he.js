@@ -14,8 +14,6 @@ OC.L10N.register(
     "No search result for {query}" : "אין תוצאות חיפוש עבור {query}",
     "All contacts" : "כל אנשי הקשר",
     "Not grouped" : "לא שויך לקבוצה",
-    "Post Office Box" : "תיבת דואר",
-    "Postal Code" : "מיקוד",
     "City" : "עיר",
     "State or province" : "מדינה או מחוז",
     "Country" : "מדינה",
@@ -42,7 +40,6 @@ OC.L10N.register(
     "Fax work" : "פקס בעבודה",
     "Pager" : "זימונית",
     "Voice" : "קולי",
-    "Social Network" : "רשת חברתית",
     "Settings" : "הגדרות"
 },
 "nplurals=2; plural=(n != 1);");

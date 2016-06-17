@@ -13,8 +13,6 @@ OC.L10N.register(
     "No search result for {query}" : "Inget sökresultat för {query}",
     "All contacts" : "Alla kontakter",
     "Not grouped" : "Inte grupperad",
-    "Post Office Box" : "Postbox",
-    "Postal Code" : "Postkod",
     "City" : "Stad",
     "State or province" : "Stat eller provins",
     "Country" : "Land",
@@ -41,7 +39,6 @@ OC.L10N.register(
     "Fax work" : "Fax arbete",
     "Pager" : "Personsökare",
     "Voice" : "Röst",
-    "Social Network" : "Socialt nätverk",
     "Settings" : "Inställningar"
 },
 "nplurals=2; plural=(n != 1);");

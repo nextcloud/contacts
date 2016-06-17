@@ -13,8 +13,6 @@ OC.L10N.register(
     "No search result for {query}" : "S’pat përfundime kërkimi për {query}",
     "All contacts" : "Krejt kontaktet",
     "Not grouped" : "I pagrupuar",
-    "Post Office Box" : "Kuti Zyre Postare",
-    "Postal Code" : "Kod Postar",
     "City" : "Qytet",
     "State or province" : "Shtet ose provincë",
     "Country" : "Vend",
@@ -41,7 +39,6 @@ OC.L10N.register(
     "Fax work" : "Faks pune",
     "Pager" : "Faques",
     "Voice" : "Zë",
-    "Social Network" : "Rrjet Shoqëror",
     "Settings" : "Rregullime"
 },
 "nplurals=2; plural=(n != 1);");

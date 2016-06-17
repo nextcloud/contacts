@@ -14,8 +14,6 @@ OC.L10N.register(
     "No search result for {query}" : "Nessun risultato di ricerca per {query}",
     "All contacts" : "Tuuti i contatti",
     "Not grouped" : "Non raggruppati",
-    "Post Office Box" : "Casella postale",
-    "Postal Code" : "CAP",
     "City" : "Città",
     "State or province" : "Stato o regione",
     "Country" : "Stato",
@@ -42,7 +40,6 @@ OC.L10N.register(
     "Fax work" : "Fax lavoro",
     "Pager" : "Cercapersone",
     "Voice" : "Voce",
-    "Social Network" : "Rete sociale",
     "Settings" : "Impostazioni"
 },
 "nplurals=2; plural=(n != 1);");

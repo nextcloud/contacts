@@ -13,8 +13,6 @@ OC.L10N.register(
     "No search result for {query}" : "Otsingutulemused sõnadele {query}",
     "All contacts" : "Kõik kontaktid",
     "Not grouped" : "Pole grupeeritud",
-    "Post Office Box" : "Postkast postkontoris",
-    "Postal Code" : "Postiindeks",
     "City" : "Linn",
     "State or province" : "Maakond",
     "Country" : "Riik",

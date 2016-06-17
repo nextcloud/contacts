@@ -13,8 +13,6 @@ OC.L10N.register(
     "No search result for {query}" : "Δεν βρέθηκε αποτέλεσμα αναζήτησης για {query}",
     "All contacts" : "Όλες οι επαφές",
     "Not grouped" : "Οχι ομαδοποιημένα",
-    "Post Office Box" : "Ταχυδρομική θυρίδα",
-    "Postal Code" : "Ταχυδρομικός Κωδικός",
     "City" : "Πόλη",
     "State or province" : "Νομός ή περιφέρεια",
     "Country" : "Χώρα",

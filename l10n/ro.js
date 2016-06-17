@@ -14,8 +14,6 @@ OC.L10N.register(
     "No search result for {query}" : "Niciun rezultat pentru {query}",
     "All contacts" : "Toate contactele",
     "Not grouped" : "Negrupate",
-    "Post Office Box" : "Căsuță poștală",
-    "Postal Code" : "Cod poștal",
     "City" : "Oraș",
     "State or province" : "Județ sau provincie",
     "Country" : "Țară",
@@ -42,7 +40,6 @@ OC.L10N.register(
     "Fax work" : "Fax - serviciu",
     "Pager" : "Pager",
     "Voice" : "Voce",
-    "Social Network" : "Rețea socială",
     "Settings" : "Setări"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");

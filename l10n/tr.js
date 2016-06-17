@@ -13,8 +13,6 @@ OC.L10N.register(
     "No search result for {query}" : "{query} için arama sonucu yok",
     "All contacts" : "Tüm kişiler",
     "Not grouped" : "Gruplanmamış",
-    "Post Office Box" : "Posta Kutusu",
-    "Postal Code" : "Posta Kodu",
     "City" : "Şehir",
     "State or province" : "Eyalet",
     "Country" : "Ülke",

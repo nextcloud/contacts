@@ -12,8 +12,6 @@
     "No search result for {query}" : "Sin resultados para {query}",
     "All contacts" : "Todos los contactos",
     "Not grouped" : "No agrupado",
-    "Post Office Box" : "Buzón de correo",
-    "Postal Code" : "Código Postal",
     "City" : "Ciudad",
     "State or province" : "Estado o provincia",
     "Country" : "País",
@@ -40,7 +38,6 @@
     "Fax work" : "Fax del trabajo",
     "Pager" : "Localizador",
     "Voice" : "Voz",
-    "Social Network" : "Red social",
     "Settings" : "Ajustes"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
