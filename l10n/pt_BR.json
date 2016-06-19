@@ -12,6 +12,7 @@
     "No search result for {query}" : "Nenhum resultado de busca para {query}",
     "All contacts" : "Todos os contatos",
     "Not grouped" : "Não agrupado",
+    "Post office box" : "Caixa de correio",
     "Postal code" : "Código postal",
     "City" : "Cidade",
     "State or province" : "Estado ou província",
@@ -21,10 +22,13 @@
     "Last name" : "Sobrenome",
     "First name" : "Primeiro nome",
     "Additional names" : "Nomes adicionais",
+    "Prefix" : "Prefixo",
+    "Suffix" : "Sufixo",
     "New contact" : "Novo contato",
     "{addressbook} shared by {owner}" : "{addressbook} compartilhado por {owner}",
     "No contacts in file. Only VCard files are allowed." : "Nenhum contato em arquivo. Somente arquivos vCard são permitidos.",
     "Nickname" : "Apelido",
+    "Detailed name" : "Nome detalhado",
     "Notes" : "Notas",
     "Website" : "Website",
     "Federated Cloud ID" : "ID de núvem Associada",
@@ -42,6 +46,7 @@
     "Fax work" : "Fax do trabalho",
     "Pager" : "Pager",
     "Voice" : "Voz",
+    "Social network" : "Rede social",
     "Settings" : "Configurações"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }
