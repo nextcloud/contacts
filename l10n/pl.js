@@ -26,7 +26,9 @@ OC.L10N.register(
     "Additional names" : "Dodatkowe nazwy",
     "New contact" : "Nowy kontakt",
     "{addressbook} shared by {owner}" : "Książka {addressbook} udostępniona przez {owner}",
+    "No contacts in file. Only VCard files are allowed." : "Brak kontaktów w pliku. Dozwolone są tylko pliki VCard.",
     "Nickname" : "Nazwa",
+    "Detailed name" : "Szczegółowa nazwa",
     "Notes" : "Notatki",
     "Website" : "Strona www",
     "Home" : "Strona główna",
@@ -43,6 +45,7 @@ OC.L10N.register(
     "Fax work" : "Fakx pracowy",
     "Pager" : "Pager",
     "Voice" : "Połączenie głosowe",
+    "Social network" : "Siec społecznościowa",
     "Settings" : "Ustawienia"
 },
 "nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");
