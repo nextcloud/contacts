@@ -12,6 +12,7 @@
     "No search result for {query}" : "No search result for {query}",
     "All contacts" : "All contacts",
     "Not grouped" : "Not grouped",
+    "Post office box" : "Post office box",
     "Postal code" : "Postcode",
     "City" : "City",
     "State or province" : "State or province",
@@ -21,10 +22,13 @@
     "Last name" : "Surname",
     "First name" : "First-name",
     "Additional names" : "Middle names",
+    "Prefix" : "Prefix",
+    "Suffix" : "Suffix",
     "New contact" : "New contact",
     "{addressbook} shared by {owner}" : "{addressbook} shared by {owner}",
     "No contacts in file. Only VCard files are allowed." : "No contacts in file. Only VCard files are allowed.",
     "Nickname" : "Nickname",
+    "Detailed name" : "Detailed name",
     "Notes" : "Notes",
     "Website" : "Website",
     "Federated Cloud ID" : "Federated Cloud ID",
@@ -42,6 +46,7 @@
     "Fax work" : "Fax work",
     "Pager" : "Pager",
     "Voice" : "Voice",
+    "Social network" : "Social network",
     "Settings" : "Settings"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

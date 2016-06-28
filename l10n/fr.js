@@ -14,6 +14,7 @@ OC.L10N.register(
     "No search result for {query}" : "Aucun résultat pour {query}",
     "All contacts" : "Tous les contacts",
     "Not grouped" : "Non groupés",
+    "Post office box" : "Boîte postale",
     "Postal code" : "Code postal",
     "City" : "Ville",
     "State or province" : "État ou région",
