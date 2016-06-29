@@ -24,10 +24,13 @@ OC.L10N.register(
     "Last name" : "Nom",
     "First name" : "Prénom",
     "Additional names" : "Nom supplémentaires",
+    "Prefix" : "Préfixe",
+    "Suffix" : "Suffixe",
     "New contact" : "Nouveau contact",
     "{addressbook} shared by {owner}" : "{addressbook} partagé par {owner}",
     "No contacts in file. Only VCard files are allowed." : "Aucun contact dans ce fichier. Seulement les fichiers VCard sont autorisés.",
     "Nickname" : "Surnom",
+    "Detailed name" : "Nom complet",
     "Notes" : "Notes",
     "Website" : "Site web",
     "Federated Cloud ID" : "Federated Cloud ID",
@@ -45,6 +48,7 @@ OC.L10N.register(
     "Fax work" : "Fax pro",
     "Pager" : "Bipeur",
     "Voice" : "Voix",
+    "Social network" : "Réseau social",
     "Settings" : "Paramètres"
 },
 "nplurals=2; plural=(n > 1);");
