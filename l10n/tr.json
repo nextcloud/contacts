@@ -2,6 +2,7 @@
     "Contacts" : "Kişiler",
     "Address book name" : "Adres defteri adı",
     "Import" : "İçe aktar",
+    "The selected image is too big (max 1MB)" : "Seçilen resim çok büyük (azami 1MB)",
     "No contacts in here" : "Burada kişi yok",
     "Name" : "Ad",
     "Organization" : "Kurum",
@@ -11,6 +12,7 @@
     "No search result for {query}" : "{query} için arama sonucu yok",
     "All contacts" : "Tüm kişiler",
     "Not grouped" : "Gruplanmamış",
+    "Post office box" : "Posta Kutusu",
     "Postal code" : "Posta kodu",
     "City" : "Şehir",
     "State or province" : "Eyalet",
@@ -20,9 +22,13 @@
     "Last name" : "Soyad",
     "First name" : "Ad",
     "Additional names" : "İlave isimler",
+    "Prefix" : "Önek",
+    "Suffix" : "Sonek",
     "New contact" : "Yeni kişi",
     "{addressbook} shared by {owner}" : "{owner} tarafından paylaşılmış {addressbook}",
+    "No contacts in file. Only VCard files are allowed." : "Dosyada kişiler yok. Sadece VCard dosyaları izinlidir.",
     "Nickname" : "Takma ad",
+    "Detailed name" : "Ayrıntılı isim",
     "Notes" : "Notlar",
     "Website" : "Web sitesi",
     "Federated Cloud ID" : "Birleşmiş Bulut Kimliği",
@@ -40,6 +46,7 @@
     "Fax work" : "İş faks",
     "Pager" : "Çağrı Cihazı",
     "Voice" : "Ses",
+    "Social network" : "Sosyal ağ",
     "Settings" : "Ayarlar"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }
