@@ -14,6 +14,7 @@ OC.L10N.register(
     "No search result for {query}" : "Sem resultados de pesquisa para {query}",
     "All contacts" : "Todos os contactos",
     "Not grouped" : "Não agrupados",
+    "Post office box" : "Apartado",
     "Postal code" : "Código Postal",
     "City" : "Cidade",
     "State or province" : "Distrito",
