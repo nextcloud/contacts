@@ -12,6 +12,7 @@
     "No search result for {query}" : "لم يظهر البحث عن {query} أي نتيجة",
     "All contacts" : "كل الجهات",
     "Not grouped" : "غير مصنف",
+    "Post office box" : "صندوق البريد",
     "Postal code" : "الرمز البريدي.",
     "City" : "المدينة",
     "State or province" : "الولاية أو المنطقة.",
@@ -21,10 +22,13 @@
     "Last name" : "اسم العائلة",
     "First name" : "الاسم الأول",
     "Additional names" : "الاسماء الإضافية",
+    "Prefix" : "بادئة",
+    "Suffix" : "لاحقة",
     "New contact" : "جهة إتصال جديدة",
     "{addressbook} shared by {owner}" : "{owner} شارك {addressbook}",
     "No contacts in file. Only VCard files are allowed." : "لاتوجد جهات في الملف.  ملفات VCard مسموح بها فقط.",
     "Nickname" : "كنية.\nلقب.",
+    "Detailed name" : "الاسم بالتفصيل",
     "Notes" : "الملاحظات",
     "Website" : "موقع إلكتروني",
     "Federated Cloud ID" : "معرّف السحابة الخارجية",
@@ -42,6 +46,7 @@
     "Fax work" : "فاكس العمل",
     "Pager" : "النداء",
     "Voice" : "صوت",
+    "Social network" : "شبكة اجتماعية",
     "Settings" : "الإعدادات"
 },"pluralForm" :"nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;"
 }
