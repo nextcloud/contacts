@@ -14,6 +14,9 @@ angular.module('contactsApp')
 		emptySearch : t('contacts', 'No search result for {query}', {query: ctrl.searchTerm})
 	};
 
+	$scope.getCountString = function(contacts) {
+		return n('contacts', '%n contact', '%n contacts', contacts.length);
+	};
 
 	$scope.query = function(contact) {
 		return contact.matches(SearchService.getSearchTerm());

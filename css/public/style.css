@@ -472,6 +472,16 @@ ul.addressBook-share-list li {
 	opacity: 1;
 }
 
+/* styling for contact count in contact list */
+.contacts-list-count {
+	text-align:center;
+	color: #333;
+	padding:25px;
+	position: relative;
+	height: 68px;
+	border-top: 1px solid #eee;
+}
+
 /* SELECT2 styling - MOVE TO CORE FOR 9.1! */
 
 detailsitem .select2-container {
