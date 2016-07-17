@@ -6,7 +6,6 @@
     <licence>AGPL</licence>
     <author>Hendrik Leppelsack, Thomas Müller, Alexander Weidinger, Jan-Christoph Borchardt, Tom Needham</author>
     <version>1.3.1.0</version>
-    <category>other</category>
     <documentation>
     	<user>https://doc.owncloud.org/server/9.1/user_manual/pim/contacts.html</user>
     	<admin>https://doc.owncloud.org/server/9.1/admin_manual/configuration_server/occ_command.html?highlight=contact#dav-commands</admin>
