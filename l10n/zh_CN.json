@@ -25,9 +25,13 @@
     "Prefix" : "前缀",
     "Suffix" : "后缀",
     "New contact" : "新建联系人",
+    "{addressbook} shared by {owner}" : "从 {owner}共享给您{addressbook}",
+    "No contacts in file. Only VCard files are allowed." : "没有发现联系人信息。只允许VCard格式文件.",
     "Nickname" : "昵称",
+    "Detailed name" : "全名",
     "Notes" : "说明",
     "Website" : "网站",
+    "Federated Cloud ID" : "联合云ID",
     "Home" : "家庭",
     "Work" : "工作",
     "Other" : "其它",
@@ -38,8 +42,11 @@
     "Phone" : "电话",
     "Mobile" : "手机",
     "Fax" : "传真",
+    "Fax home" : "家庭传真",
+    "Fax work" : "工作传真",
     "Pager" : "传呼机",
     "Voice" : "语音",
+    "Social network" : "社交网络",
     "Settings" : "设置"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
