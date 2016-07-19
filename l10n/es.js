@@ -9,7 +9,7 @@ OC.L10N.register(
     "Name" : "Nombre",
     "Organization" : "Organización",
     "Title" : "Título",
-    "Add field ..." : "Añadiendo campo ...",
+    "Add field ..." : "Añadir campo ...",
     "Add contact" : "Añadir contacto",
     "No search result for {query}" : "Sin resultados para {query}",
     "All contacts" : "Todos los contactos",
