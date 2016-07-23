@@ -2,6 +2,7 @@
     "Contacts" : "Tengiliðir",
     "Address book name" : "Heiti nafnaskrár",
     "Import" : "Flytja inn",
+    "The selected image is too big (max 1MB)" : "Valin mynd er of stór (hám. 1MB)",
     "No contacts in here" : "Engir tengiliðir hér",
     "Name" : "Nafn",
     "Organization" : "Stofnun/félag",
@@ -11,6 +12,7 @@
     "No search result for {query}" : "Engar leitarniðurstöður fyrir {query}",
     "All contacts" : "Allir tengiliðir",
     "Not grouped" : "Ekki hópað",
+    "Post office box" : "Pósthólf",
     "Postal code" : "Póstnúmer",
     "City" : "Borg",
     "State or province" : "Ríki eða fylki",
@@ -20,9 +22,13 @@
     "Last name" : "Eftirnafn",
     "First name" : "Eiginnafn",
     "Additional names" : "Aukanöfn",
+    "Prefix" : "Forskeyti",
+    "Suffix" : "Viðskeyti",
     "New contact" : "Nýr tengiliður",
     "{addressbook} shared by {owner}" : "{addressbook} deilt af {owner}",
+    "No contacts in file. Only VCard files are allowed." : "Engir tengiliðir í skrá. Einungis er tekið við VCard-skrám.",
     "Nickname" : "Gælunafn",
+    "Detailed name" : "Ítarlegt nafn",
     "Notes" : "Minnispunktar",
     "Website" : "Vefsvæði",
     "Federated Cloud ID" : "Skýjasambandsauðkenni (Federated Cloud ID)",
@@ -40,6 +46,7 @@
     "Fax work" : "Vinnufax",
     "Pager" : "Símboði",
     "Voice" : "Raddskilaboð",
+    "Social network" : "Samfélagsnet",
     "Settings" : "Stillingar"
 },"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
 }
