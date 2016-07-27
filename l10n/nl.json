@@ -10,6 +10,7 @@
     "Add field ..." : "Voeg veld toe",
     "Add contact" : "Contactpersoon toevoegen",
     "No search result for {query}" : "Geen zoekresultaten voor {query}",
+    "_%n contact_::_%n contacts_" : ["%n contactpersoon","%n contactpersonen"],
     "All contacts" : "Alle contactpersonen",
     "Not grouped" : "Niet gegroepeerd",
     "Post office box" : "Postbus",

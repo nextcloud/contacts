@@ -12,6 +12,7 @@ OC.L10N.register(
     "Add field ..." : "הוספת שדה...",
     "Add contact" : "הוסף איש קשר",
     "No search result for {query}" : "אין תוצאות חיפוש עבור {query}",
+    "_%n contact_::_%n contacts_" : ["%n איש קשר","%n אנשי קשר"],
     "All contacts" : "כל אנשי הקשר",
     "Not grouped" : "לא שויך לקבוצה",
     "Post office box" : "תיבת דואר",

@@ -12,6 +12,7 @@ OC.L10N.register(
     "Add field ..." : "Adicionar campo...",
     "Add contact" : "Adicionar contatos",
     "No search result for {query}" : "Nenhum resultado de busca para {query}",
+    "_%n contact_::_%n contacts_" : ["%n contato","%n contatos"],
     "All contacts" : "Todos os contatos",
     "Not grouped" : "Não agrupado",
     "Post office box" : "Caixa de correio",

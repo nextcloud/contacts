@@ -12,6 +12,7 @@ OC.L10N.register(
     "Add field ..." : "Shtoni fushë...",
     "Add contact" : "Shtoni kontakt",
     "No search result for {query}" : "S’pat përfundime kërkimi për {query}",
+    "_%n contact_::_%n contacts_" : ["%n kontakt","%n kontakte"],
     "All contacts" : "Krejt kontaktet",
     "Not grouped" : "I pagrupuar",
     "Post office box" : "Kuti postare në postë",

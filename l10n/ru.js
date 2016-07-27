@@ -12,6 +12,7 @@ OC.L10N.register(
     "Add field ..." : "Добавить поле ...",
     "Add contact" : "Добавить контакт",
     "No search result for {query}" : "По запросу {query} ничего не найдено",
+    "_%n contact_::_%n contacts_" : ["%n контакт","%n контакт","%n контакт","%n контактов"],
     "All contacts" : "Все контакты",
     "Not grouped" : "Без группы",
     "Post office box" : "Почтовый ящик",
