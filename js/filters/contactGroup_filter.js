@@ -22,6 +22,6 @@ angular.module('contactsApp')
 				}
 			}
 		}
-		return filter.length === 0 ? contacts : filter;
+		return filter;
 	};
 });
