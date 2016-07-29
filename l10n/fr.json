@@ -10,6 +10,7 @@
     "Add field ..." : "Ajouter un champ ...",
     "Add contact" : "Ajouter un contact",
     "No search result for {query}" : "Aucun résultat pour {query}",
+    "_%n contact_::_%n contacts_" : ["%n contact","%n contacts"],
     "All contacts" : "Tous les contacts",
     "Not grouped" : "Non groupés",
     "Post office box" : "Boîte postale",

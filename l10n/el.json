@@ -10,6 +10,7 @@
     "Add field ..." : "Προσθήκη πεδίου...",
     "Add contact" : "Προσθήκη επαφής",
     "No search result for {query}" : "Δεν βρέθηκε αποτέλεσμα αναζήτησης για {query}",
+    "_%n contact_::_%n contacts_" : ["%n επαφή","%n επαφές"],
     "All contacts" : "Όλες οι επαφές",
     "Not grouped" : "Οχι ομαδοποιημένα",
     "Post office box" : "Ταχυδρομική θυρίδα",
