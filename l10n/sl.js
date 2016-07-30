@@ -12,6 +12,7 @@ OC.L10N.register(
     "Add field ..." : "Dodaj polje ...",
     "Add contact" : "Dodaj stik",
     "No search result for {query}" : "Ni zadetkov iskanja za {query}",
+    "_%n contact_::_%n contacts_" : ["%n stik","%n stika","%n stiki","%n stikov"],
     "All contacts" : "Vsi stiki",
     "Not grouped" : "Brez skupine",
     "Post office box" : "Poštni predal",
