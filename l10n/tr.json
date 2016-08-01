@@ -10,6 +10,7 @@
     "Add field ..." : "Alan ekle...",
     "Add contact" : "Bağlantı ekle",
     "No search result for {query}" : "{query} için arama sonucu yok",
+    "_%n contact_::_%n contacts_" : ["%n kişi","%n kişi"],
     "All contacts" : "Tüm kişiler",
     "Not grouped" : "Gruplanmamış",
     "Post office box" : "Posta Kutusu",
