@@ -12,6 +12,7 @@ OC.L10N.register(
     "Add field ..." : "Lisää kenttä...",
     "Add contact" : "Lisää yhteystieto",
     "No search result for {query}" : "Ei tuloksia haulle {query}",
+    "_%n contact_::_%n contacts_" : ["%n yhteystieto","%n yhteystietoa"],
     "All contacts" : "Kaikki yhteystiedot",
     "Not grouped" : "Ei ryhmitelty",
     "Post office box" : "Postilokero",
