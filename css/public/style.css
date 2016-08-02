@@ -170,7 +170,7 @@ detailsitem {
 
 detailsitem label {
 	display: inline-block;
-	width: 80px;
+	width: 100px;
 	padding: 7px 0px;
 	text-align: right;
 	opacity: .5;
@@ -265,7 +265,7 @@ detailsitem.details-item-note .icon-delete {
 
 .select-addressbook,
 .add-field {
-	margin-left: 83px;
+	margin-left: 103px;
 }
 
 
