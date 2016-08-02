@@ -29,7 +29,7 @@
     "{addressbook} shared by {owner}" : "Το {addressbook} διαμοιράστηκε από τον/την {owner}",
     "No contacts in file. Only VCard files are allowed." : "Δεν υπάρχουν επαφές σε αρχείο. Μόνο VCard αρχεία επιτρέπονται.",
     "Nickname" : "Παρατσούκλι",
-    "Detailed name" : "Λεπτομερείς όνομα",
+    "Detailed name" : "Λεπτομερές όνομα",
     "Notes" : "Σημειώσεις",
     "Website" : "Ιστοσελίδα",
     "Federated Cloud ID" : "Federated Cloud ID",
