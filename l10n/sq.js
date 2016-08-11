@@ -41,7 +41,6 @@ OC.L10N.register(
     "Groups" : "Grupe",
     "Birthday" : "Datëlindje",
     "Anniversary" : "Përvjetor",
-    "Date of Death" : "Datë Vdekjeje",
     "Email" : "Email",
     "Instant messaging" : "Shkëmbim i atypëratyshëm mesazhesh",
     "Phone" : "Telefon",

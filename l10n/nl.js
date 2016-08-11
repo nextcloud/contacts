@@ -41,7 +41,6 @@ OC.L10N.register(
     "Groups" : "Groepen",
     "Birthday" : "Verjaardag",
     "Anniversary" : "Verjaardag",
-    "Date of Death" : "Overlijdensdatum",
     "Email" : "mailadres",
     "Instant messaging" : "Instant messaging",
     "Phone" : "Telefoon",

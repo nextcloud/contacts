@@ -41,7 +41,6 @@ OC.L10N.register(
     "Groups" : "Gruppen",
     "Birthday" : "Geburtstag",
     "Anniversary" : "Jahrestag",
-    "Date of Death" : "Geburtstag",
     "Email" : "E-Mail",
     "Instant messaging" : "Instant Messaging",
     "Phone" : "Telefon",

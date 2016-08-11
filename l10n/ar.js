@@ -41,7 +41,6 @@ OC.L10N.register(
     "Groups" : "مجموعات",
     "Birthday" : "عيد ميلاد",
     "Anniversary" : "ذكرى",
-    "Date of Death" : "تاريخ الوفاة",
     "Email" : "البريد الإلكترونى",
     "Instant messaging" : "المراسلة الفورية",
     "Phone" : "الهاتف",

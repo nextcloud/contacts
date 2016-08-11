@@ -41,7 +41,6 @@ OC.L10N.register(
     "Groups" : "กลุ่ม",
     "Birthday" : "วันเกิด",
     "Anniversary" : "วันครบรอบ",
-    "Date of Death" : "วันที่เสียชีวิต",
     "Email" : "อีเมล",
     "Instant messaging" : "ส่งข้อความโต้ตอบแบบทันที",
     "Phone" : "โทรศัพท์",

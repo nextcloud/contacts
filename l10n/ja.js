@@ -41,7 +41,6 @@ OC.L10N.register(
     "Groups" : "グループ",
     "Birthday" : "誕生日",
     "Anniversary" : "記念日",
-    "Date of Death" : "命日",
     "Email" : "メール",
     "Instant messaging" : "インスタントメッセージ",
     "Phone" : "電話番号",
