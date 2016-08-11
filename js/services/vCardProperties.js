@@ -71,7 +71,7 @@ angular.module('contactsApp')
 			template: 'date'
 		},
 		deathdate: {
-			readableName: t('contacts', 'Date of Death'),
+			readableName: t('contacts', 'Date of death'),
 			template: 'date'
 		},
 		email: {
