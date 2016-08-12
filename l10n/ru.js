@@ -41,6 +41,7 @@ OC.L10N.register(
     "Groups" : "Группы",
     "Birthday" : "День рождения",
     "Anniversary" : "Годовщина",
+    "Date of death" : "Дата смерти",
     "Email" : "Эл. почта",
     "Instant messaging" : "Мессенджер",
     "Phone" : "Телефон",

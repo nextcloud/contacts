@@ -41,6 +41,7 @@ OC.L10N.register(
     "Groups" : "Ryhmät",
     "Birthday" : "Syntymäpäivä",
     "Anniversary" : "Vuosipäivä",
+    "Date of death" : "Kuolinpäivä",
     "Email" : "Sähköpostiosoite",
     "Instant messaging" : "Pikaviestintä",
     "Phone" : "Puhelin",
