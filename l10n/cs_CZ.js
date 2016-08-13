@@ -41,6 +41,7 @@ OC.L10N.register(
     "Groups" : "Skupiny",
     "Birthday" : "Narozeniny",
     "Anniversary" : "Výročí",
+    "Date of death" : "Datum úmrtí",
     "Email" : "Email",
     "Instant messaging" : "Komunikátor",
     "Phone" : "Telefon",
