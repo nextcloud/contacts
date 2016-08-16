@@ -41,6 +41,7 @@ OC.L10N.register(
     "Groups" : "Skupine",
     "Birthday" : "Rojstni dan",
     "Anniversary" : "Obletnica",
+    "Date of death" : "Datum smrti",
     "Email" : "Elektronski naslov",
     "Instant messaging" : "Hipno sporočanje",
     "Phone" : "Telefon",
