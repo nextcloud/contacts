@@ -24,7 +24,7 @@ OC.L10N.register(
     "(new group)" : "(nouveau groupe)",
     "Last name" : "Nom",
     "First name" : "Prénom",
-    "Additional names" : "Nom supplémentaires",
+    "Additional names" : "Noms supplémentaires",
     "Prefix" : "Préfixe",
     "Suffix" : "Suffixe",
     "New contact" : "Nouveau contact",
