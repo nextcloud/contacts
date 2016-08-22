@@ -25,7 +25,7 @@ vendor_style('select2/select2');
 
 <div id="app" ng-app="contactsApp">
 	<div id="app-navigation">
-
+		<newContactButton></newContactButton>
 		<ul groupList></ul>
 
 		<div id="app-settings">

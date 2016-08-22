@@ -10,7 +10,7 @@ angular.module('contactsApp')
 	ctrl.invalid = false;
 
 	ctrl.t = {
-		addContact : t('contacts', 'Add contact'),
+		addContact : t('contacts', '+ New contact'),
 		emptySearch : t('contacts', 'No search result for {query}', {query: ctrl.searchTerm})
 	};
 
@@ -156,21 +156,6 @@ angular.module('contactsApp')
 	$scope.$watch('ctrl.contactList[0].displayName()', function(displayName) {
 		ctrl.invalid = (displayName === '');
 	});
-
-	ctrl.createContact = function() {
-		ContactService.create().then(function(contact) {
-			['tel', 'adr', 'email'].forEach(function(field) {
-				var defaultValue = vCardPropertiesService.getMeta(field).defaultValue || {value: ''};
-				contact.addProperty(field, defaultValue);
-			} );
-			if ([t('contacts', 'All contacts'), t('contacts', 'Not grouped')].indexOf($routeParams.gid) === -1) {
-				contact.categories($routeParams.gid);
-			} else {
-				contact.categories('');
-			}
-			$('#details-fullName').focus();
-		});
-	};
 
 	ctrl.hasContacts = function () {
 		if (!ctrl.contacts) {

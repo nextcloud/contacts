@@ -1,6 +1,4 @@
 <div style="height: 90%" class="contacts-list" ng-class="{loading: ctrl.loading, 'mobile-show': ctrl.show}">
-        <button ng-show="!ctrl.loading && !ctrl.invalid" class="app-content-list-button" id="new-contact-button"
-				type="button" name="button" ng-click="ctrl.createContact()">{{ctrl.t.addContact}}</button>
         <div class="app-content-list-item"
 			 ng-repeat="contact in ctrl.contactList = (ctrl.contacts | contactGroupFilter:ctrl.routeParams.gid | localeOrderBy:'displayName' | filter:query) as filtered track by contact.uid()"
 			 contact data="contact"
