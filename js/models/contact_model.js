@@ -96,8 +96,12 @@ angular.module('contactsApp')
 					// splits image data into "data:image/jpeg" and base 64 encoded image
 					var imageData = value.split(';base64,');
 					var imageType = imageData[0].slice('data:'.length);
+					if (!imageType.startsWith('image/')) {
+						return;
+					}
+					imageType = imageType.substring(6).toUpperCase();
 
-					return this.setProperty('photo', { value: imageData[1], meta: {type: [imageType]} });
+					return this.setProperty('photo', { value: imageData[1], meta: {type: [imageType], encoding: ['b']} });
 				} else {
 					var property = this.getProperty('photo');
 					if(property) {

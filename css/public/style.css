@@ -223,7 +223,7 @@ detailsitem.details-item-email select,
 detailsitem.details-item-adr select,
 detailsitem.details-item-impp select,
 detailsitem.details-item-cloud select {
-	width: 80px;
+	width: 100px;
 	margin-right: 0;
 }
 
