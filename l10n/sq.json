@@ -8,6 +8,7 @@
     "Organization" : "Organizëm",
     "Title" : "Titull",
     "Add field ..." : "Shtoni fushë...",
+    "+ New contact" : "+ Kontakt i ri",
     "No search result for {query}" : "S’pat përfundime kërkimi për {query}",
     "_%n contact_::_%n contacts_" : ["%n kontakt","%n kontakte"],
     "Post office box" : "Kuti postare në postë",

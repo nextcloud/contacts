@@ -10,6 +10,7 @@ OC.L10N.register(
     "Organization" : "Organizace",
     "Title" : "Název",
     "Add field ..." : "Přidat pole...",
+    "+ New contact" : "+ Nový kontakt",
     "No search result for {query}" : "Žádný nález pro {query}",
     "_%n contact_::_%n contacts_" : ["%n kontakt","%n kontakty","%n kontaktů"],
     "Post office box" : "Poštovní schránka",
