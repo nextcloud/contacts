@@ -1,162 +1,162 @@
 .contactdetails__header {
-    height: 100px;
-    padding-left: 20px;
-    display: flex;
-    color: #fff;
-    font-weight: bold;
-    align-items: center;
+	height: 100px;
+	padding-left: 20px;
+	display: flex;
+	color: #fff;
+	font-weight: bold;
+	align-items: center;
 }
 
 .contactdetails__header #details-contact-infos {
-    width: 80%;
-    margin: 2px 6px 0px;
-    flex-grow: 1;
+	width: 80%;
+	margin: 2px 6px 0px;
+	flex-grow: 1;
 }
 .contactdetails__header h2 {
-    margin: 0;
+	margin: 0;
 }
 .contactdetails__header #details-org-container {
-    display: flex;
-    flex-wrap: wrap;
+	display: flex;
+	flex-wrap: wrap;
 }
 .contactdetails__header .contactdetails__name,
 .contactdetails__header .contactdetails__org,
 .contactdetails__header .contactdetails__title {
-    font-size: inherit;
-    color: #fff !important; /* override focus,active&hover */
-    background: transparent;
-    border: none;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    white-space: nowrap;
-    max-width: 100%;
-    margin: 0;
-    padding: 4px 5px;
+	font-size: inherit;
+	color: #fff !important; /* override focus,active&hover */
+	background: transparent;
+	border: none;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	max-width: 100%;
+	margin: 0;
+	padding: 4px 5px;
 }
 .contactdetails__header .contactdetails__org,
 .contactdetails__header .contactdetails__title {
-    max-width: 50%;
-    min-width: 150px;
+	max-width: 50%;
+	min-width: 150px;
 }
 .contactdetails__header .contactdetails__name {
-    width: 100%;
+	width: 100%;
 }
 .contactdetails__header #details-actions {
-    display: flex;
-    flex-shrink: 0;
+	display: flex;
+	flex-shrink: 0;
 }
 /* fix placeholder color */
 .contactdetails__header .contactdetails__name::-webkit-input-placeholder,
 .contactdetails__header .contactdetails__org::-webkit-input-placeholder,
 .contactdetails__header .contactdetails__title::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-    color: #fff;
-    opacity: .8;
+	color: #fff;
+	opacity: .8;
 }
 .contactdetails__header .contactdetails__name::-moz-placeholder,
 .contactdetails__header .contactdetails__org::-moz-placeholder,
 .contactdetails__header .contactdetails__title::-moz-placeholder { /* Mozilla Firefox 19+ */
-    color: #fff;
-    opacity: .8;
+	color: #fff;
+	opacity: .8;
 }
 .contactdetails__header .contactdetails__name:-ms-input-placeholder,
 .contactdetails__header .contactdetails__org:-ms-input-placeholder,
 .contactdetails__header .contactdetails__title:-ms-input-placeholder { /* Internet Explorer 10-11 */
-    color: #fff;
-    opacity: .8;
+	color: #fff;
+	opacity: .8;
 }
 .contactdetails__header .contactdetails__name:placeholder-shown,
 .contactdetails__header .contactdetails__org:placeholder-shown,
 .contactdetails__header .contactdetails__title:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
-    color: #fff;
-    opacity: .8;
+	color: #fff;
+	opacity: .8;
 }
 
 .contactdetails__header .icon-delete-white,
 .contactdetails__header #contact-export-link {
-    padding: 15px;
-    background-color: transparent;
-    border: none;
-    opacity: .5;
-    margin: 3px;
+	padding: 15px;
+	background-color: transparent;
+	border: none;
+	opacity: .5;
+	margin: 3px;
 }
 .contactdetails__header .icon-delete-white:hover,
 .contactdetails__header .icon-delete-white:focus,
 .contactdetails__header #contact-export-link:hover,
 .contactdetails__header #contact-export-link:focus {
-    opacity: .7
+	opacity: .7
 }
 
 avatar {
-    position: relative;
-    height: 75px;
-    width: 75px;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
+	position: relative;
+	height: 75px;
+	width: 75px;
+	border-radius: 50%;
+	overflow: hidden;
+	flex-shrink: 0;
 }
 
 .avatar-upload {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
 
-    background-color: rgba(0,0,0,0.2);
-    font-size: 2.5em;
-    line-height: 75px;
+	background-color: rgba(0,0,0,0.2);
+	font-size: 2.5em;
+	line-height: 75px;
 
-    display: none;
+	display: none;
 
 }
 
 .avatar-upload > .icon-upload-white {
-    display: block;
-    width: 100%;
-    height: 100%;
-    opacity: 0.5;
-    cursor: pointer;
+	display: block;
+	width: 100%;
+	height: 100%;
+	opacity: 0.5;
+	cursor: pointer;
 }
 .avatar-upload:hover > .icon-upload-white {
-    opacity: 0.7;
+	opacity: 0.7;
 }
 
 avatar:hover .avatar-upload,
 avatar.avatar--missing .avatar-upload {
-    display: block;
+	display: block;
 }
 
 .contactdetails__logo {
-    height: 75px;
-    width: 75px;
-    object-fit: cover;
-    background-color: transparent;
-    margin: 0;
+	height: 75px;
+	width: 75px;
+	object-fit: cover;
+	background-color: transparent;
+	margin: 0;
 }
 
 #check-all + label:before {
-    position: absolute;
-    top: 18px;
-    left: 68px;
+	position: absolute;
+	top: 18px;
+	left: 68px;
 }
 
 .contact__icon {
-    display: inline-block;
-    height: 40px;
-    width: 40px;
-    line-height: 40px;
-    border-radius: 50%;
-    vertical-align: middle;
-    margin-right: 10px;
-    color: white;
-    text-align: center;
-    font-size: 1.5em;
-    text-transform: capitalize;
-    object-fit: cover;
+	display: inline-block;
+	height: 40px;
+	width: 40px;
+	line-height: 40px;
+	border-radius: 50%;
+	vertical-align: middle;
+	margin-right: 10px;
+	color: white;
+	text-align: center;
+	font-size: 1.5em;
+	text-transform: capitalize;
+	object-fit: cover;
 }
 
 .contactdetails__header + section {
-    padding: 20px 20px 100px;
+	padding: 20px 20px 100px;
 }
 
 
@@ -164,8 +164,8 @@ avatar.avatar--missing .avatar-upload {
 /* General details item styles */
 
 detailsitem {
-    display: block;
-    position: relative;
+	display: block;
+	position: relative;
 }
 
 detailsitem input[type="tel"],
@@ -175,168 +175,168 @@ detailsitem input[type="url"],
 detailsitem textarea,
 .select-addressbook select,
 .add-field {
-    width: 245px;
+	width: 245px;
 }
 
 .select-addressbook,
 .add-field {
-    margin-left: 106px;
+	margin-left: 106px;
 }
 
 detailsitem select {
-    width: 100px;
+	width: 100px;
 }
 
 detailsitem label {
-    margin: 3px 3px 3px 0;
+	margin: 3px 3px 3px 0;
 
-    display: inline-block;
-    width: 100px;
-    padding: 7px 0px;
-    text-align: right;
-    opacity: .5;
-    white-space: nowrap;
-    overflow-x: hidden;
-    text-overflow: ellipsis;
-    vertical-align: middle;
+	display: inline-block;
+	width: 100px;
+	padding: 7px 0px;
+	text-align: right;
+	opacity: .5;
+	white-space: nowrap;
+	overflow-x: hidden;
+	text-overflow: ellipsis;
+	vertical-align: middle;
 }
 
 detailsitem .icon-delete {
-    position: absolute;
-    vertical-align: middle;
-    padding: 16px;
-    background-color: transparent;
-    border: none;
-    opacity: .2;
+	position: absolute;
+	vertical-align: middle;
+	padding: 16px;
+	background-color: transparent;
+	border: none;
+	opacity: .2;
 }
 
 detailsitem .url-link {
-    position: absolute;
-    padding: 8px 10px;
-    margin-left: -30px;
-    opacity: .5;
+	position: absolute;
+	padding: 8px 10px;
+	margin-left: -30px;
+	opacity: .5;
 }
 
 detailsitem.details-item-adr .icon-delete, detailsitem.details-item-n .icon-delete {
-    vertical-align: middle;
-    left: 354px;
+	vertical-align: middle;
+	left: 354px;
 }
 
 detailsitem.details-item-adr {
-    padding: 20px 0;
+	padding: 20px 0;
 }
 
 detailsitem.details-item-n {
-    padding: 20px 0;
+	padding: 20px 0;
 }
 
 detailsitem.details-item-note label {
-    vertical-align: top;
+	vertical-align: top;
 }
 
 /* Prevent delete for last adr/mail/tel item  */
 .last-details > detailsitem.details-item-adr .icon-delete,
 .last-details > detailsitem.details-item-email .icon-delete,
 .last-details > detailsitem.details-item-tel .icon-delete {
-    display: none;
+	display: none;
 }
 
 /* addressbook settings */
 
 
 ul.addressBookList li {
-    padding: 6px 0;
+	padding: 6px 0;
 }
 
 ul.addressBook-share-list {
-    margin-top: 8px;
-    margin-bottom: 12px;
+	margin-top: 8px;
+	margin-bottom: 12px;
 }
 
 ul.addressBook-share-list li {
-    margin-left: 15px;
+	margin-left: 15px;
 }
 
 ul.addressBookList li .action > span {
-    padding: 10px 14px;
+	padding: 10px 14px;
 }
 
 ul.addressBookList li .action > a {
-    padding: 10px 14px;
+	padding: 10px 14px;
 }
 
 div.addressBookShares ul.dropdown-menu {
-    border: 1px solid #ddd;
-    border-radius: 3px;
-    width: 229px;
-    height: 200px;
-    margin-top: -5px;
-    overflow: scroll;
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	width: 229px;
+	height: 200px;
+	margin-top: -5px;
+	overflow: scroll;
 }
 
 div.addressBookShares ul.dropdown-menu li > a {
-    height: 30px !important;
-    min-height: 30px !important;
-    line-height: 30px !important;
+	height: 30px !important;
+	min-height: 30px !important;
+	line-height: 30px !important;
 }
 
 ul.dropdown-menu li.active {
-    background: #eee;
+	background: #eee;
 }
 
 div.app-contacts span.utils {
-    padding: 0 !important;
-    float: right;
-    position: relative !important;
+	padding: 0 !important;
+	float: right;
+	position: relative !important;
 }
 
 input.newAddressBookInput, input.shareeInput, input.addressBookUrl {
-    width: 100% !important;
+	width: 100% !important;
 }
 
 .addressBookList form {
-    position: relative;
+	position: relative;
 }
 .newAddressBookSubmit {
-    position: absolute;
-    right: 0;
-    top: 0;
-    padding: 6px 13px;
-    background-color: transparent;
-    border: none;
-    opacity: .5;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 6px 13px;
+	background-color: transparent;
+	border: none;
+	opacity: .5;
 }
 
 ul.addressBookList li[addressbook] > span.addressBookName {
-    padding-left: 7px;
+	padding-left: 7px;
 }
 
 li.addressBook-share-item span.shareeIdentifier {
-    max-width: 50px;
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    display: inline-block;
-    vertical-align: top;
+	max-width: 50px;
+	overflow:hidden;
+	white-space:nowrap;
+	text-overflow:ellipsis;
+	display: inline-block;
+	vertical-align: top;
 }
 
 #app-settings-content #upload.button {
-    width: 100%;
-    padding: 7px 10px;
-    padding-left: 34px;
-    background-position: 10px center;
-    text-align: left;
-    margin: 0;
-    display: block;
-    margin-bottom: 10px;
+	width: 100%;
+	padding: 7px 10px;
+	padding-left: 34px;
+	background-position: 10px center;
+	text-align: left;
+	margin: 0;
+	display: block;
+	margin-bottom: 10px;
 }
 
 
 /* Contacts List */
 #new-contact-button {
-    margin: 14px auto; /* to have the same height than a contact*/
-    width: calc(100% - 20px) !important;
-    text-align: left;
+	margin: 14px auto; /* to have the same height than a contact*/
+	width: calc(100% - 20px) !important;
+	text-align: left;
 }
 
 
@@ -346,213 +346,213 @@ li.addressBook-share-item span.shareeIdentifier {
 /* DO NOT MAKE ANY CHANGES SPECIFIC TO CONTACTS HERE! */
 
 .app-content-list {
-    width: 30%;
-    height: 100%;
-    overflow-x: hidden;
-    overflow-y: auto;
+	width: 30%;
+	height: 100%;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 
 .app-content-detail {
-    position: absolute;
-    top: 0;
-    right: 0;
-    width: 70%;
-    height: 100%;
-    overflow-y: auto;
-    overflow-x: hidden;
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 70%;
+	height: 100%;
+	overflow-y: auto;
+	overflow-x: hidden;
 }
 
 .app-content-list-button {
-    display: block;
-    margin: 10px auto;
-    padding: 10px;
+	display: block;
+	margin: 10px auto;
+	padding: 10px;
 }
 
 .app-content-list-item {
-    position: relative;
-    height: 68px;
-    border-top: 1px solid #eee;
-    cursor: pointer;
+	position: relative;
+	height: 68px;
+	border-top: 1px solid #eee;
+	cursor: pointer;
 }
 .app-content-list-item:hover,
 .app-content-list-item:focus,
 .app-content-list-item.active {
-    background-color: #f8f8f8;
+	background-color: #f8f8f8;
 }
 .app-content-list-item-link {
-    display: block;
-    height: 100%;
+	display: block;
+	height: 100%;
 }
 
 .app-content-list-item-icon {
-    position: absolute;
-    display: inline-block;
-    left: 6px;
-    top: 14px;
+	position: absolute;
+	display: inline-block;
+	left: 6px;
+	top: 14px;
 }
 
 .app-content-list-item-star {
-    position: absolute;
-    display: none; /* change to inline-block when we implement it */
-    left: 16px;
-    top: 28px;
-    padding: 20px;
-    background-size: 16px;
-    z-index: 100;
+	position: absolute;
+	display: none; /* change to inline-block when we implement it */
+	left: 16px;
+	top: 28px;
+	padding: 20px;
+	background-size: 16px;
+	z-index: 100;
 }
 
 .app-content-list-item-line-one,
 .app-content-list-item-line-two {
-    position: absolute;
-    display: inline-block;
-    width: 100%;
-    padding: 12px;
-    padding-left: 50px;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	position: absolute;
+	display: inline-block;
+	width: 100%;
+	padding: 12px;
+	padding-left: 50px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .app-content-list-item-line-one.no-line-two {
-    padding-top: 24px;
-    padding-bottom: 24px;
+	padding-top: 24px;
+	padding-bottom: 24px;
 }
 .app-content-list-item-line-two {
-    top: 25px;
-    opacity: .5;
+	top: 25px;
+	opacity: .5;
 }
 
 ul.addressBookList li {
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 ul.addressBook-share-list {
-    margin-top: 8px;
-    margin-bottom: 12px;
+	margin-top: 8px;
+	margin-bottom: 12px;
 }
 
 ul.addressBook-share-list li {
-    margin-left: 15px;
+	margin-left: 15px;
 }
 
 #app-navigation .utils .action span {
-    cursor: pointer !important;
+	cursor: pointer !important;
 }
 #app-navigation .utils .action {
-    opacity: .5;
+	opacity: .5;
 }
 #app-navigation .utils .action:hover,
 #app-navigation .utils .action:focus {
-    opacity: 1;
+	opacity: 1;
 }
 
 #app-navigation > ul {
-    height: calc(100% - 24px);
+	height: calc(100% - 24px);
 }
 
 /* styling for contact count in contact list */
 .contacts-list-count {
-    text-align:center;
-    color: #333;
-    padding:25px;
-    position: relative;
-    height: 68px;
-    border-top: 1px solid #eee;
+	text-align:center;
+	color: #333;
+	padding:25px;
+	position: relative;
+	height: 68px;
+	border-top: 1px solid #eee;
 }
 
 /* SELECT2 styling - MOVE TO CORE FOR 9.1! */
 
 detailsitem .select2-container {
-    width: 245px;
+	width: 245px;
 }
 .select2-container-multi .select2-choices {
-    border-color: #ddd !important;
-    background-image: none !important;
+	border-color: #ddd !important;
+	background-image: none !important;
 }
 .select2-container-multi.select2-container-active .select2-choices {
-    border-color: #ddd !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
+	border-color: #ddd !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
 }
 .select2-container-multi .select2-choices .select2-search-field input {
-    font-family: inherit !important;
+	font-family: inherit !important;
 }
 .select2-container-multi .select2-choices .select2-search-choice {
-    background-color: rgba(240,240,240,.9) !important;
-    border-color: rgba(240,240,240,.9) !important;
-    color: #555 !important;
-    background-image: none !important;
-    -webkit-box-shadow: none !important;
-    box-shadow: none !important;
+	background-color: rgba(240,240,240,.9) !important;
+	border-color: rgba(240,240,240,.9) !important;
+	color: #555 !important;
+	background-image: none !important;
+	-webkit-box-shadow: none !important;
+	box-shadow: none !important;
 }
 .select2-drop-active {
-    border-color: #ddd !important;
-    -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
-    box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
+	border-color: #ddd !important;
+	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
 }
 .select2-results .select2-highlighted {
-    background-color: #f8f8f8 !important;
-    color: #555 !important;
+	background-color: #f8f8f8 !important;
+	color: #555 !important;
 }
 .select2-results .select2-result-label span {
-    cursor: pointer !important;
+	cursor: pointer !important;
 }
 
 /* Mobile width < 768px */
 @media only screen and (max-width: 768px) {
 
-    /* full width for message list on mobile */
-    .app-content-list {
-	width: 100%;
-	background: white;
-	position: relative;
-	z-index: 100;
-    }
+	/* full width for message list on mobile */
+	.app-content-list {
+		width: 100%;
+		background: white;
+		position: relative;
+		z-index: 100;
+	}
 
-    /* overlay message detail on top of message list */
-    .app-content-detail {
-	background: #fff;
-	width: 100%;
-	left: 0;
-	height: 100%;
-	top: 0;
-	box-shadow: 0 0 100px rgba(100, 100, 100, .9);
-	position: absolute;
-    }
+	/* overlay message detail on top of message list */
+	.app-content-detail {
+		background: #fff;
+		width: 100%;
+		left: 0;
+		height: 100%;
+		top: 0;
+		box-shadow: 0 0 100px rgba(100, 100, 100, .9);
+		position: absolute;
+	}
 
-    .wrapper-show:not(.mobile-show),
-    .contacts-list:not(.mobile-show) {
-	display: none;
-    }
+	.wrapper-show:not(.mobile-show),
+	.contacts-list:not(.mobile-show) {
+		display: none;
+	}
 
 
-    #app-navigation-toggle.showdetails {
-	transform: translate(-50px, 0);
-    }
+	#app-navigation-toggle.showdetails {
+		transform: translate(-50px, 0);
+	}
 
-    #app-navigation-toggle-back {
-	position: fixed;
-	display: inline-block !important;
-	top: 45px;
-	left: 0;
-	width: 44px;
-	height: 44px;
-	z-index: 149;
-	background-color: rgba(255, 255, 255, .7);
-	cursor: pointer;
-	opacity: .6;
-	transform: rotate(90deg);
-    }
+	#app-navigation-toggle-back {
+		position: fixed;
+		display: inline-block !important;
+		top: 45px;
+		left: 0;
+		width: 44px;
+		height: 44px;
+		z-index: 149;
+		background-color: rgba(255, 255, 255, .7);
+		cursor: pointer;
+		opacity: .6;
+		transform: rotate(90deg);
+	}
 
-    /* end of media query */
+	/* end of media query */
 }
 
 .contact-details-wrapper {
-    position: relative;
-    background: white;
+	position: relative;
+	background: white;
 }
 .wrapper-show {
-    z-index: 101;
+	z-index: 101;
 }
 #app-navigation-toggle-back {
-    display: none;
+	display: none;
 }
