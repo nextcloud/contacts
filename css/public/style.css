@@ -159,7 +159,13 @@ avatar.avatar--missing .avatar-upload {
 	padding: 20px 20px 100px;
 }
 
-
+@media screen and (min-width: 1450px) {
+	section {
+		-webkit-column-count: 2; /* Chrome, Safari, Opera */
+		-moz-column-count: 2; /* Firefox */
+		column-count: 2;
+	}
+}
 
 /* General details item styles */
 
