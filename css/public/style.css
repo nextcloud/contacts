@@ -445,6 +445,10 @@ ul.addressBook-share-list li {
     opacity: 1;
 }
 
+#app-navigation > ul {
+    height: calc(100% - 24px);
+}
+
 /* styling for contact count in contact list */
 .contacts-list-count {
     text-align:center;
