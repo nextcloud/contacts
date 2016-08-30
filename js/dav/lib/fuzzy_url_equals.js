@@ -1,5 +1,6 @@
 'use strict';
 export default function fuzzyUrlEquals(one, other) {
+  other = encodeURI(other);
   return fuzzyIncludes(one, other) || fuzzyIncludes(other, one);
 };
 
