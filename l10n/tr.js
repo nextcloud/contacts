@@ -10,6 +10,7 @@ OC.L10N.register(
     "Organization" : "Kurum",
     "Title" : "Başlık",
     "Add field ..." : "Alan ekle...",
+    "+ New contact" : "Yeni Kişi",
     "No search result for {query}" : "{query} için arama sonucu yok",
     "_%n contact_::_%n contacts_" : ["%n kişi","%n kişi"],
     "Post office box" : "Posta kutusu",
