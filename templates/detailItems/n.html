@@ -1,4 +1,5 @@
 <label ng-if="ctrl.availableOptions.length === 0" for="details-{{ctrl.name}}">{{ctrl.meta.readableName}}</label>
+<button ng-click="ctrl.deleteField()" class="icon-delete" title="Delete"></button>
 <div>
 	<label for="details-honorificPrefix">{{ctrl.t.honorificPrefix}}</label>
 	<input type="text" id="details-honorificPrefix" name="honorificPrefix" ng-model="ctrl.data.value[3]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.updateDetailedName()"  value="" />
@@ -19,4 +20,3 @@
 	<label for="details-honorificSuffix">{{ctrl.t.honorificSuffix}}</label>
 	<input type="text" id="details-honorificSuffix" name="honorificSuffix" ng-model="ctrl.data.value[4]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.updateDetailedName()"  value="" />
 </div>
-<button ng-click="ctrl.deleteField()" class="icon-delete" title="Delete"></button>

@@ -31,7 +31,7 @@
 	white-space: nowrap;
 	max-width: 100%;
 	margin: 0;
-    padding: 4px 5px;
+	padding: 4px 5px;
 }
 .contactdetails__header .contactdetails__org,
 .contactdetails__header .contactdetails__title {
@@ -39,7 +39,7 @@
 	min-width: 150px;
 }
 .contactdetails__header .contactdetails__name {
-    width: 100%;
+	width: 100%;
 }
 .contactdetails__header #details-actions {
 	display: flex;
@@ -159,7 +159,13 @@ avatar.avatar--missing .avatar-upload {
 	padding: 20px 20px 100px;
 }
 
-
+@media screen and (min-width: 1450px) {
+	section {
+		-webkit-column-count: 2; /* Chrome, Safari, Opera */
+		-moz-column-count: 2; /* Firefox */
+		column-count: 2;
+	}
+}
 
 /* General details item styles */
 
@@ -168,7 +174,28 @@ detailsitem {
 	position: relative;
 }
 
+detailsitem input[type="tel"],
+detailsitem input[type="email"],
+detailsitem input[type="text"],
+detailsitem input[type="url"],
+detailsitem textarea,
+.select-addressbook select,
+.add-field {
+	width: 245px;
+}
+
+.select-addressbook,
+.add-field {
+	margin-left: 106px;
+}
+
+detailsitem select {
+	width: 100px;
+}
+
 detailsitem label {
+	margin: 3px 3px 3px 0;
+
 	display: inline-block;
 	width: 100px;
 	padding: 7px 0px;
@@ -180,21 +207,6 @@ detailsitem label {
 	vertical-align: middle;
 }
 
-detailsitem input[type="text"],
-detailsitem input[type="password"],
-detailsitem input[type="search"],
-detailsitem input[type="number"],
-detailsitem input[type="email"],
-detailsitem input[type="tel"],
-detailsitem input[type="url"],
-detailsitem input[type="time"],
-detailsitem input[type="date"],
-detailsitem textarea,
-.select-addressbook select,
-.add-field {
-	width: 245px;
-}
-
 detailsitem .icon-delete {
 	position: absolute;
 	vertical-align: middle;
@@ -204,50 +216,6 @@ detailsitem .icon-delete {
 	opacity: .2;
 }
 
-/* Prevent delete for last adr/mail/tel item  */
-.last-details > detailsitem.details-item-adr .icon-delete,
-.last-details > detailsitem.details-item-email .icon-delete,
-.last-details > detailsitem.details-item-tel .icon-delete {
-	display: none;
-}
-
-detailsitem  input#details-url {
-    text-overflow: ellipsis;
-    padding-right: 18px;
-}
-
-/* More specific details item styles */
-
-detailsitem.details-item-tel select,
-detailsitem.details-item-email select,
-detailsitem.details-item-adr select,
-detailsitem.details-item-impp select,
-detailsitem.details-item-cloud select {
-	width: 100px;
-	margin-right: 0;
-}
-
-detailsitem.details-item-tel label {
-	opacity: 1;
-	padding: 0;
-}
-
-detailsitem.details-item-adr {
-	padding: 20px 0;
-}
-detailsitem.details-item-adr .icon-delete {
-	top: 57px;
-	left: 331px;
-}
-detailsitem.details-item-n .icon-delete {
-	top: 34px;
-	left: 331px;
-}
-
-detailsitem.details-item-email select {
-	margin-right: 0;
-}
-
 detailsitem .url-link {
 	position: absolute;
 	padding: 8px 10px;
@@ -255,20 +223,29 @@ detailsitem .url-link {
 	opacity: .5;
 }
 
+detailsitem.details-item-adr .icon-delete, detailsitem.details-item-n .icon-delete {
+	vertical-align: middle;
+	left: 354px;
+}
+
+detailsitem.details-item-adr {
+	padding: 20px 0;
+}
+
+detailsitem.details-item-n {
+	padding: 20px 0;
+}
+
 detailsitem.details-item-note label {
 	vertical-align: top;
-	padding-top: 10px;
-}
-detailsitem.details-item-note .icon-delete {
-	vertical-align: top;
 }
 
-.select-addressbook,
-.add-field {
-	margin-left: 103px;
+/* Prevent delete for last adr/mail/tel item  */
+.last-details > detailsitem.details-item-adr .icon-delete,
+.last-details > detailsitem.details-item-email .icon-delete,
+.last-details > detailsitem.details-item-tel .icon-delete {
+	display: none;
 }
-
-
 
 /* addressbook settings */
 
@@ -363,6 +340,9 @@ li.addressBook-share-item span.shareeIdentifier {
 
 /* Contacts List */
 #new-contact-button {
+	margin: 14px auto; /* to have the same height than a contact*/
+	width: calc(100% - 20px) !important;
+	text-align: left;
 }
 
 
@@ -448,16 +428,16 @@ li.addressBook-share-item span.shareeIdentifier {
 }
 
 ul.addressBookList li {
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 
 ul.addressBook-share-list {
-    margin-top: 8px;
-    margin-bottom: 12px;
+	margin-top: 8px;
+	margin-bottom: 12px;
 }
 
 ul.addressBook-share-list li {
-    margin-left: 15px;
+	margin-left: 15px;
 }
 
 #app-navigation .utils .action span {
@@ -469,6 +449,10 @@ ul.addressBook-share-list li {
 #app-navigation .utils .action:hover,
 #app-navigation .utils .action:focus {
 	opacity: 1;
+}
+
+#app-navigation > ul {
+	height: calc(100% - 24px);
 }
 
 /* styling for contact count in contact list */
@@ -565,7 +549,7 @@ detailsitem .select2-container {
 		transform: rotate(90deg);
 	}
 
-/* end of media query */
+	/* end of media query */
 }
 
 .contact-details-wrapper {
