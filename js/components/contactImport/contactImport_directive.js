@@ -25,6 +25,7 @@ angular.module('contactsApp')
 				if (file) {
 					reader.readAsText(file);
 				}
+				input.get(0).value = '';
 			});
 		},
 		templateUrl: OC.linkTo('contacts', 'templates/contactImport.html')

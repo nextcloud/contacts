@@ -106,7 +106,7 @@ angular.module('contactsApp')
 			notifyObservers('create', newUid);
 			return newContact;
 		}).catch(function(e) {
-			console.log("Couldn't create", e);
+			OC.Notification.showTemporary(t('contacts', 'Contact could not be created.'));
 		});
 	};
 
