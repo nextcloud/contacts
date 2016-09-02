@@ -8,6 +8,17 @@ angular.module('contactsApp')
 
 			addressBookId: addressBook.displayName,
 
+			rev: function(value) {
+				var model = this;
+				if (angular.isDefined(value)) {
+					// setter
+					return model.setProperty('rev', { value: value });
+				} else {
+					// getter
+					return model.getProperty('rev').value;
+				}
+			},
+
 			uid: function(value) {
 				var model = this;
 				if (angular.isDefined(value)) {
