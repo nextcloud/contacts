@@ -3,7 +3,7 @@ angular.module('contactsApp')
 	var ctrl = this;
 
 	ctrl.t = {
-		addContact : t('contacts', '+ New contact')
+		addContact : t('contacts', 'New contact')
 	};
 
 	ctrl.createContact = function() {

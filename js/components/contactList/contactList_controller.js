@@ -10,7 +10,6 @@ angular.module('contactsApp')
 	ctrl.invalid = false;
 
 	ctrl.t = {
-		addContact : t('contacts', '+ New contact'),
 		emptySearch : t('contacts', 'No search result for {query}', {query: ctrl.searchTerm})
 	};
 
