@@ -10,7 +10,6 @@ OC.L10N.register(
     "Organization" : "所属",
     "Title" : "タイトル",
     "Add field ..." : "項目を追加",
-    "+ New contact" : "+新しい連絡先",
     "No search result for {query}" : "{query} に関する検索結果はありません。",
     "_%n contact_::_%n contacts_" : ["件の連絡先"],
     "Post office box" : "私書箱",

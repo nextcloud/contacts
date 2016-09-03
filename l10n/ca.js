@@ -10,7 +10,6 @@ OC.L10N.register(
     "Organization" : "Organització",
     "Title" : "Títol",
     "Add field ..." : "Afegeix camp...",
-    "+ New contact" : "+ Contacte nou",
     "No search result for {query}" : "No s'han trobat resultats per {query}",
     "_%n contact_::_%n contacts_" : ["%n contactes","%n contactes"],
     "Post office box" : "Apartat de Correus",

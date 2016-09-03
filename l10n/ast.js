@@ -10,7 +10,6 @@ OC.L10N.register(
     "Organization" : "Organización",
     "Title" : "Títulu",
     "Add field ..." : "Amestar campu ...",
-    "+ New contact" : "+ Nuevu contautu",
     "No search result for {query}" : "Nengun resultáu pa la gueta {query}",
     "_%n contact_::_%n contacts_" : ["%n contautu","%n contautos"],
     "Post office box" : "Apartáu de correos",

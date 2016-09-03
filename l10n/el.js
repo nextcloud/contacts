@@ -39,6 +39,7 @@ OC.L10N.register(
     "Other" : "Άλλο",
     "Groups" : "Ομάδες",
     "Birthday" : "Γενέθλια",
+    "Date of death" : "Ημερομηνία θανάτου",
     "Email" : "Ηλ. ταχυδρομείο",
     "Instant messaging" : "Άμεσα μηνύματα",
     "Phone" : "Τηλέφωνο",

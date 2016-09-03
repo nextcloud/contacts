@@ -8,7 +8,6 @@
     "Organization" : "Organisatie",
     "Title" : "Titel",
     "Add field ..." : "Voeg veld toe",
-    "+ New contact" : "+ Nieuwe contactpersoon",
     "No search result for {query}" : "Geen zoekresultaten voor {query}",
     "_%n contact_::_%n contacts_" : ["%n contactpersoon","%n contactpersonen"],
     "Post office box" : "Postbus",
