@@ -28,6 +28,7 @@ OC.L10N.register(
     "Not grouped" : "Niet gegroepeerd",
     "New contact" : "Nieuwe contactpersoon",
     "{addressbook} shared by {owner}" : "{addressbook} gedeeld door {owner}",
+    "Contact could not be created." : "Contact kon niet worden aangemaakt.",
     "No contacts in file. Only VCard files are allowed." : "Geen contacten in bestand. Alleen VCard bestanden zijn toegestaan.",
     "Nickname" : "Roepnaam",
     "Detailed name" : "Gedetailleerde naam",

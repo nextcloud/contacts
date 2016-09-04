@@ -26,6 +26,7 @@
     "Not grouped" : "Nicht gruppiert",
     "New contact" : "Neuer Kontakt",
     "{addressbook} shared by {owner}" : "{addressbook} geteilt von {owner}",
+    "Contact could not be created." : "Kontakt konnte nicht erstellt werden.",
     "No contacts in file. Only VCard files are allowed." : "Keine Kontakte in der Datei. Nur VCard-Dateien sind erlaubt.",
     "Nickname" : "Spitzname",
     "Detailed name" : "Detaillierter Name",

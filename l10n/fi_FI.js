@@ -28,6 +28,7 @@ OC.L10N.register(
     "Not grouped" : "Ei ryhmitelty",
     "New contact" : "Uusi yhteystieto",
     "{addressbook} shared by {owner}" : "Osoitekirjan {addressbook} jakoi {owner}",
+    "Contact could not be created." : "Yhteystiedon luominen ei onnistunut.",
     "No contacts in file. Only VCard files are allowed." : "Ei yhteystietoja tiedostossa. Vain vCard-tiedostot ovat sallittuja.",
     "Nickname" : "Kutsumanimi",
     "Detailed name" : "Täsmällinen nimi",
