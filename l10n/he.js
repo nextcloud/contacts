@@ -28,6 +28,7 @@ OC.L10N.register(
     "Not grouped" : "לא שויך לקבוצה",
     "New contact" : "איש קשר חדש",
     "{addressbook} shared by {owner}" : "{addressbook} שותף על ידי {owner}",
+    "Contact could not be created." : "לא ניתן היה ליצור איש קשר.",
     "No contacts in file. Only VCard files are allowed." : "אין אנשי קשר בקובץ. רק קובצי VCard ניתנים לשימוש.",
     "Nickname" : "כינוי",
     "Detailed name" : "פרטי שם",
