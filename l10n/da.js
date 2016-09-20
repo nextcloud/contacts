@@ -28,6 +28,7 @@ OC.L10N.register(
     "Not grouped" : "Ikke i gruppe",
     "New contact" : "Ny kontakt",
     "{addressbook} shared by {owner}" : "{addressbook} delt af {owner}",
+    "Contact could not be created." : "Kontakt kunne ikke oprettes.",
     "No contacts in file. Only VCard files are allowed." : "Ingen kontakter i filen. Kun vCard filer accepteres.",
     "Nickname" : "Kaldenavn",
     "Detailed name" : "Detaljeret navn",

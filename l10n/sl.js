@@ -28,6 +28,7 @@ OC.L10N.register(
     "Not grouped" : "Brez skupine",
     "New contact" : "Nov stik",
     "{addressbook} shared by {owner}" : "Souporabo imenika {addressbook} je omogočil uporabnik {owner}",
+    "Contact could not be created." : "Stika ni mogoče ustvariti.",
     "No contacts in file. Only VCard files are allowed." : "V datoteki ni vpisanih stikov. Dovoljeni so le vpisi datotek VCard.",
     "Nickname" : "Vzdevek",
     "Detailed name" : "Podrobno ime",
