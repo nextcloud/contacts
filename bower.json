@@ -18,18 +18,18 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.5.0",
+    "angular": "1.5.8",
     "angular-bootstrap": "1.1.2",
-    "angular-cache": "4.5.0",
-    "angular-route": "1.5.0",
-    "angular-sanitize": "1.5.0",
+    "angular-cache": "4.6.0",
+    "angular-route": "1.5.8",
+    "angular-sanitize": "1.5.8",
     "angular-uuid4": "0.3.1",
     "jquery-timepicker": "883bb2cd94",
     "ui-select": "angular-ui/ui-select#0.14.9",
-    "vcard": "Heymdall/vcard#85eea2763290ef9d5b8da8d49f49cce79a41b516"
+    "vcard": "Heymdall/vcard#1eb59e9b4406a3253bbb9295a1da776d22cdfe3a"
   },
   "devDependencies": {
-    "angular-mocks": "1.5.0",
+    "angular-mocks": "1.5.8",
     "underscore": "^1.8.3"
   }
 }

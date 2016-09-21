@@ -7,9 +7,9 @@
 
 ![codecov.io](https://codecov.io/github/owncloud/contacts/branch.svg?branch=master)
 
-**A contacts app for [ownCloud](https://owncloud.org).**  
+**A contacts app for [ownCloud](https://owncloud.org) and [Nextcloud](https://nextcloud.com).**
 
-This is the new contacts app that has replaced the [old contacts app](https://github.com/owncloudarchive/contacts) with ownCloud 9.0, and is only the frontend for the new CardDAV-Backend which has moved into the [ownCloud Core](https://github.com/owncloud/core).
+This is the new contacts app that has replaced the [old contacts app](https://github.com/owncloudarchive/contacts), and is only the frontend for the new server-integrated CardDAV-Backend.
 
 ![](https://raw.githubusercontent.com/owncloud/screenshots/master/contacts/contacts.png)
 

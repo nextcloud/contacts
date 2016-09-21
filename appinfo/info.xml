@@ -5,7 +5,7 @@
     <description>The new and improved app for your Contacts.</description>
     <licence>AGPL</licence>
     <author>Hendrik Leppelsack, Thomas Müller, Alexander Weidinger, Jan-Christoph Borchardt, Tom Needham</author>
-    <version>1.4.0.0</version>
+    <version>1.5.0.0</version>
     <documentation>
     	<user>https://doc.owncloud.org/server/9.1/user_manual/pim/contacts.html</user>
     	<admin>https://doc.owncloud.org/server/9.1/admin_manual/configuration_server/occ_command.html?highlight=contact#dav-commands</admin>
