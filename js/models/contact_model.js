@@ -6,6 +6,8 @@ angular.module('contactsApp')
 			data: {},
 			props: {},
 
+			dateProperties: ['bday', 'anniversary', 'deathdate'],
+
 			addressBookId: addressBook.displayName,
 
 			rev: function(value) {
@@ -145,15 +147,38 @@ angular.module('contactsApp')
 				}
 			},
 
+			formateDateAsRFC6350: function(name, data) {
+				if (this.dateProperties.indexOf(name) !== -1) {
+					var match = data.value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+					if (match) {
+						data.value = match[1] + match[2] + match[3];
+					}
+				}
+
+				return data;
+			},
+
+			formateDateForDisplay: function(name, data) {
+				if (this.dateProperties.indexOf(name) !== -1) {
+					var match = data.value.match(/^(\d{4})(\d{2})(\d{2})$/);
+					if (match) {
+						data.value = match[1] + '-' + match[2] + '-' + match[3];
+					}
+				}
+
+				return data;
+			},
+
 			getProperty: function(name) {
 				if (this.props[name]) {
-					return this.props[name][0];
+					return this.formateDateForDisplay(name, this.props[name][0]);
 				} else {
 					return undefined;
 				}
 			},
 			addProperty: function(name, data) {
 				data = angular.copy(data);
+				data = this.formateDateAsRFC6350(name, data);
 				if(!this.props[name]) {
 					this.props[name] = [];
 				}
@@ -168,6 +193,7 @@ angular.module('contactsApp')
 				if(!this.props[name]) {
 					this.props[name] = [];
 				}
+				data = this.formateDateAsRFC6350(name, data);
 				this.props[name][0] = data;
 
 				// keep vCard in sync
@@ -185,6 +211,15 @@ angular.module('contactsApp')
 			},
 
 			syncVCard: function() {
+				var self = this;
+
+				_.each(this.dateProperties, function(name) {
+					if (!_.isUndefined(self.props[name])) {
+						// Set dates again to make sure they are in RFC-6350 format
+						self.setProperty(name, self.props[name][0]);
+					}
+				});
+
 				// keep vCard in sync
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
