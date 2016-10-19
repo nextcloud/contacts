@@ -15,7 +15,6 @@ This is the new contacts app that has replaced the [old contacts app](https://gi
 
 ## Maintainers:
 
-- [Thomas Müller](https://github.com/DeepDiver1975)
 - [Hendrik Leppelsack](https://github.com/Henni)
 - [Jan-Christoph Borchardt](https://github.com/jancborchardt)
 - [Alexander Weidinger](https://github.com/irgendwie)
