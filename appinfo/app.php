@@ -1,6 +1,6 @@
 <?php
 /**
- * ownCloud - contacts
+ * Nextcloud - contacts
  *
  * This file is licensed under the Affero General Public License version 3 or
  * later. See the COPYING file.
@@ -20,7 +20,7 @@ $container->query('OCP\INavigationManager')->add(function () use ($container) {
 	$urlGenerator = $container->query('OCP\IURLGenerator');
 	$l10n = $container->query('OCP\IL10N');
 	return [
-		// the string under which your app will be referenced in owncloud
+		// the string under which your app will be referenced in Nextcloud
 		'id' => 'contacts',
 
 		// sorting weight for the navigation. The higher the number, the higher

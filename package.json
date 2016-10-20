@@ -1,7 +1,7 @@
 {
   "name": "contacts",
   "version": "1.5.0",
-  "description": "Place this app in **owncloud/apps/**",
+  "description": "Place this app in **nextcloud/apps/**",
   "author": {
     "name": "Hendrik Leppelsack",
     "email": "hendrik@leppelsack.de"
@@ -9,13 +9,13 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/owncloud/contacts.git"
+    "url": "git+https://github.com/nextcloud/contacts.git"
   },
   "license": "AGPL-3.0",
   "bugs": {
-    "url": "https://github.com/owncloud/contacts/issues"
+    "url": "https://github.com/nextcloud/contacts/issues"
   },
-  "homepage": "https://github.com/owncloud/contacts#readme",
+  "homepage": "https://github.com/nextcloud/contacts#readme",
   "scripts": {
     "test": "node node_modules/gulp-cli/bin/gulp.js karma",
     "prebuild": "npm install && npm update && node_modules/bower/bin/bower install && node_modules/bower/bin/bower update",
