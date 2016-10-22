@@ -1,7 +1,7 @@
 <!--
 Please report only issues corresponding to the contacts app for Nextcloud.
 
-Migration and CardDAV issues belong in the core repo!
+Migration and CardDAV issues belong in the server repo!
 https://github.com/nextcloud/server/issues
 -->
 ### Steps to reproduce
