@@ -145,15 +145,53 @@ angular.module('contactsApp')
 				}
 			},
 
+<<<<<<< HEAD
 			getProperty: function(name) {
 				if (this.props[name]) {
 					return this.props[name][0];
+=======
+			formatDateAsRFC6350: function(name, data) {
+				if (_.isUndefined(data) || _.isUndefined(data.value)) {
+					return data;
+				}
+				if (this.dateProperties.indexOf(name) !== -1) {
+					var match = data.value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+					if (match) {
+						data.value = match[1] + match[2] + match[3];
+					}
+				}
+
+				return data;
+			},
+
+			formatDateForDisplay: function(name, data) {
+				if (_.isUndefined(data) || _.isUndefined(data.value)) {
+					return data;
+				}
+				if (this.dateProperties.indexOf(name) !== -1) {
+					var match = data.value.match(/^(\d{4})(\d{2})(\d{2})$/);
+					if (match) {
+						data.value = match[1] + '-' + match[2] + '-' + match[3];
+					}
+				}
+
+				return data;
+			},
+
+			getProperty: function(name) {
+				if (this.props[name]) {
+					return this.formatDateForDisplay(name, this.props[name][0]);
+>>>>>>> db23df5... Fix issues with date formating in case of deleting a date field
 				} else {
 					return undefined;
 				}
 			},
 			addProperty: function(name, data) {
 				data = angular.copy(data);
+<<<<<<< HEAD
+=======
+				data = this.formatDateAsRFC6350(name, data);
+>>>>>>> db23df5... Fix issues with date formating in case of deleting a date field
 				if(!this.props[name]) {
 					this.props[name] = [];
 				}
@@ -168,6 +206,10 @@ angular.module('contactsApp')
 				if(!this.props[name]) {
 					this.props[name] = [];
 				}
+<<<<<<< HEAD
+=======
+				data = this.formatDateAsRFC6350(name, data);
+>>>>>>> db23df5... Fix issues with date formating in case of deleting a date field
 				this.props[name][0] = data;
 
 				// keep vCard in sync
@@ -185,6 +227,18 @@ angular.module('contactsApp')
 			},
 
 			syncVCard: function() {
+<<<<<<< HEAD
+=======
+				var self = this;
+
+				_.each(this.dateProperties, function(name) {
+					if (!_.isUndefined(self.props[name]) && !_.isUndefined(self.props[name][0])) {
+						// Set dates again to make sure they are in RFC-6350 format
+						self.setProperty(name, self.props[name][0]);
+					}
+				});
+
+>>>>>>> db23df5... Fix issues with date formating in case of deleting a date field
 				// keep vCard in sync
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
