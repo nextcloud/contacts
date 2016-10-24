@@ -1,45 +1,45 @@
 {
-  "name": "contacts",
-  "version": "1.5.0",
-  "description": "Place this app in **nextcloud/apps/**",
-  "author": {
-    "name": "Hendrik Leppelsack",
-    "email": "hendrik@leppelsack.de"
-  },
-  "private": true,
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/nextcloud/contacts.git"
-  },
-  "license": "AGPL-3.0",
-  "bugs": {
-    "url": "https://github.com/nextcloud/contacts/issues"
-  },
-  "homepage": "https://github.com/nextcloud/contacts#readme",
-  "scripts": {
-    "test": "node node_modules/gulp-cli/bin/gulp.js karma",
-    "prebuild": "npm install && npm update && node_modules/bower/bin/bower install && node_modules/bower/bin/bower update",
-    "build": "node node_modules/gulp-cli/bin/gulp.js",
-    "watch": "node node_modules/gulp-cli/bin/gulp.js watch"
-  },
-  "devDependencies": {
-    "bower": "^1.7.9",
-    "chai": "^3.5.0",
-    "codecov": "^1.0.1",
-    "gulp": "^3.9.1",
-    "gulp-cli": "^1.2.2",
-    "gulp-concat": "^2.6.0",
-    "gulp-eslint": "^3.0.1",
-    "gulp-ng-annotate": "^2.0.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "karma": "^1.2.0",
-    "karma-chai": "^0.1.0",
-    "karma-coverage": "^1.1.1",
-    "karma-firefox-launcher": "^1.0.0",
-    "karma-mocha": "^1.1.1",
-    "karma-mocha-reporter": "^2.1.0",
-    "karma-sinon": "^1.0.5",
-    "mocha": "^3.0.2",
-    "sinon": "^1.17.5"
-  }
+	"name": "contacts",
+	"version": "1.4.0",
+	"description": "Place this app in **nextcloud/apps/**",
+	"author": {
+		"name": "Hendrik Leppelsack",
+		"email": "hendrik@leppelsack.de"
+	},
+	"private": true,
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/nextcloud/contacts.git"
+	},
+	"license": "AGPL-3.0",
+	"bugs": {
+		"url": "https://github.com/nextcloud/contacts/issues"
+	},
+	"homepage": "https://github.com/nextcloud/contacts#readme",
+	"scripts": {
+		"test": "node node_modules/gulp-cli/bin/gulp.js karma",
+		"prebuild": "npm install && npm update && node_modules/bower/bin/bower install && node_modules/bower/bin/bower update",
+		"build": "node node_modules/gulp-cli/bin/gulp.js",
+		"watch": "node node_modules/gulp-cli/bin/gulp.js watch"
+	},
+	"devDependencies": {
+		"bower": "^1.7.9",
+		"chai": "^3.5.0",
+		"codecov": "^1.0.1",
+		"gulp": "^3.9.1",
+		"gulp-cli": "^1.2.2",
+		"gulp-concat": "^2.6.0",
+		"gulp-eslint": "^3.0.1",
+		"gulp-ng-annotate": "^2.0.0",
+		"gulp-sourcemaps": "^1.6.0",
+		"karma": "^1.2.0",
+		"karma-chai": "^0.1.0",
+		"karma-coverage": "^1.1.1",
+		"karma-firefox-launcher": "^1.0.0",
+		"karma-mocha": "^1.1.1",
+		"karma-mocha-reporter": "^2.1.0",
+		"karma-sinon": "^1.0.5",
+		"mocha": "^3.0.2",
+		"sinon": "^1.17.5"
+	}
 }

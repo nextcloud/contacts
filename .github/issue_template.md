@@ -51,7 +51,7 @@ from within your Nextcloud installation folder
 ```
 If you have access to your command line run e.g.:
 sudo -u www-data php occ config:list system
-from within your ownCloud installation folder
+from within your Nextcloud installation folder
 
 or 
 
