@@ -10,6 +10,7 @@ OC.L10N.register(
     "Title" : "Заглавие",
     "Add field ..." : "Добави приятел",
     "No search result for {query}" : "Няма намерени резултати за {query}",
+    "_%n contact_::_%n contacts_" : ["%n контакт","%n контакта"],
     "Postal code" : "Пощенски код",
     "City" : "Град",
     "State or province" : "Страна или област",
