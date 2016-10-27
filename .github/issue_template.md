@@ -72,7 +72,7 @@ With access to your command line run e.g.:
 sudo -u www-data php occ ldap:show-config
 from within your Nextcloud installation folder
 
-Without access to your command line download the data/nextcloud.db to your local
+Without access to your command line download the data/owncloud.db to your local
 computer or access your SQL server remotely and run the select query:
 SELECT * FROM `oc_appconfig` WHERE `appid` = 'user_ldap';
 
