@@ -1,17 +1,26 @@
 # Nextcloud Contacts
 
-[![irc](https://img.shields.io/badge/irc%20channel-%23owncloud--contacts%20on%20freenode-blue.svg)](https://webchat.freenode.net/?channels=owncloud-contacts)
-[![Build Status](https://scrutinizer-ci.com/g/owncloud/contacts/badges/build.png?b=master)](https://scrutinizer-ci.com/g/owncloud/contacts/build-status/master)
-![Dev Dependencies](https://david-dm.org/owncloud/contacts/dev-status.svg)
-[![codecov.io](https://codecov.io/github/owncloud/contacts/coverage.svg?branch=master)](https://codecov.io/github/owncloud/contacts?branch=master)
+[![irc](https://img.shields.io/badge/IRC-%23nextcloud--contacts%20on%20freenode-blue.svg)](https://webchat.freenode.net/?channels=nextcloud-contacts)
 
-![codecov.io](https://codecov.io/github/owncloud/contacts/branch.svg?branch=master)
+**A contacts app for [Nextcloud](https://nextcloud.com). Easily sync contacts from various devices with your Nextcloud and edit them online.**
 
-**A contacts app for [Nextcloud](https://nextcloud.com) and [ownCloud](https://owncloud.org).**
+![](https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/contacts/contacts.png)
 
-This is the new contacts app that has replaced the [old contacts app](https://github.com/owncloudarchive/contacts), and is only the frontend for the new server-integrated CardDAV-Backend.
+## Why is this so awesome?
 
-![](https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png)
+* :rocket: **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.
+* :tada: **Never forget a birthday!** You can sync birthday, deathday and other recurring events with your Nextcloud Calendar.
+* :busts_in_silhouette: **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!
+* :see_no_evil: **We’re not reinventing the wheel!** Based on the great and open CardDAV backend.
+
+## Installation
+
+In your Nextcloud, simply navigate to »Apps«, choose the category »Productivity«, find the Contacts app and enable it.
+Then open the Contacts app from the app menu.
+
+## Support
+
+If you need assistance or want to ask a question about Contacts, you are welcome to [ask for support](https://help.nextcloud.com) in our Forums or the [IRC-Channel](https://webchat.freenode.net/?channels=nextcloud-contacts). If you have found a bug, feel free to open a new Issue on GitHub. Keep in mind, that this repository only manages the frontend. If you find bugs or have problems with the CardDAV-Backend, you should ask the guys at [Nextcloud server](https://github.com/nextcloud/server) for help!
 
 ## Maintainers:
 
@@ -20,9 +29,7 @@ This is the new contacts app that has replaced the [old contacts app](https://gi
 - [Alexander Weidinger](https://github.com/irgendwie)
 - [Tom Needham](https://github.com/tomneedham)
 
-
-If you’d like to join, just go through the [issue list](https://github.com/nextcloud/contacts/issues) and fix some. :)
-
+If you’d like to join, just go through the issue list and fix some. :)
 
 ## Building the app
 
@@ -36,7 +43,6 @@ This requires the following things to be present:
 * tar: for building the archive
 * curl: used if phpunit and composer are not installed to fetch them from the web
 * npm: for building and testing everything JS
-
 
 ## Running tests
 You can use the provided Makefile to run all tests by using:
