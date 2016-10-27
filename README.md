@@ -11,7 +11,7 @@
 * :rocket: **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.
 * :tada: **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.
 * :busts_in_silhouette: **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!
-* :see_no_evil: **We’re not reinventing the wheel!** Based on the great and open CardDAV backend.
+* :see_no_evil: **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 
 ## Installation
 
