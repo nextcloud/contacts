@@ -29,7 +29,7 @@ If you need assistance or want to ask a question about Contacts, you are welcome
 - [Alexander Weidinger](https://github.com/irgendwie)
 - [Tom Needham](https://github.com/tomneedham)
 
-If you’d like to join, just go through the issue list and fix some. :)
+If you'd like to join, just go through the [issue list](https://github.com/nextcloud/contacts/issues) and fix some. :)
 
 ## Building the app
 
