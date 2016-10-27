@@ -4,12 +4,12 @@
 
 **A contacts app for [Nextcloud](https://nextcloud.com). Easily sync contacts from various devices with your Nextcloud and edit them online.**
 
-![](https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/contacts/contacts.png)
+![](https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png)
 
 ## Why is this so awesome?
 
 * :rocket: **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.
-* :tada: **Never forget a birthday!** You can sync birthday, deathday and other recurring events with your Nextcloud Calendar.
+* :tada: **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.
 * :busts_in_silhouette: **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!
 * :see_no_evil: **We’re not reinventing the wheel!** Based on the great and open CardDAV backend.
 
