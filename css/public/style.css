@@ -170,7 +170,7 @@ avatar.avatar--missing .avatar-upload {
 /* General details item styles */
 
 detailsitem {
-	display: block;
+	display: inline-block;
 	position: relative;
 }
 
