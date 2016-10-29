@@ -30,6 +30,7 @@
 		</header>
 		<section>
 			<div ng-repeat="prop in ctrl.contact.props | toArray | orderDetailItems:'$key'">
+				<h3>{{prop.$key}}</h3>
 				<detailsItem ng-repeat="propData in prop" name="prop.$key" data="propData" model="ctrl" index="$index" ng-class="[ 'details-item-' + prop.$key ]"></detailsItem>
 			</div>
 			<div class="select-addressbook" ng-if="ctrl.addressBooks.length > 1">
