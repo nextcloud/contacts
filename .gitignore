@@ -3,3 +3,4 @@ build
 js/public
 js/vendor
 coverage
+npm-debug.log
