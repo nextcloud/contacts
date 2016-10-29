@@ -315,7 +315,12 @@ input.newAddressBookInput, input.shareeInput, input.addressBookUrl {
 }
 
 ul.addressBookList li[addressbook] > span.addressBookName {
+	width: 105px;
+	overflow: hidden;
+	white-space:nowrap;
+	text-overflow: ellipsis;
 	padding-left: 7px;
+	display: inline-block;
 }
 
 li.addressBook-share-item span.shareeIdentifier {
