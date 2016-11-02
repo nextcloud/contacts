@@ -40,6 +40,7 @@ OC.L10N.register(
     "Other" : "Annet",
     "Groups" : "Grupper",
     "Birthday" : "Bursdag",
+    "Anniversary" : "Jubileum",
     "Date of death" : "Dødsdato",
     "Email" : "Epost",
     "Instant messaging" : "Direktemeldinger",
