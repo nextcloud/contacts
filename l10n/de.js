@@ -2,7 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontakte",
-    "Address book name" : "Adressbuch Name",
+    "Address book name" : "Name des Adressbuchs",
     "Import" : "Importieren",
     "The selected image is too big (max 1MB)" : "Das ausgewählte Bild ist zu groß (max. 1MB)",
     "No contacts in here" : "Keine Kontakte gefunden",
