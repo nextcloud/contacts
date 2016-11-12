@@ -24,7 +24,7 @@ OC.L10N.register(
     "Additional names" : "Nomi aggiuntivi",
     "Prefix" : "Prefisso",
     "Suffix" : "Suffisso",
-    "All contacts" : "Tuuti i contatti",
+    "All contacts" : "Tutti i contatti",
     "Not grouped" : "Non raggruppati",
     "New contact" : "Nuovo contatto",
     "{addressbook} shared by {owner}" : "{addressbook} condivisa da {owner}",
@@ -51,7 +51,7 @@ OC.L10N.register(
     "Fax work" : "Fax lavoro",
     "Pager" : "Cercapersone",
     "Voice" : "Voce",
-    "Social network" : "Rete sociale",
+    "Social network" : "Social network",
     "Settings" : "Impostazioni"
 },
 "nplurals=2; plural=(n != 1);");
