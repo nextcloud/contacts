@@ -225,9 +225,11 @@ angular.module('contactsApp')
 						self.setProperty(name, self.props[name][0]);
 					}
 				});
+				// force fn to be set
+				this.fullName(this.fullName());
 
 				// keep vCard in sync
-				this.data.addressData = $filter('JSON2vCard')(this.props);
+				self.data.addressData = $filter('JSON2vCard')(self.props);
 			},
 
 			matches: function(pattern) {
