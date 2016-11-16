@@ -209,9 +209,9 @@ detailsitem label {
 }
 
 detailsitem .icon-delete {
-	position: absolute;
-	vertical-align: middle;
-	padding: 16px;
+	position: relative;
+	vertical-align: top;
+	padding: 16px 10px;
 	background-color: transparent;
 	border: none;
 	opacity: .2;
@@ -226,7 +226,7 @@ detailsitem .url-link {
 
 detailsitem.details-item-adr .icon-delete, detailsitem.details-item-n .icon-delete {
 	vertical-align: middle;
-	left: 354px;
+	left: 251px;
 }
 
 detailsitem.details-item-adr {
