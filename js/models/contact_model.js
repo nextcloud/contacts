@@ -49,7 +49,9 @@ angular.module('contactsApp')
 					}
 					property = model.getProperty('n');
 					if(property) {
-						return property.value.join();
+						return property.value.filter(function(elem) {
+							return elem;
+						}).join(' ');
 					}
 					return undefined;
 				}
