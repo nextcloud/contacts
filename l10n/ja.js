@@ -28,6 +28,7 @@ OC.L10N.register(
     "Not grouped" : "グループ化されていません",
     "New contact" : "新しい連絡先",
     "{addressbook} shared by {owner}" : " {owner}と共有中の{addressbook} ",
+    "Contact could not be created." : "連絡先を作成できませんでした。",
     "No contacts in file. Only VCard files are allowed." : "コンタクトがファイルにありません。VCardファイルのみが有効です。",
     "Nickname" : "ニックネーム",
     "Detailed name" : "詳細名",
