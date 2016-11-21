@@ -4,7 +4,7 @@
 	<id>contacts</id>
 	<name>Contacts</name>
 	<description>The new and improved app for your Contacts.</description>
-	<version>1.4.0</version>
+	<version>1.4.0.0</version>
 	<licence>AGPL</licence>
 	<author>Alexander Weidinger</author>
 	<author>Jan-Christoph Borchardt</author>
