@@ -11,14 +11,14 @@
 			<avatar data="ctrl.contact" ng-class="{'avatar--missing': ctrl.contact.photo()===undefined}"></avatar>
 			<div id="details-contact-infos">
 				<h2>
-					<input type="text" id="details-fullName" class="contactdetails__name" placeholder="{{ctrl.t.placeholderName}}" autocomplete="off"
+					<input type="text" id="details-fullName" class="contactdetails__name" placeholder="{{ctrl.t.placeholderName}}" autocomplete="off" autocorrect="off" spellcheck="false"
 						   name="fullname" ng-model="ctrl.contact.fullName" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
 				</h2>
 				<div id="details-org-container">
-					<input type="text" id="details-org" class="contactdetails__org" placeholder="{{ctrl.t.placeholderOrg}}" autocomplete="off"
+					<input type="text" id="details-org" class="contactdetails__org" placeholder="{{ctrl.t.placeholderOrg}}" autocomplete="off" autocorrect="off" spellcheck="false"
 						   name="org" ng-model="ctrl.contact.org" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value=""
 						   inputresize size="{{ctrl.contact.org().length > 1 ? ctrl.contact.org().length : '1'}}" />
-					<input type="text" id="details-title" class="contactdetails__title" placeholder="{{ctrl.t.placeholderTitle}}" autocomplete="off"
+					<input type="text" id="details-title" class="contactdetails__title" placeholder="{{ctrl.t.placeholderTitle}}" autocomplete="off" autocorrect="off" spellcheck="false"
 						   name="title" ng-model="ctrl.contact.title" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value=""
 						   inputresize size="{{ctrl.contact.title().length > 1 ? ctrl.contact.title().length : '1'}}" />
 				</div>
