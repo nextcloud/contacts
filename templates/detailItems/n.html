@@ -2,21 +2,26 @@
 <button ng-click="ctrl.deleteField()" class="icon-delete" title="Delete"></button>
 <div>
 	<label for="details-honorificPrefix">{{ctrl.t.honorificPrefix}}</label>
-	<input type="text" id="details-honorificPrefix" name="honorificPrefix" ng-model="ctrl.data.value[3]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.updateDetailedName()"  value="" />
+	<input type="text" id="details-honorificPrefix" name="honorificPrefix" ng-model="ctrl.data.value[3]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.updateDetailedName()" 
+		   autocomplete="off" autocorrect="off" spellcheck="false" value="" />
 </div>
 <div>
 	<label for="details-firstName">{{ctrl.t.firstName}}</label>
-	<input type="text" id="details-firstName" name="firstName" ng-model="ctrl.data.value[1]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.updateDetailedName()"  value="" />
+	<input type="text" id="details-firstName" name="firstName" ng-model="ctrl.data.value[1]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.updateDetailedName()" 
+		   autocomplete="off" autocorrect="off" spellcheck="false"  value="" />
 </div>
 <div>
 	<label for="details-additionalNames">{{ctrl.t.additionalNames}}</label>
-	<input type="text" id="details-additionalNames" name="additionalNames" ng-model="ctrl.data.value[2]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.updateDetailedName()"  value="" />
+	<input type="text" id="details-additionalNames" name="additionalNames" ng-model="ctrl.data.value[2]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.updateDetailedName()" 
+		   autocomplete="off" autocorrect="off" spellcheck="false"  value="" />
 </div>
 <div>
 	<label for="details-familyName">{{ctrl.t.familyName}}</label>
-	<input type="text" id="details-familyName" name="familyName" ng-model="ctrl.data.value[0]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.updateDetailedName()"  value="" />
+	<input type="text" id="details-familyName" name="familyName" ng-model="ctrl.data.value[0]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.updateDetailedName()" 
+		   autocomplete="off" autocorrect="off" spellcheck="false"  value="" />
 </div>
 <div>
 	<label for="details-honorificSuffix">{{ctrl.t.honorificSuffix}}</label>
-	<input type="text" id="details-honorificSuffix" name="honorificSuffix" ng-model="ctrl.data.value[4]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.updateDetailedName()"  value="" />
+	<input type="text" id="details-honorificSuffix" name="honorificSuffix" ng-model="ctrl.data.value[4]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.updateDetailedName()" 
+		   autocomplete="off" autocorrect="off" spellcheck="false"  value="" />
 </div>
