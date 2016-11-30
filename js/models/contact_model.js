@@ -10,17 +10,6 @@ angular.module('contactsApp')
 
 			addressBookId: addressBook.displayName,
 
-			rev: function(value) {
-				var model = this;
-				if (angular.isDefined(value)) {
-					// setter
-					return model.setProperty('rev', { value: value });
-				} else {
-					// getter
-					return model.getProperty('rev').value;
-				}
-			},
-
 			uid: function(value) {
 				var model = this;
 				if (angular.isDefined(value)) {
@@ -218,7 +207,25 @@ angular.module('contactsApp')
 				this.data.url = addressBook.url + uid + '.vcf';
 			},
 
+			getISODate: function(date) {
+				function pad(number) {
+					if (number < 10) {
+						return '0' + number;
+					}
+					return '' + number;
+				}
+
+				return date.getUTCFullYear() + '' +
+						pad(date.getUTCMonth() + 1) +
+						pad(date.getUTCDate()) +
+						'T' + pad(date.getUTCHours()) +
+						pad(date.getUTCMinutes()) +
+						pad(date.getUTCSeconds());
+			},
+
 			syncVCard: function() {
+
+				this.setProperty('rev', { value: this.getISODate(new Date()) });
 				var self = this;
 
 				_.each(this.dateProperties, function(name) {

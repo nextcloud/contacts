@@ -154,8 +154,6 @@ angular.module('contactsApp')
 
 	this.update = function(contact) {
 		// update rev field
-		contact.rev(new Date().toISOString());
-
 		contact.syncVCard();
 
 		// update contact on server
