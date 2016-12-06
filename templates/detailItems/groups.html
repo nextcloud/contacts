@@ -1,5 +1,5 @@
 <label ng-if="ctrl.availableOptions.length === 0" for="details-{{ctrl.name}}">{{ctrl.meta.readableName}}</label>
-<ui-select id="details-{{ctrl.name}}" multiple tagging tagging-label="{{ctrl.t.newGroup}}" ng-model="ctrl.data.value" group-model
+<ui-select id="details-{{ctrl.name}}" multiple tagging tagging-label="{{ctrl.t.newGroup}}" ng-model="ctrl.data.value"
 		   on-remove="ctrl.model.updateContact()" on-select="ctrl.model.updateContact()"
 		   theme="select2" focus-expression="$parent.$parent.ctrl.focus === ctrl.name">
 	<ui-select-match placeholder="{{ctrl.meta.readableName}}">{{$item}}</ui-select-match>
