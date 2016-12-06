@@ -6,14 +6,14 @@ angular.module('contactsApp')
 	/* globals oc_config */
 
 	function compareVersion(version1, version2) {
-		for(var i = 0; i < Math.max(version1.length, version2.length); i++) {
-			a = version1[i] || 0;
-			b = version2[i] || 0;
-			if(Number(a) < Number(b)) {
-				return true
+		for (var i = 0; i < Math.max(version1.length, version2.length); i++) {
+			var a = version1[i] || 0;
+			var b = version2[i] || 0;
+			if (Number(a) < Number(b)) {
+				return true;
 			}
-			if(version1[i] !== version2[i]) {
-				return false
+			if (version1[i] !== version2[i]) {
+				return false;
 			}
 		}
 		return false;
