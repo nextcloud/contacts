@@ -290,5 +290,6 @@ angular.module('contactsApp')
 			if (angular.isString(property.value)) {
 				this.categories([property.value]);
 			}
+		}
 	};
 });
