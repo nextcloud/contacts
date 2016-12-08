@@ -28,6 +28,7 @@ OC.L10N.register(
     "Not grouped" : "Not grouped",
     "New contact" : "New contact",
     "{addressbook} shared by {owner}" : "{addressbook} shared by {owner}",
+    "Contact could not be created." : "Contact could not be created.",
     "No contacts in file. Only VCard files are allowed." : "No contacts in file. Only VCard files are allowed.",
     "Nickname" : "Nickname",
     "Detailed name" : "Detailed name",
