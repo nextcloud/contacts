@@ -139,7 +139,8 @@ avatar.maximized {
 	background-color: rgba(0, 0, 0, 0.9);
 	display: flex;
 	justify-content: center;
-	z-index: 2001;
+	z-index: 200;
+	padding-top: 65px; /* Nextcloud header */
 }
 avatar.maximized img {
 	width: auto;
@@ -599,7 +600,7 @@ detailsitem .select2-container {
 	background: white;
 }
 .wrapper-show {
-	z-index: 101;
+	z-index: 201;
 }
 #app-navigation-toggle-back {
 	display: none;
