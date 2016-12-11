@@ -47,7 +47,7 @@ angular.module('contactsApp')
 			e.stopPropagation();
 		});
 		$(document).keyup(function(e) {
-			if (e.keyCode == 27) {
+			if (e.keyCode === 27) {
 				$('avatar').removeClass('maximized');
 			}
 		});
