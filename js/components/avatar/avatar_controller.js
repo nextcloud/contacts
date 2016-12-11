@@ -7,6 +7,7 @@ angular.module('contactsApp')
 	ctrl.removePhoto = function() {
 		ctrl.contact.removeProperty('photo', ctrl.contact.getProperty('photo'));
 		ContactService.update(ctrl.contact);
+		$('avatar').removeClass('maximized');
 	};
 
 	ctrl.downloadPhoto = function() {
@@ -40,17 +41,19 @@ angular.module('contactsApp')
 
 	ctrl.openPhoto = function() {
 		$('avatar').toggleClass('maximized');
-		$('avatar').click(function() {
-			$('avatar').removeClass('maximized');
-		});
-		$('avatar img, avatar .avatar-options').click(function(e) {
-			e.stopPropagation();
-		});
-		$(document).keyup(function(e) {
-			if (e.keyCode === 27) {
-				$('avatar').removeClass('maximized');
-			}
-		});
 	};
+
+	// Quit avatar preview
+	$('avatar').click(function() {
+		$('avatar').removeClass('maximized');
+	});
+	$('avatar img, avatar .avatar-options').click(function(e) {
+		e.stopPropagation();
+	});
+	$(document).keyup(function(e) {
+		if (e.keyCode === 27) {
+			$('avatar').removeClass('maximized');
+		}
+	});
 
 });
