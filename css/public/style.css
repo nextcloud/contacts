@@ -71,18 +71,18 @@
 	opacity: .8;
 }
 
-.contactdetails__header .icon-delete-white,
-.contactdetails__header #contact-export-link {
+.contactdetails__header #details-actions .icon-delete-white,
+.contactdetails__header #details-actions #contact-export-link {
 	padding: 15px;
 	background-color: transparent;
 	border: none;
 	opacity: .5;
 	margin: 3px;
 }
-.contactdetails__header .icon-delete-white:hover,
+.contactdetails__header #details-actions .icon-delete-white:hover,
 .contactdetails__header .icon-delete-white:focus,
-.contactdetails__header #contact-export-link:hover,
-.contactdetails__header #contact-export-link:focus {
+.contactdetails__header #details-actions #contact-export-link:hover,
+.contactdetails__header #details-actions #contact-export-link:focus {
 	opacity: .7
 }
 
@@ -95,35 +95,70 @@ avatar {
 	flex-shrink: 0;
 }
 
-.avatar-upload {
+.avatar-options {
 	position: absolute;
 	top: 0;
 	left: 0;
-	height: 100%;
-	width: 100%;
-
 	background-color: rgba(0,0,0,0.2);
 	font-size: 2.5em;
-	line-height: 75px;
-
 	display: none;
-
-}
-
-.avatar-upload > .icon-upload-white {
-	display: block;
 	width: 100%;
 	height: 100%;
-	opacity: 0.5;
-	cursor: pointer;
-}
-.avatar-upload:hover > .icon-upload-white {
-	opacity: 0.7;
+	flex-wrap: wrap;
+	justify-content: space-around;
+	padding: 10px;
 }
 
-avatar:hover .avatar-upload,
-avatar.avatar--missing .avatar-upload {
+.avatar-options > [class^="icon-"] {
 	display: block;
+	opacity: 0.5;
+	cursor: pointer;
+	min-width: 20px;
+	min-height: 20px;
+}
+.avatar-options:hover > [class^="icon-"] {
+	opacity: 0.6;
+}
+.avatar-options > [class^="icon-"]:hover  {
+	opacity: 0.8;
+}
+
+avatar:hover .avatar-options,
+avatar.avatar--missing .avatar-options {
+	display: flex;
+}
+
+avatar.maximized {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	border-radius: 0;
+	padding: 20px;
+	background-color: rgba(0, 0, 0, 0.9);
+	display: flex;
+	justify-content: center;
+	z-index: 200;
+	padding-top: 65px; /* Nextcloud header */
+}
+avatar.maximized img {
+	width: auto;
+	height: auto;
+	border-radius: 0;
+	max-height: calc(100% - 40px);
+	align-self: center;
+	margin-bottom: 40px;
+}
+avatar.maximized .avatar-options {
+	height: 40px;
+	position: absolute;
+	top: calc(100% - 40px);
+	display: flex;
+	opacity: 1;
+}
+avatar.maximized .avatar-options > [class^="icon-"] {
+	min-width: 25%;
 }
 
 .contactdetails__logo {
@@ -565,7 +600,7 @@ detailsitem .select2-container {
 	background: white;
 }
 .wrapper-show {
-	z-index: 101;
+	z-index: 201;
 }
 #app-navigation-toggle-back {
 	display: none;

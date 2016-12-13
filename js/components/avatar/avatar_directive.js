@@ -4,6 +4,11 @@ angular.module('contactsApp')
 		scope: {
 			contact: '=data'
 		},
+		controller: 'avatarCtrl',
+		controllerAs: 'ctrl',
+		bindToController: {
+			contact: '=data'
+		},
 		link: function(scope, element) {
 			var importText = t('contacts', 'Import');
 			scope.importText = importText;

@@ -1,5 +1,8 @@
-<img ng-show="contact.photo()!==undefined" class="contactdetails__logo avatar" data-ng-src="{{contact.photo()}}" />
-<div class="avatar-upload">
-	<input type="file" id="avatar-upload" class="hidden-visually"/>
+<img ng-show="contact.photo()!==undefined" class="contactdetails__logo avatar" id="contact-avatar" data-ng-src="{{contact.photo()}}" />
+<div class="avatar-options">
+	<input type="file" id="avatar-upload" class="hidden"/>
 	<label for="avatar-upload" class="icon-upload-white"></label>
+	<div class="icon-delete-white" ng-show="contact.photo()!==undefined" ng-click="ctrl.removePhoto()"></div>
+	<div class="icon-fullscreen-white" ng-show="contact.photo()!==undefined" ng-click="ctrl.openPhoto()"></div>
+	<div class="icon-download-white" ng-show="contact.photo()!==undefined" ng-click="ctrl.downloadPhoto()"></div>
 </div>
