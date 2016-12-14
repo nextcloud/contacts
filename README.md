@@ -15,7 +15,7 @@
 
 ## Installation
 
-In your Nextcloud, simply navigate to »Apps«, choose the category »Productivity«, find the Contacts app and enable it.
+In your Nextcloud, simply navigate to »Apps«, choose the category »Organization«, find the Contacts app and enable it.
 Then open the Contacts app from the app menu.
 
 ## Support
