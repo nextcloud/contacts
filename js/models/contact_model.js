@@ -22,7 +22,11 @@ angular.module('contactsApp')
 			},
 
 			displayName: function() {
-				return this.fullName() || this.org() || '';
+				var displayName = this.fullName() || this.org() || '';
+				if(angular.isArray(displayName)) {
+					return displayName.join(' ');
+				}
+				return displayName;
 			},
 
 			fullName: function(value) {
