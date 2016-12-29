@@ -25,6 +25,6 @@ describe('contactModel', function() {
 	it('should generate proper ISO.8601.2004 date string', function() {
 		var contact = new $Contact({displayName: 'test'});
 		var d = contact.getISODate(new Date('2016-09-01T09:07:05Z'));
-		expect(d).to.equal('20160901T090705');
+		expect(d).to.equal('20160901T090705Z');
 	});
 });
