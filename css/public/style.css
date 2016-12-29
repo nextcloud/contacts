@@ -155,6 +155,7 @@ avatar.maximized img {
 	height: auto;
 	border-radius: 0;
 	max-height: calc(100% - 40px);
+	max-width: 100%;
 	align-self: center;
 	margin-bottom: 40px;
 }
