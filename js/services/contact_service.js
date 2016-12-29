@@ -107,6 +107,7 @@ angular.module('contactsApp')
 			newContact.setETag(xhr.getResponseHeader('ETag'));
 			contacts.put(newUid, newContact);
 			notifyObservers('create', newUid);
+			$('#details-fullName').select();
 			return newContact;
 		}).catch(function() {
 			OC.Notification.showTemporary(t('contacts', 'Contact could not be created.'));
