@@ -23,7 +23,7 @@ angular.module('contactsApp')
 				return !reverseOrder ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
 			}
 
-			if (angular.isNumber(valueA) || angular.isBoolean(valueA)) {
+			if (angular.isNumber(valueA) || typeof valueA === 'boolean') {
 				return !reverseOrder ? valueA - valueB : valueB - valueA;
 			}
 

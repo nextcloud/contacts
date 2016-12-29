@@ -10,9 +10,8 @@ describe('localeOrderBy filter', function() {
 
 	it('should return the array properly sorted', function() {
 		var localeOrderBy = $filter('localeOrderBy');
-		var sorted = $filter('localeOrderBy')([{name:'Mb'}, {name:'Mab'}, {name:'Máa'}], 'name', false);
-		var expected = [{name:'Máa'}, {name:'Mab'}, {name:'Mb'}];
-
+		var sorted = $filter('localeOrderBy')([{name:'Mb'}, {name:'Mab'}, {name:'Máa'}, {name: 1}, {name: undefined}, {name: undefined}], 'name', false);
+		var expected = [{name: 1}, {name:'Máa'}, {name:'Mab'}, {name:'Mb'}, {name: undefined}, {name: undefined}];
 		expect(sorted).to.deep.equal(expected);
 	});
 });
