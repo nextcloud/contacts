@@ -10,6 +10,15 @@ angular.module('contactsApp')
 
 			addressBookId: addressBook.displayName,
 
+			version: function() {
+				var property = this.getProperty('version');
+				if(property) {
+					return property.value;
+				}
+
+				return undefined;
+			},
+
 			uid: function(value) {
 				var model = this;
 				if (angular.isDefined(value)) {

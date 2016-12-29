@@ -130,9 +130,19 @@ angular.module('contactsApp')
 		var num = 1;
 		for(var i in singleVCards) {
 			var newContact = new Contact(addressBook, {addressData: singleVCards[i]});
+			if (['3.0', '4.0'].indexOf(newContact.version()) < 0) {
+				if (progressCallback) {
+					progressCallback(num / singleVCards.length);
+				}
+				OC.Notification.showTemporary(t('contacts', 'Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported.'));
+				num++;
+				continue;
+			}
 			this.create(newContact, addressBook).then(function() {
 				// Update the progress indicator
-				if (progressCallback) progressCallback(num/singleVCards.length);
+				if (progressCallback) {
+					progressCallback(num / singleVCards.length);
+				}
 				num++;
 			});
 		}
