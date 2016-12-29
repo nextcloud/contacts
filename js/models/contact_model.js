@@ -222,7 +222,7 @@ angular.module('contactsApp')
 						pad(date.getUTCDate()) +
 						'T' + pad(date.getUTCHours()) +
 						pad(date.getUTCMinutes()) +
-						pad(date.getUTCSeconds()) + "Z";
+						pad(date.getUTCSeconds()) + 'Z';
 			},
 
 			syncVCard: function() {
