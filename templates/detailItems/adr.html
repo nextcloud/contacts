@@ -1,7 +1,7 @@
 <select ng-model="ctrl.type" ng-model-options="{ debounce: 500 }" ng-change="ctrl.changeType(ctrl.type)">
 	<option ng-repeat="option in ctrl.availableOptions" value="{{option.id}}">{{option.name}}</option>
 </select>
-<button ng-click="ctrl.deleteField()" class="icon-delete" title="Delete"></button>
+<button ng-click="ctrl.deleteField()" class="icon-delete" title="{{ctrl.t.delete}}"></button>
 <div>
 	<label for="details-pobox">{{ctrl.t.poBox}}</label>
 	<input type="text" id="details-pobox" name="address" ng-model="ctrl.data.value[0]" ng-model-options="{ debounce: 500 }" ng-change="ctrl.model.updateContact()"  value="" />
