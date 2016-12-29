@@ -2,6 +2,16 @@ angular.module('contactsApp')
 .controller('addressbookCtrl', function($scope, AddressBookService) {
 	var ctrl = this;
 
+	ctrl.t = {
+		download: t('contacts', 'Download'),
+		showURL:t('contacts', 'ShowURL'),
+		shareAddressbook: t('contacts', 'Share Addressbook'),
+		deleteAddressbook: t('contacts', 'Delete Addressbook'),
+		shareInputPlaceHolder: t('contacts', 'Share with users or groups'),
+		delete: t('contacts', 'Delete'),
+		canEdit: t('contacts', 'can edit')
+	};
+
 	ctrl.showUrl = false;
 	/* globals oc_config */
 

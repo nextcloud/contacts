@@ -17,7 +17,8 @@ angular.module('contactsApp')
 		firstName: t('contacts', 'First name'),
 		additionalNames: t('contacts', 'Additional names'),
 		honorificPrefix: t('contacts', 'Prefix'),
-		honorificSuffix: t('contacts', 'Suffix')
+		honorificSuffix: t('contacts', 'Suffix'),
+		delete: t('contacts', 'Delete')
 	};
 
 	ctrl.availableOptions = ctrl.meta.options || [];
