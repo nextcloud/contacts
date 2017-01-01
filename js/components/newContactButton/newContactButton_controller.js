@@ -13,9 +13,9 @@ angular.module('contactsApp')
 				contact.addProperty(field, defaultValue);
 			} );
 			if ([t('contacts', 'All contacts'), t('contacts', 'Not grouped')].indexOf($routeParams.gid) === -1) {
-				contact.categories($routeParams.gid);
+				contact.categories([ $routeParams.gid ]);
 			} else {
-				contact.categories('');
+				contact.categories([]);
 			}
 			$('#details-fullName').focus();
 		});

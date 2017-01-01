@@ -61,6 +61,39 @@ angular.module('contactsApp')
 		}
 	};
 
+	// get list of groups and the count of contacts in said groups
+	this.getGroupList = function () {
+		return this.getAll().then(function(contacts) {
+			// the translated names for all and not-grouped are used in filtering, they must be exactly like this
+			var allContacts = [t('contacts', 'All contacts'), contacts.length];
+			var notGrouped =
+				[t('contacts', 'Not grouped'),
+					contacts.filter(
+						function (contact) {
+							 return contact.categories().length === 0;
+						}).length
+				];
+
+			// allow groups with names such as toString
+			var otherGroups = Object.create(null);
+
+			// collect categories and their associated counts
+			contacts.forEach(function (contact) {
+				contact.categories().forEach(function (category) {
+					otherGroups[category] = otherGroups[category] ? otherGroups[category] + 1 : 1;
+				});
+			});
+
+			return [allContacts, notGrouped]
+				.concat(_.keys(otherGroups).map(
+					function (key) {
+						return [key, otherGroups[key]];
+					}));
+
+
+		});
+	};
+
 	this.getGroups = function () {
 		return this.getAll().then(function(contacts) {
 			return _.uniq(contacts.map(function (element) {
