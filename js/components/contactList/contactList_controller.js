@@ -8,11 +8,24 @@ angular.module('contactsApp')
 	ctrl.searchTerm = '';
 	ctrl.show = true;
 	ctrl.invalid = false;
+	ctrl.limitTo = 25;
 
 	ctrl.sortBy = SortByService.getSortBy();
 
 	ctrl.t = {
 		emptySearch : t('contacts', 'No search result for {query}', {query: ctrl.searchTerm})
+	};
+
+	ctrl.resetLimitTo = function () {
+		ctrl.limitTo = 25;
+		clearInterval(ctrl.intervalId);
+		ctrl.intervalId = setInterval(
+			function () {
+				if (!ctrl.loading && ctrl.contacts.length > ctrl.limitTo) {
+					ctrl.limitTo += 25;
+					$scope.$apply();
+				}
+			}, 300);
 	};
 
 	$scope.query = function(contact) {
@@ -30,6 +43,7 @@ angular.module('contactsApp')
 			$scope.$apply();
 		}
 		if (ev.event === 'changeSearch') {
+			ctrl.resetLimitTo();
 			ctrl.searchTerm = ev.searchTerm;
 			ctrl.t.emptySearch = t('contacts',
 								   'No search result for {query}',
@@ -134,6 +148,7 @@ angular.module('contactsApp')
 	$scope.$watch('ctrl.routeParams.gid', function() {
 		// we might have to wait until ng-repeat filled the contactList
 		ctrl.contactList = [];
+		ctrl.resetLimitTo();
 		// not in mobile mode
 		if($(window).width() > 768) {
 			// watch for next contactList update
