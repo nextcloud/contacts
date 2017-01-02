@@ -6,7 +6,6 @@ export default function addressBookQuery(object) {
     <d:prop>
       ${object.props.map(prop)}
     </d:prop>
-    <card:limit><card:nresults>10</card:nresults></card:limit>
     <!-- According to http://stackoverflow.com/questions/23742568/google-carddav-api-addressbook-multiget-returns-400-bad-request,
          Google's CardDAV server requires a filter element. I don't think all addressbook-query calls need a filter in the spec though? -->
   </card:addressbook-query>`
