@@ -152,11 +152,19 @@ export let listVCards = co.wrap(function *(addressBook, options) {
   debug(`Doing REPORT on address book ${addressBook.url} which belongs to
         ${addressBook.account.credentials.username}`);
 
+	var vCardListFields = [ 'EMAIL', 'UID', 'CATEGORIES', 'FN', 'TEL', 'NICKNAME' ]
+			.map(function (value) {
+				return {
+					name: 'prop',
+					namespace: ns.CARDDAV,
+					attrs: [ { name: 'name', value: value } ]
+				};
+			});
   var req = request.addressBookQuery({
     depth: 1,
     props: [
       { name: 'getetag', namespace: ns.DAV },
-      { name: 'address-data', namespace: ns.CARDDAV }
+      { name: 'address-data', namespace: ns.CARDDAV, children: vCardListFields }
     ]
   });
 

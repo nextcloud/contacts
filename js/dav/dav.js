@@ -1749,22 +1749,29 @@ function createCard(addressBook, options) {
  *   (dav.Sandbox) sandbox - optional request sandbox.
  */
 var listVCards = _co2['default'].wrap(regeneratorRuntime.mark(function callee$0$0(addressBook, options) {
-  var req, responses;
+  var vCardListFields, req, responses;
   return regeneratorRuntime.wrap(function callee$0$0$(context$1$0) {
     while (1) switch (context$1$0.prev = context$1$0.next) {
       case 0:
         debug('Doing REPORT on address book ' + addressBook.url + ' which belongs to\n        ' + addressBook.account.credentials.username);
 
+        vCardListFields = ['EMAIL', 'UID', 'CATEGORIES', 'FN', 'TEL'].map(function (value) {
+          return {
+            name: 'prop',
+            namespace: ns.CARDDAV,
+            attrs: [{ name: 'name', value: value }]
+          };
+        });
         req = request.addressBookQuery({
           depth: 1,
-          props: [{ name: 'getetag', namespace: ns.DAV }, { name: 'address-data', namespace: ns.CARDDAV }]
+          props: [{ name: 'getetag', namespace: ns.DAV }, { name: 'address-data', namespace: ns.CARDDAV, children: vCardListFields }]
         });
-        context$1$0.next = 4;
+        context$1$0.next = 5;
         return options.xhr.send(req, addressBook.url, {
           sandbox: options.sandbox
         });
 
-      case 4:
+      case 5:
         responses = context$1$0.sent;
         return context$1$0.abrupt('return', responses.map(function (res) {
           debug('Found vcard with url ' + res.href);
@@ -1777,7 +1784,7 @@ var listVCards = _co2['default'].wrap(regeneratorRuntime.mark(function callee$0$
           });
         }));
 
-      case 6:
+      case 7:
       case 'end':
         return context$1$0.stop();
     }
@@ -2818,24 +2825,24 @@ function createSandbox() {
   return new Sandbox();
 }
 },{"./debug":6}],14:[function(require,module,exports){
-'use strict';
+"use strict";
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports['default'] = addressBookQuery;
+exports["default"] = addressBookQuery;
 
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var _prop = require('./prop');
 
 var _prop2 = _interopRequireDefault(_prop);
 
 function addressBookQuery(object) {
-  return '<card:addressbook-query xmlns:card="urn:ietf:params:xml:ns:carddav"\n                          xmlns:d="DAV:">\n    <d:prop>\n      ' + object.props.map(_prop2['default']) + '\n    </d:prop>\n    <card:limit><card:nresults>10</card:nresults></card:limit>\n    <!-- According to http://stackoverflow.com/questions/23742568/google-carddav-api-addressbook-multiget-returns-400-bad-request,\n         Google\'s CardDAV server requires a filter element. I don\'t think all addressbook-query calls need a filter in the spec though? -->\n  </card:addressbook-query>';
+  return "<card:addressbook-query xmlns:card=\"urn:ietf:params:xml:ns:carddav\"\n                          xmlns:d=\"DAV:\">\n    <d:prop>\n      " + object.props.map(_prop2["default"]).join("") + "\n    </d:prop>\n    <!-- According to http://stackoverflow.com/questions/23742568/google-carddav-api-addressbook-multiget-returns-400-bad-request,\n         Google's CardDAV server requires a filter element. I don't think all addressbook-query calls need a filter in the spec though? -->\n  </card:addressbook-query>";
 }
 
-module.exports = exports['default'];
+module.exports = exports["default"];
 },{"./prop":19}],15:[function(require,module,exports){
 'use strict';
 
@@ -2965,15 +2972,23 @@ var ns = _interopRequireWildcard(_namespace);
  */
 
 function prop(item) {
+  var tagName = xmlnsPrefix(item.namespace) + ':' + item.name;
+  var attrs = (item.attrs || []).map(makeAttr).join(' ');
   if (!item.children || !item.children.length) {
     if (typeof item.value === "undefined") {
-      return '<' + xmlnsPrefix(item.namespace) + ':' + item.name + ' />';
+      return '<' + tagName + ' ' + attrs + '/>';
     }
-    return '<' + xmlnsPrefix(item.namespace) + ':' + item.name + '>' + item.value + '</' + xmlnsPrefix(item.namespace) + ':' + item.name + '>';
+    return '<' + tagName + ' ' + attrs + '>' + item.value + '</' + tagName + '>';
   }
 
   var children = item.children.map(prop);
-  return '<' + xmlnsPrefix(item.namespace) + ':' + item.name + '>\n            ' + children + '\n          </' + xmlnsPrefix(item.namespace) + ':' + item.name + '>';
+  return '<' + tagName + ' ' + attrs + '>\n            ' + children.join('') + '\n          </' + tagName + '>';
+}
+
+function makeAttr(attr) {
+  if (!attr.name) return '';
+  if (!attr.value) return attr.name;
+  return attr.name + '="' + attr.value + '"';
 }
 
 function xmlnsPrefix(namespace) {
