@@ -94,10 +94,6 @@ angular.module('contactsApp')
 					}
 				});
 			}
-			// No contact previously loaded, let's load the first of the list if not in mobile mode
-			if(ctrl.loading && $(window).width() > 768) {
-				ctrl.setSelectedId(ctrl.contactList[0].uid());
-			}
 			ctrl.loading = false;
 			unbindListWatch();
 		}
