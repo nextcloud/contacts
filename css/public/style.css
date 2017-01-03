@@ -95,22 +95,25 @@ avatar {
 	flex-shrink: 0;
 }
 
+.contactdetails__logo {
+	height: 75px;
+	width: 75px;
+	object-fit: cover;
+	background-color: transparent;
+	margin: 0;
+	cursor: pointer;
+}
+
 .avatar-options {
-	position: absolute;
 	top: 0;
-	left: 0;
 	background-color: rgba(0,0,0,0.2);
-	font-size: 2.5em;
 	display: none;
 	width: 100%;
 	height: 100%;
-	flex-wrap: wrap;
-	justify-content: space-around;
-	padding: 10px;
+	overflow: hidden;
 }
-
 .avatar-options > [class^="icon-"] {
-	display: block;
+	display: none;
 	opacity: 0.5;
 	cursor: pointer;
 	min-width: 20px;
@@ -123,9 +126,14 @@ avatar {
 	opacity: 0.8;
 }
 
-avatar:hover .avatar-options,
 avatar.avatar--missing .avatar-options {
 	display: flex;
+	border-radius: 50%;
+}
+avatar:not(.maximized).avatar--missing .avatar-options .icon-upload-white {
+	display: block;
+	width: 100%;
+	height: 100%;
 }
 
 avatar.maximized {
@@ -147,6 +155,7 @@ avatar.maximized img {
 	height: auto;
 	border-radius: 0;
 	max-height: calc(100% - 40px);
+	max-width: 100%;
 	align-self: center;
 	margin-bottom: 40px;
 }
@@ -154,19 +163,16 @@ avatar.maximized .avatar-options {
 	height: 40px;
 	position: absolute;
 	top: calc(100% - 40px);
+	left: 0;
 	display: flex;
 	opacity: 1;
+	padding: 0;
+	flex-wrap: wrap;
+	justify-content: space-around;
 }
 avatar.maximized .avatar-options > [class^="icon-"] {
 	min-width: 25%;
-}
-
-.contactdetails__logo {
-	height: 75px;
-	width: 75px;
-	object-fit: cover;
-	background-color: transparent;
-	margin: 0;
+	display: block;
 }
 
 #check-all + label:before {
