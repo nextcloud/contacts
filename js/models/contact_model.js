@@ -157,9 +157,14 @@ angular.module('contactsApp')
 						return [];
 					}
 					if (angular.isArray(property.value)) {
+						// Avoid and fix unescaped commas
+						if(property.value.join(';').indexOf(',') !== -1) {
+							property.value = property.value.join(',').split(',');
+							this.setProperty('categories', { value: property.value });
+						}
 						return property.value;
 					}
-					return [property.value];
+					return property.value.split(',');
 				}
 			},
 
