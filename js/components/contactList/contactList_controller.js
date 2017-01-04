@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, ContactService, SortByService, vCardPropertiesService, SearchService) {
+.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, $timeout, ContactService, SortByService, vCardPropertiesService, SearchService) {
 	var ctrl = this;
 
 	ctrl.routeParams = $routeParams;
@@ -56,7 +56,7 @@ angular.module('contactsApp')
 	ctrl.loading = true;
 
 	ContactService.registerObserverCallback(function(ev) {
-		$scope.$apply(function() {
+		$timeout(function () { $scope.$apply(function() {
 			if (ev.event === 'delete') {
 				if (ctrl.contactList.length === 1) {
 					$route.updateParams({
@@ -82,7 +82,7 @@ angular.module('contactsApp')
 				});
 			}
 			ctrl.contacts = ev.contacts;
-		});
+		}); });
 	});
 
 	// Get contacts
@@ -96,7 +96,45 @@ angular.module('contactsApp')
 		}
 	});
 
-	// Wait for ctrl.contactList to be updated, load the first contact and kill the watch
+	var getVisibleNames = function getVisibleNames() {
+		function isScrolledIntoView(el) {
+			var elemTop = el.getBoundingClientRect().top;
+			var elemBottom = el.getBoundingClientRect().bottom;
+
+			var bothAboveViewport = elemBottom < 0;
+			var bothBelowViewPort = elemTop > window.innerHeight;
+			var isVisible = !bothAboveViewport && !bothBelowViewPort;
+			return isVisible;
+		}
+
+		var elements = Array.prototype.slice.call(document.querySelectorAll('.contact__icon:not(.ng-hide)'));
+		var names = elements
+				.filter(isScrolledIntoView)
+				.map(function (el) {
+					var siblings = Array.prototype.slice.call(el.parentElement.children);
+					var nameElement = siblings.find(function (sibling) {
+						return sibling.getAttribute('class').indexOf('content-list-item-line-one') !== -1;
+					});
+					return nameElement.innerText;
+
+				});
+		return names;
+	};
+
+	var timeoutId = null;
+	document.querySelector('.app-content-list').addEventListener('scroll', function () {
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout(function () {
+			var names = getVisibleNames();
+			ContactService.getFullContacts(names);
+		}, 250);
+	});
+
+	// Wait for ctrl.contactList to be updated, load the contact requested in the URL if any, and
+	// load full details for the probably initially visible contacts.
+	// Then kill the watch.
+	// Don't blindly load the first contact as that is a heavy operation that hangs the browser, preventing
+	// for example searching while the DOM is updated
 	var unbindListWatch = $scope.$watch('ctrl.contactList', function() {
 		if(ctrl.contactList && ctrl.contactList.length > 0) {
 			// Check if a specific uid is requested
@@ -108,6 +146,8 @@ angular.module('contactsApp')
 					}
 				});
 			}
+			var firstNames = ctrl.contactList.slice(0, 20).map(function (c) { return c.displayName(); });
+			ContactService.getFullContacts(firstNames);
 			ctrl.loading = false;
 			unbindListWatch();
 		}

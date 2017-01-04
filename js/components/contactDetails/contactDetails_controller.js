@@ -53,7 +53,7 @@ angular.module('contactsApp')
 			$('#app-navigation-toggle').removeClass('showdetails');
 			return;
 		}
-		ContactService.getById(uid).then(function(contact) {
+		ContactService.getById(ctrl.addressBooks, uid).then(function(contact) {
 			if (angular.isUndefined(contact)) {
 				ctrl.clearContact();
 				return;

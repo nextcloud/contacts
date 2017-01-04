@@ -938,7 +938,7 @@ exports.createAccount = _co2['default'].wrap(regeneratorRuntime.mark(function ca
 }));
 
 // http redirect.
-},{"./calendars":2,"./contacts":5,"./debug":6,"./fuzzy_url_equals":7,"./model":9,"./namespace":10,"./request":12,"co":31,"url":30}],2:[function(require,module,exports){
+},{"./calendars":2,"./contacts":5,"./debug":6,"./fuzzy_url_equals":7,"./model":9,"./namespace":10,"./request":12,"co":32,"url":31}],2:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1329,7 +1329,7 @@ var webdavSync = _co2['default'].wrap(regeneratorRuntime.mark(function callee$0$
     }
   }, callee$0$0, this);
 }));
-},{"./debug":6,"./fuzzy_url_equals":7,"./model":9,"./namespace":10,"./request":12,"./webdav":24,"co":31,"url":30}],3:[function(require,module,exports){
+},{"./debug":6,"./fuzzy_url_equals":7,"./model":9,"./namespace":10,"./request":12,"./webdav":25,"co":32,"url":31}],3:[function(require,module,exports){
 /**
  * @fileoverview Camelcase something.
  */
@@ -1532,6 +1532,14 @@ var Client = (function () {
       return contacts.deleteCard(card, options);
     }
   }, {
+    key: 'getContacts',
+    value: function getContacts(addressBook, options, hrefs) {
+      if (options === undefined) options = {};
+
+      options.xhr = options.xhr || this.xhr;
+      return contacts.getContacts(addressBook, options, hrefs);
+    }
+  }, {
     key: 'syncAddressBook',
     value: function syncAddressBook(addressBook) {
       var options = arguments.length <= 1 || arguments[1] === undefined ? {} : arguments[1];
@@ -1553,7 +1561,7 @@ var Client = (function () {
 })();
 
 exports.Client = Client;
-},{"./accounts":1,"./calendars":2,"./contacts":5,"url":30}],5:[function(require,module,exports){
+},{"./accounts":1,"./calendars":2,"./contacts":5,"url":31}],5:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -1743,6 +1751,42 @@ function createCard(addressBook, options) {
   return webdav.createObject(objectUrl, options.data, options);
 }
 
+var getFullVcards = _co2['default'].wrap(regeneratorRuntime.mark(function callee$0$0(addressBook, options, hrefs) {
+  var req, responses;
+  return regeneratorRuntime.wrap(function callee$0$0$(context$1$0) {
+    while (1) switch (context$1$0.prev = context$1$0.next) {
+      case 0:
+        req = request.addressBookMultiget({
+          depth: 1,
+          props: [{ name: 'getetag', namespace: ns.DAV }, { name: 'address-data', namespace: ns.CARDDAV }],
+          hrefs: hrefs
+        });
+        context$1$0.next = 3;
+        return options.xhr.send(req, addressBook.url, {
+          sandbox: options.sandbox
+        });
+
+      case 3:
+        responses = context$1$0.sent;
+        return context$1$0.abrupt('return', responses.map(function (res) {
+          debug('Found vcard with url ' + res.href);
+          return new _model.VCard({
+            data: res,
+            addressBook: addressBook,
+            url: _url2['default'].resolve(addressBook.account.rootUrl, res.href),
+            etag: res.props.getetag,
+            addressData: res.props.addressData
+          });
+        }));
+
+      case 5:
+      case 'end':
+        return context$1$0.stop();
+    }
+  }, callee$0$0, this);
+}));
+
+exports.getFullVcards = getFullVcards;
 /**
  * Options:
  *
@@ -1755,7 +1799,7 @@ var listVCards = _co2['default'].wrap(regeneratorRuntime.mark(function callee$0$
       case 0:
         debug('Doing REPORT on address book ' + addressBook.url + ' which belongs to\n        ' + addressBook.account.credentials.username);
 
-        vCardListFields = ['EMAIL', 'UID', 'CATEGORIES', 'FN', 'TEL'].map(function (value) {
+        vCardListFields = ['EMAIL', 'UID', 'CATEGORIES', 'FN', 'TEL', 'NICKNAME'].map(function (value) {
           return {
             name: 'prop',
             namespace: ns.CARDDAV,
@@ -1914,6 +1958,9 @@ var syncCarddavAccount = _co2['default'].wrap(regeneratorRuntime.mark(function c
 }));
 
 exports.syncCarddavAccount = syncCarddavAccount;
+var getContacts = getFullVcards;
+
+exports.getContacts = getContacts;
 var basicSync = _co2['default'].wrap(regeneratorRuntime.mark(function callee$0$0(addressBook, options) {
   var sync;
   return regeneratorRuntime.wrap(function callee$0$0$(context$1$0) {
@@ -1986,7 +2033,7 @@ var webdavSync = _co2['default'].wrap(regeneratorRuntime.mark(function callee$0$
     }
   }, callee$0$0, this);
 }));
-},{"./debug":6,"./fuzzy_url_equals":7,"./model":9,"./namespace":10,"./request":12,"./webdav":24,"co":31,"url":30}],6:[function(require,module,exports){
+},{"./debug":6,"./fuzzy_url_equals":7,"./model":9,"./namespace":10,"./request":12,"./webdav":25,"co":32,"url":31}],6:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2116,7 +2163,7 @@ exports.debug = _debug2['default'];
 exports.ns = ns;
 exports.request = request;
 exports.transport = transport;
-},{"../package":35,"./accounts":1,"./calendars":2,"./client":4,"./contacts":5,"./debug":6,"./model":9,"./namespace":10,"./request":12,"./sandbox":13,"./transport":23}],9:[function(require,module,exports){
+},{"../package":36,"./accounts":1,"./calendars":2,"./client":4,"./contacts":5,"./debug":6,"./model":9,"./namespace":10,"./request":12,"./sandbox":13,"./transport":24}],9:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -2500,13 +2547,14 @@ function children(node, localName) {
 function child(node, localName) {
   return children(node, localName)[0];
 }
-},{"./camelize":3,"./debug":6,"xmldom":32}],12:[function(require,module,exports){
+},{"./camelize":3,"./debug":6,"xmldom":33}],12:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
   value: true
 });
 exports.addressBookQuery = addressBookQuery;
+exports.addressBookMultiget = addressBookMultiget;
 exports.basic = basic;
 exports.calendarQuery = calendarQuery;
 exports.collectionQuery = collectionQuery;
@@ -2537,6 +2585,10 @@ var template = _interopRequireWildcard(_template);
 
 function addressBookQuery(options) {
   return collectionQuery(template.addressBookQuery({ props: options.props || [] }), { depth: options.depth });
+}
+
+function addressBookMultiget(options) {
+  return collectionQuery(template.addressBookMultiget({ props: options.props || [], hrefs: options.hrefs || [] }), { depth: options.depth });
 }
 
 /**
@@ -2765,7 +2817,7 @@ function setRequestHeaders(request, options) {
     request.setRequestHeader('Overwrite', options.overwrite);
   }
 }
-},{"./parser":11,"./template":17}],13:[function(require,module,exports){
+},{"./parser":11,"./template":18}],13:[function(require,module,exports){
 /**
  * @fileoverview Group requests together and then abort as a group.
  *
@@ -2830,6 +2882,29 @@ function createSandbox() {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports["default"] = addressBookMultiget;
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
+
+var _prop = require('./prop');
+
+var _prop2 = _interopRequireDefault(_prop);
+
+function href(href) {
+  return "<d:href>" + href + "</d:href>";
+}
+
+function addressBookMultiget(object) {
+  return "<card:addressbook-multiget xmlns:card=\"urn:ietf:params:xml:ns:carddav\"\n                          xmlns:d=\"DAV:\">\n    <d:prop>\n      " + object.props.map(_prop2["default"]).join("") + "\n    </d:prop>\n    " + object.hrefs.map(href).join("") + "\n  </card:addressbook-multiget>";
+}
+
+module.exports = exports["default"];
+},{"./prop":20}],15:[function(require,module,exports){
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 exports["default"] = addressBookQuery;
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
@@ -2843,7 +2918,7 @@ function addressBookQuery(object) {
 }
 
 module.exports = exports["default"];
-},{"./prop":19}],15:[function(require,module,exports){
+},{"./prop":20}],16:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2866,7 +2941,7 @@ function calendarQuery(object) {
 }
 
 module.exports = exports['default'];
-},{"./filter":16,"./prop":19}],16:[function(require,module,exports){
+},{"./filter":17,"./prop":20}],17:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2893,16 +2968,17 @@ function formatAttrs(attrs) {
   }).join(' ');
 }
 module.exports = exports['default'];
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 'use strict';
 
 exports.addressBookQuery = require('./address_book_query');
+exports.addressBookMultiget = require('./address_book_multiget');
 exports.calendarQuery = require('./calendar_query');
 exports.propfind = require('./propfind');
 exports.syncCollection = require('./sync_collection');
 exports.mkcol = require('./mkcol');
 exports.proppatch = require('./proppatch');
-},{"./address_book_query":14,"./calendar_query":15,"./mkcol":18,"./propfind":20,"./proppatch":21,"./sync_collection":22}],18:[function(require,module,exports){
+},{"./address_book_multiget":14,"./address_book_query":15,"./calendar_query":16,"./mkcol":19,"./propfind":21,"./proppatch":22,"./sync_collection":23}],19:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -2921,7 +2997,7 @@ function mkcol(object) {
 }
 
 module.exports = exports['default'];
-},{"./prop":19}],19:[function(require,module,exports){
+},{"./prop":20}],20:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -3008,7 +3084,7 @@ function xmlnsPrefix(namespace) {
   }
 }
 module.exports = exports['default'];
-},{"../namespace":10}],20:[function(require,module,exports){
+},{"../namespace":10}],21:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -3027,7 +3103,7 @@ function propfind(object) {
 }
 
 module.exports = exports['default'];
-},{"./prop":19}],21:[function(require,module,exports){
+},{"./prop":20}],22:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -3046,7 +3122,7 @@ function proppatch(object) {
 }
 
 module.exports = exports['default'];
-},{"./prop":19}],22:[function(require,module,exports){
+},{"./prop":20}],23:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -3065,7 +3141,7 @@ function syncCollection(object) {
 }
 
 module.exports = exports['default'];
-},{"./prop":19}],23:[function(require,module,exports){
+},{"./prop":20}],24:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -3378,7 +3454,7 @@ var refreshAccessToken = _co2['default'].wrap(regeneratorRuntime.mark(function c
     }
   }, callee$0$0, this);
 }));
-},{"./xmlhttprequest":25,"co":31,"querystring":29}],24:[function(require,module,exports){
+},{"./xmlhttprequest":26,"co":32,"querystring":30}],25:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -3560,7 +3636,7 @@ var isCollectionDirty = _co2['default'].wrap(regeneratorRuntime.mark(function ca
   }, callee$0$0, this);
 }));
 exports.isCollectionDirty = isCollectionDirty;
-},{"./debug":6,"./fuzzy_url_equals":7,"./namespace":10,"./request":12,"co":31}],25:[function(require,module,exports){
+},{"./debug":6,"./fuzzy_url_equals":7,"./namespace":10,"./request":12,"co":32}],26:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, '__esModule', {
@@ -3684,7 +3760,7 @@ var XMLHttpRequest = (function () {
 
 exports['default'] = XMLHttpRequest;
 module.exports = exports['default'];
-},{"./debug":6}],26:[function(require,module,exports){
+},{"./debug":6}],27:[function(require,module,exports){
 (function (global){
 /*! https://mths.be/punycode v1.4.1 by @mathias */
 ;(function(root) {
@@ -4221,7 +4297,7 @@ module.exports = exports['default'];
 }(this));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4307,7 +4383,7 @@ var isArray = Array.isArray || function (xs) {
   return Object.prototype.toString.call(xs) === '[object Array]';
 };
 
-},{}],28:[function(require,module,exports){
+},{}],29:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -4394,13 +4470,13 @@ var objectKeys = Object.keys || function (obj) {
   return res;
 };
 
-},{}],29:[function(require,module,exports){
+},{}],30:[function(require,module,exports){
 'use strict';
 
 exports.decode = exports.parse = require('./decode');
 exports.encode = exports.stringify = require('./encode');
 
-},{"./decode":27,"./encode":28}],30:[function(require,module,exports){
+},{"./decode":28,"./encode":29}],31:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -5109,7 +5185,7 @@ function isNullOrUndefined(arg) {
   return  arg == null;
 }
 
-},{"punycode":26,"querystring":29}],31:[function(require,module,exports){
+},{"punycode":27,"querystring":30}],32:[function(require,module,exports){
 
 /**
  * slice() reference.
@@ -5348,7 +5424,7 @@ function isObject(val) {
   return Object == val.constructor;
 }
 
-},{}],32:[function(require,module,exports){
+},{}],33:[function(require,module,exports){
 function DOMParser(options){
 	this.options = options ||{locator:{}};
 	
@@ -5601,7 +5677,7 @@ function appendElement (hander,node) {
 	exports.DOMParser = DOMParser;
 //}
 
-},{"./dom":33,"./sax":34}],33:[function(require,module,exports){
+},{"./dom":34,"./sax":35}],34:[function(require,module,exports){
 /*
  * DOM Level 2
  * Object DOMException
@@ -6847,7 +6923,7 @@ try{
 	exports.XMLSerializer = XMLSerializer;
 //}
 
-},{}],34:[function(require,module,exports){
+},{}],35:[function(require,module,exports){
 //[4]   	NameStartChar	   ::=   	":" | [A-Z] | "_" | [a-z] | [#xC0-#xD6] | [#xD8-#xF6] | [#xF8-#x2FF] | [#x370-#x37D] | [#x37F-#x1FFF] | [#x200C-#x200D] | [#x2070-#x218F] | [#x2C00-#x2FEF] | [#x3001-#xD7FF] | [#xF900-#xFDCF] | [#xFDF0-#xFFFD] | [#x10000-#xEFFFF]
 //[4a]   	NameChar	   ::=   	NameStartChar | "-" | "." | [0-9] | #xB7 | [#x0300-#x036F] | [#x203F-#x2040]
 //[5]   	Name	   ::=   	NameStartChar (NameChar)*
@@ -7482,7 +7558,7 @@ function split(source,start){
 exports.XMLReader = XMLReader;
 
 
-},{}],35:[function(require,module,exports){
+},{}],36:[function(require,module,exports){
 module.exports={
   "name": "dav",
   "version": "1.8.0",

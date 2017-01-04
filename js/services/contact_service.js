@@ -4,6 +4,7 @@ angular.module('contactsApp')
 	var cacheFilled = false;
 
 	var contacts = CacheFactory('contacts');
+	var urlsByDisplayname = CacheFactory('urlsByDisplayname');
 
 	var observerCallbacks = [];
 
@@ -24,6 +25,32 @@ angular.module('contactsApp')
 		});
 	};
 
+	this.getFullContacts = function getFullContacts(names) {
+		AddressBookService.getAll().then(function (enabledAddressBooks) {
+			var promises = [];
+			enabledAddressBooks.forEach(function (addressBook) {
+				var urls = names
+					.map(function (name) { return urlsByDisplayname.get(name); });
+				var promise = DavClient.getContacts(addressBook, {}, urls)
+						.then(
+							function (vcards) {
+								return vcards.map(function (vcard) {
+									return new Contact(addressBook, vcard);
+								});
+							})
+						.then(function (contacts_) {
+							contacts_.map(function (contact) {
+								contacts.put(contact.uid(), contact);
+							});
+						});
+				promises.push(promise);
+			});
+			$q.all(promises).then(function () {
+				notifyObservers('getFullContacts', '');
+			});
+		});
+	};
+
 	this.fillCache = function() {
 		if (_.isUndefined(loadPromise)) {
 			loadPromise = AddressBookService.getAll().then(function (enabledAddressBooks) {
@@ -35,6 +62,7 @@ angular.module('contactsApp')
 								if (addressBook.objects[i].addressData) {
 									var contact = new Contact(addressBook, addressBook.objects[i]);
 									contacts.put(contact.uid(), contact);
+									urlsByDisplayname.put(contact.displayName(), contact.data.url);
 								} else {
 									// custom console
 									console.log('Invalid contact received: ' + addressBook.objects[i].url);
@@ -104,14 +132,29 @@ angular.module('contactsApp')
 		});
 	};
 
-	this.getById = function(uid) {
-		if(cacheFilled === false) {
-			return this.fillCache().then(function() {
-				return contacts.get(uid);
+	this.getById = function(addressBooks, uid) {
+		return (function () {
+			if(cacheFilled === false) {
+				return this.fillCache().then(function() {
+					return contacts.get(uid);
+				});
+			} else {
+				return $q.when(contacts.get(uid));
+			}
+		}).call(this)
+			.then(function (contact) {
+				var addressBook = _.find(addressBooks, function(book) {
+					return book.displayName === contact.addressBookId;
+				});
+				return addressBook
+					? DavClient.getContacts(addressBook, {}, [ contact.data.url ]).then(
+						function (vcards) { return new Contact(addressBook, vcards[0]); }
+					).then(function (contact) {
+						contacts.put(contact.uid(), contact);
+						notifyObservers('getFullContacts', contact.uid());
+						return contact;
+					}) : contact;
 			});
-		} else {
-			return $q.when(contacts.get(uid));
-		}
 	};
 
 	this.create = function(newContact, addressBook, uid) {

@@ -143,6 +143,32 @@ export function createCard(addressBook, options) {
   return webdav.createObject(objectUrl, options.data, options);
 }
 
+export let getFullVcards = co.wrap(function *(addressBook, options, hrefs) {
+  var req = request.addressBookMultiget({
+    depth: 1,
+    props: [
+      { name: 'getetag', namespace: ns.DAV },
+      { name: 'address-data', namespace: ns.CARDDAV }
+    ],
+    hrefs: hrefs
+  });
+
+  let responses = yield options.xhr.send(req, addressBook.url, {
+    sandbox: options.sandbox
+  });
+
+  return responses.map(res => {
+    debug(`Found vcard with url ${res.href}`);
+    return new VCard({
+      data: res,
+      addressBook: addressBook,
+      url: url.resolve(addressBook.account.rootUrl, res.href),
+      etag: res.props.getetag,
+      addressData: res.props.addressData
+    });
+  });
+});
+
 /**
  * Options:
  *
@@ -275,6 +301,8 @@ export let syncCarddavAccount = co.wrap(function *(account, options={}) {
 
   return account;
 });
+
+export let getContacts = getFullVcards;
 
 let basicSync = co.wrap(function *(addressBook, options) {
   let sync = webdav.isCollectionDirty(addressBook, options)

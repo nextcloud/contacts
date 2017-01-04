@@ -13,12 +13,14 @@ angular.module('contactsApp')
 	};
 
 	// Update groupList on contact add/delete/update
-	ContactService.registerObserverCallback(function() {
-		$scope.$apply(function() {
-			ContactService.getGroupList().then(function(groups) {
-		    ctrl.groups = groups;
+	ContactService.registerObserverCallback(function(ev) {
+		if (ev.event !== 'getFullContacts') {
+			$scope.$apply(function() {
+				ContactService.getGroupList().then(function(groups) {
+					ctrl.groups = groups;
+				});
 			});
-		});
+		}
 	});
 
 	ctrl.setSelected = function (selectedGroup) {
