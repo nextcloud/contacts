@@ -2,6 +2,13 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontakter",
+    "Download" : "Ladda ner",
+    "ShowURL" : "Visa URL",
+    "Share Addressbook" : "Dela Adressbok",
+    "Delete Addressbook" : "Radera Adressbok",
+    "Share with users or groups" : "Dela med användare eller grupper",
+    "Delete" : "Radera",
+    "can edit" : "kan redigera",
     "Address book name" : "Adressboknamn",
     "Import" : "Importera",
     "The selected image is too big (max 1MB)" : "Den valda bilden är för stor (max 1MB)",
