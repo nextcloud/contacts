@@ -38,6 +38,16 @@ angular.module('contactsApp')
 				return displayName;
 			},
 
+			readableFilename: function() {
+				if(this.displayName()) {
+					return (this.displayName()) + '.vcf';
+				} else {
+					// fallback to default filename (see download attribute)
+					return '';
+				}
+
+			},
+
 			fullName: function(value) {
 				var model = this;
 				if (angular.isDefined(value)) {
