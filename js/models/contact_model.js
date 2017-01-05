@@ -5,6 +5,7 @@ angular.module('contactsApp')
 
 			data: {},
 			props: {},
+			failedProps: [],
 
 			dateProperties: ['bday', 'anniversary', 'deathdate'],
 
@@ -152,19 +153,14 @@ angular.module('contactsApp')
 					return this.setProperty('categories', { value: value });
 				} else {
 					// getter
-					var property = this.getProperty('categories');
+					var property = this.validate('categories', this.getProperty('categories'));
 					if(!property) {
 						return [];
 					}
 					if (angular.isArray(property.value)) {
-						// Avoid and fix unescaped commas
-						if(property.value.join(';').indexOf(',') !== -1) {
-							property.value = property.value.join(',').split(',');
-							this.setProperty('categories', { value: property.value });
-						}
 						return property.value;
 					}
-					return property.value.split(',');
+					return [property.value];
 				}
 			},
 
@@ -269,6 +265,16 @@ angular.module('contactsApp')
 
 				// keep vCard in sync
 				self.data.addressData = $filter('JSON2vCard')(self.props);
+
+				// Revalidate all props
+				_.each(self.failedProps, function(name, index) {
+					if (!_.isUndefined(self.props[name]) && !_.isUndefined(self.props[name][0])) {
+						// Set dates again to make sure they are in RFC-6350 format
+						self.failedProps.splice(index, 1);
+						self.validate(name, self.props[name][0]);
+					}
+				});
+
 			},
 
 			matches: function(pattern) {
@@ -296,6 +302,29 @@ angular.module('contactsApp')
 					return false;
 				});
 				return matchingProps.length > 0;
+			},
+
+			validate: function(prop, property) {
+				switch(prop) {
+				case 'categories':
+					// Avoid unescaped commas
+					if (angular.isArray(property.value)) {
+						if(property.value.join(';').indexOf(',') !== -1) {
+							this.failedProps.push(prop);
+							property.value = property.value.join(',').split(',');
+						}
+					} else if (angular.isString(property.value)) {
+						if(property.value.indexOf(',') !== -1) {
+							this.failedProps.push(prop);
+							property.value = property.value.split(',');
+						}
+					}
+					break;
+
+				default:
+					break;
+				}
+				return property;
 			}
 
 		});
