@@ -65,7 +65,7 @@ angular.module('contactsApp')
 									var oldList = urlsByDisplayname.get(contact.displayName()) || [];
 									urlsByDisplayname.put(contact.displayName(), oldList.concat(contact.data.url));
 								} else {
-									// custom console
+									// eslint-disable-next-line no-console
 									console.log('Invalid contact received: ' + addressBook.objects[i].url);
 								}
 							}
