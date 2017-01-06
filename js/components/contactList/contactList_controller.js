@@ -133,8 +133,7 @@ angular.module('contactsApp')
 	// Wait for ctrl.contactList to be updated, load the contact requested in the URL if any, and
 	// load full details for the probably initially visible contacts.
 	// Then kill the watch.
-	// Don't blindly load the first contact as that is a heavy operation that hangs the browser, preventing
-	// for example searching while the DOM is updated
+	// Don't blindly load the first contact as that is a heavy operation
 	var unbindListWatch = $scope.$watch('ctrl.contactList', function() {
 		if(ctrl.contactList && ctrl.contactList.length > 0) {
 			// Check if a specific uid is requested
