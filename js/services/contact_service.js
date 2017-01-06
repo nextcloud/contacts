@@ -29,8 +29,8 @@ angular.module('contactsApp')
 		AddressBookService.getAll().then(function (enabledAddressBooks) {
 			var promises = [];
 			enabledAddressBooks.forEach(function (addressBook) {
-				var urls = names
-					.map(function (name) { return urlsByDisplayname.get(name); });
+				var urlLists = names.map(function (name) { return urlsByDisplayname.get(name); });
+				var urls = [].concat.apply([], urlLists);
 				var promise = DavClient.getContacts(addressBook, {}, urls)
 						.then(
 							function (vcards) {
@@ -62,7 +62,8 @@ angular.module('contactsApp')
 								if (addressBook.objects[i].addressData) {
 									var contact = new Contact(addressBook, addressBook.objects[i]);
 									contacts.put(contact.uid(), contact);
-									urlsByDisplayname.put(contact.displayName(), contact.data.url);
+									var oldList = urlsByDisplayname.get(contact.displayName()) || [];
+									urlsByDisplayname.put(contact.displayName(), oldList.concat(contact.data.url));
 								} else {
 									// custom console
 									console.log('Invalid contact received: ' + addressBook.objects[i].url);
