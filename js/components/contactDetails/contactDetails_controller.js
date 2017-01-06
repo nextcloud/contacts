@@ -41,11 +41,13 @@ angular.module('contactsApp')
 			});
 		}
 		ctrl.loading = false;
+		// Start watching for ctrl.uid when we have addressBooks, as they are needed for fetching
+		// full details.
+		$scope.$watch('ctrl.uid', function(newValue) {
+			ctrl.changeContact(newValue);
+		});
 	});
 
-	$scope.$watch('ctrl.uid', function(newValue) {
-		ctrl.changeContact(newValue);
-	});
 
 	ctrl.changeContact = function(uid) {
 		if (typeof uid === 'undefined') {
