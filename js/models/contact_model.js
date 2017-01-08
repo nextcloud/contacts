@@ -320,9 +320,6 @@ angular.module('contactsApp')
 						}
 					}
 					break;
-
-				default:
-					break;
 				}
 				return property;
 			}
@@ -342,7 +339,7 @@ angular.module('contactsApp')
 
 		var property = this.getProperty('categories');
 		if(!property) {
-			this.categories('');
+			this.categories([]);
 		} else {
 			if (angular.isString(property.value)) {
 				this.categories([property.value]);
