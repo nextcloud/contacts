@@ -21,7 +21,7 @@ angular.module('contactsApp')
 		clearInterval(ctrl.intervalId);
 		ctrl.intervalId = setInterval(
 			function () {
-				if (!ctrl.loading && ctrl.contacts.length > ctrl.limitTo) {
+				if (!ctrl.loading && ctrl.contacts && ctrl.contacts.length > ctrl.limitTo) {
 					ctrl.limitTo += 25;
 					$scope.$apply();
 				}
