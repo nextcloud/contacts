@@ -133,7 +133,6 @@ angular.module('contactsApp')
 	// Wait for ctrl.contactList to be updated, load the contact requested in the URL if any, and
 	// load full details for the probably initially visible contacts.
 	// Then kill the watch.
-	// Don't blindly load the first contact as that is a heavy operation
 	var unbindListWatch = $scope.$watch('ctrl.contactList', function() {
 		if(ctrl.contactList && ctrl.contactList.length > 0) {
 			// Check if a specific uid is requested
@@ -144,6 +143,10 @@ angular.module('contactsApp')
 						ctrl.loading = false;
 					}
 				});
+			}
+			// No contact previously loaded, let's load the first of the list if not in mobile mode
+			if(ctrl.loading && $(window).width() > 768) {
+				ctrl.setSelectedId(ctrl.contactList[0].uid());
 			}
 			var firstNames = ctrl.contactList.slice(0, 20).map(function (c) { return c.displayName(); });
 			ContactService.getFullContacts(firstNames);
