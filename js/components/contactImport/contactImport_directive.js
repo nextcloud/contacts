@@ -7,24 +7,25 @@ angular.module('contactsApp')
 
 			var input = element.find('input');
 			input.bind('change', function() {
-				var file = input.get(0).files[0];
-				var reader = new FileReader();
+				angular.forEach(input.get(0).files, function(file) {
+					var reader = new FileReader();
 
-				reader.addEventListener('load', function () {
-					scope.$apply(function() {
-						ContactService.import.call(ContactService, reader.result, file.type, null, function(progress) {
-							if(progress===1) {
-								scope.importText = importText;
-							} else {
-								scope.importText = parseInt(Math.floor(progress*100))+'%';
-							}
+					reader.addEventListener('load', function () {
+						scope.$apply(function () {
+							ContactService.import.call(ContactService, reader.result, file.type, null, function (progress) {
+								if (progress === 1) {
+									scope.importText = importText;
+								} else {
+									scope.importText = parseInt(Math.floor(progress * 100)) + '%';
+								}
+							});
 						});
-					});
-				}, false);
+					}, false);
 
-				if (file) {
-					reader.readAsText(file);
-				}
+					if (file) {
+						reader.readAsText(file);
+					}
+				});
 				input.get(0).value = '';
 			});
 		},
