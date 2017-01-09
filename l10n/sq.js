@@ -2,6 +2,9 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontakte",
+    "Download" : "Shkarko",
+    "Share with users or groups" : "Nda me përdoruesit ose grupet",
+    "Delete" : "Fshije",
     "Address book name" : "Emër libri adresash",
     "Import" : "Importoje",
     "The selected image is too big (max 1MB)" : "Figura e përzgjedhur është shumë e madhe (maksimumi 1MB)",

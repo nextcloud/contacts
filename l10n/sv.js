@@ -42,7 +42,7 @@ OC.L10N.register(
     "Detailed name" : "Detaljerat namn",
     "Notes" : "Anteckningar",
     "Website" : "Webbplats",
-    "Federated Cloud ID" : "Federerat Cloud ID",
+    "Federated Cloud ID" : "Federerat Moln-ID",
     "Home" : "Hem",
     "Work" : "Arbete",
     "Other" : "Annat",
