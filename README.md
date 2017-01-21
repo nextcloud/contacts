@@ -1,6 +1,8 @@
 # Nextcloud Contacts
 
+![Downloads](https://img.shields.io/github/downloads/nextcloud/contacts/total.svg)
 [![irc](https://img.shields.io/badge/IRC-%23nextcloud--contacts%20on%20freenode-blue.svg)](https://webchat.freenode.net/?channels=nextcloud-contacts)
+[![Build Status](https://travis-ci.org/nextcloud/contacts.svg?branch=master)](https://travis-ci.org/nextcloud/contacts)
 
 **A contacts app for [Nextcloud](https://nextcloud.com). Easily sync contacts from various devices with your Nextcloud and edit them online.**
 
@@ -30,6 +32,16 @@ If you need assistance or want to ask a question about Contacts, you are welcome
 - [Tom Needham](https://github.com/tomneedham)
 
 If you'd like to join, just go through the [issue list](https://github.com/nextcloud/contacts/issues) and fix some. :)
+
+### Nightly builds
+
+Instead of setting everything up manually, you can just [download the nightly builds](https://nightly.portknox.net/contacts/?C=M;O=D) instead. These builds are updated every 24 hours, and are pre-configured with all the needed dependencies.
+
+1. Download
+2. Extract the tar archive to 'path-to-nextcloud/apps'
+3. Navigate to »Apps«, choose the category »Productivity«, find the Contacts app and enable it.
+
+The nightly builds are provided by [Portknox.net](https://portknox.net)
 
 ## Building the app
 
