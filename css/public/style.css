@@ -514,42 +514,23 @@ ul.addressBook-share-list li {
 	border-top: 1px solid #eee;
 }
 
-/* SELECT2 styling - MOVE TO CORE FOR 9.1! */
-
+/* SELECT2 styling */
 detailsitem .select2-container {
 	width: 245px;
 }
-.select2-container-multi .select2-choices {
-	border-color: #ddd !important;
-	background-image: none !important;
-}
-.select2-container-multi.select2-container-active .select2-choices {
-	border-color: #ddd !important;
-	-webkit-box-shadow: none !important;
-	box-shadow: none !important;
-}
-.select2-container-multi .select2-choices .select2-search-field input {
-	font-family: inherit !important;
-}
+/* Fix for #81 */
 .select2-container-multi .select2-choices .select2-search-choice {
-	background-color: rgba(240,240,240,.9) !important;
-	border-color: rgba(240,240,240,.9) !important;
-	color: #555 !important;
-	background-image: none !important;
-	-webkit-box-shadow: none !important;
-	box-shadow: none !important;
+	padding-right: 20px;
 }
-.select2-drop-active {
-	border-color: #ddd !important;
-	-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, .1) !important;
+.select2-container.select2-container-multi .select2-choices span {
+	display: flex;
+	flex-wrap: wrap;
 }
-.select2-results .select2-highlighted {
-	background-color: #f8f8f8 !important;
-	color: #555 !important;
-}
-.select2-results .select2-result-label span {
-	cursor: pointer !important;
+.select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close {
+	display: block !important;
+	right: 4px;
+	left: auto;
+	top: 7px
 }
 
 /* Mobile width < 768px */
