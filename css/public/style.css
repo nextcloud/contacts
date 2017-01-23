@@ -263,8 +263,8 @@ detailsitem .url-link {
 	padding: 8px 10px;
 	margin-left: -30px;
 	opacity: .5;
-    top: 2px;
-    right: 33px;
+	top: 2px;
+	right: 33px;
 }
 
 detailsitem.details-item-adr .icon-delete, detailsitem.details-item-n .icon-delete {
