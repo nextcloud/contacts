@@ -2,11 +2,12 @@ sudo: false
 dist: trusty
 language: php
 php:
-    - 5.4
+    - 5.6
     - 7
 env:
     global:
-        - CORE_BRANCH=stable9
+        - CORE_BRANCH=master
+        - NIGHTLY=FALSE
     matrix:
         - DB=pgsql
 
@@ -20,14 +21,10 @@ matrix:
     allow_failures:
         - env: DB=pgsql CORE_BRANCH=master
     include:
-        - php: 5.5
-          env: DB=sqlite
-        - php: 5.5
-          env: DB=mysql
         - php: 5.6
           env:  DB=pgsql CORE_BRANCH=master
         - php: 7
-          env:  DB=pgsql CORE_BRANCH=stable9.1
+          env:  DB=pgsql CORE_BRANCH=stable11
     fast_finish: true
 
 before_install:
@@ -37,18 +34,18 @@ before_install:
     - npm install -g npm@latest
     - make
     - make appstore
-    # install core
+    # install nextcloud
     - cd ../
-    - git clone https://github.com/owncloud/core.git --recursive --depth 1 -b $CORE_BRANCH owncloud
-    - mv contacts owncloud/apps/
+    - git clone https://github.com/nextcloud/server.git --recursive --depth 1 -b $CORE_BRANCH core
+    - mv contacts core/apps/
 
 before_script:
     - if [[ "$DB" == 'pgsql' ]]; then createuser -U travis -s oc_autotest; fi
     - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e 'create database oc_autotest;'; fi
     - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e "CREATE USER 'oc_autotest'@'localhost' IDENTIFIED BY '';"; fi
     - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e "grant all on oc_autotest.* to 'oc_autotest'@'localhost';"; fi
-    # fill owncloud with default configs and enable contacts
-    - cd owncloud
+    # fill nextcloud with default configs and enable contacts
+    - cd core
     - mkdir data
     - ./occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database $DB --database-pass=''
     - ./occ app:enable contacts
@@ -59,14 +56,17 @@ before_script:
 script:
     - make test
 
+  # Upload the nightly to ftp server
+    - if [[ "$NIGHTLY" = "TRUE" ]]; then curl --ftp-create-dirs -T /home/travis/build/nextcloud/core/apps/contacts/build/artifacts/appstore/contacts.tar.gz -u $FTP_LOGIN:$FTP_PW ftp://upload.portknox.de/htdocs/contacts/nextcloud_contacts_nightly_build_$(date +%Y-%m-%d).tar.gz; fi
+
 after_failure:
-    - cat ../../data/owncloud.log
+    - cat ../../data/nextcloud.log
 
 after_success:
     # codecov has issues when not run exactly in the cloned folder on travis, so
     # revert everything
     - cd ../../../
-    - mv owncloud/apps/contacts .
+    - mv core/apps/contacts .
     - cd contacts
     - node_modules/codecov/bin/codecov
 
@@ -77,7 +77,7 @@ deploy:
     file: build/artifacts/appstore/contacts.tar.gz
     skip_cleanup: true
     on:
-        repo: owncloud/contacts
+        repo: nextcloud/contacts
         tags: true
         php: 7
 
