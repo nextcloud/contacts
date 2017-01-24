@@ -148,7 +148,8 @@ appstore:
 	$(project_directory)/js/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js \
 	$(project_directory)/js/vendor/angular-sanitize/angular-sanitize.js \
 	$(project_directory)/js/vendor/ui-select/dist/select.js \
-	$(project_directory)/js/vendor/jquery-timepicker/jquery.ui.timepicker.js
+	$(project_directory)/js/vendor/jquery-timepicker/jquery.ui.timepicker.js \
+	$(project_directory)/js/vendor/angular-click-outside/clickoutside.directive.js
 
 # Command for running JS and PHP tests. Works for package.json files in the js/
 # and root directory. If phpunit is not installed systemwide, a copy is fetched

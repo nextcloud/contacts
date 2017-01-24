@@ -42,7 +42,6 @@ angular.module('contactsApp')
 
 	ctrl.openMenu = function(index) {
 		ctrl.closeMenus();
-		console.debug($scope);
 		$scope.$parent.ctrl.openedMenu = index;
 	};
 
