@@ -1,36 +1,46 @@
 <span class="addressBookName" title="{{ctrl.addressBook.displayName}}">{{ctrl.addressBook.displayName}}</span>
 <span class="utils">
-	<span class="action" ng-show="ctrl.canExport">
-		<a href="{{ctrl.addressBook.url}}?export"
-			  id="addressBooklist-icon download"
-			  title="{{ctrl.t.download}}"
-			  class="icon-download">
-		</a>
+	<span class="action">
+		<span
+			class="addressbooklist-icon icon-public"
+			title="{{ctrl.t.showURL}}"
+			ng-click="ctrl.toggleShowUrl()">
+		</span>
 	</span>
-    <span class="action">
-        <span
-            class="addressbooklist-icon icon-public"
-            title="{{ctrl.t.showURL}}"
-            ng-click="ctrl.toggleShowUrl()">
-        </span>
-    </span>
-    <span class="action">
-        <span
-            class="addressbooklist-icon icon-share"
-            title="{{ctrl.t.shareAddressbook}}"
-            ng-click="ctrl.toggleSharesEditor(ctrl.addressBook)">
-        </span>
-    </span>
-    <span class="action">
-        <span
-            class="addressbooklist-icon icon-delete"
-			ng-class="{hidden: ctrl.list.length === 1}"
-            title="{{ctrl.t.deleteAddressbook}}"
-            ng-click="ctrl.deleteAddressBook()">
-        </span>
-    </span>
+	<span class="action">
+		<span
+			class="icon-more openMenuButton"
+			ng-click="ctrl.openMenu($id)">
+		</span>
+	</span>
+	<div class="popovermenu bubble menu"
+		 ng-class="{open: $parent.ctrl.openedMenu === $id}"
+		 ng-click="ctrl.closeMenus()"
+		 click-outside="ctrl.closeMenus()"
+		 outside-if-not=".openMenuButton">
+		<ul>
+			<li ng-show="ctrl.canExport">
+				<a href="{{ctrl.addressBook.url}}?export" id="download" title="{{ctrl.t.download}}">
+					<span class="icon icon-download"></span>
+					<span>{{ctrl.t.download}}</span>
+				</a>
+			</li>
+			<li>
+				<button ng-click="ctrl.toggleSharesEditor(ctrl.addressBook)">
+					<span class="icon icon-share"></span>
+					<span>{{ctrl.t.shareAddressbook}}</span>
+				</button>
+			</li>
+			<li ng-class="{hidden: ctrl.list.length === 1}">
+				<button ng-click="ctrl.deleteAddressBook()">
+					<span class="icon icon-delete"></span>
+					<span>{{ctrl.t.deleteAddressbook}}</span>
+				</button>
+			</li>
+		</ul>
+	</div>
 </span>
-    <input class="addressBookUrl" ng-show="ctrl.showUrl" type="url" value="{{ctrl.addressBook.url}}" readonly />
+<input class="addressBookUrl" ng-show="ctrl.showUrl" type="url" value="{{ctrl.addressBook.url}}" readonly />
 <div class="addressBookShares" ng-show="ctrl.editingShares">
 	<i ng-show="ctrl.loadingSharees" class="glyphicon glyphicon-refresh"></i>
 	<input

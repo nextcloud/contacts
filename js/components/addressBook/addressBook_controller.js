@@ -5,8 +5,8 @@ angular.module('contactsApp')
 	ctrl.t = {
 		download: t('contacts', 'Download'),
 		showURL:t('contacts', 'Show URL'),
-		shareAddressbook: t('contacts', 'Share Addressbook'),
-		deleteAddressbook: t('contacts', 'Delete Addressbook'),
+		shareAddressbook: t('contacts', 'Share'),
+		deleteAddressbook: t('contacts', 'Delete'),
 		shareInputPlaceHolder: t('contacts', 'Share with users or groups'),
 		delete: t('contacts', 'Delete'),
 		canEdit: t('contacts', 'can edit')
@@ -34,6 +34,16 @@ angular.module('contactsApp')
 
 	ctrl.toggleShowUrl = function() {
 		ctrl.showUrl = !ctrl.showUrl;
+	};
+
+	ctrl.closeMenus = function() {
+		$scope.$parent.ctrl.openedMenu = false;
+	};
+
+	ctrl.openMenu = function(index) {
+		ctrl.closeMenus();
+		console.debug($scope);
+		$scope.$parent.ctrl.openedMenu = index;
 	};
 
 	ctrl.toggleSharesEditor = function() {

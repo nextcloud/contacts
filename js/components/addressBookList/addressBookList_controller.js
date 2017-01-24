@@ -3,6 +3,7 @@ angular.module('contactsApp')
 	var ctrl = this;
 
 	ctrl.loading = true;
+	ctrl.openedMenu = false;
 
 	AddressBookService.getAll().then(function(addressBooks) {
 		ctrl.addressBooks = addressBooks;
