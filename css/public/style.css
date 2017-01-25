@@ -503,7 +503,7 @@ ul.addressBook-share-list li {
 }
 
 #app-navigation > ul {
-	height: calc(100% - 24px);
+	height: calc(100% - 68px);
 }
 
 /* styling for contact count in contact list */
