@@ -133,6 +133,9 @@ angular.module('contactsApp')
 					var property = this.getProperty('photo');
 					if(property) {
 						var type = property.meta.type;
+						if (angular.isUndefined(type)) {
+							return undefined;
+						}
 						if (angular.isArray(type)) {
 							type = type[0];
 						}
