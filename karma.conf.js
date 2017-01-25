@@ -18,6 +18,7 @@ module.exports = function(config) {
 			'js/vendor/angular-cache/dist/angular-cache.js',
 			'js/vendor/angular-sanitize/angular-sanitize.js',
 			'js/vendor/ui-select/dist/select.js',
+			'js/vendor/angular-click-outside/clickoutside.directive.js',
 
 			'js/dav/dav.js',
 			'js/vendor/vcard/src/vcard.js',
