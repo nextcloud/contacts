@@ -398,9 +398,8 @@ li.addressBook-share-item span.shareeIdentifier {
 	padding-left: 34px;
 	background-position: 10px center;
 	text-align: left;
-	margin: 0;
+	margin: 15px 0;
 	display: block;
-	margin-bottom: 10px;
 }
 
 
@@ -517,7 +516,7 @@ contactlist .tooltip {
 	opacity: .5;
 }
 
-ul.addressBookList li {
+ul.addressBookList > li {
 	margin-bottom: 5px;
 }
 

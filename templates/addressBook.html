@@ -31,7 +31,7 @@
 					<span>{{ctrl.t.shareAddressbook}}</span>
 				</button>
 			</li>
-			<li ng-class="{hidden: ctrl.list.length === 1}">
+			<li ng-if="ctrl.list.length > 1">
 				<button ng-click="ctrl.deleteAddressBook()">
 					<span class="icon icon-delete"></span>
 					<span>{{ctrl.t.deleteAddressbook}}</span>
