@@ -38,6 +38,7 @@ vendor_style('select2/select2');
 			<div id="app-settings-content">
 				<addressBookList></addressBookList>
 				<contactImport></contactImport>
+				<sortBy></sortBy>
 			</div>
 		</div>
 	</div>
