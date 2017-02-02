@@ -23,7 +23,8 @@ angular.module('contactsApp')
 		placeholderTitle : t('contacts', 'Title'),
 		selectField : t('contacts', 'Add field ...'),
 		download : t('contacts', 'Download'),
-		delete : t('contacts', 'Delete')
+		delete : t('contacts', 'Delete'),
+		save : t('contacts', 'Save changes')
 	};
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;

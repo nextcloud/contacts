@@ -71,18 +71,18 @@
 	opacity: .8;
 }
 
-.contactdetails__header #details-actions .icon-delete-white,
-.contactdetails__header #details-actions #contact-export-link {
+.contactdetails__header #details-actions a,
+.contactdetails__header #details-actions button {
 	padding: 15px;
 	background-color: transparent;
 	border: none;
 	opacity: .5;
 	margin: 3px;
 }
-.contactdetails__header #details-actions .icon-delete-white:hover,
-.contactdetails__header .icon-delete-white:focus,
-.contactdetails__header #details-actions #contact-export-link:hover,
-.contactdetails__header #details-actions #contact-export-link:focus {
+.contactdetails__header #details-actions a:hover,
+.contactdetails__header #details-actions button:hover,
+.contactdetails__header #details-actions a:focus,
+.contactdetails__header #details-actions button:focus {
 	opacity: .7
 }
 
@@ -284,6 +284,11 @@ detailsitem.details-item-note label {
 	vertical-align: top;
 }
 
+detailsitem.failed > label,
+detailsitem.failed > select {
+	border-left: 2px solid red;
+}
+
 /* Prevent delete for last adr/mail/tel item  */
 .last-details > detailsitem.details-item-adr .icon-delete,
 .last-details > detailsitem.details-item-email .icon-delete,
@@ -394,6 +399,28 @@ li.addressBook-share-item span.shareeIdentifier {
 	text-align: left;
 	padding-left: 34px;
 	background-position: 10px center;
+}
+
+contactlist .tooltip {
+	max-width: 75%;
+}
+
+.app-content-list-item-failed {
+	position: absolute;
+	right: 15px;
+	top: 50%;
+	margin-top: -15px;
+	opacity: 0.2;
+	width: 30px;
+	height: 30px;
+	z-index: 50;
+}
+.app-content-list-item-failed:hover {
+	opacity: 0.5;
+}
+.app-content-list-item-failed ~ .app-content-list-item-line-one,
+.app-content-list-item-failed ~ .app-content-list-item-line-two {
+	padding-right: 50px;
 }
 
 

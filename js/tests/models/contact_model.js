@@ -41,4 +41,11 @@ describe('contactModel', function() {
 		var d = contact.getISODate(new Date('2016-09-01T09:07:05Z'));
 		expect(d).to.equal('20160901T090705Z');
 	});
+
+	it('should fix invalid group array', function() {
+		var contact = new $Contact({displayName: 'test'});
+		contact.categories(['Test 1', 'Test 2\,Test 3']);
+		var categories = contact.categories();
+		expect(categories).to.deep.equal(['Test 1', 'Test 2', 'Test 3']);
+	});
 });
