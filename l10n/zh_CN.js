@@ -17,6 +17,7 @@ OC.L10N.register(
     "Organization" : "组织",
     "Title" : "头衔",
     "Add field ..." : "添加字段",
+    "Save changes" : "保存更改",
     "No search result for {query}" : "未找到结果{query}",
     "_%n contact_::_%n contacts_" : ["%n 位联系人"],
     "Post office box" : "邮政信箱",
