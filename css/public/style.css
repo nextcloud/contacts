@@ -285,8 +285,7 @@ detailsitem.details-item-note label {
 }
 
 /* Failed props */
-detailsitem.failed > label,
-detailsitem.failed > select {
+detailsitem.failed {
 	box-shadow: inset 2px 0 #c5173a;
 }
 avatar.failed {
