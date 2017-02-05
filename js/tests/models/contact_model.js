@@ -48,4 +48,11 @@ describe('contactModel', function() {
 		var categories = contact.categories();
 		expect(categories).to.deep.equal(['Test 1', 'Test 2', 'Test 3']);
 	});
+
+	it('should remove duplicate groups', function() {
+		var contact = new $Contact({displayName: 'test'});
+		contact.categories(['Test', 'Test', 'Test 2']);
+		var categories = contact.categories();
+		expect(categories).to.deep.equal(['Test', 'Test 2']);
+	});
 });
