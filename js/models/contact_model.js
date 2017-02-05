@@ -357,13 +357,13 @@ angular.module('contactsApp')
 						if(property.value.join(';').indexOf(',') !== -1) {
 							this.failedProps.push(prop);
 							property.value = property.value.join(',').split(',');
-							console.debug(this.uid()+': Categories splitted: ' + property.value);
+							//console.debug(this.uid()+': Categories split: ' + property.value);
 						}
 					} else if (angular.isString(property.value)) {
 						if(property.value.indexOf(',') !== -1) {
 							this.failedProps.push(prop);
 							property.value = property.value.split(',');
-							console.debug(this.uid()+': Categories splitted: ' + property.value);
+							//console.debug(this.uid()+': Categories split: ' + property.value);
 						}
 					}
 					if(property.value.length !== 0) {
