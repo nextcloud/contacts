@@ -170,12 +170,9 @@ angular.module('contactsApp')
 
 					return this.setProperty('photo', { value: imageData[1], meta: {type: [imageType], encoding: ['b']} });
 				} else {
-					var property = this.getProperty('photo');
+					var property = this.validate('photo', this.getProperty('photo'));
 					if(property) {
 						var type = property.meta.type;
-						if (angular.isUndefined(type)) {
-							return undefined;
-						}
 						if (angular.isArray(type)) {
 							type = type[0];
 						}
@@ -354,11 +351,13 @@ angular.module('contactsApp')
 						if(property.value.join(';').indexOf(',') !== -1) {
 							this.failedProps.push(prop);
 							property.value = property.value.join(',').split(',');
+							console.debug(this.uid()+': Categories splitted: ' + property.value);
 						}
 					} else if (angular.isString(property.value)) {
 						if(property.value.indexOf(',') !== -1) {
 							this.failedProps.push(prop);
 							property.value = property.value.split(',');
+							console.debug(this.uid()+': Categories splitted: ' + property.value);
 						}
 					}
 					if(property.value.length !== 0) {
@@ -368,6 +367,17 @@ angular.module('contactsApp')
 							this.failedProps.push(prop);
 							property.value = uniqueCategories;
 							//console.debug(this.uid()+': Categories duplicate: ' + property.value);
+						}
+					}
+					break;
+				case 'photo':
+					// Avoid undefined photo type
+					if (angular.isDefined(property)) {
+						if (angular.isUndefined(property.meta.type)) {
+							this.failedProps.push(prop);
+							this.removeProperty('photo', property);
+							property = undefined;
+							console.debug(this.uid()+': Photo removed');
 						}
 					}
 					break;
