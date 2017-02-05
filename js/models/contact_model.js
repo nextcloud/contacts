@@ -204,7 +204,7 @@ angular.module('contactsApp')
 			},
 
 			formatDateAsRFC6350: function(name, data) {
-				if (_.isUndefined(data) || _.isUndefined(data.value)) {
+				if (angular.isUndefined(data) || angular.isUndefined(data.value)) {
 					return data;
 				}
 				if (this.dateProperties.indexOf(name) !== -1) {
@@ -218,7 +218,7 @@ angular.module('contactsApp')
 			},
 
 			formatDateForDisplay: function(name, data) {
-				if (_.isUndefined(data) || _.isUndefined(data.value)) {
+				if (angular.isUndefined(data) || angular.isUndefined(data.value)) {
 					return data;
 				}
 				if (this.dateProperties.indexOf(name) !== -1) {
@@ -294,7 +294,7 @@ angular.module('contactsApp')
 				var self = this;
 
 				_.each(this.dateProperties, function(name) {
-					if (!_.isUndefined(self.props[name]) && !_.isUndefined(self.props[name][0])) {
+					if (!angular.isUndefined(self.props[name]) && !angular.isUndefined(self.props[name][0])) {
 						// Set dates again to make sure they are in RFC-6350 format
 						self.setProperty(name, self.props[name][0]);
 					}
@@ -307,7 +307,7 @@ angular.module('contactsApp')
 
 				// Revalidate all props
 				_.each(self.failedProps, function(name, index) {
-					if (!_.isUndefined(self.props[name]) && !_.isUndefined(self.props[name][0])) {
+					if (!angular.isUndefined(self.props[name]) && !angular.isUndefined(self.props[name][0])) {
 						// Reset previously failed properties
 						self.failedProps.splice(index, 1);
 						// And revalidate them again
@@ -322,7 +322,7 @@ angular.module('contactsApp')
 			},
 
 			matches: function(pattern) {
-				if (_.isUndefined(pattern) || pattern.length === 0) {
+				if (angular.isUndefined(pattern) || pattern.length === 0) {
 					return true;
 				}
 				var model = this;
@@ -332,10 +332,10 @@ angular.module('contactsApp')
 							if (!property.value) {
 								return false;
 							}
-							if (_.isString(property.value)) {
+							if (angular.isString(property.value)) {
 								return property.value.toLowerCase().indexOf(pattern.toLowerCase()) !== -1;
 							}
-							if (_.isArray(property.value)) {
+							if (angular.isArray(property.value)) {
 								return property.value.filter(function(v) {
 									return v.toLowerCase().indexOf(pattern.toLowerCase()) !== -1;
 								}).length > 0;
