@@ -8,7 +8,7 @@
 	</div>
 	<div ng-if="ctrl.contact!==undefined">
 		<header class="contactdetails__header" ng-style="{'background-color': (ctrl.contact.uid() | contactColor)}">
-			<avatar data="ctrl.contact" ng-class="{'avatar--missing': ctrl.contact.photo()===undefined}"></avatar>
+			<avatar data="ctrl.contact" ng-class="{'avatar--missing': ctrl.contact.photo()===undefined, 'failed': ctrl.contact.failedProps.indexOf('photo') !== -1}"></avatar>
 			<div id="details-contact-infos">
 				<h2>
 					<input type="text" id="details-fullName" class="contactdetails__name" placeholder="{{ctrl.t.placeholderName}}" autocomplete="off" autocorrect="off" spellcheck="false"
