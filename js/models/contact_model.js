@@ -327,7 +327,7 @@ angular.module('contactsApp')
 					if(!angular.equals(uniqueCategories, property.value)) {
 						this.failedProps.push(prop);
 						property.value = uniqueCategories;
-						console.debug(this.uid()+': Categories duplicate: ' + property.value);
+						//console.debug(this.uid()+': Categories duplicate: ' + property.value);
 					}
 					break;
 				}
