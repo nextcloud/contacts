@@ -322,6 +322,13 @@ angular.module('contactsApp')
 							property.value = property.value.split(',');
 						}
 					}
+					// Remove duplicate categories
+					var uniqueCategories = _.unique(property.value);
+					if(!angular.equals(uniqueCategories, property.value)) {
+						this.failedProps.push(prop);
+						property.value = uniqueCategories;
+						console.debug(this.uid()+': Categories duplicate: ' + uniqueCategories + property.value);
+					}
 					break;
 				}
 				return property;
