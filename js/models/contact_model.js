@@ -308,9 +308,14 @@ angular.module('contactsApp')
 				// Revalidate all props
 				_.each(self.failedProps, function(name, index) {
 					if (!_.isUndefined(self.props[name]) && !_.isUndefined(self.props[name][0])) {
-						// Set dates again to make sure they are in RFC-6350 format
+						// Reset previously failed properties
 						self.failedProps.splice(index, 1);
+						// And revalidate them again
 						self.validate(name, self.props[name][0]);
+
+					} else if(angular.isUndefined(self.props[name]) || angular.isUndefined(self.props[name][0])) {
+						// Property has been removed
+						self.failedProps.splice(index, 1);
 					}
 				});
 
@@ -343,6 +348,7 @@ angular.module('contactsApp')
 				return matchingProps.length > 0;
 			},
 
+			/* eslint-disable no-console */
 			validate: function(prop, property) {
 				switch(prop) {
 				case 'categories':
@@ -384,6 +390,7 @@ angular.module('contactsApp')
 				}
 				return property;
 			}
+			/* eslint-enable no-console */
 
 		});
 
