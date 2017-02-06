@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.factory('Contact', function($filter) {
+.factory('Contact', function($filter, MimeService) {
 	return function Contact(addressBook, vCard) {
 		angular.extend(this, {
 
@@ -380,10 +380,20 @@ angular.module('contactsApp')
 					// Avoid undefined photo type
 					if (angular.isDefined(property)) {
 						if (angular.isUndefined(property.meta.type)) {
-							this.failedProps.push(prop);
-							this.removeProperty('photo', property);
-							property = undefined;
-							console.debug(this.uid()+': Photo removed');
+							var mime = MimeService.b64mime(property.value);
+							if (mime) {
+								this.failedProps.push(prop);
+								property.meta.type=[mime];
+								this.setProperty('photo', {value:property.value,
+														   meta:{type:property.meta.type,
+																 encoding:property.meta.encoding}});
+								console.debug(this.uid()+': Photo detected as ' + property.meta.type);
+							} else {
+								this.failedProps.push(prop);
+								this.removeProperty('photo', property);
+								property = undefined;
+								console.debug(this.uid()+': Photo removed');
+							}
 						}
 					}
 					break;
