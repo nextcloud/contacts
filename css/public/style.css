@@ -490,7 +490,7 @@ contactimport .select2-container .select2-choice {
 	height: 100%;
 	line-height: 31px;
 	border-radius: 0 0 3px 3px;
-	border-top: none;
+	border-top: none !important;
 }
 
 contactimport .select2-drop-active {

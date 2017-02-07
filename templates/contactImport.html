@@ -1,6 +1,8 @@
 <input type="file" id="contact-import" class="hidden-visually" multiple/>
 <label for="contact-import" class="icon-upload button" id="upload">{{ctrl.importText}}</label>
-<ui-select ng-model="ctrl.selectedAddressBook" ng-if="ctrl.addressBooks.length > 1" theme="select2" class="form-control" title="{{ctrl.t.selectAddressbook}}">
+<ui-select ng-model="ctrl.selectedAddressBook" ng-disabled="ctrl.addressBooks.length < 2" 
+		   theme="select2" class="form-control" title="{{ctrl.t.selectAddressbook}}"
+		   on-select="console.log('test')">
 	<ui-select-match placeholder="{{ctrl.t.selectAddressbook}}">{{$select.selected.displayName}}</ui-select-match>
 	<ui-select-choices repeat="addressBook in ctrl.addressBooks | filter: $select.search">
 		{{addressBook.displayName}}
