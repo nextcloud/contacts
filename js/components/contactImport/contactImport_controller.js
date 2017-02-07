@@ -17,4 +17,14 @@ angular.module('contactsApp')
 		ctrl.selectedAddressBook = AddressBookService.getDefaultAddressBook();
 	});
 
+	ctrl.stopHideMenu = function(isOpen) {
+		if(isOpen) {
+			// disabling settings bind
+			$('#app-settings-header > button').data('apps-slide-toggle', false);
+		} else {
+			// reenabling it
+			$('#app-settings-header > button').data('apps-slide-toggle', '#app-settings-content');
+		}
+	};
+
 });
