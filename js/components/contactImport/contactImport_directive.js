@@ -1,10 +1,7 @@
 angular.module('contactsApp')
 .directive('contactimport', function(ContactService) {
 	return {
-		link: function(scope, element) {
-			var importText = t('contacts', 'Import');
-			scope.importText = importText;
-
+		link: function(scope, element, attrs, ctrl) {
 			var input = element.find('input');
 			input.bind('change', function() {
 				angular.forEach(input.get(0).files, function(file) {
@@ -12,11 +9,11 @@ angular.module('contactsApp')
 
 					reader.addEventListener('load', function () {
 						scope.$apply(function () {
-							ContactService.import.call(ContactService, reader.result, file.type, null, function (progress) {
+							ContactService.import.call(ContactService, reader.result, file.type, ctrl.selectedAddressBook, function (progress) {
 								if (progress === 1) {
-									scope.importText = importText;
+									ctrl.importText = ctrl.t.importText;
 								} else {
-									scope.importText = parseInt(Math.floor(progress * 100)) + '%';
+									ctrl.importText = parseInt(Math.floor(progress * 100)) + '%';
 								}
 							});
 						});
@@ -29,6 +26,8 @@ angular.module('contactsApp')
 				input.get(0).value = '';
 			});
 		},
-		templateUrl: OC.linkTo('contacts', 'templates/contactImport.html')
+		templateUrl: OC.linkTo('contacts', 'templates/contactImport.html'),
+		controller: 'contactimportCtrl',
+		controllerAs: 'ctrl'
 	};
 });

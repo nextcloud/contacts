@@ -322,7 +322,12 @@ avatar:not(.maximized) .icon-error + img {
 }
 
 /* addressbook settings */
-ul.addressBookList > li {
+.settings-section {
+	display: block;
+}
+
+
+ul.addressBookList li {
 	padding: 6px 0;
 	display: flex;
 	align-items: center;
@@ -469,10 +474,23 @@ li.calendar-share-item span.shareeIdentifier {
 	padding-left: 34px;
 	background-position: 10px center;
 	text-align: left;
-	margin-bottom: 10px;
+	margin: 0;
 	display: block;
+	margin-bottom: 0;
+	border-radius: 3px 3px 0 0;
 }
 
+contactimport .select2-container {
+	margin-top: 0;
+	width: 100%;
+}
+
+contactimport .select2-container .select2-choice {
+	height: 100%;
+	line-height: 31px;
+	border-radius: 0 0 3px 3px;
+	border-top: none;
+}
 
 /* Contacts List */
 #new-contact-button {

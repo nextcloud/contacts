@@ -39,9 +39,9 @@ vendor_style('select2/select2');
 				</button>
 			</div>
 			<div id="app-settings-content">
-				<addressBookList></addressBookList>
-				<contactImport></contactImport>
-				<sortBy></sortBy>
+				<addressBookList class="settings-section"></addressBookList>
+				<contactImport class="settings-section"></contactImport>
+				<sortBy class="settings-section"></sortBy>
 			</div>
 		</div>
 	</div>
