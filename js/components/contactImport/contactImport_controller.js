@@ -10,11 +10,11 @@ angular.module('contactsApp')
 	ctrl.import = ContactService.import.bind(ContactService);
 	ctrl.loading = true;
 	ctrl.importText = ctrl.t.importText;
-	ctrl.selectedAddressBook = AddressBookService.getDefaultAddressBook();
 
 	AddressBookService.getAll().then(function(addressBooks) {
 		ctrl.addressBooks = addressBooks;
 		ctrl.loading = false;
+		ctrl.selectedAddressBook = AddressBookService.getDefaultAddressBook();
 	});
 
 });
