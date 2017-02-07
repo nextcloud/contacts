@@ -492,6 +492,10 @@ contactimport .select2-container .select2-choice {
 	border-top: none;
 }
 
+contactimport .ui-select-offscreen {
+	display: none;
+}
+
 /* Contacts List */
 #new-contact-button {
 	margin: 14px auto; /* to have the same height than a contact*/
