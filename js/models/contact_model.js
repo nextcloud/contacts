@@ -31,6 +31,18 @@ angular.module('contactsApp')
 				}
 			},
 
+			sortFirstName: function() {
+				return [this.firstName(), this.lastName()];
+			},
+
+			sortLastName: function() {
+				return [this.lastName(), this.firstName()];
+			},
+
+			sortDisplayName: function() {
+				return this.displayName();
+			},
+
 			displayName: function() {
 				var displayName = this.fullName() || this.org() || '';
 				if(angular.isArray(displayName)) {
@@ -47,6 +59,33 @@ angular.module('contactsApp')
 					return '';
 				}
 
+			},
+
+			firstName: function() {
+				var property = this.getProperty('n');
+				if (property) {
+					return property.value[1];
+				} else {
+					return this.displayName();
+				}
+			},
+
+			lastName: function() {
+				var property = this.getProperty('n');
+				if (property) {
+					return property.value[0];
+				} else {
+					return this.displayName();
+				}
+			},
+
+			additionalNames: function() {
+				var property = this.getProperty('n');
+				if (property) {
+					return property.value[2];
+				} else {
+					return '';
+				}
 			},
 
 			fullName: function(value) {

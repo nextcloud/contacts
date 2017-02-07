@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, ContactService, vCardPropertiesService, SearchService) {
+.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, ContactService, SortByService, vCardPropertiesService, SearchService) {
 	var ctrl = this;
 
 	ctrl.routeParams = $routeParams;
@@ -8,6 +8,8 @@ angular.module('contactsApp')
 	ctrl.searchTerm = '';
 	ctrl.show = true;
 	ctrl.invalid = false;
+
+	ctrl.sortBy = SortByService.getSortBy();
 
 	ctrl.t = {
 		emptySearch : t('contacts', 'No search result for {query}', {query: ctrl.searchTerm})
@@ -20,6 +22,10 @@ angular.module('contactsApp')
 	$scope.query = function(contact) {
 		return contact.matches(SearchService.getSearchTerm());
 	};
+
+	SortByService.subscribe(function(newValue) {
+		ctrl.sortBy = newValue;
+	});
 
 	SearchService.registerObserverCallback(function(ev) {
 		if (ev.event === 'submitSearch') {

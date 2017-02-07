@@ -1,6 +1,6 @@
 <div style="height: 90%" class="contacts-list" ng-class="{loading: ctrl.loading, 'mobile-show': ctrl.show}">
         <div class="app-content-list-item"
-			 ng-repeat="contact in ctrl.contactList = (ctrl.contacts | contactGroupFilter:ctrl.routeParams.gid | localeOrderBy:'displayName' | filter:query) as filtered track by contact.uid()"
+			 ng-repeat="contact in ctrl.contactList = (ctrl.contacts | contactGroupFilter:ctrl.routeParams.gid | localeOrderBy:ctrl.sortBy | filter:query) as filtered track by contact.uid()"
 			 contact data="contact"
 			 ng-click="setSelected(contact.uid())"
 			 ng-class="{active: contact.uid() === ctrl.getSelectedId()}">

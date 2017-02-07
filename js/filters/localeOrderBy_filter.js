@@ -27,10 +27,16 @@ angular.module('contactsApp')
 				return !reverseOrder ? valueA - valueB : valueB - valueA;
 			}
 
+			if (angular.isArray(valueA)) {
+				if (valueA[0] === valueB[0]) {
+					return !reverseOrder ? valueA[1].localeCompare(valueB[1]) : valueB[1].localeCompare(valueA[1]);
+				}
+				return !reverseOrder ? valueA[0].localeCompare(valueB[0]) : valueB[0].localeCompare(valueA[0]);
+			}
+
 			return 0;
 		});
 
 		return arrayCopy;
 	};
 }]);
-
