@@ -486,6 +486,10 @@ contactimport .select2-container {
 	width: 100%;
 }
 
+contactimport .select2-container:after {
+	left: 15px;
+}
+
 contactimport .select2-container .select2-choice {
 	height: 100%;
 	line-height: 31px;
