@@ -4,7 +4,7 @@ angular.module('contactsApp')
 
 	ctrl.t = {
 		download: t('contacts', 'Download'),
-		showURL:t('contacts', 'ShowURL'),
+		showURL:t('contacts', 'Show URL'),
 		shareAddressbook: t('contacts', 'Share Addressbook'),
 		deleteAddressbook: t('contacts', 'Delete Addressbook'),
 		shareInputPlaceHolder: t('contacts', 'Share with users or groups'),
