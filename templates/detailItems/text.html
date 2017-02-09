@@ -1,8 +1,8 @@
 <select ng-if="ctrl.availableOptions.length > 0" ng-model="ctrl.type" ng-model-options="{ debounce: 500 }" ng-change="ctrl.changeType(ctrl.type)">
 	<option ng-repeat="option in ctrl.availableOptions" value="{{option.id}}">{{option.name}}</option>
 </select>
-<label ng-if="ctrl.availableOptions.length === 0" for="details-{{ctrl.name}}">{{ctrl.meta.readableName}}</label>
-<input type="text" id="details-{{ctrl.name}}" name="{{ctrl.name}}"
+<label ng-if="ctrl.availableOptions.length === 0" for="details-{{ctrl.name}}-{{ctrl.index}}">{{ctrl.meta.readableName}}</label>
+<input type="text" id="details-{{ctrl.name}}-{{ctrl.index}}" name="{{ctrl.name}}"
 	   ng-model="ctrl.data.value" ng-model-options="{ debounce: 500 }"
 	   ng-change="ctrl.model.updateContact()" value=""
 	   placeholder="{{ctrl.meta.readableName}}"

@@ -1,5 +1,5 @@
-<label>{{ctrl.meta.readableName}}</label>
-<input type="text" name="{{ctrl.name}}"
+<label for="details-{{ctrl.name}}-{{ctrl.index}}">{{ctrl.meta.readableName}}</label>
+<input type="text" id="details-{{ctrl.name}}-{{ctrl.index}}" name="{{ctrl.name}}"
 	   ng-model="ctrl.data.value" datepicker ng-model-options="{ debounce: 500 }"
 	   ng-change="ctrl.model.updateContact()" value=""
 	   focus-expression="$parent.ctrl.focus === ctrl.name"
