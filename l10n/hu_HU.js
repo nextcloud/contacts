@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Névjegyek",
     "Download" : "Letöltés",
-    "ShowURL" : "URL megjelenítés",
     "Share Addressbook" : "Névjegyzék megosztás",
     "Delete Addressbook" : "Névjegyzék törlés",
     "Share with users or groups" : "Megosztás felhasználókkal vagy csoportokkal",

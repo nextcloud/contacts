@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Kontaktai",
     "Download" : "Atsisiųsti",
-    "ShowURL" : "Rodyti adresą",
     "Share Addressbook" : "Dalintis adresų knygą",
     "Delete Addressbook" : "Ištrinti adresų knygą",
     "Share with users or groups" : "Dalintis su naudotojais arba grupėmis",

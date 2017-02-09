@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakti",
     "Download" : "Lejupielādēt",
-    "ShowURL" : "Rādīt URL",
     "Share Addressbook" : "Koplietot adrešu grāmatu",
     "Delete Addressbook" : "Dzēst adrešu grāmatu",
     "Share with users or groups" : "Koplietot ar lietotājiem vai grupām",
@@ -17,6 +16,7 @@ OC.L10N.register(
     "Organization" : "Organizācija",
     "Title" : "Nosaukums",
     "Add field ..." : "Pievienot lauku ...",
+    "Save changes" : "Saglabāt izmaiņas",
     "No search result for {query}" : "Nav meklēšanas rezultātu {query}",
     "_%n contact_::_%n contacts_" : ["%n kontakti","%n kontakti","%n kontakti"],
     "Post office box" : "Pasta kastīte",

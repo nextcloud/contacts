@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Stiki",
     "Download" : "Prejmi",
-    "ShowURL" : "Prikaži URL",
     "Share Addressbook" : "Deli Imenik",
     "Delete Addressbook" : "Pobriši Imenik",
     "Share with users or groups" : "Deli z uporabniki ali skupinami",

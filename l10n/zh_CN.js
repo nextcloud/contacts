@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "联系人",
     "Download" : "下载",
-    "ShowURL" : "显示URL",
     "Share Addressbook" : "分享地址簿",
     "Delete Addressbook" : "删除地址簿",
     "Share with users or groups" : "和用户或者组群分享",
