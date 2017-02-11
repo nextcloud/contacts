@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Contacts" : "Контакты",
     "Download" : "Скачать",
+    "Show URL" : "Показать URL",
     "Share Addressbook" : "Поделиться адресной книгой",
     "Delete Addressbook" : "Удалить адресную книгу",
     "Share with users or groups" : "Поделиться с пользователями или группами",

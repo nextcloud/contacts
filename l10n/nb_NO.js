@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakter",
     "Download" : "Last ned",
+    "Show URL" : "Vis URL",
     "Share Addressbook" : "Del adressebok",
     "Delete Addressbook" : "Slett adressebok",
     "Share with users or groups" : "Del med brukere eller grupper",
@@ -34,6 +35,7 @@ OC.L10N.register(
     "All contacts" : "Alle kontakter",
     "Not grouped" : "Ikke gruppert",
     "New contact" : "Ny kontakt",
+    "Sort by" : "Sorter etter",
     "{addressbook} shared by {owner}" : "{addressbook} delt av {owner}",
     "Contact could not be created." : "Kontakten kunne ikke opprettes",
     "No contacts in file. Only VCard files are allowed." : "Ingen kontakter i filen. Kun VCard-filer er tillatt.",

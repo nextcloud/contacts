@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Contacts" : "Kontaktet",
     "Download" : "Shkarko",
+    "Show URL" : "Shfaq URL",
     "Share Addressbook" : "Ndaj Librin e Adresave",
     "Delete Addressbook" : "Fshij Librin e Adresave",
     "Share with users or groups" : "Nda me përdoruesit ose grupet",

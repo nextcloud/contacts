@@ -16,6 +16,7 @@ OC.L10N.register(
     "Organization" : "Organizacija",
     "Title" : "Pavadinimas",
     "Add field ..." : "Pridėti lauką ...",
+    "Save changes" : "Įrašyti pakeitimus",
     "No search result for {query}" : "Paieškos \"{query}\" rezultatų nėra",
     "_%n contact_::_%n contacts_" : ["%n kontaktas","%n kontaktų","%n kontaktų"],
     "Post office box" : "Pašto dėžutė",
