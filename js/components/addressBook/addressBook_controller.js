@@ -45,6 +45,14 @@ angular.module('contactsApp')
 		$scope.$parent.ctrl.openedMenu = index;
 	};
 
+	ctrl.toggleMenu = function(index) {
+		if ($scope.$parent.ctrl.openedMenu === index) {
+			ctrl.closeMenus();
+		} else {
+			ctrl.openMenu(index);
+		}
+	};
+
 	ctrl.toggleSharesEditor = function() {
 		ctrl.editingShares = !ctrl.editingShares;
 		ctrl.selectedSharee = null;

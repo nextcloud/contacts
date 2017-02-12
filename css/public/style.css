@@ -302,7 +302,8 @@ avatar.failed {
 /* addressbook settings */
 ul.addressBookList > li {
 	padding: 6px 0;
-	margin-bottom: 5px;
+	display: flex;
+	align-items: center;
 }
 
 ul.addressBook-share-list {
@@ -314,14 +315,19 @@ ul.addressBook-share-list li {
 	margin-left: 15px;
 }
 
-ul.addressBookList li .utils {
-	position: absolute;
-	right: 0;
-	padding-right: 11px;
+/* override core apps css */
+#app-navigation ul.addressBookList > li span.utils {
+	position: relative;
+	padding: 0; 
+	flex-shrink: 0;
+	height: 20px;
 }
+
 ul.addressBookList li .utils .popovermenu {
 	margin-top: 0;
+	margin-right: -5px;
 }
+
 ul.addressBookList li .action > span {
 	display: inline-block;
 	opacity: 0.5;
@@ -364,7 +370,9 @@ input.newAddressBookInput, input.shareeInput, input.addressBookUrl {
 
 .addressBookList form {
 	position: relative;
+	width: 100%;
 }
+
 .newAddressBookSubmit {
 	position: absolute;
 	right: 0;
@@ -376,12 +384,11 @@ input.newAddressBookInput, input.shareeInput, input.addressBookUrl {
 }
 
 ul.addressBookList li[addressbook] > span.addressBookName {
-	width: 105px;
+	width: 100%;
 	overflow: hidden;
 	white-space:nowrap;
 	text-overflow: ellipsis;
 	padding-left: 7px;
-	display: inline-block;
 }
 
 li.addressBook-share-item span.shareeIdentifier {
