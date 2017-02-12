@@ -357,13 +357,13 @@ angular.module('contactsApp')
 						if(property.value.join(';').indexOf(',') !== -1) {
 							this.failedProps.push(prop);
 							property.value = property.value.join(',').split(',');
-							//console.warning(this.uid()+': Categories split: ' + property.value);
+							//console.warn(this.uid()+': Categories split: ' + property.value);
 						}
 					} else if (angular.isString(property.value)) {
 						if(property.value.indexOf(',') !== -1) {
 							this.failedProps.push(prop);
 							property.value = property.value.split(',');
-							//console.warning(this.uid()+': Categories split: ' + property.value);
+							//console.warn(this.uid()+': Categories split: ' + property.value);
 						}
 					}
 					if(property.value.length !== 0) {
@@ -372,7 +372,7 @@ angular.module('contactsApp')
 						if(!angular.equals(uniqueCategories, property.value)) {
 							this.failedProps.push(prop);
 							property.value = uniqueCategories;
-							//console.warning(this.uid()+': Categories duplicate: ' + property.value);
+							//console.warn(this.uid()+': Categories duplicate: ' + property.value);
 						}
 					}
 					break;
@@ -387,12 +387,12 @@ angular.module('contactsApp')
 								this.setProperty('photo', {value:property.value,
 														   meta:{type:property.meta.type,
 																 encoding:property.meta.encoding}});
-								console.warning(this.uid()+': Photo detected as ' + property.meta.type);
+								console.warn(this.uid()+': Photo detected as ' + property.meta.type);
 							} else {
 								this.failedProps.push(prop);
 								this.removeProperty('photo', property);
 								property = undefined;
-								console.warning(this.uid()+': Photo removed');
+								console.warn(this.uid()+': Photo removed');
 							}
 						}
 					}
