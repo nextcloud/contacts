@@ -324,6 +324,7 @@ ul.addressBook-share-list li {
 
 ul.addressBook-share-list li .icon {
 	margin-right: 5px;
+	opacity: .2;
 }
 
 ul.addressBook-share-list li .utils {
