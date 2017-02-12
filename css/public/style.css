@@ -45,6 +45,10 @@
 	display: flex;
 	flex-shrink: 0;
 }
+.contactdetails__header #contact-failed-save {
+	animation: pulse 1.5s infinite;
+	border-radius: 50%;
+}
 /* fix placeholder color */
 .contactdetails__header .contactdetails__name::-webkit-input-placeholder,
 .contactdetails__header .contactdetails__org::-webkit-input-placeholder,
@@ -304,6 +308,7 @@ ul.addressBookList > li {
 	padding: 6px 0;
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 }
 
 ul.addressBook-share-list {
@@ -312,7 +317,17 @@ ul.addressBook-share-list {
 }
 
 ul.addressBook-share-list li {
-	margin-left: 15px;
+	padding: 0 5px;
+	display: inline-flex;
+	align-items: center;
+}
+
+ul.addressBook-share-list li .icon {
+	margin-right: 5px;
+}
+
+ul.addressBook-share-list li .utils {
+	display: flex;
 }
 
 /* override core apps css */
@@ -366,6 +381,7 @@ div.app-contacts span.utils {
 
 input.newAddressBookInput, input.shareeInput, input.addressBookUrl {
 	width: 100% !important;
+	margin-right: 0;
 }
 
 .addressBookList form {
@@ -384,15 +400,20 @@ input.newAddressBookInput, input.shareeInput, input.addressBookUrl {
 }
 
 ul.addressBookList li[addressbook] > span.addressBookName {
-	width: 100%;
+	width: calc(100% - 80px); /* -action width */
 	overflow: hidden;
 	white-space:nowrap;
 	text-overflow: ellipsis;
 	padding-left: 7px;
 }
 
-li.addressBook-share-item span.shareeIdentifier {
-	max-width: 50px;
+ul.addressBookList li[addressbook] > .addressBookShares {
+	width: 100%;
+}
+
+li.addressBook-share-item span.shareeIdentifier,
+li.calendar-share-item span.shareeIdentifier {
+	width: 100%;
 	overflow:hidden;
 	white-space:nowrap;
 	text-overflow:ellipsis;
@@ -635,4 +656,8 @@ detailsitem .select2-container {
 }
 #app-navigation-toggle-back {
 	display: none;
+}
+
+.icon-group {
+	background-image: url('../../img/group.svg');
 }

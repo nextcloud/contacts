@@ -9,6 +9,13 @@
 	</span>
 	<span class="action">
 		<span
+			class="addressbooklist-icon icon-share"
+			title="{{ctrl.t.shareAddressbook}}"
+			ng-click="ctrl.toggleSharesEditor(ctrl.addressBook)">
+		</span>
+	</span>
+	<span class="action">
+		<span
 			class="icon-more openMenuButton"
 			ng-click="ctrl.toggleMenu($id)">
 		</span>
@@ -24,12 +31,6 @@
 					<span class="icon icon-download"></span>
 					<span>{{ctrl.t.download}}</span>
 				</a>
-			</li>
-			<li>
-				<button ng-click="ctrl.toggleSharesEditor(ctrl.addressBook)">
-					<span class="icon icon-share"></span>
-					<span>{{ctrl.t.shareAddressbook}}</span>
-				</button>
 			</li>
 			<li ng-if="ctrl.list.length > 1">
 				<button ng-click="ctrl.deleteAddressBook()">
@@ -53,13 +54,14 @@
 		placeholder="{{ctrl.t.shareInputPlaceHolder}}">
 	<ul class="addressBook-share-list">
 		<li ng-repeat="userShare in ctrl.addressBook.sharedWith.users" class="addressBook-share-item">
-			<span class="shareeIdentifier">{{ userShare.displayname }}</span> -
-			<input type="checkbox" name="editable"
-				   id="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"
-				   ng-model="userShare.writable" value="edit"
-				   ng-change="ctrl.updateExistingUserShare(userShare.id, userShare.writable)">
-			<label for="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"> {{ctrl.t.canEdit}}</label>
+			<span class="icon icon-user"></span>
+			<span class="shareeIdentifier">{{ userShare.displayname }}</span>
 			<span class="utils">
+				<input type="checkbox" name="editable" class="checkbox" 
+					   id="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"
+					   ng-model="userShare.writable" value="edit"
+					   ng-change="ctrl.updateExistingUserShare(userShare.id, userShare.writable)">
+				<label for="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"> {{ctrl.t.canEdit}}</label>
 				<span class="action">
 					<span href="#"
 						  id="addressBooklist-icon delete"
@@ -72,13 +74,14 @@
 			</span>
 		</li>
 		<li ng-repeat="groupShare in ctrl.addressBook.sharedWith.groups" class="calendar-share-item">
-			{{ groupShare.displayname }} (group) -
-			<input type="checkbox" name="editable"
-				   id="checkbox_sharedWithGroup_{{ctrl.addressBook.tmpId}}_{{$id}}"
-				   ng-model="groupShare.writable" value="edit"
-				   ng-change="ctrl.updateExistingGroupShare(groupShare.id, groupShare.writable)">
-			<label for="checkbox_sharedWithGroup_{{ctrl.addressBook.tmpId}}_{{$id}}"> {{ctrl.t.canEdit}}</label>
-			<span class="utils hide">
+			<span class="icon icon-group"></span>
+			<span class="shareeIdentifier">{{ groupShare.displayname }}</span>
+			<span class="utils">
+				<input type="checkbox" name="editable" class="checkbox" 
+					   id="checkbox_sharedWithGroup_{{ctrl.addressBook.tmpId}}_{{$id}}"
+					   ng-model="groupShare.writable" value="edit"
+					   ng-change="ctrl.updateExistingGroupShare(groupShare.id, groupShare.writable)">
+				<label for="checkbox_sharedWithGroup_{{ctrl.addressBook.tmpId}}_{{$id}}"> {{ctrl.t.canEdit}}</label>
 				<span class="action">
 					<span href="#"
 						  id="addressBooklist-icon delete"
