@@ -406,7 +406,7 @@ li.addressBook-share-item span.shareeIdentifier {
 	padding-left: 34px;
 	background-position: 10px center;
 	text-align: left;
-	margin: 15px 0;
+	margin-bottom: 10px;
 	display: block;
 }
 
