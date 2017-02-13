@@ -344,6 +344,10 @@ ul.addressBookList li .utils .popovermenu {
 	margin-right: -5px;
 }
 
+#app-navigation ul.addressBookList li .utils .popovermenu li > button {
+	width: 100%;
+}
+
 ul.addressBookList li .action > span {
 	display: inline-block;
 	opacity: 0.5;
