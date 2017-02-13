@@ -424,6 +424,7 @@ li.calendar-share-item span.shareeIdentifier {
 	text-overflow:ellipsis;
 	display: inline-block;
 	vertical-align: top;
+	opacity: 0.5;
 }
 
 #app-settings-content #upload.button {
