@@ -405,7 +405,7 @@ input.newAddressBookInput, input.shareeInput, input.addressBookUrl {
 }
 
 ul.addressBookList li[addressbook] > span.addressBookName {
-	width: calc(100% - 80px); /* -action width */
+	width: calc(100% - 52px); /* -actions width */
 	overflow: hidden;
 	white-space:nowrap;
 	text-overflow: ellipsis;

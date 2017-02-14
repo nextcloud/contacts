@@ -4,7 +4,8 @@ angular.module('contactsApp')
 
 	ctrl.t = {
 		download: t('contacts', 'Download'),
-		showURL:t('contacts', 'Show URL'),
+		copyURL:t('contacts', 'Copy URL'),
+		clickToCopy:t('contacts', 'Click to copy the URL into your clipboard'),
 		shareAddressbook: t('contacts', 'Share'),
 		deleteAddressbook: t('contacts', 'Delete'),
 		shareInputPlaceHolder: t('contacts', 'Share with users or groups'),
@@ -12,9 +13,21 @@ angular.module('contactsApp')
 		canEdit: t('contacts', 'can edit')
 	};
 
-	ctrl.showUrl = false;
-	/* globals oc_config */
+	// You can still access the clipboard.js event
+	$scope.onSuccess = function(e) {
+		console.info('Action:', e.action);
+		console.info('Text:', e.text);
+		console.info('Trigger:', e.trigger);
 
+		e.clearSelection();
+	};
+
+	$scope.onError = function(e) {
+		console.error('Action:', e.action);
+		console.error('Trigger:', e.trigger);
+	};
+
+	/* globals oc_config */
 	function compareVersion(version1, version2) {
 		for (var i = 0; i < Math.max(version1.length, version2.length); i++) {
 			var a = version1[i] || 0;
@@ -31,10 +44,6 @@ angular.module('contactsApp')
 	/* eslint-disable camelcase */
 	ctrl.canExport = compareVersion([9, 0, 2, 0], oc_config.version.split('.'));
 	/* eslint-enable camelcase */
-
-	ctrl.toggleShowUrl = function() {
-		ctrl.showUrl = !ctrl.showUrl;
-	};
 
 	ctrl.closeMenus = function() {
 		$scope.$parent.ctrl.openedMenu = false;

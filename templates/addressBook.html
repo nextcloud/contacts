@@ -2,13 +2,6 @@
 <span class="utils">
 	<span class="action">
 		<span
-			class="addressbooklist-icon icon-public"
-			title="{{ctrl.t.showURL}}"
-			ng-click="ctrl.toggleShowUrl()">
-		</span>
-	</span>
-	<span class="action">
-		<span
 			class="addressbooklist-icon icon-share"
 			title="{{ctrl.t.shareAddressbook}}"
 			ng-click="ctrl.toggleSharesEditor(ctrl.addressBook)">
@@ -24,10 +17,20 @@
 		 ng-class="{open: $parent.ctrl.openedMenu === $id}"
 		 ng-click="ctrl.closeMenus()"
 		 click-outside="ctrl.closeMenus()"
-		 outside-if-not=".openMenuButton">
+		 outside-if-not=".openMenuButton, .popovermenu">
 		<ul>
+			<li>
+				<button class="addressbookurl-copy btn" ngclipboard ngclipboard-success="onSuccess(e);" ngclipboard-error="onError(e);"
+						tooltip-placement="auto right" uib-tooltip="{{ctrl.t.clickToCopy}}"
+						tooltip-append-to-body="true"
+						data-clipboard-target="#addressBookUrl_{{$id}}"
+						title="{{ctrl.t.clickToCopy}}">
+					<span class="icon icon-public"></span>
+					<span>{{ctrl.t.copyURL}}</span>
+				</button>
+			</li>
 			<li ng-show="ctrl.canExport">
-				<a href="{{ctrl.addressBook.url}}?export" id="download" title="{{ctrl.t.download}}">
+				<a href="{{ctrl.addressBook.url}}?export" id="download_{{$id}}" title="{{ctrl.t.download}}">
 					<span class="icon icon-download"></span>
 					<span>{{ctrl.t.download}}</span>
 				</a>
@@ -41,7 +44,7 @@
 		</ul>
 	</div>
 </span>
-<input class="addressBookUrl" ng-show="ctrl.showUrl" type="url" value="{{ctrl.addressBook.url}}" readonly />
+<input id="addressBookUrl_{{$id}}" class="addressBookUrl hidden" type="url" value="{{ctrl.addressBook.url}}" readonly />
 <div class="addressBookShares" ng-show="ctrl.editingShares">
 	<i ng-show="ctrl.loadingSharees" class="glyphicon glyphicon-refresh"></i>
 	<input
@@ -64,7 +67,6 @@
 				<label for="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"> {{ctrl.t.canEdit}}</label>
 				<span class="action">
 					<span href="#"
-						  id="addressBooklist-icon delete"
 						  data-id="{{ ctrl.addressBook.uri }}"
 						  title="{{ctrl.t.delete}}"
 						  class="icon-delete"
@@ -84,7 +86,6 @@
 				<label for="checkbox_sharedWithGroup_{{ctrl.addressBook.tmpId}}_{{$id}}"> {{ctrl.t.canEdit}}</label>
 				<span class="action">
 					<span href="#"
-						  id="addressBooklist-icon delete"
 						  data-id="{{ ctrl.addressBook.uri }}"
 						  title="{{ctrl.t.delete}}"
 						  class="icon-delete"

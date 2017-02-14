@@ -8,7 +8,7 @@
  * @copyright Hendrik Leppelsack 2015
  */
 
-angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute', 'ui.bootstrap', 'ui.select', 'ngSanitize', 'angular-click-outside'])
+angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute', 'ui.bootstrap', 'ui.select', 'ngSanitize', 'angular-click-outside', 'ngclipboard'])
 .config(function($routeProvider) {
 
 	$routeProvider.when('/:gid', {
