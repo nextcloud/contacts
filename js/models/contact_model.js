@@ -367,7 +367,9 @@ angular.module('contactsApp')
 					if (!angular.isUndefined(this.props[prop])) {
 						if(this.props[prop].length > 1) {
 							this.props[prop] = [this.props[prop][0]];
-							console.warn(this.uid()+': Too many '+prop+' fields. Keeping: ' + this.props[prop][0].value);
+							// No user interraction wanted
+							this.syncVCard();
+							console.warn(this.uid()+': Too many '+prop+' fields. Saving this one only: ' + this.props[prop][0].value);
 						}
 					}
 					break;
