@@ -568,10 +568,6 @@ ul.addressBook-share-list {
 	margin-bottom: 12px;
 }
 
-ul.addressBook-share-list li {
-	margin-left: 15px;
-}
-
 #app-navigation .utils .action span {
 	cursor: pointer !important;
 }
