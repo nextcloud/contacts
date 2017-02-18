@@ -4,27 +4,39 @@ angular.module('contactsApp')
 
 	ctrl.t = {
 		download: t('contacts', 'Download'),
-		copyURL:t('contacts', 'Copy URL'),
-		clickToCopy:t('contacts', 'Click to copy the URL into your clipboard'),
+		copyURL: t('contacts', 'Copy URL'),
+		clickToCopy: t('contacts', 'Click to copy the URL into your clipboard'),
 		shareAddressbook: t('contacts', 'Share'),
 		deleteAddressbook: t('contacts', 'Delete'),
 		shareInputPlaceHolder: t('contacts', 'Share with users or groups'),
 		delete: t('contacts', 'Delete'),
-		canEdit: t('contacts', 'can edit')
+		canEdit: t('contacts', 'can edit'),
+		close: t('contacts', 'Close')
 	};
 
-	// You can still access the clipboard.js event
-	$scope.onSuccess = function(e) {
-		console.info('Action:', e.action);
-		console.info('Text:', e.text);
-		console.info('Trigger:', e.trigger);
+	ctrl.tooltipIsOpen = false;
+	ctrl.tooltipTitle = ctrl.t.clickToCopy;
+	ctrl.showInputUrl = false;
 
-		e.clearSelection();
+	ctrl.clipboardSuccess = function() {
+		ctrl.tooltipIsOpen = true;
+		ctrl.tooltipTitle = t('core', 'Copied!');
+		_.delay(function() {
+			ctrl.tooltipIsOpen = false;
+			ctrl.tooltipTitle = ctrl.t.clickToCopy;
+		}, 3000);
 	};
 
-	$scope.onError = function(e) {
-		console.error('Action:', e.action);
-		console.error('Trigger:', e.trigger);
+	ctrl.clipboardError = function() {
+		ctrl.showInputUrl = true;
+		if (/iPhone|iPad/i.test(navigator.userAgent)) {
+			ctrl.InputUrlTooltip = t('core', 'Not supported!');
+		} else if (/Mac/i.test(navigator.userAgent)) {
+			ctrl.InputUrlTooltip = t('core', 'Press ⌘-C to copy.');
+		} else {
+			ctrl.InputUrlTooltip = t('core', 'Press Ctrl-C to copy.');
+		}
+		$('#addressBookUrl_'+ctrl.addressBook.ctag).select();
 	};
 
 	/* globals oc_config */

@@ -20,11 +20,10 @@
 		 outside-if-not=".openMenuButton, .popovermenu">
 		<ul>
 			<li>
-				<button class="addressbookurl-copy btn" ngclipboard ngclipboard-success="onSuccess(e);" ngclipboard-error="onError(e);"
-						tooltip-placement="auto right" uib-tooltip="{{ctrl.t.clickToCopy}}"
-						tooltip-append-to-body="true"
-						data-clipboard-target="#addressBookUrl_{{$id}}"
-						title="{{ctrl.t.clickToCopy}}">
+				<button class="addressbookurl-copy btn"
+						ngclipboard ngclipboard-success="ctrl.clipboardSuccess()" ngclipboard-error="ctrl.clipboardError()"
+						data-clipboard-text="{{ctrl.addressBook.url}}"
+						tooltip-placement="right" uib-tooltip="{{ctrl.tooltipTitle}}" tooltip-append-to-body="true">
 					<span class="icon icon-public"></span>
 					<span>{{ctrl.t.copyURL}}</span>
 				</button>
@@ -44,7 +43,15 @@
 		</ul>
 	</div>
 </span>
-<input id="addressBookUrl_{{$id}}" class="addressBookUrl hidden" type="url" value="{{ctrl.addressBook.url}}" readonly />
+
+<div class="addressBookUrlContainer" ng-show="ctrl.showInputUrl">
+	<input id="addressBookUrl_{{ctrl.addressBook.ctag}}" class="addressBookUrl" 
+		   uib-tooltip="{{ctrl.InputUrlTooltip}}"
+		   tooltip-is-open="true" tooltip-append-to-body="true" 
+		   type="url" value="{{ctrl.addressBook.url}}" readonly />
+	<input type="button" class="inline-button icon-close action pull-right" ng-click="ctrl.showInputUrl=false" uib-tooltip="{{ctrl.t.close}}">
+</div>
+
 <div class="addressBookShares" ng-show="ctrl.editingShares">
 	<i ng-show="ctrl.loadingSharees" class="glyphicon glyphicon-refresh"></i>
 	<input

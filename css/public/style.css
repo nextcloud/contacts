@@ -384,9 +384,18 @@ div.app-contacts span.utils {
 	position: relative !important;
 }
 
-input.newAddressBookInput, input.shareeInput, input.addressBookUrl {
+.addressBookUrlContainer {
+	width: 100%;
+	position: relative;
+}
+
+input.newAddressBookInput,
+input.shareeInput,
+input.addressBookUrl {
 	width: 100% !important;
 	margin-right: 0;
+	padding-right: 30px;
+	text-overflow: ellipsis;
 }
 
 .addressBookList form {
@@ -394,14 +403,17 @@ input.newAddressBookInput, input.shareeInput, input.addressBookUrl {
 	width: 100%;
 }
 
-.newAddressBookSubmit {
+addressBookList input[type='submit'].inline-button,
+addressBookList input[type='button'].inline-button {
 	position: absolute;
 	right: 0;
 	top: 0;
-	padding: 6px 13px;
+	padding: 6px 15px;
 	background-color: transparent;
 	border: none;
 	opacity: .5;
+	margin-right: 0;
+	cursor: pointer;
 }
 
 ul.addressBookList li[addressbook] > span.addressBookName {
