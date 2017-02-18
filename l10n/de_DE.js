@@ -12,7 +12,7 @@ OC.L10N.register(
     "Address book name" : "Adressbuch-Name",
     "Import" : "Importieren",
     "The selected image is too big (max 1MB)" : "Das ausgewählte Bild ist zu groß (max. 1MB)",
-    "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "Diese Karte ist beschädigt und wurde repariert. Überprüfen Sie die Daten und Speichern Sie, um die Änderungen dauerhaft zu übernehmen.",
+    "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "Diese Karte ist beschädigt und wurde repariert. Überprüfen Sie die Daten. Speichern Sie um die Änderungen dauerhaft zu übernehmen.",
     "No contacts in here" : "Keine Kontakte vorhanden",
     "Name" : "Name",
     "Organization" : "Organisation",

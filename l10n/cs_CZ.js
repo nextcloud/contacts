@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakty",
     "Download" : "Stáhnout",
+    "Show URL" : "Zobrazit URL",
     "Share Addressbook" : "Sdílet adresář",
     "Delete Addressbook" : "Smazat adresář",
     "Share with users or groups" : "Sdílet suživateli nebo skupinami",
@@ -35,6 +36,7 @@ OC.L10N.register(
     "All contacts" : "Všechny kontakty",
     "Not grouped" : "Neseskupené",
     "New contact" : "Nový kontakt",
+    "Sort by" : "Seřadit podle",
     "{addressbook} shared by {owner}" : "{addressbook} sdílí {owner}",
     "Contact could not be created." : "Kontakt se nepodařilo vytvořit.",
     "No contacts in file. Only VCard files are allowed." : "Žádné kontakty v souboru. Pouze soubory vCard jsou povoleny.",
