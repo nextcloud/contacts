@@ -284,9 +284,12 @@ detailsitem.details-item-note label {
 	vertical-align: top;
 }
 
-detailsitem.failed > label,
-detailsitem.failed > select {
-	border-left: 2px solid red;
+/* Failed props */
+detailsitem.failed {
+	box-shadow: inset 2px 0 #c5173a;
+}
+avatar.failed {
+	background-color: #c5173a;
 }
 
 /* Prevent delete for last adr/mail/tel item  */
@@ -297,8 +300,6 @@ detailsitem.failed > select {
 }
 
 /* addressbook settings */
-
-
 ul.addressBookList li {
 	padding: 6px 0;
 }

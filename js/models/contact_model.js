@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.factory('Contact', function($filter) {
+.factory('Contact', function($filter, MimeService) {
 	return function Contact(addressBook, vCard) {
 		angular.extend(this, {
 
@@ -170,12 +170,9 @@ angular.module('contactsApp')
 
 					return this.setProperty('photo', { value: imageData[1], meta: {type: [imageType], encoding: ['b']} });
 				} else {
-					var property = this.getProperty('photo');
+					var property = this.validate('photo', this.getProperty('photo'));
 					if(property) {
 						var type = property.meta.type;
-						if (angular.isUndefined(type)) {
-							return undefined;
-						}
 						if (angular.isArray(type)) {
 							type = type[0];
 						}
@@ -207,7 +204,7 @@ angular.module('contactsApp')
 			},
 
 			formatDateAsRFC6350: function(name, data) {
-				if (_.isUndefined(data) || _.isUndefined(data.value)) {
+				if (angular.isUndefined(data) || angular.isUndefined(data.value)) {
 					return data;
 				}
 				if (this.dateProperties.indexOf(name) !== -1) {
@@ -221,7 +218,7 @@ angular.module('contactsApp')
 			},
 
 			formatDateForDisplay: function(name, data) {
-				if (_.isUndefined(data) || _.isUndefined(data.value)) {
+				if (angular.isUndefined(data) || angular.isUndefined(data.value)) {
 					return data;
 				}
 				if (this.dateProperties.indexOf(name) !== -1) {
@@ -297,7 +294,7 @@ angular.module('contactsApp')
 				var self = this;
 
 				_.each(this.dateProperties, function(name) {
-					if (!_.isUndefined(self.props[name]) && !_.isUndefined(self.props[name][0])) {
+					if (!angular.isUndefined(self.props[name]) && !angular.isUndefined(self.props[name][0])) {
 						// Set dates again to make sure they are in RFC-6350 format
 						self.setProperty(name, self.props[name][0]);
 					}
@@ -310,17 +307,22 @@ angular.module('contactsApp')
 
 				// Revalidate all props
 				_.each(self.failedProps, function(name, index) {
-					if (!_.isUndefined(self.props[name]) && !_.isUndefined(self.props[name][0])) {
-						// Set dates again to make sure they are in RFC-6350 format
+					if (!angular.isUndefined(self.props[name]) && !angular.isUndefined(self.props[name][0])) {
+						// Reset previously failed properties
 						self.failedProps.splice(index, 1);
+						// And revalidate them again
 						self.validate(name, self.props[name][0]);
+
+					} else if(angular.isUndefined(self.props[name]) || angular.isUndefined(self.props[name][0])) {
+						// Property has been removed
+						self.failedProps.splice(index, 1);
 					}
 				});
 
 			},
 
 			matches: function(pattern) {
-				if (_.isUndefined(pattern) || pattern.length === 0) {
+				if (angular.isUndefined(pattern) || pattern.length === 0) {
 					return true;
 				}
 				var model = this;
@@ -330,10 +332,10 @@ angular.module('contactsApp')
 							if (!property.value) {
 								return false;
 							}
-							if (_.isString(property.value)) {
+							if (angular.isString(property.value)) {
 								return property.value.toLowerCase().indexOf(pattern.toLowerCase()) !== -1;
 							}
-							if (_.isArray(property.value)) {
+							if (angular.isArray(property.value)) {
 								return property.value.filter(function(v) {
 									return v.toLowerCase().indexOf(pattern.toLowerCase()) !== -1;
 								}).length > 0;
@@ -346,6 +348,7 @@ angular.module('contactsApp')
 				return matchingProps.length > 0;
 			},
 
+			/* eslint-disable no-console */
 			validate: function(prop, property) {
 				switch(prop) {
 				case 'categories':
@@ -354,11 +357,13 @@ angular.module('contactsApp')
 						if(property.value.join(';').indexOf(',') !== -1) {
 							this.failedProps.push(prop);
 							property.value = property.value.join(',').split(',');
+							//console.warn(this.uid()+': Categories split: ' + property.value);
 						}
 					} else if (angular.isString(property.value)) {
 						if(property.value.indexOf(',') !== -1) {
 							this.failedProps.push(prop);
 							property.value = property.value.split(',');
+							//console.warn(this.uid()+': Categories split: ' + property.value);
 						}
 					}
 					if(property.value.length !== 0) {
@@ -367,13 +372,35 @@ angular.module('contactsApp')
 						if(!angular.equals(uniqueCategories, property.value)) {
 							this.failedProps.push(prop);
 							property.value = uniqueCategories;
-							//console.debug(this.uid()+': Categories duplicate: ' + property.value);
+							//console.warn(this.uid()+': Categories duplicate: ' + property.value);
+						}
+					}
+					break;
+				case 'photo':
+					// Avoid undefined photo type
+					if (angular.isDefined(property)) {
+						if (angular.isUndefined(property.meta.type)) {
+							var mime = MimeService.b64mime(property.value);
+							if (mime) {
+								this.failedProps.push(prop);
+								property.meta.type=[mime];
+								this.setProperty('photo', {value:property.value,
+														   meta:{type:property.meta.type,
+																 encoding:property.meta.encoding}});
+								console.warn(this.uid()+': Photo detected as ' + property.meta.type);
+							} else {
+								this.failedProps.push(prop);
+								this.removeProperty('photo', property);
+								property = undefined;
+								console.warn(this.uid()+': Photo removed');
+							}
 						}
 					}
 					break;
 				}
 				return property;
 			}
+			/* eslint-enable no-console */
 
 		});
 
