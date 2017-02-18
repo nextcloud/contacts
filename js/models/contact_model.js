@@ -170,7 +170,7 @@ angular.module('contactsApp')
 
 					return this.setProperty('photo', { value: imageData[1], meta: {type: [imageType], encoding: ['b']} });
 				} else {
-					var property = this.validate('photo', this.getProperty('photo'));
+					var property = this.getProperty('photo');
 					if(property) {
 						var type = property.meta.type;
 						if (angular.isArray(type)) {
@@ -197,7 +197,7 @@ angular.module('contactsApp')
 					}
 				} else {
 					// getter
-					var property = this.validate('categories', this.getProperty('categories'));
+					var property = this.getProperty('categories');
 					if(!property) {
 						return [];
 					}
@@ -238,7 +238,7 @@ angular.module('contactsApp')
 
 			getProperty: function(name) {
 				if (this.props[name]) {
-					return this.formatDateForDisplay(name, this.props[name][0]);
+					return this.formatDateForDisplay(name, this.validate(name, this.props[name][0]));
 				} else {
 					return undefined;
 				}
@@ -361,6 +361,17 @@ angular.module('contactsApp')
 			/* eslint-disable no-console */
 			validate: function(prop, property) {
 				switch(prop) {
+				case 'rev':
+				case 'prodid':
+				case 'version':
+					if (!angular.isUndefined(this.props[prop])) {
+						if(this.props[prop].length > 1) {
+							this.props[prop] = [this.props[prop][0]];
+							console.warn(this.uid()+': Too many '+prop+' fields. Keeping: ' + this.props[prop][0].value);
+						}
+					}
+					break;
+
 				case 'categories':
 					// Avoid unescaped commas
 					if (angular.isArray(property.value)) {
@@ -376,8 +387,8 @@ angular.module('contactsApp')
 							//console.warn(this.uid()+': Categories split: ' + property.value);
 						}
 					}
-					if(property.value.length !== 0) {
-						// Remove duplicate categories
+					// Remove duplicate categories on array
+					if(property.value.length !== 0 && angular.isArray(property.value)) {
 						var uniqueCategories = _.unique(property.value);
 						if(!angular.equals(uniqueCategories, property.value)) {
 							this.failedProps.push(prop);
@@ -434,5 +445,10 @@ angular.module('contactsApp')
 				this.categories([property.value]);
 			}
 		}
+
+		// Validate some fields
+		this.validate('rev');
+		this.validate('prodid');
+		this.validate('version');
 	};
 });
