@@ -361,11 +361,12 @@ ul.addressBookList li .action > a {
 
 div.addressBookShares ul.dropdown-menu {
 	border: 1px solid #ddd;
-	border-radius: 3px;
-	width: 229px;
-	height: 200px;
-	margin-top: -5px;
-	overflow: scroll;
+	border-radius: 0 0 3px 3px;
+	max-height: 200px;
+	margin-top: -4px;
+	overflow-y: auto;
+	display: flex;
+	flex-wrap: wrap;
 }
 
 div.addressBookShares ul.dropdown-menu li > a {
@@ -375,7 +376,7 @@ div.addressBookShares ul.dropdown-menu li > a {
 }
 
 ul.dropdown-menu li.active {
-	background: #eee;
+	background: #f0f0f0;
 }
 
 div.app-contacts span.utils {
