@@ -6,7 +6,7 @@ angular.module('contactsApp')
 		download: t('contacts', 'Download'),
 		copyURL: t('contacts', 'Copy URL'),
 		clickToCopy: t('contacts', 'Click to copy the URL into your clipboard'),
-		shareAddressbook: t('contacts', 'Share'),
+		shareAddressbook: t('contacts', 'Toggle share'),
 		deleteAddressbook: t('contacts', 'Delete'),
 		shareInputPlaceHolder: t('contacts', 'Share with users or groups'),
 		delete: t('contacts', 'Delete'),
