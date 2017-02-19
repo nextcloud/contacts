@@ -363,10 +363,14 @@ div.addressBookShares ul.dropdown-menu {
 	border: 1px solid #ddd;
 	border-radius: 0 0 3px 3px;
 	max-height: 200px;
-	margin-top: -4px;
+	margin-top: -2px;
 	overflow-y: auto;
 	display: flex;
 	flex-wrap: wrap;
+	position: absolute;
+	background-color: #fff;
+	width: 100%;
+	z-index: 500;
 }
 
 div.addressBookShares ul.dropdown-menu li > a {
