@@ -141,6 +141,12 @@ angular.module('contactsApp')
 	};
 
 	ctrl.onSelectSharee = function (item) {
+		// Prevent settings to slide down
+		$('#app-settings-header > button').data('apps-slide-toggle', false);
+		_.delay(function() {
+			$('#app-settings-header > button').data('apps-slide-toggle', '#app-settings-content');
+		}, 500);
+
 		ctrl.selectedSharee = null;
 		AddressBookService.share(ctrl.addressBook, item.type, item.identifier, false, false).then(function() {
 			$scope.$apply();
