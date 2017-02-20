@@ -7,6 +7,14 @@ angular.module('contactsApp')
 	AddressBookService.getAll().then(function(addressBooks) {
 		ctrl.addressBooks = addressBooks;
 		ctrl.loading = false;
+		if(ctrl.addressBooks.length === 0) {
+			AddressBookService.create(t('contacts', 'Contacts')).then(function() {
+				AddressBookService.getAddressBook(t('contacts', 'Contacts')).then(function(addressBook) {
+					ctrl.addressBooks.push(addressBook);
+					$scope.$apply();
+				});
+			});
+		}
 	});
 
 	ctrl.t = {
