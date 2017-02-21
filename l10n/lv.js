@@ -12,6 +12,7 @@ OC.L10N.register(
     "Address book name" : "Adrešu grāmatas nosaukums",
     "Import" : "Importēt",
     "The selected image is too big (max 1MB)" : "Izvēlētais attēls ir pārāk liels. (max 1MB)",
+    "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "Šī karte ir bojāta un nav noteikta. Lūdzu, pārbaudiet datus, iesakām izmaiņas saglabātu pastāvīgi.",
     "No contacts in here" : "Šeit nav kontaktpersonu",
     "Name" : "Nosaukums",
     "Organization" : "Organizācija",
