@@ -18,7 +18,7 @@ OC.L10N.register(
     "Organization" : "Société",
     "Title" : "Titre",
     "Add field ..." : "Ajouter un champ…",
-    "Save changes" : "Sauvegarder les modifications",
+    "Save changes" : "Enregistrer les modifications",
     "No search result for {query}" : "Aucun résultat pour {query}",
     "_%n contact_::_%n contacts_" : ["%n contact","%n contacts"],
     "Post office box" : "Boîte postale",
