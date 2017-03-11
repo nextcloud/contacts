@@ -2,6 +2,11 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "جهات الاتصال",
+    "Download" : "تحميل",
+    "Show URL" : "اظهر العنوان",
+    "Share Addressbook" : "تقاسم سجل العناوين",
+    "Delete Addressbook" : "امسح سجل العناوين",
+    "Share with users or groups" : "تقاسم مع مستخدمين او مجموعات",
     "Address book name" : "اسم دفتر العناوين",
     "Import" : "استيراد",
     "The selected image is too big (max 1MB)" : "الصورة المختارة كبيرة جداً (الأكبر 1 ميغابايت)",
