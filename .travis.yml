@@ -54,7 +54,9 @@ before_script:
     - cd apps/contacts
 
 script:
+    - phpunit --version
     - make test
+    - phpunit --version
 
   # Upload the nightly to ftp server
     - if [[ "$NIGHTLY" = "TRUE" ]]; then curl --ftp-create-dirs -T /home/travis/build/nextcloud/core/apps/contacts/build/artifacts/appstore/contacts.tar.gz -u $FTP_LOGIN:$FTP_PW ftp://upload.portknox.de/htdocs/contacts/nextcloud_contacts_nightly_build_$(date +%Y-%m-%d).tar.gz; fi
