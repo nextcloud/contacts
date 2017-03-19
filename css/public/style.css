@@ -305,7 +305,12 @@ avatar.failed {
 
 /* addressbook settings */
 input.renameAddressBookInput {
-	width: calc(100% - 32px) !important;
+	width: calc(100% - 29px) !important;
+}
+
+input.renameAddressBookSubmit {
+	margin-right: 0px;
+	opacity: .5;
 }
 
 ul.addressBookList > li {
