@@ -304,6 +304,10 @@ avatar.failed {
 }
 
 /* addressbook settings */
+input.renameAddressBookInput {
+	width: calc(100% - 32px) !important;
+}
+
 ul.addressBookList > li {
 	padding: 6px 0;
 	display: flex;
@@ -334,7 +338,7 @@ ul.addressBook-share-list li .utils {
 /* override core apps css */
 #app-navigation ul.addressBookList > li span.utils {
 	position: relative;
-	padding: 0; 
+	padding: 0;
 	flex-shrink: 0;
 	height: 20px;
 }
