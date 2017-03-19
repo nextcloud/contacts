@@ -1,5 +1,9 @@
-<span class="addressBookName" title="{{ctrl.addressBook.displayName}}">{{ctrl.addressBook.displayName}}</span>
-<span class="utils">
+<form ng-submit="ctrl.renameAddressBook()" ng-show="ctrl.editing">
+	<input select-expression="ctrl.editing" placeholder="{{ctrl.t.addressBookName}}" class="renameAddressBookInput" ng-model="ctrl.addressBook.displayName" type="text" />
+	<input type="submit" value="" class="renameAddressBookSubmit icon-confirm action pull-right" />
+</form>
+<span class="addressBookName" title="{{ctrl.addressBook.displayName}}" ng-hide="ctrl.editing">{{ctrl.addressBook.displayName}}</span>
+<span class="utils" ng-hide="ctrl.editing">
 	<span class="action">
 		<span
 			class="addressbooklist-icon icon-shared"
@@ -33,6 +37,12 @@
 					<span class="icon icon-download"></span>
 					<span>{{ctrl.t.download}}</span>
 				</a>
+			</li>
+			<li>
+				<button ng-click="ctrl.edit()">
+					<span class="icon icon-rename"></span>
+					<span>{{ctrl.t.renameAddressbook}}</span>
+				</button>
 			</li>
 			<li ng-if="ctrl.list.length > 1">
 				<button ng-click="ctrl.deleteAddressBook()">

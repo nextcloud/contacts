@@ -314,6 +314,10 @@ avatar.failed {
 }
 
 /* addressbook settings */
+input.renameAddressBookInput {
+	width: calc(100% - 32px) !important;
+}
+
 ul.addressBookList > li {
 	padding: 6px 0;
 	display: flex;
