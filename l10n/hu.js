@@ -33,6 +33,7 @@ OC.L10N.register(
     "All contacts" : "Összes névjegy",
     "Not grouped" : "Nem csoportosított",
     "New contact" : "Új névjegy",
+    "Sort by" : "Rendezés elve",
     "{addressbook} shared by {owner}" : "{addressbook} megosztója {owner}",
     "Contact could not be created." : "A névjegy nem hozható létre.",
     "No contacts in file. Only VCard files are allowed." : "A fájl nem tartalmaz névjegyeket. Kizárólag VCard fájlok engedélyezettek.",
