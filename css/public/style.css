@@ -304,15 +304,6 @@ avatar.failed {
 }
 
 /* addressbook settings */
-input.renameAddressBookInput {
-	width: calc(100% - 29px) !important;
-}
-
-input.renameAddressBookSubmit {
-	margin-right: 0px;
-	opacity: .5;
-}
-
 ul.addressBookList > li {
 	padding: 6px 0;
 	display: flex;
@@ -403,6 +394,7 @@ div.app-contacts span.utils {
 	position: relative;
 }
 
+input.renameAddressBookInput,
 input.newAddressBookInput,
 input.shareeInput,
 input.addressBookUrl {
