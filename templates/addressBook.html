@@ -1,6 +1,6 @@
 <form ng-submit="ctrl.renameAddressBook()" ng-show="ctrl.editing">
 	<input select-expression="ctrl.editing" placeholder="{{ctrl.t.addressBookName}}" class="renameAddressBookInput" ng-model="ctrl.addressBook.displayName" type="text" />
-	<input type="submit" value="" class="renameAddressBookSubmit icon-confirm action pull-right" />
+	<input type="submit" value="" class="renameAddressBookSubmit inline-button icon-confirm action pull-right" />
 </form>
 <span class="addressBookName" title="{{ctrl.addressBook.displayName}}" ng-hide="ctrl.editing">{{ctrl.addressBook.displayName}}</span>
 <span class="utils" ng-hide="ctrl.editing">
