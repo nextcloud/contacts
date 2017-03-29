@@ -353,14 +353,25 @@ input.newAddressBookInput, input.shareeInput, input.addressBookUrl {
 .addressBookList form {
 	position: relative;
 }
+
+#newList {
+	padding-right: 35px;
+	text-overflow: ellipsis;
+}
+
 .newAddressBookSubmit {
 	position: absolute;
 	right: 0;
 	top: 0;
-	padding: 6px 13px;
-	background-color: transparent;
-	border: none;
+	margin: 0 !important;
+	padding: 11px 18px !important;
+	background-color: transparent !important;
+	border: none !important;
 	opacity: .5;
+}
+.newAddressBookSubmit:hover,
+.newAddressBookSubmit:focus {
+	opacity: 1;
 }
 
 ul.addressBookList li[addressbook] > span.addressBookName {

@@ -18,7 +18,7 @@ angular.module('contactsApp')
 	});
 
 	ctrl.t = {
-		addressBookName : t('contacts', 'Address book name')
+		addressBookName : t('contacts', 'New address book name')
 	};
 
 	ctrl.createAddressBook = function() {
