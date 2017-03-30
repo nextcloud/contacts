@@ -13,7 +13,7 @@ OC.L10N.register(
     "Import" : "Importar",
     "The selected image is too big (max 1MB)" : "La imagen seleccionada es demasiado grande (1MB máximo)",
     "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "Esta tarjeta estaba corrupta y ha sido arreglada. Favor de verificar los datos y haga un guardado para hacer los cambios permanentes.",
-    "No contacts in here" : "Aqui no hay contactos",
+    "No contacts in here" : "Aquí no hay contactos",
     "Name" : "Nombre",
     "Organization" : "Organización",
     "Title" : "Título",
