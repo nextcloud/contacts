@@ -6,6 +6,9 @@ script('contacts', 'vendor/angular-uuid4/angular-uuid4');
 script('contacts', 'vendor/angular-cache/dist/angular-cache');
 script('contacts', 'vendor/angular-sanitize/angular-sanitize');
 script('contacts', 'vendor/ui-select/dist/select');
+script('contacts', 'vendor/angular-click-outside/clickoutside.directive');
+script('contacts', 'vendor/ngclipboard/dist/ngclipboard.min');
+
 
 // DAV libraries
 script('contacts', 'dav/dav');

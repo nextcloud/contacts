@@ -1,36 +1,57 @@
 <span class="addressBookName" title="{{ctrl.addressBook.displayName}}">{{ctrl.addressBook.displayName}}</span>
 <span class="utils">
-	<span class="action" ng-show="ctrl.canExport">
-		<a href="{{ctrl.addressBook.url}}?export"
-			  id="addressBooklist-icon download"
-			  title="{{ctrl.t.download}}"
-			  class="icon-download">
-		</a>
+	<span class="action">
+		<span
+			class="addressbooklist-icon icon-share"
+			title="{{ctrl.t.shareAddressbook}}"
+			ng-click="ctrl.toggleSharesEditor(ctrl.addressBook)">
+		</span>
 	</span>
-    <span class="action">
-        <span
-            class="addressbooklist-icon icon-public"
-            title="{{ctrl.t.showURL}}"
-            ng-click="ctrl.toggleShowUrl()">
-        </span>
-    </span>
-    <span class="action">
-        <span
-            class="addressbooklist-icon icon-share"
-            title="{{ctrl.t.shareAddressbook}}"
-            ng-click="ctrl.toggleSharesEditor(ctrl.addressBook)">
-        </span>
-    </span>
-    <span class="action">
-        <span
-            class="addressbooklist-icon icon-delete"
-			ng-class="{hidden: ctrl.list.length === 1}"
-            title="{{ctrl.t.deleteAddressbook}}"
-            ng-click="ctrl.deleteAddressBook()">
-        </span>
-    </span>
+	<span class="action">
+		<span
+			class="icon-more openMenuButton"
+			ng-click="ctrl.toggleMenu($id)">
+		</span>
+	</span>
+	<div class="popovermenu bubble menu"
+		 ng-class="{open: $parent.ctrl.openedMenu === $id}"
+		 ng-click="ctrl.closeMenus()"
+		 click-outside="ctrl.closeMenus()"
+		 outside-if-not=".openMenuButton, .popovermenu">
+		<ul>
+			<li>
+				<button class="addressbookurl-copy btn"
+						ngclipboard ngclipboard-success="ctrl.clipboardSuccess()" ngclipboard-error="ctrl.clipboardError()"
+						data-clipboard-text="{{ctrl.addressBook.url}}"
+						tooltip-placement="right" uib-tooltip="{{ctrl.tooltipTitle}}" tooltip-append-to-body="true">
+					<span class="icon icon-public"></span>
+					<span>{{ctrl.t.copyURL}}</span>
+				</button>
+			</li>
+			<li ng-show="ctrl.canExport">
+				<a href="{{ctrl.addressBook.url}}?export" id="download_{{$id}}" title="{{ctrl.t.download}}">
+					<span class="icon icon-download"></span>
+					<span>{{ctrl.t.download}}</span>
+				</a>
+			</li>
+			<li ng-if="ctrl.list.length > 1">
+				<button ng-click="ctrl.deleteAddressBook()">
+					<span class="icon icon-delete"></span>
+					<span>{{ctrl.t.deleteAddressbook}}</span>
+				</button>
+			</li>
+		</ul>
+	</div>
 </span>
-    <input class="addressBookUrl" ng-show="ctrl.showUrl" type="url" value="{{ctrl.addressBook.url}}" readonly />
+
+<div class="addressBookUrlContainer" ng-show="ctrl.showInputUrl">
+	<input id="addressBookUrl_{{ctrl.addressBook.ctag}}" class="addressBookUrl" 
+		   uib-tooltip="{{ctrl.InputUrlTooltip}}"
+		   tooltip-is-open="true" tooltip-append-to-body="true" 
+		   type="url" value="{{ctrl.addressBook.url}}" readonly />
+	<input type="button" class="inline-button icon-close action pull-right" ng-click="ctrl.showInputUrl=false" uib-tooltip="{{ctrl.t.close}}">
+</div>
+
 <div class="addressBookShares" ng-show="ctrl.editingShares">
 	<i ng-show="ctrl.loadingSharees" class="glyphicon glyphicon-refresh"></i>
 	<input
@@ -43,16 +64,16 @@
 		placeholder="{{ctrl.t.shareInputPlaceHolder}}">
 	<ul class="addressBook-share-list">
 		<li ng-repeat="userShare in ctrl.addressBook.sharedWith.users" class="addressBook-share-item">
-			<span class="shareeIdentifier">{{ userShare.displayname }}</span> -
-			<input type="checkbox" name="editable"
-				   id="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"
-				   ng-model="userShare.writable" value="edit"
-				   ng-change="ctrl.updateExistingUserShare(userShare.id, userShare.writable)">
-			<label for="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"> {{ctrl.t.canEdit}}</label>
+			<span class="icon icon-user"></span>
+			<span class="shareeIdentifier">{{ userShare.displayname }}</span>
 			<span class="utils">
+				<input type="checkbox" name="editable" class="checkbox" 
+					   id="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"
+					   ng-model="userShare.writable" value="edit"
+					   ng-change="ctrl.updateExistingUserShare(userShare.id, userShare.writable)">
+				<label for="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"> {{ctrl.t.canEdit}}</label>
 				<span class="action">
 					<span href="#"
-						  id="addressBooklist-icon delete"
 						  data-id="{{ ctrl.addressBook.uri }}"
 						  title="{{ctrl.t.delete}}"
 						  class="icon-delete"
@@ -62,16 +83,16 @@
 			</span>
 		</li>
 		<li ng-repeat="groupShare in ctrl.addressBook.sharedWith.groups" class="calendar-share-item">
-			{{ groupShare.displayname }} (group) -
-			<input type="checkbox" name="editable"
-				   id="checkbox_sharedWithGroup_{{ctrl.addressBook.tmpId}}_{{$id}}"
-				   ng-model="groupShare.writable" value="edit"
-				   ng-change="ctrl.updateExistingGroupShare(groupShare.id, groupShare.writable)">
-			<label for="checkbox_sharedWithGroup_{{ctrl.addressBook.tmpId}}_{{$id}}"> {{ctrl.t.canEdit}}</label>
-			<span class="utils hide">
+			<span class="icon icon-group"></span>
+			<span class="shareeIdentifier">{{ groupShare.displayname }}</span>
+			<span class="utils">
+				<input type="checkbox" name="editable" class="checkbox" 
+					   id="checkbox_sharedWithGroup_{{ctrl.addressBook.tmpId}}_{{$id}}"
+					   ng-model="groupShare.writable" value="edit"
+					   ng-change="ctrl.updateExistingGroupShare(groupShare.id, groupShare.writable)">
+				<label for="checkbox_sharedWithGroup_{{ctrl.addressBook.tmpId}}_{{$id}}"> {{ctrl.t.canEdit}}</label>
 				<span class="action">
 					<span href="#"
-						  id="addressBooklist-icon delete"
 						  data-id="{{ ctrl.addressBook.uri }}"
 						  title="{{ctrl.t.delete}}"
 						  class="icon-delete"

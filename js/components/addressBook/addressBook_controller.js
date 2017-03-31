@@ -4,17 +4,42 @@ angular.module('contactsApp')
 
 	ctrl.t = {
 		download: t('contacts', 'Download'),
-		showURL:t('contacts', 'Show URL'),
-		shareAddressbook: t('contacts', 'Share Addressbook'),
-		deleteAddressbook: t('contacts', 'Delete Addressbook'),
+		copyURL: t('contacts', 'Copy URL'),
+		clickToCopy: t('contacts', 'Click to copy the URL into your clipboard'),
+		shareAddressbook: t('contacts', 'Toggle share'),
+		deleteAddressbook: t('contacts', 'Delete'),
 		shareInputPlaceHolder: t('contacts', 'Share with users or groups'),
 		delete: t('contacts', 'Delete'),
-		canEdit: t('contacts', 'can edit')
+		canEdit: t('contacts', 'can edit'),
+		close: t('contacts', 'Close')
 	};
 
-	ctrl.showUrl = false;
-	/* globals oc_config */
+	ctrl.tooltipIsOpen = false;
+	ctrl.tooltipTitle = ctrl.t.clickToCopy;
+	ctrl.showInputUrl = false;
 
+	ctrl.clipboardSuccess = function() {
+		ctrl.tooltipIsOpen = true;
+		ctrl.tooltipTitle = t('core', 'Copied!');
+		_.delay(function() {
+			ctrl.tooltipIsOpen = false;
+			ctrl.tooltipTitle = ctrl.t.clickToCopy;
+		}, 3000);
+	};
+
+	ctrl.clipboardError = function() {
+		ctrl.showInputUrl = true;
+		if (/iPhone|iPad/i.test(navigator.userAgent)) {
+			ctrl.InputUrlTooltip = t('core', 'Not supported!');
+		} else if (/Mac/i.test(navigator.userAgent)) {
+			ctrl.InputUrlTooltip = t('core', 'Press ⌘-C to copy.');
+		} else {
+			ctrl.InputUrlTooltip = t('core', 'Press Ctrl-C to copy.');
+		}
+		$('#addressBookUrl_'+ctrl.addressBook.ctag).select();
+	};
+
+	/* globals oc_config */
 	function compareVersion(version1, version2) {
 		for (var i = 0; i < Math.max(version1.length, version2.length); i++) {
 			var a = version1[i] || 0;
@@ -32,8 +57,21 @@ angular.module('contactsApp')
 	ctrl.canExport = compareVersion([9, 0, 2, 0], oc_config.version.split('.'));
 	/* eslint-enable camelcase */
 
-	ctrl.toggleShowUrl = function() {
-		ctrl.showUrl = !ctrl.showUrl;
+	ctrl.closeMenus = function() {
+		$scope.$parent.ctrl.openedMenu = false;
+	};
+
+	ctrl.openMenu = function(index) {
+		ctrl.closeMenus();
+		$scope.$parent.ctrl.openedMenu = index;
+	};
+
+	ctrl.toggleMenu = function(index) {
+		if ($scope.$parent.ctrl.openedMenu === index) {
+			ctrl.closeMenus();
+		} else {
+			ctrl.openMenu(index);
+		}
 	};
 
 	ctrl.toggleSharesEditor = function() {
@@ -103,6 +141,12 @@ angular.module('contactsApp')
 	};
 
 	ctrl.onSelectSharee = function (item) {
+		// Prevent settings to slide down
+		$('#app-settings-header > button').data('apps-slide-toggle', false);
+		_.delay(function() {
+			$('#app-settings-header > button').data('apps-slide-toggle', '#app-settings-content');
+		}, 500);
+
 		ctrl.selectedSharee = null;
 		AddressBookService.share(ctrl.addressBook, item.type, item.identifier, false, false).then(function() {
 			$scope.$apply();

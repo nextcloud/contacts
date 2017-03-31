@@ -45,6 +45,10 @@
 	display: flex;
 	flex-shrink: 0;
 }
+.contactdetails__header #contact-failed-save {
+	animation: pulse 1.5s infinite;
+	border-radius: 50%;
+}
 /* fix placeholder color */
 .contactdetails__header .contactdetails__name::-webkit-input-placeholder,
 .contactdetails__header .contactdetails__org::-webkit-input-placeholder,
@@ -300,8 +304,11 @@ avatar.failed {
 }
 
 /* addressbook settings */
-ul.addressBookList li {
+ul.addressBookList > li {
 	padding: 6px 0;
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
 }
 
 ul.addressBook-share-list {
@@ -310,11 +317,42 @@ ul.addressBook-share-list {
 }
 
 ul.addressBook-share-list li {
-	margin-left: 15px;
+	padding: 0 5px;
+	display: inline-flex;
+	align-items: center;
+}
+
+ul.addressBook-share-list li .icon {
+	margin-right: 5px;
+	opacity: .2;
+}
+
+ul.addressBook-share-list li .utils {
+	display: flex;
+}
+
+/* override core apps css */
+#app-navigation ul.addressBookList > li span.utils {
+	position: relative;
+	padding: 0; 
+	flex-shrink: 0;
+	height: 20px;
+}
+
+ul.addressBookList li .utils .popovermenu {
+	margin-top: 0;
+	margin-right: -5px;
+}
+
+#app-navigation ul.addressBookList li .utils .popovermenu li > button {
+	width: 100%;
 }
 
 ul.addressBookList li .action > span {
-	padding: 10px 14px;
+	display: inline-block;
+	opacity: 0.5;
+	width: 24px;
+	height: 20px;
 }
 
 ul.addressBookList li .action > a {
@@ -323,11 +361,16 @@ ul.addressBookList li .action > a {
 
 div.addressBookShares ul.dropdown-menu {
 	border: 1px solid #ddd;
-	border-radius: 3px;
-	width: 229px;
-	height: 200px;
-	margin-top: -5px;
-	overflow: scroll;
+	border-radius: 0 0 3px 3px;
+	max-height: 200px;
+	margin-top: -2px;
+	overflow-y: auto;
+	display: flex;
+	flex-wrap: wrap;
+	position: absolute;
+	background-color: #fff;
+	width: 100%;
+	z-index: 500;
 }
 
 div.addressBookShares ul.dropdown-menu li > a {
@@ -337,7 +380,7 @@ div.addressBookShares ul.dropdown-menu li > a {
 }
 
 ul.dropdown-menu li.active {
-	background: #eee;
+	background: #f0f0f0;
 }
 
 div.app-contacts span.utils {
@@ -346,39 +389,59 @@ div.app-contacts span.utils {
 	position: relative !important;
 }
 
-input.newAddressBookInput, input.shareeInput, input.addressBookUrl {
+.addressBookUrlContainer {
+	width: 100%;
+	position: relative;
+}
+
+input.newAddressBookInput,
+input.shareeInput,
+input.addressBookUrl {
 	width: 100% !important;
+	margin-right: 0;
+	padding-right: 30px;
+	text-overflow: ellipsis;
 }
 
 .addressBookList form {
 	position: relative;
+	width: 100%;
 }
-.newAddressBookSubmit {
+
+addressBookList input[type='submit'].inline-button,
+addressBookList input[type='button'].inline-button {
 	position: absolute;
 	right: 0;
 	top: 0;
-	padding: 6px 13px;
+	padding: 6px 15px;
 	background-color: transparent;
 	border: none;
 	opacity: .5;
+	margin-right: 0;
+	cursor: pointer;
 }
 
 ul.addressBookList li[addressbook] > span.addressBookName {
-	width: 105px;
+	width: calc(100% - 52px); /* -actions width */
 	overflow: hidden;
 	white-space:nowrap;
 	text-overflow: ellipsis;
 	padding-left: 7px;
-	display: inline-block;
 }
 
-li.addressBook-share-item span.shareeIdentifier {
-	max-width: 50px;
+ul.addressBookList li[addressbook] > .addressBookShares {
+	width: 100%;
+}
+
+li.addressBook-share-item span.shareeIdentifier,
+li.calendar-share-item span.shareeIdentifier {
+	width: 100%;
 	overflow:hidden;
 	white-space:nowrap;
 	text-overflow:ellipsis;
 	display: inline-block;
 	vertical-align: top;
+	opacity: 0.5;
 }
 
 #app-settings-content #upload.button {
@@ -387,9 +450,8 @@ li.addressBook-share-item span.shareeIdentifier {
 	padding-left: 34px;
 	background-position: 10px center;
 	text-align: left;
-	margin: 0;
-	display: block;
 	margin-bottom: 10px;
+	display: block;
 }
 
 
@@ -507,17 +569,9 @@ contactlist .tooltip {
 	opacity: .5;
 }
 
-ul.addressBookList li {
-	margin-bottom: 5px;
-}
-
 ul.addressBook-share-list {
 	margin-top: 8px;
 	margin-bottom: 12px;
-}
-
-ul.addressBook-share-list li {
-	margin-left: 15px;
 }
 
 #app-navigation .utils .action span {
@@ -622,4 +676,8 @@ detailsitem .select2-container {
 }
 #app-navigation-toggle-back {
 	display: none;
+}
+
+.icon-group {
+	background-image: url('../../img/group.svg');
 }
