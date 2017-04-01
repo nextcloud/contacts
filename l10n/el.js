@@ -3,11 +3,8 @@ OC.L10N.register(
     {
     "Contacts" : "Επαφές",
     "Download" : "Λήψη",
-    "Show URL" : "Εμφάνιση URL",
-    "Share Addressbook" : "Διαμοιρασμός βιβλίου διευθύνσεων",
-    "Delete Addressbook" : "Διαγραφή βιβλίου διευθύνσεων",
-    "Share with users or groups" : "Διαμοιρασμός με χρήστες ή ομάδες",
     "Delete" : "Διαγραφή",
+    "Share with users or groups" : "Διαμοιρασμός με χρήστες ή ομάδες",
     "can edit" : "δυνατότητα επεξεργασίας",
     "Address book name" : "Όνομα βιβλίου διευθύνσεων",
     "Import" : "Εισαγωγή",

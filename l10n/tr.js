@@ -3,11 +3,8 @@ OC.L10N.register(
     {
     "Contacts" : "Kişiler",
     "Download" : "İndir",
-    "Show URL" : "Adresi Görüntüle",
-    "Share Addressbook" : "Adres Defterini Paylaş",
-    "Delete Addressbook" : "Adres Defterini Sil",
-    "Share with users or groups" : "Kullanıcı ve gruplarla paylaş",
     "Delete" : "Sil",
+    "Share with users or groups" : "Kullanıcı ve gruplarla paylaş",
     "can edit" : "düzenleyebilir",
     "Address book name" : "Adres defteri adı",
     "Import" : "Al",

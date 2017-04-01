@@ -3,11 +3,8 @@ OC.L10N.register(
     {
     "Contacts" : "Kontaktai",
     "Download" : "Atsisiųsti",
-    "Show URL" : "Rodyti URL",
-    "Share Addressbook" : "Bendrinti adresų knygą",
-    "Delete Addressbook" : "Ištrinti adresų knygą",
-    "Share with users or groups" : "Bendrinti su naudotojais arba grupėmis",
     "Delete" : "Ištrinti",
+    "Share with users or groups" : "Bendrinti su naudotojais arba grupėmis",
     "can edit" : "gali redaguoti",
     "Address book name" : "Adresų knygos pavadinimas",
     "Import" : "Importuoti",

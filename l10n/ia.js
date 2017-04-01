@@ -3,11 +3,8 @@ OC.L10N.register(
     {
     "Contacts" : "Contactos",
     "Download" : "Discargar",
-    "Show URL" : "Monstrar adresse URL",
-    "Share Addressbook" : "Compartir Adressario con alteres",
-    "Delete Addressbook" : "Deler Adressario",
-    "Share with users or groups" : "Compartir con usatores o gruppos",
     "Delete" : "Deler",
+    "Share with users or groups" : "Compartir con usatores o gruppos",
     "can edit" : "pote modificar",
     "Address book name" : "Nomine del adressario",
     "Import" : "Importar",

@@ -3,11 +3,8 @@ OC.L10N.register(
     {
     "Contacts" : "Контакти",
     "Download" : "Завантажити",
-    "Show URL" : "Показати адресу ресурсу",
-    "Share Addressbook" : "Поділитися адресною книгою",
-    "Delete Addressbook" : "Видалити адресну книгу",
-    "Share with users or groups" : "Поділитися з користувачем або групою",
     "Delete" : "Видалити",
+    "Share with users or groups" : "Поділитися з користувачем або групою",
     "can edit" : "може редагувати",
     "Address book name" : "Назва адресної книги",
     "Import" : "Імпорт",

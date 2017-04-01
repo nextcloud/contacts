@@ -3,11 +3,8 @@ OC.L10N.register(
     {
     "Contacts" : "Kontak",
     "Download" : "Unduh",
-    "Show URL" : "Lihat URL",
-    "Share Addressbook" : "Bagikan buku alamat",
-    "Delete Addressbook" : "Hapus buku alamat",
-    "Share with users or groups" : "Bagi dengan pengguna atau grup",
     "Delete" : "Hapus",
+    "Share with users or groups" : "Bagi dengan pengguna atau grup",
     "can edit" : "dapat menyunting",
     "Address book name" : "Nama buku alamat",
     "Import" : "Impor",

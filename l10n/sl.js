@@ -3,10 +3,8 @@ OC.L10N.register(
     {
     "Contacts" : "Stiki",
     "Download" : "Prejmi",
-    "Share Addressbook" : "Deli Imenik",
-    "Delete Addressbook" : "Pobriši Imenik",
-    "Share with users or groups" : "Deli z uporabniki ali skupinami",
     "Delete" : "Pobriši",
+    "Share with users or groups" : "Deli z uporabniki ali skupinami",
     "can edit" : "lahko ureja",
     "Address book name" : "Ime imenika",
     "Import" : "Uvozi",

@@ -1,9 +1,6 @@
 { "translations": {
     "Contacts" : "جهات الاتصال",
     "Download" : "تحميل",
-    "Show URL" : "اظهر العنوان",
-    "Share Addressbook" : "تقاسم سجل العناوين",
-    "Delete Addressbook" : "امسح سجل العناوين",
     "Share with users or groups" : "تقاسم مع مستخدمين او مجموعات",
     "Address book name" : "اسم دفتر العناوين",
     "Import" : "استيراد",

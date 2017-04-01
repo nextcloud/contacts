@@ -3,11 +3,8 @@ OC.L10N.register(
     {
     "Contacts" : "Tengiliðir",
     "Download" : "Niðurhal",
-    "Show URL" : "Birta slóð",
-    "Share Addressbook" : "Deila nafnaskrá",
-    "Delete Addressbook" : "Eyða nafnaskrá",
-    "Share with users or groups" : "Deila með notendum eða hópum",
     "Delete" : "Eyða",
+    "Share with users or groups" : "Deila með notendum eða hópum",
     "can edit" : "getur breytt",
     "Address book name" : "Heiti nafnaskrár",
     "Import" : "Flytja inn",

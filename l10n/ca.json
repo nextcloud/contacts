@@ -1,11 +1,8 @@
 { "translations": {
     "Contacts" : "Contactes",
     "Download" : "Baixa",
-    "Show URL" : "Mostra la URL",
-    "Share Addressbook" : "Comparteix llibre d'adreces",
-    "Delete Addressbook" : "Suprimeix llibreta d'adreces",
-    "Share with users or groups" : "Comparteix amb usuaris o grups",
     "Delete" : "Suprimeix",
+    "Share with users or groups" : "Comparteix amb usuaris o grups",
     "can edit" : "pot editar",
     "Address book name" : "Nom de la llibreta d'adreces",
     "Import" : "Importar",

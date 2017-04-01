@@ -3,11 +3,8 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakti",
     "Download" : "Lejupielādēt",
-    "Show URL" : "Rādīt URL",
-    "Share Addressbook" : "Koplietot adrešu grāmatu",
-    "Delete Addressbook" : "Dzēst adrešu grāmatu",
-    "Share with users or groups" : "Koplietot ar lietotājiem vai grupām",
     "Delete" : "Dzēst",
+    "Share with users or groups" : "Koplietot ar lietotājiem vai grupām",
     "can edit" : "var rediģēt",
     "Address book name" : "Adrešu grāmatas nosaukums",
     "Import" : "Importēt",

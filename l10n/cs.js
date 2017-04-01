@@ -3,11 +3,8 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakty",
     "Download" : "Stáhnout",
-    "Show URL" : "Zobrazit URL",
-    "Share Addressbook" : "Sdílet adresář",
-    "Delete Addressbook" : "Smazat adresář",
-    "Share with users or groups" : "Sdílet suživateli nebo skupinami",
     "Delete" : "Smazat",
+    "Share with users or groups" : "Sdílet suživateli nebo skupinami",
     "can edit" : "Může upravovat",
     "Address book name" : "Název adresáře kontaktů",
     "Import" : "Importovat",

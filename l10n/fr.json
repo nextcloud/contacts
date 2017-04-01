@@ -1,11 +1,8 @@
 { "translations": {
     "Contacts" : "Contacts",
     "Download" : "Télécharger",
-    "Show URL" : "Afficher l'URL",
-    "Share Addressbook" : "Partager le carnet d'adresses",
-    "Delete Addressbook" : "Supprimer le carnet d'adresses",
-    "Share with users or groups" : "Partager avec des utilisateurs ou des groupes",
     "Delete" : "Supprimer",
+    "Share with users or groups" : "Partager avec des utilisateurs ou des groupes",
     "can edit" : "peut modifier",
     "Address book name" : "Nom du carnet d'adresses",
     "Import" : "Importer",

@@ -3,11 +3,8 @@ OC.L10N.register(
     {
     "Contacts" : "アドレス帳",
     "Download" : "ダウンロード",
-    "Show URL" : "URL を表示",
-    "Share Addressbook" : "アドレス帳を共有",
-    "Delete Addressbook" : "アドレス帳を削除",
-    "Share with users or groups" : "ユーザーまたはグループと共有する",
     "Delete" : "削除",
+    "Share with users or groups" : "ユーザーまたはグループと共有する",
     "can edit" : "編集を許可",
     "Address book name" : "アドレス帳名",
     "Import" : "インポート",

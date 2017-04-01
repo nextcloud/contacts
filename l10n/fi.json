@@ -1,11 +1,8 @@
 { "translations": {
     "Contacts" : "Yhteystiedot",
     "Download" : "Lataa",
-    "Show URL" : "Näytä URL",
-    "Share Addressbook" : "Jaa osoitekirja",
-    "Delete Addressbook" : "Poista osoitekirja",
-    "Share with users or groups" : "Jaa käyttäjien tai ryhmien kanssa",
     "Delete" : "Poista",
+    "Share with users or groups" : "Jaa käyttäjien tai ryhmien kanssa",
     "can edit" : "voi muokata",
     "Address book name" : "Osoitekirjan nimi",
     "Import" : "Tuo",
