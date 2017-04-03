@@ -26,4 +26,7 @@
 		<nextcloud min-version="9" max-version="12" />
 	</dependencies>
 	<ocsid>168708</ocsid>
+	<contactsmenu>
+		<provider>OCA\Contacts\ContactsMenu\Providers\DetailsProvider</provider>
+	</contactsmenu>
 </info>
