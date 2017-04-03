@@ -132,10 +132,10 @@ appstore:
 	tar cvzf $(appstore_package_name).tar.gz \
 	--exclude-vcs \
 	$(project_directory)/appinfo \
-	$(project_directory)/controller \
 	$(project_directory)/css \
 	$(project_directory)/img \
 	$(project_directory)/l10n \
+	$(project_directory)/lib \
 	$(project_directory)/templates \
 	$(project_directory)/js/public \
 	$(project_directory)/js/dav/dav.js \
