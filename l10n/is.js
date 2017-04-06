@@ -33,7 +33,7 @@ OC.L10N.register(
     "Country" : "Land",
     "Address" : "Slóð",
     "(new group)" : "(nýr hópur)",
-    "Last name" : "Eftirnafn",
+    "Last name" : "Kenninafn",
     "First name" : "Eiginnafn",
     "Additional names" : "Aukanöfn",
     "Prefix" : "Forskeyti",

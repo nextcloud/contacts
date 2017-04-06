@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakter",
     "Download" : "Last ned",
+    "Copy URL" : "Kopier URL",
     "Delete" : "Slett",
     "Share with users or groups" : "Del med brukere eller grupper",
     "can edit" : "kan endre",
