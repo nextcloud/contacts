@@ -6,6 +6,8 @@ OC.L10N.register(
     "Delete" : "Suprimeix",
     "Share with users or groups" : "Comparteix amb usuaris o grups",
     "can edit" : "pot editar",
+    "Close" : "Tanca",
+    "Copied!" : "Copiat!",
     "Address book name" : "Nom de la llibreta d'adreces",
     "Import" : "Importar",
     "The selected image is too big (max 1MB)" : "La imatge seleccionada és massa gran (màxim 1MB)",
