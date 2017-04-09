@@ -3,9 +3,12 @@ OC.L10N.register(
     {
     "Contacts" : "Contactos",
     "Download" : "Descargar",
+    "Copy URL" : "Copiar URL",
     "Delete" : "Eliminar",
     "Share with users or groups" : "Compartir con otros usuarios o grupos",
     "can edit" : "puede editar",
+    "Press ⌘-C to copy." : "Presiona ⌘-C para copiar.",
+    "Press Ctrl-C to copy." : "Presiona Ctrl-C para copiar.",
     "Address book name" : "Nombre de libreta de direcciones",
     "Import" : "Importar",
     "The selected image is too big (max 1MB)" : "La imagen seleccionada es demasiada grande (máximo 1MB)",
