@@ -24,15 +24,15 @@
 
 namespace Tests\Contacts\ContactsMenu\Providers;
 
-use OC\Contacts\ContactsMenu\Providers\DetailsProvider;
+use OCA\Contacts\ContactsMenu\Providers\DetailsProvider;
 use OCP\Contacts\ContactsMenu\IActionFactory;
 use OCP\Contacts\ContactsMenu\IEntry;
 use OCP\Contacts\ContactsMenu\ILinkAction;
 use OCP\IURLGenerator;
 use PHPUnit_Framework_MockObject_MockObject;
-use Test\TestCase;
+use PHPUnit_Framework_TestCase;
 
-class DetailsProviderTest extends TestCase {
+class DetailsProviderTest extends PHPUnit_Framework_TestCase {
 
 	/** @var IURLGenerator|PHPUnit_Framework_MockObject_MockObject */
 	private $urlGenerator;
@@ -55,10 +55,12 @@ class DetailsProviderTest extends TestCase {
 		$entry = $this->createMock(IEntry::class);
 		$action = $this->createMock(ILinkAction::class);
 
-		$entry->expects($this->once())
+		$entry->expects($this->exactly(2))
 			->method('getProperty')
-			->with($this->equalTo('UID'))
-			->willReturn('e3a71614-c602-4eb5-9994-47eec551542b');
+			->will($this->returnValueMap([
+				['UID', 'e3a71614-c602-4eb5-9994-47eec551542b'],
+				['isLocalSystemBook', null]
+			]));
 		$this->urlGenerator->expects($this->once())
 			->method('getAbsoluteURL')
 			->with('/index.php/apps/contacts')
@@ -79,11 +81,26 @@ class DetailsProviderTest extends TestCase {
 
 	public function testProcessNoUID() {
 		$entry = $this->createMock(IEntry::class);
-
 		$entry->expects($this->once())
 			->method('getProperty')
 			->with($this->equalTo('UID'))
 			->willReturn(null);
+		$entry->expects($this->never())
+			->method('addAction');
+
+		$this->provider->process($entry);
+	}
+
+	public function testProcessSystemContact() {
+		$entry = $this->createMock(IEntry::class);
+		$entry->expects($this->exactly(2))
+			->method('getProperty')
+			->will($this->returnValueMap([
+				['UID', 1234],
+				['isLocalSystemBook', true]
+			]));
+		$entry->expects($this->never())
+			->method('addAction');
 
 		$this->provider->process($entry);
 	}

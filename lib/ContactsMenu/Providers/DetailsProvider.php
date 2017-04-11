@@ -29,9 +29,6 @@ use OCP\Contacts\ContactsMenu\IEntry;
 use OCP\Contacts\ContactsMenu\IProvider;
 use OCP\IURLGenerator;
 
-/**
- * @todo move to contacts app
- */
 class DetailsProvider implements IProvider {
 
 	/** @var IURLGenerator */
@@ -57,6 +54,11 @@ class DetailsProvider implements IProvider {
 
 		if (is_null($uid)) {
 			// Nothing to do
+			return;
+		}
+
+		if ($entry->getProperty('isLocalSystemBook') === true) {
+			// Cannot show details -> ignore
 			return;
 		}
 
