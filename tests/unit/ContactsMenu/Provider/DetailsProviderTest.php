@@ -58,16 +58,23 @@ class DetailsProviderTest extends PHPUnit_Framework_TestCase {
 		$entry->expects($this->exactly(2))
 			->method('getProperty')
 			->will($this->returnValueMap([
-				['UID', 'e3a71614-c602-4eb5-9994-47eec551542b'],
-				['isLocalSystemBook', null]
-			]));
+					['UID', 'e3a71614-c602-4eb5-9994-47eec551542b'],
+					['isLocalSystemBook', null]
+		]));
 		$this->urlGenerator->expects($this->once())
+			->method('imagePath')
+			->with('core', 'actions/info.svg')
+			->willReturn('core/img/actions/info.svg');
+		$iconUrl = 'https://example.com/core/img/actions/info.svg';
+		$this->urlGenerator->expects($this->exactly(2))
 			->method('getAbsoluteURL')
-			->with('/index.php/apps/contacts')
-			->willReturn('cloud.example.com/index.php/apps/contacts');
+			->will($this->returnValueMap([
+					['/index.php/apps/contacts', 'cloud.example.com/index.php/apps/contacts'],
+					['core/img/actions/info.svg', $iconUrl],
+		]));
 		$this->actionFactory->expects($this->once())
 			->method('newLinkAction')
-			->with($this->equalTo('icon-info'), $this->equalTo('Details'), $this->equalTo('cloud.example.com/index.php/apps/contacts'))
+			->with($this->equalTo($iconUrl), $this->equalTo('Details'), $this->equalTo('cloud.example.com/index.php/apps/contacts'))
 			->willReturn($action);
 		$action->expects($this->once())
 			->method('setPriority')
@@ -96,9 +103,9 @@ class DetailsProviderTest extends PHPUnit_Framework_TestCase {
 		$entry->expects($this->exactly(2))
 			->method('getProperty')
 			->will($this->returnValueMap([
-				['UID', 1234],
-				['isLocalSystemBook', true]
-			]));
+					['UID', 1234],
+					['isLocalSystemBook', true]
+		]));
 		$entry->expects($this->never())
 			->method('addAction');
 
