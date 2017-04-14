@@ -8,6 +8,7 @@ OC.L10N.register(
     "Share with users or groups" : "Διαμοιρασμός με χρήστες ή ομάδες",
     "can edit" : "δυνατότητα επεξεργασίας",
     "Close" : "Κλείσιμο",
+    "Copied!" : "Αντιγράφτηκε!",
     "Not supported!" : "Δεν υποστηρίζεται!",
     "Press ⌘-C to copy." : "Για αντιγραφή πατήστε ⌘-C.",
     "Press Ctrl-C to copy." : "Για αντιγραφή πατήστε Ctrl-C.",
