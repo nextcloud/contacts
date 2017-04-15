@@ -265,7 +265,6 @@ detailsitem .icon-delete {
 detailsitem .url-link {
 	position: absolute;
 	padding: 8px 10px;
-	margin-left: -30px;
 	opacity: .5;
 	top: 2px;
 	right: 33px;
