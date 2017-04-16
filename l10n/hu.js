@@ -4,6 +4,8 @@ OC.L10N.register(
     "Contacts" : "Névjegyek",
     "Download" : "Letöltés",
     "Copy URL" : "URL másolás ",
+    "Click to copy the URL into your clipboard" : "Kattints az URL vágólapra másolásához",
+    "Toggle share" : "Megosztás váltása",
     "Delete" : "Törlés",
     "Share with users or groups" : "Megosztás felhasználókkal vagy csoportokkal",
     "can edit" : "szerkesztheti",
