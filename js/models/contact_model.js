@@ -189,7 +189,12 @@ angular.module('contactsApp')
 			categories: function(value) {
 				if (angular.isDefined(value)) {
 					// setter
-					return this.setProperty('categories', { value: value });
+					if (angular.isString(value)) {
+						/* check for empty string */
+						this.setProperty('categories', { value: !value.length ? [] : [value] });
+					} else if (angular.isArray(value)) {
+						this.setProperty('categories', { value: value });
+					}
 				} else {
 					// getter
 					var property = this.validate('categories', this.getProperty('categories'));
