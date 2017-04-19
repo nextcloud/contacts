@@ -11,12 +11,14 @@ let debug = require('./debug')('dav:webdav');
  * @param {String} objectData webdav object data.
  */
 export function createObject(objectUrl, objectData, options) {
-  var req = request.basic({ method: 'PUT', data: objectData });
+  // ugly (breaks calendar), but we will get rid of the lib anyway... hopefully... soon...
+  var req = request.basic({ method: 'PUT', data: objectData, contentType: 'text/vcard;charset=utf-8' });
   return options.xhr.send(req, objectUrl, { sandbox: options.sandbox });
 }
 
 export function updateObject(objectUrl, objectData, etag, options) {
-  var req = request.basic({ method: 'PUT', data: objectData, etag: etag });
+  // ugly (breaks calendar), but we will get rid of the lib anyway... hopefully... soon...
+  var req = request.basic({ method: 'PUT', data: objectData, etag: etag, contentType: 'text/vcard;charset=utf-8' });
   return options.xhr.send(req, objectUrl, { sandbox: options.sandbox });
 }
 
