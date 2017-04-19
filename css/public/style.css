@@ -264,11 +264,15 @@ detailsitem .icon-delete {
 
 detailsitem .item-action {
 	position: absolute;
-	padding: 8px 10px;
-	margin-left: -30px;
+	padding: 8px 5px;
 	opacity: .5;
 	top: 2px;
-	right: 33px;
+	right: 30px;
+}
+
+detailsitem .item-action ~ input {
+	padding-right: 30px;
+	text-overflow: ellipsis;
 }
 
 detailsitem .item-action i {
