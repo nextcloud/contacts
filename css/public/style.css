@@ -262,8 +262,7 @@ detailsitem .icon-delete {
 	opacity: .2;
 }
 
-detailsitem .url-link,
-detailsitem .tel-link {
+detailsitem .item-action {
 	position: absolute;
 	padding: 8px 10px;
 	margin-left: -30px;
