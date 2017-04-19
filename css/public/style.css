@@ -334,7 +334,7 @@ ul.addressBook-share-list li .utils {
 /* override core apps css */
 #app-navigation ul.addressBookList > li span.utils {
 	position: relative;
-	padding: 0; 
+	padding: 0;
 	flex-shrink: 0;
 	height: 20px;
 }
@@ -394,6 +394,7 @@ div.app-contacts span.utils {
 	position: relative;
 }
 
+input.renameAddressBookInput,
 input.newAddressBookInput,
 input.shareeInput,
 input.addressBookUrl {

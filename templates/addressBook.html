@@ -1,5 +1,9 @@
-<span class="addressBookName" title="{{ctrl.addressBook.displayName}}">{{ctrl.addressBook.displayName}}</span>
-<span class="utils">
+<form ng-submit="ctrl.renameAddressBook()" ng-show="ctrl.editing">
+	<input select-expression="ctrl.editing" placeholder="{{ctrl.t.addressBookName}}" class="renameAddressBookInput" ng-model="ctrl.addressBook.displayName" type="text" />
+	<input type="submit" value="" class="renameAddressBookSubmit inline-button icon-confirm action pull-right" />
+</form>
+<span class="addressBookName" title="{{ctrl.addressBook.displayName}}" ng-hide="ctrl.editing">{{ctrl.addressBook.displayName}}</span>
+<span class="utils" ng-hide="ctrl.editing">
 	<span class="action">
 		<span
 			class="addressbooklist-icon icon-share"
@@ -34,6 +38,12 @@
 					<span>{{ctrl.t.download}}</span>
 				</a>
 			</li>
+			<li>
+				<button ng-click="ctrl.edit()">
+					<span class="icon icon-rename"></span>
+					<span>{{ctrl.t.renameAddressbook}}</span>
+				</button>
+			</li>
 			<li ng-if="ctrl.list.length > 1">
 				<button ng-click="ctrl.deleteAddressBook()">
 					<span class="icon icon-delete"></span>
@@ -45,9 +55,9 @@
 </span>
 
 <div class="addressBookUrlContainer" ng-show="ctrl.showInputUrl">
-	<input id="addressBookUrl_{{ctrl.addressBook.ctag}}" class="addressBookUrl" 
+	<input id="addressBookUrl_{{ctrl.addressBook.ctag}}" class="addressBookUrl"
 		   uib-tooltip="{{ctrl.InputUrlTooltip}}"
-		   tooltip-is-open="true" tooltip-append-to-body="true" 
+		   tooltip-is-open="true" tooltip-append-to-body="true"
 		   type="url" value="{{ctrl.addressBook.url}}" readonly />
 	<input type="button" class="inline-button icon-close action pull-right" ng-click="ctrl.showInputUrl=false" uib-tooltip="{{ctrl.t.close}}">
 </div>
@@ -67,7 +77,7 @@
 			<span class="icon icon-user"></span>
 			<span class="shareeIdentifier">{{ userShare.displayname }}</span>
 			<span class="utils">
-				<input type="checkbox" name="editable" class="checkbox" 
+				<input type="checkbox" name="editable" class="checkbox"
 					   id="checkbox_sharedWithUser_{{ctrl.addressBook.tmpId}}_{{$id}}"
 					   ng-model="userShare.writable" value="edit"
 					   ng-change="ctrl.updateExistingUserShare(userShare.id, userShare.writable)">
@@ -86,7 +96,7 @@
 			<span class="icon icon-group"></span>
 			<span class="shareeIdentifier">{{ groupShare.displayname }}</span>
 			<span class="utils">
-				<input type="checkbox" name="editable" class="checkbox" 
+				<input type="checkbox" name="editable" class="checkbox"
 					   id="checkbox_sharedWithGroup_{{ctrl.addressBook.tmpId}}_{{$id}}"
 					   ng-model="groupShare.writable" value="edit"
 					   ng-change="ctrl.updateExistingGroupShare(groupShare.id, groupShare.writable)">
