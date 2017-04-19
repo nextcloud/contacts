@@ -41,11 +41,13 @@ angular.module('contactsApp')
 			});
 		}
 		ctrl.loading = false;
+		// Start watching for ctrl.uid when we have addressBooks, as they are needed for fetching
+		// full details.
+		$scope.$watch('ctrl.uid', function(newValue) {
+			ctrl.changeContact(newValue);
+		});
 	});
 
-	$scope.$watch('ctrl.uid', function(newValue) {
-		ctrl.changeContact(newValue);
-	});
 
 	ctrl.changeContact = function(uid) {
 		if (typeof uid === 'undefined') {
@@ -53,7 +55,7 @@ angular.module('contactsApp')
 			$('#app-navigation-toggle').removeClass('showdetails');
 			return;
 		}
-		ContactService.getById(uid).then(function(contact) {
+		ContactService.getById(ctrl.addressBooks, uid).then(function(contact) {
 			if (angular.isUndefined(contact)) {
 				ctrl.clearContact();
 				return;

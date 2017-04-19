@@ -36,17 +36,25 @@ import * as ns from '../namespace';
  *     }
  */
 export default function prop(item) {
+	var tagName = `${xmlnsPrefix(item.namespace)}:${item.name}`;
+	var attrs = (item.attrs || []).map(makeAttr).join(' ');
   if (!item.children || !item.children.length) {
     if (typeof item.value === "undefined") {
-      return `<${xmlnsPrefix(item.namespace)}:${item.name} />`;
+      return `<${tagName} ${attrs}/>`;
     }
-    return `<${xmlnsPrefix(item.namespace)}:${item.name}>${item.value}</${xmlnsPrefix(item.namespace)}:${item.name}>`;
+    return `<${tagName} ${attrs}>${item.value}</${tagName}>`;
   }
 
   let children = item.children.map(prop);
-  return `<${xmlnsPrefix(item.namespace)}:${item.name}>
-            ${children}
-          </${xmlnsPrefix(item.namespace)}:${item.name}>`;
+  return `<${tagName} ${attrs}>
+            ${children.join('')}
+          </${tagName}>`;
+}
+
+function makeAttr(attr) {
+  if (!attr.name) return '';
+	if (!attr.value) return attr.name;
+	return `${attr.name}="${attr.value}"`;
 }
 
 function xmlnsPrefix(namespace) {

@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, ContactService, SortByService, vCardPropertiesService, SearchService) {
+.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, $timeout, ContactService, SortByService, vCardPropertiesService, SearchService) {
 	var ctrl = this;
 
 	ctrl.routeParams = $routeParams;
@@ -8,6 +8,7 @@ angular.module('contactsApp')
 	ctrl.searchTerm = '';
 	ctrl.show = true;
 	ctrl.invalid = false;
+	ctrl.limitTo = 25;
 
 	ctrl.sortBy = SortByService.getSortBy();
 
@@ -15,8 +16,16 @@ angular.module('contactsApp')
 		emptySearch : t('contacts', 'No search result for {query}', {query: ctrl.searchTerm})
 	};
 
-	$scope.getCountString = function(contacts) {
-		return n('contacts', '%n contact', '%n contacts', contacts.length);
+	ctrl.resetLimitTo = function () {
+		ctrl.limitTo = 25;
+		clearInterval(ctrl.intervalId);
+		ctrl.intervalId = setInterval(
+			function () {
+				if (!ctrl.loading && ctrl.contacts && ctrl.contacts.length > ctrl.limitTo) {
+					ctrl.limitTo += 25;
+					$scope.$apply();
+				}
+			}, 300);
 	};
 
 	$scope.query = function(contact) {
@@ -34,6 +43,7 @@ angular.module('contactsApp')
 			$scope.$apply();
 		}
 		if (ev.event === 'changeSearch') {
+			ctrl.resetLimitTo();
 			ctrl.searchTerm = ev.searchTerm;
 			ctrl.t.emptySearch = t('contacts',
 								   'No search result for {query}',
@@ -46,7 +56,7 @@ angular.module('contactsApp')
 	ctrl.loading = true;
 
 	ContactService.registerObserverCallback(function(ev) {
-		$scope.$apply(function() {
+		$timeout(function () { $scope.$apply(function() {
 			if (ev.event === 'delete') {
 				if (ctrl.contactList.length === 1) {
 					$route.updateParams({
@@ -72,7 +82,7 @@ angular.module('contactsApp')
 				});
 			}
 			ctrl.contacts = ev.contacts;
-		});
+		}); });
 	});
 
 	// Get contacts
@@ -86,7 +96,43 @@ angular.module('contactsApp')
 		}
 	});
 
-	// Wait for ctrl.contactList to be updated, load the first contact and kill the watch
+	var getVisibleNames = function getVisibleNames() {
+		function isScrolledIntoView(el) {
+			var elemTop = el.getBoundingClientRect().top;
+			var elemBottom = el.getBoundingClientRect().bottom;
+
+			var bothAboveViewport = elemBottom < 0;
+			var bothBelowViewPort = elemTop > window.innerHeight;
+			var isVisible = !bothAboveViewport && !bothBelowViewPort;
+			return isVisible;
+		}
+
+		var elements = Array.prototype.slice.call(document.querySelectorAll('.contact__icon:not(.ng-hide)'));
+		var names = elements
+				.filter(isScrolledIntoView)
+				.map(function (el) {
+					var siblings = Array.prototype.slice.call(el.parentElement.children);
+					var nameElement = siblings.find(function (sibling) {
+						return sibling.getAttribute('class').indexOf('content-list-item-line-one') !== -1;
+					});
+					return nameElement.innerText;
+
+				});
+		return names;
+	};
+
+	var timeoutId = null;
+	document.querySelector('.app-content-list').addEventListener('scroll', function () {
+		clearTimeout(timeoutId);
+		timeoutId = setTimeout(function () {
+			var names = getVisibleNames();
+			ContactService.getFullContacts(names);
+		}, 250);
+	});
+
+	// Wait for ctrl.contactList to be updated, load the contact requested in the URL if any, and
+	// load full details for the probably initially visible contacts.
+	// Then kill the watch.
 	var unbindListWatch = $scope.$watch('ctrl.contactList', function() {
 		if(ctrl.contactList && ctrl.contactList.length > 0) {
 			// Check if a specific uid is requested
@@ -102,6 +148,8 @@ angular.module('contactsApp')
 			if(ctrl.loading && $(window).width() > 768) {
 				ctrl.setSelectedId(ctrl.contactList[0].uid());
 			}
+			var firstNames = ctrl.contactList.slice(0, 20).map(function (c) { return c.displayName(); });
+			ContactService.getFullContacts(firstNames);
 			ctrl.loading = false;
 			unbindListWatch();
 		}
@@ -142,6 +190,7 @@ angular.module('contactsApp')
 	$scope.$watch('ctrl.routeParams.gid', function() {
 		// we might have to wait until ng-repeat filled the contactList
 		ctrl.contactList = [];
+		ctrl.resetLimitTo();
 		// not in mobile mode
 		if($(window).width() > 768) {
 			// watch for next contactList update

@@ -108,6 +108,11 @@ export class Client {
     return contacts.deleteCard(card, options);
   }
 
+  getContacts(addressBook, options={}, hrefs) {
+    options.xhr = options.xhr || this.xhr;
+    return contacts.getContacts(addressBook, options, hrefs);
+  }
+
   syncAddressBook(addressBook, options={}) {
     options.xhr = options.xhr || this.xhr;
     return contacts.syncAddressBook(addressBook, options);

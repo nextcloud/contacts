@@ -2,7 +2,7 @@ import co from 'co';
 import url from 'url';
 
 import { listCalendars, listCalendarObjects } from './calendars';
-import { listAddressBooks, listVCards } from './contacts';
+import { listAddressBooks, listVCards, getFullVcards } from './contacts';
 import fuzzyUrlEquals from './fuzzy_url_equals';
 import { Account } from './model';
 import * as ns from './namespace';

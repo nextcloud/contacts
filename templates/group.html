@@ -1,1 +1,7 @@
-<a ng-href="#/{{ctrl.group}}">{{ctrl.group}}</a>
+<a ng-href="#/{{ctrl.group}}">{{ ctrl.group }}
+	<div class="app-navigation-entry-utils">
+		 <ul>
+			 <li class="app-navigation-entry-utils-counter">{{ctrl.groupCount | counterFormatter}}</li>
+		 </ul>
+	</div>
+</a>

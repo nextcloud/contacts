@@ -6,7 +6,8 @@ angular.module('contactsApp')
 		controller: 'groupCtrl',
 		controllerAs: 'ctrl',
 		bindToController: {
-			group: '=data'
+			group: '=groupName',
+			groupCount: '=groupCount'
 		},
 		templateUrl: OC.linkTo('contacts', 'templates/group.html')
 	};

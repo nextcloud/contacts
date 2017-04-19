@@ -14,6 +14,13 @@ export function addressBookQuery(options) {
   );
 }
 
+export function addressBookMultiget(options) {
+  return collectionQuery(
+    template.addressBookMultiget({ props: options.props || [], hrefs: options.hrefs || [] }),
+    { depth: options.depth }
+  );
+}
+
 /**
  * Options:
  *
