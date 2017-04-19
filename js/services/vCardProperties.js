@@ -77,7 +77,7 @@ angular.module('contactsApp')
 		email: {
 			multiple: true,
 			readableName: t('contacts', 'Email'),
-			template: 'text',
+			template: 'email',
 			defaultValue: {
 				value:'',
 				meta:{type:['HOME']}
