@@ -8,11 +8,14 @@ angular.module('contactsApp')
 		clickToCopy: t('contacts', 'Click to copy the URL into your clipboard'),
 		shareAddressbook: t('contacts', 'Toggle share'),
 		deleteAddressbook: t('contacts', 'Delete'),
+		renameAddressbook: t('contacts', 'Rename'),
 		shareInputPlaceHolder: t('contacts', 'Share with users or groups'),
 		delete: t('contacts', 'Delete'),
 		canEdit: t('contacts', 'can edit'),
 		close: t('contacts', 'Close')
 	};
+
+	ctrl.editing = false;
 
 	ctrl.tooltipIsOpen = false;
 	ctrl.tooltipTitle = ctrl.t.clickToCopy;
@@ -37,6 +40,15 @@ angular.module('contactsApp')
 			ctrl.InputUrlTooltip = t('core', 'Press Ctrl-C to copy.');
 		}
 		$('#addressBookUrl_'+ctrl.addressBook.ctag).select();
+	};
+
+	ctrl.renameAddressBook = function() {
+		AddressBookService.rename(ctrl.addressBook, ctrl.addressBook.displayName);
+		ctrl.editing = false;
+	};
+
+	ctrl.edit = function() {
+		ctrl.editing = true;
 	};
 
 	/* globals oc_config */

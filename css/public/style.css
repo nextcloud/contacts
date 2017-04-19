@@ -404,6 +404,7 @@ div.app-contacts span.utils {
 	position: relative;
 }
 
+input.renameAddressBookInput,
 input.newAddressBookInput,
 input.shareeInput,
 input.addressBookUrl {
