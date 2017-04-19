@@ -107,7 +107,7 @@ angular.module('contactsApp')
 			readableName: t('contacts', 'Phone'),
 			template: 'tel',
 			defaultValue: {
-				value:[''],
+				value:'',
 				meta:{type:['HOME,VOICE']}
 			},
 			options: [
