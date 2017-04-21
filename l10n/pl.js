@@ -7,6 +7,7 @@ OC.L10N.register(
     "Click to copy the URL into your clipboard" : "Kliknij, aby skopiować URL do schowka",
     "Toggle share" : "Włącz współdzielenie",
     "Delete" : "Skasuj",
+    "Rename" : "Zmień nazwę",
     "Share with users or groups" : "Udostępnij użytkownikom lub grupom",
     "can edit" : "może edytować",
     "Close" : "Zamknij",

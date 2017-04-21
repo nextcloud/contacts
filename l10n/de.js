@@ -7,6 +7,7 @@ OC.L10N.register(
     "Click to copy the URL into your clipboard" : "Durch klicken wird die URL in die Zwischenablage kopiert",
     "Toggle share" : "Freigabe umschalten",
     "Delete" : "Löschen",
+    "Rename" : "Umbenennen",
     "Share with users or groups" : "Mit Benutzern oder Gruppen teilen",
     "can edit" : "kann bearbeiten",
     "Close" : "Schließen",

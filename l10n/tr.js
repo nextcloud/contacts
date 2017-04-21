@@ -7,6 +7,7 @@ OC.L10N.register(
     "Click to copy the URL into your clipboard" : "Adresi panoya almak için kopyala üzerine tıklayın",
     "Toggle share" : "Paylaşımı Değiştir",
     "Delete" : "Sil",
+    "Rename" : "Yeniden Adlandır",
     "Share with users or groups" : "Kullanıcı ve gruplarla paylaş",
     "can edit" : "düzenleyebilir",
     "Close" : "Kapat",

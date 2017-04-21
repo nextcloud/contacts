@@ -7,6 +7,7 @@ OC.L10N.register(
     "Click to copy the URL into your clipboard" : "Нажмите для копирования URL в буфер обмена",
     "Toggle share" : "Открыть / прекратить общий доступ",
     "Delete" : "Удалить",
+    "Rename" : "Переименовать",
     "Share with users or groups" : "Поделиться с пользователями или группами",
     "can edit" : "можно редактировать",
     "Close" : "Закрыть",
