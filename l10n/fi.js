@@ -7,6 +7,7 @@ OC.L10N.register(
     "Click to copy the URL into your clipboard" : "Klikkaa kopioidaksesi URLin leikepöydälle",
     "Toggle share" : "Jakaminen päälle/pois",
     "Delete" : "Poista",
+    "Rename" : "Nimeä uudelleen",
     "Share with users or groups" : "Jaa käyttäjien tai ryhmien kanssa",
     "can edit" : "voi muokata",
     "Close" : "Sulje",

@@ -6,6 +6,7 @@ OC.L10N.register(
     "Copy URL" : "Copia URL",
     "Click to copy the URL into your clipboard" : "Fai clic per copiare l'URL negli appunti",
     "Delete" : "Elimina",
+    "Rename" : "Rinomina",
     "Share with users or groups" : "Condividi con utenti o gruppi",
     "can edit" : "può modificare",
     "Close" : "Chiudi",
