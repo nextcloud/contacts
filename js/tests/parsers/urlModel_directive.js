@@ -35,4 +35,12 @@ describe('Unit testing url model', function() {
 		form.url.$setViewValue('https://owncloud.org');
 		expect($scope.model.url).to.equal('https://owncloud.org');
 	});
+	it('should recognize different protocols, apart from http(s)', function() {
+		form.url.$setViewValue('ftp://nextcloud.com');
+		expect($scope.model.url).to.equal('ftp://nextcloud.com');
+	});
+	it('should recognize protocols without using double slashes', function() {
+		form.url.$setViewValue('ftp:nextcloud.com');
+		expect($scope.model.url).to.equal('ftp:nextcloud.com');
+	});
 });
