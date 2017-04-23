@@ -7,6 +7,7 @@ OC.L10N.register(
     "Click to copy the URL into your clipboard" : "Kattints az URL vágólapra másolásához",
     "Toggle share" : "Megosztás váltása",
     "Delete" : "Törlés",
+    "Rename" : "Átnevez",
     "Share with users or groups" : "Megosztás felhasználókkal vagy csoportokkal",
     "can edit" : "szerkesztheti",
     "Close" : "Bezárás",

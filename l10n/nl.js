@@ -7,6 +7,7 @@ OC.L10N.register(
     "Click to copy the URL into your clipboard" : "Klik om de URL naar je klembord te kopiëren",
     "Toggle share" : "Omschakelen delen",
     "Delete" : "Verwijderen",
+    "Rename" : "Hernoemen",
     "Share with users or groups" : "Delen met gebruikers of groepen",
     "can edit" : "kan bewerken",
     "Close" : "Sluiten",
