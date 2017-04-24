@@ -27,6 +27,7 @@ namespace OCA\Contacts\ContactsMenu\Providers;
 use OCP\Contacts\ContactsMenu\IActionFactory;
 use OCP\Contacts\ContactsMenu\IEntry;
 use OCP\Contacts\ContactsMenu\IProvider;
+use OCP\IL10N;
 use OCP\IURLGenerator;
 
 class DetailsProvider implements IProvider {
@@ -37,13 +38,17 @@ class DetailsProvider implements IProvider {
 	/** @var IActionFactory */
 	private $actionFactory;
 
+	/** @var IL10N */
+	private $l10n;
+
 	/**
 	 * @param IURLGenerator $urlGenerator
 	 * @param IActionFactory $actionFactory
 	 */
-	public function __construct(IURLGenerator $urlGenerator, IActionFactory $actionFactory) {
+	public function __construct(IURLGenerator $urlGenerator, IActionFactory $actionFactory, IL10N $l10n) {
 		$this->actionFactory = $actionFactory;
 		$this->urlGenerator = $urlGenerator;
+		$this->l10n = $l10n;
 	}
 
 	/**
@@ -62,10 +67,9 @@ class DetailsProvider implements IProvider {
 			return;
 		}
 
-		// TODO: l10n
 		$iconUrl = $this->urlGenerator->getAbsoluteURL($this->urlGenerator->imagePath('core', 'actions/info.svg'));
 		$contactsUrl = $this->urlGenerator->getAbsoluteURL('/index.php/apps/contacts#/contact/' . $uid);
-		$action = $this->actionFactory->newLinkAction($iconUrl, 'Details', $contactsUrl);
+		$action = $this->actionFactory->newLinkAction($iconUrl, $this->l10n->t('Details'), $contactsUrl);
 		$action->setPriority(0);
 		$entry->addAction($action);
 	}

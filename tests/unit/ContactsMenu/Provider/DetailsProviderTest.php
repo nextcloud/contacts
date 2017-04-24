@@ -28,6 +28,7 @@ use OCA\Contacts\ContactsMenu\Providers\DetailsProvider;
 use OCP\Contacts\ContactsMenu\IActionFactory;
 use OCP\Contacts\ContactsMenu\IEntry;
 use OCP\Contacts\ContactsMenu\ILinkAction;
+use OCP\IL10N;
 use OCP\IURLGenerator;
 use PHPUnit_Framework_MockObject_MockObject;
 use PHPUnit_Framework_TestCase;
@@ -40,6 +41,9 @@ class DetailsProviderTest extends PHPUnit_Framework_TestCase {
 	/** @var IActionFactory|PHPUnit_Framework_MockObject_MockObject */
 	private $actionFactory;
 
+	/** @var IL10n|PHPUnit_Framework_MockObject_MockObject */
+	private $l10n;
+
 	/** @var DetailsProvider */
 	private $provider;
 
@@ -48,7 +52,8 @@ class DetailsProviderTest extends PHPUnit_Framework_TestCase {
 
 		$this->urlGenerator = $this->createMock(IURLGenerator::class);
 		$this->actionFactory = $this->createMock(IActionFactory::class);
-		$this->provider = new DetailsProvider($this->urlGenerator, $this->actionFactory);
+		$this->l10n = $this->createMock(IL10N::class);
+		$this->provider = new DetailsProvider($this->urlGenerator, $this->actionFactory, $this->l10n);
 	}
 
 	public function testProcess() {
@@ -72,6 +77,10 @@ class DetailsProviderTest extends PHPUnit_Framework_TestCase {
 					['/index.php/apps/contacts#/contact/e3a71614-c602-4eb5-9994-47eec551542b', 'cloud.example.com/index.php/apps/contacts#/contact/e3a71614-c602-4eb5-9994-47eec551542b'],
 					['core/img/actions/info.svg', $iconUrl],
 		]));
+		$this->l10n->expects($this->once())
+			->method('t')
+			->with('Details')
+			->willReturnArgument(0);
 		$this->actionFactory->expects($this->once())
 			->method('newLinkAction')
 			->with($this->equalTo($iconUrl), $this->equalTo('Details'), $this->equalTo('cloud.example.com/index.php/apps/contacts#/contact/e3a71614-c602-4eb5-9994-47eec551542b'))
