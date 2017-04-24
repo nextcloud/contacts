@@ -149,7 +149,7 @@ angular.module('contactsApp')
 				if(ctrl.contactList && ctrl.contactList.length > 0) {
 					$route.updateParams({
 						gid: $routeParams.gid,
-						uid: ctrl.contactList[0].uid()
+						uid: $routeParams.uid || ctrl.contactList[0].uid()
 					});
 				}
 				unbindWatch(); // unbind as we only want one update
