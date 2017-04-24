@@ -69,12 +69,12 @@ class DetailsProviderTest extends PHPUnit_Framework_TestCase {
 		$this->urlGenerator->expects($this->exactly(2))
 			->method('getAbsoluteURL')
 			->will($this->returnValueMap([
-					['/index.php/apps/contacts', 'cloud.example.com/index.php/apps/contacts'],
+					['/index.php/apps/contacts#/contact/e3a71614-c602-4eb5-9994-47eec551542b', 'cloud.example.com/index.php/apps/contacts#/contact/e3a71614-c602-4eb5-9994-47eec551542b'],
 					['core/img/actions/info.svg', $iconUrl],
 		]));
 		$this->actionFactory->expects($this->once())
 			->method('newLinkAction')
-			->with($this->equalTo($iconUrl), $this->equalTo('Details'), $this->equalTo('cloud.example.com/index.php/apps/contacts'))
+			->with($this->equalTo($iconUrl), $this->equalTo('Details'), $this->equalTo('cloud.example.com/index.php/apps/contacts#/contact/e3a71614-c602-4eb5-9994-47eec551542b'))
 			->willReturn($action);
 		$action->expects($this->once())
 			->method('setPriority')
