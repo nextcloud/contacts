@@ -17,7 +17,7 @@ angular.module('contactsApp', ['uuid4', 'angular-cache', 'ngRoute', 'ui.bootstra
 
 	$routeProvider.when('/contact/:uid', {
 		redirectTo: function(parameters) {
-			return '/' + t('contacts', 'All contacts') + '?uid=' + parameters.uid;
+			return '/' + t('contacts', 'All contacts') + '/' + parameters.uid;
 		}
 	});
 
