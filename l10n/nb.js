@@ -7,6 +7,7 @@ OC.L10N.register(
     "Click to copy the URL into your clipboard" : "Klikk for å kopiere nettadressen til din utklippstavle",
     "Toggle share" : "Veksle deling",
     "Delete" : "Slett",
+    "Rename" : "Gi nytt navn",
     "Share with users or groups" : "Del med brukere eller grupper",
     "can edit" : "kan endre",
     "Close" : "Lukk",
