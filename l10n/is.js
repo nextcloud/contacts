@@ -7,6 +7,7 @@ OC.L10N.register(
     "Click to copy the URL into your clipboard" : "Afrita slóðina á klippispjaldið",
     "Toggle share" : "Víxla deilingu af/á",
     "Delete" : "Eyða",
+    "Rename" : "Endurnefna",
     "Share with users or groups" : "Deila með notendum eða hópum",
     "can edit" : "getur breytt",
     "Close" : "Loka",
@@ -68,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Símboði",
     "Voice" : "Raddskilaboð",
     "Social network" : "Samfélagsnet",
+    "Details" : "Nánar",
     "Settings" : "Stillingar"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

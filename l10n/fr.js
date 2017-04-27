@@ -69,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Bipeur",
     "Voice" : "Voix",
     "Social network" : "Réseau social",
+    "Details" : "Détails",
     "Settings" : "Paramètres"
 },
 "nplurals=2; plural=(n > 1);");

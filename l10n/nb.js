@@ -69,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Svarer",
     "Social network" : "Sosialt nettverk",
+    "Details" : "Detaljer",
     "Settings" : "Innstillinger"
 },
 "nplurals=2; plural=(n != 1);");

@@ -69,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Hakulaite",
     "Voice" : "Ääni",
     "Social network" : "Sosiaalinen verkosto",
+    "Details" : "Tiedot",
     "Settings" : "Asetukset"
 },
 "nplurals=2; plural=(n != 1);");

@@ -69,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Pieper",
     "Voice" : "Stem",
     "Social network" : "Social network",
+    "Details" : "Details",
     "Settings" : "Instellingen"
 },
 "nplurals=2; plural=(n != 1);");

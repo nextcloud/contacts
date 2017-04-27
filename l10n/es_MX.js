@@ -69,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Localizador",
     "Voice" : "Voz",
     "Social network" : "Red social",
+    "Details" : "Detalles",
     "Settings" : "Ajustes"
 },
 "nplurals=2; plural=(n != 1);");
