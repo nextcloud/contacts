@@ -69,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Çağrı cihazı",
     "Voice" : "Ses",
     "Social network" : "Sosyal ağ",
+    "Details" : "Ayrıntılar",
     "Settings" : "Ayarlar"
 },
 "nplurals=2; plural=(n > 1);");
