@@ -7,6 +7,7 @@ OC.L10N.register(
     "Click to copy the URL into your clipboard" : "点击以复制 URL 至剪贴板",
     "Toggle share" : "切换共享",
     "Delete" : "删除",
+    "Rename" : "重命名",
     "Share with users or groups" : "和用户或者组群分享",
     "can edit" : "允许编辑",
     "Close" : "关闭",
@@ -68,6 +69,7 @@ OC.L10N.register(
     "Pager" : "传呼机",
     "Voice" : "语音",
     "Social network" : "社交网络",
+    "Details" : "详情",
     "Settings" : "设置"
 },
 "nplurals=1; plural=0;");
