@@ -3,7 +3,7 @@
 	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
 	<id>contacts</id>
 	<name>Contacts</name>
-	<summary>A contacts app for Nextcloud.</summary>
+	<summary>A contacts app for Nextcloud</summary>
 	<description>The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.
 
 * 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.
