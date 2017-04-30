@@ -4,8 +4,10 @@ OC.L10N.register(
     "Contacts" : "Kontakter",
     "Download" : "Download",
     "Copy URL" : "Kopiér URL",
+    "Click to copy the URL into your clipboard" : "Klik her for at kopiere URL'en til din udklipsholder",
     "Toggle share" : "Slå deling til/fra",
     "Delete" : "Slet",
+    "Rename" : "Omdøb",
     "Share with users or groups" : "Del med brugere eller grupper",
     "can edit" : "kan redigere",
     "Close" : "Luk",
@@ -67,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Personsøger",
     "Voice" : "Telefonsvarer",
     "Social network" : "Socialt netværk",
+    "Details" : "Detaljer",
     "Settings" : "Indstillinger"
 },
 "nplurals=2; plural=(n != 1);");
