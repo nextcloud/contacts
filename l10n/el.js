@@ -6,6 +6,7 @@ OC.L10N.register(
     "Copy URL" : "Αντιγραφή URL",
     "Click to copy the URL into your clipboard" : "Κάντε κλικ για αντιγραφή της URL στο πρόχειρο",
     "Delete" : "Διαγραφή",
+    "Rename" : "Μετονομασία",
     "Share with users or groups" : "Διαμοιρασμός με χρήστες ή ομάδες",
     "can edit" : "δυνατότητα επεξεργασίας",
     "Close" : "Κλείσιμο",

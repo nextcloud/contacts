@@ -3,9 +3,18 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakty",
     "Download" : "Stáhnout",
+    "Copy URL" : "Kopírovat URL",
+    "Click to copy the URL into your clipboard" : "Klikněte pro zkopírování URL do schránky",
+    "Toggle share" : "Přepnout sdílení",
     "Delete" : "Smazat",
+    "Rename" : "Přejmenovat",
     "Share with users or groups" : "Sdílet suživateli nebo skupinami",
     "can edit" : "Může upravovat",
+    "Close" : "Zavřít",
+    "Copied!" : "Zkopírováno!",
+    "Not supported!" : "Nepodporováno!",
+    "Press ⌘-C to copy." : "Pro zkopírování stiskněte ⌘-C.",
+    "Press Ctrl-C to copy." : "Pro zkopírování stiskněte Ctrl-C.",
     "Address book name" : "Název adresáře kontaktů",
     "Import" : "Importovat",
     "The selected image is too big (max 1MB)" : "Zvolený obrázek je příliš velký (max 1MB)",
@@ -60,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Hlas",
     "Social network" : "Sociální síť",
+    "Details" : "Detaily",
     "Settings" : "Nastavení"
 },
 "nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;");

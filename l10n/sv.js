@@ -68,6 +68,7 @@ OC.L10N.register(
     "Pager" : "Personsökare",
     "Voice" : "Röst",
     "Social network" : "Socialt nätverk",
+    "Details" : "Detaljer",
     "Settings" : "Inställningar"
 },
 "nplurals=2; plural=(n != 1);");
