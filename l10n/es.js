@@ -7,6 +7,7 @@ OC.L10N.register(
     "Click to copy the URL into your clipboard" : "Haga click para copiar el URL en su portapapeles",
     "Toggle share" : "Alternar recurso compartido",
     "Delete" : "Eliminar",
+    "Rename" : "Cambiar nombre",
     "Share with users or groups" : "Compartir con otros usuarios o grupos",
     "can edit" : "puede editar",
     "Close" : "Cerrar",
@@ -68,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Localizador",
     "Voice" : "Voz",
     "Social network" : "Redes sociales",
+    "Details" : "Detalles",
     "Settings" : "Ajustes"
 },
 "nplurals=2; plural=(n != 1);");
