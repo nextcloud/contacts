@@ -69,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Személyhívó",
     "Voice" : "Hang",
     "Social network" : "Közösségi hálózat",
+    "Details" : "Részletek",
     "Settings" : "Beállítások"
 },
 "nplurals=2; plural=(n != 1);");
