@@ -7,6 +7,7 @@ OC.L10N.register(
     "Click to copy the URL into your clipboard" : "クリックすると URL をクリップボードにコピーします",
     "Toggle share" : "共有を切り替え",
     "Delete" : "削除",
+    "Rename" : "名前を変更",
     "Share with users or groups" : "ユーザーまたはグループと共有する",
     "can edit" : "編集を許可",
     "Close" : "閉じる",
@@ -68,6 +69,7 @@ OC.L10N.register(
     "Pager" : "ポケベル",
     "Voice" : "音声番号",
     "Social network" : "ソーシャルネットワーク",
+    "Details" : "詳細",
     "Settings" : "設定"
 },
 "nplurals=1; plural=0;");
