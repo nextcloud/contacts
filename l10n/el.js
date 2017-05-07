@@ -5,6 +5,7 @@ OC.L10N.register(
     "Download" : "Λήψη",
     "Copy URL" : "Αντιγραφή URL",
     "Click to copy the URL into your clipboard" : "Κάντε κλικ για αντιγραφή της URL στο πρόχειρο",
+    "Toggle share" : "Εναλλαγή μετοχής",
     "Delete" : "Διαγραφή",
     "Rename" : "Μετονομασία",
     "Share with users or groups" : "Διαμοιρασμός με χρήστες ή ομάδες",
@@ -45,6 +46,7 @@ OC.L10N.register(
     "Contact could not be created." : "Αδυναμία δημιουργίας επαφής.",
     "No contacts in file. Only VCard files are allowed." : "Δεν υπάρχουν επαφές σε αρχείο. Μόνο VCard αρχεία επιτρέπονται.",
     "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Υποστηρίζεται μόνο η VCard έκδοση 4.0 (RFC6350) ή έκδοση 3.0 (RFC2426)",
+    "Display name" : "Εμφανιζόμενο όνομα",
     "Nickname" : "Παρατσούκλι",
     "Detailed name" : "Λεπτομερές όνομα",
     "Notes" : "Σημειώσεις",
@@ -67,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Βομβητής",
     "Voice" : "Ομιλία",
     "Social network" : "Κοινωνικό δίκτυο",
+    "Details" : "Λεπτομέριες",
     "Settings" : "Ρυθμίσεις"
 },
 "nplurals=2; plural=(n != 1);");
