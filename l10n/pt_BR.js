@@ -59,7 +59,7 @@ OC.L10N.register(
     "Birthday" : "Aniversário",
     "Anniversary" : "Aniversário",
     "Date of death" : "Data da morte",
-    "Email" : "Email",
+    "Email" : "E-mail",
     "Instant messaging" : "Mensagem instantânea",
     "Phone" : "Telefone",
     "Mobile" : "Móvel",
