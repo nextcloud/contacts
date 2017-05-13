@@ -14,6 +14,7 @@ OC.L10N.register(
     "Copied!" : "¡Copióse¡",
     "Not supported!" : "¡Nun se sofita!",
     "Press ⌘-C to copy." : "Primi ⌘-C pa copiar .",
+    "Press Ctrl-C to copy." : "Primi Ctrl-C pa copiar.",
     "Address book name" : "Nome de la Llibreta de direiciones",
     "Import" : "Importar",
     "The selected image is too big (max 1MB)" : "La imaxe escoyida ye demasiáu grande (máximu 1 MB)",
