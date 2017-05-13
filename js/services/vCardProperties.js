@@ -134,6 +134,15 @@ angular.module('contactsApp')
 				{id: 'TWITTER', name: 'Twitter'}
 			]
 
+		},
+		gender: {
+			readableName: t('contacts', 'Gender'),
+			template: 'select',
+			options: [
+				{id: 'M', name: t('contacts', 'Male')},
+				{id: 'F', name: t('contacts', 'Female')},
+				{id: 'O', name: t('contacts', 'intersex')}
+			]
 		}
 	};
 
