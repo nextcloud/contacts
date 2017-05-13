@@ -4,3 +4,4 @@ js/public
 js/vendor
 coverage
 npm-debug.log
+/nbproject/private/

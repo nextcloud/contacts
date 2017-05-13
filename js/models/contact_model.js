@@ -331,7 +331,7 @@ angular.module('contactsApp')
 					return true;
 				}
 				var model = this;
-				var matchingProps = ['fn', 'title', 'org', 'email', 'nickname', 'note', 'url', 'cloud', 'adr', 'impp', 'tel'].filter(function (propName) {
+				var matchingProps = ['fn', 'title', 'org', 'email', 'nickname', 'note', 'url', 'cloud', 'adr', 'impp', 'tel', 'gender'].filter(function (propName) {
 					if (model.props[propName]) {
 						return model.props[propName].filter(function (property) {
 							if (!property.value) {

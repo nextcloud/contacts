@@ -161,7 +161,8 @@ angular.module('contactsApp')
 		'X-SOCIALPROFILE',
 		'note',
 		'categories',
-		'role'
+		'role',
+		'gender'
 	];
 
 	this.fieldDefinitions = [];
