@@ -6,6 +6,7 @@ OC.L10N.register(
     "Delete" : "Fshije",
     "Share with users or groups" : "Nda me përdoruesit ose grupet",
     "can edit" : "mund të modifikoni",
+    "Close" : "Mbylle",
     "Address book name" : "Emër libri adresash",
     "Import" : "Importoje",
     "The selected image is too big (max 1MB)" : "Figura e përzgjedhur është shumë e madhe (maksimumi 1MB)",
