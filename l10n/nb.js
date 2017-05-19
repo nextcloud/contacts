@@ -9,7 +9,7 @@ OC.L10N.register(
     "Delete" : "Slett",
     "Rename" : "Gi nytt navn",
     "Share with users or groups" : "Del med brukere eller grupper",
-    "can edit" : "kan endre",
+    "can edit" : "kan redigere",
     "Close" : "Lukk",
     "Copied!" : "Kopiert!",
     "Not supported!" : "Ikke støttet!",
