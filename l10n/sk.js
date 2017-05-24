@@ -7,6 +7,7 @@ OC.L10N.register(
     "Click to copy the URL into your clipboard" : "Skopírovať URL do schránky",
     "Toggle share" : "Zapnúť zdieľanie",
     "Delete" : "Zmazať",
+    "Rename" : "Premenovať",
     "Share with users or groups" : "Sprístupniť používateľom alebo skupinám",
     "can edit" : "môže upraviť",
     "Close" : "Zatvoriť",
@@ -68,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Odkazová schránka",
     "Social network" : "Sociálna sieť",
+    "Details" : "Podrobnosti",
     "Settings" : "Nastavenia"
 },
 "nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;");
