@@ -198,7 +198,7 @@ angular.module('contactsApp')
 		var singleVCards = data.match(regexp);
 
 		if (!singleVCards) {
-			OC.Notification.showTemporary(t('contacts', 'No contacts in file. Only VCard files are allowed.'));
+			OC.Notification.showTemporary(t('contacts', 'No contacts in file. Only vCard files are allowed.'));
 			if (progressCallback) {
 				progressCallback(1);
 			}
@@ -211,7 +211,7 @@ angular.module('contactsApp')
 				if (progressCallback) {
 					progressCallback(num / singleVCards.length);
 				}
-				OC.Notification.showTemporary(t('contacts', 'Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported.'));
+				OC.Notification.showTemporary(t('contacts', 'Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported.'));
 				num++;
 				continue;
 			}
