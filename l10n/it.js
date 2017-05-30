@@ -68,6 +68,7 @@ OC.L10N.register(
     "Pager" : "Cercapersone",
     "Voice" : "Voce",
     "Social network" : "Rete sociale",
+    "Details" : "Dettagli",
     "Settings" : "Impostazioni"
 },
 "nplurals=2; plural=(n != 1);");
