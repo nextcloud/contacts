@@ -18,11 +18,9 @@ branches:
     - /^v\d++(\.\d+)?+(\.\d+)?+(\.\d+)?$/
 
 matrix:
-    allow_failures:
-        - env: DB=pgsql CORE_BRANCH=master
     include:
-        - php: 5.6
-          env:  DB=pgsql CORE_BRANCH=master
+        - php: 7
+          env:  DB=pgsql CORE_BRANCH=stable12
         - php: 7
           env:  DB=pgsql CORE_BRANCH=stable11
     fast_finish: true
