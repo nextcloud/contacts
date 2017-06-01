@@ -23,7 +23,7 @@ OC.L10N.register(
     "Name" : "Name",
     "Organization" : "Organisation",
     "Title" : "Titel",
-    "Add field ..." : "Feld hinzufügen ...",
+    "Add field ..." : "Feld hinzufügen…",
     "Save changes" : "Änderungen speichern",
     "No search result for {query}" : "Keine Suchergebnisse zu {query}",
     "Post office box" : "Postfach",
