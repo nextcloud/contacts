@@ -42,8 +42,6 @@
     "Sort by" : "Classificar por",
     "{addressbook} shared by {owner}" : "{addressbook} compartilhado por {owner}",
     "Contact could not be created." : "O contato não pôde ser criado.",
-    "No contacts in file. Only VCard files are allowed." : "Nenhum contato armazenado. Somente arquivos vCard são permitidos.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Apenas VCard versão 4.0 (RFC 6350) ou versão 3.0 (RFC2426) são suportadas.",
     "Display name" : "Mostrar o nome",
     "Nickname" : "Apelido",
     "Detailed name" : "Nome detalhado",

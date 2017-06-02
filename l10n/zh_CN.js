@@ -44,8 +44,6 @@ OC.L10N.register(
     "Sort by" : "排序方式",
     "{addressbook} shared by {owner}" : "由 {owner} 共享给您的 {addressbook}",
     "Contact could not be created." : "无法创建联系人。",
-    "No contacts in file. Only VCard files are allowed." : "没有发现联系人信息. 只允许 VCard 格式文件.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "仅支持 VCard v4.0 (RFC6350) 或 v3.0 (RFC2426).",
     "Display name" : "显示名称",
     "Nickname" : "昵称",
     "Detailed name" : "全名",

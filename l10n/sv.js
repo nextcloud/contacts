@@ -43,8 +43,6 @@ OC.L10N.register(
     "Sort by" : "Sortera efter",
     "{addressbook} shared by {owner}" : "{addressbook} delad av {owner}",
     "Contact could not be created." : "Kontakt kunde inte skapas",
-    "No contacts in file. Only VCard files are allowed." : "Inga kontakter i filen. Bara VCard-filer är tillåtna.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Endast VCard version 4.0 (RFC6350) eller version 3.0 (RFC2426) fungerar.",
     "Display name" : "Visningsnamn",
     "Nickname" : "Smeknamn",
     "Detailed name" : "Detaljerat namn",

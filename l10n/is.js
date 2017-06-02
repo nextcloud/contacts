@@ -44,8 +44,6 @@ OC.L10N.register(
     "Sort by" : "Raða eftir",
     "{addressbook} shared by {owner}" : "{addressbook} deilt af {owner}",
     "Contact could not be created." : "Ekki var hægt að búa til tengilið.",
-    "No contacts in file. Only VCard files are allowed." : "Engir tengiliðir í skrá. Einungis er tekið við VCard-skrám.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Einungis VCard útgáfa 4.0 (RFC6350) eða útgáfa 3.0 (RFC2426) eru studdar.",
     "Display name" : "Birtingarnafn",
     "Nickname" : "Gælunafn",
     "Detailed name" : "Ítarlegt nafn",

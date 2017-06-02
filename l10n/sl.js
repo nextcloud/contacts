@@ -32,8 +32,6 @@ OC.L10N.register(
     "Not grouped" : "Brez skupine",
     "{addressbook} shared by {owner}" : "Souporabo imenika {addressbook} je omogočil uporabnik {owner}",
     "Contact could not be created." : "Stika ni mogoče ustvariti.",
-    "No contacts in file. Only VCard files are allowed." : "V datoteki ni vpisanih stikov. Dovoljeni so le vpisi datotek VCard.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Samo VCard verziji 4.0 (RFC6350) ali verzija 3.0 (RFC2426) sta podprti.",
     "Nickname" : "Vzdevek",
     "Detailed name" : "Podrobno ime",
     "Notes" : "Sporočilca",

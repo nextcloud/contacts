@@ -44,8 +44,6 @@ OC.L10N.register(
     "Sort by" : "Sortér efter",
     "{addressbook} shared by {owner}" : "{addressbook} delt af {owner}",
     "Contact could not be created." : "Kontakt kunne ikke oprettes.",
-    "No contacts in file. Only VCard files are allowed." : "Ingen kontakter i filen. Kun vCard filer accepteres.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Kun VCard version 4.0 (RFC6350) eller version 3.0 (RFC2426) er understøttet.",
     "Display name" : "Vis navn",
     "Nickname" : "Kaldenavn",
     "Detailed name" : "Detaljeret navn",

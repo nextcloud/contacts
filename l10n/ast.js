@@ -44,8 +44,6 @@ OC.L10N.register(
     "Sort by" : "Ordenar per",
     "{addressbook} shared by {owner}" : "{addressbook} compartíu por {owner}",
     "Contact could not be created." : "Nun pudo crease'l contautu.",
-    "No contacts in file. Only VCard files are allowed." : "Nun hai contautos nel ficheru. Namái s'almiten ficheros VCard.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Namái se sofita VCard 4.0 (RFC6350) ó 3.0 (RFC2426).",
     "Nickname" : "Nomatu",
     "Detailed name" : "Nome detalláu",
     "Notes" : "Notes",

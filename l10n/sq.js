@@ -37,8 +37,6 @@ OC.L10N.register(
     "Sort by" : "I renditur nga",
     "{addressbook} shared by {owner}" : "{addressbook} ndarë nga {owner}",
     "Contact could not be created." : "Kontakti nuk u krijua dot.",
-    "No contacts in file. Only VCard files are allowed." : "S’ka kontakte në kartelë. Lejohen vetëm kartela VCard.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Suportohen vetëm VCard versioni 4.0 (RFC6350) ose versioni 3.0 (RFC2426)",
     "Nickname" : "Nofkë",
     "Detailed name" : "Emri i hollësishëm",
     "Notes" : "Shënime",

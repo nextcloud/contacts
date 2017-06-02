@@ -28,7 +28,6 @@ OC.L10N.register(
     "Not grouped" : "Taldekatu gabe",
     "{addressbook} shared by {owner}" : "{addressbook} shared by {owner}",
     "Contact could not be created." : "Kontaktua ezin izan da sortu.",
-    "No contacts in file. Only VCard files are allowed." : "Fitxategian kontakturik ez dago. VCard fitxategiak onartzen dira bakarrik.",
     "Nickname" : "Ezizena",
     "Detailed name" : "Izen osoa",
     "Notes" : "Oharrak",

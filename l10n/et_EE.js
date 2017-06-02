@@ -28,7 +28,6 @@ OC.L10N.register(
     "Not grouped" : "Pole grupeeritud",
     "{addressbook} shared by {owner}" : "{owner} jagas aadressiraamatut {addressbook}",
     "Contact could not be created." : "Kontakti loomine ebaõnnestus.",
-    "No contacts in file. Only VCard files are allowed." : "Failis pole kontakte. Lubatud on ainult VCard.",
     "Nickname" : "Hüüdnimi",
     "Detailed name" : "Üksikasjalik nimi",
     "Notes" : "Märkmed",

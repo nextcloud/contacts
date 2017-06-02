@@ -37,8 +37,6 @@ OC.L10N.register(
     "Sort by" : "Ordena per",
     "{addressbook} shared by {owner}" : "{addressbook} compartida per {owner}",
     "Contact could not be created." : "No s'ha pogut crear el contacte.",
-    "No contacts in file. Only VCard files are allowed." : "No hi ha contactes al fitxer. Només s'accepten fitxers en format VCard.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Només compatible amb VCard versió 4.0 (RFC6350) o versió 3.0 (RFC2426).",
     "Display name" : "Nom mostrat",
     "Nickname" : "Sobrenom",
     "Detailed name" : "Nom detallat",

@@ -44,8 +44,6 @@ OC.L10N.register(
     "Sort by" : "Rendezés elve",
     "{addressbook} shared by {owner}" : "{addressbook} megosztója {owner}",
     "Contact could not be created." : "A névjegy nem hozható létre.",
-    "No contacts in file. Only VCard files are allowed." : "A fájl nem tartalmaz névjegyeket. Kizárólag VCard fájlok engedélyezettek.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Csak a VCard 4.0-ás (RFC6350) vagy a 3.0-ás verzió (RFC2426) támogatott",
     "Display name" : "Név megjelenítés",
     "Nickname" : "Becenév",
     "Detailed name" : "Részletes név",

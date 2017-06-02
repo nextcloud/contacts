@@ -28,7 +28,6 @@ OC.L10N.register(
     "Not grouped" : "ไม่ถูกจัดกลุ่ม",
     "{addressbook} shared by {owner}" : "{addressbook} ถูกแชร์โดย {owner}",
     "Contact could not be created." : "ไม่สามารถสร้างรายชื่อผู้ติดต่อ",
-    "No contacts in file. Only VCard files are allowed." : "ไม่มีรายชื่อในไฟล์ เฉพาะไฟล์วีการ์ดจะได้รับอนุญาต",
     "Nickname" : "ชื่อเล่น",
     "Detailed name" : "รายละเอียดชื่อ",
     "Notes" : "บันทึกย่อ",
