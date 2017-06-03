@@ -44,6 +44,7 @@ OC.L10N.register(
     "Sort by" : "Ordenar por",
     "{addressbook} shared by {owner}" : "{addressbook} compartido por {owner}",
     "Contact could not be created." : "No fue posible crear el contacto.",
+    "No contacts in file. Only vCard files are allowed." : "No se encontró ningún archivo de contactos. Solo se permiten archivos vCard.",
     "Display name" : "Nombre a desplegar",
     "Nickname" : "Apodo",
     "Detailed name" : "Nombre detallado",
