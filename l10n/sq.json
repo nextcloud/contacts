@@ -2,11 +2,16 @@
     "Contacts" : "Kontaktet",
     "Download" : "Shkarko",
     "Copy URL" : "Kopjo URL",
+    "Click to copy the URL into your clipboard" : "Kliko për të kopjuar URL-në në clipboard",
     "Delete" : "Fshije",
+    "Rename" : "Riemëro",
     "Share with users or groups" : "Nda me përdoruesit ose grupet",
     "can edit" : "mund të modifikoni",
     "Close" : "Mbylle",
+    "Copied!" : "U kopjua!",
     "Not supported!" : "Nuk është e mbështetur!",
+    "Press ⌘-C to copy." : "Shtyp ⌘-C për të kopjuar.",
+    "Press Ctrl-C to copy." : "Shtyp Ctrl-C për të kopjuar.",
     "Address book name" : "Emër libri adresash",
     "Import" : "Importoje",
     "The selected image is too big (max 1MB)" : "Figura e përzgjedhur është shumë e madhe (maksimumi 1MB)",
@@ -35,6 +40,7 @@
     "Sort by" : "I renditur nga",
     "{addressbook} shared by {owner}" : "{addressbook} ndarë nga {owner}",
     "Contact could not be created." : "Kontakti nuk u krijua dot.",
+    "Display name" : "Shfaq emrin",
     "Nickname" : "Nofkë",
     "Detailed name" : "Emri i hollësishëm",
     "Notes" : "Shënime",
@@ -57,6 +63,7 @@
     "Pager" : "Faques",
     "Voice" : "Zë",
     "Social network" : "Rrjet social",
+    "Details" : "Detajet",
     "Settings" : "Konfigurime"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
