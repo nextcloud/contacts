@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Kontaktai",
     "Download" : "Atsisiųsti",
     "Copy URL" : "Kopijuoti URL",
+    "Click to copy the URL into your clipboard" : "Spustelėkite, norėdami nukopijuoti URL į iškarpinę",
     "Delete" : "Ištrinti",
     "Rename" : "Pervadinti",
     "Share with users or groups" : "Bendrinti su naudotojais arba grupėmis",
