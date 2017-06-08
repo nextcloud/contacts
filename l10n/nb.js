@@ -44,6 +44,7 @@ OC.L10N.register(
     "Sort by" : "Sorter etter",
     "{addressbook} shared by {owner}" : "{addressbook} delt av {owner}",
     "Contact could not be created." : "Kontakten kunne ikke opprettes",
+    "No contacts in file. Only vCard files are allowed." : "Ingen kontakter i filen. Kun vCard filer er tillatt.",
     "Display name" : "Visningsnavn",
     "Nickname" : "Kallenavn",
     "Detailed name" : "Detaljert navn",
