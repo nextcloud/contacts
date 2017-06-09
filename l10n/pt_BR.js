@@ -4,7 +4,7 @@ OC.L10N.register(
     "Contacts" : "Contatos",
     "Download" : "Baixar",
     "Copy URL" : "Copiar URL",
-    "Click to copy the URL into your clipboard" : "Clique para copiar a URL para a área de transferência",
+    "Click to copy the URL into your clipboard" : "Clique para copiar a URL na  área de transferência",
     "Toggle share" : "Mudar compartilhamento",
     "Delete" : "Excluir",
     "Rename" : "Renomear",
