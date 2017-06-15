@@ -44,6 +44,8 @@ OC.L10N.register(
     "Sort by" : "Lajittelujärjestys",
     "{addressbook} shared by {owner}" : "Osoitekirjan {addressbook} jakoi {owner}",
     "Contact could not be created." : "Yhteystiedon luominen ei onnistunut.",
+    "No contacts in file. Only vCard files are allowed." : "Ei yhteystietoja tiedostossa. Vain vCard formaatti hyväksytään.",
+    "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Vain vCard versiota 4.0 (RFC6350) tai 3.0 (RFC2426) tuetaan.",
     "Display name" : "Näyttönimi",
     "Nickname" : "Kutsumanimi",
     "Detailed name" : "Täsmällinen nimi",
