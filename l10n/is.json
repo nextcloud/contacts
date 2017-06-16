@@ -42,6 +42,8 @@
     "Sort by" : "Raða eftir",
     "{addressbook} shared by {owner}" : "{addressbook} deilt af {owner}",
     "Contact could not be created." : "Ekki var hægt að búa til tengilið.",
+    "No contacts in file. Only vCard files are allowed." : "Engir tengiliðir í skrá. Einungis er tekið við vCard-skrám.",
+    "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Einungis vCard útgáfa 4.0 (RFC6350) eða útgáfa 3.0 (RFC2426) eru studdar.",
     "Display name" : "Birtingarnafn",
     "Nickname" : "Gælunafn",
     "Detailed name" : "Ítarlegt nafn",
