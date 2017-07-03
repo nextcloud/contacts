@@ -18,7 +18,7 @@ OC.L10N.register(
     "Address book name" : "Navn på adressebok",
     "Import" : "Importer",
     "The selected image is too big (max 1MB)" : "Det valgte bildet er for stort (maks 1MB)",
-    "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "Dette kortet var ødelagt, men er nå fikset. Vennligst sjekk at datene og hendelsen stemmer og lagre kortet.",
+    "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "Dette kortet var ødelagt, men er nå fikset. Sjekk at datene og hendelsen stemmer for å gjøre endringene permanente.",
     "No contacts in here" : "Ingen kontakter her",
     "Name" : "Navn",
     "Organization" : "Organisasjon",
