@@ -19,6 +19,9 @@
 	display: flex;
 	flex-wrap: wrap;
 }
+.contactdetails__header input[type=text]:active {
+	background: transparent !important; /* remove :active effect */
+}
 .contactdetails__header .contactdetails__name,
 .contactdetails__header .contactdetails__org,
 .contactdetails__header .contactdetails__title {
