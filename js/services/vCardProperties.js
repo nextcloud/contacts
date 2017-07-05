@@ -91,15 +91,15 @@ angular.module('contactsApp')
 		impp: {
 			multiple: true,
 			readableName: t('contacts', 'Instant messaging'),
-			template: 'text',
+			template: 'username',
 			defaultValue: {
 				value:[''],
-				meta:{type:['HOME']}
+				meta:{type:['SKYPE']}
 			},
 			options: [
-				{id: 'HOME', name: t('contacts', 'Home')},
-				{id: 'WORK', name: t('contacts', 'Work')},
-				{id: 'OTHER', name: t('contacts', 'Other')}
+				{id: 'IRC', name:  'IRC'},
+				{id: 'SKYPE', name:'Skype'},
+				{id: 'TELEGRAM', name:'Telegram'}
 			]
 		},
 		tel: {
@@ -124,14 +124,19 @@ angular.module('contactsApp')
 		'X-SOCIALPROFILE': {
 			multiple: true,
 			readableName: t('contacts', 'Social network'),
-			template: 'text',
+			template: 'username',
 			defaultValue: {
 				value:[''],
 				meta:{type:['facebook']}
 			},
 			options: [
 				{id: 'FACEBOOK', name: 'Facebook'},
+				{id: 'GOOGLEPLUS', name: 'Google+'},
+				{id: 'INSTAGRAM', name: 'Instagram'},
+				{id: 'LINKEDIN', name: 'LinkedIn'},
+				{id: 'PINTEREST', name: 'Pinterest'},
 				{id: 'TWITTER', name: 'Twitter'}
+
 			]
 
 		}
