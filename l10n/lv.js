@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Kontakti",
     "Download" : "Lejupielādēt",
     "Delete" : "Dzēst",
+    "Rename" : "Pārsaukt",
     "Share with users or groups" : "Koplietot ar lietotājiem vai grupām",
     "can edit" : "var rediģēt",
     "Address book name" : "Adrešu grāmatas nosaukums",
