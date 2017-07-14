@@ -16,7 +16,7 @@ OC.L10N.register(
     "Press ⌘-C to copy." : "Kopyalamak için ⌘-C tuşlarına basın.",
     "Press Ctrl-C to copy." : "Kopyalamak için Ctrl-C tuşlarına basın.",
     "Address book name" : "Adres defteri adı",
-    "Import" : "Al",
+    "Import" : "İçe Aktar",
     "The selected image is too big (max 1MB)" : "Seçilmiş görsel çok büyük (en fazla 1MB)",
     "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "Bu kart bozulmuş ve onarılacak. Lütfen verileri denetleyin ve değişikliklerin geçerli olması için kaydedin.",
     "No contacts in here" : "Burada herhangi bir kişi yok",
