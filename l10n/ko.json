@@ -42,8 +42,6 @@
     "Sort by" : "정렬 순서",
     "{addressbook} shared by {owner}" : "{owner} 님이 공유한 {addressbook}",
     "Contact could not be created." : "연락처를 만들 수 없습니다.",
-    "No contacts in file. Only VCard files are allowed." : "파일에 연락처가 없습니다. vCard 파일만 사용할 수 있습니다.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "vCard 버전 4.0(RFC 6350) 및 3.0(RFC 2426)만 지원합니다.",
     "Display name" : "표시 이름",
     "Nickname" : "별명",
     "Detailed name" : "자세한 이름",

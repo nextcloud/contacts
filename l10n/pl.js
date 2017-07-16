@@ -44,8 +44,8 @@ OC.L10N.register(
     "Sort by" : "Sortowanie po",
     "{addressbook} shared by {owner}" : "Książka {addressbook} udostępniona przez {owner}",
     "Contact could not be created." : "Nie można utworzyć kontaktu",
-    "No contacts in file. Only VCard files are allowed." : "Brak kontaktów w pliku. Dozwolone są tylko pliki VCard.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Obsługiwane wersje VCard to tylko 4.0 (RFC6350) lub 3.0 (RFC2426).",
+    "No contacts in file. Only vCard files are allowed." : "Nie znaleziono kontaktów w pliku. Dozwolone są tylko pliki vCard.",
+    "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Wspierane są tylko vCard w wersji 4.0 (RFC6350) lub 3.0 (RFC2426).",
     "Display name" : "Wyświetlana nazwa",
     "Nickname" : "Pseudonim",
     "Detailed name" : "Szczegółowa nazwa",
@@ -72,4 +72,4 @@ OC.L10N.register(
     "Details" : "Szczegóły",
     "Settings" : "Ustawienia"
 },
-"nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>=14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);");
+"nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);");

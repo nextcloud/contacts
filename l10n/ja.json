@@ -42,8 +42,6 @@
     "Sort by" : "ソート",
     "{addressbook} shared by {owner}" : " {owner}と共有中の{addressbook} ",
     "Contact could not be created." : "連絡先を作成できませんでした。",
-    "No contacts in file. Only VCard files are allowed." : "コンタクトがファイルにありません。VCardファイルのみが有効です。",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "VCardバージョン4.0(RFC6350)またはバージョン3.0(RFC2426)のみがサポートされています。",
     "Display name" : "表示名",
     "Nickname" : "ニックネーム",
     "Detailed name" : "詳細名",

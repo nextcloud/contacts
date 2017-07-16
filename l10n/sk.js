@@ -7,6 +7,7 @@ OC.L10N.register(
     "Click to copy the URL into your clipboard" : "Skopírovať URL do schránky",
     "Toggle share" : "Zapnúť zdieľanie",
     "Delete" : "Zmazať",
+    "Rename" : "Premenovať",
     "Share with users or groups" : "Sprístupniť používateľom alebo skupinám",
     "can edit" : "môže upraviť",
     "Close" : "Zatvoriť",
@@ -43,8 +44,8 @@ OC.L10N.register(
     "Sort by" : "Zoradiť podľa",
     "{addressbook} shared by {owner}" : "{addressbook} sprístupňuje {owner}",
     "Contact could not be created." : "Kontakt nieje možné vytvoriť",
-    "No contacts in file. Only VCard files are allowed." : "Žiadne kontakty v súbore. Len VCard súbory sú povolené.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Podporované sú iba formáty VCard verzie 4.0 (RFC6350) alebo verzie 3.0 (RFC2426).",
+    "No contacts in file. Only vCard files are allowed." : "V súbore nie sú žiadne kontakty. Podporované sú len súbory vCard.",
+    "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Podporované sú iba formáty vCard verzie 4.0 (RFC6350) alebo verzie 3.0 (RFC2426).",
     "Display name" : "Zobrazované meno",
     "Nickname" : "Prezývka",
     "Detailed name" : "Podrobné meno",
@@ -68,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Odkazová schránka",
     "Social network" : "Sociálna sieť",
+    "Details" : "Podrobnosti",
     "Settings" : "Nastavenia"
 },
 "nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;");

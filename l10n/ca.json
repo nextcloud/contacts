@@ -1,11 +1,18 @@
 { "translations": {
     "Contacts" : "Contactes",
     "Download" : "Baixa",
+    "Copy URL" : "Copia la URL",
+    "Click to copy the URL into your clipboard" : "Prem per copiar la URL al porta-retalls",
+    "Toggle share" : "Commuta la compartició",
     "Delete" : "Suprimeix",
+    "Rename" : "Renombra",
     "Share with users or groups" : "Comparteix amb usuaris o grups",
     "can edit" : "pot editar",
     "Close" : "Tanca",
     "Copied!" : "Copiat!",
+    "Not supported!" : "No suportat!",
+    "Press ⌘-C to copy." : "Prem ⌘-C per copiar.",
+    "Press Ctrl-C to copy." : "Prem Ctrl-C per copiar.",
     "Address book name" : "Nom de la llibreta d'adreces",
     "Import" : "Importar",
     "The selected image is too big (max 1MB)" : "La imatge seleccionada és massa gran (màxim 1MB)",
@@ -35,8 +42,8 @@
     "Sort by" : "Ordena per",
     "{addressbook} shared by {owner}" : "{addressbook} compartida per {owner}",
     "Contact could not be created." : "No s'ha pogut crear el contacte.",
-    "No contacts in file. Only VCard files are allowed." : "No hi ha contactes al fitxer. Només s'accepten fitxers en format VCard.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Només compatible amb VCard versió 4.0 (RFC6350) o versió 3.0 (RFC2426).",
+    "No contacts in file. Only vCard files are allowed." : "No hi ha contactes al fitxer. Només estan permesos fitxers vCard.",
+    "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Només compatible amb VCard versió 4.0 (RFC6350) o versió 3.0 (RFC2426).",
     "Display name" : "Nom mostrat",
     "Nickname" : "Sobrenom",
     "Detailed name" : "Nom detallat",
@@ -60,6 +67,7 @@
     "Pager" : "Paginador",
     "Voice" : "Veu",
     "Social network" : "Xarxa social",
+    "Details" : "Detalls",
     "Settings" : "configuració"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

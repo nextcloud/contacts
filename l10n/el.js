@@ -44,8 +44,6 @@ OC.L10N.register(
     "Sort by" : "Ταξινόμηση κατά",
     "{addressbook} shared by {owner}" : "Το {addressbook} διαμοιράστηκε από τον/την {owner}",
     "Contact could not be created." : "Αδυναμία δημιουργίας επαφής.",
-    "No contacts in file. Only VCard files are allowed." : "Δεν υπάρχουν επαφές σε αρχείο. Μόνο VCard αρχεία επιτρέπονται.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Υποστηρίζεται μόνο η VCard έκδοση 4.0 (RFC6350) ή έκδοση 3.0 (RFC2426)",
     "Display name" : "Εμφανιζόμενο όνομα",
     "Nickname" : "Παρατσούκλι",
     "Detailed name" : "Λεπτομερές όνομα",

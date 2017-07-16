@@ -33,8 +33,6 @@
     "Sort by" : "Urut berdasarkan",
     "{addressbook} shared by {owner}" : "{addressbook} dibagikan oleh {owner}",
     "Contact could not be created." : "Kontak tidak dapat dibuat.",
-    "No contacts in file. Only VCard files are allowed." : "Tidak ada kontak diberkas. Hanya berkas VCard yang diperbolehkan.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Hanya VCard versi 4.0 (RFC6350) atau versi 3.0 (RFC2426) yang didukung.",
     "Display name" : "Nama tampilan",
     "Nickname" : "Nama panggilan",
     "Detailed name" : "Nama lengkap",

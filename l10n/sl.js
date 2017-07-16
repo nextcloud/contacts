@@ -3,9 +3,13 @@ OC.L10N.register(
     {
     "Contacts" : "Stiki",
     "Download" : "Prejmi",
+    "Copy URL" : "Kopiraj URL",
     "Delete" : "Pobriši",
+    "Rename" : "Preimenuj",
     "Share with users or groups" : "Deli z uporabniki ali skupinami",
     "can edit" : "lahko ureja",
+    "Close" : "Zapri",
+    "Copied!" : "Kopirano!",
     "Address book name" : "Ime imenika",
     "Import" : "Uvozi",
     "The selected image is too big (max 1MB)" : "Izbrana slika je prevelika (omejitev je 1 MB).",
@@ -14,6 +18,7 @@ OC.L10N.register(
     "Organization" : "Ustanova",
     "Title" : "Naslov",
     "Add field ..." : "Dodaj polje ...",
+    "Save changes" : "Shrani spremembe",
     "No search result for {query}" : "Ni zadetkov iskanja za {query}",
     "Post office box" : "Poštni predal",
     "Postal code" : "Poštna številka",
@@ -32,8 +37,6 @@ OC.L10N.register(
     "Not grouped" : "Brez skupine",
     "{addressbook} shared by {owner}" : "Souporabo imenika {addressbook} je omogočil uporabnik {owner}",
     "Contact could not be created." : "Stika ni mogoče ustvariti.",
-    "No contacts in file. Only VCard files are allowed." : "V datoteki ni vpisanih stikov. Dovoljeni so le vpisi datotek VCard.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Samo VCard verziji 4.0 (RFC6350) ali verzija 3.0 (RFC2426) sta podprti.",
     "Nickname" : "Vzdevek",
     "Detailed name" : "Podrobno ime",
     "Notes" : "Sporočilca",
@@ -56,6 +59,7 @@ OC.L10N.register(
     "Pager" : "Pozivnik",
     "Voice" : "Glas",
     "Social network" : "Družbeno omrežje",
+    "Details" : "Podrobnosti",
     "Settings" : "Nastavitve"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");

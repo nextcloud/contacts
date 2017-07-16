@@ -41,8 +41,6 @@
     "Sort by" : "Arrangiar per",
     "{addressbook} shared by {owner}" : "{addressbook} compartite per {owner}",
     "Contact could not be created." : "Contacto non poteva esser create.",
-    "No contacts in file. Only VCard files are allowed." : "Nulle contactos in file. Solmente files VCard es permittite.",
-    "Only VCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Solmente VCard version 4.0 (RFC6350) o version 3.0 (RFC2426) es supportate.",
     "Display name" : "Monstrar nomine",
     "Nickname" : "Pseudonymo",
     "Detailed name" : "Nomine detaliate",

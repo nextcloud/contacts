@@ -4,4 +4,4 @@ js/public
 js/vendor
 coverage
 npm-debug.log
-nbproject/**
+package-lock.json
