@@ -70,10 +70,6 @@ OC.L10N.register(
     "Voice" : "Anruf",
     "Social network" : "Soziales Netzwerk",
     "Details" : "Details",
-    "Settings" : "Einstellungen",
-    "Gender" : "Geschlecht",
-    "Male" : "männlich",
-    "Female" : "weiblich",
-    "intersex" : "intersexuell"
+    "Settings" : "Einstellungen"
 },
 "nplurals=2; plural=(n != 1);");
