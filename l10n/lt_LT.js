@@ -5,6 +5,7 @@ OC.L10N.register(
     "Download" : "Atsisiųsti",
     "Copy URL" : "Kopijuoti URL",
     "Click to copy the URL into your clipboard" : "Spustelėkite, norėdami nukopijuoti URL į iškarpinę",
+    "Toggle share" : "Perjungti dalinimosi rėžimą",
     "Delete" : "Ištrinti",
     "Rename" : "Pervadinti",
     "Share with users or groups" : "Bendrinti su naudotojais arba grupėmis",
@@ -13,6 +14,7 @@ OC.L10N.register(
     "Copied!" : "Nukopijuota!",
     "Not supported!" : "Nepalaikoma!",
     "Press ⌘-C to copy." : "Norėdami nukopijuoti, paspauskite ⌘-C.",
+    "Press Ctrl-C to copy." : "Nukopijuokite su Ctrl-C",
     "Address book name" : "Adresų knygos pavadinimas",
     "Import" : "Importuoti",
     "The selected image is too big (max 1MB)" : "Pasirinktas paveikslėlis yra per didelis (maks. 1 MB)",
@@ -42,6 +44,8 @@ OC.L10N.register(
     "Sort by" : "Rikiuoti pagal",
     "{addressbook} shared by {owner}" : "{owner} pradėjo bendrinti {addressbook}",
     "Contact could not be created." : "Kontakto sukurti nepavyko.",
+    "No contacts in file. Only vCard files are allowed." : "Nėra kontaktinių duomenų byloje. Tik vCard tipo bylos palaikomos.",
+    "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Palaikoma tik vCard 4.0 versija (RFC6350) ir vCard 3.0 versija (RFC2426).",
     "Display name" : "Rodomas pavadinimas",
     "Nickname" : "Slapyvardis",
     "Detailed name" : "Detalus pavadinimas",
@@ -65,6 +69,7 @@ OC.L10N.register(
     "Pager" : "Pranešimų gaviklis",
     "Voice" : "Balso",
     "Social network" : "Socialinis tinklas",
+    "Details" : "Išsamesnė informacija",
     "Settings" : "Nustatymai"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && (n%100<10 || n%100>=20) ? 1 : 2);");
