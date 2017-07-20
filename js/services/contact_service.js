@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.service('ContactService', function(DavClient, AddressBookService, Contact, $q, CacheFactory, uuid4) {
+.service('ContactService', function(DavClient, AddressBookService, Contact, $q, CacheFactory, uuid4, vCardPropertiesService ) {
 
 	var cacheFilled = false;
 
@@ -9,6 +9,8 @@ angular.module('contactsApp')
 	var observerCallbacks = [];
 
 	var loadPromise = undefined;
+
+	var newContactJustAdded = false;
 
 	this.registerObserverCallback = function(callback) {
 		observerCallbacks.push(callback);
@@ -133,6 +135,10 @@ angular.module('contactsApp')
 		});
 	};
 
+	this.updateNewContactJustAdded = function () {
+		newContactJustAdded = true;
+	};
+
 	this.getById = function(addressBooks, uid) {
 		return (function () {
 			if(cacheFilled === false) {
@@ -149,7 +155,20 @@ angular.module('contactsApp')
 				});
 				return addressBook
 					? DavClient.getContacts(addressBook, {}, [ contact.data.url ]).then(
-						function (vcards) { return new Contact(addressBook, vcards[0]); }
+						function (vcards) {
+
+
+							var newContact = new Contact(addressBook, vcards[0]);
+							if(newContactJustAdded === true) {
+								['tel', 'adr', 'email'].forEach(function(field) {
+									var defaultValue = vCardPropertiesService.getMeta(field).defaultValue || {value: ''};
+									newContact.addProperty(field, defaultValue);
+								} );
+								newContactJustAdded = false;
+							}
+							return newContact;
+						}
+						//function (vcards) { return new Contact(addressBook, vcards[0]); }
 					).then(function (contact) {
 						contacts.put(contact.uid(), contact);
 						notifyObservers('getFullContacts', contact.uid());
