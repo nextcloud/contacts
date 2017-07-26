@@ -11,7 +11,7 @@
 * 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!
 * 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 	</description>
-	<version>1.5.3</version>
+	<version>1.5.4</version>
 	<licence>AGPL</licence>
 	<author>Alexander Weidinger</author>
 	<author>Jan-Christoph Borchardt</author>
@@ -29,8 +29,8 @@
 	<repository type="git">https://github.com/nextcloud/contacts.git</repository>
 	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png</screenshot>
 	<dependencies>
-		<owncloud min-version="9.0" max-version="9.2" />
-		<nextcloud min-version="9" max-version="13" />
+		<owncloud min-version="9.2" />
+		<nextcloud min-version="11" max-version="13" />
 	</dependencies>
 	<ocsid>168708</ocsid>
 	<contactsmenu>

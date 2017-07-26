@@ -51,24 +51,6 @@ angular.module('contactsApp')
 		ctrl.editing = true;
 	};
 
-	/* globals oc_config */
-	function compareVersion(version1, version2) {
-		for (var i = 0; i < Math.max(version1.length, version2.length); i++) {
-			var a = version1[i] || 0;
-			var b = version2[i] || 0;
-			if (Number(a) < Number(b)) {
-				return true;
-			}
-			if (version1[i] !== version2[i]) {
-				return false;
-			}
-		}
-		return false;
-	}
-	/* eslint-disable camelcase */
-	ctrl.canExport = compareVersion([9, 0, 2, 0], oc_config.version.split('.'));
-	/* eslint-enable camelcase */
-
 	ctrl.closeMenus = function() {
 		$scope.$parent.ctrl.openedMenu = false;
 	};
