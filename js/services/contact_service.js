@@ -249,6 +249,8 @@ angular.module('contactsApp')
 			var newEtag = xhr.getResponseHeader('ETag');
 			contact.setETag(newEtag);
 			notifyObservers('update', contact.uid());
+		}).catch(function() {
+			OC.Notification.showTemporary(t('contacts', 'Contact could not be saved.'));
 		});
 	};
 
