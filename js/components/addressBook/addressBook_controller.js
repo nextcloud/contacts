@@ -4,8 +4,8 @@ angular.module('contactsApp')
 
 	ctrl.t = {
 		download: t('contacts', 'Download'),
-		copyURL: t('contacts', 'Copy URL'),
-		clickToCopy: t('contacts', 'Click to copy the URL to your clipboard'),
+		copyURL: t('contacts', 'Copy link'),
+		clickToCopy: t('contacts', 'Click to copy the link to your clipboard'),
 		shareAddressbook: t('contacts', 'Toggle sharing'),
 		deleteAddressbook: t('contacts', 'Delete'),
 		renameAddressbook: t('contacts', 'Rename'),
