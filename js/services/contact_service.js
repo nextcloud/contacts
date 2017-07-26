@@ -160,7 +160,11 @@ angular.module('contactsApp')
 
 	this.create = function(newContact, addressBook, uid) {
 		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
-		newContact = newContact || new Contact(addressBook);
+		try {
+			newContact = newContact || new Contact(addressBook);
+		} catch(error) {
+			OC.Notification.showTemporary(t('contacts', 'Contact could not be created.'));
+		}
 		var newUid = '';
 		if(uuid4.validate(uid)) {
 			newUid = uid;
