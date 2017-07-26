@@ -72,6 +72,19 @@ angular.module('contactsApp')
 		ctrl.model.updateContact();
 	};
 
+	ctrl.dateInputChanged = function () {
+		ctrl.data.meta = ctrl.data.meta || {};
+
+		var match = ctrl.data.value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+		if (match) {
+			ctrl.data.meta.value = [];
+		} else {
+			ctrl.data.meta.value = ctrl.data.meta.value || [];
+			ctrl.data.meta.value[0] = 'text';
+		}
+		ctrl.model.updateContact();
+	};
+
 	ctrl.updateDetailedName = function () {
 		var fn = '';
 		if (ctrl.data.value[3]) {
