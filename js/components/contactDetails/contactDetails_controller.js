@@ -24,7 +24,8 @@ angular.module('contactsApp')
 		selectField : t('contacts', 'Add field ...'),
 		download : t('contacts', 'Download'),
 		delete : t('contacts', 'Delete'),
-		save : t('contacts', 'Save changes')
+		save : t('contacts', 'Save changes'),
+		errorAvatarMessage : t('contacts', 'This photo as been recovered, please check the browser log for more informations.')
 	};
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;

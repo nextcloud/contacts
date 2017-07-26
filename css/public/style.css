@@ -305,8 +305,13 @@ detailsitem.details-item-note label {
 detailsitem.failed {
 	box-shadow: inset 2px 0 #c5173a;
 }
-avatar.failed {
-	background-color: #c5173a;
+avatar .icon-error {
+	position: absolute;
+	width: 100%;
+	height: 100%
+}
+avatar .icon-error + img {
+	opacity: 0.5;
 }
 
 /* Prevent delete for last adr/mail/tel item  */
