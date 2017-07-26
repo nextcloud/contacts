@@ -44,7 +44,7 @@ angular.module('contactsApp')
 			return DavService.then(function(account) {
 				return DavClient.getAddressBook({displayName:displayName, url:account.homeUrl}).then(function(addressBook) {
 					addressBook = new AddressBook({
-						url: addressBook[0].href,
+						url: account.homeUrl+displayName+'/',
 						data: addressBook[0]
 					});
 					addressBook.displayName = displayName;
