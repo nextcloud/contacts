@@ -24,7 +24,8 @@ angular.module('contactsApp')
 		selectField : t('contacts', 'Add field ...'),
 		download : t('contacts', 'Download'),
 		delete : t('contacts', 'Delete'),
-		save : t('contacts', 'Save changes')
+		save : t('contacts', 'Save changes'),
+		addressBook : t('contacts', 'Address book')
 	};
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;

@@ -232,7 +232,6 @@ detailsitem textarea,
 	width: 245px;
 }
 
-.select-addressbook,
 .add-field {
 	margin-left: 106px;
 }
@@ -241,7 +240,8 @@ detailsitem select {
 	width: 100px;
 }
 
-detailsitem label {
+detailsitem label,
+.select-addressbook label {
 	margin: 3px 3px 3px 0;
 
 	display: inline-block;
