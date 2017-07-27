@@ -3,9 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Контакты",
     "Download" : "Скачать",
-    "Copy URL" : "Копировать URL",
-    "Click to copy the URL into your clipboard" : "Нажмите для копирования URL в буфер обмена",
-    "Toggle share" : "Открыть / прекратить общий доступ",
     "Delete" : "Удалить",
     "Rename" : "Переименовать",
     "Share with users or groups" : "Поделиться с пользователями или группами",

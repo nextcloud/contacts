@@ -3,9 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Харилцагчид",
     "Download" : "Татаж авах",
-    "Copy URL" : "URL хуулж авах",
-    "Click to copy the URL into your clipboard" : "URL-ыг хуулж авахын тулд энд дарна уу",
-    "Toggle share" : "Түгээлтийг хаах/нээх",
     "Delete" : "Устгах",
     "Rename" : "Нэр солих",
     "Share with users or groups" : "Бусдад түгээх",

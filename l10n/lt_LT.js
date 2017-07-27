@@ -3,9 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Kontaktai",
     "Download" : "Atsisiųsti",
-    "Copy URL" : "Kopijuoti URL",
-    "Click to copy the URL into your clipboard" : "Spustelėkite, norėdami nukopijuoti nuorodą į iškarpinę",
-    "Toggle share" : "Perjungti dalinimosi rėžimą",
     "Delete" : "Ištrinti",
     "Rename" : "Pervadinti",
     "Share with users or groups" : "Bendrinti su naudotojais arba grupėmis",

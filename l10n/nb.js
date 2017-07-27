@@ -3,9 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakter",
     "Download" : "Last ned",
-    "Copy URL" : "Kopier URL",
-    "Click to copy the URL into your clipboard" : "Klikk for å kopiere nettadressen til din utklippstavle",
-    "Toggle share" : "Veksle deling",
     "Delete" : "Slett",
     "Rename" : "Gi nytt navn",
     "Share with users or groups" : "Del med brukere eller grupper",

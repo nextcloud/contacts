@@ -1,9 +1,6 @@
 { "translations": {
     "Contacts" : "Kontakty",
     "Download" : "Ściągnij",
-    "Copy URL" : "Skopiuj URL",
-    "Click to copy the URL into your clipboard" : "Kliknij, aby skopiować URL do schowka",
-    "Toggle share" : "Włącz współdzielenie",
     "Delete" : "Skasuj",
     "Rename" : "Zmień nazwę",
     "Share with users or groups" : "Udostępnij użytkownikom lub grupom",

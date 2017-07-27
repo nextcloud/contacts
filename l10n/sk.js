@@ -3,9 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakty",
     "Download" : "Stiahnuť",
-    "Copy URL" : "Kopírovať URL",
-    "Click to copy the URL into your clipboard" : "Skopírovať URL do schránky",
-    "Toggle share" : "Zapnúť zdieľanie",
     "Delete" : "Zmazať",
     "Rename" : "Premenovať",
     "Share with users or groups" : "Sprístupniť používateľom alebo skupinám",

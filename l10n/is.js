@@ -3,9 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Tengiliðir",
     "Download" : "Niðurhal",
-    "Copy URL" : "Afrita slóð",
-    "Click to copy the URL into your clipboard" : "Afrita slóðina á klippispjaldið",
-    "Toggle share" : "Víxla deilingu af/á",
     "Delete" : "Eyða",
     "Rename" : "Endurnefna",
     "Share with users or groups" : "Deila með notendum eða hópum",

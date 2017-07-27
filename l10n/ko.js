@@ -3,9 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "연락처",
     "Download" : "다운로드",
-    "Copy URL" : "URL 복사",
-    "Click to copy the URL into your clipboard" : "URL을 클립보드로 복사하려면 누르십시오",
-    "Toggle share" : "공유 전환",
     "Delete" : "삭제",
     "Rename" : "이름 바꾸기",
     "Share with users or groups" : "사용자 및 그룹과 공유",

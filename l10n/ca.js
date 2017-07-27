@@ -3,9 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Contactes",
     "Download" : "Baixa",
-    "Copy URL" : "Copia la URL",
-    "Click to copy the URL into your clipboard" : "Prem per copiar la URL al porta-retalls",
-    "Toggle share" : "Commuta la compartició",
     "Delete" : "Suprimeix",
     "Rename" : "Renombra",
     "Share with users or groups" : "Comparteix amb usuaris o grups",

@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "通訊錄",
     "Download" : "下載",
-    "Copy URL" : "複製 URL",
     "Delete" : "Delete",
     "Rename" : "重新命名",
     "can edit" : "可編輯",

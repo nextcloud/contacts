@@ -3,9 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Contautos",
     "Download" : "Baxar",
-    "Copy URL" : "Copiar URL",
-    "Click to copy the URL into your clipboard" : "Primi pa copiar la URL nel to cartafueyu",
-    "Toggle share" : "Alternar compartición",
     "Delete" : "Desaniciar",
     "Rename" : "Renomar",
     "Share with users or groups" : "Compartir con usuarios y grupos",

@@ -3,9 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Contactpersonen",
     "Download" : "Downloaden",
-    "Copy URL" : "Kopiëren URL",
-    "Click to copy the URL into your clipboard" : "Klik om de URL naar je klembord te kopiëren",
-    "Toggle share" : "Omschakelen delen",
     "Delete" : "Verwijderen",
     "Rename" : "Hernoemen",
     "Share with users or groups" : "Delen met gebruikers of groepen",

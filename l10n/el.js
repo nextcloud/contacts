@@ -3,9 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Επαφές",
     "Download" : "Λήψη",
-    "Copy URL" : "Αντιγραφή URL",
-    "Click to copy the URL into your clipboard" : "Κάντε κλικ για αντιγραφή της URL στο πρόχειρο",
-    "Toggle share" : "Εναλλαγή μετοχής",
     "Delete" : "Διαγραφή",
     "Rename" : "Μετονομασία",
     "Share with users or groups" : "Διαμοιρασμός με χρήστες ή ομάδες",

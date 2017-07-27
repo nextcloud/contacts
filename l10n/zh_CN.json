@@ -1,9 +1,6 @@
 { "translations": {
     "Contacts" : "联系人",
     "Download" : "下载",
-    "Copy URL" : "复制 URL",
-    "Click to copy the URL into your clipboard" : "点击以复制 URL 至剪贴板",
-    "Toggle share" : "切换共享",
     "Delete" : "删除",
     "Rename" : "重命名",
     "Share with users or groups" : "和用户或者组群分享",

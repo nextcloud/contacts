@@ -3,9 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "アドレス帳",
     "Download" : "ダウンロード",
-    "Copy URL" : "URL をコピー",
-    "Click to copy the URL into your clipboard" : "クリックすると URL をクリップボードにコピーします",
-    "Toggle share" : "共有を切り替え",
     "Delete" : "削除",
     "Rename" : "名前を変更",
     "Share with users or groups" : "ユーザーまたはグループと共有する",
