@@ -3,6 +3,9 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakte",
     "Download" : "Herunterladen",
+    "Copy link" : "Link kopieren",
+    "Click to copy the link to your clipboard" : "Durch klicken wird der Link in die Zwischenablage kopiert",
+    "Toggle sharing" : "Freigabe umschalten",
     "Delete" : "Löschen",
     "Rename" : "Umbenennen",
     "Share with users or groups" : "Mit Benutzern oder Gruppen teilen",
@@ -43,6 +46,7 @@ OC.L10N.register(
     "Contact could not be created." : "Kontakt konnte nicht erstellt werden.",
     "No contacts in file. Only vCard files are allowed." : "Keine Adressen in der Datei. Es kann nur das vCard-Format verarbeitet werden.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Es werden nur vCard-Format 4.0 (RFC6350) oder 3.0 (RFC2426) unterstützt.",
+    "Contact could not be saved." : "Kontakt konnte nicht gespeichert werden.",
     "Display name" : "Anzeigename",
     "Nickname" : "Spitzname",
     "Detailed name" : "Detaillierter Name",

@@ -1,6 +1,9 @@
 { "translations": {
     "Contacts" : "Kontakter",
     "Download" : "Last ned",
+    "Copy link" : "Kopier lenke",
+    "Click to copy the link to your clipboard" : "Klikk for å kopiere nettadressen til din utklippstavle",
+    "Toggle sharing" : "Veksle deling",
     "Delete" : "Slett",
     "Rename" : "Gi nytt navn",
     "Share with users or groups" : "Del med brukere eller grupper",
@@ -41,6 +44,7 @@
     "Contact could not be created." : "Kontakten kunne ikke opprettes",
     "No contacts in file. Only vCard files are allowed." : "Ingen kontakter i filen. Kun vCard filer er tillatt.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Kun vCard versjon 4.0 (RFC6350) eller versjon 3.0 (RFC2426) er støttet.",
+    "Contact could not be saved." : "Kontakten kunne ikke lagres.",
     "Display name" : "Visningsnavn",
     "Nickname" : "Kallenavn",
     "Detailed name" : "Detaljert navn",
