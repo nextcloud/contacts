@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.service('ContactService', function(DavClient, AddressBookService, Contact, $q, CacheFactory, uuid4, vCardPropertiesService ) {
+.service('ContactService', function(DavClient, AddressBookService, Contact, $routeParams, $q, CacheFactory, uuid4, vCardPropertiesService ) {
 
 	var cacheFilled = false;
 
@@ -164,6 +164,12 @@ angular.module('contactsApp')
 									var defaultValue = vCardPropertiesService.getMeta(field).defaultValue || {value: ''};
 									newContact.addProperty(field, defaultValue);
 								} );
+								if ([t('contacts', 'All contacts'), t('contacts', 'Not grouped')].indexOf($routeParams.gid) === -1) {
+									newContact.categories([ $routeParams.gid ]);
+								} else {
+									newContact.categories([]);
+								}
+								$('#details-fullName').focus();
 								newContactJustAdded = false;
 							}
 							return newContact;
