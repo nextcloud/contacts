@@ -25,6 +25,7 @@ OC.L10N.register(
     "Title" : "Tittel",
     "Add field ..." : "Nytt felt…",
     "Save changes" : "Lagre endringer",
+    "Address book" : "Adressebok",
     "No search result for {query}" : "Intet søkeresultat for {query}",
     "Post office box" : "Postboks",
     "Postal code" : "Postnummer",

@@ -25,6 +25,7 @@ OC.L10N.register(
     "Title" : "Başlık",
     "Add field ..." : "Alan ekle...",
     "Save changes" : "Değişiklikleri kaydet",
+    "Address book" : "Adres defteri",
     "No search result for {query}" : "{query} aramasından bir sonuç alınamadı",
     "Post office box" : "Posta kutusu",
     "Postal code" : "Posta kodu",

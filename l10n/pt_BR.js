@@ -25,6 +25,7 @@ OC.L10N.register(
     "Title" : "Título",
     "Add field ..." : "Adicionar campo...",
     "Save changes" : "Salvar modificações",
+    "Address book" : "Catálogo de endereços",
     "No search result for {query}" : "Nenhum resultado na busca por {query}",
     "Post office box" : "Caixa de correio",
     "Postal code" : "Código postal",

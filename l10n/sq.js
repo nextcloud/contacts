@@ -3,6 +3,9 @@ OC.L10N.register(
     {
     "Contacts" : "Kontaktet",
     "Download" : "Shkarko",
+    "Copy link" : "Kopjo linkun",
+    "Click to copy the link to your clipboard" : "Kliko për të kopjuar linkun në klipbord",
+    "Toggle sharing" : "Toggle sharing",
     "Delete" : "Fshije",
     "Rename" : "Riemëro",
     "Share with users or groups" : "Nda me përdoruesit ose grupet",

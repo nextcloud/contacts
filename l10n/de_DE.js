@@ -25,6 +25,7 @@ OC.L10N.register(
     "Title" : "Titel",
     "Add field ..." : "Feld hinzufügen …",
     "Save changes" : "Änderungen speichern",
+    "Address book" : "Adressbuch",
     "No search result for {query}" : "Keine Suchergebnisse zu {query}",
     "Post office box" : "Postfach",
     "Postal code" : "Postleitzahl",
