@@ -12,7 +12,7 @@ OC.L10N.register(
     "can edit" : "mund të modifikoni",
     "Close" : "Mbylle",
     "Copied!" : "U kopjua!",
-    "Not supported!" : "Nuk është e mbështetur!",
+    "Not supported!" : "Nuk mbështetet!",
     "Press ⌘-C to copy." : "Shtyp ⌘-C për të kopjuar.",
     "Press Ctrl-C to copy." : "Shtyp Ctrl-C për të kopjuar.",
     "Address book name" : "Emër libri adresash",

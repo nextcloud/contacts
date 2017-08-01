@@ -22,6 +22,7 @@ OC.L10N.register(
     "Title" : "Titel",
     "Add field ..." : "Voeg veld toe",
     "Save changes" : "Wijzigingen bewaren",
+    "Address book" : "Adresboek",
     "No search result for {query}" : "Geen zoekresultaten voor {query}",
     "Post office box" : "Postbus",
     "Postal code" : "Postcode",
