@@ -326,8 +326,7 @@ avatar:not(.maximized) .icon-error + img {
 	display: block;
 }
 
-
-ul.addressBookList li {
+ul.addressBookList > li {
 	padding: 6px 0;
 	display: flex;
 	align-items: center;
