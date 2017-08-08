@@ -12,6 +12,7 @@ angular.module('contactsApp')
 
 	var newContactJustAdded = false;
 
+
 	this.registerObserverCallback = function(callback) {
 		observerCallbacks.push(callback);
 	};
@@ -169,7 +170,6 @@ angular.module('contactsApp')
 								} else {
 									newContact.categories([]);
 								}
-								$('#details-fullName').focus();
 								newContactJustAdded = false;
 							}
 							return newContact;
@@ -210,14 +210,17 @@ angular.module('contactsApp')
 				filename: newUid + '.vcf'
 			}
 		).then(function(xhr) {
-			newContact.setETag(xhr.getResponseHeader('ETag'));
-			contacts.put(newUid, newContact);
-			notifyObservers('create', newUid);
-			$('#details-fullName').select();
-			return newContact;
+			if (!(_.isUndefined(newContact.fullName()) || newContact.fullName() === '')) {
+				newContact.setETag(xhr.getResponseHeader('ETag'));
+				contacts.put(newUid, newContact);
+				notifyObservers('create', newUid);
+				$('#details-fullName').select();
+				return newContact;
+			}
 		}).catch(function() {
 			OC.Notification.showTemporary(t('contacts', 'Contact could not be created.'));
 		});
+
 	};
 
 	this.import = function(data, type, addressBook, progressCallback) {
