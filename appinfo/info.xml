@@ -29,10 +29,8 @@
 	<repository type="git">https://github.com/nextcloud/contacts.git</repository>
 	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png</screenshot>
 	<dependencies>
-		<owncloud min-version="9.2" />
 		<nextcloud min-version="11" max-version="13" />
 	</dependencies>
-	<ocsid>168708</ocsid>
 	<contactsmenu>
 		<provider>OCA\Contacts\ContactsMenu\Providers\DetailsProvider</provider>
 	</contactsmenu>
