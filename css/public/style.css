@@ -520,6 +520,10 @@ contactimport .ui-select-search-hidden {
 	display: none;
 }
 
+contactimport input[type='search']::-webkit-search-cancel-button {
+	-webkit-appearance:none
+}
+
 /* Contacts List */
 #new-contact-button {
 	margin: 14px auto; /* to have the same height than a contact*/
