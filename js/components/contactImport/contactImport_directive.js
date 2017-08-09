@@ -19,6 +19,7 @@ angular.module('contactsApp')
 									ctrl.status = parseInt(Math.floor(progress * 100)) + '%';
 									ctrl.loadingClass = 'icon-loading-small';
 								}
+								scope.$apply();
 							});
 						});
 					}, false);
