@@ -12,8 +12,12 @@ angular.module('contactsApp')
 							ContactService.import.call(ContactService, reader.result, file.type, ctrl.selectedAddressBook, function (progress) {
 								if (progress === 1) {
 									ctrl.importText = ctrl.t.importText;
+									ctrl.status = '';
+									ctrl.loadingClass = 'icon-upload';
 								} else {
-									ctrl.importText = ctrl.t.importingText + ' ' + parseInt(Math.floor(progress * 100)) + '%';
+									ctrl.importText = ctrl.t.importingText;
+									ctrl.status = parseInt(Math.floor(progress * 100)) + '%';
+									ctrl.loadingClass = 'icon-loading-small';
 								}
 							});
 						});

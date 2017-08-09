@@ -468,6 +468,7 @@ li.calendar-share-item span.shareeIdentifier {
 	opacity: 0.5;
 }
 
+/* Contact import */
 #app-settings-content #upload.button {
 	width: 100%;
 	padding: 7px 10px;
@@ -475,9 +476,13 @@ li.calendar-share-item span.shareeIdentifier {
 	background-position: 10px center;
 	text-align: left;
 	margin: 0;
-	display: block;
+	display: inline-flex;
 	margin-bottom: 0;
 	border-radius: 3px 3px 0 0;
+	justify-content: space-between;
+}
+#app-settings-content #upload.button::after {
+	left: 17px; /* half the padding */
 }
 
 contactimport .select2-container {
