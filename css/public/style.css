@@ -419,12 +419,16 @@ div.app-contacts span.utils {
 input.renameAddressBookInput,
 input.newAddressBookInput,
 input.shareeInput,
-input.addressBookUrl,
-.select2-drop .select2-search input {
+input.addressBookUrl {
 	width: 100% !important;
 	margin-right: 0;
 	padding-right: 30px;
 	text-overflow: ellipsis;
+}
+
+.select2-drop .select2-search input {
+	width: 100% !important;
+	margin-right: 0;
 }
 
 .addressBookList form {
