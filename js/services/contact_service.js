@@ -144,17 +144,22 @@ angular.module('contactsApp')
 			}
 		}).call(this)
 			.then(function (contact) {
-				var addressBook = _.find(addressBooks, function(book) {
-					return book.displayName === contact.addressBookId;
-				});
-				return addressBook
-					? DavClient.getContacts(addressBook, {}, [ contact.data.url ]).then(
-						function (vcards) { return new Contact(addressBook, vcards[0]); }
-					).then(function (contact) {
-						contacts.put(contact.uid(), contact);
-						notifyObservers('getFullContacts', contact.uid());
-						return contact;
-					}) : contact;
+				if(angular.isUndefined(contact)) {
+					OC.Notification.showTemporary(t('contacts', 'Contact not found.'));
+					return;
+				} else {
+					var addressBook = _.find(addressBooks, function(book) {
+						return book.displayName === contact.addressBookId;
+					});
+					return addressBook
+						? DavClient.getContacts(addressBook, {}, [ contact.data.url ]).then(
+							function (vcards) { return new Contact(addressBook, vcards[0]); }
+						).then(function (contact) {
+							contacts.put(contact.uid(), contact);
+							notifyObservers('getFullContacts', contact.uid());
+							return contact;
+						}) : contact;
+				}
 			});
 	};
 
