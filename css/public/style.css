@@ -516,6 +516,10 @@ contactimport .ui-select-offscreen {
 	display: none;
 }
 
+contactimport .ui-select-search-hidden {
+	display: none;
+}
+
 /* Contacts List */
 #new-contact-button {
 	margin: 14px auto; /* to have the same height than a contact*/
