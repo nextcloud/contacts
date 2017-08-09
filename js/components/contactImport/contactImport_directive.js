@@ -13,7 +13,7 @@ angular.module('contactsApp')
 								if (progress === 1) {
 									ctrl.importText = ctrl.t.importText;
 								} else {
-									ctrl.importText = parseInt(Math.floor(progress * 100)) + '%';
+									ctrl.importText = ctrl.t.importingText + ' ' + parseInt(Math.floor(progress * 100)) + '%';
 								}
 							});
 						});

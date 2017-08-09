@@ -4,6 +4,7 @@ angular.module('contactsApp')
 
 	ctrl.t = {
 		importText : t('contacts', 'Import into'),
+		importingText : t('contacts', 'Importing'),
 		selectAddressbook : t('contacts', 'Select your addressbook')
 	};
 
