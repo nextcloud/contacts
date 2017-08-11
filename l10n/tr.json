@@ -42,6 +42,7 @@
     "Not grouped" : "Gruplanmamış",
     "Sort by" : "Sıralama",
     "{addressbook} shared by {owner}" : "{owner} tarafından paylaşılmış {addressbook}",
+    "Contact not found." : "Kişi bulunamadı.",
     "Contact could not be created." : "Kişi oluşturulamadı.",
     "No contacts in file. Only vCard files are allowed." : "Dosyada herhangi bir kişi yok. Yalnız vCard dosyaları kullanılabilir.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Yalnız vCard sürüm 4.0 (RFC6350) ya da sürüm 3.0 (RFC2426) desteklenir.",

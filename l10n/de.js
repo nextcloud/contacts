@@ -44,6 +44,7 @@ OC.L10N.register(
     "Not grouped" : "Nicht gruppiert",
     "Sort by" : "Sortiere nach",
     "{addressbook} shared by {owner}" : "{addressbook} geteilt von {owner}",
+    "Contact not found." : "Kontakt nicht gefunden.",
     "Contact could not be created." : "Kontakt konnte nicht erstellt werden.",
     "No contacts in file. Only vCard files are allowed." : "Keine Adressen in der Datei. Es kann nur das vCard-Format verarbeitet werden.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Es werden nur vCard-Format 4.0 (RFC6350) oder 3.0 (RFC2426) unterstützt.",
