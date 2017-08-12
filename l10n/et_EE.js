@@ -32,7 +32,7 @@ OC.L10N.register(
     "State or province" : "Maakond",
     "Country" : "Riik",
     "Address" : "Aadress",
-    "(new group)" : "(uus grupps)",
+    "(new group)" : "(uus grupp)",
     "Last name" : "Perekonnanimi",
     "First name" : "Eesnimi",
     "Additional names" : "Lisanimed",
