@@ -129,7 +129,7 @@ avatar {
 .avatar-options:hover > [class^="icon-"] {
 	opacity: 0.6;
 }
-.avatar-options > [class^="icon-"]:hover  {
+.avatar-options > [class^="icon-"]:hover {
 	opacity: 0.8;
 }
 
@@ -314,7 +314,7 @@ avatar:not(.maximized) .icon-error + img {
 	opacity: 0.5;
 }
 
-/* Prevent delete for last adr/mail/tel item  */
+/* Prevent delete for last adr/mail/tel item */
 .last-details > detailsitem.details-item-adr .icon-delete,
 .last-details > detailsitem.details-item-email .icon-delete,
 .last-details > detailsitem.details-item-tel .icon-delete {
@@ -693,14 +693,14 @@ detailsitem .select2-container {
 	/* full width for message list on mobile */
 	.app-content-list {
 		width: 100%;
-		background: white;
+		background: $color-main-background;
 		position: relative;
 		z-index: 100;
 	}
 
 	/* overlay message detail on top of message list */
 	.app-content-detail {
-		background: #fff;
+		background: $color-main-background;
 		width: 100%;
 		left: 0;
 		height: 100%;
@@ -738,7 +738,7 @@ detailsitem .select2-container {
 
 .contact-details-wrapper {
 	position: relative;
-	background: white;
+	background: $color-main-background;
 }
 .wrapper-show {
 	z-index: 201;
@@ -750,3 +750,53 @@ detailsitem .select2-container {
 .icon-group {
 	background-image: url('../../img/group.svg');
 }
+
+/* Import screen */
+#import-sidebar {
+	position: absolute;
+	width: 250px;
+	height: 100%;
+	z-index: 500;
+	background: rgba(255,255,255,0.6);
+}
+#importscreen-wrapper {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: $color-main-background;
+	z-index: 500;
+}
+#importscreen-progress {
+	display: block; /* default: inline-block */
+	width: 300px;
+	margin: 2em auto;
+	padding: 4px;
+	border: 0 none;
+	background: rgba(0,0,0,0.1);
+	border-radius: 2px;
+	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
+}
+#importscreen-progress::-webkit-progress-bar {
+	background: transparent;
+}	
+#importscreen-progress::-moz-progress-bar {
+	border-radius: 2px;
+	background: $color-primary;
+	box-shadow: inset 0 -2px 4px rgba(0,0,0,0.1), 0 2px 5px 0px rgba(0,0,0,0.1);
+}
+/* webkit */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	#importscreen-progress {
+		height: 25px;
+	}
+}
+#importscreen-progress::-webkit-progress-value {	
+	border-radius: 2px;
+	background: $color-primary;
+	box-shadow: inset 0 -2px 4px rgba(0,0,0,0.1), 0 2px 5px 0px rgba(0,0,0,0.1); 
+	transition: 500ms all ease-in-out;
+} 
