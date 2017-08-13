@@ -210,6 +210,9 @@ angular.module('contactsApp')
 			}
 			return;
 		}
+
+		notifyObservers('importstart');
+
 		var num = 1;
 		for(var i in singleVCards) {
 			var newContact = new Contact(addressBook, {addressData: singleVCards[i]});
@@ -229,7 +232,7 @@ angular.module('contactsApp')
 				num++;
 				/* Import is over, let's notify */
 				if(num === singleVCards.length) {
-					notifyObservers('import');
+					notifyObservers('importend');
 				}
 			});
 		}

@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.directive('contactimport', function(ContactService) {
+.directive('contactimport', function(ContactService, ImportService, $rootScope) {
 	return {
 		link: function(scope, element, attrs, ctrl) {
 			var input = element.find('input');
@@ -9,17 +9,23 @@ angular.module('contactsApp')
 
 					reader.addEventListener('load', function () {
 						scope.$apply(function () {
-							ContactService.import.call(ContactService, reader.result, file.type, ctrl.selectedAddressBook, function (progress) {
+							ContactService.import.call(ContactService, reader.result, file.type, ctrl.selectedAddressBook, function (progress, user) {
 								if (progress === 1) {
 									ctrl.importText = ctrl.t.importText;
-									ctrl.status = '';
 									ctrl.loadingClass = 'icon-upload';
+									ImportService.importPercent = 0;
+									ImportService.importing = false;
+									ImportService.selectedAddressBook = '';
 								} else {
 									ctrl.importText = ctrl.t.importingText;
-									ctrl.status = parseInt(Math.floor(progress * 100)) + '%';
 									ctrl.loadingClass = 'icon-loading-small';
+									ImportService.importPercent = parseInt(Math.floor(progress * 100));
+									ImportService.importing = true;
+									ImportService.selectedAddressBook = ctrl.selectedAddressBook.displayName;
 								}
 								scope.$apply();
+								/* Broadcast service update */
+								$rootScope.$broadcast('importing', true);
 							});
 						});
 					}, false);

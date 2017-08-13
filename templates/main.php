@@ -51,5 +51,6 @@ vendor_style('select2/select2');
 			<contactlist></contactlist>
 		</div>
 		<div class="app-content-detail" ng-view></div>
+		<importscreen></importscreen>
 	</div>
 </div>
