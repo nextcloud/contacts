@@ -9,7 +9,7 @@ angular.module('contactsApp')
 
 					reader.addEventListener('load', function () {
 						scope.$apply(function () {
-							ContactService.import.call(ContactService, reader.result, file.type, ctrl.selectedAddressBook, function (progress, user) {
+							ContactService.import.call(ContactService, reader.result, file.type, ctrl.selectedAddressBook, function (progress) {
 								if (progress === 1) {
 									ctrl.importText = ctrl.t.importText;
 									ctrl.loadingClass = 'icon-upload';
