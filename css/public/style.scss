@@ -776,17 +776,22 @@ detailsitem .select2-container {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	flex-wrap: wrap;
+}
+#importscreen-user {
+	font-style: italic;
+	color: #555;
+	flex-basis: 100%;
 }
 #importscreen-progress {
 	display: block;
-	position: absolute;
-	top: 100%;
 	width: 100%;
 	padding: 4px;
 	border: 0 none;
 	background: rgba(0,0,0,0.1);
 	border-radius: 2px;
 	box-shadow: inset 0px 1px 1px rgba(0,0,0,0.5), 0px 1px 0px rgba(255,255,255,0.2);
+	flex-basis: 100%;
 }
 #importscreen-progress::-webkit-progress-bar {
 	background: transparent;

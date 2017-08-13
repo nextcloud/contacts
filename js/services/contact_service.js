@@ -224,10 +224,10 @@ angular.module('contactsApp')
 				num++;
 				continue;
 			}
-			this.create(newContact, addressBook, '', true).then(function() {
+			this.create(newContact, addressBook, '', true).then(function(xhrContact) {
 				// Update the progress indicator
 				if (progressCallback) {
-					progressCallback(num / singleVCards.length);
+					progressCallback(num / singleVCards.length, xhrContact.displayName());
 				}
 				num++;
 				/* Import is over, let's notify */

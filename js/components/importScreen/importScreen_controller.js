@@ -10,6 +10,7 @@ angular.module('contactsApp')
 	// Broadcast update
 	$scope.$on('importing', function () {
 		ctrl.selectedAddressBook = ImportService.selectedAddressBook;
+		ctrl.importedUser = ImportService.importedUser;
 		ctrl.importing = ImportService.importing;
 		ctrl.importPercent = ImportService.importPercent;
 	});
