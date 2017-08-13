@@ -770,10 +770,18 @@ detailsitem .select2-container {
 	background: $color-main-background;
 	z-index: 500;
 }
+#importscreen-content {
+	min-width: 300px;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
 #importscreen-progress {
-	display: block; /* default: inline-block */
-	width: 300px;
-	margin: 2em auto;
+	display: block;
+	position: absolute;
+	top: 100%;
+	width: 100%;
 	padding: 4px;
 	border: 0 none;
 	background: rgba(0,0,0,0.1);
