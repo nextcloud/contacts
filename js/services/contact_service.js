@@ -194,6 +194,7 @@ angular.module('contactsApp')
 			return newContact;
 		}).catch(function() {
 			OC.Notification.showTemporary(t('contacts', 'Contact could not be created.'));
+			return false;
 		});
 	};
 
@@ -225,9 +226,12 @@ angular.module('contactsApp')
 				continue;
 			}
 			this.create(newContact, addressBook, '', true).then(function(xhrContact) {
+				if (xhrContact !== false) {
+					var xhrContactName = xhrContact.displayName();
+				}
 				// Update the progress indicator
 				if (progressCallback) {
-					progressCallback(num / singleVCards.length, xhrContact.displayName());
+					progressCallback(num / singleVCards.length, xhrContactName);
 				}
 				num++;
 				/* Import is over, let's notify */
