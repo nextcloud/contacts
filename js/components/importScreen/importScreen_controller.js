@@ -3,7 +3,7 @@ angular.module('contactsApp')
 	var ctrl = this;
 
 	ctrl.t = {
-		importingTo : t('contacts', 'Currently importing into'),
+		importingTo : t('contacts', 'Importing into'),
 		selectAddressbook : t('contacts', 'Select your addressbook')
 	};
 
