@@ -480,15 +480,16 @@ li.calendar-share-item span.shareeIdentifier {
 	background-position: 10px center;
 	text-align: left;
 	margin: 0;
-	display: inline-flex;
+	display: block;
 	margin-bottom: 0;
 	border-radius: 3px 3px 0 0;
-	justify-content: space-between;
 }
 #app-settings-content #upload.button::after {
 	left: 17px; /* half the padding */
 }
-
+#app-settings-content #upload.button.no-select {
+	border-radius: 3px;
+}
 contactimport .select2-container {
 	margin-top: 0;
 	width: 100%;
