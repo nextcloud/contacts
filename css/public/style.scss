@@ -778,6 +778,10 @@ detailsitem .select2-container {
 	align-items: center;
 	flex-wrap: wrap;
 }
+#importscreen-title {
+	flex-basis: 100%;
+	text-align: center;
+}
 #importscreen-percent {
 	opacity: 0.5;
 }
