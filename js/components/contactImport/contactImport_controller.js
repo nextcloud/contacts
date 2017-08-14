@@ -11,7 +11,7 @@ angular.module('contactsApp')
 	ctrl.import = ContactService.import.bind(ContactService);
 	ctrl.loading = true;
 	ctrl.importText = ctrl.t.importText;
-	ctrl.status = '';
+	ctrl.importing = false;
 	ctrl.loadingClass = 'icon-upload';
 
 	AddressBookService.getAll().then(function(addressBooks) {

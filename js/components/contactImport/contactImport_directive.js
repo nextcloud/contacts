@@ -9,17 +9,28 @@ angular.module('contactsApp')
 
 					reader.addEventListener('load', function () {
 						scope.$apply(function () {
+							// Indicate the user we started something
+							ctrl.importText = ctrl.t.importingText;
+							ctrl.loadingClass = 'icon-loading-small';
+							ctrl.importing = true;
+
 							ContactService.import.call(ContactService, reader.result, file.type, ctrl.selectedAddressBook, function (progress, user) {
 								if (progress === 1) {
 									ctrl.importText = ctrl.t.importText;
 									ctrl.loadingClass = 'icon-upload';
+									ctrl.importing = false;
 									ImportService.importPercent = 0;
 									ImportService.importing = false;
 									ImportService.importedUser = '';
 									ImportService.selectedAddressBook = '';
 								} else {
-									ctrl.importText = ctrl.t.importingText;
-									ctrl.loadingClass = 'icon-loading-small';
+									// Ugly hack, hide sidebar on import & mobile
+									// Simulate click since we can't directly access snapper
+									if($(window).width() <= 768 && $('body').hasClass('snapjs-left')) {
+										$('#app-navigation-toggle').click();
+										$('body').removeClass('snapjs-left');
+									}
+
 									ImportService.importPercent = parseInt(Math.floor(progress * 100));
 									ImportService.importing = true;
 									ImportService.importedUser = user;
