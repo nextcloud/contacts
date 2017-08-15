@@ -1,3 +1,7 @@
+#app-navigation {
+	position: relative;
+}
+
 .contactdetails__header {
 	height: 100px;
 	padding-left: 20px;
@@ -129,7 +133,7 @@ avatar {
 .avatar-options:hover > [class^="icon-"] {
 	opacity: 0.6;
 }
-.avatar-options > [class^="icon-"]:hover  {
+.avatar-options > [class^="icon-"]:hover {
 	opacity: 0.8;
 }
 
@@ -314,7 +318,7 @@ avatar:not(.maximized) .icon-error + img {
 	opacity: 0.5;
 }
 
-/* Prevent delete for last adr/mail/tel item  */
+/* Prevent delete for last adr/mail/tel item */
 .last-details > detailsitem.details-item-adr .icon-delete,
 .last-details > detailsitem.details-item-email .icon-delete,
 .last-details > detailsitem.details-item-tel .icon-delete {
@@ -322,6 +326,10 @@ avatar:not(.maximized) .icon-error + img {
 }
 
 /* addressbook settings */
+.settings-section {
+	display: block;
+}
+
 ul.addressBookList > li {
 	padding: 6px 0;
 	display: flex;
@@ -422,6 +430,11 @@ input.addressBookUrl {
 	text-overflow: ellipsis;
 }
 
+.select2-drop .select2-search input {
+	width: 100% !important;
+	margin-right: 0;
+}
+
 .addressBookList form {
 	position: relative;
 	width: 100%;
@@ -463,16 +476,61 @@ li.calendar-share-item span.shareeIdentifier {
 	opacity: 0.5;
 }
 
+/* Contact import */
 #app-settings-content #upload.button {
 	width: 100%;
 	padding: 7px 10px;
 	padding-left: 34px;
 	background-position: 10px center;
 	text-align: left;
-	margin-bottom: 10px;
+	margin: 0;
 	display: block;
+	margin-bottom: 0;
+	border-radius: 3px 3px 0 0;
+}
+#app-settings-content #upload.button::after {
+	left: 17px; /* half the padding */
+}
+#app-settings-content #upload.button.no-select {
+	border-radius: 3px;
+}
+contactimport {
+	margin-bottom: 3px;
+}
+contactimport .select2-container {
+	margin-top: 0;
+	width: 100%;
 }
 
+contactimport .select2-container:after {
+	left: 15px;
+}
+
+contactimport .select2-container .select2-choice {
+	height: 100%;
+	line-height: 31px;
+	border-radius: 0 0 3px 3px;
+	border-top: none !important;
+}
+
+contactimport .select2-drop-active {
+	border-top: 1px solid #ddd;
+	box-shadow: 0 -1px 5px rgba(0, 0, 0, .15);
+	border-radius: 3px 3px 0 0;
+	margin-top: initial;
+}
+
+contactimport .ui-select-offscreen {
+	display: none;
+}
+
+contactimport .ui-select-search-hidden {
+	display: none;
+}
+
+contactimport input[type='search']::-webkit-search-cancel-button {
+	-webkit-appearance:none
+}
 
 /* Contacts List */
 #new-contact-button {
@@ -643,14 +701,14 @@ detailsitem .select2-container {
 	/* full width for message list on mobile */
 	.app-content-list {
 		width: 100%;
-		background: white;
+		background: $color-main-background;
 		position: relative;
 		z-index: 100;
 	}
 
 	/* overlay message detail on top of message list */
 	.app-content-detail {
-		background: #fff;
+		background: $color-main-background;
 		width: 100%;
 		left: 0;
 		height: 100%;
@@ -688,7 +746,7 @@ detailsitem .select2-container {
 
 .contact-details-wrapper {
 	position: relative;
-	background: white;
+	background: $color-main-background;
 }
 .wrapper-show {
 	z-index: 201;
@@ -699,4 +757,77 @@ detailsitem .select2-container {
 
 .icon-group {
 	background-image: url('../../img/group.svg');
+}
+
+/* Import screen */
+#import-sidebar {
+	position: absolute;
+	width: 250px;
+	height: 100%;
+	z-index: 500;
+	background: rgba(255,255,255,0.6);
+}
+#importscreen-wrapper {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	display: flex;
+	justify-content: center;
+	align-items: start;
+	padding-top: 30vh;
+	background: $color-main-background;
+	z-index: 500;
+}
+#importscreen-content {
+	width: 300px;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	flex-wrap: wrap;
+}
+#importscreen-title {
+	flex-basis: 100%;
+	text-align: center;
+}
+#importscreen-percent {
+	opacity: 0.5;
+}
+#importscreen-user {
+	font-style: italic;
+	opacity: 0.5;
+	padding-top: 5px;
+}
+/* Copy nextcloud quota bar */
+#importscreen-progress {
+	display: block;
+	width: 100%;
+	padding: 0px;
+	border: 0 none;
+	background-color: #e6e6e6;
+	border-radius: 3px;
+	flex-basis: 100%;
+	height: 5px;
+}
+#importscreen-progress::-webkit-progress-bar {
+	background: transparent;
+}	
+#importscreen-progress::-moz-progress-bar {
+	border-radius: 3px;
+	background: $color-primary;
+	transition: 500ms all ease-in-out;
+}
+#importscreen-progress::-webkit-progress-value {	
+	border-radius: 3px;
+	background: $color-primary;
+	transition: 500ms all ease-in-out;
+} 
+#importscreen-sidebar-block {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	background: $color-main-background;
+	z-index: 500;
+	opacity: 0.5;
 }

@@ -81,7 +81,14 @@ angular.module('contactsApp')
 					uid: ev.uid
 				});
 			}
-			ctrl.contacts = ev.contacts;
+			else if (ev.event === 'importend') {
+				$route.updateParams({
+					gid: t('contacts', 'All contacts')
+				});
+			}
+			if(ev.contacts.length !== 0) {
+				ctrl.contacts = ev.contacts;
+			}
 		}); });
 	});
 

@@ -163,7 +163,7 @@ angular.module('contactsApp')
 			});
 	};
 
-	this.create = function(newContact, addressBook, uid) {
+	this.create = function(newContact, addressBook, uid, fromImport) {
 		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
 		try {
 			newContact = newContact || new Contact(addressBook);
@@ -192,11 +192,14 @@ angular.module('contactsApp')
 		).then(function(xhr) {
 			newContact.setETag(xhr.getResponseHeader('ETag'));
 			contacts.put(newUid, newContact);
-			notifyObservers('create', newUid);
-			$('#details-fullName').select();
+			if (fromImport !== true) {
+				notifyObservers('create', newUid);
+				$('#details-fullName').select();
+			}
 			return newContact;
 		}).catch(function() {
 			OC.Notification.showTemporary(t('contacts', 'Contact could not be created.'));
+			return false;
 		});
 	};
 
@@ -213,6 +216,9 @@ angular.module('contactsApp')
 			}
 			return;
 		}
+
+		notifyObservers('importstart');
+
 		var num = 1;
 		for(var i in singleVCards) {
 			var newContact = new Contact(addressBook, {addressData: singleVCards[i]});
@@ -224,12 +230,19 @@ angular.module('contactsApp')
 				num++;
 				continue;
 			}
-			this.create(newContact, addressBook).then(function() {
+			this.create(newContact, addressBook, '', true).then(function(xhrContact) {
+				if (xhrContact !== false) {
+					var xhrContactName = xhrContact.displayName();
+				}
 				// Update the progress indicator
 				if (progressCallback) {
-					progressCallback(num / singleVCards.length);
+					progressCallback(num / singleVCards.length, xhrContactName);
 				}
 				num++;
+				/* Import is over, let's notify */
+				if(num === singleVCards.length) {
+					notifyObservers('importend');
+				}
 			});
 		}
 	};

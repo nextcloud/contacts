@@ -10,9 +10,6 @@ angular.module('contactsApp')
 			contact: '=data'
 		},
 		link: function(scope, element) {
-			var importText = t('contacts', 'Import');
-			scope.importText = importText;
-
 			var input = element.find('input');
 			input.bind('change', function() {
 				var file = input.get(0).files[0];

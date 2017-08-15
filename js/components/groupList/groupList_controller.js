@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.controller('grouplistCtrl', function($scope, ContactService, SearchService, $routeParams) {
+.controller('grouplistCtrl', function($scope, $timeout, ContactService, SearchService, $routeParams) {
 	var ctrl = this;
 
 	ctrl.groups = [];
@@ -15,11 +15,11 @@ angular.module('contactsApp')
 	// Update groupList on contact add/delete/update
 	ContactService.registerObserverCallback(function(ev) {
 		if (ev.event !== 'getFullContacts') {
-			$scope.$apply(function() {
+			$timeout(function () { $scope.$apply(function() {
 				ContactService.getGroupList().then(function(groups) {
 					ctrl.groups = groups;
 				});
-			});
+			}); });
 		}
 	});
 
