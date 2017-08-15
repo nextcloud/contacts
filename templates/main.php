@@ -28,6 +28,7 @@ vendor_style('select2/select2');
 
 <div id="app" ng-app="contactsApp">
 	<div id="app-navigation">
+		<div id="importscreen-sidebar-block" class="icon-loading" ng-show="$root.importing"></div>
 		<newContactButton></newContactButton>
 		<ul groupList></ul>
 

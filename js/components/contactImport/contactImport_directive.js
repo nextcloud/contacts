@@ -13,12 +13,14 @@ angular.module('contactsApp')
 							ctrl.importText = ctrl.t.importingText;
 							ctrl.loadingClass = 'icon-loading-small';
 							ctrl.importing = true;
+							$rootScope.importing = true;
 
 							ContactService.import.call(ContactService, reader.result, file.type, ctrl.selectedAddressBook, function (progress, user) {
 								if (progress === 1) {
 									ctrl.importText = ctrl.t.importText;
 									ctrl.loadingClass = 'icon-upload';
 									ctrl.importing = false;
+									$rootScope.importing = false;
 									ImportService.importPercent = 0;
 									ImportService.importing = false;
 									ImportService.importedUser = '';
