@@ -767,7 +767,8 @@ detailsitem .select2-container {
 	top: 0;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: start;
+	padding-top: 30vh;
 	background: $color-main-background;
 	z-index: 500;
 }
@@ -791,6 +792,7 @@ detailsitem .select2-container {
 	opacity: 0.5;
 	padding-top: 5px;
 }
+/* Copy nextcloud quota bar */
 #importscreen-progress {
 	display: block;
 	width: 100%;
