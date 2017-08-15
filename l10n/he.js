@@ -44,6 +44,7 @@ OC.L10N.register(
     "Not grouped" : "לא שויך לקבוצה",
     "Sort by" : "מיון",
     "{addressbook} shared by {owner}" : "{addressbook} שותף על ידי {owner}",
+    "Contact not found." : "איש קשר לא נמצא",
     "Contact could not be created." : "לא ניתן היה ליצור איש קשר.",
     "No contacts in file. Only vCard files are allowed." : "אין אנשי קשר בקובץ. רק קובצי VCard ניתנים לשימוש.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "רק vCard גרסה 4.0 (RFC6350) או גרסה 3.0  (RFC2426) נתמכים.",
