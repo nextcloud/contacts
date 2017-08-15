@@ -276,6 +276,11 @@ angular.module('contactsApp')
 			setUrl: function(addressBook, uid) {
 				this.data.url = addressBook.url + uid + '.vcf';
 			},
+			setAddressBook: function(addressBook) {
+				this.addressBook = addressBook;
+				this.addressBookId = addressBook.displayName;
+				this.data.url = addressBook.url + this.uid() + '.vcf';
+			},
 
 			getISODate: function(date) {
 				function pad(number) {
