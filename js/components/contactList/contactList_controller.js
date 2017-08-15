@@ -86,7 +86,9 @@ angular.module('contactsApp')
 					gid: t('contacts', 'All contacts')
 				});
 			}
-			ctrl.contacts = ev.contacts;
+			if(ev.contacts.length !== 0) {
+				ctrl.contacts = ev.contacts;
+			}
 		}); });
 	});
 
