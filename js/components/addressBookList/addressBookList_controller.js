@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.controller('addressbooklistCtrl', function($scope, AddressBookService) {
+.controller('addressbooklistCtrl', function($scope, $timeout, AddressBookService) {
 	var ctrl = this;
 
 	ctrl.loading = true;

@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.service('ContactService', function(DavClient, AddressBookService, Contact, $q, CacheFactory, uuid4) {
+.service('ContactService', function(DavClient, AddressBookService, Contact, $q, $filter, CacheFactory, uuid4) {
 
 	var cacheFilled = false;
 
@@ -292,4 +292,22 @@ angular.module('contactsApp')
 			notifyObservers('delete', contact.uid());
 		});
 	};
+
+	this.updateDeletedAddressbook = function(callback) {
+		// Delete contacts which addressbook has been removed from cache
+		AddressBookService.getAll().then(function (enabledAddressBooks) {
+			var addressBooksIds = [];
+			angular.forEach(enabledAddressBooks, function(addressBook) {
+				addressBooksIds.push(addressBook.displayName);
+			});
+			angular.forEach(contacts.values(), function(contact) {
+				if (addressBooksIds.indexOf(contact.addressBookId) === -1) {
+					contacts.remove(contact.uid());
+					notifyObservers('delete', contact.uid());
+				}
+			});
+			callback();
+		});
+	};
+
 });

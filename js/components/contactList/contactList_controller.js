@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, $timeout, ContactService, SortByService, vCardPropertiesService, SearchService) {
+.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, $timeout, AddressBookService, ContactService, SortByService, vCardPropertiesService, SearchService) {
 	var ctrl = this;
 
 	ctrl.routeParams = $routeParams;
@@ -88,6 +88,18 @@ angular.module('contactsApp')
 			}
 			if(ev.contacts.length !== 0) {
 				ctrl.contacts = ev.contacts;
+			}
+		}); });
+	});
+
+	AddressBookService.registerObserverCallback(function(ev) {
+		$timeout(function () { $scope.$apply(function() {
+			if (ev.event === 'delete') {
+				// Get contacts
+				ctrl.loading = true;
+				ContactService.updateDeletedAddressbook(function() {
+					ctrl.loading = false;
+				});
 			}
 		}); });
 	});
