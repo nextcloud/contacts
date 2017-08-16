@@ -24,31 +24,31 @@
 		 outside-if-not=".openMenuButton, .popovermenu">
 		<ul>
 			<li>
-				<button class="addressbookurl-copy btn"
+				<a class="addressbookurl-copy btn"
 						ngclipboard ngclipboard-success="ctrl.clipboardSuccess()" ngclipboard-error="ctrl.clipboardError()"
 						data-clipboard-text="{{ctrl.addressBook.url}}"
 						tooltip-placement="right" uib-tooltip="{{ctrl.tooltipTitle}}" tooltip-append-to-body="true">
 					<span class="icon icon-public"></span>
 					<span>{{ctrl.t.copyURL}}</span>
-				</button>
+				</a>
 			</li>
 			<li ng-show="ctrl.canExport">
-				<a href="{{ctrl.addressBook.url}}?export" id="download_{{$id}}" title="{{ctrl.t.download}}">
+				<a href="{{ctrl.addressBook.url}}?export" id="download_{{$id}}">
 					<span class="icon icon-download"></span>
 					<span>{{ctrl.t.download}}</span>
 				</a>
 			</li>
 			<li>
-				<button ng-click="ctrl.edit()">
+				<a ng-click="ctrl.edit()">
 					<span class="icon icon-rename"></span>
 					<span>{{ctrl.t.renameAddressbook}}</span>
-				</button>
+				</a>
 			</li>
 			<li ng-if="ctrl.list.length > 1">
-				<button ng-click="ctrl.deleteAddressBook()">
+				<a ng-click="ctrl.deleteAddressBook()">
 					<span class="icon icon-delete"></span>
 					<span>{{ctrl.t.deleteAddressbook}}</span>
-				</button>
+				</a>
 			</li>
 		</ul>
 	</div>
