@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "தொடர்புகள்",
-    "Import" : "இறக்குமதி",
     "Name" : "பெயர்",
     "Organization" : "நிறுவனம்",
     "Title" : "தலைப்பு",

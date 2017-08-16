@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "ข้อมูลผู้ติดต่อ",
     "Address book name" : "สมุดชื่อที่อยู่",
-    "Import" : "นำเข้า",
     "The selected image is too big (max 1MB)" : "รูปภาพที่เลือกมีขนาดใหญ่เกินไป (ขนาดไม่ควรเกิน 1 เมกะไบต์)",
     "No contacts in here" : "ไม่มีรายชื่อในที่นี่",
     "Name" : "ชื่อ",
@@ -11,6 +10,7 @@ OC.L10N.register(
     "Title" : "ชื่อเรื่อง",
     "Add field ..." : "เพิ่มช่อง ...",
     "No search result for {query}" : "ไม่พบผลลัพธ์การค้นหาสำหรับ {query}",
+    "All contacts" : "รายชื่อทั้งหมด",
     "Post office box" : "กล่องจดหมาย",
     "Postal code" : "รหัสไปรษณีย์",
     "City" : "เมือง",
@@ -24,7 +24,6 @@ OC.L10N.register(
     "Prefix" : "คำนำหน้า",
     "Suffix" : "คำต่อท้าย",
     "New contact" : "รายชื่อผุ้ติดต่อใหม่",
-    "All contacts" : "รายชื่อทั้งหมด",
     "Not grouped" : "ไม่ถูกจัดกลุ่ม",
     "{addressbook} shared by {owner}" : "{addressbook} ถูกแชร์โดย {owner}",
     "Contact could not be created." : "ไม่สามารถสร้างรายชื่อผู้ติดต่อ",

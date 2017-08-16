@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "ئالاقەداشلار",
-    "Import" : "ئەكىر",
     "Name" : "ئاتى",
     "Organization" : "تەشكىلات",
     "Title" : "ماۋزۇ",

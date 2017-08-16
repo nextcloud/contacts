@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Contactos",
     "Address book name" : "Nome do livro de endereços",
-    "Import" : "Importar",
     "The selected image is too big (max 1MB)" : "A imagem selecionada é demasiado grande (max 1MB)",
     "No contacts in here" : "Nenhum contacto aqui",
     "Name" : "Nome",
@@ -11,6 +10,7 @@ OC.L10N.register(
     "Title" : "Título ",
     "Add field ..." : "Adicionar campo ...",
     "No search result for {query}" : "Sem resultados de pesquisa para {query}",
+    "All contacts" : "Todos os contactos",
     "Post office box" : "Apartado",
     "Postal code" : "Código Postal",
     "City" : "Cidade",
@@ -24,7 +24,6 @@ OC.L10N.register(
     "Prefix" : "Prefixo",
     "Suffix" : "Sufixo",
     "New contact" : "Novo contacto",
-    "All contacts" : "Todos os contactos",
     "Not grouped" : "Não agrupados",
     "{addressbook} shared by {owner}" : "{addressbook} partilhado por {owner}",
     "Contact could not be created." : "Não foi possível criar o contacto.",

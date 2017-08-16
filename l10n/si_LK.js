@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "සබඳතා",
-    "Import" : "ආයාත කරන්න",
     "Name" : "නම",
     "Organization" : "ආයතනය",
     "Title" : "මාතෘකාව",

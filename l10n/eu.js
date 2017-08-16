@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Kontaktuak",
     "Address book name" : "Agenda izena",
-    "Import" : "Inportatu",
     "The selected image is too big (max 1MB)" : "Aukeratutako irudia handiegia da (max 1MB)",
     "No contacts in here" : "Kontakturik ez dago",
     "Name" : "Izena",
@@ -11,6 +10,7 @@ OC.L10N.register(
     "Title" : "Izenburua",
     "Add field ..." : "Eremua gehitu...",
     "No search result for {query}" : "{query} bilaketak ez du emaitzarik heman",
+    "All contacts" : "Kontaktu guztiak",
     "Post office box" : "Posta kutxatila",
     "Postal code" : "Posta kodea",
     "City" : "Hiria",
@@ -24,7 +24,6 @@ OC.L10N.register(
     "Prefix" : "Aurrizkia",
     "Suffix" : "Atzizkia",
     "New contact" : "Kontaktu berria",
-    "All contacts" : "Kontaktu guztiak",
     "Not grouped" : "Taldekatu gabe",
     "{addressbook} shared by {owner}" : "{addressbook} shared by {owner}",
     "Contact could not be created." : "Kontaktua ezin izan da sortu.",

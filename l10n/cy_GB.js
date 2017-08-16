@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Cysylltiadau",
-    "Import" : "Mewnforio",
     "Name" : "Enw",
     "Organization" : "Sefydliad",
     "Title" : "Teitl",

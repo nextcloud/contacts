@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Hubungi ",
-    "Import" : "Import",
     "Name" : "Nama",
     "Organization" : "Organisasi",
     "Title" : "Judul",

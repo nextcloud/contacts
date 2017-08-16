@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "კონტაქტები",
-    "Import" : "იმპორტი",
     "Name" : "სახელი",
     "Organization" : "ორგანიზაცია",
     "Title" : "სახელი",

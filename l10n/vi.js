@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Danh bạ",
-    "Import" : "Nhập vào",
     "Name" : "Tên",
     "Organization" : "Tổ chức",
     "Title" : "Tiêu đề",

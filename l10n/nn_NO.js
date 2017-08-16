@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontaktar",
-    "Import" : "Importer",
     "Name" : "Namn",
     "Organization" : "Organisasjon",
     "Title" : "Tittel",

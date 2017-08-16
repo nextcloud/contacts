@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "ارتباط‌ها",
-    "Import" : "وارد کردن",
     "Name" : "نام",
     "Organization" : "نهاد(ارگان)",
     "Title" : "عنوان",
