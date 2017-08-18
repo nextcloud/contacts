@@ -25,6 +25,8 @@ OC.L10N.register(
     "Add field ..." : "Lisää kenttä...",
     "Save changes" : "Tallenna muutokset",
     "Address book" : "Osoitekirja",
+    "Importing..." : "Tuodaan...",
+    "Select your addressbook" : "Valitse osoitekirja",
     "No search result for {query}" : "Ei tuloksia haulle {query}",
     "All contacts" : "Kaikki yhteystiedot",
     "Post office box" : "Postilokero",
