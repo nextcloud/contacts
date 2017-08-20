@@ -303,10 +303,10 @@ angular.module('contactsApp')
 			angular.forEach(contacts.values(), function(contact) {
 				if (addressBooksIds.indexOf(contact.addressBookId) === -1) {
 					contacts.remove(contact.uid());
-					notifyObservers('delete', contact.uid());
 				}
 			});
 			callback();
+			notifyObservers('groupsUpdate');
 		});
 	};
 
