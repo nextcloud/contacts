@@ -56,7 +56,7 @@ angular.module('contactsApp')
 	ctrl.loading = true;
 
 	ContactService.registerObserverCallback(function(ev) {
-		$timeout(function () { $scope.$apply(function() {
+		$timeout(function() { $scope.$apply(function() {
 			if (ev.event === 'delete') {
 				if (ctrl.contactList.length === 1) {
 					$route.updateParams({
@@ -93,7 +93,7 @@ angular.module('contactsApp')
 	});
 
 	AddressBookService.registerObserverCallback(function(ev) {
-		$timeout(function () { $scope.$apply(function() {
+		$timeout(function() { $scope.$apply(function() {
 			if (ev.event === 'delete') {
 				// Get contacts
 				ctrl.loading = true;
