@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.service('ContactService', function(DavClient, AddressBookService, Contact, $q, $filter, CacheFactory, uuid4) {
+.service('ContactService', function(DavClient, AddressBookService, Contact, $q, CacheFactory, uuid4) {
 
 	var cacheFilled = false;
 
