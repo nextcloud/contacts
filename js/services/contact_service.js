@@ -252,14 +252,23 @@ angular.module('contactsApp')
 			return;
 		}
 		contact.syncVCard();
-		var clone = angular.copy(contact);
 		var uid = contact.uid();
 
-		// delete the old one before to avoid conflict
-		this.delete(contact);
-
-		// create the contact in the new target addressbook
-		this.create(clone, addressbook, uid);
+		// Delete on server
+		DavClient.deleteCard(contact.data).then(function() {
+			// Create new on server
+			DavClient.createCard(
+				addressbook,
+				{
+					data: contact.data.addressData,
+					filename: uid + '.vcf'
+				}
+			).then(function(xhr) {
+				// Edit local cached contact
+				contact.setETag(xhr.getResponseHeader('ETag'));
+				contact.setAddressBook(addressbook);
+			});
+		});
 	};
 
 	this.update = function(contact) {
