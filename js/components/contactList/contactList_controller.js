@@ -59,7 +59,7 @@ angular.module('contactsApp')
 		$timeout(function() {
 			$scope.$apply(function() {
 				if (ev.event === 'delete') {
-					ctrl.getFirstContact(ev.uid);
+					ctrl.selectNearestContact(ev.uid);
 				}
 				else if (ev.event === 'create') {
 					$route.updateParams({
@@ -89,7 +89,7 @@ angular.module('contactsApp')
 						ContactService.getAll().then(function(contacts) {
 							ctrl.contacts = contacts;
 							ctrl.loading = false;
-							ctrl.getFirstContact(ctrl.getSelectedId());
+							ctrl.selectNearestContact(ctrl.getSelectedId());
 						});
 					});
 				}
@@ -240,7 +240,7 @@ angular.module('contactsApp')
 		return $routeParams.uid;
 	};
 
-	ctrl.getFirstContact = function(contactId) {
+	ctrl.selectNearestContact = function(contactId) {
 		if (ctrl.contactList.length === 1) {
 			$route.updateParams({
 				gid: $routeParams.gid,
