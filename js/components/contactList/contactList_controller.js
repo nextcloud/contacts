@@ -56,41 +56,45 @@ angular.module('contactsApp')
 	ctrl.loading = true;
 
 	ContactService.registerObserverCallback(function(ev) {
-		$timeout(function() { $scope.$apply(function() {
-			if (ev.event === 'delete') {
-				ctrl.getFirstContact(ev.uid);
-			}
-			else if (ev.event === 'create') {
-				$route.updateParams({
-					gid: $routeParams.gid,
-					uid: ev.uid
-				});
-			}
-			else if (ev.event === 'importend') {
-				$route.updateParams({
-					gid: t('contacts', 'All contacts')
-				});
-			}
-			if(ev.contacts.length !== 0) {
-				ctrl.contacts = ev.contacts;
-			}
-		}); });
+		$timeout(function() {
+			$scope.$apply(function() {
+				if (ev.event === 'delete') {
+					ctrl.getFirstContact(ev.uid);
+				}
+				else if (ev.event === 'create') {
+					$route.updateParams({
+						gid: $routeParams.gid,
+						uid: ev.uid
+					});
+				}
+				else if (ev.event === 'importend') {
+					$route.updateParams({
+						gid: t('contacts', 'All contacts')
+					});
+				}
+				if(ev.contacts.length !== 0) {
+					ctrl.contacts = ev.contacts;
+				}
+			});
+		});
 	});
 
 	AddressBookService.registerObserverCallback(function(ev) {
-		$timeout(function() { $scope.$apply(function() {
-			if (ev.event === 'delete') {
-				// Get contacts
-				ctrl.loading = true;
-				ContactService.updateDeletedAddressbook(function() {
-					ContactService.getAll().then(function(contacts) {
-						ctrl.contacts = contacts;
-						ctrl.loading = false;
-						ctrl.getFirstContact(ctrl.getSelectedId());
+		$timeout(function() {
+			$scope.$apply(function() {
+				if (ev.event === 'delete') {
+					// Get contacts
+					ctrl.loading = true;
+					ContactService.updateDeletedAddressbook(function() {
+						ContactService.getAll().then(function(contacts) {
+							ctrl.contacts = contacts;
+							ctrl.loading = false;
+							ctrl.getFirstContact(ctrl.getSelectedId());
+						});
 					});
-				});
-			}
-		}); });
+				}
+			});
+		});
 	});
 
 	// Get contacts
