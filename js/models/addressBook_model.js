@@ -57,14 +57,5 @@ angular.module('contactsApp')
 				}
 			}
 		}
-
-		//var owner = this.data.props.owner;
-		//if (typeof owner !== 'undefined' && owner.length !== 0) {
-		//	owner = owner.trim();
-		//	if (owner.startsWith('/remote.php/dav/principals/users/')) {
-		//		this._properties.owner = owner.substr(33);
-		//	}
-		//}
-
 	};
 });
