@@ -25,7 +25,7 @@ angular.module('contactsApp')
 		});
 		angular.extend(this, data);
 		angular.extend(this, {
-			owner: data.url.split('/').slice(-3, -2)[0]
+			owner: data.data.props.owner.split('/').slice(-2, -1)[0]
 		});
 
 		var shares = this.data.props.invite;
