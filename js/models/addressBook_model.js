@@ -7,6 +7,7 @@ angular.module('contactsApp')
 			displayName: '',
 			contacts: [],
 			groups: data.data.props.groups,
+			readOnly: data.data.props.readOnly === '1',
 
 			getContact: function(uid) {
 				for(var i in this.contacts) {
