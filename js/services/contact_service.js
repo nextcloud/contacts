@@ -251,6 +251,10 @@ angular.module('contactsApp')
 		if (contact.addressBookId === addressbook.displayName) {
 			return;
 		}
+		if(addressbook.readOnly) {
+			OC.Notification.showTemporary(t('contacts', 'You don\'t have permission to write to this addressbook.'));
+			return;
+		}
 		contact.syncVCard();
 		var uid = contact.uid();
 
