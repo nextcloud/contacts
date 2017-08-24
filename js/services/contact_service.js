@@ -39,7 +39,6 @@ angular.module('contactsApp')
 			// Get our full vCards
 			enabledAddressBooks.forEach(function(addressBook) {
 				if(angular.isArray(xhrAddressBooks[addressBook.displayName])) {
-					console.log('Contacts found for: '+addressBook.displayName);
 					var promise = DavClient.getContacts(addressBook, {}, xhrAddressBooks[addressBook.displayName]).then(
 						function (vcards) {
 							return vcards.map(function (vcard) {
