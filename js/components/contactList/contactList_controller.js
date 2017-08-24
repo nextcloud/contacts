@@ -160,8 +160,8 @@ angular.module('contactsApp')
 			if(ctrl.loading && $(window).width() > 768) {
 				ctrl.setSelectedId(ctrl.contactList[0].uid());
 			}
-			var firstNames = ctrl.contactList.slice(0, 20).map(function (c) { return c.displayName(); });
-			ContactService.getFullContacts(firstNames);
+			// Get full data for the first 20 contacts of the list
+			ContactService.getFullContacts(ctrl.contactList.slice(0, 20));
 			ctrl.loading = false;
 			unbindListWatch();
 		}
