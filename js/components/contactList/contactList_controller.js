@@ -108,37 +108,23 @@ angular.module('contactsApp')
 		}
 	});
 
-	var getVisibleNames = function getVisibleNames() {
-		function isScrolledIntoView(el) {
-			var elemTop = el.getBoundingClientRect().top;
-			var elemBottom = el.getBoundingClientRect().bottom;
+	var getVisibleContacts = function() {
+		var scrolled = $('.app-content-list').scrollTop();
+		var elHeight = $('.contacts-list').children().outerHeight(true);
+		var listHeight = $('.app-content-list').height();
 
-			var bothAboveViewport = elemBottom < 0;
-			var bothBelowViewPort = elemTop > window.innerHeight;
-			var isVisible = !bothAboveViewport && !bothBelowViewPort;
-			return isVisible;
-		}
+		var topContact = Math.round(scrolled/elHeight-1);
+		var contactsCount = Math.round(listHeight/elHeight+1);
 
-		var elements = Array.prototype.slice.call(document.querySelectorAll('.contact__icon:not(.ng-hide)'));
-		var names = elements
-				.filter(isScrolledIntoView)
-				.map(function (el) {
-					var siblings = Array.prototype.slice.call(el.parentElement.children);
-					var nameElement = siblings.find(function (sibling) {
-						return sibling.getAttribute('class').indexOf('content-list-item-line-one') !== -1;
-					});
-					return nameElement.innerText;
-
-				});
-		return names;
+		return ctrl.contactList.slice(topContact, topContact+contactsCount);
 	};
 
 	var timeoutId = null;
 	document.querySelector('.app-content-list').addEventListener('scroll', function () {
 		clearTimeout(timeoutId);
 		timeoutId = setTimeout(function () {
-			var names = getVisibleNames();
-			ContactService.getFullContacts(names);
+			var contacts = getVisibleContacts();
+			ContactService.getFullContacts(contacts);
 		}, 250);
 	});
 
