@@ -173,6 +173,7 @@ angular.module('contactsApp')
 			newContact = newContact || new Contact(addressBook);
 		} catch(error) {
 			OC.Notification.showTemporary(t('contacts', 'Contact could not be created.'));
+			return;
 		}
 		var newUid = '';
 		if(uuid4.validate(uid)) {
