@@ -7,7 +7,7 @@
 		   theme="select2" class="form-control" title="{{ctrl.t.selectAddressbook}}"
 		   uis-open-close="ctrl.stopHideMenu(isOpen)" ng-class="{'icon-loading-small': ctrl.loading}">
 	<ui-select-match placeholder="{{ctrl.t.selectAddressbook}}">{{$select.selected.displayName}}</ui-select-match>
-	<ui-select-choices repeat="addressBook in ctrl.addressBooks | filter: {displayName: $select.search}">
+	<ui-select-choices repeat="addressBook in ctrl.addressBooks | filter: {readOnly: false} | filter: {displayName: $select.search}">
 		{{addressBook.displayName}}
 	</ui-select-choices>
 </ui-select>
