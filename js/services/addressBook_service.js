@@ -4,6 +4,18 @@ angular.module('contactsApp')
 	var addressBooks = [];
 	var loadPromise = undefined;
 
+	var observerCallbacks = [];
+
+	var notifyObservers = function(eventName) {
+		var ev = {
+			event: eventName,
+			addressBooks: addressBooks
+		};
+		angular.forEach(observerCallbacks, function(callback) {
+			callback(ev);
+		});
+	};
+
 	var loadAll = function() {
 		if (addressBooks.length > 0) {
 			return $q.when(addressBooks);
@@ -20,6 +32,10 @@ angular.module('contactsApp')
 	};
 
 	return {
+		registerObserverCallback: function(callback) {
+			observerCallbacks.push(callback);
+		},
+
 		getAll: function() {
 			return loadAll().then(function() {
 				return addressBooks;
@@ -64,6 +80,7 @@ angular.module('contactsApp')
 				return DavClient.deleteAddressBook(addressBook).then(function() {
 					var index = addressBooks.indexOf(addressBook);
 					addressBooks.splice(index, 1);
+					notifyObservers('delete');
 				});
 			});
 		},

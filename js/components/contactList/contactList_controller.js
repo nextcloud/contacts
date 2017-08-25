@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, $timeout, ContactService, SortByService, vCardPropertiesService, SearchService) {
+.controller('contactlistCtrl', function($scope, $filter, $route, $routeParams, $timeout, AddressBookService, ContactService, SortByService, vCardPropertiesService, SearchService) {
 	var ctrl = this;
 
 	ctrl.routeParams = $routeParams;
@@ -56,40 +56,45 @@ angular.module('contactsApp')
 	ctrl.loading = true;
 
 	ContactService.registerObserverCallback(function(ev) {
-		$timeout(function () { $scope.$apply(function() {
-			if (ev.event === 'delete') {
-				if (ctrl.contactList.length === 1) {
+		$timeout(function() {
+			$scope.$apply(function() {
+				if (ev.event === 'delete') {
+					ctrl.selectNearestContact(ev.uid);
+				}
+				else if (ev.event === 'create') {
 					$route.updateParams({
 						gid: $routeParams.gid,
-						uid: undefined
+						uid: ev.uid
 					});
-				} else {
-					for (var i = 0, length = ctrl.contactList.length; i < length; i++) {
-						if (ctrl.contactList[i].uid() === ev.uid) {
-							$route.updateParams({
-								gid: $routeParams.gid,
-								uid: (ctrl.contactList[i+1]) ? ctrl.contactList[i+1].uid() : ctrl.contactList[i-1].uid()
-							});
-							break;
-						}
-					}
 				}
-			}
-			else if (ev.event === 'create') {
-				$route.updateParams({
-					gid: $routeParams.gid,
-					uid: ev.uid
-				});
-			}
-			else if (ev.event === 'importend') {
-				$route.updateParams({
-					gid: t('contacts', 'All contacts')
-				});
-			}
-			if(ev.contacts.length !== 0) {
-				ctrl.contacts = ev.contacts;
-			}
-		}); });
+				else if (ev.event === 'importend') {
+					$route.updateParams({
+						gid: t('contacts', 'All contacts')
+					});
+				}
+				if(ev.contacts.length !== 0) {
+					ctrl.contacts = ev.contacts;
+				}
+			});
+		});
+	});
+
+	AddressBookService.registerObserverCallback(function(ev) {
+		$timeout(function() {
+			$scope.$apply(function() {
+				if (ev.event === 'delete') {
+					// Get contacts
+					ctrl.loading = true;
+					ContactService.updateDeletedAddressbook(function() {
+						ContactService.getAll().then(function(contacts) {
+							ctrl.contacts = contacts;
+							ctrl.loading = false;
+							ctrl.selectNearestContact(ctrl.getSelectedId());
+						});
+					});
+				}
+			});
+		});
 	});
 
 	// Get contacts
@@ -103,37 +108,23 @@ angular.module('contactsApp')
 		}
 	});
 
-	var getVisibleNames = function getVisibleNames() {
-		function isScrolledIntoView(el) {
-			var elemTop = el.getBoundingClientRect().top;
-			var elemBottom = el.getBoundingClientRect().bottom;
+	var getVisibleContacts = function() {
+		var scrolled = $('.app-content-list').scrollTop();
+		var elHeight = $('.contacts-list').children().outerHeight(true);
+		var listHeight = $('.app-content-list').height();
 
-			var bothAboveViewport = elemBottom < 0;
-			var bothBelowViewPort = elemTop > window.innerHeight;
-			var isVisible = !bothAboveViewport && !bothBelowViewPort;
-			return isVisible;
-		}
+		var topContact = Math.round(scrolled/elHeight);
+		var contactsCount = Math.round(listHeight/elHeight);
 
-		var elements = Array.prototype.slice.call(document.querySelectorAll('.contact__icon:not(.ng-hide)'));
-		var names = elements
-				.filter(isScrolledIntoView)
-				.map(function (el) {
-					var siblings = Array.prototype.slice.call(el.parentElement.children);
-					var nameElement = siblings.find(function (sibling) {
-						return sibling.getAttribute('class').indexOf('content-list-item-line-one') !== -1;
-					});
-					return nameElement.innerText;
-
-				});
-		return names;
+		return ctrl.contactList.slice(topContact-1, topContact+contactsCount+1);
 	};
 
 	var timeoutId = null;
 	document.querySelector('.app-content-list').addEventListener('scroll', function () {
 		clearTimeout(timeoutId);
 		timeoutId = setTimeout(function () {
-			var names = getVisibleNames();
-			ContactService.getFullContacts(names);
+			var contacts = getVisibleContacts();
+			ContactService.getFullContacts(contacts);
 		}, 250);
 	});
 
@@ -155,8 +146,8 @@ angular.module('contactsApp')
 			if(ctrl.loading && $(window).width() > 768) {
 				ctrl.setSelectedId(ctrl.contactList[0].uid());
 			}
-			var firstNames = ctrl.contactList.slice(0, 20).map(function (c) { return c.displayName(); });
-			ContactService.getFullContacts(firstNames);
+			// Get full data for the first 20 contacts of the list
+			ContactService.getFullContacts(ctrl.contactList.slice(0, 20));
 			ctrl.loading = false;
 			unbindListWatch();
 		}
@@ -233,6 +224,26 @@ angular.module('contactsApp')
 
 	ctrl.getSelectedId = function() {
 		return $routeParams.uid;
+	};
+
+	ctrl.selectNearestContact = function(contactId) {
+		if (ctrl.contactList.length === 1) {
+			$route.updateParams({
+				gid: $routeParams.gid,
+				uid: undefined
+			});
+		} else {
+			for (var i = 0, length = ctrl.contactList.length; i < length; i++) {
+				// Get nearest contact
+				if (ctrl.contactList[i].uid() === contactId) {
+					$route.updateParams({
+						gid: $routeParams.gid,
+						uid: (ctrl.contactList[i+1]) ? ctrl.contactList[i+1].uid() : ctrl.contactList[i-1].uid()
+					});
+					break;
+				}
+			}
+		}
 	};
 
 });

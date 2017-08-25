@@ -12,14 +12,16 @@ angular.module('contactsApp')
 		return $routeParams.gid;
 	};
 
-	// Update groupList on contact add/delete/update
+	// Update groupList on contact add/delete/update/groupsUpdate
 	ContactService.registerObserverCallback(function(ev) {
 		if (ev.event !== 'getFullContacts') {
-			$timeout(function () { $scope.$apply(function() {
-				ContactService.getGroupList().then(function(groups) {
-					ctrl.groups = groups;
+			$timeout(function () {
+				$scope.$apply(function() {
+					ContactService.getGroupList().then(function(groups) {
+						ctrl.groups = groups;
+					});
 				});
-			}); });
+			});
 		}
 	});
 

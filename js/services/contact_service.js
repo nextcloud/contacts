@@ -4,7 +4,6 @@ angular.module('contactsApp')
 	var cacheFilled = false;
 
 	var contacts = CacheFactory('contacts');
-	var urlsByDisplayname = CacheFactory('urlsByDisplayname');
 
 	var observerCallbacks = [];
 
@@ -25,25 +24,33 @@ angular.module('contactsApp')
 		});
 	};
 
-	this.getFullContacts = function getFullContacts(names) {
+	this.getFullContacts = function(contacts) {
 		AddressBookService.getAll().then(function (enabledAddressBooks) {
 			var promises = [];
-			enabledAddressBooks.forEach(function (addressBook) {
-				var urlLists = names.map(function (name) { return urlsByDisplayname.get(name); });
-				var urls = [].concat.apply([], urlLists);
-				var promise = DavClient.getContacts(addressBook, {}, urls)
-						.then(
-							function (vcards) {
-								return vcards.map(function (vcard) {
-									return new Contact(addressBook, vcard);
-								});
-							})
-						.then(function (contacts_) {
+			var xhrAddressBooks = [];
+			contacts.forEach(function (contact) {
+				// Regroup urls by addressbooks
+				if(enabledAddressBooks.indexOf(contact.data.addressBook) !== -1) {
+					// Initiate array if no exists
+					xhrAddressBooks[contact.addressBookId] = xhrAddressBooks[contact.addressBookId] || [];
+					xhrAddressBooks[contact.addressBookId].push(contact.data.url);
+				}
+			});
+			// Get our full vCards
+			enabledAddressBooks.forEach(function(addressBook) {
+				if(angular.isArray(xhrAddressBooks[addressBook.displayName])) {
+					var promise = DavClient.getContacts(addressBook, {}, xhrAddressBooks[addressBook.displayName]).then(
+						function (vcards) {
+							return vcards.map(function (vcard) {
+								return new Contact(addressBook, vcard);
+							});
+						}).then(function (contacts_) {
 							contacts_.map(function (contact) {
 								contacts.put(contact.uid(), contact);
 							});
 						});
-				promises.push(promise);
+					promises.push(promise);
+				}
 			});
 			$q.all(promises).then(function () {
 				notifyObservers('getFullContacts', '');
@@ -62,8 +69,6 @@ angular.module('contactsApp')
 								if (addressBook.objects[i].addressData) {
 									var contact = new Contact(addressBook, addressBook.objects[i]);
 									contacts.put(contact.uid(), contact);
-									var oldList = urlsByDisplayname.get(contact.displayName()) || [];
-									urlsByDisplayname.put(contact.displayName(), oldList.concat(contact.data.url));
 								} else {
 									// eslint-disable-next-line no-console
 									console.log('Invalid contact received: ' + addressBook.objects[i].url);
@@ -301,4 +306,22 @@ angular.module('contactsApp')
 			notifyObservers('delete', contact.uid());
 		});
 	};
+
+	this.updateDeletedAddressbook = function(callback) {
+		// Delete contacts which addressbook has been removed from cache
+		AddressBookService.getAll().then(function (enabledAddressBooks) {
+			var addressBooksIds = [];
+			angular.forEach(enabledAddressBooks, function(addressBook) {
+				addressBooksIds.push(addressBook.displayName);
+			});
+			angular.forEach(contacts.values(), function(contact) {
+				if (addressBooksIds.indexOf(contact.addressBookId) === -1) {
+					contacts.remove(contact.uid());
+				}
+			});
+			callback();
+			notifyObservers('groupsUpdate');
+		});
+	};
+
 });
