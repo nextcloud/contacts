@@ -146,7 +146,7 @@ angular.module('contactsApp')
 			options: [
 				{id: 'M', name: t('contacts', 'Male')},
 				{id: 'F', name: t('contacts', 'Female')},
-				{id: 'O', name: t('contacts', 'intersex')}
+				{id: 'O', name: t('contacts', 'Other')}
 			]
 		}
 	};
