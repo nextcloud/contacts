@@ -1,8 +1,10 @@
-<input type="file" id="contact-import" class="hidden-visually" multiple/>
-<label for="contact-import" class="button {{ctrl.loadingClass}}" ng-class="{'no-select': ctrl.addressBooks.length === 1}" id="upload">
-	{{ctrl.importText}}
-	<span ng-if="ctrl.addressBooks.length === 1 && !ctrl.importing" ng-class="{'icon-loading-small': ctrl.loading}">{{ctrl.selectedAddressBook.displayName}}</span>
-</label>
+<span ng-if="!(ctrl.addressBooks.length===1 && ctrl.addressBooks[0].readOnly)">
+	<input type="file" id="contact-import" class="hidden-visually" multiple />
+	<label for="contact-import" class="button {{ctrl.loadingClass}}" ng-class="{'no-select': ctrl.addressBooks.length === 1}" id="upload">
+		{{ctrl.importText}}
+		<span ng-if="ctrl.addressBooks.length === 1 && !ctrl.importing" ng-class="{'icon-loading-small': ctrl.loading}">{{ctrl.selectedAddressBook.displayName}}</span>
+	</label>
+</span>
 <ui-select ng-model="ctrl.selectedAddressBook" ng-if="ctrl.addressBooks.length > 1" search-enabled="ctrl.addressBooks.length > 4" 
 		   theme="select2" class="form-control" title="{{ctrl.t.selectAddressbook}}"
 		   uis-open-close="ctrl.stopHideMenu(isOpen)" ng-class="{'icon-loading-small': ctrl.loading}">
