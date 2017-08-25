@@ -113,10 +113,10 @@ angular.module('contactsApp')
 		var elHeight = $('.contacts-list').children().outerHeight(true);
 		var listHeight = $('.app-content-list').height();
 
-		var topContact = Math.round(scrolled/elHeight-1);
-		var contactsCount = Math.round(listHeight/elHeight+1);
+		var topContact = Math.round(scrolled/elHeight);
+		var contactsCount = Math.round(listHeight/elHeight);
 
-		return ctrl.contactList.slice(topContact, topContact+contactsCount);
+		return ctrl.contactList.slice(topContact-1, topContact+contactsCount+1);
 	};
 
 	var timeoutId = null;
