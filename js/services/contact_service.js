@@ -49,9 +49,9 @@ angular.module('contactsApp')
 								contact.validate('rev');
 								contact.validate('prodid');
 								contact.validate('version');
-								if(contact.failedProps.indexOf('rev')
-									|| contact.failedProps.indexOf('prodid')
-									|| contact.failedProps.indexOf('version')) {
+								if(contact.failedProps.indexOf('rev') !== -1
+									|| contact.failedProps.indexOf('prodid') !== -1
+									|| contact.failedProps.indexOf('version') !== -1) {
 									// Can't use this in those nested functions
 									contactService.update(contact);
 								}
