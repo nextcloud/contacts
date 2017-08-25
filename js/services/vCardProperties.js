@@ -139,6 +139,15 @@ angular.module('contactsApp')
 
 			]
 
+		},
+		gender: {
+			readableName: t('contacts', 'Gender'),
+			template: 'select',
+			options: [
+				{id: 'F', name: t('contacts', 'Female')},
+				{id: 'M', name: t('contacts', 'Male')},
+				{id: 'O', name: t('contacts', 'Other')}
+			]
 		}
 	};
 
@@ -157,7 +166,8 @@ angular.module('contactsApp')
 		'X-SOCIALPROFILE',
 		'note',
 		'categories',
-		'role'
+		'role',
+		'gender'
 	];
 
 	this.fieldDefinitions = [];
