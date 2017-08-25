@@ -1,12 +1,11 @@
 angular.module('contactsApp')
 .service('ContactService', function(DavClient, AddressBookService, Contact, $q, CacheFactory, uuid4) {
 
+	var contactService = this;
+
 	var cacheFilled = false;
-
 	var contacts = CacheFactory('contacts');
-
 	var observerCallbacks = [];
-
 	var loadPromise = undefined;
 
 	this.registerObserverCallback = function(callback) {
@@ -46,6 +45,16 @@ angular.module('contactsApp')
 							});
 						}).then(function (contacts_) {
 							contacts_.map(function (contact) {
+								// Validate some fields
+								contact.validate('rev');
+								contact.validate('prodid');
+								contact.validate('version');
+								if(contact.failedProps.indexOf('rev')
+									|| contact.failedProps.indexOf('prodid')
+									|| contact.failedProps.indexOf('version')) {
+									// Can't use this in those nested functions
+									contactService.update(contact);
+								}
 								contacts.put(contact.uid(), contact);
 							});
 						});

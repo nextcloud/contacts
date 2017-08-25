@@ -367,9 +367,8 @@ angular.module('contactsApp')
 					if (!angular.isUndefined(this.props[prop])) {
 						if(this.props[prop].length > 1) {
 							this.props[prop] = [this.props[prop][0]];
-							// No user interraction wanted
-							this.syncVCard();
 							console.warn(this.uid()+': Too many '+prop+' fields. Saving this one only: ' + this.props[prop][0].value);
+							this.failedProps.push(prop);
 						}
 					}
 					break;
@@ -447,10 +446,5 @@ angular.module('contactsApp')
 				this.categories([property.value]);
 			}
 		}
-
-		// Validate some fields
-		this.validate('rev');
-		this.validate('prodid');
-		this.validate('version');
 	};
 });
