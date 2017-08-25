@@ -38,7 +38,8 @@
 			</div>
 			<div class="select-addressbook" ng-if="ctrl.addressBooks.length > 1">
 				<label for="details-addressbook">{{ctrl.t.addressBook}}</label>
-				<select ng-model="ctrl.addressBook" ng-change="ctrl.changeAddressBook(ctrl.addressBook)" id="details-addressbook" ng-options="book.displayName for book in ctrl.addressBooks">
+				<select ng-model="ctrl.addressBook" ng-change="ctrl.changeAddressBook(ctrl.addressBook)" id="details-addressbook"
+						ng-options="book.displayName for book in ctrl.addressBooks | filter: {readOnly: false}">
 				</select>
 			</div>
 			<select class="add-field" ng-model="ctrl.field" ng-change="ctrl.addField(ctrl.field)">
