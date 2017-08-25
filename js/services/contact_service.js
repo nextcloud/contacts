@@ -164,11 +164,11 @@ angular.module('contactsApp')
 	};
 
 	this.create = function(newContact, addressBook, uid, fromImport) {
+		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
 		if(addressBook.readOnly) {
 			OC.Notification.showTemporary(t('contacts', 'You don\'t have permission to write to this addressbook.'));
 			return;
 		}
-		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
 		try {
 			newContact = newContact || new Contact(addressBook);
 		} catch(error) {
