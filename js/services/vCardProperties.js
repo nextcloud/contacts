@@ -144,8 +144,8 @@ angular.module('contactsApp')
 			readableName: t('contacts', 'Gender'),
 			template: 'select',
 			options: [
-				{id: 'M', name: t('contacts', 'Male')},
 				{id: 'F', name: t('contacts', 'Female')},
+				{id: 'M', name: t('contacts', 'Male')},
 				{id: 'O', name: t('contacts', 'Other')}
 			]
 		}
