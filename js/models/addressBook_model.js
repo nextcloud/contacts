@@ -7,6 +7,7 @@ angular.module('contactsApp')
 			displayName: '',
 			contacts: [],
 			groups: data.data.props.groups,
+			readOnly: data.data.props.readOnly === '1',
 
 			getContact: function(uid) {
 				for(var i in this.contacts) {
@@ -25,7 +26,7 @@ angular.module('contactsApp')
 		});
 		angular.extend(this, data);
 		angular.extend(this, {
-			owner: data.url.split('/').slice(-3, -2)[0]
+			owner: data.data.props.owner.split('/').slice(-2, -1)[0]
 		});
 
 		var shares = this.data.props.invite;
@@ -57,14 +58,5 @@ angular.module('contactsApp')
 				}
 			}
 		}
-
-		//var owner = this.data.props.owner;
-		//if (typeof owner !== 'undefined' && owner.length !== 0) {
-		//	owner = owner.trim();
-		//	if (owner.startsWith('/remote.php/dav/principals/users/')) {
-		//		this._properties.owner = owner.substr(33);
-		//	}
-		//}
-
 	};
 });

@@ -165,10 +165,15 @@ angular.module('contactsApp')
 
 	this.create = function(newContact, addressBook, uid, fromImport) {
 		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
+		if(addressBook.readOnly) {
+			OC.Notification.showTemporary(t('contacts', 'You don\'t have permission to write to this addressbook.'));
+			return;
+		}
 		try {
 			newContact = newContact || new Contact(addressBook);
 		} catch(error) {
 			OC.Notification.showTemporary(t('contacts', 'Contact could not be created.'));
+			return;
 		}
 		var newUid = '';
 		if(uuid4.validate(uid)) {
@@ -247,8 +252,12 @@ angular.module('contactsApp')
 		}
 	};
 
-	this.moveContact = function (contact, addressbook) {
-		if (contact.addressBookId === addressbook.displayName) {
+	this.moveContact = function (contact, addressBook) {
+		if (contact.addressBookId === addressBook.displayName) {
+			return;
+		}
+		if(addressBook.readOnly) {
+			OC.Notification.showTemporary(t('contacts', 'You don\'t have permission to write to this addressbook.'));
 			return;
 		}
 		contact.syncVCard();
@@ -258,7 +267,7 @@ angular.module('contactsApp')
 		DavClient.deleteCard(contact.data).then(function() {
 			// Create new on server
 			DavClient.createCard(
-				addressbook,
+				addressBook,
 				{
 					data: contact.data.addressData,
 					filename: uid + '.vcf'
@@ -266,7 +275,7 @@ angular.module('contactsApp')
 			).then(function(xhr) {
 				// Edit local cached contact
 				contact.setETag(xhr.getResponseHeader('ETag'));
-				contact.setAddressBook(addressbook);
+				contact.setAddressBook(addressBook);
 			});
 		});
 	};
