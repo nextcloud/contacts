@@ -1618,9 +1618,8 @@ var listAddressBooks = _co2['default'].wrap(regeneratorRuntime.mark(function cal
       case 0:
         debug('Fetch address books from home url ' + account.homeUrl);
         req = request.propfind({
-          props: [{ name: 'displayname', namespace: ns.DAV }, { name: 'owner', namespace: ns.DAV }, { name: 'getctag', namespace: ns.CALENDAR_SERVER }, { name: 'resourcetype', namespace: ns.DAV }, { name: 'sync-token', namespace: ns.DAV },
+          props: [{ name: 'displayname', namespace: ns.DAV }, { name: 'owner', namespace: ns.DAV }, { name: 'getctag', namespace: ns.CALENDAR_SERVER }, { name: 'resourcetype', namespace: ns.DAV }, { name: 'sync-token', namespace: ns.DAV }, { name: 'read-only', namespace: ns.OC },
           //{ name: 'groups', namespace: ns.OC },
-          { name: 'read-only', namespace: ns.OC },
           { name: 'invite', namespace: ns.OC }],
           depth: 1
         });
