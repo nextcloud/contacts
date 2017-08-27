@@ -48,6 +48,7 @@ OC.L10N.register(
     "Sort by" : "Classificar por",
     "{addressbook} shared by {owner}" : "{addressbook} compartilhado por {owner}",
     "Contact not found." : "Contato não encontrado.",
+    "You don't have permission to write to this addressbook." : "Você não tem permissão para escrever neste livro de endereços.",
     "Contact could not be created." : "O contato não pôde ser criado.",
     "No contacts in file. Only vCard files are allowed." : "Sem contatos arquivados. Somente arquivos vCard são permitidos.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Somente vCard versão 4.0 (RFC6350) ou 3.0 (RFC2426) são suportados.",
@@ -76,6 +77,9 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Voz",
     "Social network" : "Rede social",
+    "Gender" : "Gênero",
+    "Female" : "Mulher",
+    "Male" : "Homem",
     "Details" : "Detalhes",
     "Settings" : "Configurações"
 },
