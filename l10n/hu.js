@@ -73,6 +73,9 @@ OC.L10N.register(
     "Pager" : "Személyhívó",
     "Voice" : "Hang",
     "Social network" : "Közösségi hálózat",
+    "Gender" : "Nem",
+    "Female" : "Nő",
+    "Male" : "Férfi",
     "Details" : "Részletek",
     "Settings" : "Beállítások"
 },

@@ -46,6 +46,7 @@
     "Sort by" : "Sortera efter",
     "{addressbook} shared by {owner}" : "{addressbook} delad av {owner}",
     "Contact not found." : "Kontakt inte funnen.",
+    "You don't have permission to write to this addressbook." : "Du har inte behörighet att skriva i denna adressbok.",
     "Contact could not be created." : "Kontakt kunde inte skapas",
     "No contacts in file. Only vCard files are allowed." : "Inga kontakter i fil. Bara vCard-filer är tillåtna.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Bara vCard version 4.0 (RFC6350) eller version 3.0 (RFC2426) stöds.",
@@ -74,6 +75,9 @@
     "Pager" : "Personsökare",
     "Voice" : "Röst",
     "Social network" : "Socialt nätverk",
+    "Gender" : "Kön",
+    "Female" : "Kvinna",
+    "Male" : "Man",
     "Details" : "Detaljer",
     "Settings" : "Inställningar"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

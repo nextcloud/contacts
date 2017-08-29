@@ -71,6 +71,9 @@
     "Pager" : "Személyhívó",
     "Voice" : "Hang",
     "Social network" : "Közösségi hálózat",
+    "Gender" : "Nem",
+    "Female" : "Nő",
+    "Male" : "Férfi",
     "Details" : "Részletek",
     "Settings" : "Beállítások"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

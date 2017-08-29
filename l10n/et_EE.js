@@ -48,6 +48,7 @@ OC.L10N.register(
     "Sort by" : "Sorteeri",
     "{addressbook} shared by {owner}" : "{owner} jagas aadressiraamatut {addressbook}",
     "Contact not found." : "Kontakte ei leitud",
+    "You don't have permission to write to this addressbook." : "Sul puudub selles aadressiraamatus kirjutamisõigus.",
     "Contact could not be created." : "Kontakti loomine ebaõnnestus.",
     "No contacts in file. Only vCard files are allowed." : "Failis pole kontakte. Lubatud on ainult VCard.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Ainult vCard versioon 4.0 (RFC6350) või versioon 3.0 (RFC2426) on toetatud.",
@@ -76,6 +77,9 @@ OC.L10N.register(
     "Pager" : "Piipar",
     "Voice" : "Hääl",
     "Social network" : "Sotsiaalvõrk",
+    "Gender" : "Sugu",
+    "Female" : "Naine",
+    "Male" : "Mees",
     "Details" : "Üksikasjad",
     "Settings" : "Seaded"
 },
