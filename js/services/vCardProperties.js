@@ -138,7 +138,24 @@ angular.module('contactsApp')
 				{id: 'TWITTER', name: 'Twitter'}
 
 			]
-
+		},
+		relationship: {
+			readableName: t('contacts', 'Relationship'),
+			template: 'select',
+			options: [
+				{id: 'SPOUSE', name: t('contacts', 'Spouse')},
+				{id: 'CHILD', name: t('contacts', 'Child')},
+				{id: 'MOTHER', name: t('contacts', 'Mother')},
+				{id: 'FATHER', name: t('contacts', 'Father')},
+				{id: 'PARENT', name: t('contacts', 'Parent')},
+				{id: 'BROTHER', name: t('contacts', 'Brother')},
+				{id: 'SISTER', name: t('contacts', 'Sister')},
+				{id: 'RELATIVE', name: t('contacts', 'Relative')},
+				{id: 'FRIEND', name: t('contacts', 'Friend')},
+				{id: 'COLLEAGUE', name: t('contacts', 'Colleague')},
+				{id: 'MANAGER', name: t('contacts', 'Manager')},
+				{id: 'ASSISTANT', name: t('contacts', 'Assistant')},
+			]
 		},
 		gender: {
 			readableName: t('contacts', 'Gender'),
@@ -164,6 +181,7 @@ angular.module('contactsApp')
 		'deathdate',
 		'url',
 		'X-SOCIALPROFILE',
+		'relationship',
 		'note',
 		'categories',
 		'role',
