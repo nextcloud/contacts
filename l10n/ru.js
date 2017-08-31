@@ -48,6 +48,7 @@ OC.L10N.register(
     "Sort by" : "Сортировать по",
     "{addressbook} shared by {owner}" : "{addressbook} поделился {owner}",
     "Contact not found." : "Контакт не найден.",
+    "You don't have permission to write to this addressbook." : "Недостаточно прав для записи в эту адресную книгу",
     "Contact could not be created." : "Не удалось создать контакт.",
     "No contacts in file. Only vCard files are allowed." : "В файле нет контактов. Допустимы только файлы формата vCard.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Поддерживается только формат vCard версии 4.0 (RFC6350) или версии 3.0 (RFC2426).",
@@ -76,6 +77,9 @@ OC.L10N.register(
     "Pager" : "Пейджер",
     "Voice" : "Голосовая почта",
     "Social network" : "Социальная сеть",
+    "Gender" : "Пол",
+    "Female" : "Женщина",
+    "Male" : "Мужчина",
     "Details" : "Подробно",
     "Settings" : "Настройки"
 },

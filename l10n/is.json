@@ -46,6 +46,7 @@
     "Sort by" : "Raða eftir",
     "{addressbook} shared by {owner}" : "{addressbook} deilt af {owner}",
     "Contact not found." : "Tengiliður fannst ekki.",
+    "You don't have permission to write to this addressbook." : "Þú hefur ekki heimild til að skrifa í þessa nafnaskrá.",
     "Contact could not be created." : "Ekki var hægt að búa til tengilið.",
     "No contacts in file. Only vCard files are allowed." : "Engir tengiliðir í skrá. Einungis er tekið við vCard-skrám.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Einungis vCard útgáfa 4.0 (RFC6350) eða útgáfa 3.0 (RFC2426) eru studdar.",
@@ -74,6 +75,9 @@
     "Pager" : "Símboði",
     "Voice" : "Raddskilaboð",
     "Social network" : "Samfélagsnet",
+    "Gender" : "Kyn",
+    "Female" : "Kona",
+    "Male" : "Karl",
     "Details" : "Nánar",
     "Settings" : "Stillingar"
 },"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
