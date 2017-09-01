@@ -74,6 +74,16 @@
     "Pager" : "ポケベル",
     "Voice" : "音声番号",
     "Social network" : "ソーシャルネットワーク",
+    "Child" : "子供",
+    "Mother" : "母親",
+    "Father" : "父親",
+    "Parent" : "両親",
+    "Brother" : "兄弟",
+    "Sister" : "姉妹",
+    "Friend" : "友人",
+    "Gender" : "性別",
+    "Female" : "女性",
+    "Male" : "男性",
     "Details" : "詳細",
     "Settings" : "設定"
 },"pluralForm" :"nplurals=1; plural=0;"
