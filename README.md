@@ -29,7 +29,7 @@ If you need assistance or want to ask a question about Contacts, you are welcome
 - [Hendrik Leppelsack](https://github.com/Henni)
 - [Jan-Christoph Borchardt](https://github.com/jancborchardt)
 - [Alexander Weidinger](https://github.com/irgendwie)
-- [Tom Needham](https://github.com/tomneedham)
+- [John Molakvoæ](https://github.com/skjnldsv)
 
 If you'd like to join, just go through the [issue list](https://github.com/nextcloud/contacts/issues) and fix some. :)
 
