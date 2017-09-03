@@ -222,7 +222,6 @@ avatar.maximized .avatar-options > [class^="icon-"] {
 /* General details item styles */
 
 detailsitem {
-	display: inline-block;
 	position: relative;
 }
 
@@ -273,7 +272,6 @@ detailsitem .item-action {
 	position: absolute;
 	padding: 8px 5px;
 	opacity: .5;
-	top: 2px;
 	right: 30px;
 }
 
