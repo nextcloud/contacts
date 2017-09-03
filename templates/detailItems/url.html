@@ -7,5 +7,6 @@
 	   ng-change="ctrl.model.updateContact()" value=""
 	   placeholder="https://…"
 	   focus-expression="$parent.ctrl.focus === ctrl.name"
+	   ng-disabled="ctrl.addressBook.readOnly"
 />
-<button ng-click="ctrl.deleteField()" class="icon-delete" title="{{ctrl.t.delete}}"></button>
+<button ng-click="ctrl.deleteField()" class="icon-delete" title="{{ctrl.t.delete}}" ng-if="!ctrl.addressBook.readOnly"></button>
