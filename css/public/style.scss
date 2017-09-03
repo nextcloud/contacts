@@ -220,7 +220,23 @@ avatar.maximized .avatar-options > [class^="icon-"] {
 }
 
 /* General details item styles */
-
+contactdetails {
+	select, button, input, textarea {
+		&:disabled {
+			background-color: transparent !important;
+			border-color: transparent !important;
+			opacity: 1 !important;
+			color: #545454 !important;
+		}
+	}
+	detailsitem > select:disabled {
+		background-image: none !important;
+		&:first-child {
+			opacity: 0.5 !important;
+			color: inherit !important;
+		}
+	}
+}
 detailsitem {
 	display: inline-block;
 	position: relative;
