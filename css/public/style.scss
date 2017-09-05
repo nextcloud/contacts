@@ -595,7 +595,7 @@ contactlist .tooltip {
 .app-content-list-item {
 	position: relative;
 	height: 68px;
-	border-top: 1px solid nc-darken($color-main-background, 18%);
+	border-top: 1px solid nc-darken($color-main-background, 10%);
 	cursor: pointer;
 }
 .app-content-list-item:hover,
