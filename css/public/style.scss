@@ -665,16 +665,6 @@ ul.addressBook-share-list {
 	height: calc(100% - 68px);
 }
 
-/* styling for contact count in contact list */
-.contacts-list-count {
-	text-align:center;
-	color: #333;
-	padding:25px;
-	position: relative;
-	height: 68px;
-	border-top: 1px solid nc-darken($color-main-background, 18%);
-}
-
 /* SELECT2 styling */
 detailsitem .select2-container {
 	width: 245px;
