@@ -364,12 +364,10 @@ angular.module('contactsApp')
 				case 'rev':
 				case 'prodid':
 				case 'version':
-					if (!angular.isUndefined(this.props[prop])) {
-						if(this.props[prop].length > 1) {
-							this.props[prop] = [this.props[prop][0]];
-							console.warn(this.uid()+': Too many '+prop+' fields. Saving this one only: ' + this.props[prop][0].value);
-							this.failedProps.push(prop);
-						}
+					if (!angular.isUndefined(this.props[prop]) && this.props[prop].length > 1) {
+						this.props[prop] = [this.props[prop][0]];
+						console.warn(this.uid()+': Too many '+prop+' fields. Saving this one only: ' + this.props[prop][0].value);
+						this.failedProps.push(prop);
 					}
 					break;
 
@@ -406,9 +404,13 @@ angular.module('contactsApp')
 							if (mime) {
 								this.failedProps.push(prop);
 								property.meta.type=[mime];
-								this.setProperty('photo', {value:property.value,
-														   meta:{type:property.meta.type,
-																 encoding:property.meta.encoding}});
+								this.setProperty('photo', {
+									value:property.value,
+									meta: {
+										type:property.meta.type,
+										encoding:property.meta.encoding
+									}
+								});
 								console.warn(this.uid()+': Photo detected as ' + property.meta.type);
 							} else {
 								this.failedProps.push(prop);
@@ -421,8 +423,17 @@ angular.module('contactsApp')
 					break;
 				}
 				return property;
-			}
+			},
 			/* eslint-enable no-console */
+
+			fix: function() {
+				this.validate('rev');
+				this.validate('version');
+				this.validate('prodid');
+				return this.failedProps.indexOf('rev') !== -1
+					|| this.failedProps.indexOf('prodid') !== -1
+					|| this.failedProps.indexOf('version') !== -1;
+			}
 
 		});
 

@@ -46,12 +46,7 @@ angular.module('contactsApp')
 						}).then(function (contacts_) {
 							contacts_.map(function (contact) {
 								// Validate some fields
-								contact.validate('rev');
-								contact.validate('prodid');
-								contact.validate('version');
-								if(contact.failedProps.indexOf('rev') !== -1
-									|| contact.failedProps.indexOf('prodid') !== -1
-									|| contact.failedProps.indexOf('version') !== -1) {
+								if(contact.fix()) {
 									// Can't use this in those nested functions
 									contactService.update(contact);
 								}
