@@ -30,7 +30,8 @@
 .contactdetails__header .contactdetails__org,
 .contactdetails__header .contactdetails__title {
 	font-size: inherit;
-	color: $color-main-text !important; /* override focus, active & hover */
+	/* Override focus, active & hover! */
+	color: #fff !important; /* No vars used on purpose since we use custom BGs */
 	background: transparent;
 	border: none;
 	text-overflow: ellipsis;
@@ -60,25 +61,25 @@
 .contactdetails__header .contactdetails__name::-webkit-input-placeholder,
 .contactdetails__header .contactdetails__org::-webkit-input-placeholder,
 .contactdetails__header .contactdetails__title::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-	color: $color-main-text;
+	color: #fff; /* No vars used on purpose since we use custom BGs */
 	opacity: .8;
 }
 .contactdetails__header .contactdetails__name::-moz-placeholder,
 .contactdetails__header .contactdetails__org::-moz-placeholder,
 .contactdetails__header .contactdetails__title::-moz-placeholder { /* Mozilla Firefox 19+ */
-	color: $color-main-text;
+	color: #fff; /* No vars used on purpose since we use custom BGs */
 	opacity: .8;
 }
 .contactdetails__header .contactdetails__name:-ms-input-placeholder,
 .contactdetails__header .contactdetails__org:-ms-input-placeholder,
 .contactdetails__header .contactdetails__title:-ms-input-placeholder { /* Internet Explorer 10-11 */
-	color: $color-main-text;
+	color: #fff; /* No vars used on purpose since we use custom BGs */
 	opacity: .8;
 }
 .contactdetails__header .contactdetails__name:placeholder-shown,
 .contactdetails__header .contactdetails__org:placeholder-shown,
 .contactdetails__header .contactdetails__title:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
-	color: $color-main-text;
+	color: #fff; /* No vars used on purpose since we use custom BGs */
 	opacity: .8;
 }
 
@@ -573,7 +574,7 @@ contactlist .tooltip {
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
-	border-right: 1px solid nc-darken($color-main-background, 18%);
+	border-right: 1px solid nc-darken($color-main-background, 10%);
 }
 
 .app-content-detail {
