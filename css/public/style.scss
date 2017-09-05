@@ -573,7 +573,7 @@ contactlist .tooltip {
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
-	border-right: 1px solid nc-darken($color-main-background, 10%);
+	border-right: 1px solid nc-darken($color-main-background, 8%);
 }
 
 .app-content-detail {
@@ -595,7 +595,7 @@ contactlist .tooltip {
 .app-content-list-item {
 	position: relative;
 	height: 68px;
-	border-top: 1px solid nc-darken($color-main-background, 10%);
+	border-top: 1px solid nc-darken($color-main-background, 8%);
 	cursor: pointer;
 }
 .app-content-list-item:hover,
