@@ -222,8 +222,11 @@ avatar.maximized .avatar-options > [class^="icon-"] {
 /* General details item styles */
 
 detailsitem {
-	display: inline-block;
+	display: flex;
+	flex-wrap: wrap;
 	position: relative;
+	width: 380px;
+
 }
 
 detailsitem input[type="tel"],
@@ -234,6 +237,7 @@ detailsitem textarea,
 .select-addressbook select,
 .add-field {
 	width: 245px;
+	flex-grow: 1;
 }
 
 .add-field {
@@ -273,7 +277,6 @@ detailsitem .item-action {
 	position: absolute;
 	padding: 8px 5px;
 	opacity: .5;
-	top: 2px;
 	right: 30px;
 }
 
