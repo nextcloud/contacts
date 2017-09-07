@@ -6,7 +6,6 @@
 	height: 100px;
 	padding-left: 20px;
 	display: flex;
-	color: #fff;
 	font-weight: bold;
 	align-items: center;
 }
@@ -30,7 +29,8 @@
 .contactdetails__header .contactdetails__org,
 .contactdetails__header .contactdetails__title {
 	font-size: inherit;
-	color: #fff !important; /* override focus,active&hover */
+	/* Override focus, active & hover! */
+	color: #fff !important; /* No vars used on purpose since we use custom BGs */
 	background: transparent;
 	border: none;
 	text-overflow: ellipsis;
@@ -60,25 +60,25 @@
 .contactdetails__header .contactdetails__name::-webkit-input-placeholder,
 .contactdetails__header .contactdetails__org::-webkit-input-placeholder,
 .contactdetails__header .contactdetails__title::-webkit-input-placeholder { /* WebKit, Blink, Edge */
-	color: #fff;
+	color: #fff; /* No vars used on purpose since we use custom BGs */
 	opacity: .8;
 }
 .contactdetails__header .contactdetails__name::-moz-placeholder,
 .contactdetails__header .contactdetails__org::-moz-placeholder,
 .contactdetails__header .contactdetails__title::-moz-placeholder { /* Mozilla Firefox 19+ */
-	color: #fff;
+	color: #fff; /* No vars used on purpose since we use custom BGs */
 	opacity: .8;
 }
 .contactdetails__header .contactdetails__name:-ms-input-placeholder,
 .contactdetails__header .contactdetails__org:-ms-input-placeholder,
 .contactdetails__header .contactdetails__title:-ms-input-placeholder { /* Internet Explorer 10-11 */
-	color: #fff;
+	color: #fff; /* No vars used on purpose since we use custom BGs */
 	opacity: .8;
 }
 .contactdetails__header .contactdetails__name:placeholder-shown,
 .contactdetails__header .contactdetails__org:placeholder-shown,
 .contactdetails__header .contactdetails__title:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
-	color: #fff;
+	color: #fff; /* No vars used on purpose since we use custom BGs */
 	opacity: .8;
 }
 
@@ -310,7 +310,7 @@ detailsitem.details-item-note label {
 
 /* Failed props */
 detailsitem.failed {
-	box-shadow: inset 2px 0 #c5173a;
+	box-shadow: inset 2px 0 $color-error;
 }
 avatar .icon-error {
 	position: absolute;
@@ -388,7 +388,7 @@ ul.addressBookList li .action > a {
 }
 
 div.addressBookShares ul.dropdown-menu {
-	border: 1px solid #ddd;
+	border: 1px solid nc-darken($color-main-background, 18%);
 	border-radius: 0 0 3px 3px;
 	max-height: 200px;
 	margin-top: -2px;
@@ -396,7 +396,7 @@ div.addressBookShares ul.dropdown-menu {
 	display: flex;
 	flex-wrap: wrap;
 	position: absolute;
-	background-color: #fff;
+	background-color: $color-main-background;
 	width: 100%;
 	z-index: 500;
 }
@@ -408,7 +408,7 @@ div.addressBookShares ul.dropdown-menu li > a {
 }
 
 ul.dropdown-menu li.active {
-	background: #f0f0f0;
+	background: nc-darken($color-main-background, 6%);
 }
 
 div.app-contacts span.utils {
@@ -516,8 +516,8 @@ contactimport .select2-container .select2-choice {
 }
 
 contactimport .select2-drop-active {
-	border-top: 1px solid #ddd;
-	box-shadow: 0 -1px 5px rgba(0, 0, 0, .15);
+	border-top: 1px solid nc-darken($color-main-background, 18%);
+	box-shadow: 0 -1px 5px rgba($color-main-background, .15);
 	border-radius: 3px 3px 0 0;
 	margin-top: initial;
 }
@@ -576,7 +576,7 @@ contactlist .tooltip {
 	height: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
-	border-right: 1px solid #eee;
+	border-right: 1px solid nc-darken($color-main-background, 8%);
 }
 
 .app-content-detail {
@@ -598,13 +598,13 @@ contactlist .tooltip {
 .app-content-list-item {
 	position: relative;
 	height: 68px;
-	border-top: 1px solid #eee;
+	border-top: 1px solid nc-darken($color-main-background, 8%);
 	cursor: pointer;
 }
 .app-content-list-item:hover,
 .app-content-list-item:focus,
 .app-content-list-item.active {
-	background-color: #f8f8f8;
+	background-color: nc-darken($color-main-background, 6%);
 }
 .app-content-list-item-link {
 	display: block;
@@ -666,16 +666,6 @@ ul.addressBook-share-list {
 
 #app-navigation > ul {
 	height: calc(100% - 68px);
-}
-
-/* styling for contact count in contact list */
-.contacts-list-count {
-	text-align:center;
-	color: #333;
-	padding:25px;
-	position: relative;
-	height: 68px;
-	border-top: 1px solid #eee;
 }
 
 /* SELECT2 styling */
@@ -807,7 +797,7 @@ detailsitem .select2-container {
 	width: 100%;
 	padding: 0px;
 	border: 0 none;
-	background-color: #e6e6e6;
+	background-color: nc-darken($color-main-background, 10%);
 	border-radius: 3px;
 	flex-basis: 100%;
 	height: 5px;
