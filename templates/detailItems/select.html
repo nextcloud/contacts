@@ -1,5 +1,7 @@
 <label ng-if="ctrl.availableOptions.length > 0" for="details-{{ctrl.name}}">{{ctrl.meta.readableName}}</label>
-<select id="details-{{ctrl.name}}" name="{{ctrl.name}}" ng-if="ctrl.availableOptions.length > 0" ng-model="ctrl.data.value" ng-model-options="{ debounce: 500 }" ng-change="ctrl.model.updateContact()">
+<select id="details-{{ctrl.name}}" name="{{ctrl.name}}" ng-if="ctrl.availableOptions.length > 0"
+		ng-model="ctrl.data.value" ng-model-options="{ debounce: 500 }" ng-change="ctrl.model.updateContact()"
+		ng-disabled="ctrl.model.addressBook.readOnly">
 	<option ng-repeat="option in ctrl.availableOptions" value="{{option.id}}">{{option.name}}</option>
 </select>
-<button ng-click="ctrl.deleteField()" class="icon-delete" title="{{ctrl.t.delete}}"></button>
+<button ng-click="ctrl.deleteField()" class="icon-delete" title="{{ctrl.t.delete}}" ng-if="!ctrl.model.addressBook.readOnly"></button>

@@ -12,15 +12,18 @@
 			<div id="details-contact-infos">
 				<h2>
 					<input type="text" id="details-fullName" class="contactdetails__name" placeholder="{{ctrl.t.placeholderName}}" autocomplete="off" autocorrect="off" spellcheck="false"
-						   name="fullname" ng-model="ctrl.contact.fullName" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value="" />
+						   name="fullname" ng-model="ctrl.contact.fullName" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value=""
+						   ng-disabled="ctrl.addressBook.readOnly" />
 				</h2>
 				<div id="details-org-container">
 					<input type="text" id="details-org" class="contactdetails__org" placeholder="{{ctrl.t.placeholderOrg}}" autocomplete="off" autocorrect="off" spellcheck="false"
 						   name="org" ng-model="ctrl.contact.org" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value=""
-						   inputresize size="{{ctrl.contact.org().length > 1 ? ctrl.contact.org().length : '1'}}" />
+						   inputresize size="{{ctrl.contact.org().length > 1 ? ctrl.contact.org().length : '1'}}"
+						   ng-disabled="ctrl.addressBook.readOnly" />
 					<input type="text" id="details-title" class="contactdetails__title" placeholder="{{ctrl.t.placeholderTitle}}" autocomplete="off" autocorrect="off" spellcheck="false"
 						   name="title" ng-model="ctrl.contact.title" ng-model-options="{ getterSetter: true, debounce: 500 }" ng-change="ctrl.updateContact()" value=""
-						   inputresize size="{{ctrl.contact.title().length > 1 ? ctrl.contact.title().length : '1'}}" />
+						   inputresize size="{{ctrl.contact.title().length > 1 ? ctrl.contact.title().length : '1'}}"
+						   ng-disabled="ctrl.addressBook.readOnly" />
 				</div>
 			</div>
 			<div id="details-actions">
@@ -28,7 +31,7 @@
 				<a href="{{ctrl.contact.data.url}}" id="contact-export-link"
 				   class="icon-download-white" title="{{ctrl.t.download}}"
 				   download="{{ ctrl.contact.readableFilename() }}"></a>
-				<button ng-click="ctrl.deleteContact()" class="icon-delete-white" title="{{ctrl.t.delete}}"></button>
+				<button ng-click="ctrl.deleteContact()" ng-if="!ctrl.addressBook.readOnly" class="icon-delete-white" title="{{ctrl.t.delete}}"></button>
 			</div>
 		</header>
 		<section>
@@ -36,12 +39,13 @@
 				<detailsItem ng-repeat="propData in prop" name="prop.$key" data="propData" model="ctrl" index="$index"
 							 class="details-item-{{prop.$key}}" ng-class="{ 'failed': ctrl.contact.failedProps.indexOf(prop.$key) !== -1 }"></detailsItem>
 			</div>
-			<div class="select-addressbook" ng-if="ctrl.addressBooks.length > 1">
+			<div class="select-addressbook" ng-if="ctrl.addressBooks.length > 1 && !ctrl.addressBook.readOnly">
 				<label for="details-addressbook">{{ctrl.t.addressBook}}</label>
-				<select ng-model="ctrl.addressBook" ng-change="ctrl.changeAddressBook(ctrl.addressBook)" id="details-addressbook" ng-options="book.displayName for book in ctrl.addressBooks">
+				<select ng-model="ctrl.addressBook" ng-change="ctrl.changeAddressBook(ctrl.addressBook)" id="details-addressbook"
+						ng-options="book.displayName for book in ctrl.addressBooks | filter: {readOnly: false}">
 				</select>
 			</div>
-			<select class="add-field" ng-model="ctrl.field" ng-change="ctrl.addField(ctrl.field)">
+			<select class="add-field" ng-model="ctrl.field" ng-change="ctrl.addField(ctrl.field)" ng-if="!ctrl.addressBook.readOnly">
 				<option value=''>{{ctrl.t.selectField}}</option>
 				<option ng-repeat="field in ctrl.fieldDefinitions | fieldFilter: ctrl.contact | orderBy : 'name'" value="{{field.id}}">{{field.name}}</option>
 			</select>
