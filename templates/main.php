@@ -22,7 +22,7 @@ script('contacts', 'vendor/angular-bootstrap/ui-bootstrap-tpls.min');
 script('contacts', 'vendor/jquery-timepicker/jquery.ui.timepicker');
 
 // all styles
-style('contacts', 'public/style');
+style('contacts', 'style');
 vendor_style('select2/select2');
 ?>
 
