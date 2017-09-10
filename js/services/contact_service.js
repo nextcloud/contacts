@@ -4,7 +4,7 @@ angular.module('contactsApp')
 	var contactService = this;
 
 	var cacheFilled = false;
-	var contacts = CacheFactory('contacts');
+	var contactsCache = CacheFactory('contacts');
 	var observerCallbacks = [];
 	var loadPromise = undefined;
 
@@ -16,7 +16,7 @@ angular.module('contactsApp')
 		var ev = {
 			event: eventName,
 			uid: uid,
-			contacts: contacts.values()
+			contacts: contactsCache.values()
 		};
 		angular.forEach(observerCallbacks, function(callback) {
 			callback(ev);
@@ -50,7 +50,7 @@ angular.module('contactsApp')
 									// Can't use this in those nested functions
 									contactService.update(contact);
 								}
-								contacts.put(contact.uid(), contact);
+								contactsCache.put(contact.uid(), contact);
 							});
 						});
 					promises.push(promise);
@@ -72,7 +72,7 @@ angular.module('contactsApp')
 							for (var i in addressBook.objects) {
 								if (addressBook.objects[i].addressData) {
 									var contact = new Contact(addressBook, addressBook.objects[i]);
-									contacts.put(contact.uid(), contact);
+									contactsCache.put(contact.uid(), contact);
 								} else {
 									// eslint-disable-next-line no-console
 									console.log('Invalid contact received: ' + addressBook.objects[i].url);
@@ -92,10 +92,10 @@ angular.module('contactsApp')
 	this.getAll = function() {
 		if(cacheFilled === false) {
 			return this.fillCache().then(function() {
-				return contacts.values();
+				return contactsCache.values();
 			});
 		} else {
-			return $q.when(contacts.values());
+			return $q.when(contactsCache.values());
 		}
 	};
 
@@ -146,10 +146,10 @@ angular.module('contactsApp')
 		return (function () {
 			if(cacheFilled === false) {
 				return this.fillCache().then(function() {
-					return contacts.get(uid);
+					return contactsCache.get(uid);
 				});
 			} else {
-				return $q.when(contacts.get(uid));
+				return $q.when(contactsCache.get(uid));
 			}
 		}).call(this)
 			.then(function (contact) {
@@ -164,7 +164,7 @@ angular.module('contactsApp')
 						? DavClient.getContacts(addressBook, {}, [ contact.data.url ]).then(
 							function (vcards) { return new Contact(addressBook, vcards[0]); }
 						).then(function (contact) {
-							contacts.put(contact.uid(), contact);
+							contactsCache.put(contact.uid(), contact);
 							notifyObservers('getFullContacts', contact.uid());
 							return contact;
 						}) : contact;
@@ -205,7 +205,7 @@ angular.module('contactsApp')
 			}
 		).then(function(xhr) {
 			newContact.setETag(xhr.getResponseHeader('ETag'));
-			contacts.put(newUid, newContact);
+			contactsCache.put(newUid, newContact);
 			if (fromImport !== true) {
 				notifyObservers('create', newUid);
 				$('#details-fullName').select();
@@ -306,7 +306,7 @@ angular.module('contactsApp')
 	this.delete = function(contact) {
 		// delete contact from server
 		return DavClient.deleteCard(contact.data).then(function() {
-			contacts.remove(contact.uid());
+			contactsCache.remove(contact.uid());
 			notifyObservers('delete', contact.uid());
 		});
 	};
@@ -318,9 +318,9 @@ angular.module('contactsApp')
 			angular.forEach(enabledAddressBooks, function(addressBook) {
 				addressBooksIds.push(addressBook.displayName);
 			});
-			angular.forEach(contacts.values(), function(contact) {
+			angular.forEach(contactsCache.values(), function(contact) {
 				if (addressBooksIds.indexOf(contact.addressBookId) === -1) {
-					contacts.remove(contact.uid());
+					contactsCache.remove(contact.uid());
 				}
 			});
 			callback();
