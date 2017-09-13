@@ -21,7 +21,7 @@ angular.module('contactsApp')
 		clearInterval(ctrl.intervalId);
 		ctrl.intervalId = setInterval(
 			function () {
-				if (!ctrl.loading && ctrl.contacts && ctrl.contacts.length > ctrl.limitTo) {
+				if (!ctrl.loading && ctrl.contactList && ctrl.contactList.length > ctrl.limitTo) {
 					ctrl.limitTo += 25;
 					$scope.$apply();
 				}
@@ -73,7 +73,7 @@ angular.module('contactsApp')
 					});
 				}
 				if(ev.contacts.length !== 0) {
-					ctrl.contacts = ev.contacts;
+					ctrl.contactList = ev.contacts;
 				}
 			});
 		});
@@ -87,7 +87,7 @@ angular.module('contactsApp')
 					ctrl.loading = true;
 					ContactService.updateDeletedAddressbook(function() {
 						ContactService.getAll().then(function(contacts) {
-							ctrl.contacts = contacts;
+							ctrl.contactList = contacts;
 							ctrl.loading = false;
 							ctrl.selectNearestContact(ctrl.getSelectedId());
 						});
@@ -101,7 +101,7 @@ angular.module('contactsApp')
 	ContactService.getAll().then(function(contacts) {
 		if(contacts.length>0) {
 			$scope.$apply(function() {
-				ctrl.contacts = contacts;
+				ctrl.contactList = contacts;
 			});
 		} else {
 			ctrl.loading = false;
@@ -210,10 +210,10 @@ angular.module('contactsApp')
 	});
 
 	ctrl.hasContacts = function () {
-		if (!ctrl.contacts) {
+		if (!ctrl.contactList) {
 			return false;
 		}
-		return ctrl.contacts.length > 0;
+		return ctrl.contactList.length > 0;
 	};
 
 	ctrl.setSelectedId = function (contactId) {

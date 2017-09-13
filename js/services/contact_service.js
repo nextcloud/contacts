@@ -69,15 +69,15 @@ angular.module('contactsApp')
 				enabledAddressBooks.forEach(function (addressBook) {
 					promises.push(
 						AddressBookService.sync(addressBook).then(function (addressBook) {
-							for (var i in addressBook.objects) {
-								if (addressBook.objects[i].addressData) {
-									var contact = new Contact(addressBook, addressBook.objects[i]);
+							addressBook.objects.forEach(function(vcard) {
+								try {
+									var contact = new Contact(addressBook, vcard);
 									contactsCache.put(contact.uid(), contact);
-								} else {
+								} catch(error) {
 									// eslint-disable-next-line no-console
-									console.log('Invalid contact received: ' + addressBook.objects[i].url);
+									console.log('Invalid contact received: ', vcard);
 								}
-							}
+							});
 						})
 					);
 				});
