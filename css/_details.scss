@@ -118,7 +118,7 @@
 .contactdetails__header #details-actions button:hover,
 .contactdetails__header #details-actions a:focus,
 .contactdetails__header #details-actions button:focus {
-	opacity: .7
+	opacity: .7;
 }
 
 avatar {
@@ -343,7 +343,7 @@ detailsitem.failed {
 avatar .icon-error {
 	position: absolute;
 	width: 100%;
-	height: 100%
+	height: 100%;
 }
 
 avatar:not(.maximized) .icon-error + img {
@@ -376,5 +376,5 @@ detailsitem .select2-container {
 	display: block !important;
 	right: 4px;
 	left: auto;
-	top: 7px
+	top: 7px;
 }
