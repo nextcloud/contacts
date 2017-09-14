@@ -1,6 +1,5 @@
 {
   "extends": "stylelint-config-standard",
-  "defaultSeverity": "warning",
   "rules": {
     "indentation": "tab",
     "selector-type-no-unknown": null,
