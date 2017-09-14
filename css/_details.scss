@@ -239,6 +239,7 @@ contactdetails {
 			color: #545454 !important;
 		}
 	}
+
 	detailsitem > select:disabled {
 		background-image: none !important;
 		&:first-child {
@@ -253,7 +254,6 @@ detailsitem {
 	flex-wrap: wrap;
 	position: relative;
 	width: 380px;
-
 }
 
 detailsitem input[type="tel"],
@@ -361,14 +361,17 @@ avatar:not(.maximized) .icon-error + img {
 detailsitem .select2-container {
 	width: 245px;
 }
+
 /* Fix for #81 */
 .select2-container-multi .select2-choices .select2-search-choice {
 	padding-right: 20px;
 }
+
 .select2-container.select2-container-multi .select2-choices span {
 	display: flex;
 	flex-wrap: wrap;
 }
+
 .select2-container-multi .select2-choices .select2-search-choice .select2-search-choice-close {
 	display: block !important;
 	right: 4px;
