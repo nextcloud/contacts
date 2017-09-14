@@ -1,11 +1,11 @@
-<div style="height: 90%" class="contacts-list" ng-class="{loading: ctrl.loading, 'mobile-show': ctrl.show}">
+<div class="contacts-list" ng-class="{loading: ctrl.loading, 'mobile-show': ctrl.show}">
         <div class="app-content-list-item"
-			 ng-repeat="contact in ctrl.contactList = (ctrl.contacts | contactGroupFilter:ctrl.routeParams.gid | localeOrderBy:ctrl.sortBy | filter:query | limitTo:ctrl.limitTo) as filtered track by contact.uid()"
+			 ng-repeat="contact in (ctrl.contactList | contactGroupFilter:ctrl.routeParams.gid | localeOrderBy:ctrl.sortBy | filter:query | limitTo:ctrl.limitTo) as filtered track by contact.uid()"
 			 contact data="contact"
 			 ng-click="setSelected(contact.uid())"
 			 ng-class="{active: contact.uid() === ctrl.getSelectedId()}">
 	</div>
-	<div ng-show="!ctrl.contactList.length && !ctrl.loading && ctrl.searchTerm !== ''">
+	<div ng-show="!filtered.length && !ctrl.loading && ctrl.searchTerm !== ''">
 	        <div id="emptycontent" class="emptycontent-search">
 		        <div class="icon-search"></div>
 			<h2>{{ctrl.t.emptySearch}}</h2>
