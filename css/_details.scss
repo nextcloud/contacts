@@ -23,7 +23,7 @@
 
 .contactdetails__header #details-contact-infos {
 	width: 80%;
-	margin: 2px 6px 0px;
+	margin: 2px 6px 0;
 	flex-grow: 1;
 }
 
@@ -281,7 +281,7 @@ detailsitem label,
 
 	display: inline-block;
 	width: 100px;
-	padding: 7px 0px;
+	padding: 7px 0;
 	text-align: right;
 	opacity: .5;
 	white-space: nowrap;
