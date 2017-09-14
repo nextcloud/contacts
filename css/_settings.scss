@@ -84,7 +84,7 @@ addressBookList input[type='button'].inline-button {
 ul.addressBookList li[addressbook] > span.addressBookName {
 	width: calc(100% - 52px); /* -actions width */
 	overflow: hidden;
-	white-space:nowrap;
+	white-space: nowrap;
 	text-overflow: ellipsis;
 	padding-left: 7px;
 }
@@ -96,9 +96,9 @@ ul.addressBookList li[addressbook] > .addressBookShares {
 li.addressBook-share-item span.shareeIdentifier,
 li.calendar-share-item span.shareeIdentifier {
 	width: 100%;
-	overflow:hidden;
-	white-space:nowrap;
-	text-overflow:ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 	display: inline-block;
 	vertical-align: top;
 	opacity: 0.5;
@@ -211,7 +211,7 @@ contactimport .ui-select-search-hidden {
 }
 
 contactimport input[type='search']::-webkit-search-cancel-button {
-	-webkit-appearance:none;
+	-webkit-appearance: none;
 }
 
 /* Import screen */
