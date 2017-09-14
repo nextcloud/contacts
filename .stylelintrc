@@ -12,5 +12,7 @@
         "ignore": ["after-declaration"]
     }],
     "comment-empty-line-before": null,
+    "selector-type-case": null,
+    "selector-list-comma-newline-after": null,
   }
 }
