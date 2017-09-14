@@ -184,7 +184,7 @@ contactimport .select2-container {
 	width: 100%;
 }
 
-contactimport .select2-container:after {
+contactimport .select2-container::after {
 	left: 15px;
 }
 
