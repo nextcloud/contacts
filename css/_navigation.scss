@@ -1,27 +1,27 @@
 #app-navigation {
-  position: relative;
+	position: relative;
 }
 
 #app-navigation .utils .action span {
-  cursor: pointer !important;
+	cursor: pointer !important;
 }
 #app-navigation .utils .action {
-  opacity: .5;
+	opacity: .5;
 }
 #app-navigation .utils .action:hover,
 #app-navigation .utils .action:focus {
-  opacity: 1;
+	opacity: 1;
 }
 
 #app-navigation > ul {
-  height: calc(100% - 68px);
+	height: calc(100% - 68px);
 }
 
 /* Contacts List */
 #new-contact-button {
-  margin: 14px auto; /* to have the same height than a contact*/
-  width: calc(100% - 20px) !important;
-  text-align: left;
-  padding-left: 34px;
-  background-position: 10px center;
+	margin: 14px auto; /* to have the same height than a contact*/
+	width: calc(100% - 20px) !important;
+	text-align: left;
+	padding-left: 34px;
+	background-position: 10px center;
 }
