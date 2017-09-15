@@ -254,7 +254,7 @@ angular.module('contactsApp')
 				}
 				num++;
 				/* Import is over, let's notify */
-				if(num === singleVCards.length) {
+				if(num >= singleVCards.length) {
 					notifyObservers('importend');
 				}
 			});

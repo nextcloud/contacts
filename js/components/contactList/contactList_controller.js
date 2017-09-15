@@ -4,7 +4,7 @@ angular.module('contactsApp')
 
 	ctrl.routeParams = $routeParams;
 
-	ctrl.contactList = [];
+	ctrl.filteredContacts = []; // the displayed contacts list
 	ctrl.searchTerm = '';
 	ctrl.show = true;
 	ctrl.invalid = false;
@@ -38,7 +38,7 @@ angular.module('contactsApp')
 
 	SearchService.registerObserverCallback(function(ev) {
 		if (ev.event === 'submitSearch') {
-			var uid = !_.isEmpty(ctrl.contactList) ? ctrl.contactList[0].uid() : undefined;
+			var uid = !_.isEmpty(ctrl.filteredContacts) ? ctrl.filteredContacts[0].uid() : undefined;
 			ctrl.setSelectedId(uid);
 			$scope.$apply();
 		}
@@ -116,7 +116,7 @@ angular.module('contactsApp')
 		var topContact = Math.round(scrolled/elHeight);
 		var contactsCount = Math.round(listHeight/elHeight);
 
-		return ctrl.contactList.slice(topContact-1, topContact+contactsCount+1);
+		return ctrl.filteredContacts.slice(topContact-1, topContact+contactsCount+1);
 	};
 
 	var timeoutId = null;
@@ -128,14 +128,14 @@ angular.module('contactsApp')
 		}, 250);
 	});
 
-	// Wait for ctrl.contactList to be updated, load the contact requested in the URL if any, and
+	// Wait for ctrl.filteredContacts to be updated, load the contact requested in the URL if any, and
 	// load full details for the probably initially visible contacts.
 	// Then kill the watch.
-	var unbindListWatch = $scope.$watch('ctrl.contactList', function() {
-		if(ctrl.contactList && ctrl.contactList.length > 0) {
+	var unbindListWatch = $scope.$watch('ctrl.filteredContacts', function() {
+		if(ctrl.filteredContacts && ctrl.filteredContacts.length > 0) {
 			// Check if a specific uid is requested
 			if($routeParams.uid && $routeParams.gid) {
-				ctrl.contactList.forEach(function(contact) {
+				ctrl.filteredContacts.forEach(function(contact) {
 					if(contact.uid() === $routeParams.uid) {
 						ctrl.setSelectedId($routeParams.uid);
 						ctrl.loading = false;
@@ -144,10 +144,10 @@ angular.module('contactsApp')
 			}
 			// No contact previously loaded, let's load the first of the list if not in mobile mode
 			if(ctrl.loading && $(window).width() > 768) {
-				ctrl.setSelectedId(ctrl.contactList[0].uid());
+				ctrl.setSelectedId(ctrl.filteredContacts[0].uid());
 			}
 			// Get full data for the first 20 contacts of the list
-			ContactService.getFullContacts(ctrl.contactList.slice(0, 20));
+			ContactService.getFullContacts(ctrl.filteredContacts.slice(0, 20));
 			ctrl.loading = false;
 			unbindListWatch();
 		}
@@ -162,18 +162,18 @@ angular.module('contactsApp')
 		}
 		if(newValue === undefined) {
 			// we might have to wait until ng-repeat filled the contactList
-			if(ctrl.contactList && ctrl.contactList.length > 0) {
+			if(ctrl.filteredContacts && ctrl.filteredContacts.length > 0) {
 				$route.updateParams({
 					gid: $routeParams.gid,
-					uid: ctrl.contactList[0].uid()
+					uid: ctrl.filteredContacts[0].uid()
 				});
 			} else {
 				// watch for next contactList update
-				var unbindWatch = $scope.$watch('ctrl.contactList', function() {
-					if(ctrl.contactList && ctrl.contactList.length > 0) {
+				var unbindWatch = $scope.$watch('ctrl.filteredContacts', function() {
+					if(ctrl.filteredContacts && ctrl.filteredContacts.length > 0) {
 						$route.updateParams({
 							gid: $routeParams.gid,
-							uid: ctrl.contactList[0].uid()
+							uid: ctrl.filteredContacts[0].uid()
 						});
 					}
 					unbindWatch(); // unbind as we only want one update
@@ -187,16 +187,16 @@ angular.module('contactsApp')
 
 	$scope.$watch('ctrl.routeParams.gid', function() {
 		// we might have to wait until ng-repeat filled the contactList
-		ctrl.contactList = [];
+		ctrl.filteredContacts = [];
 		ctrl.resetLimitTo();
 		// not in mobile mode
 		if($(window).width() > 768) {
 			// watch for next contactList update
-			var unbindWatch = $scope.$watch('ctrl.contactList', function() {
-				if(ctrl.contactList && ctrl.contactList.length > 0) {
+			var unbindWatch = $scope.$watch('ctrl.filteredContacts', function() {
+				if(ctrl.filteredContacts && ctrl.filteredContacts.length > 0) {
 					$route.updateParams({
 						gid: $routeParams.gid,
-						uid: $routeParams.uid || ctrl.contactList[0].uid()
+						uid: $routeParams.uid || ctrl.filteredContacts[0].uid()
 					});
 				}
 				unbindWatch(); // unbind as we only want one update
@@ -205,7 +205,7 @@ angular.module('contactsApp')
 	});
 
 	// Watch if we have an invalid contact
-	$scope.$watch('ctrl.contactList[0].displayName()', function(displayName) {
+	$scope.$watch('ctrl.filteredContacts[0].displayName()', function(displayName) {
 		ctrl.invalid = (displayName === '');
 	});
 
@@ -227,18 +227,18 @@ angular.module('contactsApp')
 	};
 
 	ctrl.selectNearestContact = function(contactId) {
-		if (ctrl.contactList.length === 1) {
+		if (ctrl.filteredContacts.length === 1) {
 			$route.updateParams({
 				gid: $routeParams.gid,
 				uid: undefined
 			});
 		} else {
-			for (var i = 0, length = ctrl.contactList.length; i < length; i++) {
+			for (var i = 0, length = ctrl.filteredContacts.length; i < length; i++) {
 				// Get nearest contact
-				if (ctrl.contactList[i].uid() === contactId) {
+				if (ctrl.filteredContacts[i].uid() === contactId) {
 					$route.updateParams({
 						gid: $routeParams.gid,
-						uid: (ctrl.contactList[i+1]) ? ctrl.contactList[i+1].uid() : ctrl.contactList[i-1].uid()
+						uid: (ctrl.filteredContacts[i+1]) ? ctrl.filteredContacts[i+1].uid() : ctrl.filteredContacts[i-1].uid()
 					});
 					break;
 				}
