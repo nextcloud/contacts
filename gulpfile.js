@@ -1,11 +1,12 @@
 var gulp = require('gulp'),
 	concat = require('gulp-concat'),
 	eslint = require('gulp-eslint'),
+	stylelint = require('gulp-stylelint');
 	ngAnnotate = require('gulp-ng-annotate'),
 	KarmaServer = require('karma').Server,
 	sourcemaps = require('gulp-sourcemaps');
 
-gulp.task('default', ['eslint'], function() {
+gulp.task('default', ['eslint', 'stylelint'], function() {
 	return gulp.src([
 			'js/main.js',
 			'js/components/**/*.js',
@@ -35,8 +36,17 @@ gulp.task('eslint', function() {
 		.pipe(eslint.failAfterError());
 });
 
+gulp.task('stylelint', function() {
+	return gulp.src('css/*.scss')
+		.pipe(stylelint({
+			reporters: [
+			{formatter: 'string', console: true}
+			]
+		}));
+});
+
 gulp.task('watch', ['default'], function() {
-	gulp.watch(['js/**/*.js', '!js/public/**/*.js'], ['default']);
+	gulp.watch(['js/**/*.js', '!js/public/**/*.js', 'css/*.scss'], ['default']);
 });
 
 gulp.task('karma', function(done){

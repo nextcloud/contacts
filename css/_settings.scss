@@ -84,7 +84,7 @@ addressBookList input[type='button'].inline-button {
 ul.addressBookList li[addressbook] > span.addressBookName {
 	width: calc(100% - 52px); /* -actions width */
 	overflow: hidden;
-	white-space:nowrap;
+	white-space: nowrap;
 	text-overflow: ellipsis;
 	padding-left: 7px;
 }
@@ -96,9 +96,9 @@ ul.addressBookList li[addressbook] > .addressBookShares {
 li.addressBook-share-item span.shareeIdentifier,
 li.calendar-share-item span.shareeIdentifier {
 	width: 100%;
-	overflow:hidden;
-	white-space:nowrap;
-	text-overflow:ellipsis;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
 	display: inline-block;
 	vertical-align: top;
 	opacity: 0.5;
@@ -166,21 +166,25 @@ input.addressBookUrl {
 	margin-bottom: 0;
 	border-radius: 3px 3px 0 0;
 }
+
 #app-settings-content #upload.button::after {
 	left: 17px; /* half the padding */
 }
+
 #app-settings-content #upload.button.no-select {
 	border-radius: 3px;
 }
+
 contactimport {
 	margin-bottom: 3px;
 }
+
 contactimport .select2-container {
 	margin-top: 0;
 	width: 100%;
 }
 
-contactimport .select2-container:after {
+contactimport .select2-container::after {
 	left: 15px;
 }
 
@@ -207,7 +211,7 @@ contactimport .ui-select-search-hidden {
 }
 
 contactimport input[type='search']::-webkit-search-cancel-button {
-	-webkit-appearance:none
+	-webkit-appearance: none;
 }
 
 /* Import screen */
@@ -216,8 +220,9 @@ contactimport input[type='search']::-webkit-search-cancel-button {
 	width: 250px;
 	height: 100%;
 	z-index: 500;
-	background: rgba(255,255,255,0.6);
+	background: rgba(255, 255, 255, 0.6);
 }
+
 #importscreen-wrapper {
 	position: absolute;
 	width: 100%;
@@ -230,6 +235,7 @@ contactimport input[type='search']::-webkit-search-cancel-button {
 	background: $color-main-background;
 	z-index: 500;
 }
+
 #importscreen-content {
 	width: 300px;
 	position: relative;
@@ -238,42 +244,50 @@ contactimport input[type='search']::-webkit-search-cancel-button {
 	align-items: center;
 	flex-wrap: wrap;
 }
+
 #importscreen-title {
 	flex-basis: 100%;
 	text-align: center;
 }
+
 #importscreen-percent {
 	opacity: 0.5;
 }
+
 #importscreen-user {
 	font-style: italic;
 	opacity: 0.5;
 	padding-top: 5px;
 }
+
 /* Copy nextcloud quota bar */
 #importscreen-progress {
 	display: block;
 	width: 100%;
-	padding: 0px;
+	padding: 0;
 	border: 0 none;
 	background-color: nc-darken($color-main-background, 10%);
 	border-radius: 3px;
 	flex-basis: 100%;
 	height: 5px;
 }
+
 #importscreen-progress::-webkit-progress-bar {
 	background: transparent;
 }
+
 #importscreen-progress::-moz-progress-bar {
 	border-radius: 3px;
 	background: $color-primary;
 	transition: 500ms all ease-in-out;
 }
+
 #importscreen-progress::-webkit-progress-value {
 	border-radius: 3px;
 	background: $color-primary;
 	transition: 500ms all ease-in-out;
 }
+
 #importscreen-sidebar-block {
 	position: absolute;
 	width: 100%;

@@ -5,9 +5,11 @@
 #app-navigation .utils .action span {
 	cursor: pointer !important;
 }
+
 #app-navigation .utils .action {
 	opacity: .5;
 }
+
 #app-navigation .utils .action:hover,
 #app-navigation .utils .action:focus {
 	opacity: 1;
@@ -19,7 +21,7 @@
 
 /* Contacts List */
 #new-contact-button {
-	margin: 14px auto; /* to have the same height than a contact*/
+	margin: 14px auto; /* to have the same height than a contact */
 	width: calc(100% - 20px) !important;
 	text-align: left;
 	padding-left: 34px;

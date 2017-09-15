@@ -32,11 +32,13 @@
 	border-top: 1px solid nc-darken($color-main-background, 8%);
 	cursor: pointer;
 }
+
 .app-content-list-item:hover,
 .app-content-list-item:focus,
 .app-content-list-item.active {
 	background-color: nc-darken($color-main-background, 6%);
 }
+
 .app-content-list-item-link {
 	display: block;
 	height: 100%;
@@ -70,10 +72,12 @@
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
+
 .app-content-list-item-line-one.no-line-two {
 	padding-top: 24px;
 	padding-bottom: 24px;
 }
+
 .app-content-list-item-line-two {
 	top: 25px;
 	opacity: .5;
