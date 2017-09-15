@@ -4,7 +4,6 @@ angular.module('contactsApp')
 
 	ctrl.routeParams = $routeParams;
 
-	ctrl.contactList = [];		// the whole contacts list
 	ctrl.filteredContacts = []; // the displayed contacts list
 	ctrl.searchTerm = '';
 	ctrl.show = true;
