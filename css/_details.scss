@@ -273,6 +273,18 @@ detailsitem textarea,
 
 detailsitem select {
 	width: 100px;
+	border: none;
+	text-align: right;
+	text-align-last: right;
+	opacity: .5;
+	color: $color-main-text;
+	outline: none;
+}
+
+detailsitem select:hover,
+detailsitem select:focus,
+detailsitem select:active {
+	opacity: 1;
 }
 
 detailsitem label,
