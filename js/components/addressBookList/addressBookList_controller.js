@@ -29,6 +29,8 @@ angular.module('contactsApp')
 					ctrl.addressBooks.push(addressBook);
 					$scope.$apply();
 				});
+			}).catch(function() {
+				OC.Notification.showTemporary(t('contacts', 'AddressBook could not be created.'));
 			});
 		}
 	};
