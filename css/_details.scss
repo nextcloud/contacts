@@ -265,6 +265,13 @@ detailsitem textarea,
 .add-field {
 	width: 245px;
 	flex-grow: 1;
+	border-color: transparent;
+
+	&:hover,
+	&:focus,
+	&:active {
+		border-color: $color-primary;
+	}
 }
 
 .add-field {
@@ -372,6 +379,17 @@ avatar:not(.maximized) .icon-error + img {
 /* SELECT2 styling */
 detailsitem .select2-container {
 	width: 245px;
+}
+
+detailsitem .select2-container-multi .select2-choices,
+detailsitem .select2-container-multi.select2-container-active .select2-choices {
+	border-color: transparent;
+
+	&:hover,
+	&:focus,
+	&:active {
+		border-color: $color-primary;
+	}
 }
 
 /* Fix for #81 */
