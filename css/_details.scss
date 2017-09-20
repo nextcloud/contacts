@@ -46,6 +46,7 @@
 	font-size: inherit;
 	/* Override focus, active & hover! */
 	color: #fff !important; /* No vars used on purpose since we use custom BGs */
+	text-shadow: 0 0 2px rgba(0, 0, 0, .2); // better readability on bright background colors
 	background: transparent;
 	border: none;
 	text-overflow: ellipsis;
