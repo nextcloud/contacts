@@ -3,7 +3,8 @@ angular.module('contactsApp')
 
 	var ctrl = this;
 
-	ctrl.loading = true;
+	ctrl.init = true;
+	ctrl.loading = false;
 	ctrl.show = false;
 
 	ctrl.clearContact = function() {
@@ -25,7 +26,8 @@ angular.module('contactsApp')
 		download : t('contacts', 'Download'),
 		delete : t('contacts', 'Delete'),
 		save : t('contacts', 'Save changes'),
-		addressBook : t('contacts', 'Address book')
+		addressBook : t('contacts', 'Address book'),
+		loading : t('contacts', 'Waiting for the contact list to load...')
 	};
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
@@ -41,7 +43,7 @@ angular.module('contactsApp')
 				return book.displayName === ctrl.contact.addressBookId;
 			});
 		}
-		ctrl.loading = false;
+		ctrl.init = false;
 		// Start watching for ctrl.uid when we have addressBooks, as they are needed for fetching
 		// full details.
 		$scope.$watch('ctrl.uid', function(newValue) {
@@ -56,6 +58,7 @@ angular.module('contactsApp')
 			$('#app-navigation-toggle').removeClass('showdetails');
 			return;
 		}
+		ctrl.loading = true;
 		ContactService.getById(ctrl.addressBooks, uid).then(function(contact) {
 			if (angular.isUndefined(contact)) {
 				ctrl.clearContact();
@@ -63,6 +66,7 @@ angular.module('contactsApp')
 			}
 			ctrl.contact = contact;
 			ctrl.show = true;
+			ctrl.loading = false;
 			$('#app-navigation-toggle').addClass('showdetails');
 
 			ctrl.addressBook = _.find(ctrl.addressBooks, function(book) {
