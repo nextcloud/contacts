@@ -99,7 +99,8 @@ angular.module('contactsApp')
 			options: [
 				{id: 'IRC', name:  'IRC'},
 				{id: 'SKYPE', name:'Skype'},
-				{id: 'TELEGRAM', name:'Telegram'}
+				{id: 'TELEGRAM', name:'Telegram'},
+				{id: 'XMPP', name:'XMPP'}
 			]
 		},
 		tel: {
@@ -130,12 +131,18 @@ angular.module('contactsApp')
 				meta:{type:['facebook']}
 			},
 			options: [
+				{id: 'DIASPORA', name: 'diaspora*'},
 				{id: 'FACEBOOK', name: 'Facebook'},
 				{id: 'GOOGLEPLUS', name: 'Google+'},
 				{id: 'INSTAGRAM', name: 'Instagram'},
 				{id: 'LINKEDIN', name: 'LinkedIn'},
 				{id: 'PINTEREST', name: 'Pinterest'},
-				{id: 'TWITTER', name: 'Twitter'}
+				{id: 'QZONE', name: 'QZone'},
+				{id: 'TUMBLR', name: 'Tumblr'},
+				{id: 'TWITTER', name: 'Twitter'},
+				{id: 'WECHAT', name: 'WeChat'},
+				{id: 'YOUTUBE', name: 'YouTube'}
+
 
 			]
 		},
