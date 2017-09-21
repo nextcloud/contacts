@@ -98,6 +98,7 @@ angular.module('contactsApp')
 			},
 			options: [
 				{id: 'IRC', name: 'IRC'},
+				{id: 'KIK', name: 'KiK'}
 				{id: 'SKYPE', name: 'Skype'},
 				{id: 'TELEGRAM', name: 'Telegram'},
 				{id: 'XMPP', name:'XMPP'}
