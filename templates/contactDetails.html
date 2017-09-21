@@ -1,9 +1,16 @@
-<div class="contact-details-wrapper wrapper-show" ng-class="{'mobile-show':ctrl.show}">
+<div class="contact-details-wrapper wrapper-show"
+	 ng-class="{'mobile-show': ctrl.show, 'icon-loading': ctrl.loading}">
 	<div id="app-navigation-toggle-back" class="details-back icon-download" ng-click="ctrl.clearContact()"></div>
-	<div ng-if="ctrl.contact===undefined && !ctrl.loading">
-		<div id="emptycontent" class="">
+	<div ng-if="ctrl.contact===undefined && !ctrl.loading && !ctrl.init">
+		<div id="emptycontent">
 			<div class="icon-contacts-dark"></div>
 			<h2>{{ctrl.t.noContacts}}</h2>
+		</div>
+	</div>
+	<div ng-if="ctrl.init">
+		<div id="emptycontent">
+			<div class="icon-contacts-dark"></div>
+			<h2>{{ctrl.t.loading}}</h2>
 		</div>
 	</div>
 	<div ng-if="ctrl.contact!==undefined">
