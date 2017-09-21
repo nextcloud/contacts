@@ -4,6 +4,7 @@ angular.module('contactsApp')
 
 	ctrl.loading = true;
 	ctrl.openedMenu = false;
+	ctrl.addressBookRegex = /^[a-zA-Z0-9À-ÿ\s-_.!?#|()]+$/i;
 
 	AddressBookService.getAll().then(function(addressBooks) {
 		ctrl.addressBooks = addressBooks;

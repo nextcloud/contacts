@@ -2,11 +2,13 @@
 <ul class="addressBookList">
 	<li ng-repeat="addressBook in ctrl.addressBooks" addressbook data="addressBook" list="ctrl.addressBooks"></li>
 	<li>
-		<form ng-submit="ctrl.createAddressBook()">
+		<form ng-submit="ctrl.createAddressBook()" name="newAddressBookForm">
 			<input id="newList" placeholder="{{ctrl.t.addressBookName}}" class="newAddressBookInput"
 				   ng-model="ctrl.newAddressBookName" type="text"
-				   autocomplete="off" autocorrect="off" spellcheck="false" />
-			<input type="submit" value="" class="newAddressBookSubmit inline-button icon-confirm action pull-right" />
+				   autocomplete="off" autocorrect="off" spellcheck="false"
+				   required ng-pattern="ctrl.addressBookRegex" />
+			<input type="submit" value="" class="newAddressBookSubmit inline-button icon-confirm action pull-right"
+				   ng-disabled="newAddressBookForm.$invalid || newAddressBookForm.$pristine" />
 		</form>
 	</li>
 </ul>
