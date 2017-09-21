@@ -6,6 +6,9 @@ angular.module('contactsApp')
 		if (count > 999) {
 			return '999+';
 		}
+		if (count === 0) {
+			return '';
+		}
 		return count;
 	};
 });
