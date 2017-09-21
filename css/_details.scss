@@ -311,7 +311,23 @@ detailsitem .icon-delete {
 	padding: 16px 10px;
 	background-color: transparent;
 	border: none;
+	opacity: 0;
+}
+
+detailsitem input:hover + .icon-delete,
+detailsitem input:focus + .icon-delete,
+detailsitem input:active + .icon-delete,
+detailsitem select:hover + .icon-delete,
+detailsitem select:focus + .icon-delete,
+detailsitem select:active + .icon-delete,
+detailsitem:hover .icon-delete {
 	opacity: .2;
+}
+
+detailsitem .icon-delete:hover,
+detailsitem .icon-delete:focus,
+detailsitem .icon-delete:active {
+	opacity: 1;
 }
 
 detailsitem .item-action {
