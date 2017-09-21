@@ -122,8 +122,13 @@ angular.module('contactsApp')
 				});
 			});
 
-			return [allContacts, notGrouped]
-				.concat(_.keys(otherGroups).map(
+			var priorityGroups = [allContacts];
+			// Only have Not Grouped if at least one contact in it
+			if(notGrouped[1] !== 0) {
+				priorityGroups.push(notGrouped);
+			}
+
+			return priorityGroups.concat(_.keys(otherGroups).map(
 					function (key) {
 						return [key, otherGroups[key]];
 					}));
