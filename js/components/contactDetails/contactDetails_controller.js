@@ -22,12 +22,12 @@ angular.module('contactsApp')
 		placeholderName : t('contacts', 'Name'),
 		placeholderOrg : t('contacts', 'Organization'),
 		placeholderTitle : t('contacts', 'Title'),
-		selectField : t('contacts', 'Add field ...'),
+		selectField : t('contacts', 'Add field …'),
 		download : t('contacts', 'Download'),
 		delete : t('contacts', 'Delete'),
 		save : t('contacts', 'Save changes'),
 		addressBook : t('contacts', 'Address book'),
-		loading : t('contacts', 'Waiting for the contact list to load...')
+		loading : t('contacts', 'Loading contacts …')
 	};
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
