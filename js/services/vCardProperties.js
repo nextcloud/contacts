@@ -98,7 +98,7 @@ angular.module('contactsApp')
 			},
 			options: [
 				{id: 'IRC', name: 'IRC'},
-				{id: 'KIK', name: 'KiK'}
+				{id: 'KIK', name: 'KiK'},
 				{id: 'SKYPE', name: 'Skype'},
 				{id: 'TELEGRAM', name: 'Telegram'},
 				{id: 'XMPP', name:'XMPP'}
@@ -133,7 +133,7 @@ angular.module('contactsApp')
 			},
 			options: [
 				{id: 'FACEBOOK', name: 'Facebook'},
-				{id: 'GITHUB', name: 'GitHub'}
+				{id: 'GITHUB', name: 'GitHub'},
 				{id: 'GOOGLEPLUS', name: 'Google+'},
 				{id: 'INSTAGRAM', name: 'Instagram'},
 				{id: 'LINKEDIN', name: 'LinkedIn'},
