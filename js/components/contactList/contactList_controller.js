@@ -58,19 +58,24 @@ angular.module('contactsApp')
 	ContactService.registerObserverCallback(function(ev) {
 		$timeout(function() {
 			$scope.$apply(function() {
-				if (ev.event === 'delete') {
+				switch(ev.event) {
+				case 'delete':
 					ctrl.selectNearestContact(ev.uid);
-				}
-				else if (ev.event === 'create') {
+					break;
+				case 'create':
 					$route.updateParams({
 						gid: $routeParams.gid,
 						uid: ev.uid
 					});
-				}
-				else if (ev.event === 'importend') {
+					break;
+				case 'importend':
 					$route.updateParams({
 						gid: t('contacts', 'All contacts')
 					});
+					break;
+				default:
+					// unknown event -> leave callback without action
+					return;
 				}
 				ctrl.contactList = ev.contacts;
 			});
