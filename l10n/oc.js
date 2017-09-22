@@ -5,7 +5,6 @@ OC.L10N.register(
     "Name" : "Nom",
     "Organization" : "Societat",
     "Title" : "Títol",
-    "Add field ..." : "Apondre un camp...",
     "All contacts" : "Totes los contactes",
     "Postal code" : "Còde postal",
     "City" : "Vila",

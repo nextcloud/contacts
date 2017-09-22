@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "名前",
     "Organization" : "所属",
     "Title" : "タイトル",
-    "Add field ..." : "項目を追加",
     "Save changes" : "変更を保存",
     "Address book" : "連絡帳",
     "Import into" : "インポート",

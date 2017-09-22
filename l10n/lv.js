@@ -14,7 +14,6 @@ OC.L10N.register(
     "Name" : "Nosaukums",
     "Organization" : "Organizācija",
     "Title" : "Nosaukums",
-    "Add field ..." : "Pievienot lauku ...",
     "Save changes" : "Saglabāt izmaiņas",
     "No search result for {query}" : "Nav meklēšanas rezultātu {query}",
     "All contacts" : "Visi kontakti",

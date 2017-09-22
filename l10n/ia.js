@@ -18,7 +18,6 @@ OC.L10N.register(
     "Name" : "Nomine",
     "Organization" : "Organisation",
     "Title" : "Titulo",
-    "Add field ..." : "Adder campo ...",
     "Save changes" : "Salveguardar cambios",
     "No search result for {query}" : "Nulle resultato trovate pro {query}",
     "All contacts" : "Tote contactos",

@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "Vardas",
     "Organization" : "Darbo vieta",
     "Title" : "Pareigos",
-    "Add field ..." : "Pridėti informaciją...",
     "Save changes" : "Įrašyti pakeitimus",
     "Address book" : "Adresatų knyga",
     "Import into" : "Importuoti į",

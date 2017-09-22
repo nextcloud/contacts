@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "Nimi",
     "Organization" : "Organisatsioon",
     "Title" : "Pealkiri",
-    "Add field ..." : "Lisa väli ...",
     "Save changes" : "Salvesta muudatused",
     "Address book" : "Aadressiraamat",
     "Import into" : "import sisse",

@@ -18,7 +18,6 @@ OC.L10N.register(
     "Name" : "Нэр",
     "Organization" : "Байгууллага",
     "Title" : "Цол/Албан тушаал",
-    "Add field ..." : "Талбар нэмэх",
     "Save changes" : "Өөрчлөлтийг хадгалах",
     "No search result for {query}" : "Хайлтын үр дүн хоосон: {query}",
     "All contacts" : "Бүх харилцагчид",

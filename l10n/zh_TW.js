@@ -17,7 +17,6 @@ OC.L10N.register(
     "Name" : "名稱",
     "Organization" : "組織",
     "Title" : "標題",
-    "Add field ..." : "新增欄位…",
     "Save changes" : "儲存變更",
     "No search result for {query}" : "沒有結果符合 {query}",
     "All contacts" : "所有聯絡人",

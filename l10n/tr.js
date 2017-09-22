@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "Ad",
     "Organization" : "Kurum",
     "Title" : "Başlık",
-    "Add field ..." : "Alan ekle...",
     "Save changes" : "Değişiklikleri kaydet",
     "Address book" : "Adres defteri",
     "Import into" : "Şunun içine aktar",

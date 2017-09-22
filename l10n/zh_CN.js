@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "名称",
     "Organization" : "组织",
     "Title" : "头衔",
-    "Add field ..." : "添加字段",
     "Save changes" : "保存更改",
     "Address book" : "地址簿",
     "Import into" : "导入到",

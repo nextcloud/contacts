@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "Nafn",
     "Organization" : "Stofnun/félag",
     "Title" : "Titill",
-    "Add field ..." : "Bæta við reit...",
     "Save changes" : "Vista breytingar",
     "Address book" : "Nafnaskrá",
     "Import into" : "Flytja inn í",

@@ -19,7 +19,6 @@ OC.L10N.register(
     "Name" : "Nombre",
     "Organization" : "Organización",
     "Title" : "Título",
-    "Add field ..." : "Agregar campo ...",
     "Save changes" : "Guardar cambios",
     "No search result for {query}" : "No se encontraron resultados para la búsqueda {query}",
     "All contacts" : "Todos los contactos",

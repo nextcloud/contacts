@@ -8,7 +8,6 @@ OC.L10N.register(
     "Name" : "ชื่อ",
     "Organization" : "หน่วยงาน",
     "Title" : "ชื่อเรื่อง",
-    "Add field ..." : "เพิ่มช่อง ...",
     "No search result for {query}" : "ไม่พบผลลัพธ์การค้นหาสำหรับ {query}",
     "All contacts" : "รายชื่อทั้งหมด",
     "Post office box" : "กล่องจดหมาย",

@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "Navn",
     "Organization" : "Organisation",
     "Title" : "Titel",
-    "Add field ..." : "Tilføj felt...",
     "Save changes" : "Gem ændringer",
     "Address book" : "Adressebog",
     "Import into" : "Importer til",

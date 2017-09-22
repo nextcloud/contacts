@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "Názov",
     "Organization" : "Organizácia",
     "Title" : "Názov",
-    "Add field ..." : "Pridať pole ...",
     "Save changes" : "Uložiť zmeny",
     "Address book" : "Adresár",
     "Import into" : "Importovať do",

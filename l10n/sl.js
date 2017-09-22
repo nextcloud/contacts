@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "Ime",
     "Organization" : "Ustanova",
     "Title" : "Naziv/funkcija",
-    "Add field ..." : "Dodaj polje ...",
     "Save changes" : "Shrani spremembe",
     "Address book" : "Imenik",
     "No search result for {query}" : "Ni zadetkov iskanja za {query}",

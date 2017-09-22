@@ -8,7 +8,6 @@ OC.L10N.register(
     "Name" : "Izena",
     "Organization" : "Erakundea",
     "Title" : "Izenburua",
-    "Add field ..." : "Eremua gehitu...",
     "No search result for {query}" : "{query} bilaketak ez du emaitzarik heman",
     "All contacts" : "Kontaktu guztiak",
     "Post office box" : "Posta kutxatila",

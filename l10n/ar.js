@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "الإسم",
     "Organization" : "المؤسسة",
     "Title" : "اللقب",
-    "Add field ..." : "أضف حقلاً ...",
     "Save changes" : "حفظ التعديلات",
     "Address book" : "دفتر العناوين",
     "Import into" : "إستيراد إلى",

@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "Név",
     "Organization" : "Szervezet",
     "Title" : "Cím",
-    "Add field ..." : "Mező hozzáadása",
     "Save changes" : "Változások mentése",
     "Address book" : "Címjegyzék",
     "Import into" : "Importálás ebbe",

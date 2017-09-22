@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "Emër",
     "Organization" : "Organizim",
     "Title" : "Titull",
-    "Add field ..." : "Shtoni fushë...",
     "Save changes" : "Ruaj ndryshimet",
     "Address book" : "Libri i adresave",
     "No search result for {query}" : "Nuk pati rezultate kërkimi për {query}",

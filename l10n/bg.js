@@ -13,7 +13,6 @@ OC.L10N.register(
     "Name" : "Име",
     "Organization" : "Организация",
     "Title" : "Заглавие",
-    "Add field ..." : "Добави поле ...",
     "Save changes" : "Съхраняване на промените",
     "No search result for {query}" : "Няма намерени резултати за {query}",
     "All contacts" : "Всички контакти",

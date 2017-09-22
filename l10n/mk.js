@@ -7,7 +7,6 @@ OC.L10N.register(
     "Name" : "Име",
     "Organization" : "Организација",
     "Title" : "Наслов",
-    "Add field ..." : "Додади поле...",
     "No search result for {query}" : "Нема резултати од пребарувањето за {query}",
     "All contacts" : "Сите контакти",
     "Postal code" : "Поштенски број",

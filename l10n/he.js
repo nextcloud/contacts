@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "שם",
     "Organization" : "ארגון",
     "Title" : "תפקיד",
-    "Add field ..." : "הוספת שדה...",
     "Save changes" : "שמור שינויים",
     "Address book" : "רשימת אנשי קשר",
     "No search result for {query}" : "אין תוצאות חיפוש עבור {query}",

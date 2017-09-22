@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "Nazwa",
     "Organization" : "Organizacja",
     "Title" : "Tytuł",
-    "Add field ..." : "Dodaj pole...",
     "Save changes" : "Zapisz zmiany",
     "Address book" : "Książka adresowa",
     "Import into" : "Importuj do",

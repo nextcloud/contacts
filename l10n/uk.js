@@ -12,7 +12,6 @@ OC.L10N.register(
     "Name" : "Ім’я",
     "Organization" : "Організація",
     "Title" : "Назва",
-    "Add field ..." : "Додати поле...",
     "Save changes" : "Зберегти зміни",
     "No search result for {query}" : "Немає результатів пошуку для {query}",
     "All contacts" : "Всі контакти",

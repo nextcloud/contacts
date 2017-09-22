@@ -19,7 +19,6 @@ OC.L10N.register(
     "Name" : "이름",
     "Organization" : "조직",
     "Title" : "직위",
-    "Add field ..." : "필드 추가...",
     "Save changes" : "변경 사항 저장",
     "No search result for {query}" : "{query} 검색 결과가 없음",
     "All contacts" : "모든 연락처",

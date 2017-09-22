@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "Naam",
     "Organization" : "Organisatie",
     "Title" : "Titel",
-    "Add field ..." : "Voeg veld toe",
     "Save changes" : "Wijzigingen bewaren",
     "Address book" : "Adresboek",
     "Import into" : "Importeer in",

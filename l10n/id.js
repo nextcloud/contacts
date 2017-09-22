@@ -13,7 +13,6 @@ OC.L10N.register(
     "Name" : "Nama",
     "Organization" : "Organisasi",
     "Title" : "Judul",
-    "Add field ..." : "Tambah bidang ...",
     "Save changes" : "Simpan perubahan",
     "No search result for {query}" : "Tidak ada hasil untuk pencarian {query}",
     "All contacts" : "Semua kontak",

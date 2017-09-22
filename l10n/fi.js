@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "Nimi",
     "Organization" : "Organisaatio",
     "Title" : "Otsikko",
-    "Add field ..." : "Lisää kenttä...",
     "Save changes" : "Tallenna muutokset",
     "Address book" : "Osoitekirja",
     "Importing..." : "Tuodaan...",

@@ -22,7 +22,6 @@ OC.L10N.register(
     "Name" : "Όνομα",
     "Organization" : "Οργανισμός",
     "Title" : "Τίτλος",
-    "Add field ..." : "Προσθήκη πεδίου...",
     "Save changes" : "Αποθήκευση αλλαγών",
     "Address book" : "Βιβλίο διευθύνσεων",
     "No search result for {query}" : "Δεν βρέθηκε αποτέλεσμα αναζήτησης για {query}",

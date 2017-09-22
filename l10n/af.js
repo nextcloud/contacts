@@ -19,7 +19,6 @@ OC.L10N.register(
     "Name" : "Naam",
     "Organization" : "Organisasie",
     "Title" : "Titel",
-    "Add field ..." : "Voeg veld toe …",
     "Save changes" : "Bewaar veranderinge",
     "No search result for {query}" : "Geen soekresultaat vir {query}",
     "All contacts" : "Alle kontakte",
