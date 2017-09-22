@@ -97,9 +97,11 @@ angular.module('contactsApp')
 				meta:{type:['SKYPE']}
 			},
 			options: [
-				{id: 'IRC', name:  'IRC'},
-				{id: 'SKYPE', name:'Skype'},
-				{id: 'TELEGRAM', name:'Telegram'}
+				{id: 'IRC', name: 'IRC'},
+				{id: 'KIK', name: 'KiK'},
+				{id: 'SKYPE', name: 'Skype'},
+				{id: 'TELEGRAM', name: 'Telegram'},
+				{id: 'XMPP', name:'XMPP'}
 			]
 		},
 		tel: {
@@ -131,11 +133,17 @@ angular.module('contactsApp')
 			},
 			options: [
 				{id: 'FACEBOOK', name: 'Facebook'},
+				{id: 'GITHUB', name: 'GitHub'},
 				{id: 'GOOGLEPLUS', name: 'Google+'},
 				{id: 'INSTAGRAM', name: 'Instagram'},
 				{id: 'LINKEDIN', name: 'LinkedIn'},
 				{id: 'PINTEREST', name: 'Pinterest'},
-				{id: 'TWITTER', name: 'Twitter'}
+				{id: 'QZONE', name: 'QZone'},
+				{id: 'TUMBLR', name: 'Tumblr'},
+				{id: 'TWITTER', name: 'Twitter'},
+				{id: 'WECHAT', name: 'WeChat'},
+				{id: 'YOUTUBE', name: 'YouTube'}
+
 
 			]
 		},
