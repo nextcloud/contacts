@@ -5,8 +5,9 @@
 		<form ng-submit="ctrl.createAddressBook()" name="newAddressBookForm">
 			<input id="newList" placeholder="{{ctrl.t.addressBookName}}" class="newAddressBookInput"
 				   ng-model="ctrl.newAddressBookName" type="text"
-				   autocomplete="off" autocorrect="off" spellcheck="false"
-				   required ng-pattern="ctrl.addressBookRegex" />
+				   autocomplete="off" autocorrect="off" spellcheck="false" tooltip-enable="!newAddressBookForm.$pristine"
+				   required ng-pattern="ctrl.addressBookRegex" tooltip-is-open="newAddressBookForm.$invalid" tooltip-trigger="none"
+				   tooltip-placement="top" uib-tooltip="{{ctrl.t.regexError}}" tooltip-append-to-body="true"/>
 			<input type="submit" value="" class="newAddressBookSubmit inline-button icon-confirm action pull-right"
 				   ng-disabled="newAddressBookForm.$invalid || newAddressBookForm.$pristine" />
 		</form>

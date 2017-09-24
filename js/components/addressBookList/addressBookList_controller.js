@@ -20,7 +20,8 @@ angular.module('contactsApp')
 	});
 
 	ctrl.t = {
-		addressBookName : t('contacts', 'Address book name')
+		addressBookName : t('contacts', 'Address book name'),
+		regexError : t('contacts', 'Error, special characters allowed: -_.!?#|()')
 	};
 
 	ctrl.createAddressBook = function() {
