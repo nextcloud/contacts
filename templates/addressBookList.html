@@ -4,10 +4,10 @@
 	<li>
 		<form ng-submit="ctrl.createAddressBook()" name="newAddressBookForm">
 			<input id="newList" placeholder="{{ctrl.t.addressBookName}}" class="newAddressBookInput"
-				   ng-model="ctrl.newAddressBookName" type="text"
+				   ng-model="ctrl.newAddressBookName" type="text" ng-minlength="1"
 				   autocomplete="off" autocorrect="off" spellcheck="false" tooltip-enable="!newAddressBookForm.$pristine"
-				   required ng-pattern="ctrl.addressBookRegex" tooltip-is-open="newAddressBookForm.$invalid" tooltip-trigger="none"
-				   tooltip-placement="top" uib-tooltip="{{ctrl.t.regexError}}" tooltip-append-to-body="true"/>
+				   required ng-pattern="ctrl.addressBookRegex" tooltip-is-open="newAddressBookForm.$invalid && !newAddressBookForm.$error.required" tooltip-trigger="none"
+				   tooltip-placement="right" uib-tooltip="{{ctrl.t.regexError}}" tooltip-append-to-body="true"/>
 			<input type="submit" value="" class="newAddressBookSubmit inline-button icon-confirm action pull-right"
 				   ng-disabled="newAddressBookForm.$invalid || newAddressBookForm.$pristine" />
 		</form>
