@@ -3,8 +3,8 @@
 }
 
 .addressBookList form {
-	position: relative;
 	width: 100%;
+	display: inline-flex;
 }
 
 .addressBookList form input.ng-invalid-pattern {
@@ -16,6 +16,14 @@ ul.addressBookList > li {
 	display: flex;
 	align-items: center;
 	flex-wrap: wrap;
+}
+
+ul.addressBookList > li.newAddressBookContainer {
+	position: initial !important;
+}
+
+ul.addressBookList > li.newAddressBookContainer .tooltip {
+	width: 175px;
 }
 
 ul.addressBook-share-list {
@@ -68,8 +76,7 @@ ul.addressBookList li .action > a {
 addressBookList input[type='submit'].inline-button,
 addressBookList input[type='button'].inline-button {
 	position: absolute;
-	right: 0;
-	top: 0;
+	right: 14px;
 	padding: 6px 15px;
 	background-color: transparent;
 	border: none;
@@ -119,6 +126,12 @@ div.addressBookShares ul.dropdown-menu li > a {
 	height: 30px !important;
 	min-height: 30px !important;
 	line-height: 30px !important;
+}
+
+ul.dropdown-menu li {
+	width: 100%;
+	padding: 3px 7px 4px;
+	cursor: pointer;
 }
 
 ul.dropdown-menu li.active {
