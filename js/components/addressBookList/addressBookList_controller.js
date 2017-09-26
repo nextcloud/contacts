@@ -21,7 +21,7 @@ angular.module('contactsApp')
 
 	ctrl.t = {
 		addressBookName : t('contacts', 'Address book name'),
-		regexError : t('contacts', 'Error, special characters allowed: -_.!?#|()')
+		regexError : t('contacts', 'Only these special characters are allowed: -_.!?#|()')
 	};
 
 	ctrl.createAddressBook = function() {
@@ -32,7 +32,7 @@ angular.module('contactsApp')
 					$scope.$apply();
 				});
 			}).catch(function() {
-				OC.Notification.showTemporary(t('contacts', 'AddressBook could not be created.'));
+				OC.Notification.showTemporary(t('contacts', 'Address book could not be created.'));
 			});
 		}
 	};
