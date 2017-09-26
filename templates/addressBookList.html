@@ -7,7 +7,7 @@
 				   ng-model="ctrl.newAddressBookName" type="text" ng-minlength="1"
 				   autocomplete="off" autocorrect="off" spellcheck="false" tooltip-enable="!newAddressBookForm.$pristine"
 				   required ng-pattern="ctrl.addressBookRegex" tooltip-is-open="newAddressBookForm.$invalid && !newAddressBookForm.$error.required" tooltip-trigger="none"
-				   tooltip-placement="right" uib-tooltip="{{ctrl.t.regexError}}" />
+				   tooltip-placement="top" uib-tooltip="{{ctrl.t.regexError}}" />
 			<input type="submit" value="" class="newAddressBookSubmit inline-button icon-confirm action pull-right"
 				   ng-disabled="newAddressBookForm.$invalid || newAddressBookForm.$pristine" />
 		</form>
