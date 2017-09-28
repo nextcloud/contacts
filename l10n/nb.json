@@ -14,6 +14,8 @@
     "Press ⌘-C to copy." : "Trykk ⌘-C for å kopiere",
     "Press Ctrl-C to copy." : "Trykk Ctrl-C for å kopiere",
     "Address book name" : "Navn på adressebok",
+    "Only these special characters are allowed: -_.!?#|()" : "Kun disse spesialtegnene er tillatt: -_.!?#|()",
+    "Address book could not be created." : "Kunne ikke opprette adressebok.",
     "The selected image is too big (max 1MB)" : "Det valgte bildet er for stort (maks 1MB)",
     "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "Dette kortet var ødelagt, men er nå fikset. Sjekk at datene og hendelsen stemmer for å gjøre endringene permanente.",
     "No contacts in here" : "Ingen kontakter her",

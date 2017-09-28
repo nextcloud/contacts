@@ -14,6 +14,8 @@
     "Press ⌘-C to copy." : "Premi ⌘-C per copiare.",
     "Press Ctrl-C to copy." : "Premi Ctrl-C per copiare.",
     "Address book name" : "Nome della rubrica",
+    "Only these special characters are allowed: -_.!?#|()" : "Sono consentiti solo caratteri speciali: -_.!?#|()",
+    "Address book could not be created." : "La rubrica non può essere creata.",
     "The selected image is too big (max 1MB)" : "L'immagine selezionata è troppo grande (max 1MB)",
     "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "Questa scheda è danneggiata e deve essere riparata. Controlla i dati ed esegui un salvataggio per rendere definitive le modifiche.",
     "No contacts in here" : "Nessun contatto qui",

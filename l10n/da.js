@@ -16,6 +16,8 @@ OC.L10N.register(
     "Press ⌘-C to copy." : "Tryk ⌘-C for at kopiere.",
     "Press Ctrl-C to copy." : "Tryk Ctrl-C for at kopiere.",
     "Address book name" : "Adressebogsnavn",
+    "Only these special characters are allowed: -_.!?#|()" : "Det er kun tilladt med disse specialtegn: -_.!?#|()",
+    "Address book could not be created." : "Adressebog kunne ikke oprettes",
     "The selected image is too big (max 1MB)" : "Det valgte billede er for stort (max 1MB)",
     "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "Dette kort er beskadiget og er blevet ordnet. Vær venlig at tjekke data og gem for at lave ændringerne permanente.",
     "No contacts in here" : "Ingen kontaktpersoner her",

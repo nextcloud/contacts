@@ -14,6 +14,8 @@
     "Press ⌘-C to copy." : "Appuyez sur ⌘-C pour copier.",
     "Press Ctrl-C to copy." : "Appuyez sur Ctrl-C pour copier.",
     "Address book name" : "Nom du carnet d'adresses",
+    "Only these special characters are allowed: -_.!?#|()" : "Uniquement ces caractères spéciaux sont autorisés : -_.!?#|()",
+    "Address book could not be created." : "Impossible de créer le carnet d'adresse.",
     "The selected image is too big (max 1MB)" : "L'image sélectionnée est trop volumineuse (1 Mo max)",
     "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "Cette carte est corrompue et a été corrigée. Veuillez vérifier les données et lancer une sauvegarde pour rendre les changements définitifs.",
     "No contacts in here" : "Aucun contact",
