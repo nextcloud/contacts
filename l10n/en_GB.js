@@ -16,6 +16,8 @@ OC.L10N.register(
     "Press ⌘-C to copy." : "Press ⌘-C to copy.",
     "Press Ctrl-C to copy." : "Press Ctrl-C to copy.",
     "Address book name" : "Address book name",
+    "Only these special characters are allowed: -_.!?#|()" : "Only these special characters are allowed: -_.!?#|()",
+    "Address book could not be created." : "Address book could not be created.",
     "The selected image is too big (max 1MB)" : "The selected image is too big (max 1MB)",
     "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent.",
     "No contacts in here" : "No contacts in here",
