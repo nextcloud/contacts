@@ -249,6 +249,7 @@ angular.module('contactsApp')
 				num++;
 				continue;
 			}
+			// eslint-disable-next-line no-loop-func
 			this.create(newContact, addressBook, '', true).then(function(xhrContact) {
 				if (xhrContact !== false) {
 					var xhrContactName = xhrContact.displayName();
