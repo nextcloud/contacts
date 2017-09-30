@@ -58,12 +58,16 @@ angular.module('contactsApp')
 
 		getAddressBook: function(displayName) {
 			return DavService.then(function(account) {
-				return DavClient.getAddressBook({displayName:displayName, url:account.homeUrl}).then(function(addressBook) {
-					addressBook = new AddressBook({
+				return DavClient.getAddressBook({displayName:displayName, url:account.homeUrl}).then(function(res) {
+					var addressBook = new AddressBook({
+						account: account,
+						ctag: res[0].props.getctag,
 						url: account.homeUrl+displayName+'/',
-						data: addressBook[0]
+						data: res[0],
+						displayName: res[0].props.displayname,
+						resourcetype: res[0].props.resourcetype,
+						syncToken: res[0].props.syncToken
 					});
-					addressBook.displayName = displayName;
 					return addressBook;
 				});
 			});
