@@ -73,6 +73,8 @@ angular.module('contactsApp')
 						gid: t('contacts', 'All contacts')
 					});
 					break;
+				case 'getFullContacts' || 'update':
+					break;
 				default:
 					// unknown event -> leave callback without action
 					return;
