@@ -14,6 +14,8 @@
     "Press ⌘-C to copy." : "Druk op ⌘-C om te kopiëren.",
     "Press Ctrl-C to copy." : "Druk op Ctrl-C om te kopiëren.",
     "Address book name" : "Adresboek naam",
+    "Only these special characters are allowed: -_.!?#|()" : "Alleen de volgende speciale tekens zijn toegestaan: - _ . ! ? # | ( )",
+    "Address book could not be created." : "Adresboek kon niet gemaakt worden",
     "The selected image is too big (max 1MB)" : "De geselecteerde afbeelding is te groot (max 1MB)",
     "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "Deze kaart is corrupt en weer hersteld. Controleer de gegevens en start het opslaan ervan om de wijzigingen permanent te maken.",
     "No contacts in here" : "Hier geen contactpersonen gevonden",
