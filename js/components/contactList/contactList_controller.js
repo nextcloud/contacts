@@ -56,6 +56,13 @@ angular.module('contactsApp')
 	ctrl.loading = true;
 
 	ContactService.registerObserverCallback(function(ev) {
+		/* after import at first refresh the contactList */
+		if (ev.event === 'importend') {
+			$scope.$apply(function() {
+				ctrl.contactList = ev.contacts;
+			});
+		}
+		/* update route parameters */
 		$timeout(function() {
 			$scope.$apply(function() {
 				switch(ev.event) {
@@ -69,10 +76,12 @@ angular.module('contactsApp')
 					});
 					break;
 				case 'importend':
+					/* after import select 'All contacts' group and first contact */
 					$route.updateParams({
-						gid: t('contacts', 'All contacts')
+						gid: t('contacts', 'All contacts'),
+						uid: ctrl.filteredContacts.length !== 0 ? ctrl.filteredContacts[0].uid() : undefined
 					});
-					break;
+					return;
 				case 'getFullContacts' || 'update':
 					break;
 				default:
