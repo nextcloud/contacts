@@ -19,7 +19,7 @@ ul.addressBookList > li {
 }
 
 ul.addressBookList > li.newAddressBookContainer {
-	position: initial !important;
+	position: relative;
 }
 
 ul.addressBookList > li.newAddressBookContainer .tooltip {
