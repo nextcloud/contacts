@@ -19,7 +19,7 @@ ul.addressBookList > li {
 }
 
 ul.addressBookList > li.newAddressBookContainer {
-	position: initial !important;
+	position: relative;
 }
 
 ul.addressBookList > li.newAddressBookContainer .tooltip {
@@ -76,7 +76,7 @@ ul.addressBookList li .action > a {
 addressBookList input[type='submit'].inline-button,
 addressBookList input[type='button'].inline-button {
 	position: absolute;
-	right: 14px;
+	right: 0;
 	padding: 6px 15px;
 	background-color: transparent;
 	border: none;
