@@ -82,6 +82,17 @@ else
 	composer update --prefer-dist
 endif
 
+# We need to build css files for Nextcloud 11
+# variables.scss is necessary and not provided by stable11 => download it
+.PHONY: css
+css:
+ifeq (,$(wildcard $(CURDIR)/build/css/variables.scss))
+	curl --silent --create-dirs -o $(CURDIR)/build/css/variables.scss https://raw.githubusercontent.com/nextcloud/server/master/core/css/variables.scss
+	npm run scss-compile
+else
+	npm run scss-compile
+endif
+
 # Installs npm dependencies
 .PHONY: npm
 npm:
@@ -89,6 +100,7 @@ ifeq (,$(wildcard $(CURDIR)/package.json))
 	cd js && $(npm) run build
 else
 	npm run build
+	make css
 endif
 
 # Removes the appstore build
