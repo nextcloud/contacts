@@ -89,6 +89,8 @@ ifeq (,$(wildcard $(CURDIR)/package.json))
 	cd js && $(npm) run build
 else
 	npm run build
+	# build css file for nextcloud 11
+	npm run scss-compile
 endif
 
 # Removes the appstore build
