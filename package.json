@@ -20,6 +20,7 @@
     "test": "node node_modules/gulp-cli/bin/gulp.js karma",
     "prebuild": "npm install && npm update && node_modules/bower/bin/bower install && node_modules/bower/bin/bower update",
     "build": "node node_modules/gulp-cli/bin/gulp.js",
+    "scss-compile": "cat ../../core/css/variables.scss css/style.scss | node-sass --include-path css > css/style.css",
     "watch": "node node_modules/gulp-cli/bin/gulp.js watch"
   },
   "devDependencies": {
@@ -42,6 +43,7 @@
     "karma-sinon": "^1.0.5",
     "mocha": "^3.0.2",
     "sinon": "^1.17.5",
-    "stylelint-config-standard": "^17.0.0"
+    "stylelint-config-standard": "^17.0.0",
+    "node-sass": "^4.5.3"
   }
 }
