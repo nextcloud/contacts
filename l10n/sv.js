@@ -16,6 +16,8 @@ OC.L10N.register(
     "Press ⌘-C to copy." : "Tryck ⌘-C för att kopiera.",
     "Press Ctrl-C to copy." : "Tryck Ctrl-C för att kopiera.",
     "Address book name" : "Adressboknamn",
+    "Only these special characters are allowed: -_.!?#|()" : "Endast följande specialtecken tillåts: -_.!?#|()",
+    "Address book could not be created." : "Adressboken kunde inte skapas.",
     "The selected image is too big (max 1MB)" : "Den valda bilden är för stor (max 1MB)",
     "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "Kortet är korrupt och har fixats. Var god kontrollera datan och spara för att göra ändringarna permanenta.",
     "No contacts in here" : "Det finns inga kontakter här",
