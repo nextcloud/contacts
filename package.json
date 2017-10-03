@@ -1,6 +1,6 @@
 {
   "name": "contacts",
-  "version": "1.5.3",
+  "version": "2.0.1",
   "description": "Place this app in **nextcloud/apps/**",
   "author": {
     "name": "Hendrik Leppelsack",
@@ -20,7 +20,7 @@
     "test": "node node_modules/gulp-cli/bin/gulp.js karma",
     "prebuild": "npm install && npm update && node_modules/bower/bin/bower install && node_modules/bower/bin/bower update",
     "build": "node node_modules/gulp-cli/bin/gulp.js",
-    "scss-compile": "cat ../../core/css/variables.scss css/style.scss | node-sass --include-path css > css/style.css",
+    "scss-compile": "cat build/css/variables.scss css/style.scss | node-sass --include-path css > css/style.css",
     "watch": "node node_modules/gulp-cli/bin/gulp.js watch"
   },
   "devDependencies": {
