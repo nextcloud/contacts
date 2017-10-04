@@ -38,11 +38,8 @@ angular.module('contactsApp')
 		var displayName = array.map(function (element) {
 			return element.charAt(0).toUpperCase() + element.slice(1).toLowerCase();
 		}).join(' ');
-		console.log(ctrl.availableOptions, ctrl.type);
-
 		// in case the type is not yet in the default list of available options we add it
 		if (!ctrl.availableOptions.some(function(e) { return e.id === ctrl.type; } )) {
-			console.log('test1');
 			ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.type, name: displayName}]);
 		}
 	}
@@ -53,7 +50,6 @@ angular.module('contactsApp')
 			if (!_.isUndefined(val)) {
 				// in case the type is not yet in the default list of available options we add it
 				if (!ctrl.availableOptions.some(function(e) { return e.id === val.value; } )) {
-					console.log(val);
 					ctrl.availableOptions = ctrl.availableOptions.concat([{id: val.value.toUpperCase(), name: val.value.toUpperCase()}]);
 				}
 			}
