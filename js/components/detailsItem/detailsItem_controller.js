@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.controller('detailsItemCtrl', function($templateRequest, vCardPropertiesService, ContactService) {
+.controller('detailsItemCtrl', function($templateRequest, $filter, vCardPropertiesService, ContactService) {
 	var ctrl = this;
 
 	ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
@@ -46,6 +46,14 @@ angular.module('contactsApp')
 
 		// Remove duplicate entry
 		ctrl.availableOptions = _.uniq(ctrl.availableOptions, function(option) { return option.name; });
+		if (ctrl.availableOptions.filter(function(option) { return option.id === ctrl.type; }).length === 0) {
+			// Our default value has been thrown out by the uniq function, let's find a replacement
+			var optionName = ctrl.meta.options.filter(function(option) { return option.id === ctrl.type; })[0].name;
+			ctrl.type = ctrl.availableOptions.filter(function(option) { return option.name === optionName; })[0].id;
+			// We don't want to override the default keys. Compatibility > standardization
+			// ctrl.data.meta.type[0] = ctrl.type;
+			// ctrl.model.updateContact();
+		}
 	}
 	if (!_.isUndefined(ctrl.data) && !_.isUndefined(ctrl.data.namespace)) {
 		if (!_.isUndefined(ctrl.model.contact.props['X-ABLABEL'])) {

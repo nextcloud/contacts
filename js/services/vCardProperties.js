@@ -8,6 +8,9 @@ angular.module('contactsApp')
 	 * 		readableName: [String], // internationalized readable name of prop
 	 * 		template: [String], // template name found in /templates/detailItems
 	 * 		[...] // optional additional information which might get used by the template
+	 *
+	 *		options: If multiple options have the same name, the first will be used as default.
+	 *				 Others will be merge, but still supported. Order is important!
 	 * }
 	 */
 	this.vCardMeta = {
