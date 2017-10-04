@@ -19,11 +19,17 @@ angular.module('contactsApp')
 		}
 
 		if (SortByService.getSortBy() === 'sortLastName') {
-			return (
-				ctrl.contact.lastName() + ', '
-				+ ctrl.contact.firstName() + ' '
-				+ ctrl.contact.additionalNames()
-			).trim();
+			var firstNameExists = ctrl.contact.firstName().trim().length > 0;
+			var additionalNamesExist = ctrl.contact.additionalNames().trim().length > 0;
+			var contactName = ctrl.contact.lastName;
+
+			if (firstNameExists || additionalNamesExist) {
+				contactName += ',';
+				contactName += (' ' + ctrl.contact.firstName()).trim();
+				contactName += (' ' + ctrl.contact.additionalNames()).trim();
+			}
+
+			return contactName.trim();
 		}
 
 		if (SortByService.getSortBy() === 'sortFirstName') {
