@@ -114,13 +114,20 @@ angular.module('contactsApp')
 			},
 			options: [
 				{id: 'HOME,VOICE', name: t('contacts', 'Home')},
+				{id: 'HOME', name: t('contacts', 'Home')},
 				{id: 'WORK,VOICE', name: t('contacts', 'Work')},
+				{id: 'WORK', name: t('contacts', 'Work')},
 				{id: 'CELL', name: t('contacts', 'Mobile')},
+				{id: 'CELL,VOICE', name: t('contacts', 'Mobile')},
+				{id: 'WORK,CELL', name: t('contacts', 'Work mobile')},
 				{id: 'FAX', name: t('contacts', 'Fax')},
 				{id: 'HOME,FAX', name: t('contacts', 'Fax home')},
 				{id: 'WORK,FAX', name: t('contacts', 'Fax work')},
 				{id: 'PAGER', name: t('contacts', 'Pager')},
-				{id: 'VOICE', name: t('contacts', 'Voice')}
+				{id: 'VOICE', name: t('contacts', 'Voice')},
+				{id: 'CAR', name: t('contacts', 'Car')},
+				{id: 'PAGER', name: t('contacts', 'Pager')},
+				{id: 'WORK,PAGER', name: t('contacts', 'Work pager')}
 			]
 		},
 		'X-SOCIALPROFILE': {

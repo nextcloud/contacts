@@ -43,6 +43,9 @@ angular.module('contactsApp')
 		if (!ctrl.availableOptions.some(function(e) { return e.id === ctrl.type; } )) {
 			ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.type, name: displayName}]);
 		}
+
+		// Remove duplicate entry
+		ctrl.availableOptions = _.uniq(ctrl.availableOptions, function(option) { return option.name; });
 	}
 	if (!_.isUndefined(ctrl.data) && !_.isUndefined(ctrl.data.namespace)) {
 		if (!_.isUndefined(ctrl.model.contact.props['X-ABLABEL'])) {
@@ -56,6 +59,7 @@ angular.module('contactsApp')
 			}
 		}
 	}
+
 	ctrl.availableGroups = [];
 
 	ContactService.getGroups().then(function(groups) {
