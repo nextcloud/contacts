@@ -25,13 +25,14 @@ angular.module('contactsApp')
 				+ ctrl.contact.additionalNames()
 			).trim();
 		}
+
 		else if (SortByService.getSortBy() === 'sortLastName' & ctrl.contact.firstName() === '' & ctrl.contact.lastName() !== '') {
 			return(
 				ctrl.contact.lastName() + ' '
 				+ ctrl.contact.additionalNames()
 			).trim();
 		}
-		
+
 		else if (SortByService.getSortBy() === 'sortLastName' & ctrl.contact.firstName() !== '' & ctrl.contact.lastName() === '') {
 			return(
 				ctrl.contact.firstName() + ' '
