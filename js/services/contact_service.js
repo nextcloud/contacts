@@ -180,7 +180,7 @@ angular.module('contactsApp')
 	this.create = function(newContact, addressBook, uid, fromImport) {
 		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
 		if(addressBook.readOnly) {
-			OC.Notification.showTemporary(t('contacts', 'You don\'t have permission to write to this addressbook.'));
+			OC.Notification.showTemporary(t('contacts', 'You have no permission to make changes to this address book.'));
 			return;
 		}
 		try {
@@ -272,7 +272,7 @@ angular.module('contactsApp')
 			return;
 		}
 		if(addressBook.readOnly) {
-			OC.Notification.showTemporary(t('contacts', 'You don\'t have permission to write to this addressbook.'));
+			OC.Notification.showTemporary(t('contacts', 'You have no permission to make changes to this address book.'));
 			return;
 		}
 		contact.syncVCard();
