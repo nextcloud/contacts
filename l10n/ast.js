@@ -49,7 +49,6 @@ OC.L10N.register(
     "No contacts in file. Only vCard files are allowed." : "Nun hai contautos nel ficheru. Namái ser permiten ficheros vCard.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Namái se sofiten les versiones 4.0 (RFC6350) o 3.0 (RFC2426) de vCard.",
     "Contact could not be saved." : "El contautu pudo nun guardase.",
-    "Waiting for the server to be ready..." : "Esperando que'l sirvidor tea prepatáu...",
     "Display name" : "Nome",
     "Nickname" : "Nomatu",
     "Detailed name" : "Nome detalláu",

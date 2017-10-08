@@ -51,7 +51,6 @@ OC.L10N.register(
     "No contacts in file. Only vCard files are allowed." : "ファイルに連絡先がありません。vCardファイルのみ有効です",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "vCard のバージョンは、4.0 (RFC6350) または、3.0 (RFC2426) をサポートしています。",
     "Contact could not be saved." : "連絡先を保存できませんでした。",
-    "Waiting for the server to be ready..." : "サーバー状況確認中",
     "Display name" : "表示名",
     "Nickname" : "ニックネーム",
     "Detailed name" : "詳細名",

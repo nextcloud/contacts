@@ -51,7 +51,6 @@ OC.L10N.register(
     "No contacts in file. Only vCard files are allowed." : "لا يوجد جهات إتصال بالملف. يسمح فقط بملفات vCard",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "يمكن الإعتماد فقط على الإصدار 4.0 (RFC6350) او 3.0 (RFC2426) من التطبيق vCard",
     "Contact could not be saved." : "لم يتم حفظ جهة الإتصال.",
-    "Waiting for the server to be ready..." : "إنتظار المخدم حتى يجهز...",
     "Display name" : "إسم العرض",
     "Nickname" : "كنية.\nلقب.",
     "Detailed name" : "الإسم بالتفصيل",
