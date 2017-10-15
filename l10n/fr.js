@@ -82,6 +82,7 @@ OC.L10N.register(
     "Pager" : "Bipeur",
     "Voice" : "Voix",
     "Car" : "Voiture",
+    "Work pager" : "Bip professionnel",
     "Social network" : "Réseau social",
     "Relationship" : "Relation",
     "Spouse" : "Conjoint",
