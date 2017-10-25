@@ -8,6 +8,13 @@ angular.module('contactsApp')
 	var observerCallbacks = [];
 	var loadPromise = undefined;
 
+	var allUpdates = $q.when();
+	this.AddAndUpdate = function(contact) {
+		allUpdates = allUpdates.then(function() {
+			return contactService.update(contact);
+		});
+	};
+
 	this.registerObserverCallback = function(callback) {
 		observerCallbacks.push(callback);
 	};
@@ -180,7 +187,7 @@ angular.module('contactsApp')
 	this.create = function(newContact, addressBook, uid, fromImport) {
 		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
 		if(addressBook.readOnly) {
-			OC.Notification.showTemporary(t('contacts', 'You have no permission to make changes to this address book.'));
+			OC.Notification.showTemporary(t('contacts', 'You don\'t have permission to write to this addressbook.'));
 			return;
 		}
 		try {
@@ -272,7 +279,7 @@ angular.module('contactsApp')
 			return;
 		}
 		if(addressBook.readOnly) {
-			OC.Notification.showTemporary(t('contacts', 'You have no permission to make changes to this address book.'));
+			OC.Notification.showTemporary(t('contacts', 'You don\'t have permission to write to this addressbook.'));
 			return;
 		}
 		contact.syncVCard();
