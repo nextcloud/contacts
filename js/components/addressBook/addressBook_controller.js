@@ -193,7 +193,7 @@ angular.module('contactsApp')
 	};
 
 	ctrl.toggleState = function() {
-		window.localStorage.setItem('ctrl.key', !ctrl.enabled);
+		window.localStorage.setItem('contacts_ab_'+ctrl.addressBook.key, !ctrl.addressBook.enabled);
 		ctrl.enabled = !ctrl.enabled;
 	};
 

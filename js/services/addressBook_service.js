@@ -24,7 +24,11 @@ angular.module('contactsApp')
 			loadPromise = DavService.then(function(account) {
 				loadPromise = undefined;
 				addressBooks = account.addressBooks.map(function(addressBook) {
-					return new AddressBook(addressBook);
+					var newAddressBook = new AddressBook(addressBook);
+					console.log(newAddressBook);
+					if(newAddressBook.enabled) {
+						return newAddressBook;
+					}
 				});
 			});
 		}
