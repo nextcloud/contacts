@@ -27,7 +27,6 @@ angular.module('contactsApp')
 				}
 
 				// Start sorting
-				console.log(sortBy, valueA, valueB);
 				if (angular.isString(valueA)) {
 					if(valueA !== valueB) {
 						return !reverseOrder ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
