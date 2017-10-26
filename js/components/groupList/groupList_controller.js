@@ -3,9 +3,14 @@ angular.module('contactsApp')
 	var ctrl = this;
 
 	ctrl.groups = [];
+	ctrl.contactFilters = [];
 
 	ContactService.getGroupList().then(function(groups) {
 		ctrl.groups = groups;
+	});
+
+	ContactService.getContactFilters().then(function(contactFilters) {
+		ctrl.contactFilters = contactFilters;
 	});
 
 	ctrl.getSelected = function() {
@@ -19,6 +24,9 @@ angular.module('contactsApp')
 				$scope.$apply(function() {
 					ContactService.getGroupList().then(function(groups) {
 						ctrl.groups = groups;
+					});
+					ContactService.getContactFilters().then(function(contactFilters) {
+						ctrl.contactFilters = contactFilters;
 					});
 				});
 			});

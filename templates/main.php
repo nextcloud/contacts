@@ -31,7 +31,6 @@ vendor_style('select2/select2');
 		<div id="importscreen-sidebar-block" class="icon-loading" ng-show="$root.importing"></div>
 		<newContactButton></newContactButton>
 		<ul groupList></ul>
-
 		<div id="app-settings">
 			<div id="app-settings-header">
 				<button class="settings-button"
