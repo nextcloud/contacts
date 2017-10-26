@@ -44,8 +44,9 @@ angular.module('contactsApp')
 						if (valueA[1] !== valueB[1]) {
 							return !reverseOrder ? valueA[1].localeCompare(valueB[1]) : valueB[1].localeCompare(valueA[1]);
 						}
+					} else {
+						return !reverseOrder ? valueA[0].localeCompare(valueB[0]) : valueB[0].localeCompare(valueA[0]);
 					}
-					return !reverseOrder ? valueA[0].localeCompare(valueB[0]) : valueB[0].localeCompare(valueA[0]);
 				}
 			}
 			return 0;
