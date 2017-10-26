@@ -9,7 +9,7 @@ angular.module('contactsApp')
 	var loadPromise = undefined;
 
 	var allUpdates = $q.when();
-	this.AddAndUpdate = function(contact) {
+	this.queueUpdate = function(contact) {
 		allUpdates = allUpdates.then(function() {
 			return contactService.update(contact);
 		});
