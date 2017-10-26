@@ -2,6 +2,7 @@ angular.module('contactsApp')
 .factory('AddressBook', function()
 {
 	return function AddressBook(data) {
+		var storageKey = btoa(data.data.href.split('/').splice(-3, 2).join('_'));
 		angular.extend(this, {
 
 			displayName: '',
