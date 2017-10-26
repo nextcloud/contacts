@@ -8,6 +8,10 @@ angular.module('contactsApp')
 			contacts: [],
 			groups: data.data.props.groups,
 			readOnly: data.data.props.readOnly === '1',
+			// use only owner and url, convert ''/remote.php/dav/addressbooks/users/admin/Test1/'' to 'admin.Test'
+			key: data.data.href.split('/').splice(-3, 2).join('.'),
+			enabled: window.localStorage.getItem(this.key) !== false,
+
 			sharedWith: {
 				users: [],
 				groups: []
