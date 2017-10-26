@@ -8,16 +8,6 @@ angular.module('contactsApp')
 			contacts: [],
 			groups: data.data.props.groups,
 			readOnly: data.data.props.readOnly === '1',
-
-			getContact: function(uid) {
-				for(var i in this.contacts) {
-					if(this.contacts[i].uid() === uid) {
-						return this.contacts[i];
-					}
-				}
-				return undefined;
-			},
-
 			sharedWith: {
 				users: [],
 				groups: []
