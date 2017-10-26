@@ -10,13 +10,23 @@ angular.module('contactsApp')
 		});
 
 		arrayCopy.sort(function (a, b) {
-			var valueA = a[sortPredicate];
+			var valueA = a[sortPredicate[0]];
 			if (angular.isFunction(valueA)) {
-				valueA = a[sortPredicate]();
+				valueA = a[sortPredicate[0]]();
 			}
-			var valueB = b[sortPredicate];
+			var valueB = b[sortPredicate[0]];
 			if (angular.isFunction(valueB)) {
-				valueB = b[sortPredicate]();
+				valueB = b[sortPredicate[0]]();
+			}
+
+			// Fallback for secondary sort option
+			var valueC = a[sortPredicate[1]];
+			if (angular.isFunction(valueC)) {
+				valueC = a[sortPredicate[1]]();
+			}
+			var valueD = b[sortPredicate[1]];
+			if (angular.isFunction(valueD)) {
+				valueD = b[sortPredicate[1]]();
 			}
 
 			if (angular.isString(valueA)) {
@@ -29,6 +39,10 @@ angular.module('contactsApp')
 
 			if (angular.isArray(valueA)) {
 				if (valueA[0] === valueB[0]) {
+					if (valueA[1] === valueB[1]) {
+						// Fallback to secondary sorting: all values are equals
+						return !reverseOrder ? valueC.localeCompare(valueD) : valueD.localeCompare(valueC);
+					}
 					return !reverseOrder ? valueA[1].localeCompare(valueB[1]) : valueB[1].localeCompare(valueA[1]);
 				}
 				return !reverseOrder ? valueA[0].localeCompare(valueB[0]) : valueB[0].localeCompare(valueA[0]);
