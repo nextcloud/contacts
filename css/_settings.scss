@@ -91,9 +91,6 @@ ul.addressBookList li[addressbook] > span.addressBookName {
 	white-space: nowrap;
 	text-overflow: ellipsis;
 	padding-left: 7px;
-	&.disabled {
-		opacity: 0.3;
-	}
 }
 
 ul.addressBookList li[addressbook] > .addressBookShares {
