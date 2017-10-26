@@ -49,6 +49,7 @@ angular.module('contactsApp')
 					return !reverseOrder ? valueA[0].localeCompare(valueB[0]) : valueB[0].localeCompare(valueA[0]);
 				}
 			}
+			return 0;
 		});
 
 		return arrayCopy;
