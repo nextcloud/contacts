@@ -19,8 +19,6 @@ describe('localeOrderBy filter', function() {
 		var localeOrderBy = $filter('localeOrderBy');
 		var sorted = $filter('localeOrderBy')([{name:'Test', uid: '4321'}, {name:'Test', uid: '1234'}, {name:'Test2', uid: '0000'}, {name: 1, uid: '5241'}], ['name', 'uid'], false);
 		var expected = [{name: 1, uid: '5241'}, {name:'Test', uid: '1234'}, {name:'Test', uid: '4321'}, {name:'Test2', uid: '0000'}];
-		console.log(sorted);
-		console.log(expected);
 		expect(sorted).to.deep.equal(expected);
 	});
 });
