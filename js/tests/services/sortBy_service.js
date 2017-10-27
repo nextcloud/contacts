@@ -8,12 +8,12 @@ describe('sortbyService', function() {
 	}));
 
 	it('should return sortDisplayName as default sorting method', function() {
-		expect($Service.getSortBy()).to.equal('sortDisplayName');
+		expect($Service.getSortByKey()).to.equal('sortDisplayName');
 	});
 
 	it('should store sorting method', function() {
 		$Service.setSortBy('sortLastName');
-		expect($Service.getSortBy()).to.equal(
+		expect($Service.getSortByKey()).to.equal(
 			window.localStorage.getItem('contacts_default_order')
 		);
 	});

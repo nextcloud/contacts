@@ -18,7 +18,7 @@ angular.module('contactsApp')
 			return ctrl.contact.displayName();
 		}
 
-		if (SortByService.getSortBy() === 'sortLastName') {
+		if (SortByService.getSortByKey() === 'sortLastName') {
 			return (
 				ctrl.contact.lastName() + ', '
 				+ ctrl.contact.firstName() + ' '
@@ -26,7 +26,7 @@ angular.module('contactsApp')
 			).trim();
 		}
 
-		if (SortByService.getSortBy() === 'sortFirstName') {
+		if (SortByService.getSortByKey() === 'sortFirstName') {
 			return (
 				ctrl.contact.firstName() + ' '
 				+ ctrl.contact.additionalNames() + ' '

@@ -1,6 +1,15 @@
 angular.module('contactsApp')
 .service('SortByService', function () {
 	var subscriptions = [];
+
+	// Array of keys to sort by. Ordered by priorities.
+	var sortOptions = {
+		sortFirstName: ['firstName', 'lastName', 'uid'],
+		sortLastName: ['lastName', 'firstName', 'uid'],
+		sortDisplayName: ['displayName', 'uid']
+	};
+
+	// Key
 	var sortBy = 'sortDisplayName';
 
 	var defaultOrder = window.localStorage.getItem('contacts_default_order');
@@ -8,24 +17,27 @@ angular.module('contactsApp')
 		sortBy = defaultOrder;
 	}
 
-	function notifyObservers () {
+	function notifyObservers() {
 		angular.forEach(subscriptions, function (subscription) {
 			if (typeof subscription === 'function') {
-				subscription(sortBy);
+				subscription(sortOptions[sortBy]);
 			}
 		});
 	}
 
 	return {
 		subscribe: function (callback) {
-			subscriptions.push (callback);
+			subscriptions.push(callback);
 		},
 		setSortBy: function (value) {
 			sortBy = value;
-			window.localStorage.setItem ('contacts_default_order', value);
-			notifyObservers ();
+			window.localStorage.setItem('contacts_default_order', value);
+			notifyObservers();
 		},
 		getSortBy: function () {
+			return sortOptions[sortBy];
+		},
+		getSortByKey: function () {
 			return sortBy;
 		},
 		getSortByList: function () {

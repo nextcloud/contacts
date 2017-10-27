@@ -10,28 +10,35 @@ angular.module('contactsApp')
 		});
 
 		arrayCopy.sort(function (a, b) {
-			var valueA = a[sortPredicate];
-			if (angular.isFunction(valueA)) {
-				valueA = a[sortPredicate]();
-			}
-			var valueB = b[sortPredicate];
-			if (angular.isFunction(valueB)) {
-				valueB = b[sortPredicate]();
-			}
 
-			if (angular.isString(valueA)) {
-				return !reverseOrder ? valueA.localeCompare(valueB) : valueB.localeCompare(valueA);
-			}
 
-			if (angular.isNumber(valueA) || typeof valueA === 'boolean') {
-				return !reverseOrder ? valueA - valueB : valueB - valueA;
-			}
+			// Did we pass multiple sorting options? If not, create an array anyway.
+			sortPredicate = angular.isArray(sortPredicate) ? sortPredicate: [sortPredicate];
+			// Let's test the first sort and continue if no sort occured
+			for(var i=0; i<sortPredicate.length; i++) {
+				var sortBy = sortPredicate[i];
 
-			if (angular.isArray(valueA)) {
-				if (valueA[0] === valueB[0]) {
-					return !reverseOrder ? valueA[1].localeCompare(valueB[1]) : valueB[1].localeCompare(valueA[1]);
+				var valueA = a[sortBy];
+				if (angular.isFunction(valueA)) {
+					valueA = a[sortBy]();
 				}
-				return !reverseOrder ? valueA[0].localeCompare(valueB[0]) : valueB[0].localeCompare(valueA[0]);
+				var valueB = b[sortBy];
+				if (angular.isFunction(valueB)) {
+					valueB = b[sortBy]();
+				}
+
+				// Start sorting
+				if (angular.isString(valueA)) {
+					if(valueA !== valueB) {
+						return reverseOrder ? valueB.localeCompare(valueA) : valueA.localeCompare(valueB);
+					}
+				}
+
+				if (angular.isNumber(valueA) || typeof valueA === 'boolean') {
+					if(valueA !== valueB) {
+						return reverseOrder ? valueB - valueA : valueA - valueB;
+					}
+				}
 			}
 
 			return 0;
