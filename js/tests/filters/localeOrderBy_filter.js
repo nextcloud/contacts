@@ -37,41 +37,70 @@ describe('localeOrderBy filter', function() {
 		var localeOrderBy = $filter('localeOrderBy');
 		var sorted = $filter('localeOrderBy')(
 			[
-				{name:'Test', uid: '4321'},
-				{name:'Test', uid: '1234'},
-				{name:'Test2', uid: '0000'},
-				{name: 1, uid: '5241'}
+				{name:'Test',	uid: '4321'},
+				{name:'Test',	uid: '1234'},
+				{name:'Test2',	uid: '0000'},
+				{name: 1,		uid: '5241'}
 			],
 			['name', 'uid'],
 			false
 		);
 		var expected = [
-			{name: 1, uid: '5241'},
-			{name:'Test', uid: '1234'},
-			{name:'Test', uid: '4321'},
-			{name:'Test2', uid: '0000'}
+			{name: 1,		uid: '5241'},
+			{name:'Test',	uid: '1234'},
+			{name:'Test',	uid: '4321'},
+			{name:'Test2',	uid: '0000'}
 		];
 		expect(sorted).to.deep.equal(expected);
 	});
 
-	it('should return the array properly sorted by uid even if both first and last name are equals', function() {
+	it('should return the array properly sorted by firstName, lastName then uid', function() {
 		var localeOrderBy = $filter('localeOrderBy');
 		var sorted = $filter('localeOrderBy')(
 			[
-				{name:['New contact', 'New contact'], uid: '3456'},
-				{name:['New contact', 'New contact'], uid: '1234'},
-				{name:['New contact', 'New contact'], uid: '2345'},
-				{name:['New contact', 'New contact'], uid: '0123'}
+				{firstName:'John',	lastName: 'Doe',	uid: 2525},
+				{firstName:'Molly',	lastName: 'Holly',	uid: 8731},
+				{firstName:'Hans',	lastName: 'Maeven',	uid: 0563},
+				{firstName:'John',	lastName: 'Dorian',	uid: 2683},
+				{firstName:'John',	lastName: 'Doe',	uid: 1624},
+				{firstName:'John',	lastName: '',		uid: 9338}
 			],
-			['name', 'uid'],
+			['firstName', 'lastName', 'uid'],
 			false
 		);
 		var expected = [
-			{name:['New contact', 'New contact'], uid: '0123'},
-			{name:['New contact', 'New contact'], uid: '1234'},
-			{name:['New contact', 'New contact'], uid: '2345'},
-			{name:['New contact', 'New contact'], uid: '3456'}
+			{firstName:'Hans',	lastName: 'Maeven',	uid: 0563},
+			{firstName:'John',	lastName: '',		uid: 9338},
+			{firstName:'John',	lastName: 'Doe',	uid: 1624},
+			{firstName:'John',	lastName: 'Doe',	uid: 2525},
+			{firstName:'John',	lastName: 'Dorian',	uid: 2683},
+			{firstName:'Molly',	lastName: 'Holly',	uid: 8731}
 		];
+		expect(sorted).to.deep.equal(expected);
+	});
+
+	it('should return the array properly sorted by firstName, lastName then the uid function', function() {
+		var localeOrderBy = $filter('localeOrderBy');
+		var sorted = $filter('localeOrderBy')(
+			[
+				{firstName:'John',	lastName: 'Doe',	uid: function(){return 2525;}},
+				{firstName:'John',	lastName: 'Doe',	uid: function(){return 8544;}},
+				{firstName:'John',	lastName: 'Doe',	uid: function(){return 1624;}},
+				{firstName:'John',	lastName: 'Doe',	uid: function(){return 9682;}},
+				{firstName:'John',	lastName: '',		uid: function(){return 9338;}}
+			],
+			['firstName', 'lastName', 'uid'],
+			false
+		);
+		var expected = [
+			{firstName:'John',	lastName: '',		uid: 9338},
+			{firstName:'John',	lastName: 'Doe',	uid: 1624},
+			{firstName:'John',	lastName: 'Doe',	uid: 2525},
+			{firstName:'John',	lastName: 'Doe',	uid: 8544},
+			{firstName:'John',	lastName: 'Doe',	uid: 9682}
+		];
+		console.log(sorted);
+		console.log(expected);
 		expect(sorted).to.deep.equal(expected);
 	});
 });
