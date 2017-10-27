@@ -51,7 +51,6 @@ OC.L10N.register(
     "Sort by" : "Sortowanie po",
     "{addressbook} shared by {owner}" : "Książka {addressbook} udostępniona przez {owner}",
     "Contact not found." : "Nie znaleziono kontaktu.",
-    "You have no permission to make changes to this address book." : "Nie masz uprawnień do dokonywania zmian w tej książce adresowej.",
     "Contact could not be created." : "Nie można utworzyć kontaktu",
     "No contacts in file. Only vCard files are allowed." : "Nie znaleziono kontaktów w pliku. Dozwolone są tylko pliki vCard.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Wspierane są tylko vCard w wersji 4.0 (RFC6350) lub 3.0 (RFC2426).",

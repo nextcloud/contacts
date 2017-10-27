@@ -49,7 +49,6 @@
     "Sort by" : "ソート",
     "{addressbook} shared by {owner}" : " {owner}と共有中の{addressbook} ",
     "Contact not found." : "連絡先がありません",
-    "You have no permission to make changes to this address book." : "アドレス帳を変更する権限がありません",
     "Contact could not be created." : "連絡先を作成できませんでした。",
     "No contacts in file. Only vCard files are allowed." : "ファイルに連絡先がありません。vCardファイルのみ有効です",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "vCard のバージョンは、4.0 (RFC6350) または、3.0 (RFC2426) をサポートしています。",

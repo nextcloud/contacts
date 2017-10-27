@@ -49,7 +49,6 @@
     "Sort by" : "Сортировать по",
     "{addressbook} shared by {owner}" : "{addressbook} поделился {owner}",
     "Contact not found." : "Контакт не найден.",
-    "You have no permission to make changes to this address book." : "У Вас нет прав для редактирования этой адресной книги.",
     "Contact could not be created." : "Не удалось создать контакт.",
     "No contacts in file. Only vCard files are allowed." : "В файле нет контактов. Допустимы только файлы формата vCard.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Поддерживается только формат vCard версии 4.0 (RFC6350) или версии 3.0 (RFC2426).",

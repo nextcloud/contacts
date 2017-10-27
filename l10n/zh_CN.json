@@ -49,7 +49,6 @@
     "Sort by" : "排序方式",
     "{addressbook} shared by {owner}" : "由 {owner} 共享给您的 {addressbook}",
     "Contact not found." : "无法找到联系人.",
-    "You have no permission to make changes to this address book." : "你没有权限修改这个地址簿。",
     "Contact could not be created." : "无法创建联系人。",
     "No contacts in file. Only vCard files are allowed." : "没有发现联系人信息. 只允许 VCard 格式文件.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "仅支持 VCard v4.0版本 (RFC6350) 或 v3.0版本 (RFC2426).",

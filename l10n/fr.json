@@ -49,7 +49,6 @@
     "Sort by" : "Trier par",
     "{addressbook} shared by {owner}" : "{addressbook} partagé par {owner}",
     "Contact not found." : "Contact introuvable.",
-    "You have no permission to make changes to this address book." : "Vous n'avez pas les droits suffisants pour faire des modifications dans ce carnet d'adresse.",
     "Contact could not be created." : "Ce contact n'a pu être créé.",
     "No contacts in file. Only vCard files are allowed." : "Aucun contact dans le fichier. Seuls les fichiers vCard sont autorisés.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Seules les vCard version 4.0 (RFC6350) ou version 3.0 (RFC2426) sont supportées.",

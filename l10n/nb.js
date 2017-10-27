@@ -51,7 +51,6 @@ OC.L10N.register(
     "Sort by" : "Sorter etter",
     "{addressbook} shared by {owner}" : "{addressbook} delt av {owner}",
     "Contact not found." : "Fant ikke kontakten.",
-    "You have no permission to make changes to this address book." : "Du har ikke tilgang til å gjøre endringer i denne adresseboka.",
     "Contact could not be created." : "Kontakten kunne ikke opprettes",
     "No contacts in file. Only vCard files are allowed." : "Ingen kontakter i filen. Kun vCard filer er tillatt.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Kun vCard versjon 4.0 (RFC6350) eller versjon 3.0 (RFC2426) er støttet.",
