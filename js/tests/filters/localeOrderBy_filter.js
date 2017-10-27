@@ -101,6 +101,6 @@ describe('localeOrderBy filter', function() {
 		];
 		console.log(sorted);
 		console.log(expected);
-		expect(sorted).to.deep.equal(expected);
+		expect(sorted).to.equal.equal(expected);
 	});
 });
