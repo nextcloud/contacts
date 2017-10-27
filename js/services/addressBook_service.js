@@ -89,6 +89,12 @@ angular.module('contactsApp')
 			});
 		},
 
+		toggleState: function(addressBook) {
+			window.localStorage.setItem('contacts_ab_'+addressBook.key, !addressBook.enabled);
+			notifyObservers('toggleState');
+			return !addressBook.enabled;
+		},
+
 		rename: function(addressBook, displayName) {
 			return DavService.then(function(account) {
 				return DavClient.renameAddressBook(addressBook, {displayName:displayName, url:account.homeUrl});

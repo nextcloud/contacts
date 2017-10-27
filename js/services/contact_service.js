@@ -44,7 +44,7 @@ angular.module('contactsApp')
 			});
 			// Get our full vCards
 			enabledAddressBooks.forEach(function(addressBook) {
-				if(angular.isArray(xhrAddressBooks[addressBook.displayName]) && addressBook.enabled) {
+				if(angular.isArray(xhrAddressBooks[addressBook.displayName])) {
 					var promise = DavClient.getContacts(addressBook, {}, xhrAddressBooks[addressBook.displayName]).then(
 						function (vcards) {
 							return vcards.map(function (vcard) {
@@ -74,22 +74,19 @@ angular.module('contactsApp')
 			loadPromise = AddressBookService.getAll().then(function (enabledAddressBooks) {
 				var promises = [];
 				enabledAddressBooks.forEach(function (addressBook) {
-					console.log('Processing contacts from '+addressBook.displayName+', status: '+addressBook.enabled);
-					if(addressBook.enabled) {
-						promises.push(
-							AddressBookService.sync(addressBook).then(function (addressBook) {
-								addressBook.objects.forEach(function(vcard) {
-									try {
-										var contact = new Contact(addressBook, vcard);
-										contactsCache.put(contact.uid(), contact);
-									} catch(error) {
-										// eslint-disable-next-line no-console
-										console.log('Invalid contact received: ', vcard);
-									}
-								});
-							})
-						);
-					}
+					promises.push(
+						AddressBookService.sync(addressBook).then(function (addressBook) {
+							addressBook.objects.forEach(function(vcard) {
+								try {
+									var contact = new Contact(addressBook, vcard);
+									contactsCache.put(contact.uid(), contact);
+								} catch(error) {
+									// eslint-disable-next-line no-console
+									console.log('Invalid contact received: ', vcard);
+								}
+							});
+						})
+					);
 				});
 				return $q.all(promises).then(function () {
 					cacheFilled = true;
