@@ -11,7 +11,8 @@ angular.module('contactsApp')
 
 		arrayCopy.sort(function (a, b) {
 
-			// Did we pass multiple sorting options? If not, create an array abyway.
+
+			// Did we pass multiple sorting options? If not, create an array anyway.
 			sortPredicate = angular.isArray(sortPredicate) ? sortPredicate: [sortPredicate];
 			// Let's test the first sort and continue if no sort occured
 			for(var i=0; i<sortPredicate.length; i++) {
@@ -38,17 +39,8 @@ angular.module('contactsApp')
 						return reverseOrder ? valueB - valueA : valueA - valueB;
 					}
 				}
-
-				if (angular.isArray(valueA)) {
-					if (valueA[0] === valueB[0]) {
-						if (valueA[1] !== valueB[1]) {
-							return reverseOrder ? valueB[1].localeCompare(valueA[1]) :valueA[1].localeCompare(valueB[1]);
-						}
-					} else {
-						return reverseOrder ? valueB[0].localeCompare(valueA[0]) : valueA[0].localeCompare(valueB[0]);
-					}
-				}
 			}
+
 			return 0;
 		});
 

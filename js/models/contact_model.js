@@ -31,18 +31,6 @@ angular.module('contactsApp')
 				}
 			},
 
-			sortFirstName: function() {
-				return [this.firstName(), this.lastName()];
-			},
-
-			sortLastName: function() {
-				return [this.lastName(), this.firstName()];
-			},
-
-			sortDisplayName: function() {
-				return this.displayName();
-			},
-
 			displayName: function() {
 				var displayName = this.fullName() || this.org() || '';
 				if(angular.isArray(displayName)) {
