@@ -81,26 +81,21 @@ describe('localeOrderBy filter', function() {
 
 	it('should return the array properly sorted by firstName, lastName then the uid function', function() {
 		var localeOrderBy = $filter('localeOrderBy');
+		var returnInt = function() {return 1234};
 		var sorted = $filter('localeOrderBy')(
 			[
-				{firstName:'John',	lastName: 'Doe',	uid: function(){return 2525;}},
-				{firstName:'John',	lastName: 'Doe',	uid: function(){return 8544;}},
-				{firstName:'John',	lastName: 'Doe',	uid: function(){return 1624;}},
-				{firstName:'John',	lastName: 'Doe',	uid: function(){return 9682;}},
-				{firstName:'John',	lastName: '',		uid: function(){return 9338;}}
+				{firstName:'John',	lastName: 'Doe',	uid: returnInt},
+				{firstName:'John',	lastName: 'Doe',	uid: returnInt},
+				{firstName:'John',	lastName: '',		uid: returnInt}
 			],
 			['firstName', 'lastName', 'uid'],
 			false
 		);
 		var expected = [
-			{firstName:'John',	lastName: '',		uid: 9338},
-			{firstName:'John',	lastName: 'Doe',	uid: 1624},
-			{firstName:'John',	lastName: 'Doe',	uid: 2525},
-			{firstName:'John',	lastName: 'Doe',	uid: 8544},
-			{firstName:'John',	lastName: 'Doe',	uid: 9682}
+			{firstName:'John',	lastName: '',		uid: returnInt},
+			{firstName:'John',	lastName: 'Doe',	uid: returnInt},
+			{firstName:'John',	lastName: 'Doe',	uid: returnInt}
 		];
-		console.log(sorted);
-		console.log(expected);
-		expect(sorted).to.equal.equal(expected);
+		expect(sorted).to.deep.equal(expected);
 	});
 });
