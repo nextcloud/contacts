@@ -194,7 +194,6 @@ angular.module('contactsApp')
 
 	ctrl.toggleState = function() {
 		ctrl.enabled = AddressBookService.toggleState(ctrl.addressBook);
-		ContactService.fillCache();
 	};
 
 });
