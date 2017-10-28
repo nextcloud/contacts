@@ -1,0 +1,18 @@
+<div class="contacts-list" ng-class="{loading: ctrl.loading, 'mobile-show': ctrl.show}">
+        <div class="app-content-list-item"
+<<<<<<< HEAD
+			 ng-repeat="contact in ctrl.filteredContacts = (ctrl.contactList | contactGroupFilter:ctrl.routeParams.gid | localeOrderBy:ctrl.sortBy | filter:query | limitTo:ctrl.limitTo ) as filtered track by contact.uid()"
+=======
+			 ng-repeat="contact in ctrl.filteredContacts = (ctrl.contactList | filter:{'data':{'addressBook':{'enabled': true}}} | contactGroupFilter:ctrl.routeParams.gid | localeOrderBy:ctrl.sortBy | filter:query | limitTo:ctrl.limitTo) as filtered track by contact.uid()"
+>>>>>>> Filter out disabled ab
+			 contact data="contact"
+			 ng-click="setSelected(contact.uid())"
+			 ng-class="{active: contact.uid() === ctrl.getSelectedId()}">
+	</div>
+	<div ng-show="!ctrl.filteredContacts.length && !ctrl.loading && ctrl.searchTerm !== ''">
+	        <div id="emptycontent" class="emptycontent-search">
+		        <div class="icon-search"></div>
+			<h2>{{ctrl.t.emptySearch}}</h2>
+		</div>
+	</div>
+</div>
