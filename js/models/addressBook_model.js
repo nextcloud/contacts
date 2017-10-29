@@ -2,16 +2,14 @@ angular.module('contactsApp')
 .factory('AddressBook', function()
 {
 	return function AddressBook(data) {
-		var storageKey = btoa(data.data.href.split('/').splice(-3, 2).join('_'));
 		angular.extend(this, {
 
 			displayName: '',
 			contacts: [],
 			groups: data.data.props.groups,
 			readOnly: data.data.props.readOnly === '1',
-			// use only owner and url, convert ''/remote.php/dav/addressbooks/users/admin/Test1/'' to 'admin.Test'
-			key: storageKey,
-			enabled: window.localStorage.getItem('contacts_ab_'+storageKey) !== 'false',
+			// In case of not defined
+			enabled: data.data.props.enabled !== '0',
 
 			sharedWith: {
 				users: [],

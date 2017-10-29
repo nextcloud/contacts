@@ -193,7 +193,7 @@ angular.module('contactsApp')
 	};
 
 	ctrl.toggleState = function() {
-		ctrl.enabled = AddressBookService.toggleState(ctrl.addressBook);
+		ctrl.enabled = AddressBookService.toggleState(ctrl.addressBook).enabled;
 	};
 
 });

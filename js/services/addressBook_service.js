@@ -89,12 +89,6 @@ angular.module('contactsApp')
 			});
 		},
 
-		toggleState: function(addressBook) {
-			window.localStorage.setItem('contacts_ab_'+addressBook.key, !addressBook.enabled);
-			notifyObservers('toggleState');
-			return !addressBook.enabled;
-		},
-
 		rename: function(addressBook, displayName) {
 			return DavService.then(function(account) {
 				return DavClient.renameAddressBook(addressBook, {displayName:displayName, url:account.homeUrl});
@@ -111,6 +105,37 @@ angular.module('contactsApp')
 
 		sync: function(addressBook) {
 			return DavClient.syncAddressBook(addressBook);
+		},
+
+
+		toggleState: function(addressBook) {
+			var xmlDoc = document.implementation.createDocument('', '', null);
+			var dPropUpdate = xmlDoc.createElement('d:propertyupdate');
+			dPropUpdate.setAttribute('xmlns:d', 'DAV:');
+			dPropUpdate.setAttribute('xmlns:o', 'http://owncloud.org/ns');
+			xmlDoc.appendChild(dPropUpdate);
+
+			var dSet = xmlDoc.createElement('d:set');
+			dPropUpdate.appendChild(dSet);
+
+			var dProp = xmlDoc.createElement('d:prop');
+			dSet.appendChild(dProp);
+
+			var oEnabled = xmlDoc.createElement('o:enabled');
+			oEnabled.textContent = !addressBook.enabled ? '1' : '0';
+			dProp.appendChild(oEnabled);
+
+			var body = dPropUpdate.outerHTML;
+
+			return DavClient.xhr.send(
+				dav.request.basic({method: 'PROPPATCH', data: body}),
+				addressBook.url
+			).then(function(response) {
+				if (response.status === 200) {
+					addressBook.enabled = !addressBook.enabled;
+				}
+				return addressBook;
+			});
 		},
 
 		share: function(addressBook, shareType, shareWith, writable, existingShare) {
