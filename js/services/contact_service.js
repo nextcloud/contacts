@@ -31,19 +31,19 @@ angular.module('contactsApp')
 	};
 
 	this.getFullContacts = function(contacts) {
-		AddressBookService.getAll().then(function(enabledAddressBooks) {
+		AddressBookService.getAll().then(function(addressBooks) {
 			var promises = [];
 			var xhrAddressBooks = [];
 			contacts.forEach(function(contact) {
 				// Regroup urls by addressbooks
-				if(enabledAddressBooks.indexOf(contact.data.addressBook) !== -1) {
+				if(addressBooks.indexOf(contact.data.addressBook) !== -1) {
 					// Initiate array if no exists
 					xhrAddressBooks[contact.addressBookId] = xhrAddressBooks[contact.addressBookId] || [];
 					xhrAddressBooks[contact.addressBookId].push(contact.data.url);
 				}
 			});
 			// Get our full vCards
-			enabledAddressBooks.forEach(function(addressBook) {
+			addressBooks.forEach(function(addressBook) {
 				if(angular.isArray(xhrAddressBooks[addressBook.displayName])) {
 					var promise = DavClient.getContacts(addressBook, {}, xhrAddressBooks[addressBook.displayName]).then(
 						function(vcards) {
@@ -71,9 +71,9 @@ angular.module('contactsApp')
 
 	this.fillCache = function() {
 		if (_.isUndefined(loadPromise)) {
-			loadPromise = AddressBookService.getAll().then(function(enabledAddressBooks) {
+			loadPromise = AddressBookService.getAll().then(function(addressBooks) {
 				var promises = [];
-				enabledAddressBooks.forEach(function(addressBook) {
+				addressBooks.forEach(function(addressBook) {
 					promises.push(
 						AddressBookService.sync(addressBook).then(function(addressBook) {
 							addressBook.objects.forEach(function(vcard) {
@@ -328,9 +328,9 @@ angular.module('contactsApp')
 
 	this.updateDeletedAddressbook = function(callback) {
 		// Delete contacts which addressbook has been removed from cache
-		AddressBookService.getAll().then(function(enabledAddressBooks) {
+		AddressBookService.getAll().then(function(addressBooks) {
 			var addressBooksIds = [];
-			angular.forEach(enabledAddressBooks, function(addressBook) {
+			angular.forEach(addressBooks, function(addressBook) {
 				addressBooksIds.push(addressBook.displayName);
 			});
 			angular.forEach(contactsCache.values(), function(contact) {
