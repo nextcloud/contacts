@@ -122,6 +122,7 @@ angular.module('contactsApp')
 			dSet.appendChild(dProp);
 
 			var oEnabled = xmlDoc.createElement('o:enabled');
+			// Revert state to toggle
 			oEnabled.textContent = !addressBook.enabled ? '1' : '0';
 			dProp.appendChild(oEnabled);
 
@@ -131,7 +132,7 @@ angular.module('contactsApp')
 				dav.request.basic({method: 'PROPPATCH', data: body}),
 				addressBook.url
 			).then(function(response) {
-				if (response.status === 200) {
+				if (response.status === 207) {
 					addressBook.enabled = !addressBook.enabled;
 				}
 				return addressBook;

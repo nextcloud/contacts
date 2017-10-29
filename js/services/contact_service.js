@@ -44,23 +44,27 @@ angular.module('contactsApp')
 			});
 			// Get our full vCards
 			addressBooks.forEach(function(addressBook) {
-				if(angular.isArray(xhrAddressBooks[addressBook.displayName])) {
-					var promise = DavClient.getContacts(addressBook, {}, xhrAddressBooks[addressBook.displayName]).then(
-						function(vcards) {
-							return vcards.map(function(vcard) {
-								return new Contact(addressBook, vcard);
+				// Only go through enabled addressbooks
+				// Though xhrAddressBooks does not contains contacts from disabled ones
+				if(addressBook.enabled) {
+					if(angular.isArray(xhrAddressBooks[addressBook.displayName])) {
+						var promise = DavClient.getContacts(addressBook, {}, xhrAddressBooks[addressBook.displayName]).then(
+							function(vcards) {
+								return vcards.map(function(vcard) {
+									return new Contact(addressBook, vcard);
+								});
+							}).then(function(contacts_) {
+								contacts_.map(function(contact) {
+									// Validate some fields
+									if(contact.fix()) {
+										// Can't use this in those nested functions
+										contactService.update(contact);
+									}
+									contactsCache.put(contact.uid(), contact);
+								});
 							});
-						}).then(function(contacts_) {
-							contacts_.map(function(contact) {
-								// Validate some fields
-								if(contact.fix()) {
-									// Can't use this in those nested functions
-									contactService.update(contact);
-								}
-								contactsCache.put(contact.uid(), contact);
-							});
-						});
-					promises.push(promise);
+						promises.push(promise);
+					}
 				}
 			});
 			$q.all(promises).then(function() {
@@ -74,19 +78,22 @@ angular.module('contactsApp')
 			loadPromise = AddressBookService.getAll().then(function(addressBooks) {
 				var promises = [];
 				addressBooks.forEach(function(addressBook) {
-					promises.push(
-						AddressBookService.sync(addressBook).then(function(addressBook) {
-							addressBook.objects.forEach(function(vcard) {
-								try {
-									var contact = new Contact(addressBook, vcard);
-									contactsCache.put(contact.uid(), contact);
-								} catch(error) {
-									// eslint-disable-next-line no-console
-									console.log('Invalid contact received: ', vcard);
-								}
-							});
-						})
-					);
+					// Only go through enabled addressbooks
+					if(addressBook.enabled) {
+						promises.push(
+							AddressBookService.sync(addressBook).then(function(addressBook) {
+								addressBook.objects.forEach(function(vcard) {
+									try {
+										var contact = new Contact(addressBook, vcard);
+										contactsCache.put(contact.uid(), contact);
+									} catch(error) {
+										// eslint-disable-next-line no-console
+										console.log('Invalid contact received: ', vcard);
+									}
+								});
+							})
+						);
+					}
 				});
 				return $q.all(promises).then(function() {
 					cacheFilled = true;

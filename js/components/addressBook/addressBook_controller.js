@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.controller('addressbookCtrl', function($scope, AddressBookService, ContactService) {
+.controller('addressbookCtrl', function($scope, AddressBookService) {
 	var ctrl = this;
 
 	ctrl.t = {
@@ -193,7 +193,10 @@ angular.module('contactsApp')
 	};
 
 	ctrl.toggleState = function() {
-		ctrl.enabled = AddressBookService.toggleState(ctrl.addressBook).enabled;
+		AddressBookService.toggleState(ctrl.addressBook).then(function(addressBook) {
+			ctrl.enabled = addressBook.enabled;
+			$scope.$apply();
+		});
 	};
 
 });
