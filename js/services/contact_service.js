@@ -31,10 +31,10 @@ angular.module('contactsApp')
 	};
 
 	this.getFullContacts = function(contacts) {
-		AddressBookService.getAll().then(function (enabledAddressBooks) {
+		AddressBookService.getAll().then(function(enabledAddressBooks) {
 			var promises = [];
 			var xhrAddressBooks = [];
-			contacts.forEach(function (contact) {
+			contacts.forEach(function(contact) {
 				// Regroup urls by addressbooks
 				if(enabledAddressBooks.indexOf(contact.data.addressBook) !== -1) {
 					// Initiate array if no exists
@@ -46,12 +46,12 @@ angular.module('contactsApp')
 			enabledAddressBooks.forEach(function(addressBook) {
 				if(angular.isArray(xhrAddressBooks[addressBook.displayName])) {
 					var promise = DavClient.getContacts(addressBook, {}, xhrAddressBooks[addressBook.displayName]).then(
-						function (vcards) {
-							return vcards.map(function (vcard) {
+						function(vcards) {
+							return vcards.map(function(vcard) {
 								return new Contact(addressBook, vcard);
 							});
-						}).then(function (contacts_) {
-							contacts_.map(function (contact) {
+						}).then(function(contacts_) {
+							contacts_.map(function(contact) {
 								// Validate some fields
 								if(contact.fix()) {
 									// Can't use this in those nested functions
@@ -63,7 +63,7 @@ angular.module('contactsApp')
 					promises.push(promise);
 				}
 			});
-			$q.all(promises).then(function () {
+			$q.all(promises).then(function() {
 				notifyObservers('getFullContacts', '');
 			});
 		});
@@ -71,11 +71,11 @@ angular.module('contactsApp')
 
 	this.fillCache = function() {
 		if (_.isUndefined(loadPromise)) {
-			loadPromise = AddressBookService.getAll().then(function (enabledAddressBooks) {
+			loadPromise = AddressBookService.getAll().then(function(enabledAddressBooks) {
 				var promises = [];
-				enabledAddressBooks.forEach(function (addressBook) {
+				enabledAddressBooks.forEach(function(addressBook) {
 					promises.push(
-						AddressBookService.sync(addressBook).then(function (addressBook) {
+						AddressBookService.sync(addressBook).then(function(addressBook) {
 							addressBook.objects.forEach(function(vcard) {
 								try {
 									var contact = new Contact(addressBook, vcard);
@@ -88,7 +88,7 @@ angular.module('contactsApp')
 						})
 					);
 				});
-				return $q.all(promises).then(function () {
+				return $q.all(promises).then(function() {
 					cacheFilled = true;
 				});
 			});
@@ -115,7 +115,7 @@ angular.module('contactsApp')
 			var notGrouped = new ContactFilter({
 				name: t('contacts', 'Not grouped'),
 				count: contacts.filter(
-					function (contact) {
+					function(contact) {
 						return contact.categories().length === 0;
 					}).length
 			});
@@ -130,20 +130,20 @@ angular.module('contactsApp')
 	};
 
 	// get list of groups and the count of contacts in said groups
-	this.getGroupList = function () {
+	this.getGroupList = function() {
 		return this.getAll().then(function(contacts) {
 			// allow groups with names such as toString
 			var groups = Object.create(null);
 
 			// collect categories and their associated counts
-			contacts.forEach(function (contact) {
-				contact.categories().forEach(function (category) {
+			contacts.forEach(function(contact) {
+				contact.categories().forEach(function(category) {
 					groups[category] = groups[category] ? groups[category] + 1 : 1;
 				});
 			});
 
 			return _.keys(groups).map(
-				function (key) {
+				function(key) {
 					return new Group({
 						name: key,
 						count: groups[key]
@@ -152,9 +152,9 @@ angular.module('contactsApp')
 		});
 	};
 
-	this.getGroups = function () {
+	this.getGroups = function() {
 		return this.getAll().then(function(contacts) {
-			return _.uniq(contacts.map(function (element) {
+			return _.uniq(contacts.map(function(element) {
 				return element.categories();
 			}).reduce(function(a, b) {
 				return a.concat(b);
@@ -163,7 +163,7 @@ angular.module('contactsApp')
 	};
 
 	this.getById = function(addressBooks, uid) {
-		return (function () {
+		return (function() {
 			if(cacheFilled === false) {
 				return this.fillCache().then(function() {
 					return contactsCache.get(uid);
@@ -172,7 +172,7 @@ angular.module('contactsApp')
 				return $q.when(contactsCache.get(uid));
 			}
 		}).call(this)
-			.then(function (contact) {
+			.then(function(contact) {
 				if(angular.isUndefined(contact)) {
 					OC.Notification.showTemporary(t('contacts', 'Contact not found.'));
 					return;
@@ -182,8 +182,8 @@ angular.module('contactsApp')
 					});
 					return addressBook
 						? DavClient.getContacts(addressBook, {}, [ contact.data.url ]).then(
-							function (vcards) { return new Contact(addressBook, vcards[0]); }
-						).then(function (contact) {
+							function(vcards) { return new Contact(addressBook, vcards[0]); }
+						).then(function(contact) {
 							contactsCache.put(contact.uid(), contact);
 							notifyObservers('getFullContacts', contact.uid());
 							return contact;
@@ -282,7 +282,7 @@ angular.module('contactsApp')
 		}
 	};
 
-	this.moveContact = function (contact, addressBook) {
+	this.moveContact = function(contact, addressBook) {
 		if (contact.addressBookId === addressBook.displayName) {
 			return;
 		}
@@ -328,7 +328,7 @@ angular.module('contactsApp')
 
 	this.updateDeletedAddressbook = function(callback) {
 		// Delete contacts which addressbook has been removed from cache
-		AddressBookService.getAll().then(function (enabledAddressBooks) {
+		AddressBookService.getAll().then(function(enabledAddressBooks) {
 			var addressBooksIds = [];
 			angular.forEach(enabledAddressBooks, function(addressBook) {
 				addressBooksIds.push(addressBook.displayName);
