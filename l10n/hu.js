@@ -51,6 +51,7 @@ OC.L10N.register(
     "Sort by" : "Rendezés elve",
     "{addressbook} shared by {owner}" : "{addressbook} megosztója {owner}",
     "Contact not found." : "A névjegy nem található.",
+    "You don't have permission to write to this addressbook." : "Nincs jogosultságod ebbe a címjegyzékbe írni.",
     "Contact could not be created." : "A névjegy nem hozható létre.",
     "No contacts in file. Only vCard files are allowed." : "A fájl nem tartalmaz névjegyeket. Kizárólag vCard fájlok engedélyezettek.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Csak a vCard 4.0-ás (RFC6350) vagy a 3.0-ás verzió (RFC2426) támogatott",
