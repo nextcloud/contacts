@@ -24,7 +24,7 @@
     "watch": "node node_modules/gulp-cli/bin/gulp.js watch"
   },
   "devDependencies": {
-    "angular-mocks": "^1.5.8",
+    "angular-mocks": "~1.5.8",
     "chai": "^3.5.0",
     "codecov": "^1.0.1",
     "gulp": "^3.9.1",
