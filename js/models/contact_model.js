@@ -256,6 +256,9 @@ angular.module('contactsApp')
 			},
 			removeProperty: function (name, prop) {
 				angular.copy(_.without(this.props[name], prop), this.props[name]);
+				if(this.props[name].length === 0) {
+					delete this.props[name];
+				}
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
 			setETag: function(etag) {

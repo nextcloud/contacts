@@ -7,7 +7,7 @@ angular.module('contactsApp')
 		bindToController: {
 			name: '=',
 			data: '=',
-			model: '=',
+			contact: '=model',
 			index: '='
 		},
 		link: function(scope, element, attrs, ctrl) {
