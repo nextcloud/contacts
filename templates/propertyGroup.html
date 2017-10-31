@@ -1,0 +1,14 @@
+<i class="propertyGroup__icon">🍕</i>
+<span class="propertyGroup__title">{{ctrl.name}}</span>
+<detailsItem ng-repeat="property in ctrl.properties" name="ctrl.name" data="property" model="ctrl" index="$index"
+			 class="details-item-{{ctrl.name}}" ng-class="{ 'failed': ctrl.contact.failedProps.indexOf(prop.$key) !== -1 }"></detailsItem>
+<!--<adetailsItem ng-repeat="property in [1,2]" class="property">
+	<div class="property__label">Home</div>
+	<div class="component">
+		<input type="text" placeholder="comp1" />
+	</div>
+	<div class="component">
+		<input type="text" placeholder="comp2" />
+	</div>
+</adetailsItem>
+-->

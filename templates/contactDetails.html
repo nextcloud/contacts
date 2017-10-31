@@ -42,10 +42,8 @@
 			</div>
 		</header>
 		<section>
-			<div ng-repeat="prop in ctrl.contact.props | toArray | orderDetailItems:'$key'">
-				<detailsItem ng-repeat="propData in prop" name="prop.$key" data="propData" model="ctrl" index="$index"
-							 class="details-item-{{prop.$key}}" ng-class="{ 'failed': ctrl.contact.failedProps.indexOf(prop.$key) !== -1 }"></detailsItem>
-			</div>
+			<propertyGroup ng-repeat="prop in ctrl.contact.props | toArray | orderDetailItems:'$key'" data="prop" name="prop.$key"></propertyGroup>
+
 			<div class="select-addressbook" ng-if="ctrl.addressBooks.length > 1 && !ctrl.addressBook.readOnly">
 				<label for="details-addressbook">{{ctrl.t.addressBook}}</label>
 				<select ng-model="ctrl.addressBook" ng-change="ctrl.changeAddressBook(ctrl.addressBook)" id="details-addressbook"
