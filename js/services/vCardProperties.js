@@ -217,7 +217,8 @@ angular.module('contactsApp')
 			name: 'unknown-' + property,
 			readableName: capitalize(property),
 			template: 'hidden',
-			necessity: 'optional'
+			necessity: 'optional',
+			hidden: true
 		};
 	};
 

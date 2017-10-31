@@ -6,8 +6,15 @@ angular.module('contactsApp')
 		controllerAs: 'ctrl',
 		bindToController: {
 			properties: '=data',
-			name: '='
+			name: '=',
+			model: '='
 		},
-		templateUrl: OC.linkTo('contacts', 'templates/propertyGroup.html')
+		templateUrl: OC.linkTo('contacts', 'templates/propertyGroup.html'),
+		link: function(scope, element, attrs, ctrl) {
+			if(ctrl.isHidden()) {
+				// TODO replace with class
+				element.css('display', 'none');
+			}
+		}
 	};
 });
