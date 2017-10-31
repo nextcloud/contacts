@@ -1,29 +1,29 @@
 <?php
 // angular + components
-script('contacts', 'vendor/angular/angular');
-script('contacts', 'vendor/angular-route/angular-route');
-script('contacts', 'vendor/angular-uuid4/angular-uuid4');
-script('contacts', 'vendor/angular-cache/dist/angular-cache');
-script('contacts', 'vendor/angular-sanitize/angular-sanitize');
-script('contacts', 'vendor/ui-select/dist/select');
+script('contacts', 'vendor/angular/angular.min');
+script('contacts', 'vendor/angular-route/angular-route.min');
+script('contacts', 'vendor/angular-uuid4/angular-uuid4.min');
+script('contacts', 'vendor/angular-cache/angular-cache.min');
+script('contacts', 'vendor/angular-sanitize/angular-sanitize.min');
+script('contacts', 'vendor/ui-select/select');
 script('contacts', 'vendor/angular-click-outside/clickoutside.directive');
-script('contacts', 'vendor/ngclipboard/dist/ngclipboard.min');
+script('contacts', 'vendor/ngclipboard/ngclipboard.min');
 
 
 // DAV libraries
 script('contacts', 'dav/dav');
-script('contacts', 'vendor/vcard/src/vcard');
+script('contacts', 'vendor/vcard/vcard');
 
 // compiled version of app javascript
 script('contacts', 'public/script');
 
-script('contacts', 'vendor/angular-bootstrap/ui-bootstrap.min');
-script('contacts', 'vendor/angular-bootstrap/ui-bootstrap-tpls.min');
-script('contacts', 'vendor/jquery-timepicker/jquery.ui.timepicker');
+script('contacts', 'vendor/ui-bootstrap/ui-bootstrap');
+script('contacts', 'vendor/ui-bootstrap/ui-bootstrap-tpls');
+script('contacts', 'vendor/jquery-timepicker/jquery.timepicker');
 
 // all styles
 style('contacts', 'style');
-vendor_style('select2/select2');
+style('contacts', 'vendor/ui-select/select.min');
 ?>
 
 <div id="app" ng-app="contactsApp">

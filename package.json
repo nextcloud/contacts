@@ -18,13 +18,13 @@
   "homepage": "https://github.com/nextcloud/contacts#readme",
   "scripts": {
     "test": "node node_modules/gulp-cli/bin/gulp.js karma",
-    "prebuild": "npm install && npm update && node_modules/bower/bin/bower install && node_modules/bower/bin/bower update",
+    "prebuild": "npm install && npm update",
     "build": "node node_modules/gulp-cli/bin/gulp.js",
     "scss-compile": "cat build/css/variables.scss css/style.scss | node-sass --include-path css > css/style.css",
     "watch": "node node_modules/gulp-cli/bin/gulp.js watch"
   },
   "devDependencies": {
-    "bower": "^1.7.9",
+    "angular-mocks": "~1.5.8",
     "chai": "^3.5.0",
     "codecov": "^1.0.1",
     "gulp": "^3.9.1",
@@ -41,9 +41,24 @@
     "karma-mocha": "^1.1.1",
     "karma-mocha-reporter": "^2.1.0",
     "karma-sinon": "^1.0.5",
+    "merge-stream": "^1.0.1",
     "mocha": "^3.0.2",
+    "node-sass": "^4.5.3",
     "sinon": "^1.17.5",
     "stylelint-config-standard": "^17.0.0",
-    "node-sass": "^4.5.3"
+    "underscore": "^1.8.3"
+  },
+  "dependencies": {
+    "@iamadamjowett/angular-click-outside": "^2.10.1",
+    "angular": "~1.5.8",
+    "angular-cache": "^4.6.0",
+    "angular-route": "~1.5.8",
+    "angular-sanitize": "~1.5.8",
+    "angular-ui-bootstrap": "^2.5.6",
+    "angular-uuid4": "^0.3.1",
+    "jquery-timepicker": "^1.3.3",
+    "ngclipboard": "^1.1.2",
+    "ui-select": "^0.19.8",
+    "vcard-parser": "^0.2.7"
   }
 }

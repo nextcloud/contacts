@@ -150,19 +150,8 @@ appstore:
 	$(project_directory)/lib \
 	$(project_directory)/templates \
 	$(project_directory)/js/public \
-	$(project_directory)/js/dav/dav.js \
-	$(project_directory)/js/vendor/angular/angular.js \
-	$(project_directory)/js/vendor/angular-route/angular-route.js \
-	$(project_directory)/js/vendor/angular-cache/dist/angular-cache.js \
-	$(project_directory)/js/vendor/angular-uuid4/angular-uuid4.js \
-	$(project_directory)/js/vendor/vcard/src/vcard.js \
-	$(project_directory)/js/vendor/angular-bootstrap/ui-bootstrap.min.js \
-	$(project_directory)/js/vendor/angular-bootstrap/ui-bootstrap-tpls.min.js \
-	$(project_directory)/js/vendor/angular-sanitize/angular-sanitize.js \
-	$(project_directory)/js/vendor/ui-select/dist/select.js \
-	$(project_directory)/js/vendor/jquery-timepicker/jquery.ui.timepicker.js \
-	$(project_directory)/js/vendor/angular-click-outside/clickoutside.directive.js \
-	$(project_directory)/js/vendor/ngclipboard/dist/ngclipboard.min.js
+	$(project_directory)/js/vendor \
+	$(project_directory)/js/dav/dav.js
 
 # Command for running JS and PHP tests. Works for package.json files in the js/
 # and root directory. If phpunit is not installed systemwide, a copy is fetched
