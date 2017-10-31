@@ -9,7 +9,7 @@ angular.module('contactsApp')
 	};
 
 	this.getIconClass = function() {
-		return 'icon-contacts-dark';
+		return ctrl.meta.icon || 'icon-contacts-dark';
 	};
 
 	this.getReadableName = function() {

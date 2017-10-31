@@ -27,7 +27,8 @@ angular.module('contactsApp')
 		},
 		note: {
 			readableName: t('contacts', 'Notes'),
-			template: 'textarea'
+			template: 'textarea',
+			icon: 'icon-rename'
 		},
 		url: {
 			multiple: true,
@@ -51,6 +52,7 @@ angular.module('contactsApp')
 			multiple: true,
 			readableName: t('contacts', 'Address'),
 			template: 'adr',
+			icon: 'icon-link',
 			defaultValue: {
 				value:['', '', '', '', '', '', ''],
 				meta:{type:['HOME']}
@@ -67,20 +69,24 @@ angular.module('contactsApp')
 		},
 		bday: {
 			readableName: t('contacts', 'Birthday'),
-			template: 'date'
+			template: 'date',
+			icon: 'icon-calendar-dark'
 		},
 		anniversary: {
 			readableName: t('contacts', 'Anniversary'),
-			template: 'date'
+			template: 'date',
+			icon: 'icon-calendar-dark'
 		},
 		deathdate: {
 			readableName: t('contacts', 'Date of death'),
-			template: 'date'
+			template: 'date',
+			icon: 'icon-calendar-dark'
 		},
 		email: {
 			multiple: true,
 			readableName: t('contacts', 'Email'),
 			template: 'email',
+			icon: 'icon-mail',
 			defaultValue: {
 				value:'',
 				meta:{type:['HOME']}
@@ -95,6 +101,7 @@ angular.module('contactsApp')
 			multiple: true,
 			readableName: t('contacts', 'Instant messaging'),
 			template: 'username',
+			icon: 'icon-mail',
 			defaultValue: {
 				value:[''],
 				meta:{type:['SKYPE']}
@@ -111,6 +118,7 @@ angular.module('contactsApp')
 			multiple: true,
 			readableName: t('contacts', 'Phone'),
 			template: 'tel',
+			icon: 'icon-comment',
 			defaultValue: {
 				value:'',
 				meta:{type:['HOME,VOICE']}

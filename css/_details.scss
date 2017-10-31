@@ -251,6 +251,14 @@ contactdetails {
 	}
 }
 
+.propertyGroup__title {
+	margin-bottom: 5px;
+	display: inline-block;
+	background-size: 16px 16px;
+	background-position-x: 0;
+	padding-left: 20px;
+}
+
 detailsitem {
 	display: flex;
 	flex-wrap: wrap;
@@ -353,12 +361,9 @@ detailsitem.details-item-adr .icon-delete, detailsitem.details-item-n .icon-dele
 	left: 251px;
 }
 
-detailsitem.details-item-adr {
-	padding: 20px 0;
-}
-
+detailsitem.details-item-adr,
 detailsitem.details-item-n {
-	padding: 20px 0;
+	padding-bottom: 20px;
 }
 
 detailsitem.details-item-note label {
