@@ -1,3 +1,6 @@
-<h3 class="propertyGroup__title" ng-class="ctrl.getIconClass()">{{ctrl.getReadableName()}}</h3>
+<h3 class="propertyGroup__title">
+	<i ng-class="ctrl.getIconClass()"></i>
+	{{ctrl.getReadableName()}}
+</h3>
 <detailsItem ng-repeat="property in ctrl.properties" name="ctrl.name" data="property" model="ctrl.contact" index="$index"
 			 class="details-item-{{ctrl.name}}" ng-class="{ 'failed': ctrl.contact.failedProps.indexOf(ctrl.name) !== -1 }"></detailsItem>

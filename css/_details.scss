@@ -251,12 +251,25 @@ contactdetails {
 	}
 }
 
-.propertyGroup__title {
-	margin-bottom: 5px;
+propertygroup {
 	display: inline-block;
+	padding-bottom: 36px;
+}
+
+.propertyGroup__title {
+	display: inline-block;
+	padding: 12px;
+	margin: 0;
+	margin-left: 68px;
+	opacity: .6;
+}
+
+.propertyGroup__title i {
+	display: inline-block;
+	vertical-align: middle;
 	background-size: 16px 16px;
-	background-position-x: 0;
-	padding-left: 20px;
+	margin-right: 8px;
+	opacity: .5;
 }
 
 detailsitem {

@@ -23,7 +23,8 @@ angular.module('contactsApp')
 			defaultValue: {
 				value:['', '', '', '', '']
 			},
-			template: 'n'
+			template: 'n',
+			icon: 'icon-user'
 		},
 		note: {
 			readableName: t('contacts', 'Notes'),
@@ -33,7 +34,8 @@ angular.module('contactsApp')
 		url: {
 			multiple: true,
 			readableName: t('contacts', 'Website'),
-			template: 'url'
+			template: 'url',
+			icon: 'icon-public'
 		},
 		cloud: {
 			multiple: true,
@@ -52,7 +54,7 @@ angular.module('contactsApp')
 			multiple: true,
 			readableName: t('contacts', 'Address'),
 			template: 'adr',
-			icon: 'icon-link',
+			icon: 'icon-address',
 			defaultValue: {
 				value:['', '', '', '', '', '', ''],
 				meta:{type:['HOME']}
@@ -101,7 +103,7 @@ angular.module('contactsApp')
 			multiple: true,
 			readableName: t('contacts', 'Instant messaging'),
 			template: 'username',
-			icon: 'icon-mail',
+			icon: 'icon-comment',
 			defaultValue: {
 				value:[''],
 				meta:{type:['SKYPE']}
