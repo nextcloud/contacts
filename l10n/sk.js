@@ -51,6 +51,7 @@ OC.L10N.register(
     "Sort by" : "Zoradiť podľa",
     "{addressbook} shared by {owner}" : "{addressbook} sprístupňuje {owner}",
     "Contact not found." : "Kontakt sa nenašiel",
+    "You don't have permission to write to this addressbook." : "Pre zápis do tohto adresára nemáte oprávnenia.",
     "Contact could not be created." : "Kontakt nieje možné vytvoriť",
     "No contacts in file. Only vCard files are allowed." : "V súbore nie sú žiadne kontakty. Podporované sú len súbory vCard.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Podporované sú iba formáty vCard verzie 4.0 (RFC6350) alebo verzie 3.0 (RFC2426).",

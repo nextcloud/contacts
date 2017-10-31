@@ -51,6 +51,7 @@ OC.L10N.register(
     "Sort by" : "Сортирај по",
     "{addressbook} shared by {owner}" : "{addressbook} поделио {owner}",
     "Contact not found." : "Контакт није нађен.",
+    "You don't have permission to write to this addressbook." : "Немате дозволе да уписујете у овај адресар.",
     "Contact could not be created." : "Контакт не може да се направи.",
     "No contacts in file. Only vCard files are allowed." : "Нема контаката у фајлу. Дозвољени су само vCard фајлови.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Подржани су само vCard верзија 4.0 (RFC6350) и верзија 3.0 (RFC2426).",
