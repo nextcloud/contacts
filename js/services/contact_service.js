@@ -333,21 +333,14 @@ angular.module('contactsApp')
 		});
 	};
 
-	this.updateDeletedAddressbook = function(callback) {
-		// Delete contacts which addressbook has been removed from cache
-		AddressBookService.getAll().then(function(addressBooks) {
-			var addressBooksIds = [];
-			angular.forEach(addressBooks, function(addressBook) {
-				addressBooksIds.push(addressBook.displayName);
-			});
-			angular.forEach(contactsCache.values(), function(contact) {
-				if (addressBooksIds.indexOf(contact.addressBookId) === -1) {
-					contactsCache.remove(contact.uid());
-				}
-			});
-			callback();
-			notifyObservers('groupsUpdate');
+	this.removeContactsFromAddressbook = function(addressBook, callback) {
+		angular.forEach(contactsCache.values(), function(contact) {
+			if (contact.addressBookId === addressBook.displayName) {
+				contactsCache.remove(contact.uid());
+			}
 		});
+		callback();
+		notifyObservers('groupsUpdate');
 	};
 
 });

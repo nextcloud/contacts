@@ -6,10 +6,11 @@ angular.module('contactsApp')
 
 	var observerCallbacks = [];
 
-	var notifyObservers = function(eventName) {
+	var notifyObservers = function(eventName, addressBook) {
 		var ev = {
 			event: eventName,
-			addressBooks: addressBooks
+			addressBooks: addressBooks,
+			addressBook: addressBook,
 		};
 		angular.forEach(observerCallbacks, function(callback) {
 			callback(ev);
@@ -84,7 +85,7 @@ angular.module('contactsApp')
 				return DavClient.deleteAddressBook(addressBook).then(function() {
 					var index = addressBooks.indexOf(addressBook);
 					addressBooks.splice(index, 1);
-					notifyObservers('delete');
+					notifyObservers('delete', addressBook);
 				});
 			});
 		},
@@ -134,6 +135,10 @@ angular.module('contactsApp')
 			).then(function(response) {
 				if (response.status === 207) {
 					addressBook.enabled = !addressBook.enabled;
+					notifyObservers(
+						addressBook.enabled ? 'enable' : 'disable',
+						addressBook
+					);
 				}
 				return addressBook;
 			});
