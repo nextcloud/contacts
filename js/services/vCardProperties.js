@@ -16,23 +16,27 @@ angular.module('contactsApp')
 	this.vCardMeta = {
 		nickname: {
 			readableName: t('contacts', 'Nickname'),
-			template: 'text'
+			template: 'text',
+			icon: 'icon-user'
 		},
 		n: {
 			readableName: t('contacts', 'Detailed name'),
 			defaultValue: {
 				value:['', '', '', '', '']
 			},
-			template: 'n'
+			template: 'n',
+			icon: 'icon-user'
 		},
 		note: {
 			readableName: t('contacts', 'Notes'),
-			template: 'textarea'
+			template: 'textarea',
+			icon: 'icon-rename'
 		},
 		url: {
 			multiple: true,
 			readableName: t('contacts', 'Website'),
-			template: 'url'
+			template: 'url',
+			icon: 'icon-public'
 		},
 		cloud: {
 			multiple: true,
@@ -51,6 +55,7 @@ angular.module('contactsApp')
 			multiple: true,
 			readableName: t('contacts', 'Address'),
 			template: 'adr',
+			icon: 'icon-address',
 			defaultValue: {
 				value:['', '', '', '', '', '', ''],
 				meta:{type:['HOME']}
@@ -67,20 +72,24 @@ angular.module('contactsApp')
 		},
 		bday: {
 			readableName: t('contacts', 'Birthday'),
-			template: 'date'
+			template: 'date',
+			icon: 'icon-calendar-dark'
 		},
 		anniversary: {
 			readableName: t('contacts', 'Anniversary'),
-			template: 'date'
+			template: 'date',
+			icon: 'icon-calendar-dark'
 		},
 		deathdate: {
 			readableName: t('contacts', 'Date of death'),
-			template: 'date'
+			template: 'date',
+			icon: 'icon-calendar-dark'
 		},
 		email: {
 			multiple: true,
 			readableName: t('contacts', 'Email'),
 			template: 'email',
+			icon: 'icon-mail',
 			defaultValue: {
 				value:'',
 				meta:{type:['HOME']}
@@ -95,6 +104,7 @@ angular.module('contactsApp')
 			multiple: true,
 			readableName: t('contacts', 'Instant messaging'),
 			template: 'username',
+			icon: 'icon-comment',
 			defaultValue: {
 				value:[''],
 				meta:{type:['SKYPE']}
@@ -111,6 +121,7 @@ angular.module('contactsApp')
 			multiple: true,
 			readableName: t('contacts', 'Phone'),
 			template: 'tel',
+			icon: 'icon-comment',
 			defaultValue: {
 				value:'',
 				meta:{type:['HOME,VOICE']}
@@ -217,7 +228,8 @@ angular.module('contactsApp')
 			name: 'unknown-' + property,
 			readableName: capitalize(property),
 			template: 'hidden',
-			necessity: 'optional'
+			necessity: 'optional',
+			hidden: true
 		};
 	};
 

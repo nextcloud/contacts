@@ -251,6 +251,27 @@ contactdetails {
 	}
 }
 
+propertygroup {
+	display: inline-block;
+	padding-bottom: 36px;
+}
+
+.propertyGroup__title {
+	display: inline-block;
+	padding: 12px;
+	margin: 0;
+	margin-left: 68px;
+	opacity: .6;
+}
+
+.propertyGroup__title i {
+	display: inline-block;
+	vertical-align: middle;
+	background-size: 16px 16px;
+	margin-right: 8px;
+	opacity: .5;
+}
+
 detailsitem {
 	display: flex;
 	flex-wrap: wrap;
@@ -353,12 +374,9 @@ detailsitem.details-item-adr .icon-delete, detailsitem.details-item-n .icon-dele
 	left: 251px;
 }
 
-detailsitem.details-item-adr {
-	padding: 20px 0;
-}
-
+detailsitem.details-item-adr,
 detailsitem.details-item-n {
-	padding: 20px 0;
+	padding-bottom: 20px;
 }
 
 detailsitem.details-item-note label {

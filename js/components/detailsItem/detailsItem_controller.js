@@ -55,8 +55,8 @@ angular.module('contactsApp')
 		}
 	}
 	if (!_.isUndefined(ctrl.data) && !_.isUndefined(ctrl.data.namespace)) {
-		if (!_.isUndefined(ctrl.model.contact.props['X-ABLABEL'])) {
-			var val = _.find(this.model.contact.props['X-ABLABEL'], function(x) { return x.namespace === ctrl.data.namespace; });
+		if (!_.isUndefined(ctrl.contact.props['X-ABLABEL'])) {
+			var val = _.find(this.contact.props['X-ABLABEL'], function(x) { return x.namespace === ctrl.data.namespace; });
 			ctrl.type = val.value.toUpperCase();
 			if (!_.isUndefined(val)) {
 				// in case the type is not yet in the default list of available options we add it
@@ -80,7 +80,7 @@ angular.module('contactsApp')
 		ctrl.data.meta = ctrl.data.meta || {};
 		ctrl.data.meta.type = ctrl.data.meta.type || [];
 		ctrl.data.meta.type[0] = val;
-		ctrl.model.updateContact();
+		ContactService.queueUpdate(ctrl.contact);
 	};
 
 	ctrl.dateInputChanged = function () {
@@ -93,7 +93,7 @@ angular.module('contactsApp')
 			ctrl.data.meta.value = ctrl.data.meta.value || [];
 			ctrl.data.meta.value[0] = 'text';
 		}
-		ctrl.model.updateContact();
+		ContactService.queueUpdate(ctrl.contact);
 	};
 
 	ctrl.updateDetailedName = function () {
@@ -114,8 +114,8 @@ angular.module('contactsApp')
 			fn += ctrl.data.value[4];
 		}
 
-		ctrl.model.contact.fullName(fn);
-		ctrl.model.updateContact();
+		ctrl.contact.fullName(fn);
+		ContactService.queueUpdate(ctrl.contact);
 	};
 
 	ctrl.getTemplate = function() {
@@ -124,7 +124,7 @@ angular.module('contactsApp')
 	};
 
 	ctrl.deleteField = function () {
-		ctrl.model.deleteField(ctrl.name, ctrl.data);
-		ctrl.model.updateContact();
+		ctrl.contact.removeProperty(ctrl.name, ctrl.data);
+		ContactService.queueUpdate(ctrl.contact);
 	};
 });
