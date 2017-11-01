@@ -16,7 +16,8 @@ angular.module('contactsApp')
 	this.vCardMeta = {
 		nickname: {
 			readableName: t('contacts', 'Nickname'),
-			template: 'text'
+			template: 'text',
+			icon: 'icon-user'
 		},
 		n: {
 			readableName: t('contacts', 'Detailed name'),
