@@ -108,6 +108,16 @@ angular.module('contactsApp')
 						});
 					});
 					break;
+				case 'enable':
+					ctrl.loading = true;
+					ContactService.appendContactsFromAddressbook(ev.addressBook, function() {
+						ContactService.getAll().then(function(contacts) {
+							ctrl.contactList = contacts;
+							ctrl.loading = false;
+							ctrl.selectNearestContact(ctrl.getSelectedId());
+						});
+					});
+					break;
 				default:
 						// unknown event -> leave callback without action
 					return;
