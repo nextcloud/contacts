@@ -4,7 +4,7 @@
 <label ng-if="ctrl.availableOptions.length === 0" for="details-{{ctrl.name}}-{{ctrl.index}}">{{ctrl.meta.readableName}}</label>
 <input type="text" id="details-{{ctrl.name}}-{{ctrl.index}}" name="{{ctrl.name}}"
 	   ng-model="ctrl.data.value" ng-model-options="{ debounce: 500 }"
-	   ng-change="ctrl.model.updateContact()" value=""
+	   ng-change="ctrl.updateContact()" value=""
 	   placeholder="{{ctrl.meta.readableName}}"
 	   focus-expression="$parent.ctrl.focus === ctrl.name"
 	   ng-disabled="ctrl.model.addressBook.readOnly"

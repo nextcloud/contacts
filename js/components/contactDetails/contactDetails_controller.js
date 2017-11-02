@@ -75,10 +75,6 @@ angular.module('contactsApp')
 		});
 	};
 
-	ctrl.updateContact = function() {
-		ContactService.queueUpdate(ctrl.contact);
-	};
-
 	ctrl.deleteContact = function() {
 		ContactService.delete(ctrl.contact);
 	};

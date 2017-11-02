@@ -4,7 +4,7 @@
 </a>
 <input type="url" id="details-{{ctrl.name}}-{{ctrl.index}}" name="{{ctrl.name}}"
 	   ng-model="ctrl.data.value" ng-model-options="{ debounce: 500, allowInvalid: true }"
-	   ng-change="ctrl.model.updateContact()" value=""
+	   ng-change="ctrl.updateContact()" value=""
 	   placeholder="https://…"
 	   focus-expression="$parent.ctrl.focus === ctrl.name"
 	   ng-disabled="ctrl.model.addressBook.readOnly"
