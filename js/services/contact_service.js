@@ -291,22 +291,16 @@ angular.module('contactsApp')
 			return;
 		}
 		contact.syncVCard();
-		var uid = contact.uid();
 
-		// Delete on server
-		DavClient.deleteCard(contact.data).then(function() {
-			// Create new on server
-			DavClient.createCard(
-				addressBook,
-				{
-					data: contact.data.addressData,
-					filename: uid + '.vcf'
-				}
-			).then(function(xhr) {
-				// Edit local cached contact
-				contact.setETag(xhr.getResponseHeader('ETag'));
+		DavClient.xhr.send(
+			dav.request.basic({method: 'MOVE', destination: addressBook.url + contact.data.url.split('/').pop(-1)}),
+			contact.data.url
+		).then(function(response) {
+			if (response.status === 201 || response.status === 204) {
 				contact.setAddressBook(addressBook);
-			});
+			} else {
+				OC.Notification.showTemporary(t('contacts', 'Contact could not be moved.'));
+			}
 		});
 	};
 
