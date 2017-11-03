@@ -426,3 +426,10 @@ detailsitem .select2-container {
 	left: auto;
 	top: 7px;
 }
+
+/* Fix disabled select2 state */
+detailsitem .select2-container[disabled] .select2-choices {
+	border-color: transparent;
+	min-height: 100%;
+	background-color: transparent !important;
+}
