@@ -29,21 +29,23 @@ ul.addressBookList > li.newAddressBookContainer .tooltip {
 ul.addressBook-share-list {
 	margin-top: 8px;
 	margin-bottom: 12px;
-}
-
-ul.addressBook-share-list li {
-	padding: 0 5px;
-	display: inline-flex;
-	align-items: center;
-}
-
-ul.addressBook-share-list li .icon {
-	margin-right: 5px;
-	opacity: .2;
-}
-
-ul.addressBook-share-list li .utils {
 	display: flex;
+	flex-direction: column;
+	li {
+		padding: 0 5px;
+		display: inline-flex;
+		align-items: center;
+		.icon {
+			margin-right: 5px;
+			opacity: .2;
+		}
+		.utils {
+			display: flex;
+			.checkbox + label {
+				padding: 0 !important;
+			}
+		}
+	}
 }
 
 /* override core apps css */
@@ -62,9 +64,19 @@ ul.addressBookList li .utils .popovermenu {
 	width: 100%;
 }
 
+ul.addressBookList li .action {
+	opacity: 0.3;
+	display: block;
+	&:hover {
+		opacity: 0.5;
+	}
+	span {
+		cursor: pointer;
+	}
+}
+
 ul.addressBookList li .action > span {
 	display: inline-block;
-	opacity: 0.5;
 	width: 24px;
 	height: 20px;
 }
@@ -142,6 +154,7 @@ div.app-contacts span.utils {
 	padding: 0 !important;
 	float: right;
 	position: relative !important;
+	display: inline-flex;
 }
 
 .addressBookUrlContainer {
