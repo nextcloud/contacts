@@ -55,6 +55,7 @@ OC.L10N.register(
     "Contact could not be created." : "Kişi oluşturulamadı.",
     "No contacts in file. Only vCard files are allowed." : "Dosyada herhangi bir kişi yok. Yalnız vCard dosyaları kullanılabilir.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Yalnız vCard sürüm 4.0 (RFC6350) ya da sürüm 3.0 (RFC2426) desteklenir.",
+    "Contact could not be moved." : "Kişi taşınamadı.",
     "Contact could not be saved." : "Kişi kaydedilemedi.",
     "Waiting for the server to be ready…" : "Sunucunun hazır olması bekleniyor…",
     "Importing…" : "İçe aktarılıyor…",

@@ -55,6 +55,7 @@ OC.L10N.register(
     "Contact could not be created." : "Контакт не може да се направи.",
     "No contacts in file. Only vCard files are allowed." : "Нема контаката у фајлу. Дозвољени су само vCard фајлови.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Подржани су само vCard верзија 4.0 (RFC6350) и верзија 3.0 (RFC2426).",
+    "Contact could not be moved." : "Контакт не може да се премести.",
     "Contact could not be saved." : "Не могу да сачувам контакт.",
     "Waiting for the server to be ready…" : "Чекам да сервер буде спреман…",
     "Importing…" : "Увозим…",
