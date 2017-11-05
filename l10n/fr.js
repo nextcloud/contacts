@@ -55,6 +55,7 @@ OC.L10N.register(
     "Contact could not be created." : "Ce contact n'a pu être créé.",
     "No contacts in file. Only vCard files are allowed." : "Aucun contact dans le fichier. Seuls les fichiers vCard sont autorisés.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Seules les vCard version 4.0 (RFC6350) ou version 3.0 (RFC2426) sont supportées.",
+    "Contact could not be moved." : "Ce contact n'a pas pu être déplacé.",
     "Contact could not be saved." : "Ce contact n'a pu être enregistré.",
     "Waiting for the server to be ready…" : "En attente d'une réponse du serveur...",
     "Importing…" : "Import en cours...",
