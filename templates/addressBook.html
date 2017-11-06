@@ -19,9 +19,8 @@
 	</span>
 	<div class="popovermenu bubble menu"
 		 ng-class="{open: $parent.ctrl.openedMenu === $id}"
-		 ng-click="ctrl.closeMenus()"
 		 click-outside="ctrl.closeMenus()"
-		 outside-if-not=".openMenuButton, .popovermenu">
+		 outside-if-not="openMenuButton,popovermenu">
 		<ul>
 			<li>
 				<a class="addressbookurl-copy btn"
