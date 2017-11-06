@@ -1,4 +1,4 @@
-<select ng-model="ctrl.type" ng-model-options="{ debounce: 500 }" ng-change="ctrl.changeType(ctrl.type)" ng-disabled="ctrl.model.addressBook.readOnly">
+<select ng-model="ctrl.type" ng-model-options="{ debounce: 500 }" ng-change="ctrl.changeType(ctrl.type)" ng-disabled="ctrl.contact.readOnly">
     <option ng-repeat="option in ctrl.availableOptions" value="{{option.id}}">{{option.name}}</option>
 </select>
 <a ng-if="ctrl.data.value.length" class="item-action" href="tel:{{ctrl.data.value}}">
@@ -6,9 +6,9 @@
 </a>
 <input type="tel" id="details-{{ctrl.name}}-{{ctrl.index}}" name="phone"
        ng-model="ctrl.data.value" tel-model ng-model-options="{ debounce: 500 }"
-       ng-change="ctrl.model.updateContact()" value=""
+       ng-change="ctrl.updateContact()" value=""
        placeholder="{{ctrl.meta.readableName}}"
        focus-expression="$parent.ctrl.focus === ctrl.name"
-       ng-disabled="ctrl.model.addressBook.readOnly"
+       ng-disabled="ctrl.contact.readOnly"
 />
-<button ng-click="ctrl.deleteField()" class="icon-delete" title="{{ctrl.t.delete}}" ng-if="!ctrl.model.addressBook.readOnly"></button>
+<button ng-click="ctrl.deleteField()" class="icon-delete" title="{{ctrl.t.delete}}" ng-if="!ctrl.contact.readOnly"></button>

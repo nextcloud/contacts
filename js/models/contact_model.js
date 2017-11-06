@@ -10,6 +10,7 @@ angular.module('contactsApp')
 			dateProperties: ['bday', 'anniversary', 'deathdate'],
 
 			addressBookId: addressBook.displayName,
+			readOnly: addressBook.readOnly,
 
 			version: function() {
 				var property = this.getProperty('version');

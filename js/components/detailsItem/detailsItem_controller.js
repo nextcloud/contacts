@@ -118,6 +118,10 @@ angular.module('contactsApp')
 		ContactService.queueUpdate(ctrl.contact);
 	};
 
+	ctrl.updateContact = function() {
+		ContactService.queueUpdate(ctrl.contact);
+	};
+
 	ctrl.getTemplate = function() {
 		var templateUrl = OC.linkTo('contacts', 'templates/detailItems/' + ctrl.meta.template + '.html');
 		return $templateRequest(templateUrl);
