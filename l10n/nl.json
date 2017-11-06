@@ -53,6 +53,7 @@
     "Contact could not be created." : "Contact kon niet worden aangemaakt.",
     "No contacts in file. Only vCard files are allowed." : "Geen contacten in bestand. Alleen VCard bestanden zijn toegestaan.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Alleen VCard versie 4.0 (RFC6350) of versie 3.0 (RFC2426) worden ondersteund.",
+    "Contact could not be moved." : "Contactpersoon kon niet verplaatst worden.",
     "Contact could not be saved." : "Contact kon niet worden opgeslagen.",
     "Waiting for the server to be ready…" : "Wachten tot de server gereed is...",
     "Importing…" : "Importeren...",
