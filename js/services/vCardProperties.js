@@ -168,10 +168,23 @@ angular.module('contactsApp')
 
 			]
 		},
-		relationship: {
-			readableName: t('contacts', 'Relationship'),
-			template: 'select',
+		related: {
+			multiple: true,
+			readableName: t('contacts', 'Related'),
+			template: 'text',
+			defaultValue: {
+				value:[''],
+				meta:{type:['CONTACT']}
+			},
 			options: [
+				{id: 'CONTACT', name: t('contacts', 'Contact')},
+				{id: 'AGENT', name: t('contacts', 'Agent')},
+				{id: 'EMERGENCY', name: t('contacts', 'Emergency')},
+				{id: 'FRIEND', name: t('contacts', 'Friend')},
+				{id: 'COLLEAGUE', name: t('contacts', 'Colleague')},
+				{id: 'COWORKER', name: t('contacts', 'Co-worker')},
+				{id: 'MANAGER', name: t('contacts', 'Manager')},
+				{id: 'ASSISTANT', name: t('contacts', 'Assistant')},
 				{id: 'SPOUSE', name: t('contacts', 'Spouse')},
 				{id: 'CHILD', name: t('contacts', 'Child')},
 				{id: 'MOTHER', name: t('contacts', 'Mother')},
@@ -179,11 +192,7 @@ angular.module('contactsApp')
 				{id: 'PARENT', name: t('contacts', 'Parent')},
 				{id: 'BROTHER', name: t('contacts', 'Brother')},
 				{id: 'SISTER', name: t('contacts', 'Sister')},
-				{id: 'RELATIVE', name: t('contacts', 'Relative')},
-				{id: 'FRIEND', name: t('contacts', 'Friend')},
-				{id: 'COLLEAGUE', name: t('contacts', 'Colleague')},
-				{id: 'MANAGER', name: t('contacts', 'Manager')},
-				{id: 'ASSISTANT', name: t('contacts', 'Assistant')},
+				{id: 'RELATIVE', name: t('contacts', 'Relative')}
 			]
 		},
 		gender: {
@@ -210,7 +219,7 @@ angular.module('contactsApp')
 		'deathdate',
 		'url',
 		'X-SOCIALPROFILE',
-		'relationship',
+		'related',
 		'note',
 		'categories',
 		'role',
