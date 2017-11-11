@@ -1,4 +1,6 @@
-{ "translations": {
+OC.L10N.register(
+    "contacts",
+    {
     "Contacts" : "Contactos",
     "Download" : "Descargar",
     "Copy link" : "Copiar liga",
@@ -53,7 +55,6 @@
     "Contact could not be created." : "No fue posible crear el contacto.",
     "No contacts in file. Only vCard files are allowed." : "No se encontró ningún archivo de contactos. Solo se permiten archivos vCard.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Sólo están soportadas las versiones 4.0 (RFC6350) o 3.0 (RFC2426) de los archivos vCard.",
-    "Contact could not be moved." : "No se pudo mover el contacto.",
     "Contact could not be saved." : "No se pudo guardar el contacto.",
     "Waiting for the server to be ready…" : "Esperando a que el servidor esté listo...",
     "Importing…" : "Importando...",
@@ -101,5 +102,5 @@
     "Male" : "Masculino",
     "Details" : "Detalles",
     "Settings" : "Configuraciones "
-},"pluralForm" :"nplurals=2; plural=(n != 1);"
-}
+},
+"nplurals=2; plural=(n != 1);");

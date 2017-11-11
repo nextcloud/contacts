@@ -53,6 +53,7 @@
     "Contact could not be created." : "Nie można utworzyć kontaktu",
     "No contacts in file. Only vCard files are allowed." : "Nie znaleziono kontaktów w pliku. Dozwolone są tylko pliki vCard.",
     "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Wspierane są tylko vCard w wersji 4.0 (RFC6350) lub 3.0 (RFC2426).",
+    "Contact could not be moved." : "Nie udało się przenieść kontaktu",
     "Contact could not be saved." : "Nie udało się zapisać kontaktu.",
     "Waiting for the server to be ready…" : "Czekam, aż serwer będzie gotowy...",
     "Importing…" : "Importowanie...",
