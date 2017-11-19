@@ -114,7 +114,6 @@ angular.module('contactsApp')
 						ContactService.getAll().then(function(contacts) {
 							ctrl.contactList = contacts;
 							ctrl.loading = false;
-							ctrl.selectNearestContact(ctrl.getSelectedId());
 						});
 					});
 					break;

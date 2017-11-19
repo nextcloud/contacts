@@ -336,15 +336,21 @@ angular.module('contactsApp')
 	};
 
 	this.appendContactsFromAddressbook = function(addressBook, callback) {
-		addressBook.objects.forEach(function(vcard) {
-			try {
-				var contact = new Contact(addressBook, vcard);
-				contactsCache.put(contact.uid(), contact);
-			} catch(error) {
-				// eslint-disable-next-line no-console
-				console.log('Invalid contact received: ', vcard);
-			}
-		});
+		if (addressBook.objects === null) {
+			AddressBookService.sync(addressBook).then(function(addressBook) {
+				contactService.appendContactsFromAddressbook(addressBook, callback);
+			});
+		} else {
+			addressBook.objects.forEach(function(vcard) {
+				try {
+					var contact = new Contact(addressBook, vcard);
+					contactsCache.put(contact.uid(), contact);
+				} catch(error) {
+					// eslint-disable-next-line no-console
+					console.log('Invalid contact received: ', vcard);
+				}
+			});
+		}
 		if (typeof callback === 'function') {
 			callback();
 		}
