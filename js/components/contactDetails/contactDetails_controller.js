@@ -91,7 +91,7 @@ angular.module('contactsApp')
 		ctrl.focus = undefined;
 	};
 
-	ctrl.changeAddressBook = function (addressBook) {
-		ContactService.moveContact(ctrl.contact, addressBook);
+	ctrl.changeAddressBook = function (addressBook, oldAddressBook) {
+		ContactService.moveContact(ctrl.contact, addressBook, oldAddressBook);
 	};
 });

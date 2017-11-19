@@ -432,6 +432,8 @@ angular.module('contactsApp')
 		if(angular.isDefined(vCard)) {
 			angular.extend(this.data, vCard);
 			angular.extend(this.props, $filter('vCard2JSON')(this.data.addressData));
+			// We do not want to store our addressbook within contacts
+			delete this.data.addressBook;
 		} else {
 			angular.extend(this.props, {
 				version: [{value: '3.0'}],

@@ -36,7 +36,7 @@ angular.module('contactsApp')
 			var xhrAddressBooks = [];
 			contacts.forEach(function(contact) {
 				// Regroup urls by addressbooks
-				if(addressBooks.indexOf(contact.data.addressBook) !== -1) {
+				if(addressBooks.indexOf(contact.addressBook) !== -1) {
 					// Initiate array if no exists
 					xhrAddressBooks[contact.addressBookId] = xhrAddressBooks[contact.addressBookId] || [];
 					xhrAddressBooks[contact.addressBookId].push(contact.data.url);
@@ -57,10 +57,11 @@ angular.module('contactsApp')
 								contacts_.map(function(contact) {
 									// Validate some fields
 									if(contact.fix()) {
-										// Can't use this in those nested functions
+										// Can't use `this` in those nested functions
 										contactService.update(contact);
 									}
 									contactsCache.put(contact.uid(), contact);
+									addressBook.contacts.push(contact);
 								});
 							});
 						promises.push(promise);
@@ -281,11 +282,11 @@ angular.module('contactsApp')
 		}
 	};
 
-	this.moveContact = function(contact, addressBook) {
-		if (contact.addressBookId === addressBook.displayName) {
+	this.moveContact = function(contact, addressBook, oldAddressBook) {
+		if (addressBook !== null && contact.addressBookId === addressBook.displayName) {
 			return;
 		}
-		if(addressBook.readOnly) {
+		if (addressBook.readOnly) {
 			OC.Notification.showTemporary(t('contacts', 'You don\'t have permission to write to this addressbook.'));
 			return;
 		}
@@ -297,6 +298,8 @@ angular.module('contactsApp')
 		).then(function(response) {
 			if (response.status === 201 || response.status === 204) {
 				contact.setAddressBook(addressBook);
+				oldAddressBook.removeContact(contact);
+				addressBook.addContact(contact);
 			} else {
 				OC.Notification.showTemporary(t('contacts', 'Contact could not be moved.'));
 			}
@@ -326,16 +329,15 @@ angular.module('contactsApp')
 	};
 
 	this.removeContactsFromAddressbook = function(addressBook, callback) {
-		angular.forEach(contactsCache.values(), function(contact) {
-			if (contact.addressBookId === addressBook.displayName) {
-				contactsCache.remove(contact.uid());
-			}
+		angular.forEach(addressBook.contacts, function(contact) {
+			contactsCache.remove(contact.uid());
 		});
 		callback();
 		notifyObservers('groupsUpdate');
 	};
 
 	this.appendContactsFromAddressbook = function(addressBook, callback) {
+		// Addressbook has been initiated but contacts have not been fetched
 		if (addressBook.objects === null) {
 			AddressBookService.sync(addressBook).then(function(addressBook) {
 				contactService.appendContactsFromAddressbook(addressBook, callback);
@@ -345,9 +347,10 @@ angular.module('contactsApp')
 				try {
 					var contact = new Contact(addressBook, vcard);
 					contactsCache.put(contact.uid(), contact);
+					addressBook.contacts.push(contact);
 				} catch(error) {
 					// eslint-disable-next-line no-console
-					console.log('Invalid contact received: ', vcard);
+					console.log('Invalid contact received: ', vcard, error);
 				}
 			});
 		}

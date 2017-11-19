@@ -108,6 +108,13 @@ angular.module('contactsApp')
 			return DavClient.syncAddressBook(addressBook);
 		},
 
+		addContact: function(contact) {
+			return contact;
+		},
+
+		removeContact: function(contact) {
+			return contact;
+		},
 
 		toggleState: function(addressBook) {
 			var xmlDoc = document.implementation.createDocument('', '', null);
