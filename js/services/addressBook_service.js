@@ -108,12 +108,12 @@ angular.module('contactsApp')
 			return DavClient.syncAddressBook(addressBook);
 		},
 
-		addContact: function(contact) {
-			return contact;
+		addContact: function(addressBook, contact) {
+			return addressBook.contacts.push(contact);
 		},
 
-		removeContact: function(contact) {
-			return contact;
+		removeContact: function(addressBook, contact) {
+			return addressBook.contacts.splice(addressBook.contacts.indexOf(contact), 1);
 		},
 
 		toggleState: function(addressBook) {

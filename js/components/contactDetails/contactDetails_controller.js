@@ -38,7 +38,7 @@ angular.module('contactsApp')
 	AddressBookService.getAll().then(function(addressBooks) {
 		ctrl.addressBooks = addressBooks;
 
-		if (!_.isUndefined(ctrl.contact)) {
+		if (!angular.isUndefined(ctrl.contact)) {
 			ctrl.addressBook = _.find(ctrl.addressBooks, function(book) {
 				return book.displayName === ctrl.contact.addressBookId;
 			});

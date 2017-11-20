@@ -177,16 +177,18 @@ angular.module('contactsApp')
 					OC.Notification.showTemporary(t('contacts', 'Contact not found.'));
 					return;
 				} else {
-					var addressBook = _.find(addressBooks, function(book) {
+					var addressBook = addressBooks.find(function(book) {
 						return book.displayName === contact.addressBookId;
 					});
+					// Fetch and return full contact vcard
 					return addressBook
-						? DavClient.getContacts(addressBook, {}, [ contact.data.url ]).then(
-							function(vcards) { return new Contact(addressBook, vcards[0]); }
-						).then(function(contact) {
-							contactsCache.put(contact.uid(), contact);
+						? DavClient.getContacts(addressBook, {}, [ contact.data.url ]).then(function(vcards) {
+							return new Contact(addressBook, vcards[0]);
+						}).then(function(newContact) {
+							contactsCache.put(contact.uid(), newContact);
 							notifyObservers('getFullContacts', contact.uid());
-							return contact;
+							addressBook.contacts[addressBook.contacts.indexOf(contact)] = newContact;
+							return newContact;
 						}) : contact;
 				}
 			});
@@ -300,6 +302,7 @@ angular.module('contactsApp')
 				contact.setAddressBook(addressBook);
 				oldAddressBook.removeContact(contact);
 				addressBook.addContact(contact);
+				notifyObservers('groupsUpdate');
 			} else {
 				OC.Notification.showTemporary(t('contacts', 'Contact could not be moved.'));
 			}
