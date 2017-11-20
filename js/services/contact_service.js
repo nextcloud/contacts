@@ -185,8 +185,11 @@ angular.module('contactsApp')
 							return new Contact(addressBook, vcards[0]);
 						}).then(function(newContact) {
 							contactsCache.put(contact.uid(), newContact);
+							var contactIndex = addressBook.contacts.findIndex(function(testedContact) {
+								return testedContact.uid() === contact.uid();
+							});
+							addressBook.contacts[contactIndex] = newContact;
 							notifyObservers('getFullContacts', contact.uid());
-							addressBook.contacts[addressBook.contacts.indexOf(contact)] = newContact;
 							return newContact;
 						}) : contact;
 				}
@@ -363,9 +366,11 @@ angular.module('contactsApp')
 			AddressBookService.sync(addressBook).then(function(addressBook) {
 				contactService.appendContactsFromAddressbook(addressBook, callback);
 			});
-		} else {
+		} else if (addressBook.contacts.length === 0) {
+			// Only add contact if the addressBook doesn't already have it
 			addressBook.objects.forEach(function(vcard) {
 				try {
+					// Only add contact if the addressBook doesn't already have it
 					var contact = new Contact(addressBook, vcard);
 					contactsCache.put(contact.uid(), contact);
 					AddressBookService.addContact(addressBook, contact);
@@ -374,6 +379,13 @@ angular.module('contactsApp')
 					console.log('Invalid contact received: ', vcard, error);
 				}
 			});
+		} else {
+			// Contact are already present in the addressBook
+			angular.forEach(addressBook.contacts, function(contact) {
+				contactsCache.put(contact.uid(), contact);
+				console.log(contact);
+			});
+			console.log(contactsCache.values());
 		}
 		notifyObservers('groupsUpdate');
 		if (typeof callback === 'function') {
