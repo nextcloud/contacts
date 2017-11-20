@@ -76,7 +76,7 @@ angular.module('contactsApp')
 	};
 
 	ctrl.deleteContact = function() {
-		ContactService.delete(ctrl.contact);
+		ContactService.delete(ctrl.addressBook, ctrl.contact);
 	};
 
 	ctrl.addField = function(field) {

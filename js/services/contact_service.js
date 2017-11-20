@@ -141,7 +141,6 @@ angular.module('contactsApp')
 					groups[category] = groups[category] ? groups[category] + 1 : 1;
 				});
 			});
-
 			return _.keys(groups).map(
 				function(key) {
 					return new Group({
@@ -195,7 +194,13 @@ angular.module('contactsApp')
 	};
 
 	this.create = function(newContact, addressBook, uid, fromImport) {
-		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
+		addressBook = addressBook || AddressBookService.getDefaultAddressBook(true);
+
+		// No addressBook available
+		if(!addressBook) {
+			return;
+		}
+
 		if(addressBook.readOnly) {
 			OC.Notification.showTemporary(t('contacts', 'You don\'t have permission to write to this addressbook.'));
 			return;
@@ -228,6 +233,7 @@ angular.module('contactsApp')
 		).then(function(xhr) {
 			newContact.setETag(xhr.getResponseHeader('ETag'));
 			contactsCache.put(newUid, newContact);
+			AddressBookService.addContact(addressBook, newContact);
 			if (fromImport !== true) {
 				notifyObservers('create', newUid);
 				$('#details-fullName').select();
@@ -240,7 +246,12 @@ angular.module('contactsApp')
 	};
 
 	this.import = function(data, type, addressBook, progressCallback) {
-		addressBook = addressBook || AddressBookService.getDefaultAddressBook();
+		addressBook = addressBook || AddressBookService.getDefaultAddressBook(true);
+
+		// No addressBook available
+		if(!addressBook) {
+			return;
+		}
 
 		var regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi;
 		var singleVCards = data.match(regexp);
@@ -323,14 +334,18 @@ angular.module('contactsApp')
 		});
 	};
 
-	this.delete = function(contact) {
+	this.delete = function(addressBook, contact) {
 		// delete contact from server
 		return DavClient.deleteCard(contact.data).then(function() {
 			contactsCache.remove(contact.uid());
+			AddressBookService.removeContact(addressBook, contact);
 			notifyObservers('delete', contact.uid());
 		});
 	};
 
+	/*
+	 * Delete all contacts present in the addressBook from the cache
+	 */
 	this.removeContactsFromAddressbook = function(addressBook, callback) {
 		angular.forEach(addressBook.contacts, function(contact) {
 			contactsCache.remove(contact.uid());
@@ -339,6 +354,9 @@ angular.module('contactsApp')
 		notifyObservers('groupsUpdate');
 	};
 
+	/*
+	 * Create and append contacts to the addressBook
+	 */
 	this.appendContactsFromAddressbook = function(addressBook, callback) {
 		// Addressbook has been initiated but contacts have not been fetched
 		if (addressBook.objects === null) {
@@ -350,13 +368,14 @@ angular.module('contactsApp')
 				try {
 					var contact = new Contact(addressBook, vcard);
 					contactsCache.put(contact.uid(), contact);
-					addressBook.contacts.push(contact);
+					AddressBookService.addContact(addressBook, contact);
 				} catch(error) {
 					// eslint-disable-next-line no-console
 					console.log('Invalid contact received: ', vcard, error);
 				}
 			});
 		}
+		notifyObservers('groupsUpdate');
 		if (typeof callback === 'function') {
 			callback();
 		}

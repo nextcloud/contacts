@@ -269,7 +269,6 @@ angular.module('contactsApp')
 				this.data.url = addressBook.url + uid + '.vcf';
 			},
 			setAddressBook: function(addressBook) {
-				this.addressBook = addressBook;
 				this.addressBookId = addressBook.displayName;
 				this.data.url = addressBook.url + this.uid() + '.vcf';
 			},

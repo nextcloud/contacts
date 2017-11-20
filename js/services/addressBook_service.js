@@ -43,7 +43,7 @@ angular.module('contactsApp')
 			});
 		},
 
-		getGroups: function () {
+		getGroups: function() {
 			return this.getAll().then(function(addressBooks) {
 				return addressBooks.map(function (element) {
 					return element.groups;
@@ -53,8 +53,16 @@ angular.module('contactsApp')
 			});
 		},
 
-		getDefaultAddressBook: function() {
-			return addressBooks[0];
+		getDefaultAddressBook: function(throwOC) {
+			var i = addressBooks.findIndex(function(addressBook) {
+				return addressBook.enabled && !addressBook.readOnly;
+			});
+			if (i !== -1) {
+				return addressBooks[i];
+			} else if(throwOC) {
+				OC.Notification.showTemporary(t('contacts', 'There is no address book available to create a contact.'));
+			}
+			return false;
 		},
 
 		getAddressBook: function(displayName) {
@@ -69,6 +77,7 @@ angular.module('contactsApp')
 						resourcetype: res[0].props.resourcetype,
 						syncToken: res[0].props.syncToken
 					});
+					notifyObservers('create', addressBook);
 					return addressBook;
 				});
 			});
