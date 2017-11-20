@@ -118,11 +118,17 @@ angular.module('contactsApp')
 		},
 
 		addContact: function(addressBook, contact) {
-			return addressBook.contacts.push(contact);
+			// We don't want to add the same contact again
+			if (addressBook.contacts.indexOf(contact) === -1) {
+				return addressBook.contacts.push(contact);
+			}
 		},
 
 		removeContact: function(addressBook, contact) {
-			return addressBook.contacts.splice(addressBook.contacts.indexOf(contact), 1);
+			// We can't remove an undefined object
+			if (addressBook.contacts.indexOf(contact) !== -1) {
+				return addressBook.contacts.splice(addressBook.contacts.indexOf(contact), 1);
+			}
 		},
 
 		toggleState: function(addressBook) {
