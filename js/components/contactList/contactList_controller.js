@@ -104,7 +104,12 @@ angular.module('contactsApp')
 						ContactService.getAll().then(function(contacts) {
 							ctrl.contactList = contacts;
 							ctrl.loading = false;
-							ctrl.selectNearestContact(ctrl.getSelectedId());
+							// Only change contact if the selectd one is not in the list anymore
+							if(ctrl.contactList.findIndex(function(contact) {
+								return contact.uid() === ctrl.getSelectedId();
+							}) === -1) {
+								ctrl.selectNearestContact(ctrl.getSelectedId());
+							}
 						});
 					});
 					break;
