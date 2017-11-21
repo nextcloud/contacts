@@ -314,8 +314,8 @@ angular.module('contactsApp')
 		).then(function(response) {
 			if (response.status === 201 || response.status === 204) {
 				contact.setAddressBook(addressBook);
-				oldAddressBook.removeContact(contact);
-				addressBook.addContact(contact);
+				AddressBookService.addContact(addressBook, contact);
+				AddressBookService.removeContact(oldAddressBook, contact);
 				notifyObservers('groupsUpdate');
 			} else {
 				OC.Notification.showTemporary(t('contacts', 'Contact could not be moved.'));
