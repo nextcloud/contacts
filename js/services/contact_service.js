@@ -383,9 +383,7 @@ angular.module('contactsApp')
 			// Contact are already present in the addressBook
 			angular.forEach(addressBook.contacts, function(contact) {
 				contactsCache.put(contact.uid(), contact);
-				console.log(contact);
 			});
-			console.log(contactsCache.values());
 		}
 		notifyObservers('groupsUpdate');
 		if (typeof callback === 'function') {
