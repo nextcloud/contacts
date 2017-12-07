@@ -73,7 +73,7 @@ OC.L10N.register(
     "Anniversary" : "Aastapäev",
     "Date of death" : "Surma kuupäev",
     "Email" : "E-post",
-    "Instant messaging" : "Kiirõnumid",
+    "Instant messaging" : "Kiirsõnumid",
     "Phone" : "Telefon",
     "Mobile" : "Mobiil",
     "Work mobile" : "Töötelefon (mobiil)",
