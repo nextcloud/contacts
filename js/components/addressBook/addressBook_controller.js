@@ -12,10 +12,13 @@ angular.module('contactsApp')
 		shareInputPlaceHolder: t('contacts', 'Share with users or groups'),
 		delete: t('contacts', 'Delete'),
 		canEdit: t('contacts', 'can edit'),
-		close: t('contacts', 'Close')
+		close: t('contacts', 'Close'),
+		enabled: t('contacts', 'Enabled'),
+		disabled: t('contacts', 'Disabled')
 	};
 
 	ctrl.editing = false;
+	ctrl.enabled = ctrl.addressBook.enabled;
 
 	ctrl.tooltipIsOpen = false;
 	ctrl.tooltipTitle = ctrl.t.clickToCopy;
@@ -185,6 +188,13 @@ angular.module('contactsApp')
 
 	ctrl.deleteAddressBook = function() {
 		AddressBookService.delete(ctrl.addressBook).then(function() {
+			$scope.$apply();
+		});
+	};
+
+	ctrl.toggleState = function() {
+		AddressBookService.toggleState(ctrl.addressBook).then(function(addressBook) {
+			ctrl.enabled = addressBook.enabled;
 			$scope.$apply();
 		});
 	};

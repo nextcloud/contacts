@@ -6,10 +6,11 @@ angular.module('contactsApp')
 
 	var observerCallbacks = [];
 
-	var notifyObservers = function(eventName) {
+	var notifyObservers = function(eventName, addressBook) {
 		var ev = {
 			event: eventName,
-			addressBooks: addressBooks
+			addressBooks: addressBooks,
+			addressBook: addressBook,
 		};
 		angular.forEach(observerCallbacks, function(callback) {
 			callback(ev);
@@ -42,7 +43,7 @@ angular.module('contactsApp')
 			});
 		},
 
-		getGroups: function () {
+		getGroups: function() {
 			return this.getAll().then(function(addressBooks) {
 				return addressBooks.map(function (element) {
 					return element.groups;
@@ -52,8 +53,16 @@ angular.module('contactsApp')
 			});
 		},
 
-		getDefaultAddressBook: function() {
-			return addressBooks[0];
+		getDefaultAddressBook: function(throwOC) {
+			var i = addressBooks.findIndex(function(addressBook) {
+				return addressBook.enabled && !addressBook.readOnly;
+			});
+			if (i !== -1) {
+				return addressBooks[i];
+			} else if(throwOC) {
+				OC.Notification.showTemporary(t('contacts', 'There is no address book available to create a contact.'));
+			}
+			return false;
 		},
 
 		getAddressBook: function(displayName) {
@@ -68,6 +77,7 @@ angular.module('contactsApp')
 						resourcetype: res[0].props.resourcetype,
 						syncToken: res[0].props.syncToken
 					});
+					notifyObservers('create', addressBook);
 					return addressBook;
 				});
 			});
@@ -84,7 +94,7 @@ angular.module('contactsApp')
 				return DavClient.deleteAddressBook(addressBook).then(function() {
 					var index = addressBooks.indexOf(addressBook);
 					addressBooks.splice(index, 1);
-					notifyObservers('delete');
+					notifyObservers('delete', addressBook);
 				});
 			});
 		},
@@ -105,6 +115,55 @@ angular.module('contactsApp')
 
 		sync: function(addressBook) {
 			return DavClient.syncAddressBook(addressBook);
+		},
+
+		addContact: function(addressBook, contact) {
+			// We don't want to add the same contact again
+			if (addressBook.contacts.indexOf(contact) === -1) {
+				return addressBook.contacts.push(contact);
+			}
+		},
+
+		removeContact: function(addressBook, contact) {
+			// We can't remove an undefined object
+			if (addressBook.contacts.indexOf(contact) !== -1) {
+				return addressBook.contacts.splice(addressBook.contacts.indexOf(contact), 1);
+			}
+		},
+
+		toggleState: function(addressBook) {
+			var xmlDoc = document.implementation.createDocument('', '', null);
+			var dPropUpdate = xmlDoc.createElement('d:propertyupdate');
+			dPropUpdate.setAttribute('xmlns:d', 'DAV:');
+			dPropUpdate.setAttribute('xmlns:o', 'http://owncloud.org/ns');
+			xmlDoc.appendChild(dPropUpdate);
+
+			var dSet = xmlDoc.createElement('d:set');
+			dPropUpdate.appendChild(dSet);
+
+			var dProp = xmlDoc.createElement('d:prop');
+			dSet.appendChild(dProp);
+
+			var oEnabled = xmlDoc.createElement('o:enabled');
+			// Revert state to toggle
+			oEnabled.textContent = !addressBook.enabled ? '1' : '0';
+			dProp.appendChild(oEnabled);
+
+			var body = dPropUpdate.outerHTML;
+
+			return DavClient.xhr.send(
+				dav.request.basic({method: 'PROPPATCH', data: body}),
+				addressBook.url
+			).then(function(response) {
+				if (response.status === 207) {
+					addressBook.enabled = !addressBook.enabled;
+					notifyObservers(
+						addressBook.enabled ? 'enable' : 'disable',
+						addressBook
+					);
+				}
+				return addressBook;
+			});
 		},
 
 		share: function(addressBook, shareType, shareWith, writable, existingShare) {

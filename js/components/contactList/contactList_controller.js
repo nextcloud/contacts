@@ -96,16 +96,36 @@ angular.module('contactsApp')
 	AddressBookService.registerObserverCallback(function(ev) {
 		$timeout(function() {
 			$scope.$apply(function() {
-				if (ev.event === 'delete') {
-					// Get contacts
+				switch (ev.event) {
+				case 'delete':
+				case 'disable':
 					ctrl.loading = true;
-					ContactService.updateDeletedAddressbook(function() {
+					ContactService.removeContactsFromAddressbook(ev.addressBook, function() {
 						ContactService.getAll().then(function(contacts) {
 							ctrl.contactList = contacts;
 							ctrl.loading = false;
-							ctrl.selectNearestContact(ctrl.getSelectedId());
+							// Only change contact if the selectd one is not in the list anymore
+							if(ctrl.contactList.findIndex(function(contact) {
+								return contact.uid() === ctrl.getSelectedId();
+							}) === -1) {
+								ctrl.selectNearestContact(ctrl.getSelectedId());
+							}
 						});
 					});
+					break;
+				case 'enable':
+					ctrl.loading = true;
+					ContactService.appendContactsFromAddressbook(ev.addressBook, function() {
+						ContactService.getAll().then(function(contacts) {
+							ctrl.contactList = contacts;
+							ctrl.loading = false;
+						});
+					});
+					break;
+				default:
+						// unknown event -> leave callback without action
+					return;
+
 				}
 			});
 		});

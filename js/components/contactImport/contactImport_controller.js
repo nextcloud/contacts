@@ -1,11 +1,12 @@
 angular.module('contactsApp')
-.controller('contactimportCtrl', function(ContactService, AddressBookService) {
+.controller('contactimportCtrl', function(ContactService, AddressBookService, $timeout, $scope) {
 	var ctrl = this;
 
 	ctrl.t = {
 		importText : t('contacts', 'Import into'),
 		importingText : t('contacts', 'Importing...'),
-		selectAddressbook : t('contacts', 'Select your addressbook')
+		selectAddressbook : t('contacts', 'Select your addressbook'),
+		importdisabled : t('contacts', 'Import is disabled because no writable address book had been found.')
 	};
 
 	ctrl.import = ContactService.import.bind(ContactService);
@@ -18,6 +19,14 @@ angular.module('contactsApp')
 		ctrl.addressBooks = addressBooks;
 		ctrl.loading = false;
 		ctrl.selectedAddressBook = AddressBookService.getDefaultAddressBook();
+	});
+
+	AddressBookService.registerObserverCallback(function() {
+		$timeout(function() {
+			$scope.$apply(function() {
+				ctrl.selectedAddressBook = AddressBookService.getDefaultAddressBook();
+			});
+		});
 	});
 
 	ctrl.stopHideMenu = function(isOpen) {

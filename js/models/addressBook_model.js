@@ -8,6 +8,9 @@ angular.module('contactsApp')
 			contacts: [],
 			groups: data.data.props.groups,
 			readOnly: data.data.props.readOnly === '1',
+			// In case of not defined
+			enabled: data.data.props.enabled !== '0',
+
 			sharedWith: {
 				users: [],
 				groups: []

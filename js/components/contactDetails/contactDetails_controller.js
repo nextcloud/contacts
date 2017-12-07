@@ -38,7 +38,7 @@ angular.module('contactsApp')
 	AddressBookService.getAll().then(function(addressBooks) {
 		ctrl.addressBooks = addressBooks;
 
-		if (!_.isUndefined(ctrl.contact)) {
+		if (!angular.isUndefined(ctrl.contact)) {
 			ctrl.addressBook = _.find(ctrl.addressBooks, function(book) {
 				return book.displayName === ctrl.contact.addressBookId;
 			});
@@ -76,7 +76,7 @@ angular.module('contactsApp')
 	};
 
 	ctrl.deleteContact = function() {
-		ContactService.delete(ctrl.contact);
+		ContactService.delete(ctrl.addressBook, ctrl.contact);
 	};
 
 	ctrl.addField = function(field) {
@@ -91,7 +91,7 @@ angular.module('contactsApp')
 		ctrl.focus = undefined;
 	};
 
-	ctrl.changeAddressBook = function (addressBook) {
-		ContactService.moveContact(ctrl.contact, addressBook);
+	ctrl.changeAddressBook = function (addressBook, oldAddressBook) {
+		ContactService.moveContact(ctrl.contact, addressBook, oldAddressBook);
 	};
 });

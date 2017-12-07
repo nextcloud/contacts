@@ -2,7 +2,7 @@
 	<input select-expression="ctrl.editing" placeholder="{{ctrl.t.addressBookName}}" class="renameAddressBookInput" ng-model="ctrl.addressBook.displayName" type="text" />
 	<input type="submit" value="" class="renameAddressBookSubmit inline-button icon-confirm action pull-right" />
 </form>
-<span class="addressBookName" title="{{ctrl.addressBook.displayName}}" ng-hide="ctrl.editing">{{ctrl.addressBook.displayName}}</span>
+<span class="addressBookName" ng-class="{disabled: !ctrl.enabled}" onloadedmetadata=""title="{{ctrl.addressBook.displayName}}" ng-hide="ctrl.editing">{{ctrl.addressBook.displayName}}</span>
 <span class="utils" ng-hide="ctrl.editing">
 	<span class="action">
 		<span
@@ -41,6 +41,12 @@
 				<a ng-click="ctrl.edit()">
 					<span class="icon icon-rename"></span>
 					<span>{{ctrl.t.renameAddressbook}}</span>
+				</a>
+			</li>
+			<li>
+				<a ng-click="ctrl.toggleState()">
+					<input id="state_{{$id}}" type="checkbox" class="checkbox" ng-checked="ctrl.enabled" />
+					<label for="state_{{$id}}">{{ctrl.enabled ? ctrl.t.enabled : ctrl.t.disabled}}</span>
 				</a>
 			</li>
 			<li ng-if="ctrl.list.length > 1">
