@@ -11,6 +11,8 @@ OC.L10N.register(
     "Share with users or groups" : "Delen met gebruikers of groepen",
     "can edit" : "kan bewerken",
     "Close" : "Sluiten",
+    "Enabled" : "Ingeschakeld",
+    "Disabled" : "Uitgeschakeld",
     "Copied!" : "Gekopieerd!",
     "Not supported!" : "Niet ondersteund!",
     "Press ⌘-C to copy." : "Druk op ⌘-C om te kopiëren.",

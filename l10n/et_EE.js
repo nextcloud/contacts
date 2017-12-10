@@ -68,7 +68,7 @@ OC.L10N.register(
     "Detailed name" : "Üksikasjalik nimi",
     "Notes" : "Märkmed",
     "Website" : "Veebileht",
-    "Federated Cloud ID" : "Liitunud pilve ID",
+    "Federated Cloud ID" : "Liitpilve ID",
     "Home" : "Kodu",
     "Work" : "Töö",
     "Other" : "Muu",
