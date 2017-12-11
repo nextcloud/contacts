@@ -11,6 +11,8 @@ OC.L10N.register(
     "Share with users or groups" : "Del med brukere eller grupper",
     "can edit" : "kan redigere",
     "Close" : "Lukk",
+    "Enabled" : "Aktiver",
+    "Disabled" : "Deaktiver",
     "Copied!" : "Kopiert!",
     "Not supported!" : "Ikke støttet!",
     "Press ⌘-C to copy." : "Trykk ⌘-C for å kopiere",

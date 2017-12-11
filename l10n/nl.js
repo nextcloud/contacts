@@ -32,7 +32,7 @@ OC.L10N.register(
     "Loading contacts …" : "Contacten laden ...",
     "Import into" : "Importeer in",
     "Importing..." : "Importeren...",
-    "Select your addressbook" : "Selecteer uw adresboek",
+    "Select your addressbook" : "Selecteer je adresboek",
     "No search result for {query}" : "Geen zoekresultaten voor {query}",
     "All contacts" : "Alle contactpersonen",
     "Post office box" : "Postbus",
