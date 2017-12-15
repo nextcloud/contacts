@@ -11,6 +11,8 @@ OC.L10N.register(
     "Share with users or groups" : "Deila með notendum eða hópum",
     "can edit" : "getur breytt",
     "Close" : "Loka",
+    "Enabled" : "Virkt",
+    "Disabled" : "Óvirkt",
     "Copied!" : "Afritað!",
     "Not supported!" : "Ekki stutt!",
     "Press ⌘-C to copy." : "Ýttu á ⌘-C til að afrita.",
