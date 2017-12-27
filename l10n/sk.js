@@ -11,6 +11,8 @@ OC.L10N.register(
     "Share with users or groups" : "Sprístupniť používateľom alebo skupinám",
     "can edit" : "môže upravovať",
     "Close" : "Zatvoriť",
+    "Enabled" : "Povolené",
+    "Disabled" : "Zakázané",
     "Copied!" : "Skopírované!",
     "Not supported!" : "Nepodporované!",
     "Press ⌘-C to copy." : "Pre kopírovanie, stlačte ⌘-C.",
