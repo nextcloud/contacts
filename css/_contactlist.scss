@@ -71,3 +71,174 @@ contactlist .tooltip {
 
 	/* end of media query */
 }
+
+
+/* STABLE12 FIXES. TO BE DROPPED FOR MIN VERSION 13 */
+#app-content-wrapper {
+	display: flex;
+	position: relative;
+	align-items: start;
+	height: 100%;
+	width: 100%;
+	.app-content-list,
+	.app-content-detail {
+		min-height: 100%;
+		max-height: 100%;
+		overflow-x: hidden;
+		overflow-y: auto;
+	}
+}
+.app-content-list {
+	width: 300px;
+	border-right: 1px solid nc-darken($color-main-background, 8%);
+	display: flex;
+	flex-direction: column;
+	transition: transform 250ms ease-in-out;
+
+	/* Default item */
+	.app-content-list-item {
+		position: relative;
+		height: 68px;
+		border-top: 1px solid nc-darken($color-main-background, 8%);
+		cursor: pointer;
+		padding: 10px 7px;
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		flex: 0 0 auto;
+
+		/* Icon fixes */
+		&,
+		> .app-content-list-item-menu {
+			> [class^='icon-'],
+			> [class*=' icon-'] {
+				order: 4;
+				width: 24px;
+				height: 24px;
+				margin: -10px;
+				padding: 22px;
+				opacity: .3;
+					cursor: pointer;
+				&:hover, &:focus {
+					opacity: .7;
+				}
+				&[class^='icon-star'],
+				&[class*=' icon-star'] {
+					opacity: .7;
+					&:hover, &:focus {
+						opacity: 1 ;
+					}
+
+				}
+				&.icon-starred {
+					opacity: 1 ;
+				}
+			}
+		}
+
+		&:hover, &:focus,
+		&.active {
+			background-color: nc-darken($color-main-background, 6%);
+		}
+
+		.app-content-list-item-checkbox.checkbox + label,
+		.app-content-list-item-star {
+			position: absolute;
+			height: 40px;
+			width: 40px;
+			display: flex;
+			z-index: 50;
+			+ .app-content-list-item-icon {
+				opacity: .7;
+			}
+		}
+
+		.app-content-list-item-checkbox.checkbox + label {
+			top: 14px;
+			left: 7px;
+			&::before {
+				margin: 0;
+			}
+			/* Hide the star, priority to the checkbox */
+			~ .app-content-list-item-star {
+				display: none;
+			}
+		}
+
+		.app-content-list-item-star {
+			top: 10px;
+			left: 32px;
+			background-size: 16px;
+			height: 20px;
+			width: 20px;
+			margin: 0;
+			padding: 0;
+		}
+
+		.app-content-list-item-icon {
+			position: absolute;
+			display: inline-block;
+			height: 40px;
+			width: 40px;
+			line-height: 40px;
+			border-radius: 50%;
+			vertical-align: middle;
+			margin-right: 10px;
+			color: #fff;
+			text-align: center;
+			font-size: 1.5em;
+			text-transform: capitalize;
+			object-fit: cover;
+			user-select: none;
+			cursor: pointer;
+		}
+
+		.app-content-list-item-line-one,
+		.app-content-list-item-line-two {
+			display: block;
+			padding-left: 50px;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			order: 1;
+			flex: 1 1 0;
+			padding-right: 10px;
+			cursor: pointer;
+		}
+
+		.app-content-list-item-line-two {
+			opacity: .5;
+			order: 3;
+			flex: 1 0 calc(100% - 24px);
+		}
+
+		.app-content-list-item-details {
+			order: 2;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
+			max-width: 100px;
+			opacity: .5;
+			font-size: 80%;
+			user-select: none;
+		}
+
+		.app-content-list-item-menu {
+			order: 4;
+			position: relative;
+			.popovermenu {
+				margin: 0;
+				right: -5px;
+			}
+		}
+	}
+}
+/* App content */
+.app-content-detail {
+	/* grow full width */
+	flex-grow: 1;
+
+	#app-navigation-toggle-back {
+		display: none;
+	}
+}
