@@ -72,7 +72,6 @@ contactlist .tooltip {
 	/* end of media query */
 }
 
-
 /* STABLE12 FIXES. TO BE DROPPED FOR MIN VERSION 13 */
 #app-content-wrapper {
 	display: flex;
@@ -88,6 +87,7 @@ contactlist .tooltip {
 		overflow-y: auto;
 	}
 }
+
 .app-content-list {
 	width: 300px;
 	border-right: 1px solid nc-darken($color-main-background, 8%);
@@ -118,7 +118,7 @@ contactlist .tooltip {
 				margin: -10px;
 				padding: 22px;
 				opacity: .3;
-					cursor: pointer;
+				cursor: pointer;
 				&:hover, &:focus {
 					opacity: .7;
 				}
@@ -126,12 +126,11 @@ contactlist .tooltip {
 				&[class*=' icon-star'] {
 					opacity: .7;
 					&:hover, &:focus {
-						opacity: 1 ;
+						opacity: 1;
 					}
-
 				}
 				&.icon-starred {
-					opacity: 1 ;
+					opacity: 1;
 				}
 			}
 		}
@@ -233,6 +232,7 @@ contactlist .tooltip {
 		}
 	}
 }
+
 /* App content */
 .app-content-detail {
 	/* grow full width */
