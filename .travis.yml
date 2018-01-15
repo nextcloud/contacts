@@ -24,6 +24,12 @@ matrix:
           env:  DB=pgsql CORE_BRANCH=stable12
         - php: 7.1
           env:  DB=pgsql CORE_BRANCH=stable12
+        - php: 7.0
+          env:  DB=pgsql CORE_BRANCH=stable13
+        - php: 7.1
+          env:  DB=pgsql CORE_BRANCH=stable13
+        - php: 7.2
+          env:  DB=pgsql CORE_BRANCH=stable13
     fast_finish: true
 
 before_install:
