@@ -86,6 +86,7 @@ OC.L10N.register(
     "Fax work" : "工作传真",
     "Pager" : "传呼机",
     "Voice" : "语音",
+    "Car" : "车",
     "Social network" : "社交网络",
     "Relationship" : "关系",
     "Spouse" : "配偶",
