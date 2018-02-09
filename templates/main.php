@@ -47,10 +47,11 @@ style('contacts', 'vendor/ui-select/select.min');
 	</div>
 
 	<div id="app-content">
-		<div class="app-content-list">
-			<contactlist></contactlist>
+		<div id="app-content-wrapper">
+			<div class="app-content-list" contactlist>
+			</div>
+			<div class="app-content-detail" ng-view></div>
+			<importscreen id="importscreen-wrapper" ng-show="ctrl.importing"></importscreen>
 		</div>
-		<div class="app-content-detail" ng-view></div>
-		<importscreen class="emptycontent"></importscreen>
 	</div>
 </div>

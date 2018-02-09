@@ -6,12 +6,6 @@ angular.module('contactsApp')
 		errorMessage : t('contacts', 'This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent.'),
 	};
 
-	ctrl.openContact = function() {
-		$route.updateParams({
-			gid: $routeParams.gid,
-			uid: ctrl.contact.uid()});
-	};
-
 	ctrl.getName = function() {
 		// If lastName equals to firstName then none of them is set
 		if (ctrl.contact.lastName() === ctrl.contact.firstName()) {
