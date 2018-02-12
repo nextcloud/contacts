@@ -4,6 +4,6 @@ lang_map = bg_BG: bg, cs_CZ: cs, fi_FI: fi, hu_HU: hu, nb_NO: nb, sk_SK: sk, th_
 
 [nextcloud.contacts]
 file_filter = <lang>/contacts.po
-source_file = templates/contacts.pot
+source_file = translationfiles/templates/contacts.pot
 source_lang = en
 type = PO
