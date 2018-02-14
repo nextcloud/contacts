@@ -223,11 +223,11 @@ avatar.maximized .avatar-options > [class^="icon-"] {
 	padding: 20px 20px 100px;
 }
 
-@media screen and (min-width: 1450px) {
+@media screen and (min-width: 1380px) {
 	section {
-		-webkit-column-count: 2; /* Chrome, Safari, Opera */
-		-moz-column-count: 2; /* Firefox */
-		column-count: 2;
+		display: grid;
+		grid-template-columns: 50fr 50fr;
+		grid-column-gap: 20px;
 	}
 }
 
@@ -252,7 +252,7 @@ contactdetails {
 }
 
 propertygroup {
-	display: inline-block;
+	display: block;
 	padding-bottom: 36px;
 }
 
