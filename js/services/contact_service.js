@@ -223,9 +223,6 @@ angular.module('contactsApp')
 		newContact.uid(newUid);
 		newContact.setUrl(addressBook, newUid);
 		newContact.addressBookId = addressBook.displayName;
-		if (_.isUndefined(newContact.fullName()) || newContact.fullName() === '') {
-			newContact.fullName(newContact.displayName());
-		}
 
 		return DavClient.createCard(
 			addressBook,
