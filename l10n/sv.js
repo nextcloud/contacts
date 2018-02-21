@@ -33,6 +33,7 @@ OC.L10N.register(
     "Import into" : "Importera till",
     "Importing..." : "Importerar...",
     "Select your addressbook" : "Välj din adressbok",
+    "Import is disabled because no writable address book had been found." : "Importering är inaktiverat eftersom ingen skrivbara adressbok hittades.",
     "No search result for {query}" : "Inget sökresultat för {query}",
     "All contacts" : "Alla kontakter",
     "Post office box" : "Postbox",
