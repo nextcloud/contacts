@@ -232,7 +232,8 @@ $grid-input-height-with-margin: calc(#{$grid-height-unit} - (#{$grid-input-margi
 
 section {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(#{$grid-column-width}, 1fr));
+	/* unquote is a strange hack to avoid removal of the comma by the scss compiler */
+	grid-template-columns: repeat(auto-fit, minmax(unquote("#{$grid-column-width}"), 1fr));
 	grid-column-gap: 20px;
 }
 
