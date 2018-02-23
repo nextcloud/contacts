@@ -227,11 +227,12 @@ avatar.maximized .avatar-options > [class^="icon-"] {
 $grid-height-unit: 40px;
 $grid-input-padding: 7px;
 $grid-input-margin: 3px;
+$grid-column-width: 380px;
 $grid-input-height-with-margin: calc(#{$grid-height-unit} - (#{$grid-input-margin} * 2));
 
 section {
 	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(#{$grid-column-width}, 1fr));
 	grid-column-gap: 20px;
 }
 
@@ -342,7 +343,7 @@ detailsitem {
 	display: flex;
 	flex-wrap: wrap;
 	position: relative;
-	width: 380px;
+	width: $grid-column-width;
 	> div {
 		display: inline-flex;
 	}
