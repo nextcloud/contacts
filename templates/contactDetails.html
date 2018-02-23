@@ -42,7 +42,7 @@
 			</div>
 		</header>
 		<section>
-			<propertyGroup ng-repeat="prop in ctrl.contact.props | toArray | orderDetailItems:'$key'" model="ctrl.contact" data="prop" name="prop.$key"></propertyGroup>
+			<propertyGroup ng-repeat="prop in ctrl.contact.props | toArray | orderDetailItems:'$key'" model="ctrl.contact" data="prop" name="prop.$key" class="property-{{prop.$key}} grid-span-{{prop.length}}"></propertyGroup>
 
 			<div class="select-addressbook" ng-if="ctrl.addressBooks.length > 1 && !ctrl.addressBook.readOnly">
 				<label for="details-addressbook">{{ctrl.t.addressBook}}</label>
