@@ -31,9 +31,9 @@ use OCP\Contacts\ContactsMenu\ILinkAction;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use PHPUnit_Framework_MockObject_MockObject;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 
-class DetailsProviderTest extends PHPUnit_Framework_TestCase {
+class DetailsProviderTest extends TestCase {
 
 	/** @var IURLGenerator|PHPUnit_Framework_MockObject_MockObject */
 	private $urlGenerator;
