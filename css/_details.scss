@@ -150,7 +150,7 @@ avatar {
 	overflow: hidden;
 }
 
-.avatar-options > [class^="icon-"] {
+.avatar-options > [class^='icon-'] {
 	display: none;
 	opacity: 0.5;
 	cursor: pointer;
@@ -158,11 +158,11 @@ avatar {
 	min-height: 20px;
 }
 
-.avatar-options:hover > [class^="icon-"] {
+.avatar-options:hover > [class^='icon-'] {
 	opacity: 0.6;
 }
 
-.avatar-options > [class^="icon-"]:hover {
+.avatar-options > [class^='icon-']:hover {
 	opacity: 0.8;
 }
 
@@ -214,7 +214,7 @@ avatar.maximized .avatar-options {
 	justify-content: space-around;
 }
 
-avatar.maximized .avatar-options > [class^="icon-"] {
+avatar.maximized .avatar-options > [class^='icon-'] {
 	min-width: 25%;
 	display: block;
 }
@@ -230,10 +230,20 @@ $grid-input-margin: 3px;
 $grid-column-width: 380px;
 $grid-input-height-with-margin: calc(#{$grid-height-unit} - (#{$grid-input-margin} * 2));
 
+@mixin generate-grid-span($default-unit) {
+	/* we only supports 10 props of the same type */
+	@for $i from 1 through 10 {
+		&.grid-span-#{$i} {
+			/* default unit + title + bottom padding */
+			grid-row-start: span calc(2 + #{$i} * #{$default-unit});
+		}
+	}
+}
+
 section {
 	display: grid;
 	/* unquote is a strange hack to avoid removal of the comma by the scss compiler */
-	grid-template-columns: repeat(auto-fit, minmax(unquote("#{$grid-column-width}"), 1fr));
+	grid-template-columns: repeat(auto-fit, minmax(unquote('#{$grid-column-width}'), 1fr));
 	grid-column-gap: 20px;
 }
 
@@ -279,20 +289,7 @@ propertygroup {
 			opacity: .5;
 		}
 	}
-}
-
-@mixin generate-grid-span($default-unit) {
-	/* we only supports 10 props of the same type */
-	@for $i from 1 through 10 {
-		&.grid-span-#{$i} {
-			/* default unit + title + bottom padding */
-			grid-row-start: span calc(2 + #{$i} * #{$default-unit});
-		}
-	}
-}
-
-/* GRID SETTINGS*/
-propertygroup {
+	/* GRID SETTINGS */
 	@include generate-grid-span(1);
 	&.property-adr {
 		@include generate-grid-span(8);
@@ -305,10 +302,10 @@ propertygroup {
 	}
 }
 
-detailsitem input[type="tel"],
-detailsitem input[type="email"],
-detailsitem input[type="text"],
-detailsitem input[type="url"],
+detailsitem input[type='tel'],
+detailsitem input[type='email'],
+detailsitem input[type='text'],
+detailsitem input[type='url'],
 detailsitem textarea,
 .select-addressbook select,
 .add-field {
