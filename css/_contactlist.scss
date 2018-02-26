@@ -89,11 +89,13 @@ contactlist .tooltip {
 }
 
 .app-content-list {
-	width: 300px;
 	border-right: 1px solid nc-darken($color-main-background, 8%);
 	display: flex;
 	flex-direction: column;
 	transition: transform 250ms ease-in-out;
+	min-width: 250px;
+	max-width: 350px;
+	flex: 2 2 300px;
 
 	/* Default item */
 	.app-content-list-item {

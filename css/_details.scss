@@ -150,7 +150,7 @@ avatar {
 	overflow: hidden;
 }
 
-.avatar-options > [class^="icon-"] {
+.avatar-options > [class^='icon-'] {
 	display: none;
 	opacity: 0.5;
 	cursor: pointer;
@@ -158,11 +158,11 @@ avatar {
 	min-height: 20px;
 }
 
-.avatar-options:hover > [class^="icon-"] {
+.avatar-options:hover > [class^='icon-'] {
 	opacity: 0.6;
 }
 
-.avatar-options > [class^="icon-"]:hover {
+.avatar-options > [class^='icon-']:hover {
 	opacity: 0.8;
 }
 
@@ -214,7 +214,7 @@ avatar.maximized .avatar-options {
 	justify-content: space-around;
 }
 
-avatar.maximized .avatar-options > [class^="icon-"] {
+avatar.maximized .avatar-options > [class^='icon-'] {
 	min-width: 25%;
 	display: block;
 }
@@ -223,12 +223,28 @@ avatar.maximized .avatar-options > [class^="icon-"] {
 	padding: 20px 20px 100px;
 }
 
-@media screen and (min-width: 1450px) {
-	section {
-		-webkit-column-count: 2; /* Chrome, Safari, Opera */
-		-moz-column-count: 2; /* Firefox */
-		column-count: 2;
+/* GRID */
+$grid-height-unit: 40px;
+$grid-input-padding: 7px;
+$grid-input-margin: 3px;
+$grid-column-width: 380px;
+$grid-input-height-with-margin: calc(#{$grid-height-unit} - (#{$grid-input-margin} * 2));
+
+@mixin generate-grid-span($default-unit) {
+	/* we only supports 10 props of the same type */
+	@for $i from 1 through 10 {
+		&.grid-span-#{$i} {
+			/* default unit + title + bottom padding */
+			grid-row-start: span calc(2 + #{$i} * #{$default-unit});
+		}
 	}
+}
+
+section {
+	display: grid;
+	/* unquote is a strange hack to avoid removal of the comma by the scss compiler */
+	grid-template-columns: repeat(auto-fit, minmax(unquote('#{$grid-column-width}'), 1fr));
+	grid-column-gap: 20px;
 }
 
 /* General details item styles */
@@ -252,71 +268,66 @@ contactdetails {
 }
 
 propertygroup {
-	display: inline-block;
-	padding-bottom: 36px;
+	display: block;
+	&:not(.property-adr){
+		/* adr detailsitem already have bottom padding */
+		padding-bottom: $grid-height-unit;
+	}
+	.propertyGroup__title {
+		display: flex;
+		align-items: center;
+		height: $grid-height-unit;
+		padding: calc(#{$grid-height-unit} / 4);
+		margin: 0;
+		margin-left: 68px;
+		opacity: .6;
+		i {
+			display: block;
+			vertical-align: middle;
+			background-size: 16px 16px;
+			margin-right: 8px;
+			opacity: .5;
+		}
+	}
+	/* GRID SETTINGS */
+	@include generate-grid-span(1);
+	&.property-adr {
+		@include generate-grid-span(8);
+	}
+	&.property-n {
+		@include generate-grid-span(7);
+	}
+	&.property-note {
+		@include generate-grid-span(5);
+	}
 }
 
-.propertyGroup__title {
-	display: inline-block;
-	padding: 12px;
-	margin: 0;
-	margin-left: 68px;
-	opacity: .6;
-}
-
-.propertyGroup__title i {
-	display: inline-block;
-	vertical-align: middle;
-	background-size: 16px 16px;
-	margin-right: 8px;
-	opacity: .5;
-}
-
-detailsitem {
-	display: flex;
-	flex-wrap: wrap;
-	position: relative;
-	width: 380px;
-}
-
-detailsitem input[type="tel"],
-detailsitem input[type="email"],
-detailsitem input[type="text"],
-detailsitem input[type="url"],
+detailsitem input[type='tel'],
+detailsitem input[type='email'],
+detailsitem input[type='text'],
+detailsitem input[type='url'],
 detailsitem textarea,
 .select-addressbook select,
 .add-field {
 	width: 245px;
 	flex-grow: 1;
+	margin: $grid-input-margin;
+	height: $grid-input-height-with-margin;
+	padding: $grid-input-padding;
 }
 
 .add-field {
 	margin-left: 106px;
 }
 
-detailsitem select {
-	width: 100px;
-	border: none;
-	text-align: right;
-	text-align-last: right;
-	opacity: .5;
-	color: $color-main-text;
-	outline: none;
-}
-
-detailsitem select:hover,
-detailsitem select:focus,
-detailsitem select:active {
-	opacity: 1;
-}
-
 detailsitem label,
 .select-addressbook label {
-	margin: 3px 3px 3px 0;
-
+	margin: $grid-input-margin;
+	margin-left: 0;
 	display: inline-block;
 	width: 100px;
-	padding: 7px 0;
+	height: $grid-input-height-with-margin;
+	padding: $grid-input-padding 0;
 	text-align: right;
 	opacity: .5;
 	white-space: nowrap;
@@ -326,66 +337,94 @@ detailsitem label,
 	vertical-align: middle;
 }
 
-detailsitem .icon-delete {
+detailsitem {
+	display: flex;
+	flex-wrap: wrap;
 	position: relative;
-	vertical-align: top;
-	padding: 16px 10px;
-	background-color: transparent;
-	border: none;
-	opacity: 0;
-}
+	width: $grid-column-width;
+	> div {
+		display: inline-flex;
+	}
+	select {
+		width: 100px;
+		height: $grid-input-height-with-margin;
+		padding: $grid-input-padding;
+		margin: $grid-input-margin;
+		margin-left: 0;
+		border: none;
+		text-align: right;
+		text-align-last: right;
+		opacity: .5;
+		color: $color-main-text;
+		outline: none;
+		&:hover,
+		&:focus,
+		&:active {
+			opacity: 1;
+		}
+	}
 
-detailsitem input:hover + .icon-delete,
-detailsitem input:focus + .icon-delete,
-detailsitem input:active + .icon-delete,
-detailsitem select:hover + .icon-delete,
-detailsitem select:focus + .icon-delete,
-detailsitem select:active + .icon-delete,
-detailsitem:hover .icon-delete {
-	opacity: .2;
-}
+	& .icon-delete {
+		position: relative;
+		vertical-align: top;
+		padding: 16px 10px;
+		background-color: transparent;
+		border: none;
+		opacity: 0;
+	}
 
-detailsitem .icon-delete:hover,
-detailsitem .icon-delete:focus,
-detailsitem .icon-delete:active {
-	opacity: 1;
-}
+	& input:hover + .icon-delete,
+	& input:focus + .icon-delete,
+	& input:active + .icon-delete,
+	& select:hover + .icon-delete,
+	& select:focus + .icon-delete,
+	& select:active + .icon-delete,
+	&:hover .icon-delete {
+		opacity: .2;
+	}
 
-detailsitem .item-action {
-	position: absolute;
-	padding: 10px 5px;
-	opacity: .5;
-	right: 30px;
-}
+	& .icon-delete:hover,
+	& .icon-delete:focus,
+	& .icon-delete:active {
+		opacity: 1;
+	}
 
-detailsitem .item-action ~ input {
-	padding-right: 30px;
-	text-overflow: ellipsis;
-}
+	& .item-action {
+		position: absolute;
+		padding: 10px 5px;
+		opacity: .5;
+		right: 30px;
+		~ input {
+			padding-right: 30px;
+			text-overflow: ellipsis;
+		}
+		i {
+			display: block;
+			height: 20px;
+			width: 20px;
+		}
+	}
 
-detailsitem .item-action i {
-	display: block;
-	height: 20px;
-	width: 20px;
-}
+	&.details-item-adr,
+	&.details-item-n {
+		padding-bottom: $grid-height-unit;
+		.icon-delete {
+			vertical-align: middle;
+			left: 251px;
+		}
+	}
 
-detailsitem.details-item-adr .icon-delete, detailsitem.details-item-n .icon-delete {
-	vertical-align: middle;
-	left: 251px;
-}
+	&.details-item-note label {
+		vertical-align: top;
+	}
 
-detailsitem.details-item-adr,
-detailsitem.details-item-n {
-	padding-bottom: 20px;
-}
-
-detailsitem.details-item-note label {
-	vertical-align: top;
-}
-
-/* Failed props */
-detailsitem.failed {
-	box-shadow: inset 2px 0 $color-error;
+	/* Failed props */
+	&.failed {
+		box-shadow: inset 2px 0 $color-error;
+	}
+	textarea {
+		height: calc(#{$grid-input-height-with-margin} + (#{$grid-height-unit} * 4));
+	}
 }
 
 avatar .icon-error {

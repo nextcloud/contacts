@@ -4,7 +4,7 @@ language: php
 php:
     - 7.0
     - 7.1
-    - 7.2
+#    - 7.2
 env:
     global:
         - CORE_BRANCH=master
@@ -28,8 +28,8 @@ matrix:
           env:  DB=pgsql CORE_BRANCH=stable13
         - php: 7.1
           env:  DB=pgsql CORE_BRANCH=stable13
-        - php: 7.2
-          env:  DB=pgsql CORE_BRANCH=stable13
+#        - php: 7.2
+#          env:  DB=pgsql CORE_BRANCH=stable13
     fast_finish: true
 
 before_install:
