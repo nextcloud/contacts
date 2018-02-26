@@ -8,7 +8,7 @@ angular.module('contactsApp')
 	var sortList = SortByService.getSortByList();
 	ctrl.sortList = sortList;
 
-	ctrl.defaultOrder = SortByService.getSortBy();
+	ctrl.defaultOrder = SortByService.getSortByKey();
 
 	ctrl.updateSortBy = function() {
 		SortByService.setSortBy(ctrl.defaultOrder);

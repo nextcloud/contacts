@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.controller('detailsItemCtrl', function($templateRequest, vCardPropertiesService, ContactService) {
+.controller('detailsItemCtrl', function($templateRequest, $filter, vCardPropertiesService, ContactService) {
 	var ctrl = this;
 
 	ctrl.meta = vCardPropertiesService.getMeta(ctrl.name);
@@ -38,21 +38,31 @@ angular.module('contactsApp')
 		var displayName = array.map(function (element) {
 			return element.charAt(0).toUpperCase() + element.slice(1).toLowerCase();
 		}).join(' ');
-
 		// in case the type is not yet in the default list of available options we add it
 		if (!ctrl.availableOptions.some(function(e) { return e.id === ctrl.type; } )) {
 			ctrl.availableOptions = ctrl.availableOptions.concat([{id: ctrl.type, name: displayName}]);
 		}
+
+		// Remove duplicate entry
+		ctrl.availableOptions = _.uniq(ctrl.availableOptions, function(option) { return option.name; });
+		if (ctrl.availableOptions.filter(function(option) { return option.id === ctrl.type; }).length === 0) {
+			// Our default value has been thrown out by the uniq function, let's find a replacement
+			var optionName = ctrl.meta.options.filter(function(option) { return option.id === ctrl.type; })[0].name;
+			ctrl.type = ctrl.availableOptions.filter(function(option) { return option.name === optionName; })[0].id;
+			// We don't want to override the default keys. Compatibility > standardization
+			// ctrl.data.meta.type[0] = ctrl.type;
+			// ctrl.model.updateContact();
+		}
 	}
 
 	if (!_.isUndefined(ctrl.data) && !_.isUndefined(ctrl.data.namespace)) {
-		if (!_.isUndefined(ctrl.model.contact.props['X-ABLABEL'])) {
-			var val = _.find(this.model.contact.props['X-ABLABEL'], function(x) { return x.namespace === ctrl.data.namespace; });
-			ctrl.type = val.value;
+		if (!_.isUndefined(ctrl.contact.props['X-ABLABEL'])) {
+			var val = _.find(this.contact.props['X-ABLABEL'], function(x) { return x.namespace === ctrl.data.namespace; });
+			ctrl.type = val.value.toUpperCase();
 			if (!_.isUndefined(val)) {
 				// in case the type is not yet in the default list of available options we add it
 				if (!ctrl.availableOptions.some(function(e) { return e.id === val.value; } )) {
-					ctrl.availableOptions = ctrl.availableOptions.concat([{id: val.value, name: val.value}]);
+					ctrl.availableOptions = ctrl.availableOptions.concat([{id: val.value.toUpperCase(), name: val.value.toUpperCase()}]);
 				}
 			}
 		}
@@ -77,7 +87,20 @@ angular.module('contactsApp')
 		ctrl.data.meta = ctrl.data.meta || {};
 		ctrl.data.meta.type = ctrl.data.meta.type || [];
 		ctrl.data.meta.type[0] = val;
-		ctrl.model.updateContact();
+		ContactService.queueUpdate(ctrl.contact);
+	};
+
+	ctrl.dateInputChanged = function () {
+		ctrl.data.meta = ctrl.data.meta || {};
+
+		var match = ctrl.data.value.match(/^(\d{4})-(\d{2})-(\d{2})$/);
+		if (match) {
+			ctrl.data.meta.value = [];
+		} else {
+			ctrl.data.meta.value = ctrl.data.meta.value || [];
+			ctrl.data.meta.value[0] = 'text';
+		}
+		ContactService.queueUpdate(ctrl.contact);
 	};
 
 	ctrl.updateDetailedName = function () {
@@ -98,8 +121,12 @@ angular.module('contactsApp')
 			fn += ctrl.data.value[4];
 		}
 
-		ctrl.model.contact.fullName(fn);
-		ctrl.model.updateContact();
+		ctrl.contact.fullName(fn);
+		ContactService.queueUpdate(ctrl.contact);
+	};
+
+	ctrl.updateContact = function() {
+		ContactService.queueUpdate(ctrl.contact);
 	};
 
 	ctrl.getTemplate = function() {
@@ -108,7 +135,7 @@ angular.module('contactsApp')
 	};
 
 	ctrl.deleteField = function () {
-		ctrl.model.deleteField(ctrl.name, ctrl.data);
-		ctrl.model.updateContact();
+		ctrl.contact.removeProperty(ctrl.name, ctrl.data);
+		ContactService.queueUpdate(ctrl.contact);
 	};
 });

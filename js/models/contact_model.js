@@ -10,6 +10,7 @@ angular.module('contactsApp')
 			dateProperties: ['bday', 'anniversary', 'deathdate'],
 
 			addressBookId: addressBook.displayName,
+			readOnly: addressBook.readOnly,
 
 			version: function() {
 				var property = this.getProperty('version');
@@ -29,18 +30,6 @@ angular.module('contactsApp')
 					// getter
 					return model.getProperty('uid').value;
 				}
-			},
-
-			sortFirstName: function() {
-				return [this.firstName(), this.lastName()];
-			},
-
-			sortLastName: function() {
-				return [this.lastName(), this.firstName()];
-			},
-
-			sortDisplayName: function() {
-				return this.displayName();
 			},
 
 			displayName: function() {
@@ -170,7 +159,7 @@ angular.module('contactsApp')
 
 					return this.setProperty('photo', { value: imageData[1], meta: {type: [imageType], encoding: ['b']} });
 				} else {
-					var property = this.validate('photo', this.getProperty('photo'));
+					var property = this.getProperty('photo');
 					if(property) {
 						var type = property.meta.type;
 						if (angular.isArray(type)) {
@@ -197,7 +186,7 @@ angular.module('contactsApp')
 					}
 				} else {
 					// getter
-					var property = this.validate('categories', this.getProperty('categories'));
+					var property = this.getProperty('categories');
 					if(!property) {
 						return [];
 					}
@@ -238,7 +227,7 @@ angular.module('contactsApp')
 
 			getProperty: function(name) {
 				if (this.props[name]) {
-					return this.formatDateForDisplay(name, this.props[name][0]);
+					return this.formatDateForDisplay(name, this.validate(name, this.props[name][0]));
 				} else {
 					return undefined;
 				}
@@ -268,6 +257,9 @@ angular.module('contactsApp')
 			},
 			removeProperty: function (name, prop) {
 				angular.copy(_.without(this.props[name], prop), this.props[name]);
+				if(this.props[name].length === 0) {
+					delete this.props[name];
+				}
 				this.data.addressData = $filter('JSON2vCard')(this.props);
 			},
 			setETag: function(etag) {
@@ -275,6 +267,10 @@ angular.module('contactsApp')
 			},
 			setUrl: function(addressBook, uid) {
 				this.data.url = addressBook.url + uid + '.vcf';
+			},
+			setAddressBook: function(addressBook) {
+				this.addressBookId = addressBook.displayName;
+				this.data.url = addressBook.url + this.uid() + '.vcf';
 			},
 
 			getISODate: function(date) {
@@ -331,7 +327,7 @@ angular.module('contactsApp')
 					return true;
 				}
 				var model = this;
-				var matchingProps = ['fn', 'title', 'org', 'email', 'nickname', 'note', 'url', 'cloud', 'adr', 'impp', 'tel'].filter(function (propName) {
+				var matchingProps = ['fn', 'title', 'org', 'email', 'nickname', 'note', 'url', 'cloud', 'adr', 'impp', 'tel', 'gender', 'relationship'].filter(function (propName) {
 					if (model.props[propName]) {
 						return model.props[propName].filter(function (property) {
 							if (!property.value) {
@@ -356,6 +352,16 @@ angular.module('contactsApp')
 			/* eslint-disable no-console */
 			validate: function(prop, property) {
 				switch(prop) {
+				case 'rev':
+				case 'prodid':
+				case 'version':
+					if (!angular.isUndefined(this.props[prop]) && this.props[prop].length > 1) {
+						this.props[prop] = [this.props[prop][0]];
+						console.warn(this.uid()+': Too many '+prop+' fields. Saving this one only: ' + this.props[prop][0].value);
+						this.failedProps.push(prop);
+					}
+					break;
+
 				case 'categories':
 					// Avoid unescaped commas
 					if (angular.isArray(property.value)) {
@@ -371,8 +377,8 @@ angular.module('contactsApp')
 							//console.warn(this.uid()+': Categories split: ' + property.value);
 						}
 					}
-					if(property.value.length !== 0) {
-						// Remove duplicate categories
+					// Remove duplicate categories on array
+					if(property.value.length !== 0 && angular.isArray(property.value)) {
 						var uniqueCategories = _.unique(property.value);
 						if(!angular.equals(uniqueCategories, property.value)) {
 							this.failedProps.push(prop);
@@ -389,9 +395,13 @@ angular.module('contactsApp')
 							if (mime) {
 								this.failedProps.push(prop);
 								property.meta.type=[mime];
-								this.setProperty('photo', {value:property.value,
-														   meta:{type:property.meta.type,
-																 encoding:property.meta.encoding}});
+								this.setProperty('photo', {
+									value:property.value,
+									meta: {
+										type:property.meta.type,
+										encoding:property.meta.encoding
+									}
+								});
 								console.warn(this.uid()+': Photo detected as ' + property.meta.type);
 							} else {
 								this.failedProps.push(prop);
@@ -404,18 +414,29 @@ angular.module('contactsApp')
 					break;
 				}
 				return property;
-			}
+			},
 			/* eslint-enable no-console */
+
+			fix: function() {
+				this.validate('rev');
+				this.validate('version');
+				this.validate('prodid');
+				return this.failedProps.indexOf('rev') !== -1
+					|| this.failedProps.indexOf('prodid') !== -1
+					|| this.failedProps.indexOf('version') !== -1;
+			}
 
 		});
 
 		if(angular.isDefined(vCard)) {
 			angular.extend(this.data, vCard);
 			angular.extend(this.props, $filter('vCard2JSON')(this.data.addressData));
+			// We do not want to store our addressbook within contacts
+			delete this.data.addressBook;
 		} else {
 			angular.extend(this.props, {
 				version: [{value: '3.0'}],
-				fn: [{value: ''}]
+				fn: [{value: t('contacts', 'New contact')}]
 			});
 			this.data.addressData = $filter('JSON2vCard')(this.props);
 		}

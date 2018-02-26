@@ -220,7 +220,11 @@ export function getProps(propstats) {
 }
 
 export function setRequestHeaders(request, options) {
-  request.setRequestHeader('Content-Type', 'application/xml;charset=utf-8');
+  if ('contentType' in options) {
+    request.setRequestHeader('Content-Type', options.contentType);
+  } else {
+    request.setRequestHeader('Content-Type', 'application/xml;charset=utf-8');
+  }
 
   if ('depth' in options) {
     request.setRequestHeader('Depth', options.depth);

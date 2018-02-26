@@ -14,18 +14,18 @@ module.exports = function(config) {
 		files: [
 			'js/vendor/angular/angular.js',
 			'js/vendor/angular-route/angular-route.js',
-			'js/vendor/angular-uuid4/angular-uuid4.js',
-			'js/vendor/angular-cache/dist/angular-cache.js',
+			'js/vendor/angular-uuid4/angular-uuid4.min.js',
+			'js/vendor/angular-cache/angular-cache.js',
 			'js/vendor/angular-sanitize/angular-sanitize.js',
-			'js/vendor/ui-select/dist/select.js',
+			'js/vendor/ui-select/select.js',
 			'js/vendor/angular-click-outside/clickoutside.directive.js',
-			'js/vendor/ngclipboard/dist/ngclipboard.min.js',
+			'js/vendor/ngclipboard/ngclipboard.js',
 
 			'js/dav/dav.js',
-			'js/vendor/vcard/src/vcard.js',
+			'js/vendor/vcard/vcard.js',
 
-			'js/vendor/underscore/underscore.js',
-			'js/vendor/angular-mocks/angular-mocks.js',
+			'node_modules/underscore/underscore.js',
+			'node_modules/angular-mocks/angular-mocks.js',
 
 			'js/main.js',
 			'js/components/**/*.js',
@@ -33,7 +33,7 @@ module.exports = function(config) {
 			'js/services/**/*.js',
 			'js/filters/**/*.js',
 
-			'js/vendor/angular-bootstrap/ui-bootstrap.min.js',
+			'js/vendor/ui-bootstrap/ui-bootstrap.js',
 
 			'js/tests/**/*.js'
 		],

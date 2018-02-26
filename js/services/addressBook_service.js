@@ -4,6 +4,19 @@ angular.module('contactsApp')
 	var addressBooks = [];
 	var loadPromise = undefined;
 
+	var observerCallbacks = [];
+
+	var notifyObservers = function(eventName, addressBook) {
+		var ev = {
+			event: eventName,
+			addressBooks: addressBooks,
+			addressBook: addressBook,
+		};
+		angular.forEach(observerCallbacks, function(callback) {
+			callback(ev);
+		});
+	};
+
 	var loadAll = function() {
 		if (addressBooks.length > 0) {
 			return $q.when(addressBooks);
@@ -20,13 +33,17 @@ angular.module('contactsApp')
 	};
 
 	return {
+		registerObserverCallback: function(callback) {
+			observerCallbacks.push(callback);
+		},
+
 		getAll: function() {
 			return loadAll().then(function() {
 				return addressBooks;
 			});
 		},
 
-		getGroups: function () {
+		getGroups: function() {
 			return this.getAll().then(function(addressBooks) {
 				return addressBooks.map(function (element) {
 					return element.groups;
@@ -36,18 +53,31 @@ angular.module('contactsApp')
 			});
 		},
 
-		getDefaultAddressBook: function() {
-			return addressBooks[0];
+		getDefaultAddressBook: function(throwOC) {
+			var i = addressBooks.findIndex(function(addressBook) {
+				return addressBook.enabled && !addressBook.readOnly;
+			});
+			if (i !== -1) {
+				return addressBooks[i];
+			} else if(throwOC) {
+				OC.Notification.showTemporary(t('contacts', 'There is no address book available to create a contact.'));
+			}
+			return false;
 		},
 
 		getAddressBook: function(displayName) {
 			return DavService.then(function(account) {
-				return DavClient.getAddressBook({displayName:displayName, url:account.homeUrl}).then(function(addressBook) {
-					addressBook = new AddressBook({
-						url: addressBook[0].href,
-						data: addressBook[0]
+				return DavClient.getAddressBook({displayName:displayName, url:account.homeUrl}).then(function(res) {
+					var addressBook = new AddressBook({
+						account: account,
+						ctag: res[0].props.getctag,
+						url: account.homeUrl+displayName+'/',
+						data: res[0],
+						displayName: res[0].props.displayname,
+						resourcetype: res[0].props.resourcetype,
+						syncToken: res[0].props.syncToken
 					});
-					addressBook.displayName = displayName;
+					notifyObservers('create', addressBook);
 					return addressBook;
 				});
 			});
@@ -64,6 +94,7 @@ angular.module('contactsApp')
 				return DavClient.deleteAddressBook(addressBook).then(function() {
 					var index = addressBooks.indexOf(addressBook);
 					addressBooks.splice(index, 1);
+					notifyObservers('delete', addressBook);
 				});
 			});
 		},
@@ -84,6 +115,55 @@ angular.module('contactsApp')
 
 		sync: function(addressBook) {
 			return DavClient.syncAddressBook(addressBook);
+		},
+
+		addContact: function(addressBook, contact) {
+			// We don't want to add the same contact again
+			if (addressBook.contacts.indexOf(contact) === -1) {
+				return addressBook.contacts.push(contact);
+			}
+		},
+
+		removeContact: function(addressBook, contact) {
+			// We can't remove an undefined object
+			if (addressBook.contacts.indexOf(contact) !== -1) {
+				return addressBook.contacts.splice(addressBook.contacts.indexOf(contact), 1);
+			}
+		},
+
+		toggleState: function(addressBook) {
+			var xmlDoc = document.implementation.createDocument('', '', null);
+			var dPropUpdate = xmlDoc.createElement('d:propertyupdate');
+			dPropUpdate.setAttribute('xmlns:d', 'DAV:');
+			dPropUpdate.setAttribute('xmlns:o', 'http://owncloud.org/ns');
+			xmlDoc.appendChild(dPropUpdate);
+
+			var dSet = xmlDoc.createElement('d:set');
+			dPropUpdate.appendChild(dSet);
+
+			var dProp = xmlDoc.createElement('d:prop');
+			dSet.appendChild(dProp);
+
+			var oEnabled = xmlDoc.createElement('o:enabled');
+			// Revert state to toggle
+			oEnabled.textContent = !addressBook.enabled ? '1' : '0';
+			dProp.appendChild(oEnabled);
+
+			var body = dPropUpdate.outerHTML;
+
+			return DavClient.xhr.send(
+				dav.request.basic({method: 'PROPPATCH', data: body}),
+				addressBook.url
+			).then(function(response) {
+				if (response.status === 207) {
+					addressBook.enabled = !addressBook.enabled;
+					notifyObservers(
+						addressBook.enabled ? 'enable' : 'disable',
+						addressBook
+					);
+				}
+				return addressBook;
+			});
 		},
 
 		share: function(addressBook, shareType, shareWith, writable, existingShare) {

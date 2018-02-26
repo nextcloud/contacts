@@ -1,0 +1,18 @@
+#app-navigation {
+	position: relative;
+}
+
+#app-navigation > ul {
+	height: calc(100% - 68px);
+}
+
+/* Contacts List */
+#new-contact-button {
+	margin: 14px auto; /* to have the same height than a contact */
+	width: calc(100% - 20px) !important;
+	text-align: left;
+	background-position: 10px center;
+	padding: 10px;
+	padding-left: 34px;
+	display: block;
+}

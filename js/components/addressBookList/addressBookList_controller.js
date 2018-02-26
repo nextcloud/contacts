@@ -4,6 +4,7 @@ angular.module('contactsApp')
 
 	ctrl.loading = true;
 	ctrl.openedMenu = false;
+	ctrl.addressBookRegex = /^[a-zA-Z0-9À-ÿ\s-_.!?#|()]+$/i;
 
 	AddressBookService.getAll().then(function(addressBooks) {
 		ctrl.addressBooks = addressBooks;
@@ -19,7 +20,8 @@ angular.module('contactsApp')
 	});
 
 	ctrl.t = {
-		addressBookName : t('contacts', 'Address book name')
+		addressBookName : t('contacts', 'Address book name'),
+		regexError : t('contacts', 'Only these special characters are allowed: -_.!?#|()')
 	};
 
 	ctrl.createAddressBook = function() {
@@ -29,6 +31,8 @@ angular.module('contactsApp')
 					ctrl.addressBooks.push(addressBook);
 					$scope.$apply();
 				});
+			}).catch(function() {
+				OC.Notification.showTemporary(t('contacts', 'Address book could not be created.'));
 			});
 		}
 	};

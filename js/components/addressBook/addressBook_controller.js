@@ -4,18 +4,21 @@ angular.module('contactsApp')
 
 	ctrl.t = {
 		download: t('contacts', 'Download'),
-		copyURL: t('contacts', 'Copy URL'),
-		clickToCopy: t('contacts', 'Click to copy the URL into your clipboard'),
-		shareAddressbook: t('contacts', 'Toggle share'),
+		copyURL: t('contacts', 'Copy link'),
+		clickToCopy: t('contacts', 'Click to copy the link to your clipboard'),
+		shareAddressbook: t('contacts', 'Toggle sharing'),
 		deleteAddressbook: t('contacts', 'Delete'),
 		renameAddressbook: t('contacts', 'Rename'),
 		shareInputPlaceHolder: t('contacts', 'Share with users or groups'),
 		delete: t('contacts', 'Delete'),
 		canEdit: t('contacts', 'can edit'),
-		close: t('contacts', 'Close')
+		close: t('contacts', 'Close'),
+		enabled: t('contacts', 'Enabled'),
+		disabled: t('contacts', 'Disabled')
 	};
 
 	ctrl.editing = false;
+	ctrl.enabled = ctrl.addressBook.enabled;
 
 	ctrl.tooltipIsOpen = false;
 	ctrl.tooltipTitle = ctrl.t.clickToCopy;
@@ -51,24 +54,6 @@ angular.module('contactsApp')
 		ctrl.editing = true;
 	};
 
-	/* globals oc_config */
-	function compareVersion(version1, version2) {
-		for (var i = 0; i < Math.max(version1.length, version2.length); i++) {
-			var a = version1[i] || 0;
-			var b = version2[i] || 0;
-			if (Number(a) < Number(b)) {
-				return true;
-			}
-			if (version1[i] !== version2[i]) {
-				return false;
-			}
-		}
-		return false;
-	}
-	/* eslint-disable camelcase */
-	ctrl.canExport = compareVersion([9, 0, 2, 0], oc_config.version.split('.'));
-	/* eslint-enable camelcase */
-
 	ctrl.closeMenus = function() {
 		$scope.$parent.ctrl.openedMenu = false;
 	};
@@ -102,17 +87,18 @@ angular.module('contactsApp')
 				itemType: 'principals'
 			}
 		).then(function(result) {
-			// Todo - filter out current user, existing sharees
 			var users   = result.ocs.data.exact.users.concat(result.ocs.data.users);
 			var groups  = result.ocs.data.exact.groups.concat(result.ocs.data.groups);
 
 			var userShares = ctrl.addressBook.sharedWith.users;
 			var userSharesLength = userShares.length;
+
+			var groupsShares = ctrl.addressBook.sharedWith.groups;
+			var groupsSharesLength = groupsShares.length;
 			var i, j;
 
 			// Filter out current user
-			var usersLength = users.length;
-			for (i = 0 ; i < usersLength; i++) {
+			for (i = 0 ; i < users.length; i++) {
 				if (users[i].value.shareWith === OC.currentUser) {
 					users.splice(i, 1);
 					break;
@@ -121,11 +107,21 @@ angular.module('contactsApp')
 
 			// Now filter out all sharees that are already shared with
 			for (i = 0; i < userSharesLength; i++) {
-				var share = userShares[i];
-				usersLength = users.length;
-				for (j = 0; j < usersLength; j++) {
-					if (users[j].value.shareWith === share.id) {
+				var shareUser = userShares[i];
+				for (j = 0; j < users.length; j++) {
+					if (users[j].value.shareWith === shareUser.id) {
 						users.splice(j, 1);
+						break;
+					}
+				}
+			}
+
+			// Now filter out all groups that are already shared with
+			for (i = 0; i < groupsSharesLength; i++) {
+				var sharedGroup = groupsShares[i];
+				for (j = 0; j < groups.length; j++) {
+					if (groups[j].value.shareWith === sharedGroup.id) {
+						groups.splice(j, 1);
 						break;
 					}
 				}
@@ -192,6 +188,13 @@ angular.module('contactsApp')
 
 	ctrl.deleteAddressBook = function() {
 		AddressBookService.delete(ctrl.addressBook).then(function() {
+			$scope.$apply();
+		});
+	};
+
+	ctrl.toggleState = function() {
+		AddressBookService.toggleState(ctrl.addressBook).then(function(addressBook) {
+			ctrl.enabled = addressBook.enabled;
 			$scope.$apply();
 		});
 	};

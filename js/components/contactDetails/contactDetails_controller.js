@@ -3,7 +3,8 @@ angular.module('contactsApp')
 
 	var ctrl = this;
 
-	ctrl.loading = true;
+	ctrl.init = true;
+	ctrl.loading = false;
 	ctrl.show = false;
 
 	ctrl.clearContact = function() {
@@ -21,10 +22,12 @@ angular.module('contactsApp')
 		placeholderName : t('contacts', 'Name'),
 		placeholderOrg : t('contacts', 'Organization'),
 		placeholderTitle : t('contacts', 'Title'),
-		selectField : t('contacts', 'Add field ...'),
+		selectField : t('contacts', 'Add field …'),
 		download : t('contacts', 'Download'),
 		delete : t('contacts', 'Delete'),
-		save : t('contacts', 'Save changes')
+		save : t('contacts', 'Save changes'),
+		addressBook : t('contacts', 'Address book'),
+		loading : t('contacts', 'Loading contacts …')
 	};
 
 	ctrl.fieldDefinitions = vCardPropertiesService.fieldDefinitions;
@@ -35,12 +38,12 @@ angular.module('contactsApp')
 	AddressBookService.getAll().then(function(addressBooks) {
 		ctrl.addressBooks = addressBooks;
 
-		if (!_.isUndefined(ctrl.contact)) {
+		if (!angular.isUndefined(ctrl.contact)) {
 			ctrl.addressBook = _.find(ctrl.addressBooks, function(book) {
 				return book.displayName === ctrl.contact.addressBookId;
 			});
 		}
-		ctrl.loading = false;
+		ctrl.init = false;
 		// Start watching for ctrl.uid when we have addressBooks, as they are needed for fetching
 		// full details.
 		$scope.$watch('ctrl.uid', function(newValue) {
@@ -55,6 +58,7 @@ angular.module('contactsApp')
 			$('#app-navigation-toggle').removeClass('showdetails');
 			return;
 		}
+		ctrl.loading = true;
 		ContactService.getById(ctrl.addressBooks, uid).then(function(contact) {
 			if (angular.isUndefined(contact)) {
 				ctrl.clearContact();
@@ -62,6 +66,7 @@ angular.module('contactsApp')
 			}
 			ctrl.contact = contact;
 			ctrl.show = true;
+			ctrl.loading = false;
 			$('#app-navigation-toggle').addClass('showdetails');
 
 			ctrl.addressBook = _.find(ctrl.addressBooks, function(book) {
@@ -70,12 +75,8 @@ angular.module('contactsApp')
 		});
 	};
 
-	ctrl.updateContact = function() {
-		ContactService.update(ctrl.contact);
-	};
-
 	ctrl.deleteContact = function() {
-		ContactService.delete(ctrl.contact);
+		ContactService.delete(ctrl.addressBook, ctrl.contact);
 	};
 
 	ctrl.addField = function(field) {
@@ -90,7 +91,7 @@ angular.module('contactsApp')
 		ctrl.focus = undefined;
 	};
 
-	ctrl.changeAddressBook = function (addressBook) {
-		ContactService.moveContact(ctrl.contact, addressBook);
+	ctrl.changeAddressBook = function (addressBook, oldAddressBook) {
+		ContactService.moveContact(ctrl.contact, addressBook, oldAddressBook);
 	};
 });

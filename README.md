@@ -3,6 +3,7 @@
 ![Downloads](https://img.shields.io/github/downloads/nextcloud/contacts/total.svg)
 [![irc](https://img.shields.io/badge/IRC-%23nextcloud--contacts%20on%20freenode-blue.svg)](https://webchat.freenode.net/?channels=nextcloud-contacts)
 [![Build Status](https://travis-ci.org/nextcloud/contacts.svg?branch=master)](https://travis-ci.org/nextcloud/contacts)
+[![Code coverage](https://img.shields.io/codecov/c/github/nextcloud/contacts.svg?maxAge=2592000)](https://codecov.io/gh/nextcloud/contacts/)
 
 **A contacts app for [Nextcloud](https://nextcloud.com). Easily sync contacts from various devices with your Nextcloud and edit them online.**
 
@@ -28,8 +29,7 @@ If you need assistance or want to ask a question about Contacts, you are welcome
 
 - [Hendrik Leppelsack](https://github.com/Henni)
 - [Jan-Christoph Borchardt](https://github.com/jancborchardt)
-- [Alexander Weidinger](https://github.com/irgendwie)
-- [Tom Needham](https://github.com/tomneedham)
+- [John Molakvoæ](https://github.com/skjnldsv)
 
 If you'd like to join, just go through the [issue list](https://github.com/nextcloud/contacts/issues) and fix some. :)
 

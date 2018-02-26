@@ -6,19 +6,13 @@ angular.module('contactsApp')
 		errorMessage : t('contacts', 'This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent.'),
 	};
 
-	ctrl.openContact = function() {
-		$route.updateParams({
-			gid: $routeParams.gid,
-			uid: ctrl.contact.uid()});
-	};
-
 	ctrl.getName = function() {
 		// If lastName equals to firstName then none of them is set
 		if (ctrl.contact.lastName() === ctrl.contact.firstName()) {
 			return ctrl.contact.displayName();
 		}
 
-		if (SortByService.getSortBy() === 'sortLastName') {
+		if (SortByService.getSortByKey() === 'sortLastName') {
 			return (
 				ctrl.contact.lastName() + ', '
 				+ ctrl.contact.firstName() + ' '
@@ -26,7 +20,7 @@ angular.module('contactsApp')
 			).trim();
 		}
 
-		if (SortByService.getSortBy() === 'sortFirstName') {
+		if (SortByService.getSortByKey() === 'sortFirstName') {
 			return (
 				ctrl.contact.firstName() + ' '
 				+ ctrl.contact.additionalNames() + ' '

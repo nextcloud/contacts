@@ -2,8 +2,9 @@ sudo: false
 dist: trusty
 language: php
 php:
-    - 5.6
-    - 7
+    - 7.0
+    - 7.1
+#    - 7.2
 env:
     global:
         - CORE_BRANCH=master
@@ -18,19 +19,23 @@ branches:
     - /^v\d++(\.\d+)?+(\.\d+)?+(\.\d+)?$/
 
 matrix:
-    allow_failures:
-        - env: DB=pgsql CORE_BRANCH=master
     include:
-        - php: 5.6
-          env:  DB=pgsql CORE_BRANCH=master
-        - php: 7
-          env:  DB=pgsql CORE_BRANCH=stable11
+        - php: 7.0
+          env:  DB=pgsql CORE_BRANCH=stable12
+        - php: 7.1
+          env:  DB=pgsql CORE_BRANCH=stable12
+        - php: 7.0
+          env:  DB=pgsql CORE_BRANCH=stable13
+        - php: 7.1
+          env:  DB=pgsql CORE_BRANCH=stable13
+#        - php: 7.2
+#          env:  DB=pgsql CORE_BRANCH=stable13
     fast_finish: true
 
 before_install:
     - export DISPLAY=:99.0
     - sh -e /etc/init.d/xvfb start
-    - nvm install 5.6
+    - nvm install 7.6
     - npm install -g npm@latest
     - make
     - make appstore
@@ -79,7 +84,7 @@ deploy:
     on:
         repo: nextcloud/contacts
         tags: true
-        php: 7
+        php: 7.0
 
 addons:
     firefox: "latest"

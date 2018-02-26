@@ -21,8 +21,10 @@ export let listAddressBooks = co.wrap(function *(account, options) {
       { name: 'getctag', namespace: ns.CALENDAR_SERVER },
       { name: 'resourcetype', namespace: ns.DAV },
       { name: 'sync-token', namespace: ns.DAV },
+      { name: 'read-only', namespace: ns.OC },
       //{ name: 'groups', namespace: ns.OC },
-      { name: 'invite', namespace: ns.OC }
+      { name: 'invite', namespace: ns.OC },
+      { name: 'enabled', namespace: ns.OC }
     ],
     depth: 1
   });
