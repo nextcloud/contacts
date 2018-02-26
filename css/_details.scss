@@ -235,7 +235,7 @@ $grid-input-height-with-margin: #{$grid-height-unit - $grid-input-margin * 2};
 	@for $i from 1 through 10 {
 		&.grid-span-#{$i} {
 			/* default unit + title + bottom padding */
-			grid-row-start: span calc(2 + #{$i} * #{$default-unit});
+			grid-row-start: span #{2 + $i * $default-unit};
 		}
 	}
 }
