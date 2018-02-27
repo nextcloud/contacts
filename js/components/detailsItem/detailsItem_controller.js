@@ -69,9 +69,15 @@ angular.module('contactsApp')
 	}
 
 	if (ctrl.meta.template === 'url') {
-		if (!ctrl.data.value.startsWith('http://') && !ctrl.data.value.startsWith('https://')) {
-			ctrl.data.value = 'http://' + ctrl.data.value;
+		var searchFtpHttps = new RegExp('^(ht|f)tps?:\/\/');
+		if (searchFtpHttps.test(ctrl.data.value)) {
+			return ctrl.data.value;
 		}
+		var searchFtpHttpsNoSlashes = new RegExp('^((ht|f)tps?:)');
+		if (searchFtpHttpsNoSlashes.test(ctrl.data.value)) {
+			return ctrl.data.value.replace(searchFtpHttpsNoSlashes, '$1//');
+		}
+		return 'https://' + ctrl.data.value;
 	}
 
 	ctrl.availableGroups = [];

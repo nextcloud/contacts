@@ -23,24 +23,43 @@ describe('Unit testing url model', function() {
 	}));
 
 	it('Add http protocol', function() {
-		form.url.$setViewValue('3');
-		expect($scope.model.url).to.equal('http://3');
+		form.url.$setViewValue('parsers.nextcloud.com');
+		expect($scope.model.url).to.equal('https://parsers.nextcloud.com');
 
-		$scope.model.url = '3';
-		expect(form.url.$modelValue).to.equal('http://3');
+		$scope.model.url = 'formatters.nextcloud.com';
+		expect(form.url.$modelValue).to.equal('https://formatters.nextcloud.com');
 	});
 	it('Don\'t add http protocol', function() {
-		form.url.$setViewValue('http://owncloud.org');
-		expect($scope.model.url).to.equal('http://owncloud.org');
-		form.url.$setViewValue('https://owncloud.org');
-		expect($scope.model.url).to.equal('https://owncloud.org');
+		form.url.$setViewValue('http://parsers.nextcloud.com');
+		expect($scope.model.url).to.equal('http://parsers.nextcloud.com');
+		form.url.$setViewValue('https://parsers.nextcloud.com');
+		expect($scope.model.url).to.equal('https://parsers.nextcloud.com');
+
+		$scope.model.url = 'http://formatters.nextcloud.com';
+		expect(form.url.$modelValue).to.equal('http://formatters.nextcloud.com');
+		$scope.model.url = 'https://formatters.nextcloud.com';
+		expect(form.url.$modelValue).to.equal('https://formatters.nextcloud.com');
 	});
 	it('should recognize different protocols, apart from http(s)', function() {
-		form.url.$setViewValue('ftp://nextcloud.com');
-		expect($scope.model.url).to.equal('ftp://nextcloud.com');
+		form.url.$setViewValue('ftp://parsers.nextcloud.com');
+		expect($scope.model.url).to.equal('ftp://parsers.nextcloud.com');
+
+		$scope.model.url = 'ftp://formatters.nextcloud.com';
+		expect(form.url.$modelValue).to.equal('ftp://formatters.nextcloud.com');
 	});
 	it('should recognize protocols without using double slashes', function() {
-		form.url.$setViewValue('ftp:nextcloud.com');
-		expect($scope.model.url).to.equal('ftp:nextcloud.com');
+		form.url.$setViewValue('ftp:parsers.nextcloud.com');
+		expect($scope.model.url).to.equal('ftp://parsers.nextcloud.com');
+		form.url.$setViewValue('http:parsers.nextcloud.com');
+		expect($scope.model.url).to.equal('http://parsers.nextcloud.com');
+		form.url.$setViewValue('https:parsers.nextcloud.com');
+		expect($scope.model.url).to.equal('https://parsers.nextcloud.com');
+
+		$scope.model.url = 'ftp:formatters.nextcloud.com';
+		expect(form.url.$modelValue).to.equal('ftp://formatters.nextcloud.com');
+		$scope.model.url = 'ftp:formatters.nextcloud.com';
+		expect(form.url.$modelValue).to.equal('http://formatters.nextcloud.com');
+		$scope.model.url = 'ftp:formatters.nextcloud.com';
+		expect(form.url.$modelValue).to.equal('https://formatters.nextcloud.com');
 	});
 });
