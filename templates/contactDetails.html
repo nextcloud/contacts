@@ -34,11 +34,22 @@
 				</div>
 			</div>
 			<div id="details-actions">
-				<button id="contact-failed-save" ng-click="ctrl.updateContact()" class="icon-checkmark-white" ng-if="ctrl.contact.failedProps.length>0" title="{{ctrl.t.save}}"></button>
-				<a href="{{ctrl.contact.data.url}}" id="contact-export-link"
-				   class="icon-download-white" title="{{ctrl.t.download}}"
-				   download="{{ ctrl.contact.readableFilename() }}"></a>
-				<button ng-click="ctrl.deleteContact()" ng-if="!ctrl.addressBook.readOnly" class="icon-delete-white" title="{{ctrl.t.delete}}"></button>
+				<div>
+					<span class="icon-more"></span>
+					<div class="popovermenu">
+						<ul>
+							<li>
+								<button id="contact-failed-save" ng-click="ctrl.updateContact()" class="icon-checkmark-white" ng-if="ctrl.contact.failedProps.length>0" title="{{ctrl.t.save}}"></button>
+								<a href="{{ctrl.contact.data.url}}" id="contact-export-link"
+								class="icon-download-white" title="{{ctrl.t.download}}"
+								download="{{ ctrl.contact.readableFilename() }}"></a>
+							</li>
+							<li>
+								<button ng-click="ctrl.deleteContact()" ng-if="!ctrl.addressBook.readOnly" class="icon-delete-white" title="{{ctrl.t.delete}}"></button>
+							</li>
+						</ul>
+					</div>
+				</div>
 			</div>
 		</header>
 		<section>
