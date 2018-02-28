@@ -72,7 +72,7 @@ OC.L10N.register(
     "Birthday" : "Narozeniny",
     "Anniversary" : "Výročí",
     "Date of death" : "Datum úmrtí",
-    "Email" : "Email",
+    "Email" : "E-mail",
     "Instant messaging" : "Komunikátor",
     "Phone" : "Telefon",
     "Mobile" : "Mobil",
