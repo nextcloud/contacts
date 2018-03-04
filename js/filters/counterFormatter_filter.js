@@ -3,8 +3,8 @@ angular.module('contactsApp')
 .filter('counterFormatter', function () {
 	'use strict';
 	return function (count) {
-		if (count > 999) {
-			return '999+';
+		if (count > 9999) {
+			return '9999+';
 		}
 		if (count === 0) {
 			return '';

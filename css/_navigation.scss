@@ -6,6 +6,10 @@
 	height: calc(100% - 68px);
 }
 
+#app-navigation .app-navigation-entry-utils .app-navigation-entry-utils-counter {
+	padding: 0 12px 0 0;
+}
+
 /* Contacts List */
 #new-contact-button {
 	margin: 14px auto; /* to have the same height than a contact */
