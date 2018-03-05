@@ -180,7 +180,7 @@ export let listVCards = co.wrap(function *(addressBook, options) {
   debug(`Doing REPORT on address book ${addressBook.url} which belongs to
         ${addressBook.account.credentials.username}`);
 
-	var vCardListFields = [ 'EMAIL', 'UID', 'CATEGORIES', 'FN', 'TEL', 'NICKNAME' ]
+	var vCardListFields = [ 'EMAIL', 'UID', 'CATEGORIES', 'FN', 'TEL', 'NICKNAME', 'N' ]
 			.map(function (value) {
 				return {
 					name: 'prop',
