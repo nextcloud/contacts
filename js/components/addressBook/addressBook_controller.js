@@ -130,7 +130,7 @@ angular.module('contactsApp')
 			// Combine users and groups
 			users = users.map(function(item) {
 				return {
-					display: item.value.shareWith,
+					display: _.escape(item.value.shareWith),
 					type: OC.Share.SHARE_TYPE_USER,
 					identifier: item.value.shareWith
 				};
@@ -138,7 +138,7 @@ angular.module('contactsApp')
 
 			groups = groups.map(function(item) {
 				return {
-					display: item.value.shareWith + ' (group)',
+					display: _.escape(item.value.shareWith) + ' (group)',
 					type: OC.Share.SHARE_TYPE_GROUP,
 					identifier: item.value.shareWith
 				};
