@@ -1,7 +1,8 @@
 describe('Unit testing url model', function() {
 	var $compile,
 		$rootScope,
-		form;
+		form,
+		$scope;
 
 	// Load the myApp module, which contains the directive
 	beforeEach(module('contactsApp'));
@@ -10,9 +11,9 @@ describe('Unit testing url model', function() {
 	// so they are available to all tests in this describe block
 	beforeEach(inject(function(_$compile_, _$rootScope_){
 		// The injector unwraps the underscores (_) from around the parameter names when matching
-		var $compile = _$compile_;
-		var $rootScope = _$rootScope_;
-		var $scope = $rootScope.$new();
+		$compile = _$compile_;
+		$rootScope = _$rootScope_;
+		$scope = $rootScope.$new();
 		var element = angular.element(
 			'<form name="form"><input url-model ng-model="model.url" name="url" /></form>'
 		);
