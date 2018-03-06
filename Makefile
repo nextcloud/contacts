@@ -164,13 +164,13 @@ endif
 ifneq (,$(wildcard $(CURDIR)/package.json))
 	$(npm) run test
 endif
-# hotfix to prevent travis from using phpunix 6.x
-	@echo "No phpunit command available, downloading a copy from the web"
-	mkdir -p $(build_tools_directory)
-	curl -sSL https://phar.phpunit.de/phpunit-5.7.9.phar -o $(build_tools_directory)/phpunit.phar
-	php $(build_tools_directory)/phpunit.phar -c phpunit.xml --coverage-clover build/php-unit.clover
-	php $(build_tools_directory)/phpunit.phar -c phpunit.integration.xml --coverage-clover build/php-integration.clover
-
+ifneq (,$(wildcard $(CURDIR)/../../lib/composer/bin/phpunit))
+	$(CURDIR)/../../lib/composer/bin/phpunit -c phpunit.xml --coverage-clover build/php-unit.clover
+	$(CURDIR)/../../lib/composer/bin/phpunit -c phpunit.integration.xml --coverage-clover build/php-unit.clover
+else
+	phpunit -c phpunit.xml --coverage-clover build/php-unit.clover
+	phpunit -c phpunit.integration.xml --coverage-clover build/php-unit.clover
+endif
 # watch out for changes and rebuild
 .PHONY: watch
 watch:
