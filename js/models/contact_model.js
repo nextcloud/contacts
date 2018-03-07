@@ -1,5 +1,5 @@
 angular.module('contactsApp')
-.factory('Contact', function($filter, MimeService) {
+.factory('Contact', function($filter, MimeService, uuid4) {
 	return function Contact(addressBook, vCard) {
 		angular.extend(this, {
 
@@ -28,7 +28,9 @@ angular.module('contactsApp')
 					return model.setProperty('uid', { value: value });
 				} else {
 					// getter
-					return model.getProperty('uid').value;
+					var uid = model.getProperty('uid').value;
+					/* global md5 */
+					return uuid4.validate(uid) ? uid : md5(uid);
 				}
 			},
 
