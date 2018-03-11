@@ -1799,7 +1799,7 @@ var listVCards = _co2['default'].wrap(regeneratorRuntime.mark(function callee$0$
       case 0:
         debug('Doing REPORT on address book ' + addressBook.url + ' which belongs to\n        ' + addressBook.account.credentials.username);
 
-        vCardListFields = ['EMAIL', 'UID', 'CATEGORIES', 'FN', 'TEL', 'NICKNAME'].map(function (value) {
+        vCardListFields = ['EMAIL', 'UID', 'CATEGORIES', 'FN', 'TEL', 'NICKNAME', 'N'].map(function (value) {
           return {
             name: 'prop',
             namespace: ns.CARDDAV,
