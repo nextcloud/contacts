@@ -94,4 +94,8 @@ angular.module('contactsApp')
 	ctrl.changeAddressBook = function (addressBook, oldAddressBook) {
 		ContactService.moveContact(ctrl.contact, addressBook, oldAddressBook);
 	};
+
+	ctrl.updateContact = function() {
+		ContactService.queueUpdate(ctrl.contact);
+	};
 });
