@@ -168,9 +168,38 @@ angular.module('contactsApp')
 
 			]
 		},
+		related: {
+			multiple: true,
+			readableName: t('contacts', 'Related'),
+			template: 'text',
+			info: t('contacts', 'Specify a relationship between another entity and the entity represented by this vCard.'),
+			defaultValue: {
+				value:[''],
+				meta:{type:['CONTACT']}
+			},
+			options: [
+				{id: 'CONTACT', name: t('contacts', 'Contact')},
+				{id: 'AGENT', name: t('contacts', 'Agent')},
+				{id: 'EMERGENCY', name: t('contacts', 'Emergency')},
+				{id: 'FRIEND', name: t('contacts', 'Friend')},
+				{id: 'COLLEAGUE', name: t('contacts', 'Colleague')},
+				{id: 'COWORKER', name: t('contacts', 'Co-worker')},
+				{id: 'MANAGER', name: t('contacts', 'Manager')},
+				{id: 'ASSISTANT', name: t('contacts', 'Assistant')},
+				{id: 'SPOUSE', name: t('contacts', 'Spouse')},
+				{id: 'CHILD', name: t('contacts', 'Child')},
+				{id: 'MOTHER', name: t('contacts', 'Mother')},
+				{id: 'FATHER', name: t('contacts', 'Father')},
+				{id: 'PARENT', name: t('contacts', 'Parent')},
+				{id: 'BROTHER', name: t('contacts', 'Brother')},
+				{id: 'SISTER', name: t('contacts', 'Sister')},
+				{id: 'RELATIVE', name: t('contacts', 'Relative')}
+			]
+		},
 		relationship: {
 			readableName: t('contacts', 'Relationship'),
 			template: 'select',
+			info: t('contacts', 'Specify a relationship between you and the entity represented by this vCard.'),
 			options: [
 				{id: 'SPOUSE', name: t('contacts', 'Spouse')},
 				{id: 'CHILD', name: t('contacts', 'Child')},
@@ -211,6 +240,7 @@ angular.module('contactsApp')
 		'url',
 		'X-SOCIALPROFILE',
 		'relationship',
+		'related',
 		'note',
 		'categories',
 		'role',
