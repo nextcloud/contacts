@@ -12,6 +12,17 @@ angular.module('contactsApp')
 		return ctrl.meta.icon || 'icon-contacts-dark';
 	};
 
+	this.getInfoClass = function() {
+		if (ctrl.meta.hasOwnProperty('info')) {
+			return 'icon-info';
+
+		}
+	};
+
+	this.getInfoText = function() {
+		return ctrl.meta.info;
+	};
+
 	this.getReadableName = function() {
 		return ctrl.meta.readableName;
 	};
