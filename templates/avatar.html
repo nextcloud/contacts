@@ -2,8 +2,11 @@
 <img ng-show="contact.photo()!==undefined" class="contactdetails__logo avatar" id="contact-avatar" data-ng-src="{{contact.photo()}}" ng-click="ctrl.openPhoto()" />
 <div class="avatar-options">
 	<input type="file" id="avatar-upload" class="hidden" accept="image/*" />
-	<label for="avatar-upload" class="icon-upload-white"></label>
-	<div class="icon-delete-white" ng-show="contact.photo()!==undefined" ng-click="ctrl.removePhoto()"></div>
-	<div class="icon-fullscreen-white" ng-show="contact.photo()!==undefined" ng-click="ctrl.openPhoto()"></div>
-	<div class="icon-download-white" ng-show="contact.photo()!==undefined" ng-click="ctrl.downloadPhoto()"></div>
+	<label for="avatar-upload" class="icon-upload-white" tooltip-placement="top" uib-tooltip="Upload new" tooltip-append-to-body="true"></label>
+	<div class="icon-delete-white" ng-show="contact.photo()!==undefined" ng-click="ctrl.removePhoto()"
+		tooltip-placement="top" uib-tooltip="Delete" tooltip-append-to-body="true"></div>
+	<div class="icon-fullscreen-white" ng-show="contact.photo()!==undefined" ng-click="ctrl.openPhoto()"
+		tooltip-placement="top" uib-tooltip="Close" tooltip-append-to-body="true"></div>
+	<div class="icon-download-white" ng-show="contact.photo()!==undefined" ng-click="ctrl.downloadPhoto()"
+		tooltip-placement="top" uib-tooltip="Download" tooltip-append-to-body="true"></div>
 </div>
