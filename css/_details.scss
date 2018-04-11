@@ -288,6 +288,10 @@ propertygroup {
 			margin-right: 8px;
 			opacity: .5;
 		}
+		#info{
+			cursor:pointer;
+			margin-left: 8px;
+		}
 	}
 	/* GRID SETTINGS */
 	@include generate-grid-span(1);
