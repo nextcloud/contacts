@@ -43,6 +43,13 @@ angular.module('contactsApp')
 		$('avatar').toggleClass('maximized');
 	};
 
+	ctrl.t = {
+		uploadNewPhoto : t('contacts', 'Upload new image'),
+		deletePhoto : t('contacts', 'Delete'),
+		closePhoto : t('contacts', 'Close'),
+		downloadPhoto : t('contacts', 'Download')
+	};
+
 	// Quit avatar preview
 	$('avatar').click(function() {
 		$('avatar').removeClass('maximized');
