@@ -25,7 +25,7 @@ OC.L10N.register(
     "No contacts in here" : "Nie sú tu žiadne kontakty",
     "Name" : "Názov",
     "Organization" : "Organizácia",
-    "Title" : "Názov",
+    "Title" : "Pracovná funkcia",
     "Add field …" : "Pridať pole ...",
     "Save changes" : "Uložiť zmeny",
     "Address book" : "Adresár",
