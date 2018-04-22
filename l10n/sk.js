@@ -102,6 +102,7 @@ OC.L10N.register(
     "Colleague" : "Kolega",
     "Manager" : "Manažér",
     "Assistant" : "Asistent",
+    "Co-worker" : "Spolupracovník",
     "Gender" : "Pohlavie",
     "Female" : "Žena",
     "Male" : "Muž",
