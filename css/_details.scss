@@ -71,6 +71,8 @@
 .contactdetails__header #details-actions {
 	display: flex;
 	flex-shrink: 0;
+	padding: 14px;
+	width: 44px;
 }
 
 .contactdetails__header #contact-failed-save {
@@ -105,22 +107,6 @@
 .contactdetails__header .contactdetails__title:placeholder-shown { /* Standard (https://drafts.csswg.org/selectors-4/#placeholder) */
 	color: #fff; /* No vars used on purpose since we use custom BGs */
 	opacity: .8;
-}
-
-.contactdetails__header #details-actions a,
-.contactdetails__header #details-actions button {
-	padding: 15px;
-	background-color: transparent;
-	border: none;
-	opacity: .5;
-	margin: 3px;
-}
-
-.contactdetails__header #details-actions a:hover,
-.contactdetails__header #details-actions button:hover,
-.contactdetails__header #details-actions a:focus,
-.contactdetails__header #details-actions button:focus {
-	opacity: .7;
 }
 
 avatar {
