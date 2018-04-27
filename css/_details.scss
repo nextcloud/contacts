@@ -75,6 +75,10 @@
 	width: 44px;
 }
 
+.contactdetails__header #details-actions span.icon-more-white {
+	cursor: pointer;
+}
+
 .contactdetails__header #contact-failed-save {
 	animation: pulse 1.5s infinite;
 	border-radius: 50%;
