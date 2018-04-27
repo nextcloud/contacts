@@ -42,21 +42,17 @@
 					outside-if-not="openMenuButton,popovermenu">
 					<ul>
 						<li ng-if="ctrl.contact.failedProps.length>0">
-							<a id="contact-failed-save" ng-click="ctrl.updateContact()" uib-tooltip="Contact failed to save please update">
-								<span class="icon-checkmark"></span>
+							<a id="contact-failed-save" ng-click="ctrl.updateContact()" uib-tooltip="Contact failed to save please update" class="icon-checkmark">
 								<span>Update</span>
 							</a>
 						</li>
 						<li>
-							<a href="{{ctrl.contact.data.url}}" id="contact-export-link"
-								download="{{ ctrl.contact.readableFilename() }}">
-								<span class="icon-download"></span>
+							<a href="{{ctrl.contact.data.url}}" id="contact-export-link" download="{{ ctrl.contact.readableFilename() }}" class="icon-download">
 								<span>Download</span>
 							</a>
 						</li>
 						<li ng-if="!ctrl.addressBook.readOnly">
-							<a ng-click="ctrl.deleteContact()">
-								<span class="icon-delete"></span>
+							<a ng-click="ctrl.deleteContact()" class="icon-delete">
 								<span>Delete</span>
 							</a>
 						</li>
