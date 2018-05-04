@@ -68,15 +68,11 @@
 	width: 100%;
 }
 
-.contactdetails__header #details-actions {
-	display: flex;
-	flex-shrink: 0;
+.contactdetails__header #details-actions div.icon-more-white {
+	cursor: pointer;
 	padding: 14px;
 	width: 44px;
-}
-
-.contactdetails__header #details-actions span.icon-more-white {
-	cursor: pointer;
+	height: 44px;
 }
 
 .contactdetails__header #contact-failed-save {
