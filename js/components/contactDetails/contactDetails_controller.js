@@ -98,4 +98,21 @@ angular.module('contactsApp')
 	ctrl.updateContact = function() {
 		ContactService.queueUpdate(ctrl.contact);
 	};
+
+	ctrl.closeMenus = function() {
+		ctrl.openedMenu = false;
+	};
+
+	ctrl.openMenu = function(index) {
+		ctrl.closeMenus();
+		ctrl.openedMenu = index;
+	};
+
+	ctrl.toggleMenu = function(index) {
+		if (ctrl.openedMenu === index) {
+			ctrl.closeMenus();
+		} else {
+			ctrl.openMenu(index);
+		}
+	};
 });

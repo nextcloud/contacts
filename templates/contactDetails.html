@@ -34,11 +34,30 @@
 				</div>
 			</div>
 			<div id="details-actions">
-				<button id="contact-failed-save" ng-click="ctrl.updateContact()" class="icon-checkmark-white" ng-if="ctrl.contact.failedProps.length>0" title="{{ctrl.t.save}}"></button>
-				<a href="{{ctrl.contact.data.url}}" id="contact-export-link"
-				   class="icon-download-white" title="{{ctrl.t.download}}"
-				   download="{{ ctrl.contact.readableFilename() }}"></a>
-				<button ng-click="ctrl.deleteContact()" ng-if="!ctrl.addressBook.readOnly" class="icon-delete-white" title="{{ctrl.t.delete}}"></button>
+				<div class="icon-more-white openMenuButton" ng-click="ctrl.toggleMenu('options')">
+				</div>
+				<div class="popovermenu bubble menu"
+					ng-class="{open: ctrl.openedMenu === 'options'}"
+					click-outside="ctrl.closeMenus()"
+					outside-if-not="openMenuButton,popovermenu">
+					<ul>
+						<li ng-if="ctrl.contact.failedProps.length>0">
+							<a id="contact-failed-save" ng-click="ctrl.updateContact()" uib-tooltip="Contact failed to save please update" class="icon-checkmark">
+								<span>Update</span>
+							</a>
+						</li>
+						<li>
+							<a href="{{ctrl.contact.data.url}}" id="contact-export-link" download="{{ ctrl.contact.readableFilename() }}" class="icon-download">
+								<span>Download</span>
+							</a>
+						</li>
+						<li ng-if="!ctrl.addressBook.readOnly">
+							<a ng-click="ctrl.deleteContact()" class="icon-delete">
+								<span>Delete</span>
+							</a>
+						</li>
+					</ul>
+				</div>
 			</div>
 		</header>
 		<section>
