@@ -95,6 +95,6 @@ OC.L10N.register(
     "Female" : "Femení",
     "Male" : "Masculí",
     "Details" : "Detalls",
-    "Settings" : "configuració"
+    "Settings" : "Configuració"
 },
 "nplurals=2; plural=(n != 1);");
