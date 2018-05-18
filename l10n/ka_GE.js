@@ -108,4 +108,4 @@ OC.L10N.register(
     "Details" : "დეტალები",
     "Settings" : "პარამეტრები"
 },
-"nplurals=2; plural=(n==1);");
+"nplurals=2; plural=(n!=1);");
