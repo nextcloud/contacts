@@ -103,6 +103,7 @@ OC.L10N.register(
     "Colleague" : "Bendradarbiai",
     "Manager" : "Vadovas",
     "Assistant" : "Asistentas",
+    "Co-worker" : "Bendradarbis",
     "Gender" : "Lytis",
     "Female" : "Moteris",
     "Male" : "Vyras",
