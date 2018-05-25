@@ -114,6 +114,7 @@ OC.L10N.register(
     "Female" : "Weiblich",
     "Male" : "Männlich",
     "Details" : "Details",
+    "A contacts app for Nextcloud" : "Eine Adressbuch-App für Nextcloud",
     "Settings" : "Einstellungen"
 },
 "nplurals=2; plural=(n != 1);");
