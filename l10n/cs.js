@@ -9,7 +9,7 @@ OC.L10N.register(
     "Delete" : "Smazat",
     "Rename" : "Přejmenovat",
     "Share with users or groups" : "Sdílet suživateli nebo skupinami",
-    "can edit" : "Může upravovat",
+    "can edit" : "může upravovat",
     "Close" : "Zavřít",
     "Enabled" : "Zapnuto",
     "Disabled" : "Vypnuto",
