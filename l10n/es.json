@@ -112,6 +112,7 @@
     "Female" : "Mujer",
     "Male" : "Hombre",
     "Details" : "Detalles",
+    "A contacts app for Nextcloud" : "Una app de contactos para Nextcloud.",
     "Settings" : "Ajustes"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
