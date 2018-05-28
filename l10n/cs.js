@@ -99,7 +99,7 @@ OC.L10N.register(
     "Relative" : "Příbuzný",
     "Friend" : "Přítel",
     "Colleague" : "Kolega",
-    "Manager" : "Manažer",
+    "Manager" : "Nadřízený",
     "Assistant" : "Asistent",
     "Related" : "Související",
     "Contact" : "Kontakt",
