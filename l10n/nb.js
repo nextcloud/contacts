@@ -31,7 +31,7 @@ OC.L10N.register(
     "Address book" : "Adressebok",
     "Loading contacts …" : "Laster inn kontakter…",
     "Import into" : "Importer inn i",
-    "Importing..." : "Importerer…",
+    "Importing..." : "Importerer …",
     "Select your addressbook" : "Velg din adressebok",
     "Import is disabled because no writable address book had been found." : "Import er deaktivert siden det ikke finnes noe adressebøker som er skrivbare",
     "No search result for {query}" : "Intet søkeresultat for {query}",
