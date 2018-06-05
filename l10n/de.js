@@ -115,6 +115,7 @@ OC.L10N.register(
     "Male" : "Männlich",
     "Details" : "Details",
     "A contacts app for Nextcloud" : "Eine Adressbuch-App für Nextcloud",
+    "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Die Nextcloud-Kontaktapp ist eine Benutzeroberfläche für den CardDAV-Server von Nextcloud. Synchronisiere deine Kontakte von unterschiedlichen Geräten mit Nextcloud und bearbeite sie online.\n\n* 🚀 **Integration mit anderen Nextcloud-Anwendungen!** Aktuell Mail und Kalender - weitere sind in Planung.\n* 🎉 **Niemals einen Geburtstag vergessen!** Du kannst Geburtstage und andere wiederkehrende Ereignisse mit deinem Nextcloud Kalender synchronisieren.\n* 👥 **Teilen von Adressbüchern!** Du möchtest deine Kontakte mit Freunden oder Kollegen teilen? Kein Problem!\n* 🙈 **Wir erfinden das Rad nicht neu!** Basiert auf der großartigen und offenen SabreDAV-Bibliothek.",
     "Settings" : "Einstellungen"
 },
 "nplurals=2; plural=(n != 1);");
