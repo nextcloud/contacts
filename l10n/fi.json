@@ -106,6 +106,7 @@
     "Female" : "Nainen",
     "Male" : "Mies",
     "Details" : "Tiedot",
+    "A contacts app for Nextcloud" : "Yhteystietosovellus Nextcloudille",
     "Settings" : "Asetukset"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
