@@ -114,6 +114,7 @@ OC.L10N.register(
     "Female" : "Žena",
     "Male" : "Muž",
     "Details" : "Podrobnosti",
+    "A contacts app for Nextcloud" : "Apka kontaktov pre Nextcloud",
     "Settings" : "Nastavenia"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");
