@@ -32,7 +32,7 @@ OC.L10N.register(
     "Loading contacts …" : "連絡先を読み込み中...",
     "Import into" : "インポート",
     "Importing..." : "インポート中...",
-    "Select your addressbook" : "あなたのアドレス帳を選択してください",
+    "Select your addressbook" : "アドレス帳を選択してください",
     "Import is disabled because no writable address book had been found." : "書き込み可能なアドレス帳が見つからないため，インポートできません",
     "No search result for {query}" : "{query} に関する検索結果はありません。",
     "All contacts" : "すべての連絡先",
