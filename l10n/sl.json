@@ -57,7 +57,7 @@
     "You don't have permission to write to this addressbook." : "Nimate dovoljenja za zapisovanje v imenik",
     "Contact could not be created." : "Stika ni mogoče ustvariti.",
     "No contacts in file. Only vCard files are allowed." : "V datoteki ni stikov. Dovoljene so samo vCard datoteke.",
-    "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Podpiramo samo vCard verzije 4.0 (RFC6350) ali verzije 3.0 (RFC2426).",
+    "Only vCard version 4.0 (RFC6350) or version 3.0 (RFC2426) are supported." : "Podprti sta le različici vCard 4.0 (RFC6350) in vCard 3.0 (RFC2426).",
     "Contact could not be moved." : "Stika ni mogoče premakniti",
     "Contact could not be saved." : "Stikov ne morem shraniti.",
     "Waiting for the server to be ready…" : "Čakanje na strežnik ...",
