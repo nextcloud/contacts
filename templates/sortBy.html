@@ -1,4 +1,0 @@
-<label for="contact-import">{{ctrl.sortText}}:</label>
-<select ng-change="ctrl.updateSortBy()" ng-model="ctrl.defaultOrder" id="sort-by">
-  <option ng-repeat="(key, value) in ctrl.sortList" ng-model="ctrl.sortList[key]" ng-selected="ctrl.defaultOrder == key" value="{{key}}">{{value}}</option>
-</select>

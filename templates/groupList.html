@@ -1,3 +1,0 @@
-<li ng-repeat="contactFilter in ctrl.contactFilters" contact-filter="contactFilter"></li>
-
-<li ng-repeat="group in ctrl.groups | orderBy: '-count'" group="group" ng-click="ctrl.setSelected(group.name)" ng-class="{active: group.name === ctrl.getSelected()}"></li>

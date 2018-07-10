@@ -1,5 +1,4 @@
-<?php
-/**
+/*
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
@@ -21,10 +20,12 @@
  *
  */
 
-return [
-	'routes' => [
-		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-		['name' => 'page#indexGroup', 'url' => '/{group}', 'verb' => 'GET'],
-		['name' => 'page#indexContact', 'url' => '/{group}/{contact}', 'verb' => 'GET']
-	]
-];
+import { mount } from '@vue/test-utils'
+import Contacts from '@/views/Contacts.vue'
+
+describe('Contacts.vue', () => {
+	it('Test contacts view', () => {
+		const wrapper = mount(Contacts)
+		expect(wrapper.text()).toContain('Test')
+	})
+})

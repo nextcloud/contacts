@@ -1,8 +1,0 @@
-<label for="details-{{ctrl.name}}-{{ctrl.index}}">{{ctrl.meta.readableName}}</label>
-<input type="text" id="details-{{ctrl.name}}-{{ctrl.index}}" name="{{ctrl.name}}"
-	   ng-model="ctrl.data.value" datepicker ng-model-options="{ debounce: 500 }"
-	   ng-change="ctrl.dateInputChanged()" value=""
-	   focus-expression="$parent.ctrl.focus === ctrl.name"
-	   ng-disabled="ctrl.contact.readOnly"
-/>
-<button ng-click="ctrl.deleteField()" class="icon-delete" title="{{ctrl.t.delete}}" ng-if="!ctrl.contact.readOnly"></button>

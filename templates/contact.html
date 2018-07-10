@@ -1,5 +1,0 @@
-<img class="app-content-list-item-icon contact__icon" ng-show="ctrl.contact.photo()!==undefined" data-ng-src="{{ctrl.contact.photo()}}" />
-<div class="app-content-list-item-icon contact__icon" ng-show="ctrl.contact.photo()===undefined" ng-style="{'background-color': (ctrl.contact.uid() | contactColor) }">{{ ctrl.contact.displayName() | firstCharacter }}</div>
-<div class="app-content-list-item-failed icon-error" tooltip-placement="auto left" ng-if="ctrl.contact.failedProps.length>0" uib-tooltip="{{ ctrl.t.errorMessage }}"></div>
-<div class="app-content-list-item-line-one">{{ ctrl.getName() | newContact }}</div>
-<div class="app-content-list-item-line-two" ng-if="ctrl.contact.email()">{{ctrl.contact.email()}}</div>

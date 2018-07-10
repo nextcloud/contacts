@@ -1,5 +1,0 @@
---compilers babel:babel/register
---recursive
---reporter spec
---timeout 20s
---ui tdd

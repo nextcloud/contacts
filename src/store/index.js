@@ -1,5 +1,4 @@
-<?php
-/**
+/*
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
@@ -21,10 +20,23 @@
  *
  */
 
-return [
-	'routes' => [
-		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-		['name' => 'page#indexGroup', 'url' => '/{group}', 'verb' => 'GET'],
-		['name' => 'page#indexContact', 'url' => '/{group}/{contact}', 'verb' => 'GET']
-	]
-];
+import Vue from 'vue'
+import Vuex from 'vuex'
+import addressbooks from './addressbooks'
+import contacts from './contacts'
+
+Vue.use(Vuex)
+
+const debug = process.env.NODE_ENV !== 'production'
+
+const mutations = {}
+
+export default new Vuex.Store({
+	modules: {
+		addressbooks,
+		contacts
+	},
+	strict: debug,
+
+	mutations
+})

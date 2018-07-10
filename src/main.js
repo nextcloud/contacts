@@ -1,5 +1,4 @@
-<?php
-/**
+/*
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
@@ -21,10 +20,23 @@
  *
  */
 
-return [
-	'routes' => [
-		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-		['name' => 'page#indexGroup', 'url' => '/{group}', 'verb' => 'GET'],
-		['name' => 'page#indexContact', 'url' => '/{group}/{contact}', 'verb' => 'GET']
-	]
-];
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+import store from './store'
+import { sync } from 'vuex-router-sync'
+
+sync(store, router)
+
+Vue.prototype.t = t
+Vue.prototype.n = n
+Vue.prototype.OC = OC
+Vue.prototype.OCA = OCA
+
+/* eslint-disable-next-line no-new */
+new Vue({
+	el: '#content',
+	router,
+	store,
+	render: h => h(App)
+})
