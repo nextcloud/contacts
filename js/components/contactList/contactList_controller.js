@@ -263,8 +263,8 @@ angular.module('contactsApp')
 	ctrl.selectNearestContact = function(contactId) {
 		if (ctrl.filteredContacts.length === 1) {
 			$route.updateParams({
-				gid: $routeParams.gid,
-				uid: undefined
+				gid: t('contacts', 'All contacts'),
+				uid: ctrl.filteredContacts.length !== 0 ? ctrl.filteredContacts[0].uid() : undefined
 			});
 		} else {
 			for (var i = 0, length = ctrl.filteredContacts.length; i < length; i++) {
