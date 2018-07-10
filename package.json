@@ -1,6 +1,6 @@
 {
   "name": "contacts",
-  "version": "2.1.5",
+  "version": "2.2.0",
   "description": "Place this app in **nextcloud/apps/**",
   "author": {
     "name": "Hendrik Leppelsack",
@@ -34,7 +34,7 @@
     "gulp-ng-annotate": "^2.0.0",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-stylelint": "^5.0.0",
-    "karma": "^2.0.2",
+    "karma": "^2.0.4",
     "karma-chai": "^0.1.0",
     "karma-coverage": "^1.1.1",
     "karma-firefox-launcher": "^1.0.0",
@@ -43,9 +43,9 @@
     "karma-sinon": "^1.0.5",
     "merge-stream": "^1.0.1",
     "mocha": "^5.2.0",
-    "node-sass": "^4.9.0",
+    "node-sass": "^4.9.2",
     "sinon": "^1.17.5",
-    "stylelint": "^9.1.1",
+    "stylelint": "^9.3.0",
     "stylelint-config-recommended-scss": "^3.1.0",
     "stylelint-scss": "^2.4.0",
     "underscore": "^1.8.3"
