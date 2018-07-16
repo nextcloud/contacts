@@ -46,6 +46,18 @@
 
 <script>
 export default {
-	props: ['item']
+	props: {
+		item: {
+			type: Object,
+			default: () => {
+				return {
+					href: 'https://nextcloud.com',
+					icon: 'icon-links',
+					text: 'Nextcloud'
+				}
+			},
+			required: true
+		}
+	}
 }
 </script>

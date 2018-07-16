@@ -50,6 +50,27 @@ export default {
 	components: {
 		navigationItem
 	},
-	props: ['menu']
+	props: {
+		menu: {
+			type: Object,
+			required: true,
+			default: () => {
+				return {
+					new: {
+						id: 'new-item',
+						action: () => alert('Success!'),
+						icon: 'icon-add',
+						text: 'New item'
+					},
+					menu: {
+						id: 'navigation',
+						items: [
+
+						]
+					}
+				}
+			}
+		}
+	}
 }
 </script>

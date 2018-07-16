@@ -107,7 +107,12 @@ export default {
 	directives: {
 		ClickOutside
 	},
-	props: ['item'],
+	props: {
+		item: {
+			type: Object,
+			required: true
+		}
+	},
 	data() {
 		return {
 			openedMenu: false

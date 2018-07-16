@@ -34,6 +34,18 @@ export default {
 	components: {
 		popoverItem
 	},
-	props: ['menu']
+	props: {
+		menu: {
+			type: Array,
+			default: () => {
+				return [{
+					href: 'https://nextcloud.com',
+					icon: 'icon-links',
+					text: 'Nextcloud'
+				}]
+			},
+			required: true
+		}
+	}
 }
 </script>

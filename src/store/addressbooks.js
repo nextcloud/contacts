@@ -19,10 +19,73 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+// import uuid from 'uuid'
+import ical from 'ical.js'
+/* eslint-disable-next-line import/no-webpack-loader-syntax */
+import vcfFile from '!raw-loader!./FakeName.vcf'
 
-const state = {}
-const mutations = {}
-const getters = {}
-const actions = {}
+const state = {
+	addressbooks: []
+}
+const mutations = {
+	/**
+	 * Store addressbooks into state
+	 * @param {Object} state Default state
+	 * @param {Array} addressbooks Addressbooks
+	 */
+	appendAddressbooks(state, addressbooks) {
+		state.addressbooks = addressbooks
+	},
+	appendContactsToAddressbook(state, { addressbook, contacts }) {
+		addressbook = state.addressbooks.filter(adb => adb === addressbook)
+		addressbook.contacts = contacts
+	}
+}
+const getters = {
+	getAddressbooks(state) {
+		return state.addressbooks
+	}
+}
+const actions = {
+	/**
+	 * Retrieve and commit addressbooks
+	 * @param {Object} context Current context
+	 */
+	getAddressbooks(context) {
+		// Fake data before using real dav requests
+		let addressbooks = [
+			{
+				id: 'ab1',
+				displayName: 'Addressbook 1',
+				enabled: true,
+				owner: 'admin'
+			},
+			{
+				id: 'ab2',
+				displayName: 'Addressbook 2',
+				enabled: false,
+				owner: 'admin'
+			},
+			{
+				id: 'ab3',
+				displayName: 'Addressbook 3',
+				enabled: true,
+				owner: 'User1'
+			}
+		]
+		// fake request
+		return new Promise((resolve, reject) => {
+			return setTimeout(() => {
+				context.commit('appendAddressbooks', addressbooks)
+				resolve()
+				return addressbooks
+			}, 1000)
+		})
+	},
+	getContactsFromAddressBook(context, addressbook) {
+		let contacts = ical.parse(vcfFile)
+		context.commit('appendContactsToAddressbook', { addressbook, contacts })
+	}
+}
 
 export default { state, mutations, getters, actions }

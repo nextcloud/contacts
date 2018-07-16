@@ -22,9 +22,37 @@
 
 <template>
 	<div id="content" class="app-contacts">
-		Test
+		<appNavigation :menu="menu" />
 	</div>
 </template>
 
 <script>
+import appNavigation from '../components/appNavigation'
+
+export default {
+	components: {
+		appNavigation
+	},
+	data() {
+		return {
+		}
+	},
+	computed: {
+		addressbooks() {
+			return this.$store.getters.getAddressbooks
+		},
+		menu() {
+			return {}
+		}
+	},
+	beforeMount() {
+		// get addressbooks then get contacts
+		this.$store.dispatch('getAddressbooks')
+			.then(() => {
+				this.addressbooks.forEach(addressbook => {
+					this.$store.dispatch('getContactsFromAddressBook', addressbook)
+				})
+			})
+	}
+}
 </script>
