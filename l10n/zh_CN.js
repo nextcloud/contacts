@@ -90,6 +90,7 @@ OC.L10N.register(
     "Work pager" : "工作传呼机",
     "Social network" : "社交网络",
     "Relationship" : "关系",
+    "Specify a relationship between you and the entity represented by this vCard." : "请描述您和这张vCard上人员的关系",
     "Spouse" : "配偶",
     "Child" : "子女",
     "Mother" : "母亲",
@@ -102,10 +103,12 @@ OC.L10N.register(
     "Colleague" : "同事",
     "Manager" : "经理",
     "Assistant" : "助理",
+    "Co-worker" : "同事",
     "Gender" : "性别",
     "Female" : "女性",
     "Male" : "女性",
     "Details" : "详情",
+    "A contacts app for Nextcloud" : "适用于 Nextcloud 的联系人应用",
     "Settings" : "设置"
 },
 "nplurals=1; plural=0;");
