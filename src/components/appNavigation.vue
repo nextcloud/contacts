@@ -29,11 +29,13 @@
 		<ul :id="menu.id">
 			<navigation-item v-for="item in menu.items" :item="item" :key="item.key" />
 		</ul>
-		<div v-if="!!$slots['settings-content']" id="app-settings">
+		<div v-click-outside="closeMenu" v-if="!!$slots['settings-content']" id="app-settings"
+			:class="{open: opened}">
 			<div id="app-settings-header">
 				<button class="settings-button"
 					data-apps-slide-toggle="#app-settings-content"
-				>{{ t('settings', 'Settings') }}</button>
+					@click="toggleMenu"
+				>{{ t('contacts', 'Settings') }}</button>
 			</div>
 			<div id="app-settings-content">
 				<slot name="settings-content"/>
@@ -44,11 +46,16 @@
 
 <script>
 import navigationItem from './appNavigation/navigationItem'
+import clickOutside from 'vue-click-outside'
 
 export default {
 	name: 'AppNavigation',
 	components: {
-		navigationItem
+		navigationItem,
+		clickOutside
+	},
+	directives: {
+		clickOutside
 	},
 	props: {
 		menu: {
@@ -70,6 +77,19 @@ export default {
 					}
 				}
 			}
+		}
+	},
+	data() {
+		return {
+			opened: false
+		}
+	},
+	methods: {
+		toggleMenu() {
+			this.opened = !this.opened
+		},
+		closeMenu() {
+			this.opened = false
 		}
 	}
 }

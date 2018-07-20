@@ -21,46 +21,62 @@
   -->
 
 <template>
-	<div id="content" class="app-contacts">
-		<appNavigation :menu="menu">
-			<template slot="settings-content">
-				<ul>
-					<address-book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
-				</ul>
-			</template>
-		</appNavigation>
-	</div>
+	<li :class="{'disabled': !addressbook.enabled}">
+		<!-- addressbook name -->
+		{{ addressbook.displayName }}
+		<!-- sharing button -->
+		<a href="#" class="icon-shared" @click="share" />
+		<!-- popovermenu -->
+		<a v-click-outside="closeMenu" href="#" class="addressbook-menu"
+			@click="toggleMenu">
+			<div class="icon-more" />
+			<div :class="{'open': menuOpen}" class="popovermenu">
+				<popover-menu />
+			</div>
+		</a>
+	</li>
 </template>
 
 <script>
-import appNavigation from '../components/appNavigation'
-import addressBook from '../components/addressBook'
+import popoverMenu from './popoverMenu'
+import clickOutside from 'vue-click-outside'
 
 export default {
 	components: {
-		appNavigation,
-		addressBook
+		popoverMenu,
+		clickOutside
+	},
+	directives: {
+		clickOutside
+	},
+	props: {
+		addressbook: {
+			type: Object,
+			default() {
+				return {}
+			}
+		}
 	},
 	data() {
 		return {
+			menuOpen: false
 		}
 	},
 	computed: {
-		addressbooks() {
-			return this.$store.getters.getAddressbooks
-		},
 		menu() {
-			return {}
+			return []
 		}
 	},
-	beforeMount() {
-		// get addressbooks then get contacts
-		this.$store.dispatch('getAddressbooks')
-			.then(() => {
-				this.addressbooks.forEach(addressbook => {
-					this.$store.dispatch('getContactsFromAddressBook', addressbook)
-				})
-			})
+	methods: {
+		share() {
+			alert('Shared!')
+		},
+		closeMenu() {
+			this.menuOpen = false
+		},
+		toggleMenu() {
+			this.menuOpen = !this.menuOpen
+		}
 	}
 }
 </script>
