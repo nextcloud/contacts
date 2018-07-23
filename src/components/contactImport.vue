@@ -18,55 +18,45 @@
   - You should have received a copy of the GNU Affero General Public License
   - along with this program. If not, see <http://www.gnu.org/licenses/>.
   -
-  -->
+-->
 
 <template>
-	<div id="content" class="app-contacts">
-		<appNavigation :menu="menu">
-			<template slot="settings-content">
-				<ul>
-					<address-book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
-					<contact-import />
-					<sort-contacts />
-				</ul>
-			</template>
-		</appNavigation>
-	</div>
+	<!-- contact import -->
+	<li class="settings-section"><input id="contact-import" type="file" class="hidden-visually">
+		<input id="contact-import" type="file" class="hidden-visually">
+		<label id="upload" for="contact-import" class="button icon-upload no-select">
+			Import into <span>Contacts</span>
+		</label>
+	</li>
 </template>
 
 <script>
-import appNavigation from '../components/appNavigation'
-import addressBook from '../components/addressBook'
-import contactImport from '../components/contactImport'
-import sortContacts from '../components/sortContacts'
+import clickOutside from 'vue-click-outside'
 
 export default {
 	components: {
-		appNavigation,
-		addressBook,
-		contactImport,
-		sortContacts
+		clickOutside
+	},
+	directives: {
+		clickOutside
+	},
+	props: {
+		addressbook: {
+			type: Object,
+			default() {
+				return {}
+			}
+		}
 	},
 	data() {
 		return {
 		}
 	},
 	computed: {
-		addressbooks() {
-			return this.$store.getters.getAddressbooks
-		},
-		menu() {
-			return {}
-		}
+
 	},
-	beforeMount() {
-		// get addressbooks then get contacts
-		this.$store.dispatch('getAddressbooks')
-			.then(() => {
-				this.addressbooks.forEach(addressbook => {
-					this.$store.dispatch('getContactsFromAddressBook', addressbook)
-				})
-			})
+	methods: {
+
 	}
 }
 </script>
