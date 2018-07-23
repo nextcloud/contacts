@@ -25,16 +25,10 @@
 		<!-- addressbook name -->
 		{{ addressbook.displayName }}
 		<!-- sharing button -->
-		<div class="addressbooklist-icon icon-shared" @click="toggleShare" />
-		<!-- sharing input -->
-		<div v-if="shareOpen" class="addressBookShares">
-			<i v-if="loadingSharees" class="glyphicon glyphicon-refresh" />
-			<input type="text" class="shareeInput" >
-			<!-- list of possible groups to share with
-			<ul class="dropdown-menu">
-				<li></li>
-			</ul> -->
-		</div>
+		<a href="#"  class="addressbooklist-icon addressbook-menu" 
+			@click="toggleShare">
+			<div class="icon-shared" />
+		</a>
 		<!-- popovermenu -->
 		<a v-click-outside="closeMenu" href="#" class="addressbook-menu"
 			@click="toggleMenu">
@@ -43,6 +37,15 @@
 				<popover-menu :menu="menu"/>
 			</div>
 		</a>
+		<!-- sharing input -->
+		<div :class="{'open': shareOpen}">
+			<i v-if="loadingSharees" class="glyphicon glyphicon-refresh" />
+			<input type="text" class="shareeInput" >
+			<!-- list of possible groups to share with -->
+			<!-- <ul class="dropdown-menu">
+				<li></li>
+			</ul> -->
+		</div>
 	</li>
 </template>
 
@@ -90,3 +93,6 @@ export default {
 	}
 }
 </script>
+
+
+// ☞ f7550949-17dc-4725-bad7-76c6ac70f74f
