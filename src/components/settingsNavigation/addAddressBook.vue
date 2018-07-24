@@ -1,7 +1,7 @@
 <!--
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author John Molakvoæ <skjnldsv@protonmail.com> Team Popcorn <teampopcornberlin.gmail.com>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -21,12 +21,22 @@
 -->
 
 <template>
-	<!-- contact import -->
-	<li class="settings-section"><input id="contact-import" type="file" class="hidden-visually">
-		<input id="contact-import" type="file" class="hidden-visually">
-		<label id="upload" for="contact-import" class="button icon-upload no-select">
-			Import into <span>Contacts</span>
-		</label>
+	<li class="newAddressBookContainer">
+		<form name="newAddressBookForm" class="ng-pristine ng-invalid ng-invalid-required ng-valid-pattern ng-valid-minlength" @submit="createAddressBook()">
+			<input id="newList" placeholder="Address book name" class="newAddressBookInput ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-pattern ng-valid-minlength"
+				type="text"
+				ng-minlength="1"
+				autocomplete="off" autocorrect="off"
+				spellcheck="false"
+				tooltip-enable="!newAddressBookForm.$pristine"
+				required=""
+				ng-pattern="/^[a-zA-Z0-9À-ÿ\s-_.!?#|()]+$/i"
+				tooltip-is-open="newAddressBookForm.$invalid &amp;&amp; !newAddressBookForm.$error.required"
+				tooltip-trigger="none"
+				tooltip-placement="top"
+				uib-tooltip="Only these special characters are allowed: -_.!?#|()">
+			<input type="submit" value="" class="newAddressBookSubmit inline-button icon-confirm action pull-right">
+		</form>
 	</li>
 </template>
 
@@ -53,10 +63,11 @@ export default {
 		}
 	},
 	computed: {
-
+		menu() {
+			return []
+		}
 	},
 	methods: {
-
 	}
 }
 </script>

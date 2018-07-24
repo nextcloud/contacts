@@ -18,44 +18,23 @@
   - You should have received a copy of the GNU Affero General Public License
   - along with this program. If not, see <http://www.gnu.org/licenses/>.
   -
-  -->
+-->
 
 <template>
-	<li :class="{'disabled': !addressbook.enabled}">
-		<!-- addressbook name -->
-		{{ addressbook.displayName }}
-		<!-- sharing button -->
-		<a href="#" class="addressbookList-icon addressbook-menu"
-			@click="toggleShare">
-			<div class="icon-shared" />
-		</a>
-		<!-- sharing input -->
-		<div v-if="shareOpen" class="addressBookShares">
-			<i v-if="loadingSharees" class="glyphicon glyphicon-refresh" />
-			<input type="text" class="shareeInput" >
-			<!-- list of possible groups to share with
-			<ul class="dropdown-menu">
-				<li></li>
-			</ul> -->
-		</div>
-		<!-- popovermenu -->
-		<a v-click-outside="closeMenu" href="#" class="addressbook-menu"
-			@click="toggleMenu">
-			<div class="icon-more" />
-			<div :class="{'open': menuOpen}" class="popovermenu">
-				<popover-menu :menu="menu"/>
-			</div>
-		</a>
-	</li>
+	<!-- contact import -->
+	<div class="settings-section">
+		<input id="contact-import" type="file" class="hidden-visually">
+		<label id="upload" for="contact-import" class="button icon-upload no-select">
+			Import into <span>Contacts</span>
+		</label>
+	</div>
 </template>
 
 <script>
-import popoverMenu from './popoverMenu'
 import clickOutside from 'vue-click-outside'
 
 export default {
 	components: {
-		popoverMenu,
 		clickOutside
 	},
 	directives: {
@@ -71,25 +50,13 @@ export default {
 	},
 	data() {
 		return {
-			menuOpen: false,
-			shareOpen: false
 		}
 	},
 	computed: {
-		menu() {
-			return []
-		}
+
 	},
 	methods: {
-		toggleShare() {
-			this.shareOpen = !this.shareOpen
-		},
-		closeMenu() {
-			this.menuOpen = false
-		},
-		toggleMenu() {
-			this.menuOpen = !this.menuOpen
-		}
+
 	}
 }
 </script>
