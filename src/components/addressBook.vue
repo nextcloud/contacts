@@ -1,7 +1,7 @@
 <!--
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author John Molakvoæ <skjnldsv@protonmail.com> Team Popcorn <teampopcornberlin.gmail.com>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -25,10 +25,21 @@
 		<!-- addressbook name -->
 		{{ addressbook.displayName }}
 		<!-- sharing button -->
-		<a href="#"  class="addressbooklist-icon addressbook-menu" 
+		
+		<a href="#" class="addressbookList-icon addressbook-menu"
 			@click="toggleShare">
 			<div class="icon-shared" />
 		</a>
+		<!-- sharing input -->
+		<div v-if="shareOpen" class="addressBookShares">
+			<i v-if="loadingSharees" class="glyphicon glyphicon-refresh" />
+			<input type="text" class="shareeInput" >
+			<!-- list of possible groups to share with
+			<ul class="dropdown-menu">
+				<li></li>
+			</ul> -->
+		</div>
+>>>>>>> upstream/vue
 		<!-- popovermenu -->
 		<a v-click-outside="closeMenu" href="#" class="addressbook-menu"
 			@click="toggleMenu">

@@ -21,14 +21,15 @@
   -->
 
 <template>
-	<div id="content" class="app-contacts">
+	<div id="app-setting">
 		<appNavigation :menu="menu">
 			<template slot="settings-content">
-				<ul>
+				<ul class="addressBookList">
 					<address-book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
-					<contact-import />
-					<sort-contacts />
+					<add-address-book />
 				</ul>
+				<contact-import class="settings-section" />
+				<sort-contacts class="settings-section ng-isolate-scope" />
 			</template>
 		</appNavigation>
 	</div>
@@ -37,15 +38,17 @@
 <script>
 import appNavigation from '../components/appNavigation'
 import addressBook from '../components/addressBook'
-import contactImport from '../components/contactImport'
-import sortContacts from '../components/sortContacts'
+import contactImport from '../components/settingsNavigation/contactImport'
+import sortContacts from '../components/settingsNavigation/sortContacts'
+import addAddressBook from '../components/settingsNavigation/addAddressBook'
 
 export default {
 	components: {
 		appNavigation,
 		addressBook,
 		contactImport,
-		sortContacts
+		sortContacts,
+		addAddressBook
 	},
 	data() {
 		return {

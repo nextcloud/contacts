@@ -1,7 +1,7 @@
 <!--
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author John Molakvoæ <skjnldsv@protonmail.com> Team Popcorn <teampopcornberlin.gmail.com>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -21,17 +21,17 @@
 -->
 
 <template>
-    <li>
-        <label for="contact-import">Sort by:</label>
-        <select id="sort-by">
-        <option>
-            Surname
-        </option>
-        <option>
-            Firstname
-        </option>
-        </select>
-    </li>
+	<div>
+		<label for="contact-import">Sort by:</label>
+		<select id="sort-by">
+			<option>
+				Surname
+			</option>
+			<option>
+				Firstname
+			</option>
+		</select>
+	</div>
 </template>
 
 <script>
