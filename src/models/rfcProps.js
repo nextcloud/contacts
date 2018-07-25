@@ -20,30 +20,5 @@
  *
  */
 
-const state = {
-	// Array and not object because we allow multiple uids
-	// accross different addressbooks
-	contacts: []
+export default {
 }
-const mutations = {
-
-	/**
-	 * Store contacts into state
-	 *
-	 * @param {Object} state Default state
-	 * @param {Array} contacts Contacts
-	 */
-	appendContacts(state, contacts = []) {
-		console.debug(contacts)
-		state.contacts = state.contacts.concat(contacts)
-	}
-
-}
-const getters = {
-	getContacts(state) {
-		return state.contacts
-	}
-}
-const actions = {}
-
-export default { state, mutations, getters, actions }

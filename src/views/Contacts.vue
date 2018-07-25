@@ -22,32 +22,44 @@
 
 <template>
 	<div id="content" class="app-contacts">
-		<appNavigation :menu="menu">
+		<app-navigation :menu="menu">
 			<template slot="settings-content">
 				<ul>
 					<address-book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
 				</ul>
 			</template>
-		</appNavigation>
+		</app-navigation>
+		<div id="app-content">
+			<div id="app-content-wrapper">
+				<content-list :list="contacts" />
+				<div class="app-content-detail"/>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 import appNavigation from '../components/appNavigation'
+import contentList from '../components/contentList'
 import addressBook from '../components/addressBook'
 
 export default {
 	components: {
 		appNavigation,
+		contentList,
 		addressBook
 	},
 	data() {
 		return {
+			list: []
 		}
 	},
 	computed: {
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
+		},
+		contacts() {
+			return this.$store.getters.getContacts
 		},
 		menu() {
 			return {}

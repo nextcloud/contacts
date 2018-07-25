@@ -20,9 +20,9 @@
  *
  */
 // import uuid from 'uuid'
-import ical from 'ical.js'
 /* eslint-disable-next-line import/no-webpack-loader-syntax */
 import vcfFile from '!raw-loader!./FakeName.vcf'
+import parseVcf from '../services/parseVcf'
 
 const state = {
 	addressbooks: []
@@ -38,7 +38,7 @@ const mutations = {
 	},
 	appendContactsToAddressbook(state, { addressbook, contacts }) {
 		addressbook = state.addressbooks.filter(adb => adb === addressbook)
-		addressbook.contacts = contacts
+		addressbook[0].contacts = contacts
 	}
 }
 const getters = {
@@ -58,19 +58,25 @@ const actions = {
 				id: 'ab1',
 				displayName: 'Addressbook 1',
 				enabled: true,
-				owner: 'admin'
+				owner: 'admin',
+				shares: [],
+				contacts: []
 			},
 			{
 				id: 'ab2',
 				displayName: 'Addressbook 2',
 				enabled: false,
-				owner: 'admin'
+				owner: 'admin',
+				shares: [],
+				contacts: []
 			},
 			{
 				id: 'ab3',
 				displayName: 'Addressbook 3',
 				enabled: true,
-				owner: 'User1'
+				owner: 'User1',
+				shares: [],
+				contacts: []
 			}
 		]
 		// fake request
@@ -79,12 +85,13 @@ const actions = {
 				context.commit('appendAddressbooks', addressbooks)
 				resolve()
 				return addressbooks
-			}, 1000)
+			}, 5000)
 		})
 	},
 	getContactsFromAddressBook(context, addressbook) {
-		let contacts = ical.parse(vcfFile)
+		let contacts = parseVcf(vcfFile)
 		context.commit('appendContactsToAddressbook', { addressbook, contacts })
+		context.commit('appendContacts', contacts)
 	}
 }
 

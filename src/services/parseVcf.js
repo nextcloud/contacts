@@ -20,30 +20,15 @@
  *
  */
 
-const state = {
-	// Array and not object because we allow multiple uids
-	// accross different addressbooks
-	contacts: []
-}
-const mutations = {
+import Contact from '../models/contact'
 
-	/**
-	 * Store contacts into state
-	 *
-	 * @param {Object} state Default state
-	 * @param {Array} contacts Contacts
-	 */
-	appendContacts(state, contacts = []) {
-		console.debug(contacts)
-		state.contacts = state.contacts.concat(contacts)
+export default function parseVcf(data = '') {
+	let regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi
+	let vCards = data.match(regexp)
+
+	if (!vCards) {
+		console.debug('Error during the parsing of the following vcf file: ', data)
+		return []
 	}
-
+	return vCards.map(vCard => new Contact(vCard))
 }
-const getters = {
-	getContacts(state) {
-		return state.contacts
-	}
-}
-const actions = {}
-
-export default { state, mutations, getters, actions }
