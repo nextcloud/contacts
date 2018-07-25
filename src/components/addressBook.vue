@@ -1,7 +1,8 @@
 <!--
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
-  - @author John Molakvoæ <skjnldsv@protonmail.com> Team Popcorn <teampopcornberlin.gmail.com>
+  - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Team Popcorn <teampopcornberlin.gmail.com>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -38,25 +39,19 @@
 			</div>
 		</a>
 		<!-- sharing input -->
-		<!-- :class="{'open': shareOpen}" -->
-		<div v-if="shareOpen" class="addressBookShares">
-			<i v-if="loadingSharees" class="glyphicon glyphicon-refresh" />
-			<input type="text" class="shareeInput" >
-			<!-- list of possible groups to share with -->
-			<!-- <ul class="dropdown-menu">
-				<li></li>
-			</ul> -->
-		</div>
+		<share-address-book v-if="shareOpen" :addressbook="addressbook" />
 	</li>
 </template>
 
 <script>
 import popoverMenu from './popoverMenu'
+import shareAddressBook from './settingsNavigation/shareAddressBook'
 import clickOutside from 'vue-click-outside'
 
 export default {
 	components: {
 		popoverMenu,
+		shareAddressBook,
 		clickOutside
 	},
 	directives: {

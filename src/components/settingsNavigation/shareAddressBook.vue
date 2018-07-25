@@ -22,21 +22,24 @@
 -->
 
 <template>
-	<div>
-		<label for="contact-import">Sort by:</label>
-		<multiselect v-model="options[0]" :options="options" :searchable="false"
-			class="multiselect" />
+	<div class="addressBookShares">
+		<!-- <i v-if="loadingSharees" class="glyphicon glyphicon-refresh" /> -->
+		<input type="text" class="shareeInput" >
+		<!-- list of possible groups to share with -->
+		<ul v-if="addressbook.sharees.length > 0" class="addressBook-share-list">
+			<sharee v-for="sharee in addressbook.sharees" :key="sharee" :sharee="sharee" />
+		</ul>
 	</div>
 </template>
 
 <script>
 import clickOutside from 'vue-click-outside'
-import Multiselect from 'vue-multiselect'
+import Sharee from './Sharee'
 
 export default {
 	components: {
 		clickOutside,
-		Multiselect
+		Sharee
 	},
 	directives: {
 		clickOutside
@@ -51,8 +54,6 @@ export default {
 	},
 	data() {
 		return {
-			options: ['First-name', 'Lastname', 'Display name'],
-			value: 'First-name'
 		}
 	},
 	computed: {
@@ -63,22 +64,3 @@ export default {
 	}
 }
 </script>
-
-<style lang="scss" scoped>
-	.multiselect {
-		margin: 3px 3px 3px 0;
-		font-size: 13px;
-		color: #545454;
-		border: 1px solid #dbdbdb;
-		border-radius: 3px;
-		padding: 6px 12px;
-		width: auto;
-		min-height: 34px;
-		cursor: pointer;
-		background-color: inherit;
-		outline: 0;
-		padding-right: 24px !important;
-		font-weight: 400;
-		height: 32px;
-	}
-</style>
