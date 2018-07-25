@@ -34,6 +34,10 @@ module.exports = {
 		// tabs only
 		indent: ['error', 'tab'],
 		'no-tabs': 0,
+		// only debug console
+		'no-console': ['error', { 'allow': ['debug'] }],
+		// classes blocks
+		'padded-blocks': ['error', { 'classes': 'always' }],
 		// es6 import/export and require
 		'node/no-unpublished-require': ['off'],
 		'node/no-unsupported-features': ['off'],
