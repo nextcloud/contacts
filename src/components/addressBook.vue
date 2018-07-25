@@ -24,12 +24,10 @@
 <template>
 	<li :class="{'disabled': !addressbook.enabled}">
 		<!-- addressbook name -->
-		{{ addressbook.displayName }}
+		<span class="addressbook-name">{{ addressbook.displayName }}</span>
 		<!-- sharing button -->
-		<a href="#" class="addressbookList-icon addressbook-menu"
-			@click="toggleShare">
-			<div class="icon-shared" />
-		</a>
+		<a href="#" class="addressbook-share icon-shared"
+			@click="toggleShare" />
 		<!-- popovermenu -->
 		<a v-click-outside="closeMenu" href="#" class="addressbook-menu"
 			@click="toggleMenu">

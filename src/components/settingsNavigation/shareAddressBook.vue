@@ -34,7 +34,7 @@
 
 <script>
 import clickOutside from 'vue-click-outside'
-import Sharee from './Sharee'
+import Sharee from './sharee'
 
 export default {
 	components: {

@@ -24,10 +24,10 @@
 	<div id="app-setting">
 		<appNavigation :menu="menu">
 			<template slot="settings-content">
-				<ul class="addressBookList">
+				<ul id="address-book-list">
 					<address-book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
-					<add-address-book />
 				</ul>
+				<add-address-book />
 				<contact-import class="settings-section" />
 				<sort-contacts class="settings-section ng-isolate-scope" />
 			</template>
