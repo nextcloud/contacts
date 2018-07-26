@@ -55,4 +55,50 @@
 	display: flex;
 }
 
-// Addressbook lists
+// Share Addressbook
+
+
+// Sharees settings for Addressbook
+
+.sharee-input {
+	width: 100% !important;
+	margin-right: 0;
+	padding-right: 30px;
+	text-overflow: ellipsis;
+}
+
+.addressBook-share-list li {
+	padding: 0 5px;
+	display: inline-flex;
+	align-items: center;
+}
+
+.calendar-share-item span.shareeIdentifier {
+	width: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	display: inline-block;
+	vertical-align: top;
+	opacity: 0.5;
+}
+
+.utils {
+	padding: 0 !important;
+	float: right;
+	position: relative !important;
+	display: inline-flex;
+	align-items: center;
+}
+
+.icon {
+	margin-right: 5px;
+	opacity: 0.2;
+	width: 16px;
+	height: 16px;
+	display: inline-block;
+}
+
+.icon-group {
+	background-image: url(/apps/contacts/img/group.svg);
+}

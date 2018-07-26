@@ -20,41 +20,15 @@
  *
  */
 
-import Vue from 'vue'
-import Router from 'vue-router'
-import Contacts from '../views/Contacts'
+import Contact from '../models/contact'
 
-Vue.use(Router)
+export default function parseVcf(data = '') {
+	let regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi
+	let vCards = data.match(regexp)
 
-export default new Router({
-	mode: 'history',
-	// if index.php is in the url AND we got this far, then it's working:
-	// let's keep using index.php in the url
-	base: OC.generateUrl('/apps/contacts/'),
-	linkActiveClass: 'active',
-	routes: [
-		{
-			path: '/',
-			component: Contacts,
-			props: true,
-			name: 'root',
-			// always load default group
-			redirect: {
-				name: 'group',
-				params: { selectedGroup: t('contacts', 'All contacts') }
-			},
-			children: [
-				{
-					path: ':selectedGroup',
-					name: 'group',
-					component: Contacts
-				},
-				{
-					path: ':selectedGroup/:selectedContact',
-					name: 'contact',
-					component: Contacts
-				}
-			]
-		}
-	]
-})
+	if (!vCards) {
+		console.debug('Error during the parsing of the following vcf file: ', data)
+		return []
+	}
+	return vCards.map(vCard => new Contact(vCard))
+}

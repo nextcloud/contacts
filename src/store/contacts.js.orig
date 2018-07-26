@@ -20,41 +20,36 @@
  *
  */
 
-import Vue from 'vue'
-import Router from 'vue-router'
-import Contacts from '../views/Contacts'
+<<<<<<< HEAD
+const state = {}
+const mutations = {}
+const getters = {}
+=======
+const state = {
+	// Array and not object because we allow multiple uids
+	// accross different addressbooks
+	contacts: []
+}
+const mutations = {
 
-Vue.use(Router)
+	/**
+	 * Store contacts into state
+	 *
+	 * @param {Object} state Default state
+	 * @param {Array} contacts Contacts
+	 */
+	appendContacts(state, contacts = []) {
+		console.debug(contacts)
+		state.contacts = state.contacts.concat(contacts)
+	}
 
-export default new Router({
-	mode: 'history',
-	// if index.php is in the url AND we got this far, then it's working:
-	// let's keep using index.php in the url
-	base: OC.generateUrl('/apps/contacts/'),
-	linkActiveClass: 'active',
-	routes: [
-		{
-			path: '/',
-			component: Contacts,
-			props: true,
-			name: 'root',
-			// always load default group
-			redirect: {
-				name: 'group',
-				params: { selectedGroup: t('contacts', 'All contacts') }
-			},
-			children: [
-				{
-					path: ':selectedGroup',
-					name: 'group',
-					component: Contacts
-				},
-				{
-					path: ':selectedGroup/:selectedContact',
-					name: 'contact',
-					component: Contacts
-				}
-			]
-		}
-	]
-})
+}
+const getters = {
+	getContacts(state) {
+		return state.contacts
+	}
+}
+>>>>>>> 2438975... Contact class, first contacts management and list
+const actions = {}
+
+export default { state, mutations, getters, actions }
