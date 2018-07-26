@@ -24,8 +24,9 @@
 <template>
 	<div>
 		<label for="contact-import">Sort by:</label>
-		<multiselect v-model="options[0]" :options="options" :searchable="false"
-			class="multiselect" />
+		<multiselect :value="options[0]" :options="options"
+			class="multiselect-vue"
+			@input="sortContacts()"/>
 	</div>
 </template>
 
@@ -59,26 +60,9 @@ export default {
 
 	},
 	methods: {
-
+		sortContacts() {
+			alert('sorting contacts')
+		}
 	}
 }
 </script>
-
-<style lang="scss" scoped>
-	.multiselect {
-		margin: 3px 3px 3px 0;
-		font-size: 13px;
-		color: #545454;
-		border: 1px solid #dbdbdb;
-		border-radius: 3px;
-		padding: 6px 12px;
-		width: auto;
-		min-height: 34px;
-		cursor: pointer;
-		background-color: inherit;
-		outline: 0;
-		padding-right: 24px !important;
-		font-weight: 400;
-		height: 32px;
-	}
-</style>

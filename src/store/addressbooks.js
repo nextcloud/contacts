@@ -59,7 +59,11 @@ const actions = {
 				displayName: 'Addressbook 1',
 				enabled: true,
 				owner: 'admin',
-				shares: ['Bob', 'Rita', 'Sue'],
+				shares: [
+					{ name: 'Bob', edit: true },
+					{ name: 'Rita', edit: true },
+					{ name: 'Sue', edit: false }
+				],
 				contacts: []
 			},
 			{

@@ -56,7 +56,12 @@
 }
 
 // Share Addressbook
-
+.addressBook-share-list {
+	margin-top: 8px;
+	margin-bottom: 12px;
+	display: flex;
+	flex-direction: column;
+}
 
 // Sharees settings for Addressbook
 
@@ -67,38 +72,68 @@
 	text-overflow: ellipsis;
 }
 
-.addressBook-share-list li {
+.calendar-share-item {
 	padding: 0 5px;
 	display: inline-flex;
 	align-items: center;
+	.shareeIdentifier {
+		width: 100%;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		display: inline-block;
+		vertical-align: top;
+		opacity: 0.5;
+	}
+	.utils {
+		padding: 0 !important;
+		float: right;
+		position: relative !important;
+		display: inline-flex;
+		align-items: center;
+		flex-shrink: 0;
+		height: 20px;
+		.checkbox + label {
+			padding: 0 !important;
+		}
+	}
+	
+	.icon {
+		margin-right: 5px;
+		opacity: 0.2;
+		width: 16px;
+		height: 16px;
+		display: inline-block;
+	}
+	
+	.icon-group {
+		background-image: url(/apps/contacts/img/group.svg);
+	}
+	
+	.icon-delete {
+		display: inline-block;
+		width: 24px;
+		height: 20px;
+		opacity: 0.4;
+	}
 }
 
-.calendar-share-item span.shareeIdentifier {
-	width: 100%;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	display: inline-block;
-	vertical-align: top;
-	opacity: 0.5;
-}
 
-.utils {
-	padding: 0 !important;
-	float: right;
-	position: relative !important;
-	display: inline-flex;
-	align-items: center;
-}
+// Sorting Contacts
 
-.icon {
-	margin-right: 5px;
-	opacity: 0.2;
-	width: 16px;
-	height: 16px;
-	display: inline-block;
-}
-
-.icon-group {
-	background-image: url(/apps/contacts/img/group.svg);
+.multiselect {
+	margin: 3px 3px 3px 0;
+	font-size: 13px;
+	color: #545454;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
+	padding: 6px 12px;
+	width: auto;
+	min-height: 34px;
+	cursor: pointer;
+	background-color: inherit;
+	outline: 0;
+	padding-right: 24px !important;
+	font-weight: 400;
+	height: 32px;
 }

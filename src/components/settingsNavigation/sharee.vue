@@ -22,25 +22,20 @@
 -->
 
 <template>
-	<li ng-repeat="groupShare in ctrl.addressBook.sharedWith.groups" class="calendar-share-item ng-scope">
+	<li class="calendar-share-item">
 		<span class="icon icon-group" />
-		<span class="shareeIdentifier ng-binding">{{ sharee }}</span>
+		<span class="shareeIdentifier">{{ sharee.name }}</span>
 		<span class="utils">
 			<input
-				id="checkbox_sharedWithGroup__71"
-				class="checkbox ng-pristine ng-untouched ng-valid ng-empty"
+				:id="sharee.name"
+				v-model="sharee.edit"
+				class="checkbox"
 				name="editable"
-				type="checkbox"
-				ng-model="groupShare.writable" value="edit"
-				ng-change="ctrl.updateExistingGroupShare(groupShare.id, groupShare.writable)">
-			<label for="checkbox_sharedWithGroup__71"
-				class="ng-binding inline"> can edit</label>
-			<span
-				class="action">
-				<span href="#" data-id="" title="Delete"
-					class="icon icon-delete"
-					ng-click="ctrl.unshareFromGroup(groupShare.id)" />
-			</span>
+				type="checkbox">
+			<label :for="sharee.name"> can edit</label>
+			<span href="#" title="Delete"
+				class="icon-delete"
+				@click="deleteSharee()" />
 		</span>
 	</li>
 </template>
@@ -59,6 +54,11 @@ export default {
 		sharee: {
 			type: String,
 			required: true
+		}
+	},
+	methods: {
+		deleteSharee() {
+			alert('Delete')
 		}
 	}
 }
