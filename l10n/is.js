@@ -114,6 +114,7 @@ OC.L10N.register(
     "Female" : "Kona",
     "Male" : "Karl",
     "Details" : "Nánar",
+    "A contacts app for Nextcloud" : "Tengiliðaforrit fyrir Nextcloud",
     "Settings" : "Stillingar"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

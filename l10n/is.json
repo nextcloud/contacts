@@ -112,6 +112,7 @@
     "Female" : "Kona",
     "Male" : "Karl",
     "Details" : "Nánar",
+    "A contacts app for Nextcloud" : "Tengiliðaforrit fyrir Nextcloud",
     "Settings" : "Stillingar"
 },"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
 }
