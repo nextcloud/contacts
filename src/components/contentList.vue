@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div class="app-content-list">
+	<div :class="{'icon-loading': loading}" class="app-content-list">
 		<a v-for="contact in list" :key="contact.uid" href="#"
 			class="app-content-list-item">
 			<input :id="contact.uid" type="checkbox" class="app-content-list-item-checkbox checkbox"
@@ -46,6 +46,10 @@ export default {
 		list: {
 			type: Array,
 			required: true
+		},
+		loading: {
+			type: Boolean,
+			default: false
 		}
 	},
 	methods: {

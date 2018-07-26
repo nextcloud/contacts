@@ -20,41 +20,15 @@
  *
  */
 
-import Vue from 'vue'
-import Router from 'vue-router'
-import Contacts from '../views/Contacts'
+const state = {
+	groups: []
+}
+const mutations = {}
+const getters = {
+	getGroups(state) {
+		return state.groups
+	}
+}
+const actions = {}
 
-Vue.use(Router)
-
-export default new Router({
-	mode: 'history',
-	// if index.php is in the url AND we got this far, then it's working:
-	// let's keep using index.php in the url
-	base: OC.generateUrl('/apps/contacts/'),
-	linkActiveClass: 'active',
-	routes: [
-		{
-			path: '/',
-			component: Contacts,
-			props: true,
-			name: 'root',
-			// always load default group
-			redirect: {
-				name: 'group',
-				params: { selectedGroup: t('contacts', 'All contacts') }
-			},
-			children: [
-				{
-					path: ':selectedGroup',
-					name: 'group',
-					component: Contacts
-				},
-				{
-					path: ':selectedGroup/:selectedContact',
-					name: 'contact',
-					component: Contacts
-				}
-			]
-		}
-	]
-})
+export default { state, mutations, getters, actions }
