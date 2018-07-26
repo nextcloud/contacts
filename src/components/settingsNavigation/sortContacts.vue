@@ -23,10 +23,14 @@
 
 <template>
 	<div>
-		<label for="contact-import">Sort by:</label>
-		<multiselect :value="options[0]" :options="options"
+		<label for="sort-by" >{{ t('contacts', 'Sort by :') }}</label>
+		<multiselect
+			id="sort-by"
+			v-model="value"
+			:placeholder="t('contacts', 'First name')"
+			:options="options"
 			class="multiselect-vue"
-			@input="sortContacts()"/>
+			@input="sortContacts()" />
 	</div>
 </template>
 
@@ -53,7 +57,7 @@ export default {
 	data() {
 		return {
 			options: ['First-name', 'Lastname', 'Display name'],
-			value: 'First-name'
+			value: ''
 		}
 	},
 	computed: {

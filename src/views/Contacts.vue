@@ -32,7 +32,7 @@
 				</ul>
 				<add-address-book />
 				<contact-import class="settings-section" />
-				<sort-contacts class="settings-section ng-isolate-scope" />
+				<sort-contacts class="settings-section" />
 			</template>
 		</app-navigation>
 
