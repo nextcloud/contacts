@@ -31,8 +31,10 @@
 					<address-book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
 				</ul>
 				<add-address-book />
-				<contact-import class="settings-section" />
+
+				<import-contacts :addressbooks="addressbooks" class="settings-section" />
 				<sort-contacts class="settings-section" />
+
 			</template>
 		</app-navigation>
 
@@ -53,7 +55,7 @@
 import appNavigation from '../components/appNavigation'
 import contentList from '../components/contentList'
 import addressBook from '../components/addressBook'
-import contactImport from '../components/settingsNavigation/contactImport'
+import importContacts from '../components/settingsNavigation/importContacts'
 import sortContacts from '../components/settingsNavigation/sortContacts'
 import addAddressBook from '../components/settingsNavigation/addAddressBook'
 
@@ -62,7 +64,7 @@ export default {
 		appNavigation,
 		contentList,
 		addressBook,
-		contactImport,
+		importContacts,
 		sortContacts,
 		addAddressBook
 	},

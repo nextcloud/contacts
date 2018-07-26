@@ -126,3 +126,26 @@
 	display: flex;
 	align-items: center;
 }
+
+.multiselect {
+	margin: 3px 3px 3px 0;
+	font-size: 13px;
+	color: #545454;
+	border: 1px solid #dbdbdb;
+	border-radius: 3px;
+	padding: 6px 12px;
+	width: auto;
+	min-height: 34px;
+	cursor: pointer;
+	background-color: inherit;
+	outline: 0;
+	padding-right: 24px !important;
+	font-weight: 400;
+	height: 32px;
+}
+
+
+// Import contacts
+.multiselect.multiselect-vue {
+	width: 100%;
+}
