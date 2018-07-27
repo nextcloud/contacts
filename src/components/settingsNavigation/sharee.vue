@@ -28,7 +28,7 @@
 		<span class="utils">
 			<input
 				:id="sharee.name"
-				v-model="sharee.edit"
+				v-model="editSharee"
 				class="checkbox"
 				name="editable"
 				type="checkbox">
@@ -52,13 +52,16 @@ export default {
 	},
 	props: {
 		sharee: {
-			type: String,
+			type: Object,
 			required: true
 		}
 	},
 	methods: {
 		deleteSharee() {
 			alert('Delete')
+		},
+		editSharee() {
+			alert('sharee can edit')
 		}
 	}
 }

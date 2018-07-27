@@ -22,11 +22,12 @@
 -->
 
 <template>
-	<div>
-		<label for="sort-by" >{{ t('contacts', 'Sort by :') }}</label>
+	<div class="sort-contacts">
+		<label for="sort-by" >{{ t('contacts', 'Sort by:') }}</label>
 		<multiselect
 			id="sort-by"
 			v-model="value"
+			:searchable="false"
 			:placeholder="t('contacts', 'First name')"
 			:options="options"
 			class="multiselect-vue"

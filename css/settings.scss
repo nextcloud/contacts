@@ -20,8 +20,8 @@
  *
  */
 
- // contacts settings section
- #app-settings-content {
+// contacts settings section
+#app-settings-content {
 	.settings-section {
 		display: flex;
 		align-items: center;
@@ -72,7 +72,6 @@
 }
 
 // Sharees settings for Addressbook
-
 .sharee-input {
 	width: 100% !important;
 	margin-right: 0;
@@ -123,6 +122,23 @@
 		width: 24px;
 		height: 20px;
 		opacity: 0.4;
+	}
+}
+
+// Sort Contacts
+.sort-contacts {
+	.multiselect.multiselect-vue {
+		width: 120px;
+		margin-left: 5px;
+	}
+	input#sort-by, .multiselect__single {
+		padding: 6px 12px;
+		min-height: 34px;
+		text-align: center;
+		background: url(/core/css/../img/actions/triangle-s.svg) no-repeat right 4px center;
+		background-color: inherit;
+		outline: 0;
+		padding-right: 24px !important;
 	}
 }
 

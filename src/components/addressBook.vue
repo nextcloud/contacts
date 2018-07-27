@@ -34,7 +34,7 @@
 				@click="toggleMenu">
 				<div class="icon-more" />
 				<div :class="{'open': menuOpen}" class="popovermenu">
-					<popover-menu :menu="menu"/>
+					<popover-menu :menu="menu" />
 				</div>
 			</a>
 		</li>
@@ -68,7 +68,8 @@ export default {
 	data() {
 		return {
 			menuOpen: false,
-			shareOpen: false
+			shareOpen: false,
+			enabled: true
 		}
 	},
 	computed: {
@@ -82,24 +83,30 @@ export default {
 			{
 				href: '#',
 				icon: 'icon-download',
-				text: 'Download',
+				text: 'Download'
 			},
 			{
 				icon: 'icon-rename',
 				text: 'Rename',
-				action: 'edit'
+				action: function renameAddressBook() {
+					alert('rename the address book')
+				}
 			},
 			{
-				href: '#',
 				icon: 'checkbox',
 				text: 'Enabled',
-				action: ''
+				input: 'checkbox',
+				model: this.enabled,
+				action: function toggleEnabled() {
+					alert('This addressbook is: enabled')
+				}
 			},
 			{
-				href: '#',
 				icon: 'icon-delete',
 				text: 'Delete',
-				action: ''
+				action: function deleteAddressBook() {
+					alert('Delete AddressBook')
+				}
 			}]
 		}
 	},

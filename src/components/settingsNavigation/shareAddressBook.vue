@@ -31,7 +31,7 @@
 			aria-owns="typeahead-52-3115">
 		<!-- list of possible groups to share with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressBook-share-list">
-			<sharee v-for="sharee in addressbook.shares" :key="sharee" :sharee="sharee" />
+			<sharee v-for="sharee in addressbook.shares" :key="sharee.name" :sharee="sharee" />
 		</ul>
 	</div>
 </template>

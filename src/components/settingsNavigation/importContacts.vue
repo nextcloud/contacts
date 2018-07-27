@@ -21,9 +21,9 @@ export default {
 	// props: ['addressbooks'],
 	props: {
 		addressbooks: {
-			 type: Object,
-			 required: false,
-			 default: undefined
+			type: Array,
+			required: false,
+			default: undefined
 		}
 	},
 	data() {
