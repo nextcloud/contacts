@@ -37,8 +37,14 @@ const mutations = {
 		state.addressbooks = addressbooks
 	},
 	appendContactsToAddressbook(state, { addressbook, contacts }) {
-		addressbook = state.addressbooks.filter(adb => adb === addressbook)
-		addressbook[0].contacts = contacts
+		// convert list into an array and remove duplicate
+		addressbook.contacts = contacts.reduce(function(list, contact) {
+			if (list[contact.uid]) {
+				console.debug('Duplicate contact overrided', list[contact.uid], contact)
+			}
+			list[contact.uid] = contact
+			return list
+		}, addressbook.contacts)
 	}
 }
 const getters = {
@@ -60,7 +66,7 @@ const actions = {
 				enabled: true,
 				owner: 'admin',
 				shares: [],
-				contacts: []
+				contacts: {}
 			},
 			{
 				id: 'ab2',
@@ -68,7 +74,7 @@ const actions = {
 				enabled: false,
 				owner: 'admin',
 				shares: [],
-				contacts: []
+				contacts: {}
 			},
 			{
 				id: 'ab3',
@@ -76,7 +82,7 @@ const actions = {
 				enabled: true,
 				owner: 'User1',
 				shares: [],
-				contacts: []
+				contacts: {}
 			}
 		]
 		// fake request
@@ -85,7 +91,7 @@ const actions = {
 				context.commit('appendAddressbooks', addressbooks)
 				resolve()
 				return addressbooks
-			}, 5000)
+			}, 0)
 		})
 	},
 	getContactsFromAddressBook(context, addressbook) {

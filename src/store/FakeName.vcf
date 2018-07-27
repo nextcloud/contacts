@@ -42,6 +42,7 @@ ADR;TYPE=HOME:;;Waillet;WNA;5377;Belgium
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
+UID:ed314b39-b71a-41cf-b4eb-5cb61dd6fa24
 N:Myers;Michael;;Mr.;
 FN:Michael Myers
 NICKNAME:Vends1961
@@ -49,6 +50,7 @@ BDAY;VALUE=text:11/27/1961
 GENDER:male
 ORG:Foreman & Clark;
 TITLE:Navy
+UID:ed314b39-b71a-41cf-b4eb-5cb61dd6fa24
 EMAIL;TYPE=HOME,INTERNET,pref:MichaelMyers@jourrapide.com
 CATEGORIES:Tech
 TEL;TYPE=VOICE,HOME;VALUE=text:046 282 6655

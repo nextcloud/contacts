@@ -34,8 +34,11 @@ const mutations = {
 	 * @param {Array} contacts Contacts
 	 */
 	appendContacts(state, contacts = []) {
-		console.debug(contacts)
 		state.contacts = state.contacts.concat(contacts)
+	},
+
+	editContact(state, { uid, contact }) {
+		state.contact.find(contact => contact.uid === uid)[0] = contact
 	}
 
 }

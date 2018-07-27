@@ -57,13 +57,32 @@ export default class Contact {
 	}
 
 	/**
+	 *	Return the first email
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get email() {
+		return this.vCard.getFirstPropertyValue('email')
+	}
+
+	/**
 	 *	Return the display name
 	 *
 	 * @readonly
 	 * @memberof Contact
 	 */
 	get displayName() {
-		return this.vCard.getFirstPropertyValue('uid')
+		if (this.vCard.hasProperty('fn')) {
+			return this.vCard.getFirstPropertyValue('fn')
+		}
+		if (this.vCard.hasProperty('n')) {
+			// reverse and join
+			return this.vCard.getFirstPropertyValue('n').filter(function(part) {
+				return part
+			}).join(' ')
+		}
+		return null
 	}
 
 }

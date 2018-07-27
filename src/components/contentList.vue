@@ -22,25 +22,17 @@
 
 <template>
 	<div :class="{'icon-loading': loading}" class="app-content-list">
-		<a v-for="contact in list" :key="contact.uid" href="#"
-			class="app-content-list-item">
-			<input :id="contact.uid" type="checkbox" class="app-content-list-item-checkbox checkbox"
-				@change="toggleSelect">
-			<label :for="contact.uid" />
-			<div class="app-content-list-item-icon">{{ contact.displayName | firstLetter }}</div>
-			<div class="app-content-list-item-line-one">{{ contact.displayName }}</div>
-			<div class="icon-delete" @click="deleteItem" />
-		</a>
+		<content-list-item v-for="contact in list" :key="contact.uid" :contact="contact" />
 	</div>
 </template>
 
 <script>
+import contentListItem from './contentList/contentListItem'
+
 export default {
 	name: 'ContentList',
-	filters: {
-		firstLetter(value) {
-			return value.charAt(0)
-		}
+	components: {
+		'content-list-item': contentListItem
 	},
 	props: {
 		list: {
@@ -50,12 +42,6 @@ export default {
 		loading: {
 			type: Boolean,
 			default: false
-		}
-	},
-	methods: {
-		toggleSelect() {
-		},
-		deleteItem() {
 		}
 	}
 }
