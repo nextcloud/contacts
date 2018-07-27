@@ -72,8 +72,35 @@ export default {
 		}
 	},
 	computed: {
+		// building the popover menu
 		menu() {
-			return []
+			return [{
+				href: '#',
+				icon: 'icon-public',
+				text: 'Copy link'
+			},
+			{
+				href: '#',
+				icon: 'icon-download',
+				text: 'Download',
+			},
+			{
+				icon: 'icon-rename',
+				text: 'Rename',
+				action: 'edit'
+			},
+			{
+				href: '#',
+				icon: 'checkbox',
+				text: 'Enabled',
+				action: ''
+			},
+			{
+				href: '#',
+				icon: 'icon-delete',
+				text: 'Delete',
+				action: ''
+			}]
 		}
 	},
 	methods: {

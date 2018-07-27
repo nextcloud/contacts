@@ -20,13 +20,20 @@
  *
  */
 
+ // contacts settings section
+ #app-settings-content {
+	.settings-section {
+		display: flex;
+		align-items: center;
+	}
+}
+
 // Addressbook lists
 #address-book-list li {
 	padding: 6px 0;
 	display: flex;
 	align-items: center;
 	white-space: nowrap;
-	overflow: hidden;
 	text-overflow: ellipsis;
 
 	.addressbook-name {
@@ -119,33 +126,9 @@
 	}
 }
 
-
-// Sorting Contacts
-
-.settings-section {
-	display: flex;
-	align-items: center;
-}
-
-.multiselect {
-	margin: 3px 3px 3px 0;
-	font-size: 13px;
-	color: #545454;
-	border: 1px solid #dbdbdb;
-	border-radius: 3px;
-	padding: 6px 12px;
-	width: auto;
-	min-height: 34px;
-	cursor: pointer;
-	background-color: inherit;
-	outline: 0;
-	padding-right: 24px !important;
-	font-weight: 400;
-	height: 32px;
-}
-
-
 // Import contacts
-.multiselect.multiselect-vue {
-	width: 100%;
+.import-contact {
+	.multiselect.multiselect-vue {
+		width: 100%;
+	}
 }

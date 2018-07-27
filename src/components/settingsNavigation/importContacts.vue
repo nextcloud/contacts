@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div class="import-contact">
 		<multiselect v-model="value" :options="options"
 			:placeholder="t('contacts', 'Contacts')"
 			class="multiselect-vue" />
@@ -18,12 +18,14 @@ export default {
 	directives: {
 		clickOutside
 	},
-	props: ['addressbooks'],
-		// props: {
-	// 	addressbooks: {
-	// 		type: Object
-	// 	}
-	// },
+	// props: ['addressbooks'],
+	props: {
+		addressbooks: {
+			 type: Object,
+			 required: false,
+			 default: undefined
+		}
+	},
 	data() {
 		return {
 			value: ''
