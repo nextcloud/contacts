@@ -19,10 +19,11 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-// import uuid from 'uuid'
+
 /* eslint-disable-next-line import/no-webpack-loader-syntax */
 import vcfFile from '!raw-loader!./FakeName.vcf'
 import parseVcf from '../services/parseVcf'
+import Vue from 'vue'
 
 const state = {
 	addressbooks: []
@@ -30,21 +31,44 @@ const state = {
 const mutations = {
 	/**
 	 * Store addressbooks into state
+	 *
 	 * @param {Object} state Default state
 	 * @param {Array} addressbooks Addressbooks
 	 */
 	appendAddressbooks(state, addressbooks) {
 		state.addressbooks = addressbooks
 	},
-	appendContactsToAddressbook(state, { addressbook, contacts }) {
+
+	/**
+	 * Append a contact list to an addressbook
+	 * and remove duplicates
+	 *
+	 * @param {Object} state
+	 * @param {Object} data
+	 * @param {Object} data.addressbook the addressbook
+	 * @param {Contact[]} data.contacts array of contacts to append
+	 */
+	async appendContactsToAddressbook(state, { addressbook, contacts }) {
+		addressbook = state.addressbooks.find(search => search === addressbook)
 		// convert list into an array and remove duplicate
-		addressbook.contacts = contacts.reduce(function(list, contact) {
+		addressbook.contacts = contacts.reduce((list, contact) => {
 			if (list[contact.uid]) {
 				console.debug('Duplicate contact overrided', list[contact.uid], contact)
 			}
-			list[contact.uid] = contact
+			Vue.set(list, contact.uid, contact)
 			return list
 		}, addressbook.contacts)
+	},
+
+	/**
+	 * Delete a contact in a specified addressbook
+	 *
+	 * @param {Object} state
+	 * @param {Contact} contact the contact to delete
+	 */
+	deleteContactFromAddressbook(state, contact) {
+		let addressbook = state.addressbooks.find(addressbook => addressbook === contact.addressbook)
+		Vue.delete(addressbook, contact.uid)
 	}
 }
 const getters = {
@@ -94,10 +118,11 @@ const actions = {
 			}, 0)
 		})
 	},
-	getContactsFromAddressBook(context, addressbook) {
-		let contacts = parseVcf(vcfFile)
-		context.commit('appendContactsToAddressbook', { addressbook, contacts })
-		context.commit('appendContacts', contacts)
+	async getContactsFromAddressBook(context, addressbook) {
+		let contacts = parseVcf(vcfFile, addressbook)
+		await context.commit('appendContactsToAddressbook', { addressbook, contacts })
+		await context.commit('appendContacts', contacts)
+		await context.commit('sortContacts')
 	}
 }
 

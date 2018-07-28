@@ -20,10 +20,12 @@
  *
  */
 
+import Vue from 'vue'
+
 const state = {
-	// Array and not object because we allow multiple uids
-	// accross different addressbooks
-	contacts: []
+	// Using objects for performance
+	// https://jsperf.com/ensure-unique-id-objects-vs-array
+	contacts: {}
 }
 const mutations = {
 
@@ -33,20 +35,54 @@ const mutations = {
 	 * @param {Object} state Default state
 	 * @param {Array} contacts Contacts
 	 */
-	appendContacts(state, contacts = []) {
-		state.contacts = state.contacts.concat(contacts)
+	async appendContacts(state, contacts = []) {
+		state.contacts = contacts.reduce(function(list, contact) {
+			Vue.set(list, contact.key, contact)
+			return list
+		}, state.contacts)
 	},
 
-	editContact(state, { uid, contact }) {
-		state.contact.find(contact => contact.uid === uid)[0] = contact
+	/**
+	 * Delete a contact from the global contacts list
+	 *
+	 * @param {Object} state
+	 * @param {Contact} contact
+	 */
+	deleteContact(state, contact) {
+		Vue.delete(state.contacts, contact.key)
+	},
+
+	/**
+	 * Order the contacts list. Filters have terrible performances.
+	 * We do not want to run the sorting function every time.
+	 * Let's only run it on additions
+	 *
+	 * @param {Object} state
+	 * @param {String} orderKey
+	 */
+	async sortContacts(state, orderKey = 'displayName') {
+		state.contacts = Object.values(state.contacts)
+			.sort((a, b) => {
+				var nameA = a[orderKey].toUpperCase() // ignore upper and lowercase
+				var nameB = b[orderKey].toUpperCase() // ignore upper and lowercase
+				return nameA.localeCompare(nameB)
+			})
+			.reduce((list, contact) => {
+				Vue.set(list, contact.key, contact)
+				return list
+			}, {})
 	}
 
 }
 const getters = {
-	getContacts(state) {
-		return state.contacts
+	getContacts: state => state.contacts,
+	getContact: (state) => (uid) => state.contacts[uid]
+}
+const actions = {
+	deleteContact(context, contact) {
+		context.commit('deleteContact', contact)
+		context.commit('deleteContactFromAddressbook', contact)
 	}
 }
-const actions = {}
 
 export default { state, mutations, getters, actions }

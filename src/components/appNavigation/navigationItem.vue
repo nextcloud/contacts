@@ -29,7 +29,7 @@
 		:class="[{'icon-loading-small': item.loading, 'open': item.opened, 'collapsible': item.collapsible&&item.children&&item.children.length>0 }, item.classes]">
 
 		<!-- Bullet -->
-		<div v-if="item.bullet" :style="{ backgroundColor: item.bullet }" class="app-navigation-entry-bullet"/>
+		<div v-if="item.bullet" :style="{ backgroundColor: item.bullet }" class="app-navigation-entry-bullet" />
 
 		<!-- Main link -->
 		<a :href="(item.href) ? item.href : '#' " :class="item.icon" @click="toggleCollapse">
@@ -47,14 +47,14 @@
 				<!-- first action if only one action and counter -->
 				<li v-if="item.utils.actions && item.utils.actions.length === 1 && Number.isInteger(item.utils.counter)"
 					class="app-navigation-entry-utils-menu-button">
-					<button :class="item.utils.actions[0].icon" :title="item.utils.actions[0].text" @click="item.utils.actions[0].action"/>
+					<button :class="item.utils.actions[0].icon" :title="item.utils.actions[0].text" @click="item.utils.actions[0].action" />
 				</li>
 
 				<!-- second action only two actions and no counter -->
 				<li v-for="action in item.utils.actions"
 					v-else-if="item.utils.actions && item.utils.actions.length === 2 && !Number.isInteger(item.utils.counter)" :key="action.action"
 					class="app-navigation-entry-utils-menu-button">
-					<button :class="action.icon" :title="action.text" @click="action.action"/>
+					<button :class="action.icon" :title="action.text" @click="action.action" />
 				</li>
 
 				<!-- menu if only at least one action and counter OR two actions and no counter-->
@@ -68,13 +68,13 @@
 		<!-- if more than 2 actions or more than 1 actions with counter -->
 		<div v-if="item.utils && item.utils.actions && item.utils.actions.length > 1 && (Number.isInteger(item.utils.counter) || item.utils.actions.length > 2)"
 			:class="{ 'open': openedMenu }" class="app-navigation-entry-menu">
-			<popover-menu :menu="item.utils.actions"/>
+			<popover-menu :menu="item.utils.actions" />
 		</div>
 
 		<!-- undo entry -->
 		<div v-if="item.undo" class="app-navigation-entry-deleted">
 			<div class="app-navigation-entry-deleted-description">{{ item.undo.text }}</div>
-			<button :title="t('settings', 'Undo')" class="app-navigation-entry-deleted-button icon-history"/>
+			<button :title="t('settings', 'Undo')" class="app-navigation-entry-deleted-button icon-history" />
 		</div>
 
 		<!-- edit entry -->

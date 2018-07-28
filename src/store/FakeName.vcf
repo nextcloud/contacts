@@ -646,6 +646,7 @@ ADR;TYPE=HOME:;;San Salvo;CH;66050;Italy
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
+UID:cd314b39-b71a-41cf-b4eb-5cb61dd6fa24
 N:Carrión;Abdul;;Mr.;
 FN:Abdul Carrión
 NICKNAME:Marpoe

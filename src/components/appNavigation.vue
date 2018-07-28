@@ -38,7 +38,7 @@
 				>{{ t('contacts', 'Settings') }}</button>
 			</div>
 			<div id="app-settings-content">
-				<slot name="settings-content"/>
+				<slot name="settings-content" />
 			</div>
 		</div>
 	</div>

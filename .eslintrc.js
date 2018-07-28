@@ -34,6 +34,7 @@ module.exports = {
 		// tabs only
 		indent: ['error', 'tab'],
 		'no-tabs': 0,
+		'vue/html-indent': ['error', 'tab'],
 		// only debug console
 		'no-console': ['error', { 'allow': ['debug'] }],
 		// classes blocks
@@ -41,8 +42,9 @@ module.exports = {
 		// es6 import/export and require
 		'node/no-unpublished-require': ['off'],
 		'node/no-unsupported-features': ['off'],
-		// vue format
-		'vue/html-indent': ['error', 'tab'],
+		// space before self-closing elements
+		'vue/html-closing-bracket-spacing': 'error',
+		// code spacing with attributes
 		'vue/max-attributes-per-line': [
 			'error',
 			{

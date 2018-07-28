@@ -1,0 +1,150 @@
+/**
+ * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ *
+ * @author John Molakvoæ <skjnldsv@protonmail.com>
+ *
+ * @license GNU AGPL version 3 or any later version
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+// contacts settings section
+#app-settings-content {
+	.settings-section {
+		display: flex;
+		align-items: center;
+	}
+}
+
+// Addressbook lists
+#address-book-list li {
+	padding: 6px 0;
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
+	.addressbook-name {
+		display: block;
+		flex: 0 1 auto;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.addressbook-share,
+	.addressbook-menu .icon-more {
+		width: 44px;
+		height: 44px;
+		opacity: .5;
+		&:hover,
+		&:focus,
+		&:active {
+			opacity: .7;
+		}
+	}
+	.addressbook-share {
+		margin-left: auto;
+	}
+}
+
+#new-addressbook-form {
+	display: flex;
+}
+
+// Share Addressbook
+.addressBook-share-list {
+	margin-top: 8px;
+	margin-bottom: 12px;
+	display: flex;
+	flex-direction: column;
+}
+
+// Sharees settings for Addressbook
+.sharee-input {
+	width: 100% !important;
+	margin-right: 0;
+	padding-right: 30px;
+	text-overflow: ellipsis;
+}
+
+.calendar-share-item {
+	padding: 0 5px;
+	display: inline-flex;
+	align-items: center;
+	.shareeIdentifier {
+		width: 100%;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		display: inline-block;
+		vertical-align: top;
+		opacity: 0.5;
+	}
+	.utils {
+		padding: 0 !important;
+		float: right;
+		position: relative !important;
+		display: inline-flex;
+		align-items: center;
+		flex-shrink: 0;
+		height: 20px;
+		.checkbox + label {
+			padding: 0 !important;
+		}
+	}
+	
+	.icon {
+		margin-right: 5px;
+		opacity: 0.2;
+		width: 16px;
+		height: 16px;
+		display: inline-block;
+	}
+	
+	.icon-group {
+		background-image: url(/apps/contacts/img/group.svg);
+	}
+	
+	.icon-delete {
+		display: inline-block;
+		width: 24px;
+		height: 20px;
+		opacity: 0.4;
+	}
+}
+
+// Sort Contacts
+.sort-contacts {
+	.multiselect.multiselect-vue {
+		width: 120px;
+		margin-left: 5px;
+	}
+	input#sort-by, .multiselect__single {
+		padding: 6px 12px;
+		min-height: 34px;
+		text-align: center;
+		background: url(/core/css/../img/actions/triangle-s.svg) no-repeat right 4px center;
+		background-color: inherit;
+		outline: 0;
+		padding-right: 24px !important;
+	}
+}
+
+// Import contacts
+.import-contact {
+	.multiselect.multiselect-vue {
+		width: 100%;
+	}
+}
