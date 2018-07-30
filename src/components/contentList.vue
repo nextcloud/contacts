@@ -24,7 +24,7 @@
 	<div id="contacts-list" :class="{'icon-loading': loading}" class="app-content-list">
 		<!-- same uid can coexists between different addressbooks
 			so we need to use the addressbook id as key as well -->
-		<content-list-item v-for="contact in list" :key="contact.key" :contact="contact" />
+		<content-list-item v-for="contact in list" :key="contact.key" :contact="contacts[contact.key]" />
 	</div>
 </template>
 
@@ -38,6 +38,10 @@ export default {
 	},
 	props: {
 		list: {
+			type: Array,
+			required: true
+		},
+		contacts: {
 			type: Object,
 			required: true
 		},

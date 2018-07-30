@@ -41,19 +41,41 @@
 			<header :style="{ 'backgroundColor': colorAvatar }">
 
 				<!-- avatar and upload photo -->
-				<div id="contact-avatar">
+				<div id="contact-header-avatar">
 					<div class="contact-avatar-background" />
 					<img v-if="contact.photo">
 					<input id="contact-avatar-upload" type="file" class="hidden"
 						accept="image/*">
-					<label for="contact-avatar-upload" class="icon-upload-white" />
+					<label v-tooltip.auto="t('contacts', 'Upload a new picture')" for="contact-avatar-upload" class="icon-upload-white" />
 				</div>
 
 				<!-- fullname, org, title -->
-				<div id="contact-contact-infos" />
+				<div id="contact-header-infos">
+					<h2>
+						<input id="contact-fullname" v-model="contact.fullName" :disabled="!contact.addressbook.enabled"
+							:placeholder="t('contacts', 'Name')" type="text" autocomplete="off"
+							autocorrect="off" spellcheck="false" name="fullname"
+							value="">
+					</h2>
+					<div id="details-org-container">
+						<input id="contact-org" v-model="contact.org" :disabled="!contact.addressbook.enabled"
+							:placeholder="t('contacts', 'Company')" type="text" autocomplete="off"
+							autocorrect="off" spellcheck="false" name="org"
+							value="">
+						<input id="contact-title" v-model="contact.title" :disabled="!contact.addressbook.enabled"
+							:placeholder="t('contacts', 'Title')" type="text" autocomplete="off"
+							autocorrect="off" spellcheck="false" name="title"
+							value="">
+					</div>
+				</div>
 
 				<!-- actions -->
-				<div id="details-actions" />
+				<div id="contact-header-actions">
+					<div v-click-outside="closeMenu" class="icon-more" @click="toggleMenu" />
+					<div :class="{ 'open': openedMenu }" class="popovermenu">
+						<popover-menu :menu="contactActions" />
+					</div>
+				</div>
 			</header>
 
 			<!-- contact details -->
@@ -67,9 +89,21 @@
 <script>
 import Contact from '../models/contact'
 import ICAL from 'ical.js'
+import popoverMenu from './popoverMenu'
+import ClickOutside from 'vue-click-outside'
+import Vue from 'vue'
+import VTooltip from 'v-tooltip'
+
+Vue.use(VTooltip)
 
 export default {
 	name: 'ContentDetails',
+	components: {
+		popoverMenu
+	},
+	directives: {
+		ClickOutside
+	},
 	props: {
 		loading: {
 			type: Boolean,
@@ -82,7 +116,8 @@ export default {
 	},
 	data() {
 		return {
-			contact: undefined
+			contact: undefined,
+			openedMenu: false
 		}
 	},
 	computed: {
@@ -93,6 +128,24 @@ export default {
 			} catch (e) {
 				return 'grey'
 			}
+		},
+		contactActions() {
+			let actions = [
+				{
+					icon: 'icon-download',
+					text: t('contacts', 'Download'),
+					href: this.contact.url
+				}
+			]
+			if (this.contact.addressbook.enabled) {
+				actions.push({
+					icon: 'icon-delete',
+					text: t('contacts', 'Delete'),
+					action: this.deleteContact
+				})
+			}
+
+			return actions
 		}
 	},
 	watch: {
@@ -112,6 +165,12 @@ export default {
 			// create new local instance of this contact
 			let contact = this.$store.getters.getContact(this.uid)
 			this.contact = new Contact(ICAL.stringify(contact.jCal), contact.addressbook)
+		},
+		closeMenu() {
+			this.openedMenu = false
+		},
+		toggleMenu() {
+			this.openedMenu = !this.openedMenu
 		}
 	}
 

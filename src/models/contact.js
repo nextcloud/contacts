@@ -50,7 +50,20 @@ export default class Contact {
 	}
 
 	/**
-	 *	Return the uid
+	 * Ensure we're normalizing the possible arrays
+	 * into a string by taking the first element
+	 * e.g. ORG:ABC\, Inc.; will output an array because of the semi-colon
+	 *
+	 * @param {Array|string} data
+	 * @returns string
+	 * @memberof Contact
+	 */
+	firstIfArray(data) {
+		return Array.isArray(data) ? data[0] : data
+	}
+
+	/**
+	 * Return the uid
 	 *
 	 * @readonly
 	 * @memberof Contact
@@ -59,36 +72,72 @@ export default class Contact {
 		return this.vCard.getFirstPropertyValue('uid')
 	}
 
+	/**
+	 * Set the uid
+	 *
+	 * @memberof Contact
+	 */
 	set uid(uid) {
 		this.vCard.updatePropertyWithValue('uid', uid)
 		return true
 	}
 
 	/**
-	 *	Return the key
+	 * Return the key
 	 *
 	 * @readonly
 	 * @memberof Contact
 	 */
 	get key() {
-		return this.addressbook.id + '@' + this.uid
+		return this.uid + '@' + this.addressbook.id
 	}
 
 	/**
-	 *	Return the first email
+	 * Return the first email
 	 *
 	 * @readonly
 	 * @memberof Contact
 	 */
 	get email() {
-		return this.vCard.getFirstPropertyValue('email')
+		return this.firstIfArray(this.vCard.getFirstPropertyValue('email'))
 	}
 
 	/**
-	 *	Return the display name
+	 * Return the first email
 	 *
 	 * @readonly
 	 * @memberof Contact
+	 */
+	get org() {
+		return this.firstIfArray(this.vCard.getFirstPropertyValue('org'))
+	}
+
+	/**
+	 * Return the first email
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get title() {
+		return this.firstIfArray(this.vCard.getFirstPropertyValue('title'))
+	}
+
+	/**
+	 * Return the first email
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get fullName() {
+		return this.vCard.getFirstPropertyValue('fn')
+	}
+
+	/**
+	 * Return the display name
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 * @returns {string} the displayName
 	 */
 	get displayName() {
 		if (this.vCard.hasProperty('fn')) {
@@ -101,6 +150,38 @@ export default class Contact {
 			}).join(' ')
 		}
 		return null
+	}
+
+	/**
+	 * Return the first name if exists
+	 * Returns the displayName otherwise
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 * @returns {string} firstName|displayName
+	 */
+	get firstName() {
+		if (this.vCard.hasProperty('n')) {
+			// reverse and join
+			return this.vCard.getFirstPropertyValue('n')[1]
+		}
+		return this.displayName
+	}
+
+	/**
+	 * Return the last name if exists
+	 * Returns the displayName otherwise
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 * @returns {string} lastName|displayName
+	 */
+	get lastName() {
+		if (this.vCard.hasProperty('n')) {
+			// reverse and join
+			return this.vCard.getFirstPropertyValue('n')[0]
+		}
+		return this.displayName
 	}
 
 }

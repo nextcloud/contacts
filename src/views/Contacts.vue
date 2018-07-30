@@ -37,7 +37,7 @@
 		<div id="app-content">
 			<div id="app-content-wrapper">
 				<!-- contacts list -->
-				<content-list :list="contacts" :loading="loading" />
+				<content-list :list="sortedContacts" :contacts="contacts" :loading="loading" />
 				<!-- main contacts details -->
 				<content-details :loading="loading" :uid="selectedContact" />
 			</div>
@@ -73,8 +73,7 @@ export default {
 	},
 	data() {
 		return {
-			loading: true,
-			orderKey: 'displayName'
+			loading: true
 		}
 	},
 	computed: {
@@ -82,15 +81,17 @@ export default {
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
 		},
+		sortedContacts() {
+			return this.$store.getters.getSortedContacts
+		},
 		contacts() {
 			return this.$store.getters.getContacts
 		},
 		groups() {
 			return this.$store.getters.getGroups
 		},
-
-		contactsLength() {
-			return Object.keys(this.contacts)
+		orderKey() {
+			return this.$store.getters.getOrderKey
 		},
 
 		// building the main menu
@@ -118,7 +119,7 @@ export default {
 				},
 				text: t('contacts', 'All contacts'),
 				utils: {
-					counter: this.contactsLength
+					counter: this.sortedContacts.length
 				}
 			}, {
 				id: 'everyone2',
@@ -130,7 +131,7 @@ export default {
 				},
 				text: t('contacts', 'All contacts2'),
 				utils: {
-					counter: this.contactsLength
+					counter: this.sortedContacts.length
 				}
 			}]
 		}
@@ -168,8 +169,8 @@ export default {
 		 * @param {Array} addressbooks Addressbooks
 		 */
 		updateSorting(orderKey = 'displayName') {
-			this.orderKey = orderKey
-			this.$store.commit('sortContacts', this.orderKey)
+			this.$store.commit('setOrder', orderKey)
+			this.$store.commit('sortContacts')
 		},
 
 		selectFirstContactIfNone() {

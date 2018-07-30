@@ -7,7 +7,7 @@
 		<div :style="{ 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">{{ contact.displayName | firstLetter }}</div>
 		<div class="app-content-list-item-line-one">{{ contact.displayName }}</div>
 		<div v-if="contact.email" class="app-content-list-item-line-two">{{ contact.email }}</div>
-		<div class="icon-delete" @click.prevent.stop="deleteContact" />
+		<div v-if="contact.addressbook.enabled" class="icon-delete" @click.prevent.stop="deleteContact" />
 	</a>
 </template>
 

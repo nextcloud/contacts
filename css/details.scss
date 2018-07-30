@@ -25,17 +25,19 @@
 	// header
 	header {
 		height: 100px;
-		padding-left: 44px;
 		display: flex;
 		font-weight: bold;
 		align-items: center;
-		#contact-avatar {
+
+		// AVATAR
+		#contact-header-avatar {
 			position: relative;
 			height: 75px;
 			width: 75px;
 			border-radius: 50%;
 			overflow: hidden;
 			flex-shrink: 0;
+			margin: 0 22px 0 44px;
 			.contact-avatar-background {
 				background-color: var(--color-background-dark);
 				opacity: .2;
@@ -62,6 +64,51 @@
 				position: absolute;
 				width: 100%;
 				height: 100%;
+			}
+		}
+		
+		// ORG-TITLE-NAME
+		#contact-header-infos {
+			display: flex;
+			flex-direction: column;
+			flex: 1 1;
+			h2,
+			#details-org-container {
+				display: flex;
+				margin: 0;
+			}
+			input {
+				font-size: inherit;
+				color: #fff !important;
+				text-shadow: 0 0 2px var(--color-box-shadow);
+				background: transparent;
+				border: none;
+				text-overflow: ellipsis;
+				overflow: hidden;
+				white-space: nowrap;
+				max-width: 100%;
+				margin: 0;
+				padding: 4px 5px;
+				flex: 1 1;
+				&::placeholder {
+					color: #fff !important;
+					opacity: .8;
+				}
+			}
+			#contact-org {
+				max-width: 20%;
+				min-width: 10vw;
+			}
+		}
+
+		// ACTIONS
+		#contact-header-actions {
+			position: relative;
+			.icon-more {
+				height: 44px;
+				width: 44px;
+				padding: 14px;
+				cursor: pointer;
 			}
 		}
 	}

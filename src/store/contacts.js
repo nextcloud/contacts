@@ -25,7 +25,9 @@ import Vue from 'vue'
 const state = {
 	// Using objects for performance
 	// https://jsperf.com/ensure-unique-id-objects-vs-array
-	contacts: {}
+	contacts: {},
+	sortedContacts: [],
+	orderKey: 'displayName'
 }
 const mutations = {
 
@@ -49,34 +51,68 @@ const mutations = {
 	 * @param {Contact} contact
 	 */
 	deleteContact(state, contact) {
+		let index = state.sortedContacts.findIndex(search => search.key === contact.key)
+		state.sortedContacts.splice(index, 1)
 		Vue.delete(state.contacts, contact.key)
+	},
+
+	/**
+	 * Insert new contact into sorted array
+	 * Not using sort, splice has far better performances
+	 * https://jsperf.com/sort-vs-splice-in-array
+	 *
+	 * @param {Object} state
+	 * @param {Contact} contact
+	 */
+	addContact(state, contact) {
+		let sortedContact = {
+			key: contact.key,
+			value: contact[state.orderKey]
+		}
+		for (var i = 0, len = state.sortedContacts.length; i < len; i++) {
+			var nameA = state.sortedContacts[i].value.toUpperCase()	// ignore upper and lowercase
+			var nameB = sortedContact.value.toUpperCase()			// ignore upper and lowercase
+			if (nameA.localeCompare(nameB) > 0) {
+				state.sortedContacts.splice(i, 0, sortedContact)
+				break
+			}
+		}
+		Vue.set(state.contacts, contact.key, contact)
 	},
 
 	/**
 	 * Order the contacts list. Filters have terrible performances.
 	 * We do not want to run the sorting function every time.
-	 * Let's only run it on additions
+	 * Let's only run it on additions and create an index
 	 *
 	 * @param {Object} state
-	 * @param {String} orderKey
 	 */
-	async sortContacts(state, orderKey = 'displayName') {
-		state.contacts = Object.values(state.contacts)
+	async sortContacts(state) {
+		state.sortedContacts = Object.values(state.contacts)
+			.map(contact => { return { key: contact.key, value: contact[state.orderKey] } })
 			.sort((a, b) => {
-				var nameA = a[orderKey].toUpperCase() // ignore upper and lowercase
-				var nameB = b[orderKey].toUpperCase() // ignore upper and lowercase
+				var nameA = a.value.toUpperCase() // ignore upper and lowercase
+				var nameB = b.value.toUpperCase() // ignore upper and lowercase
 				return nameA.localeCompare(nameB)
 			})
-			.reduce((list, contact) => {
-				Vue.set(list, contact.key, contact)
-				return list
-			}, {})
+	},
+
+	/**
+	 * Set the order key
+	 *
+	 * @param {Object} state
+	 * @param {string} [orderKey='displayName']
+	 */
+	setOrder(state, orderKey = 'displayName') {
+		state.orderKey = orderKey
 	}
 
 }
 const getters = {
 	getContacts: state => state.contacts,
-	getContact: (state) => (uid) => state.contacts[uid]
+	getSortedContacts: state => state.sortedContacts,
+	getContact: (state) => (uid) => state.contacts[uid],
+	getOrderKey: state => state.orderKey
 }
 const actions = {
 	deleteContact(context, contact) {
