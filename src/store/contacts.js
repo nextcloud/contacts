@@ -20,10 +20,14 @@
  *
  */
 
+import Vue from 'vue'
+
 const state = {
-	// Array and not object because we allow multiple uids
-	// accross different addressbooks
-	contacts: []
+	// Using objects for performance
+	// https://jsperf.com/ensure-unique-id-objects-vs-array
+	contacts: {},
+	sortedContacts: [],
+	orderKey: 'displayName'
 }
 const mutations = {
 
@@ -33,17 +37,88 @@ const mutations = {
 	 * @param {Object} state Default state
 	 * @param {Array} contacts Contacts
 	 */
-	appendContacts(state, contacts = []) {
-		console.debug(contacts)
-		state.contacts = state.contacts.concat(contacts)
+	async appendContacts(state, contacts = []) {
+		state.contacts = contacts.reduce(function(list, contact) {
+			Vue.set(list, contact.key, contact)
+			return list
+		}, state.contacts)
+	},
+
+	/**
+	 * Delete a contact from the global contacts list
+	 *
+	 * @param {Object} state
+	 * @param {Contact} contact
+	 */
+	deleteContact(state, contact) {
+		let index = state.sortedContacts.findIndex(search => search.key === contact.key)
+		state.sortedContacts.splice(index, 1)
+		Vue.delete(state.contacts, contact.key)
+	},
+
+	/**
+	 * Insert new contact into sorted array
+	 * Not using sort, splice has far better performances
+	 * https://jsperf.com/sort-vs-splice-in-array
+	 *
+	 * @param {Object} state
+	 * @param {Contact} contact
+	 */
+	addContact(state, contact) {
+		let sortedContact = {
+			key: contact.key,
+			value: contact[state.orderKey]
+		}
+		for (var i = 0, len = state.sortedContacts.length; i < len; i++) {
+			var nameA = state.sortedContacts[i].value.toUpperCase()	// ignore upper and lowercase
+			var nameB = sortedContact.value.toUpperCase()			// ignore upper and lowercase
+			if (nameA.localeCompare(nameB) > 0) {
+				state.sortedContacts.splice(i, 0, sortedContact)
+				break
+			}
+		}
+		Vue.set(state.contacts, contact.key, contact)
+	},
+
+	/**
+	 * Order the contacts list. Filters have terrible performances.
+	 * We do not want to run the sorting function every time.
+	 * Let's only run it on additions and create an index
+	 *
+	 * @param {Object} state
+	 */
+	async sortContacts(state) {
+		state.sortedContacts = Object.values(state.contacts)
+			.map(contact => { return { key: contact.key, value: contact[state.orderKey] } })
+			.sort((a, b) => {
+				var nameA = a.value.toUpperCase() // ignore upper and lowercase
+				var nameB = b.value.toUpperCase() // ignore upper and lowercase
+				return nameA.localeCompare(nameB)
+			})
+	},
+
+	/**
+	 * Set the order key
+	 *
+	 * @param {Object} state
+	 * @param {string} [orderKey='displayName']
+	 */
+	setOrder(state, orderKey = 'displayName') {
+		state.orderKey = orderKey
 	}
 
 }
 const getters = {
-	getContacts(state) {
-		return state.contacts
+	getContacts: state => state.contacts,
+	getSortedContacts: state => state.sortedContacts,
+	getContact: (state) => (uid) => state.contacts[uid],
+	getOrderKey: state => state.orderKey
+}
+const actions = {
+	deleteContact(context, contact) {
+		context.commit('deleteContact', contact)
+		context.commit('deleteContactFromAddressbook', contact)
 	}
 }
-const actions = {}
 
 export default { state, mutations, getters, actions }

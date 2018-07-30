@@ -28,8 +28,6 @@ import groups from './groups'
 
 Vue.use(Vuex)
 
-const debug = process.env.NODE_ENV !== 'production'
-
 const mutations = {}
 
 export default new Vuex.Store({
@@ -38,7 +36,6 @@ export default new Vuex.Store({
 		contacts,
 		groups
 	},
-	strict: debug,
 
 	mutations
 })

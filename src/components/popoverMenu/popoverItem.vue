@@ -24,8 +24,8 @@
 	<li>
 		<!-- If item.href is set, a link will be directly used -->
 		<a v-if="item.href" :href="(item.href) ? item.href : '#' " :target="(item.target) ? item.target : '' "
-			rel="noreferrer noopener" click="item.action">
-			<span :class="item.icon"/>
+			rel="noreferrer noopener" @click="item.action">
+			<span :class="item.icon" />
 			<span v-if="item.text">{{ item.text }}</span>
 			<p v-else-if="item.longtext">{{ item.longtext }}</p>
 		</a>
@@ -37,13 +37,13 @@
 		</span>
 		<!-- If item.action is set instead, a button will be used -->
 		<button v-else-if="item.action" @click="item.action">
-			<span :class="item.icon"/>
+			<span :class="item.icon" />
 			<span v-if="item.text">{{ item.text }}</span>
 			<p v-else-if="item.longtext">{{ item.longtext }}</p>
 		</button>
 		<!-- If item.longtext is set AND the item does not have an action -->
 		<span v-else class="menuitem">
-			<span :class="item.icon"/>
+			<span :class="item.icon" />
 			<span v-if="item.text">{{ item.text }}</span>
 			<p v-else-if="item.longtext">{{ item.longtext }}</p>
 		</span>

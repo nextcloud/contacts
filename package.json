@@ -15,8 +15,10 @@
 		"test:coverage": "jest --coverage"
 	},
 	"dependencies": {
+		"babel-polyfill": "^6.26.0",
 		"ical.js": "^1.2.2",
 		"uuid": "^3.3.2",
+		"v-tooltip": "^2.0.0-rc.33",
 		"vue": "^2.5.16",
 		"vue-click-outside": "^1.0.7",
 		"vue-multiselect": "^2.1.0",

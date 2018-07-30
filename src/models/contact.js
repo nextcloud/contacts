@@ -29,15 +29,18 @@ export default class Contact {
 	 * Creates an instance of Contact
 	 *
 	 * @param {string} [vcard] the vcard data as string with proper new lines
+	 * @param {object} [addressbook] the addressbook which the contat belongs to
 	 * @memberof Contact
 	 */
-	constructor(vcard = '') {
+	constructor(vcard = '', addressbook) {
 		let jCal = ICAL.parse(vcard)
 		if (jCal[0] !== 'vcard') {
 			throw new Error('Only one contact is allowed in the vcard data')
 		}
 
-		this.vCard = new ICAL.Component(jCal)
+		this.jCal = jCal
+		this.addressbook = addressbook
+		this.vCard = new ICAL.Component(this.jCal)
 
 		// if no uid set, create one
 		if (!this.vCard.hasProperty('uid')) {
@@ -47,7 +50,20 @@ export default class Contact {
 	}
 
 	/**
-	 *	Return the uid
+	 * Ensure we're normalizing the possible arrays
+	 * into a string by taking the first element
+	 * e.g. ORG:ABC\, Inc.; will output an array because of the semi-colon
+	 *
+	 * @param {Array|string} data
+	 * @returns string
+	 * @memberof Contact
+	 */
+	firstIfArray(data) {
+		return Array.isArray(data) ? data[0] : data
+	}
+
+	/**
+	 * Return the uid
 	 *
 	 * @readonly
 	 * @memberof Contact
@@ -57,13 +73,115 @@ export default class Contact {
 	}
 
 	/**
-	 *	Return the display name
+	 * Set the uid
+	 *
+	 * @memberof Contact
+	 */
+	set uid(uid) {
+		this.vCard.updatePropertyWithValue('uid', uid)
+		return true
+	}
+
+	/**
+	 * Return the key
 	 *
 	 * @readonly
 	 * @memberof Contact
 	 */
+	get key() {
+		return this.uid + '@' + this.addressbook.id
+	}
+
+	/**
+	 * Return the first email
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get email() {
+		return this.firstIfArray(this.vCard.getFirstPropertyValue('email'))
+	}
+
+	/**
+	 * Return the first email
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get org() {
+		return this.firstIfArray(this.vCard.getFirstPropertyValue('org'))
+	}
+
+	/**
+	 * Return the first email
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get title() {
+		return this.firstIfArray(this.vCard.getFirstPropertyValue('title'))
+	}
+
+	/**
+	 * Return the first email
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get fullName() {
+		return this.vCard.getFirstPropertyValue('fn')
+	}
+
+	/**
+	 * Return the display name
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 * @returns {string} the displayName
+	 */
 	get displayName() {
-		return this.vCard.getFirstPropertyValue('uid')
+		if (this.vCard.hasProperty('fn')) {
+			return this.vCard.getFirstPropertyValue('fn')
+		}
+		if (this.vCard.hasProperty('n')) {
+			// reverse and join
+			return this.vCard.getFirstPropertyValue('n').filter(function(part) {
+				return part
+			}).join(' ')
+		}
+		return null
+	}
+
+	/**
+	 * Return the first name if exists
+	 * Returns the displayName otherwise
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 * @returns {string} firstName|displayName
+	 */
+	get firstName() {
+		if (this.vCard.hasProperty('n')) {
+			// reverse and join
+			return this.vCard.getFirstPropertyValue('n')[1]
+		}
+		return this.displayName
+	}
+
+	/**
+	 * Return the last name if exists
+	 * Returns the displayName otherwise
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 * @returns {string} lastName|displayName
+	 */
+	get lastName() {
+		if (this.vCard.hasProperty('n')) {
+			// reverse and join
+			return this.vCard.getFirstPropertyValue('n')[0]
+		}
+		return this.displayName
 	}
 
 }

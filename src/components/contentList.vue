@@ -21,41 +21,33 @@
   -->
 
 <template>
-	<div :class="{'icon-loading': loading}" class="app-content-list">
-		<a v-for="contact in list" :key="contact.uid" href="#"
-			class="app-content-list-item">
-			<input :id="contact.uid" type="checkbox" class="app-content-list-item-checkbox checkbox"
-				@change="toggleSelect">
-			<label :for="contact.uid" />
-			<div class="app-content-list-item-icon">{{ contact.displayName | firstLetter }}</div>
-			<div class="app-content-list-item-line-one">{{ contact.displayName }}</div>
-			<div class="icon-delete" @click="deleteItem" />
-		</a>
+	<div id="contacts-list" :class="{'icon-loading': loading}" class="app-content-list">
+		<!-- same uid can coexists between different addressbooks
+			so we need to use the addressbook id as key as well -->
+		<content-list-item v-for="contact in list" :key="contact.key" :contact="contacts[contact.key]" />
 	</div>
 </template>
 
 <script>
+import contentListItem from './contentList/contentListItem'
+
 export default {
 	name: 'ContentList',
-	filters: {
-		firstLetter(value) {
-			return value.charAt(0)
-		}
+	components: {
+		'content-list-item': contentListItem
 	},
 	props: {
 		list: {
 			type: Array,
 			required: true
 		},
+		contacts: {
+			type: Object,
+			required: true
+		},
 		loading: {
 			type: Boolean,
-			default: false
-		}
-	},
-	methods: {
-		toggleSelect() {
-		},
-		deleteItem() {
+			default: true
 		}
 	}
 }

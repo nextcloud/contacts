@@ -42,9 +42,9 @@
 		<div id="app-content">
 			<div id="app-content-wrapper">
 				<!-- contacts list -->
-				<content-list :list="contacts" :loading="loading" />
+				<content-list :list="sortedContacts" :contacts="contacts" :loading="loading" />
 				<!-- main contacts details -->
-				<div :class="{'icon-loading': loading}" class="app-content-detail" />
+				<content-details :loading="loading" :uid="selectedContact" />
 			</div>
 		</div>
 
@@ -54,6 +54,7 @@
 <script>
 import appNavigation from '../components/appNavigation'
 import contentList from '../components/contentList'
+import contentDetails from '../components/contentDetails'
 import addressBook from '../components/addressBook'
 import importContacts from '../components/settingsNavigation/importContacts'
 import sortContacts from '../components/settingsNavigation/sortContacts'
@@ -63,10 +64,8 @@ export default {
 	components: {
 		appNavigation,
 		contentList,
-		addressBook,
-		importContacts,
-		sortContacts,
-		addAddressBook
+		contentDetails,
+		addressBook
 	},
 	// passed by the router
 	props: {
@@ -82,7 +81,6 @@ export default {
 	},
 	data() {
 		return {
-			list: [],
 			loading: true
 		}
 	},
@@ -91,11 +89,17 @@ export default {
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
 		},
+		sortedContacts() {
+			return this.$store.getters.getSortedContacts
+		},
 		contacts() {
 			return this.$store.getters.getContacts
 		},
 		groups() {
 			return this.$store.getters.getGroups
+		},
+		orderKey() {
+			return this.$store.getters.getOrderKey
 		},
 
 		// building the main menu
@@ -123,30 +127,74 @@ export default {
 				},
 				text: t('contacts', 'All contacts'),
 				utils: {
-					counter: this.contacts.length
+					counter: this.sortedContacts.length
+				}
+			}, {
+				id: 'everyone2',
+				key: 'everyone2',
+				icon: 'icon-contacts-dark',
+				router: {
+					name: 'group',
+					params: { selectedGroup: t('contacts', 'All contacts2') }
+				},
+				text: t('contacts', 'All contacts2'),
+				utils: {
+					counter: this.sortedContacts.length
 				}
 			}]
 		}
 	},
 	watch: {
 		// watch url change and group select
-		selectedGroup: function(val, old) {
-			console.debug(val, old)
+		selectedGroup: function() {
+			this.selectFirstContactIfNone()
+		},
+		// watch url change and contact select
+		selectedContact: function() {
+			this.selectFirstContactIfNone()
 		}
 	},
 	beforeMount() {
 		// get addressbooks then get contacts
 		this.$store.dispatch('getAddressbooks')
 			.then(() => {
-				// TODO: await then toggle loading state
-				this.addressbooks.forEach(addressbook => {
-					this.$store.dispatch('getContactsFromAddressBook', addressbook)
+				Promise.all(this.addressbooks.map(async addressbook => {
+					await this.$store.dispatch('getContactsFromAddressBook', addressbook)
+				})).then(() => {
+					this.loading = false
+					this.selectFirstContactIfNone()
 				})
-				this.loading = false
 			})
 	},
 	methods: {
 		newContact() {
+		},
+
+		/**
+		 * Dispatch sorting update request to the store
+		 *
+		 * @param {Object} state Default state
+		 * @param {Array} addressbooks Addressbooks
+		 */
+		updateSorting(orderKey = 'displayName') {
+			this.$store.commit('setOrder', orderKey)
+			this.$store.commit('sortContacts')
+		},
+
+		selectFirstContactIfNone() {
+			let inList = Object.keys(this.contacts).findIndex(key => key === this.selectedContact) > -1
+			if (this.selectedContact === undefined || !inList) {
+				if (this.selectedContact && !inList) {
+					OC.Notification.showTemporary(t('contacts', 'Contact not found'))
+				}
+				this.$router.push({
+					name: 'contact',
+					params: {
+						selectedGroup: this.selectedGroup,
+						selectedContact: Object.values(this.contacts)[0].key
+					}
+				})
+			}
 		}
 	}
 }

@@ -22,7 +22,7 @@
 
 import Contact from '../models/contact'
 
-export default function parseVcf(data = '') {
+export default function parseVcf(data = '', addressbook) {
 	let regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi
 	let vCards = data.match(regexp)
 
@@ -30,5 +30,5 @@ export default function parseVcf(data = '') {
 		console.debug('Error during the parsing of the following vcf file: ', data)
 		return []
 	}
-	return vCards.map(vCard => new Contact(vCard))
+	return vCards.map(vCard => new Contact(vCard, addressbook))
 }
