@@ -65,7 +65,10 @@ export default {
 		appNavigation,
 		contentList,
 		contentDetails,
-		addressBook
+		addressBook,
+		importContacts,
+		sortContacts,
+		addAddressBook
 	},
 	// passed by the router
 	props: {

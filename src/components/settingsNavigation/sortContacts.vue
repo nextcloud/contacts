@@ -23,7 +23,7 @@
 
 <template>
 	<div class="sort-contacts">
-		<label for="sort-by" >{{ t('contacts', 'Sort by:') }}</label>
+		<label for="sort-by">{{ t('contacts', 'Sort by:') }}</label>
 		<multiselect
 			id="sort-by"
 			v-model="value"
@@ -31,7 +31,7 @@
 			:placeholder="t('contacts', 'First name')"
 			:options="options"
 			class="multiselect-vue"
-			@input="sortContacts()" />
+			@input="sortContacts(value)" />
 	</div>
 </template>
 
@@ -57,6 +57,7 @@ export default {
 	},
 	data() {
 		return {
+			// options: [{'display':'First-name', 'code':'firstName'}, {'display':'Lastname', 'code': 'Lastname'}, {'display':'Display name', 'code':'displayName'}],
 			options: ['First-name', 'Lastname', 'Display name'],
 			value: ''
 		}
@@ -65,8 +66,9 @@ export default {
 
 	},
 	methods: {
-		sortContacts() {
-			alert('sorting contacts')
+		sortContacts(orderKey = 'displayName') {
+			this.$store.commit('setOrder', orderKey)
+			this.$store.commit('sortContacts')
 		}
 	}
 }
