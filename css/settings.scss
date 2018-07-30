@@ -143,8 +143,26 @@
 }
 
 // Import contacts
+
 .import-contact {
+	display: flex;
+	flex-direction: column;
 	.multiselect.multiselect-vue {
 		width: 100%;
 	}
+	.multiselect.multiselect-vue .multiselect__tags {
+		border-left: 1px solid var(--color-border-dark);
+		border-right: 1px solid var(--color-border-dark);
+		border-bottom: 1px solid var(--color-border-dark);
+		border-top: 0;
+	}
+	select, button, .button, input[type='button'], input[type='submit'], input[type='reset'] {
+		width: 100%;
+		padding: 6px 12px 6px 40px;
+		margin: 3px 3px 0 0;
+	}
+	[class^='icon-'], [class*=' icon-'] {
+		background: url(/core/css/../img/actions/upload.svg) no-repeat left 7px center;
+	}
 }
+
