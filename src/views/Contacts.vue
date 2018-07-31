@@ -104,7 +104,10 @@ export default {
 				return this.sortedContacts
 			}
 			let group = this.groups.filter(group => group.name === this.selectedGroup)[0]
-			return this.sortedContacts.filter(contact => group.contacts.indexOf(contact.key) >= 0)
+			if (group) {
+				return this.sortedContacts.filter(contact => group.contacts.indexOf(contact.key) >= 0)
+			}
+			return []
 		},
 
 		// generate groups menu from groups store
@@ -194,7 +197,7 @@ export default {
 		},
 
 		selectFirstContactIfNone() {
-			let inList = Object.keys(this.contactsList).findIndex(key => key === this.selectedContact) > -1
+			let inList = this.contactsList.findIndex(contact => contact.key === this.selectedContact) > -1
 			if (this.selectedContact === undefined || !inList) {
 				if (this.selectedContact && !inList) {
 					OC.Notification.showTemporary(t('contacts', 'Contact not found'))
