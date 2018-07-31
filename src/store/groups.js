@@ -32,13 +32,14 @@ const mutations = {
 	 */
 	appendGroups(state, contacts) {
 		// init groups list
-		state.groups = Object.values(contacts)
+		let groups = Object.values(contacts)
 			.map(contact => contact.groups.map(group => {
 				return {
 					name: group,
 					contacts: []
 				}
 			})[0])
+		state.groups = state.groups.concat(groups)
 			.filter(function(group, index, self) {
 				return group && self.findIndex(search => search && search.name === group.name) === index
 			})
