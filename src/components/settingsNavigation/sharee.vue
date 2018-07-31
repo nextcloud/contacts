@@ -61,7 +61,8 @@ export default {
 			alert('Delete')
 		},
 		editSharee() {
-			alert('sharee can edit')
+			alert('Edit')
+			// this.$store.commit('toggleShareeWritable', { addressbook, sharee })
 		}
 	}
 }

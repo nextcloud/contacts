@@ -28,10 +28,13 @@
 			id="sort-by"
 			v-model="value"
 			:searchable="false"
+			:allow-empty="false"
 			:placeholder="t('contacts', 'First name')"
 			:options="options"
+			track-by="code"
+			label="display"
 			class="multiselect-vue"
-			@input="sortContacts(value)" />
+			@input="sortContacts(value.code)" />
 	</div>
 </template>
 
@@ -58,7 +61,11 @@ export default {
 	data() {
 		return {
 			// options: [{'display':'First-name', 'code':'firstName'}, {'display':'Lastname', 'code': 'Lastname'}, {'display':'Display name', 'code':'displayName'}],
-			options: ['First-name', 'Lastname', 'Display name'],
+			options: [
+				{ display: 'First name', code: 'firstName' },
+				{ display: 'Lastname', code: 'lastName' },
+				{ display: 'Display-name', code: 'displayName' }
+			],
 			value: ''
 		}
 	},

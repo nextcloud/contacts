@@ -69,7 +69,49 @@ const mutations = {
 	deleteContactFromAddressbook(state, contact) {
 		let addressbook = state.addressbooks.find(addressbook => addressbook === contact.addressbook)
 		Vue.delete(addressbook, contact.uid)
+	},
+
+	/**
+	 * Share addressbook with a user or group
+	 *
+	 * @param {Object} state
+	 * @param {Object} data
+	 * @param {Object} data.addressbook the addressbook
+	 */
+	shareAddressbook(state, { addressbook, sharee }) {
+		addressbook = state.addressbooks.find(search => search === addressbook)
+		let newSharee = {}
+		sharee.displayname = sharee
+		sharee.writable = false
+		addressbook.shares.append(newSharee)
+	},
+
+	/**
+	 * Share addressbook with a user or group
+	 *
+	 * @param {Object} state
+	 * @param {Object} data
+	 * @param {Object} data.addressbook the addressbook
+	 */
+	removeSharee(state, { addressbook, sharee }) {
+		addressbook = state.addressbooks.find(search => search === addressbook)
+		addressbook.shares.splice(sharee, 1)
+	},
+
+	/**
+	 * Toggle sharee's writable permission
+	 *
+	 * @param {Object} state
+	 * @param {Object} data
+	 * @param {Object} data.addressbook the addressbook
+	 * @param {Object} sharee the sharee
+	 */
+	toggleShareeWritable(state, { addressbook, sharee }) {
+		addressbook = state.addressbooks.find(search => search === addressbook)
+		sharee = addressbook.find(search => search === addressbook)
+		sharee.writable = !sharee.writable
 	}
+
 }
 const getters = {
 	getAddressbooks(state) {
@@ -90,9 +132,9 @@ const actions = {
 				enabled: true,
 				owner: 'admin',
 				shares: [
-					{ name: 'Bob', edit: true },
-					{ name: 'Rita', edit: true },
-					{ name: 'Sue', edit: false }
+					{ displayname: 'Bob', writable: true },
+					{ displayname: 'Rita', writable: true },
+					{ displayname: 'Sue', writable: false }
 				],
 				contacts: {}
 			},
@@ -101,7 +143,10 @@ const actions = {
 				displayName: 'Addressbook 2',
 				enabled: false,
 				owner: 'admin',
-				shares: [],
+				shares: [
+					{ displayname: 'Aimee', writable: true },
+					{ displayname: 'Jaguar', writable: true }
+				],
 				contacts: {}
 			},
 			{
