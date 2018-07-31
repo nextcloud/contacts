@@ -1,5 +1,15 @@
 BEGIN:VCARD
 VERSION:3.0
+PRODID:-//Apple Inc.//AddressBook 10.0//EN
+N:macOS;;;;
+FN:macOS
+KIND:group
+MEMBER:urn:uuid:cd314b39-b71a-41cf-b4eb-5cb61dd6fa24
+REV:2017-07-27T05:56:33Z
+UID:5acf667e-1cbf-48a8-87fe-546ee31a0b23
+END:VCARD
+BEGIN:VCARD
+VERSION:3.0
 N:Cunningham;Liam;;Mr.;
 FN:Liam Cunningham
 NICKNAME:Begivaing81
@@ -8,7 +18,7 @@ GENDER:male
 ORG:Central Hardware;
 TITLE:Auditing clerk
 EMAIL;TYPE=HOME,INTERNET,pref:LiamCunningham@superrito.com
-CATEGORIES:Tech
+CATEGORIES:Tech,University
 TEL;TYPE=VOICE,HOME;VALUE=text:06-22957835
 ADR;TYPE=HOME:;;Beilen;DR;9413 BA;Netherlands
 END:VCARD
@@ -42,7 +52,6 @@ ADR;TYPE=HOME:;;Waillet;WNA;5377;Belgium
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
-UID:ed314b39-b71a-41cf-b4eb-5cb61dd6fa24
 N:Myers;Michael;;Mr.;
 FN:Michael Myers
 NICKNAME:Vends1961

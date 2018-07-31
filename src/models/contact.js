@@ -1,4 +1,4 @@
-/*
+/**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
@@ -90,6 +90,30 @@ export default class Contact {
 	 */
 	get key() {
 		return this.uid + '@' + this.addressbook.id
+	}
+
+	/**
+	 * Return the groups
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get groups() {
+		let prop = this.vCard.getFirstProperty('categories')
+		if (prop) {
+			return this.vCard.getFirstProperty('categories').getValues()
+		}
+		return []
+	}
+
+	/**
+	 * Return the groups
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get kind() {
+		return this.firstIfArray(this.vCard.getFirstPropertyValue('kind'))
 	}
 
 	/**

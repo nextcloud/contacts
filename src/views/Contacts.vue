@@ -37,7 +37,7 @@
 		<div id="app-content">
 			<div id="app-content-wrapper">
 				<!-- contacts list -->
-				<content-list :list="sortedContacts" :contacts="contacts" :loading="loading" />
+				<content-list :list="contactsList" :contacts="contacts" :loading="loading" />
 				<!-- main contacts details -->
 				<content-details :loading="loading" :uid="selectedContact" />
 			</div>
@@ -94,6 +94,37 @@ export default {
 			return this.$store.getters.getOrderKey
 		},
 
+		/**
+		 * contacts list based on the selected group
+		 * filters are pretty fast, so let's only intersect the groups
+		 * contacts and the full sorted contacts List
+		 */
+		contactsList() {
+			if (this.selectedGroup === t('contacts', 'All contacts')) {
+				return this.sortedContacts
+			}
+			let group = this.groups.filter(group => group.name === this.selectedGroup)[0]
+			return this.sortedContacts.filter(contact => group.contacts.indexOf(contact.key) >= 0)
+		},
+
+		// generate groups menu from groups store
+		groupsMenu() {
+			return this.groups.map(group => {
+				return {
+					id: group.name.replace(' ', '_'),
+					key: group.name.replace(' ', '_'),
+					router: {
+						name: 'group',
+						params: { selectedGroup: group.name }
+					},
+					text: group.name,
+					utils: {
+						counter: group.contacts.length
+					}
+				}
+			})
+		},
+
 		// building the main menu
 		menu() {
 			return {
@@ -104,9 +135,10 @@ export default {
 					icon: 'icon-add',
 					action: this.newContact
 				},
-				items: this.allGroup.concat(this.groups)
+				items: this.allGroup.concat(this.groupsMenu)
 			}
 		},
+
 		// default group for every contacts
 		allGroup() {
 			return [{
@@ -118,18 +150,6 @@ export default {
 					params: { selectedGroup: t('contacts', 'All contacts') }
 				},
 				text: t('contacts', 'All contacts'),
-				utils: {
-					counter: this.sortedContacts.length
-				}
-			}, {
-				id: 'everyone2',
-				key: 'everyone2',
-				icon: 'icon-contacts-dark',
-				router: {
-					name: 'group',
-					params: { selectedGroup: t('contacts', 'All contacts2') }
-				},
-				text: t('contacts', 'All contacts2'),
 				utils: {
 					counter: this.sortedContacts.length
 				}
@@ -174,7 +194,7 @@ export default {
 		},
 
 		selectFirstContactIfNone() {
-			let inList = Object.keys(this.contacts).findIndex(key => key === this.selectedContact) > -1
+			let inList = Object.keys(this.contactsList).findIndex(key => key === this.selectedContact) > -1
 			if (this.selectedContact === undefined || !inList) {
 				if (this.selectedContact && !inList) {
 					OC.Notification.showTemporary(t('contacts', 'Contact not found'))
@@ -183,7 +203,7 @@ export default {
 					name: 'contact',
 					params: {
 						selectedGroup: this.selectedGroup,
-						selectedContact: Object.values(this.contacts)[0].key
+						selectedContact: Object.values(this.contactsList)[0].key
 					}
 				})
 			}

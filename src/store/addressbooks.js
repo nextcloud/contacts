@@ -1,4 +1,4 @@
-/*
+/**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
@@ -123,6 +123,7 @@ const actions = {
 		await context.commit('appendContactsToAddressbook', { addressbook, contacts })
 		await context.commit('appendContacts', contacts)
 		await context.commit('sortContacts')
+		await context.commit('appendGroups', contacts)
 	}
 }
 
