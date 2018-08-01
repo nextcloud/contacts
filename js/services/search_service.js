@@ -1,5 +1,4 @@
-angular.module('contactsApp')
-.service('SearchService', function() {
+angular.module('contactsApp').service('SearchService', function() {
 	var searchTerm = '';
 
 	var observerCallbacks = [];
@@ -10,8 +9,8 @@ angular.module('contactsApp')
 
 	var notifyObservers = function(eventName) {
 		var ev = {
-			event:eventName,
-			searchTerm:searchTerm
+			event: eventName,
+			searchTerm: searchTerm
 		};
 		angular.forEach(observerCallbacks, function(callback) {
 			callback(ev);
@@ -33,25 +32,19 @@ angular.module('contactsApp')
 	};
 
 	this.cleanSearch = function() {
-		if (!_.isUndefined($('.searchbox'))) {
-			$('.searchbox')[0].reset();
-		}
 		searchTerm = '';
+		notifyObservers('changeSearch');
+	};
+
+	this.search = function(search) {
+		searchTerm = search;
+		notifyObservers('submitSearch');
 	};
 
 	if (!_.isUndefined(OC.Plugins)) {
 		OC.Plugins.register('OCA.Search', SearchProxy);
 		if (!_.isUndefined(OCA.Search)) {
-			OC.Search = new OCA.Search($('#searchbox'), $('#searchresults'));
-			$('#searchbox').show();
+			OC.Search = new OCA.Search(this.search, this.cleanSearch);
 		}
-	}
-
-	if (!_.isUndefined($('.searchbox'))) {
-		$('.searchbox')[0].addEventListener('keypress', function(e) {
-			if(e.keyCode === 13) {
-				notifyObservers('submitSearch');
-			}
-		});
 	}
 });

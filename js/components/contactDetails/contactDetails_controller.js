@@ -56,6 +56,7 @@ angular.module('contactsApp')
 		if (typeof uid === 'undefined') {
 			ctrl.show = false;
 			$('#app-navigation-toggle').removeClass('showdetails');
+			$('.app-content-list').removeClass('showdetails');
 			return;
 		}
 		ctrl.loading = true;
@@ -68,6 +69,7 @@ angular.module('contactsApp')
 			ctrl.show = true;
 			ctrl.loading = false;
 			$('#app-navigation-toggle').addClass('showdetails');
+			$('.app-content-list').addClass('showdetails');
 
 			ctrl.addressBook = _.find(ctrl.addressBooks, function(book) {
 				return book.displayName === ctrl.contact.addressBookId;
