@@ -1,8 +1,7 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+  - @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
   -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Team Popcorn <teampopcornberlin.gmail.com>
+  - @author Team Popcorn <teampopcornberlin@gmail.com>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -29,12 +28,13 @@
 			v-model="value"
 			:searchable="false"
 			:allow-empty="false"
-			:placeholder="t('contacts', 'First name')"
+			:placeholder="placeholder"
 			:options="options"
-			track-by="code"
-			label="display"
+			track-by="key"
+			label="label"
+			input="key"
 			class="multiselect-vue"
-			@input="sortContacts(value.code)" />
+			@input="sortContacts" />
 	</div>
 </template>
 
@@ -59,17 +59,36 @@ export default {
 		}
 	},
 	data() {
-		return {
-			// options: [{'display':'First-name', 'code':'firstName'}, {'display':'Lastname', 'code': 'Lastname'}, {'display':'Display name', 'code':'displayName'}],
-			options: [
-				{ display: 'First name', code: 'firstName' },
-				{ display: 'Lastname', code: 'lastName' },
-				{ display: 'Display-name', code: 'displayName' }
-			],
-			value: ''
-		}
+		return {}
 	},
 	computed: {
+
+		/* Order Keys */
+		options() {
+			return Array(
+				{
+					label: t('settings', 'First name'),
+					key: 'firstName'
+				},
+				{
+					label: t('settings', 'Lastname'),
+					key: 'lastName'
+				},
+				{
+					label: t('settings', 'Display-name'),
+					key: 'displayName'
+				}
+			);
+		},
+
+		/* Current order Key */
+		orderKey() {
+			return this.$store.getters.getOrderKey;
+		},
+
+		placeholder() {
+			return t('settings', this.orderKey)
+		}
 
 	},
 	methods: {
