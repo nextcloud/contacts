@@ -1,37 +1,33 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com> Team Popcorn <teampopcornberlin.gmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
+	- @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
+	-
+	- @author Team Popcorn <teampopcornberlin@gmail.com>
+	-
+	- @license GNU AGPL version 3 or any later version
+	-
+	- This program is free software: you can redistribute it and/or modify
+	- it under the terms of the GNU Affero General Public License as
+	- published by the Free Software Foundation, either version 3 of the
+	- License, or (at your option) any later version.
+	-
+	- This program is distributed in the hope that it will be useful,
+	- but WITHOUT ANY WARRANTY; without even the implied warranty of
+	- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	- GNU Affero General Public License for more details.
+	-
+	- You should have received a copy of the GNU Affero General Public License
+	- along with this program. If not, see <http://www.gnu.org/licenses/>.
+	-
 -->
 
 <template>
-	<form id="new-addressbook-form" name="new-addressbook-form" class="ng-pristine ng-invalid ng-invalid-required ng-valid-pattern ng-valid-minlength"
+	<form id="new-addressbook-form" name="new-addressbook-form" class="new-address-book"
 		@submit="createAddressBook()">
-		<input id="newList" placeholder="Address book name" class="newAddressBookInput ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-pattern ng-valid-minlength"
+		<input id="newList" placeholder="Address book name" class="new-address-book-input"
 			type="text"
-			ng-minlength="1"
 			autocomplete="off" autocorrect="off"
 			spellcheck="false"
 			tooltip-enable="!newAddressBookForm.$pristine"
-			required=""
-			ng-pattern="/^[a-zA-Z0-9À-ÿ\s-_.!?#|()]+$/i"
-			tooltip-is-open="newAddressBookForm.$invalid &amp;&amp; !newAddressBookForm.$error.required"
 			tooltip-trigger="none"
 			tooltip-placement="top"
 			uib-tooltip="Only these special characters are allowed: -_.!?#|()">

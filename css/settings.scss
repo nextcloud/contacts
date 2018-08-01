@@ -157,11 +157,22 @@
 	}
 	select, button, .button, input[type='button'], input[type='submit'], input[type='reset'] {
 		width: 100%;
-		padding: 6px 12px 6px 40px;
+		padding: 6px 12px 6px 34px;
 		margin: 3px 3px 0 0;
 	}
 	[class^='icon-'], [class*=' icon-'] {
-		background: url(/core/css/../img/actions/upload.svg) no-repeat left 7px center;
+		background: url(/core/css/../img/actions/upload.svg) no-repeat left 9px center;
+		background-color: #f7f7f7;
 	}
 }
 
+// Add address book
+
+.new-address-book {
+	input[type='text'] + .icon-confirm, input[type='password'] + .icon-confirm, input[type='email'] + .icon-confirm {
+		opacity: 0.5;
+	}
+	.new-address-book-input {
+		border-color: var(--color-border-dark);
+	}
+}

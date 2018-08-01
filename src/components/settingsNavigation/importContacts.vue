@@ -1,7 +1,6 @@
 <!--
-	- @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+	- @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
 	-
-	- @author John Molakvoæ <skjnldsv@protonmail.com>
 	- @author Team Popcorn <teampopcornberlin@gmail.com>
 	-
 	- @license GNU AGPL version 3 or any later version
@@ -25,9 +24,11 @@
 	<div class="import-contact">
 		<input id="contact-import" type="file" class="hidden-visually">
 		<label id="upload" for="contact-import" class="button icon-upload no-select">
-			Import into
+			{{ t('contacts', 'Import into') }}
 		</label>
-		<multiselect v-model="value" :options="options"
+		<multiselect
+			v-model="value"
+			:options="options"
 			:placeholder="t('contacts', 'Contacts')"
 			class="multiselect-vue" />
 	</div>
