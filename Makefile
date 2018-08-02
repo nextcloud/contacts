@@ -151,7 +151,8 @@ appstore:
 	$(project_directory)/templates \
 	$(project_directory)/js/public \
 	$(project_directory)/js/vendor \
-	$(project_directory)/js/dav/dav.js
+	$(project_directory)/js/dav/dav.js \
+	$(project_directory)/js/contacts-inject-14.js
 
 # Command for running JS and PHP tests. Works for package.json files in the js/
 # and root directory. If phpunit is not installed systemwide, a copy is fetched
