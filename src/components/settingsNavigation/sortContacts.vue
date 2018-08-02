@@ -84,6 +84,7 @@ export default {
 			const key = orderKey && orderKey.key ? orderKey.key : 'displayName'
 			this.$store.commit('setOrder', key)
 			this.$store.commit('sortContacts')
+			localStorage.setItem('orderKey', key)
 		}
 	}
 }
