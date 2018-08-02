@@ -61,22 +61,22 @@ export default {
 		options() {
 			return [
 				{
-					label: t('settings', 'First name'),
+					label: t('contacts', 'First name'),
 					key: 'firstName'
 				},
 				{
-					label: t('settings', 'Lastname'),
+					label: t('contacts', 'Lastname'),
 					key: 'lastName'
 				},
 				{
-					label: t('settings', 'Display-name'),
+					label: t('contacts', 'Display-name'),
 					key: 'displayName'
 				}
 			]
 		},
 		/* Current order Key */
 		orderKey() {
-			return this.options.filter(f => f.key === this.$store.getters.getOrderKey)[0].label
+			return t('contacts', this.options.filter(f => f.key === this.$store.getters.getOrderKey)[0].label)
 		}
 	},
 	methods: {
