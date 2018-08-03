@@ -23,13 +23,19 @@
 <template>
 	<div>
 		<!-- <i v-if="loadingSharees" class="glyphicon glyphicon-refresh" /> -->
-		<input type="text" class="sharee-input"
+		<input type="text" class="sharee__input"
 			placeholder="Share with users or groups"
 			aria-autocomplete="list"
 			aria-expanded="false"
 			aria-owns="typeahead-52-3115">
 		<!-- list of possible groups to share with -->
-		<ul v-if="addressbook.shares.length > 0" class="addressBook-share-list">
+		<div class="addressbook__shares">
+			<ul class="dropdown-menu">
+				<li class="active"> Admin </li>
+			</ul>
+		</div>
+		<!-- list of user or groups addressbook is shared with -->
+		<ul v-if="addressbook.shares.length > 0" class="addressbook__share__list">
 			<sharee v-for="sharee in addressbook.shares" :key="sharee.name" :sharee="sharee" />
 		</ul>
 	</div>

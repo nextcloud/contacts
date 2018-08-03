@@ -168,6 +168,11 @@ export default {
 					this.selectFirstContactIfNone()
 				})
 			})
+		// check local storage for orderKey
+		if (localStorage.getItem('orderKey')) {
+			// run setOrder mutation with local storage key
+			this.$store.commit('setOrder', localStorage.getItem('orderKey'))
+		}
 	},
 	methods: {
 		newContact() {

@@ -21,10 +21,10 @@
 -->
 
 <template>
-	<li class="calendar-share-item">
+	<li class="addressbook__sharee">
 		<span class="icon icon-group" />
-		<span class="shareeIdentifier">{{ sharee.name }}</span>
-		<span class="utils">
+		<span class="addressbook__sharee__identifier">{{ sharee.name }}</span>
+		<span class="addressbook__sharee__utils">
 			<input
 				:id="sharee.name"
 				v-model="editSharee"

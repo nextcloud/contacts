@@ -29,22 +29,26 @@
 	}
 }
 
+#new-addressbook-form {
+	display: flex;
+}
+
 // Addressbook lists
-#address-book-list li {
+.addressbook {
 	display: flex;
 	align-items: center;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 
-	.addressbook-name {
+	&__name {
 		display: block;
 		flex: 0 1 auto;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-	.addressbook-share,
-	.addressbook-menu .icon-more {
+	&__share,
+	&__menu .icon-more {
 		width: 44px;
 		height: 44px;
 		opacity: .5;
@@ -54,36 +58,49 @@
 			opacity: .7;
 		}
 	}
-	.addressbook-share {
+	&__share {
 		margin-left: auto;
 	}
 }
 
-#new-addressbook-form {
-	display: flex;
-}
-
 // Share Addressbook
-.addressBook-share-list {
+.addressbook__share__list {
 	margin-top: 8px;
 	margin-bottom: 12px;
 	display: flex;
 	flex-direction: column;
 }
 
+// Possible users or groups to share Addresbook with
+.addressbook__shares {
+	ul.dropdown-menu {
+		border: 1px solid #d1d1d1;
+		border-radius: 0 0 3px 3px;
+		max-height: 200px;
+		margin-top: -2px;
+		overflow-y: auto;
+		display: flex;
+		flex-wrap: wrap;
+		position: absolute;
+		background-color: #fff;
+		width: 100%;
+		z-index: 500;
+	}
+}
+
 // Sharees settings for Addressbook
-.sharee-input {
+.sharee__input {
 	width: 100% !important;
 	margin-right: 0;
 	padding-right: 30px;
 	text-overflow: ellipsis;
 }
 
-.calendar-share-item {
+.addressbook__sharee {
 	padding: 0 5px;
 	display: inline-flex;
 	align-items: center;
-	.shareeIdentifier {
+	&__identifier {
 		width: 100%;
 		overflow: hidden;
 		white-space: nowrap;
@@ -92,7 +109,7 @@
 		vertical-align: top;
 		opacity: 0.5;
 	}
-	.utils {
+	&__utils {
 		padding: 0 !important;
 		float: right;
 		position: relative !important;

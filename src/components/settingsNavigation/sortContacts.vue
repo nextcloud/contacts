@@ -25,14 +25,12 @@
 		<label for="sort-by">{{ t('contacts', 'Sort by:') }}</label>
 		<multiselect
 			id="sort-by"
-			v-model="value"
+			:placeholder="orderKey"
 			:searchable="false"
 			:allow-empty="false"
-			:placeholder="placeholder"
 			:options="options"
 			track-by="key"
 			label="label"
-			input="key"
 			class="multiselect-vue"
 			@input="sortContacts" />
 	</div>
@@ -58,43 +56,35 @@ export default {
 			}
 		}
 	},
-	data() {
-		return {}
-	},
 	computed: {
-
 		/* Order Keys */
 		options() {
-			return Array(
+			return [
 				{
-					label: t('settings', 'First name'),
+					label: t('contacts', 'First name'),
 					key: 'firstName'
 				},
 				{
-					label: t('settings', 'Lastname'),
+					label: t('contacts', 'Lastname'),
 					key: 'lastName'
 				},
 				{
-					label: t('settings', 'Display-name'),
+					label: t('contacts', 'Display-name'),
 					key: 'displayName'
 				}
-			);
+			]
 		},
-
 		/* Current order Key */
 		orderKey() {
-			return this.$store.getters.getOrderKey;
-		},
-
-		placeholder() {
-			return t('settings', this.orderKey)
+			return t('contacts', this.options.filter(f => f.key === this.$store.getters.getOrderKey)[0].label)
 		}
-
 	},
 	methods: {
-		sortContacts(orderKey = 'displayName') {
-			this.$store.commit('setOrder', orderKey)
+		sortContacts(orderKey) {
+			const key = orderKey && orderKey.key ? orderKey.key : 'displayName'
+			this.$store.commit('setOrder', key)
 			this.$store.commit('sortContacts')
+			localStorage.setItem('orderKey', key)
 		}
 	}
 }

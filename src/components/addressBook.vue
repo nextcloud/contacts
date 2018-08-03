@@ -23,14 +23,14 @@
 
 <template>
 	<div>
-		<li :class="{'disabled': !addressbook.enabled}">
+		<li :class="{'disabled': !addressbook.enabled}" class="addressbook">
 			<!-- addressbook name -->
-			<span class="addressbook-name">{{ addressbook.displayName }}</span>
+			<span class="addressbook__name">{{ addressbook.displayName }}</span>
 			<!-- sharing button -->
-			<a href="#" class="addressbook-share icon-shared"
+			<a href="#" class="addressbook__share icon-shared"
 				@click="toggleShare" />
 			<!-- popovermenu -->
-			<a v-click-outside="closeMenu" href="#" class="addressbook-menu"
+			<a v-click-outside="closeMenu" href="#" class="addressbook__menu"
 				@click="toggleMenu">
 				<div class="icon-more" />
 				<div :class="{'open': menuOpen}" class="popovermenu">
