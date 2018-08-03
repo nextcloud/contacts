@@ -93,8 +93,14 @@ const mutations = {
 	 * @param {Object} data
 	 * @param {Object} data.addressbook the addressbook
 	 */
-	removeSharee(state, { addressbook, sharee }) {
-		addressbook = state.addressbooks.find(search => search === addressbook)
+	removeSharee(state, sharee) {
+		let addressbook = state.addressbooks.find(search => {
+			for (let i in search.shares) {
+				if (search.shares[i] === sharee) {
+					return true
+				}
+			}
+		})
 		addressbook.shares.splice(sharee, 1)
 	},
 
@@ -132,9 +138,9 @@ const actions = {
 				enabled: true,
 				owner: 'admin',
 				shares: [
-					{ displayname: 'Bob', writable: true },
-					{ displayname: 'Rita', writable: true },
-					{ displayname: 'Sue', writable: false }
+					{ displayname: 'Bob', writeable: true },
+					{ displayname: 'Rita', writeable: true },
+					{ displayname: 'Sue', writeable: false }
 				],
 				contacts: {}
 			},
@@ -144,8 +150,8 @@ const actions = {
 				enabled: false,
 				owner: 'admin',
 				shares: [
-					{ displayname: 'Aimee', writable: true },
-					{ displayname: 'Jaguar', writable: true }
+					{ displayname: 'Aimee', writeable: false },
+					{ displayname: 'Jaguar', writeable: true }
 				],
 				contacts: {}
 			},

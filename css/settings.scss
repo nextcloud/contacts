@@ -63,17 +63,10 @@
 	}
 }
 
-// Share Addressbook
-.addressbook__share__list {
-	margin-top: 8px;
-	margin-bottom: 12px;
-	display: flex;
-	flex-direction: column;
-}
-
-// Possible users or groups to share Addresbook with
+// Addressbook sharees
 .addressbook__shares {
-	ul.dropdown-menu {
+	width: 100%;
+	.dropdown-menu {
 		border: 1px solid #d1d1d1;
 		border-radius: 0 0 3px 3px;
 		max-height: 200px;
@@ -81,21 +74,36 @@
 		overflow-y: auto;
 		display: flex;
 		flex-wrap: wrap;
-		position: absolute;
 		background-color: #fff;
+		position: relative;
 		width: 100%;
 		z-index: 500;
+		top: -2px;
+		left: 0px;
+		li {
+			width: 100%;
+			padding: 8px 9px 9px;
+			cursor: pointer;
+		}
+		li.active {
+			background: #f0f0f0;
+		}
+	}
+	&__input {
+		width: 100% !important;
+		margin-right: 0;
+		padding-right: 30px;
+		text-overflow: ellipsis;
+	}
+	&__list {
+		margin-top: 8px;
+		margin-bottom: 12px;
+		display: flex;
+		flex-direction: column;
 	}
 }
 
 // Sharees settings for Addressbook
-.sharee__input {
-	width: 100% !important;
-	margin-right: 0;
-	padding-right: 30px;
-	text-overflow: ellipsis;
-}
-
 .addressbook__sharee {
 	padding: 0 5px;
 	display: inline-flex;

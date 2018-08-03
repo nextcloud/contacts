@@ -23,18 +23,18 @@
 <template>
 	<li class="addressbook__sharee">
 		<span class="icon icon-group" />
-		<span class="addressbook__sharee__identifier">{{ sharee.name }}</span>
+		<span class="addressbook__sharee__identifier">{{ sharee.displayname }}</span>
 		<span class="addressbook__sharee__utils">
 			<input
-				:id="sharee.name"
-				v-model="editSharee"
+				:id="sharee.displayname"
+				v-model="writeable"
 				class="checkbox"
 				name="editable"
 				type="checkbox">
-			<label :for="sharee.name"> can edit</label>
+			<label :for="sharee.displayName" @click="editSharee"> can edit</label>
 			<span href="#" title="Delete"
 				class="icon-delete"
-				@click="deleteSharee()" />
+				@click="deleteSharee" />
 		</span>
 	</li>
 </template>
@@ -55,13 +55,18 @@ export default {
 			required: true
 		}
 	},
+	computed: {
+		writeable() {
+			return this.sharee.writeable
+		}
+	},
 	methods: {
 		deleteSharee() {
-			alert('Delete')
+			setTimeout(() => { this.$store.commit('removeSharee', this.sharee)}, 1000)
 		},
 		editSharee() {
-			alert('Edit')
-			// this.$store.commit('toggleShareeWritable', { addressbook, sharee })
+			// not working yet need to work on!
+			this.$store.commit('toggleShareeWritable', { sharee })
 		}
 	}
 }
