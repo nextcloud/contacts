@@ -2,9 +2,9 @@ sudo: false
 dist: trusty
 language: php
 php:
-    - 7.0
+#    - 7.0
     - 7.1
-#    - 7.2
+    - 7.2
 env:
     global:
         - CORE_BRANCH=master
@@ -15,22 +15,6 @@ env:
 branches:
   only:
     - master
-    - /^stable\d+(\.\d+)?$/
-    - /^v\d++(\.\d+)?+(\.\d+)?+(\.\d+)?$/
-
-matrix:
-    include:
-        - php: 7.0
-          env:  DB=pgsql CORE_BRANCH=stable12
-        - php: 7.1
-          env:  DB=pgsql CORE_BRANCH=stable12
-        - php: 7.0
-          env:  DB=pgsql CORE_BRANCH=stable13
-        - php: 7.1
-          env:  DB=pgsql CORE_BRANCH=stable13
-#        - php: 7.2
-#          env:  DB=pgsql CORE_BRANCH=stable13
-    fast_finish: true
 
 before_install:
     - export DISPLAY=:99.0
@@ -84,7 +68,7 @@ deploy:
     on:
         repo: nextcloud/contacts
         tags: true
-        php: 7.0
+        php: 7.2
 
 addons:
     firefox: "latest"
