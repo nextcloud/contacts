@@ -1,4 +1,4 @@
-/*
+/**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
@@ -23,12 +23,44 @@
 const state = {
 	groups: []
 }
-const mutations = {}
+const mutations = {
+	/**
+	 * Extract all the groups from the provided contacts
+	 *
+	 * @param {Object} state
+	 * @param {Contact[]} contacts
+	 */
+	appendGroups(state, contacts) {
+		// init groups list
+		let groups = Object.values(contacts)
+			.map(contact => contact.groups.map(group => {
+				return {
+					name: group,
+					contacts: []
+				}
+			})[0])
+		state.groups = state.groups.concat(groups)
+			.filter(function(group, index, self) {
+				return group && self.findIndex(search => search && search.name === group.name) === index
+			})
+		// append keys to groups
+		Object.values(contacts)
+			.forEach(contact => {
+				if (contact.groups) {
+					contact.groups.forEach(group => {
+						state.groups.find(search => search.name === group).contacts.push(contact.key)
+					})
+				}
+			})
+	}
+}
+
 const getters = {
 	getGroups(state) {
 		return state.groups
 	}
 }
+
 const actions = {}
 
 export default { state, mutations, getters, actions }

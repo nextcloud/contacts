@@ -1,4 +1,4 @@
-/*
+/**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
@@ -29,6 +29,7 @@ const state = {
 	sortedContacts: [],
 	orderKey: 'displayName'
 }
+
 const mutations = {
 
 	/**
@@ -89,6 +90,8 @@ const mutations = {
 	 */
 	async sortContacts(state) {
 		state.sortedContacts = Object.values(state.contacts)
+			// exclude groups
+			.filter(contact => contact.kind !== 'group')
 			.map(contact => { return { key: contact.key, value: contact[state.orderKey] } })
 			.sort((a, b) => {
 				var nameA = a.value.toUpperCase() // ignore upper and lowercase
@@ -108,12 +111,14 @@ const mutations = {
 	}
 
 }
+
 const getters = {
 	getContacts: state => state.contacts,
 	getSortedContacts: state => state.sortedContacts,
 	getContact: (state) => (uid) => state.contacts[uid],
 	getOrderKey: state => state.orderKey
 }
+
 const actions = {
 	deleteContact(context, contact) {
 		context.commit('deleteContact', contact)
