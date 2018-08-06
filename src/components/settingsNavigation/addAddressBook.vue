@@ -22,8 +22,9 @@
 
 <template>
 	<form id="new-addressbook-form" name="new-addressbook-form" class="new-address-book"
-		@submit="createAddressBook()">
-		<input id="newList" placeholder="Address book name" class="new-address-book-input"
+		v-on:submit.prevent="addAddressBook">
+		<input ref="addressBook" :id="addressBook" class="new-address-book-input"
+			placeholder="Address book name"
 			type="text"
 			autocomplete="off" autocorrect="off"
 			spellcheck="false"
@@ -45,14 +46,14 @@ export default {
 	directives: {
 		clickOutside
 	},
-	props: {
-		addressbook: {
-			type: Object,
-			default() {
-				return {}
-			}
-		}
-	},
+	// props: {
+	// 	addressbooks: {
+	// 		type: Array,
+	// 		default() {
+	// 			return {}
+	// 		}
+	// 	}
+	// },
 	data() {
 		return {
 		}
@@ -63,6 +64,17 @@ export default {
 		}
 	},
 	methods: {
+		/**
+		 * Set new address book name
+		 *
+		 * @param {string} addressBook The adress book
+		 * @returns {Promise}
+		 */
+		addAddressBook() {
+			let addressBook = this.$refs.addressBook.value
+			let addressBooks = this.$store.getters.getAddressbooks
+			let newAddressBooksArray = addressBooks.push(addressBook)
+		}
 	}
 }
 </script>

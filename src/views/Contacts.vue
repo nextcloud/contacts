@@ -30,7 +30,7 @@
 				<ul id="address-book-list">
 					<address-book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
 				</ul>
-				<add-address-book />
+				<add-address-book :addressbooks="addressbooks" />
 
 				<import-contacts :addressbooks="addressbooks" class="settings-section" />
 				<sort-contacts class="settings-section" />
