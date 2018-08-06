@@ -27,12 +27,17 @@
 			placeholder="Share with users or groups"
 			aria-autocomplete="list"
 			aria-expanded="false"
-			aria-owns="typeahead-52-3115">
+			aria-owns="typeahead-52-3115"
+			v-on:keyup="checkInput"
+			v-model="groupOrUser"
+		>
 		<!-- list of possible groups to share with -->
 		<ul v-if="sharee" class="dropdown-menu">
 			<li class="active">
 				<a href="" tabindex="-1" title="admin (group)">
-					<strong>ad</strong>min (group)
+					<strong>{{ groupOrUser }}</strong> 
+					<span v-if="group"> {{ possibleGroup }} </span>
+					<span v-if="user"> {{ possibleUser }} </span>
 				</a>
 			</li>
 		</ul>
@@ -65,7 +70,25 @@ export default {
 	},
 	data() {
 		return {
-			sharee: false
+			sharee: false,
+			groupOrUser: '',
+			group: false,
+			user: false,
+			possibleUser: '(user)',
+			possibleGroup: '(group)'
+		}
+	},
+	methods: {
+		// started on Monday 6 Aug still needs to check users & groups and add in the auto suggestion, also watch styling if name of user or group is very long!!
+		checkInput() {
+			if(this.groupOrUser.length > 0) {
+				this.sharee = true
+				this.group = true
+				return
+			}
+			this.sharee = false
+			this.user = false
+			this.user = false
 		}
 	}
 }

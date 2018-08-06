@@ -78,7 +78,7 @@ const mutations = {
 	 * @param {Object} data
 	 * @param {Object} data.addressbook the addressbook
 	 */
-	shareAddressbook(state, { addressbook, sharee }) {
+	shareAddressbook(state, addressbook, sharee) {
 		addressbook = state.addressbooks.find(search => search === addressbook)
 		let newSharee = {}
 		sharee.displayname = sharee
@@ -87,7 +87,7 @@ const mutations = {
 	},
 
 	/**
-	 * Share addressbook with a user or group
+	 * Remove Share from addressbook shares list
 	 *
 	 * @param {Object} state
 	 * @param {Object} data
@@ -112,10 +112,16 @@ const mutations = {
 	 * @param {Object} data.addressbook the addressbook
 	 * @param {Object} sharee the sharee
 	 */
-	toggleShareeWritable(state, { addressbook, sharee }) {
-		addressbook = state.addressbooks.find(search => search === addressbook)
-		sharee = addressbook.find(search => search === addressbook)
-		sharee.writable = !sharee.writable
+	updateShareeWritable(state, sharee) {
+		let addressbook = state.addressbooks.find(search => {
+			for (let i in search.shares) {
+				if (search.shares[i] === sharee) {
+					return true
+				}
+			}
+		})
+		sharee = addressbook.shares.find(search => search === sharee)
+		sharee.writeable = !sharee.writeable
 	}
 
 }
@@ -179,6 +185,17 @@ const actions = {
 		await context.commit('appendContacts', contacts)
 		await context.commit('sortContacts')
 		await context.commit('appendGroups', contacts)
+	},
+	removeSharee(context, sharee) {
+		// Remove sharee from addressbook.
+		context.commit('removeSharee', sharee)
+	},
+	toggleShareeWritable(context, sharee) {
+		// Toggle sharee edit permissions.
+		context.commit('updateShareeWritable', sharee)
+	},
+	shareAddressbook(contect, addressbook, sharee) {
+		// Share addressbook with entered group or user
 	}
 }
 

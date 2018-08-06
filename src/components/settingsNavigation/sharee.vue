@@ -62,11 +62,11 @@ export default {
 	},
 	methods: {
 		deleteSharee() {
-			setTimeout(() => { this.$store.commit('removeSharee', this.sharee)}, 1000)
+			setTimeout(() => { this.$store.dispatch('removeSharee', this.sharee)}, 500)
 		},
 		editSharee() {
 			// not working yet need to work on!
-			this.$store.commit('toggleShareeWritable', { sharee })
+			this.$store.dispatch('toggleShareeWritable', this.sharee)
 		}
 	}
 }
