@@ -23,6 +23,7 @@
 const state = {
 	groups: []
 }
+
 const mutations = {
 	/**
 	 * Extract all the groups from the provided contacts
@@ -56,9 +57,7 @@ const mutations = {
 }
 
 const getters = {
-	getGroups(state) {
-		return state.groups
-	}
+	getGroups: state => state.groups
 }
 
 const actions = {}

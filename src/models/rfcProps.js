@@ -20,5 +20,8 @@
  *
  */
 
-export default {
-}
+const properties = [
+
+]
+
+export default { properties }

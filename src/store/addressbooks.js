@@ -28,6 +28,7 @@ import Vue from 'vue'
 const state = {
 	addressbooks: []
 }
+
 const mutations = {
 	/**
 	 * Store addressbooks into state
@@ -71,11 +72,11 @@ const mutations = {
 		Vue.delete(addressbook, contact.uid)
 	}
 }
+
 const getters = {
-	getAddressbooks(state) {
-		return state.addressbooks
-	}
+	getAddressbooks: state => state.addressbooks
 }
+
 const actions = {
 	/**
 	 * Retrieve and commit addressbooks

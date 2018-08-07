@@ -120,6 +120,13 @@ const getters = {
 }
 
 const actions = {
+
+	/**
+	 * Delete a contact from the list and from the associated addressbook
+	 *
+	 * @param {Object} state
+	 * @param {Contact} contact the contact to delete
+	 */
 	deleteContact(context, contact) {
 		context.commit('deleteContact', contact)
 		context.commit('deleteContactFromAddressbook', contact)
