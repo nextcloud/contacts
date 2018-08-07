@@ -173,12 +173,12 @@
 	flex-direction: column;
 	.multiselect.multiselect-vue {
 		width: 100%;
+		margin-left: -1px;
+		// border-top-left-radius: 50px;
 	}
 	.multiselect.multiselect-vue .multiselect__tags {
-		border-left: 1px solid var(--color-border-dark);
-		border-right: 1px solid var(--color-border-dark);
-		border-bottom: 1px solid var(--color-border-dark);
-		border-top: 0;
+		border: 1px solid var(--color-border-dark);
+		margin-top: -2px;
 	}
 	select, button, .button, input[type='button'], input[type='submit'], input[type='reset'] {
 		width: 100%;
