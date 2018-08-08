@@ -22,27 +22,36 @@
 
 <template>
 	<div class="addressbook__shares">
-		<!-- <i v-if="loadingSharees" class="glyphicon glyphicon-refresh" /> -->
-		<input
-			v-model="groupOrUser"
-			type="text"
-			class="addressbook__shares__input"
-			placeholder="Share with users or groups"
-			aria-autocomplete="list"
-			aria-expanded="false"
-			aria-owns="typeahead-52-3115"
-			@keyup="checkInput"
-		>
-		<!-- list of possible groups to share with -->
-		<ul v-if="sharee" class="dropdown-menu">
-			<li class="active">
-				<a href="" tabindex="-1" title="admin (group)">
-					<strong>{{ groupOrUser }}</strong>
-					<span v-if="group"> {{ possibleGroup }} </span>
-					<span v-if="user"> {{ possibleUser }} </span>
-				</a>
-			</li>
-		</ul>
+		<div class="dropdown-menu">
+			<label class="typo__label" for="ajax">Async multiselect</label>
+			<multiselect
+				id="ajax"
+				v-model="selectedUserOrGroup"
+				:options="usersOrGroups"
+				:multiple="true"
+				:searchable="true"
+				:loading="isLoading"
+				:internal-search="false"
+				:clear-on-select="false"
+				:close-on-select="false"
+				:options-limit="250"
+				:limit="3"
+				:limit-text="limitText"
+				:max-height="600"
+				:show-no-results="false"
+				:hide-selected="true"
+				label="name"
+				track-by="code"
+				placeholder="Type to search"
+				open-direction="bottom"
+				@search-change="asyncFind">
+				<template slot="clear" slot-scope="props">
+					<div v-if="selectedUserOrGroup.length" class="multiselect__clear" @mousedown.prevent.stop="clearAll(props.search)" />
+				</template>
+				<span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
+			</multiselect>
+			<pre class="language-json"><code>{{ selectedUserOrGroup }}</code></pre>
+		</div>
 		<!-- list of user or groups addressbook is shared with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressbook__shares__list">
 			<sharee v-for="sharee in addressbook.shares" :key="sharee.name" :sharee="sharee" />
@@ -52,11 +61,13 @@
 
 <script>
 import clickOutside from 'vue-click-outside'
+import Multiselect from 'vue-multiselect'
 import Sharee from './sharee'
 
 export default {
 	components: {
 		clickOutside,
+		Multiselect,
 		Sharee
 	},
 	directives: {
@@ -72,64 +83,34 @@ export default {
 	},
 	data() {
 		return {
-			sharee: false,
-			groupOrUser: '',
-			group: false,
-			user: false,
-			possibleUser: '(user)',
-			possibleGroup: '(group)'
+			isLoading: false,
+			usersOrGroups: [],
+			selectedUserOrGroup: []
 		}
 	},
 	methods: {
-		// started on Monday 6 Aug still needs to check users & groups and add in the auto suggestion, also watch styling if name of user or group is very long!!
-		checkInput() {
-			if (this.groupOrUser.length > 0) {
-				this.sharee = true
-				this.group = true
-				return
-			}
-			this.sharee = false
-			this.user = false
-			this.user = false
-		}
-		/* // started on Monday 6 Aug still needs to check users & groups and add in the auto suggestion, also watch styling if name of user or group is very long!!
-		findMatches(nameToMatch, listToMatch) {
-			return listToMatch.filter(name => {
-				// if ind if name is within the existing users
-				const regex = new RegExp(nameToMatch, 'gi')
-				return name.match(regex)
-			})
+		limitText(count) {
+			return `and ${count} other users or groups`
 		},
 
-		displayMatches() {
-			const matchArray = []
-			matchArray = this.findMatches(this.groupOrUser, this.usersList)
-			for (let k = 0; k < matchArray.length; k++) {
-				this.possibleUsersOrGroups += this.groupOrUser + ' ' + matchArray[k] + ' (user)'
-			}
-			console.log(this.possibleUsersOrGroups) // eslint-disable-line
+		/* example :OC.linkToOCS('cloud', 2)+ 'groups?search=Test' */
+		asyncFind(query) {
+			this.isLoading = true
+			this.usersOrGroups = []
+			// let response = OC.linkToOCS('cloud', 2) + 'groups?search=' + query
+			fetch(OC.linkToOCS('cloud', 2) + 'groups?search=' + query).then(response => {
+				this.usersOrGroups.push(response)
+				this.isLoading = false
+			})
+			console.log(this.usersOrGroups) // eslint-disable-line
+			/* ajaxFindCountry(query).then(response => {
+				this.countries = response
+				this.isLoading = false
+			}) */
 		},
-		checkInput() {
-			if (this.groupOrUser.length > 0) {
-				for (let i = 0; i < this.groupsList.length; i++) {
-					if (this.groupsList[i].includes(this.groupOrUser)) {
-						this.sharee = true
-						this.group = true
-						return
-					}
-				}
-				for (let j = 0; j < this.usersList.length; j++) {
-					if (this.userList[j].includes(this.groupOrUser)) {
-						this.sharee = true
-						this.user = true
-						return
-					}
-				}
-			}
-			this.sharee = false
-			this.user = false
-			this.user = false
-		} */
+		clearAll() {
+			this.selectedUserOrGroup = []
+		}
 	}
 }
 </script>
