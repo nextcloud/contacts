@@ -187,14 +187,30 @@ const actions = {
 		await context.commit('sortContacts')
 		await context.commit('appendGroups', contacts)
 	},
+	/**
+	 * Remove sharee from Addressbook
+	 * @param {Object} context Current context
+	 * @param {Object} sharee Addressbook sharee object
+	 */
 	removeSharee(context, sharee) {
 		// Remove sharee from addressbook.
 		context.commit('removeSharee', sharee)
 	},
+	/**
+	 * Toggle permissions of Addressbook Sharees writeable rights
+	 * @param {Object} context Current context
+	 * @param {Object} sharee Addressbook sharee object
+	 */
 	toggleShareeWritable(context, sharee) {
 		// Toggle sharee edit permissions.
 		context.commit('updateShareeWritable', sharee)
 	},
+	/**
+	 * Share Adressbook with User or Group
+	 * @param {Object} context Current context
+	 * @param {Object} addressbook Addressbook selected
+	 * @param {Object} sharee Addressbook sharee object
+	 */
 	shareAddressbook(contect, addressbook, sharee) {
 		// Share addressbook with entered group or user
 	}

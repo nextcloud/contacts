@@ -23,19 +23,21 @@
 <template>
 	<div class="addressbook__shares">
 		<!-- <i v-if="loadingSharees" class="glyphicon glyphicon-refresh" /> -->
-		<input type="text" class="addressbook__shares__input"
+		<input
+			v-model="groupOrUser"
+			type="text"
+			class="addressbook__shares__input"
 			placeholder="Share with users or groups"
 			aria-autocomplete="list"
 			aria-expanded="false"
 			aria-owns="typeahead-52-3115"
-			v-on:keyup="checkInput"
-			v-model="groupOrUser"
+			@keyup="checkInput"
 		>
 		<!-- list of possible groups to share with -->
 		<ul v-if="sharee" class="dropdown-menu">
 			<li class="active">
 				<a href="" tabindex="-1" title="admin (group)">
-					<strong>{{ groupOrUser }}</strong> 
+					<strong>{{ groupOrUser }}</strong>
 					<span v-if="group"> {{ possibleGroup }} </span>
 					<span v-if="user"> {{ possibleUser }} </span>
 				</a>
@@ -81,7 +83,7 @@ export default {
 	methods: {
 		// started on Monday 6 Aug still needs to check users & groups and add in the auto suggestion, also watch styling if name of user or group is very long!!
 		checkInput() {
-			if(this.groupOrUser.length > 0) {
+			if (this.groupOrUser.length > 0) {
 				this.sharee = true
 				this.group = true
 				return
@@ -90,6 +92,44 @@ export default {
 			this.user = false
 			this.user = false
 		}
+		/* // started on Monday 6 Aug still needs to check users & groups and add in the auto suggestion, also watch styling if name of user or group is very long!!
+		findMatches(nameToMatch, listToMatch) {
+			return listToMatch.filter(name => {
+				// if ind if name is within the existing users
+				const regex = new RegExp(nameToMatch, 'gi')
+				return name.match(regex)
+			})
+		},
+
+		displayMatches() {
+			const matchArray = []
+			matchArray = this.findMatches(this.groupOrUser, this.usersList)
+			for (let k = 0; k < matchArray.length; k++) {
+				this.possibleUsersOrGroups += this.groupOrUser + ' ' + matchArray[k] + ' (user)'
+			}
+			console.log(this.possibleUsersOrGroups) // eslint-disable-line
+		},
+		checkInput() {
+			if (this.groupOrUser.length > 0) {
+				for (let i = 0; i < this.groupsList.length; i++) {
+					if (this.groupsList[i].includes(this.groupOrUser)) {
+						this.sharee = true
+						this.group = true
+						return
+					}
+				}
+				for (let j = 0; j < this.usersList.length; j++) {
+					if (this.userList[j].includes(this.groupOrUser)) {
+						this.sharee = true
+						this.user = true
+						return
+					}
+				}
+			}
+			this.sharee = false
+			this.user = false
+			this.user = false
+		} */
 	}
 }
 </script>
