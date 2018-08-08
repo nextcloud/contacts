@@ -208,4 +208,15 @@ export default class Contact {
 		return this.displayName
 	}
 
+	/**
+	 * Return all the properties as Property objects
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 * @returns {Property[]} http://mozilla-comm.github.io/ical.js/api/ICAL.Property.html
+	 */
+	get properties() {
+		return this.vCard.getAllProperties()
+	}
+
 }

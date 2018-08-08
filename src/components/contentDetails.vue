@@ -71,7 +71,7 @@
 
 				<!-- actions -->
 				<div id="contact-header-actions">
-					<div v-click-outside="closeMenu" class="icon-more" @click="toggleMenu" />
+					<div v-click-outside="closeMenu" class="menu-icon icon-more-white" @click="toggleMenu" />
 					<div :class="{ 'open': openedMenu }" class="popovermenu">
 						<popover-menu :menu="contactActions" />
 					</div>
@@ -80,7 +80,7 @@
 
 			<!-- contact details -->
 			<section>
-				<input v-model="contact.uid" type="text">
+				<property v-for="(property, index) in contact.properties" :key="index" :property="property" />
 			</section>
 		</template>
 	</div>
@@ -90,6 +90,7 @@
 import Contact from '../models/contact'
 import ICAL from 'ical.js'
 import popoverMenu from './popoverMenu'
+import property from './contentDetails/property'
 import ClickOutside from 'vue-click-outside'
 import Vue from 'vue'
 import VTooltip from 'v-tooltip'
@@ -99,7 +100,8 @@ Vue.use(VTooltip)
 export default {
 	name: 'ContentDetails',
 	components: {
-		popoverMenu
+		popoverMenu,
+		property
 	},
 	directives: {
 		ClickOutside
