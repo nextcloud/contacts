@@ -23,7 +23,7 @@
 <template>
 	<div class="import-contact">
 		<input id="contact-import" type="file" class="hidden-visually">
-		<label id="upload" for="contact-import" class="button icon-upload no-select">
+		<label id="upload" for="contact-import" class="button multiselect-label icon-upload no-select">
 			{{ t('contacts', 'Import into') }}
 		</label>
 		<multiselect
