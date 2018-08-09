@@ -29,6 +29,12 @@
 			<span v-if="item.text">{{ item.text }}</span>
 			<p v-else-if="item.longtext">{{ item.longtext }}</p>
 		</a>
+		<!-- If item.input is set instead, an put will be used -->
+		<span v-else-if="item.input" class="menuitem">
+			<input :id="item.key" :type="item.input" :class="item.input"
+				v-model="item.model">
+			<label :for="item.key">{{ item.text }}</label>
+		</span>
 		<!-- If item.action is set instead, a button will be used -->
 		<button v-else-if="item.action" @click="item.action">
 			<span :class="item.icon" />
@@ -51,6 +57,7 @@ export default {
 			type: Object,
 			default: () => {
 				return {
+					key: '1',
 					href: 'https://nextcloud.com',
 					icon: 'icon-links',
 					text: 'Nextcloud'

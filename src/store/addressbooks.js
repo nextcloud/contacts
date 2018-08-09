@@ -70,7 +70,61 @@ const mutations = {
 	deleteContactFromAddressbook(state, contact) {
 		let addressbook = state.addressbooks.find(addressbook => addressbook === contact.addressbook)
 		Vue.delete(addressbook, contact.uid)
+	},
+
+	/**
+	 * Share addressbook with a user or group
+	 *
+	 * @param {Object} state
+	 * @param {Object} data
+	 * @param {Object} data.addressbook the addressbook
+	 */
+	shareAddressbook(state, addressbook, sharee) {
+		addressbook = state.addressbooks.find(search => search === addressbook)
+		let newSharee = {}
+		sharee.displayname = sharee
+		sharee.writable = false
+		addressbook.shares.append(newSharee)
+	},
+
+	/**
+	 * Remove Share from addressbook shares list
+	 *
+	 * @param {Object} state
+	 * @param {Object} data
+	 * @param {Object} data.addressbook the addressbook
+	 */
+	removeSharee(state, sharee) {
+		let addressbook = state.addressbooks.find(search => {
+			for (let i in search.shares) {
+				if (search.shares[i] === sharee) {
+					return true
+				}
+			}
+		})
+		addressbook.shares.splice(sharee, 1)
+	},
+
+	/**
+	 * Toggle sharee's writable permission
+	 *
+	 * @param {Object} state
+	 * @param {Object} data
+	 * @param {Object} data.addressbook the addressbook
+	 * @param {Object} sharee the sharee
+	 */
+	updateShareeWritable(state, sharee) {
+		let addressbook = state.addressbooks.find(search => {
+			for (let i in search.shares) {
+				if (search.shares[i] === sharee) {
+					return true
+				}
+			}
+		})
+		sharee = addressbook.shares.find(search => search === sharee)
+		sharee.writeable = !sharee.writeable
 	}
+
 }
 
 const getters = {
@@ -90,7 +144,11 @@ const actions = {
 				displayName: 'Addressbook 1',
 				enabled: true,
 				owner: 'admin',
-				shares: [],
+				shares: [
+					{ displayname: 'Bob', writeable: true },
+					{ displayname: 'Rita', writeable: true },
+					{ displayname: 'Sue', writeable: false }
+				],
 				contacts: {}
 			},
 			{
@@ -98,7 +156,10 @@ const actions = {
 				displayName: 'Addressbook 2',
 				enabled: false,
 				owner: 'admin',
-				shares: [],
+				shares: [
+					{ displayname: 'Aimee', writeable: false },
+					{ displayname: 'Jaguar', writeable: true }
+				],
 				contacts: {}
 			},
 			{
@@ -125,6 +186,33 @@ const actions = {
 		await context.commit('appendContacts', contacts)
 		await context.commit('sortContacts')
 		await context.commit('appendGroups', contacts)
+	},
+	/**
+	 * Remove sharee from Addressbook
+	 * @param {Object} context Current context
+	 * @param {Object} sharee Addressbook sharee object
+	 */
+	removeSharee(context, sharee) {
+		// Remove sharee from addressbook.
+		context.commit('removeSharee', sharee)
+	},
+	/**
+	 * Toggle permissions of Addressbook Sharees writeable rights
+	 * @param {Object} context Current context
+	 * @param {Object} sharee Addressbook sharee object
+	 */
+	toggleShareeWritable(context, sharee) {
+		// Toggle sharee edit permissions.
+		context.commit('updateShareeWritable', sharee)
+	},
+	/**
+	 * Share Adressbook with User or Group
+	 * @param {Object} context Current context
+	 * @param {Object} addressbook Addressbook selected
+	 * @param {Object} sharee Addressbook sharee object
+	 */
+	shareAddressbook(contect, addressbook, sharee) {
+		// Share addressbook with entered group or user
 	}
 }
 

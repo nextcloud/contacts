@@ -27,9 +27,14 @@
 		<app-navigation :menu="menu">
 			<!-- settings -->
 			<template slot="settings-content">
-				<ul>
+				<ul id="address-book-list">
 					<address-book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
 				</ul>
+				<add-address-book :addressbooks="addressbooks" />
+
+				<import-contacts :addressbooks="addressbooks" class="settings-section" />
+				<sort-contacts class="settings-section" />
+
 			</template>
 		</app-navigation>
 
@@ -51,13 +56,19 @@ import appNavigation from '../components/appNavigation'
 import contentList from '../components/contentList'
 import contentDetails from '../components/contentDetails'
 import addressBook from '../components/addressBook'
+import importContacts from '../components/settingsNavigation/importContacts'
+import sortContacts from '../components/settingsNavigation/sortContacts'
+import addAddressBook from '../components/settingsNavigation/addAddressBook'
 
 export default {
 	components: {
 		appNavigation,
 		contentList,
 		contentDetails,
-		addressBook
+		addressBook,
+		importContacts,
+		sortContacts,
+		addAddressBook
 	},
 	// passed by the router
 	props: {
@@ -180,6 +191,11 @@ export default {
 					this.selectFirstContactIfNone()
 				})
 			})
+		// check local storage for orderKey
+		if (localStorage.getItem('orderKey')) {
+			// run setOrder mutation with local storage key
+			this.$store.commit('setOrder', localStorage.getItem('orderKey'))
+		}
 	},
 	methods: {
 		newContact() {

@@ -2,6 +2,7 @@
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * author Team Popcorn <teampopcornberlin@gmail.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -28,23 +29,26 @@
 	}
 }
 
+#new-addressbook-form {
+	display: flex;
+}
+
 // Addressbook lists
-#address-book-list li {
-	padding: 6px 0;
+.addressbook {
 	display: flex;
 	align-items: center;
 	white-space: nowrap;
 	text-overflow: ellipsis;
 
-	.addressbook-name {
+	&__name {
 		display: block;
 		flex: 0 1 auto;
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
-	.addressbook-share,
-	.addressbook-menu .icon-more {
+	&__share,
+	&__menu .icon-more {
 		width: 44px;
 		height: 44px;
 		opacity: .5;
@@ -54,36 +58,57 @@
 			opacity: .7;
 		}
 	}
-	.addressbook-share {
+	&__share {
 		margin-left: auto;
 	}
 }
 
-#new-addressbook-form {
-	display: flex;
-}
-
-// Share Addressbook
-.addressBook-share-list {
-	margin-top: 8px;
-	margin-bottom: 12px;
-	display: flex;
-	flex-direction: column;
+// Addressbook sharees
+.addressbook__shares {
+	width: 100%;
+	.dropdown-menu {
+		border: 1px solid #d1d1d1;
+		border-radius: 0 0 3px 3px;
+		max-height: 200px;
+		margin-top: -2px;
+		overflow-y: auto;
+		display: flex;
+		flex-wrap: wrap;
+		background-color: #fff;
+		position: relative;
+		width: 100%;
+		z-index: 500;
+		top: -2px;
+		left: 0px;
+		li {
+			width: 100%;
+			padding: 8px 9px 9px;
+			cursor: pointer;
+		}
+		li.active {
+			background: #f0f0f0;
+		}
+	}
+	&__input {
+		width: 100% !important;
+		margin-right: 0;
+		padding-right: 30px;
+		text-overflow: ellipsis;
+	}
+	&__list {
+		margin-top: 8px;
+		margin-bottom: 12px;
+		display: flex;
+		flex-direction: column;
+	}
 }
 
 // Sharees settings for Addressbook
-.sharee-input {
-	width: 100% !important;
-	margin-right: 0;
-	padding-right: 30px;
-	text-overflow: ellipsis;
-}
-
-.calendar-share-item {
+.addressbook__sharee {
 	padding: 0 5px;
 	display: inline-flex;
 	align-items: center;
-	.shareeIdentifier {
+	&__identifier {
 		width: 100%;
 		overflow: hidden;
 		white-space: nowrap;
@@ -92,7 +117,7 @@
 		vertical-align: top;
 		opacity: 0.5;
 	}
-	.utils {
+	&__utils {
 		padding: 0 !important;
 		float: right;
 		position: relative !important;
@@ -144,7 +169,34 @@
 
 // Import contacts
 .import-contact {
-	.multiselect.multiselect-vue {
+	display: flex;
+	flex-direction: column;
+	.multiselect-label {
 		width: 100%;
+		padding: 6px 12px 6px 34px;
+		margin: 0;
+		border-radius: var(--border-radius) var(--border-radius) 0 0;
+		background: url(/core/css/../img/actions/upload.svg) no-repeat left 9px center;
+		background-color: #f7f7f7;
+		z-index: 2;
+	}
+	.multiselect-vue {
+		width: 100%;
+		margin: 0;
+	}
+	.multiselect-vue .multiselect__tags {
+		border: 1px solid var(--color-border-dark);
+		border-radius: 0 0 var(--border-radius) var(--border-radius);
+		margin-top: -1px;
+	}
+}
+
+// Add address book
+.new-address-book {
+	input[type='text'] + .icon-confirm, input[type='password'] + .icon-confirm, input[type='email'] + .icon-confirm {
+		opacity: 0.5;
+	}
+	.new-address-book-input {
+		border-color: var(--color-border-dark);
 	}
 }

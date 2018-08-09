@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Team Popcorn <teampopcornberlin@gmail.com>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -21,29 +22,36 @@
   -->
 
 <template>
-	<li :class="{'disabled': !addressbook.enabled}">
-		<!-- addressbook name -->
-		{{ addressbook.displayName }}
-		<!-- sharing button -->
-		<a href="#" class="icon-shared" @click="share" />
-		<!-- popovermenu -->
-		<a v-click-outside="closeMenu" href="#" class="addressbook-menu"
-			@click="toggleMenu">
-			<div class="icon-more" />
-			<div :class="{'open': menuOpen}" class="popovermenu">
-				<popover-menu />
-			</div>
-		</a>
-	</li>
+	<div>
+		<li :class="{'disabled': !addressbook.enabled}" class="addressbook">
+			<!-- addressbook name -->
+			<span class="addressbook__name">{{ addressbook.displayName }}</span>
+			<!-- sharing button -->
+			<a href="#" class="addressbook__share icon-shared"
+				@click="toggleShare" />
+			<!-- popovermenu -->
+			<a v-click-outside="closeMenu" href="#" class="addressbook__menu"
+				@click="toggleMenu">
+				<div class="icon-more" />
+				<div :class="{'open': menuOpen}" class="popovermenu">
+					<popover-menu :menu="menu" />
+				</div>
+			</a>
+		</li>
+		<!-- sharing input -->
+		<share-address-book v-if="shareOpen" :addressbook="addressbook" />
+	</div>
 </template>
 
 <script>
 import popoverMenu from './popoverMenu'
+import shareAddressBook from './settingsNavigation/shareAddressBook'
 import clickOutside from 'vue-click-outside'
 
 export default {
 	components: {
 		popoverMenu,
+		shareAddressBook,
 		clickOutside
 	},
 	directives: {
@@ -59,17 +67,52 @@ export default {
 	},
 	data() {
 		return {
-			menuOpen: false
+			menuOpen: false,
+			shareOpen: false,
+			enabled: true
 		}
 	},
 	computed: {
+		// building the popover menu
 		menu() {
-			return []
+			return [{
+				href: '#',
+				icon: 'icon-public',
+				text: 'Copy link'
+			},
+			{
+				href: '#',
+				icon: 'icon-download',
+				text: 'Download'
+			},
+			{
+				icon: 'icon-rename',
+				text: 'Rename',
+				action: function renameAddressBook() {
+					alert('rename the address book')
+				}
+			},
+			{
+				icon: 'checkbox',
+				text: 'Enabled',
+				input: 'checkbox',
+				model: this.enabled,
+				action: function toggleEnabled() {
+					alert('This addressbook is: enabled')
+				}
+			},
+			{
+				icon: 'icon-delete',
+				text: 'Delete',
+				action: function deleteAddressBook() {
+					alert('Delete AddressBook')
+				}
+			}]
 		}
 	},
 	methods: {
-		share() {
-			alert('Shared!')
+		toggleShare() {
+			this.shareOpen = !this.shareOpen
 		},
 		closeMenu() {
 			this.menuOpen = false
