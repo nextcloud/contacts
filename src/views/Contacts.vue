@@ -56,6 +56,7 @@ import appNavigation from '../components/appNavigation'
 import contentList from '../components/contentList'
 import contentDetails from '../components/contentDetails'
 import addressBook from '../components/addressBook'
+import Contact from '../models/contact'
 import importContacts from '../components/settingsNavigation/importContacts'
 import sortContacts from '../components/settingsNavigation/sortContacts'
 import addAddressBook from '../components/settingsNavigation/addAddressBook'
@@ -70,6 +71,7 @@ export default {
 		sortContacts,
 		addAddressBook
 	},
+
 	// passed by the router
 	props: {
 		selectedGroup: {
@@ -82,11 +84,13 @@ export default {
 			default: undefined
 		}
 	},
+
 	data() {
 		return {
 			loading: true
 		}
 	},
+
 	computed: {
 		// store getters
 		addressbooks() {
@@ -103,6 +107,11 @@ export default {
 		},
 		orderKey() {
 			return this.$store.getters.getOrderKey
+		},
+
+		// first enabled addressbook of the list
+		defaultAddressbook() {
+			return this.addressbooks.find(addressbook => addressbook.enabled)
 		},
 
 		/**
@@ -170,6 +179,7 @@ export default {
 			}]
 		}
 	},
+
 	watch: {
 		// watch url change and group select
 		selectedGroup: function() {
@@ -180,6 +190,7 @@ export default {
 			this.selectFirstContactIfNone()
 		}
 	},
+
 	beforeMount() {
 		// get addressbooks then get contacts
 		this.$store.dispatch('getAddressbooks')
@@ -197,8 +208,18 @@ export default {
 			this.$store.commit('setOrder', localStorage.getItem('orderKey'))
 		}
 	},
+
 	methods: {
 		newContact() {
+			let contact = new Contact('BEGIN:VCARD\nVERSION:4.0\nFN:' + t('contacts', 'New Contact') + '\nCATEGORIES:' + this.selectedGroup + '\nEND:VCARD', this.defaultAddressbook)
+			this.$store.dispatch('addContact', contact)
+			this.$router.push({
+				name: 'contact',
+				params: {
+					selectedGroup: this.selectedGroup,
+					selectedContact: contact.key
+				}
+			})
 		},
 
 		/**

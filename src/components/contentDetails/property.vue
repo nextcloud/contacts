@@ -21,11 +21,14 @@
   -->
 
 <template>
-	<input v-model="prop" type="text">
+	<div class="contact-details-property">
+		
+	</div>
 </template>
 
 <script>
 import { Property } from 'ical.js'
+import rfcProps from '../../models/rfcProps.js'
 
 export default {
 	name: 'Property',
@@ -36,6 +39,27 @@ export default {
 		}
 	},
 	computed: {
+		// rfc properties list
+		properties() {
+			return rfcProps.properties
+		},
+		fieldOrder() {
+			return rfcProps.fieldOrder
+		},
+
+		// the type of the prop e.g. FN
+		propName() {
+			return this.property.name
+		},
+		propType() {
+			return this.property.type
+		},
+		// template to use
+		propModel() {
+			return this.properties[name]
+		},
+
+		// property value(s)
 		prop: {
 			get() {
 				if (this.property.isMultiValue) {
@@ -48,6 +72,24 @@ export default {
 					return this.property.setValues(data)
 				}
 				return this.property.setValue(data)
+			}
+		},
+		// property meta type
+		type: {
+			get() {
+				return this.property.getParameter('type')
+			},
+			set(data) {
+				this.property.setParameter('type', data)
+			}
+		},
+		// property meta pref
+		pref: {
+			get() {
+				return this.property.getParameter('pref')
+			},
+			set(data) {
+				this.property.setParameter('pref', data)
 			}
 		}
 	}

@@ -25,32 +25,44 @@ import vcfFile from '!raw-loader!./FakeName.vcf'
 import parseVcf from '../services/parseVcf'
 import Vue from 'vue'
 
+const addressbookModel = {
+	id: '',
+	displayName: '',
+	enabled: true,
+	owner: '',
+	shares: [],
+	contacts: {}
+}
+
 const state = {
 	addressbooks: []
 }
 
 const mutations = {
+
 	/**
-	 * Store addressbooks into state
+	 * Add addressbook into state
 	 *
 	 * @param {Object} state Default state
-	 * @param {Array} addressbooks Addressbooks
+	 * @param {Object} addressbooks Addressbook
 	 */
-	appendAddressbooks(state, addressbooks) {
-		state.addressbooks = addressbooks
+	addAddressbooks(state, addressbook) {
+		// extend the addressbook to the default model
+		state.addressbooks.push(Object.assign({}, addressbookModel, addressbook))
 	},
 
 	/**
-	 * Append a contact list to an addressbook
+	 * Append a list of contacts to an addressbook
 	 * and remove duplicates
 	 *
-	 * @param {Object} state
+	 * @param {Object} states
 	 * @param {Object} data
 	 * @param {Object} data.addressbook the addressbook
 	 * @param {Contact[]} data.contacts array of contacts to append
 	 */
-	async appendContactsToAddressbook(state, { addressbook, contacts }) {
+	appendContactsToAddressbook(state, { addressbook, contacts }) {
 		addressbook = state.addressbooks.find(search => search === addressbook)
+
 		// convert list into an array and remove duplicate
 		addressbook.contacts = contacts.reduce((list, contact) => {
 			if (list[contact.uid]) {
@@ -59,6 +71,17 @@ const mutations = {
 			Vue.set(list, contact.uid, contact)
 			return list
 		}, addressbook.contacts)
+	},
+
+	/**
+	 * Add a contact to an addressbook and overwrite if duplicate uid
+	 *
+	 * @param {Object} state
+	 * @param {Contact} contact
+	 */
+	addContactToAddressbook(state, contact) {
+		let addressbook = state.addressbooks.find(search => search === contact.addressbook)
+		Vue.set(addressbook.contacts, contact.key, contact)
 	},
 
 	/**
@@ -132,11 +155,14 @@ const getters = {
 }
 
 const actions = {
+
 	/**
 	 * Retrieve and commit addressbooks
-	 * @param {Object} context Current context
+	 *
+	 * @param {Object} context
+	 * @returns {Promise} fetch and commit
 	 */
-	getAddressbooks(context) {
+	async getAddressbooks(context) {
 		// Fake data before using real dav requests
 		let addressbooks = [
 			{
@@ -174,19 +200,30 @@ const actions = {
 		// fake request
 		return new Promise((resolve, reject) => {
 			return setTimeout(() => {
-				context.commit('appendAddressbooks', addressbooks)
+				addressbooks.forEach(addressbook => {
+					context.commit('addAddressbooks', addressbook)
+				})
 				resolve()
 				return addressbooks
-			}, 0)
+			}, 1000)
 		})
 	},
+
+	/**
+	 * Retrieve the contacts of the specified addressbook
+	 * and commit the results
+	 *
+	 * @param {Object} context
+	 * @param {Object} addressbook
+	 */
 	async getContactsFromAddressBook(context, addressbook) {
 		let contacts = parseVcf(vcfFile, addressbook)
-		await context.commit('appendContactsToAddressbook', { addressbook, contacts })
-		await context.commit('appendContacts', contacts)
-		await context.commit('sortContacts')
-		await context.commit('appendGroups', contacts)
+		context.commit('appendContactsToAddressbook', { addressbook, contacts })
+		context.commit('appendContacts', contacts)
+		context.commit('sortContacts')
+		context.commit('appendGroups', contacts)
 	},
+
 	/**
 	 * Remove sharee from Addressbook
 	 * @param {Object} context Current context
@@ -196,6 +233,7 @@ const actions = {
 		// Remove sharee from addressbook.
 		context.commit('removeSharee', sharee)
 	},
+
 	/**
 	 * Toggle permissions of Addressbook Sharees writeable rights
 	 * @param {Object} context Current context
@@ -205,6 +243,7 @@ const actions = {
 		// Toggle sharee edit permissions.
 		context.commit('updateShareeWritable', sharee)
 	},
+
 	/**
 	 * Share Adressbook with User or Group
 	 * @param {Object} context Current context

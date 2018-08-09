@@ -1455,15 +1455,18 @@ END:VCARD
 BEGIN:VCARD
 VERSION:3.0
 N:Snorrason;Aðalbjörn;;Mr.;
+URL:http://google.com
 FN:Aðalbjörn Snorrason
 NICKNAME:Shaltarea
 BDAY;VALUE=text:7/31/1950
 GENDER:male
 ORG:Farmer Jack;
+LANG;PREF=1:fr
+LANG;PREF=2:en
 TITLE:Refuse and recyclable material collector
 EMAIL;TYPE=HOME,INTERNET,pref:AalbjornSnorrason@einrot.com
 CATEGORIES:Family
-TEL;TYPE=VOICE,HOME;VALUE=text:021 511 81 18
+TEL;TYPE=VOICE,HOME;PREF=1;VALUE=text:021 511 81 18
 ADR;TYPE=HOME:;;Sédeilles;;1554;Switzerland
 END:VCARD
 BEGIN:VCARD

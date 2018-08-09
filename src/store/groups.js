@@ -53,6 +53,16 @@ const mutations = {
 					})
 				}
 			})
+	},
+
+	/**
+	 * Add group if no exist and append contact to it
+	 *
+	 * @param {Object} state
+	 * @param {Contact} contact
+	 */
+	addContactToGroup(state, { group, contact }) {
+		state.groups.find(search => search.name === group).contacts.push(contact.key)
 	}
 }
 
@@ -60,6 +70,19 @@ const getters = {
 	getGroups: state => state.groups
 }
 
-const actions = {}
+const actions = {
+
+	/**
+	 * Add contact and update groups
+	 *
+	 * @param {Object} context
+	 * @param {Object} addressbook
+	 */
+	addContact(context, contact) {
+		contact.groups.forEach(group => {
+			context.commit('addContactToGroup', { group, contact })
+		})
+	}
+}
 
 export default { state, mutations, getters, actions }

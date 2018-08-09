@@ -127,7 +127,7 @@ export default class Contact {
 	}
 
 	/**
-	 * Return the first email
+	 * Return the first org
 	 *
 	 * @readonly
 	 * @memberof Contact
@@ -137,7 +137,16 @@ export default class Contact {
 	}
 
 	/**
-	 * Return the first email
+	 * Set the org
+	 *
+	 * @memberof Contact
+	 */
+	set org(org) {
+		return this.vCard.updatePropertyWithValue('org', org)
+	}
+
+	/**
+	 * Return the first title
 	 *
 	 * @readonly
 	 * @memberof Contact
@@ -147,13 +156,31 @@ export default class Contact {
 	}
 
 	/**
-	 * Return the first email
+	 * Set the title
+	 *
+	 * @memberof Contact
+	 */
+	set title(title) {
+		return this.vCard.updatePropertyWithValue('title', title)
+	}
+
+	/**
+	 * Return the full name
 	 *
 	 * @readonly
 	 * @memberof Contact
 	 */
 	get fullName() {
 		return this.vCard.getFirstPropertyValue('fn')
+	}
+
+	/**
+	 * Set the full name
+	 *
+	 * @memberof Contact
+	 */
+	set fullName(name) {
+		return this.vCard.updatePropertyWithValue('fn', name)
 	}
 
 	/**
@@ -217,6 +244,21 @@ export default class Contact {
 	 */
 	get properties() {
 		return this.vCard.getAllProperties()
+	}
+
+	/**
+	 * Add the contact to the group
+	 *
+	 * @memberof Contact
+	 */
+	addToGroup(group) {
+		if (this.groups.indexOf(group) === -1) {
+			if (this.groups.length > 0) {
+				this.vCard.getFirstProperty('categories').setValues(this.groups.concat(group))
+			} else {
+				this.vCard.updatePropertyWithValue('categories', [group])
+			}
+		}
 	}
 
 }
