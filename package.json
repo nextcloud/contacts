@@ -15,6 +15,7 @@
 		"test:coverage": "jest --coverage"
 	},
 	"dependencies": {
+		"axios": "^0.18.0",
 		"babel-polyfill": "^6.26.0",
 		"ical.js": "^1.2.2",
 		"uuid": "^3.3.2",
