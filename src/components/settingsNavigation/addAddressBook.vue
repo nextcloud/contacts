@@ -22,7 +22,7 @@
 
 <template>
 	<form id="new-addressbook-form" name="new-addressbook-form" class="new-address-book"
-		v-on:submit.prevent="addAddressBook">
+		@submit.prevent="addAddressBook">
 		<input ref="addressBook" :id="addressBook" class="new-address-book-input"
 			placeholder="Address book name"
 			type="text"
@@ -71,9 +71,9 @@ export default {
 		 * @returns {Promise}
 		 */
 		addAddressBook() {
-			let addressBook = this.$refs.addressBook.value
-			let addressBooks = this.$store.getters.getAddressbooks
-			let newAddressBooksArray = addressBooks.push(addressBook)
+			// let addressBook = this.$refs.addressBook.value
+			// let addressBooks = this.$store.getters.getAddressbooks
+			// let newAddressBooksArray = addressBooks.push(addressBook)
 		}
 	}
 }

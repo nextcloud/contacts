@@ -21,9 +21,7 @@
   -->
 
 <template>
-	<div class="contact-details-property">
-		
-	</div>
+	<div class="contact-details-property" />
 </template>
 
 <script>

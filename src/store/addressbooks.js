@@ -55,7 +55,7 @@ const mutations = {
 	 * Append a list of contacts to an addressbook
 	 * and remove duplicates
 	 *
-	 * @param {Object} states
+	 * @param {Object} state
 	 * @param {Object} data
 	 * @param {Object} data.addressbook the addressbook
 	 * @param {Contact[]} data.contacts array of contacts to append
