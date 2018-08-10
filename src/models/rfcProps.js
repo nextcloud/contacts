@@ -150,7 +150,6 @@ const properties = {
 			{ id: 'PAGER', name: t('contacts', 'Pager') },
 			{ id: 'VOICE', name: t('contacts', 'Voice') },
 			{ id: 'CAR', name: t('contacts', 'Car') },
-			{ id: 'PAGER', name: t('contacts', 'Pager') },
 			{ id: 'WORK,PAGER', name: t('contacts', 'Work pager') }
 		]
 	},

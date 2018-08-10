@@ -1459,15 +1459,16 @@ URL:http://google.com
 FN:Aðalbjörn Snorrason
 NICKNAME:Shaltarea
 BDAY;VALUE=text:7/31/1950
-GENDER:male
+GENDER;TYPE=HOME:male
 ORG:Farmer Jack;
 LANG;PREF=1:fr
 LANG;PREF=2:en
+RELATIONSHIP:BROTHER
 TITLE:Refuse and recyclable material collector
-EMAIL;TYPE=HOME,INTERNET,pref:AalbjornSnorrason@einrot.com
+EMAIL;TYPE=HOME,pref:AalbjornSnorrason@einrot.com
 CATEGORIES:Family
 TEL;TYPE=VOICE,HOME;PREF=1;VALUE=text:021 511 81 18
-ADR;TYPE=HOME:;;Sédeilles;;1554;Switzerland
+ADR;TYPE=home:;;Sédeilles;;1554;Switzerland
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
@@ -1478,7 +1479,7 @@ BDAY;VALUE=text:2/26/1971
 GENDER:female
 ORG:Crown Auto Parts;
 TITLE:Material moving occupation
-EMAIL;TYPE=HOME,INTERNET,pref:GalRobledoPrieto@cuvox.de
+EMAIL;TYPE=HOME,pref:GalRobledoPrieto@cuvox.de
 CATEGORIES:Cousins
 TEL;TYPE=VOICE,HOME;VALUE=text:05.93.86.47.32
 ADR;TYPE=HOME:;;BAIE-MAHAULT;GD;97122;France
