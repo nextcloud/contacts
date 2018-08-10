@@ -30,5 +30,13 @@ export default function parseVcf(data = '', addressbook) {
 		console.debug('Error during the parsing of the following vcf file: ', data)
 		return []
 	}
-	return vCards.map(vCard => new Contact(vCard, addressbook))
+	return vCards.map(vCard => {
+		try {
+			return new Contact(vCard, addressbook)
+		} catch (e) {
+			// Parse error! Do not stop here...
+			// eslint-disable-next-line
+			console.error(e)
+		}
+	})
 }
