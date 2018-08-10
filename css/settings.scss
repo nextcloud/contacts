@@ -101,6 +101,13 @@
 		display: flex;
 		flex-direction: column;
 	}
+	.multiselect.multiselect-vue {
+		width: inherit
+	}
+	.multiselect.multiselect-vue .multiselect__content-wrapper {
+		background: #f0f0f0;
+		width: fit-content;
+	}
 }
 
 // Sharees settings for Addressbook

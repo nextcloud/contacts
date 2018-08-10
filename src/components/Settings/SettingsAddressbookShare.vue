@@ -26,7 +26,6 @@
 			id="users-groups-search"
 			v-model="selectedUserOrGroup"
 			:options="usersOrGroups"
-			:multiple="true"
 			:searchable="true"
 			:loading="isLoading"
 			:internal-search="false"
@@ -36,12 +35,12 @@
 			:limit="3"
 			:max-height="600"
 			:show-no-results="false"
-			:hide-selected="true"
 			:placeholder="placeholder"
 			open-direction="bottom"
+			class="multiselect-vue"
 			@search-change="asyncFind">
 			<template slot="option" slot-scope="props">
-				<span class="">{{ props.option.matchstart }}</span><span class="" style="font-weight: bold;">{{ props.option.matchpattern }}</span><span class="">{{ props.option.matchend }} {{ props.option.matchtag }}</span>
+				<span class="">{{ props.option.matchstart }}</span><span class="" style="font-weight: bold;">{{ props.option.matchpattern }}</span><span class="">{{ props.option.matchend }}{{ props.option.matchtag }}</span>
 			</template>
 			<template slot="clear" slot-scope="props">
 				<div v-if="selectedUserOrGroup.length" class="multiselect__clear" @mousedown.prevent.stop="clearAll(props.search)" />
@@ -105,7 +104,12 @@ export default {
 			this.$store.dispatch('shareAddressbook', newSharee)
 		},
 
-		processMatchResults(matches, query, matchTag) {
+		formatMatchResults(matches, query, matchTag) {
+			// format response from axios.all and add them to the option array
+			/*
+			 * Case issue for query, matchpattern should reflect case in match not the query
+			*/
+
 			for (let i = 0; i < matches.length; i++) {
 				let regex = new RegExp(query, 'i')
 				let matchResult = matches[i].split(regex)
@@ -123,24 +127,24 @@ export default {
 			this.isLoading = true
 			this.usersOrGroups = []
 			if (query.length > 0) {
-				/*
-				* Case issue for query, matchpattern should reflect case in match not the query
-				*/
-
-				api.all([api.get(OC.linkToOCS('cloud', 2) + 'users?search=' + query), api.get(OC.linkToOCS('cloud', 2) + 'groups?search=' + query)]).then(response => {
+				api.all([
+					api.get(OC.linkToOCS('cloud', 2) + 'users?search=' + query),
+					api.get(OC.linkToOCS('cloud', 2) + 'groups?search=' + query)
+				]).then(response => {
 					let matchingUsers = response[0].data.ocs.data.users
 					let matchingGroups = response[1].data.ocs.data.groups
 					try {
-						this.processMatchResults(matchingUsers, query, '(user)')
+						this.formatMatchResults(matchingUsers, query, ' (user)')
 					} catch (error) {
 						console.debug(error)
 					}
 					try {
-						this.processMatchResults(matchingGroups, query, '(group)')
+						this.formatMatchResults(matchingGroups, query, ' (group)')
 					} catch (error) {
 						console.debug(error)
 					}
 				}).then(() => {
+
 					this.isLoading = false
 				})
 			}
