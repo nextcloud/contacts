@@ -117,5 +117,11 @@ export default {
 		return axios.delete(sanitize(url), { data: data, headers: tokenHeaders.headers })
 			.then((response) => Promise.resolve(response))
 			.catch((error) => Promise.reject(error))
+	},
+	all(promises) {
+		return axios.all(promises)
+			.then((response) => Promise.resolve(response))
+			.catch((error) => Promise.reject(error))
+
 	}
 }
