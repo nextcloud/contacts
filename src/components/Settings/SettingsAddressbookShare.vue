@@ -22,36 +22,33 @@
 
 <template>
 	<div class="addressbook__shares">
-		<div class="dropdown-menu">
-			<label class="typo__label" for="ajax">Async multiselect</label>
-			<multiselect
-				id="ajax"
-				v-model="selectedUserOrGroup"
-				:options="usersOrGroups"
-				:multiple="true"
-				:searchable="true"
-				:loading="isLoading"
-				:internal-search="false"
-				:clear-on-select="false"
-				:close-on-select="false"
-				:options-limit="250"
-				:limit="3"
-				:limit-text="limitText"
-				:max-height="600"
-				:show-no-results="false"
-				:hide-selected="true"
-				label="name"
-				track-by="code"
-				placeholder="Type to search"
-				open-direction="bottom"
-				@search-change="asyncFind">
-				<template slot="clear" slot-scope="props">
-					<div v-if="selectedUserOrGroup.length" class="multiselect__clear" @mousedown.prevent.stop="clearAll(props.search)" />
-				</template>
-				<span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
-			</multiselect>
-			<pre class="language-json"><code>{{ selectedUserOrGroup }}</code></pre>
-		</div>
+		<multiselect
+			id="users-groups-search"
+			v-model="selectedUserOrGroup"
+			:options="usersOrGroups"
+			:multiple="true"
+			:searchable="true"
+			:loading="isLoading"
+			:internal-search="false"
+			:clear-on-select="false"
+			:close-on-select="false"
+			:options-limit="250"
+			:limit="3"
+			:max-height="600"
+			:show-no-results="false"
+			:hide-selected="true"
+			:placeholder="placeholder"
+			open-direction="bottom"
+			@search-change="asyncFind">
+			<template slot="option" slot-scope="props">
+				<span class="">{{ props.option.matchstart }}</span><span class="" style="font-weight: bold;">{{ props.option.matchpattern }}</span><span class="">{{ props.option.matchend }} {{ props.option.matchtag }}</span>
+			</template>
+			<template slot="clear" slot-scope="props">
+				<div v-if="selectedUserOrGroup.length" class="multiselect__clear" @mousedown.prevent.stop="clearAll(props.search)" />
+			</template>
+			<span slot="noResult">{{ noResult }} </span>
+		</multiselect>
+		<!-- <pre class="language-json"><code>{{ selectedUserOrGroup }}</code></pre> -->
 		<!-- list of user or groups addressbook is shared with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressbook__shares__list">
 			<address-book-sharee v-for="sharee in addressbook.shares" :key="sharee.name" :sharee="sharee" />
@@ -60,9 +57,11 @@
 </template>
 
 <script>
-import clickOutside from 'vue-click-outside'
 import Multiselect from 'vue-multiselect'
 import addressBookSharee from './SettingsAddressbookSharee'
+
+import clickOutside from 'vue-click-outside'
+import api from '../../services/api'
 
 export default {
 	name: 'SettingsShareAddressBook',
@@ -86,29 +85,67 @@ export default {
 		return {
 			isLoading: false,
 			usersOrGroups: [],
-			selectedUserOrGroup: []
+			selectedUserOrGroup: [],
+			templateSharee: { displayname: '', writeable: false }
+		}
+	},
+	computed: {
+		placeholder() {
+			return t('contacts', 'Share with users or groups')
+		},
+		noResult() {
+			return t('contacts', 'Oops! No elements found. Consider changing the search query.')
 		}
 	},
 	methods: {
-		limitText(count) {
-			return `and ${count} other users or groups`
+		addSharee(sharee) {
+			let newSharee = {}
+			Object.assign({}, this.templateSharee, newSharee)
+			// not working yet need to work on!
+			this.$store.dispatch('shareAddressbook', newSharee)
 		},
 
-		/* example :OC.linkToOCS('cloud', 2)+ 'groups?search=Test' */
+		processMatchResults(matches, query, matchTag) {
+			for (let i = 0; i < matches.length; i++) {
+				let regex = new RegExp(query, 'i')
+				let matchResult = matches[i].split(regex)
+				let newMatch = {
+					matchstart: matchResult[0],
+					matchpattern: query,
+					matchend: matchResult[1],
+					matchtag: matchTag
+				}
+				this.usersOrGroups.push(newMatch)
+			}
+		},
+
 		asyncFind(query) {
 			this.isLoading = true
 			this.usersOrGroups = []
-			// let response = OC.linkToOCS('cloud', 2) + 'groups?search=' + query
-			fetch(OC.linkToOCS('cloud', 2) + 'groups?search=' + query).then(response => {
-				this.usersOrGroups.push(response)
-				this.isLoading = false
-			})
-			console.log(this.usersOrGroups) // eslint-disable-line
-			/* ajaxFindCountry(query).then(response => {
-				this.countries = response
-				this.isLoading = false
-			}) */
+			if (query.length > 0) {
+				/*
+				* Case issue for query, matchpattern should reflect case in match not the query
+				*/
+
+				api.all([api.get(OC.linkToOCS('cloud', 2) + 'users?search=' + query), api.get(OC.linkToOCS('cloud', 2) + 'groups?search=' + query)]).then(response => {
+					let matchingUsers = response[0].data.ocs.data.users
+					let matchingGroups = response[1].data.ocs.data.groups
+					try {
+						this.processMatchResults(matchingUsers, query, '(user)')
+					} catch (error) {
+						console.debug(error)
+					}
+					try {
+						this.processMatchResults(matchingGroups, query, '(group)')
+					} catch (error) {
+						console.debug(error)
+					}
+				}).then(() => {
+					this.isLoading = false
+				})
+			}
 		},
+
 		clearAll() {
 			this.selectedUserOrGroup = []
 		}
