@@ -60,6 +60,7 @@ import Multiselect from 'vue-multiselect'
 import addressBookSharee from './SettingsAddressbookSharee'
 
 import clickOutside from 'vue-click-outside'
+
 import api from '../../services/api'
 
 export default {
