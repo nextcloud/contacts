@@ -23,19 +23,10 @@
 <template>
 	<div id="content" class="app-contacts">
 
-		<!-- new-button + navigation + settings -->
+		<!-- new-contact-button + navigation + settings -->
 		<app-navigation :menu="menu">
 			<!-- settings -->
-			<template slot="settings-content">
-				<ul id="address-book-list">
-					<address-book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
-				</ul>
-				<add-address-book :addressbooks="addressbooks" />
-
-				<import-contacts :addressbooks="addressbooks" class="settings-section" />
-				<sort-contacts class="settings-section" />
-
-			</template>
+			<settings-section slot="settings-content" />
 		</app-navigation>
 
 		<!-- main content -->
@@ -44,7 +35,7 @@
 				<!-- contacts list -->
 				<content-list :list="contactsList" :contacts="contacts" :loading="loading" />
 				<!-- main contacts details -->
-				<content-details :loading="loading" :uid="selectedContact" />
+				<contact-details :loading="loading" :uid="selectedContact" />
 			</div>
 		</div>
 
@@ -52,24 +43,19 @@
 </template>
 
 <script>
-import appNavigation from '../components/appNavigation'
-import contentList from '../components/contentList'
-import contentDetails from '../components/contentDetails'
-import addressBook from '../components/addressBook'
+import appNavigation from '../components/core/appNavigation'
+import settingsSection from '../components/SettingsSection'
+import contentList from '../components/ContentList'
+import contactDetails from '../components/ContactDetails'
+
 import Contact from '../models/contact'
-import importContacts from '../components/settingsNavigation/importContacts'
-import sortContacts from '../components/settingsNavigation/sortContacts'
-import addAddressBook from '../components/settingsNavigation/addAddressBook'
 
 export default {
 	components: {
 		appNavigation,
+		settingsSection,
 		contentList,
-		contentDetails,
-		addressBook,
-		importContacts,
-		sortContacts,
-		addAddressBook
+		contactDetails
 	},
 
 	// passed by the router
