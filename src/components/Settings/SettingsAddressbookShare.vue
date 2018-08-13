@@ -24,33 +24,32 @@
 	<div class="addressbook__shares">
 		<multiselect
 			id="users-groups-search"
-			v-model="selectedUserOrGroup"
 			:options="usersOrGroups"
 			:searchable="true"
 			:loading="isLoading"
 			:internal-search="false"
-			:clear-on-select="false"
-			:close-on-select="false"
 			:options-limit="250"
 			:limit="3"
 			:max-height="600"
 			:show-no-results="false"
 			:placeholder="placeholder"
+			track-by="match"
+			label="match"
 			open-direction="bottom"
 			class="multiselect-vue"
-			@search-change="asyncFind">
+			@search-change="asyncFind"
+			@input="addSharee">
+			<template slot="singleLabel" slot-scope="props"><span class="option__desc"><span class="option__title">{{ props.option.matchpattern }}</span></span></template>
 			<template slot="option" slot-scope="props">
-				<span class="">{{ props.option.matchstart }}</span><span class="" style="font-weight: bold;">{{ props.option.matchpattern }}</span><span class="">{{ props.option.matchend }}{{ props.option.matchtag }}</span>
-			</template>
-			<template slot="clear" slot-scope="props">
-				<div v-if="selectedUserOrGroup.length" class="multiselect__clear" @mousedown.prevent.stop="clearAll(props.search)" />
+				<div class="option__desc">
+					<span class="">{{ props.option.matchstart }}</span><span class="" style="font-weight: bold;">{{ props.option.matchpattern }}</span><span class="">{{ props.option.matchend }} {{ props.option.matchtag }}</span>
+				</div>
 			</template>
 			<span slot="noResult">{{ noResult }} </span>
 		</multiselect>
-		<!-- <pre class="language-json"><code>{{ selectedUserOrGroup }}</code></pre> -->
 		<!-- list of user or groups addressbook is shared with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressbook__shares__list">
-			<address-book-sharee v-for="sharee in addressbook.shares" :key="sharee.name" :sharee="sharee" />
+			<address-book-sharee v-for="sharee in addressbook.shares" :key="sharee.displayname" :sharee="sharee" />
 		</ul>
 	</div>
 </template>
@@ -83,9 +82,7 @@ export default {
 	data() {
 		return {
 			isLoading: false,
-			usersOrGroups: [],
-			selectedUserOrGroup: [],
-			templateSharee: { displayname: '', writeable: false }
+			usersOrGroups: []
 		}
 	},
 	computed: {
@@ -97,25 +94,25 @@ export default {
 		}
 	},
 	methods: {
-		addSharee(sharee) {
-			let newSharee = {}
-			Object.assign({}, this.templateSharee, newSharee)
-			// not working yet need to work on!
-			this.$store.dispatch('shareAddressbook', newSharee)
+		addSharee(chosenUserOrGroup) {
+			let payload = []
+			payload.push(this.addressbook)
+			payload.push(chosenUserOrGroup.match)
+			this.$store.dispatch('shareAddressbook', payload)
 		},
 
 		formatMatchResults(matches, query, matchTag) {
 			// format response from axios.all and add them to the option array
-			/*
-			 * Case issue for query, matchpattern should reflect case in match not the query
-			*/
-
+			if (matches.length < 1) {
+				return
+			}
 			for (let i = 0; i < matches.length; i++) {
 				let regex = new RegExp(query, 'i')
 				let matchResult = matches[i].split(regex)
 				let newMatch = {
+					match: matches[i] + ' ' + matchTag,
 					matchstart: matchResult[0],
-					matchpattern: query,
+					matchpattern: matches[i].match(regex)[0],
 					matchend: matchResult[1],
 					matchtag: matchTag
 				}
@@ -134,12 +131,12 @@ export default {
 					let matchingUsers = response[0].data.ocs.data.users
 					let matchingGroups = response[1].data.ocs.data.groups
 					try {
-						this.formatMatchResults(matchingUsers, query, ' (user)')
+						this.formatMatchResults(matchingUsers, query, '(user)')
 					} catch (error) {
 						console.debug(error)
 					}
 					try {
-						this.formatMatchResults(matchingGroups, query, ' (group)')
+						this.formatMatchResults(matchingGroups, query, '(group)')
 					} catch (error) {
 						console.debug(error)
 					}
@@ -148,10 +145,6 @@ export default {
 					this.isLoading = false
 				})
 			}
-		},
-
-		clearAll() {
-			this.selectedUserOrGroup = []
 		}
 	}
 }

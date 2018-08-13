@@ -66,11 +66,11 @@ export default {
 					key: 'firstName'
 				},
 				{
-					label: t('contacts', 'Lastname'),
+					label: t('contacts', 'Last name'),
 					key: 'lastName'
 				},
 				{
-					label: t('contacts', 'Display-name'),
+					label: t('contacts', 'Display name'),
 					key: 'displayName'
 				}
 			]

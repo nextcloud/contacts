@@ -102,12 +102,12 @@ const mutations = {
 	 * @param {Object} data
 	 * @param {Object} data.addressbook the addressbook
 	 */
-	shareAddressbook(state, addressbook, sharee) {
+	shareAddressbook(state, [ addressbook, sharee ]) {
 		addressbook = state.addressbooks.find(search => search === addressbook)
 		let newSharee = {}
-		sharee.displayname = sharee
-		sharee.writable = false
-		addressbook.shares.append(newSharee)
+		newSharee.displayname = sharee
+		newSharee.writeable = false
+		addressbook.shares.push(newSharee)
 	},
 
 	/**
@@ -125,7 +125,7 @@ const mutations = {
 				}
 			}
 		})
-		addressbook.shares.splice(sharee, 1)
+		addressbook.shares.splice(addressbook.shares.indexOf(sharee), 1)
 	},
 
 	/**
@@ -250,8 +250,9 @@ const actions = {
 	 * @param {Object} addressbook Addressbook selected
 	 * @param {Object} sharee Addressbook sharee object
 	 */
-	shareAddressbook(contect, addressbook, sharee) {
+	shareAddressbook(context, [ addressbook, sharee ]) {
 		// Share addressbook with entered group or user
+		context.commit('shareAddressbook', [ addressbook, sharee ])
 	}
 }
 

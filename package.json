@@ -65,7 +65,7 @@
 		"vue-jest": "^2.6.0",
 		"vue-loader": "^15.2.4",
 		"vue-template-compiler": "^2.5.16",
-		"webpack": "^4.16.2",
+		"webpack": "^4.16.5",
 		"webpack-cli": "^3.0.4",
 		"webpack-merge": "^4.1.2"
 	},
