@@ -33,8 +33,8 @@
 </template>
 
 <script>
-import addressBook from '../components/Settings/SettingsAddressBook'
-import addAddressBook from '../components/Settings/SettingsNewAddressBook'
+import addressBook from '../components/Settings/SettingsAddressbook'
+import addAddressBook from '../components/Settings/SettingsNewAddressbook'
 import importContacts from '../components/Settings/SettingsImportContacts'
 import sortContacts from '../components/Settings/SettingsSortContacts'
 

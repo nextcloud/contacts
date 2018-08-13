@@ -62,7 +62,7 @@
 <script>
 import clickOutside from 'vue-click-outside'
 import Multiselect from 'vue-multiselect'
-import addressBookSharee from './SettingsAddressBookSharee'
+import addressBookSharee from './SettingsAddressbookSharee'
 
 export default {
 	name: 'SettingsShareAddressBook',

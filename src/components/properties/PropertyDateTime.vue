@@ -58,7 +58,7 @@ export default {
 			default: () => {}
 		},
 		value: {
-			type: [String],
+			type: [VCardTime],
 			default: ''
 		}
 	},
