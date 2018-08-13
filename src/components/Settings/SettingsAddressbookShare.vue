@@ -106,8 +106,13 @@ export default {
 			if (matches.length < 1) {
 				return
 			}
+			let regex = new RegExp(query, 'i')
 			for (let i = 0; i < matches.length; i++) {
-				let regex = new RegExp(query, 'i')
+				for (let j = 0; j < this.addressbook.shares.length; j++) {
+					if (this.addressbook.shares[j].displayname === matches[i] + ' ' + matchTag) {
+						return
+					}
+				}
 				let matchResult = matches[i].split(regex)
 				let newMatch = {
 					match: matches[i] + ' ' + matchTag,
