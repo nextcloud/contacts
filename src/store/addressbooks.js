@@ -102,11 +102,12 @@ const mutations = {
 	 * @param {Object} data
 	 * @param {Object} data.addressbook the addressbook
 	 */
-	shareAddressbook(state, [ addressbook, sharee ]) {
+	shareAddressbook(state, [ addressbook, sharee, group ]) {
 		addressbook = state.addressbooks.find(search => search === addressbook)
 		let newSharee = {}
 		newSharee.displayname = sharee
 		newSharee.writeable = false
+		newSharee.group = group
 		addressbook.shares.push(newSharee)
 	},
 
@@ -171,9 +172,9 @@ const actions = {
 				enabled: true,
 				owner: 'admin',
 				shares: [
-					{ displayname: 'Bob', writeable: true },
-					{ displayname: 'Rita', writeable: true },
-					{ displayname: 'Sue', writeable: false }
+					{ displayname: 'Bob', writeable: true, group: false },
+					{ displayname: 'Rita', writeable: true, group: false },
+					{ displayname: 'Sue', writeable: false, group: false }
 				],
 				contacts: {}
 			},
@@ -183,8 +184,8 @@ const actions = {
 				enabled: false,
 				owner: 'admin',
 				shares: [
-					{ displayname: 'Aimee', writeable: false },
-					{ displayname: 'Jaguar', writeable: true }
+					{ displayname: 'Aimee', writeable: false, group: false },
+					{ displayname: 'Jaguar', writeable: true, group: true }
 				],
 				contacts: {}
 			},
@@ -250,9 +251,9 @@ const actions = {
 	 * @param {Object} addressbook Addressbook selected
 	 * @param {Object} sharee Addressbook sharee object
 	 */
-	shareAddressbook(context, [ addressbook, sharee ]) {
+	shareAddressbook(context, [ addressbook, sharee, group ]) {
 		// Share addressbook with entered group or user
-		context.commit('shareAddressbook', [ addressbook, sharee ])
+		context.commit('shareAddressbook', [ addressbook, sharee, group ])
 	}
 }
 

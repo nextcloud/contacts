@@ -40,7 +40,7 @@
 import clickOutside from 'vue-click-outside'
 
 export default {
-	name: 'SettingsNewAddressBook',
+	name: 'SettingsNewAddressbook',
 	components: {
 		clickOutside
 	},
