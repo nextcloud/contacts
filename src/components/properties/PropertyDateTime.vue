@@ -22,18 +22,20 @@
 
 <template>
 	<div v-if="propModel" class="contact-details-property grid-span-1">
-		<!-- type selector -->
-		<multiselect v-if="propModel.options" v-model="selectType"
-			:options="propModel.options" :searchable="false" :placeholder="t('contacts', 'Select type')"
-			class="multiselect-vue contact-details-label" track-by="id" label="name" />
+		<div class="contact-details-property-row">
+			<!-- type selector -->
+			<multiselect v-if="propModel.options" v-model="selectType"
+				:options="propModel.options" :searchable="false" :placeholder="t('contacts', 'Select type')"
+				class="multiselect-vue contact-details-label" track-by="id" label="name" />
 
-		<!-- if we do not support any type on our model but one is set anyway -->
-		<div v-else-if="selectType" class="contact-details-label">{{ selectType.name }}</div>
+			<!-- if we do not support any type on our model but one is set anyway -->
+			<div v-else-if="selectType" class="contact-details-label">{{ selectType.name }}</div>
 
-		<!-- delete the prop -->
-		<button :title="t('contacts', 'Delete')" class="icon-delete" @click="deleteProperty" />
+			<!-- delete the prop -->
+			<button :title="t('contacts', 'Delete')" class="icon-delete" @click="deleteProperty" />
 
-		<input v-model="value" type="text">
+			<input v-model="value" type="text">
+		</div>
 	</div>
 </template>
 

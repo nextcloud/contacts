@@ -139,6 +139,7 @@
 			@include generate-grid-span(1);
 			display: flex;
 			flex-wrap: wrap;
+			flex-direction: column;
 			position: relative;
 			width: $grid-column-width;
 			.icon-delete {
@@ -147,6 +148,22 @@
 				right: 0;
 				width: 44px;
 				height: 44px;
+				border: 0;
+				background-color: transparent;
+				opacity: .5;
+				display: none;
+				&:hover,
+				a:active,
+				a:focus {
+					opacity: .7;
+				}
+			}
+			&:hover,
+			a:active,
+			a:focus {
+				.icon-delete {
+					display: block;
+				}
 			}
 		}
 		.contact-details-label {
@@ -165,6 +182,8 @@
 			vertical-align: middle;
 		}
 		.contact-details-property-row {
+			display: flex;
+			align-items: center;
 		}
 	}
 }
