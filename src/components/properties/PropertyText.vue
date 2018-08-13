@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div v-if="propModel" class="contact-details-property">
+	<div v-if="propModel" class="contact-details-property grid-span-1">
 		<!-- type selector -->
 		<multiselect v-if="propModel.options" v-model="selectType"
 			:options="propModel.options" :searchable="false" :placeholder="t('contacts', 'Select type')"
@@ -57,7 +57,7 @@ export default {
 			default: () => {}
 		},
 		value: {
-			type: [Array, String],
+			type: [String],
 			default: ''
 		}
 	},

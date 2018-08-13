@@ -39,7 +39,7 @@ import importContacts from '../components/Settings/SettingsImportContacts'
 import sortContacts from '../components/Settings/SettingsSortContacts'
 
 export default {
-	name: 'ContentList',
+	name: 'SettingsSection',
 	components: {
 		addressBook,
 		addAddressBook,

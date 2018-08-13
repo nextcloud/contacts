@@ -79,7 +79,7 @@
 			</header>
 
 			<!-- contact details -->
-			<section>
+			<section class="contact-details">
 				<contact-details-property v-for="(property, index) in contact.properties" :key="index" :property="property" />
 			</section>
 		</template>

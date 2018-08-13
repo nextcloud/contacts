@@ -31,6 +31,7 @@ import { Property } from 'ical.js'
 import rfcProps from '../../models/rfcProps.js'
 import PropertyText from '../properties/PropertyText'
 import PropertyMultipleText from '../properties/PropertyMultipleText'
+import PropertyDateTime from '../properties/PropertyDateTime'
 // import PropertySelect from '../properties/PropertyMultipleText'
 
 export default {
@@ -48,6 +49,8 @@ export default {
 		componentInstance() {
 			if (this.property.isMultiValue && this.propType === 'text') {
 				return PropertyMultipleText
+			} else if (this.propType && ['date-and-or-time', 'date-time', 'time', 'date'].indexOf(this.propType) > -1) {
+				return PropertyDateTime
 			} else if (this.propType && this.propType !== 'unknown') {
 				return PropertyText
 			}
@@ -111,7 +114,7 @@ export default {
 		value: {
 			get() {
 				if (this.property.isMultiValue) {
-					return this.property.getValues()
+					return this.property.getValues().flatten()
 				}
 				return this.property.getFirstValue()
 			},

@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="contact-details-property">
+	<div v-if="propModel" class="contact-details-property grid-span-1">
 		<!-- type selector -->
 		<multiselect v-if="propModel.options" v-model="selectType"
 			:options="propModel.options" :searchable="false" :placeholder="t('contacts', 'Select type')"
@@ -33,18 +33,16 @@
 		<!-- delete the prop -->
 		<button :title="t('contacts', 'Delete')" class="icon-delete" @click="deleteProperty" />
 
-		<div v-for="index in propModel.displayOrder" :key="index" class="contact-details-property-row">
-			<div class="contact-details-label">{{ propModel.readableValues[index] }}</div>
-			<input v-model="value[index]" type="text">
-		</div>
+		<input v-model="value" type="text">
 	</div>
 </template>
 
 <script>
 import Multiselect from 'vue-multiselect'
+import { VCardTime } from 'ical.js'
 
 export default {
-	name: 'PropertyText',
+	name: 'PropertyDateTime',
 
 	components: {
 		Multiselect
@@ -60,14 +58,8 @@ export default {
 			default: () => {}
 		},
 		value: {
-			type: [Array, String, Object],
+			type: [String],
 			default: ''
-		}
-	},
-
-	computed: {
-		gridLength() {
-			return this.propModel.displayOrder ? this.propModel.displayOrder.length : this.value.length
 		}
 	},
 
