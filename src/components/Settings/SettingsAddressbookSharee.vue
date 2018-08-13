@@ -66,7 +66,6 @@ export default {
 			setTimeout(() => { this.$store.dispatch('removeSharee', this.sharee) }, 500)
 		},
 		editSharee() {
-			// not working yet need to work on!
 			this.$store.dispatch('toggleShareeWritable', this.sharee)
 		}
 	}
