@@ -39,21 +39,21 @@
 			</a>
 		</li>
 		<!-- sharing input -->
-		<share-address-book v-if="shareOpen" :addressbook="addressbook" />
+		<share-addressbook v-if="shareOpen" :addressbook="addressbook" />
 	</div>
 </template>
 
 <script>
 import popoverMenu from '../core/popoverMenu'
-import shareAddressBook from './SettingsAddressbookShare'
+import shareAddressbook from './SettingsAddressbookShare'
 
 import clickOutside from 'vue-click-outside'
 
 export default {
-	name: 'SettingsAddressBook',
+	name: 'SettingsAddressbook',
 	components: {
 		popoverMenu,
-		shareAddressBook,
+		shareAddressbook,
 		clickOutside
 	},
 	directives: {

@@ -49,25 +49,25 @@
 		</multiselect>
 		<!-- list of user or groups addressbook is shared with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressbook__shares__list">
-			<address-book-sharee v-for="sharee in addressbook.shares" :key="sharee.displayname" :sharee="sharee" />
+			<addressbook-sharee v-for="sharee in addressbook.shares" :key="sharee.displayname + sharee.group" :sharee="sharee" />
 		</ul>
 	</div>
 </template>
 
 <script>
 import Multiselect from 'vue-multiselect'
-import addressBookSharee from './SettingsAddressbookSharee'
+import addressbookSharee from './SettingsAddressbookSharee'
 
 import clickOutside from 'vue-click-outside'
 
 import api from '../../services/api'
 
 export default {
-	name: 'SettingsShareAddressBook',
+	name: 'SettingsShareAddressbook',
 	components: {
 		clickOutside,
 		Multiselect,
-		addressBookSharee
+		addressbookSharee
 	},
 	directives: {
 		clickOutside
@@ -99,10 +99,11 @@ export default {
 			let payload = []
 			payload.push(this.addressbook)
 			payload.push(chosenUserOrGroup.match)
+			payload.push(chosenUserOrGroup.matchgroup)
 			this.$store.dispatch('shareAddressbook', payload)
 		},
 
-		formatMatchResults(matches, query, matchTag) {
+		formatMatchResults(matches, query, group) {
 			// format response from axios.all and add them to the option array
 			if (matches.length < 1) {
 				return
@@ -110,17 +111,18 @@ export default {
 			let regex = new RegExp(query, 'i')
 			for (let i = 0; i < matches.length; i++) {
 				for (let j = 0; j < this.addressbook.shares.length; j++) {
-					if (this.addressbook.shares[j].displayname === matches[i] + ' ' + matchTag) {
+					if (this.addressbook.shares[j].displayname === matches[i] && this.addressbook.shares[j].group === group) {
 						return
 					}
 				}
 				let matchResult = matches[i].split(regex)
 				let newMatch = {
-					match: matches[i] + ' ' + matchTag,
+					match: matches[i],
 					matchstart: matchResult[0],
 					matchpattern: matches[i].match(regex)[0],
 					matchend: matchResult[1],
-					matchtag: matchTag
+					matchtag: group ? '(group)' : '(user)',
+					matchgroup: group
 				}
 				this.usersOrGroups.push(newMatch)
 			}
@@ -137,12 +139,12 @@ export default {
 					let matchingUsers = response[0].data.ocs.data.users
 					let matchingGroups = response[1].data.ocs.data.groups
 					try {
-						this.formatMatchResults(matchingUsers, query, '(user)')
+						this.formatMatchResults(matchingUsers, query, false)
 					} catch (error) {
 						console.debug(error)
 					}
 					try {
-						this.formatMatchResults(matchingGroups, query, '(group)')
+						this.formatMatchResults(matchingGroups, query, true)
 					} catch (error) {
 						console.debug(error)
 					}

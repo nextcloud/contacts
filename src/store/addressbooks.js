@@ -232,8 +232,9 @@ const actions = {
 	 * @param {Object} addressbook Addressbook selected
 	 * @param {Object} sharee Addressbook sharee object
 	 */
-	shareAddressbook(context, [ addressbook, sharee ]) {
+	shareAddressbook(context, [ addressbook, sharee, group ]) {
 		// Share addressbook with entered group or user
+		context.commit('shareAddressbook', [ addressbook, sharee, group ])
 	},
 
 	/**
