@@ -39,7 +39,7 @@
 			</a>
 		</li>
 		<!-- sharing input -->
-		<share-addressbook v-if="shareOpen" :addressbook="addressbook" />
+		<share-address-book v-if="shareOpen" :addressbook="addressbook" />
 	</div>
 </template>
 
@@ -53,7 +53,7 @@ export default {
 	name: 'SettingsAddressbook',
 	components: {
 		popoverMenu,
-		shareAddressbook,
+		shareAddressBook,
 		clickOutside
 	},
 	directives: {
