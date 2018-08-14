@@ -28,12 +28,13 @@ const properties = {
 	n: {
 		readableName: t('contacts', 'Detailed name'),
 		readableValues: [
-			t('contacts', 'Prefix'),
+			t('contacts', 'Last name'),
 			t('contacts', 'First name'),
 			t('contacts', 'Additional names'),
-			t('contacts', 'Last name'),
+			t('contacts', 'Prefix'),
 			t('contacts', 'Suffix')
 		],
+		displayOrder: [3, 1, 2, 0, 4],
 		defaultValue: {
 			value: ['', '', '', '', '']
 		},
@@ -66,12 +67,14 @@ const properties = {
 		readableName: t('contacts', 'Address'),
 		readableValues: [
 			t('contacts', 'Post office box'),
+			t('contacts', 'Extended address'),
 			t('contacts', 'Address'),
-			t('contacts', 'Postal code'),
 			t('contacts', 'City'),
 			t('contacts', 'State or province'),
+			t('contacts', 'Postal code'),
 			t('contacts', 'Country')
 		],
+		displayOrder: [0, 2, 1, 5, 3, 4, 6],
 		icon: 'icon-address',
 		defaultValue: {
 			value: ['', '', '', '', '', '', ''],

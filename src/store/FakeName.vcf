@@ -1457,6 +1457,7 @@ VERSION:3.0
 N:Snorrason;Aðalbjörn;;Mr.;
 URL:http://google.com
 FN:Aðalbjörn Snorrason
+UID:1vvc54ds156vv1fv156fd16
 NICKNAME:Shaltarea
 BDAY;VALUE=text:7/31/1950
 GENDER;TYPE=HOME:male
@@ -1469,6 +1470,9 @@ EMAIL;TYPE=HOME,pref:AalbjornSnorrason@einrot.com
 CATEGORIES:Family
 TEL;TYPE=VOICE,HOME;PREF=1;VALUE=text:021 511 81 18
 ADR;TYPE=home:;;Sédeilles;;1554;Switzerland
+ADR;GEO="geo:12.3457,78.910";LABEL="Mr. John Q. Public, Esq.
+ Mail Drop: TNE QB\n123 Main Street\nAny Town, CA  91921-1234
+ U.S.A.":;;123 Main Street;Any Town;CA;91921-1234;U.S.A.
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
@@ -2703,11 +2707,13 @@ TEL;TYPE=VOICE,HOME;VALUE=text:94 32 06
 ADR;TYPE=HOME:;;Ilulissat;QA;3952;Greenland
 END:VCARD
 BEGIN:VCARD
-VERSION:3.0
+VERSION:4.0
 N:McIntosh;Abdul;;Mr.;
 FN:Abdul McIntosh
 NICKNAME:Lifen1934
 BDAY;VALUE=text:7/31/1934
+ANNIVERSARY:19960415
+REV:19951031T222710Z
 GENDER:male
 ORG:Penn Fruit;
 TITLE:Medical social worker

@@ -33,13 +33,13 @@
 </template>
 
 <script>
-import addressbook from '../components/Settings/SettingsAddressbook'
-import addAddressbook from '../components/Settings/SettingsNewAddressbook'
+import addressBook from '../components/Settings/SettingsAddressbook'
+import addAddressBook from '../components/Settings/SettingsNewAddressbook'
 import importContacts from '../components/Settings/SettingsImportContacts'
 import sortContacts from '../components/Settings/SettingsSortContacts'
 
 export default {
-	name: 'ContentList',
+	name: 'SettingsSection',
 	components: {
 		addressbook,
 		addAddressbook,

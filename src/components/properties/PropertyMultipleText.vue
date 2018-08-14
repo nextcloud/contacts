@@ -21,19 +21,21 @@
   -->
 
 <template>
-	<div v-if="propModel" class="contact-details-property">
-		<!-- type selector -->
-		<multiselect v-if="propModel.options" v-model="selectType"
-			:options="propModel.options" :searchable="false" :placeholder="t('contacts', 'Select type')"
-			class="multiselect-vue contact-details-label" track-by="id" label="name" />
+	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="contact-details-property">
+		<div class="contact-details-property-row">
+			<!-- type selector -->
+			<multiselect v-if="propModel.options" v-model="selectType"
+				:options="propModel.options" :searchable="false" :placeholder="t('contacts', 'Select type')"
+				class="multiselect-vue contact-details-label" track-by="id" label="name" />
 
-		<!-- if we do not support any type on our model but one is set anyway -->
-		<div v-else-if="selectType" class="contact-details-label">{{ selectType.name }}</div>
+			<!-- if we do not support any type on our model but one is set anyway -->
+			<div v-else-if="selectType" class="contact-details-label">{{ selectType.name }}</div>
 
-		<!-- delete the prop -->
-		<button :title="t('contacts', 'Delete')" class="icon-delete" @click="deleteProperty" />
+			<!-- delete the prop -->
+			<button :title="t('contacts', 'Delete')" class="icon-delete" @click="deleteProperty" />
+		</div>
 
-		<div v-for="(data, index) in value" :key="index">
+		<div v-for="index in propModel.displayOrder" :key="index" class="contact-details-property-row">
 			<div class="contact-details-label">{{ propModel.readableValues[index] }}</div>
 			<input v-model="value[index]" type="text">
 		</div>
@@ -60,8 +62,16 @@ export default {
 			default: () => {}
 		},
 		value: {
-			type: [Array, String],
+			type: [Array, String, Object],
 			default: ''
+		}
+	},
+
+	computed: {
+		gridLength() {
+			let hasType = this.propModel.options || this.selectType
+			let length = this.propModel.displayOrder ? this.propModel.displayOrder.length : this.value.length
+			return hasType ? length + 1 : length
 		}
 	},
 
