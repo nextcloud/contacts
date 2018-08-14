@@ -23,9 +23,9 @@
 <template>
 	<div>
 		<ul id="address-book-list">
-			<addressbook v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
+			<address-Book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
 		</ul>
-		<add-addressbook :addressbooks="addressbooks" />
+		<add-address-Book :addressbooks="addressbooks" />
 
 		<import-contacts :addressbooks="addressbooks" class="settings-section" />
 		<sort-contacts class="settings-section" />
@@ -41,8 +41,8 @@ import sortContacts from '../components/Settings/SettingsSortContacts'
 export default {
 	name: 'SettingsSection',
 	components: {
-		addressbook,
-		addAddressbook,
+		addressBook,
+		addAddressBook,
 		importContacts,
 		sortContacts
 	},

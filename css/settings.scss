@@ -103,10 +103,16 @@
 	}
 	.multiselect.multiselect-vue {
 		width: inherit;
+		.multiselect__tags:focus-within, .multiselect__tags:hover {
+			border-color: var(--color-primary-element);
+		}
 	}
 	.multiselect.multiselect-vue .multiselect__content-wrapper {
 		background: #f0f0f0;
 		width: inherit;
+	}
+	.shareematch--bold {
+		font-weight: bold;
 	}
 }
 

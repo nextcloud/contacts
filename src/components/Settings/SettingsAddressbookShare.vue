@@ -38,23 +38,25 @@
 			open-direction="bottom"
 			class="multiselect-vue"
 			@search-change="asyncFind"
-			@input="addSharee">
+			@input="shareAddressbook">
 			<template slot="singleLabel" slot-scope="props"><span class="option__desc"><span class="option__title">{{ props.option.matchpattern }}</span></span></template>
 			<template slot="option" slot-scope="props">
 				<div class="option__desc">
-					<span class="">{{ props.option.matchstart }}</span><span class="" style="font-weight: bold;">{{ props.option.matchpattern }}</span><span class="">{{ props.option.matchend }} {{ props.option.matchtag }}</span>
+					<span>{{ props.option.matchstart }}</span><span class="shareematch--bold">{{ props.option.matchpattern }}</span><span>{{ props.option.matchend }} {{ props.option.matchtag }}</span>
 				</div>
 			</template>
 			<span slot="noResult">{{ noResult }} </span>
 		</multiselect>
 		<!-- list of user or groups addressbook is shared with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressbook__shares__list">
-			<addressbook-sharee v-for="sharee in addressbook.shares" :key="sharee.displayname + sharee.group" :sharee="sharee" />
+			<address-book-sharee v-for="sharee in addressbook.shares" :key="sharee.displayname + sharee.group" :sharee="sharee" />
 		</ul>
 	</div>
 </template>
 
 <script>
+import clickOutside from 'vue-click-outside'
+import api from '../../services/api'
 import Multiselect from 'vue-multiselect'
 import addressBookSharee from './SettingsAddressbookSharee'
 
@@ -63,7 +65,7 @@ export default {
 	components: {
 		clickOutside,
 		Multiselect,
-		addressbookSharee
+		addressBookSharee
 	},
 	directives: {
 		clickOutside
@@ -91,25 +93,38 @@ export default {
 		}
 	},
 	methods: {
-		addSharee(chosenUserOrGroup) {
-			let payload = []
-			payload.push(this.addressbook)
-			payload.push(chosenUserOrGroup.match)
-			payload.push(chosenUserOrGroup.matchgroup)
-			this.$store.dispatch('shareAddressbook', payload)
+		/**
+		 * Share addressbook
+		 *
+		 * @param {Object} chosenUserOrGroup
+		 */
+		shareAddressbook(chosenUserOrGroup) {
+			let addressbook = this.addressbook
+			let sharee = chosenUserOrGroup.match
+			let group = chosenUserOrGroup.matchgroup
+			this.$store.dispatch('shareAddressbook', { addressbook, sharee, group })
+
 		},
 
+		/**
+		 * Format responses from axios.all and add them to the option array
+		 *
+		 * @param {Array} matches Array of matches returned from the axios request
+		 * @param {String} query
+		 * @param {Boolean} group
+		 */
 		formatMatchResults(matches, query, group) {
-			// format response from axios.all and add them to the option array
 			if (matches.length < 1) {
 				return
 			}
 			let regex = new RegExp(query, 'i')
+			let existingSharees = []
+			for (let j = 0; j < this.addressbook.shares.length; j++) {
+				existingSharees.push(this.addressbook.shares[j].displayname + this.addressbook.shares[j].group)
+			}
 			for (let i = 0; i < matches.length; i++) {
-				for (let j = 0; j < this.addressbook.shares.length; j++) {
-					if (this.addressbook.shares[j].displayname === matches[i] && this.addressbook.shares[j].group === group) {
-						return
-					}
+				if (existingSharees.indexOf(matches[i] + group) !== -1) {
+					continue
 				}
 				let matchResult = matches[i].split(regex)
 				let newMatch = {
@@ -124,6 +139,11 @@ export default {
 			}
 		},
 
+		/**
+		 * Use Axios api call to find matches to the query from the existing Users & Groups
+		 *
+		 * @param {String} query
+		 */
 		asyncFind(query) {
 			this.isLoading = true
 			this.usersOrGroups = []
