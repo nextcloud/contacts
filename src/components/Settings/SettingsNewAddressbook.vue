@@ -47,14 +47,6 @@ export default {
 	directives: {
 		clickOutside
 	},
-	// props: {
-	// 	addressbooks: {
-	// 		type: Array,
-	// 		default() {
-	// 			return {}
-	// 		}
-	// 	}
-	// },
 	data() {
 		return {
 		}
@@ -68,15 +60,12 @@ export default {
 		/**
 		 * Set new address book name
 		 *
-		 * @param {string} addressbook The address book
-		 * @returns {Promise}
+		 * @param {string} addressbook The address book name provided in the input
+		 * 
 		 */
 		addAddressbook() {
 			let addressbook = this.$refs.addressbook.value
-			// let addressbooks = this.$store.getters.getAddressbooks
-			// let newAddressbooksArray = addressbooks.push(addressbook)
-			// console.log(addressbook)
-			// ^ part of WIP
+			this.$store.dispatch('appendAddressbook', { displayName: addressbook })
 		}
 	}
 }

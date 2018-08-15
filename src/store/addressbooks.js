@@ -210,6 +210,16 @@ const actions = {
 	},
 
 	/**
+	 * Append a new address book to array of existing address books
+	 *
+	 * @param {Object} context
+	 * @param {Object} addressbook The address book to append
+	 */
+	appendAddressbook(context, addressbook) {
+		context.commit('addAddressbooks', addressbook)
+	},
+
+	/**
 	 * Retrieve the contacts of the specified addressbook
 	 * and commit the results
 	 *
