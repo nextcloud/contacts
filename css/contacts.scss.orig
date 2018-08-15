@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 $grid-height-unit: 40px;
 $grid-input-padding: 7px;
 $grid-input-margin: 3px;
@@ -15,8 +16,11 @@ $grid-input-height-with-margin: #{$grid-height-unit - $grid-input-margin * 2};
 }
 
 
-@import 'settings-section';
 @import 'settings';
 @import 'ContactDetails';
 @import './Properties/Properties';
 @import './Properties/PropertyTitle';
+=======
+@import 'settings-section';
+@import 'details';
+>>>>>>> added BEM styling and structuring after meeting

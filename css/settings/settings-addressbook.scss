@@ -1,0 +1,31 @@
+// BLOCK
+.addressbook {
+	display: flex;
+	align-items: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
+	&__name {
+		display: block;
+		flex: 0 1 auto;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	&__share,
+	&__menu .icon-more {
+		width: 44px;
+		height: 44px;
+		opacity: .5;
+		&:hover,
+		&:focus,
+		&:active {
+			opacity: .7;
+		}
+	}
+	&__share {
+		margin-left: auto;
+	}
+}
+
+// MODIFIER

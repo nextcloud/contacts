@@ -21,6 +21,11 @@
  *
  */
 
+
+@import 'settings/settings-addressbook';
+@import 'settings/settings-addressbook-shares';
+@import 'settings/settings-addressbook-sharee';
+
 // contacts settings section
 #app-settings-content {
 	.settings-section {
@@ -31,136 +36,6 @@
 
 #new-addressbook-form {
 	display: flex;
-}
-
-// Addressbook lists
-.addressbook {
-	display: flex;
-	align-items: center;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-
-	&__name {
-		display: block;
-		flex: 0 1 auto;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-	&__share,
-	&__menu .icon-more {
-		width: 44px;
-		height: 44px;
-		opacity: .5;
-		&:hover,
-		&:focus,
-		&:active {
-			opacity: .7;
-		}
-	}
-	&__share {
-		margin-left: auto;
-	}
-}
-
-// Addressbook sharees
-.addressbook__shares {
-	width: 100%;
-	.dropdown-menu {
-		border: 1px solid #d1d1d1;
-		border-radius: 0 0 3px 3px;
-		max-height: 200px;
-		margin-top: -2px;
-		overflow-y: auto;
-		display: flex;
-		flex-wrap: wrap;
-		background-color: #fff;
-		position: relative;
-		width: 100%;
-		z-index: 500;
-		top: -2px;
-		left: 0px;
-		li {
-			width: 100%;
-			padding: 8px 9px 9px;
-			cursor: pointer;
-		}
-		li.active {
-			background: #f0f0f0;
-		}
-	}
-	&__input {
-		width: 100% !important;
-		margin-right: 0;
-		padding-right: 30px;
-		text-overflow: ellipsis;
-	}
-	&__list {
-		margin-top: 8px;
-		margin-bottom: 12px;
-		display: flex;
-		flex-direction: column;
-	}
-	.multiselect.multiselect-vue {
-		width: inherit;
-		.multiselect__tags:focus-within, .multiselect__tags:hover {
-			border-color: var(--color-primary-element);
-		}
-	}
-	.multiselect.multiselect-vue .multiselect__content-wrapper {
-		background: #f0f0f0;
-		width: inherit;
-	}
-	.shareematch--bold {
-		font-weight: bold;
-	}
-}
-
-// Sharees settings for Addressbook
-.addressbook__sharee {
-	padding: 0 5px;
-	display: inline-flex;
-	align-items: center;
-	&__identifier {
-		width: 100%;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-		display: inline-block;
-		vertical-align: top;
-		opacity: 0.5;
-	}
-	&__utils {
-		padding: 0 !important;
-		float: right;
-		position: relative !important;
-		display: inline-flex;
-		align-items: center;
-		flex-shrink: 0;
-		height: 20px;
-		.checkbox + label {
-			padding: 0 !important;
-		}
-	}
-	
-	.icon {
-		margin-right: 5px;
-		opacity: 0.2;
-		width: 16px;
-		height: 16px;
-		display: inline-block;
-	}
-	
-	.icon-group {
-		background-image: url(/apps/contacts/img/group.svg);
-	}
-	
-	.icon-delete {
-		display: inline-block;
-		width: 24px;
-		height: 20px;
-		opacity: 0.4;
-	}
 }
 
 // Sort Contacts
