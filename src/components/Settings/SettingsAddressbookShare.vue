@@ -21,7 +21,7 @@
 -->
 
 <template>
-	<div class="addressbook__shares">
+	<div class="addressbook-shares">
 		<multiselect
 			id="users-groups-search"
 			:options="usersOrGroups"
@@ -42,7 +42,7 @@
 			<template slot="singleLabel" slot-scope="props"><span class="option__desc"><span class="option__title">{{ props.option.matchpattern }}</span></span></template>
 			<template slot="option" slot-scope="props">
 				<div class="option__desc">
-					<span>{{ props.option.matchstart }}</span><span class="shareematch--bold">{{ props.option.matchpattern }}</span><span>{{ props.option.matchend }} {{ props.option.matchtag }}</span>
+					<span>{{ props.option.matchstart }}</span><span class="multiselect-vue__shareematch--bold">{{ props.option.matchpattern }}</span><span>{{ props.option.matchend }} {{ props.option.matchtag }}</span>
 				</div>
 			</template>
 			<span slot="noResult">{{ noResult }} </span>

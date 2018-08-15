@@ -52,6 +52,37 @@ const mutations = {
 	},
 
 	/**
+	 * Delete addressbook
+	 *
+	 * @param {Object} state Default state
+	 * @param {Object} addressbooks Addressbook
+	 */
+	deleteAddressbook(state, addressbook) {
+		state.addressbooks.splice(state.addressbooks.indexOf(addressbook), 1)
+	},
+
+	/**
+	 * Toggle whether a Addressbook is Enabled
+	 * @param {Object} context Current context
+	 * @param {Object} addressbook
+	 */
+	toggleAddressbookEnabled(context, addressbook) {
+		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
+		addressbook.enabled = !addressbook.enabled
+	},
+
+	/**
+	 * Rename a Addressbook
+	 * @param {Object} context Current context
+	 * @param {Object} data.addressbook
+	 * @param {String} data.newName
+	 */
+	renameAddressbook(context, { addressbook, newName }) {
+		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
+		addressbook.displayName = newName
+	},
+
+	/**
 	 * Append a list of contacts to an addressbook
 	 * and remove duplicates
 	 *
@@ -203,6 +234,34 @@ const actions = {
 	},
 
 	/**
+	 * Delete Addressbook
+	 * @param {Object} context Current context
+	 * @param {Object} addressbook
+	 */
+	deleteAddressbook(context, addressbook) {
+		context.commit('deleteAddressbook', addressbook)
+	},
+
+	/**
+	 * Toggle whether a Addressbook is Enabled
+	 * @param {Object} context Current context
+	 * @param {Object} addressbook
+	 */
+	toggleAddressbookEnabled(context, addressbook) {
+		context.commit('toggleAddressbookEnabled', addressbook)
+	},
+
+	/**
+	 * Rename a Addressbook
+	 * @param {Object} context Current context
+	 * @param {Object} data.addressbook
+	 * @param {String} data.newName
+	 */
+	renameAddressbook(context, { addressbook, newName }) {
+		context.commit('renameAddressbook', { addressbook, newName })
+	},
+
+	/**
 	 * Retrieve the contacts of the specified addressbook
 	 * and commit the results
 	 *
@@ -223,7 +282,6 @@ const actions = {
 	 * @param {Object} sharee Addressbook sharee object
 	 */
 	removeSharee(context, sharee) {
-		// Remove sharee from addressbook.
 		context.commit('removeSharee', sharee)
 	},
 
@@ -233,7 +291,6 @@ const actions = {
 	 * @param {Object} sharee Addressbook sharee object
 	 */
 	toggleShareeWritable(context, sharee) {
-		// Toggle sharee edit permissions.
 		context.commit('updateShareeWritable', sharee)
 	},
 
@@ -245,7 +302,6 @@ const actions = {
 	 * @param {Boolean} data.group group
 	 */
 	shareAddressbook(context, { addressbook, sharee, group }) {
-		// Share addressbook with entered group or user
 		context.commit('shareAddressbook', { addressbook, sharee, group })
 	}
 }

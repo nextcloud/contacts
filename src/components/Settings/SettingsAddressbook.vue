@@ -20,7 +20,6 @@
   - along with this program. If not, see <http://www.gnu.org/licenses/>.
   -
   -->
-
 <template>
 	<div>
 		<li :class="{'disabled': !addressbook.enabled}" class="addressbook">
@@ -70,28 +69,36 @@ export default {
 	data() {
 		return {
 			menuOpen: false,
-			shareOpen: false,
-			enabled: true
+			shareOpen: false
 		}
 	},
 	computed: {
+		enabled() {
+			return this.addressbook.enabled
+		},
 		// building the popover menu
 		menu() {
 			return [{
 				href: '#',
 				icon: 'icon-public',
-				text: 'Copy link'
+				text: 'Copy link',
+				action: () => {
+					alert('share link')
+				}
 			},
 			{
 				href: '#',
 				icon: 'icon-download',
-				text: 'Download'
+				text: 'Download',
+				action: () => {
+					alert('download')
+				}
 			},
 			{
 				icon: 'icon-rename',
 				text: 'Rename',
-				action: function renameAddressBook() {
-					alert('rename the address book')
+				action: () => {
+					this.$store.dispatch('renameAddressbook', this.addressbook)
 				}
 			},
 			{
@@ -99,15 +106,16 @@ export default {
 				text: 'Enabled',
 				input: 'checkbox',
 				model: this.enabled,
-				action: function toggleEnabled() {
-					alert('This addressbook is: enabled')
+				action: () => {
+					this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
 				}
 			},
 			{
 				icon: 'icon-delete',
 				text: 'Delete',
-				action: function deleteAddressBook() {
-					alert('Delete AddressBook')
+				action: () => {
+					console.log(this.$store) // eslint-disable-line
+					this.$store.dispatch('deleteAddressbook', this.addressbook)
 				}
 			}]
 		}
