@@ -21,18 +21,18 @@
 -->
 
 <template>
-	<form id="new-addressbook-form" name="new-addressbook-form" class="new-address-book"
-		@submit.prevent="addAddressBook">
-		<input id="new-address-book" ref="addressBook" class="new-address-book-input"
+	<form id="new-addressbook-form" name="new-addressbook-form" class="new-addressbook"
+		@submit.prevent.stop="addAddressbook">
+		<input id="new-addressbook" ref="addressbook" class="new-addressbook-input"
 			placeholder="Address book name"
 			type="text"
 			autocomplete="off" autocorrect="off"
 			spellcheck="false"
-			tooltip-enable="!newAddressBookForm.$pristine"
+			tooltip-enable="!newAddressbookForm.$pristine"
 			tooltip-trigger="none"
 			tooltip-placement="top"
 			uib-tooltip="Only these special characters are allowed: -_.!?#|()">
-		<input type="submit" value="" class="newAddressBookSubmit inline-button icon-confirm action pull-right">
+		<input type="submit" value="" class="newAddressbookSubmit inline-button icon-confirm action pull-right">
 	</form>
 </template>
 
@@ -40,7 +40,7 @@
 import clickOutside from 'vue-click-outside'
 
 export default {
-	name: 'SettingsNewAddressBook',
+	name: 'SettingsNewAddressbook',
 	components: {
 		clickOutside
 	},
@@ -68,13 +68,15 @@ export default {
 		/**
 		 * Set new address book name
 		 *
-		 * @param {string} addressBook The adress book
+		 * @param {string} addressbook The address book
 		 * @returns {Promise}
 		 */
-		addAddressBook() {
-			// let addressBook = this.$refs.addressBook.value
-			// let addressBooks = this.$store.getters.getAddressbooks
-			// let newAddressBooksArray = addressBooks.push(addressBook)
+		addAddressbook() {
+			let addressbook = this.$refs.addressbook.value
+			// let addressbooks = this.$store.getters.getAddressbooks
+			// let newAddressbooksArray = addressbooks.push(addressbook)
+			// console.log(addressbook)
+			// ^ part of WIP
 		}
 	}
 }
