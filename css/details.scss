@@ -147,7 +147,8 @@
 				top: 0;
 				right: 0;
 				width: 44px;
-				height: 44px;
+				height: 100%;
+				margin: 0;
 				border: 0;
 				background-color: transparent;
 				opacity: .5;
@@ -168,22 +169,35 @@
 		}
 		.contact-details-label {
 			margin: $grid-input-margin;
-			margin-left: 0;
-			display: inline-block;
-			width: 100px;
+			margin: $grid-input-margin 5px $grid-input-margin 0;
+			width: 120px;
 			height: $grid-input-height-with-margin;
 			padding: $grid-input-padding 0;
-			text-align: right;
-			opacity: .5;
-			white-space: nowrap;
-			overflow: hidden;
-			overflow-x: hidden;
-			text-overflow: ellipsis;
-			vertical-align: middle;
+			opacity: .7;
+			&, .multiselect__input::placeholder {
+				text-align: right;
+			}
+			&:not(.multiselect-vue) {
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				overflow-x: hidden;
+			}
+			&.multiselect-vue {
+				&:hover,
+				&:focus {
+					opacity: 1;
+				}
+			}
 		}
 		.contact-details-property-row {
 			display: flex;
 			align-items: center;
+			margin-right: 44px;
+			input {
+				flex: 1 1;
+			}
 		}
+		
 	}
 }

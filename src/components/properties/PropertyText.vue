@@ -31,6 +31,9 @@
 			<!-- if we do not support any type on our model but one is set anyway -->
 			<div v-else-if="selectType" class="contact-details-label">{{ selectType.name }}</div>
 
+			<!-- no options, empty space -->
+			<div v-else class="contact-details-label">{{ propModel.readableName }}</div>
+
 			<!-- delete the prop -->
 			<button :title="t('contacts', 'Delete')" class="icon-delete" @click="deleteProperty" />
 
