@@ -23,7 +23,7 @@
 <template>
 	<!-- If not in the rfcProps then we don't want to display it -->
 	<component v-if="propModel" :is="componentInstance" :select-type="selectType"
-		:prop-model="propModel" :value="value" />
+		:prop-model="propModel" :value="value" :is-first-property="isFirstProperty" />
 </template>
 
 <script>
@@ -41,6 +41,16 @@ export default {
 		property: {
 			type: Property,
 			default: true
+		},
+		sortedProperties: {
+			type: Array,
+			default() {
+				return []
+			}
+		},
+		index: {
+			type: Number,
+			default: 0
 		}
 	},
 
@@ -63,6 +73,11 @@ export default {
 		},
 		fieldOrder() {
 			return rfcProps.fieldOrder
+		},
+
+		// is this the first property of its kind
+		isFirstProperty() {
+			return true
 		},
 
 		// the type of the prop e.g. FN
