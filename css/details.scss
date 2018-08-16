@@ -113,21 +113,7 @@
 		}
 	}
 
-	$grid-height-unit: 40px;
-	$grid-input-padding: 7px;
-	$grid-input-margin: 3px;
 	$grid-column-width: 380px;
-	$grid-input-height-with-margin: #{$grid-height-unit - $grid-input-margin * 2};
-	
-	@mixin generate-grid-span($default-unit) {
-		/* we only supports 10 props of the same type */
-		@for $i from 1 through 10 {
-			&.grid-span-#{$i} {
-				/* default unit + title + bottom padding */
-				grid-row-start: span #{$i * $default-unit};
-			}
-		}
-	}
 
 	// contact details
 	section.contact-details {
@@ -135,69 +121,5 @@
 		/* unquote is a strange hack to avoid removal of the comma by the scss compiler */
 		grid-template-columns: repeat(auto-fit, minmax(unquote('#{$grid-column-width}'), 1fr));
 		grid-column-gap: 20px;
-		.contact-details-property {
-			@include generate-grid-span(1);
-			display: flex;
-			flex-wrap: wrap;
-			flex-direction: column;
-			position: relative;
-			width: $grid-column-width;
-			.icon-delete {
-				position: absolute;
-				top: 0;
-				right: 0;
-				width: 44px;
-				height: 100%;
-				margin: 0;
-				border: 0;
-				background-color: transparent;
-				opacity: .5;
-				display: none;
-				&:hover,
-				a:active,
-				a:focus {
-					opacity: .7;
-				}
-			}
-			&:hover,
-			a:active,
-			a:focus {
-				.icon-delete {
-					display: block;
-				}
-			}
-		}
-		.contact-details-label {
-			margin: $grid-input-margin;
-			margin: $grid-input-margin 5px $grid-input-margin 0;
-			width: 120px;
-			height: $grid-input-height-with-margin;
-			padding: $grid-input-padding 0;
-			opacity: .7;
-			&, .multiselect__input::placeholder {
-				text-align: right;
-			}
-			&:not(.multiselect-vue) {
-				text-overflow: ellipsis;
-				white-space: nowrap;
-				overflow: hidden;
-				overflow-x: hidden;
-			}
-			&.multiselect-vue {
-				&:hover,
-				&:focus {
-					opacity: 1;
-				}
-			}
-		}
-		.contact-details-property-row {
-			display: flex;
-			align-items: center;
-			margin-right: 44px;
-			input {
-				flex: 1 1;
-			}
-		}
-		
 	}
 }

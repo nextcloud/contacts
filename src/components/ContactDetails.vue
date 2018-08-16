@@ -80,7 +80,8 @@
 
 			<!-- contact details -->
 			<section class="contact-details">
-				<contact-details-property v-for="(property, index) in sortedProperties" :key="index" :property="property" />
+				<contact-details-property v-for="(property, index) in sortedProperties" :key="index" :index="index"
+					:sorted-properties="sortedProperties" :property="property" />
 			</section>
 		</template>
 	</div>
