@@ -43,7 +43,8 @@
 
 		<div v-for="index in propModel.displayOrder" :key="index" class="property__row">
 			<div class="property__label">{{ propModel.readableValues[index] }}</div>
-			<input v-model="value[index]" type="text">
+			<input v-model.trim="localValue[index]" class="property__value" type="text"
+				@input="updateProp">
 		</div>
 	</div>
 </template>
@@ -51,6 +52,7 @@
 <script>
 import Multiselect from 'vue-multiselect'
 import propertyTitle from './PropertyTitle'
+import debounce from 'debounce'
 
 export default {
 	name: 'PropertyText',
@@ -62,7 +64,7 @@ export default {
 
 	props: {
 		selectType: {
-			type: Object,
+			type: [Object, Boolean],
 			default: () => {}
 		},
 		propModel: {
@@ -70,29 +72,51 @@ export default {
 			default: () => {}
 		},
 		value: {
-			type: [Array, String, Object],
-			default: ''
+			type: [Array, Object],
+			default: () => []
 		},
 		isFirstProperty: {
+			type: Boolean,
+			default: true
+		},
+		isLastProperty: {
 			type: Boolean,
 			default: true
 		}
 	},
 
+	data() {
+		return {
+			localValue: this.value
+		}
+	},
+
 	computed: {
 		gridLength() {
-			let hasType = this.propModel.options || this.selectType ? 1 : 0
 			let hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
+			let isLast = this.isLastProperty
 			let length = this.propModel.displayOrder ? this.propModel.displayOrder.length : this.value.length
-			// add one space at the end
-			return hasType + hasTitle + length + 1
+			// always have a property__label + one extra space at the end
+			return 1 + hasTitle + length + isLast
 		}
 	},
 
 	methods: {
+
+		/**
+		 * Delete the property
+		 */
 		deleteProperty() {
-			alert('deleted')
-		}
+			this.$emit('delete')
+		},
+
+		/**
+		 * Debounce and send update event to parent
+		 */
+		updateProp: debounce(function(e) {
+			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
+			this.$emit('update:value', this.localValue)
+		}, 500)
 	}
 }
 

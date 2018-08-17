@@ -27,7 +27,10 @@
 	flex-direction: column;
 	position: relative;
 	width: $grid-column-width;
-	margin-bottom: $grid-height-unit;
+
+	&--last {
+		margin-bottom: $grid-height-unit;
+	}
 	
 	&__delete {
 		position: absolute;
@@ -60,14 +63,9 @@
 		padding-right: 44px;
 		height: $grid-height-unit;
 		position: relative;
-
-		input {
-			flex: 1 1;
-		}
-	
 	}
 	
-	// label or multiselect
+	// property label or multiselect within row
 	&__label,
 	&__label.multiselect {
 		margin: $grid-input-margin;
@@ -95,5 +93,10 @@
 				opacity: 1;
 			}
 		}
+	}
+
+	// property value within row, after label
+	&__value {
+		flex: 1 1;
 	}
 }

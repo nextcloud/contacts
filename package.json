@@ -16,6 +16,7 @@
 	},
 	"dependencies": {
 		"babel-polyfill": "^6.26.0",
+		"debounce": "^1.2.0",
 		"ical.js": "^1.2.2",
 		"uuid": "^3.3.2",
 		"v-tooltip": "^2.0.0-rc.33",

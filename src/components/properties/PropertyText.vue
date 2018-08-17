@@ -40,7 +40,8 @@
 			<!-- delete the prop -->
 			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
 
-			<input v-model="value" type="text">
+			<input v-model.trim="localValue"class="property__value" type="text"
+				@input="updateProp">
 		</div>
 	</div>
 </template>
@@ -48,6 +49,7 @@
 <script>
 import Multiselect from 'vue-multiselect'
 import propertyTitle from './PropertyTitle'
+import debounce from 'debounce'
 
 export default {
 	name: 'PropertyText',
@@ -59,7 +61,7 @@ export default {
 
 	props: {
 		selectType: {
-			type: Object,
+			type: [Object, Boolean],
 			default: () => {}
 		},
 		propModel: {
@@ -67,27 +69,49 @@ export default {
 			default: () => {}
 		},
 		value: {
-			type: [String],
+			type: String,
 			default: ''
 		},
 		isFirstProperty: {
 			type: Boolean,
 			default: true
+		},
+		isLastProperty: {
+			type: Boolean,
+			default: true
+		}
+	},
+
+	data() {
+		return {
+			localValue: this.value
 		}
 	},
 
 	computed: {
 		gridLength() {
 			let hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
+			let isLast = this.isLastProperty ? 1 : 0
 			// length is one & add one space at the end
-			return hasTitle + 1 + 1
+			return hasTitle + 1 + isLast
 		}
 	},
-
 	methods: {
+
+		/**
+		 * Delete the property
+		 */
 		deleteProperty() {
-			alert('deleted')
-		}
+			this.$emit('delete')
+		},
+
+		/**
+		 * Debounce and send update event to parent
+		 */
+		updateProp: debounce(function(e) {
+			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
+			this.$emit('update:value', this.localValue)
+		}, 500)
 	}
 }
 

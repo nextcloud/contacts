@@ -22,8 +22,9 @@
 
 <template>
 	<!-- If not in the rfcProps then we don't want to display it -->
-	<component v-if="propModel" :is="componentInstance" :select-type="selectType"
-		:prop-model="propModel" :value="value" :is-first-property="isFirstProperty" />
+	<component v-if="propModel && propType !== 'unknown'" :is="componentInstance" :select-type="selectType"
+		:prop-model="propModel" :value.sync="value" :is-first-property="isFirstProperty"
+		:class="{'property--last': isLastProperty}" @delete="deleteProp" />
 </template>
 
 <script>
@@ -32,6 +33,7 @@ import rfcProps from '../../models/rfcProps.js'
 import PropertyText from '../properties/PropertyText'
 import PropertyMultipleText from '../properties/PropertyMultipleText'
 import PropertyDateTime from '../properties/PropertyDateTime'
+import propertyGroups from '../properties/PropertyGroups'
 // import PropertySelect from '../properties/PropertyMultipleText'
 
 export default {
@@ -57,6 +59,12 @@ export default {
 	computed: {
 		// dynamically load component based on property type
 		componentInstance() {
+			// groups
+			if (this.propName === 'categories') {
+				return propertyGroups
+			}
+
+			// dynamic matching
 			if (this.property.isMultiValue && this.propType === 'text') {
 				return PropertyMultipleText
 			} else if (this.propType && ['date-and-or-time', 'date-time', 'time', 'date'].indexOf(this.propType) > -1) {
@@ -77,6 +85,16 @@ export default {
 
 		// is this the first property of its kind
 		isFirstProperty() {
+			if (this.index > 0) {
+				return this.sortedProperties[this.index - 1].name !== this.propName
+			}
+			return true
+		},
+		// is this the last property of its kind
+		isLastProperty() {
+			if (this.index < this.sortedProperties.length) {
+				return this.sortedProperties[this.index + 1].name !== this.propName
+			}
 			return true
 		},
 
@@ -129,15 +147,22 @@ export default {
 		value: {
 			get() {
 				if (this.property.isMultiValue) {
-					return this.property.getValues().flatten()
+					// differences between values types :x;x;x;x;x and x,x,x,x,x
+					return this.property.isStructuredValue
+						? this.property.getValues()[0]
+						: this.property.getValues()
 				}
 				return this.property.getFirstValue()
 			},
 			set(data) {
 				if (this.property.isMultiValue) {
-					return this.property.setValues(data)
+					// differences between values types :x;x;x;x;x and x,x,x,x,x
+					this.property.isStructuredValue
+						? this.property.setValues([data])
+						: this.property.setValues(data)
 				}
-				return this.property.setValue(data)
+				this.property.setValue(data)
+				this.$emit('updatedcontact')
 			}
 		},
 
@@ -163,6 +188,12 @@ export default {
 			set(data) {
 				this.property.setParameter('pref', data)
 			}
+		}
+	},
+
+	methods: {
+		deleteProp() {
+			alert('deleted')
 		}
 	}
 

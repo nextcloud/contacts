@@ -174,7 +174,8 @@ const properties = {
 			{ id: 'TUMBLR', name: 'Tumblr' },
 			{ id: 'TWITTER', name: 'Twitter' },
 			{ id: 'WECHAT', name: 'WeChat' },
-			{ id: 'YOUTUBE', name: 'YouTube' }
+			{ id: 'YOUTUBE', name: 'YouTube' },
+			{ id: 'MASTODON', name: 'Mastodon' }
 		]
 	},
 	relationship: {

@@ -55,17 +55,17 @@
 						<input id="contact-fullname" v-model="contact.fullName" :disabled="!contact.addressbook.enabled"
 							:placeholder="t('contacts', 'Name')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="fullname"
-							value="">
+							value="" @input="debounceUpdateContact">
 					</h2>
 					<div id="details-org-container">
 						<input id="contact-org" v-model="contact.org" :disabled="!contact.addressbook.enabled"
 							:placeholder="t('contacts', 'Company')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="org"
-							value="">
+							value="" @input="debounceUpdateContact">
 						<input id="contact-title" v-model="contact.title" :disabled="!contact.addressbook.enabled"
 							:placeholder="t('contacts', 'Title')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="title"
-							value="">
+							value="" @input="debounceUpdateContact">
 					</div>
 				</div>
 
@@ -81,7 +81,7 @@
 			<!-- contact details -->
 			<section class="contact-details">
 				<contact-details-property v-for="(property, index) in sortedProperties" :key="index" :index="index"
-					:sorted-properties="sortedProperties" :property="property" />
+					:sorted-properties="sortedProperties" :property="property" @updatedcontact="updateContact" />
 			</section>
 		</template>
 	</div>
@@ -98,18 +98,22 @@ import ICAL from 'ical.js'
 import ClickOutside from 'vue-click-outside'
 import Vue from 'vue'
 import VTooltip from 'v-tooltip'
+import debounce from 'debounce'
 
 Vue.use(VTooltip)
 
 export default {
 	name: 'ContactDetails',
+
 	components: {
 		popoverMenu,
 		contactDetailsProperty
 	},
+
 	directives: {
 		ClickOutside
 	},
+
 	props: {
 		loading: {
 			type: Boolean,
@@ -120,12 +124,14 @@ export default {
 			default: undefined
 		}
 	},
+
 	data() {
 		return {
 			contact: undefined,
 			openedMenu: false
 		}
 	},
+
 	computed: {
 		colorAvatar() {
 			try {
@@ -167,6 +173,7 @@ export default {
 			})
 		}
 	},
+
 	watch: {
 		// url changed, get and show selected contact
 		uid: function() {
@@ -179,12 +186,35 @@ export default {
 			}
 		}
 	},
+
 	methods: {
+
+		/**
+		 * Fetch the selected contact from the store
+		 * and store it as a local data for editing
+		 */
 		updateLocalContact() {
 			// create new local instance of this contact
 			let contact = this.$store.getters.getContact(this.uid)
 			this.contact = new Contact(ICAL.stringify(contact.jCal), contact.addressbook)
 		},
+
+		/**
+		 * Executed on the 'updatedcontact' event
+		 * Send the local clone of contact to the store
+		 */
+		updateContact() {
+			this.$store.dispatch('updateContact', this.contact)
+		},
+		/**
+		 * Debounce the contact update for the header props
+		 * photo, fn, org, title
+		 */
+		debounceUpdateContact: debounce(function(e) {
+			this.updateContact()
+		}, 500),
+
+		// menu handling
 		closeMenu() {
 			this.openedMenu = false
 		},

@@ -21,6 +21,7 @@
  */
 
 import Vue from 'vue'
+import Contact from '../models/contact'
 
 const state = {
 	// Using objects for performance
@@ -40,7 +41,11 @@ const mutations = {
 	 */
 	appendContacts(state, contacts = []) {
 		state.contacts = contacts.reduce(function(list, contact) {
-			Vue.set(list, contact.key, contact)
+			if (contact instanceof Contact) {
+				Vue.set(list, contact.key, contact)
+			} else {
+				console.error('Wrong contact object', contact)
+			}
 			return list
 		}, state.contacts)
 	},
@@ -52,33 +57,77 @@ const mutations = {
 	 * @param {Contact} contact
 	 */
 	deleteContact(state, contact) {
-		let index = state.sortedContacts.findIndex(search => search.key === contact.key)
-		state.sortedContacts.splice(index, 1)
-		Vue.delete(state.contacts, contact.key)
+		if (state.contacts[contact.key] && contact instanceof Contact) {
+
+			let index = state.sortedContacts.findIndex(search => search.key === contact.key)
+			state.sortedContacts.splice(index, 1)
+			Vue.delete(state.contacts, contact.key)
+
+		} else {
+			console.error('Error while deleting the following contact', contact)
+		}
 	},
 
 	/**
 	 * Insert new contact into sorted array
-	 * Not using sort, splice has far better performances
-	 * https://jsperf.com/sort-vs-splice-in-array
 	 *
 	 * @param {Object} state
 	 * @param {Contact} contact
 	 */
 	addContact(state, contact) {
-		let sortedContact = {
-			key: contact.key,
-			value: contact[state.orderKey]
-		}
-		for (var i = 0, len = state.sortedContacts.length; i < len; i++) {
-			var nameA = state.sortedContacts[i].value.toUpperCase()	// ignore upper and lowercase
-			var nameB = sortedContact.value.toUpperCase()			// ignore upper and lowercase
-			if (nameA.localeCompare(nameB) > 0) {
-				state.sortedContacts.splice(i, 0, sortedContact)
-				break
+		if (contact instanceof Contact) {
+
+			let sortedContact = {
+				key: contact.key,
+				value: contact[state.orderKey]
 			}
+
+			// Not using sort, splice has far better performances
+			// https://jsperf.com/sort-vs-splice-in-array
+			for (var i = 0, len = state.sortedContacts.length; i < len; i++) {
+				var nameA = state.sortedContacts[i].value.toUpperCase()	// ignore upper and lowercase
+				var nameB = sortedContact.value.toUpperCase()			// ignore upper and lowercase
+				if (nameA.localeCompare(nameB) > 0) {
+					state.sortedContacts.splice(i, 0, sortedContact)
+					break
+				}
+			}
+			Vue.set(state.contacts, contact.key, contact)
+
+		} else {
+			console.error('Tried to replace a contact with a wrong object', contact)
 		}
-		Vue.set(state.contacts, contact.key, contact)
+	},
+
+	/**
+	 * Update a contact
+	 *
+	 * @param {Object} state
+	 * @param {Contact} contact
+	 */
+	updateContact(state, contact) {
+		if (state.contacts[contact.key] && contact instanceof Contact) {
+
+			// replace contact object data
+			state.contacts[contact.key].updateContact(contact.jCal)
+			let sortedContact = state.sortedContacts.find(search => search.key === contact.key)
+
+			// has the sort key changed for this contact ?
+			let hasChanged = sortedContact.value !== contact[state.orderKey]
+			if (hasChanged) {
+				console.debug('Sort triggered')
+				// then we sort again
+				state.sortedContacts
+					.sort((a, b) => {
+						var nameA = a.value.toUpperCase() // ignore upper and lowercase
+						var nameB = b.value.toUpperCase() // ignore upper and lowercase
+						return nameA.localeCompare(nameB)
+					})
+			}
+
+		} else {
+			console.error('Error while replacing the following contact', contact)
+		}
 	},
 
 	/**
@@ -96,7 +145,11 @@ const mutations = {
 			.sort((a, b) => {
 				var nameA = a.value.toUpperCase() // ignore upper and lowercase
 				var nameB = b.value.toUpperCase() // ignore upper and lowercase
-				return nameA.localeCompare(nameB)
+				let score = nameA.localeCompare(nameB)
+				// if equal, fallback to the key
+				return score !== 0
+					? score
+					: a.key.localeCompare(b.key)
 			})
 	},
 
@@ -141,6 +194,16 @@ const actions = {
 	addContact(context, contact) {
 		context.commit('addContact', contact)
 		context.commit('addContactToAddressbook', contact)
+	},
+
+	/**
+	 * Replac a contact by this new object
+	 *
+	 * @param {Object} state
+	 * @param {Contact} contact the contact to update
+	 */
+	updateContact(context, contact) {
+		context.commit('updateContact', contact)
 	}
 }
 
