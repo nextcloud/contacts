@@ -27,9 +27,10 @@
 
 		<div class="property__row">
 			<!-- type selector -->
-			<multiselect v-if="propModel.options" v-model="selectType"
+			<multiselect v-if="propModel.options" v-model="localType"
 				:options="propModel.options" :searchable="false" :placeholder="t('contacts', 'Select type')"
-				class="multiselect-vue property__label" track-by="id" label="name" />
+				class="multiselect-vue property__label" track-by="id" label="name"
+				@input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
 			<div v-else-if="selectType" class="property__label">{{ selectType.name }}</div>
@@ -44,7 +45,7 @@
 		<div v-for="index in propModel.displayOrder" :key="index" class="property__row">
 			<div class="property__label">{{ propModel.readableValues[index] }}</div>
 			<input v-model.trim="localValue[index]" class="property__value" type="text"
-				@input="updateProp">
+				@input="updateValue">
 		</div>
 	</div>
 </template>
@@ -87,7 +88,8 @@ export default {
 
 	data() {
 		return {
-			localValue: this.value
+			localValue: this.value,
+			localType: this.selectType
 		}
 	},
 
@@ -113,9 +115,14 @@ export default {
 		/**
 		 * Debounce and send update event to parent
 		 */
-		updateProp: debounce(function(e) {
+		updateValue: debounce(function(e) {
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			this.$emit('update:value', this.localValue)
+		}, 500),
+
+		updateType: debounce(function(e) {
+			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
+			this.$emit('update:selectType', this.localType)
 		}, 500)
 	}
 }

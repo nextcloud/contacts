@@ -81,24 +81,25 @@
 			<!-- contact details -->
 			<section class="contact-details">
 				<contact-details-property v-for="(property, index) in sortedProperties" :key="index" :index="index"
-					:sorted-properties="sortedProperties" :property="property" @updatedcontact="updateContact" />
+					:sorted-properties="sortedProperties" :property="property" :contact="contact"
+					@updatedcontact="updateContact" />
 			</section>
 		</template>
 	</div>
 </template>
 
 <script>
-import popoverMenu from './core/popoverMenu'
-import contactDetailsProperty from './ContactDetails/ContactDetailsProperty'
-
-import Contact from '../models/contact'
-import rfcProps from '../models/rfcProps.js'
 
 import ICAL from 'ical.js'
 import ClickOutside from 'vue-click-outside'
 import Vue from 'vue'
 import VTooltip from 'v-tooltip'
 import debounce from 'debounce'
+import Contact from '../models/contact'
+import rfcProps from '../models/rfcProps.js'
+
+import popoverMenu from './core/popoverMenu'
+import contactDetailsProperty from './ContactDetails/ContactDetailsProperty'
 
 Vue.use(VTooltip)
 
