@@ -80,7 +80,8 @@
 
 			<!-- contact details -->
 			<section class="contact-details">
-				<contact-details-property v-for="(property, index) in contact.properties" :key="index" :property="property" />
+				<contact-details-property v-for="(property, index) in sortedProperties" :key="index" :index="index"
+					:sorted-properties="sortedProperties" :property="property" />
 			</section>
 		</template>
 	</div>
@@ -91,6 +92,7 @@ import popoverMenu from './core/popoverMenu'
 import contactDetailsProperty from './ContactDetails/ContactDetailsProperty'
 
 import Contact from '../models/contact'
+import rfcProps from '../models/rfcProps.js'
 
 import ICAL from 'ical.js'
 import ClickOutside from 'vue-click-outside'
@@ -133,6 +135,10 @@ export default {
 				return 'grey'
 			}
 		},
+
+		/**
+		 * Header actions for the contact
+		 */
 		contactActions() {
 			let actions = [
 				{
@@ -150,6 +156,15 @@ export default {
 			}
 
 			return actions
+		},
+
+		/**
+		 * Contact properties copied and sorted by rfcProps.fieldOrder
+		 */
+		sortedProperties() {
+			return this.contact.properties.slice(0).sort((a, b) => {
+				return rfcProps.fieldOrder.indexOf(a.name) - rfcProps.fieldOrder.indexOf(b.name)
+			})
 		}
 	},
 	watch: {

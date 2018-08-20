@@ -21,22 +21,28 @@
   -->
 
 <template>
-	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="contact-details-property">
-		<div class="contact-details-property-row">
+	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="property">
+		<!-- title if first element -->
+		<property-title v-if="isFirstProperty && propModel.icon" :icon="propModel.icon" :readable-name="propModel.readableName" />
+
+		<div class="property__row">
 			<!-- type selector -->
 			<multiselect v-if="propModel.options" v-model="selectType"
 				:options="propModel.options" :searchable="false" :placeholder="t('contacts', 'Select type')"
-				class="multiselect-vue contact-details-label" track-by="id" label="name" />
+				class="multiselect-vue property__label" track-by="id" label="name" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-else-if="selectType" class="contact-details-label">{{ selectType.name }}</div>
+			<div v-else-if="selectType" class="property__label">{{ selectType.name }}</div>
+
+			<!-- no options, empty space -->
+			<div v-else class="property__label">{{ propModel.readableName }}</div>
 
 			<!-- delete the prop -->
-			<button :title="t('contacts', 'Delete')" class="icon-delete" @click="deleteProperty" />
+			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
 		</div>
 
-		<div v-for="index in propModel.displayOrder" :key="index" class="contact-details-property-row">
-			<div class="contact-details-label">{{ propModel.readableValues[index] }}</div>
+		<div v-for="index in propModel.displayOrder" :key="index" class="property__row">
+			<div class="property__label">{{ propModel.readableValues[index] }}</div>
 			<input v-model="value[index]" type="text">
 		</div>
 	</div>
@@ -44,12 +50,14 @@
 
 <script>
 import Multiselect from 'vue-multiselect'
+import propertyTitle from './PropertyTitle'
 
 export default {
 	name: 'PropertyText',
 
 	components: {
-		Multiselect
+		Multiselect,
+		propertyTitle
 	},
 
 	props: {
@@ -64,14 +72,20 @@ export default {
 		value: {
 			type: [Array, String, Object],
 			default: ''
+		},
+		isFirstProperty: {
+			type: Boolean,
+			default: true
 		}
 	},
 
 	computed: {
 		gridLength() {
-			let hasType = this.propModel.options || this.selectType
+			let hasType = this.propModel.options || this.selectType ? 1 : 0
+			let hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
 			let length = this.propModel.displayOrder ? this.propModel.displayOrder.length : this.value.length
-			return hasType ? length + 1 : length
+			// add one space at the end
+			return hasType + hasTitle + length + 1
 		}
 	},
 
