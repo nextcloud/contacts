@@ -58,7 +58,16 @@
 import clickOutside from 'vue-click-outside'
 import api from '../../services/api'
 import Multiselect from 'vue-multiselect'
+<<<<<<< HEAD
+import addressbookSharee from './SettingsAddressbookSharee'
+
+import clickOutside from 'vue-click-outside'
+
+import api from '../../services/api'
+
+=======
 import addressBookSharee from './SettingsAddressbookSharee'
+>>>>>>> added id to sharees and used this to look for existing shares, however there is still some error in the code that does not effectively implement the filter function. Added debounce package and function.
 export default {
 	name: 'SettingsShareAddressbook',
 	components: {
@@ -101,7 +110,6 @@ export default {
 			let addressbook = this.addressbook
 			this.$store.dispatch('shareAddressbook', { addressbook, sharee, id, group })
 		},
-
 		/**
 		 * Format responses from axios.all and add them to the option array
 		 *
@@ -130,7 +138,6 @@ export default {
 				this.usersOrGroups.push(newMatch)
 			}
 		},
-
 		/**
 		 * Use Axios api call to find matches to the query from the existing Users & Groups
 		 *
@@ -157,7 +164,6 @@ export default {
 						console.debug(error)
 					}
 				}).then(() => {
-
 					this.isLoading = false
 				})
 			}
