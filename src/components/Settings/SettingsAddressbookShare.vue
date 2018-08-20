@@ -21,7 +21,7 @@
 -->
 
 <template>
-	<div class="addressbook__shares">
+	<div class="addressbook-shares">
 		<multiselect
 			id="users-groups-search"
 			:options="usersOrGroups"
@@ -59,7 +59,6 @@ import clickOutside from 'vue-click-outside'
 import api from '../../services/api'
 import Multiselect from 'vue-multiselect'
 import addressBookSharee from './SettingsAddressbookSharee'
-
 export default {
 	name: 'SettingsShareAddressbook',
 	components: {
@@ -98,14 +97,10 @@ export default {
 		 *
 		 * @param {Object} chosenUserOrGroup
 		 */
-		shareAddressbook(chosenUserOrGroup) {
+		shareAddressbook({ sharee, id, group }) {
 			let addressbook = this.addressbook
-			let sharee = chosenUserOrGroup.match
-			let group = chosenUserOrGroup.matchgroup
-			this.$store.dispatch('shareAddressbook', { addressbook, sharee, group })
-
+			this.$store.dispatch('shareAddressbook', { addressbook, sharee, id, group })
 		},
-
 		/**
 		 * Format responses from axios.all and add them to the option array
 		 *
@@ -118,27 +113,22 @@ export default {
 				return
 			}
 			let regex = new RegExp(query, 'i')
-			let existingSharees = []
-			for (let j = 0; j < this.addressbook.shares.length; j++) {
-				existingSharees.push(this.addressbook.shares[j].displayname + this.addressbook.shares[j].group)
-			}
+			let existingSharees = this.addressbook.shares.map(share => share.id + share.group)
+			matches.filter(share => existingSharees.indexOf(share.id + group) === -1)
 			for (let i = 0; i < matches.length; i++) {
-				if (existingSharees.indexOf(matches[i] + group) !== -1) {
-					continue
-				}
-				let matchResult = matches[i].split(regex)
+				let matchResult = matches[i].displayname.split(regex)
 				let newMatch = {
-					match: matches[i],
+					sharee: matches[i].displayname,
+					id: matches[i].id,
 					matchstart: matchResult[0],
-					matchpattern: matches[i].match(regex)[0],
+					matchpattern: matches[i].displayname.match(regex)[0],
 					matchend: matchResult[1],
 					matchtag: group ? '(group)' : '(user)',
-					matchgroup: group
+					group: group
 				}
 				this.usersOrGroups.push(newMatch)
 			}
 		},
-
 		/**
 		 * Use Axios api call to find matches to the query from the existing Users & Groups
 		 *
@@ -149,10 +139,10 @@ export default {
 			this.usersOrGroups = []
 			if (query.length > 0) {
 				api.all([
-					api.get(OC.linkToOCS('cloud', 2) + 'users?search=' + query),
-					api.get(OC.linkToOCS('cloud', 2) + 'groups?search=' + query)
+					api.get(OC.linkToOCS('cloud', 2) + 'users/details?search=' + query),
+					api.get(OC.linkToOCS('cloud', 2) + 'groups/details?search=' + query)
 				]).then(response => {
-					let matchingUsers = response[0].data.ocs.data.users
+					let matchingUsers = Object.values(response[0].data.ocs.data.users)
 					let matchingGroups = response[1].data.ocs.data.groups
 					try {
 						this.formatMatchResults(matchingUsers, query, false)
@@ -165,7 +155,6 @@ export default {
 						console.debug(error)
 					}
 				}).then(() => {
-
 					this.isLoading = false
 				})
 			}
