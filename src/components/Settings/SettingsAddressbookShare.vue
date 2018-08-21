@@ -33,13 +33,15 @@
 			:max-height="600"
 			:show-no-results="false"
 			:placeholder="placeholder"
-			track-by="match"
-			label="match"
 			open-direction="bottom"
 			class="multiselect-vue"
 			@search-change="asyncFind"
 			@input="shareAddressbook">
-			<template slot="singleLabel" slot-scope="props"><span class="option__desc"><span class="option__title">{{ props.option.matchpattern }}</span></span></template>
+			<template slot="singleLabel" slot-scope="props">
+				<span class="option__desc">
+					<span class="option__title">{{ props.option.matchpattern }}</span>
+				</span>
+			</template>
 			<template slot="option" slot-scope="props">
 				<div class="option__desc">
 					<span>{{ props.option.matchstart }}</span><span class="shareematch--bold">{{ props.option.matchpattern }}</span><span>{{ props.option.matchend }} {{ props.option.matchtag }}</span>
@@ -59,7 +61,7 @@ import clickOutside from 'vue-click-outside'
 import api from '../../services/api'
 import Multiselect from 'vue-multiselect'
 import addressBookSharee from './SettingsAddressbookSharee'
-import { debounce } from 'debounce'
+import debounce from 'debounce'
 
 export default {
 	name: 'SettingsShareAddressbook',
@@ -69,7 +71,8 @@ export default {
 		addressBookSharee
 	},
 	directives: {
-		clickOutside
+		clickOutside,
+		debounce
 	},
 	props: {
 		addressbook: {
@@ -116,7 +119,7 @@ export default {
 			}
 			let regex = new RegExp(query, 'i')
 			let existingSharees = this.addressbook.shares.map(share => share.id + share.group)
-			matches.filter(share => existingSharees.indexOf(share.id + group) === -1)
+			matches = matches.filter(share => existingSharees.indexOf(share.id + group) === -1)
 			for (let i = 0; i < matches.length; i++) {
 				let matchResult = matches[i].displayname.split(regex)
 				let newMatch = {
