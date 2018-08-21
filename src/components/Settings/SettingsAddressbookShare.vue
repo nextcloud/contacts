@@ -31,8 +31,9 @@
 			:options-limit="250"
 			:limit="3"
 			:max-height="600"
-			:show-no-results="false"
+			:show-no-results="true"
 			:placeholder="placeholder"
+			:class="{ 'showContent': inputGiven }"
 			open-direction="bottom"
 			class="multiselect-vue"
 			@search-change="asyncFind"
@@ -44,7 +45,7 @@
 			</template>
 			<template slot="option" slot-scope="props">
 				<div class="option__desc">
-					<span>{{ props.option.matchstart }}</span><span class="shareematch--bold">{{ props.option.matchpattern }}</span><span>{{ props.option.matchend }} {{ props.option.matchtag }}</span>
+					<span>{{ props.option.matchstart }}</span><span class="addressbook-shares__shareematch--bold">{{ props.option.matchpattern }}</span><span>{{ props.option.matchend }} {{ props.option.matchtag }}</span>
 				</div>
 			</template>
 			<span slot="noResult">{{ noResult }} </span>
@@ -85,6 +86,7 @@ export default {
 	data() {
 		return {
 			isLoading: false,
+			inputGiven: false,
 			usersOrGroups: []
 		}
 	},
@@ -93,7 +95,7 @@ export default {
 			return t('contacts', 'Share with users or groups')
 		},
 		noResult() {
-			return t('contacts', 'Oops! No elements found. Consider changing the search query.')
+			return t('contacts', 'No users or groups')
 		}
 	},
 	methods: {
@@ -165,6 +167,9 @@ export default {
 
 					this.isLoading = false
 				})
+				this.inputGiven = true
+			} else {
+				this.inputGiven = false
 			}
 		}
 	}
