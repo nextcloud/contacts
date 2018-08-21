@@ -14,8 +14,10 @@ $grid-input-height-with-margin: #{$grid-height-unit - $grid-input-margin * 2};
 	}
 }
 
+<<<<<<< HEAD
 
-@import 'settings';
+=======
+>>>>>>> fixed issue with filter()
 @import 'settings-section';
 @import 'settings/settings-addressbook';
 @import 'settings/settings-addressbook-shares';
