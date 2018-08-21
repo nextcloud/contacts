@@ -59,6 +59,8 @@ import clickOutside from 'vue-click-outside'
 import api from '../../services/api'
 import Multiselect from 'vue-multiselect'
 import addressBookSharee from './SettingsAddressbookSharee'
+import { debounce } from 'debounce'
+
 export default {
 	name: 'SettingsShareAddressbook',
 	components: {
@@ -147,12 +149,12 @@ export default {
 					let matchingUsers = Object.values(response[0].data.ocs.data.users)
 					let matchingGroups = response[1].data.ocs.data.groups
 					try {
-						this.formatMatchResults(matchingUsers, query, false)
+						debounce(this.formatMatchResults(matchingUsers, query, false), 250, true)
 					} catch (error) {
 						console.debug(error)
 					}
 					try {
-						this.formatMatchResults(matchingGroups, query, true)
+						debounce(this.formatMatchResults(matchingGroups, query, true), 250, true)
 					} catch (error) {
 						console.debug(error)
 					}
