@@ -31,18 +31,21 @@
 			:options-limit="250"
 			:limit="3"
 			:max-height="600"
-			:show-no-results="false"
+			:show-no-results="true"
 			:placeholder="placeholder"
-			track-by="match"
-			label="match"
+			:class="{ 'showContent': inputGiven }"
 			open-direction="bottom"
 			class="multiselect-vue"
 			@search-change="asyncFind"
 			@input="shareAddressbook">
-			<template slot="singleLabel" slot-scope="props"><span class="option__desc"><span class="option__title">{{ props.option.matchpattern }}</span></span></template>
+			<template slot="singleLabel" slot-scope="props">
+				<span class="option__desc">
+					<span class="option__title">{{ props.option.matchpattern }}</span>
+				</span>
+			</template>
 			<template slot="option" slot-scope="props">
 				<div class="option__desc">
-					<span>{{ props.option.matchstart }}</span><span class="shareematch--bold">{{ props.option.matchpattern }}</span><span>{{ props.option.matchend }} {{ props.option.matchtag }}</span>
+					<span>{{ props.option.matchstart }}</span><span class="addressbook-shares__shareematch--bold">{{ props.option.matchpattern }}</span><span>{{ props.option.matchend }} {{ props.option.matchtag }}</span>
 				</div>
 			</template>
 			<span slot="noResult">{{ noResult }} </span>
@@ -58,16 +61,9 @@
 import clickOutside from 'vue-click-outside'
 import api from '../../services/api'
 import Multiselect from 'vue-multiselect'
-<<<<<<< HEAD
-import addressbookSharee from './SettingsAddressbookSharee'
-
-import clickOutside from 'vue-click-outside'
-
-import api from '../../services/api'
-
-=======
 import addressBookSharee from './SettingsAddressbookSharee'
->>>>>>> added id to sharees and used this to look for existing shares, however there is still some error in the code that does not effectively implement the filter function. Added debounce package and function.
+import debounce from 'debounce'
+
 export default {
 	name: 'SettingsShareAddressbook',
 	components: {
@@ -76,7 +72,8 @@ export default {
 		addressBookSharee
 	},
 	directives: {
-		clickOutside
+		clickOutside,
+		debounce
 	},
 	props: {
 		addressbook: {
@@ -89,6 +86,7 @@ export default {
 	data() {
 		return {
 			isLoading: false,
+			inputGiven: false,
 			usersOrGroups: []
 		}
 	},
@@ -97,7 +95,7 @@ export default {
 			return t('contacts', 'Share with users or groups')
 		},
 		noResult() {
-			return t('contacts', 'Oops! No elements found. Consider changing the search query.')
+			return t('contacts', 'No users or groups')
 		}
 	},
 	methods: {
@@ -110,6 +108,7 @@ export default {
 			let addressbook = this.addressbook
 			this.$store.dispatch('shareAddressbook', { addressbook, sharee, id, group })
 		},
+
 		/**
 		 * Format responses from axios.all and add them to the option array
 		 *
@@ -123,27 +122,35 @@ export default {
 			}
 			let regex = new RegExp(query, 'i')
 			let existingSharees = this.addressbook.shares.map(share => share.id + share.group)
-			matches.filter(share => existingSharees.indexOf(share.id + group) === -1)
-			for (let i = 0; i < matches.length; i++) {
-				let matchResult = matches[i].displayname.split(regex)
-				let newMatch = {
-					sharee: matches[i].displayname,
-					id: matches[i].id,
+			matches = matches.filter(share => existingSharees.indexOf(share.id + group) === -1)
+			// this.usersOrGroups.concat(
+			this.usersOrGroups = this.usersOrGroups.concat(matches.map(match => {
+				let matchResult = match.displayname.split(regex)
+				if (matchResult.length < 1) {
+					return
+				}
+				return {
+					sharee: match.displayname,
+					id: match.id,
 					matchstart: matchResult[0],
-					matchpattern: matches[i].displayname.match(regex)[0],
+					matchpattern: match.displayname.match(regex)[0],
 					matchend: matchResult[1],
 					matchtag: group ? '(group)' : '(user)',
-					group: group
+					group
 				}
-				this.usersOrGroups.push(newMatch)
-			}
+			}))
+<<<<<<< HEAD
+			console.log(this.usersOrGroups) // eslint-disable-line
+=======
+>>>>>>> made additional changes for PR.
 		},
+
 		/**
 		 * Use Axios api call to find matches to the query from the existing Users & Groups
 		 *
 		 * @param {String} query
 		 */
-		asyncFind(query) {
+		asyncFind: debounce(function(query) {
 			this.isLoading = true
 			this.usersOrGroups = []
 			if (query.length > 0) {
@@ -164,10 +171,14 @@ export default {
 						console.debug(error)
 					}
 				}).then(() => {
+
 					this.isLoading = false
 				})
+				this.inputGiven = true
+			} else {
+				this.inputGiven = false
 			}
-		}
+		}, 500)
 	}
 }
 </script>
