@@ -23,9 +23,9 @@
 <template>
 	<div>
 		<ul id="address-book-list">
-			<address-Book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
+			<address-book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
 		</ul>
-		<add-address-Book :addressbooks="addressbooks" />
+		<add-address-book :addressbooks="addressbooks" />
 
 		<import-contacts :addressbooks="addressbooks" class="settings-section" />
 		<sort-contacts class="settings-section" />
