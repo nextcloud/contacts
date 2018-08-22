@@ -22,8 +22,7 @@
 
 <template>
 	<li class="addressbook__sharee">
-		<span v-if="sharee.group" class="icon icon-group" />
-		<span v-else class="icon icon-user" />
+		<span :class="sharee.group ? 'icon-group' : 'icon-user'" class="icon" />
 		<span class="addressbook__sharee__identifier">{{ sharee.displayname }}</span>
 		<span class="addressbook__sharee__utils">
 			<input

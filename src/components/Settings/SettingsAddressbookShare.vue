@@ -123,19 +123,23 @@ export default {
 			let regex = new RegExp(query, 'i')
 			let existingSharees = this.addressbook.shares.map(share => share.id + share.group)
 			matches = matches.filter(share => existingSharees.indexOf(share.id + group) === -1)
-			for (let i = 0; i < matches.length; i++) {
-				let matchResult = matches[i].displayname.split(regex)
-				let newMatch = {
-					sharee: matches[i].displayname,
-					id: matches[i].id,
+			// this.usersOrGroups.concat(
+			this.usersOrGroups = this.usersOrGroups.concat(matches.map(match => {
+				let matchResult = match.displayname.split(regex)
+				if (matchResult.length < 1) {
+					return
+				}
+				return {
+					sharee: match.displayname,
+					id: match.id,
 					matchstart: matchResult[0],
-					matchpattern: matches[i].displayname.match(regex)[0],
+					matchpattern: match.displayname.match(regex)[0],
 					matchend: matchResult[1],
 					matchtag: group ? '(group)' : '(user)',
-					group: group
+					group
 				}
-				this.usersOrGroups.push(newMatch)
-			}
+			}))
+			console.log(this.usersOrGroups) // eslint-disable-line
 		},
 
 		/**
@@ -143,7 +147,7 @@ export default {
 		 *
 		 * @param {String} query
 		 */
-		asyncFind(query) {
+		asyncFind: debounce(function(query) {
 			this.isLoading = true
 			this.usersOrGroups = []
 			if (query.length > 0) {
@@ -154,12 +158,12 @@ export default {
 					let matchingUsers = Object.values(response[0].data.ocs.data.users)
 					let matchingGroups = response[1].data.ocs.data.groups
 					try {
-						debounce(this.formatMatchResults(matchingUsers, query, false), 250, true)
+						this.formatMatchResults(matchingUsers, query, false)
 					} catch (error) {
 						console.debug(error)
 					}
 					try {
-						debounce(this.formatMatchResults(matchingGroups, query, true), 250, true)
+						this.formatMatchResults(matchingGroups, query, true)
 					} catch (error) {
 						console.debug(error)
 					}
@@ -171,7 +175,7 @@ export default {
 			} else {
 				this.inputGiven = false
 			}
-		}
+		}, 500)
 	}
 }
 </script>
