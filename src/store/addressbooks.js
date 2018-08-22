@@ -109,9 +109,9 @@ const mutations = {
 		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
 		let newSharee = {
 			displayname: sharee,
-			id: id,
+			id,
 			writeable: false,
-			group: group
+			group
 		}
 		addressbook.shares.push(newSharee)
 	},
