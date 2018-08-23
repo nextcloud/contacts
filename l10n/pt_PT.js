@@ -2,7 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contactos",
-    "Download" : "Descarregar",
+    "Download" : "Transferir",
     "Copy link" : "Copiar hiperligação",
     "Click to copy the link to your clipboard" : "Clicar para copiar a hiperligação para a área de transferência",
     "Toggle sharing" : "Alternar partilha",
