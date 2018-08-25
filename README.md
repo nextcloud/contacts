@@ -67,7 +67,7 @@ Of course you can also install [PHPUnit](http://phpunit.de/getting-started.html)
 
     phpunit -c phpunit.xml
 
-or:
+or for integration tests:
 
     phpunit -c phpunit.integration.xml
 
@@ -76,4 +76,13 @@ for integration tests.
 
 ## :v: Code of conduct
 
-The Nextcloud community has core values that are shared between all members during conferences, hackweeks and on all interactions in online platforms including [Github](https://github.com/nextcloud) and [Forums](https://help.nextcloud.com). If you contribute, participate or interact with this community, please respect [our shared values](https://nextcloud.com/code-of-conduct/). :relieved:
+The Nextcloud community has core values that are shared between all members during conferences,
+hackweeks and on all interactions in online platforms including [Github](https://github.com/nextcloud) and [Forums](https://help.nextcloud.com).
+If you contribute, participate or interact with this community, please respect [our shared values](https://nextcloud.com/code-of-conduct/). :relieved:
+
+## :heart: How to create a pull request
+
+This guide will help you get started: 
+- :dancer: :smile: [Opening a pull request](https://opensource.guide/how-to-contribute/#opening-a-pull-request) 
+
+
