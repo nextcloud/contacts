@@ -71,8 +71,6 @@ or for integration tests:
 
     phpunit -c phpunit.integration.xml
 
-for integration tests.
-
 
 ## :v: Code of conduct
 
