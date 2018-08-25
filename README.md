@@ -67,8 +67,13 @@ Of course you can also install [PHPUnit](http://phpunit.de/getting-started.html)
 
     phpunit -c phpunit.xml
 
-or:
+or for integration tests:
 
     phpunit -c phpunit.integration.xml
 
-for integration tests
+## :heart: How to create a pull request
+
+This guide will help you get started: 
+- :dancer: :smile: [Opening a pull request](https://opensource.guide/how-to-contribute/#opening-a-pull-request) 
+
+
