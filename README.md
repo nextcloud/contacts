@@ -9,19 +9,19 @@
 
 ![](https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png)
 
-## Why is this so awesome?
+## :blue_heart: :tada: Why is this so awesome?
 
 * :rocket: **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.
 * :tada: **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.
 * :busts_in_silhouette: **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!
 * :see_no_evil: **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 
-## Installation
+## :hammer_and_wrench: Installation
 
 In your Nextcloud, simply navigate to »Apps«, choose the category »Organization«, find the Contacts app and enable it.
 Then open the Contacts app from the app menu.
 
-## Support
+## :satellite: Support
 
 If you need assistance or want to ask a question about Contacts, you are welcome to [ask for support](https://help.nextcloud.com) in our Forums or the [IRC-Channel](https://webchat.freenode.net/?channels=nextcloud-contacts). If you have found a bug, feel free to open a new Issue on GitHub. Keep in mind, that this repository only manages the frontend. If you find bugs or have problems with the CardDAV-Backend, you should ask the guys at [Nextcloud server](https://github.com/nextcloud/server) for help!
 
@@ -70,6 +70,15 @@ Of course you can also install [PHPUnit](http://phpunit.de/getting-started.html)
 or for integration tests:
 
     phpunit -c phpunit.integration.xml
+
+for integration tests.
+
+
+## :v: Code of conduct
+
+The Nextcloud community has core values that are shared between all members during conferences,
+hackweeks and on all interactions in online platforms including [Github](https://github.com/nextcloud) and [Forums](https://help.nextcloud.com).
+If you contribute, participate or interact with this community, please respect [our shared values](https://nextcloud.com/code-of-conduct/). :relieved:
 
 ## :heart: How to create a pull request
 
