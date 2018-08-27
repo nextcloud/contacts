@@ -273,7 +273,7 @@ const actions = {
 		context.commit('appendContactsToAddressbook', { addressbook, contacts })
 		context.commit('appendContacts', contacts)
 		context.commit('sortContacts')
-		context.commit('appendGroups', contacts)
+		context.commit('appendGroupsFromContacts', contacts)
 	},
 
 	/**

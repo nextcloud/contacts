@@ -48,6 +48,16 @@ export default class Contact {
 			this.vCard.addPropertyWithValue('uid', uuid())
 		}
 	}
+	/**
+	 * Update internal data of this contact
+	 *
+	 * @param {jCal} jCal
+	 * @memberof Contact
+	 */
+	updateContact(jCal) {
+		this.jCal = jCal
+		this.vCard = new ICAL.Component(this.jCal)
+	}
 
 	/**
 	 * Ensure we're normalizing the possible arrays
@@ -104,6 +114,18 @@ export default class Contact {
 			return this.vCard.getFirstProperty('categories').getValues()
 		}
 		return []
+	}
+
+	/**
+	 * Set the groups
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	set groups(groups) {
+		if (Array.isArray(groups)) {
+			this.vCard.updatePropertyWithValue('uid', groups)
+		}
 	}
 
 	/**

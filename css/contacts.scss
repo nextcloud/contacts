@@ -1,2 +1,21 @@
+$grid-height-unit: 40px;
+$grid-input-padding: 7px;
+$grid-input-margin: 3px;
+$grid-column-width: 380px;
+$grid-input-height-with-margin: #{$grid-height-unit - $grid-input-margin * 2};
+
+@mixin generate-grid-span($default-unit) {
+	// we only supports 10 props of the same type
+	@for $i from 1 through 10 {
+		&.grid-span-#{$i} {
+			// default unit + title + bottom padding
+			grid-row-start: span #{$i * $default-unit};
+		}
+	}
+}
+
 @import 'settings-section';
+@import 'settings';
 @import 'details';
+@import './Properties/Properties';
+@import './Properties/PropertyTitle';

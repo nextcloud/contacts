@@ -21,40 +21,51 @@
   -->
 
 <template>
-	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="contact-details-property">
-		<div class="contact-details-property-row">
+	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="property">
+		<!-- title if first element -->
+		<property-title v-if="isFirstProperty && propModel.icon" :icon="propModel.icon" :readable-name="propModel.readableName" />
+
+		<div class="property__row">
 			<!-- type selector -->
-			<multiselect v-if="propModel.options" v-model="selectType"
+			<multiselect v-if="propModel.options" v-model="localType"
 				:options="propModel.options" :searchable="false" :placeholder="t('contacts', 'Select type')"
-				class="multiselect-vue contact-details-label" track-by="id" label="name" />
+				class="multiselect-vue property__label" track-by="id" label="name"
+				@input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-else-if="selectType" class="contact-details-label">{{ selectType.name }}</div>
+			<div v-else-if="selectType" class="property__label">{{ selectType.name }}</div>
+
+			<!-- no options, empty space -->
+			<div v-else class="property__label">{{ propModel.readableName }}</div>
 
 			<!-- delete the prop -->
-			<button :title="t('contacts', 'Delete')" class="icon-delete" @click="deleteProperty" />
+			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
 		</div>
 
-		<div v-for="index in propModel.displayOrder" :key="index" class="contact-details-property-row">
-			<div class="contact-details-label">{{ propModel.readableValues[index] }}</div>
-			<input v-model="value[index]" type="text">
+		<div v-for="index in propModel.displayOrder" :key="index" class="property__row">
+			<div class="property__label">{{ propModel.readableValues[index] }}</div>
+			<input v-model.trim="localValue[index]" class="property__value" type="text"
+				@input="updateValue">
 		</div>
 	</div>
 </template>
 
 <script>
 import Multiselect from 'vue-multiselect'
+import propertyTitle from './PropertyTitle'
+import debounce from 'debounce'
 
 export default {
 	name: 'PropertyText',
 
 	components: {
-		Multiselect
+		Multiselect,
+		propertyTitle
 	},
 
 	props: {
 		selectType: {
-			type: Object,
+			type: [Object, Boolean],
 			default: () => {}
 		},
 		propModel: {
@@ -62,23 +73,57 @@ export default {
 			default: () => {}
 		},
 		value: {
-			type: [Array, String, Object],
-			default: ''
+			type: [Array, Object],
+			default: () => []
+		},
+		isFirstProperty: {
+			type: Boolean,
+			default: true
+		},
+		isLastProperty: {
+			type: Boolean,
+			default: true
+		}
+	},
+
+	data() {
+		return {
+			localValue: this.value,
+			localType: this.selectType
 		}
 	},
 
 	computed: {
 		gridLength() {
-			let hasType = this.propModel.options || this.selectType
+			let hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
+			let isLast = this.isLastProperty
 			let length = this.propModel.displayOrder ? this.propModel.displayOrder.length : this.value.length
-			return hasType ? length + 1 : length
+			// always have a property__label + one extra space at the end
+			return 1 + hasTitle + length + isLast
 		}
 	},
 
 	methods: {
+
+		/**
+		 * Delete the property
+		 */
 		deleteProperty() {
-			alert('deleted')
-		}
+			this.$emit('delete')
+		},
+
+		/**
+		 * Debounce and send update event to parent
+		 */
+		updateValue: debounce(function(e) {
+			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
+			this.$emit('update:value', this.localValue)
+		}, 500),
+
+		updateType: debounce(function(e) {
+			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
+			this.$emit('update:selectType', this.localType)
+		}, 500)
 	}
 }
 

@@ -21,38 +21,49 @@
   -->
 
 <template>
-	<div v-if="propModel" class="contact-details-property grid-span-1">
-		<div class="contact-details-property-row">
+	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="property">
+		<!-- title if first element -->
+		<property-title v-if="isFirstProperty && propModel.icon" :icon="propModel.icon" :readable-name="propModel.readableName" />
+
+		<div class="property__row">
 			<!-- type selector -->
-			<multiselect v-if="propModel.options" v-model="selectType"
+			<multiselect v-if="propModel.options" v-model="localType"
 				:options="propModel.options" :searchable="false" :placeholder="t('contacts', 'Select type')"
-				class="multiselect-vue contact-details-label" track-by="id" label="name" />
+				class="multiselect-vue property__label" track-by="id" label="name"
+				@input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-else-if="selectType" class="contact-details-label">{{ selectType.name }}</div>
+			<div v-else-if="selectType" class="property__label">{{ selectType.name }}</div>
+
+			<!-- no options, empty space -->
+			<div v-else class="property__label">{{ propModel.readableName }}</div>
 
 			<!-- delete the prop -->
-			<button :title="t('contacts', 'Delete')" class="icon-delete" @click="deleteProperty" />
+			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
 
-			<input v-model="value" type="text">
+			<input v-model.trim="localValue" class="property__value" type="text"
+				@input="updateValue">
 		</div>
 	</div>
 </template>
 
 <script>
 import Multiselect from 'vue-multiselect'
+import propertyTitle from './PropertyTitle'
+import debounce from 'debounce'
 import { VCardTime } from 'ical.js'
 
 export default {
 	name: 'PropertyDateTime',
 
 	components: {
-		Multiselect
+		Multiselect,
+		propertyTitle
 	},
 
 	props: {
 		selectType: {
-			type: Object,
+			type: [Object, Boolean],
 			default: () => {}
 		},
 		propModel: {
@@ -60,15 +71,56 @@ export default {
 			default: () => {}
 		},
 		value: {
-			type: [VCardTime],
+			type: VCardTime,
 			default: ''
+		},
+		isFirstProperty: {
+			type: Boolean,
+			default: true
+		},
+		isLastProperty: {
+			type: Boolean,
+			default: true
+		}
+	},
+
+	data() {
+		return {
+			localValue: this.value,
+			localType: this.selectType
+		}
+	},
+
+	computed: {
+		gridLength() {
+			let hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
+			let isLast = this.isLastProperty ? 1 : 0
+			// length is always one & add one space at the end
+			return hasTitle + 1 + isLast
 		}
 	},
 
 	methods: {
+
+		/**
+		 * Delete the property
+		 */
 		deleteProperty() {
-			alert('deleted')
-		}
+			this.$emit('delete')
+		},
+
+		/**
+		 * Debounce and send update event to parent
+		 */
+		updateValue: debounce(function(e) {
+			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
+			this.$emit('update:value', this.localValue)
+		}, 500),
+
+		updateType: debounce(function(e) {
+			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
+			this.$emit('update:selectType', this.localType)
+		}, 500)
 	}
 }
 

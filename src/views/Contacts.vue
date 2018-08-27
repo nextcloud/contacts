@@ -101,9 +101,10 @@ export default {
 		},
 
 		/**
-		 * contacts list based on the selected group
-		 * filters are pretty fast, so let's only intersect the groups
-		 * contacts and the full sorted contacts List
+		 * Contacts list based on the selected group.
+		 * Those filters are pretty fast, so let's only
+		 * intersect the groups contacts and the full
+		 * sorted contacts List.
 		 */
 		contactsList() {
 			if (this.selectedGroup === t('contacts', 'All contacts')) {
@@ -219,6 +220,10 @@ export default {
 			this.$store.commit('sortContacts')
 		},
 
+		/**
+		 * Select the first contact of the list
+		 * if none are selected already
+		 */
 		selectFirstContactIfNone() {
 			let inList = this.contactsList.findIndex(contact => contact.key === this.selectedContact) > -1
 			if (this.selectedContact === undefined || !inList) {
