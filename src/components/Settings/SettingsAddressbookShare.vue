@@ -31,18 +31,25 @@
 			:options-limit="250"
 			:limit="3"
 			:max-height="600"
-			:show-no-results="false"
+			:show-no-results="true"
 			:placeholder="placeholder"
-			track-by="match"
-			label="match"
+			:class="{ 'showContent': inputGiven }"
 			open-direction="bottom"
 			class="multiselect-vue"
 			@search-change="asyncFind"
 			@input="shareAddressbook">
-			<template slot="singleLabel" slot-scope="props"><span class="option__desc"><span class="option__title">{{ props.option.matchpattern }}</span></span></template>
+			<template slot="singleLabel" slot-scope="props">
+				<span class="option__desc">
+					<span class="option__title">{{ props.option.matchpattern }}</span>
+				</span>
+			</template>
 			<template slot="option" slot-scope="props">
 				<div class="option__desc">
+<<<<<<< HEAD
 					<span>{{ props.option.matchstart }}</span><span class="multiselect-vue__shareematch--bold">{{ props.option.matchpattern }}</span><span>{{ props.option.matchend }} {{ props.option.matchtag }}</span>
+=======
+					<span>{{ props.option.matchstart }}</span><span class="addressbook-shares__shareematch--bold">{{ props.option.matchpattern }}</span><span>{{ props.option.matchend }} {{ props.option.matchtag }}</span>
+>>>>>>> origin/vue-share-addressbook
 				</div>
 			</template>
 			<span slot="noResult">{{ noResult }} </span>
@@ -59,6 +66,7 @@ import clickOutside from 'vue-click-outside'
 import api from '../../services/api'
 import Multiselect from 'vue-multiselect'
 import addressBookSharee from './SettingsAddressbookSharee'
+import debounce from 'debounce'
 
 export default {
 	name: 'SettingsShareAddressbook',
@@ -68,7 +76,8 @@ export default {
 		addressBookSharee
 	},
 	directives: {
-		clickOutside
+		clickOutside,
+		debounce
 	},
 	props: {
 		addressbook: {
@@ -81,6 +90,7 @@ export default {
 	data() {
 		return {
 			isLoading: false,
+			inputGiven: false,
 			usersOrGroups: []
 		}
 	},
@@ -89,7 +99,7 @@ export default {
 			return t('contacts', 'Share with users or groups')
 		},
 		noResult() {
-			return t('contacts', 'Oops! No elements found. Consider changing the search query.')
+			return t('contacts', 'No users or groups')
 		}
 	},
 	methods: {
@@ -98,14 +108,10 @@ export default {
 		 *
 		 * @param {Object} chosenUserOrGroup
 		 */
-		shareAddressbook(chosenUserOrGroup) {
+		shareAddressbook({ sharee, id, group }) {
 			let addressbook = this.addressbook
-			let sharee = chosenUserOrGroup.match
-			let group = chosenUserOrGroup.matchgroup
-			this.$store.dispatch('shareAddressbook', { addressbook, sharee, group })
-
+			this.$store.dispatch('shareAddressbook', { addressbook, sharee, id, group })
 		},
-
 		/**
 		 * Format responses from axios.all and add them to the option array
 		 *
@@ -118,41 +124,39 @@ export default {
 				return
 			}
 			let regex = new RegExp(query, 'i')
-			let existingSharees = []
-			for (let j = 0; j < this.addressbook.shares.length; j++) {
-				existingSharees.push(this.addressbook.shares[j].displayname + this.addressbook.shares[j].group)
-			}
-			for (let i = 0; i < matches.length; i++) {
-				if (existingSharees.indexOf(matches[i] + group) !== -1) {
-					continue
+			let existingSharees = this.addressbook.shares.map(share => share.id + share.group)
+			matches = matches.filter(share => existingSharees.indexOf(share.id + group) === -1)
+			// this.usersOrGroups.concat(
+			this.usersOrGroups = this.usersOrGroups.concat(matches.map(match => {
+				let matchResult = match.displayname.split(regex)
+				if (matchResult.length < 1) {
+					return
 				}
-				let matchResult = matches[i].split(regex)
-				let newMatch = {
-					match: matches[i],
+				return {
+					sharee: match.displayname,
+					id: match.id,
 					matchstart: matchResult[0],
-					matchpattern: matches[i].match(regex)[0],
+					matchpattern: match.displayname.match(regex)[0],
 					matchend: matchResult[1],
 					matchtag: group ? '(group)' : '(user)',
-					matchgroup: group
+					group
 				}
-				this.usersOrGroups.push(newMatch)
-			}
+			}))
 		},
-
 		/**
 		 * Use Axios api call to find matches to the query from the existing Users & Groups
 		 *
 		 * @param {String} query
 		 */
-		asyncFind(query) {
+		asyncFind: debounce(function(query) {
 			this.isLoading = true
 			this.usersOrGroups = []
 			if (query.length > 0) {
 				api.all([
-					api.get(OC.linkToOCS('cloud', 2) + 'users?search=' + query),
-					api.get(OC.linkToOCS('cloud', 2) + 'groups?search=' + query)
+					api.get(OC.linkToOCS('cloud', 2) + 'users/details?search=' + query),
+					api.get(OC.linkToOCS('cloud', 2) + 'groups/details?search=' + query)
 				]).then(response => {
-					let matchingUsers = response[0].data.ocs.data.users
+					let matchingUsers = Object.values(response[0].data.ocs.data.users)
 					let matchingGroups = response[1].data.ocs.data.groups
 					try {
 						this.formatMatchResults(matchingUsers, query, false)
@@ -165,11 +169,13 @@ export default {
 						console.debug(error)
 					}
 				}).then(() => {
-
 					this.isLoading = false
 				})
+				this.inputGiven = true
+			} else {
+				this.inputGiven = false
 			}
-		}
+		}, 500)
 	}
 }
 </script>

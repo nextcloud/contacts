@@ -15,7 +15,9 @@ $grid-input-height-with-margin: #{$grid-height-unit - $grid-input-margin * 2};
 }
 
 @import 'settings-section';
-@import 'settings';
+@import 'settings/settings-addressbook';
+@import 'settings/settings-addressbook-shares';
+@import 'settings/settings-addressbook-sharee';
 @import 'details';
 @import './Properties/Properties';
 @import './Properties/PropertyTitle';
