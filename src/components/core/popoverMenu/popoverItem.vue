@@ -32,7 +32,7 @@
 		<!-- If item.input is set instead, an put will be used -->
 		<span v-else-if="item.input" class="menuitem">
 			<input :id="item.key" :type="item.input" :class="item.input"
-				v-model="item.model">
+				v-model="item.model" @change="item.action">
 			<label :for="item.key">{{ item.text }}</label>
 		</span>
 		<!-- If item.action is set instead, a button will be used -->

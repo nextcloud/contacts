@@ -45,11 +45,7 @@
 			</template>
 			<template slot="option" slot-scope="props">
 				<div class="option__desc">
-<<<<<<< HEAD
-					<span>{{ props.option.matchstart }}</span><span class="multiselect-vue__shareematch--bold">{{ props.option.matchpattern }}</span><span>{{ props.option.matchend }} {{ props.option.matchtag }}</span>
-=======
 					<span>{{ props.option.matchstart }}</span><span class="addressbook-shares__shareematch--bold">{{ props.option.matchpattern }}</span><span>{{ props.option.matchend }} {{ props.option.matchtag }}</span>
->>>>>>> origin/vue-share-addressbook
 				</div>
 			</template>
 			<span slot="noResult">{{ noResult }} </span>

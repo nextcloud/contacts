@@ -28,6 +28,8 @@
 			<!-- sharing button -->
 			<a href="#" class="addressbook__share icon-shared"
 				@click="toggleShare" />
+			<!-- rename addressbook name -->
+			<rename-addressbook-field v-if="editingName" />
 			<!-- popovermenu -->
 			<a v-click-outside="closeMenu" href="#" class="addressbook__menu"
 				@click="toggleMenu">
@@ -45,6 +47,7 @@
 <script>
 import popoverMenu from '../core/popoverMenu'
 import shareAddressBook from './SettingsAddressbookShare'
+import renameAddressBookField from './SettingsRenameAddressbookField'
 
 import clickOutside from 'vue-click-outside'
 
@@ -53,6 +56,7 @@ export default {
 	components: {
 		popoverMenu,
 		shareAddressBook,
+		renameAddressBookField,
 		clickOutside
 	},
 	directives: {
@@ -69,7 +73,9 @@ export default {
 	data() {
 		return {
 			menuOpen: false,
-			shareOpen: false
+			shareOpen: false,
+			editingName: false,
+			newName: '' // new name for addressbook
 		}
 	},
 	computed: {
@@ -98,7 +104,7 @@ export default {
 				icon: 'icon-rename',
 				text: 'Rename',
 				action: () => {
-					this.$store.dispatch('renameAddressbook', this.addressbook)
+					/* this.editingName = true */
 				}
 			},
 			{
@@ -107,6 +113,7 @@ export default {
 				input: 'checkbox',
 				model: this.enabled,
 				action: () => {
+					alert('change') // eslint-disable-line
 					this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
 				}
 			},
@@ -114,7 +121,6 @@ export default {
 				icon: 'icon-delete',
 				text: 'Delete',
 				action: () => {
-					console.log(this.$store) // eslint-disable-line
 					this.$store.dispatch('deleteAddressbook', this.addressbook)
 				}
 			}]
@@ -129,6 +135,12 @@ export default {
 		},
 		toggleMenu() {
 			this.menuOpen = !this.menuOpen
+		},
+		renameAddressBook() {
+			this.editingName = true
+			let addressbook = this.addressbook
+			let newName = this.newName
+			this.$store.dispatch('renameAddressbook', { addressbook, newName })
 		}
 	}
 }

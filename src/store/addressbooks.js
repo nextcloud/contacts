@@ -178,7 +178,9 @@ const mutations = {
 				}
 			}
 		})
+		console.log(addressbook) // eslint-disable-line
 		sharee = addressbook.shares.find(search => search === sharee)
+		console.log(sharee) // eslint-disable-line
 		sharee.writeable = !sharee.writeable
 	}
 
@@ -305,14 +307,9 @@ const actions = {
 	 * @param {Boolean} data.id id
 	 * @param {Boolean} data.group group
 	 */
-<<<<<<< HEAD
-	shareAddressbook(context, { addressbook, sharee, group }) {
-		context.commit('shareAddressbook', { addressbook, sharee, group })
-=======
 	shareAddressbook(context, { addressbook, sharee, id, group }) {
 		// Share addressbook with entered group or user
 		context.commit('shareAddressbook', { addressbook, sharee, id, group })
->>>>>>> origin/vue-share-addressbook
 	}
 }
 
