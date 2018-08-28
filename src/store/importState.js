@@ -24,11 +24,60 @@ const state = {
 	importState: {
 		total: 0,
 		accepted: 0,
-		denied: 0
+		denied: 0,
+		stage: 'Default',
+		addressbook: ''
 	}
 }
 
 const mutations = {
+	/**
+	 * Increment the number of contacts accepted
+	 *
+	 * @param {Object} state
+	 */
+	incrementAccepted(state) {
+		state.importState.accepted++
+	},
+
+	/**
+	 * Increment the number of contacts denied
+	 *
+	 * @param {Object} state
+	 */
+	incrementDenied(state) {
+		state.importState.denied++
+	},
+
+	/**
+	 * Set the total number of contacts
+	 *
+	 * @param {Object} state
+	 * @param {String} total the total number of contacts to import
+	 */
+	setTotal(state, total) {
+		state.importState.total = total
+	},
+
+	/**
+	 * Set the address book name
+	 *
+	 * @param {Object} state
+	 * @param {String} addressbook the name of the address book to import into
+	 */
+	setAddressbook(state, addressbook) {
+		state.importState.addressbook = addressbook
+	},
+
+	/**
+	 * Change stage to the indicated one
+	 *
+	 * @param {Object} state
+	 * @param {String} stage the name of the stage ('Default', 'Importing', 'Parsing')
+	 */
+	changeStage(state, stage) {
+		state.importState.stage = stage
+	}
 }
 
 const getters = {
@@ -36,6 +85,53 @@ const getters = {
 }
 
 const actions = {
+	/**
+	 * Increment the number of contacts accepted
+	 *
+	 * @param {Object} context
+	 */
+	incrementAccepted(context) {
+		context.commit('incrementAccepted')
+	},
+
+	/**
+	 * Increment the number of contacts denied
+	 *
+	 * @param {Object} context
+	 */
+	incrementDenied(context) {
+		context.commit('incrementDenied')
+	},
+
+	/**
+	 * Set the total number of contacts
+	 *
+	 * @param {Object} context
+	 * @param {String} total the total number of contacts to import
+	 */
+	setTotal(context, total) {
+		context.commit('setTotal', total)
+	},
+
+	/**
+	 * Set the address book name
+	 *
+	 * @param {Object} context
+	 * @param {String} addressbook the name of the address book to import into
+	 */
+	setAddressbook(context, addressbook) {
+		context.commit('setAddressbook', addressbook)
+	},
+
+	/**
+	 * Change stage to the indicated one
+	 *
+	 * @param {Object} context
+	 * @param {String} stage the name of the stage ('Default', 'Importing', 'Parsing')
+	 */
+	changeStage(context, stage) {
+		context.commit('changeStage', stage)
+	}
 }
 
 export default { state, mutations, getters, actions }
