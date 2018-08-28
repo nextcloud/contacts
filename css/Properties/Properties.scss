@@ -31,6 +31,10 @@
 	&--last {
 		margin-bottom: $grid-height-unit;
 	}
+	// no delete icon on addressbook selector
+	&--addressbooks .icon-delete {
+		display: none;
+	}
 	
 	&__delete {
 		position: absolute;

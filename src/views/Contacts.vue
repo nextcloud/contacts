@@ -49,6 +49,9 @@ import contentList from '../components/ContentList'
 import contactDetails from '../components/ContactDetails'
 
 import Contact from '../models/contact'
+import rfcProps from '../models/rfcProps.js'
+
+import client from '../services/cdav.js'
 
 export default {
 	components: {
@@ -180,25 +183,44 @@ export default {
 
 	beforeMount() {
 		// get addressbooks then get contacts
-		this.$store.dispatch('getAddressbooks')
-			.then(() => {
-				Promise.all(this.addressbooks.map(async addressbook => {
-					await this.$store.dispatch('getContactsFromAddressBook', addressbook)
-				})).then(() => {
-					this.loading = false
-					this.selectFirstContactIfNone()
+		client.connect({ enableCardDAV: true }).then(() => {
+			this.$store.dispatch('getAddressbooks')
+				.then(() => {
+					Promise.all(this.addressbooks.map(async addressbook => {
+						await this.$store.dispatch('getContactsFromAddressBook', addressbook)
+					})).then(() => {
+						this.loading = false
+						this.selectFirstContactIfNone()
+					})
 				})
-			})
-		// check local storage for orderKey
-		if (localStorage.getItem('orderKey')) {
-			// run setOrder mutation with local storage key
-			this.$store.commit('setOrder', localStorage.getItem('orderKey'))
-		}
+			// check local storage for orderKey
+			if (localStorage.getItem('orderKey')) {
+				// run setOrder mutation with local storage key
+				this.$store.commit('setOrder', localStorage.getItem('orderKey'))
+			}
+		})
 	},
 
 	methods: {
 		newContact() {
-			let contact = new Contact('BEGIN:VCARD\nVERSION:4.0\nFN:' + t('contacts', 'New Contact') + '\nCATEGORIES:' + this.selectedGroup + '\nEND:VCARD', this.defaultAddressbook)
+			let contact = new Contact('BEGIN:VCARD\nVERSION:4.0\nEND:VCARD', this.defaultAddressbook)
+			contact.fullName = 'New contact'
+			// itterate over all properties (filter is not usable on objects and we need the key of the property)
+			for (let name in rfcProps.properties) {
+				if (rfcProps.properties[name].default) {
+					let defaultData = rfcProps.properties[name].defaultValue
+					// add default field
+					let property = contact.vCard.addPropertyWithValue(name, defaultData.value)
+					// add default type
+					if (defaultData.type) {
+						property.setParameter('type', defaultData.type)
+
+					}
+				}
+			}
+			if (this.selectedGroup !== t('contacts', 'All contacts')) {
+				contact.vCard.addPropertyWithValue('categories', this.selectedGroup)
+			}
 			this.$store.dispatch('addContact', contact)
 			this.$router.push({
 				name: 'contact',
@@ -230,13 +252,16 @@ export default {
 				if (this.selectedContact && !inList) {
 					OC.Notification.showTemporary(t('contacts', 'Contact not found'))
 				}
-				this.$router.push({
-					name: 'contact',
-					params: {
-						selectedGroup: this.selectedGroup,
-						selectedContact: Object.values(this.contactsList)[0].key
-					}
-				})
+				if (Object.keys(this.contactsList).length) {
+					this.$router.push({
+						name: 'contact',
+						params: {
+							selectedGroup: this.selectedGroup,
+							selectedContact: Object.values(this.contactsList)[0].key
+						}
+					})
+					document.querySelector('.app-content-list-item.active').scrollIntoView()
+				}
 			}
 		}
 	}

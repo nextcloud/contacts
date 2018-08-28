@@ -24,7 +24,8 @@
 	<!-- If not in the rfcProps then we don't want to display it -->
 	<component v-if="propModel && propType !== 'unknown'" :is="componentInstance" :select-type.sync="selectType"
 		:prop-model="propModel" :value.sync="value" :is-first-property="isFirstProperty"
-		:class="{'property--last': isLastProperty}" :contact="contact" @delete="deleteProp" />
+		:is-last-property="isLastProperty" :class="{'property--last': isLastProperty}" :contact="contact"
+		@delete="deleteProp" />
 </template>
 
 <script>
@@ -32,11 +33,11 @@ import { Property } from 'ical.js'
 import rfcProps from '../../models/rfcProps.js'
 import Contact from '../../models/contact'
 
-import PropertyText from '../properties/PropertyText'
-import PropertyMultipleText from '../properties/PropertyMultipleText'
-import PropertyDateTime from '../properties/PropertyDateTime'
-import propertyGroups from '../properties/PropertyGroups'
-// import PropertySelect from '../properties/PropertyMultipleText'
+import PropertyText from '../Properties/PropertyText'
+import PropertyMultipleText from '../Properties/PropertyMultipleText'
+import PropertyDateTime from '../Properties/PropertyDateTime'
+import propertyGroups from '../Properties/PropertyGroups'
+// import PropertySelect from '../Properties/PropertyMultipleText'
 
 export default {
 	name: 'ContactDetailsProperty',
@@ -98,7 +99,8 @@ export default {
 		},
 		// is this the last property of its kind
 		isLastProperty() {
-			if (this.index < this.sortedProperties.length) {
+			// array starts at 0, length starts at 1
+			if (this.index < this.sortedProperties.length - 1) {
 				return this.sortedProperties[this.index + 1].name !== this.propName
 			}
 			return true
