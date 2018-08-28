@@ -25,6 +25,7 @@ import Vuex from 'vuex'
 import addressbooks from './addressbooks'
 import contacts from './contacts'
 import groups from './groups'
+import importState from './importState'
 
 Vue.use(Vuex)
 
@@ -34,7 +35,8 @@ export default new Vuex.Store({
 	modules: {
 		addressbooks,
 		contacts,
-		groups
+		groups,
+		importState
 	},
 
 	mutations

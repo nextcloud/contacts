@@ -20,29 +20,22 @@
  *
  */
 
-import Contact from '../models/contact'
-
-export default function parseVcf(data = '', addressbook, importState) {
-	let regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi
-	let vCards = data.match(regexp)
-
-	importState.total = vCards.length
-
-	if (!vCards) {
-		console.debug('Error during the parsing of the following vcf file: ', data)
-		return []
+const state = {
+	importState: {
+		total: 0,
+		accepted: 0,
+		denied: 0
 	}
-	return vCards.map(vCard => {
-		try {
-			// console.log(vCards.indexOf(vCard))
-			let contact = new Contact(vCard, addressbook)
-			importState.accepted++
-			return contact
-		} catch (e) {
-			// Parse error! Do not stop here...
-			importState.denied++
-			// eslint-disable-next-line
-			console.error(e)
-		}
-	})
 }
+
+const mutations = {
+}
+
+const getters = {
+	getImportState: state => state.importState
+}
+
+const actions = {
+}
+
+export default { state, mutations, getters, actions }

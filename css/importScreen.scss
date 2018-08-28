@@ -1,7 +1,7 @@
 /**
  * @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
  *
- * @author Team Popcorn <teampopcornberlin@gmail.com>
+ * author Team Popcorn <teampopcornberlin@gmail.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -20,29 +20,18 @@
  *
  */
 
-import Contact from '../models/contact'
-
-export default function parseVcf(data = '', addressbook, importState) {
-	let regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi
-	let vCards = data.match(regexp)
-
-	importState.total = vCards.length
-
-	if (!vCards) {
-		console.debug('Error during the parsing of the following vcf file: ', data)
-		return []
+.import-screen {
+	&__header {
+		padding-top: 20px;
 	}
-	return vCards.map(vCard => {
-		try {
-			// console.log(vCards.indexOf(vCard))
-			let contact = new Contact(vCard, addressbook)
-			importState.accepted++
-			return contact
-		} catch (e) {
-			// Parse error! Do not stop here...
-			importState.denied++
-			// eslint-disable-next-line
-			console.error(e)
-		}
-	})
+	&__progress {
+		width: 50%; 
+		position: absolute; 
+		left: 25%;
+	}
+	&__tracker {
+		padding-top: 10px; 
+		position: absolute; 
+		left: 25%;
+	}
 }

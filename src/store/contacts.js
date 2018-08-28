@@ -178,7 +178,6 @@ const mutations = {
 	setOrder(state, orderKey = 'displayName') {
 		state.orderKey = orderKey
 	}
-
 }
 
 const getters = {
