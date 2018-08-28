@@ -50,7 +50,7 @@ import shareAddressBook from './SettingsAddressbookShare'
 import clickOutside from 'vue-click-outside'
 
 export default {
-	name: 'SettingsAddressBook',
+	name: 'SettingsAddressbook',
 	components: {
 		popoverMenu,
 		shareAddressBook,

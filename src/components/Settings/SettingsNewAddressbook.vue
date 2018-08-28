@@ -40,7 +40,7 @@
 import clickOutside from 'vue-click-outside'
 
 export default {
-	name: 'SettingsNewAddressBook',
+	name: 'SettingsNewAddressbook',
 	components: {
 		clickOutside
 	},
@@ -72,9 +72,10 @@ export default {
 		 * @returns {Promise}
 		 */
 		addAddressBook() {
-			// let addressBook = this.$refs.addressBook.value
-			// let addressBooks = this.$store.getters.getAddressbooks
-			// let newAddressBooksArray = addressBooks.push(addressBook)
+			let addressBook = this.$refs.addressBook.value
+			let addressBooks = this.$store.getters.getAddressbooks
+			let newAddressBooksArray = addressBooks.push(addressBook)
+			return newAddressBooksArray
 		}
 	}
 }

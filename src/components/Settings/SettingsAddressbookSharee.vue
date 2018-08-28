@@ -22,7 +22,7 @@
 
 <template>
 	<li class="addressbook__sharee">
-		<span class="icon icon-group" />
+		<span :class="sharee.group ? 'icon-group' : 'icon-user'" class="icon" />
 		<span class="addressbook__sharee__identifier">{{ sharee.displayname }}</span>
 		<span class="addressbook__sharee__utils">
 			<input
@@ -66,7 +66,6 @@ export default {
 			setTimeout(() => { this.$store.dispatch('removeSharee', this.sharee) }, 500)
 		},
 		editSharee() {
-			// not working yet need to work on!
 			this.$store.dispatch('toggleShareeWritable', this.sharee)
 		}
 	}

@@ -104,21 +104,26 @@ const mutations = {
 	 * @param {Object} state
 	 * @param {Object} data
 	 * @param {Object} data.addressbook the addressbook
+	 * @param {String} data.sharee the sharee
+	 * @param {Boolean} data.id id
+	 * @param {Boolean} data.group group
 	 */
-	shareAddressbook(state, addressbook, sharee) {
-		addressbook = state.addressbooks.find(search => search === addressbook)
-		let newSharee = {}
-		sharee.displayname = sharee
-		sharee.writable = false
-		addressbook.shares.append(newSharee)
+	shareAddressbook(state, { addressbook, sharee, id, group }) {
+		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
+		let newSharee = {
+			displayname: sharee,
+			id,
+			writeable: false,
+			group
+		}
+		addressbook.shares.push(newSharee)
 	},
 
 	/**
-	 * Remove Share from addressbook shares list
+	 * Remove Sharee from addressbook shares list
 	 *
 	 * @param {Object} state
-	 * @param {Object} data
-	 * @param {Object} data.addressbook the addressbook
+	 * @param {Object} sharee the sharee
 	 */
 	removeSharee(state, sharee) {
 		let addressbook = state.addressbooks.find(search => {
@@ -128,15 +133,13 @@ const mutations = {
 				}
 			}
 		})
-		addressbook.shares.splice(sharee, 1)
+		addressbook.shares.splice(addressbook.shares.indexOf(sharee), 1)
 	},
 
 	/**
 	 * Toggle sharee's writable permission
 	 *
 	 * @param {Object} state
-	 * @param {Object} data
-	 * @param {Object} data.addressbook the addressbook
 	 * @param {Object} sharee the sharee
 	 */
 	updateShareeWritable(state, sharee) {
@@ -175,9 +178,11 @@ const actions = {
 				dav: addressbook
 			}
 		})
+
 		addressbooks.forEach(addressbook => {
 			context.commit('addAddressbooks', addressbook)
 		})
+
 		return addressbooks
 	},
 
@@ -219,11 +224,14 @@ const actions = {
 	/**
 	 * Share Adressbook with User or Group
 	 * @param {Object} context Current context
-	 * @param {Object} addressbook Addressbook selected
-	 * @param {Object} sharee Addressbook sharee object
+	 * @param {Object} data.addressbook the addressbook
+	 * @param {String} data.sharee the sharee
+	 * @param {Boolean} data.id id
+	 * @param {Boolean} data.group group
 	 */
-	shareAddressbook(contect, addressbook, sharee) {
+	shareAddressbook(context, { addressbook, sharee, id, group }) {
 		// Share addressbook with entered group or user
+		context.commit('shareAddressbook', { addressbook, sharee, id, group })
 	},
 
 	/**
