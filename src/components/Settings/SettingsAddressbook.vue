@@ -45,7 +45,7 @@
 
 <script>
 import popoverMenu from '../core/popoverMenu'
-import shareAddressbook from './SettingsAddressbookShare'
+import shareAddressBook from './SettingsAddressbookShare'
 
 import clickOutside from 'vue-click-outside'
 

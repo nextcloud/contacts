@@ -177,20 +177,12 @@ const actions = {
 				owner: 'admin',
 				dav: addressbook
 			}
-		]
-		// fake request
-		return new Promise((resolve, reject) => {
-			return setTimeout(() => {
-				addressbooks.forEach(addressbook => {
-					context.commit('addAddressbooks', addressbook)
-				})
-				resolve()
-				return addressbooks
-			}, 1000)
 		})
+
 		addressbooks.forEach(addressbook => {
 			context.commit('addAddressbooks', addressbook)
 		})
+
 		return addressbooks
 	},
 
