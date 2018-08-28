@@ -61,7 +61,8 @@ export default {
 		appNavigation,
 		settingsSection,
 		contentList,
-		contactDetails
+		contactDetails,
+		importScreen
 	},
 
 	// passed by the router

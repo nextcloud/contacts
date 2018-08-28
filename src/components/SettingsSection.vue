@@ -26,7 +26,7 @@
 			<address-book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
 		</ul>
 		<add-address-book :addressbooks="addressbooks" />
-		<import-contacts :addressbooks="addressbooks" :import-state="importState" class="settings-section"
+		<import-contacts :addressbooks="addressbooks" class="settings-section"
 			@clicked="onClickImport" @fileLoaded="onLoad" />
 		<sort-contacts class="settings-section" />
 	</div>
@@ -46,25 +46,10 @@ export default {
 		importContacts,
 		sortContacts
 	},
-	props: {
-		importState: {
-			type: Object,
-			default: () => {
-				return {
-					total: 0,
-					accepted: 0,
-					denied: 0
-				}
-			}
-		}
-	},
 	computed: {
 		// store getters
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
-		},
-		importState() {
-			return this.$store.getters.getImportState
 		}
 	},
 	methods: {
