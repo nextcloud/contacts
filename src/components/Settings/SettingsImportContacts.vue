@@ -1,3 +1,4 @@
+
 <!--
 	- @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
 	-
@@ -19,7 +20,6 @@
 	- along with this program. If not, see <http://www.gnu.org/licenses/>.
 	-
 -->
-// ☞ 5bfb0d3f-5288-48ce-9dc1-94c2b08cf3ca
 
 <template>
 	<div class="import-contact">
@@ -49,18 +49,6 @@ export default {
 	},
 	directives: {
 		clickOutside
-	},
-	props: {
-		importState: {
-			type: Object,
-			default: () => {
-				return {
-					total: 0,
-					accepted: 0,
-					denied: 0
-				}
-			}
-		}
 	},
 	data() {
 		return {
@@ -111,4 +99,3 @@ export default {
 	}
 }
 </script>
-// ☞ f34b2e1a-1610-4a5f-bdbf-9a83325796fe
