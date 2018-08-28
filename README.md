@@ -1,3 +1,6 @@
+:warning: This app is currently being migrated to vue. If you want to fix issues, feel free to come help on the branch `vue` :warning:
+___
+
 # Nextcloud Contacts
 
 ![Downloads](https://img.shields.io/github/downloads/nextcloud/contacts/total.svg)
