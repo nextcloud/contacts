@@ -19,17 +19,20 @@
 	- along with this program. If not, see <http://www.gnu.org/licenses/>.
 	-
 -->
+// ☞ 5bfb0d3f-5288-48ce-9dc1-94c2b08cf3ca
 
 <template>
 	<div class="import-contact">
-		<input id="contact-import" type="file" class="hidden-visually">
+		<input id="contact-import" type="file" class="hidden-visually"
+			@change="processFile">
 		<label id="upload" for="contact-import" class="button multiselect-label icon-upload no-select">
 			{{ t('contacts', 'Import into') }}
 		</label>
 		<multiselect
-			v-model="value"
+			v-model="importDestination"
 			:options="options"
 			:placeholder="t('contacts', 'Contacts')"
+			label="displayName"
 			class="multiselect-vue" />
 	</div>
 </template>
@@ -47,26 +50,65 @@ export default {
 	directives: {
 		clickOutside
 	},
-	// props: ['addressbooks'],
 	props: {
-		addressbooks: {
-			type: Array,
-			required: false,
-			default: undefined
+		importState: {
+			type: Object,
+			default: () => {
+				return {
+					total: 0,
+					accepted: 0,
+					denied: 0
+				}
+			}
 		}
 	},
 	data() {
 		return {
-			value: ''
+			importDestination: ''
 		}
 	},
 	computed: {
+		addressbooks() {
+			return this.$store.getters.getAddressbooks
+		},
 		options() {
-			return [t('contacts', 'Contacts')].concat(this.addressbooks.map(x => x.displayName))
+			return this.addressbooks.map(addressbook => {
+				return {
+					id: addressbook.id,
+					displayName: addressbook.displayName
+				}
+			})
+		},
+		importState() {
+			return this.$store.getters.getImportState
+		},
+		selectedAddressbook: {
+			get() {
+				if (this.importDestination) {
+					return this.addressbooks.find(addressbook => addressbook.id === this.importDestination.id)
+				}
+				// default is first address book of the list
+				return this.addressbooks[0]
+			},
+			set(value) {
+				this.importDestination = value
+			}
 		}
 	},
 	methods: {
-
+		processFile(event) {
+			let file = event.target.files[0]
+			let reader = new FileReader()
+			let selectedAddressbook = this.selectedAddressbook
+			this.$emit('clicked', { importing: true })
+			let self = this
+			reader.onload = function(e) {
+				self.$store.dispatch('getContactsFromAddressBook', { vcf: reader.result, addressbook: selectedAddressbook, importState: this.importState })
+				self.$emit('fileLoaded', false)
+			}
+			reader.readAsText(file)
+		}
 	}
 }
 </script>
+// ☞ f34b2e1a-1610-4a5f-bdbf-9a83325796fe

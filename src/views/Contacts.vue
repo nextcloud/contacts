@@ -32,6 +32,8 @@
 		<!-- main content -->
 		<div id="app-content">
 			<div id="app-content-wrapper">
+				<!-- loading -->
+				<import-screen />
 				<!-- contacts list -->
 				<content-list :list="contactsList" :contacts="contacts" :loading="loading" />
 				<!-- main contacts details -->
@@ -47,6 +49,7 @@ import appNavigation from '../components/core/appNavigation'
 import settingsSection from '../components/SettingsSection'
 import contentList from '../components/ContentList'
 import contactDetails from '../components/ContactDetails'
+import importScreen from '../components/ImportScreen'
 
 import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps.js'
