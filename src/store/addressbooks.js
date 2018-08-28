@@ -25,7 +25,7 @@ import vcfFile from '!raw-loader!./FakeName.vcf'
 import parseVcf from '../services/parseVcf'
 import Vue from 'vue'
 
-import client from '../services/cdav'
+// import client from '../services/cdav'
 
 const addressbookModel = {
 	id: '',
@@ -169,15 +169,15 @@ const actions = {
 	 * @returns {Promise} fetch and commit
 	 */
 	async getAddressbooks(context) {
-		let addressbooks = client.addressbookHomes.map(addressbook => {
-			return {
-				id: 'ab1',
-				displayName: 'Addressbook 1',
-				enabled: true,
-				owner: 'admin',
-				dav: addressbook
-			}
-		})
+		// let addressbooks = client.addressbookHomes.map(addressbook => {
+		let addressbooks = [{
+			id: 'ab1',
+			displayName: 'Addressbook 1',
+			enabled: true,
+			owner: 'admin'
+			// dav: addressbook
+		}]
+		// })
 
 		addressbooks.forEach(addressbook => {
 			context.commit('addAddressbooks', addressbook)

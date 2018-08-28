@@ -51,7 +51,7 @@ import contactDetails from '../components/ContactDetails'
 import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps.js'
 
-import client from '../services/cdav.js'
+// import client from '../services/cdav.js'
 
 export default {
 	components: {
@@ -183,22 +183,22 @@ export default {
 
 	beforeMount() {
 		// get addressbooks then get contacts
-		client.connect({ enableCardDAV: true }).then(() => {
-			this.$store.dispatch('getAddressbooks')
-				.then(() => {
-					Promise.all(this.addressbooks.map(async addressbook => {
-						await this.$store.dispatch('getContactsFromAddressBook', addressbook)
-					})).then(() => {
-						this.loading = false
-						this.selectFirstContactIfNone()
-					})
+		// client.connect({ enableCardDAV: true }).then(() => {
+		this.$store.dispatch('getAddressbooks')
+			.then(() => {
+				Promise.all(this.addressbooks.map(async addressbook => {
+					await this.$store.dispatch('getContactsFromAddressBook', addressbook)
+				})).then(() => {
+					this.loading = false
+					this.selectFirstContactIfNone()
 				})
+			})
 			// check local storage for orderKey
-			if (localStorage.getItem('orderKey')) {
-				// run setOrder mutation with local storage key
-				this.$store.commit('setOrder', localStorage.getItem('orderKey'))
-			}
-		})
+		if (localStorage.getItem('orderKey')) {
+			// run setOrder mutation with local storage key
+			this.$store.commit('setOrder', localStorage.getItem('orderKey'))
+		}
+		// })
 	},
 
 	methods: {

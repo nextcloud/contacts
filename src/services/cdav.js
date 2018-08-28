@@ -20,28 +20,28 @@
  *
  */
 
-import cdav from 'cdav-library'
+// import cdav from 'cdav-library'
 
-function xhrProvider() {
-	var headers = {
-		'X-Requested-With': 'XMLHttpRequest',
-		'requesttoken': OC.requestToken
-	}
-	var xhr = new XMLHttpRequest()
-	var oldOpen = xhr.open
+// function xhrProvider() {
+// 	var headers = {
+// 		'X-Requested-With': 'XMLHttpRequest',
+// 		'requesttoken': OC.requestToken
+// 	}
+// 	var xhr = new XMLHttpRequest()
+// 	var oldOpen = xhr.open
 
-	// override open() method to add headers
-	xhr.open = function() {
-		var result = oldOpen.apply(this, arguments)
-		for (let name in headers) {
-			xhr.setRequestHeader(name, headers[name])
-		}
-		return result
-	}
-	OC.registerXHRForErrorProcessing(xhr)
-	return xhr
-}
+// 	// override open() method to add headers
+// 	xhr.open = function() {
+// 		var result = oldOpen.apply(this, arguments)
+// 		for (let name in headers) {
+// 			xhr.setRequestHeader(name, headers[name])
+// 		}
+// 		return result
+// 	}
+// 	OC.registerXHRForErrorProcessing(xhr)
+// 	return xhr
+// }
 
-export default new cdav.DavClient({
-	rootUrl: OC.linkToRemote('dav')
-}, xhrProvider)
+// export default new cdav.DavClient({
+// 	rootUrl: OC.linkToRemote('dav')
+// }, xhrProvider)
