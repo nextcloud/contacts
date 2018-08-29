@@ -29,7 +29,7 @@
 			{{ t('contacts', 'Import into') }}
 		</label>
 		<multiselect
-			v-model="importDestination"
+			v-model="selectedAddressbook"
 			:options="options"
 			:placeholder="t('contacts', 'Contacts')"
 			label="displayName"
@@ -52,7 +52,7 @@ export default {
 	},
 	data() {
 		return {
-			importDestination: ''
+			importDestination: false
 		}
 	},
 	computed: {
