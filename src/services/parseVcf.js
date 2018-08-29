@@ -23,7 +23,7 @@
 import Contact from '../models/contact'
 import Store from '../store/index'
 
-export default function parseVcf(data = '', addressbook, importState) {
+export default function parseVcf(data = '', addressbook) {
 	let regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi
 	let vCards = data.match(regexp)
 	let importState = Store.getters.getImportState
