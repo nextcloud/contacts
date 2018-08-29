@@ -23,7 +23,7 @@
 <template>
 	<div class="emptycontent import-screen">
 		<p class="icon-upload" />
-		<h3 class="import-screen__header">{{ t('contacts', 'Importing into') }} {{ addressbook }}</h3>
+		<h3 class="import-screen__header">{{ t('contacts', 'Importing into') }} {{ importState.addressbook }}</h3>
 		<progress :max="importState.total" :value="importState.accepted" class="import-screen__progress" />
 		<p class="import-screen__tracker">{{ Math.floor(importState.accepted/(importState.total + 1)) * 100 }} %</p>
 	</div>

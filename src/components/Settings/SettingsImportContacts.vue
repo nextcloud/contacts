@@ -89,9 +89,10 @@ export default {
 			let reader = new FileReader()
 			let selectedAddressbook = this.selectedAddressbook
 			this.$store.dispatch('changeStage', 'parsing')
+			this.$store.dispatch('setAddressbook', selectedAddressbook.displayName)
 			let self = this
 			reader.onload = function(e) {
-				self.$store.dispatch('getContactsFromAddressBook', { vcf: reader.result, addressbook: selectedAddressbook, importState: this.importState })
+				self.$store.dispatch('importContactsIntoAddressbook', { vcf: reader.result, addressbook: selectedAddressbook })
 			}
 			reader.readAsText(file)
 		}
