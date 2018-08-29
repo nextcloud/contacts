@@ -48,6 +48,7 @@ export default class Contact {
 			this.vCard.addPropertyWithValue('uid', uuid())
 		}
 	}
+
 	/**
 	 * Update internal data of this contact
 	 *
@@ -57,6 +58,16 @@ export default class Contact {
 	updateContact(jCal) {
 		this.jCal = jCal
 		this.vCard = new ICAL.Component(this.jCal)
+	}
+
+	/**
+	 * Update linked addressbook of this contact
+	 *
+	 * @param {Object} addressbook
+	 * @memberof Contact
+	 */
+	updateAddressbook(addressbook) {
+		this.addressbook = addressbook
 	}
 
 	/**

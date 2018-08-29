@@ -138,7 +138,9 @@ export default {
 					group
 				}
 			}))
+			console.log(this.usersOrGroups) // eslint-disable-line
 		},
+
 		/**
 		 * Use Axios api call to find matches to the query from the existing Users & Groups
 		 *

@@ -95,7 +95,7 @@ const mutations = {
 			Vue.set(state.contacts, contact.key, contact)
 
 		} else {
-			console.error('Tried to replace a contact with a wrong object', contact)
+			console.error('Error while adding the following contact', contact)
 		}
 	},
 
@@ -115,7 +115,6 @@ const mutations = {
 			// has the sort key changed for this contact ?
 			let hasChanged = sortedContact.value !== contact[state.orderKey]
 			if (hasChanged) {
-				console.debug('Sort triggered')
 				// then we sort again
 				state.sortedContacts
 					.sort((a, b) => {
@@ -127,6 +126,23 @@ const mutations = {
 
 		} else {
 			console.error('Error while replacing the following contact', contact)
+		}
+	},
+
+	/**
+	 * Update a contact
+	 *
+	 * @param {Object} state
+	 * @param {Contact} contact
+	 */
+	updateContactAddressbook(state, { contact, addressbook }) {
+		if (state.contacts[contact.key] && contact instanceof Contact) {
+
+			// replace contact object data
+			state.contacts[contact.key].updateAddressbook(addressbook)
+
+		} else {
+			console.error('Error while replacing the addressbook of following contact', contact)
 		}
 	},
 

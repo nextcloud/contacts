@@ -25,13 +25,16 @@ import vcfFile from '!raw-loader!./FakeName.vcf'
 import parseVcf from '../services/parseVcf'
 import Vue from 'vue'
 
+// import client from '../services/cdav'
+
 const addressbookModel = {
 	id: '',
 	displayName: '',
 	enabled: true,
 	owner: '',
 	shares: [],
-	contacts: {}
+	contacts: {},
+	url: ''
 }
 
 const state = {
@@ -111,8 +114,8 @@ const mutations = {
 	 * @param {Contact} contact
 	 */
 	addContactToAddressbook(state, contact) {
-		let addressbook = state.addressbooks.find(search => search === contact.addressbook)
-		Vue.set(addressbook.contacts, contact.key, contact)
+		let addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
+		Vue.set(addressbook.contacts, contact.uid, contact)
 	},
 
 	/**
@@ -122,7 +125,7 @@ const mutations = {
 	 * @param {Contact} contact the contact to delete
 	 */
 	deleteContactFromAddressbook(state, contact) {
-		let addressbook = state.addressbooks.find(addressbook => addressbook === contact.addressbook)
+		let addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
 		Vue.delete(addressbook, contact.uid)
 	},
 
@@ -199,43 +202,21 @@ const actions = {
 	 * @returns {Promise} fetch and commit
 	 */
 	async getAddressbooks(context) {
-		// Fake data before using real dav requests
-		let addressbooks = [
-			{
-				id: 'ab1',
-				displayName: 'Addressbook 1',
-				enabled: true,
-				owner: 'admin',
-				shares: [],
-				contacts: {}
-			},
-			{
-				id: 'ab2',
-				displayName: 'Addressbook 2',
-				enabled: false,
-				owner: 'admin',
-				shares: [],
-				contacts: {}
-			},
-			{
-				id: 'ab3',
-				displayName: 'Addressbook 3',
-				enabled: true,
-				owner: 'User1',
-				shares: [],
-				contacts: {}
-			}
-		]
-		// fake request
-		return new Promise((resolve, reject) => {
-			return setTimeout(() => {
-				addressbooks.forEach(addressbook => {
-					context.commit('addAddressbooks', addressbook)
-				})
-				resolve()
-				return addressbooks
-			}, 1000)
+		// let addressbooks = client.addressbookHomes.map(addressbook => {
+		let addressbooks = [{
+			id: 'ab1',
+			displayName: 'Addressbook 1',
+			enabled: true,
+			owner: 'admin'
+			// dav: addressbook
+		}]
+		// })
+
+		addressbooks.forEach(addressbook => {
+			context.commit('addAddressbooks', addressbook)
 		})
+
+		return addressbooks
 	},
 
 	/**
@@ -310,6 +291,20 @@ const actions = {
 	shareAddressbook(context, { addressbook, sharee, id, group }) {
 		// Share addressbook with entered group or user
 		context.commit('shareAddressbook', { addressbook, sharee, id, group })
+	},
+
+	/**
+	 * Move a contact to the provided addressbook
+	 *
+	 * @param {Object} context
+	 * @param {Object} data
+	 * @param {Contact} data.contact
+	 * @param {Object} data.addressbook
+	 */
+	moveContactToAddressbook(context, { contact, addressbook }) {
+		context.commit('deleteContactFromAddressbook', contact)
+		context.commit('updateContactAddressbook', { contact, addressbook })
+		context.commit('addContactToAddressbook', contact)
 	}
 }
 
