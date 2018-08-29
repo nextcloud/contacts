@@ -24,13 +24,18 @@ const state = {
 	importState: {
 		total: 0,
 		accepted: 0,
+<<<<<<< HEAD
 		denied: 0,
 		stage: 'default',
 		addressbook: ''
+=======
+		denied: 0
+>>>>>>> 699af87659b724df00df77da2c9b66ec9013c2d6
 	}
 }
 
 const mutations = {
+<<<<<<< HEAD
 	/**
 	 * Increment the number of contacts accepted
 	 *
@@ -78,6 +83,8 @@ const mutations = {
 	changeStage(state, stage) {
 		state.importState.stage = stage
 	}
+=======
+>>>>>>> 699af87659b724df00df77da2c9b66ec9013c2d6
 }
 
 const getters = {
@@ -85,6 +92,7 @@ const getters = {
 }
 
 const actions = {
+<<<<<<< HEAD
 	/**
 	 * Increment the number of contacts accepted
 	 *
@@ -132,6 +140,8 @@ const actions = {
 	changeStage(context, stage) {
 		context.commit('changeStage', stage)
 	}
+=======
+>>>>>>> 699af87659b724df00df77da2c9b66ec9013c2d6
 }
 
 export default { state, mutations, getters, actions }
