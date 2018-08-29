@@ -32,10 +32,14 @@
 		<!-- main content -->
 		<div id="app-content">
 			<div id="app-content-wrapper">
-				<!-- contacts list -->
-				<content-list :list="contactsList" :contacts="contacts" :loading="loading" />
-				<!-- main contacts details -->
-				<contact-details :loading="loading" :uid="selectedContact" />
+				<!-- loading -->
+				<import-screen v-if="importState.stage != 'default'" />
+				<template v-else>
+					<!-- contacts list -->
+					<content-list :list="contactsList" :contacts="contacts" :loading="loading" />
+					<!-- main contacts details -->
+					<contact-details :loading="loading" :uid="selectedContact" />
+				</template>
 			</div>
 		</div>
 
@@ -47,6 +51,7 @@ import appNavigation from '../components/core/appNavigation'
 import settingsSection from '../components/SettingsSection'
 import contentList from '../components/ContentList'
 import contactDetails from '../components/ContactDetails'
+import importScreen from '../components/ImportScreen'
 
 import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps.js'
@@ -58,7 +63,8 @@ export default {
 		appNavigation,
 		settingsSection,
 		contentList,
-		contactDetails
+		contactDetails,
+		importScreen
 	},
 
 	// passed by the router
@@ -97,7 +103,9 @@ export default {
 		orderKey() {
 			return this.$store.getters.getOrderKey
 		},
-
+		importState() {
+			return this.$store.getters.getImportState
+		},
 		// first enabled addressbook of the list
 		defaultAddressbook() {
 			return this.addressbooks.find(addressbook => addressbook.enabled)
@@ -187,7 +195,7 @@ export default {
 		this.$store.dispatch('getAddressbooks')
 			.then(() => {
 				Promise.all(this.addressbooks.map(async addressbook => {
-					await this.$store.dispatch('getContactsFromAddressBook', addressbook)
+					await this.$store.dispatch('getContactsFromAddressBook', { addressbook })
 				})).then(() => {
 					this.loading = false
 					this.selectFirstContactIfNone()
