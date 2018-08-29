@@ -28,8 +28,6 @@ export default function parseVcf(data = '', addressbook) {
 	let vCards = data.match(regexp)
 	let importState = Store.getters.getImportState
 
-	importState.total = vCards.length
-
 	if (!vCards) {
 		console.debug('Error during the parsing of the following vcf file: ', data)
 		return []

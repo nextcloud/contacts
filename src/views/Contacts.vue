@@ -33,11 +33,13 @@
 		<div id="app-content">
 			<div id="app-content-wrapper">
 				<!-- loading -->
-				<import-screen />
-				<!-- contacts list -->
-				<content-list :list="contactsList" :contacts="contacts" :loading="loading" />
-				<!-- main contacts details -->
-				<contact-details :loading="loading" :uid="selectedContact" />
+				<import-screen v-if="importState.stage != 'default'" />
+				<template v-else>
+					<!-- contacts list -->
+					<content-list :list="contactsList" :contacts="contacts" :loading="loading" />
+					<!-- main contacts details -->
+					<contact-details :loading="loading" :uid="selectedContact" />
+				</template>
 			</div>
 		</div>
 
@@ -101,7 +103,9 @@ export default {
 		orderKey() {
 			return this.$store.getters.getOrderKey
 		},
-
+		importState() {
+			return this.$store.getters.getImportState
+		},
 		// first enabled addressbook of the list
 		defaultAddressbook() {
 			return this.addressbooks.find(addressbook => addressbook.enabled)

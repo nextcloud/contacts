@@ -88,12 +88,10 @@ export default {
 			let file = event.target.files[0]
 			let reader = new FileReader()
 			let selectedAddressbook = this.selectedAddressbook
-			// this.$store.dispatch('changeStage', 'parsing')
+			this.$store.dispatch('changeStage', 'parsing')
 			let self = this
 			reader.onload = function(e) {
-				// self.$store.dispatch('changeStage', 'importing')
 				self.$store.dispatch('getContactsFromAddressBook', { vcf: reader.result, addressbook: selectedAddressbook, importState: this.importState })
-				// self.$store.dispatch('changeStage', 'default')
 			}
 			reader.readAsText(file)
 		}

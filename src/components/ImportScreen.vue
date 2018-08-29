@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div v-if="importState.stage != 'default'" class="emptycontent import-screen">
+	<div class="emptycontent import-screen">
 		<p class="icon-upload" />
 		<h3 class="import-screen__header">{{ t('contacts', 'Importing into') }} {{ addressbook }}</h3>
 		<progress :max="importState.total" :value="importState.accepted" class="import-screen__progress" />

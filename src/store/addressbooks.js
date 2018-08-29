@@ -208,11 +208,13 @@ const actions = {
 	 */
 	importContactsIntoAddressbook(context, { vcf, addressbook }) {
 		let contacts = parseVcf(vcf, addressbook)
+		this.$store.dispatch('changeStage', 'importing')
 		contacts.forEach(contact => {
 			context.commit('addContact', contact)
 			context.commit('addContactToAddressbook', contact)
 			context.commit('appendGroupsFromContacts', [contact])
 		})
+		this.$store.dispatch('changeStage', 'default')
 	},
 
 	/**
