@@ -191,7 +191,7 @@ export default {
 		this.$store.dispatch('getAddressbooks')
 			.then(() => {
 				Promise.all(this.addressbooks.map(async addressbook => {
-					await this.$store.dispatch('getContactsFromAddressBook', addressbook)
+					await this.$store.dispatch('getContactsFromAddressBook', { addressbook })
 				})).then(() => {
 					this.loading = false
 					this.selectFirstContactIfNone()

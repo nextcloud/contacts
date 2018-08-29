@@ -21,6 +21,7 @@
  */
 
 /* eslint-disable-next-line import/no-webpack-loader-syntax */
+import vcfFile from '!raw-loader!./FakeName.vcf'
 import parseVcf from '../services/parseVcf'
 import Vue from 'vue'
 
@@ -192,8 +193,8 @@ const actions = {
 	 * @param {Object} context
 	 * @param {Object} importDetails = { vcf, addressbook }
 	 */
-	getContactsFromAddressBook(context, { vcf, addressbook }) {
-		let contacts = parseVcf(vcf, addressbook)
+	getContactsFromAddressBook(context, { addressbook }) {
+		let contacts = parseVcf(vcfFile, addressbook)
 		context.commit('appendContactsToAddressbook', { addressbook, contacts })
 		context.commit('appendContacts', contacts)
 		context.commit('sortContacts')
