@@ -192,12 +192,26 @@ const actions = {
 	 * @param {Object} context
 	 * @param {Object} importDetails = { vcf, addressbook }
 	 */
-	getContactsFromAddressBook(context, { vcf, addressbook, importState }) {
-		let contacts = parseVcf(vcf, addressbook, importState)
+	getContactsFromAddressBook(context, { vcf, addressbook }) {
+		let contacts = parseVcf(vcf, addressbook)
 		context.commit('appendContactsToAddressbook', { addressbook, contacts })
 		context.commit('appendContacts', contacts)
 		context.commit('sortContacts')
 		context.commit('appendGroupsFromContacts', contacts)
+	},
+
+	/**
+	 *
+	 * @param {Object} context
+	 * @param {Object} importDetails = { vcf, addressbook }
+	 */
+	importContactsIntoAddressbook(context, { vcf, addressbook }) {
+		let contacts = parseVcf(vcf, addressbook)
+		contacts.forEach(contact => {
+			context.commit('addContact', contact)
+			context.commit('addContactToAddressbook', contact)
+			context.commit('appendGroupsFromContacts', [contact])
+		})
 	},
 
 	/**

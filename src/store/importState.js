@@ -25,7 +25,7 @@ const state = {
 		total: 0,
 		accepted: 0,
 		denied: 0,
-		stage: 'Default',
+		stage: 'default',
 		addressbook: ''
 	}
 }
@@ -73,7 +73,7 @@ const mutations = {
 	 * Change stage to the indicated one
 	 *
 	 * @param {Object} state
-	 * @param {String} stage the name of the stage ('Default', 'Importing', 'Parsing')
+	 * @param {String} stage the name of the stage ('default', 'importing', 'parsing')
 	 */
 	changeStage(state, stage) {
 		state.importState.stage = stage
@@ -127,7 +127,7 @@ const actions = {
 	 * Change stage to the indicated one
 	 *
 	 * @param {Object} context
-	 * @param {String} stage the name of the stage ('Default', 'Importing', 'Parsing')
+	 * @param {String} stage the name of the stage ('default', 'importing', 'parsing')
 	 */
 	changeStage(context, stage) {
 		context.commit('changeStage', stage)

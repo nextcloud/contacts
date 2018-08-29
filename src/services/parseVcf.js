@@ -21,17 +21,20 @@
  */
 
 import Contact from '../models/contact'
+import Store from '../store/index'
 
-export default function parseVcf(data = '', addressbook, importState) {
+export default function parseVcf(data = '', addressbook) {
 	let regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi
 	let vCards = data.match(regexp)
-
-	importState.total = vCards.length
+	let importState = Store.getters.getImportState
 
 	if (!vCards) {
 		console.debug('Error during the parsing of the following vcf file: ', data)
 		return []
 	}
+
+	importState.total = vCards.length
+
 	return vCards.map(vCard => {
 		try {
 			// console.log(vCards.indexOf(vCard))
