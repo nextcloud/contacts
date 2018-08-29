@@ -34,6 +34,66 @@
 	}
 	.multiselect.multiselect-vue {
 		width: inherit;
+		.multiselect__spinner {
+			position: absolute;
+			right: 1px;
+			top: 1px;
+			width: 48px;
+			height: 35px;
+			background: #fff;
+			display: block
+		}
+		
+		.multiselect__spinner:after,
+		.multiselect__spinner:before {
+			position: absolute;
+			content: "";
+			top: 50%;
+			left: 50%;
+			margin: -8px 0 0 -8px;
+			width: 16px;
+			height: 16px;
+			border-radius: 100%;
+			border-color: #41b883 transparent transparent;
+			border-style: solid;
+			border-width: 2px;
+			box-shadow: 0 0 0 1px transparent
+		}
+		
+		.multiselect__spinner:before {
+			animation: a 2.4s cubic-bezier(.41, .26, .2, .62);
+			animation-iteration-count: infinite
+		}
+		
+		.multiselect__spinner:after {
+			animation: a 2.4s cubic-bezier(.51, .09, .21, .8);
+			animation-iteration-count: infinite
+		}
+		
+		.multiselect__loading-enter-active,
+		.multiselect__loading-leave-active {
+			transition: opacity .4s ease-in-out;
+			opacity: 1
+		}
+		
+		.multiselect__loading-enter,
+		.multiselect__loading-leave-active {
+			opacity: 0
+		}
+
+		[dir=rtl] .multiselect__spinner {
+			right: auto;
+			left: 1px
+		}
+		
+		@keyframes a {
+			0% {
+				transform: rotate(0)
+			}
+			to {
+				transform: rotate(2turn)
+			}
+		}
 
 		.multiselect__tags:focus-within, 
 		.multiselect__tags:hover {

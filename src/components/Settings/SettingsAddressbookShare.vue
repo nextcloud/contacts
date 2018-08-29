@@ -51,7 +51,7 @@
 			<span slot="noResult">{{ noResult }} </span>
 		</multiselect>
 		<!-- list of user or groups addressbook is shared with -->
-		<ul v-if="addressbook.shares.length > 0" class="addressbook__shares__list">
+		<ul v-if="addressbook.shares.length > 0" class="addressbook-shares__list">
 			<address-book-sharee v-for="sharee in addressbook.shares" :key="sharee.displayname + sharee.group" :sharee="sharee" />
 		</ul>
 	</div>
