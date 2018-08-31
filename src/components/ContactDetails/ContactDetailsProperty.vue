@@ -217,8 +217,11 @@ export default {
 	},
 
 	methods: {
+		/**
+		 * Delete this property
+		 */
 		deleteProp() {
-			alert('deleted')
+			this.contact.vCard.removeProperty(this.property)
 		}
 	}
 
