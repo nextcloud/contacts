@@ -26,14 +26,13 @@
 			id="users-groups-search"
 			:options="usersOrGroups"
 			:searchable="true"
-			:loading="isLoading"
 			:internal-search="false"
 			:options-limit="250"
 			:limit="3"
 			:max-height="600"
 			:show-no-results="true"
 			:placeholder="placeholder"
-			:class="{ 'showContent': inputGiven }"
+			:class="{ 'showContent': inputGiven, 'icon-loading': isLoading }"
 			open-direction="bottom"
 			class="multiselect-vue"
 			@search-change="asyncFind"
@@ -138,7 +137,6 @@ export default {
 					group
 				}
 			}))
-			console.log(this.usersOrGroups) // eslint-disable-line
 		},
 
 		/**
@@ -172,6 +170,7 @@ export default {
 				this.inputGiven = true
 			} else {
 				this.inputGiven = false
+				this.isLoading = false
 			}
 		}, 500)
 	}
