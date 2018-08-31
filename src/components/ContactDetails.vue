@@ -82,13 +82,15 @@
 			<section class="contact-details">
 
 				<!-- properties iteration -->
-				<contact-details-property v-for="(property, index) in sortedProperties" :key="index" :index="index"
+				<contact-property v-for="(property, index) in sortedProperties" :key="index" :index="index"
 					:sorted-properties="sortedProperties" :property="property" :contact="contact"
 					@updatedcontact="updateContact" />
 
 				<!-- addressbook change select -->
 				<property-select :prop-model="addressbookModel" :value.sync="addressbook"
 					:options="addressbooksOptions" class="property--addressbooks" />
+				
+				<add-new-prop :contact="contact" />
 			</section>
 		</template>
 	</div>
@@ -104,7 +106,8 @@ import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps.js'
 
 import PopoverMenu from './core/popoverMenu'
-import ContactDetailsProperty from './ContactDetails/ContactDetailsProperty'
+import ContactProperty from './ContactDetails/ContactDetailsProperty'
+import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
 import PropertySelect from './Properties/PropertySelect'
 import PropertyGroups from './Properties/PropertyGroups'
 
@@ -115,9 +118,10 @@ export default {
 
 	components: {
 		PopoverMenu,
-		ContactDetailsProperty,
+		ContactProperty,
 		PropertySelect,
-		PropertyGroups
+		PropertyGroups,
+		AddNewProp
 	},
 
 	directives: {
