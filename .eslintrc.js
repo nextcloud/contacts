@@ -7,10 +7,12 @@ module.exports = {
 		jest: true
 	},
 	globals: {
-		t: false,
-		n: false,
-		OC: false,
-		OCA: false
+		t: true,
+		n: true,
+		OC: true,
+		OCA: true,
+		Vue: true,
+		VueRouter: true
 	},
 	parserOptions: {
 		parser: 'babel-eslint'

@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
  *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Team Popcorn <teampopcornberlin@gmail.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -21,20 +21,29 @@
  */
 
 import Contact from '../models/contact'
+import Store from '../store/index'
 
 export default function parseVcf(data = '', addressbook) {
 	let regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi
 	let vCards = data.match(regexp)
+	let importState = Store.getters.getImportState
 
 	if (!vCards) {
 		console.debug('Error during the parsing of the following vcf file: ', data)
 		return []
 	}
+
+	importState.total = vCards.length
+
 	return vCards.map(vCard => {
 		try {
-			return new Contact(vCard, addressbook)
+			// console.log(vCards.indexOf(vCard))
+			let contact = new Contact(vCard, addressbook)
+			importState.accepted++
+			return contact
 		} catch (e) {
 			// Parse error! Do not stop here...
+			importState.denied++
 			// eslint-disable-next-line
 			console.error(e)
 		}

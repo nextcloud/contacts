@@ -30,6 +30,7 @@ const mutations = {
 	 *
 	 * @param {Object} state
 	 * @param {Contact[]} contacts
+	 * TODO: create single contact mutation
 	 */
 	appendGroupsFromContacts(state, contacts) {
 		// init groups list

@@ -13,3 +13,5 @@ yarn-error.log*
 *.sln
 
 .marginalia
+
+js/*
