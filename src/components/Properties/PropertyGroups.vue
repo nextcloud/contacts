@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div v-if="propModel" class="grid-span-1 property">
+	<div v-if="propModel" class="grid-span-2 property">
 
 		<div class="property__row">
 			<div class="property__label">{{ propModel.readableName }}</div>

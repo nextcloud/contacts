@@ -86,9 +86,9 @@
 					:sorted-properties="sortedProperties" :property="property" :contact="contact"
 					@updatedcontact="updateContact" />
 
-				<!-- addressbook change select -->
-				<property-select :prop-model="addressbookModel" :value.sync="addressbook"
-					:options="addressbooksOptions" class="property--addressbooks" />
+				<!-- addressbook change select - no last property because class is not applied here-->
+				<property-select :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
+					:is-last-property="false" :options="addressbooksOptions" class="property--addressbooks" />
 			</section>
 		</template>
 	</div>
