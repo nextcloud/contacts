@@ -1,0 +1,107 @@
+/**
+ * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ *
+ * @author John Molakvoæ <skjnldsv@protonmail.com>
+ *
+ * @license GNU AGPL version 3 or any later version
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+.property {
+	@include generate-grid-span(1);
+	display: flex;
+	flex-wrap: wrap;
+	flex-direction: column;
+	position: relative;
+	width: $grid-column-width;
+
+	&--last {
+		margin-bottom: $grid-height-unit;
+	}
+	// no delete icon on addressbook selector
+	&--addressbooks .icon-delete {
+		display: none;
+	}
+	
+	&__delete {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: $grid-height-unit;
+		height: $grid-height-unit;
+		margin: 0;
+		border: 0;
+		background-color: transparent;
+		opacity: .5;
+		display: none;
+		&:hover,
+		a:active,
+		a:focus {
+			opacity: .7;
+		}
+	}
+	
+	&:hover &__delete,
+	a:active &__delete,
+	a:focus &__delete {
+		display: block;
+	}
+	
+	// property row
+	&__row {
+		display: flex;
+		align-items: center;
+		padding-right: 44px;
+		height: $grid-height-unit;
+		position: relative;
+	}
+	
+	// property label or multiselect within row
+	&__label,
+	&__label.multiselect {
+		margin: $grid-input-margin;
+		margin: $grid-input-margin 5px $grid-input-margin 0;
+		height: $grid-input-height-with-margin;
+		padding: $grid-input-padding 0;
+		width: 120px;
+		opacity: .7;
+		user-select: none;
+
+		&,
+		.multiselect__input::placeholder {
+			text-align: right;
+		}
+
+		&:not(.multiselect) {
+			text-overflow: ellipsis;
+			white-space: nowrap;
+			overflow: hidden;
+			overflow-x: hidden;
+		}
+
+		&.multiselect {
+			&:hover,
+			&:focus {
+				opacity: 1;
+			}
+		}
+	}
+
+	// property value within row, after label
+	&__value {
+		flex: 1 1;
+	}
+}

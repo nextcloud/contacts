@@ -2,6 +2,7 @@
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Team Popcorn <teampopcornberlin@gmail.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -25,13 +26,16 @@ import vcfFile from '!raw-loader!./FakeName.vcf'
 import parseVcf from '../services/parseVcf'
 import Vue from 'vue'
 
+// import client from '../services/cdav'
+
 const addressbookModel = {
 	id: '',
 	displayName: '',
 	enabled: true,
 	owner: '',
 	shares: [],
-	contacts: {}
+	contacts: {},
+	url: ''
 }
 
 const state = {
@@ -80,8 +84,8 @@ const mutations = {
 	 * @param {Contact} contact
 	 */
 	addContactToAddressbook(state, contact) {
-		let addressbook = state.addressbooks.find(search => search === contact.addressbook)
-		Vue.set(addressbook.contacts, contact.key, contact)
+		let addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
+		Vue.set(addressbook.contacts, contact.uid, contact)
 	},
 
 	/**
@@ -91,7 +95,7 @@ const mutations = {
 	 * @param {Contact} contact the contact to delete
 	 */
 	deleteContactFromAddressbook(state, contact) {
-		let addressbook = state.addressbooks.find(addressbook => addressbook === contact.addressbook)
+		let addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
 		Vue.delete(addressbook, contact.uid)
 	},
 
@@ -101,21 +105,26 @@ const mutations = {
 	 * @param {Object} state
 	 * @param {Object} data
 	 * @param {Object} data.addressbook the addressbook
+	 * @param {String} data.sharee the sharee
+	 * @param {Boolean} data.id id
+	 * @param {Boolean} data.group group
 	 */
-	shareAddressbook(state, addressbook, sharee) {
-		addressbook = state.addressbooks.find(search => search === addressbook)
-		let newSharee = {}
-		sharee.displayname = sharee
-		sharee.writable = false
-		addressbook.shares.append(newSharee)
+	shareAddressbook(state, { addressbook, sharee, id, group }) {
+		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
+		let newSharee = {
+			displayname: sharee,
+			id,
+			writeable: false,
+			group
+		}
+		addressbook.shares.push(newSharee)
 	},
 
 	/**
-	 * Remove Share from addressbook shares list
+	 * Remove Sharee from addressbook shares list
 	 *
 	 * @param {Object} state
-	 * @param {Object} data
-	 * @param {Object} data.addressbook the addressbook
+	 * @param {Object} sharee the sharee
 	 */
 	removeSharee(state, sharee) {
 		let addressbook = state.addressbooks.find(search => {
@@ -125,15 +134,13 @@ const mutations = {
 				}
 			}
 		})
-		addressbook.shares.splice(sharee, 1)
+		addressbook.shares.splice(addressbook.shares.indexOf(sharee), 1)
 	},
 
 	/**
 	 * Toggle sharee's writable permission
 	 *
 	 * @param {Object} state
-	 * @param {Object} data
-	 * @param {Object} data.addressbook the addressbook
 	 * @param {Object} sharee the sharee
 	 */
 	updateShareeWritable(state, sharee) {
@@ -163,50 +170,21 @@ const actions = {
 	 * @returns {Promise} fetch and commit
 	 */
 	async getAddressbooks(context) {
-		// Fake data before using real dav requests
-		let addressbooks = [
-			{
-				id: 'ab1',
-				displayName: 'Addressbook 1',
-				enabled: true,
-				owner: 'admin',
-				shares: [
-					{ displayname: 'Bob', writeable: true },
-					{ displayname: 'Rita', writeable: true },
-					{ displayname: 'Sue', writeable: false }
-				],
-				contacts: {}
-			},
-			{
-				id: 'ab2',
-				displayName: 'Addressbook 2',
-				enabled: false,
-				owner: 'admin',
-				shares: [
-					{ displayname: 'Aimee', writeable: false },
-					{ displayname: 'Jaguar', writeable: true }
-				],
-				contacts: {}
-			},
-			{
-				id: 'ab3',
-				displayName: 'Addressbook 3',
-				enabled: true,
-				owner: 'User1',
-				shares: [],
-				contacts: {}
-			}
-		]
-		// fake request
-		return new Promise((resolve, reject) => {
-			return setTimeout(() => {
-				addressbooks.forEach(addressbook => {
-					context.commit('addAddressbooks', addressbook)
-				})
-				resolve()
-				return addressbooks
-			}, 1000)
+		// let addressbooks = client.addressbookHomes.map(addressbook => {
+		let addressbooks = [{
+			id: 'ab1',
+			displayName: 'Addressbook 1',
+			enabled: true,
+			owner: 'admin'
+			// dav: addressbook
+		}]
+		// })
+
+		addressbooks.forEach(addressbook => {
+			context.commit('addAddressbooks', addressbook)
 		})
+
+		return addressbooks
 	},
 
 	/**
@@ -224,14 +202,30 @@ const actions = {
 	 * and commit the results
 	 *
 	 * @param {Object} context
-	 * @param {Object} addressbook
+	 * @param {Object} importDetails = { vcf, addressbook }
 	 */
-	async getContactsFromAddressBook(context, addressbook) {
+	getContactsFromAddressBook(context, { addressbook }) {
 		let contacts = parseVcf(vcfFile, addressbook)
 		context.commit('appendContactsToAddressbook', { addressbook, contacts })
 		context.commit('appendContacts', contacts)
 		context.commit('sortContacts')
-		context.commit('appendGroups', contacts)
+		context.commit('appendGroupsFromContacts', contacts)
+	},
+
+	/**
+	 *
+	 * @param {Object} context
+	 * @param {Object} importDetails = { vcf, addressbook }
+	 */
+	importContactsIntoAddressbook(context, { vcf, addressbook }) {
+		let contacts = parseVcf(vcf, addressbook)
+		context.commit('changeStage', 'importing')
+		contacts.forEach(contact => {
+			context.commit('addContact', contact)
+			context.commit('addContactToAddressbook', contact)
+			context.commit('appendGroupsFromContacts', [contact])
+		})
+		context.commit('changeStage', 'default')
 	},
 
 	/**
@@ -257,11 +251,28 @@ const actions = {
 	/**
 	 * Share Adressbook with User or Group
 	 * @param {Object} context Current context
-	 * @param {Object} addressbook Addressbook selected
-	 * @param {Object} sharee Addressbook sharee object
+	 * @param {Object} data.addressbook the addressbook
+	 * @param {String} data.sharee the sharee
+	 * @param {Boolean} data.id id
+	 * @param {Boolean} data.group group
 	 */
-	shareAddressbook(contect, addressbook, sharee) {
+	shareAddressbook(context, { addressbook, sharee, id, group }) {
 		// Share addressbook with entered group or user
+		context.commit('shareAddressbook', { addressbook, sharee, id, group })
+	},
+
+	/**
+	 * Move a contact to the provided addressbook
+	 *
+	 * @param {Object} context
+	 * @param {Object} data
+	 * @param {Contact} data.contact
+	 * @param {Object} data.addressbook
+	 */
+	moveContactToAddressbook(context, { contact, addressbook }) {
+		context.commit('deleteContactFromAddressbook', contact)
+		context.commit('updateContactAddressbook', { contact, addressbook })
+		context.commit('addContactToAddressbook', contact)
 	}
 }
 

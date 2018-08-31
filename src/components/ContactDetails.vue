@@ -55,17 +55,17 @@
 						<input id="contact-fullname" v-model="contact.fullName" :disabled="!contact.addressbook.enabled"
 							:placeholder="t('contacts', 'Name')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="fullname"
-							value="">
+							value="" @input="debounceUpdateContact">
 					</h2>
 					<div id="details-org-container">
 						<input id="contact-org" v-model="contact.org" :disabled="!contact.addressbook.enabled"
 							:placeholder="t('contacts', 'Company')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="org"
-							value="">
+							value="" @input="debounceUpdateContact">
 						<input id="contact-title" v-model="contact.title" :disabled="!contact.addressbook.enabled"
 							:placeholder="t('contacts', 'Title')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="title"
-							value="">
+							value="" @input="debounceUpdateContact">
 					</div>
 				</div>
 
@@ -80,34 +80,50 @@
 
 			<!-- contact details -->
 			<section class="contact-details">
-				<contact-details-property v-for="(property, index) in contact.properties" :key="index" :property="property" />
+
+				<!-- properties iteration -->
+				<contact-details-property v-for="(property, index) in sortedProperties" :key="index" :index="index"
+					:sorted-properties="sortedProperties" :property="property" :contact="contact"
+					@updatedcontact="updateContact" />
+
+				<!-- addressbook change select -->
+				<property-select :prop-model="addressbookModel" :value.sync="addressbook"
+					:options="addressbooksOptions" class="property--addressbooks" />
 			</section>
 		</template>
 	</div>
 </template>
 
 <script>
-import popoverMenu from './core/popoverMenu'
-import contactDetailsProperty from './ContactDetails/ContactDetailsProperty'
-
-import Contact from '../models/contact'
-
-import ICAL from 'ical.js'
 import ClickOutside from 'vue-click-outside'
 import Vue from 'vue'
 import VTooltip from 'v-tooltip'
+import debounce from 'debounce'
+
+import Contact from '../models/contact'
+import rfcProps from '../models/rfcProps.js'
+
+import PopoverMenu from './core/popoverMenu'
+import ContactDetailsProperty from './ContactDetails/ContactDetailsProperty'
+import PropertySelect from './Properties/PropertySelect'
+import PropertyGroups from './Properties/PropertyGroups'
 
 Vue.use(VTooltip)
 
 export default {
 	name: 'ContactDetails',
+
 	components: {
-		popoverMenu,
-		contactDetailsProperty
+		PopoverMenu,
+		ContactDetailsProperty,
+		PropertySelect,
+		PropertyGroups
 	},
+
 	directives: {
 		ClickOutside
 	},
+
 	props: {
 		loading: {
 			type: Boolean,
@@ -118,13 +134,21 @@ export default {
 			default: undefined
 		}
 	},
+
 	data() {
 		return {
-			contact: undefined,
-			openedMenu: false
+			openedMenu: false,
+			addressbookModel: {
+				readableName: t('contacts', 'Addressbook'),
+				icon: 'icon-addressbook'
+			}
 		}
 	},
+
 	computed: {
+		/**
+		 * Contact color based on uid
+		 */
 		colorAvatar() {
 			try {
 				let color = this.contact.uid.toRgb()
@@ -133,6 +157,10 @@ export default {
 				return 'grey'
 			}
 		},
+
+		/**
+		 * Header actions for the contact
+		 */
 		contactActions() {
 			let actions = [
 				{
@@ -150,33 +178,112 @@ export default {
 			}
 
 			return actions
-		}
-	},
-	watch: {
-		// url changed, get and show selected contact
-		uid: function() {
-			this.updateLocalContact()
 		},
-		// done loading, check if the provided uid is valid and open details
-		loading: function() {
-			if (this.uid) {
-				this.updateLocalContact()
+
+		/**
+		 * Contact properties copied and sorted by rfcProps.fieldOrder
+		 */
+		sortedProperties() {
+			return this.contact.properties.slice(0).sort((a, b) => {
+				return (
+					rfcProps.fieldOrder.indexOf(a.name) -
+					rfcProps.fieldOrder.indexOf(b.name)
+				)
+			})
+		},
+
+		// usable addressbook object linked to the local contact
+		addressbook: {
+			get: function() {
+				return {
+					id: this.contact.addressbook.id,
+					name: this.contact.addressbook.displayName
+				}
+			},
+			set: function(addressbook) {
+				this.moveContactToAddressbook(addressbook)
+			}
+		},
+
+		// store getters filtered and mapped to usable object
+		addressbooksOptions() {
+			return this.addressbooks
+				.filter(addressbook => addressbook.enabled)
+				.map(addressbook => {
+					return {
+						id: addressbook.id,
+						name: addressbook.displayName
+					}
+				})
+		},
+
+		// store getter
+		addressbooks() {
+			return this.$store.getters.getAddressbooks
+		},
+
+		// local version of the contact
+		contact() {
+			let contact = this.$store.getters.getContact(this.uid)
+			if (contact) {
+				// create empty contact and copy inner data
+				let localContact = new Contact(
+					'BEGIN:VCARD\nUID:' + contact.uid + '\nEND:VCARD',
+					contact.addressbook
+				)
+				localContact.updateContact(contact.jCal)
+				return localContact
 			}
 		}
 	},
+
 	methods: {
-		updateLocalContact() {
-			// create new local instance of this contact
-			let contact = this.$store.getters.getContact(this.uid)
-			this.contact = new Contact(ICAL.stringify(contact.jCal), contact.addressbook)
+		/**
+		 * Executed on the 'updatedcontact' event
+		 * Send the local clone of contact to the store
+		 */
+		updateContact() {
+			this.$store.dispatch('updateContact', this.contact)
 		},
+		/**
+		 * Debounce the contact update for the header props
+		 * photo, fn, org, title
+		 */
+		debounceUpdateContact: debounce(function(e) {
+			this.updateContact()
+		}, 500),
+
+		// menu handling
 		closeMenu() {
 			this.openedMenu = false
 		},
 		toggleMenu() {
 			this.openedMenu = !this.openedMenu
+		},
+
+		/**
+		 * Move contact to the specified addressbook
+		 *
+		 * @param {Object} addressbook the desired addressbook
+		 */
+		moveContactToAddressbook(addressbook) {
+			addressbook = this.addressbooks.find(
+				search => search.id === addressbook.id
+			)
+			// we need to use the store contact, not the local contact
+			let contact = this.$store.getters.getContact(this.contact.key)
+			// TODO Make sure we do not overwrite contacts
+			if (addressbook) {
+				this.$store
+					.dispatch('moveContactToAddressbook', {
+						contact: contact,
+						addressbook
+					})
+					.then(() => {
+						this.updateContact()
+					})
+			}
 		}
 	}
-
 }
 </script>

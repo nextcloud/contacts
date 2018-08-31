@@ -32,10 +32,14 @@
 		<!-- main content -->
 		<div id="app-content">
 			<div id="app-content-wrapper">
-				<!-- contacts list -->
-				<content-list :list="contactsList" :contacts="contacts" :loading="loading" />
-				<!-- main contacts details -->
-				<contact-details :loading="loading" :uid="selectedContact" />
+				<!-- loading -->
+				<import-screen v-if="importState.stage != 'default'" />
+				<template v-else>
+					<!-- contacts list -->
+					<content-list :list="contactsList" :contacts="contacts" :loading="loading" />
+					<!-- main contacts details -->
+					<contact-details :loading="loading" :uid="selectedContact" />
+				</template>
 			</div>
 		</div>
 
@@ -47,15 +51,20 @@ import appNavigation from '../components/core/appNavigation'
 import settingsSection from '../components/SettingsSection'
 import contentList from '../components/ContentList'
 import contactDetails from '../components/ContactDetails'
+import importScreen from '../components/ImportScreen'
 
 import Contact from '../models/contact'
+import rfcProps from '../models/rfcProps.js'
+
+// import client from '../services/cdav.js'
 
 export default {
 	components: {
 		appNavigation,
 		settingsSection,
 		contentList,
-		contactDetails
+		contactDetails,
+		importScreen
 	},
 
 	// passed by the router
@@ -94,16 +103,19 @@ export default {
 		orderKey() {
 			return this.$store.getters.getOrderKey
 		},
-
+		importState() {
+			return this.$store.getters.getImportState
+		},
 		// first enabled addressbook of the list
 		defaultAddressbook() {
 			return this.addressbooks.find(addressbook => addressbook.enabled)
 		},
 
 		/**
-		 * contacts list based on the selected group
-		 * filters are pretty fast, so let's only intersect the groups
-		 * contacts and the full sorted contacts List
+		 * Contacts list based on the selected group.
+		 * Those filters are pretty fast, so let's only
+		 * intersect the groups contacts and the full
+		 * sorted contacts List.
 		 */
 		contactsList() {
 			if (this.selectedGroup === t('contacts', 'All contacts')) {
@@ -179,25 +191,44 @@ export default {
 
 	beforeMount() {
 		// get addressbooks then get contacts
+		// client.connect({ enableCardDAV: true }).then(() => {
 		this.$store.dispatch('getAddressbooks')
 			.then(() => {
 				Promise.all(this.addressbooks.map(async addressbook => {
-					await this.$store.dispatch('getContactsFromAddressBook', addressbook)
+					await this.$store.dispatch('getContactsFromAddressBook', { addressbook })
 				})).then(() => {
 					this.loading = false
 					this.selectFirstContactIfNone()
 				})
 			})
-		// check local storage for orderKey
+			// check local storage for orderKey
 		if (localStorage.getItem('orderKey')) {
 			// run setOrder mutation with local storage key
 			this.$store.commit('setOrder', localStorage.getItem('orderKey'))
 		}
+		// })
 	},
 
 	methods: {
 		newContact() {
-			let contact = new Contact('BEGIN:VCARD\nVERSION:4.0\nFN:' + t('contacts', 'New Contact') + '\nCATEGORIES:' + this.selectedGroup + '\nEND:VCARD', this.defaultAddressbook)
+			let contact = new Contact('BEGIN:VCARD\nVERSION:4.0\nEND:VCARD', this.defaultAddressbook)
+			contact.fullName = 'New contact'
+			// itterate over all properties (filter is not usable on objects and we need the key of the property)
+			for (let name in rfcProps.properties) {
+				if (rfcProps.properties[name].default) {
+					let defaultData = rfcProps.properties[name].defaultValue
+					// add default field
+					let property = contact.vCard.addPropertyWithValue(name, defaultData.value)
+					// add default type
+					if (defaultData.type) {
+						property.setParameter('type', defaultData.type)
+
+					}
+				}
+			}
+			if (this.selectedGroup !== t('contacts', 'All contacts')) {
+				contact.vCard.addPropertyWithValue('categories', this.selectedGroup)
+			}
 			this.$store.dispatch('addContact', contact)
 			this.$router.push({
 				name: 'contact',
@@ -219,19 +250,26 @@ export default {
 			this.$store.commit('sortContacts')
 		},
 
+		/**
+		 * Select the first contact of the list
+		 * if none are selected already
+		 */
 		selectFirstContactIfNone() {
 			let inList = this.contactsList.findIndex(contact => contact.key === this.selectedContact) > -1
 			if (this.selectedContact === undefined || !inList) {
 				if (this.selectedContact && !inList) {
 					OC.Notification.showTemporary(t('contacts', 'Contact not found'))
 				}
-				this.$router.push({
-					name: 'contact',
-					params: {
-						selectedGroup: this.selectedGroup,
-						selectedContact: Object.values(this.contactsList)[0].key
-					}
-				})
+				if (Object.keys(this.contactsList).length) {
+					this.$router.push({
+						name: 'contact',
+						params: {
+							selectedGroup: this.selectedGroup,
+							selectedContact: Object.values(this.contactsList)[0].key
+						}
+					})
+					document.querySelector('.app-content-list-item.active').scrollIntoView()
+				}
 			}
 		}
 	}

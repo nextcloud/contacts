@@ -7,10 +7,12 @@ module.exports = {
 		jest: true
 	},
 	globals: {
-		t: false,
-		n: false,
-		OC: false,
-		OCA: false
+		t: true,
+		n: true,
+		OC: true,
+		OCA: true,
+		Vue: true,
+		VueRouter: true
 	},
 	parserOptions: {
 		parser: 'babel-eslint'
@@ -36,7 +38,7 @@ module.exports = {
 		'no-tabs': 0,
 		'vue/html-indent': ['error', 'tab'],
 		// only debug console
-		'no-console': ['error', { 'allow': ['debug'] }],
+		'no-console': ['error', { 'allow': ['error', 'warn', 'debug'] }],
 		// classes blocks
 		'padded-blocks': ['error', { 'classes': 'always' }],
 		// es6 import/export and require

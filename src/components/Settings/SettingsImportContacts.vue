@@ -1,3 +1,4 @@
+
 <!--
 	- @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
 	-
@@ -22,14 +23,16 @@
 
 <template>
 	<div class="import-contact">
-		<input id="contact-import" type="file" class="hidden-visually">
+		<input id="contact-import" type="file" class="hidden-visually"
+			@change="processFile">
 		<label id="upload" for="contact-import" class="button multiselect-label icon-upload no-select">
 			{{ t('contacts', 'Import into') }}
 		</label>
 		<multiselect
-			v-model="value"
+			v-model="selectedAddressbook"
 			:options="options"
 			:placeholder="t('contacts', 'Contacts')"
+			label="displayName"
 			class="multiselect-vue" />
 	</div>
 </template>
@@ -47,26 +50,52 @@ export default {
 	directives: {
 		clickOutside
 	},
-	// props: ['addressbooks'],
-	props: {
-		addressbooks: {
-			type: Array,
-			required: false,
-			default: undefined
-		}
-	},
 	data() {
 		return {
-			value: ''
+			importDestination: false
 		}
 	},
 	computed: {
+		addressbooks() {
+			return this.$store.getters.getAddressbooks
+		},
 		options() {
-			return [t('contacts', 'Contacts')].concat(this.addressbooks.map(x => x.displayName))
+			return this.addressbooks.map(addressbook => {
+				return {
+					id: addressbook.id,
+					displayName: addressbook.displayName
+				}
+			})
+		},
+		importState() {
+			return this.$store.getters.getImportState
+		},
+		selectedAddressbook: {
+			get() {
+				if (this.importDestination) {
+					return this.addressbooks.find(addressbook => addressbook.id === this.importDestination.id)
+				}
+				// default is first address book of the list
+				return this.addressbooks[0]
+			},
+			set(value) {
+				this.importDestination = value
+			}
 		}
 	},
 	methods: {
-
+		processFile(event) {
+			let file = event.target.files[0]
+			let reader = new FileReader()
+			let selectedAddressbook = this.selectedAddressbook
+			this.$store.dispatch('changeStage', 'parsing')
+			this.$store.dispatch('setAddressbook', selectedAddressbook.displayName)
+			let self = this
+			reader.onload = function(e) {
+				self.$store.dispatch('importContactsIntoAddressbook', { vcf: reader.result, addressbook: selectedAddressbook })
+			}
+			reader.readAsText(file)
+		}
 	}
 }
 </script>

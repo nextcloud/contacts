@@ -50,6 +50,27 @@ export default class Contact {
 	}
 
 	/**
+	 * Update internal data of this contact
+	 *
+	 * @param {jCal} jCal
+	 * @memberof Contact
+	 */
+	updateContact(jCal) {
+		this.jCal = jCal
+		this.vCard = new ICAL.Component(this.jCal)
+	}
+
+	/**
+	 * Update linked addressbook of this contact
+	 *
+	 * @param {Object} addressbook
+	 * @memberof Contact
+	 */
+	updateAddressbook(addressbook) {
+		this.addressbook = addressbook
+	}
+
+	/**
 	 * Ensure we're normalizing the possible arrays
 	 * into a string by taking the first element
 	 * e.g. ORG:ABC\, Inc.; will output an array because of the semi-colon
@@ -104,6 +125,18 @@ export default class Contact {
 			return this.vCard.getFirstProperty('categories').getValues()
 		}
 		return []
+	}
+
+	/**
+	 * Set the groups
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	set groups(groups) {
+		if (Array.isArray(groups)) {
+			this.vCard.updatePropertyWithValue('uid', groups)
+		}
 	}
 
 	/**

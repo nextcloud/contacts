@@ -54,7 +54,7 @@ const properties = {
 		readableName: t('contacts', 'Federated Cloud ID'),
 		defaultValue: {
 			value: [''],
-			meta: { type: ['HOME'] }
+			type: ['HOME']
 		},
 		options: [
 			{ id: 'HOME', name: t('contacts', 'Home') },
@@ -76,9 +76,10 @@ const properties = {
 		],
 		displayOrder: [0, 2, 1, 5, 3, 4, 6],
 		icon: 'icon-address',
+		default: true,
 		defaultValue: {
 			value: ['', '', '', '', '', '', ''],
-			meta: { type: ['HOME'] }
+			type: ['HOME']
 		},
 		options: [
 			{ id: 'HOME', name: t('contacts', 'Home') },
@@ -105,9 +106,10 @@ const properties = {
 		multiple: true,
 		readableName: t('contacts', 'Email'),
 		icon: 'icon-mail',
+		default: true,
 		defaultValue: {
 			value: '',
-			meta: { type: ['HOME'] }
+			type: ['HOME']
 		},
 		options: [
 			{ id: 'HOME', name: t('contacts', 'Home') },
@@ -121,7 +123,7 @@ const properties = {
 		icon: 'icon-comment',
 		defaultValue: {
 			value: [''],
-			meta: { type: ['SKYPE'] }
+			type: ['SKYPE']
 		},
 		options: [
 			{ id: 'IRC', name: 'IRC' },
@@ -135,9 +137,10 @@ const properties = {
 		multiple: true,
 		readableName: t('contacts', 'Phone'),
 		icon: 'icon-comment',
+		default: true,
 		defaultValue: {
 			value: '',
-			meta: { type: ['HOME,VOICE'] }
+			type: ['HOME,VOICE']
 		},
 		options: [
 			{ id: 'HOME,VOICE', name: t('contacts', 'Home') },
@@ -161,7 +164,7 @@ const properties = {
 		readableName: t('contacts', 'Social network'),
 		defaultValue: {
 			value: [''],
-			meta: { type: ['facebook'] }
+			type: ['facebook']
 		},
 		options: [
 			{ id: 'FACEBOOK', name: 'Facebook' },
@@ -174,7 +177,8 @@ const properties = {
 			{ id: 'TUMBLR', name: 'Tumblr' },
 			{ id: 'TWITTER', name: 'Twitter' },
 			{ id: 'WECHAT', name: 'WeChat' },
-			{ id: 'YOUTUBE', name: 'YouTube' }
+			{ id: 'YOUTUBE', name: 'YouTube' },
+			{ id: 'MASTODON', name: 'Mastodon' }
 		]
 	},
 	relationship: {
@@ -207,7 +211,7 @@ const properties = {
 		),
 		defaultValue: {
 			value: [''],
-			meta: { type: ['CONTACT'] }
+			type: ['CONTACT']
 		},
 		options: [
 			{ id: 'CONTACT', name: t('contacts', 'Contact') },

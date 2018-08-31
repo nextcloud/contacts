@@ -21,58 +21,59 @@
 -->
 
 <template>
-	<div class="addressbook__shares">
-		<div class="dropdown-menu">
-			<label class="typo__label" for="ajax">Async multiselect</label>
-			<multiselect
-				id="ajax"
-				v-model="selectedUserOrGroup"
-				:options="usersOrGroups"
-				:multiple="true"
-				:searchable="true"
-				:loading="isLoading"
-				:internal-search="false"
-				:clear-on-select="false"
-				:close-on-select="false"
-				:options-limit="250"
-				:limit="3"
-				:limit-text="limitText"
-				:max-height="600"
-				:show-no-results="false"
-				:hide-selected="true"
-				label="name"
-				track-by="code"
-				placeholder="Type to search"
-				open-direction="bottom"
-				@search-change="asyncFind">
-				<template slot="clear" slot-scope="props">
-					<div v-if="selectedUserOrGroup.length" class="multiselect__clear" @mousedown.prevent.stop="clearAll(props.search)" />
-				</template>
-				<span slot="noResult">Oops! No elements found. Consider changing the search query.</span>
-			</multiselect>
-			<pre class="language-json"><code>{{ selectedUserOrGroup }}</code></pre>
-		</div>
+	<div class="addressbook-shares">
+		<multiselect
+			id="users-groups-search"
+			:options="usersOrGroups"
+			:searchable="true"
+			:loading="isLoading"
+			:internal-search="false"
+			:options-limit="250"
+			:limit="3"
+			:max-height="600"
+			:show-no-results="true"
+			:placeholder="placeholder"
+			:class="{ 'showContent': inputGiven }"
+			open-direction="bottom"
+			class="multiselect-vue"
+			@search-change="asyncFind"
+			@input="shareAddressbook">
+			<template slot="singleLabel" slot-scope="props">
+				<span class="option__desc">
+					<span class="option__title">{{ props.option.matchpattern }}</span>
+				</span>
+			</template>
+			<template slot="option" slot-scope="props">
+				<div class="option__desc">
+					<span>{{ props.option.matchstart }}</span><span class="addressbook-shares__shareematch--bold">{{ props.option.matchpattern }}</span><span>{{ props.option.matchend }} {{ props.option.matchtag }}</span>
+				</div>
+			</template>
+			<span slot="noResult">{{ noResult }} </span>
+		</multiselect>
 		<!-- list of user or groups addressbook is shared with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressbook__shares__list">
-			<address-book-sharee v-for="sharee in addressbook.shares" :key="sharee.name" :sharee="sharee" />
+			<address-book-sharee v-for="sharee in addressbook.shares" :key="sharee.displayname + sharee.group" :sharee="sharee" />
 		</ul>
 	</div>
 </template>
 
 <script>
 import clickOutside from 'vue-click-outside'
+import api from '../../services/api'
 import Multiselect from 'vue-multiselect'
 import addressBookSharee from './SettingsAddressbookSharee'
+import debounce from 'debounce'
 
 export default {
-	name: 'SettingsShareAddressBook',
+	name: 'SettingsShareAddressbook',
 	components: {
 		clickOutside,
 		Multiselect,
 		addressBookSharee
 	},
 	directives: {
-		clickOutside
+		clickOutside,
+		debounce
 	},
 	props: {
 		addressbook: {
@@ -85,33 +86,96 @@ export default {
 	data() {
 		return {
 			isLoading: false,
-			usersOrGroups: [],
-			selectedUserOrGroup: []
+			inputGiven: false,
+			usersOrGroups: []
+		}
+	},
+	computed: {
+		placeholder() {
+			return t('contacts', 'Share with users or groups')
+		},
+		noResult() {
+			return t('contacts', 'No users or groups')
 		}
 	},
 	methods: {
-		limitText(count) {
-			return `and ${count} other users or groups`
+		/**
+		 * Share addressbook
+		 *
+		 * @param {Object} chosenUserOrGroup
+		 */
+		shareAddressbook({ sharee, id, group }) {
+			let addressbook = this.addressbook
+			this.$store.dispatch('shareAddressbook', { addressbook, sharee, id, group })
 		},
 
-		/* example :OC.linkToOCS('cloud', 2)+ 'groups?search=Test' */
-		asyncFind(query) {
+		/**
+		 * Format responses from axios.all and add them to the option array
+		 *
+		 * @param {Array} matches Array of matches returned from the axios request
+		 * @param {String} query
+		 * @param {Boolean} group
+		 */
+		formatMatchResults(matches, query, group) {
+			if (matches.length < 1) {
+				return
+			}
+			let regex = new RegExp(query, 'i')
+			let existingSharees = this.addressbook.shares.map(share => share.id + share.group)
+			matches = matches.filter(share => existingSharees.indexOf(share.id + group) === -1)
+			// this.usersOrGroups.concat(
+			this.usersOrGroups = this.usersOrGroups.concat(matches.map(match => {
+				let matchResult = match.displayname.split(regex)
+				if (matchResult.length < 1) {
+					return
+				}
+				return {
+					sharee: match.displayname,
+					id: match.id,
+					matchstart: matchResult[0],
+					matchpattern: match.displayname.match(regex)[0],
+					matchend: matchResult[1],
+					matchtag: group ? '(group)' : '(user)',
+					group
+				}
+			}))
+			console.log(this.usersOrGroups) // eslint-disable-line
+		},
+
+		/**
+		 * Use Axios api call to find matches to the query from the existing Users & Groups
+		 *
+		 * @param {String} query
+		 */
+		asyncFind: debounce(function(query) {
 			this.isLoading = true
 			this.usersOrGroups = []
-			// let response = OC.linkToOCS('cloud', 2) + 'groups?search=' + query
-			fetch(OC.linkToOCS('cloud', 2) + 'groups?search=' + query).then(response => {
-				this.usersOrGroups.push(response)
-				this.isLoading = false
-			})
-			console.log(this.usersOrGroups) // eslint-disable-line
-			/* ajaxFindCountry(query).then(response => {
-				this.countries = response
-				this.isLoading = false
-			}) */
-		},
-		clearAll() {
-			this.selectedUserOrGroup = []
-		}
+			if (query.length > 0) {
+				api.all([
+					api.get(OC.linkToOCS('cloud', 2) + 'users/details?search=' + query),
+					api.get(OC.linkToOCS('cloud', 2) + 'groups/details?search=' + query)
+				]).then(response => {
+					let matchingUsers = Object.values(response[0].data.ocs.data.users)
+					let matchingGroups = response[1].data.ocs.data.groups
+					try {
+						this.formatMatchResults(matchingUsers, query, false)
+					} catch (error) {
+						console.debug(error)
+					}
+					try {
+						this.formatMatchResults(matchingGroups, query, true)
+					} catch (error) {
+						console.debug(error)
+					}
+				}).then(() => {
+
+					this.isLoading = false
+				})
+				this.inputGiven = true
+			} else {
+				this.inputGiven = false
+			}
+		}, 500)
 	}
 }
 </script>
