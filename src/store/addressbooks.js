@@ -177,6 +177,12 @@ const actions = {
 			enabled: true,
 			owner: 'admin'
 			// dav: addressbook
+		}, {
+			id: 'ab2',
+			displayName: 'Addressbook 2',
+			enabled: true,
+			owner: 'admin'
+			// dav: addressbook
 		}]
 		// })
 

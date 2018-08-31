@@ -9,6 +9,12 @@ REV:2017-07-27T05:56:33Z
 UID:5acf667e-1cbf-48a8-87fe-546ee31a0b23
 END:VCARD
 BEGIN:VCARD
+VERSION:4.0
+KIND:org
+FN:ABC Marketing ORG
+ORG:ABC\, Inc.;North American Division;Marketing
+END:VCARD
+BEGIN:VCARD
 VERSION:3.0
 N:Cunningham;Liam;;Mr.;
 FN:Liam Cunningham
