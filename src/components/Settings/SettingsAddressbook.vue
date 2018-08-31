@@ -22,14 +22,22 @@
   -->
 <template>
 	<div>
-		<li :class="{'disabled': !addressbook.enabled}" class="addressbook">
+		<li v-if="editingName" class="new-addressbook">
+			<form id="new-addressbook-form" name="new-addressbook-form"
+				class="new-addressbook__form" addressbooks="[object Object]" @submit="updateAdressbookName">
+				<!-- rename addressbook input -->
+				<input :placeholder="addressbook.displayName"
+					:v-model="newName" type="text">
+				<input type="submit" value=""
+					class="new-addressbook__submit inline-button icon-confirm action pull-right">
+			</form>
+		</li>
+		<li v-else :class="{'disabled': !addressbook.enabled}" class="addressbook">
 			<!-- addressbook name -->
 			<span class="addressbook__name">{{ addressbook.displayName }}</span>
 			<!-- sharing button -->
 			<a href="#" class="addressbook__share icon-shared"
 				@click="toggleShare" />
-			<!-- rename addressbook name -->
-			<rename-addressbook-field v-if="editingName" />
 			<!-- popovermenu -->
 			<a v-click-outside="closeMenu" href="#" class="addressbook__menu"
 				@click="toggleMenu">
@@ -104,7 +112,7 @@ export default {
 				icon: 'icon-rename',
 				text: 'Rename',
 				action: () => {
-					/* this.editingName = true */
+					this.renameAddressbook()
 				}
 			},
 			{
@@ -113,7 +121,6 @@ export default {
 				input: 'checkbox',
 				model: this.enabled,
 				action: () => {
-					alert('change') // eslint-disable-line
 					this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
 				}
 			},
@@ -136,11 +143,15 @@ export default {
 		toggleMenu() {
 			this.menuOpen = !this.menuOpen
 		},
-		renameAddressBook() {
+		renameAddressbook() {
 			this.editingName = true
+		},
+		updateAddressbookName() {
 			let addressbook = this.addressbook
 			let newName = this.newName
-			this.$store.dispatch('renameAddressbook', { addressbook, newName })
+			this.$store.dispatch('renameAddressbook', { addressbook, newName }).then(
+				this.editingName = false
+			)
 		}
 	}
 }

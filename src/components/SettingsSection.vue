@@ -22,7 +22,7 @@
 
 <template>
 	<div>
-		<ul id="address-book-list">
+		<ul id="addressbook-list">
 			<address-book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
 		</ul>
 		<add-address-book :addressbooks="addressbooks" />

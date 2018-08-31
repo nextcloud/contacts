@@ -21,6 +21,11 @@
  *
  */
 
+
+.new-addressbook {
+	padding: 6px 0;
+}
+
 .addressbook {
 	display: flex;
 	align-items: center;
@@ -34,6 +39,7 @@
 		overflow: hidden;
 		text-overflow: ellipsis;
 	}
+	
 	&__share,
 	&__menu .icon-more {
 		width: 44px;
@@ -45,6 +51,7 @@
 			opacity: .7;
 		}
 	}
+
 	&__share {
 		margin-left: auto;
 	}
