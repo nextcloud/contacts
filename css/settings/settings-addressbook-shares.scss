@@ -29,12 +29,20 @@
 		display: flex;
 		flex-direction: column;
 	}
+
 	&__shareematch--bold {
 		font-weight: bold;
 	}
+	
+	.icon-loading::after {
+		top: 70%;
+		left: 95%;
+		height: 14px;
+		width: 14px;
+	}
+
 	.multiselect.multiselect-vue {
 		width: inherit;
-
 		.multiselect__tags:focus-within, 
 		.multiselect__tags:hover {
 			border-color: var(--color-primary-element);
@@ -44,6 +52,7 @@
 			display: none;
 		}
 	}
+
 	.multiselect.showContent {
 		.multiselect__content-wrapper {
 			display: inherit;
