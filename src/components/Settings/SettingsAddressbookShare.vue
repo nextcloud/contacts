@@ -97,6 +97,9 @@ export default {
 			return t('contacts', 'No users or groups')
 		}
 	},
+	mounted() {
+		document.getElementById('users-groups-search').focus()
+	},
 	methods: {
 		/**
 		 * Share addressbook
@@ -166,8 +169,8 @@ export default {
 					}
 				}).then(() => {
 					this.isLoading = false
+					this.inputGiven = true
 				})
-				this.inputGiven = true
 			} else {
 				this.inputGiven = false
 				this.isLoading = false
