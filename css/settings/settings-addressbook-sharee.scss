@@ -33,7 +33,7 @@
 		text-overflow: ellipsis;
 		display: inline-block;
 		vertical-align: top;
-		opacity: 0.5;
+		opacity: 0.7;
 	}
 	&__utils {
 		padding: 0 !important;
@@ -45,6 +45,9 @@
 		height: 20px;
 		.checkbox + label {
 			padding: 0 !important;
+		}
+		label {
+			opacity: 0.7;
 		}
 	}
 	
