@@ -89,7 +89,7 @@
 				<!-- addressbook change select -->
 				<property-select :prop-model="addressbookModel" :value.sync="addressbook"
 					:options="addressbooksOptions" class="property--addressbooks" />
-				
+
 				<add-new-prop :contact="contact" />
 			</section>
 		</template>

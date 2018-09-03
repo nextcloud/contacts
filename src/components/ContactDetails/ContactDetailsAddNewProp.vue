@@ -21,14 +21,17 @@
   -->
 
 <template>
-	<div class="grid-span-1 property">
-		<div class="property__row">
+	<div class="grid-span-2 property">
 
+		<!-- title -->
+		<property-title :icon="'icon-add'" :readable-name="t('contacts', 'Add new property')" />
+
+		<div class="property__row">
 			<div class="property__label">{{ t('contacts', 'Add new property') }}</div>
 
 			<!-- type selector -->
-			<multiselect :options="availableProperties" :placeholder="t('contacts', 'Choose property type')"
-				class="multiselect-vue property__value"	@input="addProp" />
+			<multiselect :options="availableProperties" :placeholder="t('contacts', 'Choose property type')" class="multiselect-vue property__value"
+				track-by="id" label="name" @input="addProp" />
 		</div>
 	</div>
 </template>
@@ -36,6 +39,7 @@
 <script>
 import rfcProps from '../../models/rfcProps.js'
 import Contact from '../../models/contact'
+import propertyTitle from '../Properties/PropertyTitle'
 
 import Multiselect from 'vue-multiselect'
 
@@ -43,6 +47,7 @@ export default {
 	name: 'ContactDetailsAddNewProp',
 
 	components: {
+		propertyTitle,
 		Multiselect
 	},
 
@@ -55,13 +60,22 @@ export default {
 
 	computed: {
 		availableProperties() {
-			return Object.keys(rfcProps.properties)
+			return Object.keys(rfcProps.properties).map(key => {
+				return {
+					id: key,
+					name: rfcProps.properties[key].readableName
+				}
+			})
 		}
 	},
 
 	methods: {
-		addProp(name) {
-			console.log(name);
+		addProp({ id }) {
+			let defaultData = rfcProps.properties[id].defaultValue
+			let property = this.contact.vCard.addPropertyWithValue(id, defaultData ? defaultData.value : '')
+			if (defaultData && defaultData.type) {
+				property.setParameter('type', defaultData.type)
+			}
 		}
 	}
 }
