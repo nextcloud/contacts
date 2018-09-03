@@ -35,17 +35,19 @@ export default function parseVcf(data = '', addressbook) {
 
 	importState.total = vCards.length
 
-	return vCards.map(vCard => {
+	// Not using map because we want to only push valid contacts
+	// map force to return at least undefined
+	return vCards.reduce((contacts, vCard) => {
 		try {
 			// console.log(vCards.indexOf(vCard))
 			let contact = new Contact(vCard, addressbook)
 			importState.accepted++
-			return contact
+			contacts.push(contact)
 		} catch (e) {
 			// Parse error! Do not stop here...
 			importState.denied++
-			// eslint-disable-next-line
 			console.error(e)
 		}
-	})
+		return contacts
+	}, [])
 }
