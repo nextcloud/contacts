@@ -2,6 +2,7 @@
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Team Popcorn <teampopcornberlin@gmail.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -252,14 +253,30 @@ const actions = {
 	 * and commit the results
 	 *
 	 * @param {Object} context
-	 * @param {Object} addressbook
+	 * @param {Object} importDetails = { vcf, addressbook }
 	 */
-	async getContactsFromAddressBook(context, addressbook) {
+	getContactsFromAddressBook(context, { addressbook }) {
 		let contacts = parseVcf(vcfFile, addressbook)
 		context.commit('appendContactsToAddressbook', { addressbook, contacts })
 		context.commit('appendContacts', contacts)
 		context.commit('sortContacts')
 		context.commit('appendGroupsFromContacts', contacts)
+	},
+
+	/**
+	 *
+	 * @param {Object} context
+	 * @param {Object} importDetails = { vcf, addressbook }
+	 */
+	importContactsIntoAddressbook(context, { vcf, addressbook }) {
+		let contacts = parseVcf(vcf, addressbook)
+		context.commit('changeStage', 'importing')
+		contacts.forEach(contact => {
+			context.commit('addContact', contact)
+			context.commit('addContactToAddressbook', contact)
+			context.commit('appendGroupsFromContacts', [contact])
+		})
+		context.commit('changeStage', 'default')
 	},
 
 	/**
