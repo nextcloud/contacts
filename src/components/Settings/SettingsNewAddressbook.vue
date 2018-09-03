@@ -26,6 +26,7 @@
 		<input id="new-addressbook" ref="addressbook" class="new-addressbook-input"
 			placeholder="Address book name"
 			type="text"
+			pattern="[a-zA-Z0-9À-ÿ\s-_.!?#|()]"
 			autocomplete="off" autocorrect="off"
 			spellcheck="false"
 			tooltip-enable="!newAddressbookForm.$pristine"
@@ -61,7 +62,7 @@ export default {
 		 * Set new address book name
 		 *
 		 * @param {string} addressbook The address book name provided in the input
-		 * 
+		 *
 		 */
 		addAddressbook() {
 			let addressbook = this.$refs.addressbook.value

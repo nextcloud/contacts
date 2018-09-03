@@ -76,9 +76,6 @@
 
 // Add address book
 .new-addressbook {
-	input[type='text'] + .icon-confirm, input[type='password'] + .icon-confirm, input[type='email'] + .icon-confirm {
-		opacity: 0.5;
-	}
 	.new-addressbook-input {
 		border-color: var(--color-border-dark);
 	}
