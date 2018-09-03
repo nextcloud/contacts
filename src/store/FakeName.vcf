@@ -8,6 +8,7 @@ MEMBER:urn:uuid:cd314b39-b71a-41cf-b4eb-5cb61dd6fa24
 REV:2017-07-27T05:56:33Z
 UID:5acf667e-1cbf-48a8-87fe-546ee31a0b23
 END:VCARD
+
 BEGIN:VCARD
 VERSION:2.1
 FN:Jean Dupont
@@ -18,11 +19,12 @@ TEL;CELL:+1234 56789
 EMAIL;INTERNET:jean.dupont@example.com
 UID:dfs541fds15
 END:VCARD
+
 BEGIN:VCARD
 VERSION:3.0
 N:Cunningham;Liam;;Mr.;
 FN:Liam Cunningham
-NICKNAME:Begivaing81
+NICKNAME;TYPE=work:Begivaing81
 BDAY;VALUE=text:5/26/1981
 GENDER:male
 ORG:Central Hardware;
@@ -32,6 +34,16 @@ CATEGORIES:Tech,University
 TEL;TYPE=VOICE,HOME;VALUE=text:06-22957835
 ADR;TYPE=HOME:;;Beilen;DR;9413 BA;Netherlands
 END:VCARD
+
+BEGIN:VCARD
+VERSION:4.0
+FN:Simon Perreault
+N:Perreault;Simon;;;ing. jr,M.Sc.
+BDAY:--0203
+ANNIVERSARY:20090808T1430-0500
+GENDER:M
+END:VCARD
+
 BEGIN:VCARD
 VERSION:3.0
 N:Kamiński;Przemysł;;Mr.;

@@ -27,7 +27,7 @@
 		<property-title :icon="'icon-add'" :readable-name="t('contacts', 'Add new property')" />
 
 		<div class="property__row">
-			<div class="property__label">{{ t('contacts', 'Add new property') }}</div>
+			<div class="property__label" />
 
 			<!-- type selector -->
 			<multiselect :options="availableProperties" :placeholder="t('contacts', 'Choose property type')" class="multiselect-vue property__value"
