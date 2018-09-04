@@ -182,9 +182,7 @@ const mutations = {
 				}
 			}
 		})
-		console.log(addressbook) // eslint-disable-line
 		sharee = addressbook.shares.find(search => search === sharee)
-		console.log(sharee) // eslint-disable-line
 		sharee.writeable = !sharee.writeable
 	}
 

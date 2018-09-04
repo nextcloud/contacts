@@ -24,10 +24,11 @@
 	<div>
 		<li v-if="editingName" class="new-addressbook">
 			<form id="new-addressbook-form" name="new-addressbook-form"
-				class="new-addressbook__form" addressbooks="[object Object]" @submit="updateAdressbookName">
+				class="new-addressbook__form" addressbooks="[object Object]"
+				@submit.prevent="updateAddressbookName">
 				<!-- rename addressbook input -->
 				<input :placeholder="addressbook.displayName"
-					:v-model="newName" type="text">
+					v-model="newName" type="text">
 				<input type="submit" value=""
 					class="new-addressbook__submit inline-button icon-confirm action pull-right">
 			</form>
@@ -83,7 +84,7 @@ export default {
 			menuOpen: false,
 			shareOpen: false,
 			editingName: false,
-			newName: '' // new name for addressbook
+			newName: this.addressbook.displayName // new name for addressbook
 		}
 	},
 	computed: {
@@ -103,10 +104,7 @@ export default {
 			{
 				href: '#',
 				icon: 'icon-download',
-				text: 'Download',
-				action: () => {
-					alert('download')
-				}
+				text: 'Download'
 			},
 			{
 				icon: 'icon-rename',
@@ -149,9 +147,7 @@ export default {
 		updateAddressbookName() {
 			let addressbook = this.addressbook
 			let newName = this.newName
-			this.$store.dispatch('renameAddressbook', { addressbook, newName }).then(
-				this.editingName = false
-			)
+			this.$store.dispatch('renameAddressbook', { addressbook, newName }).then(this.editingName = false)
 		}
 	}
 }

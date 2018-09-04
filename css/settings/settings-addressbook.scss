@@ -26,6 +26,7 @@
 	padding: 6px 0;
 	input {
 		border: none;
+		margin: 0;
 	}
 	#new-addressbook-form {
 		width: 100%;
@@ -50,6 +51,7 @@
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		padding-left: 7px;
 	}
 	
 	&__share,
