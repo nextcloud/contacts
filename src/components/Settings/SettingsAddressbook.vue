@@ -94,44 +94,47 @@ export default {
 		// building the popover menu
 		menu() {
 			return [{
-				href: '#',
+				href: '/remote.php/dav/addressbooks/users/admin/Contacts/',
 				icon: 'icon-public',
-				text: 'Copy link',
-				action: () => {
-					alert('share link')
-				}
+				text: t('settings', 'Copy link'),
+				action: ''
 			},
 			{
-				href: '#',
+				href: '/remote.php/dav/addressbooks/users/admin/Contacts/?export',
 				icon: 'icon-download',
-				text: 'Download'
+				text: t('settings', 'Download'),
+				action: ''
 			},
 			{
 				icon: 'icon-rename',
-				text: 'Rename',
-				action: () => {
-					this.renameAddressbook()
-				}
+				text: t('settings', 'Rename'),
+				action: this.renameAddressbook
 			},
 			{
 				icon: 'checkbox',
-				text: 'Enabled',
+				text: this.enabled ? t('settings', 'Enabled') : t('settings', 'Disabled'),
 				input: 'checkbox',
 				model: this.enabled,
-				action: () => {
-					this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
-				}
+				action: this.toggleAddressbookEnabled
 			},
 			{
 				icon: 'icon-delete',
-				text: 'Delete',
-				action: () => {
-					this.$store.dispatch('deleteAddressbook', this.addressbook)
-				}
+				text: t('settings', 'Delete'),
+				action: this.deleteAddressbook
 			}]
 		}
 	},
+	mounted() {
+		// required if popup needs to stay opened after menu click
+		this.popupItem = this.$el
+	},
 	methods: {
+		toggleAddressbookEnabled() {
+			this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
+		},
+		deleteAddressbook() {
+			this.$store.dispatch('deleteAddressbook', this.addressbook)
+		},
 		toggleShare() {
 			this.shareOpen = !this.shareOpen
 		},
