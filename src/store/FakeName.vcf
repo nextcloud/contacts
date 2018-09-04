@@ -10,6 +10,17 @@ UID:5acf667e-1cbf-48a8-87fe-546ee31a0b23
 END:VCARD
 
 BEGIN:VCARD
+VERSION:2.1
+FN:Jean Dupont
+N:Dupont;Jean
+ADR;WORK;PREF;QUOTED-PRINTABLE:;Bruxelles 1200=Belgique;6A Rue Th. Decuyper
+LABEL;QUOTED-PRINTABLE;WORK;PREF:Rue Th. Decuyper 6A=Bruxelles 1200=Belgique
+TEL;CELL:+1234 56789
+EMAIL;INTERNET:jean.dupont@example.com
+UID:dfs541fds15
+END:VCARD
+
+BEGIN:VCARD
 VERSION:4.0
 KIND:org
 FN:ABC Marketing ORG

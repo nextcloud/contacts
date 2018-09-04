@@ -32,8 +32,8 @@
 		margin-bottom: $grid-height-unit;
 	}
 	// no delete icon on addressbook selector
-	&--addressbooks .icon-delete {
-		display: none;
+	&--addressbooks &__delete {
+		display: none !important;
 	}
 	
 	&__delete {

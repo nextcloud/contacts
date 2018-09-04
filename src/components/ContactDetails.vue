@@ -83,13 +83,16 @@
 
 				<!-- properties iteration -->
 				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
-				<contact-details-property v-for="(property, index) in sortedProperties" :key="index+contact.key" :index="index"
+				<contact-property v-for="(property, index) in sortedProperties" :key="index+contact.key" :index="index"
 					:sorted-properties="sortedProperties" :property="property" :contact="contact"
 					@updatedcontact="updateContact" />
 
 				<!-- addressbook change select - no last property because class is not applied here-->
 				<property-select :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
 					:is-last-property="false" :options="addressbooksOptions" class="property--addressbooks" />
+
+				<!-- new property select -->
+				<add-new-prop :contact="contact" />
 			</section>
 		</template>
 	</div>
@@ -105,7 +108,8 @@ import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps.js'
 
 import PopoverMenu from './core/popoverMenu'
-import ContactDetailsProperty from './ContactDetails/ContactDetailsProperty'
+import ContactProperty from './ContactDetails/ContactDetailsProperty'
+import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
 import PropertySelect from './Properties/PropertySelect'
 import PropertyGroups from './Properties/PropertyGroups'
 
@@ -116,9 +120,10 @@ export default {
 
 	components: {
 		PopoverMenu,
-		ContactDetailsProperty,
+		ContactProperty,
 		PropertySelect,
-		PropertyGroups
+		PropertyGroups,
+		AddNewProp
 	},
 
 	directives: {
