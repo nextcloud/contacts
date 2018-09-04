@@ -35,18 +35,22 @@ const mutations = {
 	appendGroupsFromContacts(state, contacts) {
 		// init groups list
 		let groups = Object.values(contacts)
-			.map(contact => contact.groups.map(group => {
-				// extend group to model
-				return {
-					name: group,
-					contacts: []
-				}
-			})[0])
-		// ensure we only have one group of each
-		state.groups = state.groups.concat(groups)
-			.filter(function(group, index, self) {
-				return group && self.findIndex(search => search && search.name === group.name) === index
-			})
+			// iterate on every contacts
+			.reduce((groups, contact) => {
+				// transform group names into Object
+				contact.groups.map(groupName => {
+					// overriding existing groups: remove duplicates
+					groups[groupName] = {
+						name: groupName,
+						contacts: []
+					}
+				})
+				return groups
+			}, {})
+
+		// store in state
+		state.groups = Object.values(groups)
+
 		// append keys to groups
 		Object.values(contacts)
 			.forEach(contact => {
