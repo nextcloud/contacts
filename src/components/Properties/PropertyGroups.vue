@@ -25,11 +25,14 @@
 
 		<div class="property__row">
 			<div class="property__label">{{ propModel.readableName }}</div>
+
 			<!-- multiselect taggable groups with a limit to 3 groups shown -->
 			<multiselect v-model="localValue" :options="groups" :placeholder="t('contacts', 'Add contact in group')"
 				:limit="3" :multiple="true" :taggable="true"
 				:close-on-select="false" tag-placeholder="create" class="multiselect-vue property__value"
-				@tag="validateGroup" @select="addContactToGroup" @remove="removeContactToGroup">
+				@input="updateValue" @tag="validateGroup" @select="addContactToGroup"
+				@remove="removeContactToGroup">
+
 				<!-- show how many groups are hidden and add tooltip -->
 				<span v-tooltip.auto="formatGroupsTitle" slot="limit" class="multiselect__limit">+{{ localValue.length - 3 }}</span>
 				<span slot="noResult">{{ t('settings', 'No results') }}</span>

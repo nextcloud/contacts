@@ -30,7 +30,8 @@ BEGIN:VCARD
 VERSION:3.0
 N:Cunningham;Liam;;Mr.;
 FN:Liam Cunningham
-NICKNAME;TYPE=work:Begivaing81
+NICKNAME;TYPE=work:Begivaing81,Test
+NICKNAME:Pwet
 BDAY;VALUE=text:5/26/1981
 GENDER:male
 ORG:Central Hardware;
