@@ -21,6 +21,12 @@ UID:dfs541fds15
 END:VCARD
 
 BEGIN:VCARD
+VERSION:4.0
+KIND:org
+FN:ABC Marketing ORG
+ORG:ABC\, Inc.;North American Division;Marketing
+END:VCARD
+BEGIN:VCARD
 VERSION:3.0
 N:Cunningham;Liam;;Mr.;
 FN:Liam Cunningham

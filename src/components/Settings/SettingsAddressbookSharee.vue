@@ -21,10 +21,10 @@
 -->
 
 <template>
-	<li class="addressbook__sharee">
+	<li class="addressbook-sharee">
 		<span :class="sharee.group ? 'icon-group' : 'icon-user'" class="icon" />
-		<span class="addressbook__sharee__identifier">{{ sharee.displayname }}</span>
-		<span class="addressbook__sharee__utils">
+		<span class="addressbook-sharee__identifier">{{ sharee.displayname }}</span>
+		<span class="addressbook-sharee__utils">
 			<input
 				:id="sharee.displayname"
 				v-model="writeable"
@@ -32,7 +32,7 @@
 				name="editable"
 				type="checkbox">
 			<label :for="sharee.displayName" @click="editSharee"> can edit</label>
-			<span href="#" title="Delete"
+			<a href="#" title="Delete"
 				class="icon-delete"
 				@click="deleteSharee" />
 		</span>

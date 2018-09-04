@@ -82,14 +82,16 @@
 			<section class="contact-details">
 
 				<!-- properties iteration -->
-				<contact-property v-for="(property, index) in sortedProperties" :key="index" :index="index"
+				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
+				<contact-property v-for="(property, index) in sortedProperties" :key="index+contact.key" :index="index"
 					:sorted-properties="sortedProperties" :property="property" :contact="contact"
 					@updatedcontact="updateContact" />
 
-				<!-- addressbook change select -->
-				<property-select :prop-model="addressbookModel" :value.sync="addressbook"
-					:options="addressbooksOptions" class="property--addressbooks" />
+				<!-- addressbook change select - no last property because class is not applied here-->
+				<property-select :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
+					:is-last-property="false" :options="addressbooksOptions" class="property--addressbooks" />
 
+				<!-- new property select -->
 				<add-new-prop :contact="contact" />
 			</section>
 		</template>
@@ -249,6 +251,7 @@ export default {
 		updateContact() {
 			this.$store.dispatch('updateContact', this.contact)
 		},
+
 		/**
 		 * Debounce the contact update for the header props
 		 * photo, fn, org, title
@@ -263,6 +266,13 @@ export default {
 		},
 		toggleMenu() {
 			this.openedMenu = !this.openedMenu
+		},
+
+		/**
+		 * Dispatch contact deletion request
+		 */
+		deleteContact() {
+			this.$store.dispatch('deleteContact', this.contact)
 		},
 
 		/**
