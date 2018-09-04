@@ -438,7 +438,7 @@ angular.module('contactsApp')
 		} else {
 			angular.extend(this.props, {
 				version: [{value: '3.0'}],
-				fn: [{value: t('contacts', 'New contact')}]
+				fn: [{value: ''}]
 			});
 			this.data.addressData = $filter('JSON2vCard')(this.props);
 		}
