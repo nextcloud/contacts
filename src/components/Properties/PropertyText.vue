@@ -105,6 +105,7 @@ export default {
 		/**
 		 * Since we're updating a local data based on the value prop,
 		 * we need to make sure to update the local data on pop change
+		 * TODO: check if this create performance drop
 		 */
 		value: function() {
 			this.localValue = this.value
