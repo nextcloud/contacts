@@ -23,27 +23,25 @@
 <template>
 	<div>
 		<li v-if="editingName" class="new-addressbook">
-			<form id="new-addressbook-form" name="new-addressbook-form"
-				class="new-addressbook__form" addressbooks="[object Object]"
+			<form id="new-addressbook-form" name="new-addressbook-form" class="new-addressbook__form"
 				@submit.prevent="updateAddressbookName">
 				<!-- rename addressbook input -->
 				<input :placeholder="addressbook.displayName"
 					v-model="newName" type="text">
 				<input type="submit" value=""
-					class="new-addressbook__submit inline-button icon-confirm action pull-right">
+					class="new-addressbook__submit icon-confirm">
 			</form>
 		</li>
-		<li v-else :class="{'disabled': !addressbook.enabled}" class="addressbook">
+		<li v-else :class="{disabled: !addressbook.enabled}" class="addressbook">
 			<!-- addressbook name -->
 			<span class="addressbook__name">{{ addressbook.displayName }}</span>
 			<!-- sharing button -->
 			<a href="#" class="addressbook__share icon-shared"
 				@click="toggleShare" />
 			<!-- popovermenu -->
-			<a v-click-outside="closeMenu" href="#" class="addressbook__menu"
-				@click="toggleMenu">
-				<div class="icon-more" />
-				<div :class="{'open': menuOpen}" class="popovermenu">
+			<a v-click-outside="closeMenu" href="#" class="addressbook__menu">
+				<div class="icon-more" @click="toggleMenu" />
+				<div :class="{open: menuOpen}" class="popovermenu">
 					<popover-menu :menu="menu" />
 				</div>
 			</a>
@@ -65,8 +63,7 @@ export default {
 	components: {
 		popoverMenu,
 		shareAddressBook,
-		renameAddressBookField,
-		clickOutside
+		renameAddressBookField
 	},
 	directives: {
 		clickOutside
