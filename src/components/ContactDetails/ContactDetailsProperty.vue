@@ -24,8 +24,8 @@
 	<!-- If not in the rfcProps then we don't want to display it -->
 	<component v-if="propModel && propType !== 'unknown'" :is="componentInstance" :select-type.sync="selectType"
 		:prop-model="propModel" :value.sync="value" :is-first-property="isFirstProperty"
-		:is-last-property="isLastProperty" :class="{'property--last': isLastProperty}" :contact="contact"
-		@delete="deleteProp" />
+		:property="property" :is-last-property="isLastProperty" :class="{'property--last': isLastProperty}"
+		:contact="contact" @delete="deleteProp" />
 </template>
 
 <script>
@@ -185,8 +185,9 @@ export default {
 					this.property.isStructuredValue
 						? this.property.setValues([data])
 						: this.property.setValues(data)
+				} else {
+					this.property.setValue(data)
 				}
-				this.property.setValue(data)
 				this.$emit('updatedcontact')
 			}
 		},
