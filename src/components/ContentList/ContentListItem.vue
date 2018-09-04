@@ -36,6 +36,11 @@ export default {
 		selectedContact() {
 			return this.$route.params.selectedContact
 		},
+
+		/**
+		 * avatar color based on server toRgb method and the displayName
+		 * @returns {String} the color in css format
+		 */
 		colorAvatar() {
 			try {
 				let color = this.contact.uid.toRgb()
@@ -46,13 +51,25 @@ export default {
 		}
 	},
 	methods: {
+		/**
+		 * Checkbox management method
+		 */
 		toggleSelect() {
 			// toggle checkbox here because we stop the propagation to not trigger selectContact
+			// therefore the selectContact prevent the checkbox label+input propagation
 			this.$refs.selected.checked = !this.$refs.selected.checked
 		},
+
+		/**
+		 * Dispatch contact deletion request
+		 */
 		deleteContact() {
 			this.$store.dispatch('deleteContact', this.contact)
 		},
+
+		/**
+		 * Select this contact within the list
+		 */
 		selectContact() {
 			// change url with router
 			this.$router.push({ name: 'contact', params: { selectedGroup: this.selectedGroup, selectedContact: this.contact.key } })
