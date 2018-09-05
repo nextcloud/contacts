@@ -31,9 +31,10 @@
 		</a>
 		<!-- If item.input is set instead, an put will be used -->
 		<span v-else-if="item.input" class="menuitem">
-			<input :id="item.key" :type="item.input" :class="item.input"
-				v-model="item.model">
-			<label :for="item.key" @click="item.action">{{ item.text }}</label>
+			<span v-if="item.input === 'text'" :class="item.icon" />
+			<input :id="key" :type="item.input" :class="item.input"
+				v-model="item.model" :placeholder="item.text" @change="item.action">
+			<label v-if="item.input !== 'text'" :for="key">{{ item.text }}</label>
 		</span>
 		<!-- If item.action is set instead, a button will be used -->
 		<button v-else-if="item.action" @click="item.action">
@@ -64,6 +65,12 @@ export default {
 				}
 			},
 			required: true
+		}
+	},
+	computed: {
+		// random key for inputs binding
+		key() {
+			return Math.round(Math.random() * 16 * 1000000).toString(16)
 		}
 	}
 }
