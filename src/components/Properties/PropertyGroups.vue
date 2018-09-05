@@ -21,15 +21,18 @@
   -->
 
 <template>
-	<div v-if="propModel" class="grid-span-1 property">
+	<div v-if="propModel" class="grid-span-2 property">
 
 		<div class="property__row">
 			<div class="property__label">{{ propModel.readableName }}</div>
+
 			<!-- multiselect taggable groups with a limit to 3 groups shown -->
 			<multiselect v-model="localValue" :options="groups" :placeholder="t('contacts', 'Add contact in group')"
 				:limit="3" :multiple="true" :taggable="true"
 				:close-on-select="false" tag-placeholder="create" class="multiselect-vue property__value"
-				@tag="validateGroup" @select="addContactToGroup" @remove="removeContactToGroup">
+				@input="updateValue" @tag="validateGroup" @select="addContactToGroup"
+				@remove="removeContactToGroup">
+
 				<!-- show how many groups are hidden and add tooltip -->
 				<span v-tooltip.auto="formatGroupsTitle" slot="limit" class="multiselect__limit">+{{ localValue.length - 3 }}</span>
 				<span slot="noResult">{{ t('settings', 'No results') }}</span>
@@ -92,6 +95,7 @@ export default {
 		/**
 		 * Since we're updating a local data based on the value prop,
 		 * we need to make sure to update the local data on pop change
+		 * TODO: check if this create performance drop
 		 */
 		value: function() {
 			this.localValue = this.value

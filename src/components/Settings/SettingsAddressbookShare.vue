@@ -26,14 +26,13 @@
 			id="users-groups-search"
 			:options="usersOrGroups"
 			:searchable="true"
-			:loading="isLoading"
 			:internal-search="false"
 			:options-limit="250"
 			:limit="3"
 			:max-height="600"
 			:show-no-results="true"
 			:placeholder="placeholder"
-			:class="{ 'showContent': inputGiven }"
+			:class="{ 'showContent': inputGiven, 'icon-loading': isLoading }"
 			open-direction="bottom"
 			class="multiselect-vue"
 			@search-change="asyncFind"
@@ -51,7 +50,7 @@
 			<span slot="noResult">{{ noResult }} </span>
 		</multiselect>
 		<!-- list of user or groups addressbook is shared with -->
-		<ul v-if="addressbook.shares.length > 0" class="addressbook__shares__list">
+		<ul v-if="addressbook.shares.length > 0" class="addressbook-shares__list">
 			<address-book-sharee v-for="sharee in addressbook.shares" :key="sharee.displayname + sharee.group" :sharee="sharee" />
 		</ul>
 	</div>
@@ -98,6 +97,10 @@ export default {
 			return t('contacts', 'No users or groups')
 		}
 	},
+	mounted() {
+		// This ensures that the multiselect input is in focus as soon as the user clicks share
+		document.getElementById('users-groups-search').focus()
+	},
 	methods: {
 		/**
 		 * Share addressbook
@@ -108,7 +111,6 @@ export default {
 			let addressbook = this.addressbook
 			this.$store.dispatch('shareAddressbook', { addressbook, sharee, id, group })
 		},
-
 		/**
 		 * Format responses from axios.all and add them to the option array
 		 *
@@ -139,7 +141,6 @@ export default {
 					group
 				}
 			}))
-			console.log(this.usersOrGroups) // eslint-disable-line
 		},
 
 		/**
@@ -168,12 +169,12 @@ export default {
 						console.debug(error)
 					}
 				}).then(() => {
-
 					this.isLoading = false
+					this.inputGiven = true
 				})
-				this.inputGiven = true
 			} else {
 				this.inputGiven = false
+				this.isLoading = false
 			}
 		}, 500)
 	}

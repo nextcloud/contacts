@@ -120,9 +120,9 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get groups() {
-		let prop = this.vCard.getFirstProperty('categories')
-		if (prop) {
-			return this.vCard.getFirstProperty('categories').getValues()
+		let groupsProp = this.vCard.getFirstProperty('categories')
+		if (groupsProp) {
+			return groupsProp.getValues()
 		}
 		return []
 	}

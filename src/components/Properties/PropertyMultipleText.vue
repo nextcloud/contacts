@@ -38,15 +38,32 @@
 			<!-- no options, empty space -->
 			<div v-else class="property__label">{{ propModel.readableName }}</div>
 
+			<!-- show the first input if not -->
+			<input v-if="!property.isStructuredValue" v-model.trim="localValue[0]" class="property__value"
+				type="text" @input="updateValue">
+
 			<!-- delete the prop -->
 			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
 		</div>
 
-		<div v-for="index in propModel.displayOrder" :key="index" class="property__row">
-			<div class="property__label">{{ propModel.readableValues[index] }}</div>
-			<input v-model.trim="localValue[index]" class="property__value" type="text"
-				@input="updateValue">
-		</div>
+		<!-- force order based on model -->
+		<template v-if="propModel.displayOrder && propModel.readableValues">
+			<div v-for="index in propModel.displayOrder" :key="index" class="property__row">
+				<div class="property__label">{{ propModel.readableValues[index] }}</div>
+				<input v-model.trim="localValue[index]" class="property__value" type="text"
+					@input="updateValue">
+			</div>
+		</template>
+
+		<!-- no order enforced: just iterate on all the values -->
+		<template v-else>
+			<div v-for="(value, index) in localValue" v-if="index > 0" :key="index"
+				class="property__row">
+				<div class="property__label" />
+				<input v-model.trim="localValue[index]" class="property__value" type="text"
+					@input="updateValue">
+			</div>
+		</template>
 	</div>
 </template>
 
@@ -78,6 +95,11 @@ export default {
 			default: () => [],
 			required: true
 		},
+		property: {
+			type: Object,
+			default: () => {},
+			required: true
+		},
 		isFirstProperty: {
 			type: Boolean,
 			default: true
@@ -99,9 +121,9 @@ export default {
 		gridLength() {
 			let hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
 			let isLast = this.isLastProperty
+			let hasValueNames = this.propModel.readableValues ? 1 : 0
 			let length = this.propModel.displayOrder ? this.propModel.displayOrder.length : this.value.length
-			// always have a property__label + one extra space at the end
-			return 1 + hasTitle + length + isLast
+			return hasValueNames + hasTitle + length + isLast
 		}
 	},
 
@@ -109,6 +131,7 @@ export default {
 		/**
 		 * Since we're updating a local data based on the value prop,
 		 * we need to make sure to update the local data on pop change
+		 * TODO: check if this create performance drop
 		 */
 		value: function() {
 			this.localValue = this.value
