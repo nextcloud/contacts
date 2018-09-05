@@ -25,8 +25,8 @@
 		@submit.prevent.stop="addAddressbook">
 		<input id="new-addressbook" ref="addressbook" class="new-addressbook-input"
 			placeholder="Address book name"
+			:pattern="addressBookRegex"			
 			type="text"
-			pattern="[a-zA-Z0-9À-ÿ\s-_.!?#|()]"
 			autocomplete="off" autocorrect="off"
 			spellcheck="false"
 			tooltip-enable="!newAddressbookForm.$pristine"
@@ -50,6 +50,7 @@ export default {
 	},
 	data() {
 		return {
+			addressBookRegex: new RegExp("/^[a-zA-Z0-9À-ÿ\s_.!?#|()-]+$/i")
 		}
 	},
 	computed: {
