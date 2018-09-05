@@ -41,16 +41,25 @@
 			<!-- delete the prop -->
 			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
 
-			<input v-model.trim="localValue" class="property__value" type="text"
-				@input="updateValue">
+			<!-- Fake input in the background to display the correct date
+			according to the user locale. Tab navigation is ignored here -->
+			<input :value="formatedDateTime" class="property__value" type="text"
+				tabindex="-1">
+
+			<!-- Real input where the picker shows -->
+			<date-picker :value="localValue" :minute-step="10" :lang="lang"
+				:clearable="false" :first-day-of-week="firstDay" :type="inputType"
+				confirm @confirm="updateValue" />
 		</div>
 	</div>
 </template>
 
 <script>
 import Multiselect from 'vue-multiselect'
+import DatePicker from 'vue2-datepicker'
 import propertyTitle from './PropertyTitle'
 import debounce from 'debounce'
+import moment from 'moment'
 import { VCardTime } from 'ical.js'
 
 export default {
@@ -58,7 +67,8 @@ export default {
 
 	components: {
 		Multiselect,
-		propertyTitle
+		propertyTitle,
+		DatePicker
 	},
 
 	props: {
@@ -76,6 +86,11 @@ export default {
 			default: '',
 			required: true
 		},
+		property: {
+			type: Object,
+			default: () => {},
+			required: true
+		},
 		isFirstProperty: {
 			type: Boolean,
 			default: true
@@ -85,11 +100,30 @@ export default {
 			default: true
 		}
 	},
-
 	data() {
 		return {
-			localValue: this.value,
-			localType: this.selectType
+			// use javascript Date
+			localValue: this.value.toJSDate(),
+			localType: this.selectType,
+
+			// input type
+			inputType: this.property.getDefaultType() === 'date-time' || this.property.getDefaultType() === 'date-and-or-time'
+				? 'datetime'
+				: this.property.getDefaultType() === 'date'
+					? 'date'
+					: 'time',
+
+			// locale and lang data
+			locale: OC.getLocale().replace('_', '-').toLowerCase(),
+			firstDay: window.firstDay,
+			lang: {
+				days: window.dayNamesShort,
+				months: window.monthNamesShort,
+				placeholder: {
+					date: t('contacts', 'Select Date'),
+					dateRange: t('contacts', 'Select Date Range')
+				}
+			}
 		}
 	},
 
@@ -99,6 +133,15 @@ export default {
 			let isLast = this.isLastProperty ? 1 : 0
 			// length is always one & add one space at the end
 			return hasTitle + 1 + isLast
+		},
+		/**
+		 * Format time with locale to display only
+		 * Using the Object as hared data since it's the only way
+		 * for us to forcefully omit some data (no year, or no time... etc)
+		 * and ths only common syntax between js Date, moment and VCardTime
+		 */
+		formatedDateTime() {
+			return moment(this.localValue.toJSON()).format('LLLL')
 		}
 	},
 
@@ -109,11 +152,15 @@ export default {
 		 * TODO: check if this create performance drop
 		 */
 		value: function() {
-			this.localValue = this.value
+			this.localValue = this.value.toJSDate()
 		},
 		selectType: function() {
 			this.localType = this.selectType
 		}
+	},
+	mounted() {
+		require('moment/locale/' + this.locale)
+		moment.locale(this.locale)
 	},
 
 	methods: {
@@ -125,11 +172,18 @@ export default {
 			this.$emit('delete')
 		},
 
+		formatDateTime(data) {
+			return moment(data)
+		},
+
 		/**
 		 * Debounce and send update event to parent
 		 */
 		updateValue: debounce(function(e) {
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
+			// Use moment to convert the JsDate to Object
+			console.log(this.value)
+			this.localValue = new VCardTime(moment(e).toObject())
 			this.$emit('update:value', this.localValue)
 		}, 500),
 
