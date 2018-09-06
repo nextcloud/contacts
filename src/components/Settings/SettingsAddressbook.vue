@@ -55,8 +55,6 @@
 import popoverMenu from '../core/popoverMenu'
 import shareAddressBook from './SettingsAddressbookShare'
 import renameAddressBookField from './SettingsRenameAddressbookField'
-
-import VueClipboard from 'vue-clipboard2'
 import clickOutside from 'vue-click-outside'
 
 export default {
@@ -67,8 +65,7 @@ export default {
 		renameAddressBookField
 	},
 	directives: {
-		clickOutside,
-		VueClipboard
+		clickOutside
 	},
 	props: {
 		addressbook: {
@@ -94,30 +91,45 @@ export default {
 		},
 		// building the popover menu
 		menu() {
-			return [{
-				href: '#',
-				icon: 'icon-public',
-				text: !this.copied ? t('contacts', 'Copy link') : this.copySuccess ? t('contacts', 'Copied') : t('contacts', 'Can not copy'),
-				action: this.copyLink
-			},
-			{
-				href: this.addressbook.url + '?export',
-				icon: 'icon-download',
-				text: t('contacts', 'Download'),
-				action: ''
-			},
-			{
-				icon: 'icon-rename',
-				text: t('contacts', 'Rename'),
-				action: this.renameAddressbook
-			},
-			{
-				icon: 'checkbox',
-				text: this.enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled'),
-				input: 'checkbox',
-				model: this.enabled,
-				action: this.toggleAddressbookEnabled
-			}]
+			let menu =  
+				[{
+					href: this.addressbook.url,
+					icon: 'icon-public',
+					text: !this.copied
+						? t('contacts', 'Copy link')
+						: this.copySuccess
+							? t('contacts', 'Copied')
+							: t('contacts', 'Can not copy'),
+					action: this.copyLink
+				},
+				{
+					href: this.addressbook.url + '?export',
+					icon: 'icon-download',
+					text: t('contacts', 'Download'),
+					action: null
+				},
+				{
+					icon: 'icon-rename',
+					text: t('contacts', 'Rename'),
+					action: this.renameAddressbook
+				},
+				{
+					icon: 'checkbox',
+					text: this.enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled'),
+					input: 'checkbox',
+					key: 'enableAddressbook',
+					model: this.enabled,
+					action: this.toggleAddressbookEnabled
+				}]
+			// check to ensure last addressbook is not deleted.
+			if (this.$store.getters.getAddressbooks.length > 1 ) {
+				menu.push({
+					icon: 'icon-delete',
+					text: t('contacts', 'Delete'),
+					action: this.deleteAddressbook
+				})
+			}
+			return menu
 		}
 	},
 	mounted() {
@@ -150,8 +162,6 @@ export default {
 		},
 		copyLink() {
 			// copy link for addressbook to clipboard
-			this.copySuccess = true
-			this.copied = true
 			this.$copyText(this.addressbook.url).then(e => {
 				this.copySuccess = true
 				this.copied = true
@@ -160,10 +170,7 @@ export default {
 				this.copied = true
 
 			})
-			setTimeout(function() { 
-				console.log('copied')
-				this.copied = false 
-			}, 500)
+			setTimeout(() => { this.copied = false }, 1500)
 		}
 	}
 }
