@@ -26,8 +26,10 @@ import addressbooks from './addressbooks'
 import contacts from './contacts'
 import groups from './groups'
 import importState from './importState'
+import VueClipboard from 'vue-clipboard2'
 
 Vue.use(Vuex)
+Vue.use(VueClipboard)
 
 const mutations = {}
 
