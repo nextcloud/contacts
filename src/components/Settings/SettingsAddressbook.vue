@@ -119,7 +119,7 @@ export default {
 				model: this.enabled,
 				action: this.toggleAddressbookEnabled
 			},
-			// check to ensure last addressbook is not deleted. 
+			// check to ensure last addressbook is not deleted.
 			this.$store.getters.getAddressbooks.length > 1
 				? {
 					icon: 'icon-delete',
