@@ -43,11 +43,11 @@
 
 			<!-- Fake input in the background to display the correct date
 			according to the user locale. Tab navigation is ignored here -->
-			<input :value="formatedDateTime" class="property__value" type="text"
-				tabindex="-1">
-
+			<input :value="formatedDateTime" class="property__value property__value--localedate" type="text"
+				tabindex="-1"></div>
+<div class="property__row">
 			<!-- Real input where the picker shows -->
-			<date-picker :value="localValue" :minute-step="10" :lang="lang"
+			<date-picker :value="localValue.toJSDate()" :minute-step="10" :lang="lang"
 				:clearable="false" :first-day-of-week="firstDay" :type="inputType"
 				confirm @confirm="updateValue" />
 		</div>
@@ -102,11 +102,10 @@ export default {
 	},
 	data() {
 		return {
-			// use javascript Date
-			localValue: this.value.toJSDate(),
+			localValue: this.value,
 			localType: this.selectType,
 
-			// input type
+			// input type following DatePicker docs
 			inputType: this.property.getDefaultType() === 'date-time' || this.property.getDefaultType() === 'date-and-or-time'
 				? 'datetime'
 				: this.property.getDefaultType() === 'date'
@@ -114,14 +113,14 @@ export default {
 					: 'time',
 
 			// locale and lang data
+			// convert format like en_GB to en-gb for `moment.js`
 			locale: OC.getLocale().replace('_', '-').toLowerCase(),
-			firstDay: window.firstDay,
+			firstDay: window.firstDay,			// provided by nextcloud
 			lang: {
-				days: window.dayNamesShort,
-				months: window.monthNamesShort,
+				days: window.dayNamesShort,		// provided by nextcloud
+				months: window.monthNamesShort,	// provided by nextcloud
 				placeholder: {
-					date: t('contacts', 'Select Date'),
-					dateRange: t('contacts', 'Select Date Range')
+					date: t('contacts', 'Select Date')
 				}
 			}
 		}
@@ -134,6 +133,7 @@ export default {
 			// length is always one & add one space at the end
 			return hasTitle + 1 + isLast
 		},
+		
 		/**
 		 * Format time with locale to display only
 		 * Using the Object as hared data since it's the only way
@@ -141,7 +141,15 @@ export default {
 		 * and ths only common syntax between js Date, moment and VCardTime
 		 */
 		formatedDateTime() {
-			return moment(this.localValue.toJSON()).format('LLLL')
+			return moment(this.localValue.toJSDate().toJSON())
+				.locale(this.locale)
+				.format(
+					this.inputType === 'datetime'
+						? 'LLLL'	// date & time display
+						: this.inputType === 'date'
+							? 'LL'	// only date
+							: 'LTS'	// only time
+				)
 		}
 	},
 
@@ -152,15 +160,29 @@ export default {
 		 * TODO: check if this create performance drop
 		 */
 		value: function() {
-			this.localValue = this.value.toJSDate()
+			this.localValue = this.value
 		},
 		selectType: function() {
 			this.localType = this.selectType
 		}
 	},
+
 	mounted() {
-		require('moment/locale/' + this.locale)
-		moment.locale(this.locale)
+		// Load the locale
+		try {
+			// default load e.g. fr-fr
+			require('moment/locale/' + this.locale)
+		} catch(e) {
+			try {
+				// if fr-fr doesn't exists, fallback to fr
+				require('moment/locale/' + this.locale.split('-')[0])
+				this.locale = this.locale.split('-')[0]
+			} catch(e) {
+				// last scenario: english
+				require('moment/locale/en')
+				this.locale = 'en'
+			}
+		}
 	},
 
 	methods: {
@@ -172,18 +194,15 @@ export default {
 			this.$emit('delete')
 		},
 
-		formatDateTime(data) {
-			return moment(data)
-		},
-
 		/**
 		 * Debounce and send update event to parent
 		 */
 		updateValue: debounce(function(e) {
+			// reset the VCardTime component to the selected date/time
+			this.localValue.resetTo(...moment(e).toArray())
+
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			// Use moment to convert the JsDate to Object
-			console.log(this.value)
-			this.localValue = new VCardTime(moment(e).toObject())
 			this.$emit('update:value', this.localValue)
 		}, 500),
 
