@@ -206,13 +206,15 @@ const actions = {
 			id: 'ab1',
 			displayName: 'Addressbook 1',
 			enabled: true,
-			owner: 'admin'
+			owner: 'admin',
+			url: '/remote.php/dav/ab1'
 			// dav: addressbook
 		}, {
 			id: 'ab2',
 			displayName: 'Addressbook 2',
 			enabled: true,
-			owner: 'admin'
+			owner: 'admin',
+			url: '/remote.php/dav/ab2'
 			// dav: addressbook
 		}]
 		// })
