@@ -91,41 +91,45 @@ export default {
 		},
 		// building the popover menu
 		menu() {
-			return [{
-				href: '#',
-				icon: 'icon-public',
-				text: !this.copied
-					? t('contacts', 'Copy link')
-					: this.copySuccess
-						? t('contacts', 'Copied')
-						: t('contacts', 'Can not copy'),
-				action: this.copyLink
-			},
-			{
-				href: this.addressbook.url + '?export',
-				icon: 'icon-download',
-				text: t('contacts', 'Download'),
-				action: ''
-			},
-			{
-				icon: 'icon-rename',
-				text: t('contacts', 'Rename'),
-				action: this.renameAddressbook
-			},
-			{
-				icon: 'checkbox',
-				text: this.enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled'),
-				input: 'checkbox',
-				model: this.enabled,
-				action: this.toggleAddressbookEnabled
-			},
+			let menu =  
+				[{
+					href: this.addressbook.url,
+					icon: 'icon-public',
+					text: !this.copied
+						? t('contacts', 'Copy link')
+						: this.copySuccess
+							? t('contacts', 'Copied')
+							: t('contacts', 'Can not copy'),
+					action: this.copyLink
+				},
+				{
+					href: this.addressbook.url + '?export',
+					icon: 'icon-download',
+					text: t('contacts', 'Download'),
+					action: null
+				},
+				{
+					icon: 'icon-rename',
+					text: t('contacts', 'Rename'),
+					action: this.renameAddressbook
+				},
+				{
+					icon: 'checkbox',
+					text: this.enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled'),
+					input: 'checkbox',
+					key: 'enableAddressbook',
+					model: this.enabled,
+					action: this.toggleAddressbookEnabled
+				}]
 			// check to ensure last addressbook is not deleted.
-			this.$store.getters.getAddressbooks.length > 1
-				? {
+			if (this.$store.getters.getAddressbooks.length > 1 ) {
+				menu.push({
 					icon: 'icon-delete',
 					text: t('contacts', 'Delete'),
 					action: this.deleteAddressbook
-				} : {}]
+				})
+			}
+			return menu
 		}
 	},
 	mounted() {
