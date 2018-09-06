@@ -41,13 +41,9 @@
 			<header :style="{ 'backgroundColor': colorAvatar }">
 
 				<!-- avatar and upload photo -->
-				<div id="contact-header-avatar">
-					<div class="contact-avatar-background" />
-					<img v-if="contact.photo">
-					<input id="contact-avatar-upload" type="file" class="hidden"
-						accept="image/*">
-					<label v-tooltip.auto="t('contacts', 'Upload a new picture')" for="contact-avatar-upload" class="icon-upload-white" />
-				</div>
+				<contact-avatar :avatar="contact.photo" />
+				<!-- QUESTION: is it better to pass contact as a prop or get it from the store inside
+				contact-avatar ?  :avatar="contact.photo"-->
 
 				<!-- fullname, org, title -->
 				<div id="contact-header-infos">
@@ -112,6 +108,8 @@ import ContactProperty from './ContactDetails/ContactDetailsProperty'
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
 import PropertySelect from './Properties/PropertySelect'
 import PropertyGroups from './Properties/PropertyGroups'
+import ContactAvatar from './ContactDetails/ContactDetailsAvatar'
+
 
 Vue.use(VTooltip)
 
@@ -123,7 +121,8 @@ export default {
 		ContactProperty,
 		PropertySelect,
 		PropertyGroups,
-		AddNewProp
+		AddNewProp,
+		ContactAvatar
 	},
 
 	directives: {
