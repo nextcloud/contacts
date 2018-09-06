@@ -23,13 +23,13 @@
 <template>
 	<div>
 		<li v-if="editingName" class="new-addressbook">
-			<form id="new-addressbook-form" name="new-addressbook-form" class="new-addressbook__form"
+			<form id="rename-addressbook__form" name="rename-addressbook__form" class="rename-addressbook__form"
 				@submit.prevent="updateAddressbookName">
 				<!-- rename addressbook input -->
 				<input :placeholder="addressbook.displayName"
 					v-model="newName" type="text">
 				<input type="submit" value=""
-					class="new-addressbook__submit icon-confirm">
+					class="rename-addressbook__submit icon-confirm">
 			</form>
 		</li>
 		<li v-else :class="{disabled: !addressbook.enabled}" class="addressbook">
@@ -52,10 +52,14 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import popoverMenu from '../core/popoverMenu'
 import shareAddressBook from './SettingsAddressbookShare'
 import renameAddressBookField from './SettingsRenameAddressbookField'
 import clickOutside from 'vue-click-outside'
+import VueClipboard from 'vue-clipboard2'
+
+Vue.use(VueClipboard)
 
 export default {
 	name: 'SettingsAddressbook',
@@ -91,7 +95,7 @@ export default {
 		},
 		// building the popover menu
 		menu() {
-			let menu =  
+			let menu =
 				[{
 					href: this.addressbook.url,
 					icon: 'icon-public',
@@ -122,7 +126,7 @@ export default {
 					action: this.toggleAddressbookEnabled
 				}]
 			// check to ensure last addressbook is not deleted.
-			if (this.$store.getters.getAddressbooks.length > 1 ) {
+			if (this.$store.getters.getAddressbooks.length > 1) {
 				menu.push({
 					icon: 'icon-delete',
 					text: t('contacts', 'Delete'),
