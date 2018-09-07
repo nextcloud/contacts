@@ -169,20 +169,20 @@ export default {
 
 	mounted() {
 		// Load the locale
-		try {
-			// default load e.g. fr-fr
+		// default load e.g. fr-fr
+		import('moment/locale/' + this.locale).catch(e => {
+			// failure: fallback to fr
+			console.debug(e)
 			import('moment/locale/' + this.locale.split('-')[0])
-			// loadLocale(this.locale)
-		} catch (e) {
-			try {
-				// if fr-fr doesn't exists, fallback to fr
-				import('moment/locale/' + this.locale.split('-')[0])
-				// loadLocale(this.locale.split('-')[0])
-				this.locale = this.locale.split('-')[0]
-			} catch (e) {
-				this.locale = 'en'
-			}
-		}
+				.then(e => {
+					this.locale = this.locale.split('-')[0]
+				})
+				.catch(e => {
+					// failure, fallback to english
+					console.debug(e)
+					this.locale = 'en'
+				})
+		})
 	},
 
 	methods: {
