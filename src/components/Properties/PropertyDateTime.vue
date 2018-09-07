@@ -140,7 +140,7 @@ export default {
 		 * and ths only common syntax between js Date, moment and VCardTime
 		 */
 		formatedDateTime() {
-			return moment(this.localValue.toJSDate().toJSON())
+			return moment(this.localValue.toJSON())
 				.locale(this.locale)
 				.format(
 					this.inputType === 'datetime'
