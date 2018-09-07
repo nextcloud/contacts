@@ -22,19 +22,26 @@
   -->
 <template>
 	<div>
-		<li :class="{'disabled': !addressbook.enabled}" class="addressbook">
+		<li v-if="editingName" class="new-addressbook">
+			<form id="rename-addressbook__form" name="rename-addressbook__form" class="rename-addressbook__form"
+				@submit.prevent="updateAddressbookName">
+				<!-- rename addressbook input -->
+				<input :placeholder="addressbook.displayName"
+					v-model="newName" type="text">
+				<input type="submit" value=""
+					class="rename-addressbook__submit icon-confirm">
+			</form>
+		</li>
+		<li v-else :class="{disabled: !addressbook.enabled}" class="addressbook">
 			<!-- addressbook name -->
 			<span class="addressbook__name">{{ addressbook.displayName }}</span>
 			<!-- sharing button -->
 			<a href="#" class="addressbook__share icon-shared"
 				@click="toggleShare" />
-			<!-- rename addressbook name -->
-			<rename-addressbook-field v-if="editingName" />
 			<!-- popovermenu -->
-			<a v-click-outside="closeMenu" href="#" class="addressbook__menu"
-				@click="toggleMenu">
-				<div class="icon-more" />
-				<div :class="{'open': menuOpen}" class="popovermenu">
+			<a v-click-outside="closeMenu" href="#" class="addressbook__menu">
+				<div class="icon-more" @click="toggleMenu" />
+				<div :class="{open: menuOpen}" class="popovermenu">
 					<popover-menu :menu="menu" />
 				</div>
 			</a>
@@ -45,19 +52,21 @@
 </template>
 
 <script>
+import Vue from 'vue'
 import popoverMenu from '../core/popoverMenu'
 import shareAddressBook from './SettingsAddressbookShare'
 import renameAddressBookField from './SettingsRenameAddressbookField'
-
 import clickOutside from 'vue-click-outside'
+import VueClipboard from 'vue-clipboard2'
+
+Vue.use(VueClipboard)
 
 export default {
 	name: 'SettingsAddressbook',
 	components: {
 		popoverMenu,
 		shareAddressBook,
-		renameAddressBookField,
-		clickOutside
+		renameAddressBookField
 	},
 	directives: {
 		clickOutside
@@ -75,7 +84,9 @@ export default {
 			menuOpen: false,
 			shareOpen: false,
 			editingName: false,
-			newName: '' // new name for addressbook
+			copied: false,
+			copySuccess: true,
+			newName: this.addressbook.displayName // new name for addressbook
 		}
 	},
 	computed: {
@@ -84,63 +95,86 @@ export default {
 		},
 		// building the popover menu
 		menu() {
-			return [{
-				href: '#',
-				icon: 'icon-public',
-				text: 'Copy link',
-				action: () => {
-					alert('share link')
-				}
-			},
-			{
-				href: '#',
-				icon: 'icon-download',
-				text: 'Download',
-				action: () => {
-					alert('download')
-				}
-			},
-			{
-				icon: 'icon-rename',
-				text: 'Rename',
-				action: () => {
-					/* this.editingName = true */
-				}
-			},
-			{
-				icon: 'checkbox',
-				text: 'Enabled',
-				input: 'checkbox',
-				model: this.enabled,
-				action: () => {
-					alert('change') // eslint-disable-line
-					this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
-				}
-			},
-			{
-				icon: 'icon-delete',
-				text: 'Delete',
-				action: () => {
-					this.$store.dispatch('deleteAddressbook', this.addressbook)
-				}
-			}]
+			let menu =
+				[{
+					href: this.addressbook.url,
+					icon: 'icon-public',
+					text: !this.copied
+						? t('contacts', 'Copy link')
+						: this.copySuccess
+							? t('contacts', 'Copied')
+							: t('contacts', 'Can not copy'),
+					action: this.copyLink
+				},
+				{
+					href: this.addressbook.url + '?export',
+					icon: 'icon-download',
+					text: t('contacts', 'Download'),
+					action: null
+				},
+				{
+					icon: 'icon-rename',
+					text: t('contacts', 'Rename'),
+					action: this.renameAddressbook
+				},
+				{
+					icon: 'checkbox',
+					text: this.enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled'),
+					input: 'checkbox',
+					key: 'enableAddressbook',
+					model: this.enabled,
+					action: this.toggleAddressbookEnabled
+				}]
+			// check to ensure last addressbook is not deleted.
+			if (this.$store.getters.getAddressbooks.length > 1) {
+				menu.push({
+					icon: 'icon-delete',
+					text: t('contacts', 'Delete'),
+					action: this.deleteAddressbook
+				})
+			}
+			return menu
 		}
 	},
+	mounted() {
+		// required if popup needs to stay opened after menu click
+		this.popupItem = this.$el
+	},
 	methods: {
-		toggleShare() {
-			this.shareOpen = !this.shareOpen
-		},
 		closeMenu() {
 			this.menuOpen = false
 		},
 		toggleMenu() {
 			this.menuOpen = !this.menuOpen
 		},
-		renameAddressBook() {
+		toggleShare() {
+			this.shareOpen = !this.shareOpen
+		},
+		toggleAddressbookEnabled() {
+			this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
+		},
+		deleteAddressbook() {
+			this.$store.dispatch('deleteAddressbook', this.addressbook)
+		},
+		renameAddressbook() {
 			this.editingName = true
+		},
+		updateAddressbookName() {
 			let addressbook = this.addressbook
 			let newName = this.newName
-			this.$store.dispatch('renameAddressbook', { addressbook, newName })
+			this.$store.dispatch('renameAddressbook', { addressbook, newName }).then(this.editingName = false)
+		},
+		copyLink() {
+			// copy link for addressbook to clipboard
+			this.$copyText(this.addressbook.url).then(e => {
+				this.copySuccess = true
+				this.copied = true
+			}, e => {
+				this.copySuccess = false
+				this.copied = true
+
+			})
+			setTimeout(() => { this.copied = false }, 1500)
 		}
 	}
 }
