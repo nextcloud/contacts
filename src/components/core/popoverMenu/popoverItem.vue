@@ -69,8 +69,8 @@ export default {
 	computed: {
 		// random key for inputs binding if not provided
 		key() {
-			return this.key
-				? this.key
+			return this.item.key
+				? this.item.key
 				: Math.round(Math.random() * 16 * 1000000).toString(16)
 		}
 	}
