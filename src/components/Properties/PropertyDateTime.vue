@@ -113,8 +113,7 @@ export default {
 					: 'time',
 
 			// locale and lang data
-			// convert format like en_GB to en-gb for `moment.js`
-			locale: OC.getLocale().replace('_', '-').toLowerCase(),
+			locale: 'en',						// temporary value, see mounted
 			firstDay: window.firstDay,			// provided by nextcloud
 			lang: {
 				days: window.dayNamesShort,		// provided by nextcloud
@@ -169,20 +168,25 @@ export default {
 
 	mounted() {
 		// Load the locale
+		// convert format like en_GB to en-gb for `moment.js`
+		let locale = OC.getLocale().replace('_', '-').toLowerCase()
+
 		// default load e.g. fr-fr
-		import('moment/locale/' + this.locale).catch(e => {
+		import('moment/locale/' + this.locale)
+			.then(e => {
+				this.locale = locale
+			})
+			.catch(e => {
 			// failure: fallback to fr
-			console.debug(e)
-			import('moment/locale/' + this.locale.split('-')[0])
+			import('moment/locale/' + locale.split('-')[0])
 				.then(e => {
-					this.locale = this.locale.split('-')[0]
+					this.locale = locale.split('-')[0]
 				})
 				.catch(e => {
-					// failure, fallback to english
-					console.debug(e)
+				// failure, fallback to english
 					this.locale = 'en'
 				})
-		})
+			})
 	},
 
 	methods: {
