@@ -34,7 +34,7 @@ __webpack_nonce__ = btoa(OC.requestToken)
 // OC.linkTo matches the apps folders
 // OC.generateUrl ensure the index.php (or not)
 // eslint-disable-next-line
-__webpack_public_path__ = OC.generateUrl(OC.linkTo('contacts', 'js'))
+__webpack_public_path__ = OC.generateUrl(OC.linkTo('contacts', 'js/'))
 
 sync(store, router)
 
