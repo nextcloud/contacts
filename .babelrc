@@ -1,12 +1,13 @@
 {
 	"presets": [
 		[
-			"env",
+			"@babel/preset-env",
 			{
 				"targets": {
 					"browsers": ["> 1%", "last 2 versions", "not ie <= 11"]
 				}
 			}
 		]
-	]
+	],
+	"plugins": ["@babel/plugin-syntax-dynamic-import"]
 }

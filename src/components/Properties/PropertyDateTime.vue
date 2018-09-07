@@ -45,7 +45,7 @@
 			according to the user locale. Tab navigation is ignored here -->
 			<input :value="formatedDateTime" class="property__value property__value--localedate" type="text"
 				tabindex="-1"></div>
-<div class="property__row">
+		<div class="property__row">
 			<!-- Real input where the picker shows -->
 			<date-picker :value="localValue.toJSDate()" :minute-step="10" :lang="lang"
 				:clearable="false" :first-day-of-week="firstDay" :type="inputType"
@@ -133,7 +133,7 @@ export default {
 			// length is always one & add one space at the end
 			return hasTitle + 1 + isLast
 		},
-		
+
 		/**
 		 * Format time with locale to display only
 		 * Using the Object as hared data since it's the only way
@@ -171,15 +171,15 @@ export default {
 		// Load the locale
 		try {
 			// default load e.g. fr-fr
-			require('moment/locale/' + this.locale)
-		} catch(e) {
+			import('moment/locale/' + this.locale.split('-')[0])
+			// loadLocale(this.locale)
+		} catch (e) {
 			try {
 				// if fr-fr doesn't exists, fallback to fr
-				require('moment/locale/' + this.locale.split('-')[0])
+				import('moment/locale/' + this.locale.split('-')[0])
+				// loadLocale(this.locale.split('-')[0])
 				this.locale = this.locale.split('-')[0]
-			} catch(e) {
-				// last scenario: english
-				require('moment/locale/en')
+			} catch (e) {
 				this.locale = 'en'
 			}
 		}
