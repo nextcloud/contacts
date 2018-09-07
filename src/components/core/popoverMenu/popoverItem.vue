@@ -31,7 +31,17 @@
 		</a>
 		<!-- If item.input is set instead, an put will be used -->
 		<span v-else-if="item.input" class="menuitem">
-			<input :id="key" :type="item.input" :class="item.input"
+			<!-- does not show if input is checkbox -->
+			<span v-if="item.input != 'checkbox'" :class="item.icon" />
+			<!-- only shows if input is text -->
+			<form v-if="item.input == 'text'" @submit.prevent="item.action">
+				<input :id="key" :type="item.input" :class="item.input"
+					v-model="item.model" @change="item.action">
+				<input v-if="item.input == 'text'" type="submit" value=""
+					class="icon-confirm">
+			</form>
+			<input v-else
+				:id="key" :type="item.input" :class="item.input"
 				v-model="item.model" @change="item.action">
 			<label :for="key" @click.stop.prevent="item.action">{{ item.text }}</label>
 		</span>

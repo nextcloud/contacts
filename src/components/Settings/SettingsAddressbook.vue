@@ -22,17 +22,7 @@
   -->
 <template>
 	<div>
-		<li v-if="editingName" class="new-addressbook">
-			<form id="rename-addressbook__form" name="rename-addressbook__form" class="rename-addressbook__form"
-				@submit.prevent="updateAddressbookName">
-				<!-- rename addressbook input -->
-				<input :placeholder="addressbook.displayName"
-					v-model="newName" type="text">
-				<input type="submit" value=""
-					class="rename-addressbook__submit icon-confirm">
-			</form>
-		</li>
-		<li v-else :class="{disabled: !addressbook.enabled}" class="addressbook">
+		<li :class="{disabled: !addressbook.enabled}" class="addressbook">
 			<!-- addressbook name -->
 			<span class="addressbook__name">{{ addressbook.displayName }}</span>
 			<!-- sharing button -->
@@ -114,11 +104,13 @@ export default {
 				},
 				{
 					icon: 'icon-rename',
-					text: t('contacts', 'Rename'),
-					action: this.renameAddressbook
+					text: !this.editingName ? t('contacts', 'Rename') : '',
+					action: !this.editingName ? this.renameAddressbook : this.updateAddressbookName,
+					model: this.newName,
+					// check if editing name
+					input: this.editingName ? 'text' : null
 				},
 				{
-					icon: 'checkbox',
 					text: this.enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled'),
 					input: 'checkbox',
 					key: 'enableAddressbook',
@@ -160,6 +152,7 @@ export default {
 			this.editingName = true
 		},
 		updateAddressbookName() {
+			console.log('renaming') // eslint-disable-line
 			let addressbook = this.addressbook
 			let newName = this.newName
 			this.$store.dispatch('renameAddressbook', { addressbook, newName }).then(this.editingName = false)
