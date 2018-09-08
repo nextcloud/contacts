@@ -92,7 +92,7 @@ OC.L10N.register(
     "Social network" : "Sociální síť",
     "Relationship" : "Vztah",
     "Specify a relationship between you and the entity represented by this vCard." : "Určete váš vztah k tomuto kontaktu.",
-    "Spouse" : "Manželka",
+    "Spouse" : "Partner(ka)",
     "Child" : "Dítě",
     "Mother" : "Matka",
     "Father" : "Otec",
