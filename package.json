@@ -25,6 +25,7 @@
 		"v-tooltip": "^2.0.0-rc.33",
 		"vue": "^2.5.17",
 		"vue-click-outside": "^1.0.7",
+		"vue-clipboard2": "^0.2.1",
 		"vue-multiselect": "^2.1.0",
 		"vue-router": "^3.0.1",
 		"vue2-datepicker": "^2.4.0",
@@ -33,7 +34,7 @@
 	},
 	"browserslist": [
 		"last 2 versions",
-		"not ie <= 11"
+		"ie >= 11"
 	],
 	"engines": {
 		"node": ">=10.0.0"
@@ -42,7 +43,7 @@
 		"@babel/core": "^7.0.0",
 		"@babel/plugin-syntax-dynamic-import": "^7.0.0",
 		"@babel/preset-env": "^7.0.0",
-		"@vue/test-utils": "^1.0.0-beta.24",
+		"@vue/test-utils": "^1.0.0-beta.25",
 		"babel-eslint": "^8.2.5",
 		"babel-jest": "^23.4.2",
 		"babel-loader": "^8.0.2",
@@ -71,7 +72,7 @@
 		"vue-loader": "^15.4.1",
 		"vue-template-compiler": "^2.5.17",
 		"webpack": "^4.17.2",
-		"webpack-cli": "^3.0.4",
+		"webpack-cli": "^3.1.0",
 		"webpack-merge": "^4.1.4"
 	},
 	"jest": {
