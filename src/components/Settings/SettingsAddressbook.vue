@@ -82,9 +82,6 @@ export default {
 		enabled() {
 			return this.addressbook.enabled
 		},
-		newName() {
-			return this.addressbook.displayName // new name for addressbook
-		},
 		// building the popover menu
 		menu() {
 			let menu =
@@ -110,7 +107,7 @@ export default {
 					input: this.editingName ? 'text' : null,
 					text: !this.editingName ? t('contacts', 'Rename') : '',
 					action: !this.editingName ? this.renameAddressbook : this.updateAddressbookName,
-					model: this.newName,
+					value: this.addressbook.displayName,
 					placeholder: this.addressbook.displayName
 				},
 				{
@@ -154,11 +151,10 @@ export default {
 		renameAddressbook() {
 			this.editingName = true
 		},
-		updateAddressbookName() {
-			console.log('renaming') // eslint-disable-line
+		updateAddressbookName(e) {
 			let addressbook = this.addressbook
-			let newName = this.newName
-			console.log(this.newName) // eslint-disable-line
+			// New name for addressbook - inputed value from form
+			let newName = e.target[0].value
 			this.$store.dispatch('renameAddressbook', { addressbook, newName }).then(this.editingName = false)
 		},
 		copyLink() {

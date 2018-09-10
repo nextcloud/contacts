@@ -36,7 +36,7 @@
 			<!-- only shows if input is text -->
 			<form v-if="item.input == 'text'"
 				:class="item.input" @submit.prevent="item.action">
-				<input :type="item.input" v-model="item.model" :placeholder="item.placeholder">
+				<input :type="item.input" :value="item.value" :placeholder="item.placeholder">
 				<input v-if="item.input == 'text'" type="submit" value=""
 					class="icon-confirm">
 			</form>
