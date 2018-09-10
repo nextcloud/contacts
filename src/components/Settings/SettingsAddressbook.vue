@@ -95,8 +95,8 @@ export default {
 		},
 		// building the popover menu
 		menu() {
-			let menu =
-				[{
+			let menu = [
+				{
 					href: this.addressbook.url,
 					icon: 'icon-public',
 					text: !this.copied
@@ -124,7 +124,8 @@ export default {
 					key: 'enableAddressbook',
 					model: this.enabled,
 					action: this.toggleAddressbookEnabled
-				}]
+				}
+			]
 			// check to ensure last addressbook is not deleted.
 			if (this.$store.getters.getAddressbooks.length > 1) {
 				menu.push({
