@@ -22,17 +22,7 @@
   -->
 <template>
 	<div>
-		<li v-if="editingName" class="new-addressbook">
-			<form id="rename-addressbook__form" name="rename-addressbook__form" class="rename-addressbook__form"
-				@submit.prevent="updateAddressbookName">
-				<!-- rename addressbook input -->
-				<input :placeholder="addressbook.displayName"
-					v-model="newName" type="text">
-				<input type="submit" value=""
-					class="rename-addressbook__submit icon-confirm">
-			</form>
-		</li>
-		<li v-else :class="{disabled: !addressbook.enabled}" class="addressbook">
+		<li :class="{disabled: !addressbook.enabled}" class="addressbook">
 			<!-- addressbook name -->
 			<span class="addressbook__name">{{ addressbook.displayName }}</span>
 			<!-- sharing button -->
@@ -85,8 +75,7 @@ export default {
 			shareOpen: false,
 			editingName: false,
 			copied: false,
-			copySuccess: true,
-			newName: this.addressbook.displayName // new name for addressbook
+			copySuccess: true
 		}
 	},
 	computed: {
@@ -114,11 +103,14 @@ export default {
 				},
 				{
 					icon: 'icon-rename',
-					text: t('contacts', 'Rename'),
-					action: this.renameAddressbook
+					// check if editing name
+					input: this.editingName ? 'text' : null,
+					text: !this.editingName ? t('contacts', 'Rename') : '',
+					action: !this.editingName ? this.renameAddressbook : this.updateAddressbookName,
+					value: this.addressbook.displayName,
+					placeholder: this.addressbook.displayName
 				},
 				{
-					icon: 'checkbox',
 					text: this.enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled'),
 					input: 'checkbox',
 					key: 'enableAddressbook',
@@ -159,9 +151,10 @@ export default {
 		renameAddressbook() {
 			this.editingName = true
 		},
-		updateAddressbookName() {
+		updateAddressbookName(e) {
 			let addressbook = this.addressbook
-			let newName = this.newName
+			// New name for addressbook - inputed value from form
+			let newName = e.target[0].value
 			this.$store.dispatch('renameAddressbook', { addressbook, newName }).then(this.editingName = false)
 		},
 		copyLink() {
@@ -174,6 +167,7 @@ export default {
 				this.copied = true
 
 			})
+			// timeout sets the text back to copy to show text was copied
 			setTimeout(() => { this.copied = false }, 1500)
 		}
 	}
