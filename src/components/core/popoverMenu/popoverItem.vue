@@ -34,9 +34,9 @@
 			<!-- does not show if input is checkbox -->
 			<span v-if="item.input != 'checkbox'" :class="item.icon" />
 			<!-- only shows if input is text -->
-			<form v-if="item.input == 'text'" @submit.prevent="item.action">
-				<input :id="key" :type="item.input" :class="item.input"
-					v-model="item.model" @change="item.action">
+			<form v-if="item.input == 'text'"
+				:class="item.input" @submit.prevent="item.action">
+				<input :type="item.input" v-model="item.model" :placeholder="item.placeholder">
 				<input v-if="item.input == 'text'" type="submit" value=""
 					class="icon-confirm">
 			</form>

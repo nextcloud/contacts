@@ -75,13 +75,15 @@ export default {
 			shareOpen: false,
 			editingName: false,
 			copied: false,
-			copySuccess: true,
-			newName: this.addressbook.displayName // new name for addressbook
+			copySuccess: true
 		}
 	},
 	computed: {
 		enabled() {
 			return this.addressbook.enabled
+		},
+		newName() {
+			return this.addressbook.displayName // new name for addressbook
 		},
 		// building the popover menu
 		menu() {
@@ -104,11 +106,12 @@ export default {
 				},
 				{
 					icon: 'icon-rename',
+					// check if editing name
+					input: this.editingName ? 'text' : null,
 					text: !this.editingName ? t('contacts', 'Rename') : '',
 					action: !this.editingName ? this.renameAddressbook : this.updateAddressbookName,
 					model: this.newName,
-					// check if editing name
-					input: this.editingName ? 'text' : null
+					placeholder: this.addressbook.displayName
 				},
 				{
 					text: this.enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled'),
@@ -155,6 +158,7 @@ export default {
 			console.log('renaming') // eslint-disable-line
 			let addressbook = this.addressbook
 			let newName = this.newName
+			console.log(this.newName) // eslint-disable-line
 			this.$store.dispatch('renameAddressbook', { addressbook, newName }).then(this.editingName = false)
 		},
 		copyLink() {
@@ -167,6 +171,7 @@ export default {
 				this.copied = true
 
 			})
+			// timeout sets the text back to copy to show text was copied
 			setTimeout(() => { this.copied = false }, 1500)
 		}
 	}
