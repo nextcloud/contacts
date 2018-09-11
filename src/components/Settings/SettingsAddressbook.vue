@@ -76,7 +76,7 @@ export default {
 			editingName: false,
 			copied: false,
 			copySuccess: true,
-			readOnly: false // change to this.addressbook.readOnly
+			readOnly: this.addressbook.readOnly
 		}
 	},
 	computed: {
