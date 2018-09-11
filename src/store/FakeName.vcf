@@ -10,6 +10,22 @@ UID:5acf667e-1cbf-48a8-87fe-546ee31a0b23
 END:VCARD
 
 BEGIN:VCARD
+VERSION:3.0
+UID:cd314b39-b71a-41cf-b4eb-5cb61dd6fa24
+N:Carrión;Abdul;;Mr.;
+FN:Abdul Carrión
+NICKNAME:Marpoe
+BDAY:1976-04-15
+GENDER:male
+ORG:Casual Corner;
+TITLE:Recruiting manager
+EMAIL;TYPE=HOME,INTERNET,pref:AbdulCarrionBarajas@gustr.com
+CATEGORIES:Tech
+TEL;TYPE=VOICE,HOME;VALUE=text:079 1057 8513
+ADR;TYPE=HOME:;;BECCLES;;NR34 8QR;United Kingdom
+END:VCARD
+
+BEGIN:VCARD
 VERSION:2.1
 FN:Jean Dupont
 N:Dupont;Jean
@@ -27,12 +43,13 @@ FN:ABC Marketing ORG
 ORG:ABC\, Inc.;North American Division;Marketing
 END:VCARD
 BEGIN:VCARD
+
 VERSION:3.0
 N:Cunningham;Liam;;Mr.;
 FN:Liam Cunningham
 NICKNAME;TYPE=work:Begivaing81,Test
 NICKNAME:Pwet
-BDAY;VALUE=text:5/26/1981
+BDAY:1996-04-15
 GENDER:male
 ORG:Central Hardware;
 TITLE:Auditing clerk
@@ -44,8 +61,8 @@ END:VCARD
 
 BEGIN:VCARD
 VERSION:4.0
-FN:Simon Perreault
-N:Perreault;Simon;;;ing. jr,M.Sc.
+FN:Alain Perreault
+N:Perreault;Alain;;;ing. jr,M.Sc.
 BDAY:--0203
 ANNIVERSARY:20090808T1430-0500
 GENDER:M
@@ -56,7 +73,7 @@ VERSION:3.0
 N:Kamiński;Przemysł;;Mr.;
 FN:Przemysł Kamiński
 NICKNAME:Mitte1935
-BDAY;VALUE=text:7/16/1935
+BDAY:1976-04-15
 GENDER:male
 ORG:Tee Town;
 TITLE:Spray machine operator
@@ -70,7 +87,7 @@ VERSION:3.0
 N:Goldschmidt;Michelle;;Ms.;
 FN:Michelle Goldschmidt
 NICKNAME:Solerho1989
-BDAY;VALUE=text:10/21/1989
+BDAY:1976-04-15
 GENDER:female
 ORG:New World;
 TITLE:Engine and other machine assembler
@@ -84,7 +101,7 @@ VERSION:3.0
 N:Myers;Michael;;Mr.;
 FN:Michael Myers
 NICKNAME:Vends1961
-BDAY;VALUE=text:11/27/1961
+BDAY:1976-04-15
 GENDER:male
 ORG:Foreman & Clark;
 TITLE:Navy
@@ -99,7 +116,7 @@ VERSION:3.0
 N:de Kraker;Youness;;Mr.;
 FN:Youness de Kraker
 NICKNAME:Hationt1983
-BDAY;VALUE=text:8/6/1983
+BDAY:1976-04-15
 GENDER:male
 ORG:Kelsey's Neighbourhood Bar & Grill;
 TITLE:Personnel associate
@@ -113,7 +130,7 @@ VERSION:3.0
 N:Rivière;Robinette;;Mrs.;
 FN:Robinette Rivière
 NICKNAME:Muchat
-BDAY;VALUE=text:8/30/1991
+BDAY:1976-04-15
 GENDER:female
 ORG:Alladin's Lamp;
 TITLE:Patternmaker
@@ -127,7 +144,7 @@ VERSION:3.0
 N:Jensen;Selma;;Mrs.;
 FN:Selma Jensen
 NICKNAME:Thoromem
-BDAY;VALUE=text:4/10/1937
+BDAY:1976-04-15
 GENDER:female
 ORG:Mikrotechnic;
 TITLE:Occupational analyst
@@ -141,7 +158,7 @@ VERSION:3.0
 N:Ásgrímsson;Richard;;Mr.;
 FN:Richard Ásgrímsson
 NICKNAME:Poodut
-BDAY;VALUE=text:5/19/1935
+BDAY:1976-04-15
 GENDER:male
 ORG:Reliable Guidance;
 TITLE:Bindery machine tender
@@ -155,7 +172,7 @@ VERSION:3.0
 N:Yáñez;Samantha;;Mrs.;
 FN:Samantha Yáñez
 NICKNAME:Hasky1953
-BDAY;VALUE=text:10/7/1953
+BDAY:1976-04-15
 GENDER:female
 ORG:Levitz Furniture;
 TITLE:Transportation ticket agent
@@ -169,7 +186,7 @@ VERSION:3.0
 N:Bowen;Nathan;;Mr.;
 FN:Nathan Bowen
 NICKNAME:Valln1972
-BDAY;VALUE=text:6/6/1972
+BDAY:1976-04-15
 GENDER:male
 ORG:Penn Fruit;
 TITLE:EEO officer
@@ -183,7 +200,7 @@ VERSION:3.0
 N:Engen;Lykke;;Ms.;
 FN:Lykke Engen
 NICKNAME:Frouss1982
-BDAY;VALUE=text:3/15/1982
+BDAY:1976-04-15
 GENDER:female
 ORG:Lawn N' Order Garden Care;
 TITLE:Apartment rental agent
@@ -197,7 +214,7 @@ VERSION:3.0
 N:Abeyta;Scarlett;;Ms.;
 FN:Scarlett Abeyta
 NICKNAME:Notong
-BDAY;VALUE=text:12/15/1998
+BDAY:1976-04-15
 GENDER:female
 ORG:Platinum Interior Design;
 TITLE:Log sorter
@@ -211,7 +228,7 @@ VERSION:3.0
 N:Busch;Lukas;;Mr.;
 FN:Lukas Busch
 NICKNAME:Cournes1983
-BDAY;VALUE=text:9/5/1983
+BDAY:1976-04-15
 GENDER:male
 ORG:K&G Distributors;
 TITLE:Employee placement specialist
@@ -225,7 +242,7 @@ VERSION:3.0
 N:Friðvinsson;Anton;;Mr.;
 FN:Anton Friðvinsson
 NICKNAME:Asuble
-BDAY;VALUE=text:7/27/1971
+BDAY:1976-04-15
 GENDER:male
 ORG:Wellby;
 TITLE:Ceiling tile installer
@@ -239,7 +256,7 @@ VERSION:3.0
 N:Genovese;Cataldo;;Mr.;
 FN:Cataldo Genovese
 NICKNAME:Sualleadiang
-BDAY;VALUE=text:12/3/1954
+BDAY:1976-04-15
 GENDER:male
 ORG:Merrymaking;
 TITLE:Welding worker
@@ -253,7 +270,7 @@ VERSION:3.0
 N:Ludvigsen;Celia;;Ms.;
 FN:Celia Ludvigsen
 NICKNAME:Whiddespeat1959
-BDAY;VALUE=text:4/9/1959
+BDAY:1976-04-15
 GENDER:female
 ORG:Life Map;
 TITLE:Plating and coating machine operator
@@ -267,7 +284,7 @@ VERSION:3.0
 N:Dennis;Francesca;;Mrs.;
 FN:Francesca Dennis
 NICKNAME:Abood1997
-BDAY;VALUE=text:4/14/1997
+BDAY:1976-04-15
 GENDER:female
 ORG:Western Auto;
 TITLE:Drywall installer
@@ -281,7 +298,7 @@ VERSION:3.0
 N:Johansen;Marie;;Mrs.;
 FN:Marie Johansen
 NICKNAME:Jook1947
-BDAY;VALUE=text:12/21/1947
+BDAY:1976-04-15
 GENDER:female
 ORG:Idea Infinity;
 TITLE:Teller supervisor
@@ -295,7 +312,7 @@ VERSION:3.0
 N:Steenbeek;Klazina;;Ms.;
 FN:Klazina Steenbeek
 NICKNAME:Shrome
-BDAY;VALUE=text:11/25/1992
+BDAY:1976-04-15
 GENDER:female
 ORG:Briazz;
 TITLE:Auxiliary equipment operator
@@ -309,7 +326,7 @@ VERSION:3.0
 N:Burgess;Ryan;;Mr.;
 FN:Ryan Burgess
 NICKNAME:Firesom
-BDAY;VALUE=text:6/4/1936
+BDAY:1976-04-15
 GENDER:male
 ORG:Wetson's;
 TITLE:Electrical engineer
@@ -323,7 +340,7 @@ VERSION:3.0
 N:Padovano;Marisa;;Ms.;
 FN:Marisa Padovano
 NICKNAME:Ningdom
-BDAY;VALUE=text:6/7/1958
+BDAY:1976-04-15
 GENDER:female
 ORG:Country Club Markets;
 TITLE:Surveying technician
@@ -337,7 +354,7 @@ VERSION:3.0
 N:Løvås;Nora;;Ms.;
 FN:Nora Løvås
 NICKNAME:Haltoorroust
-BDAY;VALUE=text:6/10/1966
+BDAY:1976-04-15
 GENDER:female
 ORG:Baltimore Markets;
 TITLE:Support specialist
@@ -351,7 +368,7 @@ VERSION:3.0
 N:Duperré;Stéphanie;;Ms.;
 FN:Stéphanie Duperré
 NICKNAME:Porknowle
-BDAY;VALUE=text:9/7/1951
+BDAY:1976-04-15
 GENDER:female
 ORG:Forum Cafeterias;
 TITLE:Technician
@@ -365,7 +382,7 @@ VERSION:3.0
 N:Andreasen;Selma;;Mrs.;
 FN:Selma Andreasen
 NICKNAME:Grectot
-BDAY;VALUE=text:1/21/1938
+BDAY:1976-04-15
 GENDER:female
 ORG:Endicott Shoes;
 TITLE:Grounds maintenance worker
@@ -379,7 +396,7 @@ VERSION:3.0
 N:Tougas;Felicien;;Mr.;
 FN:Felicien Tougas
 NICKNAME:Cocand
-BDAY;VALUE=text:10/23/1965
+BDAY:1976-04-15
 GENDER:male
 ORG:Madcats Music & Books;
 TITLE:Psychiatrist
@@ -393,7 +410,7 @@ VERSION:3.0
 N:Jodion;Jacques;;Mr.;
 FN:Jacques Jodion
 NICKNAME:Opixer1977
-BDAY;VALUE=text:9/18/1977
+BDAY:1976-04-15
 GENDER:male
 ORG:Alert Alarm Company;
 TITLE:Radiologic technologist
@@ -407,7 +424,7 @@ VERSION:3.0
 N:Ricci;Fabiano;;Mr.;
 FN:Fabiano Ricci
 NICKNAME:Spleace
-BDAY;VALUE=text:1/6/1960
+BDAY:1976-04-15
 GENDER:male
 ORG:Hills Supermarkets;
 TITLE:Front office manager
@@ -421,7 +438,7 @@ VERSION:3.0
 N:Riley;Kieran;;Mr.;
 FN:Kieran Riley
 NICKNAME:Objectioneve
-BDAY;VALUE=text:9/4/1953
+BDAY:1976-04-15
 GENDER:male
 ORG:Price Club;
 TITLE:New accounts clerk
@@ -435,7 +452,7 @@ VERSION:3.0
 N:Friðbjarnardóttir;Áshildur;;Ms.;
 FN:Áshildur Friðbjarnardóttir
 NICKNAME:Ganythat
-BDAY;VALUE=text:11/26/1981
+BDAY:1976-04-15
 GENDER:female
 ORG:Super Place;
 TITLE:Electronic data processor
@@ -449,7 +466,7 @@ VERSION:3.0
 N:Løver;Solveig;;Mrs.;
 FN:Solveig Løver
 NICKNAME:Eank1953
-BDAY;VALUE=text:8/22/1953
+BDAY:1976-04-15
 GENDER:female
 ORG:Paul's Food Mart;
 TITLE:Gastroenterology nurse
@@ -463,7 +480,7 @@ VERSION:3.0
 N:Toft;Bent;;Mr.;
 FN:Bent Toft
 NICKNAME:Spricand
-BDAY;VALUE=text:2/25/1980
+BDAY:1976-04-15
 GENDER:male
 ORG:Shoe Town;
 TITLE:Diesel train engineer
@@ -477,7 +494,7 @@ VERSION:3.0
 N:Espelid;Emily;;Mrs.;
 FN:Emily Espelid
 NICKNAME:Thencass1959
-BDAY;VALUE=text:4/21/1959
+BDAY:1976-04-15
 GENDER:female
 ORG:Source Club;
 TITLE:Actuarie
@@ -491,7 +508,7 @@ VERSION:3.0
 N:Jensen;Lucas;;Mr.;
 FN:Lucas Jensen
 NICKNAME:Congloged
-BDAY;VALUE=text:9/29/1968
+BDAY:1976-04-15
 GENDER:male
 ORG:Magik Grey;
 TITLE:Artificial inseminator
@@ -505,7 +522,7 @@ VERSION:3.0
 N:Pawłowski;Korneli;;Mr.;
 FN:Korneli Pawłowski
 NICKNAME:Etescashout
-BDAY;VALUE=text:7/5/1971
+BDAY:1976-04-15
 GENDER:male
 ORG:Johnson's General Stores;
 TITLE:Card puncher
@@ -519,7 +536,7 @@ VERSION:3.0
 N:Korsten;Tan;;Mr.;
 FN:Tan Korsten
 NICKNAME:Toce1978
-BDAY;VALUE=text:8/18/1978
+BDAY:1976-04-15
 GENDER:male
 ORG:Children's Palace;
 TITLE:Fish cleaner
@@ -533,7 +550,7 @@ VERSION:3.0
 N:Compagnon;Musette;;Ms.;
 FN:Musette Compagnon
 NICKNAME:Forithave
-BDAY;VALUE=text:7/22/1992
+BDAY:1976-04-15
 GENDER:female
 ORG:Erlebacher's;
 TITLE:Full-charge bookkeeper
@@ -547,7 +564,7 @@ VERSION:3.0
 N:Erlendsdóttir;Finnborg;;Ms.;
 FN:Finnborg Erlendsdóttir
 NICKNAME:Hanceek37
-BDAY;VALUE=text:11/30/1937
+BDAY:1976-04-15
 GENDER:female
 ORG:ManCharm;
 TITLE:Materials engineer
@@ -561,7 +578,7 @@ VERSION:3.0
 N:Diederich;Christina;;Mrs.;
 FN:Christina Diederich
 NICKNAME:Stinin
-BDAY;VALUE=text:1/1/1988
+BDAY:1976-04-15
 GENDER:female
 ORG:Rainbow Life;
 TITLE:Manufactured building and mobile home installer
@@ -575,7 +592,7 @@ VERSION:3.0
 N:Finnsson;Haraldur;;Mr.;
 FN:Haraldur Finnsson
 NICKNAME:Firembles
-BDAY;VALUE=text:11/30/1973
+BDAY:1976-04-15
 GENDER:male
 ORG:The Independent Planners;
 TITLE:Middle school teacher
@@ -589,7 +606,7 @@ VERSION:3.0
 N:Berntsen;Viktor;;Mr.;
 FN:Viktor Berntsen
 NICKNAME:Noren1968
-BDAY;VALUE=text:4/17/1968
+BDAY:1976-04-15
 GENDER:male
 ORG:Zany Brainy;
 TITLE:Safe repairer
@@ -603,7 +620,7 @@ VERSION:3.0
 N:van Hoek;Sevda;;Mrs.;
 FN:Sevda van Hoek
 NICKNAME:Dectat62
-BDAY;VALUE=text:11/21/1962
+BDAY:1976-04-15
 GENDER:female
 ORG:Maloley's Finer Foods;
 TITLE:Motor coach driver
@@ -617,7 +634,7 @@ VERSION:3.0
 N:Bach;Kevin;;Mr.;
 FN:Kevin Bach
 NICKNAME:Sellot
-BDAY;VALUE=text:12/1/1948
+BDAY:1976-04-15
 GENDER:male
 ORG:Mostow Co.;
 TITLE:Corporate trainer
@@ -631,7 +648,7 @@ VERSION:3.0
 N:Þórlaugarson;Sigfús;;Mr.;
 FN:Sigfús Þórlaugarson
 NICKNAME:Kingince
-BDAY;VALUE=text:8/7/1936
+BDAY:1976-04-15
 GENDER:male
 ORG:Delchamps;
 TITLE:Cooling and freezing equipment tender
@@ -645,7 +662,7 @@ VERSION:3.0
 N:Roth;Mandy;;Mrs.;
 FN:Mandy Roth
 NICKNAME:Theyeaut
-BDAY;VALUE=text:3/20/1951
+BDAY:1976-04-15
 GENDER:female
 ORG:Cougar Investment;
 TITLE:Dressing room attendant
@@ -659,7 +676,7 @@ VERSION:3.0
 N:Elísson;Hinrik;;Mr.;
 FN:Hinrik Elísson
 NICKNAME:Rostept
-BDAY;VALUE=text:9/15/1966
+BDAY:1976-04-15
 GENDER:male
 ORG:Target Source;
 TITLE:Mail processing machine operator
@@ -673,7 +690,7 @@ VERSION:3.0
 N:Guðjónsson;Guðgeir;;Mr.;
 FN:Guðgeir Guðjónsson
 NICKNAME:Verifirs
-BDAY;VALUE=text:6/9/1974
+BDAY:1976-04-15
 GENDER:male
 ORG:The Wiz;
 TITLE:Hearing therapist
@@ -684,25 +701,10 @@ ADR;TYPE=HOME:;;San Salvo;CH;66050;Italy
 END:VCARD
 BEGIN:VCARD
 VERSION:3.0
-UID:cd314b39-b71a-41cf-b4eb-5cb61dd6fa24
-N:Carrión;Abdul;;Mr.;
-FN:Abdul Carrión
-NICKNAME:Marpoe
-BDAY;VALUE=text:2/7/1964
-GENDER:male
-ORG:Casual Corner;
-TITLE:Recruiting manager
-EMAIL;TYPE=HOME,INTERNET,pref:AbdulCarrionBarajas@gustr.com
-CATEGORIES:Tech
-TEL;TYPE=VOICE,HOME;VALUE=text:079 1057 8513
-ADR;TYPE=HOME:;;BECCLES;;NR34 8QR;United Kingdom
-END:VCARD
-BEGIN:VCARD
-VERSION:3.0
 N:Þráinsson;Sæmundur;;Mr.;
 FN:Sæmundur Þráinsson
 NICKNAME:Spreorke
-BDAY;VALUE=text:2/9/1971
+BDAY:1976-04-15
 GENDER:male
 ORG:Music Boutique;
 TITLE:Loan clerk
@@ -716,7 +718,7 @@ VERSION:3.0
 N:Angantýsdóttir;Hildigunn;;Ms.;
 FN:Hildigunn Angantýsdóttir
 NICKNAME:Frocution
-BDAY;VALUE=text:8/25/1933
+BDAY:1976-04-15
 GENDER:female
 ORG:Avant Garde Appraisal Group;
 TITLE:ESOL teacher
@@ -730,7 +732,7 @@ VERSION:3.0
 N:Brooks;Ella;;Mrs.;
 FN:Ella Brooks
 NICKNAME:Hintaing
-BDAY;VALUE=text:1/11/1972
+BDAY:1976-04-15
 GENDER:female
 ORG:Janeville;
 TITLE:Forging machine tender
@@ -744,7 +746,7 @@ VERSION:3.0
 N:Foster;Henry;;Mr.;
 FN:Henry Foster
 NICKNAME:Simuct
-BDAY;VALUE=text:12/20/1975
+BDAY:1976-04-15
 GENDER:male
 ORG:Best Biz Survis;
 TITLE:Lobby attendant
@@ -758,7 +760,7 @@ VERSION:3.0
 N:Böðvarsdóttir;Ella;;Mrs.;
 FN:Ella Böðvarsdóttir
 NICKNAME:Hourk1976
-BDAY;VALUE=text:3/26/1976
+BDAY:1976-04-15
 GENDER:female
 ORG:Lone Wolf Wealth Planning;
 TITLE:Fine arts instructor
@@ -772,7 +774,7 @@ VERSION:3.0
 N:Zawadzki;Przemysław;;Mr.;
 FN:Przemysław Zawadzki
 NICKNAME:Degiverthe
-BDAY;VALUE=text:2/23/1939
+BDAY:1976-04-15
 GENDER:male
 ORG:Team Electronics;
 TITLE:Top executive
@@ -786,7 +788,7 @@ VERSION:3.0
 N:Orosco;Brunela;;Mrs.;
 FN:Brunela Orosco
 NICKNAME:Thavok39
-BDAY;VALUE=text:10/17/1939
+BDAY:1976-04-15
 GENDER:female
 ORG:Landskip Yard Care;
 TITLE:Promotions specialist
@@ -800,7 +802,7 @@ VERSION:3.0
 N:Karlsson;Johanne;;Mrs.;
 FN:Johanne Karlsson
 NICKNAME:Throughtele
-BDAY;VALUE=text:2/7/1939
+BDAY:1976-04-15
 GENDER:female
 ORG:The Lawn Guru;
 TITLE:Medical appliance technician
@@ -814,7 +816,7 @@ VERSION:3.0
 N:Watt;Keiran;;Mr.;
 FN:Keiran Watt
 NICKNAME:Saimpook
-BDAY;VALUE=text:10/11/1969
+BDAY:1976-04-15
 GENDER:male
 ORG:PriceRite Warehouse Club;
 TITLE:Radiologic nurse
@@ -828,7 +830,7 @@ VERSION:3.0
 N:Pirozzi;Violanda;;Ms.;
 FN:Violanda Pirozzi
 NICKNAME:Peadlead
-BDAY;VALUE=text:8/8/1981
+BDAY:1976-04-15
 GENDER:female
 ORG:Pro-Care Garden Maintenance;
 TITLE:Real estate appraiser
@@ -842,7 +844,7 @@ VERSION:3.0
 N:Jasińska;Cecylia;;Ms.;
 FN:Cecylia Jasińska
 NICKNAME:Clightte
-BDAY;VALUE=text:3/30/1967
+BDAY:1976-04-15
 GENDER:female
 ORG:William Wanamaker & Sons;
 TITLE:Travel adviser
@@ -856,7 +858,7 @@ VERSION:3.0
 N:Endrizzi;Orlando;;Mr.;
 FN:Orlando Endrizzi
 NICKNAME:Trancely
-BDAY;VALUE=text:4/28/1949
+BDAY:1976-04-15
 GENDER:male
 ORG:Body Toning;
 TITLE:Technical communications specialist
@@ -870,7 +872,7 @@ VERSION:3.0
 N:Jaworska;Seweryna;;Ms.;
 FN:Seweryna Jaworska
 NICKNAME:Vereirt
-BDAY;VALUE=text:4/3/1945
+BDAY:1976-04-15
 GENDER:female
 ORG:White Coffee Pot;
 TITLE:Engraver
@@ -884,7 +886,7 @@ VERSION:3.0
 N:Palermo;Rosina;;Ms.;
 FN:Rosina Palermo
 NICKNAME:Dres1973
-BDAY;VALUE=text:7/7/1973
+BDAY:1976-04-15
 GENDER:female
 ORG:Idea Infinity;
 TITLE:Policy analyst
@@ -898,7 +900,7 @@ VERSION:3.0
 N:Moeller;Sara;;Ms.;
 FN:Sara Moeller
 NICKNAME:Reatelf
-BDAY;VALUE=text:2/21/1990
+BDAY:1976-04-15
 GENDER:female
 ORG:Purity Supreme;
 TITLE:Zookeeper
@@ -912,7 +914,7 @@ VERSION:3.0
 N:Guðjónsdóttir;Valdís;;Dr.;
 FN:Valdís Guðjónsdóttir
 NICKNAME:Illudge
-BDAY;VALUE=text:9/3/1979
+BDAY:1976-04-15
 GENDER:female
 ORG:Super Saver Foods;
 TITLE:Clinical dietitian
@@ -926,7 +928,7 @@ VERSION:3.0
 N:McIntosh;Karly;;Dr.;
 FN:Karly McIntosh
 NICKNAME:Thading
-BDAY;VALUE=text:2/13/1957
+BDAY:1976-04-15
 GENDER:female
 ORG:Gamble-Skogmo;
 TITLE:Compliance officer
@@ -940,7 +942,7 @@ VERSION:3.0
 N:Tomaszewski;Metody;;Mr.;
 FN:Metody Tomaszewski
 NICKNAME:Kessad1979
-BDAY;VALUE=text:7/13/1979
+BDAY:1976-04-15
 GENDER:male
 ORG:Bresler's Ice Cream;
 TITLE:Tax examiner
@@ -954,7 +956,7 @@ VERSION:3.0
 N:Monaldo;Giuseppina;;Ms.;
 FN:Giuseppina Monaldo
 NICKNAME:Racrat
-BDAY;VALUE=text:7/19/1986
+BDAY:1976-04-15
 GENDER:female
 ORG:Dreamscape Garden Care;
 TITLE:Personal banker
@@ -968,7 +970,7 @@ VERSION:3.0
 N:Folliero;Prudenzia;;Ms.;
 FN:Prudenzia Folliero
 NICKNAME:Eaceforehis
-BDAY;VALUE=text:9/16/1941
+BDAY:1976-04-15
 GENDER:female
 ORG:Leath Furniture;
 TITLE:Job developer
@@ -982,7 +984,7 @@ VERSION:3.0
 N:Melkert;Ruan;;Mr.;
 FN:Ruan Melkert
 NICKNAME:Tralren1944
-BDAY;VALUE=text:1/22/1944
+BDAY:1976-04-15
 GENDER:male
 ORG:EXPO Design Center;
 TITLE:Electrical engineer
@@ -996,7 +998,7 @@ VERSION:3.0
 N:Henriksen;Sarah;;Mrs.;
 FN:Sarah Henriksen
 NICKNAME:Cleaskulty
-BDAY;VALUE=text:11/6/1976
+BDAY:1976-04-15
 GENDER:female
 ORG:Naturohair;
 TITLE:Laboratory animal technician
@@ -1010,7 +1012,7 @@ VERSION:3.0
 N:Corona;Jenara;;Mrs.;
 FN:Jenara Corona
 NICKNAME:Yalmled1986
-BDAY;VALUE=text:6/10/1986
+BDAY:1976-04-15
 GENDER:female
 ORG:Harmony House;
 TITLE:Broker
@@ -1024,7 +1026,7 @@ VERSION:3.0
 N:Scott;Megan;;Mrs.;
 FN:Megan Scott
 NICKNAME:Grainknot
-BDAY;VALUE=text:9/25/1971
+BDAY:1976-04-15
 GENDER:female
 ORG:Coast to Coast Hardware;
 TITLE:Compositor
@@ -1038,7 +1040,7 @@ VERSION:3.0
 N:Sagese;Valente;;Mr.;
 FN:Valente Sagese
 NICKNAME:Affathe
-BDAY;VALUE=text:2/19/1947
+BDAY:1976-04-15
 GENDER:male
 ORG:Laneco;
 TITLE:Structural metal fitter
@@ -1052,7 +1054,7 @@ VERSION:3.0
 N:Andreasen;Jesper;;Mr.;
 FN:Jesper Andreasen
 NICKNAME:Thicas1997
-BDAY;VALUE=text:12/1/1997
+BDAY:1976-04-15
 GENDER:male
 ORG:Frank's Nursery & Crafts;
 TITLE:Optical goods worker
@@ -1066,7 +1068,7 @@ VERSION:3.0
 N:Issa;Lakshmi;;Mrs.;
 FN:Lakshmi Issa
 NICKNAME:Thoutter
-BDAY;VALUE=text:8/12/1954
+BDAY:1976-04-15
 GENDER:female
 ORG:Big Bear Stores;
 TITLE:Abdominal sonographer
@@ -1080,7 +1082,7 @@ VERSION:3.0
 N:Pawłowska;Lesława;;Mrs.;
 FN:Lesława Pawłowska
 NICKNAME:Fecteve
-BDAY;VALUE=text:3/22/1941
+BDAY:1976-04-15
 GENDER:female
 ORG:Little Tavern;
 TITLE:Hospice nurse
@@ -1094,7 +1096,7 @@ VERSION:3.0
 N:Caraballo;Polo;;Mr.;
 FN:Polo Caraballo
 NICKNAME:Poch1946
-BDAY;VALUE=text:3/26/1946
+BDAY:1976-04-15
 GENDER:male
 ORG:Adapt;
 TITLE:Mental health counselor
@@ -1108,7 +1110,7 @@ VERSION:3.0
 N:Hurtado;Jonas;;Mr.;
 FN:Jonas Hurtado
 NICKNAME:Eyseld
-BDAY;VALUE=text:1/9/1995
+BDAY:1976-04-15
 GENDER:male
 ORG:Deco Refreshments\, Inc.;
 TITLE:Nutrition director
@@ -1122,7 +1124,7 @@ VERSION:3.0
 N:Lund;Felix;;Mr.;
 FN:Felix Lund
 NICKNAME:Didet1978
-BDAY;VALUE=text:1/10/1978
+BDAY:1976-04-15
 GENDER:male
 ORG:Western Auto;
 TITLE:Management development specialist
@@ -1136,7 +1138,7 @@ VERSION:3.0
 N:Hertz;Eric;;Mr.;
 FN:Eric Hertz
 NICKNAME:Herad1964
-BDAY;VALUE=text:9/3/1964
+BDAY:1976-04-15
 GENDER:male
 ORG:Ruehl No. 925;
 TITLE:Research psychologist
@@ -1150,7 +1152,7 @@ VERSION:3.0
 N:Jeppesen;Asger;;Mr.;
 FN:Asger Jeppesen
 NICKNAME:Symeave
-BDAY;VALUE=text:6/16/1941
+BDAY:1976-04-15
 GENDER:male
 ORG:A Plus Lawn Care;
 TITLE:Executive assistant
@@ -1164,7 +1166,7 @@ VERSION:3.0
 N:McDonald;Brooklyn;;Mr.;
 FN:Brooklyn McDonald
 NICKNAME:Succionoth
-BDAY;VALUE=text:3/17/1935
+BDAY:1976-04-15
 GENDER:male
 ORG:Omni Realty;
 TITLE:Poultry trimmer
@@ -1178,7 +1180,7 @@ VERSION:3.0
 N:Jeppesen;Anne-Lise;;Ms.;
 FN:Anne-Lise Jeppesen
 NICKNAME:Saily1955
-BDAY;VALUE=text:7/14/1955
+BDAY:1976-04-15
 GENDER:female
 ORG:Electronics Source;
 TITLE:Experimental psychologist
@@ -1192,7 +1194,7 @@ VERSION:3.0
 N:Marcelo;Michele;;Mr.;
 FN:Michele Marcelo
 NICKNAME:Whiment
-BDAY;VALUE=text:6/24/1948
+BDAY:1976-04-15
 GENDER:male
 ORG:Practi-Plan Mapping;
 TITLE:Cooling and freezing equipment operator
@@ -1206,7 +1208,7 @@ VERSION:3.0
 N:Jager;Dominik;;Mr.;
 FN:Dominik Jager
 NICKNAME:Unettle
-BDAY;VALUE=text:1/14/1963
+BDAY:1976-04-15
 GENDER:male
 ORG:Henry's;
 TITLE:Admitting interviewer
@@ -1220,7 +1222,7 @@ VERSION:3.0
 N:Bates;Jamie;;Mr.;
 FN:Jamie Bates
 NICKNAME:Insconothe
-BDAY;VALUE=text:4/14/1980
+BDAY:1976-04-15
 GENDER:male
 ORG:National Tea;
 TITLE:Human resources clerk
@@ -1234,7 +1236,7 @@ VERSION:3.0
 N:Quenneville;Paige;;Ms.;
 FN:Paige Quenneville
 NICKNAME:Hunditted
-BDAY;VALUE=text:4/3/1949
+BDAY:1976-04-15
 GENDER:female
 ORG:Magik Gray;
 TITLE:Public housing manager
@@ -1248,7 +1250,7 @@ VERSION:3.0
 N:Kozłowski;Julek;;Mr.;
 FN:Julek Kozłowski
 NICKNAME:Goichaurich
-BDAY;VALUE=text:7/19/1940
+BDAY:1976-04-15
 GENDER:male
 ORG:Electric Avenue;
 TITLE:Construction engineer
@@ -1262,7 +1264,7 @@ VERSION:3.0
 N:Valencia;Alucan;;Mr.;
 FN:Alucan Valencia
 NICKNAME:Thiseatchat
-BDAY;VALUE=text:10/24/1971
+BDAY:1976-04-15
 GENDER:male
 ORG:Walt's IGA;
 TITLE:Heavy truck and tractor-trailer driver
@@ -1276,7 +1278,7 @@ VERSION:3.0
 N:Pagnotto;Arabella;;Mrs.;
 FN:Arabella Pagnotto
 NICKNAME:Obsell
-BDAY;VALUE=text:6/22/1957
+BDAY:1976-04-15
 GENDER:female
 ORG:Zany Brainy;
 TITLE:Instructional coordinator
@@ -1290,7 +1292,7 @@ VERSION:3.0
 N:Rød;Emma;;Mrs.;
 FN:Emma Rød
 NICKNAME:Muselor
-BDAY;VALUE=text:12/16/1947
+BDAY:1976-04-15
 GENDER:female
 ORG:J. Riggings;
 TITLE:CART provider
@@ -1304,7 +1306,7 @@ VERSION:3.0
 N:Uribe;Raimi;;Mr.;
 FN:Raimi Uribe
 NICKNAME:Wiford
-BDAY;VALUE=text:9/5/1986
+BDAY:1976-04-15
 GENDER:male
 ORG:Steinberg's;
 TITLE:Office manager
@@ -1318,7 +1320,7 @@ VERSION:3.0
 N:Jansson;Tiril;;Ms.;
 FN:Tiril Jansson
 NICKNAME:Debtled
-BDAY;VALUE=text:12/5/1937
+BDAY:1976-04-15
 GENDER:female
 ORG:Circuit City;
 TITLE:Millwright
@@ -1332,7 +1334,7 @@ VERSION:3.0
 N:Kromkamp;Matthéüs;;Mr.;
 FN:Matthéüs Kromkamp
 NICKNAME:Corties
-BDAY;VALUE=text:4/22/1988
+BDAY:1976-04-15
 GENDER:male
 ORG:Olympic Sports;
 TITLE:Piano tuner
@@ -1346,7 +1348,7 @@ VERSION:3.0
 N:Alfreðsdóttir;Katla;;Mrs.;
 FN:Katla Alfreðsdóttir
 NICKNAME:Youlty
-BDAY;VALUE=text:9/29/1973
+BDAY:1976-04-15
 GENDER:female
 ORG:Handy Andy;
 TITLE:Water conservationist
@@ -1360,7 +1362,7 @@ VERSION:3.0
 N:Vaillancour;Viollette;;Mrs.;
 FN:Viollette Vaillancour
 NICKNAME:Fadonsuded
-BDAY;VALUE=text:9/4/1970
+BDAY:1976-04-15
 GENDER:female
 ORG:TheBottomHalf;
 TITLE:Continuous mining machine operator
@@ -1374,7 +1376,7 @@ VERSION:3.0
 N:Johannesen;Emma;;Ms.;
 FN:Emma Johannesen
 NICKNAME:Pordinusband
-BDAY;VALUE=text:10/14/1958
+BDAY:1976-04-15
 GENDER:female
 ORG:Paul's Record Hut;
 TITLE:Window clerk
@@ -1388,7 +1390,7 @@ VERSION:3.0
 N:Berie;Étienne;;Mr.;
 FN:Étienne Berie
 NICKNAME:Surpere
-BDAY;VALUE=text:5/7/1943
+BDAY:1976-04-15
 GENDER:male
 ORG:Master Builder Design Services;
 TITLE:Water conservationist
@@ -1402,7 +1404,7 @@ VERSION:3.0
 N:Whitehouse;Elise;;Ms.;
 FN:Elise Whitehouse
 NICKNAME:Comay1943
-BDAY;VALUE=text:8/14/1943
+BDAY:1976-04-15
 GENDER:female
 ORG:Total Quality;
 TITLE:Laundry and dry-cleaning worker
@@ -1416,7 +1418,7 @@ VERSION:3.0
 N:Laursen;Anne;;Ms.;
 FN:Anne Laursen
 NICKNAME:Hibed1938
-BDAY;VALUE=text:1/30/1938
+BDAY:1976-04-15
 GENDER:female
 ORG:Sofa Express;
 TITLE:Pharmacy technician
@@ -1430,7 +1432,7 @@ VERSION:3.0
 N:Drescher;Doreen;;Mrs.;
 FN:Doreen Drescher
 NICKNAME:Thoon1972
-BDAY;VALUE=text:4/4/1972
+BDAY:1976-04-15
 GENDER:female
 ORG:Lionel Kiddie City;
 TITLE:Systems developer
@@ -1444,7 +1446,7 @@ VERSION:3.0
 N:Jakobsen;Jonathan;;Mr.;
 FN:Jonathan Jakobsen
 NICKNAME:Dahme1941
-BDAY;VALUE=text:4/12/1941
+BDAY:1976-04-15
 GENDER:male
 ORG:Pro-Care Garden Maintenance;
 TITLE:Audio control engineer
@@ -1458,7 +1460,7 @@ VERSION:3.0
 N:Chevrette;Huon;;Mr.;
 FN:Huon Chevrette
 NICKNAME:Somys1942
-BDAY;VALUE=text:3/26/1942
+BDAY:1976-04-15
 GENDER:male
 ORG:W. Bell & Co.;
 TITLE:Echocardiographer
@@ -1472,7 +1474,7 @@ VERSION:3.0
 N:Brandt;Patrick;;Mr.;
 FN:Patrick Brandt
 NICKNAME:Thentorcip
-BDAY;VALUE=text:6/24/1970
+BDAY:1976-04-15
 GENDER:male
 ORG:Newmark & Lewis;
 TITLE:Speech pathologist
@@ -1488,7 +1490,7 @@ URL:http://google.com
 FN:Aðalbjörn Snorrason
 UID:1vvc54ds156vv1fv156fd16
 NICKNAME:Shaltarea
-BDAY;VALUE=text:7/31/1950
+BDAY:1976-04-15
 GENDER;TYPE=HOME:male
 ORG:Farmer Jack;
 LANG;PREF=1:fr
