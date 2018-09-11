@@ -52,17 +52,17 @@
 				<!-- fullname, org, title -->
 				<div id="contact-header-infos">
 					<h2>
-						<input id="contact-fullname" v-model="contact.fullName" :disabled="!contact.addressbook.enabled"
+						<input id="contact-fullname" v-model="contact.fullName" :disabled="!contact.addressbook.readOnly"
 							:placeholder="t('contacts', 'Name')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="fullname"
 							value="" @input="debounceUpdateContact">
 					</h2>
 					<div id="details-org-container">
-						<input id="contact-org" v-model="contact.org" :disabled="!contact.addressbook.enabled"
+						<input id="contact-org" v-model="contact.org" :disabled="!contact.addressbook.readOnly"
 							:placeholder="t('contacts', 'Company')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="org"
 							value="" @input="debounceUpdateContact">
-						<input id="contact-title" v-model="contact.title" :disabled="!contact.addressbook.enabled"
+						<input id="contact-title" v-model="contact.title" :disabled="!contact.addressbook.readOnly"
 							:placeholder="t('contacts', 'Title')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="title"
 							value="" @input="debounceUpdateContact">
@@ -99,6 +99,7 @@
 </template>
 
 <script>
+import { PopoverMenu } from 'nextcloud-vue'
 import ClickOutside from 'vue-click-outside'
 import Vue from 'vue'
 import VTooltip from 'v-tooltip'
@@ -107,7 +108,6 @@ import debounce from 'debounce'
 import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps.js'
 
-import PopoverMenu from './core/popoverMenu'
 import ContactProperty from './ContactDetails/ContactDetailsProperty'
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
 import PropertySelect from './Properties/PropertySelect'
@@ -175,7 +175,7 @@ export default {
 					href: this.contact.url
 				}
 			]
-			if (this.contact.addressbook.enabled) {
+			if (this.contact.addressbook.readOnly) {
 				actions.push({
 					icon: 'icon-delete',
 					text: t('contacts', 'Delete'),
@@ -213,7 +213,7 @@ export default {
 		// store getters filtered and mapped to usable object
 		addressbooksOptions() {
 			return this.addressbooks
-				.filter(addressbook => addressbook.enabled)
+				.filter(addressbook => addressbook.readOnly)
 				.map(addressbook => {
 					return {
 						id: addressbook.id,
