@@ -43,23 +43,24 @@
 
 <script>
 import Vue from 'vue'
-import popoverMenu from '../core/popoverMenu'
-import shareAddressBook from './SettingsAddressbookShare'
-import renameAddressBookField from './SettingsRenameAddressbookField'
-import clickOutside from 'vue-click-outside'
+import { PopoverMenu } from 'nextcloud-vue'
+import ClickOutside from 'vue-click-outside'
 import VueClipboard from 'vue-clipboard2'
+
+import ShareAddressBook from './SettingsAddressbookShare'
+import RenameAddressBookField from './SettingsRenameAddressbookField'
 
 Vue.use(VueClipboard)
 
 export default {
 	name: 'SettingsAddressbook',
 	components: {
-		popoverMenu,
-		shareAddressBook,
-		renameAddressBookField
+		PopoverMenu,
+		ShareAddressBook,
+		RenameAddressBookField
 	},
 	directives: {
-		clickOutside
+		ClickOutside
 	},
 	props: {
 		addressbook: {
