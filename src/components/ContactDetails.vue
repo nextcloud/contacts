@@ -192,8 +192,8 @@ export default {
 		sortedProperties() {
 			return this.contact.properties.slice(0).sort((a, b) => {
 				return (
-					rfcProps.fieldOrder.indexOf(a.name) -
-					rfcProps.fieldOrder.indexOf(b.name)
+					rfcProps.fieldOrder.indexOf(a.name)
+					- rfcProps.fieldOrder.indexOf(b.name)
 				)
 			})
 		},

@@ -86,8 +86,8 @@ export default {
 		},
 		// building the popover menu
 		menu() {
-			let menu =
-				[{
+			let menu
+				= [{
 					href: this.addressbook.url,
 					icon: 'icon-public',
 					text: !this.copied
