@@ -49,7 +49,7 @@
 			<!-- Real input where the picker shows -->
 			<date-picker :value="localValue.toJSDate()" :minute-step="10" :lang="lang"
 				:clearable="false" :first-day-of-week="firstDay" :type="inputType"
-				confirm @confirm="updateValue" />
+				@confirm="updateValue" />
 		</div>
 	</div>
 </template>
