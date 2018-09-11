@@ -43,23 +43,24 @@
 
 <script>
 import Vue from 'vue'
-import popoverMenu from '../core/popoverMenu'
-import shareAddressBook from './SettingsAddressbookShare'
-import renameAddressBookField from './SettingsRenameAddressbookField'
-import clickOutside from 'vue-click-outside'
+import { PopoverMenu } from 'nextcloud-vue'
+import ClickOutside from 'vue-click-outside'
 import VueClipboard from 'vue-clipboard2'
+
+import ShareAddressBook from './SettingsAddressbookShare'
+import RenameAddressBookField from './SettingsRenameAddressbookField'
 
 Vue.use(VueClipboard)
 
 export default {
 	name: 'SettingsAddressbook',
 	components: {
-		popoverMenu,
-		shareAddressBook,
-		renameAddressBookField
+		PopoverMenu,
+		ShareAddressBook,
+		RenameAddressBookField
 	},
 	directives: {
-		clickOutside
+		ClickOutside
 	},
 	props: {
 		addressbook: {
@@ -75,7 +76,8 @@ export default {
 			shareOpen: false,
 			editingName: false,
 			copied: false,
-			copySuccess: true
+			copySuccess: true,
+			readOnly: this.addressbook.readOnly
 		}
 	},
 	computed: {
@@ -84,8 +86,8 @@ export default {
 		},
 		// building the popover menu
 		menu() {
-			let menu =
-				[{
+			let menu = [
+				{
 					href: this.addressbook.url,
 					icon: 'icon-public',
 					text: !this.copied
@@ -100,8 +102,12 @@ export default {
 					icon: 'icon-download',
 					text: t('contacts', 'Download'),
 					action: null
-				},
-				{
+				}
+			]
+
+			// check if addressbook is readonly
+			if (!this.readOnly) {
+				menu.push({
 					icon: 'icon-rename',
 					// check if editing name
 					input: this.editingName ? 'text' : null,
@@ -116,7 +122,9 @@ export default {
 					key: 'enableAddressbook',
 					model: this.enabled,
 					action: this.toggleAddressbookEnabled
-				}]
+				})
+
+			}
 			// check to ensure last addressbook is not deleted.
 			if (this.$store.getters.getAddressbooks.length > 1) {
 				menu.push({

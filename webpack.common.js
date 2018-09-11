@@ -1,4 +1,5 @@
 const path = require('path')
+const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 
@@ -7,7 +8,8 @@ module.exports = {
 	output: {
 		path: path.resolve(__dirname, './js'),
 		publicPath: '/js/',
-		filename: 'contacts.js'
+		filename: 'contacts.js',
+		chunkFilename: 'chunks/[name].js'
 	},
 	module: {
 		rules: [
@@ -42,7 +44,11 @@ module.exports = {
 			}
 		]
 	},
-	plugins: [new VueLoaderPlugin(), new StyleLintPlugin()],
+	plugins: [
+		new VueLoaderPlugin(),
+		new StyleLintPlugin(),
+		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+	],
 	resolve: {
 		alias: {
 			vue$: 'vue/dist/vue.esm.js'
