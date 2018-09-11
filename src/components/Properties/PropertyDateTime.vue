@@ -140,7 +140,28 @@ export default {
 		 * and ths only common syntax between js Date, moment and VCardTime
 		 */
 		formatedDateTime() {
-			return moment(this.localValue.toJSON())
+			let datetimeData = this.localValue.toJSON()
+
+			/**
+			 * Make sure to display the most interesting data.
+			 * If the Object does not have any time, do not display
+			 * the time and vice-versa.
+			 */
+			// No hour, no minute and no second = date only
+			if (datetimeData.hour === null && datetimeData.minute === null && datetimeData.second === null) {
+				return moment(datetimeData)
+					.locale(this.locale)
+					.format('LL')
+
+			// No year, no month and no day = time only
+			} else if (datetimeData.year === null && datetimeData.month === null && datetimeData.day === null) {
+				return moment(datetimeData)
+					.locale(this.locale)
+					.format('LTS')
+			}
+
+			// Fallback to the data ical.js provide us
+			return moment(datetimeData)
 				.locale(this.locale)
 				.format(
 					this.inputType === 'datetime'
@@ -202,8 +223,19 @@ export default {
 		 * Debounce and send update event to parent
 		 */
 		updateValue: debounce(function(e) {
+			let rawData = moment(e).toArray()
+
+			/**
+			 * Use the current year to ensure we do not lose
+			 * the year data on v4.0 since we currently have
+			 * no options to remove the year selection.
+			 */
+			if (this.value.year === null) {
+				rawData[0] = null
+			}
+
 			// reset the VCardTime component to the selected date/time
-			this.localValue.resetTo(...moment(e).toArray())
+			this.localValue.resetTo(...rawData)
 
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			// Use moment to convert the JsDate to Object
