@@ -41,26 +41,71 @@
 			<!-- delete the prop -->
 			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
 
-			<!-- Fake input in the background to display the correct date
-			according to the user locale. Tab navigation is ignored here -->
-			<input :value="formatedDateTime" class="property__value property__value--localedate" type="text"
-				tabindex="-1"></div>
-		<div class="property__row">
 			<!-- Real input where the picker shows -->
-			<date-picker :value="localValue.toJSDate()" :minute-step="10" :lang="lang"
+			<datetime-picker :value="localValue.toJSDate()" :minute-step="10" :lang="lang"
 				:clearable="false" :first-day-of-week="firstDay" :type="inputType"
-				@confirm="updateValue" />
+				confirm @confirm="updateValue" />
 		</div>
 	</div>
 </template>
 
 <script>
 import Multiselect from 'vue-multiselect'
-import DatePicker from 'vue2-datepicker'
-import propertyTitle from './PropertyTitle'
+import { DatetimePicker } from 'nextcloud-vue'
 import debounce from 'debounce'
 import moment from 'moment'
 import { VCardTime } from 'ical.js'
+
+import propertyTitle from './PropertyTitle'
+
+/**
+ * Format time with locale to display only
+ * Using the Object as hared data since it's the only way
+ * for us to forcefully omit some data (no year, or no time... etc)
+ * and ths only common syntax between js Date, moment and VCardTime
+ */
+let formatDateTime = function(vcardTime, type, locale) {
+	let datetimeData = vcardTime.toJSON()
+
+	/**
+	 * Make sure to display the most interesting data.
+	 * If the Object does not have any time, do not display
+	 * the time and vice-versa.
+	 */
+	// No hour, no minute and no second = date only
+	if (datetimeData.hour === null && datetimeData.minute === null && datetimeData.second === null) {
+		return moment(vcardTime)
+			.locale(locale)
+			.format('LL')
+
+	// No year, no month and no day = time only
+	} else if (datetimeData.year === null && datetimeData.month === null && datetimeData.day === null) {
+		return moment(vcardTime)
+			.locale(locale)
+			.format('LTS')
+	}
+
+	// Fallback to the data ical.js provide us
+	return moment(vcardTime)
+		.locale(locale)
+		.format(
+			type === 'datetime'
+				? 'LLLL'	// date & time display
+				: type === 'date'
+					? 'LL'	// only date
+					: 'LTS'	// only time
+		)
+}
+
+/**
+ * Override format function and use this since this
+ * inside a function declaration will represent the
+ * location of the call. So this = DatetimePicker.
+ * Therefore we can use any props we pass through datetime-picker
+ */
+DatetimePicker.methods.stringify = function() {
+	return formatDateTime(this.$parent.localValue, this.type, this.$parent.locale)
+}
 
 export default {
 	name: 'PropertyDateTime',
@@ -68,7 +113,7 @@ export default {
 	components: {
 		Multiselect,
 		propertyTitle,
-		DatePicker
+		DatetimePicker
 	},
 
 	props: {
@@ -131,45 +176,6 @@ export default {
 			let isLast = this.isLastProperty ? 1 : 0
 			// length is always one & add one space at the end
 			return hasTitle + 1 + isLast
-		},
-
-		/**
-		 * Format time with locale to display only
-		 * Using the Object as hared data since it's the only way
-		 * for us to forcefully omit some data (no year, or no time... etc)
-		 * and ths only common syntax between js Date, moment and VCardTime
-		 */
-		formatedDateTime() {
-			let datetimeData = this.localValue.toJSON()
-
-			/**
-			 * Make sure to display the most interesting data.
-			 * If the Object does not have any time, do not display
-			 * the time and vice-versa.
-			 */
-			// No hour, no minute and no second = date only
-			if (datetimeData.hour === null && datetimeData.minute === null && datetimeData.second === null) {
-				return moment(datetimeData)
-					.locale(this.locale)
-					.format('LL')
-
-			// No year, no month and no day = time only
-			} else if (datetimeData.year === null && datetimeData.month === null && datetimeData.day === null) {
-				return moment(datetimeData)
-					.locale(this.locale)
-					.format('LTS')
-			}
-
-			// Fallback to the data ical.js provide us
-			return moment(datetimeData)
-				.locale(this.locale)
-				.format(
-					this.inputType === 'datetime'
-						? 'LLLL'	// date & time display
-						: this.inputType === 'date'
-							? 'LL'	// only date
-							: 'LTS'	// only time
-				)
 		}
 	},
 
@@ -195,6 +201,8 @@ export default {
 		// default load e.g. fr-fr
 		import('moment/locale/' + this.locale)
 			.then(e => {
+				// force locale change to update
+				// the component once done loading
 				this.locale = locale
 			})
 			.catch(e => {
