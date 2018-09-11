@@ -75,7 +75,8 @@ export default {
 			shareOpen: false,
 			editingName: false,
 			copied: false,
-			copySuccess: true
+			copySuccess: true,
+			readOnly: this.addressbook.readOnly
 		}
 	},
 	computed: {
@@ -100,8 +101,11 @@ export default {
 					icon: 'icon-download',
 					text: t('contacts', 'Download'),
 					action: null
-				},
-				{
+				}]
+
+			// check if addressbook is readonly
+			if (!this.readOnly) {
+				menu.push({
 					icon: 'icon-rename',
 					// check if editing name
 					input: this.editingName ? 'text' : null,
@@ -116,7 +120,9 @@ export default {
 					key: 'enableAddressbook',
 					model: this.enabled,
 					action: this.toggleAddressbookEnabled
-				}]
+				})
+
+			}
 			// check to ensure last addressbook is not deleted.
 			if (this.$store.getters.getAddressbooks.length > 1) {
 				menu.push({
