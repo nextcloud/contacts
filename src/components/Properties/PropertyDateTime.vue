@@ -65,8 +65,11 @@ import propertyTitle from './PropertyTitle'
  * and ths only common syntax between js Date, moment and VCardTime
  */
 let formatDateTime = function(vcardTime, type, locale) {
+	// this is the only possibility for us to ensure
+	// no data is lost. e.g. if no second are set
+	// the second will be null and not 0
 	let datetimeData = vcardTime.toJSON()
-
+	let datetime = ''
 	/**
 	 * Make sure to display the most interesting data.
 	 * If the Object does not have any time, do not display
@@ -74,27 +77,33 @@ let formatDateTime = function(vcardTime, type, locale) {
 	 */
 	// No hour, no minute and no second = date only
 	if (datetimeData.hour === null && datetimeData.minute === null && datetimeData.second === null) {
-		return moment(vcardTime)
+		datetime = moment(datetimeData)
 			.locale(locale)
 			.format('LL')
 
 	// No year, no month and no day = time only
 	} else if (datetimeData.year === null && datetimeData.month === null && datetimeData.day === null) {
-		return moment(vcardTime)
+		datetime = moment(datetimeData)
 			.locale(locale)
 			.format('LTS')
 	}
 
 	// Fallback to the data ical.js provide us
-	return moment(vcardTime)
-		.locale(locale)
-		.format(
-			type === 'datetime'
-				? 'LLLL'	// date & time display
-				: type === 'date'
-					? 'LL'	// only date
-					: 'LTS'	// only time
-		)
+	if (datetime === '') {
+		datetime = moment(datetimeData)
+			.locale(locale)
+			.format(
+				type === 'datetime'
+					? 'LLLL'	// date & time display
+					: type === 'date'
+						? 'LL'	// only date
+						: 'LTS'	// only time
+			)
+	}
+	return datetimeData.year === null
+		// replace year and remove double spaces
+		? datetime.replace(moment(vcardTime).year(), '').replace(/\s\s+/g, ' ')
+		: datetime
 }
 
 /**
