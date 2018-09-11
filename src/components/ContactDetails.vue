@@ -99,6 +99,7 @@
 </template>
 
 <script>
+import { PopoverMenu } from 'nextcloud-vue'
 import ClickOutside from 'vue-click-outside'
 import Vue from 'vue'
 import VTooltip from 'v-tooltip'
@@ -107,7 +108,6 @@ import debounce from 'debounce'
 import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps.js'
 
-import PopoverMenu from './core/popoverMenu'
 import ContactProperty from './ContactDetails/ContactDetailsProperty'
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
 import PropertySelect from './Properties/PropertySelect'
