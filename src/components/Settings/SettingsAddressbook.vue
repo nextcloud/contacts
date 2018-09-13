@@ -150,11 +150,32 @@ export default {
 		toggleShare() {
 			this.shareOpen = !this.shareOpen
 		},
-		toggleAddressbookEnabled() {
-			this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
+		toggleAddressbookEnabled(e) {
+			console.log(e.target) // eslint-disable-line
+			e.target.classList.add('icon-loading')
+			setTimeout(function() {
+				try {
+					this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
+				} catch (err) {
+					// error handling
+				} finally {
+					// stop loading regardless of outcome
+					e.target.classList.remove('icon-loading')
+				}
+			}, 5000)
 		},
-		deleteAddressbook() {
-			this.$store.dispatch('deleteAddressbook', this.addressbook)
+		deleteAddressbook(e) {
+			e.target.previousElementSibling.classList.add('icon-loading')
+			setTimeout(function() {
+				try {
+					this.$store.dispatch('deleteAddressbook', this.addressbook)
+				} catch (err) {
+					// error handling
+				} finally {
+					// stop loading regardless of outcome
+					e.target.previousElementSibling.classList.remove('icon-loading')
+				}
+			}, 5000)
 		},
 		renameAddressbook() {
 			this.editingName = true
@@ -163,7 +184,17 @@ export default {
 			let addressbook = this.addressbook
 			// New name for addressbook - inputed value from form
 			let newName = e.target[0].value
-			this.$store.dispatch('renameAddressbook', { addressbook, newName }).then(this.editingName = false)
+			e.target.previousElementSibling.classList.add('icon-loading')
+			setTimeout(function() {
+				try {
+					this.$store.dispatch('renameAddressbook', { addressbook, newName }).then(this.editingName = false) // .then(e.target.parent.classList.add())
+				} catch (err) {
+					// error handling
+				} finally {
+					// stop loading regardless of outcome
+					e.target.previousElementSibling.classList.remove('icon-loading')
+				}
+			}, 5000)
 		},
 		copyLink() {
 			// copy link for addressbook to clipboard
