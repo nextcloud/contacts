@@ -41,7 +41,7 @@
 			<header :style="{ 'backgroundColor': colorAvatar }">
 
 				<!-- avatar and upload photo -->
-				<contact-avatar :avatar="contact.photo" />
+				<contact-avatar :contact="contact" />
 				<!-- QUESTION: is it better to pass contact as a prop or get it from the store inside
 				contact-avatar ?  :avatar="contact.photo"-->
 
@@ -109,7 +109,6 @@ import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
 import PropertySelect from './Properties/PropertySelect'
 import PropertyGroups from './Properties/PropertyGroups'
 import ContactAvatar from './ContactDetails/ContactDetailsAvatar'
-
 
 Vue.use(VTooltip)
 
