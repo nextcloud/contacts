@@ -62,7 +62,6 @@ export default {
 		/**
 		 * Set new address book name
 		 *
-		 * @param {string} addressbook The address book name provided in the input
 		 *
 		 */
 		addAddressbook() {
