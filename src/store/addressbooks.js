@@ -234,8 +234,8 @@ const actions = {
 	 */
 	appendAddressbook(context, addressbook) {
 		context.commit('addAddressbooks', addressbook)
-  },
-  
+	},
+
 	/**
 	 * Delete Addressbook
 	 * @param {Object} context Current context

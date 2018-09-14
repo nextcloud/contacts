@@ -28,11 +28,7 @@
 			placeholder="Address book name"
 			type="text"
 			autocomplete="off" autocorrect="off"
-			spellcheck="false"
-			tooltip-enable="!newAddressbookForm.$pristine"
-			tooltip-trigger="none"
-			tooltip-placement="top"
-			uib-tooltip="Only these special characters are allowed: -_.!?#|()">
+			spellcheck="false">
 		<input type="submit" value="" class="newAddressbookSubmit inline-button icon-confirm action pull-right">
 	</form>
 </template>
