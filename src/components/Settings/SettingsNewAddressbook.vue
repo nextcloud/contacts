@@ -25,7 +25,7 @@
 		@submit.prevent.stop="addAddressbook">
 		<input id="new-addressbook" ref="addressbook" :pattern="addressBookRegex"
 			class="new-addressbook-input"
-			placeholder="Address book name"
+			:placeholder="t('contacts', 'Address book name')"
 			type="text"
 			autocomplete="off" autocorrect="off"
 			spellcheck="false">
