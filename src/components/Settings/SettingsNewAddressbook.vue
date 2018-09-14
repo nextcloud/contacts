@@ -46,7 +46,8 @@ export default {
 	},
 	data() {
 		return {
-			addressBookRegex: new RegExp('/^[a-zA-Z0-9À-ÿ\s_.!?#|()-]+$/i')
+			// match any expression
+			addressBookRegex: new RegExp('/.*/')
 		}
 	},
 	computed: {
