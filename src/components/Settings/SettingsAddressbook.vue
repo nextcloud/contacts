@@ -217,6 +217,8 @@ export default {
 					this.editingName = false
 					// stop loading status regardless of outcome
 					this.renameLoading = false
+					// close popover menu
+					this.menuOpen = false
 				}
 			}, 500)
 		},
