@@ -25,14 +25,10 @@
 		@submit.prevent.stop="addAddressbook">
 		<input id="new-addressbook" ref="addressbook" :pattern="addressBookRegex"
 			class="new-addressbook-input"
-			placeholder="Address book name"
+			:placeholder="t('contacts', 'Address book name')"
 			type="text"
 			autocomplete="off" autocorrect="off"
-			spellcheck="false"
-			tooltip-enable="!newAddressbookForm.$pristine"
-			tooltip-trigger="none"
-			tooltip-placement="top"
-			uib-tooltip="Only these special characters are allowed: -_.!?#|()">
+			spellcheck="false">
 		<input type="submit" value="" class="newAddressbookSubmit inline-button icon-confirm action pull-right">
 	</form>
 </template>
@@ -50,7 +46,8 @@ export default {
 	},
 	data() {
 		return {
-			addressBookRegex: new RegExp('/^[a-zA-Z0-9À-ÿ\s_.!?#|()-]+$/i')
+			// match any expression
+			addressBookRegex: new RegExp('/.*/')
 		}
 	},
 	computed: {
@@ -62,7 +59,6 @@ export default {
 		/**
 		 * Set new address book name
 		 *
-		 * @param {string} addressbook The address book name provided in the input
 		 *
 		 */
 		addAddressbook() {
