@@ -142,6 +142,13 @@ export default {
 			return menu
 		}
 	},
+	watch: {
+		menuOpen: function() {
+			if (this.menuOpen === false) {
+				this.editingName = false
+			}
+		}
+	},
 	mounted() {
 		// required if popup needs to stay opened after menu click
 		this.popupItem = this.$el
@@ -203,10 +210,11 @@ export default {
 			this.renameLoading = true
 			setTimeout(() => {
 				try {
-					this.$store.dispatch('renameAddressbook', { addressbook, newName }).then(this.editingName = false) // .then(e.target.parent.classList.add())
+					this.$store.dispatch('renameAddressbook', { addressbook, newName }) // .then(e.target.parent.classList.add())
 				} catch (err) {
 					// error handling
 				} finally {
+					this.editingName = false
 					// stop loading status regardless of outcome
 					this.renameLoading = false
 				}
