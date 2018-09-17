@@ -35,7 +35,8 @@ const addressbookModel = {
 	owner: '',
 	shares: [],
 	contacts: {},
-	url: ''
+	url: '',
+	readOnly: false
 }
 
 const state = {
@@ -207,15 +208,17 @@ const actions = {
 			displayName: 'Addressbook 1',
 			enabled: true,
 			owner: 'admin',
-			url: '/remote.php/dav/ab1'
+			url: '/remote.php/dav/ab1',
 			// dav: addressbook
+			readOnly: false
 		}, {
 			id: 'ab2',
 			displayName: 'Addressbook 2',
 			enabled: true,
 			owner: 'admin',
-			url: '/remote.php/dav/ab2'
+			url: '/remote.php/dav/ab2',
 			// dav: addressbook
+			readOnly: true
 		}]
 		// })
 

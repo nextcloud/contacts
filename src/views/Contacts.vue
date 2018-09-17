@@ -47,11 +47,12 @@
 </template>
 
 <script>
-import appNavigation from '../components/core/appNavigation'
-import settingsSection from '../components/SettingsSection'
-import contentList from '../components/ContentList'
-import contactDetails from '../components/ContactDetails'
-import importScreen from '../components/ImportScreen'
+import { AppNavigation } from 'nextcloud-vue'
+
+import SettingsSection from '../components/SettingsSection'
+import ContentList from '../components/ContentList'
+import ContactDetails from '../components/ContactDetails'
+import ImportScreen from '../components/ImportScreen'
 
 import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps.js'
@@ -60,11 +61,11 @@ import rfcProps from '../models/rfcProps.js'
 
 export default {
 	components: {
-		appNavigation,
-		settingsSection,
-		contentList,
-		contactDetails,
-		importScreen
+		AppNavigation,
+		SettingsSection,
+		ContentList,
+		ContactDetails,
+		ImportScreen
 	},
 
 	// passed by the router
@@ -108,7 +109,7 @@ export default {
 		},
 		// first enabled addressbook of the list
 		defaultAddressbook() {
-			return this.addressbooks.find(addressbook => addressbook.enabled)
+			return this.addressbooks.find(addressbook => addressbook.readOnly)
 		},
 
 		/**

@@ -21,24 +21,6 @@
  *
  */
 
-
-.new-addressbook, .rename-addressbook {
-	padding: 6px 0;
-	input {
-		border: none;
-		margin: 0;
-	}
-	#new-addressbook-form, &__form {
-		width: 100%;
-		display: inline-flex;
-		border: #dbdbdb solid 1px;
-		border-radius: 3px;
-	}
-	input.new-addressbook__submit, input.rename-addressbook__submit {
-		opacity: 0.6;
-	}
-}
-
 .addressbook {
 	display: flex;
 	align-items: center;
@@ -51,10 +33,7 @@
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
-		padding-left: 7px;
-		opacity: 0.7;
 	}
-	
 	&__share,
 	&__menu .icon-more {
 		width: 44px;
@@ -66,7 +45,6 @@
 			opacity: .7;
 		}
 	}
-
 	&__share {
 		margin-left: auto;
 	}

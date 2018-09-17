@@ -22,17 +22,7 @@
   -->
 <template>
 	<div>
-		<li v-if="editingName" class="new-addressbook">
-			<form id="rename-addressbook__form" name="rename-addressbook__form" class="rename-addressbook__form"
-				@submit.prevent="updateAddressbookName">
-				<!-- rename addressbook input -->
-				<input :placeholder="addressbook.displayName"
-					v-model="newName" type="text">
-				<input type="submit" value=""
-					class="rename-addressbook__submit icon-confirm">
-			</form>
-		</li>
-		<li v-else :class="{disabled: !addressbook.enabled}" class="addressbook">
+		<li :class="{disabled: !addressbook.enabled}" class="addressbook">
 			<!-- addressbook name -->
 			<span class="addressbook__name">{{ addressbook.displayName }}</span>
 			<!-- sharing button -->
@@ -53,23 +43,24 @@
 
 <script>
 import Vue from 'vue'
-import popoverMenu from '../core/popoverMenu'
-import shareAddressBook from './SettingsAddressbookShare'
-import renameAddressBookField from './SettingsRenameAddressbookField'
-import clickOutside from 'vue-click-outside'
+import { PopoverMenu } from 'nextcloud-vue'
+import ClickOutside from 'vue-click-outside'
 import VueClipboard from 'vue-clipboard2'
+
+import ShareAddressBook from './SettingsAddressbookShare'
+import RenameAddressBookField from './SettingsRenameAddressbookField'
 
 Vue.use(VueClipboard)
 
 export default {
 	name: 'SettingsAddressbook',
 	components: {
-		popoverMenu,
-		shareAddressBook,
-		renameAddressBookField
+		PopoverMenu,
+		ShareAddressBook,
+		RenameAddressBookField
 	},
 	directives: {
-		clickOutside
+		ClickOutside
 	},
 	props: {
 		addressbook: {
@@ -86,7 +77,7 @@ export default {
 			editingName: false,
 			copied: false,
 			copySuccess: true,
-			newName: this.addressbook.displayName // new name for addressbook
+			readOnly: this.addressbook.readOnly
 		}
 	},
 	computed: {
@@ -95,8 +86,8 @@ export default {
 		},
 		// building the popover menu
 		menu() {
-			let menu =
-				[{
+			let menu = [
+				{
 					href: this.addressbook.url,
 					icon: 'icon-public',
 					text: !this.copied
@@ -111,20 +102,29 @@ export default {
 					icon: 'icon-download',
 					text: t('contacts', 'Download'),
 					action: null
-				},
-				{
+				}
+			]
+
+			// check if addressbook is readonly
+			if (!this.readOnly) {
+				menu.push({
 					icon: 'icon-rename',
-					text: t('contacts', 'Rename'),
-					action: this.renameAddressbook
+					// check if editing name
+					input: this.editingName ? 'text' : null,
+					text: !this.editingName ? t('contacts', 'Rename') : '',
+					action: !this.editingName ? this.renameAddressbook : this.updateAddressbookName,
+					value: this.addressbook.displayName,
+					placeholder: this.addressbook.displayName
 				},
 				{
-					icon: 'checkbox',
 					text: this.enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled'),
 					input: 'checkbox',
 					key: 'enableAddressbook',
 					model: this.enabled,
 					action: this.toggleAddressbookEnabled
-				}]
+				})
+
+			}
 			// check to ensure last addressbook is not deleted.
 			if (this.$store.getters.getAddressbooks.length > 1) {
 				menu.push({
@@ -159,9 +159,10 @@ export default {
 		renameAddressbook() {
 			this.editingName = true
 		},
-		updateAddressbookName() {
+		updateAddressbookName(e) {
 			let addressbook = this.addressbook
-			let newName = this.newName
+			// New name for addressbook - inputed value from form
+			let newName = e.target[0].value
 			this.$store.dispatch('renameAddressbook', { addressbook, newName }).then(this.editingName = false)
 		},
 		copyLink() {
@@ -174,6 +175,7 @@ export default {
 				this.copied = true
 
 			})
+			// timeout sets the text back to copy to show text was copied
 			setTimeout(() => { this.copied = false }, 1500)
 		}
 	}
