@@ -24,12 +24,12 @@
 	<form id="new-addressbook-form" name="new-addressbook-form" class="new-addressbook"
 		@submit.prevent.stop="addAddressbook">
 		<input id="new-addressbook" ref="addressbook" :pattern="addressBookRegex"
-			class="new-addressbook-input"
 			:placeholder="t('contacts', 'Address book name')"
+			class="new-addressbook-input"
 			type="text"
 			autocomplete="off" autocorrect="off"
 			spellcheck="false">
-		<input type="submit" value="" class="newAddressbookSubmit inline-button icon-confirm action pull-right">
+		<input type="submit" value="" class="icon-confirm">
 	</form>
 </template>
 
