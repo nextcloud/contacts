@@ -77,7 +77,12 @@ export default {
 			editingName: false,
 			copied: false,
 			copySuccess: true,
-			readOnly: this.addressbook.readOnly
+			readOnly: this.addressbook.readOnly,
+			toggleEnabledLoading: false,
+			deleteAddressbookLoading: false,
+			renameLoading: false,
+			downloadLoading: false,
+			copyLoading: false
 		}
 	},
 	computed: {
@@ -89,7 +94,7 @@ export default {
 			let menu = [
 				{
 					href: this.addressbook.url,
-					icon: 'icon-public',
+					icon: this.copyLoading ? 'icon-loading-small' : 'icon-public',
 					text: !this.copied
 						? t('contacts', 'Copy link')
 						: this.copySuccess
@@ -99,16 +104,16 @@ export default {
 				},
 				{
 					href: this.addressbook.url + '?export',
-					icon: 'icon-download',
+					icon: this.downloadLoading ? 'icon-loading-small' : 'icon-download',
 					text: t('contacts', 'Download'),
-					action: null
+					action: this.downloadAddressbook
 				}
 			]
 
 			// check if addressbook is readonly
 			if (!this.readOnly) {
 				menu.push({
-					icon: 'icon-rename',
+					icon: this.renameLoading ? 'icon-loading-small' : 'icon-rename',
 					// check if editing name
 					input: this.editingName ? 'text' : null,
 					text: !this.editingName ? t('contacts', 'Rename') : '',
@@ -118,7 +123,8 @@ export default {
 				},
 				{
 					text: this.enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled'),
-					input: 'checkbox',
+					icon: this.toggleEnabledLoading ? 'icon-loading-small' : null,
+					input: this.toggleEnabledLoading ? null : 'checkbox',
 					key: 'enableAddressbook',
 					model: this.enabled,
 					action: this.toggleAddressbookEnabled
@@ -128,7 +134,7 @@ export default {
 			// check to ensure last addressbook is not deleted.
 			if (this.$store.getters.getAddressbooks.length > 1) {
 				menu.push({
-					icon: 'icon-delete',
+					icon: this.deleteAddressbookLoading ? 'icon-loading-small' : 'icon-delete',
 					text: t('contacts', 'Delete'),
 					action: this.deleteAddressbook
 				})
@@ -150,32 +156,41 @@ export default {
 		toggleShare() {
 			this.shareOpen = !this.shareOpen
 		},
-		toggleAddressbookEnabled(e) {
-			console.log(e.target) // eslint-disable-line
-			e.target.classList.add('icon-loading')
-			setTimeout(function() {
+		toggleAddressbookEnabled() {
+			// change to loading status
+			this.toggleEnabledLoading = true
+			setTimeout(() => {
 				try {
 					this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
 				} catch (err) {
 					// error handling
 				} finally {
-					// stop loading regardless of outcome
-					e.target.classList.remove('icon-loading')
+					// stop loading status regardless of outcome
+					this.toggleEnabledLoading = false
 				}
-			}, 5000)
+			}, 500)
 		},
-		deleteAddressbook(e) {
-			e.target.previousElementSibling.classList.add('icon-loading')
-			setTimeout(function() {
+		downloadAddressbook() {
+			// change to loading status
+			this.downloadLoading = true
+			setTimeout(() => {
+				// stop loading status regardless of outcome
+				this.downloadLoading = false
+			}, 1500)
+		},
+		deleteAddressbook() {
+			// change to loading status
+			this.deleteAddressbookLoading = true
+			setTimeout(() => {
 				try {
 					this.$store.dispatch('deleteAddressbook', this.addressbook)
 				} catch (err) {
 					// error handling
 				} finally {
-					// stop loading regardless of outcome
-					e.target.previousElementSibling.classList.remove('icon-loading')
+					// stop loading status regardless of outcome
+					this.deleteAddressbookLoading = false
 				}
-			}, 5000)
+			}, 500)
 		},
 		renameAddressbook() {
 			this.editingName = true
@@ -184,19 +199,22 @@ export default {
 			let addressbook = this.addressbook
 			// New name for addressbook - inputed value from form
 			let newName = e.target[0].value
-			e.target.previousElementSibling.classList.add('icon-loading')
-			setTimeout(function() {
+			// change to loading status
+			this.renameLoading = true
+			setTimeout(() => {
 				try {
 					this.$store.dispatch('renameAddressbook', { addressbook, newName }).then(this.editingName = false) // .then(e.target.parent.classList.add())
 				} catch (err) {
 					// error handling
 				} finally {
-					// stop loading regardless of outcome
-					e.target.previousElementSibling.classList.remove('icon-loading')
+					// stop loading status regardless of outcome
+					this.renameLoading = false
 				}
-			}, 5000)
+			}, 500)
 		},
 		copyLink() {
+			// change to loading status
+			this.copyLoading = true
 			// copy link for addressbook to clipboard
 			this.$copyText(this.addressbook.url).then(e => {
 				this.copySuccess = true
@@ -207,7 +225,11 @@ export default {
 
 			})
 			// timeout sets the text back to copy to show text was copied
-			setTimeout(() => { this.copied = false }, 1500)
+			setTimeout(() => {
+				// stop loading status regardless of outcome
+				this.copyLoading = false
+				this.copied = false
+			}, 1500)
 		}
 	}
 }
