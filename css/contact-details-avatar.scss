@@ -20,31 +20,45 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
- 
-$grid-height-unit: 40px;
-$grid-input-padding: 7px;
-$grid-input-margin: 3px;
-$grid-column-width: 380px;
-$grid-input-height-with-margin: #{$grid-height-unit - $grid-input-margin * 2};
 
-@mixin generate-grid-span($default-unit) {
-	// we only supports 10 props of the same type
-	@for $i from 1 through 10 {
-		&.grid-span-#{$i} {
-			// default unit + title + bottom padding
-			grid-row-start: span #{$i * $default-unit};
-		}
-	}
+ // AVATAR
+ #contact-header-avatar {
+    position: relative;
+    height: 75px;
+    width: 75px;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    margin: 0 22px 0 44px;
+    .contact-avatar-background {
+        background-color: var(--color-background-dark);
+        opacity: .2;
+        z-index: 0;
+    }
+    img {
+        z-index: 1;
+    }
+    label.icon-upload-white {
+        opacity: .5;
+        z-index: 2;
+        &:hover,
+        a:active,
+        a:focus {
+            opacity: .7;
+        }
+    }
+    img +  label.icon-upload-white {
+        opacity: 0;
+    }
+    .contact-avatar-background,
+    img,
+    label.icon-upload-white {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+    &__picture {
+        border-radius: 50%;
+        flex-shrink: 0;
+    }
 }
-
-
-@import 'settings-section';
-@import 'settings/settings-addressbook';
-@import 'settings/settings-addressbook-shares';
-@import 'settings/settings-addressbook-sharee';
-@import 'details';
-@import 'ContactDetails';
-@import 'contact-details-avatar';
-@import './Properties/Properties';
-@import './Properties/PropertyTitle';
-@import 'importScreen';

@@ -22,11 +22,19 @@
 
 <template>
 	<div id="contact-header-avatar">
-		<div class="contact-avatar-background" />
-		<img v-if="contact.avatar">
-		<input id="contact-avatar-upload" type="file" class="hidden"
-			accept="image/*" @change="processFile">
-		<label v-tooltip.auto="t('contacts', 'Upload a new picture')" for="contact-avatar-upload" class="icon-upload-white" />
+		<div :class="{'maximized': maximizeAvatar}" class="contact-avatar-background" />
+		<img v-click="maximise" v-if="contact.photo !==undefined" :id="contact.key"
+			class="avatar__picture"
+			src="">
+		<div class="contact-header-avatar__options">
+			<input id="contact-header-avatar__upload" type="file" class="hidden"
+				accept="image/*"
+				@change="uploadPhoto">
+			<label v-tooltip.auto="t('contacts', 'Upload a new picture')" for="avatar-upload" class="icon-upload-white" />
+			<div v-click="removePhoto" v-if="contact.photo !==undefined" class="icon-delete-white" />
+			<div v-click="openPhoto" v-if="contact.photo !==undefined" class="icon-fullscreen-white" />
+			<div v-click="downloadPhoto" v-if="contact.photo !==undefined" class="icon-download-white" />
+		</div>
 	</div>
 </template>
 
@@ -39,6 +47,14 @@ export default {
 			type: Object,
 			required: true
 		}
+	},
+	data() {
+		return {
+			maximizeAvatar: false
+		}
+	},
+	mounted: {
+
 	},
 	methods: {
 		processFile(event) {
@@ -66,6 +82,23 @@ export default {
 				}
 			}
 			reader.readAsDataURL(file)
+		},
+		maximise() {
+			// maximise avatar photo
+			this.maximizeAvatar = true
+		},
+		uploadPhoto() {
+			// upload avatar photo
+		},
+		removePhoto() {
+			// remove avatar photo
+		},
+		minimizePhoto() {
+			// minimize avatar photo
+			this.maximizeAvatar = false
+		},
+		downloadPhoto() {
+			// download avatar photo
 		}
 	}
 
