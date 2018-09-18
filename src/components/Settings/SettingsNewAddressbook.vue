@@ -23,7 +23,7 @@
 <template>
 	<form id="new-addressbook-form" name="new-addressbook-form" class="new-addressbook"
 		@submit.prevent.stop="addAddressbook">
-		<input id="new-addressbook" ref="addressbook" :pattern="addressBookRegex"
+		<input id="new-addressbook" ref="addressbook"
 			:placeholder="t('contacts', 'Address book name')"
 			class="new-addressbook-input"
 			type="text"
@@ -46,8 +46,7 @@ export default {
 	},
 	data() {
 		return {
-			// match any expression
-			addressBookRegex: new RegExp('/.*/')
+			// TODO: add pattern attribute to input, bind to addressBookRegex property
 		}
 	},
 	computed: {
