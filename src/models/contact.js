@@ -114,6 +114,26 @@ export default class Contact {
 	}
 
 	/**
+	 * Return the photo
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get photo() {
+		return this.vCard.getFirstPropertyValue('photo')
+	}
+
+	/**
+	 * Set the photo
+	 *
+	 * @memberof Contact
+	 */
+	set photo(photo) {
+		this.vCard.updatePropertyWithValue('photo', photo)
+		return true
+	}
+
+	/**
 	 * Return the groups
 	 *
 	 * @readonly
