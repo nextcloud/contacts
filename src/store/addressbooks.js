@@ -26,7 +26,7 @@ import vcfFile from '!raw-loader!./FakeName.vcf'
 import parseVcf from '../services/parseVcf'
 import Vue from 'vue'
 
-// import client from '../services/cdav'
+import client from '../services/cdav'
 
 const addressbookModel = {
 	id: '',
@@ -36,7 +36,8 @@ const addressbookModel = {
 	shares: [],
 	contacts: {},
 	url: '',
-	readOnly: false
+	readOnly: false,
+	dav: false
 }
 
 const state = {
@@ -202,25 +203,20 @@ const actions = {
 	 * @returns {Promise} fetch and commit
 	 */
 	async getAddressbooks(context) {
-		// let addressbooks = client.addressbookHomes.map(addressbook => {
-		let addressbooks = [{
-			id: 'ab1',
-			displayName: 'Addressbook 1',
-			enabled: true,
-			owner: 'admin',
-			url: '/remote.php/dav/ab1',
-			// dav: addressbook
-			readOnly: false
-		}, {
-			id: 'ab2',
-			displayName: 'Addressbook 2',
-			enabled: true,
-			owner: 'admin',
-			url: '/remote.php/dav/ab2',
-			// dav: addressbook
-			readOnly: true
-		}]
-		// })
+		let addressbooks = await client.addressBookHomes[0].findAllAddressBooks().then(addressbooks => {
+			return addressbooks.map(addressbook => {
+				return {
+					// get last part of url
+					id: addressbook.url.split('/').slice(-2, -1),
+					displayName: addressbook.displayname,
+					enabled: addressbook.enabled,
+					owner: addressbook.owner,
+					readOnly: addressbook.readOnly,
+					url: addressbook.url,
+					dav: addressbook
+				}
+			})
+		})
 
 		addressbooks.forEach(addressbook => {
 			context.commit('addAddressbooks', addressbook)
@@ -236,7 +232,12 @@ const actions = {
 	 * @param {Object} addressbook The address book to append
 	 */
 	appendAddressbook(context, addressbook) {
-		context.commit('addAddressbooks', addressbook)
+		return client.addressBookHomes[0].createAddressBookCollection(addressbook.displayName)
+			.then((response) => {
+				console.log(response)
+				context.commit('addAddressbooks', addressbook)
+			})
+			.catch((error) => { throw error })
 	},
 
 	/**
@@ -264,7 +265,9 @@ const actions = {
 	 * @param {String} data.newName
 	 */
 	renameAddressbook(context, { addressbook, newName }) {
-		context.commit('renameAddressbook', { addressbook, newName })
+		return addressbook.dav.displayname(newName)
+			.then((response) => context.commit('renameAddressbook', { addressbook, newName }))
+			.catch((error) => { throw error })
 	},
 
 	/**

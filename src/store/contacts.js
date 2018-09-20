@@ -21,7 +21,10 @@
  */
 
 import Vue from 'vue'
+import ICAL from 'ical.js'
+
 import Contact from '../models/contact'
+import client from '../services/cdav'
 
 const state = {
 	// Using objects for performance
@@ -207,8 +210,14 @@ const actions = {
 	 * @param {Contact} contact the contact to delete
 	 */
 	addContact(context, contact) {
-		context.commit('addContact', contact)
-		context.commit('addContactToAddressbook', contact)
+		console.log(contact);
+		return contact.addressbook.dav.createVCard(ICAL.stringify(contact.vCard.jCal))
+			.then((response) => {
+				console.log(response)
+				context.commit('addContact', contact)
+				context.commit('addContactToAddressbook', contact)
+			})
+			.catch((error) => { throw error })
 	},
 
 	/**
