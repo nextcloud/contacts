@@ -56,9 +56,7 @@ export default {
 	},
 	methods: {
 		/**
-		 * Set new address book name
-		 *
-		 *
+		 * Add a new address book
 		 */
 		addAddressbook() {
 			let addressbook = this.$refs.addressbook.value
