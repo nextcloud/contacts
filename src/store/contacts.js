@@ -197,8 +197,15 @@ const actions = {
 	 * @param {Contact} contact the contact to delete
 	 */
 	deleteContact(context, contact) {
-		context.commit('deleteContact', contact)
-		context.commit('deleteContactFromAddressbook', contact)
+		contact.dav.delete()
+			.then((response) => {
+				context.commit('deleteContact', contact)
+				context.commit('deleteContactFromAddressbook', contact)
+			})
+			.catch((error) => {
+				console.error(error)
+				OC.Notification.showTemporary(t('contacts', 'An error occurred'))
+			})
 	},
 
 	/**
