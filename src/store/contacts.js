@@ -210,7 +210,6 @@ const actions = {
 	 * @param {Contact} contact the contact to delete
 	 */
 	addContact(context, contact) {
-		console.log(contact);
 		return contact.addressbook.dav.createVCard(ICAL.stringify(contact.vCard.jCal))
 			.then((response) => {
 				console.log(response)
