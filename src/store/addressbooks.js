@@ -276,7 +276,7 @@ const actions = {
 	 * @param {Object} importDetails = { vcf, addressbook }
 	 */
 	getContactsFromAddressBook(context, { addressbook }) {
-		addressbook.dav.findAllAndFilterBySimpleProperties(['EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG'])
+		return addressbook.dav.findAllAndFilterBySimpleProperties(['EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG'])
 			.then((response) => {
 				// We don't want to lose the url information
 				// so we need to parse one by one
@@ -289,6 +289,14 @@ const actions = {
 				context.commit('appendContacts', contacts)
 				context.commit('appendGroupsFromContacts', contacts)
 				context.commit('sortContacts')
+				return contacts
+			})
+			.catch((error) => { 
+				// unrecoverable error, if no contacts were loaded,
+				// remove the addressbook
+				// TODO: create a failed addressbook state and show that there was an issue?
+				context.commit('deleteAddressbook', addressbook)
+				console.error(error)
 			})
 	},
 

@@ -22,9 +22,7 @@
 
 import Vue from 'vue'
 import ICAL from 'ical.js'
-
 import Contact from '../models/contact'
-import client from '../services/cdav'
 
 const state = {
 	// Using objects for performance
