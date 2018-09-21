@@ -25,6 +25,7 @@
 	<component v-if="propModel && propType !== 'unknown'" :is="componentInstance" :select-type.sync="selectType"
 		:prop-model="propModel" :value.sync="value" :is-first-property="isFirstProperty"
 		:property="property" :is-last-property="isLastProperty" :class="{'property--last': isLastProperty}"
+		v-tooltip.right="propModel.info" 
 		:contact="contact" @delete="deleteProp" />
 </template>
 
