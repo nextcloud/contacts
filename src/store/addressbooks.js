@@ -21,8 +21,6 @@
  *
  */
 
-/* eslint-disable-next-line import/no-webpack-loader-syntax */
-import vcfFile from '!raw-loader!./FakeName.vcf'
 import parseVcf from '../services/parseVcf'
 import Vue from 'vue'
 
@@ -207,7 +205,7 @@ const actions = {
 			return addressbooks.map(addressbook => {
 				return {
 					// get last part of url
-					id: addressbook.url.split('/').slice(-2, -1),
+					id: addressbook.url.split('/').slice(-2, -1)[0],
 					displayName: addressbook.displayname,
 					enabled: addressbook.enabled,
 					owner: addressbook.owner,
@@ -278,11 +276,20 @@ const actions = {
 	 * @param {Object} importDetails = { vcf, addressbook }
 	 */
 	getContactsFromAddressBook(context, { addressbook }) {
-		let contacts = parseVcf(vcfFile, addressbook)
-		context.commit('appendContactsToAddressbook', { addressbook, contacts })
-		context.commit('appendContacts', contacts)
-		context.commit('sortContacts')
-		context.commit('appendGroupsFromContacts', contacts)
+		addressbook.dav.findAllAndFilterBySimpleProperties(['EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG'])
+			.then((response) => {
+				// We don't want to lose the url information
+				// so we need to parse one by one
+				const contacts = response.map(contact => {
+					let item = parseVcf(contact.data, addressbook)[0]
+					item.url = contact.url
+					return item
+				})
+				context.commit('appendContactsToAddressbook', { addressbook, contacts })
+				context.commit('appendContacts', contacts)
+				context.commit('appendGroupsFromContacts', contacts)
+				context.commit('sortContacts')
+			})
 	},
 
 	/**

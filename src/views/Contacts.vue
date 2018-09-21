@@ -26,7 +26,7 @@
 		<!-- new-contact-button + navigation + settings -->
 		<app-navigation :menu="menu">
 			<!-- settings -->
-			<settings-section slot="settings-content" />
+			<settings-section slot="settings-content" v-if="!loading" />
 		</app-navigation>
 
 		<!-- main content -->
@@ -149,6 +149,12 @@ export default {
 
 		// building the main menu
 		menu() {
+			if (this.loading) {
+				return {
+					id: 'groups-list',
+					loading: true
+				}
+			}
 			return {
 				id: 'groups-list',
 				new: {
@@ -193,7 +199,7 @@ export default {
 	beforeMount() {
 		// get addressbooks then get contacts
 		client.connect({ enableCardDAV: true }).then(() => {
-			console.log(client)
+			console.debug('Connected to dav!', client)
 			this.$store.dispatch('getAddressbooks')
 				.then(() => {
 					Promise.all(this.addressbooks.map(async addressbook => {

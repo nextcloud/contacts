@@ -28,11 +28,12 @@ export default class Contact {
 	/**
 	 * Creates an instance of Contact
 	 *
-	 * @param {string} [vcard] the vcard data as string with proper new lines
-	 * @param {object} [addressbook] the addressbook which the contat belongs to
+	 * @param {string} vcard the vcard data as string with proper new lines
+	 * @param {object} addressbook the addressbook which the contat belongs to
+	 * @param {string} [url] the url of the contact
 	 * @memberof Contact
 	 */
-	constructor(vcard = '', addressbook) {
+	constructor(vcard = '', addressbook, url) {
 		let jCal = ICAL.parse(vcard)
 		if (jCal[0] !== 'vcard') {
 			throw new Error('Only one contact is allowed in the vcard data')
@@ -41,6 +42,7 @@ export default class Contact {
 		this.jCal = jCal
 		this.addressbook = addressbook
 		this.vCard = new ICAL.Component(this.jCal)
+		this.url = url
 
 		// if no uid set, create one
 		if (!this.vCard.hasProperty('uid')) {
