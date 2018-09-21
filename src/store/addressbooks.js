@@ -358,13 +358,16 @@ const actions = {
 	 *
 	 * @param {Object} context
 	 * @param {Object} data
-	 * @param {Contact} data.contact
-	 * @param {Object} data.addressbook
+	 * @param {Contact} data.contact the contact to move
+	 * @param {Object} data.addressbook the addressbook to move the contact to
 	 */
 	moveContactToAddressbook(context, { contact, addressbook }) {
-		context.commit('deleteContactFromAddressbook', contact)
-		context.commit('updateContactAddressbook', { contact, addressbook })
-		context.commit('addContactToAddressbook', contact)
+		contact.dav.move(addressbook.dav)
+			.then(() => {
+				context.commit('deleteContactFromAddressbook', contact)
+				context.commit('updateContactAddressbook', { contact, addressbook })
+				context.commit('addContactToAddressbook', contact)
+			})
 	}
 }
 

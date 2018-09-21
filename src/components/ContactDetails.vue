@@ -71,9 +71,12 @@
 
 				<!-- actions -->
 				<div id="contact-header-actions">
-					<div v-click-outside="closeMenu" class="menu-icon icon-more-white" @click="toggleMenu" />
-					<div :class="{ 'open': openedMenu }" class="popovermenu">
-						<popover-menu :menu="contactActions" />
+					<div :class="{'icon-loading-small': loadingUpdate}" class="menu-icon" />
+					<div class="menu-icon">
+						<div v-click-outside="closeMenu" class="icon-more-white" @click="toggleMenu" />
+						<div :class="{ 'open': openedMenu }" class="popovermenu">
+							<popover-menu :menu="contactActions" />
+						</div>
 					</div>
 				</div>
 			</header>
@@ -154,6 +157,7 @@ export default {
 			 */
 			localContact: undefined,
 			loadingData: true,
+			loadingUpdate: false,
 			openedMenu: false,
 			addressbookModel: {
 				readableName: t('contacts', 'Addressbook'),
@@ -242,7 +246,16 @@ export default {
 		}
 	},
 
+	watch: {
+		contact: function() {
+			if (this.uid) {
+				this.selectContact(this.uid)
+			}
+		}
+	},
+
 	beforeMount() {
+		// load the desired data if we already selected a contact
 		if (this.uid) {
 			this.selectContact(this.uid)
 		}
@@ -254,7 +267,11 @@ export default {
 		 * Send the local clone of contact to the store
 		 */
 		updateContact() {
+			this.loadingUpdate = true
 			this.$store.dispatch('updateContact', this.contact)
+				.then(() => {
+					this.loadingUpdate = false
+				})
 		},
 
 		/**
@@ -323,13 +340,6 @@ export default {
 					.then(() => {
 						this.updateContact()
 					})
-			}
-		}
-	},
-	watch: {
-		contact: function() {
-			if (this.uid) {
-				this.selectContact(this.uid)
 			}
 		}
 	}
