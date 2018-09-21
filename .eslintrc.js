@@ -20,6 +20,7 @@ module.exports = {
 	extends: [
 		'eslint:recommended',
 		'plugin:node/recommended',
+		'plugin:vue/essential',
 		'plugin:vue/recommended',
 		'standard'
 	],
@@ -38,9 +39,13 @@ module.exports = {
 		'no-tabs': 0,
 		'vue/html-indent': ['error', 'tab'],
 		// only debug console
-		'no-console': ['error', { 'allow': ['error', 'warn', 'debug'] }],
+		'no-console': ['error', { allow: ['error', 'warn', 'debug'] }],
 		// classes blocks
-		'padded-blocks': ['error', { 'classes': 'always' }],
+		'padded-blocks': ['error', { classes: 'always' }],
+		// always have the operator in front
+		'operator-linebreak': ['error', 'before'],
+		// ternary on multiline
+		'multiline-ternary': ['error', 'always-multiline'],
 		// es6 import/export and require
 		'node/no-unpublished-require': ['off'],
 		'node/no-unsupported-features': ['off'],

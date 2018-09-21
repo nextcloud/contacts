@@ -111,7 +111,7 @@ export default {
 			return this.property.name
 		},
 		propType() {
-			return this.property.type
+			return this.property.getDefaultType()
 		},
 
 		// template to use
