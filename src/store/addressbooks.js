@@ -207,9 +207,9 @@ const actions = {
 					// get last part of url
 					id: addressbook.url.split('/').slice(-2, -1)[0],
 					displayName: addressbook.displayname,
-					enabled: addressbook.enabled,
+					enabled: addressbook.enabled !== false,
 					owner: addressbook.owner,
-					readOnly: addressbook.readOnly,
+					readOnly: addressbook.readOnly !== false,
 					url: addressbook.url,
 					dav: addressbook
 				}
@@ -280,10 +280,12 @@ const actions = {
 			.then((response) => {
 				// We don't want to lose the url information
 				// so we need to parse one by one
-				const contacts = response.map(contact => {
-					let item = parseVcf(contact.data, addressbook)[0]
-					item.url = contact.url
-					return item
+				const contacts = response.map(item => {
+					let contact = parseVcf(item.data, addressbook)[0]
+					contact.url = item.url
+					contact.etag = item.etag
+					contact.dav = item
+					return contact
 				})
 				context.commit('appendContactsToAddressbook', { addressbook, contacts })
 				context.commit('appendContacts', contacts)
