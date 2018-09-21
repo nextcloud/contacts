@@ -31,9 +31,10 @@ export default class Contact {
 	 * @param {string} vcard the vcard data as string with proper new lines
 	 * @param {object} addressbook the addressbook which the contat belongs to
 	 * @param {string} [url] the url of the contact
+	 * @param {string} [etag] the current etag of the contact
 	 * @memberof Contact
 	 */
-	constructor(vcard = '', addressbook, url) {
+	constructor(vcard = '', addressbook, url = '', etag = '') {
 		let jCal = ICAL.parse(vcard)
 		if (jCal[0] !== 'vcard') {
 			throw new Error('Only one contact is allowed in the vcard data')

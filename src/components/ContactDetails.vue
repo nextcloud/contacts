@@ -78,8 +78,11 @@
 				</div>
 			</header>
 
+			<!-- contact details loading -->
+			<section v-if="loadingData" class="icon-loading contact-details" />
+
 			<!-- contact details -->
-			<section class="contact-details">
+			<section v-else class="contact-details">
 
 				<!-- properties iteration -->
 				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
@@ -143,6 +146,14 @@ export default {
 
 	data() {
 		return {
+			/**
+			 * Local off-store clone of the selected contact for edition
+			 * because we can't edit contacts data outside the store.
+			 * Every change will be dispatched and updated on the real
+			 * store contact after a debounce.
+			 */
+			localContact: undefined,
+			loadingData: true,
 			openedMenu: false,
 			addressbookModel: {
 				readableName: t('contacts', 'Addressbook'),
@@ -226,19 +237,14 @@ export default {
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
 		},
-
-		// local version of the contact
 		contact() {
-			let contact = this.$store.getters.getContact(this.uid)
-			if (contact) {
-				// create empty contact and copy inner data
-				let localContact = new Contact(
-					'BEGIN:VCARD\nUID:' + contact.uid + '\nEND:VCARD',
-					contact.addressbook
-				)
-				localContact.updateContact(contact.jCal)
-				return localContact
-			}
+			return this.$store.getters.getContact(this.uid)
+		}
+	},
+
+	beforeMount() {
+		if (this.uid) {
+			this.selectContact(this.uid)
 		}
 	},
 
@@ -268,6 +274,28 @@ export default {
 		},
 
 		/**
+		 * Trigger an full fetch and
+		 */
+		selectContact(uid) {
+			// local version of the contact
+			this.loadingData = true
+			let contact = this.$store.getters.getContact(uid)
+			if (contact) {
+				this.$store.dispatch('fetchFullContact', contact)
+					.then(() => {
+						// create empty contact and copy inner data
+						let localContact = new Contact(
+							'BEGIN:VCARD\nUID:' + contact.uid + '\nEND:VCARD',
+							contact.addressbook
+						)
+						localContact.updateContact(contact.jCal)
+						this.localContact = localContact
+						this.loadingData = false
+					})
+			}
+		},
+
+		/**
 		 * Dispatch contact deletion request
 		 */
 		deleteContact() {
@@ -283,18 +311,25 @@ export default {
 			addressbook = this.addressbooks.find(
 				search => search.id === addressbook.id
 			)
-			// we need to use the store contact, not the local contact
-			let contact = this.$store.getters.getContact(this.contact.key)
 			// TODO Make sure we do not overwrite contacts
 			if (addressbook) {
 				this.$store
 					.dispatch('moveContactToAddressbook', {
-						contact: contact,
+						// we need to use the store contact, not the local contact
+						// using this.contact and not this.localContact
+						contact: this.contact,
 						addressbook
 					})
 					.then(() => {
 						this.updateContact()
 					})
+			}
+		}
+	},
+	watch: {
+		contact: function() {
+			if (this.uid) {
+				this.selectContact(this.uid)
 			}
 		}
 	}
