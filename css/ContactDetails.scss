@@ -104,7 +104,14 @@
 		// ACTIONS
 		#contact-header-actions {
 			position: relative;
+			display: flex;
 			.menu-icon {
+				position: relative;
+				height: 44px;
+				width: 44px;
+			}
+			[class^='icon-'],
+			[class*=' icon-'] {
 				height: 44px;
 				width: 44px;
 				padding: 14px;

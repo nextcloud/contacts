@@ -231,7 +231,10 @@ const actions = {
 	 * @param {Contact} contact the contact to update
 	 */
 	updateContact(context, contact) {
-		context.commit('updateContact', contact)
+		contact.dav.data = ICAL.stringify(contact.vCard.jCal)
+		return contact.dav.update()
+			.then((response) => context.commit('updateContact', contact))
+			.catch((error) => { throw error })
 	},
 
 	fetchFullContact(context, contact) {
