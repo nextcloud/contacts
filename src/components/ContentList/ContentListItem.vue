@@ -7,7 +7,7 @@
 			class="app-content-list-item-checkbox checkbox" @keypress.enter.space.prevent.stop="toggleSelect">
 		<label :for="contact.key" @click.prevent.stop="toggleSelect" @keypress.enter.space.prevent.stop="toggleSelect" />
 		-->
-		<div :style="{ 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">{{ contact.displayName | firstLetter }}</div>
+		<div :style="{ 'backgroundColor': colorAvatar, 'backgroundImage': `url(${contact.url} + ?photo)` }" class="app-content-list-item-icon">{{ contact.displayName | firstLetter }}</div>
 		<div class="app-content-list-item-line-one">{{ contact.displayName }}</div>
 		<div v-if="contact.email" class="app-content-list-item-line-two">{{ contact.email }}</div>
 		<div v-if="contact.addressbook.readOnly" class="icon-delete" tabindex="0"

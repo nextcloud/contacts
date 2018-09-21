@@ -21,10 +21,10 @@
  *
  */
 
-import parseVcf from '../services/parseVcf'
 import Vue from 'vue'
-
+import parseVcf from '../services/parseVcf'
 import client from '../services/cdav'
+import Contact from '../models/contact'
 
 const addressbookModel = {
 	id: '',
@@ -201,20 +201,21 @@ const actions = {
 	 * @returns {Promise} fetch and commit
 	 */
 	async getAddressbooks(context) {
-		let addressbooks = await client.addressBookHomes[0].findAllAddressBooks().then(addressbooks => {
-			return addressbooks.map(addressbook => {
-				return {
-					// get last part of url
-					id: addressbook.url.split('/').slice(-2, -1)[0],
-					displayName: addressbook.displayname,
-					enabled: addressbook.enabled !== false,
-					owner: addressbook.owner,
-					readOnly: addressbook.readOnly !== false,
-					url: addressbook.url,
-					dav: addressbook
-				}
+		let addressbooks = await client.addressBookHomes[0].findAllAddressBooks()
+			.then(addressbooks => {
+				return addressbooks.map(addressbook => {
+					return {
+						// get last part of url
+						id: addressbook.url.split('/').slice(-2, -1)[0],
+						displayName: addressbook.displayname,
+						enabled: addressbook.enabled !== false,
+						owner: addressbook.owner,
+						readOnly: addressbook.readOnly !== false,
+						url: addressbook.url,
+						dav: addressbook
+					}
+				})
 			})
-		})
 
 		addressbooks.forEach(addressbook => {
 			context.commit('addAddressbooks', addressbook)
@@ -286,9 +287,7 @@ const actions = {
 				// We don't want to lose the url information
 				// so we need to parse one by one
 				const contacts = response.map(item => {
-					let contact = parseVcf(item.data, addressbook)[0]
-					contact.url = item.url
-					contact.etag = item.etag
+					let contact = new Contact(item.data, addressbook, item.url, item.etag)
 					contact.dav = item
 					return contact
 				})

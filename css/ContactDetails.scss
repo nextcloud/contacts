@@ -122,5 +122,6 @@
 		grid-template-columns: repeat(auto-fit, minmax(unquote('#{$grid-column-width}'), 1fr));
 		grid-column-gap: 20px;
 		padding: 0 20px;
+		min-height: 200px;
 	}
 }

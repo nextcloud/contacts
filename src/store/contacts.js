@@ -232,6 +232,14 @@ const actions = {
 	 */
 	updateContact(context, contact) {
 		context.commit('updateContact', contact)
+	},
+
+	fetchFullContact(context, contact) {
+		return contact.dav.fetchCompleteData()
+			.then(() => {
+				let newContact = new Contact(contact.dav.data, contact.addressbook, contact.dav.url, contact.dav.etag)
+				context.commit('updateContact', newContact)
+			})
 	}
 }
 
