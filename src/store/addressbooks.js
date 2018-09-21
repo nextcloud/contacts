@@ -255,7 +255,8 @@ const actions = {
 	 */
 	toggleAddressbookEnabled(context, addressbook) {
 		addressbook.dav.enabled = !addressbook.dav.enabled
-		return addressbook.dav.update().then((response) => context.commit('toggleAddressbookEnabled', addressbook))
+		return addressbook.dav.update()
+			.then((response) => context.commit('toggleAddressbookEnabled', addressbook))
 			.catch((error) => { throw error })
 	},
 
@@ -267,7 +268,8 @@ const actions = {
 	 */
 	renameAddressbook(context, { addressbook, newName }) {
 		addressbook.dav.displayname = newName
-		return addressbook.dav.update().then((response) => context.commit('renameAddressbook', { addressbook, newName }))
+		return addressbook.dav.update()
+			.then((response) => context.commit('renameAddressbook', { addressbook, newName }))
 			.catch((error) => { throw error })
 	},
 
