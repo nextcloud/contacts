@@ -26,14 +26,14 @@
 		<!-- new-contact-button + navigation + settings -->
 		<app-navigation :menu="menu">
 			<!-- settings -->
-			<settings-section slot="settings-content" v-if="!loading" />
+			<settings-section v-if="!loading" slot="settings-content" />
 		</app-navigation>
 
 		<!-- main content -->
 		<div id="app-content">
 			<div id="app-content-wrapper">
 				<!-- loading -->
-				<import-screen v-if="importState.stage != 'default'" />
+				<import-screen v-if="importState.stage !== 'default'" />
 				<template v-else>
 					<!-- contacts list -->
 					<content-list :list="contactsList" :contacts="contacts" :loading="loading" />
@@ -202,12 +202,14 @@ export default {
 			console.debug('Connected to dav!', client)
 			this.$store.dispatch('getAddressbooks')
 				.then(() => {
-					Promise.all(this.addressbooks.map(async addressbook => {
-						await this.$store.dispatch('getContactsFromAddressBook', { addressbook })
-					})).then(() => {
-						this.loading = false
-						this.selectFirstContactIfNone()
-					})
+					// wait for all addressbooks to have fetch their contacts
+					Promise.all(this.addressbooks.map(addressbook => this.$store.dispatch('getContactsFromAddressBook', { addressbook })))
+						.then(results => {
+							this.loading = false
+							this.selectFirstContactIfNone()
+						})
+						// no need for a catch, the action does not throw
+						// and the error is handled there
 				})
 				// check local storage for orderKey
 			if (localStorage.getItem('orderKey')) {
@@ -276,7 +278,6 @@ export default {
 							selectedContact: Object.values(this.contactsList)[0].key
 						}
 					})
-					document.querySelector('.app-content-list-item.active').scrollIntoView()
 				}
 			}
 		}
