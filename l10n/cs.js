@@ -100,7 +100,7 @@ OC.L10N.register(
     "Brother" : "Bratr",
     "Sister" : "Sestra",
     "Relative" : "Příbuzný",
-    "Friend" : "Přítel",
+    "Friend" : "Kamarád(ka)",
     "Colleague" : "Kolega",
     "Manager" : "Nadřízený",
     "Assistant" : "Asistent",
