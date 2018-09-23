@@ -18,6 +18,7 @@
     "Address book name" : "通訊錄名稱",
     "Only these special characters are allowed: -_.!?#|()" : "僅允許使用以下特殊字元：-_.!?#|()",
     "Address book could not be created." : "無法新增通訊錄",
+    "Upload new image" : "上傳新的圖片",
     "The selected image is too big (max 1MB)" : "選擇的圖片太大（最大 1MB）",
     "This card is corrupted and has been fixed. Please check the data and trigger a save to make the changes permanent." : "這張名片的資料受損，但是已經被修復，請檢查資料是否正確後儲存來保存您的變更",
     "No contacts in here" : "這裡沒有聯絡人",
