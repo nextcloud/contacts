@@ -22,7 +22,7 @@
 
 <template>
 	<!-- If not in the rfcProps then we don't want to display it -->
-	<component v-tooltip.right="propModel.info" v-if="propModel && propType !== 'unknown'"
+	<component v-if="propModel && propType !== 'unknown'"
 		:is="componentInstance" :select-type.sync="selectType" :prop-model="propModel"
 		:value.sync="value" :is-first-property="isFirstProperty" :property="property"
 		:is-last-property="isLastProperty" :class="{'property--last': isLastProperty}" :contact="contact"

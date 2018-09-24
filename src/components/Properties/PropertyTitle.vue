@@ -24,6 +24,8 @@
 	<h3 class="property__title property__row">
 		<div :class="icon" class="property__label property__title--icon" />
 		{{ readableName }}
+		<!-- display tooltip with hint if available -->
+		<div v-tooltip.right="info" v-if="info" class="icon-details" />
 	</h3>
 </template>
 
@@ -41,6 +43,11 @@ export default {
 			type: String,
 			default: '',
 			required: true
+		},
+		info: {
+			type: String,
+			default: '',
+			required: false
 		}
 	}
 }
