@@ -193,7 +193,7 @@ const actions = {
 	/**
 	 * Delete a contact from the list and from the associated addressbook
 	 *
-	 * @param {Object} state
+	 * @param {Object} context
 	 * @param {Contact} contact the contact to delete
 	 */
 	deleteContact(context, contact) {
@@ -211,7 +211,7 @@ const actions = {
 	/**
 	 * Add a contact to the list and to the associated addressbook
 	 *
-	 * @param {Object} state
+	 * @param {Object} context
 	 * @param {Contact} contact the contact to delete
 	 */
 	addContact(context, contact) {
@@ -227,7 +227,7 @@ const actions = {
 	/**
 	 * Replac a contact by this new object
 	 *
-	 * @param {Object} state
+	 * @param {Object} context
 	 * @param {Contact} contact the contact to update
 	 */
 	updateContact(context, contact) {
@@ -237,6 +237,12 @@ const actions = {
 			.catch((error) => { throw error })
 	},
 
+	/**
+	 * Fetch the full vCard from the dav server
+	 *
+	 * @param {Object} context
+	 * @param {Contact} contact the contact to fetch
+	 */
 	fetchFullContact(context, contact) {
 		return contact.dav.fetchCompleteData()
 			.then(() => {

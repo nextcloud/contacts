@@ -21,15 +21,14 @@
 -->
 
 <template>
-	<form id="new-addressbook-form" name="new-addressbook-form" class="new-addressbook"
-		@submit.prevent.stop="addAddressbook">
-		<input id="new-addressbook" ref="addressbook"
-			:placeholder="t('contacts', 'Address book name')"
+	<form id="new-addressbook-form" :disabled="loading" :class="{'icon-loading-small': loading}"
+		name="new-addressbook-form" class="new-addressbook" @submit.prevent.stop="addAddressbook">
+		<input id="new-addressbook" ref="addressbook" v-model="displayName"
+			:disabled="loading" :placeholder="t('contacts', 'Address book name')"
 			class="new-addressbook-input"
-			type="text"
-			autocomplete="off" autocorrect="off"
-			spellcheck="false">
-		<input type="submit" value="" class="icon-confirm">
+			type="text" autocomplete="off" autocorrect="off"
+			spellcheck="false" minlength="1" required>
+		<input class="icon-confirm" type="submit" value="">
 	</form>
 </template>
 
@@ -47,11 +46,8 @@ export default {
 	data() {
 		return {
 			// TODO: add pattern attribute to input, bind to addressBookRegex property
-		}
-	},
-	computed: {
-		menu() {
-			return []
+			loading: false,
+			displayName: ''
 		}
 	},
 	methods: {
@@ -59,8 +55,17 @@ export default {
 		 * Add a new address book
 		 */
 		addAddressbook() {
-			let addressbook = this.$refs.addressbook.value
-			this.$store.dispatch('appendAddressbook', { displayName: addressbook })
+			this.loading = true
+			this.$store.dispatch('appendAddressbook', { displayName: this.displayName })
+				.then(() => {
+					this.displayName = ''
+					this.loading = false
+				})
+				.catch((error) => {
+					console.error(error)
+					OC.Notification.showTemporary(t('contacts', 'An error occurred, unable to create the addressbook.'))
+					this.loading = false
+				})
 		}
 	}
 }
