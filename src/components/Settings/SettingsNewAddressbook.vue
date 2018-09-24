@@ -24,10 +24,10 @@
 	<form id="new-addressbook-form" :disabled="loading" :class="{'icon-loading-small': loading}"
 		name="new-addressbook-form" class="new-addressbook" @submit.prevent.stop="addAddressbook">
 		<input id="new-addressbook" ref="addressbook" v-model="displayName"
-			:disabled="loading" :placeholder="t('contacts', 'Address book name')"
-			class="new-addressbook-input"
-			type="text" autocomplete="off" autocorrect="off"
-			spellcheck="false" minlength="1" required>
+			:disabled="loading" :placeholder="t('contacts', 'Address book name')" :pattern="addressBookRegex"
+			class="new-addressbook-input" type="text" autocomplete="off"
+			autocorrect="off" spellcheck="false" minlength="1"
+			required>
 		<input class="icon-confirm" type="submit" value="">
 	</form>
 </template>
@@ -45,9 +45,10 @@ export default {
 	},
 	data() {
 		return {
-			// TODO: add pattern attribute to input, bind to addressBookRegex property
 			loading: false,
-			displayName: ''
+			displayName: '',
+			// no slash!!
+			addressBookRegex: '[^\/]+'
 		}
 	},
 	methods: {
