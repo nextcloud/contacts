@@ -256,7 +256,8 @@ const actions = {
 	 * @param {Object} addressbook
 	 */
 	deleteAddressbook(context, addressbook) {
-		context.commit('deleteAddressbook', addressbook)
+		return addressbook.dav.delete().then((response) => context.commit('deleteAddressbook', addressbook))
+			.catch((error) => { throw error })
 	},
 
 	/**
@@ -265,7 +266,10 @@ const actions = {
 	 * @param {Object} addressbook
 	 */
 	toggleAddressbookEnabled(context, addressbook) {
-		context.commit('toggleAddressbookEnabled', addressbook)
+		addressbook.dav.enabled = !addressbook.dav.enabled
+		return addressbook.dav.update()
+			.then((response) => context.commit('toggleAddressbookEnabled', addressbook))
+			.catch((error) => { throw error })
 	},
 
 	/**
@@ -275,7 +279,8 @@ const actions = {
 	 * @param {String} data.newName
 	 */
 	renameAddressbook(context, { addressbook, newName }) {
-		return addressbook.dav.displayname(newName)
+		addressbook.dav.displayname = newName
+		return addressbook.dav.update()
 			.then((response) => context.commit('renameAddressbook', { addressbook, newName }))
 			.catch((error) => { throw error })
 	},
