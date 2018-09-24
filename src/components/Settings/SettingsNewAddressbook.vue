@@ -47,8 +47,9 @@ export default {
 		return {
 			loading: false,
 			displayName: '',
-			// no slash!!
-			addressBookRegex: '[^/\\]+'
+			// no slashes!
+			// eslint-disable-next-line
+			addressBookRegex: '[^/\\\\]+'
 		}
 	},
 	methods: {

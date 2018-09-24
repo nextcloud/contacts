@@ -244,7 +244,6 @@ const actions = {
 		return client.addressBookHomes[0].createAddressBookCollection(addressbook.displayName)
 			.then((response) => {
 				addressbook = mapDavCollectionToAddressbook(response)
-				console.log(response, addressbook)
 				context.commit('addAddressbooks', addressbook)
 			})
 			.catch((error) => { throw error })

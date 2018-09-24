@@ -95,7 +95,7 @@
 
 				<!-- addressbook change select - no last property because class is not applied here-->
 				<property-select :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
-					:is-last-property="false" :options="addressbooksOptions" class="property--addressbooks" />
+					:is-last-property="false" class="property--addressbooks" />
 
 				<!-- new property select -->
 				<add-new-prop :contact="contact" />
@@ -158,11 +158,7 @@ export default {
 			localContact: undefined,
 			loadingData: true,
 			loadingUpdate: false,
-			openedMenu: false,
-			addressbookModel: {
-				readableName: t('contacts', 'Addressbook'),
-				icon: 'icon-addressbook'
-			}
+			openedMenu: false
 		}
 	},
 
@@ -212,16 +208,24 @@ export default {
 			})
 		},
 
+		/**
+		 * Fake model to use the propertySelect component
+		 */
+		addressbookModel() {
+			return {
+				readableName: t('contacts', 'Addressbook'),
+				icon: 'icon-addressbook',
+				options: this.addressbooksOptions
+			}
+		},
+
 		// usable addressbook object linked to the local contact
 		addressbook: {
 			get: function() {
-				return {
-					id: this.contact.addressbook.id,
-					name: this.contact.addressbook.displayName
-				}
+				return this.contact.addressbook.id
 			},
-			set: function(addressbook) {
-				this.moveContactToAddressbook(addressbook)
+			set: function(addressbookId) {
+				this.moveContactToAddressbook(addressbookId)
 			}
 		},
 
@@ -291,13 +295,16 @@ export default {
 		},
 
 		/**
-		 * Trigger an full fetch and
+		 * Select a contac, and update the localContact
+		 * Fetch updated data if necessary
 		 */
 		selectContact(uid) {
 			// local version of the contact
 			this.loadingData = true
 			let contact = this.$store.getters.getContact(uid)
-			if (contact) {
+
+			// if contact exists AND if exists on server
+			if (contact && contact.dav) {
 				this.$store.dispatch('fetchFullContact', contact)
 					.then(() => {
 						// create empty contact and copy inner data
@@ -309,6 +316,14 @@ export default {
 						this.localContact = localContact
 						this.loadingData = false
 					})
+			} else if (contact) {
+				// create empty contact and copy inner data
+				// wait for an update to really push the contact on the server!
+				this.localContact = new Contact(
+					'BEGIN:VCARD\nUID:' + contact.uid + '\nEND:VCARD',
+					contact.addressbook
+				)
+				this.loadingData = false
 			}
 		},
 
@@ -322,12 +337,10 @@ export default {
 		/**
 		 * Move contact to the specified addressbook
 		 *
-		 * @param {Object} addressbook the desired addressbook
+		 * @param {string} addressbookId the desired addressbook ID
 		 */
-		moveContactToAddressbook(addressbook) {
-			addressbook = this.addressbooks.find(
-				search => search.id === addressbook.id
-			)
+		moveContactToAddressbook(addressbookId) {
+			let addressbook = this.addressbooks.find(search => search.id === addressbookId)
 			// TODO Make sure we do not overwrite contacts
 			if (addressbook) {
 				this.$store
