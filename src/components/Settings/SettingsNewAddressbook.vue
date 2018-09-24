@@ -48,7 +48,7 @@ export default {
 			loading: false,
 			displayName: '',
 			// no slash!!
-			addressBookRegex: '[^\/]+'
+			addressBookRegex: '[^/\\]+'
 		}
 	},
 	methods: {
