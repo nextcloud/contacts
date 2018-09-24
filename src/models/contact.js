@@ -232,9 +232,11 @@ export default class Contact {
 		}
 		if (this.vCard.hasProperty('n')) {
 			// reverse and join
-			return this.vCard.getFirstPropertyValue('n').filter(function(part) {
-				return part
-			}).join(' ')
+			return this.vCard.getFirstPropertyValue('n')
+				.filter(function(part) {
+					return part
+				})
+				.join(' ')
 		}
 		return null
 	}
