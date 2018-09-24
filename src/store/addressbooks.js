@@ -42,6 +42,25 @@ const state = {
 	addressbooks: []
 }
 
+/**
+ * map a dav collection to our addressbook object model
+ *
+ * @param {Object} addressbook
+ * @returns {Object}
+ */
+export function mapDavCollectionToAddressbook(addressbook) {
+	return {
+		// get last part of url
+		id: addressbook.url.split('/').slice(-2, -1)[0],
+		displayName: addressbook.displayname,
+		enabled: addressbook.enabled !== false,
+		owner: addressbook.owner,
+		readOnly: addressbook.readOnly !== false,
+		url: addressbook.url,
+		dav: addressbook
+	}
+}
+
 const mutations = {
 
 	/**
@@ -204,16 +223,7 @@ const actions = {
 		let addressbooks = await client.addressBookHomes[0].findAllAddressBooks()
 			.then(addressbooks => {
 				return addressbooks.map(addressbook => {
-					return {
-						// get last part of url
-						id: addressbook.url.split('/').slice(-2, -1)[0],
-						displayName: addressbook.displayname,
-						enabled: addressbook.enabled !== false,
-						owner: addressbook.owner,
-						readOnly: addressbook.readOnly !== false,
-						url: addressbook.url,
-						dav: addressbook
-					}
+					return mapDavCollectionToAddressbook(addressbook)
 				})
 			})
 
@@ -233,7 +243,8 @@ const actions = {
 	appendAddressbook(context, addressbook) {
 		return client.addressBookHomes[0].createAddressBookCollection(addressbook.displayName)
 			.then((response) => {
-				console.log(response)
+				addressbook = mapDavCollectionToAddressbook(response)
+				console.log(response, addressbook)
 				context.commit('addAddressbooks', addressbook)
 			})
 			.catch((error) => { throw error })
