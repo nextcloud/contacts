@@ -201,15 +201,18 @@ export default {
 		client.connect({ enableCardDAV: true }).then(() => {
 			console.debug('Connected to dav!', client)
 			this.$store.dispatch('getAddressbooks')
-				.then(() => {
-					// wait for all addressbooks to have fetch their contacts
-					Promise.all(this.addressbooks.map(addressbook => this.$store.dispatch('getContactsFromAddressBook', { addressbook })))
-						.then(results => {
-							this.loading = false
-							this.selectFirstContactIfNone()
-						})
-						// no need for a catch, the action does not throw
-						// and the error is handled there
+				.then((addressbooks) => {
+
+					// No addressbooks? Create a new one!
+					if (addressbooks.length === 0) {
+						this.$store.dispatch('appendAddressbook', { displayName: t('contacts', 'Contacts') })
+							.then(() => {
+								this.fetchContacts()
+							})
+					// else, let's get those contacts!
+					} else {
+						this.fetchContacts()
+					}
 				})
 				// check local storage for orderKey
 			if (localStorage.getItem('orderKey')) {
@@ -240,13 +243,15 @@ export default {
 				contact.vCard.addPropertyWithValue('categories', this.selectedGroup)
 			}
 			this.$store.dispatch('addContact', contact)
-			this.$router.push({
-				name: 'contact',
-				params: {
-					selectedGroup: this.selectedGroup,
-					selectedContact: contact.key
-				}
-			})
+				.then(() => {
+					this.$router.push({
+						name: 'contact',
+						params: {
+							selectedGroup: this.selectedGroup,
+							selectedContact: contact.key
+						}
+					})
+				})
 		},
 
 		/**
@@ -258,6 +263,20 @@ export default {
 		updateSorting(orderKey = 'displayName') {
 			this.$store.commit('setOrder', orderKey)
 			this.$store.commit('sortContacts')
+		},
+
+		/**
+		 * Fetch the contacts of each addressbooks
+		 */
+		fetchContacts() {
+			// wait for all addressbooks to have fetch their contacts
+			Promise.all(this.addressbooks.map(addressbook => this.$store.dispatch('getContactsFromAddressBook', { addressbook })))
+				.then(results => {
+					this.loading = false
+					this.selectFirstContactIfNone()
+				})
+				// no need for a catch, the action does not throw
+				// and the error is handled there
 		},
 
 		/**

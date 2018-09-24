@@ -88,11 +88,21 @@ const mutations = {
 			for (var i = 0, len = state.sortedContacts.length; i < len; i++) {
 				var nameA = state.sortedContacts[i].value.toUpperCase()	// ignore upper and lowercase
 				var nameB = sortedContact.value.toUpperCase()			// ignore upper and lowercase
-				if (nameA.localeCompare(nameB) > 0) {
+				if (nameA.localeCompare(nameB) >= 0) {
 					state.sortedContacts.splice(i, 0, sortedContact)
 					break
+				} else if (i + 1 === len) {
+					// we reached the end insert it now
+					state.sortedContacts.push(sortedContact)
 				}
 			}
+
+			// sortedContact is empty, just push it
+			if (state.sortedContacts.length === 0) {
+				state.sortedContacts.push(sortedContact)
+			}
+
+			// default contacts list
 			Vue.set(state.contacts, contact.key, contact)
 
 		} else {
@@ -116,7 +126,9 @@ const mutations = {
 			// has the sort key changed for this contact ?
 			let hasChanged = sortedContact.value !== contact[state.orderKey]
 			if (hasChanged) {
-				// then we sort again
+				// then update the new data
+				sortedContact.value = contact[state.orderKey]
+				// and then we sort again
 				state.sortedContacts
 					.sort((a, b) => {
 						var nameA = a.value.toUpperCase() // ignore upper and lowercase
@@ -196,16 +208,16 @@ const actions = {
 	 * @param {Object} context
 	 * @param {Contact} contact the contact to delete
 	 */
-	deleteContact(context, contact) {
-		contact.dav.delete()
-			.then((response) => {
-				context.commit('deleteContact', contact)
-				context.commit('deleteContactFromAddressbook', contact)
-			})
-			.catch((error) => {
-				console.error(error)
-				OC.Notification.showTemporary(t('contacts', 'An error occurred'))
-			})
+	async deleteContact(context, contact) {
+		if (contact.dav) {
+			await contact.dav.delete()
+				.catch((error) => {
+					console.error(error)
+					OC.Notification.showTemporary(t('contacts', 'An error occurred'))
+				})
+		}
+		context.commit('deleteContact', contact)
+		context.commit('deleteContactFromAddressbook', contact)
 	},
 
 	/**
@@ -214,14 +226,9 @@ const actions = {
 	 * @param {Object} context
 	 * @param {Contact} contact the contact to delete
 	 */
-	addContact(context, contact) {
-		return contact.addressbook.dav.createVCard(ICAL.stringify(contact.vCard.jCal))
-			.then((response) => {
-				console.log(response)
-				context.commit('addContact', contact)
-				context.commit('addContactToAddressbook', contact)
-			})
-			.catch((error) => { throw error })
+	async addContact(context, contact) {
+		await context.commit('addContact', contact)
+		await context.commit('addContactToAddressbook', contact)
 	},
 
 	/**
@@ -230,8 +237,20 @@ const actions = {
 	 * @param {Object} context
 	 * @param {Contact} contact the contact to update
 	 */
-	updateContact(context, contact) {
-		contact.dav.data = ICAL.stringify(contact.vCard.jCal)
+	async updateContact(context, contact) {
+		let vData = ICAL.stringify(contact.vCard.jCal)
+
+		// if no dav key, contact does not exists on server
+		if (!contact.dav) {
+			// create contact
+			await contact.addressbook.dav.createVCard(vData)
+				.then((response) => {
+					contact.dav = response
+				})
+				.catch((error) => { throw error })
+		}
+
+		contact.dav.data = vData
 		return contact.dav.update()
 			.then((response) => context.commit('updateContact', contact))
 			.catch((error) => { throw error })

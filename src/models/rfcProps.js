@@ -140,7 +140,7 @@ const properties = {
 		default: true,
 		defaultValue: {
 			value: '',
-			type: ['HOME,VOICE']
+			type: ['HOME', 'VOICE']
 		},
 		options: [
 			{ id: 'HOME,VOICE', name: t('contacts', 'Home') },
@@ -183,6 +183,7 @@ const properties = {
 	},
 	relationship: {
 		readableName: t('contacts', 'Relationship'),
+		force: 'select',
 		info: t(
 			'contacts',
 			'Specify a relationship between you and the entity represented by this vCard.'
@@ -234,6 +235,10 @@ const properties = {
 	},
 	gender: {
 		readableName: t('contacts', 'Gender'),
+		defaultValue: {
+			// default to Female 🙋
+			value: ['F']
+		},
 		options: [
 			{ id: 'F', name: t('contacts', 'Female') },
 			{ id: 'M', name: t('contacts', 'Male') },

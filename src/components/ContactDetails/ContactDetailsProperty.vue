@@ -37,7 +37,7 @@ import PropertyText from '../Properties/PropertyText'
 import PropertyMultipleText from '../Properties/PropertyMultipleText'
 import PropertyDateTime from '../Properties/PropertyDateTime'
 import propertyGroups from '../Properties/PropertyGroups'
-// import PropertySelect from '../Properties/PropertyMultipleText'
+import PropertySelect from '../Properties/PropertySelect'
 
 export default {
 	name: 'ContactDetailsProperty',
@@ -76,6 +76,8 @@ export default {
 				return PropertyMultipleText
 			} else if (this.propType && ['date-and-or-time', 'date-time', 'time', 'date'].indexOf(this.propType) > -1) {
 				return PropertyDateTime
+			} else if (this.propType && this.propType === 'select') {
+				return PropertySelect
 			} else if (this.propType && this.propType !== 'unknown') {
 				return PropertyText
 			}
@@ -111,6 +113,10 @@ export default {
 			return this.property.name
 		},
 		propType() {
+			// if we have a force type set, use it!
+			if (this.propModel && this.propModel.force) {
+				return this.propModel.force
+			}
 			return this.property.getDefaultType()
 		},
 
@@ -140,6 +146,8 @@ export default {
 							score: type.id.split(',').filter(value => selectedType.indexOf(value) !== -1).length
 						}
 					})
+
+					console.log(matchingTypes)
 
 					// Sort by score, filtering out the null score and selecting the first match
 					let matchingType = matchingTypes
