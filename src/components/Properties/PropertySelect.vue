@@ -38,8 +38,7 @@
 
 			<multiselect v-model="matchedOptions" :options="propModel.options" :placeholder="t('contacts', 'Select option')"
 				class="multiselect-vue property__value" track-by="id" label="name"
-				@input="updateValue">
-			</multiselect>
+				@input="updateValue" />
 		</div>
 	</div>
 </template>
@@ -84,6 +83,7 @@ export default {
 
 	data() {
 		return {
+			// value is represented by the ID of the possible options
 			localValue: this.value
 			// localType: this.selectType
 		}
@@ -96,6 +96,8 @@ export default {
 			// length is one & add one space at the end
 			return hasTitle + 1 + isLast
 		},
+
+		// matching value to the options we provide
 		matchedOptions: {
 			get() {
 				let selected = this.propModel.options.find(option => option.id === this.localValue)
