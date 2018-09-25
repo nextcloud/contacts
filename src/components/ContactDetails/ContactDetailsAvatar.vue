@@ -22,17 +22,23 @@ import rfcProps from '../../models/rfcProps';
   -->
 
 <template>
-	<div id="contact-header-avatar">
+	<div id="contact-header-avatar" :class="{'maximised':maximizeAvatar }">
 		<div class="contact-avatar-background" />
-		<img v-if="contact.photo" :src="contact.photo">
-		<input id="contact-avatar-upload" type="file" class="hidden"
-			accept="image/*" @change="processFile">
-		<label v-tooltip.auto="t('contacts', 'Upload a new picture')" for="contact-avatar-upload" class="icon-upload-white" />
+		<img v-if="contact.photo" :src="contact.photo"
+			class="contact-header-avatar__picture"
+			@click="maximise">
+		<div class="avatar-options">
+			<input id="contact-avatar-upload" type="file" class="hidden"
+				accept="image/*" @change="processFile">
+			<label v-tooltip.auto="t('contacts', 'Upload a new picture')" for="contact-avatar-upload" class="icon-upload-white" />
+			<div v-if="maximizeAvatar" class="icon-delete-white" @click="removePhoto" />
+			<div v-if="maximizeAvatar" class="icon-fullscreen-white" @click="minimizePhoto" />
+			<div v-if="maximizeAvatar" class="icon-download-white" @click="downloadPhoto" />
+		</div>
 	</div>
 </template>
 
 <script>
-import rfcProps from '../../models/rfcProps.js'
 
 export default {
 	name: 'ContactAvatar',
@@ -43,16 +49,37 @@ export default {
 			required: true
 		}
 	},
+	data() {
+		return {
+			maximizeAvatar: false
+		}
+	},
 	methods: {
 		processFile(event) {
 			let file = event.target.files[0]
 			let reader = new FileReader()
 			let self = this
+			// need if contact.photo to check if already there, if it is use updatePropertyWithValue
 			reader.onload = function(e) {
 				self.contact.vCard.addPropertyWithValue('photo', reader.result)
 				self.$store.dispatch('updateContact', self.contact)
 			}
 			reader.readAsDataURL(file)
+		},
+		toggleSize() {
+			// maximise avatar photo
+			this.maximizeAvatar != this.maximizeAvatar
+		},
+		removePhoto() {
+			// self.contact.vCard.removePropertyWithValue('photo', reader.result)
+			// remove avatar photo
+			console.log("remove") // eslint-disable-line
+		},
+		downloadPhoto() {
+			// download avatar photo
+			// same as opening in new tab, use contact.url?photo to create download link
+			// look at download addressbook
+			console.log("download") // eslint-disable-line
 		}
 	}
 

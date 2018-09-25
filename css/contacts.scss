@@ -44,6 +44,7 @@ $grid-input-height-with-margin: #{$grid-height-unit - $grid-input-margin * 2};
 @import 'settings/settings-addressbook-sharee';
 @import 'details';
 @import 'ContactDetails';
+@import 'contact-details-avatar';
 @import './Properties/Properties';
 @import './Properties/PropertyTitle';
 @import 'importScreen';

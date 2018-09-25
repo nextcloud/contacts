@@ -1,0 +1,119 @@
+/**
+ * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ *
+ * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Team Popcorn <teampopcornberlin@gmail.com>
+ *
+ * @license GNU AGPL version 3 or any later version
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
+ */
+
+// AVATAR
+#contact-header-avatar {
+	position: relative;
+	height: 75px;
+	width: 75px;
+	border-radius: 50%;
+	overflow: hidden;
+	flex-shrink: 0;
+	margin: 0 22px 0 44px;
+	.contact-avatar-background {
+		background-color: var(--color-background-dark);
+		opacity: .2;
+		z-index: 0;
+	}
+	img {
+		z-index: 10;
+	}
+	label.icon-upload-white {
+		opacity: .5;
+		z-index: 2;
+		&:hover,
+		a:active,
+		a:focus {
+			opacity: .7;
+		}
+	}
+	img +  label.icon-upload-white {
+		opacity: 0;
+	}
+	.contact-avatar-background,
+	img,
+	label.icon-upload-white {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+	}
+	.avatar-options {
+		top: 0;
+		background-color: rgba(0, 0, 0, 0.2);
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
+	}
+}
+
+#contact-header-avatar.maximised {
+	position: fixed;
+	height: 100%;
+	width: 100%;
+	top: 0;
+	left: 0;
+	border-radius: 0;
+	padding: 20px;
+	background-color: rgba(0, 0, 0, 0.9);
+	display: flex;
+	justify-content: center;
+	z-index: 200;
+	padding-top: 65px;
+	img {
+		width: auto;
+		height: auto;
+		border-radius: 0;
+		max-height: calc(100% - 40px);
+		max-width: 100%;
+		align-self: center;
+		margin-bottom: 40px;
+	}
+	.avatar-options {
+		height: 40px;
+		width: 100%;
+		position: absolute;
+		top: calc(100% - 40px);
+		left: 0;
+		display: flex;
+		opacity: 1;
+		padding: 0;
+		flex-wrap: wrap;
+		justify-content: space-around;
+	}
+	.avatar-options > [class^='icon-'] {
+		min-width: 25%;
+		display: block;
+	}
+}
+
+.contact-header-avatar-options {
+	top: 0;
+	background-color: rgba(0, 0, 0, 0.2);
+	display: flex;
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	
+}
+
+
