@@ -183,6 +183,7 @@ const properties = {
 	},
 	relationship: {
 		readableName: t('contacts', 'Relationship'),
+		icon: 'icon-group',
 		info: t(
 			'contacts',
 			'Specify a relationship between you and the entity represented by this vCard.'
@@ -205,6 +206,7 @@ const properties = {
 	related: {
 		multiple: true,
 		readableName: t('contacts', 'Related'),
+		icon: 'icon-group',
 		info: t(
 			'contacts',
 			'Specify a relationship between another entity and the entity represented by this vCard.'
