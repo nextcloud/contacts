@@ -37,7 +37,7 @@ OC.L10N.register(
     "Import is disabled because no writable address book had been found." : "Import je zakázán, protože nebyl nalezen žádný zapisovatelný adresář.",
     "No search result for {query}" : "Žádný nález pro {query}",
     "All contacts" : "Všechny kontakty",
-    "Post office box" : "Poštovní schránka",
+    "Post office box" : "P.O. box",
     "Postal code" : "Směrovací číslo",
     "City" : "Město",
     "State or province" : "Stát nebo provincie",

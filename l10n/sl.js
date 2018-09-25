@@ -6,7 +6,7 @@ OC.L10N.register(
     "Copy link" : "Kopiraj povezavo",
     "Click to copy the link to your clipboard" : "Klikni, da kopiraš povezavo na tvoje odlagališče",
     "Toggle sharing" : "Preklopi deljenje",
-    "Delete" : "Pobriši",
+    "Delete" : "Izbriši",
     "Rename" : "Preimenuj",
     "Share with users or groups" : "Deli z uporabniki ali skupinami",
     "can edit" : "lahko ureja",
