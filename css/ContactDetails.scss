@@ -109,6 +109,12 @@
 				position: relative;
 				height: 44px;
 				width: 44px;
+				border-radius: 22px;
+				&.menu-icon--pulse {
+					margin: 8px;
+					width: 16px;
+					height: 16px;
+				}
 			}
 			[class^='icon-'],
 			[class*=' icon-'] {
