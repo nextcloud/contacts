@@ -28,8 +28,8 @@ const mutations = {
 	/**
 	 * Extract all the groups from the provided contacts
 	 *
-	 * @param {Object} state
-	 * @param {Contact[]} contacts
+	 * @param {Object} state the store data
+	 * @param {Contact[]} contacts the contacts to add
 	 * TODO: create single contact mutation
 	 */
 	appendGroupsFromContacts(state, contacts) {
@@ -66,8 +66,8 @@ const mutations = {
 	/**
 	 * Add contact to group and create groupif not existing
 	 *
-	 * @param {Object} state
-	 * @param {Object} data
+	 * @param {Object} state the store data
+	 * @param {Object} data destructuring object
 	 * @param {String} data.groupName the name of the group
 	 * @param {Contact} data.contact the contact
 	 */
@@ -87,8 +87,8 @@ const mutations = {
 	/**
 	 * Remove contact from group
 	 *
-	 * @param {Object} state
-	 * @param {Object} data
+	 * @param {Object} state the store data
+	 * @param {Object} data destructuring object
 	 * @param {String} data.groupName the name of the group
 	 * @param {Contact} data.contact the contact
 	 */
@@ -110,8 +110,8 @@ const actions = {
 	/**
 	 * Add contact and to a group
 	 *
-	 * @param {Object} context
-	 * @param {Object} data
+	 * @param {Object} context the store mutations
+	 * @param {Object} data destructuring object
 	 * @param {String} data.groupName the name of the group
 	 * @param {Contact} data.contact the contact
 	 */
@@ -122,8 +122,8 @@ const actions = {
 	/**
 	 * Remove contact from group
 	 *
-	 * @param {Object} context
-	 * @param {Object} data
+	 * @param {Object} context the store mutations
+	 * @param {Object} data destructuring object
 	 * @param {String} data.groupName the name of the group
 	 * @param {Contact} data.contact the contact
 	 */

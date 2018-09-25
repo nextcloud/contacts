@@ -165,7 +165,9 @@ export default {
 	computed: {
 
 		/**
+		 * Warning message
 		 *
+		 * @returns {string}
 		 */
 		warning() {
 			if (!this.contact.dav) {
@@ -175,6 +177,8 @@ export default {
 
 		/**
 		 * Contact color based on uid
+		 *
+		 * @returns {string}
 		 */
 		colorAvatar() {
 			try {
@@ -187,6 +191,8 @@ export default {
 
 		/**
 		 * Header actions for the contact
+		 *
+		 * @returns {Array}
 		 */
 		contactActions() {
 			let actions = [
@@ -209,6 +215,8 @@ export default {
 
 		/**
 		 * Contact properties copied and sorted by rfcProps.fieldOrder
+		 *
+		 * @returns {Array}
 		 */
 		sortedProperties() {
 			return this.contact.properties.slice(0).sort((a, b) => {
@@ -220,6 +228,8 @@ export default {
 
 		/**
 		 * Fake model to use the propertySelect component
+		 *
+		 * @returns {Object}
 		 */
 		addressbookModel() {
 			return {
@@ -229,7 +239,12 @@ export default {
 			}
 		},
 
-		// usable addressbook object linked to the local contact
+		/**
+		 * Usable addressbook object linked to the local contact
+		 *
+		 * @param {string} [addressbookId] set the addressbook id
+		 * @returns {string}
+		 */
 		addressbook: {
 			get: function() {
 				return this.contact.addressbook.id
@@ -239,7 +254,11 @@ export default {
 			}
 		},
 
-		// store getters filtered and mapped to usable object
+		/**
+		 * Store getters filtered and mapped to usable object
+		 *
+		 * @returns {Array}
+		 */
 		addressbooksOptions() {
 			return this.addressbooks
 				.filter(addressbook => addressbook.readOnly)
@@ -307,6 +326,8 @@ export default {
 		/**
 		 * Select a contac, and update the localContact
 		 * Fetch updated data if necessary
+		 *
+		 * @param {string} uid the contact uid
 		 */
 		selectContact(uid) {
 			// local version of the contact

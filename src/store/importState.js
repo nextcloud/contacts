@@ -34,7 +34,7 @@ const mutations = {
 	/**
 	 * Increment the number of contacts accepted
 	 *
-	 * @param {Object} state
+	 * @param {Object} state the store data
 	 */
 	incrementAccepted(state) {
 		state.importState.accepted++
@@ -43,7 +43,7 @@ const mutations = {
 	/**
 	 * Increment the number of contacts denied
 	 *
-	 * @param {Object} state
+	 * @param {Object} state the store data
 	 */
 	incrementDenied(state) {
 		state.importState.denied++
@@ -52,7 +52,7 @@ const mutations = {
 	/**
 	 * Set the total number of contacts
 	 *
-	 * @param {Object} state
+	 * @param {Object} state the store data
 	 * @param {String} total the total number of contacts to import
 	 */
 	setTotal(state, total) {
@@ -62,7 +62,7 @@ const mutations = {
 	/**
 	 * Set the address book name
 	 *
-	 * @param {Object} state
+	 * @param {Object} state the store data
 	 * @param {String} addressbook the name of the address book to import into
 	 */
 	setAddressbook(state, addressbook) {
@@ -72,7 +72,7 @@ const mutations = {
 	/**
 	 * Change stage to the indicated one
 	 *
-	 * @param {Object} state
+	 * @param {Object} state the store data
 	 * @param {String} stage the name of the stage ('default', 'importing', 'parsing')
 	 */
 	changeStage(state, stage) {
@@ -88,7 +88,7 @@ const actions = {
 	/**
 	 * Increment the number of contacts accepted
 	 *
-	 * @param {Object} context
+	 * @param {Object} context the store mutations
 	 */
 	incrementAccepted(context) {
 		context.commit('incrementAccepted')
@@ -97,7 +97,7 @@ const actions = {
 	/**
 	 * Increment the number of contacts denied
 	 *
-	 * @param {Object} context
+	 * @param {Object} context the store mutations
 	 */
 	incrementDenied(context) {
 		context.commit('incrementDenied')
@@ -106,7 +106,7 @@ const actions = {
 	/**
 	 * Set the total number of contacts
 	 *
-	 * @param {Object} context
+	 * @param {Object} context the store mutations
 	 * @param {String} total the total number of contacts to import
 	 */
 	setTotal(context, total) {
@@ -116,7 +116,7 @@ const actions = {
 	/**
 	 * Set the address book name
 	 *
-	 * @param {Object} context
+	 * @param {Object} context the store mutations
 	 * @param {String} addressbook the name of the address book to import into
 	 */
 	setAddressbook(context, addressbook) {
@@ -126,7 +126,7 @@ const actions = {
 	/**
 	 * Change stage to the indicated one
 	 *
-	 * @param {Object} context
+	 * @param {Object} context the store mutations
 	 * @param {String} stage the name of the stage ('default', 'importing', 'parsing')
 	 */
 	changeStage(context, stage) {
