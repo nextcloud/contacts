@@ -54,8 +54,8 @@ const mutations = {
 	/**
 	 * Delete a contact from the global contacts list
 	 *
-	 * @param {Object} state
-	 * @param {Contact} contact
+	 * @param {Object} state the store data
+	 * @param {Contact} contact the contact to delete
 	 */
 	deleteContact(state, contact) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
@@ -72,8 +72,8 @@ const mutations = {
 	/**
 	 * Insert new contact into sorted array
 	 *
-	 * @param {Object} state
-	 * @param {Contact} contact
+	 * @param {Object} state the store data
+	 * @param {Contact} contact the contact to add
 	 */
 	addContact(state, contact) {
 		if (contact instanceof Contact) {
@@ -113,8 +113,8 @@ const mutations = {
 	/**
 	 * Update a contact
 	 *
-	 * @param {Object} state
-	 * @param {Contact} contact
+	 * @param {Object} state the store data
+	 * @param {Contact} contact the contact to update
 	 */
 	updateContact(state, contact) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
@@ -145,8 +145,8 @@ const mutations = {
 	/**
 	 * Update a contact
 	 *
-	 * @param {Object} state
-	 * @param {Contact} contact
+	 * @param {Object} state the store data
+	 * @param {Contact} contact the contact to update
 	 */
 	updateContactAddressbook(state, { contact, addressbook }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
@@ -164,7 +164,7 @@ const mutations = {
 	 * We do not want to run the sorting function every time.
 	 * Let's only run it on additions and create an index
 	 *
-	 * @param {Object} state
+	 * @param {Object} state the store data
 	 */
 	sortContacts(state) {
 		state.sortedContacts = Object.values(state.contacts)
@@ -185,8 +185,8 @@ const mutations = {
 	/**
 	 * Set the order key
 	 *
-	 * @param {Object} state
-	 * @param {string} [orderKey='displayName']
+	 * @param {Object} state the store data
+	 * @param {string} [orderKey='displayName'] the order key to sort by
 	 */
 	setOrder(state, orderKey = 'displayName') {
 		state.orderKey = orderKey
@@ -205,10 +205,11 @@ const actions = {
 	/**
 	 * Delete a contact from the list and from the associated addressbook
 	 *
-	 * @param {Object} context
+	 * @param {Object} context the store mutations
 	 * @param {Contact} contact the contact to delete
 	 */
 	async deleteContact(context, contact) {
+		// only local delete if the contact doesn't exists on the server
 		if (contact.dav) {
 			await contact.dav.delete()
 				.catch((error) => {
@@ -223,7 +224,7 @@ const actions = {
 	/**
 	 * Add a contact to the list and to the associated addressbook
 	 *
-	 * @param {Object} context
+	 * @param {Object} context the store mutations
 	 * @param {Contact} contact the contact to delete
 	 */
 	async addContact(context, contact) {
@@ -234,8 +235,9 @@ const actions = {
 	/**
 	 * Replac a contact by this new object
 	 *
-	 * @param {Object} context
+	 * @param {Object} context the store mutations
 	 * @param {Contact} contact the contact to update
+	 * @returns {Promise}
 	 */
 	async updateContact(context, contact) {
 		let vData = ICAL.stringify(contact.vCard.jCal)
@@ -259,10 +261,11 @@ const actions = {
 	/**
 	 * Fetch the full vCard from the dav server
 	 *
-	 * @param {Object} context
+	 * @param {Object} context the store mutations
 	 * @param {Contact} contact the contact to fetch
+	 * @returns {Promise}
 	 */
-	fetchFullContact(context, contact) {
+	async fetchFullContact(context, contact) {
 		return contact.dav.fetchCompleteData()
 			.then(() => {
 				let newContact = new Contact(contact.dav.data, contact.addressbook, contact.dav.url, contact.dav.etag)

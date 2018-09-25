@@ -117,6 +117,8 @@ export default {
 		 * Those filters are pretty fast, so let's only
 		 * intersect the groups contacts and the full
 		 * sorted contacts List.
+		 *
+		 * @returns {Array}
 		 */
 		contactsList() {
 			if (this.selectedGroup === t('contacts', 'All contacts')) {
@@ -257,8 +259,7 @@ export default {
 		/**
 		 * Dispatch sorting update request to the store
 		 *
-		 * @param {Object} state Default state
-		 * @param {Array} addressbooks Addressbooks
+		 * @param {string} orderKey the object key to order by
 		 */
 		updateSorting(orderKey = 'displayName') {
 			this.$store.commit('setOrder', orderKey)

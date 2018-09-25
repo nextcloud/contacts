@@ -45,7 +45,7 @@ const state = {
 /**
  * map a dav collection to our addressbook object model
  *
- * @param {Object} addressbook
+ * @param {Object} addressbook the addressbook object from the cdav library
  * @returns {Object}
  */
 export function mapDavCollectionToAddressbook(addressbook) {
@@ -66,10 +66,10 @@ const mutations = {
 	/**
 	 * Add addressbook into state
 	 *
-	 * @param {Object} state Default state
-	 * @param {Object} addressbooks Addressbook
+	 * @param {Object} state the store data
+	 * @param {Object} addressbook the addressbook to add
 	 */
-	addAddressbooks(state, addressbook) {
+	addAddressbook(state, addressbook) {
 		// extend the addressbook to the default model
 		state.addressbooks.push(Object.assign({}, addressbookModel, addressbook))
 	},
@@ -77,8 +77,8 @@ const mutations = {
 	/**
 	 * Delete addressbook
 	 *
-	 * @param {Object} state Default state
-	 * @param {Object} addressbooks Addressbook
+	 * @param {Object} state the store data
+	 * @param {Object} addressbook the addressbook to delete
 	 */
 	deleteAddressbook(state, addressbook) {
 		state.addressbooks.splice(state.addressbooks.indexOf(addressbook), 1)
@@ -86,8 +86,8 @@ const mutations = {
 
 	/**
 	 * Toggle whether a Addressbook is Enabled
-	 * @param {Object} context Current context
-	 * @param {Object} addressbook
+	 * @param {Object} context the store mutations
+	 * @param {Object} addressbook the addressbook to toggle
 	 */
 	toggleAddressbookEnabled(context, addressbook) {
 		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
@@ -96,9 +96,10 @@ const mutations = {
 
 	/**
 	 * Rename a Addressbook
-	 * @param {Object} context Current context
-	 * @param {Object} data.addressbook
-	 * @param {String} data.newName
+	 * @param {Object} context the store mutations
+	 * @param {Object} data destructuring object
+	 * @param {Object} data.addressbook the addressbook to rename
+	 * @param {String} data.newName the new name of the addressbook
 	 */
 	renameAddressbook(context, { addressbook, newName }) {
 		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
@@ -109,9 +110,9 @@ const mutations = {
 	 * Append a list of contacts to an addressbook
 	 * and remove duplicates
 	 *
-	 * @param {Object} state
-	 * @param {Object} data
-	 * @param {Object} data.addressbook the addressbook
+	 * @param {Object} state the store data
+	 * @param {Object} data destructuring object
+	 * @param {Object} data.addressbook the addressbook to add the contacts to
 	 * @param {Contact[]} data.contacts array of contacts to append
 	 */
 	appendContactsToAddressbook(state, { addressbook, contacts }) {
@@ -130,8 +131,8 @@ const mutations = {
 	/**
 	 * Add a contact to an addressbook and overwrite if duplicate uid
 	 *
-	 * @param {Object} state
-	 * @param {Contact} contact
+	 * @param {Object} state the store data
+	 * @param {Contact} contact the contact to add
 	 */
 	addContactToAddressbook(state, contact) {
 		let addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
@@ -141,7 +142,7 @@ const mutations = {
 	/**
 	 * Delete a contact in a specified addressbook
 	 *
-	 * @param {Object} state
+	 * @param {Object} state the store data
 	 * @param {Contact} contact the contact to delete
 	 */
 	deleteContactFromAddressbook(state, contact) {
@@ -152,11 +153,11 @@ const mutations = {
 	/**
 	 * Share addressbook with a user or group
 	 *
-	 * @param {Object} state
-	 * @param {Object} data
+	 * @param {Object} state the store data
+	 * @param {Object} data destructuring object
 	 * @param {Object} data.addressbook the addressbook
-	 * @param {String} data.sharee the sharee
-	 * @param {Boolean} data.id id
+	 * @param {string} data.sharee the sharee
+	 * @param {string} data.id id
 	 * @param {Boolean} data.group group
 	 */
 	shareAddressbook(state, { addressbook, sharee, id, group }) {
@@ -173,7 +174,7 @@ const mutations = {
 	/**
 	 * Remove Sharee from addressbook shares list
 	 *
-	 * @param {Object} state
+	 * @param {Object} state the store data
 	 * @param {Object} sharee the sharee
 	 */
 	removeSharee(state, sharee) {
@@ -190,7 +191,7 @@ const mutations = {
 	/**
 	 * Toggle sharee's writable permission
 	 *
-	 * @param {Object} state
+	 * @param {Object} state the store data
 	 * @param {Object} sharee the sharee
 	 */
 	updateShareeWritable(state, sharee) {
@@ -216,8 +217,8 @@ const actions = {
 	/**
 	 * Retrieve and commit addressbooks
 	 *
-	 * @param {Object} context
-	 * @returns {Promise} fetch and commit
+	 * @param {Object} context the store mutations
+	 * @returns {Promise<Array>} the addressbooks
 	 */
 	async getAddressbooks(context) {
 		let addressbooks = await client.addressBookHomes[0].findAllAddressBooks()
@@ -228,7 +229,7 @@ const actions = {
 			})
 
 		addressbooks.forEach(addressbook => {
-			context.commit('addAddressbooks', addressbook)
+			context.commit('addAddressbook', addressbook)
 		})
 
 		return addressbooks
@@ -237,34 +238,37 @@ const actions = {
 	/**
 	 * Append a new address book to array of existing address books
 	 *
-	 * @param {Object} context
+	 * @param {Object} context the store mutations
 	 * @param {Object} addressbook The address book to append
+	 * @returns {Promise}
 	 */
-	appendAddressbook(context, addressbook) {
+	async appendAddressbook(context, addressbook) {
 		return client.addressBookHomes[0].createAddressBookCollection(addressbook.displayName)
 			.then((response) => {
 				addressbook = mapDavCollectionToAddressbook(response)
-				context.commit('addAddressbooks', addressbook)
+				context.commit('addAddressbook', addressbook)
 			})
 			.catch((error) => { throw error })
 	},
 
 	/**
 	 * Delete Addressbook
-	 * @param {Object} context Current context
-	 * @param {Object} addressbook
+	 * @param {Object} context the store mutations Current context
+	 * @param {Object} addressbook the addressbool to delete
+	 * @returns {Promise}
 	 */
-	deleteAddressbook(context, addressbook) {
+	async deleteAddressbook(context, addressbook) {
 		return addressbook.dav.delete().then((response) => context.commit('deleteAddressbook', addressbook))
 			.catch((error) => { throw error })
 	},
 
 	/**
 	 * Toggle whether a Addressbook is Enabled
-	 * @param {Object} context Current context
-	 * @param {Object} addressbook
+	 * @param {Object} context the store mutations Current context
+	 * @param {Object} addressbook the addressbook to toggle
+	 * @returns {Promise}
 	 */
-	toggleAddressbookEnabled(context, addressbook) {
+	async toggleAddressbookEnabled(context, addressbook) {
 		addressbook.dav.enabled = !addressbook.dav.enabled
 		return addressbook.dav.update()
 			.then((response) => context.commit('toggleAddressbookEnabled', addressbook))
@@ -273,11 +277,12 @@ const actions = {
 
 	/**
 	 * Rename a Addressbook
-	 * @param {Object} context Current context
-	 * @param {Object} data.addressbook
-	 * @param {String} data.newName
+	 * @param {Object} context the store mutations Current context
+	 * @param {Object} data.addressbook the addressbook to rename
+	 * @param {String} data.newName the new name of the addressbook
+	 * @returns {Promise}
 	 */
-	renameAddressbook(context, { addressbook, newName }) {
+	async renameAddressbook(context, { addressbook, newName }) {
 		addressbook.dav.displayname = newName
 		return addressbook.dav.update()
 			.then((response) => context.commit('renameAddressbook', { addressbook, newName }))
@@ -288,10 +293,11 @@ const actions = {
 	 * Retrieve the contacts of the specified addressbook
 	 * and commit the results
 	 *
-	 * @param {Object} context
+	 * @param {Object} context the store mutations
 	 * @param {Object} importDetails = { vcf, addressbook }
+	 * @returns {Promise}
 	 */
-	getContactsFromAddressBook(context, { addressbook }) {
+	async getContactsFromAddressBook(context, { addressbook }) {
 		return addressbook.dav.findAllAndFilterBySimpleProperties(['EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG'])
 			.then((response) => {
 				// We don't want to lose the url information
@@ -318,7 +324,7 @@ const actions = {
 
 	/**
 	 *
-	 * @param {Object} context
+	 * @param {Object} context the store mutations
 	 * @param {Object} importDetails = { vcf, addressbook }
 	 */
 	importContactsIntoAddressbook(context, { vcf, addressbook }) {
@@ -334,7 +340,7 @@ const actions = {
 
 	/**
 	 * Remove sharee from Addressbook
-	 * @param {Object} context Current context
+	 * @param {Object} context the store mutations Current context
 	 * @param {Object} sharee Addressbook sharee object
 	 */
 	removeSharee(context, sharee) {
@@ -343,7 +349,7 @@ const actions = {
 
 	/**
 	 * Toggle permissions of Addressbook Sharees writeable rights
-	 * @param {Object} context Current context
+	 * @param {Object} context the store mutations Current context
 	 * @param {Object} sharee Addressbook sharee object
 	 */
 	toggleShareeWritable(context, sharee) {
@@ -352,7 +358,7 @@ const actions = {
 
 	/**
 	 * Share Adressbook with User or Group
-	 * @param {Object} context Current context
+	 * @param {Object} context the store mutations Current context
 	 * @param {Object} data.addressbook the addressbook
 	 * @param {String} data.sharee the sharee
 	 * @param {Boolean} data.id id
@@ -366,18 +372,23 @@ const actions = {
 	/**
 	 * Move a contact to the provided addressbook
 	 *
-	 * @param {Object} context
-	 * @param {Object} data
+	 * @param {Object} context the store mutations
+	 * @param {Object} data destructuring object
 	 * @param {Contact} data.contact the contact to move
 	 * @param {Object} data.addressbook the addressbook to move the contact to
 	 */
-	moveContactToAddressbook(context, { contact, addressbook }) {
-		contact.dav.move(addressbook.dav)
-			.then(() => {
-				context.commit('deleteContactFromAddressbook', contact)
-				context.commit('updateContactAddressbook', { contact, addressbook })
-				context.commit('addContactToAddressbook', contact)
-			})
+	async moveContactToAddressbook(context, { contact, addressbook }) {
+		// only local move if the contact doesn't exists on the server
+		if (contact.dav) {
+			await contact.dav.move(addressbook.dav)
+				.catch((error) => {
+					console.error(error)
+					OC.Notification.showTemporary(t('contacts', 'An error occurred'))
+				})
+		}
+		context.commit('deleteContactFromAddressbook', contact)
+		context.commit('updateContactAddressbook', { contact, addressbook })
+		context.commit('addContactToAddressbook', contact)
 	}
 }
 

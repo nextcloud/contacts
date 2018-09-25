@@ -46,6 +46,14 @@ module.exports = {
 		'operator-linebreak': ['error', 'before'],
 		// ternary on multiline
 		'multiline-ternary': ['error', 'always-multiline'],
+		// force proper JSDocs
+		'valid-jsdoc': [2, {
+			'prefer': {
+				'return': 'returns'
+			},
+			'requireReturn': false,
+			'requireReturnDescription': false
+		}],
 		// es6 import/export and require
 		'node/no-unpublished-require': ['off'],
 		'node/no-unsupported-features': ['off'],
