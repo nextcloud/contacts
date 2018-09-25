@@ -7,8 +7,9 @@
 			class="app-content-list-item-checkbox checkbox" @keypress.enter.space.prevent.stop="toggleSelect">
 		<label :for="contact.key" @click.prevent.stop="toggleSelect" @keypress.enter.space.prevent.stop="toggleSelect" />
 		-->
-		<div v-if="contact.url + '?photo'" :style="{ 'backgroundImage': url(contact.url + '?photo') }" class="app-content-list-item-icon" />
-		<div v-else :style="{ 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">{{ contact.displayName | firstLetter }}</div>
+		<div :style="{ 'backgroundImage': avatarUrl, 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">
+			{{ initial }}
+		</div>
 		<div class="app-content-list-item-line-one">{{ contact.displayName }}</div>
 		<div v-if="contact.email" class="app-content-list-item-line-two">{{ contact.email }}</div>
 		<div v-if="contact.addressbook.readOnly" class="icon-delete" tabindex="0"
@@ -19,11 +20,6 @@
 <script>
 export default {
 	name: 'ContentListItem',
-	filters: {
-		firstLetter(value) {
-			return value.charAt(0)
-		}
-	},
 	props: {
 		contact: {
 			type: Object,
@@ -48,6 +44,16 @@ export default {
 				return `rgb(${color.r}, ${color.g}, ${color.b})`
 			} catch (e) {
 				return 'grey'
+			}
+		},
+		avatarUrl() {
+			return 'url(' + this.contact.url + '?photo' + ')'
+		},
+		initial() {
+			if (this.avatar) {
+				return ''
+			} else {
+				return this.contact.displayName.charAt(0)
 			}
 		}
 	},
