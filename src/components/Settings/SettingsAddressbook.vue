@@ -210,7 +210,7 @@ export default {
 			this.renameLoading = true
 			setTimeout(() => {
 				try {
-					this.$store.dispatch('renameAddressbook', { addressbook, newName }) // .then(e.target.parent.classList.add())
+					this.$store.dispatch('renameAddressbook', { addressbook, newName })
 				} catch (err) {
 					// error handling
 				} finally {
@@ -222,24 +222,27 @@ export default {
 				}
 			}, 500)
 		},
-		copyLink() {
+		copyLink(event) {
 			// change to loading status
 			this.copyLoading = true
+			event.stopPropagation()
+
 			// copy link for addressbook to clipboard
 			this.$copyText(this.addressbook.url).then(e => {
+				event.preventDefault()
 				this.copySuccess = true
 				this.copied = true
+				// timeout sets the text back to copy to show text was copied
+				setTimeout(() => {
+					// stop loading status regardless of outcome
+					this.copyLoading = false
+					this.copied = false
+				}, 1500)
 			}, e => {
 				this.copySuccess = false
 				this.copied = true
 
 			})
-			// timeout sets the text back to copy to show text was copied
-			setTimeout(() => {
-				// stop loading status regardless of outcome
-				this.copyLoading = false
-				this.copied = false
-			}, 1500)
 		}
 	}
 }
