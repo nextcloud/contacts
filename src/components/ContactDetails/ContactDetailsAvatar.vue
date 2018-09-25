@@ -26,7 +26,7 @@ import rfcProps from '../../models/rfcProps';
 		<div class="contact-avatar-background" />
 		<img v-if="contact.photo" :src="contact.photo"
 			class="contact-header-avatar__picture"
-			@click="maximise">
+			@click="toggleSize">
 		<div class="avatar-options">
 			<input id="contact-avatar-upload" type="file" class="hidden"
 				accept="image/*" @change="processFile">
@@ -68,7 +68,7 @@ export default {
 		},
 		toggleSize() {
 			// maximise avatar photo
-			this.maximizeAvatar != this.maximizeAvatar
+			this.maximizeAvatar = !this.maximizeAvatar
 		},
 		removePhoto() {
 			// self.contact.vCard.removePropertyWithValue('photo', reader.result)
