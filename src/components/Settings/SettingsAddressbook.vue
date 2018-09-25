@@ -104,8 +104,7 @@ export default {
 				{
 					href: this.addressbook.url + '?export',
 					icon: 'icon-download',
-					text: t('contacts', 'Download'),
-					action: this.downloadAddressbook
+					text: t('contacts', 'Download')
 				}
 			]
 
@@ -177,10 +176,6 @@ export default {
 					this.toggleEnabledLoading = false
 				}
 			}, 500)
-		},
-		downloadAddressbook() {
-			// Notify download started
-			OC.Notification.showTemporary(t('contacts', 'Downloading Addressbook'))
 		},
 		deleteAddressbook() {
 			// change to loading status
