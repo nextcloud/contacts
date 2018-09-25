@@ -59,30 +59,26 @@ export default {
 			let file = event.target.files[0]
 			let reader = new FileReader()
 			let self = this
+			// need if contact.photo to check if already there, if it is use updatePropertyWithValue
 			reader.onload = function(e) {
 				self.contact.vCard.addPropertyWithValue('photo', reader.result)
 				self.$store.dispatch('updateContact', self.contact)
 			}
 			reader.readAsDataURL(file)
 		},
-		maximise() {
+		toggleSize() {
 			// maximise avatar photo
-			this.maximizeAvatar = true
-		},
-		uploadPhoto() {
-			// upload avatar photo
-			console.log("upload") // eslint-disable-line
+			this.maximizeAvatar != this.maximizeAvatar
 		},
 		removePhoto() {
+			// self.contact.vCard.removePropertyWithValue('photo', reader.result)
 			// remove avatar photo
 			console.log("remove") // eslint-disable-line
 		},
-		minimizePhoto() {
-			// minimize avatar photo
-			this.maximizeAvatar = false
-		},
 		downloadPhoto() {
 			// download avatar photo
+			// same as opening in new tab, use contact.url?photo to create download link
+			// look at download addressbook
 			console.log("download") // eslint-disable-line
 		}
 	}
