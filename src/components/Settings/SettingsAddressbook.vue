@@ -171,6 +171,8 @@ export default {
 					this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
 				} catch (err) {
 					// error handling
+					console.error(err)
+					OC.Notification.showTemporary(t('contacts', 'Enabled toggle of addressbook was not successful.'))
 				} finally {
 					// stop loading status regardless of outcome
 					this.toggleEnabledLoading = false
@@ -193,6 +195,8 @@ export default {
 					this.$store.dispatch('deleteAddressbook', this.addressbook)
 				} catch (err) {
 					// error handling
+					console.error(err)
+					OC.Notification.showTemporary(t('contacts', 'Delete addressbook was not successful.'))
 				} finally {
 					// stop loading status regardless of outcome
 					this.deleteAddressbookLoading = false
@@ -213,6 +217,8 @@ export default {
 					this.$store.dispatch('renameAddressbook', { addressbook, newName })
 				} catch (err) {
 					// error handling
+					console.error(err)
+					OC.Notification.showTemporary(t('contacts', 'Renaming of addressbook was not successful.'))
 				} finally {
 					this.editingName = false
 					// stop loading status regardless of outcome
@@ -228,21 +234,20 @@ export default {
 			event.stopPropagation()
 
 			// copy link for addressbook to clipboard
-			this.$copyText(this.addressbook.url).then(e => {
-				event.preventDefault()
-				this.copySuccess = true
-				this.copied = true
-				// timeout sets the text back to copy to show text was copied
-				setTimeout(() => {
+			this.$copyText(this.addressbook.url)
+				.then(e => {
+					event.preventDefault()
+					this.copySuccess = true
+					this.copied = true
+				}, e => {
+					this.copySuccess = false
+					this.copied = true
+					OC.Notification.showTemporary(t('contacts', 'Copy was not successful, manual copy necessary.'))
+				}).then(() => {
 					// stop loading status regardless of outcome
 					this.copyLoading = false
 					this.copied = false
-				}, 1500)
-			}, e => {
-				this.copySuccess = false
-				this.copied = true
-
-			})
+				})
 		}
 	}
 }
