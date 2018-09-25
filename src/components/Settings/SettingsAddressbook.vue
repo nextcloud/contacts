@@ -81,7 +81,6 @@ export default {
 			toggleEnabledLoading: false,
 			deleteAddressbookLoading: false,
 			renameLoading: false,
-			downloadLoading: false,
 			copyLoading: false
 		}
 	},
@@ -104,7 +103,7 @@ export default {
 				},
 				{
 					href: this.addressbook.url + '?export',
-					icon: this.downloadLoading ? 'icon-loading-small' : 'icon-download',
+					icon: 'icon-download',
 					text: t('contacts', 'Download'),
 					action: this.downloadAddressbook
 				}
@@ -180,12 +179,8 @@ export default {
 			}, 500)
 		},
 		downloadAddressbook() {
-			// change to loading status
-			this.downloadLoading = true
-			setTimeout(() => {
-				// stop loading status regardless of outcome
-				this.downloadLoading = false
-			}, 1500)
+			// Notify download started
+			OC.Notification.showTemporary(t('contacts', 'Downloading Addressbook'))
 		},
 		deleteAddressbook() {
 			// change to loading status
@@ -239,10 +234,12 @@ export default {
 					event.preventDefault()
 					this.copySuccess = true
 					this.copied = true
+					// Notify addressbook was copied
+					OC.Notification.showTemporary(t('contacts', 'Addressbook copied to clipboard'))
 				}, e => {
 					this.copySuccess = false
 					this.copied = true
-					OC.Notification.showTemporary(t('contacts', 'Copy was not successful, manual copy necessary.'))
+					OC.Notification.showTemporary(t('contacts', 'Addressbook was not copied to clipboard.'))
 				}).then(() => {
 					// stop loading status regardless of outcome
 					this.copyLoading = false
