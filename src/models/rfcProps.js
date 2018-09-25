@@ -150,6 +150,7 @@ const properties = {
 			{ id: 'CELL', name: t('contacts', 'Mobile') },
 			{ id: 'CELL,VOICE', name: t('contacts', 'Mobile') },
 			{ id: 'WORK,CELL', name: t('contacts', 'Work mobile') },
+			{ id: 'HOME,CELL', name: t('contacts', 'Home mobile') },
 			{ id: 'FAX', name: t('contacts', 'Fax') },
 			{ id: 'HOME,FAX', name: t('contacts', 'Fax home') },
 			{ id: 'WORK,FAX', name: t('contacts', 'Fax work') },
