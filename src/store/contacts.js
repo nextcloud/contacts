@@ -206,11 +206,13 @@ const actions = {
 	 * Delete a contact from the list and from the associated addressbook
 	 *
 	 * @param {Object} context the store mutations
-	 * @param {Contact} contact the contact to delete
+	 * @param {Object} data destructuring object
+	 * @param {Contact} data.contact the contact to delete
+	 * @param {Boolean} [data.dav=true] trigger a dav deletion
 	 */
-	async deleteContact(context, contact) {
+	async deleteContact(context, { contact, dav = true }) {
 		// only local delete if the contact doesn't exists on the server
-		if (contact.dav) {
+		if (contact.dav && dav) {
 			await contact.dav.delete()
 				.catch((error) => {
 					console.error(error)
@@ -247,7 +249,7 @@ const actions = {
 			// create contact
 			await contact.addressbook.dav.createVCard(vData)
 				.then((response) => {
-					contact.dav = response
+					Vue.set(contact, 'dav', response)
 				})
 				.catch((error) => { throw error })
 		}
@@ -271,6 +273,7 @@ const actions = {
 				let newContact = new Contact(contact.dav.data, contact.addressbook, contact.dav.url, contact.dav.etag)
 				context.commit('updateContact', newContact)
 			})
+			.catch((error) => { throw error })
 	}
 }
 

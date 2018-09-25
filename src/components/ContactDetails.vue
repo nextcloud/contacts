@@ -347,6 +347,12 @@ export default {
 						this.localContact = localContact
 						this.loadingData = false
 					})
+					.catch((error) => {
+						OC.Notification.showTemporary(t('contacts', 'The contact doesn\'t exists anymore on the server.'))
+						console.error(error)
+						// trigger a local deletion from the store only
+						this.$store.dispatch('deleteContact', { contact: this.contact, dav: false })
+					})
 			} else if (contact) {
 				// create empty contact and copy inner data
 				// wait for an update to really push the contact on the server!
@@ -362,7 +368,7 @@ export default {
 		 * Dispatch contact deletion request
 		 */
 		deleteContact() {
-			this.$store.dispatch('deleteContact', this.contact)
+			this.$store.dispatch('deleteContact', { contact: this.contact })
 		},
 
 		/**

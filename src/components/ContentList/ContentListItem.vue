@@ -64,7 +64,7 @@ export default {
 		 * Dispatch contact deletion request
 		 */
 		deleteContact() {
-			this.$store.dispatch('deleteContact', this.contact)
+			this.$store.dispatch('deleteContact', { contact: this.contact })
 		},
 
 		/**
