@@ -47,7 +47,7 @@ export default {
 			}
 		},
 		avatarUrl() {
-			return 'url(' + this.contact.url + '?photo' + ')'
+			return `url(${this.contact.url}?photo)`
 		},
 		initial() {
 			if (this.avatarUrl) {
