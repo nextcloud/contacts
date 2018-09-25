@@ -386,9 +386,9 @@ const actions = {
 					OC.Notification.showTemporary(t('contacts', 'An error occurred'))
 				})
 		}
-		context.commit('deleteContactFromAddressbook', contact)
-		context.commit('updateContactAddressbook', { contact, addressbook })
-		context.commit('addContactToAddressbook', contact)
+		await context.commit('deleteContactFromAddressbook', contact)
+		await context.commit('updateContactAddressbook', { contact, addressbook })
+		await context.commit('addContactToAddressbook', contact)
 	}
 }
 
