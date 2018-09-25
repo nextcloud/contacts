@@ -100,6 +100,18 @@
 		}
 	}
 
+	&__label.multiselect {
+		.multiselect__tags {
+			border: none;
+			.multiselect__single {
+				@include icon-color('triangle-s', 'actions', $color-black, 1, true);
+				background-repeat: no-repeat;
+				background-position: center right 4px;
+				padding-right: 24px;
+			}
+		}
+	}
+
 	// property value within row, after label
 	&__value {
 		flex: 1 1;

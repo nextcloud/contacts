@@ -64,6 +64,11 @@ import propertyTitle from './PropertyTitle'
  * Using the Object as hared data since it's the only way
  * for us to forcefully omit some data (no year, or no time... etc)
  * and ths only common syntax between js Date, moment and VCardTime
+ *
+ * @param {Object} vcardTime ICAL.VCardTime data
+ * @param {string} type the input type e.g. date-time
+ * @param {string} locale the user locale
+ * @returns {string}
  */
 let formatDateTime = function(vcardTime, type, locale) {
 	// this is the only possibility for us to ensure
@@ -112,6 +117,8 @@ let formatDateTime = function(vcardTime, type, locale) {
  * inside a function declaration will represent the
  * location of the call. So this = DatetimePicker.
  * Therefore we can use any props we pass through datetime-picker
+ *
+ * @returns {string}
  */
 DatetimePicker.methods.stringify = function() {
 	return formatDateTime(this.$parent.localValue, this.type, this.$parent.locale)
@@ -155,6 +162,7 @@ export default {
 			default: true
 		}
 	},
+
 	data() {
 		return {
 			localValue: this.value,

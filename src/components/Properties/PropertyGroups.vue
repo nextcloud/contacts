@@ -85,6 +85,8 @@ export default {
 		/**
 		 * Format array of groups objects to a string for the popup
 		 * Based on the ultiselect limit
+		 *
+		 * @returns {string} the additional groups
 		 */
 		formatGroupsTitle() {
 			return this.localValue.slice(3).join(', ')

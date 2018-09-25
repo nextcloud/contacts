@@ -81,7 +81,6 @@ export default {
 			toggleEnabledLoading: false,
 			deleteAddressbookLoading: false,
 			renameLoading: false,
-			downloadLoading: false,
 			copyLoading: false
 		}
 	},
@@ -104,9 +103,8 @@ export default {
 				},
 				{
 					href: this.addressbook.url + '?export',
-					icon: this.downloadLoading ? 'icon-loading-small' : 'icon-download',
-					text: t('contacts', 'Download'),
-					action: this.downloadAddressbook
+					icon: 'icon-download',
+					text: t('contacts', 'Download')
 				}
 			]
 
@@ -171,19 +169,13 @@ export default {
 					this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
 				} catch (err) {
 					// error handling
+					console.error(err)
+					OC.Notification.showTemporary(t('contacts', 'Enabled toggle of addressbook was not successful.'))
 				} finally {
 					// stop loading status regardless of outcome
 					this.toggleEnabledLoading = false
 				}
 			}, 500)
-		},
-		downloadAddressbook() {
-			// change to loading status
-			this.downloadLoading = true
-			setTimeout(() => {
-				// stop loading status regardless of outcome
-				this.downloadLoading = false
-			}, 1500)
 		},
 		deleteAddressbook() {
 			// change to loading status
@@ -193,6 +185,8 @@ export default {
 					this.$store.dispatch('deleteAddressbook', this.addressbook)
 				} catch (err) {
 					// error handling
+					console.error(err)
+					OC.Notification.showTemporary(t('contacts', 'Delete addressbook was not successful.'))
 				} finally {
 					// stop loading status regardless of outcome
 					this.deleteAddressbookLoading = false
@@ -210,9 +204,11 @@ export default {
 			this.renameLoading = true
 			setTimeout(() => {
 				try {
-					this.$store.dispatch('renameAddressbook', { addressbook, newName }) // .then(e.target.parent.classList.add())
+					this.$store.dispatch('renameAddressbook', { addressbook, newName })
 				} catch (err) {
 					// error handling
+					console.error(err)
+					OC.Notification.showTemporary(t('contacts', 'Renaming of addressbook was not successful.'))
 				} finally {
 					this.editingName = false
 					// stop loading status regardless of outcome
@@ -222,24 +218,28 @@ export default {
 				}
 			}, 500)
 		},
-		copyLink() {
+		copyLink(event) {
 			// change to loading status
 			this.copyLoading = true
-			// copy link for addressbook to clipboard
-			this.$copyText(this.addressbook.url).then(e => {
-				this.copySuccess = true
-				this.copied = true
-			}, e => {
-				this.copySuccess = false
-				this.copied = true
+			event.stopPropagation()
 
-			})
-			// timeout sets the text back to copy to show text was copied
-			setTimeout(() => {
-				// stop loading status regardless of outcome
-				this.copyLoading = false
-				this.copied = false
-			}, 1500)
+			// copy link for addressbook to clipboard
+			this.$copyText(this.addressbook.url)
+				.then(e => {
+					event.preventDefault()
+					this.copySuccess = true
+					this.copied = true
+					// Notify addressbook was copied
+					OC.Notification.showTemporary(t('contacts', 'Addressbook copied to clipboard'))
+				}, e => {
+					this.copySuccess = false
+					this.copied = true
+					OC.Notification.showTemporary(t('contacts', 'Addressbook was not copied to clipboard.'))
+				}).then(() => {
+					// stop loading status regardless of outcome
+					this.copyLoading = false
+					this.copied = false
+				})
 		}
 	}
 }
