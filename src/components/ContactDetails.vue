@@ -71,7 +71,7 @@
 
 				<!-- actions -->
 				<div id="contact-header-actions">
-					<div :class="{'icon-loading-small': loadingUpdate}" class="menu-icon" />
+					<div v-tooltip.auto="warning" :class="{'icon-loading-small': loadingUpdate, 'icon-error-white menu-icon--pulse': warning}" class="menu-icon" />
 					<div class="menu-icon">
 						<div v-click-outside="closeMenu" class="icon-more-white" @click="toggleMenu" />
 						<div :class="{ 'open': openedMenu }" class="popovermenu">
@@ -163,6 +163,16 @@ export default {
 	},
 
 	computed: {
+
+		/**
+		 *
+		 */
+		warning() {
+			if (!this.contact.dav) {
+				return t('contacts', 'This contact is not yet synced. Edit it to trigger a change.')
+			}
+		},
+
 		/**
 		 * Contact color based on uid
 		 */

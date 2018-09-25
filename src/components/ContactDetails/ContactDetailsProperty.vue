@@ -147,8 +147,6 @@ export default {
 						}
 					})
 
-					console.log(matchingTypes)
-
 					// Sort by score, filtering out the null score and selecting the first match
 					let matchingType = matchingTypes
 						.sort((a, b) => b.score - a.score)
