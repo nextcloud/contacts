@@ -50,7 +50,7 @@ export default {
 			return 'url(' + this.contact.url + '?photo' + ')'
 		},
 		initial() {
-			if (this.avatar) {
+			if (this.avatarUrl) {
 				return ''
 			} else {
 				return this.contact.displayName.charAt(0)
