@@ -7,8 +7,10 @@
 			class="app-content-list-item-checkbox checkbox" @keypress.enter.space.prevent.stop="toggleSelect">
 		<label :for="contact.key" @click.prevent.stop="toggleSelect" @keypress.enter.space.prevent.stop="toggleSelect" />
 		-->
-		<div :style="{ 'backgroundImage': avatarUrl, 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">
-			{{ initial }}
+		<div :style="{ 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">
+			{{ contact.displayName | firstLetter }}
+			<!-- try to fetch the avatar only if the contact exists on the server -->
+			<div v-if="contact.dav" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
 		</div>
 		<div class="app-content-list-item-line-one">{{ contact.displayName }}</div>
 		<div v-if="contact.email" class="app-content-list-item-line-two">{{ contact.email }}</div>
@@ -20,6 +22,11 @@
 <script>
 export default {
 	name: 'ContentListItem',
+	filters: {
+		firstLetter(value) {
+			return value.charAt(0)
+		}
+	},
 	props: {
 		contact: {
 			type: Object,
@@ -48,13 +55,6 @@ export default {
 		},
 		avatarUrl() {
 			return `url(${this.contact.url}?photo)`
-		},
-		initial() {
-			if (this.avatarUrl) {
-				return ''
-			} else {
-				return this.contact.displayName.charAt(0)
-			}
 		}
 	},
 	methods: {
