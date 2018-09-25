@@ -140,7 +140,7 @@ const properties = {
 		default: true,
 		defaultValue: {
 			value: '',
-			type: ['HOME,VOICE']
+			type: ['HOME', 'VOICE']
 		},
 		options: [
 			{ id: 'HOME,VOICE', name: t('contacts', 'Home') },
@@ -150,6 +150,7 @@ const properties = {
 			{ id: 'CELL', name: t('contacts', 'Mobile') },
 			{ id: 'CELL,VOICE', name: t('contacts', 'Mobile') },
 			{ id: 'WORK,CELL', name: t('contacts', 'Work mobile') },
+			{ id: 'HOME,CELL', name: t('contacts', 'Home mobile') },
 			{ id: 'FAX', name: t('contacts', 'Fax') },
 			{ id: 'HOME,FAX', name: t('contacts', 'Fax home') },
 			{ id: 'WORK,FAX', name: t('contacts', 'Fax work') },
@@ -183,6 +184,8 @@ const properties = {
 	},
 	relationship: {
 		readableName: t('contacts', 'Relationship'),
+		force: 'select',
+		icon: 'icon-group',
 		info: t(
 			'contacts',
 			'Specify a relationship between you and the entity represented by this vCard.'
@@ -205,6 +208,7 @@ const properties = {
 	related: {
 		multiple: true,
 		readableName: t('contacts', 'Related'),
+		icon: 'icon-group',
 		info: t(
 			'contacts',
 			'Specify a relationship between another entity and the entity represented by this vCard.'
@@ -234,6 +238,10 @@ const properties = {
 	},
 	gender: {
 		readableName: t('contacts', 'Gender'),
+		defaultValue: {
+			// default to Female 🙋
+			value: ['F']
+		},
 		options: [
 			{ id: 'F', name: t('contacts', 'Female') },
 			{ id: 'M', name: t('contacts', 'Male') },
