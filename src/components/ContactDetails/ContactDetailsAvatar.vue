@@ -22,17 +22,17 @@ import rfcProps from '../../models/rfcProps';
   -->
 
 <template>
-	<div id="contact-header-avatar" :class="{'maximised':maximizeAvatar }">
-		<div class="contact-avatar-background" />
+	<div :class="{'maximised':maximizeAvatar }" class="contact-header-avatar">
+		<div class="contact-header-avatar__background" />
 		<img v-if="contact.photo" :src="contact.photo"
 			class="contact-header-avatar__picture"
 			@click="toggleSize">
-		<div class="avatar-options">
+		<div class="contact-header-avatar__options">
 			<input id="contact-avatar-upload" type="file" class="hidden"
 				accept="image/*" @change="processFile">
 			<label v-tooltip.auto="t('contacts', 'Upload a new picture')" for="contact-avatar-upload" class="icon-upload-white" />
 			<div v-if="maximizeAvatar" class="icon-delete-white" @click="removePhoto" />
-			<div v-if="maximizeAvatar" class="icon-fullscreen-white" @click="minimizePhoto" />
+			<div v-if="maximizeAvatar" class="icon-fullscreen-white" @click="toggleSize" />
 			<div v-if="maximizeAvatar" class="icon-download-white" @click="downloadPhoto" />
 		</div>
 	</div>
@@ -67,7 +67,7 @@ export default {
 			reader.readAsDataURL(file)
 		},
 		toggleSize() {
-			// maximise avatar photo
+			// maximise or minimise avatar photo
 			this.maximizeAvatar = !this.maximizeAvatar
 		},
 		removePhoto() {

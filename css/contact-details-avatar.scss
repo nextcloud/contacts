@@ -22,7 +22,7 @@
  */
 
 // AVATAR
-#contact-header-avatar {
+.contact-header-avatar {
 	position: relative;
 	height: 75px;
 	width: 75px;
@@ -30,8 +30,7 @@
 	overflow: hidden;
 	flex-shrink: 0;
 	margin: 0 22px 0 44px;
-	.contact-avatar-background {
-		background-color: var(--color-background-dark);
+	&__background {
 		opacity: .2;
 		z-index: 0;
 	}
@@ -50,14 +49,14 @@
 	img +  label.icon-upload-white {
 		opacity: 0;
 	}
-	.contact-avatar-background,
+	&__background,
 	img,
 	label.icon-upload-white {
 		position: absolute;
 		width: 100%;
 		height: 100%;
 	}
-	.avatar-options {
+	&__options {
 		top: 0;
 		background-color: rgba(0, 0, 0, 0.2);
 		width: 100%;
@@ -66,14 +65,16 @@
 	}
 }
 
-#contact-header-avatar.maximised {
+.contact-header-avatar.maximised {
 	position: fixed;
 	height: 100%;
 	width: 100%;
 	top: 0;
 	left: 0;
 	border-radius: 0;
-	padding: 20px;
+	// 300px padding on left to compensate for app-navigation having 1000 z-index
+	padding: 20px 20px 20px 300px;
+	margin: 0px;
 	background-color: rgba(0, 0, 0, 0.9);
 	display: flex;
 	justify-content: center;
@@ -88,7 +89,13 @@
 		align-self: center;
 		margin-bottom: 40px;
 	}
-	.avatar-options {
+	label.icon-upload-white {
+		width: 25%;
+		height: 40px;
+		position: relative;
+		opacity: 1;
+	}
+	.contact-header-avatar__options {
 		height: 40px;
 		width: 100%;
 		position: absolute;
@@ -97,12 +104,18 @@
 		display: flex;
 		opacity: 1;
 		padding: 0;
+		// 300px padding on left to compensate for app-navigation having 1000 z-index
+		padding-left: 300px;
 		flex-wrap: wrap;
-		justify-content: space-around;
+		justify-content: space-between;
+		background-color: rgba(0, 0, 0, 0.2);
 	}
-	.avatar-options > [class^='icon-'] {
-		min-width: 25%;
+	.contact-header-avatar__options > [class^='icon-'] {
+		width: 25%;
 		display: block;
+	}
+	.contact-header-avatar__options > [class^='icon-']:hover {
+		opacity: 0.5;
 	}
 }
 
