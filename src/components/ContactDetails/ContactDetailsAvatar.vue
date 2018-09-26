@@ -30,7 +30,8 @@ import rfcProps from '../../models/rfcProps';
 		<div class="contact-header-avatar__options">
 			<input id="contact-avatar-upload" type="file" class="hidden"
 				accept="image/*" @change="processFile">
-			<label v-tooltip.auto="t('contacts', 'Upload a new picture')" for="contact-avatar-upload" class="icon-upload-white" />
+			<label v-tooltip.auto="t('contacts', 'Upload a new picture')" for="contact-avatar-upload"
+				class="icon-upload-white" @click="processFile" />
 			<div v-if="maximizeAvatar" class="icon-delete-white" @click="removePhoto" />
 			<div v-if="maximizeAvatar" class="icon-fullscreen-white" @click="toggleSize" />
 			<div v-if="maximizeAvatar" class="icon-download-white" @click="downloadPhoto" />
@@ -59,9 +60,12 @@ export default {
 			let file = event.target.files[0]
 			let reader = new FileReader()
 			let self = this
-			// need if contact.photo to check if already there, if it is use updatePropertyWithValue
+			// check if photo property exists to decide whether to add/update it
 			reader.onload = function(e) {
-				self.contact.vCard.addPropertyWithValue('photo', reader.result)
+				self.contact.photo
+					? self.contact.photo = reader.result
+					: self.contact.vCard.addPropertyWithValue('photo', reader.result)
+
 				self.$store.dispatch('updateContact', self.contact)
 			}
 			reader.readAsDataURL(file)
