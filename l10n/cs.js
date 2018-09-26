@@ -4,7 +4,7 @@ OC.L10N.register(
     "Contacts" : "Kontakty",
     "Download" : "Stáhnout",
     "Copy link" : "Zkopírovat odkaz",
-    "Click to copy the link to your clipboard" : "Klikněte pro zkopírování odkazu do vaší schránky",
+    "Click to copy the link to your clipboard" : "Klikněte pro zkopírování odkazu do schránky",
     "Toggle sharing" : "Přepnout sdílení",
     "Delete" : "Smazat",
     "Rename" : "Přejmenovat",
