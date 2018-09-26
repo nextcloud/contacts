@@ -100,6 +100,19 @@ angular.module('contactsApp')
 				{id: 'OTHER', name: t('contacts', 'Other')}
 			]
 		},
+		key: {
+			multiple: true,
+			readableName: t('contacts', 'Public key'),
+			template: 'key',
+			icon: 'icon-key',
+			defaultValue: {
+				value:'',
+				meta:{type:['PGP']}
+			},
+			options: [
+				{id: 'PGP', name: t('contacts', 'PGP')},
+			]
+		},
 		impp: {
 			multiple: true,
 			readableName: t('contacts', 'Instant messaging'),
@@ -231,6 +244,7 @@ angular.module('contactsApp')
 		'title',
 		'tel',
 		'email',
+		'key',
 		'adr',
 		'impp',
 		'nick',
