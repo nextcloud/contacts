@@ -23,7 +23,7 @@ import rfcProps from '../../models/rfcProps';
 
 <template>
 	<div :class="{'maximised':maximizeAvatar }" class="contact-header-avatar">
-		<div class="contact-header-avatar__background" />
+		<div class="contact-header-avatar__background" @click="toggleSize" />
 		<img v-if="contact.photo" :src="contact.photo"
 			class="contact-header-avatar__picture"
 			@click="toggleSize">
@@ -32,7 +32,7 @@ import rfcProps from '../../models/rfcProps';
 				accept="image/*" @change="processFile">
 			<label v-tooltip.auto="t('contacts', 'Upload a new picture')" for="contact-avatar-upload" class="icon-upload-white" />
 			<div v-if="maximizeAvatar" class="icon-delete-white" @click="removePhoto" />
-			<div v-if="maximizeAvatar" class="icon-fullscreen-white" @click="toggleSize" />
+			<!-- <div v-if="maximizeAvatar" class="icon-fullscreen-white" @click="toggleSize" /> -->
 			<div v-if="maximizeAvatar" class="icon-download-white" @click="downloadPhoto" />
 		</div>
 	</div>

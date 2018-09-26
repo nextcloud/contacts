@@ -33,6 +33,9 @@
 	&__background {
 		opacity: .2;
 		z-index: 0;
+		left: 0;
+		top: 50px;
+		margin-left: 300px;
 	}
 	img {
 		z-index: 10;
@@ -55,11 +58,6 @@
 		position: absolute;
 		width: 100%;
 		height: 100%;
-	}
-	&__background {
-		left: 0;
-    	top: 50px;
-    	margin-left: 300px;
 	}
 	&__options {
 		top: 0;
@@ -98,7 +96,6 @@
 		width: 25%;
 		height: 40px;
 		position: relative;
-		opacity: 1;
 	}
 	.contact-header-avatar__options {
 		height: 40px;
@@ -112,15 +109,17 @@
 		// 300px padding on left to compensate for app-navigation having 1000 z-index
 		padding-left: 300px;
 		flex-wrap: wrap;
-		justify-content: space-between;
+		justify-content: space-around;
 		background-color: rgba(0, 0, 0, 0.2);
 	}
 	.contact-header-avatar__options > [class^='icon-'] {
 		width: 25%;
 		display: block;
+		cursor: pointer;
+		opacity: 0.5;
 	}
 	.contact-header-avatar__options > [class^='icon-']:hover {
-		opacity: 0.5;
+		opacity: 0.8;
 	}
 }
 
