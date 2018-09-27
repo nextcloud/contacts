@@ -75,9 +75,9 @@ export default {
 			this.maximizeAvatar = !this.maximizeAvatar
 		},
 		removePhoto() {
-			// self.contact.vCard.removePropertyWithValue('photo', reader.result)
-			// remove avatar photo
-			console.log("remove") // eslint-disable-line
+			this.contact.vCard.removeProperty('photo')
+			this.maximizeAvatar = !this.maximizeAvatar
+			this.$store.dispatch('updateContact', this.contact)
 		}
 	}
 
