@@ -258,7 +258,14 @@ const actions = {
 	 * @returns {Promise}
 	 */
 	async deleteAddressbook(context, addressbook) {
-		return addressbook.dav.delete().then((response) => context.commit('deleteAddressbook', addressbook))
+		return addressbook.dav.delete()
+			.then((response) => {
+				// delete all the contacts from the store that belong to this addressbook
+				Object.values(addressbook.contacts)
+					.forEach(contact => context.commit('deleteContact', contact))
+				// then delete the addressbook
+				context.commit('deleteAddressbook', addressbook)
+			})
 			.catch((error) => { throw error })
 	},
 
