@@ -27,40 +27,29 @@ const state = {
 const mutations = {
 	/**
 	 * Extract all the groups from the provided contacts
+	 * and add the contacts to their respective groups
 	 *
 	 * @param {Object} state the store data
 	 * @param {Contact[]} contacts the contacts to add
-	 * TODO: create single contact mutation
 	 */
-	appendGroupsFromContacts(state, contacts) {
-		// init groups list
-		let groups = Object.values(contacts)
-			// iterate on every contacts
-			.reduce((groups, contact) => {
-				// transform group names into Object
-				contact.groups.map(groupName => {
-					// overriding existing groups: remove duplicates
-					groups[groupName] = {
-						name: groupName,
-						contacts: []
+	extractGroupsFromContacts(state, contacts) {
+		// iterate contacts
+		contacts.forEach(contact => {
+			if (contact.groups) {
+				contact.groups.forEach(groupName => {
+					let group = state.groups.find(search => search.name === groupName)
+					// nothing? create a new one
+					if (!group) {
+						state.groups.push({
+							name: groupName,
+							contacts: []
+						})
+						group = state.groups.find(search => search.name === groupName)
 					}
+					group.contacts.push(contact.key)
 				})
-				return groups
-			}, {})
-
-		// store in state
-		state.groups = Object.values(groups)
-
-		// append keys to groups
-		Object.values(contacts)
-			.forEach(contact => {
-				if (contact.groups) {
-					contact.groups.forEach(groupName => {
-						let group = state.groups.find(search => search.name === groupName)
-						group.contacts.push(contact.key)
-					})
-				}
-			})
+			}
+		})
 	},
 
 	/**
@@ -68,20 +57,22 @@ const mutations = {
 	 *
 	 * @param {Object} state the store data
 	 * @param {Object} data destructuring object
-	 * @param {String} data.groupName the name of the group
+	 * @param {Array<string>} data.groupNames the names of the group
 	 * @param {Contact} data.contact the contact
 	 */
-	addContactToGroup(state, { groupName, contact }) {
-		let group = state.groups.find(search => search.name === groupName)
-		// nothing? create a new one
-		if (!group) {
-			state.groups.push({
-				name: groupName,
-				contacts: []
-			})
-			group = state.groups.find(search => search.name === groupName)
-		}
-		group.contacts.push(contact.key)
+	addContactToGroups(state, { groupNames, contact }) {
+		groupNames.forEach(groupName => {
+			let group = state.groups.find(search => search.name === groupName)
+			// nothing? create a new one
+			if (!group) {
+				state.groups.push({
+					name: groupName,
+					contacts: []
+				})
+				group = state.groups.find(search => search.name === groupName)
+			}
+			group.contacts.push(contact.key)
+		})
 	},
 
 	/**
@@ -116,7 +107,7 @@ const actions = {
 	 * @param {Contact} data.contact the contact
 	 */
 	addContactToGroup(context, { groupName, contact }) {
-		context.commit('addContactToGroup', { groupName, contact })
+		context.commit('addContactToGroups', { groupNames: [groupName], contact })
 	},
 
 	/**

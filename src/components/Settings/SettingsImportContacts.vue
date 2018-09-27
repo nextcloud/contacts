@@ -98,6 +98,8 @@ export default {
 			let self = this
 			reader.onload = function(e) {
 				self.$store.dispatch('importContactsIntoAddressbook', { vcf: reader.result, addressbook: selectedAddressbook })
+				// reset input
+				event.target.value = ''
 			}
 			reader.readAsText(file)
 		}
