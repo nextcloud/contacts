@@ -26,14 +26,13 @@ import Store from '../store/index'
 export default function parseVcf(data = '', addressbook) {
 	let regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi
 	let vCards = data.match(regexp)
-	let importState = Store.getters.getImportState
 
 	if (!vCards) {
 		console.debug('Error during the parsing of the following vcf file: ', data)
 		return []
 	}
 
-	importState.total = vCards.length
+	Store.dispatch('setTotal', vCards.length)
 
 	// Not using map because we want to only push valid contacts
 	// map force to return at least undefined
@@ -41,11 +40,10 @@ export default function parseVcf(data = '', addressbook) {
 		try {
 			// console.log(vCards.indexOf(vCard))
 			let contact = new Contact(vCard, addressbook)
-			importState.accepted++
 			contacts.push(contact)
 		} catch (e) {
 			// Parse error! Do not stop here...
-			importState.denied++
+			Store.dispatch('incrementDenied')
 			console.error(e)
 		}
 		return contacts

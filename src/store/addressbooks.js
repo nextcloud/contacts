@@ -22,9 +22,11 @@
  */
 
 import Vue from 'vue'
+import ICAL from 'ical.js'
 import parseVcf from '../services/parseVcf'
 import client from '../services/cdav'
 import Contact from '../models/contact'
+import pLimit from 'p-limit'
 
 const addressbookModel = {
 	id: '',
@@ -327,15 +329,42 @@ const actions = {
 	 * @param {Object} context the store mutations
 	 * @param {Object} importDetails = { vcf, addressbook }
 	 */
-	importContactsIntoAddressbook(context, { vcf, addressbook }) {
-		let contacts = parseVcf(vcf, addressbook)
+	async importContactsIntoAddressbook(context, { vcf, addressbook }) {
+		const contacts = parseVcf(vcf, addressbook)
 		context.commit('changeStage', 'importing')
-		contacts.forEach(contact => {
-			context.commit('addContact', contact)
-			context.commit('addContactToAddressbook', contact)
-			context.commit('appendGroupsFromContacts', [contact])
+
+		// max simultaneous requests
+		const limit = pLimit(3)
+		const requests = []
+
+		// create the array of requests to send
+		contacts.map(async contact => {
+			// Get vcard string
+			try {
+				let vData = ICAL.stringify(contact.vCard.jCal)
+				// push contact to server and use limit
+				requests.push(limit(() => contact.addressbook.dav.createVCard(vData)
+					.then((response) => {
+						// success, update store
+						context.commit('addContact', contact)
+						context.commit('addContactToAddressbook', contact)
+						context.commit('appendGroupsFromContacts', [contact])
+						context.commit('incrementAccepted')
+					})
+					.catch((error) => {
+						// error
+						context.commit('incrementDenied')
+						console.error(error)
+					})
+				))
+			} catch (e) {
+				context.commit('incrementDenied')
+			}
 		})
-		context.commit('changeStage', 'default')
+
+		Promise.all(requests).then(() => {
+		//	context.commit('changeStage', 'default')
+		})
 	},
 
 	/**

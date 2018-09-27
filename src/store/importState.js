@@ -77,6 +77,11 @@ const mutations = {
 	 */
 	changeStage(state, stage) {
 		state.importState.stage = stage
+		if (stage === 'default') {
+			state.accepted = 0
+			state.denied = 0
+			state.total = 0
+		}
 	}
 }
 

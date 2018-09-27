@@ -23,19 +23,46 @@
 <template>
 	<div class="emptycontent import-screen">
 		<p class="icon-upload" />
-		<h3 class="import-screen__header">{{ t('contacts', 'Importing into') }} {{ importState.addressbook }}</h3>
-		<progress :max="importState.total" :value="importState.accepted" class="import-screen__progress" />
-		<p class="import-screen__tracker">{{ Math.floor(importState.accepted/(importState.total + 1)) * 100 }} %</p>
+		<h3 class="import-screen__header">{{ t('contacts', 'Importing {total} contacts into', { total }) }} {{ addressbook }}</h3>
+		<progress :max="total" :value="progress" class="import-screen__progress" />
+		<p class="import-screen__tracker">
+			<span>{{ percentage }} %</span>
+			<span v-tooltip.auto="t('contacts', 'Open your browser console for more details')">{{ denied }} {{ t('contacts', 'failed') }}</span>
+		</p>
 	</div>
 </template>
 
 <script>
+import Vue from 'vue'
+import VTooltip from 'v-tooltip'
+
+Vue.use(VTooltip)
 
 export default {
 	name: 'ImportScreen',
 	computed: {
 		importState() {
 			return this.$store.getters.getImportState
+		},
+		addressbook() {
+			return this.importState.addressbook
+		},
+		total() {
+			return this.importState.total
+		},
+		accepted() {
+			return this.importState.accepted
+		},
+		denied() {
+			return this.importState.denied
+		},
+		progress() {
+			return this.accepted + this.denied
+		},
+		percentage() {
+			return this.total <= 0
+				? 0
+				: Math.floor(this.progress / this.total * 100)
 		}
 	}
 }

@@ -25,13 +25,16 @@
 		padding-top: 20px;
 	}
 	&__progress {
-		width: 50%; 
-		position: absolute; 
-		left: 25%;
+		width: 50%;
+		min-width: 300px;
+		margin: auto;
 	}
 	&__tracker {
-		padding-top: 10px; 
-		position: absolute; 
-		left: 25%;
+		display: flex;
+		justify-content: space-between;
+		width: 50%;
+		min-width: 300px;
+		margin: auto;
+		padding-top: 10px;
 	}
 }
