@@ -363,7 +363,7 @@ const actions = {
 		})
 
 		Promise.all(requests).then(() => {
-		//	context.commit('changeStage', 'default')
+			context.commit('changeStage', 'default')
 		})
 	},
 

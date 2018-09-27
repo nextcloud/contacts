@@ -77,11 +77,17 @@ const mutations = {
 	 */
 	changeStage(state, stage) {
 		state.importState.stage = stage
-		if (stage === 'default') {
-			state.accepted = 0
-			state.denied = 0
-			state.total = 0
-		}
+	},
+
+	/**
+	 * Reset to the default state
+	 *
+	 * @param {Object} state the store data
+	 */
+	resetState(state) {
+		state.importState.total = 0
+		state.importState.accepted = 0
+		state.importState.denied = 0
 	}
 }
 
@@ -130,12 +136,16 @@ const actions = {
 
 	/**
 	 * Change stage to the indicated one
+	 * and reset if the parsing starts
 	 *
 	 * @param {Object} context the store mutations
 	 * @param {String} stage the name of the stage ('default', 'importing', 'parsing')
 	 */
 	changeStage(context, stage) {
 		context.commit('changeStage', stage)
+		if (stage === 'parsing') {
+			context.commit('resetState')
+		}
 	}
 }
 
