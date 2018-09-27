@@ -34,7 +34,7 @@ import rfcProps from '../../models/rfcProps';
 				class="icon-upload-white" @click="processFile" />
 			<div v-if="maximizeAvatar" class="icon-delete-white" @click="removePhoto" />
 			<!-- <div v-if="maximizeAvatar" class="icon-fullscreen-white" @click="toggleSize" /> -->
-			<div v-if="maximizeAvatar" class="icon-download-white" @click="downloadPhoto" />
+			<a v-if="maximizeAvatar" :href="contact.url + '?photo'" class="icon-download-white" />
 		</div>
 	</div>
 </template>
@@ -78,12 +78,6 @@ export default {
 			// self.contact.vCard.removePropertyWithValue('photo', reader.result)
 			// remove avatar photo
 			console.log("remove") // eslint-disable-line
-		},
-		downloadPhoto() {
-			// download avatar photo
-			// same as opening in new tab, use contact.url?photo to create download link
-			// look at download addressbook
-			console.log("download") // eslint-disable-line
 		}
 	}
 
