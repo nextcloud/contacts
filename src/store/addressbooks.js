@@ -311,7 +311,7 @@ const actions = {
 				})
 				context.commit('appendContactsToAddressbook', { addressbook, contacts })
 				context.commit('appendContacts', contacts)
-				context.commit('appendGroupsFromContacts', contacts)
+				context.commit('extractGroupsFromContacts', contacts)
 				context.commit('sortContacts')
 				return contacts
 			})
@@ -348,7 +348,7 @@ const actions = {
 						// success, update store
 						context.commit('addContact', contact)
 						context.commit('addContactToAddressbook', contact)
-						context.commit('appendGroupsFromContacts', [contact])
+						context.commit('extractGroupsFromContacts', [contact])
 						context.commit('incrementAccepted')
 					})
 					.catch((error) => {
