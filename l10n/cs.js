@@ -8,7 +8,7 @@ OC.L10N.register(
     "Toggle sharing" : "Přepnout sdílení",
     "Delete" : "Smazat",
     "Rename" : "Přejmenovat",
-    "Share with users or groups" : "Sdílet suživateli nebo skupinami",
+    "Share with users or groups" : "Sdílet s uživateli nebo skupinami",
     "can edit" : "může upravovat",
     "Close" : "Zavřít",
     "Enabled" : "Zapnuto",
