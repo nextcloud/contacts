@@ -21,6 +21,7 @@
  */
 
 import Vue from 'vue'
+import ICAL from 'ical.js'
 import Contact from '../models/contact'
 
 const state = {
@@ -53,8 +54,8 @@ const mutations = {
 	/**
 	 * Delete a contact from the global contacts list
 	 *
-	 * @param {Object} state
-	 * @param {Contact} contact
+	 * @param {Object} state the store data
+	 * @param {Contact} contact the contact to delete
 	 */
 	deleteContact(state, contact) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
@@ -71,8 +72,8 @@ const mutations = {
 	/**
 	 * Insert new contact into sorted array
 	 *
-	 * @param {Object} state
-	 * @param {Contact} contact
+	 * @param {Object} state the store data
+	 * @param {Contact} contact the contact to add
 	 */
 	addContact(state, contact) {
 		if (contact instanceof Contact) {
@@ -87,11 +88,21 @@ const mutations = {
 			for (var i = 0, len = state.sortedContacts.length; i < len; i++) {
 				var nameA = state.sortedContacts[i].value.toUpperCase()	// ignore upper and lowercase
 				var nameB = sortedContact.value.toUpperCase()			// ignore upper and lowercase
-				if (nameA.localeCompare(nameB) > 0) {
+				if (nameA.localeCompare(nameB) >= 0) {
 					state.sortedContacts.splice(i, 0, sortedContact)
 					break
+				} else if (i + 1 === len) {
+					// we reached the end insert it now
+					state.sortedContacts.push(sortedContact)
 				}
 			}
+
+			// sortedContact is empty, just push it
+			if (state.sortedContacts.length === 0) {
+				state.sortedContacts.push(sortedContact)
+			}
+
+			// default contacts list
 			Vue.set(state.contacts, contact.key, contact)
 
 		} else {
@@ -102,8 +113,8 @@ const mutations = {
 	/**
 	 * Update a contact
 	 *
-	 * @param {Object} state
-	 * @param {Contact} contact
+	 * @param {Object} state the store data
+	 * @param {Contact} contact the contact to update
 	 */
 	updateContact(state, contact) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
@@ -115,7 +126,9 @@ const mutations = {
 			// has the sort key changed for this contact ?
 			let hasChanged = sortedContact.value !== contact[state.orderKey]
 			if (hasChanged) {
-				// then we sort again
+				// then update the new data
+				sortedContact.value = contact[state.orderKey]
+				// and then we sort again
 				state.sortedContacts
 					.sort((a, b) => {
 						var nameA = a.value.toUpperCase() // ignore upper and lowercase
@@ -132,8 +145,8 @@ const mutations = {
 	/**
 	 * Update a contact
 	 *
-	 * @param {Object} state
-	 * @param {Contact} contact
+	 * @param {Object} state the store data
+	 * @param {Contact} contact the contact to update
 	 */
 	updateContactAddressbook(state, { contact, addressbook }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
@@ -151,7 +164,7 @@ const mutations = {
 	 * We do not want to run the sorting function every time.
 	 * Let's only run it on additions and create an index
 	 *
-	 * @param {Object} state
+	 * @param {Object} state the store data
 	 */
 	sortContacts(state) {
 		state.sortedContacts = Object.values(state.contacts)
@@ -172,8 +185,8 @@ const mutations = {
 	/**
 	 * Set the order key
 	 *
-	 * @param {Object} state
-	 * @param {string} [orderKey='displayName']
+	 * @param {Object} state the store data
+	 * @param {string} [orderKey='displayName'] the order key to sort by
 	 */
 	setOrder(state, orderKey = 'displayName') {
 		state.orderKey = orderKey
@@ -192,10 +205,20 @@ const actions = {
 	/**
 	 * Delete a contact from the list and from the associated addressbook
 	 *
-	 * @param {Object} state
-	 * @param {Contact} contact the contact to delete
+	 * @param {Object} context the store mutations
+	 * @param {Object} data destructuring object
+	 * @param {Contact} data.contact the contact to delete
+	 * @param {Boolean} [data.dav=true] trigger a dav deletion
 	 */
-	deleteContact(context, contact) {
+	async deleteContact(context, { contact, dav = true }) {
+		// only local delete if the contact doesn't exists on the server
+		if (contact.dav && dav) {
+			await contact.dav.delete()
+				.catch((error) => {
+					console.error(error)
+					OC.Notification.showTemporary(t('contacts', 'An error occurred'))
+				})
+		}
 		context.commit('deleteContact', contact)
 		context.commit('deleteContactFromAddressbook', contact)
 	},
@@ -203,22 +226,54 @@ const actions = {
 	/**
 	 * Add a contact to the list and to the associated addressbook
 	 *
-	 * @param {Object} state
+	 * @param {Object} context the store mutations
 	 * @param {Contact} contact the contact to delete
 	 */
-	addContact(context, contact) {
-		context.commit('addContact', contact)
-		context.commit('addContactToAddressbook', contact)
+	async addContact(context, contact) {
+		await context.commit('addContact', contact)
+		await context.commit('addContactToAddressbook', contact)
 	},
 
 	/**
 	 * Replac a contact by this new object
 	 *
-	 * @param {Object} state
+	 * @param {Object} context the store mutations
 	 * @param {Contact} contact the contact to update
+	 * @returns {Promise}
 	 */
-	updateContact(context, contact) {
-		context.commit('updateContact', contact)
+	async updateContact(context, contact) {
+		let vData = ICAL.stringify(contact.vCard.jCal)
+
+		// if no dav key, contact does not exists on server
+		if (!contact.dav) {
+			// create contact
+			await contact.addressbook.dav.createVCard(vData)
+				.then((response) => {
+					Vue.set(contact, 'dav', response)
+				})
+				.catch((error) => { throw error })
+		}
+
+		contact.dav.data = vData
+		return contact.dav.update()
+			.then((response) => context.commit('updateContact', contact))
+			.catch((error) => { throw error })
+	},
+
+	/**
+	 * Fetch the full vCard from the dav server
+	 *
+	 * @param {Object} context the store mutations
+	 * @param {Contact} contact the contact to fetch
+	 * @returns {Promise}
+	 */
+	async fetchFullContact(context, contact) {
+		return contact.dav.fetchCompleteData()
+			.then(() => {
+				let newContact = new Contact(contact.dav.data, contact.addressbook, contact.dav.url, contact.dav.etag)
+				context.commit('updateContact', newContact)
+			})
+			.catch((error) => { throw error })
 	}
 }
 

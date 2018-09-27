@@ -105,7 +105,10 @@ export default {
 		/**
 		 * Share addressbook
 		 *
-		 * @param {Object} chosenUserOrGroup
+		 * @param {Object} data destructuring object
+		 * @param {string} data.sharee the sharee
+		 * @param {string} data.id id
+		 * @param {Boolean} data.group group
 		 */
 		shareAddressbook({ sharee, id, group }) {
 			let addressbook = this.addressbook
@@ -114,9 +117,9 @@ export default {
 		/**
 		 * Format responses from axios.all and add them to the option array
 		 *
-		 * @param {Array} matches Array of matches returned from the axios request
-		 * @param {String} query
-		 * @param {Boolean} group
+		 * @param {Array} matches array of matches returned from the axios request
+		 * @param {String} query the search query
+		 * @param {Boolean} group Is this a group?
 		 */
 		formatMatchResults(matches, query, group) {
 			if (matches.length < 1) {

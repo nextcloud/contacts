@@ -23,17 +23,13 @@
 <template>
 	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="property">
 		<!-- title if first element -->
-		<property-title v-if="isFirstProperty && propModel.icon" :icon="propModel.icon" :readable-name="propModel.readableName" />
+		<property-title v-if="isFirstProperty && propModel.icon" :icon="propModel.icon" :readable-name="propModel.readableName"
+			:info="propModel.info" />
 
 		<div class="property__row">
-			<!-- type selector -->
-			<multiselect v-if="propModel.options" v-model="localType"
-				:options="propModel.options" :searchable="false" :placeholder="t('contacts', 'Select type')"
-				class="multiselect-vue property__label" track-by="id" label="name"
-				@input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-else-if="selectType" class="property__label">{{ selectType.name }}</div>
+			<div v-if="selectType" class="property__label">{{ selectType.name }}</div>
 
 			<!-- no options, empty space -->
 			<div v-else class="property__label">{{ propModel.readableName }}</div>
@@ -41,7 +37,7 @@
 			<!-- delete the prop -->
 			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
 
-			<multiselect v-model="localValue" :options="options" :placeholder="t('contacts', 'Select option')"
+			<multiselect v-model="matchedOptions" :options="propModel.options" :placeholder="t('contacts', 'Select option')"
 				class="multiselect-vue property__value" track-by="id" label="name"
 				@input="updateValue" />
 		</div>
@@ -76,11 +72,6 @@ export default {
 			default: '',
 			required: true
 		},
-		options: {
-			type: Array,
-			default: () => [],
-			required: true
-		},
 		isFirstProperty: {
 			type: Boolean,
 			default: true
@@ -93,8 +84,9 @@ export default {
 
 	data() {
 		return {
-			localValue: this.value,
-			localType: this.selectType
+			// value is represented by the ID of the possible options
+			localValue: this.value
+			// localType: this.selectType
 		}
 	},
 
@@ -104,7 +96,22 @@ export default {
 			let isLast = this.isLastProperty ? 1 : 0
 			// length is one & add one space at the end
 			return hasTitle + 1 + isLast
+		},
+
+		// matching value to the options we provide
+		matchedOptions: {
+			get() {
+				let selected = this.propModel.options.find(option => option.id === this.localValue)
+				return selected || {
+					id: this.localValue,
+					name: this.localValue
+				}
+			},
+			set(value) {
+				this.localValue = value.id
+			}
 		}
+
 	},
 
 	watch: {
@@ -115,10 +122,10 @@ export default {
 		 */
 		value: function() {
 			this.localValue = this.value
-		},
-		selectType: function() {
-			this.localType = this.selectType
 		}
+		// selectType: function() {
+		// 	this.localType = this.selectType
+		// }
 	},
 
 	methods: {
@@ -136,12 +143,12 @@ export default {
 		updateValue: debounce(function(e) {
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			this.$emit('update:value', this.localValue)
-		}, 500),
-
-		updateType: debounce(function(e) {
-			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
-			this.$emit('update:selectType', this.localType)
 		}, 500)
+
+		// updateType: debounce(function(e) {
+		// 	// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
+		// 	this.$emit('update:selectType', this.localType)
+		// }, 500)
 	}
 }
 

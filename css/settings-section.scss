@@ -75,11 +75,8 @@
 }
 
 // Add address book
-.new-address-book {
-	input[type='text'] + .icon-confirm, input[type='password'] + .icon-confirm, input[type='email'] + .icon-confirm {
-		opacity: 0.5;
-	}
-	.new-address-book-input {
+.new-addressbook {
+	.new-addressbook-input {
 		border-color: var(--color-border-dark);
 	}
 }

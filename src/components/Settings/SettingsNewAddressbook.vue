@@ -21,18 +21,14 @@
 -->
 
 <template>
-	<form id="new-addressbook-form" name="new-addressbook-form" class="new-address-book"
-		@submit.prevent="addAddressBook">
-		<input id="new-address-book" ref="addressBook" class="new-address-book-input"
-			placeholder="Address book name"
-			type="text"
-			autocomplete="off" autocorrect="off"
-			spellcheck="false"
-			tooltip-enable="!newAddressBookForm.$pristine"
-			tooltip-trigger="none"
-			tooltip-placement="top"
-			uib-tooltip="Only these special characters are allowed: -_.!?#|()">
-		<input type="submit" value="" class="newAddressBookSubmit inline-button icon-confirm action pull-right">
+	<form id="new-addressbook-form" :disabled="loading" :class="{'icon-loading-small': loading}"
+		name="new-addressbook-form" class="new-addressbook" @submit.prevent.stop="addAddressbook">
+		<input id="new-addressbook" ref="addressbook" v-model="displayName"
+			:disabled="loading" :placeholder="t('contacts', 'Address book name')" :pattern="addressBookRegex"
+			class="new-addressbook-input" type="text" autocomplete="off"
+			autocorrect="off" spellcheck="false" minlength="1"
+			required>
+		<input class="icon-confirm" type="submit" value="">
 	</form>
 </template>
 
@@ -47,35 +43,31 @@ export default {
 	directives: {
 		clickOutside
 	},
-	// props: {
-	// 	addressbooks: {
-	// 		type: Array,
-	// 		default() {
-	// 			return {}
-	// 		}
-	// 	}
-	// },
 	data() {
 		return {
-		}
-	},
-	computed: {
-		menu() {
-			return []
+			loading: false,
+			displayName: '',
+			// no slashes!
+			// eslint-disable-next-line
+			addressBookRegex: '[^/\\\\]+'
 		}
 	},
 	methods: {
 		/**
-		 * Set new address book name
-		 *
-		 * @param {string} addressBook The adress book
-		 * @returns {Promise}
+		 * Add a new address book
 		 */
-		addAddressBook() {
-			let addressBook = this.$refs.addressBook.value
-			let addressBooks = this.$store.getters.getAddressbooks
-			let newAddressBooksArray = addressBooks.push(addressBook)
-			return newAddressBooksArray
+		addAddressbook() {
+			this.loading = true
+			this.$store.dispatch('appendAddressbook', { displayName: this.displayName })
+				.then(() => {
+					this.displayName = ''
+					this.loading = false
+				})
+				.catch((error) => {
+					console.error(error)
+					OC.Notification.showTemporary(t('contacts', 'An error occurred, unable to create the addressbook.'))
+					this.loading = false
+				})
 		}
 	}
 }

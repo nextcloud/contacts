@@ -20,17 +20,15 @@
  *
  */
 
-.property__title {
-	display: flex;
-	align-items: center;
-	margin: 0;
-	opacity: 0.6;
-	user-select: none;
-
-	.property__title--icon {
-		background-position: center right;
-	}
-	.icon-details {
-		margin-left: 7px;
+.app-content-list-item-icon {
+	overflow: hidden;
+	&__avatar {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: inherit;
+		width: inherit;
+		background-size: cover;
+		cursor: pointer;
 	}
 }

@@ -7,10 +7,14 @@
 			class="app-content-list-item-checkbox checkbox" @keypress.enter.space.prevent.stop="toggleSelect">
 		<label :for="contact.key" @click.prevent.stop="toggleSelect" @keypress.enter.space.prevent.stop="toggleSelect" />
 		-->
-		<div :style="{ 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">{{ contact.displayName | firstLetter }}</div>
+		<div :style="{ 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">
+			{{ contact.displayName | firstLetter }}
+			<!-- try to fetch the avatar only if the contact exists on the server -->
+			<div v-if="contact.dav" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
+		</div>
 		<div class="app-content-list-item-line-one">{{ contact.displayName }}</div>
 		<div v-if="contact.email" class="app-content-list-item-line-two">{{ contact.email }}</div>
-		<div v-if="contact.addressbook.enabled" class="icon-delete" tabindex="0"
+		<div v-if="contact.addressbook.readOnly" class="icon-delete" tabindex="0"
 			@click.prevent.stop="deleteContact" @keypress.enter.prevent.stop="deleteContact" />
 	</div>
 </template>
@@ -48,6 +52,9 @@ export default {
 			} catch (e) {
 				return 'grey'
 			}
+		},
+		avatarUrl() {
+			return `url(${this.contact.url}?photo)`
 		}
 	},
 	methods: {
@@ -64,7 +71,7 @@ export default {
 		 * Dispatch contact deletion request
 		 */
 		deleteContact() {
-			this.$store.dispatch('deleteContact', this.contact)
+			this.$store.dispatch('deleteContact', { contact: this.contact })
 		},
 
 		/**

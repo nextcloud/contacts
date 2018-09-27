@@ -26,14 +26,14 @@
 		<!-- new-contact-button + navigation + settings -->
 		<app-navigation :menu="menu">
 			<!-- settings -->
-			<settings-section slot="settings-content" />
+			<settings-section v-if="!loading" slot="settings-content" />
 		</app-navigation>
 
 		<!-- main content -->
 		<div id="app-content">
 			<div id="app-content-wrapper">
 				<!-- loading -->
-				<import-screen v-if="importState.stage != 'default'" />
+				<import-screen v-if="importState.stage !== 'default'" />
 				<template v-else>
 					<!-- contacts list -->
 					<content-list :list="contactsList" :contacts="contacts" :loading="loading" />
@@ -47,24 +47,25 @@
 </template>
 
 <script>
-import appNavigation from '../components/core/appNavigation'
-import settingsSection from '../components/SettingsSection'
-import contentList from '../components/ContentList'
-import contactDetails from '../components/ContactDetails'
-import importScreen from '../components/ImportScreen'
+import { AppNavigation } from 'nextcloud-vue'
+
+import SettingsSection from '../components/SettingsSection'
+import ContentList from '../components/ContentList'
+import ContactDetails from '../components/ContactDetails'
+import ImportScreen from '../components/ImportScreen'
 
 import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps.js'
 
-// import client from '../services/cdav.js'
+import client from '../services/cdav.js'
 
 export default {
 	components: {
-		appNavigation,
-		settingsSection,
-		contentList,
-		contactDetails,
-		importScreen
+		AppNavigation,
+		SettingsSection,
+		ContentList,
+		ContactDetails,
+		ImportScreen
 	},
 
 	// passed by the router
@@ -108,7 +109,7 @@ export default {
 		},
 		// first enabled addressbook of the list
 		defaultAddressbook() {
-			return this.addressbooks.find(addressbook => addressbook.enabled)
+			return this.addressbooks.find(addressbook => addressbook.readOnly !== false)
 		},
 
 		/**
@@ -116,6 +117,8 @@ export default {
 		 * Those filters are pretty fast, so let's only
 		 * intersect the groups contacts and the full
 		 * sorted contacts List.
+		 *
+		 * @returns {Array}
 		 */
 		contactsList() {
 			if (this.selectedGroup === t('contacts', 'All contacts')) {
@@ -148,6 +151,12 @@ export default {
 
 		// building the main menu
 		menu() {
+			if (this.loading) {
+				return {
+					id: 'groups-list',
+					loading: true
+				}
+			}
 			return {
 				id: 'groups-list',
 				new: {
@@ -191,22 +200,28 @@ export default {
 
 	beforeMount() {
 		// get addressbooks then get contacts
-		// client.connect({ enableCardDAV: true }).then(() => {
-		this.$store.dispatch('getAddressbooks')
-			.then(() => {
-				Promise.all(this.addressbooks.map(async addressbook => {
-					await this.$store.dispatch('getContactsFromAddressBook', { addressbook })
-				})).then(() => {
-					this.loading = false
-					this.selectFirstContactIfNone()
+		client.connect({ enableCardDAV: true }).then(() => {
+			console.debug('Connected to dav!', client)
+			this.$store.dispatch('getAddressbooks')
+				.then((addressbooks) => {
+
+					// No addressbooks? Create a new one!
+					if (addressbooks.length === 0) {
+						this.$store.dispatch('appendAddressbook', { displayName: t('contacts', 'Contacts') })
+							.then(() => {
+								this.fetchContacts()
+							})
+					// else, let's get those contacts!
+					} else {
+						this.fetchContacts()
+					}
 				})
-			})
-			// check local storage for orderKey
-		if (localStorage.getItem('orderKey')) {
-			// run setOrder mutation with local storage key
-			this.$store.commit('setOrder', localStorage.getItem('orderKey'))
-		}
-		// })
+				// check local storage for orderKey
+			if (localStorage.getItem('orderKey')) {
+				// run setOrder mutation with local storage key
+				this.$store.commit('setOrder', localStorage.getItem('orderKey'))
+			}
+		})
 	},
 
 	methods: {
@@ -230,24 +245,39 @@ export default {
 				contact.vCard.addPropertyWithValue('categories', this.selectedGroup)
 			}
 			this.$store.dispatch('addContact', contact)
-			this.$router.push({
-				name: 'contact',
-				params: {
-					selectedGroup: this.selectedGroup,
-					selectedContact: contact.key
-				}
-			})
+				.then(() => {
+					this.$router.push({
+						name: 'contact',
+						params: {
+							selectedGroup: this.selectedGroup,
+							selectedContact: contact.key
+						}
+					})
+				})
 		},
 
 		/**
 		 * Dispatch sorting update request to the store
 		 *
-		 * @param {Object} state Default state
-		 * @param {Array} addressbooks Addressbooks
+		 * @param {string} orderKey the object key to order by
 		 */
 		updateSorting(orderKey = 'displayName') {
 			this.$store.commit('setOrder', orderKey)
 			this.$store.commit('sortContacts')
+		},
+
+		/**
+		 * Fetch the contacts of each addressbooks
+		 */
+		fetchContacts() {
+			// wait for all addressbooks to have fetch their contacts
+			Promise.all(this.addressbooks.map(addressbook => this.$store.dispatch('getContactsFromAddressBook', { addressbook })))
+				.then(results => {
+					this.loading = false
+					this.selectFirstContactIfNone()
+				})
+				// no need for a catch, the action does not throw
+				// and the error is handled there
 		},
 
 		/**
@@ -268,7 +298,6 @@ export default {
 							selectedContact: Object.values(this.contactsList)[0].key
 						}
 					})
-					document.querySelector('.app-content-list-item.active').scrollIntoView()
 				}
 			}
 		}

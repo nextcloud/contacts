@@ -22,10 +22,11 @@
 
 <template>
 	<!-- If not in the rfcProps then we don't want to display it -->
-	<component v-if="propModel && propType !== 'unknown'" :is="componentInstance" :select-type.sync="selectType"
-		:prop-model="propModel" :value.sync="value" :is-first-property="isFirstProperty"
-		:property="property" :is-last-property="isLastProperty" :class="{'property--last': isLastProperty}"
-		:contact="contact" @delete="deleteProp" />
+	<component v-if="propModel && propType !== 'unknown'"
+		:is="componentInstance" :select-type.sync="selectType" :prop-model="propModel"
+		:value.sync="value" :is-first-property="isFirstProperty" :property="property"
+		:is-last-property="isLastProperty" :class="{'property--last': isLastProperty}" :contact="contact"
+		@delete="deleteProp" />
 </template>
 
 <script>
@@ -37,7 +38,7 @@ import PropertyText from '../Properties/PropertyText'
 import PropertyMultipleText from '../Properties/PropertyMultipleText'
 import PropertyDateTime from '../Properties/PropertyDateTime'
 import propertyGroups from '../Properties/PropertyGroups'
-// import PropertySelect from '../Properties/PropertyMultipleText'
+import PropertySelect from '../Properties/PropertySelect'
 
 export default {
 	name: 'ContactDetailsProperty',
@@ -76,6 +77,8 @@ export default {
 				return PropertyMultipleText
 			} else if (this.propType && ['date-and-or-time', 'date-time', 'time', 'date'].indexOf(this.propType) > -1) {
 				return PropertyDateTime
+			} else if (this.propType && this.propType === 'select') {
+				return PropertySelect
 			} else if (this.propType && this.propType !== 'unknown') {
 				return PropertyText
 			}
@@ -111,7 +114,11 @@ export default {
 			return this.property.name
 		},
 		propType() {
-			return this.property.type
+			// if we have a force type set, use it!
+			if (this.propModel && this.propModel.force) {
+				return this.propModel.force
+			}
+			return this.property.getDefaultType()
 		},
 
 		// template to use

@@ -28,11 +28,17 @@ export default class Contact {
 	/**
 	 * Creates an instance of Contact
 	 *
-	 * @param {string} [vcard] the vcard data as string with proper new lines
-	 * @param {object} [addressbook] the addressbook which the contat belongs to
+	 * @param {string} vcard the vcard data as string with proper new lines
+	 * @param {object} addressbook the addressbook which the contat belongs to
+	 * @param {string} [url=''] the url of the contact
+	 * @param {string} [etag=''] the current etag of the contact
 	 * @memberof Contact
 	 */
-	constructor(vcard = '', addressbook) {
+	constructor(vcard, addressbook, url = '', etag = '') {
+		if (typeof vcard !== 'string' || vcard.length === 0) {
+			throw new Error('Invalid vCard')
+		}
+
 		let jCal = ICAL.parse(vcard)
 		if (jCal[0] !== 'vcard') {
 			throw new Error('Only one contact is allowed in the vcard data')
@@ -41,6 +47,7 @@ export default class Contact {
 		this.jCal = jCal
 		this.addressbook = addressbook
 		this.vCard = new ICAL.Component(this.jCal)
+		this.url = url
 
 		// if no uid set, create one
 		if (!this.vCard.hasProperty('uid')) {
@@ -52,7 +59,7 @@ export default class Contact {
 	/**
 	 * Update internal data of this contact
 	 *
-	 * @param {jCal} jCal
+	 * @param {jCal} jCal jCal object from ICAL.js
 	 * @memberof Contact
 	 */
 	updateContact(jCal) {
@@ -63,7 +70,7 @@ export default class Contact {
 	/**
 	 * Update linked addressbook of this contact
 	 *
-	 * @param {Object} addressbook
+	 * @param {Object} addressbook the addressbook
 	 * @memberof Contact
 	 */
 	updateAddressbook(addressbook) {
@@ -75,8 +82,8 @@ export default class Contact {
 	 * into a string by taking the first element
 	 * e.g. ORG:ABC\, Inc.; will output an array because of the semi-colon
 	 *
-	 * @param {Array|string} data
-	 * @returns string
+	 * @param {Array|string} data the data to normalize
+	 * @returns {string}
 	 * @memberof Contact
 	 */
 	firstIfArray(data) {
@@ -96,6 +103,7 @@ export default class Contact {
 	/**
 	 * Set the uid
 	 *
+	 * @param {string} uid the uid to set
 	 * @memberof Contact
 	 */
 	set uid(uid) {
@@ -150,7 +158,7 @@ export default class Contact {
 	/**
 	 * Set the groups
 	 *
-	 * @readonly
+	 * @param {Array} groups the groups to set
 	 * @memberof Contact
 	 */
 	set groups(groups) {
@@ -192,6 +200,7 @@ export default class Contact {
 	/**
 	 * Set the org
 	 *
+	 * @param {string} org the org data
 	 * @memberof Contact
 	 */
 	set org(org) {
@@ -211,6 +220,7 @@ export default class Contact {
 	/**
 	 * Set the title
 	 *
+	 * @param {string} title the title
 	 * @memberof Contact
 	 */
 	set title(title) {
@@ -230,6 +240,7 @@ export default class Contact {
 	/**
 	 * Set the full name
 	 *
+	 * @param {string} name the fn data
 	 * @memberof Contact
 	 */
 	set fullName(name) {
@@ -249,9 +260,11 @@ export default class Contact {
 		}
 		if (this.vCard.hasProperty('n')) {
 			// reverse and join
-			return this.vCard.getFirstPropertyValue('n').filter(function(part) {
-				return part
-			}).join(' ')
+			return this.vCard.getFirstPropertyValue('n')
+				.filter(function(part) {
+					return part
+				})
+				.join(' ')
 		}
 		return null
 	}
@@ -302,6 +315,7 @@ export default class Contact {
 	/**
 	 * Add the contact to the group
 	 *
+	 * @param {string} group the group to add the contact to
 	 * @memberof Contact
 	 */
 	addToGroup(group) {

@@ -66,7 +66,20 @@
 		// ACTIONS
 		#contact-header-actions {
 			position: relative;
+			display: flex;
 			.menu-icon {
+				position: relative;
+				height: 44px;
+				width: 44px;
+				border-radius: 22px;
+				&.menu-icon--pulse {
+					margin: 8px;
+					width: 16px;
+					height: 16px;
+				}
+			}
+			[class^='icon-'],
+			[class*=' icon-'] {
 				height: 44px;
 				width: 44px;
 				padding: 14px;
@@ -84,5 +97,6 @@
 		grid-template-columns: repeat(auto-fit, minmax(unquote('#{$grid-column-width}'), 1fr));
 		grid-column-gap: 20px;
 		padding: 0 20px;
+		min-height: 200px;
 	}
 }

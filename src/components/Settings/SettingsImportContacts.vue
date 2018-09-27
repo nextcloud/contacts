@@ -31,6 +31,7 @@
 		<multiselect
 			v-model="selectedAddressbook"
 			:options="options"
+			:disabled="isSingleAddressbook"
 			:placeholder="t('contacts', 'Contacts')"
 			label="displayName"
 			class="multiselect-vue" />
@@ -81,6 +82,10 @@ export default {
 			set(value) {
 				this.importDestination = value
 			}
+		},
+		// disable multiselect when there is at most one address book
+		isSingleAddressbook() {
+			return this.addressbooks.length <= 1
 		}
 	},
 	methods: {
