@@ -29,7 +29,7 @@
 		<div class="property__row">
 			<!-- type selector -->
 			<multiselect v-if="propModel.options" v-model="localType"
-				:options="propModel.options" :searchable="false" :placeholder="t('contacts', 'Select type')"
+				:options="options" :searchable="false" :placeholder="t('contacts', 'Select type')"
 				class="multiselect-vue property__label" track-by="id" label="name"
 				@input="updateType" />
 
@@ -95,6 +95,10 @@ export default {
 			type: [Array, Object],
 			default: () => [],
 			required: true
+		},
+		options: {
+			type: Array,
+			default: () => []
 		},
 		property: {
 			type: Object,

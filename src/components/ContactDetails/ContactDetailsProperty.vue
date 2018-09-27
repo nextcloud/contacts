@@ -26,7 +26,7 @@
 		:is="componentInstance" :select-type.sync="selectType" :prop-model="propModel"
 		:value.sync="value" :is-first-property="isFirstProperty" :property="property"
 		:is-last-property="isLastProperty" :class="{'property--last': isLastProperty}" :contact="contact"
-		@delete="deleteProp" />
+		:options="sortedModelOptions" @delete="deleteProp" />
 </template>
 
 <script>
@@ -124,6 +124,25 @@ export default {
 		// template to use
 		propModel() {
 			return this.properties[this.propName]
+		},
+
+		/**
+		 * Remove duplicate name amongst options
+		 * but make sure to include the selected one
+		 * in the final list
+		 *
+		 * @returns {Array<Object>}
+		 */
+		sortedModelOptions() {
+			if (this.propModel.options) {
+				return this.propModel.options.reduce((list, option) => {
+					if (!list.find(search => search.name === option.name)) {
+						list.push(option)
+					}
+					return list
+				}, this.selectType ? [this.selectType] : [])
+			}
+			return []
 		},
 
 		// select type handler
