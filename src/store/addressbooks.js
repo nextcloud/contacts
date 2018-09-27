@@ -300,7 +300,7 @@ const actions = {
 	 * @returns {Promise}
 	 */
 	async getContactsFromAddressBook(context, { addressbook }) {
-		return addressbook.dav.findAllAndFilterBySimpleProperties(['EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG'])
+		return addressbook.dav.findAllAndFilterBySimpleProperties(['EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N'])
 			.then((response) => {
 				// We don't want to lose the url information
 				// so we need to parse one by one

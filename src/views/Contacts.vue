@@ -146,6 +146,8 @@ export default {
 						counter: group.contacts.length
 					}
 				}
+			}).sort(function(a, b) {
+				return parseInt(b.utils.counter) - parseInt(a.utils.counter)
 			})
 		},
 
