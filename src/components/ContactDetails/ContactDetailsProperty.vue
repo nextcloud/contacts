@@ -109,10 +109,20 @@ export default {
 			return true
 		},
 
-		// the type of the prop e.g. FN
+		/**
+		 * Return the type of the prop e.g. FN
+		 *
+		 * @returns {String}
+		 */
 		propName() {
 			return this.property.name
 		},
+		/**
+		 * Return the type or property
+		 *
+		 * @see src/models/rfcProps
+		 * @returns {String}
+		 */
 		propType() {
 			// if we have a force type set, use it!
 			if (this.propModel && this.propModel.force) {
@@ -121,7 +131,12 @@ export default {
 			return this.property.getDefaultType()
 		},
 
-		// template to use
+		/**
+		 * RFC template matching this property
+		 *
+		 * @see src/models/rfcProps
+		 * @returns {Object}
+		 */
 		propModel() {
 			return this.properties[this.propName]
 		},
@@ -145,7 +160,13 @@ export default {
 			return []
 		},
 
-		// select type handler
+		/**
+		 * Returns the closest match to the selected type
+		 * or return the default selected as a new object if
+		 * none exists
+		 *
+		 * @returns Object|undefined
+		 */
 		selectType: {
 			get() {
 				if (this.propModel && this.propModel.options && this.type) {
@@ -184,7 +205,6 @@ export default {
 						name: selectedType
 					}
 				}
-				return false
 			},
 			set(data) {
 				// ical.js take types as arrays
