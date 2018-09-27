@@ -28,44 +28,6 @@
 		display: flex;
 		font-weight: bold;
 		align-items: center;
-
-		// AVATAR
-		#contact-header-avatar {
-			position: relative;
-			height: 75px;
-			width: 75px;
-			border-radius: 50%;
-			overflow: hidden;
-			flex-shrink: 0;
-			margin: 0 22px 0 44px;
-			.contact-avatar-background {
-				background-color: var(--color-background-dark);
-				opacity: .2;
-				z-index: 0;
-			}
-			img {
-				z-index: 1;
-			}
-			label.icon-upload-white {
-				opacity: .5;
-				z-index: 2;
-				&:hover,
-				a:active,
-				a:focus {
-					opacity: .7;
-				}
-			}
-			img +  label.icon-upload-white {
-				opacity: 0;
-			}
-			.contact-avatar-background,
-			img,
-			label.icon-upload-white {
-				position: absolute;
-				width: 100%;
-				height: 100%;
-			}
-		}
 		
 		// ORG-TITLE-NAME
 		#contact-header-infos {
