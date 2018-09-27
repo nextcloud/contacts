@@ -26,7 +26,7 @@
 		:is="componentInstance" :select-type.sync="selectType" :prop-model="propModel"
 		:value.sync="value" :is-first-property="isFirstProperty" :property="property"
 		:is-last-property="isLastProperty" :class="{'property--last': isLastProperty}" :contact="contact"
-		@delete="deleteProp" />
+		:options="sortedModelOptions" @delete="deleteProp" />
 </template>
 
 <script>
@@ -109,10 +109,20 @@ export default {
 			return true
 		},
 
-		// the type of the prop e.g. FN
+		/**
+		 * Return the type of the prop e.g. FN
+		 *
+		 * @returns {String}
+		 */
 		propName() {
 			return this.property.name
 		},
+		/**
+		 * Return the type or property
+		 *
+		 * @see src/models/rfcProps
+		 * @returns {String}
+		 */
 		propType() {
 			// if we have a force type set, use it!
 			if (this.propModel && this.propModel.force) {
@@ -121,12 +131,42 @@ export default {
 			return this.property.getDefaultType()
 		},
 
-		// template to use
+		/**
+		 * RFC template matching this property
+		 *
+		 * @see src/models/rfcProps
+		 * @returns {Object}
+		 */
 		propModel() {
 			return this.properties[this.propName]
 		},
 
-		// select type handler
+		/**
+		 * Remove duplicate name amongst options
+		 * but make sure to include the selected one
+		 * in the final list
+		 *
+		 * @returns {Array<Object>}
+		 */
+		sortedModelOptions() {
+			if (this.propModel.options) {
+				return this.propModel.options.reduce((list, option) => {
+					if (!list.find(search => search.name === option.name)) {
+						list.push(option)
+					}
+					return list
+				}, this.selectType ? [this.selectType] : [])
+			}
+			return []
+		},
+
+		/**
+		 * Returns the closest match to the selected type
+		 * or return the default selected as a new object if
+		 * none exists
+		 *
+		 * @returns Object|undefined
+		 */
 		selectType: {
 			get() {
 				if (this.propModel && this.propModel.options && this.type) {
@@ -165,7 +205,6 @@ export default {
 						name: selectedType
 					}
 				}
-				return false
 			},
 			set(data) {
 				// ical.js take types as arrays
