@@ -30,18 +30,18 @@ use OCP\Contacts\ContactsMenu\IEntry;
 use OCP\Contacts\ContactsMenu\ILinkAction;
 use OCP\IL10N;
 use OCP\IURLGenerator;
-use PHPUnit_Framework_MockObject_MockObject;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 
-class DetailsProviderTest extends PHPUnit_Framework_TestCase {
+class DetailsProviderTest extends TestCase {
 
-	/** @var IURLGenerator|PHPUnit_Framework_MockObject_MockObject */
+	/** @var IURLGenerator|MockObject */
 	private $urlGenerator;
 
-	/** @var IActionFactory|PHPUnit_Framework_MockObject_MockObject */
+	/** @var IActionFactory|MockObject */
 	private $actionFactory;
 
-	/** @var IL10n|PHPUnit_Framework_MockObject_MockObject */
+	/** @var IL10n|MockObject */
 	private $l10n;
 
 	/** @var DetailsProvider */
