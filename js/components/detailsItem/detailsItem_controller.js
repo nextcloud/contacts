@@ -54,6 +54,7 @@ angular.module('contactsApp')
 			// ctrl.model.updateContact();
 		}
 	}
+
 	if (!_.isUndefined(ctrl.data) && !_.isUndefined(ctrl.data.namespace)) {
 		if (!_.isUndefined(ctrl.contact.props['X-ABLABEL'])) {
 			var val = _.find(this.contact.props['X-ABLABEL'], function(x) { return x.namespace === ctrl.data.namespace; });
@@ -65,6 +66,18 @@ angular.module('contactsApp')
 				}
 			}
 		}
+	}
+
+	if (ctrl.meta.template === 'url') {
+		var searchFtpHttps = new RegExp('^(ht|f)tps?:\/\/');
+		if (searchFtpHttps.test(ctrl.data.value)) {
+			return ctrl.data.value;
+		}
+		var searchFtpHttpsNoSlashes = new RegExp('^((ht|f)tps?:)');
+		if (searchFtpHttpsNoSlashes.test(ctrl.data.value)) {
+			return ctrl.data.value.replace(searchFtpHttpsNoSlashes, '$1//');
+		}
+		return 'https://' + ctrl.data.value;
 	}
 
 	ctrl.availableGroups = [];
