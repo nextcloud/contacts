@@ -305,7 +305,7 @@ const actions = {
 				// We don't want to lose the url information
 				// so we need to parse one by one
 				const contacts = response.map(item => {
-					let contact = new Contact(item.data, addressbook, item.url, item.etag)
+					let contact = new Contact(item.data, addressbook, item.etag)
 					Vue.set(contact, 'dav', item)
 					return contact
 				})
@@ -412,11 +412,23 @@ const actions = {
 	async moveContactToAddressbook(context, { contact, addressbook }) {
 		// only local move if the contact doesn't exists on the server
 		if (contact.dav) {
-			await contact.dav.move(addressbook.dav)
+			// TODO: implement proper move
+			// await contact.dav.move(addressbook.dav)
+			// 	.catch((error) => {
+			// 		console.error(error)
+			// 		OC.Notification.showTemporary(t('contacts', 'An error occurred'))
+			// 	})
+			let vData = ICAL.stringify(contact.vCard.jCal)
+			let newDav
+			await addressbook.dav.createVCard(vData)
+				.then((response) => { newDav = response })
+				.catch((error) => { throw error })
+			await contact.dav.delete()
 				.catch((error) => {
 					console.error(error)
 					OC.Notification.showTemporary(t('contacts', 'An error occurred'))
 				})
+			await Vue.set(contact, 'dav', newDav)
 		}
 		await context.commit('deleteContactFromAddressbook', contact)
 		await context.commit('updateContactAddressbook', { contact, addressbook })

@@ -306,7 +306,7 @@ const actions = {
 		}
 		return contact.dav.fetchCompleteData()
 			.then((response) => {
-				let newContact = new Contact(contact.dav.data, contact.addressbook, contact.dav.url, contact.dav.etag)
+				let newContact = new Contact(contact.dav.data, contact.addressbook, contact.dav.etag)
 				context.commit('updateContact', newContact)
 			})
 			.catch((error) => { throw error })

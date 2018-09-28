@@ -406,18 +406,18 @@ export default {
 		 */
 		moveContactToAddressbook(addressbookId) {
 			let addressbook = this.addressbooks.find(search => search.id === addressbookId)
+			this.loadingUpdate = true
 			// TODO Make sure we do not overwrite contacts
 			if (addressbook) {
-				this.$store
-					.dispatch('moveContactToAddressbook', {
-						// we need to use the store contact, not the local contact
-						// using this.contact and not this.localContact
-						contact: this.contact,
-						addressbook
-					})
-					.then(() => {
-						this.updateContact()
-					})
+				this.$store.dispatch('moveContactToAddressbook', {
+					// we need to use the store contact, not the local contact
+					// using this.contact and not this.localContact
+					contact: this.contact,
+					addressbook
+				}).then(() => {
+					this.updateContact()
+					this.loadingUpdate = false
+				})
 			}
 		},
 

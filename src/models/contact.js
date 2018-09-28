@@ -30,11 +30,10 @@ export default class Contact {
 	 *
 	 * @param {string} vcard the vcard data as string with proper new lines
 	 * @param {object} addressbook the addressbook which the contat belongs to
-	 * @param {string} [url=''] the url of the contact
 	 * @param {string} [etag=''] the current etag of the contact
 	 * @memberof Contact
 	 */
-	constructor(vcard, addressbook, url = '', etag = '') {
+	constructor(vcard, addressbook, etag = '') {
 		if (typeof vcard !== 'string' || vcard.length === 0) {
 			throw new Error('Invalid vCard')
 		}
@@ -47,7 +46,6 @@ export default class Contact {
 		this.jCal = jCal
 		this.addressbook = addressbook
 		this.vCard = new ICAL.Component(this.jCal)
-		this.url = url
 		this.conflict = false
 
 		// if no uid set, create one
@@ -89,6 +87,18 @@ export default class Contact {
 	 */
 	firstIfArray(data) {
 		return Array.isArray(data) ? data[0] : data
+	}
+
+	/**
+	 * Return the url
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get url() {
+		if (this.dav) {
+			return this.dav.url
+		}
 	}
 
 	/**
