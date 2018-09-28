@@ -38,7 +38,7 @@ const mutations = {
 	 * Store contacts into state
 	 *
 	 * @param {Object} state Default state
-	 * @param {Array} contacts Contacts
+	 * @param {Array<Contact>} contacts Contacts
 	 */
 	appendContacts(state, contacts = []) {
 		state.contacts = contacts.reduce(function(list, contact) {
@@ -143,19 +143,38 @@ const mutations = {
 	},
 
 	/**
-	 * Update a contact
+	 * Update a contact addressbook
 	 *
 	 * @param {Object} state the store data
+	 * @param {Object} data destructuring object
 	 * @param {Contact} contact the contact to update
+	 * @param {Object} addressbook the addressbook to set
 	 */
 	updateContactAddressbook(state, { contact, addressbook }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
-
 			// replace contact object data
 			state.contacts[contact.key].updateAddressbook(addressbook)
 
 		} else {
 			console.error('Error while replacing the addressbook of following contact', contact)
+		}
+	},
+
+	/**
+	 * Update a contact etag
+	 *
+	 * @param {Object} state the store data
+	 * @param {Object} data destructuring object
+	 * @param {Contact} contact the contact to update
+	 * @param {string} etag the contact etag
+	 */
+	updateContactEtag(state, { contact, etag }) {
+		if (state.contacts[contact.key] && contact instanceof Contact) {
+			// replace contact object data
+			state.contacts[contact.key].dav.etag = etag
+
+		} else {
+			console.error('Error while replacing the etag of following contact', contact)
 		}
 	},
 
@@ -254,22 +273,39 @@ const actions = {
 				.catch((error) => { throw error })
 		}
 
-		contact.dav.data = vData
-		return contact.dav.update()
-			.then((response) => context.commit('updateContact', contact))
-			.catch((error) => { throw error })
+		if (!contact.conflict) {
+			contact.dav.data = vData
+			return contact.dav.update()
+				.then((response) => {
+					// wrong etag, we most likely have a conflict
+					if (response.status === 412) {
+						contact.conflict = response.xhr.getResponseHeader('etag')
+					} else {
+						// all clear, let's update the store
+						context.commit('updateContact', contact)
+					}
+				})
+				.catch((error) => { throw error })
+		} else {
+			console.error('This contact is outdated, refusing to push', contact)
+		}
 	},
 
 	/**
 	 * Fetch the full vCard from the dav server
 	 *
 	 * @param {Object} context the store mutations
-	 * @param {Contact} contact the contact to fetch
+	 * @param {Object} data destructuring object
+	 * @param {Contact} data.contact the contact to fetch
+	 * @param {string} data.etag the contact etag
 	 * @returns {Promise}
 	 */
-	async fetchFullContact(context, contact) {
+	async fetchFullContact(context, { contact, etag = '' }) {
+		if (etag !== '') {
+			await context.commit('updateContactEtag', { contact, etag })
+		}
 		return contact.dav.fetchCompleteData()
-			.then(() => {
+			.then((response) => {
 				let newContact = new Contact(contact.dav.data, contact.addressbook, contact.dav.url, contact.dav.etag)
 				context.commit('updateContact', newContact)
 			})

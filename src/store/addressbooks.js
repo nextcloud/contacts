@@ -306,7 +306,7 @@ const actions = {
 				// so we need to parse one by one
 				const contacts = response.map(item => {
 					let contact = new Contact(item.data, addressbook, item.url, item.etag)
-					contact.dav = item
+					Vue.set(contact, 'dav', item)
 					return contact
 				})
 				context.commit('appendContactsToAddressbook', { addressbook, contacts })
@@ -345,6 +345,9 @@ const actions = {
 				// push contact to server and use limit
 				requests.push(limit(() => contact.addressbook.dav.createVCard(vData)
 					.then((response) => {
+						// setting the contact dav property
+						Vue.set(contact, 'dav', response)
+
 						// success, update store
 						context.commit('addContact', contact)
 						context.commit('addContactToAddressbook', contact)
