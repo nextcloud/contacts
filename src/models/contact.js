@@ -135,6 +135,7 @@ export default class Contact {
 	/**
 	 * Set the photo
 	 *
+	 * @param {string} photo the photo to set
 	 * @memberof Contact
 	 */
 	set photo(photo) {
