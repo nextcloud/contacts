@@ -144,7 +144,8 @@ angular.module('contactsApp')
 
 	var getVisibleContacts = function() {
 		var scrolled = $('.app-content-list').scrollTop();
-		var elHeight = $('.contacts-list').children().outerHeight(true);
+		// first contact height
+		var elHeight = $('.app-content-list-item:eq(0)').outerHeight(true);
 		var listHeight = $('.app-content-list').height();
 
 		var topContact = Math.round(scrolled/elHeight);

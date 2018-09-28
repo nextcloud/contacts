@@ -36,7 +36,7 @@ angular.module('contactsApp')
 			var xhrAddressBooks = [];
 			contacts.forEach(function(contact) {
 				// Regroup urls by addressbooks
-				if(addressBooks.indexOf(contact.addressBook) !== -1) {
+				if(addressBooks.find(function(ab) { return ab.displayName === contact.addressBookId; })) {					// Initiate array if no exists
 					// Initiate array if no exists
 					xhrAddressBooks[contact.addressBookId] = xhrAddressBooks[contact.addressBookId] || [];
 					xhrAddressBooks[contact.addressBookId].push(contact.data.url);
