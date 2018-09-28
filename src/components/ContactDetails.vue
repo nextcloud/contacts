@@ -343,6 +343,7 @@ export default {
 		/**
 		 * Select a contac, and update the localContact
 		 * Fetch updated data if necessary
+		 * Scroll to the selected contact if exists
 		 *
 		 * @param {string} uid the contact uid
 		 */
@@ -351,33 +352,45 @@ export default {
 			this.loadingData = true
 			let contact = this.$store.getters.getContact(uid)
 
-			// if contact exists AND if exists on server
-			if (contact && contact.dav) {
-				this.$store.dispatch('fetchFullContact', { contact })
-					.then(() => {
-						// create empty contact and copy inner data
-						let localContact = new Contact(
-							'BEGIN:VCARD\nUID:' + contact.uid + '\nEND:VCARD',
-							contact.addressbook
-						)
-						localContact.updateContact(contact.jCal)
-						this.localContact = localContact
-						this.loadingData = false
-					})
-					.catch((error) => {
-						OC.Notification.showTemporary(t('contacts', 'The contact doesn\'t exists anymore on the server.'))
-						console.error(error)
-						// trigger a local deletion from the store only
-						this.$store.dispatch('deleteContact', { contact: this.contact, dav: false })
-					})
-			} else if (contact) {
-				// create empty contact and copy inner data
-				// wait for an update to really push the contact on the server!
-				this.localContact = new Contact(
-					'BEGIN:VCARD\nUID:' + contact.uid + '\nEND:VCARD',
-					contact.addressbook
-				)
-				this.loadingData = false
+			if (contact) {
+				// if contact exists AND if exists on server
+				if (contact.dav) {
+					this.$store.dispatch('fetchFullContact', { contact })
+						.then(() => {
+							// create empty contact and copy inner data
+							let localContact = new Contact(
+								'BEGIN:VCARD\nUID:' + contact.uid + '\nEND:VCARD',
+								contact.addressbook
+							)
+							localContact.updateContact(contact.jCal)
+							this.localContact = localContact
+							this.loadingData = false
+						})
+						.catch((error) => {
+							OC.Notification.showTemporary(t('contacts', 'The contact doesn\'t exists anymore on the server.'))
+							console.error(error)
+							// trigger a local deletion from the store only
+							this.$store.dispatch('deleteContact', { contact: this.contact, dav: false })
+						})
+				} else {
+					// create empty contact and copy inner data
+					// wait for an update to really push the contact on the server!
+					this.localContact = new Contact(
+						'BEGIN:VCARD\nUID:' + contact.uid + '\nEND:VCARD',
+						contact.addressbook
+					)
+					this.loadingData = false
+				}
+
+				// scroll to selected contact if any
+				let list = document.getElementById('contacts-list')
+				let item = document.querySelector('#' + btoa(contact.key).slice(0, -2))
+				let isAbove = list.scrollTop > item.offsetTop
+				let isUnder = item.offsetTop + item.offsetHeight > list.scrollTop + list.offsetHeight
+				// check if contact outside visible list area
+				if (item && (isAbove || isUnder)) {
+					list.scrollTo(0, item.offsetTop - item.offsetHeight / 2)
+				}
 			}
 		},
 

@@ -1,6 +1,6 @@
 <template>
-	<div :class="{active: selectedContact === contact.key}" tabindex="0" class="app-content-list-item"
-		@click.prevent.stop="selectContact" @keypress.enter.prevent.stop="selectContact">
+	<div :class="{active: selectedContact === contact.key}" :id="id" tabindex="0"
+		class="app-content-list-item" @click.prevent.stop="selectContact" @keypress.enter.prevent.stop="selectContact">
 		<!-- keyboard accessibility will focus the input and not the label -->
 		<!--
 		<input ref="selected" :id="contact.key" type="checkbox"
@@ -10,7 +10,7 @@
 		<div :style="{ 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">
 			{{ contact.displayName | firstLetter }}
 			<!-- try to fetch the avatar only if the contact exists on the server -->
-			<div v-if="contact.dav" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
+			<!-- <div v-if="contact.dav" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" /> -->
 		</div>
 		<div class="app-content-list-item-line-one">{{ contact.displayName }}</div>
 		<div v-if="contact.email" class="app-content-list-item-line-two">{{ contact.email }}</div>
@@ -39,6 +39,11 @@ export default {
 		},
 		selectedContact() {
 			return this.$route.params.selectedContact
+		},
+
+		// usable and valid html id for scrollTo
+		id() {
+			return window.btoa(this.contact.key).slice(0, -2)
 		},
 
 		/**

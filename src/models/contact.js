@@ -119,7 +119,7 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get key() {
-		return this.uid + '@' + this.addressbook.id
+		return this.uid + '~' + this.addressbook.id
 	}
 
 	/**
