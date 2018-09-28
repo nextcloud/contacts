@@ -123,6 +123,27 @@ export default class Contact {
 	}
 
 	/**
+	 * Return the photo
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get photo() {
+		return this.vCard.getFirstPropertyValue('photo')
+	}
+
+	/**
+	 * Set the photo
+	 *
+	 * @param {string} photo the photo to set
+	 * @memberof Contact
+	 */
+	set photo(photo) {
+		this.vCard.updatePropertyWithValue('photo', photo)
+		return true
+	}
+
+	/**
 	 * Return the groups
 	 *
 	 * @readonly
