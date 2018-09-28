@@ -10,7 +10,7 @@
 		<div :style="{ 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">
 			{{ contact.displayName | firstLetter }}
 			<!-- try to fetch the avatar only if the contact exists on the server -->
-			<!-- <div v-if="contact.dav" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" /> -->
+			<div v-if="contact.photo && contact.dav" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
 		</div>
 		<div class="app-content-list-item-line-one">{{ contact.displayName }}</div>
 		<div v-if="contact.email" class="app-content-list-item-line-two">{{ contact.email }}</div>
