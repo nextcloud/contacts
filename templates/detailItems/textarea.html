@@ -1,9 +1,0 @@
-<label for="details-{{ctrl.name}}-{{ctrl.index}}">{{ctrl.meta.readableName}}</label>
-<textarea id="details-{{ctrl.name}}-{{ctrl.index}}" name="{{ctrl.name}}"
-	ng-model="ctrl.data.value" rows="3" cols="40"
-	ng-model-options="{ debounce: 500 }" ng-change="ctrl.updateContact()"
-	placeholder="{{ctrl.meta.readableName}}"
-	focus-expression="$parent.ctrl.focus === ctrl.name"
-	ng-disabled="ctrl.contact.readOnly">
-</textarea>
-<button ng-click="ctrl.deleteField()" class="icon-delete" title="{{ctrl.t.delete}}" ng-if="!ctrl.contact.readOnly"></button>

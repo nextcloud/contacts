@@ -1,8 +1,8 @@
-<?php
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Team Popcorn <teampopcornberlin@gmail.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -21,10 +21,43 @@
  *
  */
 
-return [
-	'routes' => [
-		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-		['name' => 'page#indexGroup', 'url' => '/{group}', 'verb' => 'GET'],
-		['name' => 'page#indexContact', 'url' => '/{group}/{contact}', 'verb' => 'GET']
-	]
-];
+.addressbook-shares {
+	width: 100%;
+	&__list {
+		margin-top: 8px;
+		margin-bottom: 12px;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__shareematch--bold {
+		font-weight: bold;
+	}
+	
+	.icon-loading::after {
+		top: 70%;
+		left: 95%;
+		height: 14px;
+		width: 14px;
+	}
+
+	.multiselect.multiselect-vue {
+		width: inherit;
+		.multiselect__tags:focus-within, 
+		.multiselect__tags:hover {
+			border-color: var(--color-primary-element);
+		}
+
+		.multiselect__content-wrapper {
+			display: none;
+		}
+	}
+
+	.multiselect.showContent {
+		.multiselect__content-wrapper {
+			display: inherit;
+			background: #f0f0f0;
+			width: inherit;
+		}
+	}
+}

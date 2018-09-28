@@ -1,4 +1,3 @@
-<?php
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -21,10 +20,28 @@
  *
  */
 
-return [
-	'routes' => [
-		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-		['name' => 'page#indexGroup', 'url' => '/{group}', 'verb' => 'GET'],
-		['name' => 'page#indexContact', 'url' => '/{group}/{contact}', 'verb' => 'GET']
-	]
-];
+import DavClient from 'cdav-library'
+
+function xhrProvider() {
+	var headers = {
+		'X-Requested-With': 'XMLHttpRequest',
+		'requesttoken': OC.requestToken
+	}
+	var xhr = new XMLHttpRequest()
+	var oldOpen = xhr.open
+
+	// override open() method to add headers
+	xhr.open = function() {
+		var result = oldOpen.apply(this, arguments)
+		for (let name in headers) {
+			xhr.setRequestHeader(name, headers[name])
+		}
+		return result
+	}
+	OC.registerXHRForErrorProcessing(xhr)
+	return xhr
+}
+
+export default new DavClient({
+	rootUrl: OC.linkToRemote('dav')
+}, xhrProvider)

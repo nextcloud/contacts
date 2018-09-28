@@ -1,4 +1,3 @@
-<?php
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -21,10 +20,41 @@
  *
  */
 
-return [
-	'routes' => [
-		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-		['name' => 'page#indexGroup', 'url' => '/{group}', 'verb' => 'GET'],
-		['name' => 'page#indexContact', 'url' => '/{group}/{contact}', 'verb' => 'GET']
+import Vue from 'vue'
+import Router from 'vue-router'
+import Contacts from '../views/Contacts'
+
+Vue.use(Router)
+
+export default new Router({
+	mode: 'history',
+	// if index.php is in the url AND we got this far, then it's working:
+	// let's keep using index.php in the url
+	base: OC.generateUrl(OC.linkTo('contacts', '')),
+	linkActiveClass: 'active',
+	routes: [
+		{
+			path: '/',
+			component: Contacts,
+			props: true,
+			name: 'root',
+			// always load default group
+			redirect: {
+				name: 'group',
+				params: { selectedGroup: t('contacts', 'All contacts') }
+			},
+			children: [
+				{
+					path: ':selectedGroup',
+					name: 'group',
+					component: Contacts
+				},
+				{
+					path: ':selectedGroup/:selectedContact',
+					name: 'contact',
+					component: Contacts
+				}
+			]
+		}
 	]
-];
+})

@@ -1,6 +1,3 @@
-:warning: This app is currently being migrated to vue. If you want to fix issues, feel free to come help on the branch `vue` :warning:
-___
-
 # Nextcloud Contacts
 
 ![Downloads](https://img.shields.io/github/downloads/nextcloud/contacts/total.svg)
@@ -9,6 +6,8 @@ ___
 [![Code coverage](https://img.shields.io/codecov/c/github/nextcloud/contacts.svg?maxAge=2592000)](https://codecov.io/gh/nextcloud/contacts/)
 
 **A contacts app for [Nextcloud](https://nextcloud.com). Easily sync contacts from various devices with your Nextcloud and edit them online.**
+
+This app only support vCard **3.0** and **4.0**
 
 ![](https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png)
 
@@ -21,17 +20,15 @@ ___
 
 ## :hammer_and_wrench: Installation
 
-In your Nextcloud, simply navigate to »Apps«, choose the category »Organization«, find the Contacts app and enable it.
+In your Nextcloud, simply navigate to "Apps", choose the category "Organization", find the Contacts app and enable it.
 Then open the Contacts app from the app menu.
 
 ## :satellite: Support
 
-If you need assistance or want to ask a question about Contacts, you are welcome to [ask for support](https://help.nextcloud.com) in our Forums or the [IRC-Channel](https://webchat.freenode.net/?channels=nextcloud-contacts). If you have found a bug, feel free to open a new Issue on GitHub. Keep in mind, that this repository only manages the frontend. If you find bugs or have problems with the CardDAV-Backend, you should ask the guys at [Nextcloud server](https://github.com/nextcloud/server) for help!
+If you need assistance or want to ask a question about Contacts, you are welcome to [ask for support](https://help.nextcloud.com) in our Forums or the [IRC-Channel](https://webchat.freenode.net/?channels=nextcloud-contacts). If you have found a bug, feel free to open a new Issue on GitHub. Keep in mind, that this repository only manages the frontend. If you find bugs or have problems with the CardDAV-Backend, you should ask the team at [Nextcloud server](https://github.com/nextcloud/server) for help!
 
 ## Maintainers:
 
-- [Hendrik Leppelsack](https://github.com/Henni)
-- [Jan-Christoph Borchardt](https://github.com/jancborchardt)
 - [John Molakvoæ](https://github.com/skjnldsv)
 
 If you'd like to join, just go through the [issue list](https://github.com/nextcloud/contacts/issues) and fix some. :)
@@ -46,34 +43,31 @@ Instead of setting everything up manually, you can just [download the nightly bu
 
 The nightly builds are provided by [Portknox.net](https://portknox.net)
 
-## Building the app
+## Build the app
 
-The app can be built by using the provided Makefile by running:
+``` bash
+# set up and build for production
+make
 
-    make
+# install dependencies
+make dev-setup
 
-This requires the following things to be present:
-* make
-* which
-* tar: for building the archive
-* curl: used if phpunit and composer are not installed to fetch them from the web
-* npm: for building and testing everything JS
+# build for dev and watch changes
+make watch-js
 
+# build for dev
+make build-js
+
+# build for production with minification
+make build-js-production
+
+```
 ## Running tests
 You can use the provided Makefile to run all tests by using:
 
-    make test
-
-This will run the PHP unit and integration tests and if a package.json is present in the **js/** folder will execute **npm run test**
-
-Of course you can also install [PHPUnit](http://phpunit.de/getting-started.html) and use the configurations directly:
-
-    phpunit -c phpunit.xml
-
-or for integration tests:
-
-    phpunit -c phpunit.integration.xml
-
+```
+make test
+```
 
 ## :v: Code of conduct
 
@@ -85,5 +79,8 @@ If you contribute, participate or interact with this community, please respect [
 
 This guide will help you get started: 
 - :dancer: :smile: [Opening a pull request](https://opensource.guide/how-to-contribute/#opening-a-pull-request) 
+
+
+
 
 

@@ -1,4 +1,3 @@
-<?php
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -21,10 +20,32 @@
  *
  */
 
-return [
-	'routes' => [
-		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-		['name' => 'page#indexGroup', 'url' => '/{group}', 'verb' => 'GET'],
-		['name' => 'page#indexContact', 'url' => '/{group}/{contact}', 'verb' => 'GET']
-	]
-];
+import Vue from 'vue'
+import App from './App'
+import router from './router'
+import store from './store'
+import { sync } from 'vuex-router-sync'
+
+// CSP config for webpack dynamic chunk loading
+// eslint-disable-next-line
+__webpack_nonce__ = btoa(OC.requestToken)
+
+// Correct the root of the app for chunk loading
+// OC.linkTo matches the apps folders
+// OC.generateUrl ensure the index.php (or not)
+// eslint-disable-next-line
+__webpack_public_path__ = OC.generateUrl(OC.linkTo('contacts', 'js/'))
+
+sync(store, router)
+
+Vue.prototype.t = t
+Vue.prototype.n = n
+Vue.prototype.OC = OC
+Vue.prototype.OCA = OCA
+
+export default new Vue({
+	el: '#content',
+	router,
+	store,
+	render: h => h(App)
+})
