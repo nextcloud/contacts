@@ -56,18 +56,20 @@ export default {
 	},
 	methods: {
 		processFile(event) {
-			let file = event.target.files[0]
-			let reader = new FileReader()
-			let self = this
-			// check if photo property exists to decide whether to add/update it
-			reader.onload = function(e) {
-				self.contact.photo
-					? self.contact.photo = reader.result
-					: self.contact.vCard.addPropertyWithValue('photo', reader.result)
+			if (event.target.files) {
+				let file = event.target.files[0]
+				let reader = new FileReader()
+				let self = this
+				// check if photo property exists to decide whether to add/update it
+				reader.onload = function(e) {
+					self.contact.photo
+						? self.contact.photo = reader.result
+						: self.contact.vCard.addPropertyWithValue('photo', reader.result)
 
-				self.$store.dispatch('updateContact', self.contact)
+					self.$store.dispatch('updateContact', self.contact)
+				}
+				reader.readAsDataURL(file)
 			}
-			reader.readAsDataURL(file)
 		},
 		toggleSize() {
 			// maximise or minimise avatar photo
