@@ -407,7 +407,7 @@ export default {
 		moveContactToAddressbook(addressbookId) {
 			let addressbook = this.addressbooks.find(search => search.id === addressbookId)
 			this.loadingUpdate = true
-			// TODO Make sure we do not overwrite contacts
+			// TODO Properly implement the MOVE request
 			if (addressbook) {
 				this.$store.dispatch('moveContactToAddressbook', {
 					// we need to use the store contact, not the local contact
