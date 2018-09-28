@@ -48,6 +48,7 @@ export default class Contact {
 		this.addressbook = addressbook
 		this.vCard = new ICAL.Component(this.jCal)
 		this.url = url
+		this.conflict = false
 
 		// if no uid set, create one
 		if (!this.vCard.hasProperty('uid')) {

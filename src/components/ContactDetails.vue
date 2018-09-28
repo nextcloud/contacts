@@ -71,7 +71,13 @@
 
 				<!-- actions -->
 				<div id="contact-header-actions">
-					<div v-tooltip.auto="warning" :class="{'icon-loading-small': loadingUpdate, 'icon-error-white menu-icon--pulse': warning}" class="menu-icon" />
+					<div v-tooltip.bottom="warning" :class="{'icon-loading-small': loadingUpdate, 'menu-icon--pulse icon-error-white': warning}" class="menu-icon" />
+					<div v-tooltip="{
+							content: conflict,
+							show: true,
+							trigger: 'manual',
+						}" v-if="conflict" class="menu-icon menu-icon--pulse icon-history-white"
+						@click="refreshContact" />
 					<div class="menu-icon">
 						<div v-click-outside="closeMenu" class="icon-more-white" @click="toggleMenu" />
 						<div :class="{ 'open': openedMenu }" class="popovermenu">
@@ -167,11 +173,22 @@ export default {
 		/**
 		 * Warning message
 		 *
-		 * @returns {string}
+		 * @returns {string|undefined}
 		 */
 		warning() {
 			if (!this.contact.dav) {
 				return t('contacts', 'This contact is not yet synced. Edit it to trigger a change.')
+			}
+		},
+
+		/**
+		 * Conflict message
+		 *
+		 * @returns {string|undefined}
+		 */
+		conflict() {
+			if (this.contact.conflict) {
+				return t('contacts', 'The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded.')
 			}
 		},
 
@@ -336,7 +353,7 @@ export default {
 
 			// if contact exists AND if exists on server
 			if (contact && contact.dav) {
-				this.$store.dispatch('fetchFullContact', contact)
+				this.$store.dispatch('fetchFullContact', { contact })
 					.then(() => {
 						// create empty contact and copy inner data
 						let localContact = new Contact(
@@ -391,6 +408,16 @@ export default {
 						this.updateContact()
 					})
 			}
+		},
+
+		/**
+		 * Refresh the data of a contact
+		 */
+		refreshContact() {
+			this.$store.dispatch('fetchFullContact', { contact: this.contact, etag: this.conflict })
+				.then(() => {
+					this.contact.conflict = false
+				})
 		}
 	}
 }
