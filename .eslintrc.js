@@ -42,6 +42,8 @@ module.exports = {
 		'no-console': ['error', { allow: ['error', 'warn', 'debug'] }],
 		// classes blocks
 		'padded-blocks': ['error', { classes: 'always' }],
+		// always add a trailing comma, for diff readability
+		'comma-dangle': ["error", "only-multiline"],
 		// always have the operator in front
 		'operator-linebreak': ['error', 'before'],
 		// ternary on multiline
