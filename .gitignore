@@ -15,3 +15,5 @@ yarn-error.log*
 .marginalia
 
 js/
+build/
+coverage/
