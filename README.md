@@ -61,6 +61,12 @@ make build-js
 # build for production with minification
 make build-js-production
 ```
+## Running tests
+You can use the provided Makefile to run all tests by using:
+
+```
+make test
+```
 
 ## :v: Code of conduct
 

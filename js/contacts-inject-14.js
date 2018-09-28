@@ -1,0 +1,1 @@
+$('#content.app-contacts').attr('ng-app', 'contactsApp');
