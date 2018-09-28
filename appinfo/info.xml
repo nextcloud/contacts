@@ -17,9 +17,9 @@
 	<author>Jessica Greene</author>
 	<author>Arati R</author>
 	<documentation>
-		<user>https://docs.nextcloud.com/server/11/user_manual/pim/contacts.html</user>
-		<admin>https://docs.nextcloud.com/server/11/admin_manual/configuration_server/occ_command.html?highlight=occ%20commands#dav-label</admin>
-		<developer>https://github.com/nextcloud/contacts#building-the-app</developer>
+		<user>https://docs.nextcloud.com/server/14/user_manual/pim/contacts.html</user>
+		<admin>https://docs.nextcloud.com/server/14/admin_manual/configuration_server/occ_command.html?highlight=occ%20commands#dav-label</admin>
+		<developer>https://github.com/nextcloud/contacts#build-the-app</developer>
 	</documentation>
 	<category>office</category>
 	<category>social</category>
