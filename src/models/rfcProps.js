@@ -195,7 +195,9 @@ const properties = {
 			{ id: 'TWITTER', name: 'Twitter' },
 			{ id: 'WECHAT', name: 'WeChat' },
 			{ id: 'YOUTUBE', name: 'YouTube' },
-			{ id: 'MASTODON', name: 'Mastodon' }
+			{ id: 'MASTODON', name: 'Mastodon' },
+			{ id: 'DIASPORA', name: 'Diaspora' },
+			{ id: 'OTHER', name: 'other Social Media' }
 		]
 	},
 	relationship: {
