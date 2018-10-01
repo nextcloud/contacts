@@ -65,7 +65,7 @@ export default {
 					id: key,
 					name: rfcProps.properties[key].readableName
 				}
-			})
+			}).sort((a, b) => a.name.localeCompare(b.name))
 		}
 	},
 
