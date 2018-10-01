@@ -3,10 +3,24 @@
 	"description": "A contacts app for Nextcloud. Easily sync contacts from various devices, share and edit them online.",
 	"version": "3.0.0-beta1",
 	"author": "John Molakvoæ <skjnldsv@protonmail.com>",
-	"contributors":[
+	"contributors": [
 		"John Molakvoæ <skjnldsv@protonmail.com>",
 		"Team Popcorn <teampopcornberlin@gmail.com>"
 	],
+	"keywords": [
+		"nextcloud",
+		"contacts",
+		"vcard",
+		"carddav"
+	],
+	"bugs": {
+		"url": "https://github.com/nextcloud/contacts/issues"
+	},
+	"repository": {
+		"url": "https://github.com/nextcloud/contacts",
+		"type": "git"
+	},
+	"homepage": "https://github.com/nextcloud/contacts",
 	"license": "agpl",
 	"private": true,
 	"scripts": {
