@@ -170,13 +170,19 @@ const properties = {
 			{ id: 'WORK,PAGER', name: t('contacts', 'Work pager') }
 		]
 	},
-	'X-SOCIALPROFILE': {
+	'x-socialprofile': {
 		multiple: true,
+		force: 'text',
+		icon: 'icon-social',
 		readableName: t('contacts', 'Social network'),
 		defaultValue: {
-			value: [''],
+			value: '',
 			type: ['facebook']
 		},
+		info: t(
+			'contacts',
+			'The url of the profile. e.g. https://www.facebook.com/Nextclouders/ '
+		),
 		options: [
 			{ id: 'FACEBOOK', name: 'Facebook' },
 			{ id: 'GITHUB', name: 'GitHub' },
