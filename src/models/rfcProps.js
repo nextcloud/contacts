@@ -19,6 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import { VCardTime } from 'ical.js'
 
 const properties = {
 	nickname: {
@@ -92,15 +93,24 @@ const properties = {
 	},
 	bday: {
 		readableName: t('contacts', 'Birthday'),
-		icon: 'icon-calendar-dark'
+		icon: 'icon-calendar-dark',
+		defaultValue: {
+			value: new VCardTime().fromJSDate(new Date())
+		},
 	},
 	anniversary: {
 		readableName: t('contacts', 'Anniversary'),
-		icon: 'icon-calendar-dark'
+		icon: 'icon-calendar-dark',
+		defaultValue: {
+			value: new VCardTime().fromJSDate(new Date())
+		},
 	},
 	deathdate: {
 		readableName: t('contacts', 'Date of death'),
-		icon: 'icon-calendar-dark'
+		icon: 'icon-calendar-dark',
+		defaultValue: {
+			value: new VCardTime().fromJSDate(new Date())
+		},
 	},
 	email: {
 		multiple: true,
