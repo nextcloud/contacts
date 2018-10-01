@@ -30,10 +30,9 @@ export default class Contact {
 	 *
 	 * @param {string} vcard the vcard data as string with proper new lines
 	 * @param {object} addressbook the addressbook which the contat belongs to
-	 * @param {string} [etag=''] the current etag of the contact
 	 * @memberof Contact
 	 */
-	constructor(vcard, addressbook, etag = '') {
+	constructor(vcard, addressbook) {
 		if (typeof vcard !== 'string' || vcard.length === 0) {
 			throw new Error('Invalid vCard')
 		}

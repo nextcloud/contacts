@@ -312,7 +312,7 @@ const actions = {
 				// We don't want to lose the url information
 				// so we need to parse one by one
 				const contacts = response.map(item => {
-					let contact = new Contact(item.data, addressbook, item.etag)
+					let contact = new Contact(item.data, addressbook)
 					Vue.set(contact, 'dav', item)
 					return contact
 				})

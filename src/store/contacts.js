@@ -279,6 +279,8 @@ const actions = {
 				.then((response) => {
 					// wrong etag, we most likely have a conflict
 					if (response.status === 412) {
+						// saving the new etag so that the user can manually
+						// trigger a fetchCompleteData without any further errors
 						contact.conflict = response.xhr.getResponseHeader('etag')
 					} else {
 						// all clear, let's update the store
@@ -297,7 +299,7 @@ const actions = {
 	 * @param {Object} context the store mutations
 	 * @param {Object} data destructuring object
 	 * @param {Contact} data.contact the contact to fetch
-	 * @param {string} data.etag the contact etag
+	 * @param {string} data.etag the contact etag to override in case of conflict
 	 * @returns {Promise}
 	 */
 	async fetchFullContact(context, { contact, etag = '' }) {
@@ -306,7 +308,7 @@ const actions = {
 		}
 		return contact.dav.fetchCompleteData()
 			.then((response) => {
-				let newContact = new Contact(contact.dav.data, contact.addressbook, contact.dav.etag)
+				let newContact = new Contact(contact.dav.data, contact.addressbook)
 				context.commit('updateContact', newContact)
 			})
 			.catch((error) => { throw error })
