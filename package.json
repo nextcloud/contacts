@@ -3,6 +3,10 @@
 	"description": "A contacts app for Nextcloud. Easily sync contacts from various devices, share and edit them online.",
 	"version": "3.0.0-beta1",
 	"author": "John Molakvoæ <skjnldsv@protonmail.com>",
+	"contributors":[
+		"John Molakvoæ <skjnldsv@protonmail.com>",
+		"Team Popcorn <teampopcornberlin@gmail.com>"
+	],
 	"license": "agpl",
 	"private": true,
 	"scripts": {
