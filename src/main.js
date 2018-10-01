@@ -19,6 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import '@babel/polyfill'
 
 import Vue from 'vue'
 import App from './App'
@@ -33,8 +34,9 @@ __webpack_nonce__ = btoa(OC.requestToken)
 // Correct the root of the app for chunk loading
 // OC.linkTo matches the apps folders
 // OC.generateUrl ensure the index.php (or not)
+// We do not want the index.php since we're loading files
 // eslint-disable-next-line
-__webpack_public_path__ = OC.generateUrl(OC.linkTo('contacts', 'js/'))
+__webpack_public_path__ = OC.linkTo('contacts', 'js/')
 
 sync(store, router)
 

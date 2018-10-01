@@ -4,7 +4,7 @@ const { VueLoaderPlugin } = require('vue-loader')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 
 module.exports = {
-	entry: ['babel-polyfill', path.join(__dirname, 'src', 'main.js')],
+	entry: path.join(__dirname, 'src', 'main.js'),
 	output: {
 		path: path.resolve(__dirname, './js'),
 		publicPath: '/js/',

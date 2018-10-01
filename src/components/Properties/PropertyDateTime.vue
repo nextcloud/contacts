@@ -76,11 +76,16 @@ let formatDateTime = function(vcardTime, type, locale) {
 	// the second will be null and not 0
 	let datetimeData = vcardTime.toJSON()
 	let datetime = ''
+
+	// FUN FACT: JS date starts month at zero!
+	datetimeData.month--
+
 	/**
 	 * Make sure to display the most interesting data.
 	 * If the Object does not have any time, do not display
 	 * the time and vice-versa.
 	 */
+
 	// No hour, no minute and no second = date only
 	if (datetimeData.hour === null && datetimeData.minute === null && datetimeData.second === null) {
 		datetime = moment(datetimeData)
@@ -100,12 +105,13 @@ let formatDateTime = function(vcardTime, type, locale) {
 			.locale(locale)
 			.format(
 				type === 'datetime'
-					? 'LLLL'	// date & time display
+					? 'llll'	// date & time display
 					: type === 'date'
-						? 'LL'	// only date
+						? 'll'	// only date
 						: 'LTS'	// only time
 			)
 	}
+
 	return datetimeData.year === null
 		// replace year and remove double spaces
 		? datetime.replace(moment(vcardTime).year(), '').replace(/\s\s+/g, ' ')
