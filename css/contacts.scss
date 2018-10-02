@@ -38,12 +38,12 @@ $grid-input-height-with-margin: #{$grid-height-unit - $grid-input-margin * 2};
 }
 
 
-@import 'settings-section';
-@import 'settings/settings-addressbook';
-@import 'settings/settings-addressbook-shares';
-@import 'settings/settings-addressbook-sharee';
+@import 'SettingsSection';
+@import 'settings/SettingsSddressbook';
+@import 'settings/SettingsAddressbookShares';
+@import 'settings/SettingsAddressbookSharee';
 @import 'ContactDetails';
-@import 'contact-details-avatar';
+@import 'ContactDetailsAvatar';
 @import 'ContentListItem';
 @import 'Properties/Properties';
 @import 'Properties/PropertyTitle';
