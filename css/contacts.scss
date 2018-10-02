@@ -39,9 +39,9 @@ $grid-input-height-with-margin: #{$grid-height-unit - $grid-input-margin * 2};
 
 
 @import 'SettingsSection';
-@import 'settings/SettingsSddressbook';
-@import 'settings/SettingsAddressbookShares';
-@import 'settings/SettingsAddressbookSharee';
+@import 'Settings/SettingsSddressbook';
+@import 'Settings/SettingsAddressbookShares';
+@import 'Settings/SettingsAddressbookSharee';
 @import 'ContactDetails';
 @import 'ContactDetailsAvatar';
 @import 'ContentListItem';
