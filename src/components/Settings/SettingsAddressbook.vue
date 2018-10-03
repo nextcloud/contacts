@@ -48,7 +48,6 @@ import ClickOutside from 'vue-click-outside'
 import VueClipboard from 'vue-clipboard2'
 
 import ShareAddressBook from './SettingsAddressbookShare'
-import RenameAddressBookField from './SettingsRenameAddressbookField'
 
 Vue.use(VueClipboard)
 
@@ -56,8 +55,7 @@ export default {
 	name: 'SettingsAddressbook',
 	components: {
 		PopoverMenu,
-		ShareAddressBook,
-		RenameAddressBookField
+		ShareAddressBook
 	},
 	directives: {
 		ClickOutside
