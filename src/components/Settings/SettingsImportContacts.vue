@@ -1,4 +1,3 @@
-
 <!--
 	- @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
 	-
