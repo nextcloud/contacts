@@ -206,7 +206,7 @@ export default {
 		/**
 		 * Register search
 		 */
-		this.userSearch = new OCA.Search(this.search, this.resetSearch)
+		this.search = new OCA.Search(this.search, this.resetSearch)
 	},
 
 	beforeMount() {
