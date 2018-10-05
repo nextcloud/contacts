@@ -65,7 +65,7 @@
 		display: flex;
 		align-items: center;
 		padding-right: 44px;
-		height: $grid-height-unit;
+		// height: $grid-height-unit;
 		position: relative;
 	}
 	
@@ -116,5 +116,10 @@
 	// property value within row, after label
 	&__value {
 		flex: 1 1;
+		textarea& {
+			align-self: flex-start;
+			min-height: 2 * $grid-height-unit - 2*$grid-input-margin;
+			max-height: 5 * $grid-height-unit - 2*$grid-input-margin;
+		}
 	}
 }

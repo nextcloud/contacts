@@ -42,8 +42,14 @@
 			<!-- delete the prop -->
 			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
 
-			<input v-model.trim="localValue" class="property__value" type="text"
-				@input="updateValue">
+			<!-- textarea for note -->
+			<textarea v-if="propName === 'note'" id="textarea" ref="textarea"
+				v-model.trim="localValue" :type="type" class="property__value"
+				@input="updateValue" @mousemove="resizeGrid" @keypress="resizeGrid" />
+
+			<!-- OR default to input -->
+			<input v-else v-model.trim="localValue" :type="type"
+				class="property__value" @input="updateValue">
 		</div>
 	</div>
 </template>
@@ -71,6 +77,16 @@ export default {
 			default: () => {},
 			required: true
 		},
+		propName: {
+			type: String,
+			default: 'text',
+			required: true
+		},
+		propType: {
+			type: String,
+			default: 'text',
+			required: true
+		},
 		value: {
 			type: String,
 			default: '',
@@ -93,7 +109,10 @@ export default {
 	data() {
 		return {
 			localValue: this.value,
-			localType: this.selectType
+			localType: this.selectType,
+			// the textarea additionnal height compared to the
+			// default input text. Min is 2 grid height
+			noteHeight: 1
 		}
 	},
 
@@ -101,8 +120,21 @@ export default {
 		gridLength() {
 			let hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
 			let isLast = this.isLastProperty ? 1 : 0
+			let noteHeight = this.propName === 'note'
+				? this.noteHeight
+				: 0
 			// length is one & add one space at the end
-			return hasTitle + 1 + isLast
+			return hasTitle + 1 + isLast + noteHeight
+		},
+		type() {
+			if (this.propName === 'tel') {
+				return 'tel'
+			} else if (this.propName === 'email') {
+				return 'email'
+			} else if (this.propType === 'uri') {
+				return 'url'
+			}
+			return 'text'
 		}
 	},
 
@@ -120,6 +152,10 @@ export default {
 		}
 	},
 
+	mounted() {
+		this.resizeGrid()
+	},
+
 	methods: {
 		/**
 		 * Delete the property
@@ -129,9 +165,33 @@ export default {
 		},
 
 		/**
+		 * Watch textarea resize and update the gridSize accordingly
+		 */
+		resizeGrid: debounce(function(e) {
+			if (this.$refs.textarea && this.$refs.textarea.offsetHeight) {
+				// adjust textarea size to content (2 = border)
+				this.$refs.textarea.style.height = `${this.$refs.textarea.scrollHeight + 2}px`
+				// adjust grid
+				this.noteHeight = Math.floor(this.$refs.textarea.offsetHeight / 40)
+			}
+		}, 100),
+
+		/**
+		 * Since we want to also trigger a resize
+		 * but both of them have different debounce
+		 * let's use a standard methods and call them both
+		 *
+		 * @param {Object} e event
+		 */
+		updateValue(e) {
+			this.resizeGrid(e)
+			this.updateValueDebounced(e)
+		},
+
+		/**
 		 * Debounce and send update event to parent
 		 */
-		updateValue: debounce(function(e) {
+		updateValueDebounced: debounce(function(e) {
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			this.$emit('update:value', this.localValue)
 		}, 500),

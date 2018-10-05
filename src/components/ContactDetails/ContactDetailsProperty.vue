@@ -22,11 +22,12 @@
 
 <template>
 	<!-- If not in the rfcProps then we don't want to display it -->
-	<component v-if="propModel && propType !== 'unknown'"
-		:is="componentInstance" :select-type.sync="selectType" :prop-model="propModel"
-		:value.sync="value" :is-first-property="isFirstProperty" :property="property"
-		:is-last-property="isLastProperty" :class="{'property--last': isLastProperty}" :contact="contact"
-		:options="sortedModelOptions" @delete="deleteProp" />
+	<component v-if="propModel && propType !== 'unknown'" :is="componentInstance" :select-type.sync="selectType"
+		:prop-model="propModel" :value.sync="value" :is-first-property="isFirstProperty"
+		:property="property" :is-last-property="isLastProperty" :class="{'property--last': isLastProperty}"
+		:contact="contact" :prop-name="propName" :prop-type="propType"
+		:options="sortedModelOptions"
+		@delete="deleteProp" />
 </template>
 
 <script>
