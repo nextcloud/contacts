@@ -24,7 +24,8 @@
 	<div id="contacts-list" :class="{'icon-loading': loading}" class="app-content-list">
 		<!-- same uid can coexists between different addressbooks
 			so we need to use the addressbook id as key as well -->
-		<content-list-item v-for="contact in list" :key="contact.key" :contact="contacts[contact.key]" />
+		<content-list-item v-for="contact in list" :key="contact.key" :contact="contacts[contact.key]"
+			:search-query="searchQuery" />
 	</div>
 </template>
 
@@ -48,6 +49,10 @@ export default {
 		loading: {
 			type: Boolean,
 			default: true
+		},
+		searchQuery: {
+			type: String,
+			default: ''
 		}
 	}
 }

@@ -36,7 +36,8 @@
 				<import-screen v-if="importState.stage !== 'default'" />
 				<template v-else>
 					<!-- contacts list -->
-					<content-list :list="contactsList" :contacts="contacts" :loading="loading" />
+					<content-list :list="contactsList" :contacts="contacts" :loading="loading"
+						:search-query="searchQuery" />
 					<!-- main contacts details -->
 					<contact-details :loading="loading" :uid="selectedContact" />
 				</template>
@@ -83,7 +84,8 @@ export default {
 
 	data() {
 		return {
-			loading: true
+			loading: true,
+			searchQuery: ''
 		}
 	},
 
@@ -200,6 +202,13 @@ export default {
 		}
 	},
 
+	mounted() {
+		/**
+		 * Register search
+		 */
+		this.userSearch = new OCA.Search(this.search, this.resetSearch)
+	},
+
 	beforeMount() {
 		// get addressbooks then get contacts
 		client.connect({ enableCardDAV: true }).then(() => {
@@ -302,6 +311,14 @@ export default {
 					})
 				}
 			}
+		},
+
+		/* SEARCH */
+		search(query) {
+			this.searchQuery = query
+		},
+		resetSearch() {
+			this.search('')
 		}
 	}
 }

@@ -324,6 +324,17 @@ export default class Contact {
 	}
 
 	/**
+	 * Return an array of formatted properties for the search
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 * @returns {String[]}
+	 */
+	get searchData() {
+		return this.jCal[1].map(x => x[0] + ':' + x[3])
+	}
+
+	/**
 	 * Add the contact to the group
 	 *
 	 * @param {string} group the group to add the contact to

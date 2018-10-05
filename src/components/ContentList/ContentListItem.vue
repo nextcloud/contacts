@@ -1,5 +1,6 @@
 <template>
-	<div :class="{active: selectedContact === contact.key}" :id="id" tabindex="0"
+	<div v-if="matchSearch" :class="{active: selectedContact === contact.key}" :id="id"
+		tabindex="0"
 		class="app-content-list-item" @click.prevent.stop="selectContact" @keypress.enter.prevent.stop="selectContact">
 		<!-- keyboard accessibility will focus the input and not the label -->
 		<!--
@@ -31,6 +32,10 @@ export default {
 		contact: {
 			type: Object,
 			required: true
+		},
+		searchQuery: {
+			type: String,
+			default: ''
 		}
 	},
 	computed: {
@@ -44,6 +49,18 @@ export default {
 		// usable and valid html id for scrollTo
 		id() {
 			return window.btoa(this.contact.key).slice(0, -2)
+		},
+
+		/**
+		 * Is this matching the current search ?
+		 *
+		 * @returns {Boolean}
+		 */
+		matchSearch() {
+			if (this.searchQuery !== '') {
+				return this.contact.searchData.toString().search(this.searchQuery) !== -1
+			}
+			return true
 		},
 
 		/**
