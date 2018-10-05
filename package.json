@@ -37,7 +37,7 @@
 	"dependencies": {
 		"@babel/polyfill": "^7.0.0",
 		"axios": "^0.18.0",
-		"cdav-library": "github:nextcloud/cdav-library#develop",
+		"cdav-library": "github:nextcloud/cdav-library",
 		"debounce": "^1.2.0",
 		"ical.js": "^1.2.2",
 		"moment": "^2.22.2",

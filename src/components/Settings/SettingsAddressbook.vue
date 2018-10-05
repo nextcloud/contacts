@@ -184,7 +184,7 @@ export default {
 				} catch (err) {
 					// error handling
 					console.error(err)
-					OC.Notification.showTemporary(t('contacts', 'Delete addressbook was not successful.'))
+					OC.Notification.showTemporary(t('contacts', 'Deletion of addressbook was not successful.'))
 				} finally {
 					// stop loading status regardless of outcome
 					this.deleteAddressbookLoading = false
