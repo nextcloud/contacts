@@ -22,7 +22,6 @@ OC.L10N.register(
     "Enabled" : "Aktiviert",
     "Disabled" : "Deaktiviert",
     "Enabled toggle of addressbook was not successful." : "Das aktivierte Wechseln des Adressbuches war nicht erfolgreich.",
-    "Delete addressbook was not successful." : "Das Löschen des Adressbuches war nicht erfolgreich.",
     "Renaming of addressbook was not successful." : "Das Umbenennen des Adressbuches war nicht erfolgreich.",
     "Addressbook copied to clipboard" : "Adressbuch wurde in die Zwischenablage kopiert",
     "Addressbook was not copied to clipboard." : "Adressbuch wurde nicht in die Zwischenablage kopiert.",

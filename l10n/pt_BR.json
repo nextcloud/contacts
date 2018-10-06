@@ -20,7 +20,6 @@
     "Enabled" : "Ativado",
     "Disabled" : "Desativado",
     "Enabled toggle of addressbook was not successful." : "A alternância da lista de endereços não foi bem-sucedida.",
-    "Delete addressbook was not successful." : "A exclusão do catálogo de endereços não foi bem-sucedida.",
     "Renaming of addressbook was not successful." : "Erro ao renomear o catálogo de endereços.",
     "Addressbook copied to clipboard" : "O catálogo de endereços foi copiado para a área de transferência",
     "Addressbook was not copied to clipboard." : "O catálogo de endereços não foi copiado para a área de transferência.",

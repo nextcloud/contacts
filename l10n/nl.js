@@ -16,7 +16,6 @@ OC.L10N.register(
     "Rename" : "Hernoemen",
     "Enabled" : "Ingeschakeld",
     "Disabled" : "Uitgeschakeld",
-    "Delete addressbook was not successful." : "Verwijderen adresboek is niet gelukt",
     "Addressbook copied to clipboard" : "Adresboek gekopieerd naar het klembord",
     "Share with users or groups" : "Delen met gebruikers of groepen",
     "No users or groups" : "Geen gebruikers of groepen",
