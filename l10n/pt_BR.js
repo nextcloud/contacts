@@ -22,6 +22,7 @@ OC.L10N.register(
     "Enabled" : "Ativado",
     "Disabled" : "Desativado",
     "Enabled toggle of addressbook was not successful." : "A alternância da lista de endereços não foi bem-sucedida.",
+    "Deletion of addressbook was not successful." : "Não foi possível excluir o catálogo de endereços.",
     "Renaming of addressbook was not successful." : "Erro ao renomear o catálogo de endereços.",
     "Addressbook copied to clipboard" : "O catálogo de endereços foi copiado para a área de transferência",
     "Addressbook was not copied to clipboard." : "O catálogo de endereços não foi copiado para a área de transferência.",

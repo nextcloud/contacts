@@ -22,6 +22,7 @@ OC.L10N.register(
     "Enabled" : "Activé",
     "Disabled" : "Désactivé",
     "Enabled toggle of addressbook was not successful." : "L'activation/désactivation du carnet d'adresses à échoué.",
+    "Deletion of addressbook was not successful." : "La suppression du carnet d'adresses a échoué.",
     "Renaming of addressbook was not successful." : "Le renommage du carnet d'adresses à échoué.",
     "Addressbook copied to clipboard" : "Carnet d'adresses copié dans le presse-papier",
     "Addressbook was not copied to clipboard." : "Le carnet d'adresses n'a pas été copié dans le presse-papier.",
