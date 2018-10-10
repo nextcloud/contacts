@@ -22,6 +22,7 @@ OC.L10N.register(
     "Enabled" : "Укључено",
     "Disabled" : "Искључено",
     "Enabled toggle of addressbook was not successful." : "Омогућавање укључивања/искључивања адресара није било успешно.",
+    "Deletion of addressbook was not successful." : "Брисање адресара није било успешно.",
     "Renaming of addressbook was not successful." : "Преименовање адресара није било успешно.",
     "Addressbook copied to clipboard" : "Адресар копиран у оставу",
     "Addressbook was not copied to clipboard." : "Адресан није ископиран у оставу.",
