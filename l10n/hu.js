@@ -6,7 +6,7 @@ OC.L10N.register(
     "Download" : "Letöltés",
     "Delete" : "Törlés",
     "Copy link" : "Hivatkozás másolása",
-    "Rename" : "Átnevez",
+    "Rename" : "Átnevezés",
     "Enabled" : "Engedélyezve",
     "Disabled" : "Letiltva",
     "Share with users or groups" : "Megosztás felhasználókkal vagy csoportokkal",

@@ -22,6 +22,7 @@ OC.L10N.register(
     "Enabled" : "Etkin",
     "Disabled" : "Devre Dışı",
     "Enabled toggle of addressbook was not successful." : "Adres defterini değiştirme özelliği etkinleştirilemedi.",
+    "Deletion of addressbook was not successful." : "Adres defteri silinemedi.",
     "Renaming of addressbook was not successful." : "Adres defteri yeniden adlandırılamadı.",
     "Addressbook copied to clipboard" : "Adres defteri panoya kopyalandı",
     "Addressbook was not copied to clipboard." : "Adres defteri panoya kopyalanamadı.",
