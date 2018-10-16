@@ -21,6 +21,7 @@ OC.L10N.register(
     "Rename" : "Přejmenovat",
     "Enabled" : "Zapnuto",
     "Disabled" : "Vypnuto",
+    "Deletion of addressbook was not successful." : "Smazání adresáře kontaktů nebylo úspěšné.",
     "Renaming of addressbook was not successful." : "Přejmenování adresáře kontaktů nebylo úspěšné.",
     "Addressbook copied to clipboard" : "Adresář kontaktů zkopírován do schránky",
     "Addressbook was not copied to clipboard." : "Adresář kontaktů nebyl zkopírován do schránky.",
