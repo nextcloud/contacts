@@ -50,9 +50,6 @@ module.exports = {
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
 	],
 	resolve: {
-		alias: {
-			vue$: 'vue/dist/vue.esm.js'
-		},
 		extensions: ['*', '.js', '.vue', '.json']
 	}
 }
