@@ -282,13 +282,14 @@ export default {
 		 */
 		fetchContacts() {
 			// wait for all addressbooks to have fetch their contacts
-			Promise.all(this.addressbooks.map(addressbook => this.$store.dispatch('getContactsFromAddressBook', { addressbook })))
-				.then(results => {
-					this.loading = false
-					this.selectFirstContactIfNone()
-				})
-				// no need for a catch, the action does not throw
-				// and the error is handled there
+			Promise.all(this.addressbooks.map(addressbook => {
+				if (addressbook.enabled) {
+					return this.$store.dispatch('getContactsFromAddressBook', { addressbook })
+				}
+			})).then(results => {
+				this.loading = false
+				this.selectFirstContactIfNone()
+			})
 		},
 
 		/**

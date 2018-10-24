@@ -37,7 +37,7 @@ $grid-input-height-with-margin: #{$grid-height-unit - $grid-input-margin * 2};
 	}
 }
 
-
+// components
 @import 'SettingsSection';
 @import 'Settings/SettingsAddressbook';
 @import 'Settings/SettingsAddressbookShares';
@@ -47,6 +47,8 @@ $grid-input-height-with-margin: #{$grid-height-unit - $grid-input-margin * 2};
 @import 'ContentListItem';
 @import 'Properties/Properties';
 @import 'Properties/PropertyTitle';
-@import 'importScreen';
+@import 'ImportScreen';
+
+// various
 @import 'animations';
 @import 'icons';

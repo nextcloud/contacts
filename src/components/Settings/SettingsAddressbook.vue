@@ -22,7 +22,7 @@
   -->
 <template>
 	<div>
-		<li :class="{disabled: !addressbook.enabled}" class="addressbook">
+		<li :class="{'addressbook--disabled': !addressbook.enabled}" class="addressbook">
 			<!-- addressbook name -->
 			<span class="addressbook__name">{{ addressbook.displayName }}</span>
 			<!-- sharing button -->

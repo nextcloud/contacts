@@ -57,7 +57,7 @@ export function mapDavCollectionToAddressbook(addressbook) {
 		displayName: addressbook.displayname,
 		enabled: addressbook.enabled !== false,
 		owner: addressbook.owner,
-		readOnly: addressbook.readOnly !== false,
+		readOnly: addressbook.readOnly === true,
 		url: addressbook.url,
 		dav: addressbook
 	}
@@ -278,9 +278,15 @@ const actions = {
 	 * @returns {Promise}
 	 */
 	async toggleAddressbookEnabled(context, addressbook) {
-		addressbook.dav.enabled = !addressbook.dav.enabled
+		addressbook.dav.enabled = !addressbook.enabled
 		return addressbook.dav.update()
-			.then((response) => context.commit('toggleAddressbookEnabled', addressbook))
+			.then((response) => {
+				context.commit('toggleAddressbookEnabled', addressbook)
+				if (addressbook.enabled && Object.values(addressbook.contacts).length === 0) {
+					context.dispatch('getContactsFromAddressBook', { addressbook })
+				}
+
+			})
 			.catch((error) => { throw error })
 	},
 
