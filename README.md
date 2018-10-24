@@ -7,7 +7,7 @@
 
 **A contacts app for [Nextcloud](https://nextcloud.com). Easily sync contacts from various devices with your Nextcloud and edit them online.**
 
-This app only support vCard **3.0** and **4.0**
+This app only supports vCard **3.0** and **4.0**
 
 ![](https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png)
 
@@ -21,7 +21,7 @@ This app only support vCard **3.0** and **4.0**
 ## :hammer_and_wrench: Installation
 
 In your Nextcloud, simply navigate to "Apps", choose the category "Organization", find the Contacts app and enable it.
-Then open the Contacts app from the app menu.
+Then open the Contacts app from the app menu after you're done.
 
 ## :satellite: Support
 
