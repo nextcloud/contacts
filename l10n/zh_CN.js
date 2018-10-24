@@ -11,7 +11,7 @@ OC.L10N.register(
     "Rename" : "重命名",
     "Enabled" : "已开启",
     "Disabled" : "已禁用",
-    "Share with users or groups" : "和用户或者组群分享",
+    "Share with users or groups" : "和用户或者组群共享",
     "Import into" : "导入到",
     "First name" : "名",
     "Last name" : "姓",
