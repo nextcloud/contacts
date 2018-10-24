@@ -278,7 +278,7 @@ const actions = {
 			return contact.dav.update()
 				.then((response) => {
 					// wrong etag, we most likely have a conflict
-					if (response.status === 412) {
+					if (response && response.status === 412) {
 						// saving the new etag so that the user can manually
 						// trigger a fetchCompleteData without any further errors
 						contact.conflict = response.xhr.getResponseHeader('etag')
