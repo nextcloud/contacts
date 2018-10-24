@@ -15,7 +15,7 @@
 		</div>
 		<div class="app-content-list-item-line-one">{{ contact.displayName }}</div>
 		<div v-if="contact.email" class="app-content-list-item-line-two">{{ contact.email }}</div>
-		<div v-if="contact.addressbook.readOnly" class="icon-delete" tabindex="0"
+		<div v-if="!contact.addressbook.readOnly" class="icon-delete" tabindex="0"
 			@click.prevent.stop="deleteContact" @keypress.enter.prevent.stop="deleteContact" />
 	</div>
 </template>

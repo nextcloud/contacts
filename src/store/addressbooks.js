@@ -73,7 +73,11 @@ const mutations = {
 	 */
 	addAddressbook(state, addressbook) {
 		// extend the addressbook to the default model
-		state.addressbooks.push(Object.assign({}, addressbookModel, addressbook))
+		addressbook = Object.assign({}, addressbookModel, addressbook)
+		// force reinit of the contacts object to prevent
+		// data passed as references
+		addressbook.contacts = {}
+		state.addressbooks.push(addressbook)
 	},
 
 	/**
@@ -118,7 +122,7 @@ const mutations = {
 	 * @param {Contact[]} data.contacts array of contacts to append
 	 */
 	appendContactsToAddressbook(state, { addressbook, contacts }) {
-		addressbook = state.addressbooks.find(search => search === addressbook)
+		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
 
 		// convert list into an array and remove duplicate
 		addressbook.contacts = contacts.reduce((list, contact) => {
@@ -317,7 +321,7 @@ const actions = {
 			.then((response) => {
 				// We don't want to lose the url information
 				// so we need to parse one by one
-				const contacts = response.map(item => {
+				let contacts = response.map(item => {
 					let contact = new Contact(item.data, addressbook)
 					Vue.set(contact, 'dav', item)
 					return contact

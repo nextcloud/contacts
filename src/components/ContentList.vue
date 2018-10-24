@@ -21,12 +21,13 @@
   -->
 
 <template>
-	<div id="contacts-list" :class="{'icon-loading': loading}" class="app-content-list">
+	<transition-group id="contacts-list" :class="{'icon-loading': loading}" class="app-content-list"
+		name="list" tag="div">
 		<!-- same uid can coexists between different addressbooks
 			so we need to use the addressbook id as key as well -->
 		<content-list-item v-for="contact in list" :key="contact.key" :contact="contacts[contact.key]"
 			:search-query="searchQuery" />
-	</div>
+	</transition-group>
 </template>
 
 <script>

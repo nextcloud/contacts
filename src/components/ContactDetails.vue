@@ -217,7 +217,7 @@ export default {
 					href: this.contact.url
 				}
 			]
-			if (this.contact.addressbook.readOnly) {
+			if (!this.contact.addressbook.readOnly) {
 				actions.push({
 					icon: 'icon-delete',
 					text: t('contacts', 'Delete'),
