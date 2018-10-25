@@ -77,13 +77,16 @@
 					width: 16px;
 					height: 16px;
 				}
-			}
-			[class^='icon-'],
-			[class*=' icon-'] {
-				height: 44px;
-				width: 44px;
-				padding: 14px;
-				cursor: pointer;
+
+				&[class^='icon-'],
+				&[class*=' icon-'],
+				> [class^='icon-'],
+				> [class*=' icon-'] {
+					height: 44px;
+					width: 44px;
+					padding: 14px;
+					cursor: pointer;
+				}
 			}
 		}
 	}

@@ -48,17 +48,17 @@
 				<!-- fullname, org, title -->
 				<div id="contact-header-infos">
 					<h2>
-						<input id="contact-fullname" v-model="contact.fullName" :disabled="!contact.addressbook.readOnly"
+						<input id="contact-fullname" v-model="contact.fullName" :disabled="contact.addressbook.readOnly"
 							:placeholder="t('contacts', 'Name')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="fullname"
 							value="" @input="debounceUpdateContact">
 					</h2>
 					<div id="details-org-container">
-						<input id="contact-org" v-model="contact.org" :disabled="!contact.addressbook.readOnly"
+						<input id="contact-org" v-model="contact.org" :disabled="contact.addressbook.readOnly"
 							:placeholder="t('contacts', 'Company')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="org"
 							value="" @input="debounceUpdateContact">
-						<input id="contact-title" v-model="contact.title" :disabled="!contact.addressbook.readOnly"
+						<input id="contact-title" v-model="contact.title" :disabled="contact.addressbook.readOnly"
 							:placeholder="t('contacts', 'Title')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="title"
 							value="" @input="debounceUpdateContact">

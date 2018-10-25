@@ -153,7 +153,10 @@ const mutations = {
 	updateContactAddressbook(state, { contact, addressbook }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
 			// replace contact object data
-			state.contacts[contact.key].updateAddressbook(addressbook)
+			let oldKey = contact.key
+			let newContact = new Contact(contact.dav.data, addressbook)
+			Vue.set(state.contacts, newContact.key, newContact)
+			Vue.delete(state.contacts, oldKey)
 
 		} else {
 			console.error('Error while replacing the addressbook of following contact', contact)

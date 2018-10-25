@@ -30,9 +30,9 @@ import rfcProps from '../../models/rfcProps';
 		<div class="contact-header-avatar__options">
 			<input id="contact-avatar-upload" type="file" class="hidden"
 				accept="image/*" @change="processFile">
-			<label v-tooltip.auto="t('contacts', 'Upload a new picture')" for="contact-avatar-upload"
-				class="icon-upload-white" @click="processFile" />
-			<div v-if="maximizeAvatar" class="icon-delete-white" @click="removePhoto" />
+			<label v-tooltip.auto="t('contacts', 'Upload a new picture')" v-if="!contact.addressbook.readOnly"
+				for="contact-avatar-upload" class="icon-upload-white" @click="processFile" />
+			<div v-if="maximizeAvatar && !contact.addressbook.readOnly" class="icon-delete-white" @click="removePhoto" />
 			<a v-if="maximizeAvatar" :href="contact.url + '?photo'" class="icon-download-white" />
 		</div>
 	</div>
