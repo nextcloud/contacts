@@ -111,7 +111,7 @@ export default {
 		},
 		// first enabled addressbook of the list
 		defaultAddressbook() {
-			return this.addressbooks.find(addressbook => addressbook.readOnly !== false)
+			return this.addressbooks.find(addressbook => !addressbook.readOnly)
 		},
 
 		/**

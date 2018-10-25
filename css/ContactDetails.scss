@@ -71,21 +71,17 @@
 				position: relative;
 				height: 44px;
 				width: 44px;
+			}
+			.header-icon {
+				height: 44px;
+				width: 44px;
+				padding: 14px;
 				border-radius: 22px;
-				&.menu-icon--pulse {
+				cursor: pointer;
+				&.header-icon--pulse {
 					margin: 8px;
 					width: 16px;
 					height: 16px;
-				}
-
-				&[class^='icon-'],
-				&[class*=' icon-'],
-				> [class^='icon-'],
-				> [class*=' icon-'] {
-					height: 44px;
-					width: 44px;
-					padding: 14px;
-					cursor: pointer;
 				}
 			}
 		}

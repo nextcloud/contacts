@@ -67,15 +67,15 @@
 
 				<!-- actions -->
 				<div id="contact-header-actions">
-					<div v-tooltip.bottom="warning" :class="{'icon-loading-small': loadingUpdate, 'menu-icon--pulse icon-error-white': warning}" class="menu-icon" />
+					<div v-tooltip.bottom="warning" :class="{'icon-loading-small': loadingUpdate, 'header-icon--pulse icon-error-white': warning}" class="header-icon" />
 					<div v-tooltip="{
 							content: conflict,
 							show: true,
 							trigger: 'manual',
-						}" v-if="conflict" class="menu-icon menu-icon--pulse icon-history-white"
+						}" v-if="conflict" class="header-icon header-icon--pulse icon-history-white"
 						@click="refreshContact" />
 					<div class="menu-icon">
-						<div v-click-outside="closeMenu" class="icon-more-white" @click="toggleMenu" />
+						<div v-click-outside="closeMenu" class="header-icon icon-more-white" @click="toggleMenu" />
 						<div :class="{ 'open': openedMenu }" class="popovermenu">
 							<popover-menu :menu="contactActions" />
 						</div>
