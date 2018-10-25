@@ -45,6 +45,9 @@ export default class Contact {
 		this.jCal = jCal
 		this.addressbook = addressbook
 		this.vCard = new ICAL.Component(this.jCal)
+
+		// used to state a contact is not up to date with
+		// the server and cannot be pushed (etag)
 		this.conflict = false
 
 		// if no uid set, create one

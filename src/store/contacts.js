@@ -276,18 +276,18 @@ const actions = {
 		if (!contact.conflict) {
 			contact.dav.data = vData
 			return contact.dav.update()
-				.then((response) => {
+				.then(() => {
+					// all clear, let's update the store
+					context.commit('updateContact', contact)
+				})
+				.catch((error) => {
 					// wrong etag, we most likely have a conflict
-					if (response && response.status === 412) {
+					if (error && error.status === 412) {
 						// saving the new etag so that the user can manually
 						// trigger a fetchCompleteData without any further errors
-						contact.conflict = response.xhr.getResponseHeader('etag')
-					} else {
-						// all clear, let's update the store
-						context.commit('updateContact', contact)
+						contact.conflict = error.xhr.getResponseHeader('etag')
 					}
 				})
-				.catch((error) => { throw error })
 		} else {
 			console.error('This contact is outdated, refusing to push', contact)
 		}
