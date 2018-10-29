@@ -39,6 +39,7 @@ OC.L10N.register(
     "Other" : "Annað",
     "Address" : "Slóð",
     "Post office box" : "Pósthólf",
+    "Extended address" : "Ítarlegt heimilisfang",
     "City" : "Borg",
     "State or province" : "Ríki eða fylki",
     "Postal code" : "Póstnúmer",
@@ -84,6 +85,7 @@ OC.L10N.register(
     "Female" : "Kona",
     "Male" : "Karl",
     "All contacts" : "Allir tengiliðir",
+    "You did not enter the password in time" : "Þú settir ekki lykilorðið inn tímanlega",
     "An error occurred" : "Villa kom upp",
     "New contact" : "Nýr tengiliður",
     "Contact not found" : "Tengiliður fannst ekki"
