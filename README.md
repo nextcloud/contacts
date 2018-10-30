@@ -1,6 +1,7 @@
 # Nextcloud Contacts
 
 ![Downloads](https://img.shields.io/github/downloads/nextcloud/contacts/total.svg)
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8c8321f918c04a23aed43563117f9918)](https://app.codacy.com/app/skjnldsv/contacts?utm_source=github.com&utm_medium=referral&utm_content=nextcloud/contacts&utm_campaign=Badge_Grade_Dashboard)
 [![irc](https://img.shields.io/badge/IRC-%23nextcloud--contacts%20on%20freenode-blue.svg)](https://webchat.freenode.net/?channels=nextcloud-contacts)
 [![Build Status](https://travis-ci.org/nextcloud/contacts.svg?branch=master)](https://travis-ci.org/nextcloud/contacts)
 [![Code coverage](https://img.shields.io/codecov/c/github/nextcloud/contacts.svg?maxAge=2592000)](https://codecov.io/gh/nextcloud/contacts/)
