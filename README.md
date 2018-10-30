@@ -1,4 +1,4 @@
-:warning: This app is currently being migrated to vue. If you want to fix issues, feel free to come help on the branch `vue` :warning:
+:warning: This app is the old version of contacts. The new 3.0 version have been migrated to `vuejs` :warning:
 ___
 
 # Nextcloud Contacts
