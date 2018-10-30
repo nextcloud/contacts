@@ -1,10 +1,10 @@
 # Nextcloud Contacts
-
-![Downloads](https://img.shields.io/github/downloads/nextcloud/contacts/total.svg)
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/8c8321f918c04a23aed43563117f9918)](https://app.codacy.com/app/skjnldsv/contacts?utm_source=github.com&utm_medium=referral&utm_content=nextcloud/contacts&utm_campaign=Badge_Grade_Dashboard)
-[![irc](https://img.shields.io/badge/IRC-%23nextcloud--contacts%20on%20freenode-blue.svg)](https://webchat.freenode.net/?channels=nextcloud-contacts)
-[![Build Status](https://travis-ci.org/nextcloud/contacts.svg?branch=master)](https://travis-ci.org/nextcloud/contacts)
-[![Code coverage](https://img.shields.io/codecov/c/github/nextcloud/contacts.svg?maxAge=2592000)](https://codecov.io/gh/nextcloud/contacts/)
+![Downloads](https://img.shields.io/github/downloads/nextcloud/contacts/total.svg?style=flat-square)
+[![travis build status](https://img.shields.io/travis/com/nextcloud/contacts/master.svg?style=flat-square)](https://travis-ci.com/nextcloud/contacts)
+[![Codacy Badge](https://img.shields.io/codacy/grade/ea24ea9fccb942419d73ec05105938aa.svg?style=flat-square)](https://app.codacy.com/app/skjnldsv/contacts?utm_source=github.com&utm_medium=referral&utm_content=nextcloud/contacts&utm_campaign=Badge_Grade_Dashboard)
+[![Code coverage](https://img.shields.io/codecov/c/github/nextcloud/contacts.svg?style=flat-square)](https://codecov.io/gh/nextcloud/contacts/)
+[![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat-square&logo=dependabot)](https://dependabot.com)
+[![irc](https://img.shields.io/badge/IRC-%23nextcloud--contacts%20on%20freenode-blue.svg?style=flat-square)](https://webchat.freenode.net/?channels=nextcloud-contacts)
 
 **A contacts app for [Nextcloud](https://nextcloud.com). Easily sync contacts from various devices with your Nextcloud and edit them online.**
 
