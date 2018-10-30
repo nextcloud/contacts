@@ -101,6 +101,7 @@ export default class Contact {
 		if (this.dav) {
 			return this.dav.url
 		}
+		return ''
 	}
 
 	/**
