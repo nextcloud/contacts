@@ -23,3 +23,7 @@
 .icon-social {
 	@include icon-color('social', 'contacts', $color-black, 1);
 }
+
+.icon-qrcode {
+	@include icon-color('qrcode', 'contacts', $color-black, 2);
+}

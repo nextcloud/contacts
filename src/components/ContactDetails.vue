@@ -112,6 +112,8 @@ import ClickOutside from 'vue-click-outside'
 import Vue from 'vue'
 import VTooltip from 'v-tooltip'
 import debounce from 'debounce'
+import qr from 'qr-image'
+import ICAL from 'ical.js'
 
 import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps.js'
@@ -215,6 +217,11 @@ export default {
 					icon: 'icon-download',
 					text: t('contacts', 'Download'),
 					href: this.contact.url
+				},
+				{
+					icon: 'icon-qrcode',
+					text: t('contacts', 'Generate QR Code'),
+					action: this.showQRcode
 				}
 			]
 			if (!this.contact.addressbook.readOnly) {
@@ -336,6 +343,21 @@ export default {
 		},
 		toggleMenu() {
 			this.openedMenu = !this.openedMenu
+		},
+
+		/**
+		 * Generate a qrcode for the contact
+		 */
+		showQRcode() {
+			let jCal = this.contact.jCal.slice(0)
+			// do not encode photo
+			jCal[1] = jCal[1].filter(props => props[0] !== 'photo')
+
+			let data = ICAL.stringify(jCal)
+			if (data.length > 0) {
+				let svg = qr.imageSync(data, { type: 'svg' })
+				// TODO: show qrcode ^^
+			}
 		},
 
 		/**
