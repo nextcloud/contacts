@@ -86,6 +86,12 @@
 						</div>
 					</div>
 				</div>
+
+				<!-- qrcode -->
+				<modal v-if="qrcode" id="qrcode-modal" :title="contact.displayName"
+					@close="closeQrModal">
+					<img :src="`data:image/svg+xml;base64,${qrcode}`" class="qrcode">
+				</modal>
 			</header>
 
 			<!-- contact details loading -->
@@ -125,6 +131,10 @@
 <script>
 import debounce from 'debounce'
 import PQueue from 'p-queue'
+import qr from 'qr-image'
+import { stringify } from 'ical.js'
+
+import { Modal } from 'nextcloud-vue'
 
 import rfcProps from 'Models/rfcProps'
 import validate from 'Services/validate'
@@ -147,7 +157,8 @@ export default {
 		PropertyGroups,
 		PropertyRev,
 		AddNewProp,
-		ContactAvatar
+		ContactAvatar,
+		Modal
 	},
 
 	props: {
@@ -174,7 +185,8 @@ export default {
 			localContact: undefined,
 			loadingData: true,
 			loadingUpdate: false,
-			openedMenu: false
+			openedMenu: false,
+			qrcode: ''
 		}
 	},
 
@@ -243,6 +255,11 @@ export default {
 					icon: 'icon-download',
 					text: t('contacts', 'Download'),
 					href: this.contact.url
+				},
+				{
+					icon: 'icon-qrcode',
+					text: t('contacts', 'Generate QR Code'),
+					action: this.showQRcode
 				}
 			]
 			if (!this.contact.addressbook.readOnly) {
@@ -394,6 +411,20 @@ export default {
 		},
 
 		/**
+		 * Generate a qrcode for the contact
+		 */
+		showQRcode() {
+			let jCal = this.contact.jCal.slice(0)
+			// do not encode photo
+			jCal[1] = jCal[1].filter(props => props[0] !== 'photo')
+
+			let data = stringify(jCal)
+			if (data.length > 0) {
+				this.qrcode = btoa(qr.imageSync(data, { type: 'svg' }))
+			}
+		},
+
+		/**
 		 * Select the text in the input if it is still set to 'new Contact'
 		 */
 		selectInput() {
@@ -505,6 +536,11 @@ export default {
 				.then(() => {
 					this.contact.conflict = false
 				})
+		},
+
+		// reset the current qrcode
+		closeQrModal() {
+			this.qrcode = ''
 		}
 	}
 }
