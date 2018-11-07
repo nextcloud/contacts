@@ -96,21 +96,21 @@ const properties = {
 		icon: 'icon-calendar-dark',
 		defaultValue: {
 			value: new VCardTime().fromJSDate(new Date())
-		},
+		}
 	},
 	anniversary: {
 		readableName: t('contacts', 'Anniversary'),
 		icon: 'icon-calendar-dark',
 		defaultValue: {
 			value: new VCardTime().fromJSDate(new Date())
-		},
+		}
 	},
 	deathdate: {
 		readableName: t('contacts', 'Date of death'),
 		icon: 'icon-calendar-dark',
 		defaultValue: {
 			value: new VCardTime().fromJSDate(new Date())
-		},
+		}
 	},
 	email: {
 		multiple: true,
