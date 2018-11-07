@@ -15,7 +15,8 @@ module.exports = {
 		VueRouter: true
 	},
 	parserOptions: {
-		parser: 'babel-eslint'
+		parser: 'babel-eslint',
+		ecmaVersion: 6
 	},
 	extends: [
 		'eslint:recommended',
@@ -42,8 +43,6 @@ module.exports = {
 		'no-console': ['error', { allow: ['error', 'warn', 'debug'] }],
 		// classes blocks
 		'padded-blocks': ['error', { classes: 'always' }],
-		// always add a trailing comma, for diff readability
-		'comma-dangle': ["error", "only-multiline"],
 		// always have the operator in front
 		'operator-linebreak': ['error', 'before'],
 		// ternary on multiline
@@ -58,9 +57,11 @@ module.exports = {
 		}],
 		// es6 import/export and require
 		'node/no-unpublished-require': ['off'],
-		'node/no-unsupported-features': ['off'],
+		'node/no-unsupported-features/es-syntax': ['off'],
 		// space before self-closing elements
 		'vue/html-closing-bracket-spacing': 'error',
+		// no ending html tag on a new line
+		'vue/html-closing-bracket-newline': ['error', { multiline: 'never' }],
 		// code spacing with attributes
 		'vue/max-attributes-per-line': [
 			'error',
@@ -73,4 +74,4 @@ module.exports = {
 			}
 		]
 	}
-};
+}
