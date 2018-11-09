@@ -23,3 +23,7 @@
 .icon-social {
 	@include icon-color('social', 'contacts', $color-black, 1);
 }
+
+.icon-address-book {
+	@include icon-color('address-book', 'contacts', $color-black, 1);
+}

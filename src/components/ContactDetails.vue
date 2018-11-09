@@ -237,7 +237,7 @@ export default {
 		addressbookModel() {
 			return {
 				readableName: t('contacts', 'Addressbook'),
-				icon: 'icon-addressbook',
+				icon: 'icon-address-book',
 				options: this.addressbooksOptions
 			}
 		},
@@ -264,7 +264,7 @@ export default {
 		 */
 		addressbooksOptions() {
 			return this.addressbooks
-				.filter(addressbook => !addressbook.readOnly)
+				.filter(addressbook => !addressbook.readOnly && addressbook.enabled)
 				.map(addressbook => {
 					return {
 						id: addressbook.id,
