@@ -48,8 +48,6 @@
 </template>
 
 <script>
-import { AppNavigation } from 'nextcloud-vue'
-
 import SettingsSection from '../components/SettingsSection'
 import ContentList from '../components/ContentList'
 import ContactDetails from '../components/ContactDetails'
@@ -61,8 +59,9 @@ import rfcProps from '../models/rfcProps.js'
 import client from '../services/cdav.js'
 
 export default {
+	name: 'Contacts',
+
 	components: {
-		AppNavigation,
 		SettingsSection,
 		ContentList,
 		ContactDetails,

@@ -38,23 +38,21 @@
 			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
 
 			<multiselect v-model="matchedOptions" :options="propModel.options" :placeholder="t('contacts', 'Select option')"
-				class="multiselect-vue property__value" track-by="id" label="name"
+				class="property__value" track-by="id" label="name"
 				@input="updateValue" />
 		</div>
 	</div>
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
-import propertyTitle from './PropertyTitle'
+import PropertyTitle from './PropertyTitle'
 import debounce from 'debounce'
 
 export default {
 	name: 'PropertySelect',
 
 	components: {
-		Multiselect,
-		propertyTitle
+		PropertyTitle
 	},
 
 	props: {

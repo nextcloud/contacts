@@ -32,29 +32,20 @@
 			:options="options"
 			:disabled="isSingleAddressbook"
 			:placeholder="t('contacts', 'Contacts')"
-			label="displayName"
-			class="multiselect-vue" />
+			label="displayName" />
 	</div>
 </template>
 
 <script>
-import clickOutside from 'vue-click-outside'
-import Multiselect from 'vue-multiselect'
-
 export default {
 	name: 'SettingsImportContacts',
-	components: {
-		clickOutside,
-		Multiselect
-	},
-	directives: {
-		clickOutside
-	},
+
 	data() {
 		return {
 			importDestination: false
 		}
 	},
+
 	computed: {
 		addressbooks() {
 			return this.$store.getters.getAddressbooks

@@ -30,7 +30,7 @@
 			<!-- type selector -->
 			<multiselect v-if="propModel.options" v-model="localType"
 				:options="options" :searchable="false" :placeholder="t('contacts', 'Select type')"
-				class="multiselect-vue property__label" track-by="id" label="name"
+				class="property__label" track-by="id" label="name"
 				@input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
@@ -69,16 +69,14 @@
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
-import propertyTitle from './PropertyTitle'
+import PropertyTitle from './PropertyTitle'
 import debounce from 'debounce'
 
 export default {
 	name: 'PropertyText',
 
 	components: {
-		Multiselect,
-		propertyTitle
+		PropertyTitle
 	},
 
 	props: {

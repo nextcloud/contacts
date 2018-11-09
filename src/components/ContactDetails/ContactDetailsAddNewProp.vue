@@ -30,7 +30,7 @@
 			<div class="property__label" />
 
 			<!-- type selector -->
-			<multiselect :options="availableProperties" :placeholder="t('contacts', 'Choose property type')" class="multiselect-vue property__value"
+			<multiselect :options="availableProperties" :placeholder="t('contacts', 'Choose property type')" class="property__value"
 				track-by="id" label="name" @input="addProp" />
 		</div>
 	</div>
@@ -39,16 +39,13 @@
 <script>
 import rfcProps from '../../models/rfcProps.js'
 import Contact from '../../models/contact'
-import propertyTitle from '../Properties/PropertyTitle'
-
-import Multiselect from 'vue-multiselect'
+import PropertyTitle from '../Properties/PropertyTitle'
 
 export default {
 	name: 'ContactDetailsAddNewProp',
 
 	components: {
-		propertyTitle,
-		Multiselect
+		PropertyTitle
 	},
 
 	props: {

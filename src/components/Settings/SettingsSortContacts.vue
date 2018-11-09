@@ -31,24 +31,15 @@
 			:options="options"
 			track-by="key"
 			label="label"
-			class="multiselect-vue"
 			@input="sortContacts" />
 	</div>
 </template>
 
 <script>
-import clickOutside from 'vue-click-outside'
-import Multiselect from 'vue-multiselect'
 
 export default {
 	name: 'SettingsSortContacts',
-	components: {
-		clickOutside,
-		Multiselect
-	},
-	directives: {
-		clickOutside
-	},
+
 	props: {
 		addressbook: {
 			type: Object,
@@ -57,6 +48,7 @@ export default {
 			}
 		}
 	},
+
 	computed: {
 		/* Order Keys */
 		options() {

@@ -29,7 +29,7 @@
 			<!-- multiselect taggable groups with a limit to 3 groups shown -->
 			<multiselect v-model="localValue" :options="groups" :placeholder="t('contacts', 'Add contact in group')"
 				:limit="3" :multiple="true" :taggable="true"
-				:close-on-select="false" tag-placeholder="create" class="multiselect-vue property__value"
+				:close-on-select="false" tag-placeholder="create" class="property__value"
 				@input="updateValue" @tag="validateGroup" @select="addContactToGroup"
 				@remove="removeContactToGroup">
 
@@ -42,16 +42,11 @@
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
 import debounce from 'debounce'
 import Contact from '../../models/contact'
 
 export default {
 	name: 'PropertyGroups',
-
-	components: {
-		Multiselect
-	},
 
 	props: {
 		propModel: {

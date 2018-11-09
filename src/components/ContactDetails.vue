@@ -107,10 +107,6 @@
 </template>
 
 <script>
-import { PopoverMenu } from 'nextcloud-vue'
-import ClickOutside from 'vue-click-outside'
-import Vue from 'vue'
-import VTooltip from 'v-tooltip'
 import debounce from 'debounce'
 
 import rfcProps from '../models/rfcProps.js'
@@ -121,22 +117,15 @@ import PropertySelect from './Properties/PropertySelect'
 import PropertyGroups from './Properties/PropertyGroups'
 import ContactAvatar from './ContactDetails/ContactDetailsAvatar'
 
-Vue.use(VTooltip)
-
 export default {
 	name: 'ContactDetails',
 
 	components: {
-		PopoverMenu,
 		ContactProperty,
 		PropertySelect,
 		PropertyGroups,
 		AddNewProp,
 		ContactAvatar
-	},
-
-	directives: {
-		ClickOutside
 	},
 
 	props: {

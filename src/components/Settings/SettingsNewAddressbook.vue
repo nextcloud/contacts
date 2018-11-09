@@ -33,16 +33,10 @@
 </template>
 
 <script>
-import clickOutside from 'vue-click-outside'
 
 export default {
 	name: 'SettingsNewAddressbook',
-	components: {
-		clickOutside
-	},
-	directives: {
-		clickOutside
-	},
+
 	data() {
 		return {
 			loading: false,

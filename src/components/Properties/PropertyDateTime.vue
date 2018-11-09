@@ -30,7 +30,7 @@
 			<!-- type selector -->
 			<multiselect v-if="propModel.options" v-model="localType"
 				:options="options" :searchable="false" :placeholder="t('contacts', 'Select type')"
-				class="multiselect-vue property__label" track-by="id" label="name"
+				class="property__label" track-by="id" label="name"
 				@input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
@@ -51,13 +51,12 @@
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
-import { DatetimePicker } from 'nextcloud-vue'
 import debounce from 'debounce'
 import moment from 'moment'
+import { DatetimePicker } from 'nextcloud-vue'
 import { VCardTime } from 'ical.js'
 
-import propertyTitle from './PropertyTitle'
+import PropertyTitle from './PropertyTitle'
 
 /**
  * Format time with locale to display only
@@ -134,9 +133,8 @@ export default {
 	name: 'PropertyDateTime',
 
 	components: {
-		Multiselect,
-		propertyTitle,
-		DatetimePicker
+		DatetimePicker,
+		PropertyTitle
 	},
 
 	props: {
