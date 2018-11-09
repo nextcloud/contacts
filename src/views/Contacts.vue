@@ -39,7 +39,7 @@
 					<content-list :list="contactsList" :contacts="contacts" :loading="loading"
 						:search-query="searchQuery" />
 					<!-- main contacts details -->
-					<contact-details :loading="loading" :uid="selectedContact" />
+					<contact-details :loading="loading" :contact-key="selectedContact" />
 				</template>
 			</div>
 		</div>

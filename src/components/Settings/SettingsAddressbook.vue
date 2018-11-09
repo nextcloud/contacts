@@ -75,7 +75,6 @@ export default {
 			editingName: false,
 			copied: false,
 			copySuccess: true,
-			readOnly: this.addressbook.readOnly,
 			toggleEnabledLoading: false,
 			deleteAddressbookLoading: false,
 			renameLoading: false,
@@ -107,7 +106,7 @@ export default {
 			]
 
 			// check if addressbook is readonly
-			if (!this.readOnly) {
+			if (!this.addressbook.readOnly) {
 				menu.push({
 					icon: this.renameLoading ? 'icon-loading-small' : 'icon-rename',
 					// check if editing name

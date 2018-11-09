@@ -425,31 +425,21 @@ const actions = {
 	 * @param {Object} data destructuring object
 	 * @param {Contact} data.contact the contact to move
 	 * @param {Object} data.addressbook the addressbook to move the contact to
+	 * @returns {Contact} the new contact object
 	 */
 	async moveContactToAddressbook(context, { contact, addressbook }) {
 		// only local move if the contact doesn't exists on the server
 		if (contact.dav) {
-			// TODO: implement proper move
-			// await contact.dav.move(addressbook.dav)
-			// 	.catch((error) => {
-			// 		console.error(error)
-			// 		OC.Notification.showTemporary(t('contacts', 'An error occurred'))
-			// 	})
-			let vData = ICAL.stringify(contact.vCard.jCal)
-			let newDav
-			await addressbook.dav.createVCard(vData)
-				.then((response) => { newDav = response })
-				.catch((error) => { throw error })
-			await contact.dav.delete()
-				.catch((error) => {
-					console.error(error)
-					OC.Notification.showTemporary(t('contacts', 'An error occurred'))
-				})
-			await Vue.set(contact, 'dav', newDav)
+			try {
+				await contact.dav.move(addressbook.dav)
+			} catch (error) {
+				throw error
+			}
 		}
 		await context.commit('deleteContactFromAddressbook', contact)
 		await context.commit('updateContactAddressbook', { contact, addressbook })
 		await context.commit('addContactToAddressbook', contact)
+		return contact
 	}
 }
 
