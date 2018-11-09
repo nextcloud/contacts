@@ -275,7 +275,7 @@ export default {
 		 */
 		addressbooksOptions() {
 			return this.addressbooks
-				.filter(addressbook => !addressbook.readOnly)
+				.filter(addressbook => !addressbook.readOnly && addressbook.enabled)
 				.map(addressbook => {
 					return {
 						id: addressbook.id,

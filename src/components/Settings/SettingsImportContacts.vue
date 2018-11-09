@@ -22,18 +22,24 @@
 
 <template>
 	<div class="import-contact">
-		<input id="contact-import" type="file" class="hidden-visually"
-			@change="processFile">
-		<label id="upload" for="contact-import" class="button multiselect-label icon-upload no-select">
-			{{ t('contacts', 'Import into') }}
-		</label>
-		<multiselect
-			v-model="selectedAddressbook"
-			:options="options"
-			:disabled="isSingleAddressbook"
-			:placeholder="t('contacts', 'Contacts')"
-			label="displayName"
-			class="multiselect-vue" />
+		<template v-if="!isNoAddressbookAvailable">
+			<input id="contact-import" type="file" class="hidden-visually"
+				@change="processFile">
+			<label id="upload" for="contact-import" class="button import-contact__multiselect-label icon-upload">
+				{{ t('contacts', 'Import into') }}
+			</label>
+			<multiselect
+				v-model="selectedAddressbook"
+				:options="options"
+				:disabled="isSingleAddressbook"
+				:placeholder="t('contacts', 'Contacts')"
+				label="displayName"
+				class="multiselect-vue import-contact__multiselect" />
+		</template>
+		<button v-else id="upload" for="contact-import"
+			class="button import-contact__multiselect-label import-contact__multiselect--no-select icon-error">
+			{{ t('contacts', 'Importing is disabled because there are no address books available') }}
+		</button>
 	</div>
 </template>
 
@@ -60,12 +66,15 @@ export default {
 			return this.$store.getters.getAddressbooks
 		},
 		options() {
-			return this.addressbooks.map(addressbook => {
-				return {
-					id: addressbook.id,
-					displayName: addressbook.displayName
+			return this.addressbooks
+				.filter(addressbook => !addressbook.readOnly && addressbook.enabled)
+				.map(addressbook => {
+					return {
+						id: addressbook.id,
+						displayName: addressbook.displayName
+					}
 				}
-			})
+				)
 		},
 		importState() {
 			return this.$store.getters.getImportState
@@ -82,9 +91,12 @@ export default {
 				this.importDestination = value
 			}
 		},
-		// disable multiselect when there is at most one address book
+		// disable multiselect when there is only one address book
 		isSingleAddressbook() {
-			return this.addressbooks.length <= 1
+			return this.options.length === 1
+		},
+		isNoAddressbookAvailable() {
+			return this.options.length < 1
 		}
 	},
 	methods: {

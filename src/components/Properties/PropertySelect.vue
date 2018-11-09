@@ -38,8 +38,8 @@
 			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
 
 			<multiselect v-model="matchedOptions" :options="propModel.options" :placeholder="t('contacts', 'Select option')"
-				class="multiselect-vue property__value" track-by="id" label="name"
-				@input="updateValue" />
+				:disabled="isSingleOption" class="multiselect-vue property__value" track-by="id"
+				label="name" @input="updateValue" />
 		</div>
 	</div>
 </template>
@@ -96,6 +96,10 @@ export default {
 			let isLast = this.isLastProperty ? 1 : 0
 			// length is one & add one space at the end
 			return hasTitle + 1 + isLast
+		},
+		// is there only one option available
+		isSingleOption() {
+			return this.propModel.options.length <= 1
 		},
 
 		// matching value to the options we provide

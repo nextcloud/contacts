@@ -39,12 +39,14 @@
 		width: 120px;
 		margin-left: 5px;
 	}
-	input#sort-by, .multiselect__single {
+	input#sort-by,
+	.multiselect__single {
 		padding: 6px 12px;
 		min-height: 34px;
 		text-align: center;
-		background: url(/core/css/../img/actions/triangle-s.svg) no-repeat right 4px center;
-		background-color: inherit;
+		background-repeat: no-repeat;
+		background-position: right 4px center;
+		@include icon-color('triangle-s', 'actions', $color-black, 1, true);
 		outline: 0;
 		padding-right: 24px !important;
 	}
@@ -54,22 +56,21 @@
 .import-contact {
 	display: flex;
 	flex-direction: column;
-	.multiselect-label {
+	&__multiselect-label {
 		width: 100%;
-		padding: 6px 12px 6px 34px;
+		padding: 6px 12px;
+		padding-left: 34px;
 		margin: 0;
 		border-radius: var(--border-radius) var(--border-radius) 0 0;
-		background: url(/core/css/../img/actions/upload.svg) no-repeat left 9px center;
-		background-color: #f7f7f7;
+		background-position: left 9px center;
 		z-index: 2;
+		&--no-select {
+			border-radius: var(--border-radius);
+		}
 	}
-	.multiselect-vue {
+	&__multiselect.multiselect {
 		width: 100%;
 		margin: 0;
-	}
-	.multiselect-vue .multiselect__tags {
-		border: 1px solid var(--color-border-dark);
-		border-radius: 0 0 var(--border-radius) var(--border-radius);
 		margin-top: -1px;
 	}
 }
