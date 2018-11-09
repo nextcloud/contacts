@@ -34,7 +34,6 @@
 			:placeholder="placeholder"
 			:class="{ 'showContent': inputGiven, 'icon-loading': isLoading }"
 			open-direction="bottom"
-			class="multiselect-vue"
 			@search-change="asyncFind"
 			@input="shareAddressbook">
 			<template slot="singleLabel" slot-scope="props">
@@ -57,22 +56,16 @@
 </template>
 
 <script>
-import clickOutside from 'vue-click-outside'
-import api from '../../services/api'
-import Multiselect from 'vue-multiselect'
+
+import api from 'Services/api'
+
 import addressBookSharee from './SettingsAddressbookSharee'
 import debounce from 'debounce'
 
 export default {
 	name: 'SettingsShareAddressbook',
 	components: {
-		clickOutside,
-		Multiselect,
 		addressBookSharee
-	},
-	directives: {
-		clickOutside,
-		debounce
 	},
 	props: {
 		addressbook: {

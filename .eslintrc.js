@@ -16,15 +16,28 @@ module.exports = {
 	},
 	parserOptions: {
 		parser: 'babel-eslint',
-		ecmaVersion: 6
+		ecmaVersion: 8
 	},
 	extends: [
 		'eslint:recommended',
+		'plugin:import/errors',
+		'plugin:import/warnings',
 		'plugin:node/recommended',
 		'plugin:vue/essential',
 		'plugin:vue/recommended',
 		'standard'
 	],
+	settings: {
+		'import/resolver': {
+			webpack: {
+				config: 'webpack.common.js'
+			},
+			node: {
+				paths: ['src'],
+				extensions: ['.js', '.vue']
+			}
+		}
+	},
 	plugins: ['vue', 'node'],
 	rules: {
 		// space before function ()

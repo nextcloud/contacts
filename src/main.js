@@ -27,6 +27,20 @@ import router from './router'
 import store from './store'
 import { sync } from 'vuex-router-sync'
 
+/** GLOBAL COMPONENTS AND DIRECTIVE */
+import { AppNavigation, DatetimePicker, Multiselect, PopoverMenu } from 'nextcloud-vue'
+import ClickOutside from 'vue-click-outside'
+import Tooltip from 'v-tooltip'
+import VueClipboard from 'vue-clipboard2'
+
+Vue.component('AppNavigation', AppNavigation)
+Vue.component('DatetimePicker', DatetimePicker)
+Vue.component('Multiselect', Multiselect)
+Vue.component('PopoverMenu', PopoverMenu)
+Vue.directive('ClickOutside', ClickOutside)
+Vue.directive('Tooltip', Tooltip)
+Vue.use(VueClipboard)
+
 // CSP config for webpack dynamic chunk loading
 // eslint-disable-next-line
 __webpack_nonce__ = btoa(OC.requestToken)

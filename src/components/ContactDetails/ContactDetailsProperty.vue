@@ -35,11 +35,11 @@ import { Property } from 'ical.js'
 import rfcProps from '../../models/rfcProps.js'
 import Contact from '../../models/contact'
 
-import PropertyText from '../Properties/PropertyText'
-import PropertyMultipleText from '../Properties/PropertyMultipleText'
-import PropertyDateTime from '../Properties/PropertyDateTime'
-import propertyGroups from '../Properties/PropertyGroups'
-import PropertySelect from '../Properties/PropertySelect'
+import PropertyText from 'Components/Properties/PropertyText'
+import PropertyMultipleText from 'Components/Properties/PropertyMultipleText'
+import PropertyDateTime from 'Components/Properties/PropertyDateTime'
+import propertyGroups from 'Components/Properties/PropertyGroups'
+import PropertySelect from 'Components/Properties/PropertySelect'
 
 export default {
 	name: 'ContactDetailsProperty',
