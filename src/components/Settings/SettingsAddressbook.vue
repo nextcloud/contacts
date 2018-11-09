@@ -21,24 +21,22 @@
   -
   -->
 <template>
-	<div>
-		<li :class="{'addressbook--disabled': !addressbook.enabled}" class="addressbook">
-			<!-- addressbook name -->
-			<span class="addressbook__name">{{ addressbook.displayName }}</span>
-			<!-- sharing button -->
-			<a href="#" class="addressbook__share icon-shared"
-				@click="toggleShare" />
-			<!-- popovermenu -->
-			<a v-click-outside="closeMenu" href="#" class="addressbook__menu">
-				<div class="icon-more" @click="toggleMenu" />
-				<div :class="{open: menuOpen}" class="popovermenu">
-					<popover-menu :menu="menu" />
-				</div>
-			</a>
-		</li>
+	<li :class="{'addressbook--disabled': !addressbook.enabled}" class="addressbook">
+		<!-- addressbook name -->
+		<span class="addressbook__name">{{ addressbook.displayName }}</span>
+		<!-- sharing button -->
+		<a href="#" class="addressbook__share icon-shared"
+			@click="toggleShare" />
+		<!-- popovermenu -->
+		<a v-click-outside="closeMenu" href="#" class="addressbook__menu">
+			<div class="icon-more" @click="toggleMenu" />
+			<div :class="{open: menuOpen}" class="popovermenu">
+				<popover-menu :menu="menu" />
+			</div>
+		</a>
 		<!-- sharing input -->
 		<share-address-book v-if="shareOpen" :addressbook="addressbook" />
-	</div>
+	</li>
 </template>
 
 <script>

@@ -23,6 +23,7 @@
 
 .addressbook {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
 	white-space: nowrap;
 	text-overflow: ellipsis;

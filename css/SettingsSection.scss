@@ -26,29 +26,29 @@
 	.settings-section {
 		display: flex;
 		align-items: center;
+		margin-top: 5px;
 	}
 }
 
 #new-addressbook-form {
 	display: flex;
+	input {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 }
 
 // Sort Contacts
 .sort-contacts {
 	.multiselect.multiselect-vue {
-		width: 120px;
-		margin-left: 5px;
-	}
-	input#sort-by,
-	.multiselect__single {
-		padding: 6px 12px;
-		min-height: 34px;
-		text-align: center;
-		background-repeat: no-repeat;
-		background-position: right 4px center;
-		@include icon-color('triangle-s', 'actions', $color-black, 1, true);
-		outline: 0;
-		padding-right: 24px !important;
+		width: 100%;
+		margin: 0;
+		.multiselect__single {
+			padding-right: 24px !important;
+			@include icon-color('triangle-s', 'actions', $color-black, 1, true);
+			background-repeat: no-repeat;
+			background-position: right 4px center;
+		}
 	}
 }
 
@@ -68,7 +68,7 @@
 			border-radius: var(--border-radius);
 		}
 	}
-	&__multiselect.multiselect {
+	&__multiselect.multiselect.multiselect-vue {
 		width: 100%;
 		margin: 0;
 		margin-top: -1px;

@@ -237,7 +237,7 @@ export default {
 		addressbookModel() {
 			return {
 				readableName: t('contacts', 'Addressbook'),
-				icon: 'icon-addressbook',
+				icon: 'icon-address-book',
 				options: this.addressbooksOptions
 			}
 		},
