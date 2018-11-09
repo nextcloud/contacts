@@ -152,12 +152,27 @@ const mutations = {
 	 */
 	updateContactAddressbook(state, { contact, addressbook }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
-			// replace contact object data
+			// replace contact object data by creating a new contact
 			let oldKey = contact.key
-			let newContact = new Contact(contact.dav.data, addressbook)
-			Vue.set(state.contacts, newContact.key, newContact)
+
+			// hijack reference
+			var newContact = contact
+
+			// delete old key, cut reference
 			Vue.delete(state.contacts, oldKey)
 
+			// replace addressbook
+			Vue.set(newContact, 'addressbook', addressbook)
+
+			// set new key, re-assign reference
+			Vue.set(state.contacts, newContact.key, newContact)
+
+			// Update sorted contacts list, replace at exact same position
+			let index = state.sortedContacts.findIndex(search => search.key === oldKey)
+			state.sortedContacts[index] = {
+				key: newContact.key,
+				value: newContact[state.orderKey]
+			}
 		} else {
 			console.error('Error while replacing the addressbook of following contact', contact)
 		}
@@ -218,7 +233,7 @@ const mutations = {
 const getters = {
 	getContacts: state => state.contacts,
 	getSortedContacts: state => state.sortedContacts,
-	getContact: (state) => (uid) => state.contacts[uid],
+	getContact: (state) => (key) => state.contacts[key],
 	getOrderKey: state => state.orderKey
 }
 

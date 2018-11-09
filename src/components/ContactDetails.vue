@@ -113,7 +113,6 @@ import Vue from 'vue'
 import VTooltip from 'v-tooltip'
 import debounce from 'debounce'
 
-import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps.js'
 
 import ContactProperty from './ContactDetails/ContactDetailsProperty'
@@ -145,7 +144,7 @@ export default {
 			type: Boolean,
 			default: true
 		},
-		uid: {
+		contactKey: {
 			type: String,
 			default: undefined
 		}
@@ -276,7 +275,7 @@ export default {
 		 */
 		addressbooksOptions() {
 			return this.addressbooks
-				.filter(addressbook => addressbook.readOnly)
+				.filter(addressbook => !addressbook.readOnly)
 				.map(addressbook => {
 					return {
 						id: addressbook.id,
@@ -290,22 +289,22 @@ export default {
 			return this.$store.getters.getAddressbooks
 		},
 		contact() {
-			return this.$store.getters.getContact(this.uid)
+			return this.$store.getters.getContact(this.contactKey)
 		}
 	},
 
 	watch: {
 		contact: function() {
-			if (this.uid) {
-				this.selectContact(this.uid)
+			if (this.contactKey) {
+				this.selectContact(this.contactKey)
 			}
 		}
 	},
 
 	beforeMount() {
 		// load the desired data if we already selected a contact
-		if (this.uid) {
-			this.selectContact(this.uid)
+		if (this.contactKey) {
+			this.selectContact(this.contactKey)
 		}
 	},
 
@@ -314,12 +313,10 @@ export default {
 		 * Executed on the 'updatedcontact' event
 		 * Send the local clone of contact to the store
 		 */
-		updateContact() {
+		async updateContact() {
 			this.loadingUpdate = true
-			this.$store.dispatch('updateContact', this.contact)
-				.then(() => {
-					this.loadingUpdate = false
-				})
+			await this.$store.dispatch('updateContact', this.contact)
+			this.loadingUpdate = false
 		},
 
 		/**
@@ -343,12 +340,12 @@ export default {
 		 * Fetch updated data if necessary
 		 * Scroll to the selected contact if exists
 		 *
-		 * @param {string} uid the contact uid
+		 * @param {string} key the contact key
 		 */
-		selectContact(uid) {
+		selectContact(key) {
 			// local version of the contact
 			this.loadingData = true
-			let contact = this.$store.getters.getContact(uid)
+			let contact = this.$store.getters.getContact(key)
 
 			if (contact) {
 				// if contact exists AND if exists on server
@@ -356,11 +353,10 @@ export default {
 					this.$store.dispatch('fetchFullContact', { contact })
 						.then(() => {
 							// create empty contact and copy inner data
-							let localContact = new Contact(
-								'BEGIN:VCARD\nUID:' + contact.uid + '\nEND:VCARD',
-								contact.addressbook
+							let localContact = Object.assign(
+								Object.create(Object.getPrototypeOf(contact)),
+								contact
 							)
-							localContact.updateContact(contact.jCal)
 							this.localContact = localContact
 							this.loadingData = false
 						})
@@ -373,9 +369,9 @@ export default {
 				} else {
 					// create empty contact and copy inner data
 					// wait for an update to really push the contact on the server!
-					this.localContact = new Contact(
-						'BEGIN:VCARD\nUID:' + contact.uid + '\nEND:VCARD',
-						contact.addressbook
+					this.localContact = Object.assign(
+						Object.create(Object.getPrototypeOf(contact)),
+						contact
 					)
 					this.loadingData = false
 				}
@@ -404,20 +400,30 @@ export default {
 		 *
 		 * @param {string} addressbookId the desired addressbook ID
 		 */
-		moveContactToAddressbook(addressbookId) {
+		async moveContactToAddressbook(addressbookId) {
 			let addressbook = this.addressbooks.find(search => search.id === addressbookId)
 			this.loadingUpdate = true
-			// TODO Properly implement the MOVE request
 			if (addressbook) {
-				this.$store.dispatch('moveContactToAddressbook', {
-					// we need to use the store contact, not the local contact
-					// using this.contact and not this.localContact
-					contact: this.contact,
-					addressbook
-				}).then(() => {
-					this.updateContact()
+				try {
+					const contact = await this.$store.dispatch('moveContactToAddressbook', {
+						// we need to use the store contact, not the local contact
+						// using this.contact and not this.localContact
+						contact: this.contact,
+						addressbook
+					})
+					// select the contact again
+					this.$router.push({
+						name: 'contact',
+						params: {
+							selectedGroup: this.$route.params.selectedGroup,
+							selectedContact: contact.key
+						}
+					})
 					this.loadingUpdate = false
-				})
+				} catch (error) {
+					console.error(error)
+					this.loadingUpdate = false
+				}
 			}
 		},
 
