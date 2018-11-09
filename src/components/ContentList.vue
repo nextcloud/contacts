@@ -31,13 +31,15 @@
 </template>
 
 <script>
-import contentListItem from './ContentList/ContentListItem'
+import ContentListItem from './ContentList/ContentListItem'
 
 export default {
 	name: 'ContentList',
+
 	components: {
-		'content-list-item': contentListItem
+		ContentListItem
 	},
+
 	props: {
 		list: {
 			type: Array,

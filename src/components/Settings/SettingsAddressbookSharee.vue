@@ -40,27 +40,23 @@
 </template>
 
 <script>
-import clickOutside from 'vue-click-outside'
 
 export default {
 	name: 'SettingsShareSharee',
-	components: {
-		clickOutside
-	},
-	directives: {
-		clickOutside
-	},
+
 	props: {
 		sharee: {
 			type: Object,
 			required: true
 		}
 	},
+
 	computed: {
 		writeable() {
 			return this.sharee.writeable
 		}
 	},
+
 	methods: {
 		deleteSharee() {
 			setTimeout(() => { this.$store.dispatch('removeSharee', this.sharee) }, 500)

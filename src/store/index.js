@@ -21,7 +21,7 @@
  */
 
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex, { Store } from 'vuex'
 import addressbooks from './addressbooks'
 import contacts from './contacts'
 import groups from './groups'
@@ -31,7 +31,7 @@ Vue.use(Vuex)
 
 const mutations = {}
 
-export default new Vuex.Store({
+export default new Store({
 	modules: {
 		addressbooks,
 		contacts,

@@ -22,7 +22,7 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-import Contacts from '../views/Contacts'
+import Contacts from 'Views/Contacts'
 
 Vue.use(Router)
 

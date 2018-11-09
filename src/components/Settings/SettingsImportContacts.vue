@@ -44,23 +44,15 @@
 </template>
 
 <script>
-import clickOutside from 'vue-click-outside'
-import Multiselect from 'vue-multiselect'
-
 export default {
 	name: 'SettingsImportContacts',
-	components: {
-		clickOutside,
-		Multiselect
-	},
-	directives: {
-		clickOutside
-	},
+
 	data() {
 		return {
 			importDestination: false
 		}
 	},
+
 	computed: {
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
@@ -73,8 +65,7 @@ export default {
 						id: addressbook.id,
 						displayName: addressbook.displayName
 					}
-				}
-				)
+				})
 		},
 		importState() {
 			return this.$store.getters.getImportState

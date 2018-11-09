@@ -45,16 +45,14 @@
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
-import propertyTitle from './PropertyTitle'
+import PropertyTitle from './PropertyTitle'
 import debounce from 'debounce'
 
 export default {
 	name: 'PropertySelect',
 
 	components: {
-		Multiselect,
-		propertyTitle
+		PropertyTitle
 	},
 
 	props: {
