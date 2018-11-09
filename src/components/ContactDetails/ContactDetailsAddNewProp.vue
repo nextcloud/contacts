@@ -39,7 +39,7 @@
 <script>
 import rfcProps from '../../models/rfcProps.js'
 import Contact from '../../models/contact'
-import PropertyTitle from '../Properties/PropertyTitle'
+import PropertyTitle from 'Components/Properties/PropertyTitle'
 
 export default {
 	name: 'ContactDetailsAddNewProp',

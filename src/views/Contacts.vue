@@ -48,15 +48,15 @@
 </template>
 
 <script>
-import SettingsSection from '../components/SettingsSection'
-import ContentList from '../components/ContentList'
-import ContactDetails from '../components/ContactDetails'
-import ImportScreen from '../components/ImportScreen'
+import SettingsSection from 'Components/SettingsSection'
+import ContentList from 'Components/ContentList'
+import ContactDetails from 'Components/ContactDetails'
+import ImportScreen from 'Components/ImportScreen'
 
-import Contact from '../models/contact'
-import rfcProps from '../models/rfcProps.js'
+import Contact from 'Models/contact'
+import rfcProps from 'Models/rfcProps.js'
 
-import client from '../services/cdav.js'
+import client from 'Services/cdav.js'
 
 export default {
 	name: 'Contacts',

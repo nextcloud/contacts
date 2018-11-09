@@ -57,7 +57,7 @@
 
 <script>
 
-import api from '../../services/api'
+import api from 'Services/api'
 
 import addressBookSharee from './SettingsAddressbookSharee'
 import debounce from 'debounce'
