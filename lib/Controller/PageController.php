@@ -23,6 +23,7 @@
 
 namespace OCA\Contacts\Controller;
 
+use OC\Security\CSP\ContentSecurityPolicy;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IRequest;
@@ -47,7 +48,15 @@ class PageController extends Controller {
 	public function index(): TemplateResponse {
 		$params = ['user' => $this->userId];
 
-		return new TemplateResponse('contacts', 'main', $params); // templates/main.php
+		// fix content security policy issue
+		$response = new TemplateResponse('contacts', 'main', $params); // templates/main.php
+		$csp = new ContentSecurityPolicy();
+		$csp->allowEvalScript();
+		$csp->allowInlineScript();
+		$csp->allowInlineStyle();
+		$response->setContentSecurityPolicy($csp);
+
+		return $response;
 	}
 
 	/**
