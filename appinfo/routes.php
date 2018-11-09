@@ -25,7 +25,6 @@ return [
 	'routes' => [
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
 		['name' => 'page#indexGroup', 'url' => '/{group}', 'verb' => 'GET'],
-		['name' => 'page#exportGroup', 'url' => '/{group}/export', 'verb' => 'GET'],
 		['name' => 'page#indexContact', 'url' => '/{group}/{contact}', 'verb' => 'GET']
 	]
 ];

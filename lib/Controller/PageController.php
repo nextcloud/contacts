@@ -23,9 +23,7 @@
 
 namespace OCA\Contacts\Controller;
 
-use OCA\Contacts\Service\ExportGroupService;
 use OCP\AppFramework\Controller;
-use OCP\AppFramework\Http\DataDownloadResponse;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IRequest;
 
@@ -33,15 +31,11 @@ class PageController extends Controller {
 
 	private $userId;
 
-	private $exportGroupService;
-
 	public function __construct(string $AppName,
 								IRequest $request,
-								string $UserId,
-								ExportGroupService $exportGroupService) {
+								string $UserId) {
 		parent::__construct($AppName, $request);
 		$this->userId = $UserId;
-		$this->exportGroupService = $exportGroupService;
 	}
 
 	/**
@@ -64,16 +58,6 @@ class PageController extends Controller {
 	 */
 	public function indexGroup(): TemplateResponse {
 		return $this->index();
-	}
-
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 *
-	 * Export all contacts of a group
-	 */
-	public function exportGroup($group): DataDownloadResponse {
-		return $this->exportGroupService->exportGroup($group);
 	}
 
 	/**

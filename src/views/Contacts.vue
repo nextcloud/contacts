@@ -330,11 +330,22 @@ export default {
 
 		/* DOWNLOAD */
 		downloadGroup(group) {
-			const baseUrl = this.$router.options.base
-			const targetUrl = group.name + '/export'
-			const url = OC.generateUrl(baseUrl + '/' + targetUrl)
+			// create result
+			const contacts = this.contacts
+			const result = group.contacts.map(uid => contacts[uid].dav.data).join('')
+			// return result
 			return function() {
-				window.open(url)
+				// create element
+				let element = document.createElement('a')
+				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(result))
+				element.setAttribute('download', group.name + '.vcf')
+				element.style.display = 'none'
+				// add element to dom
+				document.body.appendChild(element)
+				// click on element
+				element.click()
+				// remove element from dom
+				document.body.removeChild(element)
 			}
 		}
 	}
