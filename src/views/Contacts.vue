@@ -145,14 +145,7 @@ export default {
 					},
 					text: group.name,
 					utils: {
-						counter: group.contacts.length,
-						actions: [
-							{
-								icon: 'icon-download',
-								text: 'Download',
-								action: this.downloadGroup(group)
-							}
-						]
+						counter: group.contacts.length
 					}
 				}
 			}).sort(function(a, b) {
@@ -326,27 +319,6 @@ export default {
 		},
 		resetSearch() {
 			this.search('')
-		},
-
-		/* DOWNLOAD */
-		downloadGroup(group) {
-			// create result
-			const contacts = this.contacts
-			const result = group.contacts.map(uid => contacts[uid].dav.data).join('')
-			// return result
-			return function() {
-				// create element
-				let element = document.createElement('a')
-				element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(result))
-				element.setAttribute('download', group.name + '.vcf')
-				element.style.display = 'none'
-				// add element to dom
-				document.body.appendChild(element)
-				// click on element
-				element.click()
-				// remove element from dom
-				document.body.removeChild(element)
-			}
 		}
 	}
 }
