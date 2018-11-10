@@ -2,9 +2,9 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Контакти",
-    "First name" : "Име",
-    "Last name" : "Презиме",
     "Nickname" : "Прекар",
+    "Last name" : "Презиме",
+    "First name" : "Име",
     "Additional names" : "Дополнителни имиња",
     "Notes" : "Белешки",
     "Website" : "Веб сајт",

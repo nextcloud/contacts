@@ -2,9 +2,9 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contactes",
-    "First name" : "Prenom",
-    "Last name" : "Nom",
     "Nickname" : "Escais",
+    "Last name" : "Nom",
+    "First name" : "Prenom",
     "Additional names" : "Noms suplementaris",
     "Notes" : "Nòtas",
     "Website" : "Site web",

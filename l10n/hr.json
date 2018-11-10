@@ -1,8 +1,8 @@
 { "translations": {
     "Contacts" : "Kontakti",
-    "First name" : "Ime",
-    "Last name" : "Prezime",
     "Nickname" : "Nadimak",
+    "Last name" : "Prezime",
+    "First name" : "Ime",
     "Additional names" : "Dodatna imena",
     "Notes" : "Bilješke",
     "Website" : "Web-mjesto",

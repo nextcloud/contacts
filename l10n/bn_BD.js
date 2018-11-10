@@ -2,9 +2,9 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "পরিচিতজন",
-    "First name" : "নামের প্রথমাংশ ",
-    "Last name" : "নামের শেষাংশ",
     "Nickname" : "ছদ্মনাম",
+    "Last name" : "নামের শেষাংশ",
+    "First name" : "নামের প্রথমাংশ ",
     "Additional names" : "অতিরিক্ত নামসমূহ",
     "Notes" : "নোট",
     "Website" : "ওয়েবসাইট",

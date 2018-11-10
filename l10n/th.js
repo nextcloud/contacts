@@ -2,10 +2,10 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "ข้อมูลผู้ติดต่อ",
-    "First name" : "ชื่อจริง",
-    "Last name" : "นามสกุลจริง",
     "Nickname" : "ชื่อเล่น",
     "Detailed name" : "รายละเอียดชื่อ",
+    "Last name" : "นามสกุลจริง",
+    "First name" : "ชื่อจริง",
     "Additional names" : "ชื่ออื่นๆ",
     "Prefix" : "คำนำหน้า",
     "Suffix" : "คำต่อท้าย",
