@@ -109,7 +109,7 @@
 <script>
 import debounce from 'debounce'
 
-import rfcProps from '../models/rfcProps.js'
+import rfcProps from 'Models/rfcProps'
 
 import ContactProperty from './ContactDetails/ContactDetailsProperty'
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
@@ -408,9 +408,9 @@ export default {
 							selectedContact: contact.key
 						}
 					})
-					this.loadingUpdate = false
 				} catch (error) {
 					console.error(error)
+				} finally {
 					this.loadingUpdate = false
 				}
 			}

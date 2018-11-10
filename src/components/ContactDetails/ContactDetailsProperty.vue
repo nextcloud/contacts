@@ -32,8 +32,8 @@
 
 <script>
 import { Property } from 'ical.js'
-import rfcProps from '../../models/rfcProps.js'
-import Contact from '../../models/contact'
+import rfcProps from 'Models/rfcProps'
+import Contact from 'Models/contact'
 
 import PropertyText from 'Components/Properties/PropertyText'
 import PropertyMultipleText from 'Components/Properties/PropertyMultipleText'

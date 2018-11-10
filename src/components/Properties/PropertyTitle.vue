@@ -25,7 +25,7 @@
 		<div :class="icon" class="property__label property__title--icon" />
 		{{ readableName }}
 		<!-- display tooltip with hint if available -->
-		<div v-tooltip.right="info" v-if="info" class="icon-details" />
+		<div v-tooltip.auto="info" v-if="info" class="icon-details" />
 	</h3>
 </template>
 

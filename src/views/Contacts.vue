@@ -54,9 +54,9 @@ import ContactDetails from 'Components/ContactDetails'
 import ImportScreen from 'Components/ImportScreen'
 
 import Contact from 'Models/contact'
-import rfcProps from 'Models/rfcProps.js'
+import rfcProps from 'Models/rfcProps'
 
-import client from 'Services/cdav.js'
+import client from 'Services/cdav'
 
 export default {
 	name: 'Contacts',

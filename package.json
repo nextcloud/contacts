@@ -31,8 +31,8 @@
 		"lint:fix": "eslint --ext .js,.vue src tests --fix",
 		"stylelint": "stylelint src",
 		"stylelint:fix": "stylelint src --fix",
-		"test": "mocha-webpack --webpack-config webpack.test.js --require tests/setup.js \"tests/js/**/*.spec.js\"",
-		"test:watch": "mocha-webpack -w --webpack-config webpack.test.js --require tests/setup.js \"tests/js/**/*.spec.js\""
+		"test": "mocha-webpack --webpack-config webpack.test.js --interactive false --require tests/setup.js \"tests/js/**/*.spec.js\"",
+		"test:watch": "mocha-webpack -w --webpack-config webpack.test.js --interactive false --require tests/setup.js \"tests/js/**/*.spec.js\""
 	},
 	"dependencies": {
 		"@babel/polyfill": "^7.0.0",
@@ -58,7 +58,7 @@
 		"ie >= 11"
 	],
 	"engines": {
-		"node": ">=11.0.0"
+		"node": ">=10.0.0"
 	},
 	"devDependencies": {
 		"@babel/core": "^7.1.5",

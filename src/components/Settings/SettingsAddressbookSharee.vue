@@ -22,17 +22,26 @@
 
 <template>
 	<li class="addressbook-sharee">
-		<span :class="sharee.group ? 'icon-group' : 'icon-user'" class="icon" />
-		<span class="addressbook-sharee__identifier">{{ sharee.displayname }}</span>
+		<span :class="{
+			'icon-loading-small': loading,
+			'icon-group': sharee.isGroup && !loading,
+			'icon-user': !sharee.isGroup && !loading
+		}" class="icon" />
+		<span class="addressbook-sharee__identifier">{{ sharee.displayName }}</span>
 		<span class="addressbook-sharee__utils">
 			<input
-				:id="sharee.displayname"
-				v-model="writeable"
+				:id="uid"
+				:checked="writeable"
+				:disabled="loading"
 				class="checkbox"
 				name="editable"
-				type="checkbox">
-			<label :for="sharee.displayName" @click="editSharee"> can edit</label>
-			<a href="#" title="Delete"
+				type="checkbox"
+				@change="editSharee">
+			<label :for="uid">
+				{{ t('contacts', 'can edit') }}
+			</label>
+			<a :class="{'addressbook-sharee__utils--disabled': loading}" href="#"
+				title="Delete"
 				class="icon-delete"
 				@click="deleteSharee" />
 		</span>
@@ -45,24 +54,69 @@ export default {
 	name: 'SettingsShareSharee',
 
 	props: {
+		addressbook: {
+			type: Object,
+			required: true
+		},
 		sharee: {
 			type: Object,
 			required: true
 		}
 	},
 
+	data() {
+		return {
+			loading: false
+		}
+	},
+
 	computed: {
 		writeable() {
 			return this.sharee.writeable
+		},
+		// generated id for this sharee
+		uid() {
+			return this.sharee.id + this.addressbook.id + Math.floor(Math.random() * 1000)
 		}
 	},
 
 	methods: {
-		deleteSharee() {
-			setTimeout(() => { this.$store.dispatch('removeSharee', this.sharee) }, 500)
+		async deleteSharee() {
+			if (this.loading) {
+				return false
+			}
+
+			this.loading = true
+			try {
+				await this.$store.dispatch('removeSharee', {
+					addressbook: this.addressbook,
+					uri: this.sharee.uri
+				})
+			} catch (error) {
+				console.error(error)
+				OC.Notification.showTemporary(t('contacts', 'Unable to delete the share.'))
+			} finally {
+				this.loading = false
+			}
 		},
-		editSharee() {
-			this.$store.dispatch('toggleShareeWritable', this.sharee)
+		async editSharee() {
+			if (this.loading) {
+				return false
+			}
+
+			this.loading = true
+			try {
+				await this.$store.dispatch('toggleShareeWritable', {
+					addressbook: this.addressbook,
+					uri: this.sharee.uri,
+					writeable: !this.sharee.writeable
+				})
+			} catch (error) {
+				console.error(error)
+				OC.Notification.showTemporary(t('contacts', 'Unable to change permissions.'))
+			} finally {
+				this.loading = false
+			}
 		}
 	}
 }

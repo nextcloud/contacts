@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import rfcProps from '../../models/rfcProps.js'
-import Contact from '../../models/contact'
+import rfcProps from 'Models/rfcProps'
+import Contact from 'Models/contact'
 import PropertyTitle from 'Components/Properties/PropertyTitle'
 
 export default {
