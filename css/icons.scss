@@ -27,3 +27,7 @@
 .icon-address-book {
 	@include icon-color('address-book', 'contacts', $color-black, 1);
 }
+
+.icon-eye-white {
+	@include icon-color('eye', 'contacts', $color-white, 1);
+}
