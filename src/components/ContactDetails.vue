@@ -106,7 +106,7 @@
 					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
 					duplication, we created a fake propModel and property with our own options here) -->
 				<property-select :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
-					:is-last-property="false" :property="{}" class="property--addressbooks" />
+					:is-last-property="true" :property="{}" class="property--addressbooks" />
 
 				<!-- new property select -->
 				<add-new-prop v-if="!isReadOnly" :contact="contact" />
