@@ -48,17 +48,17 @@
 				<!-- fullname, org, title -->
 				<div id="contact-header-infos">
 					<h2>
-						<input id="contact-fullname" v-model="contact.fullName" :disabled="contact.addressbook.readOnly"
+						<input id="contact-fullname" v-model="contact.fullName" :readonly="contact.addressbook.readOnly"
 							:placeholder="t('contacts', 'Name')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="fullname"
 							value="" @input="debounceUpdateContact">
 					</h2>
 					<div id="details-org-container">
-						<input id="contact-org" v-model="contact.org" :disabled="contact.addressbook.readOnly"
+						<input id="contact-org" v-model="contact.org" :readonly="contact.addressbook.readOnly"
 							:placeholder="t('contacts', 'Company')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="org"
 							value="" @input="debounceUpdateContact">
-						<input id="contact-title" v-model="contact.title" :disabled="contact.addressbook.readOnly"
+						<input id="contact-title" v-model="contact.title" :readonly="contact.addressbook.readOnly"
 							:placeholder="t('contacts', 'Title')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="title"
 							value="" @input="debounceUpdateContact">
@@ -67,7 +67,13 @@
 
 				<!-- actions -->
 				<div id="contact-header-actions">
-					<div v-tooltip.bottom="warning" :class="{'icon-loading-small': loadingUpdate, 'header-icon--pulse icon-error-white': warning}" class="header-icon" />
+					<a v-tooltip.bottom="{
+							content: warning ? warning.msg : '',
+							trigger: 'hover focus'
+						}"
+						v-if="loadingUpdate || warning"
+						:class="{'icon-loading-small': loadingUpdate,
+							[`${warning.icon}`]: warning}" class="header-icon" href="#" />
 					<div v-tooltip="{
 							content: conflict,
 							show: true,
@@ -95,12 +101,15 @@
 					:sorted-properties="sortedProperties" :property="property" :contact="contact"
 					@updatedcontact="updateContact" />
 
-				<!-- addressbook change select - no last property because class is not applied here-->
+				<!-- addressbook change select - no last property because class is not applied here,
+					empty property because this is a required prop on regular property-select. But since
+					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
+					duplication, we created a fake propModel and property with our own options here) -->
 				<property-select :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
-					:is-last-property="false" class="property--addressbooks" />
+					:is-last-property="true" :property="{}" class="property--addressbooks" />
 
 				<!-- new property select -->
-				<add-new-prop :contact="contact" />
+				<add-new-prop v-if="!isReadOnly" :contact="contact" />
 			</section>
 		</template>
 	</div>
@@ -155,27 +164,43 @@ export default {
 	},
 
 	computed: {
+		isReadOnly() {
+			if (this.contact.addressbook) {
+				return this.contact.addressbook.readOnly
+			}
+			return false
+		},
 
 		/**
-		 * Warning message
+		 * Warning messages
 		 *
-		 * @returns {string|undefined}
+		 * @returns {Object|Boolean}
 		 */
 		warning() {
 			if (!this.contact.dav) {
-				return t('contacts', 'This contact is not yet synced. Edit it to trigger a change.')
+				return {
+					icon: 'icon-error-white header-icon--pulse',
+					msg: t('contacts', 'This contact is not yet synced. Edit it to trigger a change.')
+				}
+			} else if (this.isReadOnly) {
+				return {
+					icon: 'icon-eye-white',
+					msg: t('contacts', 'This contact is in read-only mode. You do not have permission to edit this contact.')
+				}
 			}
+			return false
 		},
 
 		/**
 		 * Conflict message
 		 *
-		 * @returns {string|undefined}
+		 * @returns {String|Boolean}
 		 */
 		conflict() {
 			if (this.contact.conflict) {
 				return t('contacts', 'The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded.')
 			}
+			return false
 		},
 
 		/**

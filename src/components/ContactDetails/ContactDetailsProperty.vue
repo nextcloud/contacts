@@ -26,7 +26,7 @@
 		:prop-model="propModel" :value.sync="value" :is-first-property="isFirstProperty"
 		:property="property" :is-last-property="isLastProperty" :class="{'property--last': isLastProperty}"
 		:contact="contact" :prop-name="propName" :prop-type="propType"
-		:options="sortedModelOptions"
+		:options="sortedModelOptions" :is-read-only="isReadOnly"
 		@delete="deleteProp" />
 </template>
 
@@ -108,6 +108,12 @@ export default {
 				return this.sortedProperties[this.index + 1].name !== this.propName
 			}
 			return true
+		},
+		isReadOnly() {
+			if (this.contact.addressbook) {
+				return this.contact.addressbook.readOnly
+			}
+			return false
 		},
 
 		/**

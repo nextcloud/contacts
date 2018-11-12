@@ -26,6 +26,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import { sync } from 'vuex-router-sync'
+import { generateFilePath } from 'nextcloud-server/dist/router'
 
 /** GLOBAL COMPONENTS AND DIRECTIVE */
 import { AppNavigation, DatetimePicker, Multiselect, PopoverMenu } from 'nextcloud-vue'
@@ -42,7 +43,7 @@ __webpack_nonce__ = btoa(OC.requestToken)
 // OC.generateUrl ensure the index.php (or not)
 // We do not want the index.php since we're loading files
 // eslint-disable-next-line
-__webpack_public_path__ = OC.linkTo('contacts', 'js/')
+__webpack_public_path__ = generateFilePath('contacts', '', 'js/')
 
 Vue.component('AppNavigation', AppNavigation)
 Vue.component('DatetimePicker', DatetimePicker)

@@ -35,18 +35,19 @@
 			<div v-else class="property__label">{{ propModel.readableName }}</div>
 
 			<!-- delete the prop -->
-			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
+			<button v-if="!isReadOnly" :title="t('contacts', 'Delete')" class="property__delete icon-delete"
+				@click="deleteProperty" />
 
 			<multiselect v-model="matchedOptions" :options="propModel.options" :placeholder="t('contacts', 'Select option')"
-				:disabled="isSingleOption" class="multiselect-vue property__value" track-by="id"
+				:disabled="isSingleOption || isReadOnly" class="multiselect-vue property__value" track-by="id"
 				label="name" @input="updateValue" />
 		</div>
 	</div>
 </template>
 
 <script>
+import PropertyMixin from 'Mixins/PropertyMixin'
 import PropertyTitle from './PropertyTitle'
-import debounce from 'debounce'
 
 export default {
 	name: 'PropertySelect',
@@ -55,36 +56,13 @@ export default {
 		PropertyTitle
 	},
 
+	mixins: [PropertyMixin],
+
 	props: {
-		selectType: {
-			type: [Object, Boolean],
-			default: () => {}
-		},
-		propModel: {
-			type: Object,
-			default: () => {},
-			required: true
-		},
 		value: {
 			type: [Object, String],
 			default: '',
 			required: true
-		},
-		isFirstProperty: {
-			type: Boolean,
-			default: true
-		},
-		isLastProperty: {
-			type: Boolean,
-			default: true
-		}
-	},
-
-	data() {
-		return {
-			// value is represented by the ID of the possible options
-			localValue: this.value
-			// localType: this.selectType
 		}
 	},
 
@@ -113,44 +91,6 @@ export default {
 				this.localValue = value.id
 			}
 		}
-
-	},
-
-	watch: {
-		/**
-		 * Since we're updating a local data based on the value prop,
-		 * we need to make sure to update the local data on pop change
-		 * TODO: check if this create performance drop
-		 */
-		value: function() {
-			this.localValue = this.value
-		}
-		// selectType: function() {
-		// 	this.localType = this.selectType
-		// }
-	},
-
-	methods: {
-
-		/**
-		 * Delete the property
-		 */
-		deleteProperty() {
-			this.$emit('delete')
-		},
-
-		/**
-		 * Debounce and send update event to parent
-		 */
-		updateValue: debounce(function(e) {
-			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
-			this.$emit('update:value', this.localValue)
-		}, 500)
-
-		// updateType: debounce(function(e) {
-		// 	// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
-		// 	this.$emit('update:selectType', this.localType)
-		// }, 500)
 	}
 }
 

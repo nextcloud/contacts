@@ -98,13 +98,21 @@
 		}
 
 		// mouse feedback
-		&.multiselect {
-			&:hover,
-			&:focus,
-			&:active {
-				opacity: 1;
-				.multiselect__tags {
-					border-color: var(--color-border-dark);
+		&:hover,
+		&:focus,
+		&:active {
+			opacity: 1;
+			.multiselect__tags {
+				border-color: var(--color-border-dark);
+			}
+		}
+
+		// read-only mode
+		&.multiselect--disabled {
+			&, .multiselect__single {
+				&, &:hover, &:focus &:active {
+					background-color: var(--color-main-background) !important;
+					border-color: transparent !important;
 				}
 			}
 		}
@@ -124,10 +132,16 @@
 	// property value within row, after label
 	&__value {
 		flex: 1 1;
+
 		textarea& {
 			align-self: flex-start;
 			min-height: 2 * $grid-height-unit - 2*$grid-input-margin;
 			max-height: 5 * $grid-height-unit - 2*$grid-input-margin;
+		}
+
+		// read-only mode
+		&:read-only {
+			border-color: var(--color-border-dark);
 		}
 	}
 }

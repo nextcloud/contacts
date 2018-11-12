@@ -99,7 +99,7 @@ export default {
 		},
 
 		/**
-		 * Use Axios api call to find matches to the query from the existing Users & Groups
+		 * Use the cdav client call to find matches to the query from the existing Users & Groups
 		 *
 		 * @param {String} query
 		 */

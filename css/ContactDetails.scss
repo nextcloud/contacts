@@ -78,6 +78,12 @@
 				padding: 14px;
 				border-radius: 22px;
 				cursor: pointer;
+				background-size: 16px;
+				opacity: .7;
+				&:hover,
+				&:focus {
+					opacity: 1;
+				}
 				&.header-icon--pulse {
 					margin: 8px;
 					width: 16px;
