@@ -23,10 +23,12 @@
 
 import Vue from 'vue'
 import ICAL from 'ical.js'
+import pLimit from 'p-limit'
+
+import Contact from 'Models/contact'
+
 import parseVcf from 'Services/parseVcf'
 import client from 'Services/cdav'
-import Contact from 'Models/contact'
-import pLimit from 'p-limit'
 
 const addressbookModel = {
 	id: '',
@@ -59,7 +61,28 @@ export function mapDavCollectionToAddressbook(addressbook) {
 		owner: addressbook.owner,
 		readOnly: addressbook.readOnly === true,
 		url: addressbook.url,
-		dav: addressbook
+		dav: addressbook,
+		shares: addressbook.shares.map(sharee => Object.assign({}, mapDavShareeToSharee(sharee)))
+	}
+}
+
+/**
+ * map a dav collection to our addressbook object model
+ *
+ * @param {Object} sharee the sharee object from the cdav library shares
+ * @returns {Object}
+ */
+export function mapDavShareeToSharee(sharee) {
+	const id = sharee.href.split('/').slice(-1)[0]
+	const name = sharee['common-name']
+		? sharee['common-name']
+		: id
+	return {
+		displayName: name,
+		id: id,
+		writeable: sharee.access[0].endsWith('read-write'),
+		isGroup: sharee.href.startsWith('principal:principals/groups/'),
+		uri: sharee.href
 	}
 }
 
@@ -73,11 +96,11 @@ const mutations = {
 	 */
 	addAddressbook(state, addressbook) {
 		// extend the addressbook to the default model
-		addressbook = Object.assign({}, addressbookModel, addressbook)
+		const newAddressbook = Object.assign({}, addressbookModel, addressbook)
 		// force reinit of the contacts object to prevent
 		// data passed as references
-		addressbook.contacts = {}
-		state.addressbooks.push(addressbook)
+		newAddressbook.contacts = {}
+		state.addressbooks.push(newAddressbook)
 	},
 
 	/**
@@ -162,17 +185,19 @@ const mutations = {
 	 * @param {Object} state the store data
 	 * @param {Object} data destructuring object
 	 * @param {Object} data.addressbook the addressbook
-	 * @param {string} data.sharee the sharee
-	 * @param {string} data.id id
-	 * @param {Boolean} data.group group
+	 * @param {string} data.user the userId
+	 * @param {string} data.displayName the displayName
+	 * @param {string} data.uri the sharing principalScheme uri
+	 * @param {Boolean} data.isGroup is this a group ?
 	 */
-	shareAddressbook(state, { addressbook, sharee, id, group }) {
+	shareAddressbook(state, { addressbook, user, displayName, uri, isGroup }) {
 		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
-		let newSharee = {
-			displayname: sharee,
-			id,
+		const newSharee = {
+			displayName,
+			id: user,
 			writeable: false,
-			group
+			isGroup,
+			uri
 		}
 		addressbook.shares.push(newSharee)
 	},
@@ -181,34 +206,27 @@ const mutations = {
 	 * Remove Sharee from addressbook shares list
 	 *
 	 * @param {Object} state the store data
-	 * @param {Object} sharee the sharee
+	 * @param {Object} data destructuring object
+	 * @param {Object} data.addressbook the addressbook
+	 * @param {string} data.uri the sharee uri
 	 */
-	removeSharee(state, sharee) {
-		let addressbook = state.addressbooks.find(search => {
-			for (let i in search.shares) {
-				if (search.shares[i] === sharee) {
-					return true
-				}
-			}
-		})
-		addressbook.shares.splice(addressbook.shares.indexOf(sharee), 1)
+	removeSharee(state, { addressbook, uri }) {
+		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
+		let shareIndex = addressbook.shares.findIndex(sharee => sharee.uri === uri)
+		addressbook.shares.splice(shareIndex, 1)
 	},
 
 	/**
 	 * Toggle sharee's writable permission
 	 *
 	 * @param {Object} state the store data
-	 * @param {Object} sharee the sharee
+	 * @param {Object} data destructuring object
+	 * @param {Object} data.addressbook the addressbook
+	 * @param {string} data.uri the sharee uri
 	 */
-	updateShareeWritable(state, sharee) {
-		let addressbook = state.addressbooks.find(search => {
-			for (let i in search.shares) {
-				if (search.shares[i] === sharee) {
-					return true
-				}
-			}
-		})
-		sharee = addressbook.shares.find(search => search === sharee)
+	updateShareeWritable(state, { addressbook, uri }) {
+		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
+		let sharee = addressbook.shares.find(sharee => sharee.uri === uri)
 		sharee.writeable = !sharee.writeable
 	}
 
@@ -230,6 +248,7 @@ const actions = {
 		let addressbooks = await client.addressBookHomes[0].findAllAddressBooks()
 			.then(addressbooks => {
 				return addressbooks.map(addressbook => {
+					// formatting addressbooks
 					return mapDavCollectionToAddressbook(addressbook)
 				})
 			})
@@ -390,32 +409,54 @@ const actions = {
 	/**
 	 * Remove sharee from Addressbook
 	 * @param {Object} context the store mutations Current context
-	 * @param {Object} sharee Addressbook sharee object
+	 * @param {Object} data destructuring object
+	 * @param {Object} data.addressbook the addressbook
+	 * @param {string} data.uri the sharee uri
 	 */
-	removeSharee(context, sharee) {
-		context.commit('removeSharee', sharee)
+	async removeSharee(context, { addressbook, uri }) {
+		try {
+			await addressbook.dav.unshare(uri)
+			context.commit('removeSharee', { addressbook, uri })
+		} catch (error) {
+			throw error
+		}
 	},
 
 	/**
 	 * Toggle permissions of Addressbook Sharees writeable rights
 	 * @param {Object} context the store mutations Current context
-	 * @param {Object} sharee Addressbook sharee object
+	 * @param {Object} data destructuring object
+	 * @param {Object} data.addressbook the addressbook
+	 * @param {string} data.uri the sharee uri
+	 * @param {Boolean} data.writeable the sharee permission
 	 */
-	toggleShareeWritable(context, sharee) {
-		context.commit('updateShareeWritable', sharee)
+	async toggleShareeWritable(context, { addressbook, uri, writeable }) {
+		try {
+			await addressbook.dav.share(uri, writeable)
+			context.commit('updateShareeWritable', { addressbook, uri, writeable })
+		} catch (error) {
+			throw error
+		}
+
 	},
 
 	/**
 	 * Share Adressbook with User or Group
 	 * @param {Object} context the store mutations Current context
 	 * @param {Object} data.addressbook the addressbook
-	 * @param {String} data.sharee the sharee
-	 * @param {Boolean} data.id id
-	 * @param {Boolean} data.group group
+	 * @param {string} data.user the userId
+	 * @param {string} data.displayName the displayName
+	 * @param {string} data.uri the sharing principalScheme uri
+	 * @param {Boolean} data.isGroup is this a group ?
 	 */
-	shareAddressbook(context, { addressbook, sharee, id, group }) {
+	async shareAddressbook(context, { addressbook, user, displayName, uri, isGroup }) {
 		// Share addressbook with entered group or user
-		context.commit('shareAddressbook', { addressbook, sharee, id, group })
+		try {
+			await addressbook.dav.share(uri)
+			context.commit('shareAddressbook', { addressbook, user, displayName, uri, isGroup })
+		} catch (error) {
+			throw error
+		}
 	},
 
 	/**

@@ -25,8 +25,10 @@
 		<!-- addressbook name -->
 		<span class="addressbook__name">{{ addressbook.displayName }}</span>
 		<!-- sharing button -->
-		<a href="#" class="addressbook__share icon-shared"
-			@click="toggleShare" />
+		<a v-tooltip.top="sharedWithTooltip" v-if="!addressbook.readOnly"
+			:class="{'addressbook__share--shared': hasShares}"
+			:title="sharedWithTooltip" href="#"
+			class="addressbook__share icon-shared" @click="toggleShare" />
 		<!-- popovermenu -->
 		<a v-click-outside="closeMenu" href="#" class="addressbook__menu">
 			<div class="icon-more" @click="toggleMenu" />
@@ -35,7 +37,7 @@
 			</div>
 		</a>
 		<!-- sharing input -->
-		<share-address-book v-if="shareOpen" :addressbook="addressbook" />
+		<share-address-book v-if="shareOpen && !addressbook.readOnly" :addressbook="addressbook" />
 	</li>
 </template>
 
@@ -73,6 +75,20 @@ export default {
 	computed: {
 		enabled() {
 			return this.addressbook.enabled
+		},
+		hasShares() {
+			return this.addressbook.shares.length > 0
+		},
+		// info tooltip about number of shares
+		sharedWithTooltip() {
+			return this.hasShares
+				? n('contacts',
+					'Shared with {num} entity',
+					'Shared with {num} entities',
+					this.addressbook.shares.length, {
+						num: this.addressbook.shares.length
+					})
+				: '' // disable the tooltip
 		},
 		// building the popover menu
 		menu() {
@@ -114,14 +130,14 @@ export default {
 					action: this.toggleAddressbookEnabled
 				})
 
-			}
-			// check to ensure last addressbook is not deleted.
-			if (this.$store.getters.getAddressbooks.length > 1) {
-				menu.push({
-					icon: this.deleteAddressbookLoading ? 'icon-loading-small' : 'icon-delete',
-					text: t('contacts', 'Delete'),
-					action: this.deleteAddressbook
-				})
+				// check to ensure last addressbook is not deleted.
+				if (this.$store.getters.getAddressbooks.length > 1) {
+					menu.push({
+						icon: this.deleteAddressbookLoading ? 'icon-loading-small' : 'icon-delete',
+						text: t('contacts', 'Delete'),
+						action: this.deleteAddressbook
+					})
+				}
 			}
 			return menu
 		}

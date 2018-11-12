@@ -11,12 +11,6 @@ module.exports = {
 		filename: 'contacts.js',
 		chunkFilename: 'chunks/[name].js'
 	},
-	optimization: {
-		splitChunks: {
-			automaticNameDelimiter: '-',
-			chunks: 'all'
-		}
-	},
 	module: {
 		rules: [
 			{

@@ -49,16 +49,8 @@
 			border-color: var(--color-primary-element);
 		}
 
-		.multiselect__content-wrapper {
+		&:not(.showContent) .multiselect__content-wrapper {
 			display: none;
-		}
-	}
-
-	.multiselect.showContent {
-		.multiselect__content-wrapper {
-			display: inherit;
-			background: #f0f0f0;
-			width: inherit;
 		}
 	}
 }

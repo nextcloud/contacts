@@ -30,7 +30,7 @@ import { sync } from 'vuex-router-sync'
 /** GLOBAL COMPONENTS AND DIRECTIVE */
 import { AppNavigation, DatetimePicker, Multiselect, PopoverMenu } from 'nextcloud-vue'
 import ClickOutside from 'vue-click-outside'
-import Tooltip from 'v-tooltip'
+import { VTooltip } from 'v-tooltip'
 import VueClipboard from 'vue-clipboard2'
 
 // CSP config for webpack dynamic chunk loading
@@ -49,7 +49,7 @@ Vue.component('DatetimePicker', DatetimePicker)
 Vue.component('Multiselect', Multiselect)
 Vue.component('PopoverMenu', PopoverMenu)
 Vue.directive('ClickOutside', ClickOutside)
-Vue.directive('Tooltip', Tooltip)
+Vue.directive('Tooltip', VTooltip)
 Vue.use(VueClipboard)
 
 sync(store, router)
