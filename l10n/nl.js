@@ -93,7 +93,6 @@ OC.L10N.register(
     "Female" : "Vrouw",
     "Male" : "Man",
     "All contacts" : "Alle contactpersonen",
-    "You did not enter the password in time" : "Je voerde het wachtwoord niet op tijd in",
     "An error occurred" : "Er trad een fout op",
     "New contact" : "Nieuwe contactpersoon",
     "Contact not found" : "Contactpersoon niet gevonden."

@@ -93,7 +93,6 @@ OC.L10N.register(
     "Female" : "Kadın",
     "Male" : "Erkek",
     "All contacts" : "Tüm kişiler",
-    "You did not enter the password in time" : "Parolayı istenilen sürede yazmadınız",
     "An error occurred" : "Bir sorun çıktı",
     "New contact" : "Yeni kişi",
     "Contact not found" : "Kişi bulunamadı"

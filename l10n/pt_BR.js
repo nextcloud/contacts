@@ -93,7 +93,6 @@ OC.L10N.register(
     "Female" : "Mulher",
     "Male" : "Homem",
     "All contacts" : "Todos os contatos",
-    "You did not enter the password in time" : "Você não digitou a senha a tempo",
     "An error occurred" : "Um erro ocorreu",
     "New contact" : "Novo contato",
     "Contact not found" : "Contato não encontrado"

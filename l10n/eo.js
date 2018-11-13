@@ -91,7 +91,6 @@ OC.L10N.register(
     "Female" : "Ina",
     "Male" : "Vira",
     "All contacts" : "Ĉiuj kontaktoj",
-    "You did not enter the password in time" : "Vi entajpis la pasvorton ne ĝustatempe",
     "An error occurred" : "Eraro okazis",
     "New contact" : "Nova kontakto",
     "Contact not found" : "Kontakto ne trovebla"

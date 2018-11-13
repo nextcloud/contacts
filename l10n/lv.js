@@ -93,7 +93,6 @@ OC.L10N.register(
     "Female" : "Sieviete",
     "Male" : "Vīrietis",
     "All contacts" : "Visi kontakti",
-    "You did not enter the password in time" : "Jūs nepaspējāt ierakstīt paroli laikā.",
     "An error occurred" : "Gadījās kļūda",
     "New contact" : "Jauns kontakts",
     "Contact not found" : "Kontaktpersona nav atrasta!"

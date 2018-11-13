@@ -93,7 +93,6 @@ OC.L10N.register(
     "Female" : "Женски",
     "Male" : "Мушки",
     "All contacts" : "Сви контакти",
-    "You did not enter the password in time" : "Нисте унели лозинку на време",
     "An error occurred" : "Дошло је до грешке.",
     "New contact" : "Нови контакт",
     "Contact not found" : "Контакт није нађен"

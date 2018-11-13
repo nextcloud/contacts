@@ -93,7 +93,6 @@ OC.L10N.register(
     "Female" : "Kona",
     "Male" : "Karl",
     "All contacts" : "Allir tengiliðir",
-    "You did not enter the password in time" : "Þú settir ekki lykilorðið inn tímanlega",
     "An error occurred" : "Villa kom upp",
     "New contact" : "Nýr tengiliður",
     "Contact not found" : "Tengiliður fannst ekki"

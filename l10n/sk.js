@@ -92,7 +92,6 @@ OC.L10N.register(
     "Female" : "Žena",
     "Male" : "Muž",
     "All contacts" : "Všetky kontakty",
-    "You did not enter the password in time" : "Nestihli ste vložiť heslo načas",
     "An error occurred" : "Vyskytla sa chyba",
     "New contact" : "Nový kontakt",
     "Contact not found" : "Kontakt sa nenašiel"

@@ -80,7 +80,6 @@ OC.L10N.register(
     "Female" : "Nő",
     "Male" : "Férfi",
     "All contacts" : "Összes névjegy",
-    "You did not enter the password in time" : "Nem adtad meg a jelszót időben",
     "An error occurred" : "Hiba történt",
     "New contact" : "Új névjegy"
 },
