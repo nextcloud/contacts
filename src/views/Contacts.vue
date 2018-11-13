@@ -108,9 +108,10 @@ export default {
 		importState() {
 			return this.$store.getters.getImportState
 		},
+	
 		// first enabled addressbook of the list
 		defaultAddressbook() {
-			return this.addressbooks.find(addressbook => !addressbook.readOnly)
+			return this.addressbooks.find(addressbook => !addressbook.readOnly && addressbook.enabled)
 		},
 
 		/**
@@ -166,7 +167,8 @@ export default {
 					id: 'new-contact-button',
 					text: t('contacts', 'New contact'),
 					icon: 'icon-add',
-					action: this.newContact
+					action: this.newContact,
+					disabled: this.defaultAddressbook === undefined
 				},
 				items: this.allGroup.concat(this.groupsMenu)
 			}
