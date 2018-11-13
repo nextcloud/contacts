@@ -35,37 +35,12 @@
 	&--addressbooks &__delete {
 		display: none !important;
 	}
-	
-	&__delete {
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: $grid-height-unit;
-		height: $grid-height-unit;
-		margin: 0;
-		border: 0;
-		background-color: transparent;
-		opacity: .5;
-		display: none;
-		&:hover,
-		a:active,
-		a:focus {
-			opacity: .7;
-		}
-	}
-	
-	&:hover &__delete,
-	a:active &__delete,
-	a:focus &__delete {
-		display: block;
-	}
-	
+		
 	// property row
 	&__row {
 		display: flex;
 		align-items: center;
 		padding-right: 44px;
-		// height: $grid-height-unit;
 		position: relative;
 	}
 	
@@ -129,7 +104,7 @@
 		}
 	}
 
-	// property value within row, after label
+	// Property value within row, after label
 	&__value {
 		flex: 1 1;
 
@@ -142,6 +117,59 @@
 		// read-only mode
 		&:read-only {
 			border-color: var(--color-border-dark);
+		}
+		input&--with-ext {
+			// ext icon width + 8px padding
+			padding-right: 24px;
+			&:hover,
+			&:focus,
+			&:active {
+				~ .property__ext, 
+				~ .property__delete {
+					opacity: .5;
+				}
+			}
+		}
+	}
+
+	// show ext & delete button on full row hover
+	&:hover &__ext,
+	&:hover &__delete {
+		opacity: .5;
+	}
+
+	// External link (tel, mailto, http, ftp...)
+	&__ext {
+		position: absolute;
+		// property row rightPadding + 8px;
+		right: 52px;
+		opacity: 0;
+		&:hover,
+		&:focus,
+		&:active {
+			opacity: .7;
+			// still show the delete button for keyboard accessibility
+			~ .property__delete {
+				opacity: .7;
+			}
+		}
+	}
+	
+	// Delete property button
+	&__delete {
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: $grid-height-unit;
+		height: $grid-height-unit;
+		margin: 0;
+		border: 0;
+		background-color: transparent;
+		opacity: 0;
+		&:hover,
+		&:active,
+		&:focus {
+			opacity: .7;
 		}
 	}
 }

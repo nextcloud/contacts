@@ -39,10 +39,6 @@
 			<!-- no options, empty space -->
 			<div v-else class="property__label">{{ propModel.readableName }}</div>
 
-			<!-- delete the prop -->
-			<button v-if="!isReadOnly" :title="t('contacts', 'Delete')" class="property__delete icon-delete"
-				@click="deleteProperty" />
-
 			<!-- textarea for note -->
 			<textarea v-if="propName === 'note'" id="textarea" ref="textarea"
 				v-model.trim="localValue" :type="type" :readonly="isReadOnly"
@@ -51,7 +47,16 @@
 
 			<!-- OR default to input -->
 			<input v-else v-model.trim="localValue" :type="type"
-				:readonly="isReadOnly" class="property__value" @input="updateValue">
+				:readonly="isReadOnly" :class="{'property__value--with-ext': haveExtHandler}" class="property__value"
+				@input="updateValue">
+
+			<!-- external link -->
+			<a v-if="haveExtHandler" :href="externalHandler" class="property__ext icon-external"
+				target="_blank" />
+
+			<!-- delete the prop -->
+			<button v-if="!isReadOnly" :title="t('contacts', 'Delete')" class="property__delete icon-delete"
+				@click="deleteProperty" />
 		</div>
 	</div>
 </template>
@@ -115,6 +120,28 @@ export default {
 				return 'url'
 			}
 			return 'text'
+		},
+		URLScheme() {
+			if (this.propName === 'tel') {
+				return 'tel:'
+			} else if (this.propName === 'email') {
+				return 'mailto:'
+			// if no scheme (roughly checking for the colon char)
+			} else if (this.propType === 'uri' && this.value.indexOf(':') === -1) {
+				return 'https://'
+			} else if (this.propType === 'uri') {
+				return '' // return empty, we already have a scheme in the value
+			}
+			return false
+		},
+		// format external link
+		externalHandler() {
+			if (this.URLScheme !== false) {
+				return `${this.URLScheme}${this.value}`
+			}
+		},
+		haveExtHandler() {
+			return this.externalHandler && this.value && this.value.length > 0
 		}
 	},
 
