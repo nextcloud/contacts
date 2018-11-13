@@ -146,7 +146,7 @@ const properties = {
 	tel: {
 		multiple: true,
 		readableName: t('contacts', 'Phone'),
-		icon: 'icon-comment',
+		icon: 'icon-phone',
 		default: true,
 		defaultValue: {
 			value: '',

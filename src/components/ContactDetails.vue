@@ -97,7 +97,7 @@
 
 				<!-- properties iteration -->
 				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
-				<contact-property v-for="(property, index) in sortedProperties" :key="index+contact.key" :index="index"
+				<contact-property v-for="(property, index) in sortedProperties" :key="`${index}-${contact.key}-${property.name}`" :index="index"
 					:sorted-properties="sortedProperties" :property="property" :contact="contact"
 					@updatedcontact="updateContact" />
 
@@ -106,7 +106,7 @@
 					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
 					duplication, we created a fake propModel and property with our own options here) -->
 				<property-select :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
-					:is-last-property="true" :property="{}" class="property--addressbooks" />
+					:is-last-property="true" :property="{}" class="property--addressbooks property--last" />
 
 				<!-- new property select -->
 				<add-new-prop v-if="!isReadOnly" :contact="contact" />

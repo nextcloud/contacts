@@ -108,7 +108,7 @@ export default {
 		importState() {
 			return this.$store.getters.getImportState
 		},
-	
+
 		// first enabled addressbook of the list
 		defaultAddressbook() {
 			return this.addressbooks.find(addressbook => !addressbook.readOnly && addressbook.enabled)
