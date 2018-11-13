@@ -238,9 +238,11 @@ export default {
 					this.copied = true
 					OC.Notification.showTemporary(t('contacts', 'Addressbook was not copied to clipboard.'))
 				}).then(() => {
-					// stop loading status regardless of outcome
 					this.copyLoading = false
-					this.copied = false
+					setTimeout(() => {
+						// stop loading status regardless of outcome
+						this.copied = false
+					}, 2000)
 				})
 		}
 	}
