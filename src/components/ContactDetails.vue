@@ -48,20 +48,21 @@
 				<!-- fullname, org, title -->
 				<div id="contact-header-infos">
 					<h2>
-						<input id="contact-fullname" v-model="contact.fullName" :readonly="contact.addressbook.readOnly"
-							:placeholder="t('contacts', 'Name')" type="text" autocomplete="off"
-							autocorrect="off" spellcheck="false" name="fullname"
-							value="" @input="debounceUpdateContact">
+						<input id="contact-fullname" ref="fullname" v-model="contact.fullName"
+							:readonly="contact.addressbook.readOnly" :placeholder="t('contacts', 'Name')" type="text"
+							autocomplete="off" autocorrect="off" spellcheck="false"
+							name="fullname"
+							@input="debounceUpdateContact" @click="selectInput">
 					</h2>
 					<div id="details-org-container">
 						<input id="contact-org" v-model="contact.org" :readonly="contact.addressbook.readOnly"
 							:placeholder="t('contacts', 'Company')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="org"
-							value="" @input="debounceUpdateContact">
+							@input="debounceUpdateContact">
 						<input id="contact-title" v-model="contact.title" :readonly="contact.addressbook.readOnly"
 							:placeholder="t('contacts', 'Title')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="title"
-							value="" @input="debounceUpdateContact">
+							@input="debounceUpdateContact">
 					</div>
 				</div>
 
@@ -347,6 +348,15 @@ export default {
 		},
 		toggleMenu() {
 			this.openedMenu = !this.openedMenu
+		},
+
+		/**
+		 * Select the text in the input if it is still set to 'new Contact'
+		 */
+		selectInput() {
+			if (this.$refs.fullname && this.$refs.fullname.value === t('contacts', 'New contact')) {
+				this.$refs.fullname.select()
+			}
 		},
 
 		/**
