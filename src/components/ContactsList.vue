@@ -25,19 +25,20 @@
 		name="list" tag="div">
 		<!-- same uid can coexists between different addressbooks
 			so we need to use the addressbook id as key as well -->
-		<content-list-item v-for="contact in list" :key="contact.key" :contact="contacts[contact.key]"
-			:search-query="searchQuery" />
+		<contacts-list-item v-for="(contact, index) in list" :key="contact.key" :contact="contacts[contact.key]"
+			:search-query="searchQuery" :list="list" :index="index"
+			@deleted="selectContact" />
 	</transition-group>
 </template>
 
 <script>
-import ContentListItem from './ContentList/ContentListItem'
+import ContactsListItem from './ContactsList/ContactsListItem'
 
 export default {
-	name: 'ContentList',
+	name: 'ContactsList',
 
 	components: {
-		ContentListItem
+		ContactsListItem
 	},
 
 	props: {
@@ -56,6 +57,25 @@ export default {
 		searchQuery: {
 			type: String,
 			default: ''
+		}
+	},
+
+	computed: {
+		selectedGroup() {
+			return this.$route.params.selectedGroup
+		}
+	},
+
+	methods: {
+		// Select closest contact on deletion
+		selectContact(oldIndex) {
+			if (this.list.length > 0 && oldIndex < this.list.length) {
+				// priority to the one above then the one after
+				const newContact = oldIndex === 0 ? this.list[oldIndex + 1] : this.list[oldIndex - 1]
+				if (newContact) {
+					this.$router.push({ name: 'contact', params: { selectedGroup: this.selectedGroup, selectedContact: newContact.key } })
+				}
+			}
 		}
 	}
 }

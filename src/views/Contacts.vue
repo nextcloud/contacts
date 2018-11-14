@@ -36,7 +36,7 @@
 				<import-screen v-if="importState.stage !== 'default'" />
 				<template v-else>
 					<!-- contacts list -->
-					<content-list :list="contactsList" :contacts="contacts" :loading="loading"
+					<contacts-list :list="contactsList" :contacts="contacts" :loading="loading"
 						:search-query="searchQuery" />
 					<!-- main contacts details -->
 					<contact-details :loading="loading" :contact-key="selectedContact" />
@@ -49,7 +49,7 @@
 
 <script>
 import SettingsSection from 'Components/SettingsSection'
-import ContentList from 'Components/ContentList'
+import ContactsList from 'Components/ContactsList'
 import ContactDetails from 'Components/ContactDetails'
 import ImportScreen from 'Components/ImportScreen'
 
@@ -63,7 +63,7 @@ export default {
 
 	components: {
 		SettingsSection,
-		ContentList,
+		ContactsList,
 		ContactDetails,
 		ImportScreen
 	},

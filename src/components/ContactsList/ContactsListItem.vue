@@ -22,13 +22,17 @@
 
 <script>
 export default {
-	name: 'ContentListItem',
+	name: 'ContactsListItem',
 	filters: {
 		firstLetter(value) {
 			return value.charAt(0)
 		}
 	},
 	props: {
+		index: {
+			type: Number,
+			required: true
+		},
 		contact: {
 			type: Object,
 			required: true
@@ -94,6 +98,7 @@ export default {
 		 */
 		deleteContact() {
 			this.$store.dispatch('deleteContact', { contact: this.contact })
+			this.$emit('deleted', this.index)
 		},
 
 		/**
