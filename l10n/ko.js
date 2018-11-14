@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "자세한 정보",
     "Download" : "다운로드",
     "Delete" : "삭제",
+    "New contact" : "새 연락처",
     "Copy link" : "링크 복사",
     "Rename" : "이름 바꾸기",
     "Enabled" : "활성화됨",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Gender" : "성별",
     "Female" : "여성",
     "Male" : "남성",
-    "All contacts" : "모든 연락처",
-    "New contact" : "새 연락처"
+    "All contacts" : "모든 연락처"
 },
 "nplurals=1; plural=0;");

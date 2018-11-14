@@ -6,6 +6,7 @@ OC.L10N.register(
     "A contacts app for Nextcloud" : "Një aplikacion kontaktesh për Nextcloud",
     "Download" : "Shkarko",
     "Delete" : "Fshije",
+    "New contact" : "Kontakt i ri",
     "Copy link" : "Kopjo linkun",
     "Rename" : "Riemëro",
     "Enabled" : "I aktivizuar",
@@ -67,7 +68,6 @@ OC.L10N.register(
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "All contacts" : "Të gjithë kontaktet",
-    "New contact" : "Kontakt i ri"
+    "All contacts" : "Të gjithë kontaktet"
 },
 "nplurals=2; plural=(n != 1);");

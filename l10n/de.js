@@ -11,6 +11,7 @@ OC.L10N.register(
     "Download" : "Herunterladen",
     "Delete" : "Löschen",
     "Addressbook" : "Adressbuch",
+    "New contact" : "Neuer Kontakt",
     "The contact doesn't exists anymore on the server." : "Der Kontakt existiert nicht mehr auf dem Server.",
     "failed" : "Fehlgeschlagen",
     "Select Date" : "Datum auswählen",
@@ -28,6 +29,8 @@ OC.L10N.register(
     "Addressbook was not copied to clipboard." : "Adressbuch wurde nicht in die Zwischenablage kopiert.",
     "Share with users or groups" : "Mit Benutzern oder Gruppen teilen",
     "No users or groups" : "Keine Benutzer oder Gruppen",
+    "Unable to delete the share." : "Freigabe kann nicht gelöscht werden.",
+    "Unable to change permissions." : "Berechtigungen können nicht geändert werden.",
     "Import into" : "Importieren nach",
     "An error occurred, unable to create the addressbook." : "Es ist ein Fehler aufgetreten, das Adressbuch konnte nicht erstellt werden.",
     "Nickname" : "Spitzname",
@@ -94,7 +97,6 @@ OC.L10N.register(
     "Male" : "Männlich",
     "All contacts" : "Alle Kontakte",
     "An error occurred" : "Es ist ein Fehler aufgetreten",
-    "New contact" : "Neuer Kontakt",
     "Contact not found" : "Kontakt nicht gefunden"
 },
 "nplurals=2; plural=(n != 1);");

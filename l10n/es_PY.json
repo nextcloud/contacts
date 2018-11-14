@@ -3,6 +3,7 @@
     "Details" : "Detalles",
     "Download" : "Descargar",
     "Delete" : "Borrar",
+    "New contact" : "Nuevo contacto",
     "Copy link" : "Copiar liga",
     "Rename" : "Renombrar",
     "Enabled" : "Habilitado",
@@ -61,7 +62,6 @@
     "Gender" : "Género",
     "Female" : "Femenino",
     "Male" : "Masculino",
-    "All contacts" : "Todos los contactos",
-    "New contact" : "Nuevo contacto"
+    "All contacts" : "Todos los contactos"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

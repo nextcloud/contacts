@@ -11,6 +11,7 @@ OC.L10N.register(
     "Download" : "Elŝuti",
     "Delete" : "Forigi",
     "Addressbook" : "Adresaro",
+    "New contact" : "Nova kontakto",
     "The contact doesn't exists anymore on the server." : "La kontakto ne plus ekzistas en la servilo.",
     "failed" : "malsukcesa",
     "Select Date" : "Elektu daton",
@@ -92,7 +93,6 @@ OC.L10N.register(
     "Male" : "Vira",
     "All contacts" : "Ĉiuj kontaktoj",
     "An error occurred" : "Eraro okazis",
-    "New contact" : "Nova kontakto",
     "Contact not found" : "Kontakto ne trovebla"
 },
 "nplurals=2; plural=(n != 1);");

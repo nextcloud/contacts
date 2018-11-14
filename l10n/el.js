@@ -6,6 +6,7 @@ OC.L10N.register(
     "A contacts app for Nextcloud" : "Εφαρμογή επαφών για το Nextcloud",
     "Download" : "Λήψη",
     "Delete" : "Διαγραφή",
+    "New contact" : "Νέα επαφή",
     "Copy link" : "Αντιγραφή συνδέσμου",
     "Rename" : "Μετονομασία",
     "Enabled" : "Ενεργοποιημένο",
@@ -66,7 +67,6 @@ OC.L10N.register(
     "Gender" : "Φύλλο",
     "Female" : "Θηλυκό",
     "Male" : "Αρσενικό",
-    "All contacts" : "Όλες οι επαφές",
-    "New contact" : "Νέα επαφή"
+    "All contacts" : "Όλες οι επαφές"
 },
 "nplurals=2; plural=(n != 1);");

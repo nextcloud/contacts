@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "Detalles",
     "Download" : "Baxar",
     "Delete" : "Desaniciar",
+    "New contact" : "Contautu nuevu",
     "Copy link" : "Copiar enllaz",
     "Rename" : "Renomar",
     "Share with users or groups" : "Compartir con usuarios y grupos",
@@ -41,7 +42,6 @@ OC.L10N.register(
     "Pager" : "Llocalizador",
     "Voice" : "Voz",
     "Social network" : "Rede social",
-    "All contacts" : "Tolos contautos",
-    "New contact" : "Contautu nuevu"
+    "All contacts" : "Tolos contautos"
 },
 "nplurals=2; plural=(n != 1);");

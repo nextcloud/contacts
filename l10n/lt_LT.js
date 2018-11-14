@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "Išsamesnė informacija",
     "Download" : "Atsisiųsti",
     "Delete" : "Ištrinti",
+    "New contact" : "Naujas adresatas",
     "Copy link" : "Kopijuoti nuorodą",
     "Rename" : "Pervadinti",
     "Enabled" : "Įjungta",
@@ -64,7 +65,6 @@ OC.L10N.register(
     "Gender" : "Lytis",
     "Female" : "Moteris",
     "Male" : "Vyras",
-    "All contacts" : "Visi adresatai",
-    "New contact" : "Naujas adresatas"
+    "All contacts" : "Visi adresatai"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

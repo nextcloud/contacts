@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Контакти",
+    "New contact" : "Нов контакт",
     "Nickname" : "Прекар",
     "Last name" : "Презиме",
     "First name" : "Име",
@@ -28,7 +29,6 @@ OC.L10N.register(
     "Fax work" : "Fax на работа",
     "Pager" : "Пејџер",
     "Voice" : "Глас",
-    "All contacts" : "Сите контакти",
-    "New contact" : "Нов контакт"
+    "All contacts" : "Сите контакти"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

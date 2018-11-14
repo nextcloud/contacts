@@ -11,6 +11,7 @@ OC.L10N.register(
     "Download" : "Lejupielādēt",
     "Delete" : "Dzēst",
     "Addressbook" : "Adrešu grāmata",
+    "New contact" : "Jauns kontakts",
     "The contact doesn't exists anymore on the server." : "Kontaktpersonas ierakst vairs nepastāv uz servera.",
     "failed" : "neizdevās",
     "Select Date" : "Izvēlieties datumu",
@@ -94,7 +95,6 @@ OC.L10N.register(
     "Male" : "Vīrietis",
     "All contacts" : "Visi kontakti",
     "An error occurred" : "Gadījās kļūda",
-    "New contact" : "Jauns kontakts",
     "Contact not found" : "Kontaktpersona nav atrasta!"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");

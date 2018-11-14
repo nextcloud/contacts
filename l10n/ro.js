@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "Detalii",
     "Download" : "Descărcare",
     "Delete" : "Șterge",
+    "New contact" : "Contact nou ",
     "Copy link" : "Copiază linkul",
     "Rename" : "Redenumește",
     "Enabled" : "Activat",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Gender" : "Sex",
     "Female" : "Femeie",
     "Male" : "Bărbat",
-    "All contacts" : "Toate contactele",
-    "New contact" : "Contact nou "
+    "All contacts" : "Toate contactele"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");

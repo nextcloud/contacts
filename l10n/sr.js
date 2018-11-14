@@ -11,6 +11,7 @@ OC.L10N.register(
     "Download" : "Преузми",
     "Delete" : "Обриши",
     "Addressbook" : "Адресар",
+    "New contact" : "Нови контакт",
     "The contact doesn't exists anymore on the server." : "Овај контакт не постоји више на серверу.",
     "failed" : "неуспешно",
     "Select Date" : "Одаберите датум",
@@ -94,7 +95,6 @@ OC.L10N.register(
     "Male" : "Мушки",
     "All contacts" : "Сви контакти",
     "An error occurred" : "Дошло је до грешке.",
-    "New contact" : "Нови контакт",
     "Contact not found" : "Контакт није нађен"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

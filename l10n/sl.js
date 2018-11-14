@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "Podrobnosti",
     "Download" : "Prejmi",
     "Delete" : "Izbriši",
+    "New contact" : "Nov stik",
     "Copy link" : "Kopiraj povezavo",
     "Rename" : "Preimenuj",
     "Enabled" : "Omogočeno",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Gender" : "Spol",
     "Female" : "Ženski",
     "Male" : "Moški",
-    "All contacts" : "Vsi stiki",
-    "New contact" : "Nov stik"
+    "All contacts" : "Vsi stiki"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");

@@ -4,6 +4,7 @@
     "A contacts app for Nextcloud" : "Εφαρμογή επαφών για το Nextcloud",
     "Download" : "Λήψη",
     "Delete" : "Διαγραφή",
+    "New contact" : "Νέα επαφή",
     "Copy link" : "Αντιγραφή συνδέσμου",
     "Rename" : "Μετονομασία",
     "Enabled" : "Ενεργοποιημένο",
@@ -64,7 +65,6 @@
     "Gender" : "Φύλλο",
     "Female" : "Θηλυκό",
     "Male" : "Αρσενικό",
-    "All contacts" : "Όλες οι επαφές",
-    "New contact" : "Νέα επαφή"
+    "All contacts" : "Όλες οι επαφές"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

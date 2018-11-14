@@ -11,6 +11,7 @@ OC.L10N.register(
     "Download" : "Télécharger",
     "Delete" : "Supprimer",
     "Addressbook" : "Carnet d'adresses",
+    "New contact" : "Nouveau contact",
     "The contact doesn't exists anymore on the server." : "Le contact n'existe plus sur le serveur.",
     "failed" : "échoué",
     "Select Date" : "Sélectionnez une date",
@@ -94,7 +95,6 @@ OC.L10N.register(
     "Male" : "Homme",
     "All contacts" : "Tous les contacts",
     "An error occurred" : "Une erreur est survenue",
-    "New contact" : "Nouveau contact",
     "Contact not found" : "Contact introuvable"
 },
 "nplurals=2; plural=(n > 1);");

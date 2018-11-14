@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "جزئیات",
     "Download" : "دانلود",
     "Delete" : "حذف",
+    "New contact" : "مخاطب جدید",
     "Copy link" : "کپی کردن لینک",
     "Rename" : "تغییرنام",
     "Share with users or groups" : "اشتراک گذاری با کاربران یا گروه ها ...",
@@ -58,7 +59,6 @@ OC.L10N.register(
     "Gender" : "جنسیت",
     "Female" : "مؤنث",
     "Male" : "مذکر",
-    "All contacts" : "تمام مخاطبین",
-    "New contact" : "مخاطب جدید"
+    "All contacts" : "تمام مخاطبین"
 },
 "nplurals=2; plural=(n > 1);");

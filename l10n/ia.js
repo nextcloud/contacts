@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Contactos",
     "Download" : "Discargar",
     "Delete" : "Deler",
+    "New contact" : "Nove contacto",
     "Share with users or groups" : "Compartir con usatores o gruppos",
     "Nickname" : "Pseudonymo",
     "Detailed name" : "Nomine detaliate",
@@ -38,7 +39,6 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Voce",
     "Social network" : "Medios Social",
-    "All contacts" : "Tote contactos",
-    "New contact" : "Nove contacto"
+    "All contacts" : "Tote contactos"
 },
 "nplurals=2; plural=(n != 1);");

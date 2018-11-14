@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "Üksikasjad",
     "Download" : "Lae alla",
     "Delete" : "Kustuta",
+    "New contact" : "Uus kontakt",
     "Copy link" : "Kopeeri link",
     "Rename" : "Nimeta ümber",
     "Enabled" : "Lubatud",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Gender" : "Sugu",
     "Female" : "Naine",
     "Male" : "Mees",
-    "All contacts" : "Kõik kontaktid",
-    "New contact" : "Uus kontakt"
+    "All contacts" : "Kõik kontaktid"
 },
 "nplurals=2; plural=(n != 1);");

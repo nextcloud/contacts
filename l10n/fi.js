@@ -8,6 +8,7 @@ OC.L10N.register(
     "Download" : "Lataa",
     "Delete" : "Poista",
     "Addressbook" : "Osoitekirja",
+    "New contact" : "Uusi yhteystieto",
     "The contact doesn't exists anymore on the server." : "Yhteystietoa ei ole enää olemassa tällä palvelimella.",
     "failed" : "epäonnistui",
     "Select Date" : "Valitse päivä",
@@ -82,7 +83,6 @@ OC.L10N.register(
     "Male" : "Mies",
     "All contacts" : "Kaikki yhteystiedot",
     "An error occurred" : "Tapahtui virhe",
-    "New contact" : "Uusi yhteystieto",
     "Contact not found" : "Yhteytietoa ei löytynyt"
 },
 "nplurals=2; plural=(n != 1);");

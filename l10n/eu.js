@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "Xehetasuna",
     "Download" : "Jaitsi",
     "Delete" : "Borratu",
+    "New contact" : "Kontaktu berria",
     "Copy link" : "Esteka kopiatu",
     "Rename" : "Izena aldatu",
     "Share with users or groups" : "Erabiltzaile edo taldeekin partekatu",
@@ -61,7 +62,6 @@ OC.L10N.register(
     "Gender" : "Generoa",
     "Female" : "Emakumea",
     "Male" : "Gizonezkoa",
-    "All contacts" : "Kontaktu guztiak",
-    "New contact" : "Kontaktu berria"
+    "All contacts" : "Kontaktu guztiak"
 },
 "nplurals=2; plural=(n != 1);");

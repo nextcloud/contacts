@@ -6,6 +6,7 @@
     "Download" : "Lataa",
     "Delete" : "Poista",
     "Addressbook" : "Osoitekirja",
+    "New contact" : "Uusi yhteystieto",
     "The contact doesn't exists anymore on the server." : "Yhteystietoa ei ole enää olemassa tällä palvelimella.",
     "failed" : "epäonnistui",
     "Select Date" : "Valitse päivä",
@@ -80,7 +81,6 @@
     "Male" : "Mies",
     "All contacts" : "Kaikki yhteystiedot",
     "An error occurred" : "Tapahtui virhe",
-    "New contact" : "Uusi yhteystieto",
     "Contact not found" : "Yhteytietoa ei löytynyt"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

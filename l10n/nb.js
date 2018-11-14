@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "Detaljer",
     "Download" : "Last ned",
     "Delete" : "Slett",
+    "New contact" : "Ny kontakt",
     "Copy link" : "Kopier lenke",
     "Rename" : "Gi nytt navn",
     "Enabled" : "Aktiver",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Gender" : "Kjønn",
     "Female" : "Mann",
     "Male" : "Dame",
-    "All contacts" : "Alle kontakter",
-    "New contact" : "Ny kontakt"
+    "All contacts" : "Alle kontakter"
 },
 "nplurals=2; plural=(n != 1);");

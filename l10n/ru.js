@@ -11,6 +11,7 @@ OC.L10N.register(
     "Download" : "Скачать",
     "Delete" : "Удалить",
     "Addressbook" : "Адресная книга",
+    "New contact" : "Новый контакт",
     "The contact doesn't exists anymore on the server." : "В настоящее время контакт не существует.",
     "failed" : "ошибка",
     "Select Date" : "Выберите дату",
@@ -94,7 +95,6 @@ OC.L10N.register(
     "Male" : "Мужчина",
     "All contacts" : "Все контакты",
     "An error occurred" : "Произошла ошибка",
-    "New contact" : "Новый контакт",
     "Contact not found" : "Контакт не найден"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

@@ -6,6 +6,7 @@ OC.L10N.register(
     "Download" : "Letöltés",
     "Delete" : "Törlés",
     "Addressbook" : "Címjegyzék",
+    "New contact" : "Új névjegy",
     "The contact doesn't exists anymore on the server." : "A névjegy már nem létezik a kiszolgálón.",
     "Select Date" : "Dátum kiválasztása",
     "No results" : "Nincsenek eredmények",
@@ -80,7 +81,6 @@ OC.L10N.register(
     "Female" : "Nő",
     "Male" : "Férfi",
     "All contacts" : "Összes névjegy",
-    "An error occurred" : "Hiba történt",
-    "New contact" : "Új névjegy"
+    "An error occurred" : "Hiba történt"
 },
 "nplurals=2; plural=(n != 1);");

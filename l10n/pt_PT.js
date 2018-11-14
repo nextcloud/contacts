@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "Detalhes",
     "Download" : "Transferir",
     "Delete" : "Apagar",
+    "New contact" : "Novo contacto",
     "Copy link" : "Copiar hiperligação",
     "Rename" : "Renomear",
     "Enabled" : "Ativada",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Gender" : "Género",
     "Female" : "Feminino",
     "Male" : "Masculino",
-    "All contacts" : "Todos os contactos",
-    "New contact" : "Novo contacto"
+    "All contacts" : "Todos os contactos"
 },
 "nplurals=2; plural=(n != 1);");

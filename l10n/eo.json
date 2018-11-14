@@ -9,6 +9,7 @@
     "Download" : "Elŝuti",
     "Delete" : "Forigi",
     "Addressbook" : "Adresaro",
+    "New contact" : "Nova kontakto",
     "The contact doesn't exists anymore on the server." : "La kontakto ne plus ekzistas en la servilo.",
     "failed" : "malsukcesa",
     "Select Date" : "Elektu daton",
@@ -90,7 +91,6 @@
     "Male" : "Vira",
     "All contacts" : "Ĉiuj kontaktoj",
     "An error occurred" : "Eraro okazis",
-    "New contact" : "Nova kontakto",
     "Contact not found" : "Kontakto ne trovebla"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

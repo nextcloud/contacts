@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "Detalles",
     "Download" : "Descargar",
     "Delete" : "Borrar",
+    "New contact" : "Nuevo contacto",
     "Rename" : "Renombrar",
     "Share with users or groups" : "Compartir con otros usuarios o grupos",
     "Nickname" : "Apodo",
@@ -40,7 +41,6 @@ OC.L10N.register(
     "Pager" : "Localizador",
     "Voice" : "Voz",
     "Social network" : "Red social",
-    "All contacts" : "Todos los contactos",
-    "New contact" : "Nuevo contacto"
+    "All contacts" : "Todos los contactos"
 },
 "nplurals=2; plural=(n != 1);");

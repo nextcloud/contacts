@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "დეტალები",
     "Download" : "ჩამოტვირთვა",
     "Delete" : "გაუქმება",
+    "New contact" : "ახალი კონტაქტი",
     "Copy link" : "ბმულის კოპირება",
     "Rename" : "სახელის შეცვლა",
     "Enabled" : "მოქმედია",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
     "Male" : "მამრობითი",
-    "All contacts" : "ყველა კონტაქტი",
-    "New contact" : "ახალი კონტაქტი"
+    "All contacts" : "ყველა კონტაქტი"
 },
 "nplurals=2; plural=(n!=1);");

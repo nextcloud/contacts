@@ -11,6 +11,7 @@ OC.L10N.register(
     "Download" : "Stiahnuť",
     "Delete" : "Zmazať",
     "Addressbook" : "Adresár",
+    "New contact" : "Nový kontakt",
     "The contact doesn't exists anymore on the server." : "Kontakt už na servri neexistuje.",
     "failed" : "neúspešné",
     "Select Date" : "Vybrať dátum",
@@ -93,7 +94,6 @@ OC.L10N.register(
     "Male" : "Muž",
     "All contacts" : "Všetky kontakty",
     "An error occurred" : "Vyskytla sa chyba",
-    "New contact" : "Nový kontakt",
     "Contact not found" : "Kontakt sa nenašiel"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

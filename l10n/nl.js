@@ -11,6 +11,7 @@ OC.L10N.register(
     "Download" : "Downloaden",
     "Delete" : "Verwijderen",
     "Addressbook" : "Adresboek",
+    "New contact" : "Nieuwe contactpersoon",
     "The contact doesn't exists anymore on the server." : "De contactpersoon bestaat niet meer op de server.",
     "failed" : "mislukte",
     "Select Date" : "Selecteer datum",
@@ -94,7 +95,6 @@ OC.L10N.register(
     "Male" : "Man",
     "All contacts" : "Alle contactpersonen",
     "An error occurred" : "Er trad een fout op",
-    "New contact" : "Nieuwe contactpersoon",
     "Contact not found" : "Contactpersoon niet gevonden."
 },
 "nplurals=2; plural=(n != 1);");

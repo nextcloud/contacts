@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Kontak",
     "Download" : "Unduh",
     "Delete" : "Hapus",
+    "New contact" : "Kontak baru",
     "Share with users or groups" : "Bagi dengan pengguna atau grup",
     "Nickname" : "Nama panggilan",
     "Detailed name" : "Nama lengkap",
@@ -38,7 +39,6 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Suara",
     "Social network" : "Media sosial",
-    "All contacts" : "Semua kontak",
-    "New contact" : "Kontak baru"
+    "All contacts" : "Semua kontak"
 },
 "nplurals=1; plural=0;");

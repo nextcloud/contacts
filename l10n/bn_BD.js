@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "পরিচিতজন",
+    "New contact" : "নতুন ঠিকানা",
     "Nickname" : "ছদ্মনাম",
     "Last name" : "নামের শেষাংশ",
     "First name" : "নামের প্রথমাংশ ",
@@ -24,7 +25,6 @@ OC.L10N.register(
     "Mobile" : "মোবাইল",
     "Fax" : "ফ্যাক্স",
     "Pager" : "পেজার",
-    "Voice" : "কন্ঠ",
-    "New contact" : "নতুন ঠিকানা"
+    "Voice" : "কন্ঠ"
 },
 "nplurals=2; plural=(n != 1);");

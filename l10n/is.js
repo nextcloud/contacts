@@ -11,6 +11,7 @@ OC.L10N.register(
     "Download" : "Niðurhal",
     "Delete" : "Eyða",
     "Addressbook" : "Nafnaskrá",
+    "New contact" : "Nýr tengiliður",
     "The contact doesn't exists anymore on the server." : "Tengiliðurinn er ekki lengur til á miðlaranum.",
     "failed" : "mistókst",
     "Select Date" : "Veldu dagsetningu",
@@ -94,7 +95,6 @@ OC.L10N.register(
     "Male" : "Karl",
     "All contacts" : "Allir tengiliðir",
     "An error occurred" : "Villa kom upp",
-    "New contact" : "Nýr tengiliður",
     "Contact not found" : "Tengiliður fannst ekki"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

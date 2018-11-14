@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "詳細",
     "Download" : "ダウンロード",
     "Delete" : "削除",
+    "New contact" : "新しい連絡先",
     "Copy link" : "リンクをコピー",
     "Rename" : "名前を変更",
     "Enabled" : "有効",
@@ -62,7 +63,6 @@ OC.L10N.register(
     "Gender" : "性別",
     "Female" : "女性",
     "Male" : "男性",
-    "All contacts" : "すべての連絡先",
-    "New contact" : "新しい連絡先"
+    "All contacts" : "すべての連絡先"
 },
 "nplurals=1; plural=0;");
