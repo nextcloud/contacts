@@ -23,15 +23,15 @@
 <template>
 	<div class="import-contact">
 		<template v-if="!isNoAddressbookAvailable">
-			<input id="contact-import" type="file" class="hidden-visually"
-				@change="processFile">
+			<input id="contact-import" :disabled="isImporting" type="file"
+				class="hidden-visually" @change="processFile">
 			<label id="upload" for="contact-import" class="button import-contact__multiselect-label icon-upload">
-				{{ t('contacts', 'Import into') }}
+				{{ isImporting ? t('contacts', 'Importing into') : t('contacts', 'Import into') }}
 			</label>
 			<multiselect
 				v-model="selectedAddressbook"
 				:options="options"
-				:disabled="isSingleAddressbook"
+				:disabled="isSingleAddressbook || isImporting"
 				:placeholder="t('contacts', 'Contacts')"
 				label="displayName"
 				class="multiselect-vue import-contact__multiselect" />
@@ -69,6 +69,9 @@ export default {
 		},
 		importState() {
 			return this.$store.getters.getImportState
+		},
+		isImporting() {
+			return this.importState.stage !== 'default'
 		},
 		selectedAddressbook: {
 			get() {
