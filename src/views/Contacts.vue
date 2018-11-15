@@ -136,6 +136,7 @@ export default {
 
 		// generate groups menu from groups store
 		groupsMenu() {
+			const self = this
 			return this.groups.map(group => {
 				return {
 					id: group.name.replace(' ', '_'),
@@ -151,7 +152,7 @@ export default {
 							{
 								icon: 'icon-download',
 								text: 'Download',
-								action: this.downloadGroup(group)		// does not work if called via 'self'. why is that?
+								action: () => self.downloadGroup(group)
 							}
 						]
 					}
@@ -325,27 +326,23 @@ export default {
 		 * Download vcard promise as vcard file
 		 *
 		 * @param {Object} vcardPromise object to be downloaded
-		 * @returns {Function} trigger download of resulting single vcard file
 		 */
 		downloadVcardPromise(vcardPromise) {
-			return function() {
-				vcardPromise.then(response => {
-					const blob = new Blob([response.data], { type: 'text/vcard' })
-					const url = URL.createObjectURL(blob)
-					const link = document.createElement('a')
-					const filename = moment().format('YYYY-MM-DD_HH-mm') + '_' + response.groupName + '.vcf'
-					link.href = url
-					link.download = filename
-					link.click()
-				})
-			}
+			vcardPromise.then(response => {
+				const blob = new Blob([response.data], { type: 'text/vcard' })
+				const url = URL.createObjectURL(blob)
+				const link = document.createElement('a')
+				const filename = moment().format('YYYY-MM-DD_HH-mm') + '_' + response.groupName + '.vcf'
+				link.href = url
+				link.download = filename
+				link.click()
+			})
 		},
 
 		/**
 		 * Download group of contacts
 		 *
 		 * @param {Object} group of contacts to be downloaded
-		 * @returns {Function} trigger download of resulting single vcard file
 		 */
 		downloadGroup(group) {
 			// get grouped contacts
@@ -372,7 +369,7 @@ export default {
 					}
 				})
 			// download vcard
-			return this.downloadVcardPromise(vcardPromise)
+			this.downloadVcardPromise(vcardPromise)
 		},
 
 		/* SEARCH */
