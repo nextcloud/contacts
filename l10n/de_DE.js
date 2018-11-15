@@ -62,7 +62,7 @@ OC.L10N.register(
     "Phone" : "Telefon",
     "Mobile" : "Mobil",
     "Work mobile" : "Mobil Arbeit",
-    "Home mobile" : "Mobil Daheim",
+    "Home mobile" : "Mobil privat",
     "Fax" : "Fax",
     "Fax home" : "Fax privat",
     "Fax work" : "Fax Arbeit",
