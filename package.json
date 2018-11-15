@@ -40,7 +40,6 @@
 		"cdav-library": "github:nextcloud/cdav-library",
 		"debounce": "^1.2.0",
 		"ical.js": "^1.2.2",
-		"lodash": "^4.17.11",
 		"moment": "^2.22.2",
 		"nextcloud-vue": "^0.1.5",
 		"p-limit": "^2.0.0",
@@ -62,9 +61,9 @@
 		"node": ">=10.0.0"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.1.6",
+		"@babel/core": "^7.1.2",
 		"@babel/plugin-syntax-dynamic-import": "^7.0.0",
-		"@babel/preset-env": "^7.1.6",
+		"@babel/preset-env": "^7.1.0",
 		"@vue/test-utils": "^1.0.0-beta.25",
 		"babel-eslint": "^8.2.5",
 		"babel-jest": "^23.6.0",

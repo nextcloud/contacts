@@ -48,7 +48,6 @@
 </template>
 
 <script>
-import _ from 'lodash'
 import moment from 'moment'
 import { AppNavigation } from 'nextcloud-vue'
 
@@ -152,7 +151,7 @@ export default {
 							{
 								icon: 'icon-download',
 								text: 'Download',
-								action: this.downloadGroup(group)
+								action: this.downloadGroup(group)		// does not work if called via 'self'. why is that?
 							}
 						]
 					}
@@ -323,54 +322,57 @@ export default {
 		},
 
 		/**
+		 * Download vcard promise as vcard file
+		 *
+		 * @param {Object} vcardPromise object to be downloaded
+		 * @returns {Function} trigger download of resulting single vcard file
+		 */
+		downloadVcardPromise(vcardPromise) {
+			return function() {
+				vcardPromise.then(response => {
+					const blob = new Blob([response.data], { type: 'text/vcard' })
+					const url = URL.createObjectURL(blob)
+					const link = document.createElement('a')
+					const filename = moment().format('YYYY-MM-DD_HH-mm') + '_' + response.groupName + '.vcf'
+					link.href = url
+					link.download = filename
+					link.click()
+				})
+			}
+		},
+
+		/**
 		 * Download group of contacts
 		 *
 		 * @param {Object} group of contacts to be downloaded
 		 * @returns {Function} trigger download of resulting single vcard file
 		 */
 		downloadGroup(group) {
-			const contacts = this.contacts
-			const contactIds = group.contacts
-			// find addressbooks and vcard urls
-			const urls = contactIds.map(cid => ({
-				addressbook: contacts[cid].addressbook.id,
-				url: _.last(contacts[cid].url.split('/'))
-			}))
-			// group vcard urls by addressbook
-			const groupedUrls = _.mapValues(
-				_.groupBy(urls, 'addressbook'),
-				group => group.map(contact => contact.url)
-			)
+			// get grouped contacts
+			let groupedContacts = {}
+			group.contacts.map((key) => {
+				const id = this.contacts[key].addressbook.id
+				groupedContacts = Object.assign({
+					[id]: {
+						addressbook: this.contacts[key].addressbook,
+						contacts: []
+					}
+				}, groupedContacts)
+				groupedContacts[id].contacts.push(this.contacts[key].url)
+			})
 			// create vcard promise with the requested contacts
-			const vcardPromise = client.addressBookHomes[0]				// question: is that generic enough?
-				// promise #1: get address books
-				.findAllAddressBooks()
-				// promise #2: multiget for every address book
-				.then(addressbooks => {
-					const pairs = _.toPairs(groupedUrls)
-					const responses = pairs
-						.map(pair => {
-							const addressbook = addressbooks.find(ab => ab.displayname === pair[0])
-							return addressbook.addressbookMultigetExport(pair[1])
-						})
-					return Promise.all(responses)
-				})
-				// promise #3: merge into one object
+			const vcardPromise = Promise.all(
+				Object.keys(groupedContacts).map(key => {
+					return groupedContacts[key].addressbook.dav.addressbookMultigetExport(groupedContacts[key].contacts)
+				}))
 				.then(response => {
-					return response.map(data => data.body).join('')	// question: still to much heavy lifting in the browser?
+					return {
+						groupName: group.name,
+						data: response.map(data => data.body).join('')
+					}
 				})
 			// download vcard
-			return function() {
-				vcardPromise.then(data => {
-					const blob = new Blob([data], { type: 'text/vcard' })
-					const url = URL.createObjectURL(blob)
-					const link = document.createElement('a')
-					const filename = moment().format('YYYY-MM-DD_HH-mm') + '_' + group.name + '.vcf'
-					link.href = url
-					link.download = filename
-					link.click()
-				})
-			}
+			return this.downloadVcardPromise(vcardPromise)
 		},
 
 		/* SEARCH */
