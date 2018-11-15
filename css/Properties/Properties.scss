@@ -19,14 +19,20 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+$property-label-min-width: 60px;
+$property-label-max-width: 2 * $property-label-min-width;
+$property-value-max-width: 250px;
 
 .property {
 	@include generate-grid-span(1);
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: column;
 	position: relative;
-	width: $grid-column-width;
+	padding-right: 44px; // delete button
+	// we need this to keep the alignment of the ext and delete button
+	// The flex grow will never go over those values. Therefore we can set
+	// the max width and keep the right alignment
+	max-width: $property-label-max-width + $property-value-max-width + 44px;
+	justify-self: center;
+	width: 100%;
 
 	&--last {
 		margin-bottom: $grid-height-unit;
@@ -40,25 +46,23 @@
 	&__row {
 		display: flex;
 		align-items: center;
-		padding-right: 44px;
 		position: relative;
 	}
 	
 	// property label or multiselect within row
 	&__label,
-	&__label.multiselect.multiselect-vue {
-		margin: $grid-input-margin;
+	&__label.multiselect {
 		margin: $grid-input-margin 5px $grid-input-margin 0;
-		height: $grid-input-height-with-margin;
 		padding: $grid-input-padding 0;
-		width: 120px;
+		flex: 1 0; // min width is 60px, let's grow until 120px
+		height: $grid-input-height-with-margin;
+		width: $property-label-min-width !important; // override multiselect
+		min-width: $property-label-min-width;
+		max-width: $property-label-max-width;
+
 		opacity: .7;
 		user-select: none;
 		background-size: 16px;
-
-		.multiselect__tags {
-			border-color: transparent;
-		}
 
 		&,
 		.multiselect__input::placeholder {
@@ -95,18 +99,22 @@
 
 	&__label.multiselect {
 		.multiselect__tags {
-			border: none;
+			border: none !important; // override multiselect
 			.multiselect__single {
 				background-repeat: no-repeat;
 				background-position: center right 4px;
 				padding-right: 24px;
+			}
+			.multiselect__content-wrapper {
+				min-width: $property-label-max-width; // improve readability on narrow screens
 			}
 		}
 	}
 
 	// Property value within row, after label
 	&__value {
-		flex: 1 1;
+		flex: 1 1 $property-value-max-width;
+		max-width: $property-value-max-width;
 
 		textarea& {
 			align-self: flex-start;
@@ -141,8 +149,8 @@
 	// External link (tel, mailto, http, ftp...)
 	&__ext {
 		position: absolute;
-		// property row rightPadding + 8px;
-		right: 52px;
+		// 8px padding
+		right: 8px;
 		opacity: 0;
 		&:hover,
 		&:focus,
@@ -150,7 +158,7 @@
 			opacity: .7;
 			// still show the delete button for keyboard accessibility
 			~ .property__delete {
-				opacity: .7;
+				opacity: .5;
 			}
 		}
 	}
@@ -159,7 +167,7 @@
 	&__delete {
 		position: absolute;
 		top: 0;
-		right: 0;
+		left: 100%;
 		width: $grid-height-unit;
 		height: $grid-height-unit;
 		margin: 0;

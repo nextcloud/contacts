@@ -39,7 +39,7 @@
 				@click="deleteProperty" />
 
 			<multiselect v-model="matchedOptions" :options="propModel.options" :placeholder="t('contacts', 'Select option')"
-				:disabled="isSingleOption || isReadOnly" class="multiselect-vue property__value" track-by="id"
+				:disabled="isSingleOption || isReadOnly" class="property__value" track-by="id"
 				label="name" @input="updateValue" />
 		</div>
 	</div>

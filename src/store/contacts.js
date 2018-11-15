@@ -26,7 +26,7 @@ import Contact from '../models/contact'
 
 const state = {
 	// Using objects for performance
-	// https://jsperf.com/ensure-unique-id-objects-vs-array
+	// https://codepen.io/skjnldsv/pen/ZmKvQo
 	contacts: {},
 	sortedContacts: [],
 	orderKey: 'displayName'
