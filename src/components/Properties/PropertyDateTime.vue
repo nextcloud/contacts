@@ -160,7 +160,7 @@ export default {
 
 			// locale and lang data
 			locale: 'en',						// temporary value, see mounted
-			firstDay: window.firstDay,			// provided by nextcloud
+			firstDay: window.firstDay + 1,			// provided by nextcloud
 			lang: {
 				days: window.dayNamesShort,		// provided by nextcloud
 				months: window.monthNamesShort,	// provided by nextcloud
