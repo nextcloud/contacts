@@ -24,12 +24,20 @@
 // AVATAR
 .contact-header-avatar {
 	position: relative;
-	height: 75px;
-	width: 75px;
-	border-radius: 50%;
-	overflow: hidden;
-	flex-shrink: 0;
-	margin: 0 22px 0 44px;
+	flex: 1 1 75px;
+	min-width: 75px;
+	max-width: 120px;
+	margin: 10px;
+
+	// Wrap and cut
+	&__wrapper {
+		position: relative;
+		width: 75px;
+		height: 75px;
+		margin-left: auto;
+		overflow: hidden;
+		border-radius: 50%;
+	}
 	&__background {
 		opacity: .2;
 		z-index: 0;
@@ -70,46 +78,46 @@
 }
 
 .contact-header-avatar.maximised {
-	position: fixed;
-	height: 100%;
-	width: 100%;
-	top: 0;
-	left: 0;
-	border-radius: 0;
-	margin: 0px;
-	background-color: rgba(0, 0, 0, 0.9);
-	display: flex;
-	justify-content: center;
-	z-index: 200;
-	padding-top: $header-height;
-	flex-direction: column;
-	.contact-header-avatar__photo {
-		border-radius: 0;
-		align-self: center;
-		background-size: contain;
-		margin: 50px;
-	}
-	label.icon-upload-white {
-		width: 25%;
-		height: 40px;
-		position: relative;
-	}
-	.contact-header-avatar__options {
-		height: 50px;
+	.contact-header-avatar__wrapper {
+		position: fixed;
+		height: 100%;
 		width: 100%;
+		top: 0;
+		left: 0;
+		border-radius: 0;
+		margin: 0px;
+		background-color: rgba(0, 0, 0, 0.9);
 		display: flex;
-		opacity: 1;
-		flex-wrap: wrap;
-		justify-content: space-evenly;
-	}
-	.contact-header-avatar__options > [class^='icon-'] {
-		width: 25%;
-		display: block;
-		cursor: pointer;
-		opacity: 0.5;
-	}
-	.contact-header-avatar__options > [class^='icon-']:hover {
-		opacity: 0.8;
+		justify-content: center;
+		z-index: 200;
+		padding-top: $header-height;
+		flex-direction: column;
+		.contact-header-avatar__photo {
+			border-radius: 0;
+			align-self: center;
+			background-size: contain;
+			margin: 50px;
+		}
+		label.icon-upload-white {
+			position: relative;
+		}
+		.contact-header-avatar__options {
+			height: 50px;
+			width: 100%;
+			display: flex;
+			flex: 0 0 50px;
+			opacity: 1;
+			justify-content: space-evenly;
+		}
+		.contact-header-avatar__options > [class^='icon-'] {
+			width: 25%;
+			display: block;
+			cursor: pointer;
+			opacity: 0.5;
+		}
+		.contact-header-avatar__options > [class^='icon-']:hover {
+			opacity: 0.8;
+		}
 	}
 }
 

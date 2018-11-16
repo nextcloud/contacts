@@ -34,7 +34,7 @@
 				:disabled="isSingleAddressbook || isImporting"
 				:placeholder="t('contacts', 'Contacts')"
 				label="displayName"
-				class="multiselect-vue import-contact__multiselect" />
+				class="import-contact__multiselect" />
 		</template>
 		<button v-else id="upload" for="contact-import"
 			class="button import-contact__multiselect-label import-contact__multiselect--no-select icon-error">

@@ -33,10 +33,11 @@
 		#contact-header-infos {
 			display: flex;
 			flex-direction: column;
-			flex: 1 1;
+			flex: 1 1 auto; // shrink avatar before this one
 			h2,
 			#details-org-container {
 				display: flex;
+				flex-wrap: wrap;
 				margin: 0;
 			}
 			input {
@@ -44,14 +45,15 @@
 				color: #fff !important;
 				text-shadow: 0 0 2px var(--color-box-shadow);
 				background: transparent;
-				border: none;
 				text-overflow: ellipsis;
 				overflow: hidden;
 				white-space: nowrap;
-				max-width: 100%;
+				border: none;
 				margin: 0;
 				padding: 4px 5px;
 				flex: 1 1;
+				min-width: 100px;
+				max-width: 100%;
 				&::placeholder {
 					color: #fff !important;
 					opacity: .8;
@@ -59,7 +61,6 @@
 			}
 			#contact-org {
 				max-width: 20%;
-				min-width: 10vw;
 			}
 		}
 
@@ -93,15 +94,25 @@
 		}
 	}
 
-	$grid-column-width: 380px;
+	$grid-column-gap: 20px;
+	$grid-column-width: 350px;
 
 	// contact details
 	section.contact-details {
 		display: grid;
 		/* unquote is a strange hack to avoid removal of the comma by the scss compiler */
 		grid-template-columns: repeat(auto-fit, minmax(unquote('#{$grid-column-width}'), 1fr));
-		grid-column-gap: 20px;
-		padding: 0 20px;
+		grid-column-gap: $grid-column-gap;
+		padding: 0 $grid-column-gap;
 		min-height: 200px;
+	}
+
+	// single column fix, better visual
+	@media only screen and (max-width: $navigation-width + $list-min-width + 2 * $grid-column-gap +$grid-column-width) {
+		section.contact-details {
+			grid-template-columns: 1fr;
+			grid-column-gap: 10px;
+			padding: 0 10px;
+		}
 	}
 }
