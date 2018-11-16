@@ -33,6 +33,7 @@ OC.L10N.register(
     "No users or groups" : "Žádní uživatelé nebo skupiny",
     "Unable to delete the share." : "Sdílení se nedaří smazat.",
     "Unable to change permissions." : "Oprávnění se nedaří změnit.",
+    "Importing into" : "Importuje se do",
     "Import into" : "Importovat do",
     "An error occurred, unable to create the addressbook." : "Vyskytla se chyba, adresář kontaktů se nepodařilo vytvořit.",
     "Nickname" : "Přezdívka",

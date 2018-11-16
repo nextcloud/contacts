@@ -33,6 +33,7 @@ OC.L10N.register(
     "No users or groups" : "Nenhum usuário ou grupo",
     "Unable to delete the share." : "Não é possível excluir o compartilhamento.",
     "Unable to change permissions." : "Não é possível alterar as permissões.",
+    "Importing into" : "Importar para",
     "Import into" : "Importar para",
     "An error occurred, unable to create the addressbook." : "Erro ao criar o catálogo de endereços.",
     "Nickname" : "Apelido",
