@@ -5,15 +5,15 @@ OC.L10N.register(
     "Details" : "Detalls",
     "Download" : "Baixa",
     "Delete" : "Suprimeix",
+    "New contact" : "Contacte nou",
     "Copy link" : "Copiar enllaç",
     "Rename" : "Renombra",
     "Share with users or groups" : "Comparteix amb usuaris o grups",
     "Import into" : "Importa a",
-    "First name" : "Nom",
-    "Last name" : "Cognom",
-    "Display name" : "Nom mostrat",
     "Nickname" : "Sobrenom",
     "Detailed name" : "Nom detallat",
+    "Last name" : "Cognom",
+    "First name" : "Nom",
     "Additional names" : "Noms addicionals",
     "Prefix" : "Prefix",
     "Suffix" : "Sufix",
@@ -59,7 +59,6 @@ OC.L10N.register(
     "Gender" : "Gènere",
     "Female" : "Femení",
     "Male" : "Masculí",
-    "All contacts" : "Tots els contactes",
-    "New contact" : "Contacte nou"
+    "All contacts" : "Tots els contactes"
 },
 "nplurals=2; plural=(n != 1);");

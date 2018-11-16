@@ -2,10 +2,11 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "ข้อมูลผู้ติดต่อ",
-    "First name" : "ชื่อจริง",
-    "Last name" : "นามสกุลจริง",
+    "New contact" : "รายชื่อผุ้ติดต่อใหม่",
     "Nickname" : "ชื่อเล่น",
     "Detailed name" : "รายละเอียดชื่อ",
+    "Last name" : "นามสกุลจริง",
+    "First name" : "ชื่อจริง",
     "Additional names" : "ชื่ออื่นๆ",
     "Prefix" : "คำนำหน้า",
     "Suffix" : "คำต่อท้าย",
@@ -35,7 +36,6 @@ OC.L10N.register(
     "Pager" : "เพจเจอร์",
     "Voice" : "เสียงพูด",
     "Social network" : "เครือข่ายทางสังคม",
-    "All contacts" : "รายชื่อทั้งหมด",
-    "New contact" : "รายชื่อผุ้ติดต่อใหม่"
+    "All contacts" : "รายชื่อทั้งหมด"
 },
 "nplurals=1; plural=0;");

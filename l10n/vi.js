@@ -5,15 +5,15 @@ OC.L10N.register(
     "Details" : "Chi tiết",
     "Download" : "Tải về",
     "Delete" : "Xóa",
+    "New contact" : "Thêm liên lạc",
     "Copy link" : "Sao chép liên kết",
     "Rename" : "Đổi tên",
     "Share with users or groups" : "Chia sẻ với nhiều người sử dụng hoặc nhiều nhóm người sử dụng",
     "Import into" : "Nhập vào",
-    "First name" : "Tên",
-    "Last name" : "Họ",
-    "Display name" : "Tên hiển thị",
     "Nickname" : "Biệt danh",
     "Detailed name" : "Tên chi tiết",
+    "Last name" : "Họ",
+    "First name" : "Tên",
     "Additional names" : "Tên bổ sung",
     "Prefix" : "Tiền tố",
     "Suffix" : "Hậu tố",
@@ -59,7 +59,6 @@ OC.L10N.register(
     "Gender" : "Giới tính",
     "Female" : "Nữ",
     "Male" : "Nam",
-    "All contacts" : "Tất cả các tên liên lạc",
-    "New contact" : "Thêm liên lạc"
+    "All contacts" : "Tất cả các tên liên lạc"
 },
 "nplurals=1; plural=0;");

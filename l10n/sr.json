@@ -9,6 +9,7 @@
     "Download" : "Преузми",
     "Delete" : "Обриши",
     "Addressbook" : "Адресар",
+    "New contact" : "Нови контакт",
     "The contact doesn't exists anymore on the server." : "Овај контакт не постоји више на серверу.",
     "failed" : "неуспешно",
     "Select Date" : "Одаберите датум",
@@ -28,12 +29,10 @@
     "No users or groups" : "Нема корисника или група",
     "Import into" : "Увези у",
     "An error occurred, unable to create the addressbook." : "Догодила се грешка, не могу да креирам адресар.",
-    "Sort by:" : "Сортирај по:",
-    "First name" : "Име",
-    "Last name" : "Презиме",
-    "Display name" : "Име за приказ",
     "Nickname" : "Надимак",
     "Detailed name" : "Пуно име",
+    "Last name" : "Презиме",
+    "First name" : "Име",
     "Additional names" : "Додатна имена",
     "Prefix" : "Префикс",
     "Suffix" : "Суфикс",
@@ -93,9 +92,7 @@
     "Female" : "Женски",
     "Male" : "Мушки",
     "All contacts" : "Сви контакти",
-    "You did not enter the password in time" : "Нисте унели лозинку на време",
     "An error occurred" : "Дошло је до грешке.",
-    "New contact" : "Нови контакт",
     "Contact not found" : "Контакт није нађен"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
 }

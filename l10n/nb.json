@@ -3,17 +3,17 @@
     "Details" : "Detaljer",
     "Download" : "Last ned",
     "Delete" : "Slett",
+    "New contact" : "Ny kontakt",
     "Copy link" : "Kopier lenke",
     "Rename" : "Gi nytt navn",
     "Enabled" : "Aktiver",
     "Disabled" : "Deaktiver",
     "Share with users or groups" : "Del med brukere eller grupper",
     "Import into" : "Importer inn i",
-    "First name" : "Fornavn",
-    "Last name" : "Etternavn",
-    "Display name" : "Visningsnavn",
     "Nickname" : "Kallenavn",
     "Detailed name" : "Detaljert navn",
+    "Last name" : "Etternavn",
+    "First name" : "Fornavn",
     "Additional names" : "Ev. mellomnavn",
     "Prefix" : "Prefiks",
     "Suffix" : "Suffiks",
@@ -62,7 +62,6 @@
     "Gender" : "Kjønn",
     "Female" : "Mann",
     "Male" : "Dame",
-    "All contacts" : "Alle kontakter",
-    "New contact" : "Ny kontakt"
+    "All contacts" : "Alle kontakter"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

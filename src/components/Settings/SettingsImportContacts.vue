@@ -12,7 +12,7 @@
 	-
 	- This program is distributed in the hope that it will be useful,
 	- but WITHOUT ANY WARRANTY; without even the implied warranty of
-	- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+	- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
 	- GNU Affero General Public License for more details.
 	-
 	- You should have received a copy of the GNU Affero General Public License
@@ -22,53 +22,56 @@
 
 <template>
 	<div class="import-contact">
-		<input id="contact-import" type="file" class="hidden-visually"
-			@change="processFile">
-		<label id="upload" for="contact-import" class="button multiselect-label icon-upload no-select">
-			{{ t('contacts', 'Import into') }}
-		</label>
-		<multiselect
-			v-model="selectedAddressbook"
-			:options="options"
-			:disabled="isSingleAddressbook"
-			:placeholder="t('contacts', 'Contacts')"
-			label="displayName"
-			class="multiselect-vue" />
+		<template v-if="!isNoAddressbookAvailable">
+			<input id="contact-import" :disabled="isImporting" type="file"
+				class="hidden-visually" @change="processFile">
+			<label id="upload" for="contact-import" class="button import-contact__multiselect-label icon-upload">
+				{{ isImporting ? t('contacts', 'Importing into') : t('contacts', 'Import into') }}
+			</label>
+			<multiselect
+				v-model="selectedAddressbook"
+				:options="options"
+				:disabled="isSingleAddressbook || isImporting"
+				:placeholder="t('contacts', 'Contacts')"
+				label="displayName"
+				class="multiselect-vue import-contact__multiselect" />
+		</template>
+		<button v-else id="upload" for="contact-import"
+			class="button import-contact__multiselect-label import-contact__multiselect--no-select icon-error">
+			{{ t('contacts', 'Importing is disabled because there are no address books available') }}
+		</button>
 	</div>
 </template>
 
 <script>
-import clickOutside from 'vue-click-outside'
-import Multiselect from 'vue-multiselect'
-
 export default {
 	name: 'SettingsImportContacts',
-	components: {
-		clickOutside,
-		Multiselect
-	},
-	directives: {
-		clickOutside
-	},
+
 	data() {
 		return {
 			importDestination: false
 		}
 	},
+
 	computed: {
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
 		},
 		options() {
-			return this.addressbooks.map(addressbook => {
-				return {
-					id: addressbook.id,
-					displayName: addressbook.displayName
-				}
-			})
+			return this.addressbooks
+				.filter(addressbook => !addressbook.readOnly && addressbook.enabled)
+				.map(addressbook => {
+					return {
+						id: addressbook.id,
+						displayName: addressbook.displayName
+					}
+				})
 		},
 		importState() {
 			return this.$store.getters.getImportState
+		},
+		isImporting() {
+			return this.importState.stage !== 'default'
 		},
 		selectedAddressbook: {
 			get() {
@@ -82,9 +85,12 @@ export default {
 				this.importDestination = value
 			}
 		},
-		// disable multiselect when there is at most one address book
+		// disable multiselect when there is only one address book
 		isSingleAddressbook() {
-			return this.addressbooks.length <= 1
+			return this.options.length === 1
+		},
+		isNoAddressbookAvailable() {
+			return this.options.length < 1
 		}
 	},
 	methods: {

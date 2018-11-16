@@ -58,6 +58,7 @@ stylelint-fix:
 clean:
 	rm -f js/contacts.js
 	rm -f js/contacts.js.map
+	rm -Rf js/chunks
 
 clean-dev:
 	rm -rf node_modules

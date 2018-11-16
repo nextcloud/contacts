@@ -12,7 +12,7 @@
   -
   - This program is distributed in the hope that it will be useful,
   - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
   - GNU Affero General Public License for more details.
   -
   - You should have received a copy of the GNU Affero General Public License
@@ -36,10 +36,10 @@
 				<import-screen v-if="importState.stage !== 'default'" />
 				<template v-else>
 					<!-- contacts list -->
-					<content-list :list="contactsList" :contacts="contacts" :loading="loading"
+					<contacts-list :list="contactsList" :contacts="contacts" :loading="loading"
 						:search-query="searchQuery" />
 					<!-- main contacts details -->
-					<contact-details :loading="loading" :uid="selectedContact" />
+					<contact-details :loading="loading" :contact-key="selectedContact" />
 				</template>
 			</div>
 		</div>
@@ -49,23 +49,23 @@
 
 <script>
 import moment from 'moment'
-import { AppNavigation } from 'nextcloud-vue'
 
-import SettingsSection from '../components/SettingsSection'
-import ContentList from '../components/ContentList'
-import ContactDetails from '../components/ContactDetails'
-import ImportScreen from '../components/ImportScreen'
+import SettingsSection from 'Components/SettingsSection'
+import ContactsList from 'Components/ContactsList'
+import ContactDetails from 'Components/ContactDetails'
+import ImportScreen from 'Components/ImportScreen'
 
-import Contact from '../models/contact'
-import rfcProps from '../models/rfcProps.js'
+import Contact from 'Models/contact'
+import rfcProps from 'Models/rfcProps'
 
-import client from '../services/cdav.js'
+import client from 'Services/cdav'
 
 export default {
+	name: 'Contacts',
+
 	components: {
-		AppNavigation,
 		SettingsSection,
-		ContentList,
+		ContactsList,
 		ContactDetails,
 		ImportScreen
 	},
@@ -110,9 +110,10 @@ export default {
 		importState() {
 			return this.$store.getters.getImportState
 		},
+
 		// first enabled addressbook of the list
 		defaultAddressbook() {
-			return this.addressbooks.find(addressbook => addressbook.readOnly !== false)
+			return this.addressbooks.find(addressbook => !addressbook.readOnly && addressbook.enabled)
 		},
 
 		/**
@@ -176,7 +177,8 @@ export default {
 					id: 'new-contact-button',
 					text: t('contacts', 'New contact'),
 					icon: 'icon-add',
-					action: this.newContact
+					action: this.newContact,
+					disabled: this.defaultAddressbook === undefined
 				},
 				items: this.allGroup.concat(this.groupsMenu)
 			}
@@ -247,7 +249,7 @@ export default {
 	methods: {
 		newContact() {
 			let contact = new Contact('BEGIN:VCARD\nVERSION:4.0\nEND:VCARD', this.defaultAddressbook)
-			contact.fullName = 'New contact'
+			contact.fullName = t('contacts', 'New contact')
 			// itterate over all properties (filter is not usable on objects and we need the key of the property)
 			for (let name in rfcProps.properties) {
 				if (rfcProps.properties[name].default) {
@@ -291,13 +293,14 @@ export default {
 		 */
 		fetchContacts() {
 			// wait for all addressbooks to have fetch their contacts
-			Promise.all(this.addressbooks.map(addressbook => this.$store.dispatch('getContactsFromAddressBook', { addressbook })))
-				.then(results => {
-					this.loading = false
-					this.selectFirstContactIfNone()
-				})
-				// no need for a catch, the action does not throw
-				// and the error is handled there
+			Promise.all(this.addressbooks.map(addressbook => {
+				if (addressbook.enabled) {
+					return this.$store.dispatch('getContactsFromAddressBook', { addressbook })
+				}
+			})).then(results => {
+				this.loading = false
+				this.selectFirstContactIfNone()
+			})
 		},
 
 		/**

@@ -5,13 +5,13 @@ OC.L10N.register(
     "Details" : "Дэлгэрэнгүй",
     "Download" : "Татаж авах",
     "Delete" : "Устгах",
+    "New contact" : "Шинэ харилцагч",
     "Rename" : "Нэр солих",
     "Share with users or groups" : "Бусдад түгээх",
-    "First name" : "Нэр",
-    "Last name" : "Овог",
-    "Display name" : "Харагдах нэр",
     "Nickname" : "Товч нэр",
     "Detailed name" : "Дэлгэрэнгүй нэр",
+    "Last name" : "Овог",
+    "First name" : "Нэр",
     "Additional names" : "Нэмэлт нэрүүд",
     "Notes" : "Тэмдэглэл",
     "Website" : "Цахим хуудас",
@@ -34,7 +34,6 @@ OC.L10N.register(
     "Fax home" : "Гэрийн факс",
     "Fax work" : "Ажлын факс",
     "Social network" : "Олон нийтийн сүлжээ",
-    "All contacts" : "Бүх харилцагчид",
-    "New contact" : "Шинэ харилцагч"
+    "All contacts" : "Бүх харилцагчид"
 },
 "nplurals=2; plural=(n != 1);");

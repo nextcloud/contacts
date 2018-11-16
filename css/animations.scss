@@ -14,3 +14,12 @@
 [class$='--pulse'] {
 	animation: pulse 1.5s infinite;
 }
+
+.list-enter-active, .list-leave-active {
+	transition: all 500ms ease-in-out;
+}
+
+.list-enter,
+.list-leave-to {
+	opacity: 0;
+}

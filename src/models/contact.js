@@ -12,7 +12,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
@@ -45,6 +45,9 @@ export default class Contact {
 		this.jCal = jCal
 		this.addressbook = addressbook
 		this.vCard = new ICAL.Component(this.jCal)
+
+		// used to state a contact is not up to date with
+		// the server and cannot be pushed (etag)
 		this.conflict = false
 
 		// if no uid set, create one
@@ -98,6 +101,7 @@ export default class Contact {
 		if (this.dav) {
 			return this.dav.url
 		}
+		return ''
 	}
 
 	/**

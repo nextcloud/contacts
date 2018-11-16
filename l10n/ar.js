@@ -5,15 +5,15 @@ OC.L10N.register(
     "Details" : "التفاصيل",
     "Download" : "تحميل",
     "Delete" : "حذف",
+    "New contact" : "جهة إتصال جديدة",
     "Copy link" : "نسخ الرابط",
     "Rename" : "تعديل الإسم",
     "Share with users or groups" : "شارك مع مستخدمين او مجموعات",
     "Import into" : "إستيراد إلى",
-    "First name" : "الإسم",
-    "Last name" : "اللقب",
-    "Display name" : "إسم العرض",
     "Nickname" : "كنية.\nلقب.",
     "Detailed name" : "الإسم بالتفصيل",
+    "Last name" : "اللقب",
+    "First name" : "الإسم",
     "Additional names" : "الأسماء الإضافية",
     "Prefix" : "بادئة",
     "Suffix" : "لاحقة",
@@ -43,7 +43,6 @@ OC.L10N.register(
     "Pager" : "النداء",
     "Voice" : "صوت",
     "Social network" : "شبكة اجتماعية",
-    "All contacts" : "كل الجهات",
-    "New contact" : "جهة إتصال جديدة"
+    "All contacts" : "كل الجهات"
 },
 "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;");

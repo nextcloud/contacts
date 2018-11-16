@@ -12,7 +12,7 @@
   -
   - This program is distributed in the hope that it will be useful,
   - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
   - GNU Affero General Public License for more details.
   -
   - You should have received a copy of the GNU Affero General Public License
@@ -30,8 +30,8 @@
 			<!-- type selector -->
 			<multiselect v-if="propModel.options" v-model="localType"
 				:options="options" :searchable="false" :placeholder="t('contacts', 'Select type')"
-				class="multiselect-vue property__label" track-by="id" label="name"
-				@input="updateType" />
+				:disabled="isReadOnly" class="property__label" track-by="id"
+				label="name" @input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
 			<div v-else-if="selectType" class="property__label">{{ selectType.name }}</div>
@@ -40,19 +40,20 @@
 			<div v-else class="property__label">{{ propModel.readableName }}</div>
 
 			<!-- show the first input if not -->
-			<input v-if="!property.isStructuredValue" v-model.trim="localValue[0]" class="property__value"
-				type="text" @input="updateValue">
+			<input v-if="!property.isStructuredValue" v-model.trim="localValue[0]" :readonly="isReadOnly"
+				class="property__value" type="text" @input="updateValue">
 
 			<!-- delete the prop -->
-			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
+			<button v-if="!isReadOnly" :title="t('contacts', 'Delete')" class="property__delete icon-delete"
+				@click="deleteProperty" />
 		</div>
 
 		<!-- force order based on model -->
 		<template v-if="propModel.displayOrder && propModel.readableValues">
 			<div v-for="index in propModel.displayOrder" :key="index" class="property__row">
 				<div class="property__label">{{ propModel.readableValues[index] }}</div>
-				<input v-model.trim="localValue[index]" class="property__value" type="text"
-					@input="updateValue">
+				<input v-model.trim="localValue[index]" :readonly="isReadOnly" class="property__value"
+					type="text" @input="updateValue">
 			</div>
 		</template>
 
@@ -61,64 +62,31 @@
 			<div v-for="(value, index) in localValue" v-if="index > 0" :key="index"
 				class="property__row">
 				<div class="property__label" />
-				<input v-model.trim="localValue[index]" class="property__value" type="text"
-					@input="updateValue">
+				<input v-model.trim="localValue[index]" :readonly="isReadOnly" class="property__value"
+					type="text" @input="updateValue">
 			</div>
 		</template>
 	</div>
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
-import propertyTitle from './PropertyTitle'
-import debounce from 'debounce'
+import PropertyMixin from 'Mixins/PropertyMixin'
+import PropertyTitle from './PropertyTitle'
 
 export default {
 	name: 'PropertyText',
 
 	components: {
-		Multiselect,
-		propertyTitle
+		PropertyTitle
 	},
 
+	mixins: [PropertyMixin],
+
 	props: {
-		selectType: {
-			type: [Object, Boolean],
-			default: () => {}
-		},
-		propModel: {
-			type: Object,
-			default: () => {},
-			required: true
-		},
 		value: {
 			type: [Array, Object],
 			default: () => [],
 			required: true
-		},
-		options: {
-			type: Array,
-			default: () => []
-		},
-		property: {
-			type: Object,
-			default: () => {},
-			required: true
-		},
-		isFirstProperty: {
-			type: Boolean,
-			default: true
-		},
-		isLastProperty: {
-			type: Boolean,
-			default: true
-		}
-	},
-
-	data() {
-		return {
-			localValue: this.value,
-			localType: this.selectType
 		}
 	},
 
@@ -130,43 +98,6 @@ export default {
 			let length = this.propModel.displayOrder ? this.propModel.displayOrder.length : this.value.length
 			return hasValueNames + hasTitle + length + isLast
 		}
-	},
-
-	watch: {
-		/**
-		 * Since we're updating a local data based on the value prop,
-		 * we need to make sure to update the local data on pop change
-		 * TODO: check if this create performance drop
-		 */
-		value: function() {
-			this.localValue = this.value
-		},
-		selectType: function() {
-			this.localType = this.selectType
-		}
-	},
-
-	methods: {
-
-		/**
-		 * Delete the property
-		 */
-		deleteProperty() {
-			this.$emit('delete')
-		},
-
-		/**
-		 * Debounce and send update event to parent
-		 */
-		updateValue: debounce(function(e) {
-			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
-			this.$emit('update:value', this.localValue)
-		}, 500),
-
-		updateType: debounce(function(e) {
-			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
-			this.$emit('update:selectType', this.localType)
-		}, 500)
 	}
 }
 

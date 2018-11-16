@@ -3,17 +3,17 @@
     "Details" : "Detalhes",
     "Download" : "Transferir",
     "Delete" : "Apagar",
+    "New contact" : "Novo contacto",
     "Copy link" : "Copiar hiperligação",
     "Rename" : "Renomear",
     "Enabled" : "Ativada",
     "Disabled" : "Desactivado",
     "Share with users or groups" : "Partilhe com os utilizadores ou grupos",
     "Import into" : "Importar para",
-    "First name" : "Primeiro Nome",
-    "Last name" : "Ultimo Nome",
-    "Display name" : "Nome de apresentação",
     "Nickname" : "Alcunha",
     "Detailed name" : "Nome em detalhe",
+    "Last name" : "Ultimo Nome",
+    "First name" : "Primeiro Nome",
     "Additional names" : "Nomes adicionais",
     "Prefix" : "Prefixo",
     "Suffix" : "Sufixo",
@@ -62,7 +62,6 @@
     "Gender" : "Género",
     "Female" : "Feminino",
     "Male" : "Masculino",
-    "All contacts" : "Todos os contactos",
-    "New contact" : "Novo contacto"
+    "All contacts" : "Todos os contactos"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

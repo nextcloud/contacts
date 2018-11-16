@@ -2,9 +2,10 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contactes",
-    "First name" : "Prenom",
-    "Last name" : "Nom",
+    "New contact" : "Contacte novèl",
     "Nickname" : "Escais",
+    "Last name" : "Nom",
+    "First name" : "Prenom",
     "Additional names" : "Noms suplementaris",
     "Notes" : "Nòtas",
     "Website" : "Site web",
@@ -26,7 +27,6 @@ OC.L10N.register(
     "Fax" : "Fax",
     "Pager" : "Messatgièr",
     "Voice" : "Votz",
-    "All contacts" : "Totes los contactes",
-    "New contact" : "Contacte novèl"
+    "All contacts" : "Totes los contactes"
 },
 "nplurals=2; plural=(n > 1);");

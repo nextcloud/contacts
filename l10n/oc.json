@@ -1,8 +1,9 @@
 { "translations": {
     "Contacts" : "Contactes",
-    "First name" : "Prenom",
-    "Last name" : "Nom",
+    "New contact" : "Contacte novèl",
     "Nickname" : "Escais",
+    "Last name" : "Nom",
+    "First name" : "Prenom",
     "Additional names" : "Noms suplementaris",
     "Notes" : "Nòtas",
     "Website" : "Site web",
@@ -24,7 +25,6 @@
     "Fax" : "Fax",
     "Pager" : "Messatgièr",
     "Voice" : "Votz",
-    "All contacts" : "Totes los contactes",
-    "New contact" : "Contacte novèl"
+    "All contacts" : "Totes los contactes"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

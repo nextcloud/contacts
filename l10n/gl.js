@@ -5,13 +5,13 @@ OC.L10N.register(
     "Details" : "Detalles",
     "Download" : "Descargar",
     "Delete" : "Eliminar",
+    "New contact" : "Novo contacto",
     "Copy link" : "Copiar a ligazón",
     "Rename" : "Renomear",
     "Share with users or groups" : "Compartir con usuarios ou grupos",
     "Import into" : "Importar a",
-    "First name" : "Nome",
     "Last name" : "Apelidos",
-    "Display name" : "Nome para amosar",
+    "First name" : "Nome",
     "Prefix" : "Prefixo",
     "Suffix" : "Sufixo",
     "Notes" : "Notas",
@@ -38,7 +38,6 @@ OC.L10N.register(
     "Relative" : "Familiar",
     "Assistant" : "Asistente",
     "Gender" : "Xénero",
-    "All contacts" : "Todos os contactos",
-    "New contact" : "Novo contacto"
+    "All contacts" : "Todos os contactos"
 },
 "nplurals=2; plural=(n != 1);");

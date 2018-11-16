@@ -12,7 +12,7 @@
   -
   - This program is distributed in the hope that it will be useful,
   - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
   - GNU Affero General Public License for more details.
   -
   - You should have received a copy of the GNU Affero General Public License
@@ -30,8 +30,8 @@
 			<!-- type selector -->
 			<multiselect v-if="propModel.options" v-model="localType"
 				:options="options" :searchable="false" :placeholder="t('contacts', 'Select type')"
-				class="multiselect-vue property__label" track-by="id" label="name"
-				@input="updateType" />
+				:disabled="isReadOnly" class="property__label" track-by="id"
+				label="name" @input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
 			<div v-else-if="selectType" class="property__label">{{ selectType.name }}</div>
@@ -39,44 +39,43 @@
 			<!-- no options, empty space -->
 			<div v-else class="property__label">{{ propModel.readableName }}</div>
 
-			<!-- delete the prop -->
-			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
-
 			<!-- textarea for note -->
 			<textarea v-if="propName === 'note'" id="textarea" ref="textarea"
-				v-model.trim="localValue" :type="type" class="property__value"
-				@input="updateValue" @mousemove="resizeGrid" @keypress="resizeGrid" />
+				v-model.trim="localValue" :type="type" :readonly="isReadOnly"
+				class="property__value"
+				@input="updateValueNoDebounce" @mousemove="resizeGrid" @keypress="resizeGrid" />
 
 			<!-- OR default to input -->
 			<input v-else v-model.trim="localValue" :type="type"
-				class="property__value" @input="updateValue">
+				:readonly="isReadOnly" :class="{'property__value--with-ext': haveExtHandler}" class="property__value"
+				@input="updateValue">
+
+			<!-- external link -->
+			<a v-if="haveExtHandler" :href="externalHandler" class="property__ext icon-external"
+				target="_blank" />
+
+			<!-- delete the prop -->
+			<button v-if="!isReadOnly" :title="t('contacts', 'Delete')" class="property__delete icon-delete"
+				@click="deleteProperty" />
 		</div>
 	</div>
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
-import propertyTitle from './PropertyTitle'
 import debounce from 'debounce'
+import PropertyMixin from 'Mixins/PropertyMixin'
+import PropertyTitle from './PropertyTitle'
 
 export default {
 	name: 'PropertyText',
 
 	components: {
-		Multiselect,
-		propertyTitle
+		PropertyTitle
 	},
 
+	mixins: [PropertyMixin],
+
 	props: {
-		selectType: {
-			type: [Object, Boolean],
-			default: () => {}
-		},
-		propModel: {
-			type: Object,
-			default: () => {},
-			required: true
-		},
 		propName: {
 			type: String,
 			default: 'text',
@@ -91,25 +90,11 @@ export default {
 			type: String,
 			default: '',
 			required: true
-		},
-		options: {
-			type: Array,
-			default: () => []
-		},
-		isFirstProperty: {
-			type: Boolean,
-			default: true
-		},
-		isLastProperty: {
-			type: Boolean,
-			default: true
 		}
 	},
 
 	data() {
 		return {
-			localValue: this.value,
-			localType: this.selectType,
 			// the textarea additionnal height compared to the
 			// default input text. Min is 2 grid height
 			noteHeight: 1
@@ -135,20 +120,28 @@ export default {
 				return 'url'
 			}
 			return 'text'
-		}
-	},
-
-	watch: {
-		/**
-		 * Since we're updating a local data based on the value prop,
-		 * we need to make sure to update the local data on pop change
-		 * TODO: check if this create performance drop
-		 */
-		value: function() {
-			this.localValue = this.value
 		},
-		selectType: function() {
-			this.localType = this.selectType
+		URLScheme() {
+			if (this.propName === 'tel') {
+				return 'tel:'
+			} else if (this.propName === 'email') {
+				return 'mailto:'
+			// if no scheme (roughly checking for the colon char)
+			} else if (this.propType === 'uri' && this.value.indexOf(':') === -1) {
+				return 'https://'
+			} else if (this.propType === 'uri') {
+				return '' // return empty, we already have a scheme in the value
+			}
+			return false
+		},
+		// format external link
+		externalHandler() {
+			if (this.URLScheme !== false) {
+				return `${this.URLScheme}${this.value}`
+			}
+		},
+		haveExtHandler() {
+			return this.externalHandler && this.value && this.value.length > 0
 		}
 	},
 
@@ -183,23 +176,10 @@ export default {
 		 *
 		 * @param {Object} e event
 		 */
-		updateValue(e) {
+		updateValueNoDebounce(e) {
 			this.resizeGrid(e)
-			this.updateValueDebounced(e)
-		},
-
-		/**
-		 * Debounce and send update event to parent
-		 */
-		updateValueDebounced: debounce(function(e) {
-			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
-			this.$emit('update:value', this.localValue)
-		}, 500),
-
-		updateType: debounce(function(e) {
-			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
-			this.$emit('update:selectType', this.localType)
-		}, 500)
+			this.updateValue(e)
+		}
 	}
 }
 </script>

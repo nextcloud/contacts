@@ -12,7 +12,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
@@ -152,9 +152,27 @@ const mutations = {
 	 */
 	updateContactAddressbook(state, { contact, addressbook }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
-			// replace contact object data
-			state.contacts[contact.key].updateAddressbook(addressbook)
+			// replace contact object data by creating a new contact
+			let oldKey = contact.key
 
+			// hijack reference
+			var newContact = contact
+
+			// delete old key, cut reference
+			Vue.delete(state.contacts, oldKey)
+
+			// replace addressbook
+			Vue.set(newContact, 'addressbook', addressbook)
+
+			// set new key, re-assign reference
+			Vue.set(state.contacts, newContact.key, newContact)
+
+			// Update sorted contacts list, replace at exact same position
+			let index = state.sortedContacts.findIndex(search => search.key === oldKey)
+			state.sortedContacts[index] = {
+				key: newContact.key,
+				value: newContact[state.orderKey]
+			}
 		} else {
 			console.error('Error while replacing the addressbook of following contact', contact)
 		}
@@ -215,7 +233,7 @@ const mutations = {
 const getters = {
 	getContacts: state => state.contacts,
 	getSortedContacts: state => state.sortedContacts,
-	getContact: (state) => (uid) => state.contacts[uid],
+	getContact: (state) => (key) => state.contacts[key],
 	getOrderKey: state => state.orderKey
 }
 
@@ -276,18 +294,18 @@ const actions = {
 		if (!contact.conflict) {
 			contact.dav.data = vData
 			return contact.dav.update()
-				.then((response) => {
+				.then(() => {
+					// all clear, let's update the store
+					context.commit('updateContact', contact)
+				})
+				.catch((error) => {
 					// wrong etag, we most likely have a conflict
-					if (response.status === 412) {
+					if (error && error.status === 412) {
 						// saving the new etag so that the user can manually
 						// trigger a fetchCompleteData without any further errors
-						contact.conflict = response.xhr.getResponseHeader('etag')
-					} else {
-						// all clear, let's update the store
-						context.commit('updateContact', contact)
+						contact.conflict = error.xhr.getResponseHeader('etag')
 					}
 				})
-				.catch((error) => { throw error })
 		} else {
 			console.error('This contact is outdated, refusing to push', contact)
 		}

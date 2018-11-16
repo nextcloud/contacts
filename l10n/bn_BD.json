@@ -1,8 +1,9 @@
 { "translations": {
     "Contacts" : "পরিচিতজন",
-    "First name" : "নামের প্রথমাংশ ",
-    "Last name" : "নামের শেষাংশ",
+    "New contact" : "নতুন ঠিকানা",
     "Nickname" : "ছদ্মনাম",
+    "Last name" : "নামের শেষাংশ",
+    "First name" : "নামের প্রথমাংশ ",
     "Additional names" : "অতিরিক্ত নামসমূহ",
     "Notes" : "নোট",
     "Website" : "ওয়েবসাইট",
@@ -22,7 +23,6 @@
     "Mobile" : "মোবাইল",
     "Fax" : "ফ্যাক্স",
     "Pager" : "পেজার",
-    "Voice" : "কন্ঠ",
-    "New contact" : "নতুন ঠিকানা"
+    "Voice" : "কন্ঠ"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

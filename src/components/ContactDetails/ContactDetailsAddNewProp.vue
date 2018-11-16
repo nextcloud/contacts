@@ -12,7 +12,7 @@
   -
   - This program is distributed in the hope that it will be useful,
   - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
   - GNU Affero General Public License for more details.
   -
   - You should have received a copy of the GNU Affero General Public License
@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div class="grid-span-2 property">
+	<div class="grid-span-3 property property--last">
 
 		<!-- title -->
 		<property-title :icon="'icon-add'" :readable-name="t('contacts', 'Add new property')" />
@@ -30,25 +30,22 @@
 			<div class="property__label" />
 
 			<!-- type selector -->
-			<multiselect :options="availableProperties" :placeholder="t('contacts', 'Choose property type')" class="multiselect-vue property__value"
+			<multiselect :options="availableProperties" :placeholder="t('contacts', 'Choose property type')" class="property__value"
 				track-by="id" label="name" @input="addProp" />
 		</div>
 	</div>
 </template>
 
 <script>
-import rfcProps from '../../models/rfcProps.js'
-import Contact from '../../models/contact'
-import propertyTitle from '../Properties/PropertyTitle'
-
-import Multiselect from 'vue-multiselect'
+import rfcProps from 'Models/rfcProps'
+import Contact from 'Models/contact'
+import PropertyTitle from 'Components/Properties/PropertyTitle'
 
 export default {
 	name: 'ContactDetailsAddNewProp',
 
 	components: {
-		propertyTitle,
-		Multiselect
+		PropertyTitle
 	},
 
 	props: {

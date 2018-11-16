@@ -12,7 +12,7 @@
   -
   - This program is distributed in the hope that it will be useful,
   - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
   - GNU Affero General Public License for more details.
   -
   - You should have received a copy of the GNU Affero General Public License
@@ -25,7 +25,7 @@
 		<div :class="icon" class="property__label property__title--icon" />
 		{{ readableName }}
 		<!-- display tooltip with hint if available -->
-		<div v-tooltip.right="info" v-if="info" class="icon-details" />
+		<div v-tooltip.auto="info" v-if="info" class="icon-details" />
 	</h3>
 </template>
 
