@@ -13,7 +13,6 @@ OC.L10N.register(
     "Addressbook" : "Agenda",
     "New contact" : "Nuevo contacto",
     "The contact doesn't exists anymore on the server." : "El contacto ya no existe en el servidor.",
-    "failed" : "ha fallado",
     "Select Date" : "Seleccione la fecha",
     "No results" : "Sin resultados",
     "Copy link" : "Copiar enlace",
@@ -31,10 +30,12 @@ OC.L10N.register(
     "No users or groups" : "No hay usuarios ni grupos.",
     "Import into" : "Importar a",
     "An error occurred, unable to create the addressbook." : "Ocurrió un error: no fue posible crear la agenda",
+    "First name" : "Nombre",
+    "Last name" : "Apellido",
+    "All contacts" : "Todos los contactos",
+    "Contact not found" : "Contacto no encontrado",
     "Nickname" : "Apodo",
     "Detailed name" : "Nombre",
-    "Last name" : "Apellido",
-    "First name" : "Nombre",
     "Additional names" : "Nombres adicionales",
     "Prefix" : "Prefijo",
     "Suffix" : "Sufijo",
@@ -93,8 +94,6 @@ OC.L10N.register(
     "Gender" : "Género",
     "Female" : "Mujer",
     "Male" : "Hombre",
-    "All contacts" : "Todos los contactos",
-    "An error occurred" : "Ocurrió un error",
-    "Contact not found" : "Contacto no encontrado"
+    "An error occurred" : "Ocurrió un error"
 },
 "nplurals=2; plural=(n != 1);");

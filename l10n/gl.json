@@ -8,8 +8,9 @@
     "Rename" : "Renomear",
     "Share with users or groups" : "Compartir con usuarios ou grupos",
     "Import into" : "Importar a",
-    "Last name" : "Apelidos",
     "First name" : "Nome",
+    "Last name" : "Apelidos",
+    "All contacts" : "Todos os contactos",
     "Prefix" : "Prefixo",
     "Suffix" : "Sufixo",
     "Notes" : "Notas",
@@ -35,7 +36,6 @@
     "Sister" : "Irmá",
     "Relative" : "Familiar",
     "Assistant" : "Asistente",
-    "Gender" : "Xénero",
-    "All contacts" : "Todos os contactos"
+    "Gender" : "Xénero"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

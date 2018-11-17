@@ -14,10 +14,11 @@ OC.L10N.register(
     "Disabled" : "מושבת",
     "Share with users or groups" : "שיתוף עם משתמשים או קבוצות",
     "Import into" : "ייבוא לתוך",
+    "First name" : "שם פרטי",
+    "Last name" : "שם משפחה",
+    "All contacts" : "כל אנשי הקשר",
     "Nickname" : "כינוי",
     "Detailed name" : "פרטי שם",
-    "Last name" : "שם משפחה",
-    "First name" : "שם פרטי",
     "Additional names" : "שמות נוספים",
     "Prefix" : "תואר",
     "Suffix" : "סיומת",
@@ -72,7 +73,6 @@ OC.L10N.register(
     "Co-worker" : "חבר/ה לעבודה",
     "Gender" : "מגדר",
     "Female" : "נקבה",
-    "Male" : "זכר",
-    "All contacts" : "כל אנשי הקשר"
+    "Male" : "זכר"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;");

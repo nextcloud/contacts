@@ -12,10 +12,11 @@ OC.L10N.register(
     "Disabled" : "비활성화됨",
     "Share with users or groups" : "사용자 및 그룹과 공유",
     "Import into" : "다음으로 가져오기",
+    "First name" : "이름",
+    "Last name" : "성",
+    "All contacts" : "모든 연락처",
     "Nickname" : "별명",
     "Detailed name" : "자세한 이름",
-    "Last name" : "성",
-    "First name" : "이름",
     "Additional names" : "추가 이름",
     "Prefix" : "접두사",
     "Suffix" : "접미사",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Assistant" : "비서",
     "Gender" : "성별",
     "Female" : "여성",
-    "Male" : "남성",
-    "All contacts" : "모든 연락처"
+    "Male" : "남성"
 },
 "nplurals=1; plural=0;");

@@ -14,10 +14,11 @@ OC.L10N.register(
     "Disabled" : "Deshabilitado",
     "Share with users or groups" : "Compartir con otros usuarios o grupos",
     "Import into" : "Importar a",
+    "First name" : "Nombre",
+    "Last name" : "Apellido",
+    "All contacts" : "Todos los contactos",
     "Nickname" : "Apodo",
     "Detailed name" : "Nombre detallado",
-    "Last name" : "Apellido",
-    "First name" : "Nombre",
     "Additional names" : "Nombres adicionales",
     "Prefix" : "Prefijo",
     "Suffix" : "Sufijo",
@@ -72,7 +73,6 @@ OC.L10N.register(
     "Co-worker" : "Compañero de trabajo",
     "Gender" : "Género",
     "Female" : "Femenino",
-    "Male" : "Masculino",
-    "All contacts" : "Todos los contactos"
+    "Male" : "Masculino"
 },
 "nplurals=2; plural=(n != 1);");

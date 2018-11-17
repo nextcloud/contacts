@@ -13,7 +13,6 @@ OC.L10N.register(
     "Addressbook" : "Książka adresowa",
     "New contact" : "Nowy kontakt",
     "The contact doesn't exists anymore on the server." : "Ten kontakt nie istnieje na serwerze.",
-    "failed" : "błąd",
     "Select Date" : "Wybierz datę",
     "No results" : "Brak wyników",
     "Copy link" : "Skopiuj link",
@@ -30,10 +29,12 @@ OC.L10N.register(
     "No users or groups" : "Brak użytkowników i grup",
     "Import into" : "Importuj do",
     "An error occurred, unable to create the addressbook." : "Wystąpił błąd, nie można utworzyć książki adresowej.",
+    "First name" : "Imię",
+    "Last name" : "Nazwisko",
+    "All contacts" : "Wszystkie kontakty",
+    "Contact not found" : "Nie znaleziono kontaktu",
     "Nickname" : "Pseudonim",
     "Detailed name" : "Szczegółowa nazwa",
-    "Last name" : "Nazwisko",
-    "First name" : "Imię",
     "Additional names" : "Dodatkowe nazwy",
     "Prefix" : "Przedrostek",
     "Suffix" : "Przyrostek",
@@ -92,8 +93,6 @@ OC.L10N.register(
     "Gender" : "Płeć",
     "Female" : "Kobieta",
     "Male" : "Mężczyzna",
-    "All contacts" : "Wszystkie kontakty",
-    "An error occurred" : "Wystąpił błąd",
-    "Contact not found" : "Nie znaleziono kontaktu"
+    "An error occurred" : "Wystąpił błąd"
 },
 "nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);");

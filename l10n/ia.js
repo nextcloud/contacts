@@ -6,10 +6,11 @@ OC.L10N.register(
     "Delete" : "Deler",
     "New contact" : "Nove contacto",
     "Share with users or groups" : "Compartir con usatores o gruppos",
+    "First name" : "Prime nomine",
+    "Last name" : "Ultime nomine",
+    "All contacts" : "Tote contactos",
     "Nickname" : "Pseudonymo",
     "Detailed name" : "Nomine detaliate",
-    "Last name" : "Ultime nomine",
-    "First name" : "Prime nomine",
     "Additional names" : "Nomines additional",
     "Prefix" : "Prefixo",
     "Suffix" : "Suffixo",
@@ -38,7 +39,6 @@ OC.L10N.register(
     "Fax work" : "Fax a travalio",
     "Pager" : "Pager",
     "Voice" : "Voce",
-    "Social network" : "Medios Social",
-    "All contacts" : "Tote contactos"
+    "Social network" : "Medios Social"
 },
 "nplurals=2; plural=(n != 1);");

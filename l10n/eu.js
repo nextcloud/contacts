@@ -10,10 +10,11 @@ OC.L10N.register(
     "Rename" : "Izena aldatu",
     "Share with users or groups" : "Erabiltzaile edo taldeekin partekatu",
     "Import into" : "Inportatu hona",
+    "First name" : "Izena",
+    "Last name" : "Abizena",
+    "All contacts" : "Kontaktu guztiak",
     "Nickname" : "Ezizena",
     "Detailed name" : "Izen osoa",
-    "Last name" : "Abizena",
-    "First name" : "Izena",
     "Additional names" : "Tarteko izenak",
     "Prefix" : "Aurrizkia",
     "Suffix" : "Atzizkia",
@@ -61,7 +62,6 @@ OC.L10N.register(
     "Assistant" : "Asistentea",
     "Gender" : "Generoa",
     "Female" : "Emakumea",
-    "Male" : "Gizonezkoa",
-    "All contacts" : "Kontaktu guztiak"
+    "Male" : "Gizonezkoa"
 },
 "nplurals=2; plural=(n != 1);");

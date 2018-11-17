@@ -10,10 +10,11 @@ OC.L10N.register(
     "Rename" : "تعديل الإسم",
     "Share with users or groups" : "شارك مع مستخدمين او مجموعات",
     "Import into" : "إستيراد إلى",
+    "First name" : "الإسم",
+    "Last name" : "اللقب",
+    "All contacts" : "كل الجهات",
     "Nickname" : "كنية.\nلقب.",
     "Detailed name" : "الإسم بالتفصيل",
-    "Last name" : "اللقب",
-    "First name" : "الإسم",
     "Additional names" : "الأسماء الإضافية",
     "Prefix" : "بادئة",
     "Suffix" : "لاحقة",
@@ -42,7 +43,6 @@ OC.L10N.register(
     "Fax work" : "فاكس العمل",
     "Pager" : "النداء",
     "Voice" : "صوت",
-    "Social network" : "شبكة اجتماعية",
-    "All contacts" : "كل الجهات"
+    "Social network" : "شبكة اجتماعية"
 },
 "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;");

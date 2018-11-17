@@ -10,10 +10,11 @@ OC.L10N.register(
     "Rename" : "Đổi tên",
     "Share with users or groups" : "Chia sẻ với nhiều người sử dụng hoặc nhiều nhóm người sử dụng",
     "Import into" : "Nhập vào",
+    "First name" : "Tên",
+    "Last name" : "Họ",
+    "All contacts" : "Tất cả các tên liên lạc",
     "Nickname" : "Biệt danh",
     "Detailed name" : "Tên chi tiết",
-    "Last name" : "Họ",
-    "First name" : "Tên",
     "Additional names" : "Tên bổ sung",
     "Prefix" : "Tiền tố",
     "Suffix" : "Hậu tố",
@@ -58,7 +59,6 @@ OC.L10N.register(
     "Assistant" : "Trợ lý",
     "Gender" : "Giới tính",
     "Female" : "Nữ",
-    "Male" : "Nam",
-    "All contacts" : "Tất cả các tên liên lạc"
+    "Male" : "Nam"
 },
 "nplurals=1; plural=0;");

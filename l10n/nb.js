@@ -12,10 +12,11 @@ OC.L10N.register(
     "Disabled" : "Deaktiver",
     "Share with users or groups" : "Del med brukere eller grupper",
     "Import into" : "Importer inn i",
+    "First name" : "Fornavn",
+    "Last name" : "Etternavn",
+    "All contacts" : "Alle kontakter",
     "Nickname" : "Kallenavn",
     "Detailed name" : "Detaljert navn",
-    "Last name" : "Etternavn",
-    "First name" : "Fornavn",
     "Additional names" : "Ev. mellomnavn",
     "Prefix" : "Prefiks",
     "Suffix" : "Suffiks",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Assistant" : "Assistent",
     "Gender" : "Kjønn",
     "Female" : "Mann",
-    "Male" : "Dame",
-    "All contacts" : "Alle kontakter"
+    "Male" : "Dame"
 },
 "nplurals=2; plural=(n != 1);");

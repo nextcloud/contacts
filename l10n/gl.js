@@ -10,8 +10,9 @@ OC.L10N.register(
     "Rename" : "Renomear",
     "Share with users or groups" : "Compartir con usuarios ou grupos",
     "Import into" : "Importar a",
-    "Last name" : "Apelidos",
     "First name" : "Nome",
+    "Last name" : "Apelidos",
+    "All contacts" : "Todos os contactos",
     "Prefix" : "Prefixo",
     "Suffix" : "Sufixo",
     "Notes" : "Notas",
@@ -37,7 +38,6 @@ OC.L10N.register(
     "Sister" : "Irmá",
     "Relative" : "Familiar",
     "Assistant" : "Asistente",
-    "Gender" : "Xénero",
-    "All contacts" : "Todos os contactos"
+    "Gender" : "Xénero"
 },
 "nplurals=2; plural=(n != 1);");

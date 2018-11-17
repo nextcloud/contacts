@@ -13,10 +13,11 @@ OC.L10N.register(
     "Disabled" : "I çaktivizuar",
     "Share with users or groups" : "Nda me përdoruesit ose grupet",
     "Import into" : "Importo tek ",
+    "First name" : "Emër",
+    "Last name" : "Mbiemër",
+    "All contacts" : "Të gjithë kontaktet",
     "Nickname" : "Nofkë",
     "Detailed name" : "Emri i hollësishëm",
-    "Last name" : "Mbiemër",
-    "First name" : "Emër",
     "Additional names" : "Emra shtesë",
     "Prefix" : "Parashtesë",
     "Suffix" : "Prapashtesë",
@@ -67,7 +68,6 @@ OC.L10N.register(
     "Co-worker" : "Koleg",
     "Gender" : "Gjinia",
     "Female" : "Femër",
-    "Male" : "Mashkull",
-    "All contacts" : "Të gjithë kontaktet"
+    "Male" : "Mashkull"
 },
 "nplurals=2; plural=(n != 1);");

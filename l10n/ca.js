@@ -10,10 +10,11 @@ OC.L10N.register(
     "Rename" : "Renombra",
     "Share with users or groups" : "Comparteix amb usuaris o grups",
     "Import into" : "Importa a",
+    "First name" : "Nom",
+    "Last name" : "Cognom",
+    "All contacts" : "Tots els contactes",
     "Nickname" : "Sobrenom",
     "Detailed name" : "Nom detallat",
-    "Last name" : "Cognom",
-    "First name" : "Nom",
     "Additional names" : "Noms addicionals",
     "Prefix" : "Prefix",
     "Suffix" : "Sufix",
@@ -58,7 +59,6 @@ OC.L10N.register(
     "Assistant" : "Assistent",
     "Gender" : "Gènere",
     "Female" : "Femení",
-    "Male" : "Masculí",
-    "All contacts" : "Tots els contactes"
+    "Male" : "Masculí"
 },
 "nplurals=2; plural=(n != 1);");

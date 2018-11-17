@@ -14,10 +14,11 @@ OC.L10N.register(
     "Disabled" : "Изключено",
     "Share with users or groups" : "Сподели с потребители или групи",
     "Import into" : "Внасяне в",
+    "First name" : "Име",
+    "Last name" : "Фамилия",
+    "All contacts" : "Всички контакти",
     "Nickname" : "Псевдоним",
     "Detailed name" : "Детайлно име",
-    "Last name" : "Фамилия",
-    "First name" : "Име",
     "Additional names" : "Други имена",
     "Notes" : "Бележки",
     "Website" : "Уеб страница",
@@ -67,7 +68,6 @@ OC.L10N.register(
     "Co-worker" : "Колега",
     "Gender" : "Пол",
     "Female" : "Жена",
-    "Male" : "Мъж",
-    "All contacts" : "Всички контакти"
+    "Male" : "Мъж"
 },
 "nplurals=2; plural=(n != 1);");

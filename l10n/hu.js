@@ -21,10 +21,11 @@ OC.L10N.register(
     "Share with users or groups" : "Megosztás felhasználókkal vagy csoportokkal",
     "No users or groups" : "Nincsenek felhasználók vagy csoportok.",
     "Import into" : "Importálás ebbe",
+    "First name" : "Keresztnév",
+    "Last name" : "Vezetéknév",
+    "All contacts" : "Összes névjegy",
     "Nickname" : "Becenév",
     "Detailed name" : "Részletes név",
-    "Last name" : "Vezetéknév",
-    "First name" : "Keresztnév",
     "Additional names" : "További nevek",
     "Prefix" : "Előtag",
     "Suffix" : "Utótag",
@@ -80,7 +81,6 @@ OC.L10N.register(
     "Gender" : "Nem",
     "Female" : "Nő",
     "Male" : "Férfi",
-    "All contacts" : "Összes névjegy",
     "An error occurred" : "Hiba történt"
 },
 "nplurals=2; plural=(n != 1);");

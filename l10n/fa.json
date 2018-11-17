@@ -8,10 +8,11 @@
     "Rename" : "تغییرنام",
     "Share with users or groups" : "اشتراک گذاری با کاربران یا گروه ها ...",
     "Import into" : "وارد کردن به",
+    "First name" : "نام",
+    "Last name" : "نام‌خانوادگی",
+    "All contacts" : "تمام مخاطبین",
     "Nickname" : "نام مستعار",
     "Detailed name" : "نام کامل",
-    "Last name" : "نام‌خانوادگی",
-    "First name" : "نام",
     "Additional names" : "نام های دیگر",
     "Prefix" : "پیشوند",
     "Suffix" : "پسوند",
@@ -56,7 +57,6 @@
     "Assistant" : "راهنما",
     "Gender" : "جنسیت",
     "Female" : "مؤنث",
-    "Male" : "مذکر",
-    "All contacts" : "تمام مخاطبین"
+    "Male" : "مذکر"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

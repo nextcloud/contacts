@@ -12,10 +12,8 @@
     "Addressbook" : "Adresář kontaktů",
     "New contact" : "Nový kontakt",
     "The contact doesn't exists anymore on the server." : "Tento kontakt už na serveru neexistuje.",
-    "failed" : "nezdařilo se",
     "Select Date" : "Vybrat datum",
     "No results" : "Žádné výsledky",
-    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Sdíleno s {num} entitou","Sdíleno se {num} entitami","Sdíleno s {num} entitami","Sdíleno se {num} entitami"],
     "Copy link" : "Zkopírovat odkaz",
     "Copied" : "Zkopírováno",
     "Can not copy" : "Nelze kopírovat",
@@ -27,6 +25,7 @@
     "Renaming of addressbook was not successful." : "Přejmenování adresáře kontaktů nebylo úspěšné.",
     "Addressbook copied to clipboard" : "Adresář kontaktů zkopírován do schránky",
     "Addressbook was not copied to clipboard." : "Adresář kontaktů nebyl zkopírován do schránky.",
+    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Sdíleno s {num} entitou","Sdíleno se {num} entitami","Sdíleno s {num} entitami","Sdíleno se {num} entitami"],
     "Share with users or groups" : "Sdílet s uživateli nebo skupinami",
     "No users or groups" : "Žádní uživatelé nebo skupiny",
     "Unable to delete the share." : "Sdílení se nedaří smazat.",
@@ -34,10 +33,12 @@
     "Importing into" : "Importuje se do",
     "Import into" : "Importovat do",
     "An error occurred, unable to create the addressbook." : "Vyskytla se chyba, adresář kontaktů se nepodařilo vytvořit.",
+    "First name" : "Jméno",
+    "Last name" : "Příjmení",
+    "All contacts" : "Všechny kontakty",
+    "Contact not found" : "Kontakt nenalezen",
     "Nickname" : "Přezdívka",
     "Detailed name" : "Jméno podrobně",
-    "Last name" : "Příjmení",
-    "First name" : "Jméno",
     "Additional names" : "Další jména",
     "Prefix" : "Předpona",
     "Suffix" : "Přípona",
@@ -96,8 +97,6 @@
     "Gender" : "Pohlaví",
     "Female" : "Žena",
     "Male" : "Muž",
-    "All contacts" : "Všechny kontakty",
-    "An error occurred" : "Došlo k chybě",
-    "Contact not found" : "Kontakt nenalezen"
+    "An error occurred" : "Došlo k chybě"
 },"pluralForm" :"nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;"
 }

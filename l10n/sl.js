@@ -12,10 +12,11 @@ OC.L10N.register(
     "Disabled" : "Onemogočeno",
     "Share with users or groups" : "Deli z uporabniki ali skupinami",
     "Import into" : "Uvozi v",
+    "First name" : "Ime",
+    "Last name" : "Priimek",
+    "All contacts" : "Vsi stiki",
     "Nickname" : "Vzdevek",
     "Detailed name" : "Podrobno ime",
-    "Last name" : "Priimek",
-    "First name" : "Ime",
     "Additional names" : "Druga imena",
     "Prefix" : "Predpona",
     "Suffix" : "Pripona",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Assistant" : "Pomočnik",
     "Gender" : "Spol",
     "Female" : "Ženski",
-    "Male" : "Moški",
-    "All contacts" : "Vsi stiki"
+    "Male" : "Moški"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");

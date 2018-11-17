@@ -10,7 +10,6 @@ OC.L10N.register(
     "Addressbook" : "Osoitekirja",
     "New contact" : "Uusi yhteystieto",
     "The contact doesn't exists anymore on the server." : "Yhteystietoa ei ole enää olemassa tällä palvelimella.",
-    "failed" : "epäonnistui",
     "Select Date" : "Valitse päivä",
     "No results" : "Ei tuloksia",
     "Copy link" : "Kopioi linkki",
@@ -27,10 +26,12 @@ OC.L10N.register(
     "No users or groups" : "Ei käyttäjiä tai ryhmiä",
     "Import into" : "Tuo kirjaan",
     "An error occurred, unable to create the addressbook." : "Tapahtui virhe, osoitekirjaa ei voitu luoda.",
+    "First name" : "Etunimi",
+    "Last name" : "Sukunimi",
+    "All contacts" : "Kaikki yhteystiedot",
+    "Contact not found" : "Yhteytietoa ei löytynyt",
     "Nickname" : "Kutsumanimi",
     "Detailed name" : "Täsmällinen nimi",
-    "Last name" : "Sukunimi",
-    "First name" : "Etunimi",
     "Additional names" : "Lisänimet",
     "Prefix" : "Etuliite",
     "Suffix" : "Takaliite",
@@ -81,8 +82,6 @@ OC.L10N.register(
     "Gender" : "Sukupuoli",
     "Female" : "Nainen",
     "Male" : "Mies",
-    "All contacts" : "Kaikki yhteystiedot",
-    "An error occurred" : "Tapahtui virhe",
-    "Contact not found" : "Yhteytietoa ei löytynyt"
+    "An error occurred" : "Tapahtui virhe"
 },
 "nplurals=2; plural=(n != 1);");

@@ -13,7 +13,6 @@ OC.L10N.register(
     "Addressbook" : "Adresár",
     "New contact" : "Nový kontakt",
     "The contact doesn't exists anymore on the server." : "Kontakt už na servri neexistuje.",
-    "failed" : "neúspešné",
     "Select Date" : "Vybrať dátum",
     "No results" : "Žiadne výsledky",
     "Copy link" : "Kopírovať odkaz",
@@ -30,10 +29,12 @@ OC.L10N.register(
     "No users or groups" : "Žiadny používatelia alebo skupiny",
     "Import into" : "Importovať do",
     "An error occurred, unable to create the addressbook." : "Pri pokuse o vytvorenie adresára sa vyskytla chyba.",
+    "First name" : "Krstné meno",
+    "Last name" : "Priezvisko",
+    "All contacts" : "Všetky kontakty",
+    "Contact not found" : "Kontakt sa nenašiel",
     "Nickname" : "Prezývka",
     "Detailed name" : "Podrobné meno",
-    "Last name" : "Priezvisko",
-    "First name" : "Krstné meno",
     "Additional names" : "Ďalšie mená",
     "Prefix" : "Titul pred menom",
     "Suffix" : "Titul po mene",
@@ -92,8 +93,6 @@ OC.L10N.register(
     "Gender" : "Pohlavie",
     "Female" : "Žena",
     "Male" : "Muž",
-    "All contacts" : "Všetky kontakty",
-    "An error occurred" : "Vyskytla sa chyba",
-    "Contact not found" : "Kontakt sa nenašiel"
+    "An error occurred" : "Vyskytla sa chyba"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

@@ -12,10 +12,11 @@ OC.L10N.register(
     "Disabled" : "Inaktiverad",
     "Share with users or groups" : "Dela med användare eller grupper",
     "Import into" : "Importera till",
+    "First name" : "Förnamn",
+    "Last name" : "Efternamn",
+    "All contacts" : "Alla kontakter",
     "Nickname" : "Smeknamn",
     "Detailed name" : "Detaljerat namn",
-    "Last name" : "Efternamn",
-    "First name" : "Förnamn",
     "Additional names" : "Mellannamn",
     "Prefix" : "Prefix",
     "Suffix" : "Suffix",
@@ -70,7 +71,6 @@ OC.L10N.register(
     "Co-worker" : "Kollega",
     "Gender" : "Kön",
     "Female" : "Kvinna",
-    "Male" : "Man",
-    "All contacts" : "Alla kontakter"
+    "Male" : "Man"
 },
 "nplurals=2; plural=(n != 1);");

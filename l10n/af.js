@@ -8,10 +8,11 @@ OC.L10N.register(
     "New contact" : "Nuwe kontak",
     "Rename" : "Hernoem",
     "Share with users or groups" : "Deel met gebruikers of groepe",
+    "First name" : "Naam",
+    "Last name" : "Van",
+    "All contacts" : "Alle kontakte",
     "Nickname" : "Bynaam",
     "Detailed name" : "Gedetailleerde naam",
-    "Last name" : "Van",
-    "First name" : "Naam",
     "Additional names" : "Addisionele name",
     "Prefix" : "Voorvoegsel",
     "Suffix" : "Agtervoegsel",
@@ -40,7 +41,6 @@ OC.L10N.register(
     "Fax work" : "Faks werk",
     "Pager" : "Pagineerder",
     "Voice" : "Stem",
-    "Social network" : "Sosiale netwerk",
-    "All contacts" : "Alle kontakte"
+    "Social network" : "Sosiale netwerk"
 },
 "nplurals=2; plural=(n != 1);");

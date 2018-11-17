@@ -13,7 +13,6 @@ OC.L10N.register(
     "Addressbook" : "Adresaro",
     "New contact" : "Nova kontakto",
     "The contact doesn't exists anymore on the server." : "La kontakto ne plus ekzistas en la servilo.",
-    "failed" : "malsukcesa",
     "Select Date" : "Elektu daton",
     "No results" : "Neniu rezulto",
     "Copy link" : "Kopii ligilon",
@@ -30,10 +29,12 @@ OC.L10N.register(
     "No users or groups" : "Neniu uzanto aŭ grupo",
     "Import into" : "Enportado en",
     "An error occurred, unable to create the addressbook." : "Eraro okazis, ne eblas krei la adresaron.",
+    "First name" : "Persona nomo",
+    "Last name" : "Familia nomo",
+    "All contacts" : "Ĉiuj kontaktoj",
+    "Contact not found" : "Kontakto ne trovebla",
     "Nickname" : "Kromnomo",
     "Detailed name" : "Detala nomo",
-    "Last name" : "Familia nomo",
-    "First name" : "Persona nomo",
     "Additional names" : "Pliaj nomoj",
     "Prefix" : "Prefikso",
     "Suffix" : "Sufikso",
@@ -91,8 +92,6 @@ OC.L10N.register(
     "Gender" : "Sekso",
     "Female" : "Ina",
     "Male" : "Vira",
-    "All contacts" : "Ĉiuj kontaktoj",
-    "An error occurred" : "Eraro okazis",
-    "Contact not found" : "Kontakto ne trovebla"
+    "An error occurred" : "Eraro okazis"
 },
 "nplurals=2; plural=(n != 1);");

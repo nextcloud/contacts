@@ -10,10 +10,11 @@ OC.L10N.register(
     "Rename" : "Omdøb",
     "Share with users or groups" : "Del med brugere eller grupper",
     "Import into" : "Importer til",
+    "First name" : "Fornavn",
+    "Last name" : "Efternavn",
+    "All contacts" : "Alle kontakter",
     "Nickname" : "Kaldenavn",
     "Detailed name" : "Detaljeret navn",
-    "Last name" : "Efternavn",
-    "First name" : "Fornavn",
     "Additional names" : "Mellemnavne",
     "Prefix" : "Præfiks",
     "Suffix" : "Suffiks",
@@ -61,7 +62,6 @@ OC.L10N.register(
     "Assistant" : "Assistent",
     "Gender" : "Køn",
     "Female" : "Kvinde",
-    "Male" : "Mand",
-    "All contacts" : "Alle kontakter"
+    "Male" : "Mand"
 },
 "nplurals=2; plural=(n != 1);");

@@ -13,10 +13,11 @@ OC.L10N.register(
     "Disabled" : "Απενεργοποιημένο",
     "Share with users or groups" : "Διαμοιρασμός με χρήστες ή ομάδες",
     "Import into" : "Εισαγωγή σε",
+    "First name" : "Όνομα",
+    "Last name" : "Επώνυμο",
+    "All contacts" : "Όλες οι επαφές",
     "Nickname" : "Παρατσούκλι",
     "Detailed name" : "Λεπτομερές όνομα",
-    "Last name" : "Επώνυμο",
-    "First name" : "Όνομα",
     "Additional names" : "Επιπλέον ονόματα",
     "Prefix" : "Πρόθεμα",
     "Suffix" : "Κατάληξη",
@@ -66,7 +67,6 @@ OC.L10N.register(
     "Co-worker" : "Συνεργάτης",
     "Gender" : "Φύλλο",
     "Female" : "Θηλυκό",
-    "Male" : "Αρσενικό",
-    "All contacts" : "Όλες οι επαφές"
+    "Male" : "Αρσενικό"
 },
 "nplurals=2; plural=(n != 1);");

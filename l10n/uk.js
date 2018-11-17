@@ -12,10 +12,11 @@ OC.L10N.register(
     "Disabled" : "Вимкнено",
     "Share with users or groups" : "Поділитися з користувачем або групою",
     "Import into" : "Імпортувати до",
+    "First name" : "Ім'я",
+    "Last name" : "Прізвище",
+    "All contacts" : "Всі контакти",
     "Nickname" : "Прізвисько",
     "Detailed name" : "Повне ім'я",
-    "Last name" : "Прізвище",
-    "First name" : "Ім'я",
     "Additional names" : "Додаткові імена",
     "Prefix" : "Префікс",
     "Suffix" : "Суфікс",
@@ -58,7 +59,6 @@ OC.L10N.register(
     "Colleague" : "Колега",
     "Gender" : "Стать",
     "Female" : "Жінка",
-    "Male" : "Чоловік",
-    "All contacts" : "Всі контакти"
+    "Male" : "Чоловік"
 },
 "nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);");

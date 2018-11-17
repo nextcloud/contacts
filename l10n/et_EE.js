@@ -12,10 +12,11 @@ OC.L10N.register(
     "Disabled" : "Keelatud",
     "Share with users or groups" : "Jaga kasutajate või gruppidega",
     "Import into" : "import sisse",
+    "First name" : "Eesnimi",
+    "Last name" : "Perekonnanimi",
+    "All contacts" : "Kõik kontaktid",
     "Nickname" : "Hüüdnimi",
     "Detailed name" : "Üksikasjalik nimi",
-    "Last name" : "Perekonnanimi",
-    "First name" : "Eesnimi",
     "Additional names" : "Lisanimed",
     "Prefix" : "Eesliide",
     "Suffix" : "Järelliide",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Assistant" : "Assistent",
     "Gender" : "Sugu",
     "Female" : "Naine",
-    "Male" : "Mees",
-    "All contacts" : "Kõik kontaktid"
+    "Male" : "Mees"
 },
 "nplurals=2; plural=(n != 1);");

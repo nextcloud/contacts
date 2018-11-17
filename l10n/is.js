@@ -13,7 +13,6 @@ OC.L10N.register(
     "Addressbook" : "Nafnaskrá",
     "New contact" : "Nýr tengiliður",
     "The contact doesn't exists anymore on the server." : "Tengiliðurinn er ekki lengur til á miðlaranum.",
-    "failed" : "mistókst",
     "Select Date" : "Veldu dagsetningu",
     "No results" : "Engar niðurstöður",
     "Copy link" : "Afrita tengil",
@@ -31,10 +30,12 @@ OC.L10N.register(
     "No users or groups" : "Engir notendur eða hópar",
     "Import into" : "Flytja inn í",
     "An error occurred, unable to create the addressbook." : "Villa kom upp, tókst ekki að útbúa nafnaskrána.",
+    "First name" : "Eiginnafn",
+    "Last name" : "Kenninafn",
+    "All contacts" : "Allir tengiliðir",
+    "Contact not found" : "Tengiliður fannst ekki",
     "Nickname" : "Gælunafn",
     "Detailed name" : "Ítarlegt nafn",
-    "Last name" : "Kenninafn",
-    "First name" : "Eiginnafn",
     "Additional names" : "Aukanöfn",
     "Prefix" : "Forskeyti",
     "Suffix" : "Viðskeyti",
@@ -93,8 +94,6 @@ OC.L10N.register(
     "Gender" : "Kyn",
     "Female" : "Kona",
     "Male" : "Karl",
-    "All contacts" : "Allir tengiliðir",
-    "An error occurred" : "Villa kom upp",
-    "Contact not found" : "Tengiliður fannst ekki"
+    "An error occurred" : "Villa kom upp"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

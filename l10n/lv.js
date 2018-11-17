@@ -13,7 +13,6 @@ OC.L10N.register(
     "Addressbook" : "Adrešu grāmata",
     "New contact" : "Jauns kontakts",
     "The contact doesn't exists anymore on the server." : "Kontaktpersonas ierakst vairs nepastāv uz servera.",
-    "failed" : "neizdevās",
     "Select Date" : "Izvēlieties datumu",
     "No results" : "Nav rezultātu",
     "Copy link" : "Kopēt saiti",
@@ -31,10 +30,12 @@ OC.L10N.register(
     "No users or groups" : "Nav lietotāji vai grupas",
     "Import into" : "Importēt uz",
     "An error occurred, unable to create the addressbook." : "Radās kļūda, nav iespējams izveidot adrešu grāmatu.",
+    "First name" : "Vārds",
+    "Last name" : "Uzvārds",
+    "All contacts" : "Visi kontakti",
+    "Contact not found" : "Kontaktpersona nav atrasta!",
     "Nickname" : "Iesauka",
     "Detailed name" : "Izvērsts nosaukums",
-    "Last name" : "Uzvārds",
-    "First name" : "Vārds",
     "Additional names" : "Papildu vārdi",
     "Prefix" : "Priedēklis",
     "Suffix" : "Piedēklis",
@@ -93,8 +94,6 @@ OC.L10N.register(
     "Gender" : "Dzimums",
     "Female" : "Sieviete",
     "Male" : "Vīrietis",
-    "All contacts" : "Visi kontakti",
-    "An error occurred" : "Gadījās kļūda",
-    "Contact not found" : "Kontaktpersona nav atrasta!"
+    "An error occurred" : "Gadījās kļūda"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");

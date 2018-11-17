@@ -8,10 +8,11 @@ OC.L10N.register(
     "New contact" : "Nuevo contacto",
     "Rename" : "Renombrar",
     "Share with users or groups" : "Compartir con otros usuarios o grupos",
+    "First name" : "Nombre",
+    "Last name" : "Apellido",
+    "All contacts" : "Todos los contactos",
     "Nickname" : "Apodo",
     "Detailed name" : "Nombre detallado",
-    "Last name" : "Apellido",
-    "First name" : "Nombre",
     "Additional names" : "Nombres adicionales",
     "Prefix" : "Prefijo",
     "Suffix" : "Sufijo",
@@ -40,7 +41,6 @@ OC.L10N.register(
     "Fax work" : "Fax de trabajo",
     "Pager" : "Localizador",
     "Voice" : "Voz",
-    "Social network" : "Red social",
-    "All contacts" : "Todos los contactos"
+    "Social network" : "Red social"
 },
 "nplurals=2; plural=(n != 1);");

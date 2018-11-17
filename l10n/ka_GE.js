@@ -12,10 +12,11 @@ OC.L10N.register(
     "Disabled" : "არაა მოქმედი",
     "Share with users or groups" : "გაზიარება მოხმარებლებთან ან ჯგუფებთან",
     "Import into" : "იმპორტირება",
+    "First name" : "სახელი",
+    "Last name" : "გვარი",
+    "All contacts" : "ყველა კონტაქტი",
     "Nickname" : "ნიკნეიმი",
     "Detailed name" : "დეტალური სახელი",
-    "Last name" : "გვარი",
-    "First name" : "სახელი",
     "Additional names" : "დამატებითი სახელები",
     "Prefix" : "პრეფიქსი",
     "Suffix" : "სუფიქსი",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Assistant" : "ასისტენტი",
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
-    "Male" : "მამრობითი",
-    "All contacts" : "ყველა კონტაქტი"
+    "Male" : "მამრობითი"
 },
 "nplurals=2; plural=(n!=1);");

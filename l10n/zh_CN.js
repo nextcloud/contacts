@@ -14,10 +14,11 @@ OC.L10N.register(
     "Disabled" : "已禁用",
     "Share with users or groups" : "和用户或者组群共享",
     "Import into" : "导入到",
+    "First name" : "名",
+    "Last name" : "姓",
+    "All contacts" : "全部联系人",
     "Nickname" : "昵称",
     "Detailed name" : "全名",
-    "Last name" : "姓",
-    "First name" : "名",
     "Additional names" : "其他名称",
     "Prefix" : "前缀",
     "Suffix" : "后缀",
@@ -72,7 +73,6 @@ OC.L10N.register(
     "Co-worker" : "同事",
     "Gender" : "性别",
     "Female" : "女性",
-    "Male" : "男性",
-    "All contacts" : "全部联系人"
+    "Male" : "男性"
 },
 "nplurals=1; plural=0;");

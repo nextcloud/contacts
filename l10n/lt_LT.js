@@ -12,10 +12,11 @@ OC.L10N.register(
     "Disabled" : "Išjungta",
     "Share with users or groups" : "Pasidalinti su...",
     "Import into" : "Importuoti į",
+    "First name" : "Vardas",
+    "Last name" : "Pavardė",
+    "All contacts" : "Visi adresatai",
     "Nickname" : "Slapyvardis",
     "Detailed name" : "Pilnas vardas",
-    "Last name" : "Pavardė",
-    "First name" : "Vardas",
     "Additional names" : "Kiti vardai",
     "Prefix" : "Kreipiniai",
     "Suffix" : "Patikslinimai",
@@ -64,7 +65,6 @@ OC.L10N.register(
     "Co-worker" : "Bendradarbis",
     "Gender" : "Lytis",
     "Female" : "Moteris",
-    "Male" : "Vyras",
-    "All contacts" : "Visi adresatai"
+    "Male" : "Vyras"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

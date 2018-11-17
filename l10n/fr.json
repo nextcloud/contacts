@@ -12,10 +12,8 @@
     "Addressbook" : "Carnet d'adresses",
     "New contact" : "Nouveau contact",
     "The contact doesn't exists anymore on the server." : "Le contact n'existe plus sur le serveur.",
-    "failed" : "échoué",
     "Select Date" : "Sélectionnez une date",
     "No results" : "Aucun résultat",
-    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Partagé avec {num} entité","Partagé avec {num} entités"],
     "Copy link" : "Copier le lien",
     "Copied" : "Copié",
     "Can not copy" : "Impossible de copier",
@@ -27,6 +25,7 @@
     "Renaming of addressbook was not successful." : "Le renommage du carnet d'adresses à échoué.",
     "Addressbook copied to clipboard" : "Carnet d'adresses copié dans le presse-papier",
     "Addressbook was not copied to clipboard." : "Le carnet d'adresses n'a pas été copié dans le presse-papier.",
+    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Partagé avec {num} entité","Partagé avec {num} entités"],
     "Share with users or groups" : "Partager avec des utilisateurs ou des groupes",
     "No users or groups" : "Aucun utilisateur ou groupe",
     "Unable to delete the share." : "Impossible de supprimer le partage.",
@@ -34,10 +33,12 @@
     "Importing into" : "Importer dans",
     "Import into" : "Importer vers",
     "An error occurred, unable to create the addressbook." : "Une erreur est survenue, impossible de créer le carnet d'adresses.",
+    "First name" : "Prénom",
+    "Last name" : "Nom",
+    "All contacts" : "Tous les contacts",
+    "Contact not found" : "Contact introuvable",
     "Nickname" : "Surnom",
     "Detailed name" : "Nom complet",
-    "Last name" : "Nom",
-    "First name" : "Prénom",
     "Additional names" : "Noms supplémentaires",
     "Prefix" : "Préfixe",
     "Suffix" : "Suffixe",
@@ -96,8 +97,6 @@
     "Gender" : "Sexe",
     "Female" : "Femme",
     "Male" : "Homme",
-    "All contacts" : "Tous les contacts",
-    "An error occurred" : "Une erreur est survenue",
-    "Contact not found" : "Contact introuvable"
+    "An error occurred" : "Une erreur est survenue"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

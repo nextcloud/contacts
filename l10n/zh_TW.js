@@ -12,10 +12,11 @@ OC.L10N.register(
     "Disabled" : "已停用",
     "Share with users or groups" : "與使用者或群組分享",
     "Import into" : "匯入至",
+    "First name" : "名",
+    "Last name" : "姓",
+    "All contacts" : "所有聯絡人",
     "Nickname" : "暱稱",
     "Detailed name" : "詳細名稱",
-    "Last name" : "姓",
-    "First name" : "名",
     "Additional names" : "別名/中間名",
     "Prefix" : "前綴",
     "Suffix" : "後綴",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Assistant" : "助理",
     "Gender" : "性別",
     "Female" : "女性",
-    "Male" : "男性",
-    "All contacts" : "所有聯絡人"
+    "Male" : "男性"
 },
 "nplurals=1; plural=0;");
