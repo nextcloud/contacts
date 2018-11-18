@@ -56,13 +56,18 @@ export default {
 	},
 
 	computed: {
+		usedProperties() {
+			return this.contact.jCal[1].map(prop => prop[0])
+		},
 		availableProperties() {
-			return Object.keys(rfcProps.properties).map(key => {
-				return {
-					id: key,
-					name: rfcProps.properties[key].readableName
-				}
-			}).sort((a, b) => a.name.localeCompare(b.name))
+			return Object.keys(rfcProps.properties)
+				.filter(prop => prop.multiple || this.usedProperties.indexOf(prop) === -1)
+				.map(key => {
+					return {
+						id: key,
+						name: rfcProps.properties[key].readableName
+					}
+				}).sort((a, b) => a.name.localeCompare(b.name))
 		}
 	},
 
