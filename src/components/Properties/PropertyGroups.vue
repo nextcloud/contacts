@@ -28,10 +28,11 @@
 
 			<!-- multiselect taggable groups with a limit to 3 groups shown -->
 			<multiselect v-model="localValue" :options="groups" :placeholder="t('contacts', 'Add contact in group')"
-				:limit="3" :multiple="true" :taggable="true"
-				:close-on-select="false" :readonly="isReadOnly" tag-placeholder="create"
-				class="property__value" @input="updateValue" @tag="validateGroup"
-				@select="addContactToGroup" @remove="removeContactToGroup">
+				:multiple="true" :taggable="true" :close-on-select="false"
+				:readonly="isReadOnly" :tag-width="60"
+				tag-placeholder="create" class="property__value"
+				@input="updateValue" @tag="validateGroup" @select="addContactToGroup"
+				@remove="removeContactToGroup">
 
 				<!-- show how many groups are hidden and add tooltip -->
 				<span v-tooltip.auto="formatGroupsTitle" slot="limit" class="multiselect__limit">+{{ localValue.length - 3 }}</span>
@@ -98,7 +99,7 @@ export default {
 		/**
 		 * Debounce and send update event to parent
 		 */
-		updateValue: debounce(function(e) {
+		updateValue: debounce(function() {
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			this.$emit('update:value', this.localValue)
 		}, 500),
@@ -108,11 +109,12 @@ export default {
 		 *
 		 * @param {String} groupName the group name
 		 */
-		addContactToGroup(groupName) {
-			this.$store.dispatch('addContactToGroup', {
+		async addContactToGroup(groupName) {
+			await this.$store.dispatch('addContactToGroup', {
 				contact: this.contact,
 				groupName
 			})
+			this.updateValue()
 		},
 
 		/**

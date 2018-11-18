@@ -109,6 +109,11 @@
 				<property-select :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
 					:is-last-property="true" :property="{}" class="property--addressbooks property--last" />
 
+				<!-- Groups always visible. -->
+				<property-groups :prop-model="groupsModel" :value.sync="groups" :contact="contact"
+					:is-read-only="isReadOnly" :is-first-property="true" :is-last-property="true"
+					class="property--addressbooks property--last" />
+
 				<!-- new property select -->
 				<add-new-prop v-if="!isReadOnly" :contact="contact" />
 			</section>
@@ -280,6 +285,35 @@ export default {
 			},
 			set: function(addressbookId) {
 				this.moveContactToAddressbook(addressbookId)
+			}
+		},
+
+		groupsModel() {
+			return {
+				readableName: t('contacts', 'Groups')
+				// icon: 'icon-address-book'
+			}
+		},
+
+		/**
+		 * Usable groups object linked to the local contact
+		 *
+		 * @param {string[]} data An array of groups
+		 * @returns {Array}
+		 */
+		groups: {
+			get: function() {
+				return this.contact.groups
+			},
+			set: function(data) {
+				console.log(data);
+				let property = this.contact.vCard.getFirstProperty('categories')
+				if (!property) {
+					// Ical.js store comma separated by an Array of array of string
+					property = this.contact.vCard.addPropertyWithValue('categories', [data])
+				}
+				property.setValues(data)
+				this.updateContact()
 			}
 		},
 

@@ -38,7 +38,6 @@ import Contact from 'Models/contact'
 import PropertyText from 'Components/Properties/PropertyText'
 import PropertyMultipleText from 'Components/Properties/PropertyMultipleText'
 import PropertyDateTime from 'Components/Properties/PropertyDateTime'
-import propertyGroups from 'Components/Properties/PropertyGroups'
 import PropertySelect from 'Components/Properties/PropertySelect'
 
 export default {
@@ -68,11 +67,6 @@ export default {
 	computed: {
 		// dynamically load component based on property type
 		componentInstance() {
-			// groups
-			if (this.propName === 'categories') {
-				return propertyGroups
-			}
-
 			// dynamic matching
 			if (this.property.isMultiValue && this.propType === 'text') {
 				return PropertyMultipleText

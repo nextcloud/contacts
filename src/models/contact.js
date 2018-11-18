@@ -166,6 +166,7 @@ export default class Contact {
 		let groupsProp = this.vCard.getFirstProperty('categories')
 		if (groupsProp) {
 			return groupsProp.getValues()
+				.filter(group => group !== '')
 		}
 		return []
 	}
