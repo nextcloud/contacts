@@ -333,7 +333,7 @@ export default class Contact {
 	 *
 	 * @readonly
 	 * @memberof Contact
-	 * @returns {String[]}
+	 * @returns {string[]}
 	 */
 	get searchData() {
 		return this.jCal[1].map(x => x[0] + ':' + x[3])

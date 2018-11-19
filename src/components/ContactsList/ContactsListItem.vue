@@ -58,7 +58,7 @@ export default {
 		/**
 		 * Is this matching the current search ?
 		 *
-		 * @returns {Boolean}
+		 * @returns {boolean}
 		 */
 		matchSearch() {
 			if (this.searchQuery !== '') {
@@ -69,7 +69,7 @@ export default {
 
 		/**
 		 * avatar color based on server toRgb method and the displayName
-		 * @returns {String} the color in css format
+		 * @returns {string} the color in css format
 		 */
 		colorAvatar() {
 			try {

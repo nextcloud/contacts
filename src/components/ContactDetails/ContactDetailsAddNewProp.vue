@@ -56,12 +56,26 @@ export default {
 	},
 
 	computed: {
+		/**
+		 * List of properties that the contact already have
+		 *
+		 * @returns {string[]}
+		 */
 		usedProperties() {
 			return this.contact.jCal[1].map(prop => prop[0])
 		},
+
+		/**
+		 * List of every properties you are allowed to add
+		 * on this contact
+		 *
+		 * @returns {Object[]}
+		 */
 		availableProperties() {
 			return Object.keys(rfcProps.properties)
+				// only allow to add multiple properties OR props that are not yet in the contact
 				.filter(prop => prop.multiple || this.usedProperties.indexOf(prop) === -1)
+				// usable array of objects
 				.map(key => {
 					return {
 						id: key,
@@ -72,6 +86,12 @@ export default {
 	},
 
 	methods: {
+		/**
+		 * Add a new prop to the contact
+		 *
+		 * @param {Object} data destructuring object
+		 * @param {string} data.id the id of the property. e.g fn
+		 */
 		addProp({ id }) {
 			let defaultData = rfcProps.properties[id].defaultValue
 			let property = this.contact.vCard.addPropertyWithValue(id, defaultData ? defaultData.value : '')

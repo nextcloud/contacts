@@ -80,7 +80,7 @@ const mutations = {
 	 *
 	 * @param {Object} state the store data
 	 * @param {Object} data destructuring object
-	 * @param {String} data.groupName the name of the group
+	 * @param {string} data.groupName the name of the group
 	 * @param {Contact} data.contact the contact
 	 */
 	removeContactToGroup(state, { groupName, contact }) {
@@ -103,7 +103,7 @@ const actions = {
 	 *
 	 * @param {Object} context the store mutations
 	 * @param {Object} data destructuring object
-	 * @param {String} data.groupName the name of the group
+	 * @param {string} data.groupName the name of the group
 	 * @param {Contact} data.contact the contact
 	 */
 	addContactToGroup(context, { groupName, contact }) {
@@ -115,7 +115,7 @@ const actions = {
 	 *
 	 * @param {Object} context the store mutations
 	 * @param {Object} data destructuring object
-	 * @param {String} data.groupName the name of the group
+	 * @param {string} data.groupName the name of the group
 	 * @param {Contact} data.contact the contact
 	 */
 	removeContactToGroup(context, { groupName, contact }) {

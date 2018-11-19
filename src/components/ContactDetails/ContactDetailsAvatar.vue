@@ -57,6 +57,11 @@ export default {
 		}
 	},
 	methods: {
+		/**
+		 * Handler to store a new photo on the current contact
+		 *
+		 * @param {Object} event the event object containing the image
+		 */
 		processFile(event) {
 			if (event.target.files) {
 				let file = event.target.files[0]
@@ -73,10 +78,18 @@ export default {
 				reader.readAsDataURL(file)
 			}
 		},
+
+		/**
+		 * Toggle the full image preview
+		 */
 		toggleSize() {
 			// maximise or minimise avatar photo
 			this.maximizeAvatar = !this.maximizeAvatar
 		},
+
+		/**
+		 * Remove the contact's picture
+		 */
 		removePhoto() {
 			this.contact.vCard.removeProperty('photo')
 			this.maximizeAvatar = !this.maximizeAvatar

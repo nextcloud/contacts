@@ -113,7 +113,7 @@ export default {
 		/**
 		 * Return the type of the prop e.g. FN
 		 *
-		 * @returns {String}
+		 * @returns {string}
 		 */
 		propName() {
 			return this.property.name
@@ -122,7 +122,7 @@ export default {
 		 * Return the type or property
 		 *
 		 * @see src/models/rfcProps
-		 * @returns {String}
+		 * @returns {string}
 		 */
 		propType() {
 			// if we have a force type set, use it!
@@ -147,7 +147,7 @@ export default {
 		 * but make sure to include the selected one
 		 * in the final list
 		 *
-		 * @returns {Array<Object>}
+		 * @returns {Object[]}
 		 */
 		sortedModelOptions() {
 			if (this.propModel.options) {

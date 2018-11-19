@@ -109,10 +109,9 @@
 				<property-select :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
 					:is-last-property="true" :property="{}" class="property--addressbooks property--last" />
 
-				<!-- Groups always visible. -->
+				<!-- Groups always visible -->
 				<property-groups :prop-model="groupsModel" :value.sync="groups" :contact="contact"
-					:is-read-only="isReadOnly" :is-first-property="true" :is-last-property="true"
-					class="property--addressbooks property--last" />
+					:is-read-only="isReadOnly" class="property--groups property--last" />
 
 				<!-- new property select -->
 				<add-new-prop v-if="!isReadOnly" :contact="contact" />
@@ -180,7 +179,7 @@ export default {
 		/**
 		 * Warning messages
 		 *
-		 * @returns {Object|Boolean}
+		 * @returns {Object|boolean}
 		 */
 		warning() {
 			if (!this.contact.dav) {
@@ -200,7 +199,7 @@ export default {
 		/**
 		 * Conflict message
 		 *
-		 * @returns {String|Boolean}
+		 * @returns {string|boolean}
 		 */
 		conflict() {
 			if (this.contact.conflict) {
@@ -288,10 +287,15 @@ export default {
 			}
 		},
 
+		/**
+		 * Fake model to use the propertyGroups component
+		 *
+		 * @returns {Object}
+		 */
 		groupsModel() {
 			return {
-				readableName: t('contacts', 'Groups')
-				// icon: 'icon-address-book'
+				readableName: t('contacts', 'Groups'),
+				icon: 'icon-contacts'
 			}
 		},
 
@@ -306,7 +310,6 @@ export default {
 				return this.contact.groups
 			},
 			set: function(data) {
-				console.log(data);
 				let property = this.contact.vCard.getFirstProperty('categories')
 				if (!property) {
 					// Ical.js store comma separated by an Array of array of string

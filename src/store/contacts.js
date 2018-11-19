@@ -245,7 +245,7 @@ const actions = {
 	 * @param {Object} context the store mutations
 	 * @param {Object} data destructuring object
 	 * @param {Contact} data.contact the contact to delete
-	 * @param {Boolean} [data.dav=true] trigger a dav deletion
+	 * @param {boolean} [data.dav=true] trigger a dav deletion
 	 */
 	async deleteContact(context, { contact, dav = true }) {
 		// only local delete if the contact doesn't exists on the server

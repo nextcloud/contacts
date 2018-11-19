@@ -23,6 +23,8 @@
 <template>
 	<div v-if="propModel" class="grid-span-2 property">
 
+		<!-- NO title if first element for groups -->
+
 		<div class="property__row">
 			<div class="property__label">{{ propModel.readableName }}</div>
 
@@ -107,7 +109,7 @@ export default {
 		/**
 		 * Dispatch contact addition to group
 		 *
-		 * @param {String} groupName the group name
+		 * @param {string} groupName the group name
 		 */
 		async addContactToGroup(groupName) {
 			await this.$store.dispatch('addContactToGroup', {
@@ -120,7 +122,7 @@ export default {
 		/**
 		 * Dispatch contact removal from group
 		 *
-		 * @param {String} groupName the group name
+		 * @param {string} groupName the group name
 		 */
 		removeContactToGroup(groupName) {
 			this.$store.dispatch('removeContactToGroup', {
@@ -132,8 +134,8 @@ export default {
 		/**
 		 * Validate groupname and dispatch creation
 		 *
-		 * @param {String} groupName the group name
-		 * @returns {Boolean}
+		 * @param {string} groupName the group name
+		 * @returns {boolean}
 		 */
 		validateGroup(groupName) {
 			// Only allow characters without vcard special chars
