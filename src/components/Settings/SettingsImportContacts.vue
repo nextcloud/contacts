@@ -86,7 +86,7 @@ export default {
 				this.importDestination = value
 			}
 		},
-	
+
 		// disable multiselect when there is only one address book
 		isSingleAddressbook() {
 			return this.options.length === 1
