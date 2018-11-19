@@ -49,7 +49,6 @@
 
 <script>
 import moment from 'moment'
-import { AppNavigation } from 'nextcloud-vue'
 
 import SettingsSection from 'Components/SettingsSection'
 import ContactsList from 'Components/ContactsList'
