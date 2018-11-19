@@ -2,7 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Charismatic Claire <charismatic-claire@trash-me.com>
+  - @author Charismatic Claire <charismatic.claire@noservice.noreply>
   -
   - @license GNU AGPL version 3 or any later version
   -
