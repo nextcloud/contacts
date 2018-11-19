@@ -12,7 +12,7 @@
   -
   - This program is distributed in the hope that it will be useful,
   - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
   - GNU Affero General Public License for more details.
   -
   - You should have received a copy of the GNU Affero General Public License
@@ -21,22 +21,26 @@
   -->
 
 <template>
-	<div id="contacts-list" :class="{'icon-loading': loading}" class="app-content-list">
+	<transition-group id="contacts-list" :class="{'icon-loading': loading}" class="app-content-list"
+		name="list" tag="div">
 		<!-- same uid can coexists between different addressbooks
 			so we need to use the addressbook id as key as well -->
-		<content-list-item v-for="contact in list" :key="contact.key" :contact="contacts[contact.key]"
-			:search-query="searchQuery" />
-	</div>
+		<contacts-list-item v-for="(contact, index) in list" :key="contact.key" :contact="contacts[contact.key]"
+			:search-query="searchQuery" :list="list" :index="index"
+			@deleted="selectContact" />
+	</transition-group>
 </template>
 
 <script>
-import contentListItem from './ContentList/ContentListItem'
+import ContactsListItem from './ContactsList/ContactsListItem'
 
 export default {
-	name: 'ContentList',
+	name: 'ContactsList',
+
 	components: {
-		'content-list-item': contentListItem
+		ContactsListItem
 	},
+
 	props: {
 		list: {
 			type: Array,
@@ -53,6 +57,25 @@ export default {
 		searchQuery: {
 			type: String,
 			default: ''
+		}
+	},
+
+	computed: {
+		selectedGroup() {
+			return this.$route.params.selectedGroup
+		}
+	},
+
+	methods: {
+		// Select closest contact on deletion
+		selectContact(oldIndex) {
+			if (this.list.length > 0 && oldIndex < this.list.length) {
+				// priority to the one above then the one after
+				const newContact = oldIndex === 0 ? this.list[oldIndex + 1] : this.list[oldIndex - 1]
+				if (newContact) {
+					this.$router.push({ name: 'contact', params: { selectedGroup: this.selectedGroup, selectedContact: newContact.key } })
+				}
+			}
 		}
 	}
 }

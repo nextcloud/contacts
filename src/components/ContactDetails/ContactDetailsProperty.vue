@@ -12,7 +12,7 @@
   -
   - This program is distributed in the hope that it will be useful,
   - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
   - GNU Affero General Public License for more details.
   -
   - You should have received a copy of the GNU Affero General Public License
@@ -26,20 +26,20 @@
 		:prop-model="propModel" :value.sync="value" :is-first-property="isFirstProperty"
 		:property="property" :is-last-property="isLastProperty" :class="{'property--last': isLastProperty}"
 		:contact="contact" :prop-name="propName" :prop-type="propType"
-		:options="sortedModelOptions"
+		:options="sortedModelOptions" :is-read-only="isReadOnly"
 		@delete="deleteProp" />
 </template>
 
 <script>
 import { Property } from 'ical.js'
-import rfcProps from '../../models/rfcProps.js'
-import Contact from '../../models/contact'
+import rfcProps from 'Models/rfcProps'
+import Contact from 'Models/contact'
 
-import PropertyText from '../Properties/PropertyText'
-import PropertyMultipleText from '../Properties/PropertyMultipleText'
-import PropertyDateTime from '../Properties/PropertyDateTime'
-import propertyGroups from '../Properties/PropertyGroups'
-import PropertySelect from '../Properties/PropertySelect'
+import PropertyText from 'Components/Properties/PropertyText'
+import PropertyMultipleText from 'Components/Properties/PropertyMultipleText'
+import PropertyDateTime from 'Components/Properties/PropertyDateTime'
+import propertyGroups from 'Components/Properties/PropertyGroups'
+import PropertySelect from 'Components/Properties/PropertySelect'
 
 export default {
 	name: 'ContactDetailsProperty',
@@ -108,6 +108,12 @@ export default {
 				return this.sortedProperties[this.index + 1].name !== this.propName
 			}
 			return true
+		},
+		isReadOnly() {
+			if (this.contact.addressbook) {
+				return this.contact.addressbook.readOnly
+			}
+			return false
 		},
 
 		/**

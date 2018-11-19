@@ -5,12 +5,13 @@ OC.L10N.register(
     "Details" : "Detalles",
     "Download" : "Baxar",
     "Delete" : "Desaniciar",
+    "New contact" : "Contautu nuevu",
     "Copy link" : "Copiar enllaz",
     "Rename" : "Renomar",
     "Share with users or groups" : "Compartir con usuarios y grupos",
     "First name" : "Nome",
     "Last name" : "Apellíu",
-    "Display name" : "Nome",
+    "All contacts" : "Tolos contautos",
     "Nickname" : "Nomatu",
     "Detailed name" : "Nome detalláu",
     "Additional names" : "Nomes adicionales",
@@ -41,8 +42,6 @@ OC.L10N.register(
     "Fax work" : "Fax del trabayu",
     "Pager" : "Llocalizador",
     "Voice" : "Voz",
-    "Social network" : "Rede social",
-    "All contacts" : "Tolos contautos",
-    "New contact" : "Contautu nuevu"
+    "Social network" : "Rede social"
 },
 "nplurals=2; plural=(n != 1);");

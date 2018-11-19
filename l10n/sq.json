@@ -4,6 +4,7 @@
     "A contacts app for Nextcloud" : "Një aplikacion kontaktesh për Nextcloud",
     "Download" : "Shkarko",
     "Delete" : "Fshije",
+    "New contact" : "Kontakt i ri",
     "Copy link" : "Kopjo linkun",
     "Rename" : "Riemëro",
     "Enabled" : "I aktivizuar",
@@ -12,7 +13,7 @@
     "Import into" : "Importo tek ",
     "First name" : "Emër",
     "Last name" : "Mbiemër",
-    "Display name" : "Shfaq emrin",
+    "All contacts" : "Të gjithë kontaktet",
     "Nickname" : "Nofkë",
     "Detailed name" : "Emri i hollësishëm",
     "Additional names" : "Emra shtesë",
@@ -65,8 +66,6 @@
     "Co-worker" : "Koleg",
     "Gender" : "Gjinia",
     "Female" : "Femër",
-    "Male" : "Mashkull",
-    "All contacts" : "Të gjithë kontaktet",
-    "New contact" : "Kontakt i ri"
+    "Male" : "Mashkull"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

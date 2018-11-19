@@ -4,10 +4,11 @@ OC.L10N.register(
     "Contacts" : "Kontak",
     "Download" : "Unduh",
     "Delete" : "Hapus",
+    "New contact" : "Kontak baru",
     "Share with users or groups" : "Bagi dengan pengguna atau grup",
     "First name" : "Nama depan",
     "Last name" : "Nama belakang",
-    "Display name" : "Nama tampilan",
+    "All contacts" : "Semua kontak",
     "Nickname" : "Nama panggilan",
     "Detailed name" : "Nama lengkap",
     "Additional names" : "Nama tambahan",
@@ -38,8 +39,6 @@ OC.L10N.register(
     "Fax work" : "Fax kerja",
     "Pager" : "Pager",
     "Voice" : "Suara",
-    "Social network" : "Media sosial",
-    "All contacts" : "Semua kontak",
-    "New contact" : "Kontak baru"
+    "Social network" : "Media sosial"
 },
 "nplurals=1; plural=0;");

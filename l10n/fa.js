@@ -5,13 +5,14 @@ OC.L10N.register(
     "Details" : "جزئیات",
     "Download" : "دانلود",
     "Delete" : "حذف",
+    "New contact" : "مخاطب جدید",
     "Copy link" : "کپی کردن لینک",
     "Rename" : "تغییرنام",
     "Share with users or groups" : "اشتراک گذاری با کاربران یا گروه ها ...",
     "Import into" : "وارد کردن به",
     "First name" : "نام",
     "Last name" : "نام‌خانوادگی",
-    "Display name" : "نام جهت نمایش",
+    "All contacts" : "تمام مخاطبین",
     "Nickname" : "نام مستعار",
     "Detailed name" : "نام کامل",
     "Additional names" : "نام های دیگر",
@@ -58,8 +59,6 @@ OC.L10N.register(
     "Assistant" : "راهنما",
     "Gender" : "جنسیت",
     "Female" : "مؤنث",
-    "Male" : "مذکر",
-    "All contacts" : "تمام مخاطبین",
-    "New contact" : "مخاطب جدید"
+    "Male" : "مذکر"
 },
 "nplurals=2; plural=(n > 1);");

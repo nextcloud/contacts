@@ -12,7 +12,7 @@
   -
   - This program is distributed in the hope that it will be useful,
   - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
   - GNU Affero General Public License for more details.
   -
   - You should have received a copy of the GNU Affero General Public License
@@ -29,9 +29,9 @@
 			<!-- multiselect taggable groups with a limit to 3 groups shown -->
 			<multiselect v-model="localValue" :options="groups" :placeholder="t('contacts', 'Add contact in group')"
 				:limit="3" :multiple="true" :taggable="true"
-				:close-on-select="false" tag-placeholder="create" class="multiselect-vue property__value"
-				@input="updateValue" @tag="validateGroup" @select="addContactToGroup"
-				@remove="removeContactToGroup">
+				:close-on-select="false" :readonly="isReadOnly" tag-placeholder="create"
+				class="property__value" @input="updateValue" @tag="validateGroup"
+				@select="addContactToGroup" @remove="removeContactToGroup">
 
 				<!-- show how many groups are hidden and add tooltip -->
 				<span v-tooltip.auto="formatGroupsTitle" slot="limit" class="multiselect__limit">+{{ localValue.length - 3 }}</span>
@@ -42,16 +42,11 @@
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
 import debounce from 'debounce'
 import Contact from '../../models/contact'
 
 export default {
 	name: 'PropertyGroups',
-
-	components: {
-		Multiselect
-	},
 
 	props: {
 		propModel: {
@@ -68,6 +63,11 @@ export default {
 			type: Contact,
 			default: null,
 			required: true
+		},
+		// Is it read-only?
+		isReadOnly: {
+			type: Boolean,
+			default: false
 		}
 	},
 
@@ -90,20 +90,6 @@ export default {
 		 */
 		formatGroupsTitle() {
 			return this.localValue.slice(3).join(', ')
-		}
-	},
-
-	watch: {
-		/**
-		 * Since we're updating a local data based on the value prop,
-		 * we need to make sure to update the local data on pop change
-		 * TODO: check if this create performance drop
-		 */
-		value: function() {
-			this.localValue = this.value
-		},
-		selectType: function() {
-			this.localType = this.selectType
 		}
 	},
 

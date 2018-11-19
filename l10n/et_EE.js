@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "Üksikasjad",
     "Download" : "Lae alla",
     "Delete" : "Kustuta",
+    "New contact" : "Uus kontakt",
     "Copy link" : "Kopeeri link",
     "Rename" : "Nimeta ümber",
     "Enabled" : "Lubatud",
@@ -13,7 +14,7 @@ OC.L10N.register(
     "Import into" : "import sisse",
     "First name" : "Eesnimi",
     "Last name" : "Perekonnanimi",
-    "Display name" : "Kuva nimi",
+    "All contacts" : "Kõik kontaktid",
     "Nickname" : "Hüüdnimi",
     "Detailed name" : "Üksikasjalik nimi",
     "Additional names" : "Lisanimed",
@@ -63,8 +64,6 @@ OC.L10N.register(
     "Assistant" : "Assistent",
     "Gender" : "Sugu",
     "Female" : "Naine",
-    "Male" : "Mees",
-    "All contacts" : "Kõik kontaktid",
-    "New contact" : "Uus kontakt"
+    "Male" : "Mees"
 },
 "nplurals=2; plural=(n != 1);");

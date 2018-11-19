@@ -5,6 +5,7 @@ OC.L10N.register(
     "Details" : "詳細資料",
     "Download" : "下載",
     "Delete" : "刪除",
+    "New contact" : "新聯絡人",
     "Copy link" : "複製連結",
     "Rename" : "重新命名",
     "Enabled" : "已啟用",
@@ -13,7 +14,7 @@ OC.L10N.register(
     "Import into" : "匯入至",
     "First name" : "名",
     "Last name" : "姓",
-    "Display name" : "顯示名稱",
+    "All contacts" : "所有聯絡人",
     "Nickname" : "暱稱",
     "Detailed name" : "詳細名稱",
     "Additional names" : "別名/中間名",
@@ -63,8 +64,6 @@ OC.L10N.register(
     "Assistant" : "助理",
     "Gender" : "性別",
     "Female" : "女性",
-    "Male" : "男性",
-    "All contacts" : "所有聯絡人",
-    "New contact" : "新聯絡人"
+    "Male" : "男性"
 },
 "nplurals=1; plural=0;");

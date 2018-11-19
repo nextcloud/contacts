@@ -12,7 +12,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
@@ -21,7 +21,7 @@
  */
 
 import Vue from 'vue'
-import Vuex from 'vuex'
+import Vuex, { Store } from 'vuex'
 import addressbooks from './addressbooks'
 import contacts from './contacts'
 import groups from './groups'
@@ -31,7 +31,7 @@ Vue.use(Vuex)
 
 const mutations = {}
 
-export default new Vuex.Store({
+export default new Store({
 	modules: {
 		addressbooks,
 		contacts,

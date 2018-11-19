@@ -5,13 +5,14 @@ OC.L10N.register(
     "Details" : "Detaljer",
     "Download" : "Download",
     "Delete" : "Slet",
+    "New contact" : "Ny kontakt",
     "Copy link" : "Kopier link",
     "Rename" : "Omdøb",
     "Share with users or groups" : "Del med brugere eller grupper",
     "Import into" : "Importer til",
     "First name" : "Fornavn",
     "Last name" : "Efternavn",
-    "Display name" : "Vis navn",
+    "All contacts" : "Alle kontakter",
     "Nickname" : "Kaldenavn",
     "Detailed name" : "Detaljeret navn",
     "Additional names" : "Mellemnavne",
@@ -61,8 +62,6 @@ OC.L10N.register(
     "Assistant" : "Assistent",
     "Gender" : "Køn",
     "Female" : "Kvinde",
-    "Male" : "Mand",
-    "All contacts" : "Alle kontakter",
-    "New contact" : "Ny kontakt"
+    "Male" : "Mand"
 },
 "nplurals=2; plural=(n != 1);");

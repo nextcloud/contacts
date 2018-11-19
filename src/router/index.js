@@ -12,7 +12,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
@@ -22,7 +22,8 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-import Contacts from '../views/Contacts'
+import { generateUrl } from 'nextcloud-server/dist/router'
+import Contacts from 'Views/Contacts'
 
 Vue.use(Router)
 
@@ -30,7 +31,7 @@ export default new Router({
 	mode: 'history',
 	// if index.php is in the url AND we got this far, then it's working:
 	// let's keep using index.php in the url
-	base: OC.generateUrl('/apps/contacts'),
+	base: generateUrl('/apps/contacts', ''),
 	linkActiveClass: 'active',
 	routes: [
 		{

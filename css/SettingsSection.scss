@@ -13,7 +13,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
@@ -26,27 +26,29 @@
 	.settings-section {
 		display: flex;
 		align-items: center;
+		margin-top: 5px;
 	}
 }
 
 #new-addressbook-form {
 	display: flex;
+	input {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
 }
 
 // Sort Contacts
 .sort-contacts {
-	.multiselect.multiselect-vue {
-		width: 120px;
-		margin-left: 5px;
-	}
-	input#sort-by, .multiselect__single {
-		padding: 6px 12px;
-		min-height: 34px;
-		text-align: center;
-		background: url(/core/css/../img/actions/triangle-s.svg) no-repeat right 4px center;
-		background-color: inherit;
-		outline: 0;
-		padding-right: 24px !important;
+	.multiselect {
+		width: 100%;
+		margin: 0;
+		.multiselect__single {
+			padding-right: 24px !important;
+			@include icon-color('triangle-s', 'actions', $color-black, 1, true);
+			background-repeat: no-repeat;
+			background-position: right 4px center;
+		}
 	}
 }
 
@@ -54,22 +56,21 @@
 .import-contact {
 	display: flex;
 	flex-direction: column;
-	.multiselect-label {
+	&__multiselect-label {
 		width: 100%;
-		padding: 6px 12px 6px 34px;
+		padding: 6px 12px;
+		padding-left: 34px;
 		margin: 0;
 		border-radius: var(--border-radius) var(--border-radius) 0 0;
-		background: url(/core/css/../img/actions/upload.svg) no-repeat left 9px center;
-		background-color: #f7f7f7;
+		background-position: left 9px center;
 		z-index: 2;
+		&--no-select {
+			border-radius: var(--border-radius);
+		}
 	}
-	.multiselect-vue {
+	&__multiselect.multiselect {
 		width: 100%;
 		margin: 0;
-	}
-	.multiselect-vue .multiselect__tags {
-		border: 1px solid var(--color-border-dark);
-		border-radius: 0 0 var(--border-radius) var(--border-radius);
 		margin-top: -1px;
 	}
 }

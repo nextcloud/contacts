@@ -12,7 +12,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
@@ -96,21 +96,21 @@ const properties = {
 		icon: 'icon-calendar-dark',
 		defaultValue: {
 			value: new VCardTime().fromJSDate(new Date())
-		},
+		}
 	},
 	anniversary: {
 		readableName: t('contacts', 'Anniversary'),
 		icon: 'icon-calendar-dark',
 		defaultValue: {
 			value: new VCardTime().fromJSDate(new Date())
-		},
+		}
 	},
 	deathdate: {
 		readableName: t('contacts', 'Date of death'),
 		icon: 'icon-calendar-dark',
 		defaultValue: {
 			value: new VCardTime().fromJSDate(new Date())
-		},
+		}
 	},
 	email: {
 		multiple: true,
@@ -146,7 +146,7 @@ const properties = {
 	tel: {
 		multiple: true,
 		readableName: t('contacts', 'Phone'),
-		icon: 'icon-comment',
+		icon: 'icon-phone',
 		default: true,
 		defaultValue: {
 			value: '',

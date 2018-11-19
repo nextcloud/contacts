@@ -13,7 +13,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
@@ -37,16 +37,18 @@ $grid-input-height-with-margin: #{$grid-height-unit - $grid-input-margin * 2};
 	}
 }
 
-
+// components
 @import 'SettingsSection';
 @import 'Settings/SettingsAddressbook';
 @import 'Settings/SettingsAddressbookShares';
 @import 'Settings/SettingsAddressbookSharee';
 @import 'ContactDetails';
 @import 'ContactDetailsAvatar';
-@import 'ContentListItem';
+@import 'ContactsListItem';
 @import 'Properties/Properties';
 @import 'Properties/PropertyTitle';
-@import 'importScreen';
+@import 'ImportScreen';
+
+// various
 @import 'animations';
 @import 'icons';

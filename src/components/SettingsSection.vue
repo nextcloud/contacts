@@ -12,7 +12,7 @@
   -
   - This program is distributed in the hope that it will be useful,
   - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
   - GNU Affero General Public License for more details.
   -
   - You should have received a copy of the GNU Affero General Public License
@@ -33,10 +33,10 @@
 </template>
 
 <script>
-import addressBook from '../components/Settings/SettingsAddressbook'
-import addAddressBook from '../components/Settings/SettingsNewAddressbook'
-import importContacts from '../components/Settings/SettingsImportContacts'
-import sortContacts from '../components/Settings/SettingsSortContacts'
+import addressBook from 'Components/Settings/SettingsAddressbook'
+import addAddressBook from 'Components/Settings/SettingsNewAddressbook'
+import importContacts from 'Components/Settings/SettingsImportContacts'
+import sortContacts from 'Components/Settings/SettingsSortContacts'
 
 export default {
 	name: 'SettingsSection',

@@ -3,13 +3,14 @@
     "Details" : "Detalles",
     "Download" : "Descargar",
     "Delete" : "Eliminar",
+    "New contact" : "Novo contacto",
     "Copy link" : "Copiar a ligazón",
     "Rename" : "Renomear",
     "Share with users or groups" : "Compartir con usuarios ou grupos",
     "Import into" : "Importar a",
     "First name" : "Nome",
     "Last name" : "Apelidos",
-    "Display name" : "Nome para amosar",
+    "All contacts" : "Todos os contactos",
     "Prefix" : "Prefixo",
     "Suffix" : "Sufixo",
     "Notes" : "Notas",
@@ -35,8 +36,6 @@
     "Sister" : "Irmá",
     "Relative" : "Familiar",
     "Assistant" : "Asistente",
-    "Gender" : "Xénero",
-    "All contacts" : "Todos os contactos",
-    "New contact" : "Novo contacto"
+    "Gender" : "Xénero"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

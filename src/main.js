@@ -12,7 +12,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
@@ -26,6 +26,13 @@ import App from './App'
 import router from './router'
 import store from './store'
 import { sync } from 'vuex-router-sync'
+import { generateFilePath } from 'nextcloud-server/dist/router'
+
+/** GLOBAL COMPONENTS AND DIRECTIVE */
+import { AppNavigation, DatetimePicker, Multiselect, PopoverMenu } from 'nextcloud-vue'
+import ClickOutside from 'vue-click-outside'
+import { VTooltip } from 'v-tooltip'
+import VueClipboard from 'vue-clipboard2'
 
 // CSP config for webpack dynamic chunk loading
 // eslint-disable-next-line
@@ -36,7 +43,15 @@ __webpack_nonce__ = btoa(OC.requestToken)
 // OC.generateUrl ensure the index.php (or not)
 // We do not want the index.php since we're loading files
 // eslint-disable-next-line
-__webpack_public_path__ = OC.linkTo('contacts', 'js/')
+__webpack_public_path__ = generateFilePath('contacts', '', 'js/')
+
+Vue.component('AppNavigation', AppNavigation)
+Vue.component('DatetimePicker', DatetimePicker)
+Vue.component('Multiselect', Multiselect)
+Vue.component('PopoverMenu', PopoverMenu)
+Vue.directive('ClickOutside', ClickOutside)
+Vue.directive('Tooltip', VTooltip)
+Vue.use(VueClipboard)
 
 sync(store, router)
 
