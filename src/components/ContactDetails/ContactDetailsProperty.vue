@@ -38,7 +38,6 @@ import Contact from 'Models/contact'
 import PropertyText from 'Components/Properties/PropertyText'
 import PropertyMultipleText from 'Components/Properties/PropertyMultipleText'
 import PropertyDateTime from 'Components/Properties/PropertyDateTime'
-import propertyGroups from 'Components/Properties/PropertyGroups'
 import PropertySelect from 'Components/Properties/PropertySelect'
 
 export default {
@@ -68,11 +67,6 @@ export default {
 	computed: {
 		// dynamically load component based on property type
 		componentInstance() {
-			// groups
-			if (this.propName === 'categories') {
-				return propertyGroups
-			}
-
 			// dynamic matching
 			if (this.property.isMultiValue && this.propType === 'text') {
 				return PropertyMultipleText
@@ -119,7 +113,7 @@ export default {
 		/**
 		 * Return the type of the prop e.g. FN
 		 *
-		 * @returns {String}
+		 * @returns {string}
 		 */
 		propName() {
 			return this.property.name
@@ -128,7 +122,7 @@ export default {
 		 * Return the type or property
 		 *
 		 * @see src/models/rfcProps
-		 * @returns {String}
+		 * @returns {string}
 		 */
 		propType() {
 			// if we have a force type set, use it!
@@ -153,7 +147,7 @@ export default {
 		 * but make sure to include the selected one
 		 * in the final list
 		 *
-		 * @returns {Array<Object>}
+		 * @returns {Object[]}
 		 */
 		sortedModelOptions() {
 			if (this.propModel.options) {

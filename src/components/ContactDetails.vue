@@ -109,6 +109,10 @@
 				<property-select :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
 					:is-last-property="true" :property="{}" class="property--addressbooks property--last" />
 
+				<!-- Groups always visible -->
+				<property-groups :prop-model="groupsModel" :value.sync="groups" :contact="contact"
+					:is-read-only="isReadOnly" class="property--groups property--last" />
+
 				<!-- new property select -->
 				<add-new-prop v-if="!isReadOnly" :contact="contact" />
 			</section>
@@ -175,13 +179,13 @@ export default {
 		/**
 		 * Warning messages
 		 *
-		 * @returns {Object|Boolean}
+		 * @returns {Object|boolean}
 		 */
 		warning() {
 			if (!this.contact.dav) {
 				return {
 					icon: 'icon-error-white header-icon--pulse',
-					msg: t('contacts', 'This contact is not yet synced. Edit it to trigger a change.')
+					msg: t('contacts', 'This contact is not yet synced. Edit it to save it to the server.')
 				}
 			} else if (this.isReadOnly) {
 				return {
@@ -195,7 +199,7 @@ export default {
 		/**
 		 * Conflict message
 		 *
-		 * @returns {String|Boolean}
+		 * @returns {string|boolean}
 		 */
 		conflict() {
 			if (this.contact.conflict) {
@@ -280,6 +284,39 @@ export default {
 			},
 			set: function(addressbookId) {
 				this.moveContactToAddressbook(addressbookId)
+			}
+		},
+
+		/**
+		 * Fake model to use the propertyGroups component
+		 *
+		 * @returns {Object}
+		 */
+		groupsModel() {
+			return {
+				readableName: t('contacts', 'Groups'),
+				icon: 'icon-contacts'
+			}
+		},
+
+		/**
+		 * Usable groups object linked to the local contact
+		 *
+		 * @param {string[]} data An array of groups
+		 * @returns {Array}
+		 */
+		groups: {
+			get: function() {
+				return this.contact.groups
+			},
+			set: function(data) {
+				let property = this.contact.vCard.getFirstProperty('categories')
+				if (!property) {
+					// Ical.js store comma separated by an Array of array of string
+					property = this.contact.vCard.addPropertyWithValue('categories', [data])
+				}
+				property.setValues(data)
+				this.updateContact()
 			}
 		},
 

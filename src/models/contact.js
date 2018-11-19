@@ -166,6 +166,7 @@ export default class Contact {
 		let groupsProp = this.vCard.getFirstProperty('categories')
 		if (groupsProp) {
 			return groupsProp.getValues()
+				.filter(group => group !== '')
 		}
 		return []
 	}
@@ -332,7 +333,7 @@ export default class Contact {
 	 *
 	 * @readonly
 	 * @memberof Contact
-	 * @returns {String[]}
+	 * @returns {string[]}
 	 */
 	get searchData() {
 		return this.jCal[1].map(x => x[0] + ':' + x[3])

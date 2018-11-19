@@ -23,15 +23,18 @@
 <template>
 	<div v-if="propModel" class="grid-span-2 property">
 
+		<!-- NO title if first element for groups -->
+
 		<div class="property__row">
 			<div class="property__label">{{ propModel.readableName }}</div>
 
 			<!-- multiselect taggable groups with a limit to 3 groups shown -->
 			<multiselect v-model="localValue" :options="groups" :placeholder="t('contacts', 'Add contact in group')"
-				:limit="3" :multiple="true" :taggable="true"
-				:close-on-select="false" :readonly="isReadOnly" tag-placeholder="create"
-				class="property__value" @input="updateValue" @tag="validateGroup"
-				@select="addContactToGroup" @remove="removeContactToGroup">
+				:multiple="true" :taggable="true" :close-on-select="false"
+				:readonly="isReadOnly" :tag-width="60"
+				tag-placeholder="create" class="property__value"
+				@input="updateValue" @tag="validateGroup" @select="addContactToGroup"
+				@remove="removeContactToGroup">
 
 				<!-- show how many groups are hidden and add tooltip -->
 				<span v-tooltip.auto="formatGroupsTitle" slot="limit" class="multiselect__limit">+{{ localValue.length - 3 }}</span>
@@ -98,7 +101,7 @@ export default {
 		/**
 		 * Debounce and send update event to parent
 		 */
-		updateValue: debounce(function(e) {
+		updateValue: debounce(function() {
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			this.$emit('update:value', this.localValue)
 		}, 500),
@@ -106,19 +109,20 @@ export default {
 		/**
 		 * Dispatch contact addition to group
 		 *
-		 * @param {String} groupName the group name
+		 * @param {string} groupName the group name
 		 */
-		addContactToGroup(groupName) {
-			this.$store.dispatch('addContactToGroup', {
+		async addContactToGroup(groupName) {
+			await this.$store.dispatch('addContactToGroup', {
 				contact: this.contact,
 				groupName
 			})
+			this.updateValue()
 		},
 
 		/**
 		 * Dispatch contact removal from group
 		 *
-		 * @param {String} groupName the group name
+		 * @param {string} groupName the group name
 		 */
 		removeContactToGroup(groupName) {
 			this.$store.dispatch('removeContactToGroup', {
@@ -130,8 +134,8 @@ export default {
 		/**
 		 * Validate groupname and dispatch creation
 		 *
-		 * @param {String} groupName the group name
-		 * @returns {Boolean}
+		 * @param {string} groupName the group name
+		 * @returns {boolean}
 		 */
 		validateGroup(groupName) {
 			// Only allow characters without vcard special chars

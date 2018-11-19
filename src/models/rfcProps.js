@@ -88,9 +88,6 @@ const properties = {
 			{ id: 'OTHER', name: t('contacts', 'Other') }
 		]
 	},
-	categories: {
-		readableName: t('contacts', 'Groups')
-	},
 	bday: {
 		readableName: t('contacts', 'Birthday'),
 		icon: 'icon-calendar-dark',

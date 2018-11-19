@@ -128,7 +128,7 @@ const mutations = {
 	 * @param {Object} context the store mutations
 	 * @param {Object} data destructuring object
 	 * @param {Object} data.addressbook the addressbook to rename
-	 * @param {String} data.newName the new name of the addressbook
+	 * @param {string} data.newName the new name of the addressbook
 	 */
 	renameAddressbook(context, { addressbook, newName }) {
 		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
@@ -188,7 +188,7 @@ const mutations = {
 	 * @param {string} data.user the userId
 	 * @param {string} data.displayName the displayName
 	 * @param {string} data.uri the sharing principalScheme uri
-	 * @param {Boolean} data.isGroup is this a group ?
+	 * @param {boolean} data.isGroup is this a group ?
 	 */
 	shareAddressbook(state, { addressbook, user, displayName, uri, isGroup }) {
 		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
@@ -242,10 +242,11 @@ const actions = {
 	 * Retrieve and commit addressbooks
 	 *
 	 * @param {Object} context the store mutations
-	 * @returns {Promise<Array>} the addressbooks
+	 * @returns {Object[]} the addressbooks
 	 */
 	async getAddressbooks(context) {
-		let addressbooks = await client.addressBookHomes[0].findAllAddressBooks()
+		let addressbooks = await client.addressBookHomes[0]
+			.findAllAddressBooks()
 			.then(addressbooks => {
 				return addressbooks.map(addressbook => {
 					// formatting addressbooks
@@ -268,7 +269,8 @@ const actions = {
 	 * @returns {Promise}
 	 */
 	async appendAddressbook(context, addressbook) {
-		return client.addressBookHomes[0].createAddressBookCollection(addressbook.displayName)
+		return client.addressBookHomes[0]
+			.createAddressBookCollection(addressbook.displayName)
 			.then((response) => {
 				addressbook = mapDavCollectionToAddressbook(response)
 				context.commit('addAddressbook', addressbook)
@@ -283,7 +285,8 @@ const actions = {
 	 * @returns {Promise}
 	 */
 	async deleteAddressbook(context, addressbook) {
-		return addressbook.dav.delete()
+		return addressbook.dav
+			.delete()
 			.then((response) => {
 				// delete all the contacts from the store that belong to this addressbook
 				Object.values(addressbook.contacts)
@@ -302,7 +305,8 @@ const actions = {
 	 */
 	async toggleAddressbookEnabled(context, addressbook) {
 		addressbook.dav.enabled = !addressbook.enabled
-		return addressbook.dav.update()
+		return addressbook.dav
+			.update()
 			.then((response) => {
 				context.commit('toggleAddressbookEnabled', addressbook)
 				if (addressbook.enabled && Object.values(addressbook.contacts).length === 0) {
@@ -317,12 +321,13 @@ const actions = {
 	 * Rename a Addressbook
 	 * @param {Object} context the store mutations Current context
 	 * @param {Object} data.addressbook the addressbook to rename
-	 * @param {String} data.newName the new name of the addressbook
+	 * @param {string} data.newName the new name of the addressbook
 	 * @returns {Promise}
 	 */
 	async renameAddressbook(context, { addressbook, newName }) {
 		addressbook.dav.displayname = newName
-		return addressbook.dav.update()
+		return addressbook.dav
+			.update()
 			.then((response) => context.commit('renameAddressbook', { addressbook, newName }))
 			.catch((error) => { throw error })
 	},
@@ -336,7 +341,8 @@ const actions = {
 	 * @returns {Promise}
 	 */
 	async getContactsFromAddressBook(context, { addressbook }) {
-		return addressbook.dav.findAllAndFilterBySimpleProperties(['EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N'])
+		return addressbook.dav
+			.findAllAndFilterBySimpleProperties(['EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N'])
 			.then((response) => {
 				// We don't want to lose the url information
 				// so we need to parse one by one
@@ -428,7 +434,7 @@ const actions = {
 	 * @param {Object} data destructuring object
 	 * @param {Object} data.addressbook the addressbook
 	 * @param {string} data.uri the sharee uri
-	 * @param {Boolean} data.writeable the sharee permission
+	 * @param {boolean} data.writeable the sharee permission
 	 */
 	async toggleShareeWritable(context, { addressbook, uri, writeable }) {
 		try {
@@ -447,7 +453,7 @@ const actions = {
 	 * @param {string} data.user the userId
 	 * @param {string} data.displayName the displayName
 	 * @param {string} data.uri the sharing principalScheme uri
-	 * @param {Boolean} data.isGroup is this a group ?
+	 * @param {boolean} data.isGroup is this a group ?
 	 */
 	async shareAddressbook(context, { addressbook, user, displayName, uri, isGroup }) {
 		// Share addressbook with entered group or user

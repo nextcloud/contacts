@@ -91,7 +91,7 @@ export default {
 		 * @param {string} data.user the userId
 		 * @param {string} data.displayName the displayName
 		 * @param {string} data.uri the sharing principalScheme uri
-		 * @param {Boolean} data.isGroup is this a group ?
+		 * @param {boolean} data.isGroup is this a group ?
 		 */
 		shareAddressbook({ user, displayName, uri, isGroup }) {
 			let addressbook = this.addressbook
@@ -101,7 +101,7 @@ export default {
 		/**
 		 * Use the cdav client call to find matches to the query from the existing Users & Groups
 		 *
-		 * @param {String} query
+		 * @param {string} query
 		 */
 		findSharee: debounce(async function(query) {
 			this.isLoading = true
