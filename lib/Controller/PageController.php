@@ -50,24 +50,4 @@ class PageController extends Controller {
 		return new TemplateResponse('contacts', 'main', $params); // templates/main.php
 	}
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 *
-	 * Default routing for groups
-	 */
-	public function indexGroup(): TemplateResponse {
-		return $this->index();
-	}
-
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 *
-	 * Default routing for contacts
-	 */
-	public function indexContact(): TemplateResponse {
-		return $this->index();
-	}
-
 }
