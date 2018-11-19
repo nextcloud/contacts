@@ -31,6 +31,10 @@
 
 		<!-- main content -->
 		<div id="app-content">
+			<!-- go back to list when in details mode -->
+			<div v-if="selectedContact" id="app-details-toggle" class="icon-confirm"
+				tabindex="0" @click="showList" />
+
 			<div id="app-content-wrapper">
 				<!-- loading -->
 				<import-screen v-if="importState.stage !== 'default'" />
@@ -114,6 +118,11 @@ export default {
 			return this.addressbooks.find(addressbook => !addressbook.readOnly && addressbook.enabled)
 		},
 
+		// are we in mobile mode
+		isMobile() {
+			return document.querySelector('body').offsetWidth < 768
+		},
+
 		/**
 		 * Contacts list based on the selected group.
 		 * Those filters are pretty fast, so let's only
@@ -195,11 +204,15 @@ export default {
 	watch: {
 		// watch url change and group select
 		selectedGroup: function() {
-			this.selectFirstContactIfNone()
+			if (!this.isMobile) {
+				this.selectFirstContactIfNone()
+			}
 		},
 		// watch url change and contact select
 		selectedContact: function() {
-			this.selectFirstContactIfNone()
+			if (!this.isMobile) {
+				this.selectFirstContactIfNone()
+			}
 		}
 	},
 
@@ -289,7 +302,9 @@ export default {
 				}
 			})).then(results => {
 				this.loading = false
-				this.selectFirstContactIfNone()
+				if (!this.isMobile) {
+					this.selectFirstContactIfNone()
+				}
 			})
 		},
 
@@ -321,6 +336,20 @@ export default {
 		},
 		resetSearch() {
 			this.search('')
+		},
+
+		/**
+		 * Show the list and deselect contact
+		 */
+		showList() {
+			// Reset the selected contact
+			this.$router.push({
+				name: 'contact',
+				params: {
+					selectedGroup: this.selectedGroup,
+					selectedContact: undefined
+				}
+			})
 		}
 	}
 }
