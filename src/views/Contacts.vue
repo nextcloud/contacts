@@ -32,7 +32,7 @@
 		<!-- main content -->
 		<div id="app-content">
 			<!-- go back to list when in details mode -->
-			<div v-if="selectedContact" id="app-details-toggle" class="icon-confirm"
+			<div v-if="selectedContact && isMobile" id="app-details-toggle" class="icon-confirm"
 				tabindex="0" @click="showList" />
 
 			<div id="app-content-wrapper">
