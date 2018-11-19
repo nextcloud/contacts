@@ -186,7 +186,7 @@ export default {
 			if (!this.contact.dav) {
 				return {
 					icon: 'icon-error-white header-icon--pulse',
-					msg: t('contacts', 'This contact is not yet synced. Edit it to trigger a change.')
+					msg: t('contacts', 'This contact is not yet synced. Edit it to save it to the server.')
 				}
 			} else if (this.isReadOnly) {
 				return {
