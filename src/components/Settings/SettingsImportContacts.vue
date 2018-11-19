@@ -54,12 +54,19 @@ export default {
 	},
 
 	computed: {
+		// getter for the store addressbooks
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
 		},
-		options() {
+		// filter out disabled and read-only addressbooks
+		availableAddressbooks() {
 			return this.addressbooks
 				.filter(addressbook => !addressbook.readOnly && addressbook.enabled)
+		},
+
+		// available options for the multiselect
+		options() {
+			return this.availableAddressbooks
 				.map(addressbook => {
 					return {
 						id: addressbook.id,
@@ -67,30 +74,34 @@ export default {
 					}
 				})
 		},
-		importState() {
-			return this.$store.getters.getImportState
-		},
-		isImporting() {
-			return this.importState.stage !== 'default'
-		},
 		selectedAddressbook: {
 			get() {
 				if (this.importDestination) {
-					return this.addressbooks.find(addressbook => addressbook.id === this.importDestination.id)
+					return this.availableAddressbooks.find(addressbook => addressbook.id === this.importDestination.id)
 				}
 				// default is first address book of the list
-				return this.addressbooks[0]
+				return this.availableAddressbooks[0]
 			},
 			set(value) {
 				this.importDestination = value
 			}
 		},
+	
 		// disable multiselect when there is only one address book
 		isSingleAddressbook() {
 			return this.options.length === 1
 		},
 		isNoAddressbookAvailable() {
 			return this.options.length < 1
+		},
+
+		// importing state store getter
+		importState() {
+			return this.$store.getters.getImportState
+		},
+		// are we currently importing ?
+		isImporting() {
+			return this.importState.stage !== 'default'
 		}
 	},
 	methods: {
