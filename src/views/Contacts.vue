@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Charismatic Claire <charismatic.claire@noservice.noreply>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -52,6 +53,8 @@
 </template>
 
 <script>
+import moment from 'moment'
+
 import SettingsSection from 'Components/SettingsSection'
 import ContactsList from 'Components/ContactsList'
 import ContactDetails from 'Components/ContactDetails'
@@ -154,7 +157,14 @@ export default {
 					},
 					text: group.name,
 					utils: {
-						counter: group.contacts.length
+						counter: group.contacts.length,
+						actions: [
+							{
+								icon: 'icon-download',
+								text: 'Download',
+								action: () => this.downloadGroup(group)
+							}
+						]
 					}
 				}
 			}).sort(function(a, b) {
@@ -328,6 +338,53 @@ export default {
 					})
 				}
 			}
+		},
+
+		/**
+		 * Download vcard promise as vcard file
+		 *
+		 * @param {Object} vcardPromise object to be downloaded
+		 */
+		downloadVcardPromise(vcardPromise) {
+			vcardPromise.then(response => {
+				const blob = new Blob([response.data], { type: 'text/vcard' })
+				const url = URL.createObjectURL(blob)
+				const link = document.createElement('a')
+				const filename = moment().format('YYYY-MM-DD_HH-mm') + '_' + response.groupName + '.vcf'
+				link.href = url
+				link.download = filename
+				link.click()
+			})
+		},
+
+		/**
+		 * Download group of contacts
+		 *
+		 * @param {Object} group of contacts to be downloaded
+		 */
+		downloadGroup(group) {
+			// get grouped contacts
+			let groupedContacts = {}
+			group.contacts.map((key) => {
+				const id = this.contacts[key].addressbook.id
+				groupedContacts = Object.assign({
+					[id]: {
+						addressbook: this.contacts[key].addressbook,
+						contacts: []
+					}
+				}, groupedContacts)
+				groupedContacts[id].contacts.push(this.contacts[key].url)
+			})
+			// create vcard promise with the requested contacts
+			const vcardPromise = Promise.all(
+				Object.keys(groupedContacts).map(key =>
+					groupedContacts[key].addressbook.dav.addressbookMultigetExport(groupedContacts[key].contacts)))
+				.then(response => ({
+					groupName: group.name,
+					data: response.map(data => data.body).join('')
+				}))
+			// download vcard
+			this.downloadVcardPromise(vcardPromise)
 		},
 
 		/* SEARCH */
