@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "ข้อมูลผู้ติดต่อ",
+    "Groups" : "กลุ่ม",
     "New contact" : "รายชื่อผุ้ติดต่อใหม่",
     "First name" : "ชื่อจริง",
     "Last name" : "นามสกุลจริง",
@@ -23,7 +24,6 @@ OC.L10N.register(
     "State or province" : "รัฐหรือจังหวัด",
     "Postal code" : "รหัสไปรษณีย์",
     "Country" : "ประเทศ",
-    "Groups" : "กลุ่ม",
     "Birthday" : "วันเกิด",
     "Anniversary" : "วันครบรอบ",
     "Date of death" : "วันที่สิ้นสุด",
