@@ -14,6 +14,7 @@ OC.L10N.register(
     "Name" : "Název",
     "Company" : "Společnost",
     "Title" : "Nadpis",
+    "This contact is not yet synced. Edit it to save it to the server." : "Tento kontakt ještě není synchronizován. Uprovat ho aby byl uložen na server.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Tento kontakt je v režimu pouze pro čtení. Nemáte oprávnění k úpravě tohoto kontaktu.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakt který jste se pokoušeli upravit se mezitím změnil. Ručně ho znovu načtěte. Mezitím provedené úpravy budou zahozeny.",
     "Download" : "Stáhnout",
