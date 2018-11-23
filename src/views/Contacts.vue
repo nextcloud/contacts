@@ -163,6 +163,11 @@ export default {
 								icon: 'icon-download',
 								text: 'Download',
 								action: () => this.downloadGroup(group)
+							},
+							{
+								icon: 'icon-delete',
+								text: 'Delete',
+								action: () => this.deleteGroup(group)
 							}
 						]
 					}
@@ -385,6 +390,15 @@ export default {
 				}))
 			// download vcard
 			this.downloadVcardPromise(vcardPromise)
+		},
+
+		/**
+		 * Delete a group
+		 *
+		 * @param {Object} group the group to delete
+		 */
+		deleteGroup(group) {
+			this.$store.dispatch('deleteGroup', group)
 		},
 
 		/* SEARCH */
