@@ -1,6 +1,6 @@
 {
   "name": "contacts",
-  "version": "2.1.6-beta",
+  "version": "2.1.8",
   "description": "Place this app in **nextcloud/apps/**",
   "author": {
     "name": "Hendrik Leppelsack",
