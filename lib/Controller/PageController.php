@@ -33,7 +33,7 @@ class PageController extends Controller {
 
 	public function __construct(string $AppName,
 								IRequest $request,
-								string $UserId) {
+								string $UserId = null) {
 		parent::__construct($AppName, $request);
 		$this->userId = $UserId;
 	}
