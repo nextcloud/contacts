@@ -14,6 +14,7 @@ OC.L10N.register(
     "Name" : "Naam",
     "Company" : "Organisatie",
     "Title" : "Titel",
+    "This contact is not yet synced. Edit it to save it to the server." : "Deze contactpersoon is nog niet gesynchroniseerd. Bewerk om te laten verwerken.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Deze contactpersoon is allee-leesbaar. Je hebt niet de autorisatie om deze contactpersoon te bewerken",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "De contactpersoon die je wilde bewerken is gewijzigd. Ververs de contactgegevens handmatig. Verdere wijzigingen worden genegeerd.",
     "Download" : "Downloaden",
