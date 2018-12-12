@@ -8,7 +8,7 @@
 
 **A contacts app for [Nextcloud](https://nextcloud.com). Easily sync contacts from various devices with your Nextcloud and edit them online.**
 
-This app only support vCard **3.0** and **4.0**
+This app only support vCard **3.0** and **4.0**. This app is compatible with the same browsers as server **except IE**!
 
 ![](https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png)
 
