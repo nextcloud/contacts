@@ -22,11 +22,12 @@
 
 <template>
 	<div v-if="propModel" class="grid-span-2 property">
-
 		<!-- NO title if first element for groups -->
 
 		<div class="property__row">
-			<div class="property__label">{{ propModel.readableName }}</div>
+			<div class="property__label">
+				{{ propModel.readableName }}
+			</div>
 
 			<!-- multiselect taggable groups with a limit to 3 groups shown -->
 			<multiselect v-model="localValue" :options="groups" :placeholder="t('contacts', 'Add contact in group')"
@@ -35,10 +36,13 @@
 				tag-placeholder="create" class="property__value"
 				@input="updateValue" @tag="validateGroup" @select="addContactToGroup"
 				@remove="removeContactToGroup">
-
 				<!-- show how many groups are hidden and add tooltip -->
-				<span v-tooltip.auto="formatGroupsTitle" slot="limit" class="multiselect__limit">+{{ localValue.length - 3 }}</span>
-				<span slot="noResult">{{ t('settings', 'No results') }}</span>
+				<span slot="limit" v-tooltip.auto="formatGroupsTitle" class="multiselect__limit">
+					+{{ localValue.length - 3 }}
+				</span>
+				<span slot="noResult">
+					{{ t('settings', 'No results') }}
+				</span>
 			</multiselect>
 		</div>
 	</div>

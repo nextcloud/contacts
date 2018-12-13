@@ -23,12 +23,16 @@
 <template>
 	<li :class="{'addressbook--disabled': !addressbook.enabled}" class="addressbook">
 		<!-- addressbook name -->
-		<span class="addressbook__name">{{ addressbook.displayName }}</span>
+		<span class="addressbook__name">
+			{{ addressbook.displayName }}
+		</span>
+
 		<!-- sharing button -->
-		<a v-tooltip.top="sharedWithTooltip" v-if="!addressbook.readOnly"
+		<a v-if="!addressbook.readOnly" v-tooltip.top="sharedWithTooltip"
 			:class="{'addressbook__share--shared': hasShares}"
 			:title="sharedWithTooltip" href="#"
 			class="addressbook__share icon-shared" @click="toggleShare" />
+
 		<!-- popovermenu -->
 		<a v-click-outside="closeMenu" href="#" class="addressbook__menu">
 			<div class="icon-more" @click="toggleMenu" />
@@ -36,6 +40,7 @@
 				<popover-menu :menu="menu" />
 			</div>
 		</a>
+
 		<!-- sharing input -->
 		<share-address-book v-if="shareOpen && !addressbook.readOnly" :addressbook="addressbook" />
 	</li>

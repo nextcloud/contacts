@@ -34,10 +34,14 @@
 				label="name" @input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-else-if="selectType" class="property__label">{{ selectType.name }}</div>
+			<div v-else-if="selectType" class="property__label">
+				{{ selectType.name }}
+			</div>
 
 			<!-- no options, empty space -->
-			<div v-else class="property__label">{{ propModel.readableName }}</div>
+			<div v-else class="property__label">
+				{{ propModel.readableName }}
+			</div>
 
 			<!-- delete the prop -->
 			<button v-if="!isReadOnly" :title="t('contacts', 'Delete')" class="property__delete icon-delete"

@@ -23,7 +23,6 @@
 
 <template>
 	<div id="content" class="app-contacts">
-
 		<!-- new-contact-button + navigation + settings -->
 		<app-navigation :menu="menu">
 			<!-- settings -->
@@ -48,7 +47,6 @@
 				</template>
 			</div>
 		</div>
-
 	</div>
 </template>
 

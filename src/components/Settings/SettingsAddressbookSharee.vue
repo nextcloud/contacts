@@ -27,7 +27,9 @@
 			'icon-group': sharee.isGroup && !loading,
 			'icon-user': !sharee.isGroup && !loading
 		}" class="icon" />
-		<span class="addressbook-sharee__identifier">{{ sharee.displayName }}</span>
+		<span class="addressbook-sharee__identifier">
+			{{ sharee.displayName }}
+		</span>
 		<span class="addressbook-sharee__utils">
 			<input
 				:id="uid"
