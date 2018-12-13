@@ -22,7 +22,7 @@
 
 <template>
 	<!-- If not in the rfcProps then we don't want to display it -->
-	<component v-if="propModel && propType !== 'unknown'" :is="componentInstance" :select-type.sync="selectType"
+	<component :is="componentInstance" v-if="propModel && propType !== 'unknown'" :select-type.sync="selectType"
 		:prop-model="propModel" :value.sync="value" :is-first-property="isFirstProperty"
 		:property="property" :is-last-property="isLastProperty" :class="{'property--last': isLastProperty}"
 		:contact="contact" :prop-name="propName" :prop-type="propType"
@@ -166,7 +166,7 @@ export default {
 		 * or return the default selected as a new object if
 		 * none exists
 		 *
-		 * @returns Object|undefined
+		 * @returns Object|null
 		 */
 		selectType: {
 			get() {
@@ -206,6 +206,7 @@ export default {
 						name: selectedType
 					}
 				}
+				return null
 			},
 			set(data) {
 				// ical.js take types as arrays
@@ -247,6 +248,7 @@ export default {
 				if (type) {
 					return Array.isArray(type) ? type : [type]
 				}
+				return null
 			},
 			set(data) {
 				this.property.setParameter('type', data)

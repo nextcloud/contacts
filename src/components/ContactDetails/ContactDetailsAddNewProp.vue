@@ -22,7 +22,6 @@
 
 <template>
 	<div class="grid-span-3 property property--last">
-
 		<!-- title -->
 		<property-title :icon="'icon-add'" :readable-name="t('contacts', 'Add new property')" />
 

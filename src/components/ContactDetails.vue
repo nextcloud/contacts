@@ -22,7 +22,6 @@
 
 <template>
 	<div id="contact-details" class="app-content-details">
-
 		<!-- nothing selected or contact not found -->
 		<div v-if="!contact && !loading" id="emptycontent">
 			<div class="icon-contacts" />
@@ -39,7 +38,6 @@
 		<template v-else>
 			<!-- contact header -->
 			<header :style="{ 'backgroundColor': colorAvatar }">
-
 				<!-- avatar and upload photo -->
 				<contact-avatar :contact="contact" />
 				<!-- QUESTION: is it better to pass contact as a prop or get it from the store inside
@@ -68,18 +66,18 @@
 
 				<!-- actions -->
 				<div id="contact-header-actions">
-					<a v-tooltip.bottom="{
+					<a v-if="loadingUpdate || warning"
+						v-tooltip.bottom="{
 							content: warning ? warning.msg : '',
 							trigger: 'hover focus'
 						}"
-						v-if="loadingUpdate || warning"
 						:class="{'icon-loading-small': loadingUpdate,
 							[`${warning.icon}`]: warning}" class="header-icon" href="#" />
-					<div v-tooltip="{
+					<div v-if="conflict" v-tooltip="{
 							content: conflict,
 							show: true,
 							trigger: 'manual',
-						}" v-if="conflict" class="header-icon header-icon--pulse icon-history-white"
+						}" class="header-icon header-icon--pulse icon-history-white"
 						@click="refreshContact" />
 					<div class="menu-icon">
 						<div v-click-outside="closeMenu" class="header-icon icon-more-white" @click="toggleMenu" />
@@ -95,7 +93,6 @@
 
 			<!-- contact details -->
 			<section v-else class="contact-details">
-
 				<!-- properties iteration -->
 				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
 				<contact-property v-for="(property, index) in sortedProperties" :key="`${index}-${contact.key}-${property.name}`" :index="index"

@@ -34,10 +34,14 @@
 				label="name" @input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-else-if="selectType" class="property__label">{{ selectType.name }}</div>
+			<div v-else-if="selectType" class="property__label">
+				{{ selectType.name }}
+			</div>
 
 			<!-- no options, empty space -->
-			<div v-else class="property__label">{{ propModel.readableName }}</div>
+			<div v-else class="property__label">
+				{{ propModel.readableName }}
+			</div>
 
 			<!-- textarea for note -->
 			<textarea v-if="propName === 'note'" id="textarea" ref="textarea"
@@ -134,14 +138,17 @@ export default {
 			}
 			return false
 		},
+
 		// format external link
 		externalHandler() {
 			if (this.URLScheme !== false) {
 				return `${this.URLScheme}${this.value}`
 			}
+			return ''
 		},
+
 		haveExtHandler() {
-			return this.externalHandler && this.value && this.value.length > 0
+			return this.externalHandler !== '' && this.value && this.value.length > 0
 		}
 	},
 

@@ -34,10 +34,14 @@
 				label="name" @input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-else-if="selectType" class="property__label">{{ selectType.name }}</div>
+			<div v-else-if="selectType" class="property__label">
+				{{ selectType.name }}
+			</div>
 
 			<!-- no options, empty space -->
-			<div v-else class="property__label">{{ propModel.readableName }}</div>
+			<div v-else class="property__label">
+				{{ propModel.readableName }}
+			</div>
 
 			<!-- show the first input if not -->
 			<input v-if="!property.isStructuredValue" v-model.trim="localValue[0]" :readonly="isReadOnly"
@@ -51,7 +55,9 @@
 		<!-- force order based on model -->
 		<template v-if="propModel.displayOrder && propModel.readableValues">
 			<div v-for="index in propModel.displayOrder" :key="index" class="property__row">
-				<div class="property__label">{{ propModel.readableValues[index] }}</div>
+				<div class="property__label">
+					{{ propModel.readableValues[index] }}
+				</div>
 				<input v-model.trim="localValue[index]" :readonly="isReadOnly" class="property__value"
 					type="text" @input="updateValue">
 			</div>
@@ -59,10 +65,10 @@
 
 		<!-- no order enforced: just iterate on all the values -->
 		<template v-else>
-			<div v-for="(value, index) in localValue" v-if="index > 0" :key="index"
+			<div v-for="(value, index) in filteredValue" :key="index"
 				class="property__row">
 				<div class="property__label" />
-				<input v-model.trim="localValue[index]" :readonly="isReadOnly" class="property__value"
+				<input v-model.trim="filteredValue[index]" :readonly="isReadOnly" class="property__value"
 					type="text" @input="updateValue">
 			</div>
 		</template>
@@ -97,6 +103,10 @@ export default {
 			let hasValueNames = this.propModel.readableValues ? 1 : 0
 			let length = this.propModel.displayOrder ? this.propModel.displayOrder.length : this.value.length
 			return hasValueNames + hasTitle + length + isLast
+		},
+
+		filteredValue() {
+			return this.localValue.filter((value, index) => index > 0)
 		}
 	}
 }
