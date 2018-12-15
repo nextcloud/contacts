@@ -1,10 +1,10 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "アドレス帳",
+    "Contacts" : "連絡先",
     "Details" : "詳細",
-    "A contacts app for Nextcloud" : "Nextcloudの連絡帳アプリ",
-    "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Nextcloudの連絡先アプリは、NextcloudのCardDAVサーバーのユーザーインターフェイスです。 さまざまなデバイスの連絡先をNextcloudで簡単に同期し、オンラインで編集できます。\n\n*🚀**他のネクストクラウドアプリケーションとの統合！**現在、メールとカレンダー - 今後の予定です。\n*🎉**誕生日を忘れないでください！**あなたのネクストクラウドカレンダーで誕生日やその他の定期的なイベントを同期できます。\n*👥** Adressbooksの共有！**あなたの友達や同僚とあなたの連絡先を共有したいですか？ 問題ない！\n*🙈**私たちは車輪を再発明していません！**偉大でオープンなSabreDAVライブラリをベースにしています。",
+    "A contacts app for Nextcloud" : "Nextcloud の連絡先アプリ",
+    "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Nextcloud の連絡先アプリは、 Nextcloud の CardDAV サーバーのユーザーインターフェイスです。 さまざまなデバイスの連絡先を Nextcloud で簡単に同期し、オンラインで編集できます。\n\n*🚀**他の Nextcloud アプリケーションとの統合！**現在、メールとカレンダー - 今後の予定です。\n*🎉**誕生日を忘れないでください！**あなたの Nextcloud カレンダーで誕生日やその他の定期的なイベントを同期できます。\n*👥** 連絡先の共有！**あなたの友達や同僚とあなたの連絡先を共有したいですか？ 問題ない！\n*🙈**私たちは車輪を再発明していません！**偉大でオープンな SabreDAV ライブラリをベースにしています。",
     "Add new property" : "新しいプロパティを追加する",
     "Choose property type" : "プロパティの種類を選択",
     "Upload a new picture" : "新しい写真をアップロードする",
@@ -65,7 +65,7 @@ OC.L10N.register(
     "Suffix" : "サフィックス",
     "Notes" : "ノート",
     "Website" : "ウェブサイト",
-    "Federated Cloud ID" : "クラウド連携ID",
+    "Federated Cloud ID" : "クラウド共有ID",
     "Home" : "自宅",
     "Work" : "職場",
     "Other" : "その他",

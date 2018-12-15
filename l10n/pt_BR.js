@@ -25,6 +25,7 @@ OC.L10N.register(
     "The contact doesn't exists anymore on the server." : "O contato não existe mais no servidor.",
     "Importing {total} contacts into" : "Importando {total} contatos para",
     "Open your browser console for more details" : "Abra o console do navegador para mais detalhes",
+    "failed" : "falhou",
     "Select type" : "Selecionar tipo",
     "Select Date" : "Selecionar Data",
     "Add contact in group" : "Adicionar contato no grupo",
