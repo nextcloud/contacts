@@ -25,7 +25,7 @@ import rfcProps from '../../models/rfcProps';
 	<div :class="{'maximised':maximizeAvatar }" class="contact-header-avatar">
 		<div class="contact-header-avatar__wrapper">
 			<div class="contact-header-avatar__background" @click="toggleSize" />
-			<div v-if="contact.photo" :style="{ 'backgroundImage': `url(${contact.photo})` }"
+			<div v-if="contact.photo" :style="{ 'backgroundImage': `url(${photo})` }"
 				class="contact-header-avatar__photo"
 				@click="toggleSize" />
 			<div class="contact-header-avatar__options">
@@ -54,6 +54,17 @@ export default {
 	data() {
 		return {
 			maximizeAvatar: false
+		}
+	},
+	computed: {
+		photo() {
+			const type = this.contact.vCard.getFirstProperty('photo').type
+			if (!this.contact.photo.startsWith('data') && type === 'binary') {
+				// split on coma in case of any leftover base64 data and retrieve last part
+				// usually we come to this part when the base64 image type is unknown
+				return `data:image;base64,${this.contact.photo.split(',').pop()}`
+			}
+			return this.contact.photo
 		}
 	},
 	methods: {

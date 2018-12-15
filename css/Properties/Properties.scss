@@ -56,8 +56,8 @@ $property-value-max-width: 250px;
 		padding: $grid-input-padding 0;
 		flex: 1 0; // min width is 60px, let's grow until 120px
 		height: $grid-input-height-with-margin;
-		width: $property-label-min-width !important; // override multiselect
-		min-width: $property-label-min-width;
+		width: $property-label-min-width; 
+		min-width: $property-label-min-width !important; // override multiselect
 		max-width: $property-label-max-width;
 
 		opacity: .7;
