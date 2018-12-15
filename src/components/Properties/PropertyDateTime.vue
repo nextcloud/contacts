@@ -50,7 +50,8 @@
 			<!-- Real input where the picker shows -->
 			<datetime-picker :value="localValue.toJSDate()" :minute-step="10" :lang="lang"
 				:clearable="false" :first-day-of-week="firstDay" :type="inputType"
-				:readonly="isReadOnly" confirm @confirm="updateValue" />
+				:readonly="isReadOnly" class="property__value" confirm
+				@confirm="updateValue" />
 		</div>
 	</div>
 </template>
