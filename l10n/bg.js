@@ -8,7 +8,7 @@ OC.L10N.register(
     "Name" : "Име",
     "Company" : "Фирма",
     "Title" : "Длъжност",
-    "Download" : "Изтегляне",
+    "Download" : "Свали",
     "Delete" : "Изтрий",
     "Addressbook" : "Адресна книга",
     "Groups" : "Групи",
