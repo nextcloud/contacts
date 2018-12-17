@@ -73,7 +73,7 @@ export default {
 		availableProperties() {
 			return Object.keys(rfcProps.properties)
 				// only allow to add multiple properties OR props that are not yet in the contact
-				.filter(prop => prop.multiple || this.usedProperties.indexOf(prop) === -1)
+				.filter(key => rfcProps.properties[key].multiple || this.usedProperties.indexOf(key) === -1)
 				// usable array of objects
 				.map(key => {
 					return {
