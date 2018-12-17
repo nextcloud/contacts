@@ -390,7 +390,7 @@ export default {
 			this.searchQuery = query
 		},
 		resetSearch() {
-			this.search('')
+			this.searchQuery = ''
 		},
 
 		/**
