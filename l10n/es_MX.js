@@ -7,6 +7,8 @@ OC.L10N.register(
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "La aplicación de Contactos de Nextcloud es una interface para el servidor CardDAV de Nextcloud. Sincroniza facilmente los contactos desde diferentes dispositivos con tu Nextcloud y editalos en línea.\n* 🚀 **¡Integración con otras aplicaciones Nextcloud!** Actualmente Correo y Calendario – mas por llegar.\n* 🎉 **¡Que nunca se te olvide un cumpleaños!** Puedes sincronizar cumpleaños y otros eventos recurrentes con tu Caldendario de Nextcloud.\n* 👥 **¡Comparte libros de direcciones!** ¿Quieres compartir tus contactos con tus amigos o colegas? ¡No hay problema!\n* 🙈 **¡No estamos reinventando la rueda!** Basado en la grandiosa librería abierta SabreDAV.",
     "Download" : "Descargar",
     "Delete" : "Borrar",
+    "Groups" : "Grupos",
+    "New contact" : "Nuevo contacto",
     "Copy link" : "Copiar liga",
     "Rename" : "Renombrar",
     "Enabled" : "Habilitado",
@@ -15,7 +17,7 @@ OC.L10N.register(
     "Import into" : "Importar a",
     "First name" : "Nombre",
     "Last name" : "Apellido",
-    "Display name" : "Nombre a desplegar",
+    "All contacts" : "Todos los contactos",
     "Nickname" : "Apodo",
     "Detailed name" : "Nombre detallado",
     "Additional names" : "Nombres adicionales",
@@ -33,7 +35,6 @@ OC.L10N.register(
     "State or province" : "Estado o provincia",
     "Postal code" : "Código postal",
     "Country" : "País",
-    "Groups" : "Grupos",
     "Birthday" : "Fecha de nacimiento",
     "Anniversary" : "Aniversario",
     "Date of death" : "Fecha de defunción",
@@ -72,8 +73,6 @@ OC.L10N.register(
     "Co-worker" : "Compañero de trabajo",
     "Gender" : "Género",
     "Female" : "Femenino",
-    "Male" : "Masculino",
-    "All contacts" : "Todos los contactos",
-    "New contact" : "Nuevo contacto"
+    "Male" : "Masculino"
 },
 "nplurals=2; plural=(n != 1);");

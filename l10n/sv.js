@@ -5,6 +5,8 @@ OC.L10N.register(
     "Details" : "Detaljer",
     "Download" : "Ladda ned",
     "Delete" : "Radera",
+    "Groups" : "Grupper",
+    "New contact" : "Ny kontakt",
     "Copy link" : "Kopiera länk",
     "Rename" : "Byt namn",
     "Enabled" : "Aktiverad",
@@ -13,7 +15,7 @@ OC.L10N.register(
     "Import into" : "Importera till",
     "First name" : "Förnamn",
     "Last name" : "Efternamn",
-    "Display name" : "Visningsnamn",
+    "All contacts" : "Alla kontakter",
     "Nickname" : "Smeknamn",
     "Detailed name" : "Detaljerat namn",
     "Additional names" : "Mellannamn",
@@ -31,7 +33,6 @@ OC.L10N.register(
     "State or province" : "Län eller Kommun",
     "Postal code" : "Postnummer",
     "Country" : "Land",
-    "Groups" : "Grupper",
     "Birthday" : "Födelsedag",
     "Anniversary" : "Födelsedag",
     "Date of death" : "Dödsdag",
@@ -70,8 +71,6 @@ OC.L10N.register(
     "Co-worker" : "Kollega",
     "Gender" : "Kön",
     "Female" : "Kvinna",
-    "Male" : "Man",
-    "All contacts" : "Alla kontakter",
-    "New contact" : "Ny kontakt"
+    "Male" : "Man"
 },
 "nplurals=2; plural=(n != 1);");

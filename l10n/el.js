@@ -6,6 +6,8 @@ OC.L10N.register(
     "A contacts app for Nextcloud" : "Εφαρμογή επαφών για το Nextcloud",
     "Download" : "Λήψη",
     "Delete" : "Διαγραφή",
+    "Groups" : "Ομάδες",
+    "New contact" : "Νέα επαφή",
     "Copy link" : "Αντιγραφή συνδέσμου",
     "Rename" : "Μετονομασία",
     "Enabled" : "Ενεργοποιημένο",
@@ -14,7 +16,7 @@ OC.L10N.register(
     "Import into" : "Εισαγωγή σε",
     "First name" : "Όνομα",
     "Last name" : "Επώνυμο",
-    "Display name" : "Εμφανιζόμενο όνομα",
+    "All contacts" : "Όλες οι επαφές",
     "Nickname" : "Παρατσούκλι",
     "Detailed name" : "Λεπτομερές όνομα",
     "Additional names" : "Επιπλέον ονόματα",
@@ -32,7 +34,6 @@ OC.L10N.register(
     "State or province" : "Νομός ή περιφέρεια",
     "Postal code" : "Ταχυδρομικός Κώδικας",
     "Country" : "Χώρα",
-    "Groups" : "Ομάδες",
     "Birthday" : "Γενέθλια",
     "Anniversary" : "Επέτειος",
     "Date of death" : "Ημερομηνία θανάτου",
@@ -66,8 +67,6 @@ OC.L10N.register(
     "Co-worker" : "Συνεργάτης",
     "Gender" : "Φύλλο",
     "Female" : "Θηλυκό",
-    "Male" : "Αρσενικό",
-    "All contacts" : "Όλες οι επαφές",
-    "New contact" : "Νέα επαφή"
+    "Male" : "Αρσενικό"
 },
 "nplurals=2; plural=(n != 1);");

@@ -5,6 +5,8 @@ OC.L10N.register(
     "Details" : "Podrobnosti",
     "Download" : "Prejmi",
     "Delete" : "Izbriši",
+    "Groups" : "Skupine",
+    "New contact" : "Nov stik",
     "Copy link" : "Kopiraj povezavo",
     "Rename" : "Preimenuj",
     "Enabled" : "Omogočeno",
@@ -13,7 +15,7 @@ OC.L10N.register(
     "Import into" : "Uvozi v",
     "First name" : "Ime",
     "Last name" : "Priimek",
-    "Display name" : "Prikaži ime",
+    "All contacts" : "Vsi stiki",
     "Nickname" : "Vzdevek",
     "Detailed name" : "Podrobno ime",
     "Additional names" : "Druga imena",
@@ -31,7 +33,6 @@ OC.L10N.register(
     "State or province" : "Zvezna država ali provinca",
     "Postal code" : "Poštna številka",
     "Country" : "Država",
-    "Groups" : "Skupine",
     "Birthday" : "Rojstni dan",
     "Anniversary" : "Obletnica",
     "Date of death" : "Datum smrti",
@@ -63,8 +64,6 @@ OC.L10N.register(
     "Assistant" : "Pomočnik",
     "Gender" : "Spol",
     "Female" : "Ženski",
-    "Male" : "Moški",
-    "All contacts" : "Vsi stiki",
-    "New contact" : "Nov stik"
+    "Male" : "Moški"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");

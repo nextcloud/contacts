@@ -22,24 +22,23 @@
 
 <template>
 	<!-- If not in the rfcProps then we don't want to display it -->
-	<component v-if="propModel && propType !== 'unknown'" :is="componentInstance" :select-type.sync="selectType"
+	<component :is="componentInstance" v-if="propModel && propType !== 'unknown'" :select-type.sync="selectType"
 		:prop-model="propModel" :value.sync="value" :is-first-property="isFirstProperty"
 		:property="property" :is-last-property="isLastProperty" :class="{'property--last': isLastProperty}"
 		:contact="contact" :prop-name="propName" :prop-type="propType"
-		:options="sortedModelOptions"
+		:options="sortedModelOptions" :is-read-only="isReadOnly"
 		@delete="deleteProp" />
 </template>
 
 <script>
 import { Property } from 'ical.js'
-import rfcProps from '../../models/rfcProps.js'
-import Contact from '../../models/contact'
+import rfcProps from 'Models/rfcProps'
+import Contact from 'Models/contact'
 
-import PropertyText from '../Properties/PropertyText'
-import PropertyMultipleText from '../Properties/PropertyMultipleText'
-import PropertyDateTime from '../Properties/PropertyDateTime'
-import propertyGroups from '../Properties/PropertyGroups'
-import PropertySelect from '../Properties/PropertySelect'
+import PropertyText from 'Components/Properties/PropertyText'
+import PropertyMultipleText from 'Components/Properties/PropertyMultipleText'
+import PropertyDateTime from 'Components/Properties/PropertyDateTime'
+import PropertySelect from 'Components/Properties/PropertySelect'
 
 export default {
 	name: 'ContactDetailsProperty',
@@ -68,11 +67,6 @@ export default {
 	computed: {
 		// dynamically load component based on property type
 		componentInstance() {
-			// groups
-			if (this.propName === 'categories') {
-				return propertyGroups
-			}
-
 			// dynamic matching
 			if (this.property.isMultiValue && this.propType === 'text') {
 				return PropertyMultipleText
@@ -109,11 +103,17 @@ export default {
 			}
 			return true
 		},
+		isReadOnly() {
+			if (this.contact.addressbook) {
+				return this.contact.addressbook.readOnly
+			}
+			return false
+		},
 
 		/**
 		 * Return the type of the prop e.g. FN
 		 *
-		 * @returns {String}
+		 * @returns {string}
 		 */
 		propName() {
 			return this.property.name
@@ -122,7 +122,7 @@ export default {
 		 * Return the type or property
 		 *
 		 * @see src/models/rfcProps
-		 * @returns {String}
+		 * @returns {string}
 		 */
 		propType() {
 			// if we have a force type set, use it!
@@ -147,7 +147,7 @@ export default {
 		 * but make sure to include the selected one
 		 * in the final list
 		 *
-		 * @returns {Array<Object>}
+		 * @returns {Object[]}
 		 */
 		sortedModelOptions() {
 			if (this.propModel.options) {
@@ -166,7 +166,7 @@ export default {
 		 * or return the default selected as a new object if
 		 * none exists
 		 *
-		 * @returns Object|undefined
+		 * @returns Object|null
 		 */
 		selectType: {
 			get() {
@@ -206,6 +206,7 @@ export default {
 						name: selectedType
 					}
 				}
+				return null
 			},
 			set(data) {
 				// ical.js take types as arrays
@@ -247,6 +248,7 @@ export default {
 				if (type) {
 					return Array.isArray(type) ? type : [type]
 				}
+				return null
 			},
 			set(data) {
 				this.property.setParameter('type', data)

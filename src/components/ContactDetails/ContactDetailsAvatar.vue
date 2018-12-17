@@ -23,17 +23,19 @@ import rfcProps from '../../models/rfcProps';
 
 <template>
 	<div :class="{'maximised':maximizeAvatar }" class="contact-header-avatar">
-		<div class="contact-header-avatar__background" @click="toggleSize" />
-		<div v-if="contact.photo" :style="{ 'backgroundImage': `url(${contact.photo})` }"
-			class="contact-header-avatar__photo"
-			@click="toggleSize" />
-		<div class="contact-header-avatar__options">
-			<input id="contact-avatar-upload" type="file" class="hidden"
-				accept="image/*" @change="processFile">
-			<label v-tooltip.auto="t('contacts', 'Upload a new picture')" v-if="!contact.addressbook.readOnly"
-				for="contact-avatar-upload" class="icon-upload-white" @click="processFile" />
-			<div v-if="maximizeAvatar && !contact.addressbook.readOnly" class="icon-delete-white" @click="removePhoto" />
-			<a v-if="maximizeAvatar" :href="contact.url + '?photo'" class="icon-download-white" />
+		<div class="contact-header-avatar__wrapper">
+			<div class="contact-header-avatar__background" @click="toggleSize" />
+			<div v-if="contact.photo" :style="{ 'backgroundImage': `url(${photo})` }"
+				class="contact-header-avatar__photo"
+				@click="toggleSize" />
+			<div class="contact-header-avatar__options">
+				<input id="contact-avatar-upload" type="file" class="hidden"
+					accept="image/*" @change="processFile">
+				<label v-if="!contact.addressbook.readOnly" v-tooltip.auto="t('contacts', 'Upload a new picture')"
+					for="contact-avatar-upload" class="icon-upload-white" @click="processFile" />
+				<div v-if="maximizeAvatar && !contact.addressbook.readOnly" class="icon-delete-white" @click="removePhoto" />
+				<a v-if="maximizeAvatar" :href="contact.url + '?photo'" class="icon-download-white" />
+			</div>
 		</div>
 	</div>
 </template>
@@ -54,7 +56,23 @@ export default {
 			maximizeAvatar: false
 		}
 	},
+	computed: {
+		photo() {
+			const type = this.contact.vCard.getFirstProperty('photo').type
+			if (!this.contact.photo.startsWith('data') && type === 'binary') {
+				// split on coma in case of any leftover base64 data and retrieve last part
+				// usually we come to this part when the base64 image type is unknown
+				return `data:image;base64,${this.contact.photo.split(',').pop()}`
+			}
+			return this.contact.photo
+		}
+	},
 	methods: {
+		/**
+		 * Handler to store a new photo on the current contact
+		 *
+		 * @param {Object} event the event object containing the image
+		 */
 		processFile(event) {
 			if (event.target.files) {
 				let file = event.target.files[0]
@@ -71,10 +89,18 @@ export default {
 				reader.readAsDataURL(file)
 			}
 		},
+
+		/**
+		 * Toggle the full image preview
+		 */
 		toggleSize() {
 			// maximise or minimise avatar photo
 			this.maximizeAvatar = !this.maximizeAvatar
 		},
+
+		/**
+		 * Remove the contact's picture
+		 */
 		removePhoto() {
 			this.contact.vCard.removeProperty('photo')
 			this.maximizeAvatar = !this.maximizeAvatar

@@ -21,7 +21,7 @@
  */
 
 import { mount } from '@vue/test-utils'
-import Contacts from '@/views/Contacts.vue'
+import Contacts from 'Views/Contacts.vue'
 
 describe('Contacts.vue', () => {
 	it('Test contacts view', () => {

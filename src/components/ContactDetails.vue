@@ -22,7 +22,6 @@
 
 <template>
 	<div id="contact-details" class="app-content-details">
-
 		<!-- nothing selected or contact not found -->
 		<div v-if="!contact && !loading" id="emptycontent">
 			<div class="icon-contacts" />
@@ -39,7 +38,6 @@
 		<template v-else>
 			<!-- contact header -->
 			<header :style="{ 'backgroundColor': colorAvatar }">
-
 				<!-- avatar and upload photo -->
 				<contact-avatar :contact="contact" />
 				<!-- QUESTION: is it better to pass contact as a prop or get it from the store inside
@@ -48,31 +46,38 @@
 				<!-- fullname, org, title -->
 				<div id="contact-header-infos">
 					<h2>
-						<input id="contact-fullname" v-model="contact.fullName" :disabled="contact.addressbook.readOnly"
-							:placeholder="t('contacts', 'Name')" type="text" autocomplete="off"
-							autocorrect="off" spellcheck="false" name="fullname"
-							value="" @input="debounceUpdateContact">
+						<input id="contact-fullname" ref="fullname" v-model="contact.fullName"
+							:readonly="contact.addressbook.readOnly" :placeholder="t('contacts', 'Name')" type="text"
+							autocomplete="off" autocorrect="off" spellcheck="false"
+							name="fullname"
+							@input="debounceUpdateContact" @click="selectInput">
 					</h2>
 					<div id="details-org-container">
-						<input id="contact-org" v-model="contact.org" :disabled="contact.addressbook.readOnly"
+						<input id="contact-org" v-model="contact.org" :readonly="contact.addressbook.readOnly"
 							:placeholder="t('contacts', 'Company')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="org"
-							value="" @input="debounceUpdateContact">
-						<input id="contact-title" v-model="contact.title" :disabled="contact.addressbook.readOnly"
+							@input="debounceUpdateContact">
+						<input id="contact-title" v-model="contact.title" :readonly="contact.addressbook.readOnly"
 							:placeholder="t('contacts', 'Title')" type="text" autocomplete="off"
 							autocorrect="off" spellcheck="false" name="title"
-							value="" @input="debounceUpdateContact">
+							@input="debounceUpdateContact">
 					</div>
 				</div>
 
 				<!-- actions -->
 				<div id="contact-header-actions">
-					<div v-tooltip.bottom="warning" :class="{'icon-loading-small': loadingUpdate, 'header-icon--pulse icon-error-white': warning}" class="header-icon" />
-					<div v-tooltip="{
+					<a v-if="loadingUpdate || warning"
+						v-tooltip.bottom="{
+							content: warning ? warning.msg : '',
+							trigger: 'hover focus'
+						}"
+						:class="{'icon-loading-small': loadingUpdate,
+							[`${warning.icon}`]: warning}" class="header-icon" href="#" />
+					<div v-if="conflict" v-tooltip="{
 							content: conflict,
 							show: true,
 							trigger: 'manual',
-						}" v-if="conflict" class="header-icon header-icon--pulse icon-history-white"
+						}" class="header-icon header-icon--pulse icon-history-white"
 						@click="refreshContact" />
 					<div class="menu-icon">
 						<div v-click-outside="closeMenu" class="header-icon icon-more-white" @click="toggleMenu" />
@@ -88,35 +93,36 @@
 
 			<!-- contact details -->
 			<section v-else class="contact-details">
-
 				<!-- properties iteration -->
 				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
-				<contact-property v-for="(property, index) in sortedProperties" :key="index+contact.key" :index="index"
+				<contact-property v-for="(property, index) in sortedProperties" :key="`${index}-${contact.key}-${property.name}`" :index="index"
 					:sorted-properties="sortedProperties" :property="property" :contact="contact"
 					@updatedcontact="updateContact" />
 
-				<!-- addressbook change select - no last property because class is not applied here-->
+				<!-- addressbook change select - no last property because class is not applied here,
+					empty property because this is a required prop on regular property-select. But since
+					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
+					duplication, we created a fake propModel and property with our own options here) -->
 				<property-select :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
-					:is-last-property="false" class="property--addressbooks" />
+					:is-last-property="true" :property="{}" class="property--addressbooks property--last" />
+
+				<!-- Groups always visible -->
+				<property-groups :prop-model="groupsModel" :value.sync="groups" :contact="contact"
+					:is-read-only="isReadOnly" class="property--groups property--last" />
 
 				<!-- new property select -->
-				<add-new-prop :contact="contact" />
+				<add-new-prop v-if="!isReadOnly" :contact="contact" />
 			</section>
 		</template>
 	</div>
 </template>
 
 <script>
-import { PopoverMenu } from 'nextcloud-vue'
-import ClickOutside from 'vue-click-outside'
-import Vue from 'vue'
-import VTooltip from 'v-tooltip'
 import debounce from 'debounce'
 import qr from 'qr-image'
 import ICAL from 'ical.js'
 
-import Contact from '../models/contact'
-import rfcProps from '../models/rfcProps.js'
+import rfcProps from 'Models/rfcProps'
 
 import ContactProperty from './ContactDetails/ContactDetailsProperty'
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
@@ -124,13 +130,10 @@ import PropertySelect from './Properties/PropertySelect'
 import PropertyGroups from './Properties/PropertyGroups'
 import ContactAvatar from './ContactDetails/ContactDetailsAvatar'
 
-Vue.use(VTooltip)
-
 export default {
 	name: 'ContactDetails',
 
 	components: {
-		PopoverMenu,
 		ContactProperty,
 		PropertySelect,
 		PropertyGroups,
@@ -138,16 +141,12 @@ export default {
 		ContactAvatar
 	},
 
-	directives: {
-		ClickOutside
-	},
-
 	props: {
 		loading: {
 			type: Boolean,
 			default: true
 		},
-		uid: {
+		contactKey: {
 			type: String,
 			default: undefined
 		}
@@ -169,27 +168,43 @@ export default {
 	},
 
 	computed: {
+		isReadOnly() {
+			if (this.contact.addressbook) {
+				return this.contact.addressbook.readOnly
+			}
+			return false
+		},
 
 		/**
-		 * Warning message
+		 * Warning messages
 		 *
-		 * @returns {string|undefined}
+		 * @returns {Object|boolean}
 		 */
 		warning() {
 			if (!this.contact.dav) {
-				return t('contacts', 'This contact is not yet synced. Edit it to trigger a change.')
+				return {
+					icon: 'icon-error-white header-icon--pulse',
+					msg: t('contacts', 'This contact is not yet synced. Edit it to save it to the server.')
+				}
+			} else if (this.isReadOnly) {
+				return {
+					icon: 'icon-eye-white',
+					msg: t('contacts', 'This contact is in read-only mode. You do not have permission to edit this contact.')
+				}
 			}
+			return false
 		},
 
 		/**
 		 * Conflict message
 		 *
-		 * @returns {string|undefined}
+		 * @returns {string|boolean}
 		 */
 		conflict() {
 			if (this.contact.conflict) {
 				return t('contacts', 'The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded.')
 			}
+			return false
 		},
 
 		/**
@@ -256,7 +271,7 @@ export default {
 		addressbookModel() {
 			return {
 				readableName: t('contacts', 'Addressbook'),
-				icon: 'icon-addressbook',
+				icon: 'icon-address-book',
 				options: this.addressbooksOptions
 			}
 		},
@@ -277,13 +292,46 @@ export default {
 		},
 
 		/**
+		 * Fake model to use the propertyGroups component
+		 *
+		 * @returns {Object}
+		 */
+		groupsModel() {
+			return {
+				readableName: t('contacts', 'Groups'),
+				icon: 'icon-contacts'
+			}
+		},
+
+		/**
+		 * Usable groups object linked to the local contact
+		 *
+		 * @param {string[]} data An array of groups
+		 * @returns {Array}
+		 */
+		groups: {
+			get: function() {
+				return this.contact.groups
+			},
+			set: function(data) {
+				let property = this.contact.vCard.getFirstProperty('categories')
+				if (!property) {
+					// Ical.js store comma separated by an Array of array of string
+					property = this.contact.vCard.addPropertyWithValue('categories', [data])
+				}
+				property.setValues(data)
+				this.updateContact()
+			}
+		},
+
+		/**
 		 * Store getters filtered and mapped to usable object
 		 *
 		 * @returns {Array}
 		 */
 		addressbooksOptions() {
 			return this.addressbooks
-				.filter(addressbook => addressbook.readOnly)
+				.filter(addressbook => !addressbook.readOnly && addressbook.enabled)
 				.map(addressbook => {
 					return {
 						id: addressbook.id,
@@ -297,22 +345,22 @@ export default {
 			return this.$store.getters.getAddressbooks
 		},
 		contact() {
-			return this.$store.getters.getContact(this.uid)
+			return this.$store.getters.getContact(this.contactKey)
 		}
 	},
 
 	watch: {
 		contact: function() {
-			if (this.uid) {
-				this.selectContact(this.uid)
+			if (this.contactKey) {
+				this.selectContact(this.contactKey)
 			}
 		}
 	},
 
 	beforeMount() {
 		// load the desired data if we already selected a contact
-		if (this.uid) {
-			this.selectContact(this.uid)
+		if (this.contactKey) {
+			this.selectContact(this.contactKey)
 		}
 	},
 
@@ -321,12 +369,10 @@ export default {
 		 * Executed on the 'updatedcontact' event
 		 * Send the local clone of contact to the store
 		 */
-		updateContact() {
+		async updateContact() {
 			this.loadingUpdate = true
-			this.$store.dispatch('updateContact', this.contact)
-				.then(() => {
-					this.loadingUpdate = false
-				})
+			await this.$store.dispatch('updateContact', this.contact)
+			this.loadingUpdate = false
 		},
 
 		/**
@@ -343,6 +389,15 @@ export default {
 		},
 		toggleMenu() {
 			this.openedMenu = !this.openedMenu
+		},
+
+		/**
+		 * Select the text in the input if it is still set to 'new Contact'
+		 */
+		selectInput() {
+			if (this.$refs.fullname && this.$refs.fullname.value === t('contacts', 'New contact')) {
+				this.$refs.fullname.select()
+			}
 		},
 
 		/**
@@ -365,12 +420,12 @@ export default {
 		 * Fetch updated data if necessary
 		 * Scroll to the selected contact if exists
 		 *
-		 * @param {string} uid the contact uid
+		 * @param {string} key the contact key
 		 */
-		selectContact(uid) {
+		selectContact(key) {
 			// local version of the contact
 			this.loadingData = true
-			let contact = this.$store.getters.getContact(uid)
+			let contact = this.$store.getters.getContact(key)
 
 			if (contact) {
 				// if contact exists AND if exists on server
@@ -378,11 +433,10 @@ export default {
 					this.$store.dispatch('fetchFullContact', { contact })
 						.then(() => {
 							// create empty contact and copy inner data
-							let localContact = new Contact(
-								'BEGIN:VCARD\nUID:' + contact.uid + '\nEND:VCARD',
-								contact.addressbook
+							let localContact = Object.assign(
+								Object.create(Object.getPrototypeOf(contact)),
+								contact
 							)
-							localContact.updateContact(contact.jCal)
 							this.localContact = localContact
 							this.loadingData = false
 						})
@@ -395,9 +449,9 @@ export default {
 				} else {
 					// create empty contact and copy inner data
 					// wait for an update to really push the contact on the server!
-					this.localContact = new Contact(
-						'BEGIN:VCARD\nUID:' + contact.uid + '\nEND:VCARD',
-						contact.addressbook
+					this.localContact = Object.assign(
+						Object.create(Object.getPrototypeOf(contact)),
+						contact
 					)
 					this.loadingData = false
 				}
@@ -426,20 +480,30 @@ export default {
 		 *
 		 * @param {string} addressbookId the desired addressbook ID
 		 */
-		moveContactToAddressbook(addressbookId) {
+		async moveContactToAddressbook(addressbookId) {
 			let addressbook = this.addressbooks.find(search => search.id === addressbookId)
 			this.loadingUpdate = true
-			// TODO Properly implement the MOVE request
 			if (addressbook) {
-				this.$store.dispatch('moveContactToAddressbook', {
-					// we need to use the store contact, not the local contact
-					// using this.contact and not this.localContact
-					contact: this.contact,
-					addressbook
-				}).then(() => {
-					this.updateContact()
+				try {
+					const contact = await this.$store.dispatch('moveContactToAddressbook', {
+						// we need to use the store contact, not the local contact
+						// using this.contact and not this.localContact
+						contact: this.contact,
+						addressbook
+					})
+					// select the contact again
+					this.$router.push({
+						name: 'contact',
+						params: {
+							selectedGroup: this.$route.params.selectedGroup,
+							selectedContact: contact.key
+						}
+					})
+				} catch (error) {
+					console.error(error)
+				} finally {
 					this.loadingUpdate = false
-				})
+				}
 			}
 		},
 

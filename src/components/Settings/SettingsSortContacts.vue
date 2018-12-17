@@ -22,41 +22,24 @@
 
 <template>
 	<div class="sort-contacts">
-		<label for="sort-by">{{ t('contacts', 'Sort by:') }}</label>
 		<multiselect
 			id="sort-by"
-			:placeholder="orderKey"
+			:value="orderKeyOption"
 			:searchable="false"
 			:allow-empty="false"
 			:options="options"
+			:custom-label="formatSortByLabel"
 			track-by="key"
 			label="label"
-			class="multiselect-vue"
 			@input="sortContacts" />
 	</div>
 </template>
 
 <script>
-import clickOutside from 'vue-click-outside'
-import Multiselect from 'vue-multiselect'
 
 export default {
 	name: 'SettingsSortContacts',
-	components: {
-		clickOutside,
-		Multiselect
-	},
-	directives: {
-		clickOutside
-	},
-	props: {
-		addressbook: {
-			type: Object,
-			default() {
-				return {}
-			}
-		}
-	},
+
 	computed: {
 		/* Order Keys */
 		options() {
@@ -77,7 +60,10 @@ export default {
 		},
 		/* Current order Key */
 		orderKey() {
-			return t('contacts', this.options.filter(f => f.key === this.$store.getters.getOrderKey)[0].label)
+			return this.$store.getters.getOrderKey
+		},
+		orderKeyOption() {
+			return this.options.filter(option => option.key === this.orderKey)[0]
 		}
 	},
 	methods: {
@@ -86,6 +72,9 @@ export default {
 			this.$store.commit('setOrder', key)
 			this.$store.commit('sortContacts')
 			localStorage.setItem('orderKey', key)
+		},
+		formatSortByLabel(option) {
+			return t('contacts', 'Sort by {sorting}', { sorting: option.label })
 		}
 	}
 }

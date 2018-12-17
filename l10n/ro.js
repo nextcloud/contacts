@@ -5,6 +5,8 @@ OC.L10N.register(
     "Details" : "Detalii",
     "Download" : "Descărcare",
     "Delete" : "Șterge",
+    "Groups" : "Grupuri",
+    "New contact" : "Contact nou ",
     "Copy link" : "Copiază linkul",
     "Rename" : "Redenumește",
     "Enabled" : "Activat",
@@ -13,7 +15,7 @@ OC.L10N.register(
     "Import into" : "Importă în",
     "First name" : "Prenume",
     "Last name" : "Nume",
-    "Display name" : "Nume afișat",
+    "All contacts" : "Toate contactele",
     "Nickname" : "Pseudonim",
     "Detailed name" : "Nume detaliat",
     "Additional names" : "Nume adiționale",
@@ -31,7 +33,6 @@ OC.L10N.register(
     "State or province" : "Județ sau provincie",
     "Postal code" : "Codul poștal",
     "Country" : "Țară",
-    "Groups" : "Grupuri",
     "Birthday" : "Zi de naștere",
     "Anniversary" : "Aniversare",
     "Date of death" : "Data decesului",
@@ -63,8 +64,6 @@ OC.L10N.register(
     "Assistant" : "Asistent",
     "Gender" : "Sex",
     "Female" : "Femeie",
-    "Male" : "Bărbat",
-    "All contacts" : "Toate contactele",
-    "New contact" : "Contact nou "
+    "Male" : "Bărbat"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");

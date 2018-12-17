@@ -19,14 +19,20 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+$property-label-min-width: 60px;
+$property-label-max-width: 2 * $property-label-min-width;
+$property-value-max-width: 250px;
 
 .property {
 	@include generate-grid-span(1);
-	display: flex;
-	flex-wrap: wrap;
-	flex-direction: column;
 	position: relative;
-	width: $grid-column-width;
+	padding-right: 44px; // delete button
+	// we need this to keep the alignment of the ext and delete button
+	// The flex grow will never go over those values. Therefore we can set
+	// the max width and keep the right alignment
+	max-width: $property-label-max-width + $property-value-max-width + 44px;
+	justify-self: center;
+	width: 100%;
 
 	&--last {
 		margin-bottom: $grid-height-unit;
@@ -35,48 +41,25 @@
 	&--addressbooks &__delete {
 		display: none !important;
 	}
-	
-	&__delete {
-		position: absolute;
-		top: 0;
-		right: 0;
-		width: $grid-height-unit;
-		height: $grid-height-unit;
-		margin: 0;
-		border: 0;
-		background-color: transparent;
-		opacity: .5;
-		display: none;
-		&:hover,
-		a:active,
-		a:focus {
-			opacity: .7;
-		}
-	}
-	
-	&:hover &__delete,
-	a:active &__delete,
-	a:focus &__delete {
-		display: block;
-	}
-	
+		
 	// property row
 	&__row {
 		display: flex;
 		align-items: center;
-		padding-right: 44px;
-		// height: $grid-height-unit;
 		position: relative;
 	}
 	
 	// property label or multiselect within row
 	&__label,
 	&__label.multiselect {
-		margin: $grid-input-margin;
 		margin: $grid-input-margin 5px $grid-input-margin 0;
-		height: $grid-input-height-with-margin;
 		padding: $grid-input-padding 0;
-		width: 120px;
+		flex: 1 0; // min width is 60px, let's grow until 120px
+		height: $grid-input-height-with-margin;
+		width: $property-label-min-width; 
+		min-width: $property-label-min-width !important; // override multiselect
+		max-width: $property-label-max-width;
+
 		opacity: .7;
 		user-select: none;
 		background-size: 16px;
@@ -93,33 +76,108 @@
 			overflow-x: hidden;
 		}
 
-		&.multiselect {
-			&:hover,
-			&:focus {
-				opacity: 1;
+		// mouse feedback
+		&:hover,
+		&:focus,
+		&:active {
+			opacity: 1;
+			.multiselect__tags {
+				border-color: var(--color-border-dark);
+			}
+		}
+
+		// read-only mode
+		&.multiselect--disabled {
+			&, .multiselect__single {
+				&, &:hover, &:focus &:active {
+					background-color: var(--color-main-background) !important;
+					border-color: transparent !important;
+				}
 			}
 		}
 	}
 
 	&__label.multiselect {
 		.multiselect__tags {
-			border: none;
+			border: none !important; // override multiselect
 			.multiselect__single {
-				@include icon-color('triangle-s', 'actions', $color-black, 1, true);
 				background-repeat: no-repeat;
 				background-position: center right 4px;
 				padding-right: 24px;
 			}
+			.multiselect__content-wrapper {
+				min-width: $property-label-max-width; // improve readability on narrow screens
+			}
 		}
 	}
 
-	// property value within row, after label
+	// Property value within row, after label
 	&__value {
-		flex: 1 1;
+		flex: 1 1 $property-value-max-width;
+		max-width: $property-value-max-width;
+
 		textarea& {
 			align-self: flex-start;
 			min-height: 2 * $grid-height-unit - 2*$grid-input-margin;
 			max-height: 5 * $grid-height-unit - 2*$grid-input-margin;
+		}
+
+		// read-only mode
+		&:read-only {
+			border-color: var(--color-border-dark);
+		}
+		input&--with-ext {
+			// ext icon width + 8px padding
+			padding-right: 24px;
+			&:hover,
+			&:focus,
+			&:active {
+				~ .property__ext, 
+				~ .property__delete {
+					opacity: .5;
+				}
+			}
+		}
+	}
+
+	// show ext & delete button on full row hover
+	&:hover &__ext,
+	&:hover &__delete {
+		opacity: .5;
+	}
+
+	// External link (tel, mailto, http, ftp...)
+	&__ext {
+		position: absolute;
+		// 8px padding
+		right: 8px;
+		opacity: 0;
+		&:hover,
+		&:focus,
+		&:active {
+			opacity: .7;
+			// still show the delete button for keyboard accessibility
+			~ .property__delete {
+				opacity: .5;
+			}
+		}
+	}
+	
+	// Delete property button
+	&__delete {
+		position: absolute;
+		top: 0;
+		left: 100%;
+		width: $grid-height-unit;
+		height: $grid-height-unit;
+		margin: 0;
+		border: 0;
+		background-color: transparent;
+		opacity: 0;
+		&:hover,
+		&:active,
+		&:focus {
+			opacity: .7;
 		}
 	}
 }

@@ -27,52 +27,34 @@
 			:options="usersOrGroups"
 			:searchable="true"
 			:internal-search="false"
-			:options-limit="250"
-			:limit="3"
 			:max-height="600"
 			:show-no-results="true"
 			:placeholder="placeholder"
 			:class="{ 'showContent': inputGiven, 'icon-loading': isLoading }"
+			:user-select="true"
 			open-direction="bottom"
-			class="multiselect-vue"
-			@search-change="asyncFind"
-			@input="shareAddressbook">
-			<template slot="singleLabel" slot-scope="props">
-				<span class="option__desc">
-					<span class="option__title">{{ props.option.matchpattern }}</span>
-				</span>
-			</template>
-			<template slot="option" slot-scope="props">
-				<div class="option__desc">
-					<span>{{ props.option.matchstart }}</span><span class="addressbook-shares__shareematch--bold">{{ props.option.matchpattern }}</span><span>{{ props.option.matchend }} {{ props.option.matchtag }}</span>
-				</div>
-			</template>
-			<span slot="noResult">{{ noResult }} </span>
-		</multiselect>
+			track-by="user"
+			label="user"
+			@search-change="findSharee"
+			@input="shareAddressbook" />
 		<!-- list of user or groups addressbook is shared with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressbook-shares__list">
-			<address-book-sharee v-for="sharee in addressbook.shares" :key="sharee.displayname + sharee.group" :sharee="sharee" />
+			<address-book-sharee v-for="sharee in addressbook.shares" :key="sharee.uri"
+				:sharee="sharee" :addressbook="addressbook" />
 		</ul>
 	</div>
 </template>
 
 <script>
-import clickOutside from 'vue-click-outside'
-import api from '../../services/api'
-import Multiselect from 'vue-multiselect'
+import client from 'Services/cdav'
+
 import addressBookSharee from './SettingsAddressbookSharee'
 import debounce from 'debounce'
 
 export default {
 	name: 'SettingsShareAddressbook',
 	components: {
-		clickOutside,
-		Multiselect,
 		addressBookSharee
-	},
-	directives: {
-		clickOutside,
-		debounce
 	},
 	props: {
 		addressbook: {
@@ -106,75 +88,41 @@ export default {
 		 * Share addressbook
 		 *
 		 * @param {Object} data destructuring object
-		 * @param {string} data.sharee the sharee
-		 * @param {string} data.id id
-		 * @param {Boolean} data.group group
+		 * @param {string} data.user the userId
+		 * @param {string} data.displayName the displayName
+		 * @param {string} data.uri the sharing principalScheme uri
+		 * @param {boolean} data.isGroup is this a group ?
 		 */
-		shareAddressbook({ sharee, id, group }) {
+		shareAddressbook({ user, displayName, uri, isGroup }) {
 			let addressbook = this.addressbook
-			this.$store.dispatch('shareAddressbook', { addressbook, sharee, id, group })
-		},
-		/**
-		 * Format responses from axios.all and add them to the option array
-		 *
-		 * @param {Array} matches array of matches returned from the axios request
-		 * @param {String} query the search query
-		 * @param {Boolean} group Is this a group?
-		 */
-		formatMatchResults(matches, query, group) {
-			if (matches.length < 1) {
-				return
-			}
-			let regex = new RegExp(query, 'i')
-			let existingSharees = this.addressbook.shares.map(share => share.id + share.group)
-			matches = matches.filter(share => existingSharees.indexOf(share.id + group) === -1)
-			// this.usersOrGroups.concat(
-			this.usersOrGroups = this.usersOrGroups.concat(matches.map(match => {
-				let matchResult = match.displayname.split(regex)
-				if (matchResult.length < 1) {
-					return
-				}
-				return {
-					sharee: match.displayname,
-					id: match.id,
-					matchstart: matchResult[0],
-					matchpattern: match.displayname.match(regex)[0],
-					matchend: matchResult[1],
-					matchtag: group ? '(group)' : '(user)',
-					group
-				}
-			}))
+			this.$store.dispatch('shareAddressbook', { addressbook, user, displayName, uri, isGroup })
 		},
 
 		/**
-		 * Use Axios api call to find matches to the query from the existing Users & Groups
+		 * Use the cdav client call to find matches to the query from the existing Users & Groups
 		 *
-		 * @param {String} query
+		 * @param {string} query
 		 */
-		asyncFind: debounce(function(query) {
+		findSharee: debounce(async function(query) {
 			this.isLoading = true
 			this.usersOrGroups = []
 			if (query.length > 0) {
-				api.all([
-					api.get(OC.linkToOCS('cloud', 2) + 'users/details?search=' + query),
-					api.get(OC.linkToOCS('cloud', 2) + 'groups/details?search=' + query)
-				]).then(response => {
-					let matchingUsers = Object.values(response[0].data.ocs.data.users)
-					let matchingGroups = response[1].data.ocs.data.groups
-					try {
-						this.formatMatchResults(matchingUsers, query, false)
-					} catch (error) {
-						console.debug(error)
+				const results = await client.principalPropertySearchByDisplayname(query)
+				this.usersOrGroups = results.reduce((list, result) => {
+					if	(['GROUP', 'INDIVIDUAL'].indexOf(result.calendarUserType) > -1) {
+						const isGroup = result.calendarUserType === 'GROUP'
+						list.push({
+							user: result[isGroup ? 'groupId' : 'userId'],
+							displayName: result.displayname,
+							icon: isGroup ? 'icon-group' : 'icon-user',
+							uri: result.principalScheme,
+							isGroup
+						})
 					}
-					try {
-						this.formatMatchResults(matchingGroups, query, true)
-					} catch (error) {
-						console.debug(error)
-					}
-				}).then(() => {
-					this.isLoading = false
-					this.inputGiven = true
-				})
+					return list
+				}, [])
+				this.isLoading = false
+				this.inputGiven = true
 			} else {
 				this.inputGiven = false
 				this.isLoading = false

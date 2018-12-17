@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Charismatic Claire <charismatic.claire@noservice.noreply>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -22,7 +23,6 @@
 
 <template>
 	<div id="content" class="app-contacts">
-
 		<!-- new-contact-button + navigation + settings -->
 		<app-navigation :menu="menu">
 			<!-- settings -->
@@ -31,40 +31,44 @@
 
 		<!-- main content -->
 		<div id="app-content">
+			<!-- go back to list when in details mode -->
+			<div v-if="selectedContact && isMobile" id="app-details-toggle" class="icon-confirm"
+				tabindex="0" @click="showList" />
+
 			<div id="app-content-wrapper">
 				<!-- loading -->
 				<import-screen v-if="importState.stage !== 'default'" />
 				<template v-else>
 					<!-- contacts list -->
-					<content-list :list="contactsList" :contacts="contacts" :loading="loading"
+					<contacts-list :list="contactsList" :contacts="contacts" :loading="loading"
 						:search-query="searchQuery" />
 					<!-- main contacts details -->
-					<contact-details :loading="loading" :uid="selectedContact" />
+					<contact-details :loading="loading" :contact-key="selectedContact" />
 				</template>
 			</div>
 		</div>
-
 	</div>
 </template>
 
 <script>
-import { AppNavigation } from 'nextcloud-vue'
+import moment from 'moment'
 
-import SettingsSection from '../components/SettingsSection'
-import ContentList from '../components/ContentList'
-import ContactDetails from '../components/ContactDetails'
-import ImportScreen from '../components/ImportScreen'
+import SettingsSection from 'Components/SettingsSection'
+import ContactsList from 'Components/ContactsList'
+import ContactDetails from 'Components/ContactDetails'
+import ImportScreen from 'Components/ImportScreen'
 
-import Contact from '../models/contact'
-import rfcProps from '../models/rfcProps.js'
+import Contact from 'Models/contact'
+import rfcProps from 'Models/rfcProps'
 
-import client from '../services/cdav.js'
+import client from 'Services/cdav'
 
 export default {
+	name: 'Contacts',
+
 	components: {
-		AppNavigation,
 		SettingsSection,
-		ContentList,
+		ContactsList,
 		ContactDetails,
 		ImportScreen
 	},
@@ -109,9 +113,15 @@ export default {
 		importState() {
 			return this.$store.getters.getImportState
 		},
+
 		// first enabled addressbook of the list
 		defaultAddressbook() {
-			return this.addressbooks.find(addressbook => !addressbook.readOnly)
+			return this.addressbooks.find(addressbook => !addressbook.readOnly && addressbook.enabled)
+		},
+
+		// are we in mobile mode
+		isMobile() {
+			return document.querySelector('body').offsetWidth < 768
 		},
 
 		/**
@@ -145,7 +155,14 @@ export default {
 					},
 					text: group.name,
 					utils: {
-						counter: group.contacts.length
+						counter: group.contacts.length,
+						actions: [
+							{
+								icon: 'icon-download',
+								text: 'Download',
+								action: () => this.downloadGroup(group)
+							}
+						]
 					}
 				}
 			}).sort(function(a, b) {
@@ -167,7 +184,8 @@ export default {
 					id: 'new-contact-button',
 					text: t('contacts', 'New contact'),
 					icon: 'icon-add',
-					action: this.newContact
+					action: this.newContact,
+					disabled: this.defaultAddressbook === undefined
 				},
 				items: this.allGroup.concat(this.groupsMenu)
 			}
@@ -194,11 +212,15 @@ export default {
 	watch: {
 		// watch url change and group select
 		selectedGroup: function() {
-			this.selectFirstContactIfNone()
+			if (!this.isMobile) {
+				this.selectFirstContactIfNone()
+			}
 		},
 		// watch url change and contact select
 		selectedContact: function() {
-			this.selectFirstContactIfNone()
+			if (!this.isMobile) {
+				this.selectFirstContactIfNone()
+			}
 		}
 	},
 
@@ -238,7 +260,7 @@ export default {
 	methods: {
 		newContact() {
 			let contact = new Contact('BEGIN:VCARD\nVERSION:4.0\nEND:VCARD', this.defaultAddressbook)
-			contact.fullName = 'New contact'
+			contact.fullName = t('contacts', 'New contact')
 			// itterate over all properties (filter is not usable on objects and we need the key of the property)
 			for (let name in rfcProps.properties) {
 				if (rfcProps.properties[name].default) {
@@ -288,7 +310,9 @@ export default {
 				}
 			})).then(results => {
 				this.loading = false
-				this.selectFirstContactIfNone()
+				if (!this.isMobile) {
+					this.selectFirstContactIfNone()
+				}
 			})
 		},
 
@@ -314,12 +338,73 @@ export default {
 			}
 		},
 
+		/**
+		 * Download vcard promise as vcard file
+		 *
+		 * @param {Object} vcardPromise object to be downloaded
+		 */
+		downloadVcardPromise(vcardPromise) {
+			vcardPromise.then(response => {
+				const blob = new Blob([response.data], { type: 'text/vcard' })
+				const url = URL.createObjectURL(blob)
+				const link = document.createElement('a')
+				const filename = moment().format('YYYY-MM-DD_HH-mm') + '_' + response.groupName + '.vcf'
+				link.href = url
+				link.download = filename
+				link.click()
+			})
+		},
+
+		/**
+		 * Download group of contacts
+		 *
+		 * @param {Object} group of contacts to be downloaded
+		 */
+		downloadGroup(group) {
+			// get grouped contacts
+			let groupedContacts = {}
+			group.contacts.map((key) => {
+				const id = this.contacts[key].addressbook.id
+				groupedContacts = Object.assign({
+					[id]: {
+						addressbook: this.contacts[key].addressbook,
+						contacts: []
+					}
+				}, groupedContacts)
+				groupedContacts[id].contacts.push(this.contacts[key].url)
+			})
+			// create vcard promise with the requested contacts
+			const vcardPromise = Promise.all(
+				Object.keys(groupedContacts).map(key =>
+					groupedContacts[key].addressbook.dav.addressbookMultigetExport(groupedContacts[key].contacts)))
+				.then(response => ({
+					groupName: group.name,
+					data: response.map(data => data.body).join('')
+				}))
+			// download vcard
+			this.downloadVcardPromise(vcardPromise)
+		},
+
 		/* SEARCH */
 		search(query) {
 			this.searchQuery = query
 		},
 		resetSearch() {
-			this.search('')
+			this.searchQuery = ''
+		},
+
+		/**
+		 * Show the list and deselect contact
+		 */
+		showList() {
+			// Reset the selected contact
+			this.$router.push({
+				name: 'contact',
+				params: {
+					selectedGroup: this.selectedGroup,
+					selectedContact: undefined
+				}
+			})
 		}
 	}
 }

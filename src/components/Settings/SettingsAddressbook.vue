@@ -21,45 +21,41 @@
   -
   -->
 <template>
-	<div>
-		<li :class="{'addressbook--disabled': !addressbook.enabled}" class="addressbook">
-			<!-- addressbook name -->
-			<span class="addressbook__name">{{ addressbook.displayName }}</span>
-			<!-- sharing button -->
-			<a href="#" class="addressbook__share icon-shared"
-				@click="toggleShare" />
-			<!-- popovermenu -->
-			<a v-click-outside="closeMenu" href="#" class="addressbook__menu">
-				<div class="icon-more" @click="toggleMenu" />
-				<div :class="{open: menuOpen}" class="popovermenu">
-					<popover-menu :menu="menu" />
-				</div>
-			</a>
-		</li>
+	<li :class="{'addressbook--disabled': !addressbook.enabled}" class="addressbook">
+		<!-- addressbook name -->
+		<span class="addressbook__name">
+			{{ addressbook.displayName }}
+		</span>
+
+		<!-- sharing button -->
+		<a v-if="!addressbook.readOnly" v-tooltip.top="sharedWithTooltip"
+			:class="{'addressbook__share--shared': hasShares}"
+			:title="sharedWithTooltip" href="#"
+			class="addressbook__share icon-shared" @click="toggleShare" />
+
+		<!-- popovermenu -->
+		<a v-click-outside="closeMenu" href="#" class="addressbook__menu">
+			<div class="icon-more" @click="toggleMenu" />
+			<div :class="{open: menuOpen}" class="popovermenu">
+				<popover-menu :menu="menu" />
+			</div>
+		</a>
+
 		<!-- sharing input -->
-		<share-address-book v-if="shareOpen" :addressbook="addressbook" />
-	</div>
+		<share-address-book v-if="shareOpen && !addressbook.readOnly" :addressbook="addressbook" />
+	</li>
 </template>
 
 <script>
-import Vue from 'vue'
-import { PopoverMenu } from 'nextcloud-vue'
-import ClickOutside from 'vue-click-outside'
-import VueClipboard from 'vue-clipboard2'
-
 import ShareAddressBook from './SettingsAddressbookShare'
-
-Vue.use(VueClipboard)
 
 export default {
 	name: 'SettingsAddressbook',
+
 	components: {
-		PopoverMenu,
 		ShareAddressBook
 	},
-	directives: {
-		ClickOutside
-	},
+
 	props: {
 		addressbook: {
 			type: Object,
@@ -75,7 +71,6 @@ export default {
 			editingName: false,
 			copied: false,
 			copySuccess: true,
-			readOnly: this.addressbook.readOnly,
 			toggleEnabledLoading: false,
 			deleteAddressbookLoading: false,
 			renameLoading: false,
@@ -85,6 +80,20 @@ export default {
 	computed: {
 		enabled() {
 			return this.addressbook.enabled
+		},
+		hasShares() {
+			return this.addressbook.shares.length > 0
+		},
+		// info tooltip about number of shares
+		sharedWithTooltip() {
+			return this.hasShares
+				? n('contacts',
+					'Shared with {num} entity',
+					'Shared with {num} entities',
+					this.addressbook.shares.length, {
+						num: this.addressbook.shares.length
+					})
+				: '' // disable the tooltip
 		},
 		// building the popover menu
 		menu() {
@@ -107,7 +116,7 @@ export default {
 			]
 
 			// check if addressbook is readonly
-			if (!this.readOnly) {
+			if (!this.addressbook.readOnly) {
 				menu.push({
 					icon: this.renameLoading ? 'icon-loading-small' : 'icon-rename',
 					// check if editing name
@@ -126,14 +135,14 @@ export default {
 					action: this.toggleAddressbookEnabled
 				})
 
-			}
-			// check to ensure last addressbook is not deleted.
-			if (this.$store.getters.getAddressbooks.length > 1) {
-				menu.push({
-					icon: this.deleteAddressbookLoading ? 'icon-loading-small' : 'icon-delete',
-					text: t('contacts', 'Delete'),
-					action: this.deleteAddressbook
-				})
+				// check to ensure last addressbook is not deleted.
+				if (this.$store.getters.getAddressbooks.length > 1) {
+					menu.push({
+						icon: this.deleteAddressbookLoading ? 'icon-loading-small' : 'icon-delete',
+						text: t('contacts', 'Delete'),
+						action: this.deleteAddressbook
+					})
+				}
 			}
 			return menu
 		}
@@ -234,9 +243,11 @@ export default {
 					this.copied = true
 					OC.Notification.showTemporary(t('contacts', 'Addressbook was not copied to clipboard.'))
 				}).then(() => {
-					// stop loading status regardless of outcome
 					this.copyLoading = false
-					this.copied = false
+					setTimeout(() => {
+						// stop loading status regardless of outcome
+						this.copied = false
+					}, 2000)
 				})
 		}
 	}

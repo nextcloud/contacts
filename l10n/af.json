@@ -3,11 +3,13 @@
     "Details" : "Details",
     "Download" : "Laai Af",
     "Delete" : "Skrap",
+    "Groups" : "Groepe",
+    "New contact" : "Nuwe kontak",
     "Rename" : "Hernoem",
     "Share with users or groups" : "Deel met gebruikers of groepe",
     "First name" : "Naam",
     "Last name" : "Van",
-    "Display name" : "Vertoonnaam",
+    "All contacts" : "Alle kontakte",
     "Nickname" : "Bynaam",
     "Detailed name" : "Gedetailleerde naam",
     "Additional names" : "Addisionele name",
@@ -25,7 +27,6 @@
     "State or province" : "Staat/provinsie",
     "Postal code" : "Poskode",
     "Country" : "Land",
-    "Groups" : "Groepe",
     "Birthday" : "Verjaardag",
     "Anniversary" : "Herdenking",
     "Date of death" : "Sterfdatum",
@@ -38,8 +39,6 @@
     "Fax work" : "Faks werk",
     "Pager" : "Pagineerder",
     "Voice" : "Stem",
-    "Social network" : "Sosiale netwerk",
-    "All contacts" : "Alle kontakte",
-    "New contact" : "Nuwe kontak"
+    "Social network" : "Sosiale netwerk"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

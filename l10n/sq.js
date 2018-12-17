@@ -6,6 +6,8 @@ OC.L10N.register(
     "A contacts app for Nextcloud" : "Një aplikacion kontaktesh për Nextcloud",
     "Download" : "Shkarko",
     "Delete" : "Fshije",
+    "Groups" : "Grupe",
+    "New contact" : "Kontakt i ri",
     "Copy link" : "Kopjo linkun",
     "Rename" : "Riemëro",
     "Enabled" : "I aktivizuar",
@@ -14,7 +16,7 @@ OC.L10N.register(
     "Import into" : "Importo tek ",
     "First name" : "Emër",
     "Last name" : "Mbiemër",
-    "Display name" : "Shfaq emrin",
+    "All contacts" : "Të gjithë kontaktet",
     "Nickname" : "Nofkë",
     "Detailed name" : "Emri i hollësishëm",
     "Additional names" : "Emra shtesë",
@@ -32,7 +34,6 @@ OC.L10N.register(
     "State or province" : "Shtet ose provincë",
     "Postal code" : "Kod postar",
     "Country" : "Vend",
-    "Groups" : "Grupe",
     "Birthday" : "Datëlindje",
     "Anniversary" : "Përvjetor",
     "Date of death" : "Datë vdekjeje",
@@ -67,8 +68,6 @@ OC.L10N.register(
     "Co-worker" : "Koleg",
     "Gender" : "Gjinia",
     "Female" : "Femër",
-    "Male" : "Mashkull",
-    "All contacts" : "Të gjithë kontaktet",
-    "New contact" : "Kontakt i ri"
+    "Male" : "Mashkull"
 },
 "nplurals=2; plural=(n != 1);");

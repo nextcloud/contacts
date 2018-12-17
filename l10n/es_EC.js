@@ -5,6 +5,8 @@ OC.L10N.register(
     "Details" : "Detalles",
     "Download" : "Descargar",
     "Delete" : "Borrar",
+    "Groups" : "Grupos",
+    "New contact" : "Nuevo contacto",
     "Copy link" : "Copiar liga",
     "Rename" : "Renombrar",
     "Enabled" : "Habilitado",
@@ -13,7 +15,7 @@ OC.L10N.register(
     "Import into" : "Importar a",
     "First name" : "Nombre",
     "Last name" : "Apellido",
-    "Display name" : "Nombre a desplegar",
+    "All contacts" : "Todos los contactos",
     "Nickname" : "Apodo",
     "Detailed name" : "Nombre detallado",
     "Additional names" : "Nombres adicionales",
@@ -31,7 +33,6 @@ OC.L10N.register(
     "State or province" : "Estado o provincia",
     "Postal code" : "Código postal",
     "Country" : "País",
-    "Groups" : "Grupos",
     "Birthday" : "Fecha de nacimiento",
     "Anniversary" : "Aniversario",
     "Date of death" : "Fecha de defunción",
@@ -70,8 +71,6 @@ OC.L10N.register(
     "Co-worker" : "Compañero de trabajo",
     "Gender" : "Género",
     "Female" : "Femenino",
-    "Male" : "Masculino",
-    "All contacts" : "Todos los contactos",
-    "New contact" : "Nuevo contacto"
+    "Male" : "Masculino"
 },
 "nplurals=2; plural=(n != 1);");

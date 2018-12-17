@@ -30,34 +30,40 @@
 			<!-- type selector -->
 			<multiselect v-if="propModel.options" v-model="localType"
 				:options="options" :searchable="false" :placeholder="t('contacts', 'Select type')"
-				class="multiselect-vue property__label" track-by="id" label="name"
-				@input="updateType" />
+				:disabled="isReadOnly" class="property__label" track-by="id"
+				label="name" @input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-else-if="selectType" class="property__label">{{ selectType.name }}</div>
+			<div v-else-if="selectType" class="property__label">
+				{{ selectType.name }}
+			</div>
 
 			<!-- no options, empty space -->
-			<div v-else class="property__label">{{ propModel.readableName }}</div>
+			<div v-else class="property__label">
+				{{ propModel.readableName }}
+			</div>
 
 			<!-- delete the prop -->
-			<button :title="t('contacts', 'Delete')" class="property__delete icon-delete" @click="deleteProperty" />
+			<button v-if="!isReadOnly" :title="t('contacts', 'Delete')" class="property__delete icon-delete"
+				@click="deleteProperty" />
 
 			<!-- Real input where the picker shows -->
 			<datetime-picker :value="localValue.toJSDate()" :minute-step="10" :lang="lang"
 				:clearable="false" :first-day-of-week="firstDay" :type="inputType"
-				confirm @confirm="updateValue" />
+				:readonly="isReadOnly" class="property__value" confirm
+				@confirm="updateValue" />
 		</div>
 	</div>
 </template>
 
 <script>
-import Multiselect from 'vue-multiselect'
-import { DatetimePicker } from 'nextcloud-vue'
 import debounce from 'debounce'
 import moment from 'moment'
+import { DatetimePicker } from 'nextcloud-vue'
 import { VCardTime } from 'ical.js'
 
-import propertyTitle from './PropertyTitle'
+import PropertyMixin from 'Mixins/PropertyMixin'
+import PropertyTitle from './PropertyTitle'
 
 /**
  * Format time with locale to display only
@@ -134,50 +140,22 @@ export default {
 	name: 'PropertyDateTime',
 
 	components: {
-		Multiselect,
-		propertyTitle,
-		DatetimePicker
+		DatetimePicker,
+		PropertyTitle
 	},
 
+	mixins: [PropertyMixin],
+
 	props: {
-		selectType: {
-			type: [Object, Boolean],
-			default: () => {}
-		},
-		propModel: {
-			type: Object,
-			default: () => {},
-			required: true
-		},
 		value: {
 			type: VCardTime,
 			default: '',
 			required: true
-		},
-		options: {
-			type: Array,
-			default: () => []
-		},
-		property: {
-			type: Object,
-			default: () => {},
-			required: true
-		},
-		isFirstProperty: {
-			type: Boolean,
-			default: true
-		},
-		isLastProperty: {
-			type: Boolean,
-			default: true
 		}
 	},
 
 	data() {
 		return {
-			localValue: this.value,
-			localType: this.selectType,
-
 			// input type following DatePicker docs
 			inputType: this.property.getDefaultType() === 'date-time' || this.property.getDefaultType() === 'date-and-or-time'
 				? 'datetime'
@@ -187,7 +165,7 @@ export default {
 
 			// locale and lang data
 			locale: 'en',						// temporary value, see mounted
-			firstDay: window.firstDay,			// provided by nextcloud
+			firstDay: window.firstDay + 1,			// provided by nextcloud
 			lang: {
 				days: window.dayNamesShort,		// provided by nextcloud
 				months: window.monthNamesShort,	// provided by nextcloud
@@ -204,20 +182,6 @@ export default {
 			let isLast = this.isLastProperty ? 1 : 0
 			// length is always one & add one space at the end
 			return hasTitle + 1 + isLast
-		}
-	},
-
-	watch: {
-		/**
-		 * Since we're updating a local data based on the value prop,
-		 * we need to make sure to update the local data on pop change
-		 * TODO: check if this create performance drop
-		 */
-		value: function() {
-			this.localValue = this.value
-		},
-		selectType: function() {
-			this.localType = this.selectType
 		}
 	},
 
@@ -247,14 +211,6 @@ export default {
 	},
 
 	methods: {
-
-		/**
-		 * Delete the property
-		 */
-		deleteProperty() {
-			this.$emit('delete')
-		},
-
 		/**
 		 * Debounce and send update event to parent
 		 */
@@ -276,11 +232,6 @@ export default {
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			// Use moment to convert the JsDate to Object
 			this.$emit('update:value', this.localValue)
-		}, 500),
-
-		updateType: debounce(function(e) {
-			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
-			this.$emit('update:selectType', this.localType)
 		}, 500)
 	}
 }

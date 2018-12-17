@@ -22,69 +22,86 @@
 
 <template>
 	<div class="import-contact">
-		<input id="contact-import" type="file" class="hidden-visually"
-			@change="processFile">
-		<label id="upload" for="contact-import" class="button multiselect-label icon-upload no-select">
-			{{ t('contacts', 'Import into') }}
-		</label>
-		<multiselect
-			v-model="selectedAddressbook"
-			:options="options"
-			:disabled="isSingleAddressbook"
-			:placeholder="t('contacts', 'Contacts')"
-			label="displayName"
-			class="multiselect-vue" />
+		<template v-if="!isNoAddressbookAvailable">
+			<input id="contact-import" :disabled="isImporting" type="file"
+				class="hidden-visually" @change="processFile">
+			<label id="upload" for="contact-import" class="button import-contact__multiselect-label icon-upload">
+				{{ isImporting ? t('contacts', 'Importing into') : t('contacts', 'Import into') }}
+			</label>
+			<multiselect
+				v-model="selectedAddressbook"
+				:options="options"
+				:disabled="isSingleAddressbook || isImporting"
+				:placeholder="t('contacts', 'Contacts')"
+				label="displayName"
+				class="import-contact__multiselect" />
+		</template>
+		<button v-else id="upload" for="contact-import"
+			class="button import-contact__multiselect-label import-contact__multiselect--no-select icon-error">
+			{{ t('contacts', 'Importing is disabled because there are no address books available') }}
+		</button>
 	</div>
 </template>
 
 <script>
-import clickOutside from 'vue-click-outside'
-import Multiselect from 'vue-multiselect'
-
 export default {
 	name: 'SettingsImportContacts',
-	components: {
-		clickOutside,
-		Multiselect
-	},
-	directives: {
-		clickOutside
-	},
+
 	data() {
 		return {
 			importDestination: false
 		}
 	},
+
 	computed: {
+		// getter for the store addressbooks
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
 		},
-		options() {
-			return this.addressbooks.map(addressbook => {
-				return {
-					id: addressbook.id,
-					displayName: addressbook.displayName
-				}
-			})
+		// filter out disabled and read-only addressbooks
+		availableAddressbooks() {
+			return this.addressbooks
+				.filter(addressbook => !addressbook.readOnly && addressbook.enabled)
 		},
-		importState() {
-			return this.$store.getters.getImportState
+
+		// available options for the multiselect
+		options() {
+			return this.availableAddressbooks
+				.map(addressbook => {
+					return {
+						id: addressbook.id,
+						displayName: addressbook.displayName
+					}
+				})
 		},
 		selectedAddressbook: {
 			get() {
 				if (this.importDestination) {
-					return this.addressbooks.find(addressbook => addressbook.id === this.importDestination.id)
+					return this.availableAddressbooks.find(addressbook => addressbook.id === this.importDestination.id)
 				}
 				// default is first address book of the list
-				return this.addressbooks[0]
+				return this.availableAddressbooks[0]
 			},
 			set(value) {
 				this.importDestination = value
 			}
 		},
-		// disable multiselect when there is at most one address book
+
+		// disable multiselect when there is only one address book
 		isSingleAddressbook() {
-			return this.addressbooks.length <= 1
+			return this.options.length === 1
+		},
+		isNoAddressbookAvailable() {
+			return this.options.length < 1
+		},
+
+		// importing state store getter
+		importState() {
+			return this.$store.getters.getImportState
+		},
+		// are we currently importing ?
+		isImporting() {
+			return this.importState.stage !== 'default'
 		}
 	},
 	methods: {

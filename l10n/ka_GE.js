@@ -5,6 +5,8 @@ OC.L10N.register(
     "Details" : "დეტალები",
     "Download" : "ჩამოტვირთვა",
     "Delete" : "გაუქმება",
+    "Groups" : "ჯგუფები",
+    "New contact" : "ახალი კონტაქტი",
     "Copy link" : "ბმულის კოპირება",
     "Rename" : "სახელის შეცვლა",
     "Enabled" : "მოქმედია",
@@ -13,7 +15,7 @@ OC.L10N.register(
     "Import into" : "იმპორტირება",
     "First name" : "სახელი",
     "Last name" : "გვარი",
-    "Display name" : "დისპლეი სახელი",
+    "All contacts" : "ყველა კონტაქტი",
     "Nickname" : "ნიკნეიმი",
     "Detailed name" : "დეტალური სახელი",
     "Additional names" : "დამატებითი სახელები",
@@ -31,7 +33,6 @@ OC.L10N.register(
     "State or province" : "შტატი ან პროვინცია",
     "Postal code" : "საფოსტო კოდი",
     "Country" : "ქვეყანა",
-    "Groups" : "ჯგუფები",
     "Birthday" : "დაბადების დრე",
     "Anniversary" : "დაბადების დღე",
     "Date of death" : "გადრდაცვალების დღე",
@@ -63,8 +64,6 @@ OC.L10N.register(
     "Assistant" : "ასისტენტი",
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
-    "Male" : "მამრობითი",
-    "All contacts" : "ყველა კონტაქტი",
-    "New contact" : "ახალი კონტაქტი"
+    "Male" : "მამრობითი"
 },
 "nplurals=2; plural=(n!=1);");

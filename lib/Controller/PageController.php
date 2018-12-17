@@ -33,7 +33,7 @@ class PageController extends Controller {
 
 	public function __construct(string $AppName,
 								IRequest $request,
-								string $UserId) {
+								string $UserId = null) {
 		parent::__construct($AppName, $request);
 		$this->userId = $UserId;
 	}
@@ -48,26 +48,6 @@ class PageController extends Controller {
 		$params = ['user' => $this->userId];
 
 		return new TemplateResponse('contacts', 'main', $params); // templates/main.php
-	}
-
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 *
-	 * Default routing for groups
-	 */
-	public function indexGroup(): TemplateResponse {
-		return $this->index();
-	}
-
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 *
-	 * Default routing for contacts
-	 */
-	public function indexContact(): TemplateResponse {
-		return $this->index();
 	}
 
 }

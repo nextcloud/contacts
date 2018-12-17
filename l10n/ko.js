@@ -5,6 +5,8 @@ OC.L10N.register(
     "Details" : "자세한 정보",
     "Download" : "다운로드",
     "Delete" : "삭제",
+    "Groups" : "그룹",
+    "New contact" : "새 연락처",
     "Copy link" : "링크 복사",
     "Rename" : "이름 바꾸기",
     "Enabled" : "활성화됨",
@@ -13,7 +15,7 @@ OC.L10N.register(
     "Import into" : "다음으로 가져오기",
     "First name" : "이름",
     "Last name" : "성",
-    "Display name" : "표시 이름",
+    "All contacts" : "모든 연락처",
     "Nickname" : "별명",
     "Detailed name" : "자세한 이름",
     "Additional names" : "추가 이름",
@@ -31,7 +33,6 @@ OC.L10N.register(
     "State or province" : "도 및 광역시",
     "Postal code" : "우편 번호",
     "Country" : "국가",
-    "Groups" : "그룹",
     "Birthday" : "생일",
     "Anniversary" : "기념일",
     "Date of death" : "사망일",
@@ -63,8 +64,6 @@ OC.L10N.register(
     "Assistant" : "비서",
     "Gender" : "성별",
     "Female" : "여성",
-    "Male" : "남성",
-    "All contacts" : "모든 연락처",
-    "New contact" : "새 연락처"
+    "Male" : "남성"
 },
 "nplurals=1; plural=0;");

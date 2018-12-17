@@ -1,5 +1,5 @@
 <template>
-	<div v-if="matchSearch" :class="{active: selectedContact === contact.key}" :id="id"
+	<div v-if="matchSearch" :id="id" :class="{active: selectedContact === contact.key}"
 		tabindex="0"
 		class="app-content-list-item" @click.prevent.stop="selectContact" @keypress.enter.prevent.stop="selectContact">
 		<!-- keyboard accessibility will focus the input and not the label -->
@@ -13,8 +13,12 @@
 			<!-- try to fetch the avatar only if the contact exists on the server -->
 			<div v-if="contact.photo && contact.dav" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
 		</div>
-		<div class="app-content-list-item-line-one">{{ contact.displayName }}</div>
-		<div v-if="contact.email" class="app-content-list-item-line-two">{{ contact.email }}</div>
+		<div class="app-content-list-item-line-one">
+			{{ contact.displayName }}
+		</div>
+		<div v-if="contact.email" class="app-content-list-item-line-two">
+			{{ contact.email }}
+		</div>
 		<div v-if="!contact.addressbook.readOnly" class="icon-delete" tabindex="0"
 			@click.prevent.stop="deleteContact" @keypress.enter.prevent.stop="deleteContact" />
 	</div>
@@ -22,13 +26,17 @@
 
 <script>
 export default {
-	name: 'ContentListItem',
+	name: 'ContactsListItem',
 	filters: {
 		firstLetter(value) {
 			return value.charAt(0)
 		}
 	},
 	props: {
+		index: {
+			type: Number,
+			required: true
+		},
 		contact: {
 			type: Object,
 			required: true
@@ -54,7 +62,7 @@ export default {
 		/**
 		 * Is this matching the current search ?
 		 *
-		 * @returns {Boolean}
+		 * @returns {boolean}
 		 */
 		matchSearch() {
 			if (this.searchQuery !== '') {
@@ -65,7 +73,7 @@ export default {
 
 		/**
 		 * avatar color based on server toRgb method and the displayName
-		 * @returns {String} the color in css format
+		 * @returns {string} the color in css format
 		 */
 		colorAvatar() {
 			try {
@@ -94,6 +102,7 @@ export default {
 		 */
 		deleteContact() {
 			this.$store.dispatch('deleteContact', { contact: this.contact })
+			this.$emit('deleted', this.index)
 		},
 
 		/**

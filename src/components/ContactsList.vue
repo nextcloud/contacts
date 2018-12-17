@@ -21,23 +21,25 @@
   -->
 
 <template>
-	<transition-group id="contacts-list" :class="{'icon-loading': loading}" class="app-content-list"
-		name="list" tag="div">
+	<div id="contacts-list" :class="{'icon-loading': loading, showdetails: selectedContact}" class="app-content-list">
 		<!-- same uid can coexists between different addressbooks
 			so we need to use the addressbook id as key as well -->
-		<content-list-item v-for="contact in list" :key="contact.key" :contact="contacts[contact.key]"
-			:search-query="searchQuery" />
-	</transition-group>
+		<contacts-list-item v-for="(contact, index) in list" :key="contact.key" :contact="contacts[contact.key]"
+			:search-query="searchQuery" :list="list" :index="index"
+			@deleted="selectContact" />
+	</div>
 </template>
 
 <script>
-import contentListItem from './ContentList/ContentListItem'
+import ContactsListItem from './ContactsList/ContactsListItem'
 
 export default {
-	name: 'ContentList',
+	name: 'ContactsList',
+
 	components: {
-		'content-list-item': contentListItem
+		ContactsListItem
 	},
+
 	props: {
 		list: {
 			type: Array,
@@ -54,6 +56,28 @@ export default {
 		searchQuery: {
 			type: String,
 			default: ''
+		}
+	},
+
+	computed: {
+		selectedContact() {
+			return this.$route.params.selectedContact
+		},
+		selectedGroup() {
+			return this.$route.params.selectedGroup
+		}
+	},
+
+	methods: {
+		// Select closest contact on deletion
+		selectContact(oldIndex) {
+			if (this.list.length > 0 && oldIndex < this.list.length) {
+				// priority to the one above then the one after
+				const newContact = oldIndex === 0 ? this.list[oldIndex + 1] : this.list[oldIndex - 1]
+				if (newContact) {
+					this.$router.push({ name: 'contact', params: { selectedGroup: this.selectedGroup, selectedContact: newContact.key } })
+				}
+			}
 		}
 	}
 }

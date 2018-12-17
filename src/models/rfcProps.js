@@ -88,29 +88,26 @@ const properties = {
 			{ id: 'OTHER', name: t('contacts', 'Other') }
 		]
 	},
-	categories: {
-		readableName: t('contacts', 'Groups')
-	},
 	bday: {
 		readableName: t('contacts', 'Birthday'),
 		icon: 'icon-calendar-dark',
 		defaultValue: {
 			value: new VCardTime().fromJSDate(new Date())
-		},
+		}
 	},
 	anniversary: {
 		readableName: t('contacts', 'Anniversary'),
 		icon: 'icon-calendar-dark',
 		defaultValue: {
 			value: new VCardTime().fromJSDate(new Date())
-		},
+		}
 	},
 	deathdate: {
 		readableName: t('contacts', 'Date of death'),
 		icon: 'icon-calendar-dark',
 		defaultValue: {
 			value: new VCardTime().fromJSDate(new Date())
-		},
+		}
 	},
 	email: {
 		multiple: true,
@@ -146,7 +143,7 @@ const properties = {
 	tel: {
 		multiple: true,
 		readableName: t('contacts', 'Phone'),
-		icon: 'icon-comment',
+		icon: 'icon-phone',
 		default: true,
 		defaultValue: {
 			value: '',

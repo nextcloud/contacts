@@ -23,21 +23,20 @@
 <template>
 	<div class="emptycontent import-screen">
 		<p class="icon-upload" />
-		<h3 class="import-screen__header">{{ t('contacts', 'Importing {total} contacts into', { total }) }} {{ addressbook }}</h3>
+		<h3 class="import-screen__header">
+			{{ t('contacts', 'Importing {total} contacts into', { total }) }} {{ addressbook }}
+		</h3>
 		<progress :max="total" :value="progress" class="import-screen__progress" />
 		<p class="import-screen__tracker">
 			<span>{{ percentage }} %</span>
-			<span v-tooltip.auto="t('contacts', 'Open your browser console for more details')">{{ denied }} {{ t('contacts', 'failed') }}</span>
+			<span v-tooltip.auto="t('contacts', 'Open your browser console for more details')">
+				{{ denied }} {{ t('contacts', 'failed') }}
+			</span>
 		</p>
 	</div>
 </template>
 
 <script>
-import Vue from 'vue'
-import VTooltip from 'v-tooltip'
-
-Vue.use(VTooltip)
-
 export default {
 	name: 'ImportScreen',
 	computed: {
