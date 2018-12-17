@@ -346,11 +346,31 @@ const actions = {
 			.then((response) => {
 				// We don't want to lose the url information
 				// so we need to parse one by one
-				let contacts = response.map(item => {
-					let contact = new Contact(item.data, addressbook)
-					Vue.set(contact, 'dav', item)
-					return contact
-				})
+				let failed = 0
+				let contacts = response
+					.reduce((contacts, item) => {
+						try {
+							let contact = new Contact(item.data, addressbook)
+							Vue.set(contact, 'dav', item)
+							contacts.push(contact)
+						} catch (error) {
+							// PARSING FAILED
+							console.error(error)
+							failed++
+						}
+						return contacts
+					}, [])
+
+				if (failed > 0) {
+					OC.Notification.showTemporary(n(
+						'contacts',
+						'{failed} contact failed to be read',
+						'{failed} contacts failed to be read',
+						failed,
+						{ failed }
+					))
+				}
+
 				context.commit('appendContactsToAddressbook', { addressbook, contacts })
 				context.commit('appendContacts', contacts)
 				context.commit('extractGroupsFromContacts', contacts)
