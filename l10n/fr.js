@@ -118,6 +118,7 @@ OC.L10N.register(
     "Gender" : "Sexe",
     "Female" : "Femme",
     "Male" : "Homme",
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Erreur de lecture pour {failed} contact","Erreur de lecture pour {failed} contacts"],
     "An error occurred" : "Une erreur est survenue"
 },
 "nplurals=2; plural=(n > 1);");

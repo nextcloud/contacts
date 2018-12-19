@@ -116,6 +116,7 @@
     "Gender" : "Geschlecht",
     "Female" : "Weiblich",
     "Male" : "Männlich",
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} Kontakt konnte nicht gelesen werden","{failed} Kontakte konnten nicht gelesen werden"],
     "An error occurred" : "Es ist ein Fehler aufgetreten"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
