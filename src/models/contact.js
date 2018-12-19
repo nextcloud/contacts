@@ -179,7 +179,14 @@ export default class Contact {
 	 */
 	set groups(groups) {
 		if (Array.isArray(groups)) {
-			this.vCard.updatePropertyWithValue('uid', groups)
+			let property = this.vCard.getFirstProperty('categories')
+			if (!property) {
+				// Init with empty group since we set everything afterwise
+				property = this.vCard.addPropertyWithValue('categories', '')
+			}
+			property.setValues(groups)
+		} else {
+			throw new Error('groups data is not an Array')
 		}
 	}
 

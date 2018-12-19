@@ -307,12 +307,7 @@ export default {
 				return this.contact.groups
 			},
 			set: function(data) {
-				let property = this.contact.vCard.getFirstProperty('categories')
-				if (!property) {
-					// Ical.js store comma separated by an Array of array of string
-					property = this.contact.vCard.addPropertyWithValue('categories', [data])
-				}
-				property.setValues(data)
+				this.contact.groups = data
 				this.updateContact()
 			}
 		},

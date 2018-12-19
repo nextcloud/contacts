@@ -258,7 +258,7 @@ export default {
 	},
 
 	methods: {
-		newContact() {
+		async newContact() {
 			let contact = new Contact('BEGIN:VCARD\nVERSION:4.0\nEND:VCARD', this.defaultAddressbook)
 			contact.fullName = t('contacts', 'New contact')
 			// itterate over all properties (filter is not usable on objects and we need the key of the property)
@@ -274,19 +274,23 @@ export default {
 					}
 				}
 			}
+			// set group if it's selected already
 			if (this.selectedGroup !== t('contacts', 'All contacts')) {
-				contact.vCard.addPropertyWithValue('categories', this.selectedGroup)
+				contact.groups = [ this.selectedGroup ]
 			}
-			this.$store.dispatch('addContact', contact)
-				.then(() => {
-					this.$router.push({
-						name: 'contact',
-						params: {
-							selectedGroup: this.selectedGroup,
-							selectedContact: contact.key
-						}
-					})
+			try {
+				// this will trigger the proper commits to groups, contacts and addressbook
+				await this.$store.dispatch('addContact', contact)
+				await this.$router.push({
+					name: 'contact',
+					params: {
+						selectedGroup: this.selectedGroup,
+						selectedContact: contact.key
+					}
 				})
+			} catch (error) {
+				OC.Notification.showTemporary(t('contacts', 'Unable to create the contact.'))
+			}
 		},
 
 		/**
