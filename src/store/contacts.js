@@ -261,7 +261,7 @@ const actions = {
 	},
 
 	/**
-	 * Add a contact to the list and to the associated addressbook
+	 * Add a contact to the list, the associated addressbook and to the groups
 	 *
 	 * @param {Object} context the store mutations
 	 * @param {Contact} contact the contact to delete
@@ -269,6 +269,7 @@ const actions = {
 	async addContact(context, contact) {
 		await context.commit('addContact', contact)
 		await context.commit('addContactToAddressbook', contact)
+		await context.commit('extractGroupsFromContacts', [contact])
 	},
 
 	/**
