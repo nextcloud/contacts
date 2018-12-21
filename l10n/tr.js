@@ -58,6 +58,7 @@ OC.L10N.register(
     "Display name" : "Görüntülenecek ad",
     "Sort by {sorting}" : "{sorting} Alanına Göre Sırala",
     "All contacts" : "Tüm kişiler",
+    "Unable to create the contact." : "Kişi eklenemedi.",
     "Contact not found" : "Kişi bulunamadı",
     "Nickname" : "Kısaltma",
     "Detailed name" : "Ayrıntılı ad",
@@ -118,6 +119,7 @@ OC.L10N.register(
     "Gender" : "Cinsiyet",
     "Female" : "Kadın",
     "Male" : "Erkek",
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kişi okunamadı","{failed} kişi okunamadı"],
     "An error occurred" : "Bir sorun çıktı"
 },
 "nplurals=2; plural=(n > 1);");

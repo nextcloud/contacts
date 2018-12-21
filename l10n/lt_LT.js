@@ -5,6 +5,7 @@ OC.L10N.register(
     "Download" : "Atsisiųsti",
     "Delete" : "Ištrinti",
     "Groups" : "Grupės",
+    "No results" : "Rezultatų nėra",
     "Copy link" : "Kopijuoti nuorodą",
     "Copied" : "Nukopijuota",
     "Rename" : "Pervadinti",
