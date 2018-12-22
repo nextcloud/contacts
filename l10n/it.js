@@ -58,6 +58,7 @@ OC.L10N.register(
     "Display name" : "Nome visualizzato",
     "Sort by {sorting}" : "Ordina per {sorting}",
     "All contacts" : "Tutti i contatti",
+    "Unable to create the contact." : "Impossibile creare il contatto.",
     "Contact not found" : "Contatto non trovato",
     "Nickname" : "Pseudonimo",
     "Detailed name" : "Nome dettagliato",
