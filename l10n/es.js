@@ -25,6 +25,7 @@ OC.L10N.register(
     "The contact doesn't exists anymore on the server." : "El contacto ya no existe en el servidor.",
     "Importing {total} contacts into" : "Importando {total} contactos en",
     "Open your browser console for more details" : "Abre la consola del navegador para más detalles",
+    "failed" : "ha fallado",
     "Select type" : "Selecciona tipo",
     "Select Date" : "Seleccione la fecha",
     "Add contact in group" : "Añadir contacto en grupo",
@@ -57,6 +58,7 @@ OC.L10N.register(
     "Display name" : "Mostrar nombre",
     "Sort by {sorting}" : "Ordenar por {sorting}",
     "All contacts" : "Todos los contactos",
+    "Unable to create the contact." : "NO se ha podido crear el contacto.",
     "Contact not found" : "Contacto no encontrado",
     "Nickname" : "Apodo",
     "Detailed name" : "Nombre",
@@ -117,6 +119,7 @@ OC.L10N.register(
     "Gender" : "Género",
     "Female" : "Mujer",
     "Male" : "Hombre",
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se ha podido leer","{failed} contactos no se han podido leer"],
     "An error occurred" : "Ocurrió un error"
 },
 "nplurals=2; plural=(n != 1);");
