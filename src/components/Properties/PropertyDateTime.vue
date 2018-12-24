@@ -157,9 +157,9 @@ export default {
 	data() {
 		return {
 			// input type following DatePicker docs
-			inputType: this.property.getDefaultType() === 'date-time' || this.property.getDefaultType() === 'date-and-or-time'
+			inputType: this.property.type === 'date-time' || this.property.type === 'date-and-or-time'
 				? 'datetime'
-				: this.property.getDefaultType() === 'date'
+				: this.property.type === 'date'
 					? 'date'
 					: 'time',
 
