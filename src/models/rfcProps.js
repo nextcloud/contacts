@@ -105,6 +105,7 @@ const properties = {
 	deathdate: {
 		readableName: t('contacts', 'Date of death'),
 		icon: 'icon-calendar-dark',
+		force: 'date',
 		defaultValue: {
 			value: new VCardTime().fromJSDate(new Date())
 		}
