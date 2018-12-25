@@ -58,6 +58,7 @@ OC.L10N.register(
     "Display name" : "Weergavenaam",
     "Sort by {sorting}" : "Sorteren op {sorting}",
     "All contacts" : "Alle contactpersonen",
+    "Unable to create the contact." : "Kan contactpersoon niet aanmaken.",
     "Contact not found" : "Contactpersoon niet gevonden.",
     "Nickname" : "Roepnaam",
     "Detailed name" : "Gedetailleerde naam",
@@ -118,6 +119,7 @@ OC.L10N.register(
     "Gender" : "Geslacht",
     "Female" : "Vrouw",
     "Male" : "Man",
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : [" {failed} contactpersoon werd niet ingelezen","{failed} contactpersonen werden niet ingelezen"],
     "An error occurred" : "Er trad een fout op"
 },
 "nplurals=2; plural=(n != 1);");
