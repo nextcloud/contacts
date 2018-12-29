@@ -21,6 +21,7 @@ OC.L10N.register(
     "Enabled" : "Включено",
     "Disabled" : "Изключено",
     "Share with users or groups" : "Сподели с потребители или групи",
+    "Importing into" : "Внасяне в",
     "Import into" : "Внасяне в",
     "Address book name" : "Име на адресната книга",
     "An error occurred, unable to create the addressbook." : "Възникна грешка, адресната книга не може да бъде създадена.",
