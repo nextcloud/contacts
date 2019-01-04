@@ -221,10 +221,20 @@ export default {
 			 * Use the current year to ensure we do not lose
 			 * the year data on v4.0 since we currently have
 			 * no options to remove the year selection.
+			 * ! using this.value since this.localValue reflect the current change
+			 * ! so we need to make sure we do not use the updated data
 			 */
 			if (this.value.year === null) {
 				rawData[0] = null
 			}
+
+			/**
+			 * VCardTime starts months at 1
+			 * but moment and js starts at 0
+			 * ! since we use moment to generate our time array
+			 * ! we need to make sure the conversion to VCardTime is done well
+			 */
+			rawData[1]++
 
 			// reset the VCardTime component to the selected date/time
 			this.localValue.resetTo(...rawData)
