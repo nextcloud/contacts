@@ -52,6 +52,7 @@
 
 <script>
 import moment from 'moment'
+import download from 'downloadjs'
 
 import SettingsSection from 'Components/SettingsSection'
 import ContactsList from 'Components/ContactsList'
@@ -345,17 +346,12 @@ export default {
 		/**
 		 * Download vcard promise as vcard file
 		 *
-		 * @param {Object} vcardPromise object to be downloaded
+		 * @param {Promise} vcardPromise the full vcf file promise
 		 */
-		downloadVcardPromise(vcardPromise) {
+		async downloadVcardPromise(vcardPromise) {
 			vcardPromise.then(response => {
-				const blob = new Blob([response.data], { type: 'text/vcard' })
-				const url = URL.createObjectURL(blob)
-				const link = document.createElement('a')
 				const filename = moment().format('YYYY-MM-DD_HH-mm') + '_' + response.groupName + '.vcf'
-				link.href = url
-				link.download = filename
-				link.click()
+				download(response.data, filename, 'text/vcard')
 			})
 		},
 
