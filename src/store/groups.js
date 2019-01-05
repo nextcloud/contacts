@@ -89,6 +89,21 @@ const mutations = {
 		if (index > -1) {
 			contacts.splice(index, 1)
 		}
+	},
+
+	/**
+	 * Remove contact from its groups
+	 *
+	 * @param {Object} state the store data
+	 * @param {Contact} contact the contact
+	 */
+	removeContactFromGroups(state, contact) {
+		state.groups.forEach(group => {
+			const index = group.contacts.indexOf(contact.key)
+			if (index !== -1) {
+				group.contacts.splice(index, 1)
+			}
+		})
 	}
 }
 
@@ -108,6 +123,16 @@ const actions = {
 	 */
 	addContactToGroup(context, { groupName, contact }) {
 		context.commit('addContactToGroups', { groupNames: [groupName], contact })
+	},
+
+	/**
+	 * Remove contact from its groups
+	 *
+	 * @param {Object} context the store mutations
+	 * @param {Contact} contact the contact
+	 */
+	removeContactFromGroups(context, contact) {
+		context.commit('removeContactFromGroups', contact)
 	},
 
 	/**
