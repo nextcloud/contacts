@@ -258,6 +258,7 @@ const actions = {
 		}
 		context.commit('deleteContact', contact)
 		context.commit('deleteContactFromAddressbook', contact)
+		context.commit('removeContactFromGroups', contact)
 	},
 
 	/**
