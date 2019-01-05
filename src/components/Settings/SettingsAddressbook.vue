@@ -140,7 +140,7 @@ export default {
 					menu.push({
 						icon: this.deleteAddressbookLoading ? 'icon-loading-small' : 'icon-delete',
 						text: t('contacts', 'Delete'),
-						action: this.deleteAddressbook
+						action: this.confirmDeletion
 					})
 				}
 			}
@@ -184,21 +184,33 @@ export default {
 				}
 			}, 500)
 		},
-		deleteAddressbook() {
-			// change to loading status
-			this.deleteAddressbookLoading = true
-			setTimeout(() => {
-				try {
-					this.$store.dispatch('deleteAddressbook', this.addressbook)
-				} catch (err) {
-					// error handling
-					console.error(err)
-					OC.Notification.showTemporary(t('contacts', 'Deletion of addressbook was not successful.'))
-				} finally {
-					// stop loading status regardless of outcome
-					this.deleteAddressbookLoading = false
-				}
-			}, 500)
+
+		confirmDeletion() {
+			OC.dialogs.confirm(
+				t('contacts', 'This will delete the addressbook and every contacts within it'),
+				t('contacts', 'Delete {addressbook} ?', { addressbook: this.addressbook.displayName }),
+				this.deleteAddressbook,
+				true
+			)
+		},
+
+		deleteAddressbook(confirm) {
+			if (confirm) {
+				// change to loading status
+				this.deleteAddressbookLoading = true
+				setTimeout(() => {
+					try {
+						this.$store.dispatch('deleteAddressbook', this.addressbook)
+					} catch (err) {
+						// error handling
+						console.error(err)
+						OC.Notification.showTemporary(t('contacts', 'Deletion of addressbook was not successful.'))
+					} finally {
+						// stop loading status regardless of outcome
+						this.deleteAddressbookLoading = false
+					}
+				}, 500)
+			}
 		},
 		renameAddressbook() {
 			this.editingName = true
