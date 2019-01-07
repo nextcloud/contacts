@@ -77,7 +77,7 @@ const properties = {
 			t('contacts', 'Postal code'),
 			t('contacts', 'Country')
 		],
-		displayOrder: [0, 2, 1, 3, 4, 5, 6],
+		displayOrder: [0, 2, 1, 5, 3, 4, 6],
 		icon: 'icon-address',
 		default: true,
 		defaultValue: {
