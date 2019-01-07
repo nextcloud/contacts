@@ -36,6 +36,8 @@
     "Enabled" : "Aktiviert",
     "Disabled" : "Deaktiviert",
     "Enabled toggle of addressbook was not successful." : "Das aktivierte Wechseln des Adressbuches war nicht erfolgreich.",
+    "This will delete the addressbook and every contacts within it" : "Hierdurch wird das Adressbuch und alle Kontakte in ihm gelöscht",
+    "Delete {addressbook} ?" : " {addressbook} löschen?",
     "Deletion of addressbook was not successful." : "Löschen des Adressbuches war nicht erfolgreich.",
     "Renaming of addressbook was not successful." : "Das Umbenennen des Adressbuches war nicht erfolgreich.",
     "Addressbook copied to clipboard" : "Adressbuch wurde in die Zwischenablage kopiert",

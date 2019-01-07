@@ -38,6 +38,8 @@ OC.L10N.register(
     "Enabled" : "Abilitata",
     "Disabled" : "Disabilitata",
     "Enabled toggle of addressbook was not successful." : "L'abilitazione della visibilità della rubrica non è riuscita.",
+    "This will delete the addressbook and every contacts within it" : "Questo eliminerà la rubrica e ogni contatto in essa contenuto",
+    "Delete {addressbook} ?" : "Vuoi eliminare {addressbook}?",
     "Deletion of addressbook was not successful." : "L'eliminazione della rubrica non è riuscita.",
     "Renaming of addressbook was not successful." : "La rinomina della rubrica non è riuscita.",
     "Addressbook copied to clipboard" : "Rubrica copiata negli appunti",

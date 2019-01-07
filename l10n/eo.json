@@ -35,6 +35,8 @@
     "Rename" : "Alinomi",
     "Enabled" : "Ŝaltita",
     "Disabled" : "Malŝaltita",
+    "This will delete the addressbook and every contacts within it" : "Tio forigos la adresaron kaj ĉiujn kontaktojn ene.",
+    "Delete {addressbook} ?" : "Forigi {addressbook}?",
     "Deletion of addressbook was not successful." : "Forigo de la adresaro fiaskis.",
     "Renaming of addressbook was not successful." : "Alinomado de la adresaro fiaskis.",
     "Addressbook copied to clipboard" : "Adresaro kopiita en la tondujo",
