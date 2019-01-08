@@ -93,7 +93,7 @@ export default {
 		 */
 		addProp({ id }) {
 			let defaultData = rfcProps.properties[id].defaultValue
-			let property = this.contact.vCard.addPropertyWithValue(id, defaultData ? defaultData.value : '')
+			let property = this.contact.vCard.addPropertyWithValue(id, defaultData && defaultData.value ? defaultData.value : '')
 			if (defaultData && defaultData.type) {
 				property.setParameter('type', defaultData.type)
 			}
