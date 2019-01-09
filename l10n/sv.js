@@ -35,6 +35,8 @@ OC.L10N.register(
     "Enabled" : "Aktiverad",
     "Disabled" : "Inaktiverad",
     "Enabled toggle of addressbook was not successful." : "Aktiverad växling av adressboken lyckades inte.",
+    "This will delete the addressbook and every contacts within it" : "Detta tar bort adressboken och alla kontakter i den",
+    "Delete {addressbook} ?" : "Radera {addressbook} ?",
     "Deletion of addressbook was not successful." : "Radering av adressboken lyckades inte.",
     "Renaming of addressbook was not successful." : "Namnbyte av adressboken lyckades inte.",
     "Addressbook copied to clipboard" : "Adressbok kopierad till urklipp",
