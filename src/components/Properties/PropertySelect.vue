@@ -27,13 +27,8 @@
 			:info="propModel.info" />
 
 		<div class="property__row">
-			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-if="selectType" class="property__label">
-				{{ selectType.name }}
-			</div>
-
 			<!-- no options, empty space -->
-			<div v-else class="property__label">
+			<div class="property__label">
 				{{ propModel.readableName }}
 			</div>
 
@@ -41,9 +36,10 @@
 			<button v-if="!isReadOnly" :title="t('contacts', 'Delete')" class="property__delete icon-delete"
 				@click="deleteProperty" />
 
-			<multiselect v-model="matchedOptions" :options="propModel.options" :placeholder="t('contacts', 'Select option')"
+			<multiselect v-model="localType"
+				:options="propModel.options" :searchable="false" :placeholder="t('contacts', 'Select option')"
 				:disabled="isSingleOption || isReadOnly" class="property__value" track-by="id"
-				label="name" @input="updateValue" />
+				label="name" @input="updateType" />
 		</div>
 	</div>
 </template>
@@ -76,23 +72,10 @@ export default {
 			// length is one & add one space at the end
 			return hasTitle + 1 + isLast
 		},
+
 		// is there only one option available
 		isSingleOption() {
 			return this.propModel.options.length <= 1
-		},
-
-		// matching value to the options we provide
-		matchedOptions: {
-			get() {
-				let selected = this.propModel.options.find(option => option.id === this.localValue)
-				return selected || {
-					id: this.localValue,
-					name: this.localValue
-				}
-			},
-			set(value) {
-				this.localValue = value.id
-			}
 		}
 	}
 }

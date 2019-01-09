@@ -56,7 +56,6 @@ const properties = {
 		readableName: t('contacts', 'Federated Cloud ID'),
 		force: 'text',
 		defaultValue: {
-			value: [''],
 			type: ['HOME']
 		},
 		options: [
@@ -118,7 +117,6 @@ const properties = {
 		icon: 'icon-mail',
 		default: true,
 		defaultValue: {
-			value: '',
 			type: ['HOME']
 		},
 		options: [
@@ -132,7 +130,6 @@ const properties = {
 		readableName: t('contacts', 'Instant messaging'),
 		icon: 'icon-comment',
 		defaultValue: {
-			value: [''],
 			type: ['SKYPE']
 		},
 		options: [
@@ -149,7 +146,6 @@ const properties = {
 		icon: 'icon-phone',
 		default: true,
 		defaultValue: {
-			value: '',
 			type: ['HOME', 'VOICE']
 		},
 		options: [
@@ -176,8 +172,7 @@ const properties = {
 		icon: 'icon-social',
 		readableName: t('contacts', 'Social network'),
 		defaultValue: {
-			value: '',
-			type: ['facebook']
+			type: ['FACEBOOK']
 		},
 		info: t(
 			'contacts',
@@ -208,6 +203,9 @@ const properties = {
 			'contacts',
 			'Specify a relationship between you and the entity represented by this vCard.'
 		),
+		defaultValue: {
+			type: ['COLLEAGUE']
+		},
 		options: [
 			{ id: 'SPOUSE', name: t('contacts', 'Spouse') },
 			{ id: 'CHILD', name: t('contacts', 'Child') },
@@ -232,7 +230,6 @@ const properties = {
 			'Specify a relationship between another entity and the entity represented by this vCard.'
 		),
 		defaultValue: {
-			value: [''],
 			type: ['CONTACT']
 		},
 		options: [
@@ -256,11 +253,13 @@ const properties = {
 	},
 	gender: {
 		readableName: t('contacts', 'Gender'),
+		force: 'select',
 		defaultValue: {
 			// default to Female 🙋
-			value: ['F']
+			type: ['F']
 		},
 		options: [
+			// TODO? make X-WAB-GENDER print in VCARD as well for MS compatibility
 			{ id: 'F', name: t('contacts', 'Female') },
 			{ id: 'M', name: t('contacts', 'Male') },
 			{ id: 'O', name: t('contacts', 'Other') }
