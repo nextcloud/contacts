@@ -4,6 +4,8 @@ OC.L10N.register(
     "Contacts" : "Kontakter",
     "Details" : "Detaljer",
     "A contacts app for Nextcloud" : "En kontakt-app för Nextcloud",
+    "Add new property" : "Lägg till nytt fält",
+    "Choose property type" : "Välj typ",
     "Upload a new picture" : "Ladda upp en ny bild",
     "No contact selected" : "Ingen kontakt vald",
     "Select a contact on the list to begin" : "Välj en kontakt i listan för att börja",
