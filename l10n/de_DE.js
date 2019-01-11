@@ -15,7 +15,7 @@ OC.L10N.register(
     "Company" : "Firma",
     "Title" : "Titel",
     "This contact is not yet synced. Edit it to save it to the server." : "Dieser Kontakt ist noch nicht synchronisiert. Bearbeiten Sie ihn, um ihn auf dem Server zu speichern.",
-    "This contact is in read-only mode. You do not have permission to edit this contact." : "Dieser Kontakt ist schreibgeschützt. Du hast keine Berechtigung, diesen Kontakt zu bearbeiten.",
+    "This contact is in read-only mode. You do not have permission to edit this contact." : "Dieser Kontakt ist schreibgeschützt. Sie haben keine Berechtigung, diesen Kontakt zu bearbeiten.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Der Kontakt, den Sie versuchen zu bearbeiten, hat sich geändert. Bitte aktualisieren Sie den Kontakt manuell. Alle weiteren Änderungen werden verworfen.",
     "Download" : "Herunterladen",
     "Delete" : "Löschen",
