@@ -103,8 +103,7 @@
 					empty property because this is a required prop on regular property-select. But since
 					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
 					duplication, we created a fake propModel and property with our own options here) -->
-				<property-select :prop-model="addressbookModel" :select-type.sync="addressbook" value=""
-					:is-first-property="true"
+				<property-select :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
 					:is-last-property="true" :property="{}" class="property--addressbooks property--last" />
 
 				<!-- Groups always visible -->
@@ -273,16 +272,15 @@ export default {
 		/**
 		 * Usable addressbook object linked to the local contact
 		 *
-		 * @param {string} [addressbook] set the addressbook object
+		 * @param {string} [addressbookId] set the addressbook id
 		 * @returns {string}
 		 */
 		addressbook: {
 			get: function() {
-				return this.addressbooksOptions
-					.find(addressbook => addressbook.id === this.contact.addressbook.id)
+				return this.contact.addressbook.id
 			},
-			set: function(addressbook) {
-				this.moveContactToAddressbook(addressbook.id)
+			set: function(addressbookId) {
+				this.moveContactToAddressbook(addressbookId)
 			}
 		},
 
