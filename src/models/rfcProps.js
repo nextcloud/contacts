@@ -256,10 +256,13 @@ const properties = {
 	},
 	gender: {
 		readableName: t('contacts', 'Gender'),
-		force: 'select',
+		defaultValue: {
+			// default to Female 🙋
+			value: ['F']
+		},
 		options: [
-			{ id: 'F', name: t('contacts', 'Female'), xadd: 'X-WAB-GENDER:1' }, // Female first 🙋, TODO: make X-WAB-GENDER print in VCARD as well for MS compatibility
-			{ id: 'M', name: t('contacts', 'Male'), xadd: 'X-WAB-GENDER:2' }, // TODO: make X-WAB-GENDER print in VCARD as well for MS compatibility
+			{ id: 'F', name: t('contacts', 'Female') },
+			{ id: 'M', name: t('contacts', 'Male') },
 			{ id: 'O', name: t('contacts', 'Other') }
 		]
 	}
