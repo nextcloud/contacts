@@ -25,7 +25,7 @@ export default {
 	props: {
 		// Default property type. e.g. "WORK,HOME"
 		selectType: {
-			type: Object,
+			type: [Object],
 			default: () => {}
 		},
 		// Coming fro the rfcProps Model
@@ -79,8 +79,7 @@ export default {
 	watch: {
 		/**
 		 * Since we're updating a local data based on the value prop,
-		 * we need to make sure to update the local data on prop change
-		 * ! this prevent virtual doms to have outdated local data
+		 * we need to make sure to update the local data on pop change
 		 */
 		value: function() {
 			this.localValue = this.value
