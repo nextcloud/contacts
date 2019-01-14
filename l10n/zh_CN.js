@@ -35,11 +35,11 @@ OC.L10N.register(
     "Copied" : "已复制",
     "Can not copy" : "无法复制",
     "Rename" : "重命名",
-    "Enabled" : "已开启",
+    "Enabled" : "已启用",
     "Disabled" : "已禁用",
     "Enabled toggle of addressbook was not successful." : "启用切换地址簿未成功。",
     "This will delete the addressbook and every contacts within it" : "这将删除地址簿及其中所有联系人",
-    "Delete {addressbook} ?" : "删除 {addressbook} ?",
+    "Delete {addressbook} ?" : "删除 {addressbook} ？",
     "Deletion of addressbook was not successful." : "未能成功删除地址簿。",
     "Renaming of addressbook was not successful." : "未能成功重命名地址簿。",
     "Addressbook copied to clipboard" : "已复制地址簿到剪切板。",
@@ -54,7 +54,7 @@ OC.L10N.register(
     "Import into" : "导入到",
     "Importing is disabled because there are no address books available" : "导入已被禁用因为没有可用的地址簿",
     "Address book name" : "地址簿名称",
-    "An error occurred, unable to create the addressbook." : "发生了一个错误，地址簿未能成功创建。",
+    "An error occurred, unable to create the addressbook." : "发生了错误，地址簿未能成功创建。",
     "First name" : "名",
     "Last name" : "姓",
     "Display name" : "显示名称",
@@ -122,6 +122,6 @@ OC.L10N.register(
     "Female" : "女性",
     "Male" : "男性",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} 联系人读取失败"],
-    "An error occurred" : "发生一个错误."
+    "An error occurred" : "发生错误"
 },
 "nplurals=1; plural=0;");
