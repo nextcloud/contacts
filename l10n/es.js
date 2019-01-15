@@ -38,6 +38,8 @@ OC.L10N.register(
     "Enabled" : "Activado",
     "Disabled" : "Desactivado",
     "Enabled toggle of addressbook was not successful." : "Activar intercambio de agenda no fue posible",
+    "This will delete the addressbook and every contacts within it" : "Esto eliminará la libreta de direcciones y todos los contactos en ella",
+    "Delete {addressbook} ?" : "¿Eliminar {addressbook}?",
     "Deletion of addressbook was not successful." : "No fue posible eliminar la agenda",
     "Renaming of addressbook was not successful." : "No fue posible renombrar la agenda",
     "Addressbook copied to clipboard" : "Agenda copiada al portapapeles",

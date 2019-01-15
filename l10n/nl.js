@@ -38,6 +38,8 @@ OC.L10N.register(
     "Enabled" : "Ingeschakeld",
     "Disabled" : "Uitgeschakeld",
     "Enabled toggle of addressbook was not successful." : "Geactiveerde omschakeling van adresboek is mislukt.",
+    "This will delete the addressbook and every contacts within it" : "Dit verwijdert het adresboek en alle contactpersonen daarbinnen",
+    "Delete {addressbook} ?" : "Verwijderen {addressbook} ?",
     "Deletion of addressbook was not successful." : "Verwijderen adresboek is niet gelukt.",
     "Renaming of addressbook was not successful." : "Hernoemen adresboek is niet gelukt.",
     "Addressbook copied to clipboard" : "Adresboek gekopieerd naar het klembord",
