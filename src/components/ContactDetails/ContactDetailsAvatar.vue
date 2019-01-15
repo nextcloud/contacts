@@ -76,17 +76,21 @@ export default {
 		processFile(event) {
 			if (event.target.files) {
 				let file = event.target.files[0]
-				let reader = new FileReader()
-				let self = this
-				// check if photo property exists to decide whether to add/update it
-				reader.onload = function(e) {
-					self.contact.photo
-						? self.contact.photo = reader.result
-						: self.contact.vCard.addPropertyWithValue('photo', reader.result)
+				if (file.size && file.size <= 1 * 1024 * 1024) {
+					let reader = new FileReader()
+					let self = this
+					// check if photo property exists to decide whether to add/update it
+					reader.onload = function(e) {
+						self.contact.photo
+							? self.contact.photo = reader.result
+							: self.contact.vCard.addPropertyWithValue('photo', reader.result)
 
-					self.$store.dispatch('updateContact', self.contact)
+						self.$store.dispatch('updateContact', self.contact)
+					}
+					reader.readAsDataURL(file)
+				} else {
+					OC.Notification.showTemporary(t('contacts', 'Image is too big (max 1MB).'))
 				}
-				reader.readAsDataURL(file)
 			}
 		},
 
