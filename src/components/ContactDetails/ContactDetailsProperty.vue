@@ -272,6 +272,7 @@ export default {
 		 */
 		deleteProp() {
 			this.contact.vCard.removeProperty(this.property)
+			this.$emit('updatedcontact')
 		}
 	}
 
