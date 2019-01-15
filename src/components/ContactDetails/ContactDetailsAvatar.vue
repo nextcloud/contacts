@@ -76,7 +76,7 @@ export default {
 		processFile(event) {
 			if (event.target.files) {
 				let file = event.target.files[0]
-				if (file.size && file.size <= 1 * 1024 * 1024) {
+				if (file && file.size && file.size <= 1 * 1024 * 1024) {
 					let reader = new FileReader()
 					let self = this
 					// check if photo property exists to decide whether to add/update it
@@ -90,6 +90,8 @@ export default {
 					reader.readAsDataURL(file)
 				} else {
 					OC.Notification.showTemporary(t('contacts', 'Image is too big (max 1MB).'))
+					// reset input
+					event.target.value = ''
 				}
 			}
 		},
