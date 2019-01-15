@@ -130,10 +130,18 @@ let formatDateTime = function(vcardTime, type, locale) {
  * location of the call. So this = DatetimePicker.
  * Therefore we can use any props we pass through datetime-picker
  *
+ * ! TODO: use a DEDICATED function in vue2-datepicker instead of this weird hack
+ *
  * @returns {string}
  */
-DatetimePicker.methods.stringify = function() {
-	return formatDateTime(this.$parent.localValue, this.type, this.$parent.locale)
+if (DatetimePicker && DatetimePicker.methods) {
+	DatetimePicker.methods.stringify = function() {
+		return formatDateTime(this.$parent.localValue, this.type, this.$parent.locale)
+	}
+} else {
+	DatetimePicker.components.DatePicker.methods.stringify = function() {
+		return formatDateTime(this.$parent.$parent.localValue, this.type, this.$parent.$parent.locale)
+	}
 }
 
 export default {
@@ -164,7 +172,7 @@ export default {
 					: 'time',
 
 			// locale and lang data
-			locale: 'en',						// temporary value, see mounted
+			locale: 'en',
 			firstDay: window.firstDay + 1,			// provided by nextcloud
 			lang: {
 				days: window.dayNamesShort,		// provided by nextcloud
