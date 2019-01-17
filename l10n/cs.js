@@ -8,6 +8,7 @@ OC.L10N.register(
     "Add new property" : "Přidat novou vlastnost",
     "Choose property type" : "Zvolit typ vlastnosti",
     "Upload a new picture" : "Nahrát nový obrázek",
+    "Image is too big (max 1MB)." : "Obrázek je příliš velký (nejvýše 1 MB).",
     "No contact selected" : "Nevybrán žádný kontakt",
     "Select a contact on the list to begin" : "Začněte výběrem kontaktu ze seznamu",
     "Loading" : "Načítání",

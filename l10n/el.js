@@ -18,6 +18,7 @@ OC.L10N.register(
     "Rename" : "Μετονομασία",
     "Enabled" : "Ενεργοποιημένο",
     "Disabled" : "Απενεργοποιημένο",
+    "Renaming of addressbook was not successful." : "Αποτυχημένη μετονομασία του βιβλίου διευθύνσεων.",
     "Share with users or groups" : "Διαμοιρασμός με χρήστες ή ομάδες",
     "can edit" : "με δυνατότητα επεξεργασίας",
     "Import into" : "Εισαγωγή σε",
