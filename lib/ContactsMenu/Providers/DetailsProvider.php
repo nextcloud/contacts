@@ -27,6 +27,8 @@ namespace OCA\Contacts\ContactsMenu\Providers;
 use OCP\Contacts\ContactsMenu\IActionFactory;
 use OCP\Contacts\ContactsMenu\IEntry;
 use OCP\Contacts\ContactsMenu\IProvider;
+use OCP\Contacts\IManager;
+use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 
@@ -45,10 +47,31 @@ class DetailsProvider implements IProvider {
 	 * @param IURLGenerator $urlGenerator
 	 * @param IActionFactory $actionFactory
 	 */
-	public function __construct(IURLGenerator $urlGenerator, IActionFactory $actionFactory, IL10N $l10n) {
+	public function __construct(IURLGenerator $urlGenerator,
+								IActionFactory $actionFactory,
+								IL10N $l10n,
+								IManager $manager,
+								IConfig $config) {
 		$this->actionFactory = $actionFactory;
 		$this->urlGenerator = $urlGenerator;
 		$this->l10n = $l10n;
+		$this->manager = $manager;
+		$this->config = $config;
+	}
+
+	/**
+	 * Get (and load when needed) the address book for $key
+	 *
+	 * @param string $addressBookKey
+	 * @return \OCP\IAddressBook
+	 */
+	protected function getAddressBookUri($addressBookKey) {
+		$addressBooks = $this->manager->getAddressbooksUris();
+		if (!array_key_exists($addressBookKey, $addressBooks)) {
+			return null;
+		}
+
+		return $addressBooks[$addressBookKey];
 	}
 
 	/**
@@ -67,11 +90,22 @@ class DetailsProvider implements IProvider {
 			return;
 		}
 
-		$iconUrl = $this->urlGenerator->getAbsoluteURL($this->urlGenerator->imagePath('core', 'actions/info.svg'));
-		$contactsUrl = $this->urlGenerator->getAbsoluteURL('/index.php/apps/contacts#/contact/' . $uid);
-		$action = $this->actionFactory->newLinkAction($iconUrl, $this->l10n->t('Details'), $contactsUrl);
-		$action->setPriority(0);
-		$entry->addAction($action);
+		// We need $this->manager->getAddressbooksUris() to add this function
+		$ncVersion = $this->config->getSystemValue('version', '0.0.0');
+		if (version_compare($ncVersion, '16.0.0', '>=')) {
+
+			$addressBookUri = $this->getAddressBookUri($entry->getProperty('addressbook-key'));
+
+			$iconUrl = $this->urlGenerator->getAbsoluteURL($this->urlGenerator->imagePath('core', 'actions/info.svg'));
+			$url = $this->l10n->t('All contacts') . '/' . $uid . '~' . $addressBookUri;
+
+			$frontControllerActive = ($this->config->getSystemValue('htaccess.IgnoreFrontController', false) === true || getenv('front_controller_active') === 'true');
+			$contactsUrl = $this->urlGenerator->getAbsoluteURL(($frontControllerActive ? '' : '/index.php') . '/apps/contacts/' . $url);
+			
+			$action = $this->actionFactory->newLinkAction($iconUrl, $this->l10n->t('Details'), $contactsUrl);
+			$action->setPriority(0);
+			$entry->addAction($action);
+		}
 	}
 
 }
