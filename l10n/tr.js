@@ -8,6 +8,7 @@ OC.L10N.register(
     "Add new property" : "Özellik ekle",
     "Choose property type" : "Özellik türünü seçin",
     "Upload a new picture" : "Görsel yükleyin",
+    "Image is too big (max 1MB)." : "Görsel çok büyük (en fazla 1MB).",
     "No contact selected" : "Herhangi bir kişi seçilmemiş",
     "Select a contact on the list to begin" : "Başlamak için listeden bir kişi seçin",
     "Loading" : "Yükleniyor",

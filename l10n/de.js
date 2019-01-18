@@ -8,6 +8,7 @@ OC.L10N.register(
     "Add new property" : "Neue Eigenschaft hinzufügen",
     "Choose property type" : "Eigenschaftstyp auswählen",
     "Upload a new picture" : "Neues Bild hochladen",
+    "Image is too big (max 1MB)." : "Bild ist zu groß (max. 1MB).",
     "No contact selected" : "Keine Adresse ausgewählt",
     "Select a contact on the list to begin" : "Wähle einen Kontakt aus der Liste aus, um zu beginnen.",
     "Loading" : "Lade",
