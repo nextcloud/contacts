@@ -8,6 +8,7 @@ OC.L10N.register(
     "Add new property" : "Aldoni novan atributon",
     "Choose property type" : "Elekti atributotipon",
     "Upload a new picture" : "Alŝuti novan bildon",
+    "Image is too big (max 1MB)." : "La bildo tro grandas (maksimume 1 MB).",
     "No contact selected" : "Neniu kontakto elektita",
     "Select a contact on the list to begin" : "Elektu kontakto en la listo por komenci",
     "Loading" : "Ŝargante",
