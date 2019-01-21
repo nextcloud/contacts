@@ -7,6 +7,7 @@ OC.L10N.register(
     "Add new property" : "Lägg till nytt fält",
     "Choose property type" : "Välj typ",
     "Upload a new picture" : "Ladda upp en ny bild",
+    "Image is too big (max 1MB)." : "Bilden är för stor (max 1MB)",
     "No contact selected" : "Ingen kontakt vald",
     "Select a contact on the list to begin" : "Välj en kontakt i listan för att börja",
     "Loading" : "Laddar",
