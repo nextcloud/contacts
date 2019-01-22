@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Харилцагчид",
+    "All contacts" : "Бүх харилцагчид",
     "Details" : "Дэлгэрэнгүй",
     "Download" : "Татаж авах",
     "Delete" : "Устгах",
@@ -11,7 +12,6 @@ OC.L10N.register(
     "Share with users or groups" : "Бусдад түгээх",
     "First name" : "Нэр",
     "Last name" : "Овог",
-    "All contacts" : "Бүх харилцагчид",
     "Nickname" : "Товч нэр",
     "Detailed name" : "Дэлгэрэнгүй нэр",
     "Additional names" : "Нэмэлт нэрүүд",

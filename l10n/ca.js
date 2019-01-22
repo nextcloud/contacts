@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contactes",
+    "All contacts" : "Tots els contactes",
     "Details" : "Detalls",
     "A contacts app for Nextcloud" : "Una aplicació de contactes per al Nextcloud",
     "Add new property" : "Afegeix una nova propietat",
@@ -44,7 +45,6 @@ OC.L10N.register(
     "First name" : "Nom",
     "Last name" : "Cognom",
     "Sort by {sorting}" : "Ordena per {sorting}",
-    "All contacts" : "Tots els contactes",
     "Unable to create the contact." : "No s'ha pogut crear el contacte.",
     "Contact not found" : "No s'ha trobat el contacte",
     "Nickname" : "Sobrenom",

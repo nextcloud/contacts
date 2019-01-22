@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Các danh bạ",
+    "All contacts" : "Tất cả các tên liên lạc",
     "Details" : "Chi tiết",
     "Download" : "Tải về",
     "Delete" : "Xóa",
@@ -13,7 +14,6 @@ OC.L10N.register(
     "Import into" : "Nhập vào",
     "First name" : "Tên",
     "Last name" : "Họ",
-    "All contacts" : "Tất cả các tên liên lạc",
     "Nickname" : "Biệt danh",
     "Detailed name" : "Tên chi tiết",
     "Additional names" : "Tên bổ sung",

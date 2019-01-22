@@ -1,5 +1,6 @@
 { "translations": {
     "Contacts" : "Kontakter",
+    "All contacts" : "Alle kontakter",
     "Details" : "Detaljer",
     "Download" : "Download",
     "Delete" : "Slet",
@@ -11,7 +12,6 @@
     "Import into" : "Importer til",
     "First name" : "Fornavn",
     "Last name" : "Efternavn",
-    "All contacts" : "Alle kontakter",
     "Nickname" : "Kaldenavn",
     "Detailed name" : "Detaljeret navn",
     "Additional names" : "Mellemnavne",

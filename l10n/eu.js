@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontaktuak",
+    "All contacts" : "Kontaktu guztiak",
     "Details" : "Xehetasuna",
     "Loading" : "Kargatzen",
     "Company" : "Konpainia",
@@ -21,7 +22,6 @@ OC.L10N.register(
     "First name" : "Izena",
     "Last name" : "Abizena",
     "Display name" : "Pantaila-izena",
-    "All contacts" : "Kontaktu guztiak",
     "Contact not found" : "Kontaktua ez da aurkitu",
     "Nickname" : "Ezizena",
     "Detailed name" : "Izen osoa",

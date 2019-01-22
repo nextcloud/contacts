@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contautos",
+    "All contacts" : "Tolos contautos",
     "Details" : "Detalles",
     "Download" : "Baxar",
     "Delete" : "Desaniciar",
@@ -12,7 +13,6 @@ OC.L10N.register(
     "Share with users or groups" : "Compartir con usuarios y grupos",
     "First name" : "Nome",
     "Last name" : "Apellíu",
-    "All contacts" : "Tolos contautos",
     "Nickname" : "Nomatu",
     "Detailed name" : "Nome detalláu",
     "Additional names" : "Nomes adicionales",

@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Stiki",
+    "All contacts" : "Vsi stiki",
     "Details" : "Podrobnosti",
     "Download" : "Prejmi",
     "Delete" : "Izbriši",
@@ -15,7 +16,6 @@ OC.L10N.register(
     "Import into" : "Uvozi v",
     "First name" : "Ime",
     "Last name" : "Priimek",
-    "All contacts" : "Vsi stiki",
     "Nickname" : "Vzdevek",
     "Detailed name" : "Podrobno ime",
     "Additional names" : "Druga imena",

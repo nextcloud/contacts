@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "جهات الاتصال",
+    "All contacts" : "كل الجهات",
     "Details" : "التفاصيل",
     "Download" : "تحميل",
     "Delete" : "حذف",
@@ -13,7 +14,6 @@ OC.L10N.register(
     "Import into" : "إستيراد إلى",
     "First name" : "الإسم",
     "Last name" : "اللقب",
-    "All contacts" : "كل الجهات",
     "Nickname" : "كنية.\nلقب.",
     "Detailed name" : "الإسم بالتفصيل",
     "Additional names" : "الأسماء الإضافية",

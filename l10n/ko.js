@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "연락처",
+    "All contacts" : "모든 연락처",
     "Details" : "자세한 정보",
     "Download" : "다운로드",
     "Delete" : "삭제",
@@ -15,7 +16,6 @@ OC.L10N.register(
     "Import into" : "다음으로 가져오기",
     "First name" : "이름",
     "Last name" : "성",
-    "All contacts" : "모든 연락처",
     "Nickname" : "별명",
     "Detailed name" : "자세한 이름",
     "Additional names" : "추가 이름",

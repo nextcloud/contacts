@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontaktid",
+    "All contacts" : "Kõik kontaktid",
     "Details" : "Üksikasjad",
     "Download" : "Lae alla",
     "Delete" : "Kustuta",
@@ -15,7 +16,6 @@ OC.L10N.register(
     "Import into" : "import sisse",
     "First name" : "Eesnimi",
     "Last name" : "Perekonnanimi",
-    "All contacts" : "Kõik kontaktid",
     "Nickname" : "Hüüdnimi",
     "Detailed name" : "Üksikasjalik nimi",
     "Additional names" : "Lisanimed",

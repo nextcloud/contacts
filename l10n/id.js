@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontak",
+    "All contacts" : "Semua kontak",
     "Download" : "Unduh",
     "Delete" : "Hapus",
     "Groups" : "Grup",
@@ -9,7 +10,6 @@ OC.L10N.register(
     "Share with users or groups" : "Bagi dengan pengguna atau grup",
     "First name" : "Nama depan",
     "Last name" : "Nama belakang",
-    "All contacts" : "Semua kontak",
     "Nickname" : "Nama panggilan",
     "Detailed name" : "Nama lengkap",
     "Additional names" : "Nama tambahan",

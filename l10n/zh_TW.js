@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "通訊錄",
+    "All contacts" : "所有聯絡人",
     "Details" : "詳細資料",
     "Download" : "下載",
     "Delete" : "刪除",
@@ -15,7 +16,6 @@ OC.L10N.register(
     "Import into" : "匯入至",
     "First name" : "名",
     "Last name" : "姓",
-    "All contacts" : "所有聯絡人",
     "Nickname" : "暱稱",
     "Detailed name" : "詳細名稱",
     "Additional names" : "別名/中間名",

@@ -1,5 +1,6 @@
 { "translations": {
     "Contacts" : "Kontaktuak",
+    "All contacts" : "Kontaktu guztiak",
     "Details" : "Xehetasuna",
     "Loading" : "Kargatzen",
     "Company" : "Konpainia",
@@ -19,7 +20,6 @@
     "First name" : "Izena",
     "Last name" : "Abizena",
     "Display name" : "Pantaila-izena",
-    "All contacts" : "Kontaktu guztiak",
     "Contact not found" : "Kontaktua ez da aurkitu",
     "Nickname" : "Ezizena",
     "Detailed name" : "Izen osoa",

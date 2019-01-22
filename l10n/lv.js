@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontakti",
+    "All contacts" : "Visi kontakti",
     "Details" : "Sīkāka informācija",
     "A contacts app for Nextcloud" : "Kontaktpersonu aplikācija priekš Nextcloud",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Kontaktpersonu lietotne ir grafiskais interfeiss priekš Nextcloud iebūvētā CardDAV servera. Tas ļauj vienkārši sinhronizēt kontaktpersonu informāciju  no vairākām ierīcēm ar tavu Nextcloud serveri un rediģēt tos tiešsaistē.\n\n* 🚀 **Savienojums ar citām Nextcloud lietotnēm!** Pašlaik ar pastu un kalendāru - drīz vēl vairāk.\n* 🎉  **Nekad neaizmirsti kāda dzimšanas dienu** Sinhronizējat dzimšanas dienu un citas jubilejas ar Nextcloud Kalendāru.\n* 👥 **Adrešu grāmatu kopīgošana!** Velaties nodot kontaktpersonas informāciju draugam vai kolēģīm? Nekādu problēmu!.\n* 🙈 **Mēs nemēģinam atkal izgudrot riteni!** Bazēts uz SabreDAV, lieliskajām atvērtā pirmkoda bibliotēkām.",
@@ -32,7 +33,6 @@ OC.L10N.register(
     "An error occurred, unable to create the addressbook." : "Radās kļūda, nav iespējams izveidot adrešu grāmatu.",
     "First name" : "Vārds",
     "Last name" : "Uzvārds",
-    "All contacts" : "Visi kontakti",
     "Contact not found" : "Kontaktpersona nav atrasta!",
     "Nickname" : "Iesauka",
     "Detailed name" : "Izvērsts nosaukums",

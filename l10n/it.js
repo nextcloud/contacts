@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contatti",
+    "All contacts" : "Tutti i contatti",
     "Details" : "Dettagli",
     "A contacts app for Nextcloud" : "Un'applicazione di contatti per Nextcloud",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "L'applicazione Contatti di Nextcloud è un'interfaccia utente per il server CardDAV di Nextcloud. Sincronizza i contatti in modo semplice da diversi dispositivi con il tuo Nextcloud e li modifica in linea.\n\n* 🚀 **Integrazione con altre applicazioni di Nextcloud!** Attualmente Posta e Calendario – altre arriveranno.\n* 🎉 **Non dimenticare mai un compleanno!** Puoi sincronizzare i compleanni e gli altri eventi ricorrenti con il tuo calendario di Nextcloud.\n* 👥 **Condivisione di rubriche!** Desideri condividere i tuoi contatti con i tuoi amici o colleghi? Nessun problema!\n* 🙈 **Non stiamo reinventando la ruota!** Basata sull'ottima libreria open source SabreDAV.",
@@ -60,7 +61,6 @@ OC.L10N.register(
     "Last name" : "Cognome",
     "Display name" : "Nome visualizzato",
     "Sort by {sorting}" : "Ordina per {sorting}",
-    "All contacts" : "Tutti i contatti",
     "Unable to create the contact." : "Impossibile creare il contatto.",
     "Contact not found" : "Contatto non trovato",
     "Nickname" : "Pseudonimo",

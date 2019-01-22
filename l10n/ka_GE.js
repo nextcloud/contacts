@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "კონტაქტები",
+    "All contacts" : "ყველა კონტაქტი",
     "Details" : "დეტალები",
     "Download" : "ჩამოტვირთვა",
     "Delete" : "გაუქმება",
@@ -15,7 +16,6 @@ OC.L10N.register(
     "Import into" : "იმპორტირება",
     "First name" : "სახელი",
     "Last name" : "გვარი",
-    "All contacts" : "ყველა კონტაქტი",
     "Nickname" : "ნიკნეიმი",
     "Detailed name" : "დეტალური სახელი",
     "Additional names" : "დამატებითი სახელები",

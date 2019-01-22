@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contactpersonen",
+    "All contacts" : "Alle contactpersonen",
     "Details" : "Details",
     "A contacts app for Nextcloud" : "Een contactpersonen app voor Nextcloud",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "De contactpersonen app is een gebruikersinterface voor de Nextcloud's CardDAV server. Eenvoudig synchroniseren van contacten vanuit verschillende apparaten met jouw Nextcloud en online bewerken ervan.\n\n* 🚀 **Integratie met andere Nextcloud apps!** Momenteel Mail en Agenda - meer volgt later.\n* 🎉 **vergeet geen enkele verjaardag!** Je kunt verjaardagen en andere herhalende afspraken synchroniseren met je Nextcloud Agenda.\n* 👥 **Delen van adresboeken!** Wil je jouw contactpersonen delen met vrienden of collega's? Geen probleem!.\n* 🙈 **We vinden het wiel niet opnieuw uit!** Gebaseerd op de fraaie SabreDAV library.",
@@ -60,7 +61,6 @@ OC.L10N.register(
     "Last name" : "Achternaam",
     "Display name" : "Weergavenaam",
     "Sort by {sorting}" : "Sorteren op {sorting}",
-    "All contacts" : "Alle contactpersonen",
     "Unable to create the contact." : "Kan contactpersoon niet aanmaken.",
     "Contact not found" : "Contactpersoon niet gevonden.",
     "Nickname" : "Roepnaam",

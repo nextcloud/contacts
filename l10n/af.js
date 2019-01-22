@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontakte",
+    "All contacts" : "Alle kontakte",
     "Details" : "Details",
     "A contacts app for Nextcloud" : "’n Kontakte-toep vir Nextcloud",
     "Name" : "Naam",
@@ -24,7 +25,6 @@ OC.L10N.register(
     "First name" : "Naam",
     "Last name" : "Van",
     "Display name" : "Vertoonnaam",
-    "All contacts" : "Alle kontakte",
     "Nickname" : "Bynaam",
     "Detailed name" : "Gedetailleerde naam",
     "Additional names" : "Addisionele name",

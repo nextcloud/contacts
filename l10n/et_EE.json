@@ -1,5 +1,6 @@
 { "translations": {
     "Contacts" : "Kontaktid",
+    "All contacts" : "Kõik kontaktid",
     "Details" : "Üksikasjad",
     "Download" : "Lae alla",
     "Delete" : "Kustuta",
@@ -13,7 +14,6 @@
     "Import into" : "import sisse",
     "First name" : "Eesnimi",
     "Last name" : "Perekonnanimi",
-    "All contacts" : "Kõik kontaktid",
     "Nickname" : "Hüüdnimi",
     "Detailed name" : "Üksikasjalik nimi",
     "Additional names" : "Lisanimed",

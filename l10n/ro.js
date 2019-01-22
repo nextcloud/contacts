@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contacte",
+    "All contacts" : "Toate contactele",
     "Details" : "Detalii",
     "Download" : "Descărcare",
     "Delete" : "Șterge",
@@ -15,7 +16,6 @@ OC.L10N.register(
     "Import into" : "Importă în",
     "First name" : "Prenume",
     "Last name" : "Nume",
-    "All contacts" : "Toate contactele",
     "Nickname" : "Pseudonim",
     "Detailed name" : "Nume detaliat",
     "Additional names" : "Nume adiționale",

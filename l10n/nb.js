@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontakter",
+    "All contacts" : "Alle kontakter",
     "Details" : "Detaljer",
     "Download" : "Last ned",
     "Delete" : "Slett",
@@ -15,7 +16,6 @@ OC.L10N.register(
     "Import into" : "Importer inn i",
     "First name" : "Fornavn",
     "Last name" : "Etternavn",
-    "All contacts" : "Alle kontakter",
     "Nickname" : "Kallenavn",
     "Detailed name" : "Detaljert navn",
     "Additional names" : "Ev. mellomnavn",

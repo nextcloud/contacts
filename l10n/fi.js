@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Yhteystiedot",
+    "All contacts" : "Kaikki yhteystiedot",
     "Details" : "Tiedot",
     "A contacts app for Nextcloud" : "Yhteystietosovellus Nextcloudille",
     "Add new property" : "Lisää uusi ominaisuus",
@@ -54,7 +55,6 @@ OC.L10N.register(
     "Last name" : "Sukunimi",
     "Display name" : "Näyttönimi",
     "Sort by {sorting}" : "Järjestysperuste {sorting}",
-    "All contacts" : "Kaikki yhteystiedot",
     "Unable to create the contact." : "Yhteystiedon luominen ei onnistunut.",
     "Contact not found" : "Yhteytietoa ei löytynyt",
     "Nickname" : "Kutsumanimi",

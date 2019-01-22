@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontakter",
+    "All contacts" : "Alla kontakter",
     "Details" : "Detaljer",
     "A contacts app for Nextcloud" : "En kontakt-app för Nextcloud",
     "Add new property" : "Lägg till nytt fält",
@@ -58,7 +59,6 @@ OC.L10N.register(
     "Last name" : "Efternamn",
     "Display name" : "Visningsnamn",
     "Sort by {sorting}" : "Sortera efter {sorting}",
-    "All contacts" : "Alla kontakter",
     "Unable to create the contact." : "Kunde inte skapa kontakten.",
     "Contact not found" : "Kontakt ej hittad",
     "Nickname" : "Smeknamn",

@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contactos",
+    "All contacts" : "Tote contactos",
     "Download" : "Discargar",
     "Delete" : "Deler",
     "Groups" : "Gruppos",
@@ -9,7 +10,6 @@ OC.L10N.register(
     "Share with users or groups" : "Compartir con usatores o gruppos",
     "First name" : "Prime nomine",
     "Last name" : "Ultime nomine",
-    "All contacts" : "Tote contactos",
     "Nickname" : "Pseudonymo",
     "Detailed name" : "Nomine detaliate",
     "Additional names" : "Nomines additional",

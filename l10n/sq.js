@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontaktet",
+    "All contacts" : "Të gjithë kontaktet",
     "Details" : "Detajet",
     "A contacts app for Nextcloud" : "Një aplikacion kontaktesh për Nextcloud",
     "Download" : "Shkarko",
@@ -16,7 +17,6 @@ OC.L10N.register(
     "Import into" : "Importo tek ",
     "First name" : "Emër",
     "Last name" : "Mbiemër",
-    "All contacts" : "Të gjithë kontaktet",
     "Nickname" : "Nofkë",
     "Detailed name" : "Emri i hollësishëm",
     "Additional names" : "Emra shtesë",

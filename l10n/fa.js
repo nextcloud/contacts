@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "مخاطبین",
+    "All contacts" : "تمام مخاطبین",
     "Details" : "جزئیات",
     "Download" : "دانلود",
     "Delete" : "حذف",
@@ -13,7 +14,6 @@ OC.L10N.register(
     "Import into" : "وارد کردن به",
     "First name" : "نام",
     "Last name" : "نام‌خانوادگی",
-    "All contacts" : "تمام مخاطبین",
     "Nickname" : "نام مستعار",
     "Detailed name" : "نام کامل",
     "Additional names" : "نام های دیگر",

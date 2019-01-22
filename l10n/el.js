@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Επαφές",
+    "All contacts" : "Όλες οι επαφές",
     "Details" : "Λεπτομέριες",
     "A contacts app for Nextcloud" : "Εφαρμογή επαφών για το Nextcloud",
     "Upload a new picture" : "Μεταφόρτωση νέας φωτογραφίας",
@@ -26,7 +27,6 @@ OC.L10N.register(
     "First name" : "Όνομα",
     "Last name" : "Επώνυμο",
     "Display name" : "Εμφανιζόμενο όνομα",
-    "All contacts" : "Όλες οι επαφές",
     "Nickname" : "Παρατσούκλι",
     "Detailed name" : "Λεπτομερές όνομα",
     "Additional names" : "Επιπλέον ονόματα",
