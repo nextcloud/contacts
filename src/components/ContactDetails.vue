@@ -119,6 +119,7 @@
 
 <script>
 import debounce from 'debounce'
+import asap from 'asap'
 
 import rfcProps from 'Models/rfcProps'
 
@@ -368,7 +369,7 @@ export default {
 		 * photo, fn, org, title
 		 */
 		debounceUpdateContact: debounce(function(e) {
-			this.updateContact()
+			asap(this.updateContact())
 		}, 500),
 
 		// menu handling
