@@ -243,7 +243,7 @@ export default {
 			event.stopPropagation()
 
 			// copy link for addressbook to clipboard
-			this.$copyText(this.addressbook.url)
+			this.$copyText(window.location.origin + this.addressbook.url)
 				.then(e => {
 					event.preventDefault()
 					this.copySuccess = true
