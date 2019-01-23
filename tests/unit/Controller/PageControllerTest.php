@@ -11,12 +11,11 @@
 
 namespace OCA\Contacts\Controller;
 
-use PHPUnit_Framework_TestCase;
-
 use OCP\AppFramework\Http\TemplateResponse;
+use PHPUnit\Framework\TestCase as Base;
 
 
-class PageControllerTest extends PHPUnit_Framework_TestCase {
+class PageControllerTest extends Base {
 
 	private $controller;
 	private $userId = 'john';
@@ -35,14 +34,7 @@ class PageControllerTest extends PHPUnit_Framework_TestCase {
 
 		$this->assertEquals(['user' => 'john'], $result->getParams());
 		$this->assertEquals('main', $result->getTemplateName());
+		$this->assertEquals('user', $result->getRenderAs());
 		$this->assertTrue($result instanceof TemplateResponse);
 	}
-
-
-	public function testEcho() {
-		$result = $this->controller->doEcho('hi');
-		$this->assertEquals(['echo' => 'hi'], $result->getData());
-	}
-
-
 }

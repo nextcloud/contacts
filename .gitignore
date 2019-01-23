@@ -16,4 +16,4 @@ yarn-error.log*
 
 js/
 build/
-coverage/
+coverage*
