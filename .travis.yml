@@ -1,11 +1,116 @@
-language: node_js
+sudo: required
+dist: trusty
+language: php
+php:
+  - 7.1
+  - 7.2
+
+addons:
+  apt:
+    packages:
+      - mysql-server-5.6
+      - mysql-client-core-5.6
+      - mysql-client-5.6
+      - php5-pgsql
+      - libxml2-utils
+
+services:
+  - postgresql
+
+env:
+  global:
+    - CORE_BRANCH=master
+    - TEST_JS=FALSE
+    - PHP_COVERAGE=FALSE
+  matrix:
+    - DB=sqlite
+
+branches:
+  only:
+    - master
+    - /^stable\d+(\.\d+)?$/
+    - /^v\d++(\.\d+)?+(\.\d+)?+(\.\d+)?$/
+
+matrix:
+  include:
+    - php: 7.1
+      env: "DB=mysql CORE_BRANCH=master"
+    - php: 7.2
+      env: "DB=mysql CORE_BRANCH=master TEST_JS=TRUE PHP_COVERAGE=TRUE"
+    - php: 7.1
+      env: "DB=pgsql CORE_BRANCH=master"
+    - php: 7.2
+      env: "DB=pgsql CORE_BRANCH=master"
+  fast_finish: true
+
 cache:
   directories:
-  - node_modules
-node_js:
-- node
+  - "$HOME/.composer/cache/files"
+  - "$HOME/.npm"
+
+before_install:
+  - php --info
+
+  # Set up DB
+  - if [[ "$DB" == 'pgsql' ]]; then createuser -U travis -s oc_autotest; fi
+  - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e 'create database oc_autotest;'; fi
+  - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e "CREATE USER 'oc_autotest'@'localhost' IDENTIFIED BY '';"; fi
+  - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e "GRANT ALL ON oc_autotest.* TO 'oc_autotest'@'localhost';"; fi
+  - cd ..
+  - git clone https://github.com/nextcloud/server.git --recursive --depth 1 -b $CORE_BRANCH core
+  - mv contacts core/apps/
+
+before_script:
+     # Set up core
+  - php -f core/occ maintenance:install --database-name oc_autotest --database-user oc_autotest --admin-user admin --admin-pass admin --database $DB --database-pass=''
+
+  # Set up app
+  - php -f core/occ app:enable contacts
+
+  # Enable app twice to check occ errors of registered commands
+  - php -f core/occ app:enable contacts
+  - cd core/apps/contacts
+
+  # Run JS tests
+  - npm install -g npm@latest
+  - make dev-setup
+
+  # XDebug is only needed if we report coverage -> speeds up other builds
+  - if [[ "$PHP_COVERAGE" = "FALSE" ]];
+    then phpenv config-rm xdebug.ini;
+    fi
+
 script:
-- npm run build
-- npm run lint
-- npm run stylelint
-- npm run test
+  # Check info.xml schema validity
+  - wget https://apps.nextcloud.com/schema/apps/info.xsd
+  - xmllint appinfo/info.xml --schema info.xsd --noout
+  - rm info.xsd
+
+  # Check PHP syntax errors
+  - find . -name \*.php -not -path './vendor/*' -exec php -l "{}" \;
+
+  # Run server's app code checker
+  - php ../../occ app:check-code contacts
+
+  # Run JS tests
+  - if [[ "$TEST_JS" = "TRUE" ]];
+    then make test;
+    fi
+
+  # Test JS compilation
+  - make build-js-production
+
+  # Test php
+  - make test-php
+  - if [[ "$PHP_COVERAGE" = "TRUE" ]];
+    then make test-php-coverage;
+    else make test-php;
+    fi
+
+after_success:
+  - if [[ "$PHP_COVERAGE" = "TRUE" ]];
+    then bash <(curl -s https://codecov.io/bash);
+    fi
+
+after_failure:
+    - cat ../../data/nextcloud.log

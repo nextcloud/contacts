@@ -43,6 +43,12 @@ class DetailsProvider implements IProvider {
 	/** @var IL10N */
 	private $l10n;
 
+	/** @var IManager */
+	private $manager;
+
+	/** @var IConfig */
+	private $config;
+
 	/**
 	 * @param IURLGenerator $urlGenerator
 	 * @param IActionFactory $actionFactory
@@ -60,13 +66,28 @@ class DetailsProvider implements IProvider {
 	}
 
 	/**
+	 * Return a list of the user's addressbooks unique uris
+	 * 
+	 * @return array
+	 * @since 16.0.0
+	 */
+	protected function getAddressBooksUris(): Array {
+		$result = array();
+		foreach($this->manager->getUserAddressbooks() as $addressBook) {
+			$result[$addressBook->getKey()] = $addressBook->getUri();
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Get (and load when needed) the address book for $key
 	 *
 	 * @param string $addressBookKey
 	 * @return \OCP\IAddressBook
 	 */
 	protected function getAddressBookUri($addressBookKey) {
-		$addressBooks = $this->manager->getAddressbooksUris();
+		$addressBooks = $this->getAddressBooksUris();
 		if (!array_key_exists($addressBookKey, $addressBooks)) {
 			return null;
 		}
@@ -101,7 +122,7 @@ class DetailsProvider implements IProvider {
 
 			$frontControllerActive = ($this->config->getSystemValue('htaccess.IgnoreFrontController', false) === true || getenv('front_controller_active') === 'true');
 			$contactsUrl = $this->urlGenerator->getAbsoluteURL(($frontControllerActive ? '' : '/index.php') . '/apps/contacts/' . $url);
-			
+
 			$action = $this->actionFactory->newLinkAction($iconUrl, $this->l10n->t('Details'), $contactsUrl);
 			$action->setPriority(0);
 			$entry->addAction($action);

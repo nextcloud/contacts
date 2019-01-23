@@ -9,7 +9,7 @@ source_package_name=$(source_build_directory)/$(app_name)
 appstore_build_directory=$(CURDIR)/build/artifacts/appstore
 appstore_package_name=$(appstore_build_directory)/$(app_name)
 
-all: dev-setup lint build-js-production test
+all: dev-setup lint build-js-production test test-php
 
 # Dev env management
 dev-setup: clean clean-dev npm-init
@@ -39,6 +39,14 @@ test-watch:
 
 test-coverage:
 	npm run test:coverage
+
+test-php:
+	phpunit -c phpunit.xml
+	phpunit -c phpunit.integration.xml
+
+test-php-coverage:
+	phpunit -c phpunit.xml --coverage-clover=coverage-unit.xml
+	phpunit -c phpunit.integration.xml --coverage-clover=coverage-integration.xml
 
 # Linting
 lint:

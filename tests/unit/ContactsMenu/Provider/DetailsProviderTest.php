@@ -28,21 +28,30 @@ use OCA\Contacts\ContactsMenu\Providers\DetailsProvider;
 use OCP\Contacts\ContactsMenu\IActionFactory;
 use OCP\Contacts\ContactsMenu\IEntry;
 use OCP\Contacts\ContactsMenu\ILinkAction;
+use OCP\Contacts\IManager;
+use OCP\IAddressBook;
+use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
-use PHPUnit_Framework_MockObject_MockObject;
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase as Base;
 
-class DetailsProviderTest extends PHPUnit_Framework_TestCase {
+class DetailsProviderTest extends Base {
 
-	/** @var IURLGenerator|PHPUnit_Framework_MockObject_MockObject */
+	/** @var IURLGenerator|MockObject */
 	private $urlGenerator;
 
-	/** @var IActionFactory|PHPUnit_Framework_MockObject_MockObject */
+	/** @var IActionFactory|MockObject */
 	private $actionFactory;
 
-	/** @var IL10n|PHPUnit_Framework_MockObject_MockObject */
+	/** @var IL10n|MockObject */
 	private $l10n;
+
+	/** @var IManager|MockObject */
+	private $manager;
+
+	/** @var IConfig|MockObject */
+	private $config;
 
 	/** @var DetailsProvider */
 	private $provider;
@@ -50,59 +59,148 @@ class DetailsProviderTest extends PHPUnit_Framework_TestCase {
 	protected function setUp() {
 		parent::setUp();
 
-		$this->urlGenerator = $this->createMock(IURLGenerator::class);
+		$this->urlGenerator  = $this->createMock(IURLGenerator::class);
 		$this->actionFactory = $this->createMock(IActionFactory::class);
-		$this->l10n = $this->createMock(IL10N::class);
-		$this->provider = new DetailsProvider($this->urlGenerator, $this->actionFactory, $this->l10n);
+		$this->l10n          = $this->createMock(IL10N::class);
+		$this->manager       = $this->createMock(IManager::class);
+		$this->config        = $this->createMock(IConfig::class);
+		$this->provider      = new DetailsProvider(
+			$this->urlGenerator,
+			$this->actionFactory,
+			$this->l10n,
+			$this->manager,
+			$this->config
+		);
 	}
 
-	public function testProcess() {
-		$entry = $this->createMock(IEntry::class);
-		$action = $this->createMock(ILinkAction::class);
+	public function eventProvider() {
+		return [
+			['16.0.0', true, 'https://cloud.example.com/apps/contacts/All contacts/e3a71614-c602-4eb5-9994-47eec551542b~contacts-1'],
+			['16.0.10', false, 'https://cloud.example.com/index.php/apps/contacts/All contacts/e3a71614-c602-4eb5-9994-47eec551542b~contacts-1'],
+			['17.0.0', true, 'https://cloud.example.com/apps/contacts/All contacts/e3a71614-c602-4eb5-9994-47eec551542b~contacts-1'],
+		];
+	}
 
-		$entry->expects($this->exactly(2))
-			->method('getProperty')
-			->will($this->returnValueMap([
-					['UID', 'e3a71614-c602-4eb5-9994-47eec551542b'],
-					['isLocalSystemBook', null]
-		]));
+	/**
+	 * only NC16+ have the contactsmenu integration
+	 * https://github.com/nextcloud/server/pull/13642
+	 *
+	 * @dataProvider eventProvider
+	 * @param string $version
+	 * @param boolean $frontController
+	 * @param string $resultUri
+	 */
+	public function testProcessNC16AndAbove($version, $frontControllerActive, $resultUri) {
+		$entry       = $this->createMock(IEntry::class);
+		$action      = $this->createMock(ILinkAction::class);
+		$addressbook = $this->createMock(IAddressBook::class);
+
+		// DATA
+		$domain = 'https://cloud.example.com';
+		$uid = 'e3a71614-c602-4eb5-9994-47eec551542b';
+		$abUri = 'contacts-1';
+		$iconUrl = 'core/img/actions/info.svg';
+		$defaultGroup = 'All contacts';
+		$index = $frontControllerActive ? '' : '/index.php';
+
+
+		$this->config->expects($this->at(0))
+		     ->method('getSystemValue')
+		     ->with('version', '0.0.0')
+		     ->willReturn($version);
+
+		$this->config->expects($this->at(1))
+		     ->method('getSystemValue')
+		     ->with('htaccess.IgnoreFrontController', false)
+		     ->willReturn($frontControllerActive);
+
+		$entry->expects($this->exactly(3))
+		      ->method('getProperty')
+		      ->will($this->returnValueMap([
+			        ['UID', $uid],
+			        ['isLocalSystemBook', null],
+			        ['addressbook-key', 1]
+		        ]));
+
+		$addressbook->expects($this->once())
+		            ->method('getKey')
+		            ->willReturn(1);
+
+		$addressbook->expects($this->once())
+		            ->method('getUri')
+		            ->willReturn($abUri);
+
+		$this->manager->expects($this->once())
+		     ->method('getUserAddressbooks')
+		     ->willReturn([1 => $addressbook]);
+
+		// Action icon
 		$this->urlGenerator->expects($this->once())
-			->method('imagePath')
-			->with('core', 'actions/info.svg')
-			->willReturn('core/img/actions/info.svg');
-		$iconUrl = 'https://example.com/core/img/actions/info.svg';
+		     ->method('imagePath')
+		     ->with('core', 'actions/info.svg')
+		     ->willReturn($iconUrl);
+
+		// Action icon and contact absolute urls
 		$this->urlGenerator->expects($this->exactly(2))
-			->method('getAbsoluteURL')
-			->will($this->returnValueMap([
-					['/index.php/apps/contacts#/contact/e3a71614-c602-4eb5-9994-47eec551542b', 'cloud.example.com/index.php/apps/contacts#/contact/e3a71614-c602-4eb5-9994-47eec551542b'],
-					['core/img/actions/info.svg', $iconUrl],
-		]));
-		$this->l10n->expects($this->once())
-			->method('t')
-			->with('Details')
-			->willReturnArgument(0);
+		     ->method('getAbsoluteURL')
+		     ->will($this->returnValueMap([
+			         [$iconUrl, "$domain/$iconUrl"],
+			         ["$index/apps/contacts/$defaultGroup/$uid~$abUri", "$domain$index/apps/contacts/$defaultGroup/$uid~$abUri"]
+		         ]));
+
+		// Translations
+		$this->l10n->expects($this->at(0))
+		     ->method('t')
+		     ->with($defaultGroup)
+		     ->willReturn($defaultGroup);
+		$this->l10n->expects($this->at(1))
+		     ->method('t')
+		     ->with('Details')
+			 ->willReturnArgument(0);
+			 
 		$this->actionFactory->expects($this->once())
-			->method('newLinkAction')
-			->with($this->equalTo($iconUrl), $this->equalTo('Details'), $this->equalTo('cloud.example.com/index.php/apps/contacts#/contact/e3a71614-c602-4eb5-9994-47eec551542b'))
-			->willReturn($action);
+		     ->method('newLinkAction')
+		     ->with($this->equalTo("$domain/$iconUrl"), $this->equalTo('Details'), $this->equalTo($resultUri))
+		     ->willReturn($action);
 		$action->expects($this->once())
-			->method('setPriority')
-			->with($this->equalTo(0));
+		       ->method('setPriority')
+		       ->with($this->equalTo(0));
 		$entry->expects($this->once())
-			->method('addAction')
-			->with($action);
+		      ->method('addAction')
+		      ->with($action);
 
 		$this->provider->process($entry);
+	}
+
+	/**
+	 * NC15 doesn't have the contactsmenu integration
+	 * https://github.com/nextcloud/server/pull/13642
+	 */
+	public function testProcessNC15() {
+		$this->config->expects($this->once())
+		     ->method('getSystemValue')
+		     ->with('version', '0.0.0')
+		     ->willReturn('15.0.0.0');
+
+		$entry = $this->createMock(IEntry::class);
+		$entry->expects($this->exactly(2))
+		      ->method('getProperty')
+		      ->will($this->returnValueMap([
+			         ['UID', 'e3a71614-c602-4eb5-9994-47eec551542b'],
+			         ['isLocalSystemBook', null]
+		         ]));
+
+		$this->assertNull($this->provider->process($entry));
 	}
 
 	public function testProcessNoUID() {
 		$entry = $this->createMock(IEntry::class);
 		$entry->expects($this->once())
-			->method('getProperty')
-			->with($this->equalTo('UID'))
-			->willReturn(null);
+		      ->method('getProperty')
+		      ->with($this->equalTo('UID'))
+		      ->willReturn(null);
 		$entry->expects($this->never())
-			->method('addAction');
+		      ->method('addAction');
 
 		$this->provider->process($entry);
 	}
@@ -110,13 +208,13 @@ class DetailsProviderTest extends PHPUnit_Framework_TestCase {
 	public function testProcessSystemContact() {
 		$entry = $this->createMock(IEntry::class);
 		$entry->expects($this->exactly(2))
-			->method('getProperty')
-			->will($this->returnValueMap([
-					['UID', 1234],
-					['isLocalSystemBook', true]
-		]));
+		      ->method('getProperty')
+		      ->will($this->returnValueMap([
+			         ['UID', 1234],
+			         ['isLocalSystemBook', true]
+		         ]));
 		$entry->expects($this->never())
-			->method('addAction');
+		      ->method('addAction');
 
 		$this->provider->process($entry);
 	}
