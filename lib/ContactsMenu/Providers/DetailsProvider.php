@@ -43,6 +43,12 @@ class DetailsProvider implements IProvider {
 	/** @var IL10N */
 	private $l10n;
 
+	/** @var IManager */
+	private $manager;
+
+	/** @var IConfig */
+	private $config;
+
 	/**
 	 * @param IURLGenerator $urlGenerator
 	 * @param IActionFactory $actionFactory
@@ -116,7 +122,7 @@ class DetailsProvider implements IProvider {
 
 			$frontControllerActive = ($this->config->getSystemValue('htaccess.IgnoreFrontController', false) === true || getenv('front_controller_active') === 'true');
 			$contactsUrl = $this->urlGenerator->getAbsoluteURL(($frontControllerActive ? '' : '/index.php') . '/apps/contacts/' . $url);
-			
+
 			$action = $this->actionFactory->newLinkAction($iconUrl, $this->l10n->t('Details'), $contactsUrl);
 			$action->setPriority(0);
 			$entry->addAction($action);
