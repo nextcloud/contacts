@@ -35,7 +35,6 @@
 		"test:watch": "mocha-webpack -w --webpack-config webpack.test.js --interactive false --require tests/setup.js \"tests/js/**/*.spec.js\""
 	},
 	"dependencies": {
-		"asap": "^2.0.6",
 		"cdav-library": "github:nextcloud/cdav-library",
 		"debounce": "^1.2.0",
 		"downloadjs": "^1.4.7",
@@ -44,6 +43,7 @@
 		"nextcloud-server": "^0.15.9",
 		"nextcloud-vue": "^0.5.1",
 		"p-limit": "^2.1.0",
+		"p-queue": "^3.0.0",
 		"uuid": "^3.3.2",
 		"v-tooltip": "^2.0.0-rc.33",
 		"vue": "^2.5.22",

@@ -97,7 +97,7 @@
 				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
 				<contact-property v-for="(property, index) in sortedProperties" :key="`${index}-${contact.key}-${property.name}`" :index="index"
 					:sorted-properties="sortedProperties" :property="property" :contact="contact"
-					@updatedcontact="updateContact" />
+					@updatedcontact="debounceUpdateContact" />
 
 				<!-- addressbook change select - no last property because class is not applied here,
 					empty property because this is a required prop on regular property-select. But since
@@ -119,7 +119,7 @@
 
 <script>
 import debounce from 'debounce'
-import asap from 'asap'
+import PQueue from 'p-queue'
 
 import rfcProps from 'Models/rfcProps'
 
@@ -128,6 +128,8 @@ import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
 import PropertySelect from './Properties/PropertySelect'
 import PropertyGroups from './Properties/PropertyGroups'
 import ContactAvatar from './ContactDetails/ContactDetailsAvatar'
+
+const updateQueue = new PQueue({ concurrency: 1 })
 
 export default {
 	name: 'ContactDetails',
@@ -309,7 +311,7 @@ export default {
 			},
 			set: function(data) {
 				this.contact.groups = data
-				this.updateContact()
+				this.debounceUpdateContact()
 			}
 		},
 
@@ -369,7 +371,7 @@ export default {
 		 * photo, fn, org, title
 		 */
 		debounceUpdateContact: debounce(function(e) {
-			asap(this.updateContact())
+			updateQueue.add(this.updateContact)
 		}, 500),
 
 		// menu handling
