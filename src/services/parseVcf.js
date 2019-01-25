@@ -28,7 +28,7 @@ export default function parseVcf(data = '', addressbook) {
 	let vCards = data.match(regexp)
 
 	if (!vCards) {
-		console.debug('Error during the parsing of the following vcf file: ', data)
+		console.error('Error during the parsing of the following vcf file: ', data)
 		return []
 	}
 

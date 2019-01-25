@@ -150,7 +150,7 @@ const mutations = {
 		// convert list into an array and remove duplicate
 		addressbook.contacts = contacts.reduce((list, contact) => {
 			if (list[contact.uid]) {
-				console.debug('Duplicate contact overrided', list[contact.uid], contact)
+				console.info('Duplicate contact overrided', list[contact.uid], contact)
 			}
 			Vue.set(list, contact.uid, contact)
 			return list
