@@ -25,6 +25,16 @@ import ICAL from 'ical.js'
 
 import store from '../store'
 
+/**
+ * Check if the given value is an empty array or an empty string
+ *
+ * @param {string|Array} value the value to check
+ * @returns {boolean}
+ */
+const isEmpty = value => {
+	return (Array.isArray(value) && value.join('') === '') || (!Array.isArray(value) && value === '')
+}
+
 export default class Contact {
 
 	/**
@@ -288,7 +298,7 @@ export default class Contact {
 		// ! by checking the property we check for null AND empty string
 		// ! that means we can then check for empty array and be safe not to have
 		// ! 'xxxx'.join('') !== ''
-		if (orderKey && n && n.join('') !== '') {
+		if (orderKey && n && !isEmpty(n)) {
 			switch (orderKey) {
 			case 'firstName':
 				// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
@@ -306,13 +316,13 @@ export default class Contact {
 			return fn
 		}
 		// BUT if no FN property use the N anyway
-		if (n && n.join('') !== '') {
+		if (n && !isEmpty(n)) {
 			// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
 			// -> John Stevenson
 			return n.slice(0, 2).reverse().join(' ')
 		}
 		// LAST chance, use the org ir that's the only thing we have
-		if (org && org.join('') !== '') {
+		if (org && !isEmpty(org)) {
 			// org is supposed to be an array but is also used as plain string
 			return Array.isArray(org) ? org[0] : org
 		}
