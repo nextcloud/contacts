@@ -95,6 +95,8 @@ export default {
 		 */
 		shareAddressbook({ user, displayName, uri, isGroup }) {
 			let addressbook = this.addressbook
+			uri = decodeURI(uri)
+			user = decodeURI(user)
 			this.$store.dispatch('shareAddressbook', { addressbook, user, displayName, uri, isGroup })
 		},
 
