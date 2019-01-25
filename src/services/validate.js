@@ -33,10 +33,10 @@ export default function(contact) {
 				// A fix is needed, running ⏳
 				if (!check.fix(contact)) {
 					// FAILURE 🙅
-					console.warn('The following contact needed a correction that failed', check.name, contact)
+					console.warn('The following contact needed a correction that failed:', check.name, contact)
 				} else {
 					// SUCCESS 💪
-					console.info('The following contact has been repaired', check.name, contact)
+					console.info('The following contact has been repaired:', check.name, contact)
 				}
 			}
 		})

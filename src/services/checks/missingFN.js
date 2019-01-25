@@ -27,7 +27,8 @@
 export default {
 	name: 'missing FN',
 	run: contact => {
-		return !contact.vCard.hasProperty('fn')
+		return !contact.vCard.hasProperty('fn')						// No FN
+			|| contact.vCard.getFirstPropertyValue('fn') === ''		// Empty FN
 	},
 	fix: contact => {
 		if (contact.vCard.hasProperty('n')) {

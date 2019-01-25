@@ -285,7 +285,10 @@ export default class Contact {
 		const org = this.vCard.getFirstPropertyValue('org')
 
 		// if ordered by last or first name we need the N property
-		if (orderKey && n) {
+		// ! by checking the property we check for null AND empty string
+		// ! that means we can then check for empty array and be safe not to have
+		// ! 'xxxx'.join('') !== ''
+		if (orderKey && n && n.join('') !== '') {
 			switch (orderKey) {
 			case 'firstName':
 				// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
@@ -299,20 +302,19 @@ export default class Contact {
 			}
 		}
 		// otherwise the FN is enough
-		if (this.vCard.hasProperty('fn')) {
+		if (fn) {
 			return fn
 		}
 		// BUT if no FN property use the N anyway
-		if (n) {
+		if (n && n.join('') !== '') {
 			// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
 			// -> John Stevenson
 			return n.slice(0, 2).reverse().join(' ')
 		}
 		// LAST chance, use the org ir that's the only thing we have
-		if (org) {
-			// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
-			// -> John Stevenson
-			return org
+		if (org && org.join('') !== '') {
+			// org is supposed to be an array but is also used as plain string
+			return Array.isArray(org) ? org[0] : org
 		}
 		return ''
 
