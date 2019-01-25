@@ -291,6 +291,7 @@ export default {
 				})
 			} catch (error) {
 				OC.Notification.showTemporary(t('contacts', 'Unable to create the contact.'))
+				console.error(error)
 			}
 		},
 

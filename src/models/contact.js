@@ -23,6 +23,8 @@
 import uuid from 'uuid'
 import ICAL from 'ical.js'
 
+import store from '../store'
+
 export default class Contact {
 
 	/**
@@ -52,7 +54,7 @@ export default class Contact {
 
 		// if no uid set, create one
 		if (!this.vCard.hasProperty('uid')) {
-			console.debug('This contact did not have a proper uid. Setting a new one for ', this)
+			console.info('This contact did not have a proper uid. Setting a new one for ', this)
 			this.vCard.addPropertyWithValue('uid', uuid())
 		}
 	}
@@ -271,25 +273,49 @@ export default class Contact {
 	}
 
 	/**
-	 * Return the display name
+	 * Formatted display name based on the order key
 	 *
 	 * @readonly
 	 * @memberof Contact
-	 * @returns {string} the displayName
 	 */
 	get displayName() {
+		const orderKey = store.getters.getOrderKey
+		const n = this.vCard.getFirstPropertyValue('n')
+		const fn = this.vCard.getFirstPropertyValue('fn')
+		const org = this.vCard.getFirstPropertyValue('org')
+
+		// if ordered by last or first name we need the N property
+		if (orderKey && n) {
+			switch (orderKey) {
+			case 'firstName':
+				// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
+				// -> John Stevenson
+				return n.slice(0, 2).reverse().join(' ')
+
+			case 'lastName':
+				// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
+				// -> Stevenson, John
+				return n.slice(0, 2).join(', ')
+			}
+		}
+		// otherwise the FN is enough
 		if (this.vCard.hasProperty('fn')) {
-			return this.vCard.getFirstPropertyValue('fn')
+			return fn
 		}
-		if (this.vCard.hasProperty('n')) {
-			// reverse and join
-			return this.vCard.getFirstPropertyValue('n')
-				.filter(function(part) {
-					return part
-				})
-				.join(' ')
+		// BUT if no FN property use the N anyway
+		if (n) {
+			// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
+			// -> John Stevenson
+			return n.slice(0, 2).reverse().join(' ')
 		}
-		return null
+		// LAST chance, use the org ir that's the only thing we have
+		if (org) {
+			// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
+			// -> John Stevenson
+			return org
+		}
+		return ''
+
 	}
 
 	/**

@@ -53,7 +53,7 @@ module.exports = {
 		'no-tabs': 0,
 		'vue/html-indent': ['error', 'tab'],
 		// only debug console
-		'no-console': ['error', { allow: ['error', 'warn', 'debug'] }],
+		'no-console': ['error', { allow: ['error', 'warn', 'info', 'debug'] }],
 		// classes blocks
 		'padded-blocks': ['error', { classes: 'always' }],
 		// always have the operator in front

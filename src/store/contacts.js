@@ -23,6 +23,7 @@
 import Vue from 'vue'
 import ICAL from 'ical.js'
 import Contact from '../models/contact'
+import validate from '../services/validate'
 
 const state = {
 	// Using objects for performance
@@ -77,6 +78,9 @@ const mutations = {
 	 */
 	addContact(state, contact) {
 		if (contact instanceof Contact) {
+
+			// Checking contact validity 🙈
+			validate(contact)
 
 			let sortedContact = {
 				key: contact.key,
