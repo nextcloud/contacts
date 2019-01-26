@@ -39,7 +39,7 @@
 		"debounce": "^1.2.0",
 		"downloadjs": "^1.4.7",
 		"ical.js": "^1.3.0",
-		"moment": "^2.23.0",
+		"moment": "^2.24.0",
 		"nextcloud-server": "^0.15.9",
 		"nextcloud-vue": "^0.5.1",
 		"p-limit": "^2.1.0",
