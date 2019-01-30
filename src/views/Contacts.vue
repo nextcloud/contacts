@@ -22,9 +22,9 @@
   -->
 
 <template>
-	<app-content app-name="contacts">
+	<app-content app-name="contacts" :class="{'icon-loading': loading}">
 		<!-- new-contact-button + navigation + settings -->
-		<template slot="navigation" :class="{'icon-loading': loading}">
+		<template slot="navigation">
 			<!-- new-contact-button -->
 			<app-navigation-new v-if="!loading" button-id="new-contact-button" :text="t('contacts','New contact')"
 				button-class="icon-add" :disabled="!defaultAddressbook" @click="newContact" />
@@ -52,6 +52,7 @@
 					<!-- contacts list -->
 					<contacts-list :list="contactsList" :contacts="contacts" :loading="loading"
 						:search-query="searchQuery" />
+
 					<!-- main contacts details -->
 					<contact-details :loading="loading" :contact-key="selectedContact" />
 				</template>
