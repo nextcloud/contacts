@@ -9,6 +9,7 @@ module.exports = {
 	globals: {
 		t: true,
 		n: true,
+		oc_config: true,
 		OC: true,
 		OCA: true,
 		Vue: true,
