@@ -21,7 +21,17 @@
  */
 import { VCardTime } from 'ical.js'
 
-const properties = {
+const copyNtoFN = ({ contact, updateContact }) => () => {
+	if (contact.vCard.hasProperty('n')) {
+		// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
+		// -> John Stevenson
+		const n = contact.vCard.getFirstPropertyValue('n')
+		contact.fullName = n.slice(0, 2).reverse().join(' ')
+		updateContact()
+	}
+}
+
+const properties = component => ({
 	nickname: {
 		readableName: t('contacts', 'Nickname'),
 		icon: 'icon-user'
@@ -39,7 +49,14 @@ const properties = {
 		defaultValue: {
 			value: ['', '', '', '', '']
 		},
-		icon: 'icon-user'
+		icon: 'icon-user',
+		actions: [
+			{
+				text: t('contacts', 'Copy to full name'),
+				icon: 'icon-up',
+				action: copyNtoFN(component)
+			}
+		]
 	},
 	note: {
 		readableName: t('contacts', 'Notes'),
@@ -266,7 +283,7 @@ const properties = {
 			{ id: 'O', name: t('contacts', 'Other') }
 		]
 	}
-}
+})
 
 const fieldOrder = [
 	'org',

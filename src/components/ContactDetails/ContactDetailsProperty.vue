@@ -61,6 +61,14 @@ export default {
 		contact: {
 			type: Contact,
 			default: null
+		},
+		/**
+		 * This is needed so that we can update
+		 * the contact within the rfcProps actions
+		 */
+		updateContact: {
+			type: Function,
+			default: () => {}
 		}
 	},
 
@@ -139,7 +147,9 @@ export default {
 		 * @returns {Object}
 		 */
 		propModel() {
-			return this.properties[this.propName]
+			// passing this to properties to allow us to scope the properties object
+			// this make possible defining actions there
+			return this.properties(this)[this.propName]
 		},
 
 		/**

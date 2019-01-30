@@ -43,9 +43,8 @@
 				{{ propModel.readableName }}
 			</div>
 
-			<!-- delete the prop -->
-			<button v-if="!isReadOnly" :title="t('contacts', 'Delete')" class="property__delete icon-delete"
-				@click="deleteProperty" />
+			<!-- props actions -->
+			<action :actions="actions" class="property__actions" />
 
 			<!-- Real input where the picker shows -->
 			<datetime-picker :value="localValue.toJSDate()" :minute-step="10" :lang="lang"

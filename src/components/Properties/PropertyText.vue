@@ -58,9 +58,8 @@
 			<a v-if="haveExtHandler" :href="externalHandler" class="property__ext icon-external"
 				target="_blank" />
 
-			<!-- delete the prop -->
-			<button v-if="!isReadOnly" :title="t('contacts', 'Delete')" class="property__delete icon-delete"
-				@click="deleteProperty" />
+			<!-- props actions -->
+			<action :actions="actions" class="property__actions" />
 		</div>
 	</div>
 </template>
@@ -157,12 +156,6 @@ export default {
 	},
 
 	methods: {
-		/**
-		 * Delete the property
-		 */
-		deleteProperty() {
-			this.$emit('delete')
-		},
 
 		/**
 		 * Watch textarea resize and update the gridSize accordingly

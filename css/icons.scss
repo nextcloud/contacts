@@ -35,3 +35,7 @@
 .icon-eye-white {
 	@include icon-color('eye', 'contacts', $color-white, 1);
 }
+
+.icon-up {
+	@include icon-color('up', 'contacts', $color-black, 1);
+}

@@ -47,9 +47,8 @@
 			<input v-if="!property.isStructuredValue" v-model.trim="localValue[0]" :readonly="isReadOnly"
 				class="property__value" type="text" @input="updateValue">
 
-			<!-- delete the prop -->
-			<button v-if="!isReadOnly" :title="t('contacts', 'Delete')" class="property__delete icon-delete"
-				@click="deleteProperty" />
+			<!-- props actions -->
+			<action :actions="actions" class="property__actions" />
 		</div>
 
 		<!-- force order based on model -->

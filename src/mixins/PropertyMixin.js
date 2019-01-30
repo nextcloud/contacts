@@ -76,6 +76,17 @@ export default {
 		}
 	},
 
+	computed: {
+		actions() {
+			const del = {
+				text: t('contacts', 'Delete'),
+				icon: 'icon-delete',
+				action: this.deleteProperty
+			}
+			return [del, ...this.propModel.actions ? this.propModel.actions : []]
+		}
+	},
+
 	watch: {
 		/**
 		 * Since we're updating a local data based on the value prop,

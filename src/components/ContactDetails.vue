@@ -95,9 +95,11 @@
 			<section v-else class="contact-details">
 				<!-- properties iteration -->
 				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
+				<!-- passing the debounceUpdateContact so that the contact-property component contains the function
+					and allow us to use it on the rfcProps since the scope is forwarded to the actions -->
 				<contact-property v-for="(property, index) in sortedProperties" :key="`${index}-${contact.key}-${property.name}`" :index="index"
 					:sorted-properties="sortedProperties" :property="property" :contact="contact"
-					@updatedcontact="debounceUpdateContact" />
+					:update-contact="debounceUpdateContact" @updatedcontact="debounceUpdateContact" />
 
 				<!-- addressbook change select - no last property because class is not applied here,
 					empty property because this is a required prop on regular property-select. But since

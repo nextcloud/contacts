@@ -29,6 +29,10 @@ export default {
 	run: contact => {
 		return !contact.vCard.hasProperty('fn')						// No FN
 			|| contact.vCard.getFirstPropertyValue('fn') === ''		// Empty FN
+			|| ( // we don't want to fix newly created contacts
+				contact.dav																		// Existing contact
+				&& contact.vCard.getFirstPropertyValue('fn') === t('contacts', 'New contact')	// AND Unchanged FN
+			)
 	},
 	fix: contact => {
 		if (contact.vCard.hasProperty('n')) {
