@@ -89,8 +89,10 @@ export default {
 		},
 
 		// rfc properties list
+		// passing this to properties to allow us to scope the properties object
+		// this make possible defining actions there
 		properties() {
-			return rfcProps.properties
+			return rfcProps.properties(this)
 		},
 		fieldOrder() {
 			return rfcProps.fieldOrder
@@ -147,9 +149,7 @@ export default {
 		 * @returns {Object}
 		 */
 		propModel() {
-			// passing this to properties to allow us to scope the properties object
-			// this make possible defining actions there
-			return this.properties(this)[this.propName]
+			return this.properties[this.propName]
 		},
 
 		/**

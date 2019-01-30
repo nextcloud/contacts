@@ -28,16 +28,20 @@ export default function(contact) {
 
 		// Going through every checks
 		checks.forEach(check => {
-			if (check.run(contact)) {
+			try {
+				if (check.run(contact)) {
 
-				// A fix is needed, running ⏳
-				if (!check.fix(contact)) {
-					// FAILURE 🙅
-					console.warn('The following contact needed a correction that failed:', check.name, contact)
-				} else {
-					// SUCCESS 💪
-					console.info('The following contact has been repaired:', check.name, contact)
+					// A fix is needed, running ⏳
+					if (!check.fix(contact)) {
+						// FAILURE 🙅
+						console.warn('The following contact needed a correction that failed:', check.name, contact)
+					} else {
+						// SUCCESS 💪
+						console.info('The following contact has been repaired:', check.name, contact)
+					}
 				}
+			} catch (error) {
+				console.error('Error during the check:', check.name, contact, error)
 			}
 		})
 

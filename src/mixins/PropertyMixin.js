@@ -28,7 +28,7 @@ export default {
 			type: [Object],
 			default: () => {}
 		},
-		// Coming fro the rfcProps Model
+		// Coming from the rfcProps Model
 		propModel: {
 			type: Object,
 			default: () => {},
@@ -83,7 +83,7 @@ export default {
 				icon: 'icon-delete',
 				action: this.deleteProperty
 			}
-			return [del, ...this.propModel.actions ? this.propModel.actions : []]
+			return [...this.propModel.actions ? this.propModel.actions : [], del]
 		}
 	},
 

@@ -331,7 +331,7 @@ const actions = {
 	 * @returns {Promise}
 	 */
 	async fetchFullContact(context, { contact, etag = '' }) {
-		if (etag !== '') {
+		if (etag.trim() !== '') {
 			await context.commit('updateContactEtag', { contact, etag })
 		}
 		return contact.dav.fetchCompleteData()

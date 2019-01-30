@@ -147,7 +147,7 @@ export default {
 		},
 
 		haveExtHandler() {
-			return this.externalHandler !== '' && this.value && this.value.length > 0
+			return this.externalHandler.trim() !== '' && this.value && this.value.length > 0
 		}
 	},
 
