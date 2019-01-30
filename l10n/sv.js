@@ -52,7 +52,7 @@ OC.L10N.register(
     "Unable to change permissions." : "Kan inte ändra behörigheter.",
     "Importing into" : "Importerar till",
     "Import into" : "Importera till",
-    "Importing is disabled because there are no address books available" : "Importera är inaktiverad eftersom det inte finns några adressböcker tillgängliga",
+    "Importing is disabled because there are no address books available" : "Importering är inaktiverat eftersom att det inte finns några adressböcker tillgängliga",
     "Address book name" : "Adressbokens namn",
     "An error occurred, unable to create the addressbook." : "Ett fel uppstod, kunde inte skapa adressboken.",
     "First name" : "Förnamn",
