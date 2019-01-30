@@ -34,6 +34,10 @@ export default {
 			default: () => {},
 			required: true
 		},
+		propType: {
+			type: String,
+			default: 'text'
+		},
 		// The current property passed as Object
 		property: {
 			type: Object,

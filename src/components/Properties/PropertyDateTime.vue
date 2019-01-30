@@ -49,8 +49,8 @@
 			<!-- Real input where the picker shows -->
 			<datetime-picker :value="localValue.toJSDate()" :minute-step="10" :lang="lang"
 				:clearable="false" :first-day-of-week="firstDay" :type="inputType"
-				:readonly="isReadOnly" class="property__value" confirm
-				@confirm="updateValue" />
+				:readonly="isReadOnly" :format="dateFormat" class="property__value"
+				confirm @confirm="updateValue" />
 		</div>
 	</div>
 </template>
@@ -63,85 +63,6 @@ import { VCardTime } from 'ical.js'
 
 import PropertyMixin from 'Mixins/PropertyMixin'
 import PropertyTitle from './PropertyTitle'
-
-/**
- * Format time with locale to display only
- * Using the Object as hared data since it's the only way
- * for us to forcefully omit some data (no year, or no time... etc)
- * and ths only common syntax between js Date, moment and VCardTime
- *
- * @param {Object} vcardTime ICAL.VCardTime data
- * @param {string} type the input type e.g. date-time
- * @param {string} locale the user locale
- * @returns {string}
- */
-let formatDateTime = function(vcardTime, type, locale) {
-	// this is the only possibility for us to ensure
-	// no data is lost. e.g. if no second are set
-	// the second will be null and not 0
-	let datetimeData = vcardTime.toJSON()
-	let datetime = ''
-
-	// FUN FACT: JS date starts month at zero!
-	datetimeData.month--
-
-	/**
-	 * Make sure to display the most interesting data.
-	 * If the Object does not have any time, do not display
-	 * the time and vice-versa.
-	 */
-
-	// No hour, no minute and no second = date only
-	if (datetimeData.hour === null && datetimeData.minute === null && datetimeData.second === null) {
-		datetime = moment(datetimeData)
-			.locale(locale)
-			.format('LL')
-
-	// No year, no month and no day = time only
-	} else if (datetimeData.year === null && datetimeData.month === null && datetimeData.day === null) {
-		datetime = moment(datetimeData)
-			.locale(locale)
-			.format('LTS')
-	}
-
-	// Fallback to the data ical.js provide us
-	if (datetime === '') {
-		datetime = moment(datetimeData)
-			.locale(locale)
-			.format(
-				type === 'datetime'
-					? 'llll'	// date & time display
-					: type === 'date'
-						? 'll'	// only date
-						: 'LTS'	// only time
-			)
-	}
-
-	return datetimeData.year === null
-		// replace year and remove double spaces
-		? datetime.replace(moment(vcardTime).year(), '').replace(/\s\s+/g, ' ')
-		: datetime
-}
-
-/**
- * Override format function and use this since this
- * inside a function declaration will represent the
- * location of the call. So this = DatetimePicker.
- * Therefore we can use any props we pass through datetime-picker
- *
- * ! TODO: use a DEDICATED function in vue2-datepicker instead of this weird hack
- *
- * @returns {string}
- */
-if (DatetimePicker && DatetimePicker.methods) {
-	DatetimePicker.methods.stringify = function() {
-		return formatDateTime(this.$parent.localValue, this.type, this.$parent.locale)
-	}
-} else {
-	DatetimePicker.components.DatePicker.methods.stringify = function() {
-		return formatDateTime(this.$parent.$parent.localValue, this.type, this.$parent.$parent.locale)
-	}
-}
 
 export default {
 	name: 'PropertyDateTime',
@@ -164,9 +85,9 @@ export default {
 	data() {
 		return {
 			// input type following DatePicker docs
-			inputType: this.property.type === 'date-time' || this.property.type === 'date-and-or-time'
+			inputType: this.propType === 'date-time' || this.propType === 'date-and-or-time'
 				? 'datetime'
-				: this.property.type === 'date'
+				: this.propType === 'date'
 					? 'date'
 					: 'time',
 
@@ -178,6 +99,11 @@ export default {
 				months: window.monthNamesShort,	// provided by nextcloud
 				placeholder: {
 					date: t('contacts', 'Select Date')
+				}
+			},
+			dateFormat: {
+				stringify: (date) => {
+					return date ? this.formatDateTime() : null
 				}
 			}
 		}
@@ -249,7 +175,63 @@ export default {
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			// Use moment to convert the JsDate to Object
 			this.$emit('update:value', this.localValue)
-		}, 500)
+		}, 500),
+
+		/**
+		 * Format time with locale to display only
+		 * Using the Object as hared data since it's the only way
+		 * for us to forcefully omit some data (no year, or no time... etc)
+		 * and ths only common syntax between js Date, moment and VCardTime
+		 *
+		 * @returns {string}
+		 */
+		formatDateTime: function() {
+			// this is the only possibility for us to ensure
+			// no data is lost. e.g. if no second are set
+			// the second will be null and not 0
+			let datetimeData = this.localValue.toJSON()
+			let datetime = ''
+
+			// FUN FACT: JS date starts month at zero!
+			datetimeData.month--
+
+			/**
+			 * Make sure to display the most interesting data.
+			 * If the Object does not have any time, do not display
+			 * the time and vice-versa.
+			 */
+
+			// No hour, no minute and no second = date only
+			if (datetimeData.hour === null && datetimeData.minute === null && datetimeData.second === null) {
+				datetime = moment(datetimeData)
+					.locale(this.locale)
+					.format('LL')
+
+			// No year, no month and no day = time only
+			} else if (datetimeData.year === null && datetimeData.month === null && datetimeData.day === null) {
+				datetime = moment(datetimeData)
+					.locale(this.locale)
+					.format('LTS')
+			}
+
+			// Use input type to properly format our data
+			if (datetime === '') {
+				datetime = moment(datetimeData)
+					.locale(this.locale)
+					.format(
+						this.inputType === 'datetime'
+							? 'llll'	// date & time display
+							: this.inputType === 'date'
+								? 'll'	// only date
+								: 'LTS'	// only time
+					)
+			}
+
+			return datetimeData.year === null
+				// replace year and remove double spaces
+				? datetime.replace(moment(this.localValue).year(), '').replace(/\s\s+/g, ' ')
+				: datetime
+		}
 	}
 }
 

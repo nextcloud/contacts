@@ -84,11 +84,6 @@ export default {
 			default: 'text',
 			required: true
 		},
-		propType: {
-			type: String,
-			default: 'text',
-			required: true
-		},
 		value: {
 			type: String,
 			default: '',
