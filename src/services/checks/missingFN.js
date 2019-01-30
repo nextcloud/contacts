@@ -29,20 +29,33 @@ export default {
 	run: contact => {
 		return !contact.vCard.hasProperty('fn')						// No FN
 			|| contact.vCard.getFirstPropertyValue('fn') === ''		// Empty FN
+			|| ( // we don't want to fix newly created contacts
+				contact.dav															// Existing contact
+				&& contact.vCard.getFirstPropertyValue('fn')
+					.toLowerCase() === t('contacts', 'New contact').toLowerCase()	// AND Unchanged FN
+			)
 	},
 	fix: contact => {
 		if (contact.vCard.hasProperty('n')) {
 			// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
 			// -> John Stevenson
 			const n = contact.vCard.getFirstPropertyValue('n')
-			contact.fullName = n.slice(0, 2).reverse().join(' ')
-			return true
+			const fullName = n.slice(0, 2).reverse().join(' ')
+			if (fullName.trim() !== '') {
+				contact.fullName = fullName
+				return true
+			}
+			return false
 		} else if (contact.vCard.hasProperty('org')) {
 			const org = contact.vCard.getFirstPropertyValue('org')
 			// ABC, Inc.;North American Division;Marketing
 			// -> ABC, Inc.
-			contact.fullName = org[0]
-			return true
+			const fullName = org[0]
+			if (fullName.trim() !== '') {
+				contact.fullName = fullName
+				return true
+			}
+			return false
 		}
 		return false
 	}

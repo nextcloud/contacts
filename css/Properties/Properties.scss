@@ -26,8 +26,8 @@ $property-value-max-width: 250px;
 .property {
 	@include generate-grid-span(1);
 	position: relative;
-	padding-right: 44px; // delete button
-	// we need this to keep the alignment of the ext and delete button
+	padding-right: 44px; // actions menu / button
+	// we need this to keep the alignment of the ext and delete/action button
 	// The flex grow will never go over those values. Therefore we can set
 	// the max width and keep the right alignment
 	max-width: $property-label-max-width + $property-value-max-width + 44px;
@@ -37,8 +37,8 @@ $property-value-max-width: 250px;
 	&--last {
 		margin-bottom: $grid-height-unit;
 	}
-	// no delete icon on addressbook selector
-	&--addressbooks &__delete {
+	// no delete/action icon on addressbook selector
+	&--addressbooks &__actions {
 		display: none !important;
 	}
 		
@@ -132,17 +132,15 @@ $property-value-max-width: 250px;
 			&:hover,
 			&:focus,
 			&:active {
-				~ .property__ext, 
-				~ .property__delete {
+				~ .property__ext {
 					opacity: .5;
 				}
 			}
 		}
 	}
 
-	// show ext & delete button on full row hover
-	&:hover &__ext,
-	&:hover &__delete {
+	// show ext button on full row hover
+	&:hover &__ext{
 		opacity: .5;
 	}
 
@@ -156,28 +154,31 @@ $property-value-max-width: 250px;
 		&:focus,
 		&:active {
 			opacity: .7;
-			// still show the delete button for keyboard accessibility
-			~ .property__delete {
-				opacity: .5;
-			}
 		}
 	}
 	
-	// Delete property button
-	&__delete {
-		position: absolute;
+	// Delete property button + actions
+	&__actions {
+		position: absolute !important;
 		top: 0;
 		left: 100%;
-		width: $grid-height-unit;
-		height: $grid-height-unit;
 		margin: 0;
+		margin-top: -3px; // align with line because of the 44x44px size
 		border: 0;
 		background-color: transparent;
-		opacity: 0;
+		z-index: 10;
+		// opacity applies on the single action OR 
+		&:not(.action-item--multiple),
+		&.action-item--multiple .icon-more {
+			opacity: 0.5;
+		}
 		&:hover,
 		&:active,
 		&:focus {
-			opacity: .7;
+			&:not(.action-item--multiple),
+			&.action-item--multiple .icon-more {
+				opacity: 0.7;
+			}
 		}
 	}
 }

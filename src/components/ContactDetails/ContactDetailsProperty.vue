@@ -61,6 +61,14 @@ export default {
 		contact: {
 			type: Contact,
 			default: null
+		},
+		/**
+		 * This is needed so that we can update
+		 * the contact within the rfcProps actions
+		 */
+		updateContact: {
+			type: Function,
+			default: () => {}
 		}
 	},
 
@@ -81,8 +89,10 @@ export default {
 		},
 
 		// rfc properties list
+		// passing this to properties to allow us to scope the properties object
+		// this make possible defining actions there
 		properties() {
-			return rfcProps.properties
+			return rfcProps.properties(this)
 		},
 		fieldOrder() {
 			return rfcProps.fieldOrder

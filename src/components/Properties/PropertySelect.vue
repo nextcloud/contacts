@@ -37,9 +37,8 @@
 				{{ propModel.readableName }}
 			</div>
 
-			<!-- delete the prop -->
-			<button v-if="!isReadOnly" :title="t('contacts', 'Delete')" class="property__delete icon-delete"
-				@click="deleteProperty" />
+			<!-- props actions -->
+			<action :actions="actions" class="property__actions" />
 
 			<multiselect v-model="matchedOptions" :options="propModel.options" :placeholder="t('contacts', 'Select option')"
 				:disabled="isSingleOption || isReadOnly" class="property__value" track-by="id"

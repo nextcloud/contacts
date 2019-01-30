@@ -27,7 +27,7 @@ import { sync } from 'vuex-router-sync'
 import { generateFilePath } from 'nextcloud-server/dist/router'
 
 /** GLOBAL COMPONENTS AND DIRECTIVE */
-import { AppNavigation, DatetimePicker, Multiselect, PopoverMenu } from 'nextcloud-vue'
+import { Action, AppNavigation, DatetimePicker, Multiselect, PopoverMenu } from 'nextcloud-vue'
 import ClickOutside from 'vue-click-outside'
 import { VTooltip } from 'v-tooltip'
 import VueClipboard from 'vue-clipboard2'
@@ -43,6 +43,7 @@ __webpack_nonce__ = btoa(OC.requestToken)
 // eslint-disable-next-line
 __webpack_public_path__ = generateFilePath('contacts', '', 'js/')
 
+Vue.component('Action', Action)
 Vue.component('AppNavigation', AppNavigation)
 Vue.component('DatetimePicker', DatetimePicker)
 Vue.component('Multiselect', Multiselect)

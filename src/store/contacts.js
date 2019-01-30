@@ -285,6 +285,10 @@ const actions = {
 	 * @returns {Promise}
 	 */
 	async updateContact(context, contact) {
+
+		// Checking contact validity 🙈
+		validate(contact)
+
 		let vData = ICAL.stringify(contact.vCard.jCal)
 
 		// if no dav key, contact does not exists on server
@@ -327,7 +331,7 @@ const actions = {
 	 * @returns {Promise}
 	 */
 	async fetchFullContact(context, { contact, etag = '' }) {
-		if (etag !== '') {
+		if (etag.trim() !== '') {
 			await context.commit('updateContactEtag', { contact, etag })
 		}
 		return contact.dav.fetchCompleteData()

@@ -55,6 +55,15 @@ export default {
 	},
 
 	computed: {
+
+		/**
+		 * Rfc props scoped
+		 * @returns {Object}
+		 */
+		properties() {
+			return rfcProps.properties(this)
+		},
+
 		/**
 		 * List of properties that the contact already have
 		 *
@@ -71,14 +80,14 @@ export default {
 		 * @returns {Object[]}
 		 */
 		availableProperties() {
-			return Object.keys(rfcProps.properties)
+			return Object.keys(this.properties)
 				// only allow to add multiple properties OR props that are not yet in the contact
-				.filter(key => rfcProps.properties[key].multiple || this.usedProperties.indexOf(key) === -1)
+				.filter(key => this.properties[key].multiple || this.usedProperties.indexOf(key) === -1)
 				// usable array of objects
 				.map(key => {
 					return {
 						id: key,
-						name: rfcProps.properties[key].readableName
+						name: this.properties[key].readableName
 					}
 				}).sort((a, b) => a.name.localeCompare(b.name))
 		}
@@ -92,7 +101,7 @@ export default {
 		 * @param {string} data.id the id of the property. e.g fn
 		 */
 		addProp({ id }) {
-			let defaultData = rfcProps.properties[id].defaultValue
+			let defaultData = this.properties[id].defaultValue
 			let property = this.contact.vCard.addPropertyWithValue(id, defaultData ? defaultData.value : '')
 			if (defaultData && defaultData.type) {
 				property.setParameter('type', defaultData.type)

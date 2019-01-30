@@ -28,7 +28,7 @@ export default {
 			type: [Object],
 			default: () => {}
 		},
-		// Coming fro the rfcProps Model
+		// Coming from the rfcProps Model
 		propModel: {
 			type: Object,
 			default: () => {},
@@ -73,6 +73,17 @@ export default {
 			// later
 			localValue: this.value,
 			localType: this.selectType
+		}
+	},
+
+	computed: {
+		actions() {
+			const del = {
+				text: t('contacts', 'Delete'),
+				icon: 'icon-delete',
+				action: this.deleteProperty
+			}
+			return [...this.propModel.actions ? this.propModel.actions : [], del]
 		}
 	},
 

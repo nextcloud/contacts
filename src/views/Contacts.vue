@@ -261,11 +261,12 @@ export default {
 	methods: {
 		async newContact() {
 			let contact = new Contact('BEGIN:VCARD\nVERSION:4.0\nEND:VCARD', this.defaultAddressbook)
+			const properties = rfcProps.properties(this)
 			contact.fullName = t('contacts', 'New contact')
 			// itterate over all properties (filter is not usable on objects and we need the key of the property)
-			for (let name in rfcProps.properties) {
-				if (rfcProps.properties[name].default) {
-					let defaultData = rfcProps.properties[name].defaultValue
+			for (let name in properties) {
+				if (properties[name].default) {
+					let defaultData = properties[name].defaultValue
 					// add default field
 					let property = contact.vCard.addPropertyWithValue(name, defaultData.value)
 					// add default type

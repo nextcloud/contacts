@@ -1,10 +1,10 @@
 <!--
-import rfcProps from '../../models/rfcProps';
- * @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
- *
- * @author Team Popcorn <teampopcornberlin@gmail.com>
- *
- * @license GNU AGPL version 3 or any later version
+  - @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
+  -
+  - @author Team Popcorn <teampopcornberlin@gmail.com>
+  - @author John Molakvoæ <skjnldsv@protonmail.com>
+  -
+  - @license GNU AGPL version 3 or any later version
   -
   - This program is free software: you can redistribute it and/or modify
   - it under the terms of the GNU Affero General Public License as

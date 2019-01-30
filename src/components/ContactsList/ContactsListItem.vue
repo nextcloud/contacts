@@ -65,7 +65,7 @@ export default {
 		 * @returns {boolean}
 		 */
 		matchSearch() {
-			if (this.searchQuery !== '') {
+			if (this.searchQuery.trim() !== '') {
 				return this.contact.searchData.toString().toLowerCase().search(this.searchQuery.toLowerCase()) !== -1
 			}
 			return true
