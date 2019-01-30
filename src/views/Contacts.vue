@@ -22,15 +22,25 @@
   -->
 
 <template>
-	<div id="content" class="app-contacts">
+	<app-content app-name="contacts" :class="{'icon-loading': loading}">
 		<!-- new-contact-button + navigation + settings -->
-		<app-navigation :menu="menu">
-			<!-- settings -->
-			<settings-section v-if="!loading" slot="settings-content" />
-		</app-navigation>
+		<template slot="navigation">
+			<!-- new-contact-button -->
+			<app-navigation-new v-if="!loading" button-id="new-contact-button" :text="t('contacts','New contact')"
+				button-class="icon-add" :disabled="!defaultAddressbook" @click="newContact" />
 
-		<!-- main content -->
-		<div id="app-content">
+			<!-- groups list -->
+			<ul v-if="!loading" id="groups-list">
+				<app-navigation-item v-for="item in menu" :key="item.key" :item="item" />
+			</ul>
+
+			<!-- settings -->
+			<app-navigation-settings v-if="!loading">
+				<settings-section />
+			</app-navigation-settings>
+		</template>
+
+		<template slot="content">
 			<!-- go back to list when in details mode -->
 			<div v-if="selectedContact && isMobile" id="app-details-toggle" class="icon-confirm"
 				tabindex="0" @click="showList" />
@@ -42,15 +52,22 @@
 					<!-- contacts list -->
 					<contacts-list :list="contactsList" :contacts="contacts" :loading="loading"
 						:search-query="searchQuery" />
+
 					<!-- main contacts details -->
 					<contact-details :loading="loading" :contact-key="selectedContact" />
 				</template>
 			</div>
-		</div>
-	</div>
+		</template>
+	</app-content>
 </template>
 
 <script>
+import {
+	AppContent,
+	AppNavigationItem,
+	AppNavigationNew,
+	AppNavigationSettings
+} from 'nextcloud-vue'
 import moment from 'moment'
 import download from 'downloadjs'
 
@@ -68,6 +85,10 @@ export default {
 	name: 'Contacts',
 
 	components: {
+		AppContent,
+		AppNavigationItem,
+		AppNavigationNew,
+		AppNavigationSettings,
 		SettingsSection,
 		ContactsList,
 		ContactDetails,
@@ -173,23 +194,7 @@ export default {
 
 		// building the main menu
 		menu() {
-			if (this.loading) {
-				return {
-					id: 'groups-list',
-					loading: true
-				}
-			}
-			return {
-				id: 'groups-list',
-				new: {
-					id: 'new-contact-button',
-					text: t('contacts', 'New contact'),
-					icon: 'icon-add',
-					action: this.newContact,
-					disabled: this.defaultAddressbook === undefined
-				},
-				items: this.allGroup.concat(this.groupsMenu)
-			}
+			return this.allGroup.concat(this.groupsMenu)
 		},
 
 		// default group for every contacts

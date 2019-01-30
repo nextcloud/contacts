@@ -30,7 +30,7 @@
 		</div>
 
 		<!-- loading -->
-		<div v-else-if="!contact && loading" id="emptycontent">
+		<div v-else-if="loading" id="emptycontent">
 			<div class="icon-contacts" />
 			<h2>{{ t('contacts', 'Loading') }}</h2>
 		</div>
