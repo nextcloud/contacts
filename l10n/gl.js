@@ -40,7 +40,7 @@ OC.L10N.register(
     "Enabled" : "Activado",
     "Disabled" : "Desactivado",
     "Enabled toggle of addressbook was not successful." : "Non foi posíbel activar o intercambio de axendas.",
-    "This will delete the addressbook and every contacts within it" : "Isto borrará o caderno de enderezos e todos os contactos dentro del",
+    "This will delete the addressbook and every contacts within it" : "Isto eliminará o caderno de enderezos e todos os contactos dentro del",
     "Delete {addressbook} ?" : "Eliminr {addressbook} ?",
     "Deletion of addressbook was not successful." : "Non foi posíbel eliminar a axenda.",
     "Renaming of addressbook was not successful." : "Non foi posíbel nenomear a axenda.",
