@@ -68,6 +68,7 @@ OC.L10N.register(
     "Additional names" : "Nomes adicionais",
     "Prefix" : "Prefixo",
     "Suffix" : "Sufixo",
+    "Copy to full name" : "Copiar para o nome completo",
     "Notes" : "Anotações",
     "Website" : "Website",
     "Federated Cloud ID" : "ID da Nuvem Federada",

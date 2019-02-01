@@ -10,6 +10,7 @@ OC.L10N.register(
     "No results" : "Rezultatų nėra",
     "Copy link" : "Kopijuoti nuorodą",
     "Copied" : "Nukopijuota",
+    "Can not copy" : "Nepavyksta nukopijuoti",
     "Rename" : "Pervadinti",
     "Enabled" : "Įjungta",
     "Disabled" : "Išjungta",
