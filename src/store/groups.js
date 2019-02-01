@@ -35,7 +35,7 @@ const mutations = {
 	extractGroupsFromContacts(state, contacts) {
 		// iterate contacts
 		contacts.forEach(contact => {
-			if (contact.groups) {
+			if (contact.groups.length != 0) {
 				contact.groups.forEach(groupName => {
 					let group = state.groups.find(search => search.name === groupName)
 					// nothing? create a new one
@@ -48,6 +48,20 @@ const mutations = {
 					}
 					group.contacts.push(contact.key)
 				})
+			}
+			else
+			{
+				let notGroupedName = t('contacts', 'Not grouped');
+				let group = state.groups.find(search => search.name === notGroupedName)
+				// the group does not exists lets create it
+				if (!group) {
+					state.groups.push({
+						name: notGroupedName,
+						contacts: []
+					})
+					group = state.groups.find(search => search.name === notGroupedName)
+				}
+				group.contacts.push(contact.key)
 			}
 		})
 	},
