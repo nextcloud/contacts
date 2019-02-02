@@ -66,6 +66,7 @@ OC.L10N.register(
     "Additional names" : "Pliaj nomoj",
     "Prefix" : "Prefikso",
     "Suffix" : "Sufikso",
+    "Copy to full name" : "Kopii al plena nomo",
     "Notes" : "Notoj",
     "Website" : "TTT-ejo",
     "Federated Cloud ID" : "Identigilo de federa nubo",
