@@ -49,7 +49,7 @@ const mutations = {
 					group.contacts.push(contact.key)
 				})
 			} else {
-				let notGroupedName = t('contacts', 'Not grouped');
+				const notGroupedName = t('contacts', 'Not grouped')
 				let group = state.groups.find(search => search.name === notGroupedName)
 				// the group does not exists lets create it
 				if (!group) {
