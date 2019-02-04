@@ -7,8 +7,9 @@ module.exports = {
 		jest: true
 	},
 	globals: {
-		t: true,
+		oca_contacts: true,
 		n: true,
+		t: true,
 		OC: true,
 		OCA: true,
 		Vue: true,

@@ -25,17 +25,27 @@ namespace OCA\Contacts\Controller;
 
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\IConfig;
 use OCP\IRequest;
 
 class PageController extends Controller {
 
+	protected $appName;
 	private $userId;
+
+	/**
+	 * @var IConfig
+	 */
+	private $config;
 
 	public function __construct(string $AppName,
 								IRequest $request,
-								string $UserId = null) {
+								string $UserId = null,
+								IConfig $config) {
 		parent::__construct($AppName, $request);
+		$this->appName = $AppName;
 		$this->userId = $UserId;
+		$this->config = $config;
 	}
 
 	/**
@@ -45,9 +55,20 @@ class PageController extends Controller {
 	 * Default routing
 	 */
 	public function index(): TemplateResponse {
-		$params = ['user' => $this->userId];
-
-		return new TemplateResponse('contacts', 'main', $params); // templates/main.php
+		\OCP\Util::connectHook('\OCP\Config', 'js', $this, 'addJavaScriptVariablesForIndex');
+		return new TemplateResponse('contacts', 'main'); // templates/main.php
 	}
 
+	/**
+	 * add parameters to javascript for user sites
+	 *
+	 * @param array $array
+	 */
+	public function addJavaScriptVariablesForIndex(array $array) {
+		$appversion = $this->config->getAppValue($this->appName, 'installed_version');
+
+		$array['array']['oca_contacts'] = \json_encode([
+			'versionstring' => $appversion,
+		]);
+	}
 }
