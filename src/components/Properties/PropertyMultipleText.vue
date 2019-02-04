@@ -38,9 +38,10 @@
 				{{ selectType.name }}
 			</div>
 
-			<!-- no options, empty space -->
-			<div v-else class="property__label">
-				{{ propModel.readableName }}
+			<!-- no options, and showing the first input of an unstructured value?
+				then let's put an empty space (or the name again if no title is present) -->
+			<div v-else-if="!property.isStructuredValue" class="property__label">
+				{{ isFirstProperty ? '' : propModel.readableName }}
 			</div>
 
 			<!-- show the first input if not -->
