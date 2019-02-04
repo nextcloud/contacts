@@ -68,6 +68,7 @@ OC.L10N.register(
     "Additional names" : "Додатна имена",
     "Prefix" : "Префикс",
     "Suffix" : "Суфикс",
+    "Copy to full name" : "Копирај у пуно име",
     "Notes" : "Белешке",
     "Website" : "Вебсајт",
     "Federated Cloud ID" : "ИД Здруженог облака",
