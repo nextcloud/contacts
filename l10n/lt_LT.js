@@ -33,6 +33,7 @@ OC.L10N.register(
     "Date of death" : "Mirties data",
     "Mobile" : "Mobilusis",
     "Work mobile" : "Darbo mobilusis",
+    "Home mobile" : "Namų mobilusis",
     "Car" : "Automobilis",
     "Work pager" : "Darbo pranešimų gaviklis",
     "Relationship" : "Ryšiai",
