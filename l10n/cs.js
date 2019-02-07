@@ -124,7 +124,6 @@ OC.L10N.register(
     "Female" : "Žena",
     "Male" : "Muž",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt se nepodařilo načíst","{failed} kontakty se nepodařilo načíst","{failed} kontaktů se nepodařilo načíst","{failed} kontakty se nepodařilo načíst"],
-    "An error occurred" : "Došlo k chybě",
-    "Not grouped" : "Neseskupeno"
+    "An error occurred" : "Došlo k chybě"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

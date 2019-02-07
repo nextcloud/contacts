@@ -124,7 +124,6 @@ OC.L10N.register(
     "Female" : "Muller",
     "Male" : "Home",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Produciuse un fallo ao ler {failed} contacto","Produciuse un fallo ao ler {failed} contactos"],
-    "An error occurred" : "Produciuse un erro",
-    "Not grouped" : "Sen agrupar"
+    "An error occurred" : "Produciuse un erro"
 },
 "nplurals=2; plural=(n != 1);");

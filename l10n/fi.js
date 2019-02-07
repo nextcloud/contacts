@@ -112,7 +112,6 @@ OC.L10N.register(
     "Gender" : "Sukupuoli",
     "Female" : "Nainen",
     "Male" : "Mies",
-    "An error occurred" : "Tapahtui virhe",
-    "Not grouped" : "Ei ryhmitelty"
+    "An error occurred" : "Tapahtui virhe"
 },
 "nplurals=2; plural=(n != 1);");
