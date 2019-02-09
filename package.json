@@ -91,7 +91,7 @@
 		"stylelint-webpack-plugin": "^0.10.5",
 		"vue-loader": "^15.6.2",
 		"vue-template-compiler": "^2.5.22",
-		"webpack": "^4.29.0",
+		"webpack": "^4.29.3",
 		"webpack-cli": "^3.2.1",
 		"webpack-merge": "^4.2.1",
 		"webpack-node-externals": "^1.7.2"
