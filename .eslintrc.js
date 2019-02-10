@@ -7,6 +7,7 @@ module.exports = {
 		jest: true
 	},
 	globals: {
+		oc_config: true,
 		oca_contacts: true,
 		n: true,
 		t: true,
