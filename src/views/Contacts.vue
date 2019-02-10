@@ -265,7 +265,7 @@ export default {
 
 	methods: {
 		async newContact() {
-			let contact = new Contact('BEGIN:VCARD\nVERSION:4.0\nEND:VCARD', this.defaultAddressbook)
+			let contact = new Contact(`BEGIN:VCARD\nVERSION:4.0\nPRODID:-//Nextcloud Contacts v${oca_contacts.versionstring}\nEND:VCARD`, this.defaultAddressbook)
 			const properties = rfcProps.properties(this)
 			contact.fullName = t('contacts', 'New contact')
 			// itterate over all properties (filter is not usable on objects and we need the key of the property)

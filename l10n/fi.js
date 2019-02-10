@@ -8,6 +8,7 @@ OC.L10N.register(
     "Add new property" : "Lisää uusi ominaisuus",
     "Choose property type" : "Valitse ominaisuuden tyyppi",
     "Upload a new picture" : "Lähetä uusi kuva",
+    "Image is too big (max 1MB)." : "Kuva on liian suuri (enintään 1 Mt).",
     "No contact selected" : "Yhteystietoa ei ole valittu",
     "Select a contact on the list to begin" : "Valitse yhteystieto luettelosta aloittaaksesi",
     "Loading" : "Ladataan",

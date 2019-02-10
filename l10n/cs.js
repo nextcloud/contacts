@@ -68,6 +68,7 @@ OC.L10N.register(
     "Additional names" : "Další jména",
     "Prefix" : "Předpona",
     "Suffix" : "Přípona",
+    "Copy to full name" : "Zkopírovat úplný název",
     "Notes" : "Poznámky",
     "Website" : "Stránka",
     "Federated Cloud ID" : "Sdružené cloud ID",

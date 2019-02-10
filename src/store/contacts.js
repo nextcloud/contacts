@@ -294,7 +294,7 @@ const actions = {
 		// if no dav key, contact does not exists on server
 		if (!contact.dav) {
 			// create contact
-			await contact.addressbook.dav.createVCard(vData)
+			return contact.addressbook.dav.createVCard(vData)
 				.then((response) => {
 					Vue.set(contact, 'dav', response)
 				})
