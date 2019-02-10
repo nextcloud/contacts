@@ -31,7 +31,6 @@ use OCP\IRequest;
 class PageController extends Controller {
 
 	protected $appName;
-	private $userId;
 
 	/**
 	 * @var IConfig
@@ -40,11 +39,10 @@ class PageController extends Controller {
 
 	public function __construct(string $AppName,
 								IRequest $request,
-								string $UserId = null,
 								IConfig $config) {
 		parent::__construct($AppName, $request);
+		
 		$this->appName = $AppName;
-		$this->userId = $UserId;
 		$this->config = $config;
 	}
 
