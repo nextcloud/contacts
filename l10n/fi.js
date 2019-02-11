@@ -63,6 +63,7 @@ OC.L10N.register(
     "Additional names" : "Lisänimet",
     "Prefix" : "Etuliite",
     "Suffix" : "Takaliite",
+    "Copy to full name" : "Kopioi koko nimeksi",
     "Notes" : "Huomiot",
     "Website" : "Verkkosivusto",
     "Federated Cloud ID" : "Federoidun pilven tunniste",
