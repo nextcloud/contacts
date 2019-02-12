@@ -9,6 +9,7 @@ OC.L10N.register(
     "Add new property" : "新しいプロパティを追加する",
     "Choose property type" : "プロパティの種類を選択",
     "Upload a new picture" : "新しい写真をアップロードする",
+    "Image is too big (max 1MB)." : "画像容量が大きすぎます (最大1 MB)",
     "No contact selected" : "連絡先が選択されていません",
     "Select a contact on the list to begin" : "開始するには、リストの連絡先を選択してください",
     "Loading" : "読み込み中",

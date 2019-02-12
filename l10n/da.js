@@ -24,7 +24,7 @@ OC.L10N.register(
     "New contact" : "Ny kontakt",
     "The contact doesn't exists anymore on the server." : "Kontakten findes ikke længere på serveren.",
     "Importing {total} contacts into" : "Importerer {total} kontakter til",
-    "Open your browser console for more details" : "Åben din browsers konsol for flejre detaljer",
+    "Open your browser console for more details" : "Åbn din browsers konsol for flejre detaljer",
     "failed" : "mislykkedes",
     "Select type" : "Vælg type",
     "Select Date" : "Vælg dato",

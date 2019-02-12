@@ -55,8 +55,18 @@ sync(store, router)
 
 Vue.prototype.t = t
 Vue.prototype.n = n
+// eslint-disable-next-line
+Vue.prototype.oc_onfig = oc_config
 Vue.prototype.OC = OC
 Vue.prototype.OCA = OCA
+
+if (window.location.pathname.split('/')[1] === 'index.php'
+	&& oc_config.modRewriteWorking) {
+	router.push({
+		name: 'group',
+		params: { selectedGroup: t('contacts', 'All contacts') }
+	})
+}
 
 export default new Vue({
 	el: '#content',

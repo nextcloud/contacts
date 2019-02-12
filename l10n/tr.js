@@ -68,6 +68,7 @@ OC.L10N.register(
     "Additional names" : "Ek adlar",
     "Prefix" : "Ön ek",
     "Suffix" : "Son ek",
+    "Copy to full name" : "Tam ada kopyala",
     "Notes" : "Notlar",
     "Website" : "Web sitesi",
     "Federated Cloud ID" : "Birleşmiş Bulut Kimliği",

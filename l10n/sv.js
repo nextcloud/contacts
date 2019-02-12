@@ -66,6 +66,7 @@ OC.L10N.register(
     "Additional names" : "Mellannamn",
     "Prefix" : "Prefix",
     "Suffix" : "Suffix",
+    "Copy to full name" : "Kopiera till fullständigt namn",
     "Notes" : "Anteckningar",
     "Website" : "Webbplats",
     "Federated Cloud ID" : "Federerat Moln-ID",
