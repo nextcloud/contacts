@@ -56,7 +56,7 @@ class DetailsProviderTest extends Base {
 	/** @var DetailsProvider */
 	private $provider;
 
-	protected function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->urlGenerator  = $this->createMock(IURLGenerator::class);

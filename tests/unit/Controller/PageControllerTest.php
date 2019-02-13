@@ -18,13 +18,15 @@ use PHPUnit\Framework\TestCase as Base;
 class PageControllerTest extends Base {
 
 	private $controller;
-	private $userId = 'john';
 
-	public function setUp() {
+	public function setUp(): void {
+		$config = $this->getMockBuilder('OCP\IConfig')->getMock();
 		$request = $this->getMockBuilder('OCP\IRequest')->getMock();
 
 		$this->controller = new PageController(
-			'contacts', $request, $this->userId
+			'contacts',
+			$request,
+			$config
 		);
 	}
 
@@ -32,7 +34,6 @@ class PageControllerTest extends Base {
 	public function testIndex() {
 		$result = $this->controller->index();
 
-		$this->assertEquals(['user' => 'john'], $result->getParams());
 		$this->assertEquals('main', $result->getTemplateName());
 		$this->assertEquals('user', $result->getRenderAs());
 		$this->assertTrue($result instanceof TemplateResponse);
