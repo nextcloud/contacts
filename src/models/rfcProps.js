@@ -110,6 +110,7 @@ const properties = component => ({
 	bday: {
 		readableName: t('contacts', 'Birthday'),
 		icon: 'icon-calendar-dark',
+		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
 			value: new VCardTime().fromJSDate(new Date())
 		}
@@ -124,7 +125,7 @@ const properties = component => ({
 	deathdate: {
 		readableName: t('contacts', 'Date of death'),
 		icon: 'icon-calendar-dark',
-		force: 'date',
+		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
 			value: new VCardTime().fromJSDate(new Date())
 		}
