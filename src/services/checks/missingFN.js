@@ -41,7 +41,7 @@ export default {
 			// -> John Stevenson
 			const n = contact.vCard.getFirstPropertyValue('n')
 			const fullName = n.slice(0, 2).reverse().join(' ')
-			if (fullName.trim() !== '') {
+			if (fullName && fullName.trim() !== '') {
 				contact.fullName = fullName
 				return true
 			}
@@ -50,9 +50,11 @@ export default {
 			const org = contact.vCard.getFirstPropertyValue('org')
 			// ABC, Inc.;North American Division;Marketing
 			// -> ABC, Inc.
-			const fullName = org[0]
-			if (fullName.trim() !== '') {
-				contact.fullName = fullName
+			if (Array.isArray(org) && org[0].trim() !== '') {
+				contact.fullName = org[0]
+				return true
+			} else if (org && org.trim() !== '') {
+				contact.fullName = org
 				return true
 			}
 			return false
