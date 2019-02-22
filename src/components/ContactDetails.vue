@@ -419,7 +419,7 @@ export default {
 							this.loadingData = false
 						})
 						.catch((error) => {
-							OC.Notification.showTemporary(t('contacts', 'The contact doesn\'t exists anymore on the server.'))
+							OC.Notification.showTemporary(t('contacts', 'The contact doesn\'t exist anymore on the server.'))
 							console.error(error)
 							// trigger a local deletion from the store only
 							this.$store.dispatch('deleteContact', { contact: this.contact, dav: false })
