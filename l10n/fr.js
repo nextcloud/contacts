@@ -24,7 +24,6 @@ OC.L10N.register(
     "Addressbook" : "Carnet d'adresses",
     "Groups" : "Groupes",
     "New contact" : "Nouveau contact",
-    "The contact doesn't exists anymore on the server." : "Le contact n'existe plus sur le serveur.",
     "Importing {total} contacts into" : "Import en cours de {total} contacts dans",
     "Open your browser console for more details" : "Ouvrez la console de votre navigateur pour plus d'informations",
     "failed" : "en erreur",

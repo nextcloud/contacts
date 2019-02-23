@@ -22,7 +22,6 @@ OC.L10N.register(
     "Addressbook" : "Osoitekirja",
     "Groups" : "Ryhmät",
     "New contact" : "Uusi yhteystieto",
-    "The contact doesn't exists anymore on the server." : "Yhteystietoa ei ole enää olemassa tällä palvelimella.",
     "Open your browser console for more details" : "Avaa selaimesi konsoli nähdäksesi lisätietoja",
     "failed" : "epäonnistui",
     "Select type" : "Valitse tyyppi",

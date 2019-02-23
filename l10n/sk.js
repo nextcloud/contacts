@@ -17,7 +17,6 @@ OC.L10N.register(
     "Addressbook" : "Adresár",
     "Groups" : "Skupiny",
     "New contact" : "Nový kontakt",
-    "The contact doesn't exists anymore on the server." : "Kontakt už na servri neexistuje.",
     "Importing {total} contacts into" : "Importuje sa {total} kontaktov do",
     "Select type" : "Vyberte typ",
     "Select Date" : "Vybrať dátum",

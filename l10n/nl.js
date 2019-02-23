@@ -24,7 +24,6 @@ OC.L10N.register(
     "Addressbook" : "Adresboek",
     "Groups" : "Groepen",
     "New contact" : "Nieuwe contactpersoon",
-    "The contact doesn't exists anymore on the server." : "De contactpersoon bestaat niet meer op de server.",
     "Importing {total} contacts into" : "Importeren {total} contactpersonen into",
     "Open your browser console for more details" : "Open je browserconsole voor meer details",
     "failed" : "mislukte",

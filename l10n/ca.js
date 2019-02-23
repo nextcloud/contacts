@@ -21,7 +21,6 @@ OC.L10N.register(
     "Addressbook" : "Llibreta d'adreces",
     "Groups" : "Grups",
     "New contact" : "Contacte nou",
-    "The contact doesn't exists anymore on the server." : "El contacte ja no existeix al servidor.",
     "Importing {total} contacts into" : "S'estan important {total} contactes a",
     "Open your browser console for more details" : "Obriu la consola del navegador per veure més detalls",
     "No results" : "Sense resultats",

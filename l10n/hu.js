@@ -23,7 +23,6 @@ OC.L10N.register(
     "Addressbook" : "Címjegyzék",
     "Groups" : "Csoportok",
     "New contact" : "Új névjegy",
-    "The contact doesn't exists anymore on the server." : "A névjegy már nem létezik a kiszolgálón.",
     "Importing {total} contacts into" : "{total} névjegy importálása ide",
     "Open your browser console for more details" : "Nyisd meg a böngésző konzolját további részletekért",
     "Select type" : "Válassz típust",

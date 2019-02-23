@@ -24,7 +24,6 @@ OC.L10N.register(
     "Addressbook" : "Nafnaskrá",
     "Groups" : "Hópar",
     "New contact" : "Nýr tengiliður",
-    "The contact doesn't exists anymore on the server." : "Tengiliðurinn er ekki lengur til á miðlaranum.",
     "Importing {total} contacts into" : "Flyt {total} tengiliði inn í",
     "Open your browser console for more details" : "Opnaðu stjórnborð vafrans þíns til að sjá frekari upplýsingar",
     "failed" : "mistókst",

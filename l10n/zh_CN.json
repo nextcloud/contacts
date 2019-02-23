@@ -21,7 +21,6 @@
     "Addressbook" : "地址簿",
     "Groups" : "群组",
     "New contact" : "新建联系人",
-    "The contact doesn't exists anymore on the server." : "此联系人不再存在于此服务器上。",
     "Importing {total} contacts into" : "导入 {total} 个联系人",
     "Open your browser console for more details" : "打开浏览器控制台以获取更多详细信息",
     "failed" : "失败了",

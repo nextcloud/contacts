@@ -24,7 +24,6 @@ OC.L10N.register(
     "Addressbook" : "アドレス帳",
     "Groups" : "グループ",
     "New contact" : "新しい連絡先",
-    "The contact doesn't exists anymore on the server." : "連絡先はサーバーに存在しません。",
     "Importing {total} contacts into" : "連絡先を {total} にインポートしています",
     "Open your browser console for more details" : "詳細はブラウザコンソールを開きます",
     "Select type" : "タイプを選択",

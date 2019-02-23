@@ -24,7 +24,6 @@ OC.L10N.register(
     "Addressbook" : "Адресная книга",
     "Groups" : "Группы",
     "New contact" : "Новый контакт",
-    "The contact doesn't exists anymore on the server." : "В настоящее время контакт не существует.",
     "Importing {total} contacts into" : "Выполняет импорт {total} контакта(ов)",
     "Open your browser console for more details" : "Подробные сведения приведены в консоли браузера",
     "failed" : "сбой",

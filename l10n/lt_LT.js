@@ -10,7 +10,6 @@ OC.L10N.register(
     "Addressbook" : "Adresų knyga",
     "Groups" : "Grupės",
     "New contact" : "Naujas adresatas",
-    "The contact doesn't exists anymore on the server." : "Adresato serveryje daugiau nebėra.",
     "Open your browser console for more details" : "Išsamesnei informacijai, atverkite savo naršyklės pultą",
     "No results" : "Rezultatų nėra",
     "Copy link" : "Kopijuoti nuorodą",

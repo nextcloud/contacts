@@ -13,7 +13,6 @@ OC.L10N.register(
     "Addressbook" : "Adrešu grāmata",
     "Groups" : "Grupas",
     "New contact" : "Jauns kontakts",
-    "The contact doesn't exists anymore on the server." : "Kontaktpersonas ierakst vairs nepastāv uz servera.",
     "Select Date" : "Izvēlieties datumu",
     "No results" : "Nav rezultātu",
     "Copy link" : "Kopēt saiti",

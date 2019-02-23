@@ -24,7 +24,6 @@ OC.L10N.register(
     "Addressbook" : "Rubrica",
     "Groups" : "Gruppi",
     "New contact" : "Nuovo contatto",
-    "The contact doesn't exists anymore on the server." : "Il contatto non esiste più sul server.",
     "Importing {total} contacts into" : "Importazione di {total} contatti in",
     "Open your browser console for more details" : "Apri la console del tuo browser per altri dettagli",
     "failed" : " non riuscito",
