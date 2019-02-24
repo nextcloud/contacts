@@ -24,6 +24,7 @@ OC.L10N.register(
     "Addressbook" : "Adresář kontaktů",
     "Groups" : "Skupiny",
     "New contact" : "Nový kontakt",
+    "The contact doesn't exist anymore on the server." : "Tento kontakt už na serveru neexistuje.",
     "Importing {total} contacts into" : "Importuje se {total} kontaktů do",
     "Open your browser console for more details" : "Další podrobnosti získáte otevřením konzole webového prohlížeče",
     "failed" : "nezdařilo se",
