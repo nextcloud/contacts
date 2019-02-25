@@ -24,6 +24,7 @@ OC.L10N.register(
     "Addressbook" : "Adresaro",
     "Groups" : "Grupoj",
     "New contact" : "Nova kontakto",
+    "The contact doesn't exist anymore on the server." : "La kontakto ne plu ekzistas ĉe la servilo.",
     "Importing {total} contacts into" : "Importante {total} kontaktaktoj en",
     "Open your browser console for more details" : "Malfermu vian retumilan konzolon por pli da detaloj",
     "failed" : "malsukcesa",
