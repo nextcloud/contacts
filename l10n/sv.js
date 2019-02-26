@@ -23,6 +23,7 @@ OC.L10N.register(
     "Addressbook" : "Adressbok",
     "Groups" : "Grupper",
     "New contact" : "Ny kontakt",
+    "The contact doesn't exist anymore on the server." : "Kontakten finns inte längre på servern.",
     "Importing {total} contacts into" : "Importerar {total} kontakter till",
     "Open your browser console for more details" : "Öppna din webbläsarkonsol för mer information",
     "failed" : "misslyckades",
