@@ -24,6 +24,7 @@ OC.L10N.register(
     "Addressbook" : "Adres defteri",
     "Groups" : "Gruplar",
     "New contact" : "Yeni kişi",
+    "The contact doesn't exist anymore on the server." : "Kişi artık sunucu üzerinde değil.",
     "Importing {total} contacts into" : "{total} kişi şuraya içe aktarılıyor",
     "Open your browser console for more details" : "Ayrıntılı bilgi almak için tarayıcı konsolonu açın",
     "failed" : "tamamlanamadı",
