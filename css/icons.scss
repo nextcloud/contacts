@@ -39,3 +39,18 @@
 .icon-up {
 	@include icon-color('up', 'contacts', $color-black, 1);
 }
+
+.icon-delete-force-white {
+	// using #fffffe to trick the accessibility dark theme icon invert
+	@include icon-color('delete', 'contacts', '#fffffe', 1);
+}
+
+.icon-download-force-white {
+	// using #fffffe to trick the accessibility dark theme icon invert
+	@include icon-color('download', 'contacts', '#fffffe', 1);
+}
+
+.icon-upload-force-white {
+	// using #fffffe to trick the accessibility dark theme icon invert
+	@include icon-color('upload', 'contacts', '#fffffe', 1);
+}

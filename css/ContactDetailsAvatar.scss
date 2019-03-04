@@ -53,7 +53,7 @@
 		background-position: center;
 		cursor: pointer;
 	}
-	label.icon-upload-white {
+	label.icon-upload-force-white {
 		opacity: .5;
 		z-index: 2;
 		position: absolute;
@@ -65,7 +65,7 @@
 			opacity: .7;
 		}
 	}
-	&__photo +  label.icon-upload-white {
+	&__photo +  label.icon-upload-force-white {
 		opacity: 0;
 	}
 	&__options {
@@ -98,7 +98,7 @@
 			background-size: contain;
 			margin: 50px;
 		}
-		label.icon-upload-white {
+		label.icon-upload-force-white {
 			position: relative;
 		}
 		.contact-header-avatar__options {

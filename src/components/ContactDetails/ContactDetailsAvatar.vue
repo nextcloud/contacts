@@ -32,9 +32,9 @@
 				<input id="contact-avatar-upload" type="file" class="hidden"
 					accept="image/*" @change="processFile">
 				<label v-if="!contact.addressbook.readOnly" v-tooltip.auto="t('contacts', 'Upload a new picture')"
-					for="contact-avatar-upload" class="icon-upload-white" @click="processFile" />
-				<div v-if="maximizeAvatar && !contact.addressbook.readOnly" class="icon-delete-white" @click="removePhoto" />
-				<a v-if="maximizeAvatar" :href="contact.url + '?photo'" class="icon-download-white" />
+					for="contact-avatar-upload" class="icon-upload-force-white" @click="processFile" />
+				<div v-if="maximizeAvatar && !contact.addressbook.readOnly" class="icon-delete-force-white" @click="removePhoto" />
+				<a v-if="maximizeAvatar" :href="contact.url + '?photo'" class="icon-download-force-white" />
 			</div>
 		</div>
 	</div>
