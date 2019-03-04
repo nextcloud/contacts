@@ -405,7 +405,7 @@ export default {
 		 *
 		 * @param {string} key the contact key
 		 */
-		selectContact(key) {
+		async selectContact(key) {
 			// local version of the contact
 			this.loadingData = true
 			let contact = this.$store.getters.getContact(key)
@@ -413,22 +413,28 @@ export default {
 			if (contact) {
 				// if contact exists AND if exists on server
 				if (contact.dav) {
-					this.$store.dispatch('fetchFullContact', { contact })
-						.then(() => {
-							// create empty contact and copy inner data
-							let localContact = Object.assign(
-								Object.create(Object.getPrototypeOf(contact)),
-								contact
-							)
-							this.localContact = localContact
-							this.loadingData = false
-						})
-						.catch((error) => {
-							OC.Notification.showTemporary(t('contacts', 'The contact doesn\'t exist anymore on the server.'))
-							console.error(error)
-							// trigger a local deletion from the store only
-							this.$store.dispatch('deleteContact', { contact: this.contact, dav: false })
-						})
+					try {
+						await this.$store.dispatch('fetchFullContact', { contact })
+
+						// create empty contact and copy inner data
+						let localContact = Object.assign(
+							Object.create(Object.getPrototypeOf(contact)),
+							contact
+						)
+						this.localContact = localContact
+						this.loadingData = false
+					} catch (error) {
+						if (error.name === 'ParserError') {
+							OC.Notification.showTemporary(t('contacts', 'Syntax error. Cannot open the contact.'))
+						} else if (error.status === 404) {
+							OC.Notification.showTemporary(t('contacts', `The contact doesn't exists anymore on the server.`))
+						} else {
+							OC.Notification.showTemporary(t('contacts', `Unable to retrieve the contact from the server, please check your network connection.`))
+						}
+						console.error(error)
+						// trigger a local deletion from the store only
+						this.$store.dispatch('deleteContact', { contact: this.contact, dav: false })
+					}
 				} else {
 					// create empty contact and copy inner data
 					// wait for an update to really push the contact on the server!
