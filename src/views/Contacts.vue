@@ -223,6 +223,9 @@ export default {
 
 		// default group for every contacts
 		groupNotGrouped() {
+			if (this.ungroupedContacts.length === 0) {
+				return []
+			}
 			return [{
 				id: 'notgrouped',
 				key: 'notgrouped',
