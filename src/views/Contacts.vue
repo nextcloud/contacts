@@ -158,12 +158,18 @@ export default {
 		contactsList() {
 			if (this.selectedGroup === t('contacts', 'All contacts')) {
 				return this.sortedContacts
+			} else if (this.selectedGroup === t('contacts', 'Not grouped')) {
+				return this.ungroupedContacts.map(contact => this.sortedContacts.find(item => item.key === contact.key))
 			}
 			let group = this.groups.filter(group => group.name === this.selectedGroup)[0]
 			if (group) {
 				return this.sortedContacts.filter(contact => group.contacts.indexOf(contact.key) >= 0)
 			}
 			return []
+		},
+
+		ungroupedContacts() {
+			return this.sortedContacts.filter(contact => this.contacts[contact.key].groups && this.contacts[contact.key].groups.length === 0)
 		},
 
 		// generate groups menu from groups store
@@ -195,11 +201,11 @@ export default {
 
 		// building the main menu
 		menu() {
-			return this.allGroup.concat(this.groupsMenu)
+			return this.groupAllGroup.concat(this.groupNotGrouped.concat(this.groupsMenu))
 		},
 
 		// default group for every contacts
-		allGroup() {
+		groupAllGroup() {
 			return [{
 				id: 'everyone',
 				key: 'everyone',
@@ -211,6 +217,26 @@ export default {
 				text: t('contacts', 'All contacts'),
 				utils: {
 					counter: this.sortedContacts.length
+				}
+			}]
+		},
+
+		// default group for every contacts
+		groupNotGrouped() {
+			if (this.ungroupedContacts.length === 0) {
+				return []
+			}
+			return [{
+				id: 'notgrouped',
+				key: 'notgrouped',
+				icon: 'icon-user',
+				router: {
+					name: 'group',
+					params: { selectedGroup: t('contacts', 'Not grouped') }
+				},
+				text: t('contacts', 'Not grouped'),
+				utils: {
+					counter: this.ungroupedContacts.length
 				}
 			}]
 		}
