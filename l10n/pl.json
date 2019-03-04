@@ -120,6 +120,7 @@
     "Gender" : "Płeć",
     "Female" : "Kobieta",
     "Male" : "Mężczyzna",
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Nie udało się odczytać {failed} kontaktu","Nie udało się odczytać {failed} kontaktów","Nie udało się odczytać {failed} kontaktów","Nie udało się odczytać {failed} kontaktów"],
     "An error occurred" : "Wystąpił błąd"
 },"pluralForm" :"nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);"
 }
