@@ -30,7 +30,7 @@
 		<p class="import-screen__tracker">
 			<span>{{ percentage }} %</span>
 			<span v-tooltip.auto="t('contacts', 'Open your browser console for more details')">
-				{{ denied }} {{ t('contacts', 'failed') }}
+				{{ t('contacts', '{failedCount} failed', { failedCount }) }}
 			</span>
 		</p>
 	</div>
@@ -52,11 +52,11 @@ export default {
 		accepted() {
 			return this.importState.accepted
 		},
-		denied() {
+		failedCount() {
 			return this.importState.denied
 		},
 		progress() {
-			return this.accepted + this.denied
+			return this.accepted + this.failedCount
 		},
 		percentage() {
 			return this.total <= 0
