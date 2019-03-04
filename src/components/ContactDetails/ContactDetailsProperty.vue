@@ -285,6 +285,5 @@ export default {
 			this.$emit('updatedcontact')
 		}
 	}
-
 }
 </script>

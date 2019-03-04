@@ -254,7 +254,7 @@ export default {
 		 * @returns {Array}
 		 */
 		sortedProperties() {
-			return this.contact.properties.slice(0).sort((a, b) => {
+			return this.localContact.properties.slice(0).sort((a, b) => {
 				return (
 					rfcProps.fieldOrder.indexOf(a.name) - rfcProps.fieldOrder.indexOf(b.name)
 				)
@@ -364,7 +364,7 @@ export default {
 		 */
 		async updateContact() {
 			this.loadingUpdate = true
-			await this.$store.dispatch('updateContact', this.contact)
+			await this.$store.dispatch('updateContact', this.localContact)
 			this.loadingUpdate = false
 		},
 
