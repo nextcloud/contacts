@@ -289,6 +289,11 @@ const actions = {
 		// Checking contact validity 🙈
 		validate(contact)
 
+		// Update REV
+		const rev = new ICAL.VCardTime()
+		rev.fromUnixTime(Date.now() / 1000)
+		contact.rev = rev
+
 		let vData = ICAL.stringify(contact.vCard.jCal)
 
 		// if no dav key, contact does not exists on server

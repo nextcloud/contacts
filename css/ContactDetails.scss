@@ -116,3 +116,13 @@
 		}
 	}
 }
+
+.property--rev {
+	position: absolute;
+	right: 22px;
+	bottom: 0;
+	height: 44px;
+	line-height: 44px;
+	color: var(--color-text-lighter);
+	opacity: .5;
+}

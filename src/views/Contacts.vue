@@ -70,6 +70,7 @@ import {
 } from 'nextcloud-vue'
 import moment from 'moment'
 import download from 'downloadjs'
+import { VCardTime } from 'ical.js'
 
 import SettingsSection from 'Components/SettingsSection'
 import ContactsList from 'Components/ContactsList'
@@ -265,10 +266,21 @@ export default {
 
 	methods: {
 		async newContact() {
-			let contact = new Contact(`BEGIN:VCARD\nVERSION:4.0\nPRODID:-//Nextcloud Contacts v${oca_contacts.versionstring}\nEND:VCARD`, this.defaultAddressbook)
-			const properties = rfcProps.properties(this)
+			const rev = new VCardTime()
+			const contact = new Contact(`
+				BEGIN:VCARD
+				VERSION:4.0
+				PRODID:-//Nextcloud Contacts v${oca_contacts.versionstring}
+				END:VCARD
+			`.trim().replace(/\t/gm, ''),
+			this.defaultAddressbook)
+
 			contact.fullName = t('contacts', 'New contact')
+			rev.fromUnixTime(Date.now() / 1000)
+			contact.rev = rev
+
 			// itterate over all properties (filter is not usable on objects and we need the key of the property)
+			const properties = rfcProps.properties(this)
 			for (let name in properties) {
 				if (properties[name].default) {
 					let defaultData = properties[name].defaultValue

@@ -112,6 +112,9 @@
 				<property-groups :prop-model="groupsModel" :value.sync="groups" :contact="contact"
 					:is-read-only="isReadOnly" class="property--groups property--last" />
 
+				<!-- Last modified-->
+				<property-rev v-if="contact.rev" :value="contact.rev" />
+
 				<!-- new property select -->
 				<add-new-prop v-if="!isReadOnly" :contact="contact" />
 			</section>
@@ -129,6 +132,7 @@ import ContactProperty from './ContactDetails/ContactDetailsProperty'
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
 import PropertySelect from './Properties/PropertySelect'
 import PropertyGroups from './Properties/PropertyGroups'
+import PropertyRev from './Properties/PropertyRev'
 import ContactAvatar from './ContactDetails/ContactDetailsAvatar'
 
 const updateQueue = new PQueue({ concurrency: 1 })
@@ -140,6 +144,7 @@ export default {
 		ContactProperty,
 		PropertySelect,
 		PropertyGroups,
+		PropertyRev,
 		AddNewProp,
 		ContactAvatar
 	},

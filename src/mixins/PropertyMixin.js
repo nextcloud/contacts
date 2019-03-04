@@ -20,6 +20,7 @@
  *
  */
 import debounce from 'debounce'
+import Contact from 'Models/contact'
 
 export default {
 	props: {
@@ -66,6 +67,10 @@ export default {
 		options: {
 			type: Array,
 			default: () => []
+		},
+		contact: {
+			type: Contact,
+			default: null
 		}
 	},
 
@@ -94,7 +99,8 @@ export default {
 	watch: {
 		/**
 		 * Since we're updating a local data based on the value prop,
-		 * we need to make sure to update the local data on pop change
+		 * we need to make sure to update the local data on contact change
+		 * in case the v-Node is reused.
 		 */
 		value: function() {
 			this.localValue = this.value
