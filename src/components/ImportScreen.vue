@@ -29,8 +29,16 @@
 		<progress :max="total" :value="progress" class="import-screen__progress" />
 		<p class="import-screen__tracker">
 			<span>{{ percentage }} %</span>
-			<span v-tooltip.auto="t('contacts', 'Open your browser console for more details')">
-				{{ t('contacts', '{failedCount} failed', { failedCount }) }}
+			<span v-if="failed === 0">
+				{{ t('contacts', 'No errors') }}
+			</span>
+			<span v-else v-tooltip.auto="t('contacts', 'Open your browser console for more details')">
+				{{ n('contacts',
+					'{failedCount} faulty contact',
+					'{failedCount} faulty contacts',
+					failed,
+					{ failedCount: failed }
+				) }}
 			</span>
 		</p>
 	</div>
@@ -52,11 +60,11 @@ export default {
 		accepted() {
 			return this.importState.accepted
 		},
-		failedCount() {
+		failed() {
 			return this.importState.denied
 		},
 		progress() {
-			return this.accepted + this.failedCount
+			return this.accepted + this.failed
 		},
 		percentage() {
 			return this.total <= 0
