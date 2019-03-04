@@ -67,6 +67,13 @@ export default class Contact {
 			console.info('This contact did not have a proper uid. Setting a new one for ', this)
 			this.vCard.addPropertyWithValue('uid', uuid())
 		}
+
+		// if no rev set, init one
+		if (!this.vCard.hasProperty('rev')) {
+			const rev = new ICAL.VCardTime()
+			rev.fromUnixTime(Date.now() / 1000)
+			this.rev = rev
+		}
 	}
 
 	/**
@@ -134,6 +141,27 @@ export default class Contact {
 	 */
 	set uid(uid) {
 		this.vCard.updatePropertyWithValue('uid', uid)
+		return true
+	}
+
+	/**
+	 * Return the rev
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get rev() {
+		return this.vCard.getFirstPropertyValue('rev')
+	}
+
+	/**
+	 * Set the rev
+	 *
+	 * @param {string} rev the rev to set
+	 * @memberof Contact
+	 */
+	set rev(rev) {
+		this.vCard.updatePropertyWithValue('rev', rev)
 		return true
 	}
 
