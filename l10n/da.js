@@ -24,7 +24,6 @@ OC.L10N.register(
     "New contact" : "Ny kontakt",
     "Importing {total} contacts into" : "Importerer {total} kontakter til",
     "Open your browser console for more details" : "Åbn din browsers konsol for flejre detaljer",
-    "failed" : "mislykkedes",
     "Select type" : "Vælg type",
     "Select Date" : "Vælg dato",
     "Add contact in group" : "Føj kontakt til gruppe",

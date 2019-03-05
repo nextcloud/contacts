@@ -23,7 +23,6 @@ OC.L10N.register(
     "Groups" : "Ryhmät",
     "New contact" : "Uusi yhteystieto",
     "Open your browser console for more details" : "Avaa selaimesi konsoli nähdäksesi lisätietoja",
-    "failed" : "epäonnistui",
     "Select type" : "Valitse tyyppi",
     "Select Date" : "Valitse päivä",
     "Add contact in group" : "Lisää yhteystieto ryhmään",

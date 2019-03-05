@@ -26,7 +26,6 @@ OC.L10N.register(
     "New contact" : "Nieuwe contactpersoon",
     "Importing {total} contacts into" : "Importeren {total} contactpersonen into",
     "Open your browser console for more details" : "Open je browserconsole voor meer details",
-    "failed" : "mislukte",
     "Select type" : "Selecteer type",
     "Select Date" : "Selecteer datum",
     "Add contact in group" : "Voeg een contactpersoon toe aan groep",

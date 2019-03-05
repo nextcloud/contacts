@@ -26,7 +26,6 @@ OC.L10N.register(
     "New contact" : "Nýr tengiliður",
     "Importing {total} contacts into" : "Flyt {total} tengiliði inn í",
     "Open your browser console for more details" : "Opnaðu stjórnborð vafrans þíns til að sjá frekari upplýsingar",
-    "failed" : "mistókst",
     "Select type" : "Veldu gerð",
     "Select Date" : "Veldu dagsetningu",
     "Add contact in group" : "Bæta tengilið í hóp",
