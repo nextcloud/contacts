@@ -112,14 +112,16 @@ const properties = component => ({
 		icon: 'icon-calendar-dark',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
-			value: new VCardTime().fromJSDate(new Date())
+			value: new VCardTime(null, null, 'date').fromJSDate(new Date())
 		}
 	},
 	anniversary: {
 		readableName: t('contacts', 'Anniversary'),
+		info: t('contacts', 'The date of marriage, or equivalent, of this contact'),
 		icon: 'icon-calendar-dark',
+		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
-			value: new VCardTime().fromJSDate(new Date())
+			value: new VCardTime(null, null, 'date').fromJSDate(new Date())
 		}
 	},
 	deathdate: {
@@ -127,7 +129,7 @@ const properties = component => ({
 		icon: 'icon-calendar-dark',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
-			value: new VCardTime().fromJSDate(new Date())
+			value: new VCardTime(null, null, 'date').fromJSDate(new Date())
 		}
 	},
 	email: {

@@ -148,7 +148,13 @@ export default {
 		 * Debounce and send update event to parent
 		 */
 		updateValue: debounce(function(e) {
-			let rawData = moment(e).toArray()
+			const objMap = ['year', 'month', 'day', 'hour', 'minute', 'second']
+			let rawArray = moment(e).toArray()
+
+			const rawObject = rawArray.reduce((acc, cur, index) => {
+				acc[objMap[index]] = cur
+				return acc
+			}, {})
 
 			/**
 			 * Use the current year to ensure we do not lose
@@ -156,9 +162,10 @@ export default {
 			 * no options to remove the year selection.
 			 * ! using this.value since this.localValue reflect the current change
 			 * ! so we need to make sure we do not use the updated data
+			 * TODO: add option to omit year and not use already existing data
 			 */
 			if (this.value.year === null) {
-				rawData[0] = null
+				rawObject.year = null
 			}
 
 			/**
@@ -167,10 +174,10 @@ export default {
 			 * ! since we use moment to generate our time array
 			 * ! we need to make sure the conversion to VCardTime is done well
 			 */
-			rawData[1]++
+			rawObject.month++
 
 			// reset the VCardTime component to the selected date/time
-			this.localValue.resetTo(...rawData)
+			this.localValue = new VCardTime(rawObject, null, this.propType)
 
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			// Use moment to convert the JsDate to Object
