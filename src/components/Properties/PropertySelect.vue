@@ -62,7 +62,7 @@ export default {
 
 	props: {
 		value: {
-			type: [Object, String],
+			type: [Object, String, Array],
 			default: '',
 			required: true
 		}
@@ -84,13 +84,25 @@ export default {
 		matchedOptions: {
 			get() {
 				let selected = this.propModel.options.find(option => option.id === this.localValue)
+				// properly display array as a string
+				if (Array.isArray(this.localValue)) {
+					return selected || {
+						id: this.localValue.join(';'),
+						name: this.localValue.join(';')
+					}
+				}
 				return selected || {
 					id: this.localValue,
 					name: this.localValue
 				}
 			},
 			set(value) {
-				this.localValue = value.id
+				// only keeping the array if the original value was one
+				if (Array.isArray(this.localValue)) {
+					this.localValue = value.id.split(';')
+				} else {
+					this.localValue = value.id
+				}
 			}
 		}
 	}

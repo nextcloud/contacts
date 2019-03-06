@@ -278,12 +278,15 @@ const properties = component => ({
 		readableName: t('contacts', 'Gender'),
 		defaultValue: {
 			// default to Female 🙋
-			value: ['F']
+			value: 'F'
 		},
+		force: 'select',
 		options: [
 			{ id: 'F', name: t('contacts', 'Female') },
 			{ id: 'M', name: t('contacts', 'Male') },
-			{ id: 'O', name: t('contacts', 'Other') }
+			{ id: 'O', name: t('contacts', 'Other') },
+			{ id: 'N', name: t('contacts', 'None') },
+			{ id: 'U', name: t('contacts', 'Unknown') }
 		]
 	}
 })
