@@ -44,6 +44,7 @@ const mutations = {
 	appendContacts(state, contacts = []) {
 		state.contacts = contacts.reduce(function(list, contact) {
 			if (contact instanceof Contact) {
+				validate(contact)
 				Vue.set(list, contact.key, contact)
 			} else {
 				console.error('Wrong contact object', contact)
