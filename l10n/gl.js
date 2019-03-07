@@ -87,6 +87,7 @@ OC.L10N.register(
     "Country" : "País",
     "Birthday" : "Aniversario",
     "Anniversary" : "Aniversario",
+    "The date of marriage, or equivalent, of this contact" : "A data do casamento, ou equivalente, deste contacto",
     "Date of death" : "Data do pasamento",
     "Email" : "Correo",
     "Instant messaging" : "Mensaxería instantánea",

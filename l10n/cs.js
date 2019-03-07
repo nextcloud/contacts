@@ -87,6 +87,7 @@ OC.L10N.register(
     "Country" : "Země",
     "Birthday" : "Narozeniny",
     "Anniversary" : "Výročí",
+    "The date of marriage, or equivalent, of this contact" : "Datum svatby (nebo ekvivalent) tohoto kontaktu",
     "Date of death" : "Datum úmrtí",
     "Email" : "Email",
     "Instant messaging" : "Komunikátor",
