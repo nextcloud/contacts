@@ -127,6 +127,8 @@ OC.L10N.register(
     "Gender" : "Gênero",
     "Female" : "Mulher",
     "Male" : "Homem",
+    "None" : "Nenhum",
+    "Unknown" : "Desconhecido",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contato falhou ao ler","{failed} contatos falharam ao ler"],
     "An error occurred" : "Um erro ocorreu"
 },

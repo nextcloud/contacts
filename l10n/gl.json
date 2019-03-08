@@ -83,8 +83,8 @@
     "State or province" : "Estado ou provincia",
     "Postal code" : "Código postal",
     "Country" : "País",
-    "Birthday" : "Aniversario",
-    "Anniversary" : "Aniversario",
+    "Birthday" : "Aniversario (nacemento)",
+    "Anniversary" : "Aniversario (casamento)",
     "The date of marriage, or equivalent, of this contact" : "A data do casamento, ou equivalente, deste contacto",
     "Date of death" : "Data do pasamento",
     "Email" : "Correo",
@@ -125,6 +125,8 @@
     "Gender" : "Xénero",
     "Female" : "Muller",
     "Male" : "Home",
+    "None" : "Ningún",
+    "Unknown" : "Descoñecido",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Produciuse un fallo ao ler {failed} contacto","Produciuse un fallo ao ler {failed} contactos"],
     "An error occurred" : "Produciuse un erro"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
