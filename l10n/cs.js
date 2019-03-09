@@ -127,6 +127,8 @@ OC.L10N.register(
     "Gender" : "Pohlaví",
     "Female" : "Žena",
     "Male" : "Muž",
+    "None" : "Žádné",
+    "Unknown" : "Neznámé",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt se nepodařilo načíst","{failed} kontakty se nepodařilo načíst","{failed} kontaktů se nepodařilo načíst","{failed} kontakty se nepodařilo načíst"],
     "An error occurred" : "Došlo k chybě"
 },
