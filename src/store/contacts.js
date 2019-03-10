@@ -22,8 +22,8 @@
 
 import Vue from 'vue'
 import ICAL from 'ical.js'
-import Contact from '../models/contact'
-import validate from '../services/validate'
+import Contact from 'Models/contact'
+import validate from 'Services/validate'
 
 const state = {
 	// Using objects for performance
@@ -232,6 +232,22 @@ const mutations = {
 	 */
 	setOrder(state, orderKey = 'displayName') {
 		state.orderKey = orderKey
+	},
+
+	/**
+	 * Set a contact as `in conflict` with the server data
+	 *
+	 * @param {Object} state the store data
+	 * @param {Object} data destructuring object
+	 * @param {Contact} data.contact the contact to update
+	 * @param {String} data.etag the etag to set
+	 */
+	setContactAsConflict(state, { contact, etag }) {
+		if (state.contacts[contact.key] && contact instanceof Contact) {
+			state.contacts[contact.key].conflict = etag
+		} else {
+			console.error('Error while handling the following contact', contact)
+		}
 	}
 }
 
@@ -314,12 +330,14 @@ const actions = {
 					// all clear, let's update the store
 					context.commit('updateContact', contact)
 				})
-				.catch((error) => {
+				.catch(error => {
+					console.info(error)
 					// wrong etag, we most likely have a conflict
 					if (error && error.status === 412) {
 						// saving the new etag so that the user can manually
 						// trigger a fetchCompleteData without any further errors
-						contact.conflict = error.xhr.getResponseHeader('etag')
+						context.commit('setContactAsConflict', { contact, etag: error.xhr.getResponseHeader('etag') })
+						console.error('This contact is outdated, the server refused it', contact)
 					}
 				})
 		} else {

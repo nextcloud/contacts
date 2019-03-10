@@ -52,6 +52,7 @@ module.exports = {
 			Mixins: path.resolve(__dirname, 'src/mixins/'),
 			Models: path.resolve(__dirname, 'src/models/'),
 			Services: path.resolve(__dirname, 'src/services/'),
+			Store: path.resolve(__dirname, 'src/store/'),
 			Views: path.resolve(__dirname, 'src/views/')
 		},
 		extensions: ['*', '.js', '.vue', '.json']

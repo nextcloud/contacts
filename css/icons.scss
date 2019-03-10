@@ -40,17 +40,27 @@
 	@include icon-color('up', 'contacts', $color-black, 1);
 }
 
+.icon-up-force-white {
+	// using #fffffe to trick the accessibility dark theme icon invert
+	@include icon-color('up', 'contacts', '#fffffe', 1);
+}
+
+.icon-history-force-white {
+	// using #fffffe to trick the accessibility dark theme icon invert
+	@include icon-color('history', 'actions', '#fffffe', 1, true);
+}
+
 .icon-delete-force-white {
 	// using #fffffe to trick the accessibility dark theme icon invert
-	@include icon-color('delete', 'contacts', '#fffffe', 1);
+	@include icon-color('delete', 'actions', '#fffffe', 1, true);
 }
 
 .icon-download-force-white {
 	// using #fffffe to trick the accessibility dark theme icon invert
-	@include icon-color('download', 'contacts', '#fffffe', 1);
+	@include icon-color('download', 'actions', '#fffffe', 1, true);
 }
 
 .icon-upload-force-white {
 	// using #fffffe to trick the accessibility dark theme icon invert
-	@include icon-color('upload', 'contacts', '#fffffe', 1);
+	@include icon-color('upload', 'actions', '#fffffe', 1, true);
 }

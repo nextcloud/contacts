@@ -50,7 +50,7 @@
 
 <script>
 import debounce from 'debounce'
-import Contact from '../../models/contact'
+import Contact from 'Models/contact'
 
 export default {
 	name: 'PropertyGroups',

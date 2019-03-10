@@ -77,7 +77,7 @@
 							content: conflict,
 							show: true,
 							trigger: 'manual',
-						}" class="header-icon header-icon--pulse icon-history-white"
+						}" class="header-icon header-icon--pulse icon-history-force-white"
 						@click="refreshContact" />
 					<div class="menu-icon">
 						<div v-click-outside="closeMenu" class="header-icon icon-more-white" @click="toggleMenu" />
@@ -127,6 +127,7 @@ import debounce from 'debounce'
 import PQueue from 'p-queue'
 
 import rfcProps from 'Models/rfcProps'
+import validate from 'Services/validate'
 
 import ContactProperty from './ContactDetails/ContactDetailsProperty'
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
@@ -162,6 +163,8 @@ export default {
 
 	data() {
 		return {
+			// if true, the local contact have been fixed and requires a push
+			fixed: false,
 			/**
 			 * Local off-store clone of the selected contact for edition
 			 * because we can't edit contacts data outside the store.
@@ -368,6 +371,7 @@ export default {
 		 * Send the local clone of contact to the store
 		 */
 		async updateContact() {
+			this.fixed = false
 			this.loadingUpdate = true
 			await this.$store.dispatch('updateContact', this.localContact)
 			this.loadingUpdate = false
@@ -421,6 +425,9 @@ export default {
 							Object.create(Object.getPrototypeOf(contact)),
 							contact
 						)
+
+						this.fixed = validate(localContact)
+
 						this.localContact = localContact
 						this.loadingData = false
 					} catch (error) {
@@ -438,10 +445,14 @@ export default {
 				} else {
 					// create empty contact and copy inner data
 					// wait for an update to really push the contact on the server!
-					this.localContact = Object.assign(
+					let localContact = Object.assign(
 						Object.create(Object.getPrototypeOf(contact)),
 						contact
 					)
+
+					this.fixed = validate(localContact)
+
+					this.localContact = localContact
 					this.loadingData = false
 				}
 
