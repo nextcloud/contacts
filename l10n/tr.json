@@ -125,6 +125,8 @@
     "Gender" : "Cinsiyet",
     "Female" : "Kadın",
     "Male" : "Erkek",
+    "None" : "Hiçbiri",
+    "Unknown" : "Bilinmeyen",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kişi okunamadı","{failed} kişi okunamadı"],
     "An error occurred" : "Bir sorun çıktı"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
