@@ -20,10 +20,11 @@
  *
  */
 
-import Contact from '../models/contact'
+import Contact from 'Models/contact'
 import checks from './checks/'
 
 export default function(contact) {
+	let result = false
 	if (contact instanceof Contact) {
 
 		// Going through every checks
@@ -37,6 +38,7 @@ export default function(contact) {
 						console.warn('The following contact needed a correction that failed:', check.name, contact)
 					} else {
 						// SUCCESS 💪
+						result = true
 						console.info('The following contact has been repaired:', check.name, contact)
 					}
 				}
@@ -44,7 +46,7 @@ export default function(contact) {
 				console.error('Error during the check:', check.name, contact, error)
 			}
 		})
-
+		return result
 	} else {
 		throw new Error('Invalid contact provided')
 	}

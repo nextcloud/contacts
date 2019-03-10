@@ -72,6 +72,11 @@
 				position: relative;
 				height: 44px;
 				width: 44px;
+				// ! override default server class
+				> .icon-more-white {
+					// using #fffffe to trick the accessibility dark theme icon invert
+					@include icon-color('more', 'actions', '#fffffe', 1, true);
+				}
 			}
 			.header-icon {
 				height: 44px;
