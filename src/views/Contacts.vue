@@ -24,7 +24,7 @@
 <template>
 	<app-content app-name="contacts" :class="{'icon-loading': loading}">
 		<!-- new-contact-button + navigation + settings -->
-		<template slot="navigation">
+		<app-navigation slot="navigation">
 			<!-- new-contact-button -->
 			<app-navigation-new v-if="!loading" button-id="new-contact-button" :text="t('contacts','New contact')"
 				button-class="icon-add" :disabled="!defaultAddressbook" @click="newContact" />
@@ -38,7 +38,7 @@
 			<app-navigation-settings v-if="!loading">
 				<settings-section />
 			</app-navigation-settings>
-		</template>
+		</app-navigation>
 
 		<template slot="content">
 			<!-- go back to list when in details mode -->
@@ -64,6 +64,7 @@
 <script>
 import {
 	AppContent,
+	AppNavigation,
 	AppNavigationItem,
 	AppNavigationNew,
 	AppNavigationSettings
@@ -87,6 +88,7 @@ export default {
 
 	components: {
 		AppContent,
+		AppNavigation,
 		AppNavigationItem,
 		AppNavigationNew,
 		AppNavigationSettings,
