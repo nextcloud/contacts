@@ -169,8 +169,8 @@ $property-value-max-width: 250px;
 	// External link (tel, mailto, http, ftp...)
 	&__ext {
 		position: absolute;
-		// 8px padding
-		right: 8px;
+		// 8px padding + actions
+		right: 44px + 8px;
 		opacity: 0;
 		&:hover,
 		&:focus,
