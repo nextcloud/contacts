@@ -248,6 +248,23 @@ const mutations = {
 		} else {
 			console.error('Error while handling the following contact', contact)
 		}
+	},
+
+	/**
+	 * Set a contact dav property
+	 *
+	 * @param {Object} state the store data
+	 * @param {Object} data destructuring object
+	 * @param {Contact} data.contact the contact to update
+	 * @param {Object} data.dav the dav object returned by the cdav library
+	 */
+	setContactDav(state, { contact, dav }) {
+		if (state.contacts[contact.key] && contact instanceof Contact) {
+			contact = state.contacts[contact.key]
+			Vue.set(contact, 'dav', dav)
+		} else {
+			console.error('Error while handling the following contact', contact)
+		}
 	}
 }
 
@@ -317,12 +334,13 @@ const actions = {
 		if (!contact.dav) {
 			// create contact
 			return contact.addressbook.dav.createVCard(vData)
-				.then((response) => {
-					Vue.set(contact, 'dav', response)
+				.then(dav => {
+					context.commit('setContactDav', { contact, dav })
 				})
-				.catch((error) => { throw error })
+				.catch(error => { throw error })
 		}
 
+		// if contact already exists
 		if (!contact.conflict) {
 			contact.dav.data = vData
 			return contact.dav.update()
