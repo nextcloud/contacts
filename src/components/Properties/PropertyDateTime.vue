@@ -47,7 +47,7 @@
 			<action :actions="actions" class="property__actions" />
 
 			<!-- Real input where the picker shows -->
-			<datetime-picker :value="localValue.toJSDate()" :minute-step="10" :lang="lang"
+			<datetime-picker :value="vcardTimeLocalValue.toJSDate()" :minute-step="10" :lang="lang"
 				:clearable="false" :first-day-of-week="firstDay" :type="inputType"
 				:readonly="isReadOnly" :format="dateFormat" class="property__value"
 				confirm @confirm="updateValue" />
@@ -76,7 +76,7 @@ export default {
 
 	props: {
 		value: {
-			type: VCardTime,
+			type: [VCardTime, String],
 			default: '',
 			required: true
 		}
@@ -115,6 +115,15 @@ export default {
 			let isLast = this.isLastProperty ? 1 : 0
 			// length is always one & add one space at the end
 			return hasTitle + 1 + isLast
+		},
+
+		// make sure the property is valid
+		vcardTimeLocalValue() {
+			if (typeof this.localValue === 'string') {
+				// eslint-disable-next-line new-cap
+				return new VCardTime.fromDateAndOrTimeString(this.localValue)
+			}
+			return this.localValue
 		}
 	},
 
@@ -196,7 +205,7 @@ export default {
 			// this is the only possibility for us to ensure
 			// no data is lost. e.g. if no second are set
 			// the second will be null and not 0
-			let datetimeData = this.localValue.toJSON()
+			let datetimeData = this.vcardTimeLocalValue.toJSON()
 			let datetime = ''
 
 			// FUN FACT: JS date starts month at zero!
@@ -236,7 +245,7 @@ export default {
 
 			return datetimeData.year === null
 				// replace year and remove double spaces
-				? datetime.replace(moment(this.localValue).year(), '').replace(/\s\s+/g, ' ')
+				? datetime.replace(moment(this.vcardTimeLocalValue).year(), '').replace(/\s\s+/g, ' ')
 				: datetime
 		}
 	}
