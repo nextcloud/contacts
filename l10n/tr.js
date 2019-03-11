@@ -127,8 +127,8 @@ OC.L10N.register(
     "Gender" : "Cinsiyet",
     "Female" : "Kadın",
     "Male" : "Erkek",
-    "None" : "Hiçbiri",
-    "Unknown" : "Bilinmeyen",
+    "None" : "Yok",
+    "Unknown" : "Bilinmiyor",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kişi okunamadı","{failed} kişi okunamadı"],
     "An error occurred" : "Bir sorun çıktı"
 },
