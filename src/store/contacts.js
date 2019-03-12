@@ -25,6 +25,23 @@ import ICAL from 'ical.js'
 import Contact from 'Models/contact'
 import validate from 'Services/validate'
 
+const sortData = (a, b) => {
+	var nameA = typeof a.value === 'string'
+		? a.value.toUpperCase()	// ignore upper and lowercase
+		: a.value.toUnixTime()	// only other sorting we support is a vCardTime
+	var nameB = typeof b.value === 'string'
+		? b.value.toUpperCase() // ignore upper and lowercase
+		: b.value.toUnixTime()	// only other sorting we support is a vCardTime
+
+	let score = nameA.localeCompare
+		? nameA.localeCompare(nameB)
+		: nameB - nameA
+	// if equal, fallback to the key
+	return score !== 0
+		? score
+		: a.key.localeCompare(b.key)
+}
+
 const state = {
 	// Using objects for performance
 	// https://codepen.io/skjnldsv/pen/ZmKvQo
@@ -91,9 +108,7 @@ const mutations = {
 			// Not using sort, splice has far better performances
 			// https://jsperf.com/sort-vs-splice-in-array
 			for (var i = 0, len = state.sortedContacts.length; i < len; i++) {
-				var nameA = state.sortedContacts[i].value.toUpperCase()	// ignore upper and lowercase
-				var nameB = sortedContact.value.toUpperCase()			// ignore upper and lowercase
-				if (nameA.localeCompare(nameB) >= 0) {
+				if (sortData(state.sortedContacts[i], sortedContact) >= 0) {
 					state.sortedContacts.splice(i, 0, sortedContact)
 					break
 				} else if (i + 1 === len) {
@@ -134,12 +149,7 @@ const mutations = {
 				// then update the new data
 				sortedContact.value = contact[state.orderKey]
 				// and then we sort again
-				state.sortedContacts
-					.sort((a, b) => {
-						var nameA = a.value.toUpperCase() // ignore upper and lowercase
-						var nameB = b.value.toUpperCase() // ignore upper and lowercase
-						return nameA.localeCompare(nameB)
-					})
+				state.sortedContacts.sort(sortData)
 			}
 
 		} else {
@@ -213,15 +223,7 @@ const mutations = {
 			// exclude groups
 			.filter(contact => contact.kind !== 'group')
 			.map(contact => { return { key: contact.key, value: contact[state.orderKey] } })
-			.sort((a, b) => {
-				var nameA = a.value.toUpperCase() // ignore upper and lowercase
-				var nameB = b.value.toUpperCase() // ignore upper and lowercase
-				let score = nameA.localeCompare(nameB)
-				// if equal, fallback to the key
-				return score !== 0
-					? score
-					: a.key.localeCompare(b.key)
-			})
+			.sort(sortData)
 	},
 
 	/**

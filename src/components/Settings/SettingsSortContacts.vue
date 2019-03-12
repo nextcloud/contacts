@@ -55,6 +55,10 @@ export default {
 				{
 					label: t('contacts', 'Display name'),
 					key: 'displayName'
+				},
+				{
+					label: t('contacts', 'Last modified'),
+					key: 'rev'
 				}
 			]
 		},
