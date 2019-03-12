@@ -126,6 +126,11 @@ export default {
 		 * @returns {string}
 		 */
 		propName() {
+			// ! is this a ITEMXX.XXX property??
+			if (this.propGroup[1]) {
+				return this.propGroup[1]
+			}
+
 			return this.property.name
 		},
 		/**
@@ -139,6 +144,7 @@ export default {
 			if (this.propModel && this.propModel.force) {
 				return this.propModel.force
 			}
+
 			return this.property.getDefaultType()
 		},
 
@@ -172,6 +178,16 @@ export default {
 		},
 
 		/**
+		 * Return the id and type of a property group
+		 * e.g ITEMXX.tel => ['ITEMXX', 'tel']
+		 *
+		 * @returns {Array}
+		 */
+		propGroup() {
+			return this.property.name.split('.')
+		},
+
+		/**
 		 * Returns the closest match to the selected type
 		 * or return the default selected as a new object if
 		 * none exists
@@ -180,6 +196,14 @@ export default {
 		 */
 		selectType: {
 			get() {
+				// ! if ABLABEL is present, this is a priority
+				const type = this.contact.vCard.getFirstPropertyValue(`${this.propGroup[0]}.x-ablabel`)
+				if (type) {
+					return {
+						id: type,
+						name: type
+					}
+				}
 				if (this.propModel && this.propModel.options && this.type) {
 
 					let selectedType = this.type
