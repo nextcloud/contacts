@@ -84,4 +84,5 @@ appstore:
 	$(project_directory)/lib \
 	$(project_directory)/templates \
 	$(project_directory)/js \
-	$(project_directory)/COPYING
+	$(project_directory)/COPYING \
+	$(project_directory)/CHANGELOG.md
