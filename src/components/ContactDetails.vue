@@ -459,11 +459,13 @@ export default {
 				// scroll to selected contact if any
 				let list = document.getElementById('contacts-list')
 				let item = document.querySelector('#' + btoa(contact.key).slice(0, -2))
-				let isAbove = list.scrollTop > item.offsetTop
-				let isUnder = item.offsetTop + item.offsetHeight > list.scrollTop + list.offsetHeight
-				// check if contact outside visible list area
-				if (item && (isAbove || isUnder)) {
-					list.scrollTo(0, item.offsetTop - item.offsetHeight / 2)
+				if (item) {
+					let isAbove = list.scrollTop > item.offsetTop
+					let isUnder = item.offsetTop + item.offsetHeight > list.scrollTop + list.offsetHeight
+					// check if contact outside visible list area
+					if (isAbove || isUnder) {
+						list.scrollTo(0, item.offsetTop - item.offsetHeight / 2)
+					}
 				}
 			}
 		},

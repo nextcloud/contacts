@@ -20,12 +20,37 @@
  *
  */
 
-import badGenderType from './badGenderType'
-import invalidREV from './invalidREV'
-import missingFN from './missingFN'
+import { VCardTime } from 'ical.js'
 
-export default [
-	badGenderType,
-	invalidREV,
-	missingFN
-]
+// https://tools.ietf.org/html/rfc6350#section-6.7.4
+
+export default {
+	name: 'invalid REV',
+	run: contact => {
+		try {
+			if (contact.vCard.hasProperty('rev')
+				&& contact.vCard.getFirstProperty('rev').getFirstValue()
+				&& contact.vCard.getFirstProperty('rev').getFirstValue().icalclass === 'vcardtime') {
+				return false
+			}
+		} catch (error) {
+			return true
+		}
+		return true
+	},
+	fix: contact => {
+		try {
+			// removing old invalid data
+			contact.vCard.removeProperty('rev')
+
+			// creatiing new value
+			const rev = new VCardTime(null, null, 'date-time')
+			rev.fromUnixTime(Date.now() / 1000)
+			contact.vCard.addPropertyWithValue('rev', rev)
+
+			return true
+		} catch (error) {
+			return false
+		}
+	}
+}
