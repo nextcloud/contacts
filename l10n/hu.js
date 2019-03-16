@@ -93,6 +93,7 @@ OC.L10N.register(
     "Social network" : "Közösségi hálózat",
     "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "A profil URL-je. Pl. https://www.facebook.com/Nextclouders/ ",
     "Relationship" : "Kapcsolat",
+    "Specify a relationship between you and the entity represented by this vCard." : "Add meg közted és ezen vCard tulajdonosa közötti kapcsolatot.",
     "Spouse" : "Házastárs",
     "Child" : "Gyermek",
     "Mother" : "Anya",
@@ -106,6 +107,7 @@ OC.L10N.register(
     "Manager" : "Vezető",
     "Assistant" : "Asszisztens",
     "Related" : "Kapcsolódó",
+    "Specify a relationship between another entity and the entity represented by this vCard." : "Add meg a másik és ezen vCard tulajdonosa közötti kapcsolatot.",
     "Contact" : "Névjegy",
     "Agent" : "Ügynök",
     "Emergency" : "Vészhelyzet",
@@ -113,6 +115,8 @@ OC.L10N.register(
     "Gender" : "Nem",
     "Female" : "Nő",
     "Male" : "Férfi",
+    "None" : "Egyik sem",
+    "Unknown" : "Ismeretlen",
     "An error occurred" : "Hiba történt"
 },
 "nplurals=2; plural=(n != 1);");
