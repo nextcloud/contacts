@@ -127,6 +127,8 @@ OC.L10N.register(
     "Gender" : "性别",
     "Female" : "女性",
     "Male" : "男性",
+    "None" : "无",
+    "Unknown" : "未知",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} 联系人读取失败"],
     "An error occurred" : "发生错误"
 },
