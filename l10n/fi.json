@@ -20,11 +20,14 @@
     "Addressbook" : "Osoitekirja",
     "Groups" : "Ryhmät",
     "New contact" : "Uusi yhteystieto",
+    "No errors" : "Ei virheitä",
     "Open your browser console for more details" : "Avaa selaimesi konsoli nähdäksesi lisätietoja",
+    "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} virheellinen yhteystieto","{failedCount} virheellistä yhteystietoa"],
     "Select type" : "Valitse tyyppi",
     "Select Date" : "Valitse päivä",
     "Add contact in group" : "Lisää yhteystieto ryhmään",
     "No results" : "Ei tuloksia",
+    "Last modified" : "Viimeksi muokattu",
     "Select option" : "Valitse valinta",
     "Copy link" : "Kopioi linkki",
     "Copied" : "Kopioitu",
@@ -52,6 +55,7 @@
     "Last name" : "Sukunimi",
     "Display name" : "Näyttönimi",
     "Sort by {sorting}" : "Järjestysperuste {sorting}",
+    "Not grouped" : "Ei ryhmitelty",
     "Unable to create the contact." : "Yhteystiedon luominen ei onnistunut.",
     "Contact not found" : "Yhteytietoa ei löytynyt",
     "Nickname" : "Kutsumanimi",
@@ -109,6 +113,7 @@
     "Gender" : "Sukupuoli",
     "Female" : "Nainen",
     "Male" : "Mies",
+    "Unknown" : "Tuntematon",
     "An error occurred" : "Tapahtui virhe"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
