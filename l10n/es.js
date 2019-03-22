@@ -28,6 +28,7 @@ OC.L10N.register(
     "Importing {total} contacts into" : "Importando {total} contactos en",
     "No errors" : "No hay errores",
     "Open your browser console for more details" : "Abre la consola del navegador para más detalles",
+    "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} contacto defectuoso","{failedCount} contactos defectuosos"],
     "Select type" : "Selecciona tipo",
     "Select Date" : "Seleccione la fecha",
     "Add contact in group" : "Añadir contacto en grupo",
