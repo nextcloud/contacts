@@ -56,7 +56,7 @@ sync(store, router)
 Vue.prototype.t = t
 Vue.prototype.n = n
 // eslint-disable-next-line
-Vue.prototype.oca_contacts = oca_contacts
+Vue.prototype.appVersion = appVersion
 // eslint-disable-next-line
 Vue.prototype.oc_config = oc_config
 Vue.prototype.OC = OC
