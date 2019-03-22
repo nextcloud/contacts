@@ -298,7 +298,7 @@ export default {
 			const contact = new Contact(`
 				BEGIN:VCARD
 				VERSION:4.0
-				PRODID:-//Nextcloud Contacts v${oca_contacts.versionstring}
+				PRODID:-//Nextcloud Contacts v${appVersion}
 				END:VCARD
 			`.trim().replace(/\t/gm, ''),
 			this.defaultAddressbook)

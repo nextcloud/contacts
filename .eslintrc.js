@@ -8,7 +8,7 @@ module.exports = {
 	},
 	globals: {
 		oc_config: true,
-		oca_contacts: true,
+		appVersion: true,
 		n: true,
 		t: true,
 		OC: true,

@@ -44,7 +44,10 @@ module.exports = {
 	plugins: [
 		new VueLoaderPlugin(),
 		new StyleLintPlugin(),
-		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/)
+		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+		new webpack.DefinePlugin({
+			appVersion: JSON.stringify(require('./package.json').version)
+		})
 	],
 	resolve: {
 		alias: {
