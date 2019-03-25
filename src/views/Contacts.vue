@@ -83,6 +83,9 @@ import rfcProps from 'Models/rfcProps'
 
 import client from 'Services/cdav'
 
+const GROUP_ALL_CONTACTS = t('contacts', 'All contacts')
+const GROUP_NO_GROUP_CONTACTS = t('contacts', 'Not grouped')
+
 export default {
 	name: 'Contacts',
 
@@ -158,9 +161,9 @@ export default {
 		 * @returns {Array}
 		 */
 		contactsList() {
-			if (this.selectedGroup === t('contacts', 'All contacts')) {
+			if (this.selectedGroup === GROUP_ALL_CONTACTS) {
 				return this.sortedContacts
-			} else if (this.selectedGroup === t('contacts', 'Not grouped')) {
+			} else if (this.selectedGroup === GROUP_NO_GROUP_CONTACTS) {
 				return this.ungroupedContacts.map(contact => this.sortedContacts.find(item => item.key === contact.key))
 			}
 			let group = this.groups.filter(group => group.name === this.selectedGroup)[0]
@@ -214,9 +217,9 @@ export default {
 				icon: 'icon-contacts-dark',
 				router: {
 					name: 'group',
-					params: { selectedGroup: t('contacts', 'All contacts') }
+					params: { selectedGroup: GROUP_ALL_CONTACTS }
 				},
-				text: t('contacts', 'All contacts'),
+				text: GROUP_ALL_CONTACTS,
 				utils: {
 					counter: this.sortedContacts.length
 				}
@@ -234,9 +237,9 @@ export default {
 				icon: 'icon-user',
 				router: {
 					name: 'group',
-					params: { selectedGroup: t('contacts', 'Not grouped') }
+					params: { selectedGroup: GROUP_NO_GROUP_CONTACTS }
 				},
-				text: t('contacts', 'Not grouped'),
+				text: GROUP_NO_GROUP_CONTACTS,
 				utils: {
 					counter: this.ungroupedContacts.length
 				}
@@ -321,8 +324,10 @@ export default {
 					}
 				}
 			}
+
 			// set group if it's selected already
-			if (this.selectedGroup !== t('contacts', 'All contacts')) {
+			// BUT NOT if it's the _fake_ groups like all contacts and not grouped
+			if ([GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS].indexOf(this.selectedGroup) === -1) {
 				contact.groups = [ this.selectedGroup ]
 			}
 			try {
