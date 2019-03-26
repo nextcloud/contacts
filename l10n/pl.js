@@ -74,7 +74,7 @@ OC.L10N.register(
     "Copy to full name" : "Kopiuj do nazwy pełnej",
     "Notes" : "Notatki",
     "Website" : "Strona WWW",
-    "Federated Cloud ID" : "ID Chmury Stowarzyszonej",
+    "Federated Cloud ID" : "ID Chmury Federacyjnej",
     "Home" : "Dom",
     "Work" : "Praca",
     "Other" : "Inne",
