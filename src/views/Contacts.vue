@@ -58,6 +58,10 @@
 				</template>
 			</div>
 		</template>
+		<modal v-if="isImporting" :clear-view-delay="-1" :can-close="isImportDone"
+			@close="closeImport">
+			<import-screen />
+		</modal>
 	</app-content>
 </template>
 
@@ -67,7 +71,8 @@ import {
 	AppNavigation,
 	AppNavigationItem,
 	AppNavigationNew,
-	AppNavigationSettings
+	AppNavigationSettings,
+	Modal
 } from 'nextcloud-vue'
 import moment from 'moment'
 import download from 'downloadjs'
@@ -98,7 +103,8 @@ export default {
 		SettingsSection,
 		ContactsList,
 		ContactDetails,
-		ImportScreen
+		ImportScreen,
+		Modal
 	},
 
 	// passed by the router
@@ -117,7 +123,9 @@ export default {
 	data() {
 		return {
 			loading: true,
-			searchQuery: ''
+			searchQuery: '',
+			// are we in mobile mode
+			isMobile: window.outerWidth <= 768
 		}
 	},
 
@@ -142,14 +150,17 @@ export default {
 			return this.$store.getters.getImportState
 		},
 
+		// importing states
+		isImporting() {
+			return this.importState.stage !== 'default'
+		},
+		isImportDone() {
+			return this.importState.stage === 'done'
+		},
+
 		// first enabled addressbook of the list
 		defaultAddressbook() {
 			return this.addressbooks.find(addressbook => !addressbook.readOnly && addressbook.enabled)
-		},
-
-		// are we in mobile mode
-		isMobile() {
-			return document.querySelector('body').offsetWidth < 768
 		},
 
 		/**
@@ -293,6 +304,12 @@ export default {
 				this.$store.commit('setOrder', localStorage.getItem('orderKey'))
 			}
 		})
+
+		window.addEventListener('resize', this.onResize)
+	},
+
+	beforeDestroy() {
+		window.removeEventListener('resize', this.onResize)
 	},
 
 	methods: {
@@ -457,6 +474,26 @@ export default {
 					selectedContact: undefined
 				}
 			})
+		},
+
+		/**
+		 * Done importing, the user closed the import status screen
+		 */
+		closeImport() {
+			// TODO: remove after https://github.com/nextcloud/nextcloud-vue/pull/323
+			if (this.isImportDone) {
+				this.$store.dispatch('changeStage', 'default')
+			}
+		},
+
+		/**
+		 * Trigerred when window is resized
+		 *
+		 * @param {Object} event the event
+		 */
+		onResize(event) {
+			// Update mobile mode
+			this.isMobile = window.outerWidth <= 768
 		}
 	}
 }

@@ -72,6 +72,7 @@ if (window.location.pathname.split('/')[1] === 'index.php'
 
 export default new Vue({
 	el: '#content',
+	name: 'ContactsApp',
 	router,
 	store,
 	render: h => h(App)
