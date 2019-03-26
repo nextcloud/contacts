@@ -73,7 +73,7 @@ const mutations = {
 	 * Change stage to the indicated one
 	 *
 	 * @param {Object} state the store data
-	 * @param {string} stage the name of the stage ('default', 'importing', 'parsing')
+	 * @param {string} stage the name of the stage ('default', 'importing', 'parsing', 'done')
 	 */
 	changeStage(state, stage) {
 		state.importState.stage = stage
@@ -139,7 +139,7 @@ const actions = {
 	 * and reset if the parsing starts
 	 *
 	 * @param {Object} context the store mutations
-	 * @param {string} stage the name of the stage ('default', 'importing', 'parsing')
+	 * @param {string} stage the name of the stage ('default', 'importing', 'parsing', 'done')
 	 */
 	changeStage(context, stage) {
 		context.commit('changeStage', stage)

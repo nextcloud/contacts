@@ -23,7 +23,10 @@
 <template>
 	<div class="emptycontent import-screen">
 		<p class="icon-upload" />
-		<h3 class="import-screen__header">
+		<h3 v-if="stage === 'done'" class="import-screen__header">
+			{{ t('contacts', 'Done importing {total} contacts into', { total }) }} {{ addressbook }}
+		</h3>
+		<h3 v-else class="import-screen__header">
 			{{ t('contacts', 'Importing {total} contacts into', { total }) }} {{ addressbook }}
 		</h3>
 		<progress :max="total" :value="progress" class="import-screen__progress" />
@@ -53,6 +56,9 @@ export default {
 		},
 		addressbook() {
 			return this.importState.addressbook
+		},
+		stage() {
+			return this.importState.stage
 		},
 		total() {
 			return this.importState.total
