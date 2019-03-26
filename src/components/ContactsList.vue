@@ -21,23 +21,32 @@
   -->
 
 <template>
-	<div id="contacts-list" :class="{'icon-loading': loading, showdetails: selectedContact}" class="app-content-list">
-		<!-- same uid can coexists between different addressbooks
-			so we need to use the addressbook id as key as well -->
-		<contacts-list-item v-for="(contact, index) in list" :key="contact.key" :contact="contacts[contact.key]"
-			:search-query="searchQuery" :list="list" :index="index"
-			@deleted="selectContact" />
-	</div>
+	<!-- same uid can coexists between different addressbooks
+		so we need to use the addressbook id as key as well -->
+	<recycle-scroller
+		id="contacts-list" :class="{'icon-loading': loading, showdetails: selectedContact}" class="app-content-list"
+		:items="list"
+		:item-size="68"
+		key-field="key">
+		<template v-slot="{ item, index }">
+			<contacts-list-item :contact="contacts[item.key]"
+				:search-query="searchQuery" :index="index" :key="item.key"
+				@deleted="selectContact" />
+		</template>
+	</recycle-scroller>
 </template>
 
 <script>
 import ContactsListItem from './ContactsList/ContactsListItem'
+import { RecycleScroller } from 'vue-virtual-scroller/dist/vue-virtual-scroller.umd.js'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 export default {
 	name: 'ContactsList',
 
 	components: {
-		ContactsListItem
+		ContactsListItem,
+		RecycleScroller
 	},
 
 	props: {

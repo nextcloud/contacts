@@ -33,3 +33,14 @@
 	transform: rotate(180deg);
 	margin-top: 44px; // under the show navigation button
 }
+
+
+// Virtual scroller overrides
+.vue-recycle-scroller{
+	position: sticky !important;
+}
+
+.vue-recycle-scroller__item-view {
+	// same as app-content-list-item
+	height: 68px;
+}
