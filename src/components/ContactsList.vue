@@ -24,13 +24,16 @@
 	<!-- same uid can coexists between different addressbooks
 		so we need to use the addressbook id as key as well -->
 	<recycle-scroller
-		id="contacts-list" :class="{'icon-loading': loading, showdetails: selectedContact}" class="app-content-list"
+		id="contacts-list"
+		ref="scroller"
+		:class="{'icon-loading': loading, showdetails: selectedContact}"
+		class="app-content-list"
 		:items="list"
-		:item-size="68"
+		:item-size="itemHeight"
 		key-field="key">
 		<template v-slot="{ item, index }">
-			<contacts-list-item :contact="contacts[item.key]"
-				:search-query="searchQuery" :index="index" :key="item.key"
+			<contacts-list-item :key="item.key"
+				:contact="contacts[item.key]" :search-query="searchQuery" :index="index"
 				@deleted="selectContact" />
 		</template>
 	</recycle-scroller>
@@ -68,12 +71,36 @@ export default {
 		}
 	},
 
+	data() {
+		return {
+			itemHeight: 68
+		}
+	},
+
 	computed: {
 		selectedContact() {
 			return this.$route.params.selectedContact
 		},
 		selectedGroup() {
 			return this.$route.params.selectedGroup
+		}
+	},
+
+	watch: {
+		selectedContact: function(key) {
+			this.$nextTick(() => {
+				this.scrollToContact(key)
+			})
+		},
+		list: function(val, old) {
+			// we just loaded the list and the url already have a selected contact
+			// if not, the selectedContact watcher will take over
+			// to select the first entry
+			if (val.length !== 0 && old.length === 0 && this.selectedContact) {
+				this.$nextTick(() => {
+					this.scrollToContact(this.selectedContact)
+				})
+			}
 		}
 	},
 
@@ -85,6 +112,32 @@ export default {
 				const newContact = oldIndex === 0 ? this.list[oldIndex + 1] : this.list[oldIndex - 1]
 				if (newContact) {
 					this.$router.push({ name: 'contact', params: { selectedGroup: this.selectedGroup, selectedContact: newContact.key } })
+				}
+			}
+		},
+
+		/**
+		 * Scroll to the desired contact if in the list and not visible
+		 *
+		 * @param {String} key the contact unique key
+		 */
+		scrollToContact(key) {
+			const item = this.$el.querySelector('#' + btoa(key).slice(0, -2))
+
+			// if the item is not visible in the list or barely visible
+			if (!(item && item.getBoundingClientRect().y > 50)) { // header height
+				const index = this.list.findIndex(contact => contact.key === key)
+				if (index > -1) {
+					this.$refs.scroller.scrollToItem(index)
+				}
+			}
+
+			// if item is a bit out (bottom) of the list, let's just scroll a bit to the top
+			if (item) {
+				const pos = item.getBoundingClientRect().y + this.itemHeight - (this.$el.offsetHeight + 50)
+				if (pos > 0) {
+					const scroller = this.$refs.scroller.$el
+					scroller.scrollTop = scroller.scrollTop + pos
 				}
 			}
 		}
