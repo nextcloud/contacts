@@ -403,7 +403,7 @@ export default {
 		},
 
 		/**
-		 * Select a contac, and update the localContact
+		 * Select a contact, and update the localContact
 		 * Fetch updated data if necessary
 		 * Scroll to the selected contact if exists
 		 *
@@ -454,18 +454,6 @@ export default {
 
 					this.localContact = localContact
 					this.loadingData = false
-				}
-
-				// scroll to selected contact if any
-				let list = document.getElementById('contacts-list')
-				let item = document.querySelector('#' + btoa(contact.key).slice(0, -2))
-				if (item) {
-					let isAbove = list.scrollTop > item.offsetTop
-					let isUnder = item.offsetTop + item.offsetHeight > list.scrollTop + list.offsetHeight
-					// check if contact outside visible list area
-					if (isAbove || isUnder) {
-						list.scrollTo(0, item.offsetTop - item.offsetHeight / 2)
-					}
 				}
 			}
 		},
