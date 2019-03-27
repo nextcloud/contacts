@@ -188,6 +188,15 @@ export default {
 		},
 
 		/**
+		 * Return the associated X-ABLABEL if any
+		 *
+		 * @returns {Property}
+		 */
+		propLabel() {
+			return this.contact.vCard.getFirstProperty(`${this.propGroup[0]}.x-ablabel`)
+		},
+
+		/**
 		 * Returns the closest match to the selected type
 		 * or return the default selected as a new object if
 		 * none exists
@@ -197,11 +206,10 @@ export default {
 		selectType: {
 			get() {
 				// ! if ABLABEL is present, this is a priority
-				const type = this.contact.vCard.getFirstPropertyValue(`${this.propGroup[0]}.x-ablabel`)
-				if (type) {
+				if (this.propLabel) {
 					return {
-						id: type,
-						name: type
+						id: this.propLabel.name,
+						name: this.propLabel.getFirstValue()
 					}
 				}
 				if (this.propModel && this.propModel.options && this.type) {
@@ -243,8 +251,17 @@ export default {
 				return null
 			},
 			set(data) {
-				// ical.js take types as arrays
-				this.type = data.id.split(',')
+				// if a custom label exists and this is the one we selected
+				if (this.propLabel && data.id === this.propLabel.name) {
+					this.propLabel.setValue(data.name)
+					// only one can coexist
+					this.type = []
+				} else {
+					// ical.js take types as arrays
+					this.type = data.id.split(',')
+					// only one can coexist
+					this.contact.vCard.removeProperty(`${this.propGroup[0]}.x-ablabel`)
+				}
 				this.$emit('updatedcontact')
 			}
 
