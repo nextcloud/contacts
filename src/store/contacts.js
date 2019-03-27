@@ -53,7 +53,8 @@ const state = {
 const mutations = {
 
 	/**
-	 * Store contacts into state
+	 * Store raw contacts into state
+	 * Used by the first contact fetch
 	 *
 	 * @param {Object} state Default state
 	 * @param {Array<Contact>} contacts Contacts
@@ -61,10 +62,9 @@ const mutations = {
 	appendContacts(state, contacts = []) {
 		state.contacts = contacts.reduce(function(list, contact) {
 			if (contact instanceof Contact) {
-				validate(contact)
 				Vue.set(list, contact.key, contact)
 			} else {
-				console.error('Wrong contact object', contact)
+				console.error('Invalid contact object', contact)
 			}
 			return list
 		}, state.contacts)
@@ -97,7 +97,7 @@ const mutations = {
 	addContact(state, contact) {
 		if (contact instanceof Contact) {
 
-			// Checking contact validity 🙈
+			// Checking contact validity 🔍🙈
 			validate(contact)
 
 			let sortedContact = {

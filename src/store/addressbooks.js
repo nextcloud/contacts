@@ -29,7 +29,6 @@ import Contact from 'Models/contact'
 
 import client from 'Services/cdav'
 import parseVcf from 'Services/parseVcf'
-import validate from 'Services/validate'
 
 const addressbookModel = {
 	id: '',
@@ -402,9 +401,6 @@ const actions = {
 
 		// create the array of requests to send
 		contacts.map(async contact => {
-
-			// validate and repair if needed
-			validate(contact)
 
 			// Get vcard string
 			try {
