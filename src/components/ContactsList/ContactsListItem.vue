@@ -11,7 +11,7 @@
 		<div :style="{ 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">
 			{{ contact.displayName | firstLetter }}
 			<!-- try to fetch the avatar only if the contact exists on the server -->
-			<div v-if="contact.photo && contact.dav" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
+			<div v-if="hasPhoto" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
 		</div>
 		<div class="app-content-list-item-line-one">
 			{{ contact.displayName }}
@@ -57,6 +57,10 @@ export default {
 		// usable and valid html id for scrollTo
 		id() {
 			return window.btoa(this.contact.key).slice(0, -2)
+		},
+
+		hasPhoto() {
+			return this.contact.dav && (this.contact.dav.hasphoto || this.contact.photo)
 		},
 
 		/**
