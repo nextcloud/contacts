@@ -131,3 +131,14 @@
 	color: var(--color-text-lighter);
 	opacity: .5;
 }
+
+#qrcode-modal {
+	.modal-container {
+		display: flex;
+		padding: 10px;
+		background-color: #fff;
+		.qrcode {
+			width: 100%;
+		}
+	}
+}

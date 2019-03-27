@@ -44,6 +44,7 @@
 		"nextcloud-vue": "^0.9.4",
 		"p-limit": "^2.2.0",
 		"p-queue": "^4.0.0",
+		"qr-image": "^3.2.0",
 		"uuid": "^3.3.2",
 		"v-tooltip": "^2.0.0-rc.33",
 		"vue": "^2.6.10",
