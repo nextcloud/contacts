@@ -28,12 +28,14 @@
 		ref="scroller"
 		:class="{'icon-loading': loading, showdetails: selectedContact}"
 		class="app-content-list"
-		:items="list"
+		:items="filteredList"
 		:item-size="itemHeight"
 		key-field="key">
 		<template v-slot="{ item, index }">
-			<contacts-list-item :key="item.key"
-				:contact="contacts[item.key]" :search-query="searchQuery" :index="index"
+			<contacts-list-item
+				:key="item.key"
+				:contact="contacts[item.key]"
+				:index="index"
 				@deleted="selectContact" />
 		</template>
 	</recycle-scroller>
@@ -83,6 +85,9 @@ export default {
 		},
 		selectedGroup() {
 			return this.$route.params.selectedGroup
+		},
+		filteredList() {
+			return this.list.filter(contact => this.matchSearch(this.contacts[contact.key]))
 		}
 	},
 
@@ -140,6 +145,19 @@ export default {
 					scroller.scrollTop = scroller.scrollTop + pos
 				}
 			}
+		},
+
+		/**
+		 * Is this matching the current search ?
+		 *
+		 * @param {Contact} contact the contact to search
+		 * @returns {boolean}
+		 */
+		matchSearch(contact) {
+			if (this.searchQuery.trim() !== '') {
+				return contact.searchData.toString().toLowerCase().search(this.searchQuery.trim().toLowerCase()) !== -1
+			}
+			return true
 		}
 	}
 }

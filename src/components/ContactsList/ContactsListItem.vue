@@ -1,5 +1,5 @@
 <template>
-	<div v-if="matchSearch" :id="id" :class="{active: selectedContact === contact.key}"
+	<div :id="id" :class="{active: selectedContact === contact.key}"
 		tabindex="0"
 		class="app-content-list-item" @click.prevent.stop="selectContact" @keypress.enter.prevent.stop="selectContact">
 		<!-- keyboard accessibility will focus the input and not the label -->
@@ -40,10 +40,6 @@ export default {
 		contact: {
 			type: Object,
 			required: true
-		},
-		searchQuery: {
-			type: String,
-			default: ''
 		}
 	},
 	computed: {
@@ -61,18 +57,6 @@ export default {
 
 		hasPhoto() {
 			return this.contact.dav && (this.contact.dav.hasphoto || this.contact.photo)
-		},
-
-		/**
-		 * Is this matching the current search ?
-		 *
-		 * @returns {boolean}
-		 */
-		matchSearch() {
-			if (this.searchQuery.trim() !== '') {
-				return this.contact.searchData.toString().toLowerCase().search(this.searchQuery.toLowerCase()) !== -1
-			}
-			return true
 		},
 
 		/**
