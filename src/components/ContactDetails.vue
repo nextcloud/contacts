@@ -279,11 +279,13 @@ export default {
 		 * @returns {Array}
 		 */
 		sortedProperties() {
-			return this.localContact.properties.slice(0).sort((a, b) => {
-				return (
-					rfcProps.fieldOrder.indexOf(a.name) - rfcProps.fieldOrder.indexOf(b.name)
-				)
-			})
+			return this.localContact.properties
+				.slice(0)
+				.sort((a, b) => {
+					const nameA = a.name.split('.').pop()
+					const nameB = b.name.split('.').pop()
+					return rfcProps.fieldOrder.indexOf(nameA) - rfcProps.fieldOrder.indexOf(nameB)
+				})
 		},
 
 		/**
