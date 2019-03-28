@@ -120,6 +120,13 @@ $property-value-max-width: 250px;
 			width: auto !important; // grow bigger if content is bigger than the original 100%
 			right: 0; // align right
 		}
+		@media only screen and (max-width: 768px) {
+			// align left of screen on narrow views
+			.multiselect__content-wrapper {
+				left: 0;
+				right: auto;
+			}
+		}
 	}
 
 	// Property value within row, after label
