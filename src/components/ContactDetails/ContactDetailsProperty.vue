@@ -27,7 +27,7 @@
 		:property="property" :is-last-property="isLastProperty" :class="{'property--last': isLastProperty}"
 		:contact="contact" :prop-name="propName" :prop-type="propType"
 		:options="sortedModelOptions" :is-read-only="isReadOnly"
-		@delete="deleteProp" />
+		@delete="deleteProp" @update="updateProp" />
 </template>
 
 <script>
@@ -261,6 +261,16 @@ export default {
 					this.type = data.id.split(',')
 					// only one can coexist
 					this.contact.vCard.removeProperty(`${this.propGroup[0]}.x-ablabel`)
+
+					// checking if there is any other property in this group
+					const groups = this.contact.jCal[1]
+						.map(prop => prop[0])
+						.filter(name => name.startsWith(`${this.propGroup[0]}.`))
+					if (groups.length === 1) {
+						// then this prop is the latest of its group
+						// -> converting back to simple prop
+						this.property.jCal[0] = this.propGroup[1]
+					}
 				}
 				this.$emit('updatedcontact')
 			}
@@ -322,7 +332,15 @@ export default {
 		 * Delete this property
 		 */
 		deleteProp() {
+			console.info('removing', this.property, this.propGroup)
 			this.contact.vCard.removeProperty(this.property)
+			this.$emit('updatedcontact')
+		},
+
+		/**
+		 * Update this property
+		 */
+		updateProp() {
 			this.$emit('updatedcontact')
 		}
 	}
