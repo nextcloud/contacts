@@ -60,13 +60,19 @@ $property-value-max-width: 250px;
 		min-width: $property-label-min-width !important; // override multiselect
 		max-width: $property-label-max-width;
 
-		opacity: .7;
 		user-select: none;
 		background-size: 16px;
 
 		&,
-		.multiselect__input::placeholder {
-			text-align: right;
+		.multiselect__input {
+			&::placeholder {
+				text-align: right;
+			}
+			+ .multiselect__single {
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				overflow: hidden;
+			}
 		}
 
 		&:not(.multiselect) {
@@ -77,12 +83,15 @@ $property-value-max-width: 250px;
 		}
 
 		// mouse feedback
+		.multiselect__tags {
+			opacity: .7;
+		}
 		&:hover,
 		&:focus,
 		&:active {
-			opacity: 1;
 			.multiselect__tags {
 				border-color: var(--color-border-dark);
+				opacity: 1;
 			}
 		}
 
@@ -105,9 +114,11 @@ $property-value-max-width: 250px;
 				background-position: center right 4px;
 				padding-right: 24px;
 			}
-			.multiselect__content-wrapper {
-				min-width: $property-label-max-width; // improve readability on narrow screens
-			}
+		}
+		.multiselect__content-wrapper {
+			min-width: $property-label-max-width; // improve readability on narrow screens
+			width: auto !important; // grow bigger if content is bigger than the original 100%
+			right: 0; // align right
 		}
 	}
 
