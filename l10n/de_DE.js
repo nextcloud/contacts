@@ -25,6 +25,7 @@ OC.L10N.register(
     "Groups" : "Gruppen",
     "New contact" : "Neuer Kontakt",
     "Syntax error. Cannot open the contact." : "Syntaxfehler. Der Kontakt kann nicht geöffnet werden.",
+    "Done importing {total} contacts into" : "{total} Kontakte importiert in",
     "Importing {total} contacts into" : "Importiere {total} Kontakte nach",
     "No errors" : "Keine Fehler",
     "Open your browser console for more details" : "Browser-Konsole für weitere Einzelheiten öffnen",

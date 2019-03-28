@@ -23,6 +23,7 @@
     "Groups" : "Grupos",
     "New contact" : "Novo contato",
     "Syntax error. Cannot open the contact." : "Erro de sintaxe. Não é possível abrir o contato.",
+    "Done importing {total} contacts into" : "Fim da importação de {total} contatos",
     "Importing {total} contacts into" : "Importando {total} contatos para",
     "No errors" : "Sem errors",
     "Open your browser console for more details" : "Abra o console do navegador para mais detalhes",

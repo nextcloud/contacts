@@ -25,6 +25,7 @@ OC.L10N.register(
     "Groups" : "Groupes",
     "New contact" : "Nouveau contact",
     "Syntax error. Cannot open the contact." : "Erreur de syntaxe. Impossible de lire le contact.",
+    "Done importing {total} contacts into" : "Terminé, {total} contacts importés dans",
     "Importing {total} contacts into" : "Import en cours de {total} contacts dans",
     "No errors" : "Aucune erreur",
     "Open your browser console for more details" : "Ouvrez la console de votre navigateur pour plus d'informations",

@@ -25,6 +25,7 @@ OC.L10N.register(
     "Groups" : "群组",
     "New contact" : "新建联系人",
     "Syntax error. Cannot open the contact." : "语法错误。不能打开联系人。",
+    "Done importing {total} contacts into" : "导入 {total} 个联系人",
     "Importing {total} contacts into" : "导入 {total} 个联系人",
     "No errors" : "没有错误",
     "Open your browser console for more details" : "打开浏览器控制台以获取更多详细信息",
