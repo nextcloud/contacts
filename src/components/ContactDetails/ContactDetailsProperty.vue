@@ -101,7 +101,7 @@ export default {
 		// is this the first property of its kind
 		isFirstProperty() {
 			if (this.index > 0) {
-				return this.sortedProperties[this.index - 1].name !== this.propName
+				return this.sortedProperties[this.index - 1].name.split('.').pop() !== this.propName
 			}
 			return true
 		},
@@ -109,7 +109,7 @@ export default {
 		isLastProperty() {
 			// array starts at 0, length starts at 1
 			if (this.index < this.sortedProperties.length - 1) {
-				return this.sortedProperties[this.index + 1].name !== this.propName
+				return this.sortedProperties[this.index + 1].name.split('.').pop() !== this.propName
 			}
 			return true
 		},
