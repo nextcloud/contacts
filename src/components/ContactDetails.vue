@@ -254,7 +254,8 @@ export default {
 				{
 					icon: 'icon-download',
 					text: t('contacts', 'Download'),
-					href: this.contact.url
+					href: this.contact.url,
+					download: `${this.contact.displayName}.vcf`
 				},
 				{
 					icon: 'icon-qrcode',
