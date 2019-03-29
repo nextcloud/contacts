@@ -37,12 +37,11 @@
 					class="hidden" accept="image/*" @change="processFile">
 			</div>
 
-			<modal v-if="maximizeAvatar" class="contact-header-modal" :actions="modalActions"
-				@close="toggleModal" ref="modal" size="large">
-				<img :src="photo" class="contact-header-modal__photo" @load="updateImgSize" :style="{
-					width: width+  'px',
-					height: height+  'px'
-				}" ref="img">
+			<modal v-if="maximizeAvatar" ref="modal" class="contact-header-modal"
+				:actions="modalActions" size="large" :title="contact.displayName"
+				@close="toggleModal">
+				<img ref="img" :src="photo" class="contact-header-modal__photo"
+					:style="{ width, height }" @load="updateImgSize">
 			</modal>
 
 			<!-- out of the avatar__options because of the overflow hidden -->
@@ -80,12 +79,6 @@ export default {
 			width: 0,
 			height: 0
 		}
-	},
-	mounted() {
-		// update image size on window resize
-		window.addEventListener('resize', debounce(() => {
-			this.updateImgSize()
-		}, 100))
 	},
 	computed: {
 		photo() {
@@ -126,6 +119,12 @@ export default {
 				}
 			]]
 		}
+	},
+	mounted() {
+		// update image size on window resize
+		window.addEventListener('resize', debounce(() => {
+			this.updateImgSize()
+		}, 100))
 	},
 	methods: {
 		/**
@@ -240,14 +239,7 @@ export default {
 		},
 
 		updateImgSize() {
-			const [imgH, imgW] = [
-				// displaying tiny images makes no sense,
-				// let's try to an least dispay them at 100x100
-				Math.max(this.$refs.img.naturalHeight, 100),
-				Math.max(this.$refs.img.naturalWidth, 100)
-			]
-			
-			this.updateHeightWidth(imgH, imgW)
+			this.updateHeightWidth(this.$refs.img.naturalHeight, this.$refs.img.naturalWidth)
 		},
 		/**
 		 * Updates the current height and width data
@@ -269,30 +261,36 @@ export default {
 				const heightRatio = parentHeight / contentHeight
 				const widthRatio = parentWidth / contentWidth
 
-				console.info(wrapperMaxHeight,
-					wrapperMaxWidth,
-					parentHeight,
-					parentWidth);
-
 				// if the video height is capped by the parent height
 				// AND the video is bigger than the parent
 				if (heightRatio < widthRatio && heightRatio < 1) {
-					this.height = parentHeight
-					this.width = Math.round(contentWidth / contentHeight * parentHeight)
+					this.height = parentHeight + 'px'
+					this.width = Math.round(contentWidth / contentHeight * parentHeight) + 'px'
 
 				// if the video width is capped by the parent width
 				// AND the video is bigger than the parent
 				} else if (heightRatio > widthRatio && widthRatio < 1) {
-					this.width = parentWidth
-					this.height = Math.round(contentHeight / contentWidth * parentWidth)
+					this.width = parentWidth + 'px'
+					this.height = Math.round(contentHeight / contentWidth * parentWidth) + 'px'
 
 				// RESET
 				} else {
-					this.height = contentHeight
-					this.width = contentWidth
+					// displaying tiny images makes no sense,
+					// let's try to an least dispay them at 100x100
+					// AND to keep the ratio
+					if (contentHeight < 100) {
+						this.height = 100 + 'px'
+						this.width = null
+					} else if (contentWidth < 100) {
+						this.width = 100 + 'px'
+						this.height = null
+					} else {
+						this.height = contentHeight + 'px'
+						this.width = contentWidth + 'px'
+					}
 				}
 			}
-		},
+		}
 
 	}
 
