@@ -29,9 +29,10 @@
 		<div class="property__row">
 			<!-- type selector -->
 			<multiselect v-if="propModel.options" v-model="localType"
-				:options="options" :searchable="false" :placeholder="t('contacts', 'Select type')"
-				:disabled="isReadOnly" class="property__label" track-by="id"
-				label="name" @input="updateType" />
+				:options="options" :placeholder="t('contacts', 'Select type')"
+				:taggable="true" tag-placeholder="create" :disabled="isReadOnly"
+				class="property__label" track-by="id" label="name"
+				@tag="createLabel" @input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
 			<div v-else-if="selectType" class="property__label">

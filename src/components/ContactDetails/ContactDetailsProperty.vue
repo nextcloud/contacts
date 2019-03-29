@@ -27,7 +27,7 @@
 		:property="property" :is-last-property="isLastProperty" :class="{'property--last': isLastProperty}"
 		:contact="contact" :prop-name="propName" :prop-type="propType"
 		:options="sortedModelOptions" :is-read-only="isReadOnly"
-		@delete="deleteProp" />
+		@delete="deleteProp" @update="updateProp" />
 </template>
 
 <script>
@@ -101,7 +101,7 @@ export default {
 		// is this the first property of its kind
 		isFirstProperty() {
 			if (this.index > 0) {
-				return this.sortedProperties[this.index - 1].name !== this.propName
+				return this.sortedProperties[this.index - 1].name.split('.').pop() !== this.propName
 			}
 			return true
 		},
@@ -109,7 +109,7 @@ export default {
 		isLastProperty() {
 			// array starts at 0, length starts at 1
 			if (this.index < this.sortedProperties.length - 1) {
-				return this.sortedProperties[this.index + 1].name !== this.propName
+				return this.sortedProperties[this.index + 1].name.split('.').pop() !== this.propName
 			}
 			return true
 		},
@@ -126,6 +126,11 @@ export default {
 		 * @returns {string}
 		 */
 		propName() {
+			// ! is this a ITEMXX.XXX property??
+			if (this.propGroup[1]) {
+				return this.propGroup[1]
+			}
+
 			return this.property.name
 		},
 		/**
@@ -139,6 +144,7 @@ export default {
 			if (this.propModel && this.propModel.force) {
 				return this.propModel.force
 			}
+
 			return this.property.getDefaultType()
 		},
 
@@ -172,6 +178,25 @@ export default {
 		},
 
 		/**
+		 * Return the id and type of a property group
+		 * e.g ITEMXX.tel => ['ITEMXX', 'tel']
+		 *
+		 * @returns {Array}
+		 */
+		propGroup() {
+			return this.property.name.split('.')
+		},
+
+		/**
+		 * Return the associated X-ABLABEL if any
+		 *
+		 * @returns {Property}
+		 */
+		propLabel() {
+			return this.contact.vCard.getFirstProperty(`${this.propGroup[0]}.x-ablabel`)
+		},
+
+		/**
 		 * Returns the closest match to the selected type
 		 * or return the default selected as a new object if
 		 * none exists
@@ -180,6 +205,13 @@ export default {
 		 */
 		selectType: {
 			get() {
+				// ! if ABLABEL is present, this is a priority
+				if (this.propLabel) {
+					return {
+						id: this.propLabel.name,
+						name: this.propLabel.getFirstValue()
+					}
+				}
 				if (this.propModel && this.propModel.options && this.type) {
 
 					let selectedType = this.type
@@ -219,8 +251,27 @@ export default {
 				return null
 			},
 			set(data) {
-				// ical.js take types as arrays
-				this.type = data.id.split(',')
+				// if a custom label exists and this is the one we selected
+				if (this.propLabel && data.id === this.propLabel.name) {
+					this.propLabel.setValue(data.name)
+					// only one can coexist
+					this.type = []
+				} else {
+					// ical.js take types as arrays
+					this.type = data.id.split(',')
+					// only one can coexist
+					this.contact.vCard.removeProperty(`${this.propGroup[0]}.x-ablabel`)
+
+					// checking if there is any other property in this group
+					const groups = this.contact.jCal[1]
+						.map(prop => prop[0])
+						.filter(name => name.startsWith(`${this.propGroup[0]}.`))
+					if (groups.length === 1) {
+						// then this prop is the latest of its group
+						// -> converting back to simple prop
+						this.property.jCal[0] = this.propGroup[1]
+					}
+				}
 				this.$emit('updatedcontact')
 			}
 
@@ -281,7 +332,15 @@ export default {
 		 * Delete this property
 		 */
 		deleteProp() {
+			console.info('removing', this.property, this.propGroup)
 			this.contact.vCard.removeProperty(this.property)
+			this.$emit('updatedcontact')
+		},
+
+		/**
+		 * Update this property
+		 */
+		updateProp() {
 			this.$emit('updatedcontact')
 		}
 	}

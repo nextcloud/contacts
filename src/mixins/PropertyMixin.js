@@ -21,6 +21,7 @@
  */
 import debounce from 'debounce'
 import Contact from 'Models/contact'
+import ICAL from 'ical.js'
 
 export default {
 	props: {
@@ -129,6 +130,40 @@ export default {
 		updateType: debounce(function(e) {
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			this.$emit('update:selectType', this.localType)
-		}, 500)
+		}, 500),
+
+		createLabel(label) {
+			let propGroup = this.property.name
+			if (!this.property.name.startsWith('nextcloud')) {
+				propGroup = `nextcloud${this.getNcGroupCount() + 1}.${this.property.name}`
+				this.property.jCal[0] = propGroup
+			}
+			const group = propGroup.split('.')[0]
+			const name = propGroup.split('.')[1]
+
+			this.contact.vCard.addPropertyWithValue(`${group}.x-ablabel`, label)
+
+			// force update the main design sets
+			if (ICAL.design.vcard.property[name]) {
+				ICAL.design.vcard.property[propGroup]
+					= ICAL.design.vcard.property[name]
+			}
+			if (ICAL.design.vcard3.property[name]) {
+				ICAL.design.vcard3.property[propGroup]
+					= ICAL.design.vcard3.property[name]
+			}
+
+			this.$emit('update')
+		},
+
+		getNcGroupCount() {
+			const props = this.contact.jCal[1]
+				.map(prop => prop[0].split('.')[0])				// itemxxx.adr => itemxxx
+				.filter(name => name.startsWith('nextcloud'))	// filter nextcloudxxx.adr
+				.map(prop => parseInt(prop.split('nextcloud')[1]))	// nextcloudxxx => xxx
+			return props.length > 0
+				? Math.max.apply(null, props) // get max iteration of nextcloud grouped props
+				: 0
+		}
 	}
 }
