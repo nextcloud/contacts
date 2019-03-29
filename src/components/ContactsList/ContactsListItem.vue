@@ -1,5 +1,5 @@
 <template>
-	<div :id="id" :class="{active: selectedContact === contact.key}"
+	<div :id="id" :class="{active: selectedContact === contact.key, deleted: deleteTimeout}"
 		tabindex="0"
 		class="app-content-list-item" @click.prevent.stop="selectContact" @keypress.enter.prevent.stop="selectContact">
 		<!-- keyboard accessibility will focus the input and not the label -->
@@ -8,19 +8,25 @@
 			class="app-content-list-item-checkbox checkbox" @keypress.enter.space.prevent.stop="toggleSelect">
 		<label :for="contact.key" @click.prevent.stop="toggleSelect" @keypress.enter.space.prevent.stop="toggleSelect" />
 		-->
-		<div :style="{ 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">
+		<div :style="{ 'backgroundColor': !deleteTimeout ? colorAvatar : 'grey' }" class="app-content-list-item-icon">
 			{{ contact.displayName | firstLetter }}
 			<!-- try to fetch the avatar only if the contact exists on the server -->
 			<div v-if="hasPhoto" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
 		</div>
+
+		<!-- contact data -->
 		<div class="app-content-list-item-line-one">
 			{{ contact.displayName }}
 		</div>
-		<div v-if="contact.email" class="app-content-list-item-line-two">
+		<div v-if="contact.email && !deleteTimeout" class="app-content-list-item-line-two">
 			{{ contact.email }}
 		</div>
-		<div v-if="!contact.addressbook.readOnly" class="icon-delete" tabindex="0"
+
+		<!-- delete and undo actions -->
+		<div v-if="!contact.addressbook.readOnly && !deleteTimeout" class="icon-delete" tabindex="0"
 			@click.prevent.stop="deleteContact" @keypress.enter.prevent.stop="deleteContact" />
+		<div v-else-if="deleteTimeout" class="icon-history" tabindex="0"
+			@click.prevent.stop="cancelDeletion" @keypress.enter.prevent.stop="cancelDeletion" />
 	</div>
 </template>
 
@@ -40,6 +46,11 @@ export default {
 		contact: {
 			type: Object,
 			required: true
+		}
+	},
+	data() {
+		return {
+			deleteTimeout: null
 		}
 	},
 	computed: {
@@ -72,6 +83,9 @@ export default {
 			}
 		},
 		avatarUrl() {
+			if (this.contact.photo) {
+				return `url(${this.contact.photo})`
+			}
 			return `url(${this.contact.url}?photo)`
 		}
 	},
@@ -89,8 +103,15 @@ export default {
 		 * Dispatch contact deletion request
 		 */
 		deleteContact() {
-			this.$store.dispatch('deleteContact', { contact: this.contact })
-			this.$emit('deleted', this.index)
+			this.deleteTimeout = setTimeout(() => {
+				this.$store.dispatch('deleteContact', { contact: this.contact })
+				this.$emit('deleted', this.index)
+			}, 7000)
+		},
+
+		cancelDeletion() {
+			clearTimeout(this.deleteTimeout)
+			this.deleteTimeout = null
 		},
 
 		/**

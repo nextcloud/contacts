@@ -19,6 +19,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+.app-content-list-item.deleted {
+	.app-content-list-item-icon__avatar {
+		filter: brightness(.8) grayscale(1);
+	}
+	.app-content-list-item-line-one {
+		text-decoration: line-through;
+	}
+}
 
 .app-content-list-item-icon {
 	overflow: hidden;
