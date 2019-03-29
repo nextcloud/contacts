@@ -37,9 +37,12 @@
 					class="hidden" accept="image/*" @change="processFile">
 			</div>
 
-			<modal v-if="maximizeAvatar" class="contact-header-modal__photo" :actions="modalActions"
-				@close="toggleModal">
-				<img :src="photo" class="contact-header-modal__photo">
+			<modal v-if="maximizeAvatar" class="contact-header-modal" :actions="modalActions"
+				@close="toggleModal" ref="modal" size="large">
+				<img :src="photo" class="contact-header-modal__photo" @load="updateImgSize" :style="{
+					width: width+  'px',
+					height: height+  'px'
+				}" ref="img">
 			</modal>
 
 			<!-- out of the avatar__options because of the overflow hidden -->
@@ -51,6 +54,8 @@
 </template>
 
 <script>
+import debounce from 'debounce'
+
 import { pickFileOrDirectory } from 'nextcloud-server/dist/files'
 import { generateRemoteUrl } from 'nextcloud-server/dist/router'
 
@@ -71,8 +76,16 @@ export default {
 			maximizeAvatar: false,
 			opened: false,
 			loading: false,
-			root: generateRemoteUrl(`dav/files/${OC.getCurrentUser().uid}`)
+			root: generateRemoteUrl(`dav/files/${OC.getCurrentUser().uid}`),
+			width: 0,
+			height: 0
 		}
+	},
+	mounted() {
+		// update image size on window resize
+		window.addEventListener('resize', debounce(() => {
+			this.updateImgSize()
+		}, 100))
 	},
 	computed: {
 		photo() {
@@ -224,7 +237,63 @@ export default {
 		},
 		closeMenu() {
 			this.opened = false
-		}
+		},
+
+		updateImgSize() {
+			const [imgH, imgW] = [
+				// displaying tiny images makes no sense,
+				// let's try to an least dispay them at 100x100
+				Math.max(this.$refs.img.naturalHeight, 100),
+				Math.max(this.$refs.img.naturalWidth, 100)
+			]
+			
+			this.updateHeightWidth(imgH, imgW)
+		},
+		/**
+		 * Updates the current height and width data
+		 * based on the viewer maximum size
+		 *
+		 * @param {Integer} contentHeight your element height
+		 * @param {Integer} contentWidth your element width
+		 */
+		updateHeightWidth(contentHeight, contentWidth) {
+			const modalWrapper = this.$refs.modal.$el.querySelector('.modal-wrapper')
+			if (modalWrapper) {
+				const modalContainer = modalWrapper.querySelector('.modal-container')
+				const wrapperMaxHeight = window.getComputedStyle(modalContainer).maxHeight.replace('%', '')
+				const wrapperMaxWidth = window.getComputedStyle(modalContainer).maxWidth.replace('%', '')
+
+				const parentHeight = Math.round(modalWrapper.clientHeight * Number(wrapperMaxHeight) / 100) - 50 // minus header
+				const parentWidth = Math.round(modalWrapper.clientWidth * Number(wrapperMaxWidth) / 100)
+
+				const heightRatio = parentHeight / contentHeight
+				const widthRatio = parentWidth / contentWidth
+
+				console.info(wrapperMaxHeight,
+					wrapperMaxWidth,
+					parentHeight,
+					parentWidth);
+
+				// if the video height is capped by the parent height
+				// AND the video is bigger than the parent
+				if (heightRatio < widthRatio && heightRatio < 1) {
+					this.height = parentHeight
+					this.width = Math.round(contentWidth / contentHeight * parentHeight)
+
+				// if the video width is capped by the parent width
+				// AND the video is bigger than the parent
+				} else if (heightRatio > widthRatio && widthRatio < 1) {
+					this.width = parentWidth
+					this.height = Math.round(contentHeight / contentWidth * parentWidth)
+
+				// RESET
+				} else {
+					this.height = contentHeight
+					this.width = contentWidth
+				}
+			}
+		},
+
 	}
 
 }

@@ -84,9 +84,16 @@
 	}
 }
 
-.contact-header-modal__photo {
+.contact-header-modal {
 	.modal-container {
-		display: flex;
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		.contact-header-modal__photo {
+			// animate zooming/resize
+			transition: height 100ms ease,
+				width 100ms ease;
+		}
 	}
 }
 
