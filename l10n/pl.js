@@ -20,6 +20,7 @@ OC.L10N.register(
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Ten kontakt jest w trybie \"tylko do odczytu\". Nie masz uprawnień do edytowania tego kontaktu.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakt który próbujesz edytować został zmieniony. Odśwież kontakt ręcznie. Wszystkie przyszłe zmiany zostaną odrzucone.",
     "Download" : "Ściągnij",
+    "Generate QR Code" : "Wygeneruj kod QR",
     "Delete" : "Skasuj",
     "Addressbook" : "Książka adresowa",
     "Groups" : "Grupy",
