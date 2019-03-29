@@ -35,8 +35,6 @@
 		width: 75px;
 		height: 75px;
 		margin-left: auto;
-		overflow: hidden;
-		border-radius: 50%;
 	}
 	&__background {
 		opacity: .2;
@@ -44,90 +42,51 @@
 		left: 0;
 		top: 50px;
 	}
+	&__photo,
+	&__options {
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+		overflow: hidden;
+	}
 	&__photo {
 		z-index: 10;
 		background-size: cover;
-		width: 100%;
-		height: 100%;
 		background-repeat: no-repeat;
 		background-position: center;
 		cursor: pointer;
 	}
-	label.icon-upload-force-white {
-		opacity: .5;
+	&__options {
+		top: 0;
 		z-index: 2;
 		position: absolute;
+		background-color: rgba(0, 0, 0, 0.2);
+	}
+	.contact-avatar-options {
 		width: 100%;
 		height: 100%;
+		display: block;
+		opacity: .5;
+		background-color: rgba(0, 0, 0, 0.2);
 		&:hover,
 		&:active,
 		&:focus {
 			opacity: .7;
 		}
+		&__popovermenu {
+			top: calc(50% + 24px);
+			right: calc(50% - 22px);
+		}
 	}
-	&__photo +  label.icon-upload-force-white {
-		opacity: 0;
-	}
-	&__options {
-		top: 0;
-		background-color: rgba(0, 0, 0, 0.2);
-		width: 100%;
-		height: 100%;
-		overflow: hidden;
+	// if picture is set, hide the menu
+	&__photo + &__options {
+		z-index: -1;
 	}
 }
 
-.contact-header-avatar.maximised {
-	.contact-header-avatar__wrapper {
-		position: fixed;
-		height: 100%;
-		width: 100%;
-		top: 0;
-		left: 0;
-		border-radius: 0;
-		margin: 0px;
-		background-color: rgba(0, 0, 0, 0.9);
+.contact-header-modal__photo {
+	.modal-container {
 		display: flex;
-		justify-content: center;
-		z-index: 200;
-		padding-top: $header-height;
-		flex-direction: column;
-		.contact-header-avatar__photo {
-			border-radius: 0;
-			align-self: center;
-			background-size: contain;
-			margin: 50px;
-		}
-		label.icon-upload-force-white {
-			position: relative;
-		}
-		.contact-header-avatar__options {
-			height: 50px;
-			width: 100%;
-			display: flex;
-			flex: 0 0 50px;
-			opacity: 1;
-			justify-content: space-evenly;
-		}
-		.contact-header-avatar__options > [class^='icon-'] {
-			width: 25%;
-			display: block;
-			cursor: pointer;
-			opacity: 0.5;
-		}
-		.contact-header-avatar__options > [class^='icon-']:hover {
-			opacity: 0.8;
-		}
 	}
 }
-
-.contact-header-avatar-options {
-	top: 0;
-	background-color: rgba(0, 0, 0, 0.2);
-	display: flex;
-	width: 100%;
-	height: 100%;
-	overflow: hidden;
-}
-
 
