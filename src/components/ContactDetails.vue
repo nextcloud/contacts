@@ -134,8 +134,6 @@ import PQueue from 'p-queue'
 import qr from 'qr-image'
 import { stringify } from 'ical.js'
 
-import { Modal } from 'nextcloud-vue'
-
 import rfcProps from 'Models/rfcProps'
 import validate from 'Services/validate'
 
@@ -157,8 +155,7 @@ export default {
 		PropertyGroups,
 		PropertyRev,
 		AddNewProp,
-		ContactAvatar,
-		Modal
+		ContactAvatar
 	},
 
 	props: {

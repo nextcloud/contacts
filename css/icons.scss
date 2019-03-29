@@ -64,7 +64,7 @@
 	@include icon-color('download', 'actions', '#fffffe', 1, true);
 }
 
-.icon-upload-force-white {
+.icon-picture-force-white {
 	// using #fffffe to trick the accessibility dark theme icon invert
-	@include icon-color('upload', 'actions', '#fffffe', 1, true);
+	@include icon-color('picture', 'places', '#fffffe', 1, true);
 }
