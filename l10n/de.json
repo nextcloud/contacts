@@ -18,6 +18,7 @@
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Dieser Kontakt ist schreibgeschützt. Du hast keine Berechtigung, diesen Kontakt zu bearbeiten.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Der Kontakt, den Du versuchst zu bearbeiten, hat sich geändert. Bitte aktualisiere den Kontakt manuell. Alle weiteren Änderungen werden verworfen.",
     "Download" : "Herunterladen",
+    "Generate QR Code" : "Generiere QR Code",
     "Delete" : "Löschen",
     "Addressbook" : "Adressbuch",
     "Groups" : "Gruppen",
