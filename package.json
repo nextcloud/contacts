@@ -72,7 +72,7 @@
 		"babel-loader": "^8.0.5",
 		"chai": "^4.2.0",
 		"css-loader": "^2.1.1",
-		"eslint": "^5.15.3",
+		"eslint": "^5.16.0",
 		"eslint-config-standard": "^12.0.0",
 		"eslint-import-resolver-webpack": "^0.11.0",
 		"eslint-loader": "^2.1.2",
