@@ -223,13 +223,14 @@ export default {
 					// Compare array and score them by how many matches they have to the selected type
 					// sorting directly is cleaner but slower
 					// https://jsperf.com/array-map-and-intersection-perf
-					let matchingTypes = this.propModel.options.map(type => {
-						return {
-							type,
-							// "WORK,HOME" => ['WORK', 'HOME']
-							score: type.id.split(',').filter(value => selectedType.indexOf(value) !== -1).length
-						}
-					})
+					let matchingTypes = this.propModel.options
+						.map(type => {
+							return {
+								type,
+								// "WORK,HOME" => ['WORK', 'HOME']
+								score: type.id.split(',').filter(value => selectedType.indexOf(value) !== -1).length
+							}
+						})
 
 					// Sort by score, filtering out the null score and selecting the first match
 					let matchingType = matchingTypes
@@ -242,10 +243,14 @@ export default {
 				}
 				if (this.type) {
 					// vcard 3.0 save pref alongside TYPE
-					let selectedType = this.type.filter(type => type !== 'pref').join(',')
-					return {
-						id: selectedType,
-						name: selectedType
+					let selectedType = this.type
+						.filter(type => type !== 'pref')
+						.join(',')
+					if (selectedType.trim() !== '') {
+						return {
+							id: selectedType,
+							name: selectedType
+						}
 					}
 				}
 				return null
