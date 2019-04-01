@@ -33,6 +33,7 @@
 		key-field="key">
 		<template v-slot="{ item, index }">
 			<contacts-list-item
+				v-if="contacts[item.key]"
 				:key="item.key"
 				:contact="contacts[item.key]"
 				:index="index"

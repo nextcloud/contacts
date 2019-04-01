@@ -1,33 +1,50 @@
 <template>
-	<div :id="id" :class="{active: selectedContact === contact.key, deleted: deleteTimeout}"
-		tabindex="0"
-		class="app-content-list-item" @click.prevent.stop="selectContact" @keypress.enter.prevent.stop="selectContact">
-		<!-- keyboard accessibility will focus the input and not the label -->
-		<!--
-		<input ref="selected" :id="contact.key" type="checkbox"
-			class="app-content-list-item-checkbox checkbox" @keypress.enter.space.prevent.stop="toggleSelect">
-		<label :for="contact.key" @click.prevent.stop="toggleSelect" @keypress.enter.space.prevent.stop="toggleSelect" />
-		-->
-		<div :style="{ 'backgroundColor': !deleteTimeout ? colorAvatar : 'grey' }" class="app-content-list-item-icon">
-			{{ contact.displayName | firstLetter }}
-			<!-- try to fetch the avatar only if the contact exists on the server -->
-			<div v-if="hasPhoto" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
+	<transition name="delete-slide-left">
+		<div v-if="!deleteTimeout" :id="id"
+			:class="{active: selectedContact === contact.key}"
+			tabindex="0" class="app-content-list-item"
+			@click.prevent.stop="selectContact" @keypress.enter.prevent.stop="selectContact">
+			<!-- keyboard accessibility will focus the input and not the label -->
+			<!--
+			<input ref="selected" :id="contact.key" type="checkbox"
+				class="app-content-list-item-checkbox checkbox" @keypress.enter.space.prevent.stop="toggleSelect">
+			<label :for="contact.key" @click.prevent.stop="toggleSelect" @keypress.enter.space.prevent.stop="toggleSelect" />
+			-->
+			<div :style="{ 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">
+				{{ contact.displayName | firstLetter }}
+				<!-- try to fetch the avatar only if the contact exists on the server -->
+				<div v-if="hasPhoto" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
+			</div>
+
+			<!-- contact data -->
+			<div class="app-content-list-item-line-one">
+				{{ contact.displayName }}
+			</div>
+			<div v-if="contact.email" class="app-content-list-item-line-two">
+				{{ contact.email }}
+			</div>
+
+			<!-- undo actions -->
+			<div v-if="!contact.addressbook.readOnly && !deleteTimeout" class="icon-delete" tabindex="0"
+				@click.prevent.stop="deleteContact" @keypress.enter.prevent.stop="deleteContact" />
 		</div>
 
-		<!-- contact data -->
-		<div class="app-content-list-item-line-one">
-			{{ contact.displayName }}
+		<!-- Deleted contact (pending) -->
+		<div v-else :id="id" key="deleted"
+			class="deleted app-content-list-item">
+			<div :style="{ backgroundColor: 'grey' }" class="app-content-list-item-icon">
+				{{ contact.displayName | firstLetter }}
+				<!-- try to fetch the avatar only if the contact exists on the server -->
+				<div v-if="hasPhoto" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
+			</div>
+			<!-- contact data -->
+			<div class="app-content-list-item-line-one">
+				{{ contact.displayName }}
+			</div>
+			<div class="icon-history" tabindex="0"
+				@click.prevent.stop="cancelDeletion" @keypress.enter.prevent.stop="cancelDeletion" />
 		</div>
-		<div v-if="contact.email && !deleteTimeout" class="app-content-list-item-line-two">
-			{{ contact.email }}
-		</div>
-
-		<!-- delete and undo actions -->
-		<div v-if="!contact.addressbook.readOnly && !deleteTimeout" class="icon-delete" tabindex="0"
-			@click.prevent.stop="deleteContact" @keypress.enter.prevent.stop="deleteContact" />
-		<div v-else-if="deleteTimeout" class="icon-history" tabindex="0"
-			@click.prevent.stop="cancelDeletion" @keypress.enter.prevent.stop="cancelDeletion" />
-	</div>
+	</transition>
 </template>
 
 <script>
