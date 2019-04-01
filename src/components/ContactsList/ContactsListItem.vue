@@ -42,6 +42,7 @@
 				{{ contact.displayName }}
 			</div>
 			<div class="icon-history" tabindex="0"
+				v-tooltip.auto="t('contacts', 'Deleting the contact in {countdown} seconds', { countdown })"
 				@click.prevent.stop="cancelDeletion" @keypress.enter.prevent.stop="cancelDeletion" />
 		</div>
 	</transition>
@@ -67,7 +68,9 @@ export default {
 	},
 	data() {
 		return {
-			deleteTimeout: null
+			deleteInterval: null,
+			deleteTimeout: null,
+			countdown: 7
 		}
 	},
 	computed: {
@@ -120,15 +123,24 @@ export default {
 		 * Dispatch contact deletion request
 		 */
 		deleteContact() {
+			this.deleteInterval = setInterval(() => {
+				this.countdown--
+			}, 1000)
 			this.deleteTimeout = setTimeout(() => {
 				this.$store.dispatch('deleteContact', { contact: this.contact })
 				this.$emit('deleted', this.index)
+				// reset
+				clearInterval(this.deleteInterval)
+				this.countdown = 7
 			}, 7000)
 		},
 
 		cancelDeletion() {
 			clearTimeout(this.deleteTimeout)
+			clearInterval(this.deleteInterval)
 			this.deleteTimeout = null
+			this.deleteInterval = null
+			this.countdown = 7
 		},
 
 		/**
