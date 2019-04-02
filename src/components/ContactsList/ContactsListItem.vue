@@ -41,8 +41,8 @@
 			<div class="app-content-list-item-line-one">
 				{{ contact.displayName }}
 			</div>
-			<div class="icon-history" tabindex="0"
-				v-tooltip.auto="t('contacts', 'Deleting the contact in {countdown} seconds', { countdown })"
+			<div v-tooltip.auto="t('contacts', 'Deleting the contact in {countdown} seconds', { countdown })" class="icon-history"
+				tabindex="0"
 				@click.prevent.stop="cancelDeletion" @keypress.enter.prevent.stop="cancelDeletion" />
 		</div>
 	</transition>
