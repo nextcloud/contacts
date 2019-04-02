@@ -259,6 +259,12 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	set groups(groups) {
+		// delete the title if empty
+		if (isEmpty(groups)) {
+			this.vCard.removeProperty('categories')
+			return true
+		}
+
 		if (Array.isArray(groups)) {
 			let property = this.vCard.getFirstProperty('categories')
 			if (!property) {
@@ -308,6 +314,10 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	set org(org) {
+		// delete the org if empty
+		if (isEmpty(org)) {
+			return this.vCard.removeProperty('org')
+		}
 		return this.vCard.updatePropertyWithValue('org', org)
 	}
 
@@ -328,6 +338,10 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	set title(title) {
+		// delete the title if empty
+		if (isEmpty(title)) {
+			return this.vCard.removeProperty('title')
+		}
 		return this.vCard.updatePropertyWithValue('title', title)
 	}
 
