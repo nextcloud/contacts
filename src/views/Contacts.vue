@@ -308,12 +308,6 @@ export default {
 				this.$store.commit('setOrder', localStorage.getItem('orderKey'))
 			}
 		})
-
-		window.addEventListener('resize', this.onResize)
-	},
-
-	beforeDestroy() {
-		window.removeEventListener('resize', this.onResize)
 	},
 
 	methods: {
@@ -488,16 +482,6 @@ export default {
 			if (this.isImportDone) {
 				this.$store.dispatch('changeStage', 'default')
 			}
-		},
-
-		/**
-		 * Trigerred when window is resized
-		 *
-		 * @param {Object} event the event
-		 */
-		onResize(event) {
-			// Update mobile mode
-			this.isMobile = window.outerWidth <= 768
 		}
 	}
 }
