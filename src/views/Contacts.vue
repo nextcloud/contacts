@@ -74,6 +74,8 @@ import {
 	AppNavigationSettings,
 	Modal
 } from 'nextcloud-vue'
+import isMobile from 'nextcloud-vue/dist/Mixins/isMobile'
+
 import moment from 'moment'
 import download from 'downloadjs'
 import { VCardTime } from 'ical.js'
@@ -107,6 +109,10 @@ export default {
 		Modal
 	},
 
+	mixins: [
+		isMobile
+	],
+
 	// passed by the router
 	props: {
 		selectedGroup: {
@@ -123,9 +129,7 @@ export default {
 	data() {
 		return {
 			loading: true,
-			searchQuery: '',
-			// are we in mobile mode
-			isMobile: window.outerWidth <= 768
+			searchQuery: ''
 		}
 	},
 

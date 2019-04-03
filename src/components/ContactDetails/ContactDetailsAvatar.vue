@@ -239,7 +239,9 @@ export default {
 		},
 
 		updateImgSize() {
-			this.updateHeightWidth(this.$refs.img.naturalHeight, this.$refs.img.naturalWidth)
+			if (this.contact.photo) {
+				this.updateHeightWidth(this.$refs.img.naturalHeight, this.$refs.img.naturalWidth)
+			}
 		},
 		/**
 		 * Updates the current height and width data
