@@ -90,7 +90,7 @@
 				<!-- qrcode -->
 				<modal v-if="qrcode" id="qrcode-modal" :title="contact.displayName"
 					@close="closeQrModal">
-					<img :src="`data:image/svg+xml;base64,${qrcode}`" class="qrcode">
+					<img :src="`data:image/svg+xml;base64,${qrcode}`" class="qrcode" width="300" height="300">
 				</modal>
 			</header>
 
