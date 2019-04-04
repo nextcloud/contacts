@@ -32,6 +32,7 @@ OC.L10N.register(
     "Groups" : "Gruplar",
     "New contact" : "Yeni kişi",
     "Syntax error. Cannot open the contact." : "Yazım hatası. Kişi bulunamadı.",
+    "Deleting the contact in {countdown} seconds" : "Kişi {countdown} saniye sonra silinecek",
     "Done importing {total} contacts into" : "{total} kişi şuraya içe aktarıldı",
     "Importing {total} contacts into" : "{total} kişi şuraya içe aktarılıyor",
     "No errors" : "Herhangi bir hata yok",
