@@ -46,16 +46,12 @@
 				tabindex="0" @click="showList" />
 
 			<div id="app-content-wrapper">
-				<!-- loading -->
-				<import-screen v-if="importState.stage !== 'default'" />
-				<template v-else>
-					<!-- contacts list -->
-					<contacts-list :list="contactsList" :contacts="contacts" :loading="loading"
-						:search-query="searchQuery" />
+				<!-- contacts list -->
+				<contacts-list :list="contactsList" :contacts="contacts" :loading="loading"
+					:search-query="searchQuery" />
 
-					<!-- main contacts details -->
-					<contact-details :loading="loading" :contact-key="selectedContact" />
-				</template>
+				<!-- main contacts details -->
+				<contact-details :loading="loading" :contact-key="selectedContact" />
 			</div>
 		</template>
 		<modal v-if="isImporting" :clear-view-delay="-1" :can-close="isImportDone"
