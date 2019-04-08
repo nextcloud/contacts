@@ -21,11 +21,13 @@
  */
 
 import badGenderType from './badGenderType'
+import duplicateTypes from './duplicateTypes'
 import invalidREV from './invalidREV'
 import missingFN from './missingFN'
 
 export default [
 	badGenderType,
+	duplicateTypes,
 	invalidREV,
 	missingFN
 ]
