@@ -1,38 +1,74 @@
+## 3.1.0 – 2019-04-08
+### Added
+- Add undo deletion
+  [#1025](https://github.com/nextcloud/contacts/pull/1025)
+- Allow to pick avatar from files + use modal
+  [#1024](https://github.com/nextcloud/contacts/pull/1024)
+- Add ABLABEL and ITEMX.property support
+  [#991](https://github.com/nextcloud/contacts/pull/991)
+- Use displayname as file name when downloading a contact
+  [#1022](https://github.com/nextcloud/contacts/pull/1022)
+- Show vcard as qrcode
+  [#1017](https://github.com/nextcloud/contacts/pull/1017)
+- Use virtual scroller for big contacts list display performances
+  [#1018](https://github.com/nextcloud/contacts/pull/1018)
+- Add sorting by last modified
+  [#992](https://github.com/nextcloud/contacts/pull/992)
+
+
+### Fixed
+- Automatic repair of duplicate types
+  [#1042](https://github.com/nextcloud/contacts/issues/1042)
+- Remove some properties if empty
+  [#1035](https://github.com/nextcloud/contacts/issues/1035)
+- Use dav hasPhoto to properly load photos into the list
+  [#1021](https://github.com/nextcloud/contacts/issues/1021)
+- Unable to create new user since v3.0.5 on some browsers, oca_contacts
+  [#1010](https://github.com/nextcloud/contacts/issues/1010)
+- Cannot see Date of Death to existing contacts
+  [#988](https://github.com/nextcloud/contacts/issues/988)
+- Properly update store contact on first push
+  [#987](https://github.com/nextcloud/contacts/issues/987)
+
+### Updated
+- Dependencies
+- Translations
+
 ## 3.0.5 – 2019-03-11
 ### Fixed
 - Initial contact loading:
-  [#984](https://github.com/nextcloud/contacts/984)
+  [#984](https://github.com/nextcloud/contacts/issues/984)
 
 
 ## 3.0.4 – 2019-03-10
 ### Added
 - Add REV on update
-  [#969](https://github.com/nextcloud/contacts/969)
+  [#969](https://github.com/nextcloud/contacts/pull/969)
 - Better handle parsing errors
-  [#971](https://github.com/nextcloud/contacts/971)
+  [#971](https://github.com/nextcloud/contacts/pull/971)
 - Add not grouped entry
-  [#970](https://github.com/nextcloud/contacts/970)
+  [#970](https://github.com/nextcloud/contacts/pull/970)
 
 ### Fixed
 - Spelling mistake in error message
-  [#945](https://github.com/nextcloud/contacts/945)
+  [#945](https://github.com/nextcloud/contacts/issues/945)
 - Automatically redirect if modRewriteWorking is supported
-  [#899](https://github.com/nextcloud/contacts/899)
+  [#899](https://github.com/nextcloud/contacts/issues/899)
 - Force display date for bday, anniversary and deathdate
   [9057462c34977103a2c68124ee8f50a2d1a967ce](https://github.com/nextcloud/contacts/commit/9057462c34977103a2c68124ee8f50a2d1a967ce)
 - Fix FN repair step for ORG
   [bdd93836aa0613e5f9c61f2496505e4c45f1febc](https://github.com/nextcloud/contacts/commit/bdd93836aa0613e5f9c61f2496505e4c45f1febc)
 - Saving reverts changes which happened during the save
-  [#923](https://github.com/nextcloud/contacts/923)
-  [#968](https://github.com/nextcloud/contacts/968)
+  [#923](https://github.com/nextcloud/contacts/issues/923)
+  [#968](https://github.com/nextcloud/contacts/issues/968)
 - White icons fix for preview
   [91dd5c38df05ebb9247df4611703beffa6d08b0e](https://github.com/nextcloud/contacts/commit/91dd5c38df05ebb9247df4611703beffa6d08b0e) 
 - Validate on app initialisation
-  [#973](https://github.com/nextcloud/contacts/973)
+  [#973](https://github.com/nextcloud/contacts/issues/973)
 - Fix gender select + auto repair
-  [#972](https://github.com/nextcloud/contacts/972)
+  [#972](https://github.com/nextcloud/contacts/issues/972)
 - Fix conflict mode
-  [#981](https://github.com/nextcloud/contacts/981)
+  [#981](https://github.com/nextcloud/contacts/issues/981)
 
 ### Updated
 - Dependencies
@@ -42,17 +78,17 @@
 ## 3.0.3 – 2019-02-01
 ### Added
 - Auto fill the display name from the detailed name field if empty, invalid or unchanged from New Contact
-  [#898](https://github.com/nextcloud/contacts/898)
+  [#898](https://github.com/nextcloud/contacts/issues/898)
 
 ### Fixed
 - Address book url copy to clipboard
-  [#878](https://github.com/nextcloud/contacts/878)
+  [#878](https://github.com/nextcloud/contacts/issues/878)
 - Conflicting issue when multiple changes to a contact
-  [#879](https://github.com/nextcloud/contacts/879)
+  [#879](https://github.com/nextcloud/contacts/issues/879)
 - Auto fix the display name if invalid
-  [#880](https://github.com/nextcloud/contacts/880)
+  [#880](https://github.com/nextcloud/contacts/issues/880)
 - Fix the display name Format and sorting display
-  [#880](https://github.com/nextcloud/contacts/880)
+  [#880](https://github.com/nextcloud/contacts/issues/880)
 - Removed unnecessary request on contact creation
 
 ### Updated
