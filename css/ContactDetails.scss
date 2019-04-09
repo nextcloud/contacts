@@ -28,7 +28,7 @@
 		display: flex;
 		font-weight: bold;
 		align-items: center;
-		
+
 		// ORG-TITLE-NAME
 		#contact-header-infos {
 			display: flex;
@@ -108,7 +108,7 @@
 		/* unquote is a strange hack to avoid removal of the comma by the scss compiler */
 		grid-template-columns: repeat(auto-fit, minmax(unquote('#{$grid-column-width}'), 1fr));
 		grid-column-gap: $grid-column-gap;
-		padding: 0 $grid-column-gap;
+		padding: 20px $grid-column-gap;
 		min-height: 200px;
 	}
 
@@ -117,7 +117,7 @@
 		section.contact-details {
 			grid-template-columns: 1fr;
 			grid-column-gap: 10px;
-			padding: 0 10px;
+			padding: 10px;
 		}
 	}
 }
