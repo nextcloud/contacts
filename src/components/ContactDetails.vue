@@ -392,6 +392,7 @@ export default {
 			this.fixed = false
 			this.loadingUpdate = true
 			await this.$store.dispatch('updateContact', this.localContact)
+			this.updateLocalContact()
 			this.loadingUpdate = false
 		},
 
@@ -444,24 +445,13 @@ export default {
 		async selectContact(key) {
 			// local version of the contact
 			this.loadingData = true
-			let contact = this.$store.getters.getContact(key)
-
+			let contact = this.contact
 			if (contact) {
 				// if contact exists AND if exists on server
 				if (contact.dav) {
 					try {
 						await this.$store.dispatch('fetchFullContact', { contact })
-
-						// create empty contact and copy inner data
-						let localContact = Object.assign(
-							Object.create(Object.getPrototypeOf(contact)),
-							contact
-						)
-
-						this.fixed = validate(localContact)
-
-						this.localContact = localContact
-						this.loadingData = false
+						this.updateLocalContact()
 					} catch (error) {
 						if (error.name === 'ParserError') {
 							OC.Notification.showTemporary(t('contacts', 'Syntax error. Cannot open the contact.'))
@@ -475,19 +465,21 @@ export default {
 						this.$store.dispatch('deleteContact', { contact: this.contact, dav: false })
 					}
 				} else {
-					// create empty contact and copy inner data
-					// wait for an update to really push the contact on the server!
-					let localContact = Object.assign(
-						Object.create(Object.getPrototypeOf(contact)),
-						contact
-					)
-
-					this.fixed = validate(localContact)
-
-					this.localContact = localContact
-					this.loadingData = false
+					this.updateLocalContact()
 				}
 			}
+		},
+
+		/**
+		 *  create empty contact and copy inner data
+		 */
+		updateLocalContact() {
+			this.localContact = Object.assign(
+				Object.create(Object.getPrototypeOf(this.contact)),
+				this.contact
+			)
+			this.fixed = validate(this.localContact)
+			this.loadingData = false
 		},
 
 		/**
