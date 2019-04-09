@@ -17,13 +17,14 @@
 			</div>
 
 			<!-- contact data -->
-			<div class="app-content-list-item-line-one">
-				{{ contact.displayName }}
+			<div class="app-content-list-item-text">
+				<div class="app-content-list-item-line-one">
+					{{ contact.displayName }}
+				</div>
+				<div v-if="contact.email" class="app-content-list-item-line-two">
+					{{ contact.email }}
+				</div>
 			</div>
-			<div v-if="contact.email" class="app-content-list-item-line-two">
-				{{ contact.email }}
-			</div>
-
 			<!-- undo actions -->
 			<div v-if="!contact.addressbook.readOnly && !deleteTimeout" class="icon-delete" tabindex="0"
 				@click.prevent.stop="deleteContact" @keypress.enter.prevent.stop="deleteContact" />

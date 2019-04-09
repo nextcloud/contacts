@@ -24,6 +24,10 @@
 	transition: left 200ms;
 }
 
+.app-content-list-item-text {
+    flex-grow: 1;
+}
+
 .app-content-list-item.deleted {
 	z-index: 2;
 	// make sure we hide the undeleted element by sliding over it
@@ -45,7 +49,7 @@
 		left: 0;
 		width: 100%;
 	}
-	
+
 	&.delete-slide-left-enter,
 	&.delete-slide-left-leave-to {
 		left: 100%;
