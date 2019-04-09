@@ -104,9 +104,11 @@
 				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
 				<!-- passing the debounceUpdateContact so that the contact-property component contains the function
 					and allow us to use it on the rfcProps since the scope is forwarded to the actions -->
-				<contact-property v-for="(property, index) in sortedProperties" :key="`${index}-${contact.key}-${property.name}`" :index="index"
-					:sorted-properties="sortedProperties" :property="property" :contact="contact"
-					:update-contact="debounceUpdateContact" @updatedcontact="debounceUpdateContact" />
+				<contact-property v-for="(property, index) in sortedProperties"
+					:key="`${index}-${contact.key}-${property.name}`" :index="index"
+					:sorted-properties="sortedProperties" :property="property"
+					:contact="contact" :local-contact="localContact"
+					:update-contact="debounceUpdateContact" />
 
 				<!-- addressbook change select - no last property because class is not applied here,
 					empty property because this is a required prop on regular property-select. But since
@@ -385,7 +387,6 @@ export default {
 
 	methods: {
 		/**
-		 * Executed on the 'updatedcontact' event
 		 * Send the local clone of contact to the store
 		 */
 		async updateContact() {
@@ -451,17 +452,8 @@ export default {
 				if (contact.dav) {
 					try {
 						await this.$store.dispatch('fetchFullContact', { contact })
-
-						// create empty contact and copy inner data
-						let localContact = Object.assign(
-							Object.create(Object.getPrototypeOf(contact)),
-							contact
-						)
-
-						this.fixed = validate(localContact)
-
-						this.localContact = localContact
-						this.loadingData = false
+						// clone to a local editable variable
+						this.updateLocalContact(contact)
 					} catch (error) {
 						if (error.name === 'ParserError') {
 							OC.Notification.showTemporary(t('contacts', 'Syntax error. Cannot open the contact.'))
@@ -475,17 +467,8 @@ export default {
 						this.$store.dispatch('deleteContact', { contact: this.contact, dav: false })
 					}
 				} else {
-					// create empty contact and copy inner data
-					// wait for an update to really push the contact on the server!
-					let localContact = Object.assign(
-						Object.create(Object.getPrototypeOf(contact)),
-						contact
-					)
-
-					this.fixed = validate(localContact)
-
-					this.localContact = localContact
-					this.loadingData = false
+					// clone to a local editable variable
+					this.updateLocalContact(contact)
 				}
 			}
 		},
@@ -542,6 +525,24 @@ export default {
 		// reset the current qrcode
 		closeQrModal() {
 			this.qrcode = ''
+		},
+
+		/**
+		 *  Update this.localContact and set this.fixed
+		 *
+		 * @param {Contact} contact the contact to clone
+		 */
+		updateLocalContact(contact) {
+			// create empty contact and copy inner data
+			let localContact = Object.assign(
+				Object.create(Object.getPrototypeOf(contact)),
+				contact
+			)
+
+			this.fixed = validate(localContact)
+
+			this.localContact = localContact
+			this.loadingData = false
 		}
 	}
 }
