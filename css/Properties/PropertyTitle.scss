@@ -27,6 +27,10 @@
 	opacity: 0.6;
 	user-select: none;
 
+	.property__title--right {
+		display: flex;
+		justify-content: space-between;
+	}
 	.property__title--icon {
 		background-position: center right;
 	}
