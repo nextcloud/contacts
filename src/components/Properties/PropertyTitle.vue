@@ -23,11 +23,11 @@
 <template>
 	<h3 class="property__title property__row">
 		<div :class="icon" class="property__label property__title--icon" />
-		<span class="property__value">
-			{{ readableName }}
+		<span class="property__value property__title--right">
+			<div>{{ readableName }}</div>
+			<!-- display tooltip with hint if available -->
+			<div v-if="info" v-tooltip.auto="info" class="property__title--icon-details icon-details" />
 		</span>
-		<!-- display tooltip with hint if available -->
-		<div v-if="info" v-tooltip.auto="info" class="property__title--icon-details icon-details" />
 	</h3>
 </template>
 

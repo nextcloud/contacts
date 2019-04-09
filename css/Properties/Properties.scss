@@ -41,14 +41,14 @@ $property-value-max-width: 250px;
 	&--addressbooks &__actions {
 		display: none !important;
 	}
-		
+
 	// property row
 	&__row {
 		display: flex;
 		align-items: center;
 		position: relative;
 	}
-	
+
 	// property label or multiselect within row
 	&__label,
 	&__label.multiselect {
@@ -56,7 +56,7 @@ $property-value-max-width: 250px;
 		padding: $grid-input-padding 0;
 		flex: 1 0; // min width is 60px, let's grow until 120px
 		height: $grid-input-height-with-margin;
-		width: $property-label-min-width; 
+		width: $property-label-min-width;
 		min-width: $property-label-min-width !important; // override multiselect
 		max-width: $property-label-max-width;
 
@@ -174,7 +174,7 @@ $property-value-max-width: 250px;
 			opacity: .7;
 		}
 	}
-	
+
 	// Delete property button + actions
 	&__actions {
 		position: absolute !important;
@@ -185,7 +185,7 @@ $property-value-max-width: 250px;
 		border: 0;
 		background-color: transparent;
 		z-index: 10;
-		// opacity applies on the single action OR 
+		// opacity applies on the single action OR
 		&:not(.action-item--multiple),
 		&.action-item--multiple .icon-more {
 			opacity: 0.5;
@@ -198,5 +198,8 @@ $property-value-max-width: 250px;
 				opacity: 0.7;
 			}
 		}
+	}
+	.property__value {
+		margin-right: 0;
 	}
 }
