@@ -471,9 +471,10 @@ export default {
 		},
 
 		/**
-		 *  create empty contact and copy inner data
+		 *  Update this.localContact and set this.fixed
 		 */
 		updateLocalContact() {
+			// create empty contact and copy inner data
 			this.localContact = Object.assign(
 				Object.create(Object.getPrototypeOf(this.contact)),
 				this.contact
