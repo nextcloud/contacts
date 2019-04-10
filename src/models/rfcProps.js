@@ -299,6 +299,7 @@ const fieldOrder = [
 	'adr',
 	'impp',
 	'nick',
+	'cloud',
 	'bday',
 	'anniversary',
 	'deathdate',
