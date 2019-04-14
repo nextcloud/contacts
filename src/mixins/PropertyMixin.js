@@ -69,7 +69,7 @@ export default {
 			type: Array,
 			default: () => []
 		},
-		contact: {
+		localContact: {
 			type: Contact,
 			default: null
 		}
@@ -141,7 +141,7 @@ export default {
 			const group = propGroup.split('.')[0]
 			const name = propGroup.split('.')[1]
 
-			this.contact.vCard.addPropertyWithValue(`${group}.x-ablabel`, label)
+			this.localContact.vCard.addPropertyWithValue(`${group}.x-ablabel`, label)
 
 			// force update the main design sets
 			if (ICAL.design.vcard.property[name]) {
@@ -157,7 +157,7 @@ export default {
 		},
 
 		getNcGroupCount() {
-			const props = this.contact.jCal[1]
+			const props = this.localContact.jCal[1]
 				.map(prop => prop[0].split('.')[0])				// itemxxx.adr => itemxxx
 				.filter(name => name.startsWith('nextcloud'))	// filter nextcloudxxx.adr
 				.map(prop => parseInt(prop.split('nextcloud')[1]))	// nextcloudxxx => xxx
