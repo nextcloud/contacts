@@ -60,6 +60,7 @@ OC.L10N.register(
     "City" : "Miestas",
     "Postal code" : "Pašto kodas",
     "Country" : "Šalis",
+    "Birthday" : "Gimtadienis",
     "Anniversary" : "Metinės",
     "The date of marriage, or equivalent, of this contact" : "Šio adresato santuokos ar lygiavertė data",
     "Date of death" : "Mirties data",
