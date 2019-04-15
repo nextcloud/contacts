@@ -42,7 +42,7 @@
 		</a>
 
 		<!-- sharing input -->
-		<share-address-book v-if="shareOpen && !addressbook.readOnly" :addressbook="addressbook" />
+		<ShareAddressBook v-if="shareOpen && !addressbook.readOnly" :addressbook="addressbook" />
 	</li>
 </template>
 

@@ -22,43 +22,43 @@
   -->
 
 <template>
-	<app-content app-name="contacts" :class="{'icon-loading': loading}">
+	<Content app-name="contacts" :class="{'icon-loading': loading}">
 		<!-- new-contact-button + navigation + settings -->
-		<app-navigation slot="navigation">
+		<AppNavigation>
 			<!-- new-contact-button -->
-			<app-navigation-new v-if="!loading" button-id="new-contact-button" :text="t('contacts','New contact')"
+			<AppNavigationNew v-if="!loading" button-id="new-contact-button" :text="t('contacts','New contact')"
 				button-class="icon-add" :disabled="!defaultAddressbook" @click="newContact" />
 
 			<!-- groups list -->
 			<ul v-if="!loading" id="groups-list">
-				<app-navigation-item v-for="item in menu" :key="item.key" :item="item" />
+				<AppNavigationItem v-for="item in menu" :key="item.key" :item="item" />
 			</ul>
 
 			<!-- settings -->
-			<app-navigation-settings v-if="!loading">
-				<settings-section />
-			</app-navigation-settings>
-		</app-navigation>
+			<AppNavigationSettings v-if="!loading">
+				<SettingsSection />
+			</AppNavigationSettings>
+		</AppNavigation>
 
-		<template slot="content">
+		<AppContent>
 			<!-- go back to list when in details mode -->
 			<div v-if="selectedContact && isMobile" id="app-details-toggle" class="icon-confirm"
 				tabindex="0" @click="showList" />
 
 			<div id="app-content-wrapper">
 				<!-- contacts list -->
-				<contacts-list :list="contactsList" :contacts="contacts" :loading="loading"
+				<ContactsList :list="contactsList" :contacts="contacts" :loading="loading"
 					:search-query="searchQuery" />
 
 				<!-- main contacts details -->
-				<contact-details :loading="loading" :contact-key="selectedContact" />
+				<ContactDetails :loading="loading" :contact-key="selectedContact" />
 			</div>
-		</template>
-		<modal v-if="isImporting" :clear-view-delay="-1" :can-close="isImportDone"
+		</AppContent>
+		<Modal v-if="isImporting" :clear-view-delay="-1" :can-close="isImportDone"
 			@close="closeImport">
-			<import-screen />
-		</modal>
-	</app-content>
+			<ImportScreen />
+		</Modal>
+	</Content>
 </template>
 
 <script>
@@ -68,6 +68,7 @@ import {
 	AppNavigationItem,
 	AppNavigationNew,
 	AppNavigationSettings,
+	Content,
 	Modal
 } from 'nextcloud-vue'
 import isMobile from 'nextcloud-vue/dist/Mixins/isMobile'
@@ -98,11 +99,12 @@ export default {
 		AppNavigationItem,
 		AppNavigationNew,
 		AppNavigationSettings,
-		SettingsSection,
-		ContactsList,
 		ContactDetails,
+		ContactsList,
+		Content,
 		ImportScreen,
-		Modal
+		Modal,
+		SettingsSection
 	},
 
 	mixins: [

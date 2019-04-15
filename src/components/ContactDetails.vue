@@ -39,7 +39,7 @@
 			<!-- contact header -->
 			<header :style="{ 'backgroundColor': colorAvatar }">
 				<!-- avatar and upload photo -->
-				<contact-avatar :contact="contact" />
+				<ContactAvatar :contact="contact" />
 				<!-- QUESTION: is it better to pass contact as a prop or get it from the store inside
 				contact-avatar ?  :avatar="contact.photo"-->
 
@@ -103,7 +103,7 @@
 				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
 				<!-- passing the debounceUpdateContact so that the contact-property component contains the function
 					and allow us to use it on the rfcProps since the scope is forwarded to the actions -->
-				<contact-property v-for="(property, index) in sortedProperties"
+				<ContactProperty v-for="(property, index) in sortedProperties"
 					:key="`${index}-${contact.key}-${property.name}`" :index="index"
 					:sorted-properties="sortedProperties" :property="property"
 					:contact="contact" :local-contact="localContact"
@@ -113,18 +113,18 @@
 					empty property because this is a required prop on regular property-select. But since
 					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
 					duplication, we created a fake propModel and property with our own options here) -->
-				<property-select :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
+				<PropertySelect :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
 					:is-last-property="true" :property="{}" class="property--addressbooks property--last" />
 
 				<!-- Groups always visible -->
-				<property-groups :prop-model="groupsModel" :value.sync="groups" :contact="contact"
+				<PropertyGroups :prop-model="groupsModel" :value.sync="groups" :contact="contact"
 					:is-read-only="isReadOnly" class="property--groups property--last" />
 
 				<!-- Last modified-->
-				<property-rev v-if="contact.rev" :value="contact.rev" />
+				<PropertyRev v-if="contact.rev" :value="contact.rev" />
 
 				<!-- new property select -->
-				<add-new-prop v-if="!isReadOnly" :contact="contact" />
+				<AddNewProp v-if="!isReadOnly" :contact="contact" />
 			</section>
 		</template>
 	</div>

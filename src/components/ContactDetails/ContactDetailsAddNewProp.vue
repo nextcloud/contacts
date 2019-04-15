@@ -23,7 +23,7 @@
 <template>
 	<div class="grid-span-3 property property--last">
 		<!-- title -->
-		<property-title :icon="'icon-add'" :readable-name="t('contacts', 'Add new property')" />
+		<PropertyTitle :icon="'icon-add'" :readable-name="t('contacts', 'Add new property')" />
 
 		<div class="property__row">
 			<div class="property__label" />

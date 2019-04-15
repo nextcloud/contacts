@@ -23,7 +23,7 @@
 <template>
 	<!-- same uid can coexists between different addressbooks
 		so we need to use the addressbook id as key as well -->
-	<recycle-scroller
+	<RecycleScroller
 		id="contacts-list"
 		ref="scroller"
 		:class="{'icon-loading': loading, showdetails: selectedContact}"
@@ -32,14 +32,14 @@
 		:item-size="itemHeight"
 		key-field="key">
 		<template v-slot="{ item, index }">
-			<contacts-list-item
+			<ContactsListItem
 				v-if="contacts[item.key]"
 				:key="item.key"
 				:contact="contacts[item.key]"
 				:index="index"
 				@deleted="selectContact" />
 		</template>
-	</recycle-scroller>
+	</RecycleScroller>
 </template>
 
 <script>

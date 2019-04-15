@@ -23,7 +23,7 @@
 <template>
 	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="property">
 		<!-- title if first element -->
-		<property-title v-if="isFirstProperty && propModel.icon" :icon="propModel.icon" :readable-name="propModel.readableName"
+		<PropertyTitle v-if="isFirstProperty && propModel.icon" :icon="propModel.icon" :readable-name="propModel.readableName"
 			:info="propModel.info" />
 
 		<div class="property__row">
@@ -47,7 +47,7 @@
 			<action :actions="actions" class="property__actions" />
 
 			<!-- Real input where the picker shows -->
-			<datetime-picker :value="vcardTimeLocalValue.toJSDate()" :minute-step="10" :lang="lang"
+			<DatetimePicker :value="vcardTimeLocalValue.toJSDate()" :minute-step="10" :lang="lang"
 				:clearable="false" :first-day-of-week="firstDay" :type="inputType"
 				:readonly="isReadOnly" :format="dateFormat" class="property__value"
 				confirm @confirm="updateValue" />
