@@ -1,3 +1,23 @@
+## 3.1.1 – 2019-04-16
+
+### Fixed
+- Edge support
+  [#1064](https://github.com/nextcloud/contacts/pull/1064)
+- Cannot remove some properties
+  [#1050](https://github.com/nextcloud/contacts/pull/1050)
+- Avoid qrcode getting cropped
+  [#1055](https://github.com/nextcloud/contacts/pull/1055)
+- Add CLOUD property to fieldOrder, so it can be grouped in the UI
+  [#1056](https://github.com/nextcloud/contacts/pull/1056)
+- Add some padding between header and properties in contact details
+  [#1052](https://github.com/nextcloud/contacts/pull/1052)
+- Fix some photos not being shown in the list
+  [6a9025c](https://github.com/nextcloud/contacts/commit/6a9025c57dfd738d3d25651853bc38e15db90f1c)
+
+### Updated
+- Dependencies
+- Translations
+
 ## 3.1.0 – 2019-04-08
 ### Added
 - Add undo deletion
