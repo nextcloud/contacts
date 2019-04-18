@@ -139,6 +139,8 @@ OC.L10N.register(
     "None" : "Yok",
     "Unknown" : "Bilinmiyor",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kişi okunamadı","{failed} kişi okunamadı"],
-    "An error occurred" : "Bir sorun çıktı"
+    "An error occurred" : "Bir sorun çıktı",
+    "Your web browser is out of date" : "Web tarayıcınızın sürümü eski",
+    "This application is not compatible with Internet Explorer" : "Bu uygulama Internet Explorer ile uyumlu değil"
 },
 "nplurals=2; plural=(n > 1);");

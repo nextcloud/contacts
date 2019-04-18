@@ -139,6 +139,8 @@ OC.L10N.register(
     "None" : "Nenhum",
     "Unknown" : "Desconhecido",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contato falhou ao ler","{failed} contatos falharam ao ler"],
-    "An error occurred" : "Um erro ocorreu"
+    "An error occurred" : "Um erro ocorreu",
+    "Your web browser is out of date" : "Seu navegador está desatualizado",
+    "This application is not compatible with Internet Explorer" : "Este aplicativo não é compatível com o Internet Explorer"
 },
 "nplurals=2; plural=(n > 1);");

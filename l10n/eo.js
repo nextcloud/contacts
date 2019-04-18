@@ -32,6 +32,7 @@ OC.L10N.register(
     "Groups" : "Grupoj",
     "New contact" : "Nova kontakto",
     "Syntax error. Cannot open the contact." : "Sintakseraro. Ne eblas malfermi la kontakton.",
+    "Deleting the contact in {countdown} seconds" : "Forigo de la kontakto post {countdown} sekundoj",
     "Done importing {total} contacts into" : "Farite, importado de {total} kontaktoj al",
     "Importing {total} contacts into" : "Importante {total} kontaktaktoj en",
     "No errors" : "Neniu eraro",
@@ -136,6 +137,8 @@ OC.L10N.register(
     "None" : "Nenio",
     "Unknown" : "Nekonata",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"],
-    "An error occurred" : "Eraro okazis"
+    "An error occurred" : "Eraro okazis",
+    "Your web browser is out of date" : "Via retumilo estas malaktuala",
+    "This application is not compatible with Internet Explorer" : "Tiu aplikaĵo ne kongruas kun „Internet Explorer“"
 },
 "nplurals=2; plural=(n != 1);");

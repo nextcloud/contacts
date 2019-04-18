@@ -139,6 +139,8 @@ OC.L10N.register(
     "None" : "Žádné",
     "Unknown" : "Neznámé",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt se nepodařilo načíst","{failed} kontakty se nepodařilo načíst","{failed} kontaktů se nepodařilo načíst","{failed} kontakty se nepodařilo načíst"],
-    "An error occurred" : "Došlo k chybě"
+    "An error occurred" : "Došlo k chybě",
+    "Your web browser is out of date" : "Váš webový prohlížeč je zastaralý",
+    "This application is not compatible with Internet Explorer" : "Tato aplikace není s prohlížečem Internet Explorer kompatibilní"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

@@ -38,6 +38,7 @@ OC.L10N.register(
     "Addressbook copied to clipboard" : "Adresų knyga nukopijuota į iškarpinę",
     "Addressbook was not copied to clipboard." : "Adresų knyga nebuvo nukopijuota į iškarpinę.",
     "Share with users or groups" : "Dalintis su naudotojais ar grupėmis",
+    "No users or groups" : "Nėra jokių naudotojų ar grupių",
     "can edit" : "gali keisti",
     "Unable to delete the share." : "Nepavyko ištrinti viešinio.",
     "Unable to change permissions." : "Nepavyko pakeisti leidimų.",
@@ -98,6 +99,8 @@ OC.L10N.register(
     "None" : "Nėra",
     "Unknown" : "Nežinoma",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Nepavyko perskaityti {failed} adresato","Nepavyko perskaityti {failed} adresatų","Nepavyko perskaityti {failed} adresatų","Nepavyko perskaityti {failed} adresato"],
-    "An error occurred" : "Įvyko klaida"
+    "An error occurred" : "Įvyko klaida",
+    "Your web browser is out of date" : "Jūsų saityno naršyklė yra pasenusi",
+    "This application is not compatible with Internet Explorer" : "Ši programa nėra suderinama su Internet Explorer"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

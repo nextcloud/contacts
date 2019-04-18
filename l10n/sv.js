@@ -138,6 +138,8 @@ OC.L10N.register(
     "None" : "Ingen",
     "Unknown" : "Okänd",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt kunde inte läsas","{failed} kontakter kunde inte läsas"],
-    "An error occurred" : "Ett fel uppstod"
+    "An error occurred" : "Ett fel uppstod",
+    "Your web browser is out of date" : "Din webbläsare är för gammal",
+    "This application is not compatible with Internet Explorer" : "Den här applikationen är inte kompatibel med Internet Explorer"
 },
 "nplurals=2; plural=(n != 1);");
