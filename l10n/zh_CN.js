@@ -139,6 +139,8 @@ OC.L10N.register(
     "None" : "无",
     "Unknown" : "未知",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} 联系人读取失败"],
-    "An error occurred" : "发生错误"
+    "An error occurred" : "发生错误",
+    "Your web browser is out of date" : "您的浏览器版本太旧",
+    "This application is not compatible with Internet Explorer" : "此应用与Internet Explorer不兼容"
 },
 "nplurals=1; plural=0;");
