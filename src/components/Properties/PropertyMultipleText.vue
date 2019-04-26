@@ -101,7 +101,7 @@ export default {
 		gridLength() {
 			let hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
 			let isLast = this.isLastProperty
-			let hasValueNames = this.propModel.readableValues ? 1 : 0
+			let hasValueNames = this.propModel.options || this.selectType || !this.property.isStructuredValue ? 1 : 0
 			let length = this.propModel.displayOrder ? this.propModel.displayOrder.length : this.value.length
 			return hasValueNames + hasTitle + length + isLast
 		},
