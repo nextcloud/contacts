@@ -113,8 +113,11 @@
 					empty property because this is a required prop on regular property-select. But since
 					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
 					duplication, we created a fake propModel and property with our own options here) -->
-				<PropertySelect :prop-model="addressbookModel" :value.sync="addressbook" :is-first-property="true"
-					:is-last-property="true" :property="{}" class="property--addressbooks property--last" />
+				<PropertySelect v-if="addressbooksOptions.length > 1"
+					:prop-model="addressbookModel" :value.sync="addressbook"
+					:is-first-property="true" :is-last-property="true"
+					:property="{}"
+					class="property--addressbooks property--last" />
 
 				<!-- Groups always visible -->
 				<PropertyGroups :prop-model="groupsModel" :value.sync="groups" :contact="contact"
