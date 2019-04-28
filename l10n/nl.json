@@ -137,6 +137,8 @@
     "None" : "Geen",
     "Unknown" : "Onbekend",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : [" {failed} contactpersoon werd niet ingelezen","{failed} contactpersonen werden niet ingelezen"],
-    "An error occurred" : "Er trad een fout op"
+    "An error occurred" : "Er trad een fout op",
+    "Your web browser is out of date" : "Je webbrowser is verouderd",
+    "This application is not compatible with Internet Explorer" : "Deze applicatie is niet compatible met Internet Explorer"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
