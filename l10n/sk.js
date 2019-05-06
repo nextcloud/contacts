@@ -14,6 +14,7 @@ OC.L10N.register(
     "Delete picture" : "Zmazať obrázok",
     "Download picture" : "Stiahnuť obrázok",
     "Image is too big (max 1MB)." : "Obrázok je príliš veľký (max 1 MB).",
+    "Pick an avatar" : "Zvoľte si avatar",
     "Select a contact on the list to begin" : "Pre začatie vyberte kontakt zo zoznamu",
     "Loading" : "Načítava sa...",
     "Name" : "Meno",
