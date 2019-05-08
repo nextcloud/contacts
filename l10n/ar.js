@@ -8,6 +8,7 @@ OC.L10N.register(
     "Upload a new picture" : "تحميل صورة جديدة",
     "Delete picture" : "حذف الصورة",
     "Download picture" : "تنزيل الصورة",
+    "Name" : "الاسم",
     "Company" : "الشركة",
     "Title" : "العنوان",
     "Download" : "تحميل",
