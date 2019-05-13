@@ -74,8 +74,15 @@
 			opacity: .7;
 		}
 		&__popovermenu {
-			top: calc(50% + 24px);
-			right: calc(50% - 22px);
+			// center
+			margin: calc((100% - 44px) / 2);
+			& /deep/ .action-item__menutoggle {
+				// hide three dot menu, in favour of icon-picture-force-white
+				z-index: -1;
+				&::before {
+					opacity: 0;
+				}
+			}
 		}
 	}
 	// if picture is set, hide the menu

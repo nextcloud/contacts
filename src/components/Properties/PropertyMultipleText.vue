@@ -50,7 +50,7 @@
 				class="property__value" type="text" @input="updateValue">
 
 			<!-- props actions -->
-			<action :actions="actions" class="property__actions" />
+			<PropertyActions :actions="actions" @delete="deleteProperty" />
 		</div>
 
 		<!-- force order based on model -->
@@ -79,12 +79,14 @@
 <script>
 import PropertyMixin from 'Mixins/PropertyMixin'
 import PropertyTitle from './PropertyTitle'
+import PropertyActions from './PropertyActions'
 
 export default {
 	name: 'PropertyText',
 
 	components: {
-		PropertyTitle
+		PropertyTitle,
+		PropertyActions
 	},
 
 	mixins: [PropertyMixin],

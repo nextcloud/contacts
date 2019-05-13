@@ -66,6 +66,7 @@
 
 				<!-- actions -->
 				<div id="contact-header-actions">
+					<!-- warning message -->
 					<a v-if="loadingUpdate || warning"
 						v-tooltip.bottom="{
 							content: warning ? warning.msg : '',
@@ -73,25 +74,35 @@
 						}"
 						:class="{'icon-loading-small': loadingUpdate,
 							[`${warning.icon}`]: warning}" class="header-icon" href="#" />
+
+					<!-- conflict message -->
 					<div v-if="conflict" v-tooltip="{
 							content: conflict,
 							show: true,
 							trigger: 'manual',
 						}" class="header-icon header-icon--pulse icon-history-force-white"
 						@click="refreshContact" />
-					<div class="menu-icon">
-						<div v-click-outside="closeMenu" class="header-icon icon-more-white" @click="toggleMenu" />
-						<div :class="{ 'open': openedMenu }" class="popovermenu">
-							<popover-menu :menu="contactActions" />
-						</div>
-					</div>
+
+					<!-- menu actions -->
+					<Actions class="header-menu" menu-align="right">
+						<ActionLink :href="contact.url" :download="`${contact.displayName}.vcf`"
+							icon="icon-download">
+							{{ t('contacts', 'Download') }}
+						</ActionLink>
+						<ActionButton icon="icon-qrcode" @click="showQRcode">
+							{{ t('contacts', 'Generate QR Code') }}
+						</ActionButton>
+						<ActionButton v-if="!isReadOnly" icon="icon-delete" @click="deleteContact">
+							{{ t('contacts', 'Delete') }}
+						</ActionButton>
+					</Actions>
 				</div>
 
 				<!-- qrcode -->
-				<modal v-if="qrcode" id="qrcode-modal" :title="contact.displayName"
+				<Modal v-if="qrcode" id="qrcode-modal" :title="contact.displayName"
 					@close="closeQrModal">
 					<img :src="`data:image/svg+xml;base64,${qrcode}`" class="qrcode" width="400">
-				</modal>
+				</Modal>
 			</header>
 
 			<!-- contact details loading -->
@@ -138,16 +149,17 @@ import debounce from 'debounce'
 import PQueue from 'p-queue'
 import qr from 'qr-image'
 import { stringify } from 'ical.js'
+import { ActionLink, ActionButton } from 'nextcloud-vue'
 
 import rfcProps from 'Models/rfcProps'
 import validate from 'Services/validate'
 
-import ContactProperty from './ContactDetails/ContactDetailsProperty'
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
-import PropertySelect from './Properties/PropertySelect'
+import ContactAvatar from './ContactDetails/ContactDetailsAvatar'
+import ContactProperty from './ContactDetails/ContactDetailsProperty'
 import PropertyGroups from './Properties/PropertyGroups'
 import PropertyRev from './Properties/PropertyRev'
-import ContactAvatar from './ContactDetails/ContactDetailsAvatar'
+import PropertySelect from './Properties/PropertySelect'
 
 const updateQueue = new PQueue({ concurrency: 1 })
 
@@ -155,12 +167,14 @@ export default {
 	name: 'ContactDetails',
 
 	components: {
+		ActionButton,
+		ActionLink,
+		AddNewProp,
+		ContactAvatar,
 		ContactProperty,
-		PropertySelect,
 		PropertyGroups,
 		PropertyRev,
-		AddNewProp,
-		ContactAvatar
+		PropertySelect
 	},
 
 	props: {
@@ -244,36 +258,6 @@ export default {
 			} catch (e) {
 				return 'grey'
 			}
-		},
-
-		/**
-		 * Header actions for the contact
-		 *
-		 * @returns {Array}
-		 */
-		contactActions() {
-			let actions = [
-				{
-					icon: 'icon-download',
-					text: t('contacts', 'Download'),
-					href: this.contact.url,
-					download: `${this.contact.displayName}.vcf`
-				},
-				{
-					icon: 'icon-qrcode',
-					text: t('contacts', 'Generate QR Code'),
-					action: this.showQRcode
-				}
-			]
-			if (!this.contact.addressbook.readOnly) {
-				actions.push({
-					icon: 'icon-delete',
-					text: t('contacts', 'Delete'),
-					action: this.deleteContact
-				})
-			}
-
-			return actions
 		},
 
 		/**

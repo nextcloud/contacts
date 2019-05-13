@@ -60,7 +60,7 @@
 				target="_blank" />
 
 			<!-- props actions -->
-			<action :actions="actions" class="property__actions" />
+			<PropertyActions :actions="actions" @delete="deleteProperty" />
 		</div>
 	</div>
 </template>
@@ -69,12 +69,14 @@
 import debounce from 'debounce'
 import PropertyMixin from 'Mixins/PropertyMixin'
 import PropertyTitle from './PropertyTitle'
+import PropertyActions from './PropertyActions'
 
 export default {
 	name: 'PropertyText',
 
 	components: {
-		PropertyTitle
+		PropertyTitle,
+		PropertyActions
 	},
 
 	mixins: [PropertyMixin],
