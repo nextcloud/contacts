@@ -88,12 +88,7 @@ export default {
 
 	computed: {
 		actions() {
-			const del = {
-				text: t('contacts', 'Delete'),
-				icon: 'icon-delete',
-				action: this.deleteProperty
-			}
-			return [...this.propModel.actions ? this.propModel.actions : [], del]
+			return this.propModel.actions ? this.propModel.actions : []
 		}
 	},
 

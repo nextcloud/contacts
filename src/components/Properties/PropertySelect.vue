@@ -38,7 +38,7 @@
 			</div>
 
 			<!-- props actions -->
-			<action :actions="actions" class="property__actions" />
+			<PropertyActions :actions="actions" @delete="deleteProperty" />
 
 			<multiselect v-model="matchedOptions" :options="propModel.options" :placeholder="t('contacts', 'Select option')"
 				:disabled="isSingleOption || isReadOnly" class="property__value" track-by="id"
@@ -50,12 +50,14 @@
 <script>
 import PropertyMixin from 'Mixins/PropertyMixin'
 import PropertyTitle from './PropertyTitle'
+import PropertyActions from './PropertyActions'
 
 export default {
 	name: 'PropertySelect',
 
 	components: {
-		PropertyTitle
+		PropertyTitle,
+		PropertyActions
 	},
 
 	mixins: [PropertyMixin],

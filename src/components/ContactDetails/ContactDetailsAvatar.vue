@@ -32,28 +32,49 @@
 			<div v-click-outside="closeMenu" class="contact-header-avatar__options">
 				<a v-tooltip.bottom="t('contacts', 'Add a new picture')" href="#" class="contact-avatar-options"
 					:class="loading ? 'icon-loading-small' : 'icon-picture-force-white'"
-					@click.prevent="toggleMenu" />
+					@click.stop.prevent="toggleMenu" />
 				<input id="contact-avatar-upload" ref="uploadInput" type="file"
 					class="hidden" accept="image/*" @change="processFile">
 			</div>
 
-			<modal v-if="maximizeAvatar" ref="modal" class="contact-header-modal"
-				:actions="modalActions" size="large" :title="contact.displayName"
+			<Modal v-if="maximizeAvatar"
+				ref="modal" class="contact-header-modal"
+				size="large" :title="contact.displayName"
 				@close="toggleModal">
+				<template #actions>
+					<ActionButton v-if="!isReadOnly" icon="icon-upload" @click="selectFileInput">
+						{{ t('contacts', 'Upload a new picture') }}
+					</ActionButton>
+					<ActionButton v-if="!isReadOnly" icon="icon-picture" @click="selectFilePicker">
+						{{ t('contacts', 'Choose from files') }}
+					</ActionButton>
+					<ActionButton v-if="!isReadOnly" icon="icon-delete" @click="removePhoto">
+						{{ t('contacts', 'Delete picture') }}
+					</ActionButton>
+					<ActionLink :href="`${contact.url}?photo`" icon="icon-download" target="_blank">
+						{{ t('contacts', 'Download picture') }}
+					</ActionLink>
+				</template>
 				<img ref="img" :src="photo" class="contact-header-modal__photo"
 					:style="{ width, height }" @load="updateImgSize">
-			</modal>
+			</Modal>
 
 			<!-- out of the avatar__options because of the overflow hidden -->
-			<div :class="{ 'open': opened }" class="contact-avatar-options__popovermenu popovermenu">
-				<popover-menu :menu="actions" />
-			</div>
+			<Actions :open="opened" class="contact-avatar-options__popovermenu">
+				<ActionButton v-if="!isReadOnly" icon="icon-upload" @click="selectFileInput">
+					{{ t('contacts', 'Upload a new picture') }}
+				</ActionButton>
+				<ActionButton v-if="!isReadOnly" icon="icon-picture" @click="selectFilePicker">
+					{{ t('contacts', 'Choose from files') }}
+				</ActionButton>
+			</Actions>
 		</div>
 	</div>
 </template>
 
 <script>
 import debounce from 'debounce'
+import { ActionLink, ActionButton } from 'nextcloud-vue'
 
 import { pickFileOrDirectory } from 'nextcloud-server/dist/files'
 import { generateRemoteUrl } from 'nextcloud-server/dist/router'
@@ -62,6 +83,11 @@ const axios = () => import('axios')
 
 export default {
 	name: 'ContactAvatar',
+
+	components: {
+		ActionLink,
+		ActionButton
+	},
 
 	props: {
 		contact: {
@@ -90,34 +116,11 @@ export default {
 			}
 			return this.contact.photo
 		},
-		actions() {
-			return [
-				{
-					icon: 'icon-upload',
-					text: t('contacts', 'Upload a new picture'),
-					action: this.selectFileInput
-				},
-				{
-					icon: 'icon-picture',
-					text: t('contacts', 'Choose from files'),
-					action: this.selectFilePicker
-				}
-			]
-		},
-		modalActions() {
-			return [...this.actions, ...[
-				{
-					icon: 'icon-delete',
-					text: t('contacts', 'Delete picture'),
-					action: this.removePhoto
-				},
-				{
-					icon: 'icon-download',
-					text: t('contacts', 'Download picture'),
-					href: this.contact.url + '?photo',
-					target: '_blank'
-				}
-			]]
+		isReadOnly() {
+			if (this.contact.addressbook) {
+				return this.contact.addressbook.readOnly
+			}
+			return false
 		}
 	},
 	mounted() {

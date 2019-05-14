@@ -44,7 +44,7 @@
 			</div>
 
 			<!-- props actions -->
-			<action :actions="actions" class="property__actions" />
+			<PropertyActions :actions="actions" @delete="deleteProperty" />
 
 			<!-- Real input where the picker shows -->
 			<DatetimePicker :value="vcardTimeLocalValue.toJSDate()" :minute-step="10" :lang="lang"
@@ -63,13 +63,15 @@ import { VCardTime } from 'ical.js'
 
 import PropertyMixin from 'Mixins/PropertyMixin'
 import PropertyTitle from './PropertyTitle'
+import PropertyActions from './PropertyActions'
 
 export default {
 	name: 'PropertyDateTime',
 
 	components: {
 		DatetimePicker,
-		PropertyTitle
+		PropertyTitle,
+		PropertyActions
 	},
 
 	mixins: [PropertyMixin],
