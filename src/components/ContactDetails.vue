@@ -369,6 +369,14 @@ export default {
 		if (this.contactKey) {
 			this.selectContact(this.contactKey)
 		}
+
+		// capture ctrl+s
+		document.addEventListener('keydown', this.onCtrlSave)
+	},
+
+	beforeDestroy() {
+		// unbind capture ctrl+s
+		document.removeEventListener('keydown', this.onCtrlSave)
 	},
 
 	methods: {
@@ -529,6 +537,13 @@ export default {
 
 			this.localContact = localContact
 			this.loadingData = false
+		},
+
+		onCtrlSave(e) {
+			if (e.keyCode === 83 && (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey)) {
+				e.preventDefault()
+				this.debounceUpdateContact()
+			}
 		}
 	}
 }
