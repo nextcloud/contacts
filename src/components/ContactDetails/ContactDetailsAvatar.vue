@@ -108,8 +108,8 @@ export default {
 	},
 	computed: {
 		photo() {
-			const type = this.contact.vCard.getFirstProperty('photo').type
-			if (!this.contact.photo.startsWith('data') && type === 'binary') {
+			const photo = this.contact.vCard.getFirstProperty('photo')
+			if (photo && !this.contact.photo.startsWith('data') && photo.type === 'binary') {
 				// split on coma in case of any leftover base64 data and retrieve last part
 				// usually we come to this part when the base64 image type is unknown
 				return `data:image;base64,${this.contact.photo.split(',').pop()}`
@@ -242,7 +242,7 @@ export default {
 		},
 
 		updateImgSize() {
-			if (this.contact.photo) {
+			if (this.contact.photo && this.$refs.img) {
 				this.updateHeightWidth(this.$refs.img.naturalHeight, this.$refs.img.naturalWidth)
 			}
 		},

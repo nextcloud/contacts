@@ -34,12 +34,55 @@
 			class="addressbook__share icon-shared" @click="toggleShare" />
 
 		<!-- popovermenu -->
-		<a v-click-outside="closeMenu" href="#" class="addressbook__menu">
-			<div class="icon-more" @click="toggleMenu" />
-			<div :class="{open: menuOpen}" class="popovermenu">
-				<popover-menu :menu="menu" />
-			</div>
-		</a>
+		<Actions class="addressbook__menu" menu-align="right">
+			<!-- copy addressbook link -->
+			<ActionLink
+				:href="addressbook.url"
+				:icon="copyLoading ? 'icon-loading-small' : 'icon-public'"
+				@click.stop.prevent="copyLink">
+				{{ copyButtonText }}
+			</ActionLink>
+
+			<!-- download addressbook -->
+			<ActionLink
+				:href="addressbook.url + '?export'"
+				icon="icon-download">
+				{{ t('contacts', 'Download') }}
+			</ActionLink>
+
+			<template v-if="!addressbook.readOnly">
+				<!-- rename addressbook -->
+				<ActionButton v-if="!editingName"
+					icon="icon-rename"
+					@click.stop.prevent="renameAddressbook">
+					{{ t('contacts', 'Rename') }}
+				</ActionButton>
+				<ActionInput v-else
+					ref="renameInput"
+					:disabled="renameLoading"
+					:icon="renameLoading ? 'icon-loading-small' : 'icon-rename'"
+					:value="addressbook.displayName"
+					@submit="updateAddressbookName" />
+
+				<!-- enable/disable addressbook -->
+				<ActionCheckbox v-if="!toggleEnabledLoading"
+					:checked="enabled"
+					@change.stop.prevent="toggleAddressbookEnabled">
+					{{ enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled') }}
+				</ActionCheckbox>
+				<ActionButton v-else
+					icon="icon-loading-small">
+					{{ enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled') }}
+				</ActionButton>
+			</template>
+
+			<!-- delete addressbook -->
+			<ActionButton v-if="hasMultipleAddressbooks"
+				:icon="deleteAddressbookLoading ? 'icon-loading-small' : 'icon-delete'"
+				@click="confirmDeletion">
+				{{ t('contacts', 'Delete') }}
+			</ActionButton>
+		</Actions>
 
 		<!-- sharing input -->
 		<ShareAddressBook v-if="shareOpen && !addressbook.readOnly" :addressbook="addressbook" />
@@ -47,13 +90,18 @@
 </template>
 
 <script>
+import { ActionLink, ActionButton, ActionInput, ActionCheckbox } from 'nextcloud-vue'
 import ShareAddressBook from './SettingsAddressbookShare'
 
 export default {
 	name: 'SettingsAddressbook',
 
 	components: {
-		ShareAddressBook
+		ShareAddressBook,
+		ActionLink,
+		ActionButton,
+		ActionInput,
+		ActionCheckbox
 	},
 
 	props: {
@@ -84,6 +132,12 @@ export default {
 		hasShares() {
 			return this.addressbook.shares.length > 0
 		},
+		addressbooks() {
+			return this.$store.getters.getAddressbooks
+		},
+		hasMultipleAddressbooks() {
+			return this.addressbooks.length > 1
+		},
 		// info tooltip about number of shares
 		sharedWithTooltip() {
 			return this.hasShares
@@ -95,56 +149,13 @@ export default {
 					})
 				: '' // disable the tooltip
 		},
-		// building the popover menu
-		menu() {
-			let menu = [
-				{
-					href: this.addressbook.url,
-					icon: this.copyLoading ? 'icon-loading-small' : 'icon-public',
-					text: !this.copied
-						? t('contacts', 'Copy link')
-						: this.copySuccess
-							? t('contacts', 'Copied')
-							: t('contacts', 'Can not copy'),
-					action: this.copyLink
-				},
-				{
-					href: this.addressbook.url + '?export',
-					icon: 'icon-download',
-					text: t('contacts', 'Download')
-				}
-			]
-
-			// check if addressbook is readonly
-			if (!this.addressbook.readOnly) {
-				menu.push({
-					icon: this.renameLoading ? 'icon-loading-small' : 'icon-rename',
-					// check if editing name
-					input: this.editingName ? 'text' : null,
-					text: !this.editingName ? t('contacts', 'Rename') : '',
-					action: !this.editingName ? this.renameAddressbook : this.updateAddressbookName,
-					value: this.addressbook.displayName,
-					placeholder: this.addressbook.displayName
-				},
-				{
-					text: this.enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled'),
-					icon: this.toggleEnabledLoading ? 'icon-loading-small' : null,
-					input: this.toggleEnabledLoading ? null : 'checkbox',
-					key: 'enableAddressbook',
-					model: this.enabled,
-					action: this.toggleAddressbookEnabled
-				})
-
-				// check to ensure last addressbook is not deleted.
-				if (this.$store.getters.getAddressbooks.length > 1) {
-					menu.push({
-						icon: this.deleteAddressbookLoading ? 'icon-loading-small' : 'icon-delete',
-						text: t('contacts', 'Delete'),
-						action: this.confirmDeletion
-					})
-				}
+		copyButtonText() {
+			if (this.copied) {
+				return this.copySuccess
+					? t('contacts', 'Copied')
+					: t('contacts', 'Can not copy')
 			}
-			return menu
+			return t('contacts', 'Copy link')
 		}
 	},
 	watch: {
@@ -168,21 +179,19 @@ export default {
 		toggleShare() {
 			this.shareOpen = !this.shareOpen
 		},
-		toggleAddressbookEnabled() {
+		async toggleAddressbookEnabled() {
 			// change to loading status
 			this.toggleEnabledLoading = true
-			setTimeout(() => {
-				try {
-					this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
-				} catch (err) {
-					// error handling
-					console.error(err)
-					OC.Notification.showTemporary(t('contacts', 'Enabled toggle of addressbook was not successful.'))
-				} finally {
-					// stop loading status regardless of outcome
-					this.toggleEnabledLoading = false
-				}
-			}, 500)
+			try {
+				await this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
+			} catch (err) {
+				// error handling
+				console.error(err)
+				OC.Notification.showTemporary(t('contacts', 'Enabled toggle of addressbook was not successful.'))
+			} finally {
+				// stop loading status regardless of outcome
+				this.toggleEnabledLoading = false
+			}
 		},
 
 		confirmDeletion() {
@@ -194,73 +203,68 @@ export default {
 			)
 		},
 
-		deleteAddressbook(confirm) {
+		async deleteAddressbook(confirm) {
 			if (confirm) {
 				// change to loading status
 				this.deleteAddressbookLoading = true
-				setTimeout(() => {
-					try {
-						this.$store.dispatch('deleteAddressbook', this.addressbook)
-					} catch (err) {
-						// error handling
-						console.error(err)
-						OC.Notification.showTemporary(t('contacts', 'Deletion of addressbook was not successful.'))
-					} finally {
-						// stop loading status regardless of outcome
-						this.deleteAddressbookLoading = false
-					}
-				}, 500)
+				try {
+					await this.$store.dispatch('deleteAddressbook', this.addressbook)
+				} catch (err) {
+					// error handling
+					console.error(err)
+					OC.Notification.showTemporary(t('contacts', 'Deletion of addressbook was not successful.'))
+				} finally {
+					// stop loading status regardless of outcome
+					this.deleteAddressbookLoading = false
+				}
 			}
 		},
 		renameAddressbook() {
 			this.editingName = true
 		},
-		updateAddressbookName(e) {
+		async updateAddressbookName(e) {
 			let addressbook = this.addressbook
 			// New name for addressbook - inputed value from form
-			let newName = e.target[0].value
+			let newName = this.$refs.renameInput.$el.querySelector('input[type="text"]').value
 			// change to loading status
 			this.renameLoading = true
-			setTimeout(() => {
-				try {
-					this.$store.dispatch('renameAddressbook', { addressbook, newName })
-				} catch (err) {
-					// error handling
-					console.error(err)
-					OC.Notification.showTemporary(t('contacts', 'Renaming of addressbook was not successful.'))
-				} finally {
-					this.editingName = false
-					// stop loading status regardless of outcome
-					this.renameLoading = false
-					// close popover menu
-					this.menuOpen = false
-				}
-			}, 500)
+			try {
+				await this.$store.dispatch('renameAddressbook', { addressbook, newName })
+			} catch (err) {
+				// error handling
+				console.error(err)
+				OC.Notification.showTemporary(t('contacts', 'Renaming of addressbook was not successful.'))
+			} finally {
+				this.editingName = false
+				// stop loading status regardless of outcome
+				this.renameLoading = false
+				// close popover menu
+				this.menuOpen = false
+			}
 		},
-		copyLink(event) {
+		async copyLink(event) {
 			// change to loading status
 			this.copyLoading = true
-			event.stopPropagation()
 
 			// copy link for addressbook to clipboard
-			this.$copyText(window.location.origin + this.addressbook.url)
-				.then(e => {
-					event.preventDefault()
-					this.copySuccess = true
-					this.copied = true
-					// Notify addressbook was copied
-					OC.Notification.showTemporary(t('contacts', 'Addressbook copied to clipboard'))
-				}, e => {
+			try {
+				await this.$copyText(window.location.origin + this.addressbook.url)
+				this.copySuccess = true
+				this.copied = true
+				// Notify addressbook was copied
+				OC.Notification.showTemporary(t('contacts', 'Addressbook copied to clipboard'))
+			} catch (error) {
+				this.copySuccess = false
+				this.copied = true
+				OC.Notification.showTemporary(t('contacts', 'Addressbook was not copied to clipboard.'))
+			} finally {
+				this.copyLoading = false
+				setTimeout(() => {
+					// stop loading status regardless of outcome
+					this.copied = false
 					this.copySuccess = false
-					this.copied = true
-					OC.Notification.showTemporary(t('contacts', 'Addressbook was not copied to clipboard.'))
-				}).then(() => {
-					this.copyLoading = false
-					setTimeout(() => {
-						// stop loading status regardless of outcome
-						this.copied = false
-					}, 2000)
-				})
+				}, 2000)
+			}
 		}
 	}
 }
