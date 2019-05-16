@@ -76,7 +76,7 @@
 		&__popovermenu {
 			// center
 			margin: calc((100% - 44px) / 2);
-			& /deep/ .action-item__menutoggle {
+			& .action-item__menutoggle {
 				// hide three dot menu, in favour of icon-picture-force-white
 				z-index: -1;
 				&::before {
