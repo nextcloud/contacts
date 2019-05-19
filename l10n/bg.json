@@ -98,6 +98,7 @@
     "Gender" : "Пол",
     "Female" : "Жена",
     "Male" : "Мъж",
-    "An error occurred" : "Възникна грешка"
+    "An error occurred" : "Възникна грешка",
+    "This application is not compatible with Internet Explorer" : "Приложението не е съвместимо с Internet Explorer"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

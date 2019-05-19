@@ -100,6 +100,7 @@ OC.L10N.register(
     "Gender" : "Пол",
     "Female" : "Жена",
     "Male" : "Мъж",
-    "An error occurred" : "Възникна грешка"
+    "An error occurred" : "Възникна грешка",
+    "This application is not compatible with Internet Explorer" : "Приложението не е съвместимо с Internet Explorer"
 },
 "nplurals=2; plural=(n != 1);");
