@@ -1,7 +1,7 @@
 ---
 name: Bug report
-about: Create a bug report to help us improve
-
+about: Help us improving by reporting a bug
+labels: bug, 0. Needs triage
 ---
 
 ⚠ Please report only issues corresponding to the contacts app for Nextcloud ⚠
