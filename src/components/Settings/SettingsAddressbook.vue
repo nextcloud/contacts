@@ -114,15 +114,15 @@ export default {
 	},
 	data() {
 		return {
-			menuOpen: false,
-			shareOpen: false,
-			editingName: false,
 			copied: false,
-			copySuccess: true,
-			toggleEnabledLoading: false,
+			copyLoading: false,
+			copySuccess: false,
 			deleteAddressbookLoading: false,
+			editingName: false,
+			menuOpen: false,
 			renameLoading: false,
-			copyLoading: false
+			shareOpen: false,
+			toggleEnabledLoading: false
 		}
 	},
 	computed: {
