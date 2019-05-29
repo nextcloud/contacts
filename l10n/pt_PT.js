@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Contactos",
     "All contacts" : "Todos os contactos",
     "Details" : "Detalhes",
+    "Download picture" : "Transferir imagem",
     "Download" : "Transferir",
     "Delete" : "Apagar",
     "Groups" : "Grupos",
