@@ -36,11 +36,15 @@
 
 
 // Virtual scroller overrides
-.vue-recycle-scroller{
+.vue-recycle-scroller {
 	position: sticky !important;
 }
 
 .vue-recycle-scroller__item-view {
 	// same as app-content-list-item
 	height: 68px;
+	// TODO: find better solution?
+	// https://github.com/Akryum/vue-virtual-scroller/issues/70
+	// hack to not show the transition
+	overflow: hidden;
 }
