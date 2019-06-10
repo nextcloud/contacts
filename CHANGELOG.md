@@ -1,3 +1,22 @@
+## 3.1.2 – 2019-06-10
+
+### Added
+- Components update, enhanced design and avatar management
+  [#1103](https://github.com/nextcloud/contacts/pull/1103)
+
+### Fixed
+- Capture ctrl+s
+  [#1102](https://github.com/nextcloud/contacts/pull/1102)
+- Fix ghost contact when scrolling
+  [#1132](https://github.com/nextcloud/contacts/pull/1132)
+- Fix alignment and remove addressbook selector if only one
+  [#1074](https://github.com/nextcloud/contacts/pull/1074)
+
+### Updated
+- [Security] axios library
+- Dependencies
+- Translations
+
 ## 3.1.1 – 2019-04-16
 
 ### Fixed
