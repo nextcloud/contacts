@@ -1,3 +1,12 @@
+## 3.1.3 – 2019-06-11
+
+### Fixed
+- Error on instances <16
+  [853c3de](https://github.com/nextcloud/contacts/commit/853c3dead32d1375954e252bb4c3ccce867b56ec)
+
+### Updated
+- Translations
+
 ## 3.1.2 – 2019-06-10
 
 ### Added
