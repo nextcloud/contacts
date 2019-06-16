@@ -47,6 +47,7 @@ OC.L10N.register(
     "Addressbook was not copied to clipboard." : "Adresár nebol skopírovaný do schránky.",
     "Share with users or groups" : "Sprístupniť používateľom alebo skupinám",
     "No users or groups" : "Žiadny používatelia alebo skupiny",
+    "can edit" : "môže upravovať",
     "Unable to change permissions." : "Nepodarilo sa zmeniť oprávnenia.",
     "Import into" : "Importovať do",
     "Address book name" : "Názov adresára kontaktov",
