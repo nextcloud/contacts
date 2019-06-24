@@ -124,6 +124,7 @@ OC.L10N.register(
     "Female" : "Nainen",
     "Male" : "Mies",
     "Unknown" : "Tuntematon",
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} yhteystietoa ei voitu lukea","{failed} yhteystietoa ei voitu lukea"],
     "An error occurred" : "Tapahtui virhe",
     "Your web browser is out of date" : "Käyttämäsi selain on vanhentunut",
     "This application is not compatible with Internet Explorer" : "Tämä sovellus ei ole yhteensopiva Internet Explorerin kanssa"
