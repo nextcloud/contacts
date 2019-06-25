@@ -28,7 +28,8 @@ import App from './App'
 import router from './router'
 import store from './store'
 import { sync } from 'vuex-router-sync'
-import { generateFilePath } from 'nextcloud-server/dist/router'
+import { generateFilePath } from 'nextcloud-router'
+import { getRequestToken } from 'nextcloud-auth'
 
 /** GLOBAL COMPONENTS AND DIRECTIVE */
 import { Actions, DatetimePicker, Multiselect, PopoverMenu, Modal } from 'nextcloud-vue'
@@ -38,7 +39,7 @@ import VueClipboard from 'vue-clipboard2'
 
 // CSP config for webpack dynamic chunk loading
 // eslint-disable-next-line
-__webpack_nonce__ = btoa(OC.requestToken)
+__webpack_nonce__ = btoa(getRequestToken())
 
 // Correct the root of the app for chunk loading
 // OC.linkTo matches the apps folders
