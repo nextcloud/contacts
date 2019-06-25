@@ -59,6 +59,7 @@
 import debounce from 'debounce'
 import moment from 'moment'
 import { DatetimePicker } from 'nextcloud-vue'
+import { getLocale } from 'nextcloud-l10n'
 import { VCardTime } from 'ical.js'
 
 import PropertyMixin from 'Mixins/PropertyMixin'
@@ -132,7 +133,7 @@ export default {
 	mounted() {
 		// Load the locale
 		// convert format like en_GB to en-gb for `moment.js`
-		let locale = OC.getLocale().replace('_', '-').toLowerCase()
+		let locale = getLocale().replace('_', '-').toLowerCase()
 
 		// default load e.g. fr-fr
 		import('moment/locale/' + this.locale)

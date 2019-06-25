@@ -76,8 +76,8 @@
 import debounce from 'debounce'
 import { ActionLink, ActionButton } from 'nextcloud-vue'
 
-import { pickFileOrDirectory } from 'nextcloud-server/dist/files'
-import { generateRemoteUrl } from 'nextcloud-server/dist/router'
+import { getFilePickerBuilder } from 'nextcloud-dialogs'
+import { generateRemoteUrl } from 'nextcloud-router'
 
 const axios = () => import('axios')
 
@@ -200,18 +200,18 @@ export default {
 		},
 		async selectFilePicker() {
 			if (!this.loading) {
-				const file = await pickFileOrDirectory(
-					t('contacts', 'Pick an avatar'),
-					false,
-					[
+				const picker = getFilePickerBuilder(t('contacts', 'Pick an avatar'))
+					.setMimeTypeFilter([
 						'image/png',
 						'image/jpeg',
 						'image/gif',
 						'image/x-xbitmap',
 						'image/bmp',
 						'image/svg+xml'
-					]
-				)
+					])
+					.build()
+
+				const file = await picker.pick()
 				if (file) {
 					this.loading = true
 					try {

@@ -21,11 +21,13 @@
  */
 
 import DavClient from 'cdav-library'
+import { generateRemoteUrl } from 'nextcloud-router'
+import { getRequestToken } from 'nextcloud-auth'
 
 function xhrProvider() {
 	var headers = {
 		'X-Requested-With': 'XMLHttpRequest',
-		'requesttoken': OC.requestToken
+		'requesttoken': getRequestToken()
 	}
 	var xhr = new XMLHttpRequest()
 	var oldOpen = xhr.open
@@ -43,5 +45,5 @@ function xhrProvider() {
 }
 
 export default new DavClient({
-	rootUrl: OC.linkToRemote('dav')
+	rootUrl: generateRemoteUrl('dav')
 }, xhrProvider)
