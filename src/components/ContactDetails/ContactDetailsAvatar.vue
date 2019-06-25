@@ -207,7 +207,7 @@ export default {
 						'image/gif',
 						'image/x-xbitmap',
 						'image/bmp',
-						'image/svg+xml',
+						'image/svg+xml'
 					])
 					.build()
 
