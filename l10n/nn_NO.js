@@ -1,0 +1,27 @@
+OC.L10N.register(
+    "contacts",
+    {
+    "Contacts" : "Kontaktar",
+    "Groups" : "Grupper",
+    "First name" : "Fornamn",
+    "Last name" : "Etternamn",
+    "Nickname" : "Kallenamn",
+    "Additional names" : "Andre namn",
+    "Notes" : "Notat",
+    "Home" : "Heime",
+    "Work" : "Arbeid",
+    "Other" : "Anna",
+    "Address" : "Adresse",
+    "City" : "Stad",
+    "State or province" : "Fylke, stat eller region",
+    "Postal code" : "Postkode",
+    "Country" : "Land",
+    "Birthday" : "Bursdag",
+    "Email" : "E-post",
+    "Phone" : "Telefonnummer",
+    "Mobile" : "Mobil",
+    "Fax" : "Faks",
+    "Pager" : "Personsøkjar",
+    "Voice" : "Tale"
+},
+"nplurals=2; plural=(n != 1);");

@@ -1,0 +1,25 @@
+OC.L10N.register(
+    "contacts",
+    {
+    "Contacts" : "Kontakter",
+    "Groups" : "Gruppen",
+    "First name" : "Virnumm",
+    "Last name" : "Famillje Numm",
+    "Nickname" : "Spëtznumm",
+    "Additional names" : "Weider Nimm",
+    "Notes" : "Notizen",
+    "Home" : "Doheem",
+    "Work" : "Aarbecht",
+    "Other" : "Aner",
+    "Address" : "Adress",
+    "City" : "Staat",
+    "Country" : "Land",
+    "Birthday" : "Gebuertsdag",
+    "Email" : "Email",
+    "Phone" : "Telefon",
+    "Mobile" : "GSM",
+    "Fax" : "Fax",
+    "Pager" : "Pager",
+    "Voice" : "Voice"
+},
+"nplurals=2; plural=(n != 1);");

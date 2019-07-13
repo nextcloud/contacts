@@ -1,0 +1,12 @@
+{ "translations": {
+    "Contacts" : "Əlaqələr",
+    "Groups" : "Qruplar",
+    "Notes" : "Qeydlər",
+    "Home" : "Ev",
+    "Work" : "İş",
+    "Other" : "Digər",
+    "Address" : "Ünvan",
+    "Birthday" : "Ad günü",
+    "Email" : "Email"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}

@@ -1,0 +1,24 @@
+{ "translations": {
+    "Contacts" : "தொடர்புகள்",
+    "Groups" : "குழுக்கள்",
+    "First name" : "முதல் பெயர்",
+    "Last name" : "கடைசிப் பெயர்",
+    "Nickname" : "பட்டப்பெயர்",
+    "Additional names" : "மேலதிக பெயர்கள்",
+    "Notes" : "குறிப்புகள்",
+    "Home" : "அகம்",
+    "Work" : "வேலை",
+    "Other" : "மற்றவை",
+    "Address" : "முகவரி",
+    "City" : "நகரம்",
+    "Postal code" : "தபால் குறியீடு",
+    "Country" : "நாடு",
+    "Birthday" : "பிறந்த நாள்",
+    "Email" : "மின்னஞ்சல்",
+    "Phone" : "தொலைப்பேசி",
+    "Mobile" : "இடமாற்றக்கூடிய",
+    "Fax" : "தொலை நகல்",
+    "Pager" : "தொலை அழைப்பான்",
+    "Voice" : "குரல்"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
