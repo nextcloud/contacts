@@ -83,7 +83,7 @@ OC.L10N.register(
     "Copy to full name" : "Tam ada kopyala",
     "Notes" : "Notlar",
     "Website" : "Web sitesi",
-    "Federated Cloud ID" : "Birleşmiş Bulut Kimliği",
+    "Federated Cloud ID" : "Birleşik Bulut Kimliği",
     "Home" : "Ev",
     "Work" : "İş",
     "Other" : "Diğer",
