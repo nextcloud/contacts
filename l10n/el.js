@@ -6,6 +6,7 @@ OC.L10N.register(
     "Details" : "Λεπτομέριες",
     "A contacts app for Nextcloud" : "Εφαρμογή επαφών για το Nextcloud",
     "Upload a new picture" : "Μεταφόρτωση νέας φωτογραφίας",
+    "Image is too big (max 1MB)." : "Η εικόνα είναι πολύ μεγάλη (μέγιστο 1MB).",
     "Loading" : "Γίνεται φόρτωση",
     "Name" : "Όνομα",
     "Company" : "Εταιρία",
