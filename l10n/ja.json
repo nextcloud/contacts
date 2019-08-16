@@ -31,7 +31,7 @@
     "New contact" : "新しい連絡先",
     "Syntax error. Cannot open the contact." : "構文エラー。 連絡先を開けません",
     "Deleting the contact in {countdown} seconds" : "{countdown}秒後に連絡先を削除します",
-    "Done importing {total} contacts into" : "連絡先を {total} にインポートしました",
+    "Done importing {total} contacts into" : " {total} 数の連絡先をインポートしました",
     "Importing {total} contacts into" : "連絡先を {total} にインポートしています",
     "No errors" : "エラーはありません",
     "Open your browser console for more details" : "詳細はブラウザコンソールを開きます",
