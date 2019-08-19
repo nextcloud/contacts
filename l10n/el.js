@@ -78,6 +78,8 @@ OC.L10N.register(
     "Co-worker" : "Συνεργάτης",
     "Gender" : "Φύλλο",
     "Female" : "Θηλυκό",
-    "Male" : "Αρσενικό"
+    "Male" : "Αρσενικό",
+    "None" : "Κανένα",
+    "Unknown" : "Άγνωστο"
 },
 "nplurals=2; plural=(n != 1);");

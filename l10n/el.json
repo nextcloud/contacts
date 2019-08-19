@@ -76,6 +76,8 @@
     "Co-worker" : "Συνεργάτης",
     "Gender" : "Φύλλο",
     "Female" : "Θηλυκό",
-    "Male" : "Αρσενικό"
+    "Male" : "Αρσενικό",
+    "None" : "Κανένα",
+    "Unknown" : "Άγνωστο"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

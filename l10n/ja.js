@@ -138,7 +138,7 @@ OC.L10N.register(
     "Male" : "男性",
     "None" : "なし",
     "Unknown" : "不明",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed}連絡先の読み込みに失敗しました"],
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed}連絡先の読み込みができませんでした。"],
     "An error occurred" : "エラーが発生しました",
     "Your web browser is out of date" : "ウェブブラウザが古いです",
     "This application is not compatible with Internet Explorer" : "このアプリはInternet Explorerと互換性がありません"
