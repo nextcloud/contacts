@@ -52,7 +52,7 @@ import addressBookSharee from './SettingsAddressbookSharee'
 import debounce from 'debounce'
 
 export default {
-	name: 'SettingsShareAddressbook',
+	name: 'SettingsAddressbookShare',
 	components: {
 		addressBookSharee
 	},

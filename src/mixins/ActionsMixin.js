@@ -1,5 +1,5 @@
 /**
- * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -20,25 +20,13 @@
  *
  */
 
-import rfcProps from 'Models/rfcProps'
-
-// https://tools.ietf.org/html/rfc6350#section-6.2.7
-
 export default {
-	name: 'bad gender type',
-	run: contact => {
-		return contact.vCard.hasProperty('gender')
-			&& contact.vCard.getFirstProperty('gender').getFirstParameter('type')
-	},
-	fix: contact => {
-		const gender = contact.vCard.getFirstProperty('gender')
-		const type = gender.getFirstParameter('type')
-		const option = Object.values(rfcProps.properties.gender.options).find(opt => opt.id === type)
-		if (option) {
-			gender.removeParameter('type')
-			gender.setValue(option.id)
-			return true
+	props: {
+		// The current component root
+		component: {
+			type: Object,
+			default: () => {},
+			required: true
 		}
-		return false
 	}
 }

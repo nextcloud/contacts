@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div class="grid-span-3 property property--last">
+	<div class="grid-span-3 property property--without-actions property--last">
 		<!-- title -->
 		<PropertyTitle :icon="'icon-add'" :readable-name="t('contacts', 'Add new property')" />
 
@@ -57,11 +57,11 @@ export default {
 	computed: {
 
 		/**
-		 * Rfc props scoped
+		 * Rfc props
 		 * @returns {Object}
 		 */
 		properties() {
-			return rfcProps.properties(this)
+			return rfcProps.properties
 		},
 
 		/**

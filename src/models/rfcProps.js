@@ -20,18 +20,10 @@
  *
  */
 import { VCardTime } from 'ical.js'
+import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN'
+import ActionToggleYear from '../components/Actions/ActionToggleYear'
 
-const copyNtoFN = ({ contact, updateContact }) => () => {
-	if (contact.vCard.hasProperty('n')) {
-		// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
-		// -> John Stevenson
-		const n = contact.vCard.getFirstPropertyValue('n')
-		contact.fullName = n.slice(0, 2).reverse().join(' ')
-		updateContact()
-	}
-}
-
-const properties = component => ({
+const properties = {
 	nickname: {
 		readableName: t('contacts', 'Nickname'),
 		icon: 'icon-user'
@@ -51,11 +43,7 @@ const properties = component => ({
 		},
 		icon: 'icon-user',
 		actions: [
-			{
-				text: t('contacts', 'Copy to full name'),
-				icon: 'icon-up',
-				action: copyNtoFN(component)
-			}
+			ActionCopyNtoFN
 		]
 	},
 	note: {
@@ -113,7 +101,10 @@ const properties = component => ({
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
 			value: new VCardTime(null, null, 'date').fromJSDate(new Date())
-		}
+		},
+		actions: [
+			ActionToggleYear
+		]
 	},
 	anniversary: {
 		readableName: t('contacts', 'Anniversary'),
@@ -289,7 +280,7 @@ const properties = component => ({
 			{ id: 'U', name: t('contacts', 'Unknown') }
 		]
 	}
-})
+}
 
 const fieldOrder = [
 	'org',

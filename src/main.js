@@ -1,3 +1,4 @@
+/* eslint-disable vue/match-component-file-name */
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -24,7 +25,7 @@ import 'core-js/stable'
 import 'regenerator-runtime/runtime'
 
 import Vue from 'vue'
-import App from './App'
+import App from './ContactsRoot'
 import router from './router'
 import store from './store'
 import { sync } from 'vuex-router-sync'

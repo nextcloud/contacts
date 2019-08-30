@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div v-if="propModel" class="grid-span-2 property">
+	<div v-if="propModel" class="grid-span-2 property property--without-actions">
 		<!-- NO title if first element for groups -->
 
 		<div class="property__row">
