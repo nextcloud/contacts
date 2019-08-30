@@ -25,7 +25,7 @@
 	<div class="contact-header-avatar">
 		<div class="contact-header-avatar__wrapper">
 			<div class="contact-header-avatar__background" @click="toggleModal" />
-			<div v-if="contact.photo" :style="{ 'backgroundImage': `url(${photo})` }"
+			<div v-if="contact.photo" :style="{ 'backgroundImage': `url(${contact.photoUrl})` }"
 				class="contact-header-avatar__photo"
 				@click="toggleModal" />
 
@@ -55,7 +55,7 @@
 						{{ t('contacts', 'Download picture') }}
 					</ActionLink>
 				</template>
-				<img ref="img" :src="photo" class="contact-header-modal__photo"
+				<img ref="img" :src="contact.photoUrl" class="contact-header-modal__photo"
 					:style="{ width, height }" @load="updateImgSize">
 			</Modal>
 
@@ -107,15 +107,6 @@ export default {
 		}
 	},
 	computed: {
-		photo() {
-			const photo = this.contact.vCard.getFirstProperty('photo')
-			if (photo && !this.contact.photo.startsWith('data') && photo.type === 'binary') {
-				// split on coma in case of any leftover base64 data and retrieve last part
-				// usually we come to this part when the base64 image type is unknown
-				return `data:image;base64,${this.contact.photo.split(',').pop()}`
-			}
-			return this.contact.photo
-		},
 		isReadOnly() {
 			if (this.contact.addressbook) {
 				return this.contact.addressbook.readOnly
@@ -145,7 +136,8 @@ export default {
 					let self = this
 
 					reader.onload = function(e) {
-						self.setPhoto(reader.result)
+						// only getting the raw binary base64
+						self.setPhoto(reader.result.split(',').pop(), file.type)
 					}
 
 					reader.readAsDataURL(file)
@@ -161,13 +153,30 @@ export default {
 		/**
 		 * Update the contact photo
 		 *
-		 * @param {String} value the photo as base64
+		 * @param {String} data the photo as base64 binary string
+		 * @param {String} type mimetype
 		 */
-		setPhoto(value) {
-			// check if photo property exists to decide whether to add/update it
-			this.contact.photo
-				? this.contact.photo = value
-				: this.contact.vCard.addPropertyWithValue('photo', value)
+		setPhoto(data, type) {
+			// Vcard 3 and 4 have different syntax
+			// https://tools.ietf.org/html/rfc2426#page-11
+			if (this.contact.version === '3.0') {
+				// check if photo property exists to decide whether to add/update it
+				this.contact.photo
+					? this.contact.photo = data
+					: this.contact.vCard.addPropertyWithValue('photo', data)
+
+				const photo = this.contact.vCard.getFirstProperty('photo')
+				photo.setParameter('encoding', 'b')
+				if (type) {
+					photo.setParameter('type', type.split('/').pop())
+				}
+			} else {
+				// https://tools.ietf.org/html/rfc6350#section-6.2.4
+				// check if photo property exists to decide whether to add/update it
+				this.contact.photo
+					? this.contact.photo = `data:${type};base64,${data}`
+					: this.contact.vCard.addPropertyWithValue('photo', `data:${type};base64,${data}`)
+			}
 
 			this.$store.dispatch('updateContact', this.contact)
 			this.loading = false
@@ -219,8 +228,9 @@ export default {
 						const response = await get(`${this.root}${file}`, {
 							responseType: 'arraybuffer'
 						})
-						const data = `data:${response.headers['content-type']};base64,${Buffer.from(response.data, 'binary').toString('base64')}`
-						this.setPhoto(data)
+						const type = response.headers['content-type']
+						const data = Buffer.from(response.data, 'binary').toString('base64')
+						this.setPhoto(data, type)
 					} catch (error) {
 						OC.Notification.showTemporary(t('contacts', 'Error while processing the picture.'))
 						console.error(error)

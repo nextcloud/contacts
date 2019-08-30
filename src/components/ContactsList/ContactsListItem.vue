@@ -104,13 +104,7 @@ export default {
 		},
 		avatarUrl() {
 			if (this.contact.photo) {
-				const type = this.contact.vCard.getFirstProperty('photo').type
-				if (!this.contact.photo.startsWith('data') && type === 'binary') {
-					// split on coma in case of any leftover base64 data and retrieve last part
-					// usually we come to this part when the base64 image type is unknown
-					return `url(data:image;base64,${this.contact.photo.split(',').pop()})`
-				}
-				return `url(${this.contact.photo})`
+				return `url(${this.contact.photoUrl})`
 			}
 			return `url(${this.contact.url}?photo)`
 		}
