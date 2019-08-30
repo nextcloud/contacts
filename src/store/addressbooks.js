@@ -355,6 +355,7 @@ const actions = {
 							contacts.push(contact)
 						} catch (error) {
 							// PARSING FAILED
+							console.error('Error reading contact', item.url, item.data)
 							console.error(error)
 							failed++
 						}
