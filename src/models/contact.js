@@ -165,6 +165,27 @@ export default class Contact {
 	}
 
 	/**
+	 * Return the version
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get version() {
+		return this.vCard.getFirstPropertyValue('version')
+	}
+
+	/**
+	 * Set the version
+	 *
+	 * @param {string} version the version to set
+	 * @memberof Contact
+	 */
+	set version(version) {
+		this.vCard.updatePropertyWithValue('version', version)
+		return true
+	}
+
+	/**
 	 * Return the uid
 	 *
 	 * @readonly
@@ -235,6 +256,34 @@ export default class Contact {
 	set photo(photo) {
 		this.vCard.updatePropertyWithValue('photo', photo)
 		return true
+	}
+
+	/**
+	 * Return the photo usable url
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get photoUrl() {
+		const photo = this.vCard.getFirstProperty('photo')
+		const encoding = photo.getFirstParameter('encoding')
+
+		const isBinary = photo.type === 'binary' || encoding === 'b'
+
+		if (photo && !this.photo.startsWith('data') && isBinary) {
+			// split on coma in case of any leftover base64 data and retrieve last part
+			// usually we come to this part when the base64 image type is unknown
+			return `data:image;base64,${this.photo.split(',').pop()}`
+		}
+		// could be just an url of the already encoded `data:image...`
+		try {
+			// eslint-disable-next-line no-new
+			new URL(this.photo)
+			return this.photo
+		} catch {
+			console.error('Invalid photo for the following contact. Ignoring...', this.contact)
+			return false
+		}
 	}
 
 	/**
