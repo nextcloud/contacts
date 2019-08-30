@@ -21,19 +21,20 @@
  */
 
 #contact-details {
-
+	$grid-column-gap: 20px;
+	$grid-column-width: 350px;
 	// header
 	header {
-		height: 100px;
 		display: flex;
-		font-weight: bold;
 		align-items: center;
+		height: 100px;
+		font-weight: bold;
 
 		// ORG-TITLE-NAME
 		#contact-header-infos {
 			display: flex;
-			flex-direction: column;
 			flex: 1 1 auto; // shrink avatar before this one
+			flex-direction: column;
 			h2,
 			#details-org-container {
 				display: flex;
@@ -41,22 +42,22 @@
 				margin: 0;
 			}
 			input {
-				font-size: inherit;
-				color: #fff !important;
-				text-shadow: 0 0 2px var(--color-box-shadow);
-				background: transparent;
-				text-overflow: ellipsis;
 				overflow: hidden;
-				white-space: nowrap;
-				border: none;
-				margin: 0;
-				padding: 4px 5px;
 				flex: 1 1;
 				min-width: 100px;
 				max-width: 100%;
+				margin: 0;
+				padding: 4px 5px;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				color: #fff !important;
+				border: none;
+				background: transparent;
+				text-shadow: 0 0 2px var(--color-box-shadow);
+				font-size: inherit;
 				&::placeholder {
-					color: #fff !important;
 					opacity: .8;
+					color: #fff !important;
 				}
 			}
 			#contact-org {
@@ -76,45 +77,43 @@
 				}
 			}
 			.header-icon {
-				height: 44px;
 				width: 44px;
+				height: 44px;
 				padding: 14px;
-				border-radius: 22px;
 				cursor: pointer;
-				background-size: 16px;
 				opacity: .7;
+				border-radius: 22px;
+				background-size: 16px;
 				&:hover,
 				&:focus {
 					opacity: 1;
 				}
 				&.header-icon--pulse {
-					margin: 8px;
 					width: 16px;
 					height: 16px;
+					margin: 8px;
 				}
 			}
 		}
 	}
 
-	$grid-column-gap: 20px;
-	$grid-column-width: 350px;
-
 	// contact details
 	section.contact-details {
 		display: grid;
+		min-height: 200px;
+		padding: 20px $grid-column-gap;
 		/* unquote is a strange hack to avoid removal of the comma by the scss compiler */
 		grid-template-columns: repeat(auto-fit, minmax(unquote('#{$grid-column-width}'), 1fr));
 		grid-column-gap: $grid-column-gap;
-		padding: 20px $grid-column-gap;
-		min-height: 200px;
 	}
 
 	// single column fix, better visual
 	@media only screen and (max-width: $navigation-width + $list-min-width + 2 * $grid-column-gap +$grid-column-width) {
 		section.contact-details {
+			padding: 10px;
+
 			grid-template-columns: 1fr;
 			grid-column-gap: 10px;
-			padding: 10px;
 		}
 	}
 }
@@ -124,9 +123,9 @@
 	right: 22px;
 	bottom: 0;
 	height: 44px;
-	line-height: 44px;
-	color: var(--color-text-lighter);
 	opacity: .5;
+	color: var(--color-text-lighter);
+	line-height: 44px;
 }
 
 #qrcode-modal {

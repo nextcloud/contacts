@@ -22,16 +22,16 @@
 
 #app-details-toggle {
 	position: fixed;
-	display: inline-block;
+	z-index: 149;
 	left: 0;
+	display: inline-block;
 	width: 44px;
 	height: 44px;
-	z-index: 149;
-	background-color: var(--color-background-darker);
-	cursor: pointer;
-	opacity: 0.6;
-	transform: rotate(180deg);
 	margin-top: 44px; // under the show navigation button
+	cursor: pointer;
+	transform: rotate(180deg);
+	opacity: .6;
+	background-color: var(--color-background-darker);
 }
 
 
@@ -41,10 +41,10 @@
 }
 
 .vue-recycle-scroller__item-view {
-	// same as app-content-list-item
-	height: 68px;
 	// TODO: find better solution?
 	// https://github.com/Akryum/vue-virtual-scroller/issues/70
 	// hack to not show the transition
 	overflow: hidden;
+	// same as app-content-list-item
+	height: 68px;
 }
