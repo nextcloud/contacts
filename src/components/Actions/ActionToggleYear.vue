@@ -21,36 +21,24 @@
   -->
 
 <template>
-	<ActionButton :icon="icon" @click="toggleYear">
-		{{ omitYear ? t('contacts', 'Add year') : t('contacts', 'Omit year') }}
-	</ActionButton>
+	<ActionCheckbox :checked="omitYear"
+		@check="removeYear" @uncheck="addYear">
+		{{ t('contacts', 'Omit year') }}
+	</ActionCheckbox>
 </template>
 <script>
-import { ActionButton } from 'nextcloud-vue'
+import { ActionCheckbox } from 'nextcloud-vue'
 import ActionsMixin from 'Mixins/ActionsMixin'
 
 export default {
 	name: 'ActionToggleYear',
 	components: {
-		ActionButton
+		ActionCheckbox
 	},
 	mixins: [ActionsMixin],
 	data() {
 		return {
 			omitYear: false
-		}
-	},
-
-	computed: {
-		icon() {
-			return this.omitYear
-				? 'icon-calendar-dark'
-				: 'icon-no-calendar'
-		},
-		text() {
-			return this.omitYear
-				? t('contacts', 'Add year')
-				: t('contacts', 'Omit year')
 		}
 	},
 
@@ -60,18 +48,12 @@ export default {
 	},
 
 	methods: {
-		toggleYear() {
+		removeYear() {
 			const dateObject = this.component.localValue.toJSON()
 
-			// year was already ignored: adding it back
-			if (this.omitYear) {
-				this.$nextTick(() => {
-					this.component.updateValue(dateObject, true)
-				})
-
-			} else if (this.component.localContact.version === '4.0') {
-				// year was already displayed: removing it
-				// and use --0124 format
+			// year was already displayed: removing it
+			// and use --0124 format
+			if (this.component.localContact.version === '4.0') {
 				dateObject.year = null
 				this.component.updateValue(dateObject)
 			} else {
@@ -85,7 +67,11 @@ export default {
 					})
 				}
 			}
-
+			this.omitYear = !this.omitYear
+		},
+		addYear() {
+			const dateObject = this.component.localValue.toJSON()
+			this.component.updateValue(dateObject, true)
 			this.omitYear = !this.omitYear
 		}
 	}
