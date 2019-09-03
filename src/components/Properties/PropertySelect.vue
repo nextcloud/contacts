@@ -37,12 +37,12 @@
 				{{ propModel.readableName }}
 			</div>
 
-			<!-- props actions -->
-			<PropertyActions :actions="actions" @delete="deleteProperty" />
-
 			<multiselect v-model="matchedOptions" :options="propModel.options" :placeholder="t('contacts', 'Select option')"
 				:disabled="isSingleOption || isReadOnly" class="property__value" track-by="id"
 				label="name" @input="updateValue" />
+
+			<!-- props actions -->
+			<PropertyActions :actions="actions" :property-component="this" @delete="deleteProperty" />
 		</div>
 	</div>
 </template>

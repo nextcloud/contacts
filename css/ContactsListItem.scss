@@ -45,7 +45,7 @@
 		left: 0;
 		width: 100%;
 	}
-	
+
 	&.delete-slide-left-enter,
 	&.delete-slide-left-leave-to {
 		left: 100%;
@@ -58,9 +58,9 @@
 		position: absolute;
 		top: 0;
 		left: 0;
-		height: inherit;
 		width: inherit;
-		background-size: cover;
+		height: inherit;
 		cursor: pointer;
+		background-size: cover;
 	}
 }

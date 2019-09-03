@@ -20,29 +20,14 @@
  *
  */
 
-.icon-social {
-	@include icon-color('social', 'contacts', $color-black, 1);
-}
 
-.icon-qrcode {
-	@include icon-color('qrcode', 'contacts', $color-black, 2);
-}
-
-.icon-address-book {
-	@include icon-color('address-book', 'contacts', $color-black, 1);
-}
-
-.icon-phone {
-	@include icon-color('phone', 'contacts', $color-black, 1);
-}
-
-.icon-eye-white {
-	@include icon-color('eye', 'contacts', $color-white, 1);
-}
-
-.icon-up {
-	@include icon-color('up', 'contacts', $color-black, 1);
-}
+@include icon-black-white('social', 'contacts', 1);
+@include icon-black-white('qrcode', 'contacts', 1);
+@include icon-black-white('address-book', 'contacts', 1);
+@include icon-black-white('phone', 'contacts', 1);
+@include icon-black-white('eye', 'contacts', 1);
+@include icon-black-white('up', 'contacts', 1);
+@include icon-black-white('no-calendar', 'contacts', 1);
 
 .icon-up-force-white {
 	// using #fffffe to trick the accessibility dark theme icon invert

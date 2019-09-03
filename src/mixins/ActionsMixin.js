@@ -1,7 +1,7 @@
 /**
- * @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
+ * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
- * author Team Popcorn <teampopcornberlin@gmail.com>
+ * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -20,22 +20,13 @@
  *
  */
 
-.import-screen {
-	width: auto;
-	min-width: 30vw;
-	margin: 50px;
-	&__header {
-		padding-top: 20px;
-	}
-	&__progress {
-		width: 80%;
-		margin: auto;
-	}
-	&__tracker {
-		display: flex;
-		justify-content: space-between;
-		width: 80%;
-		margin: auto;
-		padding-top: 10px;
+export default {
+	props: {
+		// The current component root
+		component: {
+			type: Object,
+			default: () => {},
+			required: true
+		}
 	}
 }

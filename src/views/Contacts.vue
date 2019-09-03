@@ -324,7 +324,7 @@ export default {
 			contact.rev = rev
 
 			// itterate over all properties (filter is not usable on objects and we need the key of the property)
-			const properties = rfcProps.properties(this)
+			const properties = rfcProps.properties
 			for (let name in properties) {
 				if (properties[name].default) {
 					let defaultData = properties[name].defaultValue

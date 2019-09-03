@@ -45,12 +45,14 @@
 				{{ isFirstProperty ? '' : propModel.readableName }}
 			</div>
 
-			<!-- show the first input if not -->
+			<!-- show the first input if not a structured value -->
 			<input v-if="!property.isStructuredValue" v-model.trim="localValue[0]" :readonly="isReadOnly"
 				class="property__value" type="text" @input="updateValue">
 
 			<!-- props actions -->
-			<PropertyActions :actions="actions" @delete="deleteProperty" />
+			<PropertyActions class="property__actions--floating"
+				:actions="actions" :property-component="this"
+				@delete="deleteProperty" />
 		</div>
 
 		<!-- force order based on model -->
@@ -82,7 +84,7 @@ import PropertyTitle from './PropertyTitle'
 import PropertyActions from './PropertyActions'
 
 export default {
-	name: 'PropertyText',
+	name: 'PropertyMultipleText',
 
 	components: {
 		PropertyTitle,

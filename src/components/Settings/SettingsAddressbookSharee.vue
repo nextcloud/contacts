@@ -53,7 +53,7 @@
 <script>
 
 export default {
-	name: 'SettingsShareSharee',
+	name: 'SettingsAddressbookSharee',
 
 	props: {
 		addressbook: {

@@ -82,7 +82,7 @@ import { generateRemoteUrl } from 'nextcloud-router'
 const axios = () => import('axios')
 
 export default {
-	name: 'ContactAvatar',
+	name: 'ContactDetailsAvatar',
 
 	components: {
 		ActionLink,

@@ -24,15 +24,15 @@ $property-label-max-width: 2 * $property-label-min-width;
 $property-value-max-width: 250px;
 
 .property {
-	@include generate-grid-span(1);
 	position: relative;
-	padding-right: 44px; // actions menu / button
+	width: 100%;
 	// we need this to keep the alignment of the ext and delete/action button
 	// The flex grow will never go over those values. Therefore we can set
 	// the max width and keep the right alignment
 	max-width: $property-label-max-width + $property-value-max-width + 44px;
+
+	@include generate-grid-span(1);
 	justify-self: center;
-	width: 100%;
 
 	&--last {
 		margin-bottom: $grid-height-unit;
@@ -42,25 +42,30 @@ $property-value-max-width: 250px;
 		display: none !important;
 	}
 
+	&--without-actions {
+		padding-right: 44px; // actions menu / button
+	}
+
 	// property row
 	&__row {
+		position: relative;
 		display: flex;
 		align-items: center;
-		position: relative;
 	}
 
 	// property label or multiselect within row
 	&__label,
 	&__label.multiselect {
-		margin: $grid-input-margin 5px $grid-input-margin 0 !important; // override multiselect
 		flex: 1 0; // min width is 60px, let's grow until 120px
-		height: $grid-input-height-with-margin;
 		width: $property-label-min-width;
 		min-width: $property-label-min-width !important; // override multiselect
 		max-width: $property-label-max-width;
-
+		height: $grid-input-height-with-margin;
+		margin: $grid-input-margin 5px $grid-input-margin 0 !important; // override multiselect
 		user-select: none;
+		text-align: right;
 		background-size: 16px;
+		line-height: $grid-input-height-with-margin + 1px;
 
 		&,
 		.multiselect__input {
@@ -68,17 +73,18 @@ $property-value-max-width: 250px;
 				text-align: right;
 			}
 			+ .multiselect__single {
+				overflow: hidden;
 				white-space: nowrap;
 				text-overflow: ellipsis;
-				overflow: hidden;
 			}
 		}
 
 		&:not(.multiselect) {
-			text-overflow: ellipsis;
-			white-space: nowrap;
 			overflow: hidden;
 			overflow-x: hidden;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			opacity: .7;
 		}
 
 		// mouse feedback
@@ -89,8 +95,8 @@ $property-value-max-width: 250px;
 		&:focus,
 		&:active {
 			.multiselect__tags {
-				border-color: var(--color-border-dark);
 				opacity: 1;
+				border-color: var(--color-border-dark);
 			}
 		}
 
@@ -98,8 +104,8 @@ $property-value-max-width: 250px;
 		&.multiselect--disabled {
 			&, .multiselect__single {
 				&, &:hover, &:focus &:active {
-					background-color: var(--color-main-background) !important;
 					border-color: transparent !important;
+					background-color: var(--color-main-background) !important;
 				}
 			}
 		}
@@ -109,29 +115,28 @@ $property-value-max-width: 250px;
 		.multiselect__tags {
 			border: none !important; // override multiselect
 			.multiselect__single {
+				padding-right: 24px;
 				background-repeat: no-repeat;
 				background-position: center right 4px;
-				padding-right: 24px;
 			}
 		}
 		.multiselect__content-wrapper {
-			min-width: $property-label-max-width; // improve readability on narrow screens
-			width: auto !important; // grow bigger if content is bigger than the original 100%
 			right: 0; // align right
+			width: auto !important; // grow bigger if content is bigger than the original 100%
+			min-width: $property-label-max-width; // improve readability on narrow screens
 		}
 		@media only screen and (max-width: 768px) {
 			// align left of screen on narrow views
 			.multiselect__content-wrapper {
-				left: 0;
 				right: auto;
+				left: 0;
 			}
 		}
 	}
 
 	// Property value within row, after label
 	&__value {
-		flex: 1 1 $property-value-max-width;
-		max-width: $property-value-max-width;
+		flex: 1 1;
 
 		textarea& {
 			align-self: flex-start;
@@ -157,7 +162,7 @@ $property-value-max-width: 250px;
 	}
 
 	// show ext button on full row hover
-	&:hover &__ext{
+	&:hover &__ext {
 		opacity: .5;
 	}
 
@@ -176,13 +181,14 @@ $property-value-max-width: 250px;
 
 	// Delete property button + actions
 	&__actions {
-		position: absolute !important;
-		top: 0;
-		left: 100%;
-		margin: -2px 2px; // align with line because of the 44x44px size
-		border: 0;
-		background-color: transparent;
 		z-index: 10;
+		margin-left: auto !important;
+		// floating actions next to the title
+		&--floating {
+			position: absolute !important;
+			right: 0;
+			bottom: 0;
+		}
 	}
 	.property__value {
 		margin-right: 0;

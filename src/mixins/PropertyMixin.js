@@ -89,6 +89,9 @@ export default {
 	computed: {
 		actions() {
 			return this.propModel.actions ? this.propModel.actions : []
+		},
+		haveAction() {
+			return this.actions && this.actions.length > 0
 		}
 	},
 

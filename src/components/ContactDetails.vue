@@ -128,7 +128,7 @@
 					:prop-model="addressbookModel" :value.sync="addressbook"
 					:is-first-property="true" :is-last-property="true"
 					:property="{}"
-					class="property--addressbooks property--last" />
+					class="property--addressbooks property--last property--without-actions" />
 
 				<!-- Groups always visible -->
 				<PropertyGroups :prop-model="groupsModel" :value.sync="groups" :contact="contact"

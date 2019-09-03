@@ -22,11 +22,11 @@
 
 <template>
 	<!-- If not in the rfcProps then we don't want to display it -->
-	<component :is="componentInstance" v-if="propModel && propType !== 'unknown'" :select-type.sync="selectType"
-		:prop-model="propModel" :value.sync="value" :is-first-property="isFirstProperty"
-		:property="property" :is-last-property="isLastProperty" :class="{'property--last': isLastProperty}"
-		:local-contact="localContact" :prop-name="propName" :prop-type="propType"
-		:options="sortedModelOptions" :is-read-only="isReadOnly"
+	<component :is="componentInstance" v-if="propModel && propType !== 'unknown'" ref="component"
+		:select-type.sync="selectType" :prop-model="propModel" :value.sync="value"
+		:is-first-property="isFirstProperty" :property="property" :is-last-property="isLastProperty"
+		:class="{'property--last': isLastProperty}" :local-contact="localContact" :prop-name="propName"
+		:prop-type="propType" :options="sortedModelOptions" :is-read-only="isReadOnly"
 		@delete="deleteProp" @update="updateContact" />
 </template>
 
@@ -93,10 +93,8 @@ export default {
 		},
 
 		// rfc properties list
-		// passing this to properties to allow us to scope the properties object
-		// this make possible defining actions there
 		properties() {
-			return rfcProps.properties(this)
+			return rfcProps.properties
 		},
 		fieldOrder() {
 			return rfcProps.fieldOrder

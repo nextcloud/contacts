@@ -37,37 +37,37 @@
 		margin-left: auto;
 	}
 	&__background {
-		opacity: .2;
 		z-index: 0;
-		left: 0;
 		top: 50px;
+		left: 0;
+		opacity: .2;
 	}
 	&__photo,
 	&__options {
+		overflow: hidden;
 		width: 100%;
 		height: 100%;
 		border-radius: 50%;
-		overflow: hidden;
 	}
 	&__photo {
 		z-index: 10;
-		background-size: cover;
+		cursor: pointer;
 		background-repeat: no-repeat;
 		background-position: center;
-		cursor: pointer;
+		background-size: cover;
 	}
 	&__options {
-		top: 0;
-		z-index: 2;
 		position: absolute;
-		background-color: rgba(0, 0, 0, 0.2);
+		z-index: 2;
+		top: 0;
+		background-color: rgba(0, 0, 0, .2);
 	}
 	.contact-avatar-options {
+		display: block;
 		width: 100%;
 		height: 100%;
-		display: block;
 		opacity: .5;
-		background-color: rgba(0, 0, 0, 0.2);
+		background-color: rgba(0, 0, 0, .2);
 		&:hover,
 		&:active,
 		&:focus {
@@ -103,4 +103,3 @@
 		}
 	}
 }
-

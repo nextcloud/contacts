@@ -1,5 +1,5 @@
 <!--
-  - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
+  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
   -
@@ -21,39 +21,30 @@
   -->
 
 <template>
-	<Actions class="property__actions">
-		<ActionButton icon="icon-delete" @click="deleteProperty">
-			{{ t('contacts', 'Delete') }}
-		</ActionButton>
-		<actions :is="action" v-for="(action, index) in actions" :key="index"
-			:component="propertyComponent" />
-	</Actions>
+	<ActionButton icon="icon-up" @click="copyNtoFN">
+		{{ t('contacts', 'Copy to full name') }}
+	</ActionButton>
 </template>
-
 <script>
 import { ActionButton } from 'nextcloud-vue'
+import ActionsMixin from 'Mixins/ActionsMixin'
 
 export default {
-	name: 'PropertyActions',
-
+	name: 'ActionCopyNtoFN',
 	components: {
 		ActionButton
 	},
-
-	props: {
-		actions: {
-			type: Array,
-			default: () => []
-		},
-		propertyComponent: {
-			type: Object,
-			required: true
-		}
-	},
-
+	mixins: [ActionsMixin],
 	methods: {
-		deleteProperty() {
-			this.$emit('delete')
+		copyNToFN() {
+			console.info(this.component)
+			if (this.component.contact.vCard.hasProperty('n')) {
+				// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
+				// -> John Stevenson
+				const n = this.component.contact.vCard.getFirstPropertyValue('n')
+				this.component.contact.fullName = n.slice(0, 2).reverse().join(' ')
+				this.component.updateContact()
+			}
 		}
 	}
 }

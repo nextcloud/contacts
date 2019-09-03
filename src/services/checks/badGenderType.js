@@ -33,7 +33,7 @@ export default {
 	fix: contact => {
 		const gender = contact.vCard.getFirstProperty('gender')
 		const type = gender.getFirstParameter('type')
-		const option = Object.values(rfcProps.properties({}).gender.options).find(opt => opt.id === type)
+		const option = Object.values(rfcProps.properties.gender.options).find(opt => opt.id === type)
 		if (option) {
 			gender.removeParameter('type')
 			gender.setValue(option.id)

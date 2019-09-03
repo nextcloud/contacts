@@ -43,14 +43,14 @@
 				{{ propModel.readableName }}
 			</div>
 
-			<!-- props actions -->
-			<PropertyActions :actions="actions" @delete="deleteProperty" />
-
 			<!-- Real input where the picker shows -->
 			<DatetimePicker :value="vcardTimeLocalValue.toJSDate()" :minute-step="10" :lang="lang"
 				:clearable="false" :first-day-of-week="firstDay" :type="inputType"
 				:readonly="isReadOnly" :format="dateFormat" class="property__value"
-				confirm @confirm="updateValue" />
+				confirm @confirm="debounceUpdateValue" />
+
+			<!-- props actions -->
+			<PropertyActions :actions="actions" :property-component="this" @delete="deleteProperty" />
 		</div>
 	</div>
 </template>
@@ -159,26 +159,14 @@ export default {
 		/**
 		 * Debounce and send update event to parent
 		 */
-		updateValue: debounce(function(e) {
+		debounceUpdateValue: debounce(function(date) {
 			const objMap = ['year', 'month', 'day', 'hour', 'minute', 'second']
-			let rawArray = moment(e).toArray()
+			const rawArray = moment(date).toArray()
 
-			const rawObject = rawArray.reduce((acc, cur, index) => {
+			let dateObject = rawArray.reduce((acc, cur, index) => {
 				acc[objMap[index]] = cur
 				return acc
 			}, {})
-
-			/**
-			 * Use the current year to ensure we do not lose
-			 * the year data on v4.0 since we currently have
-			 * no options to remove the year selection.
-			 * ! using this.value since this.localValue reflect the current change
-			 * ! so we need to make sure we do not use the updated data
-			 * TODO: add option to omit year and not use already existing data
-			 */
-			if (this.value.year === null) {
-				rawObject.year = null
-			}
 
 			/**
 			 * VCardTime starts months at 1
@@ -186,15 +174,52 @@ export default {
 			 * ! since we use moment to generate our time array
 			 * ! we need to make sure the conversion to VCardTime is done well
 			 */
-			rawObject.month++
+			dateObject.month++
+
+			this.updateValue(dateObject)
+		}, 500),
+
+		updateValue(dateObject, forceYear) {
+			const ignoreYear = this.property.getParameter('x-apple-omit-year')
+
+			/**
+			 * If forceYear, we add back the year!
+			 * taken from x-apple-omit-year parameter
+			 * of from the current year if we don't have
+			 * any other appropriate year data
+			 */
+			if (forceYear) {
+				this.property.removeParameter('x-apple-omit-year')
+				dateObject.year = parseInt(ignoreYear) ? ignoreYear : moment().year()
+			} else
+
+			/**
+			 * Use the current year to ensure we do not lose
+			 * the year data on v4.0 since we currently have
+			 * no options to remove the year selection.
+			 * ! using this.value since this.localValue reflect the current change
+			 * ! so we need to make sure we do not use the updated data
+			 * If we force the removal of the year (vcard 4.0 only)
+			 * year is still valid on the apple format x-apple-omit-year
+			 */
+			if (!this.value.year) {
+				dateObject.year = null
+			} else
+
+			// Apple style omit year parameter
+			// if year changed and we were already
+			// ignoring the year, we update the parameter
+			if (ignoreYear && dateObject.year) {
+				this.property.setParameter('x-apple-omit-year', parseInt(dateObject.year).toString())
+			}
 
 			// reset the VCardTime component to the selected date/time
-			this.localValue = new VCardTime(rawObject, null, this.propType)
+			this.localValue = new VCardTime(dateObject, null, this.propType)
 
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			// Use moment to convert the JsDate to Object
 			this.$emit('update:value', this.localValue)
-		}, 500),
+		},
 
 		/**
 		 * Format time with locale to display only
@@ -210,6 +235,11 @@ export default {
 			// the second will be null and not 0
 			let datetimeData = this.vcardTimeLocalValue.toJSON()
 			let datetime = ''
+
+			const ignoreYear = this.property.getParameter('x-apple-omit-year')
+			if (ignoreYear) {
+				datetimeData.year = null
+			}
 
 			// FUN FACT: JS date starts month at zero!
 			datetimeData.month--

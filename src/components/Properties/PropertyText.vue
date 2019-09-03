@@ -60,7 +60,7 @@
 				target="_blank" />
 
 			<!-- props actions -->
-			<PropertyActions :actions="actions" @delete="deleteProperty" />
+			<PropertyActions :actions="actions" :property-component="this" @delete="deleteProperty" />
 		</div>
 	</div>
 </template>
