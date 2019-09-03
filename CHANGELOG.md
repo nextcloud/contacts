@@ -1,3 +1,16 @@
+
+## 3.1.4 – 2019-09-03
+
+### Fixed
+- Support vcard 3 photo syntax
+  [#1239](https://github.com/nextcloud/contacts/pull/1239)
+- Enhancement/allow year removal
+  [#1248](https://github.com/nextcloud/contacts/pull/1248)
+
+### Updated
+- Dependencies
+- Translations
+
 ## 3.1.3 – 2019-06-11
 
 ### Fixed
