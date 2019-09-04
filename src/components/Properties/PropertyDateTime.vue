@@ -136,22 +136,26 @@ export default {
 		let locale = getLocale().replace('_', '-').toLowerCase()
 
 		// default load e.g. fr-fr
-		import('moment/locale/' + this.locale)
+		console.debug('Importing locale', locale)
+		import('moment/locale/' + locale)
 			.then(e => {
 				// force locale change to update
 				// the component once done loading
 				this.locale = locale
 			})
 			.catch(e => {
-			// failure: fallback to fr
-			import('moment/locale/' + locale.split('-')[0])
-				.then(e => {
-					this.locale = locale.split('-')[0]
-				})
-				.catch(e => {
-				// failure, fallback to english
-					this.locale = 'en'
-				})
+				// failure: fallback to fr
+				locale = locale.split('-')[0]
+				console.debug('Fallback to locale', locale)
+				import('moment/locale/' + locale)
+					.then(e => {
+						this.locale = locale
+					})
+					.catch(e => {
+						console.debug('Fallback to locale', 'en')
+						// failure, fallback to english
+						this.locale = 'en'
+					})
 			})
 	},
 
