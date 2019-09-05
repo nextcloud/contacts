@@ -6,6 +6,7 @@ OC.L10N.register(
     "Details" : "Detaljer",
     "A contacts app for Nextcloud" : "En kontakt-app för Nextcloud",
     "Copy to full name" : "Kopiera till fullständigt namn",
+    "Omit year" : "Utelämna år",
     "Add new property" : "Lägg till nytt fält",
     "Choose property type" : "Välj typ",
     "Add a new picture" : "Lägg till en ny bild",
