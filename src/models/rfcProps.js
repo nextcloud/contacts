@@ -55,6 +55,15 @@ const properties = {
 		readableName: t('contacts', 'Website'),
 		icon: 'icon-public'
 	},
+	geo: {
+		multiple: true,
+		readableName: t('contacts', 'Location'),
+		icon: 'icon-address',
+		defaultjCal: {
+			'3.0': [{}, 'FLOAT', '90.000;0.000'],
+			'4.0': [{}, 'URI', 'geo:90.000,0.000']
+		}
+	},
 	cloud: {
 		multiple: true,
 		icon: 'icon-public',
@@ -288,6 +297,7 @@ const fieldOrder = [
 	'tel',
 	'email',
 	'adr',
+	'geo',
 	'impp',
 	'nick',
 	'cloud',

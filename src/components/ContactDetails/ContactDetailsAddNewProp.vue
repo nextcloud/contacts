@@ -39,6 +39,7 @@
 import rfcProps from 'Models/rfcProps'
 import Contact from 'Models/contact'
 import PropertyTitle from 'Components/Properties/PropertyTitle'
+import ICAL from 'ical.js'
 
 export default {
 	name: 'ContactDetailsAddNewProp',
@@ -101,10 +102,17 @@ export default {
 		 * @param {string} data.id the id of the property. e.g fn
 		 */
 		addProp({ id }) {
-			let defaultData = this.properties[id].defaultValue
-			let property = this.contact.vCard.addPropertyWithValue(id, defaultData ? defaultData.value : '')
-			if (defaultData && defaultData.type) {
-				property.setParameter('type', defaultData.type)
+			if (this.properties[id] && this.properties[id].defaultjCal
+				&& this.properties[id].defaultjCal[this.contact.version]) {
+				let defaultjCal = this.properties[id].defaultjCal[this.contact.version]
+				let property = new ICAL.Property([id, ...defaultjCal])
+				this.contact.vCard.addProperty(property)
+			} else {
+				let defaultData = this.properties[id].defaultValue
+				let property = this.contact.vCard.addPropertyWithValue(id, defaultData ? defaultData.value : '')
+				if (defaultData && defaultData.type) {
+					property.setParameter('type', defaultData.type)
+				}
 			}
 		}
 	}
