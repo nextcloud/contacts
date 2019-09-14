@@ -1,32 +1,61 @@
 <?php
 /**
- * Nextcloud - contacts
+ * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
  *
- * This file is licensed under the Affero General Public License version 3 or
- * later. See the COPYING file.
+ * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
- * @author Hendrik Leppelsack <hendrik@leppelsack.de>
- * @copyright Hendrik Leppelsack 2015
+ * @license GNU AGPL version 3 or any later version
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ *
  */
 
 namespace OCA\Contacts\Controller;
 
 use OCP\AppFramework\Http\TemplateResponse;
-use PHPUnit\Framework\TestCase as Base;
+use PHPUnit\Framework\MockObject\MockObject;
+use OCP\IInitialStateService;
+use OCP\IRequest;
+use OCP\L10N\IFactory;
+use ChristophWurst\Nextcloud\Testing\TestCase;
 
 
-class PageControllerTest extends Base {
+class PageControllerTest extends TestCase {
 
 	private $controller;
 
-	public function setUp(): void {
-		$config = $this->getMockBuilder('OCP\IConfig')->getMock();
-		$request = $this->getMockBuilder('OCP\IRequest')->getMock();
+	/** @var IRequest|MockObject */
+	private $request;
+
+	/** @var IInitialStateService|MockObject */
+	private $initialStateService;
+
+	/** @var IFactory|MockObject */
+	private $languageFactory;
+
+	public function setUp() {
+		parent::setUp();
+
+		$this->request = $this->createMock(IRequest::class);
+		$this->initialStateService = $this->createMock(IInitialStateService::class);
+		$this->languageFactory = $this->createMock(IFactory::class);
 
 		$this->controller = new PageController(
 			'contacts',
-			$request,
-			$config
+			$this->request,
+			$this->initialStateService,
+			$this->languageFactory
 		);
 	}
 

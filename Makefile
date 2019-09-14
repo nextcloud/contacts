@@ -20,6 +20,17 @@ npm-init:
 npm-update:
 	npm update
 
+composer.phar:
+	curl -sS https://getcomposer.org/installer | php
+
+install-deps: install-composer-deps-dev install-npm-deps-dev
+
+install-composer-deps: composer.phar
+	php composer.phar install --no-dev -o
+
+install-composer-deps-dev: composer.phar
+	php composer.phar install -o
+
 # Building
 build-js:
 	npm run dev
@@ -41,12 +52,12 @@ test-coverage:
 	npm run test:coverage
 
 test-php:
-	phpunit -c phpunit.xml
-	phpunit -c phpunit.integration.xml
+	php composer.phar run test:unit
+	php composer.phar run test:integration
 
 test-php-coverage:
-	phpunit -c phpunit.xml --coverage-clover=coverage-unit.xml
-	phpunit -c phpunit.integration.xml --coverage-clover=coverage-integration.xml
+	php composer.phar run test:unit -- --coverage-clover=coverage-unit.xml
+	php composer.phar run test:integration -- --coverage-clover=coverage-integration.xml
 
 # Linting
 lint:

@@ -20,8 +20,19 @@
  *
  */
 import { VCardTime } from 'ical.js'
+import { loadState } from 'nextcloud-initial-state'
+
 import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN'
 import ActionToggleYear from '../components/Actions/ActionToggleYear'
+import zones from './zones'
+
+const localesState = loadState('contacts', 'locales')
+const locales = localesState
+	? localesState.map(({ code, name }) => ({
+		id: code.toLowerCase().replace('_', '-'),
+		name
+	}))
+	: []
 
 const properties = {
 	nickname: {
@@ -288,6 +299,37 @@ const properties = {
 			{ id: 'N', name: t('contacts', 'None') },
 			{ id: 'U', name: t('contacts', 'Unknown') }
 		]
+	},
+	tz: {
+		readableName: t('contacts', 'Timezone'),
+		force: 'select',
+		icon: 'icon-timezone',
+		options: zones.map(zone => ({
+			id: zone,
+			name: zone
+		}))
+	},
+	lang: {
+		readableName: t('contacts', 'Spoken languages'),
+		icon: 'icon-language',
+		defaultValue: {
+			value: 'en'
+		},
+		multiple: true
+	}
+}
+
+if (locales.length > 0) {
+	properties.lang.force = 'select'
+	properties.lang.options = locales
+	properties.lang.greedyMatch = function(value, options) {
+		// each locale already have the base code (e.g. fr in fr_ca)
+		// in the list, meaning the only use case for this is a more
+		// complete language tag than the short one we have
+		// value: fr-ca-xxx... will be matched with option fr
+		return options.find(({ id }) => {
+			return id === value.split('-')[0]
+		})
 	}
 }
 

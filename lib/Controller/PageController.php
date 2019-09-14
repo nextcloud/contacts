@@ -25,17 +25,29 @@ namespace OCA\Contacts\Controller;
 
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\IInitialStateService;
+use OCP\L10N\IFactory;
 use OCP\IRequest;
 
 class PageController extends Controller {
 
 	protected $appName;
 
+	/** @var IInitialStateService */
+	private $initialStateService;
+
+	/** @var IFactory */
+	private $languageFactory;
+
 	public function __construct(string $AppName,
-								IRequest $request) {
+								IRequest $request,
+								IInitialStateService $initialStateService,
+								IFactory $languageFactory) {
 		parent::__construct($AppName, $request);
 		
 		$this->appName = $AppName;
+		$this->initialStateService = $initialStateService;
+		$this->languageFactory = $languageFactory;
 	}
 
 	/**
@@ -45,6 +57,8 @@ class PageController extends Controller {
 	 * Default routing
 	 */
 	public function index(): TemplateResponse {
+		$locales = $this->languageFactory->findAvailableLocales();
+		$this->initialStateService->provideInitialState($this->appName, 'locales', $locales);
 		return new TemplateResponse('contacts', 'main'); // templates/main.php
 	}
 }
