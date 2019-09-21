@@ -83,6 +83,7 @@ OC.L10N.register(
     "Suffix" : "Suffix",
     "Notes" : "Anteckningar",
     "Website" : "Webbplats",
+    "Location" : "Plats",
     "Federated Cloud ID" : "Federerat Moln-ID",
     "Home" : "Hem",
     "Work" : "Arbete",

@@ -84,6 +84,7 @@ OC.L10N.register(
     "Suffix" : "Przyrostek",
     "Notes" : "Notatki",
     "Website" : "Strona WWW",
+    "Location" : "Lokalizacja",
     "Federated Cloud ID" : "ID Chmury Federacyjnej",
     "Home" : "Dom",
     "Work" : "Praca",

@@ -84,6 +84,7 @@ OC.L10N.register(
     "Suffix" : "Son ek",
     "Notes" : "Notlar",
     "Website" : "Web sitesi",
+    "Location" : "Konum",
     "Federated Cloud ID" : "Birleşik Bulut Kimliği",
     "Home" : "Ev",
     "Work" : "İş",

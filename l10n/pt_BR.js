@@ -84,6 +84,7 @@ OC.L10N.register(
     "Suffix" : "Sufixo",
     "Notes" : "Anotações",
     "Website" : "Website",
+    "Location" : "Localização",
     "Federated Cloud ID" : "ID da Nuvem Federada",
     "Home" : "Casa",
     "Work" : "Trabalho",
