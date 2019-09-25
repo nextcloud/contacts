@@ -84,6 +84,7 @@ OC.L10N.register(
     "Suffix" : "Achtervoegsel",
     "Notes" : "Notities",
     "Website" : "Website",
+    "Location" : "Locatie",
     "Federated Cloud ID" : "Gefedereerde Cloud ID",
     "Home" : "Thuis",
     "Work" : "Werk",
