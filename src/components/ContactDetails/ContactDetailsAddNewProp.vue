@@ -29,16 +29,20 @@
 			<div class="property__label" />
 
 			<!-- type selector -->
-			<multiselect :options="availableProperties" :placeholder="t('contacts', 'Choose property type')" class="property__value"
-				track-by="id" label="name" @input="addProp" />
+			<multiselect :options="availableProperties"
+				:placeholder="t('contacts', 'Choose property type')"
+				class="property__value"
+				track-by="id"
+				label="name"
+				@input="addProp" />
 		</div>
 	</div>
 </template>
 
 <script>
-import rfcProps from 'Models/rfcProps'
-import Contact from 'Models/contact'
-import PropertyTitle from 'Components/Properties/PropertyTitle'
+import rfcProps from '../../models/rfcProps'
+import Contact from '../../models/contact'
+import PropertyTitle from '../Properties/PropertyTitle'
 import ICAL from 'ical.js'
 
 export default {

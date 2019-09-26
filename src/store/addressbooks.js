@@ -25,10 +25,10 @@ import Vue from 'vue'
 import ICAL from 'ical.js'
 import pLimit from 'p-limit'
 
-import Contact from 'Models/contact'
+import Contact from '../models/contact'
 
-import client from 'Services/cdav'
-import parseVcf from 'Services/parseVcf'
+import client from '../services/cdav'
+import parseVcf from '../services/parseVcf'
 
 const addressbookModel = {
 	id: '',

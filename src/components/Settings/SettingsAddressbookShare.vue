@@ -39,14 +39,16 @@
 			@input="shareAddressbook" />
 		<!-- list of user or groups addressbook is shared with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressbook-shares__list">
-			<address-book-sharee v-for="sharee in addressbook.shares" :key="sharee.uri"
-				:sharee="sharee" :addressbook="addressbook" />
+			<address-book-sharee v-for="sharee in addressbook.shares"
+				:key="sharee.uri"
+				:sharee="sharee"
+				:addressbook="addressbook" />
 		</ul>
 	</div>
 </template>
 
 <script>
-import client from 'Services/cdav'
+import client from '../../services/cdav'
 
 import addressBookSharee from './SettingsAddressbookSharee'
 import debounce from 'debounce'

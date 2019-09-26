@@ -20,8 +20,8 @@
  *
  */
 
-import Contact from 'Models/contact'
-import Store from 'Store/index'
+import Contact from '../models/contact'
+import Store from '../store/index'
 
 export default function parseVcf(data = '', addressbook) {
 	let regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi

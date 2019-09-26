@@ -31,8 +31,8 @@
 		"lint:fix": "eslint --ext .js,.vue src tests --fix",
 		"stylelint": "stylelint src",
 		"stylelint:fix": "stylelint src --fix",
-		"test": "mocha-webpack --webpack-config webpack.test.js --interactive false --require tests/setup.js \"tests/js/**/*.spec.js\"",
-		"test:watch": "mocha-webpack -w --webpack-config webpack.test.js --interactive false --require tests/setup.js \"tests/js/**/*.spec.js\""
+		"test": "mochapack --webpack-config webpack.test.js --require tests/setup.js tests/unit/specs/**/*.spec.js",
+		"test:watch": "mochapack -w --webpack-config webpack.test.js --require tests/setup.js tests/unit/specs/**/*.spec.js"
 	},
 	"dependencies": {
 		"axios": "^0.19.0",
@@ -59,10 +59,6 @@
 		"vuex": "^3.1.1",
 		"vuex-router-sync": "^5.0.0"
 	},
-	"browserslist": [
-		"last 2 versions",
-		"ie >= 11"
-	],
 	"engines": {
 		"node": ">=10.0.0"
 	},
@@ -74,15 +70,17 @@
 		"@vue/test-utils": "^1.0.0-beta.29",
 		"babel-eslint": "^10.0.3",
 		"babel-loader": "^8.0.6",
+		"browserslist-config-nextcloud": "0.0.1",
 		"chai": "^4.2.0",
 		"css-loader": "^3.2.0",
 		"eslint": "^5.16.0",
+		"eslint-config-nextcloud": "0.0.5",
 		"eslint-config-standard": "^12.0.0",
 		"eslint-import-resolver-webpack": "^0.11.1",
 		"eslint-loader": "^3.0.0",
 		"eslint-plugin-import": "^2.18.2",
 		"eslint-plugin-nextcloud": "^0.3.0",
-		"eslint-plugin-node": "^9.2.0",
+		"eslint-plugin-node": "^10.0.0",
 		"eslint-plugin-promise": "^4.2.1",
 		"eslint-plugin-standard": "^4.0.1",
 		"eslint-plugin-vue": "^5.2.3",
@@ -91,6 +89,7 @@
 		"jsdom-global": "^3.0.2",
 		"mocha": "^5.2.0",
 		"mocha-webpack": "^2.0.0-beta.0",
+		"mochapack": "^1.1.5",
 		"node-sass": "^4.12.0",
 		"sass-loader": "^7.3.1",
 		"stylelint": "^8.4.0",
@@ -104,5 +103,8 @@
 		"webpack-cli": "^3.3.9",
 		"webpack-merge": "^4.2.2",
 		"webpack-node-externals": "^1.7.2"
-	}
+	},
+	"browserslist": [
+		"extends browserslist-config-nextcloud"
+	]
 }

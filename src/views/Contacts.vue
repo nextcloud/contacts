@@ -26,8 +26,12 @@
 		<!-- new-contact-button + navigation + settings -->
 		<AppNavigation>
 			<!-- new-contact-button -->
-			<AppNavigationNew v-if="!loading" button-id="new-contact-button" :text="t('contacts','New contact')"
-				button-class="icon-add" :disabled="!defaultAddressbook" @click="newContact" />
+			<AppNavigationNew v-if="!loading"
+				button-id="new-contact-button"
+				:text="t('contacts','New contact')"
+				button-class="icon-add"
+				:disabled="!defaultAddressbook"
+				@click="newContact" />
 
 			<!-- groups list -->
 			<ul v-if="!loading" id="groups-list">
@@ -42,19 +46,26 @@
 
 		<AppContent>
 			<!-- go back to list when in details mode -->
-			<div v-if="selectedContact && isMobile" id="app-details-toggle" class="icon-confirm"
-				tabindex="0" @click="showList" />
+			<div v-if="selectedContact && isMobile"
+				id="app-details-toggle"
+				class="icon-confirm"
+				tabindex="0"
+				@click="showList" />
 
 			<div id="app-content-wrapper">
 				<!-- contacts list -->
-				<ContactsList :list="contactsList" :contacts="contacts" :loading="loading"
+				<ContactsList :list="contactsList"
+					:contacts="contacts"
+					:loading="loading"
 					:search-query="searchQuery" />
 
 				<!-- main contacts details -->
 				<ContactDetails :loading="loading" :contact-key="selectedContact" />
 			</div>
 		</AppContent>
-		<Modal v-if="isImporting" :clear-view-delay="-1" :can-close="isImportDone"
+		<Modal v-if="isImporting"
+			:clear-view-delay="-1"
+			:can-close="isImportDone"
 			@close="closeImport">
 			<ImportScreen />
 		</Modal>
@@ -77,15 +88,15 @@ import moment from 'moment'
 import download from 'downloadjs'
 import { VCardTime } from 'ical.js'
 
-import SettingsSection from 'Components/SettingsSection'
-import ContactsList from 'Components/ContactsList'
-import ContactDetails from 'Components/ContactDetails'
-import ImportScreen from 'Components/ImportScreen'
+import SettingsSection from '../components/SettingsSection'
+import ContactsList from '../components/ContactsList'
+import ContactDetails from '../components/ContactDetails'
+import ImportScreen from '../components/ImportScreen'
 
-import Contact from 'Models/contact'
-import rfcProps from 'Models/rfcProps'
+import Contact from '../models/contact'
+import rfcProps from '../models/rfcProps'
 
-import client from 'Services/cdav'
+import client from '../services/cdav'
 
 const GROUP_ALL_CONTACTS = t('contacts', 'All contacts')
 const GROUP_NO_GROUP_CONTACTS = t('contacts', 'Not grouped')

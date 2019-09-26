@@ -23,8 +23,11 @@
 <template>
 	<div class="import-contact">
 		<template v-if="!isNoAddressbookAvailable">
-			<input id="contact-import" :disabled="isImporting" type="file"
-				class="hidden-visually" @change="processFile">
+			<input id="contact-import"
+				:disabled="isImporting"
+				type="file"
+				class="hidden-visually"
+				@change="processFile">
 			<label id="upload" for="contact-import" class="button import-contact__multiselect-label icon-upload">
 				{{ isImporting ? t('contacts', 'Importing into') : t('contacts', 'Import into') }}
 			</label>
@@ -36,7 +39,9 @@
 				label="displayName"
 				class="import-contact__multiselect" />
 		</template>
-		<button v-else id="upload" for="contact-import"
+		<button v-else
+			id="upload"
+			for="contact-import"
 			class="button import-contact__multiselect-label import-contact__multiselect--no-select icon-error">
 			{{ t('contacts', 'Importing is disabled because there are no address books available') }}
 		</button>

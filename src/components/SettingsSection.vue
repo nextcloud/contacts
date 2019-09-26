@@ -23,28 +23,30 @@
 <template>
 	<div>
 		<ul id="addressbook-list">
-			<address-book v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
+			<SettingsAddressbook v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
 		</ul>
-		<add-address-book :addressbooks="addressbooks" />
-		<import-contacts :addressbooks="addressbooks" class="settings-section"
-			@clicked="onClickImport" @fileLoaded="onLoad" />
-		<sort-contacts class="settings-section" />
+		<SettingsNewAddressbook :addressbooks="addressbooks" />
+		<SettingsImportContacts :addressbooks="addressbooks"
+			class="settings-section"
+			@clicked="onClickImport"
+			@fileLoaded="onLoad" />
+		<SettingsSortContacts class="settings-section" />
 	</div>
 </template>
 
 <script>
-import addressBook from 'Components/Settings/SettingsAddressbook'
-import addAddressBook from 'Components/Settings/SettingsNewAddressbook'
-import importContacts from 'Components/Settings/SettingsImportContacts'
-import sortContacts from 'Components/Settings/SettingsSortContacts'
+import SettingsAddressbook from './Settings/SettingsAddressbook'
+import SettingsNewAddressbook from './Settings/SettingsNewAddressbook'
+import SettingsImportContacts from './Settings/SettingsImportContacts'
+import SettingsSortContacts from './Settings/SettingsSortContacts'
 
 export default {
 	name: 'SettingsSection',
 	components: {
-		addressBook,
-		addAddressBook,
-		importContacts,
-		sortContacts
+		SettingsAddressbook,
+		SettingsNewAddressbook,
+		SettingsImportContacts,
+		SettingsSortContacts
 	},
 	computed: {
 		// store getters

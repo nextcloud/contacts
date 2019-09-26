@@ -1,9 +1,12 @@
 <template>
 	<transition name="delete-slide-left">
-		<div v-if="!deleteTimeout" :id="id"
+		<div v-if="!deleteTimeout"
+			:id="id"
 			:class="{active: selectedContact === contact.key}"
-			tabindex="0" class="app-content-list-item"
-			@click.prevent.stop="selectContact" @keypress.enter.prevent.stop="selectContact">
+			tabindex="0"
+			class="app-content-list-item"
+			@click.prevent.stop="selectContact"
+			@keypress.enter.prevent.stop="selectContact">
 			<!-- keyboard accessibility will focus the input and not the label -->
 			<!--
 			<input ref="selected" :id="contact.key" type="checkbox"
@@ -25,12 +28,17 @@
 			</div>
 
 			<!-- undo actions -->
-			<div v-if="!contact.addressbook.readOnly && !deleteTimeout" class="icon-delete" tabindex="0"
-				@click.prevent.stop="deleteContact" @keypress.enter.prevent.stop="deleteContact" />
+			<div v-if="!contact.addressbook.readOnly && !deleteTimeout"
+				class="icon-delete"
+				tabindex="0"
+				@click.prevent.stop="deleteContact"
+				@keypress.enter.prevent.stop="deleteContact" />
 		</div>
 
 		<!-- Deleted contact (pending) -->
-		<div v-else :id="id" key="deleted"
+		<div v-else
+			:id="id"
+			key="deleted"
 			class="deleted app-content-list-item">
 			<div :style="{ backgroundColor: 'grey' }" class="app-content-list-item-icon">
 				{{ contact.displayName | firstLetter }}
@@ -41,9 +49,11 @@
 			<div class="app-content-list-item-line-one">
 				{{ contact.displayName }}
 			</div>
-			<div v-tooltip.auto="t('contacts', 'Deleting the contact in {countdown} seconds', { countdown })" class="icon-history"
+			<div v-tooltip.auto="t('contacts', 'Deleting the contact in {countdown} seconds', { countdown })"
+				class="icon-history"
 				tabindex="0"
-				@click.prevent.stop="cancelDeletion" @keypress.enter.prevent.stop="cancelDeletion" />
+				@click.prevent.stop="cancelDeletion"
+				@keypress.enter.prevent.stop="cancelDeletion" />
 		</div>
 	</transition>
 </template>

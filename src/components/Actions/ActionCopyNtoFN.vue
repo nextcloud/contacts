@@ -27,7 +27,7 @@
 </template>
 <script>
 import { ActionButton } from 'nextcloud-vue'
-import ActionsMixin from 'Mixins/ActionsMixin'
+import ActionsMixin from '../../mixins/ActionsMixin'
 
 export default {
 	name: 'ActionCopyNtoFN',

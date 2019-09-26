@@ -30,11 +30,19 @@
 			</div>
 
 			<!-- multiselect taggable groups with a limit to 3 groups shown -->
-			<multiselect v-model="localValue" :options="groups" :placeholder="t('contacts', 'Add contact in group')"
-				:multiple="true" :taggable="true" :close-on-select="false"
-				:readonly="isReadOnly" :tag-width="60"
-				tag-placeholder="create" class="property__value"
-				@input="updateValue" @tag="validateGroup" @select="addContactToGroup"
+			<multiselect v-model="localValue"
+				:options="groups"
+				:placeholder="t('contacts', 'Add contact in group')"
+				:multiple="true"
+				:taggable="true"
+				:close-on-select="false"
+				:readonly="isReadOnly"
+				:tag-width="60"
+				tag-placeholder="create"
+				class="property__value"
+				@input="updateValue"
+				@tag="validateGroup"
+				@select="addContactToGroup"
 				@remove="removeContactToGroup">
 				<!-- show how many groups are hidden and add tooltip -->
 				<span slot="limit" v-tooltip.auto="formatGroupsTitle" class="multiselect__limit">
@@ -50,7 +58,7 @@
 
 <script>
 import debounce from 'debounce'
-import Contact from 'Models/contact'
+import Contact from '../../models/contact'
 
 export default {
 	name: 'PropertyGroups',

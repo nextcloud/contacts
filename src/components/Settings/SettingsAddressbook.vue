@@ -28,10 +28,13 @@
 		</span>
 
 		<!-- sharing button -->
-		<a v-if="!addressbook.readOnly" v-tooltip.top="sharedWithTooltip"
+		<a v-if="!addressbook.readOnly"
+			v-tooltip.top="sharedWithTooltip"
 			:class="{'addressbook__share--shared': hasShares}"
-			:title="sharedWithTooltip" href="#"
-			class="addressbook__share icon-shared" @click="toggleShare" />
+			:title="sharedWithTooltip"
+			href="#"
+			class="addressbook__share icon-shared"
+			@click="toggleShare" />
 
 		<!-- popovermenu -->
 		<Actions class="addressbook__menu" menu-align="right">

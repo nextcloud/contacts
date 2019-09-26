@@ -22,8 +22,8 @@
 
 import Vue from 'vue'
 import ICAL from 'ical.js'
-import Contact from 'Models/contact'
-import validate from 'Services/validate'
+import Contact from '../models/contact'
+import validate from '../services/validate'
 
 const sortData = (a, b) => {
 	var nameA = typeof a.value === 'string'

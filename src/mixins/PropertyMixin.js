@@ -20,7 +20,7 @@
  *
  */
 import debounce from 'debounce'
-import Contact from 'Models/contact'
+import Contact from '../models/contact'
 import ICAL from 'ical.js'
 
 export default {

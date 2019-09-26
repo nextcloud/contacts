@@ -22,13 +22,14 @@
 
 <template>
 	<ActionCheckbox :checked="omitYear"
-		@check="removeYear" @uncheck="addYear">
+		@check="removeYear"
+		@uncheck="addYear">
 		{{ t('contacts', 'Omit year') }}
 	</ActionCheckbox>
 </template>
 <script>
 import { ActionCheckbox } from 'nextcloud-vue'
-import ActionsMixin from 'Mixins/ActionsMixin'
+import ActionsMixin from '../../mixins/ActionsMixin'
 
 export default {
 	name: 'ActionToggleYear',

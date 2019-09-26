@@ -2,14 +2,17 @@ const path = require('path')
 const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
+const packageJson = require('./package.json')
+const appName = packageJson.name
+const appVersion = JSON.stringify(packageJson.version)
 
 module.exports = {
 	entry: path.join(__dirname, 'src', 'main.js'),
 	output: {
 		path: path.resolve(__dirname, './js'),
 		publicPath: '/js/',
-		filename: 'contacts.js',
-		chunkFilename: 'chunks/contacts.[name].[contenthash].js'
+		filename: `${appName}.js`,
+		chunkFilename: 'chunks/[name]-[hash].js'
 	},
 	module: {
 		rules: [
@@ -24,29 +27,18 @@ module.exports = {
 			{
 				test: /\.(js|vue)$/,
 				use: 'eslint-loader',
+				exclude: /node_modules/,
 				enforce: 'pre'
 			},
 			{
 				test: /\.vue$/,
-				loader: 'vue-loader'
+				loader: 'vue-loader',
+				exclude: /node_modules/
 			},
 			{
 				test: /\.js$/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						plugins: [
-							'@babel/plugin-syntax-dynamic-import',
-							'@babel/plugin-proposal-object-rest-spread'
-						],
-						presets: ['@babel/preset-env']
-					}
-				},
-				exclude: /node_modules\/(?!(p-limit|p-defer|p-queue|p-try|cdav-library))/
-			},
-			{
-				test: /\.(png|jpg|gif|svg)$/,
-				loader: 'url-loader'
+				loader: 'babel-loader',
+				exclude: /node_modules/
 			}
 		]
 	},
@@ -54,19 +46,9 @@ module.exports = {
 		new VueLoaderPlugin(),
 		new StyleLintPlugin(),
 		new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
-		new webpack.DefinePlugin({
-			appVersion: JSON.stringify(require('./package.json').version)
-		})
+		new webpack.DefinePlugin({ appVersion })
 	],
 	resolve: {
-		alias: {
-			Components: path.resolve(__dirname, 'src/components/'),
-			Mixins: path.resolve(__dirname, 'src/mixins/'),
-			Models: path.resolve(__dirname, 'src/models/'),
-			Services: path.resolve(__dirname, 'src/services/'),
-			Store: path.resolve(__dirname, 'src/store/'),
-			Views: path.resolve(__dirname, 'src/views/')
-		},
-		extensions: ['*', '.js', '.vue', '.json']
+		extensions: ['*', '.js', '.vue']
 	}
 }

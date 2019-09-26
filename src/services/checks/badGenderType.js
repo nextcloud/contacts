@@ -20,7 +20,7 @@
  *
  */
 
-import rfcProps from 'Models/rfcProps'
+import rfcProps from '../../models/rfcProps'
 
 // https://tools.ietf.org/html/rfc6350#section-6.2.7
 

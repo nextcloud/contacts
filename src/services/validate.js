@@ -20,7 +20,7 @@
  *
  */
 
-import Contact from 'Models/contact'
+import Contact from '../models/contact'
 import checks from './checks/'
 
 export default function(contact) {

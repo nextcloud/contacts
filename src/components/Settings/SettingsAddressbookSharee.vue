@@ -23,10 +23,11 @@
 <template>
 	<li class="addressbook-sharee">
 		<span :class="{
-			'icon-loading-small': loading,
-			'icon-group': sharee.isGroup && !loading,
-			'icon-user': !sharee.isGroup && !loading
-		}" class="icon" />
+				'icon-loading-small': loading,
+				'icon-group': sharee.isGroup && !loading,
+				'icon-user': !sharee.isGroup && !loading
+			}"
+			class="icon" />
 		<span class="addressbook-sharee__identifier">
 			{{ sharee.displayName }}
 		</span>
@@ -42,7 +43,8 @@
 			<label :for="uid">
 				{{ t('contacts', 'can edit') }}
 			</label>
-			<a :class="{'addressbook-sharee__utils--disabled': loading}" href="#"
+			<a :class="{'addressbook-sharee__utils--disabled': loading}"
+				href="#"
 				title="Delete"
 				class="icon-delete"
 				@click="deleteSharee" />

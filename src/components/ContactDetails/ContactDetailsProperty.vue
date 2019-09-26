@@ -22,23 +22,34 @@
 
 <template>
 	<!-- If not in the rfcProps then we don't want to display it -->
-	<component :is="componentInstance" v-if="propModel && propType !== 'unknown'" ref="component"
-		:select-type.sync="selectType" :prop-model="propModel" :value.sync="value"
-		:is-first-property="isFirstProperty" :property="property" :is-last-property="isLastProperty"
-		:class="{'property--last': isLastProperty}" :local-contact="localContact" :prop-name="propName"
-		:prop-type="propType" :options="sortedModelOptions" :is-read-only="isReadOnly"
-		@delete="deleteProp" @update="updateContact" />
+	<component :is="componentInstance"
+		v-if="propModel && propType !== 'unknown'"
+		ref="component"
+		:select-type.sync="selectType"
+		:prop-model="propModel"
+		:value.sync="value"
+		:is-first-property="isFirstProperty"
+		:property="property"
+		:is-last-property="isLastProperty"
+		:class="{'property--last': isLastProperty}"
+		:local-contact="localContact"
+		:prop-name="propName"
+		:prop-type="propType"
+		:options="sortedModelOptions"
+		:is-read-only="isReadOnly"
+		@delete="deleteProp"
+		@update="updateContact" />
 </template>
 
 <script>
 import { Property } from 'ical.js'
-import rfcProps from 'Models/rfcProps'
-import Contact from 'Models/contact'
+import rfcProps from '../../models/rfcProps'
+import Contact from '../../models/contact'
 
-import PropertyText from 'Components/Properties/PropertyText'
-import PropertyMultipleText from 'Components/Properties/PropertyMultipleText'
-import PropertyDateTime from 'Components/Properties/PropertyDateTime'
-import PropertySelect from 'Components/Properties/PropertySelect'
+import PropertyText from '../Properties/PropertyText'
+import PropertyMultipleText from '../Properties/PropertyMultipleText'
+import PropertyDateTime from '../Properties/PropertyDateTime'
+import PropertySelect from '../Properties/PropertySelect'
 
 export default {
 	name: 'ContactDetailsProperty',
