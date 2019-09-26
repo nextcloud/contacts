@@ -25,21 +25,30 @@
 	<div class="contact-header-avatar">
 		<div class="contact-header-avatar__wrapper">
 			<div class="contact-header-avatar__background" @click="toggleModal" />
-			<div v-if="contact.photo" :style="{ 'backgroundImage': `url(${contact.photoUrl})` }"
+			<div v-if="contact.photo"
+				:style="{ 'backgroundImage': `url(${contact.photoUrl})` }"
 				class="contact-header-avatar__photo"
 				@click="toggleModal" />
 
 			<div v-click-outside="closeMenu" class="contact-header-avatar__options">
-				<a v-tooltip.bottom="t('contacts', 'Add a new picture')" href="#" class="contact-avatar-options"
+				<a v-tooltip.bottom="t('contacts', 'Add a new picture')"
+					href="#"
+					class="contact-avatar-options"
 					:class="loading ? 'icon-loading-small' : 'icon-picture-force-white'"
 					@click.stop.prevent="toggleMenu" />
-				<input id="contact-avatar-upload" ref="uploadInput" type="file"
-					class="hidden" accept="image/*" @change="processFile">
+				<input id="contact-avatar-upload"
+					ref="uploadInput"
+					type="file"
+					class="hidden"
+					accept="image/*"
+					@change="processFile">
 			</div>
 
 			<Modal v-if="maximizeAvatar"
-				ref="modal" class="contact-header-modal"
-				size="large" :title="contact.displayName"
+				ref="modal"
+				class="contact-header-modal"
+				size="large"
+				:title="contact.displayName"
 				@close="toggleModal">
 				<template #actions>
 					<ActionButton v-if="!isReadOnly" icon="icon-upload" @click="selectFileInput">
@@ -55,8 +64,11 @@
 						{{ t('contacts', 'Download picture') }}
 					</ActionLink>
 				</template>
-				<img ref="img" :src="contact.photoUrl" class="contact-header-modal__photo"
-					:style="{ width, height }" @load="updateImgSize">
+				<img ref="img"
+					:src="contact.photoUrl"
+					class="contact-header-modal__photo"
+					:style="{ width, height }"
+					@load="updateImgSize">
 			</Modal>
 
 			<!-- out of the avatar__options because of the overflow hidden -->

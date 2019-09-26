@@ -25,7 +25,9 @@
 		<ActionButton icon="icon-delete" @click="deleteProperty">
 			{{ t('contacts', 'Delete') }}
 		</ActionButton>
-		<actions :is="action" v-for="(action, index) in actions" :key="index"
+		<actions :is="action"
+			v-for="(action, index) in actions"
+			:key="index"
 			:component="propertyComponent" />
 	</Actions>
 </template>

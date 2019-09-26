@@ -23,16 +23,25 @@
 <template>
 	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="property">
 		<!-- title if first element -->
-		<PropertyTitle v-if="isFirstProperty && propModel.icon" :icon="propModel.icon" :readable-name="propModel.readableName"
+		<PropertyTitle v-if="isFirstProperty && propModel.icon"
+			:icon="propModel.icon"
+			:readable-name="propModel.readableName"
 			:info="propModel.info" />
 
 		<div class="property__row">
 			<!-- type selector -->
-			<multiselect v-if="propModel.options" v-model="localType"
-				:options="options" :placeholder="t('contacts', 'Select type')"
-				:taggable="true" tag-placeholder="create" :disabled="isReadOnly"
-				class="property__label" track-by="id" label="name"
-				@tag="createLabel" @input="updateType" />
+			<multiselect v-if="propModel.options"
+				v-model="localType"
+				:options="options"
+				:placeholder="t('contacts', 'Select type')"
+				:taggable="true"
+				tag-placeholder="create"
+				:disabled="isReadOnly"
+				class="property__label"
+				track-by="id"
+				label="name"
+				@tag="createLabel"
+				@input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
 			<div v-else-if="selectType" class="property__label">
@@ -46,12 +55,17 @@
 			</div>
 
 			<!-- show the first input if not a structured value -->
-			<input v-if="!property.isStructuredValue" v-model.trim="localValue[0]" :readonly="isReadOnly"
-				class="property__value" type="text" @input="updateValue">
+			<input v-if="!property.isStructuredValue"
+				v-model.trim="localValue[0]"
+				:readonly="isReadOnly"
+				class="property__value"
+				type="text"
+				@input="updateValue">
 
 			<!-- props actions -->
 			<PropertyActions class="property__actions--floating"
-				:actions="actions" :property-component="this"
+				:actions="actions"
+				:property-component="this"
 				@delete="deleteProperty" />
 		</div>
 
@@ -61,25 +75,32 @@
 				<div class="property__label">
 					{{ propModel.readableValues[index] }}
 				</div>
-				<input v-model.trim="localValue[index]" :readonly="isReadOnly" class="property__value"
-					type="text" @input="updateValue">
+				<input v-model.trim="localValue[index]"
+					:readonly="isReadOnly"
+					class="property__value"
+					type="text"
+					@input="updateValue">
 			</div>
 		</template>
 
 		<!-- no order enforced: just iterate on all the values -->
 		<template v-else>
-			<div v-for="(value, index) in filteredValue" :key="index"
+			<div v-for="(value, index) in filteredValue"
+				:key="index"
 				class="property__row">
 				<div class="property__label" />
-				<input v-model.trim="filteredValue[index]" :readonly="isReadOnly" class="property__value"
-					type="text" @input="updateValue">
+				<input v-model.trim="filteredValue[index]"
+					:readonly="isReadOnly"
+					class="property__value"
+					type="text"
+					@input="updateValue">
 			</div>
 		</template>
 	</div>
 </template>
 
 <script>
-import PropertyMixin from 'Mixins/PropertyMixin'
+import PropertyMixin from '../../mixins/PropertyMixin'
 import PropertyTitle from './PropertyTitle'
 import PropertyActions from './PropertyActions'
 

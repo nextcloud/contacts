@@ -46,20 +46,39 @@
 				<!-- fullname, org, title -->
 				<div id="contact-header-infos">
 					<h2>
-						<input id="contact-fullname" ref="fullname" v-model="contact.fullName"
-							:readonly="contact.addressbook.readOnly" :placeholder="t('contacts', 'Name')" type="text"
-							autocomplete="off" autocorrect="off" spellcheck="false"
+						<input id="contact-fullname"
+							ref="fullname"
+							v-model="contact.fullName"
+							:readonly="contact.addressbook.readOnly"
+							:placeholder="t('contacts', 'Name')"
+							type="text"
+							autocomplete="off"
+							autocorrect="off"
+							spellcheck="false"
 							name="fullname"
-							@input="debounceUpdateContact" @click="selectInput">
+							@input="debounceUpdateContact"
+							@click="selectInput">
 					</h2>
 					<div id="details-org-container">
-						<input id="contact-org" v-model="contact.org" :readonly="contact.addressbook.readOnly"
-							:placeholder="t('contacts', 'Company')" type="text" autocomplete="off"
-							autocorrect="off" spellcheck="false" name="org"
+						<input id="contact-org"
+							v-model="contact.org"
+							:readonly="contact.addressbook.readOnly"
+							:placeholder="t('contacts', 'Company')"
+							type="text"
+							autocomplete="off"
+							autocorrect="off"
+							spellcheck="false"
+							name="org"
 							@input="debounceUpdateContact">
-						<input id="contact-title" v-model="contact.title" :readonly="contact.addressbook.readOnly"
-							:placeholder="t('contacts', 'Title')" type="text" autocomplete="off"
-							autocorrect="off" spellcheck="false" name="title"
+						<input id="contact-title"
+							v-model="contact.title"
+							:readonly="contact.addressbook.readOnly"
+							:placeholder="t('contacts', 'Title')"
+							type="text"
+							autocomplete="off"
+							autocorrect="off"
+							spellcheck="false"
+							name="title"
 							@input="debounceUpdateContact">
 					</div>
 				</div>
@@ -73,19 +92,24 @@
 							trigger: 'hover focus'
 						}"
 						:class="{'icon-loading-small': loadingUpdate,
-							[`${warning.icon}`]: warning}" class="header-icon" href="#" />
+							[`${warning.icon}`]: warning}"
+						class="header-icon"
+						href="#" />
 
 					<!-- conflict message -->
-					<div v-if="conflict" v-tooltip="{
+					<div v-if="conflict"
+						v-tooltip="{
 							content: conflict,
 							show: true,
 							trigger: 'manual',
-						}" class="header-icon header-icon--pulse icon-history-force-white"
+						}"
+						class="header-icon header-icon--pulse icon-history-force-white"
 						@click="refreshContact" />
 
 					<!-- menu actions -->
 					<Actions class="header-menu" menu-align="right">
-						<ActionLink :href="contact.url" :download="`${contact.displayName}.vcf`"
+						<ActionLink :href="contact.url"
+							:download="`${contact.displayName}.vcf`"
 							icon="icon-download">
 							{{ t('contacts', 'Download') }}
 						</ActionLink>
@@ -99,7 +123,9 @@
 				</div>
 
 				<!-- qrcode -->
-				<Modal v-if="qrcode" id="qrcode-modal" :title="contact.displayName"
+				<Modal v-if="qrcode"
+					id="qrcode-modal"
+					:title="contact.displayName"
 					@close="closeQrModal">
 					<img :src="`data:image/svg+xml;base64,${qrcode}`" class="qrcode" width="400">
 				</Modal>
@@ -115,9 +141,12 @@
 				<!-- passing the debounceUpdateContact so that the contact-property component contains the function
 					and allow us to use it on the rfcProps since the scope is forwarded to the actions -->
 				<ContactProperty v-for="(property, index) in sortedProperties"
-					:key="`${index}-${contact.key}-${property.name}`" :index="index"
-					:sorted-properties="sortedProperties" :property="property"
-					:contact="contact" :local-contact="localContact"
+					:key="`${index}-${contact.key}-${property.name}`"
+					:index="index"
+					:sorted-properties="sortedProperties"
+					:property="property"
+					:contact="contact"
+					:local-contact="localContact"
 					:update-contact="debounceUpdateContact" />
 
 				<!-- addressbook change select - no last property because class is not applied here,
@@ -125,14 +154,19 @@
 					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
 					duplication, we created a fake propModel and property with our own options here) -->
 				<PropertySelect v-if="addressbooksOptions.length > 1"
-					:prop-model="addressbookModel" :value.sync="addressbook"
-					:is-first-property="true" :is-last-property="true"
+					:prop-model="addressbookModel"
+					:value.sync="addressbook"
+					:is-first-property="true"
+					:is-last-property="true"
 					:property="{}"
 					class="property--addressbooks property--last property--without-actions" />
 
 				<!-- Groups always visible -->
-				<PropertyGroups :prop-model="groupsModel" :value.sync="groups" :contact="contact"
-					:is-read-only="isReadOnly" class="property--groups property--last" />
+				<PropertyGroups :prop-model="groupsModel"
+					:value.sync="groups"
+					:contact="contact"
+					:is-read-only="isReadOnly"
+					class="property--groups property--last" />
 
 				<!-- Last modified-->
 				<PropertyRev v-if="contact.rev" :value="contact.rev" />
@@ -151,8 +185,8 @@ import qr from 'qr-image'
 import { stringify } from 'ical.js'
 import { ActionLink, ActionButton } from 'nextcloud-vue'
 
-import rfcProps from 'Models/rfcProps'
-import validate from 'Services/validate'
+import rfcProps from '../models/rfcProps'
+import validate from '../services/validate'
 
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
 import ContactAvatar from './ContactDetails/ContactDetailsAvatar'

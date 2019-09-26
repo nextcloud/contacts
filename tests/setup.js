@@ -1,4 +1,4 @@
-/*
+/**
  * @copyright 2018 Christoph Wurst <christoph@winzerhof-wurst.at>
  *
  * @author 2018 Christoph Wurst <christoph@winzerhof-wurst.at>
@@ -22,6 +22,16 @@
 require('jsdom-global')()
 global.expect = require('chai').expect
 
+// https://github.com/vuejs/vue-test-utils/issues/936
+// better fix for "TypeError: Super expression must either be null or
+// a function" than pinning an old version of prettier.
+//
+// https://github.com/vuejs/vue-cli/issues/2128#issuecomment-453109575
+window.Date = Date
+
 global.OC = {
 	getLocale: () => 'en'
 }
+
+global.t = (app, text) => text
+global.n = (app, textSingular, textPlural, count) => count > 1 ? textPlural : textSingular

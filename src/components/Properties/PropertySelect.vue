@@ -23,7 +23,9 @@
 <template>
 	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="property">
 		<!-- title if first element -->
-		<PropertyTitle v-if="isFirstProperty && propModel.icon" :icon="propModel.icon" :readable-name="propModel.readableName"
+		<PropertyTitle v-if="isFirstProperty && propModel.icon"
+			:icon="propModel.icon"
+			:readable-name="propModel.readableName"
 			:info="propModel.info" />
 
 		<div class="property__row">
@@ -37,9 +39,14 @@
 				{{ propModel.readableName }}
 			</div>
 
-			<multiselect v-model="matchedOptions" :options="propModel.options" :placeholder="t('contacts', 'Select option')"
-				:disabled="isSingleOption || isReadOnly" class="property__value" track-by="id"
-				label="name" @input="updateValue" />
+			<multiselect v-model="matchedOptions"
+				:options="propModel.options"
+				:placeholder="t('contacts', 'Select option')"
+				:disabled="isSingleOption || isReadOnly"
+				class="property__value"
+				track-by="id"
+				label="name"
+				@input="updateValue" />
 
 			<!-- props actions -->
 			<PropertyActions :actions="actions" :property-component="this" @delete="deleteProperty" />
@@ -48,7 +55,7 @@
 </template>
 
 <script>
-import PropertyMixin from 'Mixins/PropertyMixin'
+import PropertyMixin from '../../mixins/PropertyMixin'
 import PropertyTitle from './PropertyTitle'
 import PropertyActions from './PropertyActions'
 

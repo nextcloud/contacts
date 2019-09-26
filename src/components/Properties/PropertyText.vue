@@ -23,16 +23,25 @@
 <template>
 	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="property">
 		<!-- title if first element -->
-		<PropertyTitle v-if="isFirstProperty && propModel.icon" :icon="propModel.icon" :readable-name="propModel.readableName"
+		<PropertyTitle v-if="isFirstProperty && propModel.icon"
+			:icon="propModel.icon"
+			:readable-name="propModel.readableName"
 			:info="propModel.info" />
 
 		<div class="property__row">
 			<!-- type selector -->
-			<multiselect v-if="propModel.options" v-model="localType"
-				:options="options" :placeholder="t('contacts', 'Select type')"
-				:taggable="true" tag-placeholder="create" :disabled="isReadOnly"
-				class="property__label" track-by="id" label="name"
-				@tag="createLabel" @input="updateType" />
+			<multiselect v-if="propModel.options"
+				v-model="localType"
+				:options="options"
+				:placeholder="t('contacts', 'Select type')"
+				:taggable="true"
+				tag-placeholder="create"
+				:disabled="isReadOnly"
+				class="property__label"
+				track-by="id"
+				label="name"
+				@tag="createLabel"
+				@input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
 			<div v-else-if="selectType" class="property__label">
@@ -45,18 +54,30 @@
 			</div>
 
 			<!-- textarea for note -->
-			<textarea v-if="propName === 'note'" id="textarea" ref="textarea"
-				v-model.trim="localValue" :type="type" :readonly="isReadOnly"
+			<textarea v-if="propName === 'note'"
+				id="textarea"
+				ref="textarea"
+				v-model.trim="localValue"
+				:type="type"
+				:readonly="isReadOnly"
 				class="property__value"
-				@input="updateValueNoDebounce" @mousemove="resizeGrid" @keypress="resizeGrid" />
+				@input="updateValueNoDebounce"
+				@mousemove="resizeGrid"
+				@keypress="resizeGrid" />
 
 			<!-- OR default to input -->
-			<input v-else v-model.trim="localValue" :type="type"
-				:readonly="isReadOnly" :class="{'property__value--with-ext': haveExtHandler}" class="property__value"
+			<input v-else
+				v-model.trim="localValue"
+				:type="type"
+				:readonly="isReadOnly"
+				:class="{'property__value--with-ext': haveExtHandler}"
+				class="property__value"
 				@input="updateValue">
 
 			<!-- external link -->
-			<a v-if="haveExtHandler" :href="externalHandler" class="property__ext icon-external"
+			<a v-if="haveExtHandler"
+				:href="externalHandler"
+				class="property__ext icon-external"
 				target="_blank" />
 
 			<!-- props actions -->
@@ -67,7 +88,7 @@
 
 <script>
 import debounce from 'debounce'
-import PropertyMixin from 'Mixins/PropertyMixin'
+import PropertyMixin from '../../mixins/PropertyMixin'
 import PropertyTitle from './PropertyTitle'
 import PropertyActions from './PropertyActions'
 

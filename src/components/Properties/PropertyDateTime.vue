@@ -23,15 +23,23 @@
 <template>
 	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="property">
 		<!-- title if first element -->
-		<PropertyTitle v-if="isFirstProperty && propModel.icon" :icon="propModel.icon" :readable-name="propModel.readableName"
+		<PropertyTitle v-if="isFirstProperty && propModel.icon"
+			:icon="propModel.icon"
+			:readable-name="propModel.readableName"
 			:info="propModel.info" />
 
 		<div class="property__row">
 			<!-- type selector -->
-			<multiselect v-if="propModel.options" v-model="localType"
-				:options="options" :searchable="false" :placeholder="t('contacts', 'Select type')"
-				:disabled="isReadOnly" class="property__label" track-by="id"
-				label="name" @input="updateType" />
+			<multiselect v-if="propModel.options"
+				v-model="localType"
+				:options="options"
+				:searchable="false"
+				:placeholder="t('contacts', 'Select type')"
+				:disabled="isReadOnly"
+				class="property__label"
+				track-by="id"
+				label="name"
+				@input="updateType" />
 
 			<!-- if we do not support any type on our model but one is set anyway -->
 			<div v-else-if="selectType" class="property__label">
@@ -44,10 +52,17 @@
 			</div>
 
 			<!-- Real input where the picker shows -->
-			<DatetimePicker :value="vcardTimeLocalValue.toJSDate()" :minute-step="10" :lang="lang"
-				:clearable="false" :first-day-of-week="firstDay" :type="inputType"
-				:readonly="isReadOnly" :format="dateFormat" class="property__value"
-				confirm @confirm="debounceUpdateValue" />
+			<DatetimePicker :value="vcardTimeLocalValue.toJSDate()"
+				:minute-step="10"
+				:lang="lang"
+				:clearable="false"
+				:first-day-of-week="firstDay"
+				:type="inputType"
+				:readonly="isReadOnly"
+				:format="dateFormat"
+				class="property__value"
+				confirm
+				@confirm="debounceUpdateValue" />
 
 			<!-- props actions -->
 			<PropertyActions :actions="actions" :property-component="this" @delete="deleteProperty" />
@@ -62,7 +77,7 @@ import { DatetimePicker } from 'nextcloud-vue'
 import { getLocale } from 'nextcloud-l10n'
 import { VCardTime } from 'ical.js'
 
-import PropertyMixin from 'Mixins/PropertyMixin'
+import PropertyMixin from '../../mixins/PropertyMixin'
 import PropertyTitle from './PropertyTitle'
 import PropertyActions from './PropertyActions'
 
