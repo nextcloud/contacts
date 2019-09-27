@@ -2,8 +2,8 @@ sudo: required
 dist: trusty
 language: php
 php:
-  - 7.1
   - 7.2
+  - 7.3
 
 # Server requires PostgreSQL >= 9.5
 addons:
@@ -35,13 +35,13 @@ branches:
 
 matrix:
   include:
-    - php: 7.1
+    - php: 7.2
       env: "DB=mysql CORE_BRANCH=master"
-    - php: 7.2
+    - php: 7.3
       env: "DB=mysql CORE_BRANCH=master TEST_JS=TRUE PHP_COVERAGE=TRUE"
-    - php: 7.1
-      env: "DB=pgsql CORE_BRANCH=master"
     - php: 7.2
+      env: "DB=pgsql CORE_BRANCH=master"
+    - php: 7.3
       env: "DB=pgsql CORE_BRANCH=master"
   fast_finish: true
 
@@ -58,6 +58,8 @@ before_install:
   - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e 'create database oc_autotest;'; fi
   - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e "CREATE USER 'oc_autotest'@'localhost' IDENTIFIED BY '';"; fi
   - if [[ "$DB" == 'mysql' ]]; then mysql -u root -e "GRANT ALL ON oc_autotest.* TO 'oc_autotest'@'localhost';"; fi
+  - composer self-update
+  - make install-composer-deps-dev
   - cd ..
   - git clone https://github.com/nextcloud/server.git --recursive --depth 1 -b $CORE_BRANCH core
   - mv contacts core/apps/

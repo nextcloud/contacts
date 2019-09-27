@@ -1,0 +1,9 @@
+{
+    "require-dev": {
+        "christophwurst/nextcloud_testing": "^0.7.0"
+    },
+	"scripts": {
+		"test:unit": "phpunit -c phpunit.xml --fail-on-warning",
+		"test:integration": "phpunit -c phpunit.integration.xml --fail-on-warning"
+	}
+}

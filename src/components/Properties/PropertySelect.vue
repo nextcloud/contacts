@@ -92,7 +92,15 @@ export default {
 		// matching value to the options we provide
 		matchedOptions: {
 			get() {
-				let selected = this.propModel.options.find(option => option.id === this.localValue)
+				// match lowercase as well
+				let selected = this.propModel.options.find(option => option.id === this.localValue
+					|| option.id === this.localValue.toLowerCase())
+
+				// if the model provided a custom match fallback, use it
+				if (!selected && this.propModel.greedyMatch) {
+					selected = this.propModel.greedyMatch(this.localValue, this.propModel.options)
+				}
+
 				// properly display array as a string
 				if (Array.isArray(this.localValue)) {
 					return selected || {
