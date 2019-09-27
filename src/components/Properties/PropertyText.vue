@@ -149,7 +149,7 @@ export default {
 			} else if (this.propName === 'email') {
 				return 'mailto:'
 			// if no scheme (roughly checking for the colon char)
-			} else if (this.propType === 'uri' && this.value.indexOf(':') === -1) {
+			} else if (this.propType === 'uri' && this.localValue && this.localValue.indexOf(':') === -1) {
 				return 'https://'
 			} else if (this.propType === 'uri') {
 				return '' // return empty, we already have a scheme in the value
@@ -160,13 +160,13 @@ export default {
 		// format external link
 		externalHandler() {
 			if (this.URLScheme !== false) {
-				return `${this.URLScheme}${this.value}`
+				return `${this.URLScheme}${this.localValue}`
 			}
 			return ''
 		},
 
 		haveExtHandler() {
-			return this.externalHandler.trim() !== '' && this.value && this.value.length > 0
+			return this.externalHandler.trim() !== '' && this.localValue && this.localValue.length > 0
 		}
 	},
 

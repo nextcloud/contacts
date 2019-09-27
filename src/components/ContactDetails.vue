@@ -106,6 +106,16 @@
 						class="header-icon header-icon--pulse icon-history-force-white"
 						@click="refreshContact" />
 
+					<!-- repaired contact message -->
+					<div v-if="fixed"
+						v-tooltip="{
+							content: t('contacts', 'This contact was broken and received a fix. Please review the content and click here to save it.'),
+							show: true,
+							trigger: 'manual',
+						}"
+						class="header-icon header-icon--pulse icon-up-force-white"
+						@click="updateContact" />
+
 					<!-- menu actions -->
 					<Actions class="header-menu" menu-align="right">
 						<ActionLink :href="contact.url"
