@@ -1,15 +1,17 @@
 
 ## 3.1.4 – 2019-09-28
 
-### Fixed
-- Support vcard 3 photo syntax
-  [#1239](https://github.com/nextcloud/contacts/pull/1239)
+### Enhancements
 - Enhancement/allow year removal
   [#1248](https://github.com/nextcloud/contacts/pull/1248)
 - Add TZ & LANG
   [#1264](https://github.com/nextcloud/contacts/pull/1264)
 - Added possibility to show and edit vCard Geo attributes
   [#1250](https://github.com/nextcloud/contacts/pull/1250)
+
+### Fixed
+- Support vcard 3 photo syntax
+  [#1239](https://github.com/nextcloud/contacts/pull/1239)
 - Fix moment loading
   [#1249](https://github.com/nextcloud/contacts/pull/1249)
 - Add push warning on fixed contact
