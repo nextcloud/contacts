@@ -22,6 +22,7 @@
     "Name" : "Имя",
     "Company" : "Компания",
     "Title" : "Должность",
+    "This contact was broken and received a fix. Please review the content and click here to save it." : "Этот контакт был поврежден и получил исправление. Пожалуйста, просмотрите содержимое и нажмите здесь, чтобы сохранить его.",
     "Download" : "Скачать",
     "Generate QR Code" : "Сгенерировать QR-код",
     "Delete" : "Удалить",

@@ -57,6 +57,7 @@ OC.L10N.register(
     "Federated Cloud ID" : "Federacinės debesijos ID",
     "Home" : "Namų",
     "Address" : "Adresas",
+    "Post office box" : "Pašto dėžutė",
     "Extended address" : "Išplėstinis adresas",
     "City" : "Miestas",
     "Postal code" : "Pašto kodas",
