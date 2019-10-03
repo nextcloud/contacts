@@ -1,4 +1,13 @@
 
+
+## 3.1.5 – 2019-10-03
+
+### Fixed
+- Better debug of the duplicate types check
+  [#1290](https://github.com/nextcloud/contacts/pull/1290)
+- Fix initialStateService for 15
+  [#1291](https://github.com/nextcloud/contacts/pull/1291)
+
 ## 3.1.4 – 2019-09-28
 
 ### Enhancements
