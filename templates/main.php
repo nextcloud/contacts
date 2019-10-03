@@ -2,8 +2,11 @@
 if (!\OCP\Util::isIe()) {
 	script('contacts', 'contacts');
 	style('contacts', 'contacts');
-} else {
 ?>
+
+<input type="hidden" id="initial-state-contacts-locales" value="<?php p(base64_encode($_['locales'])); ?>">
+
+<?php } else { ?>
 <div id="app-content">
 	<div class="emptycontent">
 		<div class="icon-contacts-dark"></div>
