@@ -1,4 +1,8 @@
+## 3.1.6 – 2019-10-03
 
+### Fixed
+- Fix initialStateService for 15
+  [#1292](https://github.com/nextcloud/contacts/pull/1292)
 
 ## 3.1.5 – 2019-10-03
 
