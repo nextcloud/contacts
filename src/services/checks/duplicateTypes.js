@@ -44,6 +44,7 @@ export default {
 		try {
 			const props = contact.vCard.getAllProperties()
 			props.forEach(prop => {
+				const icalString = prop.toICALString()
 				// ['WORK', 'pref', 'pref'] => ['WORK', 'pref']
 				const param = prop.getParameter('type')
 				const fixed = [...new Set(param)]
@@ -51,6 +52,7 @@ export default {
 					&& Array.isArray(param)
 					&& param.join('') !== fixed.join('')) {
 					prop.setParameter('type', fixed)
+					console.debug('Additional debug: duplicate types', { old: icalString, new: prop.toICALString() })
 					results = true
 				}
 			})
