@@ -140,6 +140,8 @@ OC.L10N.register(
     "Male" : "Man",
     "None" : "Geen",
     "Unknown" : "Onbekend",
+    "Timezone" : "Tijdzone",
+    "Spoken languages" : "Gesproken talen",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : [" {failed} contactpersoon werd niet ingelezen","{failed} contactpersonen werden niet ingelezen"],
     "An error occurred" : "Er trad een fout op",
     "Your web browser is out of date" : "Je webbrowser is verouderd",
