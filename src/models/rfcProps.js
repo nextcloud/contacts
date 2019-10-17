@@ -27,6 +27,7 @@ import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN'
 import ActionToggleYear from '../components/Actions/ActionToggleYear'
 import zones from './zones'
 
+const defaultProfileState = loadState('contacts', 'defaultProfile')
 const localesState = loadState('contacts', 'locales')
 const locales = localesState
 	? localesState.map(({ code, name }) => ({
@@ -83,7 +84,7 @@ const properties = {
 		force: 'text',
 		defaultValue: {
 			value: [''],
-			type: ['HOME']
+			type: [defaultProfileState]
 		},
 		options: [
 			{ id: 'HOME', name: t('contacts', 'Home') },
@@ -108,7 +109,7 @@ const properties = {
 		default: true,
 		defaultValue: {
 			value: ['', '', '', '', '', '', ''],
-			type: ['HOME']
+			type: [defaultProfileState]
 		},
 		options: [
 			{ id: 'HOME', name: t('contacts', 'Home') },
@@ -151,7 +152,7 @@ const properties = {
 		default: true,
 		defaultValue: {
 			value: '',
-			type: ['HOME']
+			type: [defaultProfileState]
 		},
 		options: [
 			{ id: 'HOME', name: t('contacts', 'Home') },
