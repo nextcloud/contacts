@@ -27,6 +27,7 @@ import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN'
 import ActionToggleYear from '../components/Actions/ActionToggleYear'
 import zones from './zones'
 
+//Load the default profile (for example, home or work) configured by the user
 const defaultProfileState = loadState('contacts', 'defaultProfile')
 const localesState = loadState('contacts', 'locales')
 const locales = localesState
