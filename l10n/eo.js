@@ -59,6 +59,7 @@ OC.L10N.register(
     "Renaming of addressbook was not successful." : "Alinomado de la adresaro fiaskis.",
     "Addressbook copied to clipboard" : "Adresaro kopiita en la tondujo",
     "Addressbook was not copied to clipboard." : "Adresaro ne estis kopiita tondujen.",
+    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Kunhavigitaj kun {num} entoj","Kunhavigitaj kun {num} entoj"],
     "Share with users or groups" : "Kunhavigi kun uzantoj aŭ grupoj",
     "No users or groups" : "Neniu uzanto aŭ grupo",
     "can edit" : "povas redakti",
