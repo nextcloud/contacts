@@ -184,7 +184,7 @@ const properties = {
 		default: true,
 		defaultValue: {
 			value: '',
-			type: [defaultProfileState]
+			type: [defaultProfileState, 'VOICE']
 		},
 		options: [
 			{ id: 'HOME,VOICE', name: t('contacts', 'Home') },
