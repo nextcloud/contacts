@@ -5,6 +5,7 @@ if (!\OCP\Util::isIe()) {
 ?>
 
 <input type="hidden" id="initial-state-contacts-locales" value="<?php p(base64_encode($_['locales'])); ?>">
+<input type="hidden" id="initial-state-contacts-defaultProfile" value="<?php p(base64_encode($_['defaultProfile'])); ?>">
 
 <?php } else { ?>
 <div id="app-content">
