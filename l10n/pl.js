@@ -52,7 +52,7 @@ OC.L10N.register(
     "Disabled" : "Wyłączone",
     "Copied" : "Skopiowano",
     "Can not copy" : "Nie można skopiować",
-    "Copy link" : "Skopiuj link",
+    "Copy link" : "Kopiuj link",
     "Enabled toggle of addressbook was not successful." : "Włączenie zmiany książki adresowej nie powiodło się.",
     "This will delete the addressbook and every contacts within it" : "Spowoduje to usunięcie książki adresowej i wszystkich kontaktów w niej zawartych",
     "Delete {addressbook} ?" : "Usunąć {addressbook} ?",
