@@ -111,7 +111,7 @@ export default {
 
 			// locale and lang data
 			locale: 'en',
-			firstDay: window.firstDay + 1,			// provided by nextcloud
+			firstDay: window.firstDay === 0 ? 7 : window.firstDay,	// provided by nextcloud
 			lang: {
 				days: window.dayNamesShort,		// provided by nextcloud
 				months: window.monthNamesShort,	// provided by nextcloud
