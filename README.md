@@ -34,16 +34,6 @@ If you need assistance or want to ask a question about Contacts, you are welcome
 
 If you'd like to join, just go through the [issue list](https://github.com/nextcloud/contacts/issues) and fix some. :)
 
-### Nightly builds
-
-Instead of setting everything up manually, you can just [download the nightly builds](https://nightly.portknox.net/contacts/?C=M;O=D) instead. These builds are updated every 24 hours, and are pre-configured with all the needed dependencies.
-
-1. Download
-2. Extract the tar archive to 'path-to-nextcloud/apps'
-3. Navigate to »Apps«, choose the category »Productivity«, find the Contacts app and enable it.
-
-The nightly builds are provided by [Portknox.net](https://portknox.net)
-
 ## Build the app
 
 ``` bash
