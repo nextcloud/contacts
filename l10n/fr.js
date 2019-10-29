@@ -24,6 +24,7 @@ OC.L10N.register(
     "Name" : "Nom",
     "Company" : "Société",
     "Title" : "Titre",
+    "This contact was broken and received a fix. Please review the content and click here to save it." : "Ce contact a été tronqué et a été corrigé. Veuillez en examiner le contenu puis cliquez ici pour l’enregistrer.",
     "Download" : "Télécharger",
     "Generate QR Code" : "Générer un QR code",
     "Delete" : "Supprimer",
