@@ -121,7 +121,7 @@ OC.L10N.register(
     "Spouse" : "Coniuge",
     "Child" : "Figlio",
     "Mother" : "Madre",
-    "Father" : "Padrr",
+    "Father" : "Padre",
     "Parent" : "Genitore",
     "Brother" : "Fratello",
     "Sister" : "Sorella",
