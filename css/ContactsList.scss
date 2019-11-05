@@ -29,11 +29,10 @@
 	height: 44px;
 	cursor: pointer;
 	transform: rotate(180deg);
-	background-color: var(--color-background-darker);
+	background-color: var(--color-main-background);
 	border-radius: 50%;
 	opacity: 1;
 }
-
 
 // Virtual scroller overrides
 .vue-recycle-scroller {
