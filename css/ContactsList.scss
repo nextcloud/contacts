@@ -22,18 +22,17 @@
 
 #app-details-toggle {
 	position: fixed;
-	z-index: 149;
+	z-index: 1500;
 	left: 0;
 	display: inline-block;
 	width: 44px;
 	height: 44px;
-	margin-top: 44px; // under the show navigation button
 	cursor: pointer;
 	transform: rotate(180deg);
-	opacity: .6;
-	background-color: var(--color-background-darker);
+	background-color: var(--color-main-background);
+	border-radius: 50%;
+	opacity: 1;
 }
-
 
 // Virtual scroller overrides
 .vue-recycle-scroller {
