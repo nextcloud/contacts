@@ -138,6 +138,8 @@
     "Male" : "Muž",
     "None" : "Žádné",
     "Unknown" : "Neznámé",
+    "Timezone" : "Časová zóna",
+    "Spoken languages" : "Jazyky, kterými hovoří",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt se nepodařilo načíst","{failed} kontakty se nepodařilo načíst","{failed} kontaktů se nepodařilo načíst","{failed} kontakty se nepodařilo načíst"],
     "An error occurred" : "Došlo k chybě",
     "Your web browser is out of date" : "Váš webový prohlížeč je zastaralý",
