@@ -24,6 +24,7 @@ OC.L10N.register(
     "Name" : "Zobrazované jméno",
     "Company" : "Společnost/organizace",
     "Title" : "Funkce",
+    "This contact was broken and received a fix. Please review the content and click here to save it." : "Tento kontakt byl poškozen a obdržel opravu. Zkontrolujte obsah a kliknutím sem ho uložte.",
     "Download" : "Stáhnout",
     "Generate QR Code" : "Vytvořit QR kód",
     "Delete" : "Smazat",
