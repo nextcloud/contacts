@@ -84,7 +84,7 @@ OC.L10N.register(
     "Prefix" : "Předpona",
     "Suffix" : "Přípona",
     "Notes" : "Poznámky",
-    "Website" : "Stránka",
+    "Website" : "Webová stránka",
     "Location" : "Umístění",
     "Federated Cloud ID" : "Sdružené cloud ID",
     "Home" : "Domů",
