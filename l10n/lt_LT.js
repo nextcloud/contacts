@@ -50,7 +50,7 @@ OC.L10N.register(
     "Addressbook was not copied to clipboard." : "Adresų knyga nebuvo nukopijuota į iškarpinę.",
     "Share with users or groups" : "Bendrinti su naudotojais ar grupėmis",
     "No users or groups" : "Nėra jokių naudotojų ar grupių",
-    "can edit" : "gali keisti",
+    "can edit" : "gali redaguoti",
     "Unable to delete the share." : "Nepavyko ištrinti viešinio.",
     "Unable to change permissions." : "Nepavyko pakeisti leidimų.",
     "Import into" : "Importuoti į",
