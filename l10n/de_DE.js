@@ -117,7 +117,7 @@ OC.L10N.register(
     "Social network" : "Soziales Netzwerk",
     "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Die URL des Profils z. B. https://www.facebook.com/Nextclouders/ ",
     "Relationship" : "Beziehung",
-    "Specify a relationship between you and the entity represented by this vCard." : "Wählen Sie die Beziehungsart zwischen Ihnen und der Einheit, welche diese vCard darstellt.",
+    "Specify a relationship between you and the entity represented by this vCard." : "Wählen Sie die Beziehung zwischen Ihnen und der Einheit, welche diese vCard darstellt.",
     "Spouse" : "Partner",
     "Child" : "Kind",
     "Mother" : "Mutter",
