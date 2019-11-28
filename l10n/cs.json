@@ -144,6 +144,6 @@
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt se nepodařilo načíst","{failed} kontakty se nepodařilo načíst","{failed} kontaktů se nepodařilo načíst","{failed} kontakty se nepodařilo načíst"],
     "An error occurred" : "Došlo k chybě",
     "Your web browser is out of date" : "Vámi používaný webový prohlížeč (resp. jeho verze) je zastaralý",
-    "This application is not compatible with Internet Explorer" : "Tato aplikace není s prohlížečem Internet Explorer kompatibilní"
+    "This application is not compatible with Internet Explorer" : "Prohlížeč Internet Explorer (svým výrobcem opuštěný) není kompatibilní s touto aplikací"
 },"pluralForm" :"nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;"
 }
