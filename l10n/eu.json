@@ -3,6 +3,7 @@
     "All contacts" : "Kontaktu guztiak",
     "Details" : "Xehetasuna",
     "No contact selected" : "Ez dago kontakturik hautatuta",
+    "Select a contact on the list to begin" : "Hautatu zerrendako kontaktu bat lanean hasteko",
     "Loading" : "Kargatzen",
     "Name" : "Izena",
     "Company" : "Konpainia",
@@ -20,9 +21,11 @@
     "Copied" : "Kopiatuta",
     "Can not copy" : "Ezin da kopiatu",
     "Copy link" : "Esteka kopiatu",
+    "Addressbook was not copied to clipboard." : "Helbide-liburua ez da arbelera kopiatu",
     "Share with users or groups" : "Erabiltzaile edo taldeekin partekatu",
     "No users or groups" : "Erabiltzaile edo talderik ez",
     "Import into" : "Inportatu hona",
+    "An error occurred, unable to create the addressbook." : "Errorea gertatu da, ezin izan da helbide-liburua sortu.",
     "First name" : "Izena",
     "Last name" : "Abizena",
     "Display name" : "Pantaila-izena",
@@ -40,6 +43,7 @@
     "Other" : "Bestelakoa",
     "Address" : "Helbidea",
     "Post office box" : "Posta kutxatila",
+    "Extended address" : "Helbide hedatua",
     "City" : "Hiria",
     "State or province" : "Estatu edo probintzia",
     "Postal code" : "Posta kodea",
@@ -61,6 +65,7 @@
     "Car" : "Kotxea",
     "Work pager" : "Laneko orriztapena",
     "Social network" : "Sare soziala",
+    "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Profilaren URLa, adibidez https://www.facebook.com/Nextclouders/ ",
     "Relationship" : "Erlazioa",
     "Spouse" : "Emaztea",
     "Child" : "Semea",
@@ -77,6 +82,7 @@
     "Emergency" : "Larrialdia",
     "Gender" : "Generoa",
     "Female" : "Emakumea",
-    "Male" : "Gizonezkoa"
+    "Male" : "Gizonezkoa",
+    "An error occurred" : "Errorea gertatu da"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
