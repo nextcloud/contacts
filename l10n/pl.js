@@ -64,7 +64,7 @@ OC.L10N.register(
     "Share with users or groups" : "Udostępnij użytkownikom lub grupom",
     "No users or groups" : "Brak użytkowników i grup",
     "can edit" : "może edytować",
-    "Unable to delete the share." : "Nie można usunąć udostępnionego udziału.",
+    "Unable to delete the share." : "Nie można usunąć udostępnienia.",
     "Unable to change permissions." : "Nie można zmienić uprawnień.",
     "Importing into" : "Importowanie do",
     "Import into" : "Importuj do",
