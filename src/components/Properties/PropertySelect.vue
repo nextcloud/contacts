@@ -64,7 +64,7 @@ export default {
 
 	components: {
 		PropertyTitle,
-		PropertyActions
+		PropertyActions,
 	},
 
 	mixins: [PropertyMixin],
@@ -73,14 +73,14 @@ export default {
 		value: {
 			type: [Object, String, Array],
 			default: '',
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	computed: {
 		gridLength() {
-			let hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
-			let isLast = this.isLastProperty ? 1 : 0
+			const hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
+			const isLast = this.isLastProperty ? 1 : 0
 			// length is one & add one space at the end
 			return hasTitle + 1 + isLast
 		},
@@ -105,12 +105,12 @@ export default {
 				if (Array.isArray(this.localValue)) {
 					return selected || {
 						id: this.localValue.join(';'),
-						name: this.localValue.join(';')
+						name: this.localValue.join(';'),
 					}
 				}
 				return selected || {
 					id: this.localValue,
-					name: this.localValue
+					name: this.localValue,
 				}
 			},
 			set(value) {
@@ -120,9 +120,9 @@ export default {
 				} else {
 					this.localValue = value.id
 				}
-			}
-		}
-	}
+			},
+		},
+	},
 }
 
 </script>

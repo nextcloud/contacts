@@ -80,7 +80,7 @@ import {
 	AppNavigationNew,
 	AppNavigationSettings,
 	Content,
-	Modal
+	Modal,
 } from 'nextcloud-vue'
 import isMobile from 'nextcloud-vue/dist/Mixins/isMobile'
 
@@ -115,11 +115,11 @@ export default {
 		Content,
 		ImportScreen,
 		Modal,
-		SettingsSection
+		SettingsSection,
 	},
 
 	mixins: [
-		isMobile
+		isMobile,
 	],
 
 	// passed by the router
@@ -127,18 +127,18 @@ export default {
 		selectedGroup: {
 			type: String,
 			default: undefined,
-			required: true
+			required: true,
 		},
 		selectedContact: {
 			type: String,
-			default: undefined
-		}
+			default: undefined,
+		},
 	},
 
 	data() {
 		return {
 			loading: true,
-			searchQuery: ''
+			searchQuery: '',
 		}
 	},
 
@@ -190,7 +190,7 @@ export default {
 			} else if (this.selectedGroup === GROUP_NO_GROUP_CONTACTS) {
 				return this.ungroupedContacts.map(contact => this.sortedContacts.find(item => item.key === contact.key))
 			}
-			let group = this.groups.filter(group => group.name === this.selectedGroup)[0]
+			const group = this.groups.filter(group => group.name === this.selectedGroup)[0]
 			if (group) {
 				return this.sortedContacts.filter(contact => group.contacts.indexOf(contact.key) >= 0)
 			}
@@ -209,7 +209,7 @@ export default {
 					key: group.name.replace(' ', '_'),
 					router: {
 						name: 'group',
-						params: { selectedGroup: group.name }
+						params: { selectedGroup: group.name },
 					},
 					text: group.name,
 					utils: {
@@ -218,10 +218,10 @@ export default {
 							{
 								icon: 'icon-download',
 								text: 'Download',
-								action: () => this.downloadGroup(group)
-							}
-						]
-					}
+								action: () => this.downloadGroup(group),
+							},
+						],
+					},
 				}
 			}).sort(function(a, b) {
 				return parseInt(b.utils.counter) - parseInt(a.utils.counter)
@@ -241,12 +241,12 @@ export default {
 				icon: 'icon-contacts-dark',
 				router: {
 					name: 'group',
-					params: { selectedGroup: GROUP_ALL_CONTACTS }
+					params: { selectedGroup: GROUP_ALL_CONTACTS },
 				},
 				text: GROUP_ALL_CONTACTS,
 				utils: {
-					counter: this.sortedContacts.length
-				}
+					counter: this.sortedContacts.length,
+				},
 			}]
 		},
 
@@ -261,14 +261,14 @@ export default {
 				icon: 'icon-user',
 				router: {
 					name: 'group',
-					params: { selectedGroup: GROUP_NO_GROUP_CONTACTS }
+					params: { selectedGroup: GROUP_NO_GROUP_CONTACTS },
 				},
 				text: GROUP_NO_GROUP_CONTACTS,
 				utils: {
-					counter: this.ungroupedContacts.length
-				}
+					counter: this.ungroupedContacts.length,
+				},
 			}]
-		}
+		},
 	},
 
 	watch: {
@@ -283,7 +283,7 @@ export default {
 			if (!this.isMobile) {
 				this.selectFirstContactIfNone()
 			}
-		}
+		},
 	},
 
 	mounted() {
@@ -336,11 +336,11 @@ export default {
 
 			// itterate over all properties (filter is not usable on objects and we need the key of the property)
 			const properties = rfcProps.properties
-			for (let name in properties) {
+			for (const name in properties) {
 				if (properties[name].default) {
-					let defaultData = properties[name].defaultValue
+					const defaultData = properties[name].defaultValue
 					// add default field
-					let property = contact.vCard.addPropertyWithValue(name, defaultData.value)
+					const property = contact.vCard.addPropertyWithValue(name, defaultData.value)
 					// add default type
 					if (defaultData.type) {
 						property.setParameter('type', defaultData.type)
@@ -361,8 +361,8 @@ export default {
 					name: 'contact',
 					params: {
 						selectedGroup: this.selectedGroup,
-						selectedContact: contact.key
-					}
+						selectedContact: contact.key,
+					},
 				})
 			} catch (error) {
 				OC.Notification.showTemporary(t('contacts', 'Unable to create the contact.'))
@@ -402,7 +402,7 @@ export default {
 		 * if none are selected already
 		 */
 		selectFirstContactIfNone() {
-			let inList = this.contactsList.findIndex(contact => contact.key === this.selectedContact) > -1
+			const inList = this.contactsList.findIndex(contact => contact.key === this.selectedContact) > -1
 			if (this.selectedContact === undefined || !inList) {
 				if (this.selectedContact && !inList) {
 					OC.Notification.showTemporary(t('contacts', 'Contact not found'))
@@ -412,8 +412,8 @@ export default {
 						name: 'contact',
 						params: {
 							selectedGroup: this.selectedGroup,
-							selectedContact: Object.values(this.contactsList)[0].key
-						}
+							selectedContact: Object.values(this.contactsList)[0].key,
+						},
 					})
 				}
 			}
@@ -444,8 +444,8 @@ export default {
 				groupedContacts = Object.assign({
 					[id]: {
 						addressbook: this.contacts[key].addressbook,
-						contacts: []
-					}
+						contacts: [],
+					},
 				}, groupedContacts)
 				groupedContacts[id].contacts.push(this.contacts[key].url)
 			})
@@ -455,7 +455,7 @@ export default {
 					groupedContacts[key].addressbook.dav.addressbookMultigetExport(groupedContacts[key].contacts)))
 				.then(response => ({
 					groupName: group.name,
-					data: response.map(data => data.body).join('')
+					data: response.map(data => data.body).join(''),
 				}))
 			// download vcard
 			this.downloadVcardPromise(vcardPromise)
@@ -478,8 +478,8 @@ export default {
 				name: 'contact',
 				params: {
 					selectedGroup: this.selectedGroup,
-					selectedContact: undefined
-				}
+					selectedContact: undefined,
+				},
 			})
 		},
 
@@ -491,7 +491,7 @@ export default {
 			if (this.isImportDone) {
 				this.$store.dispatch('changeStage', 'default')
 			}
-		}
-	}
+		},
+	},
 }
 </script>

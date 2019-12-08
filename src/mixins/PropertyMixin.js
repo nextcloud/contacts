@@ -28,51 +28,51 @@ export default {
 		// Default property type. e.g. "WORK,HOME"
 		selectType: {
 			type: [Object],
-			default: () => {}
+			default: () => {},
 		},
 		// Coming from the rfcProps Model
 		propModel: {
 			type: Object,
 			default: () => {},
-			required: true
+			required: true,
 		},
 		propType: {
 			type: String,
-			default: 'text'
+			default: 'text',
 		},
 		// The current property passed as Object
 		property: {
 			type: Object,
 			default: () => {},
-			required: true
+			required: true,
 		},
 		// Allows us to know if we need to
 		// add the property header or not
 		isFirstProperty: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		// Allows us to know if we need to
 		// add an extra space at the end
 		isLastProperty: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		// Is it read-only?
 		isReadOnly: {
 			type: Boolean,
-			default: false
+			default: false,
 		},
 		// The available TYPE options from the propModel
 		// not used on the PropertySelect
 		options: {
 			type: Array,
-			default: () => []
+			default: () => [],
 		},
 		localContact: {
 			type: Contact,
-			default: null
-		}
+			default: null,
+		},
 	},
 
 	data() {
@@ -82,7 +82,7 @@ export default {
 			// many times as we can and debounce-fire the update
 			// later
 			localValue: this.value,
-			localType: this.selectType
+			localType: this.selectType,
 		}
 	},
 
@@ -92,7 +92,7 @@ export default {
 		},
 		haveAction() {
 			return this.actions && this.actions.length > 0
-		}
+		},
 	},
 
 	watch: {
@@ -106,7 +106,7 @@ export default {
 		},
 		selectType: function() {
 			this.localType = this.selectType
-		}
+		},
 	},
 
 	methods: {
@@ -156,12 +156,12 @@ export default {
 
 		getNcGroupCount() {
 			const props = this.localContact.jCal[1]
-				.map(prop => prop[0].split('.')[0])				// itemxxx.adr => itemxxx
-				.filter(name => name.startsWith('nextcloud'))	// filter nextcloudxxx.adr
-				.map(prop => parseInt(prop.split('nextcloud')[1]))	// nextcloudxxx => xxx
+				.map(prop => prop[0].split('.')[0]) // itemxxx.adr => itemxxx
+				.filter(name => name.startsWith('nextcloud')) // filter nextcloudxxx.adr
+				.map(prop => parseInt(prop.split('nextcloud')[1])) // nextcloudxxx => xxx
 			return props.length > 0
 				? Math.max.apply(null, props) // get max iteration of nextcloud grouped props
 				: 0
-		}
-	}
+		},
+	},
 }

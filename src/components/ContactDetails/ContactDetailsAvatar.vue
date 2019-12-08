@@ -98,14 +98,14 @@ export default {
 
 	components: {
 		ActionLink,
-		ActionButton
+		ActionButton,
 	},
 
 	props: {
 		contact: {
 			type: Object,
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
@@ -115,7 +115,7 @@ export default {
 			loading: false,
 			root: generateRemoteUrl(`dav/files/${OC.getCurrentUser().uid}`),
 			width: 0,
-			height: 0
+			height: 0,
 		}
 	},
 	computed: {
@@ -124,7 +124,7 @@ export default {
 				return this.contact.addressbook.readOnly
 			}
 			return false
-		}
+		},
 	},
 	mounted() {
 		// update image size on window resize
@@ -142,10 +142,10 @@ export default {
 			if (event.target.files && !this.loading) {
 				this.closeMenu()
 
-				let file = event.target.files[0]
+				const file = event.target.files[0]
 				if (file && file.size && file.size <= 1 * 1024 * 1024) {
-					let reader = new FileReader()
-					let self = this
+					const reader = new FileReader()
+					const self = this
 
 					reader.onload = function(e) {
 						// only getting the raw binary base64
@@ -228,7 +228,7 @@ export default {
 						'image/gif',
 						'image/x-xbitmap',
 						'image/bmp',
-						'image/svg+xml'
+						'image/svg+xml',
 					])
 					.build()
 
@@ -238,7 +238,7 @@ export default {
 					try {
 						const { get } = await axios()
 						const response = await get(`${this.root}${file}`, {
-							responseType: 'arraybuffer'
+							responseType: 'arraybuffer',
 						})
 						const type = response.headers['content-type']
 						const data = Buffer.from(response.data, 'binary').toString('base64')
@@ -317,9 +317,9 @@ export default {
 					}
 				}
 			}
-		}
+		},
 
-	}
+	},
 
 }
 </script>

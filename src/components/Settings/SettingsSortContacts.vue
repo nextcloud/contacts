@@ -46,20 +46,20 @@ export default {
 			return [
 				{
 					label: t('contacts', 'First name'),
-					key: 'firstName'
+					key: 'firstName',
 				},
 				{
 					label: t('contacts', 'Last name'),
-					key: 'lastName'
+					key: 'lastName',
 				},
 				{
 					label: t('contacts', 'Display name'),
-					key: 'displayName'
+					key: 'displayName',
 				},
 				{
 					label: t('contacts', 'Last modified'),
-					key: 'rev'
-				}
+					key: 'rev',
+				},
 			]
 		},
 		/* Current order Key */
@@ -68,7 +68,7 @@ export default {
 		},
 		orderKeyOption() {
 			return this.options.filter(option => option.key === this.orderKey)[0]
-		}
+		},
 	},
 	methods: {
 		sortContacts(orderKey) {
@@ -79,7 +79,7 @@ export default {
 		},
 		formatSortByLabel(option) {
 			return t('contacts', 'Sort by {sorting}', { sorting: option.label })
-		}
-	}
+		},
+	},
 }
 </script>

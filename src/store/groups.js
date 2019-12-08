@@ -21,7 +21,7 @@
  */
 
 const state = {
-	groups: []
+	groups: [],
 }
 
 const mutations = {
@@ -42,7 +42,7 @@ const mutations = {
 					if (!group) {
 						state.groups.push({
 							name: groupName,
-							contacts: []
+							contacts: [],
 						})
 						group = state.groups.find(search => search.name === groupName)
 					}
@@ -67,7 +67,7 @@ const mutations = {
 			if (!group) {
 				state.groups.push({
 					name: groupName,
-					contacts: []
+					contacts: [],
 				})
 				group = state.groups.find(search => search.name === groupName)
 			}
@@ -84,8 +84,8 @@ const mutations = {
 	 * @param {Contact} data.contact the contact
 	 */
 	removeContactToGroup(state, { groupName, contact }) {
-		let contacts = state.groups.find(search => search.name === groupName).contacts
-		let index = contacts.findIndex(search => search === contact.key)
+		const contacts = state.groups.find(search => search.name === groupName).contacts
+		const index = contacts.findIndex(search => search === contact.key)
 		if (index > -1) {
 			contacts.splice(index, 1)
 		}
@@ -104,11 +104,11 @@ const mutations = {
 				group.contacts.splice(index, 1)
 			}
 		})
-	}
+	},
 }
 
 const getters = {
-	getGroups: state => state.groups
+	getGroups: state => state.groups,
 }
 
 const actions = {
@@ -145,7 +145,7 @@ const actions = {
 	 */
 	removeContactToGroup(context, { groupName, contact }) {
 		context.commit('removeContactToGroup', { groupName, contact })
-	}
+	},
 }
 
 export default { state, mutations, getters, actions }

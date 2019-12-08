@@ -75,7 +75,7 @@ if (window.location.pathname.split('/')[1] === 'index.php'
 	&& oc_config.modRewriteWorking) {
 	router.push({
 		name: 'group',
-		params: { selectedGroup: t('contacts', 'All contacts') }
+		params: { selectedGroup: t('contacts', 'All contacts') },
 	})
 }
 
@@ -84,5 +84,5 @@ export default new Vue({
 	name: 'ContactsApp',
 	router,
 	store,
-	render: h => h(App)
+	render: h => h(App),
 })

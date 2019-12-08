@@ -26,7 +26,7 @@ export default {
 		component: {
 			type: Object,
 			default: () => {},
-			required: true
-		}
-	}
+			required: true,
+		},
+	},
 }

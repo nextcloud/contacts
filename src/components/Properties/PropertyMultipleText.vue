@@ -109,7 +109,7 @@ export default {
 
 	components: {
 		PropertyTitle,
-		PropertyActions
+		PropertyActions,
 	},
 
 	mixins: [PropertyMixin],
@@ -118,23 +118,23 @@ export default {
 		value: {
 			type: [Array, Object],
 			default: () => [],
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	computed: {
 		gridLength() {
-			let hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
-			let isLast = this.isLastProperty
-			let hasValueNames = this.propModel.options || this.selectType || !this.property.isStructuredValue ? 1 : 0
-			let length = this.propModel.displayOrder ? this.propModel.displayOrder.length : this.value.length
+			const hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
+			const isLast = this.isLastProperty
+			const hasValueNames = this.propModel.options || this.selectType || !this.property.isStructuredValue ? 1 : 0
+			const length = this.propModel.displayOrder ? this.propModel.displayOrder.length : this.value.length
 			return hasValueNames + hasTitle + length + isLast
 		},
 
 		filteredValue() {
 			return this.localValue.filter((value, index) => index > 0)
-		}
-	}
+		},
+	},
 }
 
 </script>

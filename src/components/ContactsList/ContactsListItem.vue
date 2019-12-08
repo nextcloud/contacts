@@ -64,23 +64,23 @@ export default {
 	filters: {
 		firstLetter(value) {
 			return value.charAt(0)
-		}
+		},
 	},
 	props: {
 		index: {
 			type: Number,
-			required: true
+			required: true,
 		},
 		contact: {
 			type: Object,
-			required: true
-		}
+			required: true,
+		},
 	},
 	data() {
 		return {
 			deleteInterval: null,
 			deleteTimeout: null,
-			countdown: 7
+			countdown: 7,
 		}
 	},
 	computed: {
@@ -106,7 +106,7 @@ export default {
 		 */
 		colorAvatar() {
 			try {
-				let color = this.contact.uid.toRgb()
+				const color = this.contact.uid.toRgb()
 				return `rgb(${color.r}, ${color.g}, ${color.b})`
 			} catch (e) {
 				return 'grey'
@@ -117,7 +117,7 @@ export default {
 				return `url(${this.contact.photoUrl})`
 			}
 			return `url(${this.contact.url}?photo)`
-		}
+		},
 	},
 	methods: {
 		/**
@@ -159,7 +159,7 @@ export default {
 		selectContact() {
 			// change url with router
 			this.$router.push({ name: 'contact', params: { selectedGroup: this.selectedGroup, selectedContact: this.contact.key } })
-		}
-	}
+		},
+	},
 }
 </script>

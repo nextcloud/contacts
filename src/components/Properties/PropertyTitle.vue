@@ -39,18 +39,18 @@ export default {
 		icon: {
 			type: String,
 			default: '',
-			required: true
+			required: true,
 		},
 		readableName: {
 			type: String,
 			default: '',
-			required: true
+			required: true,
 		},
 		info: {
 			type: String,
 			default: '',
-			required: false
-		}
-	}
+			required: false,
+		},
+	},
 }
 </script>

@@ -42,20 +42,20 @@ export default new Router({
 			// always load default group
 			redirect: {
 				name: 'group',
-				params: { selectedGroup: t('contacts', 'All contacts') }
+				params: { selectedGroup: t('contacts', 'All contacts') },
 			},
 			children: [
 				{
 					path: ':selectedGroup',
 					name: 'group',
-					component: Contacts
+					component: Contacts,
 				},
 				{
 					path: ':selectedGroup/:selectedContact',
 					name: 'contact',
-					component: Contacts
-				}
-			]
-		}
-	]
+					component: Contacts,
+				},
+			],
+		},
+	],
 })

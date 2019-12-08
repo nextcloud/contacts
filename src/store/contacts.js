@@ -26,14 +26,14 @@ import Contact from '../models/contact'
 import validate from '../services/validate'
 
 const sortData = (a, b) => {
-	var nameA = typeof a.value === 'string'
-		? a.value.toUpperCase()	// ignore upper and lowercase
-		: a.value.toUnixTime()	// only other sorting we support is a vCardTime
-	var nameB = typeof b.value === 'string'
+	const nameA = typeof a.value === 'string'
+		? a.value.toUpperCase() // ignore upper and lowercase
+		: a.value.toUnixTime() // only other sorting we support is a vCardTime
+	const nameB = typeof b.value === 'string'
 		? b.value.toUpperCase() // ignore upper and lowercase
-		: b.value.toUnixTime()	// only other sorting we support is a vCardTime
+		: b.value.toUnixTime() // only other sorting we support is a vCardTime
 
-	let score = nameA.localeCompare
+	const score = nameA.localeCompare
 		? nameA.localeCompare(nameB)
 		: nameB - nameA
 	// if equal, fallback to the key
@@ -47,7 +47,7 @@ const state = {
 	// https://codepen.io/skjnldsv/pen/ZmKvQo
 	contacts: {},
 	sortedContacts: [],
-	orderKey: 'displayName'
+	orderKey: 'displayName',
 }
 
 const mutations = {
@@ -79,7 +79,7 @@ const mutations = {
 	deleteContact(state, contact) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
 
-			let index = state.sortedContacts.findIndex(search => search.key === contact.key)
+			const index = state.sortedContacts.findIndex(search => search.key === contact.key)
 			state.sortedContacts.splice(index, 1)
 			Vue.delete(state.contacts, contact.key)
 
@@ -100,14 +100,14 @@ const mutations = {
 			// Checking contact validity 🔍🙈
 			validate(contact)
 
-			let sortedContact = {
+			const sortedContact = {
 				key: contact.key,
-				value: contact[state.orderKey]
+				value: contact[state.orderKey],
 			}
 
 			// Not using sort, splice has far better performances
 			// https://jsperf.com/sort-vs-splice-in-array
-			for (var i = 0, len = state.sortedContacts.length; i < len; i++) {
+			for (let i = 0, len = state.sortedContacts.length; i < len; i++) {
 				if (sortData(state.sortedContacts[i], sortedContact) >= 0) {
 					state.sortedContacts.splice(i, 0, sortedContact)
 					break
@@ -141,10 +141,10 @@ const mutations = {
 
 			// replace contact object data
 			state.contacts[contact.key].updateContact(contact.jCal)
-			let sortedContact = state.sortedContacts.find(search => search.key === contact.key)
+			const sortedContact = state.sortedContacts.find(search => search.key === contact.key)
 
 			// has the sort key changed for this contact ?
-			let hasChanged = sortedContact.value !== contact[state.orderKey]
+			const hasChanged = sortedContact.value !== contact[state.orderKey]
 			if (hasChanged) {
 				// then update the new data
 				sortedContact.value = contact[state.orderKey]
@@ -168,10 +168,10 @@ const mutations = {
 	updateContactAddressbook(state, { contact, addressbook }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
 			// replace contact object data by creating a new contact
-			let oldKey = contact.key
+			const oldKey = contact.key
 
 			// hijack reference
-			var newContact = contact
+			const newContact = contact
 
 			// delete old key, cut reference
 			Vue.delete(state.contacts, oldKey)
@@ -183,10 +183,10 @@ const mutations = {
 			Vue.set(state.contacts, newContact.key, newContact)
 
 			// Update sorted contacts list, replace at exact same position
-			let index = state.sortedContacts.findIndex(search => search.key === oldKey)
+			const index = state.sortedContacts.findIndex(search => search.key === oldKey)
 			state.sortedContacts[index] = {
 				key: newContact.key,
-				value: newContact[state.orderKey]
+				value: newContact[state.orderKey],
 			}
 		} else {
 			console.error('Error while replacing the addressbook of following contact', contact)
@@ -267,14 +267,14 @@ const mutations = {
 		} else {
 			console.error('Error while handling the following contact', contact)
 		}
-	}
+	},
 }
 
 const getters = {
 	getContacts: state => state.contacts,
 	getSortedContacts: state => state.sortedContacts,
 	getContact: (state) => (key) => state.contacts[key],
-	getOrderKey: state => state.orderKey
+	getOrderKey: state => state.orderKey,
 }
 
 const actions = {
@@ -330,7 +330,7 @@ const actions = {
 		rev.fromUnixTime(Date.now() / 1000)
 		contact.rev = rev
 
-		let vData = ICAL.stringify(contact.vCard.jCal)
+		const vData = ICAL.stringify(contact.vCard.jCal)
 
 		// if no dav key, contact does not exists on server
 		if (!contact.dav) {
@@ -380,11 +380,11 @@ const actions = {
 		}
 		return contact.dav.fetchCompleteData()
 			.then((response) => {
-				let newContact = new Contact(contact.dav.data, contact.addressbook)
+				const newContact = new Contact(contact.dav.data, contact.addressbook)
 				context.commit('updateContact', newContact)
 			})
 			.catch((error) => { throw error })
-	}
+	},
 }
 
 export default { state, mutations, getters, actions }

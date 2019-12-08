@@ -39,24 +39,24 @@ export default {
 	name: 'PropertyActions',
 
 	components: {
-		ActionButton
+		ActionButton,
 	},
 
 	props: {
 		actions: {
 			type: Array,
-			default: () => []
+			default: () => [],
 		},
 		propertyComponent: {
 			type: Object,
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	methods: {
 		deleteProperty() {
 			this.$emit('delete')
-		}
-	}
+		},
+	},
 }
 </script>
