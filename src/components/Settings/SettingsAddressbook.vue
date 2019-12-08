@@ -104,7 +104,7 @@ export default {
 		ActionLink,
 		ActionButton,
 		ActionInput,
-		ActionCheckbox
+		ActionCheckbox,
 	},
 
 	props: {
@@ -112,8 +112,8 @@ export default {
 			type: Object,
 			default() {
 				return {}
-			}
-		}
+			},
+		},
 	},
 	data() {
 		return {
@@ -125,7 +125,7 @@ export default {
 			menuOpen: false,
 			renameLoading: false,
 			shareOpen: false,
-			toggleEnabledLoading: false
+			toggleEnabledLoading: false,
 		}
 	},
 	computed: {
@@ -148,7 +148,7 @@ export default {
 					'Shared with {num} entity',
 					'Shared with {num} entities',
 					this.addressbook.shares.length, {
-						num: this.addressbook.shares.length
+						num: this.addressbook.shares.length,
 					})
 				: '' // disable the tooltip
 		},
@@ -159,14 +159,14 @@ export default {
 					: t('contacts', 'Can not copy')
 			}
 			return t('contacts', 'Copy link')
-		}
+		},
 	},
 	watch: {
 		menuOpen: function() {
 			if (this.menuOpen === false) {
 				this.editingName = false
 			}
-		}
+		},
 	},
 	mounted() {
 		// required if popup needs to stay opened after menu click
@@ -226,9 +226,9 @@ export default {
 			this.editingName = true
 		},
 		async updateAddressbookName(e) {
-			let addressbook = this.addressbook
+			const addressbook = this.addressbook
 			// New name for addressbook - inputed value from form
-			let newName = this.$refs.renameInput.$el.querySelector('input[type="text"]').value
+			const newName = this.$refs.renameInput.$el.querySelector('input[type="text"]').value
 			// change to loading status
 			this.renameLoading = true
 			try {
@@ -268,7 +268,7 @@ export default {
 					this.copySuccess = false
 				}, 2000)
 			}
-		}
-	}
+		},
+	},
 }
 </script>

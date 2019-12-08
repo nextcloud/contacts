@@ -36,14 +36,14 @@ export default {
 		value: {
 			type: VCardTime,
 			required: true,
-			default: null
-		}
+			default: null,
+		},
 	},
 
 	computed: {
 		relativeDate() {
 			return OC.Util.relativeModifiedDate(this.value.toUnixTime() * 1000)
-		}
-	}
+		},
+	},
 }
 </script>

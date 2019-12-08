@@ -36,10 +36,10 @@ export default new Store({
 		addressbooks,
 		contacts,
 		groups,
-		importState
+		importState,
 	},
 
-	mutations
+	mutations,
 
 	/**
 	 * the contat ical update itself on property getters

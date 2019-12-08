@@ -32,7 +32,7 @@ import ActionsMixin from '../../mixins/ActionsMixin'
 export default {
 	name: 'ActionCopyNtoFN',
 	components: {
-		ActionButton
+		ActionButton,
 	},
 	mixins: [ActionsMixin],
 	methods: {
@@ -45,7 +45,7 @@ export default {
 				this.component.contact.fullName = n.slice(0, 2).reverse().join(' ')
 				this.component.updateContact()
 			}
-		}
-	}
+		},
+	},
 }
 </script>

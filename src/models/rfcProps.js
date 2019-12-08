@@ -33,14 +33,14 @@ const localesState = loadState('contacts', 'locales')
 const locales = localesState
 	? localesState.map(({ code, name }) => ({
 		id: code.toLowerCase().replace('_', '-'),
-		name
+		name,
 	}))
 	: []
 
 const properties = {
 	nickname: {
 		readableName: t('contacts', 'Nickname'),
-		icon: 'icon-user'
+		icon: 'icon-user',
 	},
 	n: {
 		readableName: t('contacts', 'Detailed name'),
@@ -49,25 +49,25 @@ const properties = {
 			t('contacts', 'First name'),
 			t('contacts', 'Additional names'),
 			t('contacts', 'Prefix'),
-			t('contacts', 'Suffix')
+			t('contacts', 'Suffix'),
 		],
 		displayOrder: [3, 1, 2, 0, 4],
 		defaultValue: {
-			value: ['', '', '', '', '']
+			value: ['', '', '', '', ''],
 		},
 		icon: 'icon-user',
 		actions: [
-			ActionCopyNtoFN
-		]
+			ActionCopyNtoFN,
+		],
 	},
 	note: {
 		readableName: t('contacts', 'Notes'),
-		icon: 'icon-rename'
+		icon: 'icon-rename',
 	},
 	url: {
 		multiple: true,
 		readableName: t('contacts', 'Website'),
-		icon: 'icon-public'
+		icon: 'icon-public',
 	},
 	geo: {
 		multiple: true,
@@ -75,8 +75,8 @@ const properties = {
 		icon: 'icon-address',
 		defaultjCal: {
 			'3.0': [{}, 'FLOAT', '90.000;0.000'],
-			'4.0': [{}, 'URI', 'geo:90.000,0.000']
-		}
+			'4.0': [{}, 'URI', 'geo:90.000,0.000'],
+		},
 	},
 	cloud: {
 		multiple: true,
@@ -85,13 +85,13 @@ const properties = {
 		force: 'text',
 		defaultValue: {
 			value: [''],
-			type: [defaultProfileState]
+			type: [defaultProfileState],
 		},
 		options: [
 			{ id: 'HOME', name: t('contacts', 'Home') },
 			{ id: 'WORK', name: t('contacts', 'Work') },
-			{ id: 'OTHER', name: t('contacts', 'Other') }
-		]
+			{ id: 'OTHER', name: t('contacts', 'Other') },
+		],
 	},
 	adr: {
 		multiple: true,
@@ -103,31 +103,31 @@ const properties = {
 			t('contacts', 'City'),
 			t('contacts', 'State or province'),
 			t('contacts', 'Postal code'),
-			t('contacts', 'Country')
+			t('contacts', 'Country'),
 		],
 		displayOrder: [0, 2, 1, 5, 3, 4, 6],
 		icon: 'icon-address',
 		default: true,
 		defaultValue: {
 			value: ['', '', '', '', '', '', ''],
-			type: [defaultProfileState]
+			type: [defaultProfileState],
 		},
 		options: [
 			{ id: 'HOME', name: t('contacts', 'Home') },
 			{ id: 'WORK', name: t('contacts', 'Work') },
-			{ id: 'OTHER', name: t('contacts', 'Other') }
-		]
+			{ id: 'OTHER', name: t('contacts', 'Other') },
+		],
 	},
 	bday: {
 		readableName: t('contacts', 'Birthday'),
 		icon: 'icon-calendar-dark',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
-			value: new VCardTime(null, null, 'date').fromJSDate(new Date())
+			value: new VCardTime(null, null, 'date').fromJSDate(new Date()),
 		},
 		actions: [
-			ActionToggleYear
-		]
+			ActionToggleYear,
+		],
 	},
 	anniversary: {
 		readableName: t('contacts', 'Anniversary'),
@@ -135,16 +135,16 @@ const properties = {
 		icon: 'icon-calendar-dark',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
-			value: new VCardTime(null, null, 'date').fromJSDate(new Date())
-		}
+			value: new VCardTime(null, null, 'date').fromJSDate(new Date()),
+		},
 	},
 	deathdate: {
 		readableName: t('contacts', 'Date of death'),
 		icon: 'icon-calendar-dark',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
-			value: new VCardTime(null, null, 'date').fromJSDate(new Date())
-		}
+			value: new VCardTime(null, null, 'date').fromJSDate(new Date()),
+		},
 	},
 	email: {
 		multiple: true,
@@ -153,13 +153,13 @@ const properties = {
 		default: true,
 		defaultValue: {
 			value: '',
-			type: [defaultProfileState]
+			type: [defaultProfileState],
 		},
 		options: [
 			{ id: 'HOME', name: t('contacts', 'Home') },
 			{ id: 'WORK', name: t('contacts', 'Work') },
-			{ id: 'OTHER', name: t('contacts', 'Other') }
-		]
+			{ id: 'OTHER', name: t('contacts', 'Other') },
+		],
 	},
 	impp: {
 		multiple: true,
@@ -167,15 +167,15 @@ const properties = {
 		icon: 'icon-comment',
 		defaultValue: {
 			value: [''],
-			type: ['SKYPE']
+			type: ['SKYPE'],
 		},
 		options: [
 			{ id: 'IRC', name: 'IRC' },
 			{ id: 'KIK', name: 'KiK' },
 			{ id: 'SKYPE', name: 'Skype' },
 			{ id: 'TELEGRAM', name: 'Telegram' },
-			{ id: 'XMPP', name: 'XMPP' }
-		]
+			{ id: 'XMPP', name: 'XMPP' },
+		],
 	},
 	tel: {
 		multiple: true,
@@ -184,7 +184,7 @@ const properties = {
 		default: true,
 		defaultValue: {
 			value: '',
-			type: [defaultProfileState, 'VOICE']
+			type: [defaultProfileState, 'VOICE'],
 		},
 		options: [
 			{ id: 'HOME,VOICE', name: t('contacts', 'Home') },
@@ -201,8 +201,8 @@ const properties = {
 			{ id: 'PAGER', name: t('contacts', 'Pager') },
 			{ id: 'VOICE', name: t('contacts', 'Voice') },
 			{ id: 'CAR', name: t('contacts', 'Car') },
-			{ id: 'WORK,PAGER', name: t('contacts', 'Work pager') }
-		]
+			{ id: 'WORK,PAGER', name: t('contacts', 'Work pager') },
+		],
 	},
 	'x-socialprofile': {
 		multiple: true,
@@ -211,7 +211,7 @@ const properties = {
 		readableName: t('contacts', 'Social network'),
 		defaultValue: {
 			value: '',
-			type: ['facebook']
+			type: ['facebook'],
 		},
 		info: t(
 			'contacts',
@@ -231,8 +231,8 @@ const properties = {
 			{ id: 'YOUTUBE', name: 'YouTube' },
 			{ id: 'MASTODON', name: 'Mastodon' },
 			{ id: 'DIASPORA', name: 'Diaspora' },
-			{ id: 'OTHER', name: 'other Social Media' }
-		]
+			{ id: 'OTHER', name: 'other Social Media' },
+		],
 	},
 	relationship: {
 		readableName: t('contacts', 'Relationship'),
@@ -254,8 +254,8 @@ const properties = {
 			{ id: 'FRIEND', name: t('contacts', 'Friend') },
 			{ id: 'COLLEAGUE', name: t('contacts', 'Colleague') },
 			{ id: 'MANAGER', name: t('contacts', 'Manager') },
-			{ id: 'ASSISTANT', name: t('contacts', 'Assistant') }
-		]
+			{ id: 'ASSISTANT', name: t('contacts', 'Assistant') },
+		],
 	},
 	related: {
 		multiple: true,
@@ -267,7 +267,7 @@ const properties = {
 		),
 		defaultValue: {
 			value: [''],
-			type: ['CONTACT']
+			type: ['CONTACT'],
 		},
 		options: [
 			{ id: 'CONTACT', name: t('contacts', 'Contact') },
@@ -285,14 +285,14 @@ const properties = {
 			{ id: 'PARENT', name: t('contacts', 'Parent') },
 			{ id: 'BROTHER', name: t('contacts', 'Brother') },
 			{ id: 'SISTER', name: t('contacts', 'Sister') },
-			{ id: 'RELATIVE', name: t('contacts', 'Relative') }
-		]
+			{ id: 'RELATIVE', name: t('contacts', 'Relative') },
+		],
 	},
 	gender: {
 		readableName: t('contacts', 'Gender'),
 		defaultValue: {
 			// default to Female 🙋
-			value: 'F'
+			value: 'F',
 		},
 		force: 'select',
 		options: [
@@ -300,8 +300,8 @@ const properties = {
 			{ id: 'M', name: t('contacts', 'Male') },
 			{ id: 'O', name: t('contacts', 'Other') },
 			{ id: 'N', name: t('contacts', 'None') },
-			{ id: 'U', name: t('contacts', 'Unknown') }
-		]
+			{ id: 'U', name: t('contacts', 'Unknown') },
+		],
 	},
 	tz: {
 		readableName: t('contacts', 'Timezone'),
@@ -309,17 +309,17 @@ const properties = {
 		icon: 'icon-timezone',
 		options: zones.map(zone => ({
 			id: zone,
-			name: zone
-		}))
+			name: zone,
+		})),
 	},
 	lang: {
 		readableName: t('contacts', 'Spoken languages'),
 		icon: 'icon-language',
 		defaultValue: {
-			value: 'en'
+			value: 'en',
 		},
-		multiple: true
-	}
+		multiple: true,
+	},
 }
 
 if (locales.length > 0) {
@@ -356,7 +356,7 @@ const fieldOrder = [
 	'note',
 	'categories',
 	'role',
-	'gender'
+	'gender',
 ]
 
 export default { properties, fieldOrder }

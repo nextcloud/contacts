@@ -27,12 +27,12 @@
 export default {
 	name: 'missing FN',
 	run: contact => {
-		return !contact.vCard.hasProperty('fn')						// No FN
-			|| contact.vCard.getFirstPropertyValue('fn') === ''		// Empty FN
+		return !contact.vCard.hasProperty('fn') // No FN
+			|| contact.vCard.getFirstPropertyValue('fn') === '' // Empty FN
 			|| ( // we don't want to fix newly created contacts
-				contact.dav															// Existing contact
+				contact.dav // Existing contact
 				&& contact.vCard.getFirstPropertyValue('fn')
-					.toLowerCase() === t('contacts', 'New contact').toLowerCase()	// AND Unchanged FN
+					.toLowerCase() === t('contacts', 'New contact').toLowerCase() // AND Unchanged FN
 			)
 	},
 	fix: contact => {
@@ -60,5 +60,5 @@ export default {
 			return false
 		}
 		return false
-	}
+	},
 }

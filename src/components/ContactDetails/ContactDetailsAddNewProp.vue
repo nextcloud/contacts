@@ -49,14 +49,14 @@ export default {
 	name: 'ContactDetailsAddNewProp',
 
 	components: {
-		PropertyTitle
+		PropertyTitle,
 	},
 
 	props: {
 		contact: {
 			type: Contact,
-			default: null
-		}
+			default: null,
+		},
 	},
 
 	computed: {
@@ -92,10 +92,10 @@ export default {
 				.map(key => {
 					return {
 						id: key,
-						name: this.properties[key].readableName
+						name: this.properties[key].readableName,
 					}
 				}).sort((a, b) => a.name.localeCompare(b.name))
-		}
+		},
 	},
 
 	methods: {
@@ -108,17 +108,17 @@ export default {
 		addProp({ id }) {
 			if (this.properties[id] && this.properties[id].defaultjCal
 				&& this.properties[id].defaultjCal[this.contact.version]) {
-				let defaultjCal = this.properties[id].defaultjCal[this.contact.version]
-				let property = new ICAL.Property([id, ...defaultjCal])
+				const defaultjCal = this.properties[id].defaultjCal[this.contact.version]
+				const property = new ICAL.Property([id, ...defaultjCal])
 				this.contact.vCard.addProperty(property)
 			} else {
-				let defaultData = this.properties[id].defaultValue
-				let property = this.contact.vCard.addPropertyWithValue(id, defaultData ? defaultData.value : '')
+				const defaultData = this.properties[id].defaultValue
+				const property = this.contact.vCard.addPropertyWithValue(id, defaultData ? defaultData.value : '')
 				if (defaultData && defaultData.type) {
 					property.setParameter('type', defaultData.type)
 				}
 			}
-		}
-	}
+		},
+	},
 }
 </script>

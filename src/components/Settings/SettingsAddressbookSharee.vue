@@ -60,17 +60,17 @@ export default {
 	props: {
 		addressbook: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		sharee: {
 			type: Object,
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
 		return {
-			loading: false
+			loading: false,
 		}
 	},
 
@@ -81,7 +81,7 @@ export default {
 		// generated id for this sharee
 		uid() {
 			return this.sharee.id + this.addressbook.id + Math.floor(Math.random() * 1000)
-		}
+		},
 	},
 
 	methods: {
@@ -94,7 +94,7 @@ export default {
 			try {
 				await this.$store.dispatch('removeSharee', {
 					addressbook: this.addressbook,
-					uri: this.sharee.uri
+					uri: this.sharee.uri,
 				})
 			} catch (error) {
 				console.error(error)
@@ -113,7 +113,7 @@ export default {
 				await this.$store.dispatch('toggleShareeWritable', {
 					addressbook: this.addressbook,
 					uri: this.sharee.uri,
-					writeable: !this.sharee.writeable
+					writeable: !this.sharee.writeable,
 				})
 			} catch (error) {
 				console.error(error)
@@ -121,7 +121,7 @@ export default {
 			} finally {
 				this.loading = false
 			}
-		}
-	}
+		},
+	},
 }
 </script>

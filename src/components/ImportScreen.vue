@@ -76,7 +76,7 @@ export default {
 			return this.total <= 0
 				? 0
 				: Math.floor(this.progress / this.total * 100)
-		}
-	}
+		},
+	},
 }
 </script>

@@ -29,5 +29,5 @@ export default [
 	badGenderType,
 	duplicateTypes,
 	invalidREV,
-	missingFN
+	missingFN,
 ]

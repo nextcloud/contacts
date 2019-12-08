@@ -60,5 +60,5 @@ export default {
 			console.error(error)
 		}
 		return results
-	}
+	},
 }

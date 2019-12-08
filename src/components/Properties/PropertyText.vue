@@ -97,7 +97,7 @@ export default {
 
 	components: {
 		PropertyTitle,
-		PropertyActions
+		PropertyActions,
 	},
 
 	mixins: [PropertyMixin],
@@ -106,28 +106,28 @@ export default {
 		propName: {
 			type: String,
 			default: 'text',
-			required: true
+			required: true,
 		},
 		value: {
 			type: String,
 			default: '',
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
 		return {
 			// the textarea additionnal height compared to the
 			// default input text. Min is 2 grid height
-			noteHeight: 1
+			noteHeight: 1,
 		}
 	},
 
 	computed: {
 		gridLength() {
-			let hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
-			let isLast = this.isLastProperty ? 1 : 0
-			let noteHeight = this.propName === 'note'
+			const hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
+			const isLast = this.isLastProperty ? 1 : 0
+			const noteHeight = this.propName === 'note'
 				? this.noteHeight
 				: 0
 			// length is one & add one space at the end
@@ -167,7 +167,7 @@ export default {
 
 		haveExtHandler() {
 			return this.externalHandler.trim() !== '' && this.localValue && this.localValue.length > 0
-		}
+		},
 	},
 
 	mounted() {
@@ -198,7 +198,7 @@ export default {
 		updateValueNoDebounce(e) {
 			this.resizeGrid(e)
 			this.updateValue(e)
-		}
-	}
+		},
+	},
 }
 </script>

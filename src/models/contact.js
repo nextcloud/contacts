@@ -293,7 +293,7 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get groups() {
-		let groupsProp = this.vCard.getFirstProperty('categories')
+		const groupsProp = this.vCard.getFirstProperty('categories')
 		if (groupsProp) {
 			return groupsProp.getValues()
 				.filter(group => group.trim() !== '')

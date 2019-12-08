@@ -57,25 +57,25 @@ export default {
 	props: {
 		property: {
 			type: Property,
-			default: true
+			default: true,
 		},
 		sortedProperties: {
 			type: Array,
 			default() {
 				return []
-			}
+			},
 		},
 		index: {
 			type: Number,
-			default: 0
+			default: 0,
 		},
 		contact: {
 			type: Contact,
-			default: null
+			default: null,
 		},
 		localContact: {
 			type: Contact,
-			default: null
+			default: null,
 		},
 		/**
 		 * This is needed so that we can update
@@ -83,8 +83,8 @@ export default {
 		 */
 		updateContact: {
 			type: Function,
-			default: () => {}
-		}
+			default: () => {},
+		},
 	},
 
 	computed: {
@@ -222,12 +222,12 @@ export default {
 				if (this.propLabel) {
 					return {
 						id: this.propLabel.name,
-						name: this.propLabel.getFirstValue()
+						name: this.propLabel.getFirstValue(),
 					}
 				}
 				if (this.propModel && this.propModel.options && this.type) {
 
-					let selectedType = this.type
+					const selectedType = this.type
 						// vcard 3.0 save pref alongside TYPE
 						.filter(type => type !== 'pref')
 						// we only use uppercase strings
@@ -236,17 +236,17 @@ export default {
 					// Compare array and score them by how many matches they have to the selected type
 					// sorting directly is cleaner but slower
 					// https://jsperf.com/array-map-and-intersection-perf
-					let matchingTypes = this.propModel.options
+					const matchingTypes = this.propModel.options
 						.map(type => {
 							return {
 								type,
 								// "WORK,HOME" => ['WORK', 'HOME']
-								score: type.id.split(',').filter(value => selectedType.indexOf(value) !== -1).length
+								score: type.id.split(',').filter(value => selectedType.indexOf(value) !== -1).length,
 							}
 						})
 
 					// Sort by score, filtering out the null score and selecting the first match
-					let matchingType = matchingTypes
+					const matchingType = matchingTypes
 						.sort((a, b) => b.score - a.score)
 						.filter(type => type.score > 0)[0]
 
@@ -256,13 +256,13 @@ export default {
 				}
 				if (this.type) {
 					// vcard 3.0 save pref alongside TYPE
-					let selectedType = this.type
+					const selectedType = this.type
 						.filter(type => type !== 'pref')
 						.join(',')
 					if (selectedType.trim() !== '') {
 						return {
 							id: selectedType,
-							name: selectedType
+							name: selectedType,
 						}
 					}
 				}
@@ -291,7 +291,7 @@ export default {
 					}
 				}
 				this.updateContact()
-			}
+			},
 
 		},
 
@@ -316,13 +316,13 @@ export default {
 					this.property.setValue(data)
 				}
 				this.updateContact()
-			}
+			},
 		},
 
 		// property meta type
 		type: {
 			get() {
-				let type = this.property.getParameter('type')
+				const type = this.property.getParameter('type')
 				// ensure we have an array
 				if (type) {
 					return Array.isArray(type) ? type : [type]
@@ -331,7 +331,7 @@ export default {
 			},
 			set(data) {
 				this.property.setParameter('type', data)
-			}
+			},
 		},
 
 		// property meta pref
@@ -341,8 +341,8 @@ export default {
 			},
 			set(data) {
 				this.property.setParameter('pref', data)
-			}
-		}
+			},
+		},
 	},
 
 	methods: {
@@ -352,7 +352,7 @@ export default {
 		deleteProp() {
 			this.localContact.vCard.removeProperty(this.property)
 			this.updateContact()
-		}
-	}
+		},
+	},
 }
 </script>

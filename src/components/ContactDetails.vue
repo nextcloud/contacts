@@ -218,18 +218,18 @@ export default {
 		ContactProperty,
 		PropertyGroups,
 		PropertyRev,
-		PropertySelect
+		PropertySelect,
 	},
 
 	props: {
 		loading: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		contactKey: {
 			type: String,
-			default: undefined
-		}
+			default: undefined,
+		},
 	},
 
 	data() {
@@ -246,7 +246,7 @@ export default {
 			loadingData: true,
 			loadingUpdate: false,
 			openedMenu: false,
-			qrcode: ''
+			qrcode: '',
 		}
 	},
 
@@ -267,12 +267,12 @@ export default {
 			if (!this.contact.dav) {
 				return {
 					icon: 'icon-error-white header-icon--pulse',
-					msg: t('contacts', 'This contact is not yet synced. Edit it to save it to the server.')
+					msg: t('contacts', 'This contact is not yet synced. Edit it to save it to the server.'),
 				}
 			} else if (this.isReadOnly) {
 				return {
 					icon: 'icon-eye-white',
-					msg: t('contacts', 'This contact is in read-only mode. You do not have permission to edit this contact.')
+					msg: t('contacts', 'This contact is in read-only mode. You do not have permission to edit this contact.'),
 				}
 			}
 			return false
@@ -297,7 +297,7 @@ export default {
 		 */
 		colorAvatar() {
 			try {
-				let color = this.contact.uid.toRgb()
+				const color = this.contact.uid.toRgb()
 				return `rgb(${color.r}, ${color.g}, ${color.b})`
 			} catch (e) {
 				return 'grey'
@@ -328,7 +328,7 @@ export default {
 			return {
 				readableName: t('contacts', 'Addressbook'),
 				icon: 'icon-address-book',
-				options: this.addressbooksOptions
+				options: this.addressbooksOptions,
 			}
 		},
 
@@ -344,7 +344,7 @@ export default {
 			},
 			set: function(addressbookId) {
 				this.moveContactToAddressbook(addressbookId)
-			}
+			},
 		},
 
 		/**
@@ -355,7 +355,7 @@ export default {
 		groupsModel() {
 			return {
 				readableName: t('contacts', 'Groups'),
-				icon: 'icon-contacts'
+				icon: 'icon-contacts',
 			}
 		},
 
@@ -372,7 +372,7 @@ export default {
 			set: function(data) {
 				this.contact.groups = data
 				this.debounceUpdateContact()
-			}
+			},
 		},
 
 		/**
@@ -386,7 +386,7 @@ export default {
 				.map(addressbook => {
 					return {
 						id: addressbook.id,
-						name: addressbook.displayName
+						name: addressbook.displayName,
 					}
 				})
 		},
@@ -397,7 +397,7 @@ export default {
 		},
 		contact() {
 			return this.$store.getters.getContact(this.contactKey)
-		}
+		},
 	},
 
 	watch: {
@@ -405,7 +405,7 @@ export default {
 			if (this.contactKey) {
 				this.selectContact(this.contactKey)
 			}
-		}
+		},
 	},
 
 	beforeMount() {
@@ -454,11 +454,11 @@ export default {
 		 * Generate a qrcode for the contact
 		 */
 		showQRcode() {
-			let jCal = this.contact.jCal.slice(0)
+			const jCal = this.contact.jCal.slice(0)
 			// do not encode photo
 			jCal[1] = jCal[1].filter(props => props[0] !== 'photo')
 
-			let data = stringify(jCal)
+			const data = stringify(jCal)
 			if (data.length > 0) {
 				this.qrcode = btoa(qr.imageSync(data, { type: 'svg' }))
 			}
@@ -483,7 +483,7 @@ export default {
 		async selectContact(key) {
 			// local version of the contact
 			this.loadingData = true
-			let contact = this.$store.getters.getContact(key)
+			const contact = this.$store.getters.getContact(key)
 
 			if (contact) {
 				// if contact exists AND if exists on server
@@ -524,7 +524,7 @@ export default {
 		 * @param {string} addressbookId the desired addressbook ID
 		 */
 		async moveContactToAddressbook(addressbookId) {
-			let addressbook = this.addressbooks.find(search => search.id === addressbookId)
+			const addressbook = this.addressbooks.find(search => search.id === addressbookId)
 			this.loadingUpdate = true
 			if (addressbook) {
 				try {
@@ -532,15 +532,15 @@ export default {
 						// we need to use the store contact, not the local contact
 						// using this.contact and not this.localContact
 						contact: this.contact,
-						addressbook
+						addressbook,
 					})
 					// select the contact again
 					this.$router.push({
 						name: 'contact',
 						params: {
 							selectedGroup: this.$route.params.selectedGroup,
-							selectedContact: contact.key
-						}
+							selectedContact: contact.key,
+						},
 					})
 				} catch (error) {
 					console.error(error)
@@ -572,7 +572,7 @@ export default {
 		 */
 		updateLocalContact(contact) {
 			// create empty contact and copy inner data
-			let localContact = Object.assign(
+			const localContact = Object.assign(
 				Object.create(Object.getPrototypeOf(contact)),
 				contact
 			)
@@ -588,7 +588,7 @@ export default {
 				e.preventDefault()
 				this.debounceUpdateContact()
 			}
-		}
-	}
+		},
+	},
 }
 </script>

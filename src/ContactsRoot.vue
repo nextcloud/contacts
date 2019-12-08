@@ -26,6 +26,6 @@
 
 <script>
 export default {
-	name: 'ContactsRoot'
+	name: 'ContactsRoot',
 }
 </script>

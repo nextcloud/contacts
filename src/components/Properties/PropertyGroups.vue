@@ -67,28 +67,28 @@ export default {
 		propModel: {
 			type: Object,
 			default: () => {},
-			required: true
+			required: true,
 		},
 		value: {
 			type: Array,
 			default: () => [],
-			required: true
+			required: true,
 		},
 		contact: {
 			type: Contact,
 			default: null,
-			required: true
+			required: true,
 		},
 		// Is it read-only?
 		isReadOnly: {
 			type: Boolean,
-			default: false
-		}
+			default: false,
+		},
 	},
 
 	data() {
 		return {
-			localValue: this.value
+			localValue: this.value,
 		}
 	},
 
@@ -105,7 +105,7 @@ export default {
 		 */
 		formatGroupsTitle() {
 			return this.localValue.slice(3).join(', ')
-		}
+		},
 	},
 
 	watch: {
@@ -119,7 +119,7 @@ export default {
 		},
 		selectType: function() {
 			this.localType = this.selectType
-		}
+		},
 	},
 
 	methods: {
@@ -140,7 +140,7 @@ export default {
 		async addContactToGroup(groupName) {
 			await this.$store.dispatch('addContactToGroup', {
 				contact: this.contact,
-				groupName
+				groupName,
 			})
 			this.updateValue()
 		},
@@ -153,7 +153,7 @@ export default {
 		removeContactToGroup(groupName) {
 			this.$store.dispatch('removeContactToGroup', {
 				contact: this.contact,
-				groupName
+				groupName,
 			})
 		},
 
@@ -165,15 +165,15 @@ export default {
 		 */
 		validateGroup(groupName) {
 			// Only allow characters without vcard special chars
-			let groupRegex = /^[^;,:]+$/gmi
+			const groupRegex = /^[^;,:]+$/gmi
 			if (groupName.match(groupRegex)) {
 				this.addContactToGroup(groupName)
 				this.localValue.push(groupName)
 				return true
 			}
 			return false
-		}
-	}
+		},
+	},
 }
 
 </script>

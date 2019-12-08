@@ -25,17 +25,17 @@ import { generateRemoteUrl } from 'nextcloud-router'
 import { getRequestToken } from 'nextcloud-auth'
 
 function xhrProvider() {
-	var headers = {
+	const headers = {
 		'X-Requested-With': 'XMLHttpRequest',
-		'requesttoken': getRequestToken()
+		'requesttoken': getRequestToken(),
 	}
-	var xhr = new XMLHttpRequest()
-	var oldOpen = xhr.open
+	const xhr = new XMLHttpRequest()
+	const oldOpen = xhr.open
 
 	// override open() method to add headers
 	xhr.open = function() {
-		var result = oldOpen.apply(this, arguments)
-		for (let name in headers) {
+		const result = oldOpen.apply(this, arguments)
+		for (const name in headers) {
 			xhr.setRequestHeader(name, headers[name])
 		}
 		return result
@@ -45,5 +45,5 @@ function xhrProvider() {
 }
 
 export default new DavClient({
-	rootUrl: generateRemoteUrl('dav')
+	rootUrl: generateRemoteUrl('dav'),
 }, xhrProvider)

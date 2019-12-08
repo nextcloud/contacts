@@ -26,8 +26,8 @@ const state = {
 		accepted: 0,
 		denied: 0,
 		stage: 'default',
-		addressbook: ''
-	}
+		addressbook: '',
+	},
 }
 
 const mutations = {
@@ -88,11 +88,11 @@ const mutations = {
 		state.importState.total = 0
 		state.importState.accepted = 0
 		state.importState.denied = 0
-	}
+	},
 }
 
 const getters = {
-	getImportState: state => state.importState
+	getImportState: state => state.importState,
 }
 
 const actions = {
@@ -146,7 +146,7 @@ const actions = {
 		if (stage === 'parsing') {
 			context.commit('resetState')
 		}
-	}
+	},
 }
 
 export default { state, mutations, getters, actions }

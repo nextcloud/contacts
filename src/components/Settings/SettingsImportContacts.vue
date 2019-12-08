@@ -54,7 +54,7 @@ export default {
 
 	data() {
 		return {
-			importDestination: false
+			importDestination: false,
 		}
 	},
 
@@ -75,7 +75,7 @@ export default {
 				.map(addressbook => {
 					return {
 						id: addressbook.id,
-						displayName: addressbook.displayName
+						displayName: addressbook.displayName,
 					}
 				})
 		},
@@ -89,7 +89,7 @@ export default {
 			},
 			set(value) {
 				this.importDestination = value
-			}
+			},
 		},
 
 		// disable multiselect when there is only one address book
@@ -107,23 +107,23 @@ export default {
 		// are we currently importing ?
 		isImporting() {
 			return this.importState.stage !== 'default'
-		}
+		},
 	},
 	methods: {
 		processFile(event) {
-			let file = event.target.files[0]
-			let reader = new FileReader()
-			let selectedAddressbook = this.selectedAddressbook
+			const file = event.target.files[0]
+			const reader = new FileReader()
+			const selectedAddressbook = this.selectedAddressbook
 			this.$store.dispatch('changeStage', 'parsing')
 			this.$store.dispatch('setAddressbook', selectedAddressbook.displayName)
-			let self = this
+			const self = this
 			reader.onload = function(e) {
 				self.$store.dispatch('importContactsIntoAddressbook', { vcf: reader.result, addressbook: selectedAddressbook })
 				// reset input
 				event.target.value = ''
 			}
 			reader.readAsText(file)
-		}
-	}
+		},
+	},
 }
 </script>

@@ -34,12 +34,12 @@ import ActionsMixin from '../../mixins/ActionsMixin'
 export default {
 	name: 'ActionToggleYear',
 	components: {
-		ActionCheckbox
+		ActionCheckbox,
 	},
 	mixins: [ActionsMixin],
 	data() {
 		return {
-			omitYear: false
+			omitYear: false,
 		}
 	},
 
@@ -74,7 +74,7 @@ export default {
 			const dateObject = this.component.localValue.toJSON()
 			this.component.updateValue(dateObject, true)
 			this.omitYear = !this.omitYear
-		}
-	}
+		},
+	},
 }
 </script>

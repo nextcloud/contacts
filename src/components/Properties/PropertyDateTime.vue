@@ -87,7 +87,7 @@ export default {
 	components: {
 		DatetimePicker,
 		PropertyTitle,
-		PropertyActions
+		PropertyActions,
 	},
 
 	mixins: [PropertyMixin],
@@ -96,8 +96,8 @@ export default {
 		value: {
 			type: [VCardTime, String],
 			default: '',
-			required: true
-		}
+			required: true,
+		},
 	},
 
 	data() {
@@ -111,26 +111,26 @@ export default {
 
 			// locale and lang data
 			locale: 'en',
-			firstDay: window.firstDay === 0 ? 7 : window.firstDay,	// provided by nextcloud
+			firstDay: window.firstDay === 0 ? 7 : window.firstDay, // provided by nextcloud
 			lang: {
-				days: window.dayNamesShort,		// provided by nextcloud
-				months: window.monthNamesShort,	// provided by nextcloud
+				days: window.dayNamesShort, // provided by nextcloud
+				months: window.monthNamesShort, // provided by nextcloud
 				placeholder: {
-					date: t('contacts', 'Select Date')
-				}
+					date: t('contacts', 'Select Date'),
+				},
 			},
 			dateFormat: {
 				stringify: (date) => {
 					return date ? this.formatDateTime() : null
-				}
-			}
+				},
+			},
 		}
 	},
 
 	computed: {
 		gridLength() {
-			let hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
-			let isLast = this.isLastProperty ? 1 : 0
+			const hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
+			const isLast = this.isLastProperty ? 1 : 0
 			// length is always one & add one space at the end
 			return hasTitle + 1 + isLast
 		},
@@ -142,7 +142,7 @@ export default {
 				return new VCardTime.fromDateAndOrTimeString(this.localValue)
 			}
 			return this.localValue
-		}
+		},
 	},
 
 	async mounted() {
@@ -180,7 +180,7 @@ export default {
 			const objMap = ['year', 'month', 'day', 'hour', 'minute', 'second']
 			const rawArray = moment(date).toArray()
 
-			let dateObject = rawArray.reduce((acc, cur, index) => {
+			const dateObject = rawArray.reduce((acc, cur, index) => {
 				acc[objMap[index]] = cur
 				return acc
 			}, {})
@@ -250,7 +250,7 @@ export default {
 			// this is the only possibility for us to ensure
 			// no data is lost. e.g. if no second are set
 			// the second will be null and not 0
-			let datetimeData = this.vcardTimeLocalValue.toJSON()
+			const datetimeData = this.vcardTimeLocalValue.toJSON()
 			let datetime = ''
 
 			const ignoreYear = this.property.getParameter('x-apple-omit-year')
@@ -286,10 +286,10 @@ export default {
 					.locale(this.locale)
 					.format(
 						this.inputType === 'datetime'
-							? 'llll'	// date & time display
+							? 'llll' // date & time display
 							: this.inputType === 'date'
-								? 'll'	// only date
-								: 'LTS'	// only time
+								? 'll' // only date
+								: 'LTS' // only time
 					)
 			}
 
@@ -297,8 +297,8 @@ export default {
 				// replace year and remove double spaces
 				? datetime.replace(moment(this.vcardTimeLocalValue).year(), '').replace(/\s\s+/g, ' ')
 				: datetime
-		}
-	}
+		},
+	},
 }
 
 </script>

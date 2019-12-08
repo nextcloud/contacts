@@ -39,11 +39,11 @@ const addressbookModel = {
 	contacts: {},
 	url: '',
 	readOnly: false,
-	dav: false
+	dav: false,
 }
 
 const state = {
-	addressbooks: []
+	addressbooks: [],
 }
 
 /**
@@ -62,7 +62,7 @@ export function mapDavCollectionToAddressbook(addressbook) {
 		readOnly: addressbook.readOnly === true,
 		url: addressbook.url,
 		dav: addressbook,
-		shares: addressbook.shares.map(sharee => Object.assign({}, mapDavShareeToSharee(sharee)))
+		shares: addressbook.shares.map(sharee => Object.assign({}, mapDavShareeToSharee(sharee))),
 	}
 }
 
@@ -82,7 +82,7 @@ export function mapDavShareeToSharee(sharee) {
 		id: id,
 		writeable: sharee.access[0].endsWith('read-write'),
 		isGroup: sharee.href.startsWith('principal:principals/groups/'),
-		uri: sharee.href
+		uri: sharee.href,
 	}
 }
 
@@ -164,7 +164,7 @@ const mutations = {
 	 * @param {Contact} contact the contact to add
 	 */
 	addContactToAddressbook(state, contact) {
-		let addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
+		const addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
 		Vue.set(addressbook.contacts, contact.uid, contact)
 	},
 
@@ -175,7 +175,7 @@ const mutations = {
 	 * @param {Contact} contact the contact to delete
 	 */
 	deleteContactFromAddressbook(state, contact) {
-		let addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
+		const addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
 		Vue.delete(addressbook, contact.uid)
 	},
 
@@ -197,7 +197,7 @@ const mutations = {
 			id: user,
 			writeable: false,
 			isGroup,
-			uri
+			uri,
 		}
 		addressbook.shares.push(newSharee)
 	},
@@ -212,7 +212,7 @@ const mutations = {
 	 */
 	removeSharee(state, { addressbook, uri }) {
 		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
-		let shareIndex = addressbook.shares.findIndex(sharee => sharee.uri === uri)
+		const shareIndex = addressbook.shares.findIndex(sharee => sharee.uri === uri)
 		addressbook.shares.splice(shareIndex, 1)
 	},
 
@@ -226,14 +226,14 @@ const mutations = {
 	 */
 	updateShareeWritable(state, { addressbook, uri }) {
 		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
-		let sharee = addressbook.shares.find(sharee => sharee.uri === uri)
+		const sharee = addressbook.shares.find(sharee => sharee.uri === uri)
 		sharee.writeable = !sharee.writeable
-	}
+	},
 
 }
 
 const getters = {
-	getAddressbooks: state => state.addressbooks
+	getAddressbooks: state => state.addressbooks,
 }
 
 const actions = {
@@ -245,7 +245,7 @@ const actions = {
 	 * @returns {Object[]} the addressbooks
 	 */
 	async getAddressbooks(context) {
-		let addressbooks = await client.addressBookHomes[0]
+		const addressbooks = await client.addressBookHomes[0]
 			.findAllAddressBooks()
 			.then(addressbooks => {
 				return addressbooks.map(addressbook => {
@@ -347,10 +347,10 @@ const actions = {
 				// We don't want to lose the url information
 				// so we need to parse one by one
 				let failed = 0
-				let contacts = response
+				const contacts = response
 					.reduce((contacts, item) => {
 						try {
-							let contact = new Contact(item.data, addressbook)
+							const contact = new Contact(item.data, addressbook)
 							Vue.set(contact, 'dav', item)
 							contacts.push(contact)
 						} catch (error) {
@@ -405,7 +405,7 @@ const actions = {
 
 			// Get vcard string
 			try {
-				let vData = ICAL.stringify(contact.vCard.jCal)
+				const vData = ICAL.stringify(contact.vCard.jCal)
 				// push contact to server and use limit
 				requests.push(limit(() => contact.addressbook.dav.createVCard(vData)
 					.then((response) => {
@@ -509,7 +509,7 @@ const actions = {
 		await context.commit('updateContactAddressbook', { contact, addressbook })
 		await context.commit('addContactToAddressbook', contact)
 		return contact
-	}
+	},
 }
 
 export default { state, mutations, getters, actions }

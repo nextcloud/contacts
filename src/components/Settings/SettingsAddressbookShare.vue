@@ -56,21 +56,21 @@ import debounce from 'debounce'
 export default {
 	name: 'SettingsAddressbookShare',
 	components: {
-		addressBookSharee
+		addressBookSharee,
 	},
 	props: {
 		addressbook: {
 			type: Object,
 			default() {
 				return {}
-			}
-		}
+			},
+		},
 	},
 	data() {
 		return {
 			isLoading: false,
 			inputGiven: false,
-			usersOrGroups: []
+			usersOrGroups: [],
 		}
 	},
 	computed: {
@@ -79,7 +79,7 @@ export default {
 		},
 		noResult() {
 			return t('contacts', 'No users or groups')
-		}
+		},
 	},
 	mounted() {
 		// This ensures that the multiselect input is in focus as soon as the user clicks share
@@ -96,7 +96,7 @@ export default {
 		 * @param {boolean} data.isGroup is this a group ?
 		 */
 		shareAddressbook({ user, displayName, uri, isGroup }) {
-			let addressbook = this.addressbook
+			const addressbook = this.addressbook
 			uri = decodeURI(uri)
 			user = decodeURI(user)
 			this.$store.dispatch('shareAddressbook', { addressbook, user, displayName, uri, isGroup })
@@ -113,14 +113,14 @@ export default {
 			if (query.length > 0) {
 				const results = await client.principalPropertySearchByDisplayname(query)
 				this.usersOrGroups = results.reduce((list, result) => {
-					if	(['GROUP', 'INDIVIDUAL'].indexOf(result.calendarUserType) > -1) {
+					if (['GROUP', 'INDIVIDUAL'].indexOf(result.calendarUserType) > -1) {
 						const isGroup = result.calendarUserType === 'GROUP'
 						list.push({
 							user: result[isGroup ? 'groupId' : 'userId'],
 							displayName: result.displayname,
 							icon: isGroup ? 'icon-group' : 'icon-user',
 							uri: result.principalScheme,
-							isGroup
+							isGroup,
 						})
 					}
 					return list
@@ -131,7 +131,7 @@ export default {
 				this.inputGiven = false
 				this.isLoading = false
 			}
-		}, 500)
-	}
+		}, 500),
+	},
 }
 </script>

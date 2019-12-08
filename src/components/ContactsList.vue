@@ -52,31 +52,31 @@ export default {
 
 	components: {
 		ContactsListItem,
-		RecycleScroller
+		RecycleScroller,
 	},
 
 	props: {
 		list: {
 			type: Array,
-			required: true
+			required: true,
 		},
 		contacts: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		loading: {
 			type: Boolean,
-			default: true
+			default: true,
 		},
 		searchQuery: {
 			type: String,
-			default: ''
-		}
+			default: '',
+		},
 	},
 
 	data() {
 		return {
-			itemHeight: 68
+			itemHeight: 68,
 		}
 	},
 
@@ -89,7 +89,7 @@ export default {
 		},
 		filteredList() {
 			return this.list.filter(contact => this.matchSearch(this.contacts[contact.key]))
-		}
+		},
 	},
 
 	watch: {
@@ -107,7 +107,7 @@ export default {
 					this.scrollToContact(this.selectedContact)
 				})
 			}
-		}
+		},
 	},
 
 	methods: {
@@ -159,7 +159,7 @@ export default {
 				return contact.searchData.toString().toLowerCase().search(this.searchQuery.trim().toLowerCase()) !== -1
 			}
 			return true
-		}
-	}
+		},
+	},
 }
 </script>

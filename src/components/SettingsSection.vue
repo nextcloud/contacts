@@ -46,13 +46,13 @@ export default {
 		SettingsAddressbook,
 		SettingsNewAddressbook,
 		SettingsImportContacts,
-		SettingsSortContacts
+		SettingsSortContacts,
 	},
 	computed: {
 		// store getters
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
-		}
+		},
 	},
 	methods: {
 		onClickImport(event) {
@@ -60,7 +60,7 @@ export default {
 		},
 		onLoad(event) {
 			this.$emit('fileLoaded', false)
-		}
-	}
+		},
+	},
 }
 </script>

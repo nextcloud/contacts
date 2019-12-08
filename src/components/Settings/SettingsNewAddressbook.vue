@@ -74,7 +74,7 @@ export default {
 					OC.Notification.showTemporary(t('contacts', 'An error occurred, unable to create the addressbook.'))
 					this.loading = false
 				})
-		}
-	}
+		},
+	},
 }
 </script>

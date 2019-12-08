@@ -30,7 +30,7 @@ global.expect = require('chai').expect
 window.Date = Date
 
 global.OC = {
-	getLocale: () => 'en'
+	getLocale: () => 'en',
 }
 
 global.t = (app, text) => text
