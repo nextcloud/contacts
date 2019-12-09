@@ -1,3 +1,17 @@
+## 3.1.7 – 2019-12-09
+
+### Enhancements
+- Make the work profile the default one when adding Contacts
+  [#1307](https://github.com/nextcloud/contacts/pull/1307)
+
+### Fixed
+- Fix first day of datepicker
+  [#1314](https://github.com/nextcloud/contacts/pull/1314)
+
+### Updated
+- Dependencies
+- Translations
+
 ## 3.1.6 – 2019-10-03
 
 ### Fixed
