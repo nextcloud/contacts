@@ -36,6 +36,7 @@ OC.L10N.register(
     "No errors" : "Klaidų nėra",
     "Open your browser console for more details" : "Išsamesnei informacijai, atverkite savo naršyklės pultą",
     "No results" : "Rezultatų nėra",
+    "Select option" : "Pasirinkite parinktį",
     "Rename" : "Pervadinti",
     "Enabled" : "Įjungta",
     "Disabled" : "Išjungta",
