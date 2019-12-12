@@ -62,7 +62,7 @@ OC.L10N.register(
     "Addressbook was not copied to clipboard." : "Не удалось скопировать адресную книгу в буфер обмена",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Общее для одной записи","Общее для {num} записей","Общее для {num} записей","Общее для {num} записей"],
     "Share with users or groups" : "Поделиться с пользователями или группами",
-    "No users or groups" : "Пользователи или группы отсуствуют",
+    "No users or groups" : "Пользователи или группы отсутствуют",
     "can edit" : "разрешить редактировать",
     "Unable to delete the share." : "Невозможно закрыть общий доступ.",
     "Unable to change permissions." : "Невозможно изменить права доступа.",
