@@ -73,7 +73,7 @@ OC.L10N.register(
     "An error occurred, unable to create the addressbook." : "S'ha produït un error. No s'ha pogut crear la llibreta d'adreces.",
     "First name" : "Nom",
     "Last name" : "Cognom",
-    "Display name" : "Nom que es mostrarà",
+    "Display name" : "Nom per mostrar",
     "Sort by {sorting}" : "Ordena per {sorting}",
     "Not grouped" : "Sense grup",
     "Unable to create the contact." : "No s'ha pogut crear el contacte.",
