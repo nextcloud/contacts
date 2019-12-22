@@ -1,11 +1,24 @@
 { "translations": {
     "Contacts" : "Kontakter",
+    "Details" : "Detailer",
+    "Loading" : "Loading",
+    "Name" : "Numm",
+    "Title" : "Titel",
+    "Download" : "Eroflueden",
+    "Delete" : "Läschen",
     "Groups" : "Gruppen",
+    "Rename" : "Ëmbenennen",
+    "Enabled" : "Aktivéiert",
+    "Disabled" : "Deaktivéiert",
+    "Copy link" : "Link kopéieren",
+    "Share with users or groups" : "Mat Benotzer oder Gruppen deelen",
+    "can edit" : "kann änneren",
     "First name" : "Virnumm",
     "Last name" : "Famillje Numm",
     "Nickname" : "Spëtznumm",
     "Additional names" : "Weider Nimm",
     "Notes" : "Notizen",
+    "Location" : "Uert",
     "Home" : "Doheem",
     "Work" : "Aarbecht",
     "Other" : "Aner",
@@ -18,6 +31,9 @@
     "Mobile" : "GSM",
     "Fax" : "Fax",
     "Pager" : "Pager",
-    "Voice" : "Voice"
+    "Voice" : "Voice",
+    "Relative" : "Relativ",
+    "None" : "Keng",
+    "Unknown" : "Onbekannt"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

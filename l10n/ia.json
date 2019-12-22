@@ -1,13 +1,24 @@
 { "translations": {
     "Contacts" : "Contactos",
     "All contacts" : "Tote contactos",
+    "Details" : "Detalios",
+    "Loading" : "Loading",
+    "Name" : "Nomine",
+    "Title" : "Titulo",
     "Download" : "Discargar",
     "Delete" : "Deler",
     "Groups" : "Gruppos",
     "New contact" : "Nove contacto",
+    "Rename" : "Renominar",
+    "Enabled" : "Activate",
+    "Copy link" : "Copiar ligamine",
     "Share with users or groups" : "Compartir con usatores o gruppos",
+    "can edit" : "pote modificar",
+    "Address book name" : "Nomine del adressario",
     "First name" : "Prime nomine",
     "Last name" : "Ultime nomine",
+    "Display name" : "Monstrar nomine",
+    "Not grouped" : "Non gruppate",
     "Nickname" : "Pseudonymo",
     "Detailed name" : "Nomine detaliate",
     "Additional names" : "Nomines additional",
@@ -15,6 +26,7 @@
     "Suffix" : "Suffixo",
     "Notes" : "Notas",
     "Website" : "Sito web",
+    "Location" : "Loco",
     "Federated Cloud ID" : "ID del Nube Federate",
     "Home" : "Domo",
     "Work" : "Travalio",
@@ -37,6 +49,9 @@
     "Fax work" : "Fax a travalio",
     "Pager" : "Pager",
     "Voice" : "Voce",
-    "Social network" : "Medios Social"
+    "Social network" : "Medios Social",
+    "Relative" : "Relative",
+    "None" : "Nulle",
+    "Unknown" : "Incognite"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

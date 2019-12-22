@@ -1,16 +1,29 @@
 OC.L10N.register(
     "contacts",
     {
+    "Details" : "Մանրամասներ",
+    "Loading" : "Loading",
+    "Name" : "Անուն",
+    "Title" : "Վերնագիր",
+    "Download" : "Ներբեռնել",
+    "Delete" : "հեռացնել",
     "Groups" : "Խմբեր",
+    "Rename" : "Վերանվանել",
+    "Copy link" : "Պատճենել հղումը",
+    "Share with users or groups" : "Կիսվել օգտատերերի կամ խմբերի հետ",
+    "can edit" : "կարող է խմբագրել",
     "First name" : "Անուն",
     "Last name" : "Ազգանուն",
     "Nickname" : "Մականուն",
     "Notes" : "Նոթեր",
+    "Location" : "Տեղակայություն",
     "Other" : "Այլ",
     "Address" : "Հասցե",
     "City" : "Քաղաք",
     "Country" : "Երկիր",
     "Birthday" : "Ծննդյան օր",
-    "Email" : "Էլ. հասցե"
+    "Email" : "Էլ. հասցե",
+    "Relative" : "Հարաբերական",
+    "Unknown" : "Անհայտ"
 },
 "nplurals=2; plural=(n != 1);");

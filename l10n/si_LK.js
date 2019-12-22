@@ -2,10 +2,18 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "සබඳතා",
+    "Loading" : "Loading",
+    "Name" : "නම",
+    "Title" : "මාතෘකාව",
+    "Download" : "බාන්න",
+    "Delete" : "ඉවත් කරන්න",
     "Groups" : "කණ්ඩායම්",
+    "Rename" : "නැවත නම් කරන්න",
+    "can edit" : "සංස්කරණය කළ හැක",
     "Nickname" : "පටබැඳි නම",
     "Additional names" : "වෙනත් නම්",
     "Notes" : "සටහන්",
+    "Location" : "ස්ථානය",
     "Home" : "නිවස",
     "Work" : "කාර්යය",
     "Other" : "වෙනත්",
@@ -18,6 +26,8 @@ OC.L10N.register(
     "Mobile" : "ජංගම",
     "Fax" : "ෆැක්ස්",
     "Pager" : "පේජරය",
-    "Voice" : "හඬ"
+    "Voice" : "හඬ",
+    "None" : "කිසිවක් නැත",
+    "Unknown" : "නොදනී"
 },
 "nplurals=2; plural=(n != 1);");

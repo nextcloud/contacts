@@ -1,14 +1,25 @@
 { "translations": {
     "Contacts" : "Contactes",
     "All contacts" : "Totes los contactes",
+    "Details" : "Detalhs",
+    "Loading" : "Loading",
+    "Name" : "Nom",
+    "Title" : "Títol",
+    "Download" : "Telecargar",
+    "Delete" : "Suprimir",
     "Groups" : "Gropes",
     "New contact" : "Contacte novèl",
+    "Rename" : "Renomenar",
+    "Copy link" : "Copiar lo ligam",
+    "can edit" : "pòt modificar",
     "First name" : "Prenom",
     "Last name" : "Nom",
+    "Not grouped" : "Pas gropats",
     "Nickname" : "Escais",
     "Additional names" : "Noms suplementaris",
     "Notes" : "Nòtas",
     "Website" : "Site web",
+    "Location" : "Emplaçament",
     "Federated Cloud ID" : "Federated Cloud ID",
     "Home" : "Domicili",
     "Work" : "Professional(a)",
@@ -25,6 +36,9 @@
     "Mobile" : "Mobil",
     "Fax" : "Fax",
     "Pager" : "Messatgièr",
-    "Voice" : "Votz"
+    "Voice" : "Votz",
+    "Relative" : "Relatiu",
+    "None" : "Pas cap",
+    "Unknown" : "Desconegut"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

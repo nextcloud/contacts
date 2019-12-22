@@ -81,6 +81,7 @@ OC.L10N.register(
     "Suffix" : "סיומת",
     "Notes" : "הערות",
     "Website" : "אתר אינטרנט",
+    "Location" : "מיקום",
     "Federated Cloud ID" : "מספר זיהוי ענן מאוגד",
     "Home" : "בית",
     "Work" : "עבודה",
@@ -136,6 +137,7 @@ OC.L10N.register(
     "Male" : "זכר",
     "None" : "אין",
     "Unknown" : "לא ידוע",
+    "Timezone" : "אזור זמן",
     "An error occurred" : "אירעה שגיאה",
     "Your web browser is out of date" : "הדפדפן שלך אינו עדכני",
     "This application is not compatible with Internet Explorer" : "יישומון זה אינו נתמך באינטרנט אקספלורר"

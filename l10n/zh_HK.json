@@ -1,8 +1,20 @@
 { "translations": {
     "Contacts" : "聯絡人",
+    "Loading" : "Loading",
+    "Name" : "名稱",
+    "Title" : "標題",
+    "Download" : "下載",
+    "Delete" : "刪除",
     "Groups" : "群組",
+    "Rename" : "重新命名",
+    "Enabled" : "啟用",
+    "Disabled" : "停用",
+    "Copy link" : "複製連結",
+    "Share with users or groups" : "共享于用戶或組別",
+    "can edit" : "可編輯",
     "Nickname" : "暱稱",
     "Notes" : "筆記",
+    "Location" : "位置",
     "Home" : "主頁",
     "Work" : "工作",
     "Other" : "其他",
@@ -15,6 +27,9 @@
     "Mobile" : "手提電話",
     "Fax" : "傳真",
     "Pager" : "傳呼機",
-    "Voice" : "聲音"
+    "Voice" : "聲音",
+    "Relative" : "相對",
+    "None" : "空",
+    "Unknown" : "未知"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

@@ -124,6 +124,7 @@ OC.L10N.register(
     "Gender" : "Sukupuoli",
     "Female" : "Nainen",
     "Male" : "Mies",
+    "None" : "Ei mitään",
     "Unknown" : "Tuntematon",
     "Timezone" : "Aikavyöhyke",
     "Spoken languages" : "Puhutut kielet",

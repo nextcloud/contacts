@@ -2,12 +2,23 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontaktar",
+    "Details" : "Detaljar",
+    "Loading" : "Loading",
+    "Name" : "Namn",
+    "Title" : "Tittel",
+    "Download" : "Last ned",
+    "Delete" : "Ta bort",
     "Groups" : "Grupper",
+    "Last modified" : "Siste endra",
+    "Rename" : "Gje nytt namn",
+    "can edit" : "kan endra",
     "First name" : "Fornamn",
     "Last name" : "Etternamn",
+    "Not grouped" : "Ikkje gruppert",
     "Nickname" : "Kallenamn",
     "Additional names" : "Andre namn",
     "Notes" : "Notat",
+    "Location" : "Stad",
     "Home" : "Heime",
     "Work" : "Arbeid",
     "Other" : "Anna",
@@ -22,6 +33,8 @@ OC.L10N.register(
     "Mobile" : "Mobil",
     "Fax" : "Faks",
     "Pager" : "Personsøkjar",
-    "Voice" : "Tale"
+    "Voice" : "Tale",
+    "None" : "Ingen",
+    "Unknown" : "Ukjend"
 },
 "nplurals=2; plural=(n != 1);");

@@ -1,11 +1,20 @@
 { "translations": {
     "Contacts" : "தொடர்புகள்",
+    "Details" : "விவரங்கள்",
+    "Loading" : "Loading",
+    "Name" : "பெயர்",
+    "Title" : "தலைப்பு",
+    "Download" : "பதிவிறக்குக",
+    "Delete" : "நீக்குக",
     "Groups" : "குழுக்கள்",
+    "Rename" : "பெயர்மாற்றம்",
+    "can edit" : "தொகுக்க முடியும்",
     "First name" : "முதல் பெயர்",
     "Last name" : "கடைசிப் பெயர்",
     "Nickname" : "பட்டப்பெயர்",
     "Additional names" : "மேலதிக பெயர்கள்",
     "Notes" : "குறிப்புகள்",
+    "Location" : "இடம்",
     "Home" : "அகம்",
     "Work" : "வேலை",
     "Other" : "மற்றவை",
@@ -19,6 +28,8 @@
     "Mobile" : "இடமாற்றக்கூடிய",
     "Fax" : "தொலை நகல்",
     "Pager" : "தொலை அழைப்பான்",
-    "Voice" : "குரல்"
+    "Voice" : "குரல்",
+    "None" : "ஒன்றுமில்லை",
+    "Unknown" : "தெரியாத"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

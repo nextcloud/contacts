@@ -1,10 +1,24 @@
 { "translations": {
     "Contacts" : "ข้อมูลผู้ติดต่อ",
     "All contacts" : "รายชื่อทั้งหมด",
+    "Details" : "รายละเอียด",
+    "Loading" : "Loading",
+    "Name" : "ชื่อ",
+    "Title" : "ชื่อเรื่อง",
+    "Download" : "ดาวน์โหลด",
+    "Delete" : "ลบ",
     "Groups" : "กลุ่ม",
     "New contact" : "รายชื่อผุ้ติดต่อใหม่",
+    "Rename" : "เปลี่ยนชื่อ",
+    "Enabled" : "เปิดการใช้งาน",
+    "Disabled" : "ปิดการใช้งาน",
+    "Copy link" : "คัดลอกลิงค์",
+    "Share with users or groups" : "แชร์กับผู้ใช้หรือกลุ่ม",
+    "can edit" : "สามารถแก้ไข",
+    "Address book name" : "สมุดชื่อที่อยู่",
     "First name" : "ชื่อจริง",
     "Last name" : "นามสกุลจริง",
+    "Not grouped" : "ไม่ถูกจัดกลุ่ม",
     "Nickname" : "ชื่อเล่น",
     "Detailed name" : "รายละเอียดชื่อ",
     "Additional names" : "ชื่ออื่นๆ",
@@ -12,6 +26,7 @@
     "Suffix" : "คำต่อท้าย",
     "Notes" : "บันทึกย่อ",
     "Website" : "เว็บไซต์",
+    "Location" : "ตำแหน่งที่อยู่",
     "Federated Cloud ID" : "ไอดีคลาวด์ในเครือ",
     "Home" : "บ้าน",
     "Work" : "ที่ทำงาน",
@@ -34,6 +49,9 @@
     "Fax work" : "แฟกซ์ที่ทำงาน",
     "Pager" : "เพจเจอร์",
     "Voice" : "เสียงพูด",
-    "Social network" : "เครือข่ายทางสังคม"
+    "Social network" : "เครือข่ายทางสังคม",
+    "Relative" : "เครื่องญาติ",
+    "None" : "ไม่มี",
+    "Unknown" : "ไม่ทราบ"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

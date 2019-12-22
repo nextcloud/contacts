@@ -30,6 +30,7 @@ OC.L10N.register(
     "Select Date" : "Seleccionar fecha",
     "Add contact in group" : "Añadir contacto en grupo",
     "No results" : "Sin resultados",
+    "Last modified" : "Última modificación",
     "Select option" : "Seleccionar opción",
     "Rename" : "Renombrar",
     "Enabled" : "Habilitado",
@@ -58,6 +59,7 @@ OC.L10N.register(
     "Last name" : "Apellido",
     "Display name" : "Nombre para mostrar",
     "Sort by {sorting}" : "Ordenar por {sorting}",
+    "Not grouped" : "No agrupado",
     "Unable to create the contact." : "No se puede crear el contacto.",
     "Contact not found" : "Contacto no encontrado",
     "Nickname" : "Apodo",
@@ -67,6 +69,7 @@ OC.L10N.register(
     "Suffix" : "Sufijo",
     "Notes" : "Notas",
     "Website" : "Sitio web",
+    "Location" : "Ubicación",
     "Federated Cloud ID" : "Id de nube federada",
     "Home" : "Particular",
     "Work" : "Trabajo",
@@ -119,6 +122,9 @@ OC.L10N.register(
     "Gender" : "Género",
     "Female" : "Femenino",
     "Male" : "Masculino",
+    "None" : "Ninguno",
+    "Unknown" : "Desconocido",
+    "Timezone" : "Zona horaria",
     "An error occurred" : "Ocurrió un error"
 },
 "nplurals=2; plural=(n != 1);");
