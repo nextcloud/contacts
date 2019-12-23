@@ -77,7 +77,7 @@ OC.L10N.register(
     "Sort by {sorting}" : "Sortera efter {sorting}",
     "Not grouped" : "Inte grupperad",
     "Unable to create the contact." : "Kunde inte skapa kontakten.",
-    "Contact not found" : "Kontakt ej hittad",
+    "Contact not found" : "Kontakt hittades inte",
     "Nickname" : "Smeknamn",
     "Detailed name" : "Detaljerat namn",
     "Additional names" : "Mellannamn",
