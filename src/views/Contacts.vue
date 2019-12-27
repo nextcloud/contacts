@@ -35,7 +35,23 @@
 
 			<!-- groups list -->
 			<ul v-if="!loading" id="groups-list">
-				<AppNavigationItem v-for="item in menu" :key="item.key" :item="item" />
+				<AppNavigationItem v-for="item in menu"
+					:key="item.key"
+					:to="item.router"
+					:title="item.text"
+					:icon="item.icon">
+					<template slot="actions">
+						<ActionButton v-for="action in item.utils.actions"
+							:key="action.text"
+							:icon="action.icon"
+							@click="action.action">
+							{{ action.text }}
+						</ActionButton>
+					</template>
+					<AppNavigationCounter slot="counter">
+						{{ item.utils.counter }}
+					</AppNavigationCounter>
+				</AppNavigationItem>
 			</ul>
 
 			<!-- settings -->
@@ -77,12 +93,14 @@ import {
 	AppContent,
 	AppNavigation,
 	AppNavigationItem,
+	AppNavigationCounter,
 	AppNavigationNew,
 	AppNavigationSettings,
+	ActionButton,
 	Content,
 	Modal,
-} from 'nextcloud-vue'
-import isMobile from 'nextcloud-vue/dist/Mixins/isMobile'
+} from '@nextcloud/vue'
+import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
 
 import moment from 'moment'
 import download from 'downloadjs'
@@ -108,8 +126,10 @@ export default {
 		AppContent,
 		AppNavigation,
 		AppNavigationItem,
+		AppNavigationCounter,
 		AppNavigationNew,
 		AppNavigationSettings,
+		ActionButton,
 		ContactDetails,
 		ContactsList,
 		Content,

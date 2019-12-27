@@ -32,9 +32,9 @@ import { generateFilePath } from 'nextcloud-router'
 import { getRequestToken } from 'nextcloud-auth'
 
 /** GLOBAL COMPONENTS AND DIRECTIVE */
-import { Actions, DatetimePicker, Multiselect, PopoverMenu, Modal } from 'nextcloud-vue'
+import { Actions, DatetimePicker, Multiselect, PopoverMenu, Modal } from '@nextcloud/vue'
 import ClickOutside from 'vue-click-outside'
-import VTooltip from 'nextcloud-vue/dist/Directives/Tooltip'
+import VTooltip from '@nextcloud/vue/dist/Directives/Tooltip'
 import VueClipboard from 'vue-clipboard2'
 
 // CSP config for webpack dynamic chunk loading

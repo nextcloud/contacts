@@ -193,7 +193,7 @@ import debounce from 'debounce'
 import PQueue from 'p-queue'
 import qr from 'qr-image'
 import { stringify } from 'ical.js'
-import { ActionLink, ActionButton } from 'nextcloud-vue'
+import { ActionLink, ActionButton } from '@nextcloud/vue'
 
 import rfcProps from '../models/rfcProps'
 import validate from '../services/validate'
