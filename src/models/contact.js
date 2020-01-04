@@ -83,6 +83,15 @@ export default class Contact {
 			throw new Error('Invalid vCard')
 		}
 
+		// Fixes nextcloud/contacts#1009 that prevented editing of contacts if
+		// their address contained a comma. This is actually a bug in ical.js
+		// but it has not been fixed for some time now.
+		//
+		// This can be removed once https://github.com/mozilla-comm/ical.js/issues/386
+		// has been resolved.
+		ICAL.design.vcard.param.label = { multiValue: false }
+		ICAL.design.vcard3.param.label = { multiValue: false }
+
 		let jCal = ICAL.parse(vcard)
 		if (jCal[0] !== 'vcard') {
 			throw new Error('Only one contact is allowed in the vcard data')
