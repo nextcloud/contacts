@@ -86,7 +86,7 @@
 
 <script>
 import debounce from 'debounce'
-import { ActionLink, ActionButton } from 'nextcloud-vue'
+import { ActionLink, ActionButton } from '@nextcloud/vue'
 
 import { getFilePickerBuilder } from 'nextcloud-dialogs'
 import { generateRemoteUrl } from 'nextcloud-router'

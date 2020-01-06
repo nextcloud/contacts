@@ -93,7 +93,7 @@
 </template>
 
 <script>
-import { ActionLink, ActionButton, ActionInput, ActionCheckbox } from 'nextcloud-vue'
+import { ActionLink, ActionButton, ActionInput, ActionCheckbox } from '@nextcloud/vue'
 import ShareAddressBook from './SettingsAddressbookShare'
 
 export default {

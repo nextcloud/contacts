@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { ActionButton } from 'nextcloud-vue'
+import { ActionButton } from '@nextcloud/vue'
 
 export default {
 	name: 'PropertyActions',
