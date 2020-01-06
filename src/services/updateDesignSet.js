@@ -1,5 +1,6 @@
 /**
  * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2020 Christian Kraus <hanzi@hanzi.cc>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  * @author Christian Kraus <hanzi@hanzi.cc>

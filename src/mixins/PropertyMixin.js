@@ -21,7 +21,7 @@
  */
 import debounce from 'debounce'
 import Contact from '../models/contact'
-import { setPropertyAlias } from '../services/updateDesignSet'
+import setPropertyAlias from '../services/updateDesignSet'
 
 export default {
 	props: {
