@@ -330,7 +330,7 @@ const actions = {
 		rev.fromUnixTime(Date.now() / 1000)
 		contact.rev = rev
 
-		const vData = ICAL.stringify(contact.vCard.jCal)
+		const vData = contact.vCard.toString()
 
 		// if no dav key, contact does not exists on server
 		if (!contact.dav) {
