@@ -21,7 +21,7 @@
  */
 import debounce from 'debounce'
 import Contact from '../models/contact'
-import ICAL from 'ical.js'
+import { setPropertyAlias } from '../services/updateDesignSet'
 
 export default {
 	props: {
@@ -142,14 +142,7 @@ export default {
 			this.localContact.vCard.addPropertyWithValue(`${group}.x-ablabel`, label)
 
 			// force update the main design sets
-			if (ICAL.design.vcard.property[name]) {
-				ICAL.design.vcard.property[propGroup]
-					= ICAL.design.vcard.property[name]
-			}
-			if (ICAL.design.vcard3.property[name]) {
-				ICAL.design.vcard3.property[propGroup]
-					= ICAL.design.vcard3.property[name]
-			}
+			setPropertyAlias(name, propGroup)
 
 			this.$emit('update')
 		},
