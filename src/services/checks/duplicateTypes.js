@@ -26,12 +26,9 @@ export default {
 		try {
 			const props = contact.vCard.getAllProperties()
 				.map(prop => prop.getParameter('type'))
-				.filter(prop => prop)
+				.filter(prop => Array.isArray(prop))
 			const fixed = props.map(prop => [...new Set(prop)])
-			if (props
-				&& Array.isArray(props)
-				&& props.length > 0
-				&& props.join('') !== fixed.join('')) {
+			if (props.join('') !== fixed.join('')) {
 				return true
 			}
 		} catch (error) {
