@@ -199,7 +199,9 @@ const mutations = {
 			isGroup,
 			uri,
 		}
-		addressbook.shares.push(newSharee)
+		if (!addressbook.shares.some((share) => share.uri === uri)) {
+			addressbook.shares.push(newSharee)
+		}
 	},
 
 	/**
