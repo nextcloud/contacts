@@ -113,7 +113,8 @@ export default {
 			if (query.length > 0) {
 				const results = await client.principalPropertySearchByDisplayname(query)
 				this.usersOrGroups = results.reduce((list, result) => {
-					if (['GROUP', 'INDIVIDUAL'].indexOf(result.calendarUserType) > -1) {
+					if (['GROUP', 'INDIVIDUAL'].indexOf(result.calendarUserType) > -1
+					&& !this.addressbook.shares.some((share) => share.uri === result.principalScheme)) {
 						const isGroup = result.calendarUserType === 'GROUP'
 						list.push({
 							user: result[isGroup ? 'groupId' : 'userId'],
