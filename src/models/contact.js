@@ -24,6 +24,7 @@ import uuid from 'uuid'
 import ICAL from 'ical.js'
 
 import store from '../store'
+import updateDesignSet from '../services/updateDesignSet'
 
 /**
  * Check if the given value is an empty array or an empty string
@@ -33,40 +34,6 @@ import store from '../store'
  */
 const isEmpty = value => {
 	return (Array.isArray(value) && value.join('') === '') || (!Array.isArray(value) && value === '')
-}
-
-/**
- * Parse a jCal and update the global designset
- * if any grouped property is found
- *
- * @param {Array} jCal the contact ICAL.js jCal
- * @returns {Boolean}
- */
-const updateDesignSet = jCal => {
-	let result = false
-	jCal[1].forEach(prop => {
-		const propGroup = prop[0].split('.')
-
-		// if this is a grouped property, update the designSet
-		if (propGroup.length === 2 && (
-			ICAL.design.vcard.property[propGroup[1]]
-			|| ICAL.design.vcard3.property[propGroup[1]]
-		)) {
-			// force update the main design sets
-			if (ICAL.design.vcard.property[propGroup[1]]) {
-				ICAL.design.vcard.property[prop[0]]
-					= ICAL.design.vcard.property[propGroup[1]]
-				result = true
-			}
-			if (ICAL.design.vcard3.property[propGroup[1]]) {
-				ICAL.design.vcard3.property[prop[0]]
-					= ICAL.design.vcard3.property[propGroup[1]]
-
-				result = true
-			}
-		}
-	})
-	return result
 }
 
 export default class Contact {
@@ -83,22 +50,11 @@ export default class Contact {
 			throw new Error('Invalid vCard')
 		}
 
-		// Fixes nextcloud/contacts#1009 that prevented editing of contacts if
-		// their address contained a comma. This is actually a bug in ical.js
-		// but it has not been fixed for some time now.
-		//
-		// This can be removed once https://github.com/mozilla-comm/ical.js/issues/386
-		// has been resolved.
-		ICAL.design.vcard.param.label = { multiValue: false }
-		ICAL.design.vcard3.param.label = { multiValue: false }
-
 		let jCal = ICAL.parse(vcard)
 		if (jCal[0] !== 'vcard') {
 			throw new Error('Only one contact is allowed in the vcard data')
 		}
 
-		// add grouped properties to the design set
-		// if any found, refresh the contact jCal
 		if (updateDesignSet(jCal)) {
 			jCal = ICAL.parse(vcard)
 		}
