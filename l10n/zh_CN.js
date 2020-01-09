@@ -37,7 +37,7 @@ OC.L10N.register(
     "Syntax error. Cannot open the contact." : "语法错误。不能打开联系人。",
     "Deleting the contact in {countdown} seconds" : "正在删除联系人, 剩余 {countdown} 秒",
     "Done importing {total} contacts into" : "导入 {total} 个联系人",
-    "Importing {total} contacts into" : "导入 {total} 个联系人",
+    "Importing {total} contacts into" : "正在导入 {total} 个联系人",
     "No errors" : "没有错误",
     "Open your browser console for more details" : "打开浏览器控制台以获取更多详细信息",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} 个有错误的联系人"],
@@ -143,7 +143,7 @@ OC.L10N.register(
     "Unknown" : "未知",
     "Timezone" : "时区",
     "Spoken languages" : "口语",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} 联系人读取失败"],
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} 个联系人读取失败"],
     "An error occurred" : "发生错误",
     "Your web browser is out of date" : "您的浏览器版本太旧",
     "This application is not compatible with Internet Explorer" : "此应用与Internet Explorer不兼容"
