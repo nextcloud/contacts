@@ -52,6 +52,7 @@ OC.L10N.register(
     "Renaming of addressbook was not successful." : "Adresų knygos pervadinimas buvo nesėkmingas.",
     "Addressbook copied to clipboard" : "Adresų knyga nukopijuota į iškarpinę",
     "Addressbook was not copied to clipboard." : "Adresų knyga nebuvo nukopijuota į iškarpinę.",
+    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Bendrinama su {num} esybe","Bendrinama su {num} esybėmis","Bendrinama su {num} esybių","Bendrinama su {num} esybe"],
     "Share with users or groups" : "Bendrinti su naudotojais ar grupėmis",
     "No users or groups" : "Nėra jokių naudotojų ar grupių",
     "can edit" : "gali redaguoti",
