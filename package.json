@@ -35,7 +35,7 @@
 		"test:watch": "mochapack -w --webpack-config webpack.test.js --require tests/setup.js tests/unit/specs/**/*.spec.js"
 	},
 	"dependencies": {
-		"@nextcloud/vue": "1.2.3",
+		"@nextcloud/vue": "1.2.5",
 		"axios": "^0.19.0",
 		"cdav-library": "github:nextcloud/cdav-library",
 		"core-js": "^3.6.1",
