@@ -36,7 +36,7 @@
 	},
 	"dependencies": {
 		"@nextcloud/vue": "1.2.5",
-		"axios": "^0.19.0",
+		"axios": "^0.19.1",
 		"cdav-library": "github:nextcloud/cdav-library",
 		"core-js": "^3.6.1",
 		"debounce": "^1.2.0",
