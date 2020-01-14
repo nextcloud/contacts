@@ -12,6 +12,7 @@ OC.L10N.register(
     "Groups" : "گروه ها",
     "New contact" : "مخاطب جدید",
     "No results" : "نتیجه ای یافت نشد",
+    "Last modified" : "آخرین اصلاح شده",
     "Rename" : "تغییرنام",
     "Enabled" : "فعال شده",
     "Disabled" : "غیرفعال شده",
