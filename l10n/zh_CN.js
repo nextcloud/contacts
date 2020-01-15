@@ -20,7 +20,7 @@ OC.L10N.register(
     "Error while processing the picture." : "处理图片时出错。",
     "No contact selected" : "请选择联系人",
     "Select a contact on the list to begin" : "请先在列表里选择联系人",
-    "Loading" : "载入中",
+    "Loading" : "正在加载",
     "Name" : "名称",
     "Company" : "公司",
     "Title" : "头衔",
