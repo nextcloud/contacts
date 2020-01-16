@@ -1,14 +1,25 @@
 OC.L10N.register(
     "contacts",
     {
+    "Details" : "Detalji",
     "Loading" : "Loading",
     "Name" : "naziv",
     "Title" : "Naslov",
+    "Download" : "Preuzmi",
     "Delete" : "Delete",
     "Groups" : "Grupe",
+    "No results" : "Nema rezultata",
     "Rename" : "Rename",
+    "Copy link" : "Kopiraj vezu",
     "can edit" : "može da menja",
     "Notes" : "Notes",
-    "Email" : "email"
+    "Website" : "Sajt",
+    "Home" : "Почетна",
+    "Work" : "Posao",
+    "Other" : "Ostali",
+    "Address" : "Adresa",
+    "Email" : "email",
+    "None" : "Ništa",
+    "Unknown" : "Nepoznato"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");
