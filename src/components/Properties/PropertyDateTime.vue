@@ -52,7 +52,9 @@
 			</div>
 
 			<!-- Real input where the picker shows -->
-			<DatetimePicker :value="vcardTimeLocalValue.toJSDate()"
+			<DatetimePicker
+				v-if="!isReadOnly"
+				:value="vcardTimeLocalValue.toJSDate()"
 				:minute-step="10"
 				:lang="lang"
 				:clearable="false"
@@ -64,8 +66,17 @@
 				confirm
 				@confirm="debounceUpdateValue" />
 
+			<input v-else
+				:readonly="true"
+				:value="formatDateTime()"
+				class="property__value">
+
 			<!-- props actions -->
-			<PropertyActions :actions="actions" :property-component="this" @delete="deleteProperty" />
+			<PropertyActions
+				v-if="!isReadOnly"
+				:actions="actions"
+				:property-component="this"
+				@delete="deleteProperty" />
 		</div>
 	</div>
 </template>
