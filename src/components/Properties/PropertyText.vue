@@ -77,11 +77,15 @@
 			<!-- external link -->
 			<a v-if="haveExtHandler"
 				:href="externalHandler"
-				class="property__ext icon-external"
+				:class="{'property__ext': true, 'icon-external': true, 'no-move': isReadOnly}"
 				target="_blank" />
 
 			<!-- props actions -->
-			<PropertyActions :actions="actions" :property-component="this" @delete="deleteProperty" />
+			<PropertyActions
+				v-if="!isReadOnly"
+				:actions="actions"
+				:property-component="this"
+				@delete="deleteProperty" />
 		</div>
 	</div>
 </template>

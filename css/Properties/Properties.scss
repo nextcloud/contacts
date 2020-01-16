@@ -22,6 +22,7 @@
 $property-label-min-width: 60px;
 $property-label-max-width: 2 * $property-label-min-width;
 $property-value-max-width: 250px;
+$property-ext-padding-right: 8px;
 
 .property {
 	position: relative;
@@ -170,13 +171,17 @@ $property-value-max-width: 250px;
 	&__ext {
 		position: absolute;
 		// 8px padding + actions
-		right: 44px + 8px;
+		right: 44px + $property-ext-padding-right;
 		opacity: 0;
 		&:hover,
 		&:focus,
 		&:active {
 			opacity: .7;
 		}
+	}
+
+	.no-move {
+		right: $property-ext-padding-right;
 	}
 
 	// Delete property button + actions

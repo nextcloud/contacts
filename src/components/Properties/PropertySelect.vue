@@ -49,7 +49,11 @@
 				@input="updateValue" />
 
 			<!-- props actions -->
-			<PropertyActions :actions="actions" :property-component="this" @delete="deleteProperty" />
+			<PropertyActions
+				v-if="!isReadOnly"
+				:actions="actions"
+				:property-component="this"
+				@delete="deleteProperty" />
 		</div>
 	</div>
 </template>

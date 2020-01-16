@@ -64,6 +64,7 @@
 
 			<!-- props actions -->
 			<PropertyActions class="property__actions--floating"
+				v-if="!isReadOnly"
 				:actions="actions"
 				:property-component="this"
 				@delete="deleteProperty" />
