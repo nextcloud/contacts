@@ -26,7 +26,7 @@
 		<div class="contact-header-avatar__wrapper">
 			<div class="contact-header-avatar__background" @click="toggleModal" />
 			<div v-if="contact.photo"
-				:style="{ 'backgroundImage': `url(${contact.photoUrl})` }"
+				:style="{ 'backgroundImage': `url(${contact.photoUrl})`, 'backgroundColor': '#fff' }"
 				class="contact-header-avatar__photo"
 				@click="toggleModal" />
 
