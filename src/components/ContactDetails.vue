@@ -401,8 +401,8 @@ export default {
 	},
 
 	watch: {
-		contact: function() {
-			if (this.contactKey) {
+		contact: function(newContact, oldContact) {
+			if (this.contactKey && newContact !== oldContact) {
 				this.selectContact(this.contactKey)
 			}
 		},
