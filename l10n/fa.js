@@ -6,6 +6,7 @@ OC.L10N.register(
     "Details" : "جزئیات",
     "Loading" : "در حال بار گزاری",
     "Name" : "نام",
+    "Company" : "شرکت",
     "Title" : "عنوان",
     "Download" : "دانلود",
     "Delete" : "حذف",
