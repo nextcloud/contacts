@@ -55,6 +55,8 @@
 		background-repeat: no-repeat;
 		background-position: center;
 		background-size: cover;
+		// White background for avatars with transparency, also in dark theme
+		background-color: #fff;
 	}
 	&__options {
 		position: absolute;
