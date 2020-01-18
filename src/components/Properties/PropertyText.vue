@@ -59,6 +59,7 @@
 				ref="textarea"
 				v-model.trim="localValue"
 				:type="type"
+				:inputmode="inputmode"
 				:readonly="isReadOnly"
 				class="property__value"
 				@input="updateValueNoDebounce"
@@ -69,6 +70,7 @@
 			<input v-else
 				v-model.trim="localValue"
 				:type="type"
+				:inputmode="inputmode"
 				:readonly="isReadOnly"
 				:class="{'property__value--with-ext': haveExtHandler}"
 				class="property__value"
@@ -142,10 +144,14 @@ export default {
 				return 'tel'
 			} else if (this.propName === 'email') {
 				return 'email'
-			} else if (this.propType === 'uri') {
-				return 'url'
 			}
 			return 'text'
+		},
+		inputmode() {
+			if (this.propName === 'uri') {
+				return 'url'
+			}
+			return ''
 		},
 		URLScheme() {
 			if (this.propName === 'tel') {
