@@ -81,7 +81,7 @@ OC.L10N.register(
     "Phone" : "Telefon",
     "Mobile" : "Mobilni telefon",
     "Work mobile" : "Službeni mobilni telefon",
-    "Home mobile" : "Domači mobilni telefon",
+    "Home mobile" : "Osebni mobilni telefon",
     "Fax" : "Faks",
     "Fax home" : "Domači faks",
     "Fax work" : "Službeni faks",
