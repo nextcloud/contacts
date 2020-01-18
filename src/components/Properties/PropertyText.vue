@@ -58,7 +58,6 @@
 				id="textarea"
 				ref="textarea"
 				v-model.trim="localValue"
-				:type="type"
 				:inputmode="inputmode"
 				:readonly="isReadOnly"
 				class="property__value"
@@ -69,10 +68,10 @@
 			<!-- OR default to input -->
 			<input v-else
 				v-model.trim="localValue"
-				:type="type"
 				:inputmode="inputmode"
 				:readonly="isReadOnly"
 				:class="{'property__value--with-ext': haveExtHandler}"
+				type="text"
 				class="property__value"
 				@input="updateValue">
 
@@ -139,19 +138,15 @@ export default {
 			// length is one & add one space at the end
 			return hasTitle + 1 + isLast + noteHeight
 		},
-		type() {
+		inputmode() {
 			if (this.propName === 'tel') {
 				return 'tel'
 			} else if (this.propName === 'email') {
 				return 'email'
-			}
-			return 'text'
-		},
-		inputmode() {
-			if (this.propName === 'uri') {
+			} else if (this.propType === 'uri') {
 				return 'url'
 			}
-			return ''
+			return false
 		},
 		URLScheme() {
 			if (this.propName === 'tel') {
