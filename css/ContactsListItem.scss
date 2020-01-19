@@ -19,38 +19,6 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-// ensure transition for delete and non-deleted transition state
-.app-content-list-item {
-	transition: left 200ms;
-}
-
-.app-content-list-item.deleted {
-	z-index: 2;
-	// make sure we hide the undeleted element by sliding over it
-	// and force the background even on hover
-	background-color: var(--color-main-background) !important;
-
-	.app-content-list-item-icon__avatar {
-		filter: brightness(.8) grayscale(1);
-	}
-	.app-content-list-item-line-one {
-		text-decoration: line-through;
-	}
-
-	// vuejs animation
-	&.delete-slide-left-enter-active,
-	&.delete-slide-left-leave-active {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
-	}
-
-	&.delete-slide-left-enter,
-	&.delete-slide-left-leave-to {
-		left: 100%;
-	}
-}
 
 .app-content-list-item-icon {
 	overflow: hidden;
