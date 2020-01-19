@@ -72,6 +72,7 @@ OC.L10N.register(
     "Colleague" : "کالج",
     "Manager" : "مدیر",
     "Assistant" : "راهنما",
+    "Contact" : "مخاطب",
     "Gender" : "جنسیت",
     "Female" : "مؤنث",
     "Male" : "مذکر",
