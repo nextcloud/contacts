@@ -52,17 +52,17 @@
 				@close="toggleModal">
 				<template #actions>
 					<ActionButton v-if="!isReadOnly" icon="icon-upload" @click="selectFileInput">
-						{{ t('contacts', 'Upload a new picture') }}
+						{{ t('contacts', 'Upload new picture') }}
 					</ActionButton>
-					<ActionButton v-if="!isReadOnly" icon="icon-picture" @click="selectFilePicker">
+					<ActionButton v-if="!isReadOnly" icon="icon-folder" @click="selectFilePicker">
 						{{ t('contacts', 'Choose from files') }}
-					</ActionButton>
-					<ActionButton v-if="!isReadOnly" icon="icon-delete" @click="removePhoto">
-						{{ t('contacts', 'Delete picture') }}
 					</ActionButton>
 					<ActionLink :href="`${contact.url}?photo`" icon="icon-download" target="_blank">
 						{{ t('contacts', 'Download picture') }}
 					</ActionLink>
+					<ActionButton v-if="!isReadOnly" icon="icon-delete" @click="removePhoto">
+						{{ t('contacts', 'Delete picture') }}
+					</ActionButton>
 				</template>
 				<img ref="img"
 					:src="contact.photoUrl"
