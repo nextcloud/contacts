@@ -133,7 +133,6 @@ const properties = {
 	},
 	anniversary: {
 		readableName: t('contacts', 'Anniversary'),
-		info: t('contacts', 'The date of marriage, or equivalent, of this contact'),
 		icon: 'icon-calendar-dark',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
@@ -220,10 +219,6 @@ const properties = {
 			value: '',
 			type: ['facebook'],
 		},
-		info: t(
-			'contacts',
-			'The link of the profile. e.g. https://www.facebook.com/Nextclouders/ '
-		),
 		options: [
 			{ id: 'FACEBOOK', name: 'Facebook' },
 			{ id: 'GITHUB', name: 'GitHub' },
@@ -245,10 +240,6 @@ const properties = {
 		readableName: t('contacts', 'Relationship'),
 		force: 'select',
 		icon: 'icon-group',
-		info: t(
-			'contacts',
-			'Specify a relationship between you and the entity represented by this vCard.'
-		),
 		options: [
 			{ id: 'SPOUSE', name: t('contacts', 'Spouse') },
 			{ id: 'CHILD', name: t('contacts', 'Child') },
@@ -268,10 +259,6 @@ const properties = {
 		multiple: true,
 		readableName: t('contacts', 'Related'),
 		icon: 'icon-group',
-		info: t(
-			'contacts',
-			'Specify a relationship between another entity and the entity represented by this vCard.'
-		),
 		defaultValue: {
 			value: [''],
 			type: ['CONTACT'],
