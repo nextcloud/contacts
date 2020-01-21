@@ -135,6 +135,11 @@ $property-ext-padding-right: 8px;
 		}
 	}
 
+	// Hide delete buttons initially
+	.action-item.icon-delete {
+		opacity: 0;
+	}
+
 	// Property value within row, after label
 	&__value {
 		flex: 1 1;
@@ -152,18 +157,22 @@ $property-ext-padding-right: 8px;
 		input&--with-ext {
 			// ext icon width + 8px padding
 			padding-right: 24px;
-			&:hover,
-			&:focus,
-			&:active {
-				~ .property__ext {
-					opacity: .5;
-				}
+		}
+
+		// Show ext and delete icon permanently on focus
+		&:hover,
+		&:focus,
+		&:active {
+			~ .property__ext,
+			~ .action-item.icon-delete {
+				opacity: .5;
 			}
 		}
 	}
 
-	// show ext button on full row hover
-	&:hover &__ext {
+	// Show ext and delete buttons on full row hover
+	&:hover &__ext,
+	&:hover .action-item.icon-delete {
 		opacity: .5;
 	}
 
