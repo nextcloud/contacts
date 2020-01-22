@@ -1,3 +1,23 @@
+## 3.1.8 – 2020-01-22
+
+### Fixed
+
+- Fixed release number and 15 is EOL
+- Fix issue that prevented new contacts from being saved
+  [#1416](https://github.com/nextcloud/contacts/pull/1416) ([hanzi](https://github.com/hanzi))
+- remove delete buttons and other actions if contact is not readable
+  [#1413](https://github.com/nextcloud/contacts/pull/1413) ([myrho](https://github.com/myrho))
+- Only add sharee if not present already
+  [#1401](https://github.com/nextcloud/contacts/pull/1401) ([raimund-schluessler](https://github.com/raimund-schluessler))
+- Fix 'duplicate types' check for properties with a single type
+  [#1399](https://github.com/nextcloud/contacts/pull/1399) ([hanzi](https://github.com/hanzi))
+- Workaround for bug that prevented editing vCards with commas in the address
+  [#1394](https://github.com/nextcloud/contacts/pull/1394) ([hanzi](https://github.com/hanzi))
+- Use correct syntax for vCard version when saving
+  [#1393](https://github.com/nextcloud/contacts/pull/1393) ([hanzi](https://github.com/hanzi))
+- short company field only if empty
+  [#1412](https://github.com/nextcloud/contacts/pull/1412) ([myrho](https://github.com/myrho))
+
 ## 3.1.7 – 2019-12-09
 
 ### Enhancements
