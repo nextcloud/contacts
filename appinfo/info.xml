@@ -28,7 +28,7 @@
 	<repository type="git">https://github.com/nextcloud/contacts.git</repository>
 	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png</screenshot>
 	<dependencies>
-		<nextcloud min-version="16" max-version="18" />
+		<nextcloud min-version="16" max-version="19" />
 	</dependencies>
 	<contactsmenu>
 		<provider>OCA\Contacts\ContactsMenu\Providers\DetailsProvider</provider>
