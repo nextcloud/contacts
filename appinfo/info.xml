@@ -11,13 +11,13 @@
 * 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!
 * 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 	</description>
-	<version>3.1.7</version>
+	<version>3.1.8</version>
 	<licence>agpl</licence>
 	<author>John Molakvoæ</author>
 	<author>Team Popcorn</author>
 	<documentation>
-		<user>https://docs.nextcloud.com/server/14/user_manual/pim/contacts.html</user>
-		<admin>https://docs.nextcloud.com/server/14/admin_manual/configuration_server/occ_command.html?highlight=occ%20commands#dav-label</admin>
+		<user>https://docs.nextcloud.com/server/stable/user_manual/pim/contacts.html</user>
+		<admin>https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/occ_command.html?highlight=occ%20commands#dav-label</admin>
 		<developer>https://github.com/nextcloud/contacts#build-the-app</developer>
 	</documentation>
 	<category>office</category>
@@ -28,7 +28,7 @@
 	<repository type="git">https://github.com/nextcloud/contacts.git</repository>
 	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png</screenshot>
 	<dependencies>
-		<nextcloud min-version="15" max-version="18" />
+		<nextcloud min-version="16" max-version="18" />
 	</dependencies>
 	<contactsmenu>
 		<provider>OCA\Contacts\ContactsMenu\Providers\DetailsProvider</provider>
