@@ -1,61 +1,30 @@
 <template>
-	<transition name="delete-slide-left">
-		<div v-if="!deleteTimeout"
-			:id="id"
-			:class="{active: selectedContact === contact.key}"
-			tabindex="0"
-			class="app-content-list-item"
-			@click.prevent.stop="selectContact"
-			@keypress.enter.prevent.stop="selectContact">
-			<!-- keyboard accessibility will focus the input and not the label -->
-			<!--
-			<input ref="selected" :id="contact.key" type="checkbox"
-				class="app-content-list-item-checkbox checkbox" @keypress.enter.space.prevent.stop="toggleSelect">
-			<label :for="contact.key" @click.prevent.stop="toggleSelect" @keypress.enter.space.prevent.stop="toggleSelect" />
-			-->
-			<div :style="{ 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">
-				{{ contact.displayName | firstLetter }}
-				<!-- try to fetch the avatar only if the contact exists on the server -->
-				<div v-if="hasPhoto" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
-			</div>
-
-			<!-- contact data -->
-			<div class="app-content-list-item-line-one">
-				{{ contact.displayName }}
-			</div>
-			<div v-if="contact.email" class="app-content-list-item-line-two">
-				{{ contact.email }}
-			</div>
-
-			<!-- undo actions -->
-			<div v-if="!contact.addressbook.readOnly && !deleteTimeout"
-				class="icon-delete"
-				tabindex="0"
-				@click.prevent.stop="deleteContact"
-				@keypress.enter.prevent.stop="deleteContact" />
+	<div :id="id"
+		:class="{active: selectedContact === contact.key}"
+		tabindex="0"
+		class="app-content-list-item"
+		@click.prevent.stop="selectContact"
+		@keypress.enter.prevent.stop="selectContact">
+		<!-- keyboard accessibility will focus the input and not the label -->
+		<!--
+		<input ref="selected" :id="contact.key" type="checkbox"
+			class="app-content-list-item-checkbox checkbox" @keypress.enter.space.prevent.stop="toggleSelect">
+		<label :for="contact.key" @click.prevent.stop="toggleSelect" @keypress.enter.space.prevent.stop="toggleSelect" />
+		-->
+		<div :style="{ 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">
+			{{ contact.displayName | firstLetter }}
+			<!-- try to fetch the avatar only if the contact exists on the server -->
+			<div v-if="hasPhoto" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
 		</div>
 
-		<!-- Deleted contact (pending) -->
-		<div v-else
-			:id="id"
-			key="deleted"
-			class="deleted app-content-list-item">
-			<div :style="{ backgroundColor: 'grey' }" class="app-content-list-item-icon">
-				{{ contact.displayName | firstLetter }}
-				<!-- try to fetch the avatar only if the contact exists on the server -->
-				<div v-if="hasPhoto" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
-			</div>
-			<!-- contact data -->
-			<div class="app-content-list-item-line-one">
-				{{ contact.displayName }}
-			</div>
-			<div v-tooltip.auto="t('contacts', 'Deleting the contact in {countdown} seconds', { countdown })"
-				class="icon-history"
-				tabindex="0"
-				@click.prevent.stop="cancelDeletion"
-				@keypress.enter.prevent.stop="cancelDeletion" />
+		<!-- contact data -->
+		<div class="app-content-list-item-line-one">
+			{{ contact.displayName }}
 		</div>
-	</transition>
+		<div v-if="contact.email" class="app-content-list-item-line-two">
+			{{ contact.email }}
+		</div>
+	</div>
 </template>
 
 <script>
@@ -75,13 +44,6 @@ export default {
 			type: Object,
 			required: true,
 		},
-	},
-	data() {
-		return {
-			deleteInterval: null,
-			deleteTimeout: null,
-			countdown: 7,
-		}
 	},
 	computed: {
 		selectedGroup() {
@@ -127,30 +89,6 @@ export default {
 			// toggle checkbox here because we stop the propagation to not trigger selectContact
 			// therefore the selectContact prevent the checkbox label+input propagation
 			this.$refs.selected.checked = !this.$refs.selected.checked
-		},
-
-		/**
-		 * Dispatch contact deletion request
-		 */
-		deleteContact() {
-			this.deleteInterval = setInterval(() => {
-				this.countdown--
-			}, 1000)
-			this.deleteTimeout = setTimeout(() => {
-				this.$store.dispatch('deleteContact', { contact: this.contact })
-				this.$emit('deleted', this.index)
-				// reset
-				clearInterval(this.deleteInterval)
-				this.countdown = 7
-			}, 7000)
-		},
-
-		cancelDeletion() {
-			clearTimeout(this.deleteTimeout)
-			clearInterval(this.deleteInterval)
-			this.deleteTimeout = null
-			this.deleteInterval = null
-			this.countdown = 7
 		},
 
 		/**
