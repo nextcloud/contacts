@@ -28,8 +28,8 @@ import App from './ContactsRoot'
 import router from './router'
 import store from './store'
 import { sync } from 'vuex-router-sync'
-import { generateFilePath } from 'nextcloud-router'
-import { getRequestToken } from 'nextcloud-auth'
+import { generateFilePath } from '@nextcloud/router'
+import { getRequestToken } from '@nextcloud/auth'
 
 /** GLOBAL COMPONENTS AND DIRECTIVE */
 import { Actions, DatetimePicker, Multiselect, PopoverMenu, Modal } from '@nextcloud/vue'

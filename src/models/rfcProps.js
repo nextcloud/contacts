@@ -20,7 +20,7 @@
  *
  */
 import { VCardTime } from 'ical.js'
-// import { loadState } from 'nextcloud-initial-state'
+// import { loadState } from '@nextcloud/initial-state'
 import { loadState } from '../services/initialstate'
 
 import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN'

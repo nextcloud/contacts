@@ -88,8 +88,9 @@
 import debounce from 'debounce'
 import { ActionLink, ActionButton } from '@nextcloud/vue'
 
-import { getFilePickerBuilder } from 'nextcloud-dialogs'
-import { generateRemoteUrl } from 'nextcloud-router'
+import { getFilePickerBuilder } from '@nextcloud/dialogs'
+import { generateRemoteUrl } from '@nextcloud/router'
+import { getCurrentUser } from '@nextcloud/auth'
 
 const axios = () => import('axios')
 
@@ -113,7 +114,7 @@ export default {
 			maximizeAvatar: false,
 			opened: false,
 			loading: false,
-			root: generateRemoteUrl(`dav/files/${OC.getCurrentUser().uid}`),
+			root: generateRemoteUrl(`dav/files/${getCurrentUser().uid}`),
 			width: 0,
 			height: 0,
 		}

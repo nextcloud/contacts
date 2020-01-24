@@ -26,11 +26,11 @@
 			<SettingsAddressbook v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
 		</ul>
 		<SettingsNewAddressbook :addressbooks="addressbooks" />
+		<SettingsSortContacts class="settings-section" />
 		<SettingsImportContacts :addressbooks="addressbooks"
 			class="settings-section"
 			@clicked="onClickImport"
 			@fileLoaded="onLoad" />
-		<SettingsSortContacts class="settings-section" />
 	</div>
 </template>
 

@@ -22,7 +22,7 @@
 
 import Vue from 'vue'
 import Router from 'vue-router'
-import { generateUrl } from 'nextcloud-router'
+import { generateUrl } from '@nextcloud/router'
 import Contacts from '../views/Contacts'
 
 Vue.use(Router)

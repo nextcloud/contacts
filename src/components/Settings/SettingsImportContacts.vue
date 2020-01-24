@@ -23,21 +23,56 @@
 <template>
 	<div class="import-contact">
 		<template v-if="!isNoAddressbookAvailable">
-			<input id="contact-import"
-				:disabled="isImporting"
-				type="file"
-				class="hidden-visually"
-				@change="processFile">
-			<label id="upload" for="contact-import" class="button import-contact__multiselect-label icon-upload">
-				{{ isImporting ? t('contacts', 'Importing into') : t('contacts', 'Import into') }}
-			</label>
-			<multiselect
-				v-model="selectedAddressbook"
-				:options="options"
-				:disabled="isSingleAddressbook || isImporting"
-				:placeholder="t('contacts', 'Contacts')"
-				label="displayName"
-				class="import-contact__multiselect" />
+			<button class="import-contact__button-main" @click="toggleModal">
+				<span class="icon-upload" />
+				{{ t('contacts', 'Import contacts') }}
+			</button>
+			<Modal v-if="isOpened"
+				ref="modal"
+				class="import-contact__modal"
+				:title="t('contacts', 'Import contacts')"
+				@close="toggleModal">
+				<section class="import-contact__modal-addressbook">
+					<h3>{{ t('contacts', 'Import contacts') }}</h3>
+					<multiselect
+						v-if="!isSingleAddressbook"
+						id="select-addressbook"
+						v-model="selectedAddressbook"
+						:allow-empty="false"
+						:options="options"
+						:disabled="isSingleAddressbook || isImporting"
+						:placeholder="t('contacts', 'Contacts')"
+						label="displayName"
+						class="import-contact__multiselect">
+						<template slot="singleLabel" slot-scope="{ option }">
+							{{ t('contacts', `Import into the '{addressbookName}' addressbook`, { addressbookName: option.displayName }) }}
+						</template>
+					</multiselect>
+				</section>
+				<section class="import-contact__modal-pick">
+					<input id="contact-import"
+						ref="contact-import-input"
+						:disabled="loading || isImporting"
+						type="file"
+						class="hidden-visually"
+						@change="processFile">
+					<button
+						:disabled="loading"
+						class="button import-contact__button import-contact__button--local"
+						@click="clickImportInput">
+						<span class="import-contact__button-icon icon-upload" />
+						{{ t('contacts', 'Select local file') }}
+					</button>
+					<button
+						:class="{'icon-loading': loading}"
+						:disabled="loading"
+						class="button primary import-contact__button import-contact__button--files"
+						@click="openPicker">
+						<span class="import-contact__button-icon icon-folder-white" />
+						{{ t('contacts', 'Import from files') }}
+					</button>
+				</section>
+			</Modal>
 		</template>
 		<button v-else
 			id="upload"
@@ -49,12 +84,31 @@
 </template>
 
 <script>
+import { encodePath } from '@nextcloud/paths'
+import { getCurrentUser } from '@nextcloud/auth'
+import { generateRemoteUrl } from '@nextcloud/router'
+import { getFilePickerBuilder } from '@nextcloud/dialogs'
+import axios from 'axios'
+
+const CancelToken = axios.CancelToken
+
+const picker = getFilePickerBuilder(t('contacts', 'Choose a vcard file to import'))
+	.setMultiSelect(false)
+	.setModal(true)
+	.setType(1)
+	.allowDirectories(false)
+	.setMimeTypeFilter('text/vcard')
+	.build()
+
 export default {
 	name: 'SettingsImportContacts',
 
 	data() {
 		return {
+			cancelRequest: () => {},
 			importDestination: false,
+			isOpened: false,
+			loading: false,
 		}
 	},
 
@@ -110,20 +164,126 @@ export default {
 		},
 	},
 	methods: {
+		/**
+		 * Process input type file change
+		 *
+		 * @param {Event} event the input change event
+		 */
 		processFile(event) {
+			this.loading = true
+			this.$store.dispatch('changeStage', 'parsing')
+
 			const file = event.target.files[0]
 			const reader = new FileReader()
 			const selectedAddressbook = this.selectedAddressbook
-			this.$store.dispatch('changeStage', 'parsing')
-			this.$store.dispatch('setAddressbook', selectedAddressbook.displayName)
+
 			const self = this
 			reader.onload = function(e) {
+				self.isOpened = false
 				self.$store.dispatch('importContactsIntoAddressbook', { vcf: reader.result, addressbook: selectedAddressbook })
+
 				// reset input
 				event.target.value = ''
+				self.resetState()
 			}
 			reader.readAsText(file)
+		},
+
+		toggleModal() {
+			this.isOpened = !this.isOpened
+			// cancel any ongoing request if closed
+			if (!this.isOpened) {
+				this.cancelRequest()
+			}
+		},
+
+		clickImportInput() {
+			this.$refs['contact-import-input'].click()
+		},
+
+		/**
+		 * Open nextcloud file picker
+		 */
+		async openPicker() {
+			try {
+				this.loading = true
+				// unlikely, but let's cancel any previous request
+				this.cancelRequest()
+
+				// prepare cancel token for axios request
+				const source = CancelToken.source()
+				this.cancelRequest = source.cancel
+
+				// pick and retrieve file
+				const path = await picker.pick()
+				const file = await axios.get(generateRemoteUrl(`dav/files/${getCurrentUser().uid}`) + encodePath(path), {
+					cancelToken: source.token,
+				})
+
+				this.$store.dispatch('changeStage', 'parsing')
+				this.$store.dispatch('setAddressbook', this.selectedAddressbook.displayName)
+
+				if (file.data) {
+					await this.$store.dispatch('importContactsIntoAddressbook', { vcf: file.data, addressbook: this.selectedAddressbook })
+				}
+			} catch (error) {
+				console.error('Something wrong happened while picking a file', error)
+			} finally {
+				this.resetState()
+			}
+		},
+
+		/**
+		 * Reset default component state
+		 */
+		resetState() {
+			this.cancelRequest = () => {}
+			this.importDestination = false
+			this.isOpened = false
+			this.loading = false
 		},
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.import-contact {
+	&__modal {
+		section {
+			padding: 22px;
+			// only one padding bewteen sections
+			&:not(:last-child) {
+				padding-bottom: 0;
+			}
+		}
+		&-pick {
+			display: flex;
+			align-items: center;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+		}
+	}
+	&__button {
+		display: flex;
+		align-items: center;
+		flex: 0 1 150px;
+		width: 150px;
+		// spread evenly
+		margin: 10px;
+		padding: 10px;
+		&-icon {
+			width: 32px;
+			height: 32px;
+			margin-right: 5px;
+		}
+		&-main {
+			width: 100%;
+		}
+		&--cancel:not(:focus):not(:hover) {
+			border-color: transparent;
+			background-color: transparent;
+		}
+	}
+}
+
+</style>

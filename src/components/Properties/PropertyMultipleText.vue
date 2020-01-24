@@ -63,8 +63,8 @@
 				@input="updateValue">
 
 			<!-- props actions -->
-			<PropertyActions class="property__actions--floating"
-				v-if="!isReadOnly"
+			<PropertyActions v-if="!isReadOnly"
+				class="property__actions--floating"
 				:actions="actions"
 				:property-component="this"
 				@delete="deleteProperty" />
