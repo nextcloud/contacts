@@ -33,7 +33,6 @@
     "Groups" : "Групе",
     "New contact" : "Нови контакт",
     "Syntax error. Cannot open the contact." : "Синтаксна грешка. Не могу да отворим контакт.",
-    "Deleting the contact in {countdown} seconds" : "Бришем контакт за {countdown} секунди",
     "Done importing {total} contacts into" : "Завршен увоз {total} контаката у",
     "Importing {total} contacts into" : "Увозим {total} контатака у",
     "No errors" : "Нема грешака",

@@ -30,7 +30,6 @@ OC.L10N.register(
     "Addressbook" : "Osoitekirja",
     "Groups" : "Ryhmät",
     "New contact" : "Uusi yhteystieto",
-    "Deleting the contact in {countdown} seconds" : "Poistetaan yhteystieto {countdown} sekunnin kuluttua",
     "No errors" : "Ei virheitä",
     "Open your browser console for more details" : "Avaa selaimesi konsoli nähdäksesi lisätietoja",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} virheellinen yhteystieto","{failedCount} virheellistä yhteystietoa"],

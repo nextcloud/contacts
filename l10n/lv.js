@@ -34,7 +34,6 @@ OC.L10N.register(
     "Groups" : "Grupas",
     "New contact" : "Jauns kontakts",
     "Syntax error. Cannot open the contact." : "Sintakse kļūda. Nevar atvērt kontaktpersonu.",
-    "Deleting the contact in {countdown} seconds" : "Dzēsīs kontaktpersonu pēc {countdown} sekundēm",
     "Done importing {total} contacts into" : "Pabeidza importēt {total} kontaktpersonu informāciju",
     "Importing {total} contacts into" : "Importē {total} kontaktu informāciju",
     "No errors" : "Nav kļūdu",

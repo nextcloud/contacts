@@ -35,7 +35,6 @@ OC.L10N.register(
     "Groups" : "Grupoj",
     "New contact" : "Nova kontakto",
     "Syntax error. Cannot open the contact." : "Sintakseraro. Ne eblas malfermi la kontakton.",
-    "Deleting the contact in {countdown} seconds" : "Forigo de la kontakto post {countdown} sekundoj",
     "Done importing {total} contacts into" : "Farite, importado de {total} kontaktoj al",
     "Importing {total} contacts into" : "Importado de {total} kontaktaktoj en",
     "No errors" : "Neniu eraro",

@@ -35,7 +35,6 @@ OC.L10N.register(
     "Groups" : "Hópar",
     "New contact" : "Nýr tengiliður",
     "Syntax error. Cannot open the contact." : "Villa í málskipan. Get ekki opnað tengiliðinn.",
-    "Deleting the contact in {countdown} seconds" : "Eyði tengiliðnum eftir {countdown} sekúndur",
     "Done importing {total} contacts into" : "Lauk innflutningi {total} tengiliða inn í",
     "Importing {total} contacts into" : "Flyt {total} tengiliði inn í",
     "No errors" : "Engar villur",

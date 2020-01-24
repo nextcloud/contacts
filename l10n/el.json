@@ -33,7 +33,6 @@
     "Groups" : "Ομάδες",
     "New contact" : "Νέα επαφή",
     "Syntax error. Cannot open the contact." : "Σφάλμα σύνταξης. Η επαφή δεν ανοίγει.",
-    "Deleting the contact in {countdown} seconds" : "Η επαφή θα διαγραφεί σε {countdown} δευτερόλεπτα",
     "Done importing {total} contacts into" : "Η εισαγωγή {total} επαφών ολοκληρώθηκε",
     "Importing {total} contacts into" : "Εισαγωγή {total} επαφών",
     "No errors" : "Χωρίς σφάλματα",

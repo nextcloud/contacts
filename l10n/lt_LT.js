@@ -33,7 +33,6 @@ OC.L10N.register(
     "Groups" : "Grupės",
     "New contact" : "Naujas adresatas",
     "Syntax error. Cannot open the contact." : "Sintaksės klaida. Nepavyko atverti adresato.",
-    "Deleting the contact in {countdown} seconds" : "Adresatas ištrinamas po {countdown} sek.",
     "No errors" : "Klaidų nėra",
     "Open your browser console for more details" : "Išsamesnei informacijai, atverkite savo naršyklės pultą",
     "Add contact in group" : "Pridėti adresatą į grupę",

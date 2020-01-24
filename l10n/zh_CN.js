@@ -35,7 +35,6 @@ OC.L10N.register(
     "Groups" : "群组",
     "New contact" : "新建联系人",
     "Syntax error. Cannot open the contact." : "语法错误。不能打开联系人。",
-    "Deleting the contact in {countdown} seconds" : "正在删除联系人, 剩余 {countdown} 秒",
     "Done importing {total} contacts into" : "导入 {total} 个联系人",
     "Importing {total} contacts into" : "正在导入 {total} 个联系人",
     "No errors" : "没有错误",

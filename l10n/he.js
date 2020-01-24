@@ -33,7 +33,6 @@ OC.L10N.register(
     "Groups" : "קבוצות",
     "New contact" : "איש קשר חדש",
     "Syntax error. Cannot open the contact." : "שגיאת תחביר. לא ניתן לפתוח את איש הקשר.",
-    "Deleting the contact in {countdown} seconds" : "איש הקשר יימחק בעוד {countdown} שניות",
     "Done importing {total} contacts into" : "הושלם הייבוא של {total} אנשי קשר אל",
     "Importing {total} contacts into" : "{total} אנשי קשר מיובאים אל",
     "No errors" : "אין שגיאות",

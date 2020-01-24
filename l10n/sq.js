@@ -34,7 +34,6 @@ OC.L10N.register(
     "Groups" : "Grupe",
     "New contact" : "Kontakt i ri",
     "Syntax error. Cannot open the contact." : "Gabim sintakse. Kontakti nuk mund të hapet.",
-    "Deleting the contact in {countdown} seconds" : "Duke fshirë kontaktin në {countdown}  sekonda",
     "Done importing {total} contacts into" : "Importimi i {total} kontakteve u krye në ",
     "Importing {total} contacts into" : "Duke importuar {total} kontakte në ",
     "No errors" : "Nuk ka gabime",

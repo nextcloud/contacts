@@ -33,7 +33,6 @@
     "Groups" : "Skupiny",
     "New contact" : "Nový kontakt",
     "Syntax error. Cannot open the contact." : "Chyba zápisu. Nepodarilo sa otvoriť kontakt.",
-    "Deleting the contact in {countdown} seconds" : "Kontakt bude zmazaný za {countdown} sekúnd",
     "Done importing {total} contacts into" : "Dokončil sa import {total} kontaktov do",
     "Importing {total} contacts into" : "Importuje sa {total} kontaktov do",
     "No errors" : "Žiadne chyby",

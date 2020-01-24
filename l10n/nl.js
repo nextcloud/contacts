@@ -35,7 +35,6 @@ OC.L10N.register(
     "Groups" : "Groepen",
     "New contact" : "Nieuwe contactpersoon",
     "Syntax error. Cannot open the contact." : "Syntaxfout. Kan het contact niet openen.",
-    "Deleting the contact in {countdown} seconds" : "Contactpersoon wordt verwijderd over {countdown} seconde(n)",
     "Done importing {total} contacts into" : "Klaar met het importeren van {total} contacten naar",
     "Importing {total} contacts into" : "Importeren {total} contactpersonen into",
     "No errors" : "Geen fouten.",

@@ -31,7 +31,6 @@
     "Groups" : "그룹",
     "New contact" : "새 연락처",
     "Syntax error. Cannot open the contact." : "문법 오류입니다. 연락처를 열 수 없습니다.",
-    "Deleting the contact in {countdown} seconds" : "{countdown}초 후 연락처 삭제",
     "Done importing {total} contacts into" : "연락처 {total}개 가져오기 완료",
     "Importing {total} contacts into" : "연락처 {total}개 가져오는 중",
     "No errors" : "오류 없음",

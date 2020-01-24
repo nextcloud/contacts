@@ -30,7 +30,6 @@
     "Groups" : "Csoportok",
     "New contact" : "Új névjegy",
     "Syntax error. Cannot open the contact." : "Szintaktikai hiba. Nem lehet megnyitni a kapcsolatot.",
-    "Deleting the contact in {countdown} seconds" : "Névjegy törlése {countdown} másodperc múlva",
     "Done importing {total} contacts into" : "Elkészült {total} névjegy importálása ide:",
     "Importing {total} contacts into" : "{total} névjegy importálása ide",
     "No errors" : "Nincsenek hibák",

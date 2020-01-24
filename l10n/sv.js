@@ -35,7 +35,6 @@ OC.L10N.register(
     "Groups" : "Grupper",
     "New contact" : "Ny kontakt",
     "Syntax error. Cannot open the contact." : "Syntaxfel. Kan inte öppna kontakten.",
-    "Deleting the contact in {countdown} seconds" : "Raderar kontakten om {countdown} sekunder",
     "Done importing {total} contacts into" : "Klar med import av {totalt} kontakter till",
     "Importing {total} contacts into" : "Importerar {total} kontakter till",
     "No errors" : "Inga fel",

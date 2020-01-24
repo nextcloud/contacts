@@ -35,7 +35,6 @@ OC.L10N.register(
     "Groups" : "Skupiny",
     "New contact" : "Nový kontakt",
     "Syntax error. Cannot open the contact." : "Chyba syntaxe. Kontakty nelze otevřít.",
-    "Deleting the contact in {countdown} seconds" : "Tento kontakt bude smazán za {countdown} sekund",
     "Done importing {total} contacts into" : "Naimportováno {total} kontaktů do",
     "Importing {total} contacts into" : "Importuje se {total} kontaktů do",
     "No errors" : "Žádné chyby",

@@ -35,7 +35,6 @@ OC.L10N.register(
     "Groups" : "Группы",
     "New contact" : "Новый контакт",
     "Syntax error. Cannot open the contact." : "Синтаксическая ошибка. Невозможно открыть контакт.",
-    "Deleting the contact in {countdown} seconds" : "Удаление контакта через {countdown} секунд",
     "Done importing {total} contacts into" : "Импортирование {total} контактов окончено",
     "Importing {total} contacts into" : "Выполняет импорт {total} контакта(ов)",
     "No errors" : "Нет ошибок",
