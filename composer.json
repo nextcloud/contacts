@@ -1,8 +1,13 @@
 {
     "require-dev": {
         "christophwurst/nextcloud_testing": "^0.7.0"
-    },
+    }, 
+	"config": {
+		"optimize-autoloader": true,
+		"classmap-authoritative": true
+	},
 	"scripts": {
+		"lint": "find . -name \\*.php -not -path './vendor/*' -exec php -l \"{}\" \\;",
 		"test:unit": "phpunit -c phpunit.xml --fail-on-warning",
 		"test:integration": "phpunit -c phpunit.integration.xml --fail-on-warning"
 	}
