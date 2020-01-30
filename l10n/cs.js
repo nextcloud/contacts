@@ -11,6 +11,7 @@ OC.L10N.register(
     "Add new property" : "Přidat novou vlastnost",
     "Choose property type" : "Zvolit typ vlastnosti",
     "Add a new picture" : "Přidat nový obrázek",
+    "Upload new picture" : "Nahrát nový obrázek",
     "Choose from files" : "Zvolit ze souborů",
     "Download picture" : "Stáhnout si obrázek",
     "Delete picture" : "Smazat obrázek",

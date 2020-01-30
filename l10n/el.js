@@ -11,6 +11,7 @@ OC.L10N.register(
     "Add new property" : "Προσθήκη νέου πεδίου",
     "Choose property type" : "Διάλεξε τύπο πεδίου",
     "Add a new picture" : "Προσθήκη νέας εικόνας",
+    "Upload new picture" : "Μεταφόρτωση νέας εικόνας",
     "Choose from files" : "Διάλεξε απο αρχεία",
     "Download picture" : "Λήψη εικόνας",
     "Delete picture" : "Διαγραφή εικόνας",

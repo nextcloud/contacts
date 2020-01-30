@@ -11,6 +11,7 @@ OC.L10N.register(
     "Add new property" : "Додај нову ставку",
     "Choose property type" : "Одаберите тип ставке",
     "Add a new picture" : "Додај нову слику",
+    "Upload new picture" : "Отпреми нову слику",
     "Choose from files" : "Одабери из фајлова",
     "Download picture" : "Преузми слику",
     "Delete picture" : "Обриши слику",
