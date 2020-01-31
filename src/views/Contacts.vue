@@ -242,10 +242,9 @@ export default {
 							},
 						],
 					},
+					toString: () => group.name
 				}
-			}).sort(function(a, b) {
-				return parseInt(b.utils.counter) - parseInt(a.utils.counter)
-			})
+			}).sort()
 		},
 
 		// building the main menu
