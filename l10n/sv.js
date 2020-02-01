@@ -11,6 +11,7 @@ OC.L10N.register(
     "Add new property" : "Lägg till nytt fält",
     "Choose property type" : "Välj typ",
     "Add a new picture" : "Lägg till en ny bild",
+    "Upload new picture" : "Ladda upp ny bild",
     "Choose from files" : "Välj från filer",
     "Download picture" : "Ladda ner bild",
     "Delete picture" : "Radera bild",

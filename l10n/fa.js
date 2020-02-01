@@ -12,6 +12,7 @@ OC.L10N.register(
     "Delete" : "حذف",
     "Groups" : "گروه ها",
     "New contact" : "مخاطب جدید",
+    "Select Date" : "تاریخ را انتخاب کنید",
     "No results" : "نتیجه ای یافت نشد",
     "Last modified" : "آخرین اصلاح شده",
     "Rename" : "تغییرنام",
