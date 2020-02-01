@@ -31,6 +31,7 @@
 			@clicked="onClickImport"
 			@fileLoaded="onLoad" />
 		<SettingsSortContacts class="settings-section" />
+		<SettingsSortGroups class="settings-section" />
 	</div>
 </template>
 
@@ -39,6 +40,8 @@ import SettingsAddressbook from './Settings/SettingsAddressbook'
 import SettingsNewAddressbook from './Settings/SettingsNewAddressbook'
 import SettingsImportContacts from './Settings/SettingsImportContacts'
 import SettingsSortContacts from './Settings/SettingsSortContacts'
+import SettingsSortGroups from './Settings/SettingsSortGroups'
+
 
 export default {
 	name: 'SettingsSection',
@@ -47,6 +50,7 @@ export default {
 		SettingsNewAddressbook,
 		SettingsImportContacts,
 		SettingsSortContacts,
+		SettingsSortGroups,
 	},
 	computed: {
 		// store getters

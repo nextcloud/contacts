@@ -182,6 +182,9 @@ export default {
 		importState() {
 			return this.$store.getters.getImportState
 		},
+		orderGroups() {
+			return this.$store.getters.getOrderGroups
+		},
 
 		// importing states
 		isImporting() {
@@ -223,7 +226,8 @@ export default {
 
 		// generate groups menu from groups store
 		groupsMenu() {
-			return this.groups.map(group => {
+			this.$store.commit('sortGroups')
+			return this.sortedGroups.map(group => {
 				return {
 					id: group.name.replace(' ', '_'),
 					key: group.name.replace(' ', '_'),
@@ -242,9 +246,8 @@ export default {
 							},
 						],
 					},
-					toString: () => group.name
 				}
-			}).sort()
+			})
 		},
 
 		// building the main menu
@@ -334,6 +337,11 @@ export default {
 			if (localStorage.getItem('orderKey')) {
 				// run setOrder mutation with local storage key
 				this.$store.commit('setOrder', localStorage.getItem('orderKey'))
+			}
+				// check local storage for orderGroups
+			if (localStorage.getItem('orderGroups')) {
+				// run setOrder mutation with local storage key
+				this.$store.commit('setOrderGroups', localStorage.getItem('orderGroups'))
 			}
 		})
 	},

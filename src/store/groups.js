@@ -22,6 +22,8 @@
 
 const state = {
 	groups: [],
+	sortedGroups: [],
+	orderGroups: "amount"
 }
 
 const mutations = {
@@ -105,10 +107,36 @@ const mutations = {
 			}
 		})
 	},
+
+	/**
+	 * Order the group list.
+	 * @param {Object} state the store data
+	 */
+	sortGroups(state) {
+		state.sortedGroups = Object.values(state.groups)
+			.map(v => {
+				v.toString = () => v.name
+				return v
+			})
+			.sort(state.orderGroups == "alphabetically" ? undefined : ({contacts: a}, {contacts: b}) => 
+				b.length - a.length
+			)
+	},
+
+	/**
+	 * Set the order key
+	 *
+	 * @param {Object} state the store data
+	 * @param {string} [orderGroup=amount] the order key to sort by
+	 */
+	setOrderGroups(state, orderGroup = 'amount') {
+		state.orderGroup = orderGroup
+	},
 }
 
 const getters = {
 	getGroups: state => state.groups,
+	getOrderGroups: state => state.orderGroups
 }
 
 const actions = {
