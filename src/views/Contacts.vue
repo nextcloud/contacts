@@ -338,7 +338,7 @@ export default {
 				// run setOrder mutation with local storage key
 				this.$store.commit('setOrder', localStorage.getItem('orderKey'))
 			}
-				// check local storage for orderGroups
+			// check local storage for orderGroups
 			if (localStorage.getItem('orderGroups')) {
 				// run setOrder mutation with local storage key
 				this.$store.commit('setOrderGroups', localStorage.getItem('orderGroups'))

@@ -23,7 +23,7 @@
 const state = {
 	groups: [],
 	sortedGroups: [],
-	orderGroups: "amount"
+	orderGroups: 'amount',
 }
 
 const mutations = {
@@ -118,8 +118,9 @@ const mutations = {
 				v.toString = () => v.name
 				return v
 			})
-			.sort(state.orderGroups == "alphabetically" ? undefined : ({contacts: a}, {contacts: b}) => 
-				b.length - a.length
+			.sort(state.orderGroups === 'alphabetically'
+				? undefined
+				: ({ contacts: a }, { contacts: b }) => b.length - a.length
 			)
 	},
 
@@ -136,7 +137,7 @@ const mutations = {
 
 const getters = {
 	getGroups: state => state.groups,
-	getOrderGroups: state => state.orderGroups
+	getOrderGroups: state => state.orderGroups,
 }
 
 const actions = {

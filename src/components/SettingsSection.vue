@@ -42,7 +42,6 @@ import SettingsImportContacts from './Settings/SettingsImportContacts'
 import SettingsSortContacts from './Settings/SettingsSortContacts'
 import SettingsSortGroups from './Settings/SettingsSortGroups'
 
-
 export default {
 	name: 'SettingsSection',
 	components: {
