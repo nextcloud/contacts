@@ -11,6 +11,7 @@ OC.L10N.register(
     "Add new property" : "Создать свойство",
     "Choose property type" : "Выберите тип свойства",
     "Add a new picture" : "Добавить новое изображение",
+    "Upload new picture" : "Загрузить изображение",
     "Choose from files" : "Выбрать из файлов",
     "Download picture" : "Скачать изображение",
     "Delete picture" : "Удалить изображение",
