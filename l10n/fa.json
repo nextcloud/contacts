@@ -76,6 +76,7 @@
     "Female" : "مؤنث",
     "Male" : "مذکر",
     "None" : "هیچ‌کدام",
-    "Unknown" : "نامشخص"
+    "Unknown" : "نامشخص",
+    "An error occurred" : "خطایی روی داد"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

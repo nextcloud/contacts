@@ -78,6 +78,7 @@ OC.L10N.register(
     "Female" : "مؤنث",
     "Male" : "مذکر",
     "None" : "هیچ‌کدام",
-    "Unknown" : "نامشخص"
+    "Unknown" : "نامشخص",
+    "An error occurred" : "خطایی روی داد"
 },
 "nplurals=2; plural=(n > 1);");
