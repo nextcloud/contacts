@@ -93,18 +93,23 @@
 </template>
 
 <script>
-import { ActionLink, ActionButton, ActionInput, ActionCheckbox } from '@nextcloud/vue'
+import Actions from '@nextcloud/vue/dist/Components/Actions'
+import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
+import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
 import ShareAddressBook from './SettingsAddressbookShare'
 
 export default {
 	name: 'SettingsAddressbook',
 
 	components: {
-		ShareAddressBook,
-		ActionLink,
 		ActionButton,
-		ActionInput,
 		ActionCheckbox,
+		ActionInput,
+		ActionLink,
+		Actions,
+		ShareAddressBook,
 	},
 
 	props: {

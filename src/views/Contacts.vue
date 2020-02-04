@@ -89,17 +89,15 @@
 </template>
 
 <script>
-import {
-	AppContent,
-	AppNavigation,
-	AppNavigationItem,
-	AppNavigationCounter,
-	AppNavigationNew,
-	AppNavigationSettings,
-	ActionButton,
-	Content,
-	Modal,
-} from '@nextcloud/vue'
+import AppContent from '@nextcloud/vue/dist/Components/AppContent'
+import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
+import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
+import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
+import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
+import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import Content from '@nextcloud/vue/dist/Components/Content'
+import Modal from '@nextcloud/vue/dist/Components/Modal'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
 
 import moment from 'moment'

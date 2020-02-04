@@ -22,7 +22,7 @@
 
 <template>
 	<div class="sort-contacts">
-		<multiselect
+		<Multiselect
 			id="sort-by"
 			:value="orderKeyOption"
 			:searchable="false"
@@ -36,9 +36,14 @@
 </template>
 
 <script>
+import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 
 export default {
 	name: 'SettingsSortContacts',
+
+	components: {
+		Multiselect,
+	},
 
 	computed: {
 		/* Order Keys */

@@ -22,7 +22,6 @@
  */
 
 import Vue from 'vue'
-import ICAL from 'ical.js'
 import pLimit from 'p-limit'
 
 import Contact from '../models/contact'
@@ -407,7 +406,7 @@ const actions = {
 
 			// Get vcard string
 			try {
-				const vData = ICAL.stringify(contact.vCard.jCal)
+				const vData = contact.vCard.toString()
 				// push contact to server and use limit
 				requests.push(limit(() => contact.addressbook.dav.createVCard(vData)
 					.then((response) => {
@@ -511,6 +510,34 @@ const actions = {
 		await context.commit('updateContactAddressbook', { contact, addressbook })
 		await context.commit('addContactToAddressbook', contact)
 		return contact
+	},
+
+	/**
+	 * Copy a contact to the provided addressbook
+	 *
+	 * @param {Object} context the store mutations
+	 * @param {Object} data destructuring object
+	 * @param {Contact} data.contact the contact to copy
+	 * @param {Object} data.addressbook the addressbook to move the contact to
+	 * @returns {Contact} the new contact object
+	 */
+	async copyContactToAddressbook(context, { contact, addressbook }) {
+		// init new contact & strip old uid
+		const vData = contact.vCard.toString().replace(/^UID.+/im, '')
+		const newContact = new Contact(vData, addressbook)
+
+		try {
+			const response = await contact.dav.copy(addressbook.dav)
+			// setting the contact dav property
+			Vue.set(newContact, 'dav', response)
+
+		} catch (error) {
+			throw error
+		}
+		// success, update store
+		await context.commit('addContact', newContact)
+		await context.commit('addContactToAddressbook', newContact)
+		return newContact
 	},
 }
 
