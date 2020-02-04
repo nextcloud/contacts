@@ -85,7 +85,7 @@
 import debounce from 'debounce'
 import moment from 'moment'
 import { DatetimePicker } from '@nextcloud/vue'
-import { getLocale } from 'nextcloud-l10n'
+import { getLocale } from '@nextcloud/l10n'
 import { VCardTime } from 'ical.js'
 
 import PropertyMixin from '../../mixins/PropertyMixin'
