@@ -92,7 +92,7 @@ import axios from 'axios'
 
 const CancelToken = axios.CancelToken
 
-const picker = getFilePickerBuilder(t('contacts', 'Choose a vcard file to import'))
+const picker = getFilePickerBuilder(t('contacts', 'Choose a vCard file to import'))
 	.setMultiSelect(false)
 	.setModal(true)
 	.setType(1)
