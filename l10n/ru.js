@@ -66,8 +66,6 @@ OC.L10N.register(
     "can edit" : "разрешить редактировать",
     "Unable to delete the share." : "Невозможно закрыть общий доступ.",
     "Unable to change permissions." : "Невозможно изменить права доступа.",
-    "Importing into" : "Производится импорт в",
-    "Import into" : "Импортировать в",
     "Importing is disabled because there are no address books available" : "Возможность импорта отключена, т.к. отсутствуют адресные книги, в которые можно выполнить запись",
     "Address book name" : "Название адресной книги",
     "An error occurred, unable to create the addressbook." : "Ошибка, адресная книга не создана.",

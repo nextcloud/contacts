@@ -61,8 +61,6 @@ OC.L10N.register(
     "can edit" : "módosítható",
     "Unable to delete the share." : "Nem lehet törölni a megosztást.",
     "Unable to change permissions." : "Nem lehet változtatni az engedélyeket.",
-    "Importing into" : "Importálás  ebbe",
-    "Import into" : "Importálás ebbe",
     "Importing is disabled because there are no address books available" : "Az importálás nincs engedélyezve mert nem található címjegyzék",
     "Address book name" : "Címjegyzék neve",
     "An error occurred, unable to create the addressbook." : "Hiba lépett fel, nem lehet létrehozni a címjegyzéket.",

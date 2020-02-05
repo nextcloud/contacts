@@ -65,8 +65,6 @@ OC.L10N.register(
     "can edit" : "編集を許可",
     "Unable to delete the share." : "共有を解除できません。",
     "Unable to change permissions." : "権限を変更できません。",
-    "Importing into" : "インポート",
-    "Import into" : "インポート",
     "Importing is disabled because there are no address books available" : "使用可能なアドレス帳がないため、インポートは無効です",
     "Address book name" : "アドレス帳名",
     "An error occurred, unable to create the addressbook." : "エラーが発生し、アドレス帳を作成できません。",

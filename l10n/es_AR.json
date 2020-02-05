@@ -54,8 +54,6 @@
     "can edit" : "poder editar",
     "Unable to delete the share." : "No se puede eliminar el recurso compartido.",
     "Unable to change permissions." : "No se pueden cambiar los permisos.",
-    "Importing into" : "Importando en",
-    "Import into" : "Importar en",
     "Importing is disabled because there are no address books available" : "La importación está deshabilitada porque no hay libretas de direcciones disponibles",
     "Address book name" : "Nombre de la libreta de direcciones",
     "An error occurred, unable to create the addressbook." : "Se produjo un error, no se puede crear la libreta de direcciones.",

@@ -21,8 +21,6 @@ OC.L10N.register(
     "Copy link" : "Copy link",
     "Share with users or groups" : "Share with users or groups",
     "can edit" : "can edit",
-    "Importing into" : "Importing into",
-    "Import into" : "Import into",
     "Address book name" : "Address book name",
     "First name" : "First-name",
     "Last name" : "Surname",

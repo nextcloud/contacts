@@ -20,8 +20,6 @@ OC.L10N.register(
     "Copy link" : "Copiar hiperligação",
     "Share with users or groups" : "Partilhe com os utilizadores ou grupos",
     "can edit" : "pode editar",
-    "Importing into" : "Importar para",
-    "Import into" : "Importar para",
     "Address book name" : "Nome do livro de endereços",
     "First name" : "Primeiro Nome",
     "Last name" : "Ultimo Nome",

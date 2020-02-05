@@ -20,8 +20,6 @@ OC.L10N.register(
     "Copy link" : "複製連結",
     "Share with users or groups" : "與使用者或群組分享",
     "can edit" : "允許編輯",
-    "Importing into" : "正匯入至",
-    "Import into" : "匯入至",
     "Address book name" : "通訊錄名稱",
     "First name" : "名",
     "Last name" : "姓",

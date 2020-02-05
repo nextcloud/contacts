@@ -63,8 +63,6 @@
     "can edit" : "pot editar",
     "Unable to delete the share." : "No s'ha pogut suprimir la compartició.",
     "Unable to change permissions." : "No s'han pogut canviar els permisos.",
-    "Importing into" : "S'està important a",
-    "Import into" : "Importa a",
     "Importing is disabled because there are no address books available" : "La importació està desactivada perquè no hi ha cap llibreta d’adreces disponible",
     "Address book name" : "Nom de la llibreta d'adreces",
     "An error occurred, unable to create the addressbook." : "S'ha produït un error. No s'ha pogut crear la llibreta d'adreces.",

@@ -63,8 +63,6 @@ OC.L10N.register(
     "can edit" : "편집 가능",
     "Unable to delete the share." : "이 공유를 삭제할 수 없습니다.",
     "Unable to change permissions." : "권한을 변경할 수 없습니다.",
-    "Importing into" : "다음으로 가져오는 중",
-    "Import into" : "다음으로 가져오기",
     "Importing is disabled because there are no address books available" : "주소록을 찾을 수 없어서 가져올 수 없습니다.",
     "Address book name" : "주소록 이름",
     "An error occurred, unable to create the addressbook." : "오류가 발생하여 주소록을 만들 수 없습니다.",

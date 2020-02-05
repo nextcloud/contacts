@@ -65,8 +65,6 @@ OC.L10N.register(
     "can edit" : "може да се измени",
     "Unable to delete the share." : "Неможе да се избрише споделениот контакт",
     "Unable to change permissions." : "Неможе да се променат дозволите.",
-    "Importing into" : "Увезување во",
-    "Import into" : "Увези во",
     "Importing is disabled because there are no address books available" : "Увезувањето е оневозможено бидејќи нема достапен адресар",
     "Address book name" : "Име на адресарот",
     "An error occurred, unable to create the addressbook." : "Настана грешка, неможе да се креира адресар.",

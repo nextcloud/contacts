@@ -22,8 +22,6 @@ OC.L10N.register(
     "Share with users or groups" : "اشتراک گذاری با کاربران یا گروه ها ...",
     "No users or groups" : "هیچ کاربر یا گروهی وجود ندارد",
     "can edit" : "توانایی ویرایش",
-    "Importing into" : "در حال وارد کردن به",
-    "Import into" : "وارد کردن به",
     "Address book name" : "نام دفترچه آدرس",
     "First name" : "نام",
     "Last name" : "نام‌خانوادگی",

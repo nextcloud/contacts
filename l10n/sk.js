@@ -65,8 +65,6 @@ OC.L10N.register(
     "can edit" : "môže upravovať",
     "Unable to delete the share." : "Nepodarilo sa zmazať zdieľanie.",
     "Unable to change permissions." : "Nepodarilo sa zmeniť oprávnenia.",
-    "Importing into" : "Importovať do",
-    "Import into" : "Importovať do",
     "Importing is disabled because there are no address books available" : "Nie je možné importovať, pretože neexistuje ani jeden adresár kontaktov",
     "Address book name" : "Názov adresára kontaktov",
     "An error occurred, unable to create the addressbook." : "Pri pokuse o vytvorenie adresára sa vyskytla chyba.",

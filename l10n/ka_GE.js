@@ -19,8 +19,6 @@ OC.L10N.register(
     "Copy link" : "ბმულის კოპირება",
     "Share with users or groups" : "გაზიარება მოხმარებლებთან ან ჯგუფებთან",
     "can edit" : "შეუძლია შეცვლა",
-    "Importing into" : "იმპორტირება",
-    "Import into" : "იმპორტირება",
     "Address book name" : "მისამართების წიგნის სახელი",
     "First name" : "სახელი",
     "Last name" : "გვარი",

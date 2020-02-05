@@ -65,8 +65,6 @@ OC.L10N.register(
     "can edit" : "kan bewerken",
     "Unable to delete the share." : "Kan de share niet verwijderen.",
     "Unable to change permissions." : "Kan de permissies niet wijzigen.",
-    "Importing into" : "Importeren in",
-    "Import into" : "Importeer in",
     "Importing is disabled because there are no address books available" : "Import is uitgeschakeld omdat er geen adresboek beschikbaar is",
     "Address book name" : "Adresboek naam",
     "An error occurred, unable to create the addressbook." : "Er trad een fout op, kon het adresboek niet creëren.",

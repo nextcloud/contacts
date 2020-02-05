@@ -19,8 +19,6 @@ OC.L10N.register(
     "Copy link" : "Kopeeri link",
     "Share with users or groups" : "Jaga kasutajate või gruppidega",
     "can edit" : "saab redigeerida",
-    "Importing into" : "Importimine sisse",
-    "Import into" : "import sisse",
     "Address book name" : "Aadressiraamatu nimi",
     "First name" : "Eesnimi",
     "Last name" : "Perekonnanimi",
@@ -78,6 +76,7 @@ OC.L10N.register(
     "Female" : "Naine",
     "Male" : "Mees",
     "None" : "Pole",
-    "Unknown" : "Teadmata"
+    "Unknown" : "Teadmata",
+    "An error occurred" : "Tekkis tõrge"
 },
 "nplurals=2; plural=(n != 1);");

@@ -63,8 +63,6 @@
     "can edit" : "getur breytt",
     "Unable to delete the share." : "Get ekki eytt sameigninni.",
     "Unable to change permissions." : "Tekst ekki að breyta heimildum.",
-    "Importing into" : "Flyt inn í",
-    "Import into" : "Flytja inn í",
     "Importing is disabled because there are no address books available" : "Innflutningur er óvirkur því engar nafnaskrár eru tiltækar",
     "Address book name" : "Heiti nafnaskrár",
     "An error occurred, unable to create the addressbook." : "Villa kom upp, tókst ekki að útbúa nafnaskrána.",

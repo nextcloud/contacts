@@ -35,8 +35,6 @@ OC.L10N.register(
     "Share with users or groups" : "Поділитися з користувачем або групою",
     "No users or groups" : "Жодного користувача або групм",
     "can edit" : "може редагувати",
-    "Importing into" : "Імпортування до",
-    "Import into" : "Імпортувати до",
     "Address book name" : "Назва адресної книги",
     "First name" : "Ім'я",
     "Last name" : "Прізвище",

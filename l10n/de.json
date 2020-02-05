@@ -64,8 +64,6 @@
     "can edit" : "kann bearbeiten",
     "Unable to delete the share." : "Freigabe kann nicht gelöscht werden.",
     "Unable to change permissions." : "Berechtigungen können nicht geändert werden.",
-    "Importing into" : "Importiere Info",
-    "Import into" : "Importieren nach",
     "Importing is disabled because there are no address books available" : "Der Import ist deaktiviert, da kein Adressbuch verfügbar ist",
     "Address book name" : "Name des Adressbuchs",
     "An error occurred, unable to create the addressbook." : "Es ist ein Fehler aufgetreten, das Adressbuch konnte nicht erstellt werden.",

@@ -21,8 +21,6 @@ OC.L10N.register(
     "Copy link" : "Copiar liga",
     "Share with users or groups" : "Compartir con otros usuarios o grupos",
     "can edit" : "puede editar",
-    "Importing into" : "Importando a",
-    "Import into" : "Importar a",
     "Address book name" : "Nombre de la libreta de direcciones",
     "First name" : "Nombre",
     "Last name" : "Apellido",

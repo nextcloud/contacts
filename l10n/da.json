@@ -63,8 +63,6 @@
     "can edit" : "kan redigere",
     "Unable to delete the share." : "Kan ikke slette delingen.",
     "Unable to change permissions." : "Kan ikke ændre tilladelser.",
-    "Importing into" : "Importerer til",
-    "Import into" : "Importer til",
     "Importing is disabled because there are no address books available" : "Indlæsning er deaktiveret da der ikke er nogen adressebog tilgængelig",
     "Address book name" : "Adressebogsnavn",
     "An error occurred, unable to create the addressbook." : "Fejl opstået, kan ikke oprette adressebog.",

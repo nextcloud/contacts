@@ -61,8 +61,6 @@
     "can edit" : "yn gallu golygu",
     "Unable to delete the share." : "Methu dileu'r gyfran.",
     "Unable to change permissions." : "Methu newid caniatâd.",
-    "Importing into" : "Mewnforio i",
-    "Import into" : "Mewnforio i",
     "Importing is disabled because there are no address books available" : "Mae mewnforio wedi ei analluogi oherwydd nad oes llyfrau cyfeiriadau ar gael",
     "Address book name" : "Enw'r llyfr cyfeiriadau",
     "An error occurred, unable to create the addressbook." : "Digwyddodd gwall, yn methu â chreu'r llyfr cyfeiriadau.",

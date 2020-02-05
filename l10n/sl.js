@@ -64,8 +64,6 @@ OC.L10N.register(
     "can edit" : "lahko ureja",
     "Unable to delete the share." : "Ni mogoče izbrisati mesta souporabe.",
     "Unable to change permissions." : "Ni mogoče spremeniti dovoljenj.",
-    "Importing into" : "Poteka uvažanje v",
-    "Import into" : "Uvozi v",
     "Importing is disabled because there are no address books available" : "Uvoz je onemogočen, ker ni mogoče najti razpoložljivega imenika.",
     "Address book name" : "Ime imenika",
     "An error occurred, unable to create the addressbook." : "Prišlo je do napake, zato ni mogoče ustvariti imenika.",

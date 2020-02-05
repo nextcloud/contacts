@@ -50,8 +50,6 @@ OC.L10N.register(
     "Copy link" : "Kopjo linkun",
     "Share with users or groups" : "Nda me përdoruesit ose grupet",
     "can edit" : "mund të modifikoni",
-    "Importing into" : "Duke u importuar në",
-    "Import into" : "Importo tek ",
     "Address book name" : "Emër libri adresash",
     "First name" : "Emër",
     "Last name" : "Mbiemër",

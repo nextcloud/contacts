@@ -18,8 +18,6 @@ OC.L10N.register(
     "Copy link" : "Copiază linkul",
     "Share with users or groups" : "Partajează cu utilizatori sau grupuri",
     "can edit" : "poate edita",
-    "Importing into" : "Se importă în",
-    "Import into" : "Importă în",
     "Address book name" : "Numele listă de contacte",
     "First name" : "Prenume",
     "Last name" : "Nume",

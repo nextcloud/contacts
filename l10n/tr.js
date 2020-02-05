@@ -66,8 +66,6 @@ OC.L10N.register(
     "can edit" : "düzenleyebilir",
     "Unable to delete the share." : "Bu paylaşım silinemedi.",
     "Unable to change permissions." : "İzinler değiştirilemedi.",
-    "Importing into" : "Şunun içine aktarılıyor",
-    "Import into" : "Şunun içine aktar",
     "Importing is disabled because there are no address books available" : "Kullanılabilecek bir adres defteri bulunamadığından içe aktarım devre dışı bırakıldı",
     "Address book name" : "Adres defteri adı",
     "An error occurred, unable to create the addressbook." : "Bir sorun çıktı, adres defteri oluşturulamadı.",

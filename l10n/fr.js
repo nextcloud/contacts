@@ -66,8 +66,6 @@ OC.L10N.register(
     "can edit" : "peut modifier",
     "Unable to delete the share." : "Impossible de supprimer le partage.",
     "Unable to change permissions." : "Impossible de changer les autorisations.",
-    "Importing into" : "Importer dans",
-    "Import into" : "Importer vers",
     "Importing is disabled because there are no address books available" : "L'import n'est pas disponible car il n'existe aucun carnet d'adresses",
     "Address book name" : "Nom du carnet d'adresses",
     "An error occurred, unable to create the addressbook." : "Une erreur est survenue, impossible de créer le carnet d'adresses.",

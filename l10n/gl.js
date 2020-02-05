@@ -66,8 +66,6 @@ OC.L10N.register(
     "can edit" : "pode editar",
     "Unable to delete the share." : "Non é posíbel eliminar o recurso compartido",
     "Unable to change permissions." : "Non foi posíbel cambiar os permisos.",
-    "Importing into" : "Importando a",
-    "Import into" : "Importar a",
     "Importing is disabled because there are no address books available" : "A importación está desactivado porque non hai axendas dispoñíbeis",
     "Address book name" : "Nome da axenda",
     "An error occurred, unable to create the addressbook." : "Produciuse un erro: non foi posíbel crear a axenda.",

@@ -59,8 +59,6 @@
     "can edit" : "יש הרשאת עריכה",
     "Unable to delete the share." : "לא ניתן למחוק את השיתוף.",
     "Unable to change permissions." : "לא ניתן לשנות הרשאות.",
-    "Importing into" : "מתבצע ייבוא אל",
-    "Import into" : "ייבוא לתוך",
     "Importing is disabled because there are no address books available" : "הייבוא מושבת כיוון שאין לך ספרי כתובות זמינים",
     "Address book name" : "שם ספר הכתובות",
     "An error occurred, unable to create the addressbook." : "אירעה שגיאה, לא ניתן ליצור את ספר הכתובות.",

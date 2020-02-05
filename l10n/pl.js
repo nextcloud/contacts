@@ -66,8 +66,6 @@ OC.L10N.register(
     "can edit" : "może edytować",
     "Unable to delete the share." : "Nie można usunąć udostępnienia.",
     "Unable to change permissions." : "Nie można zmienić uprawnień.",
-    "Importing into" : "Importowanie do",
-    "Import into" : "Importuj do",
     "Importing is disabled because there are no address books available" : "Importowanie jest wyłączone, ponieważ nie ma dostępnych książek adresowych",
     "Address book name" : "Nazwa książki adresowej",
     "An error occurred, unable to create the addressbook." : "Wystąpił błąd, nie można utworzyć książki adresowej.",
