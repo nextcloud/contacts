@@ -68,6 +68,7 @@
     "Select local file" : "Selecciona archivo local",
     "Import from files" : "Importar desde archivos",
     "Importing is disabled because there are no address books available" : "Importando está desactivado porque no hay libretas de direcciones disponibles",
+    "Choose a vCard file to import" : "Elige un archivo vCard para importar",
     "Address book name" : "Nombre de la libreta de direcciones",
     "An error occurred, unable to create the addressbook." : "Ocurrió un error: no fue posible crear la agenda",
     "First name" : "Nombre",

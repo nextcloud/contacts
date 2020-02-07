@@ -68,6 +68,7 @@
     "Select local file" : "Selecionar um arquivo local",
     "Import from files" : "Importar de arquivos",
     "Importing is disabled because there are no address books available" : "A importação está desativada porque não há catálogos de endereços disponíveis",
+    "Choose a vCard file to import" : "Escolha um arquivo vCard a importar",
     "Address book name" : "Nome do catálogo de endereços",
     "An error occurred, unable to create the addressbook." : "Erro ao criar o catálogo de endereços.",
     "First name" : "Primeiro nome",

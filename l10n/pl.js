@@ -70,6 +70,7 @@ OC.L10N.register(
     "Select local file" : "Wybierz plik lokalny",
     "Import from files" : "Importuj z plików",
     "Importing is disabled because there are no address books available" : "Importowanie jest wyłączone, ponieważ nie ma dostępnych książek adresowych",
+    "Choose a vCard file to import" : "Wybierz plik vCard do zaimportowania",
     "Address book name" : "Nazwa książki adresowej",
     "An error occurred, unable to create the addressbook." : "Wystąpił błąd, nie można utworzyć książki adresowej.",
     "First name" : "Imię",
