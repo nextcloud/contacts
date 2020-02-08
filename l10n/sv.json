@@ -68,6 +68,7 @@
     "Select local file" : "Välj lokal fil",
     "Import from files" : "Importera från filer",
     "Importing is disabled because there are no address books available" : "Importering är inaktiverat eftersom att det inte finns några adressböcker tillgängliga",
+    "Choose a vCard file to import" : "Välj en vCard-fil att importera",
     "Address book name" : "Adressbokens namn",
     "An error occurred, unable to create the addressbook." : "Ett fel uppstod, kunde inte skapa adressboken.",
     "First name" : "Förnamn",
