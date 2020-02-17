@@ -98,7 +98,7 @@ OC.L10N.register(
     "City" : "Città",
     "State or province" : "Stato o regione",
     "Postal code" : "CAP",
-    "Country" : "Stato",
+    "Country" : "Nazione",
     "Birthday" : "Compleanno",
     "Anniversary" : "Anniversario",
     "The date of marriage, or equivalent, of this contact" : "La data del matrimonio, o equivalente, di questo contatto",
