@@ -19,6 +19,7 @@ OC.L10N.register(
     "Disabled" : "已停用",
     "Copy link" : "複製連結",
     "Share with users or groups" : "與使用者或群組分享",
+    "No users or groups" : "沒有使用者或群組",
     "can edit" : "允許編輯",
     "Address book name" : "通訊錄名稱",
     "First name" : "名",
