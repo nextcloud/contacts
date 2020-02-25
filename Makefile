@@ -9,7 +9,7 @@ source_package_name=$(source_build_directory)/$(app_name)
 appstore_build_directory=$(CURDIR)/build/artifacts/appstore
 appstore_package_name=$(appstore_build_directory)/$(app_name)
 
-all: dev-setup lint build-js-production test test-php
+all: dev-setup lint build-js-production test-php
 
 # Dev env management
 dev-setup: clean clean-dev npm-init
