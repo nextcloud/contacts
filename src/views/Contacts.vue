@@ -223,29 +223,45 @@ export default {
 
 		// generate groups menu from groups store
 		groupsMenu() {
-			return this.groups.map(group => {
-				return {
-					id: group.name.replace(' ', '_'),
-					key: group.name.replace(' ', '_'),
-					router: {
-						name: 'group',
-						params: { selectedGroup: group.name },
-					},
-					text: group.name,
-					utils: {
-						counter: group.contacts.length,
-						actions: [
-							{
-								icon: 'icon-download',
-								text: 'Download',
-								action: () => this.downloadGroup(group),
-							},
-						],
-					},
-				}
-			}).sort(function(a, b) {
-				return parseInt(b.utils.counter) - parseInt(a.utils.counter)
-			})
+			const menu = this.groups.map(group => ({
+				id: group.name.replace(' ', '_'),
+				key: group.name.replace(' ', '_'),
+				router: {
+					name: 'group',
+					params: { selectedGroup: group.name },
+				},
+				text: group.name,
+				utils: {
+					counter: group.contacts.length,
+					actions: [
+						{
+							icon: 'icon-download',
+							text: 'Download',
+							action: () => this.downloadGroup(group),
+						},
+					],
+				},
+				toString: () => group.name,
+			}))
+				// Sort alphabetically
+				.sort()
+				// Sort decimally if it starts with a number
+				// could be better if it detects if any part has a number (but it would be more complex)
+				.sort((a, b) => {
+					const matchA = a.text.match(/^(\d+(?:\.\d+)?)/)
+					const matchB = b.text.match(/^(\d+(?:\.\d+)?)/)
+					if (!(matchA && matchB)) return 0
+					return parseFloat(matchA[0]) - parseFloat(matchB[0])
+				})
+			// Find the Recently Contacted group, delete it from array and put it at first place of the array
+			const recentlyIndex = menu.findIndex(
+				group => group.text === t('contactsinteraction', 'Recently contacted')
+			)
+			if (recentlyIndex >= 0) {
+				menu.unshift(menu.splice(recentlyIndex, 1)[0])
+			}
+
+			return menu
 		},
 
 		// building the main menu
