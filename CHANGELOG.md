@@ -1,7 +1,20 @@
-## 3.1.8 – 2020-01-22
+## 3.1.9 – 2020-02-26
+### Enhancements
+- Fix sorting and wording of contact picture actions
+  [\#1448](https://github.com/nextcloud/contacts/pull/1448) ([jancborchardt](https://github.com/jancborchardt))
+- Allow importing from files
+  [\#1438](https://github.com/nextcloud/contacts/pull/1438) ([skjnldsv](https://github.com/skjnldsv))
+- Remove delete action from list, fix \#1368
+  [\#1430](https://github.com/nextcloud/contacts/pull/1430) ([jancborchardt](https://github.com/jancborchardt))
 
 ### Fixed
+- l10n: Changed spelling
+  [\#1463](https://github.com/nextcloud/contacts/pull/1463) ([rakekniven](https://github.com/rakekniven))
+- Disable form validation for text properties
+  [\#1418](https://github.com/nextcloud/contacts/pull/1418) ([hanzi](https://github.com/hanzi))
 
+## 3.1.8 – 2020-01-22
+### Fixed
 - Fixed release number and 15 is EOL
 - Fix issue that prevented new contacts from being saved
   [#1416](https://github.com/nextcloud/contacts/pull/1416) ([hanzi](https://github.com/hanzi))
@@ -19,7 +32,6 @@
   [#1412](https://github.com/nextcloud/contacts/pull/1412) ([myrho](https://github.com/myrho))
 
 ## 3.1.7 – 2019-12-09
-
 ### Enhancements
 - Make the work profile the default one when adding Contacts
   [#1307](https://github.com/nextcloud/contacts/pull/1307)
@@ -33,13 +45,11 @@
 - Translations
 
 ## 3.1.6 – 2019-10-03
-
 ### Fixed
 - Fix initialStateService for 15
   [#1292](https://github.com/nextcloud/contacts/pull/1292)
 
 ## 3.1.5 – 2019-10-03
-
 ### Fixed
 - Better debug of the duplicate types check
   [#1290](https://github.com/nextcloud/contacts/pull/1290)
@@ -47,7 +57,6 @@
   [#1291](https://github.com/nextcloud/contacts/pull/1291)
 
 ## 3.1.4 – 2019-09-28
-
 ### Enhancements
 - Enhancement/allow year removal
   [#1248](https://github.com/nextcloud/contacts/pull/1248)
@@ -69,7 +78,6 @@
 - Translations
 
 ## 3.1.3 – 2019-06-11
-
 ### Fixed
 - Error on instances <16
   [853c3de](https://github.com/nextcloud/contacts/commit/853c3dead32d1375954e252bb4c3ccce867b56ec)
@@ -78,7 +86,6 @@
 - Translations
 
 ## 3.1.2 – 2019-06-10
-
 ### Added
 - Components update, enhanced design and avatar management
   [#1103](https://github.com/nextcloud/contacts/pull/1103)
@@ -97,7 +104,6 @@
 - Translations
 
 ## 3.1.1 – 2019-04-16
-
 ### Fixed
 - Edge support
   [#1064](https://github.com/nextcloud/contacts/pull/1064)
