@@ -116,7 +116,7 @@ OC.L10N.register(
     "Voice" : "Гласовна пошта",
     "Car" : "Кола",
     "Work pager" : "Пословни пејџер",
-    "Social network" : "Социјална мрежа",
+    "Social network" : "Друштвена мрежа",
     "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Адреса профила, нпр. https://www.facebook.com/Nextclouders/",
     "Relationship" : "Однос",
     "Specify a relationship between you and the entity represented by this vCard." : "Одредите везу између Вас и ентитета представљеног овим vCard-ом.",
