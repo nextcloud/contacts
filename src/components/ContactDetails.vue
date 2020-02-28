@@ -432,6 +432,15 @@ export default {
 			this.loadingUpdate = true
 			await this.$store.dispatch('updateContact', this.localContact)
 			this.loadingUpdate = false
+
+			// if we just created the contact, we need to force update the
+			// localContact to match the proper store contact
+			if (!this.localContact.dav) {
+				console.debug('New contact synced!', this.localContact)
+				// fetching newly created & storred contact
+				const contact = this.$store.getters.getContact(this.localContact.key)
+				await this.updateLocalContact(contact)
+			}
 		},
 
 		/**
@@ -481,8 +490,9 @@ export default {
 		 * @param {string} key the contact key
 		 */
 		async selectContact(key) {
-			// local version of the contact
 			this.loadingData = true
+
+			// local version of the contact
 			const contact = this.$store.getters.getContact(key)
 
 			if (contact) {
@@ -491,7 +501,7 @@ export default {
 					try {
 						await this.$store.dispatch('fetchFullContact', { contact })
 						// clone to a local editable variable
-						this.updateLocalContact(contact)
+						await this.updateLocalContact(contact)
 					} catch (error) {
 						if (error.name === 'ParserError') {
 							OC.Notification.showTemporary(t('contacts', 'Syntax error. Cannot open the contact.'))
@@ -506,9 +516,11 @@ export default {
 					}
 				} else {
 					// clone to a local editable variable
-					this.updateLocalContact(contact)
+					await this.updateLocalContact(contact)
 				}
 			}
+
+			this.loadingData = false
 		},
 
 		/**
@@ -570,7 +582,7 @@ export default {
 		 *
 		 * @param {Contact} contact the contact to clone
 		 */
-		updateLocalContact(contact) {
+		async updateLocalContact(contact) {
 			// create empty contact and copy inner data
 			const localContact = Object.assign(
 				Object.create(Object.getPrototypeOf(contact)),
@@ -580,7 +592,6 @@ export default {
 			this.fixed = validate(localContact)
 
 			this.localContact = localContact
-			this.loadingData = false
 		},
 
 		onCtrlSave(e) {

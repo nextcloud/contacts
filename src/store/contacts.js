@@ -335,31 +335,29 @@ const actions = {
 		// if no dav key, contact does not exists on server
 		if (!contact.dav) {
 			// create contact
-			return contact.addressbook.dav.createVCard(vData)
-				.then(dav => {
-					context.commit('setContactDav', { contact, dav })
-				})
-				.catch(error => { throw error })
+			const dav = await contact.addressbook.dav.createVCard(vData)
+			context.commit('setContactDav', { contact, dav })
+			return
 		}
 
 		// if contact already exists
 		if (!contact.conflict) {
 			contact.dav.data = vData
-			return contact.dav.update()
-				.then(() => {
-					// all clear, let's update the store
-					context.commit('updateContact', contact)
-				})
-				.catch(error => {
-					console.info(error)
-					// wrong etag, we most likely have a conflict
-					if (error && error.status === 412) {
-						// saving the new etag so that the user can manually
-						// trigger a fetchCompleteData without any further errors
-						context.commit('setContactAsConflict', { contact, etag: error.xhr.getResponseHeader('etag') })
-						console.error('This contact is outdated, the server refused it', contact)
-					}
-				})
+			try {
+				await contact.dav.update()
+				// all clear, let's update the store
+				context.commit('updateContact', contact)
+			} catch (error) {
+				console.error(error)
+
+				// wrong etag, we most likely have a conflict
+				if (error && error.status === 412) {
+					// saving the new etag so that the user can manually
+					// trigger a fetchCompleteData without any further errors
+					context.commit('setContactAsConflict', { contact, etag: error.xhr.getResponseHeader('etag') })
+					console.error('This contact is outdated, the server refused it', contact)
+				}
+			}
 		} else {
 			console.error('This contact is outdated, refusing to push', contact)
 		}
