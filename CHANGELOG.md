@@ -1,3 +1,11 @@
+## 3.2.0 – 2020-02-29
+### Fixed
+- Fix first contact sync (Contact saving hangs and protocol says uid already exists)
+  [\#1488](https://github.com/nextcloud/contacts/pull/1488) ([skjnldsv](https://github.com/skjnldsv))
+
+### Updated
+- Translations
+
 ## 3.1.9 – 2020-02-26
 ### Enhancements
 - Fix sorting and wording of contact picture actions
