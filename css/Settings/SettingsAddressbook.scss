@@ -28,9 +28,12 @@
 	white-space: nowrap;
 	text-overflow: ellipsis;
 
-	> a:first-of-type {
-		// put actions at the end
-		margin-left: auto;
+	> .addressbook__name {
+		+ a,
+		+ div {
+			// put actions at the end
+			margin-left: auto;
+		}
 	}
 
 	&__name {
