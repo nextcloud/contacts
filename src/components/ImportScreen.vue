@@ -24,10 +24,10 @@
 	<div class="emptycontent import-screen">
 		<p class="icon-upload" />
 		<h3 v-if="stage === 'done'" class="import-screen__header">
-			{{ t('contacts', 'Done importing {total} contacts into', { total }) }} {{ addressbook }}
+			{{ importedHeader }}
 		</h3>
 		<h3 v-else class="import-screen__header">
-			{{ t('contacts', 'Importing {total} contacts into', { total }) }} {{ addressbook }}
+			{{ importingHeader }}
 		</h3>
 		<progress :max="total" :value="progress" class="import-screen__progress" />
 		<p class="import-screen__tracker">
@@ -76,6 +76,28 @@ export default {
 			return this.total <= 0
 				? 0
 				: Math.floor(this.progress / this.total * 100)
+		},
+
+		importingHeader() {
+			return n('contacts',
+				'Importing %n contact into {addressbook}',
+				'Importing %n contacts into {addressbook}',
+				this.total,
+				{
+					addressbook: this.addressbook,
+				}
+			)
+		},
+
+		importedHeader() {
+			return n('contacts',
+				'Done importing %n contact into {addressbook}',
+				'Done importing %n contacts into {addressbook}',
+				this.total,
+				{
+					addressbook: this.addressbook,
+				}
+			)
 		},
 	},
 }
