@@ -20,7 +20,7 @@
  *
  */
 
-import uuid from 'uuid'
+import { v4 as uuid } from 'uuid'
 import ICAL from 'ical.js'
 
 import store from '../store'
