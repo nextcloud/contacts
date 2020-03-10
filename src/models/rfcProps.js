@@ -175,6 +175,7 @@ const properties = {
 			{ id: 'SKYPE', name: 'Skype' },
 			{ id: 'TELEGRAM', name: 'Telegram' },
 			{ id: 'XMPP', name: 'XMPP' },
+			{ id: 'SIP', name: 'SIP' },
 		],
 	},
 	tel: {
