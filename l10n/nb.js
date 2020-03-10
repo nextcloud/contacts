@@ -25,7 +25,6 @@ OC.L10N.register(
     "Groups" : "Grupper",
     "New contact" : "Ny kontakt",
     "Syntax error. Cannot open the contact." : "Syntaksfeil. Kan ikke åpne kontakten.",
-    "Importing {total} contacts into" : "Importerer {total} kontakter til",
     "No errors" : "Ingen feil",
     "Open your browser console for more details" : "Åpne din nettlesers konsoll for flere detaljer",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} kontakt med feil","{failedCount} kontakter med feil"],

@@ -31,8 +31,6 @@
     "Groups" : "קבוצות",
     "New contact" : "איש קשר חדש",
     "Syntax error. Cannot open the contact." : "שגיאת תחביר. לא ניתן לפתוח את איש הקשר.",
-    "Done importing {total} contacts into" : "הושלם הייבוא של {total} אנשי קשר אל",
-    "Importing {total} contacts into" : "{total} אנשי קשר מיובאים אל",
     "No errors" : "אין שגיאות",
     "Open your browser console for more details" : "נא לפתוח את המסוף של הדפדפן שלך לקבלת פרטים נוספים",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["איש קשר פגום","{failedCount} אנשי קשר פגומים","{failedCount} אנשי קשר פגומים","{failedCount} אנשי קשר פגומים"],

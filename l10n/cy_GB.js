@@ -33,8 +33,6 @@ OC.L10N.register(
     "Groups" : "Grwpiau",
     "New contact" : "Cysylltiad newydd",
     "Syntax error. Cannot open the contact." : "Gwall cystrawen. Methu agor y cyswllt.",
-    "Done importing {total} contacts into" : "Wedi'cwblhau mewnforio {cyfanswm} cyswllt",
-    "Importing {total} contacts into" : "Mewnforio {total} cysylltiad",
     "No errors" : "Dim gwallau",
     "Open your browser console for more details" : "Agorwch eich consol porwr am fwy o fanylion",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["cyswllt diffygiol {failCount}","gyswllt diffygiol {failCount}","cyswllt diffygiol {failCount}","cyswllt diffygiol {failCount}"],

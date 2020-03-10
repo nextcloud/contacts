@@ -36,8 +36,6 @@ OC.L10N.register(
     "Groups" : "Grupe",
     "New contact" : "Novi kontakt",
     "Syntax error. Cannot open the contact." : "Sintaktička pogreška. Kontakt se ne može otvoriti.",
-    "Done importing {total} contacts into" : "Završen uvoz {total} kontakata u",
-    "Importing {total} contacts into" : "Uvoz {total} kontakata u",
     "No errors" : "Nema pogrešaka",
     "Open your browser console for more details" : "Za više pojedinosti otvorite konzolu preglednika",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} neispravan kontakt","{failedCount} neispravnih kontakata","{failedCount} neispravnih kontakata"],

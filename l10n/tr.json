@@ -34,8 +34,6 @@
     "Groups" : "Gruplar",
     "New contact" : "Yeni kişi",
     "Syntax error. Cannot open the contact." : "Yazım hatası. Kişi bulunamadı.",
-    "Done importing {total} contacts into" : "{total} kişi şuraya içe aktarıldı",
-    "Importing {total} contacts into" : "{total} kişi şuraya içe aktarılıyor",
     "No errors" : "Herhangi bir hata yok",
     "Open your browser console for more details" : "Ayrıntılı bilgi almak için tarayıcı konsolonu açın",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} sorunlu kişi","{failedCount} sorunlu kişi"],

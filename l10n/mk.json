@@ -34,8 +34,6 @@
     "Groups" : "Групи",
     "New contact" : "Нов контакт",
     "Syntax error. Cannot open the contact." : "Грешка во синтаксата. Неможе да се отвори овој контакт.",
-    "Done importing {total} contacts into" : "Импортирани вкупно {total} контакти во",
-    "Importing {total} contacts into" : "Импортирање на {total} контакти во",
     "No errors" : "Нема грешки",
     "Open your browser console for more details" : "Отворете ја конзолата на прелистувачот за повеќе детали",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} еден неисправен контакт","{failedCount} неисправни контакти"],

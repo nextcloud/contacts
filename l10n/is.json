@@ -33,8 +33,6 @@
     "Groups" : "Hópar",
     "New contact" : "Nýr tengiliður",
     "Syntax error. Cannot open the contact." : "Villa í málskipan. Get ekki opnað tengiliðinn.",
-    "Done importing {total} contacts into" : "Lauk innflutningi {total} tengiliða inn í",
-    "Importing {total} contacts into" : "Flyt {total} tengiliði inn í",
     "No errors" : "Engar villur",
     "Open your browser console for more details" : "Opnaðu stjórnborð vafrans þíns til að sjá frekari upplýsingar",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} gallaður tengiliður","{failedCount} gallaðir tengiliðir"],

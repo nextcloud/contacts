@@ -33,8 +33,6 @@ OC.L10N.register(
     "Groups" : "그룹",
     "New contact" : "새 연락처",
     "Syntax error. Cannot open the contact." : "문법 오류입니다. 연락처를 열 수 없습니다.",
-    "Done importing {total} contacts into" : "연락처 {total}개 가져오기 완료",
-    "Importing {total} contacts into" : "연락처 {total}개 가져오는 중",
     "No errors" : "오류 없음",
     "Open your browser console for more details" : "자세한 정보를 보려면 브라우저 콘솔을 여십시오",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["잘못된 연락처 {failedCount}개"],

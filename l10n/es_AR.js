@@ -29,7 +29,6 @@ OC.L10N.register(
     "Addressbook" : "Directorio",
     "Groups" : "Grupos",
     "New contact" : "Nuevo contacto",
-    "Importing {total} contacts into" : "Importando {total} contactos a",
     "No errors" : "Sin errores",
     "Open your browser console for more details" : "Abra la consola de su navegador para más detalles",
     "Select type" : "Seleccionar tipo",

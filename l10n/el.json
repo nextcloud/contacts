@@ -34,8 +34,6 @@
     "Groups" : "Ομάδες",
     "New contact" : "Νέα επαφή",
     "Syntax error. Cannot open the contact." : "Σφάλμα σύνταξης. Η επαφή δεν ανοίγει.",
-    "Done importing {total} contacts into" : "Η εισαγωγή {total} επαφών ολοκληρώθηκε",
-    "Importing {total} contacts into" : "Εισαγωγή {total} επαφών",
     "No errors" : "Χωρίς σφάλματα",
     "Open your browser console for more details" : "Ανοίξτε την κονσόλα του περιηγητή για περισσότερες λεπτομέρειες",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} επαφή με σφάλμα","{failedCount} επαφές με σφάλμα"],

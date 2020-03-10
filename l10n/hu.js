@@ -34,8 +34,6 @@ OC.L10N.register(
     "Groups" : "Csoportok",
     "New contact" : "Új névjegy",
     "Syntax error. Cannot open the contact." : "Szintaktikai hiba. Nem lehet megnyitni a kapcsolatot.",
-    "Done importing {total} contacts into" : "Elkészült {total} névjegy importálása ide:",
-    "Importing {total} contacts into" : "{total} névjegy importálása ide",
     "No errors" : "Nincsenek hibák",
     "Open your browser console for more details" : "Nyisd meg a böngésző konzolját további részletekért",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} hibás névjegy","{failedCount} hibás névjegy"],

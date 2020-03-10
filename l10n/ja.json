@@ -33,8 +33,6 @@
     "Groups" : "グループ",
     "New contact" : "新しい連絡先",
     "Syntax error. Cannot open the contact." : "構文エラー。 連絡先を開けません",
-    "Done importing {total} contacts into" : " {total} 数の連絡先をインポートしました",
-    "Importing {total} contacts into" : "連絡先を {total} にインポートしています",
     "No errors" : "エラーはありません",
     "Open your browser console for more details" : "詳細はブラウザコンソールを開きます",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount}件の連絡先の誤り"],

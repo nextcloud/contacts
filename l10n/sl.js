@@ -36,8 +36,6 @@ OC.L10N.register(
     "Groups" : "Skupine",
     "New contact" : "Nov stik",
     "Syntax error. Cannot open the contact." : "Napaka skladnje. Ni mogoče odpreti podatkov stika.",
-    "Done importing {total} contacts into" : "Uvoz stikov je končan: {total} ",
-    "Importing {total} contacts into" : "Poteka uvažanje {total} stikov v",
     "No errors" : "Ni zaznanih napak",
     "Open your browser console for more details" : "Več podrobnosti je izpisanih v konzoli brskalnika",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} nepopoln stik","{failedCount} nepopolna stika","{failedCount} nepopolni stiki","{failedCount} nepopolnih stikov"],

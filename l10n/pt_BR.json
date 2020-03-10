@@ -34,8 +34,6 @@
     "Groups" : "Grupos",
     "New contact" : "Novo contato",
     "Syntax error. Cannot open the contact." : "Erro de sintaxe. Não é possível abrir o contato.",
-    "Done importing {total} contacts into" : "Fim da importação de {total} contato(s) para",
-    "Importing {total} contacts into" : "Importando {total} contatos para",
     "No errors" : "Sem erros",
     "Open your browser console for more details" : "Abra o console do navegador para mais detalhes",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} contato com problema","{failedCount} contatos com problema"],

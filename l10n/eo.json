@@ -33,8 +33,6 @@
     "Groups" : "Grupoj",
     "New contact" : "Nova kontakto",
     "Syntax error. Cannot open the contact." : "Sintakseraro. Ne eblas malfermi la kontakton.",
-    "Done importing {total} contacts into" : "Farite, importado de {total} kontaktoj al",
-    "Importing {total} contacts into" : "Importado de {total} kontaktaktoj en",
     "No errors" : "Neniu eraro",
     "Open your browser console for more details" : "Malfermu vian retumilan konzolon por pli da detaloj",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} difektita kontakto","{failedCount} difektitaj kontaktoj"],

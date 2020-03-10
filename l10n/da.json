@@ -34,8 +34,6 @@
     "Groups" : "Grupper",
     "New contact" : "Ny kontakt",
     "Syntax error. Cannot open the contact." : "Syntaks fejl. Kan ikke åbne kontakt.",
-    "Done importing {total} contacts into" : "Færdig med at importere {total} kontakter til",
-    "Importing {total} contacts into" : "Importerer {total} kontakter til",
     "No errors" : "Ingen fejl",
     "Open your browser console for more details" : "Åbn din browsers konsol for flejre detaljer",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} fejlbehæftet kontakt","{failedCount} fejlbehæftede kontakter"],
