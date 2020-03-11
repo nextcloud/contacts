@@ -39,6 +39,8 @@ OC.L10N.register(
     "No errors" : "Žádné chyby",
     "Open your browser console for more details" : "Další podrobnosti získáte otevřením konzole webového prohlížeče",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} vadný kontakt","{failedCount} vadné kontakty","{failedCount} vadných kontaktů","{failedCount} vadné kontakty"],
+    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importuje se %n kontakt do {addressbook}","Importují se %n kontakty do {addressbook}","Importuje se %n kontaktů do {addressbook}","Importují se %n kontakty do {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Dokončen import %n kontaktu {addressbook}","Dokončen import %n kontaktů {addressbook}","Dokončen import %n kontaktů {addressbook}","Dokončen import %n kontaktů {addressbook}"],
     "Select type" : "Vybrat typ",
     "Select Date" : "Vybrat datum",
     "Add contact in group" : "Přidat uživatele do skupiny",

@@ -37,6 +37,8 @@
     "No errors" : "Brak błędów",
     "Open your browser console for more details" : "Otwórz konsolę przeglądarki, aby uzyskać więcej informacji",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} błędny kontakt","{failedCount} błędne kontakty","{failedCount} błędnych kontaktów","{failedCount} błędne kontakty"],
+    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importowanie %n kontaktu do {addressbook}","Importowanie %n kontaktów do {addressbook}","Importowanie %n kontaktów do {addressbook}","Importowanie %n kontaktów do {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Zakończono importowanie %n kontaktu do {addressbook}","Zakończono importowanie %n kontaktów do {addressbook}","Zakończono importowanie %n kontaktów do {addressbook}","Zakończono importowanie %n kontaktów do {addressbook}"],
     "Select type" : "Wybierz rodzaj",
     "Select Date" : "Wybierz datę",
     "Add contact in group" : "Dodaj kontakt do grupy",

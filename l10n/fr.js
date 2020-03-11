@@ -39,6 +39,8 @@ OC.L10N.register(
     "No errors" : "Aucune erreur",
     "Open your browser console for more details" : "Ouvrez la console de votre navigateur pour plus d'informations",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} contact défectueux","{failedCount} contacts défectueux"],
+    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Import de %n contact dans {addressbook}","Import de %n contacts dans {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Import de %n contact dans {addressbook} terminé","Import de %n contacts dans {addressbook} terminé"],
     "Select type" : "Sélectionnez le type",
     "Select Date" : "Sélectionnez une date",
     "Add contact in group" : "Ajouter le contact dans un groupe",

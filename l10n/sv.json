@@ -37,6 +37,8 @@
     "No errors" : "Inga fel",
     "Open your browser console for more details" : "Öppna din webbläsarkonsol för mer information",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} felaktig kontakt","{failedCount} felaktiga kontakter"],
+    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importerar %n kontakt till {addressbook}","Importerar %n kontakter till {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Klar med import av %n kontakt till {addressbook}","Klar med import av %n kontakter till {addressbook}"],
     "Select type" : "Välj typ",
     "Select Date" : "Välj datum",
     "Add contact in group" : "Lägg till kontakt i grupp",

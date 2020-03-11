@@ -39,6 +39,8 @@ OC.L10N.register(
     "No errors" : "Χωρίς σφάλματα",
     "Open your browser console for more details" : "Ανοίξτε την κονσόλα του περιηγητή για περισσότερες λεπτομέρειες",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} επαφή με σφάλμα","{failedCount} επαφές με σφάλμα"],
+    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Εισαγωγή %n επαφής σε {addressbook}","Εισαγωγή %n επαφών σε {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Ολοκληρώθηκε η εισαγωγή %n επαφής σε {addressbook}","Ολοκληρώθηκε η εισαγωγή %n επαφών σε {addressbook}"],
     "Select type" : "Επέλεξε τύπο",
     "Select Date" : "Επέλεξε Ημέρα",
     "Add contact in group" : "Προσθήκη στην ομάδα",
