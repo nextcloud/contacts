@@ -230,7 +230,7 @@ export default {
 			case 'FFD8FFE1':
 				return 'image/jpeg'
 			default:
-				return 'Unknown filetype'
+				return 'application/octet-stream'
 			}
 		},
 
