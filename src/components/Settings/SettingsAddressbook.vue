@@ -190,7 +190,7 @@ export default {
 			} catch (err) {
 				// error handling
 				console.error(err)
-				OC.Notification.showTemporary(t('contacts', 'Enabled toggle of addressbook was not successful.'))
+				OC.Notification.showTemporary(t('contacts', 'Toggling of addressbook was not successful'))
 			} finally {
 				// stop loading status regardless of outcome
 				this.toggleEnabledLoading = false
