@@ -91,6 +91,7 @@ import { ActionLink, ActionButton } from '@nextcloud/vue'
 import { getFilePickerBuilder } from '@nextcloud/dialogs'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
+import sanitizeSVG from '@mattkrick/sanitize-svg'
 
 const axios = () => import('axios')
 
@@ -147,19 +148,89 @@ export default {
 				if (file && file.size && file.size <= 1 * 1024 * 1024) {
 					const reader = new FileReader()
 					const self = this
+					let type = ''
 
-					reader.onload = function(e) {
-						// only getting the raw binary base64
-						self.setPhoto(reader.result.split(',').pop(), file.type)
+					reader.onloadend = async function(e) {
+						try {
+							// We got an ArrayBuffer, checking the true mime type...
+							if (typeof e.target.result === 'object') {
+								const uint = new Uint8Array(e.target.result)
+								const bytes = []
+								uint.forEach((byte) => {
+									bytes.push(byte.toString(16))
+								})
+								const hex = bytes.join('').toUpperCase()
+
+								if (self.getMimetype(hex).startsWith('image/')) {
+									type = self.getMimetype(hex)
+									// we got a valid image, read it again as base64
+									reader.readAsDataURL(file)
+									return
+								}
+								throw new Error('Wrong image mimetype')
+							}
+
+							// else we got the base64 and we're good to go!
+							const imageBase64 = e.target.result.split(',').pop()
+
+							if (e.target.result.indexOf('image/svg') > -1) {
+								const imageSvg = atob(imageBase64)
+								const cleanSvg = await sanitizeSVG(imageSvg)
+								if (!cleanSvg) {
+									throw new Error('Unsafe svg image')
+								}
+							}
+
+							// All is well! Set the photo
+							self.setPhoto(imageBase64, type)
+						} catch (error) {
+							console.error(error)
+							OC.Notification.showTemporary(t('contacts', 'Invalid image'))
+						} finally {
+							self.resetPicker()
+						}
 					}
 
-					reader.readAsDataURL(file)
+					// start by reading the magic bytes to detect proper photo mimetype
+					const blob = file.slice(0, 4)
+					reader.readAsArrayBuffer(blob)
 				} else {
 					OC.Notification.showTemporary(t('contacts', 'Image is too big (max 1MB).'))
-					// reset input
-					event.target.value = ''
-					this.loading = false
+					this.resetPicker()
 				}
+			}
+		},
+
+		/**
+		 * Reset image pciker input
+		 */
+		resetPicker() {
+			// reset input
+			this.$refs.uploadInput.value = ''
+			this.loading = false
+		},
+
+		/**
+		 * Return the mimetype based on the first magix byte
+		 *
+		 * @param {string} signature the first 4 bytes
+		 * @returns {string} the mimetype
+		 */
+		getMimetype(signature) {
+			switch (signature) {
+			case '89504E47':
+				return 'image/png'
+			case '47494638':
+				return 'image/gif'
+			case '3C3F786D':
+			case '3C737667':
+				return 'image/svg+xml'
+			case 'FFD8FFDB':
+			case 'FFD8FFE0':
+			case 'FFD8FFE1':
+				return 'image/jpeg'
+			default:
+				return 'Unknown filetype'
 			}
 		},
 
@@ -269,6 +340,7 @@ export default {
 				this.updateHeightWidth(this.$refs.img.naturalHeight, this.$refs.img.naturalWidth)
 			}
 		},
+
 		/**
 		 * Updates the current height and width data
 		 * based on the viewer maximum size
