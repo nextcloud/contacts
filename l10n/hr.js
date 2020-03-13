@@ -51,7 +51,6 @@ OC.L10N.register(
     "Copied" : "Kopirano",
     "Can not copy" : "Nije moguće kopirati",
     "Copy link" : "Kopiraj poveznicu",
-    "Enabled toggle of addressbook was not successful." : "Nije omogućeno prebacivanje adresara.",
     "This will delete the addressbook and every contacts within it" : "Time će se izbrisati adresar i svi kontakti",
     "Delete {addressbook} ?" : "Brisanje {adresar}?",
     "Deletion of addressbook was not successful." : "Brisanje adresara nije uspjelo.",

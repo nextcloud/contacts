@@ -43,7 +43,6 @@ OC.L10N.register(
     "Copied" : "Copiado",
     "Can not copy" : "No se puede copiar",
     "Copy link" : "Copiar enlace",
-    "Enabled toggle of addressbook was not successful." : "La alternancia habilitada de la libreta de direcciones no tuvo éxito.",
     "This will delete the addressbook and every contacts within it" : "Esto eliminará la libreta de direcciones y todos los contactos dentro de ella.",
     "Delete {addressbook} ?" : "¿Borrar {addressbook} ?",
     "Deletion of addressbook was not successful." : "La eliminación de la libreta de direcciones no tuvo éxito.",

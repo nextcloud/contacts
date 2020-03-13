@@ -51,7 +51,6 @@ OC.L10N.register(
     "Copied" : "Kopyalandı",
     "Can not copy" : "Kopyalanamadı",
     "Copy link" : "Bağlantıyı kopyala",
-    "Enabled toggle of addressbook was not successful." : "Adres defterini değiştirme özelliği etkinleştirilemedi.",
     "This will delete the addressbook and every contacts within it" : "Bu işlem adres defterini ve içindeki tüm kişileri siler",
     "Delete {addressbook} ?" : "{addressbook} silinsin mi?",
     "Deletion of addressbook was not successful." : "Adres defteri silinemedi.",

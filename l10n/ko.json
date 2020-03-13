@@ -46,7 +46,6 @@
     "Copied" : "복사됨",
     "Can not copy" : "복사할 수 없음",
     "Copy link" : "링크 복사",
-    "Enabled toggle of addressbook was not successful." : "주소록 사용 여부를 전환할 수 없습니다.",
     "This will delete the addressbook and every contacts within it" : "주소록과 포함된 모든 연락처를 삭제합니다",
     "Delete {addressbook} ?" : "{addressbook}을(를) 삭제하시겠습니까?",
     "Deletion of addressbook was not successful." : "주소록을 삭제할 수 없습니다.",

@@ -49,7 +49,6 @@
     "Copied" : "已复制",
     "Can not copy" : "无法复制",
     "Copy link" : "复制链接",
-    "Enabled toggle of addressbook was not successful." : "启用切换地址簿未成功。",
     "This will delete the addressbook and every contacts within it" : "这将删除地址簿及其中所有联系人",
     "Delete {addressbook} ?" : "删除 {addressbook} ？",
     "Deletion of addressbook was not successful." : "未能成功删除地址簿。",

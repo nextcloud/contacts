@@ -47,7 +47,6 @@
     "Copied" : "Másolva",
     "Can not copy" : "Nem lehet másolni",
     "Copy link" : "Hivatkozás másolása",
-    "Enabled toggle of addressbook was not successful." : "A Címjegyzék váltása \"Engedélyezve\" állapotra sikertelen volt.",
     "This will delete the addressbook and every contacts within it" : "Ez törölni fogja a címjegyzéket és az össze benne található névjegyet",
     "Delete {addressbook} ?" : "{addressbook} törlése?",
     "Deletion of addressbook was not successful." : "A címjegyzék törlése nem volt sikeres.",

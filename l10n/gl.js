@@ -53,7 +53,6 @@ OC.L10N.register(
     "Copied" : "Copiado",
     "Can not copy" : "Non se pode copiar",
     "Copy link" : "Copiar a ligazón",
-    "Enabled toggle of addressbook was not successful." : "Non foi posíbel activar o intercambio de axendas.",
     "This will delete the addressbook and every contacts within it" : "Isto eliminará o caderno de enderezos e todos os contactos dentro del",
     "Delete {addressbook} ?" : "Eliminr {addressbook} ?",
     "Deletion of addressbook was not successful." : "Non foi posíbel eliminar a axenda.",

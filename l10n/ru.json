@@ -49,7 +49,6 @@
     "Copied" : "Скопировано",
     "Can not copy" : "Невозможно скопировать",
     "Copy link" : "Копировать ссылку",
-    "Enabled toggle of addressbook was not successful." : "Не удалось начать или прекратить использовать адресную книгу.",
     "This will delete the addressbook and every contacts within it" : "Это удалит адресную книгу и все контакты в ней",
     "Delete {addressbook} ?" : "Удалить {addressbook} ?",
     "Deletion of addressbook was not successful." : "Не удалось удалить адресную книгу",

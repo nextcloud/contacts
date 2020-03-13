@@ -51,7 +51,6 @@ OC.L10N.register(
     "Copied" : "Skopírované",
     "Can not copy" : "Nepodarilo sa skopírovať",
     "Copy link" : "Kopírovať odkaz",
-    "Enabled toggle of addressbook was not successful." : "Povolenie zmeny adresára sa nepodarilo.",
     "This will delete the addressbook and every contacts within it" : "Táto operácia odstráni adresár a všetky jeho kontakty.",
     "Delete {addressbook} ?" : "Zmazať {addressbook} ?",
     "Deletion of addressbook was not successful." : "Zmazanie adresára sa nepodarilo.",

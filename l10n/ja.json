@@ -48,7 +48,6 @@
     "Copied" : "コピーしました",
     "Can not copy" : "コピーできません",
     "Copy link" : "リンクをコピー",
-    "Enabled toggle of addressbook was not successful." : "アドレス帳の有効なトグルが成功しませんでした。",
     "This will delete the addressbook and every contacts within it" : "アドレス帳とすべての連絡先が削除されます。",
     "Delete {addressbook} ?" : "{アドレス帳}を削除しますか？",
     "Deletion of addressbook was not successful." : "アドレス帳の削除に失敗しました。",

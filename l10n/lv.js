@@ -49,7 +49,6 @@ OC.L10N.register(
     "Copied" : "Nokopēts",
     "Can not copy" : "Nevar nokopēt",
     "Copy link" : "Kopēt saiti",
-    "Enabled toggle of addressbook was not successful." : "Adrešu grāmatas iespējošana neizdevās.",
     "This will delete the addressbook and every contacts within it" : "Tas dzēsīs adrešu grāmatu un visas tajā esošāas kontaktpersonas",
     "Delete {addressbook} ?" : "Dzēst {addressbook} ?",
     "Deletion of addressbook was not successful." : "Neizdevās dzēst adrešu grāmatu.",

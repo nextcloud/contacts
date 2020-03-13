@@ -50,7 +50,6 @@ OC.L10N.register(
     "Copied" : "Afritað",
     "Can not copy" : "Gat ekki afritað",
     "Copy link" : "Afrita tengil",
-    "Enabled toggle of addressbook was not successful." : "Tókst ekki að virkja víxlun nafnaskrár.",
     "This will delete the addressbook and every contacts within it" : "Þetta mun eyða nafnaskránni og öllum tengiliðum í henni",
     "Delete {addressbook} ?" : "Eyða {addressbook} ?",
     "Deletion of addressbook was not successful." : "Tókst ekki að eyða nafnaskrá.",

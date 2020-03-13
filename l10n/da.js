@@ -51,7 +51,6 @@ OC.L10N.register(
     "Copied" : "opieret",
     "Can not copy" : "Kan ikke kopiere",
     "Copy link" : "Kopier link",
-    "Enabled toggle of addressbook was not successful." : "Aktivering af skift på adressebogen var ikke succesfuld.",
     "This will delete the addressbook and every contacts within it" : "Dette vil slette adressebogen og alle kontakterne i den",
     "Delete {addressbook} ?" : "Slet {addressbook} ?",
     "Deletion of addressbook was not successful." : "Sletning af adressebog ikke gennemført.",

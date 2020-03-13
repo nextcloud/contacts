@@ -53,7 +53,6 @@ OC.L10N.register(
     "Copied" : "Copié",
     "Can not copy" : "Impossible de copier",
     "Copy link" : "Copier le lien",
-    "Enabled toggle of addressbook was not successful." : "L'activation/désactivation du carnet d'adresses à échoué.",
     "This will delete the addressbook and every contacts within it" : "Cette action va supprimer le carnet d'adresses ainsi que tous les contacts qu'il contient.",
     "Delete {addressbook} ?" : "Supprimer {addressbook} ?",
     "Deletion of addressbook was not successful." : "La suppression du carnet d'adresses a échoué.",

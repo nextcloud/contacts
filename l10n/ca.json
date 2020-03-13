@@ -48,7 +48,6 @@
     "Copied" : "S'ha copiat",
     "Can not copy" : "No s'ha pogut copiar",
     "Copy link" : "Copia l'enllaç",
-    "Enabled toggle of addressbook was not successful." : "El canvi de llibreta d'adreces activat no ha anat bé.",
     "This will delete the addressbook and every contacts within it" : "Això suprimirà la llibreta d'adreces i tots els contactes que contingui",
     "Delete {addressbook} ?" : "Voleu suprimir {addressbook}?",
     "Deletion of addressbook was not successful." : "No s'ha pogut suprimir la llibreta d'adreces.",
