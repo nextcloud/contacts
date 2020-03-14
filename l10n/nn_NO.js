@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Contacts" : "Kontaktar",
     "Details" : "Detaljar",
+    "Invalid image" : "Ugyldig bilete",
     "Loading" : "Loading",
     "Name" : "Namn",
     "Title" : "Tittel",

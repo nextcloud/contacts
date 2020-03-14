@@ -14,6 +14,7 @@ OC.L10N.register(
     "Download picture" : "הורדת תמונה",
     "Delete picture" : "מחיקת תמונה",
     "Upload a new picture" : "העלאת תמונה חדשה",
+    "Invalid image" : "תמונה לא חוקית",
     "Image is too big (max 1MB)." : "התמונה גדולה מדי (1 מ״ב לכל היותר).",
     "Pick an avatar" : "נא לבחור תמונה מייצגת",
     "Error while processing the picture." : "שגיאה בעת עיבוד התמונה.",

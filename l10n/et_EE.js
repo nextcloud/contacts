@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Kontaktid",
     "All contacts" : "Kõik kontaktid",
     "Details" : "Üksikasjad",
+    "Invalid image" : "Vigane pilt",
     "Loading" : "Laadimine",
     "Name" : "Nimi",
     "Title" : "Pealkiri",

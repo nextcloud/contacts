@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Invalid image" : "ಅಸಾಮರ್ಥ್ಯ ಚಿತ್ರ",
     "Loading" : "Loading",
     "Name" : "﻿ಹೆಸರು",
     "Title" : "ಶೀರ್ಷಿಕೆ",

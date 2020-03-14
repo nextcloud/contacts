@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "معلومات",
+    "Invalid image" : "انځور سم نه دی",
     "Name" : "نوم",
     "Download" : "ښکته کول",
     "Delete" : "ړنګول",

@@ -53,6 +53,7 @@ OC.L10N.register(
     "Copied" : "Kopierad",
     "Can not copy" : "Kunde inte kopiera",
     "Copy link" : "Kopiera länk",
+    "Toggling of addressbook was not successful" : "Växling av adressbok lyckades inte",
     "This will delete the addressbook and every contacts within it" : "Detta tar bort adressboken och alla kontakter i den",
     "Delete {addressbook} ?" : "Radera {addressbook} ?",
     "Deletion of addressbook was not successful." : "Radering av adressboken lyckades inte.",

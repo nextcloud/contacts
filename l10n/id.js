@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Kontak",
     "All contacts" : "Semua kontak",
     "Details" : "Detil",
+    "Invalid image" : "Gambar tidak sah",
     "Loading" : "Memuat",
     "Name" : "Nama",
     "Title" : "Judul",

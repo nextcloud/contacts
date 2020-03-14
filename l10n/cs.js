@@ -53,6 +53,7 @@ OC.L10N.register(
     "Copied" : "Zkopírováno",
     "Can not copy" : "Nelze kopírovat",
     "Copy link" : "Zkopírovat odkaz",
+    "Toggling of addressbook was not successful" : "Vyp/zap. adresáře kontaktů nebylo úspěšné",
     "This will delete the addressbook and every contacts within it" : "Toto smaže adresář kontaktů a všechny obsažené kontakty",
     "Delete {addressbook} ?" : "Smazat {addressbook} ?",
     "Deletion of addressbook was not successful." : "Smazání adresáře kontaktů nebylo úspěšné.",

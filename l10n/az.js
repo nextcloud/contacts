@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Contacts" : "Əlaqələr",
     "Details" : "Detallar",
+    "Invalid image" : "Yalnış şəkil",
     "Loading" : "Loading",
     "Name" : "Ad",
     "Title" : "Başlıq",

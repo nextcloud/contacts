@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Các danh bạ",
     "All contacts" : "Tất cả các tên liên lạc",
     "Details" : "Chi tiết",
+    "Invalid image" : "Hình ảnh không hợp lệ",
     "Loading" : "Đang tải",
     "Name" : "Tên",
     "Title" : "Tên",

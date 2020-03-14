@@ -9,6 +9,7 @@ OC.L10N.register(
     "Add new property" : "Legg til felt",
     "Choose property type" : "Velg felttype",
     "Upload a new picture" : "Last opp et nytt bilde",
+    "Invalid image" : "Ugyldig bilde",
     "Image is too big (max 1MB)." : "Bildet er for stort (opptil 1MB).",
     "No contact selected" : "Ingen kontakt valgt",
     "Select a contact on the list to begin" : "Velg en kontakt fra listen for å begynne",

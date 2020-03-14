@@ -13,6 +13,7 @@ OC.L10N.register(
     "Download picture" : "Lataa kuva",
     "Delete picture" : "Poista kuva",
     "Upload a new picture" : "Lähetä uusi kuva",
+    "Invalid image" : "Virheellinen kuva",
     "Image is too big (max 1MB)." : "Kuva on liian suuri (enintään 1 Mt).",
     "Pick an avatar" : "Valitse avatar",
     "Error while processing the picture." : "Virhe kuvan käsittelyn aikana.",

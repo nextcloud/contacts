@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "კონტაქტები",
     "All contacts" : "ყველა კონტაქტი",
     "Details" : "დეტალები",
+    "Invalid image" : "არასწორი სურათი",
     "Loading" : "იტვირთება",
     "Name" : "სახელი",
     "Title" : "სათაური",

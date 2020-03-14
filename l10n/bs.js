@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontakti",
+    "Invalid image" : "Nevažeća datoteka",
     "Loading" : "Loading",
     "Name" : "Ime",
     "Title" : "Naslov",

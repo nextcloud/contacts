@@ -9,6 +9,7 @@ OC.L10N.register(
     "Add new property" : "Добавяне на поле",
     "Choose property type" : "Избор на тип поле",
     "Upload a new picture" : "Качи нова снимка",
+    "Invalid image" : "Невалидно изображение.",
     "No contact selected" : "Няма избран контакт",
     "Loading" : "Зареждане",
     "Name" : "Име",

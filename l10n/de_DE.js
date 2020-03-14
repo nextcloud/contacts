@@ -53,6 +53,7 @@ OC.L10N.register(
     "Copied" : "Kopiert",
     "Can not copy" : "Kann nicht kopiert werden",
     "Copy link" : "Link kopieren",
+    "Toggling of addressbook was not successful" : "Das Umschalten des Adressbuchs war nicht erfolgreich.",
     "This will delete the addressbook and every contacts within it" : "Hierdurch wird das Adressbuch und alle Kontakte in ihm gelöscht",
     "Delete {addressbook} ?" : " {addressbook} löschen?",
     "Deletion of addressbook was not successful." : "Löschen des Adressbuches war nicht erfolgreich.",

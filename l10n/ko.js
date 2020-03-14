@@ -14,6 +14,7 @@ OC.L10N.register(
     "Download picture" : "그림 다운로드",
     "Delete picture" : "그림 삭제",
     "Upload a new picture" : "새 그림 업로드",
+    "Invalid image" : "잘못된 사진",
     "Image is too big (max 1MB)." : "그림이 너무 큽니다(최대 1MB).",
     "Pick an avatar" : "아바타 선택",
     "Error while processing the picture." : "그림을 처리하는 중 오류가 발생했습니다.",

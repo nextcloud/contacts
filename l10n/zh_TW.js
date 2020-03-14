@@ -12,6 +12,7 @@ OC.L10N.register(
     "Download picture" : "下載圖片",
     "Delete picture" : "刪除圖片",
     "Upload a new picture" : "上傳一張新的圖片",
+    "Invalid image" : "圖片無效",
     "Image is too big (max 1MB)." : "圖檔過大(最大1MB)",
     "No contact selected" : "未選擇聯繫人",
     "Select a contact on the list to begin" : "在列表中選擇一個聯繫人以開始",
