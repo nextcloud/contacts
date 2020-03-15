@@ -16,6 +16,7 @@ OC.L10N.register(
     "Download picture" : "Download afbeelding",
     "Delete picture" : "Verwijder afbeelding",
     "Upload a new picture" : "Uploaden nieuwe afbeelding",
+    "Invalid image" : "Afbeelding ongeldig",
     "Image is too big (max 1MB)." : "Afbeelding te groot (max 1Mb).",
     "Pick an avatar" : "Kies een avatar",
     "Error while processing the picture." : "Fout bij het verwerken van de afbeelding",

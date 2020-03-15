@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Харилцагчид",
     "All contacts" : "Бүх харилцагчид",
     "Details" : "Дэлгэрэнгүй",
+    "Invalid image" : "буруу зураг",
     "Loading" : "Loading",
     "Name" : "Нэр",
     "Title" : "Цол/Албан тушаал",

@@ -16,6 +16,7 @@ OC.L10N.register(
     "Download picture" : "Télécharger l'image",
     "Delete picture" : "Supprimer l'image",
     "Upload a new picture" : "Ajouter une nouvelle image",
+    "Invalid image" : "Image non valable",
     "Image is too big (max 1MB)." : "Image trop volumineuse (max 1 Mo).",
     "Pick an avatar" : "Sélectionnez un avatar",
     "Error while processing the picture." : "Erreur lors du traitement de  l'image.",

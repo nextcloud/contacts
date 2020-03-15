@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontaktlar",
+    "Invalid image" : "Tasdiqlanmagan tasvir",
     "Loading" : "Yuklanmoqda",
     "Name" : "Ism...",
     "Download" : "Yuklab oling",

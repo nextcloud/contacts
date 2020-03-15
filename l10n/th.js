@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "ข้อมูลผู้ติดต่อ",
     "All contacts" : "รายชื่อทั้งหมด",
     "Details" : "รายละเอียด",
+    "Invalid image" : "รูปภาพไม่ถูกต้อง",
     "Loading" : "Loading",
     "Name" : "ชื่อ",
     "Title" : "ชื่อเรื่อง",

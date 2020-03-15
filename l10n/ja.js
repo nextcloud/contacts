@@ -15,6 +15,7 @@ OC.L10N.register(
     "Download picture" : "画像をダウンロード",
     "Delete picture" : "画像を削除",
     "Upload a new picture" : "新しい写真をアップロードする",
+    "Invalid image" : "無効な画像",
     "Image is too big (max 1MB)." : "画像容量が大きすぎます (最大1 MB)",
     "Pick an avatar" : "アバターを選択",
     "Error while processing the picture." : "画像の加工中にエラーが発生しました",

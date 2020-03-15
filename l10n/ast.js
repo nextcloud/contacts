@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Contautos",
     "All contacts" : "Tolos contautos",
     "Details" : "Detalles",
+    "Invalid image" : "Imaxe non válida",
     "Loading" : "Cargando",
     "Name" : "Nome",
     "Title" : "Títulu",

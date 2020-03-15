@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "සබඳතා",
+    "Invalid image" : "පින්තුරය දෝෂ සහිතයි",
     "Loading" : "Loading",
     "Name" : "නම",
     "Title" : "මාතෘකාව",

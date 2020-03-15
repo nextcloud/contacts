@@ -5,6 +5,7 @@ OC.L10N.register(
     "All contacts" : "Kontaktu guztiak",
     "Details" : "Xehetasuna",
     "Add new property" : "Gehitu propietate berria",
+    "Invalid image" : "Baliogabeko irudia",
     "No contact selected" : "Ez dago kontakturik hautatuta",
     "Select a contact on the list to begin" : "Hautatu zerrendako kontaktu bat lanean hasteko",
     "Loading" : "Kargatzen",

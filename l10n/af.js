@@ -5,6 +5,7 @@ OC.L10N.register(
     "All contacts" : "Alle kontakte",
     "Details" : "Details",
     "A contacts app for Nextcloud" : "’n Kontakte-toep vir Nextcloud",
+    "Invalid image" : "Ongeldige beeld",
     "Loading" : "Laai tans..",
     "Name" : "Naam",
     "Company" : "Maatskappy",

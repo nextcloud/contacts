@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "مخاطبین",
     "All contacts" : "تمام مخاطبین",
     "Details" : "جزئیات",
+    "Invalid image" : "عکس نامعتبر",
     "Loading" : "در حال بار گزاری",
     "Name" : "نام",
     "Company" : "شرکت",

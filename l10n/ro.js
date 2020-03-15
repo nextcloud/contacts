@@ -4,6 +4,7 @@ OC.L10N.register(
     "Contacts" : "Contacte",
     "All contacts" : "Toate contactele",
     "Details" : "Detalii",
+    "Invalid image" : "Imagine invalidă",
     "Loading" : "Loading",
     "Name" : "Nume",
     "Title" : "Titlu",

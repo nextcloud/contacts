@@ -13,6 +13,7 @@ OC.L10N.register(
     "Choose from files" : "Elige entre archivos",
     "Download picture" : "Descargar imágen",
     "Upload a new picture" : "Subir una nueva imagen",
+    "Invalid image" : "Imagen inválida",
     "Image is too big (max 1MB)." : "La imagen es demasiado grande (máximo 1MB).",
     "No contact selected" : "Contacto no seleccionado",
     "Select a contact on the list to begin" : "Seleccione un contacto en la lista para comenzar",

@@ -16,6 +16,7 @@ OC.L10N.register(
     "Download picture" : "Preuzmi sliku",
     "Delete picture" : "Izbriši sliku",
     "Upload a new picture" : "Otpremi novu sliku",
+    "Invalid image" : "Slika neispravna",
     "Image is too big (max 1MB)." : "Slika je prevelika (najviše 1 MB).",
     "Pick an avatar" : "Odaberi avatar",
     "Error while processing the picture." : "Pogreška tijekom obrade slike.",

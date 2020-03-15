@@ -16,6 +16,7 @@ OC.L10N.register(
     "Download picture" : "Ladda ner bild",
     "Delete picture" : "Radera bild",
     "Upload a new picture" : "Ladda upp en ny bild",
+    "Invalid image" : "Ogiltig bild",
     "Image is too big (max 1MB)." : "Bilden är för stor (max 1MB)",
     "Pick an avatar" : "Välj en avatar",
     "Error while processing the picture." : "Fel vid bearbetning av bilden.",

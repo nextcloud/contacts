@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Contacts" : "পরিচিতজন",
     "Details" : "বিসতারিত",
+    "Invalid image" : "অবৈধ চিত্র",
     "Loading" : "Loading",
     "Name" : "নাম",
     "Title" : "শিরোনাম",

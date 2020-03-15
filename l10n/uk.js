@@ -11,6 +11,7 @@ OC.L10N.register(
     "Download picture" : "Завантажити зображення",
     "Delete picture" : "Видалити зображення",
     "Upload a new picture" : "Завантажити нове зображення",
+    "Invalid image" : "Невірне зображення",
     "Image is too big (max 1MB)." : "Зображення завелике (максимум 1МБ).",
     "Pick an avatar" : "Оберіть аватарку",
     "Error while processing the picture." : "Помилка під час обробки зображення.",

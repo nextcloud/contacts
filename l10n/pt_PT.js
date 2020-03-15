@@ -5,6 +5,7 @@ OC.L10N.register(
     "All contacts" : "Todos os contactos",
     "Details" : "Detalhes",
     "Download picture" : "Transferir imagem",
+    "Invalid image" : "Imagem inválida",
     "Loading" : "A carregar",
     "Name" : "Nome",
     "Title" : "Título",

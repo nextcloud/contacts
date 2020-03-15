@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakter",
     "Details" : "Detailer",
+    "Invalid image" : "Ongülteg d'Bild",
     "Loading" : "Loading",
     "Name" : "Numm",
     "Title" : "Titel",

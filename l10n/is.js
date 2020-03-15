@@ -15,6 +15,7 @@ OC.L10N.register(
     "Download picture" : "Sækja mynd",
     "Delete picture" : "Eyða mynd",
     "Upload a new picture" : "Senda inn nýja mynd",
+    "Invalid image" : "Ógild mynd",
     "Image is too big (max 1MB)." : "Myndin er of stór (hám 1MB).",
     "Pick an avatar" : "Veldu auðkennismynd",
     "Error while processing the picture." : "Villa kom upp við vinnslu myndar.",

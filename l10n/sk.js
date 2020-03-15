@@ -16,6 +16,7 @@ OC.L10N.register(
     "Download picture" : "Stiahnuť obrázok",
     "Delete picture" : "Zmazať obrázok",
     "Upload a new picture" : "Nahrať nový obrázok",
+    "Invalid image" : "Chybný obrázok",
     "Image is too big (max 1MB)." : "Obrázok je príliš veľký (max 1 MB).",
     "Pick an avatar" : "Zvoľte si avatar",
     "Error while processing the picture." : "Chyba pri spracovaní obrázka.",
