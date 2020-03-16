@@ -61,6 +61,7 @@ OC.L10N.register(
     "Renaming of addressbook was not successful." : "Preimenovanje imenika je spodletelo.",
     "Addressbook copied to clipboard" : "Imenik je kopiran v odložišče.",
     "Addressbook was not copied to clipboard." : "Imenik ni bil kopiran v odložišče.",
+    "_Shared with {num} entity_::_Shared with {num} entities_" : ["V souporabi s skupno {num} uporabnikom ali skupino","V souporabi s skupno {num} uporabnikoma ali skupinama","V souporabi s skupno {num} uporabniki ali skupinami","V souporabi s skupno {num} uporabniki ali skupinami"],
     "Share with users or groups" : "Souporaba z uporabniki ali skupinami",
     "No users or groups" : "Ni uporabnikov oziroma skupin",
     "can edit" : "lahko ureja",
