@@ -38,6 +38,7 @@
     "No errors" : "Нема грешки",
     "Open your browser console for more details" : "Отворете ја конзолата на прелистувачот за повеќе детали",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} еден неисправен контакт","{failedCount} неисправни контакти"],
+    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Импортирање на %n контакт во {addressbook}","Импортирање на %n контакти во {addressbook}"],
     "Select type" : "Избери вид",
     "Select Date" : "Избери датум",
     "Add contact in group" : "Додади контакт во група",
