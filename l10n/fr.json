@@ -52,6 +52,7 @@
     "Copied" : "Copié",
     "Can not copy" : "Impossible de copier",
     "Copy link" : "Copier le lien",
+    "Toggling of addressbook was not successful" : "Le basculement du carnet d'adresses n'a pas réussi",
     "This will delete the addressbook and every contacts within it" : "Cette action va supprimer le carnet d'adresses ainsi que tous les contacts qu'il contient.",
     "Delete {addressbook} ?" : "Supprimer {addressbook} ?",
     "Deletion of addressbook was not successful." : "La suppression du carnet d'adresses a échoué.",
