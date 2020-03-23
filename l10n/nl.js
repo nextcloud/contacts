@@ -54,6 +54,7 @@ OC.L10N.register(
     "Copied" : "Gekopieerd",
     "Can not copy" : "Kan niet kopiëren",
     "Copy link" : "Link kopiëren",
+    "Toggling of addressbook was not successful" : "Omwisseling van adresboek is niet gelukt.",
     "This will delete the addressbook and every contacts within it" : "Dit verwijdert het adresboek en alle contactpersonen daarbinnen",
     "Delete {addressbook} ?" : "Verwijderen {addressbook} ?",
     "Deletion of addressbook was not successful." : "Verwijderen adresboek is niet gelukt.",
