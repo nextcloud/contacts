@@ -32,7 +32,7 @@ OC.L10N.register(
     "Delete" : "Eliminar",
     "This contact is not yet synced. Edit it to save it to the server." : "Este contacto aínda non está sincronizado. Edíteo para gardalo no servidor.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Este contacto está en modo de só lectura. Non ten permiso para editar este contacto.",
-    "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "O contacto que estaba tentando editar cambiou, Actualice o contacto manualmente. Calquera outra edición será desbotada.",
+    "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "O contacto que estaba tentando editar cambiou, Actualice o contacto manualmente. Calquera outra edición será descartada.",
     "Addressbook" : "Caderno de enderezos",
     "Groups" : "Grupos",
     "New contact" : "Novo contacto",
