@@ -25,6 +25,7 @@
 	<div class="contact-header-avatar">
 		<div class="contact-header-avatar__wrapper">
 			<div class="contact-header-avatar__background" @click="toggleModal" />
+
 			<div v-if="contact.photo"
 				:style="{ 'backgroundImage': `url(${contact.photoUrl})` }"
 				class="contact-header-avatar__photo"
@@ -75,6 +76,10 @@
 			<Actions :open="opened" class="contact-avatar-options__popovermenu">
 				<ActionButton v-if="!isReadOnly" icon="icon-upload" @click="selectFileInput">
 					{{ t('contacts', 'Upload a new picture') }}
+				</ActionButton>
+				// TODO: find a better icon
+				<ActionButton v-if="!isReadOnly" icon="icon-upload" @click="selectWebInput">
+					{{ t('contacts', 'Choose from web') }}
 				</ActionButton>
 				<ActionButton v-if="!isReadOnly" icon="icon-picture" @click="selectFilePicker">
 					{{ t('contacts', 'Choose from files') }}
@@ -310,6 +315,34 @@ export default {
 					try {
 						const { get } = await axios()
 						const response = await get(`${this.root}${file}`, {
+							responseType: 'arraybuffer',
+						})
+						const type = response.headers['content-type']
+						const data = Buffer.from(response.data, 'binary').toString('base64')
+						this.setPhoto(data, type)
+					} catch (error) {
+						OC.Notification.showTemporary(t('contacts', 'Error while processing the picture.'))
+						console.error(error)
+						this.loading = false
+					}
+				}
+			}
+		},
+
+		/**
+		 * WebURL handlers
+		 */
+		async selectWebInput() {
+			if (!this.loading) {
+
+				// FIXME: replace with input field
+				const imageUrl = 'https://github.githubassets.com/images/icons/emoji/unicode/2764.png'
+
+				if (imageUrl) {
+					this.loading = true
+					try {
+						const { get } = await axios()
+						const response = await get(`${imageUrl}`, {
 							responseType: 'arraybuffer',
 						})
 						const type = response.headers['content-type']

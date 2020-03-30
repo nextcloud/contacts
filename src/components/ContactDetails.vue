@@ -123,6 +123,11 @@
 							icon="icon-download">
 							{{ t('contacts', 'Download') }}
 						</ActionLink>
+						<!-- FIXME: show this menu item only if respective field available -->
+						<!-- TODO: find a better icon -->
+						<ActionButton icon="icon-download" @click="downloadSocialPic">
+							{{ t('contacts', 'Get Profile Picture from Facebook') }}
+						</ActionButton>
 						<ActionButton icon="icon-qrcode" @click="showQRcode">
 							{{ t('contacts', 'Generate QR Code') }}
 						</ActionButton>
@@ -471,6 +476,19 @@ export default {
 			if (data.length > 0) {
 				this.qrcode = btoa(qr.imageSync(data, { type: 'svg' }))
 			}
+		},
+
+		/**
+		 * Import facebook profile pic
+		 */
+		downloadSocialPic() {
+			const jCal = this.contact.jCal.slice(0)
+			const facebookid = jCal[1].filter(props => props[0] === 'x-socialprofile')
+			if (facebookid.length) {
+				console.debug('https://graph.facebook.com/' + facebookid[0][3] + '/picture?type=large')
+				// TODO: upload picture
+			}
+			// TODO: error handling
 		},
 
 		/**
