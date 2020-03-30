@@ -29,13 +29,18 @@ use OCA\Contacts\AppInfo\Application;
 use OCP\Contacts\IManager;
 use OCP\IAddressBook;
 
+use OCP\Util;
 use OCP\IConfig;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\Http\Client\IClientService;
+use OCA\DAV\CardDAV\CardDavBackend;
+use OCA\DAV\CardDAV\ContactsManager;
+use OCP\IURLGenerator;
+use OCP\IL10N;
 
 class SocialApiService {
-
+	private $appName;
 	/** @var CompositeSocialProvider */
 	private $socialProvider;
 	/** @var IManager */
@@ -44,16 +49,30 @@ class SocialApiService {
 	private $config;
 	/** @var IClientService */
 	private $clientService;
+	/** @var IL10N  */
+	private $l10n;
+	/** @var IURLGenerator  */
+	private $urlGen;
+	/** @var CardDavBackend */
+	private $davBackend;
+
 
 	public function __construct(
 					CompositeSocialProvider $socialProvider,
 					IManager $manager,
 					IConfig $config,
-					IClientService $clientService) {
+					IClientService $clientService,
+					IL10N $l10n,
+					IURLGenerator $urlGen,
+					CardDavBackend $davBackend) {
+		$this->appName = Application::APP_ID;
 		$this->socialProvider = $socialProvider;
 		$this->manager = $manager;
 		$this->config = $config;
 		$this->clientService = $clientService;
+		$this->l10n = $l10n;
+		$this->urlGen = $urlGen;
+		$this->davBackend = $davBackend;
 	}
 
 
@@ -65,8 +84,8 @@ class SocialApiService {
 	 * @returns {array} array of the supported social networks
 	 */
 	public function getSupportedNetworks() : array {
-		$isAdminEnabled = $this->config->getAppValue(Application::APP_ID, 'allowSocialSync', 'yes');
-		if ($isAdminEnabled !== 'yes') {
+		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
+		if ($syncAllowedByAdmin !== 'yes') {
 			return [];
 		}
 		return $this->socialProvider->getSupportedNetworks();
@@ -127,6 +146,20 @@ class SocialApiService {
 	/**
 	 * @NoAdminRequired
 	 *
+	 * Retrieves and initiates all addressbooks from a user
+	 *
+	 * @param {string} userId the user to query
+	 * @param {IManager} the contact manager to load
+	 */
+	protected function registerAddressbooks($userId, IManager $manager) {
+		$coma = new ContactsManager($this->davBackend, $this->l10n);
+		$coma->setupContactsProvider($manager, $userId, $this->urlGen);
+		$this->manager = $manager;
+	}
+
+	/**
+	 * @NoAdminRequired
+	 *
 	 * Retrieves social profile data for a contact and updates the entry
 	 *
 	 * @param {String} addressbookId the addressbook identifier
@@ -181,5 +214,103 @@ class SocialApiService {
 			return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
 		return new JSONResponse([], Http::STATUS_OK);
+	}
+
+	/**
+	 * @NoAdminRequired
+	 *
+	 * Stores the result of social avatar updates for each contact
+	 * (used during batch updates in updateAddressbooks)
+	 *
+	 * @param {array} report where the results are added
+	 * @param {String} entry the element to add
+	 * @param {string} status the (http) status code
+	 *
+	 * @returns {array} the report including the new entry
+	 */
+	protected function registerUpdateResult(array $report, string $entry, string $status) : array {
+		// initialize report on first call
+		if (empty($report)) {
+			$report = [
+				'updated' => [],
+				'checked' => [],
+				'failed' => [],
+			];
+		}
+		// add entry to respective sub-array
+		switch ($status) {
+			case Http::STATUS_OK:
+				array_push($report['updated'], $entry);
+				break;
+			case Http::STATUS_NOT_MODIFIED:
+				array_push($report['checked'], $entry);
+				break;
+			default:
+				if (!isset($report['failed'][$status])) {
+					$report['failed'][$status] = [];
+				}
+				array_push($report['failed'][$status], $entry);
+		}
+		return $report;
+	}
+
+
+	/**
+	 * @NoAdminRequired
+	 *
+	 * Updates social profile data for all contacts of an addressbook
+	 *
+	 * @param {String} network the social network to use (fallback: take first match)
+	 * @param {String} userId the address book owner
+	 *
+	 * @returns {JSONResponse} JSONResponse with the list of changed and failed contacts
+	 */
+	public function updateAddressbooks(string $network, string $userId) : JSONResponse {
+
+		// double check!
+		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
+		$bgSyncEnabledByUser = $this->config->getUserValue($userId, $this->appName, 'enableSocialSync', 'no');
+		if (($syncAllowedByAdmin !== 'yes') || ($bgSyncEnabledByUser !== 'yes')) {
+			return new JSONResponse([], Http::STATUS_FORBIDDEN);
+		}
+
+		$delay = 1;
+		$response = [];
+
+		// get corresponding addressbook
+		$this->registerAddressbooks($userId, $this->manager);
+		$addressBooks = $this->manager->getUserAddressBooks();
+
+		foreach ($addressBooks as $addressBook) {
+			if ((is_null($addressBook) ||
+				(Util::getVersion()[0] >= 20) &&
+				//TODO: remove version check ^ when dependency for contacts is min NCv20 (see info.xml)
+				($addressBook->isShared() || $addressBook->isSystemAddressBook()))) {
+				// TODO: filter out deactivated books, see https://github.com/nextcloud/server/issues/17537
+				continue;
+			}
+
+			// get contacts in that addressbook
+			$contacts = $addressBook->search('', ['UID'], ['types' => true]);
+			// TODO: can be optimized by:
+			// $contacts = $addressBook->search('', ['X-SOCIALPROFILE'], ['types' => true]);
+			// but see https://github.com/nextcloud/contacts/pull/1722#discussion_r463782429
+			// and the referenced PR before activating this (index has to be re-created!)
+
+			// update one contact after another
+			foreach ($contacts as $contact) {
+				// delay to prevent rate limiting issues
+				// TODO: do we need to send an Http::STATUS_PROCESSING ?
+				sleep($delay);
+
+				try {
+					$r = $this->updateContact($addressBook->getURI(), $contact['UID'], $network);
+					$response = $this->registerUpdateResult($response, $contact['FN'], $r->getStatus());
+				} catch (Exception $e) {
+					$response = $this->registerUpdateResult($response, $contact['FN'], '-1');
+				}
+			}
+		}
+		return new JSONResponse([$response], Http::STATUS_OK);
 	}
 }

@@ -33,6 +33,10 @@ use OCP\Http\Client\IClientService;
 use OCP\IConfig;
 use OCP\Contacts\IManager;
 use OCP\IAddressBook;
+use OCA\DAV\CardDAV\CardDavBackend;
+use OCP\IURLGenerator;
+use OCP\IL10N;
+use OCP\Util;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use ChristophWurst\Nextcloud\Testing\TestCase;
@@ -48,6 +52,12 @@ class SocialApiServiceTest extends TestCase {
 	private $config;
 	/** @var IClientService|MockObject */
 	private $clientService;
+	/** @var IL10N|MockObject  */
+	private $l10n;
+	/** @var IURLGenerator|MockObject  */
+	private $urlGen;
+	/** @var CardDavBackend|MockObject */
+	private $davBackend;
 
 	public function socialProfileProvider() {
 		return [
@@ -59,6 +69,15 @@ class SocialApiServiceTest extends TestCase {
 		];
 	}
 
+	public function updateAddressbookProvider() {
+		return [
+			'not user enabled' 			=> ['yes',	'no',	Http::STATUS_FORBIDDEN],
+			'not admin allowed' 		=> ['no',	'yes',	Http::STATUS_FORBIDDEN],
+			'not allowed, not enabled' 	=> ['no',	'no',	Http::STATUS_FORBIDDEN],
+			'allowed and enabled'	 	=> ['yes',	'yes',	Http::STATUS_OK],
+		];
+	}
+
 	public function setUp() {
 		parent::setUp();
 
@@ -66,11 +85,17 @@ class SocialApiServiceTest extends TestCase {
 		$this->config = $this->createMock(IConfig::class);
 		$this->socialProvider = $this->createMock(CompositeSocialProvider::class);
 		$this->clientService = $this->createMock(IClientService::class);
+		$this->l10n = $this->createMock(IL10N::class);
+		$this->urlGen = $this->createMock(IURLGenerator::class);
+		$this->davBackend = $this->createMock(CardDavBackend::class);
 		$this->service = new SocialApiService(
 			$this->socialProvider,
 			$this->manager,
 			$this->config,
-			$this->clientService
+			$this->clientService,
+			$this->l10n,
+			$this->urlGen,
+			$this->davBackend
 		);
 	}
 
@@ -82,7 +107,6 @@ class SocialApiServiceTest extends TestCase {
 		$result = $this->service->getSupportedNetworks();
 		$this->assertEmpty($result);
 	}
-
 
 	/**
 	 * @dataProvider socialProfileProvider
@@ -128,5 +152,136 @@ class SocialApiServiceTest extends TestCase {
 		$result = $this->service->updateContact('contacts', '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0', 'theSocialNetwork');
 
 		$this->assertEquals($expected, $result->getStatus());
+	}
+
+	protected function setupAddressbooks() {
+		$validContact1 = [
+			'UID' => '11111111-1111-1111-1111-111111111111',
+			'FN' => 'Valid Contact One',
+			'VERSION' => '4.0',
+			'X-SOCIALPROFILE' => [['type' => 'someNetwork', 'value' => 'someId1']],
+		];
+		$validContact2 = [
+			'UID' => '22222222-2222-2222-2222-222222222222',
+			'FN' => 'Valid Contact Two',
+			'VERSION' => '4.0',
+			'PHOTO' => "data:someHeader;base64," . base64_encode('someBody'),
+			'X-SOCIALPROFILE' => [['type' => 'someNetwork', 'value' => 'someId2']],
+		];
+		$emptyContact = [
+			'UID' => '00000000-0000-0000-0000-000000000000',
+			'FN' => 'Empty Contact',
+			'VERSION' => '4.0',
+		];
+		$invalidContact = [
+			'UID' => 'xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx',
+			'FN' => 'Invalid Contact',
+			'VERSION' => '4.0',
+			'X-SOCIALPROFILE' => [['type' => 'someNetwork', 'value' => 'invalidId']],
+		];
+
+		$addressbook1 = $this->createMock(IAddressBook::class);
+		$addressbook1->method('getUri')->willReturn('contacts1');
+		$addressbook2 = $this->createMock(IAddressBook::class);
+		$addressbook2->method('getUri')->willReturn('contacts2');
+		if (Util::getVersion()[0] >= 20) {
+			// TODO: check can be removed as soon as min-dependency of contacts is NCv20
+			$addressbook1->method('isShared')->willReturn(false);
+			$addressbook1->method('isSystemAddressBook')->willReturn(false);
+			$addressbook2->method('isShared')->willReturn(false);
+			$addressbook2->method('isSystemAddressBook')->willReturn(false);
+		}
+
+		$searchMap1 = [
+			['', ['UID'], ['types' => true], [$validContact1, $invalidContact]],
+			['', ['X-SOCIALPROFILE'], ['types' => true], [$validContact1, $invalidContact]],
+			[$validContact1['UID'], ['UID'], ['types' => true], [$validContact1]],
+			[$invalidContact['UID'], ['UID'], ['types' => true], [$invalidContact]],
+		];
+		$searchMap2 = [
+			['', ['UID'], ['types' => true], [$validContact2, $emptyContact]],
+			['', ['X-SOCIALPROFILE'], ['types' => true], [$validContact2]],
+			[$validContact2['UID'], ['UID'], ['types' => true], [$validContact2]],
+			[$emptyContact['UID'], ['UID'], ['types' => true], [$emptyContact]],
+		];
+		$addressbook1
+			->method('search')
+			->will($this->returnValueMap($searchMap1));
+		$addressbook2
+			->method('search')
+			->will($this->returnValueMap($searchMap2));
+		$this->manager
+			->method('getUserAddressBooks')
+			->willReturn([$addressbook1, $addressbook2]);
+
+		$socialConnectorMap = [
+			[$validContact1['X-SOCIALPROFILE'], 'any', 'validConnector'],
+			[$validContact2['X-SOCIALPROFILE'], 'any', 'validConnector'],
+			[$invalidContact['X-SOCIALPROFILE'], 'any', 'invalidConnector'],
+			[$emptyContact['X-SOCIALPROFILE'], 'any', 'emptyConnector'],
+		];
+		$this->socialProvider
+			->method('getSocialConnector')
+			->will($this->returnValueMap($socialConnectorMap));
+
+		$validResponse = $this->createMock(IResponse::class);
+		$validResponse
+			->method('getBody')
+			->willReturn('someBody');
+		$validResponse
+			->method('getHeader')
+			->willReturn('someHeader');
+		$invalidResponse = $this->createMock(IResponse::class);
+		$invalidResponse
+			->method('getBody')
+			->willReturn('');
+		$invalidResponse
+			->method('getHeader')
+			->willReturn('');
+
+		$clientResponseMap = [
+			['validConnector', [], $validResponse],
+			['invalidConnector', [], $invalidResponse],
+			['emptyConnector', [], $invalidResponse],
+		];
+		$client = $this->createMock(IClient::class);
+		$client
+			->method('get')
+			->will($this->returnValueMap($clientResponseMap));
+		$this->clientService
+			->method('NewClient')
+			->willReturn($client);
+	}
+
+
+	/**
+	 * @dataProvider updateAddressbookProvider
+	 */
+	public function testUpdateAddressbooks($syncAllowedByAdmin, $bgSyncEnabledByUser, $expected) {
+		$this->config
+			->method('getAppValue')
+			->willReturn($syncAllowedByAdmin);
+		$this->config
+			->method('getUserValue')
+			->willReturn($bgSyncEnabledByUser);
+
+		$this->setupAddressbooks();
+
+		$result = $this->service->updateAddressbooks('any', 'mrstest');
+
+		$this->assertEquals($expected, $result->getStatus());
+
+		if (($syncAllowedByAdmin === 'yes') && ($bgSyncEnabledByUser === 'yes')) {
+			$report = $result->getData();
+			$this->assertArrayHasKey('0', $report);
+			$this->assertArrayHasKey('updated', $report[0]);
+			$this->assertContains('Valid Contact One', $report[0]['updated']);
+			$this->assertArrayHasKey('checked', $report[0]);
+			$this->assertContains('Valid Contact Two', $report[0]['checked']);
+			$this->assertArrayHasKey('failed', $report[0]);
+			$this->assertArrayHasKey('404', $report[0]['failed']);
+			$this->assertContains('Invalid Contact', $report[0]['failed']['404']);
+			$this->assertNotContains('Empty Contact', $report[0]['failed']['404']);
+		}
 	}
 }

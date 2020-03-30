@@ -30,8 +30,9 @@ use OCP\IInitialStateService;
 use OCP\Settings\ISettings;
 
 class AdminSettings implements ISettings {
+	protected $appName;
 
-		/** @var IConfig */
+	/** @var IConfig */
 	private $config;
 
 	/** @var IInitialStateService */
