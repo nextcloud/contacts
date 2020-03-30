@@ -50,4 +50,8 @@
 			<order>4</order>
 		</navigation>
 	</navigations>
+
+	<settings>
+		<admin>OCA\Contacts\Settings\AdminSettings</admin>
+	</settings>
 </info>
