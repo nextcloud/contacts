@@ -42,6 +42,6 @@ services:
 </p>
 </details>
 
-In that folder run `make watch-js`, so the changes are compiled.
+In that folder run `make dev-setup` to install and then `make watch-js` to watch and compile your changes.
 
-Access the app at http://localhost:8099/apps/contacts/ and reload the page with `CTRL`+`F5`.
+Fire-up your Nextcloud instance by running `docker-compose up -d` in the directory where the above described docker-compose.yml is stored. Access the app at http://localhost:8099/apps/contacts/ and reload the page with `CTRL`+`F5`.
