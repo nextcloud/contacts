@@ -77,8 +77,7 @@
 				<ActionButton v-if="!isReadOnly" icon="icon-upload" @click="selectFileInput">
 					{{ t('contacts', 'Upload a new picture') }}
 				</ActionButton>
-				// TODO: find a better icon
-				<ActionButton v-if="!isReadOnly" icon="icon-upload" @click="selectWebInput">
+				<ActionButton v-if="!isReadOnly" icon="icon-link" @click="selectWebInput">
 					{{ t('contacts', 'Choose from web') }}
 				</ActionButton>
 				<ActionButton v-if="!isReadOnly" icon="icon-picture" @click="selectFilePicker">

@@ -124,9 +124,8 @@
 							{{ t('contacts', 'Download') }}
 						</ActionLink>
 						<!-- FIXME: show this menu item only if respective field available -->
-						<!-- TODO: find a better icon -->
-						<ActionButton icon="icon-download" @click="downloadSocialPic">
-							{{ t('contacts', 'Get Profile Picture from Facebook') }}
+						<ActionButton v-if="hasFacebookId" icon="icon-category-multimedia" @click="downloadSocialPic">
+							{{ t('contacts', 'Get profile picture from facebook') }}
 						</ActionButton>
 						<ActionButton icon="icon-qrcode" @click="showQRcode">
 							{{ t('contacts', 'Generate QR Code') }}
@@ -260,6 +259,17 @@ export default {
 			if (this.contact.addressbook) {
 				return this.contact.addressbook.readOnly
 			}
+			return false
+		},
+
+		hasFacebookId() {
+			const jCal = this.contact.jCal.slice(0)
+			const facebookid = jCal[1].filter(props => props[0] === 'x-socialprofile')
+
+			if (facebookid.length > 0) {
+				return true
+			}
+
 			return false
 		},
 
@@ -484,7 +494,7 @@ export default {
 		downloadSocialPic() {
 			const jCal = this.contact.jCal.slice(0)
 			const facebookid = jCal[1].filter(props => props[0] === 'x-socialprofile')
-			if (facebookid.length) {
+			if (facebookid.length > 0) {
 				console.debug('https://graph.facebook.com/' + facebookid[0][3] + '/picture?type=large')
 				// TODO: upload picture
 			}
