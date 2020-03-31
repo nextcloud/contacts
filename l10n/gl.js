@@ -65,7 +65,7 @@ OC.L10N.register(
     "Share with users or groups" : "Compartir con usuarios ou grupos",
     "No users or groups" : "Non hai usuarios nin grupos",
     "can edit" : "pode editar",
-    "Unable to delete the share." : "Non é posíbel eliminar o recurso compartido",
+    "Unable to delete the share." : "Non foi posíbel eliminar o recurso compartido",
     "Unable to change permissions." : "Non foi posíbel cambiar os permisos.",
     "Import contacts" : "Importar contactos",
     "Select local file" : "Seleccionar ficheiro local",
