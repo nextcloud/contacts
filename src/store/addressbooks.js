@@ -447,6 +447,7 @@ const actions = {
 			await addressbook.dav.unshare(uri)
 			context.commit('removeSharee', { addressbook, uri })
 		} catch (error) {
+			console.error(error)
 			throw error
 		}
 	},
@@ -464,6 +465,7 @@ const actions = {
 			await addressbook.dav.share(uri, writeable)
 			context.commit('updateShareeWritable', { addressbook, uri, writeable })
 		} catch (error) {
+			console.error(error)
 			throw error
 		}
 
@@ -484,6 +486,7 @@ const actions = {
 			await addressbook.dav.share(uri)
 			context.commit('shareAddressbook', { addressbook, user, displayName, uri, isGroup })
 		} catch (error) {
+			console.error(error)
 			throw error
 		}
 	},
@@ -503,6 +506,7 @@ const actions = {
 			try {
 				await contact.dav.move(addressbook.dav)
 			} catch (error) {
+				console.error(error)
 				throw error
 			}
 		}
@@ -530,8 +534,8 @@ const actions = {
 			const response = await contact.dav.copy(addressbook.dav)
 			// setting the contact dav property
 			Vue.set(newContact, 'dav', response)
-
 		} catch (error) {
+			console.error(error)
 			throw error
 		}
 		// success, update store
