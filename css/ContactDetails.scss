@@ -138,3 +138,20 @@
 		}
 	}
 }
+
+#pick-addressbook-modal {
+	.modal-container {
+		display: flex;
+		overflow: visible;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		margin-bottom: 20px;
+		padding: 10px;
+		background-color: #fff;
+		.multiselect {
+			flex: 1 1 100%;
+			width: 100%;
+			margin-bottom: 20px;
+		}
+	}
+}

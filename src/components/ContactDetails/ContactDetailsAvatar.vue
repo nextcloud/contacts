@@ -46,6 +46,7 @@
 
 			<Modal v-if="maximizeAvatar"
 				ref="modal"
+				:clear-view-delay="-1"
 				class="contact-header-modal"
 				size="large"
 				:title="contact.displayName"
@@ -86,7 +87,10 @@
 
 <script>
 import debounce from 'debounce'
-import { ActionLink, ActionButton } from '@nextcloud/vue'
+import Actions from '@nextcloud/vue/dist/Components/Actions'
+import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import Modal from '@nextcloud/vue/dist/Components/Modal'
 
 import { getFilePickerBuilder } from '@nextcloud/dialogs'
 import { generateRemoteUrl } from '@nextcloud/router'
@@ -99,8 +103,10 @@ export default {
 	name: 'ContactDetailsAvatar',
 
 	components: {
+		Actions,
 		ActionLink,
 		ActionButton,
+		Modal,
 	},
 
 	props: {

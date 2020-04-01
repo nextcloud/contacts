@@ -29,7 +29,7 @@
 			<div class="property__label" />
 
 			<!-- type selector -->
-			<multiselect :options="availableProperties"
+			<Multiselect :options="availableProperties"
 				:placeholder="t('contacts', 'Choose property type')"
 				class="property__value"
 				track-by="id"
@@ -40,6 +40,7 @@
 </template>
 
 <script>
+import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 import rfcProps from '../../models/rfcProps'
 import Contact from '../../models/contact'
 import PropertyTitle from '../Properties/PropertyTitle'
@@ -49,6 +50,7 @@ export default {
 	name: 'ContactDetailsAddNewProp',
 
 	components: {
+		Multiselect,
 		PropertyTitle,
 	},
 

@@ -94,7 +94,7 @@
 						:class="{'icon-loading-small': loadingUpdate,
 							[`${warning.icon}`]: warning}"
 						class="header-icon"
-						href="#" />
+						@click="onWarningClick" />
 
 					<!-- conflict message -->
 					<div v-if="conflict"
@@ -117,12 +117,23 @@
 						@click="updateContact" />
 
 					<!-- menu actions -->
-					<Actions class="header-menu" menu-align="right">
+					<Actions ref="actions"
+						class="header-menu"
+						menu-align="right"
+						:open.sync="openedMenu">
 						<ActionLink :href="contact.url"
 							:download="`${contact.displayName}.vcf`"
 							icon="icon-download">
 							{{ t('contacts', 'Download') }}
 						</ActionLink>
+						<!-- user can clone if there is at least one option available -->
+						<ActionButton v-if="isReadOnly && addressbooksOptions.length > 0"
+							ref="cloneAction"
+							:close-after-click="true"
+							icon="icon-clone"
+							@click="cloneContact">
+							{{ t('contacts', 'Clone contact') }}
+						</ActionButton>
 						<ActionButton icon="icon-qrcode" @click="showQRcode">
 							{{ t('contacts', 'Generate QR Code') }}
 						</ActionButton>
@@ -135,9 +146,34 @@
 				<!-- qrcode -->
 				<Modal v-if="qrcode"
 					id="qrcode-modal"
+					:clear-view-delay="-1"
 					:title="contact.displayName"
 					@close="closeQrModal">
-					<img :src="`data:image/svg+xml;base64,${qrcode}`" class="qrcode" width="400">
+					<img :src="`data:image/svg+xml;base64,${qrcode}`"
+						:alt="t('contacts', 'Contact vcard as qrcode')"
+						class="qrcode"
+						width="400">
+				</Modal>
+
+				<!-- pick addressbook when cloning contact -->
+				<Modal v-if="showPickAddressbookModal"
+					id="pick-addressbook-modal"
+					:clear-view-delay="-1"
+					:title="t('contacts', 'Pick an address book')"
+					@close="closePickAddressbookModal">
+					<Multiselect ref="pickAddressbook"
+						v-model="pickedAddressbook"
+						:allow-empty="false"
+						:options="addressbooksOptions"
+						:placeholder="t('contacts', 'Select addressbook')"
+						track-by="id"
+						label="name" />
+					<button @click="closePickAddressbookModal">
+						{{ t('contacts', 'Cancel') }}
+					</button>
+					<button class="primary" @click="cloneContact">
+						{{ t('contacts', 'Clone contact') }}
+					</button>
 				</Modal>
 			</header>
 
@@ -193,7 +229,12 @@ import debounce from 'debounce'
 import PQueue from 'p-queue'
 import qr from 'qr-image'
 import { stringify } from 'ical.js'
-import { ActionLink, ActionButton } from '@nextcloud/vue'
+import Actions from '@nextcloud/vue/dist/Components/Actions'
+import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import Modal from '@nextcloud/vue/dist/Components/Modal'
+import { showError } from '@nextcloud/dialogs'
 
 import rfcProps from '../models/rfcProps'
 import validate from '../services/validate'
@@ -211,6 +252,7 @@ export default {
 	name: 'ContactDetails',
 
 	components: {
+		Actions,
 		ActionButton,
 		ActionLink,
 		AddNewProp,
@@ -219,6 +261,8 @@ export default {
 		PropertyGroups,
 		PropertyRev,
 		PropertySelect,
+		Modal,
+		Multiselect,
 	},
 
 	props: {
@@ -247,6 +291,8 @@ export default {
 			loadingUpdate: false,
 			openedMenu: false,
 			qrcode: '',
+			showPickAddressbookModal: false,
+			pickedAddressbook: null,
 		}
 	},
 
@@ -377,6 +423,7 @@ export default {
 
 		/**
 		 * Store getters filtered and mapped to usable object
+		 * This is the list of addressbooks that are available to write
 		 *
 		 * @returns {Array}
 		 */
@@ -504,11 +551,11 @@ export default {
 						await this.updateLocalContact(contact)
 					} catch (error) {
 						if (error.name === 'ParserError') {
-							OC.Notification.showTemporary(t('contacts', 'Syntax error. Cannot open the contact.'))
+							showError(t('contacts', 'Syntax error. Cannot open the contact.'))
 						} else if (error.status === 404) {
-							OC.Notification.showTemporary(t('contacts', `The contact doesn't exists anymore on the server.`))
+							showError(t('contacts', `The contact doesn't exists anymore on the server.`))
 						} else {
-							OC.Notification.showTemporary(t('contacts', `Unable to retrieve the contact from the server, please check your network connection.`))
+							showError(t('contacts', `Unable to retrieve the contact from the server, please check your network connection.`))
 						}
 						console.error(error)
 						// trigger a local deletion from the store only
@@ -556,6 +603,41 @@ export default {
 					})
 				} catch (error) {
 					console.error(error)
+					showError(t('contacts', 'An error occured while trying to move the contact'))
+				} finally {
+					this.loadingUpdate = false
+				}
+			}
+		},
+
+		/**
+		 * Copy contact to the specified addressbook
+		 *
+		 * @param {string} addressbookId the desired addressbook ID
+		 */
+		async copyContactToAddressbook(addressbookId) {
+			const addressbook = this.addressbooks.find(search => search.id === addressbookId)
+			this.loadingUpdate = true
+			if (addressbook) {
+				try {
+					const contact = await this.$store.dispatch('copyContactToAddressbook', {
+						// we need to use the store contact, not the local contact
+						// using this.contact and not this.localContact
+						contact: this.contact,
+						addressbook,
+					})
+					// select the contact again
+					this.$router.push({
+						name: 'contact',
+						params: {
+							selectedGroup: this.$route.params.selectedGroup,
+							selectedContact: contact.key,
+						},
+					})
+				} catch (error) {
+					console.error(error)
+					window.temp1 = error
+					showError(t('contacts', 'An error occured while trying to copy the contact'))
 				} finally {
 					this.loadingUpdate = false
 				}
@@ -598,6 +680,42 @@ export default {
 			if (e.keyCode === 83 && (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey)) {
 				e.preventDefault()
 				this.debounceUpdateContact()
+			}
+		},
+
+		/**
+		 * Clone the current contact to another addressbook
+		 */
+		async cloneContact() {
+			// only one addressbook, let's clone it there
+			if (this.pickedAddressbook && this.addressbooks.find(addressbook => addressbook.id === this.pickedAddressbook.id)) {
+				console.debug('Cloning contact to', this.pickedAddressbook.name)
+				await this.copyContactToAddressbook(this.pickedAddressbook.id)
+				this.closePickAddressbookModal()
+			} else if (this.addressbooksOptions.length === 1) {
+				console.debug('Cloning contact to', this.addressbooksOptions[0].name)
+				await this.copyContactToAddressbook(this.addressbooksOptions[0].id)
+			} else {
+				this.showPickAddressbookModal = true
+			}
+		},
+
+		closePickAddressbookModal() {
+			this.showPickAddressbookModal = false
+			this.pickedAddressbook = null
+		},
+
+		/**
+		 * The user clicked the warning icon
+		 */
+		onWarningClick() {
+			// if the user clicked the readonly icon, let's focus the clone button
+			if (this.isReadOnly && this.addressbooksOptions.length > 0) {
+				this.openedMenu = true
+				this.$nextTick(() => {
+					// focus the clone button
+					this.$refs.actions.onMouseFocusAction({ target: this.$refs.cloneAction.$el })
+				})
 			}
 		},
 	},
