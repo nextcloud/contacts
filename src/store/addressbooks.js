@@ -61,7 +61,9 @@ export function mapDavCollectionToAddressbook(addressbook) {
 		readOnly: addressbook.readOnly === true,
 		url: addressbook.url,
 		dav: addressbook,
-		shares: addressbook.shares.map(sharee => Object.assign({}, mapDavShareeToSharee(sharee))),
+		shares: addressbook.shares
+			? addressbook.shares.map(sharee => Object.assign({}, mapDavShareeToSharee(sharee)))
+			: [],
 	}
 }
 
