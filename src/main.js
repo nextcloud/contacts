@@ -20,16 +20,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
-import 'core-js/stable'
-
+import { generateFilePath } from '@nextcloud/router'
+import { getRequestToken } from '@nextcloud/auth'
+import { sync } from 'vuex-router-sync'
 import Vue from 'vue'
+
 import App from './ContactsRoot'
 import router from './router'
 import store from './store'
-import { sync } from 'vuex-router-sync'
-import { generateFilePath } from '@nextcloud/router'
-import { getRequestToken } from '@nextcloud/auth'
 
 /** GLOBAL COMPONENTS AND DIRECTIVE */
 import ClickOutside from 'vue-click-outside'
