@@ -11,6 +11,7 @@ OC.L10N.register(
     "Title" : "عنوان",
     "Download" : "دانلود",
     "Delete" : "حذف",
+    "Cancel" : "لغو",
     "Groups" : "گروه ها",
     "New contact" : "مخاطب جدید",
     "Select Date" : "تاریخ را انتخاب کنید",

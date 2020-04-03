@@ -9,6 +9,7 @@ OC.L10N.register(
     "Title" : "ចំណងជើង",
     "Download" : "ទាញយក",
     "Delete" : "លុប",
+    "Cancel" : "បោះបង់",
     "Groups" : "ក្រុ",
     "Rename" : "ប្ដូរ​ឈ្មោះ",
     "Enabled" : "បាន​បើក",

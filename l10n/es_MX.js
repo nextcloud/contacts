@@ -12,6 +12,7 @@ OC.L10N.register(
     "Title" : "Título",
     "Download" : "Descargar",
     "Delete" : "Borrar",
+    "Cancel" : "Cancelar",
     "Groups" : "Grupos",
     "New contact" : "Nuevo contacto",
     "No results" : "Sin resultados",

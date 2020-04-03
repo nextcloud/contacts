@@ -7,6 +7,7 @@ OC.L10N.register(
     "Title" : "Judul",
     "Download" : "Muat turun",
     "Delete" : "Padam",
+    "Cancel" : "Batal",
     "Groups" : "Kumpulan",
     "Rename" : "Namakan",
     "can edit" : "boleh mengubah",

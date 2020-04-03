@@ -10,6 +10,7 @@ OC.L10N.register(
     "Title" : "Titlu",
     "Download" : "Descărcare",
     "Delete" : "Șterge",
+    "Cancel" : "Anulează",
     "Groups" : "Grupuri",
     "New contact" : "Contact nou ",
     "No results" : "Niciun rezultat",

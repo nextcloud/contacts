@@ -24,7 +24,7 @@ OC.L10N.register(
     "Download" : "Завантажити",
     "Generate QR Code" : "Створити QR код",
     "Delete" : "Видалити",
-    "Addressbook" : "Адресна книга",
+    "Cancel" : "Скасувати",
     "Groups" : "Групи",
     "New contact" : "Новий контакт",
     "Select Date" : "Вкажіть дату",

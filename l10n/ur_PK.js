@@ -7,6 +7,7 @@ OC.L10N.register(
     "Title" : "عنوان",
     "Download" : "ڈاؤن لوڈ",
     "Delete" : "حذف کریں",
+    "Cancel" : "منسوخ کریں",
     "Rename" : "Rename",
     "can edit" : "تبدیل کر سکے ھیں",
     "Notes" : "Notes",

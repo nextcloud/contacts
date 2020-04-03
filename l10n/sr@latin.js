@@ -7,6 +7,7 @@ OC.L10N.register(
     "Title" : "Naslov",
     "Download" : "Preuzmi",
     "Delete" : "Delete",
+    "Cancel" : "Otkaži",
     "Groups" : "Grupe",
     "No results" : "Nema rezultata",
     "Rename" : "Rename",

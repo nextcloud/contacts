@@ -9,6 +9,7 @@ OC.L10N.register(
     "Title" : "Tittel",
     "Download" : "Last ned",
     "Delete" : "Ta bort",
+    "Cancel" : "Avbryt",
     "Groups" : "Grupper",
     "Last modified" : "Siste endra",
     "Rename" : "Gje nytt namn",

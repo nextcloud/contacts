@@ -7,6 +7,7 @@ OC.L10N.register(
     "Name" : "Ism...",
     "Download" : "Yuklab oling",
     "Delete" : "O'chir",
+    "Cancel" : "Bekor qilish",
     "Groups" : "Guruhlar",
     "Rename" : "Nomni o'zgartiring",
     "Notes" : "Eslatmalar",

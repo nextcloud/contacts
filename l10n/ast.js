@@ -10,6 +10,7 @@ OC.L10N.register(
     "Title" : "Títulu",
     "Download" : "Baxar",
     "Delete" : "Desaniciar",
+    "Cancel" : "Encaboxar",
     "Groups" : "Grupos",
     "New contact" : "Contautu nuevu",
     "No results" : "Ensin resultaos",
