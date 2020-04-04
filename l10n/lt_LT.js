@@ -33,6 +33,7 @@ OC.L10N.register(
     "This contact is not yet synced. Edit it to save it to the server." : "Šis adresatas kol kas nėra sinchronizuotas. Taisykite jį, norėdami įrašyti jį į serverį.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Šis adresatas yra tik skaitymo veiksenoje. Jūs neturite leidimo taisyti šį adresatą.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Adresatas, kurį bandote taisyti, pasikeitė. Įkelkite rankiniu būdu adresatą iš naujo. Bet kokie tolimesni taisymai bus atmesti.",
+    "Address book" : "Adresatų knyga",
     "Groups" : "Grupės",
     "New contact" : "Naujas adresatas",
     "Syntax error. Cannot open the contact." : "Sintaksės klaida. Nepavyko atverti adresato.",

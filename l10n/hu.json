@@ -30,6 +30,7 @@
     "This contact is not yet synced. Edit it to save it to the server." : "Ez a névjegy még nincs szinkronizálva. Szerkezd és mentsd a szerverre.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Ez a névjegy csak olvasható. Nincs jogosultságod szerkeszteni ezt a névjegyet.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "A névjegy amit szerkeszteni próbálsz megváltozott. Kérlek manuálisan frissítsd a névjegyet. Minden további módosítás figyelmen kívül lesz hagyva.",
+    "Address book" : "Címjegyzék",
     "Groups" : "Csoportok",
     "New contact" : "Új névjegy",
     "Syntax error. Cannot open the contact." : "Szintaktikai hiba. Nem lehet megnyitni a kapcsolatot.",

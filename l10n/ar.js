@@ -16,6 +16,7 @@ OC.L10N.register(
     "Download" : "تحميل",
     "Delete" : "حذف",
     "Cancel" : "إلغاء",
+    "Address book" : "دفتر العناوين",
     "Groups" : "مجموعات",
     "New contact" : "جهة إتصال جديدة",
     "No errors" : "لا توجد أخطاء",

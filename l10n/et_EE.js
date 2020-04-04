@@ -11,6 +11,7 @@ OC.L10N.register(
     "Download" : "Lae alla",
     "Delete" : "Kustuta",
     "Cancel" : "Loobu",
+    "Address book" : "Aadressiraamat",
     "Groups" : "Grupid",
     "New contact" : "Uus kontakt",
     "No results" : "Vasteid ei leitud",

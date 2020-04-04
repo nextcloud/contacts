@@ -31,6 +31,7 @@
     "This contact is not yet synced. Edit it to save it to the server." : "この連絡先はまだ同期されていません。 それを編集してサーバーに保存してください。",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "この連絡先は読み取り専用モードです。 この連絡先を編集する権限がありません。",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "編集しようとした連絡先が変更されました。 連絡先を手動で更新してください。 それ以上の編集は破棄されます。",
+    "Address book" : "連絡帳",
     "Groups" : "グループ",
     "New contact" : "新しい連絡先",
     "Syntax error. Cannot open the contact." : "構文エラー。 連絡先を開けません",

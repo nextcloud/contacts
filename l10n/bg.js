@@ -18,6 +18,7 @@ OC.L10N.register(
     "Download" : "Свали",
     "Delete" : "Изтрий",
     "Cancel" : "Отказ",
+    "Address book" : "Адресна книга",
     "Groups" : "Групи",
     "New contact" : "Нов контакт",
     "No errors" : "Няма грешки",

@@ -37,6 +37,7 @@ OC.L10N.register(
     "This contact is not yet synced. Edit it to save it to the server." : "Ten kontakt nie został jeszcze zsynchronizowany. Edytuj go, aby zapisać na serwerze.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Ten kontakt jest w trybie \"tylko do odczytu\". Nie masz uprawnień do edytowania tego kontaktu.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakt który próbujesz edytować został zmieniony. Odśwież kontakt ręcznie. Wszystkie przyszłe zmiany zostaną odrzucone.",
+    "Address book" : "Książka adresowa",
     "Groups" : "Grupy",
     "New contact" : "Nowy kontakt",
     "Syntax error. Cannot open the contact." : "Błąd składni. Nie można otworzyć kontaktu.",

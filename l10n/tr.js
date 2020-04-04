@@ -34,6 +34,7 @@ OC.L10N.register(
     "This contact is not yet synced. Edit it to save it to the server." : "Bu kişi henüz eşitlenmemiş. Sunucuya kaydetmek için düzenleyin.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Bu kişi salt okunur kipte olduğundan kişiyi düzenleme izniniz yok.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Düzenlemeye çalıştığınız kişi değiştirilmiş. Lütfen kişiyi el ile yenileyin. Bundan sonra yapılacak düzenlemeler yok sayılacak.",
+    "Address book" : "Adres defteri",
     "Groups" : "Gruplar",
     "New contact" : "Yeni kişi",
     "Syntax error. Cannot open the contact." : "Yazım hatası. Kişi bulunamadı.",

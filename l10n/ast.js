@@ -11,6 +11,7 @@ OC.L10N.register(
     "Download" : "Baxar",
     "Delete" : "Desaniciar",
     "Cancel" : "Encaboxar",
+    "Address book" : "Llibreta de direiciones",
     "Groups" : "Grupos",
     "New contact" : "Contautu nuevu",
     "No results" : "Ensin resultaos",

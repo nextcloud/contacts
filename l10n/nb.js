@@ -23,6 +23,7 @@ OC.L10N.register(
     "This contact is not yet synced. Edit it to save it to the server." : "Denne kontakt er enda ikke synkronisert. Rediger den for å lagre den på serveren.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Kontakten er skrivebeskyttet. Du har ikke tillatelse til å redigere denne kontakten.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakten du prøvde å redigere, har blitt endret. Vennligst oppdater manuelt. Ytterligere endringer vil ikke kunne lagres.",
+    "Address book" : "Adressebok",
     "Groups" : "Grupper",
     "New contact" : "Ny kontakt",
     "Syntax error. Cannot open the contact." : "Syntaksfeil. Kan ikke åpne kontakten.",

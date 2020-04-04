@@ -15,6 +15,7 @@ OC.L10N.register(
     "Download" : "Jaitsi",
     "Delete" : "Borratu",
     "Cancel" : "Utzi",
+    "Address book" : "Helbide liburua",
     "Groups" : "Taldeak",
     "New contact" : "Kontaktu berria",
     "No errors" : "Errorerik ez",
