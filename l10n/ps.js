@@ -6,6 +6,7 @@ OC.L10N.register(
     "Name" : "نوم",
     "Download" : "ښکته کول",
     "Delete" : "ړنګول",
+    "Cancel" : "پرېښول",
     "Groups" : "ګروپونه",
     "Rename" : "نوم بدلول",
     "Copy link" : "لېنک کاپي کول",

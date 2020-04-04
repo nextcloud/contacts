@@ -10,6 +10,7 @@ OC.L10N.register(
     "Title" : "Judul",
     "Download" : "Unduh",
     "Delete" : "Hapus",
+    "Cancel" : "Membatalkan",
     "Groups" : "Grup",
     "New contact" : "Kontak baru",
     "No results" : "Tidak ada hasil",

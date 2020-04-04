@@ -7,6 +7,7 @@ OC.L10N.register(
     "Title" : "Վերնագիր",
     "Download" : "Ներբեռնել",
     "Delete" : "հեռացնել",
+    "Cancel" : "ընդհատել",
     "Groups" : "Խմբեր",
     "Rename" : "Վերանվանել",
     "Copy link" : "Պատճենել հղումը",

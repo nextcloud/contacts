@@ -10,6 +10,8 @@ OC.L10N.register(
     "Title" : "სათაური",
     "Download" : "ჩამოტვირთვა",
     "Delete" : "გაუქმება",
+    "Cancel" : "უარყოფა",
+    "Address book" : "მისამართების წიგნი",
     "Groups" : "ჯგუფები",
     "New contact" : "ახალი კონტაქტი",
     "No results" : "შედეგები არაა",

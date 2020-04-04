@@ -12,7 +12,7 @@ OC.L10N.register(
     "Title" : "Titel",
     "Download" : "Laai Af",
     "Delete" : "Skrap",
-    "Addressbook" : "Adresboek",
+    "Cancel" : "Kanselleer",
     "Groups" : "Groepe",
     "New contact" : "Nuwe kontak",
     "Select type" : "Kies tipe",

@@ -8,6 +8,7 @@ OC.L10N.register(
     "Title" : "මාතෘකාව",
     "Download" : "බාන්න",
     "Delete" : "ඉවත් කරන්න",
+    "Cancel" : "අවලංගු කරන්න",
     "Groups" : "කණ්ඩායම්",
     "Rename" : "නැවත නම් කරන්න",
     "can edit" : "සංස්කරණය කළ හැක",

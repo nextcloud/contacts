@@ -165,7 +165,7 @@
 						v-model="pickedAddressbook"
 						:allow-empty="false"
 						:options="addressbooksOptions"
-						:placeholder="t('contacts', 'Select addressbook')"
+						:placeholder="t('contacts', 'Select address book')"
 						track-by="id"
 						label="name" />
 					<button @click="closePickAddressbookModal">
@@ -372,7 +372,7 @@ export default {
 		 */
 		addressbookModel() {
 			return {
-				readableName: t('contacts', 'Addressbook'),
+				readableName: t('contacts', 'Address book'),
 				icon: 'icon-address-book',
 				options: this.addressbooksOptions,
 			}
@@ -603,7 +603,7 @@ export default {
 					})
 				} catch (error) {
 					console.error(error)
-					showError(t('contacts', 'An error occured while trying to move the contact'))
+					showError(t('contacts', 'An error occurred while trying to move the contact'))
 				} finally {
 					this.loadingUpdate = false
 				}
@@ -637,7 +637,7 @@ export default {
 				} catch (error) {
 					console.error(error)
 					window.temp1 = error
-					showError(t('contacts', 'An error occured while trying to copy the contact'))
+					showError(t('contacts', 'An error occurred while trying to copy the contact'))
 				} finally {
 					this.loadingUpdate = false
 				}

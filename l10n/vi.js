@@ -10,6 +10,8 @@ OC.L10N.register(
     "Title" : "Tên",
     "Download" : "Tải về",
     "Delete" : "Xóa",
+    "Cancel" : "Hủy bỏ",
+    "Address book" : "Sổ địa chỉ",
     "Groups" : "Nhóm",
     "New contact" : "Thêm liên lạc",
     "No results" : "Không có kết quả",

@@ -9,6 +9,7 @@ OC.L10N.register(
     "Title" : "Başlıq",
     "Download" : "Yüklə",
     "Delete" : "Sil",
+    "Cancel" : "Dayandır",
     "Groups" : "Qruplar",
     "Rename" : "Adı dəyiş",
     "Enabled" : "İşə salınıb",

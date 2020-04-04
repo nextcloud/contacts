@@ -9,6 +9,7 @@ OC.L10N.register(
     "Title" : "Titel",
     "Download" : "Eroflueden",
     "Delete" : "Läschen",
+    "Cancel" : "Ofbriechen",
     "Groups" : "Gruppen",
     "Rename" : "Ëmbenennen",
     "Enabled" : "Aktivéiert",

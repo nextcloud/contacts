@@ -7,6 +7,7 @@ OC.L10N.register(
     "Title" : "標題",
     "Download" : "下載",
     "Delete" : "刪除",
+    "Cancel" : "取消",
     "Groups" : "群組",
     "Rename" : "重新命名",
     "Enabled" : "啟用",
