@@ -140,7 +140,7 @@
   [#991](https://github.com/nextcloud/contacts/pull/991)
 - Use displayname as file name when downloading a contact
   [#1022](https://github.com/nextcloud/contacts/pull/1022)
-- Show vcard as qrcode
+- Show vCard as qrcode
   [#1017](https://github.com/nextcloud/contacts/pull/1017)
 - Use virtual scroller for big contacts list display performances
   [#1018](https://github.com/nextcloud/contacts/pull/1018)
