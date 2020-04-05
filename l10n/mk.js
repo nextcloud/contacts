@@ -31,7 +31,6 @@ OC.L10N.register(
     "Clone contact" : "Клинирај контакт",
     "Generate QR Code" : "Генерирај QR код",
     "Delete" : "Избриши",
-    "Contact vcard as qrcode" : "Картичка за контакт во QR-код",
     "Pick an address book" : "Избери адресар",
     "Cancel" : "Откажи",
     "This contact is not yet synced. Edit it to save it to the server." : "Овој контакт сеуште не е синхронизиран. Изменете го и зачувајте го на серверот.",

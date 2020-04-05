@@ -31,7 +31,6 @@ OC.L10N.register(
     "Clone contact" : "Clona contatto",
     "Generate QR Code" : "Genera codice QR",
     "Delete" : "Elimina",
-    "Contact vcard as qrcode" : "Vcard del contatto come codice QR",
     "Pick an address book" : "Scegli una rubrica",
     "Cancel" : "Annulla",
     "This contact is not yet synced. Edit it to save it to the server." : "Questo contatto non è ancora sincronizzato. Modificalo per salvarlo sul server.",
