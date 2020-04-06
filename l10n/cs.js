@@ -31,6 +31,7 @@ OC.L10N.register(
     "Clone contact" : "Klonovat kontakt",
     "Generate QR Code" : "Vytvořit QR kód",
     "Delete" : "Smazat",
+    "Contact vCard as qrcode" : "Zobrazit údaje kontaktu (vcard) v podobě QR kódu",
     "Pick an address book" : "Zvolit adresář kontaktů",
     "Select address book" : "Vybrat adresář kontaktů",
     "Cancel" : "Storno",

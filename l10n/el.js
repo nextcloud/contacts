@@ -31,6 +31,7 @@ OC.L10N.register(
     "Clone contact" : "Κλωνοποίηση επαφής",
     "Generate QR Code" : "Δημιουργία Κώδικα QR",
     "Delete" : "Διαγραφή",
+    "Contact vCard as qrcode" : "Επαφή vcard ως qrcode",
     "Pick an address book" : "Επιλέξτε ένα βιβλίο διευθύνσεων",
     "Select address book" : "Επιλογή βιβλίου διευθύνσεων",
     "Cancel" : "Ακύρωση",
