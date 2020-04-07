@@ -495,7 +495,7 @@ export default {
 			const jCal = this.contact.jCal.slice(0)
 			const facebookid = jCal[1].filter(props => props[0] === 'x-socialprofile')
 			if (facebookid.length > 0) {
-				console.debug('https://graph.facebook.com/' + facebookid[0][3] + '/picture?type=large')
+				console.debug('https://graph.facebook.com/' + facebookid[0][3] + '/picture?width=720')
 				// TODO: upload picture
 			}
 			// TODO: error handling

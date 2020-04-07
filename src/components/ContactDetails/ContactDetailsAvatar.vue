@@ -336,6 +336,8 @@ export default {
 
 				// FIXME: replace with input field
 				const imageUrl = 'https://github.githubassets.com/images/icons/emoji/unicode/2764.png'
+				// This works (local image):
+				// const imageUrl = 'http://localhost:8099/core/preview?fileId=9&x=192&y=108&a=true'
 
 				if (imageUrl) {
 					this.loading = true
