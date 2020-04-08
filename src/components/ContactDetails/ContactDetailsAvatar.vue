@@ -77,11 +77,13 @@
 				<ActionButton v-if="!isReadOnly" icon="icon-upload" @click="selectFileInput">
 					{{ t('contacts', 'Upload a new picture') }}
 				</ActionButton>
-				<ActionButton v-if="!isReadOnly" icon="icon-link" @click="selectWebInput">
-					{{ t('contacts', 'Choose from web') }}
-				</ActionButton>
 				<ActionButton v-if="!isReadOnly" icon="icon-picture" @click="selectFilePicker">
 					{{ t('contacts', 'Choose from files') }}
+				</ActionButton>
+				<!-- FIXME: show only if facebookId present; deactivated for debugging CSP error -->
+				<!-- <ActionButton v-if="!isReadOnly && hasFacebookId" icon="icon-link" @click="selectWebInput"> -->
+				<ActionButton v-if="!isReadOnly" icon="icon-link" @click="selectWebInput">
+					{{ t('contacts', 'Update from social media') }}
 				</ActionButton>
 			</Actions>
 		</div>
@@ -129,6 +131,12 @@ export default {
 			if (this.contact.addressbook) {
 				return this.contact.addressbook.readOnly
 			}
+			return false
+		},
+		hasFacebookId() {
+			const jCal = this.contact.jCal.slice(0)
+			const facebookid = jCal[1].filter(props => props[0] === 'x-socialprofile')
+			if (facebookid.length > 0) { return true }
 			return false
 		},
 	},
@@ -329,32 +337,45 @@ export default {
 		},
 
 		/**
-		 * WebURL handlers
+		 * WebImage handlers
 		 */
 		async selectWebInput() {
-			if (!this.loading) {
 
-				// FIXME: replace with input field
-				const imageUrl = 'https://github.githubassets.com/images/icons/emoji/unicode/2764.png'
-				// This works (local image):
-				// const imageUrl = 'http://localhost:8099/core/preview?fileId=9&x=192&y=108&a=true'
+			// getting facebook id from contact
+			const jCal = this.contact.jCal.slice(0)
+			const facebookid = jCal[1].filter(props => props[0] === 'x-socialprofile')
+			if (facebookid.length > 0) {
+				// TODO: data verification
+				this.fbProfileUrl = 'https://graph.facebook.com/' + facebookid[0][3] + '/picture?width=720'
+				console.debug('facebook image found: ' + this.fbProfileUrl)
+			}
 
-				if (imageUrl) {
-					this.loading = true
-					try {
-						const { get } = await axios()
-						const response = await get(`${imageUrl}`, {
-							responseType: 'arraybuffer',
-						})
-						const type = response.headers['content-type']
-						const data = Buffer.from(response.data, 'binary').toString('base64')
-						this.setPhoto(data, type)
-					} catch (error) {
-						OC.Notification.showTemporary(t('contacts', 'Error while processing the picture.'))
-						console.error(error)
-						this.loading = false
-					}
+			// FIXME: overwriting non-functioning external imageUrl with local one works...
+			// const imageUrl = 'http://localhost:8099/core/preview?fileId=9&x=192&y=108&a=true'
+			// but external images don't :/
+			const imageUrl = 'https://github.githubassets.com/images/icons/emoji/unicode/2764.png'
+			console.debug('selectWebInput: ' + imageUrl)
+
+			if ((!this.loading) && (imageUrl)) {
+
+				this.loading = true
+				try {
+					const { get } = await axios()
+					const response = await get(`${imageUrl}`, {
+						responseType: 'arraybuffer',
+					})
+					const type = response.headers['content-type']
+					// TODO: error hanndling
+					console.debug('response: ' + response.status)
+					if (response.status !== 200) throw new URIError('verify set facebook profile id')
+					const data = Buffer.from(response.data, 'binary').toString('base64')
+					this.setPhoto(data, type)
+				} catch (error) {
+					OC.Notification.showTemporary(t('contacts', 'Error while processing the picture.'))
+					console.error(error)
+					this.loading = false
 				}
+
 			}
 		},
 
