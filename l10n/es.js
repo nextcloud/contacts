@@ -31,6 +31,7 @@ OC.L10N.register(
     "Clone contact" : "Clonar contacto",
     "Generate QR Code" : "General código QR",
     "Delete" : "Eliminar",
+    "Contact vCard as qrcode" : "Contacto vCard como código QR",
     "Pick an address book" : "Escoge una libreta de direcciones",
     "Select address book" : "Selecciona una libreta de direcciones",
     "Cancel" : "Cancelar",
