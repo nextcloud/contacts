@@ -57,14 +57,12 @@ Vue.prototype.t = t
 Vue.prototype.n = n
 // eslint-disable-next-line
 Vue.prototype.appVersion = appVersion
-// eslint-disable-next-line
-Vue.prototype.oc_config = oc_config
 Vue.prototype.OC = OC
 Vue.prototype.OCA = OCA
 
 // Force redirect if rewrite enabled but accessed through index.php
 if (window.location.pathname.split('/')[1] === 'index.php'
-	&& oc_config.modRewriteWorking) {
+	&& OC.config.modRewriteWorking) {
 	router.push({
 		name: 'group',
 		params: { selectedGroup: t('contacts', 'All contacts') },
