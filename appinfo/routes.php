@@ -23,8 +23,9 @@
 
 return [
 	'routes' => [
-		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
-		['name' => 'page#index', 'url' => '/{group}', 'verb' => 'GET', 'postfix' => 'group'],
-		['name' => 'page#index', 'url' => '/{group}/{contact}', 'verb' => 'GET', 'postfix' => 'group.contact']
+		['name' => 'page#index',  'url' => '/', 'verb' => 'GET'],
+		['name' => 'page#index',  'url' => '/{group}', 'verb' => 'GET', 'postfix' => 'group'],
+		['name' => 'page#index',  'url' => '/{group}/{contact}', 'verb' => 'GET', 'postfix' => 'group.contact'],
+		['name' => 'page#avatar', 'url' => '/{group}/{contact}/avatar/{id}', 'verb' => 'GET', 'requirements' => ['id' => '\d+']]
 	]
 ];

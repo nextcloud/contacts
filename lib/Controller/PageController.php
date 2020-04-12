@@ -72,4 +72,48 @@ class PageController extends Controller {
 			'main',
 			['locales' => json_encode($locales), 'defaultProfile'=> json_encode($defaultProfile)]); // templates/main.php
 	}
+
+
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 *
+	 * param id facebook profile id
+	 */
+	public function avatar($id)
+	{
+		$url = "https://graph.facebook.com/" . ($id) . "/picture?width=720";
+		$response = 404;
+
+		try {
+			$host = parse_url($url);
+			if (!$host) {
+				$response = 404;
+				throw new Exception('Could not parse URL');
+			}
+			$opts = [
+				"http" => [
+					"method" => "GET",
+					"header" => "User-Agent: Nextcloud Contacts App"
+				]
+			];
+			$context = stream_context_create($opts);
+			$image = file_get_contents($url, false, $context);
+			if (!$image) {
+				throw new Exception('Could not parse URL');
+				$response = 404;
+			}
+			else {
+				$response = 200;
+				header("Content-type:image/png");
+				echo $image;
+			}
+		} 
+		catch (Exception $e) {
+		}
+
+		http_response_code($response);
+		exit;
+	}
+
 }

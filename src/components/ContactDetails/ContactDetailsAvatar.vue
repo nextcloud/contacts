@@ -80,9 +80,7 @@
 				<ActionButton v-if="!isReadOnly" icon="icon-picture" @click="selectFilePicker">
 					{{ t('contacts', 'Choose from files') }}
 				</ActionButton>
-				<!-- FIXME: show only if facebookId present; deactivated for debugging CSP error -->
-				<!-- <ActionButton v-if="!isReadOnly && hasFacebookId" icon="icon-link" @click="selectWebInput"> -->
-				<ActionButton v-if="!isReadOnly" icon="icon-link" @click="selectWebInput">
+				<ActionButton v-if="!isReadOnly && hasSocialId" icon="icon-link" @click="selectWebInput">
 					{{ t('contacts', 'Update from social media') }}
 				</ActionButton>
 			</Actions>
@@ -124,6 +122,7 @@ export default {
 			root: generateRemoteUrl(`dav/files/${getCurrentUser().uid}`),
 			width: 0,
 			height: 0,
+			facebookid: 0,
 		}
 	},
 	computed: {
@@ -133,10 +132,10 @@ export default {
 			}
 			return false
 		},
-		hasFacebookId() {
+		hasSocialId() {
 			const jCal = this.contact.jCal.slice(0)
-			const facebookid = jCal[1].filter(props => props[0] === 'x-socialprofile')
-			if (facebookid.length > 0) { return true }
+			const socialId = jCal[1].filter(props => props[0] === 'x-socialprofile')
+			if (socialId.length > 0) { return true }
 			return false
 		},
 	},
@@ -337,26 +336,47 @@ export default {
 		},
 
 		/**
+		 * check if social entry is facebook profile id
+		 *
+		 * @param {array} socialentry entry of contact
+		 */
+		checkFacebookId(socialentry) {
+			// check its the facebook-entry
+			console.debug(socialentry)
+			this.isfacebook = false
+
+			try {
+				if (socialentry[1]['type'] === 'facebook') {
+					this.isfacebook = true
+				} else if (socialentry[1]['type'][0] === 'facebook') {
+					this.isfacebook = true
+				}
+			} catch {
+				if (!this.isfacebook) { return }
+			}
+
+			if ((Number.isInteger(Number(socialentry[3]))) && (socialentry[3] > 0)) {
+				this.facebookid = socialentry[3]
+				console.debug('facebook profile id found: ' + this.facebookid)
+			}
+		},
+
+		/**
 		 * WebImage handlers
 		 */
 		async selectWebInput() {
 
+			this.facebookid = 0
+
 			// getting facebook id from contact
 			const jCal = this.contact.jCal.slice(0)
-			const facebookid = jCal[1].filter(props => props[0] === 'x-socialprofile')
-			if (facebookid.length > 0) {
-				// TODO: data verification
-				this.fbProfileUrl = 'https://graph.facebook.com/' + facebookid[0][3] + '/picture?width=720'
-				console.debug('facebook image found: ' + this.fbProfileUrl)
-			}
+			const socialentries = jCal[1].filter(props => props[0] === 'x-socialprofile')
+			socialentries.forEach(this.checkFacebookId)
 
-			// FIXME: overwriting non-functioning external imageUrl with local one works...
-			// const imageUrl = 'http://localhost:8099/core/preview?fileId=9&x=192&y=108&a=true'
-			// but external images don't :/
-			const imageUrl = 'https://github.githubassets.com/images/icons/emoji/unicode/2764.png'
-			console.debug('selectWebInput: ' + imageUrl)
+			// FIXME: get the correct baseUrl!
+			const imageUrl = window.location.href + '/avatar/' + this.facebookid
 
-			if ((!this.loading) && (imageUrl)) {
+			if (!(this.loading) && (this.facebookid)) {
 
 				this.loading = true
 				try {
@@ -365,8 +385,6 @@ export default {
 						responseType: 'arraybuffer',
 					})
 					const type = response.headers['content-type']
-					// TODO: error hanndling
-					console.debug('response: ' + response.status)
 					if (response.status !== 200) throw new URIError('verify set facebook profile id')
 					const data = Buffer.from(response.data, 'binary').toString('base64')
 					this.setPhoto(data, type)
@@ -376,6 +394,8 @@ export default {
 					this.loading = false
 				}
 
+			} else {
+				OC.Notification.showTemporary(t('contacts', 'No valid facebook profile id found'))
 			}
 		},
 
