@@ -43,7 +43,7 @@
 		"@nextcloud/vue": "1.4.1",
 		"axios": "^0.19.2",
 		"cdav-library": "git+https://github.com/nextcloud/cdav-library.git",
-		"core-js": "^3.6.4",
+		"core-js": "^3.6.5",
 		"debounce": "^1.2.0",
 		"downloadjs": "^1.4.7",
 		"ical.js": "^1.4.0",
