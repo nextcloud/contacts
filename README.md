@@ -2,6 +2,8 @@
 
 This is a fork of [Nextcloud Contacts](https://github.com/nextcloud/contacts/) in order to sync profile pictures from social networks.
 
+![how it works](demo.gif)
+
 **Is your feature request related to a problem? Please describe.**
 Most of my contacts don't have profile pictures in nextcloud, as this is quite some work to set up and maintain. Nevertheless, I would love to have more color in my address book. Others seem to have the same desire, as can be seen by the reactions when google and facebook removed the integration in android: https://www.facebook.com/help/community/question/?id=10153485306296293
 
