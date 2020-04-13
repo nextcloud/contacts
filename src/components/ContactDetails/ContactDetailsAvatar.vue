@@ -357,12 +357,16 @@ export default {
 
 			// strip in case its an uri
 			try {
-				const parts = socialentry[3].split('/')
-				// take last part from entry, make sure it doesnt finish with '/'
-				if (parts[parts.length - 1].length) {
-					candidate = parts[parts.length - 1]
+				const entry = socialentry[3]
+				if (!entry.toLowerCase().startsWith('http')) {
+					candidate = entry
 				} else {
-					candidate = parts[parts.length - 2]
+					const parts = entry.split('/')
+					if (!entry.endsWith('/')) {
+						candidate = parts[parts.length - 1]
+					} else {
+						candidate = parts[parts.length - 2]
+					}
 				}
 			} catch {
 				candidate = socialentry[3]
