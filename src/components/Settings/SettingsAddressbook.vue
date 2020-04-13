@@ -54,6 +54,12 @@
 			</ActionLink>
 
 			<template v-if="!addressbook.readOnly">
+				<!-- sync profiles from socialmedia -->
+				<ActionLink
+					:href="avatarSettingsPage"
+					icon="icon-picture">
+					{{ t('contacts', 'Update photos from social media') }}
+				</ActionLink>
 				<!-- rename addressbook -->
 				<ActionButton v-if="!editingName"
 					icon="icon-rename"
@@ -160,6 +166,12 @@ export default {
 			}
 			return t('contacts', 'Copy link')
 		},
+		avatarSettingsPage() {
+			// this.$route.query.page
+			const appUrl = (window.location.href.toString()).split('/')
+			appUrl.pop()
+			return (appUrl.join('/') + '/settings/avatars')
+		},
 	},
 	watch: {
 		menuOpen: function() {
@@ -251,7 +263,7 @@ export default {
 
 			// copy link for addressbook to clipboard
 			try {
-				await this.$copyText(window.location.origin + this.addressbook.url)
+				await this.$copyText()
 				this.copySuccess = true
 				this.copied = true
 				// Notify addressbook was copied
@@ -269,6 +281,20 @@ export default {
 				}, 2000)
 			}
 		},
+
+		getSocialAvatars() {
+			console.debug('get social avatars for complete addressbook')
+
+			console.warn('not implemented')
+			for (const contact in this.addressbook.contacts) {
+				console.debug(this.addressbook.contacts[contact])
+				// console.debug(this.addressbook.contacts[contact].jCal.slice(0))
+				// TODO: download profile pictures as done in ContactDetailsAvatar|selectWebInput
+			}
+
+			return 'hello'
+		},
+
 	},
 }
 </script>

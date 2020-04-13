@@ -394,7 +394,7 @@ export default {
 			const socialentries = jCal[1].filter(props => props[0] === 'x-socialprofile')
 			socialentries.forEach(this.checkFacebookId)
 
-			const imageUrl = window.location.href + '/avatar/' + this.facebookid
+			const imageUrl = window.location.href + '/avatar/facebook/' + this.facebookid
 
 			if (!(this.loading) && (this.facebookid)) {
 

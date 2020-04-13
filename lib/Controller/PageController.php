@@ -73,19 +73,42 @@ class PageController extends Controller {
 			['locales' => json_encode($locales), 'defaultProfile'=> json_encode($defaultProfile)]); // templates/main.php
 	}
 
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 *
+	 * Overview page to update avatars from social media
+	 */
+	public function avatars(): TemplateResponse {
+		return new TemplateResponse(
+			'contacts',
+			'avatars',
+			['locales' => json_encode($locales), 'defaultProfile'=> json_encode($defaultProfile)]); // templates/main.php
+	}
+
 
 	/**
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 *
-	 * param id facebook profile id
+	 * Retrieves the social profile picture for a contact
+	 *
+	 * param id profile identifier
+	 * param network from where to retrieve
 	 */
-	public function avatar($id)
-	{
-		$url = "https://graph.facebook.com/" . ($id) . "/picture?width=720";
+	public function avatar($network, $id) {
+		$url = "";
 		$response = 404;
 
 		try {
+			// add your social networks here!
+			if ($network == 'facebook') {
+				$url = "https://graph.facebook.com/" . ($id) . "/picture?width=720";
+			} else {
+				$response = 400;
+				throw new Exception('Unknown network');
+			}
+
 			$host = parse_url($url);
 			if (!$host) {
 				$response = 404;
@@ -102,8 +125,7 @@ class PageController extends Controller {
 			if (!$image) {
 				throw new Exception('Could not parse URL');
 				$response = 404;
-			}
-			else {
+			} else {
 				$response = 200;
 				header("Content-type:image/png");
 				echo $image;
