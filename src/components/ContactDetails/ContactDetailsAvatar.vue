@@ -341,10 +341,10 @@ export default {
 		 * @param {array} socialentry entry of contact
 		 */
 		checkFacebookId(socialentry) {
-			// check its the facebook-entry
-			console.debug(socialentry)
 			this.isfacebook = false
+			let candidate = 0
 
+			// check its the facebook-entry
 			try {
 				if (socialentry[1]['type'] === 'facebook') {
 					this.isfacebook = true
@@ -355,9 +355,26 @@ export default {
 				if (!this.isfacebook) { return }
 			}
 
-			if ((Number.isInteger(Number(socialentry[3]))) && (socialentry[3] > 0)) {
-				this.facebookid = socialentry[3]
+			// strip in case its an uri
+			try {
+				const parts = socialentry[3].split('/')
+				// take last part from entry, make sure it doesnt finish with '/'
+				if (parts[parts.length - 1].length) {
+					candidate = parts[parts.length - 1]
+				} else {
+					candidate = parts[parts.length - 2]
+				}
+			} catch {
+				candidate = socialentry[3]
+			}
+
+			// check its a number
+			if ((Number.isInteger(Number(candidate))) && (candidate > 0)) {
+				this.facebookid = candidate
 				console.debug('facebook profile id found: ' + this.facebookid)
+			} else {
+				// TODO: determine facebook profile id from username
+				console.debug('expected facebook profile id (number), got: ' + candidate)
 			}
 		},
 
@@ -373,7 +390,6 @@ export default {
 			const socialentries = jCal[1].filter(props => props[0] === 'x-socialprofile')
 			socialentries.forEach(this.checkFacebookId)
 
-			// FIXME: get the correct baseUrl!
 			const imageUrl = window.location.href + '/avatar/' + this.facebookid
 
 			if (!(this.loading) && (this.facebookid)) {
