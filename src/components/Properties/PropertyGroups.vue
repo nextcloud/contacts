@@ -169,14 +169,9 @@ export default {
 		 * @returns {boolean}
 		 */
 		validateGroup(groupName) {
-			// Only allow characters without vcard special chars
-			const groupRegex = /^[^;,:]+$/gmi
-			if (groupName.match(groupRegex)) {
-				this.addContactToGroup(groupName)
-				this.localValue.push(groupName)
-				return true
-			}
-			return false
+			this.addContactToGroup(groupName)
+			this.localValue.push(groupName)
+			return true
 		},
 	},
 }
