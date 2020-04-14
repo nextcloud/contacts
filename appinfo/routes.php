@@ -27,6 +27,6 @@ return [
 		['name' => 'page#index',   'url' => '/{group}', 'verb' => 'GET', 'postfix' => 'group'],
 		['name' => 'page#index',   'url' => '/{group}/{contact}', 'verb' => 'GET', 'postfix' => 'group.contact'],
 		['name' => 'avatar#view',  'url' => '/{group}/settings/avatars', 'verb' => 'GET'],
-		['name' => 'avatar#fetch', 'url' => '/{group}/{contact}/avatar/{network}/{id}', 'verb' => 'GET', 'requirements' => ['id' => '\d+']]
+		['name' => 'avatar#fetch', 'url' => '/{group}/{contact}/avatar/{network}/{profileid}', 'verb' => 'GET', 'requirements' => ['profileid' => '\d+']]
 	]
 ];

@@ -78,17 +78,19 @@ class AvatarController extends Controller {
 	 * param id profile identifier
 	 * param network from where to retrieve
 	 */
-	public function fetch($network, $id) {
+	public function fetch($network, $profileid) {
 		$url = "";
 		$response = 404;
 
 		try {
 			// add your social networks here!
-			if ($network == 'facebook') {
-				$url = "https://graph.facebook.com/" . ($id) . "/picture?width=720";
-			} else {
-				$response = 400;
-				throw new Exception('Unknown network');
+			switch ($network) {
+				case 'facebook':
+					$url = "https://graph.facebook.com/" . ($profileid) . "/picture?width=720";
+					break;
+				default:
+					$response = 400;
+					throw new Exception('Unknown network');
 			}
 
 			$host = parse_url($url);
@@ -105,13 +107,13 @@ class AvatarController extends Controller {
 			$context = stream_context_create($opts);
 			$image = file_get_contents($url, false, $context);
 			if (!$image) {
-				throw new Exception('Could not parse URL');
 				$response = 404;
-			} else {
-				$response = 200;
-				header("Content-type:image/png");
-				echo $image;
+				throw new Exception('Could not parse URL');
 			}
+
+			$response = 200;
+			header("Content-type:image/png");
+			echo $image;
 		} 
 		catch (Exception $e) {
 		}
