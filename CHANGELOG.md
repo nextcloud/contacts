@@ -1,3 +1,21 @@
+## 3.3.0 – 2020-04-14
+
+[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.2.0...v3.3.0)
+
+### Enhancements
+- Add ability to clone contact
+  [\#1462](https://github.com/nextcloud/contacts/pull/1462) ([skjnldsv](https://github.com/skjnldsv))
+
+### Fixed
+- Fix no sharing menu position
+  [\#1500](https://github.com/nextcloud/contacts/pull/1500) ([skjnldsv](https://github.com/skjnldsv))
+- Support multiple type declaration
+  [\#942](https://github.com/nextcloud/contacts/issues/942) ([skjnldsv](https://github.com/skjnldsv))
+
+### Security fixed
+- Properly sanitize avatars in upload
+  [\#1514](https://github.com/nextcloud/contacts/pull/1514) ([skjnldsv](https://github.com/skjnldsv))
+
 ## 3.2.0 – 2020-02-29
 ### Fixed
 - Fix first contact sync (Contact saving hangs and protocol says uid already exists)
