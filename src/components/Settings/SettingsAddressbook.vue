@@ -167,7 +167,7 @@ export default {
 			return t('contacts', 'Copy link')
 		},
 		avatarSettingsPage() {
-			// this.$route.query.page
+			// FIXME: better way to generate the link to ../{group}/settings/avatars ?
 			const appUrl = (window.location.href.toString()).split('/')
 			appUrl.pop()
 			return (appUrl.join('/') + '/settings/avatars')

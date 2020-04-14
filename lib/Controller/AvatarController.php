@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2020 Matthias Heinisch <contacts@matthiasheinisch.de>
  *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Matthias Heinisch <contacts@matthiasheinisch.de>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -30,7 +30,7 @@ use OCP\IConfig;
 use OCP\L10N\IFactory;
 use OCP\IRequest;
 
-class PageController extends Controller {
+class AvatarController extends Controller {
 
 	protected $appName;
 
@@ -59,17 +59,64 @@ class PageController extends Controller {
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 *
-	 * Default routing
+	 * Overview page to update avatars from social media
+	 * for a complete addressbook
 	 */
-	public function index(): TemplateResponse {
-		$locales = $this->languageFactory->findAvailableLocales();
-		$defaultProfile = $this->config->getAppValue($this->appName, 'defaultProfile', 'HOME');
-		// TODO: use initialStateService once min-version is 16!
-		// $this->initialStateService->provideInitialState($this->appName, 'locales', $locales);
-		// $this->initialStateService->provideInitialState($this->appName, 'defaultProfile', $defaultProfile);
+	public function view(): TemplateResponse {
 		return new TemplateResponse(
 			'contacts',
-			'main',
-			['locales' => json_encode($locales), 'defaultProfile'=> json_encode($defaultProfile)]); // templates/main.php
+			'avatars'); // templates/avatars.php
+	}
+
+
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 *
+	 * Retrieves the social profile picture for a contact
+	 *
+	 * param id profile identifier
+	 * param network from where to retrieve
+	 */
+	public function fetch($network, $id) {
+		$url = "";
+		$response = 404;
+
+		try {
+			// add your social networks here!
+			if ($network == 'facebook') {
+				$url = "https://graph.facebook.com/" . ($id) . "/picture?width=720";
+			} else {
+				$response = 400;
+				throw new Exception('Unknown network');
+			}
+
+			$host = parse_url($url);
+			if (!$host) {
+				$response = 404;
+				throw new Exception('Could not parse URL');
+			}
+			$opts = [
+				"http" => [
+					"method" => "GET",
+					"header" => "User-Agent: Nextcloud Contacts App"
+				]
+			];
+			$context = stream_context_create($opts);
+			$image = file_get_contents($url, false, $context);
+			if (!$image) {
+				throw new Exception('Could not parse URL');
+				$response = 404;
+			} else {
+				$response = 200;
+				header("Content-type:image/png");
+				echo $image;
+			}
+		} 
+		catch (Exception $e) {
+		}
+
+		http_response_code($response);
+		exit;
 	}
 }
