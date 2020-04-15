@@ -80,7 +80,7 @@
 				<ActionButton v-if="!isReadOnly" icon="icon-picture" @click="selectFilePicker">
 					{{ t('contacts', 'Choose from files') }}
 				</ActionButton>
-				<ActionButton v-if="!isReadOnly && hasSocialId" icon="icon-link" @click="selectWebInput">
+				<ActionButton v-if="!isReadOnly && hasSocialId" icon="icon-link" @click="selectSocialAvatar">
 					{{ t('contacts', 'Update from social media') }}
 				</ActionButton>
 			</Actions>
@@ -133,7 +133,7 @@ export default {
 			return false
 		},
 		hasSocialId() {
-			const jCal = this.contact.jCal.slice(0)
+			const jCal = this.contact.jCal
 			const socialId = jCal[1].filter(props => props[0] === 'x-socialprofile')
 			if (socialId.length > 0) { return true }
 			return false
@@ -336,67 +336,13 @@ export default {
 		},
 
 		/**
-		 * check if social entry is facebook profile id
-		 *
-		 * @param {array} socialentry entry of contact
-		 */
-		checkFacebookId(socialentry) {
-			this.isfacebook = false
-			let candidate = 0
-
-			// check its the facebook-entry
-			try {
-				if (socialentry[1]['type'] === 'facebook') {
-					this.isfacebook = true
-				} else if (socialentry[1]['type'][0] === 'facebook') {
-					this.isfacebook = true
-				}
-			} catch {
-				if (!this.isfacebook) { return }
-			}
-
-			// strip in case its an uri
-			try {
-				const entry = socialentry[3]
-				if (!entry.toLowerCase().startsWith('http')) {
-					candidate = entry
-				} else {
-					const parts = entry.split('/')
-					if (!entry.endsWith('/')) {
-						candidate = parts[parts.length - 1]
-					} else {
-						candidate = parts[parts.length - 2]
-					}
-				}
-			} catch {
-				candidate = socialentry[3]
-			}
-
-			// check its a number
-			if ((Number.isInteger(Number(candidate))) && (candidate > 0)) {
-				this.facebookid = candidate
-				console.debug('facebook profile id found: ' + this.facebookid)
-			} else {
-				// TODO: determine facebook profile id from username
-				console.debug('expected facebook profile id (number), got: ' + candidate)
-			}
-		},
-
-		/**
 		 * WebImage handlers
 		 */
-		async selectWebInput() {
+		async selectSocialAvatar() {
 
-			this.facebookid = 0
+			const imageUrl = window.location.href + '/social/avatar/'
 
-			// getting facebook id from contact
-			const jCal = this.contact.jCal.slice(0)
-			const socialentries = jCal[1].filter(props => props[0] === 'x-socialprofile')
-			socialentries.forEach(this.checkFacebookId)
-
-			const imageUrl = window.location.href + '/avatar/facebook/' + this.facebookid
-
-			if (!(this.loading) && (this.facebookid)) {
+			if (!this.loading) {
 
 				this.loading = true
 				try {
@@ -405,7 +351,7 @@ export default {
 						responseType: 'arraybuffer',
 					})
 					const type = response.headers['content-type']
-					if (response.status !== 200) throw new URIError('verify set facebook profile id')
+					if (response.status !== 200) throw new URIError('verify social profile id')
 					const data = Buffer.from(response.data, 'binary').toString('base64')
 					this.setPhoto(data, type)
 				} catch (error) {
@@ -415,7 +361,7 @@ export default {
 				}
 
 			} else {
-				OC.Notification.showTemporary(t('contacts', 'No valid facebook profile id found'))
+				OC.Notification.showTemporary(t('contacts', 'Social avatar download failed'))
 			}
 		},
 

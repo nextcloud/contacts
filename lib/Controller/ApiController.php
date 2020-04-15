@@ -30,7 +30,7 @@ use OCP\IConfig;
 use OCP\L10N\IFactory;
 use OCP\IRequest;
 
-class AvatarController extends Controller {
+class ApiController extends Controller {
 
 	protected $appName;
 
@@ -55,19 +55,56 @@ class AvatarController extends Controller {
 		$this->config = $config;
 	}
 
-	/**
-	 * @NoAdminRequired
-	 * @NoCSRFRequired
-	 *
-	 * Overview page to update avatars from social media
-	 * for a complete addressbook
-	 */
-	public function view(): TemplateResponse {
-		return new TemplateResponse(
-			'contacts',
-			'avatars'); // templates/avatars.php
-	}
 
+	/**
+	 * generate download url for a social entry (based on type of data requested)
+	 *
+	 * @param {array} socialentry entry of contact
+	 * @param type which information to link to (avatar, ...)
+	 * @return string
+	 */
+	protected function getSocialConnector($socialentry, $type) : ?string {
+		if (!is_array($socialentry)) {
+			throw new Exception("socialentry format missmatch"); // FIXME: the Exceptions seem not to work as expected...
+		}
+
+		$candidate = $socialentry[3];
+		$network   = $socialentry[1]['type'];
+		$connector = null;
+
+		if (is_array($network)) { $network = $network[0]; }
+
+		// get profile-id
+		switch ($network) {
+			case "facebook":
+				$candidate = basename($candidate);
+				if (!ctype_digit($candidate)) {
+					// TODO: determine facebook profile id from username
+					throw new Exception("facebook profile-id expected to be a number, not %s", $candidate);
+				}
+				break;
+			default:
+				throw new Exception("%s not implemented", $network);
+		}
+
+		// build connector
+		switch ($network) {
+			case "facebook":
+				switch ($type) {
+					case "avatar":
+						$connector = "https://graph.facebook.com/" . ($candidate) . "/picture?width=720";
+						break;
+					default:
+						throw new Exception("%s for %s not implemented", $type, $network);
+				}
+				break;
+			default:
+				throw new Exception("Unexpected error building the connector for %s", $network);
+		}
+
+		return ($connector);
+
+	}
 
 	/**
 	 * @NoAdminRequired
@@ -75,22 +112,37 @@ class AvatarController extends Controller {
 	 *
 	 * Retrieves the social profile picture for a contact
 	 *
-	 * param id profile identifier
-	 * param network from where to retrieve
+	 * @param group addressbook
+	 * @param contact contact information
+	 * @param type which information to get: avatar, ...
 	 */
-	public function fetch($network, $profileid) {
-		$url = "";
+	public function social($group, $contact, $type) {
+
+		$url = null;
 		$response = 404;
 
 		try {
-			// add your social networks here!
-			switch ($network) {
-				case 'facebook':
-					$url = "https://graph.facebook.com/" . ($profileid) . "/picture?width=720";
-					break;
-				default:
-					$response = 400;
-					throw new Exception('Unknown network');
+			// get social parameters from contact
+
+			/* TODO - port from javascript...
+			const jCal = this.contact.jCal
+			const socialentries = jCal[1].filter(props => props[0] === 'x-socialprofile')
+			socialentries.forEach(getSocialConnector)
+			*/
+			// FIXME static for testing:
+			$socialprofile = array("foo",array("type" => "facebook"),"bar","https://facebook.com/4");
+
+			try {
+				$url = $this->getSocialConnector($socialprofile, $type);
+			}
+			catch (Exception $e) {
+				$response = 500;
+				throw new Exception($e->getMessage());
+			}
+
+			if (empty($url)) {
+				$response = 500;
+				throw new Exception('not implemented');
 			}
 
 			$host = parse_url($url);
@@ -120,5 +172,6 @@ class AvatarController extends Controller {
 
 		http_response_code($response);
 		exit;
+
 	}
 }

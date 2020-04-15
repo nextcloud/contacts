@@ -54,12 +54,6 @@
 			</ActionLink>
 
 			<template v-if="!addressbook.readOnly">
-				<!-- sync profiles from socialmedia -->
-				<ActionLink
-					:href="avatarSettingsPage"
-					icon="icon-picture">
-					{{ t('contacts', 'Update photos from social media') }}
-				</ActionLink>
 				<!-- rename addressbook -->
 				<ActionButton v-if="!editingName"
 					icon="icon-rename"
@@ -99,18 +93,23 @@
 </template>
 
 <script>
-import { ActionLink, ActionButton, ActionInput, ActionCheckbox } from '@nextcloud/vue'
+import Actions from '@nextcloud/vue/dist/Components/Actions'
+import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
+import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
 import ShareAddressBook from './SettingsAddressbookShare'
 
 export default {
 	name: 'SettingsAddressbook',
 
 	components: {
-		ShareAddressBook,
-		ActionLink,
 		ActionButton,
-		ActionInput,
 		ActionCheckbox,
+		ActionInput,
+		ActionLink,
+		Actions,
+		ShareAddressBook,
 	},
 
 	props: {
@@ -166,12 +165,6 @@ export default {
 			}
 			return t('contacts', 'Copy link')
 		},
-		avatarSettingsPage() {
-			// FIXME: better way to generate the link to ../{group}/settings/avatars ?
-			const appUrl = (window.location.href.toString()).split('/')
-			appUrl.pop()
-			return (appUrl.join('/') + '/settings/avatars')
-		},
 	},
 	watch: {
 		menuOpen: function() {
@@ -202,7 +195,7 @@ export default {
 			} catch (err) {
 				// error handling
 				console.error(err)
-				OC.Notification.showTemporary(t('contacts', 'Toggling of addressbook was not successful'))
+				OC.Notification.showTemporary(t('contacts', 'Toggling of address book was not successful'))
 			} finally {
 				// stop loading status regardless of outcome
 				this.toggleEnabledLoading = false
@@ -211,7 +204,7 @@ export default {
 
 		confirmDeletion() {
 			OC.dialogs.confirm(
-				t('contacts', 'This will delete the addressbook and every contacts within it'),
+				t('contacts', 'This will delete the address book and every contacts within it'),
 				t('contacts', 'Delete {addressbook} ?', { addressbook: this.addressbook.displayName }),
 				this.deleteAddressbook,
 				true
@@ -227,7 +220,7 @@ export default {
 				} catch (err) {
 					// error handling
 					console.error(err)
-					OC.Notification.showTemporary(t('contacts', 'Deletion of addressbook was not successful.'))
+					OC.Notification.showTemporary(t('contacts', 'Deletion of address book was not successful.'))
 				} finally {
 					// stop loading status regardless of outcome
 					this.deleteAddressbookLoading = false
@@ -248,7 +241,7 @@ export default {
 			} catch (err) {
 				// error handling
 				console.error(err)
-				OC.Notification.showTemporary(t('contacts', 'Renaming of addressbook was not successful.'))
+				OC.Notification.showTemporary(t('contacts', 'Renaming of address book was not successful.'))
 			} finally {
 				this.editingName = false
 				// stop loading status regardless of outcome
@@ -263,15 +256,15 @@ export default {
 
 			// copy link for addressbook to clipboard
 			try {
-				await this.$copyText()
+				await this.$copyText(window.location.origin + this.addressbook.url)
 				this.copySuccess = true
 				this.copied = true
 				// Notify addressbook was copied
-				OC.Notification.showTemporary(t('contacts', 'Addressbook copied to clipboard'))
+				OC.Notification.showTemporary(t('contacts', 'Address book copied to clipboard'))
 			} catch (error) {
 				this.copySuccess = false
 				this.copied = true
-				OC.Notification.showTemporary(t('contacts', 'Addressbook was not copied to clipboard.'))
+				OC.Notification.showTemporary(t('contacts', 'Address book was not copied to clipboard.'))
 			} finally {
 				this.copyLoading = false
 				setTimeout(() => {
@@ -281,20 +274,6 @@ export default {
 				}, 2000)
 			}
 		},
-
-		getSocialAvatars() {
-			console.debug('get social avatars for complete addressbook')
-
-			console.warn('not implemented')
-			for (const contact in this.addressbook.contacts) {
-				console.debug(this.addressbook.contacts[contact])
-				// console.debug(this.addressbook.contacts[contact].jCal.slice(0))
-				// TODO: download profile pictures as done in ContactDetailsAvatar|selectWebInput
-			}
-
-			return 'hello'
-		},
-
 	},
 }
 </script>
