@@ -20,19 +20,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-
-import 'core-js/stable'
-
+import { generateFilePath } from '@nextcloud/router'
+import { getRequestToken } from '@nextcloud/auth'
+import { sync } from 'vuex-router-sync'
 import Vue from 'vue'
+
 import App from './ContactsRoot'
 import router from './router'
 import store from './store'
-import { sync } from 'vuex-router-sync'
-import { generateFilePath } from '@nextcloud/router'
-import { getRequestToken } from '@nextcloud/auth'
 
 /** GLOBAL COMPONENTS AND DIRECTIVE */
-import { Actions, DatetimePicker, Multiselect, PopoverMenu, Modal } from '@nextcloud/vue'
 import ClickOutside from 'vue-click-outside'
 import VTooltip from '@nextcloud/vue/dist/Directives/Tooltip'
 import VueClipboard from 'vue-clipboard2'
@@ -48,13 +45,7 @@ __webpack_nonce__ = btoa(getRequestToken())
 // eslint-disable-next-line
 __webpack_public_path__ = generateFilePath('contacts', '', 'js/')
 
-// Register global components
-Vue.component('Actions', Actions)
-Vue.component('DatetimePicker', DatetimePicker)
-Vue.component('Modal', Modal)
-Vue.component('Multiselect', Multiselect)
-Vue.component('PopoverMenu', PopoverMenu)
-
+// Register global directives
 Vue.directive('ClickOutside', ClickOutside)
 Vue.directive('Tooltip', VTooltip)
 
@@ -66,13 +57,12 @@ Vue.prototype.t = t
 Vue.prototype.n = n
 // eslint-disable-next-line
 Vue.prototype.appVersion = appVersion
-// eslint-disable-next-line
-Vue.prototype.oc_config = oc_config
 Vue.prototype.OC = OC
 Vue.prototype.OCA = OCA
 
+// Force redirect if rewrite enabled but accessed through index.php
 if (window.location.pathname.split('/')[1] === 'index.php'
-	&& oc_config.modRewriteWorking) {
+	&& OC.config.modRewriteWorking) {
 	router.push({
 		name: 'group',
 		params: { selectedGroup: t('contacts', 'All contacts') },

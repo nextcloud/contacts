@@ -26,7 +26,7 @@
 	</ActionButton>
 </template>
 <script>
-import { ActionButton } from '@nextcloud/vue'
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionsMixin from '../../mixins/ActionsMixin'
 
 export default {

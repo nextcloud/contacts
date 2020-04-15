@@ -8,6 +8,7 @@ OC.L10N.register(
     "Title" : "Naslov",
     "Download" : "Preuzmi",
     "Delete" : "Obriši",
+    "Cancel" : "Otkaži",
     "Groups" : "Grupe",
     "New contact" : "Novi kontakt",
     "Rename" : "Preimenuj",

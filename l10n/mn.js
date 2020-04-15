@@ -10,6 +10,7 @@ OC.L10N.register(
     "Title" : "Цол/Албан тушаал",
     "Download" : "Татаж авах",
     "Delete" : "Устгах",
+    "Cancel" : "болиулах",
     "Groups" : "Багууд",
     "New contact" : "Шинэ харилцагч",
     "No results" : "Үр дүн байхгүй",

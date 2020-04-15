@@ -30,7 +30,7 @@
 			</div>
 
 			<!-- multiselect taggable groups with a limit to 3 groups shown -->
-			<multiselect v-model="localValue"
+			<Multiselect v-model="localValue"
 				:options="groups"
 				:placeholder="t('contacts', 'Add contact in group')"
 				:multiple="true"
@@ -51,17 +51,22 @@
 				<span slot="noResult">
 					{{ t('settings', 'No results') }}
 				</span>
-			</multiselect>
+			</Multiselect>
 		</div>
 	</div>
 </template>
 
 <script>
 import debounce from 'debounce'
+import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 import Contact from '../../models/contact'
 
 export default {
 	name: 'PropertyGroups',
+
+	components: {
+		Multiselect,
+	},
 
 	props: {
 		propModel: {
@@ -164,14 +169,9 @@ export default {
 		 * @returns {boolean}
 		 */
 		validateGroup(groupName) {
-			// Only allow characters without vcard special chars
-			const groupRegex = /^[^;,:]+$/gmi
-			if (groupName.match(groupRegex)) {
-				this.addContactToGroup(groupName)
-				this.localValue.push(groupName)
-				return true
-			}
-			return false
+			this.addContactToGroup(groupName)
+			this.localValue.push(groupName)
+			return true
 		},
 	},
 }

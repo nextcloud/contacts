@@ -25,7 +25,7 @@
 		<ActionButton icon="icon-delete" @click="deleteProperty">
 			{{ t('contacts', 'Delete') }}
 		</ActionButton>
-		<actions :is="action"
+		<Actions :is="action"
 			v-for="(action, index) in actions"
 			:key="index"
 			:component="propertyComponent" />
@@ -33,12 +33,14 @@
 </template>
 
 <script>
-import { ActionButton } from '@nextcloud/vue'
+import Actions from '@nextcloud/vue/dist/Components/Actions'
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 
 export default {
 	name: 'PropertyActions',
 
 	components: {
+		Actions,
 		ActionButton,
 	},
 

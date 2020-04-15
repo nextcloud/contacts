@@ -39,7 +39,7 @@
 				{{ propModel.readableName }}
 			</div>
 
-			<multiselect v-model="matchedOptions"
+			<Multiselect v-model="matchedOptions"
 				:options="propModel.options"
 				:placeholder="t('contacts', 'Select option')"
 				:disabled="isSingleOption || isReadOnly"
@@ -59,6 +59,7 @@
 </template>
 
 <script>
+import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 import PropertyMixin from '../../mixins/PropertyMixin'
 import PropertyTitle from './PropertyTitle'
 import PropertyActions from './PropertyActions'
@@ -67,6 +68,7 @@ export default {
 	name: 'PropertySelect',
 
 	components: {
+		Multiselect,
 		PropertyTitle,
 		PropertyActions,
 	},

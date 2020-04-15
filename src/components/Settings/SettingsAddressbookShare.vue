@@ -22,7 +22,7 @@
 
 <template>
 	<div class="addressbook-shares">
-		<multiselect
+		<Multiselect
 			id="users-groups-search"
 			:options="usersOrGroups"
 			:searchable="true"
@@ -48,6 +48,7 @@
 </template>
 
 <script>
+import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 import client from '../../services/cdav'
 
 import addressBookSharee from './SettingsAddressbookSharee'
@@ -55,9 +56,12 @@ import debounce from 'debounce'
 
 export default {
 	name: 'SettingsAddressbookShare',
+
 	components: {
+		Multiselect,
 		addressBookSharee,
 	},
+
 	props: {
 		addressbook: {
 			type: Object,

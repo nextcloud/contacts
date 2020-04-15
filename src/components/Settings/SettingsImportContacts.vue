@@ -34,7 +34,7 @@
 				@close="toggleModal">
 				<section class="import-contact__modal-addressbook">
 					<h3>{{ t('contacts', 'Import contacts') }}</h3>
-					<multiselect
+					<Multiselect
 						v-if="!isSingleAddressbook"
 						id="select-addressbook"
 						v-model="selectedAddressbook"
@@ -47,7 +47,7 @@
 						<template slot="singleLabel" slot-scope="{ option }">
 							{{ t('contacts', `Import into the '{addressbookName}' addressbook`, { addressbookName: option.displayName }) }}
 						</template>
-					</multiselect>
+					</Multiselect>
 				</section>
 				<section class="import-contact__modal-pick">
 					<input id="contact-import"
@@ -84,6 +84,8 @@
 </template>
 
 <script>
+import Modal from '@nextcloud/vue/dist/Components/Modal'
+import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 import { encodePath } from '@nextcloud/paths'
 import { getCurrentUser } from '@nextcloud/auth'
 import { generateRemoteUrl } from '@nextcloud/router'
@@ -102,6 +104,11 @@ const picker = getFilePickerBuilder(t('contacts', 'Choose a vCard file to import
 
 export default {
 	name: 'SettingsImportContacts',
+
+	components: {
+		Modal,
+		Multiselect,
+	},
 
 	data() {
 		return {

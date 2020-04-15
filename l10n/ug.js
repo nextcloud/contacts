@@ -7,6 +7,7 @@ OC.L10N.register(
     "Title" : "ماۋزۇ",
     "Download" : "چۈشۈر",
     "Delete" : "ئۆچۈر",
+    "Cancel" : "ۋاز كەچ",
     "Groups" : "گۇرۇپپا",
     "Rename" : "ئات ئۆزگەرت",
     "First name" : "ئاتى",

@@ -10,6 +10,7 @@ OC.L10N.register(
     "Title" : "ชื่อเรื่อง",
     "Download" : "ดาวน์โหลด",
     "Delete" : "ลบ",
+    "Cancel" : "ยกเลิก",
     "Groups" : "กลุ่ม",
     "New contact" : "รายชื่อผุ้ติดต่อใหม่",
     "Rename" : "เปลี่ยนชื่อ",

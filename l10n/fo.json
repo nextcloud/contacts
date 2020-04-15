@@ -1,0 +1,11 @@
+{ "translations": {
+    "Delete" : "Strika",
+    "Cancel" : "strika",
+    "Groups" : "Bólkar",
+    "Rename" : "Nýnevn",
+    "Website" : "Heimasíða",
+    "Home" : "Heim",
+    "Address" : "Adressa",
+    "Email" : "T-post"
+},"pluralForm" :"nplurals=2; plural=(n != 1);"
+}
