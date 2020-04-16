@@ -21,8 +21,6 @@
  *
  */
 
-// http://localhost:8099/apps/contacts/api/v1/social/Alle%20Kontakte/3225c0d5-1bd2-43e5-a08c-4e65eaa406b0~kontakte/avatar
-
 return [
 	'routes' => [
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],

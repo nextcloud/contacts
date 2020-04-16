@@ -97,7 +97,7 @@ import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 
 import { getFilePickerBuilder } from '@nextcloud/dialogs'
-import { generateRemoteUrl } from '@nextcloud/router'
+import { generateUrl, generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import sanitizeSVG from '@mattkrick/sanitize-svg'
 
@@ -345,12 +345,14 @@ export default {
 		 * WebImage handlers
 		 */
 		async selectSocialAvatar() {
-			// FIXME: there must be a variables for this..:
-			const appUrl = 'http://localhost:8099/apps/contacts/'
+			const apiUrl = generateUrl('apps/contacts/api/v1/social/avatar/')
 			const addressbookId = this.contact.addressbook.id
 			const contactId = this.contact.uid
+			const imageUrl = apiUrl + addressbookId + '/' + contactId
 
-			const imageUrl = appUrl + '/api/v1/social/avatar/' + addressbookId + '/' + contactId
+			console.debug('contact start')
+			console.debug(this.contact)
+			console.debug('contact end')
 
 			if (!this.loading) {
 

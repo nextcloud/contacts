@@ -27,6 +27,7 @@ use OCP\AppFramework\ApiController;
 use OCP\AppFramework\Http\TemplateResponse;
 // use OCP\IInitialStateService;
 use OCP\IConfig;
+use OCP\Contacts\IManager;
 use OCP\L10N\IFactory;
 use OCP\IRequest;
 
@@ -39,11 +40,14 @@ class SocialApiController extends ApiController {
 
 	/** @var IFactory */
 	private $languageFactory;
+	/** @var IManager */
+	private  $manager;
 	/** @var IConfig */
 	private  $config;
 
 	public function __construct(string $AppName,
 								IRequest $request,
+								IManager $manager,
 								IConfig $config,
 								// IInitialStateService $initialStateService,
 								IFactory $languageFactory) {
@@ -52,6 +56,7 @@ class SocialApiController extends ApiController {
 		$this->appName = $AppName;
 		// $this->initialStateService = $initialStateService;
 		$this->languageFactory = $languageFactory;
+		$this->manager = $manager;
 		$this->config = $config;
 	}
 
@@ -61,86 +66,68 @@ class SocialApiController extends ApiController {
 	 * @NoCSRFRequired
 	 *
 	 * generate download url for a social entry (based on type of data requested)
-	 *
-	 * @param {array} socialentry entry of contact
-	 * @param string type which information to link to (avatar, ...)
-	 * @return string
 	 */
-	protected function getSocialConnector($socialentry, $type) : ?string {
-		if (!is_array($socialentry)) {
-			throw new Exception("socialentry format missmatch"); // FIXME: the Exceptions seem not to work as expected...
-		}
-
-		$candidate = $socialentry[3];
-		$network   = $socialentry[1]['type'];
-		$connector = null;
-
-		if (is_array($network)) { $network = $network[0]; }
-
-		// get profile-id
-		switch ($network) {
-			case "facebook":
-				$candidate = basename($candidate);
-				if (!ctype_digit($candidate)) {
-					// TODO: determine facebook profile id from username
-					throw new Exception("facebook profile-id expected to be a number, not %s", $candidate);
-				}
-				break;
-			default:
-				throw new Exception("%s not implemented", $network);
-		}
-
-		// build connector
-		switch ($network) {
-			case "facebook":
-				switch ($type) {
-					case "avatar":
-						$connector = "https://graph.facebook.com/" . ($candidate) . "/picture?width=720";
+	protected function getSocialConnector(array $socialentry, string $type) : ?string {
+		foreach ($socialentry as $network => $candidate) {
+			$connector = null;
+			$valid = false;
+	
+			// get profile-id
+			switch (strtolower($network)) {
+				case "facebook":
+					$candidate = basename($candidate);
+					if (!ctype_digit($candidate)) {
+						// TODO: determine facebook profile id from username
 						break;
-					default:
-						throw new Exception("%s for %s not implemented", $type, $network);
+					}
+					$valid = true;
+					break;
+			}
+			if ($valid) {
+				// build connector
+				switch (strtolower($network)) {
+					case "facebook":
+						switch ($type) {
+							case "avatar":
+								$connector = "https://graph.facebook.com/" . ($candidate) . "/picture?width=720";
+								break;
+							default:
+								break;
+						}
+						break;
 				}
-				break;
-			default:
-				throw new Exception("Unexpected error building the connector for %s", $network);
+				
+				// return first valid connector:
+				if ($connector) { return ($connector); }
+			}
 		}
-
-		return ($connector);
-
+		
+		// reached only if no valid connectors found
+		return null;
 	}
 
 	/**
 	 * @NoAdminRequired
-	 * @NoCSRFRequired
 	 *
 	 * Retrieves social profile data for a contact
-	 *
-	 * @param string addressbookId identifier of the addressbook
-	 * @param string contact identifier of the contact
-	 * @param string type which information to get: avatar, ...
 	 */
-	public function fetch($addressbookId, $contactId, $type) {
+	public function fetch(string $addressbookId, string $contactId, string $type) {
 
 		$url = null;
 		$response = 404;
 
 		try {
 			// get social parameters from contact
+			$contact = $this->manager->search($contactId, array('UID'))[0];
+			$socialprofile = $contact['X-SOCIALPROFILE'];
 
-			/* TODO - port from javascript...
-			const jCal = this.contact.jCal
-			const socialentries = jCal[1].filter(props => props[0] === 'x-socialprofile')
-			socialentries.forEach(getSocialConnector)
-			*/
-			// FIXME static for testing:
-			$socialprofile = array("foo",array("type" => "facebook"),"bar","https://facebook.com/4");
-
+			// retrieve data
 			try {
 				$url = $this->getSocialConnector($socialprofile, $type);
 			}
 			catch (Exception $e) {
 				$response = 500;
-				throw new Exception($e->getMessage());
+				throw new Exception($e->getMessage()); // TODO: implement better error handling
 			}
 
 			if (empty($url)) {
@@ -167,7 +154,6 @@ class SocialApiController extends ApiController {
 			}
 
 			$response = 200;
-
 			switch ($type) {
 				case "avatar":
 					header("Content-type:image/png");
@@ -183,6 +169,8 @@ class SocialApiController extends ApiController {
 
 		http_response_code($response);
 		exit;
+
+		// TODO: instead of returning the image, modify the contact directly
 
 	}
 }
