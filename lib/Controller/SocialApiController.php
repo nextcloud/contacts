@@ -23,14 +23,14 @@
 
 namespace OCA\Contacts\Controller;
 
-use OCP\AppFramework\Controller;
+use OCP\AppFramework\ApiController;
 use OCP\AppFramework\Http\TemplateResponse;
 // use OCP\IInitialStateService;
 use OCP\IConfig;
 use OCP\L10N\IFactory;
 use OCP\IRequest;
 
-class ApiController extends Controller {
+class SocialApiController extends ApiController {
 
 	protected $appName;
 
@@ -57,10 +57,13 @@ class ApiController extends Controller {
 
 
 	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 *
 	 * generate download url for a social entry (based on type of data requested)
 	 *
 	 * @param {array} socialentry entry of contact
-	 * @param type which information to link to (avatar, ...)
+	 * @param string type which information to link to (avatar, ...)
 	 * @return string
 	 */
 	protected function getSocialConnector($socialentry, $type) : ?string {
@@ -110,13 +113,13 @@ class ApiController extends Controller {
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 *
-	 * Retrieves the social profile picture for a contact
+	 * Retrieves social profile data for a contact
 	 *
-	 * @param group addressbook
-	 * @param contact contact information
-	 * @param type which information to get: avatar, ...
+	 * @param string addressbookId identifier of the addressbook
+	 * @param string contact identifier of the contact
+	 * @param string type which information to get: avatar, ...
 	 */
-	public function social($group, $contact, $type) {
+	public function fetch($addressbookId, $contactId, $type) {
 
 		$url = null;
 		$response = 404;
@@ -157,15 +160,23 @@ class ApiController extends Controller {
 				]
 			];
 			$context = stream_context_create($opts);
-			$image = file_get_contents($url, false, $context);
-			if (!$image) {
+			$socialdata = file_get_contents($url, false, $context);
+			if (!$socialdata) {
 				$response = 404;
 				throw new Exception('Could not parse URL');
 			}
 
 			$response = 200;
-			header("Content-type:image/png");
-			echo $image;
+
+			switch ($type) {
+				case "avatar":
+					header("Content-type:image/png");
+					break;
+				default:
+					header("Content-type:application/json");
+			}
+			
+			echo $socialdata;
 		} 
 		catch (Exception $e) {
 		}

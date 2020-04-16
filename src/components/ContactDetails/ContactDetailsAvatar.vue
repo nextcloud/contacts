@@ -345,8 +345,12 @@ export default {
 		 * WebImage handlers
 		 */
 		async selectSocialAvatar() {
+			// FIXME: there must be a variables for this..:
+			const appUrl = 'http://localhost:8099/apps/contacts/'
+			const addressbookId = this.contact.addressbook.id
+			const contactId = this.contact.uid
 
-			const imageUrl = window.location.href + '/social/avatar/'
+			const imageUrl = appUrl + '/api/v1/social/avatar/' + addressbookId + '/' + contactId
 
 			if (!this.loading) {
 
