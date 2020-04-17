@@ -34,25 +34,26 @@ class PageController extends Controller {
 
 	protected $appName;
 
-	// /** @var IInitialStateService */
-	// private $initialStateService;
-
-	/** @var IFactory */
-	private $languageFactory;
 	/** @var IConfig */
 	private  $config;
 
-	public function __construct(string $AppName,
+	/** @var IInitialStateService */
+	private $initialStateService;
+
+	/** @var IFactory */
+	private $languageFactory;
+
+	public function __construct(string $appName,
 								IRequest $request,
 								IConfig $config,
 								IInitialStateService $initialStateService,
 								IFactory $languageFactory) {
-		parent::__construct($AppName, $request);
+		parent::__construct($appName, $request);
 
-		$this->appName = $AppName;
+		$this->appName = $appName;
+		$this->config = $config;
 		$this->initialStateService = $initialStateService;
 		$this->languageFactory = $languageFactory;
-		$this->config = $config;
 	}
 
 	/**
