@@ -345,14 +345,13 @@ export default {
 		 * WebImage handlers
 		 */
 		async selectSocialAvatar() {
-			const apiUrl = generateUrl('apps/contacts/api/v1/social/avatar/')
+
+			console.debug(this.contact)
+
+			const apiUrl = generateUrl('apps/contacts/api/v1/social/')
 			const addressbookId = this.contact.addressbook.id
 			const contactId = this.contact.uid
-			const imageUrl = apiUrl + addressbookId + '/' + contactId
-
-			console.debug('contact start')
-			console.debug(this.contact)
-			console.debug('contact end')
+			const imageUrl = apiUrl + 'avatar/' + addressbookId + '/' + contactId
 
 			if (!this.loading) {
 
@@ -362,16 +361,15 @@ export default {
 					const response = await get(`${imageUrl}`, {
 						responseType: 'arraybuffer',
 					})
-					const type = response.headers['content-type']
-					if (response.status !== 200) throw new URIError('verify social profile id')
-					const data = Buffer.from(response.data, 'binary').toString('base64')
-					this.setPhoto(data, type)
+					if (response.status !== 200) { throw new URIError('verify social profile id') }
+					OC.Notification.showTemporary(t('contacts', 'Image updated.'))
+					this.$store.dispatch('updateContact', this.contact) // FIXME: refresh not working
 				} catch (error) {
 					OC.Notification.showTemporary(t('contacts', 'Error while processing the picture.'))
 					console.error(error)
+				} finally {
 					this.loading = false
 				}
-
 			} else {
 				OC.Notification.showTemporary(t('contacts', 'Social avatar download failed'))
 			}

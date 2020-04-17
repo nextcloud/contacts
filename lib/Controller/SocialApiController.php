@@ -24,12 +24,16 @@
 namespace OCA\Contacts\Controller;
 
 use OCP\AppFramework\ApiController;
+use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\DataResponse;
+use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Http\TemplateResponse;
 // use OCP\IInitialStateService;
 use OCP\IConfig;
 use OCP\Contacts\IManager;
 use OCP\L10N\IFactory;
 use OCP\IRequest;
+
 
 class SocialApiController extends ApiController {
 
@@ -108,17 +112,29 @@ class SocialApiController extends ApiController {
 
 	/**
 	 * @NoAdminRequired
+	 * @NoCSRFRequired
 	 *
 	 * Retrieves social profile data for a contact
 	 */
-	public function fetch(string $addressbookId, string $contactId, string $type) {
+	public function fetch(string $addressbookId, string $contactId, string $type) : JSONResponse {
 
 		$url = null;
-		$response = 404;
-
+		$response = new JSONResponse(array());
+		$response->setStatus(404);
+		
 		try {
-			// get social parameters from contact
-			$contact = $this->manager->search($contactId, array('UID'))[0];
+			// get corresponding addressbook
+			$addressBooks = $this->manager->getUserAddressBooks();
+			$addressBook = null;
+			foreach($addressBooks as $ab) {
+				// searching the addressbook id 'contactId'
+				if ($ab->getUri() === $addressbookId) {
+					$addressBook = $ab;
+				}
+			}
+			
+			// search contact in that addressbook
+			$contact = $addressBook->search($contactId, ['UID'], [])[0];
 			$socialprofile = $contact['X-SOCIALPROFILE'];
 
 			// retrieve data
@@ -126,19 +142,19 @@ class SocialApiController extends ApiController {
 				$url = $this->getSocialConnector($socialprofile, $type);
 			}
 			catch (Exception $e) {
-				$response = 500;
-				throw new Exception($e->getMessage()); // TODO: implement better error handling
+				$response->setStatus(400);
+				return $response;
 			}
 
 			if (empty($url)) {
-				$response = 500;
-				throw new Exception('not implemented');
+				$response->setStatus(501);
+				return $response;
 			}
 
 			$host = parse_url($url);
 			if (!$host) {
-				$response = 404;
-				throw new Exception('Could not parse URL');
+				$response->setStatus(400);
+				return $response;
 			}
 			$opts = [
 				"http" => [
@@ -149,28 +165,33 @@ class SocialApiController extends ApiController {
 			$context = stream_context_create($opts);
 			$socialdata = file_get_contents($url, false, $context);
 			if (!$socialdata) {
-				$response = 404;
-				throw new Exception('Could not parse URL');
+				$response->setStatus(404);
+				return $response;
 			}
 
-			$response = 200;
+			// update contact
 			switch ($type) {
 				case "avatar":
-					header("Content-type:image/png");
+					if (!empty($contact['PHOTO'])) {
+						// overwriting without notice?
+					}
+					$changes = array();
+					$changes['URI']=$contact['URI'];
+					$changes['PHOTO'] = "data:image/png;base64," . base64_encode($socialdata);
+					$addressBook->createOrUpdate($changes, $addressbookId);
+					$response->setStatus(200);
 					break;
 				default:
-					header("Content-type:application/json");
+					$response->setStatus(501);
+					return $response;
 			}
 			
-			echo $socialdata;
 		} 
 		catch (Exception $e) {
+			$response->setStatus(500);
+			return $response;
 		}
 
-		http_response_code($response);
-		exit;
-
-		// TODO: instead of returning the image, modify the contact directly
-
+		return $response;
 	}
 }
