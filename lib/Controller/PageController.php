@@ -25,7 +25,7 @@ namespace OCA\Contacts\Controller;
 
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
-// use OCP\IInitialStateService;
+use OCP\IInitialStateService;
 use OCP\IConfig;
 use OCP\L10N\IFactory;
 use OCP\IRequest;
@@ -45,12 +45,12 @@ class PageController extends Controller {
 	public function __construct(string $AppName,
 								IRequest $request,
 								IConfig $config,
-								// IInitialStateService $initialStateService,
+								IInitialStateService $initialStateService,
 								IFactory $languageFactory) {
 		parent::__construct($AppName, $request);
 
 		$this->appName = $AppName;
-		// $this->initialStateService = $initialStateService;
+		$this->initialStateService = $initialStateService;
 		$this->languageFactory = $languageFactory;
 		$this->config = $config;
 	}
@@ -64,12 +64,9 @@ class PageController extends Controller {
 	public function index(): TemplateResponse {
 		$locales = $this->languageFactory->findAvailableLocales();
 		$defaultProfile = $this->config->getAppValue($this->appName, 'defaultProfile', 'HOME');
-		// TODO: use initialStateService once min-version is 16!
-		// $this->initialStateService->provideInitialState($this->appName, 'locales', $locales);
-		// $this->initialStateService->provideInitialState($this->appName, 'defaultProfile', $defaultProfile);
-		return new TemplateResponse(
-			'contacts',
-			'main',
-			['locales' => json_encode($locales), 'defaultProfile'=> json_encode($defaultProfile)]); // templates/main.php
+
+		$this->initialStateService->provideInitialState($this->appName, 'locales', $locales);
+		$this->initialStateService->provideInitialState($this->appName, 'defaultProfile', $defaultProfile);
+		return new TemplateResponse($this->appName, 'main');
 	}
 }
