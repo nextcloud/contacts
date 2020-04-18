@@ -364,7 +364,7 @@ export default {
 					const key = contactId + '~' + addressbookId
 					const updated = this.$store.getters.getContact(key)
 					this.$store.dispatch('fetchFullContact', { contact: updated })
-					this.$store.dispatch('updateContact', updated)
+					this.$emit('updateLocalContact', updated)
 
 				} catch (error) {
 					OC.Notification.showTemporary(t('contacts', 'Error while processing the picture.'))
