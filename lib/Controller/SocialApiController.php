@@ -67,7 +67,6 @@ class SocialApiController extends ApiController {
 
 	/**
 	 * @NoAdminRequired
-	 * @NoCSRFRequired
 	 *
 	 * generate download url for a social entry (based on type of data requested)
 	 */
@@ -112,7 +111,6 @@ class SocialApiController extends ApiController {
 
 	/**
 	 * @NoAdminRequired
-	 * @NoCSRFRequired
 	 *
 	 * Retrieves social profile data for a contact
 	 */
@@ -121,7 +119,7 @@ class SocialApiController extends ApiController {
 		$url = null;
 		$response = new JSONResponse(array());
 		$response->setStatus(404);
-		
+
 		try {
 			// get corresponding addressbook
 			$addressBooks = $this->manager->getUserAddressBooks();
@@ -135,6 +133,14 @@ class SocialApiController extends ApiController {
 			
 			// search contact in that addressbook
 			$contact = $addressBook->search($contactId, ['UID'], [])[0];
+/* TEST REFRESH 
+// FIXME: for testing value refreshes, to be removed
+$changes = array();
+$changes['URI']=$contact['URI'];
+$changes['FN'] = "Mr. Test " . date('i s');
+$addressBook->createOrUpdate($changes, $addressbookId);
+$response->setStatus(200);
+// EOT */
 			$socialprofile = $contact['X-SOCIALPROFILE'];
 
 			// retrieve data

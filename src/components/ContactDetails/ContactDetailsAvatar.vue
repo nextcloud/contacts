@@ -101,7 +101,7 @@ import { generateUrl, generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import sanitizeSVG from '@mattkrick/sanitize-svg'
 
-const axios = () => import('axios')
+import axios from '@nextcloud/axios'
 
 export default {
 	name: 'ContactDetailsAvatar',
@@ -325,8 +325,8 @@ export default {
 				if (file) {
 					this.loading = true
 					try {
-						const { get } = await axios()
-						const response = await get(`${this.root}${file}`, {
+						// const { get } = await axios()
+						const response = await axios.get(`${this.root}${file}`, {
 							responseType: 'arraybuffer',
 						})
 						const type = response.headers['content-type']
@@ -345,9 +345,6 @@ export default {
 		 * WebImage handlers
 		 */
 		async selectSocialAvatar() {
-
-			console.debug(this.contact)
-
 			const apiUrl = generateUrl('apps/contacts/api/v1/social/')
 			const addressbookId = this.contact.addressbook.id
 			const contactId = this.contact.uid
@@ -357,13 +354,18 @@ export default {
 
 				this.loading = true
 				try {
-					const { get } = await axios()
-					const response = await get(`${imageUrl}`, {
+					const response = await axios.get(`${imageUrl}`, {
 						responseType: 'arraybuffer',
 					})
 					if (response.status !== 200) { throw new URIError('verify social profile id') }
 					OC.Notification.showTemporary(t('contacts', 'Image updated.'))
-					this.$store.dispatch('updateContact', this.contact) // FIXME: refresh not working
+					// refresh view
+					// FIXME: not working
+					const key = contactId + '~' + addressbookId
+					const updated = this.$store.getters.getContact(key)
+					this.$store.dispatch('fetchFullContact', { contact: updated })
+					this.$store.dispatch('updateContact', updated)
+
 				} catch (error) {
 					OC.Notification.showTemporary(t('contacts', 'Error while processing the picture.'))
 					console.error(error)
