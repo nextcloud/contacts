@@ -362,9 +362,10 @@ export default {
 					// refresh view
 					// FIXME: not working
 					const key = contactId + '~' + addressbookId
-					const updated = this.$store.getters.getContact(key)
-					this.$store.dispatch('fetchFullContact', { contact: updated })
-					this.$emit('updateLocalContact', updated)
+					const testcontact = this.$store.getters.getContact(key)
+					await this.$emit('updateLocalContact', testcontact)
+					if (testcontact === this.$store.getters.getContact(key)) { console.error('contact is unchanged :-/') }
+					// await this.$emit('refreshContact', { contact: this.$parent.contact })
 
 				} catch (error) {
 					OC.Notification.showTemporary(t('contacts', 'Error while processing the picture.'))

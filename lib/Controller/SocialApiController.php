@@ -133,13 +133,14 @@ class SocialApiController extends ApiController {
 			
 			// search contact in that addressbook
 			$contact = $addressBook->search($contactId, ['UID'], [])[0];
-/* TEST REFRESH 
+//* TEST REFRESH 
 // FIXME: for testing value refreshes, to be removed
 $changes = array();
 $changes['URI']=$contact['URI'];
 $changes['FN'] = "Mr. Test " . date('i s');
 $addressBook->createOrUpdate($changes, $addressbookId);
 $response->setStatus(200);
+return $response;
 // EOT */
 			$socialprofile = $contact['X-SOCIALPROFILE'];
 
