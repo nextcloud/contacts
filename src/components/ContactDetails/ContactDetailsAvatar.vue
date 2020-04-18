@@ -352,7 +352,7 @@ export default {
 				try {
 					const response = await axios.get(generateUrl('/apps/contacts/api/v1/social/avatar/{id}/{uid}', {
 						id: this.contact.addressbook.id,
-						uid: this.contact.uid
+						uid: this.contact.uid,
 					}))
 					if (response.status !== 200) {
 						throw new URIError('verify social profile id')

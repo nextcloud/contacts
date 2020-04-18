@@ -1,8 +1,8 @@
 <?php
 /**
- * @copyright Copyright (c) 2020 Matthias Heinisch <contacts@matthiasheinisch.de>
+ * @copyright Copyright (c) 2020 Matthias Heinisch <nextcloud@matthiasheinisch.de>
  *
- * @author Matthias Heinisch <contacts@matthiasheinisch.de>
+ * @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -125,7 +125,6 @@ class SocialApiController extends ApiController {
 			$addressBooks = $this->manager->getUserAddressBooks();
 			$addressBook = null;
 			foreach($addressBooks as $ab) {
-				// searching the addressbook id 'contactId'
 				if ($ab->getUri() === $addressbookId) {
 					$addressBook = $ab;
 				}
@@ -133,15 +132,6 @@ class SocialApiController extends ApiController {
 			
 			// search contact in that addressbook
 			$contact = $addressBook->search($contactId, ['UID'], [])[0];
-//* TEST REFRESH 
-// FIXME: for testing value refreshes, to be removed
-$changes = array();
-$changes['URI']=$contact['URI'];
-$changes['FN'] = "Mr. Test " . date('i s');
-$addressBook->createOrUpdate($changes, $addressbookId);
-$response->setStatus(200);
-return $response;
-// EOT */
 			$socialprofile = $contact['X-SOCIALPROFILE'];
 
 			// retrieve data
