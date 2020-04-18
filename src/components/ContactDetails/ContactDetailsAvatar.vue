@@ -345,28 +345,26 @@ export default {
 		 * WebImage handlers
 		 */
 		async selectSocialAvatar() {
-			const apiUrl = generateUrl('apps/contacts/api/v1/social/')
-			const addressbookId = this.contact.addressbook.id
-			const contactId = this.contact.uid
-			const imageUrl = apiUrl + 'avatar/' + addressbookId + '/' + contactId
 
 			if (!this.loading) {
 
 				this.loading = true
 				try {
-					const response = await axios.get(`${imageUrl}`, {
-						responseType: 'arraybuffer',
-					})
-					if (response.status !== 200) { throw new URIError('verify social profile id') }
-					OC.Notification.showTemporary(t('contacts', 'Image updated.'))
-					// refresh view
-					// FIXME: not working
-					const key = contactId + '~' + addressbookId
-					const testcontact = this.$store.getters.getContact(key)
-					await this.$emit('updateLocalContact', testcontact)
-					if (testcontact === this.$store.getters.getContact(key)) { console.error('contact is unchanged :-/') }
-					// await this.$emit('refreshContact', { contact: this.$parent.contact })
+					const response = await axios.get(generateUrl('/apps/contacts/api/v1/social/avatar/{id}/{uid}', {
+						id: this.contact.addressbook.id,
+						uid: this.contact.uid
+					}))
+					if (response.status !== 200) {
+						throw new URIError('verify social profile id')
+					}
 
+					// Fetch newly updated contact
+					this.contact.dav._isPartial = true
+					await this.$store.dispatch('fetchFullContact', { contact: this.contact })
+
+					// Update local clone
+					const contact = this.$store.getters.getContact(this.contact.key)
+					await this.$emit('updateLocalContact', contact)
 				} catch (error) {
 					OC.Notification.showTemporary(t('contacts', 'Error while processing the picture.'))
 					console.error(error)
