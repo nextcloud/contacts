@@ -76,7 +76,7 @@ class SocialApiController extends ApiController {
 	public function supported(string $type) : ?array {
 		switch ($type) {
 			case 'avatar':
-				return array('facebook');
+				return array('facebook','twitter');
 			default:
 				return array();
 		}
@@ -106,6 +106,10 @@ class SocialApiController extends ApiController {
 					}
 					$valid = true;
 					break;
+				case 'twitter':
+					$candidate = basename($candidate);
+					$valid = true;
+					break;
 			}
 			if ($valid) {
 				// build connector
@@ -114,6 +118,15 @@ class SocialApiController extends ApiController {
 						switch ($type) {
 							case 'avatar':
 								$connector = "https://graph.facebook.com/" . ($candidate) . "/picture?width=720";
+								break;
+							default:
+								break;
+						}
+						break;
+					case 'twitter':
+						switch ($type) {
+							case 'avatar':
+								$connector = "https://avatars.io/" . strtolower($network) . "/" . ($candidate);
 								break;
 							default:
 								break;
@@ -134,6 +147,7 @@ class SocialApiController extends ApiController {
 
 	/**
 	 * @NoAdminRequired
+	 * @NoCSRFRequired
 	 *
 	 * Retrieves social profile data for a contact
 	 *
@@ -196,8 +210,19 @@ class SocialApiController extends ApiController {
 			];
 			$context = stream_context_create($opts);
 			$socialdata = file_get_contents($url, false, $context);
-			if (!$socialdata) {
-				new JSONResponse([], Http::STATUS_NOT_FOUND);
+
+			$image_type = null;
+			foreach ($http_response_header as $value) {
+				if (preg_match('/^Content-Type:/i', $value)) {
+					if (stripos($value, "image") === false) {
+						return new JSONResponse([], Http::STATUS_NOT_FOUND);
+					}
+					$image_type = substr($value, stripos($value, "image"));
+				}
+			}
+
+			if ((!$socialdata) || (stripos($image_type, "image") === false)) {
+				return new JSONResponse([], Http::STATUS_NOT_FOUND);
 			}
 
 			// update contact
@@ -208,7 +233,7 @@ class SocialApiController extends ApiController {
 					}
 					$changes = array();
 					$changes['URI']=$contact['URI'];
-					$changes['PHOTO'] = "data:image/png;base64," . base64_encode($socialdata);
+					$changes['PHOTO'] = "data:" . $image_type . ";base64," . base64_encode($socialdata);
 					$addressBook->createOrUpdate($changes, $addressbookId);
 					break;
 				default:
