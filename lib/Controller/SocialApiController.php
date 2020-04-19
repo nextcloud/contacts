@@ -69,6 +69,10 @@ class SocialApiController extends ApiController {
 	 * @NoAdminRequired
 	 *
 	 * generate download url for a social entry (based on type of data requested)
+	 *
+	 * @param {array} socialentry the network and id from the social profile
+	 * @param {String} type the kind of information to link to
+	 * @returns {String} the url to the requested information or null in case of errors
 	 */
 	protected function getSocialConnector(array $socialentry, string $type) : ?string {
 		foreach ($socialentry as $network => $candidate) {
@@ -77,7 +81,7 @@ class SocialApiController extends ApiController {
 	
 			// get profile-id
 			switch (strtolower($network)) {
-				case "facebook":
+				case 'facebook':
 					$candidate = basename($candidate);
 					if (!ctype_digit($candidate)) {
 						// TODO: determine facebook profile id from username
@@ -89,9 +93,9 @@ class SocialApiController extends ApiController {
 			if ($valid) {
 				// build connector
 				switch (strtolower($network)) {
-					case "facebook":
+					case 'facebook':
 						switch ($type) {
-							case "avatar":
+							case 'avatar':
 								$connector = "https://graph.facebook.com/" . ($candidate) . "/picture?width=720";
 								break;
 							default:
@@ -101,7 +105,9 @@ class SocialApiController extends ApiController {
 				}
 				
 				// return first valid connector:
-				if ($connector) { return ($connector); }
+				if ($connector) {
+					return ($connector);
+				}
 			}
 		}
 		
@@ -113,12 +119,16 @@ class SocialApiController extends ApiController {
 	 * @NoAdminRequired
 	 *
 	 * Retrieves social profile data for a contact
+	 *
+	 * @param {String} addressbookId the addressbook identifier
+	 * @param {String} contactId the contact identifier
+	 * @param {String} type the kind of information to retrieve
+	 *
+	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
 	 */
 	public function fetch(string $addressbookId, string $contactId, string $type) : JSONResponse {
 
 		$url = null;
-		$response = new JSONResponse(array());
-		$response->setStatus(404);
 
 		try {
 			// get corresponding addressbook
@@ -130,22 +140,19 @@ class SocialApiController extends ApiController {
 				}
 			}
 			if (is_null($addressBook)) {
-				$response->setStatus(500);
-				return $response; 
+				return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 			}
 			
 			// search contact in that addressbook
 			$contact = $addressBook->search($contactId, ['UID'], [])[0];
-			if (is_null($addressBook)) {
-				$response->setStatus(500);
-				return $response; 
+			if (is_null($contact)) {
+				return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR); 
 			}
 
 			// get social data
 			$socialprofile = $contact['X-SOCIALPROFILE'];
-			if (is_null($addressBook)) {
-				$response->setStatus(500);
-				return $response; 
+			if (is_null($socialprofile)) {
+				return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 			}
 
 			// retrieve data
@@ -153,19 +160,16 @@ class SocialApiController extends ApiController {
 				$url = $this->getSocialConnector($socialprofile, $type);
 			}
 			catch (Exception $e) {
-				$response->setStatus(400);
-				return $response;
+				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
 			}
 
 			if (empty($url)) {
-				$response->setStatus(501);
-				return $response;
+				return new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED);
 			}
 
 			$host = parse_url($url);
 			if (!$host) {
-				$response->setStatus(400);
-				return $response;
+				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
 			}
 			$opts = [
 				"http" => [
@@ -176,33 +180,29 @@ class SocialApiController extends ApiController {
 			$context = stream_context_create($opts);
 			$socialdata = file_get_contents($url, false, $context);
 			if (!$socialdata) {
-				$response->setStatus(404);
-				return $response;
+				new JSONResponse([], Http::STATUS_NOT_FOUND);
 			}
 
 			// update contact
 			switch ($type) {
-				case "avatar":
+				case 'avatar':
 					if (!empty($contact['PHOTO'])) {
-						// overwriting without notice?
+						// overwriting without notice!
 					}
 					$changes = array();
 					$changes['URI']=$contact['URI'];
 					$changes['PHOTO'] = "data:image/png;base64," . base64_encode($socialdata);
 					$addressBook->createOrUpdate($changes, $addressbookId);
-					$response->setStatus(200);
 					break;
 				default:
-					$response->setStatus(501);
-					return $response;
+					return new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED);
 			}
 			
 		} 
 		catch (Exception $e) {
-			$response->setStatus(500);
-			return $response;
+			return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
 
-		return $response;
+		return new JSONResponse([], Http::STATUS_OK);;
 	}
 }

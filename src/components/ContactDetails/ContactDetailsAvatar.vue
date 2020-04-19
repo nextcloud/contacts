@@ -325,7 +325,6 @@ export default {
 				if (file) {
 					this.loading = true
 					try {
-						// const { get } = await axios()
 						const response = await axios.get(`${this.root}${file}`, {
 							responseType: 'arraybuffer',
 						})
@@ -355,7 +354,7 @@ export default {
 						uid: this.contact.uid,
 					}))
 					if (response.status !== 200) {
-						throw new URIError('verify social profile id')
+						throw new URIError('Download of social profile avatar failed')
 					}
 
 					// Fetch newly updated contact
@@ -365,6 +364,9 @@ export default {
 					// Update local clone
 					const contact = this.$store.getters.getContact(this.contact.key)
 					await this.$emit('updateLocalContact', contact)
+
+					// Notify user
+					OC.Notification.showTemporary(t('contacts', 'Avatar downloaded from social network'))
 				} catch (error) {
 					OC.Notification.showTemporary(t('contacts', 'Error while processing the picture.'))
 					console.error(error)
@@ -372,7 +374,7 @@ export default {
 					this.loading = false
 				}
 			} else {
-				OC.Notification.showTemporary(t('contacts', 'Social avatar download failed'))
+				OC.Notification.showTemporary(t('contacts', 'Avatar download failed'))
 			}
 		},
 
