@@ -3,6 +3,7 @@
   -
   - @author Team Popcorn <teampopcornberlin@gmail.com>
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -128,7 +129,6 @@ export default {
 			root: generateRemoteUrl(`dav/files/${getCurrentUser().uid}`),
 			width: 0,
 			height: 0,
-			facebookid: 0,
 		}
 	},
 	computed: {
@@ -138,11 +138,26 @@ export default {
 			}
 			return false
 		},
+		supportedNetworks() {
+			return ['facebook'] // TODO: get from api
+		},
 		hasSocialId() {
 			const jCal = this.contact.jCal
 			const socialId = jCal[1].filter(props => props[0] === 'x-socialprofile')
-			if (socialId.length > 0) { return true }
-			return false
+			let found = false
+			if (socialId.length > 0) {
+				socialId.forEach((entry) => {
+					let network = entry[1]['type']
+					if (network.isArray) {
+						network = network[0]
+					}
+					if (this.supportedNetworks.includes(network.toLowerCase())) {
+						found = true
+						return true
+					}
+				})
+			}
+			return found
 		},
 	},
 	mounted() {
