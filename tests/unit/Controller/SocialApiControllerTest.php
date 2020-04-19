@@ -31,6 +31,8 @@ use OCP\AppFramework\Http\TemplateResponse;
 // use OCP\IInitialStateService;
 use OCP\IConfig;
 use OCP\Contacts\IManager;
+use OCP\Contacts\ContactsMenu\IEntry;
+use OCP\IAddressBook;
 use OCP\L10N\IFactory;
 use OCP\IRequest;
 
@@ -73,99 +75,31 @@ class SocialApiControllerTest extends TestCase {
 			$this->config,
 			// $this->initialStateService,
 			$this->languageFactory
-
 		);
+
+		$this->entry       = $this->createMock(IEntry::class);
+		$this->addressbook = $this->createMock(IAddressBook::class); // FIXME: can I have a dummy address book or do I need integration tests for that?
+
 	}
 
-	public function testGetFacebookAvatarId() {
-		$this->service->expects($this->once())
-			->method(getSocialConnector)
-			->with($this->equalTo(array('facebook','4')),
-				$this->equalTo('avatar'))
-			->will($this->returnValue($response));
 
-		$result = $this->controller->getSocialConnector(array('facebook','4'),'avatar');
+	public function testSetup() {
 
-		// social connector is not null
-		$this->assert(($result) > 4);
-		
-		// social connector starts with http
-		$this->assert(substr_compare($result, 'http', 0, 4));
+		$this->addressbook->expects($this->once())
+		            ->method('getKey')
+		            ->willReturn(1);
 	}
 
-	public function testGetFacebookAvatarFaultyId() {
-		$this->service->expects($this->once())
-			->method(getSocialConnector)
-			->with($this->equalTo(array('facebook','alphan0meric')),
-				$this->equalTo('avatar'))
-			->will($this->returnValue($response));
+	public function testNoData() {
 
-		$result = $this->controller->getSocialConnector(array('facebook','alphan0meric'),'avatar');
+		$expected = new JSONResponse(array());
+		$expected->setStatus(500);
 
-		// invalid profile-id results in null response
-		$this->assertEquals($result, null);
+		$result = $this->controller->fetch($addressbookId='nonexisting', $contactId='nonexisting', $type='avatar');
+
+		// $this->assertEquals($result, $expected, 'Addressbook not found shall return a 500 status response');
+		// $this->assertEquals($result, $expected, 'Contact not found shall return a 500 status response');
+		// $this->assertEquals($result, $expected, 'Contact without social profile shall return a 500 status response');
 	}
-
-	public function testGetFacebookAvatarUrl() {
-		$this->service->expects($this->once())
-			->method(getSocialConnector)
-			->with($this->equalTo(array('facebook','https://facebook.com/4')),
-				$this->equalTo('avatar'))
-			->will($this->returnValue($response));
-
-		$result = $this->controller->getSocialConnector(array('facebook','https://facebook.com/4'),'avatar');
-
-		// social connector is not null
-		$this->assert(($result) > 4);
-		
-		// social connector starts with http
-		$this->assert(substr_compare($result, 'http', 0, 4));
-	}
-
-	public function testGetFacebookAvatarUrlSlash() {
-		$this->service->expects($this->once())
-			->method(getSocialConnector)
-			->with($this->equalTo(array('facebook','https://facebook.com/4/')),
-				$this->equalTo('avatar'))
-			->will($this->returnValue($response));
-
-		$result = $this->controller->getSocialConnector(array('facebook','https://facebook.com/4/'),'avatar');
-
-		// social connector is not null
-		$this->assert(($result) > 4);
-		
-		// social connector starts with http
-		$this->assert(substr_compare($result, 'http', 0, 4));
-	}
-
-	public function testGetFromUnknownNetwork() {
-		$this->service->expects($this->once())
-			->method(getSocialConnector)
-			->with($this->equalTo(array('invalid-network','00')),
-				$this->equalTo('avatar'))
-			->will($this->returnValue($response));
-
-		$result = $this->controller->getSocialConnector(array('invalid-network','00'),'avatar');
-
-		// invalid input results in null response
-		$this->assertEquals($result, null);
-	}
-
-// TODO: write unit tests for fetch function
-
-/*
-    public function testUpdateNotFound() {
-        // test the correct status code if no note is found
-        $this->service->expects($this->once())
-            ->method('update')
-            ->will($this->throwException(new NotFoundException()));
-
-        $result = $this->controller->update(3, 'title', 'content');
-
-        $this->assertEquals(Http::STATUS_NOT_FOUND, $result->getStatus());
-    }
-*/
-
-
 
 }

@@ -129,10 +129,24 @@ class SocialApiController extends ApiController {
 					$addressBook = $ab;
 				}
 			}
+			if (is_null($addressBook)) {
+				$response->setStatus(500);
+				return $response; 
+			}
 			
 			// search contact in that addressbook
 			$contact = $addressBook->search($contactId, ['UID'], [])[0];
+			if (is_null($addressBook)) {
+				$response->setStatus(500);
+				return $response; 
+			}
+
+			// get social data
 			$socialprofile = $contact['X-SOCIALPROFILE'];
+			if (is_null($addressBook)) {
+				$response->setStatus(500);
+				return $response; 
+			}
 
 			// retrieve data
 			try {
