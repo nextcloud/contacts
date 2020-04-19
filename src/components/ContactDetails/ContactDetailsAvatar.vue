@@ -82,8 +82,8 @@
 				<ActionButton v-if="!isReadOnly" icon="icon-picture" @click="selectFilePicker">
 					{{ t('contacts', 'Choose from files') }}
 				</ActionButton>
-				<ActionButton v-if="!isReadOnly && hasSocialId" icon="icon-link" @click="selectSocialAvatar">
-					{{ t('contacts', 'Update from social media') }}
+				<ActionButton v-if="!isReadOnly && hasSocialId" icon="icon-link" @click="getSocialAvatar">
+					{{ t('contacts', 'Get from social media') }}
 				</ActionButton>
 			</Actions>
 		</div>
@@ -129,6 +129,7 @@ export default {
 			root: generateRemoteUrl(`dav/files/${getCurrentUser().uid}`),
 			width: 0,
 			height: 0,
+			supportedNetworks: [],
 		}
 	},
 	computed: {
@@ -138,26 +139,11 @@ export default {
 			}
 			return false
 		},
-		supportedNetworks() {
-			return ['facebook'] // TODO: get from api
-		},
 		hasSocialId() {
-			const jCal = this.contact.jCal
-			const socialId = jCal[1].filter(props => props[0] === 'x-socialprofile')
-			let found = false
-			if (socialId.length > 0) {
-				socialId.forEach((entry) => {
-					let network = entry[1]['type']
-					if (network.isArray) {
-						network = network[0]
-					}
-					if (this.supportedNetworks.includes(network.toLowerCase())) {
-						found = true
-						return true
-					}
-				})
-			}
-			return found
+			const networks = this.contact.vCard.getAllProperties('x-socialprofile')
+				.filter(prop => this.supportedNetworks
+					.includes((prop.getParameter('type')).toString().toLowerCase()))
+			return (networks.length > 0)
 		},
 	},
 	mounted() {
@@ -165,6 +151,8 @@ export default {
 		window.addEventListener('resize', debounce(() => {
 			this.updateImgSize()
 		}, 100))
+		// retrieve list of supported social networks
+		this.getSupportedNetwoks()
 	},
 	methods: {
 		/**
@@ -356,9 +344,21 @@ export default {
 		},
 
 		/**
-		 * WebImage handlers
+		 * Gets the list of supported social networks that provide avatar download
+		 *
+		 * @returns {array} array of supported social networks
 		 */
-		async selectSocialAvatar() {
+		async getSupportedNetwoks() {
+			const result = await axios.get(generateUrl('/apps/contacts/api/v1/social/supported/avatar'))
+			if (result.status === 200) {
+				this.supportedNetworks = result.data
+			}
+		},
+
+		/**
+		 * Downloads the Avatar from social media
+		 */
+		async getSocialAvatar() {
 
 			if (!this.loading) {
 

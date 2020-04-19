@@ -68,6 +68,23 @@ class SocialApiController extends ApiController {
 	/**
 	 * @NoAdminRequired
 	 *
+	 * returns an array of supported social networks
+	 *
+	 * @param {String} type the kind of information interested in
+	 * @returns {array} an array of supported social networks
+	 */
+	public function supported(string $type) : ?array {
+		switch ($type) {
+			case 'avatar':
+				return array('facebook');
+			default:
+				return array();
+		}
+	}
+
+	/**
+	 * @NoAdminRequired
+	 *
 	 * generate download url for a social entry (based on type of data requested)
 	 *
 	 * @param {array} socialentry the network and id from the social profile
