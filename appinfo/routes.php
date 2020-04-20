@@ -26,7 +26,6 @@ return [
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
 		['name' => 'page#index', 'url' => '/{group}', 'verb' => 'GET', 'postfix' => 'group'],
 		['name' => 'page#index', 'url' => '/{group}/{contact}', 'verb' => 'GET', 'postfix' => 'group.contact'],
-		['name' => 'social_api#fetch',     'url' => '/api/v1/social/{type}/{addressbookId}/{contactId}', 'verb' => 'GET'],
-		['name' => 'social_api#supported', 'url' => '/api/v1/social/supported/{type}', 'verb' => 'GET']
+		['name' => 'social_api#fetch',     'url' => '/api/v1/social/{type}/{addressbookId}/{contactId}', 'verb' => 'GET']
 	]
 ];

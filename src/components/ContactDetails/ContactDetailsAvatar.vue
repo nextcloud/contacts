@@ -100,9 +100,12 @@ import Modal from '@nextcloud/vue/dist/Components/Modal'
 import { getFilePickerBuilder } from '@nextcloud/dialogs'
 import { generateUrl, generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
+import { loadState } from '@nextcloud/initial-state'
 import sanitizeSVG from '@mattkrick/sanitize-svg'
 
 import axios from '@nextcloud/axios'
+
+const supportedNetworks = loadState('contacts', 'supportedNetworks')
 
 export default {
 	name: 'ContactDetailsAvatar',
@@ -129,7 +132,6 @@ export default {
 			root: generateRemoteUrl(`dav/files/${getCurrentUser().uid}`),
 			width: 0,
 			height: 0,
-			supportedNetworks: [],
 		}
 	},
 	computed: {
@@ -141,7 +143,7 @@ export default {
 		},
 		hasSocialId() {
 			const networks = this.contact.vCard.getAllProperties('x-socialprofile')
-				.filter(prop => this.supportedNetworks
+				.filter(prop => supportedNetworks['avatar']
 					.includes((prop.getParameter('type')).toString().toLowerCase()))
 			return (networks.length > 0)
 		},
@@ -151,8 +153,6 @@ export default {
 		window.addEventListener('resize', debounce(() => {
 			this.updateImgSize()
 		}, 100))
-		// retrieve list of supported social networks
-		this.getSupportedNetwoks()
 	},
 	methods: {
 		/**
@@ -340,18 +340,6 @@ export default {
 						this.loading = false
 					}
 				}
-			}
-		},
-
-		/**
-		 * Gets the list of supported social networks that provide avatar download
-		 *
-		 * @returns {array} array of supported social networks
-		 */
-		async getSupportedNetwoks() {
-			const result = await axios.get(generateUrl('/apps/contacts/api/v1/social/supported/avatar'))
-			if (result.status === 200) {
-				this.supportedNetworks = result.data
 			}
 		},
 

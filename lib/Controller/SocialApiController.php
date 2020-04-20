@@ -39,11 +39,11 @@ class SocialApiController extends ApiController {
 
 	protected $appName;
 
-	// /** @var IInitialStateService */
-	// private $initialStateService;
+	//** @var IInitialStateService */
+	// private  $initialStateService;
 
 	/** @var IFactory */
-	private $languageFactory;
+	private  $languageFactory;
 	/** @var IManager */
 	private  $manager;
 	/** @var IConfig */
@@ -62,6 +62,7 @@ class SocialApiController extends ApiController {
 		$this->languageFactory = $languageFactory;
 		$this->manager = $manager;
 		$this->config = $config;
+
 	}
 
 
@@ -73,13 +74,20 @@ class SocialApiController extends ApiController {
 	 * @param {String} type the kind of information interested in
 	 * @returns {array} an array of supported social networks
 	 */
-	public function supported(string $type) : ?array {
-		switch ($type) {
-			case 'avatar':
-				return array('facebook','twitter');
-			default:
-				return array();
+	public function getSupportedNetworks(string $type) : ?array {
+
+		$supported = array();
+		$supported['avatar'] = array('facebook','twitter');
+
+		if (strcmp($type, 'all') === 0) {
+			// return array of arrays
+			return $supported;
 		}
+		if (array_key_exists($type, $supported)) {
+			return $supported[$type];
+		}
+		// unknown type
+		return array();
 	}
 
 	/**
