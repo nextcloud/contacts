@@ -359,7 +359,6 @@ export default {
 		 * Downloads the Avatar from social media
 		 */
 		async getSocialAvatar() {
-
 			if (!this.loading) {
 
 				this.loading = true
@@ -383,14 +382,15 @@ export default {
 					// Notify user
 					OC.Notification.showTemporary(t('contacts', 'Avatar downloaded from social network'))
 				} catch (error) {
-					OC.Notification.showTemporary(t('contacts', 'Error while processing the picture.'))
-					console.error(error)
-				} finally {
-					this.loading = false
+					if (error.response.status === 304) {
+						OC.Notification.showTemporary(t('contacts', 'Avatar up to date'))
+					} else {
+						OC.Notification.showTemporary(t('contacts', 'Avatar download failed'))
+						console.debug(error)
+					}
 				}
-			} else {
-				OC.Notification.showTemporary(t('contacts', 'Avatar download failed'))
 			}
+			this.loading = false
 		},
 
 		/**

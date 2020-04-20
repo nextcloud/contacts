@@ -126,7 +126,7 @@ class SocialApiController extends ApiController {
 					case 'twitter':
 						switch ($type) {
 							case 'avatar':
-								$connector = "https://avatars.io/" . strtolower($network) . "/" . ($candidate);
+								$connector = "https://avatars.io/" . ($network) . "/" . ($candidate);
 								break;
 							default:
 								break;
@@ -147,7 +147,6 @@ class SocialApiController extends ApiController {
 
 	/**
 	 * @NoAdminRequired
-	 * @NoCSRFRequired
 	 *
 	 * Retrieves social profile data for a contact
 	 *
@@ -214,14 +213,13 @@ class SocialApiController extends ApiController {
 			$image_type = null;
 			foreach ($http_response_header as $value) {
 				if (preg_match('/^Content-Type:/i', $value)) {
-					if (stripos($value, "image") === false) {
-						return new JSONResponse([], Http::STATUS_NOT_FOUND);
+					if (stripos($value, "image") !== false) {
+						$image_type = substr($value, stripos($value, "image"));
 					}
-					$image_type = substr($value, stripos($value, "image"));
 				}
 			}
 
-			if ((!$socialdata) || (stripos($image_type, "image") === false)) {
+			if ((!$socialdata) || ($image_type === null)) {
 				return new JSONResponse([], Http::STATUS_NOT_FOUND);
 			}
 
@@ -234,6 +232,11 @@ class SocialApiController extends ApiController {
 					$changes = array();
 					$changes['URI']=$contact['URI'];
 					$changes['PHOTO'] = "data:" . $image_type . ";base64," . base64_encode($socialdata);
+
+					if ($changes['PHOTO'] === $contact['PHOTO']) {
+						return new JSONResponse([], Http::STATUS_NOT_MODIFIED);
+					}
+
 					$addressBook->createOrUpdate($changes, $addressbookId);
 					break;
 				default:
@@ -245,6 +248,6 @@ class SocialApiController extends ApiController {
 			return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
 
-		return new JSONResponse([], Http::STATUS_OK);;
+		return new JSONResponse([], Http::STATUS_OK);
 	}
 }
