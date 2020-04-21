@@ -62,7 +62,7 @@ class SocialApiController extends ApiController {
 		'facebook' 	=> [
 			'recipe' 	=> 'https://graph.facebook.com/{socialId}/picture?width=720',
 			'cleanups' 	=> ['basename'],
-			'checks'	=> ['number'],
+			'checks'	=> [],
 		],
 		'tumblr' 	=> [
 			'recipe' 	=> 'https://api.tumblr.com/v2/blog/{socialId}/avatar/512',
