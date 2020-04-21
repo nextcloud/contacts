@@ -49,6 +49,40 @@ class SocialApiController extends ApiController {
 	/** @var IConfig */
 	private  $config;
 
+	/**
+	 * This constant stores the supported social networks
+	 * It is an ordered list, so that first listed items will be checked first
+	 * Each item stores the avatar-url-formula as recipe, a cleanup parameter to
+	 * extract the profile-id from the users entry, and possible filters to check
+	 * validity
+	 * 
+	 * @const {array} SOCIAL_CONNECTORS dictionary of supported social networks
+	 */
+	const SOCIAL_CONNECTORS = [
+		'facebook' 	=> [
+			'recipe' 	=> 'https://graph.facebook.com/{socialId}/picture?width=720',
+			'cleanups' 	=> ['basename'],
+			'checks'	=> ['number'],
+		],
+		'tumblr' 	=> [
+			'recipe' 	=> 'https://api.tumblr.com/v2/blog/{socialId}/avatar/512',
+			'cleanups' 	=> ['basename'],
+			'checks'	=> [],
+		],
+		/* do we trust avatars.io?
+		'instagram' 	=> [
+			'recipe' 	=> 'http://avatars.io/instagram/{socialId}',
+			'cleanups' 	=> ['basename'],
+			'checks'	=> []
+		],
+		'twitter' 	=> [
+			'recipe' 	=> 'http://avatars.io/twitter/{socialId}',
+			'cleanups' 	=> ['basename'],
+			'checks'	=> []
+		],
+		*/
+	];
+
 	public function __construct(string $AppName,
 								IRequest $request,
 								IManager $manager,
@@ -77,7 +111,11 @@ class SocialApiController extends ApiController {
 	public function getSupportedNetworks(string $type) : ?array {
 
 		$supported = array();
-		$supported['avatar'] = array('facebook','twitter');
+		$supported['avatar'] = array();
+
+		foreach(self::SOCIAL_CONNECTORS as $network => $social) {
+			array_push($supported['avatar'], $network);
+		}
 
 		if (strcmp($type, 'all') === 0) {
 			// return array of arrays
@@ -96,62 +134,39 @@ class SocialApiController extends ApiController {
 	 * generate download url for a social entry (based on type of data requested)
 	 *
 	 * @param {array} socialentry the network and id from the social profile
-	 * @param {String} type the kind of information to link to
 	 * @returns {String} the url to the requested information or null in case of errors
 	 */
-	protected function getSocialConnector(array $socialentry, string $type) : ?string {
-		foreach ($socialentry as $network => $candidate) {
-			$connector = null;
-			$valid = false;
-	
-			// get profile-id
-			switch (strtolower($network)) {
-				case 'facebook':
-					$candidate = basename($candidate);
-					if (!ctype_digit($candidate)) {
-						// TODO: determine facebook profile id from username
-						break;
+	protected function getSocialConnector(array $socialentry) : ?string {
+
+		$connector = null;
+
+		// check supported networks in order
+		foreach(self::SOCIAL_CONNECTORS as $network => $social) {
+
+			// search for this network in user's profile
+			foreach ($socialentry as $networkentry => $profileId) {
+				if ($network === strtolower($networkentry)) {
+					// cleanups
+					if (in_array('basename', $social['cleanups'])) {
+						$profileId = basename($profileId);
 					}
-					$valid = true;
+					// checks
+					if (in_array('number', $social['checks'])) {
+						if (!ctype_digit($profileId)) {
+							break;
+						}
+					}
+					$connector = str_replace("{socialId}", $profileId, $social['recipe']);
 					break;
-				case 'twitter':
-					$candidate = basename($candidate);
-					$valid = true;
-					break;
+				}
 			}
-			if ($valid) {
-				// build connector
-				switch (strtolower($network)) {
-					case 'facebook':
-						switch ($type) {
-							case 'avatar':
-								$connector = "https://graph.facebook.com/" . ($candidate) . "/picture?width=720";
-								break;
-							default:
-								break;
-						}
-						break;
-					case 'twitter':
-						switch ($type) {
-							case 'avatar':
-								$connector = "https://avatars.io/" . ($network) . "/" . ($candidate);
-								break;
-							default:
-								break;
-						}
-						break;
-				}
-				
-				// return first valid connector:
-				if ($connector) {
-					return ($connector);
-				}
+			if ($connector) {
+				break;
 			}
 		}
-		
-		// reached only if no valid connectors found
-		return null;
+		return ($connector);
 	}
+
 
 	/**
 	 * @NoAdminRequired
@@ -160,7 +175,7 @@ class SocialApiController extends ApiController {
 	 *
 	 * @param {String} addressbookId the addressbook identifier
 	 * @param {String} contactId the contact identifier
-	 * @param {String} type the kind of information to retrieve
+	 * @param {String} type the kind of information to retrieve -- provision
 	 *
 	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
 	 */
@@ -195,7 +210,7 @@ class SocialApiController extends ApiController {
 
 			// retrieve data
 			try {
-				$url = $this->getSocialConnector($socialprofile, $type);
+				$url = $this->getSocialConnector($socialprofile);
 			}
 			catch (Exception $e) {
 				return new JSONResponse([], Http::STATUS_BAD_REQUEST);

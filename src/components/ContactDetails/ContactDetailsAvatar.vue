@@ -371,7 +371,7 @@ export default {
 					OC.Notification.showTemporary(t('contacts', 'Avatar downloaded from social network'))
 				} catch (error) {
 					if (error.response.status === 304) {
-						OC.Notification.showTemporary(t('contacts', 'Avatar up to date'))
+						OC.Notification.showTemporary(t('contacts', 'Avatar already up to date'))
 					} else {
 						OC.Notification.showTemporary(t('contacts', 'Avatar download failed'))
 						console.debug(error)
