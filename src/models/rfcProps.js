@@ -178,6 +178,10 @@ const properties = {
 			{ id: 'TELEGRAM', name: 'Telegram' },
 			{ id: 'XMPP', name: 'XMPP' },
 			{ id: 'SIP', name: 'SIP' },
+			{ id: 'QQ', name: 'QQ' },
+			{ id: 'WECHAT', name: 'WeChat' },
+			{ id: 'LINE', name: 'Line' },
+			{ id: 'KAKAOTALK', name: 'KakaoTalk' },
 		],
 	},
 	tel: {

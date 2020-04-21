@@ -27,8 +27,9 @@ use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IInitialStateService;
 use OCP\IConfig;
-use OCP\L10N\IFactory;
 use OCP\IRequest;
+use OCP\L10N\IFactory;
+use OCP\Util;
 
 use OCA\Contacts\Controller\SocialApiController;
 
@@ -72,6 +73,10 @@ class PageController extends Controller {
 		$this->initialStateService->provideInitialState($this->appName, 'locales', $locales);
 		$this->initialStateService->provideInitialState($this->appName, 'defaultProfile', $defaultProfile);
 		$this->initialStateService->provideInitialState($this->appName, 'supportedNetworks', $supportedNetworks);
+
+		Util::addScript($this->appName, 'contacts');
+		Util::addStyle($this->appName, 'contacts');
+
 		return new TemplateResponse($this->appName, 'main');
 	}
 }
