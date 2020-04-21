@@ -41,8 +41,7 @@
 				<!-- avatar and upload photo -->
 				<ContactAvatar
 					:contact="contact"
-					@updateLocalContact="updateLocalContact"
-					@refreshContact="refreshContact" />
+					@updateLocalContact="updateLocalContact" />
 				<!-- QUESTION: is it better to pass contact as a prop or get it from the store inside
 				contact-avatar ?  :avatar="contact.photo"-->
 
@@ -59,7 +58,6 @@
 							autocorrect="off"
 							spellcheck="false"
 							name="fullname"
-							@updateLocalContact="updateLocalContact"
 							@input="debounceUpdateContact"
 							@click="selectInput">
 					</h2>

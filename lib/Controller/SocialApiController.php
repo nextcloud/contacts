@@ -105,7 +105,7 @@ class SocialApiController extends ApiController {
 	 *
 	 * returns an array of supported social networks
 	 *
-	 * @param {String} type the kind of information interested in
+	 * @param {String} type the kind of information interested in -- provision
 	 * @returns {array} an array of supported social networks
 	 */
 	public function getSupportedNetworks(string $type) : ?array {
@@ -252,9 +252,21 @@ class SocialApiController extends ApiController {
 					if (!empty($contact['PHOTO'])) {
 						// overwriting without notice!
 					}
+					
 					$changes = array();
 					$changes['URI']=$contact['URI'];
-					$changes['PHOTO'] = "data:" . $image_type . ";base64," . base64_encode($socialdata);
+
+					$version = (float) $contact['VERSION'];
+					if ($version >= 4.0) {
+						$changes['PHOTO'] = "data:" . $image_type . ";base64," . base64_encode($socialdata);
+					}
+					elseif ($version >= 3.0) {
+						$image_type = str_replace('image/', '', $image_type);
+						$changes['PHOTO'] = "ENCODING=b;TYPE=" . strtoupper($image_type) . ":" . base64_encode($socialdata);
+					}
+					else {
+						return new JSONResponse([], Http::STATUS_CONFLICT);
+					}
 
 					if ($changes['PHOTO'] === $contact['PHOTO']) {
 						return new JSONResponse([], Http::STATUS_NOT_MODIFIED);
