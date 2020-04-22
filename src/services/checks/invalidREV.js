@@ -40,7 +40,7 @@ export default {
 					return false
 				}
 
-				if (contact.version === '4.0' && type === 'icaltime') {
+				if (version === '4.0' && type === 'icaltime') {
 					return false
 				}
 			}
