@@ -237,7 +237,7 @@ const properties = {
 		],
 	},
 	relationship: {
-		readableName: t('contacts', 'Relationship'),
+		readableName: t('contacts', 'Relationship to you'),
 		force: 'select',
 		icon: 'icon-group',
 		options: [
@@ -257,7 +257,7 @@ const properties = {
 	},
 	related: {
 		multiple: true,
-		readableName: t('contacts', 'Related'),
+		readableName: t('contacts', 'Related contacts'),
 		icon: 'icon-group',
 		defaultValue: {
 			value: [''],
