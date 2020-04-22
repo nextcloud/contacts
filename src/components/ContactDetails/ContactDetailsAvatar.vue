@@ -82,7 +82,7 @@
 				<ActionButton v-if="!isReadOnly" icon="icon-picture" @click="selectFilePicker">
 					{{ t('contacts', 'Choose from files') }}
 				</ActionButton>
-				<ActionButton v-if="!isReadOnly && hasSocialId" icon="icon-link" @click="getSocialAvatar">
+				<ActionButton v-if="!isReadOnly && hasSocialId" icon="icon-sync" @click="getSocialAvatar">
 					{{ t('contacts', 'Get from social media') }}
 				</ActionButton>
 			</Actions>
