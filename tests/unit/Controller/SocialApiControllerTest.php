@@ -77,29 +77,48 @@ class SocialApiControllerTest extends TestCase {
 			$this->languageFactory
 		);
 
-		$this->entry       = $this->createMock(IEntry::class);
-		$this->addressbook = $this->createMock(IAddressBook::class); // FIXME: can I have a dummy address book or do I need integration tests for that?
+		// TODO: make socialprofile a data provider:
+		// contact with one (valid) social profile - as id and as url
+		// contact with one (invalid) social profile - as username
+		// contact without social profile
+		// contact without supported social profile
+		// contact with multiple supported social profiles
 
+		// Zuckerberg
+		$this->testcontact = [
+			'URI' => '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
+			'VERSION' => '4.0',
+			'PHOTO' => '',
+			'X-SOCIALPROFILE' => array('facebook' => '4')
+		];
+
+		// stub addressbook
+		$this->addressbook = $this->createMock(IAddressBook::class);
+		$this->addressbook
+			->method('getUri')
+			->willReturn('contacts');
+
+		$this->addressbook
+			->method('search')
+		        ->with(
+				$this->equalTo('3225c0d5-1bd2-43e5-a08c-4e65eaa406b0'), 
+				$this->equalTo(['UID']),
+				$this->equalTo([]) )
+			->willReturn(array($this->testcontact));
+
+		$this->manager
+			->method('getUserAddressBooks')
+			->willReturn(array($this->addressbook));
 	}
 
 
-	public function testSetup() {
+	public function testFacebook() {
 
-		$this->addressbook->expects($this->once())
-		            ->method('getKey')
-		            ->willReturn(1);
-	}
+		$expected = new JSONResponse([], Http::STATUS_OK);
 
-	public function testNoData() {
+		$result = $this->controller->fetch($addressbookId='contacts', $contactId='3225c0d5-1bd2-43e5-a08c-4e65eaa406b0', $type='avatar');
 
-		$expected = new JSONResponse(array());
-		$expected->setStatus(500);
-
-		$result = $this->controller->fetch($addressbookId='nonexisting', $contactId='nonexisting', $type='avatar');
-
-		// $this->assertEquals($result, $expected, 'Addressbook not found shall return a 500 status response');
-		// $this->assertEquals($result, $expected, 'Contact not found shall return a 500 status response');
-		// $this->assertEquals($result, $expected, 'Contact without social profile shall return a 500 status response');
+		$this->assertEquals($result, $expected, 'Download of Marc Zuckerbergs profile picture shall return success');
 	}
 
 }
