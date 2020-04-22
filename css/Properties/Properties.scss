@@ -171,9 +171,11 @@ $property-ext-padding-right: 8px;
 	}
 
 	// Show ext and delete buttons on full row hover
-	&:hover &__ext,
-	&:hover .action-item.icon-delete {
-		opacity: .5;
+	&:hover {
+		.property__ext,
+		.action-item {
+			opacity: .5;
+		}
 	}
 
 	// External link (tel, mailto, http, ftp...)
