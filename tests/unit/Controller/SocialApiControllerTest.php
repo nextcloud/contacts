@@ -76,21 +76,42 @@ class SocialApiControllerTest extends TestCase {
 			// $this->initialStateService,
 			$this->languageFactory
 		);
+	}
 
-		// TODO: make socialprofile a data provider:
-		// contact with one (valid) social profile - as id and as url
-		// contact with one (invalid) social profile - as username
-		// contact without social profile
-		// contact without supported social profile
-		// contact with multiple supported social profiles
+	public function socialContactProvider() {
+		return [
+			'no social profiles'	 			=> [new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR), null],
+			'facebook profile with numbered profile id' 	=> [new JSONResponse([], Http::STATUS_OK), array('facebook' => '4')],
+			'facebook profile as url' 			=> [new JSONResponse([], Http::STATUS_OK), array('facebook' => 'https://www.facebook.com/4')],
+			'facebook profile as terminated url' 		=> [new JSONResponse([], Http::STATUS_OK), array('facebook' => 'https://www.facebook.com/4/')],
+			'invalid facebook profile' 			=> [new JSONResponse([], Http::STATUS_NOT_FOUND), array('facebook' => 'zuck')],
+			'facebook public page as alphanumeric id' 	=> [new JSONResponse([], Http::STATUS_OK), array('facebook' => 'Nextclouders')],
+			'tumblr profile' 				=> [new JSONResponse([], Http::STATUS_OK), array('tumblr' => 'nextcloudperu')],
+			'tumblr profile as url'				=> [new JSONResponse([], Http::STATUS_OK), array('tumblr' => 'https://nextcloudperu.tumblr.com')],
+			'tumblr profile as short url'			=> [new JSONResponse([], Http::STATUS_OK), array('tumblr' => 'nextcloudperu.tumblr.com')],
+			'tumblr profile as terminated url'		=> [new JSONResponse([], Http::STATUS_OK), array('tumblr' => 'https://nextcloudperu.tumblr.com/')],
+			'facebook and tumblr profiles'			=> [new JSONResponse([], Http::STATUS_OK), array('tumblr' => 'nextcloudperu', 'facebook' => '4')],
+			'invalid facebook and valid tumblr profiles'	=> [new JSONResponse([], Http::STATUS_NOT_FOUND), array('tumblr' => 'nextcloudperu', 'facebook' => 'zuck')],
+			'unknown social network'			=> [new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED), array('unsupported' => 'https://nextcloud.com')],
+		];
+	}
 
-		// Zuckerberg
-		$this->testcontact = [
+	/**
+	 * @dataProvider socialContactProvider
+	 */
+	public function testFetchAvatar($expected, $social) {
+
+		// stub contact
+		$this->contact = [
 			'URI' => '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
 			'VERSION' => '4.0',
 			'PHOTO' => '',
-			'X-SOCIALPROFILE' => array('facebook' => '4')
 		];
+
+		// fill social profile
+		if (!is_null($social)) {
+			$this->contact['X-SOCIALPROFILE'] = $social;
+		}
 
 		// stub addressbook
 		$this->addressbook = $this->createMock(IAddressBook::class);
@@ -104,21 +125,14 @@ class SocialApiControllerTest extends TestCase {
 				$this->equalTo('3225c0d5-1bd2-43e5-a08c-4e65eaa406b0'), 
 				$this->equalTo(['UID']),
 				$this->equalTo([]) )
-			->willReturn(array($this->testcontact));
+			->willReturn(array($this->contact));
 
 		$this->manager
 			->method('getUserAddressBooks')
 			->willReturn(array($this->addressbook));
-	}
-
-
-	public function testFacebook() {
-
-		$expected = new JSONResponse([], Http::STATUS_OK);
 
 		$result = $this->controller->fetch($addressbookId='contacts', $contactId='3225c0d5-1bd2-43e5-a08c-4e65eaa406b0', $type='avatar');
 
-		$this->assertEquals($result, $expected, 'Download of Marc Zuckerbergs profile picture shall return success');
+		$this->assertEquals($expected, $result);
 	}
-
 }

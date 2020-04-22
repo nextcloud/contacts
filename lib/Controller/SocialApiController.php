@@ -66,10 +66,11 @@ class SocialApiController extends ApiController {
 		],
 		'tumblr' 	=> [
 			'recipe' 	=> 'https://api.tumblr.com/v2/blog/{socialId}/avatar/512',
-			'cleanups' 	=> ['basename'],
+			'cleanups' 	=> ['filter'],
+			'filter' 	=> ['regex' => '/(?:http[s]*\:\/\/)*(.*?)\.(?=[^\/]*\..{2,5})/i', 'group' => 1], // "subdomain"
 			'checks'	=> [],
 		],
-		/* do we trust avatars.io?
+		/* untrusted
 		'instagram' 	=> [
 			'recipe' 	=> 'http://avatars.io/instagram/{socialId}',
 			'cleanups' 	=> ['basename'],
@@ -150,6 +151,11 @@ class SocialApiController extends ApiController {
 					if (in_array('basename', $social['cleanups'])) {
 						$profileId = basename($profileId);
 					}
+					if (in_array('filter', $social['cleanups'])) {
+						if (preg_match($social['filter']['regex'], $profileId, $matches)) {
+							$profileId = $matches[$social['filter']['group']];
+						}
+					}
 					// checks
 					if (in_array('number', $social['checks'])) {
 						if (!ctype_digit($profileId)) {
@@ -195,7 +201,7 @@ class SocialApiController extends ApiController {
 			if (is_null($addressBook)) {
 				return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 			}
-			
+
 			// search contact in that addressbook
 			$contact = $addressBook->search($contactId, ['UID'], [])[0];
 			if (is_null($contact)) {
@@ -204,6 +210,7 @@ class SocialApiController extends ApiController {
 
 			// get social data
 			$socialprofile = $contact['X-SOCIALPROFILE'];
+
 			if (is_null($socialprofile)) {
 				return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 			}
@@ -282,7 +289,6 @@ class SocialApiController extends ApiController {
 		catch (Exception $e) {
 			return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
-
 		return new JSONResponse([], Http::STATUS_OK);
 	}
 }
