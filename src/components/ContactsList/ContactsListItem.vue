@@ -11,10 +11,12 @@
 			class="app-content-list-item-checkbox checkbox" @keypress.enter.space.prevent.stop="toggleSelect">
 		<label :for="contact.key" @click.prevent.stop="toggleSelect" @keypress.enter.space.prevent.stop="toggleSelect" />
 		-->
-		<div :style="{ 'backgroundColor': colorAvatar }" class="app-content-list-item-icon">
-			{{ contact.displayName | firstLetter }}
+		<div :style="avatarStyle" class="app-content-list-item-icon">
 			<!-- try to fetch the avatar only if the contact exists on the server -->
 			<div v-if="hasPhoto" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
+			<template v-else>
+				{{ contact.displayName | firstLetter }}
+			</template>
 		</div>
 
 		<!-- contact data -->
@@ -62,18 +64,28 @@ export default {
 			return this.contact.dav && (this.contact.dav.hasphoto || this.contact.photo)
 		},
 
-		/**
-		 * avatar color based on server toRgb method and the displayName
-		 * @returns {string} the color in css format
-		 */
-		colorAvatar() {
+		avatarStyle() {
+			if (this.hasPhoto) {
+				return {
+					backgroundColor: '#fff',
+					// The contact photo gets cropped in a circular shape, which might look odd with transparent photos.
+					// This box shadow ensures that there's always a very faint edge hinting at the circle.
+					boxShadow: '0 0 5px rgba(0, 0, 0, 0.05) inset',
+				}
+			}
+
 			try {
 				const color = this.contact.uid.toRgb()
-				return `rgb(${color.r}, ${color.g}, ${color.b})`
+				return {
+					backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})`,
+				}
 			} catch (e) {
-				return 'grey'
+				return {
+					backgroundColor: 'grey',
+				}
 			}
 		},
+
 		avatarUrl() {
 			if (this.contact.photo) {
 				return `url(${this.contact.photoUrl})`
