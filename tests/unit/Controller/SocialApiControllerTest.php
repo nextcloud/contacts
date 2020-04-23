@@ -47,8 +47,8 @@ class SocialApiControllerTest extends TestCase {
 	/** @var IRequest|MockObject */
 	private $request;
 
-	/** @var IInitialStateService|MockObject */
-	private $initialStateService;
+	//** @var IInitialStateService|MockObject */
+	// private $initialStateService;
 
 	/** @var IFactory|MockObject */
 	private $languageFactory;

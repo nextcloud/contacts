@@ -114,7 +114,7 @@ class SocialApiController extends ApiController {
 		$supported = array();
 		$supported['avatar'] = array();
 
-		foreach(self::SOCIAL_CONNECTORS as $network => $social) {
+		foreach(array_keys(self::SOCIAL_CONNECTORS) as $network) {
 			array_push($supported['avatar'], $network);
 		}
 
@@ -134,10 +134,10 @@ class SocialApiController extends ApiController {
 	 *
 	 * generate download url for a social entry (based on type of data requested)
 	 *
-	 * @param {array} socialentry the network and id from the social profile
+	 * @param {array} socialentries the network and id from the social profiles
 	 * @returns {String} the url to the requested information or null in case of errors
 	 */
-	protected function getSocialConnector(array $socialentry) : ?string {
+	protected function getSocialConnector(array $socialentries) : ?string {
 
 		$connector = null;
 
@@ -145,7 +145,7 @@ class SocialApiController extends ApiController {
 		foreach(self::SOCIAL_CONNECTORS as $network => $social) {
 
 			// search for this network in user's profile
-			foreach ($socialentry as $networkentry => $profileId) {
+			foreach ($socialentries as $networkentry => $profileId) {
 				if ($network === strtolower($networkentry)) {
 					// cleanups
 					if (in_array('basename', $social['cleanups'])) {
@@ -209,15 +209,14 @@ class SocialApiController extends ApiController {
 			}
 
 			// get social data
-			$socialprofile = $contact['X-SOCIALPROFILE'];
-
-			if (is_null($socialprofile)) {
+			$socialprofiles = $contact['X-SOCIALPROFILE'];
+			if (is_null($socialprofiles)) {
 				return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 			}
 
 			// retrieve data
 			try {
-				$url = $this->getSocialConnector($socialprofile);
+				$url = $this->getSocialConnector($socialprofiles);
 			}
 			catch (Exception $e) {
 				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
@@ -249,7 +248,7 @@ class SocialApiController extends ApiController {
 				}
 			}
 
-			if ((!$socialdata) || ($image_type === null)) {
+			if (!$socialdata || $image_type === null) {
 				return new JSONResponse([], Http::STATUS_NOT_FOUND);
 			}
 
@@ -261,17 +260,15 @@ class SocialApiController extends ApiController {
 					}
 					
 					$changes = array();
-					$changes['URI']=$contact['URI'];
+					$changes['URI'] = $contact['URI'];
 
 					$version = (float) $contact['VERSION'];
 					if ($version >= 4.0) {
 						$changes['PHOTO'] = "data:" . $image_type . ";base64," . base64_encode($socialdata);
-					}
-					elseif ($version >= 3.0) {
+					} elseif ($version >= 3.0) {
 						$image_type = str_replace('image/', '', $image_type);
 						$changes['PHOTO'] = "ENCODING=b;TYPE=" . strtoupper($image_type) . ":" . base64_encode($socialdata);
-					}
-					else {
+					} else {
 						return new JSONResponse([], Http::STATUS_CONFLICT);
 					}
 
