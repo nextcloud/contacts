@@ -109,7 +109,7 @@ class SocialApiController extends ApiController {
 	 * @param {String} type the kind of information interested in -- provision
 	 * @returns {array} an array of supported social networks
 	 */
-	public function getSupportedNetworks(string $type) : ?array {
+	public function getSupportedNetworks(string $type) : array {
 
 		$supported = array();
 		$supported['avatar'] = array();
@@ -135,18 +135,28 @@ class SocialApiController extends ApiController {
 	 * generate download url for a social entry (based on type of data requested)
 	 *
 	 * @param {array} socialentries the network and id from the social profiles
+	 * @param {array} network the choice which network to use or 'first' to use any
 	 * @returns {String} the url to the requested information or null in case of errors
 	 */
-	protected function getSocialConnector(array $socialentries) : ?string {
+	protected function getSocialConnector(array $socialentries, string $network) : ?string {
 
 		$connector = null;
+		$selection = array();
 
-		// check supported networks in order
-		foreach(self::SOCIAL_CONNECTORS as $network => $social) {
+		// get all supported networks
+		if ($network === 'first') {
+			$selection = self::SOCIAL_CONNECTORS;
+		} else {
+			$selection = array($network => self::SOCIAL_CONNECTORS[$network]);
+		}
+
+		// check selected networks in order
+		foreach($selection as $socialnet => $social) {
 
 			// search for this network in user's profile
-			foreach ($socialentries as $networkentry => $profileId) {
-				if ($network === strtolower($networkentry)) {
+			foreach ($socialentries as $socialnetentry => $profileId) {
+
+				if ($socialnet === strtolower($socialnetentry)) {
 					// cleanups
 					if (in_array('basename', $social['cleanups'])) {
 						$profileId = basename($profileId);
@@ -173,7 +183,6 @@ class SocialApiController extends ApiController {
 		return ($connector);
 	}
 
-
 	/**
 	 * @NoAdminRequired
 	 *
@@ -182,10 +191,11 @@ class SocialApiController extends ApiController {
 	 * @param {String} addressbookId the addressbook identifier
 	 * @param {String} contactId the contact identifier
 	 * @param {String} type the kind of information to retrieve -- provision
+	 * @param {String} network the social network to use or 'first' to use any
 	 *
 	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
 	 */
-	public function fetch(string $addressbookId, string $contactId, string $type) : JSONResponse {
+	public function fetch(string $addressbookId, string $contactId, string $type, string $network) : JSONResponse {
 
 		$url = null;
 
@@ -216,7 +226,7 @@ class SocialApiController extends ApiController {
 
 			// retrieve data
 			try {
-				$url = $this->getSocialConnector($socialprofiles);
+				$url = $this->getSocialConnector($socialprofiles, $network);
 			}
 			catch (Exception $e) {
 				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
@@ -280,8 +290,7 @@ class SocialApiController extends ApiController {
 					break;
 				default:
 					return new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED);
-			}
-			
+			}	
 		} 
 		catch (Exception $e) {
 			return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);

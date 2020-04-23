@@ -82,8 +82,13 @@
 				<ActionButton v-if="!isReadOnly" icon="icon-picture" @click="selectFilePicker">
 					{{ t('contacts', 'Choose from files') }}
 				</ActionButton>
-				<ActionButton v-if="!isReadOnly && hasSocialId" icon="icon-sync" @click="getSocialAvatar">
-					{{ t('contacts', 'Get from social media') }}
+				<!-- FIXME: how can I add the v-if="!isReadOnly"? div is not allowed... -->
+				<ActionButton
+					v-for="network in supportedSocial"
+					v-bind:key="network"
+					icon="icon-sync"
+					@click="getSocialAvatar(network)">
+					{{ t('contacts', 'Get from ' + network) }}
 				</ActionButton>
 			</Actions>
 		</div>
@@ -141,11 +146,19 @@ export default {
 			}
 			return false
 		},
-		hasSocialId() {
-			const networks = this.contact.vCard.getAllProperties('x-socialprofile')
-				.filter(prop => supportedNetworks['avatar']
-					.includes((prop.getParameter('type')).toString().toLowerCase()))
-			return (networks.length > 0)
+		supportedSocial() {
+			// FIXME: this seems too complex
+			const supported = []
+			const contact = this.contact
+			supportedNetworks['avatar'].forEach(function(supportedNetwork) {
+				const present = contact.vCard.getAllProperties('x-socialprofile')
+					.filter(prop => supportedNetwork
+						.includes((prop.getParameter('type')).toString().toLowerCase()))
+				if (present.length > 0) {
+					supported.push(supportedNetwork)
+				}
+			})
+			return (supported)
 		},
 	},
 	mounted() {
@@ -345,13 +358,17 @@ export default {
 
 		/**
 		 * Downloads the Avatar from social media
+		 *
+		 * @param {String} network the social network to use
 		 */
-		async getSocialAvatar() {
+		async getSocialAvatar(network) {
+
 			if (!this.loading) {
 
 				this.loading = true
 				try {
-					const response = await axios.get(generateUrl('/apps/contacts/api/v1/social/avatar/{id}/{uid}', {
+					const response = await axios.get(generateUrl('/apps/contacts/api/v1/social/avatar/{network}/{id}/{uid}', {
+						network: network,
 						id: this.contact.addressbook.id,
 						uid: this.contact.uid,
 					}))
