@@ -52,9 +52,8 @@ class SocialApiController extends ApiController {
 	/**
 	 * This constant stores the supported social networks
 	 * It is an ordered list, so that first listed items will be checked first
-	 * Each item stores the avatar-url-formula as recipe, a cleanup parameter to
-	 * extract the profile-id from the users entry, and possible filters to check
-	 * validity
+	 * Each item stores the avatar-url-formula as recipe and a cleanup parameter to
+	 * extract the profile-id from the users entry
 	 * 
 	 * @const {array} SOCIAL_CONNECTORS dictionary of supported social networks
 	 */
@@ -62,24 +61,19 @@ class SocialApiController extends ApiController {
 		'facebook' 	=> [
 			'recipe' 	=> 'https://graph.facebook.com/{socialId}/picture?width=720',
 			'cleanups' 	=> ['basename'],
-			'checks'	=> [],
 		],
 		'tumblr' 	=> [
 			'recipe' 	=> 'https://api.tumblr.com/v2/blog/{socialId}/avatar/512',
-			'cleanups' 	=> ['filter'],
-			'filter' 	=> ['regex' => '/(?:http[s]*\:\/\/)*(.*?)\.(?=[^\/]*\..{2,5})/i', 'group' => 1], // "subdomain"
-			'checks'	=> [],
+			'cleanups' 	=> ['regex' => '/(?:http[s]*\:\/\/)*(.*?)\.(?=[^\/]*\..{2,5})/i', 'group' => 1], // "subdomain"
 		],
 		/* untrusted
 		'instagram' 	=> [
 			'recipe' 	=> 'http://avatars.io/instagram/{socialId}',
 			'cleanups' 	=> ['basename'],
-			'checks'	=> []
 		],
 		'twitter' 	=> [
 			'recipe' 	=> 'http://avatars.io/twitter/{socialId}',
 			'cleanups' 	=> ['basename'],
-			'checks'	=> []
 		],
 		*/
 	];
@@ -106,10 +100,9 @@ class SocialApiController extends ApiController {
 	 *
 	 * returns an array of supported social networks
 	 *
-	 * @param {String} type the kind of information interested in -- provision
 	 * @returns {array} an array of supported social networks
 	 */
-	public function getSupportedNetworks(string $type) : array {
+	public function getSupportedNetworks() : array {
 
 		$supported = array();
 		$supported['avatar'] = array();
@@ -118,61 +111,48 @@ class SocialApiController extends ApiController {
 			array_push($supported['avatar'], $network);
 		}
 
-		if (strcmp($type, 'all') === 0) {
-			// return array of arrays
-			return $supported;
-		}
-		if (array_key_exists($type, $supported)) {
-			return $supported[$type];
-		}
-		// unknown type
-		return array();
+		return $supported;
 	}
 
 	/**
 	 * @NoAdminRequired
 	 *
-	 * generate download url for a social entry (based on type of data requested)
+	 * generate download url for a social entry
 	 *
-	 * @param {array} socialentries the network and id from the social profiles
-	 * @param {String} network the choice which network to use or 'first' to use any
+	 * @param {array} socialentries all social data from the contact
+	 * @param {String} network the choice which network to use or 'any' to use first match
+	 *
 	 * @returns {String} the url to the requested information or null in case of errors
 	 */
-	protected function getSocialConnector(array $socialentries, string $network) : ?string {
+	protected function getSocialConnector(array $socialEntries, string $network) : ?string {
 
 		$connector = null;
 		$selection = array();
 
-		// get all supported networks
-		if ($network === 'first') {
+		// selection of considered networks
+		if ($network === 'any') {
 			$selection = self::SOCIAL_CONNECTORS;
 		} else {
 			$selection = array($network => self::SOCIAL_CONNECTORS[$network]);
 		}
 
 		// check selected networks in order
-		foreach($selection as $socialnet => $social) {
+		foreach($selection as $socialNetSelected => $socialRecipe) {
 
 			// search for this network in user's profile
-			foreach ($socialentries as $socialnetentry => $profileId) {
+			foreach ($socialEntries as $socialNetwork => $profileId) {
 
-				if ($socialnet === strtolower($socialnetentry)) {
-					// cleanups
-					if (in_array('basename', $social['cleanups'])) {
+				if ($socialNetSelected === strtolower($socialNetwork)) {
+					// cleanups: extract social id
+					if (in_array('basename', $socialRecipe['cleanups'])) {
 						$profileId = basename($profileId);
 					}
-					if (in_array('filter', $social['cleanups'])) {
-						if (preg_match($social['filter']['regex'], $profileId, $matches)) {
-							$profileId = $matches[$social['filter']['group']];
+					if (array_key_exists('regex', $socialRecipe['cleanups'])) {
+						if (preg_match($socialRecipe['cleanups']['regex'], $profileId, $matches)) {
+							$profileId = $matches[$socialRecipe['cleanups']['group']];
 						}
 					}
-					// checks
-					if (in_array('number', $social['checks'])) {
-						if (!ctype_digit($profileId)) {
-							break;
-						}
-					}
-					$connector = str_replace("{socialId}", $profileId, $social['recipe']);
+					$connector = str_replace("{socialId}", $profileId, $socialRecipe['recipe']);
 					break;
 				}
 			}
@@ -190,12 +170,11 @@ class SocialApiController extends ApiController {
 	 *
 	 * @param {String} addressbookId the addressbook identifier
 	 * @param {String} contactId the contact identifier
-	 * @param {String} type the kind of information to retrieve -- provision
-	 * @param {String} network the social network to use or 'first' to use any
+	 * @param {String} network the social network to use or 'any' to use first match
 	 *
 	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
 	 */
-	public function fetch(string $addressbookId, string $contactId, string $type, string $network) : JSONResponse {
+	public function fetch(string $addressbookId, string $contactId, string $network) : JSONResponse {
 
 		$url = null;
 
@@ -263,34 +242,28 @@ class SocialApiController extends ApiController {
 			}
 
 			// update contact
-			switch ($type) {
-				case 'avatar':
-					if (!empty($contact['PHOTO'])) {
-						// overwriting without notice!
-					}
-					
-					$changes = array();
-					$changes['URI'] = $contact['URI'];
+			if (!empty($contact['PHOTO'])) {
+				// overwriting without notice!
+			}
 
-					$version = (float) $contact['VERSION'];
-					if ($version >= 4.0) {
-						$changes['PHOTO'] = "data:" . $image_type . ";base64," . base64_encode($socialdata);
-					} elseif ($version >= 3.0) {
-						$image_type = str_replace('image/', '', $image_type);
-						$changes['PHOTO'] = "ENCODING=b;TYPE=" . strtoupper($image_type) . ":" . base64_encode($socialdata);
-					} else {
-						return new JSONResponse([], Http::STATUS_CONFLICT);
-					}
+			$changes = array();
+			$changes['URI'] = $contact['URI'];
 
-					if ($changes['PHOTO'] === $contact['PHOTO']) {
-						return new JSONResponse([], Http::STATUS_NOT_MODIFIED);
-					}
+			$version = (float) $contact['VERSION'];
+			if ($version >= 4.0) {
+				$changes['PHOTO'] = "data:" . $image_type . ";base64," . base64_encode($socialdata);
+			} elseif ($version >= 3.0) {
+				$image_type = str_replace('image/', '', $image_type);
+				$changes['PHOTO'] = "ENCODING=b;TYPE=" . strtoupper($image_type) . ":" . base64_encode($socialdata);
+			} else {
+				return new JSONResponse([], Http::STATUS_CONFLICT);
+			}
 
-					$addressBook->createOrUpdate($changes, $addressbookId);
-					break;
-				default:
-					return new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED);
-			}	
+			if ($changes['PHOTO'] === $contact['PHOTO']) {
+				return new JSONResponse([], Http::STATUS_NOT_MODIFIED);
+			}
+
+			$addressBook->createOrUpdate($changes, $addressbookId);
 		} 
 		catch (Exception $e) {
 			return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);

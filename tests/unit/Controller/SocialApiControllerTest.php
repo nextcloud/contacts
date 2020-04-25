@@ -78,21 +78,21 @@ class SocialApiControllerTest extends TestCase {
 		);
 	}
 
-	public function firstSocialProvider() {
+	public function anySocialProvider() {
 		return [
-			'no social profiles'	 			=> ['first', null, new JSONResponse([], Http::STATUS_PRECONDITION_FAILED)],
-			'facebook profile with numbered profile id' 	=> ['first', array('facebook' => '4'), new JSONResponse([], Http::STATUS_OK)],
-			'facebook profile as url' 			=> ['first', array('facebook' => 'https://www.facebook.com/4'), new JSONResponse([], Http::STATUS_OK)],
-			'facebook profile as terminated url' 		=> ['first', array('facebook' => 'https://www.facebook.com/4/'), new JSONResponse([], Http::STATUS_OK)],
-			'invalid facebook profile' 			=> ['first', array('facebook' => 'zuck'), new JSONResponse([], Http::STATUS_NOT_FOUND)],
-			'facebook public page as alphanumeric id' 	=> ['first', array('facebook' => 'Nextclouders'), new JSONResponse([], Http::STATUS_OK)],
-			'tumblr profile' 				=> ['first', array('tumblr' => 'nextcloudperu'), new JSONResponse([], Http::STATUS_OK)],
-			'tumblr profile as url'				=> ['first', array('tumblr' => 'https://nextcloudperu.tumblr.com'), new JSONResponse([], Http::STATUS_OK)],
-			'tumblr profile as short url'			=> ['first', array('tumblr' => 'nextcloudperu.tumblr.com'), new JSONResponse([], Http::STATUS_OK)],
-			'tumblr profile as terminated url'		=> ['first', array('tumblr' => 'https://nextcloudperu.tumblr.com/'), new JSONResponse([], Http::STATUS_OK)],
-			'facebook and tumblr profiles'			=> ['first', array('tumblr' => 'nextcloudperu', 'facebook' => '4'), new JSONResponse([], Http::STATUS_OK)],
-			'invalid facebook and valid tumblr profiles'	=> ['first', array('tumblr' => 'nextcloudperu', 'facebook' => 'zuck'), new JSONResponse([], Http::STATUS_NOT_FOUND)],
-			'unknown social network'			=> ['first', array('unsupported' => 'https://nextcloud.com'), new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED)],
+			'no social profiles'	 			=> ['any', null, new JSONResponse([], Http::STATUS_PRECONDITION_FAILED)],
+			'facebook profile with numbered profile id' 	=> ['any', array('facebook' => '4'), new JSONResponse([], Http::STATUS_OK)],
+			'facebook profile as url' 			=> ['any', array('facebook' => 'https://www.facebook.com/4'), new JSONResponse([], Http::STATUS_OK)],
+			'facebook profile as terminated url' 		=> ['any', array('facebook' => 'https://www.facebook.com/4/'), new JSONResponse([], Http::STATUS_OK)],
+			'invalid facebook profile' 			=> ['any', array('facebook' => 'zuck'), new JSONResponse([], Http::STATUS_NOT_FOUND)],
+			'facebook public page as alphanumeric id' 	=> ['any', array('facebook' => 'Nextclouders'), new JSONResponse([], Http::STATUS_OK)],
+			'tumblr profile' 				=> ['any', array('tumblr' => 'nextcloudperu'), new JSONResponse([], Http::STATUS_OK)],
+			'tumblr profile as url'				=> ['any', array('tumblr' => 'https://nextcloudperu.tumblr.com'), new JSONResponse([], Http::STATUS_OK)],
+			'tumblr profile as short url'			=> ['any', array('tumblr' => 'nextcloudperu.tumblr.com'), new JSONResponse([], Http::STATUS_OK)],
+			'tumblr profile as terminated url'		=> ['any', array('tumblr' => 'https://nextcloudperu.tumblr.com/'), new JSONResponse([], Http::STATUS_OK)],
+			'facebook and tumblr profiles'			=> ['any', array('tumblr' => 'nextcloudperu', 'facebook' => '4'), new JSONResponse([], Http::STATUS_OK)],
+			'invalid facebook and valid tumblr profiles'	=> ['any', array('tumblr' => 'nextcloudperu', 'facebook' => 'zuck'), new JSONResponse([], Http::STATUS_NOT_FOUND)],
+			'unknown social network'			=> ['any', array('unsupported' => 'https://nextcloud.com'), new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED)],
 		];
 	}
 
@@ -108,7 +108,7 @@ class SocialApiControllerTest extends TestCase {
 	}
 
 	/**
-	 * @dataProvider firstSocialProvider
+	 * @dataProvider anySocialProvider
 	 * @dataProvider dedicatedSocialProvider
 	 */
 	public function testFetchAvatar($networkchoice, $social, $expected) {
@@ -143,7 +143,7 @@ class SocialApiControllerTest extends TestCase {
 			->method('getUserAddressBooks')
 			->willReturn(array($this->addressbook));
 
-		$result = $this->controller->fetch($addressbookId='contacts', $contactId='3225c0d5-1bd2-43e5-a08c-4e65eaa406b0', $type='avatar', $network=$networkchoice);
+		$result = $this->controller->fetch($addressbookId='contacts', $contactId='3225c0d5-1bd2-43e5-a08c-4e65eaa406b0', $network=$networkchoice);
 
 		$this->assertEquals($expected, $result);
 
