@@ -31,6 +31,7 @@ use OCP\AppFramework\Http\TemplateResponse;
 // use OCP\IInitialStateService;
 use OCP\IConfig;
 use OCP\Contacts\IManager;
+use OCP\IAddressBook;
 use OCP\L10N\IFactory;
 use OCP\IRequest;
 
@@ -151,19 +152,17 @@ class SocialApiController extends ApiController {
 	 * generate download url for a social entry
 	 *
 	 * @param {array} socialentries all social data from the contact
-	 * @param {String} network the choice which network to use or 'any' to use first match
+	 * @param {String} network the choice which network to use (fallback: take first match)
 	 *
 	 * @returns {String} the url to the requested information or null in case of errors
 	 */
 	protected function getSocialConnector(array $socialEntries, string $network) : ?string {
 
 		$connector = null;
-		$selection = array();
+		$selection = self::SOCIAL_CONNECTORS;
 
-		// selection of considered networks
-		if ($network === 'any') {
-			$selection = self::SOCIAL_CONNECTORS;
-		} else {
+		// check if dedicated network selected
+		if (isset(self::SOCIAL_CONNECTORS[$network])) {
 			$selection = array($network => self::SOCIAL_CONNECTORS[$network]);
 		}
 
@@ -194,6 +193,27 @@ class SocialApiController extends ApiController {
 		return ($connector);
 	}
 
+
+	/**
+	 * @NoAdminRequired
+	 *
+	 * Gets the addressbook of an addressbookId
+	 *
+	 * @param {String} addressbookId the identifier of the addressbook
+	 *
+	 * @returns {IAddressBook} the corresponding addressbook or null
+	 */
+	protected function getAddressBook(string $addressbookId) : ?IAddressBook {
+		$addressBook = null;
+		$addressBooks = $this->manager->getUserAddressBooks();
+		foreach($addressBooks as $ab) {
+			if ($ab->getUri() === $addressbookId) {
+				$addressBook = $ab;
+			}
+		}
+		return $addressBook;
+	}
+
 	/**
 	 * @NoAdminRequired
 	 *
@@ -201,7 +221,7 @@ class SocialApiController extends ApiController {
 	 *
 	 * @param {String} addressbookId the addressbook identifier
 	 * @param {String} contactId the contact identifier
-	 * @param {String} network the social network to use or 'any' to use first match
+	 * @param {String} network the social network to use (if unkown: take first match)
 	 *
 	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
 	 */
@@ -211,13 +231,7 @@ class SocialApiController extends ApiController {
 
 		try {
 			// get corresponding addressbook
-			$addressBooks = $this->manager->getUserAddressBooks();
-			$addressBook = null;
-			foreach($addressBooks as $ab) {
-				if ($ab->getUri() === $addressbookId) {
-					$addressBook = $ab;
-				}
-			}
+			$addressBook = $this->getAddressBook($addressbookId);
 			if (is_null($addressBook)) {
 				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
 			}
@@ -230,12 +244,7 @@ class SocialApiController extends ApiController {
 			}
 
 			// retrieve data
-			try {
-				$url = $this->getSocialConnector($socialprofiles, $network);
-			}
-			catch (Exception $e) {
-				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
-			}
+			$url = $this->getSocialConnector($socialprofiles, $network);
 
 			if (empty($url)) {
 				return new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED);
