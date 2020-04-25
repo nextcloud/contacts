@@ -191,13 +191,8 @@ class SocialApiController extends ApiController {
 				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
 			}
 
-			// search contact in that addressbook
+			// search contact in that addressbook, get social data
 			$contact = $addressBook->search($contactId, ['UID'], [])[0];
-			if (is_null($contact)) {
-				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
-			}
-
-			// get social data
 			$socialprofiles = $contact['X-SOCIALPROFILE'];
 			if (is_null($socialprofiles)) {
 				return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
@@ -215,10 +210,6 @@ class SocialApiController extends ApiController {
 				return new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED);
 			}
 
-			$host = parse_url($url);
-			if (!$host) {
-				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
-			}
 			$opts = [
 				"http" => [
 					"method" => "GET",

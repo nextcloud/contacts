@@ -46,17 +46,23 @@ class PageController extends Controller {
 	/** @var IFactory */
 	private $languageFactory;
 
+	/** @var SocialApiController */
+	private $socialApi;
+
 	public function __construct(string $appName,
 								IRequest $request,
 								IConfig $config,
 								IInitialStateService $initialStateService,
-								IFactory $languageFactory) {
+								IFactory $languageFactory,
+								SocialApiController $socialApi) {
 		parent::__construct($appName, $request);
 
 		$this->appName = $appName;
 		$this->config = $config;
 		$this->initialStateService = $initialStateService;
 		$this->languageFactory = $languageFactory;
+
+		$this->socialApi = $socialApi;
 	}
 
 	/**
@@ -68,7 +74,7 @@ class PageController extends Controller {
 	public function index(): TemplateResponse {
 		$locales = $this->languageFactory->findAvailableLocales();
 		$defaultProfile = $this->config->getAppValue($this->appName, 'defaultProfile', 'HOME');
-		$supportedNetworks = SocialApiController::getSupportedNetworks('all');
+		$supportedNetworks = $this->socialApi->getSupportedNetworks();
 
 		$this->initialStateService->provideInitialState($this->appName, 'locales', $locales);
 		$this->initialStateService->provideInitialState($this->appName, 'defaultProfile', $defaultProfile);

@@ -142,7 +142,7 @@ class SocialApiControllerTest extends TestCase {
 			->method('getUserAddressBooks')
 			->willReturn(array($this->addressbook));
 
-		$result = $this->controller->fetch($addressbookId='contacts', $contactId='3225c0d5-1bd2-43e5-a08c-4e65eaa406b0', $network=$networkchoice);
+		$result = $this->controller->fetch('contacts', '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0', $networkchoice);
 
 		$this->assertEquals($expected, $result);
 
