@@ -101,7 +101,6 @@ class SocialApiControllerTest extends TestCase {
 			'no social profile (dedicated)'	 		=> ['facebook', null, new JSONResponse([], Http::STATUS_PRECONDITION_FAILED)],
 			'dedicated valid facebook profile' 		=> ['facebook', array('facebook' => '4'), new JSONResponse([], Http::STATUS_OK)],
 			'dedicated non-present profile' 		=> ['tumblr', array('facebook' => '4'), new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED)],
-			'dedicated 2x present profile'			=> ['tumblr', array('tumblr' => 'nextcloudperu.tumblr.com'), new JSONResponse([], Http::STATUS_OK)],
 			'dedicated present profile, 1st place'		=> ['tumblr', array('tumblr' => 'nextcloudperu', 'facebook' => '4'), new JSONResponse([], Http::STATUS_OK)],
 			'dedicated present profile, 2nd place'		=> ['tumblr', array('facebook' => '4', 'tumblr' => 'nextcloudperu'), new JSONResponse([], Http::STATUS_OK)],
 		];
