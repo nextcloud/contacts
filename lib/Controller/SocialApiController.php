@@ -135,7 +135,7 @@ class SocialApiController extends ApiController {
 	 * generate download url for a social entry (based on type of data requested)
 	 *
 	 * @param {array} socialentries the network and id from the social profiles
-	 * @param {array} network the choice which network to use or 'first' to use any
+	 * @param {String} network the choice which network to use or 'first' to use any
 	 * @returns {String} the url to the requested information or null in case of errors
 	 */
 	protected function getSocialConnector(array $socialentries, string $network) : ?string {
@@ -209,19 +209,19 @@ class SocialApiController extends ApiController {
 				}
 			}
 			if (is_null($addressBook)) {
-				return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
+				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
 			}
 
 			// search contact in that addressbook
 			$contact = $addressBook->search($contactId, ['UID'], [])[0];
 			if (is_null($contact)) {
-				return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR); 
+				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
 			}
 
 			// get social data
 			$socialprofiles = $contact['X-SOCIALPROFILE'];
 			if (is_null($socialprofiles)) {
-				return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
+				return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
 			}
 
 			// retrieve data

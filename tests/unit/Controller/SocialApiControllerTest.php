@@ -80,7 +80,7 @@ class SocialApiControllerTest extends TestCase {
 
 	public function firstSocialProvider() {
 		return [
-			'no social profiles'	 			=> ['first', null, new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR)],
+			'no social profiles'	 			=> ['first', null, new JSONResponse([], Http::STATUS_PRECONDITION_FAILED)],
 			'facebook profile with numbered profile id' 	=> ['first', array('facebook' => '4'), new JSONResponse([], Http::STATUS_OK)],
 			'facebook profile as url' 			=> ['first', array('facebook' => 'https://www.facebook.com/4'), new JSONResponse([], Http::STATUS_OK)],
 			'facebook profile as terminated url' 		=> ['first', array('facebook' => 'https://www.facebook.com/4/'), new JSONResponse([], Http::STATUS_OK)],
@@ -98,7 +98,7 @@ class SocialApiControllerTest extends TestCase {
 
 	public function dedicatedSocialProvider() {
 		return [
-			'no social profile (dedicated)'	 		=> ['facebook', null, new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR)],
+			'no social profile (dedicated)'	 		=> ['facebook', null, new JSONResponse([], Http::STATUS_PRECONDITION_FAILED)],
 			'dedicated valid facebook profile' 		=> ['facebook', array('facebook' => '4'), new JSONResponse([], Http::STATUS_OK)],
 			'dedicated non-present profile' 		=> ['tumblr', array('facebook' => '4'), new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED)],
 			'dedicated 2x present profile'			=> ['tumblr', array('tumblr' => 'nextcloudperu.tumblr.com'), new JSONResponse([], Http::STATUS_OK)],
