@@ -91,7 +91,6 @@ class SocialApiController extends ApiController {
 		$this->languageFactory = $languageFactory;
 		$this->manager = $manager;
 		$this->config = $config;
-
 	}
 
 
@@ -100,19 +99,51 @@ class SocialApiController extends ApiController {
 	 *
 	 * returns an array of supported social networks
 	 *
-	 * @returns {array} an array of supported social networks
+	 * @returns {array} array of the supported social networks
 	 */
 	public function getSupportedNetworks() : array {
+		return array_keys(self::SOCIAL_CONNECTORS);
+	}
 
-		$supported = array();
-		$supported['avatar'] = array();
+	/**
+	 * @NoAdminRequired
+	 *
+	 * Creates the photo start tag for the vCard
+	 *
+	 * @param {float} version the version of the vCard
+	 * @param {array} header the http response headers containing the image type
+	 *
+	 * @returns {String} the photo start tag or null in case of errors
+	 */
+	protected function getPhotoTag(float $version, array $header) : ?string {
 
-		foreach(array_keys(self::SOCIAL_CONNECTORS) as $network) {
-			array_push($supported['avatar'], $network);
+		$type = null;
+
+		// get image type from headers
+		foreach ($header as $value) {
+			if (preg_match('/^Content-Type:/i', $value)) {
+				if (stripos($value, "image") !== false) {
+					$type = substr($value, stripos($value, "image"));
+				}
+			}
+		}
+		if (is_null($type)) {
+			return null;
 		}
 
-		return $supported;
+		// return respective photo tag
+		if ($version >= 4.0) {
+			return "data:" . $type . ";base64,";
+		}
+
+		if ($version >= 3.0) {
+			$type = str_replace('image/', '', $type);
+			return "ENCODING=b;TYPE=" . strtoupper($type) . ":";
+		}
+
+		return null;
 	}
+
 
 	/**
 	 * @NoAdminRequired
@@ -219,36 +250,20 @@ class SocialApiController extends ApiController {
 			$context = stream_context_create($opts);
 			$socialdata = file_get_contents($url, false, $context);
 
-			$image_type = null;
-			foreach ($http_response_header as $value) {
-				if (preg_match('/^Content-Type:/i', $value)) {
-					if (stripos($value, "image") !== false) {
-						$image_type = substr($value, stripos($value, "image"));
-					}
-				}
-			}
+			$photoTag = $this->getPhotoTag($contact['VERSION'], $http_response_header);
 
-			if (!$socialdata || $image_type === null) {
+			if (!$socialdata || $photoTag === null) {
 				return new JSONResponse([], Http::STATUS_NOT_FOUND);
 			}
 
 			// update contact
-			if (!empty($contact['PHOTO'])) {
-				// overwriting without notice!
-			}
-
 			$changes = array();
 			$changes['URI'] = $contact['URI'];
 
-			$version = (float) $contact['VERSION'];
-			if ($version >= 4.0) {
-				$changes['PHOTO'] = "data:" . $image_type . ";base64," . base64_encode($socialdata);
-			} elseif ($version >= 3.0) {
-				$image_type = str_replace('image/', '', $image_type);
-				$changes['PHOTO'] = "ENCODING=b;TYPE=" . strtoupper($image_type) . ":" . base64_encode($socialdata);
-			} else {
-				return new JSONResponse([], Http::STATUS_CONFLICT);
+			if (!empty($contact['PHOTO'])) {
+				// overwriting without notice!
 			}
+			$changes['PHOTO'] = $photoTag . base64_encode($socialdata);
 
 			if ($changes['PHOTO'] === $contact['PHOTO']) {
 				return new JSONResponse([], Http::STATUS_NOT_MODIFIED);

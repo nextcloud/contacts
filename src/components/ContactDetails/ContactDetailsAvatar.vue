@@ -75,7 +75,7 @@
 			</Modal>
 
 			<!-- out of the avatar__options because of the overflow hidden -->
-			<Actions :open="opened" class="contact-avatar-options__popovermenu" v-if="!isReadOnly">
+			<Actions v-if="!isReadOnly" :open="opened" class="contact-avatar-options__popovermenu">
 				<ActionButton icon="icon-upload" @click="selectFileInput">
 					{{ t('contacts', 'Upload a new picture') }}
 				</ActionButton>
@@ -147,7 +147,7 @@ export default {
 		},
 		supportedSocial() {
 			const supported = this.contact.vCard.getAllProperties('x-socialprofile')
-				.filter(prop => supportedNetworks['avatar']
+				.filter(prop => supportedNetworks
 					.includes((prop.getParameter('type')).toString().toLowerCase()))
 				.map(a => a.jCal[1].type.toString().toLowerCase())
 
@@ -352,7 +352,7 @@ export default {
 		/**
 		 * Downloads the Avatar from social media
 		 *
-		 * @param {String} network the social network to use
+		 * @param {String} network the social network to use (or 'any' for first match)
 		 */
 		async getSocialAvatar(network) {
 
