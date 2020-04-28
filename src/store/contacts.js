@@ -372,11 +372,11 @@ const actions = {
 	 * @param {string} data.etag the contact etag to override in case of conflict
 	 * @returns {Promise}
 	 */
-	async fetchFullContact(context, { contact, etag = '' }) {
+	async fetchFullContact(context, { contact, etag = '', forceReFetch = false }) {
 		if (etag.trim() !== '') {
 			await context.commit('updateContactEtag', { contact, etag })
 		}
-		return contact.dav.fetchCompleteData()
+		return contact.dav.fetchCompleteData(forceReFetch)
 			.then((response) => {
 				const newContact = new Contact(contact.dav.data, contact.addressbook)
 				context.commit('updateContact', newContact)

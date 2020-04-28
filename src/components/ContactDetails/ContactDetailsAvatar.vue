@@ -370,8 +370,7 @@ export default {
 					}
 
 					// Fetch newly updated contact
-					this.contact.dav._isPartial = true
-					await this.$store.dispatch('fetchFullContact', { contact: this.contact })
+					await this.$store.dispatch('fetchFullContact', { contact: this.contact, forceReFetch: true })
 
 					// Update local clone
 					const contact = this.$store.getters.getContact(this.contact.key)
