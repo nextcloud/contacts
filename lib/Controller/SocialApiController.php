@@ -238,10 +238,10 @@ class SocialApiController extends ApiController {
 
 			// search contact in that addressbook, get social data
 			$contact = $addressBook->search($contactId, ['UID'], [])[0];
-			$socialprofiles = $contact['X-SOCIALPROFILE'];
-			if (is_null($socialprofiles)) {
+			if (!isset($contact['X-SOCIALPROFILE'])) {
 				return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
 			}
+			$socialprofiles = $contact['X-SOCIALPROFILE'];
 
 			// retrieve data
 			$url = $this->getSocialConnector($socialprofiles, $network);
@@ -274,7 +274,7 @@ class SocialApiController extends ApiController {
 			}
 			$changes['PHOTO'] = $photoTag . base64_encode($socialdata);
 
-			if ($changes['PHOTO'] === $contact['PHOTO']) {
+			if (isset($contact['PHOTO']) && $changes['PHOTO'] === $contact['PHOTO']) {
 				return new JSONResponse([], Http::STATUS_NOT_MODIFIED);
 			}
 
