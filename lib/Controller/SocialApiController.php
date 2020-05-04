@@ -160,7 +160,6 @@ class SocialApiController extends ApiController {
 
 		$connector = null;
 		$selection = self::SOCIAL_CONNECTORS;
-
 		// check if dedicated network selected
 		if (isset(self::SOCIAL_CONNECTORS[$network])) {
 			$selection = array($network => self::SOCIAL_CONNECTORS[$network]);
@@ -170,9 +169,11 @@ class SocialApiController extends ApiController {
 		foreach($selection as $socialNetSelected => $socialRecipe) {
 
 			// search for this network in user's profile
-			foreach ($socialEntries as $socialNetwork => $profileId) {
+			foreach ($socialEntries as $socialEntry) {
 
-				if ($socialNetSelected === strtolower($socialNetwork)) {
+				if ($socialNetSelected === strtolower($socialEntry['type'])) {
+					$profileId = $socialEntry['value'];
+
 					// cleanups: extract social id
 					if (in_array('basename', $socialRecipe['cleanups'])) {
 						$profileId = basename($profileId);
@@ -217,7 +218,7 @@ class SocialApiController extends ApiController {
 	/**
 	 * @NoAdminRequired
 	 *
-	 * Retrieves social profile data for a contact
+	 * Retrieves social profile data for a contact and updates the entry
 	 *
 	 * @param {String} addressbookId the addressbook identifier
 	 * @param {String} contactId the contact identifier
@@ -225,7 +226,7 @@ class SocialApiController extends ApiController {
 	 *
 	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
 	 */
-	public function fetch(string $addressbookId, string $contactId, string $network) : JSONResponse {
+	public function updateContact(string $addressbookId, string $contactId, string $network) : JSONResponse {
 
 		$url = null;
 
@@ -237,7 +238,7 @@ class SocialApiController extends ApiController {
 			}
 
 			// search contact in that addressbook, get social data
-			$contact = $addressBook->search($contactId, ['UID'], [])[0];
+			$contact = $addressBook->search($contactId, ['UID'], ['types' => true])[0];
 			if (!isset($contact['X-SOCIALPROFILE'])) {
 				return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
 			}
