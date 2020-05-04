@@ -30,8 +30,6 @@ use OCP\IConfig;
 use OCP\IRequest;
 use OCP\L10N\IFactory;
 use OCP\Util;
-
-use OCP\Contacts\IManager;
 use OCA\Contacts\Controller\SocialApiController;
 
 class PageController extends Controller {
@@ -55,7 +53,7 @@ class PageController extends Controller {
 								IConfig $config,
 								IInitialStateService $initialStateService,
 								IFactory $languageFactory,
-								IManager $manager) {
+								SocialApiController $socialApi) {
 		parent::__construct($appName, $request);
 
 		$this->appName = $appName;
@@ -63,7 +61,7 @@ class PageController extends Controller {
 		$this->initialStateService = $initialStateService;
 		$this->languageFactory = $languageFactory;
 
-		$this->socialApi = new SocialApiController($appName, $request, $manager, $config, $languageFactory);
+		$this->socialApi = $socialApi;
 	}
 
 	/**
