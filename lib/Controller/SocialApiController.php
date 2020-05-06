@@ -53,8 +53,7 @@ class SocialApiController extends ApiController {
 	/**
 	 * This constant stores the supported social networks
 	 * It is an ordered list, so that first listed items will be checked first
-	 * Each item stores the avatar-url-formula as recipe and a cleanup parameter to
-	 * extract the profile-id from the users entry
+	 * Each item stores the avatar-url-formula as recipe and cleanup parameters
 	 * 
 	 * @const {array} SOCIAL_CONNECTORS dictionary of supported social networks
 	 */
@@ -62,6 +61,10 @@ class SocialApiController extends ApiController {
 		'facebook' 	=> [
 			'recipe' 	=> 'https://graph.facebook.com/{socialId}/picture?width=720',
 			'cleanups' 	=> ['basename'],
+		],
+		'instagram' 	=> [
+			'recipe' 	=> 'https://www.instagram.com/{socialId}/?__a=1',
+			'cleanups' 	=> ['json' => 'graphql->user->profile_pic_url_hd'],
 		],
 		'tumblr' 	=> [
 			'recipe' 	=> 'https://api.tumblr.com/v2/blog/{socialId}/avatar/512',
@@ -146,6 +149,44 @@ class SocialApiController extends ApiController {
 	}
 
 
+
+	/**
+	 * @NoAdminRequired
+	 *
+	 * extracts desired value from a json
+	 *
+	 * @param {string} url the target from where to fetch the json
+	 * @param {String} the desired key to filter for (nesting possible with '->')
+	 *
+	 * @returns {String} the extracted value or null if not present
+	 */
+	protected function getFromJson(string $url, string $desired) : ?string {
+		try {
+			$opts = [
+				"http" => [
+					"method" => "GET",
+					"header" => "User-Agent: Nextcloud Contacts App"
+				]
+			];
+			$context = stream_context_create($opts);
+			$result = file_get_contents($url, false, $context);
+
+			$jsonResult = json_decode($result,true);
+			$location = explode ('->' , $desired);
+			foreach ($location as $loc) {
+				if (!isset($jsonResult[$loc])) {
+					return null;
+				}
+				$jsonResult = $jsonResult[$loc];
+			}
+			return $jsonResult;
+		}
+		catch (Exception $e) {
+			return null;
+		}
+	}
+
+
 	/**
 	 * @NoAdminRequired
 	 *
@@ -184,6 +225,9 @@ class SocialApiController extends ApiController {
 						}
 					}
 					$connector = str_replace("{socialId}", $profileId, $socialRecipe['recipe']);
+					if (array_key_exists('json', $socialRecipe['cleanups'])) {
+						$connector = $this->getFromJson($connector, $socialRecipe['cleanups']['json']);
+					}
 					break;
 				}
 			}
@@ -215,6 +259,7 @@ class SocialApiController extends ApiController {
 		return $addressBook;
 	}
 
+
 	/**
 	 * @NoAdminRequired
 	 *
@@ -243,7 +288,6 @@ class SocialApiController extends ApiController {
 				return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
 			}
 			$socialprofiles = $contact['X-SOCIALPROFILE'];
-
 			// retrieve data
 			$url = $this->getSocialConnector($socialprofiles, $network);
 
