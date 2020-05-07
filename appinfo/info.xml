@@ -41,4 +41,8 @@
 	<contactsmenu>
 		<provider>OCA\Contacts\ContactsMenu\Providers\DetailsProvider</provider>
 	</contactsmenu>
+
+	<settings>
+		<admin>OCA\Contacts\Settings\AdminSettings</admin>
+	</settings>
 </info>

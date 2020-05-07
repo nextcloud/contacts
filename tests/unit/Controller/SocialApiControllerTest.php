@@ -87,11 +87,34 @@ class SocialApiControllerTest extends TestCase {
 
 
 	public function testSupportedNetworks() {
+		$this->config
+			->method('getAppValue')
+			->with(
+				$this->equalTo('contacts'),
+				$this->equalTo('allowSocialSync'),
+				$this->anything() )
+			->willReturn('1');
+
 		$result = $this->controller->getSupportedNetworks();
 
 		$this->assertContains('facebook', $result);
 		$this->assertContains('instagram', $result);
 		$this->assertContains('tumblr', $result);
+	}
+
+
+	public function testDeactivatedSocial() {
+		$this->config
+			->method('getAppValue')
+			->with(
+				$this->equalTo('contacts'),
+				$this->equalTo('allowSocialSync'),
+				$this->anything() )
+			->willReturn('0');
+
+		$result = $this->controller->getSupportedNetworks();
+
+		$this->assertEmpty($result);
 	}
 
 
