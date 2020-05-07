@@ -44,6 +44,6 @@ function setAllowSocialSync(val) {
  */
 $(document).ready(function() {
     $('body').on('change', 'input#allowSocialSync', function() {
-        setAllowSocialSync($(this).is(':checked') ? '1' : '0');
+        setAllowSocialSync($(this).is(':checked') ? 'yes' : 'no');
     });
 });

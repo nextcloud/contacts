@@ -93,7 +93,7 @@ class SocialApiControllerTest extends TestCase {
 				$this->equalTo('contacts'),
 				$this->equalTo('allowSocialSync'),
 				$this->anything() )
-			->willReturn('1');
+			->willReturn('yes');
 
 		$result = $this->controller->getSupportedNetworks();
 
@@ -110,7 +110,7 @@ class SocialApiControllerTest extends TestCase {
 				$this->equalTo('contacts'),
 				$this->equalTo('allowSocialSync'),
 				$this->anything() )
-			->willReturn('0');
+			->willReturn('no');
 
 		$result = $this->controller->getSupportedNetworks();
 

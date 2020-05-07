@@ -57,7 +57,7 @@ class AdminSettings implements ISettings {
          * @return TemplateResponse
          */
         public function getForm() {
-                $isAdminEnabled = $this->config->getAppValue($this->appName, 'allowSocialSync', '0');
+                $isAdminEnabled = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
 
 		$parameters = ['allowSocialSync' => $isAdminEnabled];
 

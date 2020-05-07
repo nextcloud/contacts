@@ -118,7 +118,7 @@ class SocialApiController extends ApiController {
 	 */
 	public function getSupportedNetworks() : array {
 		$isAdminEnabled = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
-		if ($isAdminEnabled !== '1') {
+		if ($isAdminEnabled !== 'yes') {
 			return array();
 		}
 		return array_keys(self::SOCIAL_CONNECTORS);
