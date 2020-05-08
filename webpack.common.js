@@ -7,7 +7,10 @@ const appName = packageJson.name
 const appVersion = JSON.stringify(packageJson.version)
 
 module.exports = {
-	entry: path.join(__dirname, 'src', 'main.js'),
+	entry: {
+		adminSettings: path.join(__dirname, 'src', 'adminSettings.js'),
+		main: path.join(__dirname, 'src', 'main.js'),
+	},
 	output: {
 		path: path.resolve(__dirname, './js'),
 		publicPath: '/js/',

@@ -33,6 +33,10 @@ class Application extends App {
 	public function __construct() {
 		parent::__construct(self::APP_ID);
 	}
+	
+	public const AvailableSettings = [
+		'allowSocialSync' => 'yes',
+	];
 
 	public function register() {
 		$server = $this->getContainer()->getServer();
