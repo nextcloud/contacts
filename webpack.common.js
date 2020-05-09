@@ -3,18 +3,16 @@ const webpack = require('webpack')
 const { VueLoaderPlugin } = require('vue-loader')
 const StyleLintPlugin = require('stylelint-webpack-plugin')
 const packageJson = require('./package.json')
-const appName = packageJson.name
 const appVersion = JSON.stringify(packageJson.version)
 
 module.exports = {
 	entry: {
 		adminSettings: path.join(__dirname, 'src', 'adminSettings.js'),
-		main: path.join(__dirname, 'src', 'main.js'),
+		contacts: path.join(__dirname, 'src', 'main.js'),
 	},
 	output: {
 		path: path.resolve(__dirname, './js'),
 		publicPath: '/js/',
-		filename: `${appName}.js`,
 		chunkFilename: 'chunks/[name]-[hash].js'
 	},
 	module: {

@@ -55,19 +55,19 @@ class SocialApiController extends ApiController {
 	 * This constant stores the supported social networks
 	 * It is an ordered list, so that first listed items will be checked first
 	 * Each item stores the avatar-url-formula as recipe and cleanup parameters
-	 * 
+	 *
 	 * @const {array} SOCIAL_CONNECTORS dictionary of supported social networks
 	 */
 	const SOCIAL_CONNECTORS = [
-		'facebook' 	=> [
-			'recipe' 	=> 'https://graph.facebook.com/{socialId}/picture?width=720',
-			'cleanups' 	=> ['basename'],
-		],
-		'instagram' 	=> [
+		'Instagram' 	=> [
 			'recipe' 	=> 'https://www.instagram.com/{socialId}/?__a=1',
 			'cleanups' 	=> ['basename', 'json' => 'graphql->user->profile_pic_url_hd'],
 		],
-		'tumblr' 	=> [
+		'Facebook' 	=> [
+			'recipe' 	=> 'https://graph.facebook.com/{socialId}/picture?width=720',
+			'cleanups' 	=> ['basename'],
+		],
+		'Tumblr' 	=> [
 			'recipe' 	=> 'https://api.tumblr.com/v2/blog/{socialId}/avatar/512',
 			'cleanups' 	=> ['regex' => '/(?:http[s]*\:\/\/)*(.*?)\.(?=[^\/]*\..{2,5})/i', 'group' => 1], // "subdomain"
 		],
@@ -189,7 +189,7 @@ class SocialApiController extends ApiController {
 			}
 
 			$addressBook->createOrUpdate($changes, $addressbookId);
-		} 
+		}
 		catch (Exception $e) {
 			return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}

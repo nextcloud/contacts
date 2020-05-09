@@ -36,6 +36,9 @@ class AdminSettings implements ISettings {
         /** @var IConfig */
         private $config;
 
+        /** @var IInitialStateService */
+		private $initialStateService;
+
         /**
          * Admin constructor.
          *
@@ -52,12 +55,7 @@ class AdminSettings implements ISettings {
          * @return TemplateResponse
          */
         public function getForm() {
-        	// FIXME: working but ugly:
-		// $isAdminEnabled = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
-		// $parameters = ['allowSocialSync' => $isAdminEnabled];
-		// return new TemplateResponse($this->appName, 'adminSettings', $parameters);
-
-		foreach (Application::AvailableSettings as $key => $default) {
+        	foreach (Application::AvailableSettings as $key => $default) {
 			$data = $this->config->getAppValue($this->appName, $key, $default);
 			$this->initialStateService->provideInitialState($this->appName, $key, $data);
 		}

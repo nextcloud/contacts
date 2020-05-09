@@ -1,5 +1,4 @@
 <?php
-//FIXME: this does not work...?
 script('contacts', 'adminSettings');
 ?>
 

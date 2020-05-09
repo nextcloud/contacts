@@ -147,11 +147,10 @@ export default {
 		},
 		supportedSocial() {
 			const supported = this.contact.vCard.getAllProperties('x-socialprofile')
-				.filter(prop => supportedNetworks
+				.filter(prop => supportedNetworks.map(v => v.toLowerCase())
 					.includes((prop.getParameter('type')).toString().toLowerCase()))
-				.map(a => a.jCal[1].type.toString().toLowerCase())
-
-			return Array.from(new Set(supported))
+				.map(a => a.jCal[1].type.toString())
+			return Array.from(new Set(supported.map(v => this.capitalize(v))))
 		},
 	},
 	mounted() {
@@ -235,7 +234,15 @@ export default {
 			this.$refs.uploadInput.value = ''
 			this.loading = false
 		},
-
+		/**
+		 * Return the word with (only) the first letter capitalized
+		 *
+		 * @param {string} word the word to handle
+		 * @returns {string} the word with the first letter capitalized
+		 */
+		capitalize(word) {
+			return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+		},
 		/**
 		 * Return the mimetype based on the first magix byte
 		 *

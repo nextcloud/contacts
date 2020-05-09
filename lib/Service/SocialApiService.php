@@ -165,6 +165,7 @@ class SocialApiService {
 			// search for this network in user's profile
 			foreach ($socialEntries as $socialEntry) {
 
+				$socialNetSelected = strtolower($socialNetSelected);
 				if ($socialNetSelected === strtolower($socialEntry['type'])) {
 					$profileId = $socialEntry['value'];
 
