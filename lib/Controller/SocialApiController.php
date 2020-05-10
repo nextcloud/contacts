@@ -59,23 +59,19 @@ class SocialApiController extends ApiController {
 	 * @const {array} SOCIAL_CONNECTORS dictionary of supported social networks
 	 */
 	const SOCIAL_CONNECTORS = [
-		'Instagram' 	=> [
+		'instagram' 	=> [
 			'recipe' 	=> 'https://www.instagram.com/{socialId}/?__a=1',
 			'cleanups' 	=> ['basename', 'json' => 'graphql->user->profile_pic_url_hd'],
 		],
-		'Facebook' 	=> [
+		'facebook' 	=> [
 			'recipe' 	=> 'https://graph.facebook.com/{socialId}/picture?width=720',
 			'cleanups' 	=> ['basename'],
 		],
-		'Tumblr' 	=> [
+		'tumblr' 	=> [
 			'recipe' 	=> 'https://api.tumblr.com/v2/blog/{socialId}/avatar/512',
 			'cleanups' 	=> ['regex' => '/(?:http[s]*\:\/\/)*(.*?)\.(?=[^\/]*\..{2,5})/i', 'group' => 1], // "subdomain"
 		],
 		/* untrusted
-		'instagram' 	=> [
-			'recipe' 	=> 'http://avatars.io/instagram/{socialId}',
-			'cleanups' 	=> ['basename'],
-		],
 		'twitter' 	=> [
 			'recipe' 	=> 'http://avatars.io/twitter/{socialId}',
 			'cleanups' 	=> ['basename'],

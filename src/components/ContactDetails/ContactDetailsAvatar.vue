@@ -146,11 +146,11 @@ export default {
 			return false
 		},
 		supportedSocial() {
-			const supported = this.contact.vCard.getAllProperties('x-socialprofile')
-				.filter(prop => supportedNetworks.map(v => v.toLowerCase())
-					.includes((prop.getParameter('type')).toString().toLowerCase()))
-				.map(a => a.jCal[1].type.toString())
-			return Array.from(new Set(supported.map(v => this.capitalize(v))))
+			const available = this.contact.vCard.getAllProperties('x-socialprofile')
+				.map(a => a.jCal[1].type.toString().toLowerCase())
+			const supported = supportedNetworks.map(v => v.toLowerCase())
+			return supported.filter(i => available.includes(i))
+				.map(j => this.capitalize(j))
 		},
 	},
 	mounted() {
@@ -368,7 +368,7 @@ export default {
 				this.loading = true
 				try {
 					const response = await axios.get(generateUrl('/apps/contacts/api/v1/social/avatar/{network}/{id}/{uid}', {
-						network: network,
+						network: network.toLowerCase(),
 						id: this.contact.addressbook.id,
 						uid: this.contact.uid,
 					}))
