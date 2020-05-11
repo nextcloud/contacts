@@ -52,6 +52,20 @@
 						{{ item.utils.counter }}
 					</AppNavigationCounter>
 				</AppNavigationItem>
+
+				<AppNavigationItem
+					:force-menu="true"
+					:menu-open.sync="isNewGroupMenuOpen"
+					:title="t('contacts', '+ New group')"
+					menu-icon="icon-add"
+					@click.prevent.stop="toggleNewGroupMenu">
+					<template slot="actions">
+						<ActionInput
+							icon="icon-contacts-dark"
+							:placeholder="t('contacts','Group name')"
+							@submit.prevent.stop="createNewGroup" />
+					</template>
+				</AppNavigationItem>
 			</ul>
 
 			<!-- settings -->
@@ -96,6 +110,7 @@ import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCo
 import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
 import Content from '@nextcloud/vue/dist/Components/Content'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
@@ -128,6 +143,7 @@ export default {
 		AppNavigationNew,
 		AppNavigationSettings,
 		ActionButton,
+		ActionInput,
 		ContactDetails,
 		ContactsList,
 		Content,
@@ -155,6 +171,8 @@ export default {
 
 	data() {
 		return {
+			isNewGroupMenuOpen: false,
+			isCreatingGroup: false,
 			loading: true,
 			searchQuery: '',
 		}
@@ -509,6 +527,16 @@ export default {
 			if (this.isImportDone) {
 				this.$store.dispatch('changeStage', 'default')
 			}
+		},
+
+		toggleNewGroupMenu() {
+			this.isNewGroupMenuOpen = !this.isNewGroupMenuOpen
+		},
+		createNewGroup(e) {
+			const input = e.target.querySelector('input[type=text]')
+			const groupName = input.value.trim()
+			this.$store.dispatch('addGroup', groupName)
+			this.isNewGroupMenuOpen = false
 		},
 	},
 }
