@@ -33,17 +33,3 @@
 	border-radius: 50%;
 	opacity: 1;
 }
-
-// Virtual scroller overrides
-.vue-recycle-scroller {
-	position: sticky !important;
-}
-
-.vue-recycle-scroller__item-view {
-	// TODO: find better solution?
-	// https://github.com/Akryum/vue-virtual-scroller/issues/70
-	// hack to not show the transition
-	overflow: hidden;
-	// same as app-content-list-item
-	height: 68px;
-}
