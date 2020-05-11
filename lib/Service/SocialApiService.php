@@ -23,8 +23,12 @@
 
 namespace OCA\Contacts\Service;
 
-use OCP\Contacts\IManager;
 use OCP\IAddressBook;
+
+use OCP\Contacts\IManager;
+use OCP\IConfig;
+use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\JSONResponse;
 
 class SocialApiService {
 
@@ -32,11 +36,60 @@ class SocialApiService {
 
 	/** @var IManager */
 	private  $manager;
+	/** @var IConfig */
+	private  $config;
 
-	public function __construct(string $AppName, IManager $manager) {
+	/**
+	 * This constant stores the supported social networks
+	 * It is an ordered list, so that first listed items will be checked first
+	 * Each item stores the avatar-url-formula as recipe and cleanup parameters
+	 *
+	 * @const {array} SOCIAL_CONNECTORS dictionary of supported social networks
+	 */
+	const SOCIAL_CONNECTORS = [
+		'instagram' 	=> [
+			'recipe' 	=> 'https://www.instagram.com/{socialId}/?__a=1',
+			'cleanups' 	=> ['basename', 'json' => 'graphql->user->profile_pic_url_hd'],
+		],
+		'facebook' 	=> [
+			'recipe' 	=> 'https://graph.facebook.com/{socialId}/picture?width=720',
+			'cleanups' 	=> ['basename'],
+		],
+		'tumblr' 	=> [
+			'recipe' 	=> 'https://api.tumblr.com/v2/blog/{socialId}/avatar/512',
+			'cleanups' 	=> ['regex' => '/(?:http[s]*\:\/\/)*(.*?)\.(?=[^\/]*\..{2,5})/i', 'group' => 1], // "subdomain"
+		],
+		/* untrusted
+		'twitter' 	=> [
+			'recipe' 	=> 'http://avatars.io/twitter/{socialId}',
+			'cleanups' 	=> ['basename'],
+		],
+		*/
+	];
+
+	public function __construct(string $AppName,
+					IManager $manager,
+					IConfig $config) {
 
 		$this->appName = $AppName;
 		$this->manager = $manager;
+		$this->config = $config;
+	}
+
+
+	/**
+	 * @NoAdminRequired
+	 *
+	 * returns an array of supported social networks
+	 *
+	 * @returns {array} array of the supported social networks
+	 */
+	public function getSupportedNetworks() : array {
+		$isAdminEnabled = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
+		if ($isAdminEnabled !== 'yes') {
+			return array();
+		}
+		return array_keys(self::SOCIAL_CONNECTORS);
 	}
 
 
@@ -51,7 +104,6 @@ class SocialApiService {
 	 * @returns {String} the photo start tag or null in case of errors
 	 */
 	public function getPhotoTag(float $version, array $header) : ?string {
-
 		$type = null;
 
 		// get image type from headers
@@ -75,7 +127,6 @@ class SocialApiService {
 			$type = str_replace('image/', '', $type);
 			return "ENCODING=b;TYPE=" . strtoupper($type) . ":";
 		}
-
 		return null;
 	}
 
@@ -144,19 +195,19 @@ class SocialApiService {
 	 *
 	 * generate download url for a social entry
 	 *
-	 * @param {array} socialRecices all supported social networks with connection details
 	 * @param {array} socialEntries all social data from the contact
 	 * @param {String} network the choice which network to use (fallback: take first match)
 	 *
 	 * @returns {String} the url to the requested information or null in case of errors
 	 */
-	public function getSocialConnector(array $socialRecices, array $socialEntries, string $network) : ?string {
+	protected function getSocialConnector(array $socialEntries, string $network) : ?string {
 
 		$connector = null;
-		$selection = $socialRecices;
+
+		$selection = self::SOCIAL_CONNECTORS;
 		// check if dedicated network selected
-		if (isset($socialRecices[$network])) {
-			$selection = array($network => $socialRecices[$network]);
+		if (isset(self::SOCIAL_CONNECTORS[$network])) {
+			$selection = array($network => self::SOCIAL_CONNECTORS[$network]);
 		}
 
 		// check selected networks in order
@@ -181,14 +232,92 @@ class SocialApiService {
 					$connector = str_replace("{socialId}", $profileId, $socialRecipe['recipe']);
 					if (array_key_exists('json', $socialRecipe['cleanups'])) {
 						$connector = $this->getFromJson($connector, $socialRecipe['cleanups']['json']);
+						if (empty($connector)) {
+							$connector = 'invalid';
+						}
 					}
 					break;
 				}
 			}
-			if ($connector) {
+			if ($connector && $connector !== 'invalid') {
 				break;
 			}
 		}
 		return ($connector);
+	}
+
+
+	/**
+	 * @NoAdminRequired
+	 *
+	 * Retrieves social profile data for a contact and updates the entry
+	 *
+	 * @param {String} addressbookId the addressbook identifier
+	 * @param {String} contactId the contact identifier
+	 * @param {String} network the social network to use (if unkown: take first match)
+	 *
+	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
+	 */
+	public function updateContact(string $addressbookId, string $contactId, string $network) : JSONResponse {
+
+		$url = null;
+
+		try {
+			// get corresponding addressbook
+			$addressBook = $this->getAddressBook($addressbookId);
+			if (is_null($addressBook)) {
+				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
+			}
+
+			// search contact in that addressbook, get social data
+			$contact = $addressBook->search($contactId, ['UID'], ['types' => true])[0];
+			if (!isset($contact['X-SOCIALPROFILE'])) {
+				return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
+			}
+			$socialprofiles = $contact['X-SOCIALPROFILE'];
+			// retrieve data
+			$url = $this->getSocialConnector($socialprofiles, $network);
+
+			if ($url === 'invalid') {
+				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
+			}
+			if (empty($url)) {
+				return new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED);
+			}
+
+			$opts = [
+				"http" => [
+					"method" => "GET",
+					"header" => "User-Agent: Nextcloud Contacts App"
+				]
+			];
+			$context = stream_context_create($opts);
+			$socialdata = file_get_contents($url, false, $context);
+
+			$photoTag = $this->getPhotoTag($contact['VERSION'], $http_response_header);
+
+			if (!$socialdata || $photoTag === null) {
+				return new JSONResponse([], Http::STATUS_NOT_FOUND);
+			}
+
+			// update contact
+			$changes = array();
+			$changes['URI'] = $contact['URI'];
+
+			if (!empty($contact['PHOTO'])) {
+				// overwriting without notice!
+			}
+			$changes['PHOTO'] = $photoTag . base64_encode($socialdata);
+
+			if (isset($contact['PHOTO']) && $changes['PHOTO'] === $contact['PHOTO']) {
+				return new JSONResponse([], Http::STATUS_NOT_MODIFIED);
+			}
+
+			$addressBook->createOrUpdate($changes, $addressbookId);
+		}
+		catch (Exception $e) {
+			return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
+		}
+		return new JSONResponse([], Http::STATUS_OK);
 	}
 }

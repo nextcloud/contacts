@@ -23,16 +23,10 @@
 
 namespace OCA\Contacts\Controller;
 
+use OCP\IConfig;
 use OCP\AppFramework\ApiController;
 use OCP\AppFramework\Http;
-use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\JSONResponse;
-use OCP\AppFramework\Http\TemplateResponse;
-// use OCP\IInitialStateService;
-use OCP\IConfig;
-use OCP\Contacts\IManager;
-use OCP\IAddressBook;
-use OCP\L10N\IFactory;
 use OCP\IRequest;
 
 use OCA\Contacts\Service\SocialApiService;
@@ -42,56 +36,18 @@ class SocialApiController extends ApiController {
 
 	protected $appName;
 
-	/** @var IFactory */
-	private  $languageFactory;
-	/** @var IManager */
-	private  $manager;
 	/** @var IConfig */
 	private  $config;
 	/** @var SocialApiService */
 	private  $socialApiService;
 
-	/**
-	 * This constant stores the supported social networks
-	 * It is an ordered list, so that first listed items will be checked first
-	 * Each item stores the avatar-url-formula as recipe and cleanup parameters
-	 *
-	 * @const {array} SOCIAL_CONNECTORS dictionary of supported social networks
-	 */
-	const SOCIAL_CONNECTORS = [
-		'instagram' 	=> [
-			'recipe' 	=> 'https://www.instagram.com/{socialId}/?__a=1',
-			'cleanups' 	=> ['basename', 'json' => 'graphql->user->profile_pic_url_hd'],
-		],
-		'facebook' 	=> [
-			'recipe' 	=> 'https://graph.facebook.com/{socialId}/picture?width=720',
-			'cleanups' 	=> ['basename'],
-		],
-		'tumblr' 	=> [
-			'recipe' 	=> 'https://api.tumblr.com/v2/blog/{socialId}/avatar/512',
-			'cleanups' 	=> ['regex' => '/(?:http[s]*\:\/\/)*(.*?)\.(?=[^\/]*\..{2,5})/i', 'group' => 1], // "subdomain"
-		],
-		/* untrusted
-		'twitter' 	=> [
-			'recipe' 	=> 'http://avatars.io/twitter/{socialId}',
-			'cleanups' 	=> ['basename'],
-		],
-		*/
-	];
-
 	public function __construct(string $AppName,
-								IRequest $request,
-								IManager $manager,
-								IConfig $config,
-								// IInitialStateService $initialStateService,
-								IFactory $languageFactory,
-								SocialApiService $socialApiService) {
+					IRequest $request,
+					IConfig $config,
+					SocialApiService $socialApiService) {
 		parent::__construct($AppName, $request);
 
 		$this->appName = $AppName;
-		// $this->initialStateService = $initialStateService;
-		$this->languageFactory = $languageFactory;
-		$this->manager = $manager;
 		$this->config = $config;
 		$this->socialApiService = $socialApiService;
 	}
@@ -99,11 +55,16 @@ class SocialApiController extends ApiController {
 
 	/**
 	 * update appconfig (admin setting)
+	 *
+	 * @param {String} key the identifier to change
+	 * @param {String} allow the value to set
+	 *
+	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
 	 */
-	public function setConfig($key, $allow) {
+	public function setAppConfig($key, $allow) {
 		$this->config->setAppValue($this->appName, $key, $allow);
+		return new JSONResponse([], Http::STATUS_OK);
 	}
-
 
 	/**
 	 * @NoAdminRequired
@@ -113,11 +74,7 @@ class SocialApiController extends ApiController {
 	 * @returns {array} array of the supported social networks
 	 */
 	public function getSupportedNetworks() : array {
-		$isAdminEnabled = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
-		if ($isAdminEnabled !== 'yes') {
-			return array();
-		}
-		return array_keys(self::SOCIAL_CONNECTORS);
+		return $this->socialApiService->getSupportedNetworks();
 	}
 
 
@@ -133,62 +90,6 @@ class SocialApiController extends ApiController {
 	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
 	 */
 	public function updateContact(string $addressbookId, string $contactId, string $network) : JSONResponse {
-
-		$url = null;
-
-		try {
-			// get corresponding addressbook
-			$addressBook = $this->socialApiService->getAddressBook($addressbookId);
-			if (is_null($addressBook)) {
-				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
-			}
-
-			// search contact in that addressbook, get social data
-			$contact = $addressBook->search($contactId, ['UID'], ['types' => true])[0];
-			if (!isset($contact['X-SOCIALPROFILE'])) {
-				return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
-			}
-			$socialprofiles = $contact['X-SOCIALPROFILE'];
-			// retrieve data
-			$url = $this->socialApiService->getSocialConnector(self::SOCIAL_CONNECTORS, $socialprofiles, $network);
-
-			if (empty($url)) {
-				return new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED);
-			}
-
-			$opts = [
-				"http" => [
-					"method" => "GET",
-					"header" => "User-Agent: Nextcloud Contacts App"
-				]
-			];
-			$context = stream_context_create($opts);
-			$socialdata = file_get_contents($url, false, $context);
-
-			$photoTag = $this->socialApiService->getPhotoTag($contact['VERSION'], $http_response_header);
-
-			if (!$socialdata || $photoTag === null) {
-				return new JSONResponse([], Http::STATUS_NOT_FOUND);
-			}
-
-			// update contact
-			$changes = array();
-			$changes['URI'] = $contact['URI'];
-
-			if (!empty($contact['PHOTO'])) {
-				// overwriting without notice!
-			}
-			$changes['PHOTO'] = $photoTag . base64_encode($socialdata);
-
-			if (isset($contact['PHOTO']) && $changes['PHOTO'] === $contact['PHOTO']) {
-				return new JSONResponse([], Http::STATUS_NOT_MODIFIED);
-			}
-
-			$addressBook->createOrUpdate($changes, $addressbookId);
-		}
-		catch (Exception $e) {
-			return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
-		}
-		return new JSONResponse([], Http::STATUS_OK);
+		return $this->socialApiService->updateContact($addressbookId, $contactId, $network);
 	}
 }
