@@ -23,17 +23,17 @@
 <template>
 	<div id="contact-details" class="app-content-details">
 		<!-- nothing selected or contact not found -->
-		<div v-if="!contact && !loading" id="emptycontent">
-			<div class="icon-contacts" />
-			<h2>{{ t('contacts', 'No contact selected') }}</h2>
-			<p>{{ t('contacts', 'Select a contact on the list to begin') }}</p>
-		</div>
+		<EmptyContent v-if="!contact && !loading" icon="icon-contacts-dark">
+			{{ t('contacts', 'No contact selected') }}
+			<template #desc>
+				{{ t('contacts', 'Select a contact on the list to begin') }}
+			</template>
+		</EmptyContent>
 
 		<!-- loading -->
-		<div v-else-if="loading" id="emptycontent">
-			<div class="icon-contacts" />
-			<h2>{{ t('contacts', 'Loading') }}</h2>
-		</div>
+		<EmptyContent v-else-if="loading" icon="icon-contacts-dark">
+			{{ t('contacts', 'Loading contacts …') }}
+		</EmptyContent>
 
 		<template v-else>
 			<!-- contact header -->
@@ -242,6 +242,7 @@ import validate from '../services/validate'
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
 import ContactAvatar from './ContactDetails/ContactDetailsAvatar'
 import ContactProperty from './ContactDetails/ContactDetailsProperty'
+import EmptyContent from './EmptyContent'
 import PropertyGroups from './Properties/PropertyGroups'
 import PropertyRev from './Properties/PropertyRev'
 import PropertySelect from './Properties/PropertySelect'
@@ -252,17 +253,18 @@ export default {
 	name: 'ContactDetails',
 
 	components: {
-		Actions,
 		ActionButton,
 		ActionLink,
+		Actions,
 		AddNewProp,
 		ContactAvatar,
 		ContactProperty,
+		EmptyContent,
+		Modal,
+		Multiselect,
 		PropertyGroups,
 		PropertyRev,
 		PropertySelect,
-		Modal,
-		Multiselect,
 	},
 
 	props: {

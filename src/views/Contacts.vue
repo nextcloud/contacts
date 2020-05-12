@@ -84,7 +84,9 @@
 
 			<div id="app-content-wrapper">
 				<!-- contacts list -->
-				<ContactsList :list="contactsList"
+				<ContactsList
+					v-if="!loading"
+					:list="contactsList"
 					:contacts="contacts"
 					:loading="loading"
 					:search-query="searchQuery" />
@@ -541,3 +543,9 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+#app-content-wrapper {
+	display: flex;
+}
+</style>
