@@ -34,14 +34,14 @@ interface ISocialProvider {
 	 *
 	 * @return string
 	 */
-	public function cleanupId(string $candidate):string ;
+	public function cleanupId(string $candidate):?string ;
 
 	/**
 	 * Returns the profile-picture url
 	 *
 	 * @param {string} profileId the profile-id
 	 *
-	 * @return string|null|invalid
+	 * @return string|null
 	 */
-	public function getImageUrl(string $profileId):string ;
+	public function getImageUrl(string $profileId):?string ;
 }

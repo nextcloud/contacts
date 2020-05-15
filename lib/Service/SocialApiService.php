@@ -43,8 +43,6 @@ class SocialApiService {
 	private  $manager;
 	/** @var IConfig */
 	private  $config;
-	/** @var IURLGenerator  */
-	private $urlGen;
 
 	public function __construct(string $AppName,
 					CompositeSocialProvider $socialProvider,
@@ -167,9 +165,6 @@ class SocialApiService {
 			$url = $this->socialProvider->getSocialConnector($socialprofiles, $network);
 
 			if (empty($url)) {
-				return new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED);
-			}
-			if ($url === 'invalid') {
 				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
 			}
 

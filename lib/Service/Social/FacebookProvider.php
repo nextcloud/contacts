@@ -35,7 +35,7 @@ class FacebookProvider implements ISocialProvider {
 	 *
 	 * @return string
 	 */
-	public function cleanupId(string $candidate):string {
+	public function cleanupId(string $candidate):?string {
 		return basename($candidate);
 	}
 
@@ -44,9 +44,9 @@ class FacebookProvider implements ISocialProvider {
 	 *
 	 * @param {string} profileId the profile-id
 	 *
-	 * @return string|null|invalid
+	 * @return string|null
 	 */
-	public function getImageUrl(string $profileId):string {
+	public function getImageUrl(string $profileId):?string {
 		$recipe = 'https://graph.facebook.com/{socialId}/picture?width=720';
 		$connector = str_replace("{socialId}", $profileId, $recipe);
 		return $connector;

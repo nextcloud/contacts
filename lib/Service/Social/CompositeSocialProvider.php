@@ -78,11 +78,13 @@ class CompositeSocialProvider {
 
 				if (strtolower($type) === strtolower($socialEntry['type'])) {
 					$profileId = $socialProvider->cleanupId($socialEntry['value']);
-					$connector = $socialProvider->getImageUrl($profileId);
+					if (!is_null($profileId)) {
+						$connector = $socialProvider->getImageUrl($profileId);
+					}
 					break;
 				}
 			}
-			if ($connector && $connector !== 'invalid') {
+			if ($connector) {
 				break;
 			}
 		}

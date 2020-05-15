@@ -53,7 +53,6 @@ class SocialApiServiceTest extends TestCase {
 		'facebook-nc'		=> 'https://graph.facebook.com/Nextclouders/picture?width=720',
 		'tumblr-nc'		=> 'https://api.tumblr.com/v2/blog/nextcloudperu/avatar/512',
 		'tumblr-invalid'	=> 'https://api.tumblr.com/v2/blog/@nextcloudperu/avatar/512',
-		'instagram-invalid'	=> 'invalid',
 	];
 
 	public function setUp() {
@@ -72,11 +71,10 @@ class SocialApiServiceTest extends TestCase {
 
 	public function socialProfileProvider() {
 		return [
-			'no social profiles'	 	=> ['any', array(), null, new JSONResponse([], Http::STATUS_NOT_IMPLEMENTED)],
+			'no social profiles'	 	=> ['any', array(), null, new JSONResponse([], Http::STATUS_BAD_REQUEST)],
 			'facebook profile' 		=> ['facebook', [array('type' => 'facebook', 'value' => '4')], self::EXP_CONNECT['facebook-4'], new JSONResponse([], Http::STATUS_OK)],
 			'facebook invalid profile' 	=> ['facebook', [array('type' => 'facebook', 'value' => 'zuck')], self::EXP_CONNECT['facebook-zuck'], new JSONResponse([], Http::STATUS_NOT_FOUND)],
 			'facebook public page' 	=> ['facebook', [array('type' => 'facebook', 'value' => 'Nextclouders')], self::EXP_CONNECT['facebook-nc'], new JSONResponse([], Http::STATUS_OK)],
-			'instagram invalid profile'	=> ['instagram', [array('type' => 'instagram', 'value' => '@zuck')], self::EXP_CONNECT['instagram-invalid'], new JSONResponse([], Http::STATUS_BAD_REQUEST)],
 			'tumblr profile' 		=> ['tumblr', [array('type' => 'tumblr', 'value' => 'nextcloudperu')], self::EXP_CONNECT['tumblr-nc'], new JSONResponse([], Http::STATUS_OK)],
 			'tumblr invalid profile'	=> ['tumblr', [array('type' => 'tumblr', 'value' => '@nextcloudperu')], self::EXP_CONNECT['tumblr-invalid'], new JSONResponse([], Http::STATUS_NOT_FOUND)],
 			'invalid insta, valid tumblr'	=> ['any', [array('type' => 'instagram', 'value' => '@zuck'), array('type' => 'tumblr', 'value' => 'nextcloudperu')], self::EXP_CONNECT['tumblr-nc'], new JSONResponse([], Http::STATUS_OK)],

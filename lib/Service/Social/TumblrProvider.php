@@ -35,9 +35,9 @@ class TumblrProvider implements ISocialProvider {
 	 *
 	 * @return string
 	 */
-	public function cleanupId(string $candidate):string {
+	public function cleanupId(string $candidate):?string {
 		$subdomain = '/(?:http[s]*\:\/\/)*(.*?)\.(?=[^\/]*\..{2,5})/i'; // subdomain
-		if (preg_match($subdomain, $profileId, $matches)) {
+		if (preg_match($subdomain, $candidate, $matches)) {
 			$candidate = $matches[1];
 		}
 		return $candidate;
@@ -48,9 +48,9 @@ class TumblrProvider implements ISocialProvider {
 	 *
 	 * @param {string} profileId the profile-id
 	 *
-	 * @return string|null|invalid
+	 * @return string|null
 	 */
-	public function getImageUrl(string $profileId):string {
+	public function getImageUrl(string $profileId):?string {
 		$recipe = 'https://api.tumblr.com/v2/blog/{socialId}/avatar/512';
 		$connector = str_replace("{socialId}", $profileId, $recipe);
 		return $connector;

@@ -44,9 +44,9 @@ class InstagramProvider implements ISocialProvider {
 	 *
 	 * @param {string} profileId the profile-id
 	 *
-	 * @return string|null|invalid
+	 * @return string|null
 	 */
-	public function getImageUrl(string $profileId):string {
+	public function getImageUrl(string $profileId):?string {
 		$recipe = 'https://www.instagram.com/{socialId}/?__a=1';
 		$connector = str_replace("{socialId}", $profileId, $recipe);
 		$connector = $this->getFromJson($connector, 'graphql->user->profile_pic_url_hd');
