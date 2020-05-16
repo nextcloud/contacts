@@ -23,8 +23,6 @@
 
 namespace OCA\Contacts\Service\Social;
 
-use OCP\IImage;
-
 interface ISocialProvider {
 
 	/**

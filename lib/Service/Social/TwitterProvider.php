@@ -23,7 +23,7 @@
 
 namespace OCA\Contacts\Service\Social;
 
-class InstagramProvider implements ISocialProvider {
+class TwitterProvider implements ISocialProvider {
 
 	public function __construct() {
 	}
@@ -36,7 +36,11 @@ class InstagramProvider implements ISocialProvider {
 	 * @return string
 	 */
 	public function cleanupId(string $candidate):?string {
-		return basename($candidate);
+		$candidate = basename($candidate);
+		if ($candidate[0] === '@') {
+			$candidate = substr($candidate, 1);
+		}
+		return $candidate;
 	}
 
 	/**
@@ -47,40 +51,43 @@ class InstagramProvider implements ISocialProvider {
 	 * @return string|null
 	 */
 	public function getImageUrl(string $profileId):?string {
-		$recipe = 'https://www.instagram.com/{socialId}/?__a=1';
+		$recipe = 'https://twitter.com/{socialId}';
 		$connector = str_replace("{socialId}", $profileId, $recipe);
-		$connector = $this->getFromJson($connector, 'graphql->user->profile_pic_url_hd');
+		$connector = $this->getFromHtml($connector, '400x400');
 		return $connector;
 	}
 	
 	/**
-	 * extracts desired value from a json
+	 * extracts desired value from an html page
 	 *
-	 * @param {string} url the target from where to fetch the json
-	 * @param {String} the desired key to filter for (nesting possible with '->')
+	 * @param {string} url the target from where to fetch the content
+	 * @param {String} the desired catchword to filter for
 	 *
-	 * @returns {String} the extracted value or null if not present
+	 * @returns {String} the extracted value (first match) or null if not present
 	 */
-	protected function getFromJson(string $url, string $desired) : ?string {
+	protected function getFromHtml(string $url, string $desired) : ?string {
 		try {
 			$opts = [
 				"http" => [
-					"method" => "GET",
-					"header" => "User-Agent: Nextcloud Contacts App"
+				"method" => "GET",
+				"header" => "User-Agent: Nextcloud Contacts App",
 				]
 			];
 			$context = stream_context_create($opts);
 			$result = file_get_contents($url, false, $context);
 
-			$jsonResult = json_decode($result,true);
-			$location = explode ('->' , $desired);
-			foreach ($location as $loc) {
-				if (!isset($jsonResult[$loc])) {
-					return null;
+			$htmlResult = new \DOMDocument();
+			$htmlResult->loadHTML($result);
+			$imgs = $htmlResult->getElementsByTagName('img');
+			foreach ($imgs as $img) {
+				foreach ($img->attributes as $attr) {
+					$value = $attr->nodeValue;
+					if (strpos($value, $desired)) {
+						return $value;
+					}
 				}
-				$jsonResult = $jsonResult[$loc];
 			}
-			return $jsonResult;
+			return null;
 		}
 		catch (Exception $e) {
 			return null;

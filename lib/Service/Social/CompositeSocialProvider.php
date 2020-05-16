@@ -33,11 +33,13 @@ class CompositeSocialProvider {
 
 	public function __construct(InstagramProvider $instagramProvider,
 					FacebookProvider $facebookProvider,
+					TwitterProvider $twitterProvider,
 					TumblrProvider $tumblrProvider) {
 
 		// This determines the priority of known providers
 		$this->providers = [
 			'instagram' 	=> $instagramProvider,
+			'twitter' 	=> $twitterProvider,
 			'facebook'	=> $facebookProvider,
 			'tumblr'	=> $tumblrProvider,
 		];
