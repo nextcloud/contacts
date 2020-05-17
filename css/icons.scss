@@ -31,12 +31,13 @@
 @include icon-black-white('language', 'contacts', 2);
 @include icon-black-white('clone', 'contacts', 2);
 @include icon-black-white('sync', 'contacts', 2);
-
+	
 // social network icons:
 @include icon-black-white('Facebook', 'contacts', 2);
 @include icon-black-white('Instagram', 'contacts', 2);
-@include icon-black-white('Twitter', 'contacts', 2);
+@include icon-black-white('Mastodon', 'contacts', 2);
 @include icon-black-white('Tumblr', 'contacts', 2);
+@include icon-black-white('Twitter', 'contacts', 2);
 
 .icon-up-force-white {
 	// using #fffffe to trick the accessibility dark theme icon invert
