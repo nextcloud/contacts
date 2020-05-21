@@ -222,7 +222,7 @@ const properties = {
 		},
 		info: t(
 			'contacts',
-			'The url of the profile. e.g. https://www.facebook.com/Nextclouders/ '
+			'The URL of the profile. e.g. https://www.facebook.com/Nextclouders/ '
 		),
 		options: [
 			{ id: 'FACEBOOK', name: 'Facebook' },
