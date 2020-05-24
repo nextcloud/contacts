@@ -123,7 +123,6 @@ OC.L10N.register(
     "Car" : "Xe",
     "Work pager" : "Máy nhắn tin",
     "Social network" : "Mạng xã hội",
-    "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Địa chỉ url của hồ sơ. ví dụ: https://www.facebook.com/Nextclouders/",
     "Relationship" : "Mối quan hệ",
     "Spouse" : "Vợ / chồng",
     "Child" : "Con",

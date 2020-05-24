@@ -101,7 +101,6 @@ OC.L10N.register(
     "Car" : "Car",
     "Work pager" : "Swnyn gwaith",
     "Social network" : "Rhwydwaith cymdeithasol",
-    "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Url y proffil. e.e. https://www.facebook.com/Nextclouders/ ",
     "Relationship" : "Perthynas",
     "Specify a relationship between you and the entity represented by this vCard." : "Nodwch berthynas rhyngoch chi a'r sy'n cael ei gynrychioli gan y vCard hwn.",
     "Spouse" : "Priod",

@@ -110,7 +110,6 @@ OC.L10N.register(
     "Car" : "Bil",
     "Work pager" : "Arbejdespager ",
     "Social network" : "Socialt netværk",
-    "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Profilens url. F.eks. https://www.facebook.com/Nextclouders/",
     "Relationship" : "Forhold",
     "Specify a relationship between you and the entity represented by this vCard." : "Angiv et forhold mellem dig og enheden præsenteret ved dette vCard.",
     "Spouse" : "Ægtefælle",

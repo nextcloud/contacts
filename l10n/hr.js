@@ -125,7 +125,6 @@ OC.L10N.register(
     "Car" : "Automobil",
     "Work pager" : "Poslovni dojavljivač",
     "Social network" : "Društvena mreža",
-    "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "URL profila, npr. https://www.facebook.com/Nextclouders/ ",
     "Relationship" : "Odnos",
     "Specify a relationship between you and the entity represented by this vCard." : "Navedite odnos između vas i subjekta predstavljenog ovom vCard karticom.",
     "Spouse" : "Supružnik",

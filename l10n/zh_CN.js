@@ -112,7 +112,6 @@ OC.L10N.register(
     "Car" : "车",
     "Work pager" : "工作传呼机",
     "Social network" : "社交网络",
-    "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "个人资料网址。例如https://www.facebook.com/NextClouders/",
     "Relationship" : "关系",
     "Specify a relationship between you and the entity represented by this vCard." : "请描述您和这张 vCard 上人员的关系",
     "Spouse" : "配偶",
