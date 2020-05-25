@@ -125,6 +125,7 @@ OC.L10N.register(
     "Car" : "Αμάξι",
     "Work pager" : "Βομβητής δουλειάς",
     "Social network" : "Κοινωνικό δίκτυο",
+    "The link of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Ο σύνδεσμος του προφίλ. π.χ. https://www.facebook.com/Nextclouders/",
     "Relationship" : "Σχέση",
     "Specify a relationship between you and the entity represented by this vCard." : "Καθορίστε μια σχέση μεταξύ σας και της οντότητας που αντιπροσωπεύεται από αυτήν την vCard.",
     "Spouse" : "Σύζυγος",

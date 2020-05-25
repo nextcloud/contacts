@@ -125,6 +125,7 @@ OC.L10N.register(
     "Car" : "Auto",
     "Work pager" : "Pracovní pager",
     "Social network" : "Sociální síť",
+    "The link of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Odkaz na profil. např. https://www.facebook.com/Nextclouders/ ",
     "Relationship" : "Vztah",
     "Specify a relationship between you and the entity represented by this vCard." : "Určete váš vztah k tomuto kontaktu.",
     "Spouse" : "Partner(ka)",
