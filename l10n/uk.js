@@ -124,6 +124,7 @@ OC.L10N.register(
     "Car" : "Машина",
     "Work pager" : "Робочий пейджер",
     "Social network" : "Соціальна мережа",
+    "The link of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Посилання на профіль, напр., https://www.facebook.com/Nextclouders/ ",
     "Relationship" : "Стосунки",
     "Specify a relationship between you and the entity represented by this vCard." : "Зазначте стосунки між вами та контактом з vCard",
     "Spouse" : "Чоловік\\Дружина",
