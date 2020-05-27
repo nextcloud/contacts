@@ -21,6 +21,7 @@ OC.L10N.register(
     "Rename" : "تغییرنام",
     "Enabled" : "فعال شده",
     "Disabled" : "غیرفعال شده",
+    "Copied" : "کپی شد",
     "Copy link" : "کپی کردن لینک",
     "Share with users or groups" : "اشتراک گذاری با کاربران یا گروه ها ...",
     "No users or groups" : "هیچ کاربر یا گروهی وجود ندارد",
