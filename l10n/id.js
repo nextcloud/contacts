@@ -58,6 +58,7 @@ OC.L10N.register(
     "Voice" : "Suara",
     "Social network" : "Media sosial",
     "None" : "Tidak ada",
-    "Unknown" : "Tidak diketahui"
+    "Unknown" : "Tidak diketahui",
+    "An error occurred" : "Terjadi kesalahan"
 },
 "nplurals=1; plural=0;");
