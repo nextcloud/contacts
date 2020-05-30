@@ -7,7 +7,7 @@
 		"classmap-authoritative": true
 	},
 	"scripts": {
-		"lint": "find . -name \\*.php -not -path './vendor/*' -exec php -l \"{}\" \\;",
+		"lint": "find . -name \\*.php -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
 		"test:unit": "phpunit -c phpunit.xml --fail-on-warning",
 		"test:integration": "phpunit -c phpunit.integration.xml --fail-on-warning"
 	}

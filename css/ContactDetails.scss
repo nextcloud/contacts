@@ -23,11 +23,12 @@
 #contact-details {
 	$grid-column-gap: 20px;
 	$grid-column-width: 350px;
+	flex: 1 1 524px;
 	// header
 	header {
 		display: flex;
 		align-items: center;
-		height: 100px;
+		padding: 50px 0 20px;
 		font-weight: bold;
 
 		// ORG-TITLE-NAME
@@ -50,14 +51,11 @@
 				padding: 4px 5px;
 				white-space: nowrap;
 				text-overflow: ellipsis;
-				color: #fff !important;
 				border: none;
 				background: transparent;
-				text-shadow: 0 0 2px var(--color-box-shadow);
 				font-size: inherit;
-				&::placeholder {
-					opacity: .8;
-					color: #fff !important;
+				&#contact-fullname {
+					font-weight: bold;
 				}
 			}
 			#contact-org:placeholder-shown {
@@ -71,10 +69,6 @@
 			display: flex;
 			.header-menu {
 				margin-right: 10px;
-				.action-item__menutoggle {
-					// force white over header colour
-					color: white;
-				}
 			}
 			.header-icon {
 				width: 44px;

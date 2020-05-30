@@ -125,7 +125,7 @@ OC.L10N.register(
     "Car" : "Araç telefonu",
     "Work pager" : "İş çağrı cihazı",
     "Social network" : "Sosyal ağ",
-    "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Profilin adresi. Örnek: https://www.facebook.com/Nextclouders/ ",
+    "The link of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Profilin adresi. Örnek: https://www.facebook.com/Nextclouders/ ",
     "Relationship" : "İlişki",
     "Specify a relationship between you and the entity represented by this vCard." : "Bu vCard tarafından temsil edilen varlık ile aranızdaki ilişkiyi belirtin",
     "Spouse" : "Eş",

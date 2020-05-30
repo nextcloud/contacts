@@ -120,7 +120,6 @@ OC.L10N.register(
     "Car" : "Automobilis",
     "Work pager" : "Darbo pranešimų gaviklis",
     "Social network" : "Socialinis tinklas",
-    "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Profilio URL adresas, pvz., https://www.facebook.com/Nextclouders/ ",
     "Relationship" : "Ryšiai",
     "Spouse" : "Sutuoktinis",
     "Child" : "Vaikas",

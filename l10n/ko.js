@@ -103,7 +103,6 @@ OC.L10N.register(
     "Car" : "카폰",
     "Work pager" : "직장 호출기",
     "Social network" : "소셜 네트워크",
-    "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "프로필 URL입니다. 예: https://www.facebook.com/Nextclouders/ ",
     "Relationship" : "관계",
     "Specify a relationship between you and the entity represented by this vCard." : "여러분과 이 vCard에 있는 연락처와의 관계를 지정합니다.",
     "Spouse" : "배우자",

@@ -37,6 +37,10 @@ $grid-input-height-with-margin: $grid-height-unit - $grid-input-margin * 2;
 	}
 }
 
+#app-content-wrapper {
+	display: flex;
+}
+
 // components
 @import 'SettingsSection';
 @import 'Settings/SettingsAddressbook';

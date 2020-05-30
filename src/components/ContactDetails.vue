@@ -37,7 +37,7 @@
 
 		<template v-else>
 			<!-- contact header -->
-			<header :style="{ 'backgroundColor': colorAvatar }">
+			<header>
 				<!-- avatar and upload photo -->
 				<ContactAvatar
 					:contact="contact"
@@ -336,20 +336,6 @@ export default {
 				return t('contacts', 'The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded.')
 			}
 			return false
-		},
-
-		/**
-		 * Contact color based on uid
-		 *
-		 * @returns {string}
-		 */
-		colorAvatar() {
-			try {
-				const color = this.contact.uid.toRgb()
-				return `rgb(${color.r}, ${color.g}, ${color.b})`
-			} catch (e) {
-				return 'grey'
-			}
 		},
 
 		/**

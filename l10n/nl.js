@@ -125,7 +125,7 @@ OC.L10N.register(
     "Car" : "Auto",
     "Work pager" : "Werk pieper",
     "Social network" : "Social network",
-    "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "De url van het profiel. bijv.. https://www.facebook.com/Nextclouders/ ",
+    "The link of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "De link van het profiel bijv. https://www.facebook.com/Nextclouders/ ",
     "Relationship" : "Relatie",
     "Specify a relationship between you and the entity represented by this vCard." : "Specificeer een relatie tussen jou en de entiteit in deze vCard.",
     "Spouse" : "Echtgenoot",

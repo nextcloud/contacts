@@ -119,7 +119,6 @@ OC.L10N.register(
     "Car" : "Auto",
     "Work pager" : "Työhakulaite",
     "Social network" : "Sosiaalinen verkosto",
-    "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Profiilin osoite, esim. https://www.facebook.com/Nextclouders/ ",
     "Relationship" : "Ihmissuhde",
     "Spouse" : "Puoliso",
     "Child" : "Lapsi",

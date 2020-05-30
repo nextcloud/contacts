@@ -123,7 +123,7 @@
     "Car" : "Auto",
     "Work pager" : "Arbeit Pager",
     "Social network" : "Soziales Netzwerk",
-    "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Die URL des Profils z. B. https://www.facebook.com/Nextclouders/ ",
+    "The link of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Der Link des Profils z. B. https://www.facebook.com/Nextclouders/ ",
     "Relationship" : "Beziehung",
     "Specify a relationship between you and the entity represented by this vCard." : "Wählen Sie die Beziehung zwischen Ihnen und der Einheit, welche diese vCard darstellt.",
     "Spouse" : "Partner",

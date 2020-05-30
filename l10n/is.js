@@ -105,7 +105,6 @@ OC.L10N.register(
     "Car" : "Bíll",
     "Work pager" : "Vinnufriðþjófur",
     "Social network" : "Samfélagsnet",
-    "The url of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Slóð sniðsins, t.d. https://www.facebook.com/Nextclouders/ ",
     "Relationship" : "Vensl",
     "Specify a relationship between you and the entity represented by this vCard." : "Tiltaktu venslin milli þín og þess aðila sem þetta vCard-nafnspjald stendur fyrir.",
     "Spouse" : "Maki",
