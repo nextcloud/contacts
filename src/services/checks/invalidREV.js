@@ -28,10 +28,21 @@ export default {
 	name: 'invalid REV',
 	run: contact => {
 		try {
-			if (contact.vCard.hasProperty('rev')
-				&& contact.vCard.getFirstProperty('rev').getFirstValue()
-				&& contact.vCard.getFirstProperty('rev').getFirstValue().icalclass === 'vcardtime') {
-				return false
+			const hasRev = contact.vCard.hasProperty('rev')
+			const rev = hasRev && contact.vCard.getFirstProperty('rev')
+			const revValue = rev && rev.getFirstValue()
+
+			if (revValue) {
+				const version = contact.version
+				const type = revValue.icalclass
+
+				if (version === '3.0' && type === 'vcardtime') {
+					return false
+				}
+
+				if (version === '4.0' && type === 'icaltime') {
+					return false
+				}
 			}
 		} catch (error) {
 			return true
