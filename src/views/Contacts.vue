@@ -243,16 +243,16 @@ export default {
 				},
 				toString: () => group.name,
 			}))
-				// Sort alphabetically
-				.sort()
-				// Sort decimally if it starts with a number
-				// could be better if it detects if any part has a number (but it would be more complex)
-				.sort((a, b) => {
-					const matchA = a.text.match(/^(\d+(?:\.\d+)?)/)
-					const matchB = b.text.match(/^(\d+(?:\.\d+)?)/)
-					if (!(matchA && matchB)) return 0
-					return parseFloat(matchA[0]) - parseFloat(matchB[0])
-				})
+			// Sort alphabetically
+			menu.sort()
+			// Sort decimally if it starts with a number
+			// could be better if it detects if any part has a number (but it would be more complex)
+			menu.sort((a, b) => {
+				const matchA = a.text.match(/^(\d+(?:\.\d+)?)/)
+				const matchB = b.text.match(/^(\d+(?:\.\d+)?)/)
+				if (!(matchA && matchB)) return 0
+				return parseFloat(matchA[0]) - parseFloat(matchB[0])
+			})
 			// Find the Recently Contacted group, delete it from array and put it at first place of the array
 			const recentlyIndex = menu.findIndex(
 				group => group.text === t('contactsinteraction', 'Recently contacted')
