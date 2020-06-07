@@ -28,6 +28,7 @@ OC.L10N.register(
     "Title" : "头衔",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "此联系人已损坏但接收到了一个修复。请查看内容并点击这里以保存它。",
     "Download" : "下载",
+    "Clone contact" : "克隆联系人",
     "Generate QR Code" : "生成二维码",
     "Delete" : "删除",
     "Cancel" : "取消",
