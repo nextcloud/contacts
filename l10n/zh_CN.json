@@ -29,6 +29,8 @@
     "Clone contact" : "克隆联系人",
     "Generate QR Code" : "生成二维码",
     "Delete" : "删除",
+    "Pick an address book" : "选择一个地址簿",
+    "Select address book" : "选择地址簿",
     "Cancel" : "取消",
     "This contact is not yet synced. Edit it to save it to the server." : "此联系人尚未同步。 编辑它以将其保存到服务器。",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "此联系人处于只读模式。 您无权编辑此联系人。",
