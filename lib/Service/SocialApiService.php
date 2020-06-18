@@ -75,14 +75,13 @@ class SocialApiService {
 	/**
 	 * @NoAdminRequired
 	 *
-	 * Creates the photo start tag for the vCard
+	 * Retrieves the image type from the response headers
 	 *
-	 * @param {float} version the version of the vCard
 	 * @param {array} header the http response headers containing the image type
 	 *
-	 * @returns {String} the photo start tag or null in case of errors
+	 * @returns {String} the image type or null in case of errors
 	 */
-	protected function getPhotoTag(float $version, array $header) : ?string {
+	protected function getImageType(array $header) : ?string {
 
 		$type = null;
 
@@ -97,18 +96,42 @@ class SocialApiService {
 		if (is_null($type)) {
 			return null;
 		}
+		return $type;
+	}
 
-		// return respective photo tag
+
+	/**
+	 * @NoAdminRequired
+	 *
+	 * Adds/updates photo for contact
+	 *
+	 * @param {pointer} contact reference to the contact to update
+	 * @param {string} imageType the image type of the photo
+	 * @param {string} photo the photo as base64 string
+	 */
+	protected function addPhoto(array &$contact, string $imageType, string $photo) {
+
+		$key = null;
+		$value = null;
+		$version = $contact['VERSION'];
+
+		if (!empty($contact['PHOTO'])) {
+			// overwriting without notice!
+		}
+
 		if ($version >= 4.0) {
-			return "data:" . $type . ";base64,";
+			// overwrite photo
+			$contact['PHOTO'] = "data:" . $imageType . ";base64," . $photo;
 		}
 
-		if ($version >= 3.0) {
-			$type = str_replace('image/', '', $type);
-			return "ENCODING=b;TYPE=" . strtoupper($type) . ":";
-		}
+		elseif ($version >= 3.0) {
+			// add new photo
+			$imageType = str_replace('image/', '', $imageType);
+			$contact['PHOTO;ENCODING=b;TYPE=' . $imageType . ';VALUE=BINARY'] = $photo;
 
-		return null;
+			// remove previous photo (necessary as new attribute is not equal to 'PHOTO')
+			$contact['PHOTO'] = '';
+		}
 	}
 
 
@@ -177,20 +200,17 @@ class SocialApiService {
 			$context = stream_context_create($opts);
 			$socialdata = file_get_contents($url, false, $context);
 
-			$photoTag = $this->getPhotoTag($contact['VERSION'], $http_response_header);
+			$imageType = $this->getImageType($http_response_header);
 
-			if (!$socialdata || $photoTag === null) {
+			if (!$socialdata || $imageType === null) {
 				return new JSONResponse([], Http::STATUS_NOT_FOUND);
 			}
 
 			// update contact
 			$changes = array();
 			$changes['URI'] = $contact['URI'];
-
-			if (!empty($contact['PHOTO'])) {
-				// overwriting without notice!
-			}
-			$changes['PHOTO'] = $photoTag . base64_encode($socialdata);
+			$changes['VERSION'] = $contact['VERSION'];
+			$this->addPhoto($changes, $imageType, base64_encode($socialdata));
 
 			if (isset($contact['PHOTO']) && $changes['PHOTO'] === $contact['PHOTO']) {
 				return new JSONResponse([], Http::STATUS_NOT_MODIFIED);
