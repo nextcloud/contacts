@@ -55,7 +55,7 @@ class AdminSettings implements ISettings {
          * @return TemplateResponse
          */
         public function getForm() {
-        	foreach (Application::AvailableSettings as $key => $default) {
+        	foreach (Application::AVAIL_SETTINGS as $key => $default) {
 			$data = $this->config->getAppValue($this->appName, $key, $default);
 			$this->initialStateService->provideInitialState($this->appName, $key, $data);
 		}

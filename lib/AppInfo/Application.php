@@ -34,7 +34,7 @@ class Application extends App {
 		parent::__construct(self::APP_ID);
 	}
 	
-	public const AvailableSettings = [
+	public const AVAIL_SETTINGS = [
 		'allowSocialSync' => 'yes',
 	];
 

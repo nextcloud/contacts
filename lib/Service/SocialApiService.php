@@ -111,8 +111,6 @@ class SocialApiService {
 	 */
 	protected function addPhoto(array &$contact, string $imageType, string $photo) {
 
-		$key = null;
-		$value = null;
 		$version = $contact['VERSION'];
 
 		if (!empty($contact['PHOTO'])) {
