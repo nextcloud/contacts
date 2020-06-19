@@ -49,6 +49,7 @@ module.exports = {
 		new webpack.DefinePlugin({ appVersion })
 	],
 	resolve: {
-		extensions: ['*', '.js', '.vue']
+		extensions: ['*', '.js', '.vue'],
+		symlinks: false,
 	}
 }

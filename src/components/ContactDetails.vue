@@ -103,7 +103,7 @@
 							show: true,
 							trigger: 'manual',
 						}"
-						class="header-icon header-icon--pulse icon-history-force-white"
+						class="header-icon header-icon--pulse icon-history"
 						@click="refreshContact" />
 
 					<!-- repaired contact message -->
@@ -113,7 +113,7 @@
 							show: true,
 							trigger: 'manual',
 						}"
-						class="header-icon header-icon--pulse icon-up-force-white"
+						class="header-icon header-icon--pulse icon-up"
 						@click="updateContact" />
 
 					<!-- menu actions -->
@@ -314,12 +314,12 @@ export default {
 		warning() {
 			if (!this.contact.dav) {
 				return {
-					icon: 'icon-error-white header-icon--pulse',
+					icon: 'icon-error header-icon--pulse',
 					msg: t('contacts', 'This contact is not yet synced. Edit it to save it to the server.'),
 				}
 			} else if (this.isReadOnly) {
 				return {
-					icon: 'icon-eye-white',
+					icon: 'icon-eye',
 					msg: t('contacts', 'This contact is in read-only mode. You do not have permission to edit this contact.'),
 				}
 			}

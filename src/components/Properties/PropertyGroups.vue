@@ -22,7 +22,9 @@
 
 <template>
 	<div v-if="propModel" class="grid-span-2 property property--without-actions">
-		<!-- NO title if first element for groups -->
+		<PropertyTitle
+			icon="icon-contacts-dark"
+			:readable-name="t('contacts', 'Groups')" />
 
 		<div class="property__row">
 			<div class="property__label">
@@ -60,11 +62,13 @@
 import debounce from 'debounce'
 import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 import Contact from '../../models/contact'
+import PropertyTitle from './PropertyTitle'
 
 export default {
 	name: 'PropertyGroups',
 
 	components: {
+		PropertyTitle,
 		Multiselect,
 	},
 

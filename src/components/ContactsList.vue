@@ -180,7 +180,7 @@ export default {
 
 		onAddContactsToGroup() {
 			// TODO: add popup
-		}
+		},
 	},
 }
 </script>

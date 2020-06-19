@@ -35,21 +35,57 @@
 
 			<!-- groups list -->
 			<ul v-if="!loading" id="groups-list">
-				<AppNavigationItem v-for="item in menu"
-					:key="item.key"
-					:to="item.router"
-					:title="item.text"
-					:icon="item.icon">
+				<!-- All contacts group -->
+				<AppNavigationItem id="everyone"
+					:title="GROUP_ALL_CONTACTS"
+					:to="{
+						name: 'group',
+						params: { selectedGroup: GROUP_ALL_CONTACTS },
+					}"
+					icon="icon-contacts-dark">
+					<AppNavigationCounter slot="counter">
+						{{ sortedContacts.length }}
+					</AppNavigationCounter>
+				</AppNavigationItem>
+
+				<!-- Not grouped group -->
+				<AppNavigationItem
+					v-if="ungroupedContacts.length > 0"
+					id="notgrouped"
+					:title="GROUP_NO_GROUP_CONTACTS"
+					:to="{
+						name: 'group',
+						params: { selectedGroup: GROUP_NO_GROUP_CONTACTS },
+					}"
+					icon="icon-user">
+					<AppNavigationCounter slot="counter">
+						{{ ungroupedContacts.length }}
+					</AppNavigationCounter>
+				</AppNavigationItem>
+
+				<AppNavigationSpacer />
+
+				<!-- Custom groups -->
+				<AppNavigationItem v-for="group in groupsMenu"
+					:key="group.key"
+					:to="group.router"
+					:title="group.name"
+					:icon="group.icon">
 					<template slot="actions">
-						<ActionButton v-for="action in item.utils.actions"
-							:key="action.text"
-							:icon="action.icon"
-							@click="action.action">
-							{{ action.text }}
+						<ActionButton
+							icon="icon-add"
+							@click="addContactsToGroup(group)">
+							{{ t('contacts', 'Add contacts to this group') }}
+						</ActionButton>
+						<ActionButton
+							icon="icon-download"
+							@click="downloadGroup(group)">
+							{{ t('contacts', 'Download') }}
 						</ActionButton>
 					</template>
+
 					<AppNavigationCounter slot="counter">
-						{{ item.utils.counter }}
+						{{ group.contacts.length }}
 					</AppNavigationCounter>
 				</AppNavigationItem>
 
@@ -95,12 +131,21 @@
 				<ContactDetails :loading="loading" :contact-key="selectedContact" />
 			</div>
 		</AppContent>
+
+		<!-- Import modal -->
 		<Modal v-if="isImporting"
 			:clear-view-delay="-1"
 			:can-close="isImportDone"
 			@close="closeImport">
 			<ImportScreen />
 		</Modal>
+
+		<!-- Select contacts group modal -->
+		<EntityPicker v-if="showContactPicker"
+			:data-types="pickerTypes"
+			:data-set="pickerData"
+			@close="onContactPickerClose"
+			@submit="onContactPickerPick" />
 	</Content>
 </template>
 
@@ -108,6 +153,7 @@
 import AppContent from '@nextcloud/vue/dist/Components/AppContent'
 import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
 import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
+import AppNavigationSpacer from '@nextcloud/vue/dist/Components/AppNavigationSpacer'
 import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
 import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
@@ -125,6 +171,7 @@ import SettingsSection from '../components/SettingsSection'
 import ContactsList from '../components/ContactsList'
 import ContactDetails from '../components/ContactDetails'
 import ImportScreen from '../components/ImportScreen'
+import EntityPicker from '../components/EntityPicker/EntityPicker'
 
 import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps'
@@ -144,12 +191,14 @@ export default {
 		AppNavigationCounter,
 		AppNavigationNew,
 		AppNavigationSettings,
+		AppNavigationSpacer,
 		ActionButton,
 		ActionInput,
 		ContactDetails,
 		ContactsList,
 		Content,
 		ImportScreen,
+		EntityPicker,
 		Modal,
 		SettingsSection,
 	},
@@ -173,10 +222,18 @@ export default {
 
 	data() {
 		return {
-			isNewGroupMenuOpen: false,
+			GROUP_ALL_CONTACTS,
+			GROUP_NO_GROUP_CONTACTS,
 			isCreatingGroup: false,
+			isNewGroupMenuOpen: false,
 			loading: true,
 			searchQuery: '',
+			showContactPicker: true,
+			contactPickerforGroup: null,
+			pickerTypes: [{
+				id: 'contacts',
+				label: t('contacts', 'contacts'),
+			}],
 		}
 	},
 
@@ -242,70 +299,32 @@ export default {
 		// generate groups menu from groups store
 		groupsMenu() {
 			return this.groups.map(group => {
-				return {
+				return Object.assign(group, {
 					id: group.name.replace(' ', '_'),
 					key: group.name.replace(' ', '_'),
 					router: {
 						name: 'group',
 						params: { selectedGroup: group.name },
 					},
-					text: group.name,
-					utils: {
-						counter: group.contacts.length,
-						actions: [
-							{
-								icon: 'icon-download',
-								text: 'Download',
-								action: () => this.downloadGroup(group),
-							},
-						],
-					},
-				}
+					icon: group.name === t('contactsinteraction', 'Recently contacted')
+						? 'icon-recent-actors'
+						: '',
+				})
 			}).sort(function(a, b) {
-				return parseInt(b.utils.counter) - parseInt(a.utils.counter)
+				return parseInt(b.contacts.length) - parseInt(a.contacts.length)
 			})
 		},
 
-		// building the main menu
-		menu() {
-			return this.groupAllGroup.concat(this.groupNotGrouped.concat(this.groupsMenu))
-		},
-
-		// default group for every contacts
-		groupAllGroup() {
-			return [{
-				id: 'everyone',
-				key: 'everyone',
-				icon: 'icon-contacts-dark',
-				router: {
-					name: 'group',
-					params: { selectedGroup: GROUP_ALL_CONTACTS },
-				},
-				text: GROUP_ALL_CONTACTS,
-				utils: {
-					counter: this.sortedContacts.length,
-				},
-			}]
-		},
-
-		// default group for every contacts
-		groupNotGrouped() {
-			if (this.ungroupedContacts.length === 0) {
-				return []
-			}
-			return [{
-				id: 'notgrouped',
-				key: 'notgrouped',
-				icon: 'icon-user',
-				router: {
-					name: 'group',
-					params: { selectedGroup: GROUP_NO_GROUP_CONTACTS },
-				},
-				text: GROUP_NO_GROUP_CONTACTS,
-				utils: {
-					counter: this.ungroupedContacts.length,
-				},
-			}]
+		/**
+		 * Contacts formatted for the EntityPicker
+		 * @returns {Array}
+		 */
+		pickerData() {
+			return Object.values(this.contacts).map(contact => ({
+				id: contact.key,
+				label: contact.displayName,
+				type: 'contact',
+			}))
 		},
 	},
 
@@ -539,7 +558,33 @@ export default {
 			const groupName = input.value.trim()
 			this.$store.dispatch('addGroup', groupName)
 			this.isNewGroupMenuOpen = false
+
+			// Select group
+			this.$router.push({
+				name: 'contact',
+				params: {
+					selectedGroup: groupName,
+					selectedContact: undefined,
+				},
+			})
 		},
+
+		// Bulk contacts group management handlers
+		addContactsToGroup(group) {
+			this.showContactPicker = true
+			this.contactPickerforGroup = group
+		},
+
+		onContactPickerClose() {
+			this.showContactPicker = false
+		},
+
+		onContactPickerPick(selection) {
+			const group = this.contactPickerforGroup
+			console.info('Adding', selection, 'to group', group)
+			this.contactPickerforGroup = null
+		},
+
 	},
 }
 </script>
