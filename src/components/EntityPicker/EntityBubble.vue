@@ -92,17 +92,22 @@ export default {
 	background-color: var(--color-primary-light);
 }
 
-.entity-picker__bubble-delete {
-	display: block;
-	height: 100%;
-	// squeeze in the border radius
-	margin-right: -4px;
-	opacity: .7;
+.entity-picker__bubble {
+	// Add space between bubbles
+	margin-right: 4px;
 
-	&:hover,
-	&:active,
-	&:focus {
-		opacity: 1;
+	&-delete {
+		display: block;
+		height: 100%;
+		// squeeze in the border radius
+		margin-right: -4px;
+		opacity: .7;
+
+		&:hover,
+		&:active,
+		&:focus {
+			opacity: 1;
+		}
 	}
 }
 

@@ -33,43 +33,48 @@
 					v-model="searchQuery"
 					class="entity-picker__search-input"
 					type="search"
-					:placeholder="t('contacts', 'Search contacts')">
+					:placeholder="t('contacts', 'Search {types}', {types: searchPlaceholderTypes})"
+					@change="onSearch">
 			</div>
 
-			<!-- Content -->
-			<div class="entity-picker__content">
-				<!-- Picked entities -->
-				<transition-group
-					v-if="selection.length > 0"
-					name="zoom"
-					tag="ul"
-					class="entity-picker__selection">
-					<EntityBubble
-						v-for="entity in selection"
+			<!-- Picked entities -->
+			<transition-group
+				v-if="Object.keys(selection).length > 0"
+				name="zoom"
+				tag="ul"
+				class="entity-picker__selection">
+				<EntityBubble
+					v-for="entity in selection"
+					:key="entity.key || `entity-${entity.type}-${entity.id}`"
+					v-bind="entity"
+					@delete="onDelete(entity)" />
+			</transition-group>
+
+			<!-- TODO: find better wording/icon -->
+			<EmptyContent v-if="loading" icon="">
+				{{ t('contacts', 'Loading …') }}
+			</EmptyContent>
+
+			<!-- Searched & picked entities -->
+			<div v-else-if="searchSet.length > 0 && availableEntities.length > 0" class="entity-picker__options">
+				<!-- For each type we show title + list -->
+				<div v-for="type in availableEntities" :key="type.id" class="entity-picker__option">
+					<!-- Show content if we have something to show -->
+					<h4 v-if="!isSingleType && type.dataSet.length > 0" class="entity-picker__option-caption">
+						{{ t('contacts', 'Add {type}', {type: type.label.toLowerCase()}) }}
+					</h4>
+
+					<EntitySearchResult v-for="entity in type.dataSet"
 						:key="entity.key || `entity-${entity.type}-${entity.id}`"
+						:selection="selection"
 						v-bind="entity"
-						@delete="onDelete(entity)" />
-				</transition-group>
-
-				<!-- Searched & picked entities -->
-				<template v-if="searchSet.length > 0 && availableEntities.length > 0">
-					<section v-for="type in availableEntities" :key="type.id" class="entity-picker__options">
-						<h4 v-if="isSingleType" class="entity-picker__options-caption">
-							{{ t('contacts', 'Add {type}', {type: type.label}) }}
-						</h4>
-						<EntitySearchResult v-for="entity in type.dataSet"
-							:key="entity.key || `entity-${entity.type}-${entity.id}`"
-							v-bind="entity" />
-					</section>
-				</template>
-				<EmptyContent v-else-if="searchQuery" icon="icon-search">
-					{{ t('contacts', 'No results') }}
-				</EmptyContent>
-				<!-- TODO: find better wording/icon -->
-				<EmptyContent v-else icon="">
-					{{ t('contacts', 'Loading …') }}
-				</EmptyContent>
+						@click="onToggle(entity)" />
+				</div>
 			</div>
+
+			<EmptyContent v-else-if="searchQuery" icon="icon-search">
+				{{ t('contacts', 'No results') }}
+			</EmptyContent>
 
 			<div class="entity-picker__navigation">
 				<button
@@ -104,14 +109,39 @@ export default {
 	},
 
 	props: {
+		loading: {
+			type: Boolean,
+			default: false,
+		},
+
+		/**
+		 * The types of data within dataSet
+		 * Array of objects. id must match dataSet entity type
+		 */
+		dataTypes: {
+			type: Array,
+			required: true,
+			validator: types => {
+				const invalidTypes = types.filter(type => !type.id && !type.label)
+				if (invalidTypes.length > 0) {
+					console.error('The following types MUST have a proper id and label key', invalidTypes)
+					return false
+				}
+				return true
+			},
+		},
+
+		/**
+		 * The data to be used
+		 */
 		dataSet: {
 			type: Array,
 			required: true,
 		},
-		dataTypes: {
-			type: Array,
-			required: true,
-		},
+
+		/**
+		 * The sorting key for the dataSet
+		 */
 		sort: {
 			type: String,
 			default: 'label',
@@ -121,13 +151,7 @@ export default {
 	data() {
 		return {
 			searchQuery: '',
-			selection: [
-				{ type: 'user', label: 'Test 4 Lorem ipsum is a very long user name', id: 'test4' },
-				{ type: 'user', label: 'Test 2', id: 'test2' },
-				{ type: 'user', label: 'Test 1 (AVHJ)', id: 'tes2' },
-				{ type: 'user', label: 'Test 278 975 869', id: 'tebst2' },
-				{ type: 'user', label: 'Administrator', id: 'tespot2' },
-			],
+			selection: {},
 		}
 	},
 
@@ -138,6 +162,13 @@ export default {
 		 */
 		isSingleType() {
 			return !(this.dataTypes.length > 1)
+		},
+
+		searchPlaceholderTypes() {
+			const types = this.dataTypes
+				.map(type => type.label)
+				.join(', ')
+			return `${types}…`
 		},
 
 		/**
@@ -172,26 +203,62 @@ export default {
 			return this.dataTypes.map(type => ({
 				id: type.id,
 				label: type.label,
-				dataSet: this.searchSet.filter(entity => entity.type === type),
+				dataSet: this.searchSet.filter(entity => entity.type === type.id),
 			}))
 		},
 	},
 
 	methods: {
 		onCancel() {
+			/**
+			 * Emitted when the user closed or cancelled
+			 */
 			this.$emit('close')
 		},
 		onSubmit() {
-			this.$emit('submit', this.selection)
+			/**
+			 * Emitted when user submit the form
+			 * @type {Array} the selected entities
+			 */
+			this.$emit('submit', Object.values(this.selection))
 		},
+
+		onSearch(event) {
+			/**
+			 * Emitted when search change
+			 * @type {string} the search query
+			 */
+			this.$emit('search', this.searchQuery)
+		},
+
 		/**
 		 * Remove entity from selection
 		 * @param {Object} entity the entity to remove
 		 */
 		onDelete(entity) {
-			const index = this.selection.findIndex(search => search === entity)
-			this.selection.splice(index, 1)
+			this.$delete(this.selection, entity.id, entity)
 			console.debug('Removing entity from selection', entity)
+		},
+
+		/**
+		 * Add entity from selection
+		 * @param {Object} entity the entity to add
+		 */
+		onPick(entity) {
+			this.$set(this.selection, entity.id, entity)
+			console.debug('Added entity to selection', entity)
+		},
+
+		/**
+		 * Toggle entity from selection
+		 * @param {Object} entity the entity to add/remove
+		 */
+		onToggle(entity) {
+			if (entity.id in this.selection) {
+				this.onDelete(entity)
+			} else {
+				this.onPick(entity)
+			}
 		},
 	},
 
@@ -205,6 +272,7 @@ export default {
 $dialog-margin: 20px;
 $dialog-width: 300px;
 $dialog-height: 480px;
+$entity-spacing: 4px;
 
 // https://uxplanet.org/7-rules-for-mobile-ui-button-design-e9cf2ea54556
 // recommended is 48px
@@ -231,6 +299,7 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 	width: $dialog-width - $dialog-margin * 2;
 	height: $dialog-height - $dialog-margin * 2;
 	margin: $dialog-margin;
+	max-height: calc(100vh - $dialog-margin * 2 - 10px);
 
 	&__search {
 		position: relative;
@@ -238,20 +307,17 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 		align-items: center;
 		&-input {
 			width: 100%;
-			height: $clickable-area !important;
+			height: $clickable-area - $entity-spacing !important;
 			padding-left: $clickable-area;
 			font-size: 16px;
-			line-height: $clickable-area;
+			line-height: $clickable-area - $entity-spacing;
+			margin: $entity-spacing 0;
 		}
 		&-icon {
 			position: absolute;
 			width: $clickable-area;
 			height: $clickable-area;
 		}
-	}
-
-	&__content {
-		height: 100%;
 	}
 
 	&__selection {
@@ -262,8 +328,31 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 		flex-wrap: wrap;
 		// half a line height to know there is more lines
 		max-height: 6.5em;
-		padding: 4px 0;
+		padding: $entity-spacing 0;
 		border-bottom: 1px solid var(--color-background-darker);
+		background: var(--color-main-background);
+	}
+
+	&__options {
+		margin: $entity-spacing 0;
+		overflow-y: auto;
+	}
+	&__option {
+		&-caption {
+			padding-left: 10px;
+			list-style-type: none;
+			user-select: none;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			pointer-events: none;
+			color: var(--color-primary);
+			box-shadow: none !important;
+			line-height: $clickable-area;
+
+			&:not(:first-child) {
+				margin-top: $clickable-area / 2;
+			}
+		}
 	}
 
 	&__navigation {
@@ -277,28 +366,6 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 		box-shadow: 0 -10px 5px var(--color-main-background);
 		&__button-right {
 			margin-left: auto;
-		}
-	}
-}
-
-.entity-picker__options {
-	margin: 4px 0;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	&-caption {
-		color: var(--color-primary);
-		line-height: $clickable-area;
-		list-style-type: none;
-		white-space: nowrap;
-		text-overflow: ellipsis;
-		box-shadow: none !important;
-		user-select: none;
-		pointer-events: none;
-		padding-left: 10px;
-
-		&:not(:first-child) {
-			margin-top: $clickable-area / 2;
 		}
 	}
 }

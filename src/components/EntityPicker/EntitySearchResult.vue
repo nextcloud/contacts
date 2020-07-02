@@ -22,12 +22,12 @@
 <template>
 	<UserBubble
 		class="entity-picker__bubble"
-		:class="{'entity-picker__bubble--selected': selected}"
+		:class="{'entity-picker__bubble--selected': isSelected}"
 		:display-name="label"
 		:margin="6"
 		:size="44"
 		url="#"
-		@click="onClick">
+		@click.stop.prevent="onClick">
 		<template #title>
 			<span class="entity-picker__bubble-checkmark icon-checkmark" />
 		</template>
@@ -64,15 +64,24 @@ export default {
 		/**
 		 * Label of the entity
 		 */
-		selected: {
-			type: Boolean,
-			default: false,
+		selection: {
+			type: Object,
+			required: true,
+		},
+	},
+
+	computed: {
+		isSelected() {
+			return this.id in this.selection
 		},
 	},
 
 	methods: {
+		/**
+		 * Forward click to parent
+		 * @param {Event} event the click event
+		 */
 		onClick(event) {
-			console.info(event)
 			this.$emit('click', event)
 		},
 	},
