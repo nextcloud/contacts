@@ -34,7 +34,7 @@
 				@click="newContact" />
 
 			<!-- groups list -->
-			<ul v-if="!loading" id="groups-list">
+			<template v-if="!loading" #list>
 				<!-- All contacts group -->
 				<AppNavigationItem id="everyone"
 					:title="GROUP_ALL_CONTACTS"
@@ -102,12 +102,14 @@
 							@submit.prevent.stop="createNewGroup" />
 					</template>
 				</AppNavigationItem>
-			</ul>
+			</template>
 
 			<!-- settings -->
-			<AppNavigationSettings v-if="!loading">
-				<SettingsSection />
-			</AppNavigationSettings>
+			<template #footer>
+				<AppNavigationSettings v-if="!loading">
+					<SettingsSection />
+				</AppNavigationSettings>
+			</template>
 		</AppNavigation>
 
 		<AppContent>
@@ -146,37 +148,55 @@
 			:data-set="pickerData"
 			@close="onContactPickerClose"
 			@submit="onContactPickerPick" />
+
+		<!-- Bulk contacts edit modal -->
+		<Modal v-if="isProcessing || isProcessDone"
+			:clear-view-delay="-1"
+			:can-close="isProcessDone"
+			@close="closeProcess">
+			<ProcessingScreen v-bind="processStatus">
+				{{ n('contacts',
+					'Adding {total} contact to {name}',
+					'Adding {total} contacts to {name}',
+					total,
+					processStatus
+				) }}
+			</ProcessingScreen>
+		</Modal>
 	</Content>
 </template>
 
 <script>
-import AppContent from '@nextcloud/vue/dist/Components/AppContent'
-import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
-import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
-import AppNavigationSpacer from '@nextcloud/vue/dist/Components/AppNavigationSpacer'
-import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
-import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
-import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
+import AppContent from '@nextcloud/vue/dist/Components/AppContent'
+import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
+import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
+import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
+import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
+import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
+import AppNavigationSpacer from '@nextcloud/vue/dist/Components/AppNavigationSpacer'
 import Content from '@nextcloud/vue/dist/Components/Content'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
+import Modal from '@nextcloud/vue/dist/Components/Modal'
 
-import moment from 'moment'
-import download from 'downloadjs'
 import { VCardTime } from 'ical.js'
+import download from 'downloadjs'
+import moment from 'moment'
+import pLimit from 'p-limit'
 
-import SettingsSection from '../components/SettingsSection'
-import ContactsList from '../components/ContactsList'
 import ContactDetails from '../components/ContactDetails'
-import ImportScreen from '../components/ImportScreen'
+import ContactsList from '../components/ContactsList'
 import EntityPicker from '../components/EntityPicker/EntityPicker'
+import ImportScreen from '../components/ImportScreen'
+import ProcessingScreen from '../components/ProcessingScreen'
+import SettingsSection from '../components/SettingsSection'
 
 import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps'
 
 import client from '../services/cdav'
+import appendContactToGroup from '../services/appendContactToGroup'
 
 const GROUP_ALL_CONTACTS = t('contacts', 'All contacts')
 const GROUP_NO_GROUP_CONTACTS = t('contacts', 'Not grouped')
@@ -185,21 +205,22 @@ export default {
 	name: 'Contacts',
 
 	components: {
+		ActionButton,
+		ActionInput,
 		AppContent,
 		AppNavigation,
-		AppNavigationItem,
 		AppNavigationCounter,
+		AppNavigationItem,
 		AppNavigationNew,
 		AppNavigationSettings,
 		AppNavigationSpacer,
-		ActionButton,
-		ActionInput,
 		ContactDetails,
 		ContactsList,
 		Content,
-		ImportScreen,
 		EntityPicker,
+		ImportScreen,
 		Modal,
+		ProcessingScreen,
 		SettingsSection,
 	},
 
@@ -227,13 +248,24 @@ export default {
 			isCreatingGroup: false,
 			isNewGroupMenuOpen: false,
 			loading: true,
+
+			// Add to group picker
 			searchQuery: '',
-			showContactPicker: true,
+			showContactPicker: false,
 			contactPickerforGroup: null,
 			pickerTypes: [{
-				id: 'contacts',
+				id: 'contact',
 				label: t('contacts', 'contacts'),
 			}],
+
+			// Bulk processing
+			isProcessing: false,
+			isProcessDone: false,
+			processStatus: {
+				total: 0,
+				progress: 0,
+				name: '',
+			},
 		}
 	},
 
@@ -580,9 +612,50 @@ export default {
 		},
 
 		onContactPickerPick(selection) {
-			const group = this.contactPickerforGroup
-			console.info('Adding', selection, 'to group', group)
+			console.debug('Adding', selection, 'to group', this.contactPickerforGroup)
+			const groupName = this.contactPickerforGroup.name
+
+			this.isProcessing = true
+
+			this.processStatus.total = selection.length
+			this.processStatus.name = this.contactPickerforGroup.name
+
+			// max simultaneous requests
+			const limit = pLimit(3)
+			const requests = []
+
+			// create the array of requests to send
+			selection.map(async entity => {
+				try {
+					// Get contact
+					const contact = this.contacts[entity.id]
+
+					// push contact to server and use limit
+					requests.push(limit(() => appendContactToGroup(contact, groupName)
+						.then((response) => {
+							this.$store.dispatch('addContactToGroup', { contact, groupName })
+							this.processStatus.progress++
+						})
+						.catch((error) => {
+							this.processStatus.progress++
+							console.error(error)
+						})
+					))
+				} catch (e) {
+					console.error(e)
+				}
+			})
+
+			Promise.all(requests).then(() => {
+				this.isProcessDone = true
+				this.showContactPicker = false
+			})
+		},
+
+		closeProcess() {
 			this.contactPickerforGroup = null
+			this.isProcessing = false
+			this.isProcessDone = false
 		},
 
 	},

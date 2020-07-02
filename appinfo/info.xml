@@ -33,6 +33,10 @@
 	<bugs>https://github.com/nextcloud/contacts/issues</bugs>
 	<repository type="git">https://github.com/nextcloud/contacts.git</repository>
 
+	<!-- required for dav plugins registration -->
+    <types>
+        <filesystem/>
+    </types>
 
 	<dependencies>
 		<nextcloud min-version="17" max-version="20" />

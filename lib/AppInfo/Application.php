@@ -21,10 +21,14 @@
  *
  */
 namespace OCA\Contacts\AppInfo;
+
+use OCA\Contacts\Dav\PatchPlugin;
 use OCP\AppFramework\App;
-use OCP\IURLGenerator;
+use OCP\EventDispatcher\IEventDispatcher;
 use OCP\IL10N;
 use OCP\INavigationManager;
+use OCP\IURLGenerator;
+use OCP\SabrePluginEvent;
 
 class Application extends App {
 
@@ -42,6 +46,19 @@ class Application extends App {
 
 		/** @var IURLGenerator $urlGenerator */
 		$urlGenerator = $server->query(IURLGenerator::class);
+
+		/** @var IEventDispatcher $eventDispatcher */
+		$eventDispatcher = $server->query(IEventDispatcher::class);
+		$eventDispatcher->addListener('OCA\DAV\Connector\Sabre::addPlugin', function (SabrePluginEvent $event) {
+			$server = $event->getServer();
+
+			if ($server !== null) {
+				// We have to register the LockPlugin here and not info.xml,
+				// because info.xml plugins are loaded, after the
+				// beforeMethod:* hook has already been emitted.
+				$server->addPlugin($this->getContainer()->query(PatchPlugin::class));
+			}
+		});
 
 		/** @var IL10N $l10n */
 		$l10n = $server->getL10N(self::APP_ID);
