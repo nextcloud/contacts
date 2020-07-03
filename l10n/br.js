@@ -1,12 +1,15 @@
 OC.L10N.register(
     "contacts",
     {
+    "Contacts" : "Darempredoù",
     "Details" : "Munudoù",
     "Invalid image" : "N'eo ket aotreet ar skeudenn",
     "Name" : "Anv",
     "Download" : "Pellgargañ",
     "Delete" : "Dilemel",
+    "Cancel" : "Arrest",
     "Rename" : "Adenvel",
+    "Copy link" : "Kopiañ al liamm",
     "Home" : "Degemer",
     "Work" : "Labour",
     "Other" : "All",
