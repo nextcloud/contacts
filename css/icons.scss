@@ -30,6 +30,7 @@
 @include icon-black-white('no-calendar', 'contacts', 1);
 @include icon-black-white('language', 'contacts', 2);
 @include icon-black-white('clone', 'contacts', 2);
+@include icon-black-white('recent-actors', 'contacts', 1);
 
 .icon-up-force-white {
 	// using #fffffe to trick the accessibility dark theme icon invert
