@@ -158,7 +158,7 @@
 				{{ n('contacts',
 					'Adding {total} contact to {name}',
 					'Adding {total} contacts to {name}',
-					total,
+					processStatus.total,
 					processStatus
 				) }}
 			</ProcessingScreen>
@@ -330,7 +330,7 @@ export default {
 
 		// generate groups menu from groups store
 		groupsMenu() {
-			return this.groups.map(group => {
+			const menu = this.groups.map(group => {
 				return Object.assign(group, {
 					id: group.name.replace(' ', '_'),
 					key: group.name.replace(' ', '_'),
@@ -341,10 +341,20 @@ export default {
 					icon: group.name === t('contactsinteraction', 'Recently contacted')
 						? 'icon-recent-actors'
 						: '',
+					toString: () => group.name,
 				})
-			}).sort(function(a, b) {
-				return parseInt(b.contacts.length) - parseInt(a.contacts.length)
 			})
+			menu.sort()
+
+			// Find the Recently Contacted group, delete it from array and put it at first place of the array
+			const recentlyIndex = menu.findIndex(
+				group => group.text === t('contactsinteraction', 'Recently contacted')
+			)
+			if (recentlyIndex >= 0) {
+				menu.unshift(menu.splice(recentlyIndex, 1)[0])
+			}
+
+			return menu
 		},
 
 		/**
