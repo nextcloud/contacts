@@ -63,6 +63,21 @@
 					</AppNavigationCounter>
 				</AppNavigationItem>
 
+				<!-- Recently contacted group -->
+				<AppNavigationItem
+					v-if="isContactsInteractionEnabled && recentlyContactedContacts.contacts.length > 0"
+					id="recentlycontacted"
+					:title="t('contactsinteraction', 'Recently contacted')"
+					:to="{
+						name: 'group',
+						params: { selectedGroup: t('contactsinteraction', 'Recently contacted') },
+					}"
+					icon="icon-recent-actors">
+					<AppNavigationCounter slot="counter">
+						{{ recentlyContactedContacts.contacts.length }}
+					</AppNavigationCounter>
+				</AppNavigationItem>
+
 				<AppNavigationSpacer />
 
 				<!-- Custom groups -->
@@ -75,7 +90,7 @@
 						<ActionButton
 							icon="icon-add"
 							@click="addContactsToGroup(group)">
-							{{ t('contacts', 'Add contacts to this group') }}
+							{{ t('contacts', 'Add contacts') }}
 						</ActionButton>
 						<ActionButton
 							icon="icon-download"
@@ -197,6 +212,7 @@ import rfcProps from '../models/rfcProps'
 
 import client from '../services/cdav'
 import appendContactToGroup from '../services/appendContactToGroup'
+import isContactsInteractionEnabled from '../services/isContactsInteractionEnabled'
 
 const GROUP_ALL_CONTACTS = t('contacts', 'All contacts')
 const GROUP_NO_GROUP_CONTACTS = t('contacts', 'Not grouped')
@@ -245,6 +261,7 @@ export default {
 		return {
 			GROUP_ALL_CONTACTS,
 			GROUP_NO_GROUP_CONTACTS,
+			isContactsInteractionEnabled,
 			isCreatingGroup: false,
 			isNewGroupMenuOpen: false,
 			loading: true,
@@ -338,23 +355,23 @@ export default {
 						name: 'group',
 						params: { selectedGroup: group.name },
 					},
-					icon: group.name === t('contactsinteraction', 'Recently contacted')
-						? 'icon-recent-actors'
-						: '',
 					toString: () => group.name,
 				})
 			})
 			menu.sort()
 
-			// Find the Recently Contacted group, delete it from array and put it at first place of the array
-			const recentlyIndex = menu.findIndex(
-				group => group.text === t('contactsinteraction', 'Recently contacted')
-			)
+			// Find the Recently Contacted group, delete it from array
+			const recentlyIndex = menu.findIndex(group => group.name === t('contactsinteraction', 'Recently contacted'))
 			if (recentlyIndex >= 0) {
-				menu.unshift(menu.splice(recentlyIndex, 1)[0])
+				menu.splice(recentlyIndex, 1)
 			}
 
 			return menu
+		},
+
+		// Recently contacted data
+		recentlyContactedContacts() {
+			return this.groups.find(group => group.name === t('contactsinteraction', 'Recently contacted'))
 		},
 
 		/**

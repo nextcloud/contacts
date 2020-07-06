@@ -23,10 +23,11 @@
 
 namespace OCA\Contacts\Controller;
 
+use OCP\App\IAppManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
-use OCP\IInitialStateService;
 use OCP\IConfig;
+use OCP\IInitialStateService;
 use OCP\IRequest;
 use OCP\L10N\IFactory;
 use OCP\Util;
@@ -48,13 +49,15 @@ class PageController extends Controller {
 								IRequest $request,
 								IConfig $config,
 								IInitialStateService $initialStateService,
-								IFactory $languageFactory) {
+								IFactory $languageFactory,
+								IAppManager $appManager) {
 		parent::__construct($appName, $request);
 
 		$this->appName = $appName;
 		$this->config = $config;
 		$this->initialStateService = $initialStateService;
 		$this->languageFactory = $languageFactory;
+		$this->appManager = $appManager;
 	}
 
 	/**
@@ -69,6 +72,7 @@ class PageController extends Controller {
 
 		$this->initialStateService->provideInitialState($this->appName, 'locales', $locales);
 		$this->initialStateService->provideInitialState($this->appName, 'defaultProfile', $defaultProfile);
+		$this->initialStateService->provideInitialState($this->appName, 'contactsinteraction', $this->appManager->isEnabledForUser('contactsinteraction') === true);
 		
 		Util::addScript($this->appName, 'contacts');
 		Util::addStyle($this->appName, 'contacts');
