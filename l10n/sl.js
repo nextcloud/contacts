@@ -56,6 +56,7 @@ OC.L10N.register(
     "Can not copy" : "Ni mogoče kopirati!",
     "Copy link" : "Kopiraj povezavo",
     "Delete {addressbook} ?" : "Ali želite izbrisati imenik {addressbook} ?",
+    "Address book copied to clipboard" : "Imenik je kopiran v odložišče.",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["V souporabi s skupno {num} uporabnikom ali skupino","V souporabi s skupno {num} uporabnikoma ali skupinama","V souporabi s skupno {num} uporabniki ali skupinami","V souporabi s skupno {num} uporabniki ali skupinami"],
     "Share with users or groups" : "Souporaba z uporabniki ali skupinami",
     "No users or groups" : "Ni uporabnikov oziroma skupin",

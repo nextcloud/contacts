@@ -125,6 +125,7 @@ OC.L10N.register(
     "Car" : "自動車",
     "Work pager" : "ワークページャー",
     "Social network" : "ソーシャルネットワーク",
+    "The link of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "プロフィールのURL例 https://www.facebook.com/Nextclouders/",
     "Relationship" : "つながり",
     "Specify a relationship between you and the entity represented by this vCard." : "あなたとこのvCardが表すエンティティとの間の関係を指定します。",
     "Spouse" : "配偶者",

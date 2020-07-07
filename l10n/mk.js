@@ -125,6 +125,7 @@ OC.L10N.register(
     "Car" : "Автомобил",
     "Work pager" : "Службен пејџер",
     "Social network" : "Социјална мрежа",
+    "The link of the profile. e.g. https://www.facebook.com/Nextclouders/ " : "Линк до профилот. На пр. https://www.facebook.com/korisnik/",
     "Relationship" : "Врска",
     "Specify a relationship between you and the entity represented by this vCard." : "Наведете врска помеѓу вас и субјектот претставен со оваа vCard.",
     "Spouse" : "Брачен другар",
