@@ -23,7 +23,7 @@
 <template>
 	<div v-if="propModel" class="grid-span-2 property property--without-actions">
 		<PropertyTitle
-			icon="icon-contacts-dark"
+			icon="icon-contacts"
 			:readable-name="t('contacts', 'Groups')" />
 
 		<div class="property__row">

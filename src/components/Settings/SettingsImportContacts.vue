@@ -170,6 +170,20 @@ export default {
 			return this.importState.stage !== 'default'
 		},
 	},
+
+	async mounted() {
+		// Direct import check
+		if (this.$route.name === 'import') {
+			const path = this.$route.query.file
+			this.processLocalFile(path)
+
+			this.$router.push({
+				name: 'group',
+				params: { selectedGroup: t('contacts', 'All contacts') },
+			})
+		}
+	},
+
 	methods: {
 		/**
 		 * Process input type file change
@@ -196,6 +210,27 @@ export default {
 			reader.readAsText(file)
 		},
 
+		async processLocalFile(path) {
+			try {
+				// prepare cancel token for axios request
+				const source = CancelToken.source()
+				this.cancelRequest = source.cancel
+
+				const file = await axios.get(generateRemoteUrl(`dav/files/${getCurrentUser().uid}`) + encodePath(path), {
+					cancelToken: source.token,
+				})
+
+				this.$store.dispatch('changeStage', 'parsing')
+				this.$store.dispatch('setAddressbook', this.selectedAddressbook.displayName)
+
+				if (file.data) {
+					await this.$store.dispatch('importContactsIntoAddressbook', { vcf: file.data, addressbook: this.selectedAddressbook })
+				}
+			} catch (error) {
+				console.error('Something wrong happened while processing local file', error)
+			}
+		},
+
 		toggleModal() {
 			this.isOpened = !this.isOpened
 			// cancel any ongoing request if closed
@@ -217,22 +252,9 @@ export default {
 				// unlikely, but let's cancel any previous request
 				this.cancelRequest()
 
-				// prepare cancel token for axios request
-				const source = CancelToken.source()
-				this.cancelRequest = source.cancel
-
-				// pick and retrieve file
+				// pick, retrieve & process file
 				const path = await picker.pick()
-				const file = await axios.get(generateRemoteUrl(`dav/files/${getCurrentUser().uid}`) + encodePath(path), {
-					cancelToken: source.token,
-				})
-
-				this.$store.dispatch('changeStage', 'parsing')
-				this.$store.dispatch('setAddressbook', this.selectedAddressbook.displayName)
-
-				if (file.data) {
-					await this.$store.dispatch('importContactsIntoAddressbook', { vcf: file.data, addressbook: this.selectedAddressbook })
-				}
+				await this.processLocalFile(path)
 			} catch (error) {
 				console.error('Something wrong happened while picking a file', error)
 			} finally {

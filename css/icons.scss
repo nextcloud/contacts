@@ -20,17 +20,17 @@
  *
  */
 
-
-@include icon-black-white('social', 'contacts', 1);
-@include icon-black-white('qrcode', 'contacts', 1);
 @include icon-black-white('address-book', 'contacts', 1);
-@include icon-black-white('phone', 'contacts', 1);
-@include icon-black-white('eye', 'contacts', 1);
-@include icon-black-white('up', 'contacts', 1);
-@include icon-black-white('no-calendar', 'contacts', 1);
-@include icon-black-white('language', 'contacts', 2);
 @include icon-black-white('clone', 'contacts', 2);
+@include icon-black-white('contacts', 'contacts', 1);
+@include icon-black-white('eye', 'contacts', 1);
+@include icon-black-white('language', 'contacts', 2);
+@include icon-black-white('no-calendar', 'contacts', 1);
+@include icon-black-white('phone', 'contacts', 1);
+@include icon-black-white('qrcode', 'contacts', 1);
 @include icon-black-white('recent-actors', 'contacts', 1);
+@include icon-black-white('social', 'contacts', 1);
+@include icon-black-white('up', 'contacts', 1);
 
 .icon-up-force-white {
 	// using #fffffe to trick the accessibility dark theme icon invert

@@ -42,7 +42,7 @@
 						name: 'group',
 						params: { selectedGroup: GROUP_ALL_CONTACTS },
 					}"
-					icon="icon-contacts-dark">
+					icon="icon-contacts">
 					<AppNavigationCounter slot="counter">
 						{{ sortedContacts.length }}
 					</AppNavigationCounter>
@@ -112,7 +112,7 @@
 					@click.prevent.stop="toggleNewGroupMenu">
 					<template slot="actions">
 						<ActionInput
-							icon="icon-contacts-dark"
+							icon="icon-contacts"
 							:placeholder="t('contacts','Group name')"
 							@submit.prevent.stop="createNewGroup" />
 					</template>
