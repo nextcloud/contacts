@@ -65,7 +65,7 @@
 
 				<!-- Recently contacted group -->
 				<AppNavigationItem
-					v-if="isContactsInteractionEnabled && recentlyContactedContacts.contacts.length > 0"
+					v-if="isContactsInteractionEnabled && recentlyContactedContacts && recentlyContactedContacts.contacts.length > 0"
 					id="recentlycontacted"
 					:title="t('contactsinteraction', 'Recently contacted')"
 					:to="{
