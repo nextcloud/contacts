@@ -23,7 +23,7 @@
 <template>
 	<div id="contact-details" class="app-content-details">
 		<!-- nothing selected or contact not found -->
-		<EmptyContent v-if="!contact && !loading" icon="icon-contacts-dark">
+		<EmptyContent v-if="!contact && !loading" icon="icon-contacts">
 			{{ t('contacts', 'No contact selected') }}
 			<template #desc>
 				{{ t('contacts', 'Select a contact on the list to begin') }}
@@ -31,7 +31,7 @@
 		</EmptyContent>
 
 		<!-- loading -->
-		<EmptyContent v-else-if="loading" icon="icon-contacts-dark">
+		<EmptyContent v-else-if="loading" icon="icon-contacts">
 			{{ t('contacts', 'Loading contacts …') }}
 		</EmptyContent>
 
