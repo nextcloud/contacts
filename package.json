@@ -47,6 +47,7 @@
 		"debounce": "^1.2.0",
 		"downloadjs": "^1.4.7",
 		"ical.js": "^1.4.0",
+		"moment": "^2.27.0",
 		"p-limit": "^2.3.0",
 		"p-queue": "^6.4.0",
 		"qr-image": "^3.2.0",

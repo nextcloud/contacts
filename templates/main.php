@@ -1,6 +1,6 @@
 <?php
 if (\OCP\Util::isIe()) {
-?>
+	?>
 <div id="app-content">
 	<div class="emptycontent">
 		<div class="icon-contacts-dark"></div>
@@ -9,4 +9,5 @@ if (\OCP\Util::isIe()) {
 	</div>
 </div>
 
-<?php } ?>
+<?php
+} ?>

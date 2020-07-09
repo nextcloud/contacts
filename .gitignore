@@ -18,3 +18,5 @@ js/
 build/
 coverage*
 vendor/
+
+/.php_cs.cache

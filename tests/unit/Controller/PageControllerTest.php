@@ -31,9 +31,7 @@ use OCP\IRequest;
 use OCP\L10N\IFactory;
 use ChristophWurst\Nextcloud\Testing\TestCase;
 
-
 class PageControllerTest extends TestCase {
-
 	private $controller;
 
 	/** @var IRequest|MockObject */
@@ -46,7 +44,7 @@ class PageControllerTest extends TestCase {
 	private $languageFactory;
 
 	/** @var IConfig|MockObject*/
-	private  $config;
+	private $config;
 
 
 	public function setUp() {

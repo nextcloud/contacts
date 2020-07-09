@@ -32,11 +32,10 @@ use OCP\L10N\IFactory;
 use OCP\Util;
 
 class PageController extends Controller {
-
 	protected $appName;
 
 	/** @var IConfig */
-	private  $config;
+	private $config;
 
 	/** @var IInitialStateService */
 	private $initialStateService;

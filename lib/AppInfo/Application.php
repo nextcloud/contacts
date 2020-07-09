@@ -21,14 +21,14 @@
  *
  */
 namespace OCA\Contacts\AppInfo;
+
 use OCP\AppFramework\App;
 use OCP\IURLGenerator;
 use OCP\IL10N;
 use OCP\INavigationManager;
 
 class Application extends App {
-
-	const APP_ID = 'contacts';
+	public const APP_ID = 'contacts';
 
 	public function __construct() {
 		parent::__construct(self::APP_ID);
@@ -65,6 +65,5 @@ class Application extends App {
 			// navigation or on the settings page of your app
 			'name' => $l10n->t('Contacts'),
 		]);
-
 	}
 }
