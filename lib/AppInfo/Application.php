@@ -21,13 +21,13 @@
  *
  */
 namespace OCA\Contacts\AppInfo;
+
 use OCP\AppFramework\App;
 use OCP\IURLGenerator;
 use OCP\IL10N;
 use OCP\INavigationManager;
 
 class Application extends App {
-
 	const APP_ID = 'contacts';
 
 	public function __construct() {
@@ -40,31 +40,32 @@ class Application extends App {
 		/** @var INavigationManager $navigationManager */
 		$navigationManager = $server->query(INavigationManager::class);
 
-		/** @var IURLGenerator $urlGenerator */
-		$urlGenerator = $server->query(IURLGenerator::class);
+		$navigationManager->add(function() use ($server) {
+			/** @var IURLGenerator $urlGenerator */
+			$urlGenerator = $server->query(IURLGenerator::class);
 
-		/** @var IL10N $l10n */
-		$l10n = $server->getL10N(self::APP_ID);
+			/** @var IL10N $l10n */
+			$l10n = $server->getL10N(self::APP_ID);
 
-		$navigationManager->add([
-			// the string under which your app will be referenced in Nextcloud
-			'id' => self::APP_ID,
-	
-			// sorting weight for the navigation. The higher the number, the higher
-			// will it be listed in the navigation
-			'order' => 4,
-	
-			// the route that will be shown on startup
-			'href' => $urlGenerator->linkToRoute('contacts.page.index'),
-	
-			// the icon that will be shown in the navigation
-			// this file needs to exist in img/
-			'icon' => $urlGenerator->imagePath(self::APP_ID, 'app.svg'),
-	
-			// the title of your application. This will be used in the
-			// navigation or on the settings page of your app
-			'name' => $l10n->t('Contacts'),
-		]);
+			return [
+				// the string under which your app will be referenced in Nextcloud
+				'id' => self::APP_ID,
 
+				// sorting weight for the navigation. The higher the number, the higher
+				// will it be listed in the navigation
+				'order' => 4,
+
+				// the route that will be shown on startup
+				'href' => $urlGenerator->linkToRoute('contacts.page.index'),
+
+				// the icon that will be shown in the navigation
+				// this file needs to exist in img/
+				'icon' => $urlGenerator->imagePath(self::APP_ID, 'app.svg'),
+
+				// the title of your application. This will be used in the
+				// navigation or on the settings page of your app
+				'name' => $l10n->t('Contacts'),
+			];
+		});
 	}
 }
