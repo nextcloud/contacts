@@ -74,7 +74,7 @@ class PageController extends Controller {
 		$this->initialStateService->provideInitialState($this->appName, 'defaultProfile', $defaultProfile);
 		$this->initialStateService->provideInitialState($this->appName, 'contactsinteraction', $this->appManager->isEnabledForUser('contactsinteraction') === true);
 		
-		Util::addScript($this->appName, 'contacts');
+		Util::addScript($this->appName, 'contacts-main');
 		Util::addStyle($this->appName, 'contacts');
 
 		return new TemplateResponse($this->appName, 'main');

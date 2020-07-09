@@ -69,6 +69,8 @@ if (window.location.pathname.split('/')[1] === 'index.php'
 	})
 }
 
+console.debug('Loading contacts', appVersion)
+
 export default new Vue({
 	el: '#content',
 	name: 'ContactsApp',

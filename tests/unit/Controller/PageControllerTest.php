@@ -30,7 +30,7 @@ use OCP\IInitialStateService;
 use OCP\IRequest;
 use OCP\L10N\IFactory;
 use ChristophWurst\Nextcloud\Testing\TestCase;
-
+use OCP\App\IAppManager;
 
 class PageControllerTest extends TestCase {
 
@@ -48,6 +48,9 @@ class PageControllerTest extends TestCase {
 	/** @var IConfig|MockObject*/
 	private  $config;
 
+	/** @var IAppManager|MockObject*/
+	private  $appManager;
+
 
 	public function setUp() {
 		parent::setUp();
@@ -56,13 +59,15 @@ class PageControllerTest extends TestCase {
 		$this->initialStateService = $this->createMock(IInitialStateService::class);
 		$this->languageFactory = $this->createMock(IFactory::class);
 		$this->config = $this->createMock(IConfig::class);
+		$this->appManager = $this->createMock(IAppManager::class);
 
 		$this->controller = new PageController(
 			'contacts',
 			$this->request,
 			$this->config,
 			$this->initialStateService,
-			$this->languageFactory
+			$this->languageFactory,
+			$this->appManager
 
 		);
 	}
