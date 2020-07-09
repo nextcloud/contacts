@@ -39,11 +39,11 @@ class CompositeSocialProvider {
 
 		// This determines the priority of known providers
 		$this->providers = [
-			'instagram' 	=> $instagramProvider,
-			'mastodon' 	=> $mastodonProvider,
-			'twitter' 	=> $twitterProvider,
-			'facebook'	=> $facebookProvider,
-			'tumblr'	=> $tumblrProvider,
+			'instagram' => $instagramProvider,
+			'mastodon'  => $mastodonProvider,
+			'twitter'   => $twitterProvider,
+			'facebook'  => $facebookProvider,
+			'tumblr'    => $tumblrProvider,
 		];
 	}
 
