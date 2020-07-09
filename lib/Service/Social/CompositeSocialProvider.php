@@ -50,7 +50,7 @@ class CompositeSocialProvider {
 	/**
 	 * returns an array of supported social providers
 	 *
-	 * @returns {array} array of the supported social networks
+	 * @returns String[] array of the supported social networks
 	 */
 	public function getSupportedNetworks() : array {
 		return array_keys($this->providers);
@@ -60,10 +60,10 @@ class CompositeSocialProvider {
 	/**
 	 * generate download url for a social entry
 	 *
-	 * @param {array} socialEntries all social data from the contact
-	 * @param {String} network the choice which network to use (fallback: take first available)
+	 * @param array socialEntries all social data from the contact
+	 * @param String network the choice which network to use (fallback: take first available)
 	 *
-	 * @returns {String} the url to the requested information or null in case of errors
+	 * @returns String the url to the requested information or null in case of errors
 	 */
 	public function getSocialConnector(array $socialEntries, string $network) : ?string {
 
@@ -71,7 +71,7 @@ class CompositeSocialProvider {
 		$selection = $this->providers;
 		// check if dedicated network selected
 		if (isset($this->providers[$network])) {
-			$selection = array($network => $this->providers[$network]);
+			$selection = [$network => $this->providers[$network]];
 		}
 
 		// check selected providers in order

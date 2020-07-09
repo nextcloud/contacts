@@ -3,18 +3,18 @@
 		<h2>{{ t('contacts', 'Contacts') }}</h2>
 		<p>
 			<input
-				id="allowSocialSync"
+				id="allow-social-sync"
 				v-model="allowSocialSync"
 				type="checkbox"
 				class="checkbox"
 				@change="updateSetting('allowSocialSync')">
-			<label for="allowSocialSync">{{ t('contacts', 'Allow updating avatars from social media') }}</label>
+			<label for="allow-social-sync">{{ t('contacts', 'Allow updating avatars from social media') }}</label>
 		</p>
 	</div>
 </template>
 
 <script>
-import Axios from '@nextcloud/axios'
+import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
 import { loadState } from '@nextcloud/initial-state'
 export default {
@@ -26,7 +26,7 @@ export default {
 	},
 	methods: {
 		updateSetting(setting) {
-			Axios.post(generateUrl('apps/contacts/api/v1/social/config/' + setting), {
+			axios.post(generateUrl('apps/contacts/api/v1/social/config/' + setting), {
 				allow: this[setting] ? 'yes' : 'no',
 			})
 		},
