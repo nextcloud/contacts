@@ -67,13 +67,13 @@ class DetailsProvider implements IProvider {
 
 	/**
 	 * Return a list of the user's addressbooks unique uris
-	 * 
+	 *
 	 * @return array
 	 * @since 16.0.0
 	 */
-	protected function getAddressBooksUris(): Array {
-		$result = array();
-		foreach($this->manager->getUserAddressbooks() as $addressBook) {
+	protected function getAddressBooksUris(): array {
+		$result = [];
+		foreach ($this->manager->getUserAddressbooks() as $addressBook) {
 			$result[$addressBook->getKey()] = $addressBook->getUri();
 		}
 
@@ -114,7 +114,6 @@ class DetailsProvider implements IProvider {
 		// We need $this->manager->getAddressbooksUris() to add this function
 		$ncVersion = $this->config->getSystemValue('version', '0.0.0');
 		if (version_compare($ncVersion, '16.0.0', '>=')) {
-
 			$addressBookUri = $this->getAddressBookUri($entry->getProperty('addressbook-key'));
 
 			$iconUrl = $this->urlGenerator->getAbsoluteURL($this->urlGenerator->imagePath('core', 'actions/info.svg'));
@@ -128,5 +127,4 @@ class DetailsProvider implements IProvider {
 			$entry->addAction($action);
 		}
 	}
-
 }
