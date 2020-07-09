@@ -85,7 +85,7 @@
 				<ActionButton
 					v-for="network in supportedSocial"
 					:key="network"
-					:icon="'icon-' + network"
+					:icon="'icon-' + network.toLowerCase()"
 					@click="getSocialAvatar(network)">
 					{{ t('contacts', 'Get from ' + network) }}
 				</ActionButton>
