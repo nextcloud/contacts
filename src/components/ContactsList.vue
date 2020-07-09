@@ -110,12 +110,12 @@ export default {
 	},
 
 	watch: {
-		selectedContact: function(key) {
+		selectedContact(key) {
 			this.$nextTick(() => {
 				this.scrollToContact(key)
 			})
 		},
-		list: function(val, old) {
+		list(val, old) {
 			// we just loaded the list and the url already have a selected contact
 			// if not, the selectedContact watcher will take over
 			// to select the first entry

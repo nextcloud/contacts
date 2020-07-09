@@ -27,7 +27,7 @@ import { getRequestToken } from '@nextcloud/auth'
 function xhrProvider() {
 	const headers = {
 		'X-Requested-With': 'XMLHttpRequest',
-		'requesttoken': getRequestToken(),
+		requesttoken: getRequestToken(),
 	}
 	const xhr = new XMLHttpRequest()
 	const oldOpen = xhr.open

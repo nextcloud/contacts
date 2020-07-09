@@ -80,7 +80,7 @@ export function mapDavShareeToSharee(sharee) {
 		: id
 	return {
 		displayName: name,
-		id: id,
+		id,
 		writeable: sharee.access[0].endsWith('read-write'),
 		isGroup: sharee.href.startsWith('principal:principals/groups/'),
 		uri: sharee.href,

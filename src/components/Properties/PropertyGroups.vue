@@ -123,10 +123,10 @@ export default {
 		 * we need to make sure to update the local data on pop change
 		 * TODO: check if this create performance drop
 		 */
-		value: function() {
+		value() {
 			this.localValue = this.value
 		},
-		selectType: function() {
+		selectType() {
 			this.localType = this.selectType
 		},
 	},

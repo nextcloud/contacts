@@ -29,7 +29,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			mime: 'text/vcard',
 			permissions: OC.PERMISSION_READ,
 			iconClass: 'icon-contacts',
-			actionHandler: function(fileName, context) {
+			actionHandler(fileName, context) {
 				const absPath = `${context.dir === '/' ? '' : context.dir}/${fileName}`
 				window.location = generateUrl(`/apps/contacts/import?file=${absPath}`)
 			},
