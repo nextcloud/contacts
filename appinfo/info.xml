@@ -41,4 +41,13 @@
 	<contactsmenu>
 		<provider>OCA\Contacts\ContactsMenu\Providers\DetailsProvider</provider>
 	</contactsmenu>
+
+	<navigations>
+		<navigation>
+			<name>Contacts</name>
+			<route>contacts.page.index</route>
+			<icon>app.svg</icon>
+			<order>4</order>
+		</navigation>
+	</navigations>
 </info>
