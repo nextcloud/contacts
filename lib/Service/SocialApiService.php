@@ -32,6 +32,7 @@ use OCP\IAddressBook;
 use OCP\IConfig;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\JSONResponse;
+use OCP\Http\Client\IClientService;
 
 
 class SocialApiService {
@@ -42,15 +43,19 @@ class SocialApiService {
 	private  $manager;
 	/** @var IConfig */
 	private  $config;
+	/** @var IClientService */
+	private $clientService;
 
 	public function __construct(
 					CompositeSocialProvider $socialProvider,
 					IManager $manager,
-					IConfig $config) {
+					IConfig $config,
+					IClientService $clientService) {
 
 		$this->socialProvider = $socialProvider;
 		$this->manager = $manager;
 		$this->config = $config;
+		$this->clientService = $clientService;
 	}
 
 
@@ -67,34 +72,6 @@ class SocialApiService {
 			return array();
 		}
 		return $this->socialProvider->getSupportedNetworks();
-	}
-
-
-	/**
-	 * @NoAdminRequired
-	 *
-	 * Retrieves the image type from the response headers
-	 *
-	 * @param {array} header the http response headers containing the image type
-	 *
-	 * @returns {String} the image type or null in case of errors
-	 */
-	protected function getImageType(array $header) : ?string {
-
-		$type = null;
-
-		// get image type from headers
-		foreach ($header as $value) {
-			if (preg_match('/^Content-Type:/i', $value)) {
-				if (stripos($value, "image") !== false) {
-					$type = substr($value, stripos($value, "image"));
-				}
-			}
-		}
-		if (is_null($type)) {
-			return null;
-		}
-		return $type;
 	}
 
 
@@ -187,16 +164,9 @@ class SocialApiService {
 				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
 			}
 
-			$opts = [
-				"http" => [
-					"method" => "GET",
-					"header" => "User-Agent: Nextcloud Contacts App"
-				]
-			];
-			$context = stream_context_create($opts);
-			$socialdata = file_get_contents($url, false, $context);
-
-			$imageType = $this->getImageType($http_response_header);
+			$httpResult = $this->clientService->NewClient()->get($url);
+			$socialdata = $httpResult->getBody();
+			$imageType = $httpResult->getHeader('content-type');
 
 			if (!$socialdata || $imageType === null) {
 				return new JSONResponse([], Http::STATUS_NOT_FOUND);

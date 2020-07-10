@@ -23,9 +23,15 @@
 
 namespace OCA\Contacts\Service\Social;
 
+use OCP\Http\Client\IClientService;
+
 class TwitterProvider implements ISocialProvider {
 
-	public function __construct() {
+	/** @var IClientService */
+	private $httpClient;
+
+	public function __construct(IClientService $httpClient) {
+		$this->httpClient = $httpClient->NewClient();
 	}
 	
 	/**
@@ -51,9 +57,9 @@ class TwitterProvider implements ISocialProvider {
 	 * @return string|null
 	 */
 	public function getImageUrl(string $profileId):?string {
-		$recipe = 'https://twitter.com/{socialId}';
+		$recipe = 'https://mobile.twitter.com/{socialId}';
 		$connector = str_replace("{socialId}", $profileId, $recipe);
-		$connector = $this->getFromHtml($connector, '400x400');
+		$connector = $this->getFromHtml($connector, '_normal');
 		return $connector;
 	}
 	
@@ -67,22 +73,16 @@ class TwitterProvider implements ISocialProvider {
 	 */
 	protected function getFromHtml(string $url, string $desired) : ?string {
 		try {
-			$opts = [
-				"http" => [
-				"method" => "GET",
-				"header" => "User-Agent: Nextcloud Contacts App",
-				]
-			];
-			$context = stream_context_create($opts);
-			$result = file_get_contents($url, false, $context);
+			$result = $this->httpClient->get($url);
 
 			$htmlResult = new \DOMDocument();
-			$htmlResult->loadHTML($result);
+			$htmlResult->loadHTML($result->getBody());
 			$imgs = $htmlResult->getElementsByTagName('img');
 			foreach ($imgs as $img) {
 				foreach ($img->attributes as $attr) {
 					$value = $attr->nodeValue;
 					if (strpos($value, $desired)) {
+						$value = str_replace("normal", "400x400", $value);
 						return $value;
 					}
 				}
