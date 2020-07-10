@@ -33,11 +33,11 @@
 @include icon-black-white('sync', 'contacts', 2);
 	
 // social network icons:
-@include icon-black-white('facebook', 'contacts', 2);
-@include icon-black-white('instagram', 'contacts', 2);
-@include icon-black-white('mastodon', 'contacts', 2);
-@include icon-black-white('tumblr', 'contacts', 2);
-@include icon-black-white('twitter', 'contacts', 2);
+@include icon-black-white('facebook', 'contacts', 2);	// “facebook (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/facebook?style=brands)
+@include icon-black-white('instagram', 'contacts', 2);	// “instagram (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/instagram?style=brands)
+@include icon-black-white('mastodon', 'contacts', 2);	// “mastodon (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/mastodon?style=brands)
+@include icon-black-white('tumblr', 'contacts', 2);		// “tumblr (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/tumblr?style=brands)
+@include icon-black-white('twitter', 'contacts', 2);	// “twitter (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/twitter?style=brands)
 
 .icon-up-force-white {
 	// using #fffffe to trick the accessibility dark theme icon invert
