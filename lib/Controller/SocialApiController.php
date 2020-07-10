@@ -30,24 +30,22 @@ use OCP\AppFramework\Http\JSONResponse;
 use OCP\IRequest;
 
 use OCA\Contacts\Service\SocialApiService;
+use OCA\Contacts\AppInfo\Application;
 
 
 class SocialApiController extends ApiController {
-
-	protected $appName;
 
 	/** @var IConfig */
 	private  $config;
 	/** @var SocialApiService */
 	private  $socialApiService;
 
-	public function __construct(string $AppName,
+	public function __construct(
 					IRequest $request,
 					IConfig $config,
 					SocialApiService $socialApiService) {
-		parent::__construct($AppName, $request);
+		parent::__construct(Application::APP_ID, $request);
 
-		$this->appName = $AppName;
 		$this->config = $config;
 		$this->socialApiService = $socialApiService;
 	}
@@ -66,7 +64,7 @@ class SocialApiController extends ApiController {
 		if (!in_array($key, $permittedKeys)) {
 			return new JSONResponse([], Http::STATUS_FORBIDDEN);
 		}
-		$this->config->setAppValue($this->appName, $key, $allow);
+		$this->config->setAppValue(Application::APP_ID, $key, $allow);
 		return new JSONResponse([], Http::STATUS_OK);
 	}
 

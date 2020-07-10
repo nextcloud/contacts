@@ -62,7 +62,6 @@ class SocialApiServiceTest extends TestCase {
 		$this->config = $this->createMock(IConfig::class);
 		$this->socialProvider = $this->createMock(CompositeSocialProvider::class);
 		$this->service = new SocialApiService(
-			'contacts',
 			$this->socialProvider,
 			$this->manager,
 			$this->config

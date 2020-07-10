@@ -31,8 +31,6 @@ use OCP\Settings\ISettings;
 
 class AdminSettings implements ISettings {
 
-	protected $appName;
-
         /** @var IConfig */
         private $config;
 
@@ -45,8 +43,8 @@ class AdminSettings implements ISettings {
          * @param IConfig $config
          * @param IL10N $l
          */
- 	public function __construct(string $AppName, IConfig $config, IInitialStateService $initialStateService) {
-		$this->appName = $AppName;
+ 	public function __construct(IConfig $config, IInitialStateService $initialStateService) {
+		$this->appName = Application::APP_ID;
 		$this->config = $config;
 		$this->initialStateService = $initialStateService;
 	}

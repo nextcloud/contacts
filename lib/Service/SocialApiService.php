@@ -24,6 +24,7 @@
 namespace OCA\Contacts\Service;
 
 use OCA\Contacts\Service\Social\CompositeSocialProvider;
+use OCA\Contacts\AppInfo\Application;
 
 use OCP\Contacts\IManager;
 use OCP\IAddressBook;
@@ -35,8 +36,6 @@ use OCP\AppFramework\Http\JSONResponse;
 
 class SocialApiService {
 
-	protected $appName;
-
 	/** @var CompositeSocialProvider */
 	private $socialProvider;
 	/** @var IManager */
@@ -44,12 +43,11 @@ class SocialApiService {
 	/** @var IConfig */
 	private  $config;
 
-	public function __construct(string $AppName,
+	public function __construct(
 					CompositeSocialProvider $socialProvider,
 					IManager $manager,
 					IConfig $config) {
 
-		$this->appName = $AppName;
 		$this->socialProvider = $socialProvider;
 		$this->manager = $manager;
 		$this->config = $config;
@@ -64,7 +62,7 @@ class SocialApiService {
 	 * @returns {array} array of the supported social networks
 	 */
 	public function getSupportedNetworks() : array {
-		$isAdminEnabled = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
+		$isAdminEnabled = $this->config->getAppValue(Application::APP_ID, 'allowSocialSync', 'yes');
 		if ($isAdminEnabled !== 'yes') {
 			return array();
 		}
