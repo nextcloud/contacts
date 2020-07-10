@@ -9,13 +9,10 @@ source_package_name=$(source_build_directory)/$(app_name)
 appstore_build_directory=$(CURDIR)/build/artifacts/appstore
 appstore_package_name=$(appstore_build_directory)/$(app_name)
 
-all: dev-setup lint build-js-production test-php
+all: dev-setup lint build-js-production install-composer-deps-dev test-php
 
 # Dev env management
-dev-setup: clean clean-dev npm-init
-
-npm-init:
-	npm ci
+dev-setup: clean clean-dev install-npm-deps-dev
 
 npm-update:
 	npm update
@@ -24,6 +21,9 @@ composer.phar:
 	curl -sS https://getcomposer.org/installer | php
 
 install-deps: install-composer-deps-dev install-npm-deps-dev
+
+install-npm-deps-dev:
+	npm ci
 
 install-composer-deps: composer.phar
 	php composer.phar install --no-dev -o
@@ -79,6 +79,7 @@ clean:
 
 clean-dev:
 	rm -rf node_modules
+	rm -rf vendor
 
 # Builds the source package for the app store, ignores php and js tests
 appstore:
