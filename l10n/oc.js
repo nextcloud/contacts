@@ -1,9 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "Contactes",
     "All contacts" : "Totes los contactes",
     "Details" : "Detalhs",
+    "Contacts" : "Contactes",
     "Loading" : "Loading",
     "Name" : "Nom",
     "Title" : "Títol",

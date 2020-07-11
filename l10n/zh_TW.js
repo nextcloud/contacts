@@ -1,9 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "通訊錄",
     "All contacts" : "所有聯絡人",
     "Details" : "詳細資料",
+    "Contacts" : "通訊錄",
     "A contacts app for Nextcloud" : "Nextcloud的通訊錄應用",
     "Add new property" : "新增屬性",
     "Add a new picture" : "新增一張新圖片",

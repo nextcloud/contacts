@@ -1,9 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "مخاطبین",
     "All contacts" : "تمام مخاطبین",
     "Details" : "جزئیات",
+    "Contacts" : "مخاطبین",
     "Invalid image" : "عکس نامعتبر",
     "Loading" : "در حال بار گزاری",
     "Name" : "نام",

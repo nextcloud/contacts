@@ -1,9 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "Névjegyek",
     "All contacts" : "Összes névjegy",
     "Details" : "Részletek",
+    "Contacts" : "Névjegyek",
     "A contacts app for Nextcloud" : "Névjegyek alkalmazás a Nextcloud-hoz",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "A Nextcloud Névjegyek alkalmazás (applikáció) egy felhasználói felület a Nextcloud CardDAV szerverhez. Az alkalmazás segítségével könnyedén szinkronizálható a többféle eszközön meglévő névjegy lista, amit a szinkronizálás után online szerkeszthetünk.\n\n**Integráció más Nexcloud alkalmazásokkal!** Jelenleg a Levelező és a Naptár alkalmazással, az integráció az egyéb alkalmazásokkal folyamatban van.\n\n**Nem hagysz ki egy születésnapot sem!** A névjegyekben található születésnapok és más események szinkronizálhatóak a Calendar alkalmazásba.\n\n**Névjegyek megosztása!** Meg akarod osztani a névjegyeidet más felhasználókkal? Nem probléma! \n\n**Mi nem találtuk fel újra kereket!** A névjegyek alkalmazást a kiváló és szabad, SabreDav forráskódjának bázisán építettük fel. ",
     "Copy to full name" : "Másolás a teljes névhez",

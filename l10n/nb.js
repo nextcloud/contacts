@@ -1,9 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "Kontakter",
     "All contacts" : "Alle kontakter",
     "Details" : "Detaljer",
+    "Contacts" : "Kontakter",
     "A contacts app for Nextcloud" : "En kontaktapp for Nextcloud",
     "Copy to full name" : "Kopier til fullt navn",
     "Add new property" : "Legg til felt",

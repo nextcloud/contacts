@@ -1,8 +1,8 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "Kontakter",
     "Details" : "Detailer",
+    "Contacts" : "Kontakter",
     "Invalid image" : "Ongülteg d'Bild",
     "Loading" : "Loading",
     "Name" : "Numm",

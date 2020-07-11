@@ -1,8 +1,8 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "পরিচিতজন",
     "Details" : "বিসতারিত",
+    "Contacts" : "পরিচিতজন",
     "Invalid image" : "অবৈধ চিত্র",
     "Loading" : "Loading",
     "Name" : "নাম",

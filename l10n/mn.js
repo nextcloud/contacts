@@ -1,9 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "Харилцагчид",
     "All contacts" : "Бүх харилцагчид",
     "Details" : "Дэлгэрэнгүй",
+    "Contacts" : "Харилцагчид",
     "Invalid image" : "буруу зураг",
     "Loading" : "Loading",
     "Name" : "Нэр",

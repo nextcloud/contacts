@@ -1,9 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "Contacte",
     "All contacts" : "Toate contactele",
     "Details" : "Detalii",
+    "Contacts" : "Contacte",
     "Invalid image" : "Imagine invalidă",
     "Loading" : "Loading",
     "Name" : "Nume",

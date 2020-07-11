@@ -1,8 +1,8 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "Əlaqələr",
     "Details" : "Detallar",
+    "Contacts" : "Əlaqələr",
     "Invalid image" : "Yalnış şəkil",
     "Loading" : "Loading",
     "Name" : "Ad",
