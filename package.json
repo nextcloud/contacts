@@ -48,7 +48,7 @@
 		"downloadjs": "^1.4.7",
 		"ical.js": "^1.4.0",
 		"moment": "^2.27.0",
-		"p-limit": "^2.3.0",
+		"p-limit": "^3.0.1",
 		"p-queue": "^6.5.0",
 		"qr-image": "^3.2.0",
 		"regenerator-runtime": "^0.13.5",
