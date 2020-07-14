@@ -1,8 +1,8 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "Kontaktar",
     "Details" : "Detaljar",
+    "Contacts" : "Kontaktar",
     "Invalid image" : "Ugyldig bilete",
     "Loading" : "Loading",
     "Name" : "Namn",

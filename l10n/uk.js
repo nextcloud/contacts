@@ -1,9 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "Контакти",
     "All contacts" : "Всі контакти",
     "Details" : "Деталі",
+    "Contacts" : "Контакти",
     "A contacts app for Nextcloud" : "Застосунок для керування контактами для Nextcloud",
     "Copy to full name" : "Копіювати до повного імени",
     "Omit year" : "Не включати рік",

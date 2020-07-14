@@ -1,8 +1,8 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "Darempredoù",
     "Details" : "Munudoù",
+    "Contacts" : "Darempredoù",
     "Invalid image" : "N'eo ket aotreet ar skeudenn",
     "Loading" : "Kargañ",
     "Name" : "Anv",
@@ -14,6 +14,7 @@ OC.L10N.register(
     "Rename" : "Adenvel",
     "Enabled" : "Aotreet",
     "Copy link" : "Kopiañ al liamm",
+    "can edit" : "posuple eo embann",
     "Website" : "Lec'hien web",
     "Home" : "Degemer",
     "Work" : "Labour",

@@ -1,9 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "Yhteystiedot",
     "All contacts" : "Kaikki yhteystiedot",
     "Details" : "Tiedot",
+    "Contacts" : "Yhteystiedot",
     "A contacts app for Nextcloud" : "Yhteystietosovellus Nextcloudille",
     "Copy to full name" : "Kopioi koko nimeksi",
     "Add new property" : "Lisää uusi ominaisuus",

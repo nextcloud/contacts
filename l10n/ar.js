@@ -1,9 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "جهات الاتصال",
     "All contacts" : "كل الجهات",
     "Details" : "التفاصيل",
+    "Contacts" : "جهات الاتصال",
     "Add a new picture" : "إضافة صورة جديدة",
     "Download picture" : "تنزيل الصورة",
     "Delete picture" : "حذف الصورة",

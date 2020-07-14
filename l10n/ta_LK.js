@@ -1,8 +1,8 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "தொடர்புகள்",
     "Details" : "விவரங்கள்",
+    "Contacts" : "தொடர்புகள்",
     "Loading" : "Loading",
     "Name" : "பெயர்",
     "Title" : "தலைப்பு",

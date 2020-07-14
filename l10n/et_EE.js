@@ -1,9 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "Kontaktid",
     "All contacts" : "Kõik kontaktid",
     "Details" : "Üksikasjad",
+    "Contacts" : "Kontaktid",
     "Invalid image" : "Vigane pilt",
     "Loading" : "Laadimine",
     "Name" : "Nimi",

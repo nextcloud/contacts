@@ -1,9 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
-    "Contacts" : "Kontaktuak",
     "All contacts" : "Kontaktu guztiak",
     "Details" : "Xehetasuna",
+    "Contacts" : "Kontaktuak",
     "A contacts app for Nextcloud" : "Nextclouderako kontaktu aplikazio bat",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Nextclouden kontaktuen apliazioa Nextcloudeko CardDAV zerbitzariarentzako erabiltzaile-interfaze bat da. Sinkronizatu hainbat gailuen kontaktuak erraz eta editatu itzazu linean.\n\n* 🚀 **Beste Nextcloud aplikazioekin integratuta!** Oraingoz Posta eta Egutegia – laster gehiago.\n* 🎉 **Ez ezazu urtebetetze bat inoiz ahaztu!** Urtebetetzeak eta beste gertaera errepikariak sinkronizatu ditzakezu Nextcloud Egutegian.\n* 👥 **Helbide-liburuen partekatzea!** Zure kontaktuak partekatu nahi dituzu lagun eta lankideekin? Arazorik ez!\n* 🙈 **Ez gaude gurpila berriro asmatzen!** SabreDAV liburutegi bikain eta irekian oinarrituta.",
     "Copy to full name" : "Kopiatu izen osora",
