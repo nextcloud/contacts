@@ -1,4 +1,5 @@
 {
+	"name": "nextcloud/contacts",
     "require-dev": {
         "christophwurst/nextcloud_testing": "^0.7.0",
         "nextcloud/coding-standard": "^0.3.0"
