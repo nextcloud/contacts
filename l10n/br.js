@@ -15,6 +15,7 @@ OC.L10N.register(
     "Enabled" : "Aotreet",
     "Copy link" : "Kopiañ al liamm",
     "can edit" : "posuple eo embann",
+    "Display name" : "Anv ardivink",
     "Website" : "Lec'hien web",
     "Home" : "Degemer",
     "Work" : "Labour",
