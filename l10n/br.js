@@ -13,6 +13,7 @@ OC.L10N.register(
     "No results" : "Disoc'h ebet",
     "Rename" : "Adenvel",
     "Enabled" : "Aotreet",
+    "Disabled" : "Disaotreañ",
     "Copy link" : "Kopiañ al liamm",
     "can edit" : "posuple eo embann",
     "Display name" : "Anv ardivink",
@@ -21,6 +22,7 @@ OC.L10N.register(
     "Work" : "Labour",
     "Other" : "All",
     "Address" : "Chom-lec'h",
+    "Country" : "Bro",
     "Email" : "Postel",
     "None" : "Hini ebet",
     "Unknown" : "Dianv"
