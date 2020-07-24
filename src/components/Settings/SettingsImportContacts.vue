@@ -175,7 +175,7 @@ export default {
 		// Direct import check
 		if (this.$route.name === 'import') {
 			const path = this.$route.query.file
-			this.processLocalFile(path)
+			await this.processLocalFile(path)
 
 			this.$router.push({
 				name: 'group',
@@ -211,7 +211,10 @@ export default {
 		},
 
 		async processLocalFile(path) {
+			console.debug('Importing', path)
 			try {
+				this.cancelRequest()
+
 				// prepare cancel token for axios request
 				const source = CancelToken.source()
 				this.cancelRequest = source.cancel

@@ -267,7 +267,6 @@ export default {
 		selectedGroup: {
 			type: String,
 			default: undefined,
-			required: true,
 		},
 		selectedContact: {
 			type: String,
@@ -527,6 +526,11 @@ export default {
 		 * if none are selected already
 		 */
 		selectFirstContactIfNone() {
+			// Do not redirect if pending import
+			if (this.$route.name !== 'import') {
+				return
+			}
+
 			const inList = this.contactsList.findIndex(contact => contact.key === this.selectedContact) > -1
 			if (this.selectedContact === undefined || !inList) {
 				// Unknown contact
