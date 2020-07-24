@@ -29,10 +29,11 @@ use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
 
 use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\Service\SocialApiService;
 use OCP\IConfig;
 use OCP\IInitialStateService;
-use OCP\IUserSession;
 use OCP\IRequest;
+use OCP\IUserSession;
 use OCP\L10N\IFactory;
 use OCP\Util;
 

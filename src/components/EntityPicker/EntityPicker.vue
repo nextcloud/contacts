@@ -75,6 +75,7 @@
 					{{ t('contacts', 'Cancel') }}
 				</button>
 				<button
+					:disabled="isEmptySelection"
 					class="navigation__button-right primary"
 					@click="onSubmit">
 					{{ t('contacts', 'Add to group') }}
@@ -159,6 +160,19 @@ export default {
 			return !(this.dataTypes.length > 1)
 		},
 
+		/**
+		 * Is the current selection empty
+		 * @returns {boolean}
+		 */
+		isEmptySelection() {
+			return Object.keys(this.selection).length === 0
+		},
+
+		/**
+		 * Formatted search input placeholder based on
+		 * available types
+		 * @returns {string}
+		 */
 		searchPlaceholderTypes() {
 			const types = this.dataTypes
 				.map(type => type.label)
@@ -182,7 +196,7 @@ export default {
 
 		/**
 		 * Returns available entities grouped by type(s) if any
-		 * @returns {Array[]}
+		 * @returns {Object[]}
 		 */
 		availableEntities() {
 			// If only one type, return the full set directly
@@ -345,6 +359,11 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 			margin-left: auto;
 		}
 	}
+}
+
+// Properly center Entity Picker empty content
+.empty-content {
+	margin: 0;
 }
 
 /** Size full in the modal component doesn't have border radius, this adds
