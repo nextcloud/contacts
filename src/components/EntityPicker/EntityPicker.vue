@@ -56,21 +56,13 @@
 			</EmptyContent>
 
 			<!-- Searched & picked entities -->
-			<div v-else-if="searchSet.length > 0 && availableEntities.length > 0" class="entity-picker__options">
-				<!-- For each type we show title + list -->
-				<div v-for="type in availableEntities" :key="type.id" class="entity-picker__option">
-					<!-- Show content if we have something to show -->
-					<h4 v-if="!isSingleType && type.dataSet.length > 0" class="entity-picker__option-caption">
-						{{ t('contacts', 'Add {type}', {type: type.label.toLowerCase()}) }}
-					</h4>
-
-					<EntitySearchResult v-for="entity in type.dataSet"
-						:key="entity.key || `entity-${entity.type}-${entity.id}`"
-						:selection="selection"
-						v-bind="entity"
-						@click="onToggle(entity)" />
-				</div>
-			</div>
+			<VirtualList v-else-if="searchSet.length > 0 && availableEntities.length > 0"
+				class="entity-picker__options"
+				data-key="id"
+				:data-sources="availableEntities"
+				:data-component="EntitySearchResult"
+				:estimate-size="44"
+				:extra-props="{selection, onClick: onPick}" />
 
 			<EmptyContent v-else-if="searchQuery" icon="icon-search">
 				{{ t('contacts', 'No results') }}
@@ -95,6 +87,8 @@
 <script>
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import VirtualList from 'vue-virtual-scroll-list'
+
 import EntityBubble from './EntityBubble'
 import EntitySearchResult from './EntitySearchResult'
 
@@ -104,8 +98,8 @@ export default {
 	components: {
 		EmptyContent,
 		EntityBubble,
-		EntitySearchResult,
 		Modal,
+		VirtualList,
 	},
 
 	props: {
@@ -152,6 +146,7 @@ export default {
 		return {
 			searchQuery: '',
 			selection: {},
+			EntitySearchResult,
 		}
 	},
 
@@ -192,19 +187,18 @@ export default {
 		availableEntities() {
 			// If only one type, return the full set directly
 			if (this.isSingleType) {
-				return [{
-					id: this.dataTypes[0].id,
-					label: this.dataTypes[0].label,
-					dataSet: this.searchSet,
-				}]
+				return this.searchSet
 			}
 
 			// Else group by types
-			return this.dataTypes.map(type => ({
-				id: type.id,
-				label: type.label,
-				dataSet: this.searchSet.filter(entity => entity.type === type.id),
-			}))
+			return this.dataTypes.map(type => [
+				{
+					id: type.id,
+					label: type.label,
+					heading: true,
+				},
+				...this.searchSet.filter(entity => entity.type === type.id),
+			]).flat()
 		},
 	},
 
@@ -336,23 +330,6 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 	&__options {
 		margin: $entity-spacing 0;
 		overflow-y: auto;
-	}
-	&__option {
-		&-caption {
-			padding-left: 10px;
-			list-style-type: none;
-			user-select: none;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			pointer-events: none;
-			color: var(--color-primary);
-			box-shadow: none !important;
-			line-height: $clickable-area;
-
-			&:not(:first-child) {
-				margin-top: $clickable-area / 2;
-			}
-		}
 	}
 
 	&__navigation {

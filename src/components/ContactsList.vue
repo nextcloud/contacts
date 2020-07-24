@@ -179,7 +179,7 @@ export default {
 		},
 
 		onAddContactsToGroup() {
-			// TODO: add popup
+			this.$emit('onAddContactsToGroup')
 		},
 	},
 }

@@ -111,8 +111,11 @@
 					menu-icon="icon-add"
 					@click.prevent.stop="toggleNewGroupMenu">
 					<template slot="actions">
+						<ActionText :icon="createGroupError ? 'icon-error' : 'icon-contacts-dark'">
+							{{ createGroupError ? createGroupError : t('contacts', 'Create a new group') }}
+						</ActionText>
 						<ActionInput
-							icon="icon-contacts-dark"
+							icon=""
 							:placeholder="t('contacts','Group name')"
 							@submit.prevent.stop="createNewGroup" />
 					</template>
@@ -142,7 +145,8 @@
 					:list="contactsList"
 					:contacts="contacts"
 					:loading="loading"
-					:search-query="searchQuery" />
+					:search-query="searchQuery"
+					@onAddContactsToGroup="addContactsToGroup(selectedGroup)" />
 
 				<!-- main contacts details -->
 				<ContactDetails :loading="loading" :contact-key="selectedContact" />
@@ -170,12 +174,24 @@
 			:can-close="isProcessDone"
 			@close="closeProcess">
 			<ProcessingScreen v-bind="processStatus">
-				{{ n('contacts',
-					'Adding {total} contact to {name}',
-					'Adding {total} contacts to {name}',
-					processStatus.total,
-					processStatus
-				) }}
+				{{ processStatus.total === processStatus.progress
+					? n('contacts',
+						'{total} contact added to {name}',
+						'{total} contacts added to {name}',
+						processStatus.total,
+						processStatus
+					)
+					: n('contacts',
+						'Adding {total} contact to {name}',
+						'Adding {total} contacts to {name}',
+						processStatus.total,
+						processStatus
+					) }}
+				<template #desc>
+					<button v-if="processStatus.total === processStatus.progress" class="primary processing-screen__button" @click="closeProcess">
+						{{ t('contacts', 'Close') }}
+					</button>
+				</template>
 			</ProcessingScreen>
 		</Modal>
 	</Content>
@@ -184,6 +200,7 @@
 <script>
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
+import ActionText from '@nextcloud/vue/dist/Components/ActionText'
 import AppContent from '@nextcloud/vue/dist/Components/AppContent'
 import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
 import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
@@ -223,6 +240,7 @@ export default {
 	components: {
 		ActionButton,
 		ActionInput,
+		ActionText,
 		AppContent,
 		AppNavigation,
 		AppNavigationCounter,
@@ -262,9 +280,13 @@ export default {
 			GROUP_ALL_CONTACTS,
 			GROUP_NO_GROUP_CONTACTS,
 			isContactsInteractionEnabled,
+			loading: true,
+
+			// Create group
 			isCreatingGroup: false,
 			isNewGroupMenuOpen: false,
 			loading: true,
+			createGroupError: null,
 
 			// Add to group picker
 			searchQuery: '',
@@ -520,9 +542,28 @@ export default {
 		selectFirstContactIfNone() {
 			const inList = this.contactsList.findIndex(contact => contact.key === this.selectedContact) > -1
 			if (this.selectedContact === undefined || !inList) {
+				// Unknown contact
 				if (this.selectedContact && !inList) {
 					OC.Notification.showTemporary(t('contacts', 'Contact not found'))
+					this.$router.push({
+						name: 'group',
+						params: {
+							selectedGroup: this.selectedGroup,
+						},
+					})
 				}
+
+				// Unknown group
+				if (!this.groups.find(group => group.name === this.selectedGroup)
+					&& this.GROUP_ALL_CONTACTS !== this.selectedGroup
+					&& this.GROUP_NO_GROUP_CONTACTS !== this.selectedGroup) {
+					OC.Notification.showTemporary(t('contacts', 'Group not found'))
+					this.$router.push({
+						name: 'root',
+					})
+					return
+				}
+
 				if (Object.keys(this.contactsList).length) {
 					this.$router.push({
 						name: 'contact',
@@ -615,6 +656,16 @@ export default {
 		createNewGroup(e) {
 			const input = e.target.querySelector('input[type=text]')
 			const groupName = input.value.trim()
+
+			// Check if already exists
+			if (this.groups.find(group => group.name === groupName)) {
+				this.createGroupError = t('contacts', 'This group already exists')
+				return
+			}
+
+			this.createGroupError = null
+
+			console.debug('Created new local group', groupName)
 			this.$store.dispatch('addGroup', groupName)
 			this.isNewGroupMenuOpen = false
 
@@ -623,13 +674,21 @@ export default {
 				name: 'contact',
 				params: {
 					selectedGroup: groupName,
-					selectedContact: undefined,
 				},
 			})
 		},
 
 		// Bulk contacts group management handlers
 		addContactsToGroup(group) {
+			// Get the full group if we provided the group name only
+			if (typeof group === 'string') {
+				group = this.groups.find(a => a.name === group)
+				if (!group) {
+					console.error('Cannot add contact to an undefined group', group)
+					return
+				}
+			}
+
 			this.showContactPicker = true
 			this.contactPickerforGroup = group
 		},

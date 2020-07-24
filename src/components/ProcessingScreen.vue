@@ -5,6 +5,7 @@
 			<div class="processing-screen__progress">
 				<progress :max="total" :value="progress" />
 			</div>
+			<slot name="desc" />
 		</template>
 	</EmptyContent>
 </template>
@@ -43,9 +44,17 @@ export default {
 
 		// Progress wrapper
 		&::v-deep > p {
-			display: block;
+			display: flex;
 			width: 80%;
 			margin: auto;
+		}
+
+		button {
+			padding: 10px;
+			height: 44px;
+			align-self: flex-end;
+			margin-top: 22px;
+			min-width: 100px;
 		}
 	}
 

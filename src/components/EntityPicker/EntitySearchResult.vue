@@ -20,14 +20,19 @@
 -->
 
 <template>
+	<h4 v-if="source.heading" :key="source.id" class="entity-picker__option-caption">
+		{{ t('contacts', 'Add {type}', {type: source.label.toLowerCase()}) }}
+	</h4>
+
 	<UserBubble
+		v-else
 		class="entity-picker__bubble"
 		:class="{'entity-picker__bubble--selected': isSelected}"
-		:display-name="label"
+		:display-name="source.label"
 		:margin="6"
 		:size="44"
 		url="#"
-		@click.stop.prevent="onClick">
+		@click.stop.prevent="onClick(source)">
 		<template #title>
 			<span class="entity-picker__bubble-checkmark icon-checkmark" />
 		</template>
@@ -45,44 +50,25 @@ export default {
 	},
 
 	props: {
-		/**
-		 * Unique id of the entity
-		 */
-		id: {
-			type: String,
-			required: true,
+		source: {
+			type: Object,
+			default() {
+				return {}
+			},
 		},
-
-		/**
-		 * Label of the entity
-		 */
-		label: {
-			type: String,
-			required: true,
+		onClick: {
+			type: Function,
+			default() {},
 		},
-
-		/**
-		 * Label of the entity
-		 */
 		selection: {
 			type: Object,
-			required: true,
+			default: () => ([]),
 		},
 	},
 
 	computed: {
 		isSelected() {
-			return this.id in this.selection
-		},
-	},
-
-	methods: {
-		/**
-		 * Forward click to parent
-		 * @param {Event} event the click event
-		 */
-		onClick(event) {
-			this.$emit('click', event)
+			return this.source.id in this.selection
 		},
 	},
 }
@@ -90,23 +76,57 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.entity-picker__bubble {
-	display: flex;
-	margin-bottom: 4px;
-	.entity-picker__bubble-checkmark {
-		display: block;
-		opacity: 0;
+// https://uxplanet.org/7-rules-for-mobile-ui-button-design-e9cf2ea54556
+// recommended is 48px
+// 44px is what we choose and have very good visual-to-usability ratio
+$clickable-area: 44px;
+
+// background icon size
+// also used for the scss icon font
+$icon-size: 16px;
+
+// icon padding for a $clickable-area width and a $icon-size icon
+// ( 44px - 16px ) / 2
+$icon-margin: ($clickable-area - $icon-size) / 2;
+
+.entity-picker {
+	&__option {
+		&-caption {
+			padding-left: 10px;
+			list-style-type: none;
+			user-select: none;
+			white-space: nowrap;
+			text-overflow: ellipsis;
+			pointer-events: none;
+			color: var(--color-primary);
+			box-shadow: none !important;
+			line-height: $clickable-area;
+
+			&:not(:first-child) {
+				margin-top: $clickable-area / 2;
+			}
+		}
 	}
 
-	&--selected,
-	&:hover,
-	&:focus {
-		.entity-picker__bubble-checkmark {
-			opacity: 1;
+	&__bubble {
+		display: flex;
+		margin-bottom: 4px;
+
+		&-checkmark {
+			display: block;
+			opacity: 0;
 		}
-		::v-deep .user-bubble__content {
-			// better visual with light default tint
-			background-color: var(--color-primary-light);
+
+		&--selected,
+		&:hover,
+		&:focus {
+			.entity-picker__bubble-checkmark {
+				opacity: 1;
+			}
+			::v-deep .user-bubble__content {
+				// better visual with light default tint
+				background-color: var(--color-primary-light);
+			}
 		}
 	}
 }
