@@ -259,7 +259,7 @@ export default {
 		 *
 		 * @returns {string}
 		 */
-		formatDateTime: function() {
+		formatDateTime() {
 			// this is the only possibility for us to ensure
 			// no data is lost. e.g. if no second are set
 			// the second will be null and not 0

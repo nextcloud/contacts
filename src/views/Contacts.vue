@@ -291,13 +291,13 @@ export default {
 
 	watch: {
 		// watch url change and group select
-		selectedGroup: function() {
+		selectedGroup() {
 			if (!this.isMobile) {
 				this.selectFirstContactIfNone()
 			}
 		},
 		// watch url change and contact select
-		selectedContact: function() {
+		selectedContact() {
 			if (!this.isMobile) {
 				this.selectFirstContactIfNone()
 			}
@@ -370,7 +370,7 @@ export default {
 			// set group if it's selected already
 			// BUT NOT if it's the _fake_ groups like all contacts and not grouped
 			if ([GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS].indexOf(this.selectedGroup) === -1) {
-				contact.groups = [ this.selectedGroup ]
+				contact.groups = [this.selectedGroup]
 			}
 			try {
 				// this will trigger the proper commits to groups, contacts and addressbook

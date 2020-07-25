@@ -101,10 +101,10 @@ export default {
 		 * we need to make sure to update the local data on contact change
 		 * in case the v-Node is reused.
 		 */
-		value: function() {
+		value() {
 			this.localValue = this.value
 		},
-		selectType: function() {
+		selectType() {
 			this.localType = this.selectType
 		},
 	},

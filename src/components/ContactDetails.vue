@@ -373,10 +373,10 @@ export default {
 		 * @returns {string}
 		 */
 		addressbook: {
-			get: function() {
+			get() {
 				return this.contact.addressbook.id
 			},
-			set: function(addressbookId) {
+			set(addressbookId) {
 				this.moveContactToAddressbook(addressbookId)
 			},
 		},
@@ -400,10 +400,10 @@ export default {
 		 * @returns {Array}
 		 */
 		groups: {
-			get: function() {
+			get() {
 				return this.contact.groups
 			},
-			set: function(data) {
+			set(data) {
 				this.contact.groups = data
 				this.debounceUpdateContact()
 			},
@@ -436,7 +436,7 @@ export default {
 	},
 
 	watch: {
-		contact: function(newContact, oldContact) {
+		contact(newContact, oldContact) {
 			if (this.contactKey && newContact !== oldContact) {
 				this.selectContact(this.contactKey)
 			}
@@ -541,9 +541,9 @@ export default {
 						if (error.name === 'ParserError') {
 							showError(t('contacts', 'Syntax error. Cannot open the contact.'))
 						} else if (error.status === 404) {
-							showError(t('contacts', `The contact doesn't exists anymore on the server.`))
+							showError(t('contacts', 'The contact doesn\'t exists anymore on the server.'))
 						} else {
-							showError(t('contacts', `Unable to retrieve the contact from the server, please check your network connection.`))
+							showError(t('contacts', 'Unable to retrieve the contact from the server, please check your network connection.'))
 						}
 						console.error(error)
 						// trigger a local deletion from the store only
