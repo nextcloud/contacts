@@ -52,7 +52,7 @@
 		"p-limit": "^3.0.2",
 		"p-queue": "^6.5.0",
 		"qr-image": "^3.2.0",
-		"regenerator-runtime": "^0.13.5",
+		"regenerator-runtime": "^0.13.7",
 		"uuid": "^8.2.0",
 		"vue": "^2.6.11",
 		"vue-click-outside": "^1.1.0",
