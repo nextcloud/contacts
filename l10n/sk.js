@@ -42,6 +42,7 @@ OC.L10N.register(
     "Groups" : "Skupiny",
     "New contact" : "Nový kontakt",
     "Syntax error. Cannot open the contact." : "Chyba zápisu. Nepodarilo sa otvoriť kontakt.",
+    "The contact doesn't exists anymore on the server." : "Kontakt už na servri neexistuje.",
     "An error occurred while trying to move the contact" : "Pri pokuse o presun kontaktu sa vyskytla chyba",
     "An error occurred while trying to copy the contact" : "Pri pokuse o skopírovanie kontaktu sa vyskytla chyba",
     "No errors" : "Žiadne chyby",

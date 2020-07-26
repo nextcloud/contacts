@@ -36,6 +36,7 @@ OC.L10N.register(
     "Groups" : "Csoportok",
     "New contact" : "Új névjegy",
     "Syntax error. Cannot open the contact." : "Szintaktikai hiba. Nem lehet megnyitni a kapcsolatot.",
+    "The contact doesn't exists anymore on the server." : "A névjegy már nem létezik a kiszolgálón.",
     "No errors" : "Nincsenek hibák",
     "Open your browser console for more details" : "Nyisd meg a böngésző konzolját további részletekért",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} hibás névjegy","{failedCount} hibás névjegy"],

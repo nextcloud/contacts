@@ -40,6 +40,7 @@
     "Groups" : "Skupiny",
     "New contact" : "Nový kontakt",
     "Syntax error. Cannot open the contact." : "Chyba syntaxe. Kontakty nelze otevřít.",
+    "The contact doesn't exists anymore on the server." : "Tento kontakt už na serveru neexistuje.",
     "An error occurred while trying to move the contact" : "Při pokusu o přesunutí kontaktu došlo k chybě",
     "An error occurred while trying to copy the contact" : "Při pokusu o zkopírování kontaktu došlo k chybě",
     "No errors" : "Žádné chyby",

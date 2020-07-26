@@ -36,6 +36,7 @@ OC.L10N.register(
     "Groups" : "Grupoj",
     "New contact" : "Nova kontakto",
     "Syntax error. Cannot open the contact." : "Sintakseraro. Ne eblas malfermi la kontakton.",
+    "The contact doesn't exists anymore on the server." : "La kontakto ne plu ekzistas en la servilo.",
     "No errors" : "Neniu eraro",
     "Open your browser console for more details" : "Malfermu vian retumilan konzolon por pli da detaloj",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} difektita kontakto","{failedCount} difektitaj kontaktoj"],

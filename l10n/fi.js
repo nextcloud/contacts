@@ -37,6 +37,7 @@ OC.L10N.register(
     "Groups" : "Ryhmät",
     "New contact" : "Uusi yhteystieto",
     "Syntax error. Cannot open the contact." : "Syntaksivirhe. Yhteystietoa ei voi avata.",
+    "The contact doesn't exists anymore on the server." : "Yhteystietoa ei ole enää olemassa tällä palvelimella.",
     "An error occurred while trying to move the contact" : "Yhteystietoa siirtäessä tapahtui virhe",
     "An error occurred while trying to copy the contact" : "Yhteystietoa kopioitaessa tapahtui virhe",
     "No errors" : "Ei virheitä",

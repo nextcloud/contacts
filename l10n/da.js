@@ -38,6 +38,7 @@ OC.L10N.register(
     "Groups" : "Grupper",
     "New contact" : "Ny kontakt",
     "Syntax error. Cannot open the contact." : "Syntaks fejl. Kan ikke åbne kontakt.",
+    "The contact doesn't exists anymore on the server." : "Kontakten findes ikke længere på serveren.",
     "No errors" : "Ingen fejl",
     "Open your browser console for more details" : "Åbn din browsers konsol for flejre detaljer",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} fejlbehæftet kontakt","{failedCount} fejlbehæftede kontakter"],

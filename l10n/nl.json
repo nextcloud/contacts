@@ -40,6 +40,7 @@
     "Groups" : "Groepen",
     "New contact" : "Nieuwe contactpersoon",
     "Syntax error. Cannot open the contact." : "Syntaxfout. Kan het contact niet openen.",
+    "The contact doesn't exists anymore on the server." : "De contactpersoon bestaat niet meer op de server.",
     "An error occurred while trying to move the contact" : "Er trad een fout op bij het verplaatsen van de contactpersoon",
     "An error occurred while trying to copy the contact" : "Er trad een fout op bij het kopiëren van de contactpersoon",
     "No errors" : "Geen fouten.",

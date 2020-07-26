@@ -41,6 +41,7 @@ OC.L10N.register(
     "Groups" : "群组",
     "New contact" : "新建联系人",
     "Syntax error. Cannot open the contact." : "语法错误。不能打开联系人。",
+    "The contact doesn't exists anymore on the server." : "此联系人不再存在于此服务器上。",
     "No errors" : "没有错误",
     "Open your browser console for more details" : "打开浏览器控制台以获取更多详细信息",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} 个有错误的联系人"],

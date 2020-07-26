@@ -42,6 +42,7 @@ OC.L10N.register(
     "Groups" : "Grupos",
     "New contact" : "Novo contato",
     "Syntax error. Cannot open the contact." : "Erro de sintaxe. Não é possível abrir o contato.",
+    "The contact doesn't exists anymore on the server." : "O contato não existe mais no servidor.",
     "An error occurred while trying to move the contact" : "Ocorreu um erro ao mover o contato",
     "An error occurred while trying to copy the contact" : "Ocorreu um erro ao copiar o contato",
     "No errors" : "Sem erros",

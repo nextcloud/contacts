@@ -42,6 +42,7 @@ OC.L10N.register(
     "Groups" : "Gruplar",
     "New contact" : "Yeni kişi",
     "Syntax error. Cannot open the contact." : "Yazım hatası. Kişi bulunamadı.",
+    "The contact doesn't exists anymore on the server." : "Kişi artık sunucu üzerinde değil.",
     "An error occurred while trying to move the contact" : "Kişi taşınırken bir sorun çıktı",
     "An error occurred while trying to copy the contact" : "Kişi kopyalanırken bir sorun çıktı",
     "No errors" : "Herhangi bir hata yok",

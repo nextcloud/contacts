@@ -40,6 +40,7 @@
     "Groups" : "Grupos",
     "New contact" : "Novo contacto",
     "Syntax error. Cannot open the contact." : "Erro de sintaxe. Non foi posíbel abrir o contacto.",
+    "The contact doesn't exists anymore on the server." : "O contacto xa non existe no servidor.",
     "An error occurred while trying to move the contact" : "Produciuse un erro ao tentar mover o contacto",
     "An error occurred while trying to copy the contact" : "Produciuse un erro ao tentar copiar o contacto",
     "No errors" : "Sen erros",

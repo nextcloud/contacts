@@ -35,6 +35,7 @@
     "Groups" : "Grups",
     "New contact" : "Contacte nou",
     "Syntax error. Cannot open the contact." : "Error de sintaxi. No es pot obrir el contacte.",
+    "The contact doesn't exists anymore on the server." : "El contacte ja no existeix al servidor.",
     "No errors" : "Sense errors",
     "Open your browser console for more details" : "Obriu la consola del navegador per veure més detalls",
     "_{failedCount} faulty contact_::_{failedCount} faulty contacts_" : ["{failedCount} contacte defectuós","{failedCount} contactes defectuosos"],
