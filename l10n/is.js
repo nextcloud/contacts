@@ -42,6 +42,7 @@ OC.L10N.register(
     "Groups" : "Hópar",
     "New contact" : "Nýr tengiliður",
     "Syntax error. Cannot open the contact." : "Villa í málskipan. Get ekki opnað tengiliðinn.",
+    "The contact doesn't exists anymore on the server." : "Tengiliðurinn er ekki lengur til á miðlaranum.",
     "An error occurred while trying to move the contact" : "Villa kom upp þegar reynt var að færa tengiliðinn",
     "An error occurred while trying to copy the contact" : "Villa kom upp þegar reynt var að afrita tengiliðinn",
     "No errors" : "Engar villur",

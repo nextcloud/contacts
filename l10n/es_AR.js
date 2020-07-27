@@ -30,6 +30,7 @@ OC.L10N.register(
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "El contacto que intentabas editar ha cambiado. Por favor actualice manualmente el contacto. Cualquier otra edición será descartada.",
     "Groups" : "Grupos",
     "New contact" : "Nuevo contacto",
+    "The contact doesn't exists anymore on the server." : "El contacto ya no existe en el servidor.",
     "No errors" : "Sin errores",
     "Open your browser console for more details" : "Abra la consola de su navegador para más detalles",
     "Select type" : "Seleccionar tipo",
