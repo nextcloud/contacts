@@ -24,15 +24,24 @@
 
 <template>
 	<div class="contact-header-avatar">
-		<div class="contact-header-avatar__wrapper">
+		<div v-click-outside="closeMenu" class="contact-header-avatar__wrapper">
 			<div class="contact-header-avatar__background" @click="toggleModal" />
 
 			<div v-if="contact.photo"
 				:style="{ 'backgroundImage': `url(${contact.photoUrl})` }"
-				class="contact-header-avatar__photo"
-				@click="toggleModal" />
+				class="avatar contact-header-avatar__options contact-avatar-options contact-header-avatar__photo"
+				@click="toggleModal">
+				<input id="contact-avatar-upload"
+					ref="uploadInput"
+					type="file"
+					class="hidden"
+					accept="image/*"
+					@change="processFile">
+			</div>
 
-			<div v-click-outside="closeMenu" class="contact-header-avatar__options">
+			<div v-if="!contact.photo"
+				v-click-outside="closeMenu"
+				class="contact-header-avatar__options">
 				<a v-tooltip.bottom="t('contacts', 'Add a new picture')"
 					href="#"
 					class="contact-avatar-options"
@@ -53,17 +62,41 @@
 				size="large"
 				:title="contact.displayName"
 				@close="toggleModal">
+				<!-- attention, this menu exists twice in this file -->
 				<template #actions>
-					<ActionButton v-if="!isReadOnly" icon="icon-upload" @click="selectFileInput">
-						{{ t('contacts', 'Upload new picture') }}
+					<ActionButton
+						v-if="!isReadOnly"
+						icon="icon-upload"
+						@click="selectFileInput">
+						{{ t('contacts', 'Upload a new picture') }}
 					</ActionButton>
-					<ActionButton v-if="!isReadOnly" icon="icon-folder" @click="selectFilePicker">
+					<ActionButton
+						v-if="!isReadOnly"
+						icon="icon-folder"
+						@click="selectFilePicker">
 						{{ t('contacts', 'Choose from files') }}
 					</ActionButton>
-					<ActionLink :href="`${contact.url}?photo`" icon="icon-download" target="_blank">
+					<template v-if="!isReadOnly">
+						<ActionButton
+							v-for="network in supportedSocial"
+							:key="network"
+							:icon="'icon-' + network.toLowerCase()"
+							@click="getSocialAvatar(network)">
+							{{ t('contacts', 'Get from ' + network) }}
+						</ActionButton>
+					</template>
+					<!-- FIXME: the link seems to have a bigger font size than the button caption -->
+					<ActionLink
+						v-if="contact.photo"
+						:href="`${contact.url}?photo`"
+						icon="icon-download"
+						target="_blank">
 						{{ t('contacts', 'Download picture') }}
 					</ActionLink>
-					<ActionButton v-if="!isReadOnly" icon="icon-delete" @click="removePhoto">
+					<ActionButton
+						v-if="!isReadOnly && contact.photo"
+						icon="icon-delete"
+						@click="removePhoto">
 						{{ t('contacts', 'Delete picture') }}
 					</ActionButton>
 				</template>
@@ -75,19 +108,46 @@
 			</Modal>
 
 			<!-- out of the avatar__options because of the overflow hidden -->
-			<Actions v-if="!isReadOnly" :open="opened" class="contact-avatar-options__popovermenu">
-				<ActionButton icon="icon-upload" @click="selectFileInput">
+			<!-- attention, this menu exists twice in this file -->
+			<Actions
+				default-icon="icon-picture-force-white"
+				:open.sync="opened"
+				:class="contact.photo ? 'contact-avatar-options__popovermenubtn' : 'contact-avatar-options__popovermenu'"
+				:style="opened ? { 'opacity' : 1 } : { }">
+				<ActionButton
+					v-if="!isReadOnly"
+					icon="icon-upload"
+					@click="selectFileInput">
 					{{ t('contacts', 'Upload a new picture') }}
 				</ActionButton>
-				<ActionButton icon="icon-picture" @click="selectFilePicker">
+				<ActionButton
+					v-if="!isReadOnly"
+					icon="icon-folder"
+					@click="selectFilePicker">
 					{{ t('contacts', 'Choose from files') }}
 				</ActionButton>
+				<template v-if="!isReadOnly">
+					<ActionButton
+						v-for="network in supportedSocial"
+						:key="network"
+						:icon="'icon-' + network.toLowerCase()"
+						@click="getSocialAvatar(network)">
+						{{ t('contacts', 'Get from ' + network) }}
+					</ActionButton>
+				</template>
+				<!-- FIXME: the link seems to have a bigger font size than the button caption -->
+				<ActionLink
+					v-if="contact.photo"
+					:href="`${contact.url}?photo`"
+					icon="icon-download"
+					target="_blank">
+					{{ t('contacts', 'Download picture') }}
+				</ActionLink>
 				<ActionButton
-					v-for="network in supportedSocial"
-					:key="network"
-					:icon="'icon-' + network.toLowerCase()"
-					@click="getSocialAvatar(network)">
-					{{ t('contacts', 'Get from ' + network) }}
+					v-if="!isReadOnly && contact.photo"
+					icon="icon-delete"
+					@click="removePhoto">
+					{{ t('contacts', 'Delete picture') }}
 				</ActionButton>
 			</Actions>
 		</div>
@@ -95,11 +155,12 @@
 </template>
 
 <script>
+
 import debounce from 'debounce'
-import Actions from '@nextcloud/vue/dist/Components/Actions'
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
+import Actions from '@nextcloud/vue/dist/Components/Actions'
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
 
 import { getFilePickerBuilder } from '@nextcloud/dialogs'
 import { generateUrl, generateRemoteUrl } from '@nextcloud/router'
@@ -115,10 +176,10 @@ export default {
 	name: 'ContactDetailsAvatar',
 
 	components: {
-		Actions,
-		ActionLink,
-		ActionButton,
 		Modal,
+		Actions,
+		ActionButton,
+		ActionLink,
 	},
 
 	props: {
@@ -314,8 +375,8 @@ export default {
 		 * Remove the contact's picture
 		 */
 		removePhoto() {
+			this.maximizeAvatar = false
 			this.contact.vCard.removeProperty('photo')
-			this.maximizeAvatar = !this.maximizeAvatar
 			this.$store.dispatch('updateContact', this.contact)
 		},
 
