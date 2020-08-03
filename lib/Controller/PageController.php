@@ -23,6 +23,7 @@
 
 namespace OCA\Contacts\Controller;
 
+use OCA\Contacts\AppInfo\Application;
 use OCA\Contacts\Service\SocialApiService;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -33,8 +34,6 @@ use OCP\L10N\IFactory;
 use OCP\Util;
 
 class PageController extends Controller {
-	protected $appName;
-
 	/** @var IConfig */
 	private $config;
 
@@ -47,15 +46,13 @@ class PageController extends Controller {
 	/** @var SocialApiService */
 	private $socialApiService;
 
-	public function __construct(string $appName,
-								IRequest $request,
+	public function __construct(IRequest $request,
 								IConfig $config,
 								IInitialStateService $initialStateService,
 								IFactory $languageFactory,
 								SocialApiService $socialApiService) {
-		parent::__construct($appName, $request);
+		parent::__construct(Application::APP_ID, $request);
 
-		$this->appName = $appName;
 		$this->config = $config;
 		$this->initialStateService = $initialStateService;
 		$this->languageFactory = $languageFactory;
@@ -70,16 +67,16 @@ class PageController extends Controller {
 	 */
 	public function index(): TemplateResponse {
 		$locales = $this->languageFactory->findAvailableLocales();
-		$defaultProfile = $this->config->getAppValue($this->appName, 'defaultProfile', 'HOME');
+		$defaultProfile = $this->config->getAppValue(Application::APP_ID, 'defaultProfile', 'HOME');
 		$supportedNetworks = $this->socialApiService->getSupportedNetworks();
 
-		$this->initialStateService->provideInitialState($this->appName, 'locales', $locales);
-		$this->initialStateService->provideInitialState($this->appName, 'defaultProfile', $defaultProfile);
-		$this->initialStateService->provideInitialState($this->appName, 'supportedNetworks', $supportedNetworks);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'locales', $locales);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'defaultProfile', $defaultProfile);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'supportedNetworks', $supportedNetworks);
 
-		Util::addScript($this->appName, 'contacts');
-		Util::addStyle($this->appName, 'contacts');
+		Util::addScript(Application::APP_ID, 'contacts');
+		Util::addStyle(Application::APP_ID, 'contacts');
 
-		return new TemplateResponse($this->appName, 'main');
+		return new TemplateResponse(Application::APP_ID, 'main');
 	}
 }

@@ -23,57 +23,52 @@
 
 namespace OCA\Contacts\Controller;
 
-use OCP\AppFramework\Http\TemplateResponse;
-use OCP\IConfig;
 use PHPUnit\Framework\MockObject\MockObject;
-use OCP\IInitialStateService;
+use OCP\IL10N;
 use OCP\IRequest;
-use OCP\L10N\IFactory;
-use OCA\Contacts\Service\SocialApiService;
+use OCP\IURLGenerator;
 use ChristophWurst\Nextcloud\Testing\TestCase;
+use OCP\AppFramework\Http\RedirectResponse;
 
-class PageControllerTest extends TestCase {
+class ContactsControllerTest extends TestCase {
 	private $controller;
 
-	/** @var IRequest|MockObject */
-	private $request;
+	/** @var IL10N|MockObject */
+	private $l10n;
 
-	/** @var IConfig|MockObject*/
-	private $config;
+	/** @var IURLGenerator|MockObject*/
+	private $urlGenerator;
 
-	/** @var IInitialStateService|MockObject */
-	private $initialStateService;
-
-	/** @var IFactory|MockObject */
-	private $languageFactory;
-
-	/** @var SocialApiService|MockObject*/
-	private $socialApi;
 
 	public function setUp() {
 		parent::setUp();
 
 		$this->request = $this->createMock(IRequest::class);
-		$this->config = $this->createMock(IConfig::class);
-		$this->initialStateService = $this->createMock(IInitialStateService::class);
-		$this->languageFactory = $this->createMock(IFactory::class);
-		$this->socialApi = $this->createMock(SocialApiService::class);
+		$this->l10n = $this->createMock(IL10N::class);
+		$this->urlGenerator = $this->createMock(IURLGenerator::class);
 
-		$this->controller = new PageController(
+		$this->controller = new ContactsController(
 			$this->request,
-			$this->config,
-			$this->initialStateService,
-			$this->languageFactory,
-			$this->socialApi
+			$this->l10n,
+			$this->urlGenerator
 		);
 	}
 
 
-	public function testIndex() {
-		$result = $this->controller->index();
+	public function testRedirect() {
+		$contact = 'uuid~addressbook';
 
-		$this->assertEquals('main', $result->getTemplateName());
-		$this->assertEquals('user', $result->getRenderAs());
-		$this->assertTrue($result instanceof TemplateResponse);
+		$this->l10n->method('t')
+			->with('All contacts')
+			->willReturn('All contacts');
+
+		$this->urlGenerator->expects($this->once())
+			->method('getAbsoluteURL')
+			->with('/apps/contacts/All contacts/' . $contact)
+			->willReturn('/apps/contacts/All contacts/' . $contact);
+
+		$result = $this->controller->direct('uuid~addressbook');
+		$this->assertTrue($result instanceof RedirectResponse);
+		$this->assertEquals('/apps/contacts/All contacts/' . $contact, $result->getRedirectURL());
 	}
 }
