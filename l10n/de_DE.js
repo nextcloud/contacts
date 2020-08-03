@@ -22,7 +22,7 @@ OC.L10N.register(
     "Pick an avatar" : "Avatar auswählen",
     "Error while processing the picture." : "Fehler beim Verarbeiten des Bildes.",
     "Avatar downloaded from social network" : "Avatar vom sozialen Netzwerk heruntergeladen",
-    "Avatar already up to date" : "Avatar bereits auf dem neuesten Stand",
+    "Avatar already up to date" : "Avatar bereits aktuell",
     "Avatar download failed" : "Avatar-Download fehlgeschlagen",
     "No contact selected" : "Keine Adresse ausgewählt",
     "Select a contact on the list to begin" : "Wählen Sie einen Kontakt aus der Liste aus, um zu beginnen.",
