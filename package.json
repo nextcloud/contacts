@@ -97,7 +97,7 @@
 		"webpack": "^4.44.1",
 		"webpack-cli": "^3.3.12",
 		"webpack-merge": "^4.2.2",
-		"webpack-node-externals": "^2.5.0"
+		"webpack-node-externals": "^2.5.1"
 	},
 	"browserslist": [
 		"extends @nextcloud/browserslist-config"
