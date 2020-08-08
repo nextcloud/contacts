@@ -398,6 +398,7 @@ export default class Contact {
 		if (orderKey && n && !isEmpty(n)) {
 			switch (orderKey) {
 			case 'firstName':
+			case 'phoneticFirstName':
 				// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
 				// -> John Stevenson
 				return n.slice(0, 2).reverse().join(' ')
@@ -457,6 +458,36 @@ export default class Contact {
 			return this.vCard.getFirstPropertyValue('n')[0]
 		}
 		return this.displayName
+	}
+
+	/**
+	 * Return the phonetic first name if exists
+	 * Returns the first name or displayName otherwise
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 * @returns {string} phoneticFirstName|firstName|displayName
+	 */
+	get phoneticFirstName() {
+		if (this.vCard.hasProperty('x-phonetic-first-name')) {
+			return this.vCard.getFirstPropertyValue('x-phonetic-first-name')
+		}
+		return this.firstName
+	}
+
+	/**
+	 * Return the phonetic last name if exists
+	 * Returns the displayName otherwise
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 * @returns {string} lastName|displayName
+	 */
+	get phoneticLastName() {
+		if (this.vCard.hasProperty('x-phonetic-last-name')) {
+			return this.vCard.getFirstPropertyValue('x-phonetic-last-name')
+		}
+		return this.lastName
 	}
 
 	/**
