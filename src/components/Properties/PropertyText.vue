@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="property">
+	<div v-if="propModel" :class="`grid-span-${gridLength} property-${propName}`" class="property">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:icon="propModel.icon"
