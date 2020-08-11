@@ -47,6 +47,7 @@ OC.L10N.register(
     "No users or groups" : "Ingen brukere eller grupper",
     "can edit" : "kan redigere",
     "Unable to delete the share." : "Kan ikke slette delingen.",
+    "Unable to change permissions." : "Kunne ikke endre rettigheter.",
     "Address book name" : "Adresseboksnavn",
     "First name" : "Fornavn",
     "Last name" : "Etternavn",
