@@ -398,7 +398,6 @@ export default class Contact {
 		if (orderKey && n && !isEmpty(n)) {
 			switch (orderKey) {
 			case 'firstName':
-			case 'phoneticFirstName':
 				// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
 				// -> John Stevenson
 				return n.slice(0, 2).reverse().join(' ')
