@@ -38,6 +38,7 @@ use OCA\DAV\CardDAV\CardDavBackend;
 use OCA\DAV\CardDAV\ContactsManager;
 use OCP\IURLGenerator;
 use OCP\IL10N;
+use OCP\AppFramework\Utility\ITimeFactory;
 
 class SocialApiService {
 	private $appName;
@@ -55,6 +56,8 @@ class SocialApiService {
 	private $urlGen;
 	/** @var CardDavBackend */
 	private $davBackend;
+	/** @var ITimeFactory */
+	private $timeFactory;
 
 
 	public function __construct(
@@ -64,7 +67,8 @@ class SocialApiService {
 					IClientService $clientService,
 					IL10N $l10n,
 					IURLGenerator $urlGen,
-					CardDavBackend $davBackend) {
+					CardDavBackend $davBackend,
+					ITimeFactory $timeFactory) {
 		$this->appName = Application::APP_ID;
 		$this->socialProvider = $socialProvider;
 		$this->manager = $manager;
@@ -73,6 +77,7 @@ class SocialApiService {
 		$this->l10n = $l10n;
 		$this->urlGen = $urlGen;
 		$this->davBackend = $davBackend;
+		$this->timeFactory = $timeFactory;
 	}
 
 
@@ -254,6 +259,33 @@ class SocialApiService {
 		return $report;
 	}
 
+	/**
+	 * @NoAdminRequired
+	 *
+	 * sorts an array of address books
+	 *
+	 * @param {IAddressBook} a
+	 * @param {IAddressBook} b
+	 *
+	 * @returns {bool} comparison by URI
+	 */
+	protected function sortAddressBooks(IAddressBook $a, IAddressBook $b) {
+		return strcmp($a->getURI(), $b->getURI());
+	}
+
+	/**
+	 * @NoAdminRequired
+	 *
+	 * sorts an array of contacts
+	 *
+	 * @param {array} a
+	 * @param {array} b
+	 *
+	 * @returns {bool} comparison by UID
+	 */
+	protected function sortContacts(array $a, array $b) {
+		return strcmp($a['UID'], $b['UID']);
+	}
 
 	/**
 	 * @NoAdminRequired
@@ -265,7 +297,7 @@ class SocialApiService {
 	 *
 	 * @returns {JSONResponse} JSONResponse with the list of changed and failed contacts
 	 */
-	public function updateAddressbooks(string $network, string $userId) : JSONResponse {
+	public function updateAddressbooks(string $network, string $userId, string $offsetBook = null, string $offsetContact = null) : JSONResponse {
 
 		// double check!
 		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
@@ -276,10 +308,12 @@ class SocialApiService {
 
 		$delay = 1;
 		$response = [];
+		$startTime = $this->timeFactory->getTime();
 
 		// get corresponding addressbook
 		$this->registerAddressbooks($userId, $this->manager);
 		$addressBooks = $this->manager->getUserAddressBooks();
+		usort($addressBooks, [$this, 'sortAddressBooks']); // make sure the order stays the same in consecutive calls
 
 		foreach ($addressBooks as $addressBook) {
 			if ((is_null($addressBook) ||
@@ -290,18 +324,32 @@ class SocialApiService {
 				continue;
 			}
 
+			// in case this is a follow-up, jump to the last stopped address book
+			if (!is_null($offsetBook)) {
+				if ($addressBook->getURI() !== $offsetBook) {
+					continue;
+				}
+				$offsetBook = null;
+			}
+
 			// get contacts in that addressbook
-			$contacts = $addressBook->search('', ['UID'], ['types' => true]);
-			// TODO: can be optimized by:
-			// $contacts = $addressBook->search('', ['X-SOCIALPROFILE'], ['types' => true]);
-			// but see https://github.com/nextcloud/contacts/pull/1722#discussion_r463782429
-			// and the referenced PR before activating this (index has to be re-created!)
+			if (Util::getVersion()[0] < 20) {
+				//TODO: remove this branch when dependency for contacts is min NCv20 (see info.xml)
+				$contacts = $addressBook->search('', ['UID'], ['types' => true]);
+			} else {
+				$contacts = $addressBook->search('', ['X-SOCIALPROFILE'], ['types' => true]);
+			}
+			usort($contacts, [$this, 'sortContacts']); // make sure the order stays the same in consecutive calls
 
 			// update one contact after another
 			foreach ($contacts as $contact) {
-				// delay to prevent rate limiting issues
-				// TODO: do we need to send an Http::STATUS_PROCESSING ?
-				sleep($delay);
+				// in case this is a follow-up, jump to the last stopped contact
+				if (!is_null($offsetContact)) {
+					if ($contact['UID'] !== $offsetContact) {
+						continue;
+					}
+					$offsetContact = null;
+				}
 
 				try {
 					$r = $this->updateContact($addressBook->getURI(), $contact['UID'], $network);
@@ -309,6 +357,18 @@ class SocialApiService {
 				} catch (Exception $e) {
 					$response = $this->registerUpdateResult($response, $contact['FN'], '-1');
 				}
+
+				// stop after 15sec (to be continued with next chunk)
+				if (($this->timeFactory->getTime() - $startTime) > 15) {
+					$response['stoppedAt'] = [
+						'addressBook' => $addressBook->getURI(),
+						'contact' => $contact['UID'],
+					];
+					return new JSONResponse([$response], Http::STATUS_PARTIAL_CONTENT);
+				}
+
+				// delay to prevent rate limiting issues
+				sleep($delay);
 			}
 		}
 		return new JSONResponse([$response], Http::STATUS_OK);

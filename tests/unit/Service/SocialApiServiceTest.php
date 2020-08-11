@@ -37,6 +37,7 @@ use OCA\DAV\CardDAV\CardDavBackend;
 use OCP\IURLGenerator;
 use OCP\IL10N;
 use OCP\Util;
+use OCP\AppFramework\Utility\ITimeFactory;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use ChristophWurst\Nextcloud\Testing\TestCase;
@@ -58,6 +59,8 @@ class SocialApiServiceTest extends TestCase {
 	private $urlGen;
 	/** @var CardDavBackend|MockObject */
 	private $davBackend;
+	/** @var ITimeFactory|MockObject */
+	private $timeFactory;
 
 	public function socialProfileProvider() {
 		return [
@@ -88,6 +91,7 @@ class SocialApiServiceTest extends TestCase {
 		$this->l10n = $this->createMock(IL10N::class);
 		$this->urlGen = $this->createMock(IURLGenerator::class);
 		$this->davBackend = $this->createMock(CardDavBackend::class);
+		$this->timeFactory = $this->createMock(ITimeFactory::class);
 		$this->service = new SocialApiService(
 			$this->socialProvider,
 			$this->manager,
@@ -95,7 +99,8 @@ class SocialApiServiceTest extends TestCase {
 			$this->clientService,
 			$this->l10n,
 			$this->urlGen,
-			$this->davBackend
+			$this->davBackend,
+			$this->timeFactory
 		);
 	}
 
@@ -264,6 +269,9 @@ class SocialApiServiceTest extends TestCase {
 		$this->config
 			->method('getUserValue')
 			->willReturn($bgSyncEnabledByUser);
+		$this->timeFactory
+			->method('getTime')
+			->willReturn(10);
 
 		$this->setupAddressbooks();
 
@@ -282,6 +290,62 @@ class SocialApiServiceTest extends TestCase {
 			$this->assertArrayHasKey('404', $report[0]['failed']);
 			$this->assertContains('Invalid Contact', $report[0]['failed']['404']);
 			$this->assertNotContains('Empty Contact', $report[0]['failed']['404']);
+		}
+	}
+
+
+	public function testUpdateAddressbooksTimeout() {
+		$this->config
+			->method('getAppValue')
+			->willReturn('yes');
+		$this->config
+			->method('getUserValue')
+			->willReturn('yes');
+		$this->timeFactory
+			->method('getTime')
+			->willReturnOnConsecutiveCalls(10, 11, 999);
+
+		$this->setupAddressbooks();
+
+		$result = $this->service->updateAddressbooks('any', 'msstest');
+
+		$this->assertEquals(Http::STATUS_PARTIAL_CONTENT, $result->getStatus());
+
+		$report = $result->getData();
+
+		$this->assertArrayHasKey('0', $report);
+		$this->assertArrayHasKey('stoppedAt', $report[0]);
+		$this->assertArrayHasKey('addressBook', $report[0]['stoppedAt']);
+		$this->assertArrayHasKey('contact', $report[0]['stoppedAt']);
+	}
+
+	/**
+	 * @dataProvider updateAddressbookProvider
+	 */
+	public function testUpdateAddressbooksContinued($syncAllowedByAdmin, $bgSyncEnabledByUser, $expected) {
+		$this->config
+			->method('getAppValue')
+			->willReturn($syncAllowedByAdmin);
+		$this->config
+			->method('getUserValue')
+			->willReturn($bgSyncEnabledByUser);
+		$this->timeFactory
+			->method('getTime')
+			->willReturn(10);
+
+		$this->setupAddressbooks();
+
+		$result = $this->service->updateAddressbooks('any', 'mrstest', 'contacts2', '22222222-2222-2222-2222-222222222222');
+
+		$this->assertEquals($expected, $result->getStatus());
+
+		if (($syncAllowedByAdmin === 'yes') && ($bgSyncEnabledByUser === 'yes')) {
+			$report = $result->getData();
+			$this->assertArrayHasKey('0', $report);
+			$this->assertArrayHasKey('updated', $report[0]);
+			$this->assertNotContains('Valid Contact One', $report[0]['updated']);
+			$this->assertArrayHasKey('checked', $report[0]);
+			$this->assertContains('Valid Contact Two', $report[0]['checked']);
 		}
 	}
 }

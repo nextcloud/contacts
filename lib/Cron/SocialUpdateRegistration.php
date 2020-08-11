@@ -85,7 +85,9 @@ class SocialUpdateRegistration extends \OC\BackgroundJob\TimedJob {
 			$bgSyncEnabledByUser = $this->config->getUserValue($user->getUID(), $this->appName, 'enableSocialSync', 'no');
 			if ($bgSyncEnabledByUser === 'yes') {
 				$this->jobList->add(SocialUpdate::class, [
-					'userId' => $user->getUID()
+					'userId' => $user->getUID(),
+					'offsetBook' => null,
+					'offsetContact' => null
 				]);
 			}
 		});
