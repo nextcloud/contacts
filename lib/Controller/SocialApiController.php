@@ -30,21 +30,29 @@ use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\IConfig;
 use OCP\IRequest;
+use OCP\IUserSession;
 
 class SocialApiController extends ApiController {
+	protected $appName;
 
 	/** @var IConfig */
 	private $config;
+
+	/** @var IUserSession */
+	private $userSession;
 
 	/** @var SocialApiService */
 	private $socialApiService;
 
 	public function __construct(IRequest $request,
 								IConfig $config,
+								IUserSession $userSession,
 								SocialApiService $socialApiService) {
 		parent::__construct(Application::APP_ID, $request);
 
 		$this->config = $config;
+		$this->appName = Application::APP_ID;
+		$this->userSession = $userSession;
 		$this->socialApiService = $socialApiService;
 	}
 
@@ -65,6 +73,46 @@ class SocialApiController extends ApiController {
 		$this->config->setAppValue(Application::APP_ID, $key, $allow);
 		return new JSONResponse([], Http::STATUS_OK);
 	}
+
+	/**
+	 * @NoAdminRequired
+	 *
+	 * update appconfig (user setting)
+	 *
+	 * @param {String} key the identifier to change
+	 * @param {String} allow the value to set
+	 *
+	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
+	 */
+	public function setUserConfig($key, $allow) {
+		$user = $this->userSession->getUser();
+		if (is_null($user)) {
+			return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
+		}
+		$userId = $user->getUid();
+		$this->config->setUserValue($userId, $this->appName, $key, $allow);
+		return new JSONResponse([], Http::STATUS_OK);
+	}
+
+
+	/**
+	 * @NoAdminRequired
+	 *
+	 * retrieve appconfig (user setting)
+	 *
+	 * @param {String} key the identifier to retrieve
+	 *
+	 * @returns {string} the desired value or null if not existing
+	 */
+	public function getUserConfig($key) {
+		$user = $this->userSession->getUser();
+		if (is_null($user)) {
+			return null;
+		}
+		$userId = $user->getUid();
+		return $this->config->getUserValue($userId, $this->appName, $key, 'null');
+	}
+
 
 	/**
 	 * @NoAdminRequired

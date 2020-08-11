@@ -3,6 +3,7 @@
  * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -27,6 +28,8 @@ use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
 use PHPUnit\Framework\MockObject\MockObject;
 use OCP\IInitialStateService;
+use OCP\IUser;
+use OCP\IUserSession;
 use OCP\IRequest;
 use OCP\L10N\IFactory;
 use OCA\Contacts\Service\SocialApiService;
@@ -47,6 +50,9 @@ class PageControllerTest extends TestCase {
 	/** @var IFactory|MockObject */
 	private $languageFactory;
 
+	/** @var IUserSession|MockObject */
+	private $userSession;
+
 	/** @var SocialApiService|MockObject*/
 	private $socialApi;
 
@@ -57,6 +63,7 @@ class PageControllerTest extends TestCase {
 		$this->config = $this->createMock(IConfig::class);
 		$this->initialStateService = $this->createMock(IInitialStateService::class);
 		$this->languageFactory = $this->createMock(IFactory::class);
+		$this->userSession = $this->createMock(IUserSession::class);
 		$this->socialApi = $this->createMock(SocialApiService::class);
 
 		$this->controller = new PageController(
@@ -64,12 +71,17 @@ class PageControllerTest extends TestCase {
 			$this->config,
 			$this->initialStateService,
 			$this->languageFactory,
+			$this->userSession,
 			$this->socialApi
 		);
 	}
 
 
 	public function testIndex() {
+		$user = $this->createMock(IUser::class);
+		$user->method('getUid')->willReturn('mrstest');
+		$this->userSession->method('getUser')->willReturn($user);
+
 		$result = $this->controller->index();
 
 		$this->assertEquals('main', $result->getTemplateName());
