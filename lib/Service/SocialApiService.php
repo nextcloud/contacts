@@ -291,11 +291,7 @@ class SocialApiService {
 			}
 
 			// get contacts in that addressbook
-			$contacts = $addressBook->search('', ['UID'], ['types' => true]);
-			// TODO: can be optimized by:
-			// $contacts = $addressBook->search('', ['X-SOCIALPROFILE'], ['types' => true]);
-			// but see https://github.com/nextcloud/contacts/pull/1722#discussion_r463782429
-			// and the referenced PR before activating this (index has to be re-created!)
+			$contacts = $addressBook->search('', ['X-SOCIALPROFILE'], ['types' => true]);
 
 			// update one contact after another
 			foreach ($contacts as $contact) {
