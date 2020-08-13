@@ -62,6 +62,14 @@ const properties = {
 			ActionCopyNtoFN,
 		],
 	},
+	'x-phonetic-first-name': {
+		readableName: t('contacts', 'Phonetic first name'),
+		force: 'text',
+	},
+	'x-phonetic-last-name': {
+		readableName: t('contacts', 'Phonetic last name'),
+		force: 'text',
+	},
 	note: {
 		readableName: t('contacts', 'Notes'),
 		icon: 'icon-rename',
@@ -346,6 +354,8 @@ if (locales.length > 0) {
 const fieldOrder = [
 	'org',
 	'title',
+	'x-phonetic-first-name',
+	'x-phonetic-last-name',
 	'tel',
 	'email',
 	'adr',

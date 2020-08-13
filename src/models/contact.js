@@ -461,6 +461,36 @@ export default class Contact {
 	}
 
 	/**
+	 * Return the phonetic first name if exists
+	 * Returns the first name or displayName otherwise
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 * @returns {string} phoneticFirstName|firstName|displayName
+	 */
+	get phoneticFirstName() {
+		if (this.vCard.hasProperty('x-phonetic-first-name')) {
+			return this.vCard.getFirstPropertyValue('x-phonetic-first-name')
+		}
+		return this.firstName
+	}
+
+	/**
+	 * Return the phonetic last name if exists
+	 * Returns the displayName otherwise
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 * @returns {string} lastName|displayName
+	 */
+	get phoneticLastName() {
+		if (this.vCard.hasProperty('x-phonetic-last-name')) {
+			return this.vCard.getFirstPropertyValue('x-phonetic-last-name')
+		}
+		return this.lastName
+	}
+
+	/**
 	 * Return all the properties as Property objects
 	 *
 	 * @readonly

@@ -58,6 +58,14 @@ export default {
 					key: 'lastName',
 				},
 				{
+					label: t('contacts', 'Phonetic first name'),
+					key: 'phoneticFirstName',
+				},
+				{
+					label: t('contacts', 'Phonetic last name'),
+					key: 'phoneticLastName',
+				},
+				{
 					label: t('contacts', 'Display name'),
 					key: 'displayName',
 				},
