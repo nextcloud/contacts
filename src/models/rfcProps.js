@@ -141,7 +141,6 @@ const properties = {
 	},
 	anniversary: {
 		readableName: t('contacts', 'Anniversary'),
-		info: t('contacts', 'The date of marriage, or equivalent, of this contact'),
 		icon: 'icon-calendar-dark',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
@@ -228,35 +227,27 @@ const properties = {
 			value: '',
 			type: ['facebook'],
 		},
-		info: t(
-			'contacts',
-			'The link of the profile. e.g. https://www.facebook.com/Nextclouders/ '
-		),
 		options: [
-			{ id: 'FACEBOOK', name: 'Facebook' },
-			{ id: 'GITHUB', name: 'GitHub' },
-			{ id: 'GOOGLEPLUS', name: 'Google+' },
-			{ id: 'INSTAGRAM', name: 'Instagram' },
-			{ id: 'LINKEDIN', name: 'LinkedIn' },
-			{ id: 'PINTEREST', name: 'Pinterest' },
-			{ id: 'QZONE', name: 'QZone' },
-			{ id: 'TUMBLR', name: 'Tumblr' },
-			{ id: 'TWITTER', name: 'Twitter' },
-			{ id: 'WECHAT', name: 'WeChat' },
-			{ id: 'YOUTUBE', name: 'YouTube' },
-			{ id: 'MASTODON', name: 'Mastodon' },
-			{ id: 'DIASPORA', name: 'Diaspora' },
-			{ id: 'OTHER', name: 'other Social Media' },
+			{ id: 'FACEBOOK', name: 'Facebook', placeholder: 'https://facebook.com/…' },
+			{ id: 'GITHUB', name: 'GitHub', placeholder: 'https://github.com/…' },
+			{ id: 'GOOGLEPLUS', name: 'Google+', placeholder: 'https://plus.google.com/…' },
+			{ id: 'INSTAGRAM', name: 'Instagram', placeholder: 'https://instagram.com/…' },
+			{ id: 'LINKEDIN', name: 'LinkedIn', placeholder: 'https://linkedin.com/…' },
+			{ id: 'PINTEREST', name: 'Pinterest', placeholder: 'https://pinterest.com/…' },
+			{ id: 'QZONE', name: 'QZone', placeholder: 'https://qzone.com/…' },
+			{ id: 'TUMBLR', name: 'Tumblr', placeholder: 'https://tumblr.com/…' },
+			{ id: 'TWITTER', name: 'Twitter', placeholder: 'https://twitter.com/…' },
+			{ id: 'WECHAT', name: 'WeChat', placeholder: 'https://wechat.com/…' },
+			{ id: 'YOUTUBE', name: 'YouTube', placeholder: 'https://youtube.com/…' },
+			{ id: 'MASTODON', name: 'Mastodon', placeholder: 'https://mastodon.social/…' },
+			{ id: 'DIASPORA', name: 'Diaspora', placeholder: 'https://joindiaspora.com/…' },
+			{ id: 'OTHER', name: 'Other social media', placeholder: 'https://example.com/…' },
 		],
 	},
 	relationship: {
-		readableName: t('contacts', 'Relationship'),
+		readableName: t('contacts', 'Relationship to you'),
 		force: 'select',
 		icon: 'icon-group',
-		info: t(
-			'contacts',
-			'Specify a relationship between you and the entity represented by this vCard.'
-		),
 		options: [
 			{ id: 'SPOUSE', name: t('contacts', 'Spouse') },
 			{ id: 'CHILD', name: t('contacts', 'Child') },
@@ -274,12 +265,8 @@ const properties = {
 	},
 	related: {
 		multiple: true,
-		readableName: t('contacts', 'Related'),
+		readableName: t('contacts', 'Related contacts'),
 		icon: 'icon-group',
-		info: t(
-			'contacts',
-			'Specify a relationship between another entity and the entity represented by this vCard.'
-		),
 		defaultValue: {
 			value: [''],
 			type: ['CONTACT'],
