@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div v-if="propModel" :class="`grid-span-${gridLength} property-${propName}`" class="property">
+	<div v-if="propModel" class="property">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:icon="propModel.icon"
@@ -131,15 +131,6 @@ export default {
 	},
 
 	computed: {
-		gridLength() {
-			const hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
-			const isLast = this.isLastProperty ? 1 : 0
-			const noteHeight = this.propName === 'note'
-				? this.noteHeight
-				: 0
-			// length is one & add one space at the end
-			return hasTitle + 1 + isLast + noteHeight
-		},
 		inputmode() {
 			if (this.propName === 'tel') {
 				return 'tel'

@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div v-if="propModel" class="grid-span-2 property property--without-actions">
+	<div v-if="propModel" class="property property--without-actions">
 		<PropertyTitle
 			icon="icon-contacts"
 			:readable-name="t('contacts', 'Groups')" />

@@ -183,60 +183,74 @@
 			<section v-if="loadingData" class="icon-loading contact-details" />
 
 			<!-- contact details -->
-			<section v-else class="contact-details">
+			<section v-else
+				v-masonry="contactDetailsSelector"
+				class="contact-details"
+				:fit-width="true"
+				item-selector=".property-masonry"
+				:transition-duration="0">
 				<!-- properties iteration -->
 				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
 				<!-- passing the debounceUpdateContact so that the contact-property component contains the function
 					and allow us to use it on the rfcProps since the scope is forwarded to the actions -->
-				<ContactProperty v-for="(property, index) in sortedProperties"
-					:key="`${index}-${contact.key}-${property.name}`"
-					:index="index"
-					:sorted-properties="sortedProperties"
-					:property="property"
-					:contact="contact"
-					:local-contact="localContact"
-					:update-contact="debounceUpdateContact" />
+				<div v-for="(properties, name) in groupedProperties"
+					:key="name"
+					v-masonry-tile
+					class="property-masonry">
+					<ContactProperty v-for="(property, index) in properties"
+						:key="`${index}-${contact.key}-${property.name}`"
+						:is-first-property="index===0"
+						:is-last-property="index === properties.length - 1"
+						:property="property"
+						:contact="contact"
+						:local-contact="localContact"
+						:update-contact="debounceUpdateContact" />
+				</div>
 
 				<!-- addressbook change select - no last property because class is not applied here,
 					empty property because this is a required prop on regular property-select. But since
 					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
 					duplication, we created a fake propModel and property with our own options here) -->
-				<PropertySelect v-if="addressbooksOptions.length > 1"
+				<PropertySelect v-masonry-tile
 					:prop-model="addressbookModel"
 					:value.sync="addressbook"
 					:is-first-property="true"
 					:is-last-property="true"
 					:property="{}"
-					class="property--addressbooks property--last property--without-actions" />
+					class="property-masonry property--addressbooks property--last property--without-actions" />
 
 				<!-- Groups always visible -->
-				<PropertyGroups :prop-model="groupsModel"
+				<PropertyGroups v-masonry-tile
+					:prop-model="groupsModel"
 					:value.sync="groups"
 					:contact="contact"
 					:is-read-only="isReadOnly"
-					class="property--groups property--last" />
+					class="property-masonry property--groups property--last" />
+
+				<!-- new property select -->
+				<AddNewProp v-masonry-tile :contact="contact" class="property-masonry" />
 
 				<!-- Last modified-->
 				<PropertyRev v-if="contact.rev" :value="contact.rev" />
-
-				<!-- new property select -->
-				<AddNewProp v-if="!isReadOnly" :contact="contact" />
 			</section>
 		</template>
 	</div>
 </template>
 
 <script>
+import { showError } from '@nextcloud/dialogs'
+import { stringify } from 'ical.js'
 import debounce from 'debounce'
 import PQueue from 'p-queue'
 import qr from 'qr-image'
-import { stringify } from 'ical.js'
-import Actions from '@nextcloud/vue/dist/Components/Actions'
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
+import Vue from 'vue'
+import { VueMasonryPlugin } from 'vue-masonry'
+
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
+import Actions from '@nextcloud/vue/dist/Components/Actions'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
-import { showError } from '@nextcloud/dialogs'
+import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 
 import rfcProps from '../models/rfcProps'
 import validate from '../services/validate'
@@ -249,6 +263,7 @@ import PropertyGroups from './Properties/PropertyGroups'
 import PropertyRev from './Properties/PropertyRev'
 import PropertySelect from './Properties/PropertySelect'
 
+Vue.use(VueMasonryPlugin)
 const updateQueue = new PQueue({ concurrency: 1 })
 
 export default {
@@ -297,6 +312,8 @@ export default {
 			qrcode: '',
 			showPickAddressbookModal: false,
 			pickedAddressbook: null,
+
+			contactDetailsSelector: '.contact-details',
 		}
 	},
 
@@ -353,6 +370,29 @@ export default {
 					const nameB = b.name.split('.').pop()
 					return rfcProps.fieldOrder.indexOf(nameA) - rfcProps.fieldOrder.indexOf(nameB)
 				})
+		},
+
+		/**
+		 * Contact properties filtered and grouped by rfcProps.fieldOrder
+		 *
+		 * @returns {Object}
+		 */
+		groupedProperties() {
+			return this.sortedProperties
+				.reduce((list, property) => {
+					// If there is no component to display this prop, ignore it
+					if (!this.canDisplay(property)) {
+						return list
+					}
+
+					// Init if needed
+					if (!list[property.name]) {
+						list[property.name] = []
+					}
+
+					list[property.name].push(property)
+					return list
+				}, {})
 		},
 
 		/**
@@ -442,7 +482,14 @@ export default {
 			if (this.contactKey && newContact !== oldContact) {
 				this.selectContact(this.contactKey)
 			}
+
+			// Reflow grid
+			this.$redrawVueMasonry(this.contactDetailsSelector)
 		},
+	},
+
+	updated() {
+		this.$redrawVueMasonry(this.contactDetailsSelector)
 	},
 
 	beforeMount() {
@@ -708,6 +755,142 @@ export default {
 				})
 			}
 		},
+
+		/**
+		 * Should display the property
+		 *
+		 * @param {Property} property the property to check
+		 * @returns {boolean}
+		 */
+		canDisplay(property) {
+			const propModel = rfcProps.properties[property.name]
+			const propType = propModel && propModel.force
+				? propModel.force
+				: property.getDefaultType()
+
+			return propModel && propType !== 'unknown'
+		},
 	},
 }
 </script>
+
+<style lang="scss">
+#contact-details {
+	flex: 1 1 100%;
+	min-width: 0;
+
+	// Header with avatar, name, position, actions...
+	header {
+		display: flex;
+		align-items: center;
+		padding: 50px 0 20px;
+		font-weight: bold;
+
+		// ORG-TITLE-NAME
+		#contact-header-infos {
+			display: flex;
+			flex: 1 1 auto; // shrink avatar before this one
+			flex-direction: column;
+			h2,
+			#details-org-container {
+				display: flex;
+				flex-wrap: wrap;
+				margin: 0;
+			}
+			input {
+				overflow: hidden;
+				flex: 1 1;
+				min-width: 100px;
+				max-width: 100%;
+				margin: 0;
+				padding: 4px 5px;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+				border: none;
+				background: transparent;
+				font-size: inherit;
+				&#contact-fullname {
+					font-weight: bold;
+				}
+			}
+			#contact-org:placeholder-shown {
+				max-width: 20%;
+			}
+		}
+
+		// ACTIONS
+		#contact-header-actions {
+			position: relative;
+			display: flex;
+			.header-menu {
+				margin-right: 10px;
+			}
+			.header-icon {
+				width: 44px;
+				height: 44px;
+				padding: 14px;
+				cursor: pointer;
+				opacity: .7;
+				border-radius: 22px;
+				background-size: 16px;
+				&:hover,
+				&:focus {
+					opacity: 1;
+				}
+				&.header-icon--pulse {
+					width: 16px;
+					height: 16px;
+					margin: 8px;
+				}
+			}
+		}
+	}
+
+	// List of all properties
+	section.contact-details {
+		margin: 0 auto;
+
+		.property-masonry {
+			width: 350px;
+		}
+
+		.property--rev {
+			position: absolute;
+			right: 22px;
+			bottom: 0;
+			height: 44px;
+			opacity: .5;
+			color: var(--color-text-lighter);
+			line-height: 44px;
+		}
+	}
+
+	#qrcode-modal {
+		.modal-container {
+			display: flex;
+			padding: 10px;
+			background-color: #fff;
+			.qrcode {
+				max-width: 100%;
+			}
+		}
+	}
+
+	#pick-addressbook-modal {
+		.modal-container {
+			display: flex;
+			overflow: visible;
+			flex-wrap: wrap;
+			justify-content: space-evenly;
+			margin-bottom: 20px;
+			padding: 10px;
+			background-color: #fff;
+			.multiselect {
+				flex: 1 1 100%;
+				width: 100%;
+				margin-bottom: 20px;
+			}
+		}
+	}
+}
+</style>

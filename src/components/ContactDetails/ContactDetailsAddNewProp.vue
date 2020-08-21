@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div class="grid-span-3 property property--without-actions property--last">
+	<div class="property property--without-actions property--last">
 		<!-- title -->
 		<PropertyTitle :icon="'icon-add'" :readable-name="t('contacts', 'Add new property')" />
 
