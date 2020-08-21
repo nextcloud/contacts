@@ -34,7 +34,6 @@ use Sabre\DAV\Server;
 use Sabre\DAV\ServerPlugin;
 use Sabre\HTTP\RequestInterface;
 use Sabre\HTTP\ResponseInterface;
-use Sabre\VObject\Component\VCard;
 use Sabre\VObject\Reader;
 
 class PatchPlugin extends ServerPlugin {

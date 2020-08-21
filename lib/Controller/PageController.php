@@ -102,7 +102,7 @@ class PageController extends Controller {
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'enableSocialSync', $bgSyncEnabledByUser);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'contactsinteraction', $this->appManager->isEnabledForUser('contactsinteraction') === true);
 
-		Util::addScript(Application::APP_ID, 'contacts');
+		Util::addScript(Application::APP_ID, 'contacts-main');
 		Util::addStyle(Application::APP_ID, 'contacts');
 
 		return new TemplateResponse(Application::APP_ID, 'main');
