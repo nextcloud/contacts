@@ -24,15 +24,16 @@
 
 namespace OCA\Contacts\Controller;
 
-use OCA\Contacts\Service\SocialApiService;
+use OCP\App\IAppManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
 
 use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\Service\SocialApiService;
 use OCP\IConfig;
 use OCP\IInitialStateService;
-use OCP\IUserSession;
 use OCP\IRequest;
+use OCP\IUserSession;
 use OCP\L10N\IFactory;
 use OCP\Util;
 
@@ -52,20 +53,24 @@ class PageController extends Controller {
 	/** @var SocialApiService */
 	private $socialApiService;
 
+	/** @var IAppManager */
+	private $appManager;
+
 	public function __construct(IRequest $request,
 								IConfig $config,
 								IInitialStateService $initialStateService,
 								IFactory $languageFactory,
 								IUserSession $userSession,
-								SocialApiService $socialApiService) {
+								SocialApiService $socialApiService,
+								IAppManager $appManager) {
 		parent::__construct(Application::APP_ID, $request);
 
-		$this->appName = Application::APP_ID;
 		$this->config = $config;
 		$this->initialStateService = $initialStateService;
 		$this->languageFactory = $languageFactory;
 		$this->userSession = $userSession;
 		$this->socialApiService = $socialApiService;
+		$this->appManager = $appManager;
 	}
 
 	/**
@@ -82,23 +87,24 @@ class PageController extends Controller {
 		}
 
 		$locales = $this->languageFactory->findAvailableLocales();
-		$defaultProfile = $this->config->getAppValue($this->appName, 'defaultProfile', 'HOME');
+		$defaultProfile = $this->config->getAppValue(Application::APP_ID, 'defaultProfile', 'HOME');
 		$supportedNetworks = $this->socialApiService->getSupportedNetworks();
-		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes'); // allow users to retrieve avatars from social networks (default: yes)
-		$bgSyncEnabledByUser = $this->config->getUserValue($userId, $this->appName, 'enableSocialSync', 'no'); // automated background syncs for social avatars (default: no)
+		$syncAllowedByAdmin = $this->config->getAppValue(Application::APP_ID, 'allowSocialSync', 'yes'); // allow users to retrieve avatars from social networks (default: yes)
+		$bgSyncEnabledByUser = $this->config->getUserValue($userId, Application::APP_ID, 'enableSocialSync', 'no'); // automated background syncs for social avatars (default: no)
 
-		$this->initialStateService->provideInitialState($this->appName, 'locales', $locales);
-		$this->initialStateService->provideInitialState($this->appName, 'defaultProfile', $defaultProfile);
-		$this->initialStateService->provideInitialState($this->appName, 'supportedNetworks', $supportedNetworks);
-		$this->initialStateService->provideInitialState($this->appName, 'locales', $locales);
-		$this->initialStateService->provideInitialState($this->appName, 'defaultProfile', $defaultProfile);
-		$this->initialStateService->provideInitialState($this->appName, 'supportedNetworks', $supportedNetworks);
-		$this->initialStateService->provideInitialState($this->appName, 'allowSocialSync', $syncAllowedByAdmin);
-		$this->initialStateService->provideInitialState($this->appName, 'enableSocialSync', $bgSyncEnabledByUser);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'locales', $locales);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'defaultProfile', $defaultProfile);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'supportedNetworks', $supportedNetworks);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'locales', $locales);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'defaultProfile', $defaultProfile);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'supportedNetworks', $supportedNetworks);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'allowSocialSync', $syncAllowedByAdmin);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'enableSocialSync', $bgSyncEnabledByUser);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'contactsinteraction', $this->appManager->isEnabledForUser('contactsinteraction') === true);
 
-		Util::addScript($this->appName, 'contacts');
-		Util::addStyle($this->appName, 'contacts');
+		Util::addScript(Application::APP_ID, 'contacts');
+		Util::addStyle(Application::APP_ID, 'contacts');
 
-		return new TemplateResponse($this->appName, 'main');
+		return new TemplateResponse(Application::APP_ID, 'main');
 	}
 }

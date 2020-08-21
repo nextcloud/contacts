@@ -314,7 +314,7 @@ const actions = {
 	},
 
 	/**
-	 * Replac a contact by this new object
+	 * Replace a contact by this new object
 	 *
 	 * @param {Object} context the store mutations
 	 * @param {Contact} contact the contact to update

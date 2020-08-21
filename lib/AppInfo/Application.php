@@ -22,16 +22,36 @@
  */
 namespace OCA\Contacts\AppInfo;
 
+use OCA\Contacts\Dav\PatchPlugin;
 use OCP\AppFramework\App;
+use OCP\EventDispatcher\IEventDispatcher;
+use OCP\SabrePluginEvent;
 
 class Application extends App {
 	public const APP_ID = 'contacts';
-
-	public function __construct() {
-		parent::__construct(self::APP_ID);
-	}
 	
 	public const AVAIL_SETTINGS = [
 		'allowSocialSync' => 'yes',
 	];
+
+	public function __construct() {
+		parent::__construct(self::APP_ID);
+	}
+
+	public function register() {
+		$server = $this->getContainer()->getServer();
+
+		/** @var IEventDispatcher $eventDispatcher */
+		$eventDispatcher = $server->query(IEventDispatcher::class);
+		$eventDispatcher->addListener('OCA\DAV\Connector\Sabre::addPlugin', function (SabrePluginEvent $event) {
+			$server = $event->getServer();
+
+			if ($server !== null) {
+				// We have to register the LockPlugin here and not info.xml,
+				// because info.xml plugins are loaded, after the
+				// beforeMethod:* hook has already been emitted.
+				$server->addPlugin($this->getContainer()->query(PatchPlugin::class));
+			}
+		});
+	}
 }

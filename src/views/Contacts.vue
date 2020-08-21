@@ -34,30 +34,100 @@
 				@click="newContact" />
 
 			<!-- groups list -->
-			<ul v-if="!loading" id="groups-list">
-				<AppNavigationItem v-for="item in menu"
-					:key="item.key"
-					:to="item.router"
-					:title="item.text"
-					:icon="item.icon">
-					<template slot="actions">
-						<ActionButton v-for="action in item.utils.actions"
-							:key="action.text"
-							:icon="action.icon"
-							@click="action.action">
-							{{ action.text }}
-						</ActionButton>
-					</template>
+			<template v-if="!loading" #list>
+				<!-- All contacts group -->
+				<AppNavigationItem id="everyone"
+					:title="GROUP_ALL_CONTACTS"
+					:to="{
+						name: 'group',
+						params: { selectedGroup: GROUP_ALL_CONTACTS },
+					}"
+					icon="icon-contacts-dark">
 					<AppNavigationCounter slot="counter">
-						{{ item.utils.counter }}
+						{{ sortedContacts.length }}
 					</AppNavigationCounter>
 				</AppNavigationItem>
-			</ul>
+
+				<!-- Not grouped group -->
+				<AppNavigationItem
+					v-if="ungroupedContacts.length > 0"
+					id="notgrouped"
+					:title="GROUP_NO_GROUP_CONTACTS"
+					:to="{
+						name: 'group',
+						params: { selectedGroup: GROUP_NO_GROUP_CONTACTS },
+					}"
+					icon="icon-user">
+					<AppNavigationCounter slot="counter">
+						{{ ungroupedContacts.length }}
+					</AppNavigationCounter>
+				</AppNavigationItem>
+
+				<!-- Recently contacted group -->
+				<AppNavigationItem
+					v-if="isContactsInteractionEnabled && recentlyContactedContacts && recentlyContactedContacts.contacts.length > 0"
+					id="recentlycontacted"
+					:title="t('contactsinteraction', 'Recently contacted')"
+					:to="{
+						name: 'group',
+						params: { selectedGroup: t('contactsinteraction', 'Recently contacted') },
+					}"
+					icon="icon-recent-actors">
+					<AppNavigationCounter slot="counter">
+						{{ recentlyContactedContacts.contacts.length }}
+					</AppNavigationCounter>
+				</AppNavigationItem>
+
+				<AppNavigationSpacer />
+
+				<!-- Custom groups -->
+				<AppNavigationItem v-for="group in groupsMenu"
+					:key="group.key"
+					:to="group.router"
+					:title="group.name"
+					:icon="group.icon">
+					<template slot="actions">
+						<ActionButton
+							icon="icon-add"
+							@click="addContactsToGroup(group)">
+							{{ t('contacts', 'Add contacts') }}
+						</ActionButton>
+						<ActionButton
+							icon="icon-download"
+							@click="downloadGroup(group)">
+							{{ t('contacts', 'Download') }}
+						</ActionButton>
+					</template>
+
+					<AppNavigationCounter slot="counter">
+						{{ group.contacts.length }}
+					</AppNavigationCounter>
+				</AppNavigationItem>
+
+				<AppNavigationItem
+					:force-menu="true"
+					:menu-open.sync="isNewGroupMenuOpen"
+					:title="t('contacts', '+ New group')"
+					menu-icon="icon-add"
+					@click.prevent.stop="toggleNewGroupMenu">
+					<template slot="actions">
+						<ActionText :icon="createGroupError ? 'icon-error' : 'icon-contacts-dark'">
+							{{ createGroupError ? createGroupError : t('contacts', 'Create a new group') }}
+						</ActionText>
+						<ActionInput
+							icon=""
+							:placeholder="t('contacts','Group name')"
+							@submit.prevent.stop="createNewGroup" />
+					</template>
+				</AppNavigationItem>
+			</template>
 
 			<!-- settings -->
-			<AppNavigationSettings v-if="!loading">
-				<SettingsSection />
-			</AppNavigationSettings>
+			<template #footer>
+				<AppNavigationSettings v-if="!loading">
+					<SettingsSection />
+				</AppNavigationSettings>
+			</template>
 		</AppNavigation>
 
 		<AppContent>
@@ -70,49 +140,96 @@
 
 			<div id="app-content-wrapper">
 				<!-- contacts list -->
-				<ContactsList :list="contactsList"
+				<ContactsList
+					v-if="!loading"
+					:list="contactsList"
 					:contacts="contacts"
 					:loading="loading"
-					:search-query="searchQuery" />
+					:search-query="searchQuery"
+					@onAddContactsToGroup="addContactsToGroup(selectedGroup)" />
 
 				<!-- main contacts details -->
 				<ContactDetails :loading="loading" :contact-key="selectedContact" />
 			</div>
 		</AppContent>
+
+		<!-- Import modal -->
 		<Modal v-if="isImporting"
 			:clear-view-delay="-1"
 			:can-close="isImportDone"
 			@close="closeImport">
 			<ImportScreen />
 		</Modal>
+
+		<!-- Select contacts group modal -->
+		<EntityPicker v-if="showContactPicker"
+			:data-types="pickerTypes"
+			:data-set="pickerData"
+			@close="onContactPickerClose"
+			@submit="onContactPickerPick" />
+
+		<!-- Bulk contacts edit modal -->
+		<Modal v-if="isProcessing || isProcessDone"
+			:clear-view-delay="-1"
+			:can-close="isProcessDone"
+			@close="closeProcess">
+			<ProcessingScreen v-bind="processStatus">
+				{{ processStatus.total === processStatus.progress
+					? n('contacts',
+						'{total} contact added to {name}',
+						'{total} contacts added to {name}',
+						processStatus.total,
+						processStatus
+					)
+					: n('contacts',
+						'Adding {total} contact to {name}',
+						'Adding {total} contacts to {name}',
+						processStatus.total,
+						processStatus
+					) }}
+				<template #desc>
+					<button v-if="processStatus.total === processStatus.progress" class="primary processing-screen__button" @click="closeProcess">
+						{{ t('contacts', 'Close') }}
+					</button>
+				</template>
+			</ProcessingScreen>
+		</Modal>
 	</Content>
 </template>
 
 <script>
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
+import ActionText from '@nextcloud/vue/dist/Components/ActionText'
 import AppContent from '@nextcloud/vue/dist/Components/AppContent'
 import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
-import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
 import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
+import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
 import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import AppNavigationSpacer from '@nextcloud/vue/dist/Components/AppNavigationSpacer'
 import Content from '@nextcloud/vue/dist/Components/Content'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
+import Modal from '@nextcloud/vue/dist/Components/Modal'
 
-import moment from 'moment'
-import download from 'downloadjs'
 import { VCardTime } from 'ical.js'
+import download from 'downloadjs'
+import moment from 'moment'
+import pLimit from 'p-limit'
 
-import SettingsSection from '../components/SettingsSection'
-import ContactsList from '../components/ContactsList'
 import ContactDetails from '../components/ContactDetails'
+import ContactsList from '../components/ContactsList'
+import EntityPicker from '../components/EntityPicker/EntityPicker'
 import ImportScreen from '../components/ImportScreen'
+import ProcessingScreen from '../components/ProcessingScreen'
+import SettingsSection from '../components/SettingsSection'
 
 import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps'
 
 import client from '../services/cdav'
+import appendContactToGroup from '../services/appendContactToGroup'
+import isContactsInteractionEnabled from '../services/isContactsInteractionEnabled'
 
 const GROUP_ALL_CONTACTS = t('contacts', 'All contacts')
 const GROUP_NO_GROUP_CONTACTS = t('contacts', 'Not grouped')
@@ -121,18 +238,23 @@ export default {
 	name: 'Contacts',
 
 	components: {
+		ActionButton,
+		ActionInput,
+		ActionText,
 		AppContent,
 		AppNavigation,
-		AppNavigationItem,
 		AppNavigationCounter,
+		AppNavigationItem,
 		AppNavigationNew,
 		AppNavigationSettings,
-		ActionButton,
+		AppNavigationSpacer,
 		ContactDetails,
 		ContactsList,
 		Content,
+		EntityPicker,
 		ImportScreen,
 		Modal,
+		ProcessingScreen,
 		SettingsSection,
 	},
 
@@ -155,8 +277,33 @@ export default {
 
 	data() {
 		return {
+			GROUP_ALL_CONTACTS,
+			GROUP_NO_GROUP_CONTACTS,
+			isContactsInteractionEnabled,
 			loading: true,
+
+			// Create group
+			isCreatingGroup: false,
+			isNewGroupMenuOpen: false,
+			createGroupError: null,
+
+			// Add to group picker
 			searchQuery: '',
+			showContactPicker: false,
+			contactPickerforGroup: null,
+			pickerTypes: [{
+				id: 'contact',
+				label: t('contacts', 'Contacts'),
+			}],
+
+			// Bulk processing
+			isProcessing: false,
+			isProcessDone: false,
+			processStatus: {
+				total: 0,
+				progress: 0,
+				name: '',
+			},
 		}
 	},
 
@@ -221,71 +368,31 @@ export default {
 
 		// generate groups menu from groups store
 		groupsMenu() {
-			return this.groups.map(group => {
-				return {
+			const menu = this.groups.map(group => {
+				return Object.assign(group, {
 					id: group.name.replace(' ', '_'),
 					key: group.name.replace(' ', '_'),
 					router: {
 						name: 'group',
 						params: { selectedGroup: group.name },
 					},
-					text: group.name,
-					utils: {
-						counter: group.contacts.length,
-						actions: [
-							{
-								icon: 'icon-download',
-								text: 'Download',
-								action: () => this.downloadGroup(group),
-							},
-						],
-					},
-				}
-			}).sort(function(a, b) {
-				return parseInt(b.utils.counter) - parseInt(a.utils.counter)
+					toString: () => group.name,
+				})
 			})
-		},
+			menu.sort()
 
-		// building the main menu
-		menu() {
-			return this.groupAllGroup.concat(this.groupNotGrouped.concat(this.groupsMenu))
-		},
-
-		// default group for every contacts
-		groupAllGroup() {
-			return [{
-				id: 'everyone',
-				key: 'everyone',
-				icon: 'icon-contacts-dark',
-				router: {
-					name: 'group',
-					params: { selectedGroup: GROUP_ALL_CONTACTS },
-				},
-				text: GROUP_ALL_CONTACTS,
-				utils: {
-					counter: this.sortedContacts.length,
-				},
-			}]
-		},
-
-		// default group for every contacts
-		groupNotGrouped() {
-			if (this.ungroupedContacts.length === 0) {
-				return []
+			// Find the Recently Contacted group, delete it from array
+			const recentlyIndex = menu.findIndex(group => group.name === t('contactsinteraction', 'Recently contacted'))
+			if (recentlyIndex >= 0) {
+				menu.splice(recentlyIndex, 1)
 			}
-			return [{
-				id: 'notgrouped',
-				key: 'notgrouped',
-				icon: 'icon-user',
-				router: {
-					name: 'group',
-					params: { selectedGroup: GROUP_NO_GROUP_CONTACTS },
-				},
-				text: GROUP_NO_GROUP_CONTACTS,
-				utils: {
-					counter: this.ungroupedContacts.length,
-				},
-			}]
+
+			return menu
+		},
+
+		// Recently contacted data
+		recentlyContactedContacts() {
+			return this.groups.find(group => group.name === t('contactsinteraction', 'Recently contacted'))
 		},
 	},
 
@@ -422,9 +529,28 @@ export default {
 		selectFirstContactIfNone() {
 			const inList = this.contactsList.findIndex(contact => contact.key === this.selectedContact) > -1
 			if (this.selectedContact === undefined || !inList) {
+				// Unknown contact
 				if (this.selectedContact && !inList) {
 					OC.Notification.showTemporary(t('contacts', 'Contact not found'))
+					this.$router.push({
+						name: 'group',
+						params: {
+							selectedGroup: this.selectedGroup,
+						},
+					})
 				}
+
+				// Unknown group
+				if (!this.groups.find(group => group.name === this.selectedGroup)
+					&& this.GROUP_ALL_CONTACTS !== this.selectedGroup
+					&& this.GROUP_NO_GROUP_CONTACTS !== this.selectedGroup) {
+					OC.Notification.showTemporary(t('contacts', 'Group not found'))
+					this.$router.push({
+						name: 'root',
+					})
+					return
+				}
+
 				if (Object.keys(this.contactsList).length) {
 					this.$router.push({
 						name: 'contact',
@@ -510,6 +636,125 @@ export default {
 				this.$store.dispatch('changeStage', 'default')
 			}
 		},
+
+		toggleNewGroupMenu() {
+			this.isNewGroupMenuOpen = !this.isNewGroupMenuOpen
+		},
+		createNewGroup(e) {
+			const input = e.target.querySelector('input[type=text]')
+			const groupName = input.value.trim()
+
+			// Check if already exists
+			if (this.groups.find(group => group.name === groupName)) {
+				this.createGroupError = t('contacts', 'This group already exists')
+				return
+			}
+
+			this.createGroupError = null
+
+			console.debug('Created new local group', groupName)
+			this.$store.dispatch('addGroup', groupName)
+			this.isNewGroupMenuOpen = false
+
+			// Select group
+			this.$router.push({
+				name: 'contact',
+				params: {
+					selectedGroup: groupName,
+				},
+			})
+		},
+
+		// Bulk contacts group management handlers
+		addContactsToGroup(group) {
+			// Get the full group if we provided the group name only
+			if (typeof group === 'string') {
+				group = this.groups.find(a => a.name === group)
+				if (!group) {
+					console.error('Cannot add contact to an undefined group', group)
+					return
+				}
+			}
+
+			// Init data set
+			this.pickerData = this.sortedContacts
+				.map(({ key }) => {
+					const contact = this.contacts[key]
+					return {
+						id: contact.key,
+						label: contact.displayName,
+						type: 'contact',
+						readOnly: contact.addressbook.readOnly,
+						groups: contact.groups,
+					}
+				})
+				// No read only contacts
+				.filter(contact => !contact.readOnly)
+				// No contacts already present in group
+				.filter(contact => contact.groups.indexOf(group.name) === -1)
+
+			this.showContactPicker = true
+			this.contactPickerforGroup = group
+		},
+
+		onContactPickerClose() {
+			this.pickerData = []
+			this.showContactPicker = false
+		},
+
+		onContactPickerPick(selection) {
+			console.debug('Adding', selection, 'to group', this.contactPickerforGroup)
+			const groupName = this.contactPickerforGroup.name
+
+			this.isProcessing = true
+
+			this.processStatus.total = selection.length
+			this.processStatus.name = this.contactPickerforGroup.name
+
+			// max simultaneous requests
+			const limit = pLimit(3)
+			const requests = []
+
+			// create the array of requests to send
+			selection.map(async entity => {
+				try {
+					// Get contact
+					const contact = this.contacts[entity.id]
+
+					// push contact to server and use limit
+					requests.push(limit(() => appendContactToGroup(contact, groupName)
+						.then((response) => {
+							this.$store.dispatch('addContactToGroup', { contact, groupName })
+							this.processStatus.progress++
+						})
+						.catch((error) => {
+							this.processStatus.progress++
+							console.error(error)
+						})
+					))
+				} catch (e) {
+					console.error(e)
+				}
+			})
+
+			Promise.all(requests).then(() => {
+				this.isProcessDone = true
+				this.showContactPicker = false
+			})
+		},
+
+		closeProcess() {
+			this.contactPickerforGroup = null
+			this.isProcessing = false
+			this.isProcessDone = false
+		},
+
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+#app-content-wrapper {
+	display: flex;
+}
+</style>

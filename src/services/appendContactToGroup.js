@@ -1,5 +1,5 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2020 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -19,17 +19,23 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import axios from '@nextcloud/axios'
 
-#app-details-toggle {
-	position: fixed;
-	z-index: 1500;
-	left: 0;
-	display: inline-block;
-	width: 44px;
-	height: 44px;
-	cursor: pointer;
-	transform: rotate(180deg);
-	background-color: var(--color-main-background);
-	border-radius: 50%;
-	opacity: 1;
+/**
+ * Append a group to a contact
+ * @param {Contact} contact the contact model
+ * @param {string} groupName the group name
+ */
+const appendContactToGroup = async function(contact, groupName) {
+	const groups = contact.groups
+	groups.push(groupName)
+
+	return axios.patch(contact.url, {}, {
+		headers: {
+			'X-PROPERTY': 'CATEGORIES',
+			'X-PROPERTY-REPLACE': groups.join(','),
+		},
+	})
 }
+
+export default appendContactToGroup

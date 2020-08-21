@@ -1,5 +1,5 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2020 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -12,7 +12,7 @@
  *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU Affero General Public License for more details.
  *
  * You should have received a copy of the GNU Affero General Public License
@@ -20,16 +20,7 @@
  *
  */
 
-#app-details-toggle {
-	position: fixed;
-	z-index: 1500;
-	left: 0;
-	display: inline-block;
-	width: 44px;
-	height: 44px;
-	cursor: pointer;
-	transform: rotate(180deg);
-	background-color: var(--color-main-background);
-	border-radius: 50%;
-	opacity: 1;
-}
+import { loadState } from '@nextcloud/initial-state'
+
+const contactsinteraction = loadState('contacts', 'contactsinteraction')
+export default contactsinteraction
