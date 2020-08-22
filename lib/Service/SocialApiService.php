@@ -333,8 +333,8 @@ class SocialApiService {
 			}
 
 			// get contacts in that addressbook
-			if (Util::getVersion()[0] < 20) {
-				//TODO: remove this branch when dependency for contacts is min NCv20 (see info.xml)
+			if (Util::getVersion()[0] < 21) {
+				//TODO: remove this branch when dependency for contacts is min NCv21 (see info.xml)
 				$contacts = $addressBook->search('', ['UID'], ['types' => true]);
 			} else {
 				$contacts = $addressBook->search('', ['X-SOCIALPROFILE'], ['types' => true]);
