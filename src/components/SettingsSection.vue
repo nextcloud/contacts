@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -22,6 +23,16 @@
 
 <template>
 	<div>
+		<div v-if="allowSocialSync">
+			<input
+				id="socialSyncToggle"
+				class="checkbox"
+				:checked="enableSocialSync"
+				type="checkbox"
+				@change="toggleSocialSync">
+			<label for="socialSyncToggle">{{ t('contacts', 'Update avatars from social media') }}</label>
+			<em for="socialSyncToggle">{{ t('contacts', '(refreshed once per week)') }}</em>
+		</div>
 		<ul id="addressbook-list">
 			<SettingsAddressbook v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
 		</ul>
@@ -35,6 +46,9 @@
 </template>
 
 <script>
+import axios from '@nextcloud/axios'
+import { generateUrl } from '@nextcloud/router'
+import { loadState } from '@nextcloud/initial-state'
 import SettingsAddressbook from './Settings/SettingsAddressbook'
 import SettingsNewAddressbook from './Settings/SettingsNewAddressbook'
 import SettingsImportContacts from './Settings/SettingsImportContacts'
@@ -48,6 +62,12 @@ export default {
 		SettingsImportContacts,
 		SettingsSortContacts,
 	},
+	data() {
+		return {
+			allowSocialSync: loadState('contacts', 'allowSocialSync') !== 'no',
+			enableSocialSync: loadState('contacts', 'enableSocialSync') !== 'no',
+		}
+	},
 	computed: {
 		// store getters
 		addressbooks() {
@@ -57,6 +77,16 @@ export default {
 	methods: {
 		onClickImport(event) {
 			this.$emit('clicked', event)
+		},
+		toggleSocialSync() {
+			this.enableSocialSync = !this.enableSocialSync
+
+			// store value
+			let setting = 'yes'
+			this.enableSocialSync ? setting = 'yes' : setting = 'no'
+			axios.put(generateUrl('apps/contacts/api/v1/social/config/user/enableSocialSync'), {
+				allow: setting,
+			})
 		},
 		onLoad(event) {
 			this.$emit('fileLoaded', false)

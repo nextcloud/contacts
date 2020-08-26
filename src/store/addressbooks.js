@@ -80,7 +80,7 @@ export function mapDavShareeToSharee(sharee) {
 		: id
 	return {
 		displayName: name,
-		id: id,
+		id,
 		writeable: sharee.access[0].endsWith('read-write'),
 		isGroup: sharee.href.startsWith('principal:principals/groups/'),
 		uri: sharee.href,
@@ -345,7 +345,8 @@ const actions = {
 	 */
 	async getContactsFromAddressBook(context, { addressbook }) {
 		return addressbook.dav
-			.findAllAndFilterBySimpleProperties(['EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N'])
+			.findAllAndFilterBySimpleProperties(['EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N',
+				'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME'])
 			.then((response) => {
 				// We don't want to lose the url information
 				// so we need to parse one by one

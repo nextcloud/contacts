@@ -261,6 +261,7 @@ export default class Contact {
 		const groupsProp = this.vCard.getFirstProperty('categories')
 		if (groupsProp) {
 			return groupsProp.getValues()
+				.filter(group => typeof group === 'string')
 				.filter(group => group.trim() !== '')
 		}
 		return []
@@ -457,6 +458,36 @@ export default class Contact {
 			return this.vCard.getFirstPropertyValue('n')[0]
 		}
 		return this.displayName
+	}
+
+	/**
+	 * Return the phonetic first name if exists
+	 * Returns the first name or displayName otherwise
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 * @returns {string} phoneticFirstName|firstName|displayName
+	 */
+	get phoneticFirstName() {
+		if (this.vCard.hasProperty('x-phonetic-first-name')) {
+			return this.vCard.getFirstPropertyValue('x-phonetic-first-name')
+		}
+		return this.firstName
+	}
+
+	/**
+	 * Return the phonetic last name if exists
+	 * Returns the displayName otherwise
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 * @returns {string} lastName|displayName
+	 */
+	get phoneticLastName() {
+		if (this.vCard.hasProperty('x-phonetic-last-name')) {
+			return this.vCard.getFirstPropertyValue('x-phonetic-last-name')
+		}
+		return this.lastName
 	}
 
 	/**

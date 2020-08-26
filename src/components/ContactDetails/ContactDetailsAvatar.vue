@@ -3,6 +3,7 @@
   -
   - @author Team Popcorn <teampopcornberlin@gmail.com>
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -23,14 +24,24 @@
 
 <template>
 	<div class="contact-header-avatar">
-		<div class="contact-header-avatar__wrapper">
+		<div v-click-outside="closeMenu" class="contact-header-avatar__wrapper">
 			<div class="contact-header-avatar__background" @click="toggleModal" />
+
 			<div v-if="contact.photo"
 				:style="{ 'backgroundImage': `url(${contact.photoUrl})` }"
-				class="contact-header-avatar__photo"
-				@click="toggleModal" />
+				class="avatar contact-header-avatar__options contact-avatar-options contact-header-avatar__photo"
+				@click="toggleModal">
+				<input id="contact-avatar-upload"
+					ref="uploadInput"
+					type="file"
+					class="hidden"
+					accept="image/*"
+					@change="processFile">
+			</div>
 
-			<div v-click-outside="closeMenu" class="contact-header-avatar__options">
+			<div v-if="!contact.photo"
+				v-click-outside="closeMenu"
+				class="contact-header-avatar__options">
 				<a v-tooltip.bottom="t('contacts', 'Add a new picture')"
 					href="#"
 					class="contact-avatar-options"
@@ -51,17 +62,41 @@
 				size="large"
 				:title="contact.displayName"
 				@close="toggleModal">
+				<!-- attention, this menu exists twice in this file -->
 				<template #actions>
-					<ActionButton v-if="!isReadOnly" icon="icon-upload" @click="selectFileInput">
-						{{ t('contacts', 'Upload new picture') }}
+					<ActionButton
+						v-if="!isReadOnly"
+						icon="icon-upload"
+						@click="selectFileInput">
+						{{ t('contacts', 'Upload a new picture') }}
 					</ActionButton>
-					<ActionButton v-if="!isReadOnly" icon="icon-folder" @click="selectFilePicker">
+					<ActionButton
+						v-if="!isReadOnly"
+						icon="icon-folder"
+						@click="selectFilePicker">
 						{{ t('contacts', 'Choose from files') }}
 					</ActionButton>
-					<ActionLink :href="`${contact.url}?photo`" icon="icon-download" target="_blank">
+					<template v-if="!isReadOnly">
+						<ActionButton
+							v-for="network in supportedSocial"
+							:key="network"
+							:icon="'icon-' + network.toLowerCase()"
+							@click="getSocialAvatar(network)">
+							{{ t('contacts', 'Get from ' + network) }}
+						</ActionButton>
+					</template>
+					<!-- FIXME: the link seems to have a bigger font size than the button caption -->
+					<ActionLink
+						v-if="contact.photo"
+						:href="`${contact.url}?photo`"
+						icon="icon-download"
+						target="_blank">
 						{{ t('contacts', 'Download picture') }}
 					</ActionLink>
-					<ActionButton v-if="!isReadOnly" icon="icon-delete" @click="removePhoto">
+					<ActionButton
+						v-if="!isReadOnly && contact.photo"
+						icon="icon-delete"
+						@click="removePhoto">
 						{{ t('contacts', 'Delete picture') }}
 					</ActionButton>
 				</template>
@@ -73,12 +108,46 @@
 			</Modal>
 
 			<!-- out of the avatar__options because of the overflow hidden -->
-			<Actions :open="opened" class="contact-avatar-options__popovermenu">
-				<ActionButton v-if="!isReadOnly" icon="icon-upload" @click="selectFileInput">
+			<!-- attention, this menu exists twice in this file -->
+			<Actions
+				default-icon="icon-picture-force-white"
+				:open.sync="opened"
+				:class="contact.photo ? 'contact-avatar-options__popovermenubtn' : 'contact-avatar-options__popovermenu'"
+				:style="opened ? { 'opacity' : 1 } : { }">
+				<ActionButton
+					v-if="!isReadOnly"
+					icon="icon-upload"
+					@click="selectFileInput">
 					{{ t('contacts', 'Upload a new picture') }}
 				</ActionButton>
-				<ActionButton v-if="!isReadOnly" icon="icon-picture" @click="selectFilePicker">
+				<ActionButton
+					v-if="!isReadOnly"
+					icon="icon-folder"
+					@click="selectFilePicker">
 					{{ t('contacts', 'Choose from files') }}
+				</ActionButton>
+				<template v-if="!isReadOnly">
+					<ActionButton
+						v-for="network in supportedSocial"
+						:key="network"
+						:icon="'icon-' + network.toLowerCase()"
+						@click="getSocialAvatar(network)">
+						{{ t('contacts', 'Get from ' + network) }}
+					</ActionButton>
+				</template>
+				<!-- FIXME: the link seems to have a bigger font size than the button caption -->
+				<ActionLink
+					v-if="contact.photo"
+					:href="`${contact.url}?photo`"
+					icon="icon-download"
+					target="_blank">
+					{{ t('contacts', 'Download picture') }}
+				</ActionLink>
+				<ActionButton
+					v-if="!isReadOnly && contact.photo"
+					icon="icon-delete"
+					@click="removePhoto">
+					{{ t('contacts', 'Delete picture') }}
 				</ActionButton>
 			</Actions>
 		</div>
@@ -86,27 +155,31 @@
 </template>
 
 <script>
+
 import debounce from 'debounce'
-import Actions from '@nextcloud/vue/dist/Components/Actions'
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
+import Actions from '@nextcloud/vue/dist/Components/Actions'
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
 
 import { getFilePickerBuilder } from '@nextcloud/dialogs'
-import { generateRemoteUrl } from '@nextcloud/router'
+import { generateUrl, generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
+import { loadState } from '@nextcloud/initial-state'
 import sanitizeSVG from '@mattkrick/sanitize-svg'
 
-const axios = () => import('axios')
+import axios from '@nextcloud/axios'
+
+const supportedNetworks = loadState('contacts', 'supportedNetworks')
 
 export default {
 	name: 'ContactDetailsAvatar',
 
 	components: {
-		Actions,
-		ActionLink,
-		ActionButton,
 		Modal,
+		Actions,
+		ActionButton,
+		ActionLink,
 	},
 
 	props: {
@@ -132,6 +205,16 @@ export default {
 				return this.contact.addressbook.readOnly
 			}
 			return false
+		},
+		supportedSocial() {
+			// get social networks set for the current contact
+			const available = this.contact.vCard.getAllProperties('x-socialprofile')
+				.map(a => a.jCal[1].type.toString().toLowerCase())
+			// get list of social networks that allow for avatar download
+			const supported = supportedNetworks.map(v => v.toLowerCase())
+			// return supported social networks which are set
+			return supported.filter(i => available.includes(i))
+				.map(j => this.capitalize(j))
 		},
 	},
 	mounted() {
@@ -215,7 +298,15 @@ export default {
 			this.$refs.uploadInput.value = ''
 			this.loading = false
 		},
-
+		/**
+		 * Return the word with (only) the first letter capitalized
+		 *
+		 * @param {string} word the word to handle
+		 * @returns {string} the word with the first letter capitalized
+		 */
+		capitalize(word) {
+			return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+		},
 		/**
 		 * Return the mimetype based on the first magix byte
 		 *
@@ -284,8 +375,8 @@ export default {
 		 * Remove the contact's picture
 		 */
 		removePhoto() {
+			this.maximizeAvatar = false
 			this.contact.vCard.removeProperty('photo')
-			this.maximizeAvatar = !this.maximizeAvatar
 			this.$store.dispatch('updateContact', this.contact)
 		},
 
@@ -314,8 +405,7 @@ export default {
 				if (file) {
 					this.loading = true
 					try {
-						const { get } = await axios()
-						const response = await get(`${this.root}${file}`, {
+						const response = await axios.get(`${this.root}${file}`, {
 							responseType: 'arraybuffer',
 						})
 						const type = response.headers['content-type']
@@ -328,6 +418,47 @@ export default {
 					}
 				}
 			}
+		},
+
+		/**
+		 * Downloads the Avatar from social media
+		 *
+		 * @param {String} network the social network to use (or 'any' for first match)
+		 */
+		async getSocialAvatar(network) {
+
+			if (!this.loading) {
+
+				this.loading = true
+				try {
+					const response = await axios.put(generateUrl('/apps/contacts/api/v1/social/avatar/{network}/{id}/{uid}', {
+						network: network.toLowerCase(),
+						id: this.contact.addressbook.id,
+						uid: this.contact.uid,
+					}))
+					if (response.status !== 200) {
+						throw new URIError('Download of social profile avatar failed')
+					}
+
+					// Fetch newly updated contact
+					await this.$store.dispatch('fetchFullContact', { contact: this.contact, forceReFetch: true })
+
+					// Update local clone
+					const contact = this.$store.getters.getContact(this.contact.key)
+					await this.$emit('updateLocalContact', contact)
+
+					// Notify user
+					OC.Notification.showTemporary(t('contacts', 'Avatar downloaded from social network'))
+				} catch (error) {
+					if (error.response.status === 304) {
+						OC.Notification.showTemporary(t('contacts', 'Avatar already up to date'))
+					} else {
+						OC.Notification.showTemporary(t('contacts', 'Avatar download failed'))
+						console.debug(error)
+					}
+				}
+			}
+			this.loading = false
 		},
 
 		/**

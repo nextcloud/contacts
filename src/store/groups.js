@@ -105,6 +105,19 @@ const mutations = {
 			}
 		})
 	},
+
+	/**
+	 * Add a group
+	 *
+	 * @param {Object} state the store data
+	 * @param {string} groupName the name of the group
+	 */
+	addGroup(state, groupName) {
+		state.groups.push({
+			name: groupName,
+			contacts: [],
+		})
+	},
 }
 
 const getters = {
@@ -145,6 +158,16 @@ const actions = {
 	 */
 	removeContactToGroup(context, { groupName, contact }) {
 		context.commit('removeContactToGroup', { groupName, contact })
+	},
+
+	/**
+	 * Add a group
+	 *
+	 * @param {Object} context the store mutations
+	 * @param {string} groupName the name of the group
+	 */
+	addGroup(context, groupName) {
+		context.commit('addGroup', groupName)
 	},
 }
 

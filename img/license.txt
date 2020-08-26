@@ -1,0 +1,6 @@
+# social network icons:
+* “facebook (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/facebook?style=brands)
+* “instagram (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/instagram?style=brands)
+* “mastodon (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/mastodon?style=brands)
+* “tumblr (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/tumblr?style=brands)
+* “twitter (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/twitter?style=brands)

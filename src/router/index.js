@@ -46,6 +46,11 @@ export default new Router({
 			},
 			children: [
 				{
+					path: 'import',
+					name: 'import',
+					component: Contacts,
+				},
+				{
 					path: ':selectedGroup',
 					name: 'group',
 					component: Contacts,

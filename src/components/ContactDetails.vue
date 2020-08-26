@@ -23,23 +23,25 @@
 <template>
 	<div id="contact-details" class="app-content-details">
 		<!-- nothing selected or contact not found -->
-		<div v-if="!contact && !loading" id="emptycontent">
-			<div class="icon-contacts" />
-			<h2>{{ t('contacts', 'No contact selected') }}</h2>
-			<p>{{ t('contacts', 'Select a contact on the list to begin') }}</p>
-		</div>
+		<EmptyContent v-if="!contact && !loading" icon="icon-contacts">
+			{{ t('contacts', 'No contact selected') }}
+			<template #desc>
+				{{ t('contacts', 'Select a contact on the list to begin') }}
+			</template>
+		</EmptyContent>
 
 		<!-- loading -->
-		<div v-else-if="loading" id="emptycontent">
-			<div class="icon-contacts" />
-			<h2>{{ t('contacts', 'Loading') }}</h2>
-		</div>
+		<EmptyContent v-else-if="loading" icon="icon-contacts">
+			{{ t('contacts', 'Loading contacts …') }}
+		</EmptyContent>
 
 		<template v-else>
 			<!-- contact header -->
 			<header>
 				<!-- avatar and upload photo -->
-				<ContactAvatar :contact="contact" />
+				<ContactAvatar
+					:contact="contact"
+					@updateLocalContact="updateLocalContact" />
 				<!-- QUESTION: is it better to pass contact as a prop or get it from the store inside
 				contact-avatar ?  :avatar="contact.photo"-->
 
@@ -103,7 +105,7 @@
 							show: true,
 							trigger: 'manual',
 						}"
-						class="header-icon header-icon--pulse icon-history-force-white"
+						class="header-icon header-icon--pulse icon-history"
 						@click="refreshContact" />
 
 					<!-- repaired contact message -->
@@ -113,7 +115,7 @@
 							show: true,
 							trigger: 'manual',
 						}"
-						class="header-icon header-icon--pulse icon-up-force-white"
+						class="header-icon header-icon--pulse icon-up"
 						@click="updateContact" />
 
 					<!-- menu actions -->
@@ -242,6 +244,7 @@ import validate from '../services/validate'
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
 import ContactAvatar from './ContactDetails/ContactDetailsAvatar'
 import ContactProperty from './ContactDetails/ContactDetailsProperty'
+import EmptyContent from './EmptyContent'
 import PropertyGroups from './Properties/PropertyGroups'
 import PropertyRev from './Properties/PropertyRev'
 import PropertySelect from './Properties/PropertySelect'
@@ -252,17 +255,18 @@ export default {
 	name: 'ContactDetails',
 
 	components: {
-		Actions,
 		ActionButton,
 		ActionLink,
+		Actions,
 		AddNewProp,
 		ContactAvatar,
 		ContactProperty,
+		EmptyContent,
+		Modal,
+		Multiselect,
 		PropertyGroups,
 		PropertyRev,
 		PropertySelect,
-		Modal,
-		Multiselect,
 	},
 
 	props: {
@@ -312,12 +316,12 @@ export default {
 		warning() {
 			if (!this.contact.dav) {
 				return {
-					icon: 'icon-error-white header-icon--pulse',
+					icon: 'icon-error header-icon--pulse',
 					msg: t('contacts', 'This contact is not yet synced. Edit it to save it to the server.'),
 				}
 			} else if (this.isReadOnly) {
 				return {
-					icon: 'icon-eye-white',
+					icon: 'icon-eye',
 					msg: t('contacts', 'This contact is in read-only mode. You do not have permission to edit this contact.'),
 				}
 			}
@@ -371,10 +375,10 @@ export default {
 		 * @returns {string}
 		 */
 		addressbook: {
-			get: function() {
+			get() {
 				return this.contact.addressbook.id
 			},
-			set: function(addressbookId) {
+			set(addressbookId) {
 				this.moveContactToAddressbook(addressbookId)
 			},
 		},
@@ -398,10 +402,10 @@ export default {
 		 * @returns {Array}
 		 */
 		groups: {
-			get: function() {
+			get() {
 				return this.contact.groups
 			},
-			set: function(data) {
+			set(data) {
 				this.contact.groups = data
 				this.debounceUpdateContact()
 			},
@@ -434,7 +438,7 @@ export default {
 	},
 
 	watch: {
-		contact: function(newContact, oldContact) {
+		contact(newContact, oldContact) {
 			if (this.contactKey && newContact !== oldContact) {
 				this.selectContact(this.contactKey)
 			}
@@ -539,9 +543,9 @@ export default {
 						if (error.name === 'ParserError') {
 							showError(t('contacts', 'Syntax error. Cannot open the contact.'))
 						} else if (error.status === 404) {
-							showError(t('contacts', `The contact doesn't exists anymore on the server.`))
+							showError(t('contacts', 'The contact doesn\'t exists anymore on the server.'))
 						} else {
-							showError(t('contacts', `Unable to retrieve the contact from the server, please check your network connection.`))
+							showError(t('contacts', 'Unable to retrieve the contact from the server, please check your network connection.'))
 						}
 						console.error(error)
 						// trigger a local deletion from the store only

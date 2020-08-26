@@ -1,5 +1,5 @@
 # Nextcloud Contacts
-![Downloads](https://img.shields.io/github/downloads/nextcloud/contacts/total?style=flat-square)
+![Downloads](https://img.shields.io/github/downloads/nextcloud/contacts/total.svg?style=flat-square)
 [![Codacy Badge](https://img.shields.io/codacy/grade/ea24ea9fccb942419d73ec05105938aa.svg?style=flat-square)](https://app.codacy.com/app/skjnldsv/contacts)
 [![Code coverage](https://img.shields.io/codecov/c/github/nextcloud/contacts.svg?style=flat-square)](https://codecov.io/gh/nextcloud/contacts/)
 [![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat-square&logo=dependabot)](https://dependabot.com)

@@ -25,8 +25,7 @@
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:icon="propModel.icon"
-			:readable-name="propModel.readableName"
-			:info="propModel.info" />
+			:readable-name="propModel.readableName" />
 
 		<div class="property__row">
 			<!-- type selector -->
@@ -259,7 +258,7 @@ export default {
 		 *
 		 * @returns {string}
 		 */
-		formatDateTime: function() {
+		formatDateTime() {
 			// this is the only possibility for us to ensure
 			// no data is lost. e.g. if no second are set
 			// the second will be null and not 0

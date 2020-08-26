@@ -25,8 +25,7 @@
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:icon="propModel.icon"
-			:readable-name="propModel.readableName"
-			:info="propModel.info" />
+			:readable-name="propModel.readableName" />
 
 		<div class="property__row">
 			<!-- if we do not support any type on our model but one is set anyway -->

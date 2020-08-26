@@ -3,6 +3,7 @@
  * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -23,13 +24,17 @@
 
 namespace OCA\Contacts\Controller;
 
+use ChristophWurst\Nextcloud\Testing\TestCase;
+use OCA\Contacts\Service\SocialApiService;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\IAppManager;
 use OCP\IConfig;
-use PHPUnit\Framework\MockObject\MockObject;
 use OCP\IInitialStateService;
 use OCP\IRequest;
+use OCP\IUser;
+use OCP\IUserSession;
 use OCP\L10N\IFactory;
-use ChristophWurst\Nextcloud\Testing\TestCase;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class PageControllerTest extends TestCase {
 	private $controller;
@@ -37,36 +42,52 @@ class PageControllerTest extends TestCase {
 	/** @var IRequest|MockObject */
 	private $request;
 
+	/** @var IConfig|MockObject*/
+	private $config;
+
 	/** @var IInitialStateService|MockObject */
 	private $initialStateService;
 
 	/** @var IFactory|MockObject */
 	private $languageFactory;
 
-	/** @var IConfig|MockObject*/
-	private $config;
+	/** @var IUserSession|MockObject */
+	private $userSession;
 
+	/** @var SocialApiService|MockObject*/
+	private $socialApi;
+
+	/** @var IAppManager|MockObject*/
+	private $appManager;
 
 	public function setUp() {
 		parent::setUp();
 
 		$this->request = $this->createMock(IRequest::class);
+		$this->config = $this->createMock(IConfig::class);
 		$this->initialStateService = $this->createMock(IInitialStateService::class);
 		$this->languageFactory = $this->createMock(IFactory::class);
-		$this->config = $this->createMock(IConfig::class);
+		$this->userSession = $this->createMock(IUserSession::class);
+		$this->socialApi = $this->createMock(SocialApiService::class);
+		$this->appManager = $this->createMock(IAppManager::class);
 
 		$this->controller = new PageController(
-			'contacts',
 			$this->request,
 			$this->config,
 			$this->initialStateService,
-			$this->languageFactory
-
+			$this->languageFactory,
+			$this->userSession,
+			$this->socialApi,
+			$this->appManager
 		);
 	}
 
 
 	public function testIndex() {
+		$user = $this->createMock(IUser::class);
+		$user->method('getUid')->willReturn('mrstest');
+		$this->userSession->method('getUser')->willReturn($user);
+
 		$result = $this->controller->index();
 
 		$this->assertEquals('main', $result->getTemplateName());

@@ -3,6 +3,7 @@
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -23,17 +24,20 @@
 
 namespace OCA\Contacts\Controller;
 
+use OCP\App\IAppManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
-use OCP\IInitialStateService;
+
+use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\Service\SocialApiService;
 use OCP\IConfig;
+use OCP\IInitialStateService;
 use OCP\IRequest;
+use OCP\IUserSession;
 use OCP\L10N\IFactory;
 use OCP\Util;
 
 class PageController extends Controller {
-	protected $appName;
-
 	/** @var IConfig */
 	private $config;
 
@@ -43,17 +47,30 @@ class PageController extends Controller {
 	/** @var IFactory */
 	private $languageFactory;
 
-	public function __construct(string $appName,
-								IRequest $request,
+	/** @var IUserSession */
+	private $userSession;
+
+	/** @var SocialApiService */
+	private $socialApiService;
+
+	/** @var IAppManager */
+	private $appManager;
+
+	public function __construct(IRequest $request,
 								IConfig $config,
 								IInitialStateService $initialStateService,
-								IFactory $languageFactory) {
-		parent::__construct($appName, $request);
+								IFactory $languageFactory,
+								IUserSession $userSession,
+								SocialApiService $socialApiService,
+								IAppManager $appManager) {
+		parent::__construct(Application::APP_ID, $request);
 
-		$this->appName = $appName;
 		$this->config = $config;
 		$this->initialStateService = $initialStateService;
 		$this->languageFactory = $languageFactory;
+		$this->userSession = $userSession;
+		$this->socialApiService = $socialApiService;
+		$this->appManager = $appManager;
 	}
 
 	/**
@@ -63,15 +80,31 @@ class PageController extends Controller {
 	 * Default routing
 	 */
 	public function index(): TemplateResponse {
+		$user = $this->userSession->getUser();
+		$userId = '';
+		if (!is_null($user)) {
+			$userId = $user->getUid();
+		}
+
 		$locales = $this->languageFactory->findAvailableLocales();
-		$defaultProfile = $this->config->getAppValue($this->appName, 'defaultProfile', 'HOME');
+		$defaultProfile = $this->config->getAppValue(Application::APP_ID, 'defaultProfile', 'HOME');
+		$supportedNetworks = $this->socialApiService->getSupportedNetworks();
+		$syncAllowedByAdmin = $this->config->getAppValue(Application::APP_ID, 'allowSocialSync', 'yes'); // allow users to retrieve avatars from social networks (default: yes)
+		$bgSyncEnabledByUser = $this->config->getUserValue($userId, Application::APP_ID, 'enableSocialSync', 'no'); // automated background syncs for social avatars (default: no)
 
-		$this->initialStateService->provideInitialState($this->appName, 'locales', $locales);
-		$this->initialStateService->provideInitialState($this->appName, 'defaultProfile', $defaultProfile);
-		
-		Util::addScript($this->appName, 'contacts');
-		Util::addStyle($this->appName, 'contacts');
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'locales', $locales);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'defaultProfile', $defaultProfile);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'supportedNetworks', $supportedNetworks);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'locales', $locales);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'defaultProfile', $defaultProfile);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'supportedNetworks', $supportedNetworks);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'allowSocialSync', $syncAllowedByAdmin);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'enableSocialSync', $bgSyncEnabledByUser);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'contactsinteraction', $this->appManager->isEnabledForUser('contactsinteraction') === true);
 
-		return new TemplateResponse($this->appName, 'main');
+		Util::addScript(Application::APP_ID, 'contacts-main');
+		Util::addStyle(Application::APP_ID, 'contacts');
+
+		return new TemplateResponse(Application::APP_ID, 'main');
 	}
 }

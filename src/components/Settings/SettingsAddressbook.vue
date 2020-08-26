@@ -167,7 +167,7 @@ export default {
 		},
 	},
 	watch: {
-		menuOpen: function() {
+		menuOpen() {
 			if (this.menuOpen === false) {
 				this.editingName = false
 			}
