@@ -189,6 +189,7 @@ const properties = {
 			{ id: 'WECHAT', name: 'WeChat' },
 			{ id: 'LINE', name: 'Line' },
 			{ id: 'KAKAOTALK', name: 'KakaoTalk' },
+			{ id: 'MATRIX', name: 'Matrix' },
 			{ id: 'ZOOM', name: 'Zoom' },
 		],
 	},
