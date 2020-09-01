@@ -189,6 +189,9 @@ export default {
 // Virtual scroller overrides
 .vue-recycle-scroller {
 	position: sticky !important;
+	min-width: 0;
+	// try to take some width
+	flex: 1 1 300px;
 }
 
 .vue-recycle-scroller__item-view {

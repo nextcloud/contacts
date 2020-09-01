@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="property">
+	<div v-if="propModel" class="property">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:icon="propModel.icon"
@@ -83,12 +83,6 @@ export default {
 	},
 
 	computed: {
-		gridLength() {
-			const hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
-			const isLast = this.isLastProperty ? 1 : 0
-			// length is one & add one space at the end
-			return hasTitle + 1 + isLast
-		},
 		// is there only one option available
 		isSingleOption() {
 			return this.propModel.options.length <= 1

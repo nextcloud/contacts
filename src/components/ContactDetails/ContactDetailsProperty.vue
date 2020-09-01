@@ -23,7 +23,6 @@
 <template>
 	<!-- If not in the rfcProps then we don't want to display it -->
 	<component :is="componentInstance"
-		v-if="propModel && propType !== 'unknown'"
 		ref="component"
 		:select-type.sync="selectType"
 		:prop-model="propModel"
@@ -31,7 +30,10 @@
 		:is-first-property="isFirstProperty"
 		:property="property"
 		:is-last-property="isLastProperty"
-		:class="{'property--last': isLastProperty}"
+		:class="{
+			'property--last': isLastProperty,
+			[`property-${propName}`]: true
+		}"
 		:local-contact="localContact"
 		:prop-name="propName"
 		:prop-type="propType"
@@ -59,16 +61,22 @@ export default {
 			type: Property,
 			default: true,
 		},
-		sortedProperties: {
-			type: Array,
-			default() {
-				return []
-			},
+
+		/**
+		 * Is it the first property of its kind
+		 */
+		isFirstProperty: {
+			type: Boolean,
+			default: false,
 		},
-		index: {
-			type: Number,
-			default: 0,
+		/**
+		 * Is it the last property of its kind
+		 */
+		isLastProperty: {
+			type: Boolean,
+			default: false,
 		},
+
 		contact: {
 			type: Contact,
 			default: null,
@@ -110,22 +118,6 @@ export default {
 		fieldOrder() {
 			return rfcProps.fieldOrder
 		},
-
-		// is this the first property of its kind
-		isFirstProperty() {
-			if (this.index > 0) {
-				return this.sortedProperties[this.index - 1].name.split('.').pop() !== this.propName
-			}
-			return true
-		},
-		// is this the last property of its kind
-		isLastProperty() {
-			// array starts at 0, length starts at 1
-			if (this.index < this.sortedProperties.length - 1) {
-				return this.sortedProperties[this.index + 1].name.split('.').pop() !== this.propName
-			}
-			return true
-		},
 		isReadOnly() {
 			if (this.contact.addressbook) {
 				return this.contact.addressbook.readOnly
@@ -146,6 +138,7 @@ export default {
 
 			return this.property.name
 		},
+
 		/**
 		 * Return the type or property
 		 *

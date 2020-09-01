@@ -32,7 +32,6 @@ $property-ext-padding-right: 8px;
 	// the max width and keep the right alignment
 	max-width: $property-label-max-width + $property-value-max-width + 44px;
 
-	@include generate-grid-span(1);
 	justify-self: center;
 
 	&--last {

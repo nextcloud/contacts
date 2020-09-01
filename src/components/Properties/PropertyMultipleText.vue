@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div v-if="propModel" :class="`grid-span-${gridLength}`" class="property">
+	<div v-if="propModel" class="property">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:icon="propModel.icon"
@@ -125,14 +125,6 @@ export default {
 	},
 
 	computed: {
-		gridLength() {
-			const hasTitle = this.isFirstProperty && this.propModel.icon ? 1 : 0
-			const isLast = this.isLastProperty
-			const hasValueNames = this.propModel.options || this.selectType || !this.property.isStructuredValue ? 1 : 0
-			const length = this.propModel.displayOrder ? this.propModel.displayOrder.length : this.value.length
-			return hasValueNames + hasTitle + length + isLast
-		},
-
 		filteredValue() {
 			return this.localValue.filter((value, index) => index > 0)
 		},
