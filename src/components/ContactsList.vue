@@ -186,6 +186,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.app-content-list {
+	flex: 1 1 300px;
+
+	.empty-content {
+		padding: 20px;
+	}
+}
+
 // Virtual scroller overrides
 .vue-recycle-scroller {
 	position: sticky !important;

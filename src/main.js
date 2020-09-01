@@ -34,6 +34,9 @@ import ClickOutside from 'vue-click-outside'
 import VTooltip from '@nextcloud/vue/dist/Directives/Tooltip'
 import VueClipboard from 'vue-clipboard2'
 
+// Dialogs css
+import '@nextcloud/dialogs/styles/toast.scss'
+
 // CSP config for webpack dynamic chunk loading
 // eslint-disable-next-line
 __webpack_nonce__ = btoa(getRequestToken())

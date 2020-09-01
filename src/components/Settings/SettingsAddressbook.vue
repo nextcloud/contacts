@@ -99,6 +99,7 @@ import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
 import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
 import ShareAddressBook from './SettingsAddressbookShare'
+import { showError, showSuccess } from '@nextcloud/dialogs'
 
 export default {
 	name: 'SettingsAddressbook',
@@ -195,7 +196,7 @@ export default {
 			} catch (err) {
 				// error handling
 				console.error(err)
-				OC.Notification.showTemporary(t('contacts', 'Toggling of address book was not successful'))
+				showError(t('contacts', 'Toggling of address book was not successful'))
 			} finally {
 				// stop loading status regardless of outcome
 				this.toggleEnabledLoading = false
@@ -220,7 +221,7 @@ export default {
 				} catch (err) {
 					// error handling
 					console.error(err)
-					OC.Notification.showTemporary(t('contacts', 'Deletion of address book was not successful.'))
+					showError(t('contacts', 'Deletion of address book was not successful.'))
 				} finally {
 					// stop loading status regardless of outcome
 					this.deleteAddressbookLoading = false
@@ -241,7 +242,7 @@ export default {
 			} catch (err) {
 				// error handling
 				console.error(err)
-				OC.Notification.showTemporary(t('contacts', 'Renaming of address book was not successful.'))
+				showError(t('contacts', 'Renaming of address book was not successful.'))
 			} finally {
 				this.editingName = false
 				// stop loading status regardless of outcome
@@ -260,11 +261,11 @@ export default {
 				this.copySuccess = true
 				this.copied = true
 				// Notify addressbook was copied
-				OC.Notification.showTemporary(t('contacts', 'Address book copied to clipboard'))
+				showSuccess(t('contacts', 'Address book copied to clipboard'))
 			} catch (error) {
 				this.copySuccess = false
 				this.copied = true
-				OC.Notification.showTemporary(t('contacts', 'Address book was not copied to clipboard.'))
+				showError(t('contacts', 'Address book was not copied to clipboard.'))
 			} finally {
 				this.copyLoading = false
 				setTimeout(() => {

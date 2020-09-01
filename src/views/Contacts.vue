@@ -212,6 +212,7 @@ import Content from '@nextcloud/vue/dist/Components/Content'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 
+import { showError } from '@nextcloud/dialogs'
 import { VCardTime } from 'ical.js'
 import download from 'downloadjs'
 import moment from 'moment'
@@ -489,7 +490,7 @@ export default {
 					},
 				})
 			} catch (error) {
-				OC.Notification.showTemporary(t('contacts', 'Unable to create the contact.'))
+				showError(t('contacts', 'Unable to create the contact.'))
 				console.error(error)
 			}
 		},
@@ -527,7 +528,7 @@ export default {
 		 */
 		selectFirstContactIfNone() {
 			// Do not redirect if pending import
-			if (this.$route.name !== 'import') {
+			if (this.$route.name === 'import') {
 				return
 			}
 
@@ -535,7 +536,7 @@ export default {
 			if (this.selectedContact === undefined || !inList) {
 				// Unknown contact
 				if (this.selectedContact && !inList) {
-					OC.Notification.showTemporary(t('contacts', 'Contact not found'))
+					showError(t('contacts', 'Contact not found'))
 					this.$router.push({
 						name: 'group',
 						params: {
@@ -548,7 +549,7 @@ export default {
 				if (!this.groups.find(group => group.name === this.selectedGroup)
 					&& this.GROUP_ALL_CONTACTS !== this.selectedGroup
 					&& this.GROUP_NO_GROUP_CONTACTS !== this.selectedGroup) {
-					OC.Notification.showTemporary(t('contacts', 'Group not found'))
+					showError(t('contacts', 'Group not found'))
 					this.$router.push({
 						name: 'root',
 					})

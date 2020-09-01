@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<div id="contact-details" class="app-content-details">
+	<AppContentDetails>
 		<!-- nothing selected or contact not found -->
 		<EmptyContent v-if="!contact && !loading" icon="icon-contacts">
 			{{ t('contacts', 'No contact selected') }}
@@ -37,7 +37,7 @@
 
 		<template v-else>
 			<!-- contact header -->
-			<header>
+			<header class="contact-header">
 				<!-- avatar and upload photo -->
 				<ContactAvatar
 					:contact="contact"
@@ -46,7 +46,7 @@
 				contact-avatar ?  :avatar="contact.photo"-->
 
 				<!-- fullname, org, title -->
-				<div id="contact-header-infos">
+				<div class="contact-header__infos">
 					<h2>
 						<input id="contact-fullname"
 							ref="fullname"
@@ -86,7 +86,7 @@
 				</div>
 
 				<!-- actions -->
-				<div id="contact-header-actions">
+				<div class="contact-header__actions">
 					<!-- warning message -->
 					<a v-if="loadingUpdate || warning"
 						v-tooltip.bottom="{
@@ -234,7 +234,7 @@
 				<PropertyRev v-if="contact.rev" :value="contact.rev" />
 			</section>
 		</template>
-	</div>
+	</AppContentDetails>
 </template>
 
 <script>
@@ -249,6 +249,7 @@ import { VueMasonryPlugin } from 'vue-masonry'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
 import Actions from '@nextcloud/vue/dist/Components/Actions'
+import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 
@@ -274,6 +275,7 @@ export default {
 		ActionLink,
 		Actions,
 		AddNewProp,
+		AppContentDetails,
 		ContactAvatar,
 		ContactProperty,
 		EmptyContent,
@@ -775,7 +777,7 @@ export default {
 </script>
 
 <style lang="scss">
-#contact-details {
+.app-content-details {
 	flex: 1 1 100%;
 	min-width: 0;
 
@@ -787,7 +789,7 @@ export default {
 		font-weight: bold;
 
 		// ORG-TITLE-NAME
-		#contact-header-infos {
+		.contact-header__infos {
 			display: flex;
 			flex: 1 1 auto; // shrink avatar before this one
 			flex-direction: column;
@@ -819,7 +821,7 @@ export default {
 		}
 
 		// ACTIONS
-		#contact-header-actions {
+		.contact-header__actions {
 			position: relative;
 			display: flex;
 			.header-menu {

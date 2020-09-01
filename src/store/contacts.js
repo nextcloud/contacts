@@ -20,8 +20,10 @@
  *
  */
 
-import Vue from 'vue'
+import { showError } from '@nextcloud/dialogs'
 import ICAL from 'ical.js'
+import Vue from 'vue'
+
 import Contact from '../models/contact'
 import validate from '../services/validate'
 
@@ -293,7 +295,7 @@ const actions = {
 			await contact.dav.delete()
 				.catch((error) => {
 					console.error(error)
-					OC.Notification.showTemporary(t('contacts', 'An error occurred'))
+					showError(t('contacts', 'Unable to delete contact'))
 				})
 		}
 		context.commit('deleteContact', contact)

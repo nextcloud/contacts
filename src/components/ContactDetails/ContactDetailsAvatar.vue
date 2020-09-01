@@ -162,7 +162,7 @@ import Actions from '@nextcloud/vue/dist/Components/Actions'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
 
-import { getFilePickerBuilder } from '@nextcloud/dialogs'
+import { showError, showInfo, getFilePickerBuilder, showSuccess } from '@nextcloud/dialogs'
 import { generateUrl, generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import { loadState } from '@nextcloud/initial-state'
@@ -274,7 +274,7 @@ export default {
 							self.setPhoto(imageBase64, type)
 						} catch (error) {
 							console.error(error)
-							OC.Notification.showTemporary(t('contacts', 'Invalid image'))
+							showError(t('contacts', 'Invalid image'))
 						} finally {
 							self.resetPicker()
 						}
@@ -284,7 +284,7 @@ export default {
 					const blob = file.slice(0, 4)
 					reader.readAsArrayBuffer(blob)
 				} else {
-					OC.Notification.showTemporary(t('contacts', 'Image is too big (max 1MB).'))
+					showError(t('contacts', 'Image is too big (max 1MB).'))
 					this.resetPicker()
 				}
 			}
@@ -412,7 +412,7 @@ export default {
 						const data = Buffer.from(response.data, 'binary').toString('base64')
 						this.setPhoto(data, type)
 					} catch (error) {
-						OC.Notification.showTemporary(t('contacts', 'Error while processing the picture.'))
+						showError(t('contacts', 'Error while processing the picture.'))
 						console.error(error)
 						this.loading = false
 					}
@@ -448,12 +448,12 @@ export default {
 					await this.$emit('updateLocalContact', contact)
 
 					// Notify user
-					OC.Notification.showTemporary(t('contacts', 'Avatar downloaded from social network'))
+					showSuccess(t('contacts', 'Avatar downloaded from social network'))
 				} catch (error) {
 					if (error.response.status === 304) {
-						OC.Notification.showTemporary(t('contacts', 'Avatar already up to date'))
+						showInfo(t('contacts', 'Avatar already up to date'))
 					} else {
-						OC.Notification.showTemporary(t('contacts', 'Avatar download failed'))
+						showError(t('contacts', 'Avatar download failed'))
 						console.debug(error)
 					}
 				}

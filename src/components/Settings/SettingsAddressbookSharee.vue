@@ -53,6 +53,7 @@
 </template>
 
 <script>
+import { showError } from '@nextcloud/dialogs'
 
 export default {
 	name: 'SettingsAddressbookSharee',
@@ -98,7 +99,7 @@ export default {
 				})
 			} catch (error) {
 				console.error(error)
-				OC.Notification.showTemporary(t('contacts', 'Unable to delete the share.'))
+				showError(t('contacts', 'Unable to delete the share'))
 			} finally {
 				this.loading = false
 			}
@@ -117,7 +118,7 @@ export default {
 				})
 			} catch (error) {
 				console.error(error)
-				OC.Notification.showTemporary(t('contacts', 'Unable to change permissions.'))
+				showError(t('contacts', 'Unable to change permissions'))
 			} finally {
 				this.loading = false
 			}
