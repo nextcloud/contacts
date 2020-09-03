@@ -24,10 +24,9 @@
 	<!-- same uid can coexists between different addressbooks
 		so we need to use the addressbook id as key as well -->
 	<RecycleScroller
-		v-if="haveContact"
 		id="contacts-list"
 		ref="scroller"
-		:class="{'icon-loading': loading, showdetails: selectedContact}"
+		:class="{ showdetails: selectedContact }"
 		class="app-content-list"
 		:items="filteredList"
 		:item-size="itemHeight"
@@ -41,22 +40,10 @@
 				@deleted="selectContact" />
 		</template>
 	</RecycleScroller>
-
-	<div v-else class="app-content-list">
-		<EmptyContent>
-			{{ t('contacts', 'No contacts in this group') }}
-			<template #action>
-				<button class="primary" @click="onAddContactsToGroup">
-					{{ t('forms', 'Add some') }}
-				</button>
-			</template>
-		</EmptyContent>
-	</div>
 </template>
 
 <script>
 import ContactsListItem from './ContactsList/ContactsListItem'
-import EmptyContent from './EmptyContent'
 import { RecycleScroller } from 'vue-virtual-scroller/dist/vue-virtual-scroller.umd.js'
 import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
@@ -65,7 +52,6 @@ export default {
 
 	components: {
 		ContactsListItem,
-		EmptyContent,
 		RecycleScroller,
 	},
 
@@ -77,10 +63,6 @@ export default {
 		contacts: {
 			type: Object,
 			required: true,
-		},
-		loading: {
-			type: Boolean,
-			default: true,
 		},
 		searchQuery: {
 			type: String,
@@ -103,9 +85,6 @@ export default {
 		},
 		filteredList() {
 			return this.list.filter(contact => this.matchSearch(this.contacts[contact.key]))
-		},
-		haveContact() {
-			return this.selectedGroup && this.filteredList.length > 0
 		},
 	},
 
@@ -176,10 +155,6 @@ export default {
 				return contact.searchData.toString().toLowerCase().search(this.searchQuery.trim().toLowerCase()) !== -1
 			}
 			return true
-		},
-
-		onAddContactsToGroup() {
-			this.$emit('onAddContactsToGroup')
 		},
 	},
 }

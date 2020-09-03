@@ -22,7 +22,7 @@
   -->
 
 <template>
-	<Content app-name="contacts" :class="{'icon-loading': loading}">
+	<Content app-name="contacts">
 		<!-- new-contact-button + navigation + settings -->
 		<AppNavigation>
 			<!-- new-contact-button -->
@@ -43,7 +43,7 @@
 						params: { selectedGroup: GROUP_ALL_CONTACTS },
 					}"
 					icon="icon-contacts-dark">
-					<AppNavigationCounter slot="counter">
+					<AppNavigationCounter v-if="sortedContacts.length" slot="counter">
 						{{ sortedContacts.length }}
 					</AppNavigationCounter>
 				</AppNavigationItem>
@@ -58,7 +58,7 @@
 						params: { selectedGroup: GROUP_NO_GROUP_CONTACTS },
 					}"
 					icon="icon-user">
-					<AppNavigationCounter slot="counter">
+					<AppNavigationCounter v-if="ungroupedContacts.length" slot="counter">
 						{{ ungroupedContacts.length }}
 					</AppNavigationCounter>
 				</AppNavigationItem>
@@ -67,13 +67,13 @@
 				<AppNavigationItem
 					v-if="isContactsInteractionEnabled && recentlyContactedContacts && recentlyContactedContacts.contacts.length > 0"
 					id="recentlycontacted"
-					:title="t('contactsinteraction', 'Recently contacted')"
+					:title="GROUP_RECENTLY_CONTACTED"
 					:to="{
 						name: 'group',
-						params: { selectedGroup: t('contactsinteraction', 'Recently contacted') },
+						params: { selectedGroup: GROUP_RECENTLY_CONTACTED },
 					}"
 					icon="icon-recent-actors">
-					<AppNavigationCounter slot="counter">
+					<AppNavigationCounter v-if="recentlyContactedContacts.contacts.length" slot="counter">
 						{{ recentlyContactedContacts.contacts.length }}
 					</AppNavigationCounter>
 				</AppNavigationItem>
@@ -99,12 +99,13 @@
 						</ActionButton>
 					</template>
 
-					<AppNavigationCounter slot="counter">
+					<AppNavigationCounter v-if="group.contacts.length > 0" slot="counter">
 						{{ group.contacts.length }}
 					</AppNavigationCounter>
 				</AppNavigationItem>
 
 				<AppNavigationItem
+					id="newgroup"
 					:force-menu="true"
 					:menu-open.sync="isNewGroupMenuOpen"
 					:title="t('contacts', '+ New group')"
@@ -131,25 +132,47 @@
 		</AppNavigation>
 
 		<AppContent>
-			<!-- go back to list when in details mode -->
-			<div v-if="selectedContact && isMobile"
-				id="app-details-toggle"
-				class="icon-confirm"
-				tabindex="0"
-				@click="showList" />
+			<div v-if="loading">
+				<EmptyContent icon="icon-loading">
+					{{ t('contacts', 'Loading contacts …') }}
+				</EmptyContent>
+			</div>
 
-			<div id="app-content-wrapper">
+			<div v-else-if="isEmptyGroup && !isRealGroup">
+				<EmptyContent icon="icon-contacts-dark">
+					{{ t('contacts', `You don't have any contacts yet`) }}
+					<template #desc>
+						<button class="primary" @click="newContact">
+							{{ t('contacts', 'Create contact') }}
+						</button>
+					</template>
+				</EmptyContent>
+			</div>
+
+			<div v-else-if="isEmptyGroup && isRealGroup">
+				<EmptyContent icon="icon-contacts-dark">
+					{{ t('contacts', 'There are no contacts in this group') }}
+					<template #desc>
+						<button v-if="contacts.length === 0" class="primary" @click="addContactsToGroup(selectedGroup)">
+							{{ t('contacts', 'Create contacts') }}
+						</button>
+						<button v-else class="primary" @click="addContactsToGroup(selectedGroup)">
+							{{ t('contacts', 'Add contacts') }}
+						</button>
+					</template>
+				</EmptyContent>
+			</div>
+
+			<div v-else id="app-content-wrapper">
 				<!-- contacts list -->
 				<ContactsList
 					v-if="!loading"
 					:list="contactsList"
 					:contacts="contacts"
-					:loading="loading"
-					:search-query="searchQuery"
-					@onAddContactsToGroup="addContactsToGroup(selectedGroup)" />
+					:search-query="searchQuery" />
 
 				<!-- main contacts details -->
-				<ContactDetails :loading="loading" :contact-key="selectedContact" />
+				<ContactDetails :contact-key="selectedContact" />
 			</div>
 		</AppContent>
 
@@ -176,19 +199,27 @@
 			<ProcessingScreen v-bind="processStatus">
 				{{ processStatus.total === processStatus.progress
 					? n('contacts',
-						'{total} contact added to {name}',
-						'{total} contacts added to {name}',
-						processStatus.total,
+						'{success} contact added to {name}',
+						'{success} contacts added to {name}',
+						processStatus.success,
 						processStatus
 					)
 					: n('contacts',
-						'Adding {total} contact to {name}',
-						'Adding {total} contacts to {name}',
-						processStatus.total,
+						'Adding {success} contact to {name}',
+						'Adding {success} contacts to {name}',
+						processStatus.success,
 						processStatus
 					) }}
 				<template #desc>
-					<button v-if="processStatus.total === processStatus.progress" class="primary processing-screen__button" @click="closeProcess">
+					<span v-if="processStatus.error > 0">
+						{{ n('contacts',
+							'{count} error',
+							'{count} errors',
+							processStatus.error,
+							{count: processStatus.error}
+						) }}
+					</span>
+					<button v-if="processStatus.total === processStatus.progress" class="primary" @click="closeProcess">
 						{{ t('contacts', 'Close') }}
 					</button>
 				</template>
@@ -209,6 +240,7 @@ import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
 import AppNavigationSpacer from '@nextcloud/vue/dist/Components/AppNavigationSpacer'
 import Content from '@nextcloud/vue/dist/Components/Content'
+import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 
@@ -234,6 +266,7 @@ import isContactsInteractionEnabled from '../services/isContactsInteractionEnabl
 
 const GROUP_ALL_CONTACTS = t('contacts', 'All contacts')
 const GROUP_NO_GROUP_CONTACTS = t('contacts', 'Not grouped')
+const GROUP_RECENTLY_CONTACTED = t('contactsinteraction', 'Recently contacted')
 
 export default {
 	name: 'Contacts',
@@ -252,6 +285,7 @@ export default {
 		ContactDetails,
 		ContactsList,
 		Content,
+		EmptyContent,
 		EntityPicker,
 		ImportScreen,
 		Modal,
@@ -279,6 +313,7 @@ export default {
 		return {
 			GROUP_ALL_CONTACTS,
 			GROUP_NO_GROUP_CONTACTS,
+			GROUP_RECENTLY_CONTACTED,
 			isContactsInteractionEnabled,
 			loading: true,
 
@@ -300,8 +335,10 @@ export default {
 			isProcessing: false,
 			isProcessDone: false,
 			processStatus: {
-				total: 0,
+				error: 0,
 				progress: 0,
+				success: 0,
+				total: 0,
 				name: '',
 			},
 		}
@@ -328,10 +365,17 @@ export default {
 			return this.$store.getters.getImportState
 		},
 
-		// importing states
+		/**
+		 * Are we importing contacts ?
+		 * @returns {boolean}
+		 */
 		isImporting() {
 			return this.importState.stage !== 'default'
 		},
+		/**
+		 * Are we done importing contacts ?
+		 * @returns {boolean}
+		 */
 		isImportDone() {
 			return this.importState.stage === 'done'
 		},
@@ -339,6 +383,30 @@ export default {
 		// first enabled addressbook of the list
 		defaultAddressbook() {
 			return this.addressbooks.find(addressbook => !addressbook.readOnly && addressbook.enabled)
+		},
+
+		/**
+		 * Is this a real group ?
+		 * Aka not a dynamically generated one like `All contacts`
+		 * @returns {boolean}
+		 */
+		isRealGroup() {
+			return this.groups.findIndex(group => group.name === this.selectedGroup) > -1
+		},
+		/**
+		 * Is this a real group and is this empty
+		 * @returns {boolean}
+		 */
+		isEmptyRealGroup() {
+			return this.contactsList.length === 0
+				&& this.isRealGroup
+		},
+		/**
+		 * Is the current group empty
+		 * @returns {boolean}
+		 */
+		isEmptyGroup() {
+			return this.contactsList.length === 0
 		},
 
 		/**
@@ -382,7 +450,7 @@ export default {
 			menu.sort()
 
 			// Find the Recently Contacted group, delete it from array
-			const recentlyIndex = menu.findIndex(group => group.name === t('contactsinteraction', 'Recently contacted'))
+			const recentlyIndex = menu.findIndex(group => group.name === GROUP_RECENTLY_CONTACTED)
 			if (recentlyIndex >= 0) {
 				menu.splice(recentlyIndex, 1)
 			}
@@ -392,7 +460,7 @@ export default {
 
 		// Recently contacted data
 		recentlyContactedContacts() {
-			return this.groups.find(group => group.name === t('contactsinteraction', 'Recently contacted'))
+			return this.groups.find(group => group.name === GROUP_RECENTLY_CONTACTED)
 		},
 	},
 
@@ -619,27 +687,10 @@ export default {
 		},
 
 		/**
-		 * Show the list and deselect contact
-		 */
-		showList() {
-			// Reset the selected contact
-			this.$router.push({
-				name: 'contact',
-				params: {
-					selectedGroup: this.selectedGroup,
-					selectedContact: undefined,
-				},
-			})
-		},
-
-		/**
 		 * Done importing, the user closed the import status screen
 		 */
 		closeImport() {
-			// TODO: remove after https://github.com/nextcloud/nextcloud-vue/pull/323
-			if (this.isImportDone) {
-				this.$store.dispatch('changeStage', 'default')
-			}
+			this.$store.dispatch('changeStage', 'default')
 		},
 
 		toggleNewGroupMenu() {
@@ -663,7 +714,7 @@ export default {
 
 			// Select group
 			this.$router.push({
-				name: 'contact',
+				name: 'group',
 				params: {
 					selectedGroup: groupName,
 				},
@@ -715,6 +766,8 @@ export default {
 
 			this.processStatus.total = selection.length
 			this.processStatus.name = this.contactPickerforGroup.name
+			this.processStatus.progress = 0
+			this.processStatus.error = 0
 
 			// max simultaneous requests
 			const limit = pLimit(3)
@@ -731,9 +784,11 @@ export default {
 						.then((response) => {
 							this.$store.dispatch('addContactToGroup', { contact, groupName })
 							this.processStatus.progress++
+							this.processStatus.success++
 						})
 						.catch((error) => {
 							this.processStatus.progress++
+							this.processStatus.error++
 							console.error(error)
 						})
 					))
@@ -745,6 +800,11 @@ export default {
 			Promise.all(requests).then(() => {
 				this.isProcessDone = true
 				this.showContactPicker = false
+
+				// Auto close after 3 seconds if no errors
+				if (this.processStatus.error === 0) {
+					setTimeout(this.closeProcess, 3000)
+				}
 			})
 		},
 
@@ -752,6 +812,12 @@ export default {
 			this.contactPickerforGroup = null
 			this.isProcessing = false
 			this.isProcessDone = false
+
+			// Reset
+			this.processStatus.error = 0
+			this.processStatus.progress = 0
+			this.processStatus.success = 0
+			this.processStatus.total = 0
 		},
 
 	},
@@ -759,6 +825,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+#newgroup a {
+	color: var(--color-text-maxcontrast);
+}
+
 #app-content-wrapper {
 	display: flex;
 }

@@ -51,7 +51,7 @@
 					+{{ localValue.length - 3 }}
 				</span>
 				<span slot="noResult">
-					{{ t('settings', 'No results') }}
+					{{ t('contacts', 'No results') }}
 				</span>
 			</Multiselect>
 		</div>

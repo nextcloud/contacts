@@ -23,16 +23,11 @@
 <template>
 	<AppContentDetails>
 		<!-- nothing selected or contact not found -->
-		<EmptyContent v-if="!contact && !loading" icon="icon-contacts">
+		<EmptyContent v-if="!contact" icon="icon-contacts">
 			{{ t('contacts', 'No contact selected') }}
 			<template #desc>
 				{{ t('contacts', 'Select a contact on the list to begin') }}
 			</template>
-		</EmptyContent>
-
-		<!-- loading -->
-		<EmptyContent v-else-if="loading" icon="icon-contacts">
-			{{ t('contacts', 'Loading contacts …') }}
 		</EmptyContent>
 
 		<template v-else>
@@ -287,10 +282,6 @@ export default {
 	},
 
 	props: {
-		loading: {
-			type: Boolean,
-			default: true,
-		},
 		contactKey: {
 			type: String,
 			default: undefined,
