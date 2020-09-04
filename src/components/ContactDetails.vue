@@ -848,7 +848,7 @@ export default {
 		}
 
 		.property--rev {
-			position: absolute;
+			position: fixed;
 			right: 22px;
 			bottom: 0;
 			height: 44px;
@@ -886,4 +886,5 @@ export default {
 		}
 	}
 }
+
 </style>
