@@ -45,6 +45,7 @@
 </template>
 
 <script>
+import { showError } from '@nextcloud/dialogs'
 
 export default {
 	name: 'SettingsNewAddressbook',
@@ -71,7 +72,7 @@ export default {
 				})
 				.catch((error) => {
 					console.error(error)
-					OC.Notification.showTemporary(t('contacts', 'An error occurred, unable to create the address book.'))
+					showError(t('contacts', 'An error occurred, unable to create the address book'))
 					this.loading = false
 				})
 		},

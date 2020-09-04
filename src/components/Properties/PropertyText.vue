@@ -72,7 +72,7 @@
 				:class="{'property__value--with-ext': haveExtHandler}"
 				type="text"
 				class="property__value"
-				:placeholder="type"
+				:placeholder="localType.placeholder"
 				@input="updateValue">
 
 			<!-- external link -->

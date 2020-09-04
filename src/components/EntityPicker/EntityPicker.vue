@@ -30,10 +30,11 @@
 			<div class="entity-picker__search">
 				<div class="entity-picker__search-icon icon-search" />
 				<input
+					ref="input"
 					v-model="searchQuery"
+					:placeholder="t('contacts', 'Search {types}', {types: searchPlaceholderTypes})"
 					class="entity-picker__search-input"
 					type="search"
-					:placeholder="t('contacts', 'Search {types}', {types: searchPlaceholderTypes})"
 					@change="onSearch">
 			</div>
 
@@ -51,8 +52,13 @@
 			</transition-group>
 
 			<!-- TODO: find better wording/icon -->
-			<EmptyContent v-if="loading" icon="">
+			<EmptyContent v-if="loading" icon="icon-loading">
 				{{ t('contacts', 'Loading …') }}
+			</EmptyContent>
+
+			<!-- TODO: find better wording/icon -->
+			<EmptyContent v-else-if="dataSet.length === 0" icon="">
+				{{ t('contacts', 'List is empty') }}
 			</EmptyContent>
 
 			<!-- Searched & picked entities -->
@@ -216,6 +222,13 @@ export default {
 		},
 	},
 
+	mounted() {
+		this.$nextTick(() => {
+			this.$refs.input.focus()
+			this.$refs.input.select()
+		})
+	},
+
 	methods: {
 		onCancel() {
 			/**
@@ -344,6 +357,7 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 	&__options {
 		margin: $entity-spacing 0;
 		overflow-y: auto;
+		flex: 1 1 100%;
 	}
 
 	&__navigation {

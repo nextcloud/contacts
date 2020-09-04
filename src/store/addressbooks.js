@@ -21,8 +21,9 @@
  *
  */
 
-import Vue from 'vue'
+import { showError } from '@nextcloud/dialogs'
 import pLimit from 'p-limit'
+import Vue from 'vue'
 
 import Contact from '../models/contact'
 
@@ -367,7 +368,7 @@ const actions = {
 					}, [])
 
 				if (failed > 0) {
-					OC.Notification.showTemporary(n(
+					showError(n(
 						'contacts',
 						'{failed} contact failed to be read',
 						'{failed} contacts failed to be read',

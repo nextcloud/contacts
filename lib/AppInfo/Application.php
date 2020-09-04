@@ -49,7 +49,7 @@ class Application extends App {
 			$server = $event->getServer();
 
 			if ($server !== null) {
-				// We have to register the LockPlugin here and not info.xml,
+				// We have to register the PatchPlugin here and not info.xml,
 				// because info.xml plugins are loaded, after the
 				// beforeMethod:* hook has already been emitted.
 				$server->addPlugin($this->getContainer()->query(PatchPlugin::class));
