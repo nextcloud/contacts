@@ -27,7 +27,7 @@ namespace OCA\Contacts\Controller;
 use ChristophWurst\Nextcloud\Testing\TestCase;
 use OCA\Contacts\Service\SocialApiService;
 use OCP\AppFramework\Http\TemplateResponse;
-use OCP\IAppManager;
+use OCP\App\IAppManager;
 use OCP\IConfig;
 use OCP\IInitialStateService;
 use OCP\IRequest;
@@ -60,7 +60,7 @@ class PageControllerTest extends TestCase {
 	/** @var IAppManager|MockObject*/
 	private $appManager;
 
-	public function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->request = $this->createMock(IRequest::class);

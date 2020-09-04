@@ -40,7 +40,7 @@ class ContactsControllerTest extends TestCase {
 	private $urlGenerator;
 
 
-	public function setUp() {
+	protected function setUp(): void {
 		parent::setUp();
 
 		$this->request = $this->createMock(IRequest::class);
