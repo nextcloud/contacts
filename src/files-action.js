@@ -21,12 +21,15 @@
  */
 import { generateUrl } from '@nextcloud/router'
 
+const mime = 'text/vcard'
+const name = 'contacts-import'
+
 window.addEventListener('DOMContentLoaded', () => {
 	if (OCA.Files && OCA.Files.fileActions) {
 		OCA.Files.fileActions.registerAction({
-			name: 'contacts_import',
+			name,
 			displayName: t('contacts', 'Import'),
-			mime: 'text/vcard',
+			mime,
 			permissions: OC.PERMISSION_READ,
 			iconClass: 'icon-contacts',
 			actionHandler(fileName, context) {
@@ -34,6 +37,8 @@ window.addEventListener('DOMContentLoaded', () => {
 				window.location = generateUrl(`/apps/contacts/import?file=${absPath}`)
 			},
 		})
-		OCA.Files.fileActions.setDefault('text/vcard', 'contacts_import')
+		OCA.Files.fileActions.setDefault(mime, name)
+		return
 	}
+	console.error('Unable to register vcf import action')
 })
