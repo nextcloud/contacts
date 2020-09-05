@@ -25,95 +25,71 @@
 <template>
 	<div class="contact-header-avatar">
 		<div v-click-outside="closeMenu" class="contact-header-avatar__wrapper">
-			<div class="contact-header-avatar__background" @click="toggleModal" />
+			<input id="contact-avatar-upload"
+				ref="uploadInput"
+				type="file"
+				class="hidden"
+				accept="image/*"
+				@change="processFile">
 
+			<!-- Avatar display -->
 			<div v-if="contact.photo"
 				:style="{ 'backgroundImage': `url(${contact.photoUrl})` }"
-				class="avatar contact-header-avatar__options contact-avatar-options contact-header-avatar__photo"
-				@click="toggleModal">
-				<input id="contact-avatar-upload"
-					ref="uploadInput"
-					type="file"
-					class="hidden"
-					accept="image/*"
-					@change="processFile">
-			</div>
+				class="contact-header-avatar__photo"
+				@click="toggleModal" />
 
-			<div v-if="!contact.photo"
-				v-click-outside="closeMenu"
-				class="contact-header-avatar__options">
-				<a v-tooltip.bottom="t('contacts', 'Add a new picture')"
-					href="#"
-					class="contact-avatar-options"
-					:class="loading ? 'icon-loading-small' : 'icon-picture-force-white'"
-					@click.stop.prevent="toggleMenu" />
-				<input id="contact-avatar-upload"
-					ref="uploadInput"
-					type="file"
-					class="hidden"
-					accept="image/*"
-					@change="processFile">
-			</div>
-
-			<Modal v-if="maximizeAvatar"
-				ref="modal"
-				:clear-view-delay="-1"
-				class="contact-header-modal"
-				size="large"
-				:title="contact.displayName"
-				@close="toggleModal">
-				<!-- attention, this menu exists twice in this file -->
-				<template #actions>
+			<!-- attention, this menu exists twice in this file -->
+			<Actions
+				default-icon="icon-picture-force-white"
+				:open.sync="opened"
+				class="contact-header-avatar__menu">
+				<template v-if="!isReadOnly">
 					<ActionButton
-						v-if="!isReadOnly"
 						icon="icon-upload"
-						@click="selectFileInput">
+						@click.stop.prevent="selectFileInput">
 						{{ t('contacts', 'Upload a new picture') }}
 					</ActionButton>
 					<ActionButton
-						v-if="!isReadOnly"
 						icon="icon-folder"
 						@click="selectFilePicker">
 						{{ t('contacts', 'Choose from files') }}
 					</ActionButton>
-					<template v-if="!isReadOnly">
-						<ActionButton
-							v-for="network in supportedSocial"
-							:key="network"
-							:icon="'icon-' + network.toLowerCase()"
-							@click="getSocialAvatar(network)">
-							{{ t('contacts', 'Get from ' + network) }}
-						</ActionButton>
-					</template>
+					<ActionButton
+						v-for="network in supportedSocial"
+						:key="network"
+						:icon="'icon-' + network.toLowerCase()"
+						@click="getSocialAvatar(network)">
+						{{ t('contacts', 'Get from ' + network) }}
+					</ActionButton>
+				</template>
+
+				<template v-if="contact.photo">
 					<!-- FIXME: the link seems to have a bigger font size than the button caption -->
 					<ActionLink
-						v-if="contact.photo"
 						:href="`${contact.url}?photo`"
 						icon="icon-download"
 						target="_blank">
 						{{ t('contacts', 'Download picture') }}
 					</ActionLink>
 					<ActionButton
-						v-if="!isReadOnly && contact.photo"
+						v-if="!isReadOnly"
 						icon="icon-delete"
 						@click="removePhoto">
 						{{ t('contacts', 'Delete picture') }}
 					</ActionButton>
 				</template>
-				<img ref="img"
-					:src="contact.photoUrl"
-					class="contact-header-modal__photo"
-					:style="{ width, height }"
-					@load="updateImgSize">
-			</Modal>
+			</Actions>
+		</div>
 
-			<!-- out of the avatar__options because of the overflow hidden -->
+		<Modal v-if="maximizeAvatar"
+			ref="modal"
+			:clear-view-delay="-1"
+			class="contact-header-modal"
+			size="large"
+			:title="contact.displayName"
+			@close="toggleModal">
 			<!-- attention, this menu exists twice in this file -->
-			<Actions
-				default-icon="icon-picture-force-white"
-				:open.sync="opened"
-				:class="contact.photo ? 'contact-avatar-options__popovermenubtn' : 'contact-avatar-options__popovermenu'"
-				:style="opened ? { 'opacity' : 1 } : { }">
+			<template #actions>
 				<ActionButton
 					v-if="!isReadOnly"
 					icon="icon-upload"
@@ -149,14 +125,15 @@
 					@click="removePhoto">
 					{{ t('contacts', 'Delete picture') }}
 				</ActionButton>
-			</Actions>
-		</div>
+			</template>
+			<img ref="img"
+				:src="contact.photoUrl"
+				class="contact-header-modal__photo">
+		</Modal>
 	</div>
 </template>
 
 <script>
-
-import debounce from 'debounce'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 import Actions from '@nextcloud/vue/dist/Components/Actions'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
@@ -195,10 +172,9 @@ export default {
 			opened: false,
 			loading: false,
 			root: generateRemoteUrl(`dav/files/${getCurrentUser().uid}`),
-			width: 0,
-			height: 0,
 		}
 	},
+
 	computed: {
 		isReadOnly() {
 			if (this.contact.addressbook) {
@@ -217,12 +193,7 @@ export default {
 				.map(j => this.capitalize(j))
 		},
 	},
-	mounted() {
-		// update image size on window resize
-		window.addEventListener('resize', debounce(() => {
-			this.updateImgSize()
-		}, 100))
-	},
+
 	methods: {
 		/**
 		 * Handler to store a new photo on the current contact
@@ -265,8 +236,9 @@ export default {
 							if (e.target.result.indexOf('image/svg') > -1) {
 								const imageSvg = atob(imageBase64)
 								const cleanSvg = await sanitizeSVG(imageSvg)
-								if (!cleanSvg) {
-									throw new Error('Unsafe svg image')
+								// TODO: replace haveUnsafeSvgEvents with https://github.com/mattkrick/sanitize-svg/pull/2
+								if (!cleanSvg || self.haveUnsafeSvgEvents(imageSvg)) {
+									throw new Error('Unsafe svg image', imageSvg)
 								}
 							}
 
@@ -288,6 +260,21 @@ export default {
 					this.resetPicker()
 				}
 			}
+		},
+
+		/**
+		 * Does the provided svg have unsafe js events
+		 * @param {string} svgText the svg as string
+		 * @returns {boolean}
+		 */
+		haveUnsafeSvgEvents(svgText) {
+			const div = window.document.createElement('div')
+			div.innerHTML = svgText
+
+			const svgEl = div.firstElementChild
+			const attributes = [].slice.call(svgEl.attributes) || []
+			const events = attributes.filter(attr => attr.name.indexOf('on') === 0)
+			return events.length !== 0
 		},
 
 		/**
@@ -338,13 +325,15 @@ export default {
 		 * @param {String} type mimetype
 		 */
 		setPhoto(data, type) {
+			// Init with empty data
+			if (this.contact.photo) {
+				this.contact.vCard.addPropertyWithValue('photo', '')
+			}
+
 			// Vcard 3 and 4 have different syntax
 			// https://tools.ietf.org/html/rfc2426#page-11
 			if (this.contact.version === '3.0') {
-				// check if photo property exists to decide whether to add/update it
-				this.contact.photo
-					? this.contact.photo = data
-					: this.contact.vCard.addPropertyWithValue('photo', data)
+				this.contact.photo = data
 
 				const photo = this.contact.vCard.getFirstProperty('photo')
 				photo.setParameter('encoding', 'b')
@@ -353,10 +342,7 @@ export default {
 				}
 			} else {
 				// https://tools.ietf.org/html/rfc6350#section-6.2.4
-				// check if photo property exists to decide whether to add/update it
-				this.contact.photo
-					? this.contact.photo = `data:${type};base64,${data}`
-					: this.contact.vCard.addPropertyWithValue('photo', `data:${type};base64,${data}`)
+				this.contact.photo = `data:${type};base64,${data}`
 			}
 
 			this.$store.dispatch('updateContact', this.contact)
@@ -461,75 +447,101 @@ export default {
 			this.loading = false
 		},
 
-		/**
-		 * Menu handling
-		 */
-		toggleMenu() {
-			// only open if not loading
-			this.opened = !this.opened ? !this.opened && !this.loading : false
-		},
 		closeMenu() {
 			this.opened = false
-		},
-
-		updateImgSize() {
-			if (this.contact.photo && this.$refs.img) {
-				this.updateHeightWidth(this.$refs.img.naturalHeight, this.$refs.img.naturalWidth)
-			}
-		},
-
-		/**
-		 * Updates the current height and width data
-		 * based on the viewer maximum size
-		 *
-		 * @param {Integer} contentHeight your element height
-		 * @param {Integer} contentWidth your element width
-		 */
-		updateHeightWidth(contentHeight, contentWidth) {
-			const modalWrapper = this.$refs.modal.$el.querySelector('.modal-wrapper')
-			if (modalWrapper) {
-				const modalContainer = modalWrapper.querySelector('.modal-container')
-				const wrapperMaxHeight = window.getComputedStyle(modalContainer).maxHeight.replace('%', '')
-				const wrapperMaxWidth = window.getComputedStyle(modalContainer).maxWidth.replace('%', '')
-
-				const parentHeight = Math.round(modalWrapper.clientHeight * Number(wrapperMaxHeight) / 100) - 50 // minus header
-				const parentWidth = Math.round(modalWrapper.clientWidth * Number(wrapperMaxWidth) / 100)
-
-				const heightRatio = parentHeight / contentHeight
-				const widthRatio = parentWidth / contentWidth
-
-				// if the video height is capped by the parent height
-				// AND the video is bigger than the parent
-				if (heightRatio < widthRatio && heightRatio < 1) {
-					this.height = parentHeight + 'px'
-					this.width = Math.round(contentWidth / contentHeight * parentHeight) + 'px'
-
-				// if the video width is capped by the parent width
-				// AND the video is bigger than the parent
-				} else if (heightRatio > widthRatio && widthRatio < 1) {
-					this.width = parentWidth + 'px'
-					this.height = Math.round(contentHeight / contentWidth * parentWidth) + 'px'
-
-				// RESET
-				} else {
-					// displaying tiny images makes no sense,
-					// let's try to an least dispay them at 100x100
-					// AND to keep the ratio
-					if (contentHeight < 100) {
-						this.height = 100 + 'px'
-						this.width = null
-					} else if (contentWidth < 100) {
-						this.width = 100 + 'px'
-						this.height = null
-					} else {
-						this.height = contentHeight + 'px'
-						this.width = contentWidth + 'px'
-					}
-				}
-			}
 		},
 
 	},
 
 }
 </script>
+<style lang="scss" scoped>
+.contact-header-avatar {
+	position: relative;
+	flex: 1 1 75px;
+	min-width: 75px;
+	max-width: 120px;
+	margin: 10px;
+
+	// Wrap and cut
+	&__wrapper {
+		position: relative;
+		width: 75px;
+		height: 75px;
+		margin-left: auto;
+	}
+	&__background {
+		z-index: 0;
+		top: 50px;
+		left: 0;
+		opacity: .2;
+	}
+
+	&__photo,
+	&__menu {
+		overflow: hidden;
+		width: 100%;
+		height: 100%;
+		border-radius: 50%;
+	}
+
+	&__photo {
+		z-index: 10;
+		cursor: pointer;
+		// White background for avatars with transparency, also in dark theme
+		background-color: #fff;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+	}
+
+	&__menu {
+		z-index: 11;
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		background-color: rgba(0, 0, 0, .2);
+		// Always show max opacity, let the background-color be the visual cue
+		&::v-deep .action-item__menutoggle {
+			opacity: 1;
+		}
+	}
+
+	// Move the menu in the bottom right if there is a picture already
+	&__photo + &__menu {
+		position: absolute !important;
+		// bottom right
+		top: 100%;
+		left: 100%;
+		width: 44px;
+		height: 44px;
+		margin: -50%;
+		&::v-deep {
+			.action-item__menutoggle {
+				opacity: .7;
+				background-color: rgba(0, 0, 0, .2);
+			}
+			&.action-item--open .action-item__menutoggle,
+			.action-item__menutoggle:hover,
+			.action-item__menutoggle:active,
+			.action-item__menutoggle:focus {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.contact-header-modal {
+	&::v-deep .modal-container {
+		display: flex !important;
+		align-items: center;
+		justify-content: center;
+		.contact-header-modal__photo {
+			// animate zooming/resize
+			transition: height 100ms ease,
+				width 100ms ease;
+		}
+	}
+}
+
+</style>

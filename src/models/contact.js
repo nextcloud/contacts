@@ -232,13 +232,14 @@ export default class Contact {
 	get photoUrl() {
 		const photo = this.vCard.getFirstProperty('photo')
 		const encoding = photo.getFirstParameter('encoding')
+		const type = photo.getFirstParameter('type')
 
 		const isBinary = photo.type === 'binary' || encoding === 'b'
 
 		if (photo && !this.photo.startsWith('data') && isBinary) {
 			// split on coma in case of any leftover base64 data and retrieve last part
 			// usually we come to this part when the base64 image type is unknown
-			return `data:image;base64,${this.photo.split(',').pop()}`
+			return `data:image/${type};base64,${this.photo.split(',').pop()}`
 		}
 		// could be just an url of the already encoded `data:image...`
 		try {
