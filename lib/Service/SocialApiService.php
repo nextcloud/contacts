@@ -333,12 +333,16 @@ class SocialApiService {
 			}
 
 			// get contacts in that addressbook
+			//TODO: activate this optimization when nextcloud/server#22085 is merged
+			/*
 			if (Util::getVersion()[0] < 21) {
 				//TODO: remove this branch when dependency for contacts is min NCv21 (see info.xml)
 				$contacts = $addressBook->search('', ['UID'], ['types' => true]);
 			} else {
 				$contacts = $addressBook->search('', ['X-SOCIALPROFILE'], ['types' => true]);
 			}
+			*/
+			$contacts = $addressBook->search('', ['UID'], ['types' => true]);
 			usort($contacts, [$this, 'sortContacts']); // make sure the order stays the same in consecutive calls
 
 			// update one contact after another
