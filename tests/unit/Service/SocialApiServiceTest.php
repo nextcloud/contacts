@@ -348,4 +348,24 @@ class SocialApiServiceTest extends TestCase {
 			$this->assertContains('Valid Contact Two', $report[0]['checked']);
 		}
 	}
+
+	public function testExistsContact() {
+		$this->setupAddressbooks();
+
+		// all good:
+		$result = $this->service->existsContact('11111111-1111-1111-1111-111111111111', 'contacts1', 'admin');
+		$this->assertEquals(true, $result);
+
+		// wrong address book:
+		$result = $this->service->existsContact('22222222-2222-2222-2222-222222222222', 'contacts1', 'admin');
+		$this->assertEquals(false, $result);
+
+		// invalid contactId:
+		$result = $this->service->existsContact('not-existing', 'contacts1', 'admin');
+		$this->assertEquals(false, $result);
+
+		// invalid addressbookId:
+		$result = $this->service->existsContact('11111111-1111-1111-1111-111111111111', 'not-existing', 'admin');
+		$this->assertEquals(false, $result);
+	}
 }

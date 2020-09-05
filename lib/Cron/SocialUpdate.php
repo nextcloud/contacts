@@ -42,8 +42,8 @@ class SocialUpdate extends \OC\BackgroundJob\QueuedJob {
 
 	protected function run($arguments) {
 		$userId = $arguments['userId'];
-		$offsetBook = $arguments['offsetBook'];
-		$offsetContact = $arguments['offsetContact'];
+		$offsetBook = $arguments['offsetBook'] ?? null;
+		$offsetContact = $arguments['offsetContact'] ?? null;
 
 		// update contacts with first available social media profile
 		$result = $this->social->updateAddressbooks('any', $userId, $offsetBook, $offsetContact);
@@ -53,6 +53,16 @@ class SocialUpdate extends \OC\BackgroundJob\QueuedJob {
 			$report = $result->getData();
 			$stoppedAtBook = $report[0]['stoppedAt']['addressBook'];
 			$stoppedAtContact = $report[0]['stoppedAt']['contact'];
+
+			// make sure the offset contact/address book are still existing
+			if ($this->social->existsAddressBook($stoppedAtBook, $userId) == false) {
+				$stoppedAtBook = null;
+			}
+			if ($this->social->existsContact($stoppedAtContact, $stoppedAtBook, $userId) == false) {
+				$stoppedAtContact = null;
+			}
+			// TODO: can we check the userId still exists?
+
 			$this->jobList->add(self::class, [
 				'userId' => $userId,
 				'offsetBook' => $stoppedAtBook,

@@ -82,8 +82,6 @@ class SocialApiService {
 
 
 	/**
-	 * @NoAdminRequired
-	 *
 	 * returns an array of supported social networks
 	 *
 	 * @returns {array} array of the supported social networks
@@ -98,8 +96,6 @@ class SocialApiService {
 
 
 	/**
-	 * @NoAdminRequired
-	 *
 	 * Adds/updates photo for contact
 	 *
 	 * @param {pointer} contact reference to the contact to update
@@ -128,17 +124,19 @@ class SocialApiService {
 
 
 	/**
-	 * @NoAdminRequired
-	 *
 	 * Gets the addressbook of an addressbookId
 	 *
 	 * @param {String} addressbookId the identifier of the addressbook
+	 * @param {IManager} manager optional a ContactManager to use
 	 *
 	 * @returns {IAddressBook} the corresponding addressbook or null
 	 */
-	protected function getAddressBook(string $addressbookId) : ?IAddressBook {
+	protected function getAddressBook(string $addressbookId, $manager=false) : ?IAddressBook {
 		$addressBook = null;
-		$addressBooks = $this->manager->getUserAddressBooks();
+		if ($manager == false) {
+			$manager = $this->manager;
+		}
+		$addressBooks = $manager->getUserAddressBooks();
 		foreach ($addressBooks as $ab) {
 			if ($ab->getUri() === $addressbookId) {
 				$addressBook = $ab;
@@ -149,8 +147,6 @@ class SocialApiService {
 
 
 	/**
-	 * @NoAdminRequired
-	 *
 	 * Retrieves and initiates all addressbooks from a user
 	 *
 	 * @param {string} userId the user to query
@@ -163,8 +159,6 @@ class SocialApiService {
 	}
 
 	/**
-	 * @NoAdminRequired
-	 *
 	 * Retrieves social profile data for a contact and updates the entry
 	 *
 	 * @param {String} addressbookId the addressbook identifier
@@ -222,8 +216,51 @@ class SocialApiService {
 	}
 
 	/**
-	 * @NoAdminRequired
+	 * checks an addressbook is existing
 	 *
+	 * @param {string} searchBookId the UID of the addressbook to verify
+	 * @param {string} userId the user that should have access
+	 *
+	 * @returns {bool} true if the addressbook exists
+	 */
+	public function existsAddressBook($searchBookId, $userId) {
+		$manager = $this->manager;
+		$coma = new ContactsManager($this->davBackend, $this->l10n);
+		$coma->setupContactsProvider($manager, $userId, $this->urlGen);
+		$addressBooks = $manager->getUserAddressBooks();
+		if ($this->getAddressBook($searchBookId, $manager) == null) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * checks a contact exists in an addressbook
+	 *
+	 * @param {string} searchContactId the UID of the contact to verify
+	 * @param {string} searchBookId the UID of the addressbook to look in
+	 * @param {string} userId the user that should have access
+	 *
+	 * @returns {bool} true if the contact exists
+	 */
+	public function existsContact($searchContactId, $searchBookId, $userId) {
+		// load address books for the user
+		$manager = $this->manager;
+		$coma = new ContactsManager($this->davBackend, $this->l10n);
+		$coma->setupContactsProvider($manager, $userId, $this->urlGen);
+		$addressBook = $this->getAddressBook($searchBookId, $manager);
+		if ($addressBook == null) {
+			return false;
+		}
+
+		$check = $addressBook->search($searchContactId, ['UID'], ['types' => true]);
+		if (empty($check)) {
+			return false;
+		}
+		return true;
+	}
+
+	/**
 	 * Stores the result of social avatar updates for each contact
 	 * (used during batch updates in updateAddressbooks)
 	 *
@@ -260,8 +297,6 @@ class SocialApiService {
 	}
 
 	/**
-	 * @NoAdminRequired
-	 *
 	 * sorts an array of address books
 	 *
 	 * @param {IAddressBook} a
@@ -274,8 +309,6 @@ class SocialApiService {
 	}
 
 	/**
-	 * @NoAdminRequired
-	 *
 	 * sorts an array of contacts
 	 *
 	 * @param {array} a
@@ -288,8 +321,6 @@ class SocialApiService {
 	}
 
 	/**
-	 * @NoAdminRequired
-	 *
 	 * Updates social profile data for all contacts of an addressbook
 	 *
 	 * @param {String} network the social network to use (fallback: take first match)
