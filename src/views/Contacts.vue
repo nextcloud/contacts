@@ -492,9 +492,10 @@ export default {
 			console.debug('Connected to dav!', client)
 			this.$store.dispatch('getAddressbooks')
 				.then((addressbooks) => {
+					const writeableAddressBooks = addressbooks.filter(addressbook => !addressbook.readOnly)
 
-					// No addressbooks? Create a new one!
-					if (addressbooks.length === 0) {
+					// No writeable addressbooks? Create a new one!
+					if (writeableAddressBooks.length === 0) {
 						this.$store.dispatch('appendAddressbook', { displayName: t('contacts', 'Contacts') })
 							.then(() => {
 								this.fetchContacts()
