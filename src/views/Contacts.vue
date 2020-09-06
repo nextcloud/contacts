@@ -249,6 +249,7 @@ import { VCardTime } from 'ical.js'
 import download from 'downloadjs'
 import moment from 'moment'
 import pLimit from 'p-limit'
+import naturalCompare from 'string-natural-compare'
 
 import ContactDetails from '../components/ContactDetails'
 import ContactsList from '../components/ContactsList'
@@ -447,7 +448,7 @@ export default {
 					toString: () => group.name,
 				})
 			})
-			menu.sort()
+			menu.sort((a, b) => naturalCompare(a.toString(), b.toString(), { caseInsensitive: true }))
 
 			// Find the Recently Contacted group, delete it from array
 			const recentlyIndex = menu.findIndex(group => group.name === GROUP_RECENTLY_CONTACTED)
