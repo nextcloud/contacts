@@ -23,6 +23,12 @@
 
 <template>
 	<Content app-name="contacts">
+		<!-- go back to list when in details mode -->
+		<a v-if="selectedContact && isMobile"
+			class="app-details-toggle icon-confirm"
+			href="#"
+			@click.stop.prevent="showList" />
+
 		<!-- new-contact-button + navigation + settings -->
 		<AppNavigation>
 			<!-- new-contact-button -->
@@ -688,6 +694,20 @@ export default {
 		},
 
 		/**
+		 * Show the list and deselect contact
+		 */
+		showList() {
+			// Reset the selected contact
+			this.$router.push({
+				name: 'contact',
+				params: {
+					selectedGroup: this.selectedGroup,
+					selectedContact: undefined,
+				},
+			})
+		},
+
+		/**
 		 * Done importing, the user closed the import status screen
 		 */
 		closeImport() {
@@ -832,5 +852,29 @@ export default {
 
 #app-content-wrapper {
 	display: flex;
+}
+
+.app-details-toggle {
+	position: absolute;
+	width: 44px;
+	height: 44px;
+	padding: 14px;
+	cursor: pointer;
+	opacity: .6;
+	font-size: 16px;
+	line-height: 17px;
+	transform: rotate(180deg);
+	background-color: var(--color-main-background);
+	z-index: 2000;
+	&:active,
+	&:hover,
+	&:focus {
+		opacity: 1;
+	}
+
+	// Hide app-navigation toggle if shown
+	&::v-deep + .app-navigation .app-navigation-toggle {
+		display: none;
+	}
 }
 </style>
