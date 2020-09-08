@@ -93,8 +93,6 @@ export default {
 }
 
 .entity-picker__bubble {
-	// Add space between bubbles
-	margin-right: 4px;
 	display: flex;
 
 	&-delete {
@@ -111,5 +109,4 @@ export default {
 		}
 	}
 }
-
 </style>

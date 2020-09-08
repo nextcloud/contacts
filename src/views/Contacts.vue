@@ -758,6 +758,7 @@ export default {
 			const groupName = this.contactPickerforGroup.name
 
 			this.isProcessing = true
+			this.showContactPicker = false
 
 			this.processStatus.total = selection.length
 			this.processStatus.name = this.contactPickerforGroup.name

@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<ProcessingScreen v-bind="processStatus">
+	<ProcessingScreen :progress="progress" :total="total">
 		{{ total === progress
 			? finishedHeader
 			: progressHeader }}
@@ -29,7 +29,7 @@
 			<span v-if="failed > 0">
 				{{ messageFailed }}
 			</span>
-			<button v-if="total === progress" class="primary" @click="closeProcess">
+			<button v-if="total === progress" class="primary" @click="onClose">
 				{{ t('contacts', 'Close') }}
 			</button>
 		</template>
