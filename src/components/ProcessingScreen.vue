@@ -1,5 +1,5 @@
 <template>
-	<EmptyContent class="processing-screen__wrapper" icon="icon-contacts">
+	<EmptyContent class="processing-screen__wrapper" icon="icon-contacts-dark">
 		<slot />
 		<template #desc>
 			<div class="processing-screen__progress">

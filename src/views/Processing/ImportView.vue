@@ -21,44 +21,37 @@
   -->
 
 <template>
-	<div class="emptycontent import-screen">
-		<p class="icon-upload" />
-		<h3 v-if="stage === 'done'" class="import-screen__header">
-			{{ importedHeader }}
-		</h3>
-		<h3 v-else class="import-screen__header">
-			{{ importingHeader }}
-		</h3>
-		<progress :max="total" :value="progress" class="import-screen__progress" />
-		<p class="import-screen__tracker">
-			<span>{{ percentage }} %</span>
-			<span v-if="failed === 0">
-				{{ t('contacts', 'No errors') }}
+	<ProcessingScreen :progress="progress" :total="total">
+		{{ total === progress
+			? importedHeader
+			: importingHeader }}
+		<template #desc>
+			<span v-if="failed > 0">
+				{{ importFailed }}
 			</span>
-			<span v-else v-tooltip.auto="t('contacts', 'Open your browser console for more details')">
-				{{ n('contacts',
-					'{failedCount} faulty contact',
-					'{failedCount} faulty contacts',
-					failed,
-					{ failedCount: failed }
-				) }}
-			</span>
-		</p>
-	</div>
+			<button v-if="total === progress" class="primary" @click="onClose">
+				{{ t('contacts', 'Close') }}
+			</button>
+		</template>
+	</ProcessingScreen>
 </template>
 
 <script>
+import ProcessingScreen from '../../components/ProcessingScreen'
+
 export default {
-	name: 'ImportScreen',
+	name: 'ImportView',
+
+	components: {
+		ProcessingScreen,
+	},
+
 	computed: {
 		importState() {
 			return this.$store.getters.getImportState
 		},
 		addressbook() {
 			return this.importState.addressbook
-		},
-		stage() {
-			return this.importState.stage
 		},
 		total() {
 			return this.importState.total
@@ -71,11 +64,6 @@ export default {
 		},
 		progress() {
 			return this.accepted + this.failed
-		},
-		percentage() {
-			return this.total <= 0
-				? 0
-				: Math.floor(this.progress / this.total * 100)
 		},
 
 		importingHeader() {
@@ -98,6 +86,21 @@ export default {
 					addressbook: this.addressbook,
 				}
 			)
+		},
+
+		importFailed() {
+			return n('contacts',
+				'{count} error',
+				'{count} errors',
+				this.failed,
+				{ count: this.failed }
+			)
+		},
+	},
+
+	methods: {
+		onClose() {
+			this.$emit('close')
 		},
 	},
 }
