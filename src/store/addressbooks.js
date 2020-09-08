@@ -407,6 +407,7 @@ const actions = {
 
 		// create the array of requests to send
 		contacts.map(async contact => {
+			console.info(contact)
 
 			// Get vcard string
 			try {
