@@ -291,7 +291,7 @@ export default {
 
 // Dialog variables
 $dialog-margin: 20px;
-$dialog-width: 300px;
+$dialog-width: 320px;
 $dialog-height: 480px;
 $entity-spacing: 4px;
 
@@ -317,10 +317,11 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 	the margin applied to the content is added to the total modal width,
 	so here we subtract it to the width and height of the content.
 	*/
-	width: $dialog-width - $dialog-margin * 2;
-	height: $dialog-height - $dialog-margin * 2;
+	width: $dialog-width;
+	max-width: 100vw;
+	height: $dialog-height;
+	max-height: calc(100vh - #{$dialog-margin} * 2 - 10px);
 	margin: $dialog-margin;
-	max-height: calc(100vh - $dialog-margin * 2 - 10px);
 
 	&__search {
 		position: relative;
@@ -329,10 +330,10 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 		&-input {
 			width: 100%;
 			height: $clickable-area - $entity-spacing !important;
+			margin: $entity-spacing 0;
 			padding-left: $clickable-area;
 			font-size: 16px;
 			line-height: $clickable-area - $entity-spacing;
-			margin: $entity-spacing 0;
 		}
 		&-icon {
 			position: absolute;
@@ -345,6 +346,7 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 		display: flex;
 		overflow-y: auto;
 		align-content: flex-start;
+		justify-content: space-between;
 		flex: 1 0 auto;
 		flex-wrap: wrap;
 		// half a line height to know there is more lines
@@ -352,12 +354,18 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 		padding: $entity-spacing 0;
 		border-bottom: 1px solid var(--color-background-darker);
 		background: var(--color-main-background);
+
+		// Allows 2 per line
+		.entity-picker__bubble {
+			flex: 0 1 50%;
+			max-width: calc(50% - #{$entity-spacing});
+		}
 	}
 
 	&__options {
-		margin: $entity-spacing 0;
 		overflow-y: auto;
 		flex: 1 1 100%;
+		margin: $entity-spacing 0;
 	}
 
 	&__navigation {
@@ -367,11 +375,15 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 		flex: 0 0;
 		justify-content: space-between;
 		// Same as above
-		width: $dialog-width - $dialog-margin * 2;
+		width: 100%;
 		box-shadow: 0 -10px 5px var(--color-main-background);
 		&__button-right {
 			margin-left: auto;
 		}
+	}
+
+	&::v-deep &__bubble  {
+		margin-bottom: $entity-spacing;
 	}
 }
 

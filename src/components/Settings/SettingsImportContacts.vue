@@ -196,12 +196,14 @@ export default {
 
 			const file = event.target.files[0]
 			const reader = new FileReader()
-			const selectedAddressbook = this.selectedAddressbook
+
+			const addressbook = this.selectedAddressbook
+			this.$store.dispatch('setAddressbook', addressbook.displayName)
 
 			const self = this
 			reader.onload = function(e) {
 				self.isOpened = false
-				self.$store.dispatch('importContactsIntoAddressbook', { vcf: reader.result, addressbook: selectedAddressbook })
+				self.$store.dispatch('importContactsIntoAddressbook', { vcf: reader.result, addressbook })
 
 				// reset input
 				event.target.value = ''
@@ -223,11 +225,12 @@ export default {
 					cancelToken: source.token,
 				})
 
+				const addressbook = this.selectedAddressbook
 				this.$store.dispatch('changeStage', 'parsing')
-				this.$store.dispatch('setAddressbook', this.selectedAddressbook.displayName)
+				this.$store.dispatch('setAddressbook', addressbook.displayName)
 
 				if (file.data) {
-					await this.$store.dispatch('importContactsIntoAddressbook', { vcf: file.data, addressbook: this.selectedAddressbook })
+					await this.$store.dispatch('importContactsIntoAddressbook', { vcf: file.data, addressbook })
 				}
 			} catch (error) {
 				console.error('Something wrong happened while processing local file', error)

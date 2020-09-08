@@ -28,7 +28,12 @@ export default function parseVcf(data = '', addressbook) {
 	const vCards = data.match(regexp)
 
 	if (!vCards) {
-		console.error('Error during the parsing of the following vcf file: ', data)
+		console.error('Error during the parsing of the following vcf file', data)
+		return []
+	}
+
+	if (!addressbook) {
+		console.error('Invalid addressbook', addressbook)
 		return []
 	}
 

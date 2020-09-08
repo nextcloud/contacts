@@ -187,7 +187,7 @@
 			:clear-view-delay="-1"
 			:can-close="isImportDone"
 			@close="closeImport">
-			<ImportScreen />
+			<ImportView @close="closeImport" />
 		</Modal>
 
 		<!-- Select contacts group modal -->
@@ -202,34 +202,7 @@
 			:clear-view-delay="-1"
 			:can-close="isProcessDone"
 			@close="closeProcess">
-			<ProcessingScreen v-bind="processStatus">
-				{{ processStatus.total === processStatus.progress
-					? n('contacts',
-						'{success} contact added to {name}',
-						'{success} contacts added to {name}',
-						processStatus.success,
-						processStatus
-					)
-					: n('contacts',
-						'Adding {success} contact to {name}',
-						'Adding {success} contacts to {name}',
-						processStatus.success,
-						processStatus
-					) }}
-				<template #desc>
-					<span v-if="processStatus.error > 0">
-						{{ n('contacts',
-							'{count} error',
-							'{count} errors',
-							processStatus.error,
-							{count: processStatus.error}
-						) }}
-					</span>
-					<button v-if="processStatus.total === processStatus.progress" class="primary" @click="closeProcess">
-						{{ t('contacts', 'Close') }}
-					</button>
-				</template>
-			</ProcessingScreen>
+			<AddToGroupView v-bind="processStatus" @close="closeProcess" />
 		</Modal>
 	</Content>
 </template>
@@ -260,8 +233,8 @@ import naturalCompare from 'string-natural-compare'
 import ContactDetails from '../components/ContactDetails'
 import ContactsList from '../components/ContactsList'
 import EntityPicker from '../components/EntityPicker/EntityPicker'
-import ImportScreen from '../components/ImportScreen'
-import ProcessingScreen from '../components/ProcessingScreen'
+import ImportView from './Processing/ImportView'
+import AddToGroupView from './Processing/AddToGroupView'
 import SettingsSection from '../components/SettingsSection'
 
 import Contact from '../models/contact'
@@ -282,6 +255,7 @@ export default {
 		ActionButton,
 		ActionInput,
 		ActionText,
+		AddToGroupView,
 		AppContent,
 		AppNavigation,
 		AppNavigationCounter,
@@ -294,9 +268,8 @@ export default {
 		Content,
 		EmptyContent,
 		EntityPicker,
-		ImportScreen,
+		ImportView,
 		Modal,
-		ProcessingScreen,
 		SettingsSection,
 	},
 
@@ -342,7 +315,7 @@ export default {
 			isProcessing: false,
 			isProcessDone: false,
 			processStatus: {
-				error: 0,
+				failed: 0,
 				progress: 0,
 				success: 0,
 				total: 0,
@@ -785,11 +758,12 @@ export default {
 			const groupName = this.contactPickerforGroup.name
 
 			this.isProcessing = true
+			this.showContactPicker = false
 
 			this.processStatus.total = selection.length
 			this.processStatus.name = this.contactPickerforGroup.name
 			this.processStatus.progress = 0
-			this.processStatus.error = 0
+			this.processStatus.failed = 0
 
 			// max simultaneous requests
 			const limit = pLimit(3)
@@ -824,7 +798,7 @@ export default {
 				this.showContactPicker = false
 
 				// Auto close after 3 seconds if no errors
-				if (this.processStatus.error === 0) {
+				if (this.processStatus.failed === 0) {
 					setTimeout(this.closeProcess, 3000)
 				}
 			})
@@ -836,7 +810,7 @@ export default {
 			this.isProcessDone = false
 
 			// Reset
-			this.processStatus.error = 0
+			this.processStatus.failed = 0
 			this.processStatus.progress = 0
 			this.processStatus.success = 0
 			this.processStatus.total = 0

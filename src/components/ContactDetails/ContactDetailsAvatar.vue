@@ -236,8 +236,7 @@ export default {
 							if (e.target.result.indexOf('image/svg') > -1) {
 								const imageSvg = atob(imageBase64)
 								const cleanSvg = await sanitizeSVG(imageSvg)
-								// TODO: replace haveUnsafeSvgEvents with https://github.com/mattkrick/sanitize-svg/pull/2
-								if (!cleanSvg || self.haveUnsafeSvgEvents(imageSvg)) {
+								if (!cleanSvg) {
 									throw new Error('Unsafe svg image', imageSvg)
 								}
 							}
@@ -260,21 +259,6 @@ export default {
 					this.resetPicker()
 				}
 			}
-		},
-
-		/**
-		 * Does the provided svg have unsafe js events
-		 * @param {string} svgText the svg as string
-		 * @returns {boolean}
-		 */
-		haveUnsafeSvgEvents(svgText) {
-			const div = window.document.createElement('div')
-			div.innerHTML = svgText
-
-			const svgEl = div.firstElementChild
-			const attributes = [].slice.call(svgEl.attributes) || []
-			const events = attributes.filter(attr => attr.name.indexOf('on') === 0)
-			return events.length !== 0
 		},
 
 		/**

@@ -33,7 +33,7 @@
 		"stylelint:fix": "stylelint src --fix"
 	},
 	"dependencies": {
-		"@mattkrick/sanitize-svg": "^0.2.1",
+		"@mattkrick/sanitize-svg": "^0.3.0",
 		"@nextcloud/auth": "^1.3.0",
 		"@nextcloud/axios": "^1.4.0",
 		"@nextcloud/dialogs": "^2.0.1",

@@ -1,5 +1,5 @@
 <template>
-	<EmptyContent class="processing-screen__wrapper" icon="icon-contacts">
+	<EmptyContent class="processing-screen__wrapper" icon="icon-contacts-dark">
 		<slot />
 		<template #desc>
 			<div class="processing-screen__progress">
@@ -62,6 +62,7 @@ export default {
 	&__desc {
 		display: inline-flex;
 		align-items: center;
+		width: 100%;
 		margin-top: 22px;
 		color: var(--color-text-maxcontrast);
 
