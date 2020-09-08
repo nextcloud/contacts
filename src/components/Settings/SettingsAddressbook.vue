@@ -23,7 +23,7 @@
 <template>
 	<li :class="{'addressbook--disabled': !addressbook.enabled}" class="addressbook">
 		<!-- addressbook name -->
-		<span class="addressbook__name">
+		<span class="addressbook__name" :title="addressbook.displayName">
 			{{ addressbook.displayName }}
 		</span>
 
@@ -278,3 +278,48 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.addressbook {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+
+	> .addressbook__name {
+		+ a,
+		+ div {
+			// put actions at the end
+			margin-left: auto;
+		}
+	}
+
+	&__name {
+		display: block;
+		flex: 0 1 auto;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	&__share,
+	&__menu .icon-more {
+		width: 44px;
+		height: 44px;
+		opacity: .5;
+		&:hover,
+		&:focus,
+		&:active {
+			opacity: .7;
+		}
+	}
+	&__share {
+		&--shared {
+			opacity: .7;
+		}
+	}
+	&--disabled &__name {
+		opacity: .5;
+	}
+}
+</style>
