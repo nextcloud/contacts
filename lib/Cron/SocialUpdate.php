@@ -48,7 +48,7 @@ class SocialUpdate extends \OC\BackgroundJob\QueuedJob {
 		// update contacts with first available social media profile
 		$result = $this->social->updateAddressbooks('any', $userId, $offsetBook, $offsetContact);
 
-		if ($result->getStatus() == Http::STATUS_PARTIAL_CONTENT) {
+		if ($result->getStatus() === Http::STATUS_PARTIAL_CONTENT) {
 			// not finished; schedule a follow-up
 			$report = $result->getData();
 			$stoppedAtBook = $report[0]['stoppedAt']['addressBook'];

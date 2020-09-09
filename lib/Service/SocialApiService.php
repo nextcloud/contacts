@@ -131,9 +131,9 @@ class SocialApiService {
 	 *
 	 * @returns {IAddressBook} the corresponding addressbook or null
 	 */
-	protected function getAddressBook(string $addressbookId, $manager=false) : ?IAddressBook {
+	protected function getAddressBook(string $addressbookId, IManager $manager = null) : ?IAddressBook {
 		$addressBook = null;
-		if ($manager == false) {
+		if ($manager === null) {
 			$manager = $this->manager;
 		}
 		$addressBooks = $manager->getUserAddressBooks();
@@ -223,27 +223,24 @@ class SocialApiService {
 	 *
 	 * @returns {bool} true if the addressbook exists
 	 */
-	public function existsAddressBook($searchBookId, $userId) {
+	public function existsAddressBook(string $searchBookId, string $userId): bool {
 		$manager = $this->manager;
 		$coma = new ContactsManager($this->davBackend, $this->l10n);
 		$coma->setupContactsProvider($manager, $userId, $this->urlGen);
 		$addressBooks = $manager->getUserAddressBooks();
-		if ($this->getAddressBook($searchBookId, $manager) == null) {
-			return false;
-		}
-		return true;
+		return $this->getAddressBook($searchBookId, $manager) !== null;
 	}
 
 	/**
 	 * checks a contact exists in an addressbook
 	 *
-	 * @param {string} searchContactId the UID of the contact to verify
-	 * @param {string} searchBookId the UID of the addressbook to look in
-	 * @param {string} userId the user that should have access
+	 * @param string searchContactId the UID of the contact to verify
+	 * @param string searchBookId the UID of the addressbook to look in
+	 * @param string userId the user that should have access
 	 *
-	 * @returns {bool} true if the contact exists
+	 * @returns bool true if the contact exists
 	 */
-	public function existsContact($searchContactId, $searchBookId, $userId) {
+	public function existsContact(string $searchContactId, string $searchBookId, string $userId): bool {
 		// load address books for the user
 		$manager = $this->manager;
 		$coma = new ContactsManager($this->davBackend, $this->l10n);
@@ -254,10 +251,7 @@ class SocialApiService {
 		}
 
 		$check = $addressBook->search($searchContactId, ['UID'], ['types' => true]);
-		if (empty($check)) {
-			return false;
-		}
-		return true;
+		return !empty($check);
 	}
 
 	/**
