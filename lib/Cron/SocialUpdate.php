@@ -25,18 +25,49 @@ namespace OCA\Contacts\Cron;
 
 use OCA\Contacts\Service\SocialApiService;
 
+use OCP\AppFramework\Http;
+use OCP\BackgroundJob\IJobList;
+
 class SocialUpdate extends \OC\BackgroundJob\QueuedJob {
 	/** @var SocialUpdateService */
 	private $social;
+	/** @var IJobList */
+	private $jobList;
 
-	public function __construct(SocialApiService $social) {
+	public function __construct(SocialApiService $social,
+								IJobList $jobList) {
 		$this->social = $social;
+		$this->jobList = $jobList;
 	}
 
 	protected function run($arguments) {
 		$userId = $arguments['userId'];
+		$offsetBook = $arguments['offsetBook'] ?? null;
+		$offsetContact = $arguments['offsetContact'] ?? null;
 
 		// update contacts with first available social media profile
-		$this->social->updateAddressbooks('any', $userId);
+		$result = $this->social->updateAddressbooks('any', $userId, $offsetBook, $offsetContact);
+
+		if ($result->getStatus() === Http::STATUS_PARTIAL_CONTENT) {
+			// not finished; schedule a follow-up
+			$report = $result->getData();
+			$stoppedAtBook = $report[0]['stoppedAt']['addressBook'];
+			$stoppedAtContact = $report[0]['stoppedAt']['contact'];
+
+			// make sure the offset contact/address book are still existing
+			if ($this->social->existsAddressBook($stoppedAtBook, $userId) == false) {
+				$stoppedAtBook = null;
+			}
+			if ($this->social->existsContact($stoppedAtContact, $stoppedAtBook, $userId) == false) {
+				$stoppedAtContact = null;
+			}
+			// TODO: can we check the userId still exists?
+
+			$this->jobList->add(self::class, [
+				'userId' => $userId,
+				'offsetBook' => $stoppedAtBook,
+				'offsetContact' => $stoppedAtContact
+			]);
+		}
 	}
 }
