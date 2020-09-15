@@ -3,13 +3,13 @@ OC.L10N.register(
     {
     "Contacts" : "Kontaktlar",
     "Invalid image" : "Tasdiqlanmagan tasvir",
-    "Loading" : "Yuklanmoqda",
     "Name" : "Ism...",
     "Download" : "Yuklab oling",
     "Delete" : "O'chir",
     "Cancel" : "Bekor qilish",
     "Groups" : "Guruhlar",
     "Rename" : "Nomni o'zgartiring",
+    "Loading contacts …" : "Kontakt yuklanmoqda…",
     "Notes" : "Eslatmalar",
     "Unknown" : "Noma'lum"
 },

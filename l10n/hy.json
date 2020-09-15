@@ -1,6 +1,5 @@
 { "translations": {
     "Details" : "Մանրամասներ",
-    "Loading" : "Loading",
     "Name" : "Անուն",
     "Title" : "Վերնագիր",
     "Download" : "Ներբեռնել",
@@ -13,6 +12,8 @@
     "can edit" : "կարող է խմբագրել",
     "First name" : "Անուն",
     "Last name" : "Ազգանուն",
+    "Close" : "Փակել",
+    "Import" : "Ներմուծում",
     "Nickname" : "Մականուն",
     "Notes" : "Նոթեր",
     "Location" : "Տեղակայություն",

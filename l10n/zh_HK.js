@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "聯絡人",
-    "Loading" : "Loading",
     "Name" : "名稱",
     "Title" : "標題",
     "Download" : "下載",
@@ -15,6 +14,8 @@ OC.L10N.register(
     "Copy link" : "複製連結",
     "Share with users or groups" : "共享于用戶或組別",
     "can edit" : "可編輯",
+    "Close" : "關閉",
+    "Import" : "導入",
     "Nickname" : "暱稱",
     "Notes" : "筆記",
     "Location" : "位置",

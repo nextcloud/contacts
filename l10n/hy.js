@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "Մանրամասներ",
-    "Loading" : "Loading",
     "Name" : "Անուն",
     "Title" : "Վերնագիր",
     "Download" : "Ներբեռնել",
@@ -15,6 +14,8 @@ OC.L10N.register(
     "can edit" : "կարող է խմբագրել",
     "First name" : "Անուն",
     "Last name" : "Ազգանուն",
+    "Close" : "Փակել",
+    "Import" : "Ներմուծում",
     "Nickname" : "Մականուն",
     "Notes" : "Նոթեր",
     "Location" : "Տեղակայություն",

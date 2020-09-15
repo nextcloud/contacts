@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Invalid image" : "غلط تصویر",
-    "Loading" : "Loading",
     "Name" : "اسم",
     "Title" : "عنوان",
     "Download" : "ڈاؤن لوڈ",
@@ -10,6 +9,8 @@ OC.L10N.register(
     "Cancel" : "منسوخ کریں",
     "Rename" : "Rename",
     "can edit" : "تبدیل کر سکے ھیں",
+    "Group name" : "گروپ نام",
+    "Close" : "بند ",
     "Notes" : "Notes",
     "Location" : "مقام",
     "Work" : "کام",

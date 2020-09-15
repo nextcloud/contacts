@@ -4,7 +4,6 @@
     "Contacts" : "Kontakte",
     "A contacts app for Nextcloud" : "’n Kontakte-toep vir Nextcloud",
     "Invalid image" : "Ongeldige beeld",
-    "Loading" : "Laai tans..",
     "Name" : "Naam",
     "Company" : "Maatskappy",
     "Title" : "Titel",
@@ -13,6 +12,7 @@
     "Cancel" : "Kanselleer",
     "Groups" : "Groepe",
     "New contact" : "Nuwe kontak",
+    "Loading …" : "Laai …",
     "Select type" : "Kies tipe",
     "Select Date" : "Kies Datum",
     "Last modified" : "Laas gewysig",
@@ -28,7 +28,10 @@
     "First name" : "Naam",
     "Last name" : "Van",
     "Display name" : "Vertoonnaam",
+    "Group name" : "Groepnaam",
     "Not grouped" : "Nie gegroepeer",
+    "Close" : "Sluit",
+    "Import" : "Voer In",
     "Nickname" : "Bynaam",
     "Detailed name" : "Gedetailleerde naam",
     "Additional names" : "Addisionele name",
@@ -76,8 +79,6 @@
     "Colleague" : "Kollega",
     "Manager" : "Bestuurder",
     "Assistant" : "Assistent",
-    "Related" : "Verwant",
-    "Specify a relationship between another entity and the entity represented by this vCard." : "Spesifiseer ’n verhouding tussen ’n ander entiteit en die entiteit wat deur hierdie vCard verteenwoordig word.",
     "Contact" : "Kontak",
     "Agent" : "Agent",
     "Emergency" : "Noodgeval",
@@ -87,7 +88,6 @@
     "Male" : "Manlik",
     "None" : "Geen",
     "Unknown" : "Onbekend",
-    "Timezone" : "Tydsone",
-    "An error occurred" : "'n Fout het voorgekom"
+    "Timezone" : "Tydsone"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

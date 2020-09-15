@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Hubungi ",
-    "Loading" : "Loading",
     "Name" : "Nama",
     "Title" : "Judul",
     "Download" : "Muat turun",
@@ -11,6 +10,8 @@ OC.L10N.register(
     "Groups" : "Kumpulan",
     "Rename" : "Namakan",
     "can edit" : "boleh mengubah",
+    "Close" : "Tutup",
+    "Import" : "Import",
     "Nickname" : "Nama Samaran",
     "Additional names" : "Nama tambahan",
     "Notes" : "Nota",

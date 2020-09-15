@@ -3,7 +3,6 @@
     "Details" : "جزئیات",
     "Contacts" : "مخاطبین",
     "Invalid image" : "عکس نامعتبر",
-    "Loading" : "در حال بار گزاری",
     "Name" : "نام",
     "Company" : "شرکت",
     "Title" : "عنوان",
@@ -13,8 +12,9 @@
     "Address book" : "دفترچه آدرس",
     "Groups" : "گروه ها",
     "New contact" : "مخاطب جدید",
-    "Select Date" : "تاریخ را انتخاب کنید",
+    "Loading …" : "بارگذاری …",
     "No results" : "نتیجه ای یافت نشد",
+    "Select Date" : "تاریخ را انتخاب کنید",
     "Last modified" : "آخرین اصلاح شده",
     "Rename" : "تغییرنام",
     "Enabled" : "فعال شده",
@@ -28,7 +28,10 @@
     "First name" : "نام",
     "Last name" : "نام‌خانوادگی",
     "Display name" : "نام جهت نمایش",
+    "Group name" : "نام گروه",
     "Not grouped" : "گروه بندی نشده",
+    "Close" : "بستن",
+    "Import" : "وارد کردن",
     "Nickname" : "نام مستعار",
     "Detailed name" : "نام کامل",
     "Additional names" : "نام های دیگر",
@@ -60,7 +63,6 @@
     "Pager" : "صفحه",
     "Voice" : "صدا",
     "Social network" : "شبکه اجتماعی",
-    "Relationship" : "رابطه",
     "Spouse" : "همسر",
     "Child" : "فرزند",
     "Mother" : "مادر",
@@ -78,7 +80,6 @@
     "Female" : "مؤنث",
     "Male" : "مذکر",
     "None" : "هیچ‌کدام",
-    "Unknown" : "نامشخص",
-    "An error occurred" : "خطایی روی داد"
+    "Unknown" : "نامشخص"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "Detalji",
-    "Loading" : "Loading",
     "Name" : "naziv",
     "Title" : "Naslov",
     "Download" : "Preuzmi",
@@ -13,6 +12,8 @@ OC.L10N.register(
     "Rename" : "Rename",
     "Copy link" : "Kopiraj vezu",
     "can edit" : "može da menja",
+    "Close" : "Zatvori",
+    "Import" : "Uvezi",
     "Notes" : "Notes",
     "Website" : "Sajt",
     "Home" : "Почетна",

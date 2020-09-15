@@ -1,6 +1,5 @@
 { "translations": {
     "Details" : "Detalji",
-    "Loading" : "Loading",
     "Name" : "naziv",
     "Title" : "Naslov",
     "Download" : "Preuzmi",
@@ -11,6 +10,8 @@
     "Rename" : "Rename",
     "Copy link" : "Kopiraj vezu",
     "can edit" : "može da menja",
+    "Close" : "Zatvori",
+    "Import" : "Uvezi",
     "Notes" : "Notes",
     "Website" : "Sajt",
     "Home" : "Почетна",

@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "සබඳතා",
     "Invalid image" : "පින්තුරය දෝෂ සහිතයි",
-    "Loading" : "Loading",
     "Name" : "නම",
     "Title" : "මාතෘකාව",
     "Download" : "බාන්න",
@@ -12,6 +11,8 @@ OC.L10N.register(
     "Groups" : "කණ්ඩායම්",
     "Rename" : "නැවත නම් කරන්න",
     "can edit" : "සංස්කරණය කළ හැක",
+    "Close" : "වසන්න",
+    "Import" : "ආයාත කරන්න",
     "Nickname" : "පටබැඳි නම",
     "Additional names" : "වෙනත් නම්",
     "Notes" : "සටහන්",

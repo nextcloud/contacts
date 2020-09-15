@@ -5,7 +5,6 @@ OC.L10N.register(
     "Details" : "Detil",
     "Contacts" : "Kontak",
     "Invalid image" : "Gambar tidak sah",
-    "Loading" : "Memuat",
     "Name" : "Nama",
     "Title" : "Judul",
     "Download" : "Unduh",
@@ -26,7 +25,10 @@ OC.L10N.register(
     "First name" : "Nama depan",
     "Last name" : "Nama belakang",
     "Display name" : "Nama tampilan",
+    "Group name" : "Nama grup",
     "Not grouped" : "Tidak dikelompokkan",
+    "Close" : "Tutup",
+    "Import" : "Impor",
     "Nickname" : "Nama panggilan",
     "Detailed name" : "Nama lengkap",
     "Additional names" : "Nama tambahan",
@@ -59,7 +61,6 @@ OC.L10N.register(
     "Voice" : "Suara",
     "Social network" : "Media sosial",
     "None" : "Tidak ada",
-    "Unknown" : "Tidak diketahui",
-    "An error occurred" : "Terjadi kesalahan"
+    "Unknown" : "Tidak diketahui"
 },
 "nplurals=1; plural=0;");

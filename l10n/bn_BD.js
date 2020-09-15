@@ -4,7 +4,6 @@ OC.L10N.register(
     "Details" : "বিসতারিত",
     "Contacts" : "পরিচিতজন",
     "Invalid image" : "অবৈধ চিত্র",
-    "Loading" : "Loading",
     "Name" : "নাম",
     "Title" : "শিরোনাম",
     "Download" : "ডাউনলোড",

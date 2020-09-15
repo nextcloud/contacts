@@ -2,12 +2,10 @@
     "All contacts" : "كل الجهات",
     "Details" : "التفاصيل",
     "Contacts" : "جهات الاتصال",
-    "Add a new picture" : "إضافة صورة جديدة",
     "Upload a new picture" : "تحميل صورة جديدة",
     "Download picture" : "تنزيل الصورة",
     "Delete picture" : "حذف الصورة",
     "Invalid image" : "الصورة غير صالحة",
-    "Loading" : "Loading",
     "Name" : "الاسم",
     "Company" : "الشركة",
     "Title" : "العنوان",
@@ -17,7 +15,6 @@
     "Address book" : "دفتر العناوين",
     "Groups" : "مجموعات",
     "New contact" : "جهة إتصال جديدة",
-    "No errors" : "لا توجد أخطاء",
     "No results" : "دون أية نتيجة",
     "Last modified" : "آخر تعديل",
     "Rename" : "تعديل الإسم",
@@ -30,7 +27,10 @@
     "First name" : "الإسم",
     "Last name" : "اللقب",
     "Display name" : "الاسم المعروض",
+    "Group name" : "إسم الفريق",
     "Not grouped" : "غير مصنف",
+    "Close" : "إغلاق",
+    "Import" : "استيراد",
     "Nickname" : "كنية.\nلقب.",
     "Detailed name" : "الإسم بالتفصيل",
     "Additional names" : "الأسماء الإضافية",
@@ -65,7 +65,6 @@
     "Relative" : "مرتبط",
     "None" : "لا شيء",
     "Unknown" : "مجهول",
-    "Timezone" : "المنطقة الزمنية",
-    "An error occurred" : "طرأ هناك خطأ"
+    "Timezone" : "المنطقة الزمنية"
 },"pluralForm" :"nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;"
 }

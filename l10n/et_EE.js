@@ -5,7 +5,6 @@ OC.L10N.register(
     "Details" : "Üksikasjad",
     "Contacts" : "Kontaktid",
     "Invalid image" : "Vigane pilt",
-    "Loading" : "Laadimine",
     "Name" : "Nimi",
     "Title" : "Pealkiri",
     "Download" : "Lae alla",
@@ -27,7 +26,11 @@ OC.L10N.register(
     "First name" : "Eesnimi",
     "Last name" : "Perekonnanimi",
     "Display name" : "Kuvatav nimi",
+    "Group name" : "Grupi nimi",
+    "Loading contacts …" : "Laen kontakte ...",
     "Not grouped" : "Pole grupeeritud",
+    "Close" : "Sulge",
+    "Import" : "Impordi",
     "Nickname" : "Hüüdnimi",
     "Detailed name" : "Üksikasjalik nimi",
     "Additional names" : "Lisanimed",
@@ -62,7 +65,6 @@ OC.L10N.register(
     "Car" : "Auto",
     "Work pager" : "Piipar (tööl)",
     "Social network" : "Sotsiaalvõrk",
-    "Relationship" : "Suhe",
     "Spouse" : "Abikaasa",
     "Child" : "Laps",
     "Mother" : "Ema",
@@ -80,7 +82,6 @@ OC.L10N.register(
     "Female" : "Naine",
     "Male" : "Mees",
     "None" : "Pole",
-    "Unknown" : "Teadmata",
-    "An error occurred" : "Tekkis tõrge"
+    "Unknown" : "Teadmata"
 },
 "nplurals=2; plural=(n != 1);");

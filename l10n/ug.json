@@ -1,6 +1,5 @@
 { "translations": {
     "Contacts" : "ئالاقەداشلار",
-    "Loading" : "Loading",
     "Name" : "ئاتى",
     "Title" : "ماۋزۇ",
     "Download" : "چۈشۈر",
@@ -9,6 +8,9 @@
     "Groups" : "گۇرۇپپا",
     "Rename" : "ئات ئۆزگەرت",
     "First name" : "ئاتى",
+    "Group name" : "گۇرۇپپا ئاتى",
+    "Close" : "ياپ",
+    "Import" : "ئەكىر",
     "Nickname" : "تەخەللۇس",
     "Notes" : "ئىزاھاتلار",
     "Location" : "ئورنى",

@@ -10,6 +10,7 @@ OC.L10N.register(
     "Groups" : "ګروپونه",
     "Rename" : "نوم بدلول",
     "Copy link" : "لېنک کاپي کول",
+    "Close" : "بندول",
     "Notes" : "شسیب",
     "Home" : "کور",
     "Work" : "دفتر",

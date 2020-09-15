@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "ئالاقەداشلار",
-    "Loading" : "Loading",
     "Name" : "ئاتى",
     "Title" : "ماۋزۇ",
     "Download" : "چۈشۈر",
@@ -11,6 +10,9 @@ OC.L10N.register(
     "Groups" : "گۇرۇپپا",
     "Rename" : "ئات ئۆزگەرت",
     "First name" : "ئاتى",
+    "Group name" : "گۇرۇپپا ئاتى",
+    "Close" : "ياپ",
+    "Import" : "ئەكىر",
     "Nickname" : "تەخەللۇس",
     "Notes" : "ئىزاھاتلار",
     "Location" : "ئورنى",

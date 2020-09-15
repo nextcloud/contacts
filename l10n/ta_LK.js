@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Details" : "விவரங்கள்",
     "Contacts" : "தொடர்புகள்",
-    "Loading" : "Loading",
     "Name" : "பெயர்",
     "Title" : "தலைப்பு",
     "Download" : "பதிவிறக்குக",
@@ -14,6 +13,8 @@ OC.L10N.register(
     "can edit" : "தொகுக்க முடியும்",
     "First name" : "முதல் பெயர்",
     "Last name" : "கடைசிப் பெயர்",
+    "Close" : "மூடுக",
+    "Import" : "இறக்குமதி",
     "Nickname" : "பட்டப்பெயர்",
     "Additional names" : "மேலதிக பெயர்கள்",
     "Notes" : "குறிப்புகள்",

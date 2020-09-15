@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Kontakti",
     "Invalid image" : "Nevažeća datoteka",
-    "Loading" : "Loading",
     "Name" : "Ime",
     "Title" : "Naslov",
     "Download" : "Preuzmi",

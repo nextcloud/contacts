@@ -5,7 +5,6 @@ OC.L10N.register(
     "Details" : "รายละเอียด",
     "Contacts" : "ข้อมูลผู้ติดต่อ",
     "Invalid image" : "รูปภาพไม่ถูกต้อง",
-    "Loading" : "Loading",
     "Name" : "ชื่อ",
     "Title" : "ชื่อเรื่อง",
     "Download" : "ดาวน์โหลด",
