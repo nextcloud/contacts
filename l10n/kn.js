@@ -12,6 +12,8 @@ OC.L10N.register(
     "Enabled" : "ಸಕ್ರಿಯಗೊಳಿಸಿದೆ",
     "Disabled" : "ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ",
     "can edit" : "﻿ಸಂಪಾದಿಸಬಹುದು",
+    "Close" : "ಮುಚ್ಚು",
+    "Import" : "ಆಮದು",
     "Notes" : "Notes",
     "Home" : "﻿ಮುಖಪುಟ",
     "Other" : "﻿ಇತರೆ",
