@@ -109,6 +109,8 @@ OC.L10N.register(
     "Group not found" : "Gruppo non trovato",
     "This group already exists" : "Questo gruppo esiste già",
     "Close" : "Chiudi",
+    "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} contatto aggiunto a {name}","{success} contatti aggiunti a {name}"],
+    "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Aggiunta di {success} contatto a {name}","Aggiunta di {success} contatti a {name}"],
     "_{count} error_::_{count} errors_" : ["{count} errore","{count} errori"],
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importazione di %n contatto in {addressbook}","Importazione di %n contatti in {addressbook}"],
     "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Importazione completata di %n contatto in {addressbook}","Importazione completata di %n contatti in {addressbook}"],
