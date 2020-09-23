@@ -76,6 +76,8 @@ OC.L10N.register(
     "Address book name" : "アドレス帳名",
     "First name" : "名",
     "Last name" : "姓",
+    "Phonetic first name" : "めい",
+    "Phonetic last name" : "せい",
     "Display name" : "表示名",
     "Sort by {sorting}" : "{sorting} で整列",
     "Add contacts" : "連絡先を追加",
