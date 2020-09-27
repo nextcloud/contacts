@@ -85,6 +85,7 @@ OC.L10N.register(
     "Add contacts" : "Додади контакти",
     "Group name" : "Име на група",
     "Not grouped" : "Не групирани",
+    "Recently contacted" : "Неодамна контактирани",
     "Unable to create the contact." : "Неможе да се креира контакт.",
     "Contact not found" : "Контактот не е пронајден",
     "Close" : "Затвори",
