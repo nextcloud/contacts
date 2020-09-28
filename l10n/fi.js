@@ -91,6 +91,7 @@ OC.L10N.register(
     "There are no contacts in this group" : "Tässä ryhmässä ei ole yhteystietoja",
     "Create contacts" : "Luo yhteystietoja",
     "Not grouped" : "Ei ryhmitelty",
+    "Recently contacted" : "Äskettäin yhteydessä",
     "Unable to create the contact." : "Yhteystiedon luominen ei onnistunut.",
     "Contact not found" : "Yhteytietoa ei löytynyt",
     "Group not found" : "Ryhmää ei löytynyt",
