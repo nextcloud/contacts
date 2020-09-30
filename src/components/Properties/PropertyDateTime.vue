@@ -157,13 +157,13 @@ export default {
 
 		try {
 			// default load e.g. fr-fr
-			await import('moment/locale/' + locale)
+			await import(/* webpackChunkName: 'moment' */'moment/locale/' + locale)
 			this.locale = locale
 		} catch (e) {
 			try {
 				// failure: fallback to fr
 				locale = locale.split('-')[0]
-				await import('moment/locale/' + locale)
+				await import(/* webpackChunkName: 'moment' */'moment/locale/' + locale)
 			} catch (e) {
 				// failure, fallback to english
 				console.debug('Fallback to locale', 'en')
