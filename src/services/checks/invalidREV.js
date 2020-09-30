@@ -26,6 +26,8 @@ import { VCardTime } from 'ical.js'
 
 export default {
 	name: 'invalid REV',
+	silent: true,
+
 	run: contact => {
 		try {
 			const hasRev = contact.vCard.hasProperty('rev')
@@ -49,6 +51,7 @@ export default {
 		}
 		return true
 	},
+
 	fix: contact => {
 		try {
 			// removing old invalid data

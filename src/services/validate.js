@@ -38,7 +38,10 @@ export default function(contact) {
 						console.warn('The following contact needed a correction that failed:', check.name, contact)
 					} else {
 						// SUCCESS 💪
-						result = true
+						// Only display visual feedback if the fix is not silent
+						if (!check.silent) {
+							result = true
+						}
 						console.info('The following contact has been repaired:', check.name, contact)
 					}
 				}
