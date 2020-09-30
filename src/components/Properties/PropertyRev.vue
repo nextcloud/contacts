@@ -27,16 +27,13 @@
 </template>
 
 <script>
-import { VCardTime } from 'ical.js'
-
 export default {
 	name: 'PropertyRev',
 
 	props: {
 		value: {
-			type: VCardTime,
+			type: Object,
 			required: true,
-			default: null,
 		},
 	},
 
