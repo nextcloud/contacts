@@ -39,7 +39,8 @@
 		:prop-type="propType"
 		:options="sortedModelOptions"
 		:is-read-only="isReadOnly"
-		@delete="deleteProp"
+		@delete="onDelete"
+		@resize="onResize"
 		@update="updateContact" />
 </template>
 
@@ -342,9 +343,16 @@ export default {
 		/**
 		 * Delete this property
 		 */
-		deleteProp() {
+		onDelete() {
 			this.localContact.vCard.removeProperty(this.property)
 			this.updateContact()
+		},
+
+		/**
+		 * Forward resize event
+		 */
+		onResize() {
+			this.$emit('resize')
 		},
 	},
 }

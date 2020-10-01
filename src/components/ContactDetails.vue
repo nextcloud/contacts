@@ -199,7 +199,8 @@
 						:property="property"
 						:contact="contact"
 						:local-contact="localContact"
-						:update-contact="debounceUpdateContact" />
+						:update-contact="debounceUpdateContact"
+						@resize="redrawMasonry" />
 				</div>
 
 				<!-- addressbook change select - no last property because class is not applied here,
@@ -666,7 +667,6 @@ export default {
 					})
 				} catch (error) {
 					console.error(error)
-					window.temp1 = error
 					showError(t('contacts', 'An error occurred while trying to copy the contact'))
 				} finally {
 					this.loadingUpdate = false
@@ -762,6 +762,13 @@ export default {
 				: property.getDefaultType()
 
 			return propModel && propType !== 'unknown'
+		},
+
+		/**
+		 * Redraw Masonry
+		 */
+		redrawMasonry() {
+			this.$redrawVueMasonry(this.contactDetailsSelector)
 		},
 	},
 }

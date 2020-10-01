@@ -61,8 +61,8 @@
 				:readonly="isReadOnly"
 				class="property__value"
 				@input="updateValueNoDebounce"
-				@mousemove="resizeGrid"
-				@keypress="resizeGrid" />
+				@mousemove="resizeHeight"
+				@keypress="resizeHeight" />
 
 			<!-- OR default to input -->
 			<input v-else
@@ -122,14 +122,6 @@ export default {
 		},
 	},
 
-	data() {
-		return {
-			// the textarea additionnal height compared to the
-			// default input text. Min is 2 grid height
-			noteHeight: 1,
-		}
-	},
-
 	computed: {
 		inputmode() {
 			if (this.propName === 'tel') {
@@ -169,20 +161,19 @@ export default {
 	},
 
 	mounted() {
-		this.resizeGrid()
+		this.resizeHeight()
 	},
 
 	methods: {
-
 		/**
 		 * Watch textarea resize and update the gridSize accordingly
 		 */
-		resizeGrid: debounce(function(e) {
+		resizeHeight: debounce(function(e) {
 			if (this.$refs.textarea && this.$refs.textarea.offsetHeight) {
 				// adjust textarea size to content (2 = border)
 				this.$refs.textarea.style.height = `${this.$refs.textarea.scrollHeight + 2}px`
-				// adjust grid
-				this.noteHeight = Math.floor(this.$refs.textarea.offsetHeight / 40)
+				// send resize event to warn we changed from the inside
+				this.$emit('resize')
 			}
 		}, 100),
 
@@ -194,7 +185,7 @@ export default {
 		 * @param {Object} e event
 		 */
 		updateValueNoDebounce(e) {
-			this.resizeGrid(e)
+			this.resizeHeight(e)
 			this.updateValue(e)
 		},
 	},
