@@ -1,5 +1,5 @@
 <?php
-script('contacts', 'adminSettings');
+script('contacts', 'contacts-admin-settings');
 ?>
 
 <div id="contacts-settings"></div>
