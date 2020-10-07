@@ -72,7 +72,7 @@
 				:class="{'property__value--with-ext': haveExtHandler}"
 				type="text"
 				class="property__value"
-				:placeholder="localType.placeholder"
+				:placeholder="placeholder"
 				@input="updateValue">
 
 			<!-- external link -->
@@ -157,6 +157,18 @@ export default {
 
 		haveExtHandler() {
 			return this.externalHandler.trim() !== '' && this.localValue && this.localValue.length > 0
+		},
+
+		/**
+		 * Return the selected type placeholder if any
+		 * or the propModel default placeholder
+		 * @returns {string}
+		 */
+		placeholder() {
+			if (this.localType?.placeholder) {
+				return this.localType.placeholder
+			}
+			return this.propModel.placeholder
 		},
 	},
 
