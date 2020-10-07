@@ -209,7 +209,7 @@ class SocialApiService {
 			}
 
 			$addressBook->createOrUpdate($changes, $addressbookId);
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
 		return new JSONResponse([], Http::STATUS_OK);
@@ -383,7 +383,7 @@ class SocialApiService {
 				try {
 					$r = $this->updateContact($addressBook->getURI(), $contact['UID'], $network);
 					$response = $this->registerUpdateResult($response, $contact['FN'], $r->getStatus());
-				} catch (Exception $e) {
+				} catch (\Exception $e) {
 					$response = $this->registerUpdateResult($response, $contact['FN'], '-1');
 				}
 
