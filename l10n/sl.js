@@ -96,6 +96,7 @@ OC.L10N.register(
     "There are no contacts in this group" : "V tej skupini ni stikov",
     "Create contacts" : "Ustvari stike",
     "Not grouped" : "Brez skupine",
+    "Recently contacted" : "Nedavno v stiku",
     "Unable to create the contact." : "Ni mogoče ustvariti stika.",
     "Contact not found" : "Stika ni mogoče najti",
     "Group not found" : "Skupine ni mogoče najti",
