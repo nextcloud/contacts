@@ -86,6 +86,7 @@ OC.L10N.register(
     "Group name" : "Όνομα ομάδας",
     "Loading contacts …" : "Φόρτωση επαφών ...",
     "Not grouped" : "Χωρίς ομάδα",
+    "Recently contacted" : "Πρόσφατη επικοινωνία",
     "Unable to create the contact." : "Αδυναμία δημιουργίας επαφής.",
     "Contact not found" : "Δεν βρέθηκε η επαφή.",
     "Close" : "Κλείσιμο",
