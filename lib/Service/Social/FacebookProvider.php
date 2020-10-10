@@ -78,17 +78,11 @@ class FacebookProvider implements ISocialProvider {
 			if ($result->getStatusCode() !== 200) {
 				return $profileName;
 			}
-			$htmlResult = new \DOMDocument();
-			$htmlResult->loadHTML($result->getBody());
-			$metas = $htmlResult->getElementsByTagName('meta');
-			foreach ($metas as $meta) {
-				foreach ($meta->attributes as $attr) {
-					$value = $attr->nodeValue;
-					if (strpos($value, "/profile/")) {
-						$value = str_replace('fb://profile/', '', $value);
-						return($value);
-					}
-				}
+			$htmlResult = $result->getBody();
+
+			$entity_id = '/.*"entity_id":"([0-9]+)".*/';
+			if (preg_match($entity_id, $htmlResult, $matches)) {
+				return($matches[1]);
 			}
 			// keyword not found - page changed?
 			return $profileName;

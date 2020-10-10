@@ -42,10 +42,11 @@ class MastodonProvider implements ISocialProvider {
 	 * @return string
 	 */
 	public function cleanupId(string $candidate):?string {
+		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
 		try {
-			if (strpos($candidate, '@') === 0) {
+			if (strpos($candidate, 'http') !== 0) {
 				$user_server = explode('@', $candidate);
-				$candidate = 'https://' . $user_server[2] . '/@' . $user_server[1];
+				$candidate = 'https://' . array_pop($user_server) . '/@' . array_pop($user_server);
 			}
 		} catch (Exception $e) {
 			$candidate = null;

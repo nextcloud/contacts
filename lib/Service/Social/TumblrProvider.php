@@ -35,6 +35,7 @@ class TumblrProvider implements ISocialProvider {
 	 * @return string
 	 */
 	public function cleanupId(string $candidate):?string {
+		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
 		$subdomain = '/(?:http[s]*\:\/\/)*(.*?)\.(?=[^\/]*\..{2,5})/i'; // subdomain
 		if (preg_match($subdomain, $candidate, $matches)) {
 			$candidate = $matches[1];
