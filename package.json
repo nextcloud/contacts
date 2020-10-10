@@ -54,7 +54,7 @@
 		"qr-image": "^3.2.0",
 		"regenerator-runtime": "^0.13.7",
 		"string-natural-compare": "^3.0.1",
-		"uuid": "^8.3.0",
+		"uuid": "^8.3.1",
 		"vue": "^2.6.12",
 		"vue-click-outside": "^1.1.0",
 		"vue-clipboard2": "^0.3.1",
