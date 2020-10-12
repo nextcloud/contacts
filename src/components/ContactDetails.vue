@@ -224,7 +224,10 @@
 					class="property-masonry property--groups property--last" />
 
 				<!-- new property select -->
-				<AddNewProp v-masonry-tile :contact="contact" class="property-masonry" />
+				<AddNewProp v-if="!isReadOnly"
+					v-masonry-tile
+					:contact="contact"
+					class="property-masonry" />
 
 				<!-- Last modified-->
 				<PropertyRev v-if="contact.rev" :value="contact.rev" />

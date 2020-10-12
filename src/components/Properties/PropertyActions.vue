@@ -27,8 +27,7 @@
 		</ActionButton>
 		<Actions :is="action"
 			v-for="(action, index) in actions"
-			:key="index"
-			:component="propertyComponent" />
+			:key="index" />
 	</Actions>
 </template>
 
@@ -48,10 +47,6 @@ export default {
 		actions: {
 			type: Array,
 			default: () => [],
-		},
-		propertyComponent: {
-			type: Object,
-			required: true,
 		},
 	},
 
