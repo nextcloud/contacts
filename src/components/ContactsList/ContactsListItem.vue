@@ -11,13 +11,14 @@
 			class="app-content-list-item-checkbox checkbox" @keypress.enter.space.prevent.stop="toggleSelect">
 		<label :for="contact.key" @click.prevent.stop="toggleSelect" @keypress.enter.space.prevent.stop="toggleSelect" />
 		-->
-		<div :style="avatarStyle" class="app-content-list-item-icon">
-			<!-- try to fetch the avatar only if the contact exists on the server -->
-			<div v-if="hasPhoto" :style="{ 'backgroundImage': avatarUrl }" class="app-content-list-item-icon__avatar" />
-			<template v-else>
-				{{ contact.displayName | firstLetter }}
-			</template>
-		</div>
+		<Avatar
+			:disable-menu="true"
+			:disable-tooltip="true"
+			:display-name="contact.displayName"
+			:is-no-user="true"
+			:size="40"
+			:url="avatarUrl"
+			class="app-content-list-item-icon" />
 
 		<!-- contact data -->
 		<div class="app-content-list-item-line-one">
@@ -30,13 +31,15 @@
 </template>
 
 <script>
+import Avatar from '@nextcloud/vue/dist/Components/Avatar'
+
 export default {
 	name: 'ContactsListItem',
-	filters: {
-		firstLetter(value) {
-			return value.charAt(0)
-		},
+
+	components: {
+		Avatar,
 	},
+
 	props: {
 		index: {
 			type: Number,
@@ -47,6 +50,7 @@ export default {
 			required: true,
 		},
 	},
+
 	computed: {
 		selectedGroup() {
 			return this.$route.params.selectedGroup
@@ -60,37 +64,14 @@ export default {
 			return window.btoa(this.contact.key).slice(0, -2)
 		},
 
-		hasPhoto() {
-			return this.contact.dav && (this.contact.dav.hasphoto || this.contact.photo)
-		},
-
-		avatarStyle() {
-			if (this.hasPhoto) {
-				return {
-					backgroundColor: '#fff',
-					// The contact photo gets cropped in a circular shape, which might look odd with transparent photos.
-					// This box shadow ensures that there's always a very faint edge hinting at the circle.
-					boxShadow: '0 0 5px rgba(0, 0, 0, 0.05) inset',
-				}
-			}
-
-			try {
-				const color = this.contact.uid.toRgb()
-				return {
-					backgroundColor: `rgb(${color.r}, ${color.g}, ${color.b})`,
-				}
-			} catch (e) {
-				return {
-					backgroundColor: 'grey',
-				}
-			}
-		},
-
 		avatarUrl() {
 			if (this.contact.photo) {
-				return `url(${this.contact.photoUrl})`
+				return `${this.contact.photoUrl}`
 			}
-			return `url(${this.contact.url}?photo)`
+			if (this.contact.url) {
+				return `${this.contact.url}?photo`
+			}
+			return undefined
 		},
 	},
 	methods: {
