@@ -42,6 +42,7 @@ class InstagramProvider implements ISocialProvider {
 	 * @return string
 	 */
 	public function cleanupId(string $candidate):string {
+		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
 		return basename($candidate);
 	}
 
