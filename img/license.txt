@@ -4,3 +4,4 @@
 * “mastodon (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/mastodon?style=brands)
 * “tumblr (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/tumblr?style=brands)
 * “twitter (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/twitter?style=brands)
+* “diaspora (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/diaspora?style=brands)
