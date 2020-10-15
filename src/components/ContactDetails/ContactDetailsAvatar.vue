@@ -475,7 +475,7 @@ export default {
 		// White background for avatars with transparency, also in dark theme
 		background-color: #fff;
 		background-repeat: no-repeat;
-		background-position: center;
+		background-position: top;
 		background-size: cover;
 	}
 
