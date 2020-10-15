@@ -84,6 +84,7 @@ OC.L10N.register(
     "Import from files" : "Importer depuis des fichiers",
     "Importing is disabled because there are no address books available" : "L'import n'est pas disponible car il n'existe aucun carnet d'adresses",
     "Choose a vCard file to import" : "Sélectionnez un fichier vCard à importer",
+    "Import into the " : "Importer dans",
     "Address book name" : "Nom du carnet d'adresses",
     "An error occurred, unable to create the address book" : "Une erreur est survenue, impossible de créer le carnet d'adresses",
     "First name" : "Prénom",
