@@ -115,6 +115,7 @@ OC.L10N.register(
     "_{count} error_::_{count} errors_" : ["{count} hata","{count} hata"],
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["%n kişi {addressbook} içine aktarılıyor","%n kişi {addressbook} içine aktarılıyor"],
     "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["%n kişi {addressbook} içine aktarıldı","%n kişi {addressbook} içine aktarıldı"],
+    "You don" : "Şunu yapmadınız",
     "Import" : "İçe aktar",
     "Nickname" : "Kısaltma",
     "Detailed name" : "Ayrıntılı ad",
