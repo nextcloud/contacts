@@ -112,7 +112,7 @@ OC.L10N.register(
     "Postal code" : "Posta kodea",
     "Country" : "Herrialdea",
     "Birthday" : "Jaioteguna",
-    "Anniversary" : "Urteurrena",
+    "Anniversary" : "Urtebetetzea / urteurrena",
     "Date of death" : "Heriotze data",
     "Email" : "E-posta",
     "Instant messaging" : "Istanteko mezularitza",
