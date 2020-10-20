@@ -22,6 +22,7 @@
 
 import { v4 as uuid } from 'uuid'
 import ICAL from 'ical.js'
+import b64toBlob from 'b64-to-blob'
 
 import store from '../store'
 import updateDesignSet from '../services/updateDesignSet'
@@ -225,6 +226,7 @@ export default class Contact {
 
 	/**
 	 * Return the photo usable url
+	 * We cannot fetch external url because of csp policies
 	 *
 	 * @readonly
 	 * @memberof Contact
@@ -232,22 +234,24 @@ export default class Contact {
 	get photoUrl() {
 		const photo = this.vCard.getFirstProperty('photo')
 		const encoding = photo.getFirstParameter('encoding')
-		const type = photo.getFirstParameter('type')
+		let photoType = photo.getFirstParameter('type')
+		let photoB64 = this.photo
 
 		const isBinary = photo.type === 'binary' || encoding === 'b'
 
-		if (photo && !this.photo.startsWith('data') && isBinary) {
-			// split on coma in case of any leftover base64 data and retrieve last part
-			// usually we come to this part when the base64 image type is unknown
-			return `data:image/${type};base64,${this.photo.split(',').pop()}`
+		if (photo && photoB64.startsWith('data') && !isBinary) {
+			// get the last part = base64
+			photoB64 = photoB64.split(',').pop()
+			// 'data:image/png' => 'png'
+			photoType = photoB64.split(';')[0].split('/')
 		}
-		// could be just an url of the already encoded `data:image...`
+
 		try {
-			// eslint-disable-next-line no-new
-			new URL(this.photo)
-			return this.photo
+			// Create blob from url
+			const blob = b64toBlob(photoB64, `image/${photoType}`)
+			return URL.createObjectURL(blob)
 		} catch {
-			console.error('Invalid photo for the following contact. Ignoring...', this.contact)
+			console.error('Invalid photo for the following contact. Ignoring...', this.contact, { photoB64, photoType })
 			return false
 		}
 	}

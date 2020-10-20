@@ -37,12 +37,20 @@
 				:style="{ 'backgroundImage': `url(${contact.photoUrl})` }"
 				class="contact-header-avatar__photo"
 				@click="toggleModal" />
+			<Avatar v-else
+				:disable-tooltip="true"
+				:display-name="contact.displayName"
+				:is-no-user="true"
+				:size="75"
+				class="contact-header-avatar__photo" />
 
 			<!-- attention, this menu exists twice in this file -->
 			<Actions
-				default-icon="icon-picture-force-white"
+				v-if="!isReadOnly || contact.photo"
+				:force-menu="true"
 				:open.sync="opened"
-				class="contact-header-avatar__menu">
+				class="contact-header-avatar__menu"
+				default-icon="icon-picture-force-white">
 				<template v-if="!isReadOnly">
 					<ActionButton
 						icon="icon-upload"
@@ -90,19 +98,17 @@
 			@close="toggleModal">
 			<!-- attention, this menu exists twice in this file -->
 			<template #actions>
-				<ActionButton
-					v-if="!isReadOnly"
-					icon="icon-upload"
-					@click="selectFileInput">
-					{{ t('contacts', 'Upload a new picture') }}
-				</ActionButton>
-				<ActionButton
-					v-if="!isReadOnly"
-					icon="icon-folder"
-					@click="selectFilePicker">
-					{{ t('contacts', 'Choose from files') }}
-				</ActionButton>
 				<template v-if="!isReadOnly">
+					<ActionButton
+						icon="icon-upload"
+						@click="selectFileInput">
+						{{ t('contacts', 'Upload a new picture') }}
+					</ActionButton>
+					<ActionButton
+						icon="icon-folder"
+						@click="selectFilePicker">
+						{{ t('contacts', 'Choose from files') }}
+					</ActionButton>
 					<ActionButton
 						v-for="network in supportedSocial"
 						:key="network"
@@ -111,6 +117,7 @@
 						{{ t('contacts', 'Get from ' + network) }}
 					</ActionButton>
 				</template>
+
 				<!-- FIXME: the link seems to have a bigger font size than the button caption -->
 				<ActionLink
 					v-if="contact.photo"
@@ -126,6 +133,7 @@
 					{{ t('contacts', 'Delete picture') }}
 				</ActionButton>
 			</template>
+
 			<img ref="img"
 				:src="contact.photoUrl"
 				class="contact-header-modal__photo">
@@ -134,6 +142,7 @@
 </template>
 
 <script>
+import Avatar from '@nextcloud/vue/dist/Components/Avatar'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 import Actions from '@nextcloud/vue/dist/Components/Actions'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
@@ -153,10 +162,11 @@ export default {
 	name: 'ContactDetailsAvatar',
 
 	components: {
-		Modal,
-		Actions,
 		ActionButton,
 		ActionLink,
+		Actions,
+		Avatar,
+		Modal,
 	},
 
 	props: {
