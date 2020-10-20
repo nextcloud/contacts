@@ -1,5 +1,27 @@
 # Changelog
 
+## 3.4.1 - 2020-10-20
+
+[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.0...v3.4.1)
+
+### Enhancements
+- adding diaspora to the list for social sync
+  [\#1853](https://github.com/nextcloud/contacts/pull/1853) ([call-me-matt](https://github.com/call-me-matt))
+
+### Fixed
+- Fix avatar display on read-only contacts and use global Avatar component
+  [\#1846](https://github.com/nextcloud/contacts/pull/1846) ([skjnldsv](https://github.com/skjnldsv))
+- Ignore errors from invalid social ids
+  [\#1829](https://github.com/nextcloud/contacts/pull/1829) ([call-me-matt](https://github.com/call-me-matt))
+- Fix placeholder display
+  [\#1828](https://github.com/nextcloud/contacts/pull/1828) ([skjnldsv](https://github.com/skjnldsv))
+- Fix social sync admin settings
+  [\#1821](https://github.com/nextcloud/contacts/pull/1821) ([skjnldsv](https://github.com/skjnldsv))
+- Force redraw masonry on property resize
+  [\#1819](https://github.com/nextcloud/contacts/pull/1819) ([skjnldsv](https://github.com/skjnldsv))
+- More robust social ids for social sync
+  [\#1843](https://github.com/nextcloud/contacts/pull/1843) ([call-me-matt](https://github.com/call-me-matt))
+
 ## 3.4.0 - 2020-09-30
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v3.3.0...v3.4.0)
