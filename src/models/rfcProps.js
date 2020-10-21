@@ -235,6 +235,7 @@ const properties = {
 			{ id: 'GOOGLEPLUS', name: 'Google+', placeholder: 'https://plus.google.com/…' },
 			{ id: 'INSTAGRAM', name: 'Instagram', placeholder: 'https://instagram.com/…' },
 			{ id: 'LINKEDIN', name: 'LinkedIn', placeholder: 'https://linkedin.com/…' },
+			{ id: 'XING', name: 'Xing', placeholder: 'https://www.xing.com/profile/…' },
 			{ id: 'PINTEREST', name: 'Pinterest', placeholder: 'https://pinterest.com/…' },
 			{ id: 'QZONE', name: 'QZone', placeholder: 'https://qzone.com/…' },
 			{ id: 'TUMBLR', name: 'Tumblr', placeholder: 'https://tumblr.com/…' },
