@@ -44,6 +44,7 @@ OC.L10N.register(
     "Groups" : "Skupine",
     "New contact" : "Nov stik",
     "Syntax error. Cannot open the contact." : "Napaka skladnje. Ni mogoče odpreti podatkov stika.",
+    "Remove {type}" : "Odstrani {type}",
     "Loading …" : "Poteka nalaganje …",
     "List is empty" : "Seznam je prazen",
     "No results" : "Ni zadetkov",
