@@ -134,9 +134,12 @@
 				</ActionButton>
 			</template>
 
-			<img ref="img"
-				:src="contact.photoUrl"
-				class="contact-header-modal__photo">
+			<div class="contact-header-modal__photo-wrapper"
+				@click.exact.self="toggleModal">
+				<img ref="img"
+					:src="contact.photoUrl"
+					class="contact-header-modal__photo">
+			</div>
 		</Modal>
 	</div>
 </template>
@@ -205,6 +208,9 @@ export default {
 	},
 
 	methods: {
+		onLoad() {
+			console.debug(...arguments)
+		},
 		/**
 		 * Handler to store a new photo on the current contact
 		 *
@@ -526,14 +532,40 @@ export default {
 }
 
 .contact-header-modal {
+	// We use this nesting of containers and max/width-height
+	// to make automatically contain the image.
+	// Because of that, we now fill the modal-container,
+	// so we need to watch for click on the photo-wrapper to
+	// close on image click outside.
 	&::v-deep .modal-container {
-		display: flex !important;
-		align-items: center;
-		justify-content: center;
+		background-color: transparent;
+		box-shadow: none;
+
+		&,
+		.contact-header-modal__photo-wrapper {
+			// center and align nested containers & image
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.contact-header-modal__photo-wrapper {
+			// contain image
+			width: 100%;
+			height: 100%;
+			cursor: pointer;
+		}
+
 		.contact-header-modal__photo {
+			// preserve ratio
+			max-width: 100%;
+			max-height: 100%;
 			// animate zooming/resize
 			transition: height 100ms ease,
 				width 100ms ease;
+			border-radius: var(--border-radius-large);
+			// make sure transparent images are visible
+			background-color: white;
 		}
 	}
 }
