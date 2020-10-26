@@ -190,13 +190,6 @@
 			<ImportView @close="closeImport" />
 		</Modal>
 
-		<!-- Select contacts group modal -->
-		<EntityPicker v-if="showContactPicker"
-			:data-types="pickerTypes"
-			:data-set="pickerData"
-			@close="onContactPickerClose"
-			@submit="onContactPickerPick" />
-
 		<!-- Bulk contacts edit modal -->
 		<Modal v-if="isProcessing || isProcessDone"
 			:clear-view-delay="-1"
@@ -204,6 +197,13 @@
 			@close="closeProcess">
 			<AddToGroupView v-bind="processStatus" @close="closeProcess" />
 		</Modal>
+
+		<!-- Select contacts group modal -->
+		<EntityPicker v-else-if="showContactPicker"
+			:data-types="pickerTypes"
+			:data-set="pickerData"
+			@close="onContactPickerClose"
+			@submit="onContactPickerPick" />
 	</Content>
 </template>
 
@@ -306,6 +306,7 @@ export default {
 			searchQuery: '',
 			showContactPicker: false,
 			contactPickerforGroup: null,
+			pickerData: [],
 			pickerTypes: [{
 				id: 'contact',
 				label: t('contacts', 'Contacts'),
@@ -718,6 +719,8 @@ export default {
 
 		// Bulk contacts group management handlers
 		addContactsToGroup(group) {
+			console.debug('Contacts picker opened for group', group)
+
 			// Get the full group if we provided the group name only
 			if (typeof group === 'string') {
 				group = this.groups.find(a => a.name === group)
