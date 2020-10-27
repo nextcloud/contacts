@@ -146,7 +146,7 @@
 
 			<div v-else-if="isEmptyGroup && !isRealGroup">
 				<EmptyContent icon="icon-contacts-dark">
-					{{ t('contacts', `You don't have any contacts yet`) }}
+					{{ t('contacts', `There are no contacts yet`) }}
 					<template #desc>
 						<button class="primary" @click="newContact">
 							{{ t('contacts', 'Create contact') }}
