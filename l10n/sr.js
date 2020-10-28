@@ -84,7 +84,6 @@ OC.L10N.register(
     "Import from files" : "Увези из фајлова",
     "Importing is disabled because there are no address books available" : "Увоз је искључен пошто нема доступних адресара",
     "Choose a vCard file to import" : "Изаберите „vCard“ фајл за увоз",
-    "Import into the " : "Увези у",
     "Address book name" : "Назив адресара",
     "An error occurred, unable to create the address book" : "Дошло је до грешке, не могу да направим адресар",
     "First name" : "Име",
