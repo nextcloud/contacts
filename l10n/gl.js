@@ -99,6 +99,7 @@ OC.L10N.register(
     "Create a new group" : "Crear un novo grupo",
     "Group name" : "Nome do grupo",
     "Loading contacts …" : "Cargando contactos...",
+    "There are no contacts yet" : "Aínda non hai contactos",
     "Create contact" : "Crear contacto.",
     "There are no contacts in this group" : "Non hai contactos neste grupo",
     "Create contacts" : "Crear contactos",

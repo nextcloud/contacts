@@ -99,6 +99,7 @@ OC.L10N.register(
     "Create a new group" : "Креирај нова група",
     "Group name" : "Име на група",
     "Loading contacts …" : "Вчитување на контактите ...",
+    "There are no contacts yet" : "Сеуште нема контакти",
     "Create contact" : "Креирај контакт",
     "There are no contacts in this group" : "Нема контакти во оваа група",
     "Create contacts" : "Креирај контакти",
