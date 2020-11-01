@@ -30,10 +30,52 @@ class FacebookProvider implements ISocialProvider {
 	/** @var IClientService */
 	private $httpClient;
 
+	/** @var string */
+	public $name = "facebook";
+
 	public function __construct(IClientService $httpClient) {
 		$this->httpClient = $httpClient->NewClient();
 	}
-	
+
+	/**
+	 * Returns if this provider supports this contact
+	 *
+	 * @param {array} contact info
+	 *
+	 * @return bool
+	 */
+	public function supportsContact(array $contact):bool {
+		$socialprofiles = $contact['X-SOCIALPROFILE'];
+		$supports = false;
+		if(isset($socialprofiles)) {
+			foreach($socialprofiles as $profile) {
+				if (strtolower($profile['type']) == $this->name) {
+					$supports = true;
+					break;
+				}
+			}
+		}
+		return $supports;
+	}
+
+	/**
+	 * Returns the profile-picture url
+	 *
+	 * @param {array} contact information
+	 *
+	 * @return array
+	 */
+	public function getImageUrls(array $contact):array {
+		$profileIds = $this->getProfileIds($contact);
+		$urls = array();
+		foreach($profileIds as $profileId) {
+			$recipe = 'https://graph.facebook.com/{socialId}/picture?width=720';
+			$connector = str_replace("{socialId}", $profileId, $recipe);
+			$urls[] = $connector;
+		}
+		return $urls;
+	}
+
 	/**
 	 * Returns the profile-id
 	 *
@@ -41,7 +83,7 @@ class FacebookProvider implements ISocialProvider {
 	 *
 	 * @return string
 	 */
-	public function cleanupId(string $candidate):string {
+	protected function cleanupId(string $candidate):string {
 		$candidate = basename($candidate);
 		if (!is_numeric($candidate)) {
 			$candidate = $this->findFacebookId($candidate);
@@ -50,16 +92,23 @@ class FacebookProvider implements ISocialProvider {
 	}
 
 	/**
-	 * Returns the profile-picture url
+	 * Returns all possible profile ids for contact
 	 *
-	 * @param {string} profileId the profile-id
+	 * @param {array} contact information
 	 *
-	 * @return string
+	 * @return array of string profile ids
 	 */
-	public function getImageUrl(string $profileId):string {
-		$recipe = 'https://graph.facebook.com/{socialId}/picture?width=720';
-		$connector = str_replace("{socialId}", $profileId, $recipe);
-		return $connector;
+	protected function getProfileIds($contact):array {
+		$socialprofiles = $contact['X-SOCIALPROFILE'];
+		$profileIds = array();
+		if(isset($socialprofiles)) {
+			foreach($socialprofiles as $profile) {
+				if (strtolower($profile['type']) == $this->name) {
+					$profileIds[] = $this->cleanupId($profile['value']);
+				}
+			}
+		}
+		return $profileIds;
 	}
 
 	/**

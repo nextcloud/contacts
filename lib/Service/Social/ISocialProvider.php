@@ -24,22 +24,21 @@
 namespace OCA\Contacts\Service\Social;
 
 interface ISocialProvider {
+	/**
+	 * Returns true if provider supports the contact
+	 *
+	 * @param {array} contact details
+	 *
+	 * @return boolean
+	 */
+	public function supportsContact(array $contact):bool ;
 
 	/**
-	 * Returns the profile-id
+	 * Returns all possible profile-picture urls
 	 *
-	 * @param {string} the value from the contact's x-socialprofile
+	 * @param {array} contact information
 	 *
-	 * @return string
+	 * @return array
 	 */
-	public function cleanupId(string $candidate):?string ;
-
-	/**
-	 * Returns the profile-picture url
-	 *
-	 * @param {string} profileId the profile-id
-	 *
-	 * @return string|null
-	 */
-	public function getImageUrl(string $profileId):?string ;
+	public function getImageUrls(array $contact):array ;
 }

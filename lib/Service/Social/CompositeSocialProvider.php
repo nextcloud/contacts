@@ -37,17 +37,19 @@ class CompositeSocialProvider {
 								TwitterProvider $twitterProvider,
 								TumblrProvider $tumblrProvider,
 								DiasporaProvider $diasporaProvider,
-								XingProvider $xingProvider) {
+								XingProvider $xingProvider,
+								GravatarProvider $gravatarProvider) {
 
 		// This determines the priority of known providers
 		$this->providers = [
-			'instagram' => $instagramProvider,
-			'mastodon'  => $mastodonProvider,
-			'twitter'   => $twitterProvider,
-			'facebook'  => $facebookProvider,
-			'tumblr'    => $tumblrProvider,
-			'diaspora'  => $diasporaProvider,
-			'xing'      => $xingProvider,
+			$instagramProvider->name  => $instagramProvider,
+			$mastodonProvider->name   => $mastodonProvider,
+			$twitterProvider->name    => $twitterProvider,
+			$facebookProvider->name   => $facebookProvider,
+			$tumblrProvider->name     => $tumblrProvider,
+			$diasporaProvider->name   => $diasporaProvider,
+			$xingProvider->name       => $xingProvider,
+			$gravatarProvider->name   => $gravatarProvider
 		];
 	}
 
@@ -60,40 +62,31 @@ class CompositeSocialProvider {
 		return array_keys($this->providers);
 	}
 
+	/**
+	 * generate download url for a social entry
+	 *
+	 * @param array contact all social data from the contact
+	 * @param String network the choice which network to use
+	 *
+	 * @returns ISocialProvider if provider of 'network' is found, otherwise null
+	 */
+	public function getSocialConnector(string $network) : ?ISocialProvider {
+		$connector = null;
+		// check if dedicated network selected
+		if (isset($this->providers[$network])) {
+			$connector = $this->providers[$network];
+		}
+		return $connector;
+	}
 
 	/**
 	 * generate download url for a social entry
 	 *
-	 * @param array socialEntries all social data from the contact
-	 * @param String network the choice which network to use (fallback: take first available)
+	 * @param array contact all social data from the contact
 	 *
-	 * @returns String the url to the requested information or null in case of errors
+	 * @return ISocialProvider[] all social providers
 	 */
-	public function getSocialConnector(array $socialEntries, string $network) : ?string {
-		$connector = null;
-		$selection = $this->providers;
-		// check if dedicated network selected
-		if (isset($this->providers[$network])) {
-			$selection = [$network => $this->providers[$network]];
-		}
-
-		// check selected providers in order
-		foreach ($selection as $type => $socialProvider) {
-
-			// search for this network in user's profile
-			foreach ($socialEntries as $socialEntry) {
-				if (strtolower($type) === strtolower($socialEntry['type'])) {
-					$profileId = $socialProvider->cleanupId($socialEntry['value']);
-					if (!is_null($profileId)) {
-						$connector = $socialProvider->getImageUrl($profileId);
-					}
-					break;
-				}
-			}
-			if ($connector) {
-				break;
-			}
-		}
-		return ($connector);
+	public function getSocialConnectors() : array {
+		return array_values($this->providers);
 	}
 }
