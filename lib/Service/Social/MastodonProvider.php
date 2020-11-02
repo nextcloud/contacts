@@ -30,7 +30,7 @@ class MastodonProvider implements ISocialProvider {
 	/** @var IClientService */
 	private $httpClient;
 
-		/** @var string */
+	/** @var string */
 	public $name = "mastodon";
 
 	public function __construct(IClientService $httpClient) {
@@ -47,8 +47,8 @@ class MastodonProvider implements ISocialProvider {
 	public function supportsContact(array $contact):bool {
 		$socialprofiles = $contact['X-SOCIALPROFILE'];
 		$supports = false;
-		if(isset($socialprofiles)) {
-			foreach($socialprofiles as $profile) {
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
 				if (strtolower($profile['type']) == $this->name) {
 					$supports = true;
 					break;
@@ -67,9 +67,9 @@ class MastodonProvider implements ISocialProvider {
 	 */
 	public function getImageUrls(array $contact):array {
 		$profileIds = $this->getProfileIds($contact);
-		$urls = array();
+		$urls = [];
 
-		foreach($profileIds as $profileId) {
+		foreach ($profileIds as $profileId) {
 			$url = $this->getImageUrl($profileId);
 			if (isset($url)) {
 				$urls[] = $url;
@@ -110,12 +110,12 @@ class MastodonProvider implements ISocialProvider {
 	 */
 	protected function getProfileIds($contact):array {
 		$socialprofiles = $contact['X-SOCIALPROFILE'];
-		$profileIds = array();
-		if(isset($socialprofiles)) {
-			foreach($socialprofiles as $profile) {
+		$profileIds = [];
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
 				if (strtolower($profile['type']) == $this->name) {
 					$profileId = $this->cleanupId($profile['value']);
-					if(isset($profileId)) {
+					if (isset($profileId)) {
 						$profileIds[] = $profileId;
 					}
 				}

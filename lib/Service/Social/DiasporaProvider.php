@@ -33,8 +33,8 @@ class DiasporaProvider implements ISocialProvider {
 	/** @var bool */
 	private $looping;
 
-  /** @var string */
-  public $name = "diaspora";
+	/** @var string */
+	public $name = "diaspora";
 
 	public function __construct(IClientService $httpClient) {
 		$this->httpClient = $httpClient->NewClient();
@@ -49,17 +49,17 @@ class DiasporaProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-    $socialprofiles = $contact['X-SOCIALPROFILE'];
-    $supports = false;
-    if(isset($socialprofiles)) {
-      foreach($socialprofiles as $profile) {
-        if ($profile['type'] == $this->name) {
-          $supports = true;
-          break;
-        }
-      }
-    }
-    return $supports;
+		$socialprofiles = $contact['X-SOCIALPROFILE'];
+		$supports = false;
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
+				if ($profile['type'] == $this->name) {
+					$supports = true;
+					break;
+				}
+			}
+		}
+		return $supports;
 	}
 
 	/**
@@ -67,23 +67,23 @@ class DiasporaProvider implements ISocialProvider {
 	 *
 	 * @param {array} contact information
 	 *
-	 * @return array 
+	 * @return array
 	 */
 	public function getImageUrls(array $contact):array {
-    $profileIds = $this->getProfileIds($contact);
-    $urls = array();
+		$profileIds = $this->getProfileIds($contact);
+		$urls = [];
 
-    foreach($profileIds as $profileId) {
-      $url = $this->getImageUrl($profileId);
-      if (isset($url)) {
-        $urls[] = $url;
-      }
-    }
+		foreach ($profileIds as $profileId) {
+			$url = $this->getImageUrl($profileId);
+			if (isset($url)) {
+				$urls[] = $url;
+			}
+		}
 
-    return $urls;
+		return $urls;
 	}
 
-  /**
+	/**
 	 * Returns the profile-picture url
 	 *
 	 * @param {string} profileId the profile-id
@@ -113,29 +113,29 @@ class DiasporaProvider implements ISocialProvider {
 		}
 	}
   
-  /**
-	 * Returns all possible profile ids for contact 
+	/**
+	 * Returns all possible profile ids for contact
 	 *
 	 * @param {array} contact information
 	 *
-	 * @return array 
+	 * @return array
 	 */
-  protected function getProfileIds($contact):array {
-    $socialprofiles = $contact['X-SOCIALPROFILE'];
-    $profileIds = array();
+	protected function getProfileIds($contact):array {
+		$socialprofiles = $contact['X-SOCIALPROFILE'];
+		$profileIds = [];
 
-    if(isset($socialprofiles)) {
-      foreach($socialprofiles as $profile) {
-        if (strtolower($profile['type']) == $this->name) {
-          $profileId = $this->cleanupId($profile['value']);
-          if (isset($profileId)) {
-            $profileIds[] = $profileId;
-          }
-        }
-      }
-    }
-    return $profileIds;
-  }
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
+				if (strtolower($profile['type']) == $this->name) {
+					$profileId = $this->cleanupId($profile['value']);
+					if (isset($profileId)) {
+						$profileIds[] = $profileId;
+					}
+				}
+			}
+		}
+		return $profileIds;
+	}
 	
 	/**
 	 * Returns the profile-id

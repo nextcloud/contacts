@@ -167,10 +167,10 @@ class SocialApiService {
 	 *
 	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
 	 */
-	public function updateContact(string $addressbookId, string $contactId, string $network) : JSONResponse {
+	public function updateContact(string $addressbookId, string $contactId, ?string $network) : JSONResponse {
 		$socialdata = null;
 		$imageType = null;
-		$urls = array();
+		$urls = [];
 		$allConnectors = $this->socialProvider->getSocialConnectors();
 
 		try {
@@ -191,7 +191,7 @@ class SocialApiService {
 				$allConnectors = [$this->socialProvider->getSocialConnector($network)];
 			}
 
-			$connectors = array_filter($allConnectors, function($connector) use($contact) {
+			$connectors = array_filter($allConnectors, function ($connector) use ($contact) {
 				return $connector->supportsContact($contact);
 			});
 
@@ -199,7 +199,7 @@ class SocialApiService {
 				return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
 			}
 
-			foreach($connectors as $connector) {
+			foreach ($connectors as $connector) {
 				$urls = array_merge($connector->getImageUrls($contact), $urls);
 			}
 
@@ -207,7 +207,7 @@ class SocialApiService {
 				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
 			}
 
-			foreach($urls as $url) {
+			foreach ($urls as $url) {
 				try {
 					$httpResult = $this->clientService->NewClient()->get($url);
 					$socialdata = $httpResult->getBody();
@@ -215,7 +215,7 @@ class SocialApiService {
 					if (isset($socialdata) && isset($imageType)) {
 						break;
 					}
-				} catch(\Exception $e) {
+				} catch (\Exception $e) {
 				}
 			}
 

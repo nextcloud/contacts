@@ -45,8 +45,8 @@ class TwitterProvider implements ISocialProvider {
 	 */
 	public function supportsContact(array $contact):bool {
 		$socialprofiles = $contact['X-SOCIALPROFILE'];
-		if(isset($socialprofiles)) {
-			foreach($socialprofiles as $profile) {
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
 				if (strtolower($profile['type']) == $this->name) {
 					return true;
 				}
@@ -64,8 +64,8 @@ class TwitterProvider implements ISocialProvider {
 	 */
 	public function getImageUrls(array $contact):array {
 		$profileIds = $this->getProfileIds($contact);
-		$urls = array();
-		foreach($profileIds as $profileId) {
+		$urls = [];
+		foreach ($profileIds as $profileId) {
 			$recipe = 'https://mobile.twitter.com/{socialId}';
 			$connector = str_replace("{socialId}", $profileId, $recipe);
 			$connector = $this->getFromHtml($connector, '_normal');
@@ -98,9 +98,9 @@ class TwitterProvider implements ISocialProvider {
 	 */
 	protected function getProfileIds($contact):array {
 		$socialprofiles = $contact['X-SOCIALPROFILE'];
-		$profileIds = array();
-		if(isset($socialprofiles)) {
-			foreach($socialprofiles as $profile) {
+		$profileIds = [];
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
 				if (strtolower($profile['type']) == $this->name) {
 					$profileIds[] = $this->cleanupId($profile['value']);
 				}

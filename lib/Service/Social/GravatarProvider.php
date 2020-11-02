@@ -54,8 +54,8 @@ class GravatarProvider implements ISocialProvider {
 	 */
 	public function getImageUrls(array $contact):array {
 		$emails = $this->getProfileIds($contact);
-		$urls = array();
-		foreach($emails as $email) {
+		$urls = [];
+		foreach ($emails as $email) {
 			$hash = md5(strtolower(trim($email['value'])));
 			$recipe = 'https://www.gravatar.com/avatar/{hash}?s=720&d=404';
 			$connector = str_replace("{hash}", $hash, $recipe);
@@ -76,6 +76,6 @@ class GravatarProvider implements ISocialProvider {
 		if (isset($emails)) {
 			return $emails;
 		}
-		return array();
+		return [];
 	}
 }

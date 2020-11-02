@@ -65,10 +65,9 @@ class CompositeSocialProvider {
 	/**
 	 * generate download url for a social entry
 	 *
-	 * @param array contact all social data from the contact
 	 * @param String network the choice which network to use
 	 *
-	 * @returns ISocialProvider if provider of 'network' is found, otherwise null
+	 * @return ISocialProvider if provider of 'network' is found, otherwise null
 	 */
 	public function getSocialConnector(string $network) : ?ISocialProvider {
 		$connector = null;
@@ -81,8 +80,6 @@ class CompositeSocialProvider {
 
 	/**
 	 * generate download url for a social entry
-	 *
-	 * @param array contact all social data from the contact
 	 *
 	 * @return ISocialProvider[] all social providers
 	 */

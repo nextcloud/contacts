@@ -47,8 +47,8 @@ class InstagramProvider implements ISocialProvider {
 	public function supportsContact(array $contact):bool {
 		$socialprofiles = $contact['X-SOCIALPROFILE'];
 		$supports = false;
-		if(isset($socialprofiles)) {
-			foreach($socialprofiles as $profile) {
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
 				if (strtolower($profile['type']) == $this->name) {
 					$supports = true;
 					break;
@@ -67,8 +67,8 @@ class InstagramProvider implements ISocialProvider {
 	 */
 	public function getImageUrls(array $contact):array {
 		$profileIds = $this->getProfileIds($contact);
-		$urls = array();
-		foreach($profileIds as $profileId) {
+		$urls = [];
+		foreach ($profileIds as $profileId) {
 			$recipe = 'https://www.instagram.com/{socialId}/?__a=1';
 			$connector = str_replace("{socialId}", $profileId, $recipe);
 			$connector = $this->getFromJson($connector, 'graphql->user->profile_pic_url_hd');
@@ -98,9 +98,9 @@ class InstagramProvider implements ISocialProvider {
 	 */
 	protected function getProfileIds($contact):array {
 		$socialprofiles = $contact['X-SOCIALPROFILE'];
-		$profileIds = array();
-		if(isset($socialprofiles)) {
-			foreach($socialprofiles as $profile) {
+		$profileIds = [];
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
 				if (strtolower($profile['type']) == $this->name) {
 					$profileIds[] = $this->cleanupId($profile['value']);
 				}

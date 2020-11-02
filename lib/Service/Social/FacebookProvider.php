@@ -47,8 +47,8 @@ class FacebookProvider implements ISocialProvider {
 	public function supportsContact(array $contact):bool {
 		$socialprofiles = $contact['X-SOCIALPROFILE'];
 		$supports = false;
-		if(isset($socialprofiles)) {
-			foreach($socialprofiles as $profile) {
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
 				if (strtolower($profile['type']) == $this->name) {
 					$supports = true;
 					break;
@@ -67,8 +67,8 @@ class FacebookProvider implements ISocialProvider {
 	 */
 	public function getImageUrls(array $contact):array {
 		$profileIds = $this->getProfileIds($contact);
-		$urls = array();
-		foreach($profileIds as $profileId) {
+		$urls = [];
+		foreach ($profileIds as $profileId) {
 			$recipe = 'https://graph.facebook.com/{socialId}/picture?width=720';
 			$connector = str_replace("{socialId}", $profileId, $recipe);
 			$urls[] = $connector;
@@ -100,9 +100,9 @@ class FacebookProvider implements ISocialProvider {
 	 */
 	protected function getProfileIds($contact):array {
 		$socialprofiles = $contact['X-SOCIALPROFILE'];
-		$profileIds = array();
-		if(isset($socialprofiles)) {
-			foreach($socialprofiles as $profile) {
+		$profileIds = [];
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
 				if (strtolower($profile['type']) == $this->name) {
 					$profileIds[] = $this->cleanupId($profile['value']);
 				}
