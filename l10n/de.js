@@ -164,7 +164,7 @@ OC.L10N.register(
     "Relative" : "Verwandter",
     "Friend" : "Freund",
     "Colleague" : "Kollege",
-    "Manager" : "Geschäftsleiter",
+    "Manager" : "Geschäftsführer",
     "Assistant" : "Assistent",
     "Related contacts" : "Zugehörige Kontakte",
     "Contact" : "Kontakt",
