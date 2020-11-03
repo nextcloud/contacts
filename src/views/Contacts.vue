@@ -559,11 +559,12 @@ export default {
 		 */
 		fetchContacts() {
 			// wait for all addressbooks to have fetch their contacts
-			Promise.all(this.addressbooks.map(addressbook => {
-				if (addressbook.enabled) {
+			Promise.all(this.addressbooks
+				.filter(addressbook => addressbook.enabled)
+				.map(addressbook => {
 					return this.$store.dispatch('getContactsFromAddressBook', { addressbook })
-				}
-			})).then(results => {
+				})
+			).then(results => {
 				this.loading = false
 				if (!this.isMobile) {
 					this.selectFirstContactIfNone()
@@ -637,7 +638,7 @@ export default {
 		downloadGroup(group) {
 			// get grouped contacts
 			let groupedContacts = {}
-			group.contacts.map((key) => {
+			group.contacts.forEach(key => {
 				const id = this.contacts[key].addressbook.id
 				groupedContacts = Object.assign({
 					[id]: {
@@ -647,6 +648,7 @@ export default {
 				}, groupedContacts)
 				groupedContacts[id].contacts.push(this.contacts[key].url)
 			})
+
 			// create vcard promise with the requested contacts
 			const vcardPromise = Promise.all(
 				Object.keys(groupedContacts).map(key =>
