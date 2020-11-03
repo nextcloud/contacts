@@ -31,7 +31,7 @@
 		:items="filteredList"
 		:item-size="itemHeight"
 		key-field="key">
-		<template v-slot="{ item, index }">
+		<template #default="{ item, index }">
 			<ContactsListItem
 				v-if="contacts[item.key]"
 				:key="item.key"

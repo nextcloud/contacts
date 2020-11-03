@@ -148,7 +148,6 @@ export default class Contact {
 	 */
 	set version(version) {
 		this.vCard.updatePropertyWithValue('version', version)
-		return true
 	}
 
 	/**
@@ -169,7 +168,6 @@ export default class Contact {
 	 */
 	set uid(uid) {
 		this.vCard.updatePropertyWithValue('uid', uid)
-		return true
 	}
 
 	/**
@@ -190,7 +188,6 @@ export default class Contact {
 	 */
 	set rev(rev) {
 		this.vCard.updatePropertyWithValue('rev', rev)
-		return true
 	}
 
 	/**
@@ -221,7 +218,6 @@ export default class Contact {
 	 */
 	set photo(photo) {
 		this.vCard.updatePropertyWithValue('photo', photo)
-		return true
 	}
 
 	/**
@@ -282,7 +278,7 @@ export default class Contact {
 		// delete the title if empty
 		if (isEmpty(groups)) {
 			this.vCard.removeProperty('categories')
-			return true
+			return
 		}
 
 		if (Array.isArray(groups)) {
@@ -336,9 +332,10 @@ export default class Contact {
 	set org(org) {
 		// delete the org if empty
 		if (isEmpty(org)) {
-			return this.vCard.removeProperty('org')
+			this.vCard.removeProperty('org')
+			return
 		}
-		return this.vCard.updatePropertyWithValue('org', org)
+		this.vCard.updatePropertyWithValue('org', org)
 	}
 
 	/**
@@ -360,9 +357,10 @@ export default class Contact {
 	set title(title) {
 		// delete the title if empty
 		if (isEmpty(title)) {
-			return this.vCard.removeProperty('title')
+			this.vCard.removeProperty('title')
+			return
 		}
-		return this.vCard.updatePropertyWithValue('title', title)
+		this.vCard.updatePropertyWithValue('title', title)
 	}
 
 	/**
@@ -382,7 +380,7 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	set fullName(name) {
-		return this.vCard.updatePropertyWithValue('fn', name)
+		this.vCard.updatePropertyWithValue('fn', name)
 	}
 
 	/**

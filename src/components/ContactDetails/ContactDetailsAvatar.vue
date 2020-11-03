@@ -333,6 +333,7 @@ export default {
 			// Vcard 3 and 4 have different syntax
 			// https://tools.ietf.org/html/rfc2426#page-11
 			if (this.contact.version === '3.0') {
+				// eslint-disable-next-line vue/no-mutating-props
 				this.contact.photo = data
 
 				const photo = this.contact.vCard.getFirstProperty('photo')
@@ -342,6 +343,7 @@ export default {
 				}
 			} else {
 				// https://tools.ietf.org/html/rfc6350#section-6.2.4
+				// eslint-disable-next-line vue/no-mutating-props
 				this.contact.photo = `data:${type};base64,${data}`
 			}
 
@@ -431,7 +433,7 @@ export default {
 
 					// Update local clone
 					const contact = this.$store.getters.getContact(this.contact.key)
-					await this.$emit('updateLocalContact', contact)
+					await this.$emit('update-local-contact', contact)
 
 					// Notify user
 					showSuccess(t('contacts', 'Avatar downloaded from social network'))
