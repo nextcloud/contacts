@@ -49,17 +49,8 @@ class DiasporaProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-		$socialprofiles = $contact['X-SOCIALPROFILE'];
-		$supports = false;
-		if (isset($socialprofiles)) {
-			foreach ($socialprofiles as $profile) {
-				if ($profile['type'] == $this->name) {
-					$supports = true;
-					break;
-				}
-			}
-		}
-		return $supports;
+		$socialprofiles = $this->getProfileIds($contact);
+		return isset($socialprofiles) && count($socialprofiles) > 0;
 	}
 
 	/**
@@ -150,7 +141,7 @@ class DiasporaProvider implements ISocialProvider {
 				$user_server = explode('@', $candidate);
 				$candidate = 'https://' . array_pop($user_server) . '/public/' . array_pop($user_server) . '.atom';
 			}
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			$candidate = null;
 		}
 		return $candidate;

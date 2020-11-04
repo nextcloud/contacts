@@ -38,17 +38,8 @@ class TumblrProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-		$socialprofiles = $contact['X-SOCIALPROFILE'];
-		$supports = false;
-		if (isset($socialprofiles)) {
-			foreach ($socialprofiles as $profile) {
-				if (strtolower($profile['type']) == $this->name) {
-					$supports = true;
-					break;
-				}
-			}
-		}
-		return $supports;
+		$socialprofiles = $this->getProfileIds($contact);
+		return isset($socialprofiles) && count($socialprofiles) > 0;
 	}
 
 	/**

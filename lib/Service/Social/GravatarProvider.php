@@ -23,14 +23,11 @@
 
 namespace OCA\Contacts\Service\Social;
 
-use OCP\Http\Client\IClientService;
-
 class GravatarProvider implements ISocialProvider {
 	/** @var string */
 	public $name = "gravatar";
 
-	public function __construct(IClientService $httpClient) {
-		$this->httpClient = $httpClient->NewClient();
+	public function __construct() {
 	}
 
 	/**
@@ -53,29 +50,16 @@ class GravatarProvider implements ISocialProvider {
 	 * @return array
 	 */
 	public function getImageUrls(array $contact):array {
-		$emails = $this->getProfileIds($contact);
 		$urls = [];
-		foreach ($emails as $email) {
-			$hash = md5(strtolower(trim($email['value'])));
-			$recipe = 'https://www.gravatar.com/avatar/{hash}?s=720&d=404';
-			$connector = str_replace("{hash}", $hash, $recipe);
-			$urls[] = $connector;
-		}
-		return $urls;
-	}
-
-	/**
-	 * Returns all possible profile ids for contact
-	 *
-	 * @param {array} contact information
-	 *
-	 * @return array of string profile ids
-	 */
-	protected function getProfileIds(array $contact):array {
 		$emails = $contact['EMAIL'];
 		if (isset($emails)) {
-			return $emails;
+			foreach ($emails as $email) {
+				$hash = md5(strtolower(trim($email['value'])));
+				$recipe = 'https://www.gravatar.com/avatar/{hash}?s=720&d=404';
+				$connector = str_replace("{hash}", $hash, $recipe);
+				$urls[] = $connector;
+			}
 		}
-		return [];
+		return $urls;
 	}
 }

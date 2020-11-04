@@ -45,17 +45,8 @@ class InstagramProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-		$socialprofiles = $contact['X-SOCIALPROFILE'];
-		$supports = false;
-		if (isset($socialprofiles)) {
-			foreach ($socialprofiles as $profile) {
-				if (strtolower($profile['type']) == $this->name) {
-					$supports = true;
-					break;
-				}
-			}
-		}
-		return $supports;
+		$socialprofiles = $this->getProfiles($contact);
+		return isset($socialprofiles) && count($socialprofiles) > 0;
 	}
 
 	/**
@@ -88,6 +79,26 @@ class InstagramProvider implements ISocialProvider {
 		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
 		return basename($candidate);
 	}
+  
+	/**
+	 * Returns all possible profile urls for contact
+	 *
+	 * @param {array} contact information
+	 *
+	 * @return array of string profile urls
+	 */
+	protected function getProfiles($contact):array {
+		$socialprofiles = $contact['X-SOCIALPROFILE'];
+		$profiles = [];
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
+				if (strtolower($profile['type']) == $this->name) {
+					$profiles[] = $profile['value'];
+				}
+			}
+		}
+		return $profiles;
+	}
 
 	/**
 	 * Returns all possible profile ids for contact
@@ -97,14 +108,10 @@ class InstagramProvider implements ISocialProvider {
 	 * @return array of string profile ids
 	 */
 	protected function getProfileIds($contact):array {
-		$socialprofiles = $contact['X-SOCIALPROFILE'];
+		$socialprofiles = $this->getProfiles($contact);
 		$profileIds = [];
-		if (isset($socialprofiles)) {
-			foreach ($socialprofiles as $profile) {
-				if (strtolower($profile['type']) == $this->name) {
-					$profileIds[] = $this->cleanupId($profile['value']);
-				}
-			}
+		foreach ($socialprofiles as $profile) {
+			$profileIds[] = $this->cleanupId($profile);
 		}
 		return $profileIds;
 	}

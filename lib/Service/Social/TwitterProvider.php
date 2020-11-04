@@ -44,15 +44,8 @@ class TwitterProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-		$socialprofiles = $contact['X-SOCIALPROFILE'];
-		if (isset($socialprofiles)) {
-			foreach ($socialprofiles as $profile) {
-				if (strtolower($profile['type']) == $this->name) {
-					return true;
-				}
-			}
-		}
-		return false;
+		$socialprofiles = $this->getProfileIds($contact);
+		return isset($socialprofiles) && count($socialprofiles) > 0;
 	}
 
 	/**

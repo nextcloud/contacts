@@ -45,17 +45,8 @@ class FacebookProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-		$socialprofiles = $contact['X-SOCIALPROFILE'];
-		$supports = false;
-		if (isset($socialprofiles)) {
-			foreach ($socialprofiles as $profile) {
-				if (strtolower($profile['type']) == $this->name) {
-					$supports = true;
-					break;
-				}
-			}
-		}
-		return $supports;
+		$socialprofiles = $this->getProfiles($contact);
+		return isset($socialprofiles) && count($socialprofiles) > 0;
 	}
 
 	/**
@@ -98,15 +89,31 @@ class FacebookProvider implements ISocialProvider {
 	 *
 	 * @return array of string profile ids
 	 */
-	protected function getProfileIds($contact):array {
+	protected function getProfiles(array $contact):array {
 		$socialprofiles = $contact['X-SOCIALPROFILE'];
-		$profileIds = [];
+		$profiles = [];
 		if (isset($socialprofiles)) {
 			foreach ($socialprofiles as $profile) {
 				if (strtolower($profile['type']) == $this->name) {
-					$profileIds[] = $this->cleanupId($profile['value']);
+					$profiles[] = $profile['value'];
 				}
 			}
+		}
+		return $profiles;
+	}
+
+	/**
+	 * Returns all possible profile ids for contact
+	 *
+	 * @param {array} contact information
+	 *
+	 * @return array of string profile ids
+	 */
+	protected function getProfileIds(array $contact):array {
+		$profiles = $this->getProfiles($contact);
+		$profileIds = [];
+		foreach ($profiles as $profile) {
+			$profileIds[] = $this->cleanupId($profile);
 		}
 		return $profileIds;
 	}
