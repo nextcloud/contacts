@@ -24,9 +24,42 @@
 namespace OCA\Contacts\Service\Social;
 
 class TumblrProvider implements ISocialProvider {
+	/** @var string */
+	public $name = "tumblr";
+
 	public function __construct() {
 	}
-	
+
+	/**
+	 * Returns if this provider supports this contact
+	 *
+	 * @param {array} contact info
+	 *
+	 * @return bool
+	 */
+	public function supportsContact(array $contact):bool {
+		$socialprofiles = $this->getProfileIds($contact);
+		return isset($socialprofiles) && count($socialprofiles) > 0;
+	}
+
+	/**
+	 * Returns the profile-picture url
+	 *
+	 * @param {string} profileId the profile-id
+	 *
+	 * @return array
+	 */
+	public function getImageUrls(array $contact):array {
+		$profileIds = $this->getProfileIds($contact);
+		$urls = [];
+		foreach ($profileIds as $profileId) {
+			$recipe = 'https://api.tumblr.com/v2/blog/{socialId}/avatar/512';
+			$connector = str_replace("{socialId}", $profileId, $recipe);
+			$urls[] = $connector;
+		}
+		return $urls;
+	}
+
 	/**
 	 * Returns the profile-id
 	 *
@@ -34,7 +67,7 @@ class TumblrProvider implements ISocialProvider {
 	 *
 	 * @return string
 	 */
-	public function cleanupId(string $candidate):?string {
+	protected function cleanupId(string $candidate):?string {
 		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
 		$subdomain = '/(?:http[s]*\:\/\/)*(.*?)\.(?=[^\/]*\..{2,5})/i'; // subdomain
 		if (preg_match($subdomain, $candidate, $matches)) {
@@ -44,15 +77,22 @@ class TumblrProvider implements ISocialProvider {
 	}
 
 	/**
-	 * Returns the profile-picture url
+	 * Returns all possible profile ids for contact
 	 *
-	 * @param {string} profileId the profile-id
+	 * @param {array} contact information
 	 *
-	 * @return string|null
+	 * @return array of string profile ids
 	 */
-	public function getImageUrl(string $profileId):?string {
-		$recipe = 'https://api.tumblr.com/v2/blog/{socialId}/avatar/512';
-		$connector = str_replace("{socialId}", $profileId, $recipe);
-		return $connector;
+	protected function getProfileIds($contact):array {
+		$socialprofiles = $contact['X-SOCIALPROFILE'];
+		$profileIds = [];
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
+				if (strtolower($profile['type']) == $this->name) {
+					$profileIds[] = $this->cleanupId($profile['value']);
+				}
+			}
+		}
+		return $profileIds;
 	}
 }

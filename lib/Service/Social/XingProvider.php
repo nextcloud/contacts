@@ -30,41 +30,54 @@ class XingProvider implements ISocialProvider {
 	/** @var IClientService */
 	private $httpClient;
 
-	/** @var boolean */
-	private $looping;
+	/** @var string */
+	public $name = "xing";
 
 	public function __construct(IClientService $httpClient) {
 		$this->httpClient = $httpClient->NewClient();
-		$this->looping = false;
 	}
-	
+
 	/**
-	 * Returns the profile-id
+	 * Returns if this provider supports this contact
 	 *
-	 * @param {string} the value from the contact's x-socialprofile
+	 * @param {array} contact info
 	 *
-	 * @return string
+	 * @return bool
 	 */
-	public function cleanupId(string $candidate):string {
-		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
-		try {
-			if (strpos($candidate, 'http') !== 0) {
-				$candidate = 'https://www.xing.com/profile/' . $candidate;
+	public function supportsContact(array $contact):bool {
+		$socialprofiles = $this->getProfileIds($contact);
+		return isset($socialprofiles) && count($socialprofiles) > 0;
+	}
+
+	/**
+	 * Returns all possible profile-picture urls
+	 *
+	 * @param {array} contact information
+	 *
+	 * @return array
+	 */
+	public function getImageUrls(array $contact):array {
+		$profileIds = $this->getProfileIds($contact);
+		$urls = [];
+
+		foreach ($profileIds as $profileId) {
+			$url = $this->getImageUrl($profileId);
+			if (isset($url)) {
+				$urls[] = $url;
 			}
-		} catch (Exception $e) {
-			$candidate = null;
 		}
-		return $candidate;
+
+		return $urls;
 	}
 
 	/**
 	 * Returns the profile-picture url
 	 *
-	 * @param {string} profileId the profile-id
+	 * @param {string} profile url
 	 *
 	 * @return string|null
 	 */
-	public function getImageUrl(string $profileUrl):?string {
+	protected function getImageUrl(string $profileUrl):?string {
 		try {
 			$result = $this->httpClient->get($profileUrl);
 			$htmlResult = $result->getBody();
@@ -75,8 +88,50 @@ class XingProvider implements ISocialProvider {
 			}
 			// keyword not found, maybe page changed?
 			return null;
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			return null;
 		}
+	}
+
+	/**
+	 * Returns the profile-id
+	 *
+	 * @param {string} the value from the contact's x-socialprofile
+	 *
+	 * @return string
+	 */
+	protected function cleanupId(string $candidate):?string {
+		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
+		try {
+			if (strpos($candidate, 'http') !== 0) {
+				$candidate = 'https://www.xing.com/profile/' . $candidate;
+			}
+		} catch (\Exception $e) {
+			$candidate = null;
+		}
+		return $candidate;
+	}
+
+	/**
+	 * Returns all possible profile ids for contact
+	 *
+	 * @param {array} contact information
+	 *
+	 * @return string of first profile url else null
+	 */
+	protected function getProfileIds($contact):array {
+		$socialprofiles = $contact['X-SOCIALPROFILE'];
+		$profileIds = [];
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
+				if (strtolower($profile['type']) == $this->name) {
+					$profileId = $this->cleanupId($profile['value']);
+					if (isset($profileId)) {
+						$profileIds[] = $profileId;
+					}
+				}
+			}
+		}
+		return $profileIds;
 	}
 }
