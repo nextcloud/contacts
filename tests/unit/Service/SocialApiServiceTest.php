@@ -183,7 +183,76 @@ class SocialApiServiceTest extends TestCase {
 		$this->assertEquals($status, $result->getStatus());
 	}
 
-	public function testUpdateContactWithNetwork() {
+	public function testUpdateContactWithNetworkVersion3() {
+		$network = "mastodon";
+		$body = "the body";
+		$imageType = "jpg";
+		$addressBookId = "contacts";
+		$contactId = "3225c0d5-1bd2-43e5-a08c-4e65eaa406b0";
+		$contact = [
+			'URI' => $contactId,
+			'VERSION' => '3.0'
+		];
+		$provider = $this->createMock(ISocialProvider::class);
+		$provider->method('supportsContact')->willReturn(true);
+		$provider->method('getImageUrls')->willReturn(["url1"]);
+
+		$addressbook = $this->createMock(IAddressBook::class);
+		$addressbook
+			->method('getUri')
+			->willReturn('contacts');
+		$addressbook
+			->method('search')
+			->willReturn([$contact]);
+
+		$this->manager
+			->method('getUserAddressBooks')
+			->willReturn([$addressbook]);
+
+		$this->socialProvider
+			->method('getSocialConnectors')
+			->willReturn([$provider]);
+
+		$this->socialProvider
+			->method('getSocialConnector')
+			->willReturn($provider);
+
+		$response = $this->createMock(IResponse::class);
+		$response
+			->method('getBody')
+			->willReturn($body);
+		$response
+			->method('getHeader')
+			->willReturn($imageType);
+		$client = $this->createMock(IClient::class);
+		$client
+			->method('get')
+			->willReturn($response);
+		$this->clientService
+			->method('NewClient')
+			->willReturn($client);
+
+		$changes = [
+			'URI' => $contact['URI'],
+			'VERSION' => $contact['VERSION'],
+			'PHOTO;ENCODING=b;TYPE=' . $imageType . ';VALUE=BINARY' => base64_encode($body)
+		];
+		
+		$this->socialProvider
+			->expects($this->once())->method("getSocialConnector")->with($network);
+		$provider->expects($this->once())->method("supportsContact")->with($contact);
+		$addressbook->expects($this->once())->method("createOrUpdate")->with($changes, $addressBookId);
+
+		$result = $this->service
+									 ->updateContact(
+										 $addressBookId,
+										 $contactId,
+										 $network);
+
+		$this->assertEquals(Http::STATUS_OK, $result->getStatus());
+	}
+
+	public function testUpdateContactWithNetworkVersion4() {
 		$network = "mastodon";
 		$body = "the body";
 		$imageType = "jpg";
