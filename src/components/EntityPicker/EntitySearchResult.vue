@@ -62,7 +62,7 @@ export default {
 		},
 		selection: {
 			type: Object,
-			default: () => ([]),
+			default: () => ({}),
 		},
 	},
 

@@ -30,10 +30,44 @@ class InstagramProvider implements ISocialProvider {
 	/** @var IClientService */
 	private $httpClient;
 
+	/** @var string */
+	public $name = "instagram";
+
 	public function __construct(IClientService $httpClient) {
 		$this->httpClient = $httpClient->NewClient();
 	}
-	
+
+	/**
+	 * Returns if this provider supports this contact
+	 *
+	 * @param {array} contact info
+	 *
+	 * @return bool
+	 */
+	public function supportsContact(array $contact):bool {
+		$socialprofiles = $this->getProfiles($contact);
+		return isset($socialprofiles) && count($socialprofiles) > 0;
+	}
+
+	/**
+	 * Returns the profile-picture url
+	 *
+	 * @param {array} contact information
+	 *
+	 * @return array
+	 */
+	public function getImageUrls(array $contact):array {
+		$profileIds = $this->getProfileIds($contact);
+		$urls = [];
+		foreach ($profileIds as $profileId) {
+			$recipe = 'https://www.instagram.com/{socialId}/?__a=1';
+			$connector = str_replace("{socialId}", $profileId, $recipe);
+			$connector = $this->getFromJson($connector, 'graphql->user->profile_pic_url_hd');
+			$urls[] = $connector;
+		}
+		return $urls;
+	}
+
 	/**
 	 * Returns the profile-id
 	 *
@@ -41,25 +75,47 @@ class InstagramProvider implements ISocialProvider {
 	 *
 	 * @return string
 	 */
-	public function cleanupId(string $candidate):string {
+	protected function cleanupId(string $candidate):string {
 		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
 		return basename($candidate);
 	}
+  
+	/**
+	 * Returns all possible profile urls for contact
+	 *
+	 * @param {array} contact information
+	 *
+	 * @return array of string profile urls
+	 */
+	protected function getProfiles($contact):array {
+		$socialprofiles = $contact['X-SOCIALPROFILE'];
+		$profiles = [];
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
+				if (strtolower($profile['type']) == $this->name) {
+					$profiles[] = $profile['value'];
+				}
+			}
+		}
+		return $profiles;
+	}
 
 	/**
-	 * Returns the profile-picture url
+	 * Returns all possible profile ids for contact
 	 *
-	 * @param {string} profileId the profile-id
+	 * @param {array} contact information
 	 *
-	 * @return string|null
+	 * @return array of string profile ids
 	 */
-	public function getImageUrl(string $profileId):?string {
-		$recipe = 'https://www.instagram.com/{socialId}/?__a=1';
-		$connector = str_replace("{socialId}", $profileId, $recipe);
-		$connector = $this->getFromJson($connector, 'graphql->user->profile_pic_url_hd');
-		return $connector;
+	protected function getProfileIds($contact):array {
+		$socialprofiles = $this->getProfiles($contact);
+		$profileIds = [];
+		foreach ($socialprofiles as $profile) {
+			$profileIds[] = $this->cleanupId($profile);
+		}
+		return $profileIds;
 	}
-	
+
 	/**
 	 * extracts desired value from a json
 	 *
@@ -81,7 +137,7 @@ class InstagramProvider implements ISocialProvider {
 				$jsonResult = $jsonResult[$loc];
 			}
 			return $jsonResult;
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			return null;
 		}
 	}

@@ -41,7 +41,7 @@
 		<SettingsImportContacts :addressbooks="addressbooks"
 			class="settings-section"
 			@clicked="onClickImport"
-			@fileLoaded="onLoad" />
+			@file-loaded="onLoad" />
 	</div>
 </template>
 
@@ -89,7 +89,7 @@ export default {
 			})
 		},
 		onLoad(event) {
-			this.$emit('fileLoaded', false)
+			this.$emit('file-loaded', false)
 		},
 	},
 }

@@ -134,9 +134,12 @@
 				</ActionButton>
 			</template>
 
-			<img ref="img"
-				:src="contact.photoUrl"
-				class="contact-header-modal__photo">
+			<div class="contact-header-modal__photo-wrapper"
+				@click.exact.self="toggleModal">
+				<img ref="img"
+					:src="contact.photoUrl"
+					class="contact-header-modal__photo">
+			</div>
 		</Modal>
 	</div>
 </template>
@@ -193,11 +196,15 @@ export default {
 			return false
 		},
 		supportedSocial() {
+			const emails = this.contact.vCard.getAllProperties('email')
 			// get social networks set for the current contact
 			const available = this.contact.vCard.getAllProperties('x-socialprofile')
 				.map(a => a.jCal[1].type.toString().toLowerCase())
 			// get list of social networks that allow for avatar download
 			const supported = supportedNetworks.map(v => v.toLowerCase())
+			if (emails.length) {
+				available.push('gravatar')
+			}
 			// return supported social networks which are set
 			return supported.filter(i => available.includes(i))
 				.map(j => this.capitalize(j))
@@ -205,6 +212,9 @@ export default {
 	},
 
 	methods: {
+		onLoad() {
+			console.debug(...arguments)
+		},
 		/**
 		 * Handler to store a new photo on the current contact
 		 *
@@ -327,6 +337,7 @@ export default {
 			// Vcard 3 and 4 have different syntax
 			// https://tools.ietf.org/html/rfc2426#page-11
 			if (this.contact.version === '3.0') {
+				// eslint-disable-next-line vue/no-mutating-props
 				this.contact.photo = data
 
 				const photo = this.contact.vCard.getFirstProperty('photo')
@@ -336,6 +347,7 @@ export default {
 				}
 			} else {
 				// https://tools.ietf.org/html/rfc6350#section-6.2.4
+				// eslint-disable-next-line vue/no-mutating-props
 				this.contact.photo = `data:${type};base64,${data}`
 			}
 
@@ -356,7 +368,7 @@ export default {
 		 */
 		removePhoto() {
 			this.maximizeAvatar = false
-			this.contact.vCard.removeProperty('photo')
+			this.contact.vCard.removeAllProperties('photo')
 			this.$store.dispatch('updateContact', this.contact)
 		},
 
@@ -425,7 +437,7 @@ export default {
 
 					// Update local clone
 					const contact = this.$store.getters.getContact(this.contact.key)
-					await this.$emit('updateLocalContact', contact)
+					await this.$emit('update-local-contact', contact)
 
 					// Notify user
 					showSuccess(t('contacts', 'Avatar downloaded from social network'))
@@ -526,14 +538,40 @@ export default {
 }
 
 .contact-header-modal {
+	// We use this nesting of containers and max/width-height
+	// to make automatically contain the image.
+	// Because of that, we now fill the modal-container,
+	// so we need to watch for click on the photo-wrapper to
+	// close on image click outside.
 	&::v-deep .modal-container {
-		display: flex !important;
-		align-items: center;
-		justify-content: center;
+		background-color: transparent;
+		box-shadow: none;
+
+		&,
+		.contact-header-modal__photo-wrapper {
+			// center and align nested containers & image
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.contact-header-modal__photo-wrapper {
+			// contain image
+			width: 100%;
+			height: 100%;
+			cursor: pointer;
+		}
+
 		.contact-header-modal__photo {
+			// preserve ratio
+			max-width: 100%;
+			max-height: 100%;
 			// animate zooming/resize
 			transition: height 100ms ease,
 				width 100ms ease;
+			border-radius: var(--border-radius-large);
+			// make sure transparent images are visible
+			background-color: white;
 		}
 	}
 }

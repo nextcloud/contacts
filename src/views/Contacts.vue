@@ -146,7 +146,7 @@
 
 			<div v-else-if="isEmptyGroup && !isRealGroup">
 				<EmptyContent icon="icon-contacts-dark">
-					{{ t('contacts', `You don't have any contacts yet`) }}
+					{{ t('contacts', 'There are no contacts yet') }}
 					<template #desc>
 						<button class="primary" @click="newContact">
 							{{ t('contacts', 'Create contact') }}
@@ -190,13 +190,6 @@
 			<ImportView @close="closeImport" />
 		</Modal>
 
-		<!-- Select contacts group modal -->
-		<EntityPicker v-if="showContactPicker"
-			:data-types="pickerTypes"
-			:data-set="pickerData"
-			@close="onContactPickerClose"
-			@submit="onContactPickerPick" />
-
 		<!-- Bulk contacts edit modal -->
 		<Modal v-if="isProcessing || isProcessDone"
 			:clear-view-delay="-1"
@@ -204,6 +197,13 @@
 			@close="closeProcess">
 			<AddToGroupView v-bind="processStatus" @close="closeProcess" />
 		</Modal>
+
+		<!-- Select contacts group modal -->
+		<EntityPicker v-else-if="showContactPicker"
+			:data-types="pickerTypes"
+			:data-set="pickerData"
+			@close="onContactPickerClose"
+			@submit="onContactPickerPick" />
 	</Content>
 </template>
 
@@ -306,6 +306,7 @@ export default {
 			searchQuery: '',
 			showContactPicker: false,
 			contactPickerforGroup: null,
+			pickerData: [],
 			pickerTypes: [{
 				id: 'contact',
 				label: t('contacts', 'Contacts'),
@@ -559,11 +560,12 @@ export default {
 		 */
 		fetchContacts() {
 			// wait for all addressbooks to have fetch their contacts
-			Promise.all(this.addressbooks.map(addressbook => {
-				if (addressbook.enabled) {
+			Promise.all(this.addressbooks
+				.filter(addressbook => addressbook.enabled)
+				.map(addressbook => {
 					return this.$store.dispatch('getContactsFromAddressBook', { addressbook })
-				}
-			})).then(results => {
+				})
+			).then(results => {
 				this.loading = false
 				if (!this.isMobile) {
 					this.selectFirstContactIfNone()
@@ -637,7 +639,7 @@ export default {
 		downloadGroup(group) {
 			// get grouped contacts
 			let groupedContacts = {}
-			group.contacts.map((key) => {
+			group.contacts.forEach(key => {
 				const id = this.contacts[key].addressbook.id
 				groupedContacts = Object.assign({
 					[id]: {
@@ -647,6 +649,7 @@ export default {
 				}, groupedContacts)
 				groupedContacts[id].contacts.push(this.contacts[key].url)
 			})
+
 			// create vcard promise with the requested contacts
 			const vcardPromise = Promise.all(
 				Object.keys(groupedContacts).map(key =>
@@ -718,6 +721,8 @@ export default {
 
 		// Bulk contacts group management handlers
 		addContactsToGroup(group) {
+			console.debug('Contacts picker opened for group', group)
+
 			// Get the full group if we provided the group name only
 			if (typeof group === 'string') {
 				group = this.groups.find(a => a.name === group)

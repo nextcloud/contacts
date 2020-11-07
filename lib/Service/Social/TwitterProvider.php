@@ -26,14 +26,47 @@ namespace OCA\Contacts\Service\Social;
 use OCP\Http\Client\IClientService;
 
 class TwitterProvider implements ISocialProvider {
-
 	/** @var IClientService */
 	private $httpClient;
+
+	/** @var string */
+	public $name = "twitter";
 
 	public function __construct(IClientService $httpClient) {
 		$this->httpClient = $httpClient->NewClient();
 	}
-	
+
+	/**
+	 * Returns if this provider supports this contact
+	 *
+	 * @param {array} contact info
+	 *
+	 * @return bool
+	 */
+	public function supportsContact(array $contact):bool {
+		$socialprofiles = $this->getProfileIds($contact);
+		return isset($socialprofiles) && count($socialprofiles) > 0;
+	}
+
+	/**
+	 * Returns the profile-picture url
+	 *
+	 * @param {array} contact information
+	 *
+	 * @return array
+	 */
+	public function getImageUrls(array $contact):array {
+		$profileIds = $this->getProfileIds($contact);
+		$urls = [];
+		foreach ($profileIds as $profileId) {
+			$recipe = 'https://mobile.twitter.com/{socialId}';
+			$connector = str_replace("{socialId}", $profileId, $recipe);
+			$connector = $this->getFromHtml($connector, '_normal');
+			$urls[] = $connector;
+		}
+		return $urls;
+	}
+
 	/**
 	 * Returns the profile-id
 	 *
@@ -41,7 +74,7 @@ class TwitterProvider implements ISocialProvider {
 	 *
 	 * @return string
 	 */
-	public function cleanupId(string $candidate):string {
+	protected function cleanupId(string $candidate):string {
 		$candidate = basename($candidate);
 		if ($candidate[0] === '@') {
 			$candidate = substr($candidate, 1);
@@ -50,19 +83,25 @@ class TwitterProvider implements ISocialProvider {
 	}
 
 	/**
-	 * Returns the profile-picture url
+	 * Returns all possible profile ids for contact
 	 *
-	 * @param {string} profileId the profile-id
+	 * @param {array} contact information
 	 *
-	 * @return string|null
+	 * @return array of string profile ids
 	 */
-	public function getImageUrl(string $profileId):?string {
-		$recipe = 'https://mobile.twitter.com/{socialId}';
-		$connector = str_replace("{socialId}", $profileId, $recipe);
-		$connector = $this->getFromHtml($connector, '_normal');
-		return $connector;
+	protected function getProfileIds($contact):array {
+		$socialprofiles = $contact['X-SOCIALPROFILE'];
+		$profileIds = [];
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
+				if (strtolower($profile['type']) == $this->name) {
+					$profileIds[] = $this->cleanupId($profile['value']);
+				}
+			}
+		}
+		return $profileIds;
 	}
-	
+
 	/**
 	 * extracts desired value from an html page
 	 *
@@ -88,7 +127,7 @@ class TwitterProvider implements ISocialProvider {
 				}
 			}
 			return null;
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			return null;
 		}
 	}

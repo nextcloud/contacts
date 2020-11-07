@@ -50,9 +50,9 @@ class SocialApiService {
 	private $config;
 	/** @var IClientService */
 	private $clientService;
-	/** @var IL10N  */
+	/** @var IL10N	*/
 	private $l10n;
-	/** @var IURLGenerator  */
+	/** @var IURLGenerator	*/
 	private $urlGen;
 	/** @var CardDavBackend */
 	private $davBackend;
@@ -84,7 +84,7 @@ class SocialApiService {
 	/**
 	 * returns an array of supported social networks
 	 *
-	 * @returns {array} array of the supported social networks
+	 * @return {array} array of the supported social networks
 	 */
 	public function getSupportedNetworks() : array {
 		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
@@ -118,7 +118,7 @@ class SocialApiService {
 			$contact['PHOTO;ENCODING=b;TYPE=' . $imageType . ';VALUE=BINARY'] = $photo;
 
 			// remove previous photo (necessary as new attribute is not equal to 'PHOTO')
-			$contact['PHOTO'] = '';
+			unset($contact['PHOTO']);
 		}
 	}
 
@@ -167,8 +167,11 @@ class SocialApiService {
 	 *
 	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
 	 */
-	public function updateContact(string $addressbookId, string $contactId, string $network) : JSONResponse {
-		$url = null;
+	public function updateContact(string $addressbookId, string $contactId, ?string $network) : JSONResponse {
+		$socialdata = null;
+		$imageType = null;
+		$urls = [];
+		$allConnectors = $this->socialProvider->getSocialConnectors();
 
 		try {
 			// get corresponding addressbook
@@ -179,20 +182,42 @@ class SocialApiService {
 
 			// search contact in that addressbook, get social data
 			$contact = $addressBook->search($contactId, ['UID'], ['types' => true])[0];
-			if (!isset($contact['X-SOCIALPROFILE'])) {
+
+			if (!isset($contact)) {
 				return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
 			}
-			$socialprofiles = $contact['X-SOCIALPROFILE'];
-			// retrieve data
-			$url = $this->socialProvider->getSocialConnector($socialprofiles, $network);
 
-			if (empty($url)) {
+			if ($network) {
+				$allConnectors = [$this->socialProvider->getSocialConnector($network)];
+			}
+
+			$connectors = array_filter($allConnectors, function ($connector) use ($contact) {
+				return $connector->supportsContact($contact);
+			});
+
+			if (count($connectors) == 0) {
+				return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
+			}
+
+			foreach ($connectors as $connector) {
+				$urls = array_merge($connector->getImageUrls($contact), $urls);
+			}
+
+			if (count($urls) == 0) {
 				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
 			}
 
-			$httpResult = $this->clientService->NewClient()->get($url);
-			$socialdata = $httpResult->getBody();
-			$imageType = $httpResult->getHeader('content-type');
+			foreach ($urls as $url) {
+				try {
+					$httpResult = $this->clientService->NewClient()->get($url);
+					$socialdata = $httpResult->getBody();
+					$imageType = $httpResult->getHeader('content-type');
+					if (isset($socialdata) && isset($imageType)) {
+						break;
+					}
+				} catch (\Exception $e) {
+				}
+			}
 
 			if (!$socialdata || $imageType === null) {
 				return new JSONResponse([], Http::STATUS_NOT_FOUND);

@@ -71,6 +71,7 @@ OC.L10N.register(
     "Group name" : "分组名称",
     "Loading contacts …" : "加载联系人…",
     "Not grouped" : "未分组",
+    "Recently contacted" : "最近联系",
     "Unable to create the contact." : "未能成功创建联系人。",
     "Contact not found" : "未找到联系人",
     "Close" : "关闭",

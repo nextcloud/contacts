@@ -23,7 +23,15 @@
 import Contact from '../models/contact'
 import Store from '../store/index'
 
-export default function parseVcf(data = '', addressbook) {
+/**
+ * Parse a vcf data string, add them to the store
+ * and return a list of contacts
+ *
+ * @param {string} data The vcf data
+ * @param {Object} addressbook the addressbook to add to
+ * @returns {Contact[]}
+ */
+export default function parseVcf(data, addressbook) {
 	const regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi
 	const vCards = data.match(regexp)
 

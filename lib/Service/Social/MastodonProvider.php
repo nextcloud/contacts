@@ -30,34 +30,49 @@ class MastodonProvider implements ISocialProvider {
 	/** @var IClientService */
 	private $httpClient;
 
+	/** @var string */
+	public $name = "mastodon";
+
 	public function __construct(IClientService $httpClient) {
 		$this->httpClient = $httpClient->NewClient();
 	}
-	
+
 	/**
-	 * Returns the profile-id
+	 * Returns if this provider supports this contact
 	 *
-	 * @param {string} the value from the contact's x-socialprofile
+	 * @param {array} contact info
 	 *
-	 * @return string
+	 * @return bool
 	 */
-	public function cleanupId(string $candidate):?string {
-		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
-		try {
-			if (strpos($candidate, 'http') !== 0) {
-				$user_server = explode('@', $candidate);
-				$candidate = 'https://' . array_pop($user_server) . '/@' . array_pop($user_server);
+	public function supportsContact(array $contact):bool {
+		$profiles = $this->getProfileIds($contact);
+		return isset($profiles) && count($profiles) > 0;
+	}
+
+	/**
+	 * Returns all possible profile-picture urls
+	 *
+	 * @param {array} contact information
+	 *
+	 * @return array
+	 */
+	public function getImageUrls(array $contact):array {
+		$profileIds = $this->getProfileIds($contact);
+		$urls = [];
+
+		foreach ($profileIds as $profileId) {
+			$url = $this->getImageUrl($profileId);
+			if (isset($url)) {
+				$urls[] = $url;
 			}
-		} catch (Exception $e) {
-			$candidate = null;
 		}
-		return $candidate;
+		return $urls;
 	}
 
 	/**
 	 * Returns the profile-picture url
 	 *
-	 * @param {string} profileUrl link to the profile
+	 * @param {array} contact information
 	 *
 	 * @return string|null
 	 */
@@ -72,8 +87,51 @@ class MastodonProvider implements ISocialProvider {
 				return $img->getAttribute("data-original");
 			}
 			return null;
-		} catch (Exception $e) {
+		} catch (\Exception $e) {
 			return null;
 		}
+	}
+
+	/**
+	 * Returns all possible profile ids for contact
+	 *
+	 * @param {array} contact information
+	 *
+	 * @return array of possible profileIds
+	 */
+	protected function getProfileIds($contact):array {
+		$socialprofiles = $contact['X-SOCIALPROFILE'];
+		$profileIds = [];
+		if (isset($socialprofiles)) {
+			foreach ($socialprofiles as $profile) {
+				if (strtolower($profile['type']) == $this->name) {
+					$profileId = $this->cleanupId($profile['value']);
+					if (isset($profileId)) {
+						$profileIds[] = $profileId;
+					}
+				}
+			}
+		}
+		return $profileIds;
+	}
+
+	/**
+	 * Returns the profile-id
+	 *
+	 * @param {string} the value from the contact's x-socialprofile
+	 *
+	 * @return string
+	 */
+	protected function cleanupId(string $candidate):?string {
+		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
+		try {
+			if (strpos($candidate, 'http') !== 0) {
+				$user_server = explode('@', $candidate);
+				$candidate = 'https://' . array_pop($user_server) . '/@' . array_pop($user_server);
+			}
+		} catch (\Exception $e) {
+			$candidate = null;
+		}
+		return $candidate;
 	}
 }

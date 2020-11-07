@@ -281,6 +281,7 @@ export default {
 					if (groups.length === 1) {
 						// then this prop is the latest of its group
 						// -> converting back to simple prop
+						// eslint-disable-next-line vue/no-mutating-props
 						this.property.jCal[0] = this.propGroup[1]
 					}
 				}
