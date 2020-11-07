@@ -118,7 +118,7 @@ class SocialApiService {
 			$contact['PHOTO;ENCODING=b;TYPE=' . $imageType . ';VALUE=BINARY'] = $photo;
 
 			// remove previous photo (necessary as new attribute is not equal to 'PHOTO')
-			$contact['PHOTO'] = '';
+			unset($contact['PHOTO']);
 		}
 	}
 

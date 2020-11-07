@@ -368,7 +368,7 @@ export default {
 		 */
 		removePhoto() {
 			this.maximizeAvatar = false
-			this.contact.vCard.removeProperty('photo')
+			this.contact.vCard.removeAllProperties('photo')
 			this.$store.dispatch('updateContact', this.contact)
 		},
 
