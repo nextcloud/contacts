@@ -33,8 +33,8 @@ class CompositeSocialProvider {
 
 	public function __construct(InstagramProvider $instagramProvider,
 								MastodonProvider $mastodonProvider,
-								FacebookProvider $facebookProvider,
 								TwitterProvider $twitterProvider,
+								// FacebookProvider $facebookProvider,
 								TumblrProvider $tumblrProvider,
 								DiasporaProvider $diasporaProvider,
 								XingProvider $xingProvider,
@@ -45,7 +45,7 @@ class CompositeSocialProvider {
 			$instagramProvider->name  => $instagramProvider,
 			$mastodonProvider->name   => $mastodonProvider,
 			$twitterProvider->name    => $twitterProvider,
-			$facebookProvider->name   => $facebookProvider,
+			// $facebookProvider->name   => $facebookProvider,
 			$tumblrProvider->name     => $tumblrProvider,
 			$diasporaProvider->name   => $diasporaProvider,
 			$xingProvider->name       => $xingProvider,
