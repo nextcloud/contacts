@@ -45,7 +45,7 @@
 		"axios": "^0.21.0",
 		"b64-to-blob": "^1.2.19",
 		"cdav-library": "git+https://github.com/nextcloud/cdav-library.git",
-		"core-js": "^3.6.5",
+		"core-js": "^3.7.0",
 		"debounce": "^1.2.0",
 		"downloadjs": "^1.4.7",
 		"ical.js": "^1.4.0",
