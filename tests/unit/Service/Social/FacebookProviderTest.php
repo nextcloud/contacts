@@ -53,22 +53,22 @@ class FacebookProviderTest extends TestCase {
 			->willReturn($this->client);
 
 		$this->provider = new FacebookProvider(
-	  $this->clientService
+			$this->clientService
 		);
 	}
 
 	public function dataProviderSupportsContact() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "123124123", "type" => "facebook"],
-				["value" => "23426523423", "type" => "facebook"]
+				["value" => "username1", "type" => "facebook"],
+				["value" => "username2", "type" => "facebook"]
 			]
 		];
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				["value" => "one", "type" => "social1"],
+				["value" => "two", "type" => "social2"]
 			]
 		];
 
@@ -89,31 +89,43 @@ class FacebookProviderTest extends TestCase {
 	public function dataProviderGetImageUrls() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "123456", "type" => "facebook"],
-				["value" => "7891011", "type" => "facebook"]
+				["value" => "username1", "type" => "facebook"],
+				["value" => "username2", "type" => "facebook"]
 			]
 		];
 		$contactWithSocialUrls = [
-			"https://graph.facebook.com/123456/picture?width=720",
-			"https://graph.facebook.com/7891011/picture?width=720",
+			"https://www.facebook.com/username1",
+			"https://www.facebook.com/username2"
 		];
+		$contactWithSocialHtml = array_map(function ($profile) {
+			return '<meta property="og:image" content="https://'.$profile['value'].'.jpg?_nc_cat=1&amp;ccb=2&amp;_nc_sid=3&amp;_nc_ohc=a_b&amp;oe=123" />';
+		}, $contactWithSocial['X-SOCIALPROFILE']);
+		$contactWithSocialImg = array_map(function ($profile) {
+			return 'https://'.$profile['value'].'.jpg?_nc_cat=1&ccb=2&_nc_sid=3&_nc_ohc=a_b&oe=123';
+		}, $contactWithSocial['X-SOCIALPROFILE']);
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				["value" => "one", "type" => "social1"],
+				["value" => "two", "type" => "social2"]
 			]
 		];
 		$contactWithoutSocialUrls = [];
+		$contactWithoutSocialHtml = [];
+		$contactWithoutSocialImg = [];
 
 		return [
 			'contact with facebook fields' => [
 				$contactWithSocial,
-				$contactWithSocialUrls
+				$contactWithSocialUrls,
+				$contactWithSocialHtml,
+				$contactWithSocialImg
 			],
 			'contact without facebook fields' => [
 				$contactWithoutSocial,
-				$contactWithoutSocialUrls
+				$contactWithoutSocialUrls,
+				$contactWithoutSocialHtml,
+				$contactWithoutSocialImg
 			]
 		];
 	}
@@ -121,36 +133,24 @@ class FacebookProviderTest extends TestCase {
 	/**
 	 * @dataProvider dataProviderGetImageUrls
 	 */
-	public function testGetImageUrls($contact, $urls) {
-		$result = $this->provider->getImageUrls($contact);
-		$this->assertEquals($urls, $result);
-	}
+	public function testGetImageUrls($contact, $urls, $htmls, $imgs) {
+		if (count($urls)) {
+			$this->response
+		  ->method('getBody')
+		->willReturnOnConsecutiveCalls(...$htmls);
 
-	public function testGetImageUrlLookup() {
-		$contact = [
-			'X-SOCIALPROFILE' => [
-				["value" => "username1", "type" => "facebook"],
-			]
-		];
-		$url1 = "https://facebook.com/username1";
-		$url2 = "https://graph.facebook.com/1234567/picture?width=720";
-		$html1 = '"entity_id":"1234567"';
+			$urlArgs = array_map(function ($url) {
+				return [$url];
+			}, $urls);
 
-		$this->response
-		->method('getBody')
-	  ->willReturn($html1);
-
-		$this->response
-		->method('getStatusCode')
-	  ->willReturn(200);
-
-		$this->client
-	  ->expects($this->once())
-		->method('get')
-	  ->with($url1)
-	  ->willReturn($this->response);
+			$this->client
+		->expects($this->exactly(count($urls)))
+			->method('get')
+		->withConsecutive(...$urlArgs)
+		->willReturn($this->response);
+		}
 
 		$result = $this->provider->getImageUrls($contact);
-		$this->assertEquals([$url2], $result);
+		$this->assertEquals($imgs, $result);
 	}
 }
