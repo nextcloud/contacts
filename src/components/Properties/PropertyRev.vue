@@ -27,6 +27,8 @@
 </template>
 
 <script>
+import moment from '@nextcloud/moment'
+
 export default {
 	name: 'PropertyRev',
 
@@ -39,7 +41,7 @@ export default {
 
 	computed: {
 		relativeDate() {
-			return OC.Util.relativeModifiedDate(this.value.toUnixTime() * 1000)
+			return moment.unix(this.value.toUnixTime()).fromNow()
 		},
 	},
 }
