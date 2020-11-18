@@ -1,5 +1,39 @@
 # Changelog
 
+## 3.4.2 - 2020-11-18
+
+[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.1...v3.4.2)
+
+### Enhancements
+- add support for downloading avatars from gravatar
+  [\#1906](https://github.com/nextcloud/contacts/pull/1906) ([eleith](https://github.com/eleith))
+- add xing to list of social networks
+  [\#1871](https://github.com/nextcloud/contacts/pull/1871) ([call-me-matt](https://github.com/call-me-matt))
+- add xing to social sync
+  [\#1869](https://github.com/nextcloud/contacts/pull/1869) ([call-me-matt](https://github.com/call-me-matt))
+
+### Fixed
+- Replace the deprecated OC.Util.relativeModifiedDate by nextcloud/moment
+  [\#1936](https://github.com/nextcloud/contacts/pull/1936) ([tintou](https://github.com/tintou))
+- l10n: Rebuild string text
+  [\#1893](https://github.com/nextcloud/contacts/pull/1893) ([Valdnet](https://github.com/Valdnet))
+- Fix/dav plugins groups registration
+  [\#1938](https://github.com/nextcloud/contacts/pull/1938) ([skjnldsv](https://github.com/skjnldsv))
+- vcard should only have 1 photo field when adding/removing photos
+  [\#1918](https://github.com/nextcloud/contacts/pull/1918) ([eleith](https://github.com/eleith))
+- new facebook api prevents usage without authentication
+  [\#1894](https://github.com/nextcloud/contacts/pull/1894) ([call-me-matt](https://github.com/call-me-matt))
+- Fix Avatar ratio display
+  [\#1884](https://github.com/nextcloud/contacts/pull/1884) ([skjnldsv](https://github.com/skjnldsv))
+- Fix bulk contacts add to group
+  [\#1883](https://github.com/nextcloud/contacts/pull/1883) ([skjnldsv](https://github.com/skjnldsv))
+- l10n: Correct text string tag
+  [\#1896](https://github.com/nextcloud/contacts/pull/1896) ([Valdnet](https://github.com/Valdnet))
+- l10n: Correct text string tag for Settings
+  [\#1895](https://github.com/nextcloud/contacts/pull/1895) ([Valdnet](https://github.com/Valdnet))
+- l10n: Remove the quotation marks
+  [\#1892](https://github.com/nextcloud/contacts/pull/1892) ([Valdnet](https://github.com/Valdnet))
+
 ## 3.4.1 - 2020-10-20
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.0...v3.4.1)
