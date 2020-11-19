@@ -92,7 +92,7 @@ OC.L10N.register(
     "Phonetic first name" : "Imię fonetycznie",
     "Phonetic last name" : "Nazwisko fonetyczne",
     "Display name" : "Nazwa wyświetlana",
-    "Sort by {sorting}" : "Sortuj wg {sorting}",
+    "Sort by {sorting}" : "Sortuj według {sorting}",
     "Update avatars from social media" : "Zaktualizuj awatary z mediów społecznościowych",
     "(refreshed once per week)" : "(odświeżane raz w tygodniu)",
     "Add contacts" : "Dodaj kontakty",
