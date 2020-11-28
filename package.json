@@ -62,7 +62,7 @@
 		"vue-clipboard2": "^0.3.1",
 		"vue-masonry": "^0.11.8",
 		"vue-router": "^3.4.9",
-		"vue-virtual-scroll-list": "^2.3.1",
+		"vue-virtual-scroll-list": "^2.3.2",
 		"vue-virtual-scroller": "^1.0.10",
 		"vuex": "^3.5.1",
 		"vuex-router-sync": "^5.0.0"
