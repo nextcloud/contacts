@@ -42,6 +42,8 @@
     "Groups" : "Skupine",
     "New contact" : "Nov stik",
     "Syntax error. Cannot open the contact." : "Napaka skladnje. Ni mogoče odpreti podatkov stika.",
+    "An error occurred while trying to move the contact" : "Prišlo je do napake med premikanjem stika",
+    "An error occurred while trying to copy the contact" : "Prišlo je do napake med kopiranjem stika",
     "Remove {type}" : "Odstrani {type}",
     "Search {types}" : "Poišči {types}",
     "Loading …" : "Poteka nalaganje …",
