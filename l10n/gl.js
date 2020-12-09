@@ -12,6 +12,7 @@ OC.L10N.register(
     "Add new property" : "Engadir unha nova propiedade",
     "Choose property type" : "Escoller o tipo de propiedade",
     "Upload a new picture" : "Enviar unha nova imaxe",
+    "Choose from Files" : "Escolla entre os ficheiros",
     "Get from " : "Obter de",
     "Download picture" : "Descargar a imaxe",
     "Delete picture" : "Eliminar a imaxe",
