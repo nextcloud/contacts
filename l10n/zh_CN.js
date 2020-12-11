@@ -12,6 +12,7 @@ OC.L10N.register(
     "Add new property" : "新增属性",
     "Choose property type" : "选择属性类型",
     "Upload a new picture" : "上传一张新的图片",
+    "Choose from Files" : "从文件中选择",
     "Get from " : "获取自",
     "Download picture" : "下载图片",
     "Delete picture" : "删除图片",

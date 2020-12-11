@@ -12,6 +12,7 @@ OC.L10N.register(
     "Add new property" : "Додади ново поле",
     "Choose property type" : "Избери вид на поле",
     "Upload a new picture" : "Прикачи нова слика",
+    "Choose from Files" : "Избери од датотеките",
     "Get from " : "Превземи од",
     "Download picture" : "Преземи слика",
     "Delete picture" : "Избриши слика",
