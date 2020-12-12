@@ -12,6 +12,7 @@ OC.L10N.register(
     "Add new property" : "Özellik ekle",
     "Choose property type" : "Özellik türünü seçin",
     "Upload a new picture" : "Görsel yükleyin",
+    "Choose from Files" : "Dosyalarda Seçin",
     "Get from " : "Şuradan alınsın",
     "Download picture" : "Görseli indir",
     "Delete picture" : "Görseli sil",
