@@ -112,6 +112,8 @@ OC.L10N.register(
     "Group not found" : "找不到群组",
     "This group already exists" : "该群组已存在",
     "Close" : "关闭",
+    "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} 位联系人已添加到 {name}"],
+    "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["正在添加 {success} 位联系人到 {name}"],
     "_{count} error_::_{count} errors_" : ["{count} 个错误"],
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["正在导入 %n 个联系人到 {addressbook}"],
     "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["已将 %n 个联系人导入到 {addressbook}"],
