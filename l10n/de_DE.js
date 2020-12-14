@@ -113,7 +113,7 @@ OC.L10N.register(
     "This group already exists" : "Diese Gruppe existiert bereits",
     "Close" : "Schließen",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} Kontakt hinzugefügt zu {name}","{success} Kontakte wurden hinzugefügt zu {name}"],
-    "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Füge {success} Kontakt zu {name} hinzu","Füge {success} Kontakte zu  {name} hinzu"],
+    "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Füge {success} Kontakt zu {name} hinzu","Füge {success} Kontakte zu {name} hinzu"],
     "_{count} error_::_{count} errors_" : ["{count} Fehler","{count} Fehler"],
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importiere %n Kontakt nach {addressbook}","Importiere %n Kontakte nach {addressbook}"],
     "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Import von %n Kontakt nach {addressbook} abgeschlossen","Import von %n Kontakten nach {addressbook} abgeschlossen"],

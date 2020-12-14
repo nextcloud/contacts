@@ -12,6 +12,7 @@ OC.L10N.register(
     "Add new property" : "Dodaj lastnost",
     "Choose property type" : "Izbor vrste lastnosti",
     "Upload a new picture" : "Pošlji novo sliko",
+    "Choose from Files" : "Izbor iz oblaka",
     "Get from " : "Pridobi iz",
     "Download picture" : "Prejmi sliko",
     "Delete picture" : "Izbriši sliko",
