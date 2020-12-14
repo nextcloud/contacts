@@ -56,7 +56,9 @@ class ContactsController extends Controller {
 	 * @param string $uuid
 	 */
 	public function direct(string $contact): RedirectResponse {
-		$url = $this->urlGenerator->getAbsoluteURL('/apps/contacts/' . $this->l10n->t('All contacts') . '/' . $contact);
+		$url = $this->urlGenerator->getAbsoluteURL(
+			$this->urlGenerator->linkToRoute('contacts.page.index') . $this->l10n->t('All contacts') . '/' . $contact
+		);
 		return new RedirectResponse($url);
 	}
 }
