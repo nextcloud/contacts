@@ -17,6 +17,7 @@ OC.L10N.register(
     "can edit" : "pòt modificar",
     "First name" : "Prenom",
     "Last name" : "Nom",
+    "Display name" : "Nom afichat",
     "Group name" : "Nom del grop",
     "Not grouped" : "Pas gropats",
     "Close" : "Tampar",
