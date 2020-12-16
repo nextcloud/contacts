@@ -200,7 +200,7 @@
 						:contact="contact"
 						:local-contact="localContact"
 						:update-contact="debounceUpdateContact"
-						@resize="redrawMasonry" />
+						@resize="debounceRedrawMasonry" />
 				</div>
 
 				<!-- addressbook change select - no last property because class is not applied here,
@@ -481,12 +481,12 @@ export default {
 			}
 
 			// Reflow grid
-			this.$redrawVueMasonry(this.contactDetailsSelector)
+			this.debounceRedrawMasonry()
 		},
 	},
 
 	updated() {
-		this.$redrawVueMasonry(this.contactDetailsSelector)
+		this.debounceRedrawMasonry()
 	},
 
 	beforeMount() {
@@ -768,11 +768,12 @@ export default {
 		},
 
 		/**
-		 * Redraw Masonry
+		 * debounce and redraw Masonry
 		 */
-		redrawMasonry() {
+		debounceRedrawMasonry: debounce(function() {
+			console.debug('Masonry reflow')
 			this.$redrawVueMasonry(this.contactDetailsSelector)
-		},
+		}, 100),
 	},
 }
 </script>
@@ -852,6 +853,8 @@ export default {
 	// List of all properties
 	section.contact-details {
 		margin: 0 auto;
+		// Relative positioning for masonry
+		position: relative;
 
 		.property-masonry {
 			width: 350px;
