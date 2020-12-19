@@ -182,6 +182,6 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt se nepodařilo načíst","{failed} kontakty se nepodařilo načíst","{failed} kontaktů se nepodařilo načíst","{failed} kontakty se nepodařilo načíst"],
     "Unable to delete contact" : "Nedaří se smazat kontakt",
     "Your web browser is out of date" : "Vámi používaný webový prohlížeč (resp. jeho verze) je zastaralý",
-    "This application is not compatible with Internet Explorer" : "Prohlížeč Internet Explorer (svým výrobcem opuštěný) není kompatibilní s touto aplikací"
+    "This application is not compatible with Internet Explorer" : "Prohlížeč Internet Explorer (jeho výrobcem opuštěný) není s touto aplikací kompatibilní"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");
