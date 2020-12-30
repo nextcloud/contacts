@@ -37,6 +37,12 @@ const isEmpty = value => {
 	return (Array.isArray(value) && value.join('') === '') || (!Array.isArray(value) && value === '')
 }
 
+export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
+
+export const MinimalContactProperties = [
+	'EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME',
+].concat(ContactKindProperties)
+
 export default class Contact {
 
 	/**
@@ -79,7 +85,6 @@ export default class Contact {
 			const rev = new ICAL.VCardTime(null, null, 'date-time')
 			rev.fromUnixTime(Date.now() / 1000)
 			this.vCard.addPropertyWithValue('rev', rev)
-
 		}
 	}
 
@@ -300,7 +305,13 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get kind() {
-		return this.firstIfArray(this.vCard.getFirstPropertyValue('kind'))
+		return this.firstIfArray(
+			ContactKindProperties
+				.map(s => s.toLowerCase())
+				.map(s => this.vCard.getFirstPropertyValue(s))
+				.flat()
+				.filter(k => k)
+		)
 	}
 
 	/**
