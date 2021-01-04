@@ -1,5 +1,21 @@
 # Changelog
 
+## [v3.4.3](https://github.com/nextcloud/contacts/tree/v3.4.3) (2021-01-04)
+
+[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.2...v3.4.3)
+
+### Fixed
+- Remove Workaround for Postal Addresses Containing Commas
+  [\#2000](https://github.com/nextcloud/contacts/pull/2000) ([zlajo](https://github.com/zlajo))
+- Fix masonry redraw
+  [\#1982](https://github.com/nextcloud/contacts/pull/1982) ([skjnldsv](https://github.com/skjnldsv))
+- Fix generating the redirect url
+  [\#1972](https://github.com/nextcloud/contacts/pull/1972) ([juliushaertl](https://github.com/juliushaertl))
+- Change to the name of the app
+  [\#1965](https://github.com/nextcloud/contacts/pull/1965) ([Valdnet](https://github.com/Valdnet))
+- Add favicons
+  [\#1960](https://github.com/nextcloud/contacts/pull/1960) ([st3iny](https://github.com/st3iny))
+
 ## 3.4.2 - 2020-11-18
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.1...v3.4.2)
