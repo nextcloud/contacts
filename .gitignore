@@ -14,10 +14,11 @@ yarn-error.log*
 
 .marginalia
 
-js/
+/js/
 build/
 coverage*
 vendor/
 
 .php_cs.cache
 composer.phar
+/tests/config.js

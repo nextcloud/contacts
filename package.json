@@ -30,7 +30,9 @@
 		"lint": "eslint --ext .js,.vue src",
 		"lint:fix": "eslint --ext .js,.vue src --fix",
 		"stylelint": "stylelint src",
-		"stylelint:fix": "stylelint src --fix"
+		"stylelint:fix": "stylelint src --fix",
+		"test": "mocha --timeout 30000 tests/js/*",
+		"test:lint": "eslint tests/js"
 	},
 	"dependencies": {
 		"@mattkrick/sanitize-svg": "^0.3.1",
@@ -82,6 +84,7 @@
 		"@nextcloud/webpack-vue-config": "^4.0.3",
 		"babel-eslint": "^10.1.0",
 		"babel-loader": "^8.2.2",
+		"chai": "^4.2.0",
 		"css-loader": "^4.3.0",
 		"eslint": "^7.25.0",
 		"eslint-config-standard": "^16.0.2",
@@ -93,9 +96,12 @@
 		"eslint-plugin-vue": "^7.9.0",
 		"eslint-webpack-plugin": "^2.5.4",
 		"file-loader": "^6.2.0",
+		"geckodriver": "^1.21.1",
+		"mocha": "^8.2.1",
 		"node-polyfill-webpack-plugin": "^1.1.0",
 		"sass": "^1.32.12",
 		"sass-loader": "^10.1.1",
+		"selenium-webdriver": "^4.0.0-alpha.8",
 		"style-loader": "^2.0.0",
 		"stylelint": "^13.13.0",
 		"stylelint-config-recommended-scss": "^4.2.0",
@@ -106,7 +112,8 @@
 		"vue-template-compiler": "^2.6.12",
 		"webpack": "^5.36.2",
 		"webpack-cli": "^4.6.0",
-		"webpack-node-externals": "^2.5.2"
+		"webpack-node-externals": "^2.5.2",
+		"xml2js": "^0.4.23"
 	},
 	"browserslist": [
 		"extends @nextcloud/browserslist-config"
