@@ -97,6 +97,7 @@ OC.L10N.register(
     "There are no contacts in this group" : "Ez dago kontakturik talde honetan",
     "Create contacts" : "Sortu kontaktuak",
     "Not grouped" : "Taldekatu gabe",
+    "Recently contacted" : "Berriki kontaktatuak",
     "Unable to create the contact." : "Ezin izan da kontaktua sortu.",
     "Contact not found" : "Kontaktua ez da aurkitu",
     "Group not found" : "Ez da taldea aurkitu",
