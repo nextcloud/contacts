@@ -32,7 +32,7 @@ OC.L10N.register(
     "Download" : "Jaitsi",
     "Clone contact" : "Klonatu kontaktua",
     "Generate QR Code" : "Sortu QR kodea",
-    "Delete" : "Borratu",
+    "Delete" : "Ezabatu",
     "Contact vCard as qrcode" : "Kontaktuaren vCard qrcode bezala",
     "Pick an address book" : "Aukeratu helbide-liburu bat",
     "Select address book" : "Hautatu helbide-liburua",
