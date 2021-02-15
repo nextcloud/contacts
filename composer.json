@@ -4,7 +4,7 @@
 		"optimize-autoloader": true,
 		"classmap-authoritative": true,
 		"platform": {
-			"php": "7.2"
+			"php": "7.3"
 		}
 	},
 	"scripts": {
@@ -17,6 +17,6 @@
 	"require-dev": {
         "christophwurst/nextcloud_testing": "^0.10.0",
 		"nextcloud/coding-standard": "^0.3.0",
-		"phpunit/phpunit": "^7"
+		"phpunit/phpunit": "^9"
 	}
 }
