@@ -404,11 +404,17 @@ export default class Contact {
 			case 'firstName':
 				// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
 				// -> John Stevenson
+				if (isEmpty(n[0])) {
+					return n[1]
+				}
 				return n.slice(0, 2).reverse().join(' ')
 
 			case 'lastName':
 				// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
 				// -> Stevenson, John
+				if (isEmpty(n[0])) {
+					return n[1]
+				}
 				return n.slice(0, 2).join(', ')
 			}
 		}
@@ -420,6 +426,9 @@ export default class Contact {
 		if (n && !isEmpty(n)) {
 			// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
 			// -> John Stevenson
+			if (isEmpty(n[0])) {
+				return n[1]
+			}
 			return n.slice(0, 2).reverse().join(' ')
 		}
 		// LAST chance, use the org ir that's the only thing we have
