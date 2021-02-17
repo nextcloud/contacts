@@ -759,7 +759,9 @@ export default {
 		 * @returns {boolean}
 		 */
 		canDisplay(property) {
-			const propModel = rfcProps.properties[property.name]
+			// Make sure we have some model for the property and check for ITEM.PROP custom label format
+			const propModel = rfcProps.properties[property.name.split('.').pop()]
+
 			const propType = propModel && propModel.force
 				? propModel.force
 				: property.getDefaultType()
