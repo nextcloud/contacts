@@ -69,9 +69,9 @@ class TwitterProvider implements ISocialProvider {
 		$profileIds = $this->getProfileIds($contact);
 		$urls = [];
 		foreach ($profileIds as $profileId) {
-			$recipe = 'https://mobile.twitter.com/{socialId}';
+			$recipe = 'https://twitter.com/{socialId}';
 			$connector = str_replace("{socialId}", $profileId, $recipe);
-			$connector = $this->getFromHtml($connector, '_normal');
+			$connector = $this->getFromHtml($connector, 'profile_image');
 			$urls[] = $connector;
 		}
 		return $urls;
