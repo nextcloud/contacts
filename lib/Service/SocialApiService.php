@@ -216,7 +216,6 @@ class SocialApiService {
 						break;
 					}
 				} catch (\Exception $e) {
-					return $e;
 				}
 			}
 
