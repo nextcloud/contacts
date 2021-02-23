@@ -23,18 +23,28 @@
 
 namespace OCA\Contacts\Service\Social;
 
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\RequestOptions;
+use OC\AppFramework\Http\Request;
+use OCA\Contacts\AppInfo\Application;
 use OCP\Http\Client\IClientService;
+use Psr\Log\LoggerInterface;
 
 class InstagramProvider implements ISocialProvider {
 
 	/** @var IClientService */
 	private $httpClient;
 
+	/** @var LoggerInterface */
+	private $logger;
+
 	/** @var string */
 	public $name = "instagram";
 
-	public function __construct(IClientService $httpClient) {
+	public function __construct(IClientService $httpClient,
+								LoggerInterface $logger) {
 		$this->httpClient = $httpClient->NewClient();
+		$this->logger = $logger;
 	}
 
 	/**
@@ -126,7 +136,12 @@ class InstagramProvider implements ISocialProvider {
 	 */
 	protected function getFromJson(string $url, string $desired) : ?string {
 		try {
-			$result = $this->httpClient->get($url);
+			$result = $this->httpClient->get($url, [
+				RequestOptions::HEADERS => [
+					// Make the request as google bot so insta displays the full static html page
+					'User-Agent' => 'Googlebot/2.1'
+				]
+			]);
 
 			$jsonResult = json_decode($result->getBody(),true);
 			$location = explode('->' , $desired);
@@ -137,7 +152,11 @@ class InstagramProvider implements ISocialProvider {
 				$jsonResult = $jsonResult[$loc];
 			}
 			return $jsonResult;
-		} catch (\Exception $e) {
+		} catch (RequestException $e) {
+			$this->logger->debug('Error fetching instagram urls',  [
+				'app' => Application::APP_ID,
+				'exception' => $e
+			]);
 			return null;
 		}
 	}
