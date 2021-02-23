@@ -100,16 +100,16 @@ class TwitterProviderTest extends TestCase {
 			]
 		];
 		$contactWithSocialUrls = [
-			"https://mobile.twitter.com/username1",
-			"https://mobile.twitter.com/username2",
+			"https://twitter.com/username1",
+			"https://twitter.com/username2",
 		];
 		$contactWithSocialHtml = [
-			'<html><img src="username1_normal.jpg" /></html>',
-			'<html><img src="username2_normal.jpg" /></html>',
+			'<html><img src="./profile_images/username1_normal.jpg" /></html>',
+			'<html><img src="./profile_images/username2_normal.jpg" /></html>',
 		];
 		$contactWithSocialImgs = [
-			"username1_400x400.jpg",
-			"username2_400x400.jpg"
+			"./profile_images/username1_400x400.jpg",
+			"./profile_images/username2_400x400.jpg"
 		];
 
 		$contactWithoutSocial = [
