@@ -178,7 +178,7 @@ const mutations = {
 	 */
 	deleteContactFromAddressbook(state, contact) {
 		const addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
-		Vue.delete(addressbook, contact.uid)
+		Vue.delete(addressbook.contacts, contact.uid)
 	},
 
 	/**
