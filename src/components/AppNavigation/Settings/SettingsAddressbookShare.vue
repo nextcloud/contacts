@@ -49,7 +49,7 @@
 
 <script>
 import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
-import client from '../../services/cdav'
+import client from '../../../services/cdav'
 
 import addressBookSharee from './SettingsAddressbookSharee'
 import debounce from 'debounce'
