@@ -23,12 +23,111 @@
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
 
-const baseApi = generateOcsUrl('apps/circles')
+const baseApi = generateOcsUrl('apps/circles', 2)
 
 /**
  * Get the circles list without the members
+ *
+ * @returns {Array}
  */
 export const getCircles = async function() {
 	const response = await axios.get(baseApi + 'circles')
 	return response.data.ocs.data
+}
+
+/**
+ * Create a new circle
+ *
+ * @param {string} name the circle name
+ * @returns {Object}
+ */
+export const createCircle = async function(name) {
+	const response = await axios.post(baseApi + 'circles', {
+		name,
+	})
+	return response.data.ocs.data
+}
+
+/**
+ * Delete an existing circle
+ *
+ * @param {string} circleId the circle name
+ * @returns {Object}
+ */
+export const deleteCircle = async function(circleId) {
+	const response = await axios.delete(baseApi + `circles/${circleId}`)
+	return response.data.ocs.data
+}
+
+/**
+ * Join a circle
+ *
+ * @param {string} circleId the circle name
+ * @returns {Array}
+ */
+export const joinCircle = async function(circleId) {
+	const response = await axios.put(baseApi + `circles/${circleId}/join`)
+	return response.data.ocs.data
+}
+
+/**
+ * Leave a circle
+ *
+ * @param {string} circleId the circle name
+ * @returns {Array}
+ */
+export const leaveCircle = async function(circleId) {
+	const response = await axios.put(baseApi + `circles/${circleId}/leave`)
+	return response.data.ocs.data
+}
+
+/**
+ * Get the circle members without the members
+ *
+ * @param {string} circleId the circle id
+ * @returns {Array}
+ */
+export const getCircleMembers = async function(circleId) {
+	const response = await axios.get(baseApi + `circles/${circleId}/members`)
+	return Object.values(response.data.ocs.data)
+}
+
+/**
+ * Add a circle member
+ *
+ * @param {string} circleId the circle id
+ * @param {string} memberId the member id
+ * @returns {Array}
+ */
+export const addMember = async function(circleId, memberId) {
+	const response = await axios.delete(baseApi + `circles/${circleId}/members/${memberId}`)
+	return Object.values(response.data.ocs.data)
+}
+
+/**
+ * Delete a circle member
+ *
+ * @param {string} circleId the circle id
+ * @param {string} memberId the member id
+ * @returns {Array}
+ */
+export const deleteMember = async function(circleId, memberId) {
+	const response = await axios.delete(baseApi + `circles/${circleId}/members/${memberId}`)
+	return Object.values(response.data.ocs.data)
+}
+
+/**
+ * change a member level
+ * @see levels file src/models/constants.js
+ *
+ * @param {string} circleId the circle id
+ * @param {string} memberId the member id
+ * @param {number} level the new member level
+ * @returns {Array}
+ */
+export const changeMemberLevel = async function(circleId, memberId, level) {
+	const response = await axios.put(baseApi + `circles/${circleId}/members${memberId}}/level`, {
+		level,
+	})
+	return Object.values(response.data.ocs.data)
 }

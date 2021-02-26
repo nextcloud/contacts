@@ -1,0 +1,185 @@
+<template>
+	<!-- Bulk contacts edit modal -->
+	<Modal v-if="isProcessing || isProcessDone"
+		:clear-view-delay="-1"
+		:can-close="isProcessDone"
+		@close="closeProcess">
+		<AddToGroupView v-bind="processStatus" @close="closeProcess" />
+	</Modal>
+
+	<!-- contacts picker -->
+	<EntityPicker v-else-if="showPicker"
+		:confirm-label="t('contacts', 'Add to circle {circle}', { circle: pickerforCircle.name})"
+		:data-types="pickerTypes"
+		:data-set="pickerData"
+		@close="onContactPickerClose"
+		@submit="onContactPickerPick" />
+</template>
+
+<script>
+import { subscribe } from '@nextcloud/event-bus'
+import pLimit from 'p-limit'
+
+import Modal from '@nextcloud/vue/dist/Components/Modal'
+
+import AddToGroupView from '../../views/Processing/AddToGroupView'
+import appendContactToGroup from '../../services/appendContactToGroup'
+import EntityPicker from './EntityPicker'
+
+export default {
+	name: 'MembersPicker',
+
+	components: {
+		AddToGroupView,
+		EntityPicker,
+		Modal,
+
+	},
+
+	data() {
+		return {
+			// Entity picker
+			showPicker: false,
+			pickerforCircle: null,
+			pickerData: [],
+			pickerTypes: [{
+				id: 'contact',
+				label: t('contacts', 'Contacts'),
+			}],
+
+			// Bulk processing
+			isProcessing: false,
+			isProcessDone: false,
+			processStatus: {
+				failed: 0,
+				progress: 0,
+				success: 0,
+				total: 0,
+				name: '',
+			},
+		}
+	},
+	computed: {
+		contacts() {
+			return this.$store.getters.getContacts
+		},
+		groups() {
+			return this.$store.getters.getGroups
+		},
+		sortedContacts() {
+			return this.$store.getters.getSortedContacts
+		},
+	},
+
+	mounted() {
+		// Watch for a add-to-group event
+		subscribe('contacts:circles:append', this.addMemberToCircle)
+	},
+
+	methods: {
+		// Bulk contacts group management handlers
+		addMemberToCircle(circleId) {
+			const circle = this.$store.getters.getCircle(circleId)
+			console.debug('Member picker opened for circle', circleId)
+
+			// Get the full group if we provided the group name only
+			if (circle?.id !== circleId) {
+				console.error('Cannot add member to an undefined circle', circle, circleId)
+				return
+			}
+
+			// Init data set
+			this.pickerData = this.sortedContacts
+				.map(({ key }) => {
+					const contact = this.contacts[key]
+					return {
+						id: contact.key,
+						label: contact.displayName,
+						type: 'contact',
+						readOnly: contact.addressbook.readOnly,
+						groups: contact.groups,
+					}
+				})
+				// No read only contacts
+				.filter(contact => !contact.readOnly)
+				// No contacts already present in group
+				.filter(contact => contact.groups.indexOf(circle.name) === -1)
+
+			this.showPicker = true
+			this.pickerforCircle = circle
+		},
+
+		onContactPickerClose() {
+			this.pickerData = []
+			this.showPicker = false
+		},
+
+		onContactPickerPick(selection) {
+			console.debug('Adding', selection, 'to circle', this.pickerforCircle)
+			const groupName = this.pickerforCircle.name
+
+			this.isProcessing = true
+			this.showPicker = false
+
+			this.processStatus.total = selection.length
+			this.processStatus.name = this.pickerforCircle.name
+			this.processStatus.progress = 0
+			this.processStatus.failed = 0
+
+			// max simultaneous requests
+			const limit = pLimit(3)
+			const requests = []
+
+			// create the array of requests to send
+			selection.map(async entity => {
+				try {
+					// Get contact
+					const contact = this.contacts[entity.id]
+
+					// push contact to server and use limit
+					requests.push(limit(() => appendContactToGroup(contact, groupName)
+						.then((response) => {
+							this.$store.dispatch('addContactToGroup', { contact, groupName })
+							this.processStatus.progress++
+							this.processStatus.success++
+						})
+						.catch((error) => {
+							this.processStatus.progress++
+							this.processStatus.error++
+							console.error(error)
+						})
+					))
+				} catch (e) {
+					console.error(e)
+				}
+			})
+
+			Promise.all(requests).then(() => {
+				this.isProcessDone = true
+				this.showPicker = false
+
+				// Auto close after 3 seconds if no errors
+				if (this.processStatus.failed === 0) {
+					setTimeout(this.closeProcess, 3000)
+				}
+			})
+		},
+
+		closeProcess() {
+			this.pickerforCircle = null
+			this.isProcessing = false
+			this.isProcessDone = false
+
+			// Reset
+			this.processStatus.failed = 0
+			this.processStatus.progress = 0
+			this.processStatus.success = 0
+			this.processStatus.total = 0
+		},
+	},
+}
+</script>
+
+<style lang="scss" scoped>
+
+</style>

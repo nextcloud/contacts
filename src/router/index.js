@@ -56,6 +56,11 @@ export default new Router({
 					component: Contacts,
 				},
 				{
+					path: 'circle/:selectedCircle',
+					name: 'circle',
+					component: Contacts,
+				},
+				{
 					path: ':selectedGroup/:selectedContact',
 					name: 'contact',
 					component: Contacts,

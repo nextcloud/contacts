@@ -1,8 +1,7 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+  - @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Charismatic Claire <charismatic.claire@noservice.noreply>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -22,44 +21,48 @@
   -->
 
 <template>
-	<AppNavigationItem v-for="group in groupsMenu"
-		:key="group.key"
-		:to="group.router"
-		:title="group.name"
-		:icon="group.icon">
-		<template slot="actions">
-			<ActionButton
-				icon="icon-add"
-				@click="addContactsToGroup(group)">
-				{{ t('contacts', 'Add contacts') }}
-			</ActionButton>
-			<ActionButton
-				icon="icon-download"
-				@click="downloadGroup(group)">
-				{{ t('contacts', 'Download') }}
-			</ActionButton>
-		</template>
-
-		<AppNavigationCounter v-if="group.contacts.length > 0" slot="counter">
-			{{ group.contacts.length }}
-		</AppNavigationCounter>
-	</AppNavigationItem>
+	<VirtualList class="member-list app-content-list"
+		data-key="id"
+		:data-sources="list"
+		:data-component="MemberListItem"
+		:estimate-size="68"
+		item-class="member-list__item" />
 </template>
 
 <script>
-import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
+import MemberListItem from './MemberList/MemberListItem'
+import VirtualList from 'vue-virtual-scroll-list'
+
 export default {
-	name: 'GroupsNavigation',
+	name: 'MemberList',
 
 	components: {
-		AppNavigationItem,
+		VirtualList,
 	},
 
 	props: {
-		groupsMenu: {
+		list: {
 			type: Array,
 			required: true,
 		},
 	},
+
+	data() {
+		return {
+			MemberListItem,
+		}
+	},
+
+	computed: {
+	},
+
+	watch: {
+	},
+
+	methods: {
+	},
 }
 </script>
+
+<style lang="scss" scoped>
+</style>

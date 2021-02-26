@@ -1,5 +1,5 @@
 /**
- * @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -20,6 +20,11 @@
  *
  */
 
-export const GROUP_ALL_CONTACTS = t('contacts', 'All contacts')
-export const GROUP_NO_GROUP_CONTACTS = t('contacts', 'Not grouped')
-export const GROUP_RECENTLY_CONTACTED = t('contactsinteraction', 'Recently contacted')
+const isNumber = function(num) {
+	if (!num) {
+		return false
+	}
+	return Number(num).toString() === num.toString()
+}
+
+export { isNumber }

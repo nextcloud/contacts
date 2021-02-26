@@ -1,3 +1,25 @@
+<!--
+  - @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
+  -
+  - @author John Molakvoæ <skjnldsv@protonmail.com>
+  -
+  - @license GNU AGPL version 3 or any later version
+  -
+  - This program is free software: you can redistribute it and/or modify
+  - it under the terms of the GNU Affero General Public License as
+  - published by the Free Software Foundation, either version 3 of the
+  - License, or (at your option) any later version.
+  -
+  - This program is distributed in the hope that it will be useful,
+  - but WITHOUT ANY WARRANTY; without even the implied warranty of
+  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+  - GNU Affero General Public License for more details.
+  -
+  - You should have received a copy of the GNU Affero General Public License
+  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  -
+  -->
+
 <template>
 	<AppNavigation>
 		<slot />
@@ -47,37 +69,11 @@
 				</AppNavigationCounter>
 			</AppNavigationItem>
 
-			<AppNavigationSpacer />
-
-			<!-- Custom groups -->
-			<AppNavigationItem v-for="group in groupsMenu"
-				:key="group.key"
-				:to="group.router"
-				:title="group.name"
-				:icon="group.icon">
-				<template slot="actions">
-					<ActionButton
-						icon="icon-add"
-						@click="addContactsToGroup(group)">
-						{{ t('contacts', 'Add contacts') }}
-					</ActionButton>
-					<ActionButton
-						icon="icon-download"
-						@click="downloadGroup(group)">
-						{{ t('contacts', 'Download') }}
-					</ActionButton>
-				</template>
-
-				<AppNavigationCounter v-if="group.contacts.length > 0" slot="counter">
-					{{ group.contacts.length }}
-				</AppNavigationCounter>
-			</AppNavigationItem>
-
 			<AppNavigationItem
 				id="newgroup"
 				:force-menu="true"
 				:menu-open.sync="isNewGroupMenuOpen"
-				:title="t('contacts', '+ New group')"
+				:title="t('contacts', 'Groups')"
 				menu-icon="icon-add"
 				@click.prevent.stop="toggleNewGroupMenu">
 				<template slot="actions">
@@ -90,6 +86,52 @@
 						@submit.prevent.stop="createNewGroup" />
 				</template>
 			</AppNavigationItem>
+
+			<!-- Custom groups -->
+			<GroupNavigationItem
+				v-for="group in ellipsisGroupsMenu"
+				:key="group.key"
+				:group="group" />
+
+			<!-- Toggle groups ellipsis -->
+			<AppNavigationItem
+				v-if="groupsMenu.length > ELLIPSIS_COUNT"
+				:title="collapseGroupsTitle"
+				class="app-navigation__collapse"
+				icon=""
+				@click="onToggleGroups" />
+
+			<AppNavigationItem
+				id="newcircle"
+				:force-menu="true"
+				:menu-open.sync="isNewCircleMenuOpen"
+				:title="t('contacts', 'Circles')"
+				menu-icon="icon-add"
+				@click.prevent.stop="toggleNewCircleMenu">
+				<template slot="actions">
+					<ActionText :icon="createCircleError ? 'icon-error' : 'icon-contacts-dark'">
+						{{ createCircleError ? createCircleError : t('contacts', 'Create a new circle') }}
+					</ActionText>
+					<ActionInput
+						icon=""
+						:placeholder="t('contacts','Circle name')"
+						@submit.prevent.stop="createNewCircle" />
+				</template>
+			</AppNavigationItem>
+
+			<!-- Circles -->
+			<CircleNavigationItem
+				v-for="circle in ellipsisCirclesMenu"
+				:key="circle.key"
+				:circle="circle" />
+
+			<!-- Toggle circles ellipsis -->
+			<AppNavigationItem
+				v-if="circlesMenu.length > ELLIPSIS_COUNT"
+				:title="collapseCirclesTitle"
+				class="app-navigation__collapse"
+				icon=""
+				@click="onToggleCircles" />
 		</template>
 
 		<!-- settings -->
@@ -102,52 +144,44 @@
 </template>
 
 <script>
-import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED } from '../../models/groups'
+import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT } from '../../models/constants'
 
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
 import ActionText from '@nextcloud/vue/dist/Components/ActionText'
 import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
 import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
 import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
-import AppNavigationSpacer from '@nextcloud/vue/dist/Components/AppNavigationSpacer'
 
-import download from 'downloadjs'
-import moment from 'moment'
 import naturalCompare from 'string-natural-compare'
 
+import CircleNavigationItem from './CircleNavigationItem'
+import GroupNavigationItem from './GroupNavigationItem'
 import SettingsSection from './SettingsSection'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled'
+import RouterMixin from '../../mixins/RouterMixin'
 
 export default {
 	name: 'RootNavigation',
 
 	components: {
-		ActionButton,
 		ActionInput,
 		ActionText,
 		AppNavigation,
 		AppNavigationCounter,
 		AppNavigationItem,
 		AppNavigationSettings,
-		AppNavigationSpacer,
+		CircleNavigationItem,
+		GroupNavigationItem,
 		SettingsSection,
 	},
+
+	mixins: [RouterMixin],
 
 	props: {
 		loading: {
 			type: Boolean,
 			default: true,
-		},
-
-		selectedGroup: {
-			type: String,
-			default: undefined,
-		},
-		selectedContact: {
-			type: String,
-			default: undefined,
 		},
 
 		contactsList: {
@@ -158,19 +192,31 @@ export default {
 
 	data() {
 		return {
+			ELLIPSIS_COUNT,
 			GROUP_ALL_CONTACTS,
 			GROUP_NO_GROUP_CONTACTS,
 			GROUP_RECENTLY_CONTACTED,
 
-			// Create group
+			// create group
 			isNewGroupMenuOpen: false,
 			createGroupError: null,
 
+			// create circle
+			isNewCircleMenuOpen: false,
+			createCircleError: null,
+
 			isContactsInteractionEnabled,
+
+			collapsedGroups: true,
+			collapsedCircles: true,
 		}
 	},
 
 	computed: {
+		// store variables
+		circles() {
+			return this.$store.getters.getCircles
+		},
 		contacts() {
 			return this.$store.getters.getContacts
 		},
@@ -181,14 +227,15 @@ export default {
 			return this.$store.getters.getSortedContacts
 		},
 
+		// list all the contacts that doesn't have a group
 		ungroupedContacts() {
 			return this.sortedContacts.filter(contact => this.contacts[contact.key].groups && this.contacts[contact.key].groups.length === 0)
 		},
 
-		// generate groups menu from groups store
+		// generate groups menu from the groups store
 		groupsMenu() {
 			const menu = this.groups.map(group => {
-				return Object.assign(group, {
+				return Object.assign({}, group, {
 					id: group.name.replace(' ', '_'),
 					key: group.name.replace(' ', '_'),
 					router: {
@@ -208,70 +255,53 @@ export default {
 
 			return menu
 		},
+		ellipsisGroupsMenu() {
+			if (this.collapsedGroups) {
+				return this.groupsMenu.slice(0, ELLIPSIS_COUNT)
+			}
+			return this.groupsMenu
+		},
+
+		// generate circles menu from the circles store
+		circlesMenu() {
+			const menu = this.circles
+			menu.sort((a, b) => naturalCompare(a.toString(), b.toString(), { caseInsensitive: true }))
+
+			return menu
+		},
+		ellipsisCirclesMenu() {
+			if (this.collapsedCircles) {
+				return this.circlesMenu.slice(0, ELLIPSIS_COUNT)
+			}
+			return this.circlesMenu
+		},
 
 		// Recently contacted data
 		recentlyContactedContacts() {
 			return this.groups.find(group => group.name === GROUP_RECENTLY_CONTACTED)
 		},
+
+		// Titles for the ellipsis toggle buttons
+		collapseGroupsTitle() {
+			return this.collapsedGroups
+				? t('contacts', 'Show all groups')
+				: t('contacts', 'Collapse groups')
+		},
+		collapseCirclesTitle() {
+			return this.collapsedCircles
+				? t('contacts', 'Show all circles')
+				: t('contacts', 'Collapse circles')
+		},
 	},
 
 	methods: {
-		/**
-		 * Download group of contacts
-		 *
-		 * @param {Object} group of contacts to be downloaded
-		 */
-		downloadGroup(group) {
-			// get grouped contacts
-			let groupedContacts = {}
-			group.contacts.forEach(key => {
-				const id = this.contacts[key].addressbook.id
-				groupedContacts = Object.assign({
-					[id]: {
-						addressbook: this.contacts[key].addressbook,
-						contacts: [],
-					},
-				}, groupedContacts)
-				groupedContacts[id].contacts.push(this.contacts[key].url)
-			})
-
-			// create vcard promise with the requested contacts
-			const vcardPromise = Promise.all(
-				Object.keys(groupedContacts).map(key =>
-					groupedContacts[key].addressbook.dav.addressbookMultigetExport(groupedContacts[key].contacts)))
-				.then(response => ({
-					groupName: group.name,
-					data: response.map(data => data.body).join(''),
-				}))
-			// download vcard
-			this.downloadVcardPromise(vcardPromise)
-		},
-
-		/**
-		 * Download vcard promise as vcard file
-		 *
-		 * @param {Promise} vcardPromise the full vcf file promise
-		 */
-		async downloadVcardPromise(vcardPromise) {
-			vcardPromise.then(response => {
-				const filename = moment().format('YYYY-MM-DD_HH-mm') + '_' + response.groupName + '.vcf'
-				download(response.data, filename, 'text/vcard')
-			})
-		},
-
-		/**
-		 * Forward the addContactsToGroup event to the parent
-		 */
-		addContactsToGroup() {
-			this.$emit('addContactsToGroup', ...arguments)
-		},
-
 		toggleNewGroupMenu() {
 			this.isNewGroupMenuOpen = !this.isNewGroupMenuOpen
 		},
 		createNewGroup(e) {
 			const input = e.target.querySelector('input[type=text]')
 			const groupName = input.value.trim()
+			console.debug('Creating new group', groupName)
 
 			// Check if already exists
 			if (this.groups.find(group => group.name === groupName)) {
@@ -293,6 +323,57 @@ export default {
 				},
 			})
 		},
+
+		// Ellipsis item toggles
+		onToggleGroups() {
+			this.collapsedGroups = !this.collapsedGroups
+		},
+		onToggleCircles() {
+			this.collapsedCircles = !this.collapsedCircles
+		},
+
+		toggleNewCircleMenu() {
+			this.isNewCircleMenuOpen = !this.isNewCircleMenuOpen
+		},
+		async createNewCircle(e) {
+			const input = e.target.querySelector('input[type=text]')
+			const circleName = input.value.trim()
+			console.debug('Creating new circle', circleName)
+
+			// Check if already exists
+			if (this.circles.find(circle => circle.name === circleName)) {
+				this.createGroupError = t('contacts', 'This circle already exists')
+				return
+			}
+
+			this.createCircleError = null
+
+			const circleId = await this.$store.dispatch('createCircle', circleName)
+			this.isNewCircleMenuOpen = false
+
+			// Select group
+			this.$router.push({
+				name: 'circle',
+				params: {
+					selectedCircle: circleId,
+				},
+			})
+		},
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+#newgroup,
+#newcircle {
+	margin-top: 22px;
+
+	/deep/ a {
+		color: var(--color-text-maxcontrast)
+	}
+}
+
+.app-navigation__collapse /deep/ a {
+	color: var(--color-text-maxcontrast)
+}
+</style>

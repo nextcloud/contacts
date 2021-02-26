@@ -32,7 +32,6 @@ import store from './store'
 /** GLOBAL COMPONENTS AND DIRECTIVE */
 import ClickOutside from 'vue-click-outside'
 import VTooltip from '@nextcloud/vue/dist/Directives/Tooltip'
-import VueClipboard from 'vue-clipboard2'
 
 // Dialogs css
 import '@nextcloud/dialogs/styles/toast.scss'
@@ -51,8 +50,6 @@ __webpack_public_path__ = generateFilePath('contacts', '', 'js/')
 // Register global directives
 Vue.directive('ClickOutside', ClickOutside)
 Vue.directive('Tooltip', VTooltip)
-
-Vue.use(VueClipboard)
 
 sync(store, router)
 

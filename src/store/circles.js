@@ -21,23 +21,15 @@
  */
 
 import { showError } from '@nextcloud/dialogs'
-import pLimit from 'p-limit'
 import Vue from 'vue'
 
+import { createCircle, deleteCircle, deleteMember, getCircleMembers, getCircles } from '../services/circles'
 import Member from '../models/member'
-import { getCircles } from '../services/circles'
-
-const circleModel = {
-	id: '',
-	name: '',
-	owner: {},
-	members: [],
-	initiator: {},
-	url: '',
-}
+import Circle from '../models/circle'
 
 const state = {
-	circles: [],
+	/** @type {Object.<string>} Circle */
+	circles: {},
 }
 
 const mutations = {
@@ -46,37 +38,32 @@ const mutations = {
 	 * Add a circle into state
 	 *
 	 * @param {Object} state the store data
-	 * @param {Object} circle the circle to add
+	 * @param {Circle} circle the circle to add
 	 */
 	addCircle(state, circle) {
-		// extend the circle to the default model
-		const newCircle = Object.assign({}, circleModel, circle)
-		// force reinit of the members object to prevent
-		// data passed as references
-		newCircle.members = {}
-		state.circles.push(newCircle)
+		Vue.set(state.circles, circle.id, circle)
 	},
 
 	/**
 	 * Delete circle
 	 *
 	 * @param {Object} state the store data
-	 * @param {Object} circle the circle to delete
+	 * @param {Circle} circle the circle to delete
 	 */
 	deleteCircle(state, circle) {
-		state.circles.splice(state.circles.indexOf(circle), 1)
+		Vue.delete(state.circles, circle.id)
 	},
 
 	/**
 	 * Rename a circle
 	 *
-	 * @param {Object} context the store mutations
+	 * @param {Object} state the store mutations
 	 * @param {Object} data destructuring object
-	 * @param {Object} data.circle the circle to rename
+	 * @param {Circle} data.circle the circle to rename
 	 * @param {string} data.newName the new name of the addressbook
 	 */
-	renameCircle(context, { circle, newName }) {
-		circle = state.circles.find(search => search.id === circle.id)
+	renameCircle(state, { circle, newName }) {
+		circle = state.circles[circle.id]
 		circle.displayName = newName
 	},
 
@@ -85,32 +72,23 @@ const mutations = {
 	 * and remove duplicates
 	 *
 	 * @param {Object} state the store data
-	 * @param {Object} data destructuring object
-	 * @param {Object} data.circle the circle to add the members to
-	 * @param {Member[]} data.members array of contacts to append
+	 * @param {Members[]} members array of members to append
 	 */
-	appendMembersToCircle(state, { circle, members }) {
-		circle = state.circles.find(search => search.id === circle.id)
-
-		// convert list into an array and remove duplicate
-		circle.members = members.reduce((list, member) => {
-			if (list[member.uid]) {
-				console.info('Duplicate contact overrided', list[member.uid], member)
-			}
-			Vue.set(list, member.uid, member)
-			return list
-		}, circle.members)
+	appendMembersToCircle(state, members) {
+		members.forEach(member => member.circle.addMember(member))
 	},
 
 	/**
 	 * Add a member to a circle and overwrite if duplicate uid
 	 *
 	 * @param {Object} state the store data
-	 * @param {Member} member the member to add
+	 * @param {Object} data destructuring object
+	 * @param {string} data.circleId the circle to add the members to
+	 * @param {Member} data.member array of contacts to append
 	 */
-	addMemberToCircle(state, member) {
-		const circle = state.circles.find(search => search.id === member.circle.id)
-		Vue.set(circle.members, member.uid, member)
+	addMemberToCircle(state, { circleId, member }) {
+		const circle = state.circles[circleId]
+		circle.addmember(member)
 	},
 
 	/**
@@ -120,13 +98,14 @@ const mutations = {
 	 * @param {Member} member the member to add
 	 */
 	deleteMemberFromCircle(state, member) {
-		const circle = state.circles.find(search => search.id === member.circle.id)
-		Vue.delete(circle.members, member.uid)
+		// Circles dependencies are managed directly from the model
+		member.delete()
 	},
 }
 
 const getters = {
-	getCircles: state => state.circles,
+	getCircles: state => Object.values(state.circles),
+	getCircle: state => (id) => state.circles[id],
 }
 
 const actions = {
@@ -139,50 +118,92 @@ const actions = {
 	 */
 	async getCircles(context) {
 		const circles = await getCircles()
+		console.debug(`Retrieved ${circles.length} circle(s)`, circles)
 
-		circles.forEach(circle => {
-			context.commit('addCircle', circle)
-		})
+		circles.map(circle => new Circle(circle))
+			.forEach(circle => {
+				context.commit('addCircle', circle)
+			})
 
 		return circles
 	},
 
 	/**
-	 * Append a new address book to array of existing address books
+	 * Retrieve and commit circle members
 	 *
 	 * @param {Object} context the store mutations
-	 * @param {Object} addressbook The address book to append
-	 * @returns {Promise}
+	 * @param {string} circleId the circle id
 	 */
-	async appendAddressbook(context, addressbook) {
-		return client.addressBookHomes[0]
-			.createAddressBookCollection(addressbook.displayName)
-			.then((response) => {
-				addressbook = mapDavCollectionToAddressbook(response)
-				context.commit('addAddressbook', addressbook)
-			})
-			.catch((error) => { throw error })
+	async getCircleMembers(context, circleId) {
+		const circle = context.getters.getCircle(circleId)
+		const members = await getCircleMembers(circleId)
+
+		console.debug(`${circleId} have ${members.length} member(s)`, members)
+		context.commit('appendMembersToCircle', members.map(member => new Member(member, circle)))
+	},
+
+	/**
+	 * Create circle
+	 *
+	 * @param {Object} context the store mutations Current context
+	 * @param {string} circleName the circle name
+	 */
+	async createCircle(context, circleName) {
+		try {
+			const response = await createCircle(circleName)
+			const circle = new Circle(response)
+			console.debug('Created circle', circleName, circle)
+		} catch (error) {
+			console.error(error)
+			showError(t('contacts', 'Unable to create circle {circleName}', { circleName }))
+		}
 	},
 
 	/**
 	 * Delete circle
 	 *
 	 * @param {Object} context the store mutations Current context
-	 * @param {Object} circle the circle to delete
-	 * @returns {Promise}
+	 * @param {Circle} circle the circle to delete
 	 */
 	async deleteCircle(context, circle) {
-		return addressbook.dav
-			.delete()
-			.then((response) => {
-				// delete all the contacts from the store that belong to this addressbook
-				Object.values(addressbook.contacts)
-					.forEach(contact => context.commit('deleteContact', contact))
-				// then delete the addressbook
-				context.commit('deleteAddressbook', addressbook)
-			})
-			.catch((error) => { throw error })
+		try {
+			await deleteCircle(circle.id)
+			console.debug('Created circle', circle.displayName, circle)
+		} catch (error) {
+			console.error(error)
+			showError(t('contacts', 'Unable to create circle {displayName}', circle))
+		}
 	},
+
+	/**
+	 * Add a member to a circle
+	 *
+	 * @param {Object} context the store mutations Current context
+	 * @param {Object} data destructuring object
+	 * @param {string} data.circleId the circle to manage
+	 * @param {string} data.memberId the member to add
+	 */
+	async addMemberToCircle(context, { circleId, memberId }) {
+		await this.addMember(circleId, memberId)
+		console.debug('Added member', circleId, memberId)
+	},
+
+	/**
+	 * Delete a member from a circle
+	 *
+	 * @param {Object} context the store mutations Current context
+	 * @param {Member} member the member to remove
+	 */
+	async deleteMemberFromCircle(context, member) {
+		const circleId = member.circle.id
+		const memberId = member.id
+		await deleteMember(circleId, memberId)
+
+		// success, let's remove from store
+		context.commit('deleteMemberFromCircle', member)
+		console.debug('Deleted member', circleId, memberId)
+	},
+
 }
 
 export default { state, mutations, getters, actions }
