@@ -84,7 +84,7 @@
 					:disabled="isEmptySelection"
 					class="navigation__button-right primary"
 					@click="onSubmit">
-					{{ t('contacts', 'Add to group') }}
+					{{ confirmLabel }}
 				</button>
 			</div>
 		</div>
@@ -146,6 +146,14 @@ export default {
 		sort: {
 			type: String,
 			default: 'label',
+		},
+
+		/**
+		 * Confirm button text
+		 */
+		confirmLabel: {
+			type: String,
+			default: t('contacts', 'Add to group'),
 		},
 	},
 
