@@ -44,6 +44,7 @@
     "Voice" : "Votz",
     "Relative" : "Relatiu",
     "None" : "Pas cap",
-    "Unknown" : "Desconegut"
+    "Unknown" : "Desconegut",
+    "Spoken languages" : "Lengas parladas"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

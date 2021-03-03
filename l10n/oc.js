@@ -46,6 +46,7 @@ OC.L10N.register(
     "Voice" : "Votz",
     "Relative" : "Relatiu",
     "None" : "Pas cap",
-    "Unknown" : "Desconegut"
+    "Unknown" : "Desconegut",
+    "Spoken languages" : "Lengas parladas"
 },
 "nplurals=2; plural=(n > 1);");
