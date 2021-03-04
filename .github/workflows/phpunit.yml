@@ -74,7 +74,7 @@ jobs:
       - name: Upload coverage
         uses: codecov/codecov-action@v1
         with:
-          file: apps/${{ env.APP_NAME }}/coverage.xml
+          file: apps/${{ env.APP_NAME }}/clover.unit.xml
           fail_ci_if_error: true
 
 
