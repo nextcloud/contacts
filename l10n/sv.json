@@ -39,7 +39,10 @@
     "An error occurred while trying to copy the contact" : "Ett fel uppstod vid försök att kopiera kontakten",
     "Search {types}" : "Sök {types}",
     "Loading …" : "Läser in ...",
+    "List is empty" : "Listan är tom",
     "No results" : "Inga resultat",
+    "Add to group" : "Lägg till grupp",
+    "Add {type}" : "Lägg till {type}",
     "Select type" : "Välj typ",
     "Select Date" : "Välj datum",
     "Add contact in group" : "Lägg till kontakt i grupp",
@@ -80,6 +83,7 @@
     "Unable to create the contact." : "Kunde inte skapa kontakten.",
     "Contact not found" : "Kontakt hittades inte",
     "Close" : "Stäng",
+    "_{count} error_::_{count} errors_" : ["{count} fel","{count} fel"],
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importerar %n kontakt till {addressbook}","Importerar %n kontakter till {addressbook}"],
     "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Klar med import av %n kontakt till {addressbook}","Klar med import av %n kontakter till {addressbook}"],
     "Import" : "Importera",
@@ -143,6 +147,7 @@
     "Timezone" : "Tidszon",
     "Spoken languages" : "Talade språk",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt kunde inte läsas","{failed} kontakter kunde inte läsas"],
+    "Unable to delete contact" : "Kunde inte radera kontakten",
     "Your web browser is out of date" : "Din webbläsare är för gammal",
     "This application is not compatible with Internet Explorer" : "Den här applikationen är inte kompatibel med Internet Explorer"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
