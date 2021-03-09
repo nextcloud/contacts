@@ -83,6 +83,7 @@ import ArrowLeft from 'vue-material-design-icons/ArrowLeft'
 import RouterMixin from '../../mixins/RouterMixin'
 import Member from '../../models/member'
 import { showError } from '@nextcloud/dialogs'
+import { changeMemberLevel } from '../../services/circles'
 
 export default {
 	name: 'MemberListItem',
@@ -135,7 +136,7 @@ export default {
 		},
 
 		deleteMemberName() {
-			return this.currentUserId === this.source.id
+			return this.isCurrentUser
 				? t('contacts', 'Leave this circle')
 				: t('contacts', 'Remove member')
 		},
@@ -162,6 +163,14 @@ export default {
 		 */
 		availableLevelsChange() {
 			return Object.keys(CIRCLES_MEMBER_LEVELS).filter(level => level < this.currentUserLevel)
+		},
+
+		/**
+		 * Is the current member the current user?
+		 * @returns {boolean}
+		 */
+		isCurrentUser() {
+			return this.currentUserId === this.source.id
 		},
 
 		/**
@@ -197,10 +206,29 @@ export default {
 			this.loading = true
 
 			try {
-				await this.$store.dispatch('deleteMemberFromCircle', this.source)
+				await this.$store.dispatch('deleteMemberFromCircle', {
+					member: this.source,
+					leave: this.isCurrentUser,
+				})
 			} catch (error) {
 				console.error('Could not delete the member', this.source, error)
 				showError(t('contacts', 'Could not delete the member {displayName}', this.source))
+			} finally {
+				this.loading = false
+			}
+		},
+
+		async changeLevel(level) {
+			this.loading = true
+
+			try {
+				await changeMemberLevel(this.circle.id, this.source.id, level)
+				this.showLevelMenu = false
+			} catch (error) {
+				console.error('Could not change the member level to', CIRCLES_MEMBER_LEVELS[level])
+				showError(t('contacts', 'Could not change the member level to {level}', {
+					level: CIRCLES_MEMBER_LEVELS[level],
+				}))
 			} finally {
 				this.loading = false
 			}

@@ -22,6 +22,7 @@
 
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
+import { CIRCLES_MEMBER_LEVELS } from '../models/constants'
 
 const baseApi = generateOcsUrl('apps/circles', 2)
 
@@ -126,7 +127,11 @@ export const deleteMember = async function(circleId, memberId) {
  * @returns {Array}
  */
 export const changeMemberLevel = async function(circleId, memberId, level) {
-	const response = await axios.put(baseApi + `circles/${circleId}/members${memberId}}/level`, {
+	if (!(level in CIRCLES_MEMBER_LEVELS)) {
+		throw new Error('Invalid level. Valid levels are', CIRCLES_MEMBER_LEVELS)
+	}
+
+	const response = await axios.put(baseApi + `circles/${circleId}/members/${memberId}}/level`, {
 		level,
 	})
 	return Object.values(response.data.ocs.data)

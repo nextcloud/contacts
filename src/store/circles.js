@@ -23,7 +23,7 @@
 import { showError } from '@nextcloud/dialogs'
 import Vue from 'vue'
 
-import { createCircle, deleteCircle, deleteMember, getCircleMembers, getCircles } from '../services/circles'
+import { createCircle, deleteCircle, deleteMember, getCircleMembers, getCircles, leaveCircle } from '../services/circles'
 import Member from '../models/member'
 import Circle from '../models/circle'
 
@@ -193,11 +193,17 @@ const actions = {
 	 *
 	 * @param {Object} context the store mutations Current context
 	 * @param {Member} member the member to remove
+	 * @param {boolean} [leave=false] leave the circle instead of removing a member
 	 */
-	async deleteMemberFromCircle(context, member) {
+	async deleteMemberFromCircle(context, { member, leave = false }) {
+		console.info(leave);
 		const circleId = member.circle.id
 		const memberId = member.id
-		await deleteMember(circleId, memberId)
+		if (leave) {
+			await leaveCircle(circleId)
+		} else {
+			await deleteMember(circleId, memberId)
+		}
 
 		// success, let's remove from store
 		context.commit('deleteMemberFromCircle', member)
