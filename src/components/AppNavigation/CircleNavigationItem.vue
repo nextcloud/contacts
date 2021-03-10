@@ -76,8 +76,8 @@
 			</ActionButton>
 		</template>
 
-		<AppNavigationCounter v-if="circle.members.length > 0" slot="counter">
-			{{ circle.members.length }}
+		<AppNavigationCounter v-if="memberCount > 0" slot="counter">
+			{{ memberCount }}
 		</AppNavigationCounter>
 	</AppNavigationItem>
 </template>
@@ -121,7 +121,7 @@ export default {
 
 	data() {
 		return {
-			loading: false
+			loading: false,
 		}
 	},
 
@@ -145,6 +145,10 @@ export default {
 			}
 			return t('contacts', 'Join circle')
 		},
+
+		memberCount() {
+			return this.circle?.members?.length || 0
+		},
 	},
 
 	methods: {
@@ -162,7 +166,21 @@ export default {
 
 		},
 
-		leaveCircle() {
+		async leaveCircle() {
+			this.loading = true
+			const member = this.circle.initiator
+
+			try {
+				await this.$store.dispatch('deleteMemberFromCircle', {
+					member,
+					leave: true,
+				})
+			} catch (error) {
+				console.error('Could not leave the circle', member, error)
+				showError(t('contacts', 'Could not leave the circle {displayName}', this.circle))
+			} finally {
+				this.loading = false
+			}
 
 		},
 

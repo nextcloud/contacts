@@ -25,7 +25,6 @@
 import { MEMBER_TYPE_USER } from './constants'
 
 import Circle from './circle'
-import Vue from 'vue'
 export default class Member {
 
 	/** @typedef Circle */

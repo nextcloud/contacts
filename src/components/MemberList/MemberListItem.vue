@@ -61,8 +61,16 @@
 						:size="16"
 						decorative />
 				</ActionButton>
-				<ActionButton v-if="canDelete" icon="icon-delete" @click="deleteMember">
-					{{ deleteMemberName }}
+
+				<!-- Leave or delete member from circle -->
+				<ActionButton v-if="isCurrentUser && !circle.isOwner" @click="deleteMember">
+					{{ t('contacts', 'Leave circle') }}
+					<ExitToApp slot="icon"
+						:size="16"
+						decorative />
+				</ActionButton>
+				<ActionButton v-else-if="canDelete" icon="icon-delete" @click="deleteMember">
+					{{ t('contacts', 'Remove member') }}
 				</ActionButton>
 			</template>
 		</Actions>
@@ -77,13 +85,14 @@ import ListItemIcon from '@nextcloud/vue/dist/Components/ListItemIcon'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionText from '@nextcloud/vue/dist/Components/ActionText'
 
-import ShieldCheck from 'vue-material-design-icons/ShieldCheck'
 import ArrowLeft from 'vue-material-design-icons/ArrowLeft'
+import ExitToApp from 'vue-material-design-icons/ExitToApp'
+import ShieldCheck from 'vue-material-design-icons/ShieldCheck'
 
-import RouterMixin from '../../mixins/RouterMixin'
-import Member from '../../models/member'
-import { showError } from '@nextcloud/dialogs'
 import { changeMemberLevel } from '../../services/circles'
+import { showError } from '@nextcloud/dialogs'
+import Member from '../../models/member'
+import RouterMixin from '../../mixins/RouterMixin'
 
 export default {
 	name: 'MemberListItem',
@@ -93,6 +102,7 @@ export default {
 		ActionButton,
 		ActionText,
 		ArrowLeft,
+		ExitToApp,
 		ListItemIcon,
 		ShieldCheck,
 	},
@@ -115,6 +125,10 @@ export default {
 	},
 
 	computed: {
+		/**
+		 * Return the current circle
+		 * @returns {Circle}
+		 */
 		circle() {
 			return this.$store.getters.getCircle(this.selectedCircle)
 		},
@@ -133,12 +147,6 @@ export default {
 		levelName() {
 			return CIRCLES_MEMBER_LEVELS[this.source.level]
 				|| CIRCLES_MEMBER_LEVELS[MEMBER_LEVEL_MEMBER]
-		},
-
-		deleteMemberName() {
-			return this.isCurrentUser
-				? t('contacts', 'Leave this circle')
-				: t('contacts', 'Remove member')
 		},
 
 		/**
@@ -186,7 +194,7 @@ export default {
 		},
 
 		/**
-		 * Can the current user delete members?
+		 * Can the current user delete members or?
 		 * @returns {boolean}
 		 */
 		canDelete() {

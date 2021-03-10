@@ -24,7 +24,7 @@
 
 import {
 	MEMBER_LEVEL_MODERATOR, MEMBER_LEVEL_NONE, MEMBER_LEVEL_OWNER,
-	CIRCLE_CONFIG_REQUEST, CIRCLE_CONFIG_INVITE, CIRCLE_CONFIG_OPEN,
+	CIRCLE_CONFIG_REQUEST, CIRCLE_CONFIG_INVITE, CIRCLE_CONFIG_OPEN, CIRCLE_CONFIG_VISIBLE,
 } from './constants'
 
 import Vue from 'vue'
@@ -33,15 +33,25 @@ import Member from './member'
 export default class Circle {
 
 	_data = {}
+	_members = {}
 
 	/**
-	 * Creates an instance of Contact
+	 * Creates an instance of Circle
 	 *
 	 * @param {Object} data the vcard data as string with proper new lines
 	 * @param {object} circle the addressbook which the contat belongs to
 	 * @memberof Circle
 	 */
 	constructor(data) {
+		this.updateData(data)
+	}
+
+	/**
+	 * Update inner circle data, owner and initiator
+	 * @param {Object} data the vcard data as string with proper new lines
+	 * @memberof Circle
+	 */
+	updateData(data) {
 		if (typeof data !== 'object') {
 			throw new Error('Invalid circle')
 		}
@@ -52,9 +62,8 @@ export default class Circle {
 		}
 
 		this._data = data
-		this._data.initiator = new Member(data.initiator)
+		this._data.initiator = new Member(data.initiator, this)
 		this._data.owner = new Member(data.owner)
-		this._data.members = {}
 	}
 
 	// METADATA -----------------------------------------
@@ -148,7 +157,7 @@ export default class Circle {
 	 * @returns {Member[]}
 	 */
 	get members() {
-		return this._data.members
+		return this._members
 	}
 
 	/**
@@ -157,7 +166,7 @@ export default class Circle {
 	 * @memberof Circle
 	 */
 	set members(members) {
-		this._data.members = members
+		this._members = members
 	}
 
 	/**
@@ -170,10 +179,10 @@ export default class Circle {
 		}
 
 		const uid = member.id
-		if (this._data.members[uid]) {
-			console.warn('Duplicate member overrided', this._data.members[uid], member)
+		if (this._members[uid]) {
+			console.warn('Duplicate member overrided', this._members[uid], member)
 		}
-		Vue.set(this._data.members, uid, member)
+		Vue.set(this._members, uid, member)
 	}
 
 	/**
@@ -186,12 +195,12 @@ export default class Circle {
 		}
 
 		const uid = member.id
-		if (!this._data.members[uid]) {
+		if (!this._members[uid]) {
 			console.warn('The member was not in this circle. Nothing was done.', member)
 		}
 
 		// Delete and clear memory
-		Vue.delete(this._data.members, uid)
+		Vue.delete(this._members, uid)
 	}
 
 	// CONFIGS --------------------------------------------
@@ -227,6 +236,16 @@ export default class Circle {
 	 */
 	get canJoin() {
 		return (this._data.config & CIRCLE_CONFIG_OPEN) !== 0
+	}
+
+	/**
+	 * Circle is visible to others
+	 * @readonly
+	 * @memberof Circle
+	 * @returns {boolean}
+	 */
+	get isVisible() {
+		return (this._data.config & CIRCLE_CONFIG_VISIBLE) !== 0
 	}
 
 	/**

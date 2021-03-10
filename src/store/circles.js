@@ -41,6 +41,9 @@ const mutations = {
 	 * @param {Circle} circle the circle to add
 	 */
 	addCircle(state, circle) {
+		if (circle.constructor.name !== Circle.name) {
+			throw new Error('circle must be a Circle type')
+		}
 		Vue.set(state.circles, circle.id, circle)
 	},
 
@@ -51,20 +54,10 @@ const mutations = {
 	 * @param {Circle} circle the circle to delete
 	 */
 	deleteCircle(state, circle) {
+		if (!(circle.id in state.circles)) {
+			console.warn('Skipping deletion of unknown circle', circle)
+		}
 		Vue.delete(state.circles, circle.id)
-	},
-
-	/**
-	 * Rename a circle
-	 *
-	 * @param {Object} state the store mutations
-	 * @param {Object} data destructuring object
-	 * @param {Circle} data.circle the circle to rename
-	 * @param {string} data.newName the new name of the addressbook
-	 */
-	renameCircle(state, { circle, newName }) {
-		circle = state.circles[circle.id]
-		circle.displayName = newName
 	},
 
 	/**
@@ -193,14 +186,21 @@ const actions = {
 	 *
 	 * @param {Object} context the store mutations Current context
 	 * @param {Member} member the member to remove
-	 * @param {boolean} [leave=false] leave the circle instead of removing a member
+	 * @param {boolean} [leave=false] leave the circle instead of removing the member
 	 */
 	async deleteMemberFromCircle(context, { member, leave = false }) {
-		console.info(leave);
 		const circleId = member.circle.id
 		const memberId = member.id
+
 		if (leave) {
-			await leaveCircle(circleId)
+			const circle = await leaveCircle(circleId)
+			member.circle.updateData(circle)
+
+			// If the circle is not visible, we remove it from the list
+			if (!member.circle.isVisible && !member.circle.isMember) {
+				await context.commit('deleteCircle', circle)
+				console.debug('Deleted circle', circleId, memberId)
+			}
 		} else {
 			await deleteMember(circleId, memberId)
 		}
