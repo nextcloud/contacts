@@ -116,7 +116,7 @@ OC.L10N.register(
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Přidává se {success} kontakt do {name}","Přidávají se {success} kontakty do {name}","Přidává se {success} kontaktů do {name}","Přidávají se {success} kontakty do {name}"],
     "_{count} error_::_{count} errors_" : ["{count} chyba","{count} chyby","{count} chyb","{count} chyby"],
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importuje se %n kontakt do {addressbook}","Importují se %n kontakty do {addressbook}","Importuje se %n kontaktů do {addressbook}","Importují se %n kontakty do {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Dokončen import %n kontaktu {addressbook}","Dokončen import %n kontaktů {addressbook}","Dokončen import %n kontaktů {addressbook}","Dokončen import %n kontaktů {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Dokončen import %n kontaktu do {addressbook}","Dokončen import %n kontaktů do {addressbook}","Dokončen import %n kontaktů do {addressbook}","Dokončen import %n kontaktů do {addressbook}"],
     "Import" : "Importovat",
     "Nickname" : "Přezdívka",
     "Detailed name" : "Jméno podrobně",
