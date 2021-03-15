@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS } from '../models/constants'
+import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE } from '../models/constants.ts'
 
 import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
 import Content from '@nextcloud/vue/dist/Components/Content'
@@ -133,6 +133,9 @@ export default {
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
 		},
+		contacts() {
+			return this.$store.getters.getContacts
+		},
 		sortedContacts() {
 			return this.$store.getters.getSortedContacts
 		},
@@ -185,6 +188,10 @@ export default {
 				return this.sortedContacts.filter(contact => group.contacts.indexOf(contact.key) >= 0)
 			}
 			return []
+		},
+
+		ungroupedContacts() {
+			return this.sortedContacts.filter(contact => this.contacts[contact.key].groups && this.contacts[contact.key].groups.length === 0)
 		},
 	},
 
@@ -343,10 +350,14 @@ export default {
 				}
 
 				// Unknown group
-				if (!this.groups.find(group => group.name === this.selectedGroup)
-					&& this.GROUP_ALL_CONTACTS !== this.selectedGroup
-					&& this.GROUP_NO_GROUP_CONTACTS !== this.selectedGroup) {
-					showError(t('contacts', 'Group not found'))
+				if (!this.selectedCircle
+					&& !this.groups.find(group => group.name === this.selectedGroup)
+					&& GROUP_ALL_CONTACTS !== this.selectedGroup
+					&& GROUP_NO_GROUP_CONTACTS !== this.selectedGroup
+					&& ROUTE_CIRCLE !== this.selectedGroup) {
+					showError(t('contacts', 'Group {group} not found', { group: this.selectedGroup }))
+					console.error('Group not found', this.selectedGroup)
+
 					this.$router.push({
 						name: 'root',
 					})

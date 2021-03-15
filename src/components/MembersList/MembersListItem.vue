@@ -22,13 +22,14 @@
 
 <template>
 	<ListItemIcon
-		:id="source.id"
-		:key="source.id"
+		:id="source.singleId"
+		:key="source.singleId"
 		:avatar-size="44"
 		:is-no-user="!source.isUser"
 		:subtitle="levelName"
 		:title="source.displayName"
-		:user="source.userId">
+		:user="source.userId"
+		class="members-list__item">
 		<Actions @close="onMenuClose">
 			<template v-if="loading">
 				<ActionText icon="icon-loading-small">
@@ -36,31 +37,26 @@
 				</ActionText>
 			</template>
 
-			<!-- Level picker -->
-			<template v-else-if="showLevelMenu">
-				<ActionButton @click="toggleLevelMenu">
-					{{ t('contacts', 'Back to the menu') }}
-					<ArrowLeft slot="icon"
-						:size="16"
-						decorative />
-				</ActionButton>
-				<ActionButton
-					v-for="level in availableLevelsChange"
-					:key="level"
-					icon=""
-					@click="changeLevel(level)">
-					{{ CIRCLES_MEMBER_LEVELS[level] }}
-				</ActionButton>
-			</template>
-
 			<!-- Normal menu -->
 			<template v-else>
-				<ActionButton v-if="canChangeLevel" @click="toggleLevelMenu">
-					{{ t('contacts', 'Change level') }}
-					<ShieldCheck slot="icon"
-						:size="16"
-						decorative />
-				</ActionButton>
+				<!-- Level picker -->
+				<template v-if="canChangeLevel">
+					<ActionText>
+						{{ t('contacts', 'Manage level') }}
+						<ShieldCheck slot="icon"
+							:size="16"
+							decorative />
+					</ActionText>
+					<ActionButton
+						v-for="level in availableLevelsChange"
+						:key="level"
+						icon=""
+						@click="changeLevel(level)">
+						{{ levelChangeLabel(level) }}
+					</ActionButton>
+
+					<ActionSeparator />
+				</template>
 
 				<!-- Leave or delete member from circle -->
 				<ActionButton v-if="isCurrentUser && !circle.isOwner" @click="deleteMember">
@@ -78,30 +74,30 @@
 </template>
 
 <script>
-import { MEMBER_LEVEL_MEMBER, CIRCLES_MEMBER_LEVELS } from '../../models/constants'
+import { CIRCLES_MEMBER_LEVELS, MemberLevels } from '../../models/constants.ts'
 
 import Actions from '@nextcloud/vue/dist/Components/Actions'
 import ListItemIcon from '@nextcloud/vue/dist/Components/ListItemIcon'
+import ActionSeparator from '@nextcloud/vue/dist/Components/ActionSeparator'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionText from '@nextcloud/vue/dist/Components/ActionText'
 
-import ArrowLeft from 'vue-material-design-icons/ArrowLeft'
 import ExitToApp from 'vue-material-design-icons/ExitToApp'
 import ShieldCheck from 'vue-material-design-icons/ShieldCheck'
 
-import { changeMemberLevel } from '../../services/circles'
+import { changeMemberLevel } from '../../services/circles.ts'
 import { showError } from '@nextcloud/dialogs'
-import Member from '../../models/member'
+import Member from '../../models/member.ts'
 import RouterMixin from '../../mixins/RouterMixin'
 
 export default {
-	name: 'MemberListItem',
+	name: 'MembersListItem',
 
 	components: {
 		Actions,
 		ActionButton,
+		ActionSeparator,
 		ActionText,
-		ArrowLeft,
 		ExitToApp,
 		ListItemIcon,
 		ShieldCheck,
@@ -120,7 +116,6 @@ export default {
 			CIRCLES_MEMBER_LEVELS,
 
 			loading: false,
-			showLevelMenu: false,
 		}
 	},
 
@@ -146,7 +141,7 @@ export default {
 		 */
 		levelName() {
 			return CIRCLES_MEMBER_LEVELS[this.source.level]
-				|| CIRCLES_MEMBER_LEVELS[MEMBER_LEVEL_MEMBER]
+				|| CIRCLES_MEMBER_LEVELS[MemberLevels.MEMBER]
 		},
 
 		/**
@@ -154,7 +149,7 @@ export default {
 		 * @returns {number}
 		 */
 		currentUserLevel() {
-			return this.circle?.initiator?.level || MEMBER_LEVEL_MEMBER
+			return this.circle?.initiator?.level || MemberLevels.MEMBER
 		},
 
 		/**
@@ -162,7 +157,7 @@ export default {
 		 * @returns {string}
 		 */
 		currentUserId() {
-			return this.circle?.initiator?.id
+			return this.circle?.initiator?.singleId
 		},
 
 		/**
@@ -170,7 +165,13 @@ export default {
 		 * @returns {Array}
 		 */
 		availableLevelsChange() {
-			return Object.keys(CIRCLES_MEMBER_LEVELS).filter(level => level < this.currentUserLevel)
+			return Object.keys(CIRCLES_MEMBER_LEVELS)
+				// Object.keys returns those as string
+				.map(level => parseInt(level, 10))
+				// we cannot set to a level higher than the current user's level
+				.filter(level => level < this.currentUserLevel)
+				// we cannot set to the level this member is already
+				.filter(level => level !== this.source.level)
 		},
 
 		/**
@@ -178,7 +179,7 @@ export default {
 		 * @returns {boolean}
 		 */
 		isCurrentUser() {
-			return this.currentUserId === this.source.id
+			return this.currentUserId === this.source.singleId
 		},
 
 		/**
@@ -188,9 +189,11 @@ export default {
 		canChangeLevel() {
 			// we can change if the member is at the same
 			// or lower level as the current user
+			// BUT not an owner as there can/must always be one
 			return this.availableLevelsChange.length > 0
 				&& this.currentUserLevel >= this.source.level
 				&& this.circle.canManageMembers
+				&& !(this.circle.isOwner && this.isCurrentUser)
 		},
 
 		/**
@@ -198,13 +201,22 @@ export default {
 		 * @returns {boolean}
 		 */
 		canDelete() {
-			return this.currentUserLevel > MEMBER_LEVEL_MEMBER
+			return this.currentUserLevel > MemberLevels.MEMBER
 				&& this.source.level <= this.currentUserLevel
+				&& !this.isCurrentUser
 		},
 	},
 	methods: {
-		toggleLevelMenu() {
-			this.showLevelMenu = !this.showLevelMenu
+		/**
+		 * Return the promote/demote member action label
+		 * @param {MemberLevel} level the member level
+		 * @returns {string}
+		 */
+		levelChangeLabel(level) {
+			if (this.source.level < level) {
+				return t('contacts', 'Promote to {level}', { level: CIRCLES_MEMBER_LEVELS[level] })
+			}
+			return t('contacts', 'Demote to {level}', { level: CIRCLES_MEMBER_LEVELS[level] })
 		},
 
 		/**
@@ -219,6 +231,10 @@ export default {
 					leave: this.isCurrentUser,
 				})
 			} catch (error) {
+				if (error.response.status === 404) {
+					console.debug('Member is not in circle')
+					return
+				}
 				console.error('Could not delete the member', this.source, error)
 				showError(t('contacts', 'Could not delete the member {displayName}', this.source))
 			} finally {
@@ -232,6 +248,10 @@ export default {
 			try {
 				await changeMemberLevel(this.circle.id, this.source.id, level)
 				this.showLevelMenu = false
+
+				// this.source is a class. We're modifying the class setter, not the prop itself
+				// eslint-disable-next-line vue/no-mutating-props
+				this.source.level = level
 			} catch (error) {
 				console.error('Could not change the member level to', CIRCLES_MEMBER_LEVELS[level])
 				showError(t('contacts', 'Could not change the member level to {level}', {
@@ -252,7 +272,12 @@ export default {
 }
 </script>
 <style lang="scss">
-.member-list__item {
+.members-list__item {
 	padding: 8px;
+
+	&:focus,
+	&:hover {
+		background-color: var(--color-background-hover);
+	}
 }
 </style>

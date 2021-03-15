@@ -20,25 +20,18 @@
  *
  */
 
-/** @typedef { import('./circle') } Circle */
-
-import { MEMBER_TYPE_USER } from './constants'
-
 import Circle from './circle'
+import { MemberLevel, MemberLevels } from './constants'
+
 export default class Member {
 
-	/** @typedef Circle */
-	_circle
-	_data = {}
+	_data: any = {}
+	_circle: Circle
 
 	/**
-	 * Creates an instance of Contact
-	 *
-	 * @param {Object} data the vcard data as string with proper new lines
-	 * @param {Circle} circle the addressbook which the contat belongs to
-	 * @memberof Member
+	 * Creates an instance of Member
 	 */
-	constructor(data, circle) {
+	constructor(data: any, circle: Circle) {
 		if (typeof data !== 'object') {
 			throw new Error('Invalid member')
 		}
@@ -55,19 +48,15 @@ export default class Member {
 
 	/**
 	 * Get the circle of this member
-	 * @readonly
-	 * @memberof Member
 	 */
-	get circle() {
+	get circle(): Circle {
 		return this._circle
 	}
 
 	/**
 	 * Set the circle of this member
-	 * @param {Circle} circle the circle
-	 * @memberof Member
 	 */
-	set circle(circle) {
+	set circle(circle: Circle) {
 		if (circle.constructor.name !== Circle.name) {
 			throw new Error('circle must be a Circle type')
 		}
@@ -76,54 +65,59 @@ export default class Member {
 
 	/**
 	 * Member id
-	 * @readonly
-	 * @memberof Member
 	 */
-	get id() {
+	get id(): string {
 		return this._data.id
 	}
 
 	/**
-	 * Formatted display name
-	 * @readonly
-	 * @memberof Member
+	 * Single uid
 	 */
-	get displayName() {
+	get singleId(): string {
+		return this._data.singleId
+	}
+
+	/**
+	 * Formatted display name
+	 */
+	get displayName(): string {
 		return this._data.displayName
 	}
 
 	/**
 	 * Member userId
-	 * @readonly
-	 * @memberof Member
 	 */
-	get userId() {
+	get userId(): string {
 		return this._data.userId
 	}
 
 	/**
 	 * Member level
-	 * @see file src/models/constants.js
-	 * @readonly
-	 * @memberof Member
+	 * 
 	 */
-	get level() {
+	get level(): MemberLevel {
 		return this._data.level
 	}
 
 	/**
+	 * Set member level
+	 */
+	set level(level: MemberLevel) {
+		if (!(level in MemberLevels)) {
+			throw new Error('Invalid level')
+		}
+		this._data.level = level
+	}
+
+	/**
 	 * Is the current member a user?
-	 * @readonly
-	 * @memberof Member
 	 */
 	get isUser() {
-		return this._data.userType === MEMBER_TYPE_USER
+		return this._data.userType === MemberLevels.MEMBER
 	}
 
 	/**
 	 * Is the current member without a circle?
-	 * @readonly
-	 * @memberof Member
 	 */
 	get isOrphan() {
 		return this._circle?.constructor?.name !== 'Circle'
@@ -137,7 +131,6 @@ export default class Member {
 			throw new Error('Cannot delete this member as it doesn\'t belong to any circle')
 		}
 		this.circle.deleteMember(this)
-		this._circle = undefined
 		this._data = undefined
 	}
 

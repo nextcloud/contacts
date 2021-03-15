@@ -41,7 +41,7 @@
 
 			<!-- copy circle link -->
 			<ActionLink
-				:href="circle.url"
+				:href="circleUrl"
 				:icon="copyLoading ? 'icon-loading-small' : 'icon-public'"
 				@click.stop.prevent="copyToClipboard(circleUrl)">
 				{{ copyButtonText }}
@@ -49,7 +49,7 @@
 
 			<!-- leave circle -->
 			<ActionButton
-				v-if="circle.isMember"
+				v-if="circle.canLeave"
 				@click="leaveCircle">
 				{{ t('contacts', 'Leave circle') }}
 				<ExitToApp slot="icon"
@@ -59,7 +59,7 @@
 
 			<!-- join circle -->
 			<ActionButton
-				v-else-if="circle.canJoin"
+				v-else-if="!circle.isMember && circle.canJoin"
 				@click="joinCircle">
 				{{ joinButtonTitle }}
 				<LocationEnter slot="icon"
@@ -93,9 +93,10 @@ import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
 import ExitToApp from 'vue-material-design-icons/ExitToApp'
 import LocationEnter from 'vue-material-design-icons/LocationEnter'
 
-import CopyToClipboardMixin from '../../mixins/CopyToClipboardMixin'
-import { deleteCircle, joinCircle } from '../../services/circles'
+import { deleteCircle, joinCircle } from '../../services/circles.ts'
 import { showError } from '@nextcloud/dialogs'
+import Circle from '../../models/circle.ts'
+import CopyToClipboardMixin from '../../mixins/CopyToClipboardMixin'
 
 export default {
 	name: 'CircleNavigationItem',
@@ -114,7 +115,7 @@ export default {
 
 	props: {
 		circle: {
-			type: Object,
+			type: Circle,
 			required: true,
 		},
 	},
@@ -136,7 +137,8 @@ export default {
 		},
 
 		circleUrl() {
-			return window.location.origin + this.circle.url
+			const route = this.$router.resolve(this.circle.router)
+			return window.location.origin + route.href
 		},
 
 		joinButtonTitle() {
@@ -147,21 +149,25 @@ export default {
 		},
 
 		memberCount() {
-			return this.circle?.members?.length || 0
+			return Object.values(this.circle?.members || []).length
 		},
 	},
 
 	methods: {
 		// Trigger the entity picker view
-		addMemberToCircle() {
+		async addMemberToCircle() {
+			await this.$router.push(this.circle.router)
 			emit('contacts:circles:append', this.circle.id)
 		},
 
 		async joinCircle() {
+			this.loading = true
 			try {
 				await joinCircle(this.circle.id)
 			} catch (error) {
 				showError(t('contacts', 'Unable to join the circle'))
+			} finally {
+				this.loading = false
 			}
 
 		},

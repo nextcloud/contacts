@@ -90,7 +90,7 @@ import { encodePath } from '@nextcloud/paths'
 import { getCurrentUser } from '@nextcloud/auth'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getFilePickerBuilder } from '@nextcloud/dialogs'
-import axios from 'axios'
+import axios from '@nextcloud/axios'
 
 const CancelToken = axios.CancelToken
 

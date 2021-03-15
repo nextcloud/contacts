@@ -144,7 +144,7 @@
 </template>
 
 <script>
-import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT } from '../../models/constants'
+import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT } from '../../models/constants.ts'
 
 import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
 import ActionText from '@nextcloud/vue/dist/Components/ActionText'
@@ -348,14 +348,14 @@ export default {
 
 			this.createCircleError = null
 
-			const circleId = await this.$store.dispatch('createCircle', circleName)
+			const circle = await this.$store.dispatch('createCircle', circleName)
 			this.isNewCircleMenuOpen = false
 
 			// Select group
 			this.$router.push({
 				name: 'circle',
 				params: {
-					selectedCircle: circleId,
+					selectedCircle: circle.id,
 				},
 			})
 		},
@@ -368,12 +368,12 @@ export default {
 #newcircle {
 	margin-top: 22px;
 
-	/deep/ a {
+	::v-deep a {
 		color: var(--color-text-maxcontrast)
 	}
 }
 
-.app-navigation__collapse /deep/ a {
+.app-navigation__collapse ::v-deep a {
 	color: var(--color-text-maxcontrast)
 }
 </style>

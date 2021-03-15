@@ -29,6 +29,7 @@
 		class="entity-picker__bubble"
 		:class="{'entity-picker__bubble--selected': isSelected}"
 		:display-name="source.label"
+		:user="source.user"
 		:margin="6"
 		:size="44"
 		url="#"
@@ -145,6 +146,11 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 	&, * {
 		// the whole row is clickable,let's force the proper cursor
 		cursor: pointer;
+		user-select: none;
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
 	}
 }
 

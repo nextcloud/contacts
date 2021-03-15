@@ -20,38 +20,31 @@
  *
  */
 
-/** @typedef { import('./member') } Member */
-
-import {
-	MEMBER_LEVEL_MODERATOR, MEMBER_LEVEL_NONE, MEMBER_LEVEL_OWNER,
-	CIRCLE_CONFIG_REQUEST, CIRCLE_CONFIG_INVITE, CIRCLE_CONFIG_OPEN, CIRCLE_CONFIG_VISIBLE,
-} from './constants'
-
 import Vue from 'vue'
 import Member from './member'
 
+import { CircleConfigs, MemberLevels } from './constants'
+
+type MemberList = Record<string, Member>
+
 export default class Circle {
 
-	_data = {}
-	_members = {}
+	_data: any = {}
+	_members: MemberList = {}
+	_owner: Member
+	_initiator: Member
 
 	/**
 	 * Creates an instance of Circle
-	 *
-	 * @param {Object} data the vcard data as string with proper new lines
-	 * @param {object} circle the addressbook which the contat belongs to
-	 * @memberof Circle
 	 */
-	constructor(data) {
+	constructor(data: Object) {
 		this.updateData(data)
 	}
 
 	/**
 	 * Update inner circle data, owner and initiator
-	 * @param {Object} data the vcard data as string with proper new lines
-	 * @memberof Circle
 	 */
-	updateData(data) {
+	updateData(data: any) {
 		if (typeof data !== 'object') {
 			throw new Error('Invalid circle')
 		}
@@ -62,145 +55,119 @@ export default class Circle {
 		}
 
 		this._data = data
-		this._data.initiator = new Member(data.initiator, this)
-		this._data.owner = new Member(data.owner)
+		this._owner = new Member(data.owner, this)
+
+		if (data.initiator) {
+			this._initiator = new Member(data.initiator, this)
+		}
 	}
 
 	// METADATA -----------------------------------------
 	/**
 	 * Circle id
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {string}
 	 */
-	get id() {
+	get id(): string {
 		return this._data.id
 	}
 
 	/**
 	 * Formatted display name
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {string}
 	 */
-	get displayName() {
+	get displayName(): string {
 		return this._data.displayName
 	}
 
 	/**
 	 * Circle creation date
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {number}
 	 */
-	get creation() {
+	get creation(): number {
 		return this._data.creation
 	}
 
 	/**
 	 * Circle description
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {string}
 	 */
-	get description() {
+	get description(): string {
 		return this._data.description
 	}
 
 	/**
 	 * Circle description
-	 * @param {string} text circle description
-	 * @memberof Circle
 	 */
-	set description(text) {
+	set description(text: string) {
 		this._data.description = text
 	}
 
 	// MEMBERSHIP -----------------------------------------
 	/**
-	 * Circle initiator. This is the current
+	 * Circle ini_initiator the current
 	 * user info for this circle
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {Member}
 	 */
-	get initiator() {
-		return this._data.initiator
+	get initiator(): Member {
+		return this._initiator
 	}
 
 	/**
 	 * Circle ownership
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {Member}
 	 */
-	get owner() {
-		return this._data.owner
+	get owner(): Member {
+		return this._owner
 	}
 
 	/**
 	 * Set new circle owner
-	 * @param {Member} owner circle owner
-	 * @memberof Circle
 	 */
-	set owner(owner) {
+	set owner(owner: Member) {
 		if (owner.constructor.name !== Member.name) {
 			throw new Error('Owner must be a Member type')
 		}
-		this._data.owner = owner
+		this._owner = owner
 	}
 
 	/**
 	 * Circle members
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {Member[]}
 	 */
-	get members() {
+	get members(): MemberList {
 		return this._members
 	}
 
 	/**
 	 * Define members circle
-	 * @param {Member[]} members the members list
-	 * @memberof Circle
 	 */
-	set members(members) {
+	set members(members: MemberList) {
 		this._members = members
 	}
 
 	/**
 	 * Add a member to this circle
-	 * @param {Member} member the member to add
 	 */
-	addMember(member) {
+	addMember(member: Member) {
 		if (member.constructor.name !== Member.name) {
 			throw new Error('Member must be a Member type')
 		}
 
-		const uid = member.id
-		if (this._members[uid]) {
-			console.warn('Duplicate member overrided', this._members[uid], member)
+		const singleId = member.singleId
+		if (this._members[singleId]) {
+			console.warn('Ignoring duplicate member', member)
 		}
-		Vue.set(this._members, uid, member)
+		Vue.set(this._members, singleId, member)
 	}
 
 	/**
 	 * Remove a member from this circle
-	 * @param {Member} member the member to delete
 	 */
-	deleteMember(member) {
+	deleteMember(member: Member) {
 		if (member.constructor.name !== Member.name) {
 			throw new Error('Member must be a Member type')
 		}
 
-		const uid = member.id
-		if (!this._members[uid]) {
+		const singleId = member.singleId
+		if (!this._members[singleId]) {
 			console.warn('The member was not in this circle. Nothing was done.', member)
 		}
 
 		// Delete and clear memory
-		Vue.delete(this._members, uid)
+		Vue.delete(this._members, singleId)
 	}
 
 	// CONFIGS --------------------------------------------
@@ -210,9 +177,6 @@ export default class Circle {
 
 	/**
 	 * Circle config
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {number}
 	 */
 	get config() {
 		return this._data.config
@@ -220,91 +184,71 @@ export default class Circle {
 
 	/**
 	 * Circle requires invite to be confirmed by moderator or above
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {boolean}
 	 */
 	get requireJoinAccept() {
-		return (this._data.config & CIRCLE_CONFIG_REQUEST) !== 0
+		return (this._data.config & CircleConfigs.VISIBLE) !== 0
 	}
 
 	/**
 	 * Circle can be requested to join
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {boolean}
 	 */
 	get canJoin() {
-		return (this._data.config & CIRCLE_CONFIG_OPEN) !== 0
+		return (this._data.config & CircleConfigs.OPEN) !== 0
 	}
 
 	/**
 	 * Circle is visible to others
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {boolean}
 	 */
 	get isVisible() {
-		return (this._data.config & CIRCLE_CONFIG_VISIBLE) !== 0
+		return (this._data.config & CircleConfigs.VISIBLE) !== 0
 	}
 
 	/**
 	 * Circle requires invite to be accepted by the member
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {boolean}
 	 */
 	get requireInviteAccept() {
-		return (this._data.config & CIRCLE_CONFIG_INVITE) !== 0
+		return (this._data.config & CircleConfigs.INVITE) !== 0
 	}
 
 	// PERMISSIONS SHORTCUTS ------------------------------
 	/**
 	 * Can the initiator add members to this circle?
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {boolean}
 	 */
 	get isOwner() {
-		return this.initiator.level === MEMBER_LEVEL_OWNER
+		return this.initiator?.level === MemberLevels.OWNER
 	}
 
 	/**
 	 * Is the initiator a member of this circle?
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {boolean}
 	 */
 	get isMember() {
-		return this.initiator.level > MEMBER_LEVEL_NONE
+		return this.initiator?.level > MemberLevels.NONE
 	}
 
 	/**
 	 * Can the initiator delete this circle?
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {boolean}
 	 */
 	get canDelete() {
 		return this.isOwner
 	}
 
 	/**
+	 * Can the initiator leave this circle?
+	 */
+	get canLeave() {
+		return this.isMember && !this.isOwner
+	}
+
+	/**
 	 * Can the initiator add/remove members to this circle?
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {boolean}
 	 */
 	get canManageMembers() {
-		return this.initiator.level >= MEMBER_LEVEL_MODERATOR
+		return this.initiator?.level >= MemberLevels.MODERATOR
 	}
 
 	// PARAMS ---------------------------------------------
 	/**
 	 * Vue router param
-	 * @readonly
-	 * @memberof Circle
-	 * @returns {Object}
 	 */
 	get router() {
 		return {
@@ -316,8 +260,6 @@ export default class Circle {
 	/**
 	 * Default javascript fallback
 	 * Used for sorting as well
-	 * @memberof Circle
-	 * @returns {string}
 	 */
 	toString() {
 		return this.displayName

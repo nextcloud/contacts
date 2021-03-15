@@ -23,9 +23,9 @@
 import { showError } from '@nextcloud/dialogs'
 import Vue from 'vue'
 
-import { createCircle, deleteCircle, deleteMember, getCircleMembers, getCircles, leaveCircle } from '../services/circles'
-import Member from '../models/member'
-import Circle from '../models/circle'
+import { createCircle, deleteCircle, deleteMember, getCircleMembers, getCircles, leaveCircle, addMembers } from '../services/circles.ts'
+import Member from '../models/member.ts'
+import Circle from '../models/circle.ts'
 
 const state = {
 	/** @type {Object.<string>} Circle */
@@ -113,10 +113,20 @@ const actions = {
 		const circles = await getCircles()
 		console.debug(`Retrieved ${circles.length} circle(s)`, circles)
 
-		circles.map(circle => new Circle(circle))
-			.forEach(circle => {
-				context.commit('addCircle', circle)
-			})
+		let failure = false
+		circles.forEach(circle => {
+			try {
+				const newCircle = new Circle(circle)
+				context.commit('addCircle', newCircle)
+			} catch (error) {
+				failure = true
+				console.error('This circle failed to be processed', circle, error)
+			}
+		})
+
+		if (failure) {
+			showError(t('contacts', 'Some circle(s) errored, check the console for more details'))
+		}
 
 		return circles
 	},
@@ -140,12 +150,15 @@ const actions = {
 	 *
 	 * @param {Object} context the store mutations Current context
 	 * @param {string} circleName the circle name
+	 * @returns {Circle} the new circle
 	 */
 	async createCircle(context, circleName) {
 		try {
 			const response = await createCircle(circleName)
 			const circle = new Circle(response)
+			context.commit('addCircle', circle)
 			console.debug('Created circle', circleName, circle)
+			return circle
 		} catch (error) {
 			console.error(error)
 			showError(t('contacts', 'Unable to create circle {circleName}', { circleName }))
@@ -169,16 +182,23 @@ const actions = {
 	},
 
 	/**
-	 * Add a member to a circle
+	 * Add members to a circle
 	 *
 	 * @param {Object} context the store mutations Current context
 	 * @param {Object} data destructuring object
 	 * @param {string} data.circleId the circle to manage
-	 * @param {string} data.memberId the member to add
+	 * @param {Array} data.selection the members to add, see addMembers service
+	 * @returns {Member[]}
 	 */
-	async addMemberToCircle(context, { circleId, memberId }) {
-		await this.addMember(circleId, memberId)
-		console.debug('Added member', circleId, memberId)
+	async addMembersToCircle(context, { circleId, selection }) {
+		const circle = context.getters.getCircle(circleId)
+		const results = await addMembers(circleId, selection)
+		const members = results.map(member => new Member(member, circle))
+
+		console.debug('Added members to circle', circle, members)
+		context.commit('appendMembersToCircle', members)
+
+		return members
 	},
 
 	/**

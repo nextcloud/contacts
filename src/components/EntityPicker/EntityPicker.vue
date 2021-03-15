@@ -35,17 +35,17 @@
 					:placeholder="t('contacts', 'Search {types}', {types: searchPlaceholderTypes})"
 					class="entity-picker__search-input"
 					type="search"
-					@change="onSearch">
+					@input="onSearch">
 			</div>
 
 			<!-- Picked entities -->
 			<transition-group
-				v-if="Object.keys(selection).length > 0"
+				v-if="Object.keys(selectionSet).length > 0"
 				name="zoom"
 				tag="ul"
 				class="entity-picker__selection">
 				<EntityBubble
-					v-for="entity in selection"
+					v-for="entity in selectionSet"
 					:key="entity.key || `entity-${entity.type}-${entity.id}`"
 					v-bind="entity"
 					@delete="onDelete(entity)" />
@@ -68,7 +68,7 @@
 				:data-sources="availableEntities"
 				:data-component="EntitySearchResult"
 				:estimate-size="44"
-				:extra-props="{selection, onClick: onPick}" />
+				:extra-props="{selection: selectionSet, onClick: onPick}" />
 
 			<EmptyContent v-else-if="searchQuery" icon="icon-search">
 				{{ t('contacts', 'No results') }}
@@ -92,9 +92,10 @@
 </template>
 
 <script>
-import Modal from '@nextcloud/vue/dist/Components/Modal'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import debounce from 'debounce'
 import VirtualList from 'vue-virtual-scroll-list'
+import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import Modal from '@nextcloud/vue/dist/Components/Modal'
 
 import EntityBubble from './EntityBubble'
 import EntitySearchResult from './EntitySearchResult'
@@ -138,6 +139,14 @@ export default {
 		dataSet: {
 			type: Array,
 			required: true,
+			validator: data => {
+				data.forEach(source => {
+					if (!source.id || !source.label) {
+						console.error('The following source MUST have a proper id and label key', source)
+					}
+				})
+				return true
+			},
 		},
 
 		/**
@@ -155,17 +164,44 @@ export default {
 			type: String,
 			default: t('contacts', 'Add to group'),
 		},
+
+		/**
+		 * Override the local management of selection
+		 * You MUST use a sync modifier or the selection will be locked
+		 */
+		selection: {
+			type: Object,
+			default: null,
+		},
 	},
 
 	data() {
 		return {
 			searchQuery: '',
-			selection: {},
+			localSelection: {},
 			EntitySearchResult,
 		}
 	},
 
 	computed: {
+		/**
+		 * If the selection is set externally, let's use it
+		 */
+		selectionSet: {
+			get() {
+				if (this.selection !== null) {
+					return this.selection
+				}
+				return this.localSelection
+			},
+			set(selection) {
+				if (this.selection !== null) {
+					this.$emit('update:selection', selection)
+				}
+				this.localSelection = selection
+			},
+		},
+
 		/**
 		 * Are we handling a single entity type ?
 		 * @returns {boolean}
@@ -179,7 +215,7 @@ export default {
 		 * @returns {boolean}
 		 */
 		isEmptySelection() {
-			return Object.keys(this.selection).length === 0
+			return Object.keys(this.selectionSet).length === 0
 		},
 
 		/**
@@ -219,14 +255,24 @@ export default {
 			}
 
 			// Else group by types
-			return this.dataTypes.map(type => [
-				{
-					id: type.id,
-					label: type.label,
-					heading: true,
-				},
-				...this.searchSet.filter(entity => entity.type === type.id),
-			]).flat()
+			return this.dataTypes.map(type => {
+				const dataSet = this.searchSet.filter(entity => entity.type === type.id)
+				const dataList = [
+					{
+						id: type.id,
+						label: type.label,
+						heading: true,
+					},
+					...dataSet,
+				]
+
+				// If no results, hide the type
+				if (dataSet.length === 0) {
+					return []
+				}
+
+				return dataList
+			}).flat()
 		},
 	},
 
@@ -249,23 +295,23 @@ export default {
 			 * Emitted when user submit the form
 			 * @type {Array} the selected entities
 			 */
-			this.$emit('submit', Object.values(this.selection))
+			this.$emit('submit', Object.values(this.selectionSet))
 		},
 
-		onSearch(event) {
+		onSearch: debounce(function() {
 			/**
 			 * Emitted when search change
 			 * @type {string} the search query
 			 */
 			this.$emit('search', this.searchQuery)
-		},
+		}, 200),
 
 		/**
 		 * Remove entity from selection
 		 * @param {Object} entity the entity to remove
 		 */
 		onDelete(entity) {
-			this.$delete(this.selection, entity.id, entity)
+			this.$delete(this.selectionSet, entity.id, entity)
 			console.debug('Removing entity from selection', entity)
 		},
 
@@ -274,7 +320,7 @@ export default {
 		 * @param {Object} entity the entity to add
 		 */
 		onPick(entity) {
-			this.$set(this.selection, entity.id, entity)
+			this.$set(this.selectionSet, entity.id, entity)
 			console.debug('Added entity to selection', entity)
 		},
 
@@ -283,7 +329,7 @@ export default {
 		 * @param {Object} entity the entity to add/remove
 		 */
 		onToggle(entity) {
-			if (entity.id in this.selection) {
+			if (entity.id in this.selectionSet) {
 				this.onDelete(entity)
 			} else {
 				this.onPick(entity)

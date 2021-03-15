@@ -50,7 +50,7 @@
 				</EmptyContent>
 
 				<EmptyContent v-else-if="circle.isPendingJoin" icon="icon-loading">
-					{{ t('contacts', 'Joining circle') }}
+					{{ t('contacts', 'Your request to join this circle is pending approval') }}
 				</EmptyContent>
 
 				<EmptyContent v-else icon="icon-loading">
@@ -76,7 +76,8 @@ import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
 import CircleDetails from '../CircleDetails'
 import MemberList from '../MemberList'
 import RouterMixin from '../../mixins/RouterMixin'
-import { MEMBER_LEVEL_NONE } from '../../models/constants'
+import { joinCircle } from '../../services/circles.ts'
+import { showError } from '@nextcloud/dialogs'
 
 export default {
 	name: 'CircleContent',
@@ -123,14 +124,6 @@ export default {
 		isEmptyCircle() {
 			return this.members.length === 0
 		},
-
-		/**
-		 * Is the current user member of this circle?
-		 * @returns {boolean}
-		 */
-		isMemberOfCircle() {
-			return this.circle.initiator?.level > MEMBER_LEVEL_NONE
-		},
 	},
 
 	watch: {
@@ -150,8 +143,17 @@ export default {
 		/**
 		 * Request to join this circle
 		 */
-		requestJoin() {
+		async requestJoin() {
 			this.loadingJoin = true
+
+			try {
+				await joinCircle(this.circle.id)
+			} catch (error) {
+				showError(t('contacts', 'Unable to join the circle'))
+			} finally {
+				this.loadingJoin = false
+			}
+
 		},
 	},
 }
