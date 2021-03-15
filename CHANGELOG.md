@@ -1,5 +1,30 @@
 # Changelog
 
+## [v3.5.0](https://github.com/nextcloud/contacts/tree/v3.5.0) (2021-03-15)
+
+[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.3...v3.5.0)
+
+### Fixed
+- Fix contact deletion from addressbook
+  [\#2086](https://github.com/nextcloud/contacts/pull/2086) ([skjnldsv](https://github.com/skjnldsv))
+- Alphabetically order groups in contact details \(\#2051\)
+  [\#2076](https://github.com/nextcloud/contacts/pull/2076) ([harryyoud](https://github.com/harryyoud))
+- Fix custom labels not being displayed
+  [\#2064](https://github.com/nextcloud/contacts/pull/2064) ([Y0hy0h](https://github.com/Y0hy0h))
+- Fix display name with empty last name when sorting by last name
+  [\#2040](https://github.com/nextcloud/contacts/pull/2040) ([NerLOR](https://github.com/NerLOR))
+- Make sure twitter returns the raw static html page so we can get the …
+  [\#2013](https://github.com/nextcloud/contacts/pull/2013) ([skjnldsv](https://github.com/skjnldsv))
+- Instagram profile sync with agent
+  [\#2083](https://github.com/nextcloud/contacts/pull/2083) ([call-me-matt](https://github.com/call-me-matt))
+- Adapted twitter uri
+  [\#2081](https://github.com/nextcloud/contacts/pull/2081) ([call-me-matt](https://github.com/call-me-matt))
+
+### Enhancements
+- Use all email addresses for gravatar search
+  [\#2085](https://github.com/nextcloud/contacts/pull/2085) ([call-me-matt](https://github.com/call-me-matt))
+
+
 ## [v3.4.3](https://github.com/nextcloud/contacts/tree/v3.4.3) (2021-01-04)
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.2...v3.4.3)
