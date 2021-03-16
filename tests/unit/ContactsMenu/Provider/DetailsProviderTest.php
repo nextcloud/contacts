@@ -59,12 +59,12 @@ class DetailsProviderTest extends Base {
 	protected function setUp(): void {
 		parent::setUp();
 
-		$this->urlGenerator  = $this->createMock(IURLGenerator::class);
+		$this->urlGenerator = $this->createMock(IURLGenerator::class);
 		$this->actionFactory = $this->createMock(IActionFactory::class);
-		$this->l10n          = $this->createMock(IL10N::class);
-		$this->manager       = $this->createMock(IManager::class);
-		$this->config        = $this->createMock(IConfig::class);
-		$this->provider      = new DetailsProvider(
+		$this->l10n = $this->createMock(IL10N::class);
+		$this->manager = $this->createMock(IManager::class);
+		$this->config = $this->createMock(IConfig::class);
+		$this->provider = new DetailsProvider(
 			$this->urlGenerator,
 			$this->actionFactory,
 			$this->l10n,
@@ -91,8 +91,8 @@ class DetailsProviderTest extends Base {
 	 * @param string $resultUri
 	 */
 	public function testProcessNC16AndAbove($version, $frontControllerActive, $resultUri) {
-		$entry       = $this->createMock(IEntry::class);
-		$action      = $this->createMock(ILinkAction::class);
+		$entry = $this->createMock(IEntry::class);
+		$action = $this->createMock(ILinkAction::class);
 		$addressbook = $this->createMock(IAddressBook::class);
 
 		// DATA
