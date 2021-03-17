@@ -1,5 +1,14 @@
 # Changelog
 
+## [v3.5.1](https://github.com/nextcloud/contacts/tree/v3.5.1) (2021-03-17)
+
+[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.5.0...v3.5.1)
+
+### Fixed
+- Min support version is 18
+  ([skjnldsv](https://github.com/skjnldsv))
+
+
 ## [v3.5.0](https://github.com/nextcloud/contacts/tree/v3.5.0) (2021-03-15)
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.3...v3.5.0)
