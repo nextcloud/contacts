@@ -5,7 +5,7 @@
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v3.5.0...v3.5.1)
 
 ### Fixed
-- Min support version is 18
+- Min support version is 19
   ([skjnldsv](https://github.com/skjnldsv))
 
 
