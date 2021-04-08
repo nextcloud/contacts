@@ -88,13 +88,13 @@ class PageController extends Controller {
 
 		$locales = $this->languageFactory->findAvailableLocales();
 		$defaultProfile = $this->config->getAppValue(Application::APP_ID, 'defaultProfile', 'HOME');
-		$supportedNetworks = $this->socialApiService->getSupportedNetworks();
-		$syncAllowedByAdmin = $this->config->getAppValue(Application::APP_ID, 'allowSocialSync', 'yes'); // allow users to retrieve avatars from social networks (default: yes)
-		$bgSyncEnabledByUser = $this->config->getUserValue($userId, Application::APP_ID, 'enableSocialSync', 'no'); // automated background syncs for social avatars (default: no)
 
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'locales', $locales);
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'defaultProfile', $defaultProfile);
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'supportedNetworks', $supportedNetworks);
+		$supportedNetworks = $this->socialApiService->getSupportedNetworks();
+		// allow users to retrieve avatars from social networks (default: yes)
+		$syncAllowedByAdmin = $this->config->getAppValue(Application::APP_ID, 'allowSocialSync', 'yes');
+		// automated background syncs for social avatars (default: no)
+		$bgSyncEnabledByUser = $this->config->getUserValue($userId, Application::APP_ID, 'enableSocialSync', 'no');
+
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'locales', $locales);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'defaultProfile', $defaultProfile);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'supportedNetworks', $supportedNetworks);
