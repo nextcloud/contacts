@@ -104,7 +104,7 @@
 		"url-loader": "^4.1.1",
 		"vue-loader": "^15.9.6",
 		"vue-template-compiler": "^2.6.12",
-		"webpack": "^5.30.0",
+		"webpack": "^5.31.2",
 		"webpack-cli": "^4.6.0",
 		"webpack-node-externals": "^2.5.2"
 	},
