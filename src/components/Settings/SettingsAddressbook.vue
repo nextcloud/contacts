@@ -162,7 +162,7 @@ export default {
 			if (this.copied) {
 				return this.copySuccess
 					? t('contacts', 'Copied')
-					: t('contacts', 'Can not copy')
+					: t('contacts', 'Cannot copy')
 			}
 			return t('contacts', 'Copy link')
 		},
