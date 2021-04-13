@@ -61,7 +61,6 @@ OC.L10N.register(
     "Enabled" : "Povolené",
     "Disabled" : "Zakázané",
     "Copied" : "Skopírované",
-    "Can not copy" : "Nepodarilo sa skopírovať",
     "Copy link" : "Kopírovať odkaz",
     "Toggling of address book was not successful" : "Zapnutie/vypnutie adresára nebolo úspešné",
     "This will delete the address book and every contacts within it" : "Týmto sa odstráni adresár a všetky kontakty v ňom",

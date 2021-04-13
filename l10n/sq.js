@@ -47,7 +47,6 @@ OC.L10N.register(
     "Enabled" : "I aktivizuar",
     "Disabled" : "I çaktivizuar",
     "Copied" : "Kopjuar",
-    "Can not copy" : "Nuk mund të kopjohet",
     "Copy link" : "Kopjo linkun",
     "Share with users or groups" : "Nda me përdoruesit ose grupet",
     "can edit" : "mund të modifikoni",

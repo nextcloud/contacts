@@ -65,7 +65,6 @@ OC.L10N.register(
     "Enabled" : "Ativado",
     "Disabled" : "Desativado",
     "Copied" : "Copiado",
-    "Can not copy" : "Não é possível copiar",
     "Copy link" : "Copiar link",
     "Toggling of address book was not successful" : "A alternância da agenda não foi concluída.",
     "This will delete the address book and every contacts within it" : "Isso irá excluir a agenda e os contatos dela",

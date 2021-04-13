@@ -40,7 +40,6 @@
     "Enabled" : "Galluogwyd",
     "Disabled" : "Analluogwyd",
     "Copied" : "Copïwyd",
-    "Can not copy" : "Methu copïo",
     "Copy link" : "Copïo dolen",
     "Delete {addressbook} ?" : "Dileu {addressbook}?",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid"],

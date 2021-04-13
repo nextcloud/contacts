@@ -40,7 +40,6 @@ OC.L10N.register(
     "Enabled" : "Habilitado",
     "Disabled" : "Deshabilitado",
     "Copied" : "Copiado",
-    "Can not copy" : "No se puede copiar",
     "Copy link" : "Copiar enlace",
     "Delete {addressbook} ?" : "¿Borrar {addressbook} ?",
     "Share with users or groups" : "Compartir con otros usuarios o grupos",

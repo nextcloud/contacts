@@ -42,7 +42,6 @@
     "Enabled" : "Iespējots",
     "Disabled" : "Atspējots",
     "Copied" : "Nokopēts",
-    "Can not copy" : "Nevar nokopēt",
     "Copy link" : "Kopēt saiti",
     "Delete {addressbook} ?" : "Dzēst {addressbook} ?",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Kopīgots ar {num} entītijām","Kopīgots ar {num} entītiju","Kopīgots ar {num} entītijām"],

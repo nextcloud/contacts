@@ -58,7 +58,6 @@ OC.L10N.register(
     "Enabled" : "Käytössä",
     "Disabled" : "Pois käytöstä",
     "Copied" : "Kopioitu",
-    "Can not copy" : "Ei voida kopioida",
     "Copy link" : "Kopioi linkki",
     "This will delete the address book and every contacts within it" : "Tämä poistaa osoitekirjan ja kaikki siinä olevat yhteystiedot",
     "Delete {addressbook} ?" : "Poistetaanko {addressbook} ?",

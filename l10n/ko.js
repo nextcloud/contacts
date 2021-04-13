@@ -57,7 +57,6 @@ OC.L10N.register(
     "Enabled" : "활성화됨",
     "Disabled" : "비활성화됨",
     "Copied" : "복사됨",
-    "Can not copy" : "복사할 수 없음",
     "Copy link" : "링크 복사",
     "This will delete the address book and every contacts within it" : "이 작업은 주소록을 삭제하고 포함된 모든 연락처를 삭제합니다.",
     "Delete {addressbook} ?" : "{addressbook}을(를) 삭제하시겠습니까?",

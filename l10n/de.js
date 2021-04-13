@@ -65,7 +65,6 @@ OC.L10N.register(
     "Enabled" : "Aktiviert",
     "Disabled" : "Deaktiviert",
     "Copied" : "Kopiert",
-    "Can not copy" : "Kann nicht kopiert werden",
     "Copy link" : "Link kopieren",
     "Toggling of address book was not successful" : "Das Umschalten des Adressbuches war nicht erfolgreich.",
     "This will delete the address book and every contacts within it" : "Hierdurch wird das Adressbuch und alle Kontakte in ihm gelöscht",

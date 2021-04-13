@@ -51,7 +51,6 @@ OC.L10N.register(
     "Enabled" : "Увімкнено",
     "Disabled" : "Вимкнено",
     "Copied" : "Скопійовано",
-    "Can not copy" : "Неможливо скопіювати",
     "Copy link" : "Копіювати посилання",
     "Toggling of address book was not successful" : "Не вдалося перемкнути адресну книгу",
     "This will delete the address book and every contacts within it" : "Це призведе до вилучення адресної книги та контактів у ній",

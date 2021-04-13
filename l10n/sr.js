@@ -64,7 +64,6 @@ OC.L10N.register(
     "Enabled" : "Укључено",
     "Disabled" : "Искључено",
     "Copied" : "Копирано",
-    "Can not copy" : "Не могу да копирам",
     "Copy link" : "Копирај везу",
     "Toggling of address book was not successful" : "Укључивање/искључивање адресара није било успешно",
     "This will delete the address book and every contacts within it" : "Ово ће обрисати адресар и све контакте из њега",

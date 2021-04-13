@@ -45,7 +45,6 @@
     "Enabled" : "Aktiveret",
     "Disabled" : "Deaktiveret",
     "Copied" : "opieret",
-    "Can not copy" : "Kan ikke kopiere",
     "Copy link" : "Kopier link",
     "Delete {addressbook} ?" : "Slet {addressbook} ?",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Delt med {num} element","Delt med {num} elementer"],

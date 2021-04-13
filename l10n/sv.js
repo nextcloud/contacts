@@ -54,7 +54,6 @@ OC.L10N.register(
     "Enabled" : "Aktiverad",
     "Disabled" : "Inaktiverad",
     "Copied" : "Kopierad",
-    "Can not copy" : "Kunde inte kopiera",
     "Copy link" : "Kopiera länk",
     "This will delete the address book and every contacts within it" : "Detta tar bort adressboken och alla kontakter i den",
     "Delete {addressbook} ?" : "Ta bort {addressbook} ?",

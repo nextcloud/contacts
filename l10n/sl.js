@@ -65,7 +65,6 @@ OC.L10N.register(
     "Enabled" : "Omogočeno",
     "Disabled" : "Onemogočeno",
     "Copied" : "Kopirano!",
-    "Can not copy" : "Ni mogoče kopirati!",
     "Copy link" : "Kopiraj povezavo",
     "Toggling of address book was not successful" : "Preklop imenika je spodletel",
     "This will delete the address book and every contacts within it" : "S tem dejanjem boste izbrisali imenik in vse stike v njem.",

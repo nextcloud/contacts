@@ -45,7 +45,6 @@ OC.L10N.register(
     "Enabled" : "Ativada",
     "Disabled" : "Desactivado",
     "Copied" : "Copiado",
-    "Can not copy" : "Não é possível copiar",
     "Copy link" : "Copiar hiperligação",
     "Delete {addressbook} ?" : "Eliminar {addressbook} ?",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Partilhado com {num} entidades","Partilhado com {num} entidades"],

@@ -65,7 +65,6 @@ OC.L10N.register(
     "Enabled" : "Gaitua",
     "Disabled" : "Desaktibatua",
     "Copied" : "Kopiatuta",
-    "Can not copy" : "Ezin da kopiatu",
     "Copy link" : "Esteka kopiatu",
     "Toggling of address book was not successful" : "Ezin izan da helbide-liburuaren egoera aldatu",
     "This will delete the address book and every contacts within it" : "Honek helbide-liburua eta bere barruan dauden kontaktu guztiak ezabatuko ditu",

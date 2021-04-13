@@ -46,7 +46,6 @@ OC.L10N.register(
     "Enabled" : "Ŝaltita",
     "Disabled" : "Malŝaltita",
     "Copied" : "Kopiita",
-    "Can not copy" : "Ne eblas kopii",
     "Copy link" : "Kopii ligilon",
     "Delete {addressbook} ?" : "Forigi {addressbook}?",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Kunhavigitaj kun {num} entoj","Kunhavigitaj kun {num} entoj"],

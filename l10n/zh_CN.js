@@ -65,7 +65,6 @@ OC.L10N.register(
     "Enabled" : "已启用",
     "Disabled" : "已禁用",
     "Copied" : "已复制",
-    "Can not copy" : "无法复制",
     "Copy link" : "复制链接",
     "Toggling of address book was not successful" : "通讯录切换不成功",
     "This will delete the address book and every contacts within it" : "这将删除通讯录和其中的每个联系人",

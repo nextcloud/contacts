@@ -59,7 +59,6 @@ OC.L10N.register(
     "Enabled" : "Virkt",
     "Disabled" : "Óvirkt",
     "Copied" : "Afritað",
-    "Can not copy" : "Gat ekki afritað",
     "Copy link" : "Afrita tengil",
     "Toggling of address book was not successful" : "Tókst ekki að víxla nafnaskrá af/á",
     "This will delete the address book and every contacts within it" : "Þetta mun eyða nafnaskránni og öllum tengiliðum í henni",

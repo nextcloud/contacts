@@ -65,7 +65,6 @@ OC.L10N.register(
     "Enabled" : "מופעל",
     "Disabled" : "מושבת",
     "Copied" : "הועתק",
-    "Can not copy" : "לא ניתן להעתיק",
     "Copy link" : "העתק קישור",
     "Toggling of address book was not successful" : "החלפת המצב של ספר הכתובות לא הצליחה",
     "This will delete the address book and every contacts within it" : "פעולה זו תמחק את ספר הכתובות על כל אנשי הקשר שבו",

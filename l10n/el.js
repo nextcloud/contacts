@@ -65,7 +65,6 @@ OC.L10N.register(
     "Enabled" : "Ενεργοποιημένο",
     "Disabled" : "Απενεργοποιημένο",
     "Copied" : "Αντιγράφτηκε",
-    "Can not copy" : "Αδυναμία αντιγραφής",
     "Copy link" : "Αντιγραφή συνδέσμου",
     "Toggling of address book was not successful" : "Η εναλλαγή του βιβλίου διευθύνσεων απέτυχε",
     "This will delete the address book and every contacts within it" : "Θα διαγραφεί το βιβλίο διευθύνσεων και όλες τις επαφές",

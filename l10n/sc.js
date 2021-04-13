@@ -65,7 +65,6 @@ OC.L10N.register(
     "Enabled" : "Ativada",
     "Disabled" : "Disabilitada",
     "Copied" : "Copiadu",
-    "Can not copy" : "Non faghet a copiare",
     "Copy link" : "Còpia ligòngiu",
     "Toggling of address book was not successful" : "No at fatu a ativare sa rubrica",
     "This will delete the address book and every contacts within it" : "Custu at a cantzellare sa rubrica e ogni cuntatu chi ddoe est in intro.",

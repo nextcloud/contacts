@@ -65,7 +65,6 @@ OC.L10N.register(
     "Enabled" : "Abilitata",
     "Disabled" : "Disabilitata",
     "Copied" : "Copiato",
-    "Can not copy" : "Impossibile copiare",
     "Copy link" : "Copia collegamento",
     "Toggling of address book was not successful" : "L'abilitazione della rubrica non è riuscita",
     "This will delete the address book and every contacts within it" : "Questo eliminerà la rubrica e ogni contatto in essa contenuto",

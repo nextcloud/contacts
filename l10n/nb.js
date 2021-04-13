@@ -37,7 +37,6 @@ OC.L10N.register(
     "Enabled" : "Aktiver",
     "Disabled" : "Deaktiver",
     "Copied" : "Kopiert",
-    "Can not copy" : "Kan ikke kopiere",
     "Copy link" : "Kopier lenke",
     "Delete {addressbook} ?" : "Slette {addressbook} ?",
     "Share with users or groups" : "Del med brukere eller grupper",

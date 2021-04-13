@@ -30,7 +30,6 @@ OC.L10N.register(
     "Enabled" : "Включено",
     "Disabled" : "Изключено",
     "Copied" : "Копирано",
-    "Can not copy" : "Не можа да се копира",
     "Copy link" : "Копирай връзката",
     "Delete {addressbook} ?" : "Изтриване на {addressbook} ?",
     "Share with users or groups" : "Сподели с потребители или групи",
