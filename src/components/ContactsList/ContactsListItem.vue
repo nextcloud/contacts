@@ -35,7 +35,16 @@ export default {
 			required: true,
 		},
 	},
-
+	data() {
+		return {
+			avatarUrl: undefined,
+		}
+	},
+	watch: {
+		source() {
+			this.loadAvatarUrl()
+		}
+	},
 	computed: {
 		selectedGroup() {
 			return this.$route.params.selectedGroup
@@ -48,18 +57,26 @@ export default {
 		id() {
 			return window.btoa(this.source.key).slice(0, -2)
 		},
-
-		avatarUrl() {
-			if (this.source.photo) {
-				return `${this.source.photoUrl}`
-			}
-			if (this.source.url) {
-				return `${this.source.url}?photo`
-			}
-			return undefined
-		},
+	},
+	mounted() {
+		this.loadAvatarUrl()
 	},
 	methods: {
+		async loadAvatarUrl() {
+			this.avatarUrl = undefined
+			if (this.source.photo) {
+				const photoUrl = await this.source.getPhotoUrl()
+				if (!photoUrl) {
+					console.warn('contact has an invalid photo')
+					// Invalid photo data
+					return
+				}
+				this.avatarUrl = photoUrl
+			}
+			if (this.source.url) {
+				this.avatarUrl = `${this.source.url}?photo`
+			}
+		},
 
 		/**
 		 * Select this contact within the list

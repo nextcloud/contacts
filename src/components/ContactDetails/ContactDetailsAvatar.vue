@@ -32,8 +32,8 @@
 			@change="processFile">
 
 		<!-- Avatar display -->
-		<div v-if="contact.photo"
-			:style="{ 'backgroundImage': `url(${contact.photoUrl})` }"
+		<div v-if="photoUrl"
+			:style="{ 'backgroundImage': `url(${photoUrl})` }"
 			class="contact-header-avatar__photo"
 			@click="toggleModal" />
 		<Avatar v-else
@@ -136,7 +136,7 @@
 			<div class="contact-header-modal__photo-wrapper"
 				@click.exact.self="toggleModal">
 				<img ref="img"
-					:src="contact.photoUrl"
+					:src="photoUrl"
 					class="contact-header-modal__photo">
 			</div>
 		</Modal>
@@ -178,11 +178,18 @@ export default {
 		},
 	},
 
+	watch: {
+		contact() {
+			this.loadPhotoUrl()
+		},
+	},
+
 	data() {
 		return {
 			maximizeAvatar: false,
 			opened: false,
 			loading: false,
+			photoUrl: false,
 			root: generateRemoteUrl(`dav/files/${getCurrentUser().uid}`),
 		}
 	},
@@ -208,6 +215,10 @@ export default {
 			return supported.filter(i => available.includes(i))
 				.map(j => this.capitalize(j))
 		},
+	},
+
+	mounted() {
+		this.loadPhotoUrl()
 	},
 
 	methods: {
@@ -352,6 +363,16 @@ export default {
 
 			this.$store.dispatch('updateContact', this.contact)
 			this.loading = false
+		},
+
+		async loadPhotoUrl() {
+			this.photoUrl = false
+			const photoUrl = await this.contact.getPhotoUrl()
+			if (!photoUrl) {
+				console.warn('contact has an invalid photo')
+				return
+			}
+			this.photoUrl = photoUrl
 		},
 
 		/**
