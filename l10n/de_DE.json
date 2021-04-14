@@ -63,6 +63,7 @@
     "Enabled" : "Aktiviert",
     "Disabled" : "Deaktiviert",
     "Copied" : "Kopiert",
+    "Cannot copy" : "Kann nicht kopieren",
     "Copy link" : "Link kopieren",
     "Toggling of address book was not successful" : "Das Umschalten des Adressbuches war nicht erfolgreich.",
     "This will delete the address book and every contacts within it" : "Hierdurch wird das Adressbuch und alle Kontakte in ihm gelöscht",

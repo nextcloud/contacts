@@ -65,6 +65,7 @@ OC.L10N.register(
     "Enabled" : "Įjungta",
     "Disabled" : "Išjungta",
     "Copied" : "Nukopijuota",
+    "Cannot copy" : "Nepavyksta nukopijuoti",
     "Copy link" : "Kopijuoti nuorodą",
     "Toggling of address book was not successful" : "Adresų knygos perjungimas buvo nesėkmingas",
     "This will delete the address book and every contacts within it" : "Tai ištrins adresų knygą ir visus joje esančius adresatus",
