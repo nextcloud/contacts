@@ -65,6 +65,7 @@ OC.L10N.register(
     "Enabled" : "Engedélyezve",
     "Disabled" : "Letiltva",
     "Copied" : "Másolva",
+    "Cannot copy" : "Nem lehet másolni",
     "Copy link" : "Hivatkozás másolása",
     "Toggling of address book was not successful" : "A címjegyzék váltása sikertelen",
     "This will delete the address book and every contacts within it" : "Ez törli a címjegyzéket és a benne található összes kapcsolatot",
