@@ -65,6 +65,7 @@ OC.L10N.register(
     "Enabled" : "Etkin",
     "Disabled" : "Devre Dışı",
     "Copied" : "Kopyalandı",
+    "Cannot copy" : "Kopyalanamadı",
     "Copy link" : "Bağlantıyı kopyala",
     "Toggling of address book was not successful" : "Adres defteri değiştirilemedi",
     "This will delete the address book and every contacts within it" : "Bu işlem adres defterini ve içindeki tüm kişileri siler",
