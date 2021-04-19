@@ -124,7 +124,7 @@ OC.L10N.register(
     "Prefix" : "Präfix",
     "Suffix" : "Suffix",
     "Notes" : "Notizen",
-    "Website" : "Internetseite",
+    "Website" : "Webseite",
     "Location" : "Ort",
     "Federated Cloud ID" : "Federated-Cloud-ID",
     "Home" : "Privat",
