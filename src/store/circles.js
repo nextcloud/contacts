@@ -169,15 +169,15 @@ const actions = {
 	 * Delete circle
 	 *
 	 * @param {Object} context the store mutations Current context
-	 * @param {Circle} circle the circle to delete
+	 * @param {Circle} circleId the circle to delete
 	 */
-	async deleteCircle(context, circle) {
+	async deleteCircle(context, circleId) {
 		try {
-			await deleteCircle(circle.id)
-			console.debug('Created circle', circle.displayName, circle)
+			await deleteCircle(circleId)
+			console.debug('Deleted circle', circleId)
 		} catch (error) {
 			console.error(error)
-			showError(t('contacts', 'Unable to create circle {displayName}', circle))
+			showError(t('contacts', 'Unable to delete circle {circleId}', circleId))
 		}
 	},
 

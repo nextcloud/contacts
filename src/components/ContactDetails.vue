@@ -32,56 +32,54 @@
 
 		<template v-else>
 			<!-- contact header -->
-			<header class="contact-header">
+			<DetailsHeader>
 				<!-- avatar and upload photo -->
 				<ContactAvatar
+					slot="avatar"
 					:contact="contact"
 					@update-local-contact="updateLocalContact" />
-				<!-- QUESTION: is it better to pass contact as a prop or get it from the store inside
-				contact-avatar ?  :avatar="contact.photo"-->
 
-				<!-- fullname, org, title -->
-				<div class="contact-header__infos">
-					<h2>
-						<input id="contact-fullname"
-							ref="fullname"
-							v-model="contact.fullName"
-							:readonly="contact.addressbook.readOnly"
-							:placeholder="t('contacts', 'Name')"
-							type="text"
-							autocomplete="off"
-							autocorrect="off"
-							spellcheck="false"
-							name="fullname"
-							@input="debounceUpdateContact"
-							@click="selectInput">
-					</h2>
-					<div id="details-org-container">
-						<input id="contact-org"
-							v-model="contact.org"
-							:readonly="contact.addressbook.readOnly"
-							:placeholder="t('contacts', 'Company')"
-							type="text"
-							autocomplete="off"
-							autocorrect="off"
-							spellcheck="false"
-							name="org"
-							@input="debounceUpdateContact">
-						<input id="contact-title"
-							v-model="contact.title"
-							:readonly="contact.addressbook.readOnly"
-							:placeholder="t('contacts', 'Title')"
-							type="text"
-							autocomplete="off"
-							autocorrect="off"
-							spellcheck="false"
-							name="title"
-							@input="debounceUpdateContact">
-					</div>
-				</div>
+				<!-- fullname -->
+				<input id="contact-fullname"
+					slot="title"
+					ref="fullname"
+					v-model="contact.fullName"
+					:readonly="contact.addressbook.readOnly"
+					:placeholder="t('contacts', 'Name')"
+					type="text"
+					autocomplete="off"
+					autocorrect="off"
+					spellcheck="false"
+					name="fullname"
+					@input="debounceUpdateContact"
+					@click="selectInput">
+
+				<!-- org, title -->
+				<template #subtitle>
+					<input id="contact-org"
+						v-model="contact.org"
+						:readonly="contact.addressbook.readOnly"
+						:placeholder="t('contacts', 'Company')"
+						type="text"
+						autocomplete="off"
+						autocorrect="off"
+						spellcheck="false"
+						name="org"
+						@input="debounceUpdateContact">
+					<input id="contact-title"
+						v-model="contact.title"
+						:readonly="contact.addressbook.readOnly"
+						:placeholder="t('contacts', 'Title')"
+						type="text"
+						autocomplete="off"
+						autocorrect="off"
+						spellcheck="false"
+						name="title"
+						@input="debounceUpdateContact">
+				</template>
 
 				<!-- actions -->
-				<div class="contact-header__actions">
+				<template #actions>
 					<!-- warning message -->
 					<a v-if="loadingUpdate || warning"
 						v-tooltip.bottom="{
@@ -112,67 +110,64 @@
 						}"
 						class="header-icon header-icon--pulse icon-up"
 						@click="updateContact" />
+				</template>
 
-					<!-- menu actions -->
-					<Actions ref="actions"
-						class="header-menu"
-						menu-align="right"
-						:open.sync="openedMenu">
-						<ActionLink :href="contact.url"
-							:download="`${contact.displayName}.vcf`"
-							icon="icon-download">
-							{{ t('contacts', 'Download') }}
-						</ActionLink>
-						<!-- user can clone if there is at least one option available -->
-						<ActionButton v-if="isReadOnly && addressbooksOptions.length > 0"
-							ref="cloneAction"
-							:close-after-click="true"
-							icon="icon-clone"
-							@click="cloneContact">
-							{{ t('contacts', 'Clone contact') }}
-						</ActionButton>
-						<ActionButton icon="icon-qrcode" @click="showQRcode">
-							{{ t('contacts', 'Generate QR code') }}
-						</ActionButton>
-						<ActionButton v-if="!isReadOnly" icon="icon-delete" @click="deleteContact">
-							{{ t('contacts', 'Delete') }}
-						</ActionButton>
-					</Actions>
-				</div>
-
-				<!-- qrcode -->
-				<Modal v-if="qrcode"
-					id="qrcode-modal"
-					:clear-view-delay="-1"
-					:title="contact.displayName"
-					@close="closeQrModal">
-					<img :src="`data:image/svg+xml;base64,${qrcode}`"
-						:alt="t('contacts', 'Contact vCard as QR code')"
-						class="qrcode"
-						width="400">
-				</Modal>
-
-				<!-- pick addressbook when cloning contact -->
-				<Modal v-if="showPickAddressbookModal"
-					id="pick-addressbook-modal"
-					:clear-view-delay="-1"
-					:title="t('contacts', 'Pick an address book')"
-					@close="closePickAddressbookModal">
-					<Multiselect ref="pickAddressbook"
-						v-model="pickedAddressbook"
-						:allow-empty="false"
-						:options="addressbooksOptions"
-						:placeholder="t('contacts', 'Select address book')"
-						track-by="id"
-						label="name" />
-					<button @click="closePickAddressbookModal">
-						{{ t('contacts', 'Cancel') }}
-					</button>
-					<button class="primary" @click="cloneContact">
+				<!-- menu actions -->
+				<template #actions-menu>
+					<ActionLink :href="contact.url"
+						:download="`${contact.displayName}.vcf`"
+						icon="icon-download">
+						{{ t('contacts', 'Download') }}
+					</ActionLink>
+					<!-- user can clone if there is at least one option available -->
+					<ActionButton v-if="isReadOnly && addressbooksOptions.length > 0"
+						ref="cloneAction"
+						:close-after-click="true"
+						icon="icon-clone"
+						@click="cloneContact">
 						{{ t('contacts', 'Clone contact') }}
-					</button>
-				</Modal>
-			</header>
+					</ActionButton>
+					<ActionButton icon="icon-qrcode" @click="showQRcode">
+						{{ t('contacts', 'Generate QR Code') }}
+					</ActionButton>
+					<ActionButton v-if="!isReadOnly" icon="icon-delete" @click="deleteContact">
+						{{ t('contacts', 'Delete') }}
+					</ActionButton>
+				</template>
+			</DetailsHeader>
+
+			<!-- qrcode -->
+			<Modal v-if="qrcode"
+				id="qrcode-modal"
+				:clear-view-delay="-1"
+				:title="contact.displayName"
+				@close="closeQrModal">
+				<img :src="`data:image/svg+xml;base64,${qrcode}`"
+					:alt="t('contacts', 'Contact vCard as QR code')"
+					class="qrcode"
+					width="400">
+			</Modal>
+
+			<!-- pick addressbook when cloning contact -->
+			<Modal v-if="showPickAddressbookModal"
+				id="pick-addressbook-modal"
+				:clear-view-delay="-1"
+				:title="t('contacts', 'Pick an address book')"
+				@close="closePickAddressbookModal">
+				<Multiselect ref="pickAddressbook"
+					v-model="pickedAddressbook"
+					:allow-empty="false"
+					:options="addressbooksOptions"
+					:placeholder="t('contacts', 'Select address book')"
+					track-by="id"
+					label="name" />
+				<button @click="closePickAddressbookModal">
+					{{ t('contacts', 'Cancel') }}
+				</button>
+				<button class="primary" @click="cloneContact">
+					{{ t('contacts', 'Clone contact') }}
+				</button>
+			</Modal>
 
 			<!-- contact details loading -->
 			<section v-if="loadingData" class="icon-loading contact-details" />
@@ -247,7 +242,6 @@ import { VueMasonryPlugin } from 'vue-masonry'
 
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
-import Actions from '@nextcloud/vue/dist/Components/Actions'
 import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
@@ -258,6 +252,7 @@ import validate from '../services/validate'
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
 import ContactAvatar from './ContactDetails/ContactDetailsAvatar'
 import ContactProperty from './ContactDetails/ContactDetailsProperty'
+import DetailsHeader from './DetailsHeader'
 import EmptyContent from './EmptyContent'
 import PropertyGroups from './Properties/PropertyGroups'
 import PropertyRev from './Properties/PropertyRev'
@@ -272,11 +267,11 @@ export default {
 	components: {
 		ActionButton,
 		ActionLink,
-		Actions,
 		AddNewProp,
 		AppContentDetails,
 		ContactAvatar,
 		ContactProperty,
+		DetailsHeader,
 		EmptyContent,
 		Modal,
 		Multiselect,
@@ -532,14 +527,6 @@ export default {
 			updateQueue.add(this.updateContact)
 		}, 500),
 
-		// menu handling
-		closeMenu() {
-			this.openedMenu = false
-		},
-		toggleMenu() {
-			this.openedMenu = !this.openedMenu
-		},
-
 		/**
 		 * Generate a qrcode for the contact
 		 */
@@ -780,126 +767,58 @@ export default {
 }
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .app-content-details {
 	flex: 1 1 100%;
 	min-width: 0;
+}
 
-	// Header with avatar, name, position, actions...
-	header {
+// List of all properties
+section.contact-details {
+	margin: 0 auto;
+	// Relative positioning for masonry
+	position: relative;
+
+	::v-deep .property-masonry {
+		width: 350px;
+	}
+
+	.property--rev {
+		position: fixed;
+		right: 22px;
+		bottom: 0;
+		height: 44px;
+		opacity: .5;
+		color: var(--color-text-lighter);
+		line-height: 44px;
+	}
+}
+
+#qrcode-modal {
+	::v-deep .modal-container {
 		display: flex;
-		align-items: center;
-		padding: 50px 0 20px;
-		font-weight: bold;
-
-		// ORG-TITLE-NAME
-		.contact-header__infos {
-			display: flex;
-			flex: 1 1 auto; // shrink avatar before this one
-			flex-direction: column;
-			h2,
-			#details-org-container {
-				display: flex;
-				flex-wrap: wrap;
-				margin: 0;
-			}
-			input {
-				overflow: hidden;
-				flex: 1 1;
-				min-width: 100px;
-				max-width: 100%;
-				margin: 0;
-				padding: 4px 5px;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-				border: none;
-				background: transparent;
-				font-size: inherit;
-				&#contact-fullname {
-					font-weight: bold;
-				}
-			}
-			#contact-org:placeholder-shown {
-				max-width: 20%;
-			}
-		}
-
-		// ACTIONS
-		.contact-header__actions {
-			position: relative;
-			display: flex;
-			.header-menu {
-				margin-right: 10px;
-			}
-			.header-icon {
-				width: 44px;
-				height: 44px;
-				padding: 14px;
-				cursor: pointer;
-				opacity: .7;
-				border-radius: 22px;
-				background-size: 16px;
-				&:hover,
-				&:focus {
-					opacity: 1;
-				}
-				&.header-icon--pulse {
-					width: 16px;
-					height: 16px;
-					margin: 8px;
-				}
-			}
-		}
-	}
-
-	// List of all properties
-	section.contact-details {
-		margin: 0 auto;
-		// Relative positioning for masonry
-		position: relative;
-
-		.property-masonry {
-			width: 350px;
-		}
-
-		.property--rev {
-			position: fixed;
-			right: 22px;
-			bottom: 0;
-			height: 44px;
-			opacity: .5;
-			color: var(--color-text-lighter);
-			line-height: 44px;
-		}
-	}
-
-	#qrcode-modal {
-		.modal-container {
-			display: flex;
-			padding: 10px;
-			background-color: #fff;
-			.qrcode {
-				max-width: 100%;
-			}
-		}
-	}
-
-	#pick-addressbook-modal {
-		.modal-container {
-			display: flex;
-			overflow: visible;
-			flex-wrap: wrap;
-			justify-content: space-evenly;
-			margin-bottom: 20px;
-			padding: 10px;
-			background-color: #fff;
-			.multiselect {
-				flex: 1 1 100%;
-				width: 100%;
-				margin-bottom: 20px;
-			}
+		padding: 10px;
+		background-color: #fff;
+		.qrcode {
+			max-width: 100%;
 		}
 	}
 }
 
+#pick-addressbook-modal {
+	::v-deep .modal-container {
+		display: flex;
+		overflow: visible;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		margin-bottom: 20px;
+		padding: 10px;
+		background-color: #fff;
+		.multiselect {
+			flex: 1 1 100%;
+			width: 100%;
+			margin-bottom: 20px;
+		}
+	}
+}
 </style>

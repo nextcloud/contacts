@@ -30,7 +30,7 @@
 
 		<VirtualList class="members-list"
 			data-key="id"
-			:data-sources="list"
+			:data-sources="filteredList"
 			:data-component="MembersListItem"
 			:estimate-size="68" />
 
@@ -49,8 +49,6 @@
 
 <script>
 import AppContentList from '@nextcloud/vue/dist/Components/AppContentList'
-import Actions from '@nextcloud/vue/dist/Components/Actions'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import VirtualList from 'vue-virtual-scroll-list'
 
 import MembersListItem from './MembersList/MembersListItem'
@@ -60,14 +58,12 @@ import RouterMixin from '../mixins/RouterMixin'
 import { getRecommendations, getSuggestions } from '../services/collaborationAutocompletion'
 import { showError, showWarning } from '@nextcloud/dialogs'
 import { subscribe } from '@nextcloud/event-bus'
-import { SHARES_TYPES_MEMBER_MAP } from '../models/constants.ts'
+import { SHARES_TYPES_MEMBER_MAP, CIRCLES_MEMBER_GROUPING, MemberTypes } from '../models/constants.ts'
 
 export default {
 	name: 'MemberList',
 
 	components: {
-		Actions,
-		ActionButton,
 		AppContentList,
 		VirtualList,
 		EntityPicker,
@@ -91,19 +87,7 @@ export default {
 			pickerCircle: null,
 			pickerData: [],
 			pickerSelection: {},
-			pickerTypes: [{
-				id: `picker-${OC.Share.SHARE_TYPE_USER}`,
-				label: t('contacts', 'Users'),
-			}, {
-				id: `picker-${OC.Share.SHARE_TYPE_GROUP}`,
-				label: t('contacts', 'Groups'),
-			}, {
-				id: `picker-${OC.Share.SHARE_TYPE_CIRCLE}`,
-				label: t('contacts', 'Circles'),
-			}, {
-				id: `picker-${OC.Share.SHARE_TYPE_EMAIL}`,
-				label: t('contacts', 'Email'),
-			}],
+			pickerTypes: CIRCLES_MEMBER_GROUPING,
 		}
 	},
 
@@ -114,6 +98,31 @@ export default {
 		 */
 		circle() {
 			return this.$store.getters.getCircle(this.selectedCircle)
+		},
+
+		filteredList() {
+			// Group per userType
+			const groupedList = this.list.reduce(function(r, a) {
+				// If the user type is a circle, this could originate from multiple sources
+				const userType = a.userType !== MemberTypes.CIRCLE
+					? a.userType
+					: a.basedOn.source
+
+				r[userType] = r[userType] || []
+				r[userType].push(a)
+				return r
+			}, Object.create(null))
+
+			return CIRCLES_MEMBER_GROUPING
+				// Filter unpopulated types
+				.filter(group => groupedList[group.type])
+				// Injecting headings
+				.map(group => [{
+					heading: true,
+					...group,
+				}, ...(groupedList[group.type] || [])])
+				// Merging sub-arrays
+				.flat()
 		},
 	},
 

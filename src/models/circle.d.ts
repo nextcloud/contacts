@@ -1,5 +1,5 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -87,7 +87,11 @@ export default class Circle {
     /**
      * Circle config
      */
-    get config(): any;
+    get config(): number;
+    /**
+     * Define circle config
+     */
+    set config(config: number);
     /**
      * Circle requires invite to be confirmed by moderator or above
      */

@@ -23,10 +23,17 @@
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
 import { MemberLevel, MemberLevels, MemberType } from '../models/constants'
-
 interface MemberPairs {
 	id: string,
 	type: MemberType
+}
+
+type CircleEditType = 'displayName' | 'description' | 'settings' | 'config'
+export enum CircleEdit {
+	DisplayName = 'displayName',
+	Description = 'description',
+	Settings = 'settings',
+	Config = 'config',
 }
 
 /**
@@ -60,6 +67,19 @@ export const createCircle = async function(name: string) {
  */
 export const deleteCircle = async function(circleId: string) {
 	const response = await axios.delete(generateOcsUrl('apps/circles/circles/{circleId}', { circleId }))
+	return response.data.ocs.data
+}
+
+/**
+ * Edit an existing circle
+ *
+ * @param {string} circleId the circle name
+ * @param {CircleEditType} type the edit type
+ * @param {any} data the data
+ * @returns {Object}
+ */
+export const editCircle = async function(circleId: string, type: CircleEditType, value: any) {
+	const response = await axios.put(generateOcsUrl('apps/circles/circles/{circleId}/{type}', { circleId, type }), { value })
 	return response.data.ocs.data
 }
 

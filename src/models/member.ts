@@ -21,7 +21,7 @@
  */
 
 import Circle from './circle'
-import { MemberLevel, MemberLevels } from './constants'
+import { MemberLevel, MemberLevels, MemberType } from './constants'
 
 export default class Member {
 
@@ -89,6 +89,20 @@ export default class Member {
 	 */
 	get userId(): string {
 		return this._data.userId
+	}
+
+	/**
+	 * Member type
+	 */
+	get userType(): MemberType {
+		return this._data.userType
+	}
+
+	/**
+	 * Member based on source
+	 */
+	get basedOn(): Object {
+		return this._data.basedOn
 	}
 
 	/**

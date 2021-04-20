@@ -92,6 +92,48 @@ export const CIRCLES_MEMBER_LEVELS = {
 	[MEMBER_LEVEL_OWNER]: t('circles', 'Owner'),
 }
 
+export const PUBLIC_CIRCLE_CONFIG = {
+	[t('contacts', 'Invites')]: {
+		[CIRCLE_CONFIG_OPEN]: t('contacts', 'Open, anyone can join'),
+		[CIRCLE_CONFIG_INVITE]: t('contacts', 'Members need to accept invitation'),
+		[CIRCLE_CONFIG_REQUEST]: t('contacts', 'Members need to be accepted by a moderator'),
+		[CIRCLE_CONFIG_FRIEND]: t('contacts', 'Members can also invite'),
+		// Let's manage password protection independently as we also need a password
+		// [CIRCLE_CONFIG_PROTECTED]: t('contacts', 'Password protect'),
+	},
+
+	[t('contacts', 'Visibility')]: {
+		[CIRCLE_CONFIG_VISIBLE]: t('contacts', 'Visible to everyone'),
+		[CIRCLE_CONFIG_HIDDEN]: t('contacts', 'Hide this circle from listings'),
+	},
+
+	[t('contacts', 'Circle membership')]: {
+		[CIRCLE_CONFIG_CIRCLE_INVITE]: t('contacts', 'Circle must confirm when invited in another circle'),
+		[CIRCLE_CONFIG_ROOT]: t('contacts', 'Prevent circle from being a member of another circle'),
+	},
+}
+
+
+// Represents the picker options but also the 
+// sorting of the members list
+export const CIRCLES_MEMBER_GROUPING = [{
+	id: `picker-${OC.Share.SHARE_TYPE_USER}`,
+	label: t('contacts', 'Users'),
+	type: MEMBER_TYPE_USER
+}, {
+	id: `picker-${OC.Share.SHARE_TYPE_EMAIL}`,
+	label: t('contacts', 'Emails'),
+	type: MEMBER_TYPE_MAIL
+}, {
+	id: `picker-${OC.Share.SHARE_TYPE_GROUP}`,
+	label: t('contacts', 'Groups'),
+	type: MEMBER_TYPE_GROUP
+}, {
+	id: `picker-${OC.Share.SHARE_TYPE_CIRCLE}`,
+	label: t('contacts', 'Circles'),
+	type: MEMBER_TYPE_CIRCLE
+}]
+
 export const SHARES_TYPES_MEMBER_MAP = {
 	[OC.Share.SHARE_TYPE_CIRCLE]: MEMBER_TYPE_SINGLEID,
 	[OC.Share.SHARE_TYPE_USER]: MEMBER_TYPE_USER,

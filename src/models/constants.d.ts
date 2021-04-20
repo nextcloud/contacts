@@ -34,6 +34,16 @@ export declare const CIRCLES_MEMBER_TYPES: {
 export declare const CIRCLES_MEMBER_LEVELS: {
     [x: number]: string;
 };
+export declare const PUBLIC_CIRCLE_CONFIG: {
+    [x: string]: {
+        [x: number]: string;
+    };
+};
+export declare const CIRCLES_MEMBER_GROUPING: {
+    id: string;
+    label: string;
+    type: number;
+}[];
 export declare const SHARES_TYPES_MEMBER_MAP: {
     [x: number]: number;
 };

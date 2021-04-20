@@ -24,6 +24,13 @@ interface MemberPairs {
     id: string;
     type: MemberType;
 }
+declare type CircleEditType = 'displayName' | 'description' | 'settings' | 'config';
+export declare enum CircleEdit {
+    DisplayName = "displayName",
+    Description = "description",
+    Settings = "settings",
+    Config = "config"
+}
 /**
  * Get the circles list without the members
  *
@@ -44,6 +51,15 @@ export declare const createCircle: (name: string) => Promise<any>;
  * @returns {Object}
  */
 export declare const deleteCircle: (circleId: string) => Promise<any>;
+/**
+ * Edit an existing circle
+ *
+ * @param {string} circleId the circle name
+ * @param {CircleEditType} type the edit type
+ * @param {any} data the data
+ * @returns {Object}
+ */
+export declare const editCircle: (circleId: string, type: CircleEditType, value: any) => Promise<any>;
 /**
  * Join a circle
  *

@@ -21,7 +21,11 @@
   -->
 
 <template>
-	<ListItemIcon
+	<span v-if="source.heading" class="members-list__heading">
+		{{ source.label }}
+	</span>
+
+	<ListItemIcon v-else
 		:id="source.singleId"
 		:key="source.singleId"
 		:avatar-size="44"
@@ -87,7 +91,6 @@ import ShieldCheck from 'vue-material-design-icons/ShieldCheck'
 
 import { changeMemberLevel } from '../../services/circles.ts'
 import { showError } from '@nextcloud/dialogs'
-import Member from '../../models/member.ts'
 import RouterMixin from '../../mixins/RouterMixin'
 
 export default {
@@ -106,7 +109,7 @@ export default {
 
 	props: {
 		source: {
-			type: Member,
+			type: Object,
 			required: true,
 		},
 	},
@@ -126,13 +129,6 @@ export default {
 		 */
 		circle() {
 			return this.$store.getters.getCircle(this.selectedCircle)
-		},
-
-		avatarUrl() {
-			if (this.contact.url) {
-				return `${this.contact.url}?photo`
-			}
-			return undefined
 		},
 
 		/**
@@ -272,8 +268,24 @@ export default {
 }
 </script>
 <style lang="scss">
+.members-list__heading {
+	display: flex;
+	overflow: hidden;
+	flex-shrink: 0;
+	order: 1;
+	padding-top: 22px;
+	padding-left: 8px;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	color: var(--color-primary-element);
+	line-height: 22px;
+	user-select: none;
+	pointer-events: none;
+}
+
 .members-list__item {
 	padding: 8px;
+	user-select: none;
 
 	&:focus,
 	&:hover {

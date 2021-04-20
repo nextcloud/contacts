@@ -1,5 +1,5 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -23,7 +23,7 @@
 import Vue from 'vue'
 import Member from './member'
 
-import { CircleConfigs, MemberLevels } from './constants'
+import { CircleConfig, CircleConfigs, MemberLevels } from './constants'
 
 type MemberList = Record<string, Member>
 
@@ -178,8 +178,15 @@ export default class Circle {
 	/**
 	 * Circle config
 	 */
-	get config() {
+	get config(): number {
 		return this._data.config
+	}
+
+	/**
+	 * Define circle config
+	 */
+	set config(config: number) {
+		this._data.config = config
 	}
 
 	/**

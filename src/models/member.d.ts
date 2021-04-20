@@ -20,7 +20,7 @@
  *
  */
 import Circle from './circle';
-import { MemberLevel } from './constants';
+import { MemberLevel, MemberType } from './constants';
 export default class Member {
     _data: any;
     _circle: Circle;
@@ -52,6 +52,14 @@ export default class Member {
      * Member userId
      */
     get userId(): string;
+    /**
+     * Member type
+     */
+    get userType(): MemberType;
+    /**
+     * Member based on source
+     */
+    get basedOn(): Object;
     /**
      * Member level
      *

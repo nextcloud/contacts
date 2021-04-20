@@ -93,7 +93,7 @@ import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
 import ExitToApp from 'vue-material-design-icons/ExitToApp'
 import LocationEnter from 'vue-material-design-icons/LocationEnter'
 
-import { deleteCircle, joinCircle } from '../../services/circles.ts'
+import { joinCircle } from '../../services/circles.ts'
 import { showError } from '@nextcloud/dialogs'
 import Circle from '../../models/circle.ts'
 import CopyToClipboardMixin from '../../mixins/CopyToClipboardMixin'
@@ -194,7 +194,6 @@ export default {
 			this.loading = true
 
 			try {
-				await deleteCircle(this.circle.id)
 				this.$store.dispatch('deleteCircle', this.circle.id)
 			} catch (error) {
 				showError(t('contacts', 'Unable to delete the circle'))
