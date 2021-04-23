@@ -58,7 +58,7 @@ OC.L10N.register(
     "Add {type}" : "Přidat {type}",
     "Select type" : "Vybrat typ",
     "Select Date" : "Vybrat datum",
-    "Add contact in group" : "Přidat uživatele do skupiny",
+    "Add contact in group" : "Přidat kontakt do skupiny",
     "Last modified" : "Naposledy upraveno",
     "Select option" : "Vybrat volbu",
     "Rename" : "Přejmenovat",
