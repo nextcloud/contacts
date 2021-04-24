@@ -94,7 +94,7 @@
 		"eslint-webpack-plugin": "^2.5.4",
 		"file-loader": "^6.2.0",
 		"node-polyfill-webpack-plugin": "^1.1.0",
-		"sass": "^1.32.10",
+		"sass": "^1.32.11",
 		"sass-loader": "^10.1.1",
 		"style-loader": "^2.0.0",
 		"stylelint": "^13.12.0",
