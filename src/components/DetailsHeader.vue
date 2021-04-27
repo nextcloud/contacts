@@ -32,7 +32,7 @@
 			<h2 class="contact-header__infos-title">
 				<slot name="title" />
 			</h2>
-			<div class="contact-header__infos-subtitle">
+			<div v-if="$slots.subtitle" class="contact-header__infos-subtitle">
 				<slot name="subtitle" />
 			</div>
 		</div>
@@ -84,14 +84,12 @@ export default {
 	display: flex;
 	align-items: center;
 	padding: 50px 0 20px;
-	font-weight: bold;
 
 	&__avatar {
 		position: relative;
-		flex: 1 1 var(--avatar-size);
-		min-width: var(--avatar-size);
-		max-width: 120px;
+		flex: 0 0 var(--avatar-size);
 		margin: 10px;
+		margin-left: 0;
 		display: flex;
 		justify-content: flex-end;
 	}
@@ -114,7 +112,7 @@ export default {
 			min-width: 100px;
 			max-width: 100%;
 			margin: 0;
-			padding: 4px 5px;
+			padding: 0;
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			border: none;

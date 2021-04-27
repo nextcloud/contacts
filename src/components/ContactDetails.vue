@@ -771,6 +771,7 @@ export default {
 .app-content-details {
 	flex: 1 1 100%;
 	min-width: 0;
+	padding: 0 80px;
 }
 
 // List of all properties

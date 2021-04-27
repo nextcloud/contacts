@@ -69,7 +69,7 @@
 				</AppNavigationCounter>
 			</AppNavigationItem>
 
-			<AppNavigationItem
+			<AppNavigationCaption
 				id="newgroup"
 				:force-menu="true"
 				:menu-open.sync="isNewGroupMenuOpen"
@@ -85,7 +85,7 @@
 						:placeholder="t('contacts','Group name')"
 						@submit.prevent.stop="createNewGroup" />
 				</template>
-			</AppNavigationItem>
+			</AppNavigationCaption>
 
 			<!-- Custom groups -->
 			<GroupNavigationItem
@@ -101,7 +101,7 @@
 				icon=""
 				@click="onToggleGroups" />
 
-			<AppNavigationItem
+			<AppNavigationCaption
 				id="newcircle"
 				:force-menu="true"
 				:menu-open.sync="isNewCircleMenuOpen"
@@ -117,7 +117,7 @@
 						:placeholder="t('contacts','Circle name')"
 						@submit.prevent.stop="createNewCircle" />
 				</template>
-			</AppNavigationItem>
+			</AppNavigationCaption>
 
 			<!-- Circles -->
 			<CircleNavigationItem
@@ -152,6 +152,7 @@ import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
 import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
 import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
+import AppNavigationCaption from '@nextcloud/vue/dist/Components/AppNavigationCaption'
 
 import naturalCompare from 'string-natural-compare'
 
@@ -171,6 +172,7 @@ export default {
 		AppNavigationCounter,
 		AppNavigationItem,
 		AppNavigationSettings,
+		AppNavigationCaption,
 		CircleNavigationItem,
 		GroupNavigationItem,
 		SettingsSection,

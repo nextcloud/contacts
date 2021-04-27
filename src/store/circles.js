@@ -23,7 +23,7 @@
 import { showError } from '@nextcloud/dialogs'
 import Vue from 'vue'
 
-import { createCircle, deleteCircle, deleteMember, getCircleMembers, getCircles, leaveCircle, addMembers } from '../services/circles.ts'
+import { createCircle, deleteCircle, deleteMember, getCircleMembers, getCircle, getCircles, leaveCircle, addMembers } from '../services/circles.ts'
 import Member from '../models/member.ts'
 import Circle from '../models/circle.ts'
 
@@ -102,7 +102,6 @@ const getters = {
 }
 
 const actions = {
-
 	/**
 	 * Retrieve and commit circles
 	 *
@@ -129,6 +128,27 @@ const actions = {
 		}
 
 		return circles
+	},
+
+	/**
+	 * Retrieve and commit circles
+	 *
+	 * @param {Object} context the store mutations
+	 * @param {string} circleId the circle id
+	 * @returns {Object[]} the circles
+	 */
+	async getCircle(context, circleId) {
+		const circle = await getCircle(circleId)
+		console.debug('Retrieved 1 circle', circle)
+
+		try {
+			const newCircle = new Circle(circle)
+			context.commit('addCircle', newCircle)
+		} catch (error) {
+			console.error('This circle failed to be processed', circle, error)
+		}
+
+		return circle
 	},
 
 	/**

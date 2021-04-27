@@ -36,34 +36,36 @@
 				</EmptyContent>
 			</AppContentDetails>
 
-			<!-- not a member -->
-			<AppContentDetails v-else-if="!circle.isMember">
-				<EmptyContent v-if="!loadingJoin" icon="icon-circles">
-					{{ t('contacts', 'You are not a member of this circle') }}
-
-					<!-- Only show the join button if the circle is accepting requests -->
-					<template v-if="circle.canJoin" #desc>
-						<button :disabled="loadingJoin" class="primary" @click="requestJoin">
-							{{ t('contacts', 'Request to join') }}
-						</button>
-					</template>
-				</EmptyContent>
-
-				<EmptyContent v-else-if="circle.isPendingJoin" icon="icon-loading">
-					{{ t('contacts', 'Your request to join this circle is pending approval') }}
-				</EmptyContent>
-
-				<EmptyContent v-else icon="icon-loading">
-					{{ t('contacts', 'Joining circle') }}
-				</EmptyContent>
-			</AppContentDetails>
-
 			<template v-else>
 				<!-- member list -->
 				<MemberList :list="members" />
 
 				<!-- main contacts details -->
-				<CircleDetails :circle-id="selectedCircle" />
+				<CircleDetails :circle="circle">
+					<!-- not a member -->
+					<template v-if="!circle.isMember">
+						<!-- Join request in progress -->
+						<EmptyContent v-if="loadingJoin" icon="icon-loading">
+							{{ t('contacts', 'Joining circle') }}
+						</EmptyContent>
+
+						<!-- Pending request validation -->
+						<EmptyContent v-else-if="circle.isPendingJoin" icon="icon-loading">
+							{{ t('contacts', 'Your request to join this circle is pending approval') }}
+						</EmptyContent>
+
+						<EmptyContent v-else icon="icon-circles">
+							{{ t('contacts', 'You are not a member of this circle') }}
+
+							<!-- Only show the join button if the circle is accepting requests -->
+							<template v-if="circle.canJoin" #desc>
+								<button :disabled="loadingJoin" class="primary" @click="requestJoin">
+									{{ t('contacts', 'Request to join') }}
+								</button>
+							</template>
+						</EmptyContent>
+					</template>
+				</CircleDetails>
 			</template>
 		</div>
 	</AppContent>

@@ -38,6 +38,12 @@ export declare enum CircleEdit {
  */
 export declare const getCircles: () => Promise<any>;
 /**
+ * Get a specific circle
+ * @param {string} circleId
+ * @returns {Object}
+ */
+export declare const getCircle: (circleId: string) => Promise<any>;
+/**
  * Create a new circle
  *
  * @param {string} name the circle name
@@ -47,14 +53,14 @@ export declare const createCircle: (name: string) => Promise<any>;
 /**
  * Delete an existing circle
  *
- * @param {string} circleId the circle name
+ * @param {string} circleId the circle id
  * @returns {Object}
  */
 export declare const deleteCircle: (circleId: string) => Promise<any>;
 /**
  * Edit an existing circle
  *
- * @param {string} circleId the circle name
+ * @param {string} circleId the circle id
  * @param {CircleEditType} type the edit type
  * @param {any} data the data
  * @returns {Object}
@@ -63,14 +69,14 @@ export declare const editCircle: (circleId: string, type: CircleEditType, value:
 /**
  * Join a circle
  *
- * @param {string} circleId the circle name
+ * @param {string} circleId the circle id
  * @returns {Array}
  */
 export declare const joinCircle: (circleId: string) => Promise<any>;
 /**
  * Leave a circle
  *
- * @param {string} circleId the circle name
+ * @param {string} circleId the circle id
  * @returns {Array}
  */
 export declare const leaveCircle: (circleId: string) => Promise<any>;

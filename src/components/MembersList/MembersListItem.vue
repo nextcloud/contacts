@@ -165,7 +165,7 @@ export default {
 				// Object.keys returns those as string
 				.map(level => parseInt(level, 10))
 				// we cannot set to a level higher than the current user's level
-				.filter(level => level < this.currentUserLevel)
+				.filter(level => level <= this.currentUserLevel)
 				// we cannot set to the level this member is already
 				.filter(level => level !== this.source.level)
 		},
@@ -209,6 +209,10 @@ export default {
 		 * @returns {string}
 		 */
 		levelChangeLabel(level) {
+			if (level === MemberLevels.OWNER) {
+				return t('contacts', 'Promote as sole owner')
+			}
+
 			if (this.source.level < level) {
 				return t('contacts', 'Promote to {level}', { level: CIRCLES_MEMBER_LEVELS[level] })
 			}
@@ -244,6 +248,13 @@ export default {
 			try {
 				await changeMemberLevel(this.circle.id, this.source.id, level)
 				this.showLevelMenu = false
+
+				// If we changed an owner, let's refresh the whole dataset to update all ownership & memberships
+				if (level === MemberLevels.OWNER) {
+					await this.$store.dispatch('getCircle', this.circle.id)
+					await this.$store.dispatch('getCircleMembers', this.circle.id)
+					return
+				}
 
 				// this.source is a class. We're modifying the class setter, not the prop itself
 				// eslint-disable-next-line vue/no-mutating-props

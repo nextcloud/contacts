@@ -44,44 +44,101 @@
 				autocorrect="off"
 				spellcheck="false"
 				name="displayname"
-				@input="debounceUpdateCircle">
+				@input="onDisplayNameChangeDebounce">
 
 			<!-- org, title -->
-			<template #subtitle>
+			<template v-if="!circle.isOwner" #subtitle>
+				{{ t('contacts', 'Circle owned by {owner}', { owner: circle.owner.displayName}) }}
 			</template>
 
 			<!-- actions -->
 			<template #actions>
+				<Actions>
+					<!-- leave circle -->
+					<ActionButton
+						v-if="circle.canLeave"
+						@click="confirmLeaveCircle">
+						{{ t('contacts', 'Leave circle') }}
+						<ExitToApp slot="icon"
+							:size="16"
+							decorative />
+					</ActionButton>
+
+					<!-- join circle -->
+					<ActionButton
+						v-else-if="!circle.isMember && circle.canJoin"
+						@click="joinCircle">
+						{{ joinButtonTitle }}
+						<LocationEnter slot="icon"
+							:size="16"
+							decorative />
+					</ActionButton>
+				</Actions>
+				<Actions>
+					<!-- copy circle link -->
+					<ActionLink
+						:href="circleUrl"
+						:icon="copyLoading ? 'icon-loading-small' : 'icon-public'"
+						@click.stop.prevent="copyToClipboard(circleUrl)">
+						{{ copyButtonText }}
+					</ActionLink>
+				</Actions>
 			</template>
 
 			<!-- menu actions -->
 			<template #actions-menu>
+				<!-- delete circle -->
+				<ActionButton
+					v-if="circle.canDelete"
+					icon="icon-delete"
+					@click="confirmDeleteCircle">
+					{{ t('contacts', 'Delete') }}
+				</ActionButton>
 			</template>
 		</DetailsHeader>
 
 		<section class="circle-details-section">
-			<ContentHeading>{{ t('contacts', 'Description') }}</ContentHeading>
+			<ContentHeading :loading="loadingDescription">
+				{{ t('contacts', 'Description') }}
+			</ContentHeading>
 
-			<RichContenteditable class="circle-details-section__description"
-				:value="circle.description"
+			<RichContenteditable
+				:value.sync="circle.description"
 				:auto-complete="onAutocomplete"
 				:maxlength="1024"
 				:multiline="true"
-				:disabled="loading"
-				:placeholder="t('contacts', 'Enter a description for the circle')"
-				@submit="onDescriptionSubmit" />
+				:contenteditable="circle.isOwner"
+				:placeholder="descriptionPlaceholder"
+				class="circle-details-section__description"
+				@update:value="onDescriptionChangeDebounce" />
 		</section>
 
-		<section class="circle-details-section">
+		<section v-if="circle.isOwner" class="circle-details-section">
 			<CircleConfigs class="circle-details-section__configs" :circle="circle" />
+		</section>
+
+		<section v-else>
+			<slot />
 		</section>
 	</AppContentDetails>
 </template>
 
 <script>
+import { showError } from '@nextcloud/dialogs'
+import debounce from 'debounce'
+
+import Actions from '@nextcloud/vue/dist/Components/Actions'
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
 import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails'
 import Avatar from '@nextcloud/vue/dist/Components/Avatar'
 import RichContenteditable from '@nextcloud/vue/dist/Components/RichContenteditable'
+
+import ExitToApp from 'vue-material-design-icons/ExitToApp'
+import LocationEnter from 'vue-material-design-icons/LocationEnter'
+
+import { CircleEdit, editCircle } from '../services/circles.ts'
+import CircleActionsMixin from '../mixins/CircleActionsMixin'
 import DetailsHeader from './DetailsHeader'
 import CircleConfigs from './CircleDetails/CircleConfigs'
 import ContentHeading from './CircleDetails/ContentHeading'
@@ -90,26 +147,36 @@ export default {
 	name: 'CircleDetails',
 
 	components: {
+		ActionButton,
+		ActionLink,
+		Actions,
 		AppContentDetails,
 		Avatar,
 		CircleConfigs,
 		ContentHeading,
 		DetailsHeader,
+		ExitToApp,
+		LocationEnter,
 		RichContenteditable,
 	},
 
-	props: {
-		circleId: {
-			type: String,
-			required: true,
-		},
+	mixins: [CircleActionsMixin],
+
+	data() {
+		return {
+			loadingDescription: false,
+		}
 	},
 
 	computed: {
-		circle() {
-			return this.$store.getters.getCircle(this.circleId)
+		descriptionPlaceholder() {
+			if (this.circle.description.trim() === '') {
+				return t('contacts', 'There is no description for this circle')
+			}
+			return t('contacts', 'Enter a description for the circle')
 		},
 	},
+
 	methods: {
 		/**
 		 * Autocomplete @mentions on the description
@@ -122,8 +189,34 @@ export default {
 			callback([])
 		},
 
-		onDescriptionSubmit() {
-			console.info(...arguments)
+		onDescriptionChangeDebounce: debounce(function() {
+			this.onDescriptionChange(...arguments)
+		}, 500),
+		async onDescriptionChange(description) {
+			this.loadingDescription = true
+			try {
+				await editCircle(this.circle.id, CircleEdit.Description, description)
+			} catch (error) {
+				console.error('Unable to edit circle description', description, error)
+				showError(t('contacts', 'An error happened during description sync'))
+			} finally {
+				this.loadingDescription = false
+			}
+		},
+
+		onDisplayNameChangeDebounce: debounce(function() {
+			this.onDisplayNameChange(...arguments)
+		}, 500),
+		async onDisplayNameChange(description) {
+			this.loadingDescription = true
+			try {
+				await editCircle(this.circle.id, CircleEdit.Description, description)
+			} catch (error) {
+				console.error('Unable to edit circle description', description, error)
+				showError(t('contacts', 'An error happened during description sync'))
+			} finally {
+				this.loadingDescription = false
+			}
 		},
 	},
 }
@@ -133,17 +226,16 @@ export default {
 .app-content-details {
 	flex: 1 1 100%;
 	min-width: 0;
+	padding: 0 80px;
 }
 
 .circle-details-section {
-	padding: 0 80px;
-
 	&:not(:first-of-type) {
 		margin-top: 24px;
 	}
 
 	&__description {
-		max-width: 400px;
+		max-width: 800px;
 	}
 }
 </style>

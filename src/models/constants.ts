@@ -96,7 +96,7 @@ export const PUBLIC_CIRCLE_CONFIG = {
 	[t('contacts', 'Invites')]: {
 		[CIRCLE_CONFIG_OPEN]: t('contacts', 'Open, anyone can join'),
 		[CIRCLE_CONFIG_INVITE]: t('contacts', 'Members need to accept invitation'),
-		[CIRCLE_CONFIG_REQUEST]: t('contacts', 'Members need to be accepted by a moderator'),
+		[CIRCLE_CONFIG_REQUEST]: t('contacts', 'Members need to be accepted by a moderator (requires Open)'),
 		[CIRCLE_CONFIG_FRIEND]: t('contacts', 'Members can also invite'),
 		// Let's manage password protection independently as we also need a password
 		// [CIRCLE_CONFIG_PROTECTED]: t('contacts', 'Password protect'),
@@ -104,11 +104,11 @@ export const PUBLIC_CIRCLE_CONFIG = {
 
 	[t('contacts', 'Visibility')]: {
 		[CIRCLE_CONFIG_VISIBLE]: t('contacts', 'Visible to everyone'),
-		[CIRCLE_CONFIG_HIDDEN]: t('contacts', 'Hide this circle from listings'),
 	},
 
 	[t('contacts', 'Circle membership')]: {
-		[CIRCLE_CONFIG_CIRCLE_INVITE]: t('contacts', 'Circle must confirm when invited in another circle'),
+		// TODO: implement backend
+		// [CIRCLE_CONFIG_CIRCLE_INVITE]: t('contacts', 'Circle must confirm when invited in another circle'),
 		[CIRCLE_CONFIG_ROOT]: t('contacts', 'Prevent circle from being a member of another circle'),
 	},
 }

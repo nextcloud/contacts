@@ -47,6 +47,16 @@ export const getCircles = async function() {
 }
 
 /**
+ * Get a specific circle
+ * @param {string} circleId 
+ * @returns {Object}
+ */
+export const getCircle = async function(circleId: string) {
+	const response = await axios.get(generateOcsUrl('apps/circles/circles/{circleId}', { circleId }))
+	return response.data.ocs.data
+}
+
+/**
  * Create a new circle
  *
  * @param {string} name the circle name
@@ -62,7 +72,7 @@ export const createCircle = async function(name: string) {
 /**
  * Delete an existing circle
  *
- * @param {string} circleId the circle name
+ * @param {string} circleId the circle id
  * @returns {Object}
  */
 export const deleteCircle = async function(circleId: string) {
@@ -73,7 +83,7 @@ export const deleteCircle = async function(circleId: string) {
 /**
  * Edit an existing circle
  *
- * @param {string} circleId the circle name
+ * @param {string} circleId the circle id
  * @param {CircleEditType} type the edit type
  * @param {any} data the data
  * @returns {Object}
@@ -86,7 +96,7 @@ export const editCircle = async function(circleId: string, type: CircleEditType,
 /**
  * Join a circle
  *
- * @param {string} circleId the circle name
+ * @param {string} circleId the circle id
  * @returns {Array}
  */
 export const joinCircle = async function(circleId: string) {
@@ -97,7 +107,7 @@ export const joinCircle = async function(circleId: string) {
 /**
  * Leave a circle
  *
- * @param {string} circleId the circle name
+ * @param {string} circleId the circle id
  * @returns {Array}
  */
 export const leaveCircle = async function(circleId: string) {

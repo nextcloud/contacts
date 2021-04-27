@@ -23,17 +23,30 @@
 <template>
 	<h3 class="app-content-heading">
 		<slot />
+		<div v-if="loading" class="app-content-heading__loader icon-loading-small" />
 	</h3>
 </template>
 
 <script>
 export default {
 	name: 'ContentHeading',
+
+	props: {
+		loading: {
+			type: Boolean,
+			default: false,
+		},
+	},
 }
 </script>
 
 <style lang="scss" scoped>
 .app-content-heading {
 	font-weight: bold;
+	display: flex;
+
+	&__loader {
+		margin-left: 8px;
+	}
 }
 </style>

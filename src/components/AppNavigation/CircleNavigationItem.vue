@@ -1,5 +1,5 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+  - @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
   -
@@ -25,7 +25,7 @@
 		:to="circle.router"
 		:title="circle.displayName"
 		:icon="circle.icon">
-		<template v-if="loading" slot="actions">
+		<template v-if="loadingAction" slot="actions">
 			<ActionText icon="icon-loading-small">
 				{{ t('contacts', 'Loading …') }}
 			</ActionText>
@@ -50,7 +50,7 @@
 			<!-- leave circle -->
 			<ActionButton
 				v-if="circle.canLeave"
-				@click="leaveCircle">
+				@click="confirmLeaveCircle">
 				{{ t('contacts', 'Leave circle') }}
 				<ExitToApp slot="icon"
 					:size="16"
@@ -71,7 +71,7 @@
 			<ActionButton
 				v-if="circle.canDelete"
 				icon="icon-delete"
-				@click="deleteCircle">
+				@click="confirmDeleteCircle">
 				{{ t('contacts', 'Delete') }}
 			</ActionButton>
 		</template>
@@ -83,8 +83,6 @@
 </template>
 
 <script>
-import { emit } from '@nextcloud/event-bus'
-
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
 import ActionText from '@nextcloud/vue/dist/Components/ActionText'
@@ -93,10 +91,8 @@ import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
 import ExitToApp from 'vue-material-design-icons/ExitToApp'
 import LocationEnter from 'vue-material-design-icons/LocationEnter'
 
-import { joinCircle } from '../../services/circles.ts'
-import { showError } from '@nextcloud/dialogs'
 import Circle from '../../models/circle.ts'
-import CopyToClipboardMixin from '../../mixins/CopyToClipboardMixin'
+import CircleActionsMixin from '../../mixins/CircleActionsMixin'
 
 export default {
 	name: 'CircleNavigationItem',
@@ -111,7 +107,7 @@ export default {
 		LocationEnter,
 	},
 
-	mixins: [CopyToClipboardMixin],
+	mixins: [CircleActionsMixin],
 
 	props: {
 		circle: {
@@ -120,86 +116,9 @@ export default {
 		},
 	},
 
-	data() {
-		return {
-			loading: false,
-		}
-	},
-
 	computed: {
-		copyButtonText() {
-			if (this.copied) {
-				return this.copySuccess
-					? t('contacts', 'Copied')
-					: t('contacts', 'Could not copy')
-			}
-			return t('contacts', 'Copy link')
-		},
-
-		circleUrl() {
-			const route = this.$router.resolve(this.circle.router)
-			return window.location.origin + route.href
-		},
-
-		joinButtonTitle() {
-			if (this.circle.requireJoinAccept) {
-				return t('contacts', 'Request to join')
-			}
-			return t('contacts', 'Join circle')
-		},
-
 		memberCount() {
 			return Object.values(this.circle?.members || []).length
-		},
-	},
-
-	methods: {
-		// Trigger the entity picker view
-		async addMemberToCircle() {
-			await this.$router.push(this.circle.router)
-			emit('contacts:circles:append', this.circle.id)
-		},
-
-		async joinCircle() {
-			this.loading = true
-			try {
-				await joinCircle(this.circle.id)
-			} catch (error) {
-				showError(t('contacts', 'Unable to join the circle'))
-			} finally {
-				this.loading = false
-			}
-
-		},
-
-		async leaveCircle() {
-			this.loading = true
-			const member = this.circle.initiator
-
-			try {
-				await this.$store.dispatch('deleteMemberFromCircle', {
-					member,
-					leave: true,
-				})
-			} catch (error) {
-				console.error('Could not leave the circle', member, error)
-				showError(t('contacts', 'Could not leave the circle {displayName}', this.circle))
-			} finally {
-				this.loading = false
-			}
-
-		},
-
-		async deleteCircle() {
-			this.loading = true
-
-			try {
-				this.$store.dispatch('deleteCircle', this.circle.id)
-			} catch (error) {
-				showError(t('contacts', 'Unable to delete the circle'))
-			} finally {
-				this.loading = false
-			}
 		},
 	},
 }
