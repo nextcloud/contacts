@@ -1,5 +1,89 @@
 # Changelog
 
+## [v3.5.1](https://github.com/nextcloud/contacts/tree/v3.5.1) (2021-03-17)
+
+[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.5.0...v3.5.1)
+
+### Fixed
+- Min support version is 19
+  ([skjnldsv](https://github.com/skjnldsv))
+
+
+## [v3.5.0](https://github.com/nextcloud/contacts/tree/v3.5.0) (2021-03-15)
+
+[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.3...v3.5.0)
+
+### Fixed
+- Fix contact deletion from addressbook
+  [\#2086](https://github.com/nextcloud/contacts/pull/2086) ([skjnldsv](https://github.com/skjnldsv))
+- Alphabetically order groups in contact details \(\#2051\)
+  [\#2076](https://github.com/nextcloud/contacts/pull/2076) ([harryyoud](https://github.com/harryyoud))
+- Fix custom labels not being displayed
+  [\#2064](https://github.com/nextcloud/contacts/pull/2064) ([Y0hy0h](https://github.com/Y0hy0h))
+- Fix display name with empty last name when sorting by last name
+  [\#2040](https://github.com/nextcloud/contacts/pull/2040) ([NerLOR](https://github.com/NerLOR))
+- Make sure twitter returns the raw static html page so we can get the …
+  [\#2013](https://github.com/nextcloud/contacts/pull/2013) ([skjnldsv](https://github.com/skjnldsv))
+- Instagram profile sync with agent
+  [\#2083](https://github.com/nextcloud/contacts/pull/2083) ([call-me-matt](https://github.com/call-me-matt))
+- Adapted twitter uri
+  [\#2081](https://github.com/nextcloud/contacts/pull/2081) ([call-me-matt](https://github.com/call-me-matt))
+
+### Enhancements
+- Use all email addresses for gravatar search
+  [\#2085](https://github.com/nextcloud/contacts/pull/2085) ([call-me-matt](https://github.com/call-me-matt))
+
+
+## [v3.4.3](https://github.com/nextcloud/contacts/tree/v3.4.3) (2021-01-04)
+
+[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.2...v3.4.3)
+
+### Fixed
+- Remove Workaround for Postal Addresses Containing Commas
+  [\#2000](https://github.com/nextcloud/contacts/pull/2000) ([zlajo](https://github.com/zlajo))
+- Fix masonry redraw
+  [\#1982](https://github.com/nextcloud/contacts/pull/1982) ([skjnldsv](https://github.com/skjnldsv))
+- Fix generating the redirect url
+  [\#1972](https://github.com/nextcloud/contacts/pull/1972) ([juliushaertl](https://github.com/juliushaertl))
+- Change to the name of the app
+  [\#1965](https://github.com/nextcloud/contacts/pull/1965) ([Valdnet](https://github.com/Valdnet))
+- Add favicons
+  [\#1960](https://github.com/nextcloud/contacts/pull/1960) ([st3iny](https://github.com/st3iny))
+
+## 3.4.2 - 2020-11-18
+
+[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.1...v3.4.2)
+
+### Enhancements
+- add support for downloading avatars from gravatar
+  [\#1906](https://github.com/nextcloud/contacts/pull/1906) ([eleith](https://github.com/eleith))
+- add xing to list of social networks
+  [\#1871](https://github.com/nextcloud/contacts/pull/1871) ([call-me-matt](https://github.com/call-me-matt))
+- add xing to social sync
+  [\#1869](https://github.com/nextcloud/contacts/pull/1869) ([call-me-matt](https://github.com/call-me-matt))
+
+### Fixed
+- Replace the deprecated OC.Util.relativeModifiedDate by nextcloud/moment
+  [\#1936](https://github.com/nextcloud/contacts/pull/1936) ([tintou](https://github.com/tintou))
+- l10n: Rebuild string text
+  [\#1893](https://github.com/nextcloud/contacts/pull/1893) ([Valdnet](https://github.com/Valdnet))
+- Fix/dav plugins groups registration
+  [\#1938](https://github.com/nextcloud/contacts/pull/1938) ([skjnldsv](https://github.com/skjnldsv))
+- vcard should only have 1 photo field when adding/removing photos
+  [\#1918](https://github.com/nextcloud/contacts/pull/1918) ([eleith](https://github.com/eleith))
+- new facebook api prevents usage without authentication
+  [\#1894](https://github.com/nextcloud/contacts/pull/1894) ([call-me-matt](https://github.com/call-me-matt))
+- Fix Avatar ratio display
+  [\#1884](https://github.com/nextcloud/contacts/pull/1884) ([skjnldsv](https://github.com/skjnldsv))
+- Fix bulk contacts add to group
+  [\#1883](https://github.com/nextcloud/contacts/pull/1883) ([skjnldsv](https://github.com/skjnldsv))
+- l10n: Correct text string tag
+  [\#1896](https://github.com/nextcloud/contacts/pull/1896) ([Valdnet](https://github.com/Valdnet))
+- l10n: Correct text string tag for Settings
+  [\#1895](https://github.com/nextcloud/contacts/pull/1895) ([Valdnet](https://github.com/Valdnet))
+- l10n: Remove the quotation marks
+  [\#1892](https://github.com/nextcloud/contacts/pull/1892) ([Valdnet](https://github.com/Valdnet))
+
 ## 3.4.1 - 2020-10-20
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.0...v3.4.1)

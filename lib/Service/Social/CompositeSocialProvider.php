@@ -42,14 +42,14 @@ class CompositeSocialProvider {
 
 		// This determines the priority of known providers
 		$this->providers = [
-			$instagramProvider->name  => $instagramProvider,
-			$mastodonProvider->name   => $mastodonProvider,
-			$twitterProvider->name    => $twitterProvider,
-			$tumblrProvider->name     => $tumblrProvider,
-			$diasporaProvider->name   => $diasporaProvider,
-			$xingProvider->name       => $xingProvider,
-			$gravatarProvider->name   => $gravatarProvider,
-			$facebookProvider->name   => $facebookProvider
+			$mastodonProvider->name => $mastodonProvider,
+			$diasporaProvider->name => $diasporaProvider,
+			$twitterProvider->name => $twitterProvider,
+			$tumblrProvider->name => $tumblrProvider,
+			$xingProvider->name => $xingProvider,
+			$gravatarProvider->name => $gravatarProvider,
+			$facebookProvider->name   => $facebookProvider,
+			$instagramProvider->name => $instagramProvider,
 		];
 	}
 

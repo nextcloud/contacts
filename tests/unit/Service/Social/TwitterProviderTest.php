@@ -29,12 +29,16 @@ use OCP\Http\Client\IResponse;
 use OCP\Http\Client\IClientService;
 use ChristophWurst\Nextcloud\Testing\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\LoggerInterface;
 
 class TwitterProviderTest extends TestCase {
 	private $provider;
 
 	/** @var IClientService|MockObject */
 	private $clientService;
+
+	/** @var LoggerInterface|MockObject */
+	private $logger;
 
 	/** @var IClient|MockObject */
 	private $client;
@@ -45,6 +49,7 @@ class TwitterProviderTest extends TestCase {
 	protected function setUp(): void {
 		parent::setUp();
 		$this->clientService = $this->createMock(IClientService::class);
+		$this->logger = $this->createMock(LoggerInterface::class);
 		$this->response = $this->createMock(IResponse::class);
 		$this->client = $this->createMock(IClient::class);
 
@@ -53,7 +58,8 @@ class TwitterProviderTest extends TestCase {
 			->willReturn($this->client);
 
 		$this->provider = new TwitterProvider(
-	  $this->clientService
+			$this->clientService,
+			$this->logger
 		);
 	}
 
@@ -94,16 +100,16 @@ class TwitterProviderTest extends TestCase {
 			]
 		];
 		$contactWithSocialUrls = [
-			"https://mobile.twitter.com/username1",
-			"https://mobile.twitter.com/username2",
+			"https://twitter.com/username1",
+			"https://twitter.com/username2",
 		];
 		$contactWithSocialHtml = [
-			'<html><img src="username1_normal.jpg" /></html>',
-			'<html><img src="username2_normal.jpg" /></html>',
+			'<html><img src="./profile_images/username1_normal.jpg" /></html>',
+			'<html><img src="./profile_images/username2_normal.jpg" /></html>',
 		];
 		$contactWithSocialImgs = [
-			"username1_400x400.jpg",
-			"username2_400x400.jpg"
+			"./profile_images/username1_400x400.jpg",
+			"./profile_images/username2_400x400.jpg"
 		];
 
 		$contactWithoutSocial = [

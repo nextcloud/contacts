@@ -15,6 +15,7 @@
     "can edit" : "pòt modificar",
     "First name" : "Prenom",
     "Last name" : "Nom",
+    "Display name" : "Nom afichat",
     "Group name" : "Nom del grop",
     "Not grouped" : "Pas gropats",
     "Close" : "Tampar",
@@ -43,6 +44,7 @@
     "Voice" : "Votz",
     "Relative" : "Relatiu",
     "None" : "Pas cap",
-    "Unknown" : "Desconegut"
+    "Unknown" : "Desconegut",
+    "Spoken languages" : "Lengas parladas"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

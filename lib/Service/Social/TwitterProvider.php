@@ -23,17 +23,27 @@
 
 namespace OCA\Contacts\Service\Social;
 
+use GuzzleHttp\Exception\RequestException;
+use GuzzleHttp\RequestOptions;
+use OC\AppFramework\Http\Request;
+use OCA\Contacts\AppInfo\Application;
 use OCP\Http\Client\IClientService;
+use Psr\Log\LoggerInterface;
 
 class TwitterProvider implements ISocialProvider {
 	/** @var IClientService */
 	private $httpClient;
 
+	/** @var LoggerInterface */
+	private $logger;
+
 	/** @var string */
 	public $name = "twitter";
 
-	public function __construct(IClientService $httpClient) {
+	public function __construct(IClientService $httpClient,
+								LoggerInterface $logger) {
 		$this->httpClient = $httpClient->NewClient();
+		$this->logger = $logger;
 	}
 
 	/**
@@ -59,9 +69,9 @@ class TwitterProvider implements ISocialProvider {
 		$profileIds = $this->getProfileIds($contact);
 		$urls = [];
 		foreach ($profileIds as $profileId) {
-			$recipe = 'https://mobile.twitter.com/{socialId}';
+			$recipe = 'https://twitter.com/{socialId}';
 			$connector = str_replace("{socialId}", $profileId, $recipe);
-			$connector = $this->getFromHtml($connector, '_normal');
+			$connector = $this->getFromHtml($connector, 'profile_image');
 			$urls[] = $connector;
 		}
 		return $urls;
@@ -112,7 +122,12 @@ class TwitterProvider implements ISocialProvider {
 	 */
 	protected function getFromHtml(string $url, string $desired) : ?string {
 		try {
-			$result = $this->httpClient->get($url);
+			$result = $this->httpClient->get($url, [
+				RequestOptions::HEADERS => [
+					// Make the request as google bot so twitter display the full static html page
+					'User-Agent' => 'Googlebot/2.1'
+				]
+			]);
 
 			$htmlResult = new \DOMDocument();
 			$htmlResult->loadHTML($result->getBody());
@@ -127,7 +142,11 @@ class TwitterProvider implements ISocialProvider {
 				}
 			}
 			return null;
-		} catch (\Exception $e) {
+		} catch (RequestException $e) {
+			$this->logger->debug('Error fetching twitter urls',  [
+				'app' => Application::APP_ID,
+				'exception' => $e
+			]);
 			return null;
 		}
 	}

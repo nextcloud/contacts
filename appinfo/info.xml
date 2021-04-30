@@ -12,7 +12,7 @@
 * 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 	</description>
 
-	<version>3.4.1</version>
+	<version>3.5.1</version>
 	<licence>agpl</licence>
 
 	<author>John Molakvoæ</author>
@@ -35,11 +35,11 @@
 
 	<!-- required for dav plugins registration -->
     <types>
-        <filesystem/>
+        <dav/>
     </types>
 
 	<dependencies>
-		<nextcloud min-version="18" max-version="21" />
+		<nextcloud min-version="19" max-version="22" />
 	</dependencies>
 
 	<contactsmenu>

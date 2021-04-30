@@ -27,6 +27,7 @@ namespace OCA\Contacts\Service\Social;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IResponse;
 use OCP\Http\Client\IClientService;
+use Psr\Log\LoggerInterface;
 use ChristophWurst\Nextcloud\Testing\TestCase;
 use PHPUnit\Framework\MockObject\MockObject;
 
@@ -35,6 +36,9 @@ class InstagramProviderTest extends TestCase {
 
 	/** @var IClientService|MockObject */
 	private $clientService;
+
+	/** @var LoggerInterface|MockObject */
+	private $logger;
 
 	/** @var IClient|MockObject */
 	private $client;
@@ -47,13 +51,14 @@ class InstagramProviderTest extends TestCase {
 		$this->clientService = $this->createMock(IClientService::class);
 		$this->response = $this->createMock(IResponse::class);
 		$this->client = $this->createMock(IClient::class);
+		$this->logger = $this->createMock(LoggerInterface::class);
 
 		$this->clientService
 			->method('NewClient')
 			->willReturn($this->client);
 
 		$this->provider = new InstagramProvider(
-	  $this->clientService
+	  $this->clientService, $this->logger
 		);
 	}
 

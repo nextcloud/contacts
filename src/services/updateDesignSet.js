@@ -23,32 +23,6 @@
 import ICAL from 'ical.js'
 
 /**
- * Fixes nextcloud/contacts#1009 that prevented editing of contacts if
- * their address contained a comma. This is actually a bug in ical.js
- * but it has not been fixed for some time now.
- *
- * This can be removed once https://github.com/mozilla-comm/ical.js/issues/386
- * has been resolved.
- *
- * @returns {Boolean} Whether or not the design set has been altered.
- */
-const setLabelAsSingleValue = () => {
-	if (
-		!ICAL.design.vcard.param.label
-		|| ICAL.design.vcard.param.label.multiValue !== false
-		|| !ICAL.design.vcard3.param.label
-		|| ICAL.design.vcard3.param.label.multiValue !== false
-	) {
-		ICAL.design.vcard.param.label = { multiValue: false }
-		ICAL.design.vcard3.param.label = { multiValue: false }
-
-		return true
-	}
-
-	return false
-}
-
-/**
  * Prevents ical.js from adding 'VALUE=PHONE-NUMBER' in vCard 3.0.
  * While not wrong according to the RFC, there's a bug in sabreio/vobject (used
  * by Nextcloud Server) that prevents saving vCards with this parameters.
@@ -99,7 +73,6 @@ const addGroupedProperties = vCard => {
 export default function(vCard) {
 	let madeChanges = false
 
-	madeChanges |= setLabelAsSingleValue()
 	madeChanges |= removePhoneNumberValueType()
 	madeChanges |= addGroupedProperties(vCard)
 

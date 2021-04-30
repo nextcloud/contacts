@@ -63,12 +63,17 @@ class ContactsControllerTest extends TestCase {
 			->willReturn('All contacts');
 
 		$this->urlGenerator->expects($this->once())
+			->method('linkToRoute')
+			->with('contacts.page.index')
+			->willReturn('/index.php/apps/contacts/');
+
+		$this->urlGenerator->expects($this->once())
 			->method('getAbsoluteURL')
-			->with('/apps/contacts/All contacts/' . $contact)
-			->willReturn('/apps/contacts/All contacts/' . $contact);
+			->with('/index.php/apps/contacts/All contacts/' . $contact)
+			->willReturn('/index.php/apps/contacts/All contacts/' . $contact);
 
 		$result = $this->controller->direct('uuid~addressbook');
 		$this->assertTrue($result instanceof RedirectResponse);
-		$this->assertEquals('/apps/contacts/All contacts/' . $contact, $result->getRedirectURL());
+		$this->assertEquals('/index.php/apps/contacts/All contacts/' . $contact, $result->getRedirectURL());
 	}
 }

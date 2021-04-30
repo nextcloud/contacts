@@ -63,6 +63,7 @@ import debounce from 'debounce'
 import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 import Contact from '../../models/contact'
 import PropertyTitle from './PropertyTitle'
+import naturalCompare from 'string-natural-compare'
 
 export default {
 	name: 'PropertyGroups',
@@ -104,6 +105,7 @@ export default {
 	computed: {
 		groups() {
 			return this.$store.getters.getGroups.slice(0).map(group => group.name)
+				.sort((a, b) => naturalCompare(a, b, { caseInsensitive: true }))
 		},
 
 		/**

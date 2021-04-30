@@ -23,22 +23,22 @@
 
 namespace OCA\Contacts\Service;
 
-use OCA\Contacts\Service\Social\CompositeSocialProvider;
 use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\Service\Social\CompositeSocialProvider;
 
-use OCP\Contacts\IManager;
-use OCP\IAddressBook;
-
-use OCP\Util;
-use OCP\IConfig;
-use OCP\AppFramework\Http;
-use OCP\AppFramework\Http\JSONResponse;
-use OCP\Http\Client\IClientService;
 use OCA\DAV\CardDAV\CardDavBackend;
 use OCA\DAV\CardDAV\ContactsManager;
-use OCP\IURLGenerator;
-use OCP\IL10N;
+
+use OCP\AppFramework\Http;
+use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Utility\ITimeFactory;
+use OCP\Contacts\IManager;
+use OCP\Http\Client\IClientService;
+use OCP\IAddressBook;
+use OCP\IConfig;
+use OCP\IL10N;
+use OCP\IURLGenerator;
+use OCP\Util;
 
 class SocialApiService {
 	private $appName;
@@ -175,7 +175,7 @@ class SocialApiService {
 
 		try {
 			// get corresponding addressbook
-			$addressBook = $this->getAddressBook($addressbookId);
+			$addressBook = $this->getAddressBook(urldecode($addressbookId));
 			if (is_null($addressBook)) {
 				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
 			}

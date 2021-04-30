@@ -17,6 +17,7 @@ OC.L10N.register(
     "can edit" : "pòt modificar",
     "First name" : "Prenom",
     "Last name" : "Nom",
+    "Display name" : "Nom afichat",
     "Group name" : "Nom del grop",
     "Not grouped" : "Pas gropats",
     "Close" : "Tampar",
@@ -45,6 +46,7 @@ OC.L10N.register(
     "Voice" : "Votz",
     "Relative" : "Relatiu",
     "None" : "Pas cap",
-    "Unknown" : "Desconegut"
+    "Unknown" : "Desconegut",
+    "Spoken languages" : "Lengas parladas"
 },
 "nplurals=2; plural=(n > 1);");

@@ -109,10 +109,10 @@ class SocialApiServiceTest extends TestCase {
 
 	public function updateAddressbookProvider() {
 		return [
-			'not user enabled' 			=> ['yes',	'no',	Http::STATUS_FORBIDDEN],
-			'not admin allowed' 		=> ['no',	'yes',	Http::STATUS_FORBIDDEN],
-			'not allowed, not enabled' 	=> ['no',	'no',	Http::STATUS_FORBIDDEN],
-			'allowed and enabled'	 	=> ['yes',	'yes',	Http::STATUS_OK],
+			'not user enabled' => ['yes',	'no',	Http::STATUS_FORBIDDEN],
+			'not admin allowed' => ['no',	'yes',	Http::STATUS_FORBIDDEN],
+			'not allowed, not enabled' => ['no',	'no',	Http::STATUS_FORBIDDEN],
+			'allowed and enabled' => ['yes',	'yes',	Http::STATUS_OK],
 		];
 	}
 

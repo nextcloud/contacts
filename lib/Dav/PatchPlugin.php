@@ -178,7 +178,7 @@ class PatchPlugin extends ServerPlugin {
 	 */
 	public function getPluginInfo() {
 		return [
-			'name'        => $this->getPluginName(),
+			'name' => $this->getPluginName(),
 			'description' => 'Allow to patch unique properties.'
 		];
 	}

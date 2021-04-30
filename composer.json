@@ -4,7 +4,7 @@
 		"optimize-autoloader": true,
 		"classmap-authoritative": true,
 		"platform": {
-			"php": "7.2"
+			"php": "7.3"
 		}
 	},
 	"scripts": {
@@ -15,8 +15,8 @@
 		"test:integration": "phpunit -c phpunit.integration.xml --fail-on-warning"
 	},
 	"require-dev": {
-        "christophwurst/nextcloud_testing": "^0.10.0",
-		"nextcloud/coding-standard": "^0.3.0",
-		"phpunit/phpunit": "^7"
+        "christophwurst/nextcloud_testing": "^0.12.4",
+		"nextcloud/coding-standard": "^0.5.0",
+		"phpunit/phpunit": "^9"
 	}
 }

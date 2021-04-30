@@ -1,5 +1,5 @@
 <?php
-if (\OCP\Util::isIe()) {
+if (\OC_Util::isIe()) {
 	?>
 <div id="app-content">
 	<div class="emptycontent">
