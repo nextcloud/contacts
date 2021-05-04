@@ -132,7 +132,7 @@
 							{{ t('contacts', 'Clone contact') }}
 						</ActionButton>
 						<ActionButton icon="icon-qrcode" @click="showQRcode">
-							{{ t('contacts', 'Generate QR Code') }}
+							{{ t('contacts', 'Generate QR code') }}
 						</ActionButton>
 						<ActionButton v-if="!isReadOnly" icon="icon-delete" @click="deleteContact">
 							{{ t('contacts', 'Delete') }}
