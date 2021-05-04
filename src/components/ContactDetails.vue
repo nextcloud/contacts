@@ -147,7 +147,7 @@
 					:title="contact.displayName"
 					@close="closeQrModal">
 					<img :src="`data:image/svg+xml;base64,${qrcode}`"
-						:alt="t('contacts', 'Contact vCard as qrcode')"
+						:alt="t('contacts', 'Contact vCard as QR Code')"
 						class="qrcode"
 						width="400">
 				</Modal>
