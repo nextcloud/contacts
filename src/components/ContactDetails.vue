@@ -132,7 +132,7 @@
 							{{ t('contacts', 'Clone contact') }}
 						</ActionButton>
 						<ActionButton icon="icon-qrcode" @click="showQRcode">
-							{{ t('contacts', 'Generate QR Code') }}
+							{{ t('contacts', 'Generate QR code') }}
 						</ActionButton>
 						<ActionButton v-if="!isReadOnly" icon="icon-delete" @click="deleteContact">
 							{{ t('contacts', 'Delete') }}
@@ -147,7 +147,7 @@
 					:title="contact.displayName"
 					@close="closeQrModal">
 					<img :src="`data:image/svg+xml;base64,${qrcode}`"
-						:alt="t('contacts', 'Contact vCard as QR Code')"
+						:alt="t('contacts', 'Contact vCard as QR code')"
 						class="qrcode"
 						width="400">
 				</Modal>
