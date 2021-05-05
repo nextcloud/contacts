@@ -25,7 +25,6 @@ OC.L10N.register(
     "Title" : "Titel",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Der var en fejl i denne kontakt, som er blevet rettet . Gennemgå indholdet, og klik her for at gemme det.",
     "Download" : "Download",
-    "Generate QR Code" : "Generer QR-kode",
     "Delete" : "Slet",
     "Cancel" : "Annullér",
     "This contact is not yet synced. Edit it to save it to the server." : "Denne kontakt er endnu ikke synkroniseret. Redigere den for at gemme den på serveren.",

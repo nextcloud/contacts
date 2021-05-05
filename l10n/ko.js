@@ -29,7 +29,6 @@ OC.L10N.register(
     "Title" : "직위",
     "Download" : "다운로드",
     "Clone contact" : "연락처 복제",
-    "Generate QR Code" : "QR 코드 생성",
     "Delete" : "삭제",
     "Cancel" : "취소",
     "This contact is not yet synced. Edit it to save it to the server." : "이 연락처를 동기화하지 않았습니다. 편집하면 서버에 저장합니다.",

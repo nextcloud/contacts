@@ -22,7 +22,6 @@ OC.L10N.register(
     "Company" : "Cwmni",
     "Title" : "Teitl",
     "Download" : "Llwytho i lawr",
-    "Generate QR Code" : "Cynhyrchu Cod QR",
     "Delete" : "Dileu",
     "Cancel" : "Diddymu",
     "This contact is not yet synced. Edit it to save it to the server." : "Nid yw'r cyswllt hwn wedi'i gydweddu eto. Golygwch ef i'w gadw i'r gweinydd.",

@@ -26,7 +26,6 @@ OC.L10N.register(
     "Title" : "Titulli",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Ky kontakt ishte prishur dhe u rregullua. Ju lutem rishikoni përmbajtjen dhe klikoni këtu për ta ruajtur atë.",
     "Download" : "Shkarko",
-    "Generate QR Code" : "Gjeneroni Kodin QR",
     "Delete" : "Fshije",
     "Cancel" : "Anullo",
     "This contact is not yet synced. Edit it to save it to the server." : "Ky kontakt nuk është sinkronizuar akoma. Përditësojeni atë për ta ruajtur në server.",

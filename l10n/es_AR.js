@@ -20,7 +20,6 @@ OC.L10N.register(
     "Company" : "Empresa",
     "Title" : "Título",
     "Download" : "Descargar",
-    "Generate QR Code" : "Generar código QR",
     "Delete" : "Borrar",
     "Cancel" : "Cancelar",
     "This contact is not yet synced. Edit it to save it to the server." : "Este contacto aún no está sincronizado. Edítalo para guardarlo en el servidor.",

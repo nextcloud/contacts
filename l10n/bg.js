@@ -18,7 +18,6 @@ OC.L10N.register(
     "Title" : "Длъжност",
     "Download" : "Свали",
     "Clone contact" : "Клонирай контакта",
-    "Generate QR Code" : "Генерирай QR код",
     "Delete" : "Изтрий",
     "Cancel" : "Отказ",
     "Address book" : "Адресна книга",
