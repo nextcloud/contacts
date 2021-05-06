@@ -169,12 +169,15 @@ const actions = {
 	 * Create circle
 	 *
 	 * @param {Object} context the store mutations Current context
-	 * @param {string} circleName the circle name
+	 * @param {Object} data destructuring object
+	 * @param {string} data.circleName the circle name
+	 * @param {boolean} data.isPersonal the circle is a personal one
+	 * @param {boolean} data.isLocal the circle is not distributed to the GlobalScale
 	 * @returns {Circle} the new circle
 	 */
-	async createCircle(context, circleName) {
+	async createCircle(context, { circleName, isPersonal, isLocal }) {
 		try {
-			const response = await createCircle(circleName)
+			const response = await createCircle(circleName, isPersonal, isLocal)
 			const circle = new Circle(response)
 			context.commit('addCircle', circle)
 			console.debug('Created circle', circleName, circle)

@@ -243,6 +243,7 @@ import { VueMasonryPlugin } from 'vue-masonry'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
 import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails'
+import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 
@@ -253,7 +254,6 @@ import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
 import ContactAvatar from './ContactDetails/ContactDetailsAvatar'
 import ContactProperty from './ContactDetails/ContactDetailsProperty'
 import DetailsHeader from './DetailsHeader'
-import EmptyContent from './EmptyContent'
 import PropertyGroups from './Properties/PropertyGroups'
 import PropertyRev from './Properties/PropertyRev'
 import PropertySelect from './Properties/PropertySelect'
@@ -771,7 +771,7 @@ export default {
 .app-content-details {
 	flex: 1 1 100%;
 	min-width: 0;
-	padding: 0 80px;
+	padding: 0 80px 80px 80px;
 }
 
 // List of all properties

@@ -49,7 +49,7 @@ export declare const getCircle: (circleId: string) => Promise<any>;
  * @param {string} name the circle name
  * @returns {Object}
  */
-export declare const createCircle: (name: string) => Promise<any>;
+export declare const createCircle: (name: string, personal: boolean, local: boolean) => Promise<any>;
 /**
  * Delete an existing circle
  *

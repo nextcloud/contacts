@@ -74,7 +74,7 @@
 				:force-menu="true"
 				:menu-open.sync="isNewGroupMenuOpen"
 				:title="t('contacts', 'Groups')"
-				menu-icon="icon-add"
+				default-icon="icon-add"
 				@click.prevent.stop="toggleNewGroupMenu">
 				<template slot="actions">
 					<ActionText :icon="createGroupError ? 'icon-error' : 'icon-contacts-dark'">
@@ -101,23 +101,21 @@
 				icon=""
 				@click="onToggleGroups" />
 
+			<!-- New circle button caption and modal -->
 			<AppNavigationCaption
 				id="newcircle"
-				:force-menu="true"
-				:menu-open.sync="isNewCircleMenuOpen"
 				:title="t('contacts', 'Circles')"
-				menu-icon="icon-add"
-				@click.prevent.stop="toggleNewCircleMenu">
+				@click.prevent.stop="toggleNewCircleModal">
 				<template slot="actions">
-					<ActionText :icon="createCircleError ? 'icon-error' : 'icon-contacts-dark'">
-						{{ createCircleError ? createCircleError : t('contacts', 'Create a new circle') }}
-					</ActionText>
-					<ActionInput
-						icon=""
-						:placeholder="t('contacts','Circle name')"
-						@submit.prevent.stop="createNewCircle" />
+					<ActionButton icon="icon-add" @click="toggleNewCircleModal">
+						{{ t('contacts', 'Create a new circle') }}
+					</ActionButton>
 				</template>
 			</AppNavigationCaption>
+			<NewCircleIntro v-if="isNewCircleModalOpen"
+				:loading="createCircleLoading"
+				@close="closeNewCircleIntro"
+				@submit="createNewCircle" />
 
 			<!-- Circles -->
 			<CircleNavigationItem
@@ -146,6 +144,7 @@
 <script>
 import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT } from '../../models/constants.ts'
 
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
 import ActionText from '@nextcloud/vue/dist/Components/ActionText'
 import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
@@ -158,6 +157,7 @@ import naturalCompare from 'string-natural-compare'
 
 import CircleNavigationItem from './CircleNavigationItem'
 import GroupNavigationItem from './GroupNavigationItem'
+import NewCircleIntro from '../EntityPicker/NewCircleIntro'
 import SettingsSection from './SettingsSection'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled'
 import RouterMixin from '../../mixins/RouterMixin'
@@ -166,6 +166,7 @@ export default {
 	name: 'RootNavigation',
 
 	components: {
+		ActionButton,
 		ActionInput,
 		ActionText,
 		AppNavigation,
@@ -175,6 +176,7 @@ export default {
 		AppNavigationCaption,
 		CircleNavigationItem,
 		GroupNavigationItem,
+		NewCircleIntro,
 		SettingsSection,
 	},
 
@@ -204,7 +206,8 @@ export default {
 			createGroupError: null,
 
 			// create circle
-			isNewCircleMenuOpen: false,
+			isNewCircleModalOpen: false,
+			createCircleLoading: false,
 			createCircleError: null,
 
 			isContactsInteractionEnabled,
@@ -244,6 +247,7 @@ export default {
 						name: 'group',
 						params: { selectedGroup: group.name },
 					},
+					icon: 'icon-group',
 					toString: () => group.name,
 				})
 			})
@@ -334,13 +338,13 @@ export default {
 			this.collapsedCircles = !this.collapsedCircles
 		},
 
-		toggleNewCircleMenu() {
-			this.isNewCircleMenuOpen = !this.isNewCircleMenuOpen
+		toggleNewCircleModal() {
+			this.isNewCircleModalOpen = true
 		},
-		async createNewCircle(e) {
-			const input = e.target.querySelector('input[type=text]')
-			const circleName = input.value.trim()
+		async createNewCircle(circleName, isPersonal, isLocal) {
 			console.debug('Creating new circle', circleName)
+
+			this.createCircleLoading = true
 
 			// Check if already exists
 			if (this.circles.find(circle => circle.name === circleName)) {
@@ -350,8 +354,8 @@ export default {
 
 			this.createCircleError = null
 
-			const circle = await this.$store.dispatch('createCircle', circleName)
-			this.isNewCircleMenuOpen = false
+			const circle = await this.$store.dispatch('createCircle', { circleName, isPersonal, isLocal })
+			this.closeNewCircleIntro()
 
 			// Select group
 			this.$router.push({
@@ -360,6 +364,9 @@ export default {
 					selectedCircle: circle.id,
 				},
 			})
+		},
+		closeNewCircleIntro() {
+			this.isNewCircleModalOpen = false
 		},
 	},
 }
@@ -377,5 +384,12 @@ export default {
 
 .app-navigation__collapse ::v-deep a {
 	color: var(--color-text-maxcontrast)
+}
+
+// Change icon opacity for a better soothing visual
+.app-navigation-entry ::v-deep {
+	.app-navigation-entry-icon.icon-group {
+		opacity: .6;
+	}
 }
 </style>

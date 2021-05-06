@@ -28,52 +28,53 @@
 			</EmptyContent>
 		</div>
 
+		<div v-else-if="loading">
+			<EmptyContent icon="icon-loading">
+				{{ t('contacts', 'Loading circle …') }}
+			</EmptyContent>
+		</div>
+
 		<div v-else id="app-content-wrapper">
-			<!-- loading members -->
-			<AppContentDetails v-if="loading">
-				<EmptyContent icon="icon-loading">
-					{{ t('contacts', 'Loading circle members…') }}
-				</EmptyContent>
-			</AppContentDetails>
+			<!-- member list -->
+			<MemberList :list="members" :loading="loadingList" />
 
-			<template v-else>
-				<!-- member list -->
-				<MemberList :list="members" />
+			<!-- main contacts details -->
+			<CircleDetails :circle="circle">
+				<!-- not a member -->
+				<template v-if="!circle.isMember">
+					<!-- Join request in progress -->
+					<EmptyContent v-if="loadingJoin" icon="icon-loading">
+						{{ t('contacts', 'Joining circle') }}
+					</EmptyContent>
 
-				<!-- main contacts details -->
-				<CircleDetails :circle="circle">
-					<!-- not a member -->
-					<template v-if="!circle.isMember">
-						<!-- Join request in progress -->
-						<EmptyContent v-if="loadingJoin" icon="icon-loading">
-							{{ t('contacts', 'Joining circle') }}
-						</EmptyContent>
+					<!-- Pending request validation -->
+					<EmptyContent v-else-if="circle.isPendingJoin" icon="icon-loading">
+						{{ t('contacts', 'Your request to join this circle is pending approval') }}
+					</EmptyContent>
 
-						<!-- Pending request validation -->
-						<EmptyContent v-else-if="circle.isPendingJoin" icon="icon-loading">
-							{{ t('contacts', 'Your request to join this circle is pending approval') }}
-						</EmptyContent>
+					<EmptyContent v-else icon="icon-circles">
+						{{ t('contacts', 'You are not a member of {circle}', { circle: circle.displayName}) }}
 
-						<EmptyContent v-else icon="icon-circles">
-							{{ t('contacts', 'You are not a member of this circle') }}
-
-							<!-- Only show the join button if the circle is accepting requests -->
-							<template v-if="circle.canJoin" #desc>
-								<button :disabled="loadingJoin" class="primary" @click="requestJoin">
-									{{ t('contacts', 'Request to join') }}
-								</button>
-							</template>
-						</EmptyContent>
-					</template>
-				</CircleDetails>
-			</template>
+						<!-- Only show the join button if the circle is accepting requests -->
+						<template v-if="circle.canJoin" #desc>
+							<button :disabled="loadingJoin" class="primary" @click="requestJoin">
+								<Login slot="icon"
+									:size="16"
+									decorative />
+								{{ t('contacts', 'Request to join') }}
+							</button>
+						</template>
+					</EmptyContent>
+				</template>
+			</CircleDetails>
 		</div>
 	</AppContent>
 </template>
 <script>
-import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails'
 import AppContent from '@nextcloud/vue/dist/Components/AppContent'
 import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+
+import Login from 'vue-material-design-icons/Login'
 
 import CircleDetails from '../CircleDetails'
 import MemberList from '../MemberList'
@@ -86,9 +87,9 @@ export default {
 
 	components: {
 		AppContent,
-		AppContentDetails,
 		CircleDetails,
 		EmptyContent,
+		Login,
 		MemberList,
 	},
 
@@ -104,6 +105,7 @@ export default {
 	data() {
 		return {
 			loadingJoin: false,
+			loadingList: false,
 		}
 	},
 
@@ -138,8 +140,17 @@ export default {
 	},
 
 	methods: {
-		fetchCircleMembers(circleId) {
-			this.$store.dispatch('getCircleMembers', circleId)
+		async fetchCircleMembers(circleId) {
+			this.loadingList = true
+
+			try {
+				await this.$store.dispatch('getCircleMembers', circleId)
+			} catch (error) {
+				console.error(error)
+				showError(t('contacts', 'There was an error fetching the member list'))
+			} finally {
+				this.loadingList = false
+			}
 		},
 
 		/**
@@ -164,5 +175,16 @@ export default {
 <style lang="scss" scoped>
 #app-content-wrapper {
 	display: flex;
+}
+
+// TODO: replace my button component when available
+button {
+	height: 44px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	span {
+		margin-right: 10px;
+	}
 }
 </style>

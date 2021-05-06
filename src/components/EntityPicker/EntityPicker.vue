@@ -37,55 +37,58 @@
 					@input="onSearch">
 			</div>
 
-			<!-- Picked entities -->
-			<transition-group
-				v-if="Object.keys(selectionSet).length > 0"
-				name="zoom"
-				tag="ul"
-				class="entity-picker__selection">
-				<EntityBubble
-					v-for="entity in selectionSet"
-					:key="entity.key || `entity-${entity.type}-${entity.id}`"
-					v-bind="entity"
-					@delete="onDelete(entity)" />
-			</transition-group>
-
-			<!-- TODO: find better wording/icon -->
+			<!-- Loading -->
 			<EmptyContent v-if="loading" icon="icon-loading">
 				{{ t('contacts', 'Loading …') }}
 			</EmptyContent>
 
-			<!-- TODO: find better wording/icon -->
-			<EmptyContent v-else-if="dataSet.length === 0" icon="">
-				{{ t('contacts', 'List is empty') }}
-			</EmptyContent>
+			<template v-else>
+				<!-- Picked entities -->
+				<transition-group
+					v-if="Object.keys(selectionSet).length > 0"
+					name="zoom"
+					tag="ul"
+					class="entity-picker__selection">
+					<EntityBubble
+						v-for="entity in selectionSet"
+						:key="entity.key || `entity-${entity.type}-${entity.id}`"
+						v-bind="entity"
+						@delete="onDelete(entity)" />
+				</transition-group>
 
-			<!-- Searched & picked entities -->
-			<VirtualList v-else-if="searchSet.length > 0 && availableEntities.length > 0"
-				class="entity-picker__options"
-				data-key="id"
-				:data-sources="availableEntities"
-				:data-component="EntitySearchResult"
-				:estimate-size="44"
-				:extra-props="{ selection: selectionSet, onClick }" />
+				<!-- No recommendations -->
+				<EmptyContent v-else-if="dataSet.length === 0" icon="icon-search">
+					{{ t('contacts', 'Search for people to add') }}
+				</EmptyContent>
 
-			<EmptyContent v-else-if="searchQuery" icon="icon-search">
-				{{ t('contacts', 'No results') }}
-			</EmptyContent>
+				<!-- Searched & picked entities -->
+				<VirtualList v-else-if="searchSet.length > 0 && availableEntities.length > 0"
+					class="entity-picker__options"
+					data-key="id"
+					:data-sources="availableEntities"
+					:data-component="EntitySearchResult"
+					:estimate-size="44"
+					:extra-props="{ selection: selectionSet, onClick }" />
 
-			<div class="entity-picker__navigation">
-				<button
-					class="navigation__button-left"
-					@click="onCancel">
-					{{ t('contacts', 'Cancel') }}
-				</button>
-				<button
-					:disabled="isEmptySelection"
-					class="navigation__button-right primary"
-					@click="onSubmit">
-					{{ confirmLabel }}
-				</button>
-			</div>
+				<EmptyContent v-else-if="searchQuery" icon="icon-search">
+					{{ t('contacts', 'No results') }}
+				</EmptyContent>
+
+				<div class="entity-picker__navigation">
+					<button
+						:disabled="loading"
+						class="navigation__button-left"
+						@click="onCancel">
+						{{ t('contacts', 'Cancel') }}
+					</button>
+					<button
+						:disabled="isEmptySelection || loading"
+						class="navigation__button-right primary"
+						@click="onSubmit">
+						{{ confirmLabel }}
+					</button>
+				</div>
+			</template>
 		</div>
 	</modal>
 </template>

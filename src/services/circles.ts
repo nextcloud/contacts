@@ -62,9 +62,11 @@ export const getCircle = async function(circleId: string) {
  * @param {string} name the circle name
  * @returns {Object}
  */
-export const createCircle = async function(name: string) {
+export const createCircle = async function(name: string, personal: boolean, local: boolean) {
 	const response = await axios.post(generateOcsUrl('apps/circles/circles'), {
 		name,
+		personal,
+		local,
 	})
 	return response.data.ocs.data
 }

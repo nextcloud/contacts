@@ -116,8 +116,6 @@ export default {
 
 	data() {
 		return {
-			CIRCLES_MEMBER_LEVELS,
-
 			loading: false,
 		}
 	},
@@ -161,13 +159,19 @@ export default {
 		 * @returns {Array}
 		 */
 		availableLevelsChange() {
-			return Object.keys(CIRCLES_MEMBER_LEVELS)
+			const levels = Object.keys(CIRCLES_MEMBER_LEVELS)
 				// Object.keys returns those as string
 				.map(level => parseInt(level, 10))
 				// we cannot set to a level higher than the current user's level
-				.filter(level => level <= this.currentUserLevel)
+				.filter(level => level < this.currentUserLevel)
 				// we cannot set to the level this member is already
 				.filter(level => level !== this.source.level)
+
+			if (this.circle.isOwner) {
+				levels.push(MemberLevels.OWNER)
+			}
+
+			return levels
 		},
 
 		/**

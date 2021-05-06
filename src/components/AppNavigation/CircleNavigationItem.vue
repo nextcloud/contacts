@@ -22,9 +22,9 @@
 <template>
 	<AppNavigationItem
 		:key="circle.key"
-		:to="circle.router"
 		:title="circle.displayName"
-		:icon="circle.icon">
+		:to="circle.router"
+		icon="icon-circles">
 		<template v-if="loadingAction" slot="actions">
 			<ActionText icon="icon-loading-small">
 				{{ t('contacts', 'Loading …') }}
@@ -72,7 +72,7 @@
 				v-if="circle.canDelete"
 				icon="icon-delete"
 				@click="confirmDeleteCircle">
-				{{ t('contacts', 'Delete') }}
+				{{ t('contacts', 'Delete circle') }}
 			</ActionButton>
 		</template>
 

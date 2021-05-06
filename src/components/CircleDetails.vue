@@ -50,55 +50,19 @@
 			<template v-if="!circle.isOwner" #subtitle>
 				{{ t('contacts', 'Circle owned by {owner}', { owner: circle.owner.displayName}) }}
 			</template>
-
-			<!-- actions -->
-			<template #actions>
-				<Actions>
-					<!-- copy circle link -->
-					<ActionLink
-						:href="circleUrl"
-						:icon="copyLinkIcon"
-						@click.stop.prevent="copyToClipboard(circleUrl)">
-						{{ copyButtonText }}
-					</ActionLink>
-				</Actions>
-
-				<Actions>
-					<!-- leave circle -->
-					<ActionButton
-						v-if="circle.canLeave"
-						@click="confirmLeaveCircle">
-						{{ t('contacts', 'Leave circle') }}
-						<ExitToApp slot="icon"
-							:size="16"
-							decorative />
-					</ActionButton>
-
-					<!-- join circle -->
-					<ActionButton
-						v-else-if="!circle.isMember && circle.canJoin"
-						@click="joinCircle">
-						{{ joinButtonTitle }}
-						<LocationEnter slot="icon"
-							:size="16"
-							decorative />
-					</ActionButton>
-				</Actions>
-			</template>
-
-			<!-- menu actions -->
-			<template #actions-menu>
-				<!-- delete circle -->
-				<ActionButton
-					v-if="circle.canDelete"
-					icon="icon-delete"
-					@click="confirmDeleteCircle">
-					{{ t('contacts', 'Delete') }}
-				</ActionButton>
-			</template>
 		</DetailsHeader>
 
 		<section class="circle-details-section">
+			<!-- copy circle link -->
+			<a class="circle-details__action-copy-link button"
+				:href="circleUrl"
+				:class="copyLinkIcon"
+				@click.stop.prevent="copyToClipboard(circleUrl)">
+				{{ copyButtonText }}
+			</a>
+		</section>
+
+		<section v-if="showDescription" class="circle-details-section">
 			<ContentHeading :loading="loadingDescription">
 				{{ t('contacts', 'Description') }}
 			</ContentHeading>
@@ -121,6 +85,26 @@
 		<section v-else>
 			<slot />
 		</section>
+
+		<section class="circle-details-section">
+			<!-- leave circle -->
+			<button v-if="circle.canLeave"
+				class="circle-details__action-copy-link"
+				@click="confirmLeaveCircle">
+				<Logout slot="icon"
+					:size="16"
+					decorative />
+				{{ t('contacts', 'Leave circle') }}
+			</button>
+
+			<!-- delete circle -->
+			<button v-if="circle.canDelete"
+				class="circle-details__action-delete icon-delete-white"
+				href="#"
+				@click.prevent.stop="confirmDeleteCircle">
+				{{ t('contacts', 'Delete circle') }}
+			</button>
+		</section>
 	</AppContentDetails>
 </template>
 
@@ -128,15 +112,11 @@
 import { showError } from '@nextcloud/dialogs'
 import debounce from 'debounce'
 
-import Actions from '@nextcloud/vue/dist/Components/Actions'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
 import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails'
 import Avatar from '@nextcloud/vue/dist/Components/Avatar'
 import RichContenteditable from '@nextcloud/vue/dist/Components/RichContenteditable'
 
-import ExitToApp from 'vue-material-design-icons/ExitToApp'
-import LocationEnter from 'vue-material-design-icons/LocationEnter'
+import Logout from 'vue-material-design-icons/Logout'
 
 import { CircleEdit, editCircle } from '../services/circles.ts'
 import CircleActionsMixin from '../mixins/CircleActionsMixin'
@@ -148,16 +128,12 @@ export default {
 	name: 'CircleDetails',
 
 	components: {
-		ActionButton,
-		ActionLink,
-		Actions,
 		AppContentDetails,
 		Avatar,
 		CircleConfigs,
 		ContentHeading,
 		DetailsHeader,
-		ExitToApp,
-		LocationEnter,
+		Logout,
 		RichContenteditable,
 	},
 
@@ -175,6 +151,17 @@ export default {
 				return t('contacts', 'There is no description for this circle')
 			}
 			return t('contacts', 'Enter a description for the circle')
+		},
+
+		isEmptyDescription() {
+			return this.circle.description.trim() === ''
+		},
+
+		showDescription() {
+			if (this.circle.isOwner) {
+				return true
+			}
+			return !this.isEmptyDescription
 		},
 	},
 
@@ -227,7 +214,7 @@ export default {
 .app-content-details {
 	flex: 1 1 100%;
 	min-width: 0;
-	padding: 0 80px;
+	padding: 0 80px 80px 80px;
 }
 
 .circle-details-section {
@@ -237,6 +224,38 @@ export default {
 
 	&__description {
 		max-width: 800px;
+	}
+}
+
+// TODO: replace by button component when available
+button,
+.circle-details__action-copy-link {
+	height: 44px;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	text-align: left;
+	span {
+		margin-right: 10px;
+	}
+
+	&[class*='icon-'] {
+		padding-left: 44px;
+		background-position: 16px center;
+
+	}
+}
+
+.circle-details__action-delete {
+	background-color: var(--color-error);
+	color: white;
+	border-width: 2px;
+	border-color: var(--color-error) !important;
+
+	&:hover,
+	&:focus {
+		background-color: var(--color-main-background);
+		color: var(--color-error);
 	}
 }
 </style>

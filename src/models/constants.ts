@@ -129,18 +129,19 @@ export const CIRCLES_MEMBER_GROUPING = [
 		share: OC.Share.SHARE_TYPE_GROUP,
 		type: MEMBER_TYPE_GROUP
 	},
-	{
-		id: `picker-${OC.Share.SHARE_TYPE_REMOTE}`,
-		label: t('contacts', 'Federated users'),
-		share: OC.Share.SHARE_TYPE_REMOTE,
-		type: MEMBER_TYPE_USER
-	},
-	{
-		id: `picker-${OC.Share.SHARE_TYPE_REMOTE_GROUP}`,
-		label: t('contacts', 'Federated groups'),
-		share: OC.Share.SHARE_TYPE_REMOTE_GROUP,
-		type: MEMBER_TYPE_GROUP
-	},
+	// TODO: implement federated
+	// {
+	// 	id: `picker-${OC.Share.SHARE_TYPE_REMOTE}`,
+	// 	label: t('contacts', 'Federated users'),
+	// 	share: OC.Share.SHARE_TYPE_REMOTE,
+	// 	type: MEMBER_TYPE_USER
+	// },
+	// {
+	// 	id: `picker-${OC.Share.SHARE_TYPE_REMOTE_GROUP}`,
+	// 	label: t('contacts', 'Federated groups'),
+	// 	share: OC.Share.SHARE_TYPE_REMOTE_GROUP,
+	// 	type: MEMBER_TYPE_GROUP
+	// },
 	{
 		id: `picker-${OC.Share.SHARE_TYPE_CIRCLE}`,
 		label: t('contacts', 'Circles'),

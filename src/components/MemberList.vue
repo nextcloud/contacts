@@ -21,7 +21,19 @@
   -->
 
 <template>
-	<AppContentList>
+	<AppContentList v-if="!hasMembers && loading">
+		<EmptyContent icon="icon-loading">
+			{{ t('contacts', 'Loading members list …') }}
+		</EmptyContent>
+	</AppContentList>
+
+	<AppContentList v-else-if="!hasMembers">
+		<EmptyContent icon="icon-contacts">
+			{{ t('contacts', 'There is no member in this circle') }}
+		</EmptyContent>
+	</AppContentList>
+
+	<AppContentList v-else :class="{ 'icon-loading': loading }">
 		<div class="members-list__new">
 			<button class="icon-add" @click="onShowPicker(circle.id)">
 				{{ t('contacts', 'Add members') }}
@@ -50,6 +62,7 @@
 
 <script>
 import AppContentList from '@nextcloud/vue/dist/Components/AppContentList'
+import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
 import VirtualList from 'vue-virtual-scroll-list'
 
 import MembersListItem from './MembersList/MembersListItem'
@@ -68,6 +81,7 @@ export default {
 		AppContentList,
 		VirtualList,
 		EntityPicker,
+		EmptyContent,
 	},
 	mixins: [RouterMixin],
 
@@ -75,6 +89,11 @@ export default {
 		list: {
 			type: Array,
 			required: true,
+		},
+
+		loading: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -127,6 +146,10 @@ export default {
 				}, ...(groupedList[group.type] || [])])
 				// Merging sub-arrays
 				.flat()
+		},
+
+		hasMembers() {
+			return this.filteredList.length > 0
 		},
 	},
 
@@ -204,7 +227,7 @@ export default {
 				if (members.length !== selection.length) {
 					showWarning(t('contacts', 'Some members could not be added'))
 					// TODO filter successful members and edit selection
-					this.pickerSelection = []
+					this.pickerSelection = {}
 					return
 				}
 
@@ -224,7 +247,7 @@ export default {
 			this.showPicker = false
 			this.pickerCircle = null
 			this.pickerData = []
-			this.pickerSelection = []
+			this.pickerSelection = {}
 		},
 	},
 }
