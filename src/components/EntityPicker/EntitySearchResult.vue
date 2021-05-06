@@ -118,12 +118,15 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 			opacity: 0;
 		}
 
+		// Show checkmark on selected
+		&--selected .entity-picker__bubble-checkmark {
+			opacity: 1;
+		}
+
+		// Show primary bg on hovering entities
 		&--selected,
 		&:hover,
 		&:focus {
-			.entity-picker__bubble-checkmark {
-				opacity: 1;
-			}
 			::v-deep .user-bubble__content {
 				// better visual with light default tint
 				background-color: var(--color-primary-light);

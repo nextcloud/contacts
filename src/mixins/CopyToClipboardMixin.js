@@ -35,6 +35,18 @@ export default {
 		}
 	},
 
+	computed: {
+		copyLinkIcon() {
+			if (this.copySuccess) {
+				return 'icon-checkmark'
+			}
+			if (this.copyLoading) {
+				return 'icon-loading-small'
+			}
+			return 'icon-public'
+		},
+	},
+
 	methods: {
 		async copyToClipboard(url) {
 			// change to loading status

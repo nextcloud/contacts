@@ -24,8 +24,7 @@
 		size="full"
 		@close="onCancel">
 		<!-- Wrapper for content & navigation -->
-		<div
-			class="entity-picker">
+		<div class="entity-picker">
 			<!-- Search -->
 			<div class="entity-picker__search">
 				<div class="entity-picker__search-icon icon-search" />
@@ -68,7 +67,7 @@
 				:data-sources="availableEntities"
 				:data-component="EntitySearchResult"
 				:estimate-size="44"
-				:extra-props="{selection: selectionSet, onClick: onPick}" />
+				:extra-props="{ selection: selectionSet, onClick }" />
 
 			<EmptyContent v-else-if="searchQuery" icon="icon-search">
 				{{ t('contacts', 'No results') }}
@@ -166,6 +165,15 @@ export default {
 		},
 
 		/**
+		 * The input will also filter the dataSet based on the label.
+		 * If you are using the search event to inject a different dataSet, you can disable this
+		 */
+		internalSearch: {
+			type: Boolean,
+			default: true,
+		},
+
+		/**
 		 * Override the local management of selection
 		 * You MUST use a sync modifier or the selection will be locked
 		 */
@@ -236,7 +244,8 @@ export default {
 		 * @returns {Object[]}
 		 */
 		searchSet() {
-			if (this.searchQuery && this.searchQuery.trim !== '') {
+			// If internal search is enabled and we have a search query, filter data set
+			if (this.internalSearch && this.searchQuery && this.searchQuery.trim !== '') {
 				return this.dataSet.filter(entity => {
 					return entity.label.indexOf(this.searchQuery) > -1
 				})
@@ -316,10 +325,16 @@ export default {
 		},
 
 		/**
-		 * Add entity from selection
+		 * Add/remove entity from selection
 		 * @param {Object} entity the entity to add
 		 */
-		onPick(entity) {
+		onClick(entity) {
+			if (entity.id in this.selectionSet) {
+				this.$delete(this.selectionSet, entity.id)
+				console.debug('Removed entity to selection', entity)
+				return
+			}
+
 			this.$set(this.selectionSet, entity.id, entity)
 			console.debug('Added entity to selection', entity)
 		},
@@ -400,7 +415,7 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 		display: flex;
 		overflow-y: auto;
 		align-content: flex-start;
-		justify-content: space-between;
+		justify-content: flex-start;
 		flex: 1 0 auto;
 		flex-wrap: wrap;
 		// half a line height to know there is more lines
@@ -411,8 +426,9 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 
 		// Allows 2 per line
 		.entity-picker__bubble {
-			flex: 0 1 50%;
 			max-width: calc(50% - #{$entity-spacing});
+			margin-right: $entity-spacing;
+			margin-bottom: $entity-spacing;
 		}
 	}
 
@@ -434,10 +450,6 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 		&__button-right {
 			margin-left: auto;
 		}
-	}
-
-	&::v-deep &__bubble  {
-		margin-bottom: $entity-spacing;
 	}
 }
 

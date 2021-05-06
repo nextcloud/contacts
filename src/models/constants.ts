@@ -116,31 +116,50 @@ export const PUBLIC_CIRCLE_CONFIG = {
 
 // Represents the picker options but also the 
 // sorting of the members list
-export const CIRCLES_MEMBER_GROUPING = [{
-	id: `picker-${OC.Share.SHARE_TYPE_USER}`,
-	label: t('contacts', 'Users'),
-	type: MEMBER_TYPE_USER
-}, {
-	id: `picker-${OC.Share.SHARE_TYPE_EMAIL}`,
-	label: t('contacts', 'Emails'),
-	type: MEMBER_TYPE_MAIL
-}, {
-	id: `picker-${OC.Share.SHARE_TYPE_GROUP}`,
-	label: t('contacts', 'Groups'),
-	type: MEMBER_TYPE_GROUP
-}, {
-	id: `picker-${OC.Share.SHARE_TYPE_CIRCLE}`,
-	label: t('contacts', 'Circles'),
-	type: MEMBER_TYPE_CIRCLE
-}]
+export const CIRCLES_MEMBER_GROUPING = [
+	{
+		id: `picker-${OC.Share.SHARE_TYPE_USER}`,
+		label: t('contacts', 'Users'),
+		share: OC.Share.SHARE_TYPE_USER,
+		type: MEMBER_TYPE_USER
+	},
+	{
+		id: `picker-${OC.Share.SHARE_TYPE_GROUP}`,
+		label: t('contacts', 'Groups'),
+		share: OC.Share.SHARE_TYPE_GROUP,
+		type: MEMBER_TYPE_GROUP
+	},
+	{
+		id: `picker-${OC.Share.SHARE_TYPE_REMOTE}`,
+		label: t('contacts', 'Federated users'),
+		share: OC.Share.SHARE_TYPE_REMOTE,
+		type: MEMBER_TYPE_USER
+	},
+	{
+		id: `picker-${OC.Share.SHARE_TYPE_REMOTE_GROUP}`,
+		label: t('contacts', 'Federated groups'),
+		share: OC.Share.SHARE_TYPE_REMOTE_GROUP,
+		type: MEMBER_TYPE_GROUP
+	},
+	{
+		id: `picker-${OC.Share.SHARE_TYPE_CIRCLE}`,
+		label: t('contacts', 'Circles'),
+		share: OC.Share.SHARE_TYPE_CIRCLE,
+		type: MEMBER_TYPE_CIRCLE
+	},
+	{
+		id: `picker-${OC.Share.SHARE_TYPE_EMAIL}`,
+		label: t('contacts', 'Emails'),
+		share: OC.Share.SHARE_TYPE_EMAIL,
+		type: MEMBER_TYPE_MAIL
+	},
+]
 
-export const SHARES_TYPES_MEMBER_MAP = {
-	[OC.Share.SHARE_TYPE_CIRCLE]: MEMBER_TYPE_SINGLEID,
-	[OC.Share.SHARE_TYPE_USER]: MEMBER_TYPE_USER,
-	[OC.Share.SHARE_TYPE_GROUP]: MEMBER_TYPE_GROUP,
-	[OC.Share.SHARE_TYPE_EMAIL]: MEMBER_TYPE_MAIL,
-	// []: MEMBER_TYPE_CONTACT,
-}
+// Generating a map between share types and circle member types 
+export const SHARES_TYPES_MEMBER_MAP = CIRCLES_MEMBER_GROUPING.reduce((list, entry) => {
+	list[entry.share] = entry.type
+	return list
+}, {})
 
 export enum MemberLevels {
 	NONE = MEMBER_LEVEL_NONE,

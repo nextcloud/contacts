@@ -24,19 +24,11 @@
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
 
-const maxAutocompleteResults = parseInt(OC.config['sharing.maxAutocompleteResults'], 10) || 25
+import { SHARES_TYPES_MEMBER_MAP } from '../models/constants.ts'
 
-export const shareType = [
-	OC.Share.SHARE_TYPE_USER,
-	OC.Share.SHARE_TYPE_GROUP,
-	// OC.Share.SHARE_TYPE_REMOTE,
-	// OC.Share.SHARE_TYPE_REMOTE_GROUP,
-	OC.Share.SHARE_TYPE_CIRCLE,
-	// OC.Share.SHARE_TYPE_ROOM,
-	// OC.Share.SHARE_TYPE_GUEST,
-	// OC.Share.SHARE_TYPE_DECK,
-	OC.Share.SHARE_TYPE_EMAIL,
-]
+// generate allowed shareType from SHARES_TYPES_MEMBER_MAP
+const shareType = Object.keys(SHARES_TYPES_MEMBER_MAP)
+const maxAutocompleteResults = parseInt(OC.config['sharing.maxAutocompleteResults'], 10) || 25
 
 /**
  * Get suggestions
@@ -51,6 +43,7 @@ export const getSuggestions = async function(search) {
 			search,
 			perPage: maxAutocompleteResults,
 			shareType,
+			lookup: false,
 		},
 	})
 
@@ -132,7 +125,7 @@ const formatResults = function(result) {
 		label: result.label,
 		id: `${type}-${result.value.shareWith}`,
 		// If this is a user, set as user for avatar display by UserBubble
-		user: result.value.shareType === OC.Share.SHARE_TYPE_USER
+		user: [OC.Share.SHARE_TYPE_USER, OC.Share.SHARE_TYPE_REMOTE].indexOf(result.value.shareType) > -1
 			? result.value.shareWith
 			: null,
 		type,

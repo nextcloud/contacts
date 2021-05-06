@@ -39,6 +39,7 @@
 			:confirm-label="t('contacts', 'Add to {circle}', { circle: circle.displayName})"
 			:data-types="pickerTypes"
 			:data-set="pickerData"
+			:internal-search="false"
 			:loading="pickerLoading"
 			:selection.sync="pickerSelection"
 			@close="resetPicker"
@@ -82,6 +83,7 @@ export default {
 			MembersListItem,
 			pickerLoading: false,
 			showPicker: false,
+			showPickerIntro: true,
 
 			recommendations: [],
 			pickerCircle: null,
@@ -113,9 +115,11 @@ export default {
 				return r
 			}, Object.create(null))
 
-			return CIRCLES_MEMBER_GROUPING
-				// Filter unpopulated types
-				.filter(group => groupedList[group.type])
+			return Object.keys(groupedList)
+				// Object.keys returns string
+				.map(type => parseInt(type, 10))
+				// Map populated types to the group entry
+				.map(type => CIRCLES_MEMBER_GROUPING.find(group => group.type === type))
 				// Injecting headings
 				.map(group => [{
 					heading: true,
@@ -200,7 +204,7 @@ export default {
 				if (members.length !== selection.length) {
 					showWarning(t('contacts', 'Some members could not be added'))
 					// TODO filter successful members and edit selection
-					this.selection = []
+					this.pickerSelection = []
 					return
 				}
 
@@ -220,6 +224,7 @@ export default {
 			this.showPicker = false
 			this.pickerCircle = null
 			this.pickerData = []
+			this.pickerSelection = []
 		},
 	},
 }

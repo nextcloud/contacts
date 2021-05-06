@@ -43,6 +43,10 @@ export default class Circle {
      */
     get displayName(): string;
     /**
+     * Set the display name
+     */
+    set displayName(text: string);
+    /**
      * Circle creation date
      */
     get creation(): number;

@@ -192,8 +192,10 @@ const actions = {
 	 * @param {Circle} circleId the circle to delete
 	 */
 	async deleteCircle(context, circleId) {
+		const circle = context.getters.getCircle(circleId)
 		try {
 			await deleteCircle(circleId)
+			context.commit('deleteCircle', circle)
 			console.debug('Deleted circle', circleId)
 		} catch (error) {
 			console.error(error)

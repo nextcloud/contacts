@@ -78,6 +78,13 @@ export default class Circle {
 	}
 
 	/**
+	 * Set the display name
+	 */
+	set displayName(text: string) {
+		this._data.displayName = text
+	}
+
+	/**
 	 * Circle creation date
 	 */
 	get creation(): number {

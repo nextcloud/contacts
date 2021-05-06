@@ -42,11 +42,10 @@ export declare const PUBLIC_CIRCLE_CONFIG: {
 export declare const CIRCLES_MEMBER_GROUPING: {
     id: string;
     label: string;
+    share: any;
     type: number;
 }[];
-export declare const SHARES_TYPES_MEMBER_MAP: {
-    [x: number]: number;
-};
+export declare const SHARES_TYPES_MEMBER_MAP: {};
 export declare enum MemberLevels {
     NONE,
     MEMBER,

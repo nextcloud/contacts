@@ -42,7 +42,7 @@
 			<!-- copy circle link -->
 			<ActionLink
 				:href="circleUrl"
-				:icon="copyLoading ? 'icon-loading-small' : 'icon-public'"
+				:icon="copyLinkIcon"
 				@click.stop.prevent="copyToClipboard(circleUrl)">
 				{{ copyButtonText }}
 			</ActionLink>

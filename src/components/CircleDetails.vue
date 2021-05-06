@@ -54,6 +54,16 @@
 			<!-- actions -->
 			<template #actions>
 				<Actions>
+					<!-- copy circle link -->
+					<ActionLink
+						:href="circleUrl"
+						:icon="copyLinkIcon"
+						@click.stop.prevent="copyToClipboard(circleUrl)">
+						{{ copyButtonText }}
+					</ActionLink>
+				</Actions>
+
+				<Actions>
 					<!-- leave circle -->
 					<ActionButton
 						v-if="circle.canLeave"
@@ -73,15 +83,6 @@
 							:size="16"
 							decorative />
 					</ActionButton>
-				</Actions>
-				<Actions>
-					<!-- copy circle link -->
-					<ActionLink
-						:href="circleUrl"
-						:icon="copyLoading ? 'icon-loading-small' : 'icon-public'"
-						@click.stop.prevent="copyToClipboard(circleUrl)">
-						{{ copyButtonText }}
-					</ActionLink>
 				</Actions>
 			</template>
 
@@ -204,8 +205,8 @@ export default {
 			}
 		},
 
-		onDisplayNameChangeDebounce: debounce(function() {
-			this.onDisplayNameChange(...arguments)
+		onDisplayNameChangeDebounce: debounce(function(event) {
+			this.onDisplayNameChange(event.target.value)
 		}, 500),
 		async onDisplayNameChange(description) {
 			this.loadingDescription = true

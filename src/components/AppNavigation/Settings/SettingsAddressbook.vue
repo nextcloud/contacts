@@ -41,7 +41,7 @@
 			<!-- copy addressbook link -->
 			<ActionLink
 				:href="addressbook.url"
-				:icon="copyLoading ? 'icon-loading-small' : 'icon-public'"
+				:icon="copyLinkIcon"
 				@click.stop.prevent="copyToClipboard(addressbookUrl)">
 				{{ copyButtonText }}
 			</ActionLink>
