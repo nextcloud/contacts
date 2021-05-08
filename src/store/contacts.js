@@ -27,6 +27,23 @@ import Vue from 'vue'
 import Contact from '../models/contact'
 import validate from '../services/validate'
 
+/*
+ * Currently ical.js does not serialize parameters with multiple values correctly. This is
+ * especially problematic for the type parmeter which frequently is used with multiple values
+ * (e.g. "HOME" and "VOICE"). A phone number for example shoud be serialized as
+ * 'TEL;TYPE=HOME,VOICE:0815 123456' OR 'TEL;TYPE="HOME","VOICE":0815 123456' according to
+ * https://tools.ietf.org/html/rfc2426#section-4. Unfortunately currently it is serialized as
+ * 'TEL;TYPE="HOME,VOICE":0815 123456', which makes the value appear as a single value
+ * containing a comma instead of two separate values. By forcing all values being escaped by
+ * double quotes the string serialization can be fixed.
+ *
+ * However there is a pull request (https://github.com/mozilla-comm/ical.js/pull/460) waiting
+ * to be merged for ical.js. Until this fix is merged and released the following configuration
+ * changes apply the workaround described above.
+ */
+ICAL.design.vcard3.param.type.multiValueSeparateDQuote = true
+ICAL.design.vcard.param.type.multiValueSeparateDQuote = true
+
 const sortData = (a, b) => {
 	const nameA = typeof a.value === 'string'
 		? a.value.toUpperCase() // ignore upper and lowercase

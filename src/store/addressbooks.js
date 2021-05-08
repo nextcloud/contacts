@@ -25,7 +25,7 @@ import { showError } from '@nextcloud/dialogs'
 import pLimit from 'p-limit'
 import Vue from 'vue'
 
-import Contact from '../models/contact'
+import Contact, { MinimalContactProperties } from '../models/contact'
 
 import client from '../services/cdav'
 import parseVcf from '../services/parseVcf'
@@ -346,8 +346,7 @@ const actions = {
 	 */
 	async getContactsFromAddressBook(context, { addressbook }) {
 		return addressbook.dav
-			.findAllAndFilterBySimpleProperties(['EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N',
-				'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME'])
+			.findAllAndFilterBySimpleProperties(MinimalContactProperties)
 			.then((response) => {
 				// We don't want to lose the url information
 				// so we need to parse one by one
