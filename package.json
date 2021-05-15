@@ -93,7 +93,7 @@
 		"eslint-plugin-vue": "^7.9.0",
 		"eslint-webpack-plugin": "^2.5.4",
 		"file-loader": "^6.2.0",
-		"node-polyfill-webpack-plugin": "^1.1.1",
+		"node-polyfill-webpack-plugin": "^1.1.2",
 		"sass": "^1.32.12",
 		"sass-loader": "^10.1.1",
 		"style-loader": "^2.0.0",
