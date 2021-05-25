@@ -126,7 +126,7 @@ OC.L10N.register(
     "Notes" : "Notlar",
     "Website" : "Web sitesi",
     "Location" : "Konum",
-    "Federated Cloud ID" : "Birleşik Bulut Kimliği",
+    "Federated Cloud ID" : "Birleşik Bulut Kodu",
     "Home" : "Ev",
     "Work" : "İş",
     "Other" : "Diğer",
