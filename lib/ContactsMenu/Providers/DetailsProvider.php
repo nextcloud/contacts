@@ -117,10 +117,12 @@ class DetailsProvider implements IProvider {
 			$addressBookUri = $this->getAddressBookUri($entry->getProperty('addressbook-key'));
 
 			$iconUrl = $this->urlGenerator->getAbsoluteURL($this->urlGenerator->imagePath('core', 'actions/info.svg'));
-			$url = $this->l10n->t('All contacts') . '/' . $uid . '~' . $addressBookUri;
 
-			$frontControllerActive = ($this->config->getSystemValue('htaccess.IgnoreFrontController', false) === true || getenv('front_controller_active') === 'true');
-			$contactsUrl = $this->urlGenerator->getAbsoluteURL(($frontControllerActive ? '' : '/index.php') . '/apps/contacts/' . $url);
+			$contactsUrl = $this->urlGenerator->getAbsoluteURL(
+				$this->urlGenerator->linkToRoute('contacts.contacts.direct', [
+					'contact' => $uid . '~' . $addressBookUri
+				])
+			);
 
 			$action = $this->actionFactory->newLinkAction($iconUrl, $this->l10n->t('Details'), $contactsUrl);
 			$action->setPriority(0);
