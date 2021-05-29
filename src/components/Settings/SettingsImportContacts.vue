@@ -45,7 +45,7 @@
 						label="displayName"
 						class="import-contact__multiselect">
 						<template slot="singleLabel" slot-scope="{ option }">
-							{{ t('contacts', 'Import into the {addressbookName} addressbook', { addressbookName: option.displayName }) }}
+							{{ t('contacts', 'Import into the {addressbookName} address book', { addressbookName: option.displayName }) }}
 						</template>
 					</Multiselect>
 				</section>
