@@ -167,7 +167,7 @@ OC.L10N.register(
     "Spoken languages" : "話せる言語",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed}連絡先の読み込みができませんでした。"],
     "Unable to delete contact" : "連絡先を削除できません。",
-    "Your web browser is out of date" : "ウェブブラウザが古いです",
+    "Your web browser is out of date" : "Webブラウザーが古いです",
     "This application is not compatible with Internet Explorer" : "このアプリはInternet Explorerと互換性がありません"
 },
 "nplurals=1; plural=0;");
