@@ -59,7 +59,7 @@ export default class Member {
     /**
      * Member based on source
      */
-    get basedOn(): Object;
+    get basedOn(): any;
     /**
      * Member level
      *

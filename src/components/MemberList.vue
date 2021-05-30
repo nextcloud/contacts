@@ -33,10 +33,15 @@
 		</EmptyContent>
 	</AppContentList>
 
-	<AppContentList v-else :class="{ 'icon-loading': loading }">
+	<AppContentList v-else :class="{ 'icon-loading': loading, showdetails: showDetails }">
 		<div class="members-list__new">
 			<button class="icon-add" @click="onShowPicker(circle.id)">
 				{{ t('contacts', 'Add members') }}
+			</button>
+			<button v-if="isMobile"
+				class="icon-info"
+				@click="showCircleDetails">
+				{{ t('contacts', 'Show circle details') }}
 			</button>
 		</div>
 
@@ -48,9 +53,9 @@
 
 		<!-- member picker -->
 		<EntityPicker v-if="showPicker"
-			:confirm-label="t('contacts', 'Add to {circle}', { circle: circle.displayName})"
+			:confirm-label="t('contacts', 'Add to {circle}', { circle: circle.displayName })"
 			:data-types="pickerTypes"
-			:data-set="pickerData"
+			:data-set="filteredPickerData"
 			:internal-search="false"
 			:loading="pickerLoading"
 			:selection.sync="pickerSelection"
@@ -63,6 +68,7 @@
 <script>
 import AppContentList from '@nextcloud/vue/dist/Components/AppContentList'
 import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
 import VirtualList from 'vue-virtual-scroll-list'
 
 import MembersListItem from './MembersList/MembersListItem'
@@ -72,7 +78,7 @@ import RouterMixin from '../mixins/RouterMixin'
 import { getRecommendations, getSuggestions } from '../services/collaborationAutocompletion'
 import { showError, showWarning } from '@nextcloud/dialogs'
 import { subscribe } from '@nextcloud/event-bus'
-import { SHARES_TYPES_MEMBER_MAP, CIRCLES_MEMBER_GROUPING, MemberTypes } from '../models/constants.ts'
+import { SHARES_TYPES_MEMBER_MAP, CIRCLES_MEMBER_GROUPING } from '../models/constants.ts'
 
 export default {
 	name: 'MemberList',
@@ -83,7 +89,7 @@ export default {
 		EntityPicker,
 		EmptyContent,
 	},
-	mixins: [RouterMixin],
+	mixins: [isMobile, RouterMixin],
 
 	props: {
 		list: {
@@ -95,11 +101,17 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
+		showDetails: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
 		return {
 			MembersListItem,
+
 			pickerLoading: false,
 			showPicker: false,
 			showPickerIntro: true,
@@ -121,20 +133,18 @@ export default {
 			return this.$store.getters.getCircle(this.selectedCircle)
 		},
 
-		filteredList() {
+		groupedList() {
 			// Group per userType
-			const groupedList = this.list.reduce(function(r, a) {
-				// If the user type is a circle, this could originate from multiple sources
-				const userType = a.userType !== MemberTypes.CIRCLE
-					? a.userType
-					: a.basedOn.source
-
-				r[userType] = r[userType] || []
-				r[userType].push(a)
-				return r
+			return this.list.reduce(function(list, member) {
+				const userType = member.userType
+				list[userType] = list[userType] || []
+				list[userType].push(member)
+				return list
 			}, Object.create(null))
+		},
 
-			return Object.keys(groupedList)
+		filteredList() {
+			return Object.keys(this.groupedList)
 				// Object.keys returns string
 				.map(type => parseInt(type, 10))
 				// Map populated types to the group entry
@@ -143,13 +153,25 @@ export default {
 				.map(group => [{
 					heading: true,
 					...group,
-				}, ...(groupedList[group.type] || [])])
+				}, ...(this.groupedList[group.type] || [])])
 				// Merging sub-arrays
 				.flat()
 		},
 
 		hasMembers() {
 			return this.filteredList.length > 0
+		},
+
+		filteredPickerData() {
+			return this.pickerData.filter(entity => {
+				const type = SHARES_TYPES_MEMBER_MAP[entity.shareType]
+				const list = this.groupedList[type]
+				if (list) {
+					return list.find(member => member.userId === entity.shareWith) === undefined
+				}
+				// If the type doesn't exists, there is no member of this type
+				return true
+			})
 		},
 	},
 
@@ -248,6 +270,10 @@ export default {
 			this.pickerCircle = null
 			this.pickerData = []
 			this.pickerSelection = {}
+		},
+
+		showCircleDetails() {
+			this.$emit('update:showDetails', true)
 		},
 	},
 }

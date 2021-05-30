@@ -35,8 +35,10 @@
 		</div>
 
 		<div v-else id="app-content-wrapper">
+			<AppDetailsToggle v-if="isMobile && showDetails" @click.native.stop.prevent="hideDetails" />
+
 			<!-- member list -->
-			<MemberList :list="members" :loading="loadingList" />
+			<MemberList :list="members" :loading="loadingList" :show-details.sync="showDetails" />
 
 			<!-- main contacts details -->
 			<CircleDetails :circle="circle">
@@ -73,9 +75,11 @@
 <script>
 import AppContent from '@nextcloud/vue/dist/Components/AppContent'
 import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
 
 import Login from 'vue-material-design-icons/Login'
 
+import AppDetailsToggle from '../AppContent/AppDetailsToggle'
 import CircleDetails from '../CircleDetails'
 import MemberList from '../MemberList'
 import RouterMixin from '../../mixins/RouterMixin'
@@ -87,13 +91,14 @@ export default {
 
 	components: {
 		AppContent,
+		AppDetailsToggle,
 		CircleDetails,
 		EmptyContent,
 		Login,
 		MemberList,
 	},
 
-	mixins: [RouterMixin],
+	mixins: [isMobile, RouterMixin],
 
 	props: {
 		loading: {
@@ -106,6 +111,7 @@ export default {
 		return {
 			loadingJoin: false,
 			loadingList: false,
+			showDetails: false,
 		}
 	},
 
@@ -167,6 +173,11 @@ export default {
 				this.loadingJoin = false
 			}
 
+		},
+
+		// Hide the circle details
+		hideDetails() {
+			this.showDetails = false
 		},
 	},
 }

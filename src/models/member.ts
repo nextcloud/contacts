@@ -21,7 +21,7 @@
  */
 
 import Circle from './circle'
-import { MemberLevel, MemberLevels, MemberType } from './constants'
+import { MemberLevel, MemberLevels, MemberType, MemberTypes } from './constants'
 
 export default class Member {
 
@@ -95,13 +95,16 @@ export default class Member {
 	 * Member type
 	 */
 	get userType(): MemberType {
-		return this._data.userType
+		// If the user type is a circle, this could originate from multiple sources
+		return this._data.userType !== MemberTypes.CIRCLE
+					? this._data.userType
+					: this.basedOn.source
 	}
 
 	/**
 	 * Member based on source
 	 */
-	get basedOn(): Object {
+	get basedOn(): any {
 		return this._data.basedOn
 	}
 

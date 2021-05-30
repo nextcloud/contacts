@@ -24,10 +24,7 @@
 <template>
 	<Content app-name="contacts">
 		<!-- go back to list when in details mode -->
-		<a v-if="selectedContact && isMobile"
-			class="app-details-toggle icon-confirm"
-			href="#"
-			@click.stop.prevent="showList" />
+		<AppDetailsToggle v-if="isMobile && selectedContact" @click.native.stop.prevent="showList" />
 
 		<!-- new-contact-button + navigation + settings -->
 		<RootNavigation
@@ -76,6 +73,7 @@ import Modal from '@nextcloud/vue/dist/Components/Modal'
 import { showError } from '@nextcloud/dialogs'
 import { VCardTime } from 'ical.js'
 
+import AppDetailsToggle from '../components/AppContent/AppDetailsToggle'
 import CircleContent from '../components/AppContent/CircleContent'
 import ContactsContent from '../components/AppContent/ContactsContent'
 import ContactsPicker from '../components/EntityPicker/ContactsPicker'
@@ -91,6 +89,7 @@ export default {
 	name: 'Contacts',
 
 	components: {
+		AppDetailsToggle,
 		AppNavigationNew,
 		CircleContent,
 		ContactsContent,
@@ -399,29 +398,3 @@ export default {
 	},
 }
 </script>
-
-<style lang="scss" scoped>
-.app-details-toggle {
-	position: absolute;
-	width: 44px;
-	height: 44px;
-	padding: 14px;
-	cursor: pointer;
-	opacity: .6;
-	font-size: 16px;
-	line-height: 17px;
-	transform: rotate(180deg);
-	background-color: var(--color-main-background);
-	z-index: 2000;
-	&:active,
-	&:hover,
-	&:focus {
-		opacity: 1;
-	}
-
-	// Hide app-navigation toggle if shown
-	&::v-deep + .app-navigation .app-navigation-toggle {
-		display: none;
-	}
-}
-</style>

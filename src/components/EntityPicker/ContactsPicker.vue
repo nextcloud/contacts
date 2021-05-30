@@ -9,7 +9,7 @@
 
 	<!-- contacts picker -->
 	<EntityPicker v-else-if="showPicker"
-		:confirm-label="t('contacts', 'Add to {group}', { group: pickerforGroup.name})"
+		:confirm-label="t('contacts', 'Add to {group}', { group: pickerforGroup.name })"
 		:data-types="pickerTypes"
 		:data-set="pickerData"
 		@close="onContactPickerClose"
