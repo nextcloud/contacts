@@ -76,7 +76,6 @@
     "Unable to delete the share" : "לא ניתן למחוק את השיתוף",
     "Unable to change permissions" : "לא ניתן לשנות את ההרשאות",
     "Import contacts" : "ייבוא אנשי קשר",
-    "Import into the {addressbookName} addressbook" : "ייבא לפנקס הכתובות {addressbookName}",
     "Select local file" : "בחירת קובץ מקומי",
     "Import from files" : "ייבוא מקבצים",
     "Importing is disabled because there are no address books available" : "הייבוא מושבת כיוון שאין לך ספרי כתובות זמינים",

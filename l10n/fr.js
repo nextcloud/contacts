@@ -81,7 +81,6 @@ OC.L10N.register(
     "Unable to delete the share" : "Impossible de supprimer le partage",
     "Unable to change permissions" : "Impossible de modifier les autorisations",
     "Import contacts" : "Importer les contacts",
-    "Import into the {addressbookName} addressbook" : "Importer dans le carnet d'adresses {addressbookName}",
     "Select local file" : "Sélectionnez un fichier local",
     "Import from files" : "Importer depuis des fichiers",
     "Importing is disabled because there are no address books available" : "L'import n'est pas disponible car il n'existe aucun carnet d'adresses",

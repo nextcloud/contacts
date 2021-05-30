@@ -79,7 +79,6 @@ OC.L10N.register(
     "Unable to delete the share" : "Nepavyko ištrinti viešinio",
     "Unable to change permissions" : "Nepavyko pakeisti leidimų",
     "Import contacts" : "Importuoti adresatus",
-    "Import into the {addressbookName} addressbook" : "Importuoti į {addressbookName} adresų knygą",
     "Select local file" : "Pasirinkti vietinį failą",
     "Import from files" : "Importuoti iš failų",
     "Importing is disabled because there are no address books available" : "Importavimas yra išjungtas, nes nėra prieinamų adresų knygų",

@@ -79,7 +79,6 @@
     "Unable to delete the share" : "Mesta souporabe ni mogoče izbrisati.",
     "Unable to change permissions" : "Ni mogoče spremeniti dovoljenj.",
     "Import contacts" : "Uvozi stike",
-    "Import into the {addressbookName} addressbook" : "Uvozi v imenik {addressbookName}",
     "Select local file" : "Izbor krajevne datoteke",
     "Import from files" : "Uvozi iz datotek",
     "Importing is disabled because there are no address books available" : "Uvoz je onemogočen, ker ni mogoče najti razpoložljivega imenika.",

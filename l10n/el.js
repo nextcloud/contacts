@@ -78,7 +78,6 @@ OC.L10N.register(
     "Unable to delete the share" : "Δεν είναι δυνατή η διαγραφή της κοινοποίησης",
     "Unable to change permissions" : "Δεν είναι δυνατή η αλλαγή δικαιωμάτων",
     "Import contacts" : "Εισαγωγή επαφών",
-    "Import into the {addressbookName} addressbook" : "Εισαγωγή στο  {ΌνομαΒιβλίουΔιευθύνσεων} βιβλίο διευθύνσεων.",
     "Select local file" : "Επιλογή τοπικού φακέλου",
     "Import from files" : "Εισαγωγή απο αρχεία",
     "Importing is disabled because there are no address books available" : "Η λειτουργία εισαγωγής απενεργοποιήθηκε, καθώς δεν βρέθηκε κάποιο βιβλίο διευθύνσεων διαθέσιμο",

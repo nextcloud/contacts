@@ -79,7 +79,6 @@
     "Unable to delete the share" : "Sdílení se nedaří smazat",
     "Unable to change permissions" : "Oprávnění se nedaří změnit",
     "Import contacts" : "Importovat kontakty",
-    "Import into the {addressbookName} addressbook" : "Importovat do adresáře kontaktů {addressbookName}",
     "Select local file" : "Vybrat místní soubor",
     "Import from files" : "Importovat ze souborů",
     "Importing is disabled because there are no address books available" : "Import je vypnutý, protože nejsou k dispozici žádné adresáře kontaktů",

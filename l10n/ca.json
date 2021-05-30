@@ -76,7 +76,6 @@
     "Unable to delete the share" : "No s'ha pogut suprimir la compartició",
     "Unable to change permissions" : "No s'han pogut canviar els permisos",
     "Import contacts" : "Importar contactes",
-    "Import into the {addressbookName} addressbook" : "Importar dins l'agenda de contactes {addressbookName}",
     "Select local file" : "Seleccioneu el fitxer local",
     "Import from files" : "Importa des de fitxers",
     "Importing is disabled because there are no address books available" : "La importació està desactivada perquè no hi ha cap llibreta d’adreces disponible",

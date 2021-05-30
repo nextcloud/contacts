@@ -79,7 +79,6 @@ OC.L10N.register(
     "Unable to delete the share" : "Nem lehet törölni a megosztást",
     "Unable to change permissions" : "Nem lehet megváltoztatni az engedélyeket",
     "Import contacts" : "Kapcsolatok importálása",
-    "Import into the {addressbookName} addressbook" : "Importálás a {addressbookName} címjegyzékbe",
     "Select local file" : "Helyi fájl kiválasztása",
     "Import from files" : "Importálás fájlokból",
     "Importing is disabled because there are no address books available" : "Az importálás nincs engedélyezve mert nem található címjegyzék",

@@ -79,7 +79,6 @@
     "Unable to delete the share" : "Impossibile eliminare la condivisione",
     "Unable to change permissions" : "Impossibile cambiare i permessi",
     "Import contacts" : "Importa contatti",
-    "Import into the {addressbookName} addressbook" : "Importa nella rubrica {addressbookName}",
     "Select local file" : "Seleziona file locale",
     "Import from files" : "Importa da file",
     "Importing is disabled because there are no address books available" : "L'importazione è  disabilitata poiché non ci sono rubriche disponibili",

@@ -81,7 +81,6 @@ OC.L10N.register(
     "Unable to delete the share" : "Kan de share niet verwijderen.",
     "Unable to change permissions" : "Kan de permissies niet wijzigen.",
     "Import contacts" : "Importeer contactpersonen",
-    "Import into the {addressbookName} addressbook" : "Importeren in het {addressbookName} adresboek",
     "Select local file" : "Selecteer lokaal bestand",
     "Import from files" : "Importeren uit bestanden",
     "Importing is disabled because there are no address books available" : "Import is uitgeschakeld omdat er geen adresboek beschikbaar is",

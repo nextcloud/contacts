@@ -78,7 +78,6 @@ OC.L10N.register(
     "Unable to delete the share" : "Không thể xóa chia sẻ",
     "Unable to change permissions" : "Không thể thay đổi quyền",
     "Import contacts" : "Nhập liên hệ",
-    "Import into the {addressbookName} addressbook" : "Nhập vào {addressbookName} sổ địa chỉ ",
     "Select local file" : "Chọn tệp từ máy",
     "Import from files" : "Nhập từ tệp",
     "Importing is disabled because there are no address books available" : "Nhập đã bị tắt do không có sổ địa chỉ nào hiện hành",

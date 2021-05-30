@@ -79,7 +79,6 @@
     "Unable to delete the share" : "無法刪除這個分享",
     "Unable to change permissions" : "無法變更權限",
     "Import contacts" : "匯入連絡人",
-    "Import into the {addressbookName} addressbook" : "匯入至 {addressbookName} 通訊錄",
     "Select local file" : "選取本機檔案",
     "Import from files" : "從檔案匯入",
     "Importing is disabled because there are no address books available" : "已停用匯入，因為沒有可用的通訊錄",

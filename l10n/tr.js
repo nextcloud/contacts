@@ -81,7 +81,6 @@ OC.L10N.register(
     "Unable to delete the share" : "Paylaşım silinemedi",
     "Unable to change permissions" : "İzinler değiştirilemedi",
     "Import contacts" : "Kişileri içe aktar",
-    "Import into the {addressbookName} addressbook" : "{addressbookName} adres defteri içine aktar",
     "Select local file" : "Yerel dosyayı seçin",
     "Import from files" : "Dosya ile içe aktar",
     "Importing is disabled because there are no address books available" : "Kullanılabilecek bir adres defteri bulunamadığından içe aktarım devre dışı bırakıldı",

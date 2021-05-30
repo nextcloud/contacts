@@ -81,7 +81,6 @@ OC.L10N.register(
     "Unable to delete the share" : "No se ha podido eliminar el recurso compartido",
     "Unable to change permissions" : "No se han podido cambiar los permisos",
     "Import contacts" : "Importar contactos",
-    "Import into the {addressbookName} addressbook" : "Importar a la lista de direcciones {addressbookName}",
     "Select local file" : "Selecciona archivo local",
     "Import from files" : "Importar desde archivos",
     "Importing is disabled because there are no address books available" : "Importar está desactivado porque no hay libretas de direcciones disponibles",

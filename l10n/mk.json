@@ -77,7 +77,6 @@
     "Unable to delete the share" : "Неможе да се избрише споделениот контакт",
     "Unable to change permissions" : "Неможе да се променат дозволите",
     "Import contacts" : "Увези контакти",
-    "Import into the {addressbookName} addressbook" : "Увези во адресарот {addressbookName}",
     "Select local file" : "Избери локална датотека",
     "Import from files" : "Увези од датотеките",
     "Importing is disabled because there are no address books available" : "Увезувањето е оневозможено бидејќи нема достапен адресар",

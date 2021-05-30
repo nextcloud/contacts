@@ -78,7 +78,6 @@ OC.L10N.register(
     "Unable to delete the share" : "Nije moguće izbrisati dijeljenje",
     "Unable to change permissions" : "Nije moguće promijeniti dopuštenja",
     "Import contacts" : "Uvezi kontakte",
-    "Import into the {addressbookName} addressbook" : "Uvezi u adresar {addressbookName}",
     "Select local file" : "Odaberi lokalnu datoteku",
     "Import from files" : "Uvezi iz datoteka",
     "Importing is disabled because there are no address books available" : "Uvoz je onemogućen jer nema dostupnih adresara",
