@@ -151,9 +151,3 @@ export default {
 	},
 }
 </script>
-
-<style lang="scss" scoped>
-#app-content-wrapper {
-	display: flex;
-}
-</style>

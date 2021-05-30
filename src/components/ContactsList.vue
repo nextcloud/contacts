@@ -152,16 +152,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app-content-list {
-	flex: 1 1 300px;
-	// Cancel scrolling
-	overflow: visible;
-
-	.empty-content {
-		padding: 20px;
-	}
-}
-
 // Make virtual scroller scrollable
 .contacts-list {
 	max-height: 100%;

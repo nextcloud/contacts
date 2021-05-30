@@ -254,16 +254,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app-content-list {
-	flex: 1 1 300px;
-	// Cancel scrolling
-	overflow: visible;
-
-	.empty-content {
-		padding: 20px;
-	}
-}
-
 .members-list {
 	// Make virtual scroller scrollable
 	max-height: 100%;

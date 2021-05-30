@@ -57,7 +57,7 @@
 				</transition-group>
 
 				<!-- No recommendations -->
-				<EmptyContent v-else-if="dataSet.length === 0" icon="icon-search">
+				<EmptyContent v-if="dataSet.length === 0" icon="icon-search">
 					{{ t('contacts', 'Search for people to add') }}
 				</EmptyContent>
 
@@ -384,7 +384,6 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 	/** This next 2 rules are pretty hacky, with the modal component somehow
 	the margin applied to the content is added to the total modal width,
 	so here we subtract it to the width and height of the content.
@@ -418,9 +417,9 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 		display: flex;
 		overflow-y: auto;
 		align-content: flex-start;
-		justify-content: flex-start;
 		flex: 1 0 auto;
 		flex-wrap: wrap;
+		justify-content: flex-start;
 		// half a line height to know there is more lines
 		max-height: 6.5em;
 		padding: $entity-spacing 0;
@@ -457,8 +456,8 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 }
 
 // Properly center Entity Picker empty content
-.empty-content {
-	margin: 0;
+::v-deep .empty-content {
+	margin: auto 0 !important;
 }
 
 /** Size full in the modal component doesn't have border radius, this adds

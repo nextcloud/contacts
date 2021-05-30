@@ -211,12 +211,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app-content-details {
-	flex: 1 1 100%;
-	min-width: 0;
-	padding: 0 80px 80px 80px;
-}
-
 .circle-details-section {
 	&:not(:first-of-type) {
 		margin-top: 24px;
