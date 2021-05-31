@@ -81,6 +81,7 @@ OC.L10N.register(
     "Unable to delete the share" : "无法删除共享",
     "Unable to change permissions" : "无法更改权限",
     "Import contacts" : "导入联系人",
+    "Import into the {addressbookName} address book" : "导入 {addressbookName} 通讯录",
     "Select local file" : "选择本地文件",
     "Import from files" : "从文件导入",
     "Importing is disabled because there are no address books available" : "导入已被禁用，因为没有可用的地址簿",
