@@ -84,6 +84,7 @@ import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps'
 
 import client from '../services/cdav'
+import isCirclesEnabled from '../services/isCirclesEnabled'
 
 export default {
 	name: 'Contacts',
@@ -122,7 +123,8 @@ export default {
 
 	data() {
 		return {
-			loadingCircles: true,
+			// Let's but the loading state to true if circles is enabled
+			loadingCircles: isCirclesEnabled,
 			loadingContacts: true,
 		}
 	},
@@ -240,10 +242,12 @@ export default {
 			}
 		})
 
-		// Get circles
-		this.$store.dispatch('getCircles').then(() => {
-			this.loadingCircles = false
-		})
+		// Get circles if enabled
+		if (isCirclesEnabled) {
+			this.$store.dispatch('getCircles').then(() => {
+				this.loadingCircles = false
+			})
+		}
 	},
 
 	methods: {

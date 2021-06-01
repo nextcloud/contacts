@@ -100,7 +100,8 @@ class PageController extends Controller {
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'supportedNetworks', $supportedNetworks);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'allowSocialSync', $syncAllowedByAdmin);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'enableSocialSync', $bgSyncEnabledByUser);
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'contactsinteraction', $this->appManager->isEnabledForUser('contactsinteraction') === true);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'isContactsInteractionEnabled', $this->appManager->isEnabledForUser('contactsinteraction') === true);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'isCirclesEnabled', $this->appManager->isEnabledForUser('circles') === true);
 
 		Util::addScript(Application::APP_ID, 'contacts-main');
 		Util::addStyle(Application::APP_ID, 'contacts');

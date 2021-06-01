@@ -29,19 +29,26 @@ import contacts from './contacts'
 import groups from './groups'
 import importState from './importState'
 
+import isCirclesEnabled from '../services/isCirclesEnabled'
+
 Vue.use(Vuex)
 
 const mutations = {}
 
-export default new Store({
-	modules: {
-		addressbooks,
-		circles,
-		contacts,
-		groups,
-		importState,
-	},
+const modules = {
+	addressbooks,
+	contacts,
+	groups,
+	importState,
+}
 
+// If circles is enabled let's init the store
+if (isCirclesEnabled) {
+	modules.circles = circles
+}
+
+export default new Store({
+	modules,
 	mutations,
 
 	/**

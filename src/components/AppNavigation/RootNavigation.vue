@@ -21,11 +21,11 @@
   -->
 
 <template>
-	<AppNavigation>
+	<AppNavigation :class="{'icon-loading': loading}">
 		<slot />
 
 		<!-- groups list -->
-		<template v-if="!loading" #list>
+		<template #list>
 			<!-- All contacts group -->
 			<AppNavigationItem id="everyone"
 				:title="GROUP_ALL_CONTACTS"
@@ -93,43 +93,45 @@
 				:key="group.key"
 				:group="group" />
 
-			<!-- Toggle groups ellipsis -->
-			<AppNavigationItem
-				v-if="groupsMenu.length > ELLIPSIS_COUNT"
-				:title="collapseGroupsTitle"
-				class="app-navigation__collapse"
-				icon=""
-				@click="onToggleGroups" />
+			<template v-if="isCirclesEnabled">
+				<!-- Toggle groups ellipsis -->
+				<AppNavigationItem
+					v-if="groupsMenu.length > ELLIPSIS_COUNT"
+					:title="collapseGroupsTitle"
+					class="app-navigation__collapse"
+					icon=""
+					@click="onToggleGroups" />
 
-			<!-- New circle button caption and modal -->
-			<AppNavigationCaption
-				id="newcircle"
-				:title="t('contacts', 'Circles')"
-				@click.prevent.stop="toggleNewCircleModal">
-				<template slot="actions">
-					<ActionButton icon="icon-add" @click="toggleNewCircleModal">
-						{{ t('contacts', 'Create a new circle') }}
-					</ActionButton>
-				</template>
-			</AppNavigationCaption>
-			<NewCircleIntro v-if="isNewCircleModalOpen"
-				:loading="createCircleLoading"
-				@close="closeNewCircleIntro"
-				@submit="createNewCircle" />
+				<!-- New circle button caption and modal -->
+				<AppNavigationCaption
+					id="newcircle"
+					:title="t('contacts', 'Circles')"
+					@click.prevent.stop="toggleNewCircleModal">
+					<template slot="actions">
+						<ActionButton icon="icon-add" @click="toggleNewCircleModal">
+							{{ t('contacts', 'Create a new circle') }}
+						</ActionButton>
+					</template>
+				</AppNavigationCaption>
+				<NewCircleIntro v-if="isNewCircleModalOpen"
+					:loading="createCircleLoading"
+					@close="closeNewCircleIntro"
+					@submit="createNewCircle" />
 
-			<!-- Circles -->
-			<CircleNavigationItem
-				v-for="circle in ellipsisCirclesMenu"
-				:key="circle.key"
-				:circle="circle" />
+				<!-- Circles -->
+				<CircleNavigationItem
+					v-for="circle in ellipsisCirclesMenu"
+					:key="circle.key"
+					:circle="circle" />
 
-			<!-- Toggle circles ellipsis -->
-			<AppNavigationItem
-				v-if="circlesMenu.length > ELLIPSIS_COUNT"
-				:title="collapseCirclesTitle"
-				class="app-navigation__collapse"
-				icon=""
-				@click="onToggleCircles" />
+				<!-- Toggle circles ellipsis -->
+				<AppNavigationItem
+					v-if="circlesMenu.length > ELLIPSIS_COUNT"
+					:title="collapseCirclesTitle"
+					class="app-navigation__collapse"
+					icon=""
+					@click="onToggleCircles" />
+			</template>
 		</template>
 
 		<!-- settings -->
@@ -159,7 +161,10 @@ import CircleNavigationItem from './CircleNavigationItem'
 import GroupNavigationItem from './GroupNavigationItem'
 import NewCircleIntro from '../EntityPicker/NewCircleIntro'
 import SettingsSection from './SettingsSection'
+
+import isCirclesEnabled from '../../services/isCirclesEnabled'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled'
+
 import RouterMixin from '../../mixins/RouterMixin'
 
 export default {
@@ -210,6 +215,7 @@ export default {
 			createCircleLoading: false,
 			createCircleError: null,
 
+			isCirclesEnabled,
 			isContactsInteractionEnabled,
 
 			collapsedGroups: true,
@@ -262,7 +268,8 @@ export default {
 			return menu
 		},
 		ellipsisGroupsMenu() {
-			if (this.collapsedGroups) {
+			// If circles is not enabled, we show everything
+			if (this.isCirclesEnabled && this.collapsedGroups) {
 				return this.groupsMenu.slice(0, ELLIPSIS_COUNT)
 			}
 			return this.groupsMenu
@@ -270,7 +277,7 @@ export default {
 
 		// generate circles menu from the circles store
 		circlesMenu() {
-			const menu = this.circles
+			const menu = this.circles || []
 			menu.sort((a, b) => naturalCompare(a.toString(), b.toString(), { caseInsensitive: true }))
 
 			return menu

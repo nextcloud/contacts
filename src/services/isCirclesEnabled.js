@@ -1,5 +1,5 @@
 /**
- * @copyright Copyright (c) 2020 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  *
@@ -22,5 +22,5 @@
 
 import { loadState } from '@nextcloud/initial-state'
 
-const isContactsInteractionEnabled = loadState('contacts', 'isContactsInteractionEnabled', false)
-export default isContactsInteractionEnabled
+const isCirclesEnabled = loadState('contacts', 'isCirclesEnabled', false)
+export default isCirclesEnabled
