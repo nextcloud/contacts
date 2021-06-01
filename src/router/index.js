@@ -23,6 +23,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import { generateUrl } from '@nextcloud/router'
+
+import { ROUTE_CIRCLE } from '../models/constants.ts'
 import Contacts from '../views/Contacts'
 
 Vue.use(Router)
@@ -48,6 +50,11 @@ export default new Router({
 				{
 					path: 'import',
 					name: 'import',
+					component: Contacts,
+				},
+				{
+					path: `${ROUTE_CIRCLE}/:selectedCircle`,
+					name: 'circle',
 					component: Contacts,
 				},
 				{

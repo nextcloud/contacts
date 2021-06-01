@@ -22,7 +22,9 @@
 
 import Vue from 'vue'
 import Vuex, { Store } from 'vuex'
+
 import addressbooks from './addressbooks'
+import circles from './circles'
 import contacts from './contacts'
 import groups from './groups'
 import importState from './importState'
@@ -34,6 +36,7 @@ const mutations = {}
 export default new Store({
 	modules: {
 		addressbooks,
+		circles,
 		contacts,
 		groups,
 		importState,

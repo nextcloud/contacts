@@ -24,163 +24,30 @@
 <template>
 	<Content app-name="contacts">
 		<!-- go back to list when in details mode -->
-		<a v-if="selectedContact && isMobile"
-			class="app-details-toggle icon-confirm"
-			href="#"
-			@click.stop.prevent="showList" />
+		<AppDetailsToggle v-if="isMobile && selectedContact" @click.native.stop.prevent="showList" />
 
 		<!-- new-contact-button + navigation + settings -->
-		<AppNavigation>
+		<RootNavigation
+			:contacts-list="contactsList"
+			:loading="loadingContacts || loadingCircles"
+			:selected-group="selectedGroup"
+			:selected-contact="selectedContact">
 			<!-- new-contact-button -->
-			<AppNavigationNew v-if="!loading"
+			<AppNavigationNew v-if="!loadingContacts"
 				button-id="new-contact-button"
 				:text="t('contacts','New contact')"
 				button-class="icon-add"
 				:disabled="!defaultAddressbook"
 				@click="newContact" />
+		</RootNavigation>
 
-			<!-- groups list -->
-			<template v-if="!loading" #list>
-				<!-- All contacts group -->
-				<AppNavigationItem id="everyone"
-					:title="GROUP_ALL_CONTACTS"
-					:to="{
-						name: 'group',
-						params: { selectedGroup: GROUP_ALL_CONTACTS },
-					}"
-					icon="icon-contacts-dark">
-					<AppNavigationCounter v-if="sortedContacts.length" slot="counter">
-						{{ sortedContacts.length }}
-					</AppNavigationCounter>
-				</AppNavigationItem>
-
-				<!-- Not grouped group -->
-				<AppNavigationItem
-					v-if="ungroupedContacts.length > 0"
-					id="notgrouped"
-					:title="GROUP_NO_GROUP_CONTACTS"
-					:to="{
-						name: 'group',
-						params: { selectedGroup: GROUP_NO_GROUP_CONTACTS },
-					}"
-					icon="icon-user">
-					<AppNavigationCounter v-if="ungroupedContacts.length" slot="counter">
-						{{ ungroupedContacts.length }}
-					</AppNavigationCounter>
-				</AppNavigationItem>
-
-				<!-- Recently contacted group -->
-				<AppNavigationItem
-					v-if="isContactsInteractionEnabled && recentlyContactedContacts && recentlyContactedContacts.contacts.length > 0"
-					id="recentlycontacted"
-					:title="GROUP_RECENTLY_CONTACTED"
-					:to="{
-						name: 'group',
-						params: { selectedGroup: GROUP_RECENTLY_CONTACTED },
-					}"
-					icon="icon-recent-actors">
-					<AppNavigationCounter v-if="recentlyContactedContacts.contacts.length" slot="counter">
-						{{ recentlyContactedContacts.contacts.length }}
-					</AppNavigationCounter>
-				</AppNavigationItem>
-
-				<AppNavigationSpacer />
-
-				<!-- Custom groups -->
-				<AppNavigationItem v-for="group in groupsMenu"
-					:key="group.key"
-					:to="group.router"
-					:title="group.name"
-					:icon="group.icon">
-					<template slot="actions">
-						<ActionButton
-							icon="icon-add"
-							@click="addContactsToGroup(group)">
-							{{ t('contacts', 'Add contacts') }}
-						</ActionButton>
-						<ActionButton
-							icon="icon-download"
-							@click="downloadGroup(group)">
-							{{ t('contacts', 'Download') }}
-						</ActionButton>
-					</template>
-
-					<AppNavigationCounter v-if="group.contacts.length > 0" slot="counter">
-						{{ group.contacts.length }}
-					</AppNavigationCounter>
-				</AppNavigationItem>
-
-				<AppNavigationItem
-					id="newgroup"
-					:force-menu="true"
-					:menu-open.sync="isNewGroupMenuOpen"
-					:title="t('contacts', '+ New group')"
-					menu-icon="icon-add"
-					@click.prevent.stop="toggleNewGroupMenu">
-					<template slot="actions">
-						<ActionText :icon="createGroupError ? 'icon-error' : 'icon-contacts-dark'">
-							{{ createGroupError ? createGroupError : t('contacts', 'Create a new group') }}
-						</ActionText>
-						<ActionInput
-							icon=""
-							:placeholder="t('contacts','Group name')"
-							@submit.prevent.stop="createNewGroup" />
-					</template>
-				</AppNavigationItem>
-			</template>
-
-			<!-- settings -->
-			<template #footer>
-				<AppNavigationSettings v-if="!loading">
-					<SettingsSection />
-				</AppNavigationSettings>
-			</template>
-		</AppNavigation>
-
-		<AppContent>
-			<div v-if="loading">
-				<EmptyContent icon="icon-loading">
-					{{ t('contacts', 'Loading contacts …') }}
-				</EmptyContent>
-			</div>
-
-			<div v-else-if="isEmptyGroup && !isRealGroup">
-				<EmptyContent icon="icon-contacts-dark">
-					{{ t('contacts', 'There are no contacts yet') }}
-					<template #desc>
-						<button class="primary" @click="newContact">
-							{{ t('contacts', 'Create contact') }}
-						</button>
-					</template>
-				</EmptyContent>
-			</div>
-
-			<div v-else-if="isEmptyGroup && isRealGroup">
-				<EmptyContent icon="icon-contacts-dark">
-					{{ t('contacts', 'There are no contacts in this group') }}
-					<template #desc>
-						<button v-if="contacts.length === 0" class="primary" @click="addContactsToGroup(selectedGroup)">
-							{{ t('contacts', 'Create contacts') }}
-						</button>
-						<button v-else class="primary" @click="addContactsToGroup(selectedGroup)">
-							{{ t('contacts', 'Add contacts') }}
-						</button>
-					</template>
-				</EmptyContent>
-			</div>
-
-			<div v-else id="app-content-wrapper">
-				<!-- contacts list -->
-				<ContactsList
-					v-if="!loading"
-					:list="contactsList"
-					:contacts="contacts"
-					:search-query="searchQuery" />
-
-				<!-- main contacts details -->
-				<ContactDetails :contact-key="selectedContact" />
-			</div>
-		</AppContent>
+		<!-- Main content: circle or contacts -->
+		<CircleContent v-if="selectedCircle"
+			:loading="loadingCircles" />
+		<ContactsContent v-else
+			:contacts-list="contactsList"
+			:loading="loadingContacts"
+			@newContact="newContact" />
 
 		<!-- Import modal -->
 		<Modal v-if="isImporting"
@@ -190,87 +57,47 @@
 			<ImportView @close="closeImport" />
 		</Modal>
 
-		<!-- Bulk contacts edit modal -->
-		<Modal v-if="isProcessing || isProcessDone"
-			:clear-view-delay="-1"
-			:can-close="isProcessDone"
-			@close="closeProcess">
-			<AddToGroupView v-bind="processStatus" @close="closeProcess" />
-		</Modal>
-
 		<!-- Select contacts group modal -->
-		<EntityPicker v-else-if="showContactPicker"
-			:data-types="pickerTypes"
-			:data-set="pickerData"
-			@close="onContactPickerClose"
-			@submit="onContactPickerPick" />
+		<ContactsPicker />
 	</Content>
 </template>
 
 <script>
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
-import ActionText from '@nextcloud/vue/dist/Components/ActionText'
-import AppContent from '@nextcloud/vue/dist/Components/AppContent'
-import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
-import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
-import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
+import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE } from '../models/constants.ts'
+
 import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
-import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
-import AppNavigationSpacer from '@nextcloud/vue/dist/Components/AppNavigationSpacer'
 import Content from '@nextcloud/vue/dist/Components/Content'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 
 import { showError } from '@nextcloud/dialogs'
 import { VCardTime } from 'ical.js'
-import download from 'downloadjs'
-import moment from 'moment'
-import pLimit from 'p-limit'
-import naturalCompare from 'string-natural-compare'
 
-import ContactDetails from '../components/ContactDetails'
-import ContactsList from '../components/ContactsList'
-import EntityPicker from '../components/EntityPicker/EntityPicker'
+import AppDetailsToggle from '../components/AppContent/AppDetailsToggle'
+import CircleContent from '../components/AppContent/CircleContent'
+import ContactsContent from '../components/AppContent/ContactsContent'
+import ContactsPicker from '../components/EntityPicker/ContactsPicker'
 import ImportView from './Processing/ImportView'
-import AddToGroupView from './Processing/AddToGroupView'
-import SettingsSection from '../components/SettingsSection'
+import RootNavigation from '../components/AppNavigation/RootNavigation'
 
 import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps'
 
 import client from '../services/cdav'
-import appendContactToGroup from '../services/appendContactToGroup'
-import isContactsInteractionEnabled from '../services/isContactsInteractionEnabled'
-
-const GROUP_ALL_CONTACTS = t('contacts', 'All contacts')
-const GROUP_NO_GROUP_CONTACTS = t('contacts', 'Not grouped')
-const GROUP_RECENTLY_CONTACTED = t('contactsinteraction', 'Recently contacted')
 
 export default {
 	name: 'Contacts',
 
 	components: {
-		ActionButton,
-		ActionInput,
-		ActionText,
-		AddToGroupView,
-		AppContent,
-		AppNavigation,
-		AppNavigationCounter,
-		AppNavigationItem,
+		AppDetailsToggle,
 		AppNavigationNew,
-		AppNavigationSettings,
-		AppNavigationSpacer,
-		ContactDetails,
-		ContactsList,
+		CircleContent,
+		ContactsContent,
+		ContactsPicker,
 		Content,
-		EmptyContent,
-		EntityPicker,
 		ImportView,
 		Modal,
-		SettingsSection,
+		RootNavigation,
 	},
 
 	mixins: [
@@ -279,6 +106,10 @@ export default {
 
 	// passed by the router
 	props: {
+		selectedCircle: {
+			type: String,
+			default: undefined,
+		},
 		selectedGroup: {
 			type: String,
 			default: undefined,
@@ -291,37 +122,8 @@ export default {
 
 	data() {
 		return {
-			GROUP_ALL_CONTACTS,
-			GROUP_NO_GROUP_CONTACTS,
-			GROUP_RECENTLY_CONTACTED,
-			isContactsInteractionEnabled,
-			loading: true,
-
-			// Create group
-			isCreatingGroup: false,
-			isNewGroupMenuOpen: false,
-			createGroupError: null,
-
-			// Add to group picker
-			searchQuery: '',
-			showContactPicker: false,
-			contactPickerforGroup: null,
-			pickerData: [],
-			pickerTypes: [{
-				id: 'contact',
-				label: t('contacts', 'Contacts'),
-			}],
-
-			// Bulk processing
-			isProcessing: false,
-			isProcessDone: false,
-			processStatus: {
-				failed: 0,
-				progress: 0,
-				success: 0,
-				total: 0,
-				name: '',
-			},
+			loadingCircles: true,
+			loadingContacts: true,
 		}
 	},
 
@@ -330,11 +132,11 @@ export default {
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
 		},
-		sortedContacts() {
-			return this.$store.getters.getSortedContacts
-		},
 		contacts() {
 			return this.$store.getters.getContacts
+		},
+		sortedContacts() {
+			return this.$store.getters.getSortedContacts
 		},
 		groups() {
 			return this.$store.getters.getGroups
@@ -367,30 +169,6 @@ export default {
 		},
 
 		/**
-		 * Is this a real group ?
-		 * Aka not a dynamically generated one like `All contacts`
-		 * @returns {boolean}
-		 */
-		isRealGroup() {
-			return this.groups.findIndex(group => group.name === this.selectedGroup) > -1
-		},
-		/**
-		 * Is this a real group and is this empty
-		 * @returns {boolean}
-		 */
-		isEmptyRealGroup() {
-			return this.contactsList.length === 0
-				&& this.isRealGroup
-		},
-		/**
-		 * Is the current group empty
-		 * @returns {boolean}
-		 */
-		isEmptyGroup() {
-			return this.contactsList.length === 0
-		},
-
-		/**
 		 * Contacts list based on the selected group.
 		 * Those filters are pretty fast, so let's only
 		 * intersect the groups contacts and the full
@@ -414,35 +192,6 @@ export default {
 		ungroupedContacts() {
 			return this.sortedContacts.filter(contact => this.contacts[contact.key].groups && this.contacts[contact.key].groups.length === 0)
 		},
-
-		// generate groups menu from groups store
-		groupsMenu() {
-			const menu = this.groups.map(group => {
-				return Object.assign(group, {
-					id: group.name.replace(' ', '_'),
-					key: group.name.replace(' ', '_'),
-					router: {
-						name: 'group',
-						params: { selectedGroup: group.name },
-					},
-					toString: () => group.name,
-				})
-			})
-			menu.sort((a, b) => naturalCompare(a.toString(), b.toString(), { caseInsensitive: true }))
-
-			// Find the Recently Contacted group, delete it from array
-			const recentlyIndex = menu.findIndex(group => group.name === GROUP_RECENTLY_CONTACTED)
-			if (recentlyIndex >= 0) {
-				menu.splice(recentlyIndex, 1)
-			}
-
-			return menu
-		},
-
-		// Recently contacted data
-		recentlyContactedContacts() {
-			return this.groups.find(group => group.name === GROUP_RECENTLY_CONTACTED)
-		},
 	},
 
 	watch: {
@@ -461,13 +210,11 @@ export default {
 	},
 
 	mounted() {
-		/**
-		 * Register search
-		 */
+		// Register search
 		this.search = new OCA.Search(this.search, this.resetSearch)
 	},
 
-	beforeMount() {
+	async beforeMount() {
 		// get addressbooks then get contacts
 		client.connect({ enableCardDAV: true }).then(() => {
 			console.debug('Connected to dav!', client)
@@ -491,6 +238,11 @@ export default {
 				// run setOrder mutation with local storage key
 				this.$store.commit('setOrder', localStorage.getItem('orderKey'))
 			}
+		})
+
+		// Get circles
+		this.$store.dispatch('getCircles').then(() => {
+			this.loadingCircles = false
 		})
 	},
 
@@ -566,7 +318,7 @@ export default {
 					return this.$store.dispatch('getContactsFromAddressBook', { addressbook })
 				})
 			).then(results => {
-				this.loading = false
+				this.loadingContacts = false
 				if (!this.isMobile) {
 					this.selectFirstContactIfNone()
 				}
@@ -597,10 +349,14 @@ export default {
 				}
 
 				// Unknown group
-				if (!this.groups.find(group => group.name === this.selectedGroup)
-					&& this.GROUP_ALL_CONTACTS !== this.selectedGroup
-					&& this.GROUP_NO_GROUP_CONTACTS !== this.selectedGroup) {
-					showError(t('contacts', 'Group not found'))
+				if (!this.selectedCircle
+					&& !this.groups.find(group => group.name === this.selectedGroup)
+					&& GROUP_ALL_CONTACTS !== this.selectedGroup
+					&& GROUP_NO_GROUP_CONTACTS !== this.selectedGroup
+					&& ROUTE_CIRCLE !== this.selectedGroup) {
+					showError(t('contacts', 'Group {group} not found', { group: this.selectedGroup }))
+					console.error('Group not found', this.selectedGroup)
+
 					this.$router.push({
 						name: 'root',
 					})
@@ -617,57 +373,6 @@ export default {
 					})
 				}
 			}
-		},
-
-		/**
-		 * Download vcard promise as vcard file
-		 *
-		 * @param {Promise} vcardPromise the full vcf file promise
-		 */
-		async downloadVcardPromise(vcardPromise) {
-			vcardPromise.then(response => {
-				const filename = moment().format('YYYY-MM-DD_HH-mm') + '_' + response.groupName + '.vcf'
-				download(response.data, filename, 'text/vcard')
-			})
-		},
-
-		/**
-		 * Download group of contacts
-		 *
-		 * @param {Object} group of contacts to be downloaded
-		 */
-		downloadGroup(group) {
-			// get grouped contacts
-			let groupedContacts = {}
-			group.contacts.forEach(key => {
-				const id = this.contacts[key].addressbook.id
-				groupedContacts = Object.assign({
-					[id]: {
-						addressbook: this.contacts[key].addressbook,
-						contacts: [],
-					},
-				}, groupedContacts)
-				groupedContacts[id].contacts.push(this.contacts[key].url)
-			})
-
-			// create vcard promise with the requested contacts
-			const vcardPromise = Promise.all(
-				Object.keys(groupedContacts).map(key =>
-					groupedContacts[key].addressbook.dav.addressbookMultigetExport(groupedContacts[key].contacts)))
-				.then(response => ({
-					groupName: group.name,
-					data: response.map(data => data.body).join(''),
-				}))
-			// download vcard
-			this.downloadVcardPromise(vcardPromise)
-		},
-
-		/* SEARCH */
-		search(query) {
-			this.searchQuery = query
-		},
-		resetSearch() {
-			this.searchQuery = ''
 		},
 
 		/**
@@ -690,171 +395,6 @@ export default {
 		closeImport() {
 			this.$store.dispatch('changeStage', 'default')
 		},
-
-		toggleNewGroupMenu() {
-			this.isNewGroupMenuOpen = !this.isNewGroupMenuOpen
-		},
-		createNewGroup(e) {
-			const input = e.target.querySelector('input[type=text]')
-			const groupName = input.value.trim()
-
-			// Check if already exists
-			if (this.groups.find(group => group.name === groupName)) {
-				this.createGroupError = t('contacts', 'This group already exists')
-				return
-			}
-
-			this.createGroupError = null
-
-			console.debug('Created new local group', groupName)
-			this.$store.dispatch('addGroup', groupName)
-			this.isNewGroupMenuOpen = false
-
-			// Select group
-			this.$router.push({
-				name: 'group',
-				params: {
-					selectedGroup: groupName,
-				},
-			})
-		},
-
-		// Bulk contacts group management handlers
-		addContactsToGroup(group) {
-			console.debug('Contacts picker opened for group', group)
-
-			// Get the full group if we provided the group name only
-			if (typeof group === 'string') {
-				group = this.groups.find(a => a.name === group)
-				if (!group) {
-					console.error('Cannot add contact to an undefined group', group)
-					return
-				}
-			}
-
-			// Init data set
-			this.pickerData = this.sortedContacts
-				.map(({ key }) => {
-					const contact = this.contacts[key]
-					return {
-						id: contact.key,
-						label: contact.displayName,
-						type: 'contact',
-						readOnly: contact.addressbook.readOnly,
-						groups: contact.groups,
-					}
-				})
-				// No read only contacts
-				.filter(contact => !contact.readOnly)
-				// No contacts already present in group
-				.filter(contact => contact.groups.indexOf(group.name) === -1)
-
-			this.showContactPicker = true
-			this.contactPickerforGroup = group
-		},
-
-		onContactPickerClose() {
-			this.pickerData = []
-			this.showContactPicker = false
-		},
-
-		onContactPickerPick(selection) {
-			console.debug('Adding', selection, 'to group', this.contactPickerforGroup)
-			const groupName = this.contactPickerforGroup.name
-
-			this.isProcessing = true
-			this.showContactPicker = false
-
-			this.processStatus.total = selection.length
-			this.processStatus.name = this.contactPickerforGroup.name
-			this.processStatus.progress = 0
-			this.processStatus.failed = 0
-
-			// max simultaneous requests
-			const limit = pLimit(3)
-			const requests = []
-
-			// create the array of requests to send
-			selection.map(async entity => {
-				try {
-					// Get contact
-					const contact = this.contacts[entity.id]
-
-					// push contact to server and use limit
-					requests.push(limit(() => appendContactToGroup(contact, groupName)
-						.then((response) => {
-							this.$store.dispatch('addContactToGroup', { contact, groupName })
-							this.processStatus.progress++
-							this.processStatus.success++
-						})
-						.catch((error) => {
-							this.processStatus.progress++
-							this.processStatus.error++
-							console.error(error)
-						})
-					))
-				} catch (e) {
-					console.error(e)
-				}
-			})
-
-			Promise.all(requests).then(() => {
-				this.isProcessDone = true
-				this.showContactPicker = false
-
-				// Auto close after 3 seconds if no errors
-				if (this.processStatus.failed === 0) {
-					setTimeout(this.closeProcess, 3000)
-				}
-			})
-		},
-
-		closeProcess() {
-			this.contactPickerforGroup = null
-			this.isProcessing = false
-			this.isProcessDone = false
-
-			// Reset
-			this.processStatus.failed = 0
-			this.processStatus.progress = 0
-			this.processStatus.success = 0
-			this.processStatus.total = 0
-		},
-
 	},
 }
 </script>
-
-<style lang="scss" scoped>
-#newgroup a {
-	color: var(--color-text-maxcontrast);
-}
-
-#app-content-wrapper {
-	display: flex;
-}
-
-.app-details-toggle {
-	position: absolute;
-	width: 44px;
-	height: 44px;
-	padding: 14px;
-	cursor: pointer;
-	opacity: .6;
-	font-size: 16px;
-	line-height: 17px;
-	transform: rotate(180deg);
-	background-color: var(--color-main-background);
-	z-index: 2000;
-	&:active,
-	&:hover,
-	&:focus {
-		opacity: 1;
-	}
-
-	// Hide app-navigation toggle if shown
-	&::v-deep + .app-navigation .app-navigation-toggle {
-		display: none;
-	}
-}
-</style>

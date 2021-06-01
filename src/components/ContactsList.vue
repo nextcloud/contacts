@@ -21,38 +21,27 @@
   -->
 
 <template>
-	<!-- same uid can coexists between different addressbooks
-		so we need to use the addressbook id as key as well -->
-	<RecycleScroller
-		id="contacts-list"
-		ref="scroller"
-		:class="{ showdetails: selectedContact }"
-		class="app-content-list"
-		:items="filteredList"
-		:item-size="itemHeight"
-		key-field="key">
-		<template #default="{ item, index }">
-			<ContactsListItem
-				v-if="contacts[item.key]"
-				:key="item.key"
-				:contact="contacts[item.key]"
-				:index="index"
-				@deleted="selectContact" />
-		</template>
-	</RecycleScroller>
+	<AppContentList>
+		<VirtualList ref="scroller"
+			class="contacts-list"
+			data-key="key"
+			:data-sources="filteredList"
+			:data-component="ContactsListItem"
+			:estimate-size="68" />
+	</AppContentList>
 </template>
 
 <script>
+import AppContentList from '@nextcloud/vue/dist/Components/AppContentList'
 import ContactsListItem from './ContactsList/ContactsListItem'
-import { RecycleScroller } from 'vue-virtual-scroller/dist/vue-virtual-scroller.umd.js'
-import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
+import VirtualList from 'vue-virtual-scroll-list'
 
 export default {
 	name: 'ContactsList',
 
 	components: {
-		ContactsListItem,
-		RecycleScroller,
+		AppContentList,
+		VirtualList,
 	},
 
 	props: {
@@ -72,7 +61,7 @@ export default {
 
 	data() {
 		return {
-			itemHeight: 68,
+			ContactsListItem,
 		}
 	},
 
@@ -84,7 +73,9 @@ export default {
 			return this.$route.params.selectedGroup
 		},
 		filteredList() {
-			return this.list.filter(contact => this.matchSearch(this.contacts[contact.key]))
+			return this.list
+				.filter(item => this.matchSearch(this.contacts[item.key]))
+				.map(item => this.contacts[item.key])
 		},
 	},
 
@@ -130,7 +121,7 @@ export default {
 			if (!(item && item.getBoundingClientRect().y > 50)) { // header height
 				const index = this.list.findIndex(contact => contact.key === key)
 				if (index > -1) {
-					this.$refs.scroller.scrollToItem(index)
+					this.$refs.scroller.scrollToIndex(index)
 				}
 			}
 
@@ -139,7 +130,7 @@ export default {
 				const pos = item.getBoundingClientRect().y + this.itemHeight - (this.$el.offsetHeight + 50)
 				if (pos > 0) {
 					const scroller = this.$refs.scroller.$el
-					scroller.scrollTop = scroller.scrollTop + pos
+					scroller.scrollToOffset(scroller.scrollTop + pos)
 				}
 			}
 		},
@@ -161,28 +152,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app-content-list {
-	flex: 1 1 300px;
-
-	.empty-content {
-		padding: 20px;
-	}
-}
-
-// Virtual scroller overrides
-.vue-recycle-scroller {
-	position: sticky !important;
-	min-width: 0;
-	// try to take some width
-	flex: 1 1 300px;
-}
-
-.vue-recycle-scroller__item-view {
-	// TODO: find better solution?
-	// https://github.com/Akryum/vue-virtual-scroller/issues/70
-	// hack to not show the transition
-	overflow: hidden;
-	// same as app-content-list-item
-	height: 68px;
+// Make virtual scroller scrollable
+.contacts-list {
+	max-height: 100%;
+	overflow: auto;
 }
 </style>

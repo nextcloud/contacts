@@ -24,8 +24,7 @@
 		size="full"
 		@close="onCancel">
 		<!-- Wrapper for content & navigation -->
-		<div
-			class="entity-picker">
+		<div class="entity-picker">
 			<!-- Search -->
 			<div class="entity-picker__search">
 				<div class="entity-picker__search-icon icon-search" />
@@ -35,66 +34,70 @@
 					:placeholder="t('contacts', 'Search {types}', {types: searchPlaceholderTypes})"
 					class="entity-picker__search-input"
 					type="search"
-					@change="onSearch">
+					@input="onSearch">
 			</div>
 
-			<!-- Picked entities -->
-			<transition-group
-				v-if="Object.keys(selection).length > 0"
-				name="zoom"
-				tag="ul"
-				class="entity-picker__selection">
-				<EntityBubble
-					v-for="entity in selection"
-					:key="entity.key || `entity-${entity.type}-${entity.id}`"
-					v-bind="entity"
-					@delete="onDelete(entity)" />
-			</transition-group>
-
-			<!-- TODO: find better wording/icon -->
+			<!-- Loading -->
 			<EmptyContent v-if="loading" icon="icon-loading">
 				{{ t('contacts', 'Loading …') }}
 			</EmptyContent>
 
-			<!-- TODO: find better wording/icon -->
-			<EmptyContent v-else-if="dataSet.length === 0" icon="">
-				{{ t('contacts', 'List is empty') }}
-			</EmptyContent>
+			<template v-else>
+				<!-- Picked entities -->
+				<transition-group
+					v-if="Object.keys(selectionSet).length > 0"
+					name="zoom"
+					tag="ul"
+					class="entity-picker__selection">
+					<EntityBubble
+						v-for="entity in selectionSet"
+						:key="entity.key || `entity-${entity.type}-${entity.id}`"
+						v-bind="entity"
+						@delete="onDelete(entity)" />
+				</transition-group>
 
-			<!-- Searched & picked entities -->
-			<VirtualList v-else-if="searchSet.length > 0 && availableEntities.length > 0"
-				class="entity-picker__options"
-				data-key="id"
-				:data-sources="availableEntities"
-				:data-component="EntitySearchResult"
-				:estimate-size="44"
-				:extra-props="{selection, onClick: onPick}" />
+				<!-- No recommendations -->
+				<EmptyContent v-if="dataSet.length === 0" icon="icon-search">
+					{{ t('contacts', 'Search for people to add') }}
+				</EmptyContent>
 
-			<EmptyContent v-else-if="searchQuery" icon="icon-search">
-				{{ t('contacts', 'No results') }}
-			</EmptyContent>
+				<!-- Searched & picked entities -->
+				<VirtualList v-else-if="searchSet.length > 0 && availableEntities.length > 0"
+					class="entity-picker__options"
+					data-key="id"
+					:data-sources="availableEntities"
+					:data-component="EntitySearchResult"
+					:estimate-size="44"
+					:extra-props="{ selection: selectionSet, onClick }" />
 
-			<div class="entity-picker__navigation">
-				<button
-					class="navigation__button-left"
-					@click="onCancel">
-					{{ t('contacts', 'Cancel') }}
-				</button>
-				<button
-					:disabled="isEmptySelection"
-					class="navigation__button-right primary"
-					@click="onSubmit">
-					{{ t('contacts', 'Add to group') }}
-				</button>
-			</div>
+				<EmptyContent v-else-if="searchQuery" icon="icon-search">
+					{{ t('contacts', 'No results') }}
+				</EmptyContent>
+
+				<div class="entity-picker__navigation">
+					<button
+						:disabled="loading"
+						class="navigation__button-left"
+						@click="onCancel">
+						{{ t('contacts', 'Cancel') }}
+					</button>
+					<button
+						:disabled="isEmptySelection || loading"
+						class="navigation__button-right primary"
+						@click="onSubmit">
+						{{ confirmLabel }}
+					</button>
+				</div>
+			</template>
 		</div>
 	</modal>
 </template>
 
 <script>
-import Modal from '@nextcloud/vue/dist/Components/Modal'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import debounce from 'debounce'
 import VirtualList from 'vue-virtual-scroll-list'
+import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import Modal from '@nextcloud/vue/dist/Components/Modal'
 
 import EntityBubble from './EntityBubble'
 import EntitySearchResult from './EntitySearchResult'
@@ -138,6 +141,14 @@ export default {
 		dataSet: {
 			type: Array,
 			required: true,
+			validator: data => {
+				data.forEach(source => {
+					if (!source.id || !source.label) {
+						console.error('The following source MUST have a proper id and label key', source)
+					}
+				})
+				return true
+			},
 		},
 
 		/**
@@ -147,17 +158,61 @@ export default {
 			type: String,
 			default: 'label',
 		},
+
+		/**
+		 * Confirm button text
+		 */
+		confirmLabel: {
+			type: String,
+			default: t('contacts', 'Add to group'),
+		},
+
+		/**
+		 * The input will also filter the dataSet based on the label.
+		 * If you are using the search event to inject a different dataSet, you can disable this
+		 */
+		internalSearch: {
+			type: Boolean,
+			default: true,
+		},
+
+		/**
+		 * Override the local management of selection
+		 * You MUST use a sync modifier or the selection will be locked
+		 */
+		selection: {
+			type: Object,
+			default: null,
+		},
 	},
 
 	data() {
 		return {
 			searchQuery: '',
-			selection: {},
+			localSelection: {},
 			EntitySearchResult,
 		}
 	},
 
 	computed: {
+		/**
+		 * If the selection is set externally, let's use it
+		 */
+		selectionSet: {
+			get() {
+				if (this.selection !== null) {
+					return this.selection
+				}
+				return this.localSelection
+			},
+			set(selection) {
+				if (this.selection !== null) {
+					this.$emit('update:selection', selection)
+				}
+				this.localSelection = selection
+			},
+		},
+
 		/**
 		 * Are we handling a single entity type ?
 		 * @returns {boolean}
@@ -171,7 +226,7 @@ export default {
 		 * @returns {boolean}
 		 */
 		isEmptySelection() {
-			return Object.keys(this.selection).length === 0
+			return Object.keys(this.selectionSet).length === 0
 		},
 
 		/**
@@ -192,7 +247,8 @@ export default {
 		 * @returns {Object[]}
 		 */
 		searchSet() {
-			if (this.searchQuery && this.searchQuery.trim !== '') {
+			// If internal search is enabled and we have a search query, filter data set
+			if (this.internalSearch && this.searchQuery && this.searchQuery.trim !== '') {
 				return this.dataSet.filter(entity => {
 					return entity.label.indexOf(this.searchQuery) > -1
 				})
@@ -211,14 +267,24 @@ export default {
 			}
 
 			// Else group by types
-			return this.dataTypes.map(type => [
-				{
-					id: type.id,
-					label: type.label,
-					heading: true,
-				},
-				...this.searchSet.filter(entity => entity.type === type.id),
-			]).flat()
+			return this.dataTypes.map(type => {
+				const dataSet = this.searchSet.filter(entity => entity.type === type.id)
+				const dataList = [
+					{
+						id: type.id,
+						label: type.label,
+						heading: true,
+					},
+					...dataSet,
+				]
+
+				// If no results, hide the type
+				if (dataSet.length === 0) {
+					return []
+				}
+
+				return dataList
+			}).flat()
 		},
 	},
 
@@ -241,32 +307,38 @@ export default {
 			 * Emitted when user submit the form
 			 * @type {Array} the selected entities
 			 */
-			this.$emit('submit', Object.values(this.selection))
+			this.$emit('submit', Object.values(this.selectionSet))
 		},
 
-		onSearch(event) {
+		onSearch: debounce(function() {
 			/**
 			 * Emitted when search change
 			 * @type {string} the search query
 			 */
 			this.$emit('search', this.searchQuery)
-		},
+		}, 200),
 
 		/**
 		 * Remove entity from selection
 		 * @param {Object} entity the entity to remove
 		 */
 		onDelete(entity) {
-			this.$delete(this.selection, entity.id, entity)
+			this.$delete(this.selectionSet, entity.id, entity)
 			console.debug('Removing entity from selection', entity)
 		},
 
 		/**
-		 * Add entity from selection
+		 * Add/remove entity from selection
 		 * @param {Object} entity the entity to add
 		 */
-		onPick(entity) {
-			this.$set(this.selection, entity.id, entity)
+		onClick(entity) {
+			if (entity.id in this.selectionSet) {
+				this.$delete(this.selectionSet, entity.id)
+				console.debug('Removed entity to selection', entity)
+				return
+			}
+
+			this.$set(this.selectionSet, entity.id, entity)
 			console.debug('Added entity to selection', entity)
 		},
 
@@ -275,7 +347,7 @@ export default {
 		 * @param {Object} entity the entity to add/remove
 		 */
 		onToggle(entity) {
-			if (entity.id in this.selection) {
+			if (entity.id in this.selectionSet) {
 				this.onDelete(entity)
 			} else {
 				this.onPick(entity)
@@ -312,7 +384,6 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
 	/** This next 2 rules are pretty hacky, with the modal component somehow
 	the margin applied to the content is added to the total modal width,
 	so here we subtract it to the width and height of the content.
@@ -346,9 +417,9 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 		display: flex;
 		overflow-y: auto;
 		align-content: flex-start;
-		justify-content: space-between;
 		flex: 1 0 auto;
 		flex-wrap: wrap;
+		justify-content: flex-start;
 		// half a line height to know there is more lines
 		max-height: 6.5em;
 		padding: $entity-spacing 0;
@@ -357,8 +428,9 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 
 		// Allows 2 per line
 		.entity-picker__bubble {
-			flex: 0 1 50%;
 			max-width: calc(50% - #{$entity-spacing});
+			margin-right: $entity-spacing;
+			margin-bottom: $entity-spacing;
 		}
 	}
 
@@ -381,15 +453,11 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 			margin-left: auto;
 		}
 	}
-
-	&::v-deep &__bubble  {
-		margin-bottom: $entity-spacing;
-	}
 }
 
 // Properly center Entity Picker empty content
-.empty-content {
-	margin: 0;
+::v-deep .empty-content {
+	margin: auto 0 !important;
 }
 
 /** Size full in the modal component doesn't have border radius, this adds

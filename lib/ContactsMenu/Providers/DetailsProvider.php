@@ -28,7 +28,6 @@ use OCP\Contacts\ContactsMenu\IActionFactory;
 use OCP\Contacts\ContactsMenu\IEntry;
 use OCP\Contacts\ContactsMenu\IProvider;
 use OCP\Contacts\IManager;
-use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 
@@ -46,9 +45,6 @@ class DetailsProvider implements IProvider {
 	/** @var IManager */
 	private $manager;
 
-	/** @var IConfig */
-	private $config;
-
 	/**
 	 * @param IURLGenerator $urlGenerator
 	 * @param IActionFactory $actionFactory
@@ -56,13 +52,11 @@ class DetailsProvider implements IProvider {
 	public function __construct(IURLGenerator $urlGenerator,
 								IActionFactory $actionFactory,
 								IL10N $l10n,
-								IManager $manager,
-								IConfig $config) {
+								IManager $manager) {
 		$this->actionFactory = $actionFactory;
 		$this->urlGenerator = $urlGenerator;
 		$this->l10n = $l10n;
 		$this->manager = $manager;
-		$this->config = $config;
 	}
 
 	/**
@@ -111,20 +105,18 @@ class DetailsProvider implements IProvider {
 			return;
 		}
 
-		// We need $this->manager->getAddressbooksUris() to add this function
-		$ncVersion = $this->config->getSystemValue('version', '0.0.0');
-		if (version_compare($ncVersion, '16.0.0', '>=')) {
-			$addressBookUri = $this->getAddressBookUri($entry->getProperty('addressbook-key'));
+		$addressBookUri = $this->getAddressBookUri($entry->getProperty('addressbook-key'));
 
-			$iconUrl = $this->urlGenerator->getAbsoluteURL($this->urlGenerator->imagePath('core', 'actions/info.svg'));
-			$url = $this->l10n->t('All contacts') . '/' . $uid . '~' . $addressBookUri;
+		$iconUrl = $this->urlGenerator->getAbsoluteURL($this->urlGenerator->imagePath('core', 'actions/info.svg'));
 
-			$frontControllerActive = ($this->config->getSystemValue('htaccess.IgnoreFrontController', false) === true || getenv('front_controller_active') === 'true');
-			$contactsUrl = $this->urlGenerator->getAbsoluteURL(($frontControllerActive ? '' : '/index.php') . '/apps/contacts/' . $url);
+		$contactsUrl = $this->urlGenerator->getAbsoluteURL(
+			$this->urlGenerator->linkToRoute('contacts.contacts.direct', [
+				'contact' => $uid . '~' . $addressBookUri
+			])
+		);
 
-			$action = $this->actionFactory->newLinkAction($iconUrl, $this->l10n->t('Details'), $contactsUrl);
-			$action->setPriority(0);
-			$entry->addAction($action);
-		}
+		$action = $this->actionFactory->newLinkAction($iconUrl, $this->l10n->t('Details'), $contactsUrl);
+		$action->setPriority(0);
+		$entry->addAction($action);
 	}
 }

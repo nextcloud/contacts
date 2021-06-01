@@ -23,72 +23,71 @@
   -->
 
 <template>
-	<div class="contact-header-avatar">
-		<div v-click-outside="closeMenu" class="contact-header-avatar__wrapper">
-			<input id="contact-avatar-upload"
-				ref="uploadInput"
-				type="file"
-				class="hidden"
-				accept="image/*"
-				@change="processFile">
+	<div v-click-outside="closeMenu" class="contact-header-avatar__wrapper">
+		<input id="contact-avatar-upload"
+			ref="uploadInput"
+			type="file"
+			class="hidden"
+			accept="image/*"
+			@change="processFile">
 
-			<!-- Avatar display -->
-			<div v-if="contact.photo"
-				:style="{ 'backgroundImage': `url(${contact.photoUrl})` }"
-				class="contact-header-avatar__photo"
-				@click="toggleModal" />
-			<Avatar v-else
-				:disable-tooltip="true"
-				:display-name="contact.displayName"
-				:is-no-user="true"
-				:size="75"
-				class="contact-header-avatar__photo" />
+		<!-- Avatar display -->
+		<div v-if="contact.photo"
+			:style="{ 'backgroundImage': `url(${contact.photoUrl})` }"
+			class="contact-header-avatar__photo"
+			@click="toggleModal" />
+		<Avatar v-else
+			:disable-tooltip="true"
+			:display-name="contact.displayName"
+			:is-no-user="true"
+			:size="75"
+			class="contact-header-avatar__photo" />
 
-			<!-- attention, this menu exists twice in this file -->
-			<Actions
-				v-if="!isReadOnly || contact.photo"
-				:force-menu="true"
-				:open.sync="opened"
-				class="contact-header-avatar__menu"
-				default-icon="icon-picture-force-white">
-				<template v-if="!isReadOnly">
-					<ActionButton
-						icon="icon-upload"
-						@click.stop.prevent="selectFileInput">
-						{{ t('contacts', 'Upload a new picture') }}
-					</ActionButton>
-					<ActionButton
-						icon="icon-folder"
-						@click="selectFilePicker">
-						{{ t('contacts', 'Choose from Files') }}
-					</ActionButton>
-					<ActionButton
-						v-for="network in supportedSocial"
-						:key="network"
-						:icon="'icon-' + network.toLowerCase()"
-						@click="getSocialAvatar(network)">
-						{{ t('contacts', 'Get from ' + network) }}
-					</ActionButton>
-				</template>
+		<!-- attention, this menu exists twice in this file -->
+		<Actions
+			v-if="!isReadOnly || contact.photo"
+			:force-menu="true"
+			:open.sync="opened"
+			class="contact-header-avatar__menu"
+			default-icon="icon-picture-force-white">
+			<template v-if="!isReadOnly">
+				<ActionButton
+					icon="icon-upload"
+					@click.stop.prevent="selectFileInput">
+					{{ t('contacts', 'Upload a new picture') }}
+				</ActionButton>
+				<ActionButton
+					icon="icon-folder"
+					@click="selectFilePicker">
+					{{ t('contacts', 'Choose from Files') }}
+				</ActionButton>
+				<ActionButton
+					v-for="network in supportedSocial"
+					:key="network"
+					:icon="'icon-' + network.toLowerCase()"
+					@click="getSocialAvatar(network)">
+					{{ t('contacts', 'Get from ' + network) }}
+				</ActionButton>
+			</template>
 
-				<template v-if="contact.photo">
-					<!-- FIXME: the link seems to have a bigger font size than the button caption -->
-					<ActionLink
-						:href="`${contact.url}?photo`"
-						icon="icon-download"
-						target="_blank">
-						{{ t('contacts', 'Download picture') }}
-					</ActionLink>
-					<ActionButton
-						v-if="!isReadOnly"
-						icon="icon-delete"
-						@click="removePhoto">
-						{{ t('contacts', 'Delete picture') }}
-					</ActionButton>
-				</template>
-			</Actions>
-		</div>
+			<template v-if="contact.photo">
+				<!-- FIXME: the link seems to have a bigger font size than the button caption -->
+				<ActionLink
+					:href="`${contact.url}?photo`"
+					icon="icon-download"
+					target="_blank">
+					{{ t('contacts', 'Download picture') }}
+				</ActionLink>
+				<ActionButton
+					v-if="!isReadOnly"
+					icon="icon-delete"
+					@click="removePhoto">
+					{{ t('contacts', 'Delete picture') }}
+				</ActionButton>
+			</template>
+		</Actions>
 
+		<!-- Big picture display modal -->
 		<Modal v-if="maximizeAvatar"
 			ref="modal"
 			:clear-view-delay="-1"
@@ -463,18 +462,11 @@ export default {
 </script>
 <style lang="scss" scoped>
 .contact-header-avatar {
-	position: relative;
-	flex: 1 1 75px;
-	min-width: 75px;
-	max-width: 120px;
-	margin: 10px;
-
 	// Wrap and cut
 	&__wrapper {
 		position: relative;
-		width: 75px;
-		height: 75px;
-		margin-left: auto;
+		width: var(--avatar-size);
+		height: var(--avatar-size);
 	}
 	&__background {
 		z-index: 0;

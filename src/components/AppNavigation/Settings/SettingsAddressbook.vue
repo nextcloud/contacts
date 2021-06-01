@@ -41,8 +41,8 @@
 			<!-- copy addressbook link -->
 			<ActionLink
 				:href="addressbook.url"
-				:icon="copyLoading ? 'icon-loading-small' : 'icon-public'"
-				@click.stop.prevent="copyLink">
+				:icon="copyLinkIcon"
+				@click.stop.prevent="copyToClipboard(addressbookUrl)">
 				{{ copyButtonText }}
 			</ActionLink>
 
@@ -99,7 +99,9 @@ import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
 import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
 import ShareAddressBook from './SettingsAddressbookShare'
-import { showError, showSuccess } from '@nextcloud/dialogs'
+import { showError } from '@nextcloud/dialogs'
+
+import CopyToClipboardMixin from '../../../mixins/CopyToClipboardMixin'
 
 export default {
 	name: 'SettingsAddressbook',
@@ -113,6 +115,8 @@ export default {
 		ShareAddressBook,
 	},
 
+	mixins: [CopyToClipboardMixin],
+
 	props: {
 		addressbook: {
 			type: Object,
@@ -121,11 +125,9 @@ export default {
 			},
 		},
 	},
+
 	data() {
 		return {
-			copied: false,
-			copyLoading: false,
-			copySuccess: false,
 			deleteAddressbookLoading: false,
 			editingName: false,
 			menuOpen: false,
@@ -134,6 +136,7 @@ export default {
 			toggleEnabledLoading: false,
 		}
 	},
+
 	computed: {
 		enabled() {
 			return this.addressbook.enabled
@@ -147,6 +150,7 @@ export default {
 		hasMultipleAddressbooks() {
 			return this.addressbooks.length > 1
 		},
+
 		// info tooltip about number of shares
 		sharedWithTooltip() {
 			return this.hasShares
@@ -158,6 +162,7 @@ export default {
 					})
 				: '' // disable the tooltip
 		},
+
 		copyButtonText() {
 			if (this.copied) {
 				return this.copySuccess
@@ -165,6 +170,10 @@ export default {
 					: t('contacts', 'Cannot copy')
 			}
 			return t('contacts', 'Copy link')
+		},
+
+		addressbookUrl() {
+			return window.location.origin + this.addressbook.url
 		},
 	},
 	watch: {
@@ -249,30 +258,6 @@ export default {
 				this.renameLoading = false
 				// close popover menu
 				this.menuOpen = false
-			}
-		},
-		async copyLink(event) {
-			// change to loading status
-			this.copyLoading = true
-
-			// copy link for addressbook to clipboard
-			try {
-				await this.$copyText(window.location.origin + this.addressbook.url)
-				this.copySuccess = true
-				this.copied = true
-				// Notify addressbook was copied
-				showSuccess(t('contacts', 'Address book copied to clipboard'))
-			} catch (error) {
-				this.copySuccess = false
-				this.copied = true
-				showError(t('contacts', 'Address book was not copied to clipboard.'))
-			} finally {
-				this.copyLoading = false
-				setTimeout(() => {
-					// stop loading status regardless of outcome
-					this.copied = false
-					this.copySuccess = false
-				}, 2000)
 			}
 		},
 	},

@@ -1,0 +1,255 @@
+<!--
+	- @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
+	-
+	- @author John Molakvoæ <skjnldsv@protonmail.com>
+	-
+	- @license GNU AGPL version 3 or any later version
+	-
+	- This program is free software: you can redistribute it and/or modify
+	- it under the terms of the GNU Affero General Public License as
+	- published by the Free Software Foundation, either version 3 of the
+	- License, or (at your option) any later version.
+	-
+	- This program is distributed in the hope that it will be useful,
+	- but WITHOUT ANY WARRANTY; without even the implied warranty of
+	- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+	- GNU Affero General Public License for more details.
+	-
+	- You should have received a copy of the GNU Affero General Public License
+	- along with this program. If not, see <http://www.gnu.org/licenses/>.
+	-
+	-->
+
+<template>
+	<AppContentDetails>
+		<!-- contact header -->
+		<DetailsHeader>
+			<!-- avatar and upload photo -->
+			<template #avatar="{avatarSize}">
+				<Avatar
+					:disable-tooltip="true"
+					:display-name="circle.displayName"
+					:is-no-user="true"
+					:size="avatarSize" />
+			</template>
+
+			<!-- display name -->
+			<input
+				slot="title"
+				v-model="circle.displayName"
+				:readonly="!circle.isOwner"
+				:placeholder="t('contacts', 'Circle name')"
+				type="text"
+				autocomplete="off"
+				autocorrect="off"
+				spellcheck="false"
+				name="displayname"
+				@input="onDisplayNameChangeDebounce">
+
+			<!-- org, title -->
+			<template v-if="!circle.isOwner" #subtitle>
+				{{ t('contacts', 'Circle owned by {owner}', { owner: circle.owner.displayName}) }}
+			</template>
+		</DetailsHeader>
+
+		<section class="circle-details-section">
+			<!-- copy circle link -->
+			<a class="circle-details__action-copy-link button"
+				:href="circleUrl"
+				:class="copyLinkIcon"
+				@click.stop.prevent="copyToClipboard(circleUrl)">
+				{{ copyButtonText }}
+			</a>
+		</section>
+
+		<section v-if="showDescription" class="circle-details-section">
+			<ContentHeading :loading="loadingDescription">
+				{{ t('contacts', 'Description') }}
+			</ContentHeading>
+
+			<RichContenteditable
+				:value.sync="circle.description"
+				:auto-complete="onAutocomplete"
+				:maxlength="1024"
+				:multiline="true"
+				:contenteditable="circle.isOwner"
+				:placeholder="descriptionPlaceholder"
+				class="circle-details-section__description"
+				@update:value="onDescriptionChangeDebounce" />
+		</section>
+
+		<section v-if="circle.isOwner" class="circle-details-section">
+			<CircleConfigs class="circle-details-section__configs" :circle="circle" />
+		</section>
+
+		<section v-else>
+			<slot />
+		</section>
+
+		<section class="circle-details-section">
+			<!-- leave circle -->
+			<button v-if="circle.canLeave"
+				class="circle-details__action-copy-link"
+				@click="confirmLeaveCircle">
+				<Logout slot="icon"
+					:size="16"
+					decorative />
+				{{ t('contacts', 'Leave circle') }}
+			</button>
+
+			<!-- delete circle -->
+			<button v-if="circle.canDelete"
+				class="circle-details__action-delete icon-delete-white"
+				href="#"
+				@click.prevent.stop="confirmDeleteCircle">
+				{{ t('contacts', 'Delete circle') }}
+			</button>
+		</section>
+	</AppContentDetails>
+</template>
+
+<script>
+import { showError } from '@nextcloud/dialogs'
+import debounce from 'debounce'
+
+import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails'
+import Avatar from '@nextcloud/vue/dist/Components/Avatar'
+import RichContenteditable from '@nextcloud/vue/dist/Components/RichContenteditable'
+
+import Logout from 'vue-material-design-icons/Logout'
+
+import { CircleEdit, editCircle } from '../services/circles.ts'
+import CircleActionsMixin from '../mixins/CircleActionsMixin'
+import DetailsHeader from './DetailsHeader'
+import CircleConfigs from './CircleDetails/CircleConfigs'
+import ContentHeading from './CircleDetails/ContentHeading'
+
+export default {
+	name: 'CircleDetails',
+
+	components: {
+		AppContentDetails,
+		Avatar,
+		CircleConfigs,
+		ContentHeading,
+		DetailsHeader,
+		Logout,
+		RichContenteditable,
+	},
+
+	mixins: [CircleActionsMixin],
+
+	data() {
+		return {
+			loadingDescription: false,
+		}
+	},
+
+	computed: {
+		descriptionPlaceholder() {
+			if (this.circle.description.trim() === '') {
+				return t('contacts', 'There is no description for this circle')
+			}
+			return t('contacts', 'Enter a description for the circle')
+		},
+
+		isEmptyDescription() {
+			return this.circle.description.trim() === ''
+		},
+
+		showDescription() {
+			if (this.circle.isOwner) {
+				return true
+			}
+			return !this.isEmptyDescription
+		},
+	},
+
+	methods: {
+		/**
+		 * Autocomplete @mentions on the description
+		 * @param {string} search the search term
+		 * @param {Function} callback callback to be called with results array
+		 */
+		onAutocomplete(search, callback) {
+			// TODO: implement autocompletion. Disabled for now
+			// eslint-disable-next-line node/no-callback-literal
+			callback([])
+		},
+
+		onDescriptionChangeDebounce: debounce(function() {
+			this.onDescriptionChange(...arguments)
+		}, 500),
+		async onDescriptionChange(description) {
+			this.loadingDescription = true
+			try {
+				await editCircle(this.circle.id, CircleEdit.Description, description)
+			} catch (error) {
+				console.error('Unable to edit circle description', description, error)
+				showError(t('contacts', 'An error happened during description sync'))
+			} finally {
+				this.loadingDescription = false
+			}
+		},
+
+		onDisplayNameChangeDebounce: debounce(function(event) {
+			this.onDisplayNameChange(event.target.value)
+		}, 500),
+		async onDisplayNameChange(description) {
+			this.loadingDescription = true
+			try {
+				await editCircle(this.circle.id, CircleEdit.Description, description)
+			} catch (error) {
+				console.error('Unable to edit circle description', description, error)
+				showError(t('contacts', 'An error happened during description sync'))
+			} finally {
+				this.loadingDescription = false
+			}
+		},
+	},
+}
+</script>
+
+<style lang="scss" scoped>
+.circle-details-section {
+	&:not(:first-of-type) {
+		margin-top: 24px;
+	}
+
+	&__description {
+		max-width: 800px;
+	}
+}
+
+// TODO: replace by button component when available
+button,
+.circle-details__action-copy-link {
+	height: 44px;
+	display: inline-flex;
+	justify-content: center;
+	align-items: center;
+	text-align: left;
+	span {
+		margin-right: 10px;
+	}
+
+	&[class*='icon-'] {
+		padding-left: 44px;
+		background-position: 16px center;
+
+	}
+}
+
+.circle-details__action-delete {
+	background-color: var(--color-error);
+	color: white;
+	border-width: 2px;
+	border-color: var(--color-error) !important;
+
+	&:hover,
+	&:focus {
+		background-color: var(--color-main-background);
+		color: var(--color-error);
+	}
+}
+</style>

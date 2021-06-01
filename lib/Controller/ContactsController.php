@@ -61,4 +61,19 @@ class ContactsController extends Controller {
 		);
 		return new RedirectResponse($url);
 	}
+
+
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 *
+	 * Open and find direct circle
+	 * @param string $uuid
+	 */
+	public function directCircle(string $singleId): RedirectResponse {
+		$url = $this->urlGenerator->getAbsoluteURL(
+			$this->urlGenerator->linkToRoute('contacts.page.index') . 'circle/' . $singleId
+		);
+		return new RedirectResponse($url);
+	}
 }

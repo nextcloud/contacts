@@ -1,8 +1,20 @@
 module.exports = {
 	globals: {
-		appVersion: true
+		appVersion: true,
 	},
-	extends: [
-		'@nextcloud'
-	]
+
+	plugins: ['import'],
+	extends: ['@nextcloud'],
+
+	settings: {
+		'import/parsers': {
+			'@typescript-eslint/parser': ['.ts', '.tsx'],
+		},
+		'import/resolver': {
+			typescript: {
+				alwaysTryTypes: true,
+				paths: './tsconfig.json',
+			},
+		},
+	},
 }

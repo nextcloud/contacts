@@ -1,5 +1,5 @@
 <!--
-  - @copyright Copyright (c) 2020 John Molakvoæ <skjnldsv@protonmail.com>
+  - @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
   -
@@ -21,57 +21,32 @@
   -->
 
 <template>
-	<div class="empty-content" role="note">
-		<div class="empty-content__icon" :class="icon" role="img" />
-		<h2 class="empty-content__title">
-			<slot />
-		</h2>
-		<p v-show="$slots.desc" class="empty-content__desc">
-			<slot name="desc" />
-		</p>
-		<div v-show="$slots.action" class="empty-content__action">
-			<slot name="action" />
-		</div>
-	</div>
+	<h3 class="app-content-heading">
+		<slot />
+		<div v-if="loading" class="app-content-heading__loader icon-loading-small" />
+	</h3>
 </template>
 
 <script>
 export default {
-	name: 'EmptyContent',
+	name: 'ContentHeading',
 
 	props: {
-		icon: {
-			type: String,
-			default: 'icon-forms',
+		loading: {
+			type: Boolean,
+			default: false,
 		},
 	},
 }
 </script>
 
-<style lang="scss">
-.empty-content {
-	margin-top: 20vh;
+<style lang="scss" scoped>
+.app-content-heading {
+	font-weight: bold;
 	display: flex;
-	flex-direction: column;
-	align-items: center;
 
-	&__icon {
-		width: 64px;
-		height: 64px;
-		margin: 0 auto 15px;
-		opacity: .4;
-		background-size: 64px;
-		background-repeat: no-repeat;
-		background-position: center;
-	}
-
-	&__title {
-		margin-bottom: 8px;
-	}
-
-	&__desc {
-		margin-bottom: 16px;
+	&__loader {
+		margin-left: 8px;
 	}
 }
-
 </style>

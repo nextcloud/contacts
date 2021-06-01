@@ -29,6 +29,7 @@
 		class="entity-picker__bubble"
 		:class="{'entity-picker__bubble--selected': isSelected}"
 		:display-name="source.label"
+		:user="source.user"
 		:margin="6"
 		:size="44"
 		url="#"
@@ -117,12 +118,15 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 			opacity: 0;
 		}
 
+		// Show checkmark on selected
+		&--selected .entity-picker__bubble-checkmark {
+			opacity: 1;
+		}
+
+		// Show primary bg on hovering entities
 		&--selected,
 		&:hover,
 		&:focus {
-			.entity-picker__bubble-checkmark {
-				opacity: 1;
-			}
 			::v-deep .user-bubble__content {
 				// better visual with light default tint
 				background-color: var(--color-primary-light);
@@ -145,6 +149,11 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 	&, * {
 		// the whole row is clickable,let's force the proper cursor
 		cursor: pointer;
+		user-select: none;
+		-webkit-user-drag: none;
+		-khtml-user-drag: none;
+		-moz-user-drag: none;
+		-o-user-drag: none;
 	}
 }
 

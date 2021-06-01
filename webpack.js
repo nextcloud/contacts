@@ -8,4 +8,12 @@ webpackConfig.plugins.push(...[
 	new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
 ])
 
+webpackConfig.module.rules.push({
+	  test: /\.tsx?$/,
+	  use: 'ts-loader',
+	  exclude: /node_modules/,
+})
+
+webpackConfig.resolve.extensions = ['.js', '.vue', '.ts', '.tsx']
+
 module.exports = webpackConfig
