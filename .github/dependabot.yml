@@ -10,7 +10,7 @@ updates:
   open-pull-requests-limit: 10
   labels:
   - 3. to review
-  - dependencies
+  - "feature: dependencies"
 - package-ecosystem: npm
   directory: "/"
   schedule:
@@ -21,4 +21,4 @@ updates:
   open-pull-requests-limit: 10
   labels:
   - 3. to review
-  - dependencies
+  - "feature: dependencies"
