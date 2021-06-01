@@ -9,7 +9,7 @@ updates:
     timezone: Europe/Paris
   open-pull-requests-limit: 10
   labels:
-  - 3. to review
+  - "3. to review"
   - "feature: dependencies"
 - package-ecosystem: npm
   directory: "/"
@@ -20,5 +20,5 @@ updates:
     timezone: Europe/Paris
   open-pull-requests-limit: 10
   labels:
-  - 3. to review
+  - "3. to review"
   - "feature: dependencies"
