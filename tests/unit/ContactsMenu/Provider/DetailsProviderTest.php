@@ -63,34 +63,15 @@ class DetailsProviderTest extends Base {
 		$this->actionFactory = $this->createMock(IActionFactory::class);
 		$this->l10n = $this->createMock(IL10N::class);
 		$this->manager = $this->createMock(IManager::class);
-		$this->config = $this->createMock(IConfig::class);
 		$this->provider = new DetailsProvider(
 			$this->urlGenerator,
 			$this->actionFactory,
 			$this->l10n,
-			$this->manager,
-			$this->config
+			$this->manager
 		);
 	}
 
-	public function eventProvider() {
-		return [
-			['16.0.0', true, 'https://cloud.example.com/apps/contacts/All contacts/e3a71614-c602-4eb5-9994-47eec551542b~contacts-1'],
-			['16.0.10', false, 'https://cloud.example.com/index.php/apps/contacts/All contacts/e3a71614-c602-4eb5-9994-47eec551542b~contacts-1'],
-			['17.0.0', true, 'https://cloud.example.com/apps/contacts/All contacts/e3a71614-c602-4eb5-9994-47eec551542b~contacts-1'],
-		];
-	}
-
-	/**
-	 * only NC16+ have the contactsmenu integration
-	 * https://github.com/nextcloud/server/pull/13642
-	 *
-	 * @dataProvider eventProvider
-	 * @param string $version
-	 * @param boolean $frontController
-	 * @param string $resultUri
-	 */
-	public function testProcessNC16AndAbove($version, $frontControllerActive, $resultUri) {
+	public function testProcessContact() {
 		$entry = $this->createMock(IEntry::class);
 		$action = $this->createMock(ILinkAction::class);
 		$addressbook = $this->createMock(IAddressBook::class);
@@ -100,19 +81,7 @@ class DetailsProviderTest extends Base {
 		$uid = 'e3a71614-c602-4eb5-9994-47eec551542b';
 		$abUri = 'contacts-1';
 		$iconUrl = 'core/img/actions/info.svg';
-		$defaultGroup = 'All contacts';
-		$index = $frontControllerActive ? '' : '/index.php';
-
-
-		$this->config->expects($this->at(0))
-			 ->method('getSystemValue')
-			 ->with('version', '0.0.0')
-			 ->willReturn($version);
-
-		$this->config->expects($this->at(1))
-			 ->method('getSystemValue')
-			 ->with('htaccess.IgnoreFrontController', false)
-			 ->willReturn($frontControllerActive);
+		$resultUri = "$domain/index.php/apps/contacts/direct/contact/$uid~$abUri";
 
 		$entry->expects($this->exactly(3))
 			  ->method('getProperty')
@@ -140,20 +109,24 @@ class DetailsProviderTest extends Base {
 			 ->with('core', 'actions/info.svg')
 			 ->willReturn($iconUrl);
 
+		//
+		$this->urlGenerator->expects($this->once())
+			 ->method('linkToRoute')
+			 ->with('contacts.contacts.direct', [
+			 	'contact' => $uid . '~' . $abUri
+			 ])
+			 ->willReturn("/apps/contacts/direct/contact/$uid~$abUri");
+
 		// Action icon and contact absolute urls
 		$this->urlGenerator->expects($this->exactly(2))
 			 ->method('getAbsoluteURL')
 			 ->will($this->returnValueMap([
 			 	[$iconUrl, "$domain/$iconUrl"],
-			 	["$index/apps/contacts/$defaultGroup/$uid~$abUri", "$domain$index/apps/contacts/$defaultGroup/$uid~$abUri"]
+			 	["/apps/contacts/direct/contact/$uid~$abUri", $resultUri]
 			 ]));
 
 		// Translations
-		$this->l10n->expects($this->at(0))
-			 ->method('t')
-			 ->with($defaultGroup)
-			 ->willReturn($defaultGroup);
-		$this->l10n->expects($this->at(1))
+		$this->l10n->expects($this->once())
 			 ->method('t')
 			 ->with('Details')
 			 ->willReturnArgument(0);
@@ -170,27 +143,6 @@ class DetailsProviderTest extends Base {
 			  ->with($action);
 
 		$this->provider->process($entry);
-	}
-
-	/**
-	 * NC15 doesn't have the contactsmenu integration
-	 * https://github.com/nextcloud/server/pull/13642
-	 */
-	public function testProcessNC15() {
-		$this->config->expects($this->once())
-			 ->method('getSystemValue')
-			 ->with('version', '0.0.0')
-			 ->willReturn('15.0.0.0');
-
-		$entry = $this->createMock(IEntry::class);
-		$entry->expects($this->exactly(2))
-			  ->method('getProperty')
-			  ->will($this->returnValueMap([
-			  	['UID', 'e3a71614-c602-4eb5-9994-47eec551542b'],
-			  	['isLocalSystemBook', null]
-			  ]));
-
-		$this->assertNull($this->provider->process($entry));
 	}
 
 	public function testProcessNoUID() {
