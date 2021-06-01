@@ -114,8 +114,7 @@
 		"vue-loader": "^15.9.7",
 		"vue-template-compiler": "^2.6.12",
 		"webpack": "^5.38.1",
-		"webpack-cli": "^4.7.0",
-		"webpack-node-externals": "^2.5.2"
+		"webpack-cli": "^4.7.0"
 	},
 	"browserslist": [
 		"extends @nextcloud/browserslist-config"
