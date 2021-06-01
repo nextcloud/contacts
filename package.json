@@ -44,7 +44,7 @@
 		"@nextcloud/moment": "^1.1.1",
 		"@nextcloud/paths": "^1.1.2",
 		"@nextcloud/router": "^2.0.0",
-		"@nextcloud/vue": "^4.0.0-alpha.3",
+		"@nextcloud/vue": "^4.0.0-alpha.4",
 		"b64-to-blob": "^1.2.19",
 		"camelcase": "^5.3.1",
 		"cdav-library": "git+https://github.com/nextcloud/cdav-library.git",
