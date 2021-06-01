@@ -11,6 +11,7 @@ updates:
   labels:
   - "3. to review"
   - "feature: dependencies"
+
 - package-ecosystem: npm
   directory: "/"
   schedule:
