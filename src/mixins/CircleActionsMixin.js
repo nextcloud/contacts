@@ -69,7 +69,7 @@ export default {
 	methods: {
 		confirmLeaveCircle() {
 			OC.dialogs.confirmDestructive(
-				t('contacts', 'You are about to leave {circle}.\n Are you sure ?', {
+				t('contacts', 'You are about to leave {circle}.\nAre you sure ?', {
 					circle: this.circle.displayName,
 				}),
 				t('contacts', 'Please confirm circle leave'),
