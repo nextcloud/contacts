@@ -22,10 +22,7 @@
   -->
 
 <template>
-	<Content app-name="contacts">
-		<!-- go back to list when in details mode -->
-		<AppDetailsToggle v-if="isMobile && selectedContact" @click.native.stop.prevent="showList" />
-
+	<Content :app-name="appName">
 		<!-- new-contact-button + navigation + settings -->
 		<RootNavigation
 			:contacts-list="contactsList"
@@ -73,7 +70,6 @@ import Modal from '@nextcloud/vue/dist/Components/Modal'
 import { showError } from '@nextcloud/dialogs'
 import { VCardTime } from 'ical.js'
 
-import AppDetailsToggle from '../components/AppContent/AppDetailsToggle'
 import CircleContent from '../components/AppContent/CircleContent'
 import ContactsContent from '../components/AppContent/ContactsContent'
 import ContactsPicker from '../components/EntityPicker/ContactsPicker'
@@ -90,7 +86,6 @@ export default {
 	name: 'Contacts',
 
 	components: {
-		AppDetailsToggle,
 		AppNavigationNew,
 		CircleContent,
 		ContactsContent,
@@ -123,6 +118,8 @@ export default {
 
 	data() {
 		return {
+			appName,
+
 			// Let's but the loading state to true if circles is enabled
 			loadingCircles: isCirclesEnabled,
 			loadingContacts: true,
@@ -383,20 +380,6 @@ export default {
 					})
 				}
 			}
-		},
-
-		/**
-		 * Show the list and deselect contact
-		 */
-		showList() {
-			// Reset the selected contact
-			this.$router.push({
-				name: 'contact',
-				params: {
-					selectedGroup: this.selectedGroup,
-					selectedContact: undefined,
-				},
-			})
 		},
 
 		/**
