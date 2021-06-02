@@ -215,7 +215,7 @@ export default {
 		confirmDeletion() {
 			OC.dialogs.confirm(
 				t('contacts', 'This will delete the address book and every contacts within it'),
-				t('contacts', 'Delete {addressbook} ?', { addressbook: this.addressbook.displayName }),
+				t('contacts', 'Delete {addressbook}?', { addressbook: this.addressbook.displayName }),
 				this.deleteAddressbook,
 				true
 			)
