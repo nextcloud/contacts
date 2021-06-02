@@ -1,13 +1,13 @@
 { "translations": {
     "Contacts" : "Kontaktlar",
-    "Invalid image" : "Tasdiqlanmagan tasvir",
-    "Name" : "Ism...",
+    "Loading contacts …" : "Kontakt yuklanmoqda…",
     "Download" : "Yuklab oling",
-    "Delete" : "O'chir",
-    "Cancel" : "Bekor qilish",
     "Groups" : "Guruhlar",
     "Rename" : "Nomni o'zgartiring",
-    "Loading contacts …" : "Kontakt yuklanmoqda…",
+    "Delete" : "O'chir",
+    "Invalid image" : "Tasdiqlanmagan tasvir",
+    "Name" : "Ism...",
+    "Cancel" : "Bekor qilish",
     "Notes" : "Eslatmalar",
     "Unknown" : "Noma'lum"
 },"pluralForm" :"nplurals=1; plural=0;"
