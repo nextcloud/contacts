@@ -80,7 +80,7 @@ export const CIRCLES_MEMBER_TYPES = {
 	[MEMBER_TYPE_CIRCLE]: t('circles', 'Circle'),
 	[MEMBER_TYPE_USER]: t('circles', 'User'),
 	[MEMBER_TYPE_GROUP]: t('circles', 'Group'),
-	[MEMBER_TYPE_MAIL]: t('circles', 'Mail'),
+	[MEMBER_TYPE_MAIL]: t('circles', 'Email'),
 	[MEMBER_TYPE_CONTACT]: t('circles', 'Contact'),
 }
 

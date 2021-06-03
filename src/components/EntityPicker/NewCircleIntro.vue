@@ -58,7 +58,7 @@
 						{{ t('contacts', 'Local circle') }}
 					</CheckboxRadioSwitch>
 					<p>
-						{{ t('contacts', 'This circle will not be shared with the other instances of the GlobalScale') }}
+						{{ t('contacts', 'This circle will not be shared with the other instances of the global scale') }}
 					</p>
 				</template>
 			</div>
