@@ -24,6 +24,7 @@
 
 namespace OCA\Contacts\Controller;
 
+use OC\App\CompareVersion;
 use OCP\App\IAppManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -56,13 +57,17 @@ class PageController extends Controller {
 	/** @var IAppManager */
 	private $appManager;
 
+	/** @var CompareVersion */
+	private $compareVersion;
+
 	public function __construct(IRequest $request,
 								IConfig $config,
 								IInitialStateService $initialStateService,
 								IFactory $languageFactory,
 								IUserSession $userSession,
 								SocialApiService $socialApiService,
-								IAppManager $appManager) {
+								IAppManager $appManager,
+								CompareVersion $compareVersion) {
 		parent::__construct(Application::APP_ID, $request);
 
 		$this->config = $config;
@@ -71,6 +76,7 @@ class PageController extends Controller {
 		$this->userSession = $userSession;
 		$this->socialApiService = $socialApiService;
 		$this->appManager = $appManager;
+		$this->compareVersion = $compareVersion;
 	}
 
 	/**
@@ -95,13 +101,17 @@ class PageController extends Controller {
 		// automated background syncs for social avatars (default: no)
 		$bgSyncEnabledByUser = $this->config->getUserValue($userId, Application::APP_ID, 'enableSocialSync', 'no');
 
+		$isContactsInteractionEnabled = $this->appManager->isEnabledForUser('contactsinteraction') === true;
+		$isCirclesEnabled = $this->appManager->isEnabledForUser('circles') === true;
+		$isCircleVersionCompatible = $this->compareVersion->isCompatible($this->appManager->getAppVersion('circles'), 22);
+
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'locales', $locales);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'defaultProfile', $defaultProfile);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'supportedNetworks', $supportedNetworks);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'allowSocialSync', $syncAllowedByAdmin);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'enableSocialSync', $bgSyncEnabledByUser);
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'isContactsInteractionEnabled', $this->appManager->isEnabledForUser('contactsinteraction') === true);
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'isCirclesEnabled', $this->appManager->isEnabledForUser('circles') === true);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'isContactsInteractionEnabled', $isContactsInteractionEnabled);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'isCirclesEnabled', $isCirclesEnabled && $isCircleVersionCompatible);
 
 		Util::addScript(Application::APP_ID, 'contacts-main');
 		Util::addStyle(Application::APP_ID, 'contacts');

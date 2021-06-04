@@ -214,6 +214,12 @@ export default {
 	mounted() {
 		// Register search
 		this.search = new OCA.Search(this.search, this.resetSearch)
+
+		if (this.isCirclesEnabled) {
+			this.logger.info('Circles frontend enabled')
+		} else {
+			this.logger.info('No compatible version of circles found')
+		}
 	},
 
 	async beforeMount() {
