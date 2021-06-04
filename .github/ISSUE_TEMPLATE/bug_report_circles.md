@@ -1,7 +1,7 @@
 ---
 name: Bug report for circles
 about: Help us improving by reporting a bug for the circles feature of this app
-labels: bug, 0. Needs triage, feature: circles
+labels: "bug, 0. Needs triage, feature: circles"
 ---
 
 <!--
