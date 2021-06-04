@@ -162,16 +162,21 @@ export default {
 			const levels = Object.keys(CIRCLES_MEMBER_LEVELS)
 				// Object.keys returns those as string
 				.map(level => parseInt(level, 10))
-				// we cannot set to a level higher than the current user's level
+				// we cannot set to a level higher or equal than the current user's level
 				.filter(level => level < this.currentUserLevel)
-				// we cannot set to the level this member is already
-				.filter(level => level !== this.source.level)
 
+			// Admins can promote others as Admin too
+			if (this.currentUserLevel === MemberLevels.ADMIN) {
+				levels.push(MemberLevels.ADMIN)
+			}
+
+			// Owners transfer ownership to another member
 			if (this.circle.isOwner) {
 				levels.push(MemberLevels.OWNER)
 			}
 
-			return levels
+			// we cannot set to the level this member is already
+			return levels.filter(level => level !== this.source.level)
 		},
 
 		/**
