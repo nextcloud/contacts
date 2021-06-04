@@ -85,7 +85,7 @@ export default {
 		 * @param {boolean} checked checked or not
 		 */
 		async onChange(config, checked) {
-			console.debug('Circle config', config, 'is set to', checked)
+			this.logger.debug(`Circle config ${config} is set to ${checked}`)
 
 			this.loading = config
 			const prevConfig = this.circle.config

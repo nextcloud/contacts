@@ -26,6 +26,7 @@ import Vue from 'vue'
 import { createCircle, deleteCircle, deleteMember, getCircleMembers, getCircle, getCircles, leaveCircle, addMembers } from '../services/circles.ts'
 import Member from '../models/member.ts'
 import Circle from '../models/circle.ts'
+import logger from '../services/logger'
 
 const state = {
 	/** @type {Object.<string>} Circle */
@@ -55,7 +56,7 @@ const mutations = {
 	 */
 	deleteCircle(state, circle) {
 		if (!(circle.id in state.circles)) {
-			console.warn('Skipping deletion of unknown circle', circle)
+			logger.warn('Skipping deletion of unknown circle', { circle })
 		}
 		Vue.delete(state.circles, circle.id)
 	},
@@ -110,7 +111,7 @@ const actions = {
 	 */
 	async getCircles(context) {
 		const circles = await getCircles()
-		console.debug(`Retrieved ${circles.length} circle(s)`, circles)
+		logger.debug(`Retrieved ${circles.length} circle(s)`, { circles })
 
 		let failure = false
 		circles.forEach(circle => {
@@ -119,7 +120,7 @@ const actions = {
 				context.commit('addCircle', newCircle)
 			} catch (error) {
 				failure = true
-				console.error('This circle failed to be processed', circle, error)
+				logger.error('This circle failed to be processed', { circle, error })
 			}
 		})
 
@@ -139,13 +140,13 @@ const actions = {
 	 */
 	async getCircle(context, circleId) {
 		const circle = await getCircle(circleId)
-		console.debug('Retrieved 1 circle', circle)
+		logger.debug('Retrieved 1 circle', { circle })
 
 		try {
 			const newCircle = new Circle(circle)
 			context.commit('addCircle', newCircle)
 		} catch (error) {
-			console.error('This circle failed to be processed', circle, error)
+			logger.error('This circle failed to be processed', { circle, error })
 		}
 
 		return circle
@@ -161,7 +162,7 @@ const actions = {
 		const circle = context.getters.getCircle(circleId)
 		const members = await getCircleMembers(circleId)
 
-		console.debug(`${circleId} have ${members.length} member(s)`, members)
+		logger.debug(`${circleId} have ${members.length} member(s)`, { members })
 		context.commit('appendMembersToCircle', members.map(member => new Member(member, circle)))
 	},
 
@@ -180,7 +181,7 @@ const actions = {
 			const response = await createCircle(circleName, isPersonal, isLocal)
 			const circle = new Circle(response)
 			context.commit('addCircle', circle)
-			console.debug('Created circle', circleName, circle)
+			logger.debug('Created circle', { circleName, circle })
 			return circle
 		} catch (error) {
 			console.error(error)
@@ -199,7 +200,7 @@ const actions = {
 		try {
 			await deleteCircle(circleId)
 			context.commit('deleteCircle', circle)
-			console.debug('Deleted circle', circleId)
+			logger.debug('Deleted circle', { circleId })
 		} catch (error) {
 			console.error(error)
 			showError(t('contacts', 'Unable to delete circle {circleId}', circleId))
@@ -220,7 +221,7 @@ const actions = {
 		const results = await addMembers(circleId, selection)
 		const members = results.map(member => new Member(member, circle))
 
-		console.debug('Added members to circle', circle, members)
+		logger.debug('Added members to circle', { circle, members })
 		context.commit('appendMembersToCircle', members)
 
 		return members
@@ -244,7 +245,7 @@ const actions = {
 			// If the circle is not visible, we remove it from the list
 			if (!member.circle.isVisible && !member.circle.isMember) {
 				await context.commit('deleteCircle', circle)
-				console.debug('Deleted circle', circleId, memberId)
+				logger.debug('Deleted circle', { circleId, memberId })
 			}
 		} else {
 			await deleteMember(circleId, memberId)
@@ -252,7 +253,7 @@ const actions = {
 
 		// success, let's remove from store
 		context.commit('deleteMemberFromCircle', member)
-		console.debug('Deleted member', circleId, memberId)
+		logger.debug('Deleted member', { circleId, memberId })
 	},
 
 }

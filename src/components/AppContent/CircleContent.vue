@@ -139,15 +139,21 @@ export default {
 	watch: {
 		circle(newCircle) {
 			if (newCircle?.id) {
-				console.debug('Circles list is done loading, fetching members for', newCircle.id)
 				this.fetchCircleMembers(newCircle.id)
 			}
 		},
 	},
 
+	beforeMount() {
+		if (this.circle?.id) {
+			this.fetchCircleMembers(this.circle.id)
+		}
+	},
+
 	methods: {
 		async fetchCircleMembers(circleId) {
 			this.loadingList = true
+			this.logger.debug('Fetching members for', { circleId })
 
 			try {
 				await this.$store.dispatch('getCircleMembers', circleId)

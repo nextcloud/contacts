@@ -314,7 +314,7 @@ export default {
 		createNewGroup(e) {
 			const input = e.target.querySelector('input[type=text]')
 			const groupName = input.value.trim()
-			console.debug('Creating new group', groupName)
+			this.logger.debug('Creating new group', { groupName })
 
 			// Check if already exists
 			if (this.groups.find(group => group.name === groupName)) {
@@ -324,7 +324,7 @@ export default {
 
 			this.createGroupError = null
 
-			console.debug('Created new local group', groupName)
+			this.logger.debug('Created new local group', { groupName })
 			this.$store.dispatch('addGroup', groupName)
 			this.isNewGroupMenuOpen = false
 
@@ -349,7 +349,7 @@ export default {
 			this.isNewCircleModalOpen = true
 		},
 		async createNewCircle(circleName, isPersonal, isLocal) {
-			console.debug('Creating new circle', circleName)
+			this.logger.debug('Creating new circle', { circleName })
 
 			this.createCircleLoading = true
 

@@ -234,7 +234,7 @@ export default {
 		 * @param {Array} selection the selection to add to the circle
 		 */
 		async onPickerPick(selection) {
-			console.info('Adding selection to circle', selection, this.pickerCircle)
+			this.logger.info('Adding selection to circle', { selection, pickerCircle: this.pickerCircle })
 
 			this.pickerLoading = true
 

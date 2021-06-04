@@ -19,8 +19,8 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import Circle from './circle';
 import { MemberLevel, MemberType } from './constants';
+import Circle from './circle';
 export default class Member {
     _data: any;
     _circle: Circle;

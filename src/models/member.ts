@@ -20,9 +20,9 @@
  *
  */
 
-import Circle from './circle'
 import { MemberLevel, MemberLevels, MemberType, MemberTypes } from './constants'
-
+import Circle from './circle'
+import logger from '../services/logger'
 export default class Member {
 
 	_data: any = {}
@@ -38,7 +38,7 @@ export default class Member {
 
 		// if no uid set, fail
 		if (data.id && typeof data.id !== 'string') {
-			console.error('This member do not have a proper uid', data)
+			logger.error('This member do not have a proper uid', data)
 			throw new Error('This member do not have a proper uid')
 		}
 
