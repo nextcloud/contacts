@@ -1,6 +1,6 @@
 ---
-name: Bug report
-about: Help us improving by reporting a bug
+name: Bug report for contacts
+about: Help us improving by reporting a bug for the contacts feature of this app
 labels: bug, 0. Needs triage
 ---
 
