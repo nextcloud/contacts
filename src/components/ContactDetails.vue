@@ -512,7 +512,7 @@ export default {
 			// if we just created the contact, we need to force update the
 			// localContact to match the proper store contact
 			if (!this.localContact.dav) {
-				console.debug('New contact synced!', this.localContact)
+				this.logger.debug('New contact synced!', { localContact: this.localContact })
 				// fetching newly created & storred contact
 				const contact = this.$store.getters.getContact(this.localContact.key)
 				await this.updateLocalContact(contact)
@@ -709,11 +709,11 @@ export default {
 		async cloneContact() {
 			// only one addressbook, let's clone it there
 			if (this.pickedAddressbook && this.addressbooks.find(addressbook => addressbook.id === this.pickedAddressbook.id)) {
-				console.debug('Cloning contact to', this.pickedAddressbook.name)
+				this.logger.debug('Cloning contact to', { name: this.pickedAddressbook.name })
 				await this.copyContactToAddressbook(this.pickedAddressbook.id)
 				this.closePickAddressbookModal()
 			} else if (this.addressbooksOptions.length === 1) {
-				console.debug('Cloning contact to', this.addressbooksOptions[0].name)
+				this.logger.debug('Cloning contact to', { name: this.addressbooksOptions[0].name })
 				await this.copyContactToAddressbook(this.addressbooksOptions[0].id)
 			} else {
 				this.showPickAddressbookModal = true

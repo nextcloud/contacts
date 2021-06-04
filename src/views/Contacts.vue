@@ -225,7 +225,7 @@ export default {
 	async beforeMount() {
 		// get addressbooks then get contacts
 		client.connect({ enableCardDAV: true }).then(() => {
-			console.debug('Connected to dav!', client)
+			this.logger.debug('Connected to dav!', { client })
 			this.$store.dispatch('getAddressbooks')
 				.then((addressbooks) => {
 					const writeableAddressBooks = addressbooks.filter(addressbook => !addressbook.readOnly)

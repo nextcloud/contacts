@@ -80,7 +80,7 @@ export default {
 		},
 		async leaveCircle(confirm) {
 			if (!confirm) {
-				console.debug('Circle leave cancelled')
+				this.logger.debug('Circle leave cancelled')
 				return
 			}
 
@@ -126,7 +126,7 @@ export default {
 		},
 		async deleteCircle(confirm) {
 			if (!confirm) {
-				console.debug('Circle deletion cancelled')
+				this.logger.debug('Circle deletion cancelled')
 				return
 			}
 

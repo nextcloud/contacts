@@ -236,7 +236,7 @@ export default {
 				})
 			} catch (error) {
 				if (error.response.status === 404) {
-					console.debug('Member is not in circle')
+					this.logger.debug('Member is not in circle')
 					return
 				}
 				console.error('Could not delete the member', this.source, error)
