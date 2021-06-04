@@ -145,7 +145,10 @@ export default {
 		 * Trigger the entity picker view
 		 */
 		async addMemberToCircle() {
-			await this.$router.push(this.circle.router)
+			try {
+				// Avoid VueRouter NavigationDuplicated
+				await this.$router.push(this.circle.router)
+			} catch (error) {}
 			emit('contacts:circles:append', this.circle.id)
 		},
 	},
