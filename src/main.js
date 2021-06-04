@@ -28,6 +28,7 @@ import Vue from 'vue'
 import App from './ContactsRoot'
 import router from './router'
 import store from './store'
+import logger from './services/logger'
 
 /** GLOBAL COMPONENTS AND DIRECTIVE */
 import ClickOutside from 'vue-click-outside'
@@ -55,8 +56,10 @@ sync(store, router)
 
 Vue.prototype.t = t
 Vue.prototype.n = n
-// eslint-disable-next-line
+
+Vue.prototype.appName = appName
 Vue.prototype.appVersion = appVersion
+Vue.prototype.logger = logger
 Vue.prototype.OC = OC
 Vue.prototype.OCA = OCA
 
