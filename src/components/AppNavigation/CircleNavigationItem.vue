@@ -34,6 +34,7 @@
 		<template v-else slot="actions">
 			<ActionButton
 				v-if="circle.canManageMembers"
+				:close-after-click="true"
 				icon="icon-add"
 				@click="addMemberToCircle">
 				{{ t('contacts', 'Add member') }}
