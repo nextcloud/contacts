@@ -28,11 +28,13 @@
 		<template slot="actions">
 			<ActionButton
 				icon="icon-add"
+				:close-after-click="true"
 				@click="addContactsToGroup(group)">
 				{{ t('contacts', 'Add contacts') }}
 			</ActionButton>
 			<ActionButton
 				icon="icon-download"
+				:close-after-click="true"
 				@click="downloadGroup(group)">
 				{{ t('contacts', 'Download') }}
 			</ActionButton>
