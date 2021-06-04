@@ -67,12 +67,13 @@
 
 			<div class="entity-picker__navigation">
 				<button
+					:disabled="loading"
 					class="navigation__button-left"
 					@click="onCancel">
 					{{ t('contacts', 'Cancel') }}
 				</button>
 				<button
-					:disabled="isEmptyName"
+					:disabled="isEmptyName || loading"
 					class="navigation__button-right primary"
 					@click="onSubmit">
 					{{ t('contacts', 'Create circle') }}
