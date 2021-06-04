@@ -35,7 +35,9 @@
 
 	<AppContentList v-else :class="{ 'icon-loading': loading, showdetails: showDetails }">
 		<div class="members-list__new">
-			<button class="icon-add" @click="onShowPicker(circle.id)">
+			<button v-if="circle.canManageMembers"
+				class="icon-add"
+				@click="onShowPicker(circle.id)">
 				{{ t('contacts', 'Add members') }}
 			</button>
 			<button v-if="isMobile"
