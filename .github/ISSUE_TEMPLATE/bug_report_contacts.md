@@ -1,7 +1,7 @@
 ---
 name: Bug report for contacts
 about: Help us improving by reporting a bug for the contacts feature of this app
-labels: bug, 0. Needs triage
+labels: bug, 0. Needs triage, feature: contacts
 ---
 
 <!--
