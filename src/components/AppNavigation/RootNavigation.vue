@@ -118,19 +118,26 @@
 					@close="closeNewCircleIntro"
 					@submit="createNewCircle" />
 
-				<!-- Circles -->
-				<CircleNavigationItem
-					v-for="circle in ellipsisCirclesMenu"
-					:key="circle.key"
-					:circle="circle" />
+				<template v-if="circlesMenu.length > 0">
+					<!-- Circles -->
+					<CircleNavigationItem
+						v-for="circle in ellipsisCirclesMenu"
+						:key="circle.key"
+						:circle="circle" />
 
-				<!-- Toggle circles ellipsis -->
-				<AppNavigationItem
-					v-if="circlesMenu.length > ELLIPSIS_COUNT"
-					:title="collapseCirclesTitle"
-					class="app-navigation__collapse"
-					icon=""
-					@click="onToggleCircles" />
+					<!-- Toggle circles ellipsis -->
+					<AppNavigationItem
+						v-if="circlesMenu.length > ELLIPSIS_COUNT"
+						:title="collapseCirclesTitle"
+						class="app-navigation__collapse"
+						icon=""
+						@click="onToggleCircles" />
+				</template>
+
+				<p v-else-if="!loading"
+					class="app-navigation__circle-desc">
+					{{ CIRCLE_DESC }}
+				</p>
 			</template>
 		</template>
 
@@ -144,7 +151,7 @@
 </template>
 
 <script>
-import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT } from '../../models/constants.ts'
+import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC } from '../../models/constants.ts'
 
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
@@ -201,6 +208,7 @@ export default {
 
 	data() {
 		return {
+			CIRCLE_DESC,
 			ELLIPSIS_COUNT,
 			GROUP_ALL_CONTACTS,
 			GROUP_NO_GROUP_CONTACTS,
@@ -380,13 +388,19 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$caption-padding: 22px;
+
 #newgroup,
 #newcircle {
-	margin-top: 22px;
+	margin-top: $caption-padding;
 
 	::v-deep a {
 		color: var(--color-text-maxcontrast)
 	}
+}
+
+.app-navigation__circle-desc {
+	margin: 0 $caption-padding;
 }
 
 .app-navigation__collapse ::v-deep a {
