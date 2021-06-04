@@ -40,15 +40,17 @@
 				<p> {{ t('contacts', 'Circles allow you to create groups with other users on a Nextcloud instance and share with them.') }}</p>
 				<br>
 
-				<!-- Personal circle -->
-				<CheckboxRadioSwitch
-					:checked.sync="isPersonal"
-					:disabled="loading !== false">
-					{{ t('contacts', 'Personal circle') }}
-				</CheckboxRadioSwitch>
-				<p>
-					{{ t('contacts', 'This circle will not be allowed to be added as member of another circle') }}
-				</p>
+				<!-- Personal circle, TODO: IMPLEMENT -->
+				<template v-if="false">
+					<CheckboxRadioSwitch
+						:checked.sync="isPersonal"
+						:disabled="loading !== false">
+						{{ t('contacts', 'Personal circle') }}
+					</CheckboxRadioSwitch>
+					<p>
+						{{ t('contacts', 'This circle will only be visible to you. Other members will not be able to see or use it.') }}
+					</p>
+				</template>
 
 				<!-- Local circle -->
 				<template v-if="isGlobalScale">
