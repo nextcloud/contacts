@@ -61,6 +61,8 @@ const MEMBER_TYPE_MAIL: MemberType = 4
 const MEMBER_TYPE_CONTACT: MemberType = 8
 const MEMBER_TYPE_CIRCLE: MemberType = 16
 
+export const CIRCLE_DESC = t('contacts', 'Circles allow you to create groups with other users on a Nextcloud instance and share with them.')
+
 // Circles config flags
 const CIRCLE_CONFIG_SYSTEM: CircleConfig = 4				// System Circle (not managed by the official front-end). Meaning some config are limited
 const CIRCLE_CONFIG_VISIBLE: CircleConfig = 8				// Visible to everyone, if not visible, people have to know its name to be able to find it

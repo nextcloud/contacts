@@ -37,7 +37,7 @@
 			</div>
 
 			<div class="entity-picker__content">
-				<p> {{ t('contacts', 'Circles allow you to create groups with other users on a Nextcloud instance and share with them.') }}</p>
+				<p> {{ CIRCLE_DESC }}</p>
 				<br>
 
 				<!-- Personal circle -->
@@ -85,6 +85,8 @@ import { getCapabilities } from '@nextcloud/capabilities'
 import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/CheckboxRadioSwitch'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 
+import { CIRCLE_DESC } from '../../models/constants.ts'
+
 export default {
 	name: 'NewCircleIntro',
 
@@ -105,6 +107,8 @@ export default {
 			circleName: '',
 			isPersonal: false,
 			isLocal: false,
+
+			CIRCLE_DESC,
 		}
 	},
 

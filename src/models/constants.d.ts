@@ -28,6 +28,7 @@ export declare const GROUP_NO_GROUP_CONTACTS: string;
 export declare const GROUP_RECENTLY_CONTACTED: string;
 export declare const ROUTE_CIRCLE = "circle";
 export declare const ELLIPSIS_COUNT = 5;
+export declare const CIRCLE_DESC: string;
 export declare const CIRCLES_MEMBER_TYPES: {
     [x: number]: string;
 };
