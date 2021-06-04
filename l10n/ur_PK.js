@@ -11,11 +11,11 @@ OC.L10N.register(
     "Title" : "عنوان",
     "Cancel" : "منسوخ کریں",
     "Close" : "بند ",
+    "Email" : "email",
     "Notes" : "Notes",
     "Location" : "مقام",
     "Work" : "کام",
     "Other" : "دیگر",
-    "Birthday" : "سالگرہ",
-    "Email" : "email"
+    "Birthday" : "سالگرہ"
 },
 "nplurals=2; plural=(n != 1);");

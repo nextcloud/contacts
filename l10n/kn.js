@@ -14,11 +14,11 @@ OC.L10N.register(
     "Cancel" : "﻿ರದ್ದು",
     "Close" : "ಮುಚ್ಚು",
     "Import" : "ಆಮದು",
+    "Email" : "﻿ಇ-ಅಂಚೆ",
     "Notes" : "Notes",
     "Home" : "﻿ಮುಖಪುಟ",
     "Other" : "﻿ಇತರೆ",
     "Address" : "ವಿಳಾಸ",
-    "Email" : "﻿ಇ-ಅಂಚೆ",
     "None" : "﻿ಯಾವುದೂ ಇಲ್ಲ"
 },
 "nplurals=2; plural=(n > 1);");

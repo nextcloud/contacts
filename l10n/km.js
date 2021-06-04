@@ -17,13 +17,13 @@ OC.L10N.register(
     "Close" : "បិទ",
     "Import" : "នាំយកចូល",
     "Not grouped" : "គ្មាន​ក្រុម",
+    "Email" : "អ៊ីមែល",
     "Notes" : "កំណត់​ចំណាំ",
     "Location" : "ទីតាំង",
     "Work" : "ធ្វើការ",
     "Other" : "ផ្សេងៗ",
     "Address" : "អាសយដ្ឋាន",
     "Birthday" : "ថ្ងៃ​កំណើត",
-    "Email" : "អ៊ីមែល",
     "None" : "គ្មាន"
 },
 "nplurals=1; plural=0;");

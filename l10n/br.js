@@ -23,6 +23,7 @@ OC.L10N.register(
     "No results" : "Disoc'h ebet",
     "Close" : "Seriñ",
     "Import" : "Emporzhiañ ",
+    "Email" : "Postel",
     "Website" : "Lec'hien web",
     "Home" : "Degemer",
     "Work" : "Labour",
@@ -30,7 +31,6 @@ OC.L10N.register(
     "Address" : "Chom-lec'h",
     "City" : "Ker",
     "Country" : "Bro",
-    "Email" : "Postel",
     "None" : "Hini ebet",
     "Unknown" : "Dianv"
 },

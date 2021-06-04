@@ -16,6 +16,7 @@ OC.L10N.register(
     "Cancel" : "ընդհատել",
     "Close" : "Փակել",
     "Import" : "Ներմուծում",
+    "Email" : "Էլ. հասցե",
     "Nickname" : "Մականուն",
     "Notes" : "Նոթեր",
     "Location" : "Տեղակայություն",
@@ -24,7 +25,6 @@ OC.L10N.register(
     "City" : "Քաղաք",
     "Country" : "Երկիր",
     "Birthday" : "Ծննդյան օր",
-    "Email" : "Էլ. հասցե",
     "Relative" : "Հարաբերական",
     "Unknown" : "Անհայտ"
 },

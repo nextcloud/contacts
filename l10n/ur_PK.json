@@ -9,11 +9,11 @@
     "Title" : "عنوان",
     "Cancel" : "منسوخ کریں",
     "Close" : "بند ",
+    "Email" : "email",
     "Notes" : "Notes",
     "Location" : "مقام",
     "Work" : "کام",
     "Other" : "دیگر",
-    "Birthday" : "سالگرہ",
-    "Email" : "email"
+    "Birthday" : "سالگرہ"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

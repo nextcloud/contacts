@@ -14,6 +14,7 @@
     "Cancel" : "ընդհատել",
     "Close" : "Փակել",
     "Import" : "Ներմուծում",
+    "Email" : "Էլ. հասցե",
     "Nickname" : "Մականուն",
     "Notes" : "Նոթեր",
     "Location" : "Տեղակայություն",
@@ -22,7 +23,6 @@
     "City" : "Քաղաք",
     "Country" : "Երկիր",
     "Birthday" : "Ծննդյան օր",
-    "Email" : "Էլ. հասցե",
     "Relative" : "Հարաբերական",
     "Unknown" : "Անհայտ"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

@@ -18,6 +18,7 @@ OC.L10N.register(
     "Close" : "Bağla",
     "Import" : "Əlavə et",
     "Not grouped" : "Qruplaşdırılmayıb",
+    "Email" : "Email",
     "Notes" : "Qeydlər",
     "Location" : "Yerləşdiyiniz ünvan",
     "Home" : "Ev",
@@ -25,7 +26,6 @@ OC.L10N.register(
     "Other" : "Digər",
     "Address" : "Ünvan",
     "Birthday" : "Ad günü",
-    "Email" : "Email",
     "None" : "Heç bir"
 },
 "nplurals=2; plural=(n != 1);");
