@@ -126,6 +126,7 @@
     "Add {type}" : "添加  {类型}",
     "New circle name" : "新的圈子名称",
     "Personal circle" : "个人圈子",
+    "This circle will only be visible to you. Other members will not be able to see or use it." : "这个圈子仅对你可见。其他成员无法看见或使用它",
     "Local circle" : "本地圈子",
     "This circle will not be shared with the other instances of the global scale" : "这个圈子不会与 GlobalScale 的其他实例共享 ",
     "Create circle" : "创建圈子",
