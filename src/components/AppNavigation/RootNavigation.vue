@@ -173,6 +173,7 @@ import isCirclesEnabled from '../../services/isCirclesEnabled'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled'
 
 import RouterMixin from '../../mixins/RouterMixin'
+import { showError } from '@nextcloud/dialogs'
 
 export default {
 	name: 'RootNavigation',
@@ -363,22 +364,27 @@ export default {
 
 			// Check if already exists
 			if (this.circles.find(circle => circle.name === circleName)) {
-				this.createGroupError = t('contacts', 'This circle already exists')
+				this.createCircleError = t('contacts', 'This circle already exists')
 				return
 			}
-
 			this.createCircleError = null
 
-			const circle = await this.$store.dispatch('createCircle', { circleName, isPersonal, isLocal })
-			this.closeNewCircleIntro()
+			try {
+				const circle = await this.$store.dispatch('createCircle', { circleName, isPersonal, isLocal })
+				this.closeNewCircleIntro()
 
-			// Select group
-			this.$router.push({
-				name: 'circle',
-				params: {
-					selectedCircle: circle.id,
-				},
-			})
+				// Select group
+				this.$router.push({
+					name: 'circle',
+					params: {
+						selectedCircle: circle.id,
+					},
+				})
+			} catch (error) {
+				showError(t('contacts', 'An error happened during the creation of the circle'))
+			} finally {
+				this.createCircleLoading = false
+			}
 		},
 		closeNewCircleIntro() {
 			this.isNewCircleModalOpen = false
