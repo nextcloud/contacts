@@ -101,9 +101,11 @@ class PageController extends Controller {
 		// automated background syncs for social avatars (default: no)
 		$bgSyncEnabledByUser = $this->config->getUserValue($userId, Application::APP_ID, 'enableSocialSync', 'no');
 
+		$circleVersion = $this->appManager->getAppVersion('circles');
 		$isContactsInteractionEnabled = $this->appManager->isEnabledForUser('contactsinteraction') === true;
 		$isCirclesEnabled = $this->appManager->isEnabledForUser('circles') === true;
-		$isCircleVersionCompatible = $this->compareVersion->isCompatible($this->appManager->getAppVersion('circles'), 22);
+		// if circles is not installed, we use 0.0.0
+		$isCircleVersionCompatible = $this->compareVersion->isCompatible($circleVersion ? $circleVersion : '0.0.0', 22);
 
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'locales', $locales);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'defaultProfile', $defaultProfile);
