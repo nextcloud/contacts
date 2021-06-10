@@ -80,7 +80,7 @@
 				</button>
 			</div>
 		</div>
-	</modal>
+	</Modal>
 </template>
 
 <script>
