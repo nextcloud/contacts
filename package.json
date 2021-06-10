@@ -60,7 +60,7 @@
 		"regenerator-runtime": "^0.13.7",
 		"string-natural-compare": "^3.0.1",
 		"uuid": "^8.3.2",
-		"vue": "^2.6.13",
+		"vue": "^2.6.14",
 		"vue-click-outside": "^1.1.0",
 		"vue-clipboard2": "^0.3.1",
 		"vue-masonry": "^0.13.0",
@@ -112,7 +112,7 @@
 		"typescript": "^4.3.2",
 		"url-loader": "^4.1.1",
 		"vue-loader": "^15.9.7",
-		"vue-template-compiler": "^2.6.13",
+		"vue-template-compiler": "^2.6.14",
 		"webpack": "^5.38.1",
 		"webpack-cli": "^4.7.2"
 	},
