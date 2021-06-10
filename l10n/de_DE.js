@@ -40,6 +40,7 @@ OC.L10N.register(
     "Collapse circles" : "Kreise einklappen",
     "This group already exists" : "Diese Gruppe existiert bereits",
     "This circle already exists" : "Dieser Kreis existiert bereits",
+    "An error happened during the creation of the circle" : "Es ist ein Fehler beim Erstellen des Kreises aufgetreten.",
     "Rename" : "Umbenennen",
     "Enabled" : "Aktiviert",
     "Disabled" : "Deaktiviert",

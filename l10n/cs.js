@@ -40,6 +40,7 @@ OC.L10N.register(
     "Collapse circles" : "Sbalit okruhy",
     "This group already exists" : "Tato skupina už existuje",
     "This circle already exists" : "Takto nazvaný okruh už existuje",
+    "An error happened during the creation of the circle" : "V průběhu vytváření okruhu došlo k chybě",
     "Rename" : "Přejmenovat",
     "Enabled" : "Zapnuto",
     "Disabled" : "Vypnuto",

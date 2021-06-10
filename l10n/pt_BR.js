@@ -40,6 +40,7 @@ OC.L10N.register(
     "Collapse circles" : "Recolher círculos",
     "This group already exists" : "Este grupo já existe",
     "This circle already exists" : "Este círculo já existe",
+    "An error happened during the creation of the circle" : "Ocorreu um erro durante a criação do círculo ",
     "Rename" : "Renomear",
     "Enabled" : "Ativado",
     "Disabled" : "Desativado",

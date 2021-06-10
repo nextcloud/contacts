@@ -40,6 +40,7 @@ OC.L10N.register(
     "Collapse circles" : "Zwiń kręgi",
     "This group already exists" : "Ta grupa już istnieje",
     "This circle already exists" : "Ten krąg już istnieje",
+    "An error happened during the creation of the circle" : "Wystąpił błąd podczas tworzenia kręgu",
     "Rename" : "Zmień nazwę",
     "Enabled" : "Włączone",
     "Disabled" : "Wyłączone",
