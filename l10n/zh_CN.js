@@ -40,6 +40,7 @@ OC.L10N.register(
     "Collapse circles" : "折叠圈子",
     "This group already exists" : "该群组已存在",
     "This circle already exists" : "这个圈子已经存在",
+    "An error happened during the creation of the circle" : "创建圈子时发生一个错误",
     "Rename" : "重命名",
     "Enabled" : "已启用",
     "Disabled" : "已禁用",
