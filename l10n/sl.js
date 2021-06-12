@@ -114,6 +114,7 @@ OC.L10N.register(
     "No results" : "Ni zadetkov",
     "Add to group" : "Dodaj skupino",
     "Add {type}" : "Dodaj {type}",
+    "New circle name" : "Ime novega kroga",
     "Local circle" : "Krajevni krog",
     "Create circle" : "Ustvari krog",
     "Loading members list …" : "Poteka nalaganje seznama članov ...",
