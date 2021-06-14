@@ -44,7 +44,7 @@
 				autocorrect="off"
 				spellcheck="false"
 				name="displayname"
-				@input="onDisplayNameChangeDebounce">
+				@input="onNameChangeDebounce">
 
 			<!-- org, title -->
 			<template v-if="!circle.isOwner" #subtitle>
@@ -192,18 +192,15 @@ export default {
 			}
 		},
 
-		onDisplayNameChangeDebounce: debounce(function(event) {
-			this.onDisplayNameChange(event.target.value)
+		onNameChangeDebounce: debounce(function(event) {
+			this.onNameChange(event.target.value)
 		}, 500),
-		async onDisplayNameChange(description) {
-			this.loadingDescription = true
+		async onNameChange(name) {
 			try {
-				await editCircle(this.circle.id, CircleEdit.Description, description)
+				await editCircle(this.circle.id, CircleEdit.Name, name)
 			} catch (error) {
-				console.error('Unable to edit circle description', description, error)
-				showError(t('contacts', 'An error happened during description sync'))
-			} finally {
-				this.loadingDescription = false
+				console.error('Unable to edit circle name', name, error)
+				showError(t('contacts', 'An error happened during name sync'))
 			}
 		},
 	},
