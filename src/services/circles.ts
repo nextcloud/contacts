@@ -30,7 +30,7 @@ interface MemberPairs {
 
 type CircleEditType = 'name' | 'description' | 'settings' | 'config'
 export enum CircleEdit {
-	Name = 'displayName',
+	Name = 'name',
 	Description = 'description',
 	Settings = 'settings',
 	Config = 'config',
