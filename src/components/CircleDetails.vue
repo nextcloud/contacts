@@ -34,17 +34,19 @@
 			</template>
 
 			<!-- display name -->
-			<input
-				slot="title"
-				v-model="circle.displayName"
-				:readonly="!circle.isOwner"
-				:placeholder="t('contacts', 'Circle name')"
-				type="text"
-				autocomplete="off"
-				autocorrect="off"
-				spellcheck="false"
-				name="displayname"
-				@input="onNameChangeDebounce">
+			<template #title>
+				<input
+					v-model="circle.displayName"
+					:readonly="!circle.isOwner"
+					:placeholder="t('contacts', 'Circle name')"
+					type="text"
+					autocomplete="off"
+					autocorrect="off"
+					spellcheck="false"
+					name="displayname"
+					@input="onNameChangeDebounce">
+				<div v-if="loadingName" class="circle-name__loader icon-loading-small" />
+			</template>
 
 			<!-- org, title -->
 			<template v-if="!circle.isOwner" #subtitle>
@@ -142,6 +144,7 @@ export default {
 	data() {
 		return {
 			loadingDescription: false,
+			loadingName: false,
 		}
 	},
 
@@ -196,11 +199,14 @@ export default {
 			this.onNameChange(event.target.value)
 		}, 500),
 		async onNameChange(name) {
+			this.loadingName = true
 			try {
 				await editCircle(this.circle.id, CircleEdit.Name, name)
 			} catch (error) {
 				console.error('Unable to edit circle name', name, error)
 				showError(t('contacts', 'An error happened during name sync'))
+			} finally {
+				this.loadingName = false
 			}
 		},
 	},
@@ -208,6 +214,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.circle-name__loader {
+	margin-left: 8px;
+}
+
 .circle-details-section {
 	&:not(:first-of-type) {
 		margin-top: 24px;
