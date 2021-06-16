@@ -19,6 +19,7 @@ OC.L10N.register(
     "Add contacts" : "Aggiungi contatti",
     "Loading …" : "Caricamento...",
     "Add member" : "Aggiungi membro",
+    "Delete circle" : "Elimina cerchia",
     "Download" : "Scarica",
     "Groups" : "Gruppi",
     "Create a new group" : "Crea un nuovo gruppo",
