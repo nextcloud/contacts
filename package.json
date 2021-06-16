@@ -72,7 +72,8 @@
 		"vuex-router-sync": "^5.0.0"
 	},
 	"engines": {
-		"node": ">=10.0.0"
+		"node": ">=14.0.0",
+		"npm": ">=7.0.0"
 	},
 	"devDependencies": {
 		"@nextcloud/babel-config": "^1.0.0-beta.1",
