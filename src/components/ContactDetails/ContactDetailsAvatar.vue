@@ -427,7 +427,7 @@ export default {
 						id: this.contact.addressbook.id,
 						uid: this.contact.uid,
 					}))
-					if (response.status !== 200) {
+					if (response?.status !== 200) {
 						throw new URIError('Download of social profile avatar failed')
 					}
 
@@ -441,7 +441,7 @@ export default {
 					// Notify user
 					showSuccess(t('contacts', 'Avatar downloaded from social network'))
 				} catch (error) {
-					if (error.response.status === 304) {
+					if (error?.response?.status === 304) {
 						showInfo(t('contacts', 'Avatar already up to date'))
 					} else {
 						showError(t('contacts', 'Avatar download failed'))
