@@ -21,55 +21,56 @@
   -->
 
 <template>
-	<AppContent>
-		<div v-if="!circle">
-			<EmptyContent icon="icon-circles">
-				{{ t('contacts', 'Please select a circle') }}
-			</EmptyContent>
-		</div>
+	<AppContent v-if="!circle">
+		<EmptyContent icon="icon-circles">
+			{{ t('contacts', 'Please select a circle') }}
+		</EmptyContent>
+	</AppContent>
 
-		<div v-else-if="loading">
-			<EmptyContent icon="icon-loading">
-				{{ t('contacts', 'Loading circle …') }}
-			</EmptyContent>
-		</div>
+	<AppContent v-else-if="loading">
+		<EmptyContent icon="icon-loading">
+			{{ t('contacts', 'Loading circle …') }}
+		</EmptyContent>
+	</AppContent>
 
-		<div v-else id="app-content-wrapper">
-			<AppDetailsToggle v-if="isMobile && showDetails" @click.native.stop.prevent="hideDetails" />
+	<AppContent v-else :show-details.sync="showDetails">
+		<!-- member list -->
+		<template #list>
+			<MemberList
+				:list="members"
+				:loading="loadingList"
+				:show-details.sync="showDetails" />
+		</template>
 
-			<!-- member list -->
-			<MemberList :list="members" :loading="loadingList" :show-details.sync="showDetails" />
+		<!-- main contacts details -->
+		<CircleDetails :circle="circle">
+			<!-- not a member -->
+			<template v-if="!circle.isMember">
+				<!-- Join request in progress -->
+				<EmptyContent v-if="loadingJoin" icon="icon-loading">
+					{{ t('contacts', 'Joining circle') }}
+				</EmptyContent>
 
-			<!-- main contacts details -->
-			<CircleDetails :circle="circle">
-				<!-- not a member -->
-				<template v-if="!circle.isMember">
-					<!-- Join request in progress -->
-					<EmptyContent v-if="loadingJoin" icon="icon-loading">
-						{{ t('contacts', 'Joining circle') }}
-					</EmptyContent>
+				<!-- Pending request validation -->
+				<EmptyContent v-else-if="circle.isPendingJoin" icon="icon-loading">
+					{{ t('contacts', 'Your request to join this circle is pending approval') }}
+				</EmptyContent>
 
-					<!-- Pending request validation -->
-					<EmptyContent v-else-if="circle.isPendingJoin" icon="icon-loading">
-						{{ t('contacts', 'Your request to join this circle is pending approval') }}
-					</EmptyContent>
+				<EmptyContent v-else icon="icon-circles">
+					{{ t('contacts', 'You are not a member of {circle}', { circle: circle.displayName}) }}
 
-					<EmptyContent v-else icon="icon-circles">
-						{{ t('contacts', 'You are not a member of {circle}', { circle: circle.displayName}) }}
-
-						<!-- Only show the join button if the circle is accepting requests -->
-						<template v-if="circle.canJoin" #desc>
-							<button :disabled="loadingJoin" class="primary" @click="requestJoin">
-								<Login slot="icon"
-									:size="16"
-									decorative />
-								{{ t('contacts', 'Request to join') }}
-							</button>
-						</template>
-					</EmptyContent>
-				</template>
-			</CircleDetails>
-		</div>
+					<!-- Only show the join button if the circle is accepting requests -->
+					<template v-if="circle.canJoin" #desc>
+						<button :disabled="loadingJoin" class="primary" @click="requestJoin">
+							<Login slot="icon"
+								:size="16"
+								decorative />
+							{{ t('contacts', 'Request to join') }}
+						</button>
+					</template>
+				</EmptyContent>
+			</template>
+		</CircleDetails>
 	</AppContent>
 </template>
 <script>
@@ -79,7 +80,6 @@ import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
 
 import Login from 'vue-material-design-icons/Login'
 
-import AppDetailsToggle from '../AppContent/AppDetailsToggle'
 import CircleDetails from '../CircleDetails'
 import MemberList from '../MemberList'
 import RouterMixin from '../../mixins/RouterMixin'
@@ -91,7 +91,6 @@ export default {
 
 	components: {
 		AppContent,
-		AppDetailsToggle,
 		CircleDetails,
 		EmptyContent,
 		Login,

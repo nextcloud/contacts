@@ -25,7 +25,6 @@ $grid-height-unit: 40px;
 $grid-input-padding: 7px;
 $grid-input-margin: 3px;
 $grid-input-height-with-margin: $grid-height-unit - $grid-input-margin * 2;
-$list-width: 300px;
 
 // components
 @import 'SettingsSection';
@@ -42,19 +41,18 @@ $list-width: 300px;
 
 
 // global design overrides
-#app-content-wrapper {
-	display: flex;
+.app-content {
+	// center error messages
+	& > .empty-content {
+		margin: 40vh;
+	}
 }
 
 .app-content-details {
-	// Starts shrinking at the same width as the list
-	flex: 1 1 $list-width;
-	min-width: 0;
 	padding: 0 80px 80px 80px;
 }
 
 .app-content-list {
-	flex: 1 1 $list-width;
 	// Cancel scrolling
 	overflow: visible;
 

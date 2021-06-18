@@ -21,48 +21,48 @@
   -->
 
 <template>
-	<AppContent>
-		<div v-if="loading">
-			<EmptyContent icon="icon-loading">
-				{{ t('contacts', 'Loading contacts …') }}
-			</EmptyContent>
-		</div>
+	<AppContent v-if="loading">
+		<EmptyContent icon="icon-loading">
+			{{ t('contacts', 'Loading contacts …') }}
+		</EmptyContent>
+	</AppContent>
 
-		<div v-else-if="isEmptyGroup && !isRealGroup">
-			<EmptyContent icon="icon-contacts-dark">
-				{{ t('contacts', 'There are no contacts yet') }}
-				<template #desc>
-					<button class="primary" @click="newContact">
-						{{ t('contacts', 'Create contact') }}
-					</button>
-				</template>
-			</EmptyContent>
-		</div>
+	<AppContent v-else-if="isEmptyGroup && !isRealGroup">
+		<EmptyContent icon="icon-contacts-dark">
+			{{ t('contacts', 'There are no contacts yet') }}
+			<template #desc>
+				<button class="primary" @click="newContact">
+					{{ t('contacts', 'Create contact') }}
+				</button>
+			</template>
+		</EmptyContent>
+	</AppContent>
 
-		<div v-else-if="isEmptyGroup && isRealGroup">
-			<EmptyContent icon="icon-contacts-dark">
-				{{ t('contacts', 'There are no contacts in this group') }}
-				<template #desc>
-					<button v-if="contacts.length === 0" class="primary" @click="addContactsToGroup(selectedGroup)">
-						{{ t('contacts', 'Create contacts') }}
-					</button>
-					<button v-else class="primary" @click="addContactsToGroup(selectedGroup)">
-						{{ t('contacts', 'Add contacts') }}
-					</button>
-				</template>
-			</EmptyContent>
-		</div>
+	<AppContent v-else-if="isEmptyGroup && isRealGroup">
+		<EmptyContent icon="icon-contacts-dark">
+			{{ t('contacts', 'There are no contacts in this group') }}
+			<template #desc>
+				<button v-if="contacts.length === 0" class="primary" @click="addContactsToGroup(selectedGroup)">
+					{{ t('contacts', 'Create contacts') }}
+				</button>
+				<button v-else class="primary" @click="addContactsToGroup(selectedGroup)">
+					{{ t('contacts', 'Add contacts') }}
+				</button>
+			</template>
+		</EmptyContent>
+	</AppContent>
 
-		<div v-else id="app-content-wrapper">
-			<!-- contacts list -->
+	<AppContent v-else :show-details="showDetails" @update:showDetails="hideDetails">
+		<!-- contacts list -->
+		<template #list>
 			<ContactsList
 				:list="contactsList"
 				:contacts="contacts"
 				:search-query="searchQuery" />
+		</template>
 
-			<!-- main contacts details -->
-			<ContactDetails :contact-key="selectedContact" />
-		</div>
+		<!-- main contacts details -->
+		<ContactDetails :contact-key="selectedContact" />
 	</AppContent>
 </template>
 <script>
@@ -116,6 +116,10 @@ export default {
 			return this.$store.getters.getSortedContacts
 		},
 
+		selectedContact() {
+			return this.$route.params.selectedContact
+		},
+
 		/**
 		 * Is this a real group ?
 		 * Aka not a dynamically generated one like `All contacts`
@@ -130,6 +134,10 @@ export default {
 		 */
 		isEmptyGroup() {
 			return this.contactsList.length === 0
+		},
+
+		showDetails() {
+			return !!this.selectedContact
 		},
 	},
 
@@ -147,6 +155,19 @@ export default {
 		 */
 		newContact() {
 			this.$emit('newContact')
+		},
+
+		/**
+		 * Show the list and deselect contact
+		 */
+		hideDetails() {
+			// Reset the selected contact
+			this.$router.push({
+				name: 'group',
+				params: {
+					selectedGroup: this.selectedGroup
+				},
+			})
 		},
 	},
 }

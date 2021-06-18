@@ -768,12 +768,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app-content-details {
-	flex: 1 1 100%;
-	min-width: 0;
-	padding: 0 80px 80px 80px;
-}
-
 // List of all properties
 section.contact-details {
 	margin: 0 auto;
