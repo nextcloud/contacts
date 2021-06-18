@@ -81,6 +81,7 @@
     "There is no description for this circle" : "Não há descrição para este círculo",
     "Enter a description for the circle" : "Insira uma descrição para o círculo",
     "An error happened during description sync" : "Ocorreu um erro durante a sincronização da descrição",
+    "An error happened during name sync" : "Ocorreu um erro durante a sincronização do nome ",
     "Add new property" : "Adicionar nova propriedade",
     "Choose property type" : "Escolher tipo de propriedade",
     "Upload a new picture" : "Enviar uma nova imagem",

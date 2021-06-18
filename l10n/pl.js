@@ -83,6 +83,7 @@ OC.L10N.register(
     "There is no description for this circle" : "Brak opisu dla tego kręgu",
     "Enter a description for the circle" : "Podaj opis dla tego kręgu",
     "An error happened during description sync" : "Wystąpił błąd podczas synchronizacji opisu",
+    "An error happened during name sync" : "Wystąpił błąd podczas synchronizacji nazw",
     "Add new property" : "Dodaj nową właściwość",
     "Choose property type" : "Wybierz typ właściwości",
     "Upload a new picture" : "Wyślij nowe zdjęcie",

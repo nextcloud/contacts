@@ -83,6 +83,7 @@ OC.L10N.register(
     "There is no description for this circle" : "K tomuto okruhu neexistuje popis",
     "Enter a description for the circle" : "Zadejte popis k okruhu",
     "An error happened during description sync" : "V průběhu synchronizace popisu došlo k chybě",
+    "An error happened during name sync" : "V průběhu synchronizace jména došlo k chybě",
     "Add new property" : "Přidat novou vlastnost",
     "Choose property type" : "Zvolit typ vlastnosti",
     "Upload a new picture" : "Nahrát nový obrázek",

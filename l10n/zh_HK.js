@@ -83,6 +83,7 @@ OC.L10N.register(
     "There is no description for this circle" : "此社交圈子沒有任何描述",
     "Enter a description for the circle" : "輸入社交圈子的描述",
     "An error happened during description sync" : "描述同步期間發生錯誤",
+    "An error happened during name sync" : "名稱同步期間發生錯誤",
     "Add new property" : "新增屬性",
     "Choose property type" : "選擇屬性類型",
     "Upload a new picture" : "上傳一張新的圖片",
