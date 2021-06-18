@@ -240,7 +240,7 @@ export default {
 					leave: this.isCurrentUser,
 				})
 			} catch (error) {
-				if (error.response.status === 404) {
+				if (error?.response?.status === 404) {
 					this.logger.debug('Member is not in circle')
 					return
 				}

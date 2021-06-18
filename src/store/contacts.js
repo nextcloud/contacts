@@ -370,7 +370,7 @@ const actions = {
 				console.error(error)
 
 				// wrong etag, we most likely have a conflict
-				if (error && error.status === 412) {
+				if (error && error?.status === 412) {
 					// saving the new etag so that the user can manually
 					// trigger a fetchCompleteData without any further errors
 					context.commit('setContactAsConflict', { contact, etag: error.xhr.getResponseHeader('etag') })
