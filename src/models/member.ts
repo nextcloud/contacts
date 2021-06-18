@@ -137,7 +137,7 @@ export default class Member {
 	 * Is the current member without a circle?
 	 */
 	get isOrphan() {
-		return this._circle?.constructor?.name !== 'Circle'
+		return this._circle?.constructor?.name !== Circle.name
 	}
 
 	/**
