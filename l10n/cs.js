@@ -9,7 +9,6 @@ OC.L10N.register(
     "Copy to full name" : "Zkopírovat do celého jména",
     "Omit year" : "Vynechat rok",
     "Allow updating avatars from social media" : "Povolit aktualizaci zástupných obrázků ze sociálních sítí",
-    "Go back to the list" : "Jít zpět na seznam",
     "Please select a circle" : "Vyberte okruh",
     "Loading circle …" : "Načítání okruhu…",
     "Joining circle" : "Přidávání se do okruhu",

@@ -9,7 +9,6 @@ OC.L10N.register(
     "Copy to full name" : "Tam ada kopyala",
     "Omit year" : "Yıl dikkate alınmasın",
     "Allow updating avatars from social media" : "Avatarlar sosyal ağ üzerinden güncellenebilsin",
-    "Go back to the list" : "Listeye geri dön",
     "Please select a circle" : "Lütfen bir çevre seçin",
     "Loading circle …" : "Çevre yükleniyor …",
     "Joining circle" : "Çevreye giriliyor",
