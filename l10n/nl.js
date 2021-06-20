@@ -82,6 +82,7 @@ OC.L10N.register(
     "There is no description for this circle" : "Er is geen beschrijving van deze kring",
     "Enter a description for the circle" : "Geef een beschrijving op voor deze kring",
     "An error happened during description sync" : "Er trad een fout op bij synch beschrijvingen",
+    "An error happened during name sync" : "Er trad een fout op bij sync naam",
     "Add new property" : "Voeg nieuwe eigenschap toe",
     "Choose property type" : "Kies eigenschapstype",
     "Upload a new picture" : "Uploaden nieuwe afbeelding",
