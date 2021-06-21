@@ -105,6 +105,13 @@ export default class Circle {
 		this._data.description = text
 	}
 
+	/**
+	 * Circle member count
+	 */
+	get population() {
+		return this._data.population
+	}
+
 	// MEMBERSHIP -----------------------------------------
 	/**
 	 * Circle ini_initiator the current
