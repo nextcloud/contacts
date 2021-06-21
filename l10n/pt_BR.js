@@ -9,7 +9,6 @@ OC.L10N.register(
     "Copy to full name" : "Copiar para o nome completo",
     "Omit year" : "Omitir ano",
     "Allow updating avatars from social media" : "Permitir atualização de avatares das mídias sociais",
-    "Go back to the list" : "Volte para a lista",
     "Please select a circle" : "Selecione um círculo",
     "Loading circle …" : "Carregando círculo…",
     "Joining circle" : "Entrando no círculo",

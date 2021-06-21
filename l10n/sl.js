@@ -9,7 +9,6 @@ OC.L10N.register(
     "Copy to full name" : "Kopiraj v polno ime",
     "Omit year" : "Izpusti leto",
     "Allow updating avatars from social media" : "Omogoči posodabljanje podobe iz družbenih omrežij",
-    "Go back to the list" : "Skoči nazaj na seznam",
     "Please select a circle" : "Izbrati je treba krog",
     "Loading circle …" : "Poteka nalaganje kroga ...",
     "Loading contacts …" : "Poteka nalaganje stikov ...",

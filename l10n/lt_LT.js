@@ -9,7 +9,6 @@ OC.L10N.register(
     "Copy to full name" : "Kopijuoti į vardą, pavardę",
     "Omit year" : "Neįtraukti metų",
     "Allow updating avatars from social media" : "Leisti atnaujinti avatarus iš socialinių tinklų",
-    "Go back to the list" : "Grįžti į sąrašą",
     "Please select a circle" : "Pasirinkite ratą",
     "Loading circle …" : "Įkeliamas ratas…",
     "Loading contacts …" : "Įkeliami adresatai…",
