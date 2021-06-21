@@ -1,5 +1,19 @@
 # Changelog
 
+## [v4.0.0-beta.3](https://github.com/nextcloud/contacts/tree/v4.0.0-beta.3) (2021-06-21)
+
+[Full Changelog](https://github.com/nextcloud/contacts/compare/v4.0.0-beta.2...v4.0.0-beta.3)
+
+### Enhancements
+- Comply to new resizeable list feature
+  [\#2246](https://github.com/nextcloud/contacts/pull/2246) ([skjnldsv](https://github.com/skjnldsv))
+
+### Fixed
+- Fix Circle class name comparison
+  [\#2287](https://github.com/nextcloud/contacts/pull/2287) ([skjnldsv](https://github.com/skjnldsv))
+- Fix chain condition of responses
+  [\#2286](https://github.com/nextcloud/contacts/pull/2286) ([skjnldsv](https://github.com/skjnldsv))
+
 ## [v4.0.0-beta.2](https://github.com/nextcloud/contacts/tree/v4.0.0-beta.2) (2021-06-17)
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v4.0.0-beta.1...v4.0.0-beta.2)
