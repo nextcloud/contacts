@@ -151,11 +151,15 @@ export default {
 				.map(type => parseInt(type, 10))
 				// Map populated types to the group entry
 				.map(type => CIRCLES_MEMBER_GROUPING.find(group => group.type === type))
+				// Removed undefined group
+				.filter(group => group !== undefined)
 				// Injecting headings
-				.map(group => [{
-					heading: true,
-					...group,
-				}, ...(this.groupedList[group.type] || [])])
+				.map(group => {
+					return [{
+						heading: true,
+						...group,
+					}, ...(this.groupedList[group.type] || [])]
+				})
 				// Merging sub-arrays
 				.flat()
 		},
