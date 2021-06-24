@@ -59,6 +59,10 @@ export default class Circle {
      */
     set description(text: string);
     /**
+     * Circle member count
+     */
+    get population(): any;
+    /**
      * Circle ini_initiator the current
      * user info for this circle
      */

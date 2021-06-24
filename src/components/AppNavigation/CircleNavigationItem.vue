@@ -119,7 +119,14 @@ export default {
 
 	computed: {
 		memberCount() {
-			return Object.values(this.circle?.members || []).length
+			const count = Object.keys(this.circle?.members || []).length
+
+			// If member list is empty, let's try the population initial count
+			if (count === 0 && this.circle.population > 0) {
+				return this.circle.population
+			}
+
+			return count
 		},
 	},
 }
