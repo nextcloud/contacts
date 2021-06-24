@@ -156,11 +156,21 @@ export const CIRCLES_MEMBER_GROUPING = [
 		share: OC.Share.SHARE_TYPE_EMAIL,
 		type: MEMBER_TYPE_MAIL
 	},
+	// TODO: implement SHARE_TYPE_CONTACT
+	{
+		id: `picker-contact`,
+		label: t('contacts', 'Contacts'),
+		share: OC.Share.SHARE_TYPE_EMAIL,
+		type: MEMBER_TYPE_CONTACT
+	},
 ]
 
 // Generating a map between share types and circle member types 
 export const SHARES_TYPES_MEMBER_MAP = CIRCLES_MEMBER_GROUPING.reduce((list, entry) => {
-	list[entry.share] = entry.type
+	// ! Ignore duplicate share types
+	if (!list[entry.share]) {
+		list[entry.share] = entry.type
+	}
 	return list
 }, {})
 
