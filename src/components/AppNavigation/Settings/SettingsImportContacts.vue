@@ -69,7 +69,7 @@
 						class="button primary import-contact__button import-contact__button--files"
 						@click="openPicker">
 						<span class="import-contact__button-icon icon-folder-white" />
-						{{ t('contacts', 'Import from files') }}
+						{{ t('contacts', 'Import from Files') }}
 					</button>
 				</section>
 			</Modal>
