@@ -106,7 +106,7 @@
 					<ActionButton
 						icon="icon-folder"
 						@click="selectFilePicker">
-						{{ t('contacts', 'Choose from files') }}
+						{{ t('contacts', 'Choose from Files') }}
 					</ActionButton>
 					<ActionButton
 						v-for="network in supportedSocial"
