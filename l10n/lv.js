@@ -33,7 +33,6 @@ OC.L10N.register(
     "Upload a new picture" : "Augšupielādēt jaunu attēlu",
     "Download picture" : "Lejupielādēt attēlu",
     "Delete picture" : "Dzēst attēlu",
-    "Choose from files" : "Izvēlēties no datnēm",
     "Invalid image" : "Nederīgs attēls",
     "Image is too big (max 1MB)." : "Attēls ir ārāk liels (maks. 1MB).",
     "Pick an avatar" : "Izvēlēties avataru",

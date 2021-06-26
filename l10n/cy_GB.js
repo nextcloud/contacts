@@ -32,7 +32,6 @@ OC.L10N.register(
     "Upload a new picture" : "Llwythwch lun newydd i fyny",
     "Download picture" : "Llwytho llun i lawr",
     "Delete picture" : "Dileu llun",
-    "Choose from files" : "Dewis o ffeiliau",
     "Image is too big (max 1MB)." : "Mae'r ddelwedd yn rhy fawr (1MB ar y mwyaf).",
     "Pick an avatar" : "Dewiswch afatar",
     "Error while processing the picture." : "Gwall wrth brosesu'r llun.",

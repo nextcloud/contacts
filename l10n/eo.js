@@ -34,7 +34,6 @@ OC.L10N.register(
     "Upload a new picture" : "Alŝuti novan bildon",
     "Download picture" : "Elŝuti bildon",
     "Delete picture" : "Forigi bildon",
-    "Choose from files" : "Elekti el dosieroj",
     "Invalid image" : "Nevalida bildo",
     "Image is too big (max 1MB)." : "La bildo tro grandas (maksimume 1 MB).",
     "Pick an avatar" : "Elekti avataron",

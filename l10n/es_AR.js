@@ -30,7 +30,6 @@ OC.L10N.register(
     "Choose property type" : "Elija el tipo de propiedad",
     "Upload a new picture" : "Subir una nueva imagen",
     "Download picture" : "Descargar imágen",
-    "Choose from files" : "Elige entre archivos",
     "Invalid image" : "Imagen inválida",
     "Image is too big (max 1MB)." : "La imagen es demasiado grande (máximo 1MB).",
     "No contact selected" : "Contacto no seleccionado",
