@@ -54,7 +54,7 @@
 			</template>
 		</DetailsHeader>
 
-		<section class="circle-details-section">
+		<section class="circle-details-section circle-details-section__actions">
 			<!-- copy circle link -->
 			<a class="circle-details__action-copy-link button"
 				:href="circleUrl"
@@ -62,6 +62,17 @@
 				@click.stop.prevent="copyToClipboard(circleUrl)">
 				{{ copyButtonText }}
 			</a>
+
+			<!-- Only show the join button if the circle is accepting requests -->
+			<button v-if="!circle.isMember && circle.canJoin"
+				:disabled="loadingJoin"
+				class="primary"
+				@click="joinCircle">
+				<Login slot="icon"
+					:size="16"
+					decorative />
+				{{ t('contacts', 'Request to join') }}
+			</button>
 		</section>
 
 		<section v-if="showDescription" class="circle-details-section">
@@ -118,6 +129,7 @@ import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails'
 import Avatar from '@nextcloud/vue/dist/Components/Avatar'
 import RichContenteditable from '@nextcloud/vue/dist/Components/RichContenteditable'
 
+import Login from 'vue-material-design-icons/Login'
 import Logout from 'vue-material-design-icons/Logout'
 
 import { CircleEdit, editCircle } from '../services/circles.ts'
@@ -135,6 +147,7 @@ export default {
 		CircleConfigs,
 		ContentHeading,
 		DetailsHeader,
+		Login,
 		Logout,
 		RichContenteditable,
 	},
@@ -221,6 +234,13 @@ export default {
 .circle-details-section {
 	&:not(:first-of-type) {
 		margin-top: 24px;
+	}
+
+	&__actions {
+		display: flex;
+		a, button {
+			margin-right: 8px;
+		}
 	}
 
 	&__description {

@@ -40,6 +40,7 @@ export default {
 	data() {
 		return {
 			loadingAction: false,
+			loadingJoin: false,
 		}
 	},
 
@@ -102,13 +103,13 @@ export default {
 		},
 
 		async joinCircle() {
-			this.loadingAction = true
+			this.loadingJoin = true
 			try {
 				await joinCircle(this.circle.id)
 			} catch (error) {
 				showError(t('contacts', 'Unable to join the circle'))
 			} finally {
-				this.loadingAction = false
+				this.loadingJoin = false
 			}
 
 		},

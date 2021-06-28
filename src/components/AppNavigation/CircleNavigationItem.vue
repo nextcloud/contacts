@@ -61,6 +61,7 @@
 			<!-- join circle -->
 			<ActionButton
 				v-else-if="!circle.isMember && circle.canJoin"
+				:disabled="loadingJoin"
 				@click="joinCircle">
 				{{ joinButtonTitle }}
 				<LocationEnter slot="icon"

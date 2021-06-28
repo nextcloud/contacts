@@ -87,7 +87,7 @@ export const CIRCLES_MEMBER_TYPES = {
 }
 
 export const CIRCLES_MEMBER_LEVELS = {
-	// [MEMBER_LEVEL_NONE]: t('circles', 'None'),
+	[MEMBER_LEVEL_NONE]: t('circles', 'Pending'),
 	[MEMBER_LEVEL_MEMBER]: t('circles', 'Member'),
 	[MEMBER_LEVEL_MODERATOR]: t('circles', 'Moderator'),
 	[MEMBER_LEVEL_ADMIN]: t('circles', 'Admin'),
