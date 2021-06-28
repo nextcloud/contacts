@@ -128,7 +128,7 @@ OC.L10N.register(
     "Add {type}" : "新增 {type}",
     "New circle name" : "新社交圈子名稱",
     "Personal circle" : "個人社交圈子",
-    "This circle will only be visible to you. Other members will not be able to see or use it." : "這個圈子只有你能看到。 其他成員將無法看到或使用它。",
+    "This circle will only be visible to you. Other members will not be able to see or use it." : "這個圈子只有你能看到。其他成員將無法看到或使用它。",
     "Local circle" : "近端社交圈子",
     "This circle will not be shared with the other instances of the global scale" : "此社交圈子不會與全球範圍內的其他實例共享",
     "Create circle" : "創建社交圈子",
