@@ -23,7 +23,7 @@
 import { showError } from '@nextcloud/dialogs'
 import Vue from 'vue'
 
-import { createCircle, deleteCircle, deleteMember, getCircleMembers, getCircle, getCircles, leaveCircle, addMembers } from '../services/circles.ts'
+import { acceptMember, createCircle, deleteCircle, deleteMember, getCircleMembers, getCircle, getCircles, leaveCircle, addMembers } from '../services/circles.ts'
 import Member from '../models/member.ts'
 import Circle from '../models/circle.ts'
 import logger from '../services/logger'
@@ -82,7 +82,7 @@ const mutations = {
 	 */
 	addMemberToCircle(state, { circleId, member }) {
 		const circle = state.circles[circleId]
-		circle.addmember(member)
+		circle.addMember(member)
 	},
 
 	/**
@@ -254,6 +254,23 @@ const actions = {
 		// success, let's remove from store
 		context.commit('deleteMemberFromCircle', member)
 		logger.debug('Deleted member', { circleId, memberId })
+	},
+
+	/**
+	 * Accept a circle member request
+	 *
+	 * @param {Object} context the store mutations Current context
+	 * @param {Object} data destructuring object
+	 * @param {string} data.circleId the circle id
+	 * @param {string} data.memberId the member id
+	 */
+	async acceptCircleMember(context, { circleId, memberId }) {
+		const circle = context.getters.getCircle(circleId)
+
+		const result = await acceptMember(circleId, memberId)
+		const member = new Member(result, circle)
+
+		await context.commit('addMemberToCircle', { circleId, member })
 	},
 
 }

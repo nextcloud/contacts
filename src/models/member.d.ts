@@ -66,6 +66,11 @@ export default class Member {
      */
     get level(): MemberLevel;
     /**
+     * Member request status
+     *
+     */
+    get status(): string;
+    /**
      * Set member level
      */
     set level(level: MemberLevel);

@@ -64,7 +64,7 @@
 			</a>
 
 			<!-- Only show the join button if the circle is accepting requests -->
-			<button v-if="!circle.isMember && circle.canJoin"
+			<button v-if="!circle.isPendingMember && !circle.isMember && circle.canJoin"
 				:disabled="loadingJoin"
 				class="primary"
 				@click="joinCircle">

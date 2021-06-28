@@ -25,6 +25,7 @@ import { showError } from '@nextcloud/dialogs'
 import { joinCircle } from '../services/circles.ts'
 import Circle from '../models/circle.ts'
 import CopyToClipboardMixin from './CopyToClipboardMixin'
+import Member from '../models/member.ts'
 
 export default {
 
@@ -105,9 +106,11 @@ export default {
 		async joinCircle() {
 			this.loadingJoin = true
 			try {
-				await joinCircle(this.circle.id)
+				const initiator = await joinCircle(this.circle.id)
+				this.circle.initiator = new Member(initiator)
 			} catch (error) {
 				showError(t('contacts', 'Unable to join the circle'))
+				console.error('Unable to join the circle', error)
 			} finally {
 				this.loadingJoin = false
 			}

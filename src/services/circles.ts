@@ -182,3 +182,15 @@ export const changeMemberLevel = async function(circleId: string, memberId: stri
 	})
 	return Object.values(response.data.ocs.data)
 }
+
+/**
+ * Accept a circle member request
+ *
+ * @param {string} circleId the circle id
+ * @param {string} memberId the member id
+ * @returns {Array}
+ */
+export const acceptMember = async function(circleId: string, memberId: string) {
+	const response = await axios.put(generateOcsUrl('apps/circles/circles/{circleId}/members/{memberId}', { circleId, memberId }))
+	return response.data.ocs.data
+}

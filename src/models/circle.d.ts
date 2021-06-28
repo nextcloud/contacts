@@ -68,6 +68,10 @@ export default class Circle {
      */
     get initiator(): Member;
     /**
+     * Set new circle initiator
+     */
+    set initiator(initiator: Member);
+    /**
      * Circle ownership
      */
     get owner(): Member;
@@ -124,6 +128,10 @@ export default class Circle {
      * Is the initiator a member of this circle?
      */
     get isMember(): boolean;
+    /**
+     * Is the initiator a pending member of this circle?
+     */
+    get isPendingMember(): boolean;
     /**
      * Can the initiator delete this circle?
      */

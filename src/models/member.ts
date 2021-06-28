@@ -117,6 +117,14 @@ export default class Member {
 	}
 
 	/**
+	 * Member request status
+	 * 
+	 */
+	get status(): string {
+		return this._data.status
+	}
+
+	/**
 	 * Set member level
 	 */
 	set level(level: MemberLevel) {

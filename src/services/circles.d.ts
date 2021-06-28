@@ -120,4 +120,12 @@ export declare const deleteMember: (circleId: string, memberId: string) => Promi
  * @returns {Array}
  */
 export declare const changeMemberLevel: (circleId: string, memberId: string, level: MemberLevel) => Promise<unknown[]>;
+/**
+ * Accept a circle member request
+ *
+ * @param {string} circleId the circle id
+ * @param {string} memberId the member id
+ * @returns {Array}
+ */
+export declare const acceptMember: (circleId: string, memberId: string) => Promise<any>;
 export {};

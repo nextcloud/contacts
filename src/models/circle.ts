@@ -122,6 +122,13 @@ export default class Circle {
 	}
 
 	/**
+	 * Set new circle initiator
+	 */
+	set initiator(initiator: Member) {
+		this._initiator = initiator
+	}
+
+	/**
 	 * Circle ownership
 	 */
 	get owner(): Member {
@@ -162,7 +169,7 @@ export default class Circle {
 
 		const singleId = member.singleId
 		if (this._members[singleId]) {
-			console.warn('Ignoring duplicate member', member)
+			console.warn('Replacing existing member data', member)
 		}
 		Vue.set(this._members, singleId, member)
 	}
@@ -244,6 +251,13 @@ export default class Circle {
 	 */
 	get isMember() {
 		return this.initiator?.level > MemberLevels.NONE
+	}
+
+	/**
+	 * Is the initiator a pending member of this circle?
+	 */
+	get isPendingMember() {
+		return this.initiator?.level === MemberLevels.NONE
 	}
 
 	/**

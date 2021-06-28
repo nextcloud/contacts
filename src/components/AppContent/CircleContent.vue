@@ -47,7 +47,7 @@
 			<!-- not a member -->
 			<template v-if="!circle.isMember">
 				<!-- Pending request validation -->
-				<EmptyContent v-if="circle.isPendingJoin" icon="icon-loading">
+				<EmptyContent v-if="circle.isPendingMember" icon="icon-loading">
 					{{ t('contacts', 'Your request to join this circle is pending approval') }}
 				</EmptyContent>
 

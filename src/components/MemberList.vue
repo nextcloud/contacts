@@ -21,14 +21,16 @@
   -->
 
 <template>
-	<AppContentList v-if="!hasMembers && loading">
-		<EmptyContent icon="icon-loading">
+	<AppContentList v-if="!hasMembers" class="members-list">
+		<EmptyContent v-if="loading" icon="icon-loading">
 			{{ t('contacts', 'Loading members list …') }}
 		</EmptyContent>
-	</AppContentList>
 
-	<AppContentList v-else-if="!hasMembers">
-		<EmptyContent icon="icon-contacts">
+		<EmptyContent v-else-if="!circle.isMember" icon="icon-contacts">
+			{{ t('contacts', 'The list of members is only visible to members of this circle') }}
+		</EmptyContent>
+
+		<EmptyContent v-else icon="icon-contacts">
 			{{ t('contacts', 'There is no member in this circle') }}
 		</EmptyContent>
 	</AppContentList>
@@ -301,6 +303,10 @@ export default {
 			text-align: left;
 			width: 100%;
 		}
+	}
+
+	&::v-deep .empty-content {
+		margin: auto;
 	}
 }
 </style>
