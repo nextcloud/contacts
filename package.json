@@ -49,7 +49,7 @@
 		"b64-to-blob": "^1.2.19",
 		"camelcase": "^6.2.0",
 		"cdav-library": "git+https://github.com/nextcloud/cdav-library.git",
-		"core-js": "^3.15.1",
+		"core-js": "^3.15.2",
 		"debounce": "^1.2.1",
 		"downloadjs": "^1.4.7",
 		"ical.js": "^1.4.0",
