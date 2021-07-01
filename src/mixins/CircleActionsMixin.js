@@ -94,6 +94,9 @@ export default {
 					member,
 					leave: true,
 				})
+
+				// Reset initiator
+				this.circle.initiator = null
 			} catch (error) {
 				console.error('Could not leave the circle', member, error)
 				showError(t('contacts', 'Could not leave the circle {displayName}', this.circle))
@@ -107,7 +110,13 @@ export default {
 			this.loadingJoin = true
 			try {
 				const initiator = await joinCircle(this.circle.id)
-				this.circle.initiator = new Member(initiator)
+				const member = new Member(initiator, this.circle)
+
+				// Update initiator with newest membership values
+				this.circle.initiator = member
+
+				// Append new member
+				member.circle.addMember(member)
 			} catch (error) {
 				showError(t('contacts', 'Unable to join the circle'))
 				console.error('Unable to join the circle', error)

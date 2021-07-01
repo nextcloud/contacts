@@ -78,6 +78,7 @@ export declare enum CircleConfigs {
     FEDERATED
 }
 export declare enum MemberStatus {
-    INVITED = "invited",
+    INVITED = "Invited",
+    MEMBER = "Member",
     REQUESTING = "Requesting"
 }

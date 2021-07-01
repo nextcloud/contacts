@@ -211,6 +211,7 @@ export enum CircleConfigs {
 }
 
 export enum MemberStatus {
-	INVITED = 'invited',
+	INVITED = 'Invited',
+	MEMBER = 'Member',
 	REQUESTING = 'Requesting',
 }
