@@ -65,8 +65,14 @@ export default class Circle {
     /**
      * Circle ini_initiator the current
      * user info for this circle
+     * null if not a member
      */
-    get initiator(): Member;
+    get initiator(): Member | null;
+    /**
+     * Set new circle initiator
+     * null if not a member
+     */
+    set initiator(initiator: Member | null);
     /**
      * Circle ownership
      */
@@ -123,7 +129,11 @@ export default class Circle {
     /**
      * Is the initiator a member of this circle?
      */
-    get isMember(): boolean;
+    get isMember(): boolean | 0 | undefined;
+    /**
+     * Is the initiator a pending member of this circle?
+     */
+    get isPendingMember(): boolean;
     /**
      * Can the initiator delete this circle?
      */
@@ -131,11 +141,11 @@ export default class Circle {
     /**
      * Can the initiator leave this circle?
      */
-    get canLeave(): boolean;
+    get canLeave(): boolean | 0 | undefined;
     /**
      * Can the initiator add/remove members to this circle?
      */
-    get canManageMembers(): boolean;
+    get canManageMembers(): boolean | 0 | undefined;
     /**
      * Vue router param
      */

@@ -28,6 +28,7 @@ interface OC extends 	Nextcloud.Common.OC {
 }
 declare const OC: OC
 
+export type DefaultGroup = string
 export type CircleConfig = number
 export type MemberLevel = number
 export type MemberType = number
@@ -35,10 +36,10 @@ export type MemberType = number
 // Global sizes
 export const LIST_SIZE = 60
 
-// Dynamic groups
-export const GROUP_ALL_CONTACTS = t('contacts', 'All contacts')
-export const GROUP_NO_GROUP_CONTACTS = t('contacts', 'Not grouped')
-export const GROUP_RECENTLY_CONTACTED = t('contactsinteraction', 'Recently contacted')
+// Dynamic default groups
+export const GROUP_ALL_CONTACTS: DefaultGroup = t('contacts', 'All contacts')
+export const GROUP_NO_GROUP_CONTACTS: DefaultGroup = t('contacts', 'Not grouped')
+export const GROUP_RECENTLY_CONTACTED: DefaultGroup = t('contactsinteraction', 'Recently contacted')
 
 // Circle route, see vue-router conf
 export const ROUTE_CIRCLE = 'circle'
@@ -78,6 +79,7 @@ const CIRCLE_CONFIG_ROOT: CircleConfig = 4096				// Circle cannot be inside anot
 const CIRCLE_CONFIG_CIRCLE_INVITE: CircleConfig = 8192		// Circle must confirm when invited in another circle
 const CIRCLE_CONFIG_FEDERATED: CircleConfig = 16384			// Federated
 
+// Existing members types
 export const CIRCLES_MEMBER_TYPES = {
 	[MEMBER_TYPE_CIRCLE]: t('circles', 'Circle'),
 	[MEMBER_TYPE_USER]: t('circles', 'User'),
@@ -86,14 +88,16 @@ export const CIRCLES_MEMBER_TYPES = {
 	[MEMBER_TYPE_CONTACT]: t('circles', 'Contact'),
 }
 
+// Available circles promote/demote levels
 export const CIRCLES_MEMBER_LEVELS = {
-	// [MEMBER_LEVEL_NONE]: t('circles', 'None'),
+	// [MEMBER_LEVEL_NONE]: t('circles', 'Pending'),
 	[MEMBER_LEVEL_MEMBER]: t('circles', 'Member'),
 	[MEMBER_LEVEL_MODERATOR]: t('circles', 'Moderator'),
 	[MEMBER_LEVEL_ADMIN]: t('circles', 'Admin'),
 	[MEMBER_LEVEL_OWNER]: t('circles', 'Owner'),
 }
 
+// Available circle configs in the circle details view
 export const PUBLIC_CIRCLE_CONFIG = {
 	[t('contacts', 'Invites')]: {
 		[CIRCLE_CONFIG_OPEN]: t('contacts', 'Anyone can request membership'),
@@ -204,4 +208,10 @@ export enum CircleConfigs {
 	ROOT = CIRCLE_CONFIG_ROOT,
 	CIRCLE_INVITE = CIRCLE_CONFIG_CIRCLE_INVITE,
 	FEDERATED = CIRCLE_CONFIG_FEDERATED,
+}
+
+export enum MemberStatus {
+	INVITED = 'Invited',
+	MEMBER = 'Member',
+	REQUESTING = 'Requesting',
 }

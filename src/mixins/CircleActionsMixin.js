@@ -25,6 +25,7 @@ import { showError } from '@nextcloud/dialogs'
 import { joinCircle } from '../services/circles.ts'
 import Circle from '../models/circle.ts'
 import CopyToClipboardMixin from './CopyToClipboardMixin'
+import Member from '../models/member.ts'
 
 export default {
 
@@ -40,6 +41,7 @@ export default {
 	data() {
 		return {
 			loadingAction: false,
+			loadingJoin: false,
 		}
 	},
 
@@ -92,6 +94,9 @@ export default {
 					member,
 					leave: true,
 				})
+
+				// Reset initiator
+				this.circle.initiator = null
 			} catch (error) {
 				console.error('Could not leave the circle', member, error)
 				showError(t('contacts', 'Could not leave the circle {displayName}', this.circle))
@@ -102,13 +107,21 @@ export default {
 		},
 
 		async joinCircle() {
-			this.loadingAction = true
+			this.loadingJoin = true
 			try {
-				await joinCircle(this.circle.id)
+				const initiator = await joinCircle(this.circle.id)
+				const member = new Member(initiator, this.circle)
+
+				// Update initiator with newest membership values
+				this.circle.initiator = member
+
+				// Append new member
+				member.circle.addMember(member)
 			} catch (error) {
 				showError(t('contacts', 'Unable to join the circle'))
+				console.error('Unable to join the circle', error)
 			} finally {
-				this.loadingAction = false
+				this.loadingJoin = false
 			}
 
 		},

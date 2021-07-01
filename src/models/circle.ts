@@ -23,7 +23,7 @@
 import Vue from 'vue'
 import Member from './member'
 
-import { CircleConfig, CircleConfigs, MemberLevels } from './constants'
+import { CircleConfigs, MemberLevels } from './constants'
 
 type MemberList = Record<string, Member>
 
@@ -116,9 +116,21 @@ export default class Circle {
 	/**
 	 * Circle ini_initiator the current
 	 * user info for this circle
+	 * null if not a member
 	 */
-	get initiator(): Member {
+	get initiator(): Member|null {
 		return this._initiator
+	}
+
+	/**
+	 * Set new circle initiator
+	 * null if not a member
+	 */
+	set initiator(initiator: Member|null) {
+		if (initiator && initiator.constructor.name !== Member.name) {
+			throw new Error('Initiator must be a Member type')
+		}
+		Vue.set(this, '_initiator', initiator)
 	}
 
 	/**
@@ -135,7 +147,7 @@ export default class Circle {
 		if (owner.constructor.name !== Member.name) {
 			throw new Error('Owner must be a Member type')
 		}
-		this._owner = owner
+		Vue.set(this, '_owner', owner)
 	}
 
 	/**
@@ -162,7 +174,7 @@ export default class Circle {
 
 		const singleId = member.singleId
 		if (this._members[singleId]) {
-			console.warn('Ignoring duplicate member', member)
+			console.warn('Replacing existing member data', member)
 		}
 		Vue.set(this._members, singleId, member)
 	}
@@ -243,7 +255,15 @@ export default class Circle {
 	 * Is the initiator a member of this circle?
 	 */
 	get isMember() {
-		return this.initiator?.level > MemberLevels.NONE
+		return this.initiator?.level
+			&& this.initiator?.level > MemberLevels.NONE
+	}
+
+	/**
+	 * Is the initiator a pending member of this circle?
+	 */
+	get isPendingMember() {
+		return this.initiator?.level === MemberLevels.NONE
 	}
 
 	/**
@@ -264,7 +284,8 @@ export default class Circle {
 	 * Can the initiator add/remove members to this circle?
 	 */
 	get canManageMembers() {
-		return this.initiator?.level >= MemberLevels.MODERATOR
+		return this.initiator?.level
+			&& this.initiator?.level >= MemberLevels.MODERATOR
 	}
 
 	// PARAMS ---------------------------------------------

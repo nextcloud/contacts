@@ -19,13 +19,14 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+export declare type DefaultGroup = string;
 export declare type CircleConfig = number;
 export declare type MemberLevel = number;
 export declare type MemberType = number;
 export declare const LIST_SIZE = 60;
-export declare const GROUP_ALL_CONTACTS: string;
-export declare const GROUP_NO_GROUP_CONTACTS: string;
-export declare const GROUP_RECENTLY_CONTACTED: string;
+export declare const GROUP_ALL_CONTACTS: DefaultGroup;
+export declare const GROUP_NO_GROUP_CONTACTS: DefaultGroup;
+export declare const GROUP_RECENTLY_CONTACTED: DefaultGroup;
 export declare const ROUTE_CIRCLE = "circle";
 export declare const ELLIPSIS_COUNT = 5;
 export declare const CIRCLE_DESC: string;
@@ -75,4 +76,9 @@ export declare enum CircleConfigs {
     ROOT,
     CIRCLE_INVITE,
     FEDERATED
+}
+export declare enum MemberStatus {
+    INVITED = "Invited",
+    MEMBER = "Member",
+    REQUESTING = "Requesting"
 }

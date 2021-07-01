@@ -34,12 +34,28 @@
 		:title="source.displayName"
 		:user="source.userId"
 		class="members-list__item">
-		<Actions @close="onMenuClose">
-			<template v-if="loading">
-				<ActionText icon="icon-loading-small">
-					{{ t('contacts', 'Loading …') }}
-				</ActionText>
-			</template>
+		<!-- Accept invite -->
+		<template v-if="!loading && isPendingApproval && circle.canManageMembers">
+			<Actions>
+				<ActionButton
+					icon="icon-checkmark"
+					@click="acceptMember">
+					{{ t('contacts', 'Accept membership request') }}
+				</ActionButton>
+			</Actions>
+			<Actions>
+				<ActionButton
+					icon="icon-close"
+					@click="deleteMember">
+					{{ t('contacts', 'Reject membership request') }}
+				</ActionButton>
+			</Actions>
+		</template>
+
+		<Actions v-else @close="onMenuClose">
+			<ActionText v-if="loading" icon="icon-loading-small">
+				{{ t('contacts', 'Loading …') }}
+			</ActionText>
 
 			<!-- Normal menu -->
 			<template v-else>
@@ -78,7 +94,7 @@
 </template>
 
 <script>
-import { CIRCLES_MEMBER_LEVELS, MemberLevels } from '../../models/constants.ts'
+import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberStatus } from '../../models/constants.ts'
 
 import Actions from '@nextcloud/vue/dist/Components/Actions'
 import ListItemIcon from '@nextcloud/vue/dist/Components/ListItemIcon'
@@ -134,6 +150,10 @@ export default {
 		 * @returns {string}
 		 */
 		levelName() {
+			if (this.source.level === MemberLevels.NONE) {
+				return t('contacts', 'Pending')
+			}
+
 			return CIRCLES_MEMBER_LEVELS[this.source.level]
 				|| CIRCLES_MEMBER_LEVELS[MemberLevels.MEMBER]
 		},
@@ -188,6 +208,15 @@ export default {
 		},
 
 		/**
+		 * Is the current member pending moderator approval?
+		 * @returns {boolean}
+		 */
+		isPendingApproval() {
+			return this.source?.level === MemberLevels.NONE
+				&& this.source?.status === MemberStatus.REQUESTING
+		},
+
+		/**
 		 * Can the current user change the level of others?
 		 * @returns {boolean}
 		 */
@@ -195,7 +224,8 @@ export default {
 			// we can change if the member is at the same
 			// or lower level as the current user
 			// BUT not an owner as there can/must always be one
-			return this.availableLevelsChange.length > 0
+			return this.source.level > MemberLevels.NONE
+				&& this.availableLevelsChange.length > 0
 				&& this.currentUserLevel >= this.source.level
 				&& this.circle.canManageMembers
 				&& !(this.circle.isOwner && this.isCurrentUser)
@@ -206,7 +236,7 @@ export default {
 		 * @returns {boolean}
 		 */
 		canDelete() {
-			return this.currentUserLevel > MemberLevels.MEMBER
+			return this.circle.canManageMembers
 				&& this.source.level <= this.currentUserLevel
 				&& !this.isCurrentUser
 		},
@@ -278,6 +308,22 @@ export default {
 			}
 		},
 
+		async acceptMember() {
+			this.loading = true
+
+			try {
+				await await this.$store.dispatch('acceptCircleMember', {
+					circleId: this.circle.id,
+					memberId: this.source.id,
+				})
+			} catch (error) {
+				console.error('Could not accept member join request', this.source, error)
+				showError(t('contacts', 'Could not accept member join request'))
+			} finally {
+				this.loading = false
+			}
+		},
+
 		/**
 		 * Reset menu on close
 		 */
@@ -295,12 +341,12 @@ export default {
 	order: 1;
 	padding-top: 22px;
 	padding-left: 8px;
+	user-select: none;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	pointer-events: none;
 	color: var(--color-primary-element);
 	line-height: 22px;
-	user-select: none;
-	pointer-events: none;
 }
 
 .members-list__item {
@@ -312,4 +358,5 @@ export default {
 		background-color: var(--color-background-hover);
 	}
 }
+
 </style>

@@ -46,45 +46,27 @@
 		<CircleDetails :circle="circle">
 			<!-- not a member -->
 			<template v-if="!circle.isMember">
-				<!-- Join request in progress -->
-				<EmptyContent v-if="loadingJoin" icon="icon-loading">
-					{{ t('contacts', 'Joining circle') }}
-				</EmptyContent>
-
 				<!-- Pending request validation -->
-				<EmptyContent v-else-if="circle.isPendingJoin" icon="icon-loading">
+				<EmptyContent v-if="circle.isPendingMember" icon="icon-loading">
 					{{ t('contacts', 'Your request to join this circle is pending approval') }}
 				</EmptyContent>
 
 				<EmptyContent v-else icon="icon-circles">
 					{{ t('contacts', 'You are not a member of {circle}', { circle: circle.displayName}) }}
-
-					<!-- Only show the join button if the circle is accepting requests -->
-					<template v-if="circle.canJoin" #desc>
-						<button :disabled="loadingJoin" class="primary" @click="requestJoin">
-							<Login slot="icon"
-								:size="16"
-								decorative />
-							{{ t('contacts', 'Request to join') }}
-						</button>
-					</template>
 				</EmptyContent>
 			</template>
 		</CircleDetails>
 	</AppContent>
 </template>
 <script>
+import { showError } from '@nextcloud/dialogs'
 import AppContent from '@nextcloud/vue/dist/Components/AppContent'
 import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
 
-import Login from 'vue-material-design-icons/Login'
-
 import CircleDetails from '../CircleDetails'
 import MemberList from '../MemberList'
 import RouterMixin from '../../mixins/RouterMixin'
-import { joinCircle } from '../../services/circles.ts'
-import { showError } from '@nextcloud/dialogs'
 
 export default {
 	name: 'CircleContent',
@@ -93,7 +75,6 @@ export default {
 		AppContent,
 		CircleDetails,
 		EmptyContent,
-		Login,
 		MemberList,
 	},
 
@@ -108,7 +89,6 @@ export default {
 
 	data() {
 		return {
-			loadingJoin: false,
 			loadingList: false,
 			showDetails: false,
 		}
@@ -162,22 +142,6 @@ export default {
 			} finally {
 				this.loadingList = false
 			}
-		},
-
-		/**
-		 * Request to join this circle
-		 */
-		async requestJoin() {
-			this.loadingJoin = true
-
-			try {
-				await joinCircle(this.circle.id)
-			} catch (error) {
-				showError(t('contacts', 'Unable to join the circle'))
-			} finally {
-				this.loadingJoin = false
-			}
-
 		},
 
 		// Hide the circle details
