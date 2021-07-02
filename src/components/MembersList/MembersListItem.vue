@@ -317,8 +317,8 @@ export default {
 					memberId: this.source.id,
 				})
 			} catch (error) {
-				console.error('Could not accept member join request', this.source, error)
-				showError(t('contacts', 'Could not accept member join request'))
+				console.error('Could not accept membership request', this.source, error)
+				showError(t('contacts', 'Could not accept membership request'))
 			} finally {
 				this.loading = false
 			}
