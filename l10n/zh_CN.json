@@ -148,6 +148,7 @@
     "Demote to {level}" : "降级为 {level}",
     "Could not delete the member {displayName}" : "无法删除成员 {displayName}",
     "Could not change the member level to {level}" : "无法更改成员级别到 {level}",
+    "Could not accept membership request" : "无法接受成员身份请求",
     "Select type" : "选择类型",
     "Select Date" : "选择日期",
     "Add contact in group" : "添加联系人到群组",

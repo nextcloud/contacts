@@ -113,6 +113,7 @@ OC.L10N.register(
     "Show circle details" : "Erakutsi zirkuluaren xehetasunak",
     "There was an issue adding members to the circle" : "Arazo bat izan da kideak zirkulura gehitzean",
     "Remove member" : "Kendu kidea",
+    "Pending" : "Zain",
     "Select type" : "Hautatu mota",
     "Select Date" : "Hautatu data",
     "Add contact in group" : "Gehitu kontaktua taldera",

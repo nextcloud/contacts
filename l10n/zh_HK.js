@@ -150,6 +150,7 @@ OC.L10N.register(
     "Demote to {level}" : "降級到 {level}",
     "Could not delete the member {displayName}" : "不能刪除成員 {displayName}",
     "Could not change the member level to {level}" : "無法將成員級別更改為 {level}",
+    "Could not accept membership request" : "無法接受成為成員的申請",
     "Select type" : "選擇類型",
     "Select Date" : "選擇日期",
     "Add contact in group" : "新增聯絡人到群組",

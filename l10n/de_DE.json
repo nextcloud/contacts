@@ -148,6 +148,7 @@
     "Demote to {level}" : "Herabstufen auf {level}",
     "Could not delete the member {displayName}" : "Das Mitglied {displayName} konnte nicht gelöscht werden ",
     "Could not change the member level to {level}" : "Mitgliedsstufe konnte nicht geändert werden auf {level}",
+    "Could not accept membership request" : "Mitgliedsanfrage konnte nicht akzeptiert werden",
     "Select type" : "Typ auswählen",
     "Select Date" : "Datum auswählen",
     "Add contact in group" : "Kontakt zur Gruppe hinzufügen",
