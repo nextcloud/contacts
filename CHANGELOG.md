@@ -1,5 +1,27 @@
 # Changelog
 
+## [v4.0.0-rc0](https://github.com/nextcloud/contacts/tree/v4.0.0-rc0) (2021-07-05)
+
+[Full Changelog](https://github.com/nextcloud/contacts/compare/v4.0.0-beta.3...v4.0.0-rc0)
+
+### Enhancements
+- Support population count
+  [\#2295](https://github.com/nextcloud/contacts/pull/2295) ([skjnldsv](https://github.com/skjnldsv))
+
+### Fixed
+- Fix circle membership request
+  [\#2316](https://github.com/nextcloud/contacts/pull/2316) ([skjnldsv](https://github.com/skjnldsv))
+- Support contacts member type
+  [\#2298](https://github.com/nextcloud/contacts/pull/2298) ([skjnldsv](https://github.com/skjnldsv))
+- Fix circles icon
+  [\#2328](https://github.com/nextcloud/contacts/pull/2328) ([skjnldsv](https://github.com/skjnldsv))
+- l10n: Error message changed
+  [\#2326](https://github.com/nextcloud/contacts/pull/2326) ([Valdnet](https://github.com/Valdnet))
+- l10n: Change to a capital letter
+  [\#2305](https://github.com/nextcloud/contacts/pull/2305) ([Valdnet](https://github.com/Valdnet))
+- l10n: Change to a capital letter
+  [\#2304](https://github.com/nextcloud/contacts/pull/2304) ([Valdnet](https://github.com/Valdnet))
+  
 ## [v4.0.0-beta.3](https://github.com/nextcloud/contacts/tree/v4.0.0-beta.3) (2021-06-21)
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v4.0.0-beta.2...v4.0.0-beta.3)
