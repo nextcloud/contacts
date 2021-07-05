@@ -495,7 +495,6 @@ export default {
 
 	&__menu {
 		z-index: 11;
-		display: flex !important;
 		align-items: center;
 		justify-content: center;
 		background-color: rgba(0, 0, 0, .2);
