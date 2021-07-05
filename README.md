@@ -2,7 +2,6 @@
 ![Downloads](https://img.shields.io/github/downloads/nextcloud/contacts/total.svg?style=flat-square)
 [![Code coverage](https://img.shields.io/codecov/c/github/nextcloud/contacts.svg?style=flat-square)](https://codecov.io/gh/nextcloud/contacts/)
 [![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat-square&logo=dependabot)](https://dependabot.com)
-[![irc](https://img.shields.io/badge/IRC-%23nextcloud--contacts%20on%20freenode-blue.svg?style=flat-square)](https://webchat.freenode.net/?channels=nextcloud-contacts)
 
 **A contacts app for [Nextcloud](https://nextcloud.com). Easily sync contacts from various devices with your Nextcloud and edit them online.**
 
