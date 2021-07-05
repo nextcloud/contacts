@@ -415,7 +415,8 @@ $caption-padding: 22px;
 
 // Change icon opacity for a better soothing visual
 .app-navigation-entry ::v-deep {
-	.app-navigation-entry-icon.icon-group {
+	.app-navigation-entry-icon.icon-group,
+	.app-navigation-entry-icon.icon-circles {
 		opacity: .6;
 	}
 }
