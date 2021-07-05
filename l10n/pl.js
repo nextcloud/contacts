@@ -150,6 +150,7 @@ OC.L10N.register(
     "Demote to {level}" : "Zdegraduj do {level}",
     "Could not delete the member {displayName}" : "Nie można usunąć członka {displayName}",
     "Could not change the member level to {level}" : "Nie można zmienić poziomu członkostwa na {level}",
+    "Could not accept membership request" : "Nie można zaakceptować prośby o członkostwo",
     "Select type" : "Wybierz rodzaj",
     "Select Date" : "Wybierz datę",
     "Add contact in group" : "Dodaj kontakt do grupy",
