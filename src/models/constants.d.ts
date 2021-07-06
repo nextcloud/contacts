@@ -63,6 +63,7 @@ export declare enum MemberTypes {
     CONTACT
 }
 export declare enum CircleConfigs {
+    PERSONAL,
     SYSTEM,
     VISIBLE,
     OPEN,
