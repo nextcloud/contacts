@@ -107,6 +107,10 @@ export default class Circle {
      */
     set config(config: number);
     /**
+     * Circle is personal
+     */
+    get isPersonal(): boolean;
+    /**
      * Circle requires invite to be confirmed by moderator or above
      */
     get requireJoinAccept(): boolean;

@@ -216,6 +216,13 @@ export default class Circle {
 	}
 
 	/**
+	 * Circle is personal
+	 */
+	get isPersonal() {
+		return (this._data.config & CircleConfigs.PERSONAL) !== 0
+	}
+
+	/**
 	 * Circle requires invite to be confirmed by moderator or above
 	 */
 	get requireJoinAccept() {
