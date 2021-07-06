@@ -779,9 +779,9 @@ section.contact-details {
 	}
 
 	.property--rev {
-		position: fixed;
-		right: 22px;
-		bottom: 0;
+		position: absolute;
+		left: 125px;
+		bottom: -25px;
 		height: 44px;
 		opacity: .5;
 		color: var(--color-text-lighter);
