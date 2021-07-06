@@ -1,139 +1,47 @@
 # Changelog
 
-## [v4.0.0-rc0](https://github.com/nextcloud/contacts/tree/v4.0.0-rc0) (2021-07-05)
+## [v4.0.0](https://github.com/nextcloud/contacts/tree/v4.0.0) (2021-07-06)
 
-[Full Changelog](https://github.com/nextcloud/contacts/compare/v4.0.0-beta.3...v4.0.0-rc0)
+[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.5.1...v4.0.0)
 
-### Enhancements
-- Support population count
-  [\#2295](https://github.com/nextcloud/contacts/pull/2295) ([skjnldsv](https://github.com/skjnldsv))
-
-### Fixed
-- Fix circle membership request
-  [\#2316](https://github.com/nextcloud/contacts/pull/2316) ([skjnldsv](https://github.com/skjnldsv))
-- Support contacts member type
-  [\#2298](https://github.com/nextcloud/contacts/pull/2298) ([skjnldsv](https://github.com/skjnldsv))
-- Fix circles icon
-  [\#2328](https://github.com/nextcloud/contacts/pull/2328) ([skjnldsv](https://github.com/skjnldsv))
-- l10n: Error message changed
-  [\#2326](https://github.com/nextcloud/contacts/pull/2326) ([Valdnet](https://github.com/Valdnet))
-- l10n: Change to a capital letter
-  [\#2305](https://github.com/nextcloud/contacts/pull/2305) ([Valdnet](https://github.com/Valdnet))
-- l10n: Change to a capital letter
-  [\#2304](https://github.com/nextcloud/contacts/pull/2304) ([Valdnet](https://github.com/Valdnet))
-  
-## [v4.0.0-beta.3](https://github.com/nextcloud/contacts/tree/v4.0.0-beta.3) (2021-06-21)
-
-[Full Changelog](https://github.com/nextcloud/contacts/compare/v4.0.0-beta.2...v4.0.0-beta.3)
+### Featured enhancement
+- Circles integration 
+  [\#2098](https://github.com/nextcloud/contacts/pull/2098) ([skjnldsv](https://github.com/skjnldsv))
 
 ### Enhancements
-- Comply to new resizeable list feature
+- Comply to new resizeable list feature 
   [\#2246](https://github.com/nextcloud/contacts/pull/2246) ([skjnldsv](https://github.com/skjnldsv))
-
-### Fixed
-- Fix Circle class name comparison
-  [\#2287](https://github.com/nextcloud/contacts/pull/2287) ([skjnldsv](https://github.com/skjnldsv))
-- Fix chain condition of responses
-  [\#2286](https://github.com/nextcloud/contacts/pull/2286) ([skjnldsv](https://github.com/skjnldsv))
-
-## [v4.0.0-beta.2](https://github.com/nextcloud/contacts/tree/v4.0.0-beta.2) (2021-06-17)
-
-[Full Changelog](https://github.com/nextcloud/contacts/compare/v4.0.0-beta.1...v4.0.0-beta.2)
-
-### Enhancements
-- Circles integration
-  [\#2098](https://github.com/nextcloud/contacts/pull/2098) ([skjnldsv](https://github.com/skjnldsv))
-- Bump deps and use npm7
+- Bump deps and use npm7 
   [\#2281](https://github.com/nextcloud/contacts/pull/2281) ([skjnldsv](https://github.com/skjnldsv))
-- Show explanatory description on empty circles list
-  [\#2250](https://github.com/nextcloud/contacts/pull/2250) ([skjnldsv](https://github.com/skjnldsv))
-- Handle circles being disabled
-  [\#2234](https://github.com/nextcloud/contacts/pull/2234) ([skjnldsv](https://github.com/skjnldsv))
-- l10n: Change to lowercase
-  [\#2190](https://github.com/nextcloud/contacts/pull/2190) ([Valdnet](https://github.com/Valdnet))
-- Bump dependencies and webpack 5
+- Bump dependencies and webpack 5 
   [\#2140](https://github.com/nextcloud/contacts/pull/2140) ([skjnldsv](https://github.com/skjnldsv))
+- Remove core-js 
+  [\#2323](https://github.com/nextcloud/contacts/pull/2323) ([skjnldsv](https://github.com/skjnldsv))
+- Various dependencies updates
 
 ### Fixed
-- Fix new circle disabled button
-  [\#2265](https://github.com/nextcloud/contacts/pull/2265) ([skjnldsv](https://github.com/skjnldsv))
-- Fix circles version comparison if circles is not installed
-  [\#2264](https://github.com/nextcloud/contacts/pull/2264) ([skjnldsv](https://github.com/skjnldsv))
-- Close add some menu entries after click
-  [\#2255](https://github.com/nextcloud/contacts/pull/2255) ([skjnldsv](https://github.com/skjnldsv))
-- Admins can also promote others as admin
-  [\#2254](https://github.com/nextcloud/contacts/pull/2254) ([skjnldsv](https://github.com/skjnldsv))
-- Fix init circle loading and logger debug
-  [\#2253](https://github.com/nextcloud/contacts/pull/2253) ([skjnldsv](https://github.com/skjnldsv))
-- Fix add members NavigationDuplicated error
-  [\#2252](https://github.com/nextcloud/contacts/pull/2252) ([skjnldsv](https://github.com/skjnldsv))
-- Disable new circle buttons on loading
-  [\#2251](https://github.com/nextcloud/contacts/pull/2251) ([skjnldsv](https://github.com/skjnldsv))
-- Properly check for circles version
-  [\#2249](https://github.com/nextcloud/contacts/pull/2249) ([skjnldsv](https://github.com/skjnldsv))
-- Fix personal circle wording and hide feature
-  [\#2247](https://github.com/nextcloud/contacts/pull/2247) ([skjnldsv](https://github.com/skjnldsv))
-- l10n: Correct spelling
-  [\#2244](https://github.com/nextcloud/contacts/pull/2244) ([Valdnet](https://github.com/Valdnet))
-- Improve Compatibily with macOS Contacts
+- Improve Compatibily with macOS Contacts 
   [\#1999](https://github.com/nextcloud/contacts/pull/1999) ([zlajo](https://github.com/zlajo))
-- Fix renaming a circle
-  [\#2283](https://github.com/nextcloud/contacts/pull/2283) ([mejo-](https://github.com/mejo-))
-- l10n: Spelling unification
-  [\#2233](https://github.com/nextcloud/contacts/pull/2233) ([Valdnet](https://github.com/Valdnet))
-- l10n: Change spelling
-  [\#2189](https://github.com/nextcloud/contacts/pull/2189) ([Valdnet](https://github.com/Valdnet))
-- Increase max-version to current dev version 22
+- Fix chain condition of responses 
+  [\#2286](https://github.com/nextcloud/contacts/pull/2286) ([skjnldsv](https://github.com/skjnldsv))
+- Increase max-version to current dev version 22 
   [\#2169](https://github.com/nextcloud/contacts/pull/2169) ([jancborchardt](https://github.com/jancborchardt))
-- l10n: Unify spelling
-  [\#2162](https://github.com/nextcloud/contacts/pull/2162) ([Valdnet](https://github.com/Valdnet))
-
-## [v4.0.0-beta.1](https://github.com/nextcloud/contacts/tree/v4.0.0-beta.1) (2021-06-04)
-
-[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.5.1...v4.0.0-beta.1)
-
-### Enhancements
-- Circles integration
-  [\#2098](https://github.com/nextcloud/contacts/pull/2098) ([skjnldsv](https://github.com/skjnldsv))
-- Show explanatory description on empty circles list
-  [\#2250](https://github.com/nextcloud/contacts/pull/2250) ([skjnldsv](https://github.com/skjnldsv))
-- Admins can also promote others as admin
-  [\#2254](https://github.com/nextcloud/contacts/pull/2254) ([skjnldsv](https://github.com/skjnldsv))
-
-### Fixed
-- Admins can also promote others as admin
-  [\#2254](https://github.com/nextcloud/contacts/pull/2254) ([skjnldsv](https://github.com/skjnldsv))
-- Fix init circle loading and logger debug
-  [\#2253](https://github.com/nextcloud/contacts/pull/2253) ([skjnldsv](https://github.com/skjnldsv))
-- Fix add members NavigationDuplicated error
-  [\#2252](https://github.com/nextcloud/contacts/pull/2252) ([skjnldsv](https://github.com/skjnldsv))
-- Disable new circle buttons on loading
-  [\#2251](https://github.com/nextcloud/contacts/pull/2251) ([skjnldsv](https://github.com/skjnldsv))
-- Properly check for circles version
-  [\#2249](https://github.com/nextcloud/contacts/pull/2249) ([skjnldsv](https://github.com/skjnldsv))
-- Fix personal circle wording and hide feature
-  [\#2247](https://github.com/nextcloud/contacts/pull/2247) ([skjnldsv](https://github.com/skjnldsv))
-- l10n: Correct spelling
-  [\#2244](https://github.com/nextcloud/contacts/pull/2244) ([Valdnet](https://github.com/Valdnet))
-- Improve Compatibily with macOS Contacts
-  [\#1999](https://github.com/nextcloud/contacts/pull/1999) ([zlajo](https://github.com/zlajo))
-- Handle circles being disabled
-  [\#2234](https://github.com/nextcloud/contacts/pull/2234) ([skjnldsv](https://github.com/skjnldsv))
-
-**Merged pull requests:**
-
-- l10n: Spelling unification
-  [\#2233](https://github.com/nextcloud/contacts/pull/2233) ([Valdnet](https://github.com/Valdnet))
-- l10n: Change spelling
+- l10n: Change spelling 
   [\#2189](https://github.com/nextcloud/contacts/pull/2189) ([Valdnet](https://github.com/Valdnet))
-- Increase max-version to current dev version 22
-  [\#2169](https://github.com/nextcloud/contacts/pull/2169) ([jancborchardt](https://github.com/jancborchardt))
-- l10n: Unify spelling
-  [\#2162](https://github.com/nextcloud/contacts/pull/2162) ([Valdnet](https://github.com/Valdnet))
-- Bump dependencies and webpack 5
-  [\#2140](https://github.com/nextcloud/contacts/pull/2140) ([skjnldsv](https://github.com/skjnldsv))
-- l10n: Change to lowercase
+- l10n: Change to lowercase 
   [\#2190](https://github.com/nextcloud/contacts/pull/2190) ([Valdnet](https://github.com/Valdnet))
+- l10n: Correct spelling 
+  [\#2244](https://github.com/nextcloud/contacts/pull/2244) ([Valdnet](https://github.com/Valdnet))
+- l10n: Spelling unification 
+  [\#2233](https://github.com/nextcloud/contacts/pull/2233) ([Valdnet](https://github.com/Valdnet))
+- l10n: Unify spelling 
+  [\#2162](https://github.com/nextcloud/contacts/pull/2162) ([Valdnet](https://github.com/Valdnet))
+- l10n: Error message changed 
+  [\#2326](https://github.com/nextcloud/contacts/pull/2326) ([Valdnet](https://github.com/Valdnet))
+- l10n: Change to a capital letter 
+  [\#2305](https://github.com/nextcloud/contacts/pull/2305) ([Valdnet](https://github.com/Valdnet))
+- l10n: Change to a capital letter 
+  [\#2304](https://github.com/nextcloud/contacts/pull/2304) ([Valdnet](https://github.com/Valdnet))
 
 ## [v3.5.1](https://github.com/nextcloud/contacts/tree/v3.5.1) (2021-03-17)
 
