@@ -15,9 +15,6 @@ on:
 jobs:
   lint:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        php-versions: ["7.4"]
 
     name: php-cs
 
@@ -28,7 +25,7 @@ jobs:
       - name: Set up php ${{ matrix.php-versions }}
         uses: shivammathur/setup-php@v2
         with:
-          php-version: ${{ matrix.php-versions }}
+          php-version: "7.4"
           coverage: none
 
       - name: Install dependencies
