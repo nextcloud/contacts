@@ -1,6 +1,6 @@
 # Changelog
 
-## [v4.0.0](https://github.com/nextcloud/contacts/tree/v4.0.0) (2021-07-06)
+## 4.0.0 - 2021-07-06
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v3.5.1...v4.0.0)
 
@@ -43,7 +43,7 @@
 - l10n: Change to a capital letter 
   [\#2304](https://github.com/nextcloud/contacts/pull/2304) ([Valdnet](https://github.com/Valdnet))
 
-## [v3.5.1](https://github.com/nextcloud/contacts/tree/v3.5.1) (2021-03-17)
+## 3.5.1 - 2021-03-17
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v3.5.0...v3.5.1)
 
@@ -51,7 +51,7 @@
 - Min support version is 19
   ([skjnldsv](https://github.com/skjnldsv))
 
-## [v3.5.0](https://github.com/nextcloud/contacts/tree/v3.5.0) (2021-03-15)
+## 3.5.0 - 2021-03-15
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.3...v3.5.0)
 
@@ -76,7 +76,7 @@
   [\#2085](https://github.com/nextcloud/contacts/pull/2085) ([call-me-matt](https://github.com/call-me-matt))
 
 
-## [v3.4.3](https://github.com/nextcloud/contacts/tree/v3.4.3) (2021-01-04)
+## 3.4.3 - 2021-01-04)
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.2...v3.4.3)
 
