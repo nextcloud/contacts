@@ -26,11 +26,11 @@
 			{{ t('contacts', 'Loading members list …') }}
 		</EmptyContent>
 
-		<EmptyContent v-else-if="!circle.isMember" icon="icon-contacts">
+		<EmptyContent v-else-if="!circle.isMember" icon="icon-contacts-dark">
 			{{ t('contacts', 'The list of members is only visible to members of this circle') }}
 		</EmptyContent>
 
-		<EmptyContent v-else icon="icon-contacts">
+		<EmptyContent v-else icon="icon-contacts-dark">
 			{{ t('contacts', 'There is no member in this circle') }}
 		</EmptyContent>
 	</AppContentList>

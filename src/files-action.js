@@ -31,7 +31,7 @@ window.addEventListener('DOMContentLoaded', () => {
 			displayName: t('contacts', 'Import'),
 			mime,
 			permissions: OC.PERMISSION_READ,
-			iconClass: 'icon-contacts',
+			iconClass: 'icon-contacts-dark',
 			actionHandler(fileName, context) {
 				const absPath = `${context.dir === '/' ? '' : context.dir}/${fileName}`
 				window.location = generateUrl(`/apps/contacts/import?file=${absPath}`)
