@@ -23,7 +23,7 @@
 <template>
 	<AppContentDetails>
 		<!-- nothing selected or contact not found -->
-		<EmptyContent v-if="!contact" icon="icon-contacts">
+		<EmptyContent v-if="!contact" icon="icon-contacts-dark">
 			{{ t('contacts', 'No contact selected') }}
 			<template #desc>
 				{{ t('contacts', 'Select a contact on the list to begin') }}
@@ -423,7 +423,7 @@ export default {
 		groupsModel() {
 			return {
 				readableName: t('contacts', 'Groups'),
-				icon: 'icon-contacts',
+				icon: 'icon-contacts-dark',
 			}
 		},
 

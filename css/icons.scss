@@ -33,7 +33,15 @@
 @include icon-black-white('sync', 'contacts', 2);
 @include icon-black-white('recent-actors', 'contacts', 1);
 @include icon-black-white('circles', 'contacts', 1);
-@include icon-black-white('contacts', 'contacts', 1);
+
+.icon-contacts {
+	&-dark {
+		@include icon-color('contacts', 'contacts', $color-black);
+	}
+	&-white {
+		@include icon-color('contacts', 'contacts', $color-white);
+	}
+}
 	
 // social network icons:
 @include icon-black-white('facebook', 'contacts', 2);	// “facebook (fab)” by fontawesome.com is licensed under CC BY 4.0. (https://fontawesome.com/icons/facebook?style=brands)
