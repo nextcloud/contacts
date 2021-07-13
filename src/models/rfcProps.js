@@ -309,7 +309,7 @@ const properties = {
 		],
 	},
 	tz: {
-		readableName: t('contacts', 'Timezone'),
+		readableName: t('contacts', 'Time zone'),
 		force: 'select',
 		icon: 'icon-timezone',
 		options: zones.map(zone => ({
