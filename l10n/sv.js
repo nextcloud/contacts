@@ -139,7 +139,6 @@ OC.L10N.register(
     "Male" : "Man",
     "None" : "Ingen",
     "Unknown" : "Okänd",
-    "Timezone" : "Tidszon",
     "Spoken languages" : "Talade språk",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt kunde inte läsas","{failed} kontakter kunde inte läsas"],
     "Unable to delete contact" : "Kunde inte radera kontakten",

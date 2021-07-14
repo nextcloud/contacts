@@ -84,7 +84,6 @@ OC.L10N.register(
     "Female" : "Femenino",
     "Male" : "Masculino",
     "None" : "Ninguno",
-    "Unknown" : "Desconocido",
-    "Timezone" : "Zona horaria"
+    "Unknown" : "Desconocido"
 },
 "nplurals=2; plural=(n != 1);");

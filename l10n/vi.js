@@ -165,7 +165,6 @@ OC.L10N.register(
     "Male" : "Nam",
     "None" : "Không có",
     "Unknown" : "Không xác định",
-    "Timezone" : "Múi giờ",
     "Spoken languages" : "Ngôn ngữ có thể nói",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} liên hệ không thể đọc được"],
     "Unable to delete contact" : "Không thể xoá liên hệ",

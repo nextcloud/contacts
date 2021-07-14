@@ -124,7 +124,6 @@ OC.L10N.register(
     "Male" : "Mand",
     "None" : "Ingen",
     "Unknown" : "Ukendt",
-    "Timezone" : "Tidszone",
     "Spoken languages" : "Talte sprog",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt kunne ikke indlæses","{failed} kontakter kunne ikke indlæses"],
     "Your web browser is out of date" : "Din netlæser er forældet",

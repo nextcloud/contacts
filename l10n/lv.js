@@ -116,7 +116,6 @@ OC.L10N.register(
     "Male" : "Vīrietis",
     "None" : "Nav",
     "Unknown" : "Nezināms",
-    "Timezone" : "Laika josla",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontaktpersonas neizdevās nolasīt","{failed} kontaktpersonu neizdevās nolasīt","{failed} kontaktpersonas neizdevās nolasīt"],
     "Your web browser is out of date" : "Jūsu pārlūkprogrammai ir novecojusi versija!",
     "This application is not compatible with Internet Explorer" : "Šī lietotne nav saderīga ar Internet Explorer"

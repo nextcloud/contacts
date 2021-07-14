@@ -166,7 +166,6 @@ OC.L10N.register(
     "Male" : "Мужчина",
     "None" : "Никто",
     "Unknown" : "Неизвестно",
-    "Timezone" : "Часовой пояс",
     "Spoken languages" : "Разговорные языки",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контакт не удалось прочесть","{failed} контакта не удалось прочесть","{failed} контактов не удалось прочесть","{failed} контактов не удалось прочесть"],
     "Unable to delete contact" : "Невозможно удалить контакт",

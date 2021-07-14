@@ -256,7 +256,6 @@ OC.L10N.register(
     "Male" : "Homme",
     "None" : "Aucun",
     "Unknown" : "Inconnu",
-    "Timezone" : "Fuseau horaire",
     "Spoken languages" : "Langues parlées",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Erreur de lecture pour {failed} contact","Erreur de lecture pour {failed} contacts"],
     "Unable to create circle {circleName}" : "Impossible de créer le cercle {circleName}",

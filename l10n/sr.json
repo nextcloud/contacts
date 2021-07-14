@@ -161,7 +161,6 @@
     "Male" : "Мушки",
     "None" : "Ништа",
     "Unknown" : "Непознато",
-    "Timezone" : "Временска зона",
     "Spoken languages" : "Знање језика",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Не могу да прочитам {failed} контакт","Не могу да прочитам {failed} контакта","Не могу да прочитам {failed} контаката"],
     "Unable to delete contact" : "Не могу да обришем контакт",

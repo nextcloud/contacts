@@ -147,7 +147,6 @@ OC.L10N.register(
     "Male" : "Mies",
     "None" : "Ei mitään",
     "Unknown" : "Tuntematon",
-    "Timezone" : "Aikavyöhyke",
     "Spoken languages" : "Puhutut kielet",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} yhteystietoa ei voitu lukea","{failed} yhteystietoa ei voitu lukea"],
     "Unable to delete contact" : "Yhteystietoa ei voitu poistaa",

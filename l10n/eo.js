@@ -118,7 +118,6 @@ OC.L10N.register(
     "Male" : "Vira",
     "None" : "Nenio",
     "Unknown" : "Nekonata",
-    "Timezone" : "Horzono",
     "Spoken languages" : "Lingvoj parolataj",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"],
     "Your web browser is out of date" : "Via retumilo estas malaktuala",

@@ -172,7 +172,6 @@
     "Male" : "Maschio",
     "None" : "Nessuno",
     "Unknown" : "Sconosciuto",
-    "Timezone" : "Fuso orario",
     "Spoken languages" : "Lingue parlate",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["lettura di {failed} contatto non riuscita","lettura di {failed} contatti non riuscita"],
     "Unable to delete contact" : "Impossibile eliminare il contatto",

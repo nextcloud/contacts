@@ -165,7 +165,6 @@ OC.L10N.register(
     "Male" : "Òmine",
     "None" : "Nessunu",
     "Unknown" : "Disconnotu",
-    "Timezone" : "Fusu oràriu",
     "Spoken languages" : "Limbas faeddadas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["no at fatu a lèghere {failed} ","{failed} contacts failed to be read"],
     "Unable to delete contact" : "Non faghet a cantzellare su cuntatu",

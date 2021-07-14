@@ -170,7 +170,6 @@ OC.L10N.register(
     "Male" : "Vyras",
     "None" : "Nėra",
     "Unknown" : "Nežinoma",
-    "Timezone" : "Laiko juosta",
     "Spoken languages" : "Šnekamosios kalbos",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Nepavyko perskaityti {failed} adresato","Nepavyko perskaityti {failed} adresatų","Nepavyko perskaityti {failed} adresatų","Nepavyko perskaityti {failed} adresato"],
     "Unable to delete contact" : "Nepavyko ištrinti adresato",

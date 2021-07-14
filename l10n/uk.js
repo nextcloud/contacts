@@ -132,7 +132,6 @@ OC.L10N.register(
     "Male" : "Чоловік",
     "None" : "Відсутній",
     "Unknown" : "Невідомо",
-    "Timezone" : "Часовий пояс",
     "Spoken languages" : "Мови",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контакт не прочитано","{failed} контактів не прочитано","{failed} контактів не прочитано","{failed} контактів не прочитано"],
     "Your web browser is out of date" : "Ваш бразуер застарів",

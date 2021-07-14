@@ -88,7 +88,6 @@ OC.L10N.register(
     "Female" : "Vroulik",
     "Male" : "Manlik",
     "None" : "Geen",
-    "Unknown" : "Onbekend",
-    "Timezone" : "Tydsone"
+    "Unknown" : "Onbekend"
 },
 "nplurals=2; plural=(n != 1);");

@@ -156,7 +156,6 @@ OC.L10N.register(
     "Male" : "男性",
     "None" : "なし",
     "Unknown" : "不明",
-    "Timezone" : "タイムゾーン",
     "Spoken languages" : "話せる言語",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed}連絡先の読み込みができませんでした。"],
     "Unable to delete contact" : "連絡先を削除できません。",

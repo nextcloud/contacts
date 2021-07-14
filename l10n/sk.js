@@ -249,7 +249,6 @@ OC.L10N.register(
     "Male" : "Muž",
     "None" : "Žiadne",
     "Unknown" : "Neznámy",
-    "Timezone" : "Časová zóna",
     "Spoken languages" : "Hovorené jazyky",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt nebolo možné prečítať","{failed} kontakty nebolo možné prečítať","{failed} kontaktov nebolo možné prečítať","{failed} kontaktov nebolo možné prečítať"],
     "Unable to create circle {circleName}" : "Nie je možné vytvoriť kruh {circleName}",

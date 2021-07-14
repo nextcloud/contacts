@@ -254,7 +254,6 @@
     "Male" : "男性",
     "None" : "無",
     "Unknown" : "不詳",
-    "Timezone" : "時區",
     "Spoken languages" : "會說的語言",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} 個聯絡人讀取失敗"],
     "Some circle(s) an error occurred. Check the console for more details." : "某些圈子出錯，請查看控制台以獲取更多詳細信息。",

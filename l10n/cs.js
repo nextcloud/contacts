@@ -256,7 +256,6 @@ OC.L10N.register(
     "Male" : "Muž",
     "None" : "Žádné",
     "Unknown" : "Neznámé",
-    "Timezone" : "Časová zóna",
     "Spoken languages" : "Jazyky, kterými hovoří",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt se nepodařilo načíst","{failed} kontakty se nepodařilo načíst","{failed} kontaktů se nepodařilo načíst","{failed} kontakty se nepodařilo načíst"],
     "Some circle(s) an error occurred. Check the console for more details." : "U některých okruhů se vyskytly chyby. Podrobnosti naleznete v konzoli.",

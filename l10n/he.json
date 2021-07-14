@@ -163,7 +163,6 @@
     "Male" : "זכר",
     "None" : "אין",
     "Unknown" : "לא ידוע",
-    "Timezone" : "אזור זמן",
     "Spoken languages" : "שפות מדוברות",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["הקריאה של איש קשר אחד נכשלה","הקריאה של {failed} אנשי קשר נכשלה","הקריאה של {failed} אנשי קשר נכשלה","הקריאה של {failed} אנשי קשר נכשלה"],
     "Unable to delete contact" : "לא ניתן למחוק איש קשר",

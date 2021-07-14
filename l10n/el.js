@@ -165,7 +165,6 @@ OC.L10N.register(
     "Male" : "Άνδρας",
     "None" : "Κανένα",
     "Unknown" : "Άγνωστο",
-    "Timezone" : "Ζώνη ώρας",
     "Spoken languages" : "Ομιλούσες γλώσσες",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Αποτυχία ανάγνωσης {failed} επαφής","Αποτυχία ανάγνωσης {failed} επαφών"],
     "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής",

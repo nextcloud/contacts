@@ -105,7 +105,6 @@ OC.L10N.register(
     "Male" : "Мъж",
     "None" : "Без",
     "Unknown" : "Непознат",
-    "Timezone" : "Часови пояс",
     "This application is not compatible with Internet Explorer" : "Приложението не е съвместимо с Internet Explorer"
 },
 "nplurals=2; plural=(n != 1);");

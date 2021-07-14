@@ -166,7 +166,6 @@ OC.L10N.register(
     "Male" : "Машко",
     "None" : "Ништо",
     "Unknown" : "Непознат",
-    "Timezone" : "Временска зона",
     "Spoken languages" : "Говорни јазици",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} еден контакт неможе да се прочита","{failed} контакти неможат да се прочитат"],
     "Unable to delete contact" : "Неможе да се избрише контакт",

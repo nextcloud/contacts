@@ -140,7 +140,6 @@ OC.L10N.register(
     "Male" : "Karl",
     "None" : "Ekkert",
     "Unknown" : "Óþekkt",
-    "Timezone" : "Tímabelti",
     "Spoken languages" : "Töluð tungumál",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Mistókst að lesa {failed} tengilið","Mistókst að lesa {failed} tengiliði"],
     "Your web browser is out of date" : "Vafrinn þinn er ekki uppfærður",

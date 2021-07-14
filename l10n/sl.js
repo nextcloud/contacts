@@ -216,7 +216,6 @@ OC.L10N.register(
     "Male" : "Moški",
     "None" : "Brez",
     "Unknown" : "Neznan",
-    "Timezone" : "Časovni pas",
     "Spoken languages" : "Govorjeni jezik",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} stika ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati"],
     "Unable to delete contact" : "Ni mogoče izbrisati stika",

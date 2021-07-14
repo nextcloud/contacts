@@ -166,7 +166,6 @@ OC.L10N.register(
     "Male" : "Férfi",
     "None" : "Egyik sem",
     "Unknown" : "Ismeretlen",
-    "Timezone" : "Időzóna",
     "Spoken languages" : "Beszélt nyelvek",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} névjegyet nem sikerült olvasni","{failed} névjegyet nem sikerült olvasni"],
     "Unable to delete contact" : "A névjegy törlése sikertelen",

@@ -231,7 +231,6 @@ OC.L10N.register(
     "Male" : "Hombre",
     "None" : "Ninguno",
     "Unknown" : "Desconocido",
-    "Timezone" : "Huso horario",
     "Spoken languages" : "Idiomas hablados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se ha podido leer","{failed} contactos no se han podido leer"],
     "Unable to delete contact" : "No se ha podido eliminar el contacto",

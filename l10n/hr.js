@@ -165,7 +165,6 @@ OC.L10N.register(
     "Male" : "Muški",
     "None" : "Nema",
     "Unknown" : "Nepoznato",
-    "Timezone" : "Vremenska zona",
     "Spoken languages" : "Poznati jezici",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt nije pročitan","{failed} kontakata nije pročitano","{failed} kontakata nije pročitano"],
     "Unable to delete contact" : "Nije moguće izbrisati kontakt",

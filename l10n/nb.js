@@ -109,7 +109,6 @@ OC.L10N.register(
     "Male" : "Dame",
     "None" : "Ingen",
     "Unknown" : "Ukjent",
-    "Timezone" : "Tidssone",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt kunne ikke bli lest inn","{failed} kontakter kunne ikke bli lest inn"]
 },
 "nplurals=2; plural=(n != 1);");

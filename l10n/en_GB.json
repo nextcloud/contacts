@@ -84,7 +84,6 @@
     "Female" : "Female",
     "Male" : "Male",
     "None" : "None",
-    "Unknown" : "Unknown",
-    "Timezone" : "Timezone"
+    "Unknown" : "Unknown"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

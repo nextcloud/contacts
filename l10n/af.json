@@ -86,7 +86,6 @@
     "Female" : "Vroulik",
     "Male" : "Manlik",
     "None" : "Geen",
-    "Unknown" : "Onbekend",
-    "Timezone" : "Tydsone"
+    "Unknown" : "Onbekend"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
