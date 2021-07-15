@@ -49,6 +49,9 @@ class DiasporaProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
+		if (!array_key_exists("X-SOCIALPROFILE",$contact)) {
+			return false;
+		}
 		$socialprofiles = $this->getProfileIds($contact);
 		return isset($socialprofiles) && count($socialprofiles) > 0;
 	}
