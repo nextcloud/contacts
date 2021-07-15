@@ -256,6 +256,7 @@ OC.L10N.register(
     "Male" : "男性",
     "None" : "无",
     "Unknown" : "未知",
+    "Time zone" : "时区",
     "Spoken languages" : "口语",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} 个联系人读取失败"],
     "Some circle(s) an error occurred. Check the console for more details." : "一些圈子出错了。更多详情见控制台",

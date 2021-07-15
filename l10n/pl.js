@@ -256,6 +256,7 @@ OC.L10N.register(
     "Male" : "Mężczyzna",
     "None" : "Brak",
     "Unknown" : "Nieznany",
+    "Time zone" : "Strefa czasowa",
     "Spoken languages" : "Języki mówione",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Nie udało się odczytać {failed} kontaktu","Nie udało się odczytać {failed} kontaktów","Nie udało się odczytać {failed} kontaktów","Nie udało się odczytać {failed} kontaktów"],
     "Some circle(s) an error occurred. Check the console for more details." : "W niektórych kręgach wystąpił błąd. Sprawdź konsolę, aby uzyskać więcej informacji.",
