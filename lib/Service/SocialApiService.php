@@ -342,12 +342,12 @@ class SocialApiService {
 	/**
 	 * Updates social profile data for all contacts of an addressbook
 	 *
-	 * @param {String} network the social network to use (fallback: take first match)
+	 * @param {String|null} network the social network to use (take first match if unset)
 	 * @param {String} userId the address book owner
 	 *
 	 * @returns {JSONResponse} JSONResponse with the list of changed and failed contacts
 	 */
-	public function updateAddressbooks(string $network, string $userId, string $offsetBook = null, string $offsetContact = null) : JSONResponse {
+	public function updateAddressbooks(string $userId, string $offsetBook = null, string $offsetContact = null, string $network = null) : JSONResponse {
 
 		// double check!
 		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');

@@ -237,7 +237,7 @@ class SocialApiServiceTest extends TestCase {
 			'VERSION' => $contact['VERSION'],
 			'PHOTO;ENCODING=b;TYPE=' . $imageType . ';VALUE=BINARY' => base64_encode($body)
 		];
-		
+
 		$this->socialProvider
 			->expects($this->once())->method("getSocialConnector")->with($network);
 		$provider->expects($this->once())->method("supportsContact")->with($contact);
@@ -306,7 +306,7 @@ class SocialApiServiceTest extends TestCase {
 			'VERSION' => $contact['VERSION'],
 			'PHOTO' => "data:".$imageType.";base64," . base64_encode($body)
 		];
-		
+
 		$this->socialProvider
 			 ->expects($this->once())->method("getSocialConnector")->with($network);
 		$provider->expects($this->once())->method("supportsContact")->with($contact);
@@ -442,7 +442,17 @@ class SocialApiServiceTest extends TestCase {
 
 		$this->setupAddressbooks();
 
-		$result = $this->service->updateAddressbooks('any', 'mrstest');
+		if ($syncAllowedByAdmin === 'yes' && $bgSyncEnabledByUser === 'yes') {
+			$this->socialProvider
+				->expects($this->atLeastOnce())
+				->method('getSocialConnectors');
+		}
+
+		$this->socialProvider
+			->expects($this->never())
+			->method('getSocialConnector');
+
+		$result = $this->service->updateAddressbooks('mrstest');
 
 		$this->assertEquals($expected, $result->getStatus());
 
@@ -474,7 +484,7 @@ class SocialApiServiceTest extends TestCase {
 
 		$this->setupAddressbooks();
 
-		$result = $this->service->updateAddressbooks('any', 'msstest');
+		$result = $this->service->updateAddressbooks('msstest');
 
 		$this->assertEquals(Http::STATUS_PARTIAL_CONTENT, $result->getStatus());
 
@@ -502,7 +512,7 @@ class SocialApiServiceTest extends TestCase {
 
 		$this->setupAddressbooks();
 
-		$result = $this->service->updateAddressbooks('any', 'mrstest', 'contacts2', '22222222-2222-2222-2222-222222222222');
+		$result = $this->service->updateAddressbooks('mrstest', 'contacts2', '22222222-2222-2222-2222-222222222222');
 
 		$this->assertEquals($expected, $result->getStatus());
 

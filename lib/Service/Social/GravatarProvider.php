@@ -38,6 +38,9 @@ class GravatarProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
+		if (!array_key_exists("EMAIL",$contact)) {
+			return false;
+		}
 		$emails = $contact['EMAIL'];
 		return isset($emails) && count($emails);
 	}

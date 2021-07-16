@@ -45,6 +45,9 @@ class FacebookProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
+		if (!array_key_exists("X-SOCIALPROFILE",$contact)) {
+			return false;
+		}
 		$socialprofiles = $this->getProfiles($contact);
 		return isset($socialprofiles) && count($socialprofiles) > 0;
 	}
