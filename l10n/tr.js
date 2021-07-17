@@ -256,6 +256,7 @@ OC.L10N.register(
     "Male" : "Erkek",
     "None" : "Yok",
     "Unknown" : "Bilinmiyor",
+    "Time zone" : "Saat dilimi",
     "Spoken languages" : "Konuşulan diller",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kişi okunamadı","{failed} kişi okunamadı"],
     "Some circle(s) an error occurred. Check the console for more details." : "Bazı çevrelerde sorun çıktı. Ayrıntılı bilgi almak için konsola bakabilirsiniz.",
