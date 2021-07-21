@@ -26,12 +26,15 @@ use OCA\Contacts\Dav\PatchPlugin;
 use OCA\Contacts\Listener\LoadContactsFilesActions;
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCP\AppFramework\App;
+use OCP\AppFramework\Bootstrap\IBootContext;
+use OCP\AppFramework\Bootstrap\IBootstrap;
+use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\SabrePluginEvent;
 
-class Application extends App {
+class Application extends App implements IBootstrap {
 	public const APP_ID = 'contacts';
-	
+
 	public const AVAIL_SETTINGS = [
 		'allowSocialSync' => 'yes',
 	];
@@ -40,23 +43,25 @@ class Application extends App {
 		parent::__construct(self::APP_ID);
 	}
 
-	public function register() {
-		$server = $this->getContainer()->getServer();
+	public function register(IRegistrationContext $context): void {
+		$context->registerEventListener(LoadAdditionalScriptsEvent::class, LoadContactsFilesActions::class);
+	}
+
+	public function boot(IBootContext $context): void {
+		$appContainer = $context->getAppContainer();
+		$serverContainer = $context->getServerContainer();
 
 		/** @var IEventDispatcher $eventDispatcher */
-		$eventDispatcher = $server->query(IEventDispatcher::class);
-		$eventDispatcher->addListener('OCA\DAV\Connector\Sabre::addPlugin', function (SabrePluginEvent $event) {
-			$server = $event->getServer();
-
-			if ($server !== null) {
-				// We have to register the PatchPlugin here and not info.xml,
-				// because info.xml plugins are loaded, after the
-				// beforeMethod:* hook has already been emitted.
-				$server->addPlugin($this->getContainer()->query(PatchPlugin::class));
+		$eventDispatcher = $serverContainer->get(IEventDispatcher::class);
+		$eventDispatcher->addListener('OCA\DAV\Connector\Sabre::addPlugin', static function (SabrePluginEvent $event) use ($appContainer) {
+			if ($event->getServer() === null) {
+				return;
 			}
-		});
 
-		// Register files action
-		$eventDispatcher->addServiceListener(LoadAdditionalScriptsEvent::class, LoadContactsFilesActions::class);
+			// We have to register the PatchPlugin here and not info.xml,
+			// because info.xml plugins are loaded, after the
+			// beforeMethod:* hook has already been emitted.
+			$event->getServer()->addPlugin($appContainer->get(PatchPlugin::class));
+		});
 	}
 }

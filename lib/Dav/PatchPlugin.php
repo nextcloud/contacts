@@ -87,9 +87,9 @@ class PatchPlugin extends ServerPlugin {
 	 *
 	 * @param PropPatch $propPatch
 	 * @param INode $node
-	 * @return void
+	 * @return bool
 	 */
-	public function httpPatch(RequestInterface $request, ResponseInterface $response) {
+	public function httpPatch(RequestInterface $request, ResponseInterface $response): bool {
 		$path = $request->getPath();
 		$node = $this->server->tree->getNodeForPath($path);
 
@@ -127,7 +127,7 @@ class PatchPlugin extends ServerPlugin {
 		if (count($properties) > 1) {
 			throw new DAV\Exception\BadRequest('The specified property appear more than once');
 		}
-		
+
 		// Init if not in the vcard
 		if (count($properties) === 0) {
 			$vCard->add($propertyName, $propertyData);
@@ -144,7 +144,7 @@ class PatchPlugin extends ServerPlugin {
 			$oldData = $properties[0]->getValue();
 			$properties[0]->setRawMimeDirValue($oldData.$propertyData);
 		}
-	
+
 		// Validate & write
 		$vCard->validate();
 		$node->put($vCard->serialize());
