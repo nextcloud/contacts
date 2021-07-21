@@ -48,7 +48,7 @@ OC.L10N.register(
     "Phonetic first name" : "Nom fonètic",
     "Phonetic last name" : "Cognom fonètic",
     "Display name" : "Nom per mostrar",
-    "Last modified" : "El darrer modificat",
+    "Last modified" : "Darrera modificació",
     "Sort by {sorting}" : "Ordena per {sorting}",
     "Update avatars from social media" : "Actualitzar els avatars de les xarxes socials",
     "(refreshed once per week)" : "(refrescat un cop per setmana)",
