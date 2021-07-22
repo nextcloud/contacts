@@ -22,26 +22,62 @@
  */
 
 // contacts settings section
+.app-contacts #app-settings-content {
+    padding-left: 0px !important;
+}
+
 #app-settings-content {
 	.settings-section {
 		display: flex;
 		align-items: center;
-		margin-top: 5px;
 	}
+}
+
+.new-addressbook-entry {
+	display: flex;
+	align-items: center;
 }
 
 #new-addressbook-form {
 	display: flex;
+	width: calc(100% - 44px);
 	input {
 		margin-top: 0;
 		margin-bottom: 0;
 	}
 }
 
+.settings-addressbook-list {
+	display: flex;
+	li {
+		width: calc(100% - 44px);
+	}
+	&__header {
+		padding-left: 44px;
+		color: var(--color-primary-element);
+	}
+}
+
+.settings-line__icon {
+	width: 44px;
+	height: 44px;
+}
+
+.social-sync__list-entry {
+	label::before {
+		margin-left: 14px !important;
+		margin-right: 14px !important;
+	}
+	em {
+		margin-left: 44px !important;
+	}
+}
+
 // Sort Contacts
 .sort-contacts {
+	display: flex;
 	.multiselect {
-		width: 100%;
+		width: calc(100% - 44px);
 		margin: 0;
 		.multiselect__single {
 			padding-right: 24px !important;
@@ -49,6 +85,9 @@
 			background-position: right 4px center;
 
 			@include icon-color('triangle-s', 'actions', $color-black, 1, true);
+		}
+		&__content-wrapper {
+			bottom: unset !important;
 		}
 	}
 }
@@ -73,6 +112,10 @@
 		width: 100%;
 		margin: 0;
 		margin-top: -1px;
+	}
+	&__button-main {
+		margin-left: 10px;
+		width: calc(100% - 10px) !important;
 	}
 }
 
