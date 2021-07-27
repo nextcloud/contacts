@@ -21,27 +21,30 @@
 -->
 
 <template>
-	<form id="new-addressbook-form"
-		:disabled="loading"
-		:class="{'icon-loading-small': loading}"
-		name="new-addressbook-form"
-		class="new-addressbook"
-		@submit.prevent.stop="addAddressbook">
-		<input id="new-addressbook"
-			ref="addressbook"
-			v-model="displayName"
+	<div class="new-addressbook-entry">
+		<div class="icon-add settings-line__icon"></div>
+		<form id="new-addressbook-form"
 			:disabled="loading"
-			:placeholder="t('contacts', 'Address book name')"
-			:pattern="addressBookRegex"
-			class="new-addressbook-input"
-			type="text"
-			autocomplete="off"
-			autocorrect="off"
-			spellcheck="false"
-			minlength="1"
-			required>
-		<input class="icon-confirm" type="submit" value="">
-	</form>
+			:class="{'icon-loading-small': loading}"
+			name="new-addressbook-form"
+			class="new-addressbook"
+			@submit.prevent.stop="addAddressbook">
+			<input id="new-addressbook"
+				ref="addressbook"
+				v-model="displayName"
+				:disabled="loading"
+				:placeholder="t('contacts', 'Add new address book')"
+				:pattern="addressBookRegex"
+				class="new-addressbook-input"
+				type="text"
+				autocomplete="off"
+				autocorrect="off"
+				spellcheck="false"
+				minlength="1"
+				required>
+			<input class="icon-confirm" type="submit" value="">
+		</form>
+	</div>
 </template>
 
 <script>

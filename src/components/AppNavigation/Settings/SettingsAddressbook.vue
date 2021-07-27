@@ -21,75 +21,78 @@
   -
   -->
 <template>
-	<li :class="{'addressbook--disabled': !addressbook.enabled}" class="addressbook">
-		<!-- addressbook name -->
-		<span class="addressbook__name" :title="addressbook.displayName">
-			{{ addressbook.displayName }}
-		</span>
+	<div class="settings-addressbook-list">
+		<div class="icon-group settings-line__icon"></div>
+		<li :class="{'addressbook--disabled': !addressbook.enabled}" class="addressbook">
+			<!-- addressbook name -->
+			<span class="addressbook__name" :title="addressbook.displayName">
+				{{ addressbook.displayName }}
+			</span>
 
-		<!-- sharing button -->
-		<a v-if="!addressbook.readOnly"
-			v-tooltip.top="sharedWithTooltip"
-			:class="{'addressbook__share--shared': hasShares}"
-			:title="sharedWithTooltip"
-			href="#"
-			class="addressbook__share icon-shared"
-			@click="toggleShare" />
+			<!-- sharing button -->
+			<a v-if="!addressbook.readOnly"
+				v-tooltip.top="sharedWithTooltip"
+				:class="{'addressbook__share--shared': hasShares}"
+				:title="sharedWithTooltip"
+				href="#"
+				class="addressbook__share icon-shared"
+				@click="toggleShare" />
 
-		<!-- popovermenu -->
-		<Actions class="addressbook__menu" menu-align="right">
-			<!-- copy addressbook link -->
-			<ActionLink
-				:href="addressbook.url"
-				:icon="copyLinkIcon"
-				@click.stop.prevent="copyToClipboard(addressbookUrl)">
-				{{ copyButtonText }}
-			</ActionLink>
+			<!-- popovermenu -->
+			<Actions class="addressbook__menu" menu-align="right">
+				<!-- copy addressbook link -->
+				<ActionLink
+					:href="addressbook.url"
+					:icon="copyLinkIcon"
+					@click.stop.prevent="copyToClipboard(addressbookUrl)">
+					{{ copyButtonText }}
+				</ActionLink>
 
-			<!-- download addressbook -->
-			<ActionLink
-				:href="addressbook.url + '?export'"
-				icon="icon-download">
-				{{ t('contacts', 'Download') }}
-			</ActionLink>
+				<!-- download addressbook -->
+				<ActionLink
+					:href="addressbook.url + '?export'"
+					icon="icon-download">
+					{{ t('contacts', 'Download') }}
+				</ActionLink>
 
-			<template v-if="!addressbook.readOnly">
-				<!-- rename addressbook -->
-				<ActionButton v-if="!editingName"
-					icon="icon-rename"
-					@click.stop.prevent="renameAddressbook">
-					{{ t('contacts', 'Rename') }}
+				<template v-if="!addressbook.readOnly">
+					<!-- rename addressbook -->
+					<ActionButton v-if="!editingName"
+						icon="icon-rename"
+						@click.stop.prevent="renameAddressbook">
+						{{ t('contacts', 'Rename') }}
+					</ActionButton>
+					<ActionInput v-else
+						ref="renameInput"
+						:disabled="renameLoading"
+						:icon="renameLoading ? 'icon-loading-small' : 'icon-rename'"
+						:value="addressbook.displayName"
+						@submit="updateAddressbookName" />
+
+					<!-- enable/disable addressbook -->
+					<ActionCheckbox v-if="!toggleEnabledLoading"
+						:checked="enabled"
+						@change.stop.prevent="toggleAddressbookEnabled">
+						{{ enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled') }}
+					</ActionCheckbox>
+					<ActionButton v-else
+						icon="icon-loading-small">
+						{{ enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled') }}
+					</ActionButton>
+				</template>
+
+				<!-- delete addressbook -->
+				<ActionButton v-if="hasMultipleAddressbooks"
+					:icon="deleteAddressbookLoading ? 'icon-loading-small' : 'icon-delete'"
+					@click="confirmDeletion">
+					{{ t('contacts', 'Delete') }}
 				</ActionButton>
-				<ActionInput v-else
-					ref="renameInput"
-					:disabled="renameLoading"
-					:icon="renameLoading ? 'icon-loading-small' : 'icon-rename'"
-					:value="addressbook.displayName"
-					@submit="updateAddressbookName" />
+			</Actions>
 
-				<!-- enable/disable addressbook -->
-				<ActionCheckbox v-if="!toggleEnabledLoading"
-					:checked="enabled"
-					@change.stop.prevent="toggleAddressbookEnabled">
-					{{ enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled') }}
-				</ActionCheckbox>
-				<ActionButton v-else
-					icon="icon-loading-small">
-					{{ enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled') }}
-				</ActionButton>
-			</template>
-
-			<!-- delete addressbook -->
-			<ActionButton v-if="hasMultipleAddressbooks"
-				:icon="deleteAddressbookLoading ? 'icon-loading-small' : 'icon-delete'"
-				@click="confirmDeletion">
-				{{ t('contacts', 'Delete') }}
-			</ActionButton>
-		</Actions>
-
-		<!-- sharing input -->
-		<ShareAddressBook v-if="shareOpen && !addressbook.readOnly" :addressbook="addressbook" />
-	</li>
+			<!-- sharing input -->
+			<ShareAddressBook v-if="shareOpen && !addressbook.readOnly" :addressbook="addressbook" />
+		</li>
+	</div>
 </template>
 
 <script>

@@ -23,7 +23,8 @@
 
 <template>
 	<div>
-		<div v-if="allowSocialSync">
+		<SettingsSortContacts class="settings-section" />
+		<div v-if="allowSocialSync" class="social-sync__list-entry">
 			<input
 				id="socialSyncToggle"
 				class="checkbox"
@@ -33,11 +34,13 @@
 			<label for="socialSyncToggle">{{ t('contacts', 'Update avatars from social media') }}</label>
 			<em for="socialSyncToggle">{{ t('contacts', '(refreshed once per week)') }}</em>
 		</div>
+		<div class="settings-addressbook-list__header">
+			<span>{{ t('contacts', 'Address books') }}</span>
+		</div>
 		<ul id="addressbook-list">
 			<SettingsAddressbook v-for="addressbook in addressbooks" :key="addressbook.id" :addressbook="addressbook" />
 		</ul>
 		<SettingsNewAddressbook :addressbooks="addressbooks" />
-		<SettingsSortContacts class="settings-section" />
 		<SettingsImportContacts :addressbooks="addressbooks"
 			class="settings-section"
 			@clicked="onClickImport"
