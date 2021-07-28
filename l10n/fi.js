@@ -36,7 +36,6 @@ OC.L10N.register(
     "Select local file" : "Valitse paikallinen tiedosto",
     "Importing is disabled because there are no address books available" : "Tuonti on pois käytöstä, koska osoitekirjoja ei ole käytettävissä",
     "Choose a vCard file to import" : "Valitse tuotava vCard-tiedosto",
-    "Address book name" : "Osoitekirjan nimi",
     "An error occurred, unable to create the address book" : "Tapahtui virhe, osoitekirjaa ei voitu luoda",
     "First name" : "Etunimi",
     "Last name" : "Sukunimi",

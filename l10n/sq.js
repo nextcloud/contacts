@@ -19,7 +19,6 @@ OC.L10N.register(
     "Copy link" : "Kopjo linkun",
     "Share with users or groups" : "Nda me përdoruesit ose grupet",
     "can edit" : "mund të modifikoni",
-    "Address book name" : "Emër libri adresash",
     "First name" : "Emër",
     "Last name" : "Mbiemër",
     "Display name" : "Shfaq emrin",

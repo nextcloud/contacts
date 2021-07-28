@@ -32,7 +32,6 @@ OC.L10N.register(
     "Select local file" : "Veldu skrá á tölvunni",
     "Importing is disabled because there are no address books available" : "Innflutningur er óvirkur því engar nafnaskrár eru tiltækar",
     "Choose a vCard file to import" : "Veldu vCard-skrá sem á að flytja inn",
-    "Address book name" : "Heiti nafnaskrár",
     "First name" : "Eiginnafn",
     "Last name" : "Kenninafn",
     "Display name" : "Birtingarnafn",

@@ -41,7 +41,6 @@ OC.L10N.register(
     "Select local file" : "Chọn tệp từ máy",
     "Importing is disabled because there are no address books available" : "Nhập đã bị tắt do không có sổ địa chỉ nào hiện hành",
     "Choose a vCard file to import" : "Chọn một tệp vCard để nhập",
-    "Address book name" : "Tên sổ địa chỉ",
     "An error occurred, unable to create the address book" : "Đã xảy ra lỗi, không thể tạo sổ địa chỉ",
     "First name" : "Tên",
     "Last name" : "Họ",

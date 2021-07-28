@@ -41,7 +41,6 @@ OC.L10N.register(
     "Select local file" : "Sèbera archìviu locale",
     "Importing is disabled because there are no address books available" : "S'importatzione est istada disativada ca non ddoe at rubricas a disponimentu",
     "Choose a vCard file to import" : "Sèbera un'archìviu vCard de importare",
-    "Address book name" : "Nùmene de sa rubrica",
     "An error occurred, unable to create the address book" : "B'at àpidu un'errore, non faghet a creare sa rubrica",
     "First name" : "Nùmene",
     "Last name" : "Sambenadu",

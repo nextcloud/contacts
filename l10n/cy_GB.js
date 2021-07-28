@@ -21,7 +21,6 @@ OC.L10N.register(
     "No users or groups" : "Dim defnyddwyr na grwpiau",
     "can edit" : "yn gallu golygu",
     "Importing is disabled because there are no address books available" : "Mae mewnforio wedi ei analluogi oherwydd nad oes llyfrau cyfeiriadau ar gael",
-    "Address book name" : "Enw'r llyfr cyfeiriadau",
     "First name" : "Enw cyntaf",
     "Last name" : "Cyfenw",
     "Display name" : "Enw Dangos",

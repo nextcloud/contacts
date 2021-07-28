@@ -61,7 +61,6 @@ OC.L10N.register(
     "Import from Files" : "Importeren vanuit Bestanden",
     "Importing is disabled because there are no address books available" : "Import is uitgeschakeld omdat er geen adresboek beschikbaar is",
     "Choose a vCard file to import" : "Kies een vCard bestand om te importeren",
-    "Address book name" : "Adresboek naam",
     "An error occurred, unable to create the address book" : "Er trad een fout op, kon het adresboek niet creëren.",
     "First name" : "Voornaam",
     "Last name" : "Achternaam",

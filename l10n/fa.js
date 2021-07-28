@@ -17,7 +17,6 @@ OC.L10N.register(
     "Share with users or groups" : "اشتراک گذاری با کاربران یا گروه ها ...",
     "No users or groups" : "هیچ کاربر یا گروهی وجود ندارد",
     "can edit" : "توانایی ویرایش",
-    "Address book name" : "نام دفترچه آدرس",
     "First name" : "نام",
     "Last name" : "نام‌خانوادگی",
     "Display name" : "نام جهت نمایش",

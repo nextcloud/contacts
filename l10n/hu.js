@@ -55,7 +55,6 @@ OC.L10N.register(
     "Select local file" : "Helyi fájl kiválasztása",
     "Importing is disabled because there are no address books available" : "Az importálás nincs engedélyezve mert nem található címjegyzék",
     "Choose a vCard file to import" : "Válasszon egy importálandó vCard fájlt",
-    "Address book name" : "Címjegyzék neve",
     "An error occurred, unable to create the address book" : "Hiba történt, nem sikerült létrehozni a címjegyzéket",
     "First name" : "Keresztnév",
     "Last name" : "Vezetéknév",

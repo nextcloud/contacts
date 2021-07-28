@@ -20,7 +20,6 @@ OC.L10N.register(
     "Share with users or groups" : "Del med brukere eller grupper",
     "No users or groups" : "Ingen brukere eller grupper",
     "can edit" : "kan redigere",
-    "Address book name" : "Adresseboksnavn",
     "First name" : "Fornavn",
     "Last name" : "Etternavn",
     "Display name" : "Visningsnavn",

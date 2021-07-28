@@ -41,7 +41,6 @@ OC.L10N.register(
     "Select local file" : "בחירת קובץ מקומי",
     "Importing is disabled because there are no address books available" : "הייבוא מושבת כיוון שאין לך ספרי כתובות זמינים",
     "Choose a vCard file to import" : "נא לבחור קובץ vCard לייבוא",
-    "Address book name" : "שם ספר הכתובות",
     "An error occurred, unable to create the address book" : "אירעה שגיאה--לא הצליחה ליצור את פנקס הכתובות",
     "First name" : "שם פרטי",
     "Last name" : "שם משפחה",

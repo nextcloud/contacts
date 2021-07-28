@@ -15,7 +15,6 @@ OC.L10N.register(
     "Copy link" : "نسخ الرابط",
     "Share with users or groups" : "شارك مع مستخدمين او مجموعات",
     "can edit" : "يمكن التعديل",
-    "Address book name" : "اسم دفتر العناوين",
     "First name" : "الإسم",
     "Last name" : "اللقب",
     "Display name" : "الاسم المعروض",

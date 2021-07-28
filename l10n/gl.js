@@ -42,7 +42,6 @@ OC.L10N.register(
     "Select local file" : "Seleccionar ficheiro local",
     "Importing is disabled because there are no address books available" : "A importación está desactivado porque non hai axendas dispoñíbeis",
     "Choose a vCard file to import" : "Escolla un ficheiro vCard para importalo",
-    "Address book name" : "Nome da axenda",
     "An error occurred, unable to create the address book" : "Produciuse un erro: non foi posíbel crear o caderno de enderezos",
     "First name" : "Nome",
     "Last name" : "Apelidos",

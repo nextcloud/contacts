@@ -41,7 +41,6 @@ OC.L10N.register(
     "Select local file" : "Odaberi lokalnu datoteku",
     "Importing is disabled because there are no address books available" : "Uvoz je onemogućen jer nema dostupnih adresara",
     "Choose a vCard file to import" : "Odaberite datoteku vCard za uvoz",
-    "Address book name" : "Naziv adresara",
     "An error occurred, unable to create the address book" : "Došlo je do pogreške, nije moguće stvoriti adresar",
     "First name" : "Ime",
     "Last name" : "Prezime",

@@ -28,7 +28,6 @@ OC.L10N.register(
     "Select local file" : "Vælg lokal fil",
     "Importing is disabled because there are no address books available" : "Indlæsning er deaktiveret da der ikke er nogen adressebog tilgængelig",
     "Choose a vCard file to import" : "Vælg en vCard fil at importere",
-    "Address book name" : "Adressebogsnavn",
     "First name" : "Fornavn",
     "Last name" : "Efternavn",
     "Display name" : "Vist navn",

@@ -17,7 +17,6 @@ OC.L10N.register(
     "Share with users or groups" : "Partajează cu utilizatori sau grupuri",
     "No users or groups" : "Nu sunt utilizatori sau grupuri",
     "can edit" : "poate edita",
-    "Address book name" : "Numele listă de contacte",
     "First name" : "Prenume",
     "Last name" : "Nume",
     "Display name" : "Nume afișat",

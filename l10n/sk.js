@@ -61,7 +61,6 @@ OC.L10N.register(
     "Import from Files" : "Importovať zo Súborov",
     "Importing is disabled because there are no address books available" : "Nie je možné importovať, pretože neexistuje ani jeden adresár kontaktov",
     "Choose a vCard file to import" : "Vyberte súbor vCard, ktorý chcete importovať",
-    "Address book name" : "Názov adresára kontaktov",
     "An error occurred, unable to create the address book" : "Vyskytla sa chyba, nepodarilo sa vytvoriť adresár",
     "First name" : "Krstné meno",
     "Last name" : "Priezvisko",

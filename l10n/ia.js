@@ -13,7 +13,6 @@ OC.L10N.register(
     "Copy link" : "Copiar ligamine",
     "Share with users or groups" : "Compartir con usatores o gruppos",
     "can edit" : "pote modificar",
-    "Address book name" : "Nomine del adressario",
     "First name" : "Prime nomine",
     "Last name" : "Ultime nomine",
     "Display name" : "Monstrar nomine",

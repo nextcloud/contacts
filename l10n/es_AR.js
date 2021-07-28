@@ -20,7 +20,6 @@ OC.L10N.register(
     "No users or groups" : "No hay usuarios ni grupos.",
     "can edit" : "poder editar",
     "Importing is disabled because there are no address books available" : "La importación está deshabilitada porque no hay libretas de direcciones disponibles",
-    "Address book name" : "Nombre de la libreta de direcciones",
     "First name" : "Nombre",
     "Last name" : "Apellido",
     "Display name" : "Nombre para mostrar",

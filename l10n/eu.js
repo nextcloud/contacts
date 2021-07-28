@@ -61,7 +61,6 @@ OC.L10N.register(
     "Import from Files" : "Inportatu fitxategietatik",
     "Importing is disabled because there are no address books available" : "Inportatzea desgaituta dago ez dagoelako helbide-libururik eskuragarri",
     "Choose a vCard file to import" : "Aukeratu inportatzeko vCard fitxategi bat",
-    "Address book name" : "Agenda izena",
     "An error occurred, unable to create the address book" : "Errore bat gertatu da, ezin izan da helbide liburua sortu",
     "First name" : "Izena",
     "Last name" : "Abizena",

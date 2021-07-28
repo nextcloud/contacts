@@ -16,7 +16,6 @@ OC.L10N.register(
     "Share with users or groups" : "Deel met gebruikers of groepe",
     "No users or groups" : "Geen gebruikers of groepe",
     "can edit" : "kan wysig",
-    "Address book name" : "Adresboeknaam",
     "First name" : "Naam",
     "Last name" : "Van",
     "Display name" : "Vertoonnaam",

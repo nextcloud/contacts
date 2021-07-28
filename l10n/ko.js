@@ -57,7 +57,6 @@ OC.L10N.register(
     "Select local file" : "로컬 파일 선택",
     "Importing is disabled because there are no address books available" : "주소록을 찾을 수 없어서 가져올 수 없습니다.",
     "Choose a vCard file to import" : "불러올 vCard 파일을 고르세요",
-    "Address book name" : "주소록 이름",
     "An error occurred, unable to create the address book" : "오류가 발생하여 주소록을 생성할 수 없습니다.",
     "First name" : "이름",
     "Last name" : "성",

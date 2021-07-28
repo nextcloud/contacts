@@ -16,7 +16,6 @@ OC.L10N.register(
     "Share with users or groups" : "Jaga kasutajate või gruppidega",
     "No users or groups" : "Ei ole kasutajaid või gruppe",
     "can edit" : "saab redigeerida",
-    "Address book name" : "Aadressiraamatu nimi",
     "First name" : "Eesnimi",
     "Last name" : "Perekonnanimi",
     "Display name" : "Kuvatav nimi",

@@ -42,7 +42,6 @@ OC.L10N.register(
     "Select local file" : "Загрузить с ПК",
     "Importing is disabled because there are no address books available" : "Возможность импорта отключена, т.к. отсутствуют адресные книги, в которые можно выполнить запись",
     "Choose a vCard file to import" : "Выберите файл в формате vCard для импорта",
-    "Address book name" : "Название адресной книги",
     "An error occurred, unable to create the address book" : "Произошла ошибка, невозможно создать адресную книгу",
     "First name" : "Имя",
     "Last name" : "Фамилия",

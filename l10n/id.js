@@ -15,7 +15,6 @@ OC.L10N.register(
     "Share with users or groups" : "Bagi dengan pengguna atau grup",
     "No users or groups" : "Tidak ada pengguna atau grup",
     "can edit" : "dapat menyunting",
-    "Address book name" : "Nama buku alamat",
     "First name" : "Nama depan",
     "Last name" : "Nama belakang",
     "Display name" : "Nama tampilan",

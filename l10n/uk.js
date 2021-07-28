@@ -30,7 +30,6 @@ OC.L10N.register(
     "Select local file" : "Виберіть локальний файл",
     "Importing is disabled because there are no address books available" : "Імпорт недоступний, оскільки відсутні адресні книги",
     "Choose a vCard file to import" : "Виберіть файл vCard для імпорту",
-    "Address book name" : "Назва адресної книги",
     "First name" : "Ім'я",
     "Last name" : "Прізвище",
     "Display name" : "Ім'я для відображення",

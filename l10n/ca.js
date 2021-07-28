@@ -41,7 +41,6 @@ OC.L10N.register(
     "Select local file" : "Seleccioneu el fitxer local",
     "Importing is disabled because there are no address books available" : "La importació està desactivada perquè no hi ha cap llibreta d’adreces disponible",
     "Choose a vCard file to import" : "Trieu un fitxer vCard per importar",
-    "Address book name" : "Nom de la llibreta d'adreces",
     "An error occurred, unable to create the address book" : "S'ha produït un error, no s'ha pogut crear la llibreta d'adreces",
     "First name" : "Nom",
     "Last name" : "Cognom",

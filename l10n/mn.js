@@ -13,7 +13,6 @@ OC.L10N.register(
     "Delete" : "Устгах",
     "Share with users or groups" : "Бусдад түгээх",
     "can edit" : "засаж чадна",
-    "Address book name" : "Хаягийн дэвтрийн нэр",
     "First name" : "Нэр",
     "Last name" : "Овог",
     "Display name" : "Харагдах нэр",

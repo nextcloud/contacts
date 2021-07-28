@@ -16,7 +16,6 @@ OC.L10N.register(
     "Copy link" : "Copiar enllaz",
     "Share with users or groups" : "Compartir con usuarios y grupos",
     "can edit" : "pue editar",
-    "Address book name" : "Nome de la Llibreta de direiciones",
     "First name" : "Nome",
     "Last name" : "Apellíu",
     "Display name" : "Nome",
