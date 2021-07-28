@@ -1,5 +1,24 @@
 # Changelog
 
+## 4.0.1 - 2021-07-28
+
+[Full Changelog](https://github.com/nextcloud/contacts/compare/v4.0.0...v4.0.1)
+
+### Enhancements
+- Streamlined Settings 
+  [\#2372](https://github.com/nextcloud/contacts/pull/2372) ([szaimen](https://github.com/szaimen))
+- Wording improvements 
+  [\#2350](https://github.com/nextcloud/contacts/pull/2350) ([Valdnet](https://github.com/Valdnet))
+- Various dependencies updates
+
+### Fixed
+- Fixed dark contacts icon 
+  [\#2340](https://github.com/nextcloud/contacts/pull/2340) ([skjnldsv](https://github.com/skjnldsv))
+- Adjusted the padding of app-content-details 
+  [\#2341](https://github.com/nextcloud/contacts/pull/2341) ([szaimen](https://github.com/szaimen)) 
+- Fixed call on null in SocialApiService
+  [\#2351](https://github.com/nextcloud/contacts/pull/2351) ([juliushaertl](https://github.com/juliushaertl)) 
+
 ## 4.0.0 - 2021-07-06
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v3.5.1...v4.0.0)
