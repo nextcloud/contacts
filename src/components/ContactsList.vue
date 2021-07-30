@@ -154,7 +154,7 @@ export default {
 <style lang="scss" scoped>
 // Make virtual scroller scrollable
 .contacts-list {
-	max-height: 100%;
+	max-height: calc(100vh - var(--header-height));
 	overflow: auto;
 }
 </style>
