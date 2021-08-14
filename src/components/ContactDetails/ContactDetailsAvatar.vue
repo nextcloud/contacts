@@ -217,7 +217,7 @@ export default {
 		/**
 		 * Handler to store a new photo on the current contact
 		 *
-		 * @param {Object} event the event object containing the image
+		 * @param {object} event the event object containing the image
 		 */
 		processFile(event) {
 			if (event.target.files && !this.loading) {
@@ -292,7 +292,7 @@ export default {
 		 * Return the word with (only) the first letter capitalized
 		 *
 		 * @param {string} word the word to handle
-		 * @returns {string} the word with the first letter capitalized
+		 * @return {string} the word with the first letter capitalized
 		 */
 		capitalize(word) {
 			return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
@@ -301,7 +301,7 @@ export default {
 		 * Return the mimetype based on the first magix byte
 		 *
 		 * @param {string} signature the first 4 bytes
-		 * @returns {string} the mimetype
+		 * @return {string} the mimetype
 		 */
 		getMimetype(signature) {
 			switch (signature) {
@@ -324,8 +324,8 @@ export default {
 		/**
 		 * Update the contact photo
 		 *
-		 * @param {String} data the photo as base64 binary string
-		 * @param {String} type mimetype
+		 * @param {string} data the photo as base64 binary string
+		 * @param {string} type mimetype
 		 */
 		setPhoto(data, type) {
 			// Init with empty data
@@ -414,7 +414,7 @@ export default {
 		/**
 		 * Downloads the Avatar from social media
 		 *
-		 * @param {String} network the social network to use (or 'any' for first match)
+		 * @param {string} network the social network to use (or 'any' for first match)
 		 */
 		async getSocialAvatar(network) {
 

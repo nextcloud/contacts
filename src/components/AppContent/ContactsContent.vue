@@ -123,14 +123,16 @@ export default {
 		/**
 		 * Is this a real group ?
 		 * Aka not a dynamically generated one like `All contacts`
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isRealGroup() {
 			return this.groups.findIndex(group => group.name === this.selectedGroup) > -1
 		},
 		/**
 		 * Is the current group empty
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isEmptyGroup() {
 			return this.contactsList.length === 0
@@ -144,6 +146,7 @@ export default {
 	methods: {
 		/**
 		 * Forward the addContactsToGroup event to the parent
+		 *
 		 * @param {string} groupName the group name
 		 */
 		addContactsToGroup(groupName) {
@@ -154,7 +157,7 @@ export default {
 		 * Forward the newContact event to the parent
 		 */
 		newContact() {
-			this.$emit('newContact')
+			this.$emit('new-contact')
 		},
 
 		/**
@@ -165,7 +168,7 @@ export default {
 			this.$router.push({
 				name: 'group',
 				params: {
-					selectedGroup: this.selectedGroup
+					selectedGroup: this.selectedGroup,
 				},
 			})
 		},

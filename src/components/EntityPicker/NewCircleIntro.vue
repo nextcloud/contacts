@@ -142,6 +142,7 @@ export default {
 		onSubmit() {
 			/**
 			 * Emitted when user submit the form
+			 *
 			 * @type {Array} the selected entities
 			 */
 			this.$emit('submit', this.circleName, this.isPersonal, this.isLocal)

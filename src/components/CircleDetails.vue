@@ -184,6 +184,7 @@ export default {
 	methods: {
 		/**
 		 * Autocomplete @mentions on the description
+		 *
 		 * @param {string} search the search term
 		 * @param {Function} callback callback to be called with results array
 		 */

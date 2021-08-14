@@ -23,6 +23,7 @@ import axios from '@nextcloud/axios'
 
 /**
  * Append a group to a contact
+ *
  * @param {Contact} contact the contact model
  * @param {string} groupName the group name
  */

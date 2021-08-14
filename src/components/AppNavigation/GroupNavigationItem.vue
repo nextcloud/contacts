@@ -83,7 +83,7 @@ export default {
 		/**
 		 * Download group of contacts
 		 *
-		 * @param {Object} group of contacts to be downloaded
+		 * @param {object} group of contacts to be downloaded
 		 */
 		downloadGroup(group) {
 			// get grouped contacts

@@ -22,7 +22,7 @@
 
 <template>
 	<div class="new-addressbook-entry">
-		<div class="icon-add settings-line__icon"></div>
+		<div class="icon-add settings-line__icon" />
 		<form id="new-addressbook-form"
 			:disabled="loading"
 			:class="{'icon-loading-small': loading}"

@@ -131,7 +131,8 @@ export default {
 	computed: {
 		/**
 		 * Return the current circle
-		 * @returns {Circle}
+		 *
+		 * @return {Circle}
 		 */
 		circle() {
 			return this.$store.getters.getCircle(this.selectedCircle)
@@ -192,6 +193,7 @@ export default {
 		 * Show picker and fetch for recommendations
 		 * Cache the circleId in case the url change or something
 		 * and make sure we add them to the desired circle.
+		 *
 		 * @param {string} circleId the circle id to add members to
 		 */
 		async onShowPicker(circleId) {
@@ -216,6 +218,7 @@ export default {
 		/**
 		 * On EntityPicker search.
 		 * Returns recommendations if empty
+		 *
 		 * @param {string} term the searched term
 		 */
 		async onSearch(term) {
@@ -239,6 +242,7 @@ export default {
 
 		/**
 		 * On picker submit
+		 *
 		 * @param {Array} selection the selection to add to the circle
 		 */
 		async onPickerPick(selection) {

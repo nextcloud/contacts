@@ -248,7 +248,7 @@ export default {
 		 * for us to forcefully omit some data (no year, or no time... etc)
 		 * and ths only common syntax between js Date, moment and VCardTime
 		 *
-		 * @returns {string}
+		 * @return {string}
 		 */
 		formatDateTime() {
 			// this is the only possibility for us to ensure

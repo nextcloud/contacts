@@ -149,14 +149,16 @@ export default {
 
 		/**
 		 * Are we importing contacts ?
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isImporting() {
 			return this.importState.stage !== 'default'
 		},
 		/**
 		 * Are we done importing contacts ?
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isImportDone() {
 			return this.importState.stage === 'done'
@@ -173,7 +175,7 @@ export default {
 		 * intersect the groups contacts and the full
 		 * sorted contacts List.
 		 *
-		 * @returns {Array}
+		 * @return {Array}
 		 */
 		contactsList() {
 			if (this.selectedGroup === GROUP_ALL_CONTACTS) {

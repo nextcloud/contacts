@@ -29,7 +29,7 @@ import Circle from '../models/circle.ts'
 import logger from '../services/logger'
 
 const state = {
-	/** @type {Object.<string>} Circle */
+	/** @type {object.<string>} Circle */
 	circles: {},
 }
 
@@ -38,7 +38,7 @@ const mutations = {
 	/**
 	 * Add a circle into state
 	 *
-	 * @param {Object} state the store data
+	 * @param {object} state the store data
 	 * @param {Circle} circle the circle to add
 	 */
 	addCircle(state, circle) {
@@ -51,7 +51,7 @@ const mutations = {
 	/**
 	 * Delete circle
 	 *
-	 * @param {Object} state the store data
+	 * @param {object} state the store data
 	 * @param {Circle} circle the circle to delete
 	 */
 	deleteCircle(state, circle) {
@@ -65,7 +65,7 @@ const mutations = {
 	 * Append a list of members to a circle
 	 * and remove duplicates
 	 *
-	 * @param {Object} state the store data
+	 * @param {object} state the store data
 	 * @param {Members[]} members array of members to append
 	 */
 	appendMembersToCircle(state, members) {
@@ -75,8 +75,8 @@ const mutations = {
 	/**
 	 * Add a member to a circle and overwrite if duplicate uid
 	 *
-	 * @param {Object} state the store data
-	 * @param {Object} data destructuring object
+	 * @param {object} state the store data
+	 * @param {object} data destructuring object
 	 * @param {string} data.circleId the circle to add the members to
 	 * @param {Member} data.member array of contacts to append
 	 */
@@ -88,7 +88,7 @@ const mutations = {
 	/**
 	 * Delete a contact in a specified circle
 	 *
-	 * @param {Object} state the store data
+	 * @param {object} state the store data
 	 * @param {Member} member the member to add
 	 */
 	deleteMemberFromCircle(state, member) {
@@ -106,8 +106,8 @@ const actions = {
 	/**
 	 * Retrieve and commit circles
 	 *
-	 * @param {Object} context the store mutations
-	 * @returns {Object[]} the circles
+	 * @param {object} context the store mutations
+	 * @return {object[]} the circles
 	 */
 	async getCircles(context) {
 		const circles = await getCircles()
@@ -134,9 +134,9 @@ const actions = {
 	/**
 	 * Retrieve and commit circles
 	 *
-	 * @param {Object} context the store mutations
+	 * @param {object} context the store mutations
 	 * @param {string} circleId the circle id
-	 * @returns {Object[]} the circles
+	 * @return {object[]} the circles
 	 */
 	async getCircle(context, circleId) {
 		const circle = await getCircle(circleId)
@@ -155,7 +155,7 @@ const actions = {
 	/**
 	 * Retrieve and commit circle members
 	 *
-	 * @param {Object} context the store mutations
+	 * @param {object} context the store mutations
 	 * @param {string} circleId the circle id
 	 */
 	async getCircleMembers(context, circleId) {
@@ -169,12 +169,12 @@ const actions = {
 	/**
 	 * Create circle
 	 *
-	 * @param {Object} context the store mutations Current context
-	 * @param {Object} data destructuring object
+	 * @param {object} context the store mutations Current context
+	 * @param {object} data destructuring object
 	 * @param {string} data.circleName the circle name
 	 * @param {boolean} data.isPersonal the circle is a personal one
 	 * @param {boolean} data.isLocal the circle is not distributed to the GlobalScale
-	 * @returns {Circle} the new circle
+	 * @return {Circle} the new circle
 	 */
 	async createCircle(context, { circleName, isPersonal, isLocal }) {
 		try {
@@ -192,7 +192,7 @@ const actions = {
 	/**
 	 * Delete circle
 	 *
-	 * @param {Object} context the store mutations Current context
+	 * @param {object} context the store mutations Current context
 	 * @param {Circle} circleId the circle to delete
 	 */
 	async deleteCircle(context, circleId) {
@@ -210,11 +210,11 @@ const actions = {
 	/**
 	 * Add members to a circle
 	 *
-	 * @param {Object} context the store mutations Current context
-	 * @param {Object} data destructuring object
+	 * @param {object} context the store mutations Current context
+	 * @param {object} data destructuring object
 	 * @param {string} data.circleId the circle to manage
 	 * @param {Array} data.selection the members to add, see addMembers service
-	 * @returns {Member[]}
+	 * @return {Member[]}
 	 */
 	async addMembersToCircle(context, { circleId, selection }) {
 		const circle = context.getters.getCircle(circleId)
@@ -230,7 +230,7 @@ const actions = {
 	/**
 	 * Delete a member from a circle
 	 *
-	 * @param {Object} context the store mutations Current context
+	 * @param {object} context the store mutations Current context
 	 * @param {Member} member the member to remove
 	 * @param {boolean} [leave=false] leave the circle instead of removing the member
 	 */
@@ -259,8 +259,8 @@ const actions = {
 	/**
 	 * Accept a circle member request
 	 *
-	 * @param {Object} context the store mutations Current context
-	 * @param {Object} data destructuring object
+	 * @param {object} context the store mutations Current context
+	 * @param {object} data destructuring object
 	 * @param {string} data.circleId the circle id
 	 * @param {string} data.memberId the member id
 	 */

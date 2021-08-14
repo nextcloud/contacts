@@ -112,7 +112,7 @@ export default {
 		/**
 		 * Scroll to the desired contact if in the list and not visible
 		 *
-		 * @param {String} key the contact unique key
+		 * @param {string} key the contact unique key
 		 */
 		scrollToContact(key) {
 			const item = this.$el.querySelector('#' + btoa(key).slice(0, -2))
@@ -139,7 +139,7 @@ export default {
 		 * Is this matching the current search ?
 		 *
 		 * @param {Contact} contact the contact to search
-		 * @returns {boolean}
+		 * @return {boolean}
 		 */
 		matchSearch(contact) {
 			if (this.searchQuery.trim() !== '') {

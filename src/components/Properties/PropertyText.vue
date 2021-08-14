@@ -162,7 +162,8 @@ export default {
 		/**
 		 * Return the selected type placeholder if any
 		 * or the propModel default placeholder
-		 * @returns {string}
+		 *
+		 * @return {string}
 		 */
 		placeholder() {
 			if (this.localType?.placeholder) {
@@ -194,7 +195,7 @@ export default {
 		 * but both of them have different debounce
 		 * let's use a standard methods and call them both
 		 *
-		 * @param {Object} e event
+		 * @param {object} e event
 		 */
 		updateValueNoDebounce(e) {
 			this.resizeHeight(e)

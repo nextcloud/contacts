@@ -93,7 +93,7 @@ export default {
 		/**
 		 * Share addressbook
 		 *
-		 * @param {Object} data destructuring object
+		 * @param {object} data destructuring object
 		 * @param {string} data.user the userId
 		 * @param {string} data.displayName the displayName
 		 * @param {string} data.uri the sharing principalScheme uri
