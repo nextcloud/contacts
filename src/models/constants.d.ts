@@ -19,6 +19,7 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import { Type } from '@nextcloud/sharing';
 export declare type DefaultGroup = string;
 export declare type CircleConfig = number;
 export declare type MemberLevel = number;
@@ -44,7 +45,7 @@ export declare const PUBLIC_CIRCLE_CONFIG: {
 export declare const CIRCLES_MEMBER_GROUPING: {
     id: string;
     label: string;
-    share: any;
+    share: Type;
     type: number;
 }[];
 export declare const SHARES_TYPES_MEMBER_MAP: {};
