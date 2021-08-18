@@ -22,11 +22,7 @@
 /// <reference types="@nextcloud/typings" />
 
 import { translate as t } from '@nextcloud/l10n'
-
-interface OC extends 	Nextcloud.Common.OC {
-	Share: any
-}
-declare const OC: OC
+import { Type } from '@nextcloud/sharing'
 
 export type DefaultGroup = string
 export type CircleConfig = number
@@ -121,56 +117,56 @@ export const PUBLIC_CIRCLE_CONFIG = {
 }
 
 
-// Represents the picker options but also the 
+// Represents the picker options but also the
 // sorting of the members list
 export const CIRCLES_MEMBER_GROUPING = [
 	{
-		id: `picker-${OC.Share.SHARE_TYPE_USER}`,
+		id: `picker-${Type.SHARE_TYPE_USER}`,
 		label: t('contacts', 'Users'),
-		share: OC.Share.SHARE_TYPE_USER,
+		share: Type.SHARE_TYPE_USER,
 		type: MEMBER_TYPE_USER
 	},
 	{
-		id: `picker-${OC.Share.SHARE_TYPE_GROUP}`,
+		id: `picker-${Type.SHARE_TYPE_GROUP}`,
 		label: t('contacts', 'Groups'),
-		share: OC.Share.SHARE_TYPE_GROUP,
+		share: Type.SHARE_TYPE_GROUP,
 		type: MEMBER_TYPE_GROUP
 	},
 	// TODO: implement federated
 	// {
-	// 	id: `picker-${OC.Share.SHARE_TYPE_REMOTE}`,
+	// 	id: `picker-${Type.SHARE_TYPE_REMOTE}`,
 	// 	label: t('contacts', 'Federated users'),
-	// 	share: OC.Share.SHARE_TYPE_REMOTE,
+	// 	share: Type.SHARE_TYPE_REMOTE,
 	// 	type: MEMBER_TYPE_USER
 	// },
 	// {
-	// 	id: `picker-${OC.Share.SHARE_TYPE_REMOTE_GROUP}`,
+	// 	id: `picker-${Type.SHARE_TYPE_REMOTE_GROUP}`,
 	// 	label: t('contacts', 'Federated groups'),
-	// 	share: OC.Share.SHARE_TYPE_REMOTE_GROUP,
+	// 	share: Type.SHARE_TYPE_REMOTE_GROUP,
 	// 	type: MEMBER_TYPE_GROUP
 	// },
 	{
-		id: `picker-${OC.Share.SHARE_TYPE_CIRCLE}`,
+		id: `picker-${Type.SHARE_TYPE_CIRCLE}`,
 		label: t('contacts', 'Circles'),
-		share: OC.Share.SHARE_TYPE_CIRCLE,
+		share: Type.SHARE_TYPE_CIRCLE,
 		type: MEMBER_TYPE_CIRCLE
 	},
 	{
-		id: `picker-${OC.Share.SHARE_TYPE_EMAIL}`,
+		id: `picker-${Type.SHARE_TYPE_EMAIL}`,
 		label: t('contacts', 'Emails'),
-		share: OC.Share.SHARE_TYPE_EMAIL,
+		share: Type.SHARE_TYPE_EMAIL,
 		type: MEMBER_TYPE_MAIL
 	},
 	// TODO: implement SHARE_TYPE_CONTACT
 	{
 		id: `picker-contact`,
 		label: t('contacts', 'Contacts'),
-		share: OC.Share.SHARE_TYPE_EMAIL,
+		share: Type.SHARE_TYPE_EMAIL,
 		type: MEMBER_TYPE_CONTACT
 	},
 ]
 
-// Generating a map between share types and circle member types 
+// Generating a map between share types and circle member types
 export const SHARES_TYPES_MEMBER_MAP = CIRCLES_MEMBER_GROUPING.reduce((list, entry) => {
 	// ! Ignore duplicate share types
 	if (!list[entry.share]) {
