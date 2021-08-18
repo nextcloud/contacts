@@ -2,6 +2,7 @@
  * @copyright Copyright (c) 2020 Christian Kraus <hanzi@hanzi.cc>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
+ *
  * @author Christian Kraus <hanzi@hanzi.cc>
  *
  * @license GNU AGPL version 3 or any later version
@@ -28,8 +29,7 @@ import ICAL from 'ical.js'
  * by Nextcloud Server) that prevents saving vCards with this parameters.
  *
  * @link https://github.com/nextcloud/contacts/pull/1393#issuecomment-570945735
- *
- * @returns {Boolean} Whether or not the design set has been altered.
+ * @return {boolean} Whether or not the design set has been altered.
  */
 const removePhoneNumberValueType = () => {
 	if (ICAL.design.vcard3.property.tel) {
@@ -47,9 +47,8 @@ const removePhoneNumberValueType = () => {
  * add them to the ical.js design set.
  *
  * @link https://github.com/nextcloud/contacts/issues/42
- *
  * @param {Array} vCard The ical.js vCard
- * @returns {Boolean} Whether or not the design set has been altered.
+ * @return {boolean} Whether or not the design set has been altered.
  */
 const addGroupedProperties = vCard => {
 	let madeChanges = false
@@ -68,7 +67,7 @@ const addGroupedProperties = vCard => {
  * Check whether the ical.js design sets need updating (and if so, do it)
  *
  * @param {Array} vCard The ical.js vCard
- * @returns {boolean} Whether or not the design set has been altered.
+ * @return {boolean} Whether or not the design set has been altered.
  */
 export default function(vCard) {
 	let madeChanges = false
@@ -80,9 +79,9 @@ export default function(vCard) {
 }
 
 /**
- * @param {String} original Name of the property whose settings should be copied
- * @param {String} alias Name of the new property
- * @returns {boolean} Whether or not the design set has been altered.
+ * @param {string} original Name of the property whose settings should be copied
+ * @param {string} alias Name of the new property
+ * @return {boolean} Whether or not the design set has been altered.
  */
 export function setPropertyAlias(original, alias) {
 	let madeChanges = false

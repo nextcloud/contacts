@@ -75,7 +75,7 @@ const mutations = {
 	 * Store raw contacts into state
 	 * Used by the first contact fetch
 	 *
-	 * @param {Object} state Default state
+	 * @param {object} state Default state
 	 * @param {Array<Contact>} contacts Contacts
 	 */
 	appendContacts(state, contacts = []) {
@@ -92,7 +92,7 @@ const mutations = {
 	/**
 	 * Delete a contact from the global contacts list
 	 *
-	 * @param {Object} state the store data
+	 * @param {object} state the store data
 	 * @param {Contact} contact the contact to delete
 	 */
 	deleteContact(state, contact) {
@@ -110,7 +110,7 @@ const mutations = {
 	/**
 	 * Insert new contact into sorted array
 	 *
-	 * @param {Object} state the store data
+	 * @param {object} state the store data
 	 * @param {Contact} contact the contact to add
 	 */
 	addContact(state, contact) {
@@ -152,7 +152,7 @@ const mutations = {
 	/**
 	 * Update a contact
 	 *
-	 * @param {Object} state the store data
+	 * @param {object} state the store data
 	 * @param {Contact} contact the contact to update
 	 */
 	updateContact(state, contact) {
@@ -179,10 +179,12 @@ const mutations = {
 	/**
 	 * Update a contact addressbook
 	 *
-	 * @param {Object} state the store data
-	 * @param {Object} data destructuring object
+	 * @param {object} state the store data
+	 * @param {object} data destructuring object
+	 * @param data.contact
 	 * @param {Contact} contact the contact to update
-	 * @param {Object} addressbook the addressbook to set
+	 * @param {object} addressbook the addressbook to set
+	 * @param data.addressbook
 	 */
 	updateContactAddressbook(state, { contact, addressbook }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
@@ -215,10 +217,12 @@ const mutations = {
 	/**
 	 * Update a contact etag
 	 *
-	 * @param {Object} state the store data
-	 * @param {Object} data destructuring object
+	 * @param {object} state the store data
+	 * @param {object} data destructuring object
+	 * @param data.contact
 	 * @param {Contact} contact the contact to update
 	 * @param {string} etag the contact etag
+	 * @param data.etag
 	 */
 	updateContactEtag(state, { contact, etag }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
@@ -235,7 +239,7 @@ const mutations = {
 	 * We do not want to run the sorting function every time.
 	 * Let's only run it on additions and create an index
 	 *
-	 * @param {Object} state the store data
+	 * @param {object} state the store data
 	 */
 	sortContacts(state) {
 		state.sortedContacts = Object.values(state.contacts)
@@ -248,7 +252,7 @@ const mutations = {
 	/**
 	 * Set the order key
 	 *
-	 * @param {Object} state the store data
+	 * @param {object} state the store data
 	 * @param {string} [orderKey='displayName'] the order key to sort by
 	 */
 	setOrder(state, orderKey = 'displayName') {
@@ -258,10 +262,10 @@ const mutations = {
 	/**
 	 * Set a contact as `in conflict` with the server data
 	 *
-	 * @param {Object} state the store data
-	 * @param {Object} data destructuring object
+	 * @param {object} state the store data
+	 * @param {object} data destructuring object
 	 * @param {Contact} data.contact the contact to update
-	 * @param {String} data.etag the etag to set
+	 * @param {string} data.etag the etag to set
 	 */
 	setContactAsConflict(state, { contact, etag }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
@@ -274,10 +278,10 @@ const mutations = {
 	/**
 	 * Set a contact dav property
 	 *
-	 * @param {Object} state the store data
-	 * @param {Object} data destructuring object
+	 * @param {object} state the store data
+	 * @param {object} data destructuring object
 	 * @param {Contact} data.contact the contact to update
-	 * @param {Object} data.dav the dav object returned by the cdav library
+	 * @param {object} data.dav the dav object returned by the cdav library
 	 */
 	setContactDav(state, { contact, dav }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
@@ -301,8 +305,8 @@ const actions = {
 	/**
 	 * Delete a contact from the list and from the associated addressbook
 	 *
-	 * @param {Object} context the store mutations
-	 * @param {Object} data destructuring object
+	 * @param {object} context the store mutations
+	 * @param {object} data destructuring object
 	 * @param {Contact} data.contact the contact to delete
 	 * @param {boolean} [data.dav=true] trigger a dav deletion
 	 */
@@ -323,7 +327,7 @@ const actions = {
 	/**
 	 * Add a contact to the list, the associated addressbook and to the groups
 	 *
-	 * @param {Object} context the store mutations
+	 * @param {object} context the store mutations
 	 * @param {Contact} contact the contact to delete
 	 */
 	async addContact(context, contact) {
@@ -335,9 +339,9 @@ const actions = {
 	/**
 	 * Replace a contact by this new object
 	 *
-	 * @param {Object} context the store mutations
+	 * @param {object} context the store mutations
 	 * @param {Contact} contact the contact to update
-	 * @returns {Promise}
+	 * @return {Promise}
 	 */
 	async updateContact(context, contact) {
 
@@ -385,11 +389,12 @@ const actions = {
 	/**
 	 * Fetch the full vCard from the dav server
 	 *
-	 * @param {Object} context the store mutations
-	 * @param {Object} data destructuring object
+	 * @param {object} context the store mutations
+	 * @param {object} data destructuring object
 	 * @param {Contact} data.contact the contact to fetch
 	 * @param {string} data.etag the contact etag to override in case of conflict
-	 * @returns {Promise}
+	 * @param data.forceReFetch
+	 * @return {Promise}
 	 */
 	async fetchFullContact(context, { contact, etag = '', forceReFetch = false }) {
 		if (etag.trim() !== '') {

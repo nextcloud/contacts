@@ -22,7 +22,7 @@
   -->
 <template>
 	<div class="settings-addressbook-list">
-		<div class="icon-group settings-line__icon"></div>
+		<div class="icon-group settings-line__icon" />
 		<li :class="{'addressbook--disabled': !addressbook.enabled}" class="addressbook">
 			<!-- addressbook name -->
 			<span class="addressbook__name" :title="addressbook.displayName">

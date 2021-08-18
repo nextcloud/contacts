@@ -65,7 +65,8 @@ export default {
 
 		/**
 		 * Rfc props
-		 * @returns {Object}
+		 *
+		 * @return {object}
 		 */
 		properties() {
 			return rfcProps.properties
@@ -74,7 +75,7 @@ export default {
 		/**
 		 * List of properties that the contact already have
 		 *
-		 * @returns {string[]}
+		 * @return {string[]}
 		 */
 		usedProperties() {
 			return this.contact.jCal[1].map(prop => prop[0])
@@ -84,7 +85,7 @@ export default {
 		 * List of every properties you are allowed to add
 		 * on this contact
 		 *
-		 * @returns {Object[]}
+		 * @return {object[]}
 		 */
 		availableProperties() {
 			return Object.keys(this.properties)
@@ -104,7 +105,7 @@ export default {
 		/**
 		 * Add a new prop to the contact
 		 *
-		 * @param {Object} data destructuring object
+		 * @param {object} data destructuring object
 		 * @param {string} data.id the id of the property. e.g fn
 		 */
 		addProp({ id }) {

@@ -139,7 +139,8 @@ export default {
 	computed: {
 		/**
 		 * Return the current circle
-		 * @returns {Circle}
+		 *
+		 * @return {Circle}
 		 */
 		circle() {
 			return this.$store.getters.getCircle(this.selectedCircle)
@@ -147,7 +148,8 @@ export default {
 
 		/**
 		 * Current member level translated name
-		 * @returns {string}
+		 *
+		 * @return {string}
 		 */
 		levelName() {
 			if (this.source.level === MemberLevels.NONE) {
@@ -160,7 +162,8 @@ export default {
 
 		/**
 		 * Current user member level
-		 * @returns {number}
+		 *
+		 * @return {number}
 		 */
 		currentUserLevel() {
 			return this.circle?.initiator?.level || MemberLevels.MEMBER
@@ -168,7 +171,8 @@ export default {
 
 		/**
 		 * Current user member level
-		 * @returns {string}
+		 *
+		 * @return {string}
 		 */
 		currentUserId() {
 			return this.circle?.initiator?.singleId
@@ -176,7 +180,8 @@ export default {
 
 		/**
 		 * Available levels change to the current user
-		 * @returns {Array}
+		 *
+		 * @return {Array}
 		 */
 		availableLevelsChange() {
 			const levels = Object.keys(CIRCLES_MEMBER_LEVELS)
@@ -201,7 +206,8 @@ export default {
 
 		/**
 		 * Is the current member the current user?
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isCurrentUser() {
 			return this.currentUserId === this.source.singleId
@@ -209,7 +215,8 @@ export default {
 
 		/**
 		 * Is the current member pending moderator approval?
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isPendingApproval() {
 			return this.source?.level === MemberLevels.NONE
@@ -218,7 +225,8 @@ export default {
 
 		/**
 		 * Can the current user change the level of others?
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		canChangeLevel() {
 			// we can change if the member is at the same
@@ -233,7 +241,8 @@ export default {
 
 		/**
 		 * Can the current user delete members or?
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		canDelete() {
 			return this.circle.canManageMembers
@@ -244,8 +253,9 @@ export default {
 	methods: {
 		/**
 		 * Return the promote/demote member action label
+		 *
 		 * @param {MemberLevel} level the member level
-		 * @returns {string}
+		 * @return {string}
 		 */
 		levelChangeLabel(level) {
 			if (level === MemberLevels.OWNER) {

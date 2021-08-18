@@ -23,6 +23,9 @@
 import Contact from '../models/contact'
 import checks from './checks/'
 
+/**
+ * @param contact
+ */
 export default function(contact) {
 	let result = false
 	if (contact instanceof Contact) {

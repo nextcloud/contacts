@@ -320,7 +320,7 @@ export default {
 		/**
 		 * Warning messages
 		 *
-		 * @returns {Object|boolean}
+		 * @return {object | boolean}
 		 */
 		warning() {
 			if (!this.contact.dav) {
@@ -340,7 +340,7 @@ export default {
 		/**
 		 * Conflict message
 		 *
-		 * @returns {string|boolean}
+		 * @return {string|boolean}
 		 */
 		conflict() {
 			if (this.contact.conflict) {
@@ -352,7 +352,7 @@ export default {
 		/**
 		 * Contact properties copied and sorted by rfcProps.fieldOrder
 		 *
-		 * @returns {Array}
+		 * @return {Array}
 		 */
 		sortedProperties() {
 			return this.localContact.properties
@@ -367,7 +367,7 @@ export default {
 		/**
 		 * Contact properties filtered and grouped by rfcProps.fieldOrder
 		 *
-		 * @returns {Object}
+		 * @return {object}
 		 */
 		groupedProperties() {
 			return this.sortedProperties
@@ -390,7 +390,7 @@ export default {
 		/**
 		 * Fake model to use the propertySelect component
 		 *
-		 * @returns {Object}
+		 * @return {object}
 		 */
 		addressbookModel() {
 			return {
@@ -404,7 +404,7 @@ export default {
 		 * Usable addressbook object linked to the local contact
 		 *
 		 * @param {string} [addressbookId] set the addressbook id
-		 * @returns {string}
+		 * @return {string}
 		 */
 		addressbook: {
 			get() {
@@ -418,7 +418,7 @@ export default {
 		/**
 		 * Fake model to use the propertyGroups component
 		 *
-		 * @returns {Object}
+		 * @return {object}
 		 */
 		groupsModel() {
 			return {
@@ -431,7 +431,7 @@ export default {
 		 * Usable groups object linked to the local contact
 		 *
 		 * @param {string[]} data An array of groups
-		 * @returns {Array}
+		 * @return {Array}
 		 */
 		groups: {
 			get() {
@@ -447,7 +447,7 @@ export default {
 		 * Store getters filtered and mapped to usable object
 		 * This is the list of addressbooks that are available to write
 		 *
-		 * @returns {Array}
+		 * @return {Array}
 		 */
 		addressbooksOptions() {
 			return this.addressbooks
@@ -743,7 +743,7 @@ export default {
 		 * Should display the property
 		 *
 		 * @param {Property} property the property to check
-		 * @returns {boolean}
+		 * @return {boolean}
 		 */
 		canDisplay(property) {
 			// Make sure we have some model for the property and check for ITEM.PROP custom label format

@@ -29,7 +29,7 @@ const mutations = {
 	 * Extract all the groups from the provided contacts
 	 * and add the contacts to their respective groups
 	 *
-	 * @param {Object} state the store data
+	 * @param {object} state the store data
 	 * @param {Contact[]} contacts the contacts to add
 	 */
 	extractGroupsFromContacts(state, contacts) {
@@ -55,8 +55,8 @@ const mutations = {
 	/**
 	 * Add contact to group and create groupif not existing
 	 *
-	 * @param {Object} state the store data
-	 * @param {Object} data destructuring object
+	 * @param {object} state the store data
+	 * @param {object} data destructuring object
 	 * @param {Array<string>} data.groupNames the names of the group
 	 * @param {Contact} data.contact the contact
 	 */
@@ -78,8 +78,8 @@ const mutations = {
 	/**
 	 * Remove contact from group
 	 *
-	 * @param {Object} state the store data
-	 * @param {Object} data destructuring object
+	 * @param {object} state the store data
+	 * @param {object} data destructuring object
 	 * @param {string} data.groupName the name of the group
 	 * @param {Contact} data.contact the contact
 	 */
@@ -94,7 +94,7 @@ const mutations = {
 	/**
 	 * Remove contact from its groups
 	 *
-	 * @param {Object} state the store data
+	 * @param {object} state the store data
 	 * @param {Contact} contact the contact
 	 */
 	removeContactFromGroups(state, contact) {
@@ -109,7 +109,7 @@ const mutations = {
 	/**
 	 * Add a group
 	 *
-	 * @param {Object} state the store data
+	 * @param {object} state the store data
 	 * @param {string} groupName the name of the group
 	 */
 	addGroup(state, groupName) {
@@ -129,8 +129,8 @@ const actions = {
 	/**
 	 * Add contact and to a group
 	 *
-	 * @param {Object} context the store mutations
-	 * @param {Object} data destructuring object
+	 * @param {object} context the store mutations
+	 * @param {object} data destructuring object
 	 * @param {string} data.groupName the name of the group
 	 * @param {Contact} data.contact the contact
 	 */
@@ -141,7 +141,7 @@ const actions = {
 	/**
 	 * Remove contact from its groups
 	 *
-	 * @param {Object} context the store mutations
+	 * @param {object} context the store mutations
 	 * @param {Contact} contact the contact
 	 */
 	removeContactFromGroups(context, contact) {
@@ -151,8 +151,8 @@ const actions = {
 	/**
 	 * Remove contact from group
 	 *
-	 * @param {Object} context the store mutations
-	 * @param {Object} data destructuring object
+	 * @param {object} context the store mutations
+	 * @param {object} data destructuring object
 	 * @param {string} data.groupName the name of the group
 	 * @param {Contact} data.contact the contact
 	 */
@@ -163,7 +163,7 @@ const actions = {
 	/**
 	 * Add a group
 	 *
-	 * @param {Object} context the store mutations
+	 * @param {object} context the store mutations
 	 * @param {string} groupName the name of the group
 	 */
 	addGroup(context, groupName) {

@@ -108,7 +108,8 @@ export default {
 
 		/**
 		 * Is the current circle empty
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isEmptyCircle() {
 			return this.members.length === 0

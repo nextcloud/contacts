@@ -22,7 +22,7 @@
 
 <template>
 	<div class="sort-contacts">
-		<div class="icon-category-organization settings-line__icon"></div>
+		<div class="icon-category-organization settings-line__icon" />
 		<Multiselect
 			id="sort-by"
 			:value="orderKeyOption"

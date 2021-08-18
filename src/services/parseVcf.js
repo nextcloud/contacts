@@ -28,8 +28,8 @@ import Store from '../store/index'
  * and return a list of contacts
  *
  * @param {string} data The vcf data
- * @param {Object} addressbook the addressbook to add to
- * @returns {Contact[]}
+ * @param {object} addressbook the addressbook to add to
+ * @return {Contact[]}
  */
 export default function parseVcf(data, addressbook) {
 	const regexp = /BEGIN:VCARD[\s\S]*?END:VCARD/mgi

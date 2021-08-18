@@ -25,6 +25,9 @@ import AdminSettings from './components/AdminSettings'
 
 document.addEventListener('DOMContentLoaded', main)
 
+/**
+ *
+ */
 function main() {
 	Vue.prototype.t = t
 

@@ -31,7 +31,7 @@ import updateDesignSet from '../services/updateDesignSet'
  * Check if the given value is an empty array or an empty string
  *
  * @param {string|Array} value the value to check
- * @returns {boolean}
+ * @return {boolean}
  */
 const isEmpty = value => {
 	return (Array.isArray(value) && value.join('') === '') || (!Array.isArray(value) && value === '')
@@ -102,7 +102,7 @@ export default class Contact {
 	/**
 	 * Update linked addressbook of this contact
 	 *
-	 * @param {Object} addressbook the addressbook
+	 * @param {object} addressbook the addressbook
 	 * @memberof Contact
 	 */
 	updateAddressbook(addressbook) {
@@ -115,7 +115,7 @@ export default class Contact {
 	 * e.g. ORG:ABC\, Inc.; will output an array because of the semi-colon
 	 *
 	 * @param {Array|string} data the data to normalize
-	 * @returns {string}
+	 * @return {string}
 	 * @memberof Contact
 	 */
 	firstIfArray(data) {
@@ -457,7 +457,7 @@ export default class Contact {
 	 *
 	 * @readonly
 	 * @memberof Contact
-	 * @returns {string} firstName|displayName
+	 * @return {string} firstName|displayName
 	 */
 	get firstName() {
 		if (this.vCard.hasProperty('n')) {
@@ -473,7 +473,7 @@ export default class Contact {
 	 *
 	 * @readonly
 	 * @memberof Contact
-	 * @returns {string} lastName|displayName
+	 * @return {string} lastName|displayName
 	 */
 	get lastName() {
 		if (this.vCard.hasProperty('n')) {
@@ -489,7 +489,7 @@ export default class Contact {
 	 *
 	 * @readonly
 	 * @memberof Contact
-	 * @returns {string} phoneticFirstName|firstName|displayName
+	 * @return {string} phoneticFirstName|firstName|displayName
 	 */
 	get phoneticFirstName() {
 		if (this.vCard.hasProperty('x-phonetic-first-name')) {
@@ -504,7 +504,7 @@ export default class Contact {
 	 *
 	 * @readonly
 	 * @memberof Contact
-	 * @returns {string} lastName|displayName
+	 * @return {string} lastName|displayName
 	 */
 	get phoneticLastName() {
 		if (this.vCard.hasProperty('x-phonetic-last-name')) {
@@ -518,7 +518,7 @@ export default class Contact {
 	 *
 	 * @readonly
 	 * @memberof Contact
-	 * @returns {Property[]} http://mozilla-comm.github.io/ical.js/api/ICAL.Property.html
+	 * @return {Property[]} http://mozilla-comm.github.io/ical.js/api/ICAL.Property.html
 	 */
 	get properties() {
 		return this.vCard.getAllProperties()
@@ -529,7 +529,7 @@ export default class Contact {
 	 *
 	 * @readonly
 	 * @memberof Contact
-	 * @returns {string[]}
+	 * @return {string[]}
 	 */
 	get searchData() {
 		return this.jCal[1].map(x => x[0] + ':' + x[3])

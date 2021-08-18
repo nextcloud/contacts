@@ -215,7 +215,8 @@ export default {
 
 		/**
 		 * Are we handling a single entity type ?
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isSingleType() {
 			return !(this.dataTypes.length > 1)
@@ -223,7 +224,8 @@ export default {
 
 		/**
 		 * Is the current selection empty
-		 * @returns {boolean}
+		 *
+		 * @return {boolean}
 		 */
 		isEmptySelection() {
 			return Object.keys(this.selectionSet).length === 0
@@ -232,7 +234,8 @@ export default {
 		/**
 		 * Formatted search input placeholder based on
 		 * available types
-		 * @returns {string}
+		 *
+		 * @return {string}
 		 */
 		searchPlaceholderTypes() {
 			const types = this.dataTypes
@@ -244,7 +247,8 @@ export default {
 		/**
 		 * Available data based on current search if query
 		 * is valid, returns default full data et otherwise
-		 * @returns {Object[]}
+		 *
+		 * @return {object[]}
 		 */
 		searchSet() {
 			// If internal search is enabled and we have a search query, filter data set
@@ -258,7 +262,8 @@ export default {
 
 		/**
 		 * Returns available entities grouped by type(s) if any
-		 * @returns {Object[]}
+		 *
+		 * @return {object[]}
 		 */
 		availableEntities() {
 			// If only one type, return the full set directly
@@ -305,6 +310,7 @@ export default {
 		onSubmit() {
 			/**
 			 * Emitted when user submit the form
+			 *
 			 * @type {Array} the selected entities
 			 */
 			this.$emit('submit', Object.values(this.selectionSet))
@@ -313,6 +319,7 @@ export default {
 		onSearch: debounce(function() {
 			/**
 			 * Emitted when search change
+			 *
 			 * @type {string} the search query
 			 */
 			this.$emit('search', this.searchQuery)
@@ -320,7 +327,8 @@ export default {
 
 		/**
 		 * Remove entity from selection
-		 * @param {Object} entity the entity to remove
+		 *
+		 * @param {object} entity the entity to remove
 		 */
 		onDelete(entity) {
 			this.$delete(this.selectionSet, entity.id, entity)
@@ -329,7 +337,8 @@ export default {
 
 		/**
 		 * Add/remove entity from selection
-		 * @param {Object} entity the entity to add
+		 *
+		 * @param {object} entity the entity to add
 		 */
 		onClick(entity) {
 			if (entity.id in this.selectionSet) {
@@ -344,7 +353,8 @@ export default {
 
 		/**
 		 * Toggle entity from selection
-		 * @param {Object} entity the entity to add/remove
+		 *
+		 * @param {object} entity the entity to add/remove
 		 */
 		onToggle(entity) {
 			if (entity.id in this.selectionSet) {

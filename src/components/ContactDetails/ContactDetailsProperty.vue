@@ -129,7 +129,7 @@ export default {
 		/**
 		 * Return the type of the prop e.g. FN
 		 *
-		 * @returns {string}
+		 * @return {string}
 		 */
 		propName() {
 			// ! is this a ITEMXX.XXX property??
@@ -144,7 +144,7 @@ export default {
 		 * Return the type or property
 		 *
 		 * @see src/models/rfcProps
-		 * @returns {string}
+		 * @return {string}
 		 */
 		propType() {
 			// if we have a force type set, use it!
@@ -159,7 +159,7 @@ export default {
 		 * RFC template matching this property
 		 *
 		 * @see src/models/rfcProps
-		 * @returns {Object}
+		 * @return {object}
 		 */
 		propModel() {
 			return this.properties[this.propName]
@@ -170,7 +170,7 @@ export default {
 		 * but make sure to include the selected one
 		 * in the final list
 		 *
-		 * @returns {Object[]}
+		 * @return {object[]}
 		 */
 		sortedModelOptions() {
 			if (this.propModel.options) {
@@ -188,7 +188,7 @@ export default {
 		 * Return the id and type of a property group
 		 * e.g ITEMXX.tel => ['ITEMXX', 'tel']
 		 *
-		 * @returns {Array}
+		 * @return {Array}
 		 */
 		propGroup() {
 			return this.property.name.split('.')
@@ -197,7 +197,7 @@ export default {
 		/**
 		 * Return the associated X-ABLABEL if any
 		 *
-		 * @returns {Property}
+		 * @return {Property}
 		 */
 		propLabel() {
 			return this.localContact.vCard.getFirstProperty(`${this.propGroup[0]}.x-ablabel`)
@@ -208,7 +208,7 @@ export default {
 		 * or return the default selected as a new object if
 		 * none exists
 		 *
-		 * @returns Object|null
+		 * @return Object|null
 		 */
 		selectType: {
 			get() {

@@ -81,6 +81,7 @@ export default {
 
 		/**
 		 * On toggle, add or remove the config bitwise
+		 *
 		 * @param {CircleConfig} config the circle config to manage
 		 * @param {boolean} checked checked or not
 		 */
