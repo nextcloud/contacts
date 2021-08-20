@@ -68,6 +68,7 @@ OC.L10N.register(
     "Title" : "タイトル",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "この連絡先は変更され、修正を受信しました。内容を確認してクリックで保存してください。",
     "Clone contact" : "連絡先の複製",
+    "Generate QR Code" : "QRコードを生成",
     "Pick an address book" : "アドレス帳を選ぶ",
     "Select address book" : "アドレス帳を選ぶ",
     "Cancel" : "キャンセル",
