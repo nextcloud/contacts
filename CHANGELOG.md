@@ -1,5 +1,13 @@
 # Changelog
 
+## 4.0.2 – 2021-08-25
+### Changed
+- App initialization logic migrated to silence a deprecation notice
+### Fixed
+- Blank page when files_sharing is disabled
+- Mobile contacts list
+- Scrolling of the app content details
+
 ## 4.0.1 - 2021-07-28
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v4.0.0...v4.0.1)
