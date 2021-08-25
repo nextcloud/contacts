@@ -12,7 +12,7 @@
 * 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 	</description>
 
-	<version>4.0.2</version>
+	<version>4.1.0-alpha.1</version>
 	<licence>agpl</licence>
 
 	<author>John Molakvoæ</author>
