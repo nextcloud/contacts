@@ -289,6 +289,7 @@ export default {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+		max-width: calc(100% - 2 * 44px);
 	}
 	&__share,
 	&__menu .icon-more {
