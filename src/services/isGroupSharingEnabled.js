@@ -20,8 +20,8 @@
  *
  */
 
- import { loadState } from '@nextcloud/initial-state'
+import { loadState } from '@nextcloud/initial-state'
 
- const isGroupSharingEnabled = loadState('contacts', 'isGroupSharingEnabled', false)
- export default isGroupSharingEnabled
+const isGroupSharingEnabled = loadState('contacts', 'isGroupSharingEnabled', false)
+export default isGroupSharingEnabled
  
