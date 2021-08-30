@@ -22,6 +22,6 @@
 
  import { loadState } from '@nextcloud/initial-state'
 
- const isGroupSharingEnabled = loadState('contacts', 'isContactsInteractionEnabled', false)
+ const isGroupSharingEnabled = loadState('contacts', 'isGroupSharingEnabled', false)
  export default isGroupSharingEnabled
  
