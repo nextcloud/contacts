@@ -49,6 +49,7 @@
 <script>
 import { NcSelect } from '@nextcloud/vue'
 import client from '../../../services/cdav.js'
+import isGroupSharingEnabled from '../../../services/isGroupSharingEnabled.js'
 
 import addressBookSharee from './SettingsAddressbookSharee.vue'
 import debounce from 'debounce'
@@ -79,7 +80,11 @@ export default {
 	},
 	computed: {
 		placeholder() {
-			return t('contacts', 'Share with users or groups')
+			if (isGroupSharingEnabled) {
+				return t('contacts', 'Share with users or groups')
+			} else {
+				return t('contacts', 'Share with users')
+			}
 		},
 		noResult() {
 			return t('contacts', 'No users or groups')
