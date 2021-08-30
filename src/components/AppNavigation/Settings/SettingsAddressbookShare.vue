@@ -80,9 +80,9 @@ export default {
 	},
 	computed: {
 		placeholder() {
-			if(isGroupSharingEnabled){
+			if (isGroupSharingEnabled) {
 				return t('contacts', 'Share with users or groups')
-			}else{
+			} else {
 				return t('contacts', 'Share with users')
 			}
 		},
