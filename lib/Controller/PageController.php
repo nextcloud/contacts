@@ -106,6 +106,8 @@ class PageController extends Controller {
 		$isCirclesEnabled = $this->appManager->isEnabledForUser('circles') === true;
 		// if circles is not installed, we use 0.0.0
 		$isCircleVersionCompatible = $this->compareVersion->isCompatible($circleVersion ? $circleVersion : '0.0.0', 22);
+		// Check whether group sharing is enabled or not 
+		$isGroupSharingEnabled = $this->config->getAppValue('core', 'shareapi_allow_group_sharing', 'yes') === 'yes';
 
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'locales', $locales);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'defaultProfile', $defaultProfile);

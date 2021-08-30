@@ -50,6 +50,7 @@
 <script>
 import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 import client from '../../../services/cdav'
+import isGroupSharingEnabled from '../../../services/isGroupSharingEnabled'
 
 import addressBookSharee from './SettingsAddressbookSharee'
 import debounce from 'debounce'
@@ -79,7 +80,11 @@ export default {
 	},
 	computed: {
 		placeholder() {
-			return t('contacts', 'Share with users or groups')
+			if(isGroupSharingEnabled){
+				return t('contacts', 'Share with users or groups')
+			}else{
+				return t('contacts', 'Share with users')
+			}
 		},
 		noResult() {
 			return t('contacts', 'No users or groups')
