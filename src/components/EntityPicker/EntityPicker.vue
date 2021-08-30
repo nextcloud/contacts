@@ -254,7 +254,7 @@ export default {
 			// If internal search is enabled and we have a search query, filter data set
 			if (this.internalSearch && this.searchQuery && this.searchQuery.trim !== '') {
 				return this.dataSet.filter(entity => {
-					return entity.label.indexOf(this.searchQuery) > -1
+					return entity.label.toLowerCase().indexOf(this.searchQuery.toLowerCase()) > -1
 				})
 			}
 			return this.dataSet
