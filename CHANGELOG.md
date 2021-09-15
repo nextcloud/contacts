@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.3 – 2021-09-15
+### Fixed
+- Missing SVG sanitization for SVG contact images
+
 ## 4.0.2 – 2021-08-25
 ### Changed
 - App initialization logic migrated to silence a deprecation notice
