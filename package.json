@@ -46,7 +46,7 @@
 		"@nextcloud/paths": "^2.0.0",
 		"@nextcloud/router": "^2.0.0",
 		"@nextcloud/sharing": "^0.1.0",
-		"@nextcloud/vue": "^4.1.0",
+		"@nextcloud/vue": "^4.1.1",
 		"b64-to-blob": "^1.2.19",
 		"camelcase": "^6.2.0",
 		"cdav-library": "git+https://github.com/nextcloud/cdav-library.git",
