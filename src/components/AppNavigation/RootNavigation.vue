@@ -96,7 +96,6 @@
 					</NcCounterBubble>
 				</template>
 			</AppNavigationItem>
-
 			<AppNavigationCaption
 				id="newgroup"
 				:force-menu="true"
