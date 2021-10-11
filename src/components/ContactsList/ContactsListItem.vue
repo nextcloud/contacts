@@ -1,24 +1,28 @@
 <template>
-	<ListItem :id="id"
-		:key="source.key"
-		class="list-item-style envelope"
-		:name="source.displayName"
-		:to="{ name: 'contact', params: { selectedGroup: selectedGroup, selectedContact: source.key } }">
-		<!-- @slot Icon slot -->
+	<div class="contacts-list__item-wrapper"
+		:draggable="isDraggable"
+		@dragstart="startDrag($event, source)">
+		<ListItem :id="id"
+			:key="source.key"
+			class="list-item-style envelope"
+			:name="source.displayName"
+			:to="{ name: 'contact', params: { selectedGroup: selectedGroup, selectedContact: source.key } }">
+			<!-- @slot Icon slot -->
 
-		<template #icon>
-			<div class="app-content-list-item-icon">
-				<BaseAvatar :display-name="source.displayName" :url="avatarUrl" :size="40" />
-			</div>
-		</template>
-		<template #subtitle>
-			<div class="envelope__subtitle">
-				<span class="envelope__subtitle__subject">
-					{{ source.email }}
-				</span>
-			</div>
-		</template>
-	</ListItem>
+			<template #icon>
+				<div class="app-content-list-item-icon">
+					<BaseAvatar :display-name="source.displayName" :url="avatarUrl" :size="40" />
+				</div>
+			</template>
+			<template #subtitle>
+				<div class="envelope__subtitle">
+					<span class="envelope__subtitle__subject">
+						{{ source.email }}
+					</span>
+				</div>
+			</template>
+		</ListItem>
+	</div>
 </template>
 
 <script>
@@ -62,7 +66,10 @@ export default {
 		selectedContact() {
 			return this.$route.params.selectedContact
 		},
-
+		// contact is not draggable when it has not been saved on server as it can't be added to groups/circles before
+		isDraggable() {
+			return !!this.source.dav && this.source.addressbook.id !== 'z-server-generated--system'
+		},
 		// usable and valid html id for scrollTo
 		id() {
 			return window.btoa(this.source.key).slice(0, -2)
@@ -81,6 +88,17 @@ export default {
 		await this.loadAvatarUrl()
 	},
 	methods: {
+		startDrag(evt, item) {
+			evt.dataTransfer.dropEffect = 'move'
+			evt.dataTransfer.effectAllowed = 'move'
+			evt.dataTransfer.setData('item', JSON.stringify({
+				addressbookId: item.addressbook.id,
+				displayName: item.displayName,
+				groups: item.groups,
+				url: item.url,
+				uid: item.uid,
+			}))
+		},
 
 		/**
 		 * Is called on save in ContactDetails to reload Avatar,
@@ -120,6 +138,17 @@ export default {
 				this.avatarUrl = `${this.source.url}?photo`
 			}
 		},
+
+		/**
+		 * Select this contact within the list
+		 */
+		selectContact() {
+			// change url with router
+			this.$router.push({
+				name: 'contact',
+				params: { selectedGroup: this.selectedGroup, selectedContact: this.source.key },
+			})
+		},
 	},
 }
 </script>
@@ -147,4 +176,15 @@ export default {
 	list-style: none;
 }
 
+</style>
+<style lang="scss">
+.contacts-list__item-wrapper {
+	&[draggable='true'] .avatardiv * {
+		cursor: move !important;
+	}
+
+	&[draggable='false'] .avatardiv * {
+		cursor: not-allowed !important;
+	}
+}
 </style>
