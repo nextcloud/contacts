@@ -239,20 +239,21 @@ export default class Contact {
 		}
 		const encoding = photo.getFirstParameter('encoding')
 		let photoType = photo.getFirstParameter('type')
-		let photoB64 = this.photo
+		const photoB64 = this.photo
 
 		const isBinary = photo.type === 'binary' || encoding === 'b'
 
+		let photoB64Data = photoB64
 		if (photo && photoB64.startsWith('data') && !isBinary) {
 			// get the last part = base64
-			photoB64 = photoB64.split(',').pop()
-			// 'data:image/png' => 'png'
-			photoType = photoB64.split(';')[0].split('/')
+			photoB64Data = photoB64.split(',').pop()
+			// 'data:image/png;base64' => 'png'
+			photoType = photoB64.split(';')[0].split('/').pop()
 		}
 
 		// Verify if SVG is valid
 		if (photoType.startsWith('svg')) {
-			const imageSvg = atob(photoB64)
+			const imageSvg = atob(photoB64Data)
 			const cleanSvg = await sanitizeSVG(imageSvg)
 
 			if (!cleanSvg) {
@@ -263,7 +264,7 @@ export default class Contact {
 
 		try {
 			// Create blob from url
-			const blob = b64toBlob(photoB64, `image/${photoType}`)
+			const blob = b64toBlob(photoB64Data, `image/${photoType}`)
 			return URL.createObjectURL(blob)
 		} catch {
 			console.error('Invalid photo for the following contact. Ignoring...', this.contact, { photoB64, photoType })
