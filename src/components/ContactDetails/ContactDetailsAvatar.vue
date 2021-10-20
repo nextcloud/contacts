@@ -32,15 +32,12 @@
 			@change="processFile">
 
 		<!-- Avatar display -->
-		<div v-if="photoUrl"
-			:style="{ 'backgroundImage': `url(${photoUrl})` }"
-			class="contact-header-avatar__photo"
-			@click="toggleModal" />
-		<Avatar v-else
+		<Avatar
 			:disable-tooltip="true"
 			:display-name="contact.displayName"
 			:is-no-user="true"
 			:size="75"
+			:url="photoUrl"
 			class="contact-header-avatar__photo" />
 
 		<!-- attention, this menu exists twice in this file -->
@@ -178,18 +175,12 @@ export default {
 		},
 	},
 
-	watch: {
-		contact() {
-			this.loadPhotoUrl()
-		},
-	},
-
 	data() {
 		return {
 			maximizeAvatar: false,
 			opened: false,
 			loading: false,
-			photoUrl: false,
+			photoUrl: undefined,
 			root: generateRemoteUrl(`dav/files/${getCurrentUser().uid}`),
 		}
 	},
@@ -217,8 +208,14 @@ export default {
 		},
 	},
 
-	mounted() {
-		this.loadPhotoUrl()
+	watch: {
+		async contact() {
+			await this.loadPhotoUrl()
+		},
+	},
+
+	async mounted() {
+		await this.loadPhotoUrl()
 	},
 
 	methods: {
@@ -366,13 +363,17 @@ export default {
 		},
 
 		async loadPhotoUrl() {
-			this.photoUrl = false
-			const photoUrl = await this.contact.getPhotoUrl()
-			if (!photoUrl) {
-				console.warn('contact has an invalid photo')
-				return
+			this.photoUrl = undefined
+			if (this.contact.photo) {
+				const photoUrl = await this.contact.getPhotoUrl()
+				if (!photoUrl) {
+					console.warn('contact has an invalid photo')
+					return
+				}
+				this.photoUrl = photoUrl
+			} else if (this.contact.url) {
+				this.photoUrl = `${this.contact.url}?photo`
 			}
-			this.photoUrl = photoUrl
 		},
 
 		/**
