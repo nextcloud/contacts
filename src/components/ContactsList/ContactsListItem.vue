@@ -40,11 +40,6 @@ export default {
 			avatarUrl: undefined,
 		}
 	},
-	watch: {
-		source() {
-			this.loadAvatarUrl()
-		}
-	},
 	computed: {
 		selectedGroup() {
 			return this.$route.params.selectedGroup
@@ -58,8 +53,13 @@ export default {
 			return window.btoa(this.source.key).slice(0, -2)
 		},
 	},
-	mounted() {
-		this.loadAvatarUrl()
+	watch: {
+		async source() {
+			await this.loadAvatarUrl()
+		},
+	},
+	async mounted() {
+		await this.loadAvatarUrl()
 	},
 	methods: {
 		async loadAvatarUrl() {
@@ -72,8 +72,7 @@ export default {
 					return
 				}
 				this.avatarUrl = photoUrl
-			}
-			if (this.source.url) {
+			} else if (this.source.url) {
 				this.avatarUrl = `${this.source.url}?photo`
 			}
 		},
