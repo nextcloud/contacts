@@ -91,7 +91,7 @@ OC.L10N.register(
     "Delete picture" : "Excluir imagem",
     "Invalid image" : "Imagem inválida",
     "Image is too big (max 1MB)." : "A imagem é muito grande (max 1MB).",
-    "Pick an avatar" : "Escolher um avatar",
+    "Pick an avatar" : "Escolha um avatar",
     "Error while processing the picture." : "Erro ao processar a imagem.",
     "Avatar downloaded from social network" : "Avatar baixado da rede social",
     "Avatar already up to date" : "Avatar já atualizado",
