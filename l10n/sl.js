@@ -257,6 +257,7 @@ OC.L10N.register(
     "Time zone" : "Časovni pas",
     "Spoken languages" : "Govorjeni jezik",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} stika ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati"],
+    "Unable to create circle {circleName}" : "Ni mogoče ustvariti kroga {circleName}",
     "Unable to delete circle {circleId}" : "Ni mogoče izbrisati kroga {circleId}",
     "Unable to delete contact" : "Ni mogoče izbrisati stika",
     "Your web browser is out of date" : "Trenutno uporabljen brskalnik je zastarel!",
