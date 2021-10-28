@@ -1,0 +1,36 @@
+name: Test appinfo parse
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - stable*
+
+env:
+  APP_NAME: contacts
+
+jobs:
+  appinfo-parse:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check actor permission
+        uses: skjnldsv/check-actor-permission@v2
+        with:
+          require: admin
+
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          path: ${{ env.APP_NAME }}
+          
+      - name: Get appinfo
+        id: appinfo
+        uses: mavrosxristoforos/get-xml-info@1.0
+        with:
+          xml-file: ${{ env.APP_NAME }}/appinfo/info.xml
+          xpath: '//info//dependencies//nextcloud'
+
+      - name: Echo min-version
+        run: echo ${{ steps.appinfo.outputs.info}}
