@@ -72,6 +72,9 @@ export default {
 	},
 
 	computed: {
+		contacts() {
+			return this.$store.getters.getContacts
+		},
 	},
 
 	methods: {
