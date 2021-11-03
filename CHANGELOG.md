@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.0.5 - 2021-11-03
+### Fixed
+- Missing front-end build artifacts
+
 ## 4.0.4 - 2021-11-03
 ### Fixed
 - Missing avatars
