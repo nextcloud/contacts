@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.4 - 2021-11-03
+### Fixed
+- Missing avatars
+- Group download
+
 ## 4.0.3 – 2021-09-15
 ### Fixed
 - Missing SVG sanitization for SVG contact images
