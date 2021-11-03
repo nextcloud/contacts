@@ -39,26 +39,29 @@ If you'd like to join, just go through the [issue list](https://github.com/nextc
 
 ``` bash
 # set up and build for production
-make
+npm ci
+composer i -o --no-dev
+npm run build
 
 # install dependencies
-make dev-setup
+npm ci
+composer i -o
 
 # build for dev and watch changes
-make watch-js
+npm run watch
 
 # build for dev
-make build-js
+npm run dev
 
 # build for production with minification
-make build-js-production
-
+npm run build
 ```
 ## Running tests
-You can use the provided Makefile to run all tests by using:
 
 ```
-make test
+npm run test
+composer run test:unit
+composer run test:integration
 ```
 
 ## :v: Code of conduct
