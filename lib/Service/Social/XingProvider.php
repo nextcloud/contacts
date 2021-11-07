@@ -85,7 +85,7 @@ class XingProvider implements ISocialProvider {
 			$result = $this->httpClient->get($profileUrl);
 			$htmlResult = $result->getBody();
 
-			$avatar = '/.*src="(https:\/\/profile-images[a-zA-Z0-9\/.\-_]+\.jpg)".*/';
+			$avatar = '/.*src="(https:\/\/profile-images[a-zA-Z0-9\/.\-_%]+\.jpg)".*/';
 			if (preg_match($avatar, $htmlResult, $matches)) {
 				return $matches[1];
 			}
