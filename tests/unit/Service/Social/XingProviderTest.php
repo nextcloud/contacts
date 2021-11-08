@@ -104,10 +104,10 @@ class XingProviderTest extends TestCase {
 			"https://www.xing.com/profile/username2",
 			"https://www.xing.com/profile/username3"
 		];
-		$contactWithSocialHtml = array_map(function ($profile) {
+		$contactWithSocialHtml = array_map(function ($profile) use ($contactImages) {
 			return '<img src="'.$contactImages[$profile['value']].'" />';
 		}, $contactWithSocial['X-SOCIALPROFILE']);
-		$contactWithSocialImg = array_map(function ($profile) {
+		$contactWithSocialImg = array_map(function ($profile) use ($contactImages) {
 			return $contactImages[$profile['value']];
 		}, $contactWithSocial['X-SOCIALPROFILE']);
 
