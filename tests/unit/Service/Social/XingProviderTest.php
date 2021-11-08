@@ -87,21 +87,28 @@ class XingProviderTest extends TestCase {
 	}
 
 	public function dataProviderGetImageUrls() {
+		$contactImages = [
+			"username1" => "https://profile-images-abcusername1.jpg",
+			"username2" => "https://profile-images-abcusername2.jpg",
+			"username3" => "https://".urlencode("profile-images-abc.ÄÖÜ/äöü_ß.jpg")
+		];
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
 				["value" => "username1", "type" => "xing"],
-				["value" => "username2", "type" => "xing"]
+				["value" => "username2", "type" => "xing"],
+				["value" => "username3", "type" => "xing"]
 			]
 		];
 		$contactWithSocialUrls = [
 			"https://www.xing.com/profile/username1",
-			"https://www.xing.com/profile/username2"
+			"https://www.xing.com/profile/username2",
+			"https://www.xing.com/profile/username3"
 		];
-		$contactWithSocialHtml = array_map(function ($profile) {
-			return '<img src="https://profile-images-abc'.$profile['value'].'.jpg" />';
+		$contactWithSocialHtml = array_map(function ($profile) use ($contactImages) {
+			return '<img src="'.$contactImages[$profile['value']].'" />';
 		}, $contactWithSocial['X-SOCIALPROFILE']);
-		$contactWithSocialImg = array_map(function ($profile) {
-			return 'https://profile-images-abc'.$profile['value'].".jpg";
+		$contactWithSocialImg = array_map(function ($profile) use ($contactImages) {
+			return $contactImages[$profile['value']];
 		}, $contactWithSocial['X-SOCIALPROFILE']);
 
 		$contactWithoutSocial = [
