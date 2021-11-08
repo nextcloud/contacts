@@ -90,7 +90,7 @@ class XingProviderTest extends TestCase {
 		$contactImages = [
 			"username1" => "https://profile-images-abcusername1.jpg",
 			"username2" => "https://profile-images-abcusername2.jpg",
-			"username3" => urlencode("https://profile-images-abc.ÄÖÜ/äöü_ß.jpg")
+			"username3" => "https://".urlencode("profile-images-abc.ÄÖÜ/äöü_ß.jpg")
 		];
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
