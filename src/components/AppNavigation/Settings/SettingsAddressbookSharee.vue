@@ -28,7 +28,8 @@
 				'icon-user': !sharee.isGroup && !loading
 			}"
 			class="icon" />
-		<span class="addressbook-sharee__identifier">
+		<span class="addressbook-sharee__identifier"
+			:title="sharee.displayName">
 			{{ sharee.displayName }}
 		</span>
 		<span class="addressbook-sharee__utils">
@@ -40,7 +41,8 @@
 				name="editable"
 				type="checkbox"
 				@change="editSharee">
-			<label :for="uid">
+			<label :for="uid"
+				:title="t('contacts', 'can edit')">
 				{{ t('contacts', 'can edit') }}
 			</label>
 			<a :class="{'addressbook-sharee__utils--disabled': loading}"
@@ -126,3 +128,14 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+.addressbook-sharee__utils {
+	text-overflow: ellipsis;
+}
+
+.addressbook-sharee__utils label {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	width: 107px;
+}
+</style>
