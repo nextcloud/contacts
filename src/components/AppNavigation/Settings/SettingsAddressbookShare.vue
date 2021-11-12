@@ -140,3 +140,9 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+.addressbook-shares__list {
+	margin-left: -8px;
+	width: 282px;
+}
+</style>
