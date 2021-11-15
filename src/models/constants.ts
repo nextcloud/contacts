@@ -73,8 +73,8 @@ const CIRCLE_CONFIG_NO_OWNER: CircleConfig = 512			// no owner, only members
 const CIRCLE_CONFIG_HIDDEN: CircleConfig = 1024				// hidden from listing, but available as a share entity
 const CIRCLE_CONFIG_BACKEND: CircleConfig = 2048			// Fully hidden, only backend Circles
 const CIRCLE_CONFIG_ROOT: CircleConfig = 4096				// Circle cannot be inside another Circle
-const CIRCLE_CONFIG_CIRCLE_INVITE: CircleConfig = 8192		// Circle must confirm when invited in another circle
-const CIRCLE_CONFIG_FEDERATED: CircleConfig = 16384			// Federated
+const CIRCLE_CONFIG_CIRCLE_INVITE: CircleConfig = 16384		// Circle must confirm when invited in another circle
+const CIRCLE_CONFIG_FEDERATED: CircleConfig = 32768			// Federated
 
 // Existing members types
 export const CIRCLES_MEMBER_TYPES = {
