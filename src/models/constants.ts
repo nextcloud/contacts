@@ -72,7 +72,8 @@ const CIRCLE_CONFIG_PROTECTED: CircleConfig = 256			// Password protected to joi
 const CIRCLE_CONFIG_NO_OWNER: CircleConfig = 512			// no owner, only members
 const CIRCLE_CONFIG_HIDDEN: CircleConfig = 1024				// hidden from listing, but available as a share entity
 const CIRCLE_CONFIG_BACKEND: CircleConfig = 2048			// Fully hidden, only backend Circles
-const CIRCLE_CONFIG_ROOT: CircleConfig = 4096				// Circle cannot be inside another Circle
+const CIRCLE_CONFIG_LOCAL: CircleConfig = 4096				// Circle is not shared to other instance in globalscale
+const CIRCLE_CONFIG_ROOT: CircleConfig = 8192				// Circle cannot be a member of another Circle
 const CIRCLE_CONFIG_CIRCLE_INVITE: CircleConfig = 16384		// Circle must confirm when invited in another circle
 const CIRCLE_CONFIG_FEDERATED: CircleConfig = 32768			// Federated
 
@@ -203,6 +204,7 @@ export enum CircleConfigs {
 	NO_OWNER = CIRCLE_CONFIG_NO_OWNER,
 	HIDDEN = CIRCLE_CONFIG_HIDDEN,
 	BACKEND = CIRCLE_CONFIG_BACKEND,
+	LOCAL = CIRCLE_CONFIG_LOCAL,
 	ROOT = CIRCLE_CONFIG_ROOT,
 	CIRCLE_INVITE = CIRCLE_CONFIG_CIRCLE_INVITE,
 	FEDERATED = CIRCLE_CONFIG_FEDERATED,
