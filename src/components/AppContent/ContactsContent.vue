@@ -157,7 +157,7 @@ export default {
 		 * Forward the newContact event to the parent
 		 */
 		newContact() {
-			this.$emit('new-contact')
+			this.$emit('newContact')
 		},
 
 		/**
