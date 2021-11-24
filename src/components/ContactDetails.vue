@@ -127,7 +127,7 @@
 						@click="cloneContact">
 						{{ t('contacts', 'Clone contact') }}
 					</ActionButton>
-					<ActionButton icon="icon-qrcode" @click="showQRcode">
+					<ActionButton icon="icon-qrcode" :close-after-click="true" @click="showQRcode">
 						{{ t('contacts', 'Generate QR Code') }}
 					</ActionButton>
 					<ActionButton v-if="!isReadOnly" icon="icon-delete" @click="deleteContact">
