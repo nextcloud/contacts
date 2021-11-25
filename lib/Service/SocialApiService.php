@@ -227,9 +227,10 @@ class SocialApiService {
 			$changes = [];
 			$changes['URI'] = $contact['URI'];
 			$changes['VERSION'] = $contact['VERSION'];
+
 			$this->addPhoto($changes, $imageType, base64_encode($socialdata));
 
-			if (isset($contact['PHOTO']) && $changes['PHOTO'] === $contact['PHOTO']) {
+			if (isset($changes['PHOTO'], $contact['PHOTO']) && $changes['PHOTO'] === $contact['PHOTO']) {
 				return new JSONResponse([], Http::STATUS_NOT_MODIFIED);
 			}
 
