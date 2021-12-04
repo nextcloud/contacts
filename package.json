@@ -80,7 +80,7 @@
 		"@nextcloud/eslint-config": "^6.1.0",
 		"@nextcloud/stylelint-config": "^1.0.0-beta.0",
 		"@nextcloud/typings": "^1.2.1",
-		"@nextcloud/webpack-vue-config": "^4.1.4",
+		"@nextcloud/webpack-vue-config": "^4.2.0",
 		"@typescript-eslint/parser": "^5.4.0",
 		"eslint-import-resolver-typescript": "^2.5.0",
 		"ts-loader": "^9.2.6",
