@@ -39,7 +39,8 @@
     </types>
 
 	<dependencies>
-		<nextcloud min-version="20" max-version="24" />
+		<php min-version="7.3" max-version="8.0" />
+		<nextcloud min-version="21" max-version="24" />
 	</dependencies>
 
 	<contactsmenu>
