@@ -1,6 +1,5 @@
 <?xml version="1.0"?>
-<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance"
-	  xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
+<info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
 	<id>contacts</id>
 	<name>Contacts</name>
 	<summary>A contacts app for Nextcloud</summary>
@@ -18,12 +17,16 @@
 	<author>John Molakvoæ</author>
 	<author>Team Popcorn</author>
 
+	<!-- required for dav plugins registration -->
+	<types>
+		<dav/>
+	</types>
+
 	<documentation>
 		<user>https://docs.nextcloud.com/server/stable/user_manual/en/pim/contacts.html</user>
 		<admin>https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/occ_command.html?highlight=occ%20commands#dav-label</admin>
 		<developer>https://github.com/nextcloud/contacts#build-the-app</developer>
 	</documentation>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png</screenshot>
 
 	<category>office</category>
 	<category>social</category>
@@ -32,20 +35,20 @@
 	<website>https://github.com/nextcloud/contacts#readme</website>
 	<bugs>https://github.com/nextcloud/contacts/issues</bugs>
 	<repository type="git">https://github.com/nextcloud/contacts.git</repository>
-
-	<!-- required for dav plugins registration -->
-    <types>
-        <dav/>
-    </types>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png</screenshot>
 
 	<dependencies>
 		<php min-version="7.3" max-version="8.0" />
 		<nextcloud min-version="21" max-version="24" />
 	</dependencies>
 
-	<contactsmenu>
-		<provider>OCA\Contacts\ContactsMenu\Providers\DetailsProvider</provider>
-	</contactsmenu>
+	<background-jobs>
+		<job>OCA\Contacts\Cron\SocialUpdateRegistration</job>
+	</background-jobs>
+
+	<settings>
+		<admin>OCA\Contacts\Settings\AdminSettings</admin>
+	</settings>
 
 	<navigations>
 		<navigation>
@@ -56,12 +59,7 @@
 		</navigation>
 	</navigations>
 
-	<background-jobs>
-		      <job>OCA\Contacts\Cron\SocialUpdateRegistration</job>
-	</background-jobs>
-
-	<settings>
-		<admin>OCA\Contacts\Settings\AdminSettings</admin>
-	</settings>
-
+	<contactsmenu>
+		<provider>OCA\Contacts\ContactsMenu\Providers\DetailsProvider</provider>
+	</contactsmenu>
 </info>
