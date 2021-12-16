@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.0.7 - 2021-12-16
+### Fixed
+- Missing action button closing after clicking QR code
+- Circles
+
 ## 4.0.6 - 2021-11-03
 ### Fixed
 - Missing front-end build artifacts
