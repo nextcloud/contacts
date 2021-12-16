@@ -22,6 +22,7 @@
 
 <template>
 	<AppContentList>
+		<div class="contacts-list__header"></div>
 		<VirtualList ref="scroller"
 			class="contacts-list"
 			data-key="key"
@@ -154,7 +155,12 @@ export default {
 <style lang="scss" scoped>
 // Make virtual scroller scrollable
 .contacts-list {
-	max-height: calc(100vh - var(--header-height));
+	max-height: calc(100vh - var(--header-height) - 48px);
 	overflow: auto;
+}
+
+// Add empty header to contacts-list that solves overlapping of contacts with app-navigation-toogle
+.contacts-list__header {
+	min-height: 48px;
 }
 </style>
