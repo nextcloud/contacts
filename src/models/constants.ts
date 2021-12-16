@@ -74,8 +74,8 @@ const CIRCLE_CONFIG_HIDDEN: CircleConfig = 1024				// hidden from listing, but a
 const CIRCLE_CONFIG_BACKEND: CircleConfig = 2048			// Fully hidden, only backend Circles
 const CIRCLE_CONFIG_LOCAL: CircleConfig = 4096				// Circle is not shared to other instance in globalscale
 const CIRCLE_CONFIG_ROOT: CircleConfig = 8192				// Circle cannot be a member of another Circle
-const CIRCLE_CONFIG_CIRCLE_INVITE: CircleConfig = 8192		// Circle must confirm when invited in another circle
-const CIRCLE_CONFIG_FEDERATED: CircleConfig = 16384			// Federated
+const CIRCLE_CONFIG_CIRCLE_INVITE: CircleConfig = 16384			// Circle must confirm when invited in another circle
+const CIRCLE_CONFIG_FEDERATED: CircleConfig = 32768			// Federated
 
 // Existing members types
 export const CIRCLES_MEMBER_TYPES = {
