@@ -75,6 +75,7 @@ export declare enum CircleConfigs {
     NO_OWNER,
     HIDDEN,
     BACKEND,
+    LOCAL,
     ROOT,
     CIRCLE_INVITE,
     FEDERATED
