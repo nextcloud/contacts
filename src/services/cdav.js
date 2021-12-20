@@ -20,7 +20,7 @@
  *
  */
 
-import DavClient from 'cdav-library'
+import DavClient from '@nextcloud/cdav-library'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getRequestToken } from '@nextcloud/auth'
 
