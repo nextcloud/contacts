@@ -149,7 +149,7 @@ export default class Circle {
     /**
      * Can the initiator add/remove members to this circle?
      */
-    get canManageMembers(): boolean | 0 | undefined;
+    get canManageMembers(): boolean;
     /**
      * Vue router param
      */
