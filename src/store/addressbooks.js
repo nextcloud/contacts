@@ -553,17 +553,7 @@ const actions = {
 		const vData = contact.vCard.toString().replace(/^UID.+/im, '')
 		const newContact = new Contact(vData, addressbook)
 
-		try {
-			const response = await contact.dav.copy(addressbook.dav)
-			// setting the contact dav property
-			Vue.set(newContact, 'dav', response)
-		} catch (error) {
-			console.error(error)
-			throw error
-		}
-		// success, update store
-		await context.commit('addContact', newContact)
-		await context.commit('addContactToAddressbook', newContact)
+		await context.dispatch('addContact', newContact)
 		return newContact
 	},
 }
