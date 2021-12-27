@@ -14,8 +14,8 @@
 	<version>4.1.0-alpha.1</version>
 	<licence>agpl</licence>
 
-	<author>John Molakvoæ</author>
-	<author>Team Popcorn</author>
+	<author>Christoph Wurst</author>
+	<author homepage="https://github.com/nextcloud/groupware">Nextcloud Groupware Team</author>
 
 	<!-- required for dav plugins registration -->
 	<types>
