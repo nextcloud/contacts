@@ -44,7 +44,7 @@
 		<ContactsContent v-else
 			:contacts-list="contactsList"
 			:loading="loadingContacts"
-			@newContact="newContact" />
+			@new-contact="newContact" />
 
 		<!-- Import modal -->
 		<Modal v-if="isImporting"
