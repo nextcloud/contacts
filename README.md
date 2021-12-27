@@ -18,8 +18,9 @@ This app only support vCard **3.0** and **4.0**. This app is compatible with the
 
 ## :hammer_and_wrench: Installation
 
-In your Nextcloud, simply navigate to "Apps", choose the category "Organization", find the Contacts app and enable it.
-Then open the Contacts app from the app menu.
+The app is distributed through the [app store](https://apps.nextcloud.com/apps/contacts) and you can install it [right from your Nextcloud installation](https://docs.nextcloud.com/server/stable/admin_manual/apps_management.html).
+
+Release tarballs are hosted at https://github.com/nextcloud-releases/contacts/releases.
 
 ## :satellite: Support
 
@@ -28,10 +29,6 @@ If you need assistance or want to ask a question about Contacts, you are welcome
 ### Could you add XXX property?
 > This is a complicated answer. We did not invent the way contacts works. We are following the official vCard format. This format include a predefined set of properties that other applications/devices supports too (Android, iOS, Windows, Gnome...). Adding a custom property would just make it compatible with Nextcloud and will not be understood by any other clients and make it complicated for us to ensure its sustainability over time.
 Long story short, we suggest you use the Notes field to add your custom data :)
-
-## Maintainers:
-
-- [John Molakvoæ](https://github.com/skjnldsv)
 
 If you'd like to join, just go through the [issue list](https://github.com/nextcloud/contacts/issues) and fix some. :)
 
