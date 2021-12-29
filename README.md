@@ -36,26 +36,31 @@ If you'd like to join, just go through the [issue list](https://github.com/nextc
 
 ``` bash
 # set up and build for production
-make
+npm ci
+npm run build
 
 # install dependencies
-make dev-setup
+npm ci
 
 # build for dev and watch changes
-make watch-js
+npm run watch
 
 # build for dev
-make build-js
+npm run dev
 
 # build for production with minification
-make build-js-production
+npm run build
 
 ```
 ## Running tests
-You can use the provided Makefile to run all tests by using:
+You can run all front-end tests by using:
 
 ```
-make test
+# run tests once
+npm run test
+
+# run tests continuously after every change
+npm run test:watch
 ```
 
 ## :v: Code of conduct
