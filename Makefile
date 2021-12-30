@@ -3,47 +3,10 @@
 
 app_name=$(notdir $(CURDIR))
 project_directory=$(CURDIR)/../$(app_name)
-build_tools_directory=$(CURDIR)/build/tools
-source_build_directory=$(CURDIR)/build/artifacts/source
-source_package_name=$(source_build_directory)/$(app_name)
 appstore_build_directory=$(CURDIR)/build/artifacts
 appstore_package_name=$(appstore_build_directory)/$(app_name)
 
-all: dev-setup lint build-js-production install-composer-deps-dev
-
-# Dev env management
-dev-setup: clean clean-dev install-npm-deps-dev
-
-composer.phar:
-	curl -sS https://getcomposer.org/installer | php
-
-install-deps: install-composer-deps-dev install-npm-deps-dev
-
-install-npm-deps-dev:
-	npm ci
-
-install-composer-deps: composer.phar
-	php composer.phar install --no-dev -o
-
-install-composer-deps-dev: composer.phar
-	php composer.phar install -o
-
-test-watch:
-	npm run test:watch
-
-# Linting
-lint:
-	npm run lint
-
-lint-fix:
-	npm run lint:fix
-
-# Style linting
-stylelint:
-	npm run stylelint
-
-stylelint-fix:
-	npm run stylelint:fix
+all: appstore
 
 # Cleaning
 clean:
