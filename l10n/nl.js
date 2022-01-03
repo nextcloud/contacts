@@ -184,7 +184,7 @@ OC.L10N.register(
     "User" : "Gebruiker",
     "Group" : "Groep",
     "Email" : "Email",
-    "Contact" : "Contactpersonen",
+    "Contact" : "Contactpersoon",
     "Member" : "Lid",
     "Moderator" : "Moderator",
     "Admin" : "Beheerder",
