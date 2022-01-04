@@ -263,8 +263,6 @@ OC.L10N.register(
     "Some circle(s) an error occurred. Check the console for more details." : "U některých okruhů se vyskytly chyby. Podrobnosti naleznete v konzoli.",
     "Unable to create circle {circleName}" : "Nedaří se vytvořit okruh {circleName}",
     "Unable to delete circle {circleId}" : "Nedaří se smazat okruh {circleId}",
-    "Unable to delete contact" : "Nedaří se smazat kontakt",
-    "Your web browser is out of date" : "Vámi používaný webový prohlížeč (resp. jeho verze) je zastaralý",
-    "This application is not compatible with Internet Explorer" : "Prohlížeč Internet Explorer (jeho výrobcem opuštěný) není s touto aplikací kompatibilní"
+    "Unable to delete contact" : "Nedaří se smazat kontakt"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

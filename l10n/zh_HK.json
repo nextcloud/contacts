@@ -261,8 +261,6 @@
     "Some circle(s) an error occurred. Check the console for more details." : "某些圈子出錯，請查看控制台以獲取更多詳細信息。",
     "Unable to create circle {circleName}" : "無法創建社交圈子 {circleName}",
     "Unable to delete circle {circleId}" : "無法刪除社交圈子 {circleId}",
-    "Unable to delete contact" : "無法刪除聯絡人",
-    "Your web browser is out of date" : "您的網路瀏覽器已過期",
-    "This application is not compatible with Internet Explorer" : "此應用程式與 Internet Explorer 不相容"
+    "Unable to delete contact" : "無法刪除聯絡人"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

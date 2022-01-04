@@ -140,8 +140,6 @@ OC.L10N.register(
     "None" : "Ekkert",
     "Unknown" : "Óþekkt",
     "Spoken languages" : "Töluð tungumál",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Mistókst að lesa {failed} tengilið","Mistókst að lesa {failed} tengiliði"],
-    "Your web browser is out of date" : "Vafrinn þinn er ekki uppfærður",
-    "This application is not compatible with Internet Explorer" : "Þetta forrit er ekki samhæft við Internet Explorer"
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Mistókst að lesa {failed} tengilið","Mistókst að lesa {failed} tengiliði"]
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

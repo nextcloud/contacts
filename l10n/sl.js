@@ -259,8 +259,6 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} stika ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati"],
     "Unable to create circle {circleName}" : "Ni mogoče ustvariti kroga {circleName}",
     "Unable to delete circle {circleId}" : "Ni mogoče izbrisati kroga {circleId}",
-    "Unable to delete contact" : "Ni mogoče izbrisati stika",
-    "Your web browser is out of date" : "Trenutno uporabljen brskalnik je zastarel!",
-    "This application is not compatible with Internet Explorer" : "Ta program ni skladen z brskalnikom Internet Explorer"
+    "Unable to delete contact" : "Ni mogoče izbrisati stika"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");

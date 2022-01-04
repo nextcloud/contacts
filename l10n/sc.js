@@ -263,8 +263,6 @@ OC.L10N.register(
     "Some circle(s) an error occurred. Check the console for more details." : "B'at àpidu un'errore in calecunu giru. Controlla sa consolla pro àtero detàllios.",
     "Unable to create circle {circleName}" : "No faghet a creare su giru {circleName}",
     "Unable to delete circle {circleId}" : "No faghet a cantzellare su giru {circleId}",
-    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu",
-    "Your web browser is out of date" : "Su navigadore tuo no est agiornadu",
-    "This application is not compatible with Internet Explorer" : "Cust'aplicatzione non est cumpatìbile cun Internet Explorer"
+    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu"
 },
 "nplurals=2; plural=(n != 1);");

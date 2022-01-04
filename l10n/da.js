@@ -263,8 +263,6 @@ OC.L10N.register(
     "Some circle(s) an error occurred. Check the console for more details." : "Nogle kredse opstod en fejl. Tjek konsollen for flere detaljer.",
     "Unable to create circle {circleName}" : "Kunne ikke oprette kredsen {circleName}",
     "Unable to delete circle {circleId}" : "Cirklen {circleId} kunne ikke slettes",
-    "Unable to delete contact" : "Kan ikke slette kontakten",
-    "Your web browser is out of date" : "Din netlæser er forældet",
-    "This application is not compatible with Internet Explorer" : "Dette program er ikke kompatibelt med Microsoft Internet Explorer"
+    "Unable to delete contact" : "Kan ikke slette kontakten"
 },
 "nplurals=2; plural=(n != 1);");

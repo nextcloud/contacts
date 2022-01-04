@@ -112,8 +112,6 @@ OC.L10N.register(
     "Male" : "Gwryw",
     "None" : "Dim",
     "Unknown" : "Anhysbys",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt"],
-    "Your web browser is out of date" : "Mae eich porwr gwe yn rhy hen",
-    "This application is not compatible with Internet Explorer" : "Nid yw'r rhaglen hon yn gydnaws ag Internet Explorer"
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt"]
 },
 "nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3;");

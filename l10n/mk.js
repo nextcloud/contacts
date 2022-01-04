@@ -184,8 +184,6 @@ OC.L10N.register(
     "Time zone" : "Временска зона",
     "Spoken languages" : "Говорни јазици",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} еден контакт неможе да се прочита","{failed} контакти неможат да се прочитат"],
-    "Unable to delete contact" : "Неможе да се избрише контакт",
-    "Your web browser is out of date" : "Вашиот прелистувач е застарен",
-    "This application is not compatible with Internet Explorer" : "Апликацијата не е компатибилна со Internet Explorer"
+    "Unable to delete contact" : "Неможе да се избрише контакт"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

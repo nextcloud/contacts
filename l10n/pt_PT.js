@@ -152,8 +152,6 @@ OC.L10N.register(
     "Unknown" : "Desconhecido",
     "Spoken languages" : "Línguas faladas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contactos cuja leitura falhou","{failed} contactos cuja leitura falhou"],
-    "Unable to delete contact" : "Não é possível eliminar o contacto.",
-    "Your web browser is out of date" : "O seu navegador não está atualizado",
-    "This application is not compatible with Internet Explorer" : "Esta aplicação não é compatível com o Internet Explorer"
+    "Unable to delete contact" : "Não é possível eliminar o contacto."
 },
 "nplurals=2; plural=(n != 1);");

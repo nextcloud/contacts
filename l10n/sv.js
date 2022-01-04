@@ -140,8 +140,6 @@ OC.L10N.register(
     "Unknown" : "Okänd",
     "Spoken languages" : "Talade språk",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt kunde inte läsas","{failed} kontakter kunde inte läsas"],
-    "Unable to delete contact" : "Kunde inte radera kontakten",
-    "Your web browser is out of date" : "Din webbläsare är för gammal",
-    "This application is not compatible with Internet Explorer" : "Den här applikationen är inte kompatibel med Internet Explorer"
+    "Unable to delete contact" : "Kunde inte radera kontakten"
 },
 "nplurals=2; plural=(n != 1);");

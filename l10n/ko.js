@@ -249,8 +249,6 @@ OC.L10N.register(
     "Some circle(s) an error occurred. Check the console for more details." : "일부 서클에서 오류가 발생함. 자세한 사항은 콘솔 참조하십시오.",
     "Unable to create circle {circleName}" : "{circleName} 서클을 만들 수 없음",
     "Unable to delete circle {circleId}" : "{circleId} 서클을 삭제할 수 없음",
-    "Unable to delete contact" : "연락처를 삭제할 수 없음",
-    "Your web browser is out of date" : "웹 브라우저가 오래되었습니다",
-    "This application is not compatible with Internet Explorer" : "이 앱은 Internet Explorer와 호환되지 않습니다"
+    "Unable to delete contact" : "연락처를 삭제할 수 없음"
 },
 "nplurals=1; plural=0;");

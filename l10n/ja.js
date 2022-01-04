@@ -252,8 +252,6 @@ OC.L10N.register(
     "Some circle(s) an error occurred. Check the console for more details." : "一部のサークルでエラーが発生しました。詳細については、コンソールを確認してください。",
     "Unable to create circle {circleName}" : "サークル {circleName} を作成できません",
     "Unable to delete circle {circleId}" : "サークル{circleId}を削除できません",
-    "Unable to delete contact" : "連絡先を削除できません。",
-    "Your web browser is out of date" : "Webブラウザーが古いです",
-    "This application is not compatible with Internet Explorer" : "このアプリはInternet Explorerと互換性がありません"
+    "Unable to delete contact" : "連絡先を削除できません。"
 },
 "nplurals=1; plural=0;");

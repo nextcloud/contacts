@@ -259,8 +259,6 @@
     "Some circle(s) an error occurred. Check the console for more details." : "Došlo je do pogreške u nekim krugovima. Za više pojedinosti provjerite konzolu.",
     "Unable to create circle {circleName}" : "Nije moguće stvoriti krug {circleName}",
     "Unable to delete circle {circleId}" : "Nije moguće izbrisati krug {circleId}",
-    "Unable to delete contact" : "Nije moguće izbrisati kontakt",
-    "Your web browser is out of date" : "Vaš web-preglednik je zastario",
-    "This application is not compatible with Internet Explorer" : "Ova aplikacija nije kompatibilna s preglednikom Internet Explorer"
+    "Unable to delete contact" : "Nije moguće izbrisati kontakt"
 },"pluralForm" :"nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;"
 }

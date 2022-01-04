@@ -261,8 +261,6 @@
     "Some circle(s) an error occurred. Check the console for more details." : "In sommige kringen is een fout opgetreden. Controleer het console voor meer details.",
     "Unable to create circle {circleName}" : "Kon kring {circleName} niet aanmaken",
     "Unable to delete circle {circleId}" : "Kon kring {circleId} niet verwijderen",
-    "Unable to delete contact" : "Kan contactpersoon niet verwijderen",
-    "Your web browser is out of date" : "Je webbrowser is verouderd",
-    "This application is not compatible with Internet Explorer" : "Deze applicatie is niet compatible met Internet Explorer"
+    "Unable to delete contact" : "Kan contactpersoon niet verwijderen"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

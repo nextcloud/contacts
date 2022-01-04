@@ -263,8 +263,6 @@ OC.L10N.register(
     "Some circle(s) an error occurred. Check the console for more details." : "Une erreur est survenue dans certains cercles. Vérifiez la console pour plus de détails.",
     "Unable to create circle {circleName}" : "Impossible de créer le cercle {circleName}",
     "Unable to delete circle {circleId}" : "Impossible de supprimer le cercle {circleId}",
-    "Unable to delete contact" : "Impossible de supprimer le contact.",
-    "Your web browser is out of date" : "Votre navigateur Web n'est pas à jour.",
-    "This application is not compatible with Internet Explorer" : "Cette application n'est pas compatible avec Internet Explorer."
+    "Unable to delete contact" : "Impossible de supprimer le contact."
 },
 "nplurals=2; plural=(n > 1);");

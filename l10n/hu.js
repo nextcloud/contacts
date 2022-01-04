@@ -263,8 +263,6 @@ OC.L10N.register(
     "Some circle(s) an error occurred. Check the console for more details." : "Hiba történt a körökkel kapcsolatosan. További részletekért nézze meg a konzolt.",
     "Unable to create circle {circleName}" : "A(z) {circleName} kör nem hozható létre",
     "Unable to delete circle {circleId}" : "A(z) {circleId} kör nem törölhető",
-    "Unable to delete contact" : "A névjegy törlése sikertelen",
-    "Your web browser is out of date" : "A böngésző túl régi",
-    "This application is not compatible with Internet Explorer" : "Ez az alkalmazás nem kompatibilis az Internet Explorerrel"
+    "Unable to delete contact" : "A névjegy törlése sikertelen"
 },
 "nplurals=2; plural=(n != 1);");

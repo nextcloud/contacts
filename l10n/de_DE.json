@@ -261,8 +261,6 @@
     "Some circle(s) an error occurred. Check the console for more details." : "Bei einigen Kreisen ist ein Fehler aufgetreten. Weitere Informationen finden Sie in der Konsole.",
     "Unable to create circle {circleName}" : "Fehler beim Erstellen des Kreises {circleName}",
     "Unable to delete circle {circleId}" : "Fehler beim Löschen des Kreises {circleId}",
-    "Unable to delete contact" : "Kontakt konnte nicht gelöscht werden",
-    "Your web browser is out of date" : "Ihr Webbrowser ist veraltet",
-    "This application is not compatible with Internet Explorer" : "Diese Anwendung ist nicht mit dem Internet Explorer kompatibel"
+    "Unable to delete contact" : "Kontakt konnte nicht gelöscht werden"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

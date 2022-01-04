@@ -164,8 +164,6 @@ OC.L10N.register(
     "Unknown" : "Непознато",
     "Spoken languages" : "Знање језика",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Не могу да прочитам {failed} контакт","Не могу да прочитам {failed} контакта","Не могу да прочитам {failed} контаката"],
-    "Unable to delete contact" : "Не могу да обришем контакт",
-    "Your web browser is out of date" : "Ваш веб читач је престар",
-    "This application is not compatible with Internet Explorer" : "Ова апликација није компатибилна са Интернет Експлорером"
+    "Unable to delete contact" : "Не могу да обришем контакт"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

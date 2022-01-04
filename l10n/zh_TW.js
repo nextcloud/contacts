@@ -263,8 +263,6 @@ OC.L10N.register(
     "Some circle(s) an error occurred. Check the console for more details." : "部份小圈圈發生錯誤。請檢查主控台以取得更多資訊。",
     "Unable to create circle {circleName}" : "無法建立小圈圈 {circleName}",
     "Unable to delete circle {circleId}" : "無法刪除小圈圈 {circleId}",
-    "Unable to delete contact" : "無法刪除聯絡人",
-    "Your web browser is out of date" : "您的網路瀏覽器已過期",
-    "This application is not compatible with Internet Explorer" : "此應用程式與 Internet Explorer 不相容"
+    "Unable to delete contact" : "無法刪除聯絡人"
 },
 "nplurals=1; plural=0;");

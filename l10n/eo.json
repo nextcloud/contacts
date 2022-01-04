@@ -116,8 +116,6 @@
     "None" : "Nenio",
     "Unknown" : "Nekonata",
     "Spoken languages" : "Lingvoj parolataj",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"],
-    "Your web browser is out of date" : "Via retumilo estas malaktuala",
-    "This application is not compatible with Internet Explorer" : "Tiu aplikaĵo ne kongruas kun „Internet Explorer“"
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"]
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

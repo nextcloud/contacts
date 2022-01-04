@@ -240,8 +240,6 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} yhteystietoa ei voitu lukea","{failed} yhteystietoa ei voitu lukea"],
     "Unable to create circle {circleName}" : "Ei voitu luoda piiriä {circleName}",
     "Unable to delete circle {circleId}" : "Ei voitu poistaa piiriä {circleId}",
-    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa",
-    "Your web browser is out of date" : "Käyttämäsi selain on vanhentunut",
-    "This application is not compatible with Internet Explorer" : "Tämä sovellus ei ole yhteensopiva Internet Explorerin kanssa"
+    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa"
 },
 "nplurals=2; plural=(n != 1);");

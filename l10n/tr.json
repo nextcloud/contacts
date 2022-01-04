@@ -261,8 +261,6 @@
     "Some circle(s) an error occurred. Check the console for more details." : "Bazı çevrelerde sorun çıktı. Ayrıntılı bilgi almak için konsola bakabilirsiniz.",
     "Unable to create circle {circleName}" : "{circleName} çevresi eklenemedi",
     "Unable to delete circle {circleId}" : "{circleName} çevresi silinemedi",
-    "Unable to delete contact" : "Kişi silinemedi",
-    "Your web browser is out of date" : "Web tarayıcınızın sürümü eski",
-    "This application is not compatible with Internet Explorer" : "Bu uygulama Internet Explorer ile uyumlu değil"
+    "Unable to delete contact" : "Kişi silinemedi"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

@@ -261,8 +261,6 @@
     "Some circle(s) an error occurred. Check the console for more details." : "В някои кръг(ове) възникна грешка. Проверете конзолата за повече подробности.",
     "Unable to create circle {circleName}" : "Кръгът {circleName}, не може да се създаде",
     "Unable to delete circle {circleId}" : "Не може да се изтрие кръг {circleId}",
-    "Unable to delete contact" : "Контактът не може да се изтрие",
-    "Your web browser is out of date" : "Вашият уеб браузър е остарял ",
-    "This application is not compatible with Internet Explorer" : "Приложението не е съвместимо с Internet Explorer"
+    "Unable to delete contact" : "Контактът не може да се изтрие"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

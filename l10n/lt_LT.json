@@ -241,8 +241,6 @@
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Nepavyko perskaityti {failed} adresato","Nepavyko perskaityti {failed} adresatų","Nepavyko perskaityti {failed} adresatų","Nepavyko perskaityti {failed} adresato"],
     "Unable to create circle {circleName}" : "Nepavyko sukurti rato {circleName}",
     "Unable to delete circle {circleId}" : "Nepavyko ištrinti rato {circleId}",
-    "Unable to delete contact" : "Nepavyko ištrinti adresato",
-    "Your web browser is out of date" : "Jūsų saityno naršyklė yra pasenusi",
-    "This application is not compatible with Internet Explorer" : "Ši programėlė nėra suderinama su Internet Explorer"
+    "Unable to delete contact" : "Nepavyko ištrinti adresato"
 },"pluralForm" :"nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);"
 }

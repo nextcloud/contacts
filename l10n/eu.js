@@ -263,8 +263,6 @@ OC.L10N.register(
     "Some circle(s) an error occurred. Check the console for more details." : "Zirkulu bat(zuk) errore bat sortu dute. Begiratu kontsolan xehetasun gehiago lortzeko.",
     "Unable to create circle {circleName}" : "Ezin izan da {circleName} zirkulua sortu",
     "Unable to delete circle {circleId}" : "Ezin izan da zirkulua ezabatu",
-    "Unable to delete contact" : "Ezin izan da kontaktua ezabatu",
-    "Your web browser is out of date" : "Zure web-arakatzailea zaharkituta dago",
-    "This application is not compatible with Internet Explorer" : "Aplikazio hau ez da Internet Explorerekin bateragarria"
+    "Unable to delete contact" : "Ezin izan da kontaktua ezabatu"
 },
 "nplurals=2; plural=(n != 1);");

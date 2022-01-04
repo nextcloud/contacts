@@ -166,8 +166,6 @@ OC.L10N.register(
     "Unknown" : "Άγνωστο",
     "Spoken languages" : "Ομιλούσες γλώσσες",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Αποτυχία ανάγνωσης {failed} επαφής","Αποτυχία ανάγνωσης {failed} επαφών"],
-    "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής",
-    "Your web browser is out of date" : "Ο περιηγητής σας δεν είναι ενημερωμένος",
-    "This application is not compatible with Internet Explorer" : "Η εφαρμογή δεν είναι συμβατή με Internet Explorer"
+    "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής"
 },
 "nplurals=2; plural=(n != 1);");

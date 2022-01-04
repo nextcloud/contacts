@@ -130,8 +130,6 @@
     "None" : "Відсутній",
     "Unknown" : "Невідомо",
     "Spoken languages" : "Мови",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контакт не прочитано","{failed} контактів не прочитано","{failed} контактів не прочитано","{failed} контактів не прочитано"],
-    "Your web browser is out of date" : "Ваш бразуер застарів",
-    "This application is not compatible with Internet Explorer" : "Застосунок не сумісний з Internet Explorer"
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контакт не прочитано","{failed} контактів не прочитано","{failed} контактів не прочитано","{failed} контактів не прочитано"]
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);"
 }

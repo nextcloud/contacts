@@ -166,8 +166,6 @@ OC.L10N.register(
     "Unknown" : "Không xác định",
     "Spoken languages" : "Ngôn ngữ có thể nói",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} liên hệ không thể đọc được"],
-    "Unable to delete contact" : "Không thể xoá liên hệ",
-    "Your web browser is out of date" : "Trình duyệt web của bạn đã lạc hậu",
-    "This application is not compatible with Internet Explorer" : "Ứng dụng này không tương thích với Internet Explorer"
+    "Unable to delete contact" : "Không thể xoá liên hệ"
 },
 "nplurals=1; plural=0;");

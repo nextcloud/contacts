@@ -166,8 +166,6 @@ OC.L10N.register(
     "Unknown" : "לא ידוע",
     "Spoken languages" : "שפות מדוברות",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["הקריאה של איש קשר אחד נכשלה","הקריאה של {failed} אנשי קשר נכשלה","הקריאה של {failed} אנשי קשר נכשלה","הקריאה של {failed} אנשי קשר נכשלה"],
-    "Unable to delete contact" : "לא ניתן למחוק איש קשר",
-    "Your web browser is out of date" : "הדפדפן שלך אינו עדכני",
-    "This application is not compatible with Internet Explorer" : "יישומון זה אינו נתמך באינטרנט אקספלורר"
+    "Unable to delete contact" : "לא ניתן למחוק איש קשר"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: (n % 10 == 0 && n % 1 == 0 && n > 10) ? 2 : 3;");

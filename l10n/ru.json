@@ -261,8 +261,6 @@
     "Some circle(s) an error occurred. Check the console for more details." : "Произошла ошибка обработки кругов пользователей, дополнительные сведения представлены в консоли.",
     "Unable to create circle {circleName}" : "Не удалось создать круг «{circleName}»",
     "Unable to delete circle {circleId}" : "Не удалось удалить круг «{circleName}»",
-    "Unable to delete contact" : "Невозможно удалить контакт",
-    "Your web browser is out of date" : "Ваш веб-браузер устарел",
-    "This application is not compatible with Internet Explorer" : "Это приложение не работает в Internet Explorer"
+    "Unable to delete contact" : "Невозможно удалить контакт"
 },"pluralForm" :"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);"
 }
