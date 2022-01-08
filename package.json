@@ -52,7 +52,7 @@
 		"camelcase": "^6.2.1",
 		"debounce": "^1.2.1",
 		"downloadjs": "^1.4.7",
-		"ical.js": "^1.4.0",
+		"ical.js": "^1.5.0",
 		"moment": "^2.29.1",
 		"p-limit": "^4.0.0",
 		"p-queue": "^6.6.2",
