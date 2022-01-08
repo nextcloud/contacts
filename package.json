@@ -49,7 +49,7 @@
 		"@nextcloud/sharing": "^0.1.0",
 		"@nextcloud/vue": "^4.3.0",
 		"b64-to-blob": "^1.2.19",
-		"camelcase": "^6.2.1",
+		"camelcase": "^6.3.0",
 		"debounce": "^1.2.1",
 		"downloadjs": "^1.4.7",
 		"ical.js": "^1.5.0",
