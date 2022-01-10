@@ -246,7 +246,7 @@ OC.L10N.register(
     "Male" : "男性",
     "None" : "なし",
     "Unknown" : "不明",
-    "Time zone" : "タイムゾーン",
+    "Time zone" : "時間帯",
     "Spoken languages" : "話せる言語",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed}連絡先の読み込みができませんでした。"],
     "Some circle(s) an error occurred. Check the console for more details." : "一部のサークルでエラーが発生しました。詳細については、コンソールを確認してください。",
