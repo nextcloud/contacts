@@ -58,7 +58,7 @@ OC.L10N.register(
     "Import contacts" : "Inportatu kontaktuak",
     "Import into the {addressbookName} address book" : "Inportatu {addressbookName} helbide-liburura",
     "Select local file" : "Hautatu fitxategi lokala",
-    "Import from Files" : "Inportatu fitxategietatik",
+    "Import from Files" : "Inportatu Fitxategi-tik",
     "Importing is disabled because there are no address books available" : "Inportatzea desgaituta dago ez dagoelako helbide-libururik eskuragarri",
     "Choose a vCard file to import" : "Aukeratu inportatzeko vCard fitxategi bat",
     "Add new address book" : "Gehitu helbide-liburu berria",
