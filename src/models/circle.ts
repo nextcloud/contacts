@@ -291,8 +291,9 @@ export default class Circle {
 	 * Can the initiator add/remove members to this circle?
 	 */
 	get canManageMembers() {
-		return this.initiator?.level
-			&& this.initiator?.level >= MemberLevels.MODERATOR
+		return (this.initiator?.level
+			&& this.initiator?.level >= MemberLevels.MODERATOR)
+			|| (this.config & CircleConfigs.FRIEND) !== 0
 	}
 
 	// PARAMS ---------------------------------------------
