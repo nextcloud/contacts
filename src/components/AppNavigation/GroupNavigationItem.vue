@@ -38,6 +38,11 @@
 				@click="downloadGroup(group)">
 				{{ t('contacts', 'Download') }}
 			</ActionButton>
+			<ActionButton
+				icon="icon-mail"
+				@click="emailGroup(group)">
+				{{ t('contacts', 'Send email') }}
+			</ActionButton>
 		</template>
 
 		<AppNavigationCounter v-if="group.contacts.length > 0" slot="counter">
@@ -126,6 +131,33 @@ export default {
 				download(response.data, filename, 'text/vcard')
 			})
 		},
+
+		/**
+		 * Open mailto: for contacts in a group
+		 *
+		 * @param {Object} group of contacts to be emailed
+		 */
+		emailGroup(group) {
+			const emails = []
+			group.contacts.forEach(key => {
+				// The email property could contain "John Doe <john.doe@example.com>", but vcard spec only
+				// allows addr-spec, not name-addr, so to stay compliant, replace everything outside of <>
+				const email = this.contacts[key].email.replace(/(.*<)([^>]*)(>)/g, '$2').trim()
+				const name = this.contacts[key].fullName.replace(/[,<>]/g, '').trim()
+				if (email === '') {
+					return
+				}
+				if (name === null || name === '') {
+					emails.push(email)
+					return
+				}
+				emails.push(`${name} <${email}>`)
+			})
+			// We could just do mailto:${emails}, but if we want to use name-addr, not addr-spec, then we
+			// have to explicitly set the "To:" header.
+			window.location.href = `mailto:?to=${emails.map(encodeURIComponent).join(',')}`
+		},
+
 	},
 }
 </script>
