@@ -206,7 +206,7 @@ OC.L10N.register(
     "Prefix" : "Przedrostek",
     "Suffix" : "Przyrostek",
     "Notes" : "Notatki",
-    "Website" : "Strona WWW",
+    "Website" : "Strona internetowa",
     "Location" : "Lokalizacja",
     "Federated Cloud ID" : "ID Chmury Federacyjnej",
     "Home" : "Dom",
