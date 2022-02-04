@@ -25,6 +25,7 @@ OC.L10N.register(
     "Leave circle" : "Çevreden çık",
     "Delete circle" : "Çevreyi sil",
     "Download" : "İndir",
+    "Send email" : "E-posta gönder",
     "Groups" : "Gruplar",
     "Create a new group" : "Yeni bir grup ekle",
     "Group name" : "Grup adı",

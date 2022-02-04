@@ -25,6 +25,7 @@ OC.L10N.register(
     "Leave circle" : "離開社交圈子",
     "Delete circle" : "刪除社交圈子",
     "Download" : "下載",
+    "Send email" : "傳送電郵",
     "Groups" : "群組",
     "Create a new group" : "建立新群組",
     "Group name" : "群組名稱",

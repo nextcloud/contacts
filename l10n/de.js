@@ -25,6 +25,7 @@ OC.L10N.register(
     "Leave circle" : "Kreis verlassen",
     "Delete circle" : "Kreis löschen",
     "Download" : "Herunterladen",
+    "Send email" : "E-Mail senden",
     "Groups" : "Gruppen",
     "Create a new group" : "Neue Gruppe erstellen",
     "Group name" : "Gruppenname",
