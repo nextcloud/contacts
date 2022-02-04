@@ -64,6 +64,30 @@ const addGroupedProperties = vCard => {
 }
 
 /**
+ * Fixes misbehaviour with TYPE quotes and separated commas
+ * Seems to have been introduced with https://github.com/mozilla-comm/ical.js/pull/387
+ *
+ * @returns {Boolean} Whether or not the design set has been altered.
+ */
+const setTypeMultiValueSeparateDQuote = () => {
+	if (
+		!ICAL.design.vcard.param.type
+		|| ICAL.design.vcard.param.type.multiValueSeparateDQuote !== false
+		|| !ICAL.design.vcard3.param.type
+		|| ICAL.design.vcard3.param.type.multiValueSeparateDQuote !== false
+	) {
+		// https://github.com/mozilla-comm/ical.js/blob/ba8e2522ffd30ffbe65197a96a487689d6e6e9a1/lib/ical/stringify.js#L121
+		ICAL.design.vcard.param.type.multiValueSeparateDQuote = false
+		ICAL.design.vcard3.param.type.multiValueSeparateDQuote = false
+
+		return true
+	}
+
+	return false
+}
+
+/**
+/**
  * Check whether the ical.js design sets need updating (and if so, do it)
  *
  * @param {Array} vCard The ical.js vCard
@@ -72,6 +96,7 @@ const addGroupedProperties = vCard => {
 export default function(vCard) {
 	let madeChanges = false
 
+	madeChanges |= setTypeMultiValueSeparateDQuote()
 	madeChanges |= removePhoneNumberValueType()
 	madeChanges |= addGroupedProperties(vCard)
 
