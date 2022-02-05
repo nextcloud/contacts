@@ -25,6 +25,7 @@ OC.L10N.register(
     "Leave circle" : "Opustiť okruh",
     "Delete circle" : "Zmazať kruh",
     "Download" : "Stiahnuť",
+    "Send email" : "Odoslať email",
     "Groups" : "Skupiny",
     "Create a new group" : "Vytvoriť novú skupinu",
     "Group name" : "Názov skupiny",
