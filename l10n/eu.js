@@ -25,6 +25,7 @@ OC.L10N.register(
     "Leave circle" : "Atera zirkulutik",
     "Delete circle" : "Ezabatu zirkulua",
     "Download" : "Jaitsi",
+    "Send email" : "Bidali posta-mezua",
     "Groups" : "Taldeak",
     "Create a new group" : "Sortu talde berria",
     "Group name" : "Taldearen izena",
