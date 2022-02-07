@@ -60,7 +60,7 @@
 				:first-day-of-week="firstDay"
 				:type="inputType"
 				:readonly="isReadOnly"
-				:format="dateFormat"
+				:formatter="dateFormat"
 				class="property__value"
 				confirm
 				@confirm="debounceUpdateValue" />
