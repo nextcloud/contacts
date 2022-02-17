@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.0.8 - 2022-02-17
+### Fixed
+- Overlapping navigation toggle
+- Adding Circles members
+- Broken IE check
+- Date time picker
+
 ## 4.0.7 - 2021-12-16
 ### Fixed
 - Missing action button closing after clicking QR code
