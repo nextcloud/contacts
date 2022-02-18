@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * @copyright 2017 Georg Ehrke <oc.list@georgehrke.com>
  *
@@ -29,11 +32,13 @@ use OCA\Contacts\AppInfo\Application;
 
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\BackgroundJob\IJobList;
+use OCP\BackgroundJob\TimedJob;
 use OCP\IUser;
 use OCP\IConfig;
 use OCP\IUserManager;
+use function method_exists;
 
-class SocialUpdateRegistration extends \OC\BackgroundJob\TimedJob {
+class SocialUpdateRegistration extends TimedJob {
 	private $appName;
 
 	/** @var IUserManager */
@@ -53,19 +58,25 @@ class SocialUpdateRegistration extends \OC\BackgroundJob\TimedJob {
 	 * @param IJobList $jobList
 	 */
 	public function __construct(
-					//  ITimeFactory $time,
+					ITimeFactory $time,
 					IUserManager $userManager,
 					IConfig $config,
 					IJobList $jobList) {
-		//parent::__construct($time);
-		
+		parent::__construct($time);
+
 		$this->appName = Application::APP_ID;
 		$this->userManager = $userManager;
 		$this->config = $config;
 		$this->jobList = $jobList;
 
 		// Run once a week
-		parent::setInterval(7 * 24 * 60 * 60);
+		$this->setInterval(7 * 24 * 60 * 60);
+		/**
+		 * @todo remove check with 24+
+		 */
+		if (method_exists($this, 'setTimeSensitivity')) {
+			$this->setTimeSensitivity(self::TIME_INSENSITIVE);
+		}
 	}
 
 	/**
