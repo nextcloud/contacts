@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * @copyright Copyright (c) 2020 Matthias Heinisch <nextcloud@matthiasheinisch.de>
  *
@@ -300,11 +303,11 @@ class SocialApiService {
 	 *
 	 * @param {array} report where the results are added
 	 * @param {String} entry the element to add
-	 * @param {string} status the (http) status code
+	 * @param {int} status the (http) status code
 	 *
 	 * @returns {array} the report including the new entry
 	 */
-	protected function registerUpdateResult(array $report, string $entry, string $status) : array {
+	protected function registerUpdateResult(array $report, string $entry, int $status) : array {
 		// initialize report on first call
 		if (empty($report)) {
 			$report = [
@@ -411,9 +414,9 @@ class SocialApiService {
 
 				try {
 					$r = $this->updateContact($addressBook->getURI(), $contact['UID'], $network);
-					$response = $this->registerUpdateResult($response, $contact['FN'], $r->getStatus());
+					$response = $this->registerUpdateResult($response, $contact['FN'], (int) $r->getStatus());
 				} catch (\Exception $e) {
-					$response = $this->registerUpdateResult($response, $contact['FN'], '-1');
+					$response = $this->registerUpdateResult($response, $contact['FN'], -1);
 				}
 
 				// stop after 15sec (to be continued with next chunk)
