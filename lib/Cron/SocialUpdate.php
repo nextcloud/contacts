@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * @copyright 2020 Matthias Heinisch <nextcloud@matthiasheinisch.de>
  *
@@ -26,16 +29,20 @@ namespace OCA\Contacts\Cron;
 use OCA\Contacts\Service\SocialApiService;
 
 use OCP\AppFramework\Http;
+use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\BackgroundJob\IJobList;
+use OCP\BackgroundJob\QueuedJob;
 
-class SocialUpdate extends \OC\BackgroundJob\QueuedJob {
-	/** @var SocialUpdateService */
+class SocialUpdate extends QueuedJob {
+	/** @var SocialApiService */
 	private $social;
 	/** @var IJobList */
 	private $jobList;
 
-	public function __construct(SocialApiService $social,
+	public function __construct(ITimeFactory $time,
+								SocialApiService $social,
 								IJobList $jobList) {
+		parent::__construct($time);
 		$this->social = $social;
 		$this->jobList = $jobList;
 	}
