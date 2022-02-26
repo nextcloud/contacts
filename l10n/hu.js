@@ -25,6 +25,7 @@ OC.L10N.register(
     "Leave circle" : "Kör elhagyása",
     "Delete circle" : "Kör törlése",
     "Download" : "Letöltés",
+    "Send email" : "E-mail küldése",
     "Groups" : "Csoportok",
     "Create a new group" : "Új csoport létrehozása",
     "Group name" : "Csoport neve",
