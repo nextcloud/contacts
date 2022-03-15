@@ -135,7 +135,7 @@ export default {
 		/**
 		 * Open mailto: for contacts in a group
 		 *
-		 * @param {Object} group of contacts to be emailed
+		 * @param {object} group of contacts to be emailed
 		 */
 		emailGroup(group) {
 			const emails = []

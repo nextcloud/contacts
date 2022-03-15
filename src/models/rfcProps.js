@@ -27,8 +27,8 @@ import ActionToggleYear from '../components/Actions/ActionToggleYear'
 import zones from './zones'
 
 // Load the default profile (for example, home or work) configured by the user
-const defaultProfileState = loadState('contacts', 'defaultProfile')
-const localesState = loadState('contacts', 'locales')
+const defaultProfileState = loadState('contacts', 'defaultProfile', 'HOME')
+const localesState = loadState('contacts', 'locales', false)
 const locales = localesState
 	? localesState.map(({ code, name }) => ({
 		id: code.toLowerCase().replace('_', '-'),
