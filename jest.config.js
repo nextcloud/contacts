@@ -7,10 +7,6 @@ module.exports = {
 		'src/**/*.{js,vue}',
 		'!**/node_modules/**',
 	],
-	coverageReporters: [
-		'html',
-		'text-summary',
-	],
 	setupFilesAfterEnv: [
 		'<rootDir>/tests/setup.js',
 	],

@@ -14,10 +14,10 @@ on:
       - stable*
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
 
-    name: node
+    name: test
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -37,17 +37,11 @@ jobs:
       - name: Set up npm ${{ steps.versions.outputs.npmVersion }}
         run: npm i -g npm@"${{ steps.versions.outputs.npmVersion }}"
 
-      - name: Install dependencies & build
-        run: |
-          npm ci
-          npm run build --if-present
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Check webpack build changes
-        run: |
-          bash -c "[[ ! \"`git status --porcelain `\" ]] || exit 1"
+      - name: Testing
+        run: npm run test:coverage --if-present
 
-      - name: Show changes on failure
-        if: failure()
-        run: |
-          git status
-          git --no-pager diff
+      - name: Upload coverage
+        uses: codecov/codecov-action@v2
