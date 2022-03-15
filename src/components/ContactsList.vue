@@ -22,7 +22,7 @@
 
 <template>
 	<AppContentList>
-		<div class="contacts-list__header"></div>
+		<div class="contacts-list__header" />
 		<VirtualList ref="scroller"
 			class="contacts-list"
 			data-key="key"

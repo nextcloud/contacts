@@ -67,7 +67,7 @@ const addGroupedProperties = vCard => {
  * Fixes misbehaviour with TYPE quotes and separated commas
  * Seems to have been introduced with https://github.com/mozilla-comm/ical.js/pull/387
  *
- * @returns {Boolean} Whether or not the design set has been altered.
+ * @return {boolean} Whether or not the design set has been altered.
  */
 const setTypeMultiValueSeparateDQuote = () => {
 	if (

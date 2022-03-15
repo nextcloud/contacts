@@ -567,8 +567,9 @@ export default class Contact {
 	}
 
 	toStringStripQuotes() {
-		const regexp = /TYPE="([a-zA-Z-,]+)"/gm
+		const regexp = /TYPE="([a-zA-Z-,]+)"/gmi
 		const card = this.vCard.toString()
-		return card.replaceAll(regexp, 'TYPE=$1')
+		return card.replace(regexp, 'TYPE=$1')
 	}
+
 }

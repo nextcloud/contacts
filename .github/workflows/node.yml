@@ -51,3 +51,7 @@ jobs:
         run: |
           git status
           git --no-pager diff
+
+      - name: Testing
+        run: |
+          npm run test --if-present
