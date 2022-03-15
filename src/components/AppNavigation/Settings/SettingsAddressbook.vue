@@ -73,11 +73,11 @@
 					<ActionCheckbox v-if="!toggleEnabledLoading"
 						:checked="enabled"
 						@change.stop.prevent="toggleAddressbookEnabled">
-						{{ enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled') }}
+						{{ t('contacts', 'Enabled') }}
 					</ActionCheckbox>
 					<ActionButton v-else
 						icon="icon-loading-small">
-						{{ enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled') }}
+						{{ t('contacts', 'Enabled') }}
 					</ActionButton>
 				</template>
 
