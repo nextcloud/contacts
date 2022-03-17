@@ -26,7 +26,6 @@ OC.L10N.register(
     "This group already exists" : "Оваа група веќе постои",
     "Rename" : "Преименувај",
     "Enabled" : "Овозможен",
-    "Disabled" : "Оневозможен",
     "Delete" : "Избриши",
     "Copied" : "Копирано",
     "Cannot copy" : "Не може да се копира",

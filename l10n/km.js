@@ -7,7 +7,6 @@ OC.L10N.register(
     "Groups" : "ក្រុ",
     "Rename" : "ប្ដូរ​ឈ្មោះ",
     "Enabled" : "បាន​បើក",
-    "Disabled" : "បាន​បិទ",
     "Delete" : "លុប",
     "can edit" : "អាច​កែប្រែ",
     "Invalid image" : "រូបភាព​មិន​ត្រឹម​ត្រូវ",

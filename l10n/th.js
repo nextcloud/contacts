@@ -9,7 +9,6 @@ OC.L10N.register(
     "Group name" : "ชื่อกลุ่ม",
     "Rename" : "เปลี่ยนชื่อ",
     "Enabled" : "เปิดการใช้งาน",
-    "Disabled" : "ปิดการใช้งาน",
     "Delete" : "ลบ",
     "Copy link" : "คัดลอกลิงค์",
     "Share with users or groups" : "แชร์กับผู้ใช้หรือกลุ่ม",

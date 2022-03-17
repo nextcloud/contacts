@@ -37,7 +37,6 @@ OC.L10N.register(
     "This circle already exists" : "서클이 이미 존재함",
     "Rename" : "이름 바꾸기",
     "Enabled" : "활성화됨",
-    "Disabled" : "비활성화됨",
     "Delete" : "삭제",
     "Copied" : "복사됨",
     "Cannot copy" : "복사할 수 없음",

@@ -37,7 +37,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "Ett fel inträffade när cirkeln skapades",
     "Rename" : "Byt namn",
     "Enabled" : "Aktiverad",
-    "Disabled" : "Inaktiverad",
     "Delete" : "Ta bort",
     "Copied" : "Kopierad",
     "Cannot copy" : "Kan inte kopieria",

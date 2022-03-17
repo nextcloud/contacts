@@ -12,7 +12,6 @@ OC.L10N.register(
     "Group name" : "Group name",
     "Rename" : "Rename",
     "Enabled" : "Enabled",
-    "Disabled" : "Disabled",
     "Delete" : "Delete",
     "Copy link" : "Copy link",
     "Share with users or groups" : "Share with users or groups",

@@ -16,7 +16,6 @@ OC.L10N.register(
     "Group name" : "Heiti hóps",
     "Rename" : "Endurnefna",
     "Enabled" : "Virkt",
-    "Disabled" : "Óvirkt",
     "Delete" : "Eyða",
     "Copied" : "Afritað",
     "Copy link" : "Afrita tengil",

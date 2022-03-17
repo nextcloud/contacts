@@ -12,7 +12,6 @@ OC.L10N.register(
     "Groups" : "Grwpiau",
     "Rename" : "Ailenwi",
     "Enabled" : "Galluogwyd",
-    "Disabled" : "Analluogwyd",
     "Delete" : "Dileu",
     "Copied" : "Copïwyd",
     "Copy link" : "Copïo dolen",

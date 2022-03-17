@@ -14,7 +14,6 @@ OC.L10N.register(
     "Group name" : "Gruponomo",
     "Rename" : "Alinomi",
     "Enabled" : "Ŝaltita",
-    "Disabled" : "Malŝaltita",
     "Delete" : "Forigi",
     "Copied" : "Kopiita",
     "Copy link" : "Kopii ligilon",

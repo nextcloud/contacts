@@ -11,7 +11,6 @@ OC.L10N.register(
     "Group name" : "Numele grupului",
     "Rename" : "Redenumește",
     "Enabled" : "Activat",
-    "Disabled" : "Dezactivat",
     "Delete" : "Șterge",
     "Copy link" : "Copiază linkul",
     "Share with users or groups" : "Partajează cu utilizatori sau grupuri",

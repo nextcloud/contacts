@@ -10,7 +10,6 @@ OC.L10N.register(
     "Group name" : "ჯგუფის სახელი",
     "Rename" : "სახელის შეცვლა",
     "Enabled" : "მოქმედია",
-    "Disabled" : "არაა მოქმედი",
     "Delete" : "გაუქმება",
     "Copy link" : "ბმულის კოპირება",
     "Share with users or groups" : "გაზიარება მოხმარებლებთან ან ჯგუფებთან",

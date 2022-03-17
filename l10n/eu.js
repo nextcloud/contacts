@@ -40,7 +40,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "Errore bat gertatu da zirkulua sortzerakoan",
     "Rename" : "Aldatu izena",
     "Enabled" : "Gaitua",
-    "Disabled" : "Desaktibatua",
     "Delete" : "Ezabatu",
     "Copied" : "Kopiatuta",
     "Cannot copy" : "Ezin da kopiatu",

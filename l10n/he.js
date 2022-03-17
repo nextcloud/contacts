@@ -23,7 +23,6 @@ OC.L10N.register(
     "This group already exists" : "קבוצה זו כבר קיימת",
     "Rename" : "שנה שם",
     "Enabled" : "מופעל",
-    "Disabled" : "מושבת",
     "Delete" : "מחק",
     "Copied" : "הועתק",
     "Copy link" : "העתק קישור",

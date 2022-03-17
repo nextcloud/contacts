@@ -40,7 +40,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "創建社交圈子的過程中發生錯誤",
     "Rename" : "重新命名",
     "Enabled" : "已啟用",
-    "Disabled" : "已停用",
     "Delete" : "刪除",
     "Copied" : "已複製",
     "Cannot copy" : "無法複製",

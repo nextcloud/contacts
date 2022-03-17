@@ -13,7 +13,6 @@ OC.L10N.register(
     "Group name" : "Emër grupi",
     "Rename" : "Riemëro",
     "Enabled" : "I aktivizuar",
-    "Disabled" : "I çaktivizuar",
     "Delete" : "Fshije",
     "Copied" : "Kopjuar",
     "Copy link" : "Kopjo linkun",

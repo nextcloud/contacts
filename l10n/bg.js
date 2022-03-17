@@ -39,7 +39,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "Възникна грешка при създаването на кръга",
     "Rename" : "Преименувай",
     "Enabled" : "Включено",
-    "Disabled" : "Изключено",
     "Delete" : "Изтрий",
     "Copied" : "Копирано",
     "Cannot copy" : "Не може да се копира",

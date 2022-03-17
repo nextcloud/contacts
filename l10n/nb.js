@@ -13,7 +13,6 @@ OC.L10N.register(
     "Group name" : "Gruppenavn",
     "Rename" : "Gi nytt navn",
     "Enabled" : "Aktiver",
-    "Disabled" : "Deaktiver",
     "Delete" : "Slett",
     "Copied" : "Kopiert",
     "Copy link" : "Kopier lenke",

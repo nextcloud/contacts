@@ -9,7 +9,6 @@ OC.L10N.register(
     "Group name" : "Nama grup",
     "Rename" : "Ubah nama",
     "Enabled" : "Diaktifkan",
-    "Disabled" : "Dinonaktifkan",
     "Delete" : "Hapus",
     "Copy link" : "Salin tautan",
     "Share with users or groups" : "Bagi dengan pengguna atau grup",

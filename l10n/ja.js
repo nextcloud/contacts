@@ -39,7 +39,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "サークルの作成中にエラーが発生しました",
     "Rename" : "名前を変更",
     "Enabled" : "有効",
-    "Disabled" : "無効",
     "Delete" : "削除",
     "Copied" : "コピーしました",
     "Cannot copy" : "コピーできません",

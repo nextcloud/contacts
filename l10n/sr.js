@@ -22,7 +22,6 @@ OC.L10N.register(
     "This group already exists" : "Група већ постоји",
     "Rename" : "Преименуј",
     "Enabled" : "Укључено",
-    "Disabled" : "Искључено",
     "Delete" : "Обриши",
     "Copied" : "Копирано",
     "Copy link" : "Копирај везу",

@@ -39,7 +39,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "Sukuriant ratą įvyko klaida",
     "Rename" : "Pervadinti",
     "Enabled" : "Įjungta",
-    "Disabled" : "Išjungta",
     "Delete" : "Ištrinti",
     "Copied" : "Nukopijuota",
     "Cannot copy" : "Nepavyksta nukopijuoti",

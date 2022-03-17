@@ -9,7 +9,6 @@ OC.L10N.register(
     "Groups" : "Strolladoù",
     "Rename" : "Adenvel",
     "Enabled" : "Aotreet",
-    "Disabled" : "Disaotreañ",
     "Delete" : "Dilemel",
     "Copy link" : "Kopiañ al liamm",
     "Share with users or groups" : "Rannañ gant implijourienn pe strolladoù",

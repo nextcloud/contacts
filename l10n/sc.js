@@ -39,7 +39,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "B'at àpidu un'errore in sa creatzione de su giru",
     "Rename" : "Torra a numenare",
     "Enabled" : "Ativada",
-    "Disabled" : "Disabilitada",
     "Delete" : "Cantzella",
     "Copied" : "Copiadu",
     "Cannot copy" : "Non faghet a copiare",

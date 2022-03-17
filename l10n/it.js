@@ -40,7 +40,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "Si è verificato un errore durante la creazione della cerchia",
     "Rename" : "Rinomina",
     "Enabled" : "Abilitata",
-    "Disabled" : "Disabilitata",
     "Delete" : "Elimina",
     "Copied" : "Copiato",
     "Cannot copy" : "Impossibile copiare",

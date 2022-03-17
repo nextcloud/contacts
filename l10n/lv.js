@@ -13,7 +13,6 @@ OC.L10N.register(
     "Group name" : "Grupas nosaukums",
     "Rename" : "Pārsaukt",
     "Enabled" : "Iespējots",
-    "Disabled" : "Atspējots",
     "Delete" : "Dzēst",
     "Copied" : "Nokopēts",
     "Copy link" : "Kopēt saiti",

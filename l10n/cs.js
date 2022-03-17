@@ -40,7 +40,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "V průběhu vytváření okruhu došlo k chybě",
     "Rename" : "Přejmenovat",
     "Enabled" : "Zapnuto",
-    "Disabled" : "Vypnuto",
     "Delete" : "Smazat",
     "Copied" : "Zkopírováno",
     "Cannot copy" : "Nelze kopírovat",

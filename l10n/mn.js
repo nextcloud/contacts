@@ -12,7 +12,6 @@ OC.L10N.register(
     "Group name" : "Бүлгийн нэр",
     "Rename" : "Нэр солих",
     "Enabled" : "Идэвхижүүлэх",
-    "Disabled" : "идэвхигүй",
     "Delete" : "Устгах",
     "Copied" : "Хуулагдсан",
     "Cannot copy" : "Хуулагдаагүй",

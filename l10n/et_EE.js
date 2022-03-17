@@ -10,7 +10,6 @@ OC.L10N.register(
     "Group name" : "Grupi nimi",
     "Rename" : "Nimeta ümber",
     "Enabled" : "Lubatud",
-    "Disabled" : "Keelatud",
     "Delete" : "Kustuta",
     "Copy link" : "Kopeeri link",
     "Share with users or groups" : "Jaga kasutajate või gruppidega",

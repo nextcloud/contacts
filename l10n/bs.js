@@ -7,7 +7,6 @@ OC.L10N.register(
     "Group name" : "Naziv grupe",
     "Rename" : "Preimenuj",
     "Enabled" : "Aktivirano",
-    "Disabled" : "Onemogućeno",
     "Delete" : "Obriši",
     "can edit" : "mogu mijenjati",
     "First name" : "Ime",

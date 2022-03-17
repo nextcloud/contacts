@@ -8,7 +8,6 @@ OC.L10N.register(
     "Group name" : "গ্রুপের নাম",
     "Rename" : "পূনঃনামকরণ",
     "Enabled" : "কার্যকর",
-    "Disabled" : "অকার্যকর",
     "Delete" : "মুছে",
     "Copy link" : "লিঙ্ক কপি করো",
     "can edit" : "সম্পাদনা করতে পারবেন",

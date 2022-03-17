@@ -8,7 +8,6 @@ OC.L10N.register(
     "Group name" : "Gruppe Numm",
     "Rename" : "Ëmbenennen",
     "Enabled" : "Aktivéiert",
-    "Disabled" : "Deaktivéiert",
     "Delete" : "Läschen",
     "Copy link" : "Link kopéieren",
     "Share with users or groups" : "Mat Benotzer oder Gruppen deelen",

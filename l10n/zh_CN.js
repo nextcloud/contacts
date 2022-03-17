@@ -39,7 +39,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "创建圈子时发生一个错误",
     "Rename" : "重命名",
     "Enabled" : "已启用",
-    "Disabled" : "已禁用",
     "Delete" : "删除",
     "Copied" : "已复制",
     "Cannot copy" : "无法复制",

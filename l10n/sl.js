@@ -39,7 +39,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "Prišlo je do napake med ustvarjanjem kroga",
     "Rename" : "Preimenuj",
     "Enabled" : "Omogočeno",
-    "Disabled" : "Onemogočeno",
     "Delete" : "Izbriši",
     "Copied" : "Kopirano!",
     "Cannot copy" : "Predmeta ni mogoče kopirati",

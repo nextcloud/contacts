@@ -14,7 +14,6 @@ OC.L10N.register(
     "Group name" : "Ім'я групи",
     "Rename" : "Перейменувати",
     "Enabled" : "Увімкнено",
-    "Disabled" : "Вимкнено",
     "Delete" : "Вилучити",
     "Copied" : "Скопійовано",
     "Copy link" : "Копіювати посилання",

@@ -10,7 +10,6 @@ OC.L10N.register(
     "Group name" : "نام گروه",
     "Rename" : "تغییرنام",
     "Enabled" : "فعال شده",
-    "Disabled" : "غیرفعال شده",
     "Delete" : "حذف",
     "Copied" : "کپی شد",
     "Copy link" : "کپی کردن لینک",

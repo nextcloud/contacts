@@ -10,7 +10,6 @@ OC.L10N.register(
     "Group name" : "Nombre del grupo",
     "Rename" : "Renombrar",
     "Enabled" : "Habilitado",
-    "Disabled" : "Deshabilitado",
     "Delete" : "Borrar",
     "Copy link" : "Copiar liga",
     "Share with users or groups" : "Compartir con otros usuarios o grupos",

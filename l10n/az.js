@@ -7,7 +7,6 @@ OC.L10N.register(
     "Groups" : "Qruplar",
     "Rename" : "Adı dəyiş",
     "Enabled" : "İşə salınıb",
-    "Disabled" : "Dayandırılıb",
     "Delete" : "Sil",
     "Copy link" : "linki nüsxələ",
     "can edit" : "dəyişmək olar",

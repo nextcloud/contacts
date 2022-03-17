@@ -5,7 +5,6 @@ OC.L10N.register(
     "Groups" : "﻿ಗುಂಪುಗಳು",
     "Rename" : "﻿ಮರುಹೆಸರಿಸು",
     "Enabled" : "ಸಕ್ರಿಯಗೊಳಿಸಿದೆ",
-    "Disabled" : "ನಿಷ್ಕ್ರಿಯಗೊಳಿಸಲಾಗಿದೆ",
     "Delete" : "﻿ಅಳಿಸಿ",
     "can edit" : "﻿ಸಂಪಾದಿಸಬಹುದು",
     "Invalid image" : "ಅಸಾಮರ್ಥ್ಯ ಚಿತ್ರ",

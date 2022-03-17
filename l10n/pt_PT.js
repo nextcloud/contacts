@@ -22,7 +22,6 @@ OC.L10N.register(
     "This group already exists" : "Este grupo já existe",
     "Rename" : "Renomear",
     "Enabled" : "Ativada",
-    "Disabled" : "Desactivado",
     "Delete" : "Apagar",
     "Copied" : "Copiado",
     "Cannot copy" : "Não é possível copiar",

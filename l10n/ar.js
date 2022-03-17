@@ -10,7 +10,6 @@ OC.L10N.register(
     "Group name" : "إسم الفريق",
     "Rename" : "تعديل الإسم",
     "Enabled" : "مفعلة",
-    "Disabled" : "معطّل",
     "Delete" : "حذف",
     "Copy link" : "نسخ الرابط",
     "Share with users or groups" : "شارك مع مستخدمين او مجموعات",
