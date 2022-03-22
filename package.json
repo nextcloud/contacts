@@ -1,7 +1,7 @@
 {
 	"name": "contacts",
 	"description": "A contacts app for Nextcloud. Easily sync contacts from various devices, share and edit them online.",
-	"version": "4.0.2",
+	"version": "4.1.0",
 	"author": "John Molakvoæ <skjnldsv@protonmail.com>",
 	"contributors": [
 		"John Molakvoæ <skjnldsv@protonmail.com>",
@@ -85,7 +85,7 @@
 		"@nextcloud/typings": "^1.3.0",
 		"@nextcloud/webpack-vue-config": "^4.3.2",
 		"@types/jest": "^27.4.1",
-		"@typescript-eslint/parser": "^5.12.1",
+		"@typescript-eslint/parser": "^5.16.0",
 		"@vue/vue2-jest": "^27.0.0-alpha.4",
 		"babel-jest": "^27.5.1",
 		"eslint-import-resolver-typescript": "^2.5.0",
