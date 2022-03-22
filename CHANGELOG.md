@@ -1,5 +1,21 @@
 # Changelog
 
+## 4.1.0 – 2022-03-22
+### Added
+- Nextcloud 24 support
+- PHP8.1 support
+- Sending emails to contact groups
+- Performance improvements
+### Changed
+- New and updated translations
+- Updated dependencies
+- Expensive background jobs run only at off-peak times
+### Fixed
+- App icon
+- Various small bugs
+### Removed
+- Nextcloud 20 support (EOL)
+
 ## 4.0.8 - 2022-02-17
 ### Fixed
 - Overlapping navigation toggle
