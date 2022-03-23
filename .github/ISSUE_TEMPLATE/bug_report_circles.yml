@@ -130,22 +130,22 @@ body:
         from within your instance's installation folder.
       render: Text
   - type: markdown
-      attributes:
-        value: "## Client configuration"
+    attributes:
+      value: "## Client configuration"
   - type: input
     id: browser
-      attributes:
-        label: Browser
-        description: e.g Firefox 56
+    attributes:
+      label: Browser
+      description: e.g Firefox 56
   - type: input
     id: client-os
-      attributes:
-        label: Client operating system
-        description: e.g. Arch Linux
+    attributes:
+      label: Client operating system
+      description: e.g. Arch Linux
   - type: input
     id: carddav-clients
-      attributes:
-        label: CardDAV-clients
+    attributes:
+      label: CardDAV-clients
   - type: markdown
     attributes:
       value: "## Logs"
@@ -176,8 +176,8 @@ body:
   - type: textarea
     id: browser-log-circle
     attributes:
-     label: Browser log
-     description: |
+      label: Browser log
+      description: |
         Below you can see how to access your browser console. Please, use the browser log where you faced the error.
         #### Chrome
         - Press either CTRL + SHIFT + J to open the “console” tab of the Developer Tools.
@@ -198,4 +198,4 @@ body:
         #### Opera
         1. Press CTRL + SHIFT + I to open Dragonfly.
         2. Click on the “console” tab.
-     render: Text
+      render: Text
