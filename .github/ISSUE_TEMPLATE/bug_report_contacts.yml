@@ -44,7 +44,7 @@ body:
       description: |
         See apps admin page, e.g. 0.5.3
   - type: input
-    id: system
+    id: operating-system
     attributes:
       label: Operating system
       description: |
