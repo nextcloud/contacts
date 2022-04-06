@@ -47,6 +47,7 @@
     "Delete {addressbook}?" : "Supprimer {addressbook} ?",
     "Deletion of address book was not successful." : "La suppression du carnet d'adresses a échoué.",
     "Renaming of address book was not successful." : "Le renommage du carnet d'adresses à échoué.",
+    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Partagé avec {num} entité","Partagé avec {num} entités"],
     "Share with users or groups" : "Partager avec des utilisateurs ou des groupes",
     "No users or groups" : "Aucun utilisateur ou groupe",
     "can edit" : "peut modifier",
@@ -157,6 +158,11 @@
     "Contact not found" : "Contact introuvable",
     "Group {group} not found" : "Groupe {group} introuvable",
     "Close" : "Fermer",
+    "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} contact ajouté à {name}","{success} contacts ajoutés à {name}"],
+    "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Ajouter {success} contact à {name}","Ajouter {success} contacts à {name}"],
+    "_{count} error_::_{count} errors_" : ["{count} erreur","{count} erreurs"],
+    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Import de %n contact dans {addressbook}","Import de %n contacts dans {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Import de %n contact dans {addressbook} terminé","Import de %n contacts dans {addressbook} terminé"],
     "Import" : "Importer",
     "Could not copy" : "Impossible de copier",
     "Join circle" : "Rejoindre le cercle",
@@ -251,9 +257,10 @@
     "Unknown" : "Inconnu",
     "Time zone" : "Fuseau horaire",
     "Spoken languages" : "Langues parlées",
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Erreur de lecture pour {failed} contact","Erreur de lecture pour {failed} contacts"],
     "Some circle(s) an error occurred. Check the console for more details." : "Une erreur est survenue dans certains cercles. Vérifiez la console pour plus de détails.",
     "Unable to create circle {circleName}" : "Impossible de créer le cercle {circleName}",
     "Unable to delete circle {circleId}" : "Impossible de supprimer le cercle {circleId}",
     "Unable to delete contact" : "Impossible de supprimer le contact."
-},"pluralForm" :"nplurals=3; plural=(n==0 || n==1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
+},"pluralForm" :"nplurals=2; plural=(n > 1);"
 }
