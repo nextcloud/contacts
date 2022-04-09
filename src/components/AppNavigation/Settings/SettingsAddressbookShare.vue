@@ -34,7 +34,7 @@
 			:user-select="true"
 			open-direction="bottom"
 			track-by="user"
-			label="user"
+			label="displayName"
 			@search-change="findSharee"
 			@input="shareAddressbook" />
 		<!-- list of user or groups addressbook is shared with -->
