@@ -25,6 +25,7 @@ OC.L10N.register(
     "Leave circle" : "Lassa giru",
     "Delete circle" : "Cantzella giru",
     "Download" : "Iscàrriga",
+    "Send email" : "Imbia messàgiu de posta eletrònica",
     "Groups" : "Grupos ",
     "Create a new group" : "Crea unu grupu nou",
     "Group name" : "Nùmene de su grupu",

@@ -25,6 +25,7 @@ OC.L10N.register(
     "Leave circle" : "サークルを退会する",
     "Delete circle" : "サークルを削除",
     "Download" : "ダウンロード",
+    "Send email" : "メールを送信",
     "Groups" : "グループ",
     "Create a new group" : "新規グループを作成",
     "Group name" : "グループ名",
