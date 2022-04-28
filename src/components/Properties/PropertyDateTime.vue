@@ -62,8 +62,7 @@
 				:readonly="isReadOnly"
 				:formatter="dateFormat"
 				class="property__value"
-				confirm
-				@confirm="debounceUpdateValue" />
+				@change="debounceUpdateValue" />
 
 			<input v-else
 				:readonly="true"
