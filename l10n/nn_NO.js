@@ -8,6 +8,7 @@ OC.L10N.register(
     "Group name" : "Gruppenamn",
     "Circles" : "Sirklar",
     "Rename" : "Gje nytt namn",
+    "Enabled" : "Aktivert",
     "Delete" : "Ta bort",
     "can edit" : "kan endra",
     "First name" : "Fornamn",
