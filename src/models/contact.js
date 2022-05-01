@@ -41,7 +41,7 @@ const isEmpty = value => {
 export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
 
 export const MinimalContactProperties = [
-	'EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME',
+	'EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'ORGMANAGER', 'TITLE',
 ].concat(ContactKindProperties)
 
 export default class Contact {
@@ -362,6 +362,31 @@ export default class Contact {
 			return
 		}
 		this.vCard.updatePropertyWithValue('org', org)
+	}
+
+	/**
+	 * Return the first orgManager
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get orgManager() {
+		return this.firstIfArray(this.vCard.getFirstPropertyValue('orgmanager'))
+	}
+
+	/**
+	 * Set the orgManager
+	 *
+	 * @param {string} orgManager the orgManager data
+	 * @memberof Contact
+	 */
+	set orgManager(orgManager) {
+		// delete the org if empty
+		if (isEmpty(orgManager)) {
+			this.vCard.removeProperty('orgmanager')
+			return
+		}
+		this.vCard.updatePropertyWithValue('orgmanager', orgManager)
 	}
 
 	/**

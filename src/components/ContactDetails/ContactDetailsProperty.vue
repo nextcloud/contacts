@@ -37,7 +37,7 @@
 		:local-contact="localContact"
 		:prop-name="propName"
 		:prop-type="propType"
-		:options="sortedModelOptions"
+		:options="propName === 'orgmanager' ? contactsOptions : sortedModelOptions"
 		:is-read-only="isReadOnly"
 		@delete="onDelete"
 		@resize="onResize"
@@ -92,6 +92,10 @@ export default {
 		 */
 		updateContact: {
 			type: Function,
+			default: () => {},
+		},
+		contacts: {
+			type: Object,
 			default: () => {},
 		},
 	},
@@ -201,6 +205,33 @@ export default {
 		 */
 		propLabel() {
 			return this.localContact.vCard.getFirstProperty(`${this.propGroup[0]}.x-ablabel`)
+		},
+
+		/**
+		 * Return the options of contacts for OrgManager select
+		 *
+		 * @return {object[]}
+		 */
+		contactsOptions() {
+			if (this.propName === 'orgmanager') {
+				return Object.keys(this.contacts).reduce((prev, cur) => {
+					const opt = this.contacts[cur]
+					return [...prev, {
+						id: opt.uid,
+						name: opt.fullName,
+					}]
+				}, [{
+					id: 'HEAD',
+					name: 'Head',
+				}])
+					.reduce((list, option) => {
+						if (!list.find(search => search.name === option.name)) {
+							list.push(option)
+						}
+						return list
+					}, this.selectType ? [this.selectType] : [])
+			}
+			return []
 		},
 
 		/**

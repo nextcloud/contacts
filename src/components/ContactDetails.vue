@@ -195,6 +195,7 @@
 						:contact="contact"
 						:local-contact="localContact"
 						:update-contact="debounceUpdateContact"
+						:contacts="contacts"
 						@resize="debounceRedrawMasonry" />
 				</div>
 
@@ -284,6 +285,10 @@ export default {
 		contactKey: {
 			type: String,
 			default: undefined,
+		},
+		contacts: {
+			type: Object,
+			default: () => {},
 		},
 	},
 

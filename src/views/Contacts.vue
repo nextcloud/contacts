@@ -38,9 +38,12 @@
 				@click="newContact" />
 		</RootNavigation>
 
-		<!-- Main content: circle or contacts -->
+		<!-- Main content: circle, chart or contacts -->
 		<CircleContent v-if="selectedCircle"
 			:loading="loadingCircles" />
+		<ChartContent v-if="selectedChart"
+			:contacts-list="contacts"
+			:loading="loadingContacts" />
 		<ContactsContent v-else
 			:contacts-list="contactsList"
 			:loading="loadingContacts"
@@ -71,6 +74,7 @@ import { showError } from '@nextcloud/dialogs'
 import { VCardTime } from 'ical.js'
 
 import CircleContent from '../components/AppContent/CircleContent'
+import ChartContent from '../components/AppContent/ChartContent'
 import ContactsContent from '../components/AppContent/ContactsContent'
 import ContactsPicker from '../components/EntityPicker/ContactsPicker'
 import ImportView from './Processing/ImportView'
@@ -88,6 +92,7 @@ export default {
 	components: {
 		AppNavigationNew,
 		CircleContent,
+		ChartContent,
 		ContactsContent,
 		ContactsPicker,
 		Content,
@@ -111,6 +116,10 @@ export default {
 			default: undefined,
 		},
 		selectedContact: {
+			type: String,
+			default: undefined,
+		},
+		selectedChart: {
 			type: String,
 			default: undefined,
 		},
@@ -198,13 +207,13 @@ export default {
 	watch: {
 		// watch url change and group select
 		selectedGroup() {
-			if (!this.isMobile) {
+			if (!this.isMobile && !this.selectedChart) {
 				this.selectFirstContactIfNone()
 			}
 		},
 		// watch url change and contact select
 		selectedContact() {
-			if (!this.isMobile) {
+			if (!this.isMobile && !this.selectedChart) {
 				this.selectFirstContactIfNone()
 			}
 		},
@@ -328,7 +337,7 @@ export default {
 				})
 			).then(results => {
 				this.loadingContacts = false
-				if (!this.isMobile) {
+				if (!this.isMobile && !this.selectedChart) {
 					this.selectFirstContactIfNone()
 				}
 			})

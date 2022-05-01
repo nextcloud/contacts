@@ -39,6 +39,15 @@
 				</AppNavigationCounter>
 			</AppNavigationItem>
 
+			<!-- Organization chart -->
+			<AppNavigationItem id="chart"
+				:title="CHART_ALL_CONTACTS"
+				:to="{
+					name: 'chart',
+					params: { selectedChart: GROUP_ALL_CONTACTS },
+				}"
+				icon="icon-category-monitoring" />
+
 			<!-- Not grouped group -->
 			<AppNavigationItem
 				v-if="ungroupedContacts.length > 0"
@@ -151,7 +160,7 @@
 </template>
 
 <script>
-import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC } from '../../models/constants.ts'
+import { GROUP_ALL_CONTACTS, CHART_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC } from '../../models/constants.ts'
 
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
@@ -212,6 +221,7 @@ export default {
 			CIRCLE_DESC,
 			ELLIPSIS_COUNT,
 			GROUP_ALL_CONTACTS,
+			CHART_ALL_CONTACTS,
 			GROUP_NO_GROUP_CONTACTS,
 			GROUP_RECENTLY_CONTACTED,
 
