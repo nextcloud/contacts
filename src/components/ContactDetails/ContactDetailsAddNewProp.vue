@@ -43,6 +43,7 @@
 import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect'
 import rfcProps from '../../models/rfcProps'
 import Contact from '../../models/contact'
+import OrgChartsMixin from '../../mixins/OrgChartsMixin'
 import PropertyTitle from '../Properties/PropertyTitle'
 import ICAL from 'ical.js'
 
@@ -53,6 +54,10 @@ export default {
 		Multiselect,
 		PropertyTitle,
 	},
+
+	mixins: [
+		OrgChartsMixin,
+	],
 
 	props: {
 		contact: {
@@ -108,8 +113,17 @@ export default {
 		 * @param {object} data destructuring object
 		 * @param {string} data.id the id of the property. e.g fn
 		 */
-		addProp({ id }) {
-			if (this.properties[id] && this.properties[id].defaultjCal
+		async addProp({ id }) {
+			if (id === 'x-managersname') {
+				const others = this.otherContacts(this.contact)
+				if (others.length === 1) {
+					// Pick the first and only other contact
+					this.contact.vCard.addPropertyWithValue(id, others[0].key)
+					await this.$store.dispatch('updateContact', this.contact)
+				} else {
+					this.contact.vCard.addPropertyWithValue(id, '')
+				}
+			} else if (this.properties[id] && this.properties[id].defaultjCal
 				&& this.properties[id].defaultjCal[this.contact.version]) {
 				const defaultjCal = this.properties[id].defaultjCal[this.contact.version]
 				const property = new ICAL.Property([id, ...defaultjCal])

@@ -220,6 +220,14 @@ const properties = {
 			{ id: 'WORK,PAGER', name: t('contacts', 'Work pager') },
 		],
 	},
+	'x-managersname': {
+		multiple: false,
+		force: 'select',
+		readableName: t('contacts', 'Manager'),
+		icon: 'icon-category-monitoring',
+		default: false,
+		options: [],
+	},
 	'x-socialprofile': {
 		multiple: true,
 		force: 'text',

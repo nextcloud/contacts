@@ -25,6 +25,7 @@ import { translate as t } from '@nextcloud/l10n'
 import { Type } from '@nextcloud/sharing'
 
 export type DefaultGroup = string
+export type DefaultChart = string
 export type CircleConfig = number
 export type MemberLevel = number
 export type MemberType = number
@@ -37,8 +38,12 @@ export const GROUP_ALL_CONTACTS: DefaultGroup = t('contacts', 'All contacts')
 export const GROUP_NO_GROUP_CONTACTS: DefaultGroup = t('contacts', 'Not grouped')
 export const GROUP_RECENTLY_CONTACTED: DefaultGroup = t('contactsinteraction', 'Recently contacted')
 
+// Organization default chart for all contacts
+export const CHART_ALL_CONTACTS: DefaultChart = t('contacts', 'Organization chart')
+
 // Circle route, see vue-router conf
 export const ROUTE_CIRCLE = 'circle'
+export const ROUTE_CHART = 'chart'
 
 // Default max number of items to show in the navigation
 export const ELLIPSIS_COUNT = 5

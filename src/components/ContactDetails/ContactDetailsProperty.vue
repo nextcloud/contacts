@@ -37,7 +37,7 @@
 		:local-contact="localContact"
 		:prop-name="propName"
 		:prop-type="propType"
-		:options="sortedModelOptions"
+		:options="propName === 'x-managersname' ? contactsOptions : sortedModelOptions"
 		:is-read-only="isReadOnly"
 		@delete="onDelete"
 		@resize="onResize"
@@ -49,6 +49,7 @@ import { Property } from 'ical.js'
 import rfcProps from '../../models/rfcProps'
 import Contact from '../../models/contact'
 
+import OrgChartsMixin from '../../mixins/OrgChartsMixin'
 import PropertyText from '../Properties/PropertyText'
 import PropertyMultipleText from '../Properties/PropertyMultipleText'
 import PropertyDateTime from '../Properties/PropertyDateTime'
@@ -56,6 +57,10 @@ import PropertySelect from '../Properties/PropertySelect'
 
 export default {
 	name: 'ContactDetailsProperty',
+
+	mixins: [
+		OrgChartsMixin,
+	],
 
 	props: {
 		property: {
@@ -93,6 +98,10 @@ export default {
 		updateContact: {
 			type: Function,
 			default: () => {},
+		},
+		contacts: {
+			type: Array,
+			default: () => [],
 		},
 	},
 
@@ -201,6 +210,31 @@ export default {
 		 */
 		propLabel() {
 			return this.localContact.vCard.getFirstProperty(`${this.propGroup[0]}.x-ablabel`)
+		},
+
+		/**
+		 * Return the options of contacts for x-managersname select
+		 *
+		 * @return {object[]}
+		 */
+		contactsOptions() {
+			if (this.propName !== 'x-managersname') {
+				return []
+			}
+
+			// Only allow contacts of the same address book
+			const otherContacts = this.otherContacts(this.contact)
+			// Reduce to an object to eliminate duplicates
+			return Object.values(otherContacts.reduce((prev, { key, value }) => {
+				const contact = this.$store.getters.getContact(key)
+				return {
+					...prev,
+					[contact.uid]: {
+						id: contact.uid,
+						name: contact.displayName,
+					},
+				}
+			}, this.selectType ? { [this.selectType.value]: this.selectType } : {}))
 		},
 
 		/**

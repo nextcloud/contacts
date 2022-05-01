@@ -45,6 +45,16 @@
 				</AppNavigationCounter>
 			</AppNavigationItem>
 
+			<!-- Organization chart -->
+			<AppNavigationItem v-if="existChart"
+				id="chart"
+				:title="CHART_ALL_CONTACTS"
+				:to="{
+					name: 'chart',
+					params: { selectedChart: GROUP_ALL_CONTACTS },
+				}"
+				icon="icon-category-monitoring" />
+
 			<!-- Not grouped group -->
 			<AppNavigationItem
 				v-if="ungroupedContacts.length > 0"
@@ -170,7 +180,7 @@
 </template>
 
 <script>
-import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC } from '../../models/constants.ts'
+import { GROUP_ALL_CONTACTS, CHART_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC } from '../../models/constants.ts'
 
 import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
 import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput'
@@ -243,6 +253,7 @@ export default {
 			CIRCLE_DESC,
 			ELLIPSIS_COUNT,
 			GROUP_ALL_CONTACTS,
+			CHART_ALL_CONTACTS,
 			GROUP_NO_GROUP_CONTACTS,
 			GROUP_RECENTLY_CONTACTED,
 
@@ -284,6 +295,11 @@ export default {
 		// list all the contacts that doesn't have a group
 		ungroupedContacts() {
 			return this.sortedContacts.filter(contact => this.contacts[contact.key].groups && this.contacts[contact.key].groups.length === 0)
+		},
+
+		// check if any contact has manager, if not then is no need for organization chart menu
+		existChart() {
+			return !!Object.keys(this.contacts).filter(key => this.contacts[key].managersName).length
 		},
 
 		// generate groups menu from the groups store

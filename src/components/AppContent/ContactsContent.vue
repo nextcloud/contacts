@@ -70,7 +70,7 @@
 		</template>
 
 		<!-- main contacts details -->
-		<ContactDetails :contact-key="selectedContact" />
+		<ContactDetails :contact-key="selectedContact" :contacts="sortedContacts" />
 	</AppContent>
 </template>
 <script>

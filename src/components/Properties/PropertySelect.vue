@@ -39,7 +39,7 @@
 			</div>
 
 			<Multiselect v-model="matchedOptions"
-				:options="propModel.options"
+				:options="options || propModel.options"
 				:placeholder="t('contacts', 'Select option')"
 				:disabled="isSingleOption || isReadOnly"
 				class="property__value"
@@ -85,19 +85,20 @@ export default {
 	computed: {
 		// is there only one option available
 		isSingleOption() {
-			return this.propModel.options.length <= 1
+			return this.propModel.options.length <= 1 && this.options.length <= 1
 		},
 
 		// matching value to the options we provide
 		matchedOptions: {
 			get() {
+				const options = this.options || this.propModel.options
 				// match lowercase as well
-				let selected = this.propModel.options.find(option => option.id === this.localValue
+				let selected = options.find(option => option.id === this.localValue
 					|| option.id === this.localValue.toLowerCase())
 
 				// if the model provided a custom match fallback, use it
 				if (!selected && this.propModel.greedyMatch) {
-					selected = this.propModel.greedyMatch(this.localValue, this.propModel.options)
+					selected = this.propModel.greedyMatch(this.localValue, options)
 				}
 
 				// properly display array as a string
