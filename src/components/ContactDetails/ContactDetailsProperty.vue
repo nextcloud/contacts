@@ -95,8 +95,8 @@ export default {
 			default: () => {},
 		},
 		contacts: {
-			type: Object,
-			default: () => {},
+			type: Array,
+			default: () => [],
 		},
 	},
 
@@ -214,11 +214,10 @@ export default {
 		 */
 		contactsOptions() {
 			if (this.propName === 'orgmanager') {
-				return Object.keys(this.contacts).reduce((prev, cur) => {
-					const opt = this.contacts[cur]
+				return this.contacts.reduce((prev, cur) => {
 					return [...prev, {
-						id: opt.uid,
-						name: opt.fullName,
+						id: cur.key,
+						name: cur.value,
 					}]
 				}, [{
 					id: 'HEAD',

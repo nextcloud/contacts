@@ -62,7 +62,7 @@
 		</template>
 
 		<!-- main contacts details -->
-		<ContactDetails :contact-key="selectedContact" :contacts="contacts" />
+		<ContactDetails :contact-key="selectedContact" :contacts="sortedContacts" />
 	</AppContent>
 </template>
 <script>

@@ -287,8 +287,8 @@ export default {
 			default: undefined,
 		},
 		contacts: {
-			type: Object,
-			default: () => {},
+			type: Array,
+			default: () => [],
 		},
 	},
 

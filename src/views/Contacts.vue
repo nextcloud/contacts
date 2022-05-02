@@ -42,8 +42,7 @@
 		<CircleContent v-if="selectedCircle"
 			:loading="loadingCircles" />
 		<ChartContent v-if="selectedChart"
-			:contacts-list="contacts"
-			:loading="loadingContacts" />
+			:contacts-list="contacts" />
 		<ContactsContent v-else
 			:contacts-list="contactsList"
 			:loading="loadingContacts"
