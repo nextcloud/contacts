@@ -41,7 +41,7 @@ export default {
 
 					return [...prev, {
 						nodeId: contact.uid,
-						parentNodeId: contact.orgManager === 'HEAD' ? null : contact.orgManager,
+						parentNodeId: contact.orgManager === 'HEAD' ? null : contact.orgManager.split('~')[0],
 						fullName: contact.displayName,
 						photoUrl: `${contact.url}?photo`,
 						title: contact.title,
