@@ -38,7 +38,6 @@ use OCP\IAddressBook;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
-use OCP\Util;
 
 class SocialApiService {
 	private $appName;
@@ -368,8 +367,6 @@ class SocialApiService {
 
 		foreach ($addressBooks as $addressBook) {
 			if ((is_null($addressBook) ||
-				(Util::getVersion()[0] >= 20) &&
-				//TODO: remove version check ^ when dependency for contacts is min NCv20 (see info.xml)
 				($addressBook->isShared() || $addressBook->isSystemAddressBook()))) {
 				// TODO: filter out deactivated books, see https://github.com/nextcloud/server/issues/17537
 				continue;
@@ -384,16 +381,7 @@ class SocialApiService {
 			}
 
 			// get contacts in that addressbook
-			//TODO: activate this optimization when nextcloud/server#22085 is merged
-			/*
-			if (Util::getVersion()[0] < 21) {
-				//TODO: remove this branch when dependency for contacts is min NCv21 (see info.xml)
-				$contacts = $addressBook->search('', ['UID'], ['types' => true]);
-			} else {
-				$contacts = $addressBook->search('', ['X-SOCIALPROFILE'], ['types' => true]);
-			}
-			*/
-			$contacts = $addressBook->search('', ['UID'], ['types' => true]);
+			$contacts = $addressBook->search('', ['X-SOCIALPROFILE'], ['types' => true]);
 			usort($contacts, [$this, 'sortContacts']); // make sure the order stays the same in consecutive calls
 
 			// update one contact after another
