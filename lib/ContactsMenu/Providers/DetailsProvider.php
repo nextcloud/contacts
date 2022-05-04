@@ -75,10 +75,10 @@ class DetailsProvider implements IProvider {
 	}
 
 	/**
-	 * Get (and load when needed) the address book for $key
+	 * Get (and load when needed) the address book URI for $key
 	 *
 	 * @param string $addressBookKey
-	 * @return \OCP\IAddressBook
+	 * @return string
 	 */
 	protected function getAddressBookUri($addressBookKey) {
 		$addressBooks = $this->getAddressBooksUris();
