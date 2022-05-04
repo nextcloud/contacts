@@ -44,7 +44,7 @@ use PHPUnit\Framework\MockObject\MockObject;
 use ChristophWurst\Nextcloud\Testing\TestCase;
 
 class SocialApiServiceTest extends TestCase {
-	private $service;
+	private SocialApiService $service;
 
 	/** @var CompositeSocialProvider|MockObject */
 	private $socialProvider;
@@ -63,7 +63,7 @@ class SocialApiServiceTest extends TestCase {
 	/** @var ITimeFactory|MockObject */
 	private $timeFactory;
 
-	public function allSocialProfileProviders() {
+	public function allSocialProfileProviders(): array {
 		$body = "the body";
 		$imageType = "jpg";
 		$contact = [
@@ -72,7 +72,7 @@ class SocialApiServiceTest extends TestCase {
 		];
 		$connector = $this->createMock(ISocialProvider::class);
 		$connector->method('supportsContact')->willReturn(true);
-		$connector->method('getImageUrls')->willReturn(["url1"]);
+		$connector->method('getImageUrls')->willReturn(["https://https://url1.com/an-url/an-url"]);
 
 		$connectorNoSupport = $this->createMock(ISocialProvider::class);
 		$connectorNoSupport->method('supportsContact')->willReturn(false);
@@ -107,7 +107,7 @@ class SocialApiServiceTest extends TestCase {
 		];
 	}
 
-	public function updateAddressbookProvider() {
+	public function updateAddressbookProvider(): array {
 		return [
 			'not user enabled' => ['yes',	'no',	Http::STATUS_FORBIDDEN],
 			'not admin allowed' => ['no',	'yes',	Http::STATUS_FORBIDDEN],
@@ -195,7 +195,7 @@ class SocialApiServiceTest extends TestCase {
 		];
 		$provider = $this->createMock(ISocialProvider::class);
 		$provider->method('supportsContact')->willReturn(true);
-		$provider->method('getImageUrls')->willReturn(["url1"]);
+		$provider->method('getImageUrls')->willReturn(["https://url1.com/an-url"]);
 
 		$addressbook = $this->createMock(IAddressBook::class);
 		$addressbook
@@ -264,7 +264,7 @@ class SocialApiServiceTest extends TestCase {
 		];
 		$provider = $this->createMock(ISocialProvider::class);
 		$provider->method('supportsContact')->willReturn(true);
-		$provider->method('getImageUrls')->willReturn(["url1"]);
+		$provider->method('getImageUrls')->willReturn(["https://url1.com/an-url"]);
 
 		$addressbook = $this->createMock(IAddressBook::class);
 		$addressbook
@@ -389,10 +389,10 @@ class SocialApiServiceTest extends TestCase {
 		];
 
 		$providerUrlMap = [
-			[$validContact1, ["url1"]],
+			[$validContact1, ["https://url1.com/an-url"]],
 			[$emptyContact, []],
 			[$invalidContact, []],
-			[$validContact2, ["url1"]]
+			[$validContact2, ["https://url1.com/an-url"]]
 		];
 
 		$provider = $this->createMock(ISocialProvider::class);
