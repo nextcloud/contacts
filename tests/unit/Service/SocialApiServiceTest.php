@@ -466,7 +466,6 @@ class SocialApiServiceTest extends TestCase {
 			$this->assertArrayHasKey('failed', $report[0]);
 			$this->assertArrayHasKey('412', $report[0]['failed']);
 			$this->assertContains('Invalid Contact', $report[0]['failed']['412']);
-			$this->assertContains('Empty Contact', $report[0]['failed']['412']);
 		}
 	}
 
