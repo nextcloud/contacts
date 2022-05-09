@@ -42,7 +42,7 @@ export default {
 					return false
 				}
 
-				if (version === '4.0' && type === 'icaltime') {
+				if (version === '4.0' && type === 'vcardtime') {
 					return false
 				}
 			}
