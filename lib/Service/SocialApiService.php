@@ -180,11 +180,13 @@ class SocialApiService {
 			}
 
 			// search contact in that addressbook, get social data
-			$contact = $addressBook->search($contactId, ['UID'], ['types' => true])[0];
+			$contacts = $addressBook->search($contactId, ['UID'], ['types' => true]);
 
-			if (!isset($contact)) {
+			if (empty($contacts)) {
 				return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
 			}
+
+			$contact = $contacts[0];
 
 			if ($network) {
 				$allConnectors = [$this->socialProvider->getSocialConnector($network)];
