@@ -42,6 +42,7 @@ use OCP\AppFramework\Utility\ITimeFactory;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use ChristophWurst\Nextcloud\Testing\TestCase;
+use Psr\Log\LoggerInterface;
 
 class SocialApiServiceTest extends TestCase {
 	private SocialApiService $service;
@@ -62,6 +63,8 @@ class SocialApiServiceTest extends TestCase {
 	private $davBackend;
 	/** @var ITimeFactory|MockObject */
 	private $timeFactory;
+	/** @var MockObject|LoggerInterface  */
+	private $logger;
 
 	public function allSocialProfileProviders(): array {
 		$body = "the body";
@@ -127,6 +130,7 @@ class SocialApiServiceTest extends TestCase {
 		$this->urlGen = $this->createMock(IURLGenerator::class);
 		$this->davBackend = $this->createMock(CardDavBackend::class);
 		$this->timeFactory = $this->createMock(ITimeFactory::class);
+		$this->logger = $this->createMock(LoggerInterface::class);
 		$this->service = new SocialApiService(
 			$this->socialProvider,
 			$this->manager,
@@ -135,7 +139,8 @@ class SocialApiServiceTest extends TestCase {
 			$this->l10n,
 			$this->urlGen,
 			$this->davBackend,
-			$this->timeFactory
+			$this->timeFactory,
+			$this->logger
 		);
 	}
 
@@ -175,11 +180,10 @@ class SocialApiServiceTest extends TestCase {
 			->method('NewClient')
 			->willReturn($client);
 
-		$result = $this->service
-									 ->updateContact(
-										 'contacts',
-										 '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
-										 null);
+		$result = $this->service->updateContact(
+			'contacts',
+			'3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
+			null);
 		$this->assertEquals($status, $result->getStatus());
 	}
 

@@ -38,6 +38,7 @@ use OCP\IAddressBook;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
+use Psr\Log\LoggerInterface;
 
 class SocialApiService {
 	private $appName;
@@ -57,6 +58,8 @@ class SocialApiService {
 	private $davBackend;
 	/** @var ITimeFactory */
 	private $timeFactory;
+	/** @var LoggerInterface */
+	private $logger;
 
 
 	public function __construct(
@@ -67,7 +70,8 @@ class SocialApiService {
 					IL10N $l10n,
 					IURLGenerator $urlGen,
 					CardDavBackend $davBackend,
-					ITimeFactory $timeFactory) {
+					ITimeFactory $timeFactory,
+					LoggerInterface $logger) {
 		$this->appName = Application::APP_ID;
 		$this->socialProvider = $socialProvider;
 		$this->manager = $manager;
@@ -77,6 +81,7 @@ class SocialApiService {
 		$this->urlGen = $urlGen;
 		$this->davBackend = $davBackend;
 		$this->timeFactory = $timeFactory;
+		$this->logger = $logger;
 	}
 
 
@@ -183,6 +188,7 @@ class SocialApiService {
 			$contacts = $addressBook->search($contactId, ['UID'], ['types' => true]);
 
 			if (empty($contacts)) {
+				$this->logger->warning('Could not find contact in address book #' . urldecode($addressbookId) . ' with contact #' . $contactId);
 				return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
 			}
 
