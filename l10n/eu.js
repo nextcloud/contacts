@@ -33,7 +33,7 @@ OC.L10N.register(
     "Create a new circle" : "Sortu zirkulu berria",
     "Show all groups" : "Erakutsi talde guztiak",
     "Collapse groups" : "Tolestu taldeak",
-    "Show all circles" : "Sortu zirkulu guztiak",
+    "Show all circles" : "Erakutsi zirkulu guztiak",
     "Collapse circles" : "Tolestu zirkuluak",
     "This group already exists" : "Talde hau existitzen da dagoeneko",
     "This circle already exists" : "Zirkulu hau existitzen da dagoeneko",

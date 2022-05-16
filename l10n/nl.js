@@ -103,7 +103,7 @@ OC.L10N.register(
     "Title" : "Titel",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Dit contactpersoon was beschadigd en is hersteld. Controleer alstublieft of de contactpersoon correct hersteld is en klik hier om het te bewaren.",
     "Clone contact" : "Klonen contactpersoon",
-    "Generate QR Code" : "Genereren QR code",
+    "Generate QR Code" : "Genereer QR code",
     "Contact vCard as QR code" : "Contactpersoon vCard als QR code",
     "Pick an address book" : "Kies een adresboek",
     "Select address book" : "Selecteer adresboek",
