@@ -57,7 +57,8 @@ class SocialApiService {
 	private $davBackend;
 	/** @var ITimeFactory */
 	private $timeFactory;
-
+	/** @var ImageResizer */
+	private $imageResizer;
 
 	public function __construct(
 					CompositeSocialProvider $socialProvider,
@@ -67,7 +68,8 @@ class SocialApiService {
 					IL10N $l10n,
 					IURLGenerator $urlGen,
 					CardDavBackend $davBackend,
-					ITimeFactory $timeFactory) {
+					ITimeFactory $timeFactory,
+					ImageResizer $imageResizer) {
 		$this->appName = Application::APP_ID;
 		$this->socialProvider = $socialProvider;
 		$this->manager = $manager;
@@ -77,6 +79,7 @@ class SocialApiService {
 		$this->urlGen = $urlGen;
 		$this->davBackend = $davBackend;
 		$this->timeFactory = $timeFactory;
+		$this->imageResizer = $imageResizer;
 	}
 
 
@@ -222,6 +225,16 @@ class SocialApiService {
 
 			if (!$socialdata || $imageType === null) {
 				return new JSONResponse([], Http::STATUS_NOT_FOUND);
+			}
+
+			if (is_resource($socialdata)) {
+				$socialdata = stream_get_contents($socialdata);
+			}
+
+			$socialdata = $this->imageResizer->resizeImage($socialdata);
+
+			if (!$socialdata) {
+				return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 			}
 
 			// update contact
