@@ -1,5 +1,11 @@
 # Changelog
 
+## 4.1.1 – 2022-05-17
+### Changed
+- Autosave birthdate
+### Fixed
+- Large social image import
+
 ## 4.1.0 – 2022-03-22
 ### Added
 - Nextcloud 24 support
