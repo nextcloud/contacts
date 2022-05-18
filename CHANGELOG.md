@@ -1,10 +1,11 @@
 # Changelog
 
-## 4.1.1 – 2022-05-17
+## 4.1.1 – 2022-05-18
 ### Changed
 - Autosave birthdate
 ### Fixed
 - Large social image import
+- Screenshot URL
 
 ## 4.1.0 – 2022-03-22
 ### Added
