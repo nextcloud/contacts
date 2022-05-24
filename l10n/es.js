@@ -49,7 +49,6 @@ OC.L10N.register(
     "Delete {addressbook}?" : "¿Eliminar {addressbook}?",
     "Deletion of address book was not successful." : "El borrado de la libreta de direcciones falló.",
     "Renaming of address book was not successful." : "El renombrado de la libreta de direcciones falló.",
-    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Compartido con {num} entidad","Compartido con {num} entidades"],
     "Share with users or groups" : "Compartir con otros usuarios o grupos",
     "No users or groups" : "No hay usuarios ni grupos.",
     "can edit" : "puede editar",
@@ -160,11 +159,6 @@ OC.L10N.register(
     "Contact not found" : "Contacto no encontrado",
     "Group {group} not found" : "Grupo {group} no encontrado",
     "Close" : "Cerrar",
-    "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} contacto añadido a {name}","{success} contactos añadidos a {name}"],
-    "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Añadiendo {success} contacto a {name}","Añadiendo {success} contactos a {name}"],
-    "_{count} error_::_{count} errors_" : ["{count} error","{count} errores"],
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importando %n contacto en {addressbook}","Importando %n contactos en {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Completado importando %n contacto en {addressbook}","Completado importando %n contactos en {addressbook}"],
     "Import" : "Importar",
     "Could not copy" : "No se ha podido copiar",
     "Join circle" : "Unirse al círculo",
@@ -259,10 +253,9 @@ OC.L10N.register(
     "Unknown" : "Desconocido",
     "Time zone" : "Zona horaria",
     "Spoken languages" : "Idiomas hablados",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se ha podido leer","{failed} contactos no se han podido leer"],
     "Some circle(s) an error occurred. Check the console for more details." : "En algún círculo se produjo un error. Consulte la consola para obtener más detalles.",
     "Unable to create circle {circleName}" : "No se pudo crear el círculo {circleName}",
     "Unable to delete circle {circleId}" : "No se pudo eliminar el círculo {circleId}",
     "Unable to delete contact" : "No se ha podido eliminar el contacto"
 },
-"nplurals=2; plural=(n != 1);");
+"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

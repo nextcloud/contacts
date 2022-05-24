@@ -47,7 +47,7 @@
     "Delete {addressbook}?" : "Eliminare {addressbook}?",
     "Deletion of address book was not successful." : "L'eliminazione della rubrica non è riuscita.",
     "Renaming of address book was not successful." : "La rinomina della rubrica non è riuscita.",
-    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Condiviso con {num} entità","Condiviso con {num} entità"],
+    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Condiviso con {num} entità","Condiviso con {num} entità","Condiviso con {num} entità"],
     "Share with users or groups" : "Condividi con utenti o gruppi",
     "No users or groups" : "Nessun utente o gruppo",
     "can edit" : "può modificare",
@@ -158,11 +158,11 @@
     "Contact not found" : "Contatto non trovato",
     "Group {group} not found" : "Gruppo {group} non trovato",
     "Close" : "Chiudi",
-    "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} contatto aggiunto a {name}","{success} contatti aggiunti a {name}"],
-    "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Aggiunta di {success} contatto a {name}","Aggiunta di {success} contatti a {name}"],
-    "_{count} error_::_{count} errors_" : ["{count} errore","{count} errori"],
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importazione di %n contatto in {addressbook}","Importazione di %n contatti in {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Importazione completata di %n contatto in {addressbook}","Importazione completata di %n contatti in {addressbook}"],
+    "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} contatto aggiunto a {name}","{success} contatti aggiunti a {name}","{success} contatti aggiunti a {name}"],
+    "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Aggiunta di {success} contatto a {name}","Aggiunta di {success} contatti a {name}","Aggiunta di {success} contatti a {name}"],
+    "_{count} error_::_{count} errors_" : ["{count} errore","{count} errori","{count} errori"],
+    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importazione di %n contatto in {addressbook}","Importazione di %n contatti in {addressbook}","Importazione di %n contatti in {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Importazione completata di %n contatto in {addressbook}","Importazione completata di %n contatti in {addressbook}","Importazione completata di %n contatti in {addressbook}"],
     "Import" : "Importa",
     "Could not copy" : "Impossibile copiare",
     "Join circle" : "Unisciti alla cerchia",
@@ -257,10 +257,10 @@
     "Unknown" : "Sconosciuto",
     "Time zone" : "Fuso orario",
     "Spoken languages" : "Lingue parlate",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["lettura di {failed} contatto non riuscita","lettura di {failed} contatti non riuscita"],
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["lettura di {failed} contatto non riuscita","lettura di {failed} contatti non riuscita","lettura di {failed} contatti non riuscita"],
     "Some circle(s) an error occurred. Check the console for more details." : "Si è verificato un errore per una o più cerchie. Controlla la console per altri dettagli.",
     "Unable to create circle {circleName}" : "Impossibile creare la cerchia {circleName}",
     "Unable to delete circle {circleId}" : "Impossibile eliminare la cerchia {circleId}",
     "Unable to delete contact" : "Impossibile eliminare il contatto"
-},"pluralForm" :"nplurals=2; plural=(n != 1);"
+},"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

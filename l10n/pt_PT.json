@@ -33,7 +33,7 @@
     "Delete {addressbook}?" : "Remover {addressbook}?",
     "Deletion of address book was not successful." : "Não foi possível eliminar o livro de endereços.",
     "Renaming of address book was not successful." : "Não foi possível renomear o livro de endereços.",
-    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Partilhado com {num} entidades","Partilhado com {num} entidades"],
+    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Partilhado com {num} entidades","Partilhado com {num} entidades","Partilhado com {num} entidades"],
     "Share with users or groups" : "Partilhe com os utilizadores ou grupos",
     "No users or groups" : "Sem utilizadores ou grupos",
     "can edit" : "pode editar",
@@ -92,8 +92,8 @@
     "Unable to create the contact." : "Não é possível criar o contacto.",
     "Contact not found" : "Contacto não encontrado",
     "Close" : "Fechar",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importar %n contactos para o {addressbook}","Importar %n contactos para o {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Importação de %n contactos para o {addressbook} está concluída.","Importação de %n contactos para o {addressbook} está concluída."],
+    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importar %n contactos para o {addressbook}","Importar %n contactos para o {addressbook}","Importar %n contactos para o {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Importação de %n contactos para o {addressbook} está concluída.","Importação de %n contactos para o {addressbook} está concluída.","Importação de %n contactos para o {addressbook} está concluída."],
     "Import" : "Importar",
     "Not grouped" : "Não agrupados",
     "Recently contacted" : "Contactados recentemente",
@@ -165,7 +165,7 @@
     "Unknown" : "Desconhecido",
     "Time zone" : "Fuso horário",
     "Spoken languages" : "Línguas faladas",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contactos cuja leitura falhou","{failed} contactos cuja leitura falhou"],
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contactos cuja leitura falhou","{failed} contactos cuja leitura falhou","{failed} contactos cuja leitura falhou"],
     "Unable to delete contact" : "Não é possível eliminar o contacto."
-},"pluralForm" :"nplurals=2; plural=(n != 1);"
+},"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }
