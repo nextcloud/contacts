@@ -26,13 +26,24 @@
 			<div class="search-contacts-field">
 				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
 			</div>
+			<Actions
+				class="merge-button"
+				menu-align="right">
+				<slot v-if="selected.length >= 1">
+					<ActionButton icon="icon-delete" @click="deleteMultipleContact">
+						{{ t('contacts', 'Delete') }}
+					</ActionButton>
+				</slot>
+			</Actions>
 		</div>
 		<VirtualList ref="scroller"
 			class="contacts-list"
 			data-key="key"
 			:data-sources="filteredList"
 			:data-component="ContactsListItem"
-			:estimate-size="68" />
+			:estimate-size="68"
+			:extra-props={selected}
+			@update-check-selected="selectionChanged" />
 	</AppContentList>
 </template>
 
@@ -40,6 +51,8 @@
 import AppContentList from '@nextcloud/vue/dist/Components/NcAppContentList'
 import ContactsListItem from './ContactsList/ContactsListItem'
 import VirtualList from 'vue-virtual-scroll-list'
+import Actions from '@nextcloud/vue/dist/Components/Actions'
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 
 export default {
 	name: 'ContactsList',
@@ -47,6 +60,8 @@ export default {
 	components: {
 		AppContentList,
 		VirtualList,
+		Actions,
+		ActionButton,
 	},
 
 	props: {
@@ -68,6 +83,7 @@ export default {
 		return {
 			ContactsListItem,
 			query: '',
+			selected: [],
 		}
 	},
 
@@ -157,6 +173,27 @@ export default {
 			}
 			return true
 		},
+		selectionChanged(newValue) {
+			if (this.selected.includes(newValue)) {
+				this.selected.splice(this.selected.indexOf(newValue), 1)
+			} else {
+				this.selected.push(newValue)
+			}
+		},
+		deleteMultipleContact() {
+			const temp = []
+			this.selected.forEach(element => {
+				if (this.contacts[element]) {
+					// delete contact
+					this.$store.dispatch('deleteContact', { contact: this.contacts[element] })
+					temp.push(this.selected.indexOf(element), 1)
+				}
+			})
+			// delete the uid in selected of the contact deleted
+			temp.forEach(el => {
+				this.selected.splice(temp, 1)
+			})
+		},
 	},
 }
 </script>
@@ -187,4 +224,7 @@ export default {
 	padding: 0 4px;
 }
 
+.merge-button {
+	float: right;
+}
 </style>

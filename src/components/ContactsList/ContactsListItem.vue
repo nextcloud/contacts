@@ -1,28 +1,43 @@
 <template>
-	<ListItem
-		:id="id"
-		:key="source.key"
-		class="list-item-style envelope"
-		:title="source.displayName"
-		:to="{ name: 'contact', params: { selectedGroup: selectedGroup, selectedContact: source.key } }">
-		<!-- @slot Icon slot -->
+	<div class="contacts-list__item"
+		:class="{'contacts-list__item--active': selectedContact === source.key}"
+		@mouseover="hover = true"
+		@mouseleave="hover = false">
+		<ActionCheckbox v-if="hover || ischecked"
+			:checked="ischecked"
+			@check="isSelected"
+			@uncheck="isUnselected" />
+		<BasesAvatar v-else-if="!hover && !ischecked"
+			:size="44"
+			:user="source.displayName"
+			:display-name="source.displayName"
+			:is-no-user="true" />
+		<ListItem
+			:id="id"
+			:key="source.key"
+			class="list-item-style envelope"
+			:title="source.displayName"
+			:to="{ name: 'contact', params: { selectedGroup: selectedGroup, selectedContact: source.key } }">
+			<!-- @slot Icon slot -->
 
-		<template #icon>
-			<div class="app-content-list-item-icon">
-				<BaseAvatar :display-name="source.displayName" :url="avatarUrl" :size="40" />
-			</div>
-		</template>
-		<template #subtitle>
-			<div class="envelope__subtitle">
-				<span class="envelope__subtitle__subject">
-					{{ source.email }}
-				</span>
-			</div>
-		</template>
-	</ListItem>
+			<template #icon>
+				<div class="app-content-list-item-icon">
+					<BaseAvatar :display-name="source.displayName" :url="avatarUrl" :size="40" />
+				</div>
+			</template>
+			<template #subtitle>
+				<div class="envelope__subtitle">
+					<span class="envelope__subtitle__subject">
+						{{ source.email }}
+					</span>
+				</div>
+			</template>
+		</ListItem>
+	</div>
 </template>
 
 <script>
+import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
 import { NcListItem as ListItem } from '@nextcloud/vue'
 import BaseAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
 
@@ -32,6 +47,7 @@ export default {
 	components: {
 		ListItem,
 		BaseAvatar,
+		ActionCheckbox,
 	},
 
 	props: {
@@ -43,10 +59,22 @@ export default {
 			type: Object,
 			required: true,
 		},
+		selected: {
+			type: Array,
+			required: false
+		}
 	},
 	data() {
 		return {
 			avatarUrl: undefined,
+			hover: false,
+			ischecked: false,
+		}
+	},
+	beforeMount() {
+		// check the checkbox who is already selected
+		if (this.selected.includes(this.source.key)) {
+			this.ischecked = true
 		}
 	},
 	computed: {
@@ -84,6 +112,26 @@ export default {
 			} else if (this.source.url) {
 				this.avatarUrl = `${this.source.url}?photo`
 			}
+		},
+
+		isSelected() {
+			this.ischecked = true
+			// update the selected
+			this.$parent.$parent.$emit('update-check-selected', this.source.key)
+		},
+
+		isUnselected() {
+			this.ischecked = false
+			// update the selected
+			this.$parent.$parent.$emit('update-check-selected', this.source.key)
+		},
+
+		/**
+		 * Select this contact within the list
+		 */
+		selectContact() {
+			// change url with router
+			this.$router.push({ name: 'contact', params: { selectedGroup: this.selectedGroup, selectedContact: this.source.key } })
 		},
 	},
 }
