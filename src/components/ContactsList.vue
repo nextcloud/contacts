@@ -26,6 +26,11 @@
 			<Actions
 				class="merge-button"
 				menu-align="right">
+				<slot>
+					<ActionButton icon="icon-qrcode" @click="autoMergeContact">
+						{{ t('contacts', 'Auto Merge') }}
+					</ActionButton>
+				</slot>
 				<slot v-if="selected.length >= 2">
 					<ActionButton icon="icon-clone" @click="mergeContact">
 						{{ t('contacts', 'Merge') }}
@@ -197,23 +202,35 @@ export default {
 					contact.jCal[1].splice(contact.jCal[1].indexOf(element), 1)
 				} else if (element[0] === value[0] && Array.isArray(element[3])) {
 					let isempty = true
-					value[3].forEach(arr => {
+					element[3].forEach(arr => {
 						if (arr !== '') {
 							isempty = false
 						}
 					})
-					if (isempty === false) {
+					if (isempty === true) {
 						contact.jCal[1].splice(contact.jCal[1].indexOf(element), 1)
 					}
 				}
 			})
 		},
-		addValue(contact, jcalvalue) {
+		addValue(firstContact, jcalvalue) {
 			jcalvalue.filter(element => {
 				// exclude the unique field we don't want to add
 				return !['uid', 'version', 'fn', 'prodid', 'gender', 'rev'].includes(element[0])
 			}).forEach(value => {
-				if (Array.isArray(value[3])) {
+				if (value[0] === 'categories') {
+					value.slice(3).forEach(element => {
+						const data = firstContact.groups
+						if (!firstContact.groups.includes(element)) {
+							data.push(element)
+							this.$store.dispatch('addContactToGroup', {
+								contact: firstContact,
+								groupName: element,
+							})
+							firstContact.groups = data
+						}
+					})
+				} else if (Array.isArray(value[3])) {
 					let isempty = true
 					value[3].forEach(arr => {
 						if (arr !== '') {
@@ -222,24 +239,24 @@ export default {
 					})
 					if (isempty === false) {
 						// delete blank field of the same type and push the new field
-						this.cleanContactValue(contact, value)
-						contact.jCal[1].push(value)
+						this.cleanContactValue(firstContact, value)
+						firstContact.jCal[1].push(value)
 					}
 				} else if (value[3] !== '') {
 					let include = false
-					contact.jCal[1].forEach(element => {
+					firstContact.jCal[1].forEach(element => {
 						if (element[0] === value[0] && element[3] === value[3]) {
 							include = true
 						}
 					})
 					if (!include) {
 						// delete blank field of the same type and push the new field
-						this.cleanContactValue(contact, value)
-						contact.jCal[1].push(value)
+						this.cleanContactValue(firstContact, value)
+						firstContact.jCal[1].push(value)
 					}
 				}
 			})
-			return contact
+			return firstContact
 		},
 		mergeContact() {
 			const firstContact = this.contacts[this.selected[0]]
@@ -248,10 +265,56 @@ export default {
 					const contactjcal = this.contacts[element].jCal[1]
 					this.addValue(firstContact, contactjcal)
 					// delete the contact merged and the uid in the selected
-					this.$store.dispatch('deleteContact', { contact: this.contacts[element] }) && this.selected.splice(this.selected.indexOf(element), 1)
+					this.$store.dispatch('deleteContact', { contact: this.contacts[element] })
 				}
 			})
 			this.$store.dispatch('updateContact', firstContact)
+			this.selected = []
+		},
+		getKey(contact, index) {
+			if (!this.selected.includes(contact[index].key)) {
+				this.selected.push(contact[index].key)
+			}
+		},
+		verifyContact(contactOne, contactTwo) {
+			let isOk = false
+			contactOne.forEach(element => {
+				contactTwo.forEach(el => {
+					if (el[3] === element[3] && el[3] !== '' && element[3] !== '') {
+						isOk = true
+					}
+				})
+			})
+			return isOk
+		},
+		deleteTempContact(contact) {
+			contact.forEach(element => {
+				this.selected.forEach(el => {
+					if (element.key === el) {
+						contact.splice(contact.indexOf(element), 1)
+					}
+				})
+			})
+			return contact
+		},
+		autoMergeContact() {
+			const contact = this.list.filter(item => this.matchSearch(this.contacts[item.key]))
+			for (let i = 0; i < contact.length; i++) {
+				const val = contact.map(item => this.contacts[item.key].jCal[1].filter(el => { return !['uid', 'version', 'prodid', 'rev', 'adr'].includes(el[0]) }))
+				this.getKey(contact, i)
+				for (let n = 0; n < val.length; n++) {
+					if (n !== i) {
+						if (this.verifyContact(val[i], val[n])) {
+							this.getKey(contact, n)
+						}
+					}
+				}
+				this.deleteTempContact(contact)
+				if (this.selected.length > 1) {
+					this.mergeContact()
+				}
+				this.selected = []
+			}
 		},
 	},
 }

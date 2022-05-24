@@ -60,12 +60,6 @@ export default {
 			ischecked: false,
 		}
 	},
-	beforeMount() {
-		// check the checkbox who is already selected
-		if (this.selected.includes(this.source.key)) {
-			this.ischecked = true
-		}
-	},
 	computed: {
 		selectedGroup() {
 			return this.$route.params.selectedGroup
@@ -83,6 +77,10 @@ export default {
 		async source() {
 			await this.loadAvatarUrl()
 		},
+		selected() {
+			this.ischecked = false
+			this.loadSelectedContact()
+		}
 	},
 	async mounted() {
 		await this.loadAvatarUrl()
@@ -100,6 +98,11 @@ export default {
 				this.avatarUrl = photoUrl
 			} else if (this.source.url) {
 				this.avatarUrl = `${this.source.url}?photo`
+			}
+		},
+		loadSelectedContact() {
+			if (this.selected.includes(this.source.key)) {
+				this.ischecked = true
 			}
 		},
 		isSelected() {
