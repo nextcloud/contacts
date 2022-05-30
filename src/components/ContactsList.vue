@@ -29,16 +29,31 @@
 			<Actions
 				class="merge-button"
 				menu-align="right">
-				<slot v-if="selected.length >= 2">
-					<ActionButton icon="icon-clone" @click="mergeContact">
-						{{ t('contacts', 'Merge') }}
+				<template v-if="selected.length >= 1">
+					<ActionButton v-if="showAddToGroup"
+						icon="icon-clone"
+						@click="OpenMultiselect">
+						{{ t('contacts', 'Add to group') }}
 					</ActionButton>
-				</slot>
-				<slot v-if="selected.length >= 1">
-					<ActionButton icon="icon-delete" @click="deleteMultipleContact">
-						{{ t('contacts', 'Delete') }}
-					</ActionButton>
-				</slot>
+					<Multiselect v-if="showSelectGroup"
+						:options="groups"
+						:taggable="true"
+						@input="addSelectedContactsToGroup"
+						@tag="addSelectedContactsToGroup"
+						@close="closeMultiselect" />
+				</template>
+				<ActionButton v-if="selected.length >= 2"
+					:close-after-click="true"
+					icon="icon-clone"
+					@click="mergeContact">
+					{{ t('contacts', 'Merge') }}
+				</ActionButton>
+				<ActionButton v-if="selected.length >= 1"
+					:close-after-click="true"
+					icon="icon-delete"
+					@click="deleteMultipleContact">
+					{{ t('contacts', 'Delete') }}
+				</ActionButton>
 			</Actions>
 		</div>
 		<VirtualList ref="scroller"
@@ -58,6 +73,8 @@ import ContactsListItem from './ContactsList/ContactsListItem'
 import VirtualList from 'vue-virtual-scroll-list'
 import Actions from '@nextcloud/vue/dist/Components/Actions'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import naturalCompare from 'string-natural-compare'
+import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 
 export default {
 	name: 'ContactsList',
@@ -67,6 +84,7 @@ export default {
 		VirtualList,
 		Actions,
 		ActionButton,
+		Multiselect
 	},
 
 	props: {
@@ -89,10 +107,17 @@ export default {
 			ContactsListItem,
 			query: '',
 			selected: [],
+			showGroups: false,
+			showAddToGroup: true,
+			showSelectGroup: false,
 		}
 	},
 
 	computed: {
+		groups() {
+			return this.$store.getters.getGroups.slice(0).map(group => group.name)
+				.sort((a, b) => naturalCompare(a, b, { caseInsensitive: true }))
+		},
 		selectedContact() {
 			return this.$route.params.selectedContact
 		},
@@ -260,6 +285,29 @@ export default {
 				}
 			})
 			this.$store.dispatch('updateContact', firstContact)
+		},
+		OpenMultiselect() {
+			this.showAddToGroup = false
+			this.showSelectGroup = true
+		},
+		closeMultiselect() {
+			this.showAddToGroup = true
+			this.showSelectGroup = false
+		},
+		addSelectedContactsToGroup(value) {
+			this.selected.forEach(element => {
+				const selectedContact = this.contacts[element]
+				const data = selectedContact.groups
+				if (!data.includes(value)) {
+					this.$store.dispatch('addContactToGroup', {
+						contact: selectedContact,
+						groupName: value,
+					})
+					data.push(value)
+					selectedContact.groups = data
+					this.$store.dispatch('updateContact', selectedContact)
+				}
+			})
 		},
 	},
 }
