@@ -133,6 +133,9 @@ export default {
 				stringify: (date) => {
 					return date ? this.formatDateTime() : null
 				},
+				parse: (value) => {
+					return value ? moment(value, ['LL', 'L']).toDate() : null
+				},
 			},
 		}
 	},
