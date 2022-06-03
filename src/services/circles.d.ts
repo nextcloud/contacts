@@ -31,6 +31,10 @@ export declare enum CircleEdit {
     Settings = "settings",
     Config = "config"
 }
+interface CircleSetting {
+    setting: string;
+    value: string;
+}
 /**
  * Get the circles list without the members
  *
@@ -128,4 +132,5 @@ export declare const changeMemberLevel: (circleId: string, memberId: string, lev
  * @returns {Array}
  */
 export declare const acceptMember: (circleId: string, memberId: string) => Promise<any>;
+export declare const editCircleSetting: (circleId: string, setting: CircleSetting) => Promise<any>;
 export {};
