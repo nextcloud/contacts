@@ -46,18 +46,6 @@ export default {
 				return true
 			}
 			return false
-		} else if (contact.vCard.hasProperty('org')) {
-			const org = contact.vCard.getFirstPropertyValue('org')
-			// ABC, Inc.;North American Division;Marketing
-			// -> ABC, Inc.
-			if (Array.isArray(org) && org[0].trim() !== '') {
-				contact.fullName = org[0]
-				return true
-			} else if (org && org.trim() !== '') {
-				contact.fullName = org
-				return true
-			}
-			return false
 		}
 		return false
 	},
