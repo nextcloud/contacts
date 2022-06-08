@@ -76,7 +76,7 @@ OC.L10N.register(
     "An error happened during the config change" : "Prišlo je do napake med poskusom spremembe nastavitev",
     "Circle name" : "Ime kroga",
     "Circle owned by {owner}" : "Lastnik kroga: {owner}",
-    "Request to join" : "Zahtevaj za članstvo",
+    "Request to join" : "Zahtevaj članstvo",
     "Description" : "Opis",
     "There is no description for this circle" : "Za ta krog ni navedenega opisa",
     "Enter a description for the circle" : "Vpišite opis kroga",
