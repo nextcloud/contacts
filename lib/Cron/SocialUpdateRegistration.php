@@ -94,7 +94,7 @@ class SocialUpdateRegistration extends TimedJob {
 
 			// check that user opted-in:
 			$bgSyncEnabledByUser = $this->config->getUserValue($user->getUID(), $this->appName, 'enableSocialSync', 'no');
-			if ($bgSyncEnabledByUser === 'yes') {
+			if ($bgSyncEnabledByUser === 'yes' && $user->isEnabled()) {
 				$this->jobList->add(SocialUpdate::class, [
 					'userId' => $user->getUID(),
 					'offsetBook' => null,
