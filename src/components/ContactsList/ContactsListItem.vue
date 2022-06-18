@@ -1,28 +1,42 @@
 <template>
-	<ListItemIcon
-		:id="id"
-		:key="source.key"
-		:avatar-size="44"
+	<div class="contacts-list__item"
 		:class="{'contacts-list__item--active': selectedContact === source.key}"
-		:display-name="source.displayName"
-		:is-no-user="true"
-		:subtitle="source.email"
-		:title="source.displayName"
-		:url="avatarUrl"
-		class="contacts-list__item"
-		tabindex="0"
-		@click.prevent.stop="selectContact"
-		@keypress.enter.prevent.stop="selectContact" />
+		@mouseover="hover = true"
+		@mouseleave="hover = false">
+		<ActionCheckbox v-if="hover || ischecked"
+			:checked="ischecked"
+			@check="isSelected"
+			@uncheck="isUnselected" />
+		<Avatar v-else-if="!hover && !ischecked"
+			:size="44"
+			:user="source.displayName"
+			:display-name="source.displayName"
+			:is-no-user="true" />
+		<ListItem
+			style="height=100%"
+			:id="id"
+			:key="source.key"
+			:display-name="source.displayName"
+			:subtitle="source.email"
+			:title="source.displayName"
+			@click.prevent.stop="selectContact"
+			@keypress.enter.prevent.stop="selectContact">
+		</ListItem>
+	</div>
 </template>
 
 <script>
-import ListItemIcon from '@nextcloud/vue/dist/Components/ListItemIcon'
+import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
+import Avatar from '@nextcloud/vue/dist/Components/Avatar'
+import ListItem from '@nextcloud/vue/dist/Components/ListItem'
 
 export default {
 	name: 'ContactsListItem',
 
 	components: {
-		ListItemIcon,
+		ActionCheckbox,
+		ListItem,
+		Avatar,
 	},
 
 	props: {
@@ -34,10 +48,16 @@ export default {
 			type: Object,
 			required: true,
 		},
+		selected: {
+			type: Array,
+			required: false
+		}
 	},
 	data() {
 		return {
 			avatarUrl: undefined,
+			hover: false,
+			ischecked: false,
 		}
 	},
 	computed: {
@@ -57,6 +77,10 @@ export default {
 		async source() {
 			await this.loadAvatarUrl()
 		},
+		selected() {
+			this.ischecked = false
+			this.loadSelectedContact()
+		}
 	},
 	async mounted() {
 		await this.loadAvatarUrl()
@@ -76,6 +100,22 @@ export default {
 				this.avatarUrl = `${this.source.url}?photo`
 			}
 		},
+		loadSelectedContact() {
+			if (this.selected.includes(this.source.key)) {
+				this.ischecked = true
+			}
+		},
+		isSelected() {
+			this.ischecked = true
+			// update the selected
+			this.$parent.$parent.$emit('update-check-selected', this.source.key)
+		},
+
+		isUnselected() {
+			this.ischecked = false
+			// update the selected
+			this.$parent.$parent.$emit('update-check-selected', this.source.key)
+		},
 
 		/**
 		 * Select this contact within the list
@@ -90,6 +130,8 @@ export default {
 <style lang="scss" scoped>
 .contacts-list__item {
 	padding: 8px;
+	display: flex;
+	list-style-type: none;
 
 	&--active,
 	&:focus,
