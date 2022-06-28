@@ -26,27 +26,41 @@
 			{{ t('contacts', 'Loading members list …') }}
 		</EmptyContent>
 
-		<EmptyContent v-else-if="!circle.isMember" icon="icon-contacts-dark">
+		<EmptyContent v-else-if="!circle.isMember">
+			<template #icon>
+				<IconContact
+					:size="20" />
+			</template>
 			{{ t('contacts', 'The list of members is only visible to members of this circle') }}
 		</EmptyContent>
 
-		<EmptyContent v-else icon="icon-contacts-dark">
+		<EmptyContent v-else>
+			<template #icon>
+				<IconContact
+					:size="20" />
+			</template>
 			{{ t('contacts', 'There is no member in this circle') }}
 		</EmptyContent>
 	</AppContentList>
 
 	<AppContentList v-else :class="{ 'icon-loading': loading, showdetails: showDetails }">
 		<div class="members-list__new">
-			<button v-if="circle.canManageMembers"
-				class="icon-add"
+			<Button v-if="circle.canManageMembers"
 				@click="onShowPicker(circle.id)">
+				<template #icon>
+					<IconAdd
+						:size="20" />
+				</template>
 				{{ t('contacts', 'Add members') }}
-			</button>
-			<button v-if="isMobile"
-				class="icon-info"
+			</Button>
+			<Button v-if="isMobile"
 				@click="showCircleDetails">
+				<template #icon>
+					<IconInfo
+						:size="20" />
+				</template>
 				{{ t('contacts', 'Show circle details') }}
-			</button>
+			</Button>
 		</div>
 
 		<VirtualList class="members-list"
@@ -71,12 +85,16 @@
 
 <script>
 import AppContentList from '@nextcloud/vue/dist/Components/AppContentList'
+import Button from '@nextcloud/vue/dist/Components/Button'
 import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
 import VirtualList from 'vue-virtual-scroll-list'
 
 import MembersListItem from './MembersList/MembersListItem'
 import EntityPicker from './EntityPicker/EntityPicker'
+import IconContact from 'vue-material-design-icons/AccountMultiple'
+import IconAdd from 'vue-material-design-icons/Plus'
+import IconInfo from 'vue-material-design-icons/InformationOutline'
 import RouterMixin from '../mixins/RouterMixin'
 
 import { getRecommendations, getSuggestions } from '../services/collaborationAutocompletion'
@@ -89,9 +107,13 @@ export default {
 
 	components: {
 		AppContentList,
+		Button,
 		VirtualList,
 		EntityPicker,
 		EmptyContent,
+		IconContact,
+		IconAdd,
+		IconInfo,
 	},
 	mixins: [isMobile, RouterMixin],
 
@@ -302,7 +324,6 @@ export default {
 
 		button {
 			height: 44px;
-			padding-left: 44px;
 			background-position: 14px center;
 			text-align: left;
 			width: 100%;
