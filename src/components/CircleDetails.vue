@@ -93,6 +93,7 @@
 
 		<section v-if="circle.isOwner && !circle.isPersonal" class="circle-details-section">
 			<CircleConfigs class="circle-details-section__configs" :circle="circle" />
+			<CirclePasswordSettings class="circle-details-section__configs" :circle="circle" />
 		</section>
 
 		<section v-else>
@@ -137,6 +138,7 @@ import CircleActionsMixin from '../mixins/CircleActionsMixin'
 import DetailsHeader from './DetailsHeader'
 import CircleConfigs from './CircleDetails/CircleConfigs'
 import ContentHeading from './CircleDetails/ContentHeading'
+import CirclePasswordSettings from './CircleDetails/CirclePasswordSettings'
 
 export default {
 	name: 'CircleDetails',
@@ -145,6 +147,7 @@ export default {
 		AppContentDetails,
 		Avatar,
 		CircleConfigs,
+		CirclePasswordSettings,
 		ContentHeading,
 		DetailsHeader,
 		Login,
