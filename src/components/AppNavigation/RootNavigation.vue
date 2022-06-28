@@ -32,8 +32,11 @@
 				:to="{
 					name: 'group',
 					params: { selectedGroup: GROUP_ALL_CONTACTS },
-				}"
-				icon="icon-contacts-dark">
+				}">
+				<template #icon>
+					<IconContact
+						:size="20" />
+				</template>
 				<AppNavigationCounter v-if="sortedContacts.length" slot="counter">
 					{{ sortedContacts.length }}
 				</AppNavigationCounter>
@@ -47,8 +50,11 @@
 				:to="{
 					name: 'group',
 					params: { selectedGroup: GROUP_NO_GROUP_CONTACTS },
-				}"
-				icon="icon-user">
+				}">
+				<template #icon>
+					<IconUser
+						:size="20" />
+				</template>
 				<AppNavigationCounter v-if="ungroupedContacts.length" slot="counter">
 					{{ ungroupedContacts.length }}
 				</AppNavigationCounter>
@@ -62,8 +68,11 @@
 				:to="{
 					name: 'group',
 					params: { selectedGroup: GROUP_RECENTLY_CONTACTED },
-				}"
-				icon="icon-recent-actors">
+				}">
+				<template #icon>
+					<IconRecentlyContacted
+						:size="20" />
+				</template>
 				<AppNavigationCounter v-if="recentlyContactedContacts.contacts.length" slot="counter">
 					{{ recentlyContactedContacts.contacts.length }}
 				</AppNavigationCounter>
@@ -171,6 +180,9 @@ import SettingsSection from './SettingsSection'
 
 import isCirclesEnabled from '../../services/isCirclesEnabled'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled'
+import IconContact from 'vue-material-design-icons/AccountMultiple'
+import IconUser from 'vue-material-design-icons/Account'
+import IconRecentlyContacted from '../Icons/IconRecentlyContacted'
 
 import RouterMixin from '../../mixins/RouterMixin'
 import { showError } from '@nextcloud/dialogs'
@@ -189,6 +201,9 @@ export default {
 		AppNavigationCaption,
 		CircleNavigationItem,
 		GroupNavigationItem,
+		IconContact,
+		IconUser,
+		IconRecentlyContacted,
 		NewCircleIntro,
 		SettingsSection,
 	},
@@ -262,7 +277,6 @@ export default {
 						name: 'group',
 						params: { selectedGroup: group.name },
 					},
-					icon: 'icon-group',
 					toString: () => group.name,
 				})
 			})
@@ -415,9 +429,8 @@ $caption-padding: 22px;
 
 // Change icon opacity for a better soothing visual
 .app-navigation-entry ::v-deep {
-	.app-navigation-entry-icon.icon-group,
-	.app-navigation-entry-icon.icon-circles {
-		opacity: .6;
+	.app-navigation-entry-icon {
+		opacity: .6 !important;
 	}
 }
 </style>

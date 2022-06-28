@@ -23,8 +23,11 @@
 	<AppNavigationItem
 		:key="group.key"
 		:to="group.router"
-		:title="group.name"
-		:icon="group.icon">
+		:title="group.name">
+		<template #icon>
+			<IconContact
+				:size="20" />
+		</template>
 		<template slot="actions">
 			<ActionButton
 				icon="icon-add"
@@ -59,6 +62,7 @@ import moment from 'moment'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
 import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
+import IconContact from 'vue-material-design-icons/AccountMultiple'
 
 export default {
 	name: 'GroupNavigationItem',
@@ -67,6 +71,7 @@ export default {
 		ActionButton,
 		AppNavigationCounter,
 		AppNavigationItem,
+		IconContact,
 	},
 
 	props: {

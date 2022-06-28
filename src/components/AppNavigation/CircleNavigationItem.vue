@@ -23,8 +23,11 @@
 	<AppNavigationItem
 		:key="circle.key"
 		:title="circle.displayName"
-		:to="circle.router"
-		icon="icon-circles">
+		:to="circle.router">
+		<template #icon>
+			<IconCircles
+				:size="20" />
+		</template>
 		<template v-if="loadingAction" slot="actions">
 			<ActionText icon="icon-loading-small">
 				{{ t('contacts', 'Loading …') }}
@@ -92,6 +95,7 @@ import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCo
 import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
 import ExitToApp from 'vue-material-design-icons/ExitToApp'
 import LocationEnter from 'vue-material-design-icons/LocationEnter'
+import IconCircles from '../Icons/IconCircles'
 
 import Circle from '../../models/circle.ts'
 import CircleActionsMixin from '../../mixins/CircleActionsMixin'
@@ -107,6 +111,7 @@ export default {
 		AppNavigationItem,
 		ExitToApp,
 		LocationEnter,
+		IconCircles,
 	},
 
 	mixins: [CircleActionsMixin],
