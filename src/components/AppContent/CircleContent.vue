@@ -22,7 +22,11 @@
 
 <template>
 	<AppContent v-if="!circle">
-		<EmptyContent icon="icon-circles">
+		<EmptyContent>
+			<template #icon>
+				<IconCircles
+					:size="20" />
+			</template>
 			{{ t('contacts', 'Please select a circle') }}
 		</EmptyContent>
 	</AppContent>
@@ -51,7 +55,11 @@
 					{{ t('contacts', 'Your request to join this circle is pending approval') }}
 				</EmptyContent>
 
-				<EmptyContent v-else icon="icon-circles">
+				<EmptyContent v-else>
+					<template #icon>
+						<IconCircles
+							:size="20" />
+					</template>
 					{{ t('contacts', 'You are not a member of {circle}', { circle: circle.displayName}) }}
 				</EmptyContent>
 			</template>
@@ -63,7 +71,7 @@ import { showError } from '@nextcloud/dialogs'
 import AppContent from '@nextcloud/vue/dist/Components/AppContent'
 import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
-
+import IconCircles from '../Icons/IconCircles'
 import CircleDetails from '../CircleDetails'
 import MemberList from '../MemberList'
 import RouterMixin from '../../mixins/RouterMixin'
@@ -76,6 +84,7 @@ export default {
 		CircleDetails,
 		EmptyContent,
 		MemberList,
+		IconCircles,
 	},
 
 	mixins: [isMobile, RouterMixin],
