@@ -777,6 +777,7 @@ export default {
 // Container height fix for dropdowns
 .app-content-details {
 	min-height: calc(100vh - var(--header-height));
+	padding: 0 44px 80px 44px;
 }
 
 // List of all properties
@@ -826,5 +827,14 @@ section.contact-details {
 			margin-bottom: 20px;
 		}
 	}
+}
+.property--last {
+	margin-bottom: 40px;
+}
+.property {
+	position: relative;
+	width: 100%;
+	max-width: 414px;
+	justify-self: center;
 }
 </style>

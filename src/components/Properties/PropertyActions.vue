@@ -22,7 +22,10 @@
 
 <template>
 	<Actions class="property__actions">
-		<ActionButton icon="icon-delete" @click="deleteProperty">
+		<ActionButton @click="deleteProperty">
+			<template #icon>
+				<IconDelete :size="20" />
+			</template>
 			{{ t('contacts', 'Delete') }}
 		</ActionButton>
 		<Actions :is="action"
@@ -34,6 +37,7 @@
 <script>
 import Actions from '@nextcloud/vue/dist/Components/Actions'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import IconDelete from 'vue-material-design-icons/Delete'
 
 export default {
 	name: 'PropertyActions',
@@ -41,6 +45,7 @@ export default {
 	components: {
 		Actions,
 		ActionButton,
+		IconDelete,
 	},
 
 	props: {
