@@ -50,7 +50,7 @@
 						<input
 							v-model="uniquePassword"
 							:disabled="loading.length > 0"
-							:placeholder="t('contacts', 'Unique password ...')"
+							:placeholder="t('contacts', 'Unique password …')"
 							type="text"
 							@keyup.enter="saveUniquePassword" />
 						<Button
