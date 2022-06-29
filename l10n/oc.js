@@ -18,6 +18,8 @@ OC.L10N.register(
     "First name" : "Prenom",
     "Last name" : "Nom",
     "Display name" : "Nom afichat",
+    "Password protection" : "Proteccion per senhal",
+    "Save" : "Enregistrar",
     "Description" : "Descripcion",
     "Invalid image" : "Imatge invalid",
     "Name" : "Nom",

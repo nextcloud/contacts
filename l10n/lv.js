@@ -27,6 +27,8 @@ OC.L10N.register(
     "Display name" : "Ekrāna vārds",
     "Last modified" : "Pēdējoreiz modificēts",
     "Sort by {sorting}" : "Kārtot pēc {sorting}",
+    "Password protection" : "Password protection",
+    "Save" : "Saglabāt",
     "Description" : "Apraksts",
     "Add new property" : "Pievienot jaunu lauku",
     "Choose property type" : "Izvēlieties lauka tipu",

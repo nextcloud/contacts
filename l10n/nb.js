@@ -29,6 +29,8 @@ OC.L10N.register(
     "Display name" : "Visningsnavn",
     "Last modified" : "Sist endret",
     "Sort by {sorting}" : "Sorter etter {sorting}",
+    "Password protection" : "Passordbeskyttelse",
+    "Save" : "Lagre",
     "Description" : "Beskrivelse",
     "Add new property" : "Legg til felt",
     "Choose property type" : "Velg felttype",

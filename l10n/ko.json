@@ -66,6 +66,8 @@
     "Update avatars from social media" : "소셜 네트워크에서 아바타 업데이트",
     "(refreshed once per week)" : "(주 1회 새로고침)",
     "An error happened during the config change" : "변경 사항을 설정하는 중 오류 발생",
+    "Password protection" : "암호 보호",
+    "Save" : "저장",
     "Circle name" : "서클 이름",
     "Circle owned by {owner}" : "{owner} 님이 소유한 서클",
     "Request to join" : "등록 요청",

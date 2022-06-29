@@ -55,6 +55,8 @@ OC.L10N.register(
     "Sort by {sorting}" : "Ordenar por {sorting}",
     "Update avatars from social media" : "Actualizar avatares dende as redes sociais",
     "(refreshed once per week)" : "(actualizado unha vez por semana)",
+    "Password protection" : "Protección por contrasinal",
+    "Save" : "Gardar",
     "Description" : "Descrición",
     "Add new property" : "Engadir unha nova propiedade",
     "Choose property type" : "Escoller o tipo de propiedade",

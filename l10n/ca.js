@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(s'actualitza una vegada la setmana)",
     "Address books" : "Llibretes d'adreces",
     "An error happened during the config change" : "S'ha produït un error durant el canvi de configuració",
+    "Password protection" : "Protecció amb contrasenya",
+    "Save" : "Desar",
     "Circle name" : "Nom del cercle",
     "Circle owned by {owner}" : "{owner} té la propietat del cercle",
     "Request to join" : "Sol·licita unir-m'hi",

@@ -20,6 +20,8 @@ OC.L10N.register(
     "First name" : "Nome",
     "Last name" : "Apellíu",
     "Display name" : "Nome",
+    "Password protection" : "Password protection",
+    "Save" : "Guardar",
     "Description" : "Descripción",
     "Invalid image" : "Imaxe non válida",
     "Name" : "Nome",

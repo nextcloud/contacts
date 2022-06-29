@@ -40,6 +40,8 @@ OC.L10N.register(
     "Display name" : "Birtingarnafn",
     "Last modified" : "Síðast breytt",
     "Sort by {sorting}" : "Raða eftir {sorting}",
+    "Password protection" : "Verndun með lykilorði",
+    "Save" : "Vista",
     "Description" : "Lýsing",
     "Add new property" : "Bæta við nýju eigindi",
     "Choose property type" : "Veldu tegund eigindar",

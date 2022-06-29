@@ -20,6 +20,8 @@ OC.L10N.register(
     "Last name" : "Perekonnanimi",
     "Display name" : "Kuvatav nimi",
     "Last modified" : "Viimati muudetud",
+    "Password protection" : "Password protection",
+    "Save" : "Salvesta",
     "Description" : "Kirjeldus",
     "Delete picture" : "Kustuta pilt",
     "Invalid image" : "Vigane pilt",

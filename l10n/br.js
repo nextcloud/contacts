@@ -17,6 +17,8 @@ OC.L10N.register(
     "No users or groups" : "Implijourienn pe strodadoù ebet",
     "can edit" : "posuple eo embann",
     "Display name" : "Anv ardivink",
+    "Password protection" : "Gwareziñ gant ur ger-tremen",
+    "Save" : "Enrollañ",
     "Description" : "Deskrivadur",
     "Invalid image" : "N'eo ket aotreet ar skeudenn",
     "Name" : "Anv",

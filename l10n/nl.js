@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(wordt eens per week bijgewerkt)",
     "Address books" : "Adresboeken",
     "An error happened during the config change" : "Er trad een fout op bij de config-wijziging",
+    "Password protection" : "Wachtwoordbeveiliging",
+    "Save" : "Opslaan",
     "Circle name" : "Naam kring",
     "Circle owned by {owner}" : "Kring is van {owner}",
     "Request to join" : "Aanvraag voor deelname",

@@ -6,6 +6,7 @@ OC.L10N.register(
     "Rename" : "Thoir ainm ùr air",
     "Delete" : "Sguab às",
     "Copy link" : "Dèan lethbhreac dhen cheangal",
+    "Save" : "Sàbhail",
     "Invalid image" : "Dealbh mì-dhligheach",
     "Name" : "Ainm",
     "Cancel" : "Sguir dheth",

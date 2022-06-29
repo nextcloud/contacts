@@ -53,6 +53,8 @@ OC.L10N.register(
     "Sort by {sorting}" : "Сортирање: {sorting}",
     "Update avatars from social media" : "Ажурирај аватар са друштвених медија",
     "(refreshed once per week)" : "(освежава се једном недељно)",
+    "Password protection" : "Заштита лозинком",
+    "Save" : "Сачувај",
     "Description" : "Опис",
     "Add new property" : "Додавање новог поља",
     "Choose property type" : "изаберите тип податка",

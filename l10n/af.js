@@ -20,6 +20,7 @@ OC.L10N.register(
     "Last name" : "Van",
     "Display name" : "Vertoonnaam",
     "Last modified" : "Laas gewysig",
+    "Save" : "Bewaar",
     "Description" : "Beskrywing",
     "Invalid image" : "Ongeldige beeld",
     "Name" : "Naam",

@@ -8,6 +8,7 @@ OC.L10N.register(
     "Rename" : "ئات ئۆزگەرت",
     "Delete" : "ئۆچۈر",
     "First name" : "ئاتى",
+    "Password protection" : "Password protection",
     "Description" : "چۈشەندۈرۈش",
     "Name" : "ئاتى",
     "Title" : "ماۋزۇ",

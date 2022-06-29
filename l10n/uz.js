@@ -7,6 +7,7 @@ OC.L10N.register(
     "Groups" : "Guruhlar",
     "Rename" : "Nomni o'zgartiring",
     "Delete" : "O'chir",
+    "Save" : "Saqlash",
     "Invalid image" : "Tasdiqlanmagan tasvir",
     "Name" : "Ism...",
     "Cancel" : "Bekor qilish",

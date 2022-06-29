@@ -58,6 +58,8 @@ OC.L10N.register(
     "Sort by {sorting}" : "Подреди според {sorting}",
     "Update avatars from social media" : "Ажурирај ги аватарите од социјалните мрежи",
     "(refreshed once per week)" : "(еднаш неделно)",
+    "Password protection" : "Заштитено со лозинка",
+    "Save" : "Зачувај",
     "Description" : "Опис",
     "Add new property" : "Додади ново поле",
     "Choose property type" : "Избери вид на поле",

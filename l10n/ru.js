@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(еженедельное обновление)",
     "Address books" : "Адресные книги",
     "An error happened during the config change" : "Не удалось изменить конфигурацию",
+    "Password protection" : "Защита паролем",
+    "Save" : "Сохранить",
     "Circle name" : "Название круга",
     "Circle owned by {owner}" : "Владелец круга: {owner}",
     "Request to join" : "Присоединиться",

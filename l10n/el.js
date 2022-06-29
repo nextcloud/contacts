@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(ανανεώνεται μία φορά την εβδομάδα)",
     "Address books" : "Βιβλία διευθύνσεων",
     "An error happened during the config change" : "Παρουσιάστηκε σφάλμα κατά την αλλαγή της ρύθμισης",
+    "Password protection" : "Προστασία συνθηματικού",
+    "Save" : "Αποθήκευση",
     "Circle name" : "Όνομα κύκλου",
     "Circle owned by {owner}" : "Κύκλος που ανήκει στον/στην {owner}",
     "Request to join" : "Αίτημα συμμετοχής",

@@ -54,6 +54,8 @@ OC.L10N.register(
     "Last modified" : "Última modificação",
     "Sort by {sorting}" : "Ordenar por {sorting}",
     "(refreshed once per week)" : "(actualizado uma vez por semana)",
+    "Password protection" : "Protegido por palavra-passe",
+    "Save" : "Guardar",
     "Description" : "Descrição",
     "Add new property" : "Adicionar um novo atributo",
     "Choose property type" : "Escolher o tipo de atributo",

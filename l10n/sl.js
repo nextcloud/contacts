@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(osveženo enkrat na teden)",
     "Address books" : "Imeniki",
     "An error happened during the config change" : "Prišlo je do napake med poskusom spremembe nastavitev",
+    "Password protection" : "Zaščita z geslom",
+    "Save" : "Shrani",
     "Circle name" : "Ime kroga",
     "Circle owned by {owner}" : "Lastnik kroga: {owner}",
     "Request to join" : "Zahtevaj članstvo",

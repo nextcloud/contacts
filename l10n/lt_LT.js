@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(įkeliama iš naujo kartą per savaitę)",
     "Address books" : "Adresų knygos",
     "An error happened during the config change" : "Keičiant konfigūraciją įvyko klaida",
+    "Password protection" : "Apsauga slaptažodžiu",
+    "Save" : "Įrašyti",
     "Circle name" : "Rato pavadinimas",
     "Circle owned by {owner}" : "Ratas, kurio savininkas yra {owner}",
     "Description" : "Aprašas",

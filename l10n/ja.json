@@ -72,6 +72,8 @@
     "(refreshed once per week)" : "(週に1回更新)",
     "Address books" : "アドレス帳",
     "An error happened during the config change" : "構成の変更中にエラーが発生しました",
+    "Password protection" : "パスワード保護",
+    "Save" : "保存",
     "Circle name" : "サークル名",
     "Circle owned by {owner}" : "{owner}が所有しているサークル",
     "Request to join" : "参加リクエスト",

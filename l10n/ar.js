@@ -24,6 +24,8 @@ OC.L10N.register(
     "Last name" : "اللقب",
     "Display name" : "الاسم المعروض",
     "Last modified" : "آخر تعديل",
+    "Password protection" : "الحماية بكلمة السر",
+    "Save" : "Save",
     "Description" : "الوصف",
     "Upload a new picture" : "تحميل صورة جديدة",
     "Choose from Files" : "اختر من الملفات",

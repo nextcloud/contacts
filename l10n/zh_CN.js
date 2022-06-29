@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(每周刷新)",
     "Address books" : "通讯录",
     "An error happened during the config change" : "更改配置时发生一个错误",
+    "Password protection" : "密码保护",
+    "Save" : "保存",
     "Circle name" : "圈子名称",
     "Circle owned by {owner}" : "圈子所有者为  {owner}",
     "Request to join" : "请求加入",

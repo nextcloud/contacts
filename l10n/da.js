@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(opfriskes en gang om ugen)",
     "Address books" : "Adressebøger",
     "An error happened during the config change" : "Der opstod en fejl under konfigurationsændringen",
+    "Password protection" : "Adgangskodebeskyttelse",
+    "Save" : "Gem",
     "Circle name" : "Cirkelnavn",
     "Circle owned by {owner}" : "Cirkel ejet af {owner}",
     "Request to join" : "Anmod om at deltage",

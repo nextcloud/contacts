@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(znovu načteno každý týden)",
     "Address books" : "Adresáře kontaktů",
     "An error happened during the config change" : "V průběhu měnění nastavení došlo k chybě",
+    "Password protection" : "Ochrana heslem",
+    "Save" : "Uložit",
     "Circle name" : "Název okruhu",
     "Circle owned by {owner}" : "Okruh vlastněný {owner}",
     "Request to join" : "Požádat o přidání",

@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(Einmal wöchentlich aktualisiert)",
     "Address books" : "Adressbücher",
     "An error happened during the config change" : "Bei der Konfigurationsänderung ist ein Fehler aufgetreten",
+    "Password protection" : "Passwortschutz",
+    "Save" : "Speichern",
     "Circle name" : "Name des Kreises",
     "Circle owned by {owner}" : "Kreis ist im Besitz von {owner}",
     "Request to join" : "Beitritt anfragen",

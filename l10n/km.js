@@ -10,6 +10,8 @@ OC.L10N.register(
     "Enabled" : "បាន​បើក",
     "Delete" : "លុប",
     "can edit" : "អាច​កែប្រែ",
+    "Password protection" : "Password protection",
+    "Save" : "រក្សាទុក",
     "Description" : "ការ​អធិប្បាយ",
     "Invalid image" : "រូបភាព​មិន​ត្រឹម​ត្រូវ",
     "Name" : "ឈ្មោះ",

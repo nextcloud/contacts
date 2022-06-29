@@ -24,6 +24,8 @@ OC.L10N.register(
     "First name" : "Prenume",
     "Last name" : "Nume",
     "Display name" : "Nume afișat",
+    "Password protection" : "Protecție parolă ",
+    "Save" : "Salvează",
     "Description" : "Descriere",
     "Invalid image" : "Imagine invalidă",
     "Name" : "Nume",

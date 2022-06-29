@@ -72,6 +72,8 @@ OC.L10N.register(
     "Update avatars from social media" : "Ažuriraj avatare s društvenih mreža",
     "(refreshed once per week)" : "(osvježava se jednom tjedno)",
     "An error happened during the config change" : "Došlo je do pogreške tijekom promjene konfiguracije",
+    "Password protection" : "Zaštita zaporkom",
+    "Save" : "Spremi",
     "Circle name" : "Naziv kruga",
     "Circle owned by {owner}" : "Krug u vlasništvu {owner}",
     "Request to join" : "Zahtjev za pridruživanje",

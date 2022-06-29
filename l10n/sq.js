@@ -26,6 +26,8 @@ OC.L10N.register(
     "Last name" : "Mbiemër",
     "Display name" : "Shfaq emrin",
     "Last modified" : "Ndryshuar së fundmi",
+    "Password protection" : "Password protection",
+    "Save" : "Ruaj",
     "Description" : "Përshkrim",
     "Add new property" : "Shto karakteristikë të re",
     "Choose property type" : "Zgjidh llojin e  karakteristikës",

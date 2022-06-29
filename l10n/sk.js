@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(aktualizovať raz za týždeň)",
     "Address books" : "Adresáre",
     "An error happened during the config change" : "Pri zmene konfigurácie sa stala chyba",
+    "Password protection" : "Ochrana heslom",
+    "Save" : "Uložiť",
     "Circle name" : "Meno kruhu",
     "Circle owned by {owner}" : "Vlastníctvo kruhu {owner}",
     "Request to join" : "Požiadať o pripojenie",

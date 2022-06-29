@@ -22,6 +22,8 @@ OC.L10N.register(
     "Last name" : "გვარი",
     "Display name" : "დისპლეი სახელი",
     "Last modified" : "ბოლო ცვლილება",
+    "Password protection" : "პაროლით თავდაცვა",
+    "Save" : "შენახვა",
     "Description" : "აღწერილობა",
     "Invalid image" : "არასწორი სურათი",
     "Name" : "სახელი",

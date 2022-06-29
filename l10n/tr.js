@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(haftada bir yenilenir)",
     "Address books" : "Adres defterleri",
     "An error happened during the config change" : "Yapılandırma değiştirilirken bir sorun çıktı",
+    "Password protection" : "Parola koruması",
+    "Save" : "Kaydet",
     "Circle name" : "Çevre adı",
     "Circle owned by {owner}" : "Sahibi {owner} olan çevreler ",
     "Request to join" : "Katılma isteğinde bulun",

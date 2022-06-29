@@ -73,6 +73,8 @@ OC.L10N.register(
     "Update avatars from social media" : "Päivitä avatar-kuvat sosiaalisesta mediasta",
     "(refreshed once per week)" : "(päivitetään kerran viikossa)",
     "Address books" : "Osoitekirjat",
+    "Password protection" : "Salasanasuojaus",
+    "Save" : "Tallenna",
     "Circle name" : "Piirin nimi",
     "Circle owned by {owner}" : "Piirin omistaa {owner}",
     "Request to join" : "Pyydä liittymistä",

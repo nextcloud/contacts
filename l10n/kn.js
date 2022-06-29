@@ -8,6 +8,8 @@ OC.L10N.register(
     "Enabled" : "ಸಕ್ರಿಯಗೊಳಿಸಿದೆ",
     "Delete" : "﻿ಅಳಿಸಿ",
     "can edit" : "﻿ಸಂಪಾದಿಸಬಹುದು",
+    "Password protection" : "Password protection",
+    "Save" : "﻿ಉಳಿಸಿ",
     "Invalid image" : "ಅಸಾಮರ್ಥ್ಯ ಚಿತ್ರ",
     "Name" : "﻿ಹೆಸರು",
     "Title" : "ಶೀರ್ಷಿಕೆ",

@@ -36,6 +36,8 @@ OC.L10N.register(
     "Display name" : "Ім'я для відображення",
     "Last modified" : "Останні зміни",
     "Sort by {sorting}" : "Впорядкувати за {sorting}",
+    "Password protection" : "Захист паролем",
+    "Save" : "Зберегти",
     "Description" : "Опис",
     "Add new property" : "Додати нову властивість",
     "Choose property type" : "Обрати тип властивості",

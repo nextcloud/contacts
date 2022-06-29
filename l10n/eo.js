@@ -31,6 +31,8 @@ OC.L10N.register(
     "Display name" : "Montra nomo",
     "Last modified" : "Laste modifita",
     "Sort by {sorting}" : "Ordigi laŭ {sorting}",
+    "Password protection" : "Protektita per pasvorto",
+    "Save" : "Konservi",
     "Description" : "Priskribo",
     "Add new property" : "Aldoni novan atributon",
     "Choose property type" : "Elekti atributotipon",

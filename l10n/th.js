@@ -17,6 +17,8 @@ OC.L10N.register(
     "First name" : "ชื่อจริง",
     "Last name" : "นามสกุลจริง",
     "Display name" : "ชื่อที่แสดง",
+    "Password protection" : "ป้องกันด้วยรหัสผ่าน",
+    "Save" : "บันทึก",
     "Description" : "รายละเอียด",
     "Invalid image" : "รูปภาพไม่ถูกต้อง",
     "Name" : "ชื่อ",

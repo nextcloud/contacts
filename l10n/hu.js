@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(hetente egyszer frissítve)",
     "Address books" : "Címjegyzékek",
     "An error happened during the config change" : "Hiba történt a konfiguráció módosításakor",
+    "Password protection" : "Jelszavas védelem",
+    "Save" : "Mentés",
     "Circle name" : "Kör neve",
     "Circle owned by {owner}" : "A körnek {owner} a tulajdonosa",
     "Request to join" : "Csatlakozás kérése",

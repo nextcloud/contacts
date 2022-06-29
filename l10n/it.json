@@ -72,6 +72,8 @@
     "(refreshed once per week)" : "(aggiornato una volta a settimana)",
     "Address books" : "Rubriche",
     "An error happened during the config change" : "Si è verificato un errore durante il cambio di configurazione",
+    "Password protection" : "Protezione password",
+    "Save" : "Salva",
     "Circle name" : "Nome cerchia",
     "Circle owned by {owner}" : "Proprietario cerchia: {owner}",
     "Request to join" : "Richiedi di entrare",

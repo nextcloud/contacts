@@ -25,6 +25,8 @@ OC.L10N.register(
     "Last name" : "Surname",
     "Display name" : "Display name",
     "Last modified" : "Last modified",
+    "Password protection" : "Password protection",
+    "Save" : "Save",
     "Description" : "Description",
     "Invalid image" : "Invalid image",
     "Name" : "Name",

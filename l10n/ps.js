@@ -7,6 +7,7 @@ OC.L10N.register(
     "Rename" : "نوم بدلول",
     "Delete" : "ړنګول",
     "Copy link" : "لېنک کاپي کول",
+    "Save" : "ساتل",
     "Invalid image" : "انځور سم نه دی",
     "Name" : "نوم",
     "Cancel" : "پرېښول",

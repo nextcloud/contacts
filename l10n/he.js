@@ -54,6 +54,8 @@ OC.L10N.register(
     "Sort by {sorting}" : "מיון לפי {sorting}",
     "Update avatars from social media" : "עדכן אווטרים מהמדיה החברתית",
     "(refreshed once per week)" : "(רענן פעם בשבוע)",
+    "Password protection" : "הגנה בססמה",
+    "Save" : "שמירה",
     "Description" : "תיאור",
     "Add new property" : "הוספת מאפיין חדש",
     "Choose property type" : "בחירת סוג מאפיין",

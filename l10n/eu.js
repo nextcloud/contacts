@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(astean behin freskatzen da)",
     "Address books" : "Helbide liburuak",
     "An error happened during the config change" : "Errore bat gertatu da ezarpenak aldatzerakoan",
+    "Password protection" : "Pasahitz bidezko babesa",
+    "Save" : "Gorde",
     "Circle name" : "Zirkuluaren izena",
     "Circle owned by {owner}" : "Zirkulu honen jabea {owner} da",
     "Request to join" : "Eskatu elkartzeko baimena",

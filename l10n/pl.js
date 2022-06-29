@@ -74,6 +74,8 @@ OC.L10N.register(
     "(refreshed once per week)" : "(odświeżane raz w tygodniu)",
     "Address books" : "Książki adresowe",
     "An error happened during the config change" : "Wystąpił błąd podczas zmiany konfiguracji",
+    "Password protection" : "Ochrona hasłem",
+    "Save" : "Zapisz",
     "Circle name" : "Nazwa kręgu",
     "Circle owned by {owner}" : "Krąg należący do {owner}",
     "Request to join" : "Prośba o dołączenie",

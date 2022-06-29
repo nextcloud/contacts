@@ -25,6 +25,8 @@ OC.L10N.register(
     "Display name" : "Enw Dangos",
     "Last modified" : "Newidiwyd diwethaf",
     "Sort by {sorting}" : "Trefnu yn ôl {sorting}",
+    "Password protection" : "Password protection",
+    "Save" : "Cadw",
     "Description" : "Disgrifiad",
     "Add new property" : "Ychwanegu priodoledd newydd",
     "Choose property type" : "Dewiswch y math o briodoledd",

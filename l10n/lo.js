@@ -8,6 +8,8 @@ OC.L10N.register(
     "Rename" : "ປ່ຽນຊື່",
     "Delete" : "ລຶບ",
     "Copy link" : "ສຳເນົາລິງ",
+    "Password protection" : "ລະຫັດປ້ອງກັນ",
+    "Save" : "ບັນທຶກ",
     "Invalid image" : "ບໍ່ມີຮູບພາບ",
     "Name" : "ຊື່",
     "Company" : "ບໍລິສັດ",

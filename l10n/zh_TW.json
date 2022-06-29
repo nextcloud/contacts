@@ -72,6 +72,8 @@
     "(refreshed once per week)" : "（每週重新整理一次）",
     "Address books" : "通訊錄",
     "An error happened during the config change" : "變更設定時發生錯誤",
+    "Password protection" : "密碼保護",
+    "Save" : "儲存",
     "Circle name" : "小圈圈名稱",
     "Circle owned by {owner}" : "{owner} 擁有的小圈圈",
     "Request to join" : "要求加入",
