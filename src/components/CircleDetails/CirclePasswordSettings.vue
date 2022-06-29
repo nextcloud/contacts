@@ -33,7 +33,7 @@
 					:disabled="loading.length > 0"
 					wrapper-element="li"
 					@update:checked="changePasswordProtection">
-					{{ t('contacts', 'Enforce Password protection on Files shared to this circle') }}
+					{{ t('contacts', 'Enforce password protection on files shared to this circle') }}
 				</CheckboxRadioSwitch>
 
 				<CheckboxRadioSwitch v-if="enforcePasswordProtection"
