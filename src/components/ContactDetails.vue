@@ -23,7 +23,11 @@
 <template>
 	<AppContentDetails>
 		<!-- nothing selected or contact not found -->
-		<EmptyContent v-if="!contact" icon="icon-contacts-dark">
+		<EmptyContent v-if="!contact">
+			<template #icon>
+				<IconContact
+					:size="20" />
+			</template>
 			{{ t('contacts', 'No contact selected') }}
 			<template #desc>
 				{{ t('contacts', 'Select a contact on the list to begin') }}
@@ -244,6 +248,7 @@ import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
 import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails'
 import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import IconContact from 'vue-material-design-icons/AccountMultiple'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 
@@ -273,6 +278,7 @@ export default {
 		ContactProperty,
 		DetailsHeader,
 		EmptyContent,
+		IconContact,
 		Modal,
 		Multiselect,
 		PropertyGroups,
