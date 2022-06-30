@@ -27,6 +27,8 @@ OC.L10N.register(
     "Display name" : "Nombre para mostrar",
     "Last modified" : "Última modificación",
     "Sort by {sorting}" : "Ordenar por {sorting}",
+    "Password protection" : "Protección con contraseña",
+    "Save" : "Guardar",
     "Description" : "Descripción",
     "Add new property" : "Añadir nueva propiedad",
     "Choose property type" : "Elija el tipo de propiedad",

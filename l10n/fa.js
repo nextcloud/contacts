@@ -23,6 +23,8 @@ OC.L10N.register(
     "Last name" : "نام‌خانوادگی",
     "Display name" : "نام جهت نمایش",
     "Last modified" : "آخرین اصلاح شده",
+    "Password protection" : "محافظت از رمز عبور",
+    "Save" : "ذخیره",
     "Description" : "توضیحات",
     "Invalid image" : "عکس نامعتبر",
     "Name" : "نام",

@@ -9,6 +9,7 @@ OC.L10N.register(
     "Delete" : "ئۆچۈر",
     "First name" : "ئاتى",
     "Password protection" : "Password protection",
+    "Save" : "ساقلا",
     "Description" : "چۈشەندۈرۈش",
     "Name" : "ئاتى",
     "Title" : "ماۋزۇ",

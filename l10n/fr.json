@@ -72,6 +72,8 @@
     "(refreshed once per week)" : "(rafraîchir une fois par semaine)",
     "Address books" : "Carnets d'adresses",
     "An error happened during the config change" : "Erreur lors du changement de configuration",
+    "Password protection" : "Protection par mot de passe",
+    "Save" : "Enregistrer",
     "Circle name" : "Nom du cercle",
     "Circle owned by {owner}" : "Cercle appartenant à {owner}",
     "Request to join" : "Demander à rejoindre",

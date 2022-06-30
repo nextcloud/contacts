@@ -19,6 +19,8 @@ OC.L10N.register(
     "Last name" : "Nama belakang",
     "Display name" : "Nama tampilan",
     "Last modified" : "Terakhir diubah",
+    "Password protection" : "Password protection",
+    "Save" : "Simpan",
     "Description" : "Deskrisi",
     "Invalid image" : "Gambar tidak sah",
     "Name" : "Nama",

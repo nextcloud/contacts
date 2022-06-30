@@ -23,6 +23,8 @@ OC.L10N.register(
     "Last name" : "Apellido",
     "Display name" : "Nombre a desplegar",
     "Last modified" : "Última modificación",
+    "Password protection" : "Protección con contraseña",
+    "Save" : "Guardar",
     "Description" : "Descripción",
     "Invalid image" : "Imagen inválida",
     "Name" : "Nombre",
