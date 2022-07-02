@@ -11,6 +11,7 @@ OC.L10N.register(
     "Invalid image" : "Tasdiqlanmagan tasvir",
     "Name" : "Ism...",
     "Cancel" : "Bekor qilish",
+    "Search contacts …" : "Kontaktlarni qidirish ...",
     "Pending" : "Kutilmoqda",
     "Member" : "Ro'yxatdan",
     "Admin" : "Admin",

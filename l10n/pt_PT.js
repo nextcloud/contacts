@@ -84,6 +84,7 @@ OC.L10N.register(
     "Address book" : "Livro de endereços",
     "New contact" : "Novo contacto",
     "Syntax error. Cannot open the contact." : "Erro de sintaxe. É impossível mostrar o contacto.",
+    "Search contacts …" : "Pesquisar contactos...",
     "No results" : "Sem resultados",
     "Add to group" : "Adicionar ao grupo",
     "Add {type}" : "Adicionar (tipo)",

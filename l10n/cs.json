@@ -123,6 +123,7 @@
     "Unable to retrieve the contact from the server, please check your network connection." : "Kontakt se nedaří získat ze serveru – prosím zkontrolujte své připojení k síti.",
     "An error occurred while trying to move the contact" : "Při pokusu o přesunutí kontaktu došlo k chybě",
     "An error occurred while trying to copy the contact" : "Při pokusu o zkopírování kontaktu došlo k chybě",
+    "Search contacts …" : "Prohledat kontakty…",
     "Add to {group}" : "Přidat do {group}",
     "Remove {type}" : "Odebrat {type}",
     "Search {types}" : "Hledat {types}",

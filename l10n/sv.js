@@ -105,6 +105,7 @@ OC.L10N.register(
     "The contact doesn't exists anymore on the server." : "Kontakten finns inte längre på servern.",
     "An error occurred while trying to move the contact" : "Ett fel uppstod när du försökte flytta kontakten",
     "An error occurred while trying to copy the contact" : "Ett fel uppstod vid försök att kopiera kontakten",
+    "Search contacts …" : "Sök kontakter ...",
     "Add to {group}" : "Lägg till i {group}",
     "Remove {type}" : "Ta bort {type}",
     "Search {types}" : "Sök {types}",

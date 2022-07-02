@@ -25,6 +25,7 @@ OC.L10N.register(
     "Company" : "Embregerez",
     "Title" : "Titl",
     "Cancel" : "Arrest",
+    "Search contacts …" : "Klask darempred ...",
     "No results" : "Disoc'h ebet",
     "Pending" : "O c'hortoz",
     "Close" : "Seriñ",

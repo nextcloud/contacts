@@ -32,6 +32,7 @@ OC.L10N.register(
     "Cancel" : "Cancelar",
     "Address book" : "Libreta de direcciones",
     "New contact" : "Nuevo contacto",
+    "Search contacts …" : "Buscar contactos ...",
     "No results" : "No hay resultados",
     "Personal circle" : "Círculo personal",
     "Pending" : "Pendiente",

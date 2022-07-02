@@ -67,6 +67,7 @@ OC.L10N.register(
     "Syntax error. Cannot open the contact." : "Синтаксична помилка. Неможливо відкрити контакт.",
     "An error occurred while trying to move the contact" : "Помилка під час переміщення контакт",
     "An error occurred while trying to copy the contact" : "Помилка під час копіювання контакту",
+    "Search contacts …" : "Пошук контактів...",
     "No results" : "Немає результатів",
     "Personal circle" : "Особисте коло",
     "Pending" : "Очікування",

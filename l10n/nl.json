@@ -118,6 +118,7 @@
     "Unable to retrieve the contact from the server, please check your network connection." : "Kan het contact niet ophalen van de server. Controleer je netwerkverbinding.",
     "An error occurred while trying to move the contact" : "Er trad een fout op bij het verplaatsen van de contactpersoon",
     "An error occurred while trying to copy the contact" : "Er trad een fout op bij het kopiëren van de contactpersoon",
+    "Search contacts …" : "Zoek contacten ...",
     "Add to {group}" : "Toevoegen aan {groep}",
     "Remove {type}" : "Verwijder {type}",
     "Search {types}" : "Zoeken naar {types}",

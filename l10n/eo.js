@@ -57,6 +57,7 @@ OC.L10N.register(
     "New contact" : "Nova kontakto",
     "Syntax error. Cannot open the contact." : "Sintakseraro. Ne eblas malfermi la kontakton.",
     "The contact doesn't exists anymore on the server." : "La kontakto ne plu ekzistas en la servilo.",
+    "Search contacts …" : "Serĉi kontaktojn…",
     "No results" : "Neniu rezulto",
     "Personal circle" : "Persona rondo",
     "Pending" : "Pritraktota",

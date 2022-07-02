@@ -34,6 +34,7 @@ OC.L10N.register(
     "Cancel" : "Anulează",
     "Address book" : "Listă de contacte",
     "New contact" : "Contact nou ",
+    "Search contacts …" : "Caută contacte ...",
     "No results" : "Niciun rezultat",
     "Personal circle" : "Cerc personal",
     "Pending" : "În așteptare",

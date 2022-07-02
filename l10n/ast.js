@@ -29,6 +29,7 @@ OC.L10N.register(
     "Cancel" : "Encaboxar",
     "Address book" : "Llibreta de direiciones",
     "New contact" : "Contautu nuevu",
+    "Search contacts …" : "Guetar contautos...",
     "No results" : "Ensin resultaos",
     "Personal circle" : "Círculu personal",
     "Pending" : "Pendiente",

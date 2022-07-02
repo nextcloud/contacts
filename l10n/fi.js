@@ -119,6 +119,7 @@ OC.L10N.register(
     "Unable to retrieve the contact from the server, please check your network connection." : "Yhteystietoa ei kyetty hakemaan palvelimelta. Ole hyvä ja tarkista yhteytesi internetiin.",
     "An error occurred while trying to move the contact" : "Yhteystietoa siirtäessä tapahtui virhe",
     "An error occurred while trying to copy the contact" : "Yhteystietoa kopioitaessa tapahtui virhe",
+    "Search contacts …" : "Etsi yhteystietoja…",
     "Add to {group}" : "Lisää ryhmään {group}",
     "Remove {type}" : "Poista {type}",
     "Search {types}" : "Hae {types}",

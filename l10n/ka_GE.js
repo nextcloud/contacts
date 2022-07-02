@@ -31,6 +31,7 @@ OC.L10N.register(
     "Cancel" : "უარყოფა",
     "Address book" : "მისამართების წიგნი",
     "New contact" : "ახალი კონტაქტი",
+    "Search contacts …" : "მოძებნეთ კონტაქტები ...",
     "No results" : "შედეგები არაა",
     "Personal circle" : "პირადი წრე",
     "Pending" : "მოლოდინში",

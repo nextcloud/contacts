@@ -49,6 +49,7 @@ OC.L10N.register(
     "Address book" : "Adressebok",
     "New contact" : "Ny kontakt",
     "Syntax error. Cannot open the contact." : "Syntaksfeil. Kan ikke åpne kontakten.",
+    "Search contacts …" : "Søk etter kontakter…",
     "No results" : "Ingen resultater",
     "Personal circle" : "Personlig sirkel",
     "Pending" : "Venter",

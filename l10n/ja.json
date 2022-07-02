@@ -118,6 +118,7 @@
     "Unable to retrieve the contact from the server, please check your network connection." : "サーバーから連絡先を取得できないので、ネットワークの接続をご確認ください。",
     "An error occurred while trying to move the contact" : "連絡先の移動中にエラーが発生しました",
     "An error occurred while trying to copy the contact" : "連絡先のコピー中にエラーが発生しました",
+    "Search contacts …" : "連絡先を検索...",
     "Add to {group}" : "{group}に追加",
     "Remove {type}" : "{type} を削除",
     "Search {types}" : "{types} を検索",

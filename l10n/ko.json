@@ -111,6 +111,7 @@
     "Unable to retrieve the contact from the server, please check your network connection." : "연락처를 가져올 수 없습니다. 네트워크 연결을 확인하세요.",
     "An error occurred while trying to move the contact" : "연락처를 이동하는 중 오류 발생",
     "An error occurred while trying to copy the contact" : "연락처를 복사하는 중 오류 발생",
+    "Search contacts …" : "연락처 검색…",
     "Add to {group}" : "{group}에 추가",
     "Remove {type}" : "{type} 삭제",
     "Search {types}" : "{types} 검색",

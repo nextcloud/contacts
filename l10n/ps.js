@@ -11,6 +11,7 @@ OC.L10N.register(
     "Invalid image" : "انځور سم نه دی",
     "Name" : "نوم",
     "Cancel" : "پرېښول",
+    "Search contacts …" : "اړيکي پلټل ...",
     "Pending" : "د انتظار په حال کې",
     "Close" : "بندول",
     "Circle" : "حلقه",

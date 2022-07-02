@@ -119,6 +119,7 @@ OC.L10N.register(
     "Unable to retrieve the contact from the server, please check your network connection." : "Nepavyko gauti adresato iš serverio, patikrinkite savo tinklo ryšį.",
     "An error occurred while trying to move the contact" : "Bandant perkelti adresatą, įvyko klaida",
     "An error occurred while trying to copy the contact" : "Bandant nukopijuoti adresatą, įvyko klaida",
+    "Search contacts …" : "Ieškoti adresatų…",
     "Add to {group}" : "Pridėti į {group}",
     "Remove {type}" : "Šalinti {type}",
     "Search {types}" : "Ieškoti {types}",

@@ -118,6 +118,7 @@
     "Unable to retrieve the contact from the server, please check your network connection." : "Nepodarilo sa načítať kontakt zo servera, skontrolujte sieťové pripojenie.",
     "An error occurred while trying to move the contact" : "Pri pokuse o presun kontaktu sa vyskytla chyba",
     "An error occurred while trying to copy the contact" : "Pri pokuse o skopírovanie kontaktu sa vyskytla chyba",
+    "Search contacts …" : "Prehľadať kontakty...",
     "Add to {group}" : "Pridať do {group}",
     "Remove {type}" : "Odstrániť {type}",
     "Search {types}" : "Vyhľadať {types}",

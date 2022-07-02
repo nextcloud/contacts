@@ -33,6 +33,7 @@ OC.L10N.register(
     "Cancel" : "لغو",
     "Address book" : "دفترچه آدرس",
     "New contact" : "مخاطب جدید",
+    "Search contacts …" : "جستجو مخاطبین ...",
     "No results" : "نتیجه ای یافت نشد",
     "Personal circle" : "حلقه شخصی",
     "Pending" : "در انتظار",

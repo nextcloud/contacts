@@ -28,6 +28,7 @@ OC.L10N.register(
     "Title" : "Titel",
     "Cancel" : "Kanselleer",
     "New contact" : "Nuwe kontak",
+    "Search contacts …" : "Soek kontakte …",
     "Pending" : "Hangend",
     "Select type" : "Kies tipe",
     "Select Date" : "Kies Datum",

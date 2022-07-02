@@ -14,6 +14,7 @@ OC.L10N.register(
     "Name" : "ຊື່",
     "Company" : "ບໍລິສັດ",
     "Cancel" : "ຍົກເລີກ",
+    "Search contacts …" : "ຄົ້ນຫາຕິດຕໍ່ ...",
     "No results" : "ບໍ່ມີຜົນ",
     "Pending" : "ທີ່ກໍາລັງລໍຖ້າ",
     "Close" : "ປິດ",

@@ -118,6 +118,7 @@
     "Unable to retrieve the contact from the server, please check your network connection." : "No s'ha pogut recuperar el contacte del servidor. Comproveu la connexió de xarxa.",
     "An error occurred while trying to move the contact" : "S'ha produït un error en intentar desplaçar el contacte",
     "An error occurred while trying to copy the contact" : "S'ha produït un error en intentar copiar el contacte",
+    "Search contacts …" : "Cerca contactes …",
     "Add to {group}" : "Afegeix a {group}",
     "Remove {type}" : "Suprimeix {type}",
     "Search {types}" : "Cerqueu {types}",

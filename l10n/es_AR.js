@@ -49,6 +49,7 @@ OC.L10N.register(
     "Address book" : "libreta de direcciones",
     "New contact" : "Nuevo contacto",
     "The contact doesn't exists anymore on the server." : "El contacto ya no existe en el servidor.",
+    "Search contacts …" : "Buscar contactos ...",
     "No results" : "Sin resultados",
     "Personal circle" : "Círculo personal",
     "Pending" : "Pendiente",

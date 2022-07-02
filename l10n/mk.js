@@ -112,6 +112,7 @@ OC.L10N.register(
     "Unable to retrieve the contact from the server, please check your network connection." : "Неможе да се вчита контактот од серверот, проверете ја вашата конекција.",
     "An error occurred while trying to move the contact" : "Настана грешка при обидот за преместување на конктактот",
     "An error occurred while trying to copy the contact" : "Настана грешка при обидот за копирање на конктактот",
+    "Search contacts …" : "Пребарување контакти ...",
     "Add to {group}" : "Додади во {group}",
     "Remove {type}" : "Отстрани {type}",
     "Search {types}" : "Барај {types}",

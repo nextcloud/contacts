@@ -125,6 +125,7 @@ OC.L10N.register(
     "Unable to retrieve the contact from the server, please check your network connection." : "Der Kontakt konnte nicht vom Server abgerufen werden, überprüfen Sie bitte Ihre Netzwerkverbindung.",
     "An error occurred while trying to move the contact" : "Es ist ein Fehler beim Verschieben des Kontakts aufgetreten",
     "An error occurred while trying to copy the contact" : "Es ist ein Fehler beim Kopieren des Kontakts aufgetreten",
+    "Search contacts …" : "Kontakte suchen…",
     "Add to {group}" : "Zur Gruppe {group} hinzufügen",
     "Remove {type}" : "Entferne {type}",
     "Search {types}" : "Suche {types}",

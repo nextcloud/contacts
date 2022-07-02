@@ -30,6 +30,7 @@ OC.L10N.register(
     "Cancel" : "Loobu",
     "Address book" : "Aadressiraamat",
     "New contact" : "Uus kontakt",
+    "Search contacts …" : "Otsi kontakte",
     "No results" : "Vasteid ei leitud",
     "Personal circle" : "Isiklik ring",
     "Pending" : "Ootel",

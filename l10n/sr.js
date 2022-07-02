@@ -90,6 +90,7 @@ OC.L10N.register(
     "Unable to retrieve the contact from the server, please check your network connection." : "Грешка приликом дохватања контакта са сервера, проверите интернет везу.",
     "An error occurred while trying to move the contact" : "Грешка приликом покушаја померања контакта",
     "An error occurred while trying to copy the contact" : "Грешка приликом покушаја копирања контакта",
+    "Search contacts …" : "Претражи контакте ...",
     "Remove {type}" : "Уклони {type}",
     "Search {types}" : "Претражи {types}",
     "No results" : "Нема резултата",

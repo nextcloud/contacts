@@ -120,6 +120,7 @@ OC.L10N.register(
     "Unable to retrieve the contact from the server, please check your network connection." : "Nem sikerült lekérni a névjegyet a kiszolgálóról, ellenőrizze a hálózati kapcsolatot.",
     "An error occurred while trying to move the contact" : "Hiba történt a névjegy áthelyezése során",
     "An error occurred while trying to copy the contact" : "Hiba történt a névjegy másolása során",
+    "Search contacts …" : "Névjegyek keresése…",
     "Add to {group}" : "Hozzáadás a(z) {group} csoporthoz",
     "Remove {type}" : "{type} eltávolítása",
     "Search {types}" : "{types} keresése",

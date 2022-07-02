@@ -27,6 +27,7 @@ OC.L10N.register(
     "Title" : "Judul",
     "Cancel" : "Membatalkan",
     "New contact" : "Kontak baru",
+    "Search contacts …" : "Cari kontak ...",
     "No results" : "Tidak ada hasil",
     "Pending" : "Tunggu",
     "Close" : "Tutup",

@@ -44,6 +44,7 @@ OC.L10N.register(
     "Cancel" : "إلغاء",
     "Address book" : "دفتر العناوين",
     "New contact" : "جهة إتصال جديدة",
+    "Search contacts …" : "البحث عن جهات الإتصال",
     "No results" : "دون أية نتيجة",
     "Personal circle" : "حلقة شخصية",
     "Pending" : "معلّق",

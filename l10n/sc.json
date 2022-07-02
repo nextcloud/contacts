@@ -118,6 +118,7 @@
     "Unable to retrieve the contact from the server, please check your network connection." : "Non faghet a recuperare su cuntatu dae su serbidore, controlla s'istadu de sa connessione.",
     "An error occurred while trying to move the contact" : "Ddoe at àpidu un'errore proende a tramudare su cuntatu",
     "An error occurred while trying to copy the contact" : "Ddoe at àpidu un'errore proende a copiare su cuntatu",
+    "Search contacts …" : "Chirca cuntatos ...",
     "Add to {group}" : "Agiunghe a {group}",
     "Remove {type}" : "Boga {type}",
     "Search {types}" : "Chirca {types}",

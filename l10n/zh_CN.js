@@ -120,6 +120,7 @@ OC.L10N.register(
     "Unable to retrieve the contact from the server, please check your network connection." : "无法从服务器取回联系人，请检查你的网络连接。",
     "An error occurred while trying to move the contact" : "尝试移动联系人时出错",
     "An error occurred while trying to copy the contact" : "尝试复制联系人时出错",
+    "Search contacts …" : "搜索联系人 …",
     "Add to {group}" : "添加到 {group}",
     "Remove {type}" : "移除 {类型}",
     "Search {types}" : "搜索 {类型}",

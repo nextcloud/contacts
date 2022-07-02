@@ -25,6 +25,7 @@ OC.L10N.register(
     "Title" : "ชื่อเรื่อง",
     "Cancel" : "ยกเลิก",
     "New contact" : "รายชื่อผุ้ติดต่อใหม่",
+    "Search contacts …" : "ค้นหารายชื่อผู้ติดต่อ …",
     "No results" : "ไม่มีผลลัพธ์",
     "Pending" : "อยู่ระหว่างดำเนินการ",
     "Close" : "ปิด",

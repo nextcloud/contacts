@@ -27,6 +27,7 @@ OC.L10N.register(
     "Title" : "Títol",
     "Cancel" : "Anullar",
     "New contact" : "Contacte novèl",
+    "Search contacts …" : "Cercar pels contactes…",
     "No results" : "Cap de resultat",
     "Pending" : "En espèra",
     "Close" : "Tampar",

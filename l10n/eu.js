@@ -120,6 +120,7 @@ OC.L10N.register(
     "Unable to retrieve the contact from the server, please check your network connection." : "Ezin izan da kontaktua lortu zerbitzaritik, begiratu internet konexio ona duzun.",
     "An error occurred while trying to move the contact" : "Errorea gertatu da kontaktua mugitzen saiatzerakoan",
     "An error occurred while trying to copy the contact" : "Errorea gertatu da kontaktua kopiatzen saiatzerakoan",
+    "Search contacts …" : "Bilatu kontaktuak...",
     "Add to {group}" : "Gehitu {group} taldera",
     "Remove {type}" : "Kendu {type}",
     "Search {types}" : "Bilatu {types}",

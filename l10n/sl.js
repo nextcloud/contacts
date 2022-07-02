@@ -120,6 +120,7 @@ OC.L10N.register(
     "Unable to retrieve the contact from the server, please check your network connection." : "Ni mogoče pridobiti stika s strežnika. Preverite omrežno povezavo.",
     "An error occurred while trying to move the contact" : "Prišlo je do napake med premikanjem stika",
     "An error occurred while trying to copy the contact" : "Prišlo je do napake med kopiranjem stika",
+    "Search contacts …" : "Poišči med stiki ...",
     "Add to {group}" : "Dodaj skupino {group}",
     "Remove {type}" : "Odstrani {type}",
     "Search {types}" : "Poišči {types}",
