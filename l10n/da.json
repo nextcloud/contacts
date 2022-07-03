@@ -118,6 +118,7 @@
     "Unable to retrieve the contact from the server, please check your network connection." : "Kan ikke hente kontakten fra serveren. Tjek venligst din netværksforbindelse.",
     "An error occurred while trying to move the contact" : "Der opstod en fejl under forsøget på at flytte kontakten",
     "An error occurred while trying to copy the contact" : "Der opstod en fejl under forsøget på at kopiere kontakten",
+    "Search contacts …" : "Søg efter brugere ...",
     "Add to {group}" : "Føj til {gruppe}",
     "Remove {type}" : "Fjern {type}",
     "Search {types}" : "Søg efter {typer}",
