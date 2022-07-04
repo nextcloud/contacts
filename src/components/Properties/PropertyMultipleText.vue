@@ -25,7 +25,8 @@
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:icon="propModel.icon"
-			:readable-name="propModel.readableName" />
+			:readable-name="propModel.readableName"
+			:has-actions="!isReadOnly" />
 
 		<div class="property__row">
 			<!-- type selector -->
@@ -132,3 +133,45 @@ export default {
 }
 
 </script>
+<style lang="scss" scoped>
+.property__label {
+	flex: 1 0;
+	width: 60px;
+	min-width: 60px !important;
+	max-width: 120px;
+	height: 34px;
+	margin: 3px 5px 3px 0 !important;
+	user-select: none;
+	text-align: right;
+	background-size: 16px;
+	line-height: 35px;
+}
+.property__label:not(.multiselect) {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	opacity: 0.7;
+}
+.property__row {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+input:not([type='range']) {
+	margin: 3px 3px 3px 0;
+	padding: 7px 6px;
+	font-size: 13px;
+	background-color: var(--color-main-background);
+	color: var(--color-main-text);
+	outline: none;
+	border-radius: var(--border-radius);
+	cursor: text;
+}
+.property__value {
+	flex: 1 1;
+}
+::v-deep.property__label.multiselect .multiselect__tags {
+	border: none !important;
+}
+
+</style>
