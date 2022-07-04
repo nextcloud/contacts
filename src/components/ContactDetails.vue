@@ -790,6 +790,7 @@ section.contact-details {
 
 	::v-deep .property-masonry {
 		width: 350px;
+		padding: 5px;
 	}
 
 	.property--rev {
@@ -838,5 +839,26 @@ section.contact-details {
 	width: 100%;
 	max-width: 414px;
 	justify-self: center;
+}
+section.contact-details .property-masonry {
+	width: 350px;
+}
+.property__label:not(.multiselect) {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	opacity: 0.7;
+}
+.property__label, .property__label.multiselect {
+	flex: 1 0;
+	width: 60px;
+	min-width: 60px !important;
+	max-width: 120px;
+	height: 34px;
+	margin: 3px 5px 3px 0 !important;
+	user-select: none;
+	text-align: right;
+	background-size: 16px;
+	line-height: 35px;
 }
 </style>
