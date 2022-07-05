@@ -125,7 +125,7 @@ OC.L10N.register(
     "Unable to retrieve the contact from the server, please check your network connection." : "Kişi sunucudan alınamadı. Lütfen ağ bağlantınızı denetleyin.",
     "An error occurred while trying to move the contact" : "Kişi taşınırken bir sorun çıktı",
     "An error occurred while trying to copy the contact" : "Kişi kopyalanırken bir sorun çıktı",
-    "Search contacts …" : "Kişi arama …",
+    "Search contacts …" : "Kişi arama…",
     "Add to {group}" : "{group} grubuna ekle",
     "Remove {type}" : "{type} sil",
     "Search {types}" : "{types} arama",
