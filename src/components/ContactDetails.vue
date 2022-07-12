@@ -239,6 +239,7 @@
 import { showError } from '@nextcloud/dialogs'
 import { stringify } from 'ical.js'
 import debounce from 'debounce'
+// eslint-disable-next-line import/no-unresolved, node/no-missing-import
 import PQueue from 'p-queue'
 import qr from 'qr-image'
 import Vue from 'vue'
