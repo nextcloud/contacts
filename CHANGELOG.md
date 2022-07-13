@@ -1,5 +1,15 @@
 # Changelog
 
+## 4.2.0 - unreleased
+### Added
+- Enforce circle share password
+- Quick search
+### Changed
+- Replaced icons with SVGs
+- Manual date input
+- New and updated translations
+- Updated dependencies
+
 ## 4.1.1 – 2022-05-18
 ### Changed
 - Autosave birthdate
