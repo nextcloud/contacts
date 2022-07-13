@@ -87,10 +87,9 @@ jobs:
           npm run build
 
       - name: Package ${{ env.APP_NAME }} ${{ env.APP_VERSION }}
-        # Try krankerl, fallback to makefile
         run: |
           cd ${{ env.APP_NAME }}
-          krankerl package || make appstore
+          make appstore
 
       - name: Checkout server ${{ fromJSON(steps.appinfo.outputs.result).nextcloud.min-version }}
         continue-on-error: true
