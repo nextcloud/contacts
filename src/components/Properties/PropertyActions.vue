@@ -28,9 +28,10 @@
 			</template>
 			{{ t('contacts', 'Delete') }}
 		</ActionButton>
-		<Actions :is="action"
-			v-for="(action, index) in actions"
-			:key="index" />
+		<component v-for="action in actions"
+			:is="action"
+			:key="action.name"
+			:component="propertyComponent" />
 	</Actions>
 </template>
 
@@ -52,6 +53,10 @@ export default {
 		actions: {
 			type: Array,
 			default: () => [],
+		},
+		propertyComponent: {
+			type: Object,
+			required: true,
 		},
 	},
 
