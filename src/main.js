@@ -34,6 +34,9 @@ import logger from './services/logger'
 import ClickOutside from 'vue-click-outside'
 import VTooltip from '@nextcloud/vue/dist/Directives/Tooltip'
 
+// Global scss sheets
+import '../css/contacts.scss'
+
 // Dialogs css
 import '@nextcloud/dialogs/styles/toast.scss'
 

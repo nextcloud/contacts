@@ -74,8 +74,6 @@
 			padding-right: 24px !important;
 			background-repeat: no-repeat;
 			background-position: right 4px center;
-
-			@include icon-color('triangle-s', 'actions', $color-black, 1, true);
 		}
 		&__content-wrapper {
 			bottom: unset !important;
