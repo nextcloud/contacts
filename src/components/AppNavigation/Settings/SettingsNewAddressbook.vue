@@ -22,7 +22,7 @@
 
 <template>
 	<div class="new-addressbook-entry">
-		<div class="icon-add settings-line__icon" />
+		<IconAdd class="settings-line__icon" />
 		<form id="new-addressbook-form"
 			:disabled="loading"
 			:class="{'icon-loading-small': loading}"
@@ -49,10 +49,13 @@
 
 <script>
 import { showError } from '@nextcloud/dialogs'
+import IconAdd from 'vue-material-design-icons/Plus'
 
 export default {
 	name: 'SettingsNewAddressbook',
-
+	components: {
+		IconAdd,
+	},
 	data() {
 		return {
 			loading: false,
@@ -82,3 +85,13 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+#new-addressbook-form {
+	display: flex;
+	width: calc(100% - 44px);
+}
+.new-addressbook-entry {
+	display: flex;
+	align-items: center;
+}
+</style>
