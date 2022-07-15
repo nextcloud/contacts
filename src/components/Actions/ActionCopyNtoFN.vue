@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<ActionButton icon="icon-up" @click="copyNtoFN">
+	<ActionButton icon="icon-up" @click="copyNToFN">
 		{{ t('contacts', 'Copy to full name') }}
 	</ActionButton>
 </template>
@@ -37,13 +37,12 @@ export default {
 	mixins: [ActionsMixin],
 	methods: {
 		copyNToFN() {
-			console.info(this.component)
-			if (this.component.contact.vCard.hasProperty('n')) {
+			if (this.component.localContact.vCard.hasProperty('n')) {
 				// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
 				// -> John Stevenson
-				const n = this.component.contact.vCard.getFirstPropertyValue('n')
-				this.component.contact.fullName = n.slice(0, 2).reverse().join(' ')
-				this.component.updateContact()
+				const n = this.component.localContact.vCard.getFirstPropertyValue('n')
+				this.component.localContact.fullName = n.slice(0, 2).reverse().join(' ')
+				this.component.$emit('update')
 			}
 		},
 	},
