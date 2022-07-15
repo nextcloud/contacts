@@ -21,7 +21,7 @@
 
 <template>
 	<Modal
-		size="full"
+		size="small"
 		@close="onCancel">
 		<!-- Wrapper for content & navigation -->
 		<div class="entity-picker">
