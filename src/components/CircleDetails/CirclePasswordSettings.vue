@@ -52,7 +52,7 @@
 							:disabled="loading.length > 0"
 							:placeholder="t('contacts', 'Unique password …')"
 							type="text"
-							@keyup.enter="saveUniquePassword" />
+							@keyup.enter="saveUniquePassword">
 						<Button
 							type="tertiary-no-background"
 							:disabled="loading.length > 0 || uniquePassword.length === 0"

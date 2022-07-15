@@ -22,7 +22,7 @@
 
 <template>
 	<div class="sort-contacts">
-		<div class="icon-category-organization settings-line__icon" />
+		<IconList class="settings-line__icon" />
 		<Multiselect
 			id="sort-by"
 			:value="orderKeyOption"
@@ -38,12 +38,14 @@
 
 <script>
 import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import IconList from 'vue-material-design-icons/FormatListBulletedSquare'
 
 export default {
 	name: 'SettingsSortContacts',
 
 	components: {
 		Multiselect,
+		IconList,
 	},
 
 	computed: {
@@ -97,3 +99,8 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+.sort-contacts {
+	display: flex;
+}
+</style>
