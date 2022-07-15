@@ -40,7 +40,6 @@
 			:url="photoUrl"
 			class="contact-header-avatar__photo" />
 
-		<!-- attention, this menu exists twice in this file -->
 		<Actions
 			v-if="!isReadOnly || contact.photo"
 			:force-menu="true"
@@ -83,66 +82,11 @@
 				</ActionButton>
 			</template>
 		</Actions>
-
-		<!-- Big picture display modal -->
-		<Modal v-if="maximizeAvatar"
-			ref="modal"
-			:clear-view-delay="-1"
-			class="contact-header-modal"
-			size="large"
-			:title="contact.displayName"
-			@close="toggleModal">
-			<!-- attention, this menu exists twice in this file -->
-			<template #actions>
-				<template v-if="!isReadOnly">
-					<ActionButton
-						icon="icon-upload"
-						@click="selectFileInput">
-						{{ t('contacts', 'Upload a new picture') }}
-					</ActionButton>
-					<ActionButton
-						icon="icon-folder"
-						@click="selectFilePicker">
-						{{ t('contacts', 'Choose from Files') }}
-					</ActionButton>
-					<ActionButton
-						v-for="network in supportedSocial"
-						:key="network"
-						:icon="'icon-' + network.toLowerCase()"
-						@click="getSocialAvatar(network)">
-						{{ t('contacts', 'Get from ' + network) }}
-					</ActionButton>
-				</template>
-
-				<!-- FIXME: the link seems to have a bigger font size than the button caption -->
-				<ActionLink
-					v-if="contact.photo"
-					:href="`${contact.url}?photo`"
-					icon="icon-download"
-					target="_blank">
-					{{ t('contacts', 'Download picture') }}
-				</ActionLink>
-				<ActionButton
-					v-if="!isReadOnly && contact.photo"
-					icon="icon-delete"
-					@click="removePhoto">
-					{{ t('contacts', 'Delete picture') }}
-				</ActionButton>
-			</template>
-
-			<div class="contact-header-modal__photo-wrapper"
-				@click.exact.self="toggleModal">
-				<img ref="img"
-					:src="photoUrl"
-					class="contact-header-modal__photo">
-			</div>
-		</Modal>
 	</div>
 </template>
 
 <script>
 import Avatar from '@nextcloud/vue/dist/Components/Avatar'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
 import Actions from '@nextcloud/vue/dist/Components/Actions'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
@@ -165,7 +109,6 @@ export default {
 		ActionLink,
 		Actions,
 		Avatar,
-		Modal,
 	},
 
 	props: {
@@ -177,7 +120,6 @@ export default {
 
 	data() {
 		return {
-			maximizeAvatar: false,
 			opened: false,
 			loading: false,
 			photoUrl: undefined,
@@ -377,18 +319,9 @@ export default {
 		},
 
 		/**
-		 * Toggle the full image preview
-		 */
-		toggleModal() {
-			// maximise or minimise avatar photo
-			this.maximizeAvatar = !this.maximizeAvatar
-		},
-
-		/**
 		 * Remove the contact's picture
 		 */
 		removePhoto() {
-			this.maximizeAvatar = false
 			this.contact.vCard.removeAllProperties('photo')
 			this.$store.dispatch('updateContact', this.contact)
 		},
