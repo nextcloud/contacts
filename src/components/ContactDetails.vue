@@ -143,6 +143,7 @@
 			<!-- qrcode -->
 			<Modal v-if="qrcode"
 				id="qrcode-modal"
+				size="small"
 				:clear-view-delay="-1"
 				:title="contact.displayName"
 				@close="closeQrModal">
