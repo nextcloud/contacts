@@ -73,6 +73,7 @@
 			<PropertyActions
 				v-if="!isReadOnly"
 				:actions="actions"
+				:property-component="this"
 				@delete="deleteProperty" />
 		</div>
 	</div>
