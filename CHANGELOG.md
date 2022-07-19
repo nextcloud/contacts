@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.2.0 - unreleased
+## 4.2.0 - 2022-07-19
 ### Added
 - Enforce circle share password
 - Quick search
@@ -9,6 +9,8 @@
 - Manual date input
 - New and updated translations
 - Updated dependencies
+### Fixed
+- Encode group names for x-property-replace header
 
 ## 4.1.1 – 2022-05-18
 ### Changed
