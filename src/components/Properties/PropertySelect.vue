@@ -125,3 +125,29 @@ export default {
 }
 
 </script>
+<style lang="scss" scoped>
+.property__label:not(.multiselect) {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	opacity: 0.7;
+}
+.property__row {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+.property__label, .property__label.multiselect {
+	flex: 1 0;
+	width: 60px;
+	min-width: 60px !important;
+	max-width: 120px;
+	height: 34px;
+	margin: 3px 5px 3px 0 !important;
+	user-select: none;
+	text-align: right;
+	background-size: 16px;
+	line-height: 35px;
+}
+
+</style>
