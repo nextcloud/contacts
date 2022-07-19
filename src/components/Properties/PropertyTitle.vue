@@ -21,7 +21,8 @@
   -->
 
 <template>
-	<h3 class="property__title property__row">
+	<h3 class="property__title property__row"
+		:class="{'align-to-actions': hasActions}">
 		<PropertyTitleIcon :icon="icon" />
 		<div class="property__value property__title--right">
 			{{ readableName }}
@@ -47,6 +48,10 @@ export default {
 			default: '',
 			required: true,
 		},
+		hasActions: {
+			type: Boolean,
+			default: false,
+		}
 	},
 }
 </script>
@@ -61,5 +66,8 @@ export default {
 .property__title .property__title--right {
 	display: flex;
 	justify-content: space-between;
+}
+.align-to-actions {
+	padding-bottom: 10px;
 }
 </style>
