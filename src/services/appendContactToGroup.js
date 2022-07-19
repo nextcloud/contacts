@@ -34,7 +34,7 @@ const appendContactToGroup = async function(contact, groupName) {
 	return axios.patch(contact.url, {}, {
 		headers: {
 			'X-PROPERTY': 'CATEGORIES',
-			'X-PROPERTY-REPLACE': groups.join(','),
+			'X-PROPERTY-REPLACE': groups.map(groupName => encodeURIComponent(groupName)).join(','),
 		},
 	})
 }
