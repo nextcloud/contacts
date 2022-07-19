@@ -28,8 +28,6 @@ namespace OCA\Contacts\Dav;
 
 use Sabre\CardDAV\Card;
 use Sabre\DAV;
-use Sabre\DAV\INode;
-use Sabre\DAV\PropPatch;
 use Sabre\DAV\Server;
 use Sabre\DAV\ServerPlugin;
 use Sabre\HTTP\RequestInterface;
@@ -85,9 +83,13 @@ class PatchPlugin extends ServerPlugin {
 	/**
 	 * Adds all CardDAV-specific properties
 	 *
-	 * @param PropPatch $propPatch
-	 * @param INode $node
+	 * @param RequestInterface $request
+	 * @param ResponseInterface $response
 	 * @return bool
+	 * @throws DAV\Exception\BadRequest
+	 * @throws DAV\Exception\NotAuthenticated
+	 * @throws DAV\Exception\NotFound
+	 * @throws \Sabre\DAVACL\Exception\NeedPrivileges
 	 */
 	public function httpPatch(RequestInterface $request, ResponseInterface $response): bool {
 		$path = $request->getPath();
@@ -118,6 +120,8 @@ class PatchPlugin extends ServerPlugin {
 				throw new DAV\Exception\BadRequest('No valid "X-Property-Append" or "X-Property-Replace" found in the headers');
 			}
 		}
+
+		$propertyData = rawurldecode($propertyData);
 
 		// Init contact
 		$vCard = Reader::read($node->get());
