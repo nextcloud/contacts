@@ -152,7 +152,7 @@
 
 		<!-- settings -->
 		<template #footer>
-			<AppNavigationSettings v-if="!loading">
+			<AppNavigationSettings v-if="!loading" :title="appNavigationSettingsTitle">
 				<SettingsSection />
 			</AppNavigationSettings>
 		</template>
@@ -248,6 +248,9 @@ export default {
 	},
 
 	computed: {
+		appNavigationSettingsTitle() {
+			return t('contacts', 'Contacts settings')
+		},
 		// store variables
 		circles() {
 			return this.$store.getters.getCircles
