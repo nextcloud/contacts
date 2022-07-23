@@ -31,6 +31,7 @@ OC.L10N.register(
     "Group name" : "Grup adı",
     "Circles" : "Çevreler",
     "Create a new circle" : "Yeni bir çevre ekle",
+    "Contacts settings" : "Kişiler ayarları",
     "Show all groups" : "Tüm grupları görüntüle",
     "Collapse groups" : "Grupları daralt",
     "Show all circles" : "Tüm çevreleri görüntüle",

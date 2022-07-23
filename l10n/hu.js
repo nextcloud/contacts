@@ -31,6 +31,7 @@ OC.L10N.register(
     "Group name" : "Csoport neve",
     "Circles" : "Körök",
     "Create a new circle" : "Új kör létrehozása",
+    "Contacts settings" : "Névjegyek beállításai",
     "Show all groups" : "Összes csoport megjelenítése",
     "Collapse groups" : "Csoportok összecsukása",
     "Show all circles" : "Összes kör megjelenítése",

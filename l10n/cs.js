@@ -31,6 +31,7 @@ OC.L10N.register(
     "Group name" : "Název skupiny",
     "Circles" : "Okruhy",
     "Create a new circle" : "Vytvořit nový okruh",
+    "Contacts settings" : "Nastavení pro Kontakty",
     "Show all groups" : "Zobrazit všechny skupiny",
     "Collapse groups" : "Sbalit skupiny",
     "Show all circles" : "Zobrazit všechny okruhy",

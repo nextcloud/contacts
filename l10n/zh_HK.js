@@ -31,6 +31,7 @@ OC.L10N.register(
     "Group name" : "群組名稱",
     "Circles" : "社交圈子",
     "Create a new circle" : "創建新社交圈子",
+    "Contacts settings" : " 通訊錄設定",
     "Show all groups" : "顯示所有群組",
     "Collapse groups" : "收合群組",
     "Show all circles" : "顯示所有社交圈子",
