@@ -31,6 +31,7 @@ OC.L10N.register(
     "Group name" : "Taldearen izena",
     "Circles" : "Zirkuluak",
     "Create a new circle" : "Sortu zirkulu berria",
+    "Contacts settings" : "Kontaktuen ezarpenak",
     "Show all groups" : "Erakutsi talde guztiak",
     "Collapse groups" : "Tolestu taldeak",
     "Show all circles" : "Erakutsi zirkulu guztiak",
