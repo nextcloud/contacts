@@ -12,6 +12,9 @@ on:
       - main
       - stable*
 
+permissions:
+  contents: read
+
 jobs:
   xml-linters:
     runs-on: ubuntu-latest

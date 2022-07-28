@@ -10,6 +10,9 @@ on:
 env:
   APP_NAME: contacts
 
+permissions:
+  contents: read
+
 jobs:
   php:
     runs-on: ubuntu-latest
