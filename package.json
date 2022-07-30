@@ -85,7 +85,7 @@
 		"@nextcloud/typings": "^1.4.3",
 		"@nextcloud/webpack-vue-config": "^5.1.0",
 		"@types/jest": "^27.4.1",
-		"@typescript-eslint/parser": "^5.30.7",
+		"@typescript-eslint/parser": "^5.31.0",
 		"@vue/vue2-jest": "^27",
 		"babel-jest": "^27",
 		"eslint-import-resolver-typescript": "^3.3.0",
