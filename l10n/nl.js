@@ -75,6 +75,8 @@ OC.L10N.register(
     "Address books" : "Adresboeken",
     "An error happened during the config change" : "Er trad een fout op bij de config-wijziging",
     "Password protection" : "Wachtwoordbeveiliging",
+    "Enforce password protection on files shared to this circle" : "Dwing wachtwoordbeveiliging af voor bestanden gedeeld in deze kring",
+    "Use a unique password for all shares to this circles" : "Gebruik een uniek paswoord voor alle shares in deze kringen",
     "Save" : "Opslaan",
     "Circle name" : "Naam kring",
     "Circle owned by {owner}" : "Kring is van {owner}",
