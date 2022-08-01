@@ -24,7 +24,7 @@
 	<AppContentList>
 		<div class="contacts-list__header">
 			<div class="search-contacts-field">
-				<input type="text" :placeholder="t('contacts', 'Search contacts …')" v-model="query">
+				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
 			</div>
 		</div>
 		<VirtualList ref="scroller"
@@ -71,10 +71,6 @@ export default {
 		}
 	},
 
-	mounted() {
-		this.query = this.searchQuery
-	},
-
 	computed: {
 		selectedContact() {
 			return this.$route.params.selectedContact
@@ -105,6 +101,10 @@ export default {
 				})
 			}
 		},
+	},
+
+	mounted() {
+		this.query = this.searchQuery
 	},
 
 	methods: {

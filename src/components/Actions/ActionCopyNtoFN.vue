@@ -21,18 +21,23 @@
   -->
 
 <template>
-	<ActionButton icon="icon-up" @click="copyNToFN">
+	<ActionButton @click="copyNToFN">
+		<template #icon>
+			<IconCopy :size="20" />
+		</template>
 		{{ t('contacts', 'Copy to full name') }}
 	</ActionButton>
 </template>
 <script>
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionsMixin from '../../mixins/ActionsMixin'
+import IconCopy from 'vue-material-design-icons/ContentCopy'
 
 export default {
 	name: 'ActionCopyNtoFN',
 	components: {
 		ActionButton,
+		IconCopy,
 	},
 	mixins: [ActionsMixin],
 	methods: {

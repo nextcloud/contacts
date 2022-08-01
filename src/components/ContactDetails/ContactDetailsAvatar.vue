@@ -70,14 +70,18 @@
 				<!-- FIXME: the link seems to have a bigger font size than the button caption -->
 				<ActionLink
 					:href="`${contact.url}?photo`"
-					icon="icon-download"
 					target="_blank">
+					<template #icon>
+						<IconDownload :size="20" />
+					</template>
 					{{ t('contacts', 'Download picture') }}
 				</ActionLink>
 				<ActionButton
 					v-if="!isReadOnly"
-					icon="icon-delete"
 					@click="removePhoto">
+					<template #icon>
+						<IconDelete :size="20" />
+					</template>
 					{{ t('contacts', 'Delete picture') }}
 				</ActionButton>
 			</template>
@@ -90,6 +94,8 @@ import Avatar from '@nextcloud/vue/dist/Components/Avatar'
 import Actions from '@nextcloud/vue/dist/Components/Actions'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
+import IconDownload from 'vue-material-design-icons/Download'
+import IconDelete from 'vue-material-design-icons/Delete'
 
 import { showError, showInfo, getFilePickerBuilder, showSuccess } from '@nextcloud/dialogs'
 import { generateUrl, generateRemoteUrl } from '@nextcloud/router'
@@ -109,6 +115,8 @@ export default {
 		ActionLink,
 		Actions,
 		Avatar,
+		IconDownload,
+		IconDelete,
 	},
 
 	props: {

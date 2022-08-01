@@ -51,7 +51,7 @@ export default {
 		hasActions: {
 			type: Boolean,
 			default: false,
-		}
+		},
 	},
 }
 </script>
