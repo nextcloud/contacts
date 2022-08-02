@@ -30,13 +30,17 @@
 			</span>
 
 			<!-- sharing button -->
-			<a v-if="!addressbook.readOnly"
+			<Button v-if="!addressbook.readOnly"
 				v-tooltip.top="sharedWithTooltip"
 				:class="{'addressbook__share--shared': hasShares}"
 				:title="sharedWithTooltip"
 				href="#"
-				class="addressbook__share icon-shared"
-				@click="toggleShare" />
+				class="addressbook__share"
+				@click="toggleShare">
+				<template #icon>
+					<IconShare :size="20" />
+				</template>
+			</Button>
 
 			<!-- popovermenu -->
 			<Actions class="addressbook__menu" menu-align="right">
@@ -105,9 +109,11 @@ import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
 import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
+import Button from '@nextcloud/vue/dist/Components/Button'
 import IconDownload from 'vue-material-design-icons/Download'
 import IconRename from 'vue-material-design-icons/Pencil'
 import IconContact from 'vue-material-design-icons/AccountMultiple'
+import IconShare from 'vue-material-design-icons/ShareVariant'
 import ShareAddressBook from './SettingsAddressbookShare'
 import { showError } from '@nextcloud/dialogs'
 
@@ -122,9 +128,11 @@ export default {
 		ActionInput,
 		ActionLink,
 		Actions,
+		Button,
 		IconDownload,
 		IconRename,
 		IconContact,
+		IconShare,
 		ShareAddressBook,
 	},
 
@@ -327,5 +335,10 @@ export default {
 	li {
 		width: calc(100% - 44px);
 	}
+}
+.addressbook__share {
+	background-color: transparent;
+	border: none;
+	box-shadow: none;
 }
 </style>

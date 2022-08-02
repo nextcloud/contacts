@@ -119,22 +119,32 @@
 				<!-- menu actions -->
 				<template #actions-menu>
 					<ActionLink :href="contact.url"
-						:download="`${contact.displayName}.vcf`"
-						icon="icon-download">
-						{{ t('contacts', 'Download') }}
+						:download="`${contact.displayName}.vcf`">
+						<template #icon>
+							<IconDownload :size="20" />
+						</template>
+						{{ t('contacts', 'iDownload') }}
 					</ActionLink>
 					<!-- user can clone if there is at least one option available -->
 					<ActionButton v-if="isReadOnly && addressbooksOptions.length > 0"
 						ref="cloneAction"
 						:close-after-click="true"
-						icon="icon-clone"
 						@click="cloneContact">
+						<template #icon>
+							<IconCopy :size="20" />
+						</template>
 						{{ t('contacts', 'Clone contact') }}
 					</ActionButton>
-					<ActionButton icon="icon-qrcode" :close-after-click="true" @click="showQRcode">
+					<ActionButton :close-after-click="true" @click="showQRcode">
+						<template #icon>
+							<IconQr :size="20" />
+						</template>
 						{{ t('contacts', 'Generate QR Code') }}
 					</ActionButton>
-					<ActionButton v-if="!isReadOnly" icon="icon-delete" @click="deleteContact">
+					<ActionButton v-if="!isReadOnly" @click="deleteContact">
+						<template #icon>
+							<IconDelete :size="20" />
+						</template>
 						{{ t('contacts', 'Delete') }}
 					</ActionButton>
 				</template>
@@ -253,6 +263,10 @@ import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
 import IconContact from 'vue-material-design-icons/AccountMultiple'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import IconDownload from 'vue-material-design-icons/Download'
+import IconDelete from 'vue-material-design-icons/Delete'
+import IconQr from 'vue-material-design-icons/Qrcode'
+import IconCopy from 'vue-material-design-icons/ContentCopy'
 
 import rfcProps from '../models/rfcProps'
 import validate from '../services/validate'
@@ -281,6 +295,10 @@ export default {
 		DetailsHeader,
 		EmptyContent,
 		IconContact,
+		IconDownload,
+		IconDelete,
+		IconQr,
+		IconCopy,
 		Modal,
 		Multiselect,
 		PropertyGroups,

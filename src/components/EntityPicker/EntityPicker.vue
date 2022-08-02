@@ -57,7 +57,10 @@
 				</transition-group>
 
 				<!-- No recommendations -->
-				<EmptyContent v-if="dataSet.length === 0" icon="icon-search">
+				<EmptyContent v-if="dataSet.length === 0">
+					<template #icon>
+						<IconSearch :size="20" />
+					</template>
 					{{ t('contacts', 'Search for people to add') }}
 				</EmptyContent>
 
@@ -70,7 +73,10 @@
 					:estimate-size="44"
 					:extra-props="{ selection: selectionSet, onClick }" />
 
-				<EmptyContent v-else-if="searchQuery" icon="icon-search">
+				<EmptyContent v-else-if="searchQuery">
+					<template #icon>
+						<IconSearch :size="20" />
+					</template>
 					{{ t('contacts', 'No results') }}
 				</EmptyContent>
 
@@ -97,6 +103,7 @@
 import debounce from 'debounce'
 import VirtualList from 'vue-virtual-scroll-list'
 import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import IconSearch from 'vue-material-design-icons/Magnify'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 
 import EntityBubble from './EntityBubble'
@@ -108,6 +115,7 @@ export default {
 	components: {
 		EmptyContent,
 		EntityBubble,
+		IconSearch,
 		Modal,
 		VirtualList,
 	},

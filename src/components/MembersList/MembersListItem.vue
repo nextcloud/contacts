@@ -38,15 +38,19 @@
 		<template v-if="!loading && isPendingApproval && circle.canManageMembers">
 			<Actions>
 				<ActionButton
-					icon="icon-checkmark"
 					@click="acceptMember">
+					<template #icon>
+						<IconCheck :size="20" />
+					</template>
 					{{ t('contacts', 'Accept membership request') }}
 				</ActionButton>
 			</Actions>
 			<Actions>
 				<ActionButton
-					icon="icon-close"
 					@click="deleteMember">
+					<template #icon>
+						<IconClose :size="20" />
+					</template>
 					{{ t('contacts', 'Reject membership request') }}
 				</ActionButton>
 			</Actions>
@@ -85,7 +89,10 @@
 						:size="16"
 						decorative />
 				</ActionButton>
-				<ActionButton v-else-if="canDelete" icon="icon-delete" @click="deleteMember">
+				<ActionButton v-else-if="canDelete" @click="deleteMember">
+					<template #icon>
+						<IconDelete :size="20" />
+					</template>
 					{{ t('contacts', 'Remove member') }}
 				</ActionButton>
 			</template>
@@ -101,6 +108,9 @@ import ListItemIcon from '@nextcloud/vue/dist/Components/ListItemIcon'
 import ActionSeparator from '@nextcloud/vue/dist/Components/ActionSeparator'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionText from '@nextcloud/vue/dist/Components/ActionText'
+import IconDelete from 'vue-material-design-icons/Delete'
+import IconCheck from 'vue-material-design-icons/Check'
+import IconClose from 'vue-material-design-icons/Close'
 
 import ExitToApp from 'vue-material-design-icons/ExitToApp'
 import ShieldCheck from 'vue-material-design-icons/ShieldCheck'
@@ -117,6 +127,9 @@ export default {
 		ActionButton,
 		ActionSeparator,
 		ActionText,
+		IconDelete,
+		IconCheck,
+		IconClose,
 		ExitToApp,
 		ListItemIcon,
 		ShieldCheck,

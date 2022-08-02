@@ -28,8 +28,8 @@
 			</template>
 			{{ t('contacts', 'Delete') }}
 		</ActionButton>
-		<component v-for="action in actions"
-			:is="action"
+		<component :is="action"
+			v-for="action in actions"
 			:key="action.name"
 			:component="propertyComponent" />
 	</Actions>

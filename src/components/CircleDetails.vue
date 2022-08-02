@@ -64,7 +64,7 @@
 			</a>
 
 			<!-- Only show the join button if the circle is accepting requests -->
-			<button v-if="!circle.isPendingMember && !circle.isMember && circle.canJoin"
+			<Button v-if="!circle.isPendingMember && !circle.isMember && circle.canJoin"
 				:disabled="loadingJoin"
 				class="primary"
 				@click="joinCircle">
@@ -72,7 +72,7 @@
 					:size="16"
 					decorative />
 				{{ t('contacts', 'Request to join') }}
-			</button>
+			</Button>
 		</section>
 
 		<section v-if="showDescription" class="circle-details-section">
@@ -102,22 +102,25 @@
 
 		<section class="circle-details-section">
 			<!-- leave circle -->
-			<button v-if="circle.canLeave"
+			<Button v-if="circle.canLeave"
 				class="circle-details__action-copy-link"
 				@click="confirmLeaveCircle">
 				<Logout slot="icon"
 					:size="16"
 					decorative />
 				{{ t('contacts', 'Leave circle') }}
-			</button>
+			</Button>
 
 			<!-- delete circle -->
-			<button v-if="circle.canDelete"
-				class="circle-details__action-delete icon-delete-white"
+			<Button v-if="circle.canDelete"
+				class="circle-details__action-delete"
 				href="#"
 				@click.prevent.stop="confirmDeleteCircle">
+				<template #icon>
+					<IconDelete :size="20" />
+				</template>
 				{{ t('contacts', 'Delete circle') }}
-			</button>
+			</Button>
 		</section>
 	</AppContentDetails>
 </template>
@@ -128,10 +131,12 @@ import debounce from 'debounce'
 
 import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails'
 import Avatar from '@nextcloud/vue/dist/Components/Avatar'
+import Button from '@nextcloud/vue/dist/Components/Button'
 import RichContenteditable from '@nextcloud/vue/dist/Components/RichContenteditable'
 
 import Login from 'vue-material-design-icons/Login'
 import Logout from 'vue-material-design-icons/Logout'
+import IconDelete from 'vue-material-design-icons/Delete'
 
 import { CircleEdit, editCircle } from '../services/circles.ts'
 import CircleActionsMixin from '../mixins/CircleActionsMixin'
@@ -146,12 +151,14 @@ export default {
 	components: {
 		AppContentDetails,
 		Avatar,
+		Button,
 		CircleConfigs,
 		CirclePasswordSettings,
 		ContentHeading,
 		DetailsHeader,
 		Login,
 		Logout,
+		IconDelete,
 		RichContenteditable,
 	},
 
