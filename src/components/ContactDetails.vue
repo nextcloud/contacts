@@ -123,7 +123,7 @@
 						<template #icon>
 							<IconDownload :size="20" />
 						</template>
-						{{ t('contacts', 'iDownload') }}
+						{{ t('contacts', 'Download') }}
 					</ActionLink>
 					<!-- user can clone if there is at least one option available -->
 					<ActionButton v-if="isReadOnly && addressbooksOptions.length > 0"
