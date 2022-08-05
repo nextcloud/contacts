@@ -25,7 +25,7 @@ namespace OCA\Contacts\Service\Social;
 
 class GravatarProvider implements ISocialProvider {
 	/** @var string */
-	public $name = "gravatar";
+	public $name = 'gravatar';
 
 	public function __construct() {
 	}
@@ -38,7 +38,7 @@ class GravatarProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-		if (!array_key_exists("EMAIL",$contact)) {
+		if (!array_key_exists('EMAIL', $contact)) {
 			return false;
 		}
 		$emails = $contact['EMAIL'];
@@ -59,7 +59,7 @@ class GravatarProvider implements ISocialProvider {
 			foreach ($emails as $email) {
 				$hash = md5(strtolower(trim($email['value'])));
 				$recipe = 'https://www.gravatar.com/avatar/{hash}?s=720&d=404';
-				$connector = str_replace("{hash}", $hash, $recipe);
+				$connector = str_replace('{hash}', $hash, $recipe);
 				$urls[] = $connector;
 			}
 		}

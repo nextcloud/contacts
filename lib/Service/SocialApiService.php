@@ -113,7 +113,7 @@ class SocialApiService {
 
 		if ($version >= 4.0) {
 			// overwrite photo
-			$contact['PHOTO'] = "data:" . $imageType . ";base64," . $photo;
+			$contact['PHOTO'] = 'data:' . $imageType . ';base64,' . $photo;
 		} elseif ($version >= 3.0) {
 			// add new photo
 			$imageType = str_replace('image/', '', $imageType);

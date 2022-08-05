@@ -60,14 +60,14 @@ class XingProviderTest extends TestCase {
 	public function dataProviderSupportsContact() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "username1", "type" => "xing"],
-				["value" => "username2", "type" => "xing"]
+				['value' => 'username1', 'type' => 'xing'],
+				['value' => 'username2', 'type' => 'xing']
 			]
 		];
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
+				['value' => 'one', "type" => "social2"],
 				["value" => "two", "type" => "social1"]
 			]
 		];

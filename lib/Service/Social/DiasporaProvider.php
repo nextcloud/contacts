@@ -34,7 +34,7 @@ class DiasporaProvider implements ISocialProvider {
 	private $looping;
 
 	/** @var string */
-	public $name = "diaspora";
+	public $name = 'diaspora';
 
 	public function __construct(IClientService $httpClient) {
 		$this->httpClient = $httpClient->NewClient();
@@ -49,7 +49,7 @@ class DiasporaProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-		if (!array_key_exists("X-SOCIALPROFILE",$contact)) {
+		if (!array_key_exists('X-SOCIALPROFILE', $contact)) {
 			return false;
 		}
 		$socialprofiles = $this->getProfileIds($contact);
@@ -91,7 +91,7 @@ class DiasporaProvider implements ISocialProvider {
 
 			$avatar = '/.*<logo>(.*)<\/logo>.*/';
 			if (preg_match($avatar, $htmlResult, $matches)) {
-				return (str_replace("small", "large", $matches[1]));
+				return (str_replace('small', 'large', $matches[1]));
 			}
 			// keyword not found, second try:
 			if (!$this->looping) {
@@ -106,7 +106,7 @@ class DiasporaProvider implements ISocialProvider {
 			return null;
 		}
 	}
-  
+
 	/**
 	 * Returns all possible profile ids for contact
 	 *
@@ -130,7 +130,7 @@ class DiasporaProvider implements ISocialProvider {
 		}
 		return $profileIds;
 	}
-	
+
 	/**
 	 * Returns the profile-id
 	 *

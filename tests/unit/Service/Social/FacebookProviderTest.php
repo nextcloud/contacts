@@ -60,15 +60,15 @@ class FacebookProviderTest extends TestCase {
 	public function dataProviderSupportsContact() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "123124123", "type" => "facebook"],
-				["value" => "23426523423", "type" => "facebook"]
+				['value' => '123124123', 'type' => 'facebook'],
+				['value' => '23426523423', 'type' => 'facebook']
 			]
 		];
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 
@@ -89,19 +89,19 @@ class FacebookProviderTest extends TestCase {
 	public function dataProviderGetImageUrls() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "123456", "type" => "facebook"],
-				["value" => "7891011", "type" => "facebook"]
+				['value' => '123456', 'type' => 'facebook'],
+				['value' => '7891011', 'type' => 'facebook']
 			]
 		];
 		$contactWithSocialUrls = [
-			"https://graph.facebook.com/123456/picture?width=720",
-			"https://graph.facebook.com/7891011/picture?width=720",
+			'https://graph.facebook.com/123456/picture?width=720',
+			'https://graph.facebook.com/7891011/picture?width=720',
 		];
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 		$contactWithoutSocialUrls = [];
@@ -129,11 +129,11 @@ class FacebookProviderTest extends TestCase {
 	public function testGetImageUrlLookup() {
 		$contact = [
 			'X-SOCIALPROFILE' => [
-				["value" => "username1", "type" => "facebook"],
+				['value' => 'username1', 'type' => 'facebook'],
 			]
 		];
-		$url1 = "https://facebook.com/username1";
-		$url2 = "https://graph.facebook.com/1234567/picture?width=720";
+		$url1 = 'https://facebook.com/username1';
+		$url2 = 'https://graph.facebook.com/1234567/picture?width=720';
 		$html1 = '"entity_id":"1234567"';
 
 		$this->response
