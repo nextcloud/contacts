@@ -6,7 +6,8 @@
 .gitlab-ci.yml
 .idea
 .nextcloudignore
-.php_cs.dist
+.php-cs-fixer.cache
+.php-cs-fixer.dist.php
 .scrutinizer.yml
 .stylelintignore
 .stylelintrc
