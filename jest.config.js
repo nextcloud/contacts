@@ -1,4 +1,4 @@
-const esModules = ['p-limit', 'yocto-queue'].join('|')
+const esModules = ['p-limit', 'yocto-queue', 'vue-material-design-icons'].join('|')
 
 module.exports = {
 	preset: 'ts-jest',
