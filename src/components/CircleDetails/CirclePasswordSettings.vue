@@ -42,7 +42,7 @@
 					:disabled="loading.length > 0"
 					wrapper-element="li"
 					@update:checked="changeUseUniquePassword">
-					{{ t('contacts', 'Use a unique password for all shares to this circles') }}
+					{{ t('contacts', 'Use a unique password for all shares to this circle') }}
 				</CheckboxRadioSwitch>
 
 				<li class="unique-password">
