@@ -77,7 +77,6 @@ OC.L10N.register(
     "An error happened during the config change" : "V průběhu měnění nastavení došlo k chybě",
     "Password protection" : "Ochrana heslem",
     "Enforce password protection on files shared to this circle" : "Vynutit ochranu heslem pro soubory nasdílené tomuto okruhu",
-    "Use a unique password for all shares to this circles" : "Použít neopakující se heslo pro veškerá sdílení tomuto okruhu",
     "Unique password …" : "Neopakující se heslo…",
     "Save" : "Uložit",
     "Change unique password" : "Změnit neopakující se heslo",

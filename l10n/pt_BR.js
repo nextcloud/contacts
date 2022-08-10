@@ -77,7 +77,6 @@ OC.L10N.register(
     "An error happened during the config change" : "Ocorreu um erro durante a mudança de configuração",
     "Password protection" : "Proteção de senha",
     "Enforce password protection on files shared to this circle" : "Impor proteção por senha em arquivos compartilhados com este círculo",
-    "Use a unique password for all shares to this circles" : "Use uma senha exclusiva para todos os compartilhamentos nestes círculos",
     "Unique password …" : "Senha exclusiva…",
     "Save" : "Salvar",
     "Change unique password" : "Alterar senha exclusiva",

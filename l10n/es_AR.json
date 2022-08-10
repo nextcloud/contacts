@@ -75,7 +75,6 @@
     "An error happened during the config change" : "Ha ocurrido un error durante el cambio de la configuración",
     "Password protection" : "Protección con contraseña",
     "Enforce password protection on files shared to this circle" : "Exigir la protección por contraseña de los archivos compartidos en este círculo",
-    "Use a unique password for all shares to this circles" : "Utilice una contraseña única para todos los recursos compartidos de este círculo",
     "Unique password …" : "Contraseña única ...",
     "Save" : "Guardar",
     "Change unique password" : "Cambiar la contraseña única",

@@ -77,7 +77,6 @@ OC.L10N.register(
     "An error happened during the config change" : "配置更改期間發生錯誤",
     "Password protection" : "密碼保護",
     "Enforce password protection on files shared to this circle" : "對分享到此圈子的檔案實施密碼保護",
-    "Use a unique password for all shares to this circles" : "對此圈子的所有分享使用獨一無二的密碼",
     "Unique password …" : "獨一無二的密碼 ...",
     "Save" : "保存",
     "Change unique password" : "更改獨一無二的密碼",

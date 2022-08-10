@@ -76,7 +76,6 @@ OC.L10N.register(
     "An error happened during the config change" : "Παρουσιάστηκε σφάλμα κατά την αλλαγή της ρύθμισης",
     "Password protection" : "Προστασία συνθηματικού",
     "Enforce password protection on files shared to this circle" : "Επιβολή προστασίας με κωδικό πρόσβασης σε κοινόχρηστα αρχεία αυτού του κύκλου",
-    "Use a unique password for all shares to this circles" : "Χρησιμοποιήστε έναν μοναδικό κωδικό πρόσβασης για όλα τα κοινόχρηστα στοιχεία σε αυτόν τον κύκλο",
     "Unique password …" : "Μοναδικός κωδικός πρόσβασης…",
     "Save" : "Αποθήκευση",
     "Change unique password" : "Αλλαγή μοναδικού κωδικού πρόσβασης",

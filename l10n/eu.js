@@ -77,7 +77,6 @@ OC.L10N.register(
     "An error happened during the config change" : "Errore bat gertatu da ezarpenak aldatzerakoan",
     "Password protection" : "Pasahitz bidezko babesa",
     "Enforce password protection on files shared to this circle" : "Erabili pasahitz babesa zirkulu honekin partekatutako fitxategietan",
-    "Use a unique password for all shares to this circles" : "Erabili pasahitz esklusibo bat zirkulu hau partekatzeko",
     "Unique password …" : "Pasahitz bakarra…",
     "Save" : "Gorde",
     "Change unique password" : "Aldatu pasahitz bakarra",
