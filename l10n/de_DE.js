@@ -77,6 +77,7 @@ OC.L10N.register(
     "An error happened during the config change" : "Bei der Konfigurationsänderung ist ein Fehler aufgetreten",
     "Password protection" : "Passwortschutz",
     "Enforce password protection on files shared to this circle" : "Passwortschutz für Dateien erzwingen, die für diesen Kreis freigegeben sind.",
+    "Use a unique password for all shares to this circle" : "Ein eindeutiges Passwort für alle Freigaben in diesem Kreis verwenden",
     "Unique password …" : "Eindeutiges Passwort …",
     "Save" : "Speichern",
     "Change unique password" : "Eindeutiges Passwort ändern",
