@@ -77,6 +77,7 @@ OC.L10N.register(
     "An error happened during the config change" : "Yapılandırma değiştirilirken bir sorun çıktı",
     "Password protection" : "Parola koruması",
     "Enforce password protection on files shared to this circle" : "Bu çevreyle paylaşılan dosyalara parola koruması uygulansın",
+    "Use a unique password for all shares to this circle" : "Bu çevrelerdeki tüm paylaşımlar için benzersiz bir parola kullanılsın",
     "Unique password …" : "Benzersiz parola…",
     "Save" : "Kaydet",
     "Change unique password" : "Benzersiz parolayı değiştir",
