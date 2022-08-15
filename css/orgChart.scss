@@ -1,9 +1,19 @@
-.chart-container {
-    height: 100%;
-    background-color: var(--color-background-dark);
+.orgchart-container {
+    display: flex;
+    flex-direction: column;
 
-	.svg-chart-container {
-		width: 100%;
-        height: auto;
-	}
+    .chart-menu {
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .chart-container {
+        height: 100%;
+        background-color: var(--color-background-dark);
+
+        .svg-chart-container {
+            width: 100%;
+            height: auto;
+        }
+    }
 }

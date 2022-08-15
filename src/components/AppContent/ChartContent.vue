@@ -9,6 +9,7 @@ import AppContent from '@nextcloud/vue/dist/Components/AppContent'
 import { GROUP_ALL_CONTACTS } from '../../models/constants.ts'
 
 import OrgChart from '../OrgChart.vue'
+import { getChart } from '../../utils/chartUtils'
 
 import { generateUrl } from '@nextcloud/router'
 
@@ -32,25 +33,37 @@ export default {
 	},
 	computed: {
 		transformData() {
-			const tempContacts = Object.keys(this.contactsList || {})
-				.reduce((prev, cur) => {
-					const contact = this.contactsList[cur]
-					if (!contact.orgManager) return prev
-
-					// if (contact.orgManager !== 'HEAD' && !this.contactsList.find(c => contact.orgManager === c.uid)) return prev
-
-					return [...prev, {
-						nodeId: contact.uid,
-						parentNodeId: contact.orgManager === 'HEAD' ? null : contact.orgManager.split('~')[0],
-						fullName: contact.displayName,
-						photoUrl: `${contact.url}?photo`,
-						title: contact.title,
+			const headManagers = []
+			const tempContacts = Object.keys(this.contactsList || {}).filter(key => this.contactsList[key].orgManager && this.contactsList[key].orgManager !== 'HEAD').reduce((prev, cur) => {
+				const contact = this.contactsList[cur]
+				const orgManager = this.contactsList[contact.orgManager]
+				prev.push({
+					nodeId: contact.uid,
+					parentNodeId: orgManager?.uid,
+					fullName: contact.displayName,
+					org: contact.org,
+					photoUrl: `${contact.url}?photo`,
+					title: contact.title,
+					link: generateUrl(`apps/contacts/${GROUP_ALL_CONTACTS}/${cur}`),
+					expanded: !contact.orgManager,
+				})
+				if (orgManager && (!orgManager.orgManager || orgManager.orgManager === 'HEAD') && !headManagers.includes(orgManager?.uid)) {
+					prev.push({
+						nodeId: orgManager.uid,
+						parentNodeId: null,
+						fullName: orgManager.displayName,
+						org: orgManager.org,
+						photoUrl: `${orgManager.url}?photo`,
+						title: orgManager.title,
 						link: generateUrl(`apps/contacts/${GROUP_ALL_CONTACTS}/${cur}`),
-						expanded: contact.orgManager === 'HEAD',
-					}]
-				}, [])
+						expanded: true,
+					})
+					headManagers.push(orgManager?.uid)
+				}
+				return prev
+			}, [])
 
-			return tempContacts.filter(c => !c.parentNodeId || (tempContacts.find(tc => tc.nodeId === c.parentNodeId) && c.nodeId !== c.parentNodeId))
+			return headManagers.map(id => getChart(tempContacts, id))
 		},
 	},
 }
