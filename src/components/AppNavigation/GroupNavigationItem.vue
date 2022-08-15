@@ -23,24 +23,36 @@
 	<AppNavigationItem
 		:key="group.key"
 		:to="group.router"
-		:title="group.name"
-		:icon="group.icon">
+		:title="group.name">
+		<template #icon>
+			<IconContact
+				:size="20" />
+		</template>
 		<template slot="actions">
 			<ActionButton
-				icon="icon-add"
 				:close-after-click="true"
 				@click="addContactsToGroup(group)">
+				<template #icon>
+					<IconAdd
+						:size="20" />
+				</template>
 				{{ t('contacts', 'Add contacts') }}
 			</ActionButton>
 			<ActionButton
-				icon="icon-download"
 				:close-after-click="true"
 				@click="downloadGroup(group)">
+				<template #icon>
+					<IconDownload
+						:size="20" />
+				</template>
 				{{ t('contacts', 'Download') }}
 			</ActionButton>
 			<ActionButton
-				icon="icon-mail"
 				@click="emailGroup(group)">
+				<template #icon>
+					<IconEmail
+						:size="20" />
+				</template>
 				{{ t('contacts', 'Send email') }}
 			</ActionButton>
 		</template>
@@ -59,6 +71,10 @@ import moment from 'moment'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
 import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
+import IconContact from 'vue-material-design-icons/AccountMultiple'
+import IconAdd from 'vue-material-design-icons/Plus'
+import IconDownload from 'vue-material-design-icons/Download'
+import IconEmail from 'vue-material-design-icons/Email'
 
 export default {
 	name: 'GroupNavigationItem',
@@ -67,6 +83,10 @@ export default {
 		ActionButton,
 		AppNavigationCounter,
 		AppNavigationItem,
+		IconContact,
+		IconAdd,
+		IconDownload,
+		IconEmail,
 	},
 
 	props: {

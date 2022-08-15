@@ -14,6 +14,8 @@ OC.L10N.register(
     "First name" : "Fornamn",
     "Last name" : "Etternamn",
     "Last modified" : "Siste endra",
+    "Password protection" : "Password protection",
+    "Save" : "Lagre",
     "Description" : "Skildring",
     "Invalid image" : "Ugyldig bilete",
     "Name" : "Namn",

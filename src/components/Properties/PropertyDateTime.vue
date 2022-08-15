@@ -73,6 +73,7 @@
 			<PropertyActions
 				v-if="!isReadOnly"
 				:actions="actions"
+				:property-component="this"
 				@delete="deleteProperty" />
 		</div>
 	</div>
@@ -132,6 +133,9 @@ export default {
 			dateFormat: {
 				stringify: (date) => {
 					return date ? this.formatDateTime() : null
+				},
+				parse: (value) => {
+					return value ? moment(value, ['LL', 'L']).toDate() : null
 				},
 			},
 		}

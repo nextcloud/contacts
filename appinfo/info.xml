@@ -11,7 +11,7 @@
 * 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 	</description>
 
-	<version>4.2.0-alpha.1</version>
+	<version>4.3.0-alpha.1</version>
 	<licence>agpl</licence>
 
 	<author>Christoph Wurst</author>
@@ -35,7 +35,7 @@
 	<website>https://github.com/nextcloud/contacts#readme</website>
 	<bugs>https://github.com/nextcloud/contacts/issues</bugs>
 	<repository type="git">https://github.com/nextcloud/contacts.git</repository>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/main/apps/Contacts/contacts.png</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png</screenshot>
 
 	<dependencies>
 		<php min-version="7.3" max-version="8.1" />

@@ -25,6 +25,8 @@ OC.L10N.register(
     "Last name" : "Овог",
     "Display name" : "Харагдах нэр",
     "Last modified" : "Сүүлд өөрчилсөн",
+    "Password protection" : "Password protection",
+    "Save" : "Хадгалах",
     "Description" : "Тайлбар",
     "Upload a new picture" : "Шинэ зураг оруулах",
     "Choose from Files" : "Файлаас сонгох",

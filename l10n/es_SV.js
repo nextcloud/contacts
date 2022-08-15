@@ -22,6 +22,8 @@ OC.L10N.register(
     "Last name" : "Apellido",
     "Display name" : "Nombre a desplegar",
     "Last modified" : "Última modificación",
+    "Password protection" : "Protección con contraseña",
+    "Save" : "Guardar",
     "Description" : "Descripción",
     "Invalid image" : "Imagen inválida",
     "Name" : "Nombre",
@@ -29,6 +31,7 @@ OC.L10N.register(
     "Cancel" : "Cancelar",
     "Address book" : "Libreta de direcciones",
     "New contact" : "Nuevo contacto",
+    "Search contacts …" : "Buscar contactos ...",
     "No results" : "No hay resultados",
     "Personal circle" : "Círculo personal",
     "Pending" : "Pendiente",
@@ -99,4 +102,4 @@ OC.L10N.register(
     "None" : "Ninguno",
     "Unknown" : "Desconocido"
 },
-"nplurals=2; plural=(n != 1);");
+"nplurals=2; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

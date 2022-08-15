@@ -28,26 +28,34 @@
 	</AppContent>
 
 	<AppContent v-else-if="isEmptyGroup && !isRealGroup">
-		<EmptyContent icon="icon-contacts-dark">
+		<EmptyContent>
+			<template #icon>
+				<IconContact
+					:size="20" />
+			</template>
 			{{ t('contacts', 'There are no contacts yet') }}
 			<template #desc>
-				<button class="primary" @click="newContact">
+				<Button type="primary" @click="newContact">
 					{{ t('contacts', 'Create contact') }}
-				</button>
+				</Button>
 			</template>
 		</EmptyContent>
 	</AppContent>
 
 	<AppContent v-else-if="isEmptyGroup && isRealGroup">
-		<EmptyContent icon="icon-contacts-dark">
+		<EmptyContent>
+			<template #icon>
+				<IconContact
+					:size="20" />
+			</template>
 			{{ t('contacts', 'There are no contacts in this group') }}
 			<template #desc>
-				<button v-if="contacts.length === 0" class="primary" @click="addContactsToGroup(selectedGroup)">
+				<Button v-if="contacts.length === 0" type="primary" @click="addContactsToGroup(selectedGroup)">
 					{{ t('contacts', 'Create contacts') }}
-				</button>
-				<button v-else class="primary" @click="addContactsToGroup(selectedGroup)">
+				</Button>
+				<Button v-else type="primary" @click="addContactsToGroup(selectedGroup)">
 					{{ t('contacts', 'Add contacts') }}
-				</button>
+				</Button>
 			</template>
 		</EmptyContent>
 	</AppContent>
@@ -68,10 +76,12 @@
 <script>
 import { emit } from '@nextcloud/event-bus'
 import AppContent from '@nextcloud/vue/dist/Components/AppContent'
+import Button from '@nextcloud/vue/dist/Components/Button'
 import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
 
 import ContactDetails from '../ContactDetails'
 import ContactsList from '../ContactsList'
+import IconContact from 'vue-material-design-icons/AccountMultiple'
 import RouterMixin from '../../mixins/RouterMixin'
 
 export default {
@@ -79,9 +89,11 @@ export default {
 
 	components: {
 		AppContent,
+		Button,
 		ContactDetails,
 		ContactsList,
 		EmptyContent,
+		IconContact,
 	},
 
 	mixins: [RouterMixin],

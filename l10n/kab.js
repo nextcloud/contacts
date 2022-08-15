@@ -6,6 +6,7 @@ OC.L10N.register(
     "Rename" : "Beddel isem",
     "Delete" : "Kkes",
     "Copy link" : "Nɣel aseɣwen",
+    "Save" : "Sekles",
     "Name" : "Nom",
     "Title" : "Azwel",
     "Cancel" : "Sefsex",

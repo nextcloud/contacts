@@ -11,6 +11,8 @@ OC.L10N.register(
     "Delete" : "Sil",
     "Copy link" : "linki nüsxələ",
     "can edit" : "dəyişmək olar",
+    "Password protection" : "Password protection",
+    "Save" : "Saxla",
     "Description" : "Açıqlanma",
     "Invalid image" : "Yalnış şəkil",
     "Name" : "Ad",

@@ -116,7 +116,11 @@ export default {
 				this.contact.vCard.addProperty(property)
 			} else {
 				const defaultData = this.properties[id].defaultValue
-				const property = this.contact.vCard.addPropertyWithValue(id, defaultData ? defaultData.value : '')
+				let defaultValue = defaultData ? defaultData.value : ''
+				if (Array.isArray(defaultValue)) {
+					defaultValue = [...defaultValue]
+				}
+				const property = this.contact.vCard.addPropertyWithValue(id, defaultValue)
 				if (defaultData && defaultData.type) {
 					property.setParameter('type', defaultData.type)
 				}
@@ -125,3 +129,16 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+.property__label:not(.multiselect) {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	opacity: 0.7;
+}
+.property__row {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+</style>

@@ -23,8 +23,11 @@
 	<AppNavigationItem
 		:key="circle.key"
 		:title="circle.displayName"
-		:to="circle.router"
-		icon="icon-circles">
+		:to="circle.router">
+		<template #icon>
+			<IconCircles
+				:size="20" />
+		</template>
 		<template v-if="loadingAction" slot="actions">
 			<ActionText icon="icon-loading-small">
 				{{ t('contacts', 'Loading …') }}
@@ -35,8 +38,11 @@
 			<ActionButton
 				v-if="circle.canManageMembers"
 				:close-after-click="true"
-				icon="icon-add"
 				@click="addMemberToCircle">
+				<template #icon>
+					<IconAdd
+						:size="20" />
+				</template>
 				{{ t('contacts', 'Add member') }}
 			</ActionButton>
 
@@ -72,8 +78,11 @@
 			<!-- delete circle -->
 			<ActionButton
 				v-if="circle.canDelete"
-				icon="icon-delete"
 				@click="confirmDeleteCircle">
+				<template #icon>
+					<IconDelete
+						:size="20" />
+				</template>
 				{{ t('contacts', 'Delete circle') }}
 			</ActionButton>
 		</template>
@@ -91,7 +100,10 @@ import ActionText from '@nextcloud/vue/dist/Components/ActionText'
 import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
 import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
 import ExitToApp from 'vue-material-design-icons/ExitToApp'
+import IconAdd from 'vue-material-design-icons/Plus'
+import IconDelete from 'vue-material-design-icons/Delete'
 import LocationEnter from 'vue-material-design-icons/LocationEnter'
+import IconCircles from '../Icons/IconCircles'
 
 import Circle from '../../models/circle.ts'
 import CircleActionsMixin from '../../mixins/CircleActionsMixin'
@@ -106,7 +118,10 @@ export default {
 		AppNavigationCounter,
 		AppNavigationItem,
 		ExitToApp,
+		IconAdd,
+		IconDelete,
 		LocationEnter,
+		IconCircles,
 	},
 
 	mixins: [CircleActionsMixin],

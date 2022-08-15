@@ -11,6 +11,8 @@ OC.L10N.register(
     "can edit" : "կարող է խմբագրել",
     "First name" : "Անուն",
     "Last name" : "Ազգանուն",
+    "Password protection" : "Password protection",
+    "Save" : "Պահպանել",
     "Description" : "Նկարագրություն",
     "Name" : "Անուն",
     "Title" : "Վերնագիր",

@@ -32,8 +32,11 @@
 				:to="{
 					name: 'group',
 					params: { selectedGroup: GROUP_ALL_CONTACTS },
-				}"
-				icon="icon-contacts-dark">
+				}">
+				<template #icon>
+					<IconContact
+						:size="20" />
+				</template>
 				<AppNavigationCounter v-if="sortedContacts.length" slot="counter">
 					{{ sortedContacts.length }}
 				</AppNavigationCounter>
@@ -56,8 +59,11 @@
 				:to="{
 					name: 'group',
 					params: { selectedGroup: GROUP_NO_GROUP_CONTACTS },
-				}"
-				icon="icon-user">
+				}">
+				<template #icon>
+					<IconUser
+						:size="20" />
+				</template>
 				<AppNavigationCounter v-if="ungroupedContacts.length" slot="counter">
 					{{ ungroupedContacts.length }}
 				</AppNavigationCounter>
@@ -71,8 +77,11 @@
 				:to="{
 					name: 'group',
 					params: { selectedGroup: GROUP_RECENTLY_CONTACTED },
-				}"
-				icon="icon-recent-actors">
+				}">
+				<template #icon>
+					<IconRecentlyContacted
+						:size="20" />
+				</template>
 				<AppNavigationCounter v-if="recentlyContactedContacts.contacts.length" slot="counter">
 					{{ recentlyContactedContacts.contacts.length }}
 				</AppNavigationCounter>
@@ -86,7 +95,11 @@
 				default-icon="icon-add"
 				@click.prevent.stop="toggleNewGroupMenu">
 				<template slot="actions">
-					<ActionText :icon="createGroupError ? 'icon-error' : 'icon-contacts-dark'">
+					<ActionText>
+						<template #icon>
+							<IconError v-if="createGroupError" :size="20" />
+							<IconContact v-else-if="!createGroupError" :size="20" />
+						</template>
 						{{ createGroupError ? createGroupError : t('contacts', 'Create a new group') }}
 					</ActionText>
 					<ActionInput
@@ -117,7 +130,10 @@
 					:title="t('contacts', 'Circles')"
 					@click.prevent.stop="toggleNewCircleModal">
 					<template slot="actions">
-						<ActionButton icon="icon-add" @click="toggleNewCircleModal">
+						<ActionButton @click="toggleNewCircleModal">
+							<template #icon>
+								<IconAdd :size="20" />
+							</template>
 							{{ t('contacts', 'Create a new circle') }}
 						</ActionButton>
 					</template>
@@ -152,7 +168,7 @@
 
 		<!-- settings -->
 		<template #footer>
-			<AppNavigationSettings v-if="!loading">
+			<AppNavigationSettings v-if="!loading" :title="appNavigationSettingsTitle">
 				<SettingsSection />
 			</AppNavigationSettings>
 		</template>
@@ -180,6 +196,11 @@ import SettingsSection from './SettingsSection'
 
 import isCirclesEnabled from '../../services/isCirclesEnabled'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled'
+import IconContact from 'vue-material-design-icons/AccountMultiple'
+import IconUser from 'vue-material-design-icons/Account'
+import IconRecentlyContacted from '../Icons/IconRecentlyContacted'
+import IconAdd from 'vue-material-design-icons/Plus'
+import IconError from 'vue-material-design-icons/AlertCircle'
 
 import RouterMixin from '../../mixins/RouterMixin'
 import { showError } from '@nextcloud/dialogs'
@@ -198,6 +219,11 @@ export default {
 		AppNavigationCaption,
 		CircleNavigationItem,
 		GroupNavigationItem,
+		IconContact,
+		IconUser,
+		IconAdd,
+		IconError,
+		IconRecentlyContacted,
 		NewCircleIntro,
 		SettingsSection,
 	},
@@ -243,6 +269,9 @@ export default {
 	},
 
 	computed: {
+		appNavigationSettingsTitle() {
+			return t('contacts', 'Contacts settings')
+		},
 		// store variables
 		circles() {
 			return this.$store.getters.getCircles
@@ -272,7 +301,6 @@ export default {
 						name: 'group',
 						params: { selectedGroup: group.name },
 					},
-					icon: 'icon-group',
 					toString: () => group.name,
 				})
 			})
@@ -422,12 +450,8 @@ $caption-padding: 22px;
 .app-navigation__collapse ::v-deep a {
 	color: var(--color-text-maxcontrast)
 }
-
-// Change icon opacity for a better soothing visual
-.app-navigation-entry ::v-deep {
-	.app-navigation-entry-icon.icon-group,
-	.app-navigation-entry-icon.icon-circles {
-		opacity: .6;
-	}
+::v-deep .settings-button__label {
+	opacity: .7;
+	font-weight: bold;
 }
 </style>

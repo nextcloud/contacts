@@ -34,7 +34,6 @@ export default {
 			copySuccess: false,
 		}
 	},
-
 	computed: {
 		copyLinkIcon() {
 			if (this.copySuccess) {

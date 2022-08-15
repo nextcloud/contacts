@@ -22,7 +22,11 @@
 
 <template>
 	<AppContentList>
-		<div class="contacts-list__header" />
+		<div class="contacts-list__header">
+			<div class="search-contacts-field">
+				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
+			</div>
+		</div>
 		<VirtualList ref="scroller"
 			class="contacts-list"
 			data-key="key"
@@ -63,6 +67,7 @@ export default {
 	data() {
 		return {
 			ContactsListItem,
+			query: '',
 		}
 	},
 
@@ -96,6 +101,10 @@ export default {
 				})
 			}
 		},
+	},
+
+	mounted() {
+		this.query = this.searchQuery
 	},
 
 	methods: {
@@ -143,8 +152,8 @@ export default {
 		 * @return {boolean}
 		 */
 		matchSearch(contact) {
-			if (this.searchQuery.trim() !== '') {
-				return contact.searchData.toString().toLowerCase().search(this.searchQuery.trim().toLowerCase()) !== -1
+			if (this.query.trim() !== '') {
+				return contact.searchData.toString().toLowerCase().search(this.query.trim().toLowerCase()) !== -1
 			}
 			return true
 		},
@@ -162,5 +171,14 @@ export default {
 // Add empty header to contacts-list that solves overlapping of contacts with app-navigation-toogle
 .contacts-list__header {
 	min-height: 48px;
+}
+
+// Search field
+.search-contacts-field {
+	padding: 5px 10px 5px 40px;
+
+	> input {
+		width: 100%;
+	}
 }
 </style>

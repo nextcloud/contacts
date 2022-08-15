@@ -45,20 +45,29 @@
 				:title="t('contacts', 'can edit')">
 				{{ t('contacts', 'can edit') }}
 			</label>
-			<a :class="{'addressbook-sharee__utils--disabled': loading}"
+			<Button :class="{'addressbook-sharee__utils--disabled': loading}"
 				href="#"
 				title="Delete"
-				class="icon-delete"
-				@click="deleteSharee" />
+				@click="deleteSharee">
+				<template #icon>
+					<IconDelete :size="20" />
+				</template>
+			</Button>
 		</span>
 	</li>
 </template>
 
 <script>
 import { showError } from '@nextcloud/dialogs'
+import IconDelete from 'vue-material-design-icons/Delete'
+import Button from '@nextcloud/vue/dist/Components/Button'
 
 export default {
 	name: 'SettingsAddressbookSharee',
+	components: {
+		Button,
+		IconDelete,
+	},
 
 	props: {
 		addressbook: {
@@ -137,5 +146,10 @@ export default {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	width: 107px;
+}
+::v-deep .button-vue--vue-secondary {
+	background-color: transparent;
+	border: none;
+	box-shadow: none;
 }
 </style>

@@ -62,6 +62,8 @@ class SocialApiServiceTest extends TestCase {
 	private $davBackend;
 	/** @var ITimeFactory|MockObject */
 	private $timeFactory;
+	/** @var ImageResizer|MockObject */
+	private $imageResizer;
 
 	public function allSocialProfileProviders(): array {
 		$body = "the body";
@@ -127,6 +129,7 @@ class SocialApiServiceTest extends TestCase {
 		$this->urlGen = $this->createMock(IURLGenerator::class);
 		$this->davBackend = $this->createMock(CardDavBackend::class);
 		$this->timeFactory = $this->createMock(ITimeFactory::class);
+		$this->imageResizer = $this->createMock(ImageResizer::class);
 		$this->service = new SocialApiService(
 			$this->socialProvider,
 			$this->manager,
@@ -135,7 +138,8 @@ class SocialApiServiceTest extends TestCase {
 			$this->l10n,
 			$this->urlGen,
 			$this->davBackend,
-			$this->timeFactory
+			$this->timeFactory,
+			$this->imageResizer
 		);
 	}
 
@@ -174,12 +178,16 @@ class SocialApiServiceTest extends TestCase {
 		$this->clientService
 			->method('NewClient')
 			->willReturn($client);
+		$this->imageResizer
+			->expects($body ? $this->once() : $this->never())
+			->method('resizeImage')
+			->willReturn($body);
 
 		$result = $this->service
-									 ->updateContact(
-										 'contacts',
-										 '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
-										 null);
+			 ->updateContact(
+				 'contacts',
+				 '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
+				 null);
 		$this->assertEquals($status, $result->getStatus());
 	}
 
@@ -231,6 +239,10 @@ class SocialApiServiceTest extends TestCase {
 		$this->clientService
 			->method('NewClient')
 			->willReturn($client);
+		$this->imageResizer
+			->expects($this->once())
+			->method('resizeImage')
+			->willReturn($body);
 
 		$changes = [
 			'URI' => $contact['URI'],
@@ -300,6 +312,10 @@ class SocialApiServiceTest extends TestCase {
 		$this->clientService
 			->method('NewClient')
 			->willReturn($client);
+		$this->imageResizer
+			->expects($this->once())
+			->method('resizeImage')
+			->willReturn($body);
 
 		$changes = [
 			'URI' => $contact['URI'],
@@ -424,6 +440,9 @@ class SocialApiServiceTest extends TestCase {
 		$this->clientService
 			->method('NewClient')
 			->willReturn($client);
+		$this->imageResizer
+			->method('resizeImage')
+			->willReturn('someBody');
 	}
 
 	/**
@@ -466,7 +485,6 @@ class SocialApiServiceTest extends TestCase {
 			$this->assertArrayHasKey('failed', $report[0]);
 			$this->assertArrayHasKey('412', $report[0]['failed']);
 			$this->assertContains('Invalid Contact', $report[0]['failed']['412']);
-			$this->assertContains('Empty Contact', $report[0]['failed']['412']);
 		}
 	}
 

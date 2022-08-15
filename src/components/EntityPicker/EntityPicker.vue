@@ -21,7 +21,7 @@
 
 <template>
 	<Modal
-		size="full"
+		size="normal"
 		@close="onCancel">
 		<!-- Wrapper for content & navigation -->
 		<div class="entity-picker">
@@ -57,7 +57,10 @@
 				</transition-group>
 
 				<!-- No recommendations -->
-				<EmptyContent v-if="dataSet.length === 0" icon="icon-search">
+				<EmptyContent v-if="dataSet.length === 0">
+					<template #icon>
+						<IconSearch :size="20" />
+					</template>
 					{{ t('contacts', 'Search for people to add') }}
 				</EmptyContent>
 
@@ -70,7 +73,10 @@
 					:estimate-size="44"
 					:extra-props="{ selection: selectionSet, onClick }" />
 
-				<EmptyContent v-else-if="searchQuery" icon="icon-search">
+				<EmptyContent v-else-if="searchQuery">
+					<template #icon>
+						<IconSearch :size="20" />
+					</template>
 					{{ t('contacts', 'No results') }}
 				</EmptyContent>
 
@@ -97,6 +103,7 @@
 import debounce from 'debounce'
 import VirtualList from 'vue-virtual-scroll-list'
 import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import IconSearch from 'vue-material-design-icons/Magnify'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 
 import EntityBubble from './EntityBubble'
@@ -108,6 +115,7 @@ export default {
 	components: {
 		EmptyContent,
 		EntityBubble,
+		IconSearch,
 		Modal,
 		VirtualList,
 	},
@@ -372,8 +380,7 @@ export default {
 <style lang="scss" scoped>
 
 // Dialog variables
-$dialog-margin: 20px;
-$dialog-width: 320px;
+$dialog-padding: 20px;
 $dialog-height: 480px;
 $entity-spacing: 4px;
 
@@ -394,15 +401,10 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	/** This next 2 rules are pretty hacky, with the modal component somehow
-	the margin applied to the content is added to the total modal width,
-	so here we subtract it to the width and height of the content.
-	*/
-	width: $dialog-width;
-	max-width: 100vw;
-	height: $dialog-height;
-	max-height: calc(100vh - #{$dialog-margin} * 2 - 10px);
-	margin: $dialog-margin;
+	min-height: $dialog-height;
+	height: 100%;
+	padding: $dialog-padding;
+	box-sizing: border-box;
 
 	&__search {
 		position: relative;

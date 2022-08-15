@@ -38,7 +38,6 @@ use OCP\IAddressBook;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
-use OCP\Util;
 
 class SocialApiService {
 	private $appName;
@@ -58,7 +57,8 @@ class SocialApiService {
 	private $davBackend;
 	/** @var ITimeFactory */
 	private $timeFactory;
-
+	/** @var ImageResizer */
+	private $imageResizer;
 
 	public function __construct(
 					CompositeSocialProvider $socialProvider,
@@ -68,7 +68,8 @@ class SocialApiService {
 					IL10N $l10n,
 					IURLGenerator $urlGen,
 					CardDavBackend $davBackend,
-					ITimeFactory $timeFactory) {
+					ITimeFactory $timeFactory,
+					ImageResizer $imageResizer) {
 		$this->appName = Application::APP_ID;
 		$this->socialProvider = $socialProvider;
 		$this->manager = $manager;
@@ -78,6 +79,7 @@ class SocialApiService {
 		$this->urlGen = $urlGen;
 		$this->davBackend = $davBackend;
 		$this->timeFactory = $timeFactory;
+		$this->imageResizer = $imageResizer;
 	}
 
 
@@ -225,6 +227,16 @@ class SocialApiService {
 				return new JSONResponse([], Http::STATUS_NOT_FOUND);
 			}
 
+			if (is_resource($socialdata)) {
+				$socialdata = stream_get_contents($socialdata);
+			}
+
+			$socialdata = $this->imageResizer->resizeImage($socialdata);
+
+			if (!$socialdata) {
+				return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
+			}
+
 			// update contact
 			$changes = [];
 			$changes['URI'] = $contact['URI'];
@@ -370,8 +382,6 @@ class SocialApiService {
 
 		foreach ($addressBooks as $addressBook) {
 			if ((is_null($addressBook) ||
-				(Util::getVersion()[0] >= 20) &&
-				//TODO: remove version check ^ when dependency for contacts is min NCv20 (see info.xml)
 				($addressBook->isShared() || $addressBook->isSystemAddressBook()))) {
 				// TODO: filter out deactivated books, see https://github.com/nextcloud/server/issues/17537
 				continue;
@@ -386,16 +396,7 @@ class SocialApiService {
 			}
 
 			// get contacts in that addressbook
-			//TODO: activate this optimization when nextcloud/server#22085 is merged
-			/*
-			if (Util::getVersion()[0] < 21) {
-				//TODO: remove this branch when dependency for contacts is min NCv21 (see info.xml)
-				$contacts = $addressBook->search('', ['UID'], ['types' => true]);
-			} else {
-				$contacts = $addressBook->search('', ['X-SOCIALPROFILE'], ['types' => true]);
-			}
-			*/
-			$contacts = $addressBook->search('', ['UID'], ['types' => true]);
+			$contacts = $addressBook->search('', ['X-SOCIALPROFILE'], ['types' => true]);
 			usort($contacts, [$this, 'sortContacts']); // make sure the order stays the same in consecutive calls
 
 			// update one contact after another

@@ -24,16 +24,18 @@
 <template>
 	<div>
 		<SettingsSortContacts class="settings-section" />
-		<div v-if="allowSocialSync" class="social-sync__list-entry">
-			<input
-				id="socialSyncToggle"
-				class="checkbox"
-				:checked="enableSocialSync"
-				type="checkbox"
-				@change="toggleSocialSync">
-			<label for="socialSyncToggle">{{ t('contacts', 'Update avatars from social media') }}</label>
-			<em for="socialSyncToggle">{{ t('contacts', '(refreshed once per week)') }}</em>
-		</div>
+		<CheckboxRadioSwitch :checked="enableSocialSync"
+			:loading="enableSocialSyncLoading"
+			:disabled="enableSocialSyncLoading"
+			class="social-sync__checkbox"
+			@update:checked="toggleSocialSync">
+			<div class="social-sync__checkbox__label">
+				<span>
+					{{ t('contacts', 'Update avatars from social media') }}
+					<em>{{ t('contacts', '(refreshed once per week)') }}</em>
+				</span>
+			</div>
+		</CheckboxRadioSwitch>
 		<div class="settings-addressbook-list__header">
 			<span>{{ t('contacts', 'Address books') }}</span>
 		</div>
@@ -56,6 +58,7 @@ import SettingsAddressbook from './Settings/SettingsAddressbook'
 import SettingsNewAddressbook from './Settings/SettingsNewAddressbook'
 import SettingsImportContacts from './Settings/SettingsImportContacts'
 import SettingsSortContacts from './Settings/SettingsSortContacts'
+import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/CheckboxRadioSwitch'
 
 export default {
 	name: 'SettingsSection',
@@ -64,11 +67,13 @@ export default {
 		SettingsNewAddressbook,
 		SettingsImportContacts,
 		SettingsSortContacts,
+		CheckboxRadioSwitch,
 	},
 	data() {
 		return {
 			allowSocialSync: loadState('contacts', 'allowSocialSync') !== 'no',
 			enableSocialSync: loadState('contacts', 'enableSocialSync') !== 'no',
+			enableSocialSyncLoading: false,
 		}
 	},
 	computed: {
@@ -81,15 +86,20 @@ export default {
 		onClickImport(event) {
 			this.$emit('clicked', event)
 		},
-		toggleSocialSync() {
+		async toggleSocialSync() {
 			this.enableSocialSync = !this.enableSocialSync
+			this.enableSocialSyncLoading = true
 
 			// store value
 			let setting = 'yes'
 			this.enableSocialSync ? setting = 'yes' : setting = 'no'
-			axios.put(generateUrl('apps/contacts/api/v1/social/config/user/enableSocialSync'), {
-				allow: setting,
-			})
+			try {
+				await axios.put(generateUrl('apps/contacts/api/v1/social/config/user/enableSocialSync'), {
+					allow: setting,
+				})
+			} finally {
+				this.enableSocialSyncLoading = false
+			}
 		},
 		onLoad(event) {
 			this.$emit('file-loaded', false)
@@ -97,3 +107,19 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.social-sync__checkbox {
+	margin-top: 5px;
+
+	::v-deep .checkbox-radio-switch__label {
+		height: unset !important;
+	}
+
+	::v-deep .checkbox-radio-switch__icon {
+		width: 44px;
+		flex-shrink: 0;
+		flex-grow: 0;
+	}
+}
+</style>

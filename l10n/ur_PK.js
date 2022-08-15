@@ -6,6 +6,8 @@ OC.L10N.register(
     "Rename" : "Rename",
     "Delete" : "حذف کریں",
     "can edit" : "تبدیل کر سکے ھیں",
+    "Password protection" : "Password protection",
+    "Save" : "حفظ",
     "Description" : "تصریح",
     "Invalid image" : "غلط تصویر",
     "Name" : "اسم",

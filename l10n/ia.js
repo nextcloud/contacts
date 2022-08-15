@@ -17,6 +17,8 @@ OC.L10N.register(
     "First name" : "Prime nomine",
     "Last name" : "Ultime nomine",
     "Display name" : "Monstrar nomine",
+    "Password protection" : "Password protection",
+    "Save" : "Salveguardar",
     "Description" : "Description",
     "Invalid image" : "Imagine invalide",
     "Name" : "Nomine",

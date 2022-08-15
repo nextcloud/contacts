@@ -14,6 +14,8 @@ OC.L10N.register(
     "can edit" : "kann änneren",
     "First name" : "Virnumm",
     "Last name" : "Famillje Numm",
+    "Password protection" : "Password protection",
+    "Save" : "Späicheren",
     "Description" : "Beschreiwung",
     "Invalid image" : "Ongülteg d'Bild",
     "Name" : "Numm",

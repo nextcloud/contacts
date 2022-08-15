@@ -10,6 +10,8 @@ OC.L10N.register(
     "can edit" : "தொகுக்க முடியும்",
     "First name" : "முதல் பெயர்",
     "Last name" : "கடைசிப் பெயர்",
+    "Password protection" : "Password protection",
+    "Save" : "சேமிக்க ",
     "Description" : "விவரிப்பு",
     "Name" : "பெயர்",
     "Title" : "தலைப்பு",

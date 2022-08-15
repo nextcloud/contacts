@@ -22,18 +22,23 @@
 
 <template>
 	<Actions class="property__actions">
-		<ActionButton icon="icon-delete" @click="deleteProperty">
+		<ActionButton @click="deleteProperty">
+			<template #icon>
+				<IconDelete :size="20" />
+			</template>
 			{{ t('contacts', 'Delete') }}
 		</ActionButton>
-		<Actions :is="action"
-			v-for="(action, index) in actions"
-			:key="index" />
+		<component :is="action"
+			v-for="action in actions"
+			:key="action.name"
+			:component="propertyComponent" />
 	</Actions>
 </template>
 
 <script>
 import Actions from '@nextcloud/vue/dist/Components/Actions'
 import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import IconDelete from 'vue-material-design-icons/Delete'
 
 export default {
 	name: 'PropertyActions',
@@ -41,12 +46,17 @@ export default {
 	components: {
 		Actions,
 		ActionButton,
+		IconDelete,
 	},
 
 	props: {
 		actions: {
 			type: Array,
 			default: () => [],
+		},
+		propertyComponent: {
+			type: Object,
+			required: true,
 		},
 	},
 

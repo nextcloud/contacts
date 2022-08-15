@@ -1,5 +1,24 @@
 # Changelog
 
+## 4.2.0 - 2022-07-19
+### Added
+- Enforce circle share password
+- Quick search
+### Changed
+- Replaced icons with SVGs
+- Manual date input
+- New and updated translations
+- Updated dependencies
+### Fixed
+- Encode group names for x-property-replace header
+
+## 4.1.1 – 2022-05-18
+### Changed
+- Autosave birthdate
+### Fixed
+- Large social image import
+- Screenshot URL
+
 ## 4.1.0 – 2022-03-22
 ### Added
 - Nextcloud 24 support

@@ -23,7 +23,11 @@
 <template>
 	<AppContentDetails>
 		<!-- nothing selected or contact not found -->
-		<EmptyContent v-if="!contact" icon="icon-contacts-dark">
+		<EmptyContent v-if="!contact">
+			<template #icon>
+				<IconContact
+					:size="20" />
+			</template>
 			{{ t('contacts', 'No contact selected') }}
 			<template #desc>
 				{{ t('contacts', 'Select a contact on the list to begin') }}
@@ -115,22 +119,32 @@
 				<!-- menu actions -->
 				<template #actions-menu>
 					<ActionLink :href="contact.url"
-						:download="`${contact.displayName}.vcf`"
-						icon="icon-download">
+						:download="`${contact.displayName}.vcf`">
+						<template #icon>
+							<IconDownload :size="20" />
+						</template>
 						{{ t('contacts', 'Download') }}
 					</ActionLink>
 					<!-- user can clone if there is at least one option available -->
 					<ActionButton v-if="isReadOnly && addressbooksOptions.length > 0"
 						ref="cloneAction"
 						:close-after-click="true"
-						icon="icon-clone"
 						@click="cloneContact">
+						<template #icon>
+							<IconCopy :size="20" />
+						</template>
 						{{ t('contacts', 'Clone contact') }}
 					</ActionButton>
-					<ActionButton icon="icon-qrcode" :close-after-click="true" @click="showQRcode">
+					<ActionButton :close-after-click="true" @click="showQRcode">
+						<template #icon>
+							<IconQr :size="20" />
+						</template>
 						{{ t('contacts', 'Generate QR Code') }}
 					</ActionButton>
-					<ActionButton v-if="!isReadOnly" icon="icon-delete" @click="deleteContact">
+					<ActionButton v-if="!isReadOnly" @click="deleteContact">
+						<template #icon>
+							<IconDelete :size="20" />
+						</template>
 						{{ t('contacts', 'Delete') }}
 					</ActionButton>
 				</template>
@@ -139,6 +153,7 @@
 			<!-- qrcode -->
 			<Modal v-if="qrcode"
 				id="qrcode-modal"
+				size="small"
 				:clear-view-delay="-1"
 				:title="contact.displayName"
 				@close="closeQrModal">
@@ -236,6 +251,7 @@
 import { showError } from '@nextcloud/dialogs'
 import { stringify } from 'ical.js'
 import debounce from 'debounce'
+// eslint-disable-next-line import/no-unresolved, node/no-missing-import
 import PQueue from 'p-queue'
 import qr from 'qr-image'
 import Vue from 'vue'
@@ -245,8 +261,13 @@ import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
 import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails'
 import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import IconContact from 'vue-material-design-icons/AccountMultiple'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import IconDownload from 'vue-material-design-icons/Download'
+import IconDelete from 'vue-material-design-icons/Delete'
+import IconQr from 'vue-material-design-icons/Qrcode'
+import IconCopy from 'vue-material-design-icons/ContentCopy'
 
 import rfcProps from '../models/rfcProps'
 import validate from '../services/validate'
@@ -274,6 +295,11 @@ export default {
 		ContactProperty,
 		DetailsHeader,
 		EmptyContent,
+		IconContact,
+		IconDownload,
+		IconDelete,
+		IconQr,
+		IconCopy,
 		Modal,
 		Multiselect,
 		PropertyGroups,
@@ -773,6 +799,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// Container height fix for dropdowns
+.app-content-details {
+	min-height: calc(100vh - var(--header-height));
+	padding: 0 44px 80px 44px;
+}
+
 // List of all properties
 section.contact-details {
 	margin: 0 auto;
@@ -781,6 +813,7 @@ section.contact-details {
 
 	::v-deep .property-masonry {
 		width: 350px;
+		padding: 5px;
 	}
 
 	.property--rev {
@@ -820,5 +853,35 @@ section.contact-details {
 			margin-bottom: 20px;
 		}
 	}
+}
+.property--last {
+	margin-bottom: 40px;
+}
+.property {
+	position: relative;
+	width: 100%;
+	max-width: 414px;
+	justify-self: center;
+}
+section.contact-details .property-masonry {
+	width: 350px;
+}
+.property__label:not(.multiselect) {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	opacity: 0.7;
+}
+.property__label, .property__label.multiselect {
+	flex: 1 0;
+	width: 60px;
+	min-width: 60px !important;
+	max-width: 120px;
+	height: 34px;
+	margin: 3px 5px 3px 0 !important;
+	user-select: none;
+	text-align: right;
+	background-size: 16px;
+	line-height: 35px;
 }
 </style>

@@ -116,7 +116,6 @@ class PageController extends Controller {
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isCirclesEnabled', $isCirclesEnabled && $isCircleVersionCompatible);
 
 		Util::addScript(Application::APP_ID, 'contacts-main');
-		Util::addStyle(Application::APP_ID, 'contacts');
 
 		return new TemplateResponse(Application::APP_ID, 'main');
 	}

@@ -23,10 +23,12 @@
 <template>
 	<div class="import-contact">
 		<template v-if="!isNoAddressbookAvailable">
-			<button class="import-contact__button-main" @click="toggleModal">
-				<span class="icon-upload" />
+			<Button class="import-contact__button-main" @click="toggleModal">
+				<template #icon>
+					<IconUpload :size="20" />
+				</template>
 				{{ t('contacts', 'Import contacts') }}
-			</button>
+			</Button>
 			<Modal v-if="isOpened"
 				ref="modal"
 				class="import-contact__modal"
@@ -56,34 +58,44 @@
 						type="file"
 						class="hidden-visually"
 						@change="processFile">
-					<button
+					<Button
 						:disabled="loading"
-						class="button import-contact__button import-contact__button--local"
+						class="import-contact__button import-contact__button--local"
 						@click="clickImportInput">
-						<span class="import-contact__button-icon icon-upload" />
+						<template #icon>
+							<IconUpload :size="20" />
+						</template>
 						{{ t('contacts', 'Select local file') }}
-					</button>
-					<button
+					</Button>
+					<Button
+						type="primary"
 						:class="{'icon-loading': loading}"
 						:disabled="loading"
-						class="button primary import-contact__button import-contact__button--files"
+						class="import-contact__button import-contact__button--files"
 						@click="openPicker">
-						<span class="import-contact__button-icon icon-folder-white" />
+						<template #icon>
+							<IconFolder :size="20" />
+						</template>
+						<span class="import-contact__button-icon" />
 						{{ t('contacts', 'Import from Files') }}
-					</button>
+					</Button>
 				</section>
 			</Modal>
 		</template>
-		<button v-else
+		<Button v-else
 			id="upload"
 			for="contact-import"
-			class="button import-contact__multiselect-label import-contact__multiselect--no-select icon-error">
+			class="button import-contact__multiselect-label import-contact__multiselect--no-select">
+			<template #icon>
+				<IconError :size="20" />
+			</template>
 			{{ t('contacts', 'Importing is disabled because there are no address books available') }}
-		</button>
+		</Button>
 	</div>
 </template>
 
 <script>
+import Button from '@nextcloud/vue/dist/Components/Button'
 import Modal from '@nextcloud/vue/dist/Components/Modal'
 import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
 import { encodePath } from '@nextcloud/paths'
@@ -91,6 +103,9 @@ import { getCurrentUser } from '@nextcloud/auth'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getFilePickerBuilder } from '@nextcloud/dialogs'
 import axios from '@nextcloud/axios'
+import IconUpload from 'vue-material-design-icons/Upload'
+import IconError from 'vue-material-design-icons/AlertCircle'
+import IconFolder from 'vue-material-design-icons/Folder'
 
 const CancelToken = axios.CancelToken
 
@@ -106,8 +121,12 @@ export default {
 	name: 'SettingsImportContacts',
 
 	components: {
+		Button,
 		Modal,
 		Multiselect,
+		IconUpload,
+		IconError,
+		IconFolder,
 	},
 
 	data() {
@@ -312,7 +331,8 @@ export default {
 			margin-right: 5px;
 		}
 		&-main {
-			width: 100%;
+			width: 100% !important;
+			margin-left: 0 !important;
 		}
 		&--cancel:not(:focus):not(:hover) {
 			border-color: transparent;

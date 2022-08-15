@@ -36,6 +36,11 @@ export enum CircleEdit {
 	Config = 'config',
 }
 
+interface CircleSetting {
+	setting: string,
+	value: string
+}
+
 /**
  * Get the circles list without the members
  *
@@ -48,7 +53,7 @@ export const getCircles = async function() {
 
 /**
  * Get a specific circle
- * @param {string} circleId 
+ * @param {string} circleId
  * @returns {Object}
  */
 export const getCircle = async function(circleId: string) {
@@ -192,5 +197,13 @@ export const changeMemberLevel = async function(circleId: string, memberId: stri
  */
 export const acceptMember = async function(circleId: string, memberId: string) {
 	const response = await axios.put(generateOcsUrl('apps/circles/circles/{circleId}/members/{memberId}', { circleId, memberId }))
+	return response.data.ocs.data
+}
+
+export const editCircleSetting = async function(circleId: string, setting: CircleSetting) {
+	const response = await axios.put(
+		generateOcsUrl('apps/circles/circles/{circleId}/setting', { circleId }),
+		setting,
+	)
 	return response.data.ocs.data
 }

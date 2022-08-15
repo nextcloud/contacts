@@ -21,8 +21,9 @@
   -->
 
 <template>
-	<h3 class="property__title property__row">
-		<div :class="icon" class="property__label property__title--icon" />
+	<h3 class="property__title property__row"
+		:class="{'align-to-actions': hasActions}">
+		<PropertyTitleIcon :icon="icon" />
 		<div class="property__value property__title--right">
 			{{ readableName }}
 		</div>
@@ -30,9 +31,12 @@
 </template>
 
 <script>
+import PropertyTitleIcon from './PropertyTitleIcon'
 export default {
 	name: 'PropertyTitle',
-
+	components: {
+		PropertyTitleIcon,
+	},
 	props: {
 		icon: {
 			type: String,
@@ -44,6 +48,26 @@ export default {
 			default: '',
 			required: true,
 		},
+		hasActions: {
+			type: Boolean,
+			default: false,
+		},
 	},
 }
 </script>
+<style lang="scss" scoped>
+.property__title {
+	display: flex;
+	align-items: center;
+	margin: 0;
+	user-select: none;
+	gap: 5px;
+}
+.property__title .property__title--right {
+	display: flex;
+	justify-content: space-between;
+}
+.align-to-actions {
+	padding-bottom: 10px;
+}
+</style>

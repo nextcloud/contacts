@@ -8,6 +8,8 @@ OC.L10N.register(
     "Delete" : "Delete",
     "Copy link" : "Kopiraj vezu",
     "can edit" : "može da menja",
+    "Password protection" : "Password protection",
+    "Save" : "Sačuvaj",
     "Description" : "Opis",
     "Name" : "naziv",
     "Title" : "Naslov",

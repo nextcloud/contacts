@@ -283,8 +283,12 @@ export default {
 			for (const name in properties) {
 				if (properties[name].default) {
 					const defaultData = properties[name].defaultValue
+					let defaultValue = defaultData.value
+					if (Array.isArray(defaultValue)) {
+						defaultValue = [...defaultValue]
+					}
 					// add default field
-					const property = contact.vCard.addPropertyWithValue(name, defaultData.value)
+					const property = contact.vCard.addPropertyWithValue(name, defaultValue)
 					// add default type
 					if (defaultData.type) {
 						property.setParameter('type', defaultData.type)

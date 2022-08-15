@@ -7,6 +7,8 @@ OC.L10N.register(
     "Rename" : "Namakan",
     "Delete" : "Padam",
     "can edit" : "boleh mengubah",
+    "Password protection" : "Password protection",
+    "Save" : "Simpan",
     "Description" : "Keterangan",
     "Name" : "Nama",
     "Title" : "Judul",

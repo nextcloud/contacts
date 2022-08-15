@@ -23,7 +23,18 @@
 import { showError } from '@nextcloud/dialogs'
 import Vue from 'vue'
 
-import { acceptMember, createCircle, deleteCircle, deleteMember, getCircleMembers, getCircle, getCircles, leaveCircle, addMembers } from '../services/circles.ts'
+import {
+	acceptMember,
+	createCircle,
+	deleteCircle,
+	deleteMember,
+	getCircleMembers,
+	getCircle,
+	getCircles,
+	leaveCircle,
+	addMembers,
+	editCircleSetting,
+} from '../services/circles.ts'
 import Member from '../models/member.ts'
 import Circle from '../models/circle.ts'
 import logger from '../services/logger'
@@ -94,6 +105,10 @@ const mutations = {
 	deleteMemberFromCircle(state, member) {
 		// Circles dependencies are managed directly from the model
 		member.delete()
+	},
+
+	setCircleSettings(state, { circleId, settings }) {
+		Vue.set(state.circles[circleId]._data, 'settings', settings)
 	},
 }
 
@@ -271,6 +286,14 @@ const actions = {
 		const member = new Member(result, circle)
 
 		await context.commit('addMemberToCircle', { circleId, member })
+	},
+
+	async editCircleSetting(context, { circleId, setting }) {
+		const { settings } = await editCircleSetting(circleId, setting)
+		await context.commit('setCircleSettings', {
+			circleId,
+			settings,
+		})
 	},
 
 }

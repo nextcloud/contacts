@@ -6,6 +6,7 @@ OC.L10N.register(
     "Rename" : "Adyny üýtgetmek",
     "Delete" : "Pozmak",
     "Copy link" : "Link-y nusgalaň",
+    "Save" : "Saklamak",
     "Name" : "Ady",
     "Cancel" : "ýatyrmak",
     "No results" : " Netije ýok",

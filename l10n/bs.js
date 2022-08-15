@@ -12,6 +12,8 @@ OC.L10N.register(
     "can edit" : "mogu mijenjati",
     "First name" : "Ime",
     "Last name" : "Prezime",
+    "Password protection" : "Password protection",
+    "Save" : "Spremi",
     "Description" : "Opis",
     "Invalid image" : "Nevažeća datoteka",
     "Name" : "Ime",
