@@ -83,8 +83,6 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Voice",
     "Car" : "Car",
-    "Organization Chart": "Organization Chart",
-    "Org Manager": "Manager",
     "Work pager" : "Work pager",
     "Social network" : "Social network",
     "Spouse" : "Spouse",

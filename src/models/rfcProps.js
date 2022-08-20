@@ -220,10 +220,10 @@ const properties = {
 			{ id: 'WORK,PAGER', name: t('contacts', 'Work pager') },
 		],
 	},
-	orgmanager: {
+	'x-managersname': {
 		multiple: false,
 		force: 'select',
-		readableName: t('contacts', 'Org Manager'),
+		readableName: t('contacts', 'Manager'),
 		icon: 'icon-category-monitoring',
 		default: false,
 		options: [],

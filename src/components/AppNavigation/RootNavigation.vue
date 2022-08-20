@@ -43,7 +43,8 @@
 			</AppNavigationItem>
 
 			<!-- Organization chart -->
-			<AppNavigationItem id="chart"
+			<AppNavigationItem v-if="existChart"
+				id="chart"
 				:title="CHART_ALL_CONTACTS"
 				:to="{
 					name: 'chart',
@@ -289,6 +290,11 @@ export default {
 		// list all the contacts that doesn't have a group
 		ungroupedContacts() {
 			return this.sortedContacts.filter(contact => this.contacts[contact.key].groups && this.contacts[contact.key].groups.length === 0)
+		},
+
+		// check if any contact has manager, if not then is no need for organization chart menu
+		existChart() {
+			return !!Object.keys(this.contacts).filter(key => this.contacts[key].managersName).length
 		},
 
 		// generate groups menu from the groups store

@@ -240,8 +240,6 @@ OC.L10N.register(
     "Pager" : "Βομβητής",
     "Voice" : "Ομιλία",
     "Car" : "Αμάξι",
-    "Organization Chart": "Οργανόγραμμα",
-    "Org Manager": "Προϊστάμενος",
     "Work pager" : "Βομβητής δουλειάς",
     "Social network" : "Κοινωνικό δίκτυο",
     "Relationship to you" : "Σχέση με εσάς",

@@ -37,7 +37,7 @@
 		:local-contact="localContact"
 		:prop-name="propName"
 		:prop-type="propType"
-		:options="propName === 'orgmanager' ? contactsOptions : sortedModelOptions"
+		:options="propName === 'x-managersname' ? contactsOptions : sortedModelOptions"
 		:is-read-only="isReadOnly"
 		@delete="onDelete"
 		@resize="onResize"
@@ -208,21 +208,18 @@ export default {
 		},
 
 		/**
-		 * Return the options of contacts for OrgManager select
+		 * Return the options of contacts for x-managersname select
 		 *
 		 * @return {object[]}
 		 */
 		contactsOptions() {
-			if (this.propName === 'orgmanager') {
-				return this.contacts.reduce((prev, cur) => {
+			if (this.propName === 'x-managersname') {
+				return this.contacts.filter(contact => !contact.key.includes(this.localContact.uid)).reduce((prev, cur) => {
 					return [...prev, {
 						id: cur.key,
 						name: cur.value,
 					}]
-				}, [{
-					id: 'HEAD',
-					name: 'Head',
-				}])
+				}, [])
 					.reduce((list, option) => {
 						if (!list.find(search => search.name === option.name)) {
 							list.push(option)
