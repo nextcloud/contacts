@@ -87,7 +87,7 @@
 		"@types/jest": "^27.4.1",
 		"@typescript-eslint/parser": "^5.33.1",
 		"@vue/vue2-jest": "^27",
-		"babel-jest": "^27",
+		"babel-jest": "^28",
 		"eslint-import-resolver-typescript": "^3.3.0",
 		"jest": "^27",
 		"ts-jest": "^27.1.4",
