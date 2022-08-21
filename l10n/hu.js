@@ -77,6 +77,7 @@ OC.L10N.register(
     "An error happened during the config change" : "Hiba történt a konfiguráció módosításakor",
     "Password protection" : "Jelszavas védelem",
     "Enforce password protection on files shared to this circle" : "Jelszavas védelem kikényszerítése a körrel megosztott fájlok esetén",
+    "Use a unique password for all shares to this circle" : "Egyéni jelszavak használata a kör összes megosztása esetén",
     "Unique password …" : "Egyedi jelszó…",
     "Save" : "Mentés",
     "Change unique password" : "Egyedi jelszó módosítása",
