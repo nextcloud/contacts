@@ -217,7 +217,7 @@ OC.L10N.register(
     "Notes" : "Oharrak",
     "Website" : "Webgunea",
     "Location" : "Kokapena",
-    "Federated Cloud ID" : "Federatutatako Hodei ID",
+    "Federated Cloud ID" : "Federatutako hodei IDa",
     "Home" : "Etxekoa",
     "Work" : "Lanekoa",
     "Other" : "Bestelakoa",
