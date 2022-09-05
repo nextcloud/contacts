@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 /**
  * @copyright 2017 Georg Ehrke <oc.list@georgehrke.com>
+ * @copyright Copyright (c) 2022 Informatyka Boguslawski sp. z o.o. sp.k., http://www.ib.pl/
  *
  * @author Georg Ehrke <oc.list@georgehrke.com>
  * @author Roeland Jago Douma <roeland@famdouma.nl>
@@ -84,9 +85,9 @@ class SocialUpdateRegistration extends TimedJob {
 	 */
 	protected function run($arguments) {
 
-		// check if admin allows for social updates:
-		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
-		if (!($syncAllowedByAdmin === 'yes')) {
+		// Social updates must be enabled by admin and internet connection must be available.
+		if (($this->config->getAppValue($this->appName, 'allowSocialSync', 'yes') !== 'yes')
+			 || !$this->config->getSystemValueBool('has_internet_connection', true)) {
 			return;
 		}
 

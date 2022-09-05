@@ -1,6 +1,7 @@
 <?php
 /**
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+ * @copyright Copyright (c) 2022 Informatyka Boguslawski sp. z o.o. sp.k., http://www.ib.pl/
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  * @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
@@ -96,8 +97,9 @@ class PageController extends Controller {
 		$defaultProfile = $this->config->getAppValue(Application::APP_ID, 'defaultProfile', 'HOME');
 
 		$supportedNetworks = $this->socialApiService->getSupportedNetworks();
-		// allow users to retrieve avatars from social networks (default: yes)
-		$syncAllowedByAdmin = $this->config->getAppValue(Application::APP_ID, 'allowSocialSync', 'yes');
+		// Allow users to retrieve avatars from social networks (default: yes). Disabled if internet connection is not available.
+		$syncAllowedByAdmin = (($this->config->getAppValue(Application::APP_ID, 'allowSocialSync', 'yes') === 'yes')
+			&& $this->config->getSystemValueBool('has_internet_connection', true)) ? 'yes' : 'no';
 		// automated background syncs for social avatars (default: no)
 		$bgSyncEnabledByUser = $this->config->getUserValue($userId, Application::APP_ID, 'enableSocialSync', 'no');
 

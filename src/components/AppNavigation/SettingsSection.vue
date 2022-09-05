@@ -1,5 +1,6 @@
 <!--
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
+  - @copyright Copyright (c) 2022 Informatyka Boguslawski sp. z o.o. sp.k., http://www.ib.pl/
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
   - @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
@@ -24,7 +25,7 @@
 <template>
 	<div>
 		<SettingsSortContacts class="settings-section" />
-		<CheckboxRadioSwitch :checked="enableSocialSync"
+		<CheckboxRadioSwitch v-if="allowSocialSync" :checked="enableSocialSync"
 			:loading="enableSocialSyncLoading"
 			:disabled="enableSocialSyncLoading"
 			class="social-sync__checkbox"
