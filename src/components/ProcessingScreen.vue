@@ -41,7 +41,6 @@ export default {
 		display: flex;
 		flex-direction: column;
 		width: auto;
-		min-width: 30vw;
 		margin: 50px;
 
 		// Progress &desc wrapper
