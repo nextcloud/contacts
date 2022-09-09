@@ -22,18 +22,19 @@
 
 <template>
 	<AppContent v-if="!circle">
-		<EmptyContent>
+		<EmptyContent :title="t('contacts', 'Please select a circle')">
 			<template #icon>
 				<IconCircles
 					:size="20" />
 			</template>
-			{{ t('contacts', 'Please select a circle') }}
 		</EmptyContent>
 	</AppContent>
 
 	<AppContent v-else-if="loading">
-		<EmptyContent icon="icon-loading">
-			{{ t('contacts', 'Loading circle …') }}
+		<EmptyContent :title="t('contacts', 'Loading circle …')">
+			<template #icon>
+				<IconLoading :size="20" />
+			</template>
 		</EmptyContent>
 	</AppContent>
 
@@ -51,16 +52,17 @@
 			<!-- not a member -->
 			<template v-if="!circle.isMember">
 				<!-- Pending request validation -->
-				<EmptyContent v-if="circle.isPendingMember" icon="icon-loading">
-					{{ t('contacts', 'Your request to join this circle is pending approval') }}
+				<EmptyContent v-if="circle.isPendingMember" :title="t('contacts', 'Your request to join this circle is pending approval')">
+					<template #icon>
+						<IconLoading :size="20" />
+					</template>
 				</EmptyContent>
 
-				<EmptyContent v-else>
+				<EmptyContent v-else :title="t('contacts', 'You are not a member of {circle}', { circle: circle.displayName})">
 					<template #icon>
 						<IconCircles
 							:size="20" />
 					</template>
-					{{ t('contacts', 'You are not a member of {circle}', { circle: circle.displayName}) }}
 				</EmptyContent>
 			</template>
 		</CircleDetails>
@@ -68,8 +70,9 @@
 </template>
 <script>
 import { showError } from '@nextcloud/dialogs'
-import AppContent from '@nextcloud/vue/dist/Components/AppContent'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import AppContent from '@nextcloud/vue/dist/Components/NcAppContent'
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
 import IconCircles from '../Icons/IconCircles'
 import CircleDetails from '../CircleDetails'
@@ -85,6 +88,7 @@ export default {
 		EmptyContent,
 		MemberList,
 		IconCircles,
+		IconLoading,
 	},
 
 	mixins: [isMobile, RouterMixin],

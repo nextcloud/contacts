@@ -129,10 +129,10 @@
 import { showError } from '@nextcloud/dialogs'
 import debounce from 'debounce'
 
-import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails'
-import Avatar from '@nextcloud/vue/dist/Components/Avatar'
-import Button from '@nextcloud/vue/dist/Components/Button'
-import RichContenteditable from '@nextcloud/vue/dist/Components/RichContenteditable'
+import AppContentDetails from '@nextcloud/vue/dist/Components/NcAppContentDetails'
+import Avatar from '@nextcloud/vue/dist/Components/NcAvatar'
+import Button from '@nextcloud/vue/dist/Components/NcButton'
+import RichContenteditable from '@nextcloud/vue/dist/Components/NcRichContenteditable'
 
 import Login from 'vue-material-design-icons/Login'
 import Logout from 'vue-material-design-icons/Logout'

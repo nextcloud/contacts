@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect'
 import rfcProps from '../../models/rfcProps'
 import Contact from '../../models/contact'
 import PropertyTitle from '../Properties/PropertyTitle'

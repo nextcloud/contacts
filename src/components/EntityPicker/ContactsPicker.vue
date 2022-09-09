@@ -20,7 +20,7 @@
 import { subscribe } from '@nextcloud/event-bus'
 import pLimit from 'p-limit'
 
-import Modal from '@nextcloud/vue/dist/Components/Modal'
+import Modal from '@nextcloud/vue/dist/Components/NcModal'
 
 import AddToGroupView from '../../views/Processing/AddToGroupView'
 import appendContactToGroup from '../../services/appendContactToGroup'

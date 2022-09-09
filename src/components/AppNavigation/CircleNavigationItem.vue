@@ -29,7 +29,10 @@
 				:size="20" />
 		</template>
 		<template v-if="loadingAction" slot="actions">
-			<ActionText icon="icon-loading-small">
+			<ActionText>
+				<template #icon>
+					<IconLoading :size="20" />
+				</template>
 				{{ t('contacts', 'Loading …') }}
 			</ActionText>
 		</template>
@@ -94,17 +97,17 @@
 </template>
 
 <script>
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
-import ActionText from '@nextcloud/vue/dist/Components/ActionText'
-import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
-import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
+import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink'
+import ActionText from '@nextcloud/vue/dist/Components/NcActionText'
+import AppNavigationCounter from '@nextcloud/vue/dist/Components/NcAppNavigationCounter'
+import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
 import ExitToApp from 'vue-material-design-icons/ExitToApp'
 import IconAdd from 'vue-material-design-icons/Plus'
 import IconDelete from 'vue-material-design-icons/Delete'
 import LocationEnter from 'vue-material-design-icons/LocationEnter'
 import IconCircles from '../Icons/IconCircles'
-
 import Circle from '../../models/circle.ts'
 import CircleActionsMixin from '../../mixins/CircleActionsMixin'
 
@@ -122,6 +125,7 @@ export default {
 		IconDelete,
 		LocationEnter,
 		IconCircles,
+		IconLoading,
 	},
 
 	mixins: [CircleActionsMixin],

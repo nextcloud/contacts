@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import ListItemIcon from '@nextcloud/vue/dist/Components/ListItemIcon'
+import ListItemIcon from '@nextcloud/vue/dist/Components/NcListItemIcon'
 
 export default {
 	name: 'ContactsListItem',

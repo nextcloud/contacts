@@ -58,7 +58,7 @@ import SettingsAddressbook from './Settings/SettingsAddressbook'
 import SettingsNewAddressbook from './Settings/SettingsNewAddressbook'
 import SettingsImportContacts from './Settings/SettingsImportContacts'
 import SettingsSortContacts from './Settings/SettingsSortContacts'
-import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/CheckboxRadioSwitch'
+import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch'
 
 export default {
 	name: 'SettingsSection',

@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import UserBubble from '@nextcloud/vue/dist/Components/UserBubble'
+import UserBubble from '@nextcloud/vue/dist/Components/NcUserBubble'
 
 export default {
 	name: 'EntityBubble',
@@ -89,7 +89,7 @@ export default {
 <style lang="scss" scoped>
 // better visual with light default tint
 ::v-deep .user-bubble__content {
-	background-color: var(--color-primary-light);
+	background-color: var(--color-pirimary-light);
 }
 
 .entity-picker__bubble {

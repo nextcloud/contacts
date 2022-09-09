@@ -29,7 +29,7 @@
 	</ActionButton>
 </template>
 <script>
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
 import ActionsMixin from '../../mixins/ActionsMixin'
 import IconCopy from 'vue-material-design-icons/ContentCopy'
 

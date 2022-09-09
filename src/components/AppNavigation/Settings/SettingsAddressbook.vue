@@ -73,9 +73,13 @@
 					<ActionInput v-else
 						ref="renameInput"
 						:disabled="renameLoading"
-						:icon="renameLoading ? 'icon-loading-small' : 'icon-rename'"
 						:value="addressbook.displayName"
-						@submit="updateAddressbookName" />
+						@submit="updateAddressbookName">
+						<template #icon>
+							<IconLoading v-if="renameLoading" :size="20" />
+							<IconRename :size="20" />
+						</template>
+					</ActionInput>
 
 					<!-- enable/disable addressbook -->
 					<ActionCheckbox v-if="!toggleEnabledLoading"
@@ -83,16 +87,21 @@
 						@change.stop.prevent="toggleAddressbookEnabled">
 						{{ t('contacts', 'Enabled') }}
 					</ActionCheckbox>
-					<ActionButton v-else
-						icon="icon-loading-small">
+					<ActionButton v-else>
+						<template #icon>
+							<IconLoading :size="20" />
+						</template>
 						{{ t('contacts', 'Enabled') }}
 					</ActionButton>
 				</template>
 
 				<!-- delete addressbook -->
 				<ActionButton v-if="hasMultipleAddressbooks"
-					:icon="deleteAddressbookLoading ? 'icon-loading-small' : 'icon-delete'"
 					@click="confirmDeletion">
+					<template #icon>
+						<IconLoading v-if="deleteAddressbookLoading" :size="20" />
+						<IconDelete :size="20" />
+					</template>
 					{{ t('contacts', 'Delete') }}
 				</ActionButton>
 			</Actions>
@@ -104,14 +113,16 @@
 </template>
 
 <script>
-import Actions from '@nextcloud/vue/dist/Components/Actions'
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
-import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
-import Button from '@nextcloud/vue/dist/Components/Button'
+import Actions from '@nextcloud/vue/dist/Components/NcActions'
+import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
+import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput'
+import ActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
+import Button from '@nextcloud/vue/dist/Components/NcButton'
 import IconDownload from 'vue-material-design-icons/Download'
 import IconRename from 'vue-material-design-icons/Pencil'
+import IconDelete from 'vue-material-design-icons/Delete'
 import IconContact from 'vue-material-design-icons/AccountMultiple'
 import IconShare from 'vue-material-design-icons/ShareVariant'
 import ShareAddressBook from './SettingsAddressbookShare'
@@ -129,10 +140,12 @@ export default {
 		ActionLink,
 		Actions,
 		Button,
+		IconDelete,
 		IconDownload,
 		IconRename,
 		IconContact,
 		IconShare,
+		IconLoading,
 		ShareAddressBook,
 	},
 
