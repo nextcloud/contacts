@@ -31,6 +31,7 @@ OC.L10N.register(
     "Group name" : "Nom du groupe",
     "Circles" : "Cercles",
     "Create a new circle" : "Créer un nouveau cercle",
+    "Contacts settings" : "Paramètres des contacts",
     "Show all groups" : "Afficher tous les groupes",
     "Collapse groups" : "Replier les groupes",
     "Show all circles" : "Afficher tous les cercles",
