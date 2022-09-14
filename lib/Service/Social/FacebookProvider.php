@@ -31,7 +31,7 @@ class FacebookProvider implements ISocialProvider {
 	private $httpClient;
 
 	/** @var string */
-	public $name = "facebook";
+	public $name = 'facebook';
 
 	public function __construct(IClientService $httpClient) {
 		$this->httpClient = $httpClient->NewClient();
@@ -45,7 +45,7 @@ class FacebookProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-		if (!array_key_exists("X-SOCIALPROFILE",$contact)) {
+		if (!array_key_exists('X-SOCIALPROFILE', $contact)) {
 			return false;
 		}
 		$socialprofiles = $this->getProfiles($contact);
@@ -64,7 +64,7 @@ class FacebookProvider implements ISocialProvider {
 		$urls = [];
 		foreach ($profileIds as $profileId) {
 			$recipe = 'https://graph.facebook.com/{socialId}/picture?width=720';
-			$connector = str_replace("{socialId}", $profileId, $recipe);
+			$connector = str_replace('{socialId}', $profileId, $recipe);
 			$urls[] = $connector;
 		}
 		return $urls;
@@ -133,7 +133,7 @@ class FacebookProvider implements ISocialProvider {
 	 */
 	protected function findFacebookId(string $profileName):string {
 		try {
-			$result = $this->httpClient->get("https://facebook.com/".$profileName);
+			$result = $this->httpClient->get('https://facebook.com/'.$profileName);
 			if ($result->getStatusCode() !== 200) {
 				return $profileName;
 			}

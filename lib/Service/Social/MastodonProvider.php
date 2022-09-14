@@ -31,7 +31,7 @@ class MastodonProvider implements ISocialProvider {
 	private $httpClient;
 
 	/** @var string */
-	public $name = "mastodon";
+	public $name = 'mastodon';
 
 	public function __construct(IClientService $httpClient) {
 		$this->httpClient = $httpClient->NewClient();
@@ -45,7 +45,7 @@ class MastodonProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-		if (!array_key_exists("X-SOCIALPROFILE",$contact)) {
+		if (!array_key_exists('X-SOCIALPROFILE', $contact)) {
 			return false;
 		}
 		$profiles = $this->getProfileIds($contact);
@@ -87,7 +87,7 @@ class MastodonProvider implements ISocialProvider {
 			$htmlResult->loadHTML($result->getBody());
 			$img = $htmlResult->getElementById('profile_page_avatar');
 			if (!is_null($img)) {
-				return $img->getAttribute("data-original");
+				return $img->getAttribute('data-original');
 			}
 			return null;
 		} catch (\Exception $e) {

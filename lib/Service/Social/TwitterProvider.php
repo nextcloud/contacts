@@ -38,7 +38,7 @@ class TwitterProvider implements ISocialProvider {
 	private $logger;
 
 	/** @var string */
-	public $name = "twitter";
+	public $name = 'twitter';
 
 	public function __construct(IClientService $httpClient,
 								LoggerInterface $logger) {
@@ -54,7 +54,7 @@ class TwitterProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-		if (!array_key_exists("X-SOCIALPROFILE",$contact)) {
+		if (!array_key_exists('X-SOCIALPROFILE', $contact)) {
 			return false;
 		}
 		$socialprofiles = $this->getProfileIds($contact);
@@ -73,7 +73,7 @@ class TwitterProvider implements ISocialProvider {
 		$urls = [];
 		foreach ($profileIds as $profileId) {
 			$recipe = 'https://twitter.com/{socialId}';
-			$connector = str_replace("{socialId}", $profileId, $recipe);
+			$connector = str_replace('{socialId}', $profileId, $recipe);
 			$connector = $this->getFromHtml($connector, 'profile_image');
 			$urls[] = $connector;
 		}
@@ -139,14 +139,14 @@ class TwitterProvider implements ISocialProvider {
 				foreach ($img->attributes as $attr) {
 					$value = $attr->nodeValue;
 					if (strpos($value, $desired)) {
-						$value = str_replace("normal", "400x400", $value);
+						$value = str_replace('normal', '400x400', $value);
 						return $value;
 					}
 				}
 			}
 			return null;
 		} catch (RequestException $e) {
-			$this->logger->debug('Error fetching twitter urls',  [
+			$this->logger->debug('Error fetching twitter urls', [
 				'app' => Application::APP_ID,
 				'exception' => $e
 			]);

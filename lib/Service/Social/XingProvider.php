@@ -31,7 +31,7 @@ class XingProvider implements ISocialProvider {
 	private $httpClient;
 
 	/** @var string */
-	public $name = "xing";
+	public $name = 'xing';
 
 	public function __construct(IClientService $httpClient) {
 		$this->httpClient = $httpClient->NewClient();
@@ -45,7 +45,7 @@ class XingProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-		if (!array_key_exists("X-SOCIALPROFILE",$contact)) {
+		if (!array_key_exists('X-SOCIALPROFILE', $contact)) {
 			return false;
 		}
 		$socialprofiles = $this->getProfileIds($contact);

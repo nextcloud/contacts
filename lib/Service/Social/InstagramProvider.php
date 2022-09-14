@@ -39,7 +39,7 @@ class InstagramProvider implements ISocialProvider {
 	private $logger;
 
 	/** @var string */
-	public $name = "instagram";
+	public $name = 'instagram';
 
 	public function __construct(IClientService $httpClient,
 								LoggerInterface $logger) {
@@ -55,7 +55,7 @@ class InstagramProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-		if (!array_key_exists("X-SOCIALPROFILE",$contact)) {
+		if (!array_key_exists('X-SOCIALPROFILE', $contact)) {
 			return false;
 		}
 		$socialprofiles = $this->getProfiles($contact);
@@ -74,7 +74,7 @@ class InstagramProvider implements ISocialProvider {
 		$urls = [];
 		foreach ($profileIds as $profileId) {
 			$recipe = 'https://www.instagram.com/{socialId}/?__a=1';
-			$connector = str_replace("{socialId}", $profileId, $recipe);
+			$connector = str_replace('{socialId}', $profileId, $recipe);
 			$connector = $this->getFromJson($connector, 'graphql->user->profile_pic_url_hd');
 			$urls[] = $connector;
 		}
@@ -92,7 +92,7 @@ class InstagramProvider implements ISocialProvider {
 		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
 		return basename($candidate);
 	}
-  
+
 	/**
 	 * Returns all possible profile urls for contact
 	 *
@@ -146,8 +146,8 @@ class InstagramProvider implements ISocialProvider {
 				]
 			]);
 
-			$jsonResult = json_decode($result->getBody(),true);
-			$location = explode('->' , $desired);
+			$jsonResult = json_decode($result->getBody(), true);
+			$location = explode('->', $desired);
 			foreach ($location as $loc) {
 				if (!isset($jsonResult[$loc])) {
 					return null;
@@ -156,7 +156,7 @@ class InstagramProvider implements ISocialProvider {
 			}
 			return $jsonResult;
 		} catch (RequestException $e) {
-			$this->logger->debug('Error fetching instagram urls',  [
+			$this->logger->debug('Error fetching instagram urls', [
 				'app' => Application::APP_ID,
 				'exception' => $e
 			]);

@@ -66,15 +66,15 @@ class TwitterProviderTest extends TestCase {
 	public function dataProviderSupportsContact() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "username1", "type" => "twitter"],
-				["value" => "username2", "type" => "twitter"]
+				['value' => 'username1', 'type' => 'twitter'],
+				['value' => 'username2', 'type' => 'twitter']
 			]
 		];
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 
@@ -95,27 +95,27 @@ class TwitterProviderTest extends TestCase {
 	public function dataProviderGetImageUrls() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "https://twitter.com/username1", "type" => "twitter"],
-				["value" => "https://twitter.com/@username2", "type" => "twitter"]
+				['value' => 'https://twitter.com/username1', 'type' => 'twitter'],
+				['value' => 'https://twitter.com/@username2', 'type' => 'twitter']
 			]
 		];
 		$contactWithSocialUrls = [
-			"https://twitter.com/username1",
-			"https://twitter.com/username2",
+			'https://twitter.com/username1',
+			'https://twitter.com/username2',
 		];
 		$contactWithSocialHtml = [
 			'<html><img src="./profile_images/username1_normal.jpg" /></html>',
 			'<html><img src="./profile_images/username2_normal.jpg" /></html>',
 		];
 		$contactWithSocialImgs = [
-			"./profile_images/username1_400x400.jpg",
-			"./profile_images/username2_400x400.jpg"
+			'./profile_images/username1_400x400.jpg',
+			'./profile_images/username2_400x400.jpg'
 		];
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 		$contactWithoutSocialUrls = [];
@@ -143,10 +143,10 @@ class TwitterProviderTest extends TestCase {
 	 */
 	public function testGetImageUrls($contact, $htmls, $urls, $imgs) {
 		if (count($urls)) {
-			$this->response->method("getBody")->willReturnOnConsecutiveCalls(...$htmls);
+			$this->response->method('getBody')->willReturnOnConsecutiveCalls(...$htmls);
 			$this->client
 		   ->expects($this->exactly(count($urls)))
-		   ->method("get")
+		   ->method('get')
 		   ->withConsecutive(...array_map(function ($a) {
 		   	return [$a];
 		   }, $urls))
