@@ -1,5 +1,19 @@
 # Changelog
 
+## 5.0.0 - 2022-09-16
+### Added
+- Migrate leftover icons to material design
+### Fixed
+- Styling regression on contacts
+- Copy to full name button
+- Migrate settings menu of contacts
+- Entity picker modal size
+- Circle creation modal size
+- Qr modal size
+### Changed
+- Omit birthdate year toggle
+- Rename settings to "Contacts settings"
+
 ## 4.2.0 - 2022-07-19
 ### Added
 - Enforce circle share password
