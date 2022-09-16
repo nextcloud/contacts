@@ -81,7 +81,7 @@ OC.L10N.register(
     "Unique password …" : "Eindeutiges Passwort …",
     "Save" : "Speichern",
     "Change unique password" : "Eindeutiges Passwort ändern",
-    "Failed to save password. Please try again later." : "Fehler beim Speichern des Passworts. Bitte später noch einmal versuchen.",
+    "Failed to save password. Please try again later." : "Fehler beim Speichern des Passworts. Bitte erneut versuchen.",
     "Circle name" : "Name des Kreises",
     "Circle owned by {owner}" : "Kreis im Besitz von {owner}",
     "Request to join" : "Beitritt anfragen",
