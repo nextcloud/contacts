@@ -22,32 +22,37 @@
 
 <template>
 	<AppContentList v-if="!hasMembers" class="members-list">
-		<EmptyContent v-if="loading" icon="icon-loading">
-			{{ t('contacts', 'Loading members list …') }}
-		</EmptyContent>
-
-		<EmptyContent v-else-if="!circle.isMember">
-			<template #icon>
-				<IconContact
-					:size="20" />
-			</template>
-			{{ t('contacts', 'The list of members is only visible to members of this circle') }}
-		</EmptyContent>
-
-		<EmptyContent v-else>
-			<template #icon>
-				<IconContact
-					:size="20" />
-			</template>
-			{{ t('contacts', 'There is no member in this circle') }}
-		</EmptyContent>
+		<template v-if="loading">
+			<EmptyContent :title="t('contacts', 'Loading members list …')">
+				<template #icon>
+					<IconLoading :size="20" />
+				</template>
+			</EmptyContent>
+		</template>
+		<template v-else-if="!circle.isMember">
+			<EmptyContent :title="t('contacts', 'The list of members is only visible to members of this circle')">
+				<template #icon>
+					<IconContact
+						:size="20" />
+				</template>
+			</EmptyContent>
+		</template>
+		<template v-else>
+			<EmptyContent :title="t('contacts', 'There is no member in this circle')">
+				<template #icon>
+					<IconContact
+						:size="20" />
+				</template>
+			</EmptyContent>
+		</template>
 	</AppContentList>
 
-	<AppContentList v-else :class="{ 'icon-loading': loading, showdetails: showDetails }">
+	<AppContentList v-else :class="{ showdetails: showDetails }">
 		<div class="members-list__new">
 			<Button v-if="circle.canManageMembers"
 				@click="onShowPicker(circle.id)">
 				<template #icon>
+					<IconLoading v-if="loading" />
 					<IconAdd
 						:size="20" />
 				</template>
@@ -84,9 +89,10 @@
 </template>
 
 <script>
-import AppContentList from '@nextcloud/vue/dist/Components/AppContentList'
-import Button from '@nextcloud/vue/dist/Components/Button'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import AppContentList from '@nextcloud/vue/dist/Components/NcAppContentList'
+import Button from '@nextcloud/vue/dist/Components/NcButton'
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
 import VirtualList from 'vue-virtual-scroll-list'
 
@@ -114,6 +120,7 @@ export default {
 		IconContact,
 		IconAdd,
 		IconInfo,
+		IconLoading,
 	},
 	mixins: [isMobile, RouterMixin],
 

@@ -1,5 +1,8 @@
 <template>
-	<EmptyContent class="processing-screen__wrapper" icon="icon-contacts-dark">
+	<EmptyContent class="processing-screen__wrapper">
+		<template #icon>
+			<IconContact :size="20" />
+		</template>
 		<slot />
 		<template #desc>
 			<div class="processing-screen__progress">
@@ -13,13 +16,14 @@
 </template>
 
 <script>
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
-
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent'
+import IconContact from 'vue-material-design-icons/AccountMultiple'
 export default {
 	name: 'ProcessingScreen',
 
 	components: {
 		EmptyContent,
+		IconContact,
 	},
 
 	props: {

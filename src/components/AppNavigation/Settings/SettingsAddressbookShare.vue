@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect'
 import client from '../../../services/cdav'
 
 import addressBookSharee from './SettingsAddressbookSharee'

@@ -69,11 +69,11 @@
 					</Button>
 					<Button
 						type="primary"
-						:class="{'icon-loading': loading}"
 						:disabled="loading"
 						class="import-contact__button import-contact__button--files"
 						@click="openPicker">
 						<template #icon>
+							<IconLoading v-if="loading" :size="20" />
 							<IconFolder :size="20" />
 						</template>
 						<span class="import-contact__button-icon" />
@@ -95,9 +95,10 @@
 </template>
 
 <script>
-import Button from '@nextcloud/vue/dist/Components/Button'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import Button from '@nextcloud/vue/dist/Components/NcButton'
+import Modal from '@nextcloud/vue/dist/Components/NcModal'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
 import { encodePath } from '@nextcloud/paths'
 import { getCurrentUser } from '@nextcloud/auth'
 import { generateRemoteUrl } from '@nextcloud/router'
@@ -127,6 +128,7 @@ export default {
 		IconUpload,
 		IconError,
 		IconFolder,
+		IconLoading,
 	},
 
 	data() {

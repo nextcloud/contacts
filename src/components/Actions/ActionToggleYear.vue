@@ -28,7 +28,7 @@
 	</ActionCheckbox>
 </template>
 <script>
-import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
+import ActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox'
 import ActionsMixin from '../../mixins/ActionsMixin'
 
 export default {

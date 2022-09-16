@@ -62,10 +62,10 @@
 <script>
 import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE } from '../models/constants.ts'
 
-import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
-import Content from '@nextcloud/vue/dist/Components/Content'
+import AppNavigationNew from '@nextcloud/vue/dist/Components/NcAppNavigationNew'
+import Content from '@nextcloud/vue/dist/Components/NcContent'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
+import Modal from '@nextcloud/vue/dist/Components/NcModal'
 
 import { showError } from '@nextcloud/dialogs'
 import { VCardTime } from 'ical.js'

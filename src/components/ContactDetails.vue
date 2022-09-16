@@ -23,14 +23,12 @@
 <template>
 	<AppContentDetails>
 		<!-- nothing selected or contact not found -->
-		<EmptyContent v-if="!contact">
+		<EmptyContent v-if="!contact"
+			:title="t('contacts', 'No contact selected')"
+			:description="t('contacts', 'Select a contact on the list to begin')">
 			<template #icon>
 				<IconContact
 					:size="20" />
-			</template>
-			{{ t('contacts', 'No contact selected') }}
-			<template #desc>
-				{{ t('contacts', 'Select a contact on the list to begin') }}
 			</template>
 		</EmptyContent>
 
@@ -185,7 +183,7 @@
 			</Modal>
 
 			<!-- contact details loading -->
-			<section v-if="loadingData" class="icon-loading contact-details" />
+			<IconLoading v-if="loadingData" :size="20" class="contact-details" />
 
 			<!-- contact details -->
 			<section v-else
@@ -256,13 +254,14 @@ import qr from 'qr-image'
 import Vue from 'vue'
 import { VueMasonryPlugin } from 'vue-masonry'
 
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
-import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
+import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink'
+import AppContentDetails from '@nextcloud/vue/dist/Components/NcAppContentDetails'
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent'
 import IconContact from 'vue-material-design-icons/AccountMultiple'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import Modal from '@nextcloud/vue/dist/Components/NcModal'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
 import IconDownload from 'vue-material-design-icons/Download'
 import IconDelete from 'vue-material-design-icons/Delete'
 import IconQr from 'vue-material-design-icons/Qrcode'
@@ -299,6 +298,7 @@ export default {
 		IconDelete,
 		IconQr,
 		IconCopy,
+		IconLoading,
 		Modal,
 		Multiselect,
 		PropertyGroups,

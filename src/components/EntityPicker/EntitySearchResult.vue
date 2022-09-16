@@ -41,7 +41,7 @@
 </template>
 
 <script>
-import UserBubble from '@nextcloud/vue/dist/Components/UserBubble'
+import UserBubble from '@nextcloud/vue/dist/Components/NcUserBubble'
 
 export default {
 	name: 'EntitySearchResult',

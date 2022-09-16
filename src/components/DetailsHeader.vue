@@ -53,7 +53,7 @@
 </template>
 
 <script>
-import Actions from '@nextcloud/vue/dist/Components/Actions'
+import Actions from '@nextcloud/vue/dist/Components/NcActions'
 
 export default {
 	name: 'DetailsHeader',

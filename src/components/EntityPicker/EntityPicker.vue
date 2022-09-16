@@ -38,14 +38,15 @@
 			</div>
 
 			<!-- Loading -->
-			<EmptyContent v-if="loading" icon="icon-loading">
-				{{ t('contacts', 'Loading …') }}
+			<EmptyContent :title="t('contacts', 'Loading …')">
+				<template #icon>
+					<IconLoading v-if="loading" :size="20" />
+				</template>
 			</EmptyContent>
 
-			<template v-else>
+			<template v-if="Object.keys(selectionSet).length > 0">
 				<!-- Picked entities -->
 				<transition-group
-					v-if="Object.keys(selectionSet).length > 0"
 					name="zoom"
 					tag="ul"
 					class="entity-picker__selection">
@@ -57,11 +58,10 @@
 				</transition-group>
 
 				<!-- No recommendations -->
-				<EmptyContent v-if="dataSet.length === 0">
+				<EmptyContent v-if="dataSet.length === 0" :title="t('contacts', 'Search for people to add')">
 					<template #icon>
 						<IconSearch :size="20" />
 					</template>
-					{{ t('contacts', 'Search for people to add') }}
 				</EmptyContent>
 
 				<!-- Searched & picked entities -->
@@ -73,11 +73,10 @@
 					:estimate-size="44"
 					:extra-props="{ selection: selectionSet, onClick }" />
 
-				<EmptyContent v-else-if="searchQuery">
+				<EmptyContent v-else-if="searchQuery" :title="t('contacts', 'No results')">
 					<template #icon>
 						<IconSearch :size="20" />
 					</template>
-					{{ t('contacts', 'No results') }}
 				</EmptyContent>
 
 				<div class="entity-picker__navigation">
@@ -102,9 +101,10 @@
 <script>
 import debounce from 'debounce'
 import VirtualList from 'vue-virtual-scroll-list'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
 import IconSearch from 'vue-material-design-icons/Magnify'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
+import Modal from '@nextcloud/vue/dist/Components/NcModal'
 
 import EntityBubble from './EntityBubble'
 import EntitySearchResult from './EntitySearchResult'
@@ -116,6 +116,7 @@ export default {
 		EmptyContent,
 		EntityBubble,
 		IconSearch,
+		IconLoading,
 		Modal,
 		VirtualList,
 	},

@@ -44,17 +44,23 @@
 			v-if="!isReadOnly || contact.photo"
 			:force-menu="true"
 			:open.sync="opened"
-			class="contact-header-avatar__menu"
-			default-icon="icon-picture-force-white">
+			class="contact-header-avatar__menu">
+			<template #icon>
+				<IconImage :size="20" fill-color="#fff" />
+			</template>
 			<template v-if="!isReadOnly">
 				<ActionButton
-					icon="icon-upload"
 					@click.stop.prevent="selectFileInput">
+					<template #icon>
+						<IconUpload :size="20" />
+					</template>
 					{{ t('contacts', 'Upload a new picture') }}
 				</ActionButton>
 				<ActionButton
-					icon="icon-folder"
 					@click="selectFilePicker">
+					<template #icon>
+						<IconFolder :size="20" />
+					</template>
 					{{ t('contacts', 'Choose from Files') }}
 				</ActionButton>
 				<ActionButton
@@ -90,12 +96,15 @@
 </template>
 
 <script>
-import Avatar from '@nextcloud/vue/dist/Components/Avatar'
-import Actions from '@nextcloud/vue/dist/Components/Actions'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
+import Avatar from '@nextcloud/vue/dist/Components/NcAvatar'
+import Actions from '@nextcloud/vue/dist/Components/NcActions'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
+import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink'
 import IconDownload from 'vue-material-design-icons/Download'
 import IconDelete from 'vue-material-design-icons/Delete'
+import IconUpload from 'vue-material-design-icons/Upload'
+import IconFolder from 'vue-material-design-icons/Folder'
+import IconImage from 'vue-material-design-icons/Image'
 
 import { showError, showInfo, getFilePickerBuilder, showSuccess } from '@nextcloud/dialogs'
 import { generateUrl, generateRemoteUrl } from '@nextcloud/router'
@@ -117,6 +126,9 @@ export default {
 		Avatar,
 		IconDownload,
 		IconDelete,
+		IconUpload,
+		IconFolder,
+		IconImage,
 	},
 
 	props: {

@@ -22,18 +22,19 @@
 
 <template>
 	<AppContent v-if="loading">
-		<EmptyContent icon="icon-loading">
-			{{ t('contacts', 'Loading contacts …') }}
+		<EmptyContent :title="t('contacts', 'Loading contacts …')">
+			<template #icon>
+				<IconLoading :size="20" />
+			</template>
 		</EmptyContent>
 	</AppContent>
 
 	<AppContent v-else-if="isEmptyGroup && !isRealGroup">
-		<EmptyContent>
+		<EmptyContent :title="t('contacts', 'There are no contacts yet')">
 			<template #icon>
 				<IconContact
 					:size="20" />
 			</template>
-			{{ t('contacts', 'There are no contacts yet') }}
 			<template #desc>
 				<Button type="primary" @click="newContact">
 					{{ t('contacts', 'Create contact') }}
@@ -43,12 +44,11 @@
 	</AppContent>
 
 	<AppContent v-else-if="isEmptyGroup && isRealGroup">
-		<EmptyContent>
+		<EmptyContent :title=" t('contacts', 'There are no contacts in this group')">
 			<template #icon>
 				<IconContact
 					:size="20" />
 			</template>
-			{{ t('contacts', 'There are no contacts in this group') }}
 			<template #desc>
 				<Button v-if="contacts.length === 0" type="primary" @click="addContactsToGroup(selectedGroup)">
 					{{ t('contacts', 'Create contacts') }}
@@ -75,9 +75,10 @@
 </template>
 <script>
 import { emit } from '@nextcloud/event-bus'
-import AppContent from '@nextcloud/vue/dist/Components/AppContent'
-import Button from '@nextcloud/vue/dist/Components/Button'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import AppContent from '@nextcloud/vue/dist/Components/NcAppContent'
+import Button from '@nextcloud/vue/dist/Components/NcButton'
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
 
 import ContactDetails from '../ContactDetails'
 import ContactsList from '../ContactsList'
@@ -94,6 +95,7 @@ export default {
 		ContactsList,
 		EmptyContent,
 		IconContact,
+		IconLoading,
 	},
 
 	mixins: [RouterMixin],
