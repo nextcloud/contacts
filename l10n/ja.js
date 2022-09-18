@@ -116,7 +116,6 @@ OC.L10N.register(
     "Address book" : "アドレス帳",
     "New contact" : "新しい連絡先",
     "Syntax error. Cannot open the contact." : "構文エラー。 連絡先を開けません",
-    "The contact doesn't exists anymore on the server." : "連絡先はサーバーに存在しません。",
     "Unable to retrieve the contact from the server, please check your network connection." : "サーバーから連絡先を取得できないので、ネットワークの接続をご確認ください。",
     "An error occurred while trying to move the contact" : "連絡先の移動中にエラーが発生しました",
     "An error occurred while trying to copy the contact" : "連絡先のコピー中にエラーが発生しました",

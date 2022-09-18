@@ -86,7 +86,6 @@ OC.L10N.register(
     "Address book" : "Адресар",
     "New contact" : "Нови контакт",
     "Syntax error. Cannot open the contact." : "Синтаксна грешка. Не могу да отворим контакт.",
-    "The contact doesn't exists anymore on the server." : "Овај контакт не постоји више на серверу.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Грешка приликом дохватања контакта са сервера, проверите интернет везу.",
     "An error occurred while trying to move the contact" : "Грешка приликом покушаја померања контакта",
     "An error occurred while trying to copy the contact" : "Грешка приликом покушаја копирања контакта",

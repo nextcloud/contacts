@@ -73,7 +73,6 @@ OC.L10N.register(
     "Address book" : "Nafnaskrá",
     "New contact" : "Nýr tengiliður",
     "Syntax error. Cannot open the contact." : "Villa í málskipan. Get ekki opnað tengiliðinn.",
-    "The contact doesn't exists anymore on the server." : "Tengiliðurinn er ekki lengur til á miðlaranum.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Ekki er hægt að sækja tengiliðinn frá netþjóninum, athugaðu nettenginguna þína.",
     "An error occurred while trying to move the contact" : "Villa kom upp þegar reynt var að færa tengiliðinn",
     "An error occurred while trying to copy the contact" : "Villa kom upp þegar reynt var að afrita tengiliðinn",

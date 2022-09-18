@@ -54,7 +54,6 @@ OC.L10N.register(
     "Address book" : "Libri i adresave",
     "New contact" : "Kontakt i ri",
     "Syntax error. Cannot open the contact." : "Gabim sintakse. Kontakti nuk mund të hapet.",
-    "The contact doesn't exists anymore on the server." : "Kontakti nuk ekziston më në server.",
     "Search contacts …" : "Kërko kontakte ...",
     "No results" : "Asnjë rezultat",
     "Personal circle" : "Rreth personal",

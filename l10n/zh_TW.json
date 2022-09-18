@@ -120,7 +120,6 @@
     "Address book" : "通訊錄",
     "New contact" : "新聯絡人",
     "Syntax error. Cannot open the contact." : "語法錯誤。無法開啟聯絡人。",
-    "The contact doesn't exists anymore on the server." : "聯絡人不再存在於伺服器上。",
     "Unable to retrieve the contact from the server, please check your network connection." : "無法從伺服器擷取聯絡人，請檢查您的網路連線。",
     "An error occurred while trying to move the contact" : "嘗試移動聯絡人時發生錯誤",
     "An error occurred while trying to copy the contact" : "嘗試複製聯絡人時發生錯誤",

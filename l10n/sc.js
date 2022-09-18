@@ -116,7 +116,6 @@ OC.L10N.register(
     "Address book" : "Rubrica",
     "New contact" : "Cuntatu nou",
     "Syntax error. Cannot open the contact." : "Errore de sintassi. Non si podet abèrrere su cuntatu.",
-    "The contact doesn't exists anymore on the server." : "Su cuntatu non ddoe est prus in su serbidore.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Non faghet a recuperare su cuntatu dae su serbidore, controlla s'istadu de sa connessione.",
     "An error occurred while trying to move the contact" : "Ddoe at àpidu un'errore proende a tramudare su cuntatu",
     "An error occurred while trying to copy the contact" : "Ddoe at àpidu un'errore proende a copiare su cuntatu",

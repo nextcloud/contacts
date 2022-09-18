@@ -49,7 +49,6 @@
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontaktpersonas informācija kuru rediģējāt ir mainījusies. Lūdzu pašrocīgi atjaunināt kontaktpersonas informāciju. Jebkuras tālākas izmaiņas tiks atmestas.",
     "New contact" : "Jauns kontakts",
     "Syntax error. Cannot open the contact." : "Sintakse kļūda. Nevar atvērt kontaktpersonu.",
-    "The contact doesn't exists anymore on the server." : "Kontaktpersonas ierakst vairs nepastāv uz servera.",
     "Search contacts …" : "Meklēt kontaktpersonu",
     "No results" : "Nav rezultātu",
     "Personal circle" : "Personīgais loks",

@@ -117,7 +117,6 @@ OC.L10N.register(
     "Address book" : "Osoitekirja",
     "New contact" : "Uusi yhteystieto",
     "Syntax error. Cannot open the contact." : "Syntaksivirhe. Yhteystietoa ei voi avata.",
-    "The contact doesn't exists anymore on the server." : "Yhteystietoa ei ole enää olemassa tällä palvelimella.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Yhteystietoa ei kyetty hakemaan palvelimelta. Ole hyvä ja tarkista yhteytesi internetiin.",
     "An error occurred while trying to move the contact" : "Yhteystietoa siirtäessä tapahtui virhe",
     "An error occurred while trying to copy the contact" : "Yhteystietoa kopioitaessa tapahtui virhe",

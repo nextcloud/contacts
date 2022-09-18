@@ -89,7 +89,6 @@ OC.L10N.register(
     "Address book" : "Caderno de enderezos",
     "New contact" : "Novo contacto",
     "Syntax error. Cannot open the contact." : "Erro de sintaxe. Non foi posíbel abrir o contacto.",
-    "The contact doesn't exists anymore on the server." : "O contacto xa non existe no servidor.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Non é posíbel recuperar o contacto do servidor. Comprobe a súa conexión de rede.",
     "An error occurred while trying to move the contact" : "Produciuse un erro ao tentar mover o contacto",
     "An error occurred while trying to copy the contact" : "Produciuse un erro ao tentar copiar o contacto",

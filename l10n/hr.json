@@ -112,7 +112,6 @@
     "Address book" : "Adresar",
     "New contact" : "Novi kontakt",
     "Syntax error. Cannot open the contact." : "Sintaktička pogreška. Kontakt se ne može otvoriti.",
-    "The contact doesn't exists anymore on the server." : "Ovaj kontakt više ne postoji na poslužitelju.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Nije moguće dohvatiti kontakt s poslužitelja, provjerite svoju mrežnu vezu.",
     "An error occurred while trying to move the contact" : "Došlo je do pogreške tijekom prijenosa kontakta",
     "An error occurred while trying to copy the contact" : "Došlo je do pogreške prilikom kopiranja kontakta",

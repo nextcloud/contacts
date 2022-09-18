@@ -107,7 +107,6 @@
     "Address book" : "주소록",
     "New contact" : "새 연락처",
     "Syntax error. Cannot open the contact." : "문법 오류입니다. 연락처를 열 수 없습니다.",
-    "The contact doesn't exists anymore on the server." : "이 연락처는 더 이상 서버에 존재하지 않습니다.",
     "Unable to retrieve the contact from the server, please check your network connection." : "연락처를 가져올 수 없습니다. 네트워크 연결을 확인하세요.",
     "An error occurred while trying to move the contact" : "연락처를 이동하는 중 오류 발생",
     "An error occurred while trying to copy the contact" : "연락처를 복사하는 중 오류 발생",

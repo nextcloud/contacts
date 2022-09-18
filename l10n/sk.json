@@ -114,7 +114,6 @@
     "Address book" : "Adresár",
     "New contact" : "Nový kontakt",
     "Syntax error. Cannot open the contact." : "Chyba zápisu. Nepodarilo sa otvoriť kontakt.",
-    "The contact doesn't exists anymore on the server." : "Kontakt už na servri neexistuje.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Nepodarilo sa načítať kontakt zo servera, skontrolujte sieťové pripojenie.",
     "An error occurred while trying to move the contact" : "Pri pokuse o presun kontaktu sa vyskytla chyba",
     "An error occurred while trying to copy the contact" : "Pri pokuse o skopírovanie kontaktu sa vyskytla chyba",

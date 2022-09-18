@@ -88,7 +88,6 @@ OC.L10N.register(
     "Address book" : "Sổ địa chỉ",
     "New contact" : "Thêm liên lạc",
     "Syntax error. Cannot open the contact." : "Lỗi cú pháp. Không thể mở liên hệ. ",
-    "The contact doesn't exists anymore on the server." : "Địa chỉ liên hệ không còn tồn tại trên máy chủ.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Không thể truy xuất liên hệ từ máy chủ, vui lòng kiểm tra kết nối mạng của bạn.",
     "An error occurred while trying to move the contact" : "Một lỗi đã xảy ra khi đang cố gắng di chuyẻn liên hệ",
     "An error occurred while trying to copy the contact" : "Một lỗi đã xảy ra khi đang cố gắng sao chép liên hệ",

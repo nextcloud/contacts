@@ -122,7 +122,6 @@ OC.L10N.register(
     "Address book" : "Adresář kontaktů",
     "New contact" : "Nový kontakt",
     "Syntax error. Cannot open the contact." : "Chyba syntaxe. Kontakt nelze otevřít.",
-    "The contact doesn't exists anymore on the server." : "Tento kontakt už na serveru neexistuje.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Kontakt se nedaří získat ze serveru – prosím zkontrolujte své připojení k síti.",
     "An error occurred while trying to move the contact" : "Při pokusu o přesunutí kontaktu došlo k chybě",
     "An error occurred while trying to copy the contact" : "Při pokusu o zkopírování kontaktu došlo k chybě",
