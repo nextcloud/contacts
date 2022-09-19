@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.2.1 – 2022-09-19
+### Changed
+- Important npm package updates
+
 ## 4.2.0 - 2022-07-19
 ### Added
 - Enforce circle share password
