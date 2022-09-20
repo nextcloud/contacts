@@ -122,6 +122,7 @@ OC.L10N.register(
     "Address book" : "Adressbuch",
     "New contact" : "Neuer Kontakt",
     "Syntax error. Cannot open the contact." : "Syntaxfehler. Der Kontakt kann nicht geöffnet werden.",
+    "The contact does not exists on the server anymore." : "Der Kontakt existiert nicht mehr auf dem Server.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Der Kontakt konnte nicht vom Server abgerufen werden, überprüfen Sie bitte Ihre Netzwerkverbindung.",
     "An error occurred while trying to move the contact" : "Es ist ein Fehler beim Verschieben des Kontakts aufgetreten",
     "An error occurred while trying to copy the contact" : "Es ist ein Fehler beim Kopieren des Kontakts aufgetreten",

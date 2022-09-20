@@ -120,6 +120,7 @@
     "Address book" : "Książka adresowa",
     "New contact" : "Nowy kontakt",
     "Syntax error. Cannot open the contact." : "Błąd składni. Nie można otworzyć kontaktu.",
+    "The contact does not exists on the server anymore." : "Kontakt nie istnieje już na serwerze.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Nie można pobrać kontaktu z serwera, sprawdź połączenie sieciowe.",
     "An error occurred while trying to move the contact" : "Wystąpił błąd podczas próby przeniesienia kontaktu",
     "An error occurred while trying to copy the contact" : "Wystąpił błąd podczas próby skopiowania kontaktu",

@@ -120,6 +120,7 @@
     "Address book" : "Carnet d'adresses",
     "New contact" : "Nouveau contact",
     "Syntax error. Cannot open the contact." : "Erreur de syntaxe. Impossible de lire le contact.",
+    "The contact does not exists on the server anymore." : "Le contact n'existe plus sur le serveur.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Impossible de récupérer le contact à partir du serveur, s'il vous plait vérifiez votre connexion internet.",
     "An error occurred while trying to move the contact" : "Une erreur s'est produite lors du déplacement du contact",
     "An error occurred while trying to copy the contact" : "Une erreur s'est produite lors de la copie du contact",

@@ -122,6 +122,7 @@ OC.L10N.register(
     "Address book" : "Adres defteri",
     "New contact" : "Yeni kişi",
     "Syntax error. Cannot open the contact." : "Yazım hatası. Kişi bulunamadı.",
+    "The contact does not exists on the server anymore." : "Kişi artık sunucu üzerinde değil.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Kişi sunucudan alınamadı. Lütfen ağ bağlantınızı denetleyin.",
     "An error occurred while trying to move the contact" : "Kişi taşınırken bir sorun çıktı",
     "An error occurred while trying to copy the contact" : "Kişi kopyalanırken bir sorun çıktı",
