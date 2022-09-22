@@ -24,7 +24,7 @@ import Vue from 'vue'
 import Router from 'vue-router'
 import { generateUrl } from '@nextcloud/router'
 
-import { ROUTE_CIRCLE } from '../models/constants.ts'
+import { ROUTE_CIRCLE, ROUTE_CHART } from '../models/constants.ts'
 import Contacts from '../views/Contacts'
 
 Vue.use(Router)
@@ -47,6 +47,11 @@ export default new Router({
 				params: { selectedGroup: t('contacts', 'All contacts') },
 			},
 			children: [
+				{
+					path: `/${ROUTE_CHART}/:selectedChart`,
+					name: 'chart',
+					component: Contacts,
+				},
 				{
 					path: 'import',
 					name: 'import',
