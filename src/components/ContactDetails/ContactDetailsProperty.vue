@@ -230,7 +230,7 @@ export default {
 				return {
 					...prev,
 					[contact.uid]: {
-						id: contact.uid,
+						id: contact.key,
 						name: contact.displayName,
 					},
 				}
@@ -333,6 +333,16 @@ export default {
 						? this.property.getValues()[0]
 						: this.property.getValues()
 				}
+				if (this.propName === 'x-managersname') {
+					if (this.property.getParameter('uid')) {
+						return this.property.getParameter('uid') + '~' + this.contact.addressbook.id
+					}
+					// Try to find the matching contact by display name
+					// TODO: this only *shows* the display name but doesn't assign the missing UID
+					const displayName = this.property.getFirstValue()
+					const other = this.otherContacts(this.contact).find(contact => contact.displayName === displayName)
+					return other?.key
+				}
 				return this.property.getFirstValue()
 			},
 			set(data) {
@@ -342,7 +352,13 @@ export default {
 						? this.property.setValues([data])
 						: this.property.setValues(data)
 				} else {
-					this.property.setValue(data)
+					if (this.propName === 'x-managersname') {
+						const manager = this.$store.getters.getContact(data)
+						this.property.setValue(manager.displayName)
+						this.property.setParameter('uid', manager.uid)
+					} else {
+						this.property.setValue(data)
+					}
 				}
 				this.updateContact()
 			},

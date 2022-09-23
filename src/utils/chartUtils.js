@@ -1,20 +1,16 @@
 import { generateUrl } from '@nextcloud/router'
 import { GROUP_ALL_CONTACTS } from '../models/constants.ts'
 
-export const getChart = (list, parent, nodes = []) => {
-	if (!nodes.length) {
-		nodes.push(list.find(node => node.nodeId === parent))
-	}
-	const children = list.filter(node => {
-		return node.parentNodeId === parent
+export const getChart = (allNodes, currentNode) => {
+	const result = [currentNode]
+	const children = allNodes.filter(node => {
+		return node.nodeId !== currentNode.nodeId && node.parentNodeId === currentNode.nodeId
 	})
 
-	children.forEach(node => {
-		nodes.push(node)
-		getChart(list, node.nodeId, nodes)
-	})
-
-	return nodes
+	return [
+		...result,
+		...children.flatMap(child => getChart(allNodes, child)),
+	]
 }
 
 export const transformNode = (contact) => {
