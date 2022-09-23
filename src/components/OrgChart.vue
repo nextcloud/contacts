@@ -23,6 +23,7 @@
 <script>
 import * as d3 from 'd3'
 import ChartTemplate from './ChartTemplate.vue'
+import { getLocale } from '@nextcloud/l10n'
 import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect'
 import { OrgChart } from 'd3-org-chart'
 import router from './../router'
@@ -53,6 +54,12 @@ export default {
 					id: index,
 					label: head.org ? `${head.org} (${head.fullName})` : head.fullName,
 				}
+			}).sort((a, b) => {
+				return a.label.localeCompare(
+					b.label,
+					getLocale().replace('_', '-'),
+					{ sensitivity: 'base' },
+				)
 			})
 		},
 		placeholder() {
