@@ -56,7 +56,7 @@ export default {
 			})
 		},
 		placeholder() {
-			return t('contacts', 'Select chart...')
+			return t('contacts', 'Select chart …')
 		},
 	},
 	watch: {
