@@ -18,6 +18,7 @@ OC.L10N.register(
     "Title" : "ចំណងជើង",
     "Cancel" : "បោះបង់",
     "Pending" : "កំពុង​រង់ចាំ",
+    "Chart" : "ក្រាប",
     "Close" : "បិទ",
     "Import" : "នាំយកចូល",
     "Not grouped" : "គ្មាន​ក្រុម",
