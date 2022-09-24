@@ -161,6 +161,7 @@ OC.L10N.register(
     "Could not delete the member {displayName}" : "無法刪除成員 {displayName}",
     "Could not change the member level to {level}" : "無法變更成員等級至 {level}",
     "Could not accept membership request" : "無法接受成員請求",
+    "Chart" : "圖表",
     "Select type" : "選取類型",
     "Select Date" : "選取日期",
     "Add contact in group" : "新增聯絡人到群組",

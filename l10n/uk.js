@@ -71,6 +71,7 @@ OC.L10N.register(
     "No results" : "Немає результатів",
     "Personal circle" : "Особисте коло",
     "Pending" : "Очікування",
+    "Chart" : "Діаграма",
     "Select type" : "Виберіть вид",
     "Select Date" : "Вкажіть дату",
     "Add contact in group" : "Додати контакт до групи",
