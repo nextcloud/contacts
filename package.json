@@ -91,7 +91,7 @@
 		"@nextcloud/webpack-vue-config": "~5.1.0",
 		"@types/jest": "^27.4.1",
 		"@typescript-eslint/parser": "^5.37.0",
-		"@vue/composition-api": "^1.7.0",
+		"@vue/composition-api": "^1.7.1",
 		"@vue/vue2-jest": "^27",
 		"babel-jest": "^27",
 		"eslint-import-resolver-typescript": "^3.5.1",
