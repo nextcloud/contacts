@@ -96,7 +96,7 @@
 		"babel-jest": "^27",
 		"eslint-import-resolver-typescript": "^3.5.1",
 		"jest": "^27",
-		"stylelint": "^14.11.0",
+		"stylelint": "^14.12.1",
 		"stylelint-config-recommended-scss": "^7.0.0",
 		"ts-jest": "^27.1.4",
 		"ts-loader": "^9.3.1",
