@@ -162,6 +162,7 @@
     "Could not change the member level to {level}" : "Mitgliedsstufe konnte nicht geändert werden auf {level}",
     "Could not accept membership request" : "Mitgliedsanfrage konnte nicht akzeptiert werden",
     "Chart" : "Diagramm",
+    "Select chart …" : "Diagramm auswählen ...",
     "Select type" : "Typ auswählen",
     "Select Date" : "Datum auswählen",
     "Add contact in group" : "Kontakt zur Gruppe hinzufügen",

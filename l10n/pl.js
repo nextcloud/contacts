@@ -164,6 +164,7 @@ OC.L10N.register(
     "Could not change the member level to {level}" : "Nie można zmienić poziomu członkostwa na {level}",
     "Could not accept membership request" : "Nie można zaakceptować prośby o członkostwo",
     "Chart" : "Wykres",
+    "Select chart …" : "Wybierz wykres…",
     "Select type" : "Wybierz rodzaj",
     "Select Date" : "Wybierz datę",
     "Add contact in group" : "Dodaj kontakt do grupy",
