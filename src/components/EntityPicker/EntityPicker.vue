@@ -415,7 +415,7 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 			width: 100%;
 			height: $clickable-area - $entity-spacing !important;
 			margin: $entity-spacing 0;
-			padding-left: $clickable-area;
+			padding-left: $clickable-area !important;
 			font-size: 16px;
 			line-height: $clickable-area - $entity-spacing;
 		}
