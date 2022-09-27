@@ -371,22 +371,11 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get managersName() {
-		return this.firstIfArray(this.vCard.getFirstPropertyValue('x-managersname'))
-	}
-
-	/**
-	 * Set the x-managersname
-	 *
-	 * @param {string} managersName the x-managersname data
-	 * @memberof Contact
-	 */
-	set managersName(managersName) {
-		// delete the org if empty
-		if (isEmpty(managersName)) {
-			this.vCard.removeProperty('x-managersname')
-			return
+		const prop = this.vCard.getFirstProperty('x-managersname')
+		if (!prop) {
+			return null
 		}
-		this.vCard.updatePropertyWithValue('x-managersname', managersName)
+		return prop.getFirstParameter('uid') ?? null
 	}
 
 	/**

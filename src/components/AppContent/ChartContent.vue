@@ -44,14 +44,17 @@ export default {
 				prev.push(transformNode(contact))
 
 				const manager = contactsByUid[contact.addressbook.id][contact.managersName]
-				if (manager && !manager.managersName && !headManagers.includes(manager.uid)) {
+				if (manager && !manager.managersName && !headManagers.some(m => m.nodeId === manager.uid)) {
 					prev.push(transformNode(manager))
-					headManagers.push(manager.uid)
+					headManagers.push(transformNode(manager))
 				}
 				return prev
 			}, [])
 
-			return headManagers.map(uid => getChart(tempContacts, uid))
+			const charts = headManagers.map(managerNode => getChart(tempContacts, managerNode))
+			// Debugging logs to figure out why a graph might not show. Leave this in place until the logic is bulletproof
+			console.debug('Org charts', charts.map((nodes, index) => nodes.map(n => `list ${index} ${n.nodeId} (${n.fullName}) -> ${n.parentNodeId}`)))
+			return charts
 		},
 	},
 }
