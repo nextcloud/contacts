@@ -164,6 +164,7 @@ OC.L10N.register(
     "Could not change the member level to {level}" : "Nedaří se změnit oprávnění člena na stupeň {level}",
     "Could not accept membership request" : "Žádost o členství nemohla být přijata",
     "Chart" : "Graf",
+    "Select chart …" : "Vybrat graf…",
     "Select type" : "Vybrat typ",
     "Select Date" : "Vybrat datum",
     "Add contact in group" : "Přidat kontakt do skupiny",
