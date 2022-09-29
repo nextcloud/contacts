@@ -182,10 +182,11 @@ export default {
 		background-color: var(--color-main-background);
 	}
 
-	::v-deep .node-button-div {
-		color: var(--color-primary-element);
-		div {
-			background-color: var(--color-main-background) !important;
+	.node-button-div {
+		filter: var(--background-invert-if-dark);
+
+		& > div > div {
+			filter: var(--background-invert-if-dark);
 		}
 	}
 }
