@@ -419,7 +419,10 @@ export default {
 				return this.contact.addressbook.id
 			},
 			set(addressbookId) {
-				this.moveContactToAddressbook(addressbookId)
+				// Only move when the address book actually changed to prevent a conflict.
+				if (this.contact.addressbook.id !== addressbookId) {
+					this.moveContactToAddressbook(addressbookId)
+				}
 			},
 		},
 
@@ -456,6 +459,7 @@ export default {
 		 * This is the list of addressbooks that are available to write
 		 *
 		 * @return {Array}
+		 * @return {{id: string, name: string}[]}
 		 */
 		addressbooksOptions() {
 			return this.addressbooks
