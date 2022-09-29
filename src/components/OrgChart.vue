@@ -163,6 +163,7 @@ export default {
 .org-chart {
 	display: flex;
 	flex-direction: column;
+	height: 100%;
 
 	&__menu {
 		display: flex;
@@ -180,6 +181,11 @@ export default {
 	&__container {
 		display: flex;
 		background-color: var(--color-main-background);
+		height: 100%;
+
+		svg {
+			height: 100%;
+		}
 	}
 
 	::v-deep .node-button-div {
