@@ -11,7 +11,6 @@ updates:
   labels:
   - "3. to review"
   - "feature: dependencies"
-
 - package-ecosystem: npm
   directory: "/"
   schedule:
@@ -23,3 +22,14 @@ updates:
   labels:
   - "3. to review"
   - "feature: dependencies"
+
+# stable4.2
+- package-ecosystem: npm
+  target-branch: stable4.2
+  directory: "/"
+  schedule:
+    interval: daily
+  open-pull-requests-limit: 0
+  labels:
+    - "3. to review"
+    - "feature: dependencies"
