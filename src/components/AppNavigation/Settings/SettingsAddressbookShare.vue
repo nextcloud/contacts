@@ -34,7 +34,7 @@
 			:user-select="true"
 			open-direction="bottom"
 			track-by="user"
-			label="user"
+			label="displayName"
 			@search-change="findSharee"
 			@input="shareAddressbook" />
 		<!-- list of user or groups addressbook is shared with -->
@@ -53,6 +53,7 @@ import client from '../../../services/cdav'
 
 import addressBookSharee from './SettingsAddressbookSharee'
 import debounce from 'debounce'
+import { urldecode } from '../../../utils/url.js'
 
 export default {
 	name: 'SettingsAddressbookShare',
@@ -100,10 +101,7 @@ export default {
 		 * @param {boolean} data.isGroup is this a group ?
 		 */
 		shareAddressbook({ user, displayName, uri, isGroup }) {
-			const addressbook = this.addressbook
-			uri = decodeURI(uri)
-			user = decodeURI(user)
-			this.$store.dispatch('shareAddressbook', { addressbook, user, displayName, uri, isGroup })
+			this.$store.dispatch('shareAddressbook', { addressbook: this.addressbook, user, displayName, uri, isGroup })
 		},
 
 		/**
@@ -121,10 +119,10 @@ export default {
 					&& !this.addressbook.shares.some((share) => share.uri === result.principalScheme)) {
 						const isGroup = result.calendarUserType === 'GROUP'
 						list.push({
-							user: result[isGroup ? 'groupId' : 'userId'],
+							user: urldecode(result[isGroup ? 'groupId' : 'userId']),
 							displayName: result.displayname,
 							icon: isGroup ? 'icon-group' : 'icon-user',
-							uri: result.principalScheme,
+							uri: urldecode(result.principalScheme),
 							isGroup,
 						})
 					}
