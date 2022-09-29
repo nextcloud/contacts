@@ -39,7 +39,7 @@
 			</div>
 
 			<Multiselect v-model="matchedOptions"
-				:options="options || propModel.options"
+				:options="propModel.options || options"
 				:placeholder="t('contacts', 'Select option')"
 				:disabled="isSingleOption || isReadOnly"
 				class="property__value"
