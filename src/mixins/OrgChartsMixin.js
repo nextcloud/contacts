@@ -19,16 +19,16 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
+import { otherContacts } from '../utils/chartUtils'
+
 export default {
 	methods: {
 		// The current component root
 		otherContacts(self) {
-			return this.$store.getters.getSortedContacts.filter(
-				({ key }) => {
-					const contact = this.$store.getters.getContact(key)
-					return contact.addressbook.id === self.addressbook.id && contact.uid !== self.uid
-				}
-			)
+			return otherContacts({
+				$store: this.$store,
+				self,
+			},)
 		},
 	},
 }

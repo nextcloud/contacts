@@ -37,7 +37,7 @@
 		:local-contact="localContact"
 		:prop-name="propName"
 		:prop-type="propType"
-		:options="propName === 'x-managersname' ? contactsOptions : sortedModelOptions"
+		:options="sortedModelOptions"
 		:is-read-only="isReadOnly"
 		@delete="onDelete"
 		@resize="onResize"
@@ -182,7 +182,17 @@ export default {
 		 * @return {object[]}
 		 */
 		sortedModelOptions() {
-			if (this.propModel.options) {
+			if (!this.propModel.options) {
+				return []
+			}
+
+			if (typeof this.propModel.options === 'function') {
+				return this.propModel.options({
+					contact: this.contact,
+					$store: this.$store,
+					selectType: this.selectType,
+				})
+			} else {
 				return this.propModel.options.reduce((list, option) => {
 					if (!list.find(search => search.name === option.name)) {
 						list.push(option)
@@ -190,7 +200,6 @@ export default {
 					return list
 				}, this.selectType ? [this.selectType] : [])
 			}
-			return []
 		},
 
 		/**
@@ -210,31 +219,6 @@ export default {
 		 */
 		propLabel() {
 			return this.localContact.vCard.getFirstProperty(`${this.propGroup[0]}.x-ablabel`)
-		},
-
-		/**
-		 * Return the options of contacts for x-managersname select
-		 *
-		 * @return {object[]}
-		 */
-		contactsOptions() {
-			if (this.propName !== 'x-managersname') {
-				return []
-			}
-
-			// Only allow contacts of the same address book
-			const otherContacts = this.otherContacts(this.contact)
-			// Reduce to an object to eliminate duplicates
-			return Object.values(otherContacts.reduce((prev, { key, value }) => {
-				const contact = this.$store.getters.getContact(key)
-				return {
-					...prev,
-					[contact.uid]: {
-						id: contact.key,
-						name: contact.displayName,
-					},
-				}
-			}, this.selectType ? { [this.selectType.value]: this.selectType } : {}))
 		},
 
 		/**
