@@ -218,6 +218,7 @@
 					duplication, we created a fake propModel and property with our own options here) -->
 				<PropertySelect v-masonry-tile
 					:prop-model="addressbookModel"
+					:options="addressbooksOptions"
 					:value.sync="addressbook"
 					:is-first-property="true"
 					:is-last-property="true"
@@ -481,7 +482,6 @@ export default {
 		 * Store getters filtered and mapped to usable object
 		 * This is the list of addressbooks that are available to write
 		 *
-		 * @return {Array}
 		 * @return {{id: string, name: string}[]}
 		 */
 		addressbooksOptions() {

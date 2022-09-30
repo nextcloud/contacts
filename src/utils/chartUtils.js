@@ -26,3 +26,12 @@ export const transformNode = (contact) => {
 		expanded: !contact.managersName,
 	}
 }
+
+export const otherContacts = ({ $store, self }) => {
+	return $store.getters.getSortedContacts.filter(
+		({ key }) => {
+			const contact = $store.getters.getContact(key)
+			return contact.addressbook.id === self.addressbook.id && contact.uid !== self.uid
+		}
+	)
+}
