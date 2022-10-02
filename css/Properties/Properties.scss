@@ -60,24 +60,6 @@ $property-ext-padding-right: 8px;
 		width: $property-label-min-width;
 		min-width: $property-label-min-width !important; // override multiselect
 		max-width: $property-label-max-width;
-		height: $grid-input-height-with-margin;
-		margin: $grid-input-margin 5px $grid-input-margin 0 !important; // override multiselect
-		user-select: none;
-		text-align: right;
-		background-size: 16px;
-		line-height: $grid-input-height-with-margin + 1px;
-
-		&,
-		.multiselect__input {
-			&::placeholder {
-				text-align: right;
-			}
-			+ .multiselect__single {
-				overflow: hidden;
-				white-space: nowrap;
-				text-overflow: ellipsis;
-			}
-		}
 
 		&:not(.multiselect) {
 			overflow: hidden;
@@ -114,23 +96,6 @@ $property-ext-padding-right: 8px;
 	&__label.multiselect {
 		.multiselect__tags {
 			border: none !important; // override multiselect
-			.multiselect__single {
-				padding-right: 24px;
-				background-repeat: no-repeat;
-				background-position: center right 4px;
-			}
-		}
-		.multiselect__content-wrapper {
-			right: 0; // align right
-			width: auto !important; // grow bigger if content is bigger than the original 100%
-			min-width: $property-label-max-width; // improve readability on narrow screens
-		}
-		@media only screen and (max-width: 768px) {
-			// align left of screen on narrow views
-			.multiselect__content-wrapper {
-				right: auto;
-				left: 0;
-			}
 		}
 	}
 
