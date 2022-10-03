@@ -21,10 +21,6 @@
  */
 
 import { showError, showSuccess } from '@nextcloud/dialogs'
-import Vue from 'vue'
-import VueClipboard from 'vue-clipboard2'
-
-Vue.use(VueClipboard)
 
 export default {
 	data() {
@@ -53,7 +49,7 @@ export default {
 
 			// copy link to clipboard
 			try {
-				await this.$copyText(url)
+				await navigator.clipboard.writeText(url)
 				this.copySuccess = true
 				this.copied = true
 
