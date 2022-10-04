@@ -38,15 +38,16 @@
 			</div>
 
 			<!-- Loading -->
-			<EmptyContent :title="t('contacts', 'Loading …')">
+			<EmptyContent v-if="loading" :title="t('contacts', 'Loading …')">
 				<template #icon>
-					<IconLoading v-if="loading" :size="20" />
+					<IconLoading :size="20" />
 				</template>
 			</EmptyContent>
 
-			<template v-if="Object.keys(selectionSet).length > 0">
+			<template v-else>
 				<!-- Picked entities -->
 				<transition-group
+					v-if="Object.keys(selectionSet).length > 0"
 					name="zoom"
 					tag="ul"
 					class="entity-picker__selection">
