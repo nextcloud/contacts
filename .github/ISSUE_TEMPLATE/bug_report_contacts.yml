@@ -48,7 +48,7 @@ body:
     attributes:
       label: Operating system
       description: |
-        Write down the operating system where Nextcloud Mail app is installed.
+        Write down the operating system where Nextcloud Contacts app is installed.
   - type: dropdown
     id: php
     attributes:
