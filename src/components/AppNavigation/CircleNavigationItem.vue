@@ -90,9 +90,11 @@
 			</ActionButton>
 		</template>
 
-		<AppNavigationCounter v-if="memberCount > 0" slot="counter">
-			{{ memberCount }}
-		</AppNavigationCounter>
+		<template #counter>
+			<NcCounterBubble v-if="memberCount > 0">
+				{{ memberCount }}
+			</NcCounterBubble>
+		</template>
 	</AppNavigationItem>
 </template>
 
@@ -100,7 +102,7 @@
 import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
 import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink'
 import ActionText from '@nextcloud/vue/dist/Components/NcActionText'
-import AppNavigationCounter from '@nextcloud/vue/dist/Components/NcAppNavigationCounter'
+import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble'
 import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem'
 import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
 import ExitToApp from 'vue-material-design-icons/ExitToApp'
@@ -118,7 +120,7 @@ export default {
 		ActionButton,
 		ActionLink,
 		ActionText,
-		AppNavigationCounter,
+		NcCounterBubble,
 		AppNavigationItem,
 		ExitToApp,
 		IconAdd,
