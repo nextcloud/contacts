@@ -40,9 +40,11 @@
 					<IconContact
 						:size="20" />
 				</template>
-				<AppNavigationCounter v-if="sortedContacts.length" slot="counter">
-					{{ sortedContacts.length }}
-				</AppNavigationCounter>
+				<template #counter>
+					<NcCounterBubble v-if="sortedContacts.length">
+						{{ sortedContacts.length }}
+					</NcCounterBubble>
+				</template>
 			</AppNavigationItem>
 
 			<!-- Organization chart -->
@@ -68,9 +70,11 @@
 					<IconUser
 						:size="20" />
 				</template>
-				<AppNavigationCounter v-if="ungroupedContacts.length" slot="counter">
-					{{ ungroupedContacts.length }}
-				</AppNavigationCounter>
+				<template #counter>
+					<NcCounterBubble v-if="ungroupedContacts.length">
+						{{ ungroupedContacts.length }}
+					</NcCounterBubble>
+				</template>
 			</AppNavigationItem>
 
 			<!-- Recently contacted group -->
@@ -86,9 +90,11 @@
 					<IconRecentlyContacted
 						:size="20" />
 				</template>
-				<AppNavigationCounter v-if="recentlyContactedContacts.contacts.length" slot="counter">
-					{{ recentlyContactedContacts.contacts.length }}
-				</AppNavigationCounter>
+				<template #counter>
+					<NcCounterBubble v-if="recentlyContactedContacts.contacts.length">
+						{{ recentlyContactedContacts.contacts.length }}
+					</NcCounterBubble>
+				</template>
 			</AppNavigationItem>
 
 			<AppNavigationCaption
@@ -186,7 +192,7 @@ import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
 import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput'
 import ActionText from '@nextcloud/vue/dist/Components/NcActionText'
 import AppNavigation from '@nextcloud/vue/dist/Components/NcAppNavigation'
-import AppNavigationCounter from '@nextcloud/vue/dist/Components/NcAppNavigationCounter'
+import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble'
 import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem'
 import AppNavigationSettings from '@nextcloud/vue/dist/Components/NcAppNavigationSettings'
 import AppNavigationCaption from '@nextcloud/vue/dist/Components/NcAppNavigationCaption'
@@ -218,7 +224,7 @@ export default {
 		ActionInput,
 		ActionText,
 		AppNavigation,
-		AppNavigationCounter,
+		NcCounterBubble,
 		AppNavigationItem,
 		AppNavigationSettings,
 		AppNavigationCaption,
