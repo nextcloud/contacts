@@ -57,9 +57,11 @@
 			</ActionButton>
 		</template>
 
-		<AppNavigationCounter v-if="group.contacts.length > 0" slot="counter">
-			{{ group.contacts.length }}
-		</AppNavigationCounter>
+		<template #counter>
+			<NcCounterBubble v-if="group.contacts.length > 0">
+				{{ group.contacts.length }}
+			</NcCounterBubble>
+		</template>
 	</AppNavigationItem>
 </template>
 
@@ -69,7 +71,7 @@ import download from 'downloadjs'
 import moment from 'moment'
 
 import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
-import AppNavigationCounter from '@nextcloud/vue/dist/Components/NcAppNavigationCounter'
+import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble'
 import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem'
 import IconContact from 'vue-material-design-icons/AccountMultiple'
 import IconAdd from 'vue-material-design-icons/Plus'
@@ -81,7 +83,7 @@ export default {
 
 	components: {
 		ActionButton,
-		AppNavigationCounter,
+		NcCounterBubble,
 		AppNavigationItem,
 		IconContact,
 		IconAdd,
