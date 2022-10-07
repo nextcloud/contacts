@@ -102,7 +102,7 @@ export default {
 				.data(data)
 				.nodeWidth(() => 250)
 				.initialZoom(1)
-				.nodeHeight(() => 175)
+				.nodeHeight(() => 200)
 				.childrenMargin(() => 70)
 				.compactMarginBetween(() => 15)
 				.compactMarginPair(() => 80)

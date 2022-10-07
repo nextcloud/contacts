@@ -66,22 +66,22 @@ export default {
 <style lang="scss" scoped>
 .org-chart-node {
 	background-color: var(--color-main-background);
-	padding-top: 1px;
 	height: 175px;
 	border-radius: var(--border-radius-large);
 	overflow: visible;
 
 	&__avatar {
 		margin-top: -30px;
-		margin-left: 95px;
 		border: 1px solid var(--color-border);
 	}
 
 	.inner-box {
 		display: flex;
 		flex-direction: column;
+		align-items: center;
 		height: 175px;
 		padding-top: 0;
+		margin-top: 30px;
 		border: 1px solid var(--color-border);
 		border-radius: var(--border-radius-large);
 		background-color: var(--color-main-background);
@@ -104,6 +104,7 @@ export default {
 		.description {
 			display: flex;
 			justify-content: space-between;
+			width: 100%;
 			padding: 15px;
 		}
 	}
@@ -113,6 +114,7 @@ export default {
 	}
 
 	.panel {
+		width: 100%;
 		margin: -34px -1px 0 -1px;
 		background-color: var(--color-primary);
 		height: 15px;
