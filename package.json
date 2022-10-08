@@ -38,7 +38,7 @@
 	"dependencies": {
 		"@mattkrick/sanitize-svg": "^0.3.1",
 		"@nextcloud/auth": "^2.0.0",
-		"@nextcloud/axios": "^2.0.0",
+		"@nextcloud/axios": "^2.1.0",
 		"@nextcloud/capabilities": "^1.0.4",
 		"@nextcloud/cdav-library": "^1.1.0",
 		"@nextcloud/dialogs": "^3.2.0",
