@@ -190,7 +190,7 @@ OC.L10N.register(
     "Unable to delete the circle" : "Неможливо вилучити коло",
     "Link copied to the clipboard" : "Посилання скопійовано до буферу обміну",
     "Could not copy link to the clipboard." : "Неможливо скопіювати посилання до буферу обміну",
-    "Not grouped" : "Незгруповані",
+    "Not grouped" : "Поза групами",
     "Recently contacted" : "Нещодавні контакти",
     "Organization chart" : "Органограма",
     "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "Кола дозволяють створювати групи з кількох користувачів хмари Nextcloud та надавати їм спільний доступ до ресурсів.",
