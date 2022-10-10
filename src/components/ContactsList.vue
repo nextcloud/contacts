@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<AppContentList>
+	<AppContentList class="content-list">
 		<div class="contacts-list__header">
 			<div class="search-contacts-field">
 				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
@@ -181,4 +181,10 @@ export default {
 		width: 100%;
 	}
 }
+
+.content-list {
+	overflow-y: auto;
+	padding: 0 4px;
+}
+
 </style>
