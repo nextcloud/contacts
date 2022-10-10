@@ -66,8 +66,10 @@
 				<ActionButton
 					v-for="network in supportedSocial"
 					:key="network"
-					:icon="'icon-' + network.toLowerCase()"
 					@click="getSocialAvatar(network)">
+					<template #icon>
+						<IconCloudDownload :size="20" />
+					</template>
 					{{ t('contacts', 'Get from ' + network) }}
 				</ActionButton>
 			</template>
@@ -101,6 +103,7 @@ import Actions from '@nextcloud/vue/dist/Components/NcActions'
 import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
 import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink'
 import IconDownload from 'vue-material-design-icons/Download'
+import IconCloudDownload from 'vue-material-design-icons/CloudDownload'
 import IconDelete from 'vue-material-design-icons/Delete'
 import IconUpload from 'vue-material-design-icons/Upload'
 import IconFolder from 'vue-material-design-icons/Folder'
@@ -124,6 +127,7 @@ export default {
 		ActionLink,
 		Actions,
 		Avatar,
+		IconCloudDownload,
 		IconDownload,
 		IconDelete,
 		IconUpload,
