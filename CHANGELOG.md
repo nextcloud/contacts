@@ -1,5 +1,14 @@
 # Changelog
 
+## 5.0.0 – 2022-10-11
+### Added
+- Nextcloud 25 design
+- Organization chart via manager property
+### Changed
+- New and updated translations
+### Removed
+- Nextcloud 22-24 support
+
 ## 4.2.1 – 2022-09-19
 ### Changed
 - Important npm package updates
