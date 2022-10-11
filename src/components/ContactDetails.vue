@@ -139,6 +139,14 @@
 						</template>
 						{{ t('contacts', 'Generate QR Code') }}
 					</ActionButton>
+					<ActionButton v-if="enableToggleBirthdayExclusion"
+						:close-after-click="true"
+						@click="toggleBirthdayExclusionForContact">
+						<template #icon>
+							<CakeIcon :size="20" />
+						</template>
+						{{ excludeFromBirthdayLabel }}
+					</ActionButton>
 					<ActionButton v-if="!isReadOnly" @click="deleteContact">
 						<template #icon>
 							<IconDelete :size="20" />
@@ -267,6 +275,7 @@ import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
 import IconDownload from 'vue-material-design-icons/Download'
 import IconDelete from 'vue-material-design-icons/Delete'
 import IconQr from 'vue-material-design-icons/Qrcode'
+import CakeIcon from 'vue-material-design-icons/Cake'
 import IconCopy from 'vue-material-design-icons/ContentCopy'
 
 import rfcProps from '../models/rfcProps'
@@ -299,6 +308,7 @@ export default {
 		IconDownload,
 		IconDelete,
 		IconQr,
+		CakeIcon,
 		IconCopy,
 		IconLoading,
 		Modal,
@@ -338,6 +348,7 @@ export default {
 			pickedAddressbook: null,
 
 			contactDetailsSelector: '.contact-details',
+			excludeFromBirthdayKey: 'x-nc-exclude-from-birthday-calendar',
 		}
 	},
 
@@ -502,6 +513,16 @@ export default {
 		contact() {
 			return this.$store.getters.getContact(this.contactKey)
 		},
+
+		excludeFromBirthdayLabel() {
+			return this.localContact.vCard.hasProperty(this.excludeFromBirthdayKey)
+				? t('contacts', 'Add contact to Birthday Calendar')
+				: t('contacts', 'Exclude contact from Birthday Calendar')
+		},
+
+		enableToggleBirthdayExclusion() {
+			return parseInt(OC.config.version.split('.')[0]) >= 26
+		},
 	},
 
 	watch: {
@@ -574,6 +595,16 @@ export default {
 			if (data.length > 0) {
 				this.qrcode = btoa(qr.imageSync(data, { type: 'svg' }))
 			}
+		},
+
+		async toggleBirthdayExclusionForContact() {
+			if (!this.localContact.vCard.hasProperty(this.excludeFromBirthdayKey)) {
+				this.localContact.vCard.addPropertyWithValue(this.excludeFromBirthdayKey, true)
+			} else {
+				this.localContact.vCard.removeProperty(this.excludeFromBirthdayKey)
+			}
+
+			await this.updateContact()
 		},
 
 		/**
