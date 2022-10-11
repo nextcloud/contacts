@@ -11,7 +11,7 @@
 * 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 	</description>
 
-	<version>5.0.0</version>
+	<version>5.0.1-alpha.0</version>
 	<licence>agpl</licence>
 
 	<author>Christoph Wurst</author>
