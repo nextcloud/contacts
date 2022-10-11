@@ -45,6 +45,9 @@ export const CHART_ALL_CONTACTS: DefaultChart = t('contacts', 'Organization char
 export const ROUTE_CIRCLE = 'circle'
 export const ROUTE_CHART = 'chart'
 
+//Contact settings
+export const CONTACTS_SETTINGS: DefaultGroup = t('contacts', 'Contacts settings')
+
 // Default max number of items to show in the navigation
 export const ELLIPSIS_COUNT = 5
 
