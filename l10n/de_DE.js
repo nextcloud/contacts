@@ -122,6 +122,8 @@ OC.L10N.register(
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Dieser Kontakt ist schreibgeschützt. Sie haben keine Berechtigung, diesen Kontakt zu bearbeiten.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Der Kontakt, den Sie versuchen zu bearbeiten, hat sich geändert. Bitte aktualisieren Sie den Kontakt manuell. Alle weiteren Änderungen werden verworfen.",
     "Address book" : "Adressbuch",
+    "Add contact to Birthday Calendar" : "Kontakt zum Geburtstagskalender hinzufügen",
+    "Exclude contact from Birthday Calendar" : "Kontakt vom Geburtstagskalender ausschließen",
     "New contact" : "Neuer Kontakt",
     "Syntax error. Cannot open the contact." : "Syntaxfehler. Der Kontakt kann nicht geöffnet werden.",
     "The contact does not exists on the server anymore." : "Der Kontakt existiert nicht mehr auf dem Server.",
