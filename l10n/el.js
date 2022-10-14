@@ -122,6 +122,8 @@ OC.L10N.register(
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Η επαφή είναι μόνο για εμφάνιση. Δεν έχετε δικαιώματα για την επεξεργασία της.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Η επαφή που προσπαθείτε να επεξεργαστείτε άλλαξε. Παρακαλώ ανανεώστε. Όποια άλλη επεξεργασία θα απορριφθεί.",
     "Address book" : "Βιβλίο διευθύνσεων",
+    "Add contact to Birthday Calendar" : "Προσθήκη επαφής στο Ημερολόγιο γενεθλίων",
+    "Exclude contact from Birthday Calendar" : "Εξαίρεση επαφής από το Ημερολόγιο γενεθλίων",
     "New contact" : "Νέα επαφή",
     "Syntax error. Cannot open the contact." : "Σφάλμα σύνταξης. Η επαφή δεν ανοίγει.",
     "The contact does not exists on the server anymore." : "Η επαφή δεν υπάρχει πλέον στον διακομιστή.",
