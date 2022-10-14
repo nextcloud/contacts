@@ -58,7 +58,7 @@ import VirtualList from 'vue-virtual-scroll-list'
 import { VCardTime } from 'ical.js'
 import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps'
-import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS } from '../models/constants'
+import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS } from '../../src/models/constants'
 import { showError } from '@nextcloud/dialogs'
 
 export default {
