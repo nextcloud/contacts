@@ -21,29 +21,30 @@
   -->
 
 <template>
-	<ProcessingScreen :progress="progress" :total="total">
-		{{ total === progress
-			? finishedHeader
-			: progressHeader }}
-		<template #desc>
-			<span v-if="failed > 0">
-				{{ messageFailed }}
-			</span>
-			<button v-if="total === progress" class="primary" @click="onClose">
+	<div>
+		<ProcessingScreen :progress="progress"
+			:total="total"
+			:desc="failed > 0 ? messageFailed : ''"
+			:title="total === progress
+				? finishedHeader
+				: progressHeader" />
+		<div class="close__button">
+			<Button v-if="total === progress" class="primary" @click="onClose">
 				{{ t('contacts', 'Close') }}
-			</button>
-		</template>
-	</ProcessingScreen>
+			</Button>
+		</div>
+	</div>
 </template>
 
 <script>
 import ProcessingScreen from '../../components/ProcessingScreen'
-
+import Button from '@nextcloud/vue/dist/Components/NcButton'
 export default {
 	name: 'AddToGroupView',
 
 	components: {
 		ProcessingScreen,
+		Button,
 	},
 
 	props: {
@@ -105,3 +106,9 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+.close__button {
+	padding: 12px;
+	float: right;
+}
+</style>

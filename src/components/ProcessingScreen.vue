@@ -1,18 +1,16 @@
 <template>
-	<EmptyContent class="processing-screen__wrapper">
-		<template #icon>
-			<IconContact :size="20" />
-		</template>
-		<slot />
-		<template #desc>
-			<div class="processing-screen__progress">
-				<progress :max="total" :value="progress" />
-			</div>
-			<div class="processing-screen__desc">
-				<slot name="desc" />
-			</div>
-		</template>
-	</EmptyContent>
+	<div>
+		<EmptyContent :description="desc"
+			:title="title"
+			class="processing-screen__wrapper">
+			<template #icon>
+				<IconContact :size="20" />
+			</template>
+		</EmptyContent>
+		<div class="processing-screen__progress">
+			<progress :max="total" :value="progress" />
+		</div>
+	</div>
 </template>
 
 <script>
@@ -33,6 +31,14 @@ export default {
 		},
 		progress: {
 			type: Number,
+			required: true,
+		},
+		desc: {
+			type: String,
+			required: true,
+		},
+		title: {
+			type: String,
 			required: true,
 		},
 	},
@@ -58,28 +64,7 @@ export default {
 	}
 
 	&__progress {
-		display: flex;
-		width: 100%;
-	}
-
-	&__desc {
-		display: inline-flex;
-		align-items: center;
-		width: 100%;
-		margin-top: 22px;
-		color: var(--color-text-maxcontrast);
-
-		&::v-deep button {
-			min-width: 100px;
-			height: 44px;
-			padding: 10px 20px;
-
-			// Put buttons at the end
-			&:first-of-type {
-				margin-left: auto;
-			}
-		}
+		padding: 0 12px;
 	}
 }
-
 </style>
