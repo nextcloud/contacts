@@ -28,15 +28,7 @@
 			:contacts-list="contactsList"
 			:loading="loadingContacts || loadingCircles"
 			:selected-group="selectedGroup"
-			:selected-contact="selectedContact">
-			<!-- new-contact-button -->
-			<AppNavigationNew v-if="!loadingContacts"
-				button-id="new-contact-button"
-				:text="t('contacts','New contact')"
-				button-class="icon-add"
-				:disabled="!defaultAddressbook"
-				@click="newContact" />
-		</RootNavigation>
+			:selected-contact="selectedContact" />
 
 		<!-- Main content: circle, chart or contacts -->
 		<CircleContent v-if="selectedCircle"
@@ -64,7 +56,6 @@
 <script>
 import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE } from '../models/constants.ts'
 
-import AppNavigationNew from '@nextcloud/vue/dist/Components/NcAppNavigationNew'
 import Content from '@nextcloud/vue/dist/Components/NcContent'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
 import Modal from '@nextcloud/vue/dist/Components/NcModal'
@@ -89,7 +80,6 @@ export default {
 	name: 'Contacts',
 
 	components: {
-		AppNavigationNew,
 		CircleContent,
 		ChartContent,
 		ContactsContent,

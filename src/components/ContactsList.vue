@@ -23,6 +23,19 @@
 <template>
 	<AppContentList class="content-list">
 		<div class="contacts-list__header">
+			<div>
+				<!-- new-contact-button -->
+				<Button
+					type="primary"
+					button-id="new-contact-button"
+					:disabled="!defaultAddressbook"
+					@click="newContact">
+					<template #icon>
+						<IconAdd :size="20" />
+					</template>
+					{{ t('contacts','New contact') }}
+				</Button>
+			</div>
 			<div class="search-contacts-field">
 				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
 			</div>
@@ -38,14 +51,23 @@
 
 <script>
 import AppContentList from '@nextcloud/vue/dist/Components/NcAppContentList'
+import Button from '@nextcloud/vue/dist/Components/NcButton'
+import IconAdd from 'vue-material-design-icons/Plus'
 import ContactsListItem from './ContactsList/ContactsListItem'
 import VirtualList from 'vue-virtual-scroll-list'
+import { VCardTime } from 'ical.js'
+import Contact from '../models/contact'
+import rfcProps from '../models/rfcProps'
+import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS } from '../models/constants'
+import { showError } from '@nextcloud/dialogs'
 
 export default {
 	name: 'ContactsList',
 
 	components: {
 		AppContentList,
+		Button,
+		IconAdd,
 		VirtualList,
 	},
 
@@ -68,10 +90,14 @@ export default {
 		return {
 			ContactsListItem,
 			query: '',
+			loadingContacts: true,
 		}
 	},
 
 	computed: {
+		addressbooks() {
+			return this.$store.getters.getAddressbooks
+		},
 		selectedContact() {
 			return this.$route.params.selectedContact
 		},
@@ -82,6 +108,10 @@ export default {
 			return this.list
 				.filter(item => this.matchSearch(this.contacts[item.key]))
 				.map(item => this.contacts[item.key])
+		},
+		// first enabled addressbook of the list
+		defaultAddressbook() {
+			return this.addressbooks.find(addressbook => !addressbook.readOnly && addressbook.enabled)
 		},
 	},
 
@@ -157,6 +187,59 @@ export default {
 			}
 			return true
 		},
+		async newContact() {
+			const rev = new VCardTime()
+			const contact = new Contact(`
+				BEGIN:VCARD
+				VERSION:4.0
+				PRODID:-//Nextcloud Contacts v${appVersion}
+				END:VCARD
+			`.trim().replace(/\t/gm, ''),
+			this.defaultAddressbook)
+
+			contact.fullName = t('contacts', 'New contact')
+			rev.fromUnixTime(Date.now() / 1000)
+			contact.rev = rev
+
+			// itterate over all properties (filter is not usable on objects and we need the key of the property)
+			const properties = rfcProps.properties
+			for (const name in properties) {
+				if (properties[name].default) {
+					const defaultData = properties[name].defaultValue
+					let defaultValue = defaultData.value
+					if (Array.isArray(defaultValue)) {
+						defaultValue = [...defaultValue]
+					}
+					// add default field
+					const property = contact.vCard.addPropertyWithValue(name, defaultValue)
+					// add default type
+					if (defaultData.type) {
+						property.setParameter('type', defaultData.type)
+
+					}
+				}
+			}
+
+			// set group if it's selected already
+			// BUT NOT if it's the _fake_ groups like all contacts and not grouped
+			if ([GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS].indexOf(this.selectedGroup) === -1) {
+				contact.groups = [this.selectedGroup]
+			}
+			try {
+				// this will trigger the proper commits to groups, contacts and addressbook
+				await this.$store.dispatch('addContact', contact)
+				await this.$router.push({
+					name: 'contact',
+					params: {
+						selectedGroup: this.selectedGroup,
+						selectedContact: contact.key,
+					},
+				})
+			} catch (error) {
+				showError(t('contacts', 'Unable to create the contact.'))
+				console.error(error)
+			}
+		},
 	},
 }
 </script>
@@ -170,7 +253,11 @@ export default {
 
 // Add empty header to contacts-list that solves overlapping of contacts with app-navigation-toogle
 .contacts-list__header {
-	min-height: 48px;
+	display: flex;
+	align-items: center;
+	padding: 8px 8px 8px 48px;
+	gap: 4px;
+	height: 61px;
 }
 
 // Search field
