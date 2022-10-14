@@ -305,6 +305,7 @@ export default {
 	align-items: center;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	padding: 5px 0;
 
 	> .addressbook__name {
 		+ a,
@@ -344,14 +345,17 @@ export default {
 }
 .settings-addressbook-list {
 	display: flex;
-	gap: 4px;
-	li {
-		width: calc(100% - 44px);
+	width: 100%;
+	.material-design-icon {
+		justify-content: flex-start;
 	}
 }
 .addressbook__share {
 	background-color: transparent;
 	border: none;
 	box-shadow: none;
+}
+.addressbook-shares {
+	padding-top: 10px;
 }
 </style>

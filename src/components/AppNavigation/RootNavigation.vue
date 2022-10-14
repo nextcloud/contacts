@@ -177,33 +177,43 @@
 		</template>
 
 		<!-- settings -->
+
 		<template #footer>
-			<AppNavigationSettings v-if="!loading" :title="appNavigationSettingsTitle">
-				<SettingsSection />
-			</AppNavigationSettings>
+			<div class="contacts-settings">
+				<Button v-if="!loading"
+					class="contacts-settings-button"
+					:close-after-click="true"
+					@click="showContactsSettings">
+					<template #icon>
+						<Cog :size="20" />
+					</template>
+					{{ CONTACTS_SETTINGS }}
+				</Button>
+			</div>
 		</template>
+		<ContactsSettings :open.sync="showSettings" />
 	</AppNavigation>
 </template>
 
 <script>
-import { GROUP_ALL_CONTACTS, CHART_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC } from '../../models/constants.ts'
+import { GROUP_ALL_CONTACTS, CHART_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC, CONTACTS_SETTINGS } from '../../models/constants.ts'
 
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
 import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput'
 import ActionText from '@nextcloud/vue/dist/Components/NcActionText'
 import AppNavigation from '@nextcloud/vue/dist/Components/NcAppNavigation'
+import Button from '@nextcloud/vue/dist/Components/NcButton'
 import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble'
 import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem'
-import AppNavigationSettings from '@nextcloud/vue/dist/Components/NcAppNavigationSettings'
 import AppNavigationCaption from '@nextcloud/vue/dist/Components/NcAppNavigationCaption'
 import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
 
 import naturalCompare from 'string-natural-compare'
 
 import CircleNavigationItem from './CircleNavigationItem'
+import Cog from 'vue-material-design-icons/Cog.vue'
+import ContactsSettings from './ContactsSettings'
 import GroupNavigationItem from './GroupNavigationItem'
 import NewCircleIntro from '../EntityPicker/NewCircleIntro'
-import SettingsSection from './SettingsSection'
 
 import isCirclesEnabled from '../../services/isCirclesEnabled'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled'
@@ -220,15 +230,16 @@ export default {
 	name: 'RootNavigation',
 
 	components: {
-		ActionButton,
 		ActionInput,
 		ActionText,
 		AppNavigation,
+		Button,
 		NcCounterBubble,
 		AppNavigationItem,
-		AppNavigationSettings,
 		AppNavigationCaption,
 		CircleNavigationItem,
+		Cog,
+		ContactsSettings,
 		GroupNavigationItem,
 		IconContact,
 		IconUser,
@@ -237,7 +248,6 @@ export default {
 		IconLoading,
 		IconRecentlyContacted,
 		NewCircleIntro,
-		SettingsSection,
 	},
 
 	mixins: [RouterMixin],
@@ -257,6 +267,7 @@ export default {
 	data() {
 		return {
 			CIRCLE_DESC,
+			CONTACTS_SETTINGS,
 			ELLIPSIS_COUNT,
 			GROUP_ALL_CONTACTS,
 			CHART_ALL_CONTACTS,
@@ -277,13 +288,12 @@ export default {
 
 			collapsedGroups: true,
 			collapsedCircles: true,
+
+			showSettings: false,
 		}
 	},
 
 	computed: {
-		appNavigationSettingsTitle() {
-			return t('contacts', 'Contacts settings')
-		},
 		// store variables
 		circles() {
 			return this.$store.getters.getCircles
@@ -444,6 +454,13 @@ export default {
 		closeNewCircleIntro() {
 			this.isNewCircleModalOpen = false
 		},
+
+		/**
+		 * Shows the contacts settings
+		 */
+		showContactsSettings() {
+			this.showSettings = true
+		},
 	},
 }
 </script>
@@ -470,5 +487,11 @@ $caption-padding: 22px;
 ::v-deep .settings-button__label {
 	opacity: .7;
 	font-weight: bold;
+}
+.contacts-settings {
+	padding: calc(var(--default-grid-baseline, 4px)*2);
+}
+.contacts-settings-button {
+	width: 100%;
 }
 </style>
