@@ -6,6 +6,7 @@ OC.L10N.register(
     "Contacts" : "Contactos",
     "Loading contacts …" : "Cargando contactos ...",
     "Delete circle" : "Borrar círculo",
+    "General settings" : "Configuraciones generales",
     "Download" : "Descargar",
     "Send email" : "Enviar correo electrónico",
     "Groups" : "Grupos",

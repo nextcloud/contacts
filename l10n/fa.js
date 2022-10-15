@@ -6,6 +6,7 @@ OC.L10N.register(
     "Contacts" : "مخاطبین",
     "Loading …" : "بارگذاری …",
     "Delete circle" : "حذف حلقه",
+    "General settings" : "تنظیمات عمومی",
     "Download" : "دانلود",
     "Send email" : "ارسال ایمیل",
     "Groups" : "گروه ها",

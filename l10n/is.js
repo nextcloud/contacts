@@ -12,6 +12,7 @@ OC.L10N.register(
     "Loading contacts …" : "Hleð inn tengiliðum …",
     "Loading …" : "Hleð inn …",
     "Delete circle" : "Eyða hring",
+    "General settings" : "Almennar stillingar",
     "Download" : "Niðurhal",
     "Send email" : "Senda tölvupóst",
     "Groups" : "Hópar",

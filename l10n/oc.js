@@ -5,6 +5,7 @@ OC.L10N.register(
     "All contacts" : "Totes los contactes",
     "Contacts" : "Contactes",
     "Loading …" : "Cargament…",
+    "General settings" : "Paramètres generals",
     "Download" : "Telecargar",
     "Send email" : "Enviar email",
     "Groups" : "Gropes",

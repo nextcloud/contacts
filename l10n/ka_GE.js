@@ -6,6 +6,7 @@ OC.L10N.register(
     "Contacts" : "კონტაქტები",
     "Loading contacts …" : "კონტაქტების ჩატვირთვა ...",
     "Delete circle" : "წრის გაუქმება",
+    "General settings" : "მთავარი პარამეტრები",
     "Download" : "ჩამოტვირთვა",
     "Send email" : "ელ-წერილის გაგზავნა",
     "Groups" : "ჯგუფები",

@@ -9,6 +9,7 @@ OC.L10N.register(
     "Omit year" : "Shmang vitin",
     "Loading contacts …" : "Duke ngarkuar kontaktet ...",
     "Delete circle" : "Fshini rrethin",
+    "General settings" : "Opsjonet e Pergjithshme",
     "Download" : "Shkarko",
     "Send email" : "Dërgo email",
     "Groups" : "Grupe",
