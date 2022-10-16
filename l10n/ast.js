@@ -6,6 +6,7 @@ OC.L10N.register(
     "Contacts" : "Contautos",
     "Loading contacts …" : "Cargando contautos....",
     "Loading …" : "Cargando...",
+    "General settings" : "Axustes xenerales",
     "Download" : "Baxar",
     "Send email" : "Unviar mensaxe",
     "Groups" : "Grupos",

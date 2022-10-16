@@ -123,6 +123,8 @@ OC.L10N.register(
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Bu kişi salt okunur kipte olduğundan kişiyi düzenleme izniniz yok.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Düzenlemeye çalıştığınız kişi değiştirilmiş. Lütfen kişiyi el ile yenileyin. Bundan sonra yapılacak düzenlemeler yok sayılacak.",
     "Address book" : "Adres defteri",
+    "Add contact to Birthday Calendar" : "Kişiyi doğum günü takvimine ekle",
+    "Exclude contact from Birthday Calendar" : "Kişiyi doğum günü takviminden çıkar",
     "New contact" : "Yeni kişi",
     "Syntax error. Cannot open the contact." : "Yazım hatası. Kişi bulunamadı.",
     "The contact does not exists on the server anymore." : "Kişi artık sunucu üzerinde değil.",

@@ -7,6 +7,7 @@ OC.L10N.register(
     "Copy to full name" : "انسخ إلى الإسم الكامل",
     "Add contacts" : "اضافة جهات اتصال",
     "Loading …" : "جاري التحميل …",
+    "General settings" : "الإعدادات العامة",
     "Download" : "تحميل",
     "Send email" : "إرسال بريد",
     "Groups" : "مجموعات",

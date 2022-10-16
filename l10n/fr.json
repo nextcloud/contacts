@@ -121,6 +121,8 @@
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Ce contact est en lecture seule. Vous n'avez pas les autorisations pour modifier ce contact.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Le contact que vous essayiez de modifier a changé. Merci de rafraîchir manuellement le contact. Vos modifications seront abandonnées. ",
     "Address book" : "Carnet d'adresses",
+    "Add contact to Birthday Calendar" : "Ajouter un contact à l'agenda d’anniversaire",
+    "Exclude contact from Birthday Calendar" : "Exclure le contact de l'agenda d'anniversaire",
     "New contact" : "Nouveau contact",
     "Syntax error. Cannot open the contact." : "Erreur de syntaxe. Impossible de lire le contact.",
     "The contact does not exists on the server anymore." : "Le contact n'existe plus sur le serveur.",
