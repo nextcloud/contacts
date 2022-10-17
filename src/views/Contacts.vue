@@ -30,12 +30,16 @@
 			:selected-group="selectedGroup"
 			:selected-contact="selectedContact">
 			<!-- new-contact-button -->
-			<AppNavigationNew v-if="!loadingContacts"
+			<Button v-if="!loadingContacts"
+				type="primary"
 				button-id="new-contact-button"
-				:text="t('contacts','New contact')"
-				button-class="icon-add"
 				:disabled="!defaultAddressbook"
-				@click="newContact" />
+				@click="newContact">
+				<template #icon>
+					<IconAdd :size="20" />
+				</template>
+				{{ t('contacts','New contact') }}
+			</Button>
 		</RootNavigation>
 
 		<!-- Main content: circle, chart or contacts -->
@@ -64,7 +68,7 @@
 <script>
 import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE } from '../models/constants.ts'
 
-import AppNavigationNew from '@nextcloud/vue/dist/Components/NcAppNavigationNew'
+import Button from '@nextcloud/vue/dist/Components/NcButton'
 import Content from '@nextcloud/vue/dist/Components/NcContent'
 import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
 import Modal from '@nextcloud/vue/dist/Components/NcModal'
@@ -78,6 +82,7 @@ import ContactsContent from '../components/AppContent/ContactsContent'
 import ContactsPicker from '../components/EntityPicker/ContactsPicker'
 import ImportView from './Processing/ImportView'
 import RootNavigation from '../components/AppNavigation/RootNavigation'
+import IconAdd from 'vue-material-design-icons/Plus'
 
 import Contact from '../models/contact'
 import rfcProps from '../models/rfcProps'
@@ -89,13 +94,14 @@ export default {
 	name: 'Contacts',
 
 	components: {
-		AppNavigationNew,
+		Button,
 		CircleContent,
 		ChartContent,
 		ContactsContent,
 		ContactsPicker,
 		Content,
 		ImportView,
+		IconAdd,
 		Modal,
 		RootNavigation,
 	},
@@ -405,3 +411,12 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+::v-deep .button-vue--vue-primary {
+	width: 95%;
+	margin: 7px;
+}
+::v-deep .button-vue__wrapper {
+	margin-right: 125px;
+}
+</style>
