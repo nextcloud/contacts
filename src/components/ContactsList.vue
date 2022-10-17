@@ -71,10 +71,10 @@
 import AppContentList from '@nextcloud/vue/dist/Components/NcAppContentList'
 import ContactsListItem from './ContactsList/ContactsListItem'
 import VirtualList from 'vue-virtual-scroll-list'
-import Actions from '@nextcloud/vue/dist/Components/Actions'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
+import Actions from '@nextcloud/vue/dist/Components/NcActions'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
 import naturalCompare from 'string-natural-compare'
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect'
 
 export default {
 	name: 'ContactsList',

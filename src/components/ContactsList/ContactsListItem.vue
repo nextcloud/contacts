@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
+import ActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox'
 import { NcListItem as ListItem } from '@nextcloud/vue'
 import BaseAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
 
