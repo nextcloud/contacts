@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.0.1 – 2022-10-18
+### Fixed
+- Org chart expand icon overlapped
+
 ## 5.0.0 – 2022-10-11
 ### Added
 - Nextcloud 25 design
