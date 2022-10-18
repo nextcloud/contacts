@@ -53,7 +53,7 @@
     "Deletion of address book was not successful." : "Не вдалося вилучити адресну книгу",
     "Renaming of address book was not successful." : "Не вдалося перейменувати адресну книгу",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Спільний доступ з {num} об'єктом","Спільний доступ з {num} об'єктами","Спільний доступ з {num} об'єктами","Спільний доступ з {num} об'єктами"],
-    "Share with users or groups" : "Поділитися з користувачем або групою",
+    "Share with users or groups" : "Поділитися з користувачами або групами",
     "No users or groups" : "Відсутні користувачі або групи",
     "can edit" : "може редагувати",
     "Unable to delete the share" : "Неможливо вилучити спільний ресурс",
