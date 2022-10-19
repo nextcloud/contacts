@@ -55,7 +55,7 @@ export default new Store({
 	 * the contat ical update itself on property getters
 	 * this is causing issues with the strict mode.
 	 * Since we're only getting the data for the contacts list
-	 * and considering we're initiating an independant contact
+	 * and considering we're initiating an independent contact
 	 * class for the details which replace itself into the
 	 * store by mutations we can ignore this and say that
 	 * the risk of losing track of changes is expandable.
