@@ -25,6 +25,7 @@ OC.L10N.register(
     "Leave circle" : "Напускане на кръг",
     "Delete circle" : "Изтриване на кръга",
     "Contacts settings" : "Настрройки на контакти",
+    "General settings" : "Общи настройки",
     "Update avatars from social media" : "Актуализиране на аватари от социалните медии",
     "(refreshed once per week)" : "(опреснява се веднъж седмично)",
     "Address books" : "Адресни книги",

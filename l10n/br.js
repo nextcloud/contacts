@@ -5,6 +5,7 @@ OC.L10N.register(
     "Contacts" : "Darempredoù",
     "Add contacts" : "Ouzhpennañ darempredoù",
     "Loading …" : "O Kargañ ...",
+    "General settings" : "Stummoù hollek",
     "Download" : "Pellgargañ",
     "Send email" : "Kas postel",
     "Groups" : "Strolladoù",
