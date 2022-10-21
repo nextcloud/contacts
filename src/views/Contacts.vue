@@ -31,8 +31,10 @@
 			:selected-contact="selectedContact">
 			<!-- new-contact-button -->
 			<Button v-if="!loadingContacts"
+				class="new-contact-button"
 				type="primary"
 				button-id="new-contact-button"
+				:wide="true"
 				:disabled="!defaultAddressbook"
 				@click="newContact">
 				<template #icon>
@@ -411,12 +413,9 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
-::v-deep .button-vue--vue-primary {
-	width: 95%;
-	margin: 7px;
-}
-::v-deep .button-vue__wrapper {
-	margin-right: 125px;
+.new-contact-button {
+	justify-content: start !important;
 }
 </style>
