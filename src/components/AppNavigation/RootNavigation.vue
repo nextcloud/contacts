@@ -102,9 +102,11 @@
 				:force-menu="true"
 				:menu-open.sync="isNewGroupMenuOpen"
 				:title="t('contacts', 'Groups')"
-				default-icon="icon-add"
 				@click.prevent.stop="toggleNewGroupMenu">
-				<template slot="actions">
+				<template #actionsTriggerIcon>
+					<IconAdd :size="20" />
+				</template>
+				<template #actions>
 					<ActionText>
 						<template #icon>
 							<IconError v-if="createGroupError" :size="20" />
