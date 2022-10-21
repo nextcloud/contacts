@@ -25,7 +25,10 @@
 		<template #icon>
 			<IconLoading v-if="loading" :size="20" />
 		</template>
-		<slot />
+
+		<header class="header">
+			<slot />
+		</header>
 
 		<!-- groups list -->
 		<template #list>
@@ -102,9 +105,11 @@
 				:force-menu="true"
 				:menu-open.sync="isNewGroupMenuOpen"
 				:title="t('contacts', 'Groups')"
-				default-icon="icon-add"
 				@click.prevent.stop="toggleNewGroupMenu">
-				<template slot="actions">
+				<template #actionsTriggerIcon>
+					<IconAdd :size="20" />
+				</template>
+				<template #actions>
 					<ActionText>
 						<template #icon>
 							<IconError v-if="createGroupError" :size="20" />
@@ -137,15 +142,14 @@
 				<!-- New circle button caption and modal -->
 				<AppNavigationCaption
 					id="newcircle"
-					:title="t('contacts', 'Circles')"
-					@click.prevent.stop="toggleNewCircleModal">
-					<template slot="actions">
-						<ActionButton @click="toggleNewCircleModal">
+					:title="t('contacts', 'Circles')">
+					<template #actions>
+						<NcActionButton @click="toggleNewCircleModal">
 							<template #icon>
 								<IconAdd :size="20" />
 							</template>
 							{{ t('contacts', 'Create a new circle') }}
-						</ActionButton>
+						</NcActionButton>
 					</template>
 				</AppNavigationCaption>
 				<NewCircleIntro v-if="isNewCircleModalOpen"
@@ -182,6 +186,7 @@
 			<div class="contacts-settings">
 				<Button v-if="!loading"
 					class="contacts-settings-button"
+					:wide="true"
 					:close-after-click="true"
 					@click="showContactsSettings">
 					<template #icon>
@@ -200,6 +205,7 @@ import { GROUP_ALL_CONTACTS, CHART_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_
 
 import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput'
 import ActionText from '@nextcloud/vue/dist/Components/NcActionText'
+import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
 import AppNavigation from '@nextcloud/vue/dist/Components/NcAppNavigation'
 import Button from '@nextcloud/vue/dist/Components/NcButton'
 import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble'
@@ -232,6 +238,7 @@ export default {
 	components: {
 		ActionInput,
 		ActionText,
+		NcActionButton,
 		AppNavigation,
 		Button,
 		NcCounterBubble,
@@ -468,6 +475,10 @@ export default {
 <style lang="scss" scoped>
 $caption-padding: 22px;
 
+.header {
+	padding: calc(var(--default-grid-baseline, 4px) * 2);
+}
+
 #newgroup,
 #newcircle {
 	margin-top: $caption-padding;
@@ -493,5 +504,6 @@ $caption-padding: 22px;
 }
 .contacts-settings-button {
 	width: 100%;
+	justify-content: start !important;
 }
 </style>
