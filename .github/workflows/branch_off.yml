@@ -1,0 +1,20 @@
+on: workflow_dispatch
+
+permissions:
+  contents: write
+
+name: Branch off
+jobs:
+  branch-off:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Install xmllint
+        run: sudo apt-get install -y libxml2-utils
+      - name: Branch off and push
+        run: |
+          branch=`xmllint --xpath "//version/text()" appinfo/info.xml | awk -F \. {'print "stable" $1 "." $2'}`
+          git checkout -b $branch
+          git push origin $branch
