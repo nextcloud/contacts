@@ -92,7 +92,7 @@
 		"@vue/composition-api": "^1.7.1",
 		"@vue/vue2-jest": "^27",
 		"babel-jest": "^27",
-		"eslint-import-resolver-typescript": "^3.5.1",
+		"eslint-import-resolver-typescript": "^3.5.2",
 		"jest": "^27",
 		"stylelint": "^14.13.0",
 		"stylelint-config-recommended-scss": "^7.0.0",
