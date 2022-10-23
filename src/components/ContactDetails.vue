@@ -216,7 +216,7 @@
 						:contact="contact"
 						:local-contact="localContact"
 						:update-contact="debounceUpdateContact"
-						:contacts="contacts"
+						:contacts="sortedContacts"
 						@resize="debounceRedrawMasonry" />
 				</div>
 
@@ -322,6 +322,10 @@ export default {
 		contactKey: {
 			type: String,
 			default: undefined,
+		},
+		sortedContacts: {
+			type: Array,
+			default: () => [],
 		},
 		contacts: {
 			type: Array,
@@ -660,8 +664,17 @@ export default {
 		/**
 		 * Dispatch contact deletion request
 		 */
-		deleteContact() {
-			this.$store.dispatch('deleteContact', { contact: this.contact })
+		async deleteContact() {
+			// find all contacts which are related through Manager field
+			// for organization chart and remove reference of deleted contact
+			for (const key in this.contacts) {
+				if (this.contacts[key].managersName === this.contact.uid) {
+					this.contacts[key].vCard.removeProperty('x-managersname')
+					await this.$store.dispatch('updateContact', this.contacts[key])
+				}
+			}
+
+			await this.$store.dispatch('deleteContact', { contact: this.contact })
 		},
 
 		/**
