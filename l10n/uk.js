@@ -123,6 +123,8 @@ OC.L10N.register(
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Доступ до цього контакту лише у режимі читання. У вас відсутні права на редагування.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Дані контакту, який ви намагаєтеся відредагувати, змінено. Будь ласка, оновіть сторінку. Усі подальші зміни буде проігноровано.",
     "Address book" : "Адресна книга",
+    "Add contact to Birthday Calendar" : "Додати контакт до календаря днів народжень",
+    "Exclude contact from Birthday Calendar" : "Прибрати контакт з календаря днів народжень",
     "New contact" : "Новий контакт",
     "Syntax error. Cannot open the contact." : "Синтаксична помилка. Неможливо відкрити контакт.",
     "The contact does not exists on the server anymore." : "Такий контакт більше не існує на сервері.",
