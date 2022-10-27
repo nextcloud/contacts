@@ -121,6 +121,8 @@
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Ten kontakt jest w trybie \"tylko do odczytu\". Nie masz uprawnień do edytowania tego kontaktu.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakt który próbujesz edytować został zmieniony. Odśwież kontakt ręcznie. Wszystkie przyszłe zmiany zostaną odrzucone.",
     "Address book" : "Książka adresowa",
+    "Add contact to Birthday Calendar" : "Dodaj kontakt do Kalendarza urodzin",
+    "Exclude contact from Birthday Calendar" : "Wyklucz kontakt z Kalendarza urodzin",
     "New contact" : "Nowy kontakt",
     "Syntax error. Cannot open the contact." : "Błąd składni. Nie można otworzyć kontaktu.",
     "The contact does not exists on the server anymore." : "Kontakt nie istnieje już na serwerze.",
