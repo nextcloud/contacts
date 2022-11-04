@@ -25,7 +25,8 @@
 <template>
 	<div>
 		<SettingsSortContacts class="settings-section" />
-		<CheckboxRadioSwitch v-if="allowSocialSync" :checked="enableSocialSync"
+		<CheckboxRadioSwitch v-if="allowSocialSync"
+			:checked="enableSocialSync"
 			:loading="enableSocialSyncLoading"
 			:disabled="enableSocialSyncLoading"
 			class="social-sync__checkbox"
