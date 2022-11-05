@@ -222,7 +222,7 @@ OC.L10N.register(
     "Additional names" : "Додаткові імена",
     "Prefix" : "Префікс",
     "Suffix" : "Суфікс",
-    "Notes" : "Нотатки",
+    "Notes" : "Примітки",
     "Website" : "Вебсторінка",
     "Location" : "Розташування",
     "Federated Cloud ID" : "Ідентифікатор хмари",
