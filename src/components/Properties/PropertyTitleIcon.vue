@@ -40,22 +40,22 @@
 </template>
 
 <script>
-import IconAdd from 'vue-material-design-icons/Plus'
-import IconAddressBook from '../Icons/IconAddressBook'
-import IconEmail from 'vue-material-design-icons/Email'
-import IconPhone from 'vue-material-design-icons/Cellphone'
-import IconDelete from 'vue-material-design-icons/Delete'
-import IconUser from 'vue-material-design-icons/Account'
-import IconNotes from 'vue-material-design-icons/Pencil'
-import IconGeo from 'vue-material-design-icons/MapMarker'
-import IconGroup from 'vue-material-design-icons/AccountMultiple'
-import IconUrl from 'vue-material-design-icons/Link'
-import IconBday from 'vue-material-design-icons/CalendarBlankOutline'
-import IconImpp from 'vue-material-design-icons/MessageReplyText'
-import IconSocialMedia from 'vue-material-design-icons/Heart'
-import IconRelationship from 'vue-material-design-icons/AccountSupervisor'
-import IconTz from 'vue-material-design-icons/Web'
-import IconLang from 'vue-material-design-icons/AccountVoice'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
+import IconAddressBook from '../Icons/IconAddressBook.vue'
+import IconEmail from 'vue-material-design-icons/Email.vue'
+import IconPhone from 'vue-material-design-icons/Cellphone.vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconUser from 'vue-material-design-icons/Account.vue'
+import IconNotes from 'vue-material-design-icons/Pencil.vue'
+import IconGeo from 'vue-material-design-icons/MapMarker.vue'
+import IconGroup from 'vue-material-design-icons/AccountMultiple.vue'
+import IconUrl from 'vue-material-design-icons/Link.vue'
+import IconBday from 'vue-material-design-icons/CalendarBlankOutline.vue'
+import IconImpp from 'vue-material-design-icons/MessageReplyText.vue'
+import IconSocialMedia from 'vue-material-design-icons/Heart.vue'
+import IconRelationship from 'vue-material-design-icons/AccountSupervisor.vue'
+import IconTz from 'vue-material-design-icons/Web.vue'
+import IconLang from 'vue-material-design-icons/AccountVoice.vue'
 export default {
 	name: 'PropertyTitleIcon',
 	components: {

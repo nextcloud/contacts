@@ -22,8 +22,7 @@
 
 <template>
 	<div v-if="propModel" class="property property--without-actions">
-		<PropertyTitle
-			icon="icon-contacts-dark"
+		<PropertyTitle icon="icon-contacts-dark"
 			:readable-name="t('contacts', 'Groups')" />
 
 		<div class="property__row">
@@ -60,9 +59,9 @@
 
 <script>
 import debounce from 'debounce'
-import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect'
-import Contact from '../../models/contact'
-import PropertyTitle from './PropertyTitle'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import Contact from '../../models/contact.js'
+import PropertyTitle from './PropertyTitle.vue'
 import naturalCompare from 'string-natural-compare'
 
 export default {

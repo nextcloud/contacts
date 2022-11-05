@@ -24,8 +24,7 @@
 		{{ t('contacts', 'Add {type}', {type: source.label.toLowerCase()}) }}
 	</h4>
 
-	<UserBubble
-		v-else
+	<UserBubble v-else
 		class="entity-picker__bubble"
 		:class="{'entity-picker__bubble--selected': isSelected}"
 		:display-name="source.label"
@@ -41,7 +40,7 @@
 </template>
 
 <script>
-import UserBubble from '@nextcloud/vue/dist/Components/NcUserBubble'
+import UserBubble from '@nextcloud/vue/dist/Components/NcUserBubble.js'
 
 export default {
 	name: 'EntitySearchResult',

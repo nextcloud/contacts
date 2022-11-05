@@ -21,7 +21,7 @@
  */
 
 import Vue from 'vue'
-import AdminSettings from './components/AdminSettings'
+import AdminSettings from './components/AdminSettings.vue'
 
 document.addEventListener('DOMContentLoaded', main)
 

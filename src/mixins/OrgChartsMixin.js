@@ -19,7 +19,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import { otherContacts } from '../utils/chartUtils'
+import { otherContacts } from '../utils/chartUtils.js'
 
 export default {
 	methods: {

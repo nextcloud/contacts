@@ -25,7 +25,7 @@
  *
  * @see https://www.php.net/manual/en/function.urldecode.php
  * @param {string} url The url to be decoded
- * @returns {string} The decoded url
+ * @return {string} The decoded url
  */
 export function urldecode(url) {
 	return decodeURIComponent(url.replace(/\+/g, ' '))

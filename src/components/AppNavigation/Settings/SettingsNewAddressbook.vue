@@ -49,7 +49,7 @@
 
 <script>
 import { showError } from '@nextcloud/dialogs'
-import IconAdd from 'vue-material-design-icons/Plus'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
 
 export default {
 	name: 'SettingsNewAddressbook',

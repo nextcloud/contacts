@@ -20,7 +20,7 @@
  *
  */
 import camelcase from 'camelcase'
-import { isNumber } from './numberUtils'
+import { isNumber } from './numberUtils.js'
 
 export const formatObject = function(obj) {
 	const data = {}

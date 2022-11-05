@@ -27,8 +27,7 @@
 			:title="t('contacts', 'No contact selected')"
 			:description="t('contacts', 'Select a contact on the list to begin')">
 			<template #icon>
-				<IconContact
-					:size="20" />
+				<IconContact :size="20" />
 			</template>
 		</EmptyContent>
 
@@ -36,8 +35,7 @@
 			<!-- contact header -->
 			<DetailsHeader>
 				<!-- avatar and upload photo -->
-				<ContactAvatar
-					slot="avatar"
+				<ContactAvatar slot="avatar"
 					:contact="contact"
 					@update-local-contact="updateLocalContact" />
 
@@ -258,36 +256,36 @@
 import { showError } from '@nextcloud/dialogs'
 import { stringify } from 'ical.js'
 import debounce from 'debounce'
-// eslint-disable-next-line import/no-unresolved, node/no-missing-import
+// eslint-disable-next-line import/no-unresolved, n/no-missing-import
 import PQueue from 'p-queue'
 import qr from 'qr-image'
 import Vue from 'vue'
 import { VueMasonryPlugin } from 'vue-masonry'
 
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
-import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink'
-import AppContentDetails from '@nextcloud/vue/dist/Components/NcAppContentDetails'
-import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent'
-import IconContact from 'vue-material-design-icons/AccountMultiple'
-import Modal from '@nextcloud/vue/dist/Components/NcModal'
-import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect'
-import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
-import IconDownload from 'vue-material-design-icons/Download'
-import IconDelete from 'vue-material-design-icons/Delete'
-import IconQr from 'vue-material-design-icons/Qrcode'
-import CakeIcon from 'vue-material-design-icons/Cake'
-import IconCopy from 'vue-material-design-icons/ContentCopy'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js'
+import AppContentDetails from '@nextcloud/vue/dist/Components/NcAppContentDetails.js'
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import Modal from '@nextcloud/vue/dist/Components/NcModal.js'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
+import IconDownload from 'vue-material-design-icons/Download.vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconQr from 'vue-material-design-icons/Qrcode.vue'
+import CakeIcon from 'vue-material-design-icons/Cake.vue'
+import IconCopy from 'vue-material-design-icons/ContentCopy.vue'
 
-import rfcProps from '../models/rfcProps'
-import validate from '../services/validate'
+import rfcProps from '../models/rfcProps.js'
+import validate from '../services/validate.js'
 
-import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
-import ContactAvatar from './ContactDetails/ContactDetailsAvatar'
-import ContactProperty from './ContactDetails/ContactDetailsProperty'
-import DetailsHeader from './DetailsHeader'
-import PropertyGroups from './Properties/PropertyGroups'
-import PropertyRev from './Properties/PropertyRev'
-import PropertySelect from './Properties/PropertySelect'
+import AddNewProp from './ContactDetails/ContactDetailsAddNewProp.vue'
+import ContactAvatar from './ContactDetails/ContactDetailsAvatar.vue'
+import ContactProperty from './ContactDetails/ContactDetailsProperty.vue'
+import DetailsHeader from './DetailsHeader.vue'
+import PropertyGroups from './Properties/PropertyGroups.vue'
+import PropertyRev from './Properties/PropertyRev.vue'
+import PropertySelect from './Properties/PropertySelect.vue'
 
 Vue.use(VueMasonryPlugin)
 const updateQueue = new PQueue({ concurrency: 1 })

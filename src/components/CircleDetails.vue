@@ -26,8 +26,7 @@
 		<DetailsHeader>
 			<!-- avatar and upload photo -->
 			<template #avatar="{avatarSize}">
-				<Avatar
-					:disable-tooltip="true"
+				<Avatar :disable-tooltip="true"
 					:display-name="circle.displayName"
 					:is-no-user="true"
 					:size="avatarSize" />
@@ -35,8 +34,7 @@
 
 			<!-- display name -->
 			<template #title>
-				<input
-					v-model="circle.displayName"
+				<input v-model="circle.displayName"
 					:readonly="!circle.isOwner"
 					:placeholder="t('contacts', 'Circle name')"
 					type="text"
@@ -80,8 +78,7 @@
 				{{ t('contacts', 'Description') }}
 			</ContentHeading>
 
-			<RichContenteditable
-				:value.sync="circle.description"
+			<RichContenteditable :value.sync="circle.description"
 				:auto-complete="onAutocomplete"
 				:maxlength="1024"
 				:multiline="true"
@@ -129,21 +126,21 @@
 import { showError } from '@nextcloud/dialogs'
 import debounce from 'debounce'
 
-import AppContentDetails from '@nextcloud/vue/dist/Components/NcAppContentDetails'
-import Avatar from '@nextcloud/vue/dist/Components/NcAvatar'
-import Button from '@nextcloud/vue/dist/Components/NcButton'
-import RichContenteditable from '@nextcloud/vue/dist/Components/NcRichContenteditable'
+import AppContentDetails from '@nextcloud/vue/dist/Components/NcAppContentDetails.js'
+import Avatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
+import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import RichContenteditable from '@nextcloud/vue/dist/Components/NcRichContenteditable.js'
 
-import Login from 'vue-material-design-icons/Login'
-import Logout from 'vue-material-design-icons/Logout'
-import IconDelete from 'vue-material-design-icons/Delete'
+import Login from 'vue-material-design-icons/Login.vue'
+import Logout from 'vue-material-design-icons/Logout.vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
 
 import { CircleEdit, editCircle } from '../services/circles.ts'
-import CircleActionsMixin from '../mixins/CircleActionsMixin'
-import DetailsHeader from './DetailsHeader'
-import CircleConfigs from './CircleDetails/CircleConfigs'
-import ContentHeading from './CircleDetails/ContentHeading'
-import CirclePasswordSettings from './CircleDetails/CirclePasswordSettings'
+import CircleActionsMixin from '../mixins/CircleActionsMixin.js'
+import DetailsHeader from './DetailsHeader.vue'
+import CircleConfigs from './CircleDetails/CircleConfigs.vue'
+import ContentHeading from './CircleDetails/ContentHeading.vue'
+import CirclePasswordSettings from './CircleDetails/CirclePasswordSettings.vue'
 
 export default {
 	name: 'CircleDetails',
@@ -200,7 +197,7 @@ export default {
 		 */
 		onAutocomplete(search, callback) {
 			// TODO: implement autocompletion. Disabled for now
-			// eslint-disable-next-line node/no-callback-literal
+			// eslint-disable-next-line n/no-callback-literal
 			callback([])
 		},
 

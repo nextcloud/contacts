@@ -24,8 +24,7 @@
 	<div id="contacts" class="section">
 		<h2>{{ t('contacts', 'Contacts') }}</h2>
 		<p>
-			<input
-				id="allow-social-sync"
+			<input id="allow-social-sync"
 				v-model="allowSocialSync"
 				type="checkbox"
 				class="checkbox"

@@ -20,38 +20,30 @@
   -
   -->
 <template>
-	<AppNavigationItem
-		:key="group.key"
+	<AppNavigationItem :key="group.key"
 		:to="group.router"
 		:title="group.name">
 		<template #icon>
-			<IconContact
-				:size="20" />
+			<IconContact :size="20" />
 		</template>
 		<template slot="actions">
-			<ActionButton
-				:close-after-click="true"
+			<ActionButton :close-after-click="true"
 				@click="addContactsToGroup(group)">
 				<template #icon>
-					<IconAdd
-						:size="20" />
+					<IconAdd :size="20" />
 				</template>
 				{{ t('contacts', 'Add contacts') }}
 			</ActionButton>
-			<ActionButton
-				:close-after-click="true"
+			<ActionButton :close-after-click="true"
 				@click="downloadGroup(group)">
 				<template #icon>
-					<IconDownload
-						:size="20" />
+					<IconDownload :size="20" />
 				</template>
 				{{ t('contacts', 'Download') }}
 			</ActionButton>
-			<ActionButton
-				@click="emailGroup(group)">
+			<ActionButton @click="emailGroup(group)">
 				<template #icon>
-					<IconEmail
-						:size="20" />
+					<IconEmail :size="20" />
 				</template>
 				{{ t('contacts', 'Send email') }}
 			</ActionButton>
@@ -70,13 +62,13 @@ import { emit } from '@nextcloud/event-bus'
 import download from 'downloadjs'
 import moment from 'moment'
 
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
-import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble'
-import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem'
-import IconContact from 'vue-material-design-icons/AccountMultiple'
-import IconAdd from 'vue-material-design-icons/Plus'
-import IconDownload from 'vue-material-design-icons/Download'
-import IconEmail from 'vue-material-design-icons/Email'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble.js'
+import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem.js'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
+import IconDownload from 'vue-material-design-icons/Download.vue'
+import IconEmail from 'vue-material-design-icons/Email.vue'
 
 export default {
 	name: 'GroupNavigationItem',

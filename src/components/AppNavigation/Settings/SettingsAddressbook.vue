@@ -45,16 +45,14 @@
 			<!-- popovermenu -->
 			<Actions class="addressbook__menu" menu-align="right">
 				<!-- copy addressbook link -->
-				<ActionLink
-					:href="addressbook.url"
+				<ActionLink :href="addressbook.url"
 					:icon="copyLinkIcon"
 					@click.stop.prevent="copyToClipboard(addressbookUrl)">
 					{{ copyButtonText }}
 				</ActionLink>
 
 				<!-- download addressbook -->
-				<ActionLink
-					:href="addressbook.url + '?export'">
+				<ActionLink :href="addressbook.url + '?export'">
 					<template #icon>
 						<IconDownload :size="20" />
 					</template>
@@ -113,22 +111,22 @@
 </template>
 
 <script>
-import Actions from '@nextcloud/vue/dist/Components/NcActions'
-import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink'
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
-import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput'
-import ActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox'
-import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
-import Button from '@nextcloud/vue/dist/Components/NcButton'
-import IconDownload from 'vue-material-design-icons/Download'
-import IconRename from 'vue-material-design-icons/Pencil'
-import IconDelete from 'vue-material-design-icons/Delete'
-import IconContact from 'vue-material-design-icons/AccountMultiple'
-import IconShare from 'vue-material-design-icons/ShareVariant'
-import ShareAddressBook from './SettingsAddressbookShare'
+import Actions from '@nextcloud/vue/dist/Components/NcActions.js'
+import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput.js'
+import ActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox.js'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
+import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import IconDownload from 'vue-material-design-icons/Download.vue'
+import IconRename from 'vue-material-design-icons/Pencil.vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import IconShare from 'vue-material-design-icons/ShareVariant.vue'
+import ShareAddressBook from './SettingsAddressbookShare.vue'
 import { showError } from '@nextcloud/dialogs'
 
-import CopyToClipboardMixin from '../../../mixins/CopyToClipboardMixin'
+import CopyToClipboardMixin from '../../../mixins/CopyToClipboardMixin.js'
 
 export default {
 	name: 'SettingsAddressbook',

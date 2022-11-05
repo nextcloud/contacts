@@ -24,8 +24,7 @@
 <template>
 	<Content :app-name="appName">
 		<!-- new-contact-button + navigation + settings -->
-		<RootNavigation
-			:contacts-list="contactsList"
+		<RootNavigation :contacts-list="contactsList"
 			:loading="loadingContacts || loadingCircles"
 			:selected-group="selectedGroup"
 			:selected-contact="selectedContact">
@@ -70,27 +69,27 @@
 <script>
 import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE } from '../models/constants.ts'
 
-import Button from '@nextcloud/vue/dist/Components/NcButton'
-import Content from '@nextcloud/vue/dist/Components/NcContent'
-import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
-import Modal from '@nextcloud/vue/dist/Components/NcModal'
+import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import Content from '@nextcloud/vue/dist/Components/NcContent.js'
+import isMobile from '@nextcloud/vue/dist/Mixins/isMobile.js'
+import Modal from '@nextcloud/vue/dist/Components/NcModal.js'
 
 import { showError } from '@nextcloud/dialogs'
 import { VCardTime } from 'ical.js'
 
-import CircleContent from '../components/AppContent/CircleContent'
-import ChartContent from '../components/AppContent/ChartContent'
-import ContactsContent from '../components/AppContent/ContactsContent'
-import ContactsPicker from '../components/EntityPicker/ContactsPicker'
-import ImportView from './Processing/ImportView'
-import RootNavigation from '../components/AppNavigation/RootNavigation'
-import IconAdd from 'vue-material-design-icons/Plus'
+import CircleContent from '../components/AppContent/CircleContent.vue'
+import ChartContent from '../components/AppContent/ChartContent.vue'
+import ContactsContent from '../components/AppContent/ContactsContent.vue'
+import ContactsPicker from '../components/EntityPicker/ContactsPicker.vue'
+import ImportView from './Processing/ImportView.vue'
+import RootNavigation from '../components/AppNavigation/RootNavigation.vue'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
 
-import Contact from '../models/contact'
-import rfcProps from '../models/rfcProps'
+import Contact from '../models/contact.js'
+import rfcProps from '../models/rfcProps.js'
 
-import client from '../services/cdav'
-import isCirclesEnabled from '../services/isCirclesEnabled'
+import client from '../services/cdav.js'
+import isCirclesEnabled from '../services/isCirclesEnabled.js'
 
 export default {
 	name: 'Contacts',

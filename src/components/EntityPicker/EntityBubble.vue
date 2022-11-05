@@ -21,8 +21,7 @@
   -
   -->
 <template>
-	<UserBubble
-		class="entity-picker__bubble"
+	<UserBubble class="entity-picker__bubble"
 		:margin="0"
 		:size="22"
 		:display-name="label">
@@ -36,7 +35,7 @@
 </template>
 
 <script>
-import UserBubble from '@nextcloud/vue/dist/Components/NcUserBubble'
+import UserBubble from '@nextcloud/vue/dist/Components/NcUserBubble.js'
 
 export default {
 	name: 'EntityBubble',

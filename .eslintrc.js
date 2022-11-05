@@ -18,4 +18,8 @@ module.exports = {
 			},
 		},
 	},
+
+	rules: {
+		'vue/no-reserved-component-names': 'off', // @nextcloud/vue has Button, Content components restricted by rule
+	},
 }

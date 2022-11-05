@@ -48,8 +48,7 @@
 				@input="updateValue" />
 
 			<!-- props actions -->
-			<PropertyActions
-				v-if="!isReadOnly"
+			<PropertyActions v-if="!isReadOnly"
 				:actions="actions"
 				:property-component="this"
 				@delete="deleteProperty" />
@@ -58,10 +57,10 @@
 </template>
 
 <script>
-import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect'
-import PropertyMixin from '../../mixins/PropertyMixin'
-import PropertyTitle from './PropertyTitle'
-import PropertyActions from './PropertyActions'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
+import PropertyTitle from './PropertyTitle.vue'
+import PropertyActions from './PropertyActions.vue'
 
 export default {
 	name: 'PropertySelect',
