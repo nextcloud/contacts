@@ -26,13 +26,29 @@
 			<div class="search-contacts-field">
 				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
 			</div>
+			<Actions
+				class="merge-button"
+				menu-align="right">
+				<slot v-if="selected.length >= 2">
+					<ActionButton icon="icon-clone" @click="mergeContact">
+						{{ t('contacts', 'Merge') }}
+					</ActionButton>
+				</slot>
+				<slot v-if="selected.length >= 1">
+					<ActionButton icon="icon-delete" @click="deleteMultipleContact">
+						{{ t('contacts', 'Delete') }}
+					</ActionButton>
+				</slot>
+			</Actions>
 		</div>
 		<VirtualList ref="scroller"
 			class="contacts-list"
 			data-key="key"
 			:data-sources="filteredList"
 			:data-component="ContactsListItem"
-			:estimate-size="68" />
+			:estimate-size="68"
+			:extra-props={selected}
+			@update-check-selected="selectionChanged" />
 	</AppContentList>
 </template>
 
@@ -40,6 +56,8 @@
 import AppContentList from '@nextcloud/vue/dist/Components/NcAppContentList'
 import ContactsListItem from './ContactsList/ContactsListItem'
 import VirtualList from 'vue-virtual-scroll-list'
+import Actions from '@nextcloud/vue/dist/Components/Actions'
+import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
 
 export default {
 	name: 'ContactsList',
@@ -47,6 +65,8 @@ export default {
 	components: {
 		AppContentList,
 		VirtualList,
+		Actions,
+		ActionButton,
 	},
 
 	props: {
@@ -68,6 +88,7 @@ export default {
 		return {
 			ContactsListItem,
 			query: '',
+			selected: [],
 		}
 	},
 
@@ -157,6 +178,101 @@ export default {
 			}
 			return true
 		},
+		selectionChanged(newValue) {
+			if (this.selected.includes(newValue)) {
+				this.selected.splice(this.selected.indexOf(newValue), 1)
+			} else {
+				this.selected.push(newValue)
+			}
+		},
+		deleteMultipleContact() {
+			const temp = []
+			this.selected.forEach(element => {
+				if (this.contacts[element]) {
+					// delete contact
+					this.$store.dispatch('deleteContact', { contact: this.contacts[element] })
+					temp.push(this.selected.indexOf(element), 1)
+				}
+			})
+			// delete the uid in selected of the contact deleted
+			temp.forEach(el => {
+				this.selected.splice(temp, 1)
+			})
+		},
+		cleanContactValue(contact, value) {
+			contact.jCal[1].forEach(element => {
+				if (element[0] === value[0] && element[3] === '' && !Array.isArray(element[3])) {
+					contact.jCal[1].splice(contact.jCal[1].indexOf(element), 1)
+				} else if (element[0] === value[0] && Array.isArray(element[3])) {
+					let isempty = true
+					element[3].forEach(arr => {
+						if (arr !== '') {
+							isempty = false
+						}
+					})
+					if (isempty === true) {
+						contact.jCal[1].splice(contact.jCal[1].indexOf(element), 1)
+					}
+				}
+			})
+		},
+		addValue(firstContact, jcalvalue) {
+			jcalvalue.filter(element => {
+				// exclude the unique field we don't want to add
+				return !['uid', 'version', 'fn', 'prodid', 'gender', 'rev'].includes(element[0])
+			}).forEach(value => {
+				if (value[0] === 'categories') {
+					value.slice(3).forEach(element => {
+						const data = firstContact.groups
+						if (!firstContact.groups.includes(element)) {
+							data.push(element)
+							this.$store.dispatch('addContactToGroup', {
+								contact: firstContact,
+								groupName: element,
+							})
+							firstContact.groups = data
+						}
+					})
+				} else if (Array.isArray(value[3])) {
+					let isempty = true
+					value[3].forEach(arr => {
+						if (arr !== '') {
+							isempty = false
+						}
+					})
+					if (isempty === false) {
+						// delete blank field of the same type and push the new field
+						this.cleanContactValue(firstContact, value)
+						firstContact.jCal[1].push(value)
+					}
+				} else if (value[3] !== '') {
+					let include = false
+					firstContact.jCal[1].forEach(element => {
+						if (element[0] === value[0] && element[3] === value[3]) {
+							include = true
+						}
+					})
+					if (!include) {
+						// delete blank field of the same type and push the new field
+						this.cleanContactValue(firstContact, value)
+						firstContact.jCal[1].push(value)
+					}
+				}
+			})
+			return firstContact
+		},
+		mergeContact() {
+			const firstContact = this.contacts[this.selected[0]]
+			this.selected.slice(1).forEach((element) => {
+				if (this.contacts[element]) {
+					const contactjcal = this.contacts[element].jCal[1]
+					this.addValue(firstContact, contactjcal)
+					// delete the contact merged and the uid in the selected
+					this.$store.dispatch('deleteContact', { contact: this.contacts[element] }) && this.selected.splice(this.selected.indexOf(element), 1)
+				}
+			})
+			this.$store.dispatch('updateContact', firstContact)
+		},
 	},
 }
 </script>
@@ -187,4 +303,7 @@ export default {
 	padding: 0 4px;
 }
 
+.merge-button {
+	float: right;
+}
 </style>
