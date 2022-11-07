@@ -162,6 +162,7 @@ OC.L10N.register(
     "Could not change the member level to {level}" : "Ni mogoče spremeniti ravni člana na raven {level}",
     "Could not accept membership request" : "Zahteve za članstvo ni mogoče sprejeti",
     "Chart" : "Diagram",
+    "Select chart …" : "Izbor diagrama ...",
     "Select type" : "Izbor vrste",
     "Select Date" : "Izbor datuma",
     "Add contact in group" : "Dodaj stik v skupino",
