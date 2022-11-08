@@ -26,13 +26,44 @@
 			<div class="search-contacts-field">
 				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
 			</div>
+			<Actions
+				class="merge-button"
+				menu-align="right">
+				<template v-if="selected.length >= 1">
+					<ActionButton v-if="showAddToGroup"
+						icon="icon-clone"
+						@click="OpenMultiselect">
+						{{ t('contacts', 'Add to group') }}
+					</ActionButton>
+					<Multiselect v-if="showSelectGroup"
+						:options="groups"
+						:taggable="true"
+						@input="addSelectedContactsToGroup"
+						@tag="addSelectedContactsToGroup"
+						@close="closeMultiselect" />
+				</template>
+				<ActionButton v-if="selected.length >= 2"
+					:close-after-click="true"
+					icon="icon-clone"
+					@click="mergeContact">
+					{{ t('contacts', 'Merge') }}
+				</ActionButton>
+				<ActionButton v-if="selected.length >= 1"
+					:close-after-click="true"
+					icon="icon-delete"
+					@click="deleteMultipleContact">
+					{{ t('contacts', 'Delete') }}
+				</ActionButton>
+			</Actions>
 		</div>
 		<VirtualList ref="scroller"
 			class="contacts-list"
 			data-key="key"
 			:data-sources="filteredList"
 			:data-component="ContactsListItem"
-			:estimate-size="68" />
+			:estimate-size="68"
+			:extra-props={selected}
+			@update-check-selected="selectionChanged" />
 	</AppContentList>
 </template>
 
@@ -40,6 +71,10 @@
 import AppContentList from '@nextcloud/vue/dist/Components/NcAppContentList'
 import ContactsListItem from './ContactsList/ContactsListItem'
 import VirtualList from 'vue-virtual-scroll-list'
+import Actions from '@nextcloud/vue/dist/Components/NcActions'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
+import naturalCompare from 'string-natural-compare'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect'
 
 export default {
 	name: 'ContactsList',
@@ -47,6 +82,9 @@ export default {
 	components: {
 		AppContentList,
 		VirtualList,
+		Actions,
+		ActionButton,
+		Multiselect
 	},
 
 	props: {
@@ -68,10 +106,18 @@ export default {
 		return {
 			ContactsListItem,
 			query: '',
+			selected: [],
+			showGroups: false,
+			showAddToGroup: true,
+			showSelectGroup: false,
 		}
 	},
 
 	computed: {
+		groups() {
+			return this.$store.getters.getGroups.slice(0).map(group => group.name)
+				.sort((a, b) => naturalCompare(a, b, { caseInsensitive: true }))
+		},
 		selectedContact() {
 			return this.$route.params.selectedContact
 		},
@@ -157,6 +203,112 @@ export default {
 			}
 			return true
 		},
+		selectionChanged(newValue) {
+			if (this.selected.includes(newValue)) {
+				this.selected.splice(this.selected.indexOf(newValue), 1)
+			} else {
+				this.selected.push(newValue)
+			}
+		},
+		deleteMultipleContact() {
+			const temp = []
+			this.selected.forEach(element => {
+				if (this.contacts[element]) {
+					// delete contact
+					this.$store.dispatch('deleteContact', { contact: this.contacts[element] })
+					temp.push(this.selected.indexOf(element), 1)
+				}
+			})
+			// delete the uid in selected of the contact deleted
+			temp.forEach(el => {
+				this.selected.splice(temp, 1)
+			})
+		},
+		cleanContactValue(contact, value) {
+			contact.jCal[1].forEach(element => {
+				if (element[0] === value[0] && element[3] === '' && !Array.isArray(element[3])) {
+					contact.jCal[1].splice(contact.jCal[1].indexOf(element), 1)
+				} else if (element[0] === value[0] && Array.isArray(element[3])) {
+					let isempty = true
+					value[3].forEach(arr => {
+						if (arr !== '') {
+							isempty = false
+						}
+					})
+					if (isempty === false) {
+						contact.jCal[1].splice(contact.jCal[1].indexOf(element), 1)
+					}
+				}
+			})
+		},
+		addValue(contact, jcalvalue) {
+			jcalvalue.filter(element => {
+				// exclude the unique field we don't want to add
+				return !['uid', 'version', 'fn', 'prodid', 'gender', 'rev'].includes(element[0])
+			}).forEach(value => {
+				if (Array.isArray(value[3])) {
+					let isempty = true
+					value[3].forEach(arr => {
+						if (arr !== '') {
+							isempty = false
+						}
+					})
+					if (isempty === false) {
+						// delete blank field of the same type and push the new field
+						this.cleanContactValue(contact, value)
+						contact.jCal[1].push(value)
+					}
+				} else if (value[3] !== '') {
+					let include = false
+					contact.jCal[1].forEach(element => {
+						if (element[0] === value[0] && element[3] === value[3]) {
+							include = true
+						}
+					})
+					if (!include) {
+						// delete blank field of the same type and push the new field
+						this.cleanContactValue(contact, value)
+						contact.jCal[1].push(value)
+					}
+				}
+			})
+			return contact
+		},
+		mergeContact() {
+			const firstContact = this.contacts[this.selected[0]]
+			this.selected.slice(1).forEach((element) => {
+				if (this.contacts[element]) {
+					const contactjcal = this.contacts[element].jCal[1]
+					this.addValue(firstContact, contactjcal)
+					// delete the contact merged and the uid in the selected
+					this.$store.dispatch('deleteContact', { contact: this.contacts[element] }) && this.selected.splice(this.selected.indexOf(element), 1)
+				}
+			})
+			this.$store.dispatch('updateContact', firstContact)
+		},
+		OpenMultiselect() {
+			this.showAddToGroup = false
+			this.showSelectGroup = true
+		},
+		closeMultiselect() {
+			this.showAddToGroup = true
+			this.showSelectGroup = false
+		},
+		addSelectedContactsToGroup(value) {
+			this.selected.forEach(element => {
+				const selectedContact = this.contacts[element]
+				const data = selectedContact.groups
+				if (!data.includes(value)) {
+					this.$store.dispatch('addContactToGroup', {
+						contact: selectedContact,
+						groupName: value,
+					})
+					data.push(value)
+					selectedContact.groups = data
+					this.$store.dispatch('updateContact', selectedContact)
+				}
+			})
+		},
 	},
 }
 </script>
@@ -187,4 +339,7 @@ export default {
 	padding: 0 4px;
 }
 
+.merge-button {
+	float: right;
+}
 </style>
