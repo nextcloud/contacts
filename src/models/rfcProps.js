@@ -21,11 +21,11 @@
  */
 import { VCardTime } from 'ical.js'
 import { loadState } from '@nextcloud/initial-state'
-import { otherContacts } from '../utils/chartUtils'
+import { otherContacts } from '../utils/chartUtils.js'
 
-import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN'
-import ActionToggleYear from '../components/Actions/ActionToggleYear'
-import zones from './zones'
+import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN.vue'
+import ActionToggleYear from '../components/Actions/ActionToggleYear.vue'
+import zones from './zones.js'
 
 // Load the default profile (for example, home or work) configured by the user
 const defaultProfileState = loadState('contacts', 'defaultProfile', 'HOME')

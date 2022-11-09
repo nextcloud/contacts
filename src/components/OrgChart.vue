@@ -4,8 +4,7 @@
 			<h3>
 				{{ t('contacts', 'Chart') }}:
 			</h3>
-			<Multiselect
-				v-model="chart"
+			<Multiselect v-model="chart"
 				class="chart-selection"
 				:disabled="data.length === 1"
 				:options="charts"
@@ -24,9 +23,9 @@
 import * as d3 from 'd3'
 import ChartTemplate from './ChartTemplate.vue'
 import { getLocale } from '@nextcloud/l10n'
-import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
 import { OrgChart } from 'd3-org-chart'
-import router from './../router'
+import router from './../router/index.js'
 import Vue from 'vue'
 
 export default {

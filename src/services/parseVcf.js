@@ -20,8 +20,8 @@
  *
  */
 
-import Contact from '../models/contact'
-import Store from '../store/index'
+import Contact from '../models/contact.js'
+import Store from '../store/index.js'
 
 /**
  * Parse a vcf data string, add them to the store

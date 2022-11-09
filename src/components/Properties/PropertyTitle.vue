@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import PropertyTitleIcon from './PropertyTitleIcon'
+import PropertyTitleIcon from './PropertyTitleIcon.vue'
 export default {
 	name: 'PropertyTitle',
 	components: {

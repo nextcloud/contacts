@@ -37,8 +37,7 @@
 		<!-- Accept invite -->
 		<template v-if="!loading && isPendingApproval && circle.canManageMembers">
 			<Actions>
-				<ActionButton
-					@click="acceptMember">
+				<ActionButton @click="acceptMember">
 					<template #icon>
 						<IconCheck :size="20" />
 					</template>
@@ -46,8 +45,7 @@
 				</ActionButton>
 			</Actions>
 			<Actions>
-				<ActionButton
-					@click="deleteMember">
+				<ActionButton @click="deleteMember">
 					<template #icon>
 						<IconClose :size="20" />
 					</template>
@@ -71,8 +69,7 @@
 							:size="16"
 							decorative />
 					</ActionText>
-					<ActionButton
-						v-for="level in availableLevelsChange"
+					<ActionButton v-for="level in availableLevelsChange"
 						:key="level"
 						icon=""
 						@click="changeLevel(level)">
@@ -103,21 +100,21 @@
 <script>
 import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberStatus } from '../../models/constants.ts'
 
-import Actions from '@nextcloud/vue/dist/Components/NcActions'
-import ListItemIcon from '@nextcloud/vue/dist/Components/NcListItemIcon'
-import ActionSeparator from '@nextcloud/vue/dist/Components/NcActionSeparator'
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
-import ActionText from '@nextcloud/vue/dist/Components/NcActionText'
-import IconDelete from 'vue-material-design-icons/Delete'
-import IconCheck from 'vue-material-design-icons/Check'
-import IconClose from 'vue-material-design-icons/Close'
+import Actions from '@nextcloud/vue/dist/Components/NcActions.js'
+import ListItemIcon from '@nextcloud/vue/dist/Components/NcListItemIcon.js'
+import ActionSeparator from '@nextcloud/vue/dist/Components/NcActionSeparator.js'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import ActionText from '@nextcloud/vue/dist/Components/NcActionText.js'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconCheck from 'vue-material-design-icons/Check.vue'
+import IconClose from 'vue-material-design-icons/Close.vue'
 
-import ExitToApp from 'vue-material-design-icons/ExitToApp'
-import ShieldCheck from 'vue-material-design-icons/ShieldCheck'
+import ExitToApp from 'vue-material-design-icons/ExitToApp.vue'
+import ShieldCheck from 'vue-material-design-icons/ShieldCheck.vue'
 
 import { changeMemberLevel } from '../../services/circles.ts'
 import { showError } from '@nextcloud/dialogs'
-import RouterMixin from '../../mixins/RouterMixin'
+import RouterMixin from '../../mixins/RouterMixin.js'
 
 export default {
 	name: 'MembersListItem',

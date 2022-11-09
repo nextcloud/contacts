@@ -40,11 +40,11 @@
 </template>
 
 <script>
-import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect'
-import rfcProps from '../../models/rfcProps'
-import Contact from '../../models/contact'
-import OrgChartsMixin from '../../mixins/OrgChartsMixin'
-import PropertyTitle from '../Properties/PropertyTitle'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import rfcProps from '../../models/rfcProps.js'
+import Contact from '../../models/contact.js'
+import OrgChartsMixin from '../../mixins/OrgChartsMixin.js'
+import PropertyTitle from '../Properties/PropertyTitle.vue'
 import ICAL from 'ical.js'
 
 export default {

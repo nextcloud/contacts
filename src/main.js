@@ -25,14 +25,14 @@ import { getRequestToken } from '@nextcloud/auth'
 import { sync } from 'vuex-router-sync'
 import Vue from 'vue'
 
-import App from './ContactsRoot'
-import router from './router'
-import store from './store'
-import logger from './services/logger'
+import App from './ContactsRoot.vue'
+import router from './router/index.js'
+import store from './store/index.js'
+import logger from './services/logger.js'
 
 /** GLOBAL COMPONENTS AND DIRECTIVE */
 import ClickOutside from 'vue-click-outside'
-import VTooltip from '@nextcloud/vue/dist/Directives/Tooltip'
+import VTooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
 
 // Global scss sheets
 import '../css/contacts.scss'

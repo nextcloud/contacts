@@ -1,6 +1,5 @@
 <template>
-	<ListItem
-		:id="id"
+	<ListItem :id="id"
 		:key="source.key"
 		class="list-item-style envelope"
 		:title="source.displayName"
@@ -24,7 +23,7 @@
 
 <script>
 import { NcListItem as ListItem } from '@nextcloud/vue'
-import BaseAvatar from '@nextcloud/vue/dist/Components/NcAvatar'
+import BaseAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
 
 export default {
 	name: 'ContactsListItem',

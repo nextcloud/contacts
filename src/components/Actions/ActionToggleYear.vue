@@ -28,8 +28,8 @@
 	</ActionCheckbox>
 </template>
 <script>
-import ActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox'
-import ActionsMixin from '../../mixins/ActionsMixin'
+import ActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox.js'
+import ActionsMixin from '../../mixins/ActionsMixin.js'
 
 export default {
 	name: 'ActionToggleYear',

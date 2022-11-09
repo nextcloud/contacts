@@ -5,10 +5,10 @@
 </template>
 
 <script>
-import AppContent from '@nextcloud/vue/dist/Components/NcAppContent'
+import AppContent from '@nextcloud/vue/dist/Components/NcAppContent.js'
 
 import OrgChart from '../OrgChart.vue'
-import { getChart, transformNode } from '../../utils/chartUtils'
+import { getChart, transformNode } from '../../utils/chartUtils.js'
 
 export default {
 	name: 'ChartContent',

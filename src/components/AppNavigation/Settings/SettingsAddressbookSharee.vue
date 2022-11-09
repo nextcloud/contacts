@@ -30,8 +30,7 @@
 			{{ sharee.displayName }}
 		</span>
 		<span class="addressbook-sharee__utils">
-			<input
-				:id="uid"
+			<input :id="uid"
 				:checked="writeable"
 				:disabled="loading"
 				class="checkbox"
@@ -56,11 +55,11 @@
 
 <script>
 import { showError } from '@nextcloud/dialogs'
-import IconDelete from 'vue-material-design-icons/Delete'
-import IconGroup from 'vue-material-design-icons/AccountMultiple'
-import IconUser from 'vue-material-design-icons/Account'
-import Button from '@nextcloud/vue/dist/Components/NcButton'
-import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconGroup from 'vue-material-design-icons/AccountMultiple.vue'
+import IconUser from 'vue-material-design-icons/Account.vue'
+import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
 
 export default {
 	name: 'SettingsAddressbookSharee',

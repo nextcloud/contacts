@@ -46,14 +46,14 @@
 
 <script>
 import { Property } from 'ical.js'
-import rfcProps from '../../models/rfcProps'
-import Contact from '../../models/contact'
+import rfcProps from '../../models/rfcProps.js'
+import Contact from '../../models/contact.js'
 
-import OrgChartsMixin from '../../mixins/OrgChartsMixin'
-import PropertyText from '../Properties/PropertyText'
-import PropertyMultipleText from '../Properties/PropertyMultipleText'
-import PropertyDateTime from '../Properties/PropertyDateTime'
-import PropertySelect from '../Properties/PropertySelect'
+import OrgChartsMixin from '../../mixins/OrgChartsMixin.js'
+import PropertyText from '../Properties/PropertyText.vue'
+import PropertyMultipleText from '../Properties/PropertyMultipleText.vue'
+import PropertyDateTime from '../Properties/PropertyDateTime.vue'
+import PropertySelect from '../Properties/PropertySelect.vue'
 
 export default {
 	name: 'ContactDetailsProperty',

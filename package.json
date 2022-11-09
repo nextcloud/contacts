@@ -83,7 +83,7 @@
 		"@babel/preset-env": "^7.20.2",
 		"@nextcloud/babel-config": "^1.0.0",
 		"@nextcloud/browserslist-config": "^2.3.0",
-		"@nextcloud/eslint-config": "^6.1.2",
+		"@nextcloud/eslint-config": "^8.1.2",
 		"@nextcloud/stylelint-config": "^2.3.0",
 		"@nextcloud/typings": "^1.5.0",
 		"@nextcloud/webpack-vue-config": "~5.1.0",

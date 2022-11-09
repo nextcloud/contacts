@@ -20,16 +20,14 @@
 -->
 
 <template>
-	<Modal
-		size="normal"
+	<Modal size="normal"
 		@close="onCancel">
 		<!-- Wrapper for content & navigation -->
 		<div class="entity-picker">
 			<!-- Search -->
 			<div class="entity-picker__search">
 				<div class="entity-picker__search-icon icon-search" />
-				<input
-					ref="input"
+				<input ref="input"
 					v-model="searchQuery"
 					:placeholder="t('contacts', 'Search {types}', {types: searchPlaceholderTypes})"
 					class="entity-picker__search-input"
@@ -46,13 +44,11 @@
 
 			<template v-else>
 				<!-- Picked entities -->
-				<transition-group
-					v-if="Object.keys(selectionSet).length > 0"
+				<transition-group v-if="Object.keys(selectionSet).length > 0"
 					name="zoom"
 					tag="ul"
 					class="entity-picker__selection">
-					<EntityBubble
-						v-for="entity in selectionSet"
+					<EntityBubble v-for="entity in selectionSet"
 						:key="entity.key || `entity-${entity.type}-${entity.id}`"
 						v-bind="entity"
 						@delete="onDelete(entity)" />
@@ -81,14 +77,12 @@
 				</EmptyContent>
 
 				<div class="entity-picker__navigation">
-					<button
-						:disabled="loading"
+					<button :disabled="loading"
 						class="navigation__button-left"
 						@click="onCancel">
 						{{ t('contacts', 'Cancel') }}
 					</button>
-					<button
-						:disabled="isEmptySelection || loading"
+					<button :disabled="isEmptySelection || loading"
 						class="navigation__button-right primary"
 						@click="onSubmit">
 						{{ confirmLabel }}
@@ -102,13 +96,13 @@
 <script>
 import debounce from 'debounce'
 import VirtualList from 'vue-virtual-scroll-list'
-import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent'
-import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
-import IconSearch from 'vue-material-design-icons/Magnify'
-import Modal from '@nextcloud/vue/dist/Components/NcModal'
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
+import IconSearch from 'vue-material-design-icons/Magnify.vue'
+import Modal from '@nextcloud/vue/dist/Components/NcModal.js'
 
-import EntityBubble from './EntityBubble'
-import EntitySearchResult from './EntitySearchResult'
+import EntityBubble from './EntityBubble.vue'
+import EntitySearchResult from './EntitySearchResult.vue'
 
 export default {
 	name: 'EntityPicker',

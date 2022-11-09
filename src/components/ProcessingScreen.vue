@@ -14,8 +14,8 @@
 </template>
 
 <script>
-import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent'
-import IconContact from 'vue-material-design-icons/AccountMultiple'
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 export default {
 	name: 'ProcessingScreen',
 

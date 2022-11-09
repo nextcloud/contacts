@@ -20,10 +20,10 @@
  *
  */
 
-import badGenderType from './badGenderType'
-import duplicateTypes from './duplicateTypes'
-import invalidREV from './invalidREV'
-import missingFN from './missingFN'
+import badGenderType from './badGenderType.js'
+import duplicateTypes from './duplicateTypes.js'
+import invalidREV from './invalidREV.js'
+import missingFN from './missingFN.js'
 
 export default [
 	badGenderType,

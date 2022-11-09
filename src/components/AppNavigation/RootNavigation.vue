@@ -40,8 +40,7 @@
 					params: { selectedGroup: GROUP_ALL_CONTACTS },
 				}">
 				<template #icon>
-					<IconContact
-						:size="20" />
+					<IconContact :size="20" />
 				</template>
 				<template #counter>
 					<NcCounterBubble v-if="sortedContacts.length">
@@ -61,8 +60,7 @@
 				icon="icon-category-monitoring" />
 
 			<!-- Not grouped group -->
-			<AppNavigationItem
-				v-if="ungroupedContacts.length > 0"
+			<AppNavigationItem v-if="ungroupedContacts.length > 0"
 				id="notgrouped"
 				:title="GROUP_NO_GROUP_CONTACTS"
 				:to="{
@@ -70,8 +68,7 @@
 					params: { selectedGroup: GROUP_NO_GROUP_CONTACTS },
 				}">
 				<template #icon>
-					<IconUser
-						:size="20" />
+					<IconUser :size="20" />
 				</template>
 				<template #counter>
 					<NcCounterBubble v-if="ungroupedContacts.length">
@@ -81,8 +78,7 @@
 			</AppNavigationItem>
 
 			<!-- Recently contacted group -->
-			<AppNavigationItem
-				v-if="isContactsInteractionEnabled && recentlyContactedContacts && recentlyContactedContacts.contacts.length > 0"
+			<AppNavigationItem v-if="isContactsInteractionEnabled && recentlyContactedContacts && recentlyContactedContacts.contacts.length > 0"
 				id="recentlycontacted"
 				:title="GROUP_RECENTLY_CONTACTED"
 				:to="{
@@ -90,8 +86,7 @@
 					params: { selectedGroup: GROUP_RECENTLY_CONTACTED },
 				}">
 				<template #icon>
-					<IconRecentlyContacted
-						:size="20" />
+					<IconRecentlyContacted :size="20" />
 				</template>
 				<template #counter>
 					<NcCounterBubble v-if="recentlyContactedContacts.contacts.length">
@@ -100,8 +95,7 @@
 				</template>
 			</AppNavigationItem>
 
-			<AppNavigationCaption
-				id="newgroup"
+			<AppNavigationCaption id="newgroup"
 				:force-menu="true"
 				:menu-open.sync="isNewGroupMenuOpen"
 				:title="t('contacts', 'Groups')"
@@ -117,31 +111,27 @@
 						</template>
 						{{ createGroupError ? createGroupError : t('contacts', 'Create a new group') }}
 					</ActionText>
-					<ActionInput
-						icon=""
+					<ActionInput icon=""
 						:placeholder="t('contacts','Group name')"
 						@submit.prevent.stop="createNewGroup" />
 				</template>
 			</AppNavigationCaption>
 
 			<!-- Custom groups -->
-			<GroupNavigationItem
-				v-for="group in ellipsisGroupsMenu"
+			<GroupNavigationItem v-for="group in ellipsisGroupsMenu"
 				:key="group.key"
 				:group="group" />
 
 			<template v-if="isCirclesEnabled">
 				<!-- Toggle groups ellipsis -->
-				<AppNavigationItem
-					v-if="groupsMenu.length > ELLIPSIS_COUNT"
+				<AppNavigationItem v-if="groupsMenu.length > ELLIPSIS_COUNT"
 					:title="collapseGroupsTitle"
 					class="app-navigation__collapse"
 					icon=""
 					@click="onToggleGroups" />
 
 				<!-- New circle button caption and modal -->
-				<AppNavigationCaption
-					id="newcircle"
+				<AppNavigationCaption id="newcircle"
 					:title="t('contacts', 'Circles')">
 					<template #actions>
 						<NcActionButton @click="toggleNewCircleModal">
@@ -159,14 +149,12 @@
 
 				<template v-if="circlesMenu.length > 0">
 					<!-- Circles -->
-					<CircleNavigationItem
-						v-for="circle in ellipsisCirclesMenu"
+					<CircleNavigationItem v-for="circle in ellipsisCirclesMenu"
 						:key="circle.key"
 						:circle="circle" />
 
 					<!-- Toggle circles ellipsis -->
-					<AppNavigationItem
-						v-if="circlesMenu.length > ELLIPSIS_COUNT"
+					<AppNavigationItem v-if="circlesMenu.length > ELLIPSIS_COUNT"
 						:title="collapseCirclesTitle"
 						class="app-navigation__collapse"
 						icon=""
@@ -203,33 +191,33 @@
 <script>
 import { GROUP_ALL_CONTACTS, CHART_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC, CONTACTS_SETTINGS } from '../../models/constants.ts'
 
-import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput'
-import ActionText from '@nextcloud/vue/dist/Components/NcActionText'
-import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton'
-import AppNavigation from '@nextcloud/vue/dist/Components/NcAppNavigation'
-import Button from '@nextcloud/vue/dist/Components/NcButton'
-import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble'
-import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem'
-import AppNavigationCaption from '@nextcloud/vue/dist/Components/NcAppNavigationCaption'
-import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon'
+import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput.js'
+import ActionText from '@nextcloud/vue/dist/Components/NcActionText.js'
+import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import AppNavigation from '@nextcloud/vue/dist/Components/NcAppNavigation.js'
+import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble.js'
+import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem.js'
+import AppNavigationCaption from '@nextcloud/vue/dist/Components/NcAppNavigationCaption.js'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
 
 import naturalCompare from 'string-natural-compare'
 
-import CircleNavigationItem from './CircleNavigationItem'
+import CircleNavigationItem from './CircleNavigationItem.vue'
 import Cog from 'vue-material-design-icons/Cog.vue'
-import ContactsSettings from './ContactsSettings'
-import GroupNavigationItem from './GroupNavigationItem'
-import NewCircleIntro from '../EntityPicker/NewCircleIntro'
+import ContactsSettings from './ContactsSettings.vue'
+import GroupNavigationItem from './GroupNavigationItem.vue'
+import NewCircleIntro from '../EntityPicker/NewCircleIntro.vue'
 
-import isCirclesEnabled from '../../services/isCirclesEnabled'
-import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled'
-import IconContact from 'vue-material-design-icons/AccountMultiple'
-import IconUser from 'vue-material-design-icons/Account'
-import IconRecentlyContacted from '../Icons/IconRecentlyContacted'
-import IconAdd from 'vue-material-design-icons/Plus'
-import IconError from 'vue-material-design-icons/AlertCircle'
+import isCirclesEnabled from '../../services/isCirclesEnabled.js'
+import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled.js'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import IconUser from 'vue-material-design-icons/Account.vue'
+import IconRecentlyContacted from '../Icons/IconRecentlyContacted.vue'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
+import IconError from 'vue-material-design-icons/AlertCircle.vue'
 
-import RouterMixin from '../../mixins/RouterMixin'
+import RouterMixin from '../../mixins/RouterMixin.js'
 import { showError } from '@nextcloud/dialogs'
 
 export default {

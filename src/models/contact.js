@@ -24,8 +24,8 @@ import { v4 as uuid } from 'uuid'
 import ICAL from 'ical.js'
 import b64toBlob from 'b64-to-blob'
 
-import store from '../store'
-import updateDesignSet from '../services/updateDesignSet'
+import store from '../store/index.js'
+import updateDesignSet from '../services/updateDesignSet.js'
 import sanitizeSVG from '@mattkrick/sanitize-svg'
 
 /**

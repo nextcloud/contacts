@@ -20,8 +20,8 @@
  *
  */
 
-import Contact from '../models/contact'
-import checks from './checks/'
+import Contact from '../models/contact.js'
+import checks from './checks/index.js'
 
 /**
  * @param contact

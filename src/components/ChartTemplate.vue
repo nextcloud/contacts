@@ -8,8 +8,7 @@
 					selectedContact: data.key,
 				},
 			}">
-				<Avatar
-					:disable-tooltip="true"
+				<Avatar :disable-tooltip="true"
 					:display-name="data.fullName"
 					:is-no-user="true"
 					:size="60"
@@ -38,7 +37,7 @@
 </template>
 
 <script>
-import Avatar from '@nextcloud/vue/dist/Components/NcAvatar'
+import Avatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
 
 export default {
 	name: 'ChartTemplate',

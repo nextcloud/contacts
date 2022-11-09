@@ -25,7 +25,7 @@ import Router from 'vue-router'
 import { generateUrl } from '@nextcloud/router'
 
 import { ROUTE_CIRCLE, ROUTE_CHART } from '../models/constants.ts'
-import Contacts from '../views/Contacts'
+import Contacts from '../views/Contacts.vue'
 
 Vue.use(Router)
 

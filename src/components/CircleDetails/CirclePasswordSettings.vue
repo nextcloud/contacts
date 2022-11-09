@@ -47,21 +47,18 @@
 
 				<li class="unique-password">
 					<template v-if="showUniquePasswordInput">
-						<input
-							v-model="uniquePassword"
+						<input v-model="uniquePassword"
 							:disabled="loading.length > 0"
 							:placeholder="t('contacts', 'Unique password …')"
 							type="text"
 							@keyup.enter="saveUniquePassword">
-						<Button
-							type="tertiary-no-background"
+						<Button type="tertiary-no-background"
 							:disabled="loading.length > 0 || uniquePassword.length === 0"
 							@click="saveUniquePassword">
 							{{ t('contacts', 'Save') }}
 						</Button>
 					</template>
-					<Button
-						v-else-if="useUniquePassword"
+					<Button v-else-if="useUniquePassword"
 						class="change-unique-password"
 						@click="onClickChangePassword">
 						{{ t('contacts', 'Change unique password') }}
@@ -77,9 +74,9 @@
 </template>
 
 <script>
-import ContentHeading from './ContentHeading'
-import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch'
-import Button from '@nextcloud/vue/dist/Components/NcButton'
+import ContentHeading from './ContentHeading.vue'
+import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+import Button from '@nextcloud/vue/dist/Components/NcButton.js'
 
 // Circle setting keys
 const ENFORCE_PASSWORD_PROTECTION = 'enforce_password'

@@ -22,7 +22,7 @@
 
 import { MemberLevel, MemberLevels, MemberType, MemberTypes } from './constants'
 import Circle from './circle'
-import logger from '../services/logger'
+import logger from '../services/logger.js'
 export default class Member {
 
 	_data: any = {}
@@ -110,7 +110,7 @@ export default class Member {
 
 	/**
 	 * Member level
-	 * 
+	 *
 	 */
 	get level(): MemberLevel {
 		return this._data.level
@@ -118,7 +118,7 @@ export default class Member {
 
 	/**
 	 * Member request status
-	 * 
+	 *
 	 */
 	get status(): string {
 		return this._data.status
