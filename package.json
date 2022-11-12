@@ -86,7 +86,7 @@
 		"@nextcloud/eslint-config": "^8.1.2",
 		"@nextcloud/stylelint-config": "^2.3.0",
 		"@nextcloud/typings": "^1.5.0",
-		"@nextcloud/webpack-vue-config": "~5.1.0",
+		"@nextcloud/webpack-vue-config": "~5.4.0",
 		"@types/jest": "^27.4.1",
 		"@typescript-eslint/parser": "^5.42.0",
 		"@vue/composition-api": "^1.7.1",
