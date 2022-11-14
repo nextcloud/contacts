@@ -98,7 +98,7 @@
 			<AppNavigationCaption id="newgroup"
 				:force-menu="true"
 				:menu-open.sync="isNewGroupMenuOpen"
-				:title="t('contacts', 'Groups')"
+				:title="t('contacts', 'Contact groups')"
 				@click.prevent.stop="toggleNewGroupMenu">
 				<template #actionsTriggerIcon>
 					<IconAdd :size="20" />
@@ -109,10 +109,10 @@
 							<IconError v-if="createGroupError" :size="20" />
 							<IconContact v-else-if="!createGroupError" :size="20" />
 						</template>
-						{{ createGroupError ? createGroupError : t('contacts', 'Create a new group') }}
+						{{ createGroupError ? createGroupError : t('contacts', 'Create a new contact group') }}
 					</ActionText>
 					<ActionInput icon=""
-						:placeholder="t('contacts','Group name')"
+						:placeholder="t('contacts','Contact group name')"
 						@submit.prevent.stop="createNewGroup" />
 				</template>
 			</AppNavigationCaption>

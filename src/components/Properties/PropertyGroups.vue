@@ -23,7 +23,7 @@
 <template>
 	<div v-if="propModel" class="property property--without-actions">
 		<PropertyTitle icon="icon-contacts-dark"
-			:readable-name="t('contacts', 'Groups')" />
+			:readable-name="t('contacts', 'Contact groups')" />
 
 		<div class="property__row">
 			<div class="property__label">

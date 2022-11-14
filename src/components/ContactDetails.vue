@@ -466,7 +466,7 @@ export default {
 		 */
 		groupsModel() {
 			return {
-				readableName: t('contacts', 'Groups'),
+				readableName: t('contacts', 'Contact groups'),
 				icon: 'icon-contacts-dark',
 			}
 		},
