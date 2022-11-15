@@ -15,8 +15,6 @@ OC.L10N.register(
     "General settings" : "Almennar stillingar",
     "Download" : "Niðurhal",
     "Send email" : "Senda tölvupóst",
-    "Groups" : "Hópar",
-    "Group name" : "Heiti hóps",
     "Circles" : "Hringir",
     "Create a new circle" : "Búa til nýjan hring",
     "Rename" : "Endurnefna",

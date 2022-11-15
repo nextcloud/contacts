@@ -10,8 +10,6 @@ OC.L10N.register(
     "General settings" : "Configuraciones generales",
     "Download" : "Descargar",
     "Send email" : "Enviar correo electrónico",
-    "Groups" : "Grupos",
-    "Group name" : "Nombre del grupo",
     "Circles" : "Círculos",
     "Create a new circle" : "Crear un nuevo círculo",
     "Rename" : "Renombrar",

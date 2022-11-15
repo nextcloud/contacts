@@ -10,8 +10,6 @@ OC.L10N.register(
     "General settings" : "الإعدادات العامة",
     "Download" : "تحميل",
     "Send email" : "إرسال بريد",
-    "Groups" : "مجموعات",
-    "Group name" : "إسم الفريق",
     "Circles" : "جماعة",
     "Rename" : "تعديل الإسم",
     "Enabled" : "مفعلة",

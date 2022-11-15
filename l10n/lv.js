@@ -11,8 +11,6 @@ OC.L10N.register(
     "General settings" : "Vispārīgie iestatījumi",
     "Download" : "Lejupielādēt",
     "Send email" : "Sūtīt e-pastu",
-    "Groups" : "Grupas",
-    "Group name" : "Grupas nosaukums",
     "Rename" : "Pārsaukt",
     "Enabled" : "Iespējots",
     "Delete" : "Dzēst",

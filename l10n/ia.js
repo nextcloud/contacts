@@ -6,8 +6,6 @@ OC.L10N.register(
     "Contacts" : "Contactos",
     "Download" : "Discargar",
     "Send email" : "Inviar message de e-posta",
-    "Groups" : "Gruppos",
-    "Group name" : "Nomine del gruppo",
     "Rename" : "Renominar",
     "Enabled" : "Activate",
     "Delete" : "Deler",

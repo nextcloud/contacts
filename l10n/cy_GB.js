@@ -9,7 +9,6 @@ OC.L10N.register(
     "Copy to full name" : "Copi i'r enw llawn",
     "Loading …" : "Yn llwytho …",
     "Download" : "Llwytho i lawr",
-    "Groups" : "Grwpiau",
     "Rename" : "Ailenwi",
     "Enabled" : "Galluogwyd",
     "Delete" : "Dileu",

@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "Hubungi ",
     "Download" : "Muat turun",
-    "Groups" : "Kumpulan",
     "Rename" : "Namakan",
     "Delete" : "Padam",
     "can edit" : "boleh mengubah",

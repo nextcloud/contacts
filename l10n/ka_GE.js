@@ -9,8 +9,6 @@ OC.L10N.register(
     "General settings" : "მთავარი პარამეტრები",
     "Download" : "ჩამოტვირთვა",
     "Send email" : "ელ-წერილის გაგზავნა",
-    "Groups" : "ჯგუფები",
-    "Group name" : "ჯგუფის სახელი",
     "Circles" : "წრეები",
     "Create a new circle" : "შექმენით წრე",
     "Rename" : "სახელის შეცვლა",

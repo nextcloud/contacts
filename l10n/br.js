@@ -8,7 +8,6 @@ OC.L10N.register(
     "General settings" : "Stummoù hollek",
     "Download" : "Pellgargañ",
     "Send email" : "Kas postel",
-    "Groups" : "Strolladoù",
     "Circles" : "Kelc'hioù",
     "Rename" : "Adenvel",
     "Enabled" : "Aotreet",

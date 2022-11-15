@@ -9,8 +9,6 @@ OC.L10N.register(
     "General settings" : "Axustes xenerales",
     "Download" : "Baxar",
     "Send email" : "Unviar mensaxe",
-    "Groups" : "Grupos",
-    "Group name" : "Nome del grupu",
     "Circles" : "Círculos",
     "Rename" : "Renomar",
     "Enabled" : "Habilitar",

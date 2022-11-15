@@ -7,8 +7,6 @@ OC.L10N.register(
     "Loading contacts …" : "Laen kontakte ...",
     "Download" : "Lae alla",
     "Send email" : "Saada kiri",
-    "Groups" : "Grupid",
-    "Group name" : "Grupi nimi",
     "Rename" : "Nimeta ümber",
     "Enabled" : "Lubatud",
     "Delete" : "Kustuta",

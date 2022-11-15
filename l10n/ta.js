@@ -4,7 +4,6 @@ OC.L10N.register(
     "Details" : "விவரங்கள்",
     "Contacts" : "தொடர்புகள்",
     "Download" : "பதிவிறக்குக",
-    "Groups" : "குழுக்கள்",
     "Rename" : "பெயர்மாற்றம்",
     "Delete" : "நீக்குக",
     "can edit" : "தொகுக்க முடியும்",

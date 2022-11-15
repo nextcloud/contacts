@@ -9,8 +9,6 @@ OC.L10N.register(
     "Add member" : "Гишүүн нэмэх",
     "Delete circle" : "бүлгийг устгах",
     "Download" : "Татаж авах",
-    "Groups" : "Багууд",
-    "Group name" : "Бүлгийн нэр",
     "Circles" : "Тойрог",
     "Create a new circle" : "шинэ бүлэг үүсгэх",
     "Rename" : "Нэр солих",

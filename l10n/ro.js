@@ -9,8 +9,6 @@ OC.L10N.register(
     "Delete circle" : "Șterge cerc",
     "Download" : "Descărcare",
     "Send email" : "Trimite email-ul",
-    "Groups" : "Grupuri",
-    "Group name" : "Numele grupului",
     "Circles" : "Cercuri",
     "Create a new circle" : "Crează un cerc nou",
     "Rename" : "Redenumește",

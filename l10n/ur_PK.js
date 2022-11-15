@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Download" : "ڈاؤن لوڈ",
-    "Group name" : "گروپ نام",
     "Rename" : "Rename",
     "Delete" : "حذف کریں",
     "can edit" : "تبدیل کر سکے ھیں",

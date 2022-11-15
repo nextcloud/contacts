@@ -7,8 +7,6 @@ OC.L10N.register(
     "A contacts app for Nextcloud" : "’n Kontakte-toep vir Nextcloud",
     "Loading …" : "Laai …",
     "Download" : "Laai Af",
-    "Groups" : "Groepe",
-    "Group name" : "Groepnaam",
     "Rename" : "Hernoem",
     "Delete" : "Skrap",
     "Copied" : "Gekopieer",

@@ -5,7 +5,6 @@ OC.L10N.register(
     "Contacts" : "ទំនាក់​ទំនង",
     "Download" : "ទាញយក",
     "Send email" : "ផ្ញើ​អ៊ីមែល",
-    "Groups" : "ក្រុ",
     "Rename" : "ប្ដូរ​ឈ្មោះ",
     "Enabled" : "បាន​បើក",
     "Delete" : "លុប",

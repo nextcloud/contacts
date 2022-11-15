@@ -3,8 +3,6 @@ OC.L10N.register(
     {
     "Contacts" : "ئالاقەداشلار",
     "Download" : "چۈشۈر",
-    "Groups" : "گۇرۇپپا",
-    "Group name" : "گۇرۇپپا ئاتى",
     "Rename" : "ئات ئۆزگەرت",
     "Delete" : "ئۆچۈر",
     "First name" : "ئاتى",

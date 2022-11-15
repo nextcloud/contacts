@@ -12,8 +12,6 @@ OC.L10N.register(
     "General settings" : "Opsjonet e Pergjithshme",
     "Download" : "Shkarko",
     "Send email" : "Dërgo email",
-    "Groups" : "Grupe",
-    "Group name" : "Emër grupi",
     "Circles" : "Rrethet",
     "Create a new circle" : "Krijo një rreth të ri",
     "Rename" : "Riemëro",

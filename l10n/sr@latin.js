@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Details" : "Detalji",
     "Download" : "Preuzmi",
-    "Groups" : "Grupe",
     "Rename" : "Rename",
     "Delete" : "Delete",
     "Copy link" : "Kopiraj vezu",

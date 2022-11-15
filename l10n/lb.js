@@ -4,8 +4,6 @@ OC.L10N.register(
     "Details" : "Detailer",
     "Contacts" : "Kontakter",
     "Download" : "Eroflueden",
-    "Groups" : "Gruppen",
-    "Group name" : "Gruppe Numm",
     "Rename" : "Ëmbenennen",
     "Enabled" : "Aktivéiert",
     "Delete" : "Läschen",

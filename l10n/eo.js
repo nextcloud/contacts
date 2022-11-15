@@ -12,8 +12,6 @@ OC.L10N.register(
     "Delete circle" : "Forigi rondon",
     "Download" : "Elŝuti",
     "Send email" : "Sendi retpoŝtmesaĝon",
-    "Groups" : "Grupoj",
-    "Group name" : "Gruponomo",
     "Circles" : "Rondoj",
     "Create a new circle" : "Krei novan rondon",
     "Rename" : "Alinomi",

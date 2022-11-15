@@ -4,7 +4,6 @@ OC.L10N.register(
     "Contacts" : "Contacts",
     "Loading contacts …" : "Loading contacts …",
     "Download" : "Download",
-    "Groups" : "Groups",
     "Rename" : "Rename",
     "Delete" : "Delete",
     "Save" : "Save",

@@ -8,8 +8,6 @@ OC.L10N.register(
     "General settings" : "Paramètres generals",
     "Download" : "Telecargar",
     "Send email" : "Enviar email",
-    "Groups" : "Gropes",
-    "Group name" : "Nom del grop",
     "Circles" : "Cercles",
     "Rename" : "Renomenar",
     "Enabled" : "Activada",

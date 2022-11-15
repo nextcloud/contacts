@@ -9,8 +9,6 @@ OC.L10N.register(
     "General settings" : "تنظیمات عمومی",
     "Download" : "دانلود",
     "Send email" : "ارسال ایمیل",
-    "Groups" : "گروه ها",
-    "Group name" : "نام گروه",
     "Circles" : "حلقه ها",
     "Rename" : "تغییرنام",
     "Enabled" : "فعال شده",
