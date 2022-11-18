@@ -144,7 +144,7 @@ OC.L10N.register(
     "Create circle" : "Opret cirkel",
     "Loading members list …" : "Indlæser medlemsliste...",
     "The list of members is only visible to members of this circle" : "Listen over medlemmer er kun synlig for medlemmer af denne cirkel",
-    "There is no member in this circle" : "Der er intet medlem i denne cirkel",
+    "You currently have no access to the memberlist" : "Der er intet medlem i denne cirkel",
     "Add members" : "Tilføj medlemmer",
     "Show circle details" : "Vis cirkeldetaljer",
     "Add to {circle}" : "Føj til {cirkel}",

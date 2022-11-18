@@ -133,7 +133,7 @@ OC.L10N.register(
     "Create circle" : "Crea giru",
     "Loading members list …" : "Carrighende s'elencu de is membros ... ",
     "The list of members is only visible to members of this circle" : "Sa lista de is membros dda podent bìdere isceti is membros de custu giru",
-    "There is no member in this circle" : "Perunu membru in custu giru",
+    "You currently have no access to the memberlist" : "Perunu membru in custu giru",
     "Add members" : "Agiunghe partetzipante",
     "Show circle details" : "Mustra detàllios de su giru",
     "Add to {circle}" : "Agiunghe a {circle}",

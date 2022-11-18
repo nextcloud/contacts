@@ -134,7 +134,7 @@
     "Create circle" : "Crea el cercle",
     "Loading members list …" : "S'està carregant la llista de membres...",
     "The list of members is only visible to members of this circle" : "La llista de membres només és visible per als membres d'aquest cercle",
-    "There is no member in this circle" : "No hi ha cap membre en aquest cercle",
+    "You currently have no access to the memberlist" : "No hi ha cap membre en aquest cercle",
     "Add members" : "Afegeix membres",
     "Show circle details" : "Mostra els detalls del cercle",
     "Add to {circle}" : "Afegeix a {circle}",

@@ -145,7 +145,7 @@
     "Create circle" : "サークルを作成",
     "Loading members list …" : "メンバーリストを読み込んでいます…",
     "The list of members is only visible to members of this circle" : "メンバーのリストは、このサークルのメンバーにのみ表示されます",
-    "There is no member in this circle" : "このサークルにはメンバーがいません",
+    "You currently have no access to the memberlist" : "このサークルにはメンバーがいません",
     "Add members" : "メンバーの追加",
     "Show circle details" : "サークル詳細を表示",
     "Add to {circle}" : "{circle} に追加",

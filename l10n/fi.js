@@ -140,7 +140,7 @@ OC.L10N.register(
     "Create circle" : "Luo piiri",
     "Loading members list …" : "Ladataan jäsenluetteloa…",
     "The list of members is only visible to members of this circle" : "Jäsenlista on näkyvissä vain muille tämän piirin jäsenille",
-    "There is no member in this circle" : "Tässä piirissä ei ole jäseniä",
+    "You currently have no access to the memberlist" : "Tässä piirissä ei ole jäseniä",
     "Add members" : "Lisää jäseniä",
     "Show circle details" : "Näytä piirin tiedot",
     "Add to {circle}" : "Lisää piiriin {circle}",

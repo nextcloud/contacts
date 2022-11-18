@@ -144,7 +144,7 @@ OC.L10N.register(
     "Create circle" : "Kör létrehozása",
     "Loading members list …" : "Taglista betöltése…",
     "The list of members is only visible to members of this circle" : "A taglista csak a kör tagjai számára látható",
-    "There is no member in this circle" : "Senki sincs ebben a körben",
+    "You currently have no access to the memberlist" : "Senki sincs ebben a körben",
     "Add members" : "Tagok hozzáadása",
     "Show circle details" : "Kör részleteinek megjelenítése",
     "Add to {circle}" : "Hozzáadása a(z) {circle} körhöz",

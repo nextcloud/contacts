@@ -137,7 +137,7 @@ OC.L10N.register(
     "Create circle" : "Создать круг",
     "Loading members list …" : "Загрузка списка участников…",
     "The list of members is only visible to members of this circle" : "Просмотр списка участников этого круга ограничен его участниками",
-    "There is no member in this circle" : "В этом круге нет участников",
+    "You currently have no access to the memberlist" : "В этом круге нет участников",
     "Add members" : "Добавить участников",
     "Show circle details" : "Подробные сведения о круге",
     "Add to {circle}" : "Добавить в круг {circle}",

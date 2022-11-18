@@ -142,7 +142,7 @@
     "Create circle" : "创建圈子",
     "Loading members list …" : "加载成员列表中 ...",
     "The list of members is only visible to members of this circle" : "成员列表仅对这个圈子的成员可见",
-    "There is no member in this circle" : "这个圈子没有成员",
+    "You currently have no access to the memberlist" : "这个圈子没有成员",
     "Add members" : "添加成员",
     "Show circle details" : "显示圈子详情",
     "Add to {circle}" : "添加到 {circle}",
