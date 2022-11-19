@@ -62,7 +62,7 @@
     "Import into the {addressbookName} address book" : "{addressbookName} adres defteri içine aktar",
     "Select local file" : "Yerel dosyayı seçin",
     "Import from Files" : "Dosyalar uygulamasından içe aktar",
-    "Importing is disabled because there are no address books available" : "Kullanılabilecek bir adres defteri bulunamadığından içe aktarım devre dışı bırakıldı",
+    "Importing is disabled because there are no address books available" : "Kullanılabilecek bir adres defteri bulunamadığından içe aktarım işlemi devre dışı bırakıldı",
     "Choose a vCard file to import" : "İçe aktarılacak vCard dosyasını seçin",
     "Add new address book" : "Adres defteri ekle",
     "An error occurred, unable to create the address book" : "Bir sorun çıktı, adres defteri oluşturulamadı",

@@ -24,6 +24,7 @@ OC.L10N.register(
     "Add member" : "Добавить участника",
     "Leave circle" : "Покинуть круг",
     "Delete circle" : "Удалить круг",
+    "Contacts settings" : "Параметры контактов",
     "General settings" : "Общие параметры",
     "Update avatars from social media" : "Обновлять изображения из соц. сетей",
     "(refreshed once per week)" : "(еженедельное обновление)",
