@@ -137,7 +137,7 @@
     "Create circle" : "Ustvari krog",
     "Loading members list …" : "Poteka nalaganje seznama članov ...",
     "The list of members is only visible to members of this circle" : "Seznam članov je viden le članom kroga",
-    "You currently have no access to the memberlist" : "V tem krogu še ni zabeleženih članov.",
+    "There is no member in this circle" : "V tem krogu še ni zabeleženih članov.",
     "Add members" : "Dodaj člane",
     "Show circle details" : "Pokaži podrobnosti kroga",
     "Add to {circle}" : "Dodaj v krog {circle}",

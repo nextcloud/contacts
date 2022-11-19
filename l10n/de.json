@@ -145,7 +145,7 @@
     "Create circle" : "Einen Kreis erstellen",
     "Loading members list …" : "Lade Mitgliederliste …",
     "The list of members is only visible to members of this circle" : "Die Mitgliederliste ist nur für Mitglieder dieses Kreises sichtbar",
-    "You currently have no access to the memberlist" : "Es gibt kein Mitglied in diesem Kreis",
+    "There is no member in this circle" : "Es gibt kein Mitglied in diesem Kreis",
     "Add members" : "Mitglieder hinzufügen",
     "Show circle details" : "Details des Kreises anzeigen",
     "Add to {circle}" : "Zu {circle} hinzufügen",

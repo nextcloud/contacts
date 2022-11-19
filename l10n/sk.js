@@ -144,7 +144,7 @@ OC.L10N.register(
     "Create circle" : "Vytvoriť kruh",
     "Loading members list …" : "Načítavam zoznam členov ...",
     "The list of members is only visible to members of this circle" : "Zoznam členov je viditeľný iba pre členov tohto kruhu",
-    "You currently have no access to the memberlist" : "V tomto kruhu nie sú žiadny členovia",
+    "There is no member in this circle" : "V tomto kruhu nie sú žiadny členovia",
     "Add members" : "Pridať členov",
     "Show circle details" : "Zobraziť podrobnosti o kruhu",
     "Add to {circle}" : "Pridať do {circle}",

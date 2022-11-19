@@ -144,7 +144,7 @@ OC.L10N.register(
     "Create circle" : "Створити коло",
     "Loading members list …" : "Завантаження списку учасників...",
     "The list of members is only visible to members of this circle" : "Cписок учасників доступний лише учасникам кола",
-    "You currently have no access to the memberlist" : "Відсутні учасники в цьому колі",
+    "There is no member in this circle" : "Відсутні учасники в цьому колі",
     "Add members" : "Додати учасників",
     "Show circle details" : "Показати деталі кола",
     "Add to {circle}" : "Додати до кола {circle}",

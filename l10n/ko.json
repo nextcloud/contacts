@@ -122,7 +122,7 @@
     "Local circle" : "로컬 서클",
     "Create circle" : "서클 만들기",
     "Loading members list …" : "회원 목록 불러오는 중 ...",
-    "You currently have no access to the memberlist" : "이 서클에는 회원이 없음",
+    "There is no member in this circle" : "이 서클에는 회원이 없음",
     "Add members" : "회원 추가",
     "Show circle details" : "서클 자세히 보기",
     "Add to {circle}" : "{circle}에 추가",

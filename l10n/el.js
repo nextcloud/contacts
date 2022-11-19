@@ -144,7 +144,7 @@ OC.L10N.register(
     "Create circle" : "Δημιουργία κύκλου",
     "Loading members list …" : "Φόρτωση λίστας μελών …",
     "The list of members is only visible to members of this circle" : "Η λίστα των μελών είναι ορατή μόνο σε μέλη αυτού του κύκλου",
-    "You currently have no access to the memberlist" : "Δεν υπάρχει κάποιο μέλος σε αυτόν τον κύκλο",
+    "There is no member in this circle" : "Δεν υπάρχει κάποιο μέλος σε αυτόν τον κύκλο",
     "Add members" : "Προσθήκη μελών",
     "Show circle details" : "Εμφάνιση λεπτομερειών κύκλου",
     "Add to {circle}" : "Προσθήκη σε {circle}",
