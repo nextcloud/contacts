@@ -170,7 +170,7 @@ export default {
 .settings-new-addressbook >>> .icon-confirm {
 	min-height: 44px;
 	height: 44px;
-	border-color: var(--color-border-dark) !important;
+	border-color: black !important;
 	border-left: none;
 }
 
