@@ -162,7 +162,7 @@ export const CIRCLES_MEMBER_GROUPING = [
 	},
 	{
 		id: `picker-${Type.SHARE_TYPE_EMAIL}`,
-		label: t('contacts', 'Emails'),
+		label: t('contacts', 'Email addresses'),
 		share: Type.SHARE_TYPE_EMAIL,
 		type: MEMBER_TYPE_MAIL
 	},
