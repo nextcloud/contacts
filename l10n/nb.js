@@ -150,7 +150,6 @@ OC.L10N.register(
     "Circle membership" : "Sirkelmedlemskap",
     "Prevent circle from being a member of another circle" : "Hindre sirkel fra å kunne bli medlem av en annen sirkel",
     "Users" : "Brukere",
-    "Emails" : "E-poster",
     "Nickname" : "Kallenavn",
     "Detailed name" : "Detaljert navn",
     "Additional names" : "Ev. mellomnavn",

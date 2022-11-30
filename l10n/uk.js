@@ -213,7 +213,6 @@ OC.L10N.register(
     "Circle membership" : "Участь у колі",
     "Prevent circle from being a member of another circle" : "Заборонити брати участь в іншому колі",
     "Users" : "Користувачі",
-    "Emails" : "Ел.пошта",
     "Nickname" : "Прізвисько",
     "Detailed name" : "Повне ім'я",
     "Additional names" : "Додаткові імена",

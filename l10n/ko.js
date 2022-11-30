@@ -187,7 +187,6 @@ OC.L10N.register(
     "Circle membership" : "서클 회원",
     "Prevent circle from being a member of another circle" : "이 서클이 다른 서클의 회원이 될 수 없음",
     "Users" : "사용자",
-    "Emails" : "이메일",
     "Nickname" : "별명",
     "Detailed name" : "자세한 이름",
     "Additional names" : "추가 이름",

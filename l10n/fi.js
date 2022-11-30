@@ -208,7 +208,6 @@ OC.L10N.register(
     "Circle membership" : "Piirin jäsenyys",
     "Prevent circle from being a member of another circle" : "Estä piirin jäsenyys toisessa piirissä",
     "Users" : "Käyttäjät",
-    "Emails" : "Sähköpostit",
     "Nickname" : "Kutsumanimi",
     "Detailed name" : "Täsmällinen nimi",
     "Additional names" : "Lisänimet",

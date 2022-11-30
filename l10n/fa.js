@@ -50,7 +50,6 @@ OC.L10N.register(
     "Admin" : "مدیر",
     "Owner" : "مالک",
     "Users" : "کاربران",
-    "Emails" : "ایمیل",
     "Nickname" : "نام مستعار",
     "Detailed name" : "نام کامل",
     "Additional names" : "نام های دیگر",

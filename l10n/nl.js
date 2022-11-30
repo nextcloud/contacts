@@ -213,7 +213,6 @@ OC.L10N.register(
     "Circle membership" : "Lidmaatschap kring",
     "Prevent circle from being a member of another circle" : "Voorkom dat een kring lid wordt van een andere kring",
     "Users" : "Gebruikers",
-    "Emails" : "E-mails",
     "Nickname" : "Roepnaam",
     "Detailed name" : "Gedetailleerde naam",
     "Additional names" : "Extra namen",

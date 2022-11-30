@@ -216,7 +216,6 @@ OC.L10N.register(
     "Circle membership" : "サークルメンバーシップ",
     "Prevent circle from being a member of another circle" : "サークルが別のサークルのメンバーにならないようにする",
     "Users" : "ユーザー",
-    "Emails" : "メール",
     "Nickname" : "ニックネーム",
     "Detailed name" : "詳細名",
     "Additional names" : "ミドルネーム",

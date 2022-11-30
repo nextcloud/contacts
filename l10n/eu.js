@@ -211,7 +211,6 @@ OC.L10N.register(
     "Circle membership" : "Zirkulu kidetza",
     "Prevent circle from being a member of another circle" : "Zirkulu bat beste zirkulu baten kidea izatea ukatu",
     "Users" : "Erabiltzaileak",
-    "Emails" : "E-postak",
     "Nickname" : "Ezizena",
     "Detailed name" : "Izen osoa",
     "Additional names" : "Tarteko izenak",

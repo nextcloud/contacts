@@ -207,7 +207,6 @@ OC.L10N.register(
     "Circle membership" : "Članstvo kroga",
     "Prevent circle from being a member of another circle" : "Prepreči članstvo kroga znotraj drugega kroga",
     "Users" : "Uporabniki",
-    "Emails" : "Elektronski naslovi",
     "Nickname" : "Vzdevek",
     "Detailed name" : "Podrobno ime",
     "Additional names" : "Druga imena",

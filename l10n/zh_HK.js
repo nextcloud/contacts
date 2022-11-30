@@ -216,7 +216,6 @@ OC.L10N.register(
     "Circle membership" : "社交圈子會員",
     "Prevent circle from being a member of another circle" : "防止社交圈子成為另一個圈子的成員",
     "Users" : "用戶",
-    "Emails" : "電子郵件",
     "Nickname" : "暱稱",
     "Detailed name" : "詳細名稱",
     "Additional names" : "別名/中間名",

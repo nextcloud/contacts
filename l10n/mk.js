@@ -211,7 +211,6 @@ OC.L10N.register(
     "Circle membership" : "Членство во круг",
     "Prevent circle from being a member of another circle" : "Спречете кругот да биде член на друг круг",
     "Users" : "Корисници",
-    "Emails" : "Е-пошти",
     "Nickname" : "Прекар",
     "Detailed name" : "Детално име",
     "Additional names" : "Дополнителни имиња",

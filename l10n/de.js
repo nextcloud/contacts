@@ -216,7 +216,6 @@ OC.L10N.register(
     "Circle membership" : "Kreis-Mitgliedschaft",
     "Prevent circle from being a member of another circle" : "Kreis daran hindern, Mitglied eines anderen Kreises zu sein",
     "Users" : "Benutzer",
-    "Emails" : "E-Mails",
     "Nickname" : "Spitzname",
     "Detailed name" : "Detaillierter Name",
     "Additional names" : "Zusätzliche Namen",

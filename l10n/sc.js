@@ -200,7 +200,6 @@ OC.L10N.register(
     "Circle membership" : "Apartenèntzia a su giru",
     "Prevent circle from being a member of another circle" : "Evita a unu giru de èssere membru de un'àteru giru",
     "Users" : "Utentes",
-    "Emails" : "Indiritzos de posta eletrònica",
     "Nickname" : "Gistru",
     "Detailed name" : "Nùmene a sa minuda",
     "Additional names" : "Nùmenes in agiunta",

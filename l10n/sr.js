@@ -120,7 +120,6 @@ OC.L10N.register(
     "Admin" : "Администратор",
     "Owner" : "Власник",
     "Users" : "Корисници",
-    "Emails" : "Е-мејлови",
     "Nickname" : "Надимак",
     "Detailed name" : "Пуно име",
     "Additional names" : "Додатна имена",

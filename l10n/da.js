@@ -213,7 +213,6 @@ OC.L10N.register(
     "Circle membership" : "Cirkelmedlemskab",
     "Prevent circle from being a member of another circle" : "Forhindre cirkel i at være medlem af en anden cirkel",
     "Users" : "Brugere",
-    "Emails" : "Emails",
     "Nickname" : "Kaldenavn",
     "Detailed name" : "Detaljeret navn",
     "Additional names" : "Mellemnavne",

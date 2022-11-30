@@ -123,7 +123,6 @@ OC.L10N.register(
     "Admin" : "מנהל",
     "Owner" : "בעלות",
     "Users" : "משתמשים",
-    "Emails" : "כתובות דוא״ל",
     "Nickname" : "כינוי",
     "Detailed name" : "פרטי שם",
     "Additional names" : "שמות נוספים",

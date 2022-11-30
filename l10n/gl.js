@@ -128,7 +128,6 @@ OC.L10N.register(
     "Admin" : "Administración",
     "Owner" : "Propietario",
     "Users" : "Usuarios",
-    "Emails" : "Correos",
     "Nickname" : "Alcume",
     "Detailed name" : "Nome completo",
     "Additional names" : "Nomes adicionais",
