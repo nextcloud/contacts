@@ -216,6 +216,7 @@ OC.L10N.register(
     "Circle membership" : "Körtagság",
     "Prevent circle from being a member of another circle" : "Annak megakadályozása, hogy a kör egy másik kör tagja legyen",
     "Users" : "Felhasználók",
+    "Email addresses" : "E-mail-címek",
     "Nickname" : "Becenév",
     "Detailed name" : "Részletes név",
     "Additional names" : "További nevek",
