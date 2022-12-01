@@ -76,6 +76,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "sass:math";
+
 // https://uxplanet.org/7-rules-for-mobile-ui-button-design-e9cf2ea54556
 // recommended is 48px
 // 44px is what we choose and have very good visual-to-usability ratio
@@ -87,7 +89,7 @@ $icon-size: 16px;
 
 // icon padding for a $clickable-area width and a $icon-size icon
 // ( 44px - 16px ) / 2
-$icon-margin: ($clickable-area - $icon-size) / 2;
+$icon-margin: math.div($clickable-area - $icon-size, 2);
 
 .entity-picker {
 	&__option {
@@ -103,7 +105,7 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 			line-height: $clickable-area;
 
 			&:not(:first-child) {
-				margin-top: $clickable-area / 2;
+				margin-top: math.div($clickable-area, 2);
 			}
 		}
 	}
