@@ -374,6 +374,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "sass:math";
 
 // Dialog variables
 $dialog-padding: 20px;
@@ -391,7 +392,7 @@ $icon-size: 16px;
 
 // icon padding for a $clickable-area width and a $icon-size icon
 // ( 44px - 16px ) / 2
-$icon-margin: ($clickable-area - $icon-size) / 2;
+$icon-margin: math.div($clickable-area - $icon-size, 2);
 
 .entity-picker {
 	position: relative;
