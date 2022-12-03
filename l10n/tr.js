@@ -216,6 +216,7 @@ OC.L10N.register(
     "Circle membership" : "Çevre üyeliği",
     "Prevent circle from being a member of another circle" : "Bu çevre başka bir çevreye üye olarak eklenemesin",
     "Users" : "Kullanıcılar",
+    "Email addresses" : "E-posta adresleri",
     "Nickname" : "Takma ad",
     "Detailed name" : "Ayrıntılı ad",
     "Additional names" : "Ek adlar",

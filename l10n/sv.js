@@ -214,6 +214,7 @@ OC.L10N.register(
     "Circle membership" : "Cirkelmedlemmar",
     "Prevent circle from being a member of another circle" : "Förhindra cirkel från att bli medlem av en annan cirkel",
     "Users" : "Användare",
+    "Email addresses" : "E-postadresser",
     "Nickname" : "Smeknamn",
     "Detailed name" : "Detaljerat namn",
     "Additional names" : "Mellannamn",
