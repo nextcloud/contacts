@@ -23,7 +23,7 @@
 	</types>
 
 	<documentation>
-		<user>https://docs.nextcloud.com/server/stable/user_manual/en/pim/contacts.html</user>
+		<user>https://docs.nextcloud.com/server/stable/user_manual/en/groupware/contacts.html</user>
 		<admin>https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/occ_command.html?highlight=occ%20commands#dav-label</admin>
 		<developer>https://github.com/nextcloud/contacts#build-the-app</developer>
 	</documentation>
