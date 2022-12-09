@@ -134,7 +134,7 @@ OC.L10N.register(
     "Search contacts …" : "Αναζήτηση επαφών …",
     "Add to {group}" : "Προσθήκη σε {group}",
     "Remove {type}" : "Κατάργηση {type}",
-    "Search {types}" : "Αναζήτηση  {types}",
+    "Search {types}" : "Αναζήτηση για {types}",
     "Search for people to add" : "Αναζητήστε άτομα για προσθήκη",
     "No results" : "Κανένα αποτέλεσμα",
     "Add to group" : "Προσθήκη στην ομάδα",
