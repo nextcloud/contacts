@@ -133,7 +133,6 @@ OC.L10N.register(
     "Create circle" : "Crea cerchia",
     "Loading members list …" : "Caricamento lista membri …",
     "The list of members is only visible to members of this circle" : "La lista dei membri è visibile solo ai membri di questa cerchia",
-    "There is no member in this circle" : "Non c'è alcun membro in questa cerchia",
     "Add members" : "Aggiungi membri",
     "Show circle details" : "Mostra dettagli cerchia",
     "Add to {circle}" : "Aggiungi a {circle}",

@@ -133,7 +133,6 @@ OC.L10N.register(
     "Create circle" : "Sukurti ratą",
     "Loading members list …" : "Įkeliamas narių sąrašas…",
     "The list of members is only visible to members of this circle" : "Narių sąrašas yra matomas tik šio rato nariams",
-    "There is no member in this circle" : "Šiame rate narių nėra",
     "Add members" : "Pridėti narius",
     "Show circle details" : "Rodyti išsamesnę rato informaciją",
     "Add to {circle}" : "Pridėti į {circle}",

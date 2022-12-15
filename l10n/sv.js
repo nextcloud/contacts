@@ -145,7 +145,6 @@ OC.L10N.register(
     "Create circle" : "Skapa cirkel",
     "Loading members list …" : "Hämtar lista över medlemmar …",
     "The list of members is only visible to members of this circle" : "Medlemslistan är bara synlig för cirkelns medlemmar",
-    "There is no member in this circle" : "Den här cirkeln har inga medlemmar",
     "Add members" : "Lägg till medlemmar",
     "Show circle details" : "Visa information om cirkeln",
     "Add to {circle}" : "Lägg till i {circle}",

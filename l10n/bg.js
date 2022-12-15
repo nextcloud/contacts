@@ -147,7 +147,6 @@ OC.L10N.register(
     "Create circle" : "Създаване на кръг",
     "Loading members list …" : "Зарежда се списък с членове …",
     "The list of members is only visible to members of this circle" : "Списъкът с членове се вижда само от членовете на този кръг",
-    "There is no member in this circle" : "Няма член в този кръг",
     "Add members" : "Добавяне на членове",
     "Show circle details" : "Показване на подробности за кръг",
     "Add to {circle}" : "Добавяне към {circle}",

@@ -147,7 +147,6 @@ OC.L10N.register(
     "Create circle" : "Çevre ekle",
     "Loading members list …" : "Üye listesi ekleniyor …",
     "The list of members is only visible to members of this circle" : "Üye listesi yalnızca bu çevredeki üyeler tarafından görülebilir",
-    "There is no member in this circle" : "Bu çevrenin henüz bir üyesi yok ",
     "Add members" : "Üye ekle",
     "Show circle details" : "Çevre ayrıntılarını görüntüle",
     "Add to {circle}" : "{circle} çevresine ekle",

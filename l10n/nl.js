@@ -144,7 +144,6 @@ OC.L10N.register(
     "Create circle" : "Maak een kring",
     "Loading members list …" : "Laden ledenlijst ...",
     "The list of members is only visible to members of this circle" : "De lijst met leden is alleen zichtbaar voor leden van deze kring",
-    "There is no member in this circle" : "Er is geen lid binnen de kring",
     "Add members" : "Toevoegen leden",
     "Show circle details" : "Toon kringdetails",
     "Add to {circle}" : "Toevoegen aan {circle}",

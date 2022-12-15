@@ -142,7 +142,6 @@ OC.L10N.register(
     "Create circle" : "Sortu zirkulua",
     "Loading members list …" : "Kideen zerrenda kargatzen...",
     "The list of members is only visible to members of this circle" : "Kideen zerrenda zirkulu honetako kideentzat bakarrik dago ikusgarri",
-    "There is no member in this circle" : "Ez dago kiderik zirkulu honetan",
     "Add members" : "Gehitu kideak",
     "Show circle details" : "Erakutsi zirkuluaren xehetasunak",
     "Add to {circle}" : "Gehitu {circle} zirkulura",
