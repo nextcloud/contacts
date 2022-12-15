@@ -1,6 +1,6 @@
 # Changelog
 
-## 4.2.2 – 2022-12-15
+## 4.2.3 – 2022-12-15
 ### Fixed
 - Undefined array offset error
 
