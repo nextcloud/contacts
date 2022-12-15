@@ -4,6 +4,10 @@
 ### Fixed
 - Undefined array offset error
 
+## 4.2.2 – 2022-10-02
+### Fixed
+- Sharing address books with groups that have spaces in their name
+
 ## 4.2.1 – 2022-09-19
 ### Changed
 - Important npm package updates
