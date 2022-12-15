@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.0.2 – 2022-12-15
+### Fixed
+- Undefined array offset error
+- Create group actions icon
+- Broken icons.css reference
+
 ## 5.0.1 – 2022-10-18
 ### Fixed
 - Org chart expand icon overlapped
