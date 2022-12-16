@@ -37,7 +37,7 @@
 			</EmptyContent>
 		</template>
 		<template v-else>
-			<EmptyContent :title="t('contacts', 'You currently have no access to the memberlist')">
+			<EmptyContent :title="t('contacts', 'You currently have no access to the member list')">
 				<template #icon>
 					<IconContact :size="20" />
 				</template>
