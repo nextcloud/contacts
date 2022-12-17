@@ -147,7 +147,6 @@ OC.L10N.register(
     "Create circle" : "創建社交圈子",
     "Loading members list …" : "正在加載成員清單 …",
     "The list of members is only visible to members of this circle" : "成員列表僅此圈子的成員可見",
-    "You currently have no access to the memberlist" : "您目前無權存取會員列表",
     "Add members" : "添加成員",
     "Show circle details" : "顯示社交圈子細節",
     "Add to {circle}" : "添加到 {circle}",

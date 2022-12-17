@@ -147,7 +147,6 @@ OC.L10N.register(
     "Create circle" : "建立小圈圈",
     "Loading members list …" : "正在載入成員清單……",
     "The list of members is only visible to members of this circle" : "成員清單僅有此小圈圈的成員可見",
-    "You currently have no access to the memberlist" : "您目前無法存取成員清單",
     "Add members" : "新增成員",
     "Show circle details" : "顯示小圈圈詳細資訊",
     "Add to {circle}" : "新增至 {circle}",
