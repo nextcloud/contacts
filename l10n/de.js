@@ -147,6 +147,7 @@ OC.L10N.register(
     "Create circle" : "Einen Kreis erstellen",
     "Loading members list …" : "Lade Mitgliederliste …",
     "The list of members is only visible to members of this circle" : "Die Mitgliederliste ist nur für Mitglieder dieses Kreises sichtbar",
+    "You currently have no access to the member list" : "Du hast derzeit keinen Zugriff auf die Mitgliederliste.",
     "Add members" : "Mitglieder hinzufügen",
     "Show circle details" : "Details des Kreises anzeigen",
     "Add to {circle}" : "Zu {circle} hinzufügen",
