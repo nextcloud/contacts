@@ -4,8 +4,6 @@ OC.L10N.register(
     "Contacts" : "Kontakti",
     "Download" : "Preuzmi",
     "Send email" : "Pošalji e-poštu",
-    "Groups" : "Grupe",
-    "Group name" : "Naziv grupe",
     "Rename" : "Preimenuj",
     "Enabled" : "Aktivirano",
     "Delete" : "Obriši",

@@ -23,14 +23,11 @@
 <template>
 	<AppContentDetails>
 		<!-- nothing selected or contact not found -->
-		<EmptyContent v-if="!contact">
+		<EmptyContent v-if="!contact"
+			:title="t('contacts', 'No contact selected')"
+			:description="t('contacts', 'Select a contact on the list to begin')">
 			<template #icon>
-				<IconContact
-					:size="20" />
-			</template>
-			{{ t('contacts', 'No contact selected') }}
-			<template #desc>
-				{{ t('contacts', 'Select a contact on the list to begin') }}
+				<IconContact :size="20" />
 			</template>
 		</EmptyContent>
 
@@ -38,8 +35,7 @@
 			<!-- contact header -->
 			<DetailsHeader>
 				<!-- avatar and upload photo -->
-				<ContactAvatar
-					slot="avatar"
+				<ContactAvatar slot="avatar"
 					:contact="contact"
 					@update-local-contact="updateLocalContact" />
 
@@ -141,6 +137,14 @@
 						</template>
 						{{ t('contacts', 'Generate QR Code') }}
 					</ActionButton>
+					<ActionButton v-if="enableToggleBirthdayExclusion"
+						:close-after-click="true"
+						@click="toggleBirthdayExclusionForContact">
+						<template #icon>
+							<CakeIcon :size="20" />
+						</template>
+						{{ excludeFromBirthdayLabel }}
+					</ActionButton>
 					<ActionButton v-if="!isReadOnly" @click="deleteContact">
 						<template #icon>
 							<IconDelete :size="20" />
@@ -185,7 +189,7 @@
 			</Modal>
 
 			<!-- contact details loading -->
-			<section v-if="loadingData" class="icon-loading contact-details" />
+			<IconLoading v-if="loadingData" :size="20" class="contact-details" />
 
 			<!-- contact details -->
 			<section v-else
@@ -210,6 +214,7 @@
 						:contact="contact"
 						:local-contact="localContact"
 						:update-contact="debounceUpdateContact"
+						:contacts="contacts"
 						@resize="debounceRedrawMasonry" />
 				</div>
 
@@ -219,6 +224,7 @@
 					duplication, we created a fake propModel and property with our own options here) -->
 				<PropertySelect v-masonry-tile
 					:prop-model="addressbookModel"
+					:options="addressbooksOptions"
 					:value.sync="addressbook"
 					:is-first-property="true"
 					:is-last-property="true"
@@ -250,34 +256,36 @@
 import { showError } from '@nextcloud/dialogs'
 import { stringify } from 'ical.js'
 import debounce from 'debounce'
-// eslint-disable-next-line import/no-unresolved, node/no-missing-import
+// eslint-disable-next-line import/no-unresolved, n/no-missing-import
 import PQueue from 'p-queue'
 import qr from 'qr-image'
 import Vue from 'vue'
 import { VueMasonryPlugin } from 'vue-masonry'
 
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
-import AppContentDetails from '@nextcloud/vue/dist/Components/AppContentDetails'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
-import IconContact from 'vue-material-design-icons/AccountMultiple'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
-import IconDownload from 'vue-material-design-icons/Download'
-import IconDelete from 'vue-material-design-icons/Delete'
-import IconQr from 'vue-material-design-icons/Qrcode'
-import IconCopy from 'vue-material-design-icons/ContentCopy'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js'
+import AppContentDetails from '@nextcloud/vue/dist/Components/NcAppContentDetails.js'
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import Modal from '@nextcloud/vue/dist/Components/NcModal.js'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
+import IconDownload from 'vue-material-design-icons/Download.vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconQr from 'vue-material-design-icons/Qrcode.vue'
+import CakeIcon from 'vue-material-design-icons/Cake.vue'
+import IconCopy from 'vue-material-design-icons/ContentCopy.vue'
 
-import rfcProps from '../models/rfcProps'
-import validate from '../services/validate'
+import rfcProps from '../models/rfcProps.js'
+import validate from '../services/validate.js'
 
-import AddNewProp from './ContactDetails/ContactDetailsAddNewProp'
-import ContactAvatar from './ContactDetails/ContactDetailsAvatar'
-import ContactProperty from './ContactDetails/ContactDetailsProperty'
-import DetailsHeader from './DetailsHeader'
-import PropertyGroups from './Properties/PropertyGroups'
-import PropertyRev from './Properties/PropertyRev'
-import PropertySelect from './Properties/PropertySelect'
+import AddNewProp from './ContactDetails/ContactDetailsAddNewProp.vue'
+import ContactAvatar from './ContactDetails/ContactDetailsAvatar.vue'
+import ContactProperty from './ContactDetails/ContactDetailsProperty.vue'
+import DetailsHeader from './DetailsHeader.vue'
+import PropertyGroups from './Properties/PropertyGroups.vue'
+import PropertyRev from './Properties/PropertyRev.vue'
+import PropertySelect from './Properties/PropertySelect.vue'
 
 Vue.use(VueMasonryPlugin)
 const updateQueue = new PQueue({ concurrency: 1 })
@@ -298,7 +306,9 @@ export default {
 		IconDownload,
 		IconDelete,
 		IconQr,
+		CakeIcon,
 		IconCopy,
+		IconLoading,
 		Modal,
 		Multiselect,
 		PropertyGroups,
@@ -310,6 +320,10 @@ export default {
 		contactKey: {
 			type: String,
 			default: undefined,
+		},
+		contacts: {
+			type: Array,
+			default: () => [],
 		},
 	},
 
@@ -332,6 +346,7 @@ export default {
 			pickedAddressbook: null,
 
 			contactDetailsSelector: '.contact-details',
+			excludeFromBirthdayKey: 'x-nc-exclude-from-birthday-calendar',
 		}
 	},
 
@@ -437,7 +452,10 @@ export default {
 				return this.contact.addressbook.id
 			},
 			set(addressbookId) {
-				this.moveContactToAddressbook(addressbookId)
+				// Only move when the address book actually changed to prevent a conflict.
+				if (this.contact.addressbook.id !== addressbookId) {
+					this.moveContactToAddressbook(addressbookId)
+				}
 			},
 		},
 
@@ -448,7 +466,7 @@ export default {
 		 */
 		groupsModel() {
 			return {
-				readableName: t('contacts', 'Groups'),
+				readableName: t('contacts', 'Contact groups'),
 				icon: 'icon-contacts-dark',
 			}
 		},
@@ -473,7 +491,7 @@ export default {
 		 * Store getters filtered and mapped to usable object
 		 * This is the list of addressbooks that are available to write
 		 *
-		 * @return {Array}
+		 * @return {{id: string, name: string}[]}
 		 */
 		addressbooksOptions() {
 			return this.addressbooks
@@ -492,6 +510,16 @@ export default {
 		},
 		contact() {
 			return this.$store.getters.getContact(this.contactKey)
+		},
+
+		excludeFromBirthdayLabel() {
+			return this.localContact.vCard.hasProperty(this.excludeFromBirthdayKey)
+				? t('contacts', 'Add contact to Birthday Calendar')
+				: t('contacts', 'Exclude contact from Birthday Calendar')
+		},
+
+		enableToggleBirthdayExclusion() {
+			return parseInt(OC.config.version.split('.')[0]) >= 26
 		},
 	},
 
@@ -567,6 +595,16 @@ export default {
 			}
 		},
 
+		async toggleBirthdayExclusionForContact() {
+			if (!this.localContact.vCard.hasProperty(this.excludeFromBirthdayKey)) {
+				this.localContact.vCard.addPropertyWithValue(this.excludeFromBirthdayKey, true)
+			} else {
+				this.localContact.vCard.removeProperty(this.excludeFromBirthdayKey)
+			}
+
+			await this.updateContact()
+		},
+
 		/**
 		 * Select the text in the input if it is still set to 'new Contact'
 		 */
@@ -600,7 +638,7 @@ export default {
 						if (error.name === 'ParserError') {
 							showError(t('contacts', 'Syntax error. Cannot open the contact.'))
 						} else if (error?.status === 404) {
-							showError(t('contacts', 'The contact doesn\'t exists anymore on the server.'))
+							showError(t('contacts', 'The contact does not exists on the server anymore.'))
 						} else {
 							showError(t('contacts', 'Unable to retrieve the contact from the server, please check your network connection.'))
 						}
@@ -796,6 +834,7 @@ export default {
 <style lang="scss" scoped>
 // Container height fix for dropdowns
 .app-content-details {
+	height: 100%;
 	min-height: calc(100vh - var(--header-height));
 	padding: 0 44px 80px 44px;
 }

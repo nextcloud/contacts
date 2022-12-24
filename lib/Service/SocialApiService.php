@@ -1,4 +1,7 @@
 <?php
+
+declare(strict_types=1);
+
 /**
  * @copyright Copyright (c) 2020 Matthias Heinisch <nextcloud@matthiasheinisch.de>
  * @copyright Copyright (c) 2022 Informatyka Boguslawski sp. z o.o. sp.k., http://www.ib.pl/
@@ -115,7 +118,7 @@ class SocialApiService {
 
 		if ($version >= 4.0) {
 			// overwrite photo
-			$contact['PHOTO'] = "data:" . $imageType . ";base64," . $photo;
+			$contact['PHOTO'] = 'data:' . $imageType . ';base64,' . $photo;
 		} elseif ($version >= 3.0) {
 			// add new photo
 			$imageType = str_replace('image/', '', $imageType);
@@ -185,11 +188,13 @@ class SocialApiService {
 			}
 
 			// search contact in that addressbook, get social data
-			$contact = $addressBook->search($contactId, ['UID'], ['types' => true])[0];
+			$contacts = $addressBook->search($contactId, ['UID'], ['types' => true]);
 
-			if (!isset($contact)) {
+			if (!isset($contacts[0])) {
 				return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
 			}
+
+			$contact = $contacts[0];
 
 			if ($network) {
 				$allConnectors = [$this->socialProvider->getSocialConnector($network)];
@@ -302,11 +307,11 @@ class SocialApiService {
 	 *
 	 * @param {array} report where the results are added
 	 * @param {String} entry the element to add
-	 * @param {string} status the (http) status code
+	 * @param {int} status the (http) status code
 	 *
 	 * @returns {array} the report including the new entry
 	 */
-	protected function registerUpdateResult(array $report, string $entry, string $status) : array {
+	protected function registerUpdateResult(array $report, string $entry, int $status) : array {
 		// initialize report on first call
 		if (empty($report)) {
 			$report = [
@@ -413,9 +418,9 @@ class SocialApiService {
 
 				try {
 					$r = $this->updateContact($addressBook->getURI(), $contact['UID'], $network);
-					$response = $this->registerUpdateResult($response, $contact['FN'], $r->getStatus());
+					$response = $this->registerUpdateResult($response, $contact['FN'], (int) $r->getStatus());
 				} catch (\Exception $e) {
-					$response = $this->registerUpdateResult($response, $contact['FN'], '-1');
+					$response = $this->registerUpdateResult($response, $contact['FN'], -1);
 				}
 
 				// stop after 15sec (to be continued with next chunk)

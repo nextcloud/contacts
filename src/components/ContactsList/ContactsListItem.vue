@@ -1,28 +1,36 @@
 <template>
-	<ListItemIcon
-		:id="id"
+	<ListItem :id="id"
 		:key="source.key"
-		:avatar-size="44"
-		:class="{'contacts-list__item--active': selectedContact === source.key}"
-		:display-name="source.displayName"
-		:is-no-user="true"
-		:subtitle="source.email"
+		class="list-item-style envelope"
 		:title="source.displayName"
-		:url="avatarUrl"
-		class="contacts-list__item"
-		tabindex="0"
-		@click.prevent.stop="selectContact"
-		@keypress.enter.prevent.stop="selectContact" />
+		:to="{ name: 'contact', params: { selectedGroup: selectedGroup, selectedContact: source.key } }">
+		<!-- @slot Icon slot -->
+
+		<template #icon>
+			<div class="app-content-list-item-icon">
+				<BaseAvatar :display-name="source.displayName" :url="avatarUrl" :size="40" />
+			</div>
+		</template>
+		<template #subtitle>
+			<div class="envelope__subtitle">
+				<span class="envelope__subtitle__subject">
+					{{ source.email }}
+				</span>
+			</div>
+		</template>
+	</ListItem>
 </template>
 
 <script>
-import ListItemIcon from '@nextcloud/vue/dist/Components/ListItemIcon'
+import { NcListItem as ListItem } from '@nextcloud/vue'
+import BaseAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
 
 export default {
 	name: 'ContactsListItem',
 
 	components: {
-		ListItemIcon,
+		ListItem,
+		BaseAvatar,
 	},
 
 	props: {
@@ -76,29 +84,31 @@ export default {
 				this.avatarUrl = `${this.source.url}?photo`
 			}
 		},
-
-		/**
-		 * Select this contact within the list
-		 */
-		selectContact() {
-			// change url with router
-			this.$router.push({ name: 'contact', params: { selectedGroup: this.selectedGroup, selectedContact: this.source.key } })
-		},
 	},
 }
 </script>
 <style lang="scss" scoped>
-.contacts-list__item {
-	padding: 8px;
 
-	&--active,
-	&:focus,
-	&:hover {
-		background-color: var(--color-background-hover);
+.envelope {
+	.app-content-list-item-icon {
+		height: 40px; // To prevent some unexpected spacing below the avatar
 	}
 
-	&, ::v-deep * {
-		cursor: pointer;
+	&__subtitle {
+		display: flex;
+		gap: 4px;
+
+		&__subject {
+			color: var(--color-main-text);
+			line-height: 130%;
+			overflow: hidden;
+			text-overflow: ellipsis;
+		}
 	}
 }
+
+.list-item-style {
+	list-style: none;
+}
+
 </style>

@@ -36,9 +36,9 @@
 </template>
 
 <script>
-import Actions from '@nextcloud/vue/dist/Components/Actions'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import IconDelete from 'vue-material-design-icons/Delete'
+import Actions from '@nextcloud/vue/dist/Components/NcActions.js'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
 
 export default {
 	name: 'PropertyActions',

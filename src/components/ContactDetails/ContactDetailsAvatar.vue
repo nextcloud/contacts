@@ -32,52 +32,53 @@
 			@change="processFile">
 
 		<!-- Avatar display -->
-		<Avatar
-			:disable-tooltip="true"
+		<Avatar :disable-tooltip="true"
 			:display-name="contact.displayName"
 			:is-no-user="true"
 			:size="75"
 			:url="photoUrl"
 			class="contact-header-avatar__photo" />
 
-		<Actions
-			v-if="!isReadOnly || contact.photo"
+		<Actions v-if="!isReadOnly || contact.photo"
 			:force-menu="true"
 			:open.sync="opened"
-			class="contact-header-avatar__menu"
-			default-icon="icon-picture-force-white">
+			class="contact-header-avatar__menu">
+			<template #icon>
+				<IconImage :size="20" fill-color="#fff" />
+			</template>
 			<template v-if="!isReadOnly">
-				<ActionButton
-					icon="icon-upload"
-					@click.stop.prevent="selectFileInput">
+				<ActionButton @click.stop.prevent="selectFileInput">
+					<template #icon>
+						<IconUpload :size="20" />
+					</template>
 					{{ t('contacts', 'Upload a new picture') }}
 				</ActionButton>
-				<ActionButton
-					icon="icon-folder"
-					@click="selectFilePicker">
+				<ActionButton @click="selectFilePicker">
+					<template #icon>
+						<IconFolder :size="20" />
+					</template>
 					{{ t('contacts', 'Choose from Files') }}
 				</ActionButton>
-				<ActionButton
-					v-for="network in supportedSocial"
+				<ActionButton v-for="network in supportedSocial"
 					:key="network"
-					:icon="'icon-' + network.toLowerCase()"
 					@click="getSocialAvatar(network)">
+					<template #icon>
+						<IconCloudDownload :size="20" />
+					</template>
 					{{ t('contacts', 'Get from ' + network) }}
 				</ActionButton>
 			</template>
 
 			<template v-if="contact.photo">
 				<!-- FIXME: the link seems to have a bigger font size than the button caption -->
-				<ActionLink
-					:href="`${contact.url}?photo`"
+				<ActionLink :href="`${contact.url}?photo`"
 					target="_blank">
 					<template #icon>
 						<IconDownload :size="20" />
 					</template>
 					{{ t('contacts', 'Download picture') }}
 				</ActionLink>
-				<ActionButton
-					v-if="!isReadOnly"
+				<ActionButton v-if="!isReadOnly"
 					@click="removePhoto">
 					<template #icon>
 						<IconDelete :size="20" />
@@ -90,12 +91,16 @@
 </template>
 
 <script>
-import Avatar from '@nextcloud/vue/dist/Components/Avatar'
-import Actions from '@nextcloud/vue/dist/Components/Actions'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
-import IconDownload from 'vue-material-design-icons/Download'
-import IconDelete from 'vue-material-design-icons/Delete'
+import Avatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
+import Actions from '@nextcloud/vue/dist/Components/NcActions.js'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js'
+import IconDownload from 'vue-material-design-icons/Download.vue'
+import IconCloudDownload from 'vue-material-design-icons/CloudDownload.vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconUpload from 'vue-material-design-icons/Upload.vue'
+import IconFolder from 'vue-material-design-icons/Folder.vue'
+import IconImage from 'vue-material-design-icons/Image.vue'
 
 import { showError, showInfo, getFilePickerBuilder, showSuccess } from '@nextcloud/dialogs'
 import { generateUrl, generateRemoteUrl } from '@nextcloud/router'
@@ -115,8 +120,12 @@ export default {
 		ActionLink,
 		Actions,
 		Avatar,
+		IconCloudDownload,
 		IconDownload,
 		IconDelete,
+		IconUpload,
+		IconFolder,
+		IconImage,
 	},
 
 	props: {

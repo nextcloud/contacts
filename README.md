@@ -24,7 +24,7 @@ Release tarballs are hosted at https://github.com/nextcloud-releases/contacts/re
 
 ## :satellite: Support
 
-If you need assistance or want to ask a question about Contacts, you are welcome to [ask for support](https://help.nextcloud.com) in our Forums or the [IRC-Channel](https://webchat.freenode.net/?channels=nextcloud-contacts). If you have found a bug, feel free to open a new Issue on GitHub. Keep in mind, that this repository only manages the frontend. If you find bugs or have problems with the CardDAV-Backend, you should ask the team at [Nextcloud server](https://github.com/nextcloud/server) for help!
+If you need assistance or want to ask a question about Contacts, you are welcome to [ask for support](https://help.nextcloud.com) in our forums. If you have found a bug, feel free to open a new Issue on GitHub. Keep in mind, that this repository only manages the frontend. If you find bugs or have problems with the CardDAV-Backend, you should ask the team at [Nextcloud server](https://github.com/nextcloud/server) for help!
 
 ### Could you add XXX property?
 > This is a complicated answer. We did not invent the way contacts works. We are following the official vCard format. This format include a predefined set of properties that other applications/devices supports too (Android, iOS, Windows, Gnome...). Adding a custom property would just make it compatible with Nextcloud and will not be understood by any other clients and make it complicated for us to ensure its sustainability over time.

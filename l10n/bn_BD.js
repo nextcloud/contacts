@@ -5,8 +5,6 @@ OC.L10N.register(
     "Contacts" : "পরিচিতজন",
     "Download" : "ডাউনলোড",
     "Send email" : "ইমেইল পাঠান ",
-    "Groups" : "গোষ্ঠীসমূহ",
-    "Group name" : "গ্রুপের নাম",
     "Rename" : "পূনঃনামকরণ",
     "Enabled" : "কার্যকর",
     "Delete" : "মুছে",

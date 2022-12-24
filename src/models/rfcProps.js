@@ -21,10 +21,11 @@
  */
 import { VCardTime } from 'ical.js'
 import { loadState } from '@nextcloud/initial-state'
+import { otherContacts } from '../utils/chartUtils.js'
 
-import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN'
-import ActionToggleYear from '../components/Actions/ActionToggleYear'
-import zones from './zones'
+import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN.vue'
+import ActionToggleYear from '../components/Actions/ActionToggleYear.vue'
+import zones from './zones.js'
 
 // Load the default profile (for example, home or work) configured by the user
 const defaultProfileState = loadState('contacts', 'defaultProfile', 'HOME')
@@ -219,6 +220,32 @@ const properties = {
 			{ id: 'CAR', name: t('contacts', 'Car') },
 			{ id: 'WORK,PAGER', name: t('contacts', 'Work pager') },
 		],
+	},
+	'x-managersname': {
+		multiple: false,
+		force: 'select',
+		readableName: t('contacts', 'Manager'),
+		icon: 'icon-category-monitoring',
+		default: false,
+		options({ contact, $store, selectType }) {
+			// Only allow contacts of the same address book
+			const contacts = otherContacts({
+				$store,
+				self: contact,
+			})
+
+			// Reduce to an object to eliminate duplicates
+			return Object.values(contacts.reduce((prev, { key }) => {
+				const contact = $store.getters.getContact(key)
+				return {
+					...prev,
+					[contact.uid]: {
+						id: contact.key,
+						name: contact.displayName,
+					},
+				}
+			}, selectType ? { [selectType.value]: selectType } : {}))
+		},
 	},
 	'x-socialprofile': {
 		multiple: true,

@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Details" : "Մանրամասներ",
     "Download" : "Ներբեռնել",
-    "Groups" : "Խմբեր",
     "Rename" : "Վերանվանել",
     "Delete" : "հեռացնել",
     "Copy link" : "Պատճենել հղումը",

@@ -26,10 +26,10 @@ import { showError } from '@nextcloud/dialogs'
 import pLimit from 'p-limit'
 import Vue from 'vue'
 
-import Contact, { MinimalContactProperties } from '../models/contact'
+import Contact, { MinimalContactProperties } from '../models/contact.js'
 
-import client from '../services/cdav'
-import parseVcf from '../services/parseVcf'
+import client from '../services/cdav.js'
+import parseVcf from '../services/parseVcf.js'
 
 const addressbookModel = {
 	id: '',

@@ -36,8 +36,7 @@
 				@close="toggleModal">
 				<section class="import-contact__modal-addressbook">
 					<h3>{{ t('contacts', 'Import contacts') }}</h3>
-					<Multiselect
-						v-if="!isSingleAddressbook"
+					<Multiselect v-if="!isSingleAddressbook"
 						id="select-addressbook"
 						v-model="selectedAddressbook"
 						:allow-empty="false"
@@ -58,8 +57,7 @@
 						type="file"
 						class="hidden-visually"
 						@change="processFile">
-					<Button
-						:disabled="loading"
+					<Button :disabled="loading"
 						class="import-contact__button import-contact__button--local"
 						@click="clickImportInput">
 						<template #icon>
@@ -67,13 +65,12 @@
 						</template>
 						{{ t('contacts', 'Select local file') }}
 					</Button>
-					<Button
-						type="primary"
-						:class="{'icon-loading': loading}"
+					<Button type="primary"
 						:disabled="loading"
 						class="import-contact__button import-contact__button--files"
 						@click="openPicker">
 						<template #icon>
+							<IconLoading v-if="loading" :size="20" />
 							<IconFolder :size="20" />
 						</template>
 						<span class="import-contact__button-icon" />
@@ -95,17 +92,18 @@
 </template>
 
 <script>
-import Button from '@nextcloud/vue/dist/Components/Button'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import Modal from '@nextcloud/vue/dist/Components/NcModal.js'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
 import { encodePath } from '@nextcloud/paths'
 import { getCurrentUser } from '@nextcloud/auth'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getFilePickerBuilder } from '@nextcloud/dialogs'
 import axios from '@nextcloud/axios'
-import IconUpload from 'vue-material-design-icons/Upload'
-import IconError from 'vue-material-design-icons/AlertCircle'
-import IconFolder from 'vue-material-design-icons/Folder'
+import IconUpload from 'vue-material-design-icons/Upload.vue'
+import IconError from 'vue-material-design-icons/AlertCircle.vue'
+import IconFolder from 'vue-material-design-icons/Folder.vue'
 
 const CancelToken = axios.CancelToken
 
@@ -127,6 +125,7 @@ export default {
 		IconUpload,
 		IconError,
 		IconFolder,
+		IconLoading,
 	},
 
 	data() {

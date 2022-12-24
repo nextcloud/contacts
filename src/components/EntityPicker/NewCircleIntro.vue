@@ -20,15 +20,13 @@
 -->
 
 <template>
-	<Modal
-		size="normal"
+	<Modal size="normal"
 		@close="onCancel">
 		<!-- Wrapper for content & navigation -->
 		<div class="entity-picker">
 			<!-- Search -->
 			<div class="entity-picker__new">
-				<input
-					ref="input"
+				<input ref="input"
 					v-model="circleName"
 					:placeholder="t('contacts', 'New circle name')"
 					class="entity-picker__new-input"
@@ -42,8 +40,7 @@
 
 				<!-- Personal circle, TODO: IMPLEMENT -->
 				<template v-if="false">
-					<CheckboxRadioSwitch
-						:checked.sync="isPersonal"
+					<CheckboxRadioSwitch :checked.sync="isPersonal"
 						:disabled="loading !== false">
 						{{ t('contacts', 'Personal circle') }}
 					</CheckboxRadioSwitch>
@@ -54,8 +51,7 @@
 
 				<!-- Local circle -->
 				<template v-if="isGlobalScale">
-					<CheckboxRadioSwitch
-						:checked.sync="isLocal"
+					<CheckboxRadioSwitch :checked.sync="isLocal"
 						:disabled="loading !== false">
 						{{ t('contacts', 'Local circle') }}
 					</CheckboxRadioSwitch>
@@ -66,14 +62,12 @@
 			</div>
 
 			<div class="entity-picker__navigation">
-				<button
-					:disabled="loading"
+				<button :disabled="loading"
 					class="navigation__button-left"
 					@click="onCancel">
 					{{ t('contacts', 'Cancel') }}
 				</button>
-				<button
-					:disabled="isEmptyName || loading"
+				<button :disabled="isEmptyName || loading"
 					class="navigation__button-right primary"
 					@click="onSubmit">
 					{{ t('contacts', 'Create circle') }}
@@ -85,8 +79,8 @@
 
 <script>
 import { getCapabilities } from '@nextcloud/capabilities'
-import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/CheckboxRadioSwitch'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
+import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+import Modal from '@nextcloud/vue/dist/Components/NcModal.js'
 
 import { CIRCLE_DESC } from '../../models/constants.ts'
 
@@ -152,6 +146,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "sass:math";
+
 // Dialog variables
 $dialog-padding: 20px;
 $dialog-height: 480px;
@@ -168,7 +164,7 @@ $icon-size: 16px;
 
 // icon padding for a $clickable-area width and a $icon-size icon
 // ( 44px - 16px ) / 2
-$icon-margin: ($clickable-area - $icon-size) / 2;
+$icon-margin: math.div($clickable-area - $icon-size, 2);
 
 .entity-picker {
 	position: relative;

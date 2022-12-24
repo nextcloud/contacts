@@ -25,7 +25,7 @@ namespace OCA\Contacts\Service\Social;
 
 class TumblrProvider implements ISocialProvider {
 	/** @var string */
-	public $name = "tumblr";
+	public $name = 'tumblr';
 
 	public function __construct() {
 	}
@@ -38,7 +38,7 @@ class TumblrProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-		if (!array_key_exists("X-SOCIALPROFILE",$contact)) {
+		if (!array_key_exists('X-SOCIALPROFILE', $contact)) {
 			return false;
 		}
 		$socialprofiles = $this->getProfileIds($contact);
@@ -57,7 +57,7 @@ class TumblrProvider implements ISocialProvider {
 		$urls = [];
 		foreach ($profileIds as $profileId) {
 			$recipe = 'https://api.tumblr.com/v2/blog/{socialId}/avatar/512';
-			$connector = str_replace("{socialId}", $profileId, $recipe);
+			$connector = str_replace('{socialId}', $profileId, $recipe);
 			$urls[] = $connector;
 		}
 		return $urls;

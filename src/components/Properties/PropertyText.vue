@@ -82,8 +82,7 @@
 				target="_blank" />
 
 			<!-- props actions -->
-			<PropertyActions
-				v-if="!isReadOnly"
+			<PropertyActions v-if="!isReadOnly"
 				:actions="actions"
 				:property-component="this"
 				@delete="deleteProperty" />
@@ -92,11 +91,11 @@
 </template>
 
 <script>
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
 import debounce from 'debounce'
-import PropertyMixin from '../../mixins/PropertyMixin'
-import PropertyTitle from './PropertyTitle'
-import PropertyActions from './PropertyActions'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
+import PropertyTitle from './PropertyTitle.vue'
+import PropertyActions from './PropertyActions.vue'
 
 export default {
 	name: 'PropertyText',
@@ -221,11 +220,8 @@ export default {
 	width: 60px;
 	min-width: 60px !important;
 	max-width: 120px;
-	height: 34px;
-	margin: 3px 5px 3px 0 !important;
 	user-select: none;
 	text-align: right;
 	background-size: 16px;
-	line-height: 35px;
 }
 </style>

@@ -22,19 +22,15 @@
 
 <template>
 	<li class="addressbook-sharee">
-		<span :class="{
-				'icon-loading-small': loading,
-				'icon-group': sharee.isGroup && !loading,
-				'icon-user': !sharee.isGroup && !loading
-			}"
-			class="icon" />
+		<IconLoading v-if="loading" :size="20" />
+		<IconGroup v-else-if="sharee.isGroup && !loading" />
+		<IconUser v-else-if="!sharee.isGroup && !loading" />
 		<span class="addressbook-sharee__identifier"
 			:title="sharee.displayName">
 			{{ sharee.displayName }}
 		</span>
 		<span class="addressbook-sharee__utils">
-			<input
-				:id="uid"
+			<input :id="uid"
 				:checked="writeable"
 				:disabled="loading"
 				class="checkbox"
@@ -59,14 +55,20 @@
 
 <script>
 import { showError } from '@nextcloud/dialogs'
-import IconDelete from 'vue-material-design-icons/Delete'
-import Button from '@nextcloud/vue/dist/Components/Button'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconGroup from 'vue-material-design-icons/AccountMultiple.vue'
+import IconUser from 'vue-material-design-icons/Account.vue'
+import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
 
 export default {
 	name: 'SettingsAddressbookSharee',
 	components: {
 		Button,
 		IconDelete,
+		IconGroup,
+		IconLoading,
+		IconUser,
 	},
 
 	props: {

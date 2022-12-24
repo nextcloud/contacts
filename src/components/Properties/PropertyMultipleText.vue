@@ -101,10 +101,10 @@
 </template>
 
 <script>
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
-import PropertyMixin from '../../mixins/PropertyMixin'
-import PropertyTitle from './PropertyTitle'
-import PropertyActions from './PropertyActions'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
+import PropertyTitle from './PropertyTitle.vue'
+import PropertyActions from './PropertyActions.vue'
 
 export default {
 	name: 'PropertyMultipleText',
@@ -139,12 +139,9 @@ export default {
 	width: 60px;
 	min-width: 60px !important;
 	max-width: 120px;
-	height: 34px;
-	margin: 3px 5px 3px 0 !important;
 	user-select: none;
 	text-align: right;
 	background-size: 16px;
-	line-height: 35px;
 }
 .property__label:not(.multiselect) {
 	overflow: hidden;

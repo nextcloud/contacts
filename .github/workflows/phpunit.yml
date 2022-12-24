@@ -20,7 +20,7 @@ jobs:
       matrix:
         php-versions: ['7.4']
         databases: ['sqlite']
-        server-versions: ['stable22', 'stable23', 'stable24', 'master']
+        server-versions: ['master', 'stable25']
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
@@ -78,16 +78,9 @@ jobs:
       # do not stop on another job's failure
       fail-fast: false
       matrix:
-        php-versions: ['7.4', '8.0']
+        php-versions: ['7.4', '8.0', '8.1', '8.2']
         databases: ['mysql']
-        server-versions: ['stable21', 'stable22', 'stable23', 'stable24', 'master']
-        include:
-          - php-versions: '8.1'
-            databases: 'mysql'
-            server-versions: stable24
-          - php-versions: '8.1'
-            databases: 'mysql'
-            server-versions: master
+        server-versions: ['master', 'stable25']
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
@@ -112,6 +105,12 @@ jobs:
         uses: actions/checkout@v2
         with:
           path: apps/${{ env.APP_NAME }}
+
+      - name: Patch for nightly PHP
+        if: ${{ matrix.php-versions == '8.2' }}
+        run: |
+          echo "<?php" > lib/versioncheck.php
+          sed -i 's/max-version="8.1"/max-version="8.2"/' apps/${{ env.APP_NAME }}/appinfo/info.xml
 
       - name: Set up php ${{ matrix.php-versions }}
         uses: shivammathur/setup-php@v2
@@ -151,13 +150,13 @@ jobs:
       matrix:
         php-versions: ['7.4']
         databases: ['pgsql']
-        server-versions: ['stable22', 'stable23', 'stable24', 'master']
+        server-versions: ['master', 'stable25']
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
     services:
       postgres:
-        image: postgres
+        image: postgres:14
         ports:
           - 4444:5432/tcp
         env:

@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Details" : "معلومات",
     "Download" : "ښکته کول",
-    "Groups" : "ګروپونه",
     "Rename" : "نوم بدلول",
     "Delete" : "ړنګول",
     "Copy link" : "لېنک کاپي کول",

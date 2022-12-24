@@ -22,18 +22,18 @@
 
 <template>
 	<AppContent v-if="loading">
-		<EmptyContent icon="icon-loading">
-			{{ t('contacts', 'Loading contacts …') }}
+		<EmptyContent :title="t('contacts', 'Loading contacts …')">
+			<template #icon>
+				<IconLoading :size="20" />
+			</template>
 		</EmptyContent>
 	</AppContent>
 
 	<AppContent v-else-if="isEmptyGroup && !isRealGroup">
-		<EmptyContent>
+		<EmptyContent :title="t('contacts', 'There are no contacts yet')">
 			<template #icon>
-				<IconContact
-					:size="20" />
+				<IconContact :size="20" />
 			</template>
-			{{ t('contacts', 'There are no contacts yet') }}
 			<template #desc>
 				<Button type="primary" @click="newContact">
 					{{ t('contacts', 'Create contact') }}
@@ -43,12 +43,10 @@
 	</AppContent>
 
 	<AppContent v-else-if="isEmptyGroup && isRealGroup">
-		<EmptyContent>
+		<EmptyContent :title=" t('contacts', 'There are no contacts in this group')">
 			<template #icon>
-				<IconContact
-					:size="20" />
+				<IconContact :size="20" />
 			</template>
-			{{ t('contacts', 'There are no contacts in this group') }}
 			<template #desc>
 				<Button v-if="contacts.length === 0" type="primary" @click="addContactsToGroup(selectedGroup)">
 					{{ t('contacts', 'Create contacts') }}
@@ -63,26 +61,26 @@
 	<AppContent v-else :show-details="showDetails" @update:showDetails="hideDetails">
 		<!-- contacts list -->
 		<template #list>
-			<ContactsList
-				:list="contactsList"
+			<ContactsList :list="contactsList"
 				:contacts="contacts"
 				:search-query="searchQuery" />
 		</template>
 
 		<!-- main contacts details -->
-		<ContactDetails :contact-key="selectedContact" />
+		<ContactDetails :contact-key="selectedContact" :contacts="sortedContacts" />
 	</AppContent>
 </template>
 <script>
 import { emit } from '@nextcloud/event-bus'
-import AppContent from '@nextcloud/vue/dist/Components/AppContent'
-import Button from '@nextcloud/vue/dist/Components/Button'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import AppContent from '@nextcloud/vue/dist/Components/NcAppContent.js'
+import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
 
-import ContactDetails from '../ContactDetails'
-import ContactsList from '../ContactsList'
-import IconContact from 'vue-material-design-icons/AccountMultiple'
-import RouterMixin from '../../mixins/RouterMixin'
+import ContactDetails from '../ContactDetails.vue'
+import ContactsList from '../ContactsList.vue'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import RouterMixin from '../../mixins/RouterMixin.js'
 
 export default {
 	name: 'ContactsContent',
@@ -94,6 +92,7 @@ export default {
 		ContactsList,
 		EmptyContent,
 		IconContact,
+		IconLoading,
 	},
 
 	mixins: [RouterMixin],

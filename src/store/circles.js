@@ -37,10 +37,10 @@ import {
 } from '../services/circles.ts'
 import Member from '../models/member.ts'
 import Circle from '../models/circle.ts'
-import logger from '../services/logger'
+import logger from '../services/logger.js'
 
 const state = {
-	/** @type {object.<string>} Circle */
+	/** @type {Object<string>} Circle */
 	circles: {},
 }
 

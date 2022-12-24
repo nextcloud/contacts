@@ -21,7 +21,7 @@
   -->
 
 <template>
-	<AppContentList>
+	<AppContentList class="content-list">
 		<div class="contacts-list__header">
 			<div class="search-contacts-field">
 				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
@@ -37,8 +37,8 @@
 </template>
 
 <script>
-import AppContentList from '@nextcloud/vue/dist/Components/AppContentList'
-import ContactsListItem from './ContactsList/ContactsListItem'
+import AppContentList from '@nextcloud/vue/dist/Components/NcAppContentList.js'
+import ContactsListItem from './ContactsList/ContactsListItem.vue'
 import VirtualList from 'vue-virtual-scroll-list'
 
 export default {
@@ -181,4 +181,10 @@ export default {
 		width: 100%;
 	}
 }
+
+.content-list {
+	overflow-y: auto;
+	padding: 0 4px;
+}
+
 </style>

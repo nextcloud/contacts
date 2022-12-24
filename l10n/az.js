@@ -5,7 +5,6 @@ OC.L10N.register(
     "Contacts" : "Əlaqələr",
     "Download" : "Yüklə",
     "Send email" : "Email yolla",
-    "Groups" : "Qruplar",
     "Rename" : "Adı dəyiş",
     "Enabled" : "İşə salınıb",
     "Delete" : "Sil",

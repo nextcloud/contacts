@@ -20,16 +20,14 @@
 -->
 
 <template>
-	<Modal
-		size="normal"
+	<Modal size="normal"
 		@close="onCancel">
 		<!-- Wrapper for content & navigation -->
 		<div class="entity-picker">
 			<!-- Search -->
 			<div class="entity-picker__search">
 				<div class="entity-picker__search-icon icon-search" />
-				<input
-					ref="input"
+				<input ref="input"
 					v-model="searchQuery"
 					:placeholder="t('contacts', 'Search {types}', {types: searchPlaceholderTypes})"
 					class="entity-picker__search-input"
@@ -38,30 +36,29 @@
 			</div>
 
 			<!-- Loading -->
-			<EmptyContent v-if="loading" icon="icon-loading">
-				{{ t('contacts', 'Loading …') }}
+			<EmptyContent v-if="loading" :title="t('contacts', 'Loading …')">
+				<template #icon>
+					<IconLoading :size="20" />
+				</template>
 			</EmptyContent>
 
 			<template v-else>
 				<!-- Picked entities -->
-				<transition-group
-					v-if="Object.keys(selectionSet).length > 0"
+				<transition-group v-if="Object.keys(selectionSet).length > 0"
 					name="zoom"
 					tag="ul"
 					class="entity-picker__selection">
-					<EntityBubble
-						v-for="entity in selectionSet"
+					<EntityBubble v-for="entity in selectionSet"
 						:key="entity.key || `entity-${entity.type}-${entity.id}`"
 						v-bind="entity"
 						@delete="onDelete(entity)" />
 				</transition-group>
 
 				<!-- No recommendations -->
-				<EmptyContent v-if="dataSet.length === 0">
+				<EmptyContent v-if="dataSet.length === 0" :title="t('contacts', 'Search for people to add')">
 					<template #icon>
 						<IconSearch :size="20" />
 					</template>
-					{{ t('contacts', 'Search for people to add') }}
 				</EmptyContent>
 
 				<!-- Searched & picked entities -->
@@ -73,22 +70,19 @@
 					:estimate-size="44"
 					:extra-props="{ selection: selectionSet, onClick }" />
 
-				<EmptyContent v-else-if="searchQuery">
+				<EmptyContent v-else-if="searchQuery" :title="t('contacts', 'No results')">
 					<template #icon>
 						<IconSearch :size="20" />
 					</template>
-					{{ t('contacts', 'No results') }}
 				</EmptyContent>
 
 				<div class="entity-picker__navigation">
-					<button
-						:disabled="loading"
+					<button :disabled="loading"
 						class="navigation__button-left"
 						@click="onCancel">
 						{{ t('contacts', 'Cancel') }}
 					</button>
-					<button
-						:disabled="isEmptySelection || loading"
+					<button :disabled="isEmptySelection || loading"
 						class="navigation__button-right primary"
 						@click="onSubmit">
 						{{ confirmLabel }}
@@ -102,12 +96,13 @@
 <script>
 import debounce from 'debounce'
 import VirtualList from 'vue-virtual-scroll-list'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
-import IconSearch from 'vue-material-design-icons/Magnify'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
+import IconSearch from 'vue-material-design-icons/Magnify.vue'
+import Modal from '@nextcloud/vue/dist/Components/NcModal.js'
 
-import EntityBubble from './EntityBubble'
-import EntitySearchResult from './EntitySearchResult'
+import EntityBubble from './EntityBubble.vue'
+import EntitySearchResult from './EntitySearchResult.vue'
 
 export default {
 	name: 'EntityPicker',
@@ -116,6 +111,7 @@ export default {
 		EmptyContent,
 		EntityBubble,
 		IconSearch,
+		IconLoading,
 		Modal,
 		VirtualList,
 	},
@@ -378,6 +374,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use "sass:math";
 
 // Dialog variables
 $dialog-padding: 20px;
@@ -395,7 +392,7 @@ $icon-size: 16px;
 
 // icon padding for a $clickable-area width and a $icon-size icon
 // ( 44px - 16px ) / 2
-$icon-margin: ($clickable-area - $icon-size) / 2;
+$icon-margin: math.div($clickable-area - $icon-size, 2);
 
 .entity-picker {
 	position: relative;
@@ -414,7 +411,7 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 			width: 100%;
 			height: $clickable-area - $entity-spacing !important;
 			margin: $entity-spacing 0;
-			padding-left: $clickable-area;
+			padding-left: $clickable-area !important;
 			font-size: 16px;
 			line-height: $clickable-area - $entity-spacing;
 		}

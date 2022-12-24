@@ -51,8 +51,7 @@
 			</div>
 
 			<!-- Real input where the picker shows -->
-			<DatetimePicker
-				v-if="!isReadOnly"
+			<DatetimePicker v-if="!isReadOnly"
 				:value="vcardTimeLocalValue.toJSDate()"
 				:minute-step="10"
 				:lang="lang"
@@ -70,8 +69,7 @@
 				class="property__value">
 
 			<!-- props actions -->
-			<PropertyActions
-				v-if="!isReadOnly"
+			<PropertyActions v-if="!isReadOnly"
 				:actions="actions"
 				:property-component="this"
 				@delete="deleteProperty" />
@@ -82,14 +80,14 @@
 <script>
 import debounce from 'debounce'
 import moment from 'moment'
-import DatetimePicker from '@nextcloud/vue/dist/Components/DatetimePicker'
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import DatetimePicker from '@nextcloud/vue/dist/Components/NcDatetimePicker.js'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
 import { getLocale } from '@nextcloud/l10n'
 import { VCardTime } from 'ical.js'
 
-import PropertyMixin from '../../mixins/PropertyMixin'
-import PropertyTitle from './PropertyTitle'
-import PropertyActions from './PropertyActions'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
+import PropertyTitle from './PropertyTitle.vue'
+import PropertyActions from './PropertyActions.vue'
 
 export default {
 	name: 'PropertyDateTime',

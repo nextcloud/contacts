@@ -20,43 +20,40 @@
   -
   -->
 <template>
-	<AppNavigationItem
-		:key="circle.key"
+	<AppNavigationItem :key="circle.key"
 		:title="circle.displayName"
 		:to="circle.router">
 		<template #icon>
-			<IconCircles
-				:size="20" />
+			<IconCircles :size="20" />
 		</template>
 		<template v-if="loadingAction" slot="actions">
-			<ActionText icon="icon-loading-small">
+			<ActionText>
+				<template #icon>
+					<IconLoading :size="20" />
+				</template>
 				{{ t('contacts', 'Loading …') }}
 			</ActionText>
 		</template>
 
 		<template v-else slot="actions">
-			<ActionButton
-				v-if="circle.canManageMembers"
+			<ActionButton v-if="circle.canManageMembers"
 				:close-after-click="true"
 				@click="addMemberToCircle">
 				<template #icon>
-					<IconAdd
-						:size="20" />
+					<IconAdd :size="20" />
 				</template>
 				{{ t('contacts', 'Add member') }}
 			</ActionButton>
 
 			<!-- copy circle link -->
-			<ActionLink
-				:href="circleUrl"
+			<ActionLink :href="circleUrl"
 				:icon="copyLinkIcon"
 				@click.stop.prevent="copyToClipboard(circleUrl)">
 				{{ copyButtonText }}
 			</ActionLink>
 
 			<!-- leave circle -->
-			<ActionButton
-				v-if="circle.canLeave"
+			<ActionButton v-if="circle.canLeave"
 				@click="confirmLeaveCircle">
 				{{ t('contacts', 'Leave circle') }}
 				<ExitToApp slot="icon"
@@ -65,8 +62,7 @@
 			</ActionButton>
 
 			<!-- join circle -->
-			<ActionButton
-				v-else-if="!circle.isMember && circle.canJoin"
+			<ActionButton v-else-if="!circle.isMember && circle.canJoin"
 				:disabled="loadingJoin"
 				@click="joinCircle">
 				{{ joinButtonTitle }}
@@ -76,37 +72,37 @@
 			</ActionButton>
 
 			<!-- delete circle -->
-			<ActionButton
-				v-if="circle.canDelete"
+			<ActionButton v-if="circle.canDelete"
 				@click="confirmDeleteCircle">
 				<template #icon>
-					<IconDelete
-						:size="20" />
+					<IconDelete :size="20" />
 				</template>
 				{{ t('contacts', 'Delete circle') }}
 			</ActionButton>
 		</template>
 
-		<AppNavigationCounter v-if="memberCount > 0" slot="counter">
-			{{ memberCount }}
-		</AppNavigationCounter>
+		<template #counter>
+			<NcCounterBubble v-if="memberCount > 0">
+				{{ memberCount }}
+			</NcCounterBubble>
+		</template>
 	</AppNavigationItem>
 </template>
 
 <script>
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
-import ActionText from '@nextcloud/vue/dist/Components/ActionText'
-import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
-import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
-import ExitToApp from 'vue-material-design-icons/ExitToApp'
-import IconAdd from 'vue-material-design-icons/Plus'
-import IconDelete from 'vue-material-design-icons/Delete'
-import LocationEnter from 'vue-material-design-icons/LocationEnter'
-import IconCircles from '../Icons/IconCircles'
-
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js'
+import ActionText from '@nextcloud/vue/dist/Components/NcActionText.js'
+import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble.js'
+import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem.js'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
+import ExitToApp from 'vue-material-design-icons/ExitToApp.vue'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import LocationEnter from 'vue-material-design-icons/LocationEnter.vue'
+import IconCircles from '../Icons/IconCircles.vue'
 import Circle from '../../models/circle.ts'
-import CircleActionsMixin from '../../mixins/CircleActionsMixin'
+import CircleActionsMixin from '../../mixins/CircleActionsMixin.js'
 
 export default {
 	name: 'CircleNavigationItem',
@@ -115,13 +111,14 @@ export default {
 		ActionButton,
 		ActionLink,
 		ActionText,
-		AppNavigationCounter,
+		NcCounterBubble,
 		AppNavigationItem,
 		ExitToApp,
 		IconAdd,
 		IconDelete,
 		LocationEnter,
 		IconCircles,
+		IconLoading,
 	},
 
 	mixins: [CircleActionsMixin],

@@ -24,8 +24,8 @@ import { showError } from '@nextcloud/dialogs'
 import ICAL from 'ical.js'
 import Vue from 'vue'
 
-import Contact from '../models/contact'
-import validate from '../services/validate'
+import Contact from '../models/contact.js'
+import validate from '../services/validate.js'
 
 /*
  * Currently ical.js does not serialize parameters with multiple values correctly. This is

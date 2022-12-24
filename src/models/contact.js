@@ -24,8 +24,8 @@ import { v4 as uuid } from 'uuid'
 import ICAL from 'ical.js'
 import b64toBlob from 'b64-to-blob'
 
-import store from '../store'
-import updateDesignSet from '../services/updateDesignSet'
+import store from '../store/index.js'
+import updateDesignSet from '../services/updateDesignSet.js'
 import sanitizeSVG from '@mattkrick/sanitize-svg'
 
 /**
@@ -41,7 +41,7 @@ const isEmpty = value => {
 export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
 
 export const MinimalContactProperties = [
-	'EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME',
+	'EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE',
 ].concat(ContactKindProperties)
 
 export default class Contact {
@@ -362,6 +362,20 @@ export default class Contact {
 			return
 		}
 		this.vCard.updatePropertyWithValue('org', org)
+	}
+
+	/**
+	 * Return the first x-managersname
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get managersName() {
+		const prop = this.vCard.getFirstProperty('x-managersname')
+		if (!prop) {
+			return null
+		}
+		return prop.getFirstParameter('uid') ?? null
 	}
 
 	/**

@@ -6,8 +6,6 @@ OC.L10N.register(
     "Contacts" : "Kontak",
     "Download" : "Unduh",
     "Send email" : "Kirim surel",
-    "Groups" : "Grup",
-    "Group name" : "Nama grup",
     "Rename" : "Ubah nama",
     "Enabled" : "Diaktifkan",
     "Delete" : "Hapus",

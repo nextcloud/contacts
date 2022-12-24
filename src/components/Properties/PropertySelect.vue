@@ -39,7 +39,7 @@
 			</div>
 
 			<Multiselect v-model="matchedOptions"
-				:options="propModel.options"
+				:options="options"
 				:placeholder="t('contacts', 'Select option')"
 				:disabled="isSingleOption || isReadOnly"
 				class="property__value"
@@ -48,8 +48,7 @@
 				@input="updateValue" />
 
 			<!-- props actions -->
-			<PropertyActions
-				v-if="!isReadOnly"
+			<PropertyActions v-if="!isReadOnly"
 				:actions="actions"
 				:property-component="this"
 				@delete="deleteProperty" />
@@ -58,10 +57,10 @@
 </template>
 
 <script>
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
-import PropertyMixin from '../../mixins/PropertyMixin'
-import PropertyTitle from './PropertyTitle'
-import PropertyActions from './PropertyActions'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
+import PropertyTitle from './PropertyTitle.vue'
+import PropertyActions from './PropertyActions.vue'
 
 export default {
 	name: 'PropertySelect',
@@ -85,19 +84,20 @@ export default {
 	computed: {
 		// is there only one option available
 		isSingleOption() {
-			return this.propModel.options.length <= 1
+			return this.propModel.options.length <= 1 && this.options.length <= 1
 		},
 
 		// matching value to the options we provide
 		matchedOptions: {
 			get() {
+				const options = this.options || this.propModel.options
 				// match lowercase as well
-				let selected = this.propModel.options.find(option => option.id === this.localValue
+				let selected = options.find(option => option.id === this.localValue
 					|| option.id === this.localValue.toLowerCase())
 
 				// if the model provided a custom match fallback, use it
 				if (!selected && this.propModel.greedyMatch) {
-					selected = this.propModel.greedyMatch(this.localValue, this.propModel.options)
+					selected = this.propModel.greedyMatch(this.localValue, options)
 				}
 
 				// properly display array as a string
@@ -142,12 +142,9 @@ export default {
 	width: 60px;
 	min-width: 60px !important;
 	max-width: 120px;
-	height: 34px;
-	margin: 3px 5px 3px 0 !important;
 	user-select: none;
 	text-align: right;
 	background-size: 16px;
-	line-height: 35px;
 }
 
 </style>

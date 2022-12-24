@@ -20,8 +20,8 @@
  *
  */
 import debounce from 'debounce'
-import Contact from '../models/contact'
-import { setPropertyAlias } from '../services/updateDesignSet'
+import Contact from '../models/contact.js'
+import { setPropertyAlias } from '../services/updateDesignSet.js'
 
 export default {
 	props: {

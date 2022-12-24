@@ -24,7 +24,7 @@ import { showError } from '@nextcloud/dialogs'
 
 import { joinCircle } from '../services/circles.ts'
 import Circle from '../models/circle.ts'
-import CopyToClipboardMixin from './CopyToClipboardMixin'
+import CopyToClipboardMixin from './CopyToClipboardMixin.js'
 import Member from '../models/member.ts'
 
 export default {

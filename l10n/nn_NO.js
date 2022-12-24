@@ -4,8 +4,6 @@ OC.L10N.register(
     "Details" : "Detaljar",
     "Contacts" : "Kontaktar",
     "Download" : "Last ned",
-    "Groups" : "Grupper",
-    "Group name" : "Gruppenamn",
     "Circles" : "Sirklar",
     "Rename" : "Gje nytt namn",
     "Enabled" : "Aktivert",

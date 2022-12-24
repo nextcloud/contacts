@@ -60,15 +60,15 @@ class DiasporaProviderTest extends TestCase {
 	public function dataProviderSupportsContact() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "diaspora"],
-				["value" => "two", "type" => "diaspora"]
+				['value' => 'one', 'type' => 'diaspora'],
+				['value' => 'two', 'type' => 'diaspora']
 			]
 		];
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 
@@ -89,25 +89,25 @@ class DiasporaProviderTest extends TestCase {
 	public function dataProviderGetImageUrls() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one@two", "type" => "diaspora"],
-				["value" => "two@three", "type" => "diaspora"]
+				['value' => 'one@two', 'type' => 'diaspora'],
+				['value' => 'two@three', 'type' => 'diaspora']
 			]
 		];
 		$contactWithSocialUrls = [
-			"https://two/public/one.atom",
-			"https://three/public/two.atom"
+			'https://two/public/one.atom',
+			'https://three/public/two.atom'
 		];
 		$contactWithSocialHtml = array_map(function ($url) {
-			return "<logo>".$url."-small-avatar.jpg</logo>";
+			return '<logo>'.$url.'-small-avatar.jpg</logo>';
 		}, $contactWithSocialUrls);
 		$contactWithSocialImg = array_map(function ($url) {
-			return $url."-large-avatar.jpg";
+			return $url.'-large-avatar.jpg';
 		}, $contactWithSocialUrls);
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 		$contactWithoutSocialUrls = [];
@@ -157,14 +157,14 @@ class DiasporaProviderTest extends TestCase {
 	public function testGetImageUrlLoop() {
 		$contact = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one@two", "type" => "diaspora"],
+				['value' => 'one@two', 'type' => 'diaspora'],
 			]
 		];
-		$url1 = "https://two/public/one.atom";
-		$url2 = "https://four/public/three.atom";
+		$url1 = 'https://two/public/one.atom';
+		$url2 = 'https://four/public/three.atom';
 		$html1 = '<link rel="alternate" href="'.$url2.'" />';
-		$html2 = "<logo>".$url2."-small-avatar.jpg</logo>";
-		$img = $url2."-large-avatar.jpg";
+		$html2 = '<logo>'.$url2.'-small-avatar.jpg</logo>';
+		$img = $url2.'-large-avatar.jpg';
 
 		$this->response
 		->method('getBody')

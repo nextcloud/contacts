@@ -39,15 +39,15 @@ class TumblrProviderTest extends TestCase {
 	public function dataProviderSupportsContact() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "username1", "type" => "tumblr"],
-				["value" => "username2", "type" => "tumblr"]
+				['value' => 'username1', 'type' => 'tumblr'],
+				['value' => 'username2', 'type' => 'tumblr']
 			]
 		];
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 
@@ -68,20 +68,20 @@ class TumblrProviderTest extends TestCase {
 	public function dataProviderGetImageUrls() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "username1", "type" => "tumblr"],
-				["value" => "username2", "type" => "tumblr"]
+				['value' => 'username1', 'type' => 'tumblr'],
+				['value' => 'username2', 'type' => 'tumblr']
 			]
 		];
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 
 		foreach ($contactWithSocial['X-SOCIALPROFILE'] as $profile) {
-			$urls[] = "https://api.tumblr.com/v2/blog/".$profile['value']."/avatar/512";
+			$urls[] = 'https://api.tumblr.com/v2/blog/'.$profile['value'].'/avatar/512';
 		}
 
 		return [

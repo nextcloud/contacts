@@ -11,7 +11,7 @@
 * 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 	</description>
 
-	<version>4.3.0-alpha.1</version>
+	<version>5.1.0-alpha.1</version>
 	<licence>agpl</licence>
 
 	<author>Christoph Wurst</author>
@@ -23,7 +23,7 @@
 	</types>
 
 	<documentation>
-		<user>https://docs.nextcloud.com/server/stable/user_manual/en/pim/contacts.html</user>
+		<user>https://docs.nextcloud.com/server/stable/user_manual/en/groupware/contacts.html</user>
 		<admin>https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/occ_command.html?highlight=occ%20commands#dav-label</admin>
 		<developer>https://github.com/nextcloud/contacts#build-the-app</developer>
 	</documentation>
@@ -39,7 +39,7 @@
 
 	<dependencies>
 		<php min-version="7.3" max-version="8.1" />
-		<nextcloud min-version="21" max-version="25" />
+		<nextcloud min-version="25" max-version="26" />
 	</dependencies>
 
 	<background-jobs>

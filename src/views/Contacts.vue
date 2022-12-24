@@ -24,23 +24,30 @@
 <template>
 	<Content :app-name="appName">
 		<!-- new-contact-button + navigation + settings -->
-		<RootNavigation
-			:contacts-list="contactsList"
+		<RootNavigation :contacts-list="contactsList"
 			:loading="loadingContacts || loadingCircles"
 			:selected-group="selectedGroup"
 			:selected-contact="selectedContact">
 			<!-- new-contact-button -->
-			<AppNavigationNew v-if="!loadingContacts"
+			<Button v-if="!loadingContacts"
+				class="new-contact-button"
+				type="primary"
 				button-id="new-contact-button"
-				:text="t('contacts','New contact')"
-				button-class="icon-add"
+				:wide="true"
 				:disabled="!defaultAddressbook"
-				@click="newContact" />
+				@click="newContact">
+				<template #icon>
+					<IconAdd :size="20" />
+				</template>
+				{{ t('contacts','New contact') }}
+			</Button>
 		</RootNavigation>
 
-		<!-- Main content: circle or contacts -->
+		<!-- Main content: circle, chart or contacts -->
 		<CircleContent v-if="selectedCircle"
 			:loading="loadingCircles" />
+		<ChartContent v-else-if="selectedChart"
+			:contacts-list="contacts" />
 		<ContactsContent v-else
 			:contacts-list="contactsList"
 			:loading="loadingContacts"
@@ -62,36 +69,40 @@
 <script>
 import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE } from '../models/constants.ts'
 
-import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
-import Content from '@nextcloud/vue/dist/Components/Content'
-import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
+import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import Content from '@nextcloud/vue/dist/Components/NcContent.js'
+import isMobile from '@nextcloud/vue/dist/Mixins/isMobile.js'
+import Modal from '@nextcloud/vue/dist/Components/NcModal.js'
 
 import { showError } from '@nextcloud/dialogs'
 import { VCardTime } from 'ical.js'
 
-import CircleContent from '../components/AppContent/CircleContent'
-import ContactsContent from '../components/AppContent/ContactsContent'
-import ContactsPicker from '../components/EntityPicker/ContactsPicker'
-import ImportView from './Processing/ImportView'
-import RootNavigation from '../components/AppNavigation/RootNavigation'
+import CircleContent from '../components/AppContent/CircleContent.vue'
+import ChartContent from '../components/AppContent/ChartContent.vue'
+import ContactsContent from '../components/AppContent/ContactsContent.vue'
+import ContactsPicker from '../components/EntityPicker/ContactsPicker.vue'
+import ImportView from './Processing/ImportView.vue'
+import RootNavigation from '../components/AppNavigation/RootNavigation.vue'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
 
-import Contact from '../models/contact'
-import rfcProps from '../models/rfcProps'
+import Contact from '../models/contact.js'
+import rfcProps from '../models/rfcProps.js'
 
-import client from '../services/cdav'
-import isCirclesEnabled from '../services/isCirclesEnabled'
+import client from '../services/cdav.js'
+import isCirclesEnabled from '../services/isCirclesEnabled.js'
 
 export default {
 	name: 'Contacts',
 
 	components: {
-		AppNavigationNew,
+		Button,
 		CircleContent,
+		ChartContent,
 		ContactsContent,
 		ContactsPicker,
 		Content,
 		ImportView,
+		IconAdd,
 		Modal,
 		RootNavigation,
 	},
@@ -111,6 +122,10 @@ export default {
 			default: undefined,
 		},
 		selectedContact: {
+			type: String,
+			default: undefined,
+		},
+		selectedChart: {
 			type: String,
 			default: undefined,
 		},
@@ -198,13 +213,13 @@ export default {
 	watch: {
 		// watch url change and group select
 		selectedGroup() {
-			if (!this.isMobile) {
+			if (!this.isMobile && !this.selectedChart) {
 				this.selectFirstContactIfNone()
 			}
 		},
 		// watch url change and contact select
 		selectedContact() {
-			if (!this.isMobile) {
+			if (!this.isMobile && !this.selectedChart) {
 				this.selectFirstContactIfNone()
 			}
 		},
@@ -332,7 +347,7 @@ export default {
 				})
 			).then(results => {
 				this.loadingContacts = false
-				if (!this.isMobile) {
+				if (!this.isMobile && !this.selectedChart) {
 					this.selectFirstContactIfNone()
 				}
 			})
@@ -397,3 +412,9 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.new-contact-button {
+	justify-content: start !important;
+}
+</style>

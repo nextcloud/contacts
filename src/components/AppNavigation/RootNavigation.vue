@@ -21,8 +21,14 @@
   -->
 
 <template>
-	<AppNavigation :class="{'icon-loading': loading}">
-		<slot />
+	<AppNavigation>
+		<template #icon>
+			<IconLoading v-if="loading" :size="20" />
+		</template>
+
+		<header class="header">
+			<slot />
+		</header>
 
 		<!-- groups list -->
 		<template #list>
@@ -34,17 +40,27 @@
 					params: { selectedGroup: GROUP_ALL_CONTACTS },
 				}">
 				<template #icon>
-					<IconContact
-						:size="20" />
+					<IconContact :size="20" />
 				</template>
-				<AppNavigationCounter v-if="sortedContacts.length" slot="counter">
-					{{ sortedContacts.length }}
-				</AppNavigationCounter>
+				<template #counter>
+					<NcCounterBubble v-if="sortedContacts.length">
+						{{ sortedContacts.length }}
+					</NcCounterBubble>
+				</template>
 			</AppNavigationItem>
 
+			<!-- Organization chart -->
+			<AppNavigationItem v-if="existChart"
+				id="chart"
+				:title="CHART_ALL_CONTACTS"
+				:to="{
+					name: 'chart',
+					params: { selectedChart: GROUP_ALL_CONTACTS },
+				}"
+				icon="icon-category-monitoring" />
+
 			<!-- Not grouped group -->
-			<AppNavigationItem
-				v-if="ungroupedContacts.length > 0"
+			<AppNavigationItem v-if="ungroupedContacts.length > 0"
 				id="notgrouped"
 				:title="GROUP_NO_GROUP_CONTACTS"
 				:to="{
@@ -52,17 +68,17 @@
 					params: { selectedGroup: GROUP_NO_GROUP_CONTACTS },
 				}">
 				<template #icon>
-					<IconUser
-						:size="20" />
+					<IconUser :size="20" />
 				</template>
-				<AppNavigationCounter v-if="ungroupedContacts.length" slot="counter">
-					{{ ungroupedContacts.length }}
-				</AppNavigationCounter>
+				<template #counter>
+					<NcCounterBubble v-if="ungroupedContacts.length">
+						{{ ungroupedContacts.length }}
+					</NcCounterBubble>
+				</template>
 			</AppNavigationItem>
 
 			<!-- Recently contacted group -->
-			<AppNavigationItem
-				v-if="isContactsInteractionEnabled && recentlyContactedContacts && recentlyContactedContacts.contacts.length > 0"
+			<AppNavigationItem v-if="isContactsInteractionEnabled && recentlyContactedContacts && recentlyContactedContacts.contacts.length > 0"
 				id="recentlycontacted"
 				:title="GROUP_RECENTLY_CONTACTED"
 				:to="{
@@ -70,63 +86,60 @@
 					params: { selectedGroup: GROUP_RECENTLY_CONTACTED },
 				}">
 				<template #icon>
-					<IconRecentlyContacted
-						:size="20" />
+					<IconRecentlyContacted :size="20" />
 				</template>
-				<AppNavigationCounter v-if="recentlyContactedContacts.contacts.length" slot="counter">
-					{{ recentlyContactedContacts.contacts.length }}
-				</AppNavigationCounter>
+				<template #counter>
+					<NcCounterBubble v-if="recentlyContactedContacts.contacts.length">
+						{{ recentlyContactedContacts.contacts.length }}
+					</NcCounterBubble>
+				</template>
 			</AppNavigationItem>
 
-			<AppNavigationCaption
-				id="newgroup"
+			<AppNavigationCaption id="newgroup"
 				:force-menu="true"
 				:menu-open.sync="isNewGroupMenuOpen"
-				:title="t('contacts', 'Groups')"
-				default-icon="icon-add"
+				:title="t('contacts', 'Contact groups')"
 				@click.prevent.stop="toggleNewGroupMenu">
-				<template slot="actions">
+				<template #actionsTriggerIcon>
+					<IconAdd :size="20" />
+				</template>
+				<template #actions>
 					<ActionText>
 						<template #icon>
 							<IconError v-if="createGroupError" :size="20" />
 							<IconContact v-else-if="!createGroupError" :size="20" />
 						</template>
-						{{ createGroupError ? createGroupError : t('contacts', 'Create a new group') }}
+						{{ createGroupError ? createGroupError : t('contacts', 'Create a new contact group') }}
 					</ActionText>
-					<ActionInput
-						icon=""
-						:placeholder="t('contacts','Group name')"
+					<ActionInput icon=""
+						:placeholder="t('contacts','Contact group name')"
 						@submit.prevent.stop="createNewGroup" />
 				</template>
 			</AppNavigationCaption>
 
 			<!-- Custom groups -->
-			<GroupNavigationItem
-				v-for="group in ellipsisGroupsMenu"
+			<GroupNavigationItem v-for="group in ellipsisGroupsMenu"
 				:key="group.key"
 				:group="group" />
 
 			<template v-if="isCirclesEnabled">
 				<!-- Toggle groups ellipsis -->
-				<AppNavigationItem
-					v-if="groupsMenu.length > ELLIPSIS_COUNT"
+				<AppNavigationItem v-if="groupsMenu.length > ELLIPSIS_COUNT"
 					:title="collapseGroupsTitle"
 					class="app-navigation__collapse"
 					icon=""
 					@click="onToggleGroups" />
 
 				<!-- New circle button caption and modal -->
-				<AppNavigationCaption
-					id="newcircle"
-					:title="t('contacts', 'Circles')"
-					@click.prevent.stop="toggleNewCircleModal">
-					<template slot="actions">
-						<ActionButton @click="toggleNewCircleModal">
+				<AppNavigationCaption id="newcircle"
+					:title="t('contacts', 'Circles')">
+					<template #actions>
+						<NcActionButton @click="toggleNewCircleModal">
 							<template #icon>
 								<IconAdd :size="20" />
 							</template>
 							{{ t('contacts', 'Create a new circle') }}
-						</ActionButton>
+						</NcActionButton>
 					</template>
 				</AppNavigationCaption>
 				<NewCircleIntro v-if="isNewCircleModalOpen"
@@ -136,14 +149,12 @@
 
 				<template v-if="circlesMenu.length > 0">
 					<!-- Circles -->
-					<CircleNavigationItem
-						v-for="circle in ellipsisCirclesMenu"
+					<CircleNavigationItem v-for="circle in ellipsisCirclesMenu"
 						:key="circle.key"
 						:circle="circle" />
 
 					<!-- Toggle circles ellipsis -->
-					<AppNavigationItem
-						v-if="circlesMenu.length > ELLIPSIS_COUNT"
+					<AppNavigationItem v-if="circlesMenu.length > ELLIPSIS_COUNT"
 						:title="collapseCirclesTitle"
 						class="app-navigation__collapse"
 						icon=""
@@ -158,65 +169,80 @@
 		</template>
 
 		<!-- settings -->
+
 		<template #footer>
-			<AppNavigationSettings v-if="!loading" :title="appNavigationSettingsTitle">
-				<SettingsSection />
-			</AppNavigationSettings>
+			<div class="contacts-settings">
+				<Button v-if="!loading"
+					class="contacts-settings-button"
+					:wide="true"
+					:close-after-click="true"
+					@click="showContactsSettings">
+					<template #icon>
+						<Cog :size="20" />
+					</template>
+					{{ CONTACTS_SETTINGS }}
+				</Button>
+			</div>
 		</template>
+		<ContactsSettings :open.sync="showSettings" />
 	</AppNavigation>
 </template>
 
 <script>
-import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC } from '../../models/constants.ts'
+import { GROUP_ALL_CONTACTS, CHART_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC, CONTACTS_SETTINGS } from '../../models/constants.ts'
 
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
-import ActionText from '@nextcloud/vue/dist/Components/ActionText'
-import AppNavigation from '@nextcloud/vue/dist/Components/AppNavigation'
-import AppNavigationCounter from '@nextcloud/vue/dist/Components/AppNavigationCounter'
-import AppNavigationItem from '@nextcloud/vue/dist/Components/AppNavigationItem'
-import AppNavigationSettings from '@nextcloud/vue/dist/Components/AppNavigationSettings'
-import AppNavigationCaption from '@nextcloud/vue/dist/Components/AppNavigationCaption'
+import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput.js'
+import ActionText from '@nextcloud/vue/dist/Components/NcActionText.js'
+import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import AppNavigation from '@nextcloud/vue/dist/Components/NcAppNavigation.js'
+import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble.js'
+import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem.js'
+import AppNavigationCaption from '@nextcloud/vue/dist/Components/NcAppNavigationCaption.js'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
 
 import naturalCompare from 'string-natural-compare'
 
-import CircleNavigationItem from './CircleNavigationItem'
-import GroupNavigationItem from './GroupNavigationItem'
-import NewCircleIntro from '../EntityPicker/NewCircleIntro'
-import SettingsSection from './SettingsSection'
+import CircleNavigationItem from './CircleNavigationItem.vue'
+import Cog from 'vue-material-design-icons/Cog.vue'
+import ContactsSettings from './ContactsSettings.vue'
+import GroupNavigationItem from './GroupNavigationItem.vue'
+import NewCircleIntro from '../EntityPicker/NewCircleIntro.vue'
 
-import isCirclesEnabled from '../../services/isCirclesEnabled'
-import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled'
-import IconContact from 'vue-material-design-icons/AccountMultiple'
-import IconUser from 'vue-material-design-icons/Account'
-import IconRecentlyContacted from '../Icons/IconRecentlyContacted'
-import IconAdd from 'vue-material-design-icons/Plus'
-import IconError from 'vue-material-design-icons/AlertCircle'
+import isCirclesEnabled from '../../services/isCirclesEnabled.js'
+import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled.js'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import IconUser from 'vue-material-design-icons/Account.vue'
+import IconRecentlyContacted from '../Icons/IconRecentlyContacted.vue'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
+import IconError from 'vue-material-design-icons/AlertCircle.vue'
 
-import RouterMixin from '../../mixins/RouterMixin'
+import RouterMixin from '../../mixins/RouterMixin.js'
 import { showError } from '@nextcloud/dialogs'
 
 export default {
 	name: 'RootNavigation',
 
 	components: {
-		ActionButton,
 		ActionInput,
 		ActionText,
+		NcActionButton,
 		AppNavigation,
-		AppNavigationCounter,
+		Button,
+		NcCounterBubble,
 		AppNavigationItem,
-		AppNavigationSettings,
 		AppNavigationCaption,
 		CircleNavigationItem,
+		Cog,
+		ContactsSettings,
 		GroupNavigationItem,
 		IconContact,
 		IconUser,
 		IconAdd,
 		IconError,
+		IconLoading,
 		IconRecentlyContacted,
 		NewCircleIntro,
-		SettingsSection,
 	},
 
 	mixins: [RouterMixin],
@@ -236,8 +262,10 @@ export default {
 	data() {
 		return {
 			CIRCLE_DESC,
+			CONTACTS_SETTINGS,
 			ELLIPSIS_COUNT,
 			GROUP_ALL_CONTACTS,
+			CHART_ALL_CONTACTS,
 			GROUP_NO_GROUP_CONTACTS,
 			GROUP_RECENTLY_CONTACTED,
 
@@ -255,13 +283,12 @@ export default {
 
 			collapsedGroups: true,
 			collapsedCircles: true,
+
+			showSettings: false,
 		}
 	},
 
 	computed: {
-		appNavigationSettingsTitle() {
-			return t('contacts', 'Contacts settings')
-		},
 		// store variables
 		circles() {
 			return this.$store.getters.getCircles
@@ -279,6 +306,11 @@ export default {
 		// list all the contacts that doesn't have a group
 		ungroupedContacts() {
 			return this.sortedContacts.filter(contact => this.contacts[contact.key].groups && this.contacts[contact.key].groups.length === 0)
+		},
+
+		// check if any contact has manager, if not then is no need for organization chart menu
+		existChart() {
+			return !!Object.keys(this.contacts).filter(key => this.contacts[key].managersName).length
 		},
 
 		// generate groups menu from the groups store
@@ -417,12 +449,23 @@ export default {
 		closeNewCircleIntro() {
 			this.isNewCircleModalOpen = false
 		},
+
+		/**
+		 * Shows the contacts settings
+		 */
+		showContactsSettings() {
+			this.showSettings = true
+		},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
 $caption-padding: 22px;
+
+.header {
+	padding: calc(var(--default-grid-baseline, 4px) * 2);
+}
 
 #newgroup,
 #newcircle {
@@ -443,5 +486,12 @@ $caption-padding: 22px;
 ::v-deep .settings-button__label {
 	opacity: .7;
 	font-weight: bold;
+}
+.contacts-settings {
+	padding: calc(var(--default-grid-baseline, 4px)*2);
+}
+.contacts-settings-button {
+	width: 100%;
+	justify-content: start !important;
 }
 </style>

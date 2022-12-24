@@ -25,10 +25,10 @@
 		<IconAdd class="settings-line__icon" />
 		<form id="new-addressbook-form"
 			:disabled="loading"
-			:class="{'icon-loading-small': loading}"
 			name="new-addressbook-form"
 			class="new-addressbook"
 			@submit.prevent.stop="addAddressbook">
+			<IconLoading v-if="loading" :size="20" />
 			<input id="new-addressbook"
 				ref="addressbook"
 				v-model="displayName"
@@ -49,7 +49,7 @@
 
 <script>
 import { showError } from '@nextcloud/dialogs'
-import IconAdd from 'vue-material-design-icons/Plus'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
 
 export default {
 	name: 'SettingsNewAddressbook',

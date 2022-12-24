@@ -45,16 +45,14 @@
 			<!-- popovermenu -->
 			<Actions class="addressbook__menu" menu-align="right">
 				<!-- copy addressbook link -->
-				<ActionLink
-					:href="addressbook.url"
+				<ActionLink :href="addressbook.url"
 					:icon="copyLinkIcon"
 					@click.stop.prevent="copyToClipboard(addressbookUrl)">
 					{{ copyButtonText }}
 				</ActionLink>
 
 				<!-- download addressbook -->
-				<ActionLink
-					:href="addressbook.url + '?export'">
+				<ActionLink :href="addressbook.url + '?export'">
 					<template #icon>
 						<IconDownload :size="20" />
 					</template>
@@ -73,9 +71,13 @@
 					<ActionInput v-else
 						ref="renameInput"
 						:disabled="renameLoading"
-						:icon="renameLoading ? 'icon-loading-small' : 'icon-rename'"
 						:value="addressbook.displayName"
-						@submit="updateAddressbookName" />
+						@submit="updateAddressbookName">
+						<template #icon>
+							<IconLoading v-if="renameLoading" :size="20" />
+							<IconRename :size="20" />
+						</template>
+					</ActionInput>
 
 					<!-- enable/disable addressbook -->
 					<ActionCheckbox v-if="!toggleEnabledLoading"
@@ -83,16 +85,21 @@
 						@change.stop.prevent="toggleAddressbookEnabled">
 						{{ t('contacts', 'Enabled') }}
 					</ActionCheckbox>
-					<ActionButton v-else
-						icon="icon-loading-small">
+					<ActionButton v-else>
+						<template #icon>
+							<IconLoading :size="20" />
+						</template>
 						{{ t('contacts', 'Enabled') }}
 					</ActionButton>
 				</template>
 
 				<!-- delete addressbook -->
 				<ActionButton v-if="hasMultipleAddressbooks"
-					:icon="deleteAddressbookLoading ? 'icon-loading-small' : 'icon-delete'"
 					@click="confirmDeletion">
+					<template #icon>
+						<IconLoading v-if="deleteAddressbookLoading" :size="20" />
+						<IconDelete :size="20" />
+					</template>
 					{{ t('contacts', 'Delete') }}
 				</ActionButton>
 			</Actions>
@@ -104,20 +111,22 @@
 </template>
 
 <script>
-import Actions from '@nextcloud/vue/dist/Components/Actions'
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
-import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
-import Button from '@nextcloud/vue/dist/Components/Button'
-import IconDownload from 'vue-material-design-icons/Download'
-import IconRename from 'vue-material-design-icons/Pencil'
-import IconContact from 'vue-material-design-icons/AccountMultiple'
-import IconShare from 'vue-material-design-icons/ShareVariant'
-import ShareAddressBook from './SettingsAddressbookShare'
+import Actions from '@nextcloud/vue/dist/Components/NcActions.js'
+import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput.js'
+import ActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox.js'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
+import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import IconDownload from 'vue-material-design-icons/Download.vue'
+import IconRename from 'vue-material-design-icons/Pencil.vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import IconShare from 'vue-material-design-icons/ShareVariant.vue'
+import ShareAddressBook from './SettingsAddressbookShare.vue'
 import { showError } from '@nextcloud/dialogs'
 
-import CopyToClipboardMixin from '../../../mixins/CopyToClipboardMixin'
+import CopyToClipboardMixin from '../../../mixins/CopyToClipboardMixin.js'
 
 export default {
 	name: 'SettingsAddressbook',
@@ -129,10 +138,12 @@ export default {
 		ActionLink,
 		Actions,
 		Button,
+		IconDelete,
 		IconDownload,
 		IconRename,
 		IconContact,
 		IconShare,
+		IconLoading,
 		ShareAddressBook,
 	},
 
@@ -292,6 +303,7 @@ export default {
 	align-items: center;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	padding: 5px 0;
 
 	> .addressbook__name {
 		+ a,
@@ -331,14 +343,17 @@ export default {
 }
 .settings-addressbook-list {
 	display: flex;
-	gap: 4px;
-	li {
-		width: calc(100% - 44px);
+	width: 100%;
+	.material-design-icon {
+		justify-content: flex-start;
 	}
 }
 .addressbook__share {
 	background-color: transparent;
 	border: none;
 	box-shadow: none;
+}
+.addressbook-shares {
+	padding-top: 10px;
 }
 </style>

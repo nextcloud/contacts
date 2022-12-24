@@ -23,8 +23,7 @@
 <template>
 	<div class="sort-contacts">
 		<IconList class="settings-line__icon" />
-		<Multiselect
-			id="sort-by"
+		<Multiselect id="sort-by"
 			:value="orderKeyOption"
 			:searchable="false"
 			:allow-empty="false"
@@ -37,8 +36,8 @@
 </template>
 
 <script>
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
-import IconList from 'vue-material-design-icons/FormatListBulletedSquare'
+import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import IconList from 'vue-material-design-icons/FormatListBulletedSquare.vue'
 
 export default {
 	name: 'SettingsSortContacts',

@@ -46,16 +46,21 @@
 
 <script>
 import { Property } from 'ical.js'
-import rfcProps from '../../models/rfcProps'
-import Contact from '../../models/contact'
+import rfcProps from '../../models/rfcProps.js'
+import Contact from '../../models/contact.js'
 
-import PropertyText from '../Properties/PropertyText'
-import PropertyMultipleText from '../Properties/PropertyMultipleText'
-import PropertyDateTime from '../Properties/PropertyDateTime'
-import PropertySelect from '../Properties/PropertySelect'
+import OrgChartsMixin from '../../mixins/OrgChartsMixin.js'
+import PropertyText from '../Properties/PropertyText.vue'
+import PropertyMultipleText from '../Properties/PropertyMultipleText.vue'
+import PropertyDateTime from '../Properties/PropertyDateTime.vue'
+import PropertySelect from '../Properties/PropertySelect.vue'
 
 export default {
 	name: 'ContactDetailsProperty',
+
+	mixins: [
+		OrgChartsMixin,
+	],
 
 	props: {
 		property: {
@@ -93,6 +98,10 @@ export default {
 		updateContact: {
 			type: Function,
 			default: () => {},
+		},
+		contacts: {
+			type: Array,
+			default: () => [],
 		},
 	},
 
@@ -173,7 +182,17 @@ export default {
 		 * @return {object[]}
 		 */
 		sortedModelOptions() {
-			if (this.propModel.options) {
+			if (!this.propModel.options) {
+				return []
+			}
+
+			if (typeof this.propModel.options === 'function') {
+				return this.propModel.options({
+					contact: this.contact,
+					$store: this.$store,
+					selectType: this.selectType,
+				})
+			} else {
 				return this.propModel.options.reduce((list, option) => {
 					if (!list.find(search => search.name === option.name)) {
 						list.push(option)
@@ -181,7 +200,6 @@ export default {
 					return list
 				}, this.selectType ? [this.selectType] : [])
 			}
-			return []
 		},
 
 		/**
@@ -299,6 +317,16 @@ export default {
 						? this.property.getValues()[0]
 						: this.property.getValues()
 				}
+				if (this.propName === 'x-managersname') {
+					if (this.property.getParameter('uid')) {
+						return this.property.getParameter('uid') + '~' + this.contact.addressbook.id
+					}
+					// Try to find the matching contact by display name
+					// TODO: this only *shows* the display name but doesn't assign the missing UID
+					const displayName = this.property.getFirstValue()
+					const other = this.otherContacts(this.contact).find(contact => contact.displayName === displayName)
+					return other?.key
+				}
 				return this.property.getFirstValue()
 			},
 			set(data) {
@@ -308,7 +336,13 @@ export default {
 						? this.property.setValues([data])
 						: this.property.setValues(data)
 				} else {
-					this.property.setValue(data)
+					if (this.propName === 'x-managersname') {
+						const manager = this.$store.getters.getContact(data)
+						this.property.setValue(manager.displayName)
+						this.property.setParameter('uid', manager.uid)
+					} else {
+						this.property.setValue(data)
+					}
 				}
 				this.updateContact()
 			},

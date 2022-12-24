@@ -38,7 +38,6 @@ class LoadContactsFilesActions implements IEventListener {
 			return;
 		}
 
-		Util::addStyle(Application::APP_ID, 'icons');
 		Util::addScript(Application::APP_ID, 'contacts-files-action');
 	}
 }

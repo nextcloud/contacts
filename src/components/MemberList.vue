@@ -22,42 +22,43 @@
 
 <template>
 	<AppContentList v-if="!hasMembers" class="members-list">
-		<EmptyContent v-if="loading" icon="icon-loading">
-			{{ t('contacts', 'Loading members list …') }}
-		</EmptyContent>
-
-		<EmptyContent v-else-if="!circle.isMember">
-			<template #icon>
-				<IconContact
-					:size="20" />
-			</template>
-			{{ t('contacts', 'The list of members is only visible to members of this circle') }}
-		</EmptyContent>
-
-		<EmptyContent v-else>
-			<template #icon>
-				<IconContact
-					:size="20" />
-			</template>
-			{{ t('contacts', 'There is no member in this circle') }}
-		</EmptyContent>
+		<template v-if="loading">
+			<EmptyContent :title="t('contacts', 'Loading members list …')">
+				<template #icon>
+					<IconLoading :size="20" />
+				</template>
+			</EmptyContent>
+		</template>
+		<template v-else-if="!circle.isMember">
+			<EmptyContent :title="t('contacts', 'The list of members is only visible to members of this circle')">
+				<template #icon>
+					<IconContact :size="20" />
+				</template>
+			</EmptyContent>
+		</template>
+		<template v-else>
+			<EmptyContent :title="t('contacts', 'You currently have no access to the member list')">
+				<template #icon>
+					<IconContact :size="20" />
+				</template>
+			</EmptyContent>
+		</template>
 	</AppContentList>
 
-	<AppContentList v-else :class="{ 'icon-loading': loading, showdetails: showDetails }">
+	<AppContentList v-else :class="{ showdetails: showDetails }">
 		<div class="members-list__new">
 			<Button v-if="circle.canManageMembers"
 				@click="onShowPicker(circle.id)">
 				<template #icon>
-					<IconAdd
-						:size="20" />
+					<IconLoading v-if="loading" />
+					<IconAdd :size="20" />
 				</template>
 				{{ t('contacts', 'Add members') }}
 			</Button>
 			<Button v-if="isMobile"
 				@click="showCircleDetails">
 				<template #icon>
-					<IconInfo
-						:size="20" />
+					<IconInfo :size="20" />
 				</template>
 				{{ t('contacts', 'Show circle details') }}
 			</Button>
@@ -84,20 +85,21 @@
 </template>
 
 <script>
-import AppContentList from '@nextcloud/vue/dist/Components/AppContentList'
-import Button from '@nextcloud/vue/dist/Components/Button'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
-import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
+import AppContentList from '@nextcloud/vue/dist/Components/NcAppContentList.js'
+import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
+import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
+import isMobile from '@nextcloud/vue/dist/Mixins/isMobile.js'
 import VirtualList from 'vue-virtual-scroll-list'
 
-import MembersListItem from './MembersList/MembersListItem'
-import EntityPicker from './EntityPicker/EntityPicker'
-import IconContact from 'vue-material-design-icons/AccountMultiple'
-import IconAdd from 'vue-material-design-icons/Plus'
-import IconInfo from 'vue-material-design-icons/InformationOutline'
-import RouterMixin from '../mixins/RouterMixin'
+import MembersListItem from './MembersList/MembersListItem.vue'
+import EntityPicker from './EntityPicker/EntityPicker.vue'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
+import IconInfo from 'vue-material-design-icons/InformationOutline.vue'
+import RouterMixin from '../mixins/RouterMixin.js'
 
-import { getRecommendations, getSuggestions } from '../services/collaborationAutocompletion'
+import { getRecommendations, getSuggestions } from '../services/collaborationAutocompletion.js'
 import { showError, showWarning } from '@nextcloud/dialogs'
 import { subscribe } from '@nextcloud/event-bus'
 import { SHARES_TYPES_MEMBER_MAP, CIRCLES_MEMBER_GROUPING } from '../models/constants.ts'
@@ -114,6 +116,7 @@ export default {
 		IconContact,
 		IconAdd,
 		IconInfo,
+		IconLoading,
 	},
 	mixins: [isMobile, RouterMixin],
 
