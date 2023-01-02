@@ -204,7 +204,7 @@ class SocialApiService {
 			}
 
 			foreach ($connectors as $connector) {
-				$urls = array_filter(array_merge($connector->getImageUrls($contact), $urls), function ($url) {
+				$urls = array_filter(array_merge($urls, $connector->getImageUrls($contact)), function ($url) {
 					return filter_var($url, FILTER_VALIDATE_URL) !== false;
 				});
 			}
