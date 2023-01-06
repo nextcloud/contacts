@@ -59,7 +59,7 @@ jobs:
 
       - name: PHPUnit & coverage
         working-directory: apps/${{ env.APP_NAME }}
-        run: ./vendor/phpunit/phpunit/phpunit --coverage-clover coverage.xml -c phpunit.xml
+        run: ./vendor-bin/phpunit/vendor/phpunit/phpunit/phpunit --coverage-clover coverage.xml -c phpunit.xml
 
       # - name: PHPUnit integration
       #   working-directory: apps/${{ env.APP_NAME }}
