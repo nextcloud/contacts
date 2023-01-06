@@ -122,7 +122,7 @@ jobs:
 
       - name: Set up PHPUnit
         working-directory: apps/${{ env.APP_NAME }}
-        run: composer i
+        run: composer install && composer bin phpunit install
 
       - name: Set up Nextcloud
         env:
@@ -135,7 +135,7 @@ jobs:
 
       - name: PHPUnit
         working-directory: apps/${{ env.APP_NAME }}
-        run: ./vendor/phpunit/phpunit/phpunit -c phpunit.xml
+        run: ./vendor-bin/phpunit/vendor/phpunit/phpunit -c phpunit.xml
 
       # - name: PHPUnit integration
       #   working-directory: apps/${{ env.APP_NAME }}
