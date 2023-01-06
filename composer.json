@@ -5,6 +5,9 @@
 		"classmap-authoritative": true,
 		"platform": {
 			"php": "7.3"
+		},
+		"allow-plugins": {
+			"bamarni/composer-bin-plugin": true
 		}
 	},
 	"scripts": {
@@ -18,8 +21,13 @@
 		"php": ">=7.3 <8.2"
 	},
 	"require-dev": {
-        "christophwurst/nextcloud_testing": "^0.12.4",
-		"phpunit/phpunit": "^9",
-		"nextcloud/coding-standard": "^1.0.0"
+        "nextcloud/coding-standard": "^1.0.0",
+		"bamarni/composer-bin-plugin": "^1.8"
+	},
+	"extra": {
+		"bamarni-bin": {
+			"bin-links": false,
+			"forward-command": true
+		}
 	}
 }

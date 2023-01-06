@@ -21,3 +21,5 @@ vendor/
 
 .php-cs-fixer.cache
 composer.phar
+
+/vendor-bin/**/vendor/
