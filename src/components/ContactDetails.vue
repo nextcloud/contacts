@@ -832,13 +832,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-// Container height fix for dropdowns
-.app-content-details {
-	height: 100%;
-	min-height: calc(100vh - var(--header-height));
-	padding: 0 44px 80px 44px;
-}
-
 // List of all properties
 section.contact-details {
 	margin: 0 auto;
