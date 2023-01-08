@@ -192,6 +192,7 @@ const properties = {
 			{ id: 'KAKAOTALK', name: 'KakaoTalk' },
 			{ id: 'MATRIX', name: 'Matrix' },
 			{ id: 'ZOOM', name: 'Zoom' },
+			{ id: 'THREEMA', name: 'Threema' },
 		],
 	},
 	tel: {
