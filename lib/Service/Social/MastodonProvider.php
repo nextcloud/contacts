@@ -62,7 +62,6 @@ class MastodonProvider implements ISocialProvider {
 	public function getImageUrls(array $contact):array {
 		$profileIds = $this->getProfileIds($contact);
 		$urls = [];
-
 		foreach ($profileIds as $profileId) {
 			$url = $this->getImageUrl($profileId);
 			if (isset($url)) {
@@ -82,21 +81,15 @@ class MastodonProvider implements ISocialProvider {
 	public function getImageUrl(string $profileUrl):?string {
 		try {
 			$result = $this->httpClient->get($profileUrl);
-
-			$htmlResult = new \DOMDocument();
-			$htmlResult->loadHTML($result->getBody());
-			$img = $htmlResult->getElementById('profile_page_avatar');
-			if (!is_null($img)) {
-				return $img->getAttribute('data-original');
-			}
-			return null;
+			$jsonResult = json_decode($result->getBody());
+			return $jsonResult->avatar;
 		} catch (\Exception $e) {
 			return null;
 		}
 	}
 
 	/**
-	 * Returns all possible profile ids for contact
+	 * Returns all possible profile URI for contact by searching the mastodon instance
 	 *
 	 * @param {array} contact information
 	 *
@@ -108,9 +101,21 @@ class MastodonProvider implements ISocialProvider {
 		if (isset($socialprofiles)) {
 			foreach ($socialprofiles as $profile) {
 				if (strtolower($profile['type']) == $this->name) {
-					$profileId = $this->cleanupId($profile['value']);
-					if (isset($profileId)) {
-						$profileIds[] = $profileId;
+					$masto_user_server = $this->cleanupId($profile['value']);
+					if (isset($masto_user_server)) {
+						try {
+							[$masto_user, $masto_server] = $masto_user_server;
+							# search for user on Mastodon
+							$search = $masto_server . '/api/v2/search?q=' . $masto_user;
+							$result = $this->httpClient->get($search);
+							$jsonResult = json_decode($result->getBody());
+							# take first search result
+							$masto_id = $jsonResult->accounts[0]->id;
+							$profileId = $masto_server . "/api/v1/accounts/" . $masto_id;
+							$profileIds[] = $profileId;
+						} catch (\Exception $e) {
+							continue;
+						}
 					}
 				}
 			}
@@ -123,18 +128,25 @@ class MastodonProvider implements ISocialProvider {
 	 *
 	 * @param {string} the value from the contact's x-socialprofile
 	 *
-	 * @return string
+	 * @return array username and server instance
 	 */
-	protected function cleanupId(string $candidate):?string {
+	protected function cleanupId(string $candidate):?array {
 		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
 		try {
+			$user_server = explode('@', $candidate);
 			if (strpos($candidate, 'http') !== 0) {
-				$user_server = explode('@', $candidate);
-				$candidate = 'https://' . array_pop($user_server) . '/@' . array_pop($user_server);
+				$masto_server = "https://" . array_pop($user_server);
+				$masto_user = array_pop($user_server);
+			} else {
+				$masto_user = array_pop($user_server);
+				$masto_server = array_pop($user_server);
 			}
+			if ((empty($masto_server)) || (empty($masto_user))) {
+				return null;
+			}
+			return array($masto_user, $masto_server);
 		} catch (\Exception $e) {
-			$candidate = null;
+			return null;
 		}
-		return $candidate;
 	}
 }
