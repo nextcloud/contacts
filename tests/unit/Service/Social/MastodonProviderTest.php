@@ -90,20 +90,33 @@ class MastodonProviderTest extends TestCase {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
 				["value" => "user1@cloud1", "type" => "mastodon"],
-				["value" => "user2@cloud2", "type" => "mastodon"]
+				["value" => "@user2@cloud2", "type" => "mastodon"],
+				["value" => "https://cloud3/@user3", "type" => "mastodon"],
+				["value" => "https://cloud/wrongSyntax", "type" => "mastodon"],
+				["value" => "@wrongSyntax", "type" => "mastodon"],
+				["value" => "wrongSyntax", "type" => "mastodon"]
 			]
 		];
 		$contactWithSocialUrls = [
-			"https://cloud1/@user1",
-			"https://cloud2/@user2",
+			"https://cloud1/api/v2/search?q=user1",
+			"https://cloud2/api/v2/search?q=user2",
+			"https://cloud3//api/v2/search?q=user3",
+			"https://cloud1/api/v1/accounts/1",
+			"https://cloud2/api/v1/accounts/2",
+			"https://cloud3//api/v1/accounts/3"
 		];
-		$contactWithSocialHtml = [
-			'<html><profile id="profile_page_avatar" data-original="user1.jpg" /></html>',
-			'<html><profile id="profile_page_avatar" data-original="user2.jpg" /></html>'
+		$contactWithSocialApi = [
+			'{"accounts":[{"id":"1","username":"user1"}]}',
+			'{"accounts":[{"id":"2","username":"user2"}]}',
+			'{"accounts":[{"id":"3","username":"user3"}]}',
+			'{"id":"1","avatar":"user1.jpg"}',
+			'{"id":"2","avatar":"user2.jpg"}',
+			'{"id":"3","avatar":"user3.jpg"}'
 		];
 		$contactWithSocialImgs = [
 			"user1.jpg",
-			"user2.jpg"
+			"user2.jpg",
+			"user3.jpg"
 		];
 
 		$contactWithoutSocial = [
@@ -113,19 +126,19 @@ class MastodonProviderTest extends TestCase {
 			]
 		];
 		$contactWithoutSocialUrls = [];
-		$contactWithoutSocialHtml = [];
+		$contactWithoutSocialApi = [];
 		$contactWithoutSocialImgs = [];
 
 		return [
 			'contact with mastodon fields' => [
 				$contactWithSocial,
-				$contactWithSocialHtml,
+				$contactWithSocialApi,
 				$contactWithSocialUrls,
 				$contactWithSocialImgs
 			],
 			'contact without mastodon fields' => [
 				$contactWithoutSocial,
-				$contactWithoutSocialHtml,
+				$contactWithoutSocialApi,
 				$contactWithoutSocialUrls,
 				$contactWithoutSocialImgs
 			]
@@ -135,9 +148,9 @@ class MastodonProviderTest extends TestCase {
 	/**
 	 * @dataProvider dataProviderGetImageUrls
 	 */
-	public function testGetImageUrls($contact, $htmls, $urls, $imgs) {
+	public function testGetImageUrls($contact, $api, $urls, $imgs) {
 		if (count($urls)) {
-			$this->response->method("getBody")->willReturnOnConsecutiveCalls(...$htmls);
+			$this->response->method("getBody")->willReturnOnConsecutiveCalls(...$api);
 			$this->client
 		   ->expects($this->exactly(count($urls)))
 		   ->method("get")
@@ -146,8 +159,6 @@ class MastodonProviderTest extends TestCase {
 		   }, $urls))
 		   ->willReturn($this->response);
 		}
-
-
 		$result = $this->provider->getImageUrls($contact);
 		$this->assertEquals($imgs, $result);
 	}
