@@ -1,5 +1,6 @@
 <!--
   - @copyright Copyright (c) 2022 Julia Kirschenheuter <julia.kirschenheuter@nextcloud.com>
+  - @copyright Copyright (c) 2022 Informatyka Boguslawski sp. z o.o. sp.k., http://www.ib.pl/
   -
   - @author Julia Kirschenheuter <julia.kirschenheuter@nextcloud.com>
   -
@@ -26,7 +27,8 @@
 		:show-navigation="true"
 		:open.sync="showSettings">
 		<AppSettingsSection id="general-settings" :title="t('contacts', 'General settings')">
-			<CheckboxRadioSwitch :checked="enableSocialSync"
+			<CheckboxRadioSwitch v-if="allowSocialSync"
+				:checked="enableSocialSync"
 				:loading="enableSocialSyncLoading"
 				:disabled="enableSocialSyncLoading"
 				class="social-sync__checkbox contacts-settings-modal__form__row"

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 /**
  * @copyright Copyright (c) 2020 Matthias Heinisch <nextcloud@matthiasheinisch.de>
+ * @copyright Copyright (c) 2022 Informatyka Boguslawski sp. z o.o. sp.k., http://www.ib.pl/
  *
  * @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
  *
@@ -92,8 +93,9 @@ class SocialApiService {
 	 * @return {array} array of the supported social networks
 	 */
 	public function getSupportedNetworks() : array {
-		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
-		if ($syncAllowedByAdmin !== 'yes') {
+		// Check if admin allows for social updates and internet connection is available.
+		if (($this->config->getAppValue($this->appName, 'allowSocialSync', 'yes') !== 'yes')
+			|| !$this->config->getSystemValueBool('has_internet_connection', true)) {
 			return [];
 		}
 		return $this->socialProvider->getSupportedNetworks();
@@ -369,10 +371,10 @@ class SocialApiService {
 	 */
 	public function updateAddressbooks(string $userId, string $offsetBook = null, string $offsetContact = null, string $network = null) : JSONResponse {
 
-		// double check!
-		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
-		$bgSyncEnabledByUser = $this->config->getUserValue($userId, $this->appName, 'enableSocialSync', 'no');
-		if (($syncAllowedByAdmin !== 'yes') || ($bgSyncEnabledByUser !== 'yes')) {
+		// Forbid if social sync is disabled by admin or by user or no internet connection is available.
+		if (($this->config->getAppValue($this->appName, 'allowSocialSync', 'yes') !== 'yes')
+				|| ($this->config->getUserValue($userId, $this->appName, 'enableSocialSync', 'no') !== 'yes')
+				|| !$this->config->getSystemValueBool('has_internet_connection', true)) {
 			return new JSONResponse([], Http::STATUS_FORBIDDEN);
 		}
 
