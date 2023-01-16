@@ -145,6 +145,7 @@
     "Create circle" : "Kör létrehozása",
     "Loading members list …" : "Taglista betöltése…",
     "The list of members is only visible to members of this circle" : "A taglista csak a kör tagjai számára látható",
+    "You currently have no access to the member list" : "Jelenleg nem fér hozzá a taglistához",
     "Add members" : "Tagok hozzáadása",
     "Show circle details" : "Kör részleteinek megjelenítése",
     "Add to {circle}" : "Hozzáadása a(z) {circle} körhöz",
