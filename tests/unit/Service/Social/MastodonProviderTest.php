@@ -53,7 +53,7 @@ class MastodonProviderTest extends TestCase {
 			->willReturn($this->client);
 
 		$this->provider = new MastodonProvider(
-	  $this->clientService
+			$this->clientService
 		);
 	}
 

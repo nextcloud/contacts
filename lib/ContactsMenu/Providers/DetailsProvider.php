@@ -32,7 +32,6 @@ use OCP\IL10N;
 use OCP\IURLGenerator;
 
 class DetailsProvider implements IProvider {
-
 	/** @var IURLGenerator */
 	private $urlGenerator;
 

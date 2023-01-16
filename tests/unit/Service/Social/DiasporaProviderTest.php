@@ -53,7 +53,7 @@ class DiasporaProviderTest extends TestCase {
 			->willReturn($this->client);
 
 		$this->provider = new DiasporaProvider(
-	  $this->clientService
+			$this->clientService
 		);
 	}
 

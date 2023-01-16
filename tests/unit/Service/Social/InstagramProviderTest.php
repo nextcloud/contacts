@@ -58,7 +58,7 @@ class InstagramProviderTest extends TestCase {
 			->willReturn($this->client);
 
 		$this->provider = new InstagramProvider(
-	  $this->clientService, $this->logger
+			$this->clientService, $this->logger
 		);
 	}
 
@@ -104,10 +104,10 @@ class InstagramProviderTest extends TestCase {
 		];
 		$contactWithSocialJson = [
 			json_encode(
-		["graphql" => ["user" => ["profile_pic_url_hd" => "username1.jpg"]]]
+				["graphql" => ["user" => ["profile_pic_url_hd" => "username1.jpg"]]]
 			),
 			json_encode(
-		["graphql" => ["user" => ["profile_pic_url_hd" => "username2.jpg"]]]
+				["graphql" => ["user" => ["profile_pic_url_hd" => "username2.jpg"]]]
 			)
 		];
 		$contactWithSocialImgs = [

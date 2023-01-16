@@ -31,7 +31,6 @@ use OCP\IRequest;
 use OCP\IURLGenerator;
 
 class ContactsController extends Controller {
-
 	/** @var IL10N */
 	private $l10n;
 

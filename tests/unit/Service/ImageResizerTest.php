@@ -27,7 +27,6 @@ namespace OCA\Contacts\Service;
 use ChristophWurst\Nextcloud\Testing\TestCase;
 
 class ImageResizerTest extends TestCase {
-
 	/** @var ImageResizer */
 	private $imageResizer;
 

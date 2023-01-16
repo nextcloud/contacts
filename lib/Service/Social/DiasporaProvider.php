@@ -26,7 +26,6 @@ namespace OCA\Contacts\Service\Social;
 use OCP\Http\Client\IClientService;
 
 class DiasporaProvider implements ISocialProvider {
-
 	/** @var IClientService */
 	private $httpClient;
 

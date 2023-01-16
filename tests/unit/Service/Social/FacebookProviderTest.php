@@ -53,7 +53,7 @@ class FacebookProviderTest extends TestCase {
 			->willReturn($this->client);
 
 		$this->provider = new FacebookProvider(
-	  $this->clientService
+			$this->clientService
 		);
 	}
 
