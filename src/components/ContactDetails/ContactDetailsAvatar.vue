@@ -154,8 +154,11 @@ export default {
 		supportedSocial() {
 			const emails = this.contact.vCard.getAllProperties('email')
 			// get social networks set for the current contact
-			const available = this.contact.vCard.getAllProperties('x-socialprofile')
+			const availableSocial = this.contact.vCard.getAllProperties('x-socialprofile')
 				.map(a => a.jCal[1].type.toString().toLowerCase())
+			const availableMessenger = this.contact.vCard.getAllProperties('impp')
+				.map(a => a.jCal[1].type.toString().toLowerCase())
+			const available = [].concat(availableSocial, availableMessenger)
 			// get list of social networks that allow for avatar download
 			const supported = supportedNetworks.map(v => v.toLowerCase())
 			if (emails.length) {

@@ -38,6 +38,7 @@ class CompositeSocialProvider {
 								TumblrProvider $tumblrProvider,
 								DiasporaProvider $diasporaProvider,
 								XingProvider $xingProvider,
+								TelegramProvider $telegramProvider,
 								GravatarProvider $gravatarProvider) {
 
 		// This determines the priority of known providers
@@ -49,6 +50,7 @@ class CompositeSocialProvider {
 			$tumblrProvider->name => $tumblrProvider,
 			$diasporaProvider->name => $diasporaProvider,
 			$xingProvider->name => $xingProvider,
+			$telegramProvider->name => $telegramProvider,
 			$gravatarProvider->name => $gravatarProvider
 		];
 	}
