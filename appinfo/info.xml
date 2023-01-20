@@ -38,7 +38,7 @@
 	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png</screenshot>
 
 	<dependencies>
-		<php min-version="7.3" max-version="8.1" />
+		<php min-version="7.3" max-version="8.2" />
 		<nextcloud min-version="25" max-version="26" />
 	</dependencies>
 
