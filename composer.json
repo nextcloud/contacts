@@ -5,6 +5,12 @@
 		"classmap-authoritative": true,
 		"platform": {
 			"php": "7.4"
+		},
+		"autoloader-suffix": "Contacts"
+	},
+	"autoload": {
+		"psr-4": {
+			"OCA\\Contacts\\": "lib/"
 		}
 	},
 	"scripts": {
