@@ -1,5 +1,12 @@
 # Changelog
 
+## 4.2.4 - 2023-01-24
+### Fixed
+- Social avatar background update
+- Double scrollbar in contact details pane
+- Use mastodon API instead of scraping HTML
+- Mime case matching
+
 ## 4.2.3 – 2022-12-15
 ### Fixed
 - Undefined array offset error
