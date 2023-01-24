@@ -252,7 +252,7 @@ export default class Contact {
 		}
 
 		// Verify if SVG is valid
-		if (photoType.startsWith('svg')) {
+		if (photoType.toLowerCase().startsWith('svg')) {
 			const imageSvg = atob(photoB64Data)
 			const cleanSvg = await sanitizeSVG(imageSvg)
 
