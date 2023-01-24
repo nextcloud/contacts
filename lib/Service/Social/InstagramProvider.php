@@ -31,7 +31,6 @@ use OCP\Http\Client\IClientService;
 use Psr\Log\LoggerInterface;
 
 class InstagramProvider implements ISocialProvider {
-
 	/** @var IClientService */
 	private $httpClient;
 

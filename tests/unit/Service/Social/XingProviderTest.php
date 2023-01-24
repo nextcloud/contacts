@@ -53,7 +53,7 @@ class XingProviderTest extends TestCase {
 			->willReturn($this->client);
 
 		$this->provider = new XingProvider(
-	  $this->clientService
+			$this->clientService
 		);
 	}
 

@@ -83,7 +83,6 @@ class SocialUpdateRegistration extends TimedJob {
 	 * @inheritDoc
 	 */
 	protected function run($arguments) {
-
 		// check if admin allows for social updates:
 		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
 		if (!($syncAllowedByAdmin === 'yes')) {
@@ -91,7 +90,6 @@ class SocialUpdateRegistration extends TimedJob {
 		}
 
 		$this->userManager->callForSeenUsers(function (IUser $user) {
-
 			// check that user opted-in:
 			$bgSyncEnabledByUser = $this->config->getUserValue($user->getUID(), $this->appName, 'enableSocialSync', 'no');
 			if ($bgSyncEnabledByUser === 'yes' && $user->isEnabled()) {

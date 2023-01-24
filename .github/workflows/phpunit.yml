@@ -18,7 +18,7 @@ jobs:
       # do not stop on another job's failure
       fail-fast: false
       matrix:
-        php-versions: ['7.4']
+        php-versions: ['8.0']
         databases: ['sqlite']
         server-versions: ['master', 'stable25']
 
@@ -58,8 +58,14 @@ jobs:
           php -S localhost:8080 &
 
       - name: PHPUnit & coverage
+        if: ${{ matrix.server-versions == 'master' }}
         working-directory: apps/${{ env.APP_NAME }}
         run: ./vendor/phpunit/phpunit/phpunit --coverage-clover coverage.xml -c phpunit.xml
+
+      - name: PHPUnit
+        if: ${{ matrix.server-versions != 'master' }}
+        working-directory: apps/${{ env.APP_NAME }}
+        run: ./vendor/phpunit/phpunit/phpunit -c phpunit.xml
 
       # - name: PHPUnit integration
       #   working-directory: apps/${{ env.APP_NAME }}
@@ -78,7 +84,7 @@ jobs:
       # do not stop on another job's failure
       fail-fast: false
       matrix:
-        php-versions: ['7.4', '8.0', '8.1', '8.2']
+        php-versions: ['8.0', '8.1', '8.2']
         databases: ['mysql']
         server-versions: ['master', 'stable25']
 
@@ -148,7 +154,7 @@ jobs:
       # do not stop on another job's failure
       fail-fast: false
       matrix:
-        php-versions: ['7.4']
+        php-versions: ['8.0']
         databases: ['pgsql']
         server-versions: ['master', 'stable25']
 

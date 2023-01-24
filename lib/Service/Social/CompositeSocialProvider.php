@@ -27,7 +27,6 @@ namespace OCA\Contacts\Service\Social;
  * Composition of all social providers for easier usage
  */
 class CompositeSocialProvider {
-
 	/** @var ISocialProvider[] */
 	private $providers;
 
@@ -40,7 +39,6 @@ class CompositeSocialProvider {
 								XingProvider $xingProvider,
 								TelegramProvider $telegramProvider,
 								GravatarProvider $gravatarProvider) {
-
 		// This determines the priority of known providers
 		$this->providers = [
 			$instagramProvider->name => $instagramProvider,

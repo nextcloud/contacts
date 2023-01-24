@@ -37,7 +37,6 @@ use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase as Base;
 
 class DetailsProviderTest extends Base {
-
 	/** @var IURLGenerator|MockObject */
 	private $urlGenerator;
 

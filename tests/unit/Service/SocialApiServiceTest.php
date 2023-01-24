@@ -185,9 +185,9 @@ class SocialApiServiceTest extends TestCase {
 
 		$result = $this->service
 			 ->updateContact(
-				 'contacts',
-				 '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
-				 null);
+			 	'contacts',
+			 	'3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
+			 	null);
 		$this->assertEquals($status, $result->getStatus());
 	}
 
@@ -257,9 +257,9 @@ class SocialApiServiceTest extends TestCase {
 
 		$result = $this->service
 									 ->updateContact(
-										 $addressBookId,
-										 $contactId,
-										 $network);
+									 	$addressBookId,
+									 	$contactId,
+									 	$network);
 
 		$this->assertEquals(Http::STATUS_OK, $result->getStatus());
 	}
@@ -330,9 +330,9 @@ class SocialApiServiceTest extends TestCase {
 
 		$result = $this->service
 									 ->updateContact(
-										 $addressBookId,
-										 $contactId,
-										 $network);
+									 	$addressBookId,
+									 	$contactId,
+									 	$network);
 
 		$this->assertEquals(Http::STATUS_OK, $result->getStatus());
 	}

@@ -26,7 +26,6 @@ namespace OCA\Contacts\Service\Social;
 use OCP\Http\Client\IClientService;
 
 class XingProvider implements ISocialProvider {
-
 	/** @var IClientService */
 	private $httpClient;
 

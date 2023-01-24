@@ -368,7 +368,6 @@ class SocialApiService {
 	 * @returns {JSONResponse} JSONResponse with the list of changed and failed contacts
 	 */
 	public function updateAddressbooks(string $userId, string $offsetBook = null, string $offsetContact = null, string $network = null) : JSONResponse {
-
 		// double check!
 		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
 		$bgSyncEnabledByUser = $this->config->getUserValue($userId, $this->appName, 'enableSocialSync', 'no');
