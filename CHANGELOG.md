@@ -1,5 +1,19 @@
 # Changelog
 
+## 5.0.3 - 2023-01-24
+### Fixed
+- Social avatar background update
+- Double scrollbar in contact details pane
+- Use mastodon API instead of scraping HTML
+- Mime case matching
+
+## 4.2.4 - 2023-01-24
+### Fixed
+- Social avatar background update
+- Double scrollbar in contact details pane
+- Use mastodon API instead of scraping HTML
+- Mime case matching
+
 ## 5.0.1 – 2022-10-18
 ### Fixed
 - Org chart expand icon overlapped
