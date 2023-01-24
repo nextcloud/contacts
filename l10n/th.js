@@ -101,7 +101,7 @@ OC.L10N.register(
     "Pager" : "เพจเจอร์",
     "Voice" : "เสียงพูด",
     "Social network" : "เครือข่ายโซเชียล",
-    "Relative" : "เครื่องญาติ",
+    "Relative" : "สัมพัทธ์",
     "None" : "ไม่มี",
     "Unknown" : "ไม่ทราบ"
 },
