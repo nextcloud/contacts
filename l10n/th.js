@@ -61,7 +61,7 @@ OC.L10N.register(
     "New contact" : "รายชื่อใหม่",
     "Search contacts …" : "ค้นหารายชื่อผู้ติดต่อ …",
     "No results" : "ไม่มีผลลัพธ์",
-    "Pending" : "อยู่ระหว่างดำเนินการ",
+    "Pending" : "รอดำเนินการ",
     "Close" : "ปิด",
     "Import" : "นำเข้า",
     "Not grouped" : "ไม่ถูกจัดกลุ่ม",
