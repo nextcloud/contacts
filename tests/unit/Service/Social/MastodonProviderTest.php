@@ -98,9 +98,9 @@ class MastodonProviderTest extends TestCase {
 			]
 		];
 		$contactWithSocialUrls = [
-			"https://cloud1/api/v2/search?q=user1",
-			"https://cloud2/api/v2/search?q=user2",
-			"https://cloud3//api/v2/search?q=user3",
+			"https://cloud1/api/v2/search?q=user1@cloud1",
+			"https://cloud2/api/v2/search?q=user2@cloud2",
+			"https://cloud3//api/v2/search?q=user3@cloud3",
 			"https://cloud1/api/v1/accounts/1",
 			"https://cloud2/api/v1/accounts/2",
 			"https://cloud3//api/v1/accounts/3"
