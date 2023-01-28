@@ -106,7 +106,7 @@ class MastodonProvider implements ISocialProvider {
 						try {
 							[$masto_user, $masto_server] = $masto_user_server;
 							# search for user on Mastodon
-							$search = $masto_server . '/api/v2/search?q=' . $masto_user;
+							$search = $masto_server . '/api/v2/search?q=' . $masto_user . '@' . parse_url($masto_server)["host"];
 							$result = $this->httpClient->get($search);
 							$jsonResult = json_decode($result->getBody());
 							# take first search result
