@@ -24,7 +24,7 @@ interface MemberPairs {
     id: string;
     type: MemberType;
 }
-declare type CircleEditType = 'name' | 'description' | 'settings' | 'config';
+type CircleEditType = 'name' | 'description' | 'settings' | 'config';
 export declare enum CircleEdit {
     Name = "name",
     Description = "description",
