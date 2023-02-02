@@ -142,7 +142,7 @@ export default {
 	user-select: none;
 	text-align: right;
 	background-size: 16px;
-	padding-right: 7px;
+	padding-right: calc(var(--default-grid-baseline) * 2);
 }
 .property__label:not(.multiselect) {
 	overflow: hidden;
