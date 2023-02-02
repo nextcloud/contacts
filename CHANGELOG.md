@@ -1,5 +1,23 @@
 # Changelog
 
+## 5.1.0 - 2023-02-02
+### Added
+- Support for Nextcloud 26
+- Support for PHP 8.2
+- Allow social avatars from telegram
+- Move app settings to a modal
+### Removed
+- Support for PHP 7.3 (EOL)
+- Support for PHP 7.4 (EOL)
+### Changed
+- Use composer's authoritative classmap
+- Rephrase "There is no member in this circle"
+- Rename 'Groups' to 'Contact groups'
+- Changed grammar of email address field label
+### Fixed
+- Prioritize local users in mastodon avatar download
+- Empty content for settings dialogs
+
 ## 5.0.3 - 2023-01-24
 ### Fixed
 - Social avatar background update
