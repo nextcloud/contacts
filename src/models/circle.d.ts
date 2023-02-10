@@ -20,7 +20,7 @@
  *
  */
 import Member from './member';
-declare type MemberList = Record<string, Member>;
+type MemberList = Record<string, Member>;
 export default class Circle {
     _data: any;
     _members: MemberList;

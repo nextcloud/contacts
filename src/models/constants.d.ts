@@ -20,11 +20,11 @@
  *
  */
 import { Type } from '@nextcloud/sharing';
-export declare type DefaultGroup = string;
-export declare type DefaultChart = string;
-export declare type CircleConfig = number;
-export declare type MemberLevel = number;
-export declare type MemberType = number;
+export type DefaultGroup = string;
+export type DefaultChart = string;
+export type CircleConfig = number;
+export type MemberLevel = number;
+export type MemberType = number;
 export declare const LIST_SIZE = 60;
 export declare const GROUP_ALL_CONTACTS: DefaultGroup;
 export declare const GROUP_NO_GROUP_CONTACTS: DefaultGroup;
