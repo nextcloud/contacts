@@ -171,7 +171,7 @@ OC.L10N.register(
     "Select type" : "Виберіть вид",
     "Select Date" : "Вкажіть дату",
     "Add contact in group" : "Додати контакт до групи",
-    "Select option" : "Виберіть параметр",
+    "Select option" : "Виберіть",
     "Unable to create the contact." : "Неможливо створити контакт.",
     "Contact not found" : "Контакт не знайдено",
     "Group {group} not found" : "Групу {group} не знайдено",
