@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.2.5 – 2023-02-21
+### Fixed
+- Npm package updates
+
 ## 4.2.4 - 2023-01-24
 ### Fixed
 - Social avatar background update
