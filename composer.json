@@ -4,7 +4,7 @@
 		"optimize-autoloader": true,
 		"classmap-authoritative": true,
 		"platform": {
-			"php": "8.0"
+			"php": "7.4"
 		},
 		"autoloader-suffix": "Contacts"
 	},
@@ -21,7 +21,7 @@
 		"test:integration": "phpunit -c phpunit.integration.xml --fail-on-warning"
 	},
 	"require": {
-		"php": ">=8.0 <=8.2"
+		"php": ">=7.4 <=8.2"
 	},
 	"require-dev": {
         "christophwurst/nextcloud_testing": "^0.12.4",
