@@ -238,7 +238,7 @@ OC.L10N.register(
     "Country" : "Країна",
     "Birthday" : "День народження",
     "Anniversary" : "Річниця",
-    "Date of death" : "Дата смерті",
+    "Date of death" : "Дата смерти",
     "Instant messaging" : "Месенджер",
     "Phone" : "Телефон",
     "Mobile" : "Мобільний",
