@@ -421,7 +421,7 @@ const actions = {
 
 			// Get vcard string
 			try {
-				const vData = contact.vCard.toString()
+				const vData = contact.toStringStripQuotes()
 				// push contact to server and use limit
 				requests.push(limit(() => contact.addressbook.dav.createVCard(vData)
 					.then((response) => {
