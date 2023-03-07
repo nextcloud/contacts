@@ -237,7 +237,7 @@ OC.L10N.register(
     "Postal code" : "Postnummer",
     "Country" : "Land",
     "Birthday" : "Födelsedag",
-    "Anniversary" : "Födelsedag",
+    "Anniversary" : "Jubileum",
     "Date of death" : "Dödsdag",
     "Instant messaging" : "Snabbmeddelanden",
     "Phone" : "Telefon",
