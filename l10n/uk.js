@@ -140,7 +140,7 @@ OC.L10N.register(
     "Add to group" : "Додати до групи",
     "Add {type}" : "Додати {type}",
     "New circle name" : "Назва нового кола",
-    "Personal circle" : "Особисте коло",
+    "Personal circle" : "Моє коло",
     "This circle will only be visible to you. Other members will not be able to see or use it." : "Це коло буде видно лише вам. Інші учасники не зможуть його побачити або використовувати.",
     "Local circle" : "Місцеве коло",
     "This circle will not be shared with the other instances of the global scale" : "Це коло не буде у спільному доступу з іншими хмарами на глобальному рівні",
