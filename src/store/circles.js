@@ -140,7 +140,7 @@ const actions = {
 		})
 
 		if (failure) {
-			showError(t('contacts', 'Some circle(s) an error occurred. Check the console for more details.'))
+			showError(t('contacts', 'An error has occurred in circle(s). Check the console for more details.'))
 		}
 
 		return circles
