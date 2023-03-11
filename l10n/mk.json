@@ -275,7 +275,6 @@
     "Time zone" : "Временска зона",
     "Spoken languages" : "Говорни јазици",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} еден контакт неможе да се прочита","{failed} контакти неможат да се прочитат"],
-    "Some circle(s) an error occurred. Check the console for more details." : "Во некои круг(ови) се појави грешка. Проверете ја конзолата за повеќе детали.",
     "Unable to create circle {circleName}" : "Неможе да се креира круг {circleName}",
     "Unable to delete circle {circleId}" : "Неможе да се избрише кругот {circleId}",
     "Unable to delete contact" : "Неможе да се избрише контакт"

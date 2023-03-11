@@ -277,7 +277,6 @@ OC.L10N.register(
     "Time zone" : "Időzóna",
     "Spoken languages" : "Beszélt nyelvek",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} névjegyet nem sikerült olvasni","{failed} névjegyet nem sikerült olvasni"],
-    "Some circle(s) an error occurred. Check the console for more details." : "Hiba történt a körökkel kapcsolatosan. További részletekért nézze meg a konzolt.",
     "Unable to create circle {circleName}" : "A(z) {circleName} kör nem hozható létre",
     "Unable to delete circle {circleId}" : "A(z) {circleId} kör nem törölhető",
     "Unable to delete contact" : "A névjegy törlése sikertelen"

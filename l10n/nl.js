@@ -273,7 +273,6 @@ OC.L10N.register(
     "Time zone" : "Tijdzone",
     "Spoken languages" : "Gesproken talen",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contactpersoon werd niet ingelezen","{failed} contactpersonen werden niet ingelezen"],
-    "Some circle(s) an error occurred. Check the console for more details." : "In sommige kringen is een fout opgetreden. Controleer het console voor meer details.",
     "Unable to create circle {circleName}" : "Kon kring {circleName} niet aanmaken",
     "Unable to delete circle {circleId}" : "Kon kring {circleId} niet verwijderen",
     "Unable to delete contact" : "Kan contactpersoon niet verwijderen"

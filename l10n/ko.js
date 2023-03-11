@@ -245,7 +245,6 @@ OC.L10N.register(
     "Unknown" : "알 수 없음",
     "Spoken languages" : "사용 언어",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["연락처 {failed}개를 읽을 수 없음"],
-    "Some circle(s) an error occurred. Check the console for more details." : "일부 서클에서 오류가 발생함. 자세한 사항은 콘솔 참조하십시오.",
     "Unable to create circle {circleName}" : "{circleName} 서클을 만들 수 없음",
     "Unable to delete circle {circleId}" : "{circleId} 서클을 삭제할 수 없음",
     "Unable to delete contact" : "연락처를 삭제할 수 없음"

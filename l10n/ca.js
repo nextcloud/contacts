@@ -276,7 +276,6 @@ OC.L10N.register(
     "Time zone" : "Fus horari",
     "Spoken languages" : "Llengües que parla",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["No s'ha pogut llegir {failed} contacte","No s'han pogut llegir {failed} contactes"],
-    "Some circle(s) an error occurred. Check the console for more details." : "S'ha produït un error en un cercle. Consulteu la consola per a veure més detalls.",
     "Unable to create circle {circleName}" : "No s'ha pogut crear el cercle {circleName}",
     "Unable to delete circle {circleId}" : "No s'ha pogut suprimir el cercle {circleId}",
     "Unable to delete contact" : "No s'ha pogut suprimir el contacte"

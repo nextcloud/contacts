@@ -277,7 +277,6 @@ OC.L10N.register(
     "Time zone" : "Часова зона",
     "Spoken languages" : "Мови",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контакт не прочитано","{failed} контактів не прочитано","{failed} контактів не прочитано","{failed} контактів не прочитано"],
-    "Some circle(s) an error occurred. Check the console for more details." : "Помилка у кількох колах чи колі. Перевірте консоль для детальної інформації.",
     "Unable to create circle {circleName}" : "Неможливо створити коло {circleName}",
     "Unable to delete circle {circleId}" : "Неможливо вилучити коло {circleName}",
     "Unable to delete contact" : "Неможливо вилучити контакт"

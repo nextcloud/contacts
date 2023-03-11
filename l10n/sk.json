@@ -270,7 +270,6 @@
     "Time zone" : "Časová zóna",
     "Spoken languages" : "Hovorené jazyky",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt nebolo možné prečítať","{failed} kontakty nebolo možné prečítať","{failed} kontaktov nebolo možné prečítať","{failed} kontaktov nebolo možné prečítať"],
-    "Some circle(s) an error occurred. Check the console for more details." : "V niektorých kruh(och) sa vyskytla chyba. Ďalšie informácie nájdete v konzole.",
     "Unable to create circle {circleName}" : "Nie je možné vytvoriť kruh {circleName}",
     "Unable to delete circle {circleId}" : "Nie je možné zmazať kruh {circleId}",
     "Unable to delete contact" : "Nepodarilo sa zmazať kontakt."

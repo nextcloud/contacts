@@ -275,7 +275,6 @@
     "Time zone" : "Zeitzone",
     "Spoken languages" : "Gesprochene Sprachen",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} Kontakt konnte nicht gelesen werden","{failed} Kontakte konnten nicht gelesen werden"],
-    "Some circle(s) an error occurred. Check the console for more details." : "Bei einigen Kreisen ist ein Fehler aufgetreten. Weitere Informationen findest du in der Konsole.",
     "Unable to create circle {circleName}" : "Kreis {circleName} konnte nicht erstellt werden",
     "Unable to delete circle {circleId}" : "Kontakt konnte nicht gelöscht werden",
     "Unable to delete contact" : "Kontakt konnte nicht gelöscht werden"

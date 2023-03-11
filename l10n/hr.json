@@ -255,7 +255,6 @@
     "Time zone" : "Vremenska zona",
     "Spoken languages" : "Poznati jezici",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt nije pročitan","{failed} kontakata nije pročitano","{failed} kontakata nije pročitano"],
-    "Some circle(s) an error occurred. Check the console for more details." : "Došlo je do pogreške u nekim krugovima. Za više pojedinosti provjerite konzolu.",
     "Unable to create circle {circleName}" : "Nije moguće stvoriti krug {circleName}",
     "Unable to delete circle {circleId}" : "Nije moguće izbrisati krug {circleId}",
     "Unable to delete contact" : "Nije moguće izbrisati kontakt"

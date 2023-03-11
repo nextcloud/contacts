@@ -274,7 +274,6 @@
     "Time zone" : "Fuso orario",
     "Spoken languages" : "Lingue parlate",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["lettura di {failed} contatto non riuscita","lettura di {failed} contatti non riuscita","lettura di {failed} contatti non riuscita"],
-    "Some circle(s) an error occurred. Check the console for more details." : "Si è verificato un errore per una o più cerchie. Controlla la console per altri dettagli.",
     "Unable to create circle {circleName}" : "Impossibile creare la cerchia {circleName}",
     "Unable to delete circle {circleId}" : "Impossibile eliminare la cerchia {circleId}",
     "Unable to delete contact" : "Impossibile eliminare il contatto"

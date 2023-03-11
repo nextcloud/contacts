@@ -275,7 +275,6 @@
     "Time zone" : "Ζώνη ώρας",
     "Spoken languages" : "Ομιλούσες γλώσσες",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Αποτυχία ανάγνωσης {failed} επαφής","Αποτυχία ανάγνωσης {failed} επαφών"],
-    "Some circle(s) an error occurred. Check the console for more details." : "Παρουσιάστηκε ένα σφάλμα κύκλου(ων). Ελέγξτε την κονσόλα για περισσότερες λεπτομέρειες.",
     "Unable to create circle {circleName}" : "Δεν είναι δυνατή η δημιουργία του κύκλου {circleName}",
     "Unable to delete circle {circleId}" : "Δεν είναι δυνατή η διαγραφή του κύκλου {circleId}",
     "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής"

@@ -270,7 +270,6 @@
     "Time zone" : "时区",
     "Spoken languages" : "口语",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} 个联系人读取失败"],
-    "Some circle(s) an error occurred. Check the console for more details." : "一些圈子出错了。更多详情见控制台",
     "Unable to create circle {circleName}" : "无法创建圈子 {circleName}",
     "Unable to delete circle {circleId}" : "无法删除圈子 {circleId}",
     "Unable to delete contact" : "无法删除联系人"

@@ -277,7 +277,6 @@ OC.L10N.register(
     "Time zone" : "時間帯",
     "Spoken languages" : "話せる言語",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed}連絡先の読み込みができませんでした。"],
-    "Some circle(s) an error occurred. Check the console for more details." : "一部のサークルでエラーが発生しました。詳細については、コンソールを確認してください。",
     "Unable to create circle {circleName}" : "サークル {circleName} を作成できません",
     "Unable to delete circle {circleId}" : "サークル{circleId}を削除できません",
     "Unable to delete contact" : "連絡先を削除できません。"

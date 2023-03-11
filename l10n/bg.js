@@ -277,7 +277,6 @@ OC.L10N.register(
     "Time zone" : "Часова зона",
     "Spoken languages" : "Говорими езици",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контактите не бяха прочетени","{failed} контактите не бяха прочетени"],
-    "Some circle(s) an error occurred. Check the console for more details." : "В някои кръг(ове) възникна грешка. Проверете конзолата за повече подробности.",
     "Unable to create circle {circleName}" : "Кръгът {circleName}, не може да се създаде",
     "Unable to delete circle {circleId}" : "Не може да се изтрие кръг {circleId}",
     "Unable to delete contact" : "Контактът не може да се изтрие"
