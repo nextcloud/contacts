@@ -277,6 +277,7 @@ OC.L10N.register(
     "Time zone" : "Tidszon",
     "Spoken languages" : "Talade språk",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt kunde inte läsas","{failed} kontakter kunde inte läsas"],
+    "An error has occurred in circle(s). Check the console for more details." : "Ett fel har uppstått i cirklar. Kontrollera konsolen för mer information.",
     "Unable to create circle {circleName}" : "Kunde inte skapa cirkeln {circleName}",
     "Unable to delete circle {circleId}" : "Kunde inte radera cirkeln {circleId}",
     "Unable to delete contact" : "Kunde inte radera kontakten"

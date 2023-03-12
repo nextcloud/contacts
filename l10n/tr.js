@@ -277,6 +277,7 @@ OC.L10N.register(
     "Time zone" : "Saat dilimi",
     "Spoken languages" : "Konuşulan diller",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kişi okunamadı","{failed} kişi okunamadı"],
+    "An error has occurred in circle(s). Check the console for more details." : "Çevrelerde bir sorun çıktı. Ayrıntılı bilgi almak için konsola bakabilirsiniz.",
     "Unable to create circle {circleName}" : "{circleName} çevresi eklenemedi",
     "Unable to delete circle {circleId}" : "{circleName} çevresi silinemedi",
     "Unable to delete contact" : "Kişi silinemedi"

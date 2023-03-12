@@ -277,6 +277,7 @@ OC.L10N.register(
     "Time zone" : "時區",
     "Spoken languages" : "會說的語言",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} 個聯絡人讀取失敗"],
+    "An error has occurred in circle(s). Check the console for more details." : "圈子中出現錯誤。 請查看控制台以獲取更多詳細資訊。",
     "Unable to create circle {circleName}" : "無法創建社交圈子 {circleName}",
     "Unable to delete circle {circleId}" : "無法刪除社交圈子 {circleId}",
     "Unable to delete contact" : "無法刪除聯絡人"
