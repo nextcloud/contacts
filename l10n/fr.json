@@ -275,6 +275,7 @@
     "Time zone" : "Fuseau horaire",
     "Spoken languages" : "Langues parlées",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Erreur de lecture pour {failed} contact","Erreur de lecture pour {failed} contacts","Erreur de lecture pour {failed} contacts"],
+    "An error has occurred in circle(s). Check the console for more details." : "Une erreur est survenue dans le·s cercle·s. Vérifiez la console pour plus de détails.",
     "Unable to create circle {circleName}" : "Impossible de créer le cercle {circleName}",
     "Unable to delete circle {circleId}" : "Impossible de supprimer le cercle {circleId}",
     "Unable to delete contact" : "Impossible de supprimer le contact."

@@ -120,8 +120,8 @@ OC.L10N.register(
     "Select address book" : "Wybierz książkę adresową",
     "Cancel" : "Anuluj",
     "This contact is not yet synced. Edit it to save it to the server." : "Ten kontakt nie został jeszcze zsynchronizowany. Edytuj go, aby zapisać na serwerze.",
-    "This contact is in read-only mode. You do not have permission to edit this contact." : "Ten kontakt jest w trybie \"tylko do odczytu\". Nie masz uprawnień do edytowania tego kontaktu.",
-    "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakt który próbujesz edytować został zmieniony. Odśwież kontakt ręcznie. Wszystkie przyszłe zmiany zostaną odrzucone.",
+    "This contact is in read-only mode. You do not have permission to edit this contact." : "Ten kontakt jest w trybie \"tylko do odczytu\". Nie masz uprawnień do modyfikowania tego kontaktu.",
+    "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakt który próbujesz zmodyfikować został zmieniony. Odśwież kontakt ręcznie. Wszystkie przyszłe zmiany zostaną odrzucone.",
     "Address book" : "Książka adresowa",
     "Add contact to Birthday Calendar" : "Dodaj kontakt do Kalendarza urodzin",
     "Exclude contact from Birthday Calendar" : "Wyklucz kontakt z Kalendarza urodzin",
@@ -277,6 +277,7 @@ OC.L10N.register(
     "Time zone" : "Strefa czasowa",
     "Spoken languages" : "Języki mówione",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Nie udało się odczytać {failed} kontaktu","Nie udało się odczytać {failed} kontaktów","Nie udało się odczytać {failed} kontaktów","Nie udało się odczytać {failed} kontaktów"],
+    "An error has occurred in circle(s). Check the console for more details." : "Wystąpił błąd w kręgach. Sprawdź konsolę po więcej informacji.",
     "Unable to create circle {circleName}" : "Nie można utworzyć kręgu {circleName}",
     "Unable to delete circle {circleId}" : "Nie można usunąć kręgu {circleId}",
     "Unable to delete contact" : "Nie można usunąć kontaktu"
