@@ -160,6 +160,7 @@ OC.L10N.register(
     "Promote to {level}" : "Ylennsä tasolle {level}",
     "Demote to {level}" : "Alenna tasolle {level}",
     "Could not delete the member {displayName}" : "Ei voitu poistaa jäsentä {displayName}",
+    "Could not change the member level to {level}" : "Jäsenen tasoksi ei voitu vaihtaa {level}",
     "Could not accept membership request" : "Jäsenyyspyyntöä ei voitu hyväksyä",
     "Chart" : "Kaavio",
     "Select chart …" : "Valitse kaavio…",

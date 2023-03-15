@@ -33,7 +33,7 @@ OC.L10N.register(
     "Not grouped" : "Tidak dikelompokkan",
     "User" : "Pengguna",
     "Group" : "Grup",
-    "Email" : "Email",
+    "Email" : "Surel",
     "Admin" : "Admin",
     "Owner" : "Owner",
     "Users" : "Pengguna",
