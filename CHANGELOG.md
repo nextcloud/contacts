@@ -1,5 +1,11 @@
 # Changelog
 
+## 5.2.0 – 2023-03-16
+### Added
+- Support for PHP7.4 (revived for Nextcloud 25 on PHP7.4 compat)
+### Changed
+- New and updated translations
+
 ## 5.1.0 - 2023-02-02
 ### Added
 - Support for Nextcloud 26
