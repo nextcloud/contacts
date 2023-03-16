@@ -4,6 +4,7 @@ OC.L10N.register(
     "Details" : "Detil",
     "All contacts" : "Semua kontak",
     "Contacts" : "Kontak",
+    "A contacts app for Nextcloud" : "Sebuah aplikasi kontak untuk Nextcloud",
     "Download" : "Unduh",
     "Send email" : "Kirim surel",
     "Rename" : "Ubah nama",
