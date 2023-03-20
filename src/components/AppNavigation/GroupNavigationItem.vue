@@ -47,6 +47,12 @@
 				</template>
 				{{ t('contacts', 'Send email') }}
 			</ActionButton>
+			<ActionButton @click="emailGroup(group, 'bcc')">
+				<template #icon>
+					<IconEmail :size="20" />
+				</template>
+				{{ t('contacts', 'Send email as BCC') }}
+			</ActionButton>
 		</template>
 
 		<template #counter>
@@ -151,7 +157,7 @@ export default {
 		 *
 		 * @param {object} group of contacts to be emailed
 		 */
-		emailGroup(group) {
+		emailGroup(group, mode = 'to') {
 			const emails = []
 			group.contacts.forEach(key => {
 				// The email property could contain "John Doe <john.doe@example.com>", but vcard spec only
@@ -168,8 +174,8 @@ export default {
 				emails.push(`${name} <${email}>`)
 			})
 			// We could just do mailto:${emails}, but if we want to use name-addr, not addr-spec, then we
-			// have to explicitly set the "To:" header.
-			window.location.href = `mailto:?to=${emails.map(encodeURIComponent).join(',')}`
+			// have to explicitly set the "to:" or "bcc:" header.
+			window.location.href = `mailto:?${mode}=${emails.map(encodeURIComponent).join(',')}`
 		},
 
 	},
