@@ -638,7 +638,7 @@ export default {
 						if (error.name === 'ParserError') {
 							showError(t('contacts', 'Syntax error. Cannot open the contact.'))
 						} else if (error?.status === 404) {
-							showError(t('contacts', 'The contact does not exists on the server anymore.'))
+							showError(t('contacts', 'The contact does not exist on the server anymore.'))
 						} else {
 							showError(t('contacts', 'Unable to retrieve the contact from the server, please check your network connection.'))
 						}
