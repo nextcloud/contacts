@@ -127,7 +127,6 @@ OC.L10N.register(
     "Exclude contact from Birthday Calendar" : "從生日行事曆排除聯絡人",
     "New contact" : "新聯絡人",
     "Syntax error. Cannot open the contact." : "語法錯誤。無法開啟聯絡人。",
-    "The contact does not exists on the server anymore." : "伺服器上不再存在該聯絡人。",
     "Unable to retrieve the contact from the server, please check your network connection." : "無法從伺服器擷取聯絡人，請檢查您的網路連線。",
     "An error occurred while trying to move the contact" : "嘗試移動聯絡人時發生錯誤",
     "An error occurred while trying to copy the contact" : "嘗試複製聯絡人時發生錯誤",

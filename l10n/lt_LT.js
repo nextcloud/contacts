@@ -118,7 +118,6 @@ OC.L10N.register(
     "Address book" : "Adresatų knyga",
     "New contact" : "Naujas adresatas",
     "Syntax error. Cannot open the contact." : "Sintaksės klaida. Nepavyko atverti adresato.",
-    "The contact does not exists on the server anymore." : "Adresato serveryje daugiau nebėra.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Nepavyko gauti adresato iš serverio, patikrinkite savo tinklo ryšį.",
     "An error occurred while trying to move the contact" : "Bandant perkelti adresatą, įvyko klaida",
     "An error occurred while trying to copy the contact" : "Bandant nukopijuoti adresatą, įvyko klaida",

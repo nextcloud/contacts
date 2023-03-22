@@ -127,7 +127,6 @@ OC.L10N.register(
     "Exclude contact from Birthday Calendar" : "Izloči stik iz koledarja rojstnih dni",
     "New contact" : "Nov stik",
     "Syntax error. Cannot open the contact." : "Napaka skladnje. Ni mogoče odpreti podatkov stika.",
-    "The contact does not exists on the server anymore." : "Stik na strežniku ne obstaja več.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Ni mogoče pridobiti stika s strežnika. Preverite omrežno povezavo.",
     "An error occurred while trying to move the contact" : "Prišlo je do napake med premikanjem stika",
     "An error occurred while trying to copy the contact" : "Prišlo je do napake med kopiranjem stika",

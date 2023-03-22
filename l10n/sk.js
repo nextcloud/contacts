@@ -124,7 +124,6 @@ OC.L10N.register(
     "Exclude contact from Birthday Calendar" : "Odobrať kontakt z Kalendára Narodenín",
     "New contact" : "Nový kontakt",
     "Syntax error. Cannot open the contact." : "Chyba zápisu. Nepodarilo sa otvoriť kontakt.",
-    "The contact does not exists on the server anymore." : "Kontakt už na serveri neexistuje.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Nepodarilo sa načítať kontakt zo servera, skontrolujte sieťové pripojenie.",
     "An error occurred while trying to move the contact" : "Pri pokuse o presun kontaktu sa vyskytla chyba",
     "An error occurred while trying to copy the contact" : "Pri pokuse o skopírovanie kontaktu sa vyskytla chyba",

@@ -127,7 +127,6 @@ OC.L10N.register(
     "Exclude contact from Birthday Calendar" : "Uteslut kontakt från födelsedagskalendern",
     "New contact" : "Ny kontakt",
     "Syntax error. Cannot open the contact." : "Syntaxfel. Kan inte öppna kontakten.",
-    "The contact does not exists on the server anymore." : "Kontakten finns inte längre på servern.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Kan inte hämta kontakten från servern, vänligen kontrollera nätverksanslutningen.",
     "An error occurred while trying to move the contact" : "Ett fel uppstod när du försökte flytta kontakten",
     "An error occurred while trying to copy the contact" : "Ett fel uppstod vid försök att kopiera kontakten",

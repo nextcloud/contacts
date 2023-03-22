@@ -126,7 +126,6 @@ OC.L10N.register(
     "Exclude contact from Birthday Calendar" : "Escludere il contatto dal calendario dei compleanni",
     "New contact" : "Nuovo contatto",
     "Syntax error. Cannot open the contact." : "Errore di sintassi. Impossibile aprire il contatto.",
-    "The contact does not exists on the server anymore." : "Il contatto non è più presente nel server.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Impossibile recuperare il contatto dal server, controlla la connessione di rete.",
     "An error occurred while trying to move the contact" : "Si è verificato un errore durante il tentativo di spostare il contatto",
     "An error occurred while trying to copy the contact" : "Si è verificato un errore durante il tentativo di copiare il contatto",

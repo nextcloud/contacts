@@ -127,7 +127,6 @@ OC.L10N.register(
     "Exclude contact from Birthday Calendar" : "Névjegy kihagyása a születésnapok naptárából",
     "New contact" : "Új névjegy",
     "Syntax error. Cannot open the contact." : "Szintaktikai hiba. Nem lehet megnyitni a kapcsolatot.",
-    "The contact does not exists on the server anymore." : "A névjegy már nem létezik a kiszolgálón.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Nem sikerült lekérni a névjegyet a kiszolgálóról, ellenőrizze a hálózati kapcsolatot.",
     "An error occurred while trying to move the contact" : "Hiba történt a névjegy áthelyezése során",
     "An error occurred while trying to copy the contact" : "Hiba történt a névjegy másolása során",

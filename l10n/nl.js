@@ -124,7 +124,6 @@ OC.L10N.register(
     "Exclude contact from Birthday Calendar" : "Contact uitsluiten van verjaardagskalender",
     "New contact" : "Nieuwe contactpersoon",
     "Syntax error. Cannot open the contact." : "Syntaxfout. Kan de contactpersoon niet openen.",
-    "The contact does not exists on the server anymore." : "De contactpersoon bestaat niet meer op de server.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Kan contactpersoon niet ophalen van de server. Controleer je netwerkverbinding.",
     "An error occurred while trying to move the contact" : "Er trad een fout op bij het verplaatsen van de contactpersoon",
     "An error occurred while trying to copy the contact" : "Er trad een fout op bij het kopiëren van de contactpersoon",

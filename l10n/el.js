@@ -127,7 +127,6 @@ OC.L10N.register(
     "Exclude contact from Birthday Calendar" : "Εξαίρεση επαφής από το Ημερολόγιο γενεθλίων",
     "New contact" : "Νέα επαφή",
     "Syntax error. Cannot open the contact." : "Σφάλμα σύνταξης. Η επαφή δεν ανοίγει.",
-    "The contact does not exists on the server anymore." : "Η επαφή δεν υπάρχει πλέον στον διακομιστή.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Δεν είναι δυνατή η λήψη της επαφής από τον διακομιστή, παρακαλούμε ελέγξτε την σύνδεσή του δικτύου σας.",
     "An error occurred while trying to move the contact" : "Παρουσιάστηκε σφάλμα κατά την μετακίνηση της επαφής",
     "An error occurred while trying to copy the contact" : "Παρουσιάστηκε σφάλμα κατά την αντιγραφή επαφής",
