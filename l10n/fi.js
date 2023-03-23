@@ -124,6 +124,7 @@ OC.L10N.register(
     "Exclude contact from Birthday Calendar" : "Älä sisällytä yhteystietoa syntymäpäiväkalenteriin",
     "New contact" : "Uusi yhteystieto",
     "Syntax error. Cannot open the contact." : "Syntaksivirhe. Yhteystietoa ei voi avata.",
+    "The contact does not exist on the server anymore." : "Yhteystietoa ei ole enää olemassa palvelimella.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Yhteystietoa ei kyetty hakemaan palvelimelta. Ole hyvä ja tarkista yhteytesi internetiin.",
     "An error occurred while trying to move the contact" : "Yhteystietoa siirtäessä tapahtui virhe",
     "An error occurred while trying to copy the contact" : "Yhteystietoa kopioitaessa tapahtui virhe",

@@ -125,6 +125,7 @@
     "Exclude contact from Birthday Calendar" : "Exclude contact from Birthday Calendar",
     "New contact" : "New contact",
     "Syntax error. Cannot open the contact." : "Syntax error. Cannot open the contact.",
+    "The contact does not exist on the server anymore." : "The contact does not exist on the server anymore.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Unable to retrieve the contact from the server, please check your network connection.",
     "An error occurred while trying to move the contact" : "An error occurred while trying to move the contact",
     "An error occurred while trying to copy the contact" : "An error occurred while trying to copy the contact",
