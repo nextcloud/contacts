@@ -131,6 +131,10 @@ export default class Circle {
      */
     get isOwner(): boolean;
     /**
+     * Is the initiator an admin of this circle?
+     */
+    get isAdmin(): boolean;
+    /**
      * Is the initiator a member of this circle?
      */
     get isMember(): boolean | 0 | undefined;

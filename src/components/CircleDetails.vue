@@ -88,7 +88,7 @@
 				@update:value="onDescriptionChangeDebounce" />
 		</section>
 
-		<section v-if="circle.isOwner && !circle.isPersonal" class="circle-details-section">
+		<section v-if="(circle.isOwner || circle.isAdmin) && !circle.isPersonal" class="circle-details-section">
 			<CircleConfigs class="circle-details-section__configs" :circle="circle" />
 			<CirclePasswordSettings class="circle-details-section__configs" :circle="circle" />
 		</section>

@@ -258,6 +258,14 @@ export default class Circle {
 		return this.initiator?.level === MemberLevels.OWNER
 	}
 
+	// PERMISSIONS SHORTCUTS ------------------------------
+	/**
+	 * Is the initiator an admin of this circle?
+	 */
+	get isAdmin() {
+		return this.initiator?.level === MemberLevels.ADMIN
+	}
+
 	/**
 	 * Is the initiator a member of this circle?
 	 */
