@@ -125,6 +125,7 @@
     "Exclude contact from Birthday Calendar" : "Excluir contato do Calendário de Aniversários",
     "New contact" : "Novo contato",
     "Syntax error. Cannot open the contact." : "Erro de sintaxe. Não é possível abrir o contato.",
+    "The contact does not exist on the server anymore." : "The contact does not exist on the server anymore.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Não foi possível recuperar o contato do servidor, verifique sua conexão de rede.",
     "An error occurred while trying to move the contact" : "Ocorreu um erro ao mover o contato",
     "An error occurred while trying to copy the contact" : "Ocorreu um erro ao copiar o contato",
@@ -274,6 +275,7 @@
     "Time zone" : "Fuso horário ",
     "Spoken languages" : "Idiomas falados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contato falhou ao ler","{failed} contatos falharam ao ler","{failed} contatos falharam ao ler"],
+    "An error has occurred in circle(s). Check the console for more details." : "An error has occurred in circle(s). Check the console for more details.",
     "Unable to create circle {circleName}" : "Não foi possível criar o círculo {circleName}",
     "Unable to delete circle {circleId}" : "Não foi possível excluir o círculo {circleId}",
     "Unable to delete contact" : "Não foi possível excluir o contato"

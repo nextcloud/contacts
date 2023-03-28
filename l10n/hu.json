@@ -125,6 +125,7 @@
     "Exclude contact from Birthday Calendar" : "Névjegy kihagyása a születésnapok naptárából",
     "New contact" : "Új névjegy",
     "Syntax error. Cannot open the contact." : "Szintaktikai hiba. Nem lehet megnyitni a kapcsolatot.",
+    "The contact does not exist on the server anymore." : "A névjegy már nem létezik a kiszolgálón.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Nem sikerült lekérni a névjegyet a kiszolgálóról, ellenőrizze a hálózati kapcsolatot.",
     "An error occurred while trying to move the contact" : "Hiba történt a névjegy áthelyezése során",
     "An error occurred while trying to copy the contact" : "Hiba történt a névjegy másolása során",
@@ -274,6 +275,7 @@
     "Time zone" : "Időzóna",
     "Spoken languages" : "Beszélt nyelvek",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} névjegyet nem sikerült olvasni","{failed} névjegyet nem sikerült olvasni"],
+    "An error has occurred in circle(s). Check the console for more details." : "Hiba történt a körökben. További részletekért nézze meg a konzolt.",
     "Unable to create circle {circleName}" : "A(z) {circleName} kör nem hozható létre",
     "Unable to delete circle {circleId}" : "A(z) {circleId} kör nem törölhető",
     "Unable to delete contact" : "A névjegy törlése sikertelen"
