@@ -223,7 +223,7 @@ OC.L10N.register(
     "Prefix" : "Ön ek",
     "Suffix" : "Son ek",
     "Notes" : "Notlar",
-    "Website" : "Web sitesi",
+    "Website" : "Site",
     "Location" : "Konum",
     "Federated Cloud ID" : "Birleşik bulut kodu",
     "Home" : "Ev",
