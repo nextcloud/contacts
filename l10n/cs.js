@@ -31,6 +31,7 @@ OC.L10N.register(
     "Address books" : "Adresáře kontaktů",
     "Download" : "Stáhnout",
     "Send email" : "Odeslat e-mail",
+    "Send email as BCC" : "Odeslat e-mail jako skrytou kopii (bcc)",
     "Contact groups" : "Skupiny kontaktů",
     "Create a new contact group" : "Vytvořit novou skupinu kontaktů",
     "Contact group name" : "Název skupiny kontaktů",

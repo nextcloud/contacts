@@ -31,6 +31,7 @@ OC.L10N.register(
     "Address books" : "Adres defterleri",
     "Download" : "İndir",
     "Send email" : "E-posta gönder",
+    "Send email as BCC" : "E-posta gizli kopya olarak gönderilsin",
     "Contact groups" : "Kişi grupları",
     "Create a new contact group" : "Yeni bir kişi grubu ekle",
     "Contact group name" : "Kişi grubu adı",

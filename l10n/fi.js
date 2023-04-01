@@ -31,6 +31,7 @@ OC.L10N.register(
     "Address books" : "Osoitekirjat",
     "Download" : "Lataa",
     "Send email" : "Lähetä sähköposti",
+    "Send email as BCC" : "Lähetä sähköposti piilokopiona",
     "Contact groups" : "Yhteystietoryhmät",
     "Create a new contact group" : "Luo uusi yhteystietoryhmä",
     "Contact group name" : "Yhteystietoryhmän nimi",

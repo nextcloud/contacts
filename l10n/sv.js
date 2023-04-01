@@ -31,6 +31,7 @@ OC.L10N.register(
     "Address books" : "Adressböcker",
     "Download" : "Hämta",
     "Send email" : "Skicka e-post",
+    "Send email as BCC" : "Skicka e-post som BCC",
     "Contact groups" : "Kontaktgrupper",
     "Create a new contact group" : "Skapa en ny kontaktgrupp",
     "Contact group name" : "Namn på kontaktgrupp",
