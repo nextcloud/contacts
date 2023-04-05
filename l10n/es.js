@@ -31,6 +31,7 @@ OC.L10N.register(
     "Address books" : "Libretas de direcciones",
     "Download" : "Descargar",
     "Send email" : "Enviar correo electrónico",
+    "Send email as BCC" : "Enviar correo como BCC",
     "Contact groups" : "Grupos de contactos",
     "Create a new contact group" : "Crear un nuevo grupo de contactos",
     "Contact group name" : "Nombre del grupo de contactos",
