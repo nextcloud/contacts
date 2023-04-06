@@ -31,6 +31,7 @@ OC.L10N.register(
     "Address books" : "Helbide liburuak",
     "Download" : "Deskargatu",
     "Send email" : "Bidali posta-mezua",
+    "Send email as BCC" : "Bidali mezu elektronikoa BCC moduan",
     "Contact groups" : "Kontaktuen taldeak",
     "Create a new contact group" : "Sortu kontaktu-talde berria",
     "Contact group name" : "Kontaktu taldearen izena",
@@ -127,6 +128,7 @@ OC.L10N.register(
     "Exclude contact from Birthday Calendar" : "Kendu kontaktua urtebetetze egutegitik",
     "New contact" : "Kontaktu berria",
     "Syntax error. Cannot open the contact." : "Sintaxi-errorea. Ezin da kontaktua ireki.",
+    "The contact does not exist on the server anymore." : "Kontaktua ez dago jada zerbitzarian.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Ezin izan da kontaktua lortu zerbitzaritik, begiratu internet konexio ona duzun.",
     "An error occurred while trying to move the contact" : "Errorea gertatu da kontaktua mugitzen saiatzerakoan",
     "An error occurred while trying to copy the contact" : "Errorea gertatu da kontaktua kopiatzen saiatzerakoan",
@@ -276,6 +278,7 @@ OC.L10N.register(
     "Time zone" : "Ordu-zona",
     "Spoken languages" : "Hitz egiteko erabilitako hizkuntzak",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Ezin izan da kontaktu {failed} irakurri","Ezin izan dira {failed} kontaktu irakurri"],
+    "An error has occurred in circle(s). Check the console for more details." : "Errore bat gertatu da zirkuluetan. Begiratu kontsola xehetasun gehiago lortzeko.",
     "Unable to create circle {circleName}" : "Ezin izan da {circleName} zirkulua sortu",
     "Unable to delete circle {circleId}" : "Ezin izan da zirkulua ezabatu",
     "Unable to delete contact" : "Ezin izan da kontaktua ezabatu"
