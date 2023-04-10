@@ -139,6 +139,15 @@ export default {
 					property.setParameter('type', defaultData.type)
 				}
 			}
+
+			//We want to wait until the new property is rendered
+			this.$nextTick(() => {
+				let lastAddedElementOfType = document.getElementsByClassName("property--last property-" + id)[0];
+
+				let firstInput = lastAddedElementOfType.querySelectorAll('input,textarea')[0];
+				firstInput.focus();
+				firstInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+			});
 		},
 	},
 }
