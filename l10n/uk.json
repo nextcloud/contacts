@@ -29,6 +29,7 @@
     "Address books" : "Адресні книги",
     "Download" : "Звантажити",
     "Send email" : "Надіслати лист",
+    "Send email as BCC" : "Надіслати лист ел.пошти як приховану копію",
     "Contact groups" : "Групи контактів",
     "Create a new contact group" : "Створити нову групу контактів",
     "Contact group name" : "Назва групи контактів",
@@ -125,6 +126,7 @@
     "Exclude contact from Birthday Calendar" : "Прибрати контакт з календаря днів народжень",
     "New contact" : "Новий контакт",
     "Syntax error. Cannot open the contact." : "Синтаксична помилка. Неможливо відкрити контакт.",
+    "The contact does not exist on the server anymore." : "Цей контакт більше не доступний на цьому сервері.",
     "Unable to retrieve the contact from the server, please check your network connection." : "Неможливо отримати контакт з серверу, будь ласка, перевірте ваше мережеве з'єднання.",
     "An error occurred while trying to move the contact" : "Помилка під час переміщення контакту",
     "An error occurred while trying to copy the contact" : "Помилка під час копіювання контакту",
@@ -274,6 +276,7 @@
     "Time zone" : "Часова зона",
     "Spoken languages" : "Мови",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контакт не прочитано","{failed} контактів не прочитано","{failed} контактів не прочитано","{failed} контактів не прочитано"],
+    "An error has occurred in circle(s). Check the console for more details." : "Помилка в одному з кіл. Перевірте додаткові дані у консолі.",
     "Unable to create circle {circleName}" : "Неможливо створити коло {circleName}",
     "Unable to delete circle {circleId}" : "Неможливо вилучити коло {circleName}",
     "Unable to delete contact" : "Неможливо вилучити контакт"
