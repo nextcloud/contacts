@@ -99,8 +99,8 @@ class PageController extends Controller {
 		// allow users to retrieve avatars from social networks (default: yes)
 		$syncAllowedByAdmin = $this->config->getAppValue(Application::APP_ID, 'allowSocialSync', 'yes');
 
-		// allow users to retrieve the admin address book from social networks (default: yes)
-		$allowSystemAddressBook = $this->config->getAppValue(Application::APP_ID, 'allowSystemAddressBook', 'no');
+		// allow users to retrieve the admin address book from social networks (default: no)
+		$allowSystemAddressBook = $this->config->getAppValue('dav', 'allowSystemAddressBook', 'no');
 
 		// automated background syncs for social avatars (default: no)
 		$bgSyncEnabledByUser = $this->config->getUserValue($userId, Application::APP_ID, 'enableSocialSync', 'no');
