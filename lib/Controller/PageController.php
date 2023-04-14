@@ -98,6 +98,10 @@ class PageController extends Controller {
 		$supportedNetworks = $this->socialApiService->getSupportedNetworks();
 		// allow users to retrieve avatars from social networks (default: yes)
 		$syncAllowedByAdmin = $this->config->getAppValue(Application::APP_ID, 'allowSocialSync', 'yes');
+
+		// allow users to retrieve the admin address book from social networks (default: yes)
+		$allowSystemAddressBook = $this->config->getAppValue(Application::APP_ID, 'allowSystemAddressBook', 'no');
+
 		// automated background syncs for social avatars (default: no)
 		$bgSyncEnabledByUser = $this->config->getUserValue($userId, Application::APP_ID, 'enableSocialSync', 'no');
 
@@ -111,6 +115,7 @@ class PageController extends Controller {
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'defaultProfile', $defaultProfile);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'supportedNetworks', $supportedNetworks);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'allowSocialSync', $syncAllowedByAdmin);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'allowSystemAddressBook', $allowSystemAddressBook);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'enableSocialSync', $bgSyncEnabledByUser);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isContactsInteractionEnabled', $isContactsInteractionEnabled);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isCirclesEnabled', $isCirclesEnabled && $isCircleVersionCompatible);

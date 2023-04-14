@@ -31,6 +31,14 @@
 				@change="updateSetting('allowSocialSync')">
 			<label for="allow-social-sync">{{ t('contacts', 'Allow updating avatars from social media') }}</label>
 		</p>
+		<p>
+			<input id="allow-system-address-book"
+			   v-model="allowSystemAddressBook"
+			   type="checkbox"
+			   class="checkbox"
+			   @change="updateSetting('allowSystemAddressBook')">
+			<label for="allow-system-address-book">{{ t('contacts', 'Allow users to see the system address book') }}</label>
+		</p>
 	</div>
 </template>
 
@@ -43,10 +51,12 @@ export default {
 	data() {
 		return {
 			allowSocialSync: loadState('contacts', 'allowSocialSync') === 'yes',
+			allowSystemAddressBook: loadState('dav', 'allowSystemAddressBook') === 'yes',
 		}
 	},
 	methods: {
 		updateSetting(setting) {
+			// does this need to be the dav endpoint for the system address book?
 			axios.put(generateUrl('apps/contacts/api/v1/social/config/global/' + setting), {
 				allow: this[setting] ? 'yes' : 'no',
 			})

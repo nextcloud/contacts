@@ -66,7 +66,7 @@ class SocialApiController extends ApiController {
 	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
 	 */
 	public function setAppConfig($key, $allow) {
-		$permittedKeys = ['allowSocialSync'];
+		$permittedKeys = ['allowSocialSync', 'allowSystemAddressBook'];
 		if (!in_array($key, $permittedKeys)) {
 			return new JSONResponse([], Http::STATUS_FORBIDDEN);
 		}
