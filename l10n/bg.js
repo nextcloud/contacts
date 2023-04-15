@@ -31,6 +31,7 @@ OC.L10N.register(
     "Address books" : "Адресни книги",
     "Download" : "Свали",
     "Send email" : "Изпращане на имейл",
+    "Send email as BCC" : "Изпращане на имейл, като BCC",
     "Contact groups" : "Групи за контакт",
     "Create a new contact group" : "Създаване на нова група за контакти",
     "Contact group name" : "Име на групата за контакти",
