@@ -29,6 +29,7 @@
 			:selected-group="selectedGroup"
 			:selected-contact="selectedContact">
 			<!-- new-contact-button -->
+			<SettingsImportContacts v-if="isEmptyGroup" />
 			<Button v-if="!loadingContacts"
 				class="new-contact-button"
 				type="primary"
@@ -83,6 +84,7 @@ import ContactsContent from '../components/AppContent/ContactsContent.vue'
 import ContactsPicker from '../components/EntityPicker/ContactsPicker.vue'
 import ImportView from './Processing/ImportView.vue'
 import RootNavigation from '../components/AppNavigation/RootNavigation.vue'
+import SettingsImportContacts from '../components/AppNavigation/Settings/SettingsImportContacts.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 
 import Contact from '../models/contact.js'
@@ -105,6 +107,7 @@ export default {
 		IconAdd,
 		Modal,
 		RootNavigation,
+		SettingsImportContacts,
 	},
 
 	mixins: [
@@ -161,7 +164,9 @@ export default {
 		importState() {
 			return this.$store.getters.getImportState
 		},
-
+		isEmptyGroup() {
+			return this.contactsList.length === 0
+		},
 		/**
 		 * Are we importing contacts ?
 		 *
@@ -415,6 +420,6 @@ export default {
 
 <style lang="scss" scoped>
 .new-contact-button {
-	justify-content: start !important;
+	margin-top: 4px;
 }
 </style>
