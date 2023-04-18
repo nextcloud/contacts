@@ -2,6 +2,7 @@
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Richard Steinmetz <richard@steinmetz.cloud>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -19,47 +20,62 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-$property-label-min-width: 60px;
-$property-label-max-width: 2 * $property-label-min-width;
-$property-value-max-width: 250px;
+
+$property-label-min-width: 100px;
+$property-label-max-width: 200px;
+$property-label-width: calc(($property-label-min-width + $property-label-max-width) / 2);
+
+$property-value-min-width: 200px;
+$property-value-max-width: 300px;
+$property-value-width: calc(($property-value-min-width + $property-value-max-width) / 2);
+
 $property-ext-padding-right: 8px;
+$property-row-gap: 15px;
 
 .property {
-	position: relative;
 	width: 100%;
-	// we need this to keep the alignment of the ext and delete/action button
-	// The flex grow will never go over those values. Therefore we can set
-	// the max width and keep the right alignment
-	max-width: $property-label-max-width + $property-value-max-width + 44px;
 
-	justify-self: center;
+	// property title row
+	&--title {
+		display: flex;
+		align-items: center;
+		gap: $property-row-gap;
 
-	&--last {
-		margin-bottom: $grid-height-unit;
-	}
-	// no delete/action icon on addressbook selector
-	&--addressbooks &__actions {
-		display: none !important;
-	}
-
-	&--without-actions {
-		padding-right: 44px; // actions menu / button
+		.property__actions {
+			// placeholder for the actions menu
+			&__empty {
+				width: 44px;
+			}
+		}
 	}
 
 	// property row
 	&__row {
-		position: relative;
 		display: flex;
 		align-items: center;
+		gap: $property-row-gap;
+
+		&--without-actions {
+			.property__value {
+				margin-right: $property-row-gap + 44px; // actions menu / button
+			}
+		}
+
+		// fix default margin from server stylesheet causing slight misalignment
+		input {
+			margin-right: 0;
+		}
 	}
 
 	// property label or multiselect within row
-	&__label,
-	&__label.multiselect {
-		flex: 1 0; // min width is 60px, let's grow until 120px
-		width: $property-label-min-width;
-		min-width: $property-label-min-width !important; // override multiselect
-		max-width: $property-label-max-width;
+	&__label {
+		display: flex;
+		justify-content: end;
+		flex: 1 auto;
+
+		width: $property-label-width !important;
+		min-width: $property-label-min-width !important;
+		max-width: $property-label-max-width !important;
 
 		&:not(.multiselect) {
 			overflow: hidden;
@@ -67,35 +83,6 @@ $property-ext-padding-right: 8px;
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			opacity: .7;
-		}
-
-		// mouse feedback
-		.multiselect__tags {
-			opacity: .7;
-		}
-		&:hover,
-		&:focus,
-		&:active {
-			.multiselect__tags {
-				opacity: 1;
-				border-color: var(--color-border-dark);
-			}
-		}
-
-		// read-only mode
-		&.multiselect--disabled {
-			&, .multiselect__single {
-				&, &:hover, &:focus &:active {
-					border-color: transparent !important;
-					background-color: var(--color-main-background) !important;
-				}
-			}
-		}
-	}
-
-	&__label.multiselect {
-		.multiselect__tags {
-			border: none !important; // override multiselect
 		}
 	}
 
@@ -106,7 +93,12 @@ $property-ext-padding-right: 8px;
 
 	// Property value within row, after label
 	&__value {
-		flex: 1 1;
+		flex: 1 auto;
+
+		width: $property-value-width !important;
+		//min-width: $property-value-min-width !important;
+		min-width: unset !important;
+		max-width: $property-value-max-width !important;
 
 		textarea {
 			align-self: flex-start;
@@ -123,21 +115,19 @@ $property-ext-padding-right: 8px;
 			padding-right: 24px;
 		}
 
-		// Show ext and delete icon permanently on focus
+		// Show ext icon permanently on focus
 		&:hover,
 		&:focus,
 		&:active {
-			~ .property__ext,
-			~ .action-item.icon-delete {
+			~ .property__ext {
 				opacity: .5;
 			}
 		}
 	}
 
-	// Show ext and delete buttons on full row hover
+	// Show ext buttons on full row hover
 	&:hover {
-		.property__ext,
-		.action-item {
+		.property__ext {
 			opacity: .5;
 		}
 	}
@@ -162,15 +152,5 @@ $property-ext-padding-right: 8px;
 	// Delete property button + actions
 	&__actions {
 		z-index: 10;
-		margin-left: auto !important;
-		// floating actions next to the title
-		&--floating {
-			position: absolute !important;
-			right: 0;
-			bottom: 0;
-		}
-	}
-	.property__value {
-		margin-right: 0;
 	}
 }

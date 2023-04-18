@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -27,7 +28,8 @@
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName" />
 
-		<div class="property__row">
+		<div class="property__row"
+			:class="{'property__row--without-actions': isReadOnly || hideActions}">
 			<!-- if we do not support any type on our model but one is set anyway -->
 			<div v-if="selectType" class="property__label">
 				{{ selectType.name }}
@@ -48,7 +50,7 @@
 				@input="updateValue" />
 
 			<!-- props actions -->
-			<PropertyActions v-if="!isReadOnly"
+			<PropertyActions v-if="!isReadOnly && !hideActions"
 				:actions="actions"
 				:property-component="this"
 				@delete="deleteProperty" />
@@ -78,6 +80,10 @@ export default {
 			type: [Object, String, Array],
 			default: '',
 			required: true,
+		},
+		hideActions: {
+			type: Boolean,
+			default: false,
 		},
 	},
 
@@ -123,28 +129,4 @@ export default {
 		},
 	},
 }
-
 </script>
-<style lang="scss" scoped>
-.property__label:not(.multiselect) {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	opacity: 0.7;
-}
-.property__row {
-	position: relative;
-	display: flex;
-	align-items: center;
-}
-.property__label, .property__label.multiselect {
-	flex: 1 0;
-	width: 60px;
-	min-width: 60px !important;
-	max-width: 120px;
-	user-select: none;
-	text-align: right;
-	background-size: 16px;
-}
-
-</style>

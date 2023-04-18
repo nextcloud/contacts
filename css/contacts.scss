@@ -3,6 +3,7 @@
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
  * @author Team Popcorn <teampopcornberlin@gmail.com>
+ * @author Richard Steinmetz <richard@steinmetz.cloud>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -32,7 +33,6 @@ $grid-input-height-with-margin: $grid-height-unit - $grid-input-margin * 2;
 @import 'Settings/SettingsAddressbookSharee';
 @import 'ContactsListItem';
 @import 'Properties/Properties';
-@import 'Properties/PropertyTitle';
 @import 'ImportScreen';
 
 // various
@@ -41,7 +41,8 @@ $grid-input-height-with-margin: $grid-height-unit - $grid-input-margin * 2;
 
 
 .app-content-details {
-	padding: 0 44px 80px 44px;
+	padding: calc(var(--default-grid-baseline) * 2);
+	padding-top: 0;
 	height: 100%;
 	overflow: auto;
 }

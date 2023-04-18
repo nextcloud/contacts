@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -21,11 +22,11 @@
   -->
 
 <template>
-	<div v-if="propModel" class="property property--without-actions">
+	<div v-if="propModel" class="property">
 		<PropertyTitle icon="icon-contacts-dark"
 			:readable-name="t('contacts', 'Contact groups')" />
 
-		<div class="property__row">
+		<div class="property__row property__row--without-actions">
 			<div class="property__label">
 				{{ propModel.readableName }}
 			</div>
@@ -185,27 +186,4 @@ export default {
 		},
 	},
 }
-
 </script>
-<style lang="scss" scoped>
-.property__label:not(.multiselect) {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	opacity: 0.7;
-}
-.property__row {
-	position: relative;
-	display: flex;
-	align-items: center;
-}
-.property__label, .property__label.multiselect {
-	flex: 1 0;
-	width: 60px;
-	min-width: 60px !important;
-	max-width: 120px;
-	user-select: none;
-	text-align: right;
-	background-size: 16px;
-}
-</style>
