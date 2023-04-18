@@ -32,7 +32,7 @@
 		:is-last-property="isLastProperty"
 		:class="{
 			'property--last': isLastProperty,
-			[`property-${propName}`]: true
+			[`property-${propName}`]: true,
 		}"
 		:local-contact="localContact"
 		:prop-name="propName"
@@ -102,6 +102,10 @@ export default {
 		contacts: {
 			type: Array,
 			default: () => [],
+		},
+		bus: {
+			type: Object,
+			required: true,
 		},
 	},
 
@@ -374,7 +378,33 @@ export default {
 		},
 	},
 
+	created() {
+		this.bus.$on('focus-prop', this.onFocusProp)
+	},
+
+	destroyed() {
+		this.bus.$off('focus-prop', this.onFocusProp)
+	},
+
 	methods: {
+		/**
+		 * Focus first input element of the new prop
+		 *
+		 * @param {string} id the id of the property
+		 */
+		onFocusProp(id) {
+			if (id === this.propName && this.isLastProperty) {
+				this.$nextTick(() => {
+					const inputs = this.$refs.component.$el.querySelectorAll('input, textarea')
+					if (inputs === undefined || inputs.length === 0) {
+						console.warn('no input to focus found')
+					} else {
+						inputs[0].focus()
+					}
+				})
+			}
+		},
+
 		/**
 		 * Delete this property
 		 */

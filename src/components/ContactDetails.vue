@@ -215,6 +215,7 @@
 						:local-contact="localContact"
 						:update-contact="debounceUpdateContact"
 						:contacts="contacts"
+						:bus="bus"
 						@resize="debounceRedrawMasonry" />
 				</div>
 
@@ -242,6 +243,7 @@
 				<!-- new property select -->
 				<AddNewProp v-if="!isReadOnly"
 					v-masonry-tile
+					:bus="bus"
 					:contact="contact"
 					class="property-masonry" />
 
@@ -347,6 +349,9 @@ export default {
 
 			contactDetailsSelector: '.contact-details',
 			excludeFromBirthdayKey: 'x-nc-exclude-from-birthday-calendar',
+
+			// communication for ContactDetailsAddNewProp and ContactDetailsProperty
+			bus: new Vue(),
 		}
 	},
 

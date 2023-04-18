@@ -41,10 +41,6 @@ console.debug('Initial state loaded', 'defaultProfileState', defaultProfileState
 console.debug('Initial state loaded', 'localesState', localesState)
 
 const properties = {
-	nickname: {
-		readableName: t('contacts', 'Nickname'),
-		icon: 'icon-user',
-	},
 	n: {
 		readableName: t('contacts', 'Detailed name'),
 		readableValues: [
@@ -53,45 +49,45 @@ const properties = {
 			t('contacts', 'Additional names'),
 			t('contacts', 'Prefix'),
 			t('contacts', 'Suffix'),
+
+			t('contacts', 'Nickname'),
+			t('contacts', 'Phonetic first name'),
+			t('contacts', 'Phonetic last name'),
 		],
-		displayOrder: [3, 1, 2, 0, 4],
+		displayOrder: [3, 1, 2, 0, 4, 5, 6, 7],
 		defaultValue: {
-			value: ['', '', '', '', ''],
+			value: ['', '', '', '', '', '', '', ''],
 		},
-		icon: 'icon-user',
+		icon: 'icon-detailed-name',
 		actions: [
 			ActionCopyNtoFN,
 		],
-	},
-	'x-phonetic-first-name': {
-		readableName: t('contacts', 'Phonetic first name'),
-		force: 'text',
-	},
-	'x-phonetic-last-name': {
-		readableName: t('contacts', 'Phonetic last name'),
-		force: 'text',
+		primary: false,
 	},
 	note: {
 		readableName: t('contacts', 'Notes'),
-		icon: 'icon-rename',
+		icon: 'icon-note',
+		primary: false,
 	},
 	url: {
 		multiple: true,
 		readableName: t('contacts', 'Website'),
 		icon: 'icon-public',
+		primary: true,
 	},
 	geo: {
 		multiple: true,
 		readableName: t('contacts', 'Location'),
-		icon: 'icon-address',
+		icon: 'icon-location',
 		defaultjCal: {
 			'3.0': [{}, 'FLOAT', '90.000;0.000'],
 			'4.0': [{}, 'URI', 'geo:90.000,0.000'],
 		},
+		primary: false,
 	},
 	cloud: {
 		multiple: true,
-		icon: 'icon-public',
+		icon: 'icon-federated-cloud-id',
 		readableName: t('contacts', 'Federated Cloud ID'),
 		force: 'text',
 		defaultValue: {
@@ -103,6 +99,7 @@ const properties = {
 			{ id: 'WORK', name: t('contacts', 'Work') },
 			{ id: 'OTHER', name: t('contacts', 'Other') },
 		],
+		primary: false,
 	},
 	adr: {
 		multiple: true,
@@ -128,6 +125,7 @@ const properties = {
 			{ id: 'WORK', name: t('contacts', 'Work') },
 			{ id: 'OTHER', name: t('contacts', 'Other') },
 		],
+		primary: true,
 	},
 	bday: {
 		readableName: t('contacts', 'Birthday'),
@@ -139,22 +137,25 @@ const properties = {
 		actions: [
 			ActionToggleYear,
 		],
+		primary: true,
 	},
 	anniversary: {
 		readableName: t('contacts', 'Anniversary'),
-		icon: 'icon-calendar-dark',
+		icon: 'icon-anniversary',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
 			value: new VCardTime(null, null, 'date').fromJSDate(new Date()),
 		},
+		primary: false,
 	},
 	deathdate: {
 		readableName: t('contacts', 'Date of death'),
-		icon: 'icon-calendar-dark',
+		icon: 'icon-death-day',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
 			value: new VCardTime(null, null, 'date').fromJSDate(new Date()),
 		},
+		primary: false,
 	},
 	email: {
 		multiple: true,
@@ -170,11 +171,12 @@ const properties = {
 			{ id: 'WORK', name: t('contacts', 'Work') },
 			{ id: 'OTHER', name: t('contacts', 'Other') },
 		],
+		primary: true,
 	},
 	impp: {
 		multiple: true,
 		readableName: t('contacts', 'Instant messaging'),
-		icon: 'icon-comment',
+		icon: 'icon-instant-message',
 		defaultValue: {
 			value: [''],
 			type: ['SKYPE'],
@@ -194,6 +196,7 @@ const properties = {
 			{ id: 'ZOOM', name: 'Zoom' },
 			{ id: 'THREEMA', name: 'Threema' },
 		],
+		primary: false,
 	},
 	tel: {
 		multiple: true,
@@ -221,12 +224,13 @@ const properties = {
 			{ id: 'CAR', name: t('contacts', 'Car') },
 			{ id: 'WORK,PAGER', name: t('contacts', 'Work pager') },
 		],
+		primary: true,
 	},
 	'x-managersname': {
 		multiple: false,
 		force: 'select',
 		readableName: t('contacts', 'Manager'),
-		icon: 'icon-category-monitoring',
+		icon: 'icon-manager',
 		default: false,
 		options({ contact, $store, selectType }) {
 			// Only allow contacts of the same address book
@@ -247,6 +251,7 @@ const properties = {
 				}
 			}, selectType ? { [selectType.value]: selectType } : {}))
 		},
+		primary: true,
 	},
 	'x-socialprofile': {
 		multiple: true,
@@ -274,11 +279,12 @@ const properties = {
 			{ id: 'DIASPORA', name: 'Diaspora', placeholder: 'https://joindiaspora.com/…' },
 			{ id: 'OTHER', name: 'Other social media', placeholder: 'https://example.com/…' },
 		],
+		primary: true,
 	},
 	relationship: {
 		readableName: t('contacts', 'Relationship to you'),
 		force: 'select',
-		icon: 'icon-group',
+		icon: 'icon-relation-to-you',
 		options: [
 			{ id: 'SPOUSE', name: t('contacts', 'Spouse') },
 			{ id: 'CHILD', name: t('contacts', 'Child') },
@@ -293,11 +299,12 @@ const properties = {
 			{ id: 'MANAGER', name: t('contacts', 'Manager') },
 			{ id: 'ASSISTANT', name: t('contacts', 'Assistant') },
 		],
+		primary: false,
 	},
 	related: {
 		multiple: true,
 		readableName: t('contacts', 'Related contacts'),
-		icon: 'icon-group',
+		icon: 'icon-related-contact',
 		defaultValue: {
 			value: [''],
 			type: ['CONTACT'],
@@ -320,6 +327,7 @@ const properties = {
 			{ id: 'SISTER', name: t('contacts', 'Sister') },
 			{ id: 'RELATIVE', name: t('contacts', 'Relative') },
 		],
+		primary: false,
 	},
 	gender: {
 		readableName: t('contacts', 'Gender'),
@@ -327,6 +335,7 @@ const properties = {
 			// default to Female 🙋
 			value: 'F',
 		},
+		icon: 'icon-gender',
 		force: 'select',
 		options: [
 			{ id: 'F', name: t('contacts', 'Female') },
@@ -335,6 +344,7 @@ const properties = {
 			{ id: 'N', name: t('contacts', 'None') },
 			{ id: 'U', name: t('contacts', 'Unknown') },
 		],
+		primary: false,
 	},
 	tz: {
 		readableName: t('contacts', 'Time zone'),
@@ -344,14 +354,16 @@ const properties = {
 			id: zone,
 			name: zone,
 		})),
+		primary: false,
 	},
 	lang: {
 		readableName: t('contacts', 'Spoken languages'),
-		icon: 'icon-language',
+		icon: 'icon-spoken-lang',
 		defaultValue: {
 			value: 'en',
 		},
 		multiple: true,
+		primary: false,
 	},
 }
 
@@ -370,28 +382,34 @@ if (locales.length > 0) {
 }
 
 const fieldOrder = [
-	'org',
 	'title',
-	'x-phonetic-first-name',
-	'x-phonetic-last-name',
+	'org',
+
+	// primary fields
 	'tel',
 	'email',
 	'adr',
-	'geo',
-	'impp',
-	'nick',
-	'cloud',
 	'bday',
+	'url',
+	'x-socialprofile',
+	'x-managersname',
+
+	// secondary fields
 	'anniversary',
 	'deathdate',
-	'url',
-	'X-SOCIALPROFILE',
-	'relationship',
-	'related',
+	'n',
+	'gender',
+	'cloud',
+	'impp',
+	'geo',
 	'note',
+	'lang',
+	'related',
+	'relationship',
+	'tz',
+
 	'categories',
 	'role',
-	'gender',
 ]
 
 export default { properties, fieldOrder }
