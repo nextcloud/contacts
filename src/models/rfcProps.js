@@ -272,7 +272,7 @@ const properties = {
 			{ id: 'YOUTUBE', name: 'YouTube', placeholder: 'https://youtube.com/…' },
 			{ id: 'MASTODON', name: 'Mastodon', placeholder: 'https://mastodon.social/…' },
 			{ id: 'DIASPORA', name: 'Diaspora', placeholder: 'https://joindiaspora.com/…' },
-			{ id: 'OTHER', name: 'Other social media', placeholder: 'https://example.com/…' },
+			{ id: 'OTHER', name: 'Other', placeholder: 'https://example.com/…' },
 		],
 	},
 	relationship: {
