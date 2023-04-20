@@ -153,7 +153,7 @@ export default {
 		 */
 		emailGroup(group) {
 			const emails = []
-			group.contacts.forEach(key => {
+			group.contacts.filter(key => this.contacts[key].email !== null).forEach(key => {
 				// The email property could contain "John Doe <john.doe@example.com>", but vcard spec only
 				// allows addr-spec, not name-addr, so to stay compliant, replace everything outside of <>
 				const email = this.contacts[key].email.replace(/(.*<)([^>]*)(>)/g, '$2').trim()
