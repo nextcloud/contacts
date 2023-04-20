@@ -14,7 +14,7 @@
 	<version>5.3.0-alpha.1</version>
 	<licence>agpl</licence>
 
-	<author>Christoph Wurst</author>
+	<author mail="hamza221@users.noreply.github.com">Hamza Mahjoubi</author>
 	<author homepage="https://github.com/nextcloud/groupware">Nextcloud Groupware Team</author>
 
 	<!-- required for dav plugins registration -->
