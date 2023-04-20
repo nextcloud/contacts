@@ -16,6 +16,11 @@ This app only support vCard **3.0** and **4.0**. This app is compatible with the
 * :busts_in_silhouette: **Sharing of address books!** You want to share your contacts with your friends or coworkers? No problem!
 * :see_no_evil: **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 
+## Maintainers
+
+* [Hamza Mahjoubi](https://github.com/hamza221)
+* [Nextcloud Groupware team](https://github.com/nextcloud/groupware/#members)
+
 ## :hammer_and_wrench: Installation
 
 The app is distributed through the [app store](https://apps.nextcloud.com/apps/contacts) and you can install it [right from your Nextcloud installation](https://docs.nextcloud.com/server/stable/admin_manual/apps_management.html).
