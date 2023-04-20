@@ -39,13 +39,6 @@ $grid-input-height-with-margin: $grid-height-unit - $grid-input-margin * 2;
 @import 'animations';
 
 
-// global design overrides
-.app-content {
-	// center error messages
-	& > .empty-content {
-		margin: 40vh;
-	}
-}
 
 .app-content-details {
 	padding: 0 44px 80px 44px;
@@ -57,8 +50,4 @@ $grid-input-height-with-margin: $grid-height-unit - $grid-input-margin * 2;
 	// Cancel scrolling
 	overflow: visible;
 
-	// Make sure we don't show extra margins
-	.empty-content {
-		padding: 20px;
-	}
 }
