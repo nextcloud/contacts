@@ -91,6 +91,8 @@ OC.L10N.register(
     "Enter a description for the circle" : "Anna kuvaus piirille",
     "An error happened during description sync" : "Kuvaussynkronoinnin aikana tapahtui virhe",
     "An error happened during name sync" : "Nimisynkronoinnin aikana tapahtui virhe",
+    "Add more info" : "Lisää enemmän tietoja",
+    "More fields" : "Lisää kenttiä",
     "Upload a new picture" : "Lähetä uusi kuva",
     "Choose from Files" : "Valitse Tiedostoista",
     "Get from " : "Ota kohteesta",

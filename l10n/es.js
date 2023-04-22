@@ -94,6 +94,8 @@ OC.L10N.register(
     "Enter a description for the circle" : "Introduzca una descripción para el círculo",
     "An error happened during description sync" : "Ha ocurrido un error al sincronizar la descripción",
     "An error happened during name sync" : "Ha ocurrido un error al sincronizar el nombre",
+    "Add more info" : "Añadir más información",
+    "More fields" : "Mas campos",
     "Upload a new picture" : "Subir una imagen nueva",
     "Choose from Files" : "Escoger desde Archivos",
     "Get from " : "Tomar de",

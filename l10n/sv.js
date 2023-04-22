@@ -94,6 +94,8 @@ OC.L10N.register(
     "Enter a description for the circle" : "Ange en beskrivningtext för cirkeln",
     "An error happened during description sync" : "Ett fel inträffade vid avstämning av beskrivningstext",
     "An error happened during name sync" : "Ett fel inträffade vid avstämning av namn",
+    "Add more info" : "Lägg till mer information",
+    "More fields" : "Fler fält",
     "Upload a new picture" : "Ladda upp en ny bild",
     "Choose from Files" : "Välj från Filer",
     "Get from " : "Hämta från",
