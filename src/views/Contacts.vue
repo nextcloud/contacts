@@ -266,7 +266,7 @@ export default {
 			`.trim().replace(/\t/gm, ''),
 			this.defaultAddressbook)
 
-			contact.fullName = t('contacts', 'New contact')
+			contact.fullName = t('contacts', 'Name')
 			rev.fromUnixTime(Date.now() / 1000)
 			contact.rev = rev
 
