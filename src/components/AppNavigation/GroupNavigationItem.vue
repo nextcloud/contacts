@@ -39,7 +39,7 @@
 				<template #icon>
 					<IconDownload :size="20" />
 				</template>
-				{{ t('contacts', 'Download') }}
+				{{ t('contacts', 'Export') }}
 			</ActionButton>
 			<ActionButton @click="emailGroup(group)">
 				<template #icon>
