@@ -103,7 +103,7 @@ OC.L10N.register(
     "Image is too big (max 1MB)." : "Зображення завелике (максимум 1 МБ).",
     "Pick an avatar" : "Оберіть аватарку",
     "Error while processing the picture." : "Помилка під час обробки зображення.",
-    "Avatar downloaded from social network" : "Аватарку завантажено з соціальної мережі",
+    "Avatar downloaded from social network" : "Аватарку вставлено із соціальної мережі",
     "Avatar already up to date" : "Аватарка є актуальною",
     "Avatar download failed" : "Не вдалося звантажити аватарку",
     "No contact selected" : "Контакт не вибрано",
