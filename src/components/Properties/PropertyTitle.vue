@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -21,13 +22,20 @@
   -->
 
 <template>
-	<h3 class="property__title property__row"
-		:class="{'align-to-actions': hasActions}">
-		<PropertyTitleIcon :icon="icon" />
-		<div class="property__value property__title--right">
-			{{ readableName }}
+	<div class="property property--title">
+		<div class="property__label">
+			<PropertyTitleIcon :icon="icon" />
 		</div>
-	</h3>
+		<h3 class="property__value">
+			{{ readableName }}
+		</h3>
+		<div class="property__actions">
+			<slot name="actions">
+				<!-- empty placeholder to keep the layout -->
+				<div class="property__actions__empty" />
+			</slot>
+		</div>
+	</div>
 </template>
 
 <script>
@@ -48,26 +56,6 @@ export default {
 			default: '',
 			required: true,
 		},
-		hasActions: {
-			type: Boolean,
-			default: false,
-		},
 	},
 }
 </script>
-<style lang="scss" scoped>
-.property__title {
-	display: flex;
-	align-items: center;
-	margin: 0;
-	user-select: none;
-	gap: 5px;
-}
-.property__title .property__title--right {
-	display: flex;
-	justify-content: space-between;
-}
-.align-to-actions {
-	padding-bottom: 10px;
-}
-</style>

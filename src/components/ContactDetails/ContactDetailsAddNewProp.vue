@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -21,56 +22,62 @@
   -->
 
 <template>
-	<div>
-		<Actions menu-align="right"
-			event=""
-			type="secondary"
-			:menu-title="t('contacts', 'Add more info')"
-			@click.native.prevent>
-			<template #icon>
-				<IconAdd :size="20" />
-			</template>
-			<template v-if="!moreActionsOpen">
-				<ActionButton v-for="option in availablePrimaryProperties"
-					:key="option.id"
-					class="action--primary"
-					:close-after-click="true"
-					@click.prevent="addProp({id: option.id})">
-					<template #icon>
-						<PropertyTitleIcon :icon="option.icon" />
-					</template>
-					{{ option.name }}
-				</ActionButton>
-				<ActionButton :close-after-click="false"
-					@click="moreActionsOpen=true">
-					<template #icon>
-						<DotsHorizontalIcon :title="t('contacts', 'More fields')"
-							:size="20" />
-					</template>
-					{{ t('contacts', 'More fields') }}
-				</ActionButton>
-			</template>
-			<template v-if="moreActionsOpen">
-				<ActionButton :close-after-click="false"
-					@click="moreActionsOpen=false">
-					<template #icon>
-						<ChevronLeft :title="t('contacts', 'More fields')"
-							:size="20" />
+	<div class="property__row property__row--without-actions">
+		<!-- Dummy label to keep the layout -->
+		<div class="property__label" />
+
+		<!-- Extra div container to fix the poper position -->
+		<div class="property__value">
+			<Actions menu-align="right"
+				event=""
+				type="secondary"
+				:menu-title="t('contacts', 'Add more info')"
+				@click.native.prevent>
+				<template #icon>
+					<IconAdd :size="20" />
+				</template>
+				<template v-if="!moreActionsOpen">
+					<ActionButton v-for="option in availablePrimaryProperties"
+						:key="option.id"
+						class="action--primary"
+						:close-after-click="true"
+						@click.prevent="addProp({id: option.id})">
+						<template #icon>
+							<PropertyTitleIcon :icon="option.icon" />
+						</template>
+						{{ option.name }}
+					</ActionButton>
+					<ActionButton :close-after-click="false"
+						@click="moreActionsOpen=true">
+						<template #icon>
+							<DotsHorizontalIcon :title="t('contacts', 'More fields')"
+								:size="20" />
+						</template>
 						{{ t('contacts', 'More fields') }}
-					</template>
-				</ActionButton>
-				<ActionButton v-for="option in availableSecondaryProperties"
-					:key="option.id"
-					class="action--primary"
-					:close-after-click="true"
-					@click.prevent="addProp({id: option.id})">
-					<template #icon>
-						<PropertyTitleIcon :icon="option.icon" />
-					</template>
-					{{ option.name }}
-				</ActionButton>
-			</template>
-		</Actions>
+					</ActionButton>
+				</template>
+				<template v-if="moreActionsOpen">
+					<ActionButton :close-after-click="false"
+						@click="moreActionsOpen=false">
+						<template #icon>
+							<ChevronLeft :title="t('contacts', 'More fields')"
+								:size="20" />
+							{{ t('contacts', 'More fields') }}
+						</template>
+					</ActionButton>
+					<ActionButton v-for="option in availableSecondaryProperties"
+						:key="option.id"
+						class="action--primary"
+						:close-after-click="true"
+						@click.prevent="addProp({id: option.id})">
+						<template #icon>
+							<PropertyTitleIcon :icon="option.icon" />
+						</template>
+						{{ option.name }}
+					</ActionButton>
+				</template>
+			</Actions>
+		</div>
 	</div>
 </template>
 
@@ -227,6 +234,3 @@ export default {
 	},
 }
 </script>
-<style lang="scss" scoped>
-
-</style>

@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -192,21 +193,14 @@
 			<IconLoading v-if="loadingData" :size="20" class="contact-details" />
 
 			<!-- contact details -->
-			<section v-else
-				v-masonry="contactDetailsSelector"
-				class="contact-details"
-				:fit-width="true"
-				item-selector=".property-masonry"
-				:transition-duration="0">
+			<section v-else class="contact-details">
 				<!-- properties iteration -->
 				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
 				<!-- passing the debounceUpdateContact so that the contact-property component contains the function
 					and allow us to use it on the rfcProps since the scope is forwarded to the actions -->
 				<div v-for="(properties, name) in groupedProperties"
-					:key="name"
-					v-masonry-tile
-					class="property-masonry">
-					<ContactProperty v-for="(property, index) in properties"
+					:key="name">
+					<ContactDetailsProperty v-for="(property, index) in properties"
 						:key="`${index}-${contact.key}-${property.name}`"
 						:is-first-property="index===0"
 						:is-last-property="index === properties.length - 1"
@@ -215,37 +209,33 @@
 						:local-contact="localContact"
 						:update-contact="debounceUpdateContact"
 						:contacts="contacts"
-						:bus="bus"
-						@resize="debounceRedrawMasonry" />
+						:bus="bus" />
 				</div>
 
 				<!-- addressbook change select - no last property because class is not applied here,
 					empty property because this is a required prop on regular property-select. But since
 					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
 					duplication, we created a fake propModel and property with our own options here) -->
-				<PropertySelect v-masonry-tile
-					:prop-model="addressbookModel"
+				<PropertySelect :prop-model="addressbookModel"
 					:options="addressbooksOptions"
 					:value.sync="addressbook"
 					:is-first-property="true"
 					:is-last-property="true"
 					:property="{}"
-					class="property-masonry property--addressbooks property--last property--without-actions" />
+					:hide-actions="true"
+					class="property--addressbooks property--last" />
 
 				<!-- Groups always visible -->
-				<PropertyGroups v-masonry-tile
-					:prop-model="groupsModel"
+				<PropertyGroups :prop-model="groupsModel"
 					:value.sync="groups"
 					:contact="contact"
 					:is-read-only="isReadOnly"
-					class="property-masonry property--groups property--last" />
+					class="property--groups property--last" />
 
 				<!-- new property select -->
 				<AddNewProp v-if="!isReadOnly"
-					v-masonry-tile
 					:bus="bus"
-					:contact="contact"
-					class="property-masonry" />
+					:contact="contact" />
 
 				<!-- Last modified-->
 				<PropertyRev v-if="contact.rev" :value="contact.rev" />
@@ -262,7 +252,6 @@ import debounce from 'debounce'
 import PQueue from 'p-queue'
 import qr from 'qr-image'
 import Vue from 'vue'
-import { VueMasonryPlugin } from 'vue-masonry'
 
 import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
 import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js'
@@ -283,13 +272,12 @@ import validate from '../services/validate.js'
 
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp.vue'
 import ContactAvatar from './ContactDetails/ContactDetailsAvatar.vue'
-import ContactProperty from './ContactDetails/ContactDetailsProperty.vue'
+import ContactDetailsProperty from './ContactDetails/ContactDetailsProperty.vue'
 import DetailsHeader from './DetailsHeader.vue'
 import PropertyGroups from './Properties/PropertyGroups.vue'
 import PropertyRev from './Properties/PropertyRev.vue'
 import PropertySelect from './Properties/PropertySelect.vue'
 
-Vue.use(VueMasonryPlugin)
 const updateQueue = new PQueue({ concurrency: 1 })
 
 export default {
@@ -301,7 +289,7 @@ export default {
 		AddNewProp,
 		AppContentDetails,
 		ContactAvatar,
-		ContactProperty,
+		ContactDetailsProperty,
 		DetailsHeader,
 		EmptyContent,
 		IconContact,
@@ -533,14 +521,7 @@ export default {
 			if (this.contactKey && newContact !== oldContact) {
 				this.selectContact(this.contactKey)
 			}
-
-			// Reflow grid
-			this.debounceRedrawMasonry()
 		},
-	},
-
-	updated() {
-		this.debounceRedrawMasonry()
 	},
 
 	beforeMount() {
@@ -824,14 +805,6 @@ export default {
 
 			return propModel && propType !== 'unknown'
 		},
-
-		/**
-		 * debounce and redraw Masonry
-		 */
-		debounceRedrawMasonry: debounce(function() {
-			console.debug('Masonry reflow')
-			this.$redrawVueMasonry(this.contactDetailsSelector)
-		}, 100),
 	},
 }
 </script>
@@ -839,14 +812,9 @@ export default {
 <style lang="scss" scoped>
 // List of all properties
 section.contact-details {
-	margin: 0 auto;
-	// Relative positioning for masonry
-	position: relative;
-
-	::v-deep .property-masonry {
-		width: 350px;
-		padding: 5px;
-	}
+	display: flex;
+	flex-direction: column;
+	gap: 40px;
 
 	.property--rev {
 		position: absolute;
@@ -885,35 +853,5 @@ section.contact-details {
 			margin-bottom: 20px;
 		}
 	}
-}
-.property--last {
-	margin-bottom: 40px;
-}
-.property {
-	position: relative;
-	width: 100%;
-	max-width: 414px;
-	justify-self: center;
-}
-section.contact-details .property-masonry {
-	width: 350px;
-}
-.property__label:not(.multiselect) {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	opacity: 0.7;
-}
-.property__label, .property__label.multiselect {
-	flex: 1 0;
-	width: 60px;
-	min-width: 60px !important;
-	max-width: 120px;
-	height: 34px;
-	margin: 3px 5px 3px 0 !important;
-	user-select: none;
-	text-align: right;
-	background-size: 16px;
-	line-height: 35px;
 }
 </style>

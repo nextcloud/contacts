@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -21,14 +22,22 @@
   -->
 
 <template>
-	<div v-if="propModel" class="property">
+	<div v-if="propModel" class="property property--multiple-text">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:icon="propModel.icon"
-			:readable-name="propModel.readableName"
-			:has-actions="!isReadOnly" />
+			:readable-name="propModel.readableName">
+			<template #actions>
+				<!-- props actions -->
+				<PropertyActions v-if="!showActionsInFirstRow && !isReadOnly"
+					class="property__actions"
+					:actions="actions"
+					:property-component="self"
+					@delete="deleteProperty" />
+			</template>
+		</PropertyTitle>
 
-		<div class="property__row">
+		<div v-if="showActionsInFirstRow" class="property__row">
 			<!-- type selector -->
 			<Multiselect v-if="propModel.options"
 				v-model="localType"
@@ -54,6 +63,9 @@
 				{{ isFirstProperty ? '' : propModel.readableName }}
 			</div>
 
+			<!-- or an empty placeholder to keep the layout -->
+			<div v-else class="property__label" />
+
 			<!-- show the first input if not a structured value -->
 			<input v-if="!property.isStructuredValue"
 				v-model.trim="localValue[0]"
@@ -61,10 +73,12 @@
 				class="property__value"
 				type="text"
 				@input="updateValue">
+			<!-- or an empty placeholder to keep the layout -->
+			<div v-else class="property__value" />
 
 			<!-- props actions -->
-			<PropertyActions v-if="!isReadOnly"
-				class="property__actions--floating"
+			<PropertyActions v-if="showActionsInFirstRow && !isReadOnly"
+				class="property__actions"
 				:actions="actions"
 				:property-component="this"
 				@delete="deleteProperty" />
@@ -72,7 +86,9 @@
 
 		<!-- force order based on model -->
 		<template v-if="propModel.displayOrder && propModel.readableValues">
-			<div v-for="index in propModel.displayOrder" :key="index" class="property__row">
+			<div v-for="index in propModel.displayOrder"
+				:key="index"
+				class="property__row property__row--without-actions">
 				<div class="property__label">
 					{{ propModel.readableValues[index] }}
 				</div>
@@ -88,7 +104,7 @@
 		<template v-else>
 			<div v-for="(value, index) in filteredValue"
 				:key="index"
-				class="property__row">
+				class="property__row property__row--without-actions">
 				<div class="property__label" />
 				<input v-model.trim="filteredValue[index]"
 					:readonly="isReadOnly"
@@ -126,49 +142,30 @@ export default {
 	},
 
 	computed: {
+		self() {
+			// It isn't possible to use "this" in a template slot so it needs to be aliased
+			// Ref https://stackoverflow.com/a/69485484
+			return this
+		},
+
 		filteredValue() {
 			return this.localValue.filter((value, index) => index > 0)
 		},
+
+		/**
+		 * Show the actions menu in the first row (instead of the title).
+		 * This is true for all props that either have a type select or a fixed/unknown type.
+		 * Otherwise, show the actions menu next to the title to prevent an empty row with just an
+		 * actions menu.
+		 *
+		 * @return {boolean}
+		 */
+		showActionsInFirstRow() {
+			return !!this.propModel.options
+				|| !!this.selectType
+				|| !this.property.isStructuredValue
+		}
 	},
 }
 
 </script>
-<style lang="scss" scoped>
-.property__label {
-	flex: 1 0;
-	width: 60px;
-	min-width: 60px !important;
-	max-width: 120px;
-	user-select: none;
-	text-align: right;
-	background-size: 16px;
-}
-.property__label:not(.multiselect) {
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	opacity: 0.7;
-}
-.property__row {
-	position: relative;
-	display: flex;
-	align-items: center;
-}
-input:not([type='range']) {
-	margin: 3px 3px 3px 0;
-	padding: 7px 6px;
-	font-size: 13px;
-	background-color: var(--color-main-background);
-	color: var(--color-main-text);
-	outline: none;
-	border-radius: var(--border-radius);
-	cursor: text;
-}
-.property__value {
-	flex: 1 1;
-}
-::v-deep.property__label.multiselect .multiselect__tags {
-	border: none !important;
-}
-
-</style>
