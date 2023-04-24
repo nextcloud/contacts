@@ -25,6 +25,9 @@
 	<div v-if="propModel" class="property property--multiple-text">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
+			:property="property"
+			:is-multiple="isMultiple"
+			:bus="bus"
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName">
 			<template #actions>
@@ -164,7 +167,7 @@ export default {
 			return !!this.propModel.options
 				|| !!this.selectType
 				|| !this.property.isStructuredValue
-		}
+		},
 	},
 }
 

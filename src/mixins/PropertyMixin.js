@@ -73,6 +73,14 @@ export default {
 			type: Contact,
 			default: null,
 		},
+		isMultiple: {
+			type: Boolean,
+			default: false,
+		},
+		bus: {
+			type: Object,
+			required: false,
+		},
 	},
 
 	data() {

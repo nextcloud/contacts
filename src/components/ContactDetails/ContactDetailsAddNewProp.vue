@@ -41,7 +41,7 @@
 						:key="option.id"
 						class="action--primary"
 						:close-after-click="true"
-						@click.prevent="addProp({id: option.id})">
+						@click.prevent="addProp(option.id)">
 						<template #icon>
 							<PropertyTitleIcon :icon="option.icon" />
 						</template>
@@ -69,7 +69,7 @@
 						:key="option.id"
 						class="action--primary"
 						:close-after-click="true"
-						@click.prevent="addProp({id: option.id})">
+						@click.prevent="addProp(option.id)">
 						<template #icon>
 							<PropertyTitleIcon :icon="option.icon" />
 						</template>
@@ -190,14 +190,22 @@ export default {
 				}).sort((a, b) => a.name.localeCompare(b.name))
 		},
 	},
+
+	created() {
+		this.bus.$on('add-prop', this.addProp)
+	},
+
+	destroyed() {
+		this.bus.$off('add-prop', this.addProp)
+	},
+
 	methods: {
 		/**
 		 * Add a new prop to the contact
 		 *
-		 * @param {object} data destructuring object
-		 * @param {string} data.id the id of the property. e.g fn
+		 * @param {string} id the id of the property. e.g fn
 		 */
-		async addProp({ id }) {
+		async addProp(id) {
 			if (this.usedProperties.includes(id) && !this.properties[id].multiple) {
 				this.bus.$emit('focus-prop', id)
 				return

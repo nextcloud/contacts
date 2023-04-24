@@ -31,8 +31,17 @@
 		</h3>
 		<div class="property__actions">
 			<slot name="actions">
+				<Actions v-if="isMultiple" class="property__actions">
+					<ActionButton @click="onAddProp(property.name)">
+						<template #icon>
+							<IconPlus :size="20" />
+						</template>
+						{{ t('contacts', 'Add property of this type') }}
+					</ActionButton>
+				</Actions>
+
 				<!-- empty placeholder to keep the layout -->
-				<div class="property__actions__empty" />
+				<div v-else class="property__actions__empty" />
 			</slot>
 		</div>
 	</div>
@@ -40,9 +49,15 @@
 
 <script>
 import PropertyTitleIcon from './PropertyTitleIcon.vue'
+import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
+import Actions from '@nextcloud/vue/dist/Components/NcActions.js'
+import IconPlus from 'vue-material-design-icons/Plus.vue'
 export default {
 	name: 'PropertyTitle',
 	components: {
+		IconPlus,
+		Actions,
+		ActionButton,
 		PropertyTitleIcon,
 	},
 	props: {
@@ -55,6 +70,29 @@ export default {
 			type: String,
 			default: '',
 			required: true,
+		},
+		property: {
+			type: Object,
+			default: () => {},
+			required: true,
+		},
+		isMultiple: {
+			type: Boolean,
+			default: false,
+		},
+		bus: {
+			type: Object,
+			required: false,
+		},
+	},
+	methods: {
+		/**
+		 * Add prop of type id
+		 *
+		 * @param {string} id type of prop
+		 */
+		onAddProp(id) {
+			this.bus.$emit('add-prop', id)
 		},
 	},
 }
