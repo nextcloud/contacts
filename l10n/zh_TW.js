@@ -94,6 +94,8 @@ OC.L10N.register(
     "Enter a description for the circle" : "輸入小圈圈的描述",
     "An error happened during description sync" : "描述同步時發生錯誤",
     "An error happened during name sync" : "名稱同步時發生錯誤",
+    "Add more info" : "新增更多資訊",
+    "More fields" : "更多欄位",
     "Upload a new picture" : "上傳一張新的圖片",
     "Choose from Files" : "從檔案選取",
     "Get from " : "取得自",
