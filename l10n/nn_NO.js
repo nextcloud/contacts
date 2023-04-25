@@ -3,8 +3,8 @@ OC.L10N.register(
     {
     "Details" : "Detaljar",
     "Contacts" : "Kontaktar",
-    "Download" : "Last ned",
     "Circles" : "Sirklar",
+    "Download" : "Last ned",
     "Rename" : "Gje nytt namn",
     "Enabled" : "Aktivert",
     "Delete" : "Ta bort",

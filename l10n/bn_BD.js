@@ -3,8 +3,8 @@ OC.L10N.register(
     {
     "Details" : "বিসতারিত",
     "Contacts" : "পরিচিতজন",
-    "Download" : "ডাউনলোড",
     "Send email" : "ইমেইল পাঠান ",
+    "Download" : "ডাউনলোড",
     "Rename" : "পূনঃনামকরণ",
     "Enabled" : "কার্যকর",
     "Delete" : "মুছে",

@@ -3,8 +3,8 @@ OC.L10N.register(
     {
     "Details" : "Detallar",
     "Contacts" : "Əlaqələr",
-    "Download" : "Yüklə",
     "Send email" : "Email yolla",
+    "Download" : "Yüklə",
     "Rename" : "Adı dəyiş",
     "Enabled" : "İşə salınıb",
     "Delete" : "Sil",
