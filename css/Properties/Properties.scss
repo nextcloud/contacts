@@ -21,16 +21,18 @@
  *
  */
 
-$property-label-min-width: 100px;
-$property-label-max-width: 200px;
-$property-label-width: calc(($property-label-min-width + $property-label-max-width) / 2);
+@import '../ContactDetailsLayout.scss';
 
-$property-value-min-width: 200px;
-$property-value-max-width: 300px;
-$property-value-width: calc(($property-value-min-width + $property-value-max-width) / 2);
+$property-label-min-width: $contact-details-label-min-width;
+$property-label-max-width: $contact-details-label-max-width;
+$property-label-width: $contact-details-label-width;
+
+$property-value-min-width: $contact-details-value-min-width;
+$property-value-max-width: $contact-details-value-max-width;
+$property-value-width: $contact-details-value-width;
 
 $property-ext-padding-right: 8px;
-$property-row-gap: 15px;
+$property-row-gap: $contact-details-row-gap;
 
 .property {
 	width: 100%;

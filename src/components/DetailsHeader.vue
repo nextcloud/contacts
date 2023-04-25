@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -79,26 +80,37 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../../css/ContactDetailsLayout.scss';
+
 // Header with avatar, name, position, actions...
 .contact-header {
 	display: flex;
 	align-items: center;
 	padding: 50px 0 20px;
+	gap: $contact-details-row-gap;
 
+	// AVATAR
 	&__avatar {
-		position: relative;
-		flex: 0 0 var(--avatar-size);
-		margin: 10px;
-		margin-left: 0;
 		display: flex;
+		flex: 1 auto;
 		justify-content: flex-end;
+
+		// Global single column layout
+		width: $contact-details-label-width;
+		min-width: $contact-details-label-min-width;
+		max-width: $contact-details-label-max-width;
 	}
 
 	// ORG-TITLE-NAME
 	&__infos {
 		display: flex;
-		flex: 1 1 auto; // shrink avatar before this one
+		flex: 1 auto;
 		flex-direction: column;
+
+		// Global single column layout
+		width: $contact-details-value-width;
+		min-width: $contact-details-value-min-width;
+		max-width: $contact-details-value-max-width;
 
 		&-title,
 		&-subtitle {
@@ -106,18 +118,9 @@ export default {
 			flex-wrap: wrap;
 			margin: 0;
 		}
+
 		::v-deep input {
-			overflow: hidden;
-			flex: 1 1;
-			min-width: 100px;
-			max-width: 100%;
-			margin: 0;
-			padding: 0;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			border: none;
-			background: transparent;
-			font-size: inherit;
+			flex: 1 auto;
 		}
 
 		&-title ::v-deep input {
@@ -128,36 +131,5 @@ export default {
 			max-width: 20%;
 		}
 	}
-
-	// ACTIONS
-	&__actions {
-		position: relative;
-		display: flex;
-
-		&-menu {
-			margin-right: 10px;
-		}
-
-		> div,
-		> a {
-			width: 44px;
-			height: 44px;
-			padding: 14px;
-			cursor: pointer;
-			opacity: .7;
-			border-radius: 22px;
-			background-size: 16px;
-			&:hover,
-			&:focus {
-				opacity: 1;
-			}
-			&.header-icon--pulse {
-				width: 16px;
-				height: 16px;
-				margin: 8px;
-			}
-		}
-	}
 }
-
 </style>
