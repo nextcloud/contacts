@@ -41,42 +41,45 @@
 					@update-local-contact="updateLocalContact" />
 
 				<!-- fullname -->
-				<input id="contact-fullname"
-					slot="title"
-					ref="fullname"
-					v-model="contact.fullName"
-					:readonly="contact.addressbook.readOnly"
-					:placeholder="t('contacts', 'Name')"
-					type="text"
-					autocomplete="off"
-					autocorrect="off"
-					spellcheck="false"
-					name="fullname"
-					@input="debounceUpdateContact"
-					@click="selectInput">
+				<template #title>
+					<div v-if="isReadOnly">{{ contact.fullName }}</div>
+					<input v-else
+						id="contact-fullname"
+						ref="fullname"
+						v-model="contact.fullName"
+						:placeholder="t('contacts', 'Name')"
+						type="text"
+						autocomplete="off"
+						autocorrect="off"
+						spellcheck="false"
+						name="fullname"
+						@input="debounceUpdateContact"
+						@click="selectInput">
+				</template>
 
 				<!-- org, title -->
 				<template #subtitle>
-					<input id="contact-org"
-						v-model="contact.org"
-						:readonly="contact.addressbook.readOnly"
-						:placeholder="t('contacts', 'Company')"
-						type="text"
-						autocomplete="off"
-						autocorrect="off"
-						spellcheck="false"
-						name="org"
-						@input="debounceUpdateContact">
-					<input id="contact-title"
-						v-model="contact.title"
-						:readonly="contact.addressbook.readOnly"
-						:placeholder="t('contacts', 'Title')"
-						type="text"
-						autocomplete="off"
-						autocorrect="off"
-						spellcheck="false"
-						name="title"
-						@input="debounceUpdateContact">
+					<template v-if="isReadOnly">{{ formattedSubtitle }}</template>
+					<template v-else>
+						<input id="contact-title"
+							v-model="contact.title"
+							:placeholder="t('contacts', 'Title')"
+							type="text"
+							autocomplete="off"
+							autocorrect="off"
+							spellcheck="false"
+							name="title"
+							@input="debounceUpdateContact">
+						<input id="contact-org"
+							v-model="contact.org"
+							:placeholder="t('contacts', 'Company')"
+							type="text"
+							autocomplete="off"
+							autocorrect="off"
+							spellcheck="false"
+							name="org"
+							@input="debounceUpdateContact">
+					</template>
 				</template>
 
 				<!-- actions -->
@@ -514,6 +517,29 @@ export default {
 		enableToggleBirthdayExclusion() {
 			return parseInt(OC.config.version.split('.')[0]) >= 26
 		},
+
+		/**
+		 * Read-only representation of the contact title and organization.
+		 *
+		 * @return {string}
+		 */
+		formattedSubtitle() {
+			const title = this.contact.title
+			const organization = this.contact.org
+
+			if (title && organization) {
+				return t('contacts', '{title} at {organization}', {
+					title,
+					organization,
+				})
+			} else if (title) {
+				return title
+			} else if (organization) {
+				return organization
+			}
+
+			return ''
+		}
 	},
 
 	watch: {
