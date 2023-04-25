@@ -39,6 +39,8 @@
 		:prop-type="propType"
 		:options="sortedModelOptions"
 		:is-read-only="isReadOnly"
+		:bus="bus"
+		:is-multiple="isMultiple"
 		@delete="onDelete"
 		@resize="onResize"
 		@update="updateContact" />
@@ -129,8 +131,14 @@ export default {
 		properties() {
 			return rfcProps.properties
 		},
-		fieldOrder() {
-			return rfcProps.fieldOrder
+
+		/**
+		 * Return if property is multiple
+		 *
+		 * @return {boolean}
+		 */
+		isMultiple() {
+			return this.properties[this.property.name].multiple
 		},
 		isReadOnly() {
 			if (this.contact.addressbook) {

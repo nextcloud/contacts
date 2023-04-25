@@ -25,6 +25,9 @@
 	<div v-if="propModel" class="property">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
+			:property="property"
+			:is-multiple="isMultiple"
+			:bus="bus"
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName" />
 
