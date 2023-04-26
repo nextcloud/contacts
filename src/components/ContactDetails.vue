@@ -42,7 +42,9 @@
 
 				<!-- fullname -->
 				<template #title>
-					<div v-if="isReadOnly">{{ contact.fullName }}</div>
+					<div v-if="isReadOnly">
+						{{ contact.fullName }}
+					</div>
 					<input v-else
 						id="contact-fullname"
 						ref="fullname"
@@ -59,7 +61,9 @@
 
 				<!-- org, title -->
 				<template #subtitle>
-					<template v-if="isReadOnly">{{ formattedSubtitle }}</template>
+					<template v-if="isReadOnly">
+						{{ formattedSubtitle }}
+					</template>
 					<template v-else>
 						<input id="contact-title"
 							v-model="contact.title"
@@ -226,6 +230,7 @@
 					:is-last-property="true"
 					:property="{}"
 					:hide-actions="true"
+					:is-read-only="isReadOnly"
 					class="property--addressbooks property--last" />
 
 				<!-- Groups always visible -->
@@ -485,17 +490,18 @@ export default {
 
 		/**
 		 * Store getters filtered and mapped to usable object
-		 * This is the list of addressbooks that are available to write
+		 * This is the list of addressbooks that are available
 		 *
-		 * @return {{id: string, name: string}[]}
+		 * @return {{id: string, name: string, readOnly: boolean}[]}
 		 */
 		addressbooksOptions() {
 			return this.addressbooks
-				.filter(addressbook => !addressbook.readOnly && addressbook.enabled)
+				.filter(addressbook => addressbook.enabled)
 				.map(addressbook => {
 					return {
 						id: addressbook.id,
 						name: addressbook.displayName,
+						readOnly: addressbook.readOnly,
 					}
 				})
 		},
@@ -539,7 +545,7 @@ export default {
 			}
 
 			return ''
-		}
+		},
 	},
 
 	watch: {
