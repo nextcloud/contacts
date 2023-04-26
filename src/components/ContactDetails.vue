@@ -229,6 +229,7 @@
 					:is-first-property="true"
 					:is-last-property="true"
 					:property="{}"
+					:is-read-only="isReadOnly"
 					class="property-masonry property--addressbooks property--last property--without-actions" />
 
 				<!-- Groups always visible -->
@@ -489,17 +490,18 @@ export default {
 
 		/**
 		 * Store getters filtered and mapped to usable object
-		 * This is the list of addressbooks that are available to write
+		 * This is the list of addressbooks that are available
 		 *
-		 * @return {{id: string, name: string}[]}
+		 * @return {{id: string, name: string, readOnly: boolean}[]}
 		 */
 		addressbooksOptions() {
 			return this.addressbooks
-				.filter(addressbook => !addressbook.readOnly && addressbook.enabled)
+				.filter(addressbook => addressbook.enabled)
 				.map(addressbook => {
 					return {
 						id: addressbook.id,
 						name: addressbook.displayName,
+						readOnly: addressbook.readOnly,
 					}
 				})
 		},
