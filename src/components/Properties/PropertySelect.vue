@@ -44,7 +44,7 @@
 			</div>
 
 			<Multiselect v-model="matchedOptions"
-				:options="options"
+				:options="selectableOptions"
 				:placeholder="t('contacts', 'Select option')"
 				:disabled="isSingleOption || isReadOnly"
 				class="property__value"
@@ -91,6 +91,23 @@ export default {
 	},
 
 	computed: {
+		/**
+		 * Store getters filtered and mapped to usable object
+		 * This is the list of addressbooks that are available to write
+		 *
+		 * @return {{id: string, name: string}[]}
+		 */
+		selectableOptions() {
+			return this.options
+				.filter(option => !option.readOnly)
+				.map(addressbook => {
+					return {
+						id: addressbook.id,
+						name: addressbook.name,
+					}
+				})
+		},
+
 		// is there only one option available
 		isSingleOption() {
 			return this.propModel.options.length <= 1 && this.options.length <= 1
