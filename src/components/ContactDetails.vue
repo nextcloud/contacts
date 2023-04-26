@@ -208,10 +208,12 @@
 					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
 					duplication, we created a fake propModel and property with our own options here) -->
 				<PropertySelect v-masonry-tile
+					:options="addressbooksOptions"
 					:prop-model="addressbookModel"
 					:value.sync="addressbook"
 					:is-first-property="true"
 					:is-last-property="true"
+					:is-read-only="isReadOnly"
 					:property="{}"
 					class="property-masonry property--addressbooks property--last property--without-actions" />
 
@@ -453,17 +455,18 @@ export default {
 
 		/**
 		 * Store getters filtered and mapped to usable object
-		 * This is the list of addressbooks that are available to write
+		 * This is the list of addressbooks that are available
 		 *
-		 * @return {Array}
+		 * @return {{id: string, name: string, readOnly: boolean}[]}
 		 */
 		addressbooksOptions() {
 			return this.addressbooks
-				.filter(addressbook => !addressbook.readOnly && addressbook.enabled)
+				.filter(addressbook => addressbook.enabled)
 				.map(addressbook => {
 					return {
 						id: addressbook.id,
 						name: addressbook.displayName,
+						readOnly: addressbook.readOnly,
 					}
 				})
 		},
