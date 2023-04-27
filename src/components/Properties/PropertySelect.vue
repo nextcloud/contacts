@@ -110,7 +110,7 @@ export default {
 
 		// is there only one option available
 		isSingleOption() {
-			return this.propModel.options.length <= 1 && this.options.length <= 1
+			return this.selectableOptions.length <= 1
 		},
 
 		// matching value to the options we provide
