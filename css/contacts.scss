@@ -38,17 +38,19 @@ $grid-input-height-with-margin: $grid-height-unit - $grid-input-margin * 2;
 // various
 @import 'animations';
 
-
-
 .app-content-details {
 	padding: calc(var(--default-grid-baseline) * 2);
 	padding-top: 0;
 	height: 100%;
 	overflow: auto;
+
+	// Compensate top padding reserved for the back button on mobile
+	@media (max-width: 1024px) {
+		height: calc(100% - 44px);
+	}
 }
 
 .app-content-list {
 	// Cancel scrolling
 	overflow: visible;
-
 }

@@ -23,13 +23,8 @@
 
 @import '../ContactDetailsLayout.scss';
 
-$property-label-min-width: $contact-details-label-min-width;
 $property-label-max-width: $contact-details-label-max-width;
-$property-label-width: $contact-details-label-width;
-
-$property-value-min-width: $contact-details-value-min-width;
 $property-value-max-width: $contact-details-value-max-width;
-$property-value-width: $contact-details-value-width;
 
 $property-ext-padding-right: 8px;
 $property-row-gap: $contact-details-row-gap;
@@ -42,13 +37,6 @@ $property-row-gap: $contact-details-row-gap;
 		display: flex;
 		align-items: center;
 		gap: $property-row-gap;
-
-		.property__actions {
-			// placeholder for the actions menu
-			&__empty {
-				width: 44px;
-			}
-		}
 	}
 
 	// property row
@@ -56,12 +44,6 @@ $property-row-gap: $contact-details-row-gap;
 		display: flex;
 		align-items: center;
 		gap: $property-row-gap;
-
-		&--without-actions {
-			.property__value {
-				margin-right: $property-row-gap + 44px; // actions menu / button
-			}
-		}
 
 		// fix default margin from server stylesheet causing slight misalignment
 		input {
@@ -71,88 +53,89 @@ $property-row-gap: $contact-details-row-gap;
 
 	// property label or multiselect within row
 	&__label {
+		// Global single column layout
 		display: flex;
-		justify-content: end;
-		flex: 1 auto;
+		flex: 0 1 auto;
+		justify-content: flex-end;
+		width: $contact-details-label-max-width;
+		min-width: 0; // Has to be zero unless we implement wrapping
 
-		width: $property-label-width !important;
-		min-width: $property-label-min-width !important;
-		max-width: $property-label-max-width !important;
-
-		&:not(.multiselect) {
+		// Text label styling
+		> :not(.multiselect):not(.material-design-icon) {
 			overflow: hidden;
-			overflow-x: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			opacity: .7;
 		}
 	}
 
-	// Hide delete buttons initially
-	.action-item.icon-delete {
-		opacity: 0;
-	}
-
 	// Property value within row, after label
 	&__value {
-		flex: 1 auto;
+		align-items: center;
 
-		width: $property-value-width !important;
-		//min-width: $property-value-min-width !important;
-		min-width: unset !important;
-		max-width: $property-value-max-width !important;
+		// Global single column layout
+		display: flex;
+		flex: 0 1 auto;
+		width: $property-value-max-width;
+		min-width: 0; // Has to be zero unless we implement wrapping
 
 		textarea {
-			align-self: flex-start;
+			// Limit max height to make scrolling the form a bit easier
 			min-height: 2 * $grid-height-unit - 2*$grid-input-margin;
 			max-height: 5 * $grid-height-unit - 2*$grid-input-margin;
 		}
 
-		// read-only mode
-		&:read-only {
-			border-color: var(--color-border-dark);
+		input,
+		textarea {
+			width: 100%;
+
+			// Remove default input styling for read-only inputs.
+			// We can't use plain divs because that would cause jumping on switching modes.
+			&[readonly] {
+				border: none;
+				overflow: auto;
+				outline: none;
+				resize: none;
+				padding: 0;
+				border-radius: 0;
+			}
 		}
-		&--with-ext {
-			// ext icon width + 8px padding
-			padding-right: 24px;
+	}
+
+	&__label,
+	&__value {
+		// Fix default multiselect styling
+		> .multiselect {
+			width: 100%;
+			min-width: unset;
 		}
 
-		// Show ext icon permanently on focus
-		&:hover,
-		&:focus,
-		&:active {
-			~ .property__ext {
-				opacity: .5;
-			}
+		// Fix default date time picker styling
+		> .mx-datepicker {
+			width: 100%;
 		}
 	}
 
 	// Show ext buttons on full row hover
 	&:hover {
 		.property__ext {
-			opacity: .5;
+			opacity: .7;
 		}
 	}
 
 	// External link (tel, mailto, http, ftp...)
 	&__ext {
-		position: absolute;
-		// 8px padding + actions
-		right: 44px + $property-ext-padding-right;
 		opacity: 0;
+
 		&:hover,
-		&:focus,
-		&:active {
+		&:focus {
 			opacity: .7;
 		}
-	}
-
-	.no-move {
-		right: $property-ext-padding-right;
 	}
 
 	// Delete property button + actions
 	&__actions {
 		z-index: 10;
+		width: 44px;
 	}
 }

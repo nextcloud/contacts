@@ -2,6 +2,7 @@
  * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
  *
  * @author John Molakvoæ <skjnldsv@protonmail.com>
+ * @author Richard Steinmetz <richard@steinmetz.cloud>
  *
  * @license GNU AGPL version 3 or any later version
  *
@@ -61,7 +62,7 @@ export default {
 		// Is it read-only?
 		isReadOnly: {
 			type: Boolean,
-			default: false,
+			required: true,
 		},
 		// The available TYPE options from the propModel
 		// not used on the PropertySelect

@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -21,7 +22,7 @@
   -->
 
 <template>
-	<Actions class="property__actions">
+	<Actions>
 		<ActionButton @click="deleteProperty">
 			<template #icon>
 				<IconDelete :size="20" />

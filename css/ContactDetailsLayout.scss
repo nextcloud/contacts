@@ -20,12 +20,6 @@
  *
  */
 
-$contact-details-label-min-width: 100px;
 $contact-details-label-max-width: 200px;
-$contact-details-label-width: calc(($contact-details-label-min-width + $contact-details-label-max-width) / 2);
-
-$contact-details-value-min-width: 200px;
 $contact-details-value-max-width: 300px;
-$contact-details-value-width: calc(($contact-details-value-min-width + $contact-details-value-max-width) / 2);
-
 $contact-details-row-gap: 15px;

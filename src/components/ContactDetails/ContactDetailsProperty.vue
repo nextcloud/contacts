@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -41,9 +42,7 @@
 		:is-read-only="isReadOnly"
 		:bus="bus"
 		:is-multiple="isMultiple"
-		@delete="onDelete"
-		@resize="onResize"
-		@update="updateContact" />
+		@delete="onDelete" />
 </template>
 
 <script>
@@ -93,14 +92,6 @@ export default {
 			type: Contact,
 			default: null,
 		},
-		/**
-		 * This is needed so that we can update
-		 * the contact within the rfcProps actions
-		 */
-		updateContact: {
-			type: Function,
-			default: () => {},
-		},
 		contacts: {
 			type: Array,
 			default: () => [],
@@ -109,6 +100,10 @@ export default {
 			type: Object,
 			required: true,
 		},
+		isReadOnly: {
+			type: Boolean,
+			required: true,
+		}
 	},
 
 	computed: {
@@ -139,12 +134,6 @@ export default {
 		 */
 		isMultiple() {
 			return this.properties[this.property.name].multiple
-		},
-		isReadOnly() {
-			if (this.contact.addressbook) {
-				return this.contact.addressbook.readOnly
-			}
-			return false
 		},
 
 		/**
@@ -293,6 +282,11 @@ export default {
 				return null
 			},
 			set(data) {
+				// Skip setting type if select is cleared
+				if (!data) {
+					return
+				}
+
 				// if a custom label exists and this is the one we selected
 				if (this.propLabel && data.id === this.propLabel.name) {
 					this.propLabel.setValue(data.name)
@@ -315,7 +309,6 @@ export default {
 						this.property.jCal[0] = this.propGroup[1]
 					}
 				}
-				this.updateContact()
 			},
 
 		},
@@ -356,7 +349,6 @@ export default {
 						this.property.setValue(data)
 					}
 				}
-				this.updateContact()
 			},
 		},
 
@@ -418,14 +410,6 @@ export default {
 		 */
 		onDelete() {
 			this.localContact.vCard.removeProperty(this.property)
-			this.updateContact()
-		},
-
-		/**
-		 * Forward resize event
-		 */
-		onResize() {
-			this.$emit('resize')
 		},
 	},
 }

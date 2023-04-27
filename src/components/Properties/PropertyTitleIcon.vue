@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2022 Greta Doci <gretadoci@gmail.com>
   -
   - @author Greta Doci
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -109,8 +110,3 @@ export default {
 	},
 }
 </script>
-<style lang="scss" scope>
-.material-design-icon {
-	opacity: .7;
-}
-</style>

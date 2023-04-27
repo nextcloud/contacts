@@ -27,69 +27,80 @@
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:property="property"
 			:is-multiple="isMultiple"
+			:is-read-only="isReadOnly"
 			:bus="bus"
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName" />
 
 		<div class="property__row">
-			<!-- type selector -->
-			<Multiselect v-if="propModel.options"
-				v-model="localType"
-				:options="options"
-				:placeholder="t('contacts', 'Select type')"
-				:taggable="true"
-				tag-placeholder="create"
-				:disabled="isReadOnly"
-				class="property__label"
-				track-by="id"
-				label="name"
-				@tag="createLabel"
-				@input="updateType" />
+			<div class="property__label">
+				<!-- read-only type -->
+				<span v-if="isReadOnly && propModel.options">
+					{{ (localType && localType.name) || '' }}
+				</span>
 
-			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-else-if="selectType" class="property__label">
-				{{ selectType.name }}
-			</div>
+				<!-- type selector -->
+				<Multiselect v-else-if="!isReadOnly && propModel.options"
+					v-model="localType"
+					:options="options"
+					:placeholder="t('contacts', 'Select type')"
+					:taggable="true"
+					tag-placeholder="create"
+					:disabled="isReadOnly"
+					track-by="id"
+					label="name"
+					@tag="createLabel"
+					@input="updateType" />
 
-			<!-- no options, empty space -->
-			<div v-else class="property__label">
-				{{ propModel.readableName }}
+				<!-- if we do not support any type on our model but one is set anyway -->
+				<span v-else-if="selectType">
+					{{ selectType.name }}
+				</span>
+
+				<!-- no options, empty space -->
+				<span v-else>
+					{{ propModel.readableName }}
+				</span>
 			</div>
 
 			<!-- textarea for note -->
-			<textarea v-if="propName === 'note'"
-				id="textarea"
-				ref="textarea"
-				v-model.trim="localValue"
-				:inputmode="inputmode"
-				:readonly="isReadOnly"
-				class="property__value"
-				@input="updateValueNoDebounce"
-				@mousemove="resizeHeight"
-				@keypress="resizeHeight" />
+			<div class="property__value">
+				<textarea v-if="propName === 'note'"
+					id="textarea"
+					ref="textarea"
+					v-model.trim="localValue"
+					:inputmode="inputmode"
+					:readonly="isReadOnly"
+					@input="updateValueNoDebounce"
+					@mousemove="resizeHeight"
+					@keypress="resizeHeight" />
 
-			<!-- OR default to input -->
-			<input v-else
-				v-model.trim="localValue"
-				:inputmode="inputmode"
-				:readonly="isReadOnly"
-				:class="{'property__value--with-ext': haveExtHandler}"
-				type="text"
-				class="property__value"
-				:placeholder="placeholder"
-				@input="updateValue">
+				<!-- OR default to input -->
+				<input v-else
+					v-model.trim="localValue"
+					:inputmode="inputmode"
+					:readonly="isReadOnly"
+					:class="{'property__value--with-ext': haveExtHandler}"
+					type="text"
+					:placeholder="placeholder"
+					@input="updateValue">
 
-			<!-- external link -->
-			<a v-if="haveExtHandler"
-				:href="externalHandler"
-				:class="{'property__ext': true, 'icon-external': true, 'no-move': isReadOnly}"
-				target="_blank" />
+				<!-- external link -->
+				<a v-if="haveExtHandler && isReadOnly"
+					:href="externalHandler"
+					class="property__ext"
+					target="_blank">
+					<OpenInNewIcon :size="20" />
+				</a>
+			</div>
 
 			<!-- props actions -->
-			<PropertyActions v-if="!isReadOnly"
-				:actions="actions"
-				:property-component="this"
-				@delete="deleteProperty" />
+			<div class="property__actions">
+				<PropertyActions v-if="!isReadOnly"
+					:actions="actions"
+					:property-component="this"
+					@delete="deleteProperty" />
+			</div>
 		</div>
 	</div>
 </template>
@@ -100,6 +111,7 @@ import debounce from 'debounce'
 import PropertyMixin from '../../mixins/PropertyMixin.js'
 import PropertyTitle from './PropertyTitle.vue'
 import PropertyActions from './PropertyActions.vue'
+import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 
 export default {
 	name: 'PropertyText',
@@ -108,6 +120,7 @@ export default {
 		Multiselect,
 		PropertyTitle,
 		PropertyActions,
+		OpenInNewIcon,
 	},
 
 	mixins: [PropertyMixin],
@@ -188,8 +201,6 @@ export default {
 			if (this.$refs.textarea && this.$refs.textarea.offsetHeight) {
 				// adjust textarea size to content (2 = border)
 				this.$refs.textarea.style.height = `${this.$refs.textarea.scrollHeight + 2}px`
-				// send resize event to warn we changed from the inside
-				this.$emit('resize')
 			}
 		}, 100),
 
@@ -207,3 +218,13 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.property {
+	&__value {
+		&--note {
+			white-space: pre-line;
+		}
+	}
+}
+</style>

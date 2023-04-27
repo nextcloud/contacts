@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2019 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -21,8 +22,16 @@
   -->
 
 <template>
-	<div class="property--rev">
-		{{ t('contacts', 'Last modified') }} {{ relativeDate }}
+	<div class="property property--rev">
+		<div class="property__row">
+			<div class="property__label" />
+
+			<div class="property__value">
+				{{ t('contacts', 'Last modified') }} {{ relativeDate }}
+			</div>
+
+			<div class="property__actions" />
+		</div>
 	</div>
 </template>
 
@@ -46,3 +55,13 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.property {
+	&__value {
+		opacity: .5;
+		color: var(--color-text-lighter);
+		line-height: 44px;
+	}
+}
+</style>

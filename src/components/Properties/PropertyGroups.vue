@@ -24,36 +24,41 @@
 <template>
 	<div v-if="propModel" class="property">
 		<PropertyTitle icon="icon-contacts-dark"
-			:readable-name="t('contacts', 'Contact groups')" />
+			:readable-name="t('contacts', 'Contact groups')"
+			:is-read-only="isReadOnly" />
 
-		<div class="property__row property__row--without-actions">
+		<div class="property__row">
 			<div class="property__label">
-				{{ propModel.readableName }}
+				<span>{{ propModel.readableName }}</span>
 			</div>
 
 			<!-- multiselect taggable groups with a limit to 3 groups shown -->
-			<Multiselect v-model="localValue"
-				:options="groups"
-				:placeholder="t('contacts', 'Add contact in group')"
-				:multiple="true"
-				:taggable="true"
-				:close-on-select="false"
-				:readonly="isReadOnly"
-				:tag-width="60"
-				tag-placeholder="create"
-				class="property__value"
-				@input="updateValue"
-				@tag="validateGroup"
-				@select="addContactToGroup"
-				@remove="removeContactToGroup">
-				<!-- show how many groups are hidden and add tooltip -->
-				<span slot="limit" v-tooltip.auto="formatGroupsTitle" class="multiselect__limit">
-					+{{ localValue.length - 3 }}
-				</span>
-				<span slot="noResult">
-					{{ t('contacts', 'No results') }}
-				</span>
-			</Multiselect>
+			<div class="property__value">
+				<Multiselect v-model="localValue"
+					:options="groups"
+					:placeholder="placeholder"
+					:multiple="true"
+					:taggable="true"
+					:close-on-select="false"
+					:disabled="isReadOnly"
+					:tag-width="60"
+					tag-placeholder="create"
+					@input="updateValue"
+					@tag="validateGroup"
+					@select="addContactToGroup"
+					@remove="removeContactToGroup">
+					<!-- show how many groups are hidden and add tooltip -->
+					<span slot="limit" v-tooltip.auto="formatGroupsTitle" class="multiselect__limit">
+						+{{ localValue.length - 3 }}
+					</span>
+					<span slot="noResult">
+						{{ t('contacts', 'No results') }}
+					</span>
+				</Multiselect>
+			</div>
+
+			<!-- empty actions to keep the layout -->
+			<div class="property__actions" />
 		</div>
 	</div>
 </template>
@@ -92,7 +97,7 @@ export default {
 		// Is it read-only?
 		isReadOnly: {
 			type: Boolean,
-			default: false,
+			required: true,
 		},
 	},
 
@@ -117,6 +122,17 @@ export default {
 		formatGroupsTitle() {
 			return this.localValue.slice(3).join(', ')
 		},
+
+		/**
+		 * @return {string}
+		 */
+		placeholder() {
+			if (this.isReadOnly) {
+				return t('contacts', 'None')
+			}
+
+			return t('contacts', 'Add contact in group')
+		}
 	},
 
 	watch: {
