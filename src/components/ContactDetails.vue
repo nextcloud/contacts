@@ -522,6 +522,7 @@ export default {
 
 		enableToggleBirthdayExclusion() {
 			return parseInt(OC.config.version.split('.')[0]) >= 26
+				&& this.localContact?.vCard // Wait until localContact was fetched
 		},
 	},
 
