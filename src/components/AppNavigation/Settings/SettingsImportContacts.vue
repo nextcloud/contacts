@@ -82,7 +82,7 @@
 		<Button v-else
 			id="upload"
 			for="contact-import"
-			class="button import-contact__multiselect-label import-contact__multiselect--no-select">
+			class="button import-contact__button-disabled import-contact__multiselect-label import-contact__multiselect--no-select">
 			<template #icon>
 				<IconError :size="20" />
 			</template>
@@ -332,6 +332,12 @@ export default {
 		&-main {
 			width: 100% !important;
 			margin-left: 0 !important;
+		}
+		&-disabled {
+			// Wrap warning about disabled button instead of ellipsing it
+			::v-deep .button-vue__text {
+				white-space: pre-wrap;
+			}
 		}
 		&--cancel:not(:focus):not(:hover) {
 			border-color: transparent;

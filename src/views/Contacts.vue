@@ -29,7 +29,7 @@
 			:selected-group="selectedGroup"
 			:selected-contact="selectedContact">
 			<!-- new-contact-button -->
-			<SettingsImportContacts v-if="isEmptyGroup" />
+			<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup" />
 			<Button v-if="!loadingContacts"
 				class="new-contact-button"
 				type="primary"
