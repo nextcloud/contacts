@@ -19,4 +19,6 @@ webpackConfig.module.rules.push({
 
 webpackConfig.resolve.extensions = ['.js', '.vue', '.ts', '.tsx']
 
+webpackConfig.resolve.fallback = {"fs": false}
+
 module.exports = webpackConfig

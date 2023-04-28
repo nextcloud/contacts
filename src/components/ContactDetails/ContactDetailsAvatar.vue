@@ -29,7 +29,7 @@
 			type="file"
 			class="hidden"
 			accept="image/*"
-			@change="processFile">
+			@change="handleUploadedFile">
 
 		<!-- Avatar display -->
 		<Avatar :disable-tooltip="true"
@@ -38,6 +38,24 @@
 			:size="75"
 			:url="photoUrl"
 			class="contact-header-avatar__photo" />
+
+		<NcModal :show.sync="showCropper" @close="cancel" size="small">
+			<div class="avatar__container">
+				<h2>{{ t('contacts', 'Crop contact photo') }}</h2>
+				<VueCropper ref="cropper"
+					class="avatar__cropper"
+					v-bind="cropperOptions" />
+				<div class="avatar__cropper-buttons">
+					<NcButton type="tertiary" @click="cancel">
+						{{ t('contacts', 'Cancel') }}
+					</NcButton>
+					<NcButton type="primary"
+						@click="saveAvatar">
+						{{ t('contacts', 'Save') }}
+					</NcButton>
+				</div>
+			</div>
+		</NcModal>
 
 		<Actions v-if="!isReadOnly || contact.photo"
 			:force-menu="true"
@@ -101,6 +119,11 @@ import IconDelete from 'vue-material-design-icons/Delete.vue'
 import IconUpload from 'vue-material-design-icons/Upload.vue'
 import IconFolder from 'vue-material-design-icons/Folder.vue'
 import IconImage from 'vue-material-design-icons/Image.vue'
+import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
+import VueCropper from 'vue-cropperjs'
+import NcModal from '@nextcloud/vue/dist/Components/NcModal.js'
+// eslint-disable-next-line n/no-extraneous-import
+import 'cropperjs/dist/cropper.css'
 
 import { showError, showInfo, getFilePickerBuilder, showSuccess } from '@nextcloud/dialogs'
 import { generateUrl, generateRemoteUrl } from '@nextcloud/router'
@@ -126,6 +149,9 @@ export default {
 		IconUpload,
 		IconFolder,
 		IconImage,
+		NcButton,
+		VueCropper,
+		NcModal,
 	},
 
 	props: {
@@ -141,6 +167,18 @@ export default {
 			loading: false,
 			photoUrl: undefined,
 			root: generateRemoteUrl(`dav/files/${getCurrentUser().uid}`),
+			showCropper: false,
+			cropperOptions: {
+				aspectRatio: 1 / 1,
+				viewMode: 3,
+				guides: false,
+				center: false,
+				highlight: false,
+				autoCropArea: 1,
+				dragMode: 'move',
+				minContainerWidth: 100,
+				minContainerHeight: 100,
+			},
 		}
 	},
 
@@ -184,69 +222,82 @@ export default {
 		onLoad() {
 			console.debug(...arguments)
 		},
+
 		/**
-		 * Handler to store a new photo on the current contact
+		 * Checks the selected image for mimetype
+		 * and open the cropper if valid, else show error
+		 *
+		 * @param {Buffer} data the image
+		 * @return {boolean}
+		 */
+		async processPicture(data) {
+
+			const type = this.getMimetype(data)
+
+			if (!type.startsWith('image/')) {
+				showError(t('contacts', 'Please select a valid format'))
+				return false
+			}
+
+			if (type === 'image/svg') {
+				const imageSvg = atob(data.toString('base64'))
+				const cleanSvg = await sanitizeSVG(imageSvg)
+				if (!cleanSvg) {
+					throw new Error('Unsafe svg image', imageSvg)
+				}
+			}
+
+			this.openCropper(data, type)
+			return true
+		},
+
+		/**
+		 * Open the cropper-modal with the provided data
+		 *
+		 * @param {Buffer} data the image
+		 * @param {string} type of the image
+		 */
+		openCropper(data, type) {
+			const ccc = `data:${type};base64,${data.toString('base64')}`
+			this.$refs.cropper.replace(ccc)
+			this.showCropper = true
+		},
+
+		/**
+		 * Handle the uploaded file
 		 *
 		 * @param {object} event the event object containing the image
 		 */
-		processFile(event) {
+		handleUploadedFile(event) {
 			if (event.target.files && !this.loading) {
 				this.closeMenu()
 
 				const file = event.target.files[0]
-				if (file && file.size && file.size <= 1 * 1024 * 1024) {
-					const reader = new FileReader()
-					const self = this
-					let type = ''
 
-					reader.onloadend = async function(e) {
-						try {
-							// We got an ArrayBuffer, checking the true mime type...
-							if (typeof e.target.result === 'object') {
-								const uint = new Uint8Array(e.target.result)
-								const bytes = []
-								uint.forEach((byte) => {
-									bytes.push(byte.toString(16))
-								})
-								const hex = bytes.join('').toUpperCase()
+				const reader = new FileReader()
 
-								if (self.getMimetype(hex).startsWith('image/')) {
-									type = self.getMimetype(hex)
-									// we got a valid image, read it again as base64
-									reader.readAsDataURL(file)
-									return
-								}
-								throw new Error('Wrong image mimetype')
+				reader.onload = (e) => {
+					try {
+						if (typeof e.target.result === 'object') {
+
+							const data = Buffer.from(e.target.result, 'binary')
+
+							if (this.processPicture(data)) {
+								return
 							}
 
-							// else we got the base64 and we're good to go!
-							const imageBase64 = e.target.result.split(',').pop()
-
-							if (e.target.result.indexOf('image/svg') > -1) {
-								const imageSvg = atob(imageBase64)
-								const cleanSvg = await sanitizeSVG(imageSvg)
-								if (!cleanSvg) {
-									throw new Error('Unsafe svg image', imageSvg)
-								}
-							}
-
-							// All is well! Set the photo
-							self.setPhoto(imageBase64, type)
-						} catch (error) {
-							console.error(error)
-							showError(t('contacts', 'Invalid image'))
-						} finally {
-							self.resetPicker()
+							throw new Error('Wrong image mimetype')
 						}
-					}
 
-					// start by reading the magic bytes to detect proper photo mimetype
-					const blob = file.slice(0, 4)
-					reader.readAsArrayBuffer(blob)
-				} else {
-					showError(t('contacts', 'Image is too big (max 1MB).'))
-					this.resetPicker()
+					} catch (error) {
+						console.error(error)
+						showError(t('contacts', 'Invalid image'))
+					} finally {
+						this.resetPicker()
+					}
 				}
+
+				reader.readAsArrayBuffer(file)
 			}
 		},
 
@@ -268,13 +319,19 @@ export default {
 			return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
 		},
 		/**
-		 * Return the mimetype based on the first magix byte
+		 * Return the mimetype based on the first 4 byte
 		 *
-		 * @param {string} signature the first 4 bytes
+		 * @param {Uint8Array} uint content
 		 * @return {string} the mimetype
 		 */
-		getMimetype(signature) {
-			switch (signature) {
+		getMimetype(uint) {
+			const bytes = []
+			uint.slice(0, 4).forEach((byte) => {
+				bytes.push(byte.toString(16))
+			})
+			const hex = bytes.join('').toUpperCase()
+
+			switch (hex) {
 			case '89504E47':
 				return 'image/png'
 			case '47494638':
@@ -339,6 +396,34 @@ export default {
 		},
 
 		/**
+		 * Save the cropped image
+		 */
+		saveAvatar() {
+			this.showCropper = false
+			this.loading = true
+
+			this.$refs.cropper.getCroppedCanvas({
+				minWidth: 16,
+				minHeight: 16,
+				maxWidth: 512,
+				maxHeight: 512,
+			}).toBlob(async (blob) => {
+				if (blob === null) {
+					showError(t('contacts', 'Error cropping picture'))
+					this.cancel()
+					return
+				}
+
+				const reader = new FileReader()
+				reader.readAsDataURL(blob)
+				reader.onloadend = () => {
+					const base64data = reader.result
+					this.setPhoto(base64data.split(',').pop(), blob.type)
+				}
+			})
+		},
+
+		/**
 		 * Remove the contact's picture
 		 */
 		removePhoto() {
@@ -347,15 +432,29 @@ export default {
 		},
 
 		/**
-		 * Picker handlers
+		 * Cancel cropping
+		 */
+		cancel() {
+			this.showCropper = false
+			this.loading = false
+		},
+
+		/**
+		 * Picker handlers Upload
 		 */
 		selectFileInput() {
 			if (!this.loading) {
 				this.$refs.uploadInput.click()
 			}
 		},
+
+		/**
+		 * Picker handlers from Files
+		 */
 		async selectFilePicker() {
 			if (!this.loading) {
+				this.closeMenu()
+
 				const picker = getFilePickerBuilder(t('contacts', 'Pick an avatar'))
 					.setMimeTypeFilter([
 						'image/png',
@@ -368,19 +467,25 @@ export default {
 					.build()
 
 				const file = await picker.pick()
+
 				if (file) {
 					this.loading = true
 					try {
+
 						const response = await axios.get(`${this.root}${file}`, {
 							responseType: 'arraybuffer',
 						})
-						const type = response.headers['content-type']
-						const data = Buffer.from(response.data, 'binary').toString('base64')
-						this.setPhoto(data, type)
+
+						const data = Buffer.from(response.data, 'binary')
+
+						this.processPicture(data)
+
 					} catch (error) {
 						showError(t('contacts', 'Error while processing the picture.'))
 						console.error(error)
 						this.loading = false
+					} finally {
+						this.resetPicker()
 					}
 				}
 			}
@@ -436,6 +541,53 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.avatar__container {
+	padding: 24px;
+}
+
+.avatar {
+	&__container {
+		margin: 0 auto;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 16px 0;
+		width: 300px;
+
+		span {
+			color: var(--color-text-lighter);
+		}
+	}
+
+	&__preview {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 180px;
+		height: 180px;
+	}
+
+	&__buttons {
+		display: flex;
+		gap: 0 10px;
+	}
+
+	&__cropper {
+		overflow: hidden;
+
+		&-buttons {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		&::v-deep .cropper-view-box {
+			border-radius: 50%;
+		}
+	}
+}
+
 .contact-header-avatar {
 	// Wrap and cut
 	&__wrapper {
