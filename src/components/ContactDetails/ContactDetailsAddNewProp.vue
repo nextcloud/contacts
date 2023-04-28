@@ -22,7 +22,7 @@
   -->
 
 <template>
-	<div class="property__row property__row--without-actions">
+	<div class="property__row">
 		<!-- Dummy label to keep the layout -->
 		<div class="property__label" />
 
@@ -78,6 +78,9 @@
 				</template>
 			</Actions>
 		</div>
+
+		<!-- Dummy actions to keep the layout -->
+		<div class="property__actions" />
 	</div>
 </template>
 

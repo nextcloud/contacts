@@ -27,6 +27,7 @@
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:property="property"
 			:is-multiple="isMultiple"
+			:is-read-only="isReadOnly"
 			:bus="bus"
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName">
@@ -41,65 +42,69 @@
 		</PropertyTitle>
 
 		<div v-if="showActionsInFirstRow" class="property__row">
-			<!-- type selector -->
-			<Multiselect v-if="propModel.options"
-				v-model="localType"
-				:options="options"
-				:placeholder="t('contacts', 'Select type')"
-				:taggable="true"
-				tag-placeholder="create"
-				:disabled="isReadOnly"
-				class="property__label"
-				track-by="id"
-				label="name"
-				@tag="createLabel"
-				@input="updateType" />
+			<div class="property__label">
+				<!-- read-only type because NcMultiselect can't be styled properly -->
+				<span v-if="isReadOnly && propModel.options">
+					{{ (localType && localType.name) || '' }}
+				</span>
 
-			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-else-if="selectType" class="property__label">
-				{{ selectType.name }}
-			</div>
+				<!-- type selector -->
+				<Multiselect v-else-if="!isReadOnly && propModel.options"
+					v-model="localType"
+					:options="options"
+					:placeholder="t('contacts', 'Select type')"
+					:taggable="true"
+					tag-placeholder="create"
+					track-by="id"
+					label="name"
+					@tag="createLabel"
+					@input="updateType" />
 
-			<!-- no options, and showing the first input of an unstructured value?
+				<!-- if we do not support any type on our model but one is set anyway -->
+				<span v-else-if="selectType">
+					{{ selectType.name }}
+				</span>
+
+				<!-- no options, and showing the first input of an unstructured value?
 				then let's put an empty space (or the name again if no title is present) -->
-			<div v-else-if="!property.isStructuredValue" class="property__label">
-				{{ isFirstProperty ? '' : propModel.readableName }}
+				<span v-else-if="!property.isStructuredValue">
+					{{ isFirstProperty ? '' : propModel.readableName }}
+				</span>
 			</div>
 
-			<!-- or an empty placeholder to keep the layout -->
-			<div v-else class="property__label" />
-
-			<!-- show the first input if not a structured value -->
-			<input v-if="!property.isStructuredValue"
-				v-model.trim="localValue[0]"
-				:readonly="isReadOnly"
-				class="property__value"
-				type="text"
-				@input="updateValue">
-			<!-- or an empty placeholder to keep the layout -->
-			<div v-else class="property__value" />
+			<div class="property__value">
+				<!-- show the first input if not a structured value -->
+				<input v-if="!property.isStructuredValue"
+					v-model.trim="localValue[0]"
+					:readonly="isReadOnly"
+					type="text"
+					@input="updateValue">
+			</div>
 
 			<!-- props actions -->
-			<PropertyActions v-if="showActionsInFirstRow && !isReadOnly"
-				class="property__actions"
-				:actions="actions"
-				:property-component="this"
-				@delete="deleteProperty" />
+			<div class="property__actions">
+				<PropertyActions v-if="showActionsInFirstRow && !isReadOnly"
+					:actions="actions"
+					:property-component="this"
+					@delete="deleteProperty" />
+			</div>
 		</div>
 
 		<!-- force order based on model -->
 		<template v-if="propModel.displayOrder && propModel.readableValues">
 			<div v-for="index in propModel.displayOrder"
 				:key="index"
-				class="property__row property__row--without-actions">
+				class="property__row">
 				<div class="property__label">
-					{{ propModel.readableValues[index] }}
+					<span>{{ propModel.readableValues[index] }}</span>
 				</div>
-				<input v-model.trim="localValue[index]"
-					:readonly="isReadOnly"
-					class="property__value"
-					type="text"
-					@input="updateValue">
+				<div class="property__value">
+					<input v-model.trim="localValue[index]"
+						:readonly="isReadOnly"
+						type="text"
+						@input="updateValue">
+				</div>
+				<div class="property__actions" />
 			</div>
 		</template>
 
@@ -107,13 +112,15 @@
 		<template v-else>
 			<div v-for="(value, index) in filteredValue"
 				:key="index"
-				class="property__row property__row--without-actions">
+				class="property__row">
 				<div class="property__label" />
-				<input v-model.trim="filteredValue[index]"
-					:readonly="isReadOnly"
-					class="property__value"
-					type="text"
-					@input="updateValue">
+				<div class="property__value">
+					<input v-model.trim="filteredValue[index]"
+						:readonly="isReadOnly"
+						type="text"
+						@input="updateValue">
+				</div>
+				<div class="property__actions" />
 			</div>
 		</template>
 	</div>
@@ -172,3 +179,17 @@ export default {
 }
 
 </script>
+
+<style lang="scss" scoped>
+.property {
+	&__label {
+		&--read-only {
+			// Prevent jumping of the label when changing edit/view mode
+			// FIXME: drop forced height if NcMultiselect is migrated to NcSelect and can be
+			//        properly styled as read-only
+			height: 42px;
+			line-height: 42px;
+		}
+	}
+}
+</style>

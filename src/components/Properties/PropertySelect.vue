@@ -27,36 +27,41 @@
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:property="property"
 			:is-multiple="isMultiple"
+			:is-read-only="isReadOnly"
 			:bus="bus"
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName" />
 
-		<div class="property__row"
-			:class="{'property__row--without-actions': isReadOnly || hideActions}">
-			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-if="selectType" class="property__label">
-				{{ selectType.name }}
+		<div class="property__row">
+			<div class="property__label">
+				<!-- if we do not support any type on our model but one is set anyway -->
+				<span v-if="selectType">
+					{{ selectType.name }}
+				</span>
+
+				<!-- no options, empty space -->
+				<span v-else>
+					{{ propModel.readableName }}
+				</span>
 			</div>
 
-			<!-- no options, empty space -->
-			<div v-else class="property__label">
-				{{ propModel.readableName }}
+			<div class="property__value">
+				<Multiselect v-model="matchedOptions"
+					:options="selectableOptions"
+					:placeholder="t('contacts', 'Select option')"
+					:disabled="isSingleOption || isReadOnly"
+					track-by="id"
+					label="name"
+					@input="updateValue" />
 			</div>
-
-			<Multiselect v-model="matchedOptions"
-				:options="selectableOptions"
-				:placeholder="t('contacts', 'Select option')"
-				:disabled="isSingleOption || isReadOnly"
-				class="property__value"
-				track-by="id"
-				label="name"
-				@input="updateValue" />
 
 			<!-- props actions -->
-			<PropertyActions v-if="!isReadOnly && !hideActions"
-				:actions="actions"
-				:property-component="this"
-				@delete="deleteProperty" />
+			<div class="property__actions">
+				<PropertyActions v-if="!isReadOnly && !hideActions"
+					:actions="actions"
+					:property-component="this"
+					@delete="deleteProperty" />
+			</div>
 		</div>
 	</div>
 </template>

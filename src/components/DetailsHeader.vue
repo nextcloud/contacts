@@ -24,17 +24,19 @@
 <template>
 	<!-- contact header -->
 	<header class="contact-header" :style="cssStyle">
-		<div class="contact-header__avatar">
-			<slot name="avatar" :avatar-size="avatarSize" />
-		</div>
+		<div class="contact-header__no-wrap">
+			<div class="contact-header__avatar">
+				<slot name="avatar" :avatar-size="avatarSize" />
+			</div>
 
-		<!-- fullname, org, title -->
-		<div class="contact-header__infos">
-			<h2 class="contact-header__infos-title">
-				<slot name="title" />
-			</h2>
-			<div v-if="$slots.subtitle" class="contact-header__infos-subtitle">
-				<slot name="subtitle" />
+			<!-- fullname, org, title -->
+			<div class="contact-header__infos">
+				<h2 class="contact-header__infos-title">
+					<slot name="title" />
+				</h2>
+				<div v-if="$slots.subtitle" class="contact-header__infos-subtitle">
+					<slot name="subtitle" />
+				</div>
 			</div>
 		</div>
 
@@ -82,35 +84,50 @@ export default {
 <style lang="scss" scoped>
 @import '../../css/ContactDetailsLayout.scss';
 
+$top-padding: 50px;
+
 // Header with avatar, name, position, actions...
 .contact-header {
 	display: flex;
+	flex-wrap: wrap;
 	align-items: center;
-	padding: 50px 0 20px;
+	padding: $top-padding 0 20px;
 	gap: $contact-details-row-gap;
+
+	// Top padding of 44px is already included in AppContent by default on mobile
+	@media (max-width: 1024px) {
+		padding-top: calc($top-padding - 44px);
+	}
+
+	&__no-wrap {
+		display: flex;
+		flex: 9999 1 auto;
+		gap: $contact-details-row-gap;
+		align-items: center;
+
+		// Wrap actions to next line before shrinking
+		min-width: 0;
+	}
 
 	// AVATAR
 	&__avatar {
-		display: flex;
-		flex: 1 auto;
-		justify-content: flex-end;
-
 		// Global single column layout
-		width: $contact-details-label-width;
-		min-width: $contact-details-label-min-width;
-		max-width: $contact-details-label-max-width;
+		display: flex;
+		flex: 0 1 auto;
+		justify-content: flex-end;
+		width: $contact-details-label-max-width;
+		min-width: 0; // Has to be zero unless we implement wrapping
 	}
 
 	// ORG-TITLE-NAME
 	&__infos {
-		display: flex;
-		flex: 1 auto;
 		flex-direction: column;
 
 		// Global single column layout
-		width: $contact-details-value-width;
-		min-width: $contact-details-value-min-width;
-		max-width: $contact-details-value-max-width;
+		display: flex;
+		flex: 0 1 auto;
+		width: calc($contact-details-value-max-width + $contact-details-row-gap + 44px);
+		min-width: 0; // Has to be zero unless we implement wrapping
 
 		&-title,
 		&-subtitle {
@@ -130,6 +147,13 @@ export default {
 		&-subtitle:placeholder-shown {
 			max-width: 20%;
 		}
+	}
+
+	// ACTIONS
+	&__actions {
+		display: flex;
+		flex: 1 0 auto;
+		justify-content: space-between;
 	}
 }
 </style>

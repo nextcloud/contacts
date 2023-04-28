@@ -2,6 +2,7 @@
   - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -26,56 +27,60 @@
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:property="property"
 			:is-multiple="isMultiple"
+			:is-read-only="isReadOnly"
 			:bus="bus"
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName" />
 
 		<div class="property__row">
-			<!-- type selector -->
-			<Multiselect v-if="propModel.options"
-				v-model="localType"
-				:options="options"
-				:searchable="false"
-				:placeholder="t('contacts', 'Select type')"
-				:disabled="isReadOnly"
-				class="property__label"
-				track-by="id"
-				label="name"
-				@input="updateType" />
+			<div class="property__label">
+				<!-- type selector -->
+				<Multiselect v-if="propModel.options"
+					v-model="localType"
+					:options="options"
+					:searchable="false"
+					:placeholder="t('contacts', 'Select type')"
+					:disabled="isReadOnly"
+					track-by="id"
+					label="name"
+					@input="updateType" />
 
-			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-else-if="selectType" class="property__label">
-				{{ selectType.name }}
+				<!-- if we do not support any type on our model but one is set anyway -->
+				<span v-else-if="selectType">
+					{{ selectType.name }}
+				</span>
+
+				<!-- no options, empty space -->
+				<span v-else>
+					{{ propModel.readableName }}
+				</span>
 			</div>
 
-			<!-- no options, empty space -->
-			<div v-else class="property__label">
-				{{ propModel.readableName }}
+			<div class="property__value">
+				<!-- Real input where the picker shows -->
+				<DatetimePicker v-if="!isReadOnly"
+					:value="vcardTimeLocalValue.toJSDate()"
+					:minute-step="10"
+					:lang="lang"
+					:clearable="false"
+					:first-day-of-week="firstDay"
+					:type="inputType"
+					:readonly="isReadOnly"
+					:formatter="dateFormat"
+					@change="debounceUpdateValue" />
+
+				<input v-else
+					:readonly="true"
+					:value="formatDateTime()">
 			</div>
-
-			<!-- Real input where the picker shows -->
-			<DatetimePicker v-if="!isReadOnly"
-				:value="vcardTimeLocalValue.toJSDate()"
-				:minute-step="10"
-				:lang="lang"
-				:clearable="false"
-				:first-day-of-week="firstDay"
-				:type="inputType"
-				:readonly="isReadOnly"
-				:formatter="dateFormat"
-				class="property__value"
-				@change="debounceUpdateValue" />
-
-			<input v-else
-				:readonly="true"
-				:value="formatDateTime()"
-				class="property__value">
 
 			<!-- props actions -->
-			<PropertyActions v-if="!isReadOnly"
-				:actions="actions"
-				:property-component="this"
-				@delete="deleteProperty" />
+			<div class="property__actions">
+				<PropertyActions v-if="!isReadOnly"
+					:actions="actions"
+					:property-component="this"
+					@delete="deleteProperty" />
+			</div>
 		</div>
 	</div>
 </template>

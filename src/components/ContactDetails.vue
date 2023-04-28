@@ -32,12 +32,15 @@
 			</template>
 		</EmptyContent>
 
+		<!-- TODO: add empty content while this.loadingData === true -->
+
 		<template v-else>
 			<!-- contact header -->
 			<DetailsHeader>
 				<!-- avatar and upload photo -->
 				<ContactAvatar slot="avatar"
 					:contact="contact"
+					:is-read-only="isReadOnly"
 					@update-local-contact="updateLocalContact" />
 
 				<!-- fullname -->
@@ -55,7 +58,6 @@
 						autocorrect="off"
 						spellcheck="false"
 						name="fullname"
-						@input="debounceUpdateContact"
 						@click="selectInput">
 				</template>
 
@@ -72,8 +74,7 @@
 							autocomplete="off"
 							autocorrect="off"
 							spellcheck="false"
-							name="title"
-							@input="debounceUpdateContact">
+							name="title">
 						<input id="contact-org"
 							v-model="contact.org"
 							:placeholder="t('contacts', 'Company')"
@@ -81,23 +82,21 @@
 							autocomplete="off"
 							autocorrect="off"
 							spellcheck="false"
-							name="org"
-							@input="debounceUpdateContact">
+							name="org">
 					</template>
 				</template>
 
 				<!-- actions -->
 				<template #actions>
 					<!-- warning message -->
-					<a v-if="loadingUpdate || warning"
+					<component v-if="warning"
 						v-tooltip.bottom="{
 							content: warning ? warning.msg : '',
 							trigger: 'hover focus'
 						}"
-						:class="{'icon-loading-small': loadingUpdate,
-							[`${warning.icon}`]: warning}"
+						:is="warning.icon"
 						class="header-icon"
-						@click="onWarningClick" />
+						:classes="warning.classes" />
 
 					<!-- conflict message -->
 					<div v-if="conflict"
@@ -118,6 +117,28 @@
 						}"
 						class="header-icon header-icon--pulse icon-up"
 						@click="updateContact" />
+
+					<!-- edit and save buttons -->
+					<template v-if="!addressbookIsReadOnly">
+						<NcButton v-if="!editMode"
+							type="tertiary"
+							@click="editMode = true">
+							<template #icon>
+								<PencilIcon :size="20" />
+							</template>
+							{{ t('contacts', 'Edit') }}
+						</NcButton>
+						<NcButton v-else
+							type="primary"
+							:disabled="loadingUpdate"
+							@click="onSave">
+							<template #icon>
+								<IconLoading v-if="loadingUpdate" :size="20" />
+								<CheckIcon v-else :size="20" />
+							</template>
+							{{ t('contacts', 'Save') }}
+						</NcButton>
+					</template>
 				</template>
 
 				<!-- menu actions -->
@@ -153,7 +174,8 @@
 						</template>
 						{{ excludeFromBirthdayLabel }}
 					</ActionButton>
-					<ActionButton v-if="!isReadOnly" @click="deleteContact">
+					<ActionButton v-if="!addressbookIsReadOnly"
+						@click="deleteContact">
 						<template #icon>
 							<IconDelete :size="20" />
 						</template>
@@ -203,8 +225,6 @@
 			<section v-else class="contact-details">
 				<!-- properties iteration -->
 				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
-				<!-- passing the debounceUpdateContact so that the contact-property component contains the function
-					and allow us to use it on the rfcProps since the scope is forwarded to the actions -->
 				<div v-for="(properties, name) in groupedProperties"
 					:key="name">
 					<ContactDetailsProperty v-for="(property, index) in properties"
@@ -214,9 +234,9 @@
 						:property="property"
 						:contact="contact"
 						:local-contact="localContact"
-						:update-contact="debounceUpdateContact"
 						:contacts="contacts"
-						:bus="bus" />
+						:bus="bus"
+						:is-read-only="isReadOnly" />
 				</div>
 
 				<!-- addressbook change select - no last property because class is not applied here,
@@ -235,7 +255,7 @@
 
 				<!-- Groups always visible -->
 				<PropertyGroups :prop-model="groupsModel"
-					:value.sync="groups"
+					:value.sync="localContact.groups"
 					:contact="contact"
 					:is-read-only="isReadOnly"
 					class="property--groups property--last" />
@@ -255,9 +275,6 @@
 <script>
 import { showError } from '@nextcloud/dialogs'
 import { stringify } from 'ical.js'
-import debounce from 'debounce'
-// eslint-disable-next-line import/no-unresolved, n/no-missing-import
-import PQueue from 'p-queue'
 import qr from 'qr-image'
 import Vue from 'vue'
 
@@ -269,11 +286,16 @@ import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import Modal from '@nextcloud/vue/dist/Components/NcModal.js'
 import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
 import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
+import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import IconDownload from 'vue-material-design-icons/Download.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
 import IconQr from 'vue-material-design-icons/Qrcode.vue'
 import CakeIcon from 'vue-material-design-icons/Cake.vue'
 import IconCopy from 'vue-material-design-icons/ContentCopy.vue'
+import PencilIcon from 'vue-material-design-icons/Pencil.vue'
+import CheckIcon from 'vue-material-design-icons/Check.vue'
+import AlertCircleIcon from 'vue-material-design-icons/AlertCircle.vue'
+import EyeCircleIcon from 'vue-material-design-icons/EyeCircle.vue'
 
 import rfcProps from '../models/rfcProps.js'
 import validate from '../services/validate.js'
@@ -285,8 +307,6 @@ import DetailsHeader from './DetailsHeader.vue'
 import PropertyGroups from './Properties/PropertyGroups.vue'
 import PropertyRev from './Properties/PropertyRev.vue'
 import PropertySelect from './Properties/PropertySelect.vue'
-
-const updateQueue = new PQueue({ concurrency: 1 })
 
 export default {
 	name: 'ContactDetails',
@@ -307,11 +327,14 @@ export default {
 		CakeIcon,
 		IconCopy,
 		IconLoading,
+		PencilIcon,
+		CheckIcon,
 		Modal,
 		Multiselect,
 		PropertyGroups,
 		PropertyRev,
 		PropertySelect,
+		NcButton,
 	},
 
 	props: {
@@ -338,10 +361,10 @@ export default {
 			localContact: undefined,
 			loadingData: true,
 			loadingUpdate: false,
-			openedMenu: false,
 			qrcode: '',
 			showPickAddressbookModal: false,
 			pickedAddressbook: null,
+			editMode: false,
 
 			contactDetailsSelector: '.contact-details',
 			excludeFromBirthdayKey: 'x-nc-exclude-from-birthday-calendar',
@@ -352,11 +375,22 @@ export default {
 	},
 
 	computed: {
+		/**
+		 * The address book is read-only (e.g. shared with me).
+		 *
+		 * @return {boolean}
+		 */
+		addressbookIsReadOnly() {
+			return this.contact.addressbook?.readOnly
+		},
+
+		/**
+		 * The address book is read-only or the contact is in read-only mode.
+		 *
+		 * @return {boolean}
+		 */
 		isReadOnly() {
-			if (this.contact.addressbook) {
-				return this.contact.addressbook.readOnly
-			}
-			return false
+			return this.addressbookIsReadOnly || !this.editMode
 		},
 
 		/**
@@ -367,12 +401,14 @@ export default {
 		warning() {
 			if (!this.contact.dav) {
 				return {
-					icon: 'icon-error header-icon--pulse',
+					icon: AlertCircleIcon,
+					classes: ['header-icon--pulse'],
 					msg: t('contacts', 'This contact is not yet synced. Edit it to save it to the server.'),
 				}
-			} else if (this.isReadOnly) {
+			} else if (this.addressbookIsReadOnly) {
 				return {
-					icon: 'icon-eye',
+					icon: EyeCircleIcon,
+					classes: [],
 					msg: t('contacts', 'This contact is in read-only mode. You do not have permission to edit this contact.'),
 				}
 			}
@@ -473,22 +509,6 @@ export default {
 		},
 
 		/**
-		 * Usable groups object linked to the local contact
-		 *
-		 * @param {string[]} data An array of groups
-		 * @return {Array}
-		 */
-		groups: {
-			get() {
-				return this.contact.groups
-			},
-			set(data) {
-				this.contact.groups = data
-				this.debounceUpdateContact()
-			},
-		},
-
-		/**
 		 * Store getters filtered and mapped to usable object
 		 * This is the list of addressbooks that are available
 		 *
@@ -579,8 +599,11 @@ export default {
 		async updateContact() {
 			this.fixed = false
 			this.loadingUpdate = true
-			await this.$store.dispatch('updateContact', this.localContact)
-			this.loadingUpdate = false
+			try {
+				await this.$store.dispatch('updateContact', this.localContact)
+			} finally {
+				this.loadingUpdate = false
+			}
 
 			// if we just created the contact, we need to force update the
 			// localContact to match the proper store contact
@@ -591,14 +614,6 @@ export default {
 				await this.updateLocalContact(contact)
 			}
 		},
-
-		/**
-		 * Debounce the contact update for the header props
-		 * photo, fn, org, title
-		 */
-		debounceUpdateContact: debounce(function(e) {
-			updateQueue.add(this.updateContact)
-		}, 500),
 
 		/**
 		 * Generate a qrcode for the contact
@@ -642,6 +657,7 @@ export default {
 		 */
 		async selectContact(key) {
 			this.loadingData = true
+			this.editMode = false
 
 			// local version of the contact
 			const contact = this.$store.getters.getContact(key)
@@ -668,6 +684,9 @@ export default {
 				} else {
 					// clone to a local editable variable
 					await this.updateLocalContact(contact)
+
+					// enable edit mode by default when creating a new contact
+					this.editMode = true
 				}
 			}
 
@@ -780,9 +799,13 @@ export default {
 		},
 
 		onCtrlSave(e) {
+			if (!this.editMode) {
+				return
+			}
+
 			if (e.keyCode === 83 && (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey)) {
 				e.preventDefault()
-				this.debounceUpdateContact()
+				this.onSave()
 			}
 		},
 
@@ -809,20 +832,6 @@ export default {
 		},
 
 		/**
-		 * The user clicked the warning icon
-		 */
-		onWarningClick() {
-			// if the user clicked the readonly icon, let's focus the clone button
-			if (this.isReadOnly && this.addressbooksOptions.length > 0) {
-				this.openedMenu = true
-				this.$nextTick(() => {
-					// focus the clone button
-					this.$refs.actions.onMouseFocusAction({ target: this.$refs.cloneAction.$el })
-				})
-			}
-		},
-
-		/**
 		 * Should display the property
 		 *
 		 * @param {Property} property the property to check
@@ -838,6 +847,14 @@ export default {
 
 			return propModel && propType !== 'unknown'
 		},
+
+		/**
+		 * Save the contact. This handler is triggered by the save button.
+		 */
+		async onSave() {
+			await this.updateContact()
+			this.editMode = false
+		}
 	},
 }
 </script>
@@ -848,16 +865,6 @@ section.contact-details {
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
-
-	.property--rev {
-		position: absolute;
-		left: 125px;
-		bottom: -25px;
-		height: 44px;
-		opacity: .5;
-		color: var(--color-text-lighter);
-		line-height: 44px;
-	}
 }
 
 #qrcode-modal {

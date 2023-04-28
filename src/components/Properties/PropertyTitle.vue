@@ -26,12 +26,14 @@
 		<div class="property__label">
 			<PropertyTitleIcon :icon="icon" />
 		</div>
+
 		<h3 class="property__value">
 			{{ readableName }}
 		</h3>
+
 		<div class="property__actions">
 			<slot name="actions">
-				<Actions v-if="isMultiple" class="property__actions">
+				<Actions v-if="!isReadOnly && isMultiple" class="property__actions">
 					<ActionButton @click="onAddProp(property.name)">
 						<template #icon>
 							<IconPlus :size="20" />
@@ -39,9 +41,6 @@
 						{{ t('contacts', 'Add property of this type') }}
 					</ActionButton>
 				</Actions>
-
-				<!-- empty placeholder to keep the layout -->
-				<div v-else class="property__actions__empty" />
 			</slot>
 		</div>
 	</div>
@@ -71,10 +70,13 @@ export default {
 			default: '',
 			required: true,
 		},
+		isReadOnly: {
+			type: Boolean,
+			required: true,
+		},
 		property: {
 			type: Object,
 			default: () => {},
-			required: true,
 		},
 		isMultiple: {
 			type: Boolean,

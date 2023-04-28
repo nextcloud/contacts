@@ -4,6 +4,7 @@
   - @author Team Popcorn <teampopcornberlin@gmail.com>
   - @author John Molakvoæ <skjnldsv@protonmail.com>
   - @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -159,6 +160,10 @@ export default {
 			type: Object,
 			required: true,
 		},
+		isReadOnly: {
+			type: Boolean,
+			required: true,
+		},
 	},
 
 	data() {
@@ -183,12 +188,6 @@ export default {
 	},
 
 	computed: {
-		isReadOnly() {
-			if (this.contact.addressbook) {
-				return this.contact.addressbook.readOnly
-			}
-			return false
-		},
 		supportedSocial() {
 			const emails = this.contact.vCard.getAllProperties('email')
 			// get social networks set for the current contact
