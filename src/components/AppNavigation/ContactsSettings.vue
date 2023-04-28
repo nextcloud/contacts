@@ -66,9 +66,8 @@ import SettingsAddressbook from './Settings/SettingsAddressbook.vue'
 import SettingsNewAddressbook from './Settings/SettingsNewAddressbook.vue'
 import SettingsImportContacts from './Settings/SettingsImportContacts.vue'
 import SettingsSortContacts from './Settings/SettingsSortContacts.vue'
-import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+import { NcCheckboxRadioSwitch as CheckboxRadioSwitch, NcAppSettingsDialog as AppSettingsDialog, NcAppSettingsSection as AppSettingsSection } from '@nextcloud/vue'
 import { CONTACTS_SETTINGS } from '../../models/constants.ts'
-import { NcAppSettingsDialog as AppSettingsDialog, NcAppSettingsSection as AppSettingsSection } from '@nextcloud/vue'
 
 export default {
 	name: 'ContactsSettings',

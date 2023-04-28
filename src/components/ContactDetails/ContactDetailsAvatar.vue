@@ -110,19 +110,21 @@
 </template>
 
 <script>
-import Avatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
-import Actions from '@nextcloud/vue/dist/Components/NcActions.js'
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
-import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js'
+import {
+	NcAvatar as Avatar,
+	NcActions as Actions,
+	NcActionButton as ActionButton,
+	NcActionLink as ActionLink,
+	NcButton,
+	NcModal,
+} from '@nextcloud/vue'
 import IconDownload from 'vue-material-design-icons/Download.vue'
 import IconCloudDownload from 'vue-material-design-icons/CloudDownload.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
 import IconUpload from 'vue-material-design-icons/Upload.vue'
 import IconFolder from 'vue-material-design-icons/Folder.vue'
 import IconImage from 'vue-material-design-icons/Image.vue'
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import VueCropper from 'vue-cropperjs'
-import NcModal from '@nextcloud/vue/dist/Components/NcModal.js'
 // eslint-disable-next-line n/no-extraneous-import
 import 'cropperjs/dist/cropper.css'
 

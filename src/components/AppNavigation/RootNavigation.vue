@@ -191,15 +191,17 @@
 <script>
 import { GROUP_ALL_CONTACTS, CHART_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC, CONTACTS_SETTINGS } from '../../models/constants.ts'
 
-import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput.js'
-import ActionText from '@nextcloud/vue/dist/Components/NcActionText.js'
-import NcActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
-import AppNavigation from '@nextcloud/vue/dist/Components/NcAppNavigation.js'
-import Button from '@nextcloud/vue/dist/Components/NcButton.js'
-import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble.js'
-import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem.js'
-import AppNavigationCaption from '@nextcloud/vue/dist/Components/NcAppNavigationCaption.js'
-import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
+import {
+	NcActionInput as ActionInput,
+	NcActionText as ActionText,
+	NcActionButton,
+	NcAppNavigation as AppNavigation,
+	NcButton as Button,
+	NcCounterBubble,
+	NcAppNavigationItem as AppNavigationItem,
+	NcAppNavigationCaption as AppNavigationCaption,
+	NcLoadingIcon as IconLoading,
+} from '@nextcloud/vue'
 
 import naturalCompare from 'string-natural-compare'
 

@@ -92,10 +92,12 @@
 </template>
 
 <script>
-import Button from '@nextcloud/vue/dist/Components/NcButton.js'
-import Modal from '@nextcloud/vue/dist/Components/NcModal.js'
-import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
-import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
+import {
+	NcButton as Button,
+	NcModal as Modal,
+	NcMultiselect as Multiselect,
+	NcLoadingIcon as IconLoading,
+} from '@nextcloud/vue'
 import { encodePath } from '@nextcloud/paths'
 import { getCurrentUser } from '@nextcloud/auth'
 import { generateRemoteUrl } from '@nextcloud/router'

@@ -75,8 +75,10 @@
 
 <script>
 import ContentHeading from './ContentHeading.vue'
-import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
-import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import {
+	NcCheckboxRadioSwitch as CheckboxRadioSwitch,
+	NcButton as Button,
+} from '@nextcloud/vue'
 
 // Circle setting keys
 const ENFORCE_PASSWORD_PROTECTION = 'enforce_password'

@@ -72,10 +72,12 @@
 </template>
 <script>
 import { emit } from '@nextcloud/event-bus'
-import AppContent from '@nextcloud/vue/dist/Components/NcAppContent.js'
-import Button from '@nextcloud/vue/dist/Components/NcButton.js'
-import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
-import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
+import {
+	NcAppContent as AppContent,
+	NcButton as Button,
+	NcEmptyContent as EmptyContent,
+	NcLoadingIcon as IconLoading,
+} from '@nextcloud/vue'
 
 import ContactDetails from '../ContactDetails.vue'
 import ContactsList from '../ContactsList.vue'

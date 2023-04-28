@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import AppContent from '@nextcloud/vue/dist/Components/NcAppContent.js'
+import { NcAppContent as AppContent } from '@nextcloud/vue'
 
 import OrgChart from '../OrgChart.vue'
 import { getChart, transformNode } from '../../utils/chartUtils.js'

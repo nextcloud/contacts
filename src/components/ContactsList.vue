@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import AppContentList from '@nextcloud/vue/dist/Components/NcAppContentList.js'
+import { NcAppContentList as AppContentList } from '@nextcloud/vue'
 import ContactsListItem from './ContactsList/ContactsListItem.vue'
 import VirtualList from 'vue-virtual-scroll-list'
 

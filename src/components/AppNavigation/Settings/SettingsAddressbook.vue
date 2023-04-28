@@ -111,13 +111,15 @@
 </template>
 
 <script>
-import Actions from '@nextcloud/vue/dist/Components/NcActions.js'
-import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js'
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
-import ActionInput from '@nextcloud/vue/dist/Components/NcActionInput.js'
-import ActionCheckbox from '@nextcloud/vue/dist/Components/NcActionCheckbox.js'
-import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
-import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import {
+	NcActions as Actions,
+	NcActionLink as ActionLink,
+	NcActionButton as ActionButton,
+	NcActionInput as ActionInput,
+	NcActionCheckbox as ActionCheckbox,
+	NcLoadingIcon as IconLoading,
+	NcButton as Button,
+} from '@nextcloud/vue'
 import IconDownload from 'vue-material-design-icons/Download.vue'
 import IconRename from 'vue-material-design-icons/Pencil.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'

@@ -100,11 +100,13 @@
 <script>
 import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberStatus } from '../../models/constants.ts'
 
-import Actions from '@nextcloud/vue/dist/Components/NcActions.js'
-import ListItemIcon from '@nextcloud/vue/dist/Components/NcListItemIcon.js'
-import ActionSeparator from '@nextcloud/vue/dist/Components/NcActionSeparator.js'
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
-import ActionText from '@nextcloud/vue/dist/Components/NcActionText.js'
+import {
+	NcActions as Actions,
+	NcListItemIcon as ListItemIcon,
+	NcActionSeparator as ActionSeparator,
+	NcActionButton as ActionButton,
+	NcActionText as ActionText,
+} from '@nextcloud/vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
 import IconCheck from 'vue-material-design-icons/Check.vue'
 import IconClose from 'vue-material-design-icons/Close.vue'

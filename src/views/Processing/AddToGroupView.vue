@@ -38,7 +38,7 @@
 
 <script>
 import ProcessingScreen from '../../components/ProcessingScreen.vue'
-import Button from '@nextcloud/vue/dist/Components/NcButton.js'
+import { NcButton as Button } from '@nextcloud/vue'
 export default {
 	name: 'AddToGroupView',
 

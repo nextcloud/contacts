@@ -32,7 +32,7 @@ import logger from './services/logger.js'
 
 /** GLOBAL COMPONENTS AND DIRECTIVE */
 import ClickOutside from 'vue-click-outside'
-import VTooltip from '@nextcloud/vue/dist/Directives/Tooltip.js'
+import { Tooltip as VTooltip } from '@nextcloud/vue'
 
 // Global scss sheets
 import '../css/contacts.scss'

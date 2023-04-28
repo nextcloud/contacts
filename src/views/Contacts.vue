@@ -70,10 +70,12 @@
 <script>
 import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE } from '../models/constants.ts'
 
-import Button from '@nextcloud/vue/dist/Components/NcButton.js'
-import Content from '@nextcloud/vue/dist/Components/NcContent.js'
-import isMobile from '@nextcloud/vue/dist/Mixins/isMobile.js'
-import Modal from '@nextcloud/vue/dist/Components/NcModal.js'
+import {
+	isMobile,
+	NcButton as Button,
+	NcContent as Content,
+	NcModal as Modal,
+} from '@nextcloud/vue'
 
 import { showError } from '@nextcloud/dialogs'
 import { VCardTime } from 'ical.js'

@@ -277,16 +277,17 @@ import { showError } from '@nextcloud/dialogs'
 import { stringify } from 'ical.js'
 import qr from 'qr-image'
 import Vue from 'vue'
-
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
-import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js'
-import AppContentDetails from '@nextcloud/vue/dist/Components/NcAppContentDetails.js'
-import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
+import {
+	NcActionButton as ActionButton,
+	NcActionLink as ActionLink,
+	NcAppContentDetails as AppContentDetails,
+	NcEmptyContent as EmptyContent,
+	NcModal as Modal,
+	NcMultiselect as Multiselect,
+	NcLoadingIcon as IconLoading,
+	NcButton,
+} from '@nextcloud/vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
-import Modal from '@nextcloud/vue/dist/Components/NcModal.js'
-import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
-import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
-import NcButton from '@nextcloud/vue/dist/Components/NcButton.js'
 import IconDownload from 'vue-material-design-icons/Download.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
 import IconQr from 'vue-material-design-icons/Qrcode.vue'

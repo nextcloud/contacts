@@ -35,7 +35,7 @@
 </template>
 
 <script>
-import UserBubble from '@nextcloud/vue/dist/Components/NcUserBubble.js'
+import { NcUserBubble as UserBubble } from '@nextcloud/vue'
 
 export default {
 	name: 'EntityBubble',
