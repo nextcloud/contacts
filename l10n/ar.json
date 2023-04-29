@@ -24,12 +24,12 @@
     "Password protection" : "الحماية بكلمة السر",
     "Save" : "Save",
     "Description" : "الوصف",
+    "Cancel" : "إلغاء",
     "Upload a new picture" : "تحميل صورة جديدة",
     "Choose from Files" : "اختر من الملفات",
     "Download picture" : "تنزيل الصورة",
     "Delete picture" : "حذف الصورة",
     "Invalid image" : "الصورة غير صالحة",
-    "Image is too big (max 1MB)." : "حجم الصورة كبير جداً (الحجم الأقصى 1MB)",
     "Error while processing the picture." : "حدث خطأ أثناء معالجة الصورة.",
     "Avatar already up to date" : "الصورة الرمزية محدثة بالفعل",
     "Avatar download failed" : "فشل تحميل الصورة الرمزية",
@@ -38,7 +38,6 @@
     "Name" : "الاسم",
     "Title" : "العنوان",
     "Company" : "الشركة",
-    "Cancel" : "إلغاء",
     "Address book" : "دفتر العناوين",
     "New contact" : "جهة إتصال جديدة",
     "Search contacts …" : "البحث عن جهات الإتصال",
@@ -46,6 +45,7 @@
     "Personal circle" : "حلقة شخصية",
     "Pending" : "معلّق",
     "Select Date" : "اختر التاريخ ",
+    "None" : "لا شيء",
     "Select option" : "حدد الخيار",
     "Close" : "إغلاق",
     "Import" : "استيراد",
@@ -91,7 +91,6 @@
     "Voice" : "صوت",
     "Social network" : "شبكة اجتماعية",
     "Relative" : "مرتبط",
-    "None" : "لا شيء",
     "Unknown" : "مجهول"
 },"pluralForm" :"nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;"
 }

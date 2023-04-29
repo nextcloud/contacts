@@ -15,11 +15,12 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Lagre",
     "Description" : "Skildring",
+    "Cancel" : "Avbryt",
     "Invalid image" : "Ugyldig bilete",
     "Name" : "Namn",
     "Title" : "Tittel",
-    "Cancel" : "Avbryt",
     "Pending" : "Under vegs",
+    "None" : "Ingen",
     "Close" : "Lukk",
     "Import" : "Importer",
     "Not grouped" : "Ikkje gruppert",
@@ -49,7 +50,6 @@ OC.L10N.register(
     "Fax" : "Faks",
     "Pager" : "Personsøkjar",
     "Voice" : "Tale",
-    "None" : "Ingen",
     "Unknown" : "Ukjend"
 },
 "nplurals=2; plural=(n != 1);");

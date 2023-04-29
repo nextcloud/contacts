@@ -19,17 +19,18 @@
     "Password protection" : "Password protection",
     "Save" : "Salvesta",
     "Description" : "Kirjeldus",
+    "Cancel" : "Loobu",
     "Delete picture" : "Kustuta pilt",
     "Invalid image" : "Vigane pilt",
     "Name" : "Nimi",
     "Title" : "Pealkiri",
-    "Cancel" : "Loobu",
     "Address book" : "Aadressiraamat",
     "New contact" : "Uus kontakt",
     "Search contacts …" : "Otsi kontakte",
     "No results" : "Vasteid ei leitud",
     "Personal circle" : "Isiklik ring",
     "Pending" : "Ootel",
+    "None" : "Pole",
     "Close" : "Sulge",
     "Import" : "Impordi",
     "Not grouped" : "Pole grupeeritud",
@@ -91,7 +92,6 @@
     "Gender" : "Sugu",
     "Female" : "Naine",
     "Male" : "Mees",
-    "None" : "Pole",
     "Unknown" : "Teadmata"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

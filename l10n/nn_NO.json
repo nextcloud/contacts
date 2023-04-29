@@ -13,11 +13,12 @@
     "Password protection" : "Password protection",
     "Save" : "Lagre",
     "Description" : "Skildring",
+    "Cancel" : "Avbryt",
     "Invalid image" : "Ugyldig bilete",
     "Name" : "Namn",
     "Title" : "Tittel",
-    "Cancel" : "Avbryt",
     "Pending" : "Under vegs",
+    "None" : "Ingen",
     "Close" : "Lukk",
     "Import" : "Importer",
     "Not grouped" : "Ikkje gruppert",
@@ -47,7 +48,6 @@
     "Fax" : "Faks",
     "Pager" : "Personsøkjar",
     "Voice" : "Tale",
-    "None" : "Ingen",
     "Unknown" : "Ukjend"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

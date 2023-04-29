@@ -15,11 +15,12 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Späicheren",
     "Description" : "Beschreiwung",
+    "Cancel" : "Ofbriechen",
     "Invalid image" : "Ongülteg d'Bild",
     "Name" : "Numm",
     "Title" : "Titel",
-    "Cancel" : "Ofbriechen",
     "Pending" : "Ausstoend",
+    "None" : "Keng",
     "Close" : "Zoumaachen",
     "Import" : "Importéieren",
     "User" : "User",
@@ -45,7 +46,6 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Voice",
     "Relative" : "Relativ",
-    "None" : "Keng",
     "Unknown" : "Onbekannt"
 },
 "nplurals=2; plural=(n != 1);");

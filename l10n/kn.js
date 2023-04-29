@@ -9,11 +9,12 @@ OC.L10N.register(
     "can edit" : "﻿ಸಂಪಾದಿಸಬಹುದು",
     "Password protection" : "Password protection",
     "Save" : "﻿ಉಳಿಸಿ",
+    "Cancel" : "﻿ರದ್ದು",
     "Invalid image" : "ಅಸಾಮರ್ಥ್ಯ ಚಿತ್ರ",
     "Name" : "﻿ಹೆಸರು",
     "Title" : "ಶೀರ್ಷಿಕೆ",
-    "Cancel" : "﻿ರದ್ದು",
     "Pending" : "﻿ಬಾಕಿ ಇದೆ",
+    "None" : "﻿ಯಾವುದೂ ಇಲ್ಲ",
     "Close" : "ಮುಚ್ಚು",
     "Import" : "ಆಮದು",
     "User" : "User",
@@ -25,7 +26,6 @@ OC.L10N.register(
     "Notes" : "Notes",
     "Home" : "﻿ಮುಖಪುಟ",
     "Other" : "﻿ಇತರೆ",
-    "Address" : "ವಿಳಾಸ",
-    "None" : "﻿ಯಾವುದೂ ಇಲ್ಲ"
+    "Address" : "ವಿಳಾಸ"
 },
 "nplurals=2; plural=(n > 1);");

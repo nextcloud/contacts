@@ -19,14 +19,15 @@
     "Password protection" : "Password protection",
     "Save" : "Simpan",
     "Description" : "Deskrisi",
+    "Cancel" : "Membatalkan",
     "Invalid image" : "Gambar tidak sah",
     "Name" : "Nama",
     "Title" : "Judul",
-    "Cancel" : "Membatalkan",
     "New contact" : "Kontak baru",
     "Search contacts …" : "Cari kontak ...",
     "No results" : "Tidak ada hasil",
     "Pending" : "Tunggu",
+    "None" : "Tidak ada",
     "Close" : "Tutup",
     "Import" : "Impor",
     "Not grouped" : "Tidak dikelompokkan",
@@ -66,7 +67,6 @@
     "Pager" : "Pager",
     "Voice" : "Suara",
     "Social network" : "Media sosial",
-    "None" : "Tidak ada",
     "Unknown" : "Tidak diketahui"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

@@ -18,12 +18,13 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Salveguardar",
     "Description" : "Description",
+    "Cancel" : "Cancellar",
     "Invalid image" : "Imagine invalide",
     "Name" : "Nomine",
     "Title" : "Titulo",
-    "Cancel" : "Cancellar",
     "New contact" : "Nove contacto",
     "Pending" : "Pendente",
+    "None" : "Nulle",
     "Close" : "Clauder",
     "Import" : "Importar",
     "Not grouped" : "Non gruppate",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Voice" : "Voce",
     "Social network" : "Medios Social",
     "Relative" : "Relative",
-    "None" : "Nulle",
     "Unknown" : "Incognite"
 },
 "nplurals=2; plural=(n != 1);");

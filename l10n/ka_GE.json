@@ -22,16 +22,17 @@
     "Password protection" : "პაროლით თავდაცვა",
     "Save" : "შენახვა",
     "Description" : "აღწერილობა",
+    "Cancel" : "უარყოფა",
     "Invalid image" : "არასწორი სურათი",
     "Name" : "სახელი",
     "Title" : "სათაური",
-    "Cancel" : "უარყოფა",
     "Address book" : "მისამართების წიგნი",
     "New contact" : "ახალი კონტაქტი",
     "Search contacts …" : "მოძებნეთ კონტაქტები ...",
     "No results" : "შედეგები არაა",
     "Personal circle" : "პირადი წრე",
     "Pending" : "მოლოდინში",
+    "None" : "არც ერთი",
     "Close" : "დახურვა",
     "Import" : "იმპორტი",
     "Not grouped" : "არაა დაჯგუფებული",
@@ -93,7 +94,6 @@
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
     "Male" : "მამრობითი",
-    "None" : "არც ერთი",
     "Unknown" : "ამოუცნობი"
 },"pluralForm" :"nplurals=2; plural=(n!=1);"
 }

@@ -16,12 +16,13 @@
     "Password protection" : "Password protection",
     "Save" : "Salveguardar",
     "Description" : "Description",
+    "Cancel" : "Cancellar",
     "Invalid image" : "Imagine invalide",
     "Name" : "Nomine",
     "Title" : "Titulo",
-    "Cancel" : "Cancellar",
     "New contact" : "Nove contacto",
     "Pending" : "Pendente",
+    "None" : "Nulle",
     "Close" : "Clauder",
     "Import" : "Importar",
     "Not grouped" : "Non gruppate",
@@ -61,7 +62,6 @@
     "Voice" : "Voce",
     "Social network" : "Medios Social",
     "Relative" : "Relative",
-    "None" : "Nulle",
     "Unknown" : "Incognite"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

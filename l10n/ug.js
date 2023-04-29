@@ -9,10 +9,11 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "ساقلا",
     "Description" : "چۈشەندۈرۈش",
+    "Cancel" : "ۋاز كەچ",
     "Name" : "ئاتى",
     "Title" : "ماۋزۇ",
-    "Cancel" : "ۋاز كەچ",
     "Pending" : "كۈتۈۋاتىدۇ",
+    "None" : "يوق",
     "Close" : "ياپ",
     "Import" : "ئەكىر",
     "User" : "User",
@@ -35,7 +36,6 @@ OC.L10N.register(
     "Mobile" : "كۆچمە",
     "Fax" : "فاكىس",
     "Pager" : "چاقىرغۇ",
-    "Voice" : "ئاۋاز",
-    "None" : "يوق"
+    "Voice" : "ئاۋاز"
 },
 "nplurals=2; plural=(n != 1);");

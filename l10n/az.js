@@ -13,11 +13,12 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Saxla",
     "Description" : "Açıqlanma",
+    "Cancel" : "Dayandır",
     "Invalid image" : "Yalnış şəkil",
     "Name" : "Ad",
     "Title" : "Başlıq",
-    "Cancel" : "Dayandır",
     "Pending" : "Gözləmə",
+    "None" : "Heç bir",
     "Close" : "Bağla",
     "Import" : "Əlavə et",
     "Not grouped" : "Qruplaşdırılmayıb",
@@ -33,7 +34,6 @@ OC.L10N.register(
     "Work" : "İş",
     "Other" : "Digər",
     "Address" : "Ünvan",
-    "Birthday" : "Ad günü",
-    "None" : "Heç bir"
+    "Birthday" : "Ad günü"
 },
 "nplurals=2; plural=(n != 1);");

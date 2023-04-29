@@ -7,11 +7,12 @@ OC.L10N.register(
     "Delete" : "Sguab às",
     "Copy link" : "Dèan lethbhreac dhen cheangal",
     "Save" : "Sàbhail",
+    "Cancel" : "Sguir dheth",
     "Invalid image" : "Dealbh mì-dhligheach",
     "Name" : "Ainm",
-    "Cancel" : "Sguir dheth",
     "No results" : "Gun toradh",
     "Pending" : "Ri dhèiligeadh",
+    "None" : "Chan eil gin",
     "Close" : "Dùin",
     "User" : "Cleachdaiche",
     "Email" : "Post-d",
@@ -19,7 +20,6 @@ OC.L10N.register(
     "Website" : "Làrach-lìn",
     "Home" : "Dachaigh",
     "Address" : "Seòladh",
-    "None" : "Chan eil gin",
     "Unknown" : "Chan eil fhios"
 },
 "nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;");

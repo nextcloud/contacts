@@ -7,10 +7,11 @@
     "Password protection" : "Password protection",
     "Save" : "ساقلا",
     "Description" : "چۈشەندۈرۈش",
+    "Cancel" : "ۋاز كەچ",
     "Name" : "ئاتى",
     "Title" : "ماۋزۇ",
-    "Cancel" : "ۋاز كەچ",
     "Pending" : "كۈتۈۋاتىدۇ",
+    "None" : "يوق",
     "Close" : "ياپ",
     "Import" : "ئەكىر",
     "User" : "User",
@@ -33,7 +34,6 @@
     "Mobile" : "كۆچمە",
     "Fax" : "فاكىس",
     "Pager" : "چاقىرغۇ",
-    "Voice" : "ئاۋاز",
-    "None" : "يوق"
+    "Voice" : "ئاۋاز"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
