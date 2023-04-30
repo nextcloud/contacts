@@ -115,6 +115,7 @@ OC.L10N.register(
     "Title" : "Длъжност",
     "Company" : "Фирма",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Този контакт се повреди и беше поправен. Моля, прегледайте съдържанието и кликнете тук, за да го запишете.",
+    "Edit" : "Редактирай",
     "Clone contact" : "Клонирай контакта",
     "Generate QR Code" : "Генериране на QR код",
     "Contact vCard as QR code" : "Свързване с vCard, като QR код",

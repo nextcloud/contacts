@@ -25,6 +25,7 @@ OC.L10N.register(
     "Name" : "Naam",
     "Title" : "Titel",
     "Company" : "Maatskappy",
+    "Edit" : "Wysig",
     "New contact" : "Nuwe kontak",
     "Search contacts …" : "Soek kontakte …",
     "Pending" : "Hangend",
