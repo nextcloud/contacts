@@ -132,7 +132,7 @@ export default {
 			}
 
 			return t('contacts', 'Add contact in group')
-		}
+		},
 	},
 
 	watch: {

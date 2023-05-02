@@ -40,7 +40,7 @@
 			:url="photoUrl"
 			class="contact-header-avatar__photo" />
 
-		<NcModal :show.sync="showCropper" @close="cancel" size="small">
+		<NcModal :show.sync="showCropper" size="small" @close="cancel">
 			<div class="avatar__container">
 				<h2>{{ t('contacts', 'Crop contact photo') }}</h2>
 				<VueCropper ref="cropper"
@@ -164,6 +164,10 @@ export default {
 		},
 		isReadOnly: {
 			type: Boolean,
+			required: true,
+		},
+		reloadBus: {
+			type: Object,
 			required: true,
 		},
 	},
@@ -355,7 +359,7 @@ export default {
 		 * @param {string} data the photo as base64 binary string
 		 * @param {string} type mimetype
 		 */
-		setPhoto(data, type) {
+		async setPhoto(data, type) {
 			// Init with empty data
 			if (this.contact.photo) {
 				this.contact.vCard.addPropertyWithValue('photo', '')
@@ -378,7 +382,12 @@ export default {
 				this.contact.photo = `data:${type};base64,${data}`
 			}
 
-			this.$store.dispatch('updateContact', this.contact)
+			await this.$store.dispatch('updateContact', this.contact)
+
+			await this.loadPhotoUrl()
+
+			await this.reloadBus.$emit('reload-avatar', this.contact.key)
+
 			this.loading = false
 		},
 
@@ -430,6 +439,9 @@ export default {
 		removePhoto() {
 			this.contact.vCard.removeAllProperties('photo')
 			this.$store.dispatch('updateContact', this.contact)
+			// somehow the avatarUrl is not unavailable immediately, so we just set undefined
+			this.photoUrl = undefined
+			this.reloadBus.$emit('delete-avatar', this.contact.key)
 		},
 
 		/**
@@ -518,6 +530,10 @@ export default {
 					// Update local clone
 					const contact = this.$store.getters.getContact(this.contact.key)
 					await this.$emit('update-local-contact', contact)
+
+					await this.loadPhotoUrl()
+
+					await this.reloadBus.$emit('reload-avatar', this.contact.key)
 
 					// Notify user
 					showSuccess(t('contacts', 'Avatar downloaded from social network'))

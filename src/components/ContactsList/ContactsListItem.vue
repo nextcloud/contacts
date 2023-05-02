@@ -44,12 +44,17 @@ export default {
 			type: Object,
 			required: true,
 		},
+		reloadBus: {
+			type: Object,
+			required: true,
+		},
 	},
 	data() {
 		return {
 			avatarUrl: undefined,
 		}
 	},
+
 	computed: {
 		selectedGroup() {
 			return this.$route.params.selectedGroup
@@ -63,15 +68,44 @@ export default {
 			return window.btoa(this.source.key).slice(0, -2)
 		},
 	},
-	watch: {
-		async source() {
-			await this.loadAvatarUrl()
-		},
+
+	created() {
+		this.reloadBus.$on('reload-avatar', this.reloadAvatarUrl)
+		this.reloadBus.$on('delete-avatar', this.deleteAvatar)
+	},
+	destroyed() {
+		this.reloadBus.$off('reload-avatar', this.reloadAvatarUrl)
+		this.reloadBus.$off('delete-avatar', this.deleteAvatar)
 	},
 	async mounted() {
 		await this.loadAvatarUrl()
 	},
 	methods: {
+
+		/**
+		 * Is called on save in ContactDetails to reload Avatar,
+		 * url does not change, so trigger on source change don't work
+		 *
+		 * @param {string} key from contact
+		 */
+		reloadAvatarUrl(key) {
+			if (key === this.source.key) {
+				this.loadAvatarUrl()
+			}
+		},
+
+		/**
+		 * Is called on save in ContactDetails to delete Avatar,
+		 * somehow the avatarUrl is not unavailable immediately, so we just set undefined
+		 *
+		 * @param {string} key from contact
+		 */
+		deleteAvatar(key) {
+			if (key === this.source.key) {
+				this.avatarUrl = undefined
+			}
+		},
+
 		async loadAvatarUrl() {
 			this.avatarUrl = undefined
 			if (this.source.photo) {

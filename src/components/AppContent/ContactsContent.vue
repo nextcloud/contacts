@@ -63,11 +63,12 @@
 		<template #list>
 			<ContactsList :list="contactsList"
 				:contacts="contacts"
-				:search-query="searchQuery" />
+				:search-query="searchQuery"
+				:reload-bus="reloadBus" />
 		</template>
 
 		<!-- main contacts details -->
-		<ContactDetails :contact-key="selectedContact" :contacts="sortedContacts" />
+		<ContactDetails :contact-key="selectedContact" :contacts="sortedContacts" :reload-bus="reloadBus" />
 	</AppContent>
 </template>
 <script>
@@ -83,6 +84,7 @@ import ContactDetails from '../ContactDetails.vue'
 import ContactsList from '../ContactsList.vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
+import Vue from 'vue'
 
 export default {
 	name: 'ContactsContent',
@@ -114,6 +116,8 @@ export default {
 	data() {
 		return {
 			searchQuery: '',
+			// communication for ContactListItem and ContactDetails (reload avatar)
+			reloadBus: new Vue(),
 		}
 	},
 
