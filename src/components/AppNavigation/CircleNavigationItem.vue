@@ -90,12 +90,14 @@
 </template>
 
 <script>
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
-import ActionLink from '@nextcloud/vue/dist/Components/NcActionLink.js'
-import ActionText from '@nextcloud/vue/dist/Components/NcActionText.js'
-import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble.js'
-import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem.js'
-import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
+import {
+	NcActionButton as ActionButton,
+	NcActionLink as ActionLink,
+	NcActionText as ActionText,
+	NcCounterBubble,
+	NcAppNavigationItem as AppNavigationItem,
+	NcLoadingIcon as IconLoading,
+} from '@nextcloud/vue'
 import ExitToApp from 'vue-material-design-icons/ExitToApp.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'

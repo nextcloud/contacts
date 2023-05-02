@@ -126,10 +126,12 @@
 import { showError } from '@nextcloud/dialogs'
 import debounce from 'debounce'
 
-import AppContentDetails from '@nextcloud/vue/dist/Components/NcAppContentDetails.js'
-import Avatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
-import Button from '@nextcloud/vue/dist/Components/NcButton.js'
-import RichContenteditable from '@nextcloud/vue/dist/Components/NcRichContenteditable.js'
+import {
+	NcAppContentDetails as AppContentDetails,
+	NcAvatar as Avatar,
+	NcButton as Button,
+	NcRichContenteditable as RichContenteditable,
+} from '@nextcloud/vue'
 
 import Login from 'vue-material-design-icons/Login.vue'
 import Logout from 'vue-material-design-icons/Logout.vue'

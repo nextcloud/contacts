@@ -22,8 +22,10 @@
 </template>
 
 <script>
-import { NcListItem as ListItem } from '@nextcloud/vue'
-import BaseAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
+import {
+	NcListItem as ListItem,
+	NcAvatar as BaseAvatar,
+} from '@nextcloud/vue'
 
 export default {
 	name: 'ContactsListItem',

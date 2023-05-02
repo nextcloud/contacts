@@ -85,11 +85,13 @@
 </template>
 
 <script>
-import AppContentList from '@nextcloud/vue/dist/Components/NcAppContentList.js'
-import Button from '@nextcloud/vue/dist/Components/NcButton.js'
-import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
-import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
-import isMobile from '@nextcloud/vue/dist/Mixins/isMobile.js'
+import {
+	NcAppContentList as AppContentList,
+	NcButton as Button,
+	NcEmptyContent as EmptyContent,
+	NcLoadingIcon as IconLoading,
+	isMobile,
+} from '@nextcloud/vue'
 import VirtualList from 'vue-virtual-scroll-list'
 
 import MembersListItem from './MembersList/MembersListItem.vue'

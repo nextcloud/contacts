@@ -79,8 +79,10 @@
 
 <script>
 import { getCapabilities } from '@nextcloud/capabilities'
-import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
-import Modal from '@nextcloud/vue/dist/Components/NcModal.js'
+import {
+	NcCheckboxRadioSwitch as CheckboxRadioSwitch,
+	NcModal as Modal,
+} from '@nextcloud/vue'
 
 import { CIRCLE_DESC } from '../../models/constants.ts'
 

@@ -65,7 +65,7 @@
 
 <script>
 import debounce from 'debounce'
-import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import { NcMultiselect as Multiselect } from '@nextcloud/vue'
 import Contact from '../../models/contact.js'
 import PropertyTitle from './PropertyTitle.vue'
 import naturalCompare from 'string-natural-compare'

@@ -48,8 +48,10 @@
 
 <script>
 import PropertyTitleIcon from './PropertyTitleIcon.vue'
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
-import Actions from '@nextcloud/vue/dist/Components/NcActions.js'
+import {
+	NcActionButton as ActionButton,
+	NcActions as Actions,
+} from '@nextcloud/vue'
 import IconPlus from 'vue-material-design-icons/Plus.vue'
 export default {
 	name: 'PropertyTitle',

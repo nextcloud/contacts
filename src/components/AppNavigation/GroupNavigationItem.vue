@@ -68,9 +68,11 @@ import { emit } from '@nextcloud/event-bus'
 import download from 'downloadjs'
 import moment from 'moment'
 
-import ActionButton from '@nextcloud/vue/dist/Components/NcActionButton.js'
-import NcCounterBubble from '@nextcloud/vue/dist/Components/NcCounterBubble.js'
-import AppNavigationItem from '@nextcloud/vue/dist/Components/NcAppNavigationItem.js'
+import {
+	NcActionButton as ActionButton,
+	NcCounterBubble,
+	NcAppNavigationItem as AppNavigationItem,
+} from '@nextcloud/vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 import IconDownload from 'vue-material-design-icons/Download.vue'

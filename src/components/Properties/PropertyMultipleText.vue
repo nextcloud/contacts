@@ -127,7 +127,7 @@
 </template>
 
 <script>
-import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import { NcMultiselect as Multiselect } from '@nextcloud/vue'
 import PropertyMixin from '../../mixins/PropertyMixin.js'
 import PropertyTitle from './PropertyTitle.vue'
 import PropertyActions from './PropertyActions.vue'

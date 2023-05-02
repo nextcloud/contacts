@@ -43,7 +43,7 @@
 </template>
 
 <script>
-import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/NcCheckboxRadioSwitch.js'
+import { NcCheckboxRadioSwitch as CheckboxRadioSwitch } from '@nextcloud/vue'
 import ContentHeading from './ContentHeading.vue'
 
 import { PUBLIC_CIRCLE_CONFIG } from '../../models/constants.ts'

@@ -36,7 +36,7 @@
 </template>
 
 <script>
-import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import { NcMultiselect as Multiselect } from '@nextcloud/vue'
 import IconList from 'vue-material-design-icons/FormatListBulletedSquare.vue'
 
 export default {

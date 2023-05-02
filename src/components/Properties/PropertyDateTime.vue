@@ -88,8 +88,10 @@
 <script>
 import debounce from 'debounce'
 import moment from 'moment'
-import DatetimePicker from '@nextcloud/vue/dist/Components/NcDatetimePicker.js'
-import Multiselect from '@nextcloud/vue/dist/Components/NcMultiselect.js'
+import {
+	NcDatetimePicker as DatetimePicker,
+	NcMultiselect as Multiselect,
+} from '@nextcloud/vue'
 import { getLocale } from '@nextcloud/l10n'
 import { VCardTime } from 'ical.js'
 

@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import Avatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
+import { NcAvatar as Avatar } from '@nextcloud/vue'
 
 export default {
 	name: 'ChartTemplate',

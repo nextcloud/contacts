@@ -67,10 +67,12 @@
 </template>
 <script>
 import { showError } from '@nextcloud/dialogs'
-import AppContent from '@nextcloud/vue/dist/Components/NcAppContent.js'
-import EmptyContent from '@nextcloud/vue/dist/Components/NcEmptyContent.js'
-import IconLoading from '@nextcloud/vue/dist/Components/NcLoadingIcon.js'
-import isMobile from '@nextcloud/vue/dist/Mixins/isMobile.js'
+import {
+	NcAppContent as AppContent,
+	NcEmptyContent as EmptyContent,
+	NcLoadingIcon as IconLoading,
+	isMobile,
+} from '@nextcloud/vue'
 import IconCircles from '../Icons/IconCircles.vue'
 import CircleDetails from '../CircleDetails.vue'
 import MemberList from '../MemberList.vue'
