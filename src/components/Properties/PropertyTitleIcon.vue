@@ -110,3 +110,8 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+.material-design-icon {
+	opacity: 0.8;
+}
+</style>
