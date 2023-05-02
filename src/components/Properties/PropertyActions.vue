@@ -70,3 +70,13 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+.material-design-icon {
+	opacity: 0.8;
+
+	&:hover,
+	&:focus {
+		opacity: 1 !important;
+	}
+}
+</style>
