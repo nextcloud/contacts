@@ -121,7 +121,7 @@
 					<!-- edit and save buttons -->
 					<template v-if="!addressbookIsReadOnly">
 						<NcButton v-if="!editMode"
-							type="tertiary"
+							:type="isMobile ? 'secondary' : 'tertiary'"
 							@click="editMode = true">
 							<template #icon>
 								<PencilIcon :size="20" />
@@ -129,7 +129,7 @@
 							{{ t('contacts', 'Edit') }}
 						</NcButton>
 						<NcButton v-else
-							type="primary"
+							type="secondary"
 							:disabled="loadingUpdate"
 							@click="onSave">
 							<template #icon>
@@ -286,6 +286,7 @@ import {
 	NcMultiselect as Multiselect,
 	NcLoadingIcon as IconLoading,
 	NcButton,
+	isMobile,
 } from '@nextcloud/vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import IconDownload from 'vue-material-design-icons/Download.vue'
@@ -311,6 +312,8 @@ import PropertySelect from './Properties/PropertySelect.vue'
 
 export default {
 	name: 'ContactDetails',
+
+	mixins: [isMobile],
 
 	components: {
 		ActionButton,

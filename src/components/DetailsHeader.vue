@@ -89,23 +89,32 @@ $top-padding: 50px;
 // Header with avatar, name, position, actions...
 .contact-header {
 	display: flex;
-	flex-wrap: wrap;
 	align-items: center;
 	padding: $top-padding 0 20px;
 	gap: $contact-details-row-gap;
 
-	// Top padding of 44px is already included in AppContent by default on mobile
 	@media (max-width: 1024px) {
+		// Top padding of 44px is already included in AppContent by default on mobile
 		padding-top: calc($top-padding - 44px);
+
+		// Wrap actions on mobile
+		flex-wrap: wrap;
+		&__no-wrap {
+			width: 100%;
+		}
+		&__infos {
+			// Account for nonexistent actions menu
+			width: calc($contact-details-value-max-width + $contact-details-row-gap + 44px) !important;
+		}
+		&__actions {
+			justify-content: space-between;
+		}
 	}
 
 	&__no-wrap {
 		display: flex;
-		flex: 9999 1 auto;
 		gap: $contact-details-row-gap;
 		align-items: center;
-
-		// Wrap actions to next line before shrinking
 		min-width: 0;
 	}
 
@@ -126,7 +135,7 @@ $top-padding: 50px;
 		// Global single column layout
 		display: flex;
 		flex: 0 1 auto;
-		width: calc($contact-details-value-max-width + $contact-details-row-gap + 44px);
+		width: $contact-details-value-max-width;
 		min-width: 0; // Has to be zero unless we implement wrapping
 
 		&-title,
@@ -153,7 +162,6 @@ $top-padding: 50px;
 	&__actions {
 		display: flex;
 		flex: 1 0 auto;
-		justify-content: space-between;
 	}
 }
 </style>
