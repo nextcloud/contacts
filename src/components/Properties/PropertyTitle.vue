@@ -101,3 +101,18 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.property {
+	// Left align icon and title on mobile
+	@media (max-width: 1024px) {
+		&__label {
+			width: unset;
+		}
+	}
+
+	&__value {
+		font-weight: bold;
+	}
+}
+</style>

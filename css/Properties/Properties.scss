@@ -116,6 +116,14 @@ $property-row-gap: $contact-details-row-gap;
 		}
 	}
 
+	// Mobile tweaks
+	@media (max-width: 1024px) {
+		// Left align labels on mobile
+		&__label {
+			justify-content: flex-start;
+		}
+	}
+
 	// Show ext buttons on full row hover
 	&:hover {
 		.property__ext {
