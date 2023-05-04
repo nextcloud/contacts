@@ -95,6 +95,8 @@ OC.L10N.register(
     "Enter a description for the circle" : "Gehitu deskribapen bat zirkulu honentzat",
     "An error happened during description sync" : "Errore bat gertatu da deskribapena sinkronizatzean",
     "An error happened during name sync" : "Errore bat gertatu da izena sinkronizatzean",
+    "Add more info" : "Gehitu informazio gehiago",
+    "More fields" : "Eremu gehiago",
     "Cancel" : "Utzi",
     "Upload a new picture" : "Kargatu irudi berri bat",
     "Choose from Files" : "Aukeratu Fitxategiak-etik",
