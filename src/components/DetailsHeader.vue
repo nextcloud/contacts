@@ -106,8 +106,8 @@ $top-padding: 50px;
 			// Account for nonexistent actions menu
 			width: calc($contact-details-value-max-width + $contact-details-row-gap + 44px) !important;
 		}
-		&__actions {
-			justify-content: space-between;
+		&__actions .header-menu {
+			margin-left: auto;
 		}
 	}
 
@@ -162,6 +162,7 @@ $top-padding: 50px;
 	&__actions {
 		display: flex;
 		flex: 1 0 auto;
+		gap: 5px;
 	}
 }
 </style>

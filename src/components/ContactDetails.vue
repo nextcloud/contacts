@@ -296,7 +296,6 @@ import CakeIcon from 'vue-material-design-icons/Cake.vue'
 import IconCopy from 'vue-material-design-icons/ContentCopy.vue'
 import PencilIcon from 'vue-material-design-icons/Pencil.vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
-import AlertCircleIcon from 'vue-material-design-icons/AlertCircle.vue'
 import EyeCircleIcon from 'vue-material-design-icons/EyeCircle.vue'
 
 import rfcProps from '../models/rfcProps.js'
@@ -403,13 +402,7 @@ export default {
 		 * @return {object | boolean}
 		 */
 		warning() {
-			if (!this.contact.dav) {
-				return {
-					icon: AlertCircleIcon,
-					classes: ['header-icon--pulse'],
-					msg: t('contacts', 'This contact is not yet synced. Edit it to save it to the server.'),
-				}
-			} else if (this.addressbookIsReadOnly) {
+			if (this.addressbookIsReadOnly) {
 				return {
 					icon: EyeCircleIcon,
 					classes: [],
