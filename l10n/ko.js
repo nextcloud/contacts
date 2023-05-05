@@ -101,7 +101,6 @@ OC.L10N.register(
     "Contact vCard as QR code" : "QR 코드로 된 vCard 연락처",
     "Pick an address book" : "주소록을 선택하세요",
     "Select address book" : "주소록 선택",
-    "This contact is not yet synced. Edit it to save it to the server." : "이 연락처를 동기화하지 않았습니다. 편집하면 서버에 저장합니다.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "이 연락처는 읽기 전용 모드입니다. 편집할 수 있는 권한이 없습니다.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "편집하려고 하는 연락처가 변경되었습니다. 연락처를 직접 새로 고치십시오. 추가 변경 사항은 손실됩니다.",
     "Address book" : "주소록",

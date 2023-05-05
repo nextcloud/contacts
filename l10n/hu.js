@@ -116,7 +116,6 @@ OC.L10N.register(
     "Contact vCard as QR code" : "Névjegy vCard QR-kódként",
     "Pick an address book" : "Válasszon címjegyzéket",
     "Select address book" : "Válasszon címjegyzéket",
-    "This contact is not yet synced. Edit it to save it to the server." : "Ez a névjegy még nincs szinkronizálva. Szerkessze, hogy elmentse a kiszolgálóra.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Ez a névjegy csak olvasható. Nincs jogosultsága szerkeszteni ezt a névjegyet.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "A szerkesztett névjegy megváltozott. Frissítse kézileg a névjegyet. Minden további módosítás figyelmen kívül lesz hagyva.",
     "Address book" : "Címjegyzék",

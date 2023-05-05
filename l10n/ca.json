@@ -115,7 +115,6 @@
     "Contact vCard as QR code" : "Contacte vCard com a codi QR",
     "Pick an address book" : "Trieu una llibreta d'adreces",
     "Select address book" : "Seleccioneu una llibreta d'adreces",
-    "This contact is not yet synced. Edit it to save it to the server." : "Encara no s'ha sincronitzat aquest contacte. Editeu-lo per a desar-lo en el servidor.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Aquest contacte està en mode de només lectura. No teniu permís per a editar-lo.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "El contacte que intentàveu editar s'ha modificat. Actualitzeu la pàgina del contacte manualment. Es descartaran tots els canvis posteriors.",
     "Address book" : "Llibreta d'adreces",

@@ -115,7 +115,6 @@
     "Contact vCard as QR code" : "Контактна vCard у вигляді QR-коду",
     "Pick an address book" : "Виберіть адресну книгу",
     "Select address book" : "Виберіть адресну книгу",
-    "This contact is not yet synced. Edit it to save it to the server." : "Контакт ще не синхронізовано. Відредагуйте контакт для подальшого збереження на сервері.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Доступ до цього контакту лише у режимі читання. У вас відсутні права на редагування.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Дані контакту, який ви намагаєтеся відредагувати, змінено. Будь ласка, оновіть сторінку. Усі подальші зміни буде проігноровано.",
     "Address book" : "Адресна книга",

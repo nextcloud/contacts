@@ -46,7 +46,6 @@ OC.L10N.register(
     "Company" : "Firmao",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Tiu kontakto difektiĝis kaj estis riparita. Kontrolu la enhavon kaj alklaku ĉi tie por konservi ĝin.",
     "Generate QR Code" : "Generi rapidrespondan (QR) kodon",
-    "This contact is not yet synced. Edit it to save it to the server." : "Tiu kontakto ankoraŭ ne estas sinkronigita. Redaktu ĝin por konservi ĝin servilen.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Tiu ĉi kontakto estas nur legebla. Vi ne rajtas redakti ĝin.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "La kontakto, kiun vi ĵus provis redakti, ŝanĝiĝis. Bonvolu mane aktualigi la kontakton. Ĉiuj pliaj redaktoj ne estos konservitaj.",
     "New contact" : "Nova kontakto",

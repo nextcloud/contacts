@@ -42,7 +42,6 @@ OC.L10N.register(
     "Title" : "Amats",
     "Company" : "Uzņēmums",
     "Generate QR Code" : "Ģenerēt QR kodu",
-    "This contact is not yet synced. Edit it to save it to the server." : "Šī kontaktpersona vēl nav sinhronizēta. Rediģējiet to, lai saglabātu serverī.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Šī kontaktpersona ir tikai lasīšanas režīmā. Jums nav atļaujas rediģēt šo kontaktpersonu.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontaktpersonas informācija kuru rediģējāt ir mainījusies. Lūdzu pašrocīgi atjaunināt kontaktpersonas informāciju. Jebkuras tālākas izmaiņas tiks atmestas.",
     "New contact" : "Jauns kontakts",

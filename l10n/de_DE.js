@@ -124,7 +124,6 @@ OC.L10N.register(
     "Contact vCard as QR code" : "vCard des Kontakts als QR-Code",
     "Pick an address book" : "Ein Adressbuch auswählen",
     "Select address book" : "Adressbuch auswählen",
-    "This contact is not yet synced. Edit it to save it to the server." : "Dieser Kontakt ist noch nicht synchronisiert. Bearbeiten Sie ihn, um ihn auf dem Server zu speichern.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Dieser Kontakt ist schreibgeschützt. Sie haben keine Berechtigung, diesen Kontakt zu bearbeiten.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Der Kontakt, den Sie versuchen zu bearbeiten, hat sich geändert. Bitte aktualisieren Sie den Kontakt manuell. Alle weiteren Änderungen werden verworfen.",
     "Address book" : "Adressbuch",

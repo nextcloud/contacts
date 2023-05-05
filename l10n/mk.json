@@ -114,7 +114,6 @@
     "Contact vCard as QR code" : "Картичка за контакт во QR-код",
     "Pick an address book" : "Избери адресар",
     "Select address book" : "Избери адресар",
-    "This contact is not yet synced. Edit it to save it to the server." : "Овој контакт сеуште не е синхронизиран. Изменете го и зачувајте го на серверот.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Овој контакт е со дозволи само за читање. Немате дозвола за да го промените контактот.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Контактот кој се обидувате да го измените веќе е изменет. Ве молиме проверете го контактот. Сите наредни измени ќе бидат отфрлени.",
     "Address book" : "Адресар",

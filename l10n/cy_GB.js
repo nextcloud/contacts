@@ -39,7 +39,6 @@ OC.L10N.register(
     "Title" : "Teitl",
     "Company" : "Cwmni",
     "Generate QR Code" : "Cynhyrchu Cod QR",
-    "This contact is not yet synced. Edit it to save it to the server." : "Nid yw'r cyswllt hwn wedi'i gydweddu eto. Golygwch ef i'w gadw i'r gweinydd.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Mae'r cyswllt hwn yn y modd darllen yn unig. Nid oes gennych ganiatâd i olygu'r cyswllt hwn.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Mae'r cyswllt yr oeddech yn ceisio ei olygu wedi newid. Adnewyddwch y cyswllt â llaw. Bydd unrhyw olygiadau pellach yn cael eu ddileu.",
     "New contact" : "Cysylltiad newydd",

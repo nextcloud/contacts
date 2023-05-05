@@ -77,7 +77,6 @@ OC.L10N.register(
     "Generate QR Code" : "Tạo lập mã QR",
     "Pick an address book" : "Chọn một sổ địa chỉ",
     "Select address book" : "Chọn sổ địa chỉ",
-    "This contact is not yet synced. Edit it to save it to the server." : "Liên hệ này chưa được đồng bộ. Sửa đổi nó để lưu lại lên hệ thống",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Liên hệ này đang trong chế độ chỉ đọc. Bạn không có quyền để sửa đổi liên hệ này.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Liên hệ bạn cố gắng sửa đổi đã thay đổi. Vui lòng làm mới thủ công liên hệ này. Bất cứ sửa đổi nào xa hơn sẽ bị loại bỏ. ",
     "Address book" : "Sổ địa chỉ",

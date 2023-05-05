@@ -113,7 +113,6 @@ OC.L10N.register(
     "Contact vCard as QR code" : "联系人名片作为二维码",
     "Pick an address book" : "选择一个地址簿",
     "Select address book" : "选择地址簿",
-    "This contact is not yet synced. Edit it to save it to the server." : "此联系人尚未同步。 编辑它以将其保存到服务器。",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "此联系人处于只读模式。 您无权编辑此联系人。",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "您尝试编辑的联系人已更改。 请手动刷新联系人。 任何进一步的编辑都不会被保存。",
     "Address book" : "地址簿",

@@ -101,7 +101,6 @@
     "Contact vCard as QR code" : "VCard kontakta kao QR kod",
     "Pick an address book" : "Odaberi adresar",
     "Select address book" : "Označi adresar",
-    "This contact is not yet synced. Edit it to save it to the server." : "Taj kontakt još nije sinkroniziran. Uredite ga i spremite na poslužitelj.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Taj je kontakt u načinu rada samo za čitanje. Nemate dopuštenje za uređivanje ovog kontakta.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakt koji ste pokušali urediti se promijenio. Ručno osvježite kontakt. Sva daljnja uređivanja bit će odbačena.",
     "Address book" : "Adresar",

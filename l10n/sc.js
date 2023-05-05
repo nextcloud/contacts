@@ -105,7 +105,6 @@ OC.L10N.register(
     "Contact vCard as QR code" : "vCard de cuntatu comente còdighe QR",
     "Pick an address book" : "Sèbera una rubrica",
     "Select address book" : "Seletziona una rubrica",
-    "This contact is not yet synced. Edit it to save it to the server." : "Custu cuntatu non est sincronizadu ancora. Modìfica·ddu pro ddu sarvare in su serbidore.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Custu cuntatu est in modalidade de letura sola. Non tenes su permissu pro modificare custu cuntatu.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Su cuntatu chi ses proende a modificare est cambiadu. Pro praghere, agiorna tue etotu su cuntatu. Cale si siat àtera modìfica at a èssere iscartada. ",
     "Address book" : "Rubrica",

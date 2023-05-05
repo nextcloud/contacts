@@ -113,7 +113,6 @@ OC.L10N.register(
     "Contact vCard as QR code" : "Contactpersoon vCard als QR code",
     "Pick an address book" : "Kies een adresboek",
     "Select address book" : "Selecteer adresboek",
-    "This contact is not yet synced. Edit it to save it to the server." : "Deze contactpersoon is nog niet gesynchroniseerd. Bewerk om te laten verwerken.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Deze contactpersoon is alleen-leesbaar. Je hebt niet de machtiging om deze contactpersoon te bewerken.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "De contactpersoon die je wilde bewerken is gewijzigd. Ververs de contactgegevens handmatig. Verdere wijzigingen worden genegeerd.",
     "Address book" : "Adresboek",

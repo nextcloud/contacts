@@ -42,7 +42,6 @@
     "Company" : "Kompania",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Ky kontakt ishte prishur dhe u rregullua. Ju lutem rishikoni përmbajtjen dhe klikoni këtu për ta ruajtur atë.",
     "Generate QR Code" : "Gjeneroni Kodin QR",
-    "This contact is not yet synced. Edit it to save it to the server." : "Ky kontakt nuk është sinkronizuar akoma. Përditësojeni atë për ta ruajtur në server.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Ky kontakt është në gjendjen vetëm-lexo. Ju nuk keni të drejtë ta ndryshoni këtë kontakt.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakti që po përpiqeni të përditësoni, ka ndryshuar. Ju lutem rifreskoni manualisht kontaktin. Çdo ndryshim i mëtejshëm nuk do të ruhet.",
     "Address book" : "Libri i adresave",

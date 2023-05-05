@@ -119,7 +119,6 @@
     "Contact vCard as QR code" : "Свързване с vCard, като QR код",
     "Pick an address book" : "Избор на адресна книга",
     "Select address book" : "Изберете адресна книга",
-    "This contact is not yet synced. Edit it to save it to the server." : "Този контакт все още не е синхронизиран. Редактирайте го, за да го запишете на сървъра.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Този контакт е в режим само за четене. Нямате право да редактирате този контакт.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Контактът, който се опитвахте да редактирате, е променен. Моля, опреснете контакта ръчно. Всякакви допълнителни редакции ще бъдат отхвърлени.",
     "Address book" : "Адресна книга",

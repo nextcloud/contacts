@@ -116,7 +116,6 @@ OC.L10N.register(
     "Contact vCard as QR code" : "Kartica vCard stika kot koda QR",
     "Pick an address book" : "Izbor imenika",
     "Select address book" : "Izbor imenika",
-    "This contact is not yet synced. Edit it to save it to the server." : "Ta stik še ni usklajen. Dodati je treba vsebino, da se shrani na strežnik.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Ta stik je le za branje. Za urejanje so zahtevana posebna dovoljenja.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Stik, ki ga skušate urediti je spremenjen. Stike je treba ročno osvežiti, vsa nadaljnja urejanja pa bodo izbrisana.",
     "Address book" : "Imenik",

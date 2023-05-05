@@ -118,7 +118,6 @@ OC.L10N.register(
     "Contact vCard as QR code" : "Визитная карточка в виде QR-кода",
     "Pick an address book" : "Выберите адресную книгу",
     "Select address book" : "Выберите адресную книгу",
-    "This contact is not yet synced. Edit it to save it to the server." : "Этот контакт ещё не синхронизирован. Отредактируйте его чтобы сохранить изменения на сервере.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Контакт открыт в режиме «только чтение», для изменения недостаточно прав.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Контакт, который вы пытаетесь редактировать, был изменен. Выполните обновление контакта вручную. Все внесённые изменения не будут сохранены.",
     "Address book" : "Адресная книга",

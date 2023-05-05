@@ -63,7 +63,6 @@ OC.L10N.register(
     "Generate QR Code" : "Útbúa QR-kóða",
     "Pick an address book" : "Veldu nafnaskrá",
     "Select address book" : "Veldu nafnaskrá",
-    "This contact is not yet synced. Edit it to save it to the server." : "Þessi tengiliður er ekki enn samstilltur. Breyttu honum lítillega til að vista hann á þjóninn.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Þessi tengiliður er skrifvarinn. Þú hefur ekki heimild til að breyta þessum tengilið.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Tengiliðurinn sem þú ert að reyna að breyta hefur breyst. Endurlestu hann handvirkt. Öllum frekari breytingum verður hent.",
     "Address book" : "Nafnaskrá",

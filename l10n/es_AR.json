@@ -108,7 +108,6 @@
     "Contact vCard as QR code" : "Contacto vCard como código QR",
     "Pick an address book" : "Escoge una libreta de direcciones",
     "Select address book" : "Selecciona una libreta de direcciones",
-    "This contact is not yet synced. Edit it to save it to the server." : "Este contacto aún no está sincronizado. Edítalo para guardarlo en el servidor.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Este contacto está en modo de sólo lectura. No tienes permiso para editar este contacto.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "El contacto que intentabas editar ha cambiado. Por favor actualice manualmente el contacto. Cualquier otra edición será descartada.",
     "Address book" : "libreta de direcciones",

@@ -77,7 +77,6 @@ OC.L10N.register(
     "Generate QR Code" : "יצירת קוד QR",
     "Pick an address book" : "נא לבחור ספר כתובות",
     "Select address book" : "בחירת ספר כתובות",
-    "This contact is not yet synced. Edit it to save it to the server." : "איש קשר זה לא סונכרן עדיין. יש לערוך אותו כדי לשמור לשרת.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "איש קשר זה הוא במצב קריאה בלבד. אין לך הרשאה לערוך את איש הקשר הזה.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "איש הקשר שניסית לערוך כבר נערך. נא לרענן את איש הקשר ידנית. כל העריכות הבאות לא תחולנה.",
     "Address book" : "ספר כתובות",

@@ -113,7 +113,6 @@ OC.L10N.register(
     "Contact vCard as QR code" : "Zobraziť QR kód vCard kontaktu",
     "Pick an address book" : "Vybrať adresár",
     "Select address book" : "Označiť adresár",
-    "This contact is not yet synced. Edit it to save it to the server." : "Tento kontakt ešte nebol synchronizovaný. Upravte ho a uloží sa na server.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Tento kontakt je iba na čítanie. Nemáte oprávnenie na úpravu tohto kontaktu.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakt ktorý sa snažíte modifikovať sa zmenil.  Prosím manuálne obnovte kontakt.  Akékoľvek ďalšie zmeny nebudú brané do úvahy.",
     "Address book" : "Adresár",

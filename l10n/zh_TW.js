@@ -124,7 +124,6 @@ OC.L10N.register(
     "Contact vCard as QR code" : "QR Code 形式的聯絡人 vCard",
     "Pick an address book" : "選取一個通訊錄",
     "Select address book" : "選擇通訊錄",
-    "This contact is not yet synced. Edit it to save it to the server." : "此聯絡人尚未同步。編輯它以將其儲存到伺服器。",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "此聯絡人處於唯讀模式。您無權編輯此聯絡人。",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "您嘗試編輯的聯絡人已變更。請手動重新整理聯絡人。任何進一步的編輯都會被丟棄。",
     "Address book" : "通訊錄",

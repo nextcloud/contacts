@@ -115,7 +115,6 @@
     "Contact vCard as QR code" : "Κάρτα επαφής vCard ως κώδικας QR",
     "Pick an address book" : "Επιλέξτε ένα βιβλίο διευθύνσεων",
     "Select address book" : "Επιλογή βιβλίου διευθύνσεων",
-    "This contact is not yet synced. Edit it to save it to the server." : "Η επαφή δεν συγχρονίστηκε. Επεξεργαστείτε την για αποθήκευση στον διακομιστή.",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Η επαφή είναι μόνο για εμφάνιση. Δεν έχετε δικαιώματα για την επεξεργασία της.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Η επαφή που προσπαθείτε να επεξεργαστείτε άλλαξε. Παρακαλώ ανανεώστε. Όποια άλλη επεξεργασία θα απορριφθεί.",
     "Address book" : "Βιβλίο διευθύνσεων",
