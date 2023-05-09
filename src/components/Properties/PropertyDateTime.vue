@@ -35,7 +35,7 @@
 		<div class="property__row">
 			<div class="property__label">
 				<!-- type selector -->
-				<Multiselect v-if="propModel.options"
+				<NcSelect v-if="propModel.options"
 					v-model="localType"
 					:options="options"
 					:searchable="false"
@@ -90,7 +90,7 @@ import debounce from 'debounce'
 import moment from 'moment'
 import {
 	NcDatetimePicker as DatetimePicker,
-	NcMultiselect as Multiselect,
+	NcSelect,
 } from '@nextcloud/vue'
 import { getLocale } from '@nextcloud/l10n'
 import { VCardTime } from 'ical.js'
@@ -103,7 +103,7 @@ export default {
 	name: 'PropertyDateTime',
 
 	components: {
-		Multiselect,
+		NcSelect,
 		DatetimePicker,
 		PropertyTitle,
 		PropertyActions,

@@ -46,8 +46,9 @@
 			</div>
 
 			<div class="property__value">
-				<Multiselect v-model="matchedOptions"
+				<NcSelect v-model="matchedOptions"
 					:options="selectableOptions"
+					:no-wrap="true"
 					:placeholder="t('contacts', 'Select option')"
 					:disabled="isSingleOption || isReadOnly"
 					track-by="id"
@@ -67,7 +68,7 @@
 </template>
 
 <script>
-import { NcMultiselect as Multiselect } from '@nextcloud/vue'
+import { NcSelect } from '@nextcloud/vue'
 import PropertyMixin from '../../mixins/PropertyMixin.js'
 import PropertyTitle from './PropertyTitle.vue'
 import PropertyActions from './PropertyActions.vue'
@@ -76,7 +77,7 @@ export default {
 	name: 'PropertySelect',
 
 	components: {
-		Multiselect,
+		NcSelect,
 		PropertyTitle,
 		PropertyActions,
 	},

@@ -204,7 +204,7 @@
 				:clear-view-delay="-1"
 				:title="t('contacts', 'Pick an address book')"
 				@close="closePickAddressbookModal">
-				<Multiselect ref="pickAddressbook"
+				<NcSelect ref="pickAddressbook"
 					v-model="pickedAddressbook"
 					:allow-empty="false"
 					:options="addressbooksOptions"
@@ -284,7 +284,7 @@ import {
 	NcAppContentDetails as AppContentDetails,
 	NcEmptyContent as EmptyContent,
 	NcModal as Modal,
-	NcMultiselect as Multiselect,
+	NcSelect,
 	NcLoadingIcon as IconLoading,
 	NcButton,
 	isMobile,
@@ -332,7 +332,7 @@ export default {
 		PencilIcon,
 		CheckIcon,
 		Modal,
-		Multiselect,
+		NcSelect,
 		PropertyGroups,
 		PropertyRev,
 		PropertySelect,
@@ -883,7 +883,16 @@ section.contact-details {
 		}
 	}
 }
-
+::v-deep .v-select.select {
+	min-width: 0 !important;
+	flex: 1 auto;
+	.vs__actions {
+		display: none;
+	}
+}
+::v-deep .vs__deselect {
+	display: none;
+}
 #pick-addressbook-modal {
 	::v-deep .modal-container {
 		display: flex;

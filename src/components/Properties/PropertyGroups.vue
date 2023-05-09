@@ -34,8 +34,9 @@
 
 			<!-- multiselect taggable groups with a limit to 3 groups shown -->
 			<div class="property__value">
-				<Multiselect v-model="localValue"
+				<NcSelect v-model="localValue"
 					:options="groups"
+					:no-wrap="true"
 					:placeholder="placeholder"
 					:multiple="true"
 					:taggable="true"
@@ -54,7 +55,7 @@
 					<span slot="noResult">
 						{{ t('contacts', 'No results') }}
 					</span>
-				</Multiselect>
+				</NcSelect>
 			</div>
 
 			<!-- empty actions to keep the layout -->
@@ -65,7 +66,7 @@
 
 <script>
 import debounce from 'debounce'
-import { NcMultiselect as Multiselect } from '@nextcloud/vue'
+import { NcSelect } from '@nextcloud/vue'
 import Contact from '../../models/contact.js'
 import PropertyTitle from './PropertyTitle.vue'
 import naturalCompare from 'string-natural-compare'
@@ -75,7 +76,7 @@ export default {
 
 	components: {
 		PropertyTitle,
-		Multiselect,
+		NcSelect,
 	},
 
 	props: {
