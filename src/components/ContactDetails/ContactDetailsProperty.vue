@@ -103,7 +103,7 @@ export default {
 		isReadOnly: {
 			type: Boolean,
 			required: true,
-		}
+		},
 	},
 
 	computed: {

@@ -41,6 +41,7 @@
 				<ContactAvatar slot="avatar"
 					:contact="contact"
 					:is-read-only="isReadOnly"
+					:reload-bus="reloadBus"
 					@update-local-contact="updateLocalContact" />
 
 				<!-- fullname -->
@@ -89,12 +90,12 @@
 				<!-- actions -->
 				<template #actions>
 					<!-- warning message -->
-					<component v-if="warning"
+					<component :is="warning.icon"
+						v-if="warning"
 						v-tooltip.bottom="{
 							content: warning ? warning.msg : '',
 							trigger: 'hover focus'
 						}"
-						:is="warning.icon"
 						class="header-icon"
 						:classes="warning.classes" />
 
@@ -348,6 +349,10 @@ export default {
 		contacts: {
 			type: Array,
 			default: () => [],
+		},
+		reloadBus: {
+			type: Object,
+			required: true,
 		},
 	},
 
@@ -851,7 +856,7 @@ export default {
 		async onSave() {
 			await this.updateContact()
 			this.editMode = false
-		}
+		},
 	},
 }
 </script>

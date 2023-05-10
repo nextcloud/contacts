@@ -32,7 +32,8 @@
 			data-key="key"
 			:data-sources="filteredList"
 			:data-component="ContactsListItem"
-			:estimate-size="68" />
+			:estimate-size="68"
+			:extra-props="{reloadBus}" />
 	</AppContentList>
 </template>
 
@@ -61,6 +62,10 @@ export default {
 		searchQuery: {
 			type: String,
 			default: '',
+		},
+		reloadBus: {
+			type: Object,
+			required: true,
 		},
 	},
 
