@@ -109,13 +109,13 @@ export default {
 	}
 
 	.inner-box-highlight {
-		border: 2px solid var(--color-primary) !important;
+		border: 2px solid var(--color-primary-element) !important;
 	}
 
 	.panel {
 		width: 100%;
 		margin: -34px -1px 0 -1px;
-		background-color: var(--color-primary);
+		background-color: var(--color-primary-element);
 		height: 15px;
 		border-top-left-radius: var(--border-radius-large);
 		border-top-right-radius: var(--border-radius-large);

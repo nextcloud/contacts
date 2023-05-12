@@ -100,7 +100,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			pointer-events: none;
-			color: var(--color-primary);
+			color: var(--color-primary-element);
 			box-shadow: none !important;
 			line-height: $clickable-area;
 
@@ -130,7 +130,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 		&:focus {
 			::v-deep .user-bubble__content {
 				// better visual with light default tint
-				background-color: var(--color-primary-light);
+				background-color: var(--color-primary-element-light);
 			}
 		}
 	}
