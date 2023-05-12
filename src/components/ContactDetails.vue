@@ -313,8 +313,6 @@ import PropertySelect from './Properties/PropertySelect.vue'
 export default {
 	name: 'ContactDetails',
 
-	mixins: [isMobile],
-
 	components: {
 		ActionButton,
 		ActionLink,
@@ -340,6 +338,8 @@ export default {
 		PropertySelect,
 		NcButton,
 	},
+
+	mixins: [isMobile],
 
 	props: {
 		contactKey: {
@@ -854,8 +854,12 @@ export default {
 		 * Save the contact. This handler is triggered by the save button.
 		 */
 		async onSave() {
-			await this.updateContact()
-			this.editMode = false
+			try {
+				await this.updateContact()
+				this.editMode = false
+			} catch (error) {
+				showError(t('contacts', 'Unable to update contact'))
+			}
 		},
 	},
 }
