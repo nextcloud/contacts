@@ -135,7 +135,7 @@ export default {
 				})
 				.linkUpdate(function(d) {
 					d3.select(this)
-						.attr('stroke', () => 'var(--color-primary)')
+						.attr('stroke', () => 'var(--color-primary-element)')
 						.attr('stroke-width', (dRect) =>
 							dRect.data._upToTheRootHighlighted ? 2 : 1
 						)
