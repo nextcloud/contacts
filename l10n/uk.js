@@ -29,6 +29,7 @@ OC.L10N.register(
     "Update avatars from social media" : "Оновлювати аватарки з соціальних мереж",
     "(refreshed once per week)" : "(щотижневе оновлення)",
     "Address books" : "Адресні книги",
+    "Export" : "Експортувати",
     "Send email" : "Надіслати лист",
     "Send email as BCC" : "Надіслати лист ел.пошти як приховану копію",
     "Contact groups" : "Групи контактів",
