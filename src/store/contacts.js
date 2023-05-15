@@ -380,6 +380,7 @@ const actions = {
 					context.commit('setContactAsConflict', { contact, etag: error.xhr.getResponseHeader('etag') })
 					console.error('This contact is outdated, the server refused it', contact)
 				}
+				throw (error)
 			}
 		} else {
 			console.error('This contact is outdated, refusing to push', contact)
