@@ -23,7 +23,7 @@
 <template>
 	<div class="sort-contacts">
 		<IconList class="settings-line__icon" />
-		<Multiselect id="sort-by"
+		<NcSelect id="sort-by"
 			:value="orderKeyOption"
 			:searchable="false"
 			:allow-empty="false"
@@ -36,14 +36,14 @@
 </template>
 
 <script>
-import { NcMultiselect as Multiselect } from '@nextcloud/vue'
+import { NcSelect } from '@nextcloud/vue'
 import IconList from 'vue-material-design-icons/FormatListBulletedSquare.vue'
 
 export default {
 	name: 'SettingsSortContacts',
 
 	components: {
-		Multiselect,
+		NcSelect,
 		IconList,
 	},
 

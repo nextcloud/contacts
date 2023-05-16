@@ -40,7 +40,7 @@
 				</span>
 
 				<!-- type selector -->
-				<Multiselect v-else-if="!isReadOnly && propModel.options"
+				<NcSelect v-else-if="!isReadOnly && propModel.options"
 					v-model="localType"
 					:options="options"
 					:placeholder="t('contacts', 'Select type')"
@@ -106,7 +106,7 @@
 </template>
 
 <script>
-import { NcMultiselect as Multiselect } from '@nextcloud/vue'
+import { NcSelect } from '@nextcloud/vue'
 import debounce from 'debounce'
 import PropertyMixin from '../../mixins/PropertyMixin.js'
 import PropertyTitle from './PropertyTitle.vue'
@@ -117,7 +117,7 @@ export default {
 	name: 'PropertyText',
 
 	components: {
-		Multiselect,
+		NcSelect,
 		PropertyTitle,
 		PropertyActions,
 		OpenInNewIcon,
@@ -225,6 +225,13 @@ export default {
 		&--note {
 			white-space: pre-line;
 		}
+	}
+}
+
+// Mobile tweaks
+@media (max-width: 600px) {
+	.property__value {
+		width: 125px;
 	}
 }
 </style>

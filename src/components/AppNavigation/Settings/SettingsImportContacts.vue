@@ -36,7 +36,7 @@
 				@close="toggleModal">
 				<section class="import-contact__modal-addressbook">
 					<h3>{{ t('contacts', 'Import contacts') }}</h3>
-					<Multiselect v-if="!isSingleAddressbook"
+					<NcSelect v-if="!isSingleAddressbook"
 						id="select-addressbook"
 						v-model="selectedAddressbook"
 						:allow-empty="false"
@@ -48,7 +48,7 @@
 						<template slot="singleLabel" slot-scope="{ option }">
 							{{ t('contacts', 'Import into the {addressbookName} address book', { addressbookName: option.displayName }) }}
 						</template>
-					</Multiselect>
+					</NcSelect>
 				</section>
 				<section class="import-contact__modal-pick">
 					<input id="contact-import"
@@ -95,7 +95,7 @@
 import {
 	NcButton as Button,
 	NcModal as Modal,
-	NcMultiselect as Multiselect,
+	NcSelect,
 	NcLoadingIcon as IconLoading,
 } from '@nextcloud/vue'
 import { encodePath } from '@nextcloud/paths'
@@ -123,7 +123,7 @@ export default {
 	components: {
 		Button,
 		Modal,
-		Multiselect,
+		NcSelect,
 		IconUpload,
 		IconError,
 		IconFolder,
