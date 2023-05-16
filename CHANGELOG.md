@@ -1,4 +1,23 @@
 # Changelog
+## 5.3.0 - 2023-05-16
+### Added
+- Final design enhancements from mockups 
+- Read-only and edit modes #3347
+- Implement single column layout
+- Improve design, add new Property
+- Import contacts next to 'new contact'
+- Threema as another option for Instant Messenge
+- Allow admin to manage circle settings
+### Removed
+- Obsolete warning
+- Quotes on import
+### Changed
+- New contact to Name
+### Fixed
+- Form is transitioned into view mode when saving fails
+- Header alignment
+- Defer birthday exclusion until contact was loaded 
+- Defer rendering contact import button
 
 ## 5.1.0 - 2023-02-02
 ### Added
