@@ -94,7 +94,7 @@
 				</template>
 
 				<!-- delete addressbook -->
-				<ActionButton v-if="hasMultipleAddressbooks"
+				<ActionButton v-if="hasMultipleAddressbooks && !addressbook.readOnly"
 					@click="confirmDeletion">
 					<template #icon>
 						<IconLoading v-if="deleteAddressbookLoading" :size="20" />
