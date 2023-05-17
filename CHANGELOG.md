@@ -8,16 +8,15 @@
 - Import contacts next to 'new contact'
 - Threema as another option for Instant Messenge
 - Allow admin to manage circle settings
-### Removed
-- Obsolete warning
-- Quotes on import
 ### Changed
 - New contact to Name
+- Remove quotes on import
 ### Fixed
 - Form is transitioned into view mode when saving fails
 - Header alignment
 - Defer birthday exclusion until contact was loaded 
 - Defer rendering contact import button
+- Remove Obsolete warning
 
 ## 5.1.0 - 2023-02-02
 ### Added
