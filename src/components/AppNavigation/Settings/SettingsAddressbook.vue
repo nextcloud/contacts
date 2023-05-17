@@ -24,10 +24,18 @@
 	<div class="settings-addressbook-list">
 		<IconContact class="settings-line__icon" />
 		<li :class="{'addressbook--disabled': !addressbook.enabled}" class="addressbook">
-			<!-- addressbook name -->
-			<span class="addressbook__name" :title="addressbook.displayName">
-				{{ addressbook.displayName }}
-			</span>
+			<div class="addressbook__content">
+				<!-- addressbook name -->
+				<span class="addressbook__name" :title="addressbook.displayName">
+					{{ addressbook.displayName }}
+				</span>
+
+				<!-- counters -->
+				<div class="addressbook__count-wrapper">
+					<span class="addressbook__count">{{ n('contacts', '%n contact', '%n contacts', contactsCount) }}</span>
+					<span class="addressbook__count">- {{ n('contacts', '%n group', '%n groups', groupsCount) }}</span>
+				</div>
+			</div>
 
 			<!-- sharing button -->
 			<Button v-if="!addressbook.readOnly"
@@ -209,6 +217,25 @@ export default {
 		addressbookUrl() {
 			return window.location.origin + this.addressbook.url
 		},
+
+		contacts() {
+			return Object.values(this.addressbook.contacts)
+		},
+
+		groups() {
+			const allGroups = this.contacts
+				.flatMap(contact => contact.vCard.getAllProperties('categories').map(prop => prop.getFirstValue()))
+			// Deduplicate
+			return [...new Set(allGroups)]
+		},
+
+		contactsCount() {
+			return this.contacts.length
+		},
+
+		groupsCount() {
+			return this.groups.length
+		},
 	},
 	watch: {
 		menuOpen() {
@@ -307,7 +334,7 @@ export default {
 	text-overflow: ellipsis;
 	padding: 5px 0;
 
-	> .addressbook__name {
+	> .addressbook__content {
 		+ a,
 		+ div {
 			// put actions at the end
@@ -321,8 +348,31 @@ export default {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+	}
+
+	&__content {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		flex: 0 1 auto;
 		max-width: calc(100% - 2 * 44px);
 	}
+
+	&__count-wrapper {
+		display: flex;
+		flex-direction: center;
+	}
+
+	&__count {
+		margin-left: 2px;
+		font-size: smaller;
+		color: var(--color-text-lighter);
+	}
+
+	&__count:not(:last-child) {
+		margin-right: 5px;
+	}
+
 	&__share,
 	&__menu .icon-more {
 		width: 44px;
