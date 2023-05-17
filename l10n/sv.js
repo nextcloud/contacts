@@ -136,6 +136,7 @@ OC.L10N.register(
     "Unable to retrieve the contact from the server, please check your network connection." : "Kan inte hämta kontakten från servern, vänligen kontrollera nätverksanslutningen.",
     "An error occurred while trying to move the contact" : "Ett fel uppstod när du försökte flytta kontakten",
     "An error occurred while trying to copy the contact" : "Ett fel uppstod vid försök att kopiera kontakten",
+    "Unable to update contact" : "Det gick inte att uppdatera kontakten",
     "Search contacts …" : "Sök kontakter ...",
     "Add to {group}" : "Lägg till i {group}",
     "Remove {type}" : "Ta bort {type}",
