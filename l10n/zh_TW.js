@@ -136,6 +136,7 @@ OC.L10N.register(
     "Unable to retrieve the contact from the server, please check your network connection." : "無法從伺服器擷取聯絡人，請檢查您的網路連線。",
     "An error occurred while trying to move the contact" : "嘗試移動聯絡人時發生錯誤",
     "An error occurred while trying to copy the contact" : "嘗試複製聯絡人時發生錯誤",
+    "Unable to update contact" : "無法更新聯絡人",
     "Search contacts …" : "搜尋聯絡人……",
     "Add to {group}" : "新增至 {group}",
     "Remove {type}" : "移除 {type}",
