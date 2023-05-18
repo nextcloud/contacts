@@ -56,6 +56,8 @@ OC.L10N.register(
     "Delete {addressbook}?" : "¿Eliminar {addressbook}?",
     "Deletion of address book was not successful." : "El borrado de la libreta de direcciones falló.",
     "Renaming of address book was not successful." : "El renombrado de la libreta de direcciones falló.",
+    "_%n contact_::_%n contacts_" : ["%n contacto","%n contactos","%n contactos"],
+    "_%n group_::_%n groups_" : ["%n grupo","%n grupos","%n grupos"],
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Compartido con {num} entidad","Compartido con {num} entidades","Compartido con {num} entidades"],
     "Share with users or groups" : "Compartir con otros usuarios o grupos",
     "No users or groups" : "No hay usuarios ni grupos.",

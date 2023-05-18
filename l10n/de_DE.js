@@ -56,6 +56,8 @@ OC.L10N.register(
     "Delete {addressbook}?" : " {addressbook} löschen?",
     "Deletion of address book was not successful." : "Das Löschen des Adressbuches war nicht erfolgreich.",
     "Renaming of address book was not successful." : "Das Umbenennen des Adressbuches war nicht erfolgreich.",
+    "_%n contact_::_%n contacts_" : ["%n Kontakt","%n Kontakte"],
+    "_%n group_::_%n groups_" : ["%n Gruppe","%n Gruppen"],
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Für {num} Entität freigegeben","Für {num} Entitäten freigegeben"],
     "Share with users or groups" : "Mit Benutzern oder Gruppen teilen",
     "No users or groups" : "Keine Benutzer oder Gruppen",

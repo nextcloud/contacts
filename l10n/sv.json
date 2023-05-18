@@ -54,6 +54,8 @@
     "Delete {addressbook}?" : "Vill du radera {addressbook}?",
     "Deletion of address book was not successful." : "Radering av adressboken lyckades inte.",
     "Renaming of address book was not successful." : "Namnbyte av adressboken lyckades inte.",
+    "_%n contact_::_%n contacts_" : ["%n kontakt","%n kontakter"],
+    "_%n group_::_%n groups_" : ["%n grupp","%n grupper"],
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Delad med {num} enhet","Delad med {num} enheter"],
     "Share with users or groups" : "Dela med användare eller grupper",
     "No users or groups" : "Inga användare eller grupper",

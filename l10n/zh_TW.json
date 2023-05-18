@@ -54,6 +54,8 @@
     "Delete {addressbook}?" : "刪除 {addressbook}？",
     "Deletion of address book was not successful." : "刪除通訊錄失敗。",
     "Renaming of address book was not successful." : "重新命名通訊錄失敗。",
+    "_%n contact_::_%n contacts_" : ["%n 位聯絡人"],
+    "_%n group_::_%n groups_" : ["%n 個群組"],
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["與 {num} 個實體分享"],
     "Share with users or groups" : "與使用者或群組分享",
     "No users or groups" : "沒有使用者或群組",
