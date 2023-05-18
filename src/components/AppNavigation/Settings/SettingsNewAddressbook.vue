@@ -50,11 +50,13 @@
 <script>
 import { showError } from '@nextcloud/dialogs'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
+import IconLoading from 'vue-material-design-icons/Loading.vue'
 
 export default {
 	name: 'SettingsNewAddressbook',
 	components: {
 		IconAdd,
+		IconLoading,
 	},
 	data() {
 		return {
