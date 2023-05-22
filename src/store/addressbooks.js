@@ -61,6 +61,7 @@ export function mapDavCollectionToAddressbook(addressbook) {
 		enabled: addressbook.enabled !== false,
 		owner: addressbook.owner,
 		readOnly: addressbook.readOnly === true,
+		writeProps: addressbook.currentUserPrivilegeSet.includes('{DAV:}write-properties') === true,
 		url: addressbook.url,
 		dav: addressbook,
 		shares: addressbook.shares
@@ -318,10 +319,17 @@ const actions = {
 			.update()
 			.then((response) => {
 				context.commit('toggleAddressbookEnabled', addressbook)
-				if (addressbook.enabled && Object.values(addressbook.contacts).length === 0) {
-					context.dispatch('getContactsFromAddressBook', { addressbook })
+				if (addressbook.enabled) {
+					// Add contacts from the just enabled address book to the contacts store
+					Object.values(addressbook.contacts).forEach((contact) => {
+						context.commit('addContact', contact)
+					})
+				} else {
+					// Remove contacts from the just disabled address book from the contacts store
+					Object.values(addressbook.contacts).forEach((contact) => {
+						context.commit('deleteContact', contact)
+					})
 				}
-
 			})
 			.catch((error) => { throw error })
 	},
@@ -386,9 +394,13 @@ const actions = {
 				}
 
 				context.commit('appendContactsToAddressbook', { addressbook, contacts })
-				context.commit('appendContacts', contacts)
 				context.commit('extractGroupsFromContacts', contacts)
-				context.commit('sortContacts')
+
+				// don't add contacts from disabled address book to contacts store
+				if (addressbook.enabled) {
+					context.commit('appendContacts', contacts)
+					context.commit('sortContacts')
+				}
 				return contacts
 			})
 			.catch((error) => {

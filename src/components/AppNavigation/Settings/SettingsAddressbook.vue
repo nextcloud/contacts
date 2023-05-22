@@ -67,6 +67,21 @@
 					{{ t('contacts', 'Download') }}
 				</ActionLink>
 
+				<template v-if="addressbook.writeProps">
+					<!-- enable/disable addressbook -->
+					<ActionCheckbox v-if="!toggleEnabledLoading"
+						:checked="enabled"
+						@change.stop.prevent="toggleAddressbookEnabled">
+						{{ t('contacts', 'Show') }}
+					</ActionCheckbox>
+					<ActionButton v-else>
+						<template #icon>
+							<IconLoading :size="20" />
+						</template>
+						{{ t('contacts', 'Show') }}
+					</ActionButton>
+				</template>
+
 				<template v-if="!addressbook.readOnly">
 					<!-- rename addressbook -->
 					<ActionButton v-if="!editingName"
@@ -86,19 +101,6 @@
 							<IconRename :size="20" />
 						</template>
 					</ActionInput>
-
-					<!-- enable/disable addressbook -->
-					<ActionCheckbox v-if="!toggleEnabledLoading"
-						:checked="enabled"
-						@change.stop.prevent="toggleAddressbookEnabled">
-						{{ t('contacts', 'Enabled') }}
-					</ActionCheckbox>
-					<ActionButton v-else>
-						<template #icon>
-							<IconLoading :size="20" />
-						</template>
-						{{ t('contacts', 'Enabled') }}
-					</ActionButton>
 				</template>
 
 				<!-- delete addressbook -->
