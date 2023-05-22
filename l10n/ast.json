@@ -2,6 +2,7 @@
     "All contacts" : "Tolos contautos",
     "Loading circle …" : "Cargando'l círculu…",
     "Loading …" : "Cargando…",
+    "_%n group_::_%n groups_" : ["%n grupu","%n grupos"],
     "Description" : "Descripción",
     "An error occurred while trying to move the contact" : "Prodúxose un error al tentar de mover el contautu",
     "An error occurred while trying to copy the contact" : "Prodúxose un error al tentar de copiar el contautu",
