@@ -41,10 +41,12 @@ If you'd like to join, just go through the [issue list](https://github.com/nextc
 
 ``` bash
 # set up and build for production
+composer install
 npm ci
 npm run build
 
 # install dependencies
+composer install
 npm ci
 
 # build for dev and watch changes
