@@ -18,6 +18,9 @@ OC.L10N.register(
     "State or province" : "Estáu o provincia",
     "Postal code" : "Códigu postal",
     "Country" : "País",
+    "Instant messaging" : "Mensaxería instantanea",
+    "Fax" : "Fax",
+    "Pager" : "Buscapersones",
     "Agent" : "Axente"
 },
 "nplurals=2; plural=(n != 1);");

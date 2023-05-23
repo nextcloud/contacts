@@ -16,6 +16,9 @@
     "State or province" : "Estáu o provincia",
     "Postal code" : "Códigu postal",
     "Country" : "País",
+    "Instant messaging" : "Mensaxería instantanea",
+    "Fax" : "Fax",
+    "Pager" : "Buscapersones",
     "Agent" : "Axente"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
