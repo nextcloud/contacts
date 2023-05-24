@@ -60,6 +60,7 @@ OC.L10N.register(
     "_%n group_::_%n groups_" : ["%n ryhmä","%n ryhmää"],
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Jaettu {num} entiteetin kanssa","Jaettu {num} entiteetin kanssa"],
     "Share with users or groups" : "Jaa käyttäjien tai ryhmien kanssa",
+    "Share with users" : "Jaa käyttäjien kanssa",
     "No users or groups" : "Ei käyttäjiä tai ryhmiä",
     "can edit" : "voi muokata",
     "Unable to delete the share" : "Jakoa ei voitu poistaa",

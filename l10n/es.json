@@ -58,6 +58,7 @@
     "_%n group_::_%n groups_" : ["%n grupo","%n grupos","%n grupos"],
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Compartido con {num} entidad","Compartido con {num} entidades","Compartido con {num} entidades"],
     "Share with users or groups" : "Compartir con otros usuarios o grupos",
+    "Share with users" : "Compartir con los usuarios",
     "No users or groups" : "No hay usuarios ni grupos.",
     "can edit" : "puede editar",
     "Unable to delete the share" : "No se ha podido eliminar el recurso compartido",

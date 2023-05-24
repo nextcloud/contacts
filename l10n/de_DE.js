@@ -60,6 +60,7 @@ OC.L10N.register(
     "_%n group_::_%n groups_" : ["%n Gruppe","%n Gruppen"],
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Für {num} Entität freigegeben","Für {num} Entitäten freigegeben"],
     "Share with users or groups" : "Mit Benutzern oder Gruppen teilen",
+    "Share with users" : "Mit Benutzern teilen",
     "No users or groups" : "Keine Benutzer oder Gruppen",
     "can edit" : "kann bearbeiten",
     "Unable to delete the share" : "Freigabe kann nicht gelöscht werden",
