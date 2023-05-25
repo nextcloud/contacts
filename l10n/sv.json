@@ -58,6 +58,7 @@
     "_%n group_::_%n groups_" : ["%n grupp","%n grupper"],
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Delad med {num} enhet","Delad med {num} enheter"],
     "Share with users or groups" : "Dela med användare eller grupper",
+    "Share with users" : "Dela med användare",
     "No users or groups" : "Inga användare eller grupper",
     "can edit" : "kan redigera",
     "Unable to delete the share" : "Kunde inte radera delningen",

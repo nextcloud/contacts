@@ -60,6 +60,7 @@ OC.L10N.register(
     "_%n group_::_%n groups_" : ["%n skupina","%n skupiny","%n skupin","%n skupiny"],
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Sdíleno s {num} entitou","Sdíleno se {num} entitami","Sdíleno s {num} entitami","Sdíleno se {num} entitami"],
     "Share with users or groups" : "Sdílet s uživateli nebo skupinami",
+    "Share with users" : "Nasdílet uživatelům",
     "No users or groups" : "Žádní uživatelé nebo skupiny",
     "can edit" : "může upravovat",
     "Unable to delete the share" : "Sdílení se nedaří smazat",
