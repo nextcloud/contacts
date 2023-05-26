@@ -30,6 +30,9 @@
 					{{ addressbook.displayName }}
 				</span>
 
+				<div v-if="addressbook.dav.description" class="addressbook__description">
+					{{ addressbook.dav.description }}
+				</div>
 				<!-- counters -->
 				<div class="addressbook__count-wrapper">
 					<span class="addressbook__count">{{ n('contacts', '%n contact', '%n contacts', contactsCount) }}</span>
@@ -356,6 +359,10 @@ export default {
 		flex-direction: column;
 		flex: 0 1 auto;
 		max-width: calc(100% - 2 * 44px);
+	}
+
+	&__description {
+		color: var(--color-text-lighter);
 	}
 
 	&__count-wrapper {
