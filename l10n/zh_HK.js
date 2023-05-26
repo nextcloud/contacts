@@ -60,6 +60,7 @@ OC.L10N.register(
     "_%n group_::_%n groups_" : ["%n 個群組"],
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["與 {num} 個實體分享"],
     "Share with users or groups" : "與用戶或群組分享",
+    "Share with users" : "與用戶分享",
     "No users or groups" : "沒有用戶或群組",
     "can edit" : "允許編輯",
     "Unable to delete the share" : "無法刪除這個分享",

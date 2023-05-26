@@ -60,6 +60,7 @@ OC.L10N.register(
     "_%n group_::_%n groups_" : ["%n group","%n groups"],
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Shared with {num} entity","Shared with {num} entities"],
     "Share with users or groups" : "Share with users or groups",
+    "Share with users" : "Share with users",
     "No users or groups" : "No users or groups",
     "can edit" : "can edit",
     "Unable to delete the share" : "Unable to delete the share",
