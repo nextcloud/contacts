@@ -60,6 +60,7 @@ OC.L10N.register(
     "_%n group_::_%n groups_" : ["%n grup","%n grup"],
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["{num} varlık ile paylaşılmış","{num} varlık ile paylaşılmış"],
     "Share with users or groups" : "Kullanıcı ve gruplarla paylaş",
+    "Share with users" : "Kullanıcılarla paylaş",
     "No users or groups" : "Herhangi bir kullanıcı ya da grup yok",
     "can edit" : "düzenleyebilir",
     "Unable to delete the share" : "Paylaşım silinemedi",
