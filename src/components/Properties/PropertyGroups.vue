@@ -22,7 +22,7 @@
   -->
 
 <template>
-	<div v-if="propModel" class="property">
+	<div v-if="propModel && showProperty" class="property">
 		<PropertyTitle icon="icon-contacts-dark"
 			:readable-name="t('contacts', 'Contact groups')"
 			:is-read-only="isReadOnly" />
@@ -37,7 +37,7 @@
 				<NcSelect v-model="localValue"
 					:options="groups"
 					:no-wrap="true"
-					:placeholder="placeholder"
+					:placeholder="t('contacts', 'Add contact in group')"
 					:multiple="true"
 					:taggable="true"
 					:close-on-select="false"
@@ -109,6 +109,9 @@ export default {
 	},
 
 	computed: {
+		showProperty() {
+			return (this.isReadOnly && this.localValue.length > 0) || !this.isReadOnly
+		},
 		groups() {
 			return this.$store.getters.getGroups.slice(0).map(group => group.name)
 				.sort((a, b) => naturalCompare(a, b, { caseInsensitive: true }))
@@ -124,16 +127,6 @@ export default {
 			return this.localValue.slice(3).join(', ')
 		},
 
-		/**
-		 * @return {string}
-		 */
-		placeholder() {
-			if (this.isReadOnly) {
-				return t('contacts', 'None')
-			}
-
-			return t('contacts', 'Add contact in group')
-		},
 	},
 
 	watch: {
