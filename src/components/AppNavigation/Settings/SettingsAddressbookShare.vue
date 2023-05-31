@@ -34,7 +34,7 @@
 			open-direction="bottom"
 			track-by="user"
 			label="displayName"
-			@search-change="findSharee"
+			@search="findSharee"
 			@input="shareAddressbook" />
 		<!-- list of user or groups addressbook is shared with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressbook-shares__list">
