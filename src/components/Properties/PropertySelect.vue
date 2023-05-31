@@ -22,7 +22,7 @@
   -->
 
 <template>
-	<div v-if="propModel" class="property">
+	<div v-if="propModel && showProperty" class="property">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:property="property"
@@ -97,6 +97,9 @@ export default {
 	},
 
 	computed: {
+		showProperty() {
+			return (this.isReadOnly && this.localValue) || !this.isReadOnly
+		},
 		/**
 		 * Store getters filtered and mapped to usable object
 		 * This is the list of addressbooks that are available to write
