@@ -22,7 +22,7 @@
   -->
 
 <template>
-	<div v-if="propModel" class="property">
+	<div v-if="propModel && showProperty" class="property">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:property="property"
@@ -139,6 +139,9 @@ export default {
 	},
 
 	computed: {
+		showProperty() {
+			return (this.isReadOnly && this.localValue) || !this.isReadOnly
+		},
 		inputmode() {
 			if (this.propName === 'tel') {
 				return 'tel'

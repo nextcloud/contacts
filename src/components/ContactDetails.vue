@@ -226,6 +226,7 @@
 			<section v-else class="contact-details">
 				<!-- properties iteration -->
 				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
+
 				<div v-for="(properties, name) in groupedProperties"
 					:key="name">
 					<ContactDetailsProperty v-for="(property, index) in properties"
@@ -569,6 +570,7 @@ export default {
 
 			return ''
 		},
+
 	},
 
 	watch: {

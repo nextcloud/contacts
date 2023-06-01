@@ -95,16 +95,18 @@
 			<div v-for="index in propModel.displayOrder"
 				:key="index"
 				class="property__row">
-				<div class="property__label">
-					<span>{{ propModel.readableValues[index] }}</span>
-				</div>
-				<div class="property__value">
-					<input v-model.trim="localValue[index]"
-						:readonly="isReadOnly"
-						type="text"
-						@input="updateValue">
-				</div>
-				<div class="property__actions" />
+				<template v-if="(isReadOnly && localValue[index]) || !isReadOnly">
+					<div class="property__label">
+						<span>{{ propModel.readableValues[index] }}</span>
+					</div>
+					<div class="property__value">
+						<input v-model.trim="localValue[index]"
+							:readonly="isReadOnly"
+							type="text"
+							@input="updateValue">
+					</div>
+					<div class="property__actions" />
+				</template>
 			</div>
 		</template>
 
@@ -113,14 +115,16 @@
 			<div v-for="(value, index) in filteredValue"
 				:key="index"
 				class="property__row">
-				<div class="property__label" />
-				<div class="property__value">
-					<input v-model.trim="filteredValue[index]"
-						:readonly="isReadOnly"
-						type="text"
-						@input="updateValue">
-				</div>
-				<div class="property__actions" />
+				<template v-if="(isReadOnly && filteredValue[index]) || !isReadOnly">
+					<div class="property__label" />
+					<div class="property__value">
+						<input v-model.trim="filteredValue[index]"
+							:readonly="isReadOnly"
+							type="text"
+							@input="updateValue">
+					</div>
+					<div class="property__actions" />
+				</template>
 			</div>
 		</template>
 	</div>
