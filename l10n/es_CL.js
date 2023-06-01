@@ -35,7 +35,6 @@ OC.L10N.register(
     "No results" : "No hay resultados",
     "Personal circle" : "Círculo personal",
     "Pending" : "Pendiente",
-    "None" : "Ninguno",
     "Close" : "Cerrar",
     "Import" : "Importar",
     "Not grouped" : "No agrupado",
@@ -100,6 +99,7 @@ OC.L10N.register(
     "Gender" : "Género",
     "Female" : "Femenino",
     "Male" : "Masculino",
+    "None" : "Ninguno",
     "Unknown" : "Desconocido"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

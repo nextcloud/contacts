@@ -13,7 +13,6 @@ OC.L10N.register(
     "Name" : "ئاتى",
     "Title" : "ماۋزۇ",
     "Pending" : "كۈتۈۋاتىدۇ",
-    "None" : "يوق",
     "Close" : "ياپ",
     "Import" : "ئەكىر",
     "User" : "User",
@@ -36,6 +35,7 @@ OC.L10N.register(
     "Mobile" : "كۆچمە",
     "Fax" : "فاكىس",
     "Pager" : "چاقىرغۇ",
-    "Voice" : "ئاۋاز"
+    "Voice" : "ئاۋاز",
+    "None" : "يوق"
 },
 "nplurals=2; plural=(n != 1);");

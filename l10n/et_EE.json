@@ -32,7 +32,6 @@
     "No results" : "Vasteid ei leitud",
     "Personal circle" : "Isiklik ring",
     "Pending" : "Ootel",
-    "None" : "Pole",
     "Close" : "Sulge",
     "Import" : "Impordi",
     "Not grouped" : "Pole grupeeritud",
@@ -94,6 +93,7 @@
     "Gender" : "Sugu",
     "Female" : "Naine",
     "Male" : "Mees",
+    "None" : "Pole",
     "Unknown" : "Teadmata"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

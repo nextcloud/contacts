@@ -35,7 +35,6 @@
     "Personal circle" : "حلقه شخصی",
     "Pending" : "در انتظار",
     "Select Date" : "تاریخ را انتخاب کنید",
-    "None" : "هیچ‌کدام",
     "Close" : "بستن",
     "Import" : "وارد کردن",
     "Not grouped" : "گروه بندی نشده",
@@ -94,6 +93,7 @@
     "Gender" : "جنسیت",
     "Female" : "مؤنث",
     "Male" : "مذکر",
+    "None" : "هیچ‌کدام",
     "Unknown" : "نامشخص"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

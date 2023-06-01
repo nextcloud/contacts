@@ -12,13 +12,13 @@ OC.L10N.register(
     "Title" : "Azwel",
     "No results" : "Ulac igmad",
     "Pending" : "Yegguni",
-    "None" : "Ula d yiwen",
     "Close" : "Mdel",
     "User" : "Aseqdac",
     "Email" : "Imayl",
     "Website" : "Asmel web",
     "Home" : "Asnubeg",
     "Address" : "Adresse",
+    "None" : "Ula d yiwen",
     "Unknown" : "Arussin"
 },
 "nplurals=2; plural=(n != 1);");

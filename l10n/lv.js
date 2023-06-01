@@ -52,7 +52,6 @@ OC.L10N.register(
     "Pending" : "Gaida",
     "Select type" : "Izvēlieties tipu",
     "Select Date" : "Izvēlieties datumu",
-    "None" : "Nav",
     "Add contact in group" : "Pievienot kontaktpersonu grupai",
     "Select option" : "Izvēlieties opciju",
     "Unable to create the contact." : "Nevar izveidot kontaktpersonu.",
@@ -121,6 +120,7 @@ OC.L10N.register(
     "Gender" : "Dzimums",
     "Female" : "Sieviete",
     "Male" : "Vīrietis",
+    "None" : "Nav",
     "Unknown" : "Nezināms",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontaktpersonas neizdevās nolasīt","{failed} kontaktpersonu neizdevās nolasīt","{failed} kontaktpersonas neizdevās nolasīt"]
 },

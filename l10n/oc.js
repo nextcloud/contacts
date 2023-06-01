@@ -29,7 +29,6 @@ OC.L10N.register(
     "Search contacts …" : "Cercar pels contactes…",
     "No results" : "Cap de resultat",
     "Pending" : "En espèra",
-    "None" : "Pas cap",
     "Close" : "Tampar",
     "Import" : "Importar",
     "Not grouped" : "Pas gropats",
@@ -65,6 +64,7 @@ OC.L10N.register(
     "Pager" : "Messatgièr",
     "Voice" : "Votz",
     "Relative" : "Relatiu",
+    "None" : "Pas cap",
     "Unknown" : "Desconegut",
     "Spoken languages" : "Lengas parladas"
 },

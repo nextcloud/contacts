@@ -34,7 +34,6 @@ OC.L10N.register(
     "No results" : "Vasteid ei leitud",
     "Personal circle" : "Isiklik ring",
     "Pending" : "Ootel",
-    "None" : "Pole",
     "Close" : "Sulge",
     "Import" : "Impordi",
     "Not grouped" : "Pole grupeeritud",
@@ -96,6 +95,7 @@ OC.L10N.register(
     "Gender" : "Sugu",
     "Female" : "Naine",
     "Male" : "Mees",
+    "None" : "Pole",
     "Unknown" : "Teadmata"
 },
 "nplurals=2; plural=(n != 1);");

@@ -20,7 +20,6 @@ OC.L10N.register(
     "Name" : "Numm",
     "Title" : "Titel",
     "Pending" : "Ausstoend",
-    "None" : "Keng",
     "Close" : "Zoumaachen",
     "Import" : "Importéieren",
     "User" : "User",
@@ -46,6 +45,7 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Voice",
     "Relative" : "Relativ",
+    "None" : "Keng",
     "Unknown" : "Onbekannt"
 },
 "nplurals=2; plural=(n != 1);");

@@ -55,7 +55,6 @@ OC.L10N.register(
     "Pending" : "Në Pritje të Konfirmimit",
     "Select type" : "Zgjidhni llojin",
     "Select Date" : "Zgjidhni Datën",
-    "None" : "Asnjë",
     "Add contact in group" : "Shto kontaktin në grup",
     "Close" : "Mbylleni",
     "Import" : "Import",
@@ -119,6 +118,7 @@ OC.L10N.register(
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
+    "None" : "Asnjë",
     "Unknown" : "I/E panjohur"
 },
 "nplurals=2; plural=(n != 1);");

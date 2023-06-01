@@ -11,12 +11,12 @@ OC.L10N.register(
     "Name" : "Ady",
     "No results" : " Netije ýok",
     "Pending" : "Garaşylýar",
-    "None" : "Hiç",
     "Close" : "Ýap",
     "User" : "Ulanyjy",
     "Website" : "Website",
     "Home" : "Baş sahypa",
     "Address" : "Salgysy",
+    "None" : "Hiç",
     "Unknown" : "Näbelli"
 },
 "nplurals=2; plural=(n != 1);");

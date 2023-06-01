@@ -37,7 +37,6 @@ OC.L10N.register(
     "Personal circle" : "حلقه شخصی",
     "Pending" : "در انتظار",
     "Select Date" : "تاریخ را انتخاب کنید",
-    "None" : "هیچ‌کدام",
     "Close" : "بستن",
     "Import" : "وارد کردن",
     "Not grouped" : "گروه بندی نشده",
@@ -96,6 +95,7 @@ OC.L10N.register(
     "Gender" : "جنسیت",
     "Female" : "مؤنث",
     "Male" : "مذکر",
+    "None" : "هیچ‌کدام",
     "Unknown" : "نامشخص"
 },
 "nplurals=2; plural=(n > 1);");

@@ -14,7 +14,6 @@ OC.L10N.register(
     "Name" : "﻿ಹೆಸರು",
     "Title" : "ಶೀರ್ಷಿಕೆ",
     "Pending" : "﻿ಬಾಕಿ ಇದೆ",
-    "None" : "﻿ಯಾವುದೂ ಇಲ್ಲ",
     "Close" : "ಮುಚ್ಚು",
     "Import" : "ಆಮದು",
     "User" : "User",
@@ -26,6 +25,7 @@ OC.L10N.register(
     "Notes" : "Notes",
     "Home" : "﻿ಮುಖಪುಟ",
     "Other" : "﻿ಇತರೆ",
-    "Address" : "ವಿಳಾಸ"
+    "Address" : "ವಿಳಾಸ",
+    "None" : "﻿ಯಾವುದೂ ಇಲ್ಲ"
 },
 "nplurals=2; plural=(n > 1);");

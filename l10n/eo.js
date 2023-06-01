@@ -56,7 +56,6 @@ OC.L10N.register(
     "Pending" : "Pritraktota",
     "Select type" : "Elekti tipon",
     "Select Date" : "Elekti daton",
-    "None" : "Nenio",
     "Add contact in group" : "Aldoni kontakton en grupon",
     "Select option" : "Elekti opcion",
     "Unable to create the contact." : "Ne eblas krei kontakton.",
@@ -127,6 +126,7 @@ OC.L10N.register(
     "Gender" : "Sekso",
     "Female" : "Ina",
     "Male" : "Vira",
+    "None" : "Nenio",
     "Unknown" : "Nekonata",
     "Spoken languages" : "Lingvoj parolataj",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"]

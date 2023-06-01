@@ -38,7 +38,6 @@
     "No results" : "Үр дүн байхгүй",
     "Personal circle" : "Хувийн тойрог",
     "Pending" : "Хүлээгдэж байгаа",
-    "None" : "юу ч үгүй",
     "Close" : "Хаах",
     "Import" : "Импорт",
     "Not grouped" : "Багт ороогүй",
@@ -87,6 +86,7 @@
     "Gender" : "Хүйс",
     "Female" : "Эмэгтэй",
     "Male" : "Эрэгтэй",
+    "None" : "юу ч үгүй",
     "Unknown" : "Үл танигдах зүйл",
     "Time zone" : "Цагийн бүс"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

@@ -34,7 +34,6 @@ OC.L10N.register(
     "No results" : "შედეგები არაა",
     "Personal circle" : "პირადი წრე",
     "Pending" : "მოლოდინში",
-    "None" : "არც ერთი",
     "Close" : "დახურვა",
     "Import" : "იმპორტი",
     "Not grouped" : "არაა დაჯგუფებული",
@@ -96,6 +95,7 @@ OC.L10N.register(
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
     "Male" : "მამრობითი",
+    "None" : "არც ერთი",
     "Unknown" : "ამოუცნობი"
 },
 "nplurals=2; plural=(n!=1);");

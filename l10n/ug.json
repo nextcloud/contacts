@@ -11,7 +11,6 @@
     "Name" : "ئاتى",
     "Title" : "ماۋزۇ",
     "Pending" : "كۈتۈۋاتىدۇ",
-    "None" : "يوق",
     "Close" : "ياپ",
     "Import" : "ئەكىر",
     "User" : "User",
@@ -34,6 +33,7 @@
     "Mobile" : "كۆچمە",
     "Fax" : "فاكىس",
     "Pager" : "چاقىرغۇ",
-    "Voice" : "ئاۋاز"
+    "Voice" : "ئاۋاز",
+    "None" : "يوق"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

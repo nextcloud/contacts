@@ -34,7 +34,6 @@
     "No results" : "Niciun rezultat",
     "Personal circle" : "Cerc personal",
     "Pending" : "În așteptare",
-    "None" : "Niciuna",
     "Select option" : "Selectatți opțiunea",
     "Close" : "Închide",
     "Import" : "Importă",
@@ -99,6 +98,7 @@
     "Gender" : "Sex",
     "Female" : "Femeie",
     "Male" : "Bărbat",
+    "None" : "Niciuna",
     "Unknown" : "Necunoscut"
 },"pluralForm" :"nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));"
 }

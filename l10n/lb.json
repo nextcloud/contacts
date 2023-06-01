@@ -18,7 +18,6 @@
     "Name" : "Numm",
     "Title" : "Titel",
     "Pending" : "Ausstoend",
-    "None" : "Keng",
     "Close" : "Zoumaachen",
     "Import" : "Importéieren",
     "User" : "User",
@@ -44,6 +43,7 @@
     "Pager" : "Pager",
     "Voice" : "Voice",
     "Relative" : "Relativ",
+    "None" : "Keng",
     "Unknown" : "Onbekannt"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
