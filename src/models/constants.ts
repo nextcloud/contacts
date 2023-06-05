@@ -87,20 +87,20 @@ const CIRCLE_CONFIG_FEDERATED: CircleConfig = 32768			// Federated
 
 // Existing members types
 export const CIRCLES_MEMBER_TYPES = {
-	[MEMBER_TYPE_CIRCLE]: t('circles', 'Circle'),
-	[MEMBER_TYPE_USER]: t('circles', 'User'),
-	[MEMBER_TYPE_GROUP]: t('circles', 'Group'),
-	[MEMBER_TYPE_MAIL]: t('circles', 'Email'),
-	[MEMBER_TYPE_CONTACT]: t('circles', 'Contact'),
+	[MEMBER_TYPE_CIRCLE]: t('contacts', 'Circle'),
+	[MEMBER_TYPE_USER]: t('contacts', 'User'),
+	[MEMBER_TYPE_GROUP]: t('contacts', 'Group'),
+	[MEMBER_TYPE_MAIL]: t('contacts', 'Email'),
+	[MEMBER_TYPE_CONTACT]: t('contacts', 'Contact'),
 }
 
 // Available circles promote/demote levels
 export const CIRCLES_MEMBER_LEVELS = {
-	// [MEMBER_LEVEL_NONE]: t('circles', 'Pending'),
-	[MEMBER_LEVEL_MEMBER]: t('circles', 'Member'),
-	[MEMBER_LEVEL_MODERATOR]: t('circles', 'Moderator'),
-	[MEMBER_LEVEL_ADMIN]: t('circles', 'Admin'),
-	[MEMBER_LEVEL_OWNER]: t('circles', 'Owner'),
+	// [MEMBER_LEVEL_NONE]: t('contacts', 'Pending'),
+	[MEMBER_LEVEL_MEMBER]: t('contacts', 'Member'),
+	[MEMBER_LEVEL_MODERATOR]: t('contacts', 'Moderator'),
+	[MEMBER_LEVEL_ADMIN]: t('contacts', 'Admin'),
+	[MEMBER_LEVEL_OWNER]: t('contacts', 'Owner'),
 }
 
 // Available circle configs in the circle details view
