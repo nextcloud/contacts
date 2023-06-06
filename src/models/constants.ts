@@ -137,7 +137,7 @@ export const CIRCLES_MEMBER_GROUPING = [
 	},
 	{
 		id: `picker-${Type.SHARE_TYPE_GROUP}`,
-		label: t('contacts', 'Contact groups'),
+		label: t('contacts', 'User groups'),
 		share: Type.SHARE_TYPE_GROUP,
 		type: MEMBER_TYPE_GROUP
 	},
