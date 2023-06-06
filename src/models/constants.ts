@@ -66,7 +66,7 @@ const MEMBER_TYPE_MAIL: MemberType = 4
 const MEMBER_TYPE_CONTACT: MemberType = 8
 const MEMBER_TYPE_CIRCLE: MemberType = 16
 
-export const CIRCLE_DESC = t('contacts', 'Circles allow you to create groups with other users on a Nextcloud instance and share with them.')
+export const CIRCLE_DESC = t('contacts', 'Circles are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses.')
 
 // Circles config flags
 const CIRCLE_CONFIG_PERSONAL: CircleConfig = 2				// Personal circle, only the owner can see it.
