@@ -179,7 +179,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "No se pudo copiar el enlace al portapapeles.",
     "Not grouped" : "No agrupado",
     "Recently contacted" : "Contactados recientemente",
-    "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "Los círculos le permiten crear grupos con otros usuarios en una instancia de Nextcloud y compartir con ellos.",
     "Circle" : "Círculo",
     "User" : "Usuario",
     "Group" : "Grupo",

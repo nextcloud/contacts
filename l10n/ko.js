@@ -165,7 +165,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "링크를 클립보드에 복사할 수 없음",
     "Not grouped" : "그룹되지 않음",
     "Recently contacted" : "최근 연락함",
-    "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "서클을 통해 다른 사용자와 Nextcloud 인스턴스에서 그룹을 만들고 공유할 수 있습니다.",
     "Circle" : "서클",
     "User" : "사용자",
     "Group" : "그룹",

@@ -204,7 +204,6 @@ OC.L10N.register(
     "Not grouped" : "Ei ryhmitelty",
     "Recently contacted" : "Äskettäin yhteydessä",
     "Organization chart" : "Organisaatiokaavio",
-    "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "Piirit mahdollistavat ryhmien luomisen muiden käyttäjien kanssa Nextcloudissa ja jakamisen piirin keskuudessa.",
     "Circle" : "Piiri",
     "User" : "Käyttäjä",
     "Group" : "Ryhmä",

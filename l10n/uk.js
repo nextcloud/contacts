@@ -194,7 +194,6 @@ OC.L10N.register(
     "Not grouped" : "Поза групами",
     "Recently contacted" : "Нещодавні контакти",
     "Organization chart" : "Органограма",
-    "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "Кола дозволяють створювати групи з кількох користувачів хмари Nextcloud та надавати їм спільний доступ до ресурсів.",
     "Circle" : "Коло",
     "User" : "Користувач",
     "Group" : "Група",

@@ -179,7 +179,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Nepavyko nukopijuoti nuorodos į iškarpinę.",
     "Not grouped" : "Nesugrupuoti",
     "Recently contacted" : "Paskiausiai susisiekta",
-    "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "Ratai leidžia jums kurti grupes kartu su kitais naudotojais Nextcloud egzemplioriuje ir bendrinti jas su jais.",
     "Circle" : "Ratas",
     "User" : "Naudotojas",
     "Group" : "Grupė",

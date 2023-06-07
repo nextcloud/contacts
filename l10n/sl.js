@@ -205,7 +205,6 @@ OC.L10N.register(
     "Not grouped" : "Brez skupine",
     "Recently contacted" : "Nedavno v stiku",
     "Organization chart" : "Organizacijska shema",
-    "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "Program Krogi omogoča ustvarjanje skupin in souporabo datotek z drugimi uporabniki okolja Nextcloud",
     "Circle" : "Krog",
     "User" : "Uporabnik",
     "Group" : "Skupina",

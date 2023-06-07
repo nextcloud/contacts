@@ -191,7 +191,6 @@ OC.L10N.register(
     "Not grouped" : "Ikke i gruppe",
     "Recently contacted" : "For nylig kontaktet",
     "Organization chart" : "Organisationsdiagram",
-    "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "Cirkler giver dig mulighed for at oprette grupper med andre brugere på en Nextcloud-instans og dele med dem.",
     "Circle" : "Cirkel",
     "User" : "Bruger",
     "Group" : "Gruppe",

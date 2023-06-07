@@ -187,7 +187,6 @@ OC.L10N.register(
     "Not grouped" : "Bez skupiny",
     "Recently contacted" : "Nedávno kontaktovaní",
     "Organization chart" : "Organizačný diagram",
-    "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "Kruhy vám umožňujú vytvárať skupiny s ostatnými používateľmi v inštancii Nextcloud a zdieľať ich s nimi.",
     "Circle" : "Kruh",
     "User" : "Užívateľ",
     "Group" : "Skupina",

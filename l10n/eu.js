@@ -197,7 +197,6 @@ OC.L10N.register(
     "Not grouped" : "Taldekatu gabe",
     "Recently contacted" : "Berriki kontaktatuak",
     "Organization chart" : "Erakundearen diagrama",
-    "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "Zirkuluek aukera ematen dizute beste Nextcloud instantzia bateko erabiltzaileekin taldeak egin eta partekatzeko.",
     "Circle" : "Zirkulua",
     "User" : "Erabiltzailea",
     "Group" : "Taldea",

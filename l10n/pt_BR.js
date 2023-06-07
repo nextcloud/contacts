@@ -206,7 +206,6 @@ OC.L10N.register(
     "Not grouped" : "Não agrupado",
     "Recently contacted" : "Contactados recentemente",
     "Organization chart" : "Organograma",
-    "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "Os círculos permitem que você crie grupos com outros usuários em uma instância do Nextcloud e compartilhe com eles.",
     "Circle" : "Círculo",
     "User" : "Usuário",
     "Group" : "Grupo",

@@ -206,7 +206,6 @@ OC.L10N.register(
     "Not grouped" : "Gruplanmamış",
     "Recently contacted" : "Son görüşülenler",
     "Organization chart" : "Organizasyon şeması",
-    "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "Çevreler, bir Nextcloud kopyasındaki kullanıcılardan gruplar oluşturmanızı ve onlarla paylaşımda bulunmanızı sağlar.",
     "Circle" : "Çevre",
     "User" : "Kullanıcı",
     "Group" : "Grup",

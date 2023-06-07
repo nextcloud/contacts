@@ -173,7 +173,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Kopiranje poveznice u međuspremnik nije uspjelo.",
     "Not grouped" : "Nije grupirano",
     "Recently contacted" : "Nedavno kontaktiran",
-    "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "Krugovi vam omogućuju stvaranje grupa i dijeljenje s drugim korisnicima na instanci Nextclouda.",
     "Circle" : "Krug",
     "User" : "Korisnik",
     "Group" : "Grupa",

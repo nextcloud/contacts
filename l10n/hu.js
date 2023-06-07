@@ -192,7 +192,6 @@ OC.L10N.register(
     "Not grouped" : "Nem csoportosított",
     "Recently contacted" : "Legutóbbi kapcsolatfelvételek",
     "Organization chart" : "Szervezeti diagram",
-    "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "A körökkel csoportokat hozhat létre más felhasználókkal a Nextcloud példányán, és megoszthat velük dolgokat.",
     "Circle" : "Kör",
     "User" : "Felhasználó",
     "Group" : "Csoport",
