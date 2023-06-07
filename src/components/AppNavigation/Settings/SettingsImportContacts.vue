@@ -35,7 +35,7 @@
 				:title="t('contacts', 'Import contacts')"
 				@close="toggleModal">
 				<section class="import-contact__modal-addressbook">
-					<h3>{{ t('contacts', 'Import contacts') }}</h3>
+					<h2>{{ t('contacts', 'Import contacts') }}</h2>
 					<NcSelect v-if="!isSingleAddressbook"
 						id="select-addressbook"
 						v-model="selectedAddressbook"
@@ -308,24 +308,23 @@ export default {
 			padding: 22px;
 			// only one padding bewteen sections
 			&:not(:last-child) {
-				padding-bottom: 0;
+				text-align: center;
 			}
 		}
 		&-pick {
 			display: flex;
 			align-items: center;
 			flex-wrap: wrap;
-			justify-content: space-evenly;
+			justify-content: space-between;
+			padding-top: 0 !important;
 		}
 	}
 	&__button {
 		display: flex;
 		align-items: center;
-		flex: 0 1 150px;
-		width: 150px;
-		// spread evenly
-		margin: 10px;
 		padding: 10px;
+		width: calc(50% - 20px);
+		margin: 10px 0;
 		&-icon {
 			width: 32px;
 			height: 32px;
