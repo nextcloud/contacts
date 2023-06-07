@@ -1,5 +1,5 @@
 # Changelog
-## 5.3.0 - 2023-05-16
+## 5.3.0 - 2023-06-07
 ### Added
 - Final design enhancements from mockups 
 - Read-only and edit modes #3347
