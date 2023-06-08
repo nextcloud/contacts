@@ -206,6 +206,7 @@ OC.L10N.register(
     "Not grouped" : "未歸類",
     "Recently contacted" : "最近聯絡",
     "Organization chart" : "機構圖表",
+    "Circles are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "小圈圈是您可以自行建立並與他們分享資料的一群人。其可以由 Nextcloud 站台的其他帳號或帳號群組所組成，但也可以由您通訊錄中的聯絡人組成，甚至可以透過輸入電子郵件地址來組成外部人員。",
     "Circle" : "社交圈子",
     "User" : "用戶",
     "Group" : "群組",

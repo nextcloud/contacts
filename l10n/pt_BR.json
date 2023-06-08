@@ -204,6 +204,7 @@
     "Not grouped" : "Não agrupado",
     "Recently contacted" : "Contactados recentemente",
     "Organization chart" : "Organograma",
+    "Circles are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Círculos são grupos de pessoas que você mesmo pode criar e com quem pode compartilhar dados. Podem ser constituídas por outras contas ou grupos de contas da instância Nextcloud, mas também por contactos da sua agenda de endereços ou mesmo por pessoas externas, bastando para isso introduzir os seus endereços de e-mail.",
     "Circle" : "Círculo",
     "User" : "Usuário",
     "Group" : "Grupo",
