@@ -206,6 +206,7 @@ OC.L10N.register(
     "Not grouped" : "Not grouped",
     "Recently contacted" : "Recently contacted",
     "Organization chart" : "Organization chart",
+    "Circles are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Circles are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses.",
     "Circle" : "Circle",
     "User" : "User",
     "Group" : "Group",
