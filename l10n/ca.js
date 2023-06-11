@@ -206,6 +206,7 @@ OC.L10N.register(
     "Not grouped" : "Sense grup",
     "Recently contacted" : "Contactes recents",
     "Organization chart" : "Organigrama",
+    "Circles are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Els cercles són grups de gent que podeu crear i amb qui podeu compartir dades. Poden confeccionar-se a partir d'altres comptes o grups de comptes de la instància de Nextcloud, però també de contactes de la vostra llibreta d'adreces o, fins i tot, gent externa tot introduint-hi llur adreça electrònica.",
     "Circle" : "Cercle",
     "User" : "Usuari",
     "Group" : "Grup",
