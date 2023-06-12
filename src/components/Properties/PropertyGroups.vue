@@ -34,7 +34,8 @@
 
 			<!-- multiselect taggable groups with a limit to 3 groups shown -->
 			<div class="property__value">
-				<NcSelect v-model="localValue"
+				<NcSelect v-if="!showAsText"
+					v-model="localValue"
 					:options="groups"
 					:no-wrap="true"
 					:placeholder="t('contacts', 'Add contact in group')"
@@ -56,6 +57,9 @@
 						{{ t('contacts', 'No results') }}
 					</span>
 				</NcSelect>
+				<p v-else>
+					{{ localValue.length === 0 ? t('contacts','none'): localValue.toString() }}
+				</p>
 			</div>
 
 			<!-- empty actions to keep the layout -->
@@ -109,6 +113,9 @@ export default {
 	},
 
 	computed: {
+		showAsText() {
+			return this.isReadOnly && this.localValue.length <= 1
+		},
 		showProperty() {
 			return (this.isReadOnly && this.localValue.length > 0) || !this.isReadOnly
 		},
