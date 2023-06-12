@@ -257,10 +257,11 @@
 
 				<!-- Groups always visible -->
 				<PropertyGroups :prop-model="groupsModel"
-					:value.sync="localContact.groups"
+					:value="localContact.groups"
 					:contact="contact"
 					:is-read-only="isReadOnly"
-					class="property--groups property--last" />
+					class="property--groups property--last"
+					@update:value="updateGroups" />
 
 				<!-- new property select -->
 				<AddNewProp v-if="!isReadOnly"
@@ -374,6 +375,7 @@ export default {
 			showPickAddressbookModal: false,
 			pickedAddressbook: null,
 			editMode: false,
+			newGroupsValue: [],
 
 			contactDetailsSelector: '.contact-details',
 			excludeFromBirthdayKey: 'x-nc-exclude-from-birthday-calendar',
@@ -597,6 +599,9 @@ export default {
 	},
 
 	methods: {
+		updateGroups(value) {
+			this.newGroupsValue = value
+		},
 		/**
 		 * Send the local clone of contact to the store
 		 */
@@ -857,6 +862,11 @@ export default {
 		 */
 		async onSave() {
 			try {
+				this.localContact.groups = [...this.newGroupsValue]
+				await this.$store.dispatch('updateContactGroups', {
+					groupNames: this.newGroupsValue,
+					contact: this.contact,
+				})
 				await this.updateContact()
 				this.editMode = false
 			} catch (error) {

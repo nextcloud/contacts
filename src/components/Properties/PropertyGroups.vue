@@ -32,22 +32,20 @@
 				<span>{{ propModel.readableName }}</span>
 			</div>
 
-			<!-- multiselect taggable groups with a limit to 3 groups shown -->
+			<!-- multiselect taggable groups -->
 			<div class="property__value">
 				<NcSelect v-model="localValue"
 					:options="groups"
 					:no-wrap="true"
 					:placeholder="t('contacts', 'Add contact in group')"
 					:multiple="true"
-					:taggable="true"
 					:close-on-select="false"
 					:disabled="isReadOnly"
-					:tag-width="60"
+					:clearable="true"
+					:deselect-from-dropdown="true"
+					:taggable="true"
 					tag-placeholder="create"
-					@input="updateValue"
-					@tag="validateGroup"
-					@select="addContactToGroup"
-					@remove="removeContactToGroup">
+					@close="updateValue">
 					<!-- show how many groups are hidden and add tooltip -->
 					<span slot="limit" v-tooltip.auto="formatGroupsTitle" class="multiselect__limit">
 						+{{ localValue.length - 3 }}
@@ -65,7 +63,6 @@
 </template>
 
 <script>
-import debounce from 'debounce'
 import { NcSelect } from '@nextcloud/vue'
 import Contact from '../../models/contact.js'
 import PropertyTitle from './PropertyTitle.vue'
@@ -146,53 +143,11 @@ export default {
 	methods: {
 
 		/**
-		 * Debounce and send update event to parent
+		 * Send update event to parent
 		 */
-		updateValue: debounce(function() {
-			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
+		updateValue() {
 			this.$emit('update:value', this.localValue)
-		}, 500),
 
-		/**
-		 * Dispatch contact addition to group
-		 *
-		 * @param {string} groupName the group name
-		 */
-		async addContactToGroup(groupName) {
-			await this.$store.dispatch('addContactToGroup', {
-				contact: this.contact,
-				groupName,
-			})
-			this.updateValue()
-		},
-
-		/**
-		 * Dispatch contact removal from group
-		 *
-		 * @param {string} groupName the group name
-		 */
-		removeContactToGroup(groupName) {
-			this.$store.dispatch('removeContactToGroup', {
-				contact: this.contact,
-				groupName,
-			})
-			const group = this.$store.getters.getGroups.find(search => search.name === groupName)
-			if (group.contacts.length === 0) {
-				this.$emit('update:value', [])
-			}
-
-		},
-
-		/**
-		 * Validate groupname and dispatch creation
-		 *
-		 * @param {string} groupName the group name
-		 * @return {boolean}
-		 */
-		validateGroup(groupName) {
-			this.addContactToGroup(groupName)
-			this.localValue.push(groupName)
-			return true
 		},
 	},
 }
