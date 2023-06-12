@@ -46,7 +46,8 @@
 			</div>
 
 			<div class="property__value">
-				<NcSelect v-model="matchedOptions"
+				<NcSelect v-if="!isReadOnly"
+					v-model="matchedOptions"
 					:options="selectableOptions"
 					:no-wrap="true"
 					:placeholder="t('contacts', 'Select option')"
@@ -54,6 +55,9 @@
 					track-by="id"
 					label="name"
 					@input="updateValue" />
+				<p v-else>
+					{{ matchedOptions.name }}
+				</p>
 			</div>
 
 			<!-- props actions -->
