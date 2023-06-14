@@ -1,4 +1,7 @@
 # Changelog
+## 5.3.1 - 2023-06-14
+### Fixed
+- Allow dynamic autoloading for classes added during upgrade
 ## 5.3.0 - 2023-06-07
 ### Added
 - Final design enhancements from mockups 
