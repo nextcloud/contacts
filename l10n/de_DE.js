@@ -180,6 +180,7 @@ OC.L10N.register(
     "Select type" : "Typ auswählen",
     "Select Date" : "Datum auswählen",
     "Add contact in group" : "Kontakt zur Gruppe hinzufügen",
+    "none" : "Keine",
     "Select option" : "Option auswählen",
     "Add property of this type" : "Eigenschaft dieses Typs hinzufügen",
     "Unable to create the contact." : "Kontakt konnte nicht erstellt werden.",

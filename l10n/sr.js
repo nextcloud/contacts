@@ -180,6 +180,7 @@ OC.L10N.register(
     "Select type" : "Одаберите тип",
     "Select Date" : "Одаберите датум",
     "Add contact in group" : "Додај контакт у групу",
+    "none" : "ништа",
     "Select option" : "Изаберите опцију",
     "Add property of this type" : "Додај особину овог типа",
     "Unable to create the contact." : "Не могу да направим контакт.",

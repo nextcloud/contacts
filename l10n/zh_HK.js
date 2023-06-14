@@ -180,6 +180,7 @@ OC.L10N.register(
     "Select type" : "選擇類型",
     "Select Date" : "選擇日期",
     "Add contact in group" : "新增聯絡人到群組",
+    "none" : "無",
     "Select option" : "選擇選項",
     "Add property of this type" : "添加此類型的屬性",
     "Unable to create the contact." : "無法建立聯絡人",
