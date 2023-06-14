@@ -347,8 +347,8 @@ export default {
 		 */
 		fetchContacts() {
 			// wait for all addressbooks to have fetch their contacts
+			// don't filter disabled at this point, because sum of contacts per address book is shown
 			Promise.all(this.addressbooks
-				.filter(addressbook => addressbook.enabled)
 				.map(addressbook => {
 					return this.$store.dispatch('getContactsFromAddressBook', { addressbook })
 				})
