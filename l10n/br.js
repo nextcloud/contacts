@@ -10,7 +10,6 @@ OC.L10N.register(
     "Circles" : "Kelc'hioù",
     "Download" : "Pellgargañ",
     "Rename" : "Adenvel",
-    "Enabled" : "Aotreet",
     "Delete" : "Dilemel",
     "Copy link" : "Kopiañ al liamm",
     "Share with users or groups" : "Rannañ gant implijourienn pe strolladoù",

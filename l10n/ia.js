@@ -7,7 +7,6 @@ OC.L10N.register(
     "Send email" : "Inviar message de e-posta",
     "Download" : "Discargar",
     "Rename" : "Renominar",
-    "Enabled" : "Activate",
     "Delete" : "Deler",
     "Copy link" : "Copiar ligamine",
     "Share with users or groups" : "Compartir con usatores o gruppos",

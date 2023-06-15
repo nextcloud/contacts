@@ -10,7 +10,6 @@ OC.L10N.register(
     "Loading …" : "Yn llwytho …",
     "Download" : "Llwytho i lawr",
     "Rename" : "Ailenwi",
-    "Enabled" : "Galluogwyd",
     "Delete" : "Dileu",
     "Copied" : "Copïwyd",
     "Copy link" : "Copïo dolen",

@@ -15,7 +15,6 @@ OC.L10N.register(
     "Create a new circle" : "Krei novan rondon",
     "Download" : "Elŝuti",
     "Rename" : "Alinomi",
-    "Enabled" : "Ŝaltita",
     "Delete" : "Forigi",
     "Copied" : "Kopiita",
     "Copy link" : "Kopii ligilon",

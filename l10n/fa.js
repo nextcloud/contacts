@@ -11,7 +11,6 @@ OC.L10N.register(
     "Circles" : "حلقه ها",
     "Download" : "دانلود",
     "Rename" : "تغییرنام",
-    "Enabled" : "فعال شده",
     "Delete" : "حذف",
     "Copied" : "کپی شد",
     "Copy link" : "کپی کردن لینک",

@@ -46,7 +46,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "Çevre eklenirken bir sorun çıktı",
     "Download" : "İndir",
     "Rename" : "Yeniden adlandır",
-    "Enabled" : "Etkin",
     "Delete" : "Sil",
     "Copied" : "Kopyalandı",
     "Cannot copy" : "Kopyalanamadı",

@@ -12,7 +12,6 @@ OC.L10N.register(
     "Circles" : "جماعة",
     "Download" : "تحميل",
     "Rename" : "تعديل الإسم",
-    "Enabled" : "مفعلة",
     "Delete" : "حذف",
     "Copied" : "نُسخت ",
     "Copy link" : "نسخ الرابط",

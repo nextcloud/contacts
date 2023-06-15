@@ -6,7 +6,6 @@ OC.L10N.register(
     "Send email" : "ইমেইল পাঠান ",
     "Download" : "ডাউনলোড",
     "Rename" : "পূনঃনামকরণ",
-    "Enabled" : "কার্যকর",
     "Delete" : "মুছে",
     "Copy link" : "লিঙ্ক কপি করো",
     "can edit" : "সম্পাদনা করতে পারবেন",

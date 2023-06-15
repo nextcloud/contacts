@@ -46,7 +46,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "Piirin luomisen yhteydessä tapahtui virhe",
     "Download" : "Lataa",
     "Rename" : "Nimeä uudelleen",
-    "Enabled" : "Käytössä",
     "Delete" : "Poista",
     "Copied" : "Kopioitu",
     "Cannot copy" : "Ei voida kopioida",

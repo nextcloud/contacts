@@ -8,7 +8,6 @@ OC.L10N.register(
     "Send email" : "Saada kiri",
     "Download" : "Lae alla",
     "Rename" : "Nimeta ümber",
-    "Enabled" : "Lubatud",
     "Delete" : "Kustuta",
     "Copy link" : "Kopeeri link",
     "_%n contact_::_%n contacts_" : ["%n kontakt","%nkontakti"],

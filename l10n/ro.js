@@ -12,7 +12,6 @@ OC.L10N.register(
     "Create a new circle" : "Crează un cerc nou",
     "Download" : "Descărcare",
     "Rename" : "Redenumește",
-    "Enabled" : "Activat",
     "Delete" : "Șterge",
     "Copied" : "Copiat",
     "Copy link" : "Copiază linkul",

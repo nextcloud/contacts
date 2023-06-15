@@ -13,7 +13,6 @@ OC.L10N.register(
     "Create a new circle" : "Crear un nuevo círculo",
     "Download" : "Descargar",
     "Rename" : "Renombrar",
-    "Enabled" : "Habilitado",
     "Delete" : "Borrar",
     "Copy link" : "Copiar liga",
     "Share with users or groups" : "Compartir con otros usuarios o grupos",

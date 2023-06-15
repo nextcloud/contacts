@@ -46,7 +46,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "Hiba történt a kör létrehozása során",
     "Download" : "Letöltés",
     "Rename" : "Átnevezés",
-    "Enabled" : "Engedélyezve",
     "Delete" : "Törlés",
     "Copied" : "Másolva",
     "Cannot copy" : "Nem lehet másolni",

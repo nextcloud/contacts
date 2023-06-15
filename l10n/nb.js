@@ -40,7 +40,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "En feil oppsto under opprettelse av sirkelen",
     "Download" : "Last ned",
     "Rename" : "Gi nytt navn",
-    "Enabled" : "Aktiver",
     "Delete" : "Slett",
     "Copied" : "Kopiert",
     "Cannot copy" : "Kan ikke kopiere",

@@ -12,7 +12,6 @@ OC.L10N.register(
     "Send email" : "Sūtīt e-pastu",
     "Download" : "Lejupielādēt",
     "Rename" : "Pārsaukt",
-    "Enabled" : "Iespējots",
     "Delete" : "Dzēst",
     "Copied" : "Nokopēts",
     "Copy link" : "Kopēt saiti",

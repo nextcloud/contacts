@@ -12,7 +12,6 @@ OC.L10N.register(
     "Create a new circle" : "шинэ бүлэг үүсгэх",
     "Download" : "Татаж авах",
     "Rename" : "Нэр солих",
-    "Enabled" : "Идэвхижүүлэх",
     "Delete" : "Устгах",
     "Copied" : "Хуулагдсан",
     "Cannot copy" : "Хуулагдаагүй",

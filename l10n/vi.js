@@ -26,7 +26,6 @@ OC.L10N.register(
     "This group already exists" : "Nhóm này đã tồn tại",
     "Download" : "Tải về",
     "Rename" : "Đổi tên",
-    "Enabled" : "Bật",
     "Delete" : "Xóa",
     "Copied" : "Đã sao chép",
     "Copy link" : "Sao chép liên kết",

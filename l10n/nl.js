@@ -41,7 +41,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "Er trad een fout op bij aanmaken van de kring",
     "Download" : "Downloaden",
     "Rename" : "Hernoemen",
-    "Enabled" : "Ingeschakeld",
     "Delete" : "Verwijderen",
     "Copied" : "Gekopieerd",
     "Cannot copy" : "Kan niet kopiëren",

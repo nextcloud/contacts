@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create a new circle" : "Búa til nýjan hring",
     "Download" : "Niðurhal",
     "Rename" : "Endurnefna",
-    "Enabled" : "Virkt",
     "Delete" : "Eyða",
     "Copied" : "Afritað",
     "Copy link" : "Afrita tengil",

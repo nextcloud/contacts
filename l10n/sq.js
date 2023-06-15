@@ -15,7 +15,6 @@ OC.L10N.register(
     "Create a new circle" : "Krijo një rreth të ri",
     "Download" : "Shkarko",
     "Rename" : "Riemëro",
-    "Enabled" : "I aktivizuar",
     "Delete" : "Fshije",
     "Copied" : "Kopjuar",
     "Copy link" : "Kopjo linkun",

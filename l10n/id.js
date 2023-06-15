@@ -8,7 +8,6 @@ OC.L10N.register(
     "Send email" : "Kirim surel",
     "Download" : "Unduh",
     "Rename" : "Ubah nama",
-    "Enabled" : "Diaktifkan",
     "Delete" : "Hapus",
     "Copy link" : "Salin tautan",
     "Share with users or groups" : "Bagi dengan pengguna atau grup",

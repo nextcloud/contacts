@@ -10,7 +10,6 @@ OC.L10N.register(
     "Circles" : "Cercles",
     "Download" : "Telecargar",
     "Rename" : "Renomenar",
-    "Enabled" : "Activada",
     "Delete" : "Suprimir",
     "Copy link" : "Copiar lo ligam",
     "can edit" : "pòt modificar",

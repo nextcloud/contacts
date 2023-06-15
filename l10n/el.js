@@ -45,7 +45,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "Παρουσιάστηκε σφάλμα κατά τη δημιουργία του κύκλου",
     "Download" : "Λήψη",
     "Rename" : "Μετονομασία",
-    "Enabled" : "Ενεργοποιημένο",
     "Delete" : "Διαγραφή",
     "Copied" : "Αντιγράφτηκε",
     "Cannot copy" : "Αδυναμία αντιγραφής",

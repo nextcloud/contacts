@@ -6,7 +6,6 @@ OC.L10N.register(
     "Circles" : "Sirklar",
     "Download" : "Last ned",
     "Rename" : "Gje nytt namn",
-    "Enabled" : "Aktivert",
     "Delete" : "Ta bort",
     "can edit" : "kan endra",
     "First name" : "Fornamn",

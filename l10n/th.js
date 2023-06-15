@@ -29,7 +29,6 @@ OC.L10N.register(
     "Collapse groups" : "ย่อกลุ่ม",
     "Download" : "ดาวน์โหลด",
     "Rename" : "เปลี่ยนชื่อ",
-    "Enabled" : "เปิดใช้งานอยู่",
     "Delete" : "ลบ",
     "Copied" : "คัดลอกแล้ว",
     "Cannot copy" : "ไม่สามารถคัดลอก",

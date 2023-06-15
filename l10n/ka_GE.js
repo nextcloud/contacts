@@ -12,7 +12,6 @@ OC.L10N.register(
     "Create a new circle" : "შექმენით წრე",
     "Download" : "ჩამოტვირთვა",
     "Rename" : "სახელის შეცვლა",
-    "Enabled" : "მოქმედია",
     "Delete" : "გაუქმება",
     "Copy link" : "ბმულის კოპირება",
     "Share with users or groups" : "გაზიარება მოხმარებლებთან ან ჯგუფებთან",

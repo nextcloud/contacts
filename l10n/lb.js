@@ -5,7 +5,6 @@ OC.L10N.register(
     "Contacts" : "Kontakter",
     "Download" : "Eroflueden",
     "Rename" : "Ëmbenennen",
-    "Enabled" : "Aktivéiert",
     "Delete" : "Läschen",
     "Copy link" : "Link kopéieren",
     "Share with users or groups" : "Mat Benotzer oder Gruppen deelen",

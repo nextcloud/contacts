@@ -5,7 +5,6 @@ OC.L10N.register(
     "Send email" : "Pošalji e-poštu",
     "Download" : "Preuzmi",
     "Rename" : "Preimenuj",
-    "Enabled" : "Aktivirano",
     "Delete" : "Obriši",
     "can edit" : "mogu mijenjati",
     "First name" : "Ime",

@@ -41,7 +41,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "Ha ocurrido un error durante la creación del círculo",
     "Download" : "Descargar",
     "Rename" : "Renombrar",
-    "Enabled" : "Habilitado",
     "Delete" : "Borrar",
     "Copied" : "Copiado",
     "Cannot copy" : "No se pudo copiar",

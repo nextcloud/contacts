@@ -6,7 +6,6 @@ OC.L10N.register(
     "Send email" : "ផ្ញើ​អ៊ីមែល",
     "Download" : "ទាញយក",
     "Rename" : "ប្ដូរ​ឈ្មោះ",
-    "Enabled" : "បាន​បើក",
     "Delete" : "លុប",
     "can edit" : "អាច​កែប្រែ",
     "Password protection" : "Password protection",

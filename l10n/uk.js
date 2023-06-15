@@ -46,7 +46,6 @@ OC.L10N.register(
     "An error happened during the creation of the circle" : "Помилка під час створення кола",
     "Download" : "Звантажити",
     "Rename" : "Перейменувати",
-    "Enabled" : "Увімкнено",
     "Delete" : "Вилучити",
     "Copied" : "Скопійовано",
     "Cannot copy" : "Не вдалося скопіювати",
