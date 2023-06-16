@@ -45,6 +45,7 @@ OC.L10N.register(
     "This circle already exists" : "此社交圈子已存在",
     "An error happened during the creation of the circle" : "創建社交圈子的過程中發生錯誤",
     "Download" : "下載",
+    "Show" : "顯示",
     "Rename" : "重新命名",
     "Delete" : "刪除",
     "Copied" : "已複製",

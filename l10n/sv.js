@@ -45,6 +45,7 @@ OC.L10N.register(
     "This circle already exists" : "Cirkeln finns redan",
     "An error happened during the creation of the circle" : "Ett fel inträffade när cirkeln skapades",
     "Download" : "Hämta",
+    "Show" : "Visa",
     "Rename" : "Byt namn",
     "Delete" : "Ta bort",
     "Copied" : "Kopierad",

@@ -45,6 +45,7 @@ OC.L10N.register(
     "This circle already exists" : "Bu çevre zaten var",
     "An error happened during the creation of the circle" : "Çevre eklenirken bir sorun çıktı",
     "Download" : "İndir",
+    "Show" : "Görüntüle",
     "Rename" : "Yeniden adlandır",
     "Delete" : "Sil",
     "Copied" : "Kopyalandı",
