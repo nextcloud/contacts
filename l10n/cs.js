@@ -45,6 +45,7 @@ OC.L10N.register(
     "This circle already exists" : "Takto nazvaný okruh už existuje",
     "An error happened during the creation of the circle" : "V průběhu vytváření okruhu došlo k chybě",
     "Download" : "Stáhnout",
+    "Show" : "Zobrazit",
     "Rename" : "Přejmenovat",
     "Delete" : "Smazat",
     "Copied" : "Zkopírováno",

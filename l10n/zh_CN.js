@@ -213,7 +213,7 @@ OC.L10N.register(
     "Notes" : "说明",
     "Website" : "网站",
     "Location" : "地点",
-    "Federated Cloud ID" : "联合云 ID",
+    "Federated Cloud ID" : "联合云ID",
     "Home" : "家庭",
     "Work" : "工作",
     "Other" : "其它",
