@@ -1,4 +1,7 @@
 # Changelog
+## 5.3.2 - 2023-06-20
+### Fixed
+- Search for new sharees of an addressbook
 ## 5.3.1 - 2023-06-14
 ### Fixed
 - Allow dynamic autoloading for classes added during upgrade
