@@ -104,6 +104,10 @@ export default {
 			type: Boolean,
 			required: true,
 		},
+		groupValue: {
+			type: String,
+			default: null,
+		},
 	},
 
 	data() {
@@ -150,6 +154,21 @@ export default {
 		},
 	},
 
+	mounted() {
+		this.handleStarred = (groupName, starredValue) => {
+			if (starredValue === true) {
+				this.addValidateGroup(groupName)
+			} else {
+				this.removeValidateGroup(groupName)
+			}
+		}
+		this.$root.$on('starred-update', this.handleStarred)
+		this.$root.$emit('is-starred', { starred: this.searchContactToGroup(), contact: this.contact })
+	},
+	beforeDestroy() {
+		this.$root.$off('starred-update', this.handleStarred)
+	},
+
 	methods: {
 
 		/**
@@ -171,8 +190,23 @@ export default {
 				groupName,
 			})
 			this.updateValue()
+			if (groupName === 'starred') {
+				this.$root.$emit('is-starred', { starred: true, contact: this.contact })
+				this.$root.$emit('starred-list-update', { starred: true, contact: this.contact })
+			}
 		},
-
+		/**
+		 * Dispatch contact removal from group
+		 *
+		 * @param {string} groupName the group name
+		 */
+		 searchContactToGroup() {
+			const group = this.$store.getters.getGroups.find(search => search.name === 'starred')
+			if (group && Array.isArray(group.contacts) && group.contacts.includes(this.contact.key) === true) {
+				return true
+			}
+			return false
+		},
 		/**
 		 * Dispatch contact removal from group
 		 *
@@ -185,9 +219,12 @@ export default {
 			})
 			const group = this.$store.getters.getGroups.find(search => search.name === groupName)
 			if (group.contacts.length === 0) {
-				this.$emit('update:value', [])
+				this.updateValue()
 			}
-
+			if (groupName === 'starred') {
+				this.$root.$emit('is-starred', { starred: false, contact: this.contact })
+				this.$root.$emit('starred-list-update', { starred: false, contact: this.contact })
+			}
 		},
 
 		/**
@@ -201,6 +238,87 @@ export default {
 			this.localValue.push(groupName)
 			return true
 		},
+		/**
+		 * Dispatch contact addition to group
+		 *
+		 * @param {string} groupName the group name
+		 */
+		async addStarredContactToGroup(groupName) {
+			await this.$store.dispatch('addContactToGroup', {
+				contact: this.contact,
+				groupName,
+			})
+			this.updateValue()
+		},
+		/**
+		 * Add Validate groupname and dispatch creation
+		 *
+		 * @param {string} groupName the group name
+		 * @return {boolean}
+		 */
+		 addValidateGroup(groupName) {
+			if (this.localValue.some(element => element.includes('starred')) === false) {
+				this.localValue.push(groupName)
+			}
+			const group = this.$store.getters.getGroups.find(search => search.name === groupName)
+			if (group && Array.isArray(group.contacts) && group.contacts.includes(this.contact.key) === false) {
+				this.addStarredContactToGroup(groupName)
+			}
+			if (typeof group === 'undefined') {
+				this.addStarredContactToGroup(groupName)
+			}
+			this.$root.$emit('starred-list-update', { starred: true, contact: this.contact })
+			this.$root.$emit('starred-response', true)
+			return true
+		},
+
+		/**
+		 * Add Validate groupname and dispatch creation
+		 *
+		 * @param {string} groupName the group name
+		 *  @return {boolean}
+		 */
+		removeValidateGroup(groupName) {
+			const group = this.$store.getters.getGroups.find(search => search.name === groupName)
+			if (group && Array.isArray(group.contacts) && group.contacts.includes(this.contact.key) === true) {
+				 this.$store.dispatch('removeContactToGroup', {
+					contact: this.contact,
+					groupName,
+				})
+			}
+			if (this.localValue.some(element => element.includes('starred')) === true) {
+				const index = this.localValue.indexOf(groupName)
+				if (index !== -1) {
+					this.localValue.splice(index, 1)
+				}
+			}
+			this.updateValue()
+			this.$root.$emit('starred-list-update', { starred: false, contact: this.contact })
+			this.$root.$emit('starred-response', false)
+			return true
+		},
 	},
 }
 </script>
+<style lang="scss" scoped>
+.property__label:not(.multiselect) {
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	opacity: 0.7;
+}
+.property__row {
+	position: relative;
+	display: flex;
+	align-items: center;
+}
+.property__label, .property__label.multiselect {
+	flex: 1 0;
+	width: 60px;
+	min-width: 60px !important;
+	max-width: 120px;
+	user-select: none;
+	text-align: right;
+	background-size: 16px;
+}
+</style>

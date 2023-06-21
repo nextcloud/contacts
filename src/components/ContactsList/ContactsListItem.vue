@@ -11,7 +11,11 @@
 				<BaseAvatar :display-name="source.displayName" :url="avatarUrl" :size="40" />
 			</div>
 		</template>
+
 		<template #subtitle>
+			<span v-if="starredSelected">
+				<IconStar class="starred" :size="24" />
+			</span>
 			<div class="envelope__subtitle">
 				<span class="envelope__subtitle__subject">
 					{{ source.email }}
@@ -26,12 +30,14 @@ import {
 	NcListItem as ListItem,
 	NcAvatar as BaseAvatar,
 } from '@nextcloud/vue'
+import IconStar from 'vue-material-design-icons/Star.vue'
 
 export default {
 	name: 'ContactsListItem',
 
 	components: {
 		ListItem,
+		IconStar,
 		BaseAvatar,
 	},
 
@@ -52,6 +58,7 @@ export default {
 	data() {
 		return {
 			avatarUrl: undefined,
+			starredSelected: false,
 		}
 	},
 
@@ -79,6 +86,16 @@ export default {
 	},
 	async mounted() {
 		await this.loadAvatarUrl()
+		await this.isStarred()
+		this.handleStarredListUpdate = (response) => {
+			if (this.source.key === response.contact.key) {
+				this.starredSelected = response.starred
+			}
+		}
+		this.$root.$on('starred-list-update', this.handleStarredListUpdate)
+	},
+	beforeDestroy() {
+		this.$root.$off('starred-list-update', this.handleStarredListUpdate)
 	},
 	methods: {
 
@@ -120,6 +137,9 @@ export default {
 				this.avatarUrl = `${this.source.url}?photo`
 			}
 		},
+		async isStarred() {
+			this.starredSelected = this.source.groups.some(element => element.includes('starred'))
+		},
 	},
 }
 </script>
@@ -145,6 +165,27 @@ export default {
 
 .list-item-style {
 	list-style: none;
+	position: relative;
+	::v-deep .line-one{
+		display: inline-block;
+		width: 80%;
+	}
+	::v-deep .line-two{
+		.starred{
+			position: absolute;
+			right: 10px;
+			top: 20px;
+		}
+	}
+}
+.starred {
+	::v-deep .material-design-icon__svg {
+		fill: #FC0;
+		path {
+			stroke: #FC0;
+			stroke-width: 1px;
+		}
+	}
 }
 
 </style>

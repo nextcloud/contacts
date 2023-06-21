@@ -22,9 +22,10 @@
 <template>
 	<AppNavigationItem :key="group.key"
 		:to="group.router"
-		:title="group.name">
+		:title="getTitle(group)">
 		<template #icon>
-			<IconContact :size="20" />
+			<IconStar v-if="group.name ==='starred'" :size="20" />
+			<IconContact v-else :size="20" />
 		</template>
 		<template slot="actions">
 			<ActionButton :close-after-click="true"
@@ -77,6 +78,7 @@ import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 import IconDownload from 'vue-material-design-icons/Download.vue'
 import IconEmail from 'vue-material-design-icons/Email.vue'
+import IconStar from 'vue-material-design-icons/Star.vue'
 
 export default {
 	name: 'GroupNavigationItem',
@@ -89,6 +91,7 @@ export default {
 		IconAdd,
 		IconDownload,
 		IconEmail,
+		IconStar,
 	},
 
 	props: {
@@ -179,6 +182,13 @@ export default {
 			// We could just do mailto:${emails}, but if we want to use name-addr, not addr-spec, then we
 			// have to explicitly set the "to:" or "bcc:" header.
 			window.location.href = `mailto:?${mode}=${emails.map(encodeURIComponent).join(',')}`
+		},
+		getTitle(group) {
+			if (group.name === 'starred') {
+				return t('contacts', 'Favorites')
+			} else {
+				return group.name
+			}
 		},
 
 	},
