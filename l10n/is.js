@@ -18,6 +18,7 @@ OC.L10N.register(
     "Create a new circle" : "Búa til nýjan hring",
     "Download" : "Niðurhal",
     "Rename" : "Endurnefna",
+    "Enabled" : "Virkt",
     "Delete" : "Eyða",
     "Copied" : "Afritað",
     "Copy link" : "Afrita tengil",
@@ -76,6 +77,7 @@ OC.L10N.register(
     "Pending" : "Í bið",
     "Select type" : "Veldu gerð",
     "Select Date" : "Veldu dagsetningu",
+    "None" : "Ekkert",
     "Add contact in group" : "Bæta tengilið í hóp",
     "Select option" : "Veldu valkost",
     "Unable to create the contact." : "Tókst ekki að búa til tengiliðinn.",
@@ -148,7 +150,6 @@ OC.L10N.register(
     "Gender" : "Kyn",
     "Female" : "Kona",
     "Male" : "Karl",
-    "None" : "Ekkert",
     "Unknown" : "Óþekkt",
     "Spoken languages" : "Töluð tungumál",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Mistókst að lesa {failed} tengilið","Mistókst að lesa {failed} tengiliði"]

@@ -5,6 +5,7 @@
     "Send email" : "Inviar message de e-posta",
     "Download" : "Discargar",
     "Rename" : "Renominar",
+    "Enabled" : "Activate",
     "Delete" : "Deler",
     "Copy link" : "Copiar ligamine",
     "Share with users or groups" : "Compartir con usatores o gruppos",
@@ -21,6 +22,7 @@
     "Title" : "Titulo",
     "New contact" : "Nove contacto",
     "Pending" : "Pendente",
+    "None" : "Nulle",
     "Close" : "Clauder",
     "Import" : "Importar",
     "Not grouped" : "Non gruppate",
@@ -60,7 +62,6 @@
     "Voice" : "Voce",
     "Social network" : "Medios Social",
     "Relative" : "Relative",
-    "None" : "Nulle",
     "Unknown" : "Incognite"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

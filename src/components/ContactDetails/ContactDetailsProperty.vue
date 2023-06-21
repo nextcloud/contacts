@@ -104,6 +104,10 @@ export default {
 			type: Boolean,
 			required: true,
 		},
+		contacts: {
+			type: Array,
+			default: () => [],
+		},
 	},
 
 	computed: {

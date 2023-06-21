@@ -33,7 +33,7 @@
 	&__shareematch--bold {
 		font-weight: bold;
 	}
-	
+
 	.icon-loading::after {
 		top: 70%;
 		left: 95%;
@@ -44,13 +44,49 @@
 	.multiselect {
 		width: inherit;
 		margin: 0;
-		.multiselect__tags:focus-within, 
+		.multiselect__tags:focus-within,
 		.multiselect__tags:hover {
 			border-color: var(--color-primary-element);
 		}
 
 		&:not(.showContent) .multiselect__content-wrapper {
 			display: none;
+		}
+	}
+}
+
+.addressbook-search__multiselect {
+	width: 100%;
+	.addressbook-search-list-item {
+		display: flex;
+		align-items: center;
+		width: 100%;
+
+		// Account for avatar width (because it is position: relative)
+		padding-right: 32px;
+
+		&__label {
+			width: 100%;
+			padding: 0 8px;
+
+			&__availability {
+				color: var(--color-text-maxcontrast);
+			}
+
+			div {
+				overflow: hidden;
+				text-overflow: ellipsis;
+				white-space: nowrap;
+			}
+
+			div:nth-child(1) {
+				color: var(--color-main-text);
+			}
+
+			div:nth-child(2) {
+				color: var(--color-text-lighter);
+				line-height: 1;
+			}
 		}
 	}
 }

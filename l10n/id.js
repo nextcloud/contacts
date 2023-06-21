@@ -8,6 +8,7 @@ OC.L10N.register(
     "Send email" : "Kirim surel",
     "Download" : "Unduh",
     "Rename" : "Ubah nama",
+    "Enabled" : "Diaktifkan",
     "Delete" : "Hapus",
     "Copy link" : "Salin tautan",
     "Share with users or groups" : "Bagi dengan pengguna atau grup",
@@ -28,6 +29,7 @@ OC.L10N.register(
     "Search contacts …" : "Cari kontak ...",
     "No results" : "Tidak ada hasil",
     "Pending" : "Tunggu",
+    "None" : "Tidak ada",
     "Close" : "Tutup",
     "Import" : "Impor",
     "Not grouped" : "Tidak dikelompokkan",
@@ -67,7 +69,6 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Suara",
     "Social network" : "Media sosial",
-    "None" : "Tidak ada",
     "Unknown" : "Tidak diketahui"
 },
 "nplurals=1; plural=0;");

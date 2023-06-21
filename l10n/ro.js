@@ -12,6 +12,7 @@ OC.L10N.register(
     "Create a new circle" : "Crează un cerc nou",
     "Download" : "Descărcare",
     "Rename" : "Redenumește",
+    "Enabled" : "Activat",
     "Delete" : "Șterge",
     "Copied" : "Copiat",
     "Copy link" : "Copiază linkul",
@@ -35,6 +36,7 @@ OC.L10N.register(
     "No results" : "Niciun rezultat",
     "Personal circle" : "Cerc personal",
     "Pending" : "În așteptare",
+    "None" : "Niciuna",
     "Select option" : "Selectatți opțiunea",
     "Close" : "Închide",
     "Import" : "Importă",
@@ -99,7 +101,6 @@ OC.L10N.register(
     "Gender" : "Sex",
     "Female" : "Femeie",
     "Male" : "Bărbat",
-    "None" : "Niciuna",
     "Unknown" : "Necunoscut"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");

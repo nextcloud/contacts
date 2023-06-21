@@ -7,6 +7,7 @@ OC.L10N.register(
     "Send email" : "Inviar message de e-posta",
     "Download" : "Discargar",
     "Rename" : "Renominar",
+    "Enabled" : "Activate",
     "Delete" : "Deler",
     "Copy link" : "Copiar ligamine",
     "Share with users or groups" : "Compartir con usatores o gruppos",
@@ -23,6 +24,7 @@ OC.L10N.register(
     "Title" : "Titulo",
     "New contact" : "Nove contacto",
     "Pending" : "Pendente",
+    "None" : "Nulle",
     "Close" : "Clauder",
     "Import" : "Importar",
     "Not grouped" : "Non gruppate",
@@ -62,7 +64,6 @@ OC.L10N.register(
     "Voice" : "Voce",
     "Social network" : "Medios Social",
     "Relative" : "Relative",
-    "None" : "Nulle",
     "Unknown" : "Incognite"
 },
 "nplurals=2; plural=(n != 1);");

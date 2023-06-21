@@ -12,6 +12,7 @@ OC.L10N.register(
     "Circles" : "جماعة",
     "Download" : "تحميل",
     "Rename" : "تعديل الإسم",
+    "Enabled" : "مفعلة",
     "Delete" : "حذف",
     "Copied" : "نُسخت ",
     "Copy link" : "نسخ الرابط",
@@ -46,6 +47,7 @@ OC.L10N.register(
     "Personal circle" : "حلقة شخصية",
     "Pending" : "معلّق",
     "Select Date" : "اختر التاريخ ",
+    "None" : "لا شيء",
     "Select option" : "حدد الخيار",
     "Close" : "إغلاق",
     "Import" : "استيراد",
@@ -91,7 +93,6 @@ OC.L10N.register(
     "Voice" : "صوت",
     "Social network" : "شبكة اجتماعية",
     "Relative" : "مرتبط",
-    "None" : "لا شيء",
     "Unknown" : "مجهول"
 },
 "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;");

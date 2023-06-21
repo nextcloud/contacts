@@ -16,6 +16,7 @@ OC.L10N.register(
     "Name" : "பெயர்",
     "Title" : "தலைப்பு",
     "Pending" : "நிலுவையிலுள்ள",
+    "None" : "ஒன்றுமில்லை",
     "Close" : "மூடுக",
     "Import" : "இறக்குமதி",
     "User" : "User",
@@ -41,7 +42,6 @@ OC.L10N.register(
     "Fax" : "தொலை நகல்",
     "Pager" : "தொலை அழைப்பான்",
     "Voice" : "குரல்",
-    "None" : "ஒன்றுமில்லை",
     "Unknown" : "தெரியாத"
 },
 "nplurals=2; plural=(n != 1);");

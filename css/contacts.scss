@@ -37,10 +37,25 @@ $grid-input-height-with-margin: $grid-height-unit - $grid-input-margin * 2;
 
 // various
 @import 'animations';
+<<<<<<< HEAD
 
 .app-content-details {
 	padding: calc(var(--default-grid-baseline) * 2);
 	padding-top: 0;
+=======
+
+
+// global design overrides
+.app-content {
+	// center error messages
+	& > .empty-content {
+		margin: 40vh;
+	}
+}
+
+.app-content-details {
+	padding: 0 44px 80px 44px;
+>>>>>>> 9c2363a718b099a3370c2d110908fb40bf0dc4a3
 	height: 100%;
 	overflow: auto;
 

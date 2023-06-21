@@ -29,6 +29,7 @@ OC.L10N.register(
     "Collapse groups" : "ย่อกลุ่ม",
     "Download" : "ดาวน์โหลด",
     "Rename" : "เปลี่ยนชื่อ",
+    "Enabled" : "เปิดใช้งานอยู่",
     "Delete" : "ลบ",
     "Copied" : "คัดลอกแล้ว",
     "Cannot copy" : "ไม่สามารถคัดลอก",
@@ -62,6 +63,7 @@ OC.L10N.register(
     "Search contacts …" : "ค้นหารายชื่อผู้ติดต่อ …",
     "No results" : "ไม่มีผลลัพธ์",
     "Pending" : "รอดำเนินการ",
+    "None" : "ไม่มี",
     "Select option" : "เลือกตัวเลือก",
     "Close" : "ปิด",
     "Import" : "นำเข้า",
@@ -103,7 +105,6 @@ OC.L10N.register(
     "Voice" : "เสียงพูด",
     "Social network" : "เครือข่ายโซเชียล",
     "Relative" : "สัมพัทธ์",
-    "None" : "ไม่มี",
     "Unknown" : "ไม่ทราบ"
 },
 "nplurals=1; plural=0;");

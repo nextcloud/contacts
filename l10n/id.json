@@ -6,6 +6,7 @@
     "Send email" : "Kirim surel",
     "Download" : "Unduh",
     "Rename" : "Ubah nama",
+    "Enabled" : "Diaktifkan",
     "Delete" : "Hapus",
     "Copy link" : "Salin tautan",
     "Share with users or groups" : "Bagi dengan pengguna atau grup",
@@ -26,6 +27,7 @@
     "Search contacts …" : "Cari kontak ...",
     "No results" : "Tidak ada hasil",
     "Pending" : "Tunggu",
+    "None" : "Tidak ada",
     "Close" : "Tutup",
     "Import" : "Impor",
     "Not grouped" : "Tidak dikelompokkan",
@@ -65,7 +67,6 @@
     "Pager" : "Pager",
     "Voice" : "Suara",
     "Social network" : "Media sosial",
-    "None" : "Tidak ada",
     "Unknown" : "Tidak diketahui"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

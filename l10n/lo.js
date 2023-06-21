@@ -17,6 +17,7 @@ OC.L10N.register(
     "Search contacts …" : "ຄົ້ນຫາຕິດຕໍ່ ...",
     "No results" : "ບໍ່ມີຜົນ",
     "Pending" : "ທີ່ກໍາລັງລໍຖ້າ",
+    "None" : "ບໍ່ມີ",
     "Close" : "ປິດ",
     "User" : "ຜູ້ໃຊ້",
     "Group" : "ກຸ່ມ",
@@ -29,7 +30,6 @@ OC.L10N.register(
     "Address" : "ທີ່ຢູ່",
     "City" : "ເມືອງ",
     "Country" : "ປະເທດ",
-    "None" : "ບໍ່ມີ",
     "Unknown" : "ບໍ່ຮູ້"
 },
 "nplurals=1; plural=0;");

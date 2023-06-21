@@ -274,7 +274,6 @@ export default {
 		 */
 		async openPicker() {
 			try {
-				this.loading = true
 				// unlikely, but let's cancel any previous request
 				this.cancelRequest()
 

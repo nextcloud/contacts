@@ -130,61 +130,61 @@
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v4.0.0...v4.0.1)
 
 ### Enhancements
-- Streamlined Settings 
+- Streamlined Settings
   [\#2372](https://github.com/nextcloud/contacts/pull/2372) ([szaimen](https://github.com/szaimen))
-- Wording improvements 
+- Wording improvements
   [\#2350](https://github.com/nextcloud/contacts/pull/2350) ([Valdnet](https://github.com/Valdnet))
 - Various dependencies updates
 
 ### Fixed
-- Fixed dark contacts icon 
+- Fixed dark contacts icon
   [\#2340](https://github.com/nextcloud/contacts/pull/2340) ([skjnldsv](https://github.com/skjnldsv))
-- Adjusted the padding of app-content-details 
-  [\#2341](https://github.com/nextcloud/contacts/pull/2341) ([szaimen](https://github.com/szaimen)) 
+- Adjusted the padding of app-content-details
+  [\#2341](https://github.com/nextcloud/contacts/pull/2341) ([szaimen](https://github.com/szaimen))
 - Fixed call on null in SocialApiService
-  [\#2351](https://github.com/nextcloud/contacts/pull/2351) ([juliushaertl](https://github.com/juliushaertl)) 
+  [\#2351](https://github.com/nextcloud/contacts/pull/2351) ([juliushaertl](https://github.com/juliushaertl))
 
 ## 4.0.0 - 2021-07-06
 
 [Full Changelog](https://github.com/nextcloud/contacts/compare/v3.5.1...v4.0.0)
 
 ### Featured enhancement
-- Circles integration 
+- Circles integration
   [\#2098](https://github.com/nextcloud/contacts/pull/2098) ([skjnldsv](https://github.com/skjnldsv))
 
 ### Enhancements
-- Comply to new resizeable list feature 
+- Comply to new resizeable list feature
   [\#2246](https://github.com/nextcloud/contacts/pull/2246) ([skjnldsv](https://github.com/skjnldsv))
-- Bump deps and use npm7 
+- Bump deps and use npm7
   [\#2281](https://github.com/nextcloud/contacts/pull/2281) ([skjnldsv](https://github.com/skjnldsv))
-- Bump dependencies and webpack 5 
+- Bump dependencies and webpack 5
   [\#2140](https://github.com/nextcloud/contacts/pull/2140) ([skjnldsv](https://github.com/skjnldsv))
-- Remove core-js 
+- Remove core-js
   [\#2323](https://github.com/nextcloud/contacts/pull/2323) ([skjnldsv](https://github.com/skjnldsv))
 - Various dependencies updates
 
 ### Fixed
-- Improve Compatibily with macOS Contacts 
+- Improve Compatibily with macOS Contacts
   [\#1999](https://github.com/nextcloud/contacts/pull/1999) ([zlajo](https://github.com/zlajo))
-- Fix chain condition of responses 
+- Fix chain condition of responses
   [\#2286](https://github.com/nextcloud/contacts/pull/2286) ([skjnldsv](https://github.com/skjnldsv))
-- Increase max-version to current dev version 22 
+- Increase max-version to current dev version 22
   [\#2169](https://github.com/nextcloud/contacts/pull/2169) ([jancborchardt](https://github.com/jancborchardt))
-- l10n: Change spelling 
+- l10n: Change spelling
   [\#2189](https://github.com/nextcloud/contacts/pull/2189) ([Valdnet](https://github.com/Valdnet))
-- l10n: Change to lowercase 
+- l10n: Change to lowercase
   [\#2190](https://github.com/nextcloud/contacts/pull/2190) ([Valdnet](https://github.com/Valdnet))
-- l10n: Correct spelling 
+- l10n: Correct spelling
   [\#2244](https://github.com/nextcloud/contacts/pull/2244) ([Valdnet](https://github.com/Valdnet))
-- l10n: Spelling unification 
+- l10n: Spelling unification
   [\#2233](https://github.com/nextcloud/contacts/pull/2233) ([Valdnet](https://github.com/Valdnet))
-- l10n: Unify spelling 
+- l10n: Unify spelling
   [\#2162](https://github.com/nextcloud/contacts/pull/2162) ([Valdnet](https://github.com/Valdnet))
-- l10n: Error message changed 
+- l10n: Error message changed
   [\#2326](https://github.com/nextcloud/contacts/pull/2326) ([Valdnet](https://github.com/Valdnet))
-- l10n: Change to a capital letter 
+- l10n: Change to a capital letter
   [\#2305](https://github.com/nextcloud/contacts/pull/2305) ([Valdnet](https://github.com/Valdnet))
-- l10n: Change to a capital letter 
+- l10n: Change to a capital letter
   [\#2304](https://github.com/nextcloud/contacts/pull/2304) ([Valdnet](https://github.com/Valdnet))
 
 ## 3.5.1 - 2021-03-17
@@ -554,7 +554,7 @@
   [#923](https://github.com/nextcloud/contacts/issues/923)
   [#968](https://github.com/nextcloud/contacts/issues/968)
 - White icons fix for preview
-  [91dd5c38df05ebb9247df4611703beffa6d08b0e](https://github.com/nextcloud/contacts/commit/91dd5c38df05ebb9247df4611703beffa6d08b0e) 
+  [91dd5c38df05ebb9247df4611703beffa6d08b0e](https://github.com/nextcloud/contacts/commit/91dd5c38df05ebb9247df4611703beffa6d08b0e)
 - Validate on app initialisation
   [#973](https://github.com/nextcloud/contacts/issues/973)
 - Fix gender select + auto repair

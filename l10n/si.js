@@ -5,6 +5,7 @@ OC.L10N.register(
     "Loading …" : "පූරණය වෙමින් …",
     "Download" : "බාගන්න",
     "Rename" : "නැවත නම් කරන්න",
+    "Enabled" : "සබල කර ඇත",
     "Copy link" : "සබැඳිය පිටපත් කරන්න",
     "First name" : "මුල් නම",
     "Last name" : "අවසන් නම",

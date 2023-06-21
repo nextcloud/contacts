@@ -10,6 +10,7 @@
     "Create a new circle" : "შექმენით წრე",
     "Download" : "ჩამოტვირთვა",
     "Rename" : "სახელის შეცვლა",
+    "Enabled" : "მოქმედია",
     "Delete" : "გაუქმება",
     "Copy link" : "ბმულის კოპირება",
     "Share with users or groups" : "გაზიარება მოხმარებლებთან ან ჯგუფებთან",
@@ -31,6 +32,7 @@
     "No results" : "შედეგები არაა",
     "Personal circle" : "პირადი წრე",
     "Pending" : "მოლოდინში",
+    "None" : "არც ერთი",
     "Close" : "დახურვა",
     "Import" : "იმპორტი",
     "Not grouped" : "არაა დაჯგუფებული",
@@ -92,7 +94,6 @@
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
     "Male" : "მამრობითი",
-    "None" : "არც ერთი",
     "Unknown" : "ამოუცნობი"
 },"pluralForm" :"nplurals=2; plural=(n!=1);"
 }

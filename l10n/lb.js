@@ -5,6 +5,7 @@ OC.L10N.register(
     "Contacts" : "Kontakter",
     "Download" : "Eroflueden",
     "Rename" : "Ëmbenennen",
+    "Enabled" : "Aktivéiert",
     "Delete" : "Läschen",
     "Copy link" : "Link kopéieren",
     "Share with users or groups" : "Mat Benotzer oder Gruppen deelen",
@@ -19,6 +20,7 @@ OC.L10N.register(
     "Name" : "Numm",
     "Title" : "Titel",
     "Pending" : "Ausstoend",
+    "None" : "Keng",
     "Close" : "Zoumaachen",
     "Import" : "Importéieren",
     "User" : "User",
@@ -44,7 +46,6 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Voice",
     "Relative" : "Relativ",
-    "None" : "Keng",
     "Unknown" : "Onbekannt"
 },
 "nplurals=2; plural=(n != 1);");

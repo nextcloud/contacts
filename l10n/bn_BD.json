@@ -4,6 +4,7 @@
     "Send email" : "ইমেইল পাঠান ",
     "Download" : "ডাউনলোড",
     "Rename" : "পূনঃনামকরণ",
+    "Enabled" : "কার্যকর",
     "Delete" : "মুছে",
     "Copy link" : "লিঙ্ক কপি করো",
     "can edit" : "সম্পাদনা করতে পারবেন",
@@ -18,6 +19,7 @@
     "Title" : "শিরোনাম",
     "New contact" : "নতুন ঠিকানা",
     "Pending" : "মুলতুবি",
+    "None" : "কোনটিই নয়",
     "Close" : "বন্ধ",
     "Import" : "আমদানি",
     "Not grouped" : "দলবদ্ধ নয়",
@@ -47,7 +49,6 @@
     "Fax" : "ফ্যাক্স",
     "Pager" : "পেজার",
     "Voice" : "কন্ঠ",
-    "None" : "কোনটিই নয়",
     "Unknown" : "অজানা"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -4,6 +4,7 @@ OC.L10N.register(
     "Send email" : "ಇ-ಅಂಚೆಯನ್ನು  ಕಳುಹಿಸಿ",
     "Download" : "ಪ್ರತಿಯನ್ನು ಸ್ಥಳೀಯವಾಗಿ ಉಳಿಸಿಕೊಳ್ಳಿ",
     "Rename" : "﻿ಮರುಹೆಸರಿಸು",
+    "Enabled" : "ಸಕ್ರಿಯಗೊಳಿಸಿದೆ",
     "Delete" : "﻿ಅಳಿಸಿ",
     "can edit" : "﻿ಸಂಪಾದಿಸಬಹುದು",
     "Password protection" : "Password protection",
@@ -13,6 +14,7 @@ OC.L10N.register(
     "Name" : "﻿ಹೆಸರು",
     "Title" : "ಶೀರ್ಷಿಕೆ",
     "Pending" : "﻿ಬಾಕಿ ಇದೆ",
+    "None" : "﻿ಯಾವುದೂ ಇಲ್ಲ",
     "Close" : "ಮುಚ್ಚು",
     "Import" : "ಆಮದು",
     "User" : "User",
@@ -24,7 +26,6 @@ OC.L10N.register(
     "Notes" : "Notes",
     "Home" : "﻿ಮುಖಪುಟ",
     "Other" : "﻿ಇತರೆ",
-    "Address" : "ವಿಳಾಸ",
-    "None" : "﻿ಯಾವುದೂ ಇಲ್ಲ"
+    "Address" : "ವಿಳಾಸ"
 },
 "nplurals=2; plural=(n > 1);");

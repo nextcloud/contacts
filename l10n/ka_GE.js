@@ -12,6 +12,7 @@ OC.L10N.register(
     "Create a new circle" : "შექმენით წრე",
     "Download" : "ჩამოტვირთვა",
     "Rename" : "სახელის შეცვლა",
+    "Enabled" : "მოქმედია",
     "Delete" : "გაუქმება",
     "Copy link" : "ბმულის კოპირება",
     "Share with users or groups" : "გაზიარება მოხმარებლებთან ან ჯგუფებთან",
@@ -33,6 +34,7 @@ OC.L10N.register(
     "No results" : "შედეგები არაა",
     "Personal circle" : "პირადი წრე",
     "Pending" : "მოლოდინში",
+    "None" : "არც ერთი",
     "Close" : "დახურვა",
     "Import" : "იმპორტი",
     "Not grouped" : "არაა დაჯგუფებული",
@@ -94,7 +96,6 @@ OC.L10N.register(
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
     "Male" : "მამრობითი",
-    "None" : "არც ერთი",
     "Unknown" : "ამოუცნობი"
 },
 "nplurals=2; plural=(n!=1);");

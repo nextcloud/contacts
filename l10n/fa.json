@@ -9,6 +9,7 @@
     "Circles" : "حلقه ها",
     "Download" : "دانلود",
     "Rename" : "تغییرنام",
+    "Enabled" : "فعال شده",
     "Delete" : "حذف",
     "Copied" : "کپی شد",
     "Copy link" : "کپی کردن لینک",
@@ -34,6 +35,7 @@
     "Personal circle" : "حلقه شخصی",
     "Pending" : "در انتظار",
     "Select Date" : "تاریخ را انتخاب کنید",
+    "None" : "هیچ‌کدام",
     "Close" : "بستن",
     "Import" : "وارد کردن",
     "Not grouped" : "گروه بندی نشده",
@@ -92,7 +94,6 @@
     "Gender" : "جنسیت",
     "Female" : "مؤنث",
     "Male" : "مذکر",
-    "None" : "هیچ‌کدام",
     "Unknown" : "نامشخص"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

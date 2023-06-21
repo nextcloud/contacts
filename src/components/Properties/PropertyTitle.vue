@@ -115,4 +115,7 @@ export default {
 		font-weight: bold;
 	}
 }
+.align-to-actions {
+	padding-bottom: 10px;
+}
 </style>

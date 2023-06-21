@@ -32,5 +32,6 @@ return [
 		['name' => 'social_api#set_app_config',	 'url' => '/api/v1/social/config/global/{key}', 'verb' => 'PUT'],
 		['name' => 'social_api#set_user_config', 'url' => '/api/v1/social/config/user/{key}', 'verb' => 'PUT'],
 		['name' => 'social_api#get_user_config', 'url' => '/api/v1/social/config/user/{key}', 'verb' => 'GET'],
+		['name' => 'contacts#searchUsers', 'url' => '/v1/autocompletion/addressbookusers', 'verb' => 'POST'],
 	]
 ];

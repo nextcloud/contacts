@@ -42,6 +42,7 @@
     "An error happened during the creation of the circle" : "Si è verificato un errore durante la creazione della cerchia",
     "Download" : "Scarica",
     "Rename" : "Rinomina",
+    "Enabled" : "Abilitata",
     "Delete" : "Elimina",
     "Copied" : "Copiato",
     "Cannot copy" : "Impossibile copiare",
@@ -161,6 +162,7 @@
     "Select chart …" : "Seleziona grafico...",
     "Select type" : "Seleziona tipo",
     "Select Date" : "Seleziona data",
+    "None" : "Nessuno",
     "Add contact in group" : "Aggiungi contatto a gruppo",
     "Select option" : "Seleziona opzione",
     "Unable to create the contact." : "Impossibile creare il contatto.",
@@ -187,6 +189,7 @@
     "Not grouped" : "Non raggruppati",
     "Recently contacted" : "Contattati di recente",
     "Organization chart" : "Grafico organizzativo",
+    "Circles allow you to create groups with other users on a Nextcloud instance and share with them." : "Le cerchie ti consentono di creare gruppi con altri utenti in un'istanza di Nextcloud e condividere con loro.",
     "Circle" : "Cerchia",
     "User" : "Utente",
     "Group" : "Gruppo",
@@ -262,13 +265,13 @@
     "Gender" : "Sesso",
     "Female" : "Femmina",
     "Male" : "Maschio",
-    "None" : "Nessuno",
     "Unknown" : "Sconosciuto",
     "Time zone" : "Fuso orario",
     "Spoken languages" : "Lingue parlate",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["lettura di {failed} contatto non riuscita","lettura di {failed} contatti non riuscita","lettura di {failed} contatti non riuscita"],
     "Unable to create circle {circleName}" : "Impossibile creare la cerchia {circleName}",
     "Unable to delete circle {circleId}" : "Impossibile eliminare la cerchia {circleId}",
-    "Unable to delete contact" : "Impossibile eliminare il contatto"
+    "Unable to delete contact" : "Impossibile eliminare il contatto",
+    "Favorites" : "Preferiti"
 },"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

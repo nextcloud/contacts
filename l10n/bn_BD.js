@@ -6,6 +6,7 @@ OC.L10N.register(
     "Send email" : "ইমেইল পাঠান ",
     "Download" : "ডাউনলোড",
     "Rename" : "পূনঃনামকরণ",
+    "Enabled" : "কার্যকর",
     "Delete" : "মুছে",
     "Copy link" : "লিঙ্ক কপি করো",
     "can edit" : "সম্পাদনা করতে পারবেন",
@@ -20,6 +21,7 @@ OC.L10N.register(
     "Title" : "শিরোনাম",
     "New contact" : "নতুন ঠিকানা",
     "Pending" : "মুলতুবি",
+    "None" : "কোনটিই নয়",
     "Close" : "বন্ধ",
     "Import" : "আমদানি",
     "Not grouped" : "দলবদ্ধ নয়",
@@ -49,7 +51,6 @@ OC.L10N.register(
     "Fax" : "ফ্যাক্স",
     "Pager" : "পেজার",
     "Voice" : "কন্ঠ",
-    "None" : "কোনটিই নয়",
     "Unknown" : "অজানা"
 },
 "nplurals=2; plural=(n != 1);");

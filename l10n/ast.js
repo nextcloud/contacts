@@ -2,10 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "All contacts" : "Tolos contautos",
-    "Loading circle …" : "Cargando'l círculu…",
     "Loading …" : "Cargando…",
-    "_%n group_::_%n groups_" : ["%n grupu","%n grupos"],
-    "Description" : "Descripción",
     "An error occurred while trying to move the contact" : "Prodúxose un error al tentar de mover el contautu",
     "An error occurred while trying to copy the contact" : "Prodúxose un error al tentar de copiar el contautu",
     "_{count} error_::_{count} errors_" : ["{count} error","{count} errores"],
@@ -18,9 +15,6 @@ OC.L10N.register(
     "State or province" : "Estáu o provincia",
     "Postal code" : "Códigu postal",
     "Country" : "País",
-    "Instant messaging" : "Mensaxería instantanea",
-    "Fax" : "Fax",
-    "Pager" : "Buscapersones",
     "Agent" : "Axente"
 },
 "nplurals=2; plural=(n != 1);");

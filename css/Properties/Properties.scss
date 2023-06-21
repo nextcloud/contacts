@@ -52,6 +52,7 @@ $property-row-gap: $contact-details-row-gap;
 	}
 
 	// property label or multiselect within row
+<<<<<<< HEAD
 	&__label {
 		// Global single column layout
 		display: flex;
@@ -59,6 +60,14 @@ $property-row-gap: $contact-details-row-gap;
 		justify-content: flex-end;
 		width: $contact-details-label-max-width;
 		min-width: 0; // Has to be zero unless we implement wrapping
+=======
+	&__label,
+	&__label.multiselect {
+		flex: 1 0; // min width is 60px, let's grow until 120px
+		width: $property-label-min-width;
+		min-width: $property-label-min-width !important; // override multiselect
+		max-width: $property-label-max-width;
+>>>>>>> 9c2363a718b099a3370c2d110908fb40bf0dc4a3
 
 		// Text label styling
 		> :not(.multiselect):not(.material-design-icon) {
@@ -79,6 +88,7 @@ $property-row-gap: $contact-details-row-gap;
 		width: $property-value-max-width;
 		min-width: 0; // Has to be zero unless we implement wrapping
 
+<<<<<<< HEAD
 		textarea {
 			// Limit max height to make scrolling the form a bit easier
 			min-height: 2 * $grid-height-unit - 2*$grid-input-margin;
@@ -99,11 +109,17 @@ $property-row-gap: $contact-details-row-gap;
 				padding: 0;
 				border-radius: 0;
 			}
+=======
+	&__label.multiselect {
+		.multiselect__tags {
+			border: none !important; // override multiselect
+>>>>>>> 9c2363a718b099a3370c2d110908fb40bf0dc4a3
 		}
 	}
 
 	&__label,
 	&__value {
+<<<<<<< HEAD
 		// Fix default multiselect styling
 		> .multiselect {
 			width: 100%;
@@ -113,6 +129,23 @@ $property-row-gap: $contact-details-row-gap;
 		// Fix default date time picker styling
 		> .mx-datepicker {
 			width: 100%;
+=======
+		flex: 1 1;
+
+		textarea {
+			align-self: flex-start;
+			min-height: 2 * $grid-height-unit - 2*$grid-input-margin;
+			max-height: 5 * $grid-height-unit - 2*$grid-input-margin;
+		}
+
+		// read-only mode
+		&:read-only {
+			border-color: var(--color-border-dark);
+		}
+		&--with-ext {
+			// ext icon width + 8px padding
+			padding-right: 24px;
+>>>>>>> 9c2363a718b099a3370c2d110908fb40bf0dc4a3
 		}
 	}
 
