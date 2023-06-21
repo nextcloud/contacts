@@ -28,7 +28,9 @@
 			<div class="contact-header__avatar">
 				<slot name="avatar" :avatar-size="avatarSize" />
 			</div>
-
+			<div class="contact-header__starred">
+				<slot name="starred" />
+			</div>
 			<!-- fullname, org, title -->
 			<div class="contact-header__infos">
 				<h2 class="contact-header__infos-title">
@@ -37,13 +39,10 @@
 				<div v-if="$slots.subtitle" class="contact-header__infos-subtitle">
 					<slot name="subtitle" />
 				</div>
-			</div>
 		</div>
 
 		<!-- actions -->
 		<div class="contact-header__actions">
-			<slot name="actions" />
-
 			<!-- menu actions -->
 			<Actions ref="actions"
 				class="header-menu"
@@ -65,9 +64,18 @@ export default {
 		Actions,
 	},
 
+	props: {
+		contact: {
+			type: Contact,
+			default: null,
+			required: true,
+		},
+	},
+
 	data() {
 		return {
 			avatarSize: 75,
+			starred: false,
 		}
 	},
 
@@ -127,7 +135,6 @@ $top-padding: 50px;
 		width: $contact-details-label-max-width;
 		min-width: 0; // Has to be zero unless we implement wrapping
 	}
-
 	// ORG-TITLE-NAME
 	&__infos {
 		flex-direction: column;
@@ -148,7 +155,6 @@ $top-padding: 50px;
 		::v-deep input {
 			flex: 1 auto;
 		}
-
 		&-title ::v-deep input {
 			font-weight: bold;
 		}

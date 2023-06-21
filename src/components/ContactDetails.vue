@@ -36,14 +36,17 @@
 
 		<template v-else>
 			<!-- contact header -->
-			<DetailsHeader>
+			<DetailsHeader :contact="contact"
+				@group-updated="updatedValue">
 				<!-- avatar and upload photo -->
 				<ContactAvatar slot="avatar"
+					:contact="contact"
+					@update-local-contact="updateLocalContact" />
+				<ContactDetailsStarred slot="starred"
 					:contact="contact"
 					:is-read-only="isReadOnly"
 					:reload-bus="reloadBus"
 					@update-local-contact="updateLocalContact" />
-
 				<!-- fullname -->
 				<template #title>
 					<div v-if="isReadOnly">
@@ -306,6 +309,7 @@ import validate from '../services/validate.js'
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp.vue'
 import ContactAvatar from './ContactDetails/ContactDetailsAvatar.vue'
 import ContactDetailsProperty from './ContactDetails/ContactDetailsProperty.vue'
+import ContactDetailsStarred from './ContactDetails/ContactDetailsStarred.vue'
 import DetailsHeader from './DetailsHeader.vue'
 import PropertyGroups from './Properties/PropertyGroups.vue'
 import PropertyRev from './Properties/PropertyRev.vue'
@@ -321,6 +325,7 @@ export default {
 		AppContentDetails,
 		ContactAvatar,
 		ContactDetailsProperty,
+		ContactDetailsStarred,
 		DetailsHeader,
 		EmptyContent,
 		IconContact,
@@ -373,8 +378,8 @@ export default {
 			qrcode: '',
 			showPickAddressbookModal: false,
 			pickedAddressbook: null,
+			groupValue: '',
 			editMode: false,
-
 			contactDetailsSelector: '.contact-details',
 			excludeFromBirthdayKey: 'x-nc-exclude-from-birthday-calendar',
 
@@ -595,7 +600,6 @@ export default {
 		// unbind capture ctrl+s
 		document.removeEventListener('keydown', this.onCtrlSave)
 	},
-
 	methods: {
 		/**
 		 * Send the local clone of contact to the store
@@ -835,6 +839,10 @@ export default {
 			this.pickedAddressbook = null
 		},
 
+		updatedValue(newValue) {
+			this.groupValue = newValue
+		},
+
 		/**
 		 * Should display the property
 		 *
@@ -910,5 +918,8 @@ section.contact-details {
 			margin-bottom: 20px;
 		}
 	}
+}
+.header-icon{
+	display: none;
 }
 </style>

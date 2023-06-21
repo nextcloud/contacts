@@ -271,6 +271,7 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["lettura di {failed} contatto non riuscita","lettura di {failed} contatti non riuscita","lettura di {failed} contatti non riuscita"],
     "Unable to create circle {circleName}" : "Impossibile creare la cerchia {circleName}",
     "Unable to delete circle {circleId}" : "Impossibile eliminare la cerchia {circleId}",
-    "Unable to delete contact" : "Impossibile eliminare il contatto"
+    "Unable to delete contact" : "Impossibile eliminare il contatto",
+    "Favorites" : "Preferiti"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

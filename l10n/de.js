@@ -289,6 +289,7 @@ OC.L10N.register(
     "An error has occurred in circle(s). Check the console for more details." : "Es ist ein Fehler in Kreis(en) ist aufgetreten. Weitere Informationen findest du in der Konsole.",
     "Unable to create circle {circleName}" : "Kreis {circleName} konnte nicht erstellt werden",
     "Unable to delete circle {circleId}" : "Kontakt konnte nicht gelöscht werden",
-    "Unable to delete contact" : "Kontakt konnte nicht gelöscht werden"
+    "Unable to delete contact" : "Kontakt konnte nicht gelöscht werden",
+    "Favorites" : "Favoriten"
 },
 "nplurals=2; plural=(n != 1);");

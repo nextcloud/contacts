@@ -142,6 +142,10 @@ export default {
 					requests.push(limit(() => appendContactToGroup(contact, groupName)
 						.then((response) => {
 							this.$store.dispatch('addContactToGroup', { contact, groupName })
+							if (groupName === 'starred') {
+								this.$root.$emit('is-starred', { starred: true, contact: this.contacts[entity.id] })
+								this.$root.$emit('starred-list-update', { starred: true, contact: this.contacts[entity.id] })
+							}
 							this.processStatus.progress++
 							this.processStatus.success++
 						})
