@@ -53,7 +53,7 @@ const mutations = {
 	},
 
 	/**
-	 * Add contact to group and create groupif not existing
+	 * Add contact to group and create group if not existing
 	 *
 	 * @param {object} state the store data
 	 * @param {object} data destructuring object
@@ -126,6 +126,10 @@ const getters = {
 
 const actions = {
 
+	updateContactGroups(context, { groupNames, contact }) {
+		context.commit('removeContactFromGroups', contact)
+		context.commit('addContactToGroups', { groupNames, contact })
+	},
 	/**
 	 * Add contact and to a group
 	 *
