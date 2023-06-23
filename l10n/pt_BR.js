@@ -45,6 +45,7 @@ OC.L10N.register(
     "This circle already exists" : "Este círculo já existe",
     "An error happened during the creation of the circle" : "Ocorreu um erro durante a criação do círculo ",
     "Download" : "Baixar",
+    "Show" : "Show",
     "Rename" : "Renomear",
     "Delete" : "Excluir",
     "Copied" : "Copiado",
