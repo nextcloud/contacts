@@ -71,7 +71,7 @@ OC.L10N.register(
     "Password protection" : "암호 보호",
     "Save" : "저장",
     "Circle name" : "서클 이름",
-    "Circle owned by {owner}" : "{owner} 님이 소유한 서클",
+    "Circle owned by {owner}" : "{owner}님이 소유한 서클",
     "Request to join" : "등록 요청",
     "Description" : "설명",
     "There is no description for this circle" : "이 서클에는 설명이 없음",
