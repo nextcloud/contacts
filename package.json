@@ -84,7 +84,7 @@
 		"@nextcloud/browserslist-config": "^2.3.0",
 		"@nextcloud/eslint-config": "^8.2.1",
 		"@nextcloud/stylelint-config": "^2.3.0",
-		"@nextcloud/typings": "^1.6.0",
+		"@nextcloud/typings": "^1.7.0",
 		"@nextcloud/webpack-vue-config": "^5.2.0",
 		"@types/jest": "^29.5.2",
 		"@typescript-eslint/parser": "^5.60.0",
