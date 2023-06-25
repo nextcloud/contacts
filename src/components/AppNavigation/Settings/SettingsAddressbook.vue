@@ -27,7 +27,7 @@
 			<div class="addressbook__content">
 				<!-- addressbook name -->
 				<span class="addressbook__name" :title="addressbook.displayName">
-					{{ addressbook.displayName }}
+					{{ addressbook.displayName }} {{ !addressbook.enabled ? ' ' + t('contacts', '(Disabled)') : '' }}
 				</span>
 
 				<div v-if="addressbook.dav.description" class="addressbook__description">
