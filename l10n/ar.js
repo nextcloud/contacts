@@ -60,7 +60,7 @@ OC.L10N.register(
     "Admin" : "مدير",
     "Owner" : "المالك",
     "Users" : "المستخدمين:",
-    "Email addresses" : "عنوان البريد الاليكتروني",
+    "Email addresses" : "عناوين البريد الالكتروني",
     "Detailed name" : "الإسم بالتفصيل",
     "Additional names" : "الأسماء الإضافية",
     "Prefix" : "بادئة",
