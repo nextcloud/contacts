@@ -42,6 +42,7 @@
     "This group already exists" : "Ce groupe existe déjà",
     "This circle already exists" : "Ce cercle existe déjà",
     "An error happened during the creation of the circle" : "Erreur lors de la création du cercle",
+    "{addressbookname} (Disabled)" : "{addressbookname} (Disabled)",
     "Download" : "Télécharger",
     "Show" : "Montrer",
     "Rename" : "Renommer",

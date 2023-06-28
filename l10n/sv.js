@@ -44,6 +44,7 @@ OC.L10N.register(
     "This group already exists" : "Denna grupp existerar redan",
     "This circle already exists" : "Cirkeln finns redan",
     "An error happened during the creation of the circle" : "Ett fel inträffade när cirkeln skapades",
+    "{addressbookname} (Disabled)" : "{addressbookname} (Inaktiverad)",
     "Download" : "Hämta",
     "Show" : "Visa",
     "Rename" : "Byt namn",
