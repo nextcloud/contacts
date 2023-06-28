@@ -207,7 +207,7 @@
 				<NcSelect ref="pickAddressbook"
 					v-model="pickedAddressbook"
 					:allow-empty="false"
-					:options="addressbooksOptions"
+					:options="copyableAddressbooksOptions"
 					:placeholder="t('contacts', 'Select address book')"
 					track-by="id"
 					label="name" />
@@ -245,6 +245,8 @@
 					empty property because this is a required prop on regular property-select. But since
 					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
 					duplication, we created a fake propModel and property with our own options here) -->
+				<!-- We need to pass all addressbooksOptions not only writable ones. Otherwise the the name
+				 can't be displayed for readOnly addressbooks -->
 				<PropertySelect :prop-model="addressbookModel"
 					:options="addressbooksOptions"
 					:value.sync="addressbook"
@@ -527,6 +529,24 @@ export default {
 						id: addressbook.id,
 						name: addressbook.displayName,
 						readOnly: addressbook.readOnly,
+					}
+				})
+		},
+
+		/**
+		 * Store getters filtered and mapped to usable object
+		 * This is the list of addressbooks that are available to copy to
+		 *
+		 * @return {{id: string, name: string}[]}
+		 */
+		copyableAddressbooksOptions() {
+			return this.addressbooksOptions
+				.filter(option => !option.readOnly)
+				.filter(option => option.id !== this.contact.addressbook.id)
+				.map(addressbook => {
+					return {
+						id: addressbook.id,
+						name: addressbook.name,
 					}
 				})
 		},
