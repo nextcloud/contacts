@@ -44,6 +44,7 @@ OC.L10N.register(
     "This group already exists" : "Така група вже існує",
     "This circle already exists" : "Таке коло вже існує",
     "An error happened during the creation of the circle" : "Помилка під час створення кола",
+    "{addressbookname} (Disabled)" : "{addressbookname} (Вимкнено)",
     "Download" : "Звантажити",
     "Show" : "Показати",
     "Rename" : "Перейменувати",
