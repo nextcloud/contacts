@@ -49,19 +49,32 @@ const properties = {
 			t('contacts', 'Additional names'),
 			t('contacts', 'Prefix'),
 			t('contacts', 'Suffix'),
-
-			t('contacts', 'Nickname'),
-			t('contacts', 'Phonetic first name'),
-			t('contacts', 'Phonetic last name'),
 		],
-		displayOrder: [3, 1, 2, 0, 4, 5, 6, 7],
+		displayOrder: [3, 1, 2, 0, 4],
 		defaultValue: {
-			value: ['', '', '', '', '', '', '', ''],
+			value: ['', '', '', '', ''],
 		},
 		icon: 'icon-detailed-name',
 		actions: [
 			ActionCopyNtoFN,
 		],
+		primary: false,
+	},
+	nickname: {
+		readableName: t('contacts', 'Nickname'),
+		icon: 'icon-detailed-name',
+		primary: false,
+	},
+	'x-phonetic-first-name': {
+		readableName: t('contacts', 'Phonetic first name'),
+		icon: 'icon-detailed-name',
+		force: 'text',
+		primary: false,
+	},
+	'x-phonetic-last-name': {
+		readableName: t('contacts', 'Phonetic last name'),
+		icon: 'icon-detailed-name',
+		force: 'text',
 		primary: false,
 	},
 	note: {
@@ -398,6 +411,9 @@ const fieldOrder = [
 	'anniversary',
 	'deathdate',
 	'n',
+	'nickname',
+	'x-phonetic-first-name',
+	'x-phonetic-last-name',
 	'gender',
 	'cloud',
 	'impp',
