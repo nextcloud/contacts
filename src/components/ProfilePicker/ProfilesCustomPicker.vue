@@ -85,7 +85,7 @@ export default {
 			return []
 		},
 		noResultText() {
-			return this.loading ? t('contacts', 'Searching...') : t('contacts', 'Not found')
+			return this.loading ? t('contacts', 'Searching …') : t('contacts', 'Not found')
 		},
 	},
 
