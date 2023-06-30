@@ -44,6 +44,7 @@ OC.L10N.register(
     "This group already exists" : "Este grupo ya existe",
     "This circle already exists" : "Este círculo ya existe",
     "An error happened during the creation of the circle" : "Ha ocurrido un error durante la creación del círculo",
+    "{addressbookname} (Disabled)" : "{addressbookname} (Deshabilitado)",
     "Download" : "Descargar",
     "Show" : "Mostrar",
     "Rename" : "Cambiar nombre",
