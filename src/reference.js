@@ -1,5 +1,5 @@
 import { registerWidget, registerCustomPickerElement, NcCustomPickerRenderResult } from '@nextcloud/vue/dist/Components/NcRichText.js'
-import { getRequestToken } from "@nextcloud/auth"
+import { getRequestToken } from '@nextcloud/auth'
 
 __webpack_nonce__ = btoa(getRequestToken()) // eslint-disable-line
 __webpack_public_path__ = OC.linkTo('contacts', 'js/') // eslint-disable-line

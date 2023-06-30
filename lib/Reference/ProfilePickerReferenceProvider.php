@@ -26,6 +26,7 @@ declare(strict_types=1);
 
 namespace OCA\Contacts\Reference;
 
+
 use OC\Collaboration\Reference\LinkReferenceProvider;
 use OCP\Collaboration\Reference\ADiscoverableReferenceProvider;
 use OCP\Collaboration\Reference\Reference;
@@ -39,10 +40,7 @@ use OCP\Accounts\IAccountManager;
 use OCP\IUserManager;
 
 class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
-
-//	private const RICH_OBJECT_TYPE = Application::APP_ID . '_profile_picker';
 	private const RICH_OBJECT_TYPE = 'users_picker_profile';
-
 	private ?string $userId;
 	private IL10N $l10n;
 	private IURLGenerator $urlGenerator;
@@ -105,52 +103,53 @@ class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
 	 * @inheritDoc
 	 */
 	public function resolveReference(string $referenceText): ?IReference {
-		if ($this->matchReference($referenceText)) {
-			$userId = $this->getObjectId($referenceText);
-			$user = $this->userManager->get($userId);
-			if ($user !== null) {
-				$reference = new Reference($referenceText);
-
-				$userDisplayName = $user->getDisplayName();
-				$userEmail = $user->getEMailAddress();
-				$userAvatarUrl = $this->urlGenerator->linkToRouteAbsolute('core.avatar.getAvatar', ['userId' => $userId, 'size' => '64']);
-
-				$bio = $this->accountManager->getAccount($user)->getProperty(IAccountManager::PROPERTY_BIOGRAPHY);
-				$bio = $bio->getScope() !== IAccountManager::SCOPE_PRIVATE ? $bio->getValue() : null;
-				$headline = $this->accountManager->getAccount($user)->getProperty(IAccountManager::PROPERTY_HEADLINE);
-				$location = $this->accountManager->getAccount($user)->getProperty(IAccountManager::PROPERTY_ADDRESS);
-				$website = $this->accountManager->getAccount($user)->getProperty(IAccountManager::PROPERTY_WEBSITE);
-				$organisation = $this->accountManager->getAccount($user)->getProperty(IAccountManager::PROPERTY_ORGANISATION);
-				$role = $this->accountManager->getAccount($user)->getProperty(IAccountManager::PROPERTY_ROLE);
-
-				// for clients who can't render the reference widgets
-				$reference->setTitle($userDisplayName);
-				$reference->setDescription($userEmail ?? $userDisplayName);
-				$reference->setImageUrl($userAvatarUrl);
-
-				// for the Vue reference widget
-				$reference->setRichObject(
-					self::RICH_OBJECT_TYPE,
-					[
-						'user_id' => $userId,
-						'title' => $userDisplayName,
-						'subline' => $userEmail ?? $userDisplayName,
-						'email' => $userEmail,
-						'bio' => isset($bio) && $bio !== '' ? substr_replace($bio, '...', 80, strlen($bio)) : null,
-						'headline' => $headline->getScope() !== IAccountManager::SCOPE_PRIVATE ? $headline->getValue() : null,
-						'location' => $location->getScope() !== IAccountManager::SCOPE_PRIVATE ? $location->getValue() : null,
-						'location_url' => $location->getScope() !== IAccountManager::SCOPE_PRIVATE ? $this->getOpenStreetLocationUrl($location->getValue()) : null,
-						'website' => $website->getScope() !== IAccountManager::SCOPE_PRIVATE ? $website->getValue() : null,
-						'organisation' => $organisation->getScope() !== IAccountManager::SCOPE_PRIVATE ? $organisation->getValue() : null,
-						'role' => $role->getScope() !== IAccountManager::SCOPE_PRIVATE ? $role->getValue() : null,
-						'url' => $referenceText,
-					]
-				);
-				return $reference;
-			}
-			return $this->linkReferenceProvider->resolveReference($referenceText);
+		if (!$this->matchReference($referenceText)) {
+			return null;
 		}
-		return null;
+
+		$userId = $this->getObjectId($referenceText);
+		$user = $this->userManager->get($userId);
+		if ($user !== null) {
+			$reference = new Reference($referenceText);
+
+			$userDisplayName = $user->getDisplayName();
+			$userEmail = $user->getEMailAddress();
+			$userAvatarUrl = $this->urlGenerator->linkToRouteAbsolute('core.avatar.getAvatar', ['userId' => $userId, 'size' => '64']);
+
+			$bio = $this->accountManager->getAccount($user)->getProperty(IAccountManager::PROPERTY_BIOGRAPHY);
+			$bio = $bio->getScope() !== IAccountManager::SCOPE_PRIVATE ? $bio->getValue() : null;
+			$headline = $this->accountManager->getAccount($user)->getProperty(IAccountManager::PROPERTY_HEADLINE);
+			$location = $this->accountManager->getAccount($user)->getProperty(IAccountManager::PROPERTY_ADDRESS);
+			$website = $this->accountManager->getAccount($user)->getProperty(IAccountManager::PROPERTY_WEBSITE);
+			$organisation = $this->accountManager->getAccount($user)->getProperty(IAccountManager::PROPERTY_ORGANISATION);
+			$role = $this->accountManager->getAccount($user)->getProperty(IAccountManager::PROPERTY_ROLE);
+
+			// for clients who can't render the reference widgets
+			$reference->setTitle($userDisplayName);
+			$reference->setDescription($userEmail ?? $userDisplayName);
+			$reference->setImageUrl($userAvatarUrl);
+
+			// for the Vue reference widget
+			$reference->setRichObject(
+				self::RICH_OBJECT_TYPE,
+				[
+					'user_id' => $userId,
+					'title' => $userDisplayName,
+					'subline' => $userEmail ?? $userDisplayName,
+					'email' => $userEmail,
+					'bio' => isset($bio) && $bio !== '' ? substr_replace($bio, '...', 80, strlen($bio)) : null,
+					'headline' => $headline->getScope() !== IAccountManager::SCOPE_PRIVATE ? $headline->getValue() : null,
+					'location' => $location->getScope() !== IAccountManager::SCOPE_PRIVATE ? $location->getValue() : null,
+					'location_url' => $location->getScope() !== IAccountManager::SCOPE_PRIVATE ? $this->getOpenStreetLocationUrl($location->getValue()) : null,
+					'website' => $website->getScope() !== IAccountManager::SCOPE_PRIVATE ? $website->getValue() : null,
+					'organisation' => $organisation->getScope() !== IAccountManager::SCOPE_PRIVATE ? $organisation->getValue() : null,
+					'role' => $role->getScope() !== IAccountManager::SCOPE_PRIVATE ? $role->getValue() : null,
+					'url' => $referenceText,
+				]
+			);
+			return $reference;
+		}
+		return $this->linkReferenceProvider->resolveReference($referenceText);
 	}
 
 	private function getObjectId(string $url): ?string {
@@ -169,7 +168,7 @@ class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
 		return null;
 	}
 
-	private function getOpenStreetLocationUrl($location) {
+	private function getOpenStreetLocationUrl($location): string {
 		return 'https://www.openstreetmap.org/search?query=' . urlencode($location);
 	}
 

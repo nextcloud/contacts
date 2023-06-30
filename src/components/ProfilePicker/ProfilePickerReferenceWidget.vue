@@ -1,33 +1,11 @@
-<!--
- - @copyright Copyright (c) 2023 Andrey Borysenko <andrey18106x@gmail.com>
- -
- - @author 2023 Andrey Borysenko <andrey18106x@gmail.com>
- -
- - @license AGPL-3.0-or-later
- -
- - This program is free software: you can redistribute it and/or modify
- - it under the terms of the GNU Affero General Public License as
- - published by the Free Software Foundation, either version 3 of the
- - License, or (at your option) any later version.
- -
- - This program is distributed in the hope that it will be useful,
- - but WITHOUT ANY WARRANTY; without even the implied warranty of
- - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- - GNU Affero General Public License for more details.
- -
- - You should have received a copy of the GNU Affero General Public License
- - along with this program. If not, see <http://www.gnu.org/licenses/>.
- -
- -->
-
 <template>
-	<div class="profile_picker-referece">
-		<div class="profile_picker-wrapper">
-			<div class="profile-card-header">
-				<NcAvatar :user="richObject.user_id" :size="48" class="profile-avatar" />
-				<div class="profile-title">
+	<div class="profile-reference">
+		<div class="profile-reference__wrapper">
+			<div class="profile-card__header">
+				<NcAvatar :user="richObject.user_id" :size="48" class="profile-card__avatar" />
+				<div class="profile-card__title">
 					<a :href="richObject.url" target="_blank">
-						<UserIcon :size="20" />
+						<Account :size="20" />
 						<strong>
 							{{ richObject.email !== null ? richObject.title + ' - ' + richObject.email : richObject.title }}
 						</strong>
@@ -35,7 +13,7 @@
 				</div>
 			</div>
 			<div class="profile-content">
-				<p class="profile-subline">
+				<p class="profile-content__subline">
 					<span v-if="richObject.headline" class="headline">
 						{{ richObject.headline }}
 					</span>
@@ -73,23 +51,23 @@
 <script>
 import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
 
+import Account from 'vue-material-design-icons/Account.vue'
 import MapMarker from 'vue-material-design-icons/MapMarker.vue'
-import TextAccount from 'vue-material-design-icons/TextAccount.vue'
-import UserIcon from './icons/UserIcon.vue'
-import Domain from 'vue-material-design-icons/Domain.vue'
 import Web from 'vue-material-design-icons/Web.vue'
+import Domain from 'vue-material-design-icons/Domain.vue'
 import Handshake from 'vue-material-design-icons/Handshake.vue'
+import TextAccount from 'vue-material-design-icons/TextAccount.vue'
 
 export default {
 	name: 'ProfilePickerReferenceWidget',
 	components: {
 		NcAvatar,
+		Account,
 		MapMarker,
-		TextAccount,
-		UserIcon,
-		Domain,
 		Web,
+		Domain,
 		Handshake,
+		TextAccount,
 	},
 	props: {
 		richObjectType: {
@@ -109,44 +87,44 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.profile_picker-referece {
+.profile-reference {
 	width: 100%;
 	white-space: normal;
 	display: flex;
 
-	.profile_picker-wrapper {
+	.profile-reference__wrapper {
 		width: 100%;
 		display: flex;
 		align-items: center;
 		flex-direction: column;
 
-		.profile-card-header {
+		.profile-card__header {
 			width: 100%;
 			min-height: 70px;
 			background-color: var(--color-primary);
 			background-image: var(--gradient-primary-background);
 			position: relative;
+		}
 
-			.profile-avatar {
-				position: relative;
-				bottom: -50%;
-				left: 10px;
+		.profile-card__avatar {
+			position: relative;
+			bottom: -50%;
+			left: 10px;
+		}
+
+		.profile-card__title {
+			display: flex;
+			position: relative;
+			bottom: 5px;
+			left: 70px;
+
+			& span {
+				margin-right: 5px;
 			}
 
-			.profile-title {
+			& a {
 				display: flex;
-				position: relative;
-				bottom: 5px;
-				left: 70px;
-
-				& span {
-					margin-right: 5px;
-				}
-
-				& a {
-					display: flex;
-					color: #fff;
-				}
+				color: #fff;
 			}
 		}
 
@@ -164,7 +142,7 @@ export default {
 			padding-left: 5px;
 		}
 
-		.profile-subline {
+		.profile-content__subline {
 			padding: 0 0 0 10px;
 
 			& span.material-design-icon {
