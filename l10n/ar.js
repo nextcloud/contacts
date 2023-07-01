@@ -53,6 +53,7 @@ OC.L10N.register(
     "Close" : "إغلاق",
     "Import" : "استيراد",
     "Not grouped" : "غير مصنف",
+    "Circles are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "الأوساط هي مجموعات من الأشخاص يمكنك إنشاؤها بنفسك ويمكنك مشاركة البيانات معهم. يمكن أن تتكون من حسابات أو مجموعات أخرى من نموذج نكست كلود، ولكن قد تتكون أيضًا من جهات اتصال من دفتر العناوين الخاص بك أو حتى من أشخاص خارجيين عن طريق إدخال عناوين البريد الإلكتروني الخاصة بهم.",
     "Circle" : "دائرة ",
     "User" : "المستخدم",
     "Group" : "المجموعة",
