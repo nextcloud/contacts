@@ -120,7 +120,7 @@ OC.L10N.register(
     "Select a contact on the list to begin" : "Para comezar, seleccione un contacto da lista",
     "Name" : "Nome",
     "Title" : "Título",
-    "Company" : "Compañía",
+    "Company" : "Empresa",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Este contacto rachou e recibiu unha solución. Revise o contido e prema aquí para gardalo.",
     "Edit" : "Editar",
     "Clone contact" : "Clonar o contacto",
