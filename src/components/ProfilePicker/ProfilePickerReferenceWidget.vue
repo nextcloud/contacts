@@ -1,7 +1,7 @@
 <template>
 	<div class="profile-reference">
 		<div class="profile-reference__wrapper">
-			<div class="profile-card__header">
+			<div class="profile-reference__card__header">
 				<NcAvatar :user="richObject.user_id" :size="48" class="profile-card__avatar" />
 				<div class="profile-card__title">
 					<a :href="richObject.url" target="_blank">
