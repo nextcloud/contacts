@@ -92,7 +92,7 @@ export default {
 	white-space: normal;
 	display: flex;
 
-	.profile-reference__wrapper {
+	&__wrapper {
 		width: 100%;
 		display: flex;
 		align-items: center;
