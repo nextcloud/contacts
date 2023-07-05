@@ -99,7 +99,7 @@ OC.L10N.register(
     "Enter a description for the circle" : "Зазначте опис для цього кола",
     "An error happened during description sync" : "Помилка під час синхронізації опису",
     "An error happened during name sync" : "Помилка під час синхронізації назви",
-    "Add more info" : "Додати більше інформації",
+    "Add more info" : "Додати більше даних",
     "More fields" : "Більше полів",
     "Crop contact photo" : "Обрізати світлину контакту",
     "Cancel" : "Скасувати",
