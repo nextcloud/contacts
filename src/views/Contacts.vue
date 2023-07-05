@@ -419,9 +419,3 @@ export default {
 	},
 }
 </script>
-
-<style lang="scss" scoped>
-.new-contact-button {
-	margin-top: 4px;
-}
-</style>
