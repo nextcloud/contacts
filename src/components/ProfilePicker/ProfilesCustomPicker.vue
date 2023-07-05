@@ -47,12 +47,12 @@
 import axios from '@nextcloud/axios'
 import { generateOcsUrl, generateUrl } from '@nextcloud/router'
 
-import debounce from "debounce";
+import debounce from 'debounce'
 
 import {
 	NcSelect,
 	NcButton,
-	NcEmptyContent
+	NcEmptyContent,
 } from '@nextcloud/vue'
 
 import Account from 'vue-material-design-icons/Account.vue'
@@ -80,18 +80,6 @@ export default {
 		},
 	},
 
-	computed: {
-		options() {
-			if (this.searchQuery !== '') {
-				return this.profiles
-			}
-			return []
-		},
-		noResultText() {
-			return this.loading ? t('contacts', 'Searching …') : t('contacts', 'Not found')
-		},
-	},
-
 	data() {
 		return {
 			searchQuery: '',
@@ -102,6 +90,18 @@ export default {
 			selectedProfile: null,
 			abortController: null,
 		}
+	},
+
+	computed: {
+		options() {
+			if (this.searchQuery !== '') {
+				return this.profiles
+			}
+			return []
+		},
+		noResultText() {
+			return this.loading ? t('contacts', 'Searching …') : t('contacts', 'Not found')
+		},
 	},
 
 	mounted() {
@@ -124,7 +124,7 @@ export default {
 			await this.debounceFindProfiles(query)
 		},
 
-		debounceFindProfiles: debounce(function (...args) {
+		debounceFindProfiles: debounce(function(...args) {
 			this.findProfiles(...args)
 		}, 300),
 

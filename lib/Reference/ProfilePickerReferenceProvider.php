@@ -27,7 +27,6 @@ declare(strict_types=1);
 namespace OCA\Contacts\Reference;
 
 
-use OC\Collaboration\Reference\LinkReferenceProvider;
 use OCP\Collaboration\Reference\ADiscoverableReferenceProvider;
 use OCP\Collaboration\Reference\Reference;
 
@@ -44,14 +43,12 @@ class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
 	private ?string $userId;
 	private IL10N $l10n;
 	private IURLGenerator $urlGenerator;
-	private LinkReferenceProvider $linkReferenceProvider;
 	private IUserManager $userManager;
 	private IAccountManager $accountManager;
 
 	public function __construct(
 		IL10N $l10n,
 		IURLGenerator $urlGenerator,
-		LinkReferenceProvider $linkReferenceProvider,
 		IUserManager $userManager,
 		IAccountManager $accountManager,
 		?string $userId
@@ -59,7 +56,6 @@ class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
 		$this->userId = $userId;
 		$this->l10n = $l10n;
 		$this->urlGenerator = $urlGenerator;
-		$this->linkReferenceProvider = $linkReferenceProvider;
 		$this->userManager = $userManager;
 		$this->accountManager = $accountManager;
 	}
@@ -149,7 +145,7 @@ class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
 			);
 			return $reference;
 		}
-		return $this->linkReferenceProvider->resolveReference($referenceText);
+		return null;
 	}
 
 	private function getObjectId(string $url): ?string {
