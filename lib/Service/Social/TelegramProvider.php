@@ -25,7 +25,6 @@ namespace OCA\Contacts\Service\Social;
 
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\RequestOptions;
-use OC\AppFramework\Http\Request;
 use OCA\Contacts\AppInfo\Application;
 use OCP\Http\Client\IClientService;
 use Psr\Log\LoggerInterface;
@@ -127,7 +126,6 @@ class TelegramProvider implements ISocialProvider {
 		try {
 			$result = $this->httpClient->get($url, [
 				RequestOptions::HEADERS => [
-					// Make the request as google bot so twitter display the full static html page
 					'User-Agent' => 'Googlebot/2.1'
 				]
 			]);
