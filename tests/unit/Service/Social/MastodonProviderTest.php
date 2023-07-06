@@ -82,6 +82,22 @@ class MastodonProviderTest extends TestCase {
 	 * @dataProvider dataProviderSupportsContact
 	 */
 	public function testSupportsContact($contact, $expected) {
+		$this->client->method("get")->willReturn($this->response);
+		$this->body = '{
+			"subject": "acct:user1@cloud1",
+			"aliases": [
+				"https://cloud1/@user1",
+				"https://cloud1/users/user1"
+			],
+			"links": [
+				{
+					"rel": "self",
+					"type": "application/activity+json",
+					"href": "https://cloud1/users/user1"
+				}
+			]
+		}';
+		$this->response->method("getBody")->willReturn($this->body);
 		$result = $this->provider->supportsContact($contact);
 		$this->assertEquals($expected, $result);
 	}
@@ -98,20 +114,20 @@ class MastodonProviderTest extends TestCase {
 			]
 		];
 		$contactWithSocialUrls = [
-			"https://cloud1/api/v2/search?q=user1@cloud1",
-			"https://cloud2/api/v2/search?q=user2@cloud2",
-			"https://cloud3//api/v2/search?q=user3@cloud3",
-			"https://cloud1/api/v1/accounts/1",
-			"https://cloud2/api/v1/accounts/2",
-			"https://cloud3//api/v1/accounts/3"
+			"https://cloud1/.well-known/webfinger?resource=acct:user1@cloud1",
+			"https://cloud2/.well-known/webfinger?resource=acct:user2@cloud2",
+			"https://cloud3/.well-known/webfinger?resource=acct:user3@cloud3",
+			"https://cloud1/users/user1",
+			"https://cloud2/users/user2",
+			"https://cloud3/users/user3",
 		];
 		$contactWithSocialApi = [
-			'{"accounts":[{"id":"1","username":"user1"}]}',
-			'{"accounts":[{"id":"2","username":"user2"}]}',
-			'{"accounts":[{"id":"3","username":"user3"}]}',
-			'{"id":"1","avatar":"user1.jpg"}',
-			'{"id":"2","avatar":"user2.jpg"}',
-			'{"id":"3","avatar":"user3.jpg"}'
+			'{"subject":"acct:user1@cloud1","aliases":["https://cloud1/@user1","https://cloud1/users/user1"],"links":[{"rel":"self","type":"application/activity+json","href":"https://cloud1/users/user1"}]}',
+			'{"subject":"acct:user2@cloud2","aliases":["https://cloud2/@user2","https://cloud2/users/user2"],"links":[{"rel":"self","type":"application/activity+json","href":"https://cloud2/users/user2"}]}',
+			'{"subject":"acct:user3@cloud3","aliases":["https://cloud3/@user3","https://cloud3/users/user3"],"links":[{"rel":"self","type":"application/activity+json","href":"https://cloud3/users/user3"}]}',
+			'{"id":"1","icon":{"url":"user1.jpg"}}',
+			'{"id":"2","icon":{"url":"user2.jpg"}}',
+			'{"id":"3","icon":{"url":"user3.jpg"}}',
 		];
 		$contactWithSocialImgs = [
 			"user1.jpg",
@@ -121,8 +137,8 @@ class MastodonProviderTest extends TestCase {
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				["value" => "one", "type" => "socialx"],
+				["value" => "two", "type" => "socialy"]
 			]
 		];
 		$contactWithoutSocialUrls = [];
