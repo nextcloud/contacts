@@ -39,7 +39,7 @@ use OCP\Accounts\IAccountManager;
 use OCP\IUserManager;
 
 class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
-	private const RICH_OBJECT_TYPE = 'users_picker_profile';
+	public const RICH_OBJECT_TYPE = 'users_picker_profile';
 	private ?string $userId;
 	private IL10N $l10n;
 	private IURLGenerator $urlGenerator;
@@ -148,7 +148,7 @@ class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
 		return null;
 	}
 
-	private function getObjectId(string $url): ?string {
+	public function getObjectId(string $url): ?string {
 		$baseUrl = $this->urlGenerator->getBaseUrl();
 		$baseWithIndex = $baseUrl . '/index.php';
 
@@ -164,7 +164,7 @@ class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
 		return null;
 	}
 
-	private function getOpenStreetLocationUrl($location): string {
+	public function getOpenStreetLocationUrl($location): string {
 		return 'https://www.openstreetmap.org/search?query=' . urlencode($location);
 	}
 
