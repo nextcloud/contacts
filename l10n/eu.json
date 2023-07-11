@@ -42,6 +42,7 @@
     "This group already exists" : "Talde hau existitzen da dagoeneko",
     "This circle already exists" : "Zirkulu hau existitzen da dagoeneko",
     "An error happened during the creation of the circle" : "Errore bat gertatu da zirkulua sortzerakoan",
+    "{addressbookname} (Disabled)" : "{addressbookname} (Desgaituta)",
     "Download" : "Deskargatu",
     "Show" : "Erakutsi",
     "Rename" : "Aldatu izena",
