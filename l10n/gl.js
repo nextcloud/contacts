@@ -13,7 +13,7 @@ OC.L10N.register(
     "Loading circle …" : "Cargando o círculo…",
     "Your request to join this circle is pending approval" : "A súa solicitude para unirse a este círculo está pendente de aprobación",
     "You are not a member of {circle}" : "Vostede non é membro de {circle}",
-    "There was an error fetching the member list" : "Produciuse un erro ao obter a lista de membros",
+    "There was an error fetching the member list" : "Produciuse un erro ao recuperar a lista de membros",
     "Loading contacts …" : "Cargando contactos…",
     "There are no contacts yet" : "Aínda non hai contactos",
     "Create contact" : "Crear contacto.",
