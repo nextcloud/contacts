@@ -57,6 +57,8 @@ OC.L10N.register(
     "Delete {addressbook}?" : "حذف {addressbook}؟",
     "Deletion of address book was not successful." : "تعذّر حذف دفتر العناوين",
     "Renaming of address book was not successful." : "تعذّرت إعادة تسمية دفتر العناوين",
+    "_%n contact_::_%n contacts_" : ["%n جهات اتصال","%n جهة اتصال","%n جهات اتصال","%n جهات اتصال","%n جهات اتصال","%n جهات اتصال"],
+    "_%n group_::_%n groups_" : ["%n مجموعات","%n مجموعة","%n مجموعات","%n مجموعات","%n مجموعات","%n مجموعات"],
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["تم مشاركته مع {num} كيانات","تم مشاركته مع {num} كيان","تم مشاركته مع {num} كيانات","تم مشاركته مع {num} كيانات","تم مشاركته مع {num} كيانات","تم مشاركته مع {num} كيانات"],
     "Share with users or groups" : "شارِك مع مستخدمين او مجموعات",
     "Share with users" : "مشاركة مع المستخدمين",
