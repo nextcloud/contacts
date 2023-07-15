@@ -221,7 +221,7 @@ OC.L10N.register(
     "Invites" : "Convites",
     "Anyone can request membership" : "Calquera persoa pode solicitar a pertenza",
     "Members need to accept invitation" : "Os membros deben aceptar o convite",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "As pertenzas deben ser confirmadas/aceptadas por un moderador (require Aberto)",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "As pertenzas deben ser confirmadas/aceptadas por un moderador (precisa Aberto)",
     "Members can also invite" : "Os membros tamén poden convidar",
     "Visibility" : "Visibilidade",
     "Visible to everyone" : "Visíbel para todos",
