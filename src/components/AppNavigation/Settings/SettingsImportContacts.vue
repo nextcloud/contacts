@@ -73,8 +73,7 @@
 							<IconLoading v-if="loading" :size="20" />
 							<IconFolder :size="20" />
 						</template>
-						<span class="import-contact__button-icon" />
-						{{ t('contacts', 'Import from Files') }}
+						{{ t('contacts', 'Import from files') }}
 					</Button>
 				</section>
 			</Modal>
@@ -274,17 +273,20 @@ export default {
 		 */
 		async openPicker() {
 			try {
-				this.loading = true
 				// unlikely, but let's cancel any previous request
 				this.cancelRequest()
 
 				// pick, retrieve & process file
 				const path = await picker.pick()
-				await this.processLocalFile(path)
-			} catch (error) {
-				console.error('Something wrong happened while picking a file', error)
-			} finally {
+				if (path) {
+					this.loading = true
+					await this.processLocalFile(path)
+				}
 				this.resetState()
+
+			} catch (error) {
+				this.loading = false
+				console.error('Something wrong happened while picking a file', error)
 			}
 		},
 
