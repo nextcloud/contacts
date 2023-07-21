@@ -62,7 +62,6 @@
     "Import contacts" : "Внасяне на контакти",
     "Import into the {addressbookName} address book" : "Внасяне в адресната книга {addressbookName}",
     "Select local file" : "Избор на локален файл",
-    "Import from Files" : "Внасяне от Файлове",
     "Importing is disabled because there are no address books available" : "Внасянето е деактивирано, защото няма налични адресни книги ",
     "Choose a vCard file to import" : "Избор на vCard файл за импортиране",
     "Add new address book" : "Добавяне на нова адресна книга",

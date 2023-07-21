@@ -60,7 +60,6 @@ OC.L10N.register(
     "Unable to change permissions" : "ناتوان در تغییر اجازه‌ها",
     "Import contacts" : "درون‌ریزی آشنایان",
     "Select local file" : "گزینش پروندهٔ محلی",
-    "Import from Files" : "درون‌ریزی از پرونده‌ها",
     "Choose a vCard file to import" : "گزینش یک vCard برای درون‌ریزی",
     "First name" : "نام",
     "Last name" : "نام‌خانوادگی",

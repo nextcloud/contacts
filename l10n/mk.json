@@ -60,7 +60,7 @@
     "Import contacts" : "Увези контакти",
     "Import into the {addressbookName} address book" : "Увези во адресарот {addressbookName}",
     "Select local file" : "Избери локална датотека",
-    "Import from Files" : "Увези од датотеките",
+    "Import from files" : "Увези од датотеките",
     "Importing is disabled because there are no address books available" : "Увезувањето е оневозможено бидејќи нема достапен адресар",
     "Choose a vCard file to import" : "Избери vCard датотека за увоз",
     "Add new address book" : "Додади нов адресар",

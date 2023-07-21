@@ -66,7 +66,7 @@
     "Import contacts" : "Tuo yhteystietoja",
     "Import into the {addressbookName} address book" : "Tuo osoitekirjaan \"{addressbookName}\"",
     "Select local file" : "Valitse paikallinen tiedosto",
-    "Import from Files" : "Tuo Tiedostoista",
+    "Import from files" : "Tuo tiedostoista",
     "Importing is disabled because there are no address books available" : "Tuonti on pois käytöstä, koska osoitekirjoja ei ole käytettävissä",
     "Choose a vCard file to import" : "Valitse tuotava vCard-tiedosto",
     "Add new address book" : "Lisää uusi osoitekirja",

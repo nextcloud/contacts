@@ -66,7 +66,7 @@
     "Import contacts" : "Импорт контактов",
     "Import into the {addressbookName} address book" : "Импортировать в адресную книгу «{addressbookName}»",
     "Select local file" : "Загрузить с ПК",
-    "Import from Files" : "Импортировать из приложения «Файлы»",
+    "Import from files" : "Выбрать в Nextcloud",
     "Importing is disabled because there are no address books available" : "Возможность импорта отключена, т.к. отсутствуют адресные книги, в которые можно выполнить запись",
     "Choose a vCard file to import" : "Выберите файл в формате vCard для импорта",
     "Add new address book" : "Создать адресную книгу",

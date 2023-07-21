@@ -64,7 +64,7 @@
     "Import contacts" : "Importuoti adresatus",
     "Import into the {addressbookName} address book" : "Importuoti į {addressbookName} adresų knygą",
     "Select local file" : "Pasirinkti vietinį failą",
-    "Import from Files" : "Importuoti iš failų",
+    "Import from files" : "Importuoti iš failų",
     "Importing is disabled because there are no address books available" : "Importavimas yra išjungtas, nes nėra prieinamų adresų knygų",
     "Choose a vCard file to import" : "Pasirinkite norimą importuoti vCard failą",
     "Add new address book" : "Pridėti naują adresų knygą",

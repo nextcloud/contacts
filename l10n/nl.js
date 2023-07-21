@@ -59,7 +59,7 @@ OC.L10N.register(
     "Import contacts" : "Importeer contactpersonen",
     "Import into the {addressbookName} address book" : "Importeren in het {addressbookName} adresboek",
     "Select local file" : "Selecteer lokaal bestand",
-    "Import from Files" : "Importeren vanuit Bestanden",
+    "Import from files" : "Importeren uit bestanden",
     "Importing is disabled because there are no address books available" : "Import is uitgeschakeld omdat er geen adresboek beschikbaar is",
     "Choose a vCard file to import" : "Kies een vCard bestand om te importeren",
     "Add new address book" : "Nieuw adresboek toevoegen",

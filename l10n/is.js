@@ -31,6 +31,7 @@ OC.L10N.register(
     "can edit" : "getur breytt",
     "Import contacts" : "Flytja inn tengiliði",
     "Select local file" : "Veldu skrá á tölvunni",
+    "Import from files" : "Flytja inn úr skrám",
     "Importing is disabled because there are no address books available" : "Innflutningur er óvirkur því engar nafnaskrár eru tiltækar",
     "Choose a vCard file to import" : "Veldu vCard-skrá sem á að flytja inn",
     "First name" : "Eiginnafn",

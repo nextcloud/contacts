@@ -69,7 +69,7 @@ OC.L10N.register(
     "Import contacts" : "Увези контакте",
     "Import into the {addressbookName} address book" : "Увоз у адресар {addressbookName}",
     "Select local file" : "Одабери локални фајл",
-    "Import from Files" : "Увези из Фајлова",
+    "Import from files" : "Увези из фајлова",
     "Importing is disabled because there are no address books available" : "Увоз је искључен пошто нема доступних адресара",
     "Choose a vCard file to import" : "Изаберите „vCard“ фајл за увоз",
     "Add new address book" : "Додај нови адресар",

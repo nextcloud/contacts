@@ -62,7 +62,7 @@ OC.L10N.register(
     "Import contacts" : "連絡先のインポート",
     "Import into the {addressbookName} address book" : "アドレス帳 {addressbookName} にインポートします",
     "Select local file" : "ローカルファイルの選択",
-    "Import from Files" : "ファイルからインポート",
+    "Import from files" : "ファイルからインポート ",
     "Importing is disabled because there are no address books available" : "使用可能なアドレス帳がないため、インポートは無効です",
     "Choose a vCard file to import" : "インポートするvCardファイルを選択",
     "Add new address book" : "新しいアドレス帳を追加する",

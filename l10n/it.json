@@ -60,7 +60,7 @@
     "Import contacts" : "Importa contatti",
     "Import into the {addressbookName} address book" : "Importa nella rubrica {addressbookName}",
     "Select local file" : "Seleziona file locale",
-    "Import from Files" : "Importa dai file",
+    "Import from files" : "Importa da file",
     "Importing is disabled because there are no address books available" : "L'importazione è  disabilitata poiché non ci sono rubriche disponibili",
     "Choose a vCard file to import" : "Scegli un file vCard da importare",
     "Add new address book" : "Aggiungi nuova rubrica",

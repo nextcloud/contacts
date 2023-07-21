@@ -69,7 +69,7 @@ OC.L10N.register(
     "Import contacts" : "匯入連絡人",
     "Import into the {addressbookName} address book" : "匯入至 {addressbookName} 通訊錄",
     "Select local file" : "選取本機檔案",
-    "Import from Files" : "從檔案匯入",
+    "Import from files" : "從檔案匯入",
     "Importing is disabled because there are no address books available" : "已停用匯入，因為沒有可用的通訊錄",
     "Choose a vCard file to import" : "選取要匯入的 vCard 檔案",
     "Add new address book" : "加入新的通訊錄",

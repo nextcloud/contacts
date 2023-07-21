@@ -66,7 +66,7 @@
     "Import contacts" : "Névjegyek importálása",
     "Import into the {addressbookName} address book" : "Importálás a(z) {addressbookName} címjegyzékbe",
     "Select local file" : "Helyi fájl kiválasztása",
-    "Import from Files" : "Importálás a Fájlokból",
+    "Import from files" : "Importálás fájlokból",
     "Importing is disabled because there are no address books available" : "Az importálás nincs engedélyezve mert nem található címjegyzék",
     "Choose a vCard file to import" : "Válasszon egy importálandó vCard fájlt",
     "Add new address book" : "Új címjegyzék hozzáadása",

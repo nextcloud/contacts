@@ -55,7 +55,6 @@ OC.L10N.register(
     "Import contacts" : "Importer kontakter",
     "Import into the {addressbookName} address book" : "Importer til {addressbookName}-adresseboken",
     "Select local file" : "Velg lokal fil",
-    "Import from Files" : "Importer fra Filer",
     "Choose a vCard file to import" : "Velg en vCard-fil å importere",
     "Add new address book" : "Legg til ny adressebok",
     "First name" : "Fornavn",

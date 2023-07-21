@@ -66,7 +66,7 @@ OC.L10N.register(
     "Import contacts" : "Uvozi stike",
     "Import into the {addressbookName} address book" : "Uvozi v imenik {addressbookName}",
     "Select local file" : "Izbor krajevne datoteke",
-    "Import from Files" : "Uvozi iz oblaka",
+    "Import from files" : "Uvozi iz datotek",
     "Importing is disabled because there are no address books available" : "Uvoz je onemogočen, ker ni mogoče najti razpoložljivega imenika.",
     "Choose a vCard file to import" : "Izbor datoteke vCard za uvoz",
     "Add new address book" : "Dodaj nov imenik",

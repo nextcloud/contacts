@@ -57,7 +57,7 @@
     "Import contacts" : "Importovať kontakty",
     "Import into the {addressbookName} address book" : "Importovať do {addressbookName} adresára",
     "Select local file" : "Vybrať miestny súbor",
-    "Import from Files" : "Importovať zo Súborov",
+    "Import from files" : "Importovať zo súborov",
     "Importing is disabled because there are no address books available" : "Nie je možné importovať, pretože neexistuje ani jeden adresár kontaktov",
     "Choose a vCard file to import" : "Vyberte súbor vCard, ktorý chcete importovať",
     "Add new address book" : "Pridať nový adresár",

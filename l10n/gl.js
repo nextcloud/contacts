@@ -69,7 +69,7 @@ OC.L10N.register(
     "Import contacts" : "Importar contactos",
     "Import into the {addressbookName} address book" : "Importar ao caderno de enderezos {addressbookName}",
     "Select local file" : "Seleccionar ficheiro local",
-    "Import from Files" : "Importar dende ficheiros",
+    "Import from files" : "Importar dende ficheiros",
     "Importing is disabled because there are no address books available" : "A importación está desactivado porque non hai axendas dispoñíbeis",
     "Choose a vCard file to import" : "Escolla un ficheiro vCard para importalo",
     "Add new address book" : "Engadir novo caderno de enderezos",

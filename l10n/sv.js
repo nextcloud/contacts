@@ -69,7 +69,7 @@ OC.L10N.register(
     "Import contacts" : "Importera kontakter",
     "Import into the {addressbookName} address book" : "Importera till adressboken {addressbookName}",
     "Select local file" : "Välj lokal fil",
-    "Import from Files" : "Importera från Filer",
+    "Import from files" : "Importera från filer",
     "Importing is disabled because there are no address books available" : "Importering är inaktiverat eftersom att det inte finns några adressböcker tillgängliga",
     "Choose a vCard file to import" : "Välj en vCard-fil att importera",
     "Add new address book" : "Lägg till ny adressbok",

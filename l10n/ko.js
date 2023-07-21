@@ -66,7 +66,7 @@ OC.L10N.register(
     "Import contacts" : "연락처 가져오기",
     "Import into the {addressbookName} address book" : "{addressbookName} 주소록에 불러오기",
     "Select local file" : "로컬 파일 선택",
-    "Import from Files" : "파일로부터 가져오기",
+    "Import from files" : "파일로부터 가져오기",
     "Importing is disabled because there are no address books available" : "주소록을 찾을 수 없어서 가져올 수 없습니다.",
     "Choose a vCard file to import" : "불러올 vCard 파일을 고르기",
     "Add new address book" : "새 주소록 생성",

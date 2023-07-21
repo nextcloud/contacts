@@ -65,7 +65,7 @@
     "Import contacts" : "Importa contactes",
     "Import into the {addressbookName} address book" : "Importa a la llibreta d'adreces {addressbookName}",
     "Select local file" : "Selecciona un fitxer local",
-    "Import from Files" : "Importa de Fitxers",
+    "Import from files" : "Importa des de fitxers",
     "Importing is disabled because there are no address books available" : "La importació està inhabilitada perquè no hi ha cap llibreta d'adreces disponible",
     "Choose a vCard file to import" : "Trieu un fitxer vCard per a importar-lo",
     "Add new address book" : "Afegeix una llibreta d'adreces",

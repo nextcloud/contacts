@@ -67,7 +67,7 @@
     "Import contacts" : "Імпорт контактів",
     "Import into the {addressbookName} address book" : "Імпорт до адресної книги {addressbookName}",
     "Select local file" : "Виберіть файл на вашому комп'ютері",
-    "Import from Files" : "Імпорт з Файлів",
+    "Import from files" : "Імпорт з файлів",
     "Importing is disabled because there are no address books available" : "Імпорт недоступний, оскільки відсутні адресні книги",
     "Choose a vCard file to import" : "Виберіть файл vCard для імпорту",
     "Add new address book" : "Нова адресна книга",

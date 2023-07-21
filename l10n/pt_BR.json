@@ -67,7 +67,7 @@
     "Import contacts" : "Importar contatos",
     "Import into the {addressbookName} address book" : "Importar para o catálogo de endereços de {addressbookName}",
     "Select local file" : "Selecionar um arquivo local",
-    "Import from Files" : "Importar de Arquivos",
+    "Import from files" : "Importar de Arquivos",
     "Importing is disabled because there are no address books available" : "A importação está desativada porque não há catálogos de endereços disponíveis",
     "Choose a vCard file to import" : "Escolha um arquivo vCard para importar",
     "Add new address book" : "Adicionar novo catálogo de endereços",

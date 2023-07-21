@@ -41,6 +41,7 @@ OC.L10N.register(
     "Unable to change permissions" : "לא ניתן לשנות את ההרשאות",
     "Import contacts" : "ייבוא אנשי קשר",
     "Select local file" : "בחירת קובץ מקומי",
+    "Import from files" : "ייבוא מקבצים",
     "Importing is disabled because there are no address books available" : "הייבוא מושבת כיוון שאין לך ספרי כתובות זמינים",
     "Choose a vCard file to import" : "נא לבחור קובץ vCard לייבוא",
     "An error occurred, unable to create the address book" : "אירעה שגיאה--לא הצליחה ליצור את פנקס הכתובות",
