@@ -139,13 +139,13 @@ class TelegramProviderTest extends TestCase {
 		$contactWithoutSocialImgs = [];
 
 		return [
-			'contact with twitter fields' => [
+			'contact with social fields' => [
 				$contactWithSocial,
 				$contactWithSocialHtml,
 				$contactWithSocialUrls,
 				$contactWithSocialImgs
 			],
-			'contact without twitter fields' => [
+			'contact without social fields' => [
 				$contactWithoutSocial,
 				$contactWithoutSocialHtml,
 				$contactWithoutSocialUrls,
