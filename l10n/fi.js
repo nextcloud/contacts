@@ -44,6 +44,7 @@ OC.L10N.register(
     "This group already exists" : "Tämä ryhmä on jo olemassa",
     "This circle already exists" : "Piiri on jo olemassa",
     "An error happened during the creation of the circle" : "Piirin luomisen yhteydessä tapahtui virhe",
+    "{addressbookname} (Disabled)" : "{addressbookname} (pois käytöstä)",
     "Download" : "Lataa",
     "Show" : "Näytä",
     "Rename" : "Nimeä uudelleen",
