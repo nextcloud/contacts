@@ -119,7 +119,7 @@ OC.L10N.register(
     "No contact selected" : "Herhangi bir kişi seçilmemiş",
     "Select a contact on the list to begin" : "Başlamak için listeden bir kişi seçin",
     "Name" : "Ad",
-    "Title" : "Unvan",
+    "Title" : "Ünvan",
     "Company" : "Kuruluş",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Bu kişinin bilgileri hatalıydı ve bir düzeltme yapıldı. Lütfen içeriği gözden geçirip kaydetmek için buraya tıklayın.",
     "Edit" : "Düzenle",

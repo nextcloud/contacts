@@ -104,7 +104,7 @@ OC.L10N.register(
     "Crop contact photo" : "Recortar a foto do contacto",
     "Cancel" : "Cancelar",
     "Upload a new picture" : "Enviar unha nova imaxe",
-    "Choose from Files" : "Escolla entre os ficheiros",
+    "Choose from Files" : "Escoller dende Ficheiros",
     "Get from " : "Obter de",
     "Download picture" : "Descargar a imaxe",
     "Delete picture" : "Eliminar a imaxe",
