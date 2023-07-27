@@ -79,9 +79,9 @@ class MastodonProvider implements ISocialProvider {
 	 */
 	public function getImageUrl(string $profileUrl):?string {
 		try {
-			$result = $this->httpClient->get($profileUrl);
-			$jsonResult = json_decode($result->getBody());
-			return $jsonResult->avatar;
+			$result = $this->httpClient->get($profileUrl, ['headers' => ['Accept' => 'application/json']]);
+			$jsonResult = json_decode($result->getBody(), true);
+			return $jsonResult["icon"]["url"] ?? null;
 		} catch (\Exception $e) {
 			return null;
 		}
@@ -104,14 +104,18 @@ class MastodonProvider implements ISocialProvider {
 					if (isset($masto_user_server)) {
 						try {
 							[$masto_user, $masto_server] = $masto_user_server;
-							# search for user on Mastodon
-							$search = $masto_server . '/api/v2/search?q=' . $masto_user . '@' . parse_url($masto_server)["host"];
-							$result = $this->httpClient->get($search);
-							$jsonResult = json_decode($result->getBody());
-							# take first search result
-							$masto_id = $jsonResult->accounts[0]->id;
-							$profileId = $masto_server . "/api/v1/accounts/" . $masto_id;
-							$profileIds[] = $profileId;
+							# search for user webfinger
+							$webfinger = $masto_server . '/.well-known/webfinger?resource=acct:' . $masto_user . '@' . parse_url($masto_server)["host"];
+							$result = $this->httpClient->get($webfinger);
+							$jsonResult = json_decode($result->getBody(), null, 512, JSON_THROW_ON_ERROR);
+							# find account link
+							foreach ($jsonResult->links as $link) {
+								if (($link->rel == "self") and ($link->type == "application/activity+json")) {
+									$profileId = $link->href;
+									$profileIds[] = $profileId;
+									break;
+								}
+							}
 						} catch (\Exception $e) {
 							continue;
 						}
@@ -143,6 +147,8 @@ class MastodonProvider implements ISocialProvider {
 			if ((empty($masto_server)) || (empty($masto_user))) {
 				return null;
 			}
+			$masto_user = trim($masto_user, '/');
+			$masto_server = trim($masto_server, '/');
 			return array($masto_user, $masto_server);
 		} catch (\Exception $e) {
 			return null;
