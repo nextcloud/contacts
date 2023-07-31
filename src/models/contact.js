@@ -528,6 +528,26 @@ export default class Contact {
 	}
 
 	/**
+	 * Return first matching link for provided type
+	 * Returns empty string otherwise
+	 *
+	 * @param {string} type of social
+	 * @readonly
+	 * @memberof Contact
+	 * @return {string} firstMatchingLink|''
+	 */
+	socialLink(type) {
+		if (this.vCard.hasProperty('x-socialprofile')) {
+			const x = this.vCard.getAllProperties('x-socialprofile').filter(a => a.jCal[1].type.toString() === type)
+
+			if (x.length > 0) {
+				return x[0].jCal[3].toString()
+			}
+		}
+		return ''
+	}
+
+	/**
 	 * Return the phonetic last name if exists
 	 * Returns the displayName otherwise
 	 *

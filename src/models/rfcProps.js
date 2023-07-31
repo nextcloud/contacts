@@ -290,6 +290,7 @@ const properties = {
 			{ id: 'YOUTUBE', name: 'YouTube', placeholder: 'https://youtube.com/…' },
 			{ id: 'MASTODON', name: 'Mastodon', placeholder: 'https://mastodon.social/…' },
 			{ id: 'DIASPORA', name: 'Diaspora', placeholder: 'https://joindiaspora.com/…' },
+			{ id: 'NEXTCLOUD', name: 'Nextcloud', placeholder: 'Link to profile page (https://nextcloud.example.com/…)' },
 			{ id: 'OTHER', name: 'Other', placeholder: 'https://example.com/…' },
 		],
 		primary: true,

@@ -108,6 +108,10 @@ class PageController extends Controller {
 		$isCircleVersionCompatible = $this->compareVersion->isCompatible($circleVersion ? $circleVersion : '0.0.0', 22);
 		// Check whether group sharing is enabled or not
 		$isGroupSharingEnabled = $this->config->getAppValue('core', 'shareapi_allow_group_sharing', 'yes') === 'yes';
+		$talkVersion = $this->appManager->getAppVersion('spreed');
+		$isTalkEnabled = $this->appManager->isEnabledForUser('spreed') === true;
+
+		$isTalkVersionCompatible = $this->compareVersion->isCompatible($talkVersion ? $talkVersion : '0.0.0', 2);
 
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isGroupSharingEnabled', $isGroupSharingEnabled);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'locales', $locales);
@@ -117,6 +121,7 @@ class PageController extends Controller {
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'enableSocialSync', $bgSyncEnabledByUser);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isContactsInteractionEnabled', $isContactsInteractionEnabled);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isCirclesEnabled', $isCirclesEnabled && $isCircleVersionCompatible);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'isTalkEnabled', $isTalkEnabled && $isTalkVersionCompatible);
 
 		Util::addScript(Application::APP_ID, 'contacts-main');
 

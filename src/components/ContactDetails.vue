@@ -33,7 +33,6 @@
 		</EmptyContent>
 
 		<!-- TODO: add empty content while this.loadingData === true -->
-
 		<template v-else>
 			<!-- contact header -->
 			<DetailsHeader>
@@ -141,7 +140,6 @@
 						</NcButton>
 					</template>
 				</template>
-
 				<!-- menu actions -->
 				<template #actions-menu>
 					<ActionLink :href="contact.url"
@@ -221,32 +219,69 @@
 
 			<!-- contact details loading -->
 			<IconLoading v-if="loadingData" :size="20" class="contact-details" />
-
-			<!-- contact details -->
-			<section v-else class="contact-details">
-				<!-- properties iteration -->
-				<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
-
-				<div v-for="(properties, name) in groupedProperties"
-					:key="name">
-					<ContactDetailsProperty v-for="(property, index) in properties"
-						:key="`${index}-${contact.key}-${property.name}`"
-						:is-first-property="index===0"
-						:is-last-property="index === properties.length - 1"
-						:property="property"
-						:contact="contact"
-						:local-contact="localContact"
-						:contacts="contacts"
-						:bus="bus"
-						:is-read-only="isReadOnly" />
+			<!-- quick actions -->
+			<div v-else-if="!loadingData" class="contact-details-wrapper">
+				<div v-if="!editMode" class="quick-actions">
+					<Actions v-if="emailAddressProperties">
+						<template #icon>
+							<IconMail :size="20" />
+						</template>
+						<ActionLink v-for="emailAddress in emailAddressList"
+							:key="emailAddress"
+							:href="'mailto:' + emailAddress">
+							<template #icon>
+								<IconMail :size="20" />
+							</template>
+							{{ emailAddress }}
+						</ActionLink>
+					</Actions>
+					<Actions v-if="phoneNumberProperties">
+						<template #icon>
+							<IconCall :size="20" />
+						</template>
+						<ActionLink v-for="phoneNumber in phoneNumberList"
+							:key="phoneNumber"
+							:href="'tel:' + phoneNumber">
+							<template #icon>
+								<IconCall :size="20" />
+							</template>
+							{{ phoneNumber }}
+						</ActionLink>
+					</Actions>
+					<NcButton v-if="isTalkEnabled && isInSystemAddressBook"
+						class="icon-talk"
+						:href="callUrl" />
+					<NcButton v-if="profilePageLink"
+						:href="profilePageLink">
+						<template #icon>
+							<IconAccount :size="20" />
+						</template>
+					</NcButton>
 				</div>
+				<!-- contact details -->
+				<section class="contact-details">
+					<!-- properties iteration -->
+					<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
+
+					<div v-for="(properties, name) in groupedProperties"
+						:key="name">
+						<ContactDetailsProperty v-for="(property, index) in properties"
+							:key="`${index}-${contact.key}-${property.name}`"
+							:is-first-property="index===0"
+							:is-last-property="index === properties.length - 1"
+							:property="property"
+							:contact="contact"
+							:local-contact="localContact"
+							:contacts="contacts"
+							:bus="bus"
+							:is-read-only="isReadOnly" />
+					</div>
+				</section>
 
 				<!-- addressbook change select - no last property because class is not applied here,
 					empty property because this is a required prop on regular property-select. But since
 					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
 					duplication, we created a fake propModel and property with our own options here) -->
-				<!-- We need to pass all addressbooksOptions not only writable ones. Otherwise the the name
-				 can't be displayed for readOnly addressbooks -->
 				<PropertySelect :prop-model="addressbookModel"
 					:options="addressbooksOptions"
 					:value.sync="addressbook"
@@ -259,30 +294,30 @@
 
 				<!-- Groups always visible -->
 				<PropertyGroups :prop-model="groupsModel"
-					:value="localContact.groups"
+					:value.sync="localContact.groups"
 					:contact="contact"
 					:is-read-only="isReadOnly"
-					class="property--groups property--last"
-					@update:value="updateGroups" />
+					class="property--groups property--last" />
+			</div>
+			<!-- new property select -->
+			<AddNewProp v-if="!isReadOnly"
+				:bus="bus"
+				:contact="contact" />
 
-				<!-- new property select -->
-				<AddNewProp v-if="!isReadOnly"
-					:bus="bus"
-					:contact="contact" />
-
-				<!-- Last modified-->
-				<PropertyRev v-if="contact.rev" :value="contact.rev" />
-			</section>
+			<!-- Last modified-->
+			<PropertyRev v-if="contact.rev" :value="contact.rev" />
 		</template>
 	</AppContentDetails>
 </template>
 
 <script>
 import { showError } from '@nextcloud/dialogs'
+
 import { stringify } from 'ical.js'
 import qr from 'qr-image'
 import Vue from 'vue'
 import {
+	NcActions as Actions,
 	NcActionButton as ActionButton,
 	NcActionLink as ActionLink,
 	NcAppContentDetails as AppContentDetails,
@@ -298,6 +333,10 @@ import IconDownload from 'vue-material-design-icons/Download.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
 import IconQr from 'vue-material-design-icons/Qrcode.vue'
 import CakeIcon from 'vue-material-design-icons/Cake.vue'
+import IconMail from 'vue-material-design-icons/Email.vue'
+import IconCall from 'vue-material-design-icons/Phone.vue'
+import IconMessage from 'vue-material-design-icons/MessageProcessing.vue'
+import IconAccount from 'vue-material-design-icons/Account.vue'
 import IconCopy from 'vue-material-design-icons/ContentCopy.vue'
 import PencilIcon from 'vue-material-design-icons/Pencil.vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
@@ -313,11 +352,17 @@ import DetailsHeader from './DetailsHeader.vue'
 import PropertyGroups from './Properties/PropertyGroups.vue'
 import PropertyRev from './Properties/PropertyRev.vue'
 import PropertySelect from './Properties/PropertySelect.vue'
+import { generateUrl } from '@nextcloud/router'
+import { loadState } from '@nextcloud/initial-state'
+import isTalkEnabled from '../services/isTalkEnabled.js'
+
+const { profileEnabled } = loadState('user_status', 'profileEnabled', false)
 
 export default {
 	name: 'ContactDetails',
 
 	components: {
+		Actions,
 		ActionButton,
 		ActionLink,
 		AddNewProp,
@@ -327,6 +372,10 @@ export default {
 		DetailsHeader,
 		EmptyContent,
 		IconContact,
+		IconMail,
+		IconMessage,
+		IconCall,
+		IconAccount,
 		IconDownload,
 		IconDelete,
 		IconQr,
@@ -384,6 +433,9 @@ export default {
 
 			// communication for ContactDetailsAddNewProp and ContactDetailsProperty
 			bus: new Vue(),
+			showMenuPopover: false,
+			profileEnabled,
+			isTalkEnabled,
 		}
 	},
 
@@ -592,7 +644,30 @@ export default {
 
 			return ''
 		},
-
+		profilePageLink() {
+			return this.contact.socialLink('NEXTCLOUD')
+		},
+		emailAddressProperties() {
+			return this.localContact.properties.find(property => property.name === 'email')
+		},
+		emailAddress() {
+			return this.emailAddressProperties?.getFirstValue()
+		},
+		phoneNumberProperties() {
+			return this.localContact.properties.find(property => property.name === 'tel')
+		},
+		phoneNumberList() {
+			return this.groupedProperties?.tel?.map(prop => prop.getFirstValue())
+		},
+		emailAddressList() {
+			return this.groupedProperties?.email?.map(prop => prop.getFirstValue())
+		},
+		callUrl() {
+			return generateUrl('/apps/spreed/?callUser={uid}', { uid: this.contact.uid })
+		},
+		isInSystemAddressBook() {
+			return this.contact.addressbook.id === 'z-server-generated--system'
+		},
 	},
 
 	watch: {
@@ -899,12 +974,37 @@ export default {
 
 <style lang="scss" scoped>
 // List of all properties
+.contact-details-wrapper {
+	display: inline;
+	align-items: flex-start;
+	padding: 50px 0 20px;
+	gap: 15px;
+}
+@media only screen and (max-width: 600px) {
+	.contact-details-wrapper {
+		display: block;
+	}
+}
 section.contact-details {
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
 }
+.quick-actions {
+	display: flex;
+	flex: 1 0 auto;
+	gap: 15px;
+	float: right;
+	margin-right: 100px;
+	margin-top: 40px;
 
+}
+	@media only screen and (max-width: 600px) {
+		.quick-actions {
+			float: left;
+			margin-top: -44px;
+		}
+	}
 #qrcode-modal {
 	::v-deep .modal-container {
 		display: flex;
@@ -941,4 +1041,14 @@ section.contact-details {
 		}
 	}
 }
+.action-item {
+	background-color: var(--color-primary-element-light);
+	border-radius: var(--border-radius-rounded);
+}
+::v-deep .button-vue--vue-tertiary:hover,
+.button-vue--vue-tertiary:active {
+		background-color: var(--color-primary-element-light-hover) !important;
+
+	}
+
 </style>
