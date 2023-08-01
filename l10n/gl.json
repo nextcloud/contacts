@@ -68,7 +68,7 @@
     "Import into the {addressbookName} address book" : "Importar ao caderno de enderezos {addressbookName}",
     "Select local file" : "Seleccionar ficheiro local",
     "Import from files" : "Importar dende ficheiros",
-    "Importing is disabled because there are no address books available" : "A importación está desactivado porque non hai axendas dispoñíbeis",
+    "Importing is disabled because there are no address books available" : "A importación está desactivado porque non hai cadernos de enderezos dispoñíbeis",
     "Choose a vCard file to import" : "Escolla un ficheiro vCard para importalo",
     "Add new address book" : "Engadir novo caderno de enderezos",
     "An error occurred, unable to create the address book" : "Produciuse un erro: non é posíbel crear o caderno de enderezos",
