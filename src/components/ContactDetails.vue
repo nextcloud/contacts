@@ -249,9 +249,13 @@
 						</ActionLink>
 					</Actions>
 					<NcButton v-if="isTalkEnabled && isInSystemAddressBook"
+						:aria-label="(t('contacts', 'Go to talk conversation'))"
+						:title="(t('contacts', 'Go to talk conversation'))"
 						class="icon-talk"
 						:href="callUrl" />
 					<NcButton v-if="profilePageLink"
+						:aria-label="(t('contacts','View profile'))"
+						:title="(t('contacts','View profile'))"
 						:href="profilePageLink">
 						<template #icon>
 							<IconAccount :size="20" />
@@ -657,10 +661,10 @@ export default {
 			return this.localContact.properties.find(property => property.name === 'tel')
 		},
 		phoneNumberList() {
-			return this.groupedProperties?.tel?.map(prop => prop.getFirstValue())
+			return this.groupedProperties?.tel?.map(prop => prop.getFirstValue()).filter(tel => !!tel)
 		},
 		emailAddressList() {
-			return this.groupedProperties?.email?.map(prop => prop.getFirstValue())
+			return this.groupedProperties?.email?.map(prop => prop.getFirstValue()).filter(address => !!address)
 		},
 		callUrl() {
 			return generateUrl('/apps/spreed/?callUser={uid}', { uid: this.contact.uid })
@@ -994,15 +998,16 @@ section.contact-details {
 	display: flex;
 	flex: 1 0 auto;
 	gap: 15px;
-	float: right;
-	margin-right: 100px;
 	margin-top: 40px;
-
+	margin-left: 204px;
+	padding-bottom: 30px;
 }
 	@media only screen and (max-width: 600px) {
 		.quick-actions {
-			float: left;
+			justify-content: center;
+			display: flex;
 			margin-top: -44px;
+			margin-left: 0;
 		}
 	}
 #qrcode-modal {
