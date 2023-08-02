@@ -24,7 +24,7 @@ OC.L10N.register(
     "Add member" : "Engadir membro",
     "Leave circle" : "Abandonar o círculo",
     "Delete circle" : "Eliminar círculo",
-    "Contacts settings" : "Configuración de contactos",
+    "Contacts settings" : "Axustes de Contactos",
     "General settings" : "Axustes xerais",
     "Update avatars from social media" : "Actualizar avatares dende as redes sociais",
     "(refreshed once per week)" : "(actualizado unha vez por semana)",
