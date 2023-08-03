@@ -1,5 +1,28 @@
 # Changelog
-
+## 5.4.0-alpha.1 - 2023-08-03
+### Added
+- Quick actions for contacts
+- Disabled wording to disabled address books
+- Show/hide option for system and shared addressbooks
+- Show address book description if provided
+- Nextcloud 28 support
+- Contact and group counters to address books
+- Improve quick actions design
+### Changed
+- Deactivate social avatars from twitter
+- Show single-value dropdowns as text in view mode
+- Better description of circles
+- Import modal improvement
+- Hide contact groups if its empty
+- Hide empty properties
+### Fixed
+- Import loads forever
+- Split up detailed-name again to fix vCard
+- Hide not copyable addressbooks in copy select
+- Handling group update
+- Allow dynamic autoloading for classes added during upgrade
+- Don't show groups in share placeholder if group sharing is disabled
+- Add missing loading Icon
 ## 5.1.0 - 2023-02-02
 ### Added
 - Support for Nextcloud 26
