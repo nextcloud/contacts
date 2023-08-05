@@ -128,6 +128,8 @@ OC.L10N.register(
     "Contact vCard as QR code" : "Kontaktens vCard som QR-kod",
     "Pick an address book" : "Välj en adressbok",
     "Select address book" : "Välj adressbok",
+    "Go to talk conversation" : "Gå till Talk-konversation",
+    "View profile" : "Visa profil",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Den här kontakten är skrivskyddad. Du har inte behörighet att redigera den här kontakten.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakten du försökte redigera har ändrats. Uppdatera kontakten manuellt. Eventuella ytterligare ändringar kommer att kasseras.",
     "Address book" : "Adressbok",

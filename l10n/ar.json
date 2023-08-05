@@ -126,6 +126,8 @@
     "Contact vCard as QR code" : "بطاقة اتصال Contact vCard في صورة كود QR",
     "Pick an address book" : "إختر دفتر عناوين",
     "Select address book" : "إختر دفتر العناوين",
+    "Go to talk conversation" : "إذهَب إلى محادثة talk",
+    "View profile" : "إعرِض الملف الشخصي",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "جهة الاتصال هذه في وضع القراءة فقط. ليس لديك إذن لتعديل جهة الاتصال هذه.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "تم تغيير جهة الاتصال التي كنت تحاول تحريرها. يرجى تحديث جهة الاتصال يدويًا. سيتم تجاهل أي تعديلات أخرى.",
     "Address book" : "دفتر العناوين",
