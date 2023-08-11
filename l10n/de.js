@@ -128,6 +128,8 @@ OC.L10N.register(
     "Contact vCard as QR code" : "vCard des Kontakts als QR-Code",
     "Pick an address book" : "Ein Adressbuch auswählen",
     "Select address book" : "Adressbuch auswählen",
+    "Go to talk conversation" : "Zur Talk-Unterhaltung wechseln",
+    "View profile" : "Profil ansehen",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Dieser Kontakt ist schreibgeschützt. Du hast keine Berechtigung, diesen Kontakt zu bearbeiten.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Der Kontakt, den du versuchst zu bearbeiten, hat sich geändert. Bitte aktualisiere den Kontakt manuell. Alle weiteren Änderungen werden verworfen.",
     "Address book" : "Adressbuch",
