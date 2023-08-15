@@ -222,7 +222,8 @@
 			<!-- quick actions -->
 			<div v-else-if="!loadingData" class="contact-details-wrapper">
 				<div v-if="!editMode" class="quick-actions">
-					<Actions v-if="emailAddressProperties">
+					<Actions v-if="emailAddressProperties"
+						type="secondary">
 						<template #icon>
 							<IconMail :size="20" />
 						</template>
@@ -235,7 +236,8 @@
 							{{ emailAddress }}
 						</ActionLink>
 					</Actions>
-					<Actions v-if="phoneNumberProperties">
+					<Actions v-if="phoneNumberProperties"
+						type="secondary">
 						<template #icon>
 							<IconCall :size="20" />
 						</template>
