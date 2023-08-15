@@ -58,35 +58,33 @@
 			</div>
 		</NcModal>
 
-		<Actions v-if="!isReadOnly || contact.photo"
+		<Actions v-if="!isReadOnly"
 			:force-menu="true"
 			:open.sync="opened"
 			class="contact-header-avatar__menu">
 			<template #icon>
 				<IconImage :size="20" fill-color="#fff" />
 			</template>
-			<template v-if="!isReadOnly">
-				<ActionButton @click.stop.prevent="selectFileInput">
-					<template #icon>
-						<IconUpload :size="20" />
-					</template>
-					{{ t('contacts', 'Upload a new picture') }}
-				</ActionButton>
-				<ActionButton @click="selectFilePicker">
-					<template #icon>
-						<IconFolder :size="20" />
-					</template>
-					{{ t('contacts', 'Choose from Files') }}
-				</ActionButton>
-				<ActionButton v-for="network in supportedSocial"
-					:key="network"
-					@click="getSocialAvatar(network)">
-					<template #icon>
-						<IconCloudDownload :size="20" />
-					</template>
-					{{ t('contacts', 'Get from ' + network) }}
-				</ActionButton>
-			</template>
+			<ActionButton @click.stop.prevent="selectFileInput">
+				<template #icon>
+					<IconUpload :size="20" />
+				</template>
+				{{ t('contacts', 'Upload a new picture') }}
+			</ActionButton>
+			<ActionButton @click="selectFilePicker">
+				<template #icon>
+					<IconFolder :size="20" />
+				</template>
+				{{ t('contacts', 'Choose from Files') }}
+			</ActionButton>
+			<ActionButton v-for="network in supportedSocial"
+				:key="network"
+				@click="getSocialAvatar(network)">
+				<template #icon>
+					<IconCloudDownload :size="20" />
+				</template>
+				{{ t('contacts', 'Get from ' + network) }}
+			</ActionButton>
 
 			<template v-if="contact.photo">
 				<!-- FIXME: the link seems to have a bigger font size than the button caption -->
@@ -97,8 +95,7 @@
 					</template>
 					{{ t('contacts', 'Download picture') }}
 				</ActionLink>
-				<ActionButton v-if="!isReadOnly"
-					@click="removePhoto">
+				<ActionButton @click="removePhoto">
 					<template #icon>
 						<IconDelete :size="20" />
 					</template>
