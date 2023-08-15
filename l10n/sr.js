@@ -128,6 +128,8 @@ OC.L10N.register(
     "Contact vCard as QR code" : "vCard контакта као QR кôд",
     "Pick an address book" : "Изабери адресар",
     "Select address book" : "Одаберите адресар",
+    "Go to talk conversation" : "Иди на talk разговор",
+    "View profile" : "Погледај профил",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Контакт је у режиму само за читање. Немате дозволе да га уређујете.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Контакт који уређујете је промењен. Освежите га ручно. Свака даља измена биће одбачена.",
     "Address book" : "Адресар",
