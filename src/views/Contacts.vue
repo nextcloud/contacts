@@ -28,20 +28,20 @@
 			:loading="loadingContacts || loadingCircles"
 			:selected-group="selectedGroup"
 			:selected-contact="selectedContact">
-			<!-- new-contact-button -->
-			<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup" />
-			<Button v-if="!loadingContacts"
-				class="new-contact-button"
-				type="primary"
-				button-id="new-contact-button"
-				:wide="true"
-				:disabled="!defaultAddressbook"
-				@click="newContact">
-				<template #icon>
-					<IconAdd :size="20" />
-				</template>
-				{{ t('contacts','New contact') }}
-			</Button>
+			<div class="import-and-new-contact-buttons">
+				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup" />
+				<!-- new-contact-button -->
+				<Button v-if="!loadingContacts"
+					type="primary"
+					:wide="true"
+					:disabled="!defaultAddressbook"
+					@click="newContact">
+					<template #icon>
+						<IconAdd :size="20" />
+					</template>
+					{{ t('contacts','New contact') }}
+				</Button>
+			</div>
 		</RootNavigation>
 
 		<!-- Main content: circle, chart or contacts -->
@@ -421,7 +421,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.new-contact-button {
-	margin-top: 4px;
+.import-and-new-contact-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 }
 </style>
