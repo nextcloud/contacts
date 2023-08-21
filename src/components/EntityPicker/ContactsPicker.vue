@@ -149,7 +149,7 @@ export default {
 							this.processStatus.progress++
 							this.processStatus.error++
 							console.error(error)
-						})
+						}),
 					))
 				} catch (e) {
 					console.error(e)

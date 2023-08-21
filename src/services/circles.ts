@@ -44,7 +44,7 @@ interface CircleSetting {
 /**
  * Get the circles list without the members
  *
- * @returns {Array}
+ * @return {Array}
  */
 export const getCircles = async function() {
 	const response = await axios.get(generateOcsUrl('apps/circles/circles'))
@@ -53,8 +53,9 @@ export const getCircles = async function() {
 
 /**
  * Get a specific circle
+ *
  * @param {string} circleId
- * @returns {Object}
+ * @return {object}
  */
 export const getCircle = async function(circleId: string) {
 	const response = await axios.get(generateOcsUrl('apps/circles/circles/{circleId}', { circleId }))
@@ -65,7 +66,9 @@ export const getCircle = async function(circleId: string) {
  * Create a new circle
  *
  * @param {string} name the circle name
- * @returns {Object}
+ * @param personal
+ * @param local
+ * @return {object}
  */
 export const createCircle = async function(name: string, personal: boolean, local: boolean) {
 	const response = await axios.post(generateOcsUrl('apps/circles/circles'), {
@@ -80,7 +83,7 @@ export const createCircle = async function(name: string, personal: boolean, loca
  * Delete an existing circle
  *
  * @param {string} circleId the circle id
- * @returns {Object}
+ * @return {object}
  */
 export const deleteCircle = async function(circleId: string) {
 	const response = await axios.delete(generateOcsUrl('apps/circles/circles/{circleId}', { circleId }))
@@ -93,7 +96,8 @@ export const deleteCircle = async function(circleId: string) {
  * @param {string} circleId the circle id
  * @param {CircleEditType} type the edit type
  * @param {any} data the data
- * @returns {Object}
+ * @param value
+ * @return {object}
  */
 export const editCircle = async function(circleId: string, type: CircleEditType, value: any) {
 	const response = await axios.put(generateOcsUrl('apps/circles/circles/{circleId}/{type}', { circleId, type }), { value })
@@ -104,7 +108,7 @@ export const editCircle = async function(circleId: string, type: CircleEditType,
  * Join a circle
  *
  * @param {string} circleId the circle id
- * @returns {Array}
+ * @return {Array}
  */
 export const joinCircle = async function(circleId: string) {
 	const response = await axios.put(generateOcsUrl('apps/circles/circles/{circleId}/join', { circleId }))
@@ -115,7 +119,7 @@ export const joinCircle = async function(circleId: string) {
  * Leave a circle
  *
  * @param {string} circleId the circle id
- * @returns {Array}
+ * @return {Array}
  */
 export const leaveCircle = async function(circleId: string) {
 	const response = await axios.put(generateOcsUrl('apps/circles/circles/{circleId}/leave', { circleId }))
@@ -126,7 +130,7 @@ export const leaveCircle = async function(circleId: string) {
  * Get the circle members without the members
  *
  * @param {string} circleId the circle id
- * @returns {Array}
+ * @return {Array}
  */
 export const getCircleMembers = async function(circleId: string) {
 	const response = await axios.get(generateOcsUrl('apps/circles/circles/{circleId}/members', { circleId }))
@@ -137,7 +141,7 @@ export const getCircleMembers = async function(circleId: string) {
  * Search a potential circle member
  *
  * @param {string} term the search query
- * @returns {Array}
+ * @return {Array}
  */
 export const searchMember = async function(term: string) {
 	const response = await axios.get(generateOcsUrl('apps/circles/search?term={term}', { term }))
@@ -149,7 +153,7 @@ export const searchMember = async function(term: string) {
  *
  * @param {string} circleId the circle id
  * @param {string} members the member id
- * @returns {Array}
+ * @return {Array}
  */
 export const addMembers = async function(circleId: string, members: Array<MemberPairs>) {
 	const response = await axios.post(generateOcsUrl('apps/circles/circles/{circleId}/members/multi', { circleId }), { members })
@@ -161,7 +165,7 @@ export const addMembers = async function(circleId: string, members: Array<Member
  *
  * @param {string} circleId the circle id
  * @param {string} memberId the member id
- * @returns {Array}
+ * @return {Array}
  */
 export const deleteMember = async function(circleId: string, memberId: string) {
 	const response = await axios.delete(generateOcsUrl('apps/circles/circles/{circleId}/members/{memberId}', { circleId, memberId }))
@@ -170,12 +174,13 @@ export const deleteMember = async function(circleId: string, memberId: string) {
 
 /**
  * change a member level
+ *
  * @see levels file src/models/constants.js
  *
  * @param {string} circleId the circle id
  * @param {string} memberId the member id
  * @param {number} level the new member level
- * @returns {Array}
+ * @return {Array}
  */
 export const changeMemberLevel = async function(circleId: string, memberId: string, level: MemberLevel) {
 	if (!(level in MemberLevels)) {
@@ -193,7 +198,7 @@ export const changeMemberLevel = async function(circleId: string, memberId: stri
  *
  * @param {string} circleId the circle id
  * @param {string} memberId the member id
- * @returns {Array}
+ * @return {Array}
  */
 export const acceptMember = async function(circleId: string, memberId: string) {
 	const response = await axios.put(generateOcsUrl('apps/circles/circles/{circleId}/members/{memberId}', { circleId, memberId }))

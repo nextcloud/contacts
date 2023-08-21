@@ -219,14 +219,13 @@ export default {
 			const addressbook = this.selectedAddressbook
 			this.$store.dispatch('setAddressbook', addressbook.displayName)
 
-			const self = this
-			reader.onload = function(e) {
-				self.isOpened = false
-				self.$store.dispatch('importContactsIntoAddressbook', { vcf: reader.result, addressbook })
+			reader.onload = () => {
+				this.isOpened = false
+				this.$store.dispatch('importContactsIntoAddressbook', { vcf: reader.result, addressbook })
 
 				// reset input
 				event.target.value = ''
-				self.resetState()
+				this.resetState()
 			}
 			reader.readAsText(file)
 		},

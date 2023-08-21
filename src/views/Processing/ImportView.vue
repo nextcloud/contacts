@@ -74,7 +74,7 @@ export default {
 				this.total,
 				{
 					addressbook: this.addressbook,
-				}
+				},
 			)
 		},
 
@@ -85,7 +85,7 @@ export default {
 				this.total,
 				{
 					addressbook: this.addressbook,
-				}
+				},
 			)
 		},
 
@@ -94,7 +94,7 @@ export default {
 				'{count} error',
 				'{count} errors',
 				this.failed,
-				{ count: this.failed }
+				{ count: this.failed },
 			)
 		},
 	},

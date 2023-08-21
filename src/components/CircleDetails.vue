@@ -203,8 +203,8 @@ export default {
 			callback([])
 		},
 
-		onDescriptionChangeDebounce: debounce(function() {
-			this.onDescriptionChange(...arguments)
+		onDescriptionChangeDebounce: debounce(function(...args) {
+			this.onDescriptionChange(...args)
 		}, 500),
 		async onDescriptionChange(description) {
 			this.loadingDescription = true

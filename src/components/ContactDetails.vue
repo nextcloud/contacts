@@ -900,7 +900,7 @@ export default {
 			// create empty contact and copy inner data
 			const localContact = Object.assign(
 				Object.create(Object.getPrototypeOf(contact)),
-				contact
+				contact,
 			)
 
 			this.fixed = validate(localContact)

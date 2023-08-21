@@ -325,7 +325,7 @@ export default class Contact {
 				.map(s => s.toLowerCase())
 				.map(s => this.vCard.getFirstPropertyValue(s))
 				.flat()
-				.filter(k => k)
+				.filter(k => k),
 		)
 	}
 

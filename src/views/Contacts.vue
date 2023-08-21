@@ -234,6 +234,7 @@ export default {
 
 	mounted() {
 		// Register search
+		// eslint-disable-next-line @nextcloud/no-removed-apis
 		this.search = new OCA.Search(this.search, this.resetSearch)
 
 		if (this.isCirclesEnabled) {
@@ -351,7 +352,7 @@ export default {
 			Promise.all(this.addressbooks
 				.map(addressbook => {
 					return this.$store.dispatch('getContactsFromAddressBook', { addressbook })
-				})
+				}),
 			).then(results => {
 				this.loadingContacts = false
 				if (!this.isMobile && !this.selectedChart) {

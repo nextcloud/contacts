@@ -28,7 +28,7 @@ export default {
 			return otherContacts({
 				$store: this.$store,
 				self,
-			},)
+			})
 		},
 	},
 }

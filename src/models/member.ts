@@ -30,6 +30,9 @@ export default class Member {
 
 	/**
 	 * Creates an instance of Member
+	 *
+	 * @param data
+	 * @param circle
 	 */
 	constructor(data: any, circle: Circle) {
 		if (typeof data !== 'object') {
@@ -97,8 +100,8 @@ export default class Member {
 	get userType(): MemberType {
 		// If the user type is a circle, this could originate from multiple sources
 		return this._data.userType !== MemberTypes.CIRCLE
-					? this._data.userType
-					: this.basedOn.source
+			? this._data.userType
+			: this.basedOn.source
 	}
 
 	/**
@@ -117,14 +120,6 @@ export default class Member {
 	}
 
 	/**
-	 * Member request status
-	 *
-	 */
-	get status(): string {
-		return this._data.status
-	}
-
-	/**
 	 * Set member level
 	 */
 	set level(level: MemberLevel) {
@@ -132,6 +127,14 @@ export default class Member {
 			throw new Error('Invalid level')
 		}
 		this._data.level = level
+	}
+
+	/**
+	 * Member request status
+	 *
+	 */
+	get status(): string {
+		return this._data.status
 	}
 
 	/**

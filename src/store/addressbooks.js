@@ -389,7 +389,7 @@ const actions = {
 						'{failed} contact failed to be read',
 						'{failed} contacts failed to be read',
 						failed,
-						{ failed }
+						{ failed },
 					))
 				}
 
@@ -450,7 +450,7 @@ const actions = {
 						// error
 						context.commit('incrementDenied')
 						console.error(error)
-					})
+					}),
 				))
 			} catch (e) {
 				context.commit('incrementDenied')
