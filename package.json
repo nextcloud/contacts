@@ -82,7 +82,7 @@
     "@babel/preset-env": "^7.22.10",
     "@nextcloud/babel-config": "^1.0.0",
     "@nextcloud/browserslist-config": "^3.0.0",
-    "@nextcloud/eslint-config": "^8.2.1",
+    "@nextcloud/eslint-config": "^8.3.0-beta.2",
     "@nextcloud/stylelint-config": "^2.3.0",
     "@nextcloud/typings": "^1.7.0",
     "@nextcloud/webpack-vue-config": "^5.2.0",
@@ -98,7 +98,7 @@
     "stylelint-config-recommended-scss": "^7.0.0",
     "ts-jest": "^29.1.1",
     "ts-loader": "^9.4.4",
-    "typescript": "^4.9.5",
+    "typescript": "^5.1.6",
     "vue-template-compiler": "~2.6"
   },
   "browserslist": [
