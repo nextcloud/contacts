@@ -161,8 +161,7 @@
 						@click="onToggleCircles" />
 				</template>
 
-				<p v-else-if="!loading"
-					class="app-navigation__circle-desc">
+				<p class="app-navigation__circle-desc">
 					{{ CIRCLE_DESC }}
 				</p>
 			</template>
