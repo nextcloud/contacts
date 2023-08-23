@@ -189,7 +189,8 @@
 				size="small"
 				:clear-view-delay="-1"
 				:title="contact.displayName"
-				@close="closeQrModal">
+				@close="closeQrModal"
+				:closeButtonContained="false">
 				<img :src="`data:image/svg+xml;base64,${qrcode}`"
 					:alt="t('contacts', 'Contact vCard as QR code')"
 					class="qrcode"
