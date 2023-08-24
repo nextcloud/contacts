@@ -91,6 +91,7 @@ export default {
 			})
 		},
 		renderChart(data) {
+			// eslint-disable-next-line @typescript-eslint/no-this-alias
 			const that = this
 			if (!this.chartReference) {
 				this.chartReference = new OrgChart()
@@ -137,7 +138,7 @@ export default {
 					d3.select(this)
 						.attr('stroke', () => 'var(--color-primary-element)')
 						.attr('stroke-width', (dRect) =>
-							dRect.data._upToTheRootHighlighted ? 2 : 1
+							dRect.data._upToTheRootHighlighted ? 2 : 1,
 						)
 
 					if (d.data._upToTheRootHighlighted) {

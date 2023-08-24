@@ -32,6 +32,6 @@ export const otherContacts = ({ $store, self }) => {
 		({ key }) => {
 			const contact = $store.getters.getContact(key)
 			return contact.addressbook.id === self.addressbook.id && contact.uid !== self.uid
-		}
+		},
 	)
 }

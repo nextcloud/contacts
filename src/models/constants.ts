@@ -45,7 +45,7 @@ export const CHART_ALL_CONTACTS: DefaultChart = t('contacts', 'Organization char
 export const ROUTE_CIRCLE = 'circle'
 export const ROUTE_CHART = 'chart'
 
-//Contact settings
+// Contact settings
 export const CONTACTS_SETTINGS: DefaultGroup = t('contacts', 'Contacts settings')
 
 // Default max number of items to show in the navigation
@@ -61,7 +61,7 @@ const MEMBER_LEVEL_OWNER: MemberLevel = 9
 // Circles member types
 const MEMBER_TYPE_SINGLEID: MemberType = 0
 const MEMBER_TYPE_USER: MemberType = 1
-const MEMBER_TYPE_GROUP : MemberType= 2
+const MEMBER_TYPE_GROUP : MemberType = 2
 const MEMBER_TYPE_MAIL: MemberType = 4
 const MEMBER_TYPE_CONTACT: MemberType = 8
 const MEMBER_TYPE_CIRCLE: MemberType = 16
@@ -69,6 +69,7 @@ const MEMBER_TYPE_CIRCLE: MemberType = 16
 export const CIRCLE_DESC = t('contacts', 'Circles are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses.')
 
 // Circles config flags
+/* eslint-disable no-tabs */
 const CIRCLE_CONFIG_PERSONAL: CircleConfig = 2				// Personal circle, only the owner can see it.
 const CIRCLE_CONFIG_SYSTEM: CircleConfig = 4				// System Circle (not managed by the official front-end). Meaning some config are limited
 const CIRCLE_CONFIG_VISIBLE: CircleConfig = 8				// Visible to everyone, if not visible, people have to know its name to be able to find it
@@ -84,6 +85,7 @@ const CIRCLE_CONFIG_LOCAL: CircleConfig = 4096				// Circle is not shared to oth
 const CIRCLE_CONFIG_ROOT: CircleConfig = 8192				// Circle cannot be a member of another Circle
 const CIRCLE_CONFIG_CIRCLE_INVITE: CircleConfig = 16384		// Circle must confirm when invited in another circle
 const CIRCLE_CONFIG_FEDERATED: CircleConfig = 32768			// Federated
+/* eslint-enable no-tabs */
 
 // Existing members types
 export const CIRCLES_MEMBER_TYPES = {
@@ -125,7 +127,6 @@ export const PUBLIC_CIRCLE_CONFIG = {
 	},
 }
 
-
 // Represents the picker options but also the
 // sorting of the members list
 export const CIRCLES_MEMBER_GROUPING = [
@@ -133,45 +134,45 @@ export const CIRCLES_MEMBER_GROUPING = [
 		id: `picker-${Type.SHARE_TYPE_USER}`,
 		label: t('contacts', 'Users'),
 		share: Type.SHARE_TYPE_USER,
-		type: MEMBER_TYPE_USER
+		type: MEMBER_TYPE_USER,
 	},
 	{
 		id: `picker-${Type.SHARE_TYPE_GROUP}`,
 		label: t('contacts', 'Contact groups'),
 		share: Type.SHARE_TYPE_GROUP,
-		type: MEMBER_TYPE_GROUP
+		type: MEMBER_TYPE_GROUP,
 	},
 	// TODO: implement federated
 	// {
-	// 	id: `picker-${Type.SHARE_TYPE_REMOTE}`,
-	// 	label: t('contacts', 'Federated users'),
-	// 	share: Type.SHARE_TYPE_REMOTE,
-	// 	type: MEMBER_TYPE_USER
+	// id: `picker-${Type.SHARE_TYPE_REMOTE}`,
+	// label: t('contacts', 'Federated users'),
+	// share: Type.SHARE_TYPE_REMOTE,
+	// type: MEMBER_TYPE_USER
 	// },
 	// {
-	// 	id: `picker-${Type.SHARE_TYPE_REMOTE_GROUP}`,
-	// 	label: t('contacts', 'Federated groups'),
-	// 	share: Type.SHARE_TYPE_REMOTE_GROUP,
-	// 	type: MEMBER_TYPE_GROUP
+	// id: `picker-${Type.SHARE_TYPE_REMOTE_GROUP}`,
+	// label: t('contacts', 'Federated groups'),
+	// share: Type.SHARE_TYPE_REMOTE_GROUP,
+	// type: MEMBER_TYPE_GROUP
 	// },
 	{
 		id: `picker-${Type.SHARE_TYPE_CIRCLE}`,
 		label: t('contacts', 'Circles'),
 		share: Type.SHARE_TYPE_CIRCLE,
-		type: MEMBER_TYPE_CIRCLE
+		type: MEMBER_TYPE_CIRCLE,
 	},
 	{
 		id: `picker-${Type.SHARE_TYPE_EMAIL}`,
 		label: t('contacts', 'Email addresses'),
 		share: Type.SHARE_TYPE_EMAIL,
-		type: MEMBER_TYPE_MAIL
+		type: MEMBER_TYPE_MAIL,
 	},
 	// TODO: implement SHARE_TYPE_CONTACT
 	{
-		id: `picker-contact`,
+		id: 'picker-contact',
 		label: t('contacts', 'Contacts'),
 		share: Type.SHARE_TYPE_EMAIL,
-		type: MEMBER_TYPE_CONTACT
+		type: MEMBER_TYPE_CONTACT,
 	},
 ]
 

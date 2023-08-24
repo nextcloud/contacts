@@ -3,23 +3,11 @@ module.exports = {
 		appName: true,
 		appVersion: true,
 	},
-
-	plugins: ['import'],
-	extends: ['@nextcloud'],
-
-	settings: {
-		'import/parsers': {
-			'@typescript-eslint/parser': ['.ts', '.tsx'],
-		},
-		'import/resolver': {
-			typescript: {
-				alwaysTryTypes: true,
-				paths: './tsconfig.json',
-			},
-		},
-	},
-
+	extends: [
+		'@nextcloud/eslint-config/typescript',
+	],
 	rules: {
-		'vue/no-reserved-component-names': 'off', // @nextcloud/vue has Button, Content components restricted by rule
+		// @nextcloud/vue has Button, Content components restricted by rule
+		'vue/no-reserved-component-names': 'off',
 	},
 }

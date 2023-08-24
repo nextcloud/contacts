@@ -77,7 +77,7 @@ export default {
 				t('contacts', 'Please confirm circle leave'),
 				OC.dialogs.YES_NO_BUTTONS,
 				this.leaveCircle,
-				true
+				true,
 			)
 		},
 		async leaveCircle(confirm) {
@@ -134,7 +134,7 @@ export default {
 				t('contacts', 'Please confirm circle deletion'),
 				OC.dialogs.YES_NO_BUTTONS,
 				this.deleteCircle,
-				true
+				true,
 			)
 		},
 		async deleteCircle(confirm) {

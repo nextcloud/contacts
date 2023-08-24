@@ -76,7 +76,7 @@ export default {
 				'{success} contact added to {name}',
 				'{success} contacts added to {name}',
 				this.success,
-				{ success: this.success, name: this.name }
+				{ success: this.success, name: this.name },
 			)
 		},
 
@@ -85,7 +85,7 @@ export default {
 				'Adding {success} contact to {name}',
 				'Adding {success} contacts to {name}',
 				this.success,
-				{ success: this.success, name: this.name }
+				{ success: this.success, name: this.name },
 			)
 		},
 
@@ -94,7 +94,7 @@ export default {
 				'{count} error',
 				'{count} errors',
 				this.failed,
-				{ count: this.failed }
+				{ count: this.failed },
 			)
 		},
 	},

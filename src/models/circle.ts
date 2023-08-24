@@ -36,13 +36,17 @@ export default class Circle {
 
 	/**
 	 * Creates an instance of Circle
+	 *
+	 * @param data
 	 */
-	constructor(data: Object) {
+	constructor(data: object) {
 		this.updateData(data)
 	}
 
 	/**
 	 * Update inner circle data, owner and initiator
+	 *
+	 * @param data
 	 */
 	updateData(data: any) {
 		if (typeof data !== 'object') {
@@ -166,6 +170,8 @@ export default class Circle {
 
 	/**
 	 * Add a member to this circle
+	 *
+	 * @param member
 	 */
 	addMember(member: Member) {
 		if (member.constructor.name !== Member.name) {
@@ -181,6 +187,8 @@ export default class Circle {
 
 	/**
 	 * Remove a member from this circle
+	 *
+	 * @param member
 	 */
 	deleteMember(member: Member) {
 		if (member.constructor.name !== Member.name) {

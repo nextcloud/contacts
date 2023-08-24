@@ -304,7 +304,7 @@ export default {
 							? 'llll' // date & time display
 							: this.inputType === 'date'
 								? 'll' // only date
-								: 'LTS' // only time
+								: 'LTS', // only time
 					)
 			}
 

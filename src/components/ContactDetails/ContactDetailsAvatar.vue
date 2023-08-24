@@ -221,8 +221,8 @@ export default {
 	},
 
 	methods: {
-		onLoad() {
-			console.debug(...arguments)
+		onLoad(...args) {
+			console.debug(...args)
 		},
 
 		/**
