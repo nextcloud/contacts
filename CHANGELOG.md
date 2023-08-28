@@ -1,5 +1,5 @@
 # Changelog
-## 5.4.0-alpha.1 - 2023-08-03
+## 5.4.0-beta.3 - 2023-08-03
 ### Added
 - Quick actions for contacts
 - Disabled wording to disabled address books
@@ -15,6 +15,7 @@
 - Import modal improvement
 - Hide contact groups if its empty
 - Hide empty properties
+- Always display Circles info
 ### Fixed
 - Import loads forever
 - Split up detailed-name again to fix vCard
@@ -23,6 +24,7 @@
 - Allow dynamic autoloading for classes added during upgrade
 - Don't show groups in share placeholder if group sharing is disabled
 - Add missing loading Icon
+- Move QR code close button away from QR code image
 ## 5.1.0 - 2023-02-02
 ### Added
 - Support for Nextcloud 26
