@@ -88,6 +88,7 @@ OC.L10N.register(
     "Name" : "Navn",
     "Title" : "Tittel",
     "Company" : "Bedrift",
+    "Edit" : "Redigere",
     "Clone contact" : "Dupliser kontakt",
     "Generate QR Code" : "Generer QR-kode",
     "Pick an address book" : "Velg en adressebok",
