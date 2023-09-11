@@ -304,7 +304,8 @@
 					:value.sync="localContact.groups"
 					:contact="contact"
 					:is-read-only="isReadOnly"
-					class="property--groups property--last" />
+					class="property--groups property--last"
+					@update:value="updateGroups" />
 			</div>
 			<!-- new property select -->
 			<AddNewProp v-if="!isReadOnly"
@@ -1029,9 +1030,6 @@ section.contact-details {
 	.vs__actions {
 		display: none;
 	}
-}
-::v-deep .vs__deselect {
-	display: none;
 }
 #pick-addressbook-modal {
 	::v-deep .modal-container {
