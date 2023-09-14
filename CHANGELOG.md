@@ -1,5 +1,5 @@
 # Changelog
-## 5.4.0-rc.1 - 2023-08-31
+## 5.4.0 - 2023-09-14
 ### Added
 - Quick actions for contacts
 - Disabled wording to disabled address books
