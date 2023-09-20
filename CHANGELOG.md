@@ -1,4 +1,7 @@
 # Changelog
+## 5.4.1 - 2023-09-20
+### Fixed
+- Deselect groups and groups update
 ## 5.4.0 - 2023-09-14
 ### Added
 - Quick actions for contacts
