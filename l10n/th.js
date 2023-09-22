@@ -96,6 +96,7 @@ OC.L10N.register(
     "Instant messaging" : "ข้อความโต้ตอบแบบทันที",
     "Phone" : "โทรศัพท์",
     "Mobile" : "มือถือ",
+    "Home mobile" : "มือถือที่บ้าน",
     "Fax" : "โทรสาร",
     "Fax home" : "แฟกซ์ที่บ้าน",
     "Fax work" : "แฟกซ์ที่ทำงาน",
