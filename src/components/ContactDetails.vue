@@ -908,6 +908,7 @@ export default {
 			this.fixed = validate(localContact)
 
 			this.localContact = localContact
+			this.newGroupsValue = [...this.localContact.groups]
 		},
 
 		onCtrlSave(e) {
