@@ -145,7 +145,7 @@ OC.L10N.register(
     "Unable to update contact" : "Impossible de mettre à jour le contact",
     "Search contacts …" : "Rechercher un contact...",
     "Add to {group}" : "Ajouter à {group}",
-    "Remove {type}" : "Supprimer {type}",
+    "Remove {type}" : "Retirer {type}",
     "Search {types}" : "Rechercher {types}",
     "Search for people to add" : "Chercher des personnes à ajouter",
     "No results" : "Aucun résultat",
