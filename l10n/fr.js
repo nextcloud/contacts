@@ -173,7 +173,7 @@ OC.L10N.register(
     "Remove member" : "Retirer le membre",
     "Pending" : "En attente",
     "Promote as sole owner" : "Promouvoir seul propriétaire",
-    "Promote to {level}" : "Promouvoir comme {level}",
+    "Promote to {level}" : "Promouvoir {level}",
     "Demote to {level}" : "Rétrograder {level}",
     "Could not delete the member {displayName}" : "Impossible de supprimer le membre {displayName}",
     "Could not change the member level to {level}" : "Impossible de changer le niveau du membre vers {level}",
