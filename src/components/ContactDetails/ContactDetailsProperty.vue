@@ -133,7 +133,8 @@ export default {
 		 * @return {boolean}
 		 */
 		isMultiple() {
-			return this.properties[this.property.name].multiple
+			// Make sure we have some model for the property and check for ITEM.PROP custom label format
+			return this.propModel.multiple
 		},
 
 		/**
