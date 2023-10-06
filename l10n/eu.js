@@ -103,7 +103,7 @@ OC.L10N.register(
     "More fields" : "Eremu gehiago",
     "Crop contact photo" : "Moztu kontaktuaren argazkia",
     "Cancel" : "Utzi",
-    "Upload a new picture" : "Kargatu irudi berri bat",
+    "Upload a new picture" : "Igo irudi berri bat",
     "Choose from Files" : "Aukeratu Fitxategiak-etik",
     "Get from " : "Hartu hemendik",
     "Download picture" : "Deskargatu irudia",
