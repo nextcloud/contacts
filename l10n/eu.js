@@ -128,6 +128,7 @@ OC.L10N.register(
     "Contact vCard as QR code" : "Kontaktuaren vCard QR kode bezala",
     "Pick an address book" : "Aukeratu helbide-liburu bat",
     "Select address book" : "Hautatu helbide-liburua",
+    "Go to talk conversation" : "Joan talk elkarrizketara",
     "View profile" : "Ikusi profila",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Kontaktu hau irakurtzeko soilik moduan dago. Ez daukazu baimenik kontaktu hau editatzeko.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Editatzen saiatu zaren kontaktua aldatu egin da. Mesedez freskatu kontaktua eskuz. Hurrengo editatze guztiak baztertu egingo dira.",
