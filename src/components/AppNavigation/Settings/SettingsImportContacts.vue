@@ -38,7 +38,7 @@
 					<h2>{{ t('contacts', 'Import contacts') }}</h2>
 					<NcSelect v-if="!isSingleAddressbook"
 						id="select-addressbook"
-						v-model="selectedAddressbook"
+						v-model="importDestination"
 						:allow-empty="false"
 						:options="options"
 						:disabled="isSingleAddressbook || isImporting"
