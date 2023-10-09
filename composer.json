@@ -20,7 +20,7 @@
 		"test:integration": "phpunit -c phpunit.integration.xml --fail-on-warning"
 	},
 	"require": {
-		"php": ">=7.4 <=8.2"
+		"php": ">=7.4 <=8.3"
 	},
 	"require-dev": {
         "christophwurst/nextcloud_testing": "^0.12.4",
