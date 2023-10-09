@@ -22,7 +22,7 @@ OC.L10N.register(
     "Add contacts" : "Pridať kontakty",
     "Loading …" : "Načítava sa...",
     "Add member" : "Pridať člena",
-    "Leave circle" : "Opustiť okruh",
+    "Leave circle" : "Opustiť kruh",
     "Delete circle" : "Zmazať kruh",
     "Contacts settings" : "Nastavenia kontaktov",
     "General settings" : "Všeobecné nastavenia",
