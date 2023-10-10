@@ -251,11 +251,18 @@ export default {
 					// https://jsperf.com/array-map-and-intersection-perf
 					const matchingTypes = this.propModel.options
 						.map(type => {
-							return {
-								type,
-								// "WORK,HOME" => ['WORK', 'HOME']
-								score: type.id.split(',').filter(value => selectedType.indexOf(value) !== -1).length,
+							let score = 0
+							const types = type.id.split(',') // "WORK,HOME" => ['WORK', 'HOME']
+
+							if (types.length === selectedType.length) {
+								// additional point for same length
+								score++
 							}
+
+							const intersection = types.filter(value => selectedType.includes(value))
+							score = score + intersection.length
+
+							return { type, score }
 						})
 
 					// Sort by score, filtering out the null score and selecting the first match
