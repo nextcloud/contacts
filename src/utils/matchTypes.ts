@@ -1,0 +1,50 @@
+/**
+ * @copyright Copyright (c) 2023 Daniel Kesselberg <mail@danielkesselberg.de>
+ *
+ * @author Daniel Kesselberg <mail@danielkesselberg.de>
+ *
+ * @license GNU AGPL version 3 or any later version
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU Affero General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU Affero General Public License for more details.
+ *
+ * You should have received a copy of the GNU Affero General Public License
+ * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ */
+
+/**
+ * Match a list of types against the available types
+ *
+ * @param {Array<string>} selectedTypes
+ * @param {Array<{id: string, name: string}>} options
+ */
+export function matchTypes(selectedTypes: Array<string>, options: Array<{id: string, name: string}>) {
+	const items = options.map(option => {
+		let score = 0
+		const types = option.id.split(',') // "WORK,HOME" => ['WORK', 'HOME']
+
+		const intersection = types.filter(value => selectedTypes.includes(value))
+		score = score + intersection.length
+
+		if (selectedTypes.length === types.length && selectedTypes.length === intersection.length) {
+			score++
+		}
+
+		return {
+			type: option,
+			score,
+		}
+	})
+
+	return items
+		.filter(value => value.score > 0)
+		.sort((a, b) => b.score - a.score)
+		.shift()
+}
