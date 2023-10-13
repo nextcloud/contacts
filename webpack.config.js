@@ -4,6 +4,7 @@ const webpackConfig = require('@nextcloud/webpack-vue-config')
 
 webpackConfig.entry['files-action'] = path.join(__dirname, 'src', 'files-action.js')
 webpackConfig.entry['admin-settings'] = path.join(__dirname, 'src', 'admin-settings.js')
+webpackConfig.entry['reference'] = path.join(__dirname, 'src', 'reference.js')
 webpackConfig.plugins.push(...[
 	new webpack.IgnorePlugin({
 		resourceRegExp: /^\.\/locale$/,
