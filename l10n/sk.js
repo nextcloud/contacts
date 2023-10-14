@@ -96,6 +96,7 @@ OC.L10N.register(
     "Download picture" : "Stiahnuť obrázok",
     "Delete picture" : "Zmazať obrázok",
     "Invalid image" : "Chybný obrázok",
+    "Error cropping picture" : "Chyba počas orezávania obrázku",
     "Pick an avatar" : "Zvoľte si avatar",
     "Error while processing the picture." : "Chyba pri spracovaní obrázka.",
     "Avatar downloaded from social network" : "Avatar stiahnutý zo sociálnej siete",
