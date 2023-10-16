@@ -50,6 +50,7 @@
     "Renaming of address book was not successful." : "Premenovanie adresára nebolo úspešné.",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Zdieľané s {num} entitou","Zdieľané s {num} entitami","Zdieľané s {num} entitami","Zdieľané s {num} entitami"],
     "Share with users or groups" : "Sprístupniť používateľom alebo skupinám",
+    "Share with users" : "Zdieľať s používateľmi",
     "No users or groups" : "Žiadny používatelia alebo skupiny",
     "can edit" : "môže upravovať",
     "Unable to delete the share" : "Nemožno zmazať zdieľanie.",
