@@ -38,7 +38,7 @@ import { Tooltip as VTooltip } from '@nextcloud/vue'
 import '../css/contacts.scss'
 
 // Dialogs css
-import '@nextcloud/dialogs/styles/toast.scss'
+import '@nextcloud/dialogs/dist/index.css'
 
 // CSP config for webpack dynamic chunk loading
 // eslint-disable-next-line
