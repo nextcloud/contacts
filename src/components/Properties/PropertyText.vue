@@ -200,7 +200,7 @@ export default {
 		/**
 		 * Watch textarea resize and update the gridSize accordingly
 		 */
-		resizeHeight: debounce(function(e) {
+		resizeHeight: debounce(function() {
 			if (this.$refs.textarea && this.$refs.textarea.offsetHeight) {
 				// adjust textarea size to content (2 = border)
 				this.$refs.textarea.style.height = `${this.$refs.textarea.scrollHeight + 2}px`

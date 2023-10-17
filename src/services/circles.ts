@@ -90,6 +90,7 @@ export const deleteCircle = async function(circleId: string) {
 	return response.data.ocs.data
 }
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 /**
  * Edit an existing circle
  *
@@ -103,6 +104,7 @@ export const editCircle = async function(circleId: string, type: CircleEditType,
 	const response = await axios.put(generateOcsUrl('apps/circles/circles/{circleId}/{type}', { circleId, type }), { value })
 	return response.data.ocs.data
 }
+/* eslint-enable @typescript-eslint/no-explicit-any */
 
 /**
  * Join a circle

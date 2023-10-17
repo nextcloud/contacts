@@ -23,6 +23,8 @@
 import { MemberLevel, MemberLevels, MemberType, MemberTypes } from './constants'
 import Circle from './circle'
 import logger from '../services/logger.js'
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export default class Member {
 
 	_data: any = {}

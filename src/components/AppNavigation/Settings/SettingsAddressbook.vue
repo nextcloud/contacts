@@ -306,7 +306,7 @@ export default {
 		renameAddressbook() {
 			this.editingName = true
 		},
-		async updateAddressbookName(e) {
+		async updateAddressbookName() {
 			const addressbook = this.addressbook
 			// New name for addressbook - inputed value from form
 			const newName = this.$refs.renameInput.$el.querySelector('input[type="text"]').value
