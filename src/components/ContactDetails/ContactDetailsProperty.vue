@@ -55,6 +55,7 @@ import PropertyText from '../Properties/PropertyText.vue'
 import PropertyMultipleText from '../Properties/PropertyMultipleText.vue'
 import PropertyDateTime from '../Properties/PropertyDateTime.vue'
 import PropertySelect from '../Properties/PropertySelect.vue'
+import { matchTypes } from '../../utils/matchTypes.ts'
 
 export default {
 	name: 'ContactDetailsProperty',
@@ -247,29 +248,10 @@ export default {
 						// we only use uppercase strings
 						.map(str => str.toUpperCase())
 
-					// Compare array and score them by how many matches they have to the selected type
-					// sorting directly is cleaner but slower
-					// https://jsperf.com/array-map-and-intersection-perf
-					const matchingTypes = this.propModel.options
-						.map(type => {
-							let score = 0
-							const types = type.id.split(',') // "WORK,HOME" => ['WORK', 'HOME']
-
-							if (types.length === selectedType.length) {
-								// additional point for same length
-								score++
-							}
-
-							const intersection = types.filter(value => selectedType.includes(value))
-							score = score + intersection.length
-
-							return { type, score }
-						})
-
-					// Sort by score, filtering out the null score and selecting the first match
-					const matchingType = matchingTypes
-						.sort((a, b) => b.score - a.score)
-						.filter(type => type.score > 0)[0]
+					const matchingType = matchTypes(
+						selectedType,
+						this.propModel.options,
+					)
 
 					if (matchingType) {
 						return matchingType.type
