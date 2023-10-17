@@ -1,4 +1,5 @@
 module.exports = {
+	ignorePatterns: ['src/**/*.d.ts'],
 	globals: {
 		appName: true,
 		appVersion: true,
