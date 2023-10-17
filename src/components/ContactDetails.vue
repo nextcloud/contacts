@@ -752,10 +752,10 @@ export default {
 		},
 
 		/**
-		 * Select the text in the input if it is still set to 'new Contact'
+		 * Select the text in the input if it is still set to 'Name'
 		 */
 		selectInput() {
-			if (this.$refs.fullname && this.$refs.fullname.value === t('contacts', 'New contact')) {
+			if (this.$refs.fullname && this.$refs.fullname.value === t('contacts', 'Name')) {
 				this.$refs.fullname.select()
 			}
 		},
