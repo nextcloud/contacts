@@ -27,6 +27,7 @@ import { CircleConfigs, MemberLevels } from './constants'
 
 type MemberList = Record<string, Member>
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export default class Circle {
 
 	_data: any = {}

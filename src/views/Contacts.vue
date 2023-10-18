@@ -353,7 +353,7 @@ export default {
 				.map(addressbook => {
 					return this.$store.dispatch('getContactsFromAddressBook', { addressbook })
 				}),
-			).then(results => {
+			).then(() => {
 				this.loadingContacts = false
 				if (!this.isMobile && !this.selectedChart) {
 					this.selectFirstContactIfNone()

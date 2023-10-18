@@ -140,7 +140,7 @@ export default {
 
 					// push contact to server and use limit
 					requests.push(limit(() => appendContactToGroup(contact, groupName)
-						.then((response) => {
+						.then(() => {
 							this.$store.dispatch('addContactToGroup', { contact, groupName })
 							this.processStatus.progress++
 							this.processStatus.success++

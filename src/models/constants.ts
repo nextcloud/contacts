@@ -59,6 +59,7 @@ const MEMBER_LEVEL_ADMIN: MemberLevel = 8
 const MEMBER_LEVEL_OWNER: MemberLevel = 9
 
 // Circles member types
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const MEMBER_TYPE_SINGLEID: MemberType = 0
 const MEMBER_TYPE_USER: MemberType = 1
 const MEMBER_TYPE_GROUP : MemberType = 2

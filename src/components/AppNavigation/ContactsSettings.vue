@@ -132,7 +132,7 @@ export default {
 				this.enableSocialSyncLoading = false
 			}
 		},
-		onLoad(event) {
+		onLoad() {
 			this.$emit('file-loaded', false)
 		},
 		async onOpen() {
