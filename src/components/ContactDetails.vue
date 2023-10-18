@@ -309,13 +309,61 @@
 					class="property--groups property--last"
 					@update:value="updateGroups" />
 			</div>
+			<div v-if="nextcloudVersionAtLeast28" class="related-resources">
+				<NcRelatedResourcesPanel v-if="!filesPanelHasError"
+					provider-id="account"
+					resource-type="files"
+					:description="desc"
+					:limit="5"
+					:header="t('contacts', 'Media shares with you')"
+					:item-id="contact.uid"
+					:primary="true"
+					@has-resources="value => hasRelatedResources = value"
+					@has-error="value => filesPanelHasError = value" />
+				<NcRelatedResourcesPanel v-if="!talkPanelHasError"
+					provider-id="account"
+					resource-type="talk"
+					:description="desc"
+					:limit="5"
+					:header="t('contacts', 'Talk conversations with you')"
+					:item-id="contact.uid"
+					:primary="true"
+					@has-resources="value => hasRelatedResources = value"
+					@has-error="value => talkPanelHasError = value" />
+				<NcRelatedResourcesPanel v-if="!calendarPanelHasError"
+					provider-id="account"
+					resource-type="calendar"
+					:description="desc"
+					:limit="5"
+					:header="t('contacts', 'Calendar events with you')"
+					:item-id="contact.uid"
+					:primary="true"
+					@has-resources="value => hasRelatedResources = value"
+					@has-error="value => calendarPanelHasError = value" />
+				<NcRelatedResourcesPanel v-if="!deckPanelHasError"
+					provider-id="account"
+					resource-type="deck"
+					:description="desc"
+					:limit="5"
+					:header="t('contacts', 'Deck cards with you')"
+					:item-id="contact.uid"
+					:primary="true"
+					@has-resources="value => hasRelatedResources = value"
+					@has-error="value => deckPanelHasError = value" />
+				<NcEmptyContent v-if="!hasRelatedResources"
+					:name="t('contacts', 'No shared items with this contact')">
+					<template #icon>
+						<FolderMultipleImage :size="20" />
+					</template>
+				</NcEmptyContent>
+			</div>
 			<!-- new property select -->
 			<AddNewProp v-if="!isReadOnly"
 				:bus="bus"
 				:contact="contact" />
 
 			<!-- Last modified-->
-			<PropertyRev v-if="contact.rev" :value="contact.rev" />
+			<PropertyRev v-if="contact.rev" :value="contact.rev" class="last-edit" />
 		</template>
 	</AppContentDetails>
 </template>
@@ -336,7 +384,9 @@ import {
 	NcSelect,
 	NcLoadingIcon as IconLoading,
 	NcButton,
+	NcRelatedResourcesPanel,
 	isMobile,
+	NcEmptyContent,
 } from '@nextcloud/vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import IconDownload from 'vue-material-design-icons/Download.vue'
@@ -351,6 +401,7 @@ import IconCopy from 'vue-material-design-icons/ContentCopy.vue'
 import PencilIcon from 'vue-material-design-icons/Pencil.vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
 import EyeCircleIcon from 'vue-material-design-icons/EyeCircle.vue'
+import FolderMultipleImage from 'vue-material-design-icons/FolderMultipleImage.vue'
 
 import rfcProps from '../models/rfcProps.js'
 import validate from '../services/validate.js'
@@ -400,6 +451,9 @@ export default {
 		PropertyRev,
 		PropertySelect,
 		NcButton,
+		NcRelatedResourcesPanel,
+		NcEmptyContent,
+		FolderMultipleImage,
 	},
 
 	mixins: [isMobile],
@@ -416,6 +470,11 @@ export default {
 		reloadBus: {
 			type: Object,
 			required: true,
+		},
+		desc: {
+			type: String,
+			required: true,
+			default: '',
 		},
 	},
 
@@ -437,7 +496,6 @@ export default {
 			pickedAddressbook: null,
 			editMode: false,
 			newGroupsValue: [],
-
 			contactDetailsSelector: '.contact-details',
 			excludeFromBirthdayKey: 'x-nc-exclude-from-birthday-calendar',
 
@@ -446,6 +504,12 @@ export default {
 			showMenuPopover: false,
 			profileEnabled,
 			isTalkEnabled,
+			hasRelatedResources: false,
+			deckPanelHasError: false,
+			filesPanelHasError: false,
+			talkPanelHasError: false,
+			calendarPanelHasError: false,
+
 		}
 	},
 
@@ -677,6 +741,9 @@ export default {
 		},
 		isInSystemAddressBook() {
 			return this.contact.addressbook.id === 'z-server-generated--system'
+		},
+		nextcloudVersionAtLeast28() {
+			return parseInt(OC.config.version.split('.')[0]) >= 28
 		},
 	},
 
@@ -990,6 +1057,7 @@ export default {
 	align-items: flex-start;
 	padding: 50px 0 20px;
 	gap: 15px;
+	float: left;
 }
 @media only screen and (max-width: 600px) {
 	.contact-details-wrapper {
@@ -1059,6 +1127,32 @@ section.contact-details {
 		background-color: var(--color-primary-element-light-hover) !important;
 
 	}
+.related-resources {
+	display:inline-grid;
+	margin-top: 88px;
+	flex-direction: column;
+	margin-bottom: -30px;
+}
+@media only screen and (max-width: 1600px) {
+	.related-resources {
+		float: left;
+		display: inline-grid;
+		margin-left: 80px;
+		flex-direction: column;
+		margin-bottom: 0;
+		margin-top: 40px;
+	}
+}
+.last-edit {
+	display: inline-flex;
+}
+// forcing the size only for contacts app to fit the text size of the contacts app
+::v-deep .related-resources__header h5 {
+	font-size: medium;
+	opacity: .7;
+	color: var(--color-primary-element);
+}
+
 .address-book {
   min-width: 260px !important;
 }
