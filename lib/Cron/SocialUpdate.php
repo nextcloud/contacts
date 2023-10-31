@@ -52,10 +52,10 @@ class SocialUpdate extends QueuedJob {
 		$this->userManager = $userManager;
 	}
 
-	protected function run($arguments) {
-		$userId = $arguments['userId'];
-		$offsetBook = $arguments['offsetBook'] ?? null;
-		$offsetContact = $arguments['offsetContact'] ?? null;
+	protected function run($argument) {
+		$userId = $argument['userId'];
+		$offsetBook = $argument['offsetBook'] ?? null;
+		$offsetContact = $argument['offsetContact'] ?? null;
 
 		// No need to do anything if the user is gone anyway
 		if (!$this->userManager->userExists($userId)) {
