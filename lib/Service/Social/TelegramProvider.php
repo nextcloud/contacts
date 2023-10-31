@@ -26,11 +26,12 @@ namespace OCA\Contacts\Service\Social;
 use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\RequestOptions;
 use OCA\Contacts\AppInfo\Application;
+use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use Psr\Log\LoggerInterface;
 
 class TelegramProvider implements ISocialProvider {
-	/** @var IClientService */
+	/** @var IClient */
 	private $httpClient;
 
 	/** @var LoggerInterface */
@@ -41,7 +42,7 @@ class TelegramProvider implements ISocialProvider {
 
 	public function __construct(IClientService $httpClient,
 								LoggerInterface $logger) {
-		$this->httpClient = $httpClient->NewClient();
+		$this->httpClient = $httpClient->newClient();
 		$this->logger = $logger;
 	}
 
