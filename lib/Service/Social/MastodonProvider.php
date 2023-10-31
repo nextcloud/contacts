@@ -23,17 +23,18 @@
 
 namespace OCA\Contacts\Service\Social;
 
+use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 
 class MastodonProvider implements ISocialProvider {
-	/** @var IClientService */
+	/** @var IClient */
 	private $httpClient;
 
 	/** @var string */
 	public $name = 'mastodon';
 
 	public function __construct(IClientService $httpClient) {
-		$this->httpClient = $httpClient->NewClient();
+		$this->httpClient = $httpClient->newClient();
 	}
 
 	/**
