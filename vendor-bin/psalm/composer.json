@@ -1,0 +1,11 @@
+{
+	"config": {
+		"platform": {
+			"php": "7.4"
+		}
+	},
+    "require": {
+        "psalm/phar": "^5.15",
+        "nextcloud/ocp": "25"
+    }
+}
