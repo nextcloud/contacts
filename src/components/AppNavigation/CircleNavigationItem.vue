@@ -24,7 +24,9 @@
 		:title="circle.displayName"
 		:to="circle.router">
 		<template #icon>
-			<IconCircles :size="20" />
+			<AccountStar v-if="circle.isOwner" :size="20" />
+			<AccountGroup v-else-if="circle.isMember" :size="20" />
+			<AccountGroupOutline v-else :size="20" />
 		</template>
 		<template v-if="loadingAction" slot="actions">
 			<ActionText>
@@ -98,11 +100,15 @@ import {
 	NcAppNavigationItem as AppNavigationItem,
 	NcLoadingIcon as IconLoading,
 } from '@nextcloud/vue'
+
 import ExitToApp from 'vue-material-design-icons/ExitToApp.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
 import LocationEnter from 'vue-material-design-icons/LocationEnter.vue'
-import IconCircles from '../Icons/IconCircles.vue'
+import AccountStar from 'vue-material-design-icons/AccountStar.vue'
+import AccountGroup from 'vue-material-design-icons/AccountGroup.vue'
+import AccountGroupOutline from 'vue-material-design-icons/AccountGroupOutline.vue'
+
 import Circle from '../../models/circle.ts'
 import CircleActionsMixin from '../../mixins/CircleActionsMixin.js'
 
@@ -119,7 +125,9 @@ export default {
 		IconAdd,
 		IconDelete,
 		LocationEnter,
-		IconCircles,
+		AccountStar,
+		AccountGroup,
+		AccountGroupOutline,
 		IconLoading,
 	},
 

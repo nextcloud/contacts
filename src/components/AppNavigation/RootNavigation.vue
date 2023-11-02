@@ -348,7 +348,12 @@ export default {
 		// generate circles menu from the circles store
 		circlesMenu() {
 			const menu = this.circles || []
-			menu.sort((a, b) => naturalCompare(a.toString(), b.toString(), { caseInsensitive: true }))
+			menu.sort((a, b) => {
+				if (a?.initiator?.level !== b?.initiator?.level && a?.initiator?.level && b?.initiator?.level) {
+					return b.initiator.level - a.initiator.level
+				}
+				return naturalCompare(a.toString(), b.toString(), { caseInsensitive: true })
+			})
 
 			return menu
 		},
