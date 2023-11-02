@@ -4,6 +4,9 @@
 ### Added
 - Nextcloud 28 file action compatibility
 - PHP8.3 support
+- Circle type icons
+### Changed
+- Sort circles by initiator level
 ### Fixed
 - Localization
 - Telephone number type matching
