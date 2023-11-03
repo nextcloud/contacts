@@ -42,7 +42,7 @@ class LoadContactsFilesActions implements IEventListener {
 		if (method_exists(Util::class, 'addInitScript')) {
 			Util::addInitScript(Application::APP_ID, 'contacts-files-action');
 		} else {
-			Util::addScript(Application::APP_ID, 'contacts-files-action');
+			Util::addScript(Application::APP_ID, 'contacts-files-action', 'files');
 		}
 	}
 }
