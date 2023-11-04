@@ -23,7 +23,7 @@
 		"php": ">=7.4 <=8.3"
 	},
 	"require-dev": {
-        "christophwurst/nextcloud_testing": "^0.12.4",
+        "christophwurst/nextcloud_testing": "^1.0.0",
 		"phpunit/phpunit": "^9",
 		"nextcloud/coding-standard": "^1.0.0"
 	}
