@@ -35,9 +35,12 @@ if (nextcloudVersionIsGreaterThanOr28) {
 		id: name,
 		displayName: () => t('contacts', 'Import'),
 		default: DefaultType.DEFAULT,
-		mime,
 		enabled: (nodes) => {
-			return nodes.every((node) => node.mime === mime && (node.permissions & Permission.READ))
+			if (nodes.length !== 1) {
+				return false
+			}
+			const node = nodes[0]
+			return node.mime === mime && (node.permissions & Permission.READ)
 		},
 		iconSvgInline: () => ContactSvg,
 		async exec(file) {
