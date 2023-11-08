@@ -34,7 +34,7 @@
 		<template #list>
 			<!-- All contacts group -->
 			<AppNavigationItem id="everyone"
-				:title="GROUP_ALL_CONTACTS"
+				:name="GROUP_ALL_CONTACTS"
 				:to="{
 					name: 'group',
 					params: { selectedGroup: GROUP_ALL_CONTACTS },
@@ -52,7 +52,7 @@
 			<!-- Organization chart -->
 			<AppNavigationItem v-if="existChart"
 				id="chart"
-				:title="CHART_ALL_CONTACTS"
+				:name="CHART_ALL_CONTACTS"
 				:to="{
 					name: 'chart',
 					params: { selectedChart: GROUP_ALL_CONTACTS },
@@ -62,7 +62,7 @@
 			<!-- Not grouped group -->
 			<AppNavigationItem v-if="ungroupedContacts.length > 0"
 				id="notgrouped"
-				:title="GROUP_NO_GROUP_CONTACTS"
+				:name="GROUP_NO_GROUP_CONTACTS"
 				:to="{
 					name: 'group',
 					params: { selectedGroup: GROUP_NO_GROUP_CONTACTS },
@@ -80,7 +80,7 @@
 			<!-- Recently contacted group -->
 			<AppNavigationItem v-if="isContactsInteractionEnabled && recentlyContactedContacts && recentlyContactedContacts.contacts.length > 0"
 				id="recentlycontacted"
-				:title="GROUP_RECENTLY_CONTACTED"
+				:name="GROUP_RECENTLY_CONTACTED"
 				:to="{
 					name: 'group',
 					params: { selectedGroup: GROUP_RECENTLY_CONTACTED },
@@ -98,7 +98,7 @@
 			<AppNavigationCaption id="newgroup"
 				:force-menu="true"
 				:menu-open.sync="isNewGroupMenuOpen"
-				:title="t('contacts', 'Contact groups')"
+				:name="t('contacts', 'Contact groups')"
 				@click.prevent.stop="toggleNewGroupMenu">
 				<template #actionsTriggerIcon>
 					<IconAdd :size="20" />
@@ -125,14 +125,14 @@
 			<template v-if="isCirclesEnabled">
 				<!-- Toggle groups ellipsis -->
 				<AppNavigationItem v-if="groupsMenu.length > ELLIPSIS_COUNT"
-					:title="collapseGroupsTitle"
+					:name="collapseGroupsTitle"
 					class="app-navigation__collapse"
 					icon=""
 					@click="onToggleGroups" />
 
 				<!-- New circle button caption and modal -->
 				<AppNavigationCaption id="newcircle"
-					:title="t('contacts', 'Circles')">
+					:name="t('contacts', 'Circles')">
 					<template #actions>
 						<NcActionButton @click="toggleNewCircleModal">
 							<template #icon>
@@ -155,7 +155,7 @@
 
 					<!-- Toggle circles ellipsis -->
 					<AppNavigationItem v-if="circlesMenu.length > ELLIPSIS_COUNT"
-						:title="collapseCirclesTitle"
+						:name="collapseCirclesTitle"
 						class="app-navigation__collapse"
 						icon=""
 						@click="onToggleCircles" />

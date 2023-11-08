@@ -25,7 +25,8 @@
 	<AppContentDetails>
 		<!-- nothing selected or contact not found -->
 		<EmptyContent v-if="!contact"
-			:title="t('contacts', 'No contact selected')"
+			class="empty-content"
+			:name="t('contacts', 'No contact selected')"
 			:description="t('contacts', 'Select a contact on the list to begin')">
 			<template #icon>
 				<IconContact :size="20" />
@@ -188,7 +189,7 @@
 				id="qrcode-modal"
 				size="small"
 				:clear-view-delay="-1"
-				:title="contact.displayName"
+				:name="contact.displayName"
 				:close-button-contained="false"
 				@close="closeQrModal">
 				<img :src="`data:image/svg+xml;base64,${qrcode}`"
@@ -201,10 +202,11 @@
 			<Modal v-if="showPickAddressbookModal"
 				id="pick-addressbook-modal"
 				:clear-view-delay="-1"
-				:title="t('contacts', 'Pick an address book')"
+				:name="t('contacts', 'Pick an address book')"
 				@close="closePickAddressbookModal">
 				<NcSelect ref="pickAddressbook"
 					v-model="pickedAddressbook"
+					class="address-book"
 					:allow-empty="false"
 					:options="copyableAddressbooksOptions"
 					:placeholder="t('contacts', 'Select address book')"
@@ -253,12 +255,12 @@
 					</Actions>
 					<NcButton v-if="isTalkEnabled && isInSystemAddressBook"
 						:aria-label="(t('contacts', 'Go to talk conversation'))"
-						:title="(t('contacts', 'Go to talk conversation'))"
+						:name="(t('contacts', 'Go to talk conversation'))"
 						class="icon-talk"
 						:href="callUrl" />
 					<NcButton v-if="profilePageLink"
 						:aria-label="(t('contacts','View profile'))"
-						:title="(t('contacts','View profile'))"
+						:name="(t('contacts','View profile'))"
 						:href="profilePageLink">
 						<template #icon>
 							<IconAccount :size="20" />
@@ -1026,7 +1028,7 @@ section.contact-details {
 	}
 }
 ::v-deep .v-select.select {
-	min-width: 0 !important;
+	min-width: 0;
 	flex: 1 auto;
 	.vs__actions {
 		display: none;
@@ -1057,5 +1059,10 @@ section.contact-details {
 		background-color: var(--color-primary-element-light-hover) !important;
 
 	}
-
+.address-book {
+  min-width: 260px !important;
+}
+.empty-content {
+	height: 100%;
+}
 </style>

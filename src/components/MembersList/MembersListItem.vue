@@ -30,8 +30,8 @@
 		:key="source.singleId"
 		:avatar-size="44"
 		:is-no-user="!source.isUser"
-		:subtitle="levelName"
-		:title="source.displayName"
+		:subname="levelName"
+		:name="source.displayName"
 		:user="source.userId"
 		class="members-list__item">
 		<!-- Accept invite -->

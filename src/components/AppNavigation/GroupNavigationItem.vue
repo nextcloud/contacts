@@ -22,7 +22,7 @@
 <template>
 	<AppNavigationItem :key="group.key"
 		:to="group.router"
-		:title="group.name">
+		:name="group.name">
 		<template #icon>
 			<IconContact :size="20" />
 		</template>

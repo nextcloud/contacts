@@ -31,7 +31,7 @@
 			<Actions menu-align="right"
 				event=""
 				type="secondary"
-				:menu-title="t('contacts', 'Add more info')"
+				:menu-name="t('contacts', 'Add more info')"
 				@click.native.prevent>
 				<template #icon>
 					<IconAdd :size="20" />

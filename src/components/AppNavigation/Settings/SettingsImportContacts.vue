@@ -32,7 +32,7 @@
 			<Modal v-if="isOpened"
 				ref="modal"
 				class="import-contact__modal"
-				:title="t('contacts', 'Import contacts')"
+				:name="t('contacts', 'Import contacts')"
 				@close="toggleModal">
 				<section class="import-contact__modal-addressbook">
 					<h2>{{ t('contacts', 'Import contacts') }}</h2>

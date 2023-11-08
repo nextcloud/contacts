@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<EmptyContent :description="desc"
-			:title="title"
+			:name="title"
 			class="processing-screen__wrapper">
 			<template #icon>
 				<IconContact :size="20" />
