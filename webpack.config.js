@@ -20,6 +20,10 @@ webpackConfig.module.rules.push({
 
 webpackConfig.resolve.extensions = ['.js', '.vue', '.ts', '.tsx']
 
-webpackConfig.resolve.fallback = {"fs": false}
+webpackConfig.resolve.fallback = { fs: false }
+
+webpackConfig.resolve.alias = {
+	vue$: 'vue/dist/vue.esm.js',
+}
 
 module.exports = webpackConfig

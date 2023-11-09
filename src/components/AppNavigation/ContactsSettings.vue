@@ -22,10 +22,10 @@
 
 <template>
 	<AppSettingsDialog id="app-settings-dialog"
-		:title="t('contacts', 'Contacts settings')"
+		:name="t('contacts', 'Contacts settings')"
 		:show-navigation="true"
 		:open.sync="showSettings">
-		<AppSettingsSection id="general-settings" :title="t('contacts', 'General settings')">
+		<AppSettingsSection id="general-settings" :name="t('contacts', 'General settings')">
 			<CheckboxRadioSwitch :checked="enableSocialSync"
 				:loading="enableSocialSyncLoading"
 				:disabled="enableSocialSyncLoading"
@@ -40,7 +40,7 @@
 			</CheckboxRadioSwitch>
 			<SettingsSortContacts class="contacts-settings-modal__form__row" />
 		</AppSettingsSection>
-		<AppSettingsSection id="address-books" :title="t('contacts', 'Address books')">
+		<AppSettingsSection id="address-books" :name="t('contacts', 'Address books')">
 			<div class="contacts-settings-modal__form">
 				<div class="contacts-settings-modal__form__row">
 					<ul id="addressbook-list" class="addressbook-list">
@@ -150,6 +150,7 @@ export default {
 
 .app-settings-section {
 	margin-bottom: 45px;
+	padding: 25px 25px 0 25px;
 }
 
 .social-sync__checkbox, .settings-new-addressbook  {

@@ -36,7 +36,7 @@
 			</div>
 
 			<!-- Loading -->
-			<EmptyContent v-if="loading" :title="t('contacts', 'Loading …')">
+			<EmptyContent v-if="loading" :name="t('contacts', 'Loading …')">
 				<template #icon>
 					<IconLoading :size="20" />
 				</template>
@@ -55,7 +55,7 @@
 				</transition-group>
 
 				<!-- No recommendations -->
-				<EmptyContent v-if="dataSet.length === 0" :title="t('contacts', 'Search for people to add')">
+				<EmptyContent v-if="dataSet.length === 0" :name="t('contacts', 'Search for people to add')">
 					<template #icon>
 						<IconSearch :size="20" />
 					</template>
@@ -70,7 +70,7 @@
 					:estimate-size="44"
 					:extra-props="{ selection: selectionSet, onClick }" />
 
-				<EmptyContent v-else-if="searchQuery" :title="t('contacts', 'No results')">
+				<EmptyContent v-else-if="searchQuery" :name="t('contacts', 'No results')">
 					<template #icon>
 						<IconSearch :size="20" />
 					</template>

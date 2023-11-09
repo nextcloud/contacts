@@ -22,7 +22,7 @@
 
 <template>
 	<AppContent v-if="!circle">
-		<EmptyContent :title="t('contacts', 'Please select a circle')">
+		<EmptyContent :name="t('contacts', 'Please select a circle')">
 			<template #icon>
 				<IconCircles :size="20" />
 			</template>
@@ -30,7 +30,7 @@
 	</AppContent>
 
 	<AppContent v-else-if="loading">
-		<EmptyContent :title="t('contacts', 'Loading circle …')">
+		<EmptyContent class="empty-content" :name="t('contacts', 'Loading circle …')">
 			<template #icon>
 				<IconLoading :size="20" />
 			</template>
@@ -50,13 +50,13 @@
 			<!-- not a member -->
 			<template v-if="!circle.isMember">
 				<!-- Pending request validation -->
-				<EmptyContent v-if="circle.isPendingMember" :title="t('contacts', 'Your request to join this circle is pending approval')">
+				<EmptyContent v-if="circle.isPendingMember" :name="t('contacts', 'Your request to join this circle is pending approval')">
 					<template #icon>
 						<IconLoading :size="20" />
 					</template>
 				</EmptyContent>
 
-				<EmptyContent v-else :title="t('contacts', 'You are not a member of {circle}', { circle: circle.displayName})">
+				<EmptyContent v-else :name="t('contacts', 'You are not a member of {circle}', { circle: circle.displayName})">
 					<template #icon>
 						<IconCircles :size="20" />
 					</template>
@@ -175,5 +175,8 @@ button {
 	span {
 		margin-right: 10px;
 	}
+}
+.empty-content {
+  height: 100%;
 }
 </style>

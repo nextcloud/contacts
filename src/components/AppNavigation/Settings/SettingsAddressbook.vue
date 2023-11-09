@@ -44,7 +44,7 @@
 			<Button v-if="!addressbook.readOnly"
 				v-tooltip.top="sharedWithTooltip"
 				:class="{'addressbook__share--shared': hasShares}"
-				:title="sharedWithTooltip"
+				:name="sharedWithTooltip"
 				href="#"
 				class="addressbook__share"
 				@click="toggleShare">

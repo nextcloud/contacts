@@ -21,7 +21,7 @@
   -->
 <template>
 	<AppNavigationItem :key="circle.key"
-		:title="circle.displayName"
+		:name="circle.displayName"
 		:to="circle.router">
 		<template #icon>
 			<AccountStar v-if="circle.isOwner" :size="20" />

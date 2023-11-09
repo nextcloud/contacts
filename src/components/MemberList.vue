@@ -23,21 +23,21 @@
 <template>
 	<AppContentList v-if="!hasMembers" class="members-list">
 		<template v-if="loading">
-			<EmptyContent :title="t('contacts', 'Loading members list …')">
+			<EmptyContent class="empty-content" :name="t('contacts', 'Loading members list …')">
 				<template #icon>
 					<IconLoading :size="20" />
 				</template>
 			</EmptyContent>
 		</template>
 		<template v-else-if="!circle.isMember">
-			<EmptyContent :title="t('contacts', 'The list of members is only visible to members of this circle')">
+			<EmptyContent class="empty-content" :name="t('contacts', 'The list of members is only visible to members of this circle')">
 				<template #icon>
 					<IconContact :size="20" />
 				</template>
 			</EmptyContent>
 		</template>
 		<template v-else>
-			<EmptyContent :title="t('contacts', 'You currently have no access to the member list')">
+			<EmptyContent class="empty-content" :name="t('contacts', 'You currently have no access to the member list')">
 				<template #icon>
 					<IconContact :size="20" />
 				</template>
@@ -338,5 +338,8 @@ export default {
 	&::v-deep .empty-content {
 		margin: auto;
 	}
+}
+.empty-content {
+  height: 100%;
 }
 </style>

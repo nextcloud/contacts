@@ -4,14 +4,14 @@
 			<h3>
 				{{ t('contacts', 'Chart') }}:
 			</h3>
-			<Multiselect v-model="chart"
+			<NcSelect v-model="chart"
 				class="chart-selection"
 				:disabled="data.length === 1"
 				:options="charts"
 				:allow-empty="false"
 				:searchable="false"
 				:placeholder="placeholder"
-				track-by="id"
+				input-id="select-chart-input"
 				label="label"
 				@input="chartChanged" />
 		</div>
@@ -23,7 +23,7 @@
 import * as d3 from 'd3'
 import ChartTemplate from './ChartTemplate.vue'
 import { getLocale } from '@nextcloud/l10n'
-import { NcMultiselect as Multiselect } from '@nextcloud/vue'
+import { NcSelect } from '@nextcloud/vue'
 import { OrgChart } from 'd3-org-chart'
 import router from './../router/index.js'
 import Vue from 'vue'
@@ -31,7 +31,7 @@ import Vue from 'vue'
 export default {
 	name: 'OrgChart',
 	components: {
-		Multiselect,
+		NcSelect,
 	},
 	props: {
 		data: {

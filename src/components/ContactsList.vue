@@ -180,7 +180,8 @@ export default {
 
 // Search field
 .search-contacts-field {
-	padding: 5px 10px 5px 40px;
+	padding: 5px 10px 5px 50px;
+	margin-top: 4px;
 
 	> input {
 		width: 100%;

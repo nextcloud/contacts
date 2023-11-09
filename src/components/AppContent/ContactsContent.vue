@@ -22,7 +22,7 @@
 
 <template>
 	<AppContent v-if="loading">
-		<EmptyContent :title="t('contacts', 'Loading contacts …')">
+		<EmptyContent class="empty-content" :name="t('contacts', 'Loading contacts …')">
 			<template #icon>
 				<IconLoading :size="20" />
 			</template>
@@ -30,7 +30,7 @@
 	</AppContent>
 
 	<AppContent v-else-if="isEmptyGroup && !isRealGroup">
-		<EmptyContent :title="t('contacts', 'There are no contacts yet')">
+		<EmptyContent class="empty-content" :name="t('contacts', 'There are no contacts yet')">
 			<template #icon>
 				<IconContact :size="20" />
 			</template>
@@ -43,7 +43,7 @@
 	</AppContent>
 
 	<AppContent v-else-if="isEmptyGroup && isRealGroup">
-		<EmptyContent :title=" t('contacts', 'There are no contacts in this group')">
+		<EmptyContent class="empty-content" :name=" t('contacts', 'There are no contacts in this group')">
 			<template #icon>
 				<IconContact :size="20" />
 			</template>
@@ -192,3 +192,8 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+.empty-content {
+  height: 100%;
+}
+</style>

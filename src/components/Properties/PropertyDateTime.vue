@@ -58,7 +58,7 @@
 
 			<div class="property__value">
 				<!-- Real input where the picker shows -->
-				<DatetimePicker v-if="!isReadOnly"
+				<DateTimePicker v-if="!isReadOnly"
 					:value="vcardTimeLocalValue.toJSDate()"
 					:minute-step="10"
 					:lang="lang"
@@ -89,7 +89,7 @@
 import debounce from 'debounce'
 import moment from 'moment'
 import {
-	NcDatetimePicker as DatetimePicker,
+	NcDateTimePicker as DateTimePicker,
 	NcSelect,
 } from '@nextcloud/vue'
 import { getLocale } from '@nextcloud/l10n'
@@ -104,7 +104,7 @@ export default {
 
 	components: {
 		NcSelect,
-		DatetimePicker,
+		DateTimePicker,
 		PropertyTitle,
 		PropertyActions,
 	},

@@ -2,7 +2,7 @@
 	<ListItem :id="id"
 		:key="source.key"
 		class="list-item-style envelope"
-		:title="source.displayName"
+		:name="source.displayName"
 		:to="{ name: 'contact', params: { selectedGroup: selectedGroup, selectedContact: source.key } }">
 		<!-- @slot Icon slot -->
 
