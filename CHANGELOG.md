@@ -5,13 +5,16 @@
 - Nextcloud 28 file action compatibility
 - PHP8.3 support
 - Circle type icons
+- Shared items and events for each contact
 ### Changed
 - Sort circles by initiator level
+- Upgrade to Nextcloud vue 8.0.0
 ### Fixed
 - Localization
 - Telephone number type matching
 - Lost contact groups
 - Group deselection
+- Permission check on files-actions
 
 ## 5.4.0-rc.1 - 2023-08-31
 ### Added
