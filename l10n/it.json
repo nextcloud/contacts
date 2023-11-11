@@ -80,6 +80,7 @@
     "Last modified" : "Ultima modifica",
     "Sort by {sorting}" : "Ordina per {sorting}",
     "Manages" : "Gestisci",
+    "Oversees" : "Supervisiona",
     "An error happened during the config change" : "Si è verificato un errore durante il cambio di configurazione",
     "Password protection" : "Protezione password",
     "Enforce password protection on files shared to this circle" : "Applica la protezione con password ai file condivisi in questa cerchia",
