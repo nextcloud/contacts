@@ -309,7 +309,7 @@
 					class="property--groups property--last"
 					@update:value="updateGroups" />
 			</div>
-			<div v-if="nextcloudVersionAtLeast28" class="related-resources">
+			<div v-if="nextcloudVersionAtLeast28 && !editMode" class="related-resources">
 				<NcRelatedResourcesPanel v-if="!filesPanelHasError"
 					provider-id="account"
 					resource-type="files"
@@ -350,7 +350,7 @@
 					:primary="true"
 					@has-resources="value => hasRelatedResources = value"
 					@has-error="value => deckPanelHasError = value" />
-				<NcEmptyContent v-if="!hasRelatedResources"
+				<NcEmptyContent v-if="!hasRelatedResources && !loadingData"
 					:name="t('contacts', 'No shared items with this contact')">
 					<template #icon>
 						<FolderMultipleImage :size="20" />
@@ -473,7 +473,7 @@ export default {
 		},
 		desc: {
 			type: String,
-			required: true,
+			required: false,
 			default: '',
 		},
 	},
