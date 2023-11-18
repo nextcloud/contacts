@@ -98,7 +98,7 @@
     "stylelint": "^14.16.1",
     "stylelint-config-recommended-scss": "^7.0.0",
     "ts-jest": "^29.1.1",
-    "ts-loader": "^9.5.0",
+    "ts-loader": "^9.5.1",
     "typescript": "^5.1.6",
     "vue-template-compiler": "~2.7"
   },
