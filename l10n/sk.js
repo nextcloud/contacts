@@ -29,6 +29,7 @@ OC.L10N.register(
     "Update avatars from social media" : "Aktualizovať avatarov zo sociálneho média",
     "(refreshed once per week)" : "(aktualizovať raz za týždeň)",
     "Address books" : "Adresáre",
+    "Export" : "Export",
     "Send email" : "Odoslať email",
     "Circles" : "Kruhy",
     "Create a new circle" : "Vytvoriť nový kruh",
