@@ -1,6 +1,6 @@
 # Changelog
 
-## 5.5.0 – unreleased
+## 5.5.0-rc.1 – unreleased
 ### Added
 - Nextcloud 28 file action compatibility
 - PHP8.3 support
@@ -15,6 +15,7 @@
 - Lost contact groups
 - Group deselection
 - Permission check on files-actions
+- Empty content showing on edit mode
 
 ## 5.4.0-rc.1 - 2023-08-31
 ### Added
