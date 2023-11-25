@@ -132,7 +132,7 @@ OC.L10N.register(
     "View profile" : "Profil ansehen",
     "Media shares with you" : "Mit Ihnen geteilte Medien",
     "Talk conversations with you" : "Talk-Unterhaltungen mit Ihnen",
-    "Calendar events with you" : "Calendereinträge mit Ihnen",
+    "Calendar events with you" : "Kalendereinträge mit Ihnen",
     "Deck cards with you" : "Deck-Karten mit Ihnen",
     "No shared items with this contact" : "Keine geteilten Objekte mit diesem Kontakt",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Dieser Kontakt ist schreibgeschützt. Sie haben keine Berechtigung, diesen Kontakt zu bearbeiten.",
