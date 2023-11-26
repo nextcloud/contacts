@@ -127,6 +127,7 @@ OC.L10N.register(
     "Contact vCard as QR code" : "Yhteystiedon vCard QR-koodina",
     "Pick an address book" : "Valitse osoitekirja",
     "Select address book" : "Valitse osoitekirja",
+    "View profile" : "Näytä profiili",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Tämä yhteystieto on \"vain luku\"-tilassa. Sinulla ei ole oikeuksia muokata tätä yhteystietoa.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Yhteystieto, jota yritit muokata, muuttui. Ole hyvä ja päivitä yhteystieto manuaalisesti. Seuraavia muutoksia ei tallenneta.",
     "Address book" : "Osoitekirja",
