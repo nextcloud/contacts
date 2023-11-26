@@ -56,7 +56,7 @@
 					</span>
 				</NcSelect>
 				<p v-else>
-					{{ localValue.length === 0 ? t('contacts','none'): localValue.toString() }}
+					{{ localValue.length === 0 ? t('contacts','None'): localValue.toString() }}
 				</p>
 			</div>
 
