@@ -25,6 +25,7 @@
     "Search contacts …" : "Cari kontak ...",
     "No results" : "Tidak ada hasil",
     "Pending" : "Tunggu",
+    "None" : "Tidak ada",
     "New contact" : "Kontak baru",
     "Close" : "Tutup",
     "Import" : "Impor",
@@ -65,7 +66,6 @@
     "Pager" : "Pager",
     "Voice" : "Suara",
     "Social network" : "Media sosial",
-    "None" : "Tidak ada",
     "Unknown" : "Tidak diketahui"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

@@ -27,6 +27,7 @@ OC.L10N.register(
     "Search contacts …" : "Cari kontak ...",
     "No results" : "Tidak ada hasil",
     "Pending" : "Tunggu",
+    "None" : "Tidak ada",
     "New contact" : "Kontak baru",
     "Close" : "Tutup",
     "Import" : "Impor",
@@ -67,7 +68,6 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Suara",
     "Social network" : "Media sosial",
-    "None" : "Tidak ada",
     "Unknown" : "Tidak diketahui"
 },
 "nplurals=1; plural=0;");

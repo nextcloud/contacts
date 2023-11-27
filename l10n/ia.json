@@ -20,6 +20,7 @@
     "Name" : "Nomine",
     "Title" : "Titulo",
     "Pending" : "Pendente",
+    "None" : "Nulle",
     "New contact" : "Nove contacto",
     "Close" : "Clauder",
     "Import" : "Importar",
@@ -60,7 +61,6 @@
     "Voice" : "Voce",
     "Social network" : "Medios Social",
     "Relative" : "Relative",
-    "None" : "Nulle",
     "Unknown" : "Incognite"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

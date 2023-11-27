@@ -52,6 +52,7 @@
     "Select type" : "Zgjidhni llojin",
     "Select Date" : "Zgjidhni Datën",
     "Add contact in group" : "Shto kontaktin në grup",
+    "None" : "Asnjë",
     "New contact" : "Kontakt i ri",
     "Close" : "Mbylleni",
     "Import" : "Import",
@@ -115,7 +116,6 @@
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "None" : "Asnjë",
     "Unknown" : "I/E panjohur"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

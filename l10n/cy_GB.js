@@ -46,6 +46,7 @@ OC.L10N.register(
     "Select type" : "Dewiswch y math",
     "Select Date" : "Dewis Dyddiad",
     "Add contact in group" : "Ychwanegu cyswllt yn y grŵp",
+    "None" : "Dim",
     "Select option" : "Dewiswch opsiwn",
     "New contact" : "Cysylltiad newydd",
     "Unable to create the contact." : "Methu creu'r cyswllt.",
@@ -113,7 +114,6 @@ OC.L10N.register(
     "Gender" : "Rhyw",
     "Female" : "Benyw",
     "Male" : "Gwryw",
-    "None" : "Dim",
     "Unknown" : "Anhysbys",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt"]
 },

@@ -17,6 +17,7 @@
     "Name" : "নাম",
     "Title" : "শিরোনাম",
     "Pending" : "মুলতুবি",
+    "None" : "কোনটিই নয়",
     "New contact" : "নতুন ঠিকানা",
     "Close" : "বন্ধ",
     "Import" : "আমদানি",
@@ -47,7 +48,6 @@
     "Fax" : "ফ্যাক্স",
     "Pager" : "পেজার",
     "Voice" : "কন্ঠ",
-    "None" : "কোনটিই নয়",
     "Unknown" : "অজানা"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

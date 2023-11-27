@@ -30,6 +30,7 @@ OC.L10N.register(
     "Pending" : "Hangend",
     "Select type" : "Kies tipe",
     "Select Date" : "Kies Datum",
+    "None" : "Geen",
     "Select option" : "Kies opsie",
     "New contact" : "Nuwe kontak",
     "Close" : "Sluit",
@@ -94,7 +95,6 @@ OC.L10N.register(
     "Gender" : "Geslag",
     "Female" : "Vroulik",
     "Male" : "Manlik",
-    "None" : "Geen",
     "Unknown" : "Onbekend"
 },
 "nplurals=2; plural=(n != 1);");

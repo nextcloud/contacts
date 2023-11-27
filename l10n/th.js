@@ -61,6 +61,7 @@ OC.L10N.register(
     "Search contacts …" : "ค้นหารายชื่อผู้ติดต่อ …",
     "No results" : "ไม่มีผลลัพธ์",
     "Pending" : "รอดำเนินการ",
+    "None" : "ไม่มี",
     "Select option" : "เลือกตัวเลือก",
     "New contact" : "รายชื่อใหม่",
     "Close" : "ปิด",
@@ -104,7 +105,6 @@ OC.L10N.register(
     "Voice" : "เสียงพูด",
     "Social network" : "เครือข่ายโซเชียล",
     "Relative" : "สัมพัทธ์",
-    "None" : "ไม่มี",
     "Unknown" : "ไม่ทราบ"
 },
 "nplurals=1; plural=0;");

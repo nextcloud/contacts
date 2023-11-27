@@ -77,6 +77,7 @@ OC.L10N.register(
     "Select type" : "Veldu gerð",
     "Select Date" : "Veldu dagsetningu",
     "Add contact in group" : "Bæta tengilið í hóp",
+    "None" : "Ekkert",
     "Select option" : "Veldu valkost",
     "New contact" : "Nýr tengiliður",
     "Unable to create the contact." : "Tókst ekki að búa til tengiliðinn.",
@@ -149,7 +150,6 @@ OC.L10N.register(
     "Gender" : "Kyn",
     "Female" : "Kona",
     "Male" : "Karl",
-    "None" : "Ekkert",
     "Unknown" : "Óþekkt",
     "Spoken languages" : "Töluð tungumál",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Mistókst að lesa {failed} tengilið","Mistókst að lesa {failed} tengiliði"]

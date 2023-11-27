@@ -19,6 +19,7 @@ OC.L10N.register(
     "Name" : "নাম",
     "Title" : "শিরোনাম",
     "Pending" : "মুলতুবি",
+    "None" : "কোনটিই নয়",
     "New contact" : "নতুন ঠিকানা",
     "Close" : "বন্ধ",
     "Import" : "আমদানি",
@@ -49,7 +50,6 @@ OC.L10N.register(
     "Fax" : "ফ্যাক্স",
     "Pager" : "পেজার",
     "Voice" : "কন্ঠ",
-    "None" : "কোনটিই নয়",
     "Unknown" : "অজানা"
 },
 "nplurals=2; plural=(n != 1);");

@@ -19,6 +19,7 @@ OC.L10N.register(
     "Name" : "Namn",
     "Title" : "Tittel",
     "Pending" : "Under vegs",
+    "None" : "Ingen",
     "Close" : "Lukk",
     "Import" : "Importer",
     "Not grouped" : "Ikkje gruppert",
@@ -48,7 +49,6 @@ OC.L10N.register(
     "Fax" : "Faks",
     "Pager" : "Personsøkjar",
     "Voice" : "Tale",
-    "None" : "Ingen",
     "Unknown" : "Ukjend"
 },
 "nplurals=2; plural=(n != 1);");

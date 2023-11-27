@@ -38,6 +38,7 @@ OC.L10N.register(
     "No results" : "Үр дүн байхгүй",
     "Personal circle" : "Хувийн тойрог",
     "Pending" : "Хүлээгдэж байгаа",
+    "None" : "юу ч үгүй",
     "New contact" : "Шинэ харилцагч",
     "Close" : "Хаах",
     "Import" : "Импорт",
@@ -87,7 +88,6 @@ OC.L10N.register(
     "Gender" : "Хүйс",
     "Female" : "Эмэгтэй",
     "Male" : "Эрэгтэй",
-    "None" : "юу ч үгүй",
     "Unknown" : "Үл танигдах зүйл",
     "Time zone" : "Цагийн бүс"
 },

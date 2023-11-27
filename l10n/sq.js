@@ -54,6 +54,7 @@ OC.L10N.register(
     "Select type" : "Zgjidhni llojin",
     "Select Date" : "Zgjidhni Datën",
     "Add contact in group" : "Shto kontaktin në grup",
+    "None" : "Asnjë",
     "New contact" : "Kontakt i ri",
     "Close" : "Mbylleni",
     "Import" : "Import",
@@ -117,7 +118,6 @@ OC.L10N.register(
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "None" : "Asnjë",
     "Unknown" : "I/E panjohur"
 },
 "nplurals=2; plural=(n != 1);");

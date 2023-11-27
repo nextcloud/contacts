@@ -30,6 +30,7 @@
     "No results" : "შედეგები არაა",
     "Personal circle" : "პირადი წრე",
     "Pending" : "მოლოდინში",
+    "None" : "არც ერთი",
     "New contact" : "ახალი კონტაქტი",
     "Close" : "დახურვა",
     "Import" : "იმპორტი",
@@ -92,7 +93,6 @@
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
     "Male" : "მამრობითი",
-    "None" : "არც ერთი",
     "Unknown" : "ამოუცნობი"
 },"pluralForm" :"nplurals=2; plural=(n!=1);"
 }

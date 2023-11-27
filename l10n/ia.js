@@ -22,6 +22,7 @@ OC.L10N.register(
     "Name" : "Nomine",
     "Title" : "Titulo",
     "Pending" : "Pendente",
+    "None" : "Nulle",
     "New contact" : "Nove contacto",
     "Close" : "Clauder",
     "Import" : "Importar",
@@ -62,7 +63,6 @@ OC.L10N.register(
     "Voice" : "Voce",
     "Social network" : "Medios Social",
     "Relative" : "Relative",
-    "None" : "Nulle",
     "Unknown" : "Incognite"
 },
 "nplurals=2; plural=(n != 1);");

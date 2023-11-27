@@ -17,6 +17,7 @@ OC.L10N.register(
     "Title" : "ចំណងជើង",
     "Pending" : "កំពុង​រង់ចាំ",
     "Chart" : "ក្រាប",
+    "None" : "គ្មាន",
     "Close" : "បិទ",
     "Import" : "នាំយកចូល",
     "Not grouped" : "គ្មាន​ក្រុម",
@@ -31,7 +32,6 @@ OC.L10N.register(
     "Work" : "ធ្វើការ",
     "Other" : "ផ្សេងៗ",
     "Address" : "អាសយដ្ឋាន",
-    "Birthday" : "ថ្ងៃ​កំណើត",
-    "None" : "គ្មាន"
+    "Birthday" : "ថ្ងៃ​កំណើត"
 },
 "nplurals=1; plural=0;");
