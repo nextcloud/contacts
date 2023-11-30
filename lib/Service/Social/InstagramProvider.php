@@ -27,11 +27,12 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\RequestOptions;
 use OC\AppFramework\Http\Request;
 use OCA\Contacts\AppInfo\Application;
+use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use Psr\Log\LoggerInterface;
 
 class InstagramProvider implements ISocialProvider {
-	/** @var IClientService */
+	/** @var IClient */
 	private $httpClient;
 
 	/** @var LoggerInterface */
@@ -42,7 +43,7 @@ class InstagramProvider implements ISocialProvider {
 
 	public function __construct(IClientService $httpClient,
 								LoggerInterface $logger) {
-		$this->httpClient = $httpClient->NewClient();
+		$this->httpClient = $httpClient->newClient();
 		$this->logger = $logger;
 	}
 

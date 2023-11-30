@@ -54,7 +54,7 @@ class InstagramProviderTest extends TestCase {
 		$this->logger = $this->createMock(LoggerInterface::class);
 
 		$this->clientService
-			->method('NewClient')
+			->method('newClient')
 			->willReturn($this->client);
 
 		$this->provider = new InstagramProvider(
