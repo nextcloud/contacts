@@ -1,6 +1,6 @@
 # Changelog
 
-## 5.5.0-rc.1 – unreleased
+## 5.5.0-rc.2 – unreleased
 ### Added
 - Nextcloud 28 file action compatibility
 - PHP8.3 support
