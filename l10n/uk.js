@@ -31,7 +31,7 @@ OC.L10N.register(
     "Address books" : "Адресні книги",
     "Export" : "Експортувати",
     "Send email" : "Надіслати лист",
-    "Send email as BCC" : "Надіслати лист ел.пошти як приховану копію",
+    "Send email as BCC" : "Надіслати лист ел.поштою у прихованій копії",
     "Contact groups" : "Групи контактів",
     "Create a new contact group" : "Створити нову групу контактів",
     "Contact group name" : "Назва групи контактів",
