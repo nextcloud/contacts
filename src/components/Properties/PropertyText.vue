@@ -49,7 +49,7 @@
 					:disabled="isReadOnly"
 					track-by="id"
 					label="name"
-					@tag="createLabel"
+					@option:created="createLabel"
 					@input="updateType" />
 
 				<!-- if we do not support any type on our model but one is set anyway -->
