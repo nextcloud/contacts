@@ -148,7 +148,7 @@ export default {
 			const group = propGroup.split('.')[0]
 			const name = propGroup.split('.')[1]
 
-			this.localContact.vCard.addPropertyWithValue(`${group}.x-ablabel`, label)
+			this.localContact.vCard.addPropertyWithValue(`${group}.x-ablabel`, label.name)
 
 			// force update the main design sets
 			setPropertyAlias(name, propGroup)
