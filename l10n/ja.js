@@ -287,7 +287,7 @@ OC.L10N.register(
     "Female" : "女性",
     "Male" : "男性",
     "Unknown" : "不明",
-    "Time zone" : "時間帯",
+    "Time zone" : "タイムゾーン",
     "Spoken languages" : "話せる言語",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed}連絡先の読み込みができませんでした。"],
     "An error has occurred in circle(s). Check the console for more details." : "サークルでエラーが発生しました。コンソールで詳細を確認してください。",
