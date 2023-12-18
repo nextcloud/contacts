@@ -138,7 +138,9 @@ export default {
 
 	data() {
 		return {
-			appName,
+			// The object shorthand syntax is breaking builds (bug in @babel/preset-env)
+			/* eslint-disable object-shorthand */
+			appName: appName,
 
 			// Let's but the loading state to true if circles is enabled
 			loadingCircles: isCirclesEnabled,
