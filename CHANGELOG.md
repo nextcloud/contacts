@@ -1,4 +1,13 @@
 # Changelog
+## 5.4.3 - 2023-12-20
+### Fixed
+- Improve matching for tel type parameter
+- Split up composed property name when checking isMultiple()
+- Bundle moment.js locale data
+- Update selectInput to select on "Name"
+- V-model of address book select control
+- Rename types in propreties
+
 ## 5.4.2 - 2023-09-22
 ### Fixed
 - Lost contact groups
