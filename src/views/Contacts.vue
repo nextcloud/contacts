@@ -29,7 +29,7 @@
 			:selected-group="selectedGroup"
 			:selected-contact="selectedContact">
 			<div class="import-and-new-contact-buttons">
-				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup" />
+				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView" />
 				<!-- new-contact-button -->
 				<Button v-if="!loadingContacts"
 					type="primary"
@@ -170,6 +170,9 @@ export default {
 		},
 		isEmptyGroup() {
 			return this.contactsList.length === 0
+		},
+		isChartView() {
+			return !!this.selectedChart
 		},
 		/**
 		 * Are we importing contacts ?
