@@ -49,7 +49,7 @@ class FacebookProviderTest extends TestCase {
 		$this->client = $this->createMock(IClient::class);
 
 		$this->clientService
-			->method('NewClient')
+			->method('newClient')
 			->willReturn($this->client);
 
 		$this->provider = new FacebookProvider(

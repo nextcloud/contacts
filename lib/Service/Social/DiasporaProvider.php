@@ -23,10 +23,11 @@
 
 namespace OCA\Contacts\Service\Social;
 
+use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 
 class DiasporaProvider implements ISocialProvider {
-	/** @var IClientService */
+	/** @var IClient */
 	private $httpClient;
 
 	/** @var bool */
@@ -36,7 +37,7 @@ class DiasporaProvider implements ISocialProvider {
 	public $name = 'diaspora';
 
 	public function __construct(IClientService $httpClient) {
-		$this->httpClient = $httpClient->NewClient();
+		$this->httpClient = $httpClient->newClient();
 		$this->looping = false;
 	}
 

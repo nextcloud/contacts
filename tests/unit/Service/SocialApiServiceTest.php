@@ -176,7 +176,7 @@ class SocialApiServiceTest extends TestCase {
 			->method('get')
 			->willReturn($response);
 		$this->clientService
-			->method('NewClient')
+			->method('newClient')
 			->willReturn($client);
 		$this->imageResizer
 			->expects($body ? $this->once() : $this->never())
@@ -237,7 +237,7 @@ class SocialApiServiceTest extends TestCase {
 			->method('get')
 			->willReturn($response);
 		$this->clientService
-			->method('NewClient')
+			->method('newClient')
 			->willReturn($client);
 		$this->imageResizer
 			->expects($this->once())
@@ -310,7 +310,7 @@ class SocialApiServiceTest extends TestCase {
 			->method('get')
 			->willReturn($response);
 		$this->clientService
-			->method('NewClient')
+			->method('newClient')
 			->willReturn($client);
 		$this->imageResizer
 			->expects($this->once())
@@ -438,7 +438,7 @@ class SocialApiServiceTest extends TestCase {
 			->method('get')
 			->willReturn($validResponse);
 		$this->clientService
-			->method('NewClient')
+			->method('newClient')
 			->willReturn($client);
 		$this->imageResizer
 			->method('resizeImage')

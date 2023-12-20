@@ -218,7 +218,7 @@ class SocialApiService {
 
 			foreach ($urls as $url) {
 				try {
-					$httpResult = $this->clientService->NewClient()->get($url);
+					$httpResult = $this->clientService->newClient()->get($url);
 					$socialdata = $httpResult->getBody();
 					$imageType = $httpResult->getHeader('content-type');
 					if (isset($socialdata) && isset($imageType)) {
