@@ -32,7 +32,7 @@
 				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView" />
 				<!-- new-contact-button -->
 				<Button v-if="!loadingContacts"
-					type="primary"
+					type="secondary"
 					:wide="true"
 					:disabled="!defaultAddressbook"
 					@click="newContact">
