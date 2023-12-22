@@ -70,7 +70,7 @@
 				<button :disabled="isEmptyName || loading"
 					class="navigation__button-right primary"
 					@click="onSubmit">
-					{{ t('contacts', 'Create circle') }}
+					{{ t('contacts', 'Create the circle') }}
 				</button>
 			</div>
 		</div>
