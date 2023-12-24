@@ -124,7 +124,7 @@ OC.L10N.register(
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Bu kişinin bilgileri hatalıydı ve bir düzeltme yapıldı. Lütfen içeriği gözden geçirip kaydetmek için buraya tıklayın.",
     "Edit" : "Düzenle",
     "Clone contact" : "Kişiyi kopyala",
-    "Generate QR Code" : "QR kodu üret",
+    "Generate QR Code" : "QR kodu oluştur",
     "Contact vCard as QR code" : "QRkod olarak sanal kişi kartı",
     "Pick an address book" : "Bir adres defteri seçin",
     "Select address book" : "Adres defterini seçin",
