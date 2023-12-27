@@ -65,7 +65,7 @@
 				<!-- org, title -->
 				<template #subtitle>
 					<template v-if="isReadOnly">
-						{{ formattedSubtitle }}
+						<span v-html="formattedSubtitle" />
 					</template>
 					<template v-else>
 						<input id="contact-title"
