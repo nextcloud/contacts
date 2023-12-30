@@ -133,6 +133,7 @@ OC.L10N.register(
     "Media shares with you" : "Média partagés avec vous",
     "Talk conversations with you" : "Conversations orales avec vous",
     "Calendar events with you" : "Agendas avec vous",
+    "Deck cards with you" : "Cartes Deck partagées avec vous",
     "No shared items with this contact" : "Aucun éléments partagés avec ce contact",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Ce contact est en lecture seule. Vous n'avez pas les autorisations pour modifier ce contact.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Le contact que vous essayiez de modifier a changé. Merci de rafraîchir manuellement le contact. Vos modifications seront abandonnées. ",
