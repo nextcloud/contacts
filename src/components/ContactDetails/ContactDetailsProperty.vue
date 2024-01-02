@@ -369,11 +369,11 @@ export default {
 	},
 
 	created() {
-		this.bus.$on('focus-prop', this.onFocusProp)
+		this.bus.on('focus-prop', this.onFocusProp)
 	},
 
 	destroyed() {
-		this.bus.$off('focus-prop', this.onFocusProp)
+		this.bus.off('focus-prop', this.onFocusProp)
 	},
 
 	methods: {

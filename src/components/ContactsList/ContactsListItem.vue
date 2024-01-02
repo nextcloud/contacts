@@ -70,12 +70,12 @@ export default {
 	},
 
 	created() {
-		this.reloadBus.$on('reload-avatar', this.reloadAvatarUrl)
-		this.reloadBus.$on('delete-avatar', this.deleteAvatar)
+		this.reloadBus.on('reload-avatar', this.reloadAvatarUrl)
+		this.reloadBus.on('delete-avatar', this.deleteAvatar)
 	},
 	destroyed() {
-		this.reloadBus.$off('reload-avatar', this.reloadAvatarUrl)
-		this.reloadBus.$off('delete-avatar', this.deleteAvatar)
+		this.reloadBus.off('reload-avatar', this.reloadAvatarUrl)
+		this.reloadBus.off('delete-avatar', this.deleteAvatar)
 	},
 	async mounted() {
 		await this.loadAvatarUrl()
