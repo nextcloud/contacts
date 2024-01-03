@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.5.1 – 2024-01-03
+### Fixed
+- Rename types in propreties
+- Remove empty content overlaping related resources
+
 ## 5.5.0 – 2023-12-11
 ### Added
 - Nextcloud 28 file action compatibility
