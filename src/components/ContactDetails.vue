@@ -318,7 +318,7 @@
 					:header="t('contacts', 'Media shares with you')"
 					:item-id="contact.uid"
 					:primary="true"
-					@has-resources="value => hasRelatedResources = value"
+					@has-resources="value => hasFilesResources = value"
 					@has-error="value => filesPanelHasError = value" />
 				<NcRelatedResourcesPanel v-if="!talkPanelHasError"
 					provider-id="account"
@@ -328,7 +328,7 @@
 					:header="t('contacts', 'Talk conversations with you')"
 					:item-id="contact.uid"
 					:primary="true"
-					@has-resources="value => hasRelatedResources = value"
+					@has-resources="value => hasTalkResources = value"
 					@has-error="value => talkPanelHasError = value" />
 				<NcRelatedResourcesPanel v-if="!calendarPanelHasError"
 					provider-id="account"
@@ -338,7 +338,7 @@
 					:header="t('contacts', 'Calendar events with you')"
 					:item-id="contact.uid"
 					:primary="true"
-					@has-resources="value => hasRelatedResources = value"
+					@has-resources="value => hasCalendarResources = value"
 					@has-error="value => calendarPanelHasError = value" />
 				<NcRelatedResourcesPanel v-if="!deckPanelHasError"
 					provider-id="account"
@@ -348,7 +348,7 @@
 					:header="t('contacts', 'Deck cards with you')"
 					:item-id="contact.uid"
 					:primary="true"
-					@has-resources="value => hasRelatedResources = value"
+					@has-resources="value => hasDeckResources = value"
 					@has-error="value => deckPanelHasError = value" />
 				<NcEmptyContent v-if="!hasRelatedResources && !loadingData"
 					:name="t('contacts', 'No shared items with this contact')">
@@ -504,7 +504,10 @@ export default {
 			showMenuPopover: false,
 			profileEnabled,
 			isTalkEnabled,
-			hasRelatedResources: false,
+			hasFilesResources: false,
+			hasTalkResources: false,
+			hasCalendarResources: false,
+			hasDeckResources: false,
 			deckPanelHasError: false,
 			filesPanelHasError: false,
 			talkPanelHasError: false,
@@ -514,6 +517,9 @@ export default {
 	},
 
 	computed: {
+		hasRelatedResources() {
+			return this.hasFilesResources || this.hasTalkResources || this.hasCalendarResources || this.hasDeckResources
+		},
 		/**
 		 * The address book is read-only (e.g. shared with me).
 		 *
