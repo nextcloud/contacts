@@ -383,7 +383,7 @@ export default {
 
 			await this.loadPhotoUrl()
 
-			await this.reloadBus.$emit('reload-avatar', this.contact.key)
+			await this.reloadBus.emit('reload-avatar', this.contact.key)
 
 			this.loading = false
 		},
@@ -438,7 +438,7 @@ export default {
 			this.$store.dispatch('updateContact', this.contact)
 			// somehow the avatarUrl is not unavailable immediately, so we just set undefined
 			this.photoUrl = undefined
-			this.reloadBus.$emit('delete-avatar', this.contact.key)
+			this.reloadBus.emit('delete-avatar', this.contact.key)
 		},
 
 		/**
@@ -530,7 +530,7 @@ export default {
 
 					await this.loadPhotoUrl()
 
-					await this.reloadBus.$emit('reload-avatar', this.contact.key)
+					await this.reloadBus.emit('reload-avatar', this.contact.key)
 
 					// Notify user
 					showSuccess(t('contacts', 'Avatar downloaded from social network'))

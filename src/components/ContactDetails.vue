@@ -373,7 +373,7 @@ import { showError } from '@nextcloud/dialogs'
 
 import { stringify } from 'ical.js'
 import qr from 'qr-image'
-import Vue from 'vue'
+import mitt from 'mitt'
 import {
 	NcActions as Actions,
 	NcActionButton as ActionButton,
@@ -500,7 +500,7 @@ export default {
 			excludeFromBirthdayKey: 'x-nc-exclude-from-birthday-calendar',
 
 			// communication for ContactDetailsAddNewProp and ContactDetailsProperty
-			bus: new Vue(),
+			bus: mitt(),
 			showMenuPopover: false,
 			profileEnabled,
 			isTalkEnabled,

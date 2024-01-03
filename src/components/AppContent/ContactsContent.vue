@@ -84,7 +84,7 @@ import ContactDetails from '../ContactDetails.vue'
 import ContactsList from '../ContactsList.vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
-import Vue from 'vue'
+import mitt from 'mitt'
 
 export default {
 	name: 'ContactsContent',
@@ -117,7 +117,7 @@ export default {
 		return {
 			searchQuery: '',
 			// communication for ContactListItem and ContactDetails (reload avatar)
-			reloadBus: new Vue(),
+			reloadBus: mitt(),
 		}
 	},
 

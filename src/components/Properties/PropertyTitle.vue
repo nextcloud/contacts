@@ -96,7 +96,7 @@ export default {
 		 * @param {string} id type of prop
 		 */
 		onAddProp(id) {
-			this.bus.$emit('add-prop', id)
+			this.bus.emit('add-prop', id)
 		},
 	},
 }

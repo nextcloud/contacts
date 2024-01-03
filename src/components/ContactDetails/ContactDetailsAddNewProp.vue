@@ -195,11 +195,11 @@ export default {
 	},
 
 	created() {
-		this.bus.$on('add-prop', this.addProp)
+		this.bus.on('add-prop', this.addProp)
 	},
 
 	destroyed() {
-		this.bus.$off('add-prop', this.addProp)
+		this.bus.off('add-prop', this.addProp)
 	},
 
 	methods: {
@@ -210,7 +210,7 @@ export default {
 		 */
 		async addProp(id) {
 			if (this.usedProperties.includes(id) && !this.properties[id].multiple) {
-				this.bus.$emit('focus-prop', id)
+				this.bus.emit('focus-prop', id)
 				return
 			}
 
@@ -240,7 +240,7 @@ export default {
 				}
 			}
 			this.moreActionsOpen = false
-			this.bus.$emit('focus-prop', id)
+			this.bus.emit('focus-prop', id)
 		},
 	},
 }
