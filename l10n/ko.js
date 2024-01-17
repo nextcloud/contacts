@@ -196,7 +196,7 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "링크를 클립보드에 복사할 수 없음",
     "Not grouped" : "그룹되지 않음",
     "Recently contacted" : "최근 연락함",
-    "Organization chart" : "조직 차트",
+    "Organization chart" : "조직도",
     "Circle" : "서클",
     "User" : "사용자",
     "Group" : "그룹",
