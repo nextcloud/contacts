@@ -130,6 +130,8 @@ OC.L10N.register(
     "Select address book" : "Seleziona rubrica",
     "Go to talk conversation" : "Vai alla conversazione",
     "View profile" : "Vedi profilo",
+    "Talk conversations with you" : "Conversazioni di Talk con te",
+    "No shared items with this contact" : "Nessun elemento condiviso con questo contatto",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Questo contatto è in modalità di sola lettura. Non hai i permessi per modificare questo contatto.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Il contatto che stavi tentando di modificare è cambiato. Aggiorna manualmente il contatto. Qualsiasi modifica ulteriore sarà scartata.",
     "Address book" : "Rubrica",
