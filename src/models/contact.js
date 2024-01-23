@@ -41,7 +41,7 @@ const isEmpty = value => {
 export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
 
 export const MinimalContactProperties = [
-	'EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE',
+	'EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTES', 'RELATED'
 ].concat(ContactKindProperties)
 
 export default class Contact {
