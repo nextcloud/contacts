@@ -98,7 +98,7 @@
     "jest-transform-stub": "^2.0.0",
     "stylelint": "^14.16.1",
     "stylelint-config-recommended-scss": "^7.0.0",
-    "ts-jest": "^29.1.1",
+    "ts-jest": "^29.1.2",
     "ts-loader": "^9.5.1",
     "typescript": "^5.3.3",
     "vue-template-compiler": "~2.7"
