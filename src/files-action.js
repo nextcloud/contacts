@@ -20,11 +20,16 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
+import ConfirmationDialog from './components/ConfirmationDialog.vue'
+
 import { generateUrl } from '@nextcloud/router'
 import { translate as t } from '@nextcloud/l10n'
-import { registerFileAction, FileAction, Permission, DefaultType } from '@nextcloud/files'
+import { DefaultType, FileAction, Permission, registerFileAction } from '@nextcloud/files'
 /* eslint-disable-next-line import/no-unresolved */
 import ContactSvg from '@mdi/svg/svg/account-multiple.svg?raw'
+import Vue from 'vue'
+
+Vue.prototype.t = t
 
 const mime = 'text/vcard'
 const name = 'contacts-import'
@@ -44,8 +49,33 @@ if (nextcloudVersionIsGreaterThanOr28) {
 		},
 		iconSvgInline: () => ContactSvg,
 		async exec(file) {
-			window.location = generateUrl(`/apps/contacts/import?file=${file.path}`)
-			return true
+			let dialog
+			try {
+				// Open the confirmation dialog
+				const containerId = 'confirmation-' + Math.random().toString(16).slice(2)
+				const container = document.createElement('div')
+				container.id = containerId
+				document.body.appendChild(container)
+				await new Promise((resolve, reject) => {
+					const ImportConfirmationDialog = Vue.extend(ConfirmationDialog)
+					dialog = new ImportConfirmationDialog({
+						propsData: {
+							title: t('contacts', 'Are you sure you want to import this contact file?'),
+							resolve,
+							reject,
+						},
+					})
+					dialog.$mount(`#${containerId}`)
+				})
+
+				// Redirect to the import page if the user confirmed
+				window.location = generateUrl(`/apps/contacts/import?file=${file.path}`)
+			} catch (e) {
+				// Do nothing if the user cancels
+			}
+
+			// Destroy confirmation modal (div element is removed from the DOM by vue)
+			dialog.$destroy()
 		},
 	}))
 } else {
