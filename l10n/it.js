@@ -100,6 +100,7 @@ OC.L10N.register(
     "An error happened during description sync" : "Si è verificato un errore durante la sincronizzazione della descrizione",
     "An error happened during name sync" : "Si è verificato un errore durante la sincronizzazione del nome",
     "Cancel" : "Annulla",
+    "Confirm" : "Confermi",
     "Add more info" : "Aggiungi più informazioni",
     "More fields" : "Altri campi",
     "Crop contact photo" : "Ritaglia foto contatto",
