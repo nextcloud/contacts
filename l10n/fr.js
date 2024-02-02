@@ -160,7 +160,7 @@ OC.L10N.register(
     "This circle will only be visible to you. Other members will not be able to see or use it." : "Ce cercle sera uniquement visible par vous. Les autres membres ne pourront ni le voir, ni l'utiliser.",
     "Local circle" : "Cercle local",
     "This circle will not be shared with the other instances of the global scale" : "Ce cercle ne sera pas partagé avec les autres instances à l'échelle globale",
-    "Create circle" : "Créer un cercle",
+    "Create circle" : "Créer le cercle",
     "Loading members list …" : "Chargement de la liste des membres...",
     "The list of members is only visible to members of this circle" : "La liste des membres est uniquement visible par les membres de ce cercle",
     "You currently have no access to the member list" : "Vous n'avez actuellement pas accès à la liste des membres",
