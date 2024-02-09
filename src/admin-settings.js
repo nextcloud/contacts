@@ -20,6 +20,9 @@
  *
  */
 
+// eslint-disable-next-line import/no-unresolved, n/no-missing-import
+import 'vite/modulepreload-polyfill'
+
 import Vue from 'vue'
 import AdminSettings from './components/AdminSettings.vue'
 

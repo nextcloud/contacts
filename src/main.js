@@ -20,8 +20,10 @@
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  *
  */
-import { generateFilePath } from '@nextcloud/router'
-import { getRequestToken } from '@nextcloud/auth'
+
+// eslint-disable-next-line import/no-unresolved, n/no-missing-import
+import 'vite/modulepreload-polyfill'
+
 import { sync } from 'vuex-router-sync'
 import Vue from 'vue'
 
@@ -35,21 +37,10 @@ import ClickOutside from 'vue-click-outside'
 import { Tooltip as VTooltip } from '@nextcloud/vue'
 
 // Global scss sheets
-import '../css/contacts.scss'
+import './css/contacts.scss'
 
 // Dialogs css
 import '@nextcloud/dialogs/dist/index.css'
-
-// CSP config for webpack dynamic chunk loading
-// eslint-disable-next-line
-__webpack_nonce__ = btoa(getRequestToken())
-
-// Correct the root of the app for chunk loading
-// OC.linkTo matches the apps folders
-// OC.generateUrl ensure the index.php (or not)
-// We do not want the index.php since we're loading files
-// eslint-disable-next-line
-__webpack_public_path__ = generateFilePath('contacts', '', 'js/')
 
 // Register global directives
 Vue.directive('ClickOutside', ClickOutside)
@@ -63,12 +54,12 @@ Vue.prototype.n = n
 Vue.prototype.appName = appName
 Vue.prototype.appVersion = appVersion
 Vue.prototype.logger = logger
-Vue.prototype.OC = OC
-Vue.prototype.OCA = OCA
+Vue.prototype.OC = window.OC
+Vue.prototype.OCA = window.OCA
 
 // Force redirect if rewrite enabled but accessed through index.php
 if (window.location.pathname.split('/')[1] === 'index.php'
-	&& OC.config.modRewriteWorking) {
+	&& window.OC.config.modRewriteWorking) {
 	router.push({
 		name: 'group',
 		params: { selectedGroup: t('contacts', 'All contacts') },

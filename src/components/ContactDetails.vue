@@ -372,7 +372,7 @@
 import { showError } from '@nextcloud/dialogs'
 
 import { stringify } from 'ical.js'
-import qr from 'qr-image'
+import { getSVG } from "@shortcm/qr-image/lib/svg";
 import mitt from 'mitt'
 import {
 	NcActions as Actions,
@@ -698,7 +698,7 @@ export default {
 		},
 
 		enableToggleBirthdayExclusion() {
-			return parseInt(OC.config.version.split('.')[0]) >= 26
+			return parseInt(window.OC.config.version.split('.')[0]) >= 26
 				&& this.localContact?.vCard // Wait until localContact was fetched
 		},
 
@@ -749,7 +749,7 @@ export default {
 			return this.contact.addressbook.id === 'z-server-generated--system'
 		},
 		nextcloudVersionAtLeast28() {
-			return parseInt(OC.config.version.split('.')[0]) >= 28
+			return parseInt(window.OC.config.version.split('.')[0]) >= 28
 		},
 	},
 
@@ -805,14 +805,16 @@ export default {
 		/**
 		 * Generate a qrcode for the contact
 		 */
-		showQRcode() {
+		async showQRcode() {
 			const jCal = this.contact.jCal.slice(0)
 			// do not encode photo
 			jCal[1] = jCal[1].filter(props => props[0] !== 'photo')
 
 			const data = stringify(jCal)
 			if (data.length > 0) {
-				this.qrcode = btoa(qr.imageSync(data, { type: 'svg' }))
+				const svgBytes = await getSVG(data);
+				const svgString = new TextDecoder().decode(svgBytes);
+				this.qrcode = btoa(svgString);
 			}
 		},
 
