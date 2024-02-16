@@ -349,9 +349,22 @@ export default {
 		circlesMenu() {
 			const menu = this.circles || []
 			menu.sort((a, b) => {
+				// If user is member of a and b, sort by level
 				if (a?.initiator?.level !== b?.initiator?.level && a?.initiator?.level && b?.initiator?.level) {
 					return b.initiator.level - a.initiator.level
 				}
+
+				// If user is member of a and not b, sort a first
+				if (a.initiator && !b.initiator) {
+					return -1
+				}
+
+				// If user is member of b and not a, sort b first
+				if (!a.initiator && b.initiator) {
+					return 1
+				}
+
+				// Else we sort by name
 				return naturalCompare(a.toString(), b.toString(), { caseInsensitive: true })
 			})
 
