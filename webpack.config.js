@@ -12,18 +12,6 @@ webpackRules.RULE_SVG = {
 }
 webpackConfig.module.rules = Object.values(webpackRules)
 
-webpackConfig.module.rules.push({
-	  test: /\.tsx?$/,
-	  use: 'ts-loader',
-	  exclude: /node_modules/,
-})
-
-webpackConfig.resolve.extensions = ['.js', '.vue', '.ts', '.tsx']
-
 webpackConfig.resolve.fallback = { fs: false }
-
-webpackConfig.resolve.alias = {
-	vue$: 'vue/dist/vue.esm.js',
-}
 
 module.exports = webpackConfig
