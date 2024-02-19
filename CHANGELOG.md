@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.5.2 – 2024-02-19
+### Fixed
+- sort fallback if not member of circle
+
 ## 5.5.1 – 2024-01-03
 ### Fixed
 - Rename types in propreties
