@@ -81,7 +81,7 @@
 
 				<!-- Leave or delete member from circle -->
 				<ActionButton v-if="isCurrentUser && !circle.isOwner" @click="deleteMember">
-					{{ t('contacts', 'Leave circle') }}
+					{{ t('contacts', 'Leave team') }}
 					<ExitToApp slot="icon"
 						:size="16"
 						decorative />

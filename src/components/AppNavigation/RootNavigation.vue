@@ -132,13 +132,13 @@
 
 				<!-- New circle button caption and modal -->
 				<AppNavigationCaption id="newcircle"
-					:name="t('contacts', 'Circles')">
+					:name="t('contacts', 'Teams')">
 					<template #actions>
 						<NcActionButton @click="toggleNewCircleModal">
 							<template #icon>
 								<IconAdd :size="20" />
 							</template>
-							{{ t('contacts', 'Create a new circle') }}
+							{{ t('contacts', 'Create a new team') }}
 						</NcActionButton>
 					</template>
 				</AppNavigationCaption>
@@ -390,8 +390,8 @@ export default {
 		},
 		collapseCirclesTitle() {
 			return this.collapsedCircles
-				? t('contacts', 'Show all circles')
-				: t('contacts', 'Collapse circles')
+				? t('contacts', 'Show all teams')
+				: t('contacts', 'Collapse teams')
 		},
 	},
 
@@ -437,13 +437,13 @@ export default {
 			this.isNewCircleModalOpen = true
 		},
 		async createNewCircle(circleName, isPersonal, isLocal) {
-			this.logger.debug('Creating new circle', { circleName })
+			this.logger.debug('Creating new team', { circleName })
 
 			this.createCircleLoading = true
 
 			// Check if already exists
 			if (this.circles.find(circle => circle.name === circleName)) {
-				this.createCircleError = t('contacts', 'This circle already exists')
+				this.createCircleError = t('contacts', 'This team already exists')
 				return
 			}
 			this.createCircleError = null
@@ -460,7 +460,7 @@ export default {
 					},
 				})
 			} catch (error) {
-				showError(t('contacts', 'An error happened during the creation of the circle'))
+				showError(t('contacts', 'An error happened during the creation of the team'))
 			} finally {
 				this.createCircleLoading = false
 			}

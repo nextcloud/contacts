@@ -67,7 +67,7 @@ const MEMBER_TYPE_MAIL: MemberType = 4
 const MEMBER_TYPE_CONTACT: MemberType = 8
 const MEMBER_TYPE_CIRCLE: MemberType = 16
 
-export const CIRCLE_DESC = t('contacts', 'Circles are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses.')
+export const CIRCLE_DESC = t('contacts', 'Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses.')
 
 // Circles config flags
 /* eslint-disable no-tabs */
@@ -90,7 +90,7 @@ const CIRCLE_CONFIG_FEDERATED: CircleConfig = 32768			// Federated
 
 // Existing members types
 export const CIRCLES_MEMBER_TYPES = {
-	[MEMBER_TYPE_CIRCLE]: t('contacts', 'Circle'),
+	[MEMBER_TYPE_CIRCLE]: t('contacts', 'Team'),
 	[MEMBER_TYPE_USER]: t('contacts', 'User'),
 	[MEMBER_TYPE_GROUP]: t('contacts', 'Group'),
 	[MEMBER_TYPE_MAIL]: t('contacts', 'Email'),
@@ -121,10 +121,10 @@ export const PUBLIC_CIRCLE_CONFIG = {
 		[CIRCLE_CONFIG_VISIBLE]: t('contacts', 'Visible to everyone'),
 	},
 
-	[t('contacts', 'Circle membership')]: {
+	[t('contacts', 'Team membership')]: {
 		// TODO: implement backend
-		// [CIRCLE_CONFIG_CIRCLE_INVITE]: t('contacts', 'Circle must confirm when invited in another circle'),
-		[CIRCLE_CONFIG_ROOT]: t('contacts', 'Prevent circle from being a member of another circle'),
+		// [CIRCLE_CONFIG_CIRCLE_INVITE]: t('contacts', 'Team must confirm when invited in another circle'),
+		[CIRCLE_CONFIG_ROOT]: t('contacts', 'Prevent teams from being a member of another team'),
 	},
 }
 
@@ -158,7 +158,7 @@ export const CIRCLES_MEMBER_GROUPING = [
 	// },
 	{
 		id: `picker-${Type.SHARE_TYPE_CIRCLE}`,
-		label: t('contacts', 'Circles'),
+		label: t('contacts', 'Teams'),
 		share: Type.SHARE_TYPE_CIRCLE,
 		type: MEMBER_TYPE_CIRCLE,
 	},
@@ -171,7 +171,7 @@ export const CIRCLES_MEMBER_GROUPING = [
 	// TODO: implement SHARE_TYPE_CONTACT
 	{
 		id: 'picker-contact',
-		label: t('contacts', 'Contacts'),
+		label: t('contacts', 'Teams'),
 		share: Type.SHARE_TYPE_EMAIL,
 		type: MEMBER_TYPE_CONTACT,
 	},

@@ -22,7 +22,7 @@
 
 <template>
 	<AppContent v-if="!circle">
-		<EmptyContent :name="t('contacts', 'Please select a circle')">
+		<EmptyContent :name="t('contacts', 'Please select a team')">
 			<template #icon>
 				<IconCircles :size="20" />
 			</template>
@@ -30,7 +30,7 @@
 	</AppContent>
 
 	<AppContent v-else-if="loading">
-		<EmptyContent class="empty-content" :name="t('contacts', 'Loading circle …')">
+		<EmptyContent class="empty-content" :name="t('contacts', 'Loading team…')">
 			<template #icon>
 				<IconLoading :size="20" />
 			</template>
@@ -50,7 +50,7 @@
 			<!-- not a member -->
 			<template v-if="!circle.isMember">
 				<!-- Pending request validation -->
-				<EmptyContent v-if="circle.isPendingMember" :name="t('contacts', 'Your request to join this circle is pending approval')">
+				<EmptyContent v-if="circle.isPendingMember" :name="t('contacts', 'Your request to join this team is pending approval')">
 					<template #icon>
 						<IconLoading :size="20" />
 					</template>

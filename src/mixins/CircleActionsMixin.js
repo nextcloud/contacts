@@ -64,7 +64,7 @@ export default {
 			if (this.circle.requireJoinAccept) {
 				return t('contacts', 'Request to join')
 			}
-			return t('contacts', 'Join circle')
+			return t('contacts', 'Join team')
 		},
 	},
 
@@ -74,7 +74,7 @@ export default {
 				t('contacts', 'You are about to leave {circle}.\nAre you sure?', {
 					circle: this.circle.displayName,
 				}),
-				t('contacts', 'Please confirm circle leave'),
+				t('contacts', 'Please confirm team leave'),
 				OC.dialogs.YES_NO_BUTTONS,
 				this.leaveCircle,
 				true,
@@ -99,7 +99,7 @@ export default {
 				this.circle.initiator = null
 			} catch (error) {
 				console.error('Could not leave the circle', member, error)
-				showError(t('contacts', 'Could not leave the circle {displayName}', this.circle))
+				showError(t('contacts', 'Could not leave the team {displayName}', this.circle))
 			} finally {
 				this.loadingAction = false
 			}
@@ -118,7 +118,7 @@ export default {
 				// Append new member
 				member.circle.addMember(member)
 			} catch (error) {
-				showError(t('contacts', 'Unable to join the circle'))
+				showError(t('contacts', 'Unable to join the team'))
 				console.error('Unable to join the circle', error)
 			} finally {
 				this.loadingJoin = false
@@ -131,7 +131,7 @@ export default {
 				t('contacts', 'You are about to delete {circle}.\nAre you sure?', {
 					circle: this.circle.displayName,
 				}),
-				t('contacts', 'Please confirm circle deletion'),
+				t('contacts', 'Please confirm team deletion'),
 				OC.dialogs.YES_NO_BUTTONS,
 				this.deleteCircle,
 				true,
@@ -148,7 +148,7 @@ export default {
 			try {
 				this.$store.dispatch('deleteCircle', this.circle.id)
 			} catch (error) {
-				showError(t('contacts', 'Unable to delete the circle'))
+				showError(t('contacts', 'Unable to delete the team'))
 			} finally {
 				this.loadingAction = false
 			}

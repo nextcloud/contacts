@@ -28,7 +28,7 @@
 			<div class="entity-picker__new">
 				<input ref="input"
 					v-model="circleName"
-					:placeholder="t('contacts', 'New circle name')"
+					:placeholder="t('contacts', 'New team name')"
 					class="entity-picker__new-input"
 					type="text"
 					@keypress.enter="onSubmit">
@@ -42,10 +42,10 @@
 				<template v-if="false">
 					<CheckboxRadioSwitch :checked.sync="isPersonal"
 						:disabled="loading !== false">
-						{{ t('contacts', 'Personal circle') }}
+						{{ t('contacts', 'Personal team') }}
 					</CheckboxRadioSwitch>
 					<p>
-						{{ t('contacts', 'This circle will only be visible to you. Other members will not be able to see or use it.') }}
+						{{ t('contacts', 'This team will only be visible to you. Other members will not be able to see or use it.') }}
 					</p>
 				</template>
 
@@ -53,10 +53,10 @@
 				<template v-if="isGlobalScale">
 					<CheckboxRadioSwitch :checked.sync="isLocal"
 						:disabled="loading !== false">
-						{{ t('contacts', 'Local circle') }}
+						{{ t('contacts', 'Local team') }}
 					</CheckboxRadioSwitch>
 					<p>
-						{{ t('contacts', 'This circle will not be shared with the other instances of the global scale') }}
+						{{ t('contacts', 'This team will not be shared with the other instances of the global scale') }}
 					</p>
 				</template>
 			</div>
@@ -70,7 +70,7 @@
 				<button :disabled="isEmptyName || loading"
 					class="navigation__button-right primary"
 					@click="onSubmit">
-					{{ t('contacts', 'Create circle') }}
+					{{ t('contacts', 'Create team') }}
 				</button>
 			</div>
 		</div>

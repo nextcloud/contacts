@@ -36,7 +36,7 @@
 			<template #title>
 				<input v-model="circle.displayName"
 					:readonly="!circle.isOwner"
-					:placeholder="t('contacts', 'Circle name')"
+					:placeholder="t('contacts', 'Team name')"
 					type="text"
 					autocomplete="off"
 					autocorrect="off"
@@ -48,7 +48,7 @@
 
 			<!-- org, title -->
 			<template v-if="!circle.isOwner" #subtitle>
-				{{ t('contacts', 'Circle owned by {owner}', { owner: circle.owner.displayName}) }}
+				{{ t('contacts', 'Team owned by {owner}', { owner: circle.owner.displayName}) }}
 			</template>
 		</DetailsHeader>
 
@@ -105,7 +105,7 @@
 				<Logout slot="icon"
 					:size="16"
 					decorative />
-				{{ t('contacts', 'Leave circle') }}
+				{{ t('contacts', 'Leave team') }}
 			</Button>
 
 			<!-- delete circle -->
@@ -116,7 +116,7 @@
 				<template #icon>
 					<IconDelete :size="20" />
 				</template>
-				{{ t('contacts', 'Delete circle') }}
+				{{ t('contacts', 'Delete team') }}
 			</Button>
 		</section>
 	</AppContentDetails>
@@ -173,9 +173,9 @@ export default {
 	computed: {
 		descriptionPlaceholder() {
 			if (this.circle.description.trim() === '') {
-				return t('contacts', 'There is no description for this circle')
+				return t('contacts', 'There is no description for this team')
 			}
-			return t('contacts', 'Enter a description for the circle')
+			return t('contacts', 'Enter a description for the team')
 		},
 
 		isEmptyDescription() {
@@ -211,7 +211,7 @@ export default {
 			try {
 				await editCircle(this.circle.id, CircleEdit.Description, description)
 			} catch (error) {
-				console.error('Unable to edit circle description', description, error)
+				console.error('Unable to edit team description', description, error)
 				showError(t('contacts', 'An error happened during description sync'))
 			} finally {
 				this.loadingDescription = false
@@ -226,7 +226,7 @@ export default {
 			try {
 				await editCircle(this.circle.id, CircleEdit.Name, name)
 			} catch (error) {
-				console.error('Unable to edit circle name', name, error)
+				console.error('Unable to edit name', name, error)
 				showError(t('contacts', 'An error happened during name sync'))
 			} finally {
 				this.loadingName = false
