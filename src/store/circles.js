@@ -140,7 +140,7 @@ const actions = {
 		})
 
 		if (failure) {
-			showError(t('contacts', 'An error has occurred in circle(s). Check the console for more details.'))
+			showError(t('contacts', 'An error has occurred in team(s). Check the console for more details.'))
 		}
 
 		return circles
@@ -200,7 +200,7 @@ const actions = {
 			return circle
 		} catch (error) {
 			console.error(error)
-			showError(t('contacts', 'Unable to create circle {circleName}', { circleName }))
+			showError(t('contacts', 'Unable to create team {circleName}', { circleName }))
 		}
 	},
 
@@ -218,7 +218,7 @@ const actions = {
 			logger.debug('Deleted circle', { circleId })
 		} catch (error) {
 			console.error(error)
-			showError(t('contacts', 'Unable to delete circle {circleId}', circleId))
+			showError(t('contacts', 'Unable to delete team {circleId}', circleId))
 		}
 	},
 

@@ -57,7 +57,7 @@
 			<!-- leave circle -->
 			<ActionButton v-if="circle.canLeave"
 				@click="confirmLeaveCircle">
-				{{ t('contacts', 'Leave circle') }}
+				{{ t('contacts', 'Leave team') }}
 				<ExitToApp slot="icon"
 					:size="16"
 					decorative />
@@ -79,7 +79,7 @@
 				<template #icon>
 					<IconDelete :size="20" />
 				</template>
-				{{ t('contacts', 'Delete circle') }}
+				{{ t('contacts', 'Delete team') }}
 			</ActionButton>
 		</template>
 

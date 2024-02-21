@@ -33,7 +33,7 @@
 					:disabled="loading.length > 0"
 					wrapper-element="li"
 					@update:checked="changePasswordProtection">
-					{{ t('contacts', 'Enforce password protection on files shared to this circle') }}
+					{{ t('contacts', 'Enforce password protection on files shared to this team') }}
 				</CheckboxRadioSwitch>
 
 				<CheckboxRadioSwitch v-if="enforcePasswordProtection"
@@ -42,7 +42,7 @@
 					:disabled="loading.length > 0"
 					wrapper-element="li"
 					@update:checked="changeUseUniquePassword">
-					{{ t('contacts', 'Use a unique password for all shares to this circle') }}
+					{{ t('contacts', 'Use a unique password for all shares to this team') }}
 				</CheckboxRadioSwitch>
 
 				<li class="unique-password">

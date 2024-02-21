@@ -30,7 +30,7 @@
 			</EmptyContent>
 		</template>
 		<template v-else-if="!circle.isMember">
-			<EmptyContent class="empty-content" :name="t('contacts', 'The list of members is only visible to members of this circle')">
+			<EmptyContent class="empty-content" :name="t('contacts', 'The list of members is only visible to members of this team')">
 				<template #icon>
 					<IconContact :size="20" />
 				</template>
@@ -60,7 +60,7 @@
 				<template #icon>
 					<IconInfo :size="20" />
 				</template>
-				{{ t('contacts', 'Show circle details') }}
+				{{ t('contacts', 'Show team details') }}
 			</Button>
 		</div>
 
@@ -294,7 +294,7 @@ export default {
 
 				this.resetPicker()
 			} catch (error) {
-				showError(t('contacts', 'There was an issue adding members to the circle'))
+				showError(t('contacts', 'There was an issue adding members to the team'))
 				console.error('There was an issue adding members to the circle', this.pickerCircle, error)
 			} finally {
 				this.pickerLoading = false
