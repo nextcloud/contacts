@@ -7,7 +7,6 @@ OC.L10N.register(
     "Loading …" : "O Kargañ ...",
     "General settings" : "Stummoù hollek",
     "Send email" : "Kas postel",
-    "Circles" : "Kelc'hioù",
     "Download" : "Pellgargañ",
     "Rename" : "Adenvel",
     "Delete" : "Dilemel",

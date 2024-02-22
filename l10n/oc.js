@@ -7,7 +7,6 @@ OC.L10N.register(
     "Loading …" : "Cargament…",
     "General settings" : "Paramètres generals",
     "Send email" : "Enviar email",
-    "Circles" : "Cercles",
     "Download" : "Telecargar",
     "Rename" : "Renomenar",
     "Delete" : "Suprimir",

@@ -13,7 +13,6 @@ OC.L10N.register(
     "Search contacts …" : "اړيکي پلټل ...",
     "Pending" : "د انتظار په حال کې",
     "Close" : "بندول",
-    "Circle" : "حلقه",
     "Admin" : "ستر کارن",
     "Users" : "کارنان",
     "Notes" : "شسیب",

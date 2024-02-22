@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Details" : "Detaljar",
     "Contacts" : "Kontaktar",
-    "Circles" : "Sirklar",
     "Download" : "Last ned",
     "Rename" : "Gje nytt namn",
     "Delete" : "Ta bort",
@@ -23,7 +22,6 @@ OC.L10N.register(
     "Close" : "Lukk",
     "Import" : "Importer",
     "Not grouped" : "Ikkje gruppert",
-    "Circle" : "Sirkel",
     "User" : "Bruker",
     "Group" : "Gruppe",
     "Email" : "E-post",
