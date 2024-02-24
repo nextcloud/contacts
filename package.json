@@ -66,7 +66,7 @@
     "qr-image": "^3.2.0",
     "string-natural-compare": "^3.0.1",
     "uuid": "^9.0.1",
-    "vue": "~2.7.15",
+    "vue": "~3.4.19",
     "vue-click-outside": "^1.1.0",
     "vue-cropperjs": "^4.2.0",
     "vue-material-design-icons": "^5.3.0",
