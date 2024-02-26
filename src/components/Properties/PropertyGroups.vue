@@ -46,6 +46,7 @@
 					:deselect-from-dropdown="true"
 					:taggable="true"
 					tag-placeholder="create"
+					@option:deselected="updateValue"
 					@close="updateValue">
 					<!-- show how many groups are hidden and add tooltip -->
 					<span slot="limit" v-tooltip.auto="formatGroupsTitle" class="multiselect__limit">
