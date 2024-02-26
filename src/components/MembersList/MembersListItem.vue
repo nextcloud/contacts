@@ -374,6 +374,9 @@ export default {
 .members-list__item {
 	padding: 8px;
 	user-select: none;
+	box-sizing: border-box;
+	margin-bottom: 8px;
+	border-radius: var(--border-radius-rounded);
 
 	&:focus,
 	&:hover {
