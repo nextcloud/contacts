@@ -208,7 +208,7 @@
     "Could not leave the team {displayName}" : "Team {displayName} konnte nicht verlassen werden",
     "Unable to join the team" : "Beitritt zum Team nicht möglich",
     "You are about to delete {circle}.\nAre you sure?" : "Sie sind dabei {circle} zu löschen.\nSind Sie sich sicher?",
-    "Please confirm team deletion" : "Bitte bestätigen Sie, dass Sie das Team verlassen möchten",
+    "Please confirm team deletion" : "Bitte bestätigen, dass Sie das Team löschen möchten",
     "Unable to delete the team" : "Team konnte nicht gelöscht werden",
     "Link copied to the clipboard" : "Link wurde in die Zwischenablage kopiert",
     "Could not copy link to the clipboard." : "Link konnte nicht in die Zwischenablage kopiert werden.",
