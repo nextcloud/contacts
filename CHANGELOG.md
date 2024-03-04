@@ -1,6 +1,29 @@
 # Changelog
 
-## 5.5.0-rc.1 – unreleased
+## 6.0.0-alpha.1 – Unreleased
+### Added 
+- Nextcloud 29 support
+- Add confirmation dialog before importing contacts
+### Removed
+- Drop Nextcloud 28 and older
+### Changed 
+- Migrate event buses to mitt
+### Fixed 
+- HTTP client usage
+- Remove import contact button from chart view
+- Subtitle encoding
+
+
+## 5.5.2 – 2024-02-19
+### Fixed
+- Sort fallback if not member of circle
+
+## 5.5.1 – 2024-01-03
+### Fixed
+- Rename types in propreties
+- Remove empty content overlaping related resources
+
+## 5.5.0 – 2023-12-11
 ### Added
 - Nextcloud 28 file action compatibility
 - PHP8.3 support
