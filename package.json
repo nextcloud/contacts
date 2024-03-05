@@ -52,7 +52,7 @@
     "@nextcloud/paths": "^2.1.0",
     "@nextcloud/router": "^2.2.0",
     "@nextcloud/sharing": "^0.1.0",
-    "@nextcloud/vue": "^8.2.0",
+    "@nextcloud/vue": "^8.8.1",
     "b64-to-blob": "^1.2.19",
     "camelcase": "^8.0.0",
     "d3": "^7.8.5",
@@ -65,7 +65,7 @@
     "qr-image": "^3.2.0",
     "string-natural-compare": "^3.0.1",
     "uuid": "^9.0.1",
-    "vue": "~2.7.15",
+    "vue": "~2.7.16",
     "vue-click-outside": "^1.1.0",
     "vue-cropperjs": "^4.2.0",
     "vue-material-design-icons": "^5.2.0",
@@ -100,7 +100,7 @@
     "ts-jest": "^29.1.1",
     "ts-loader": "^9.5.1",
     "typescript": "^5.1.6",
-    "vue-template-compiler": "~2.7"
+    "vue-template-compiler": "~2.7.16"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
