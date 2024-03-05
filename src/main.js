@@ -40,6 +40,8 @@ import '../css/contacts.scss'
 // Dialogs css
 import '@nextcloud/dialogs/style.css'
 
+import { createPinia, PiniaVuePlugin } from 'pinia'
+
 // CSP config for webpack dynamic chunk loading
 // eslint-disable-next-line
 __webpack_nonce__ = btoa(getRequestToken())
@@ -50,6 +52,9 @@ __webpack_nonce__ = btoa(getRequestToken())
 // We do not want the index.php since we're loading files
 // eslint-disable-next-line
 __webpack_public_path__ = generateFilePath('contacts', '', 'js/')
+
+Vue.use(PiniaVuePlugin)
+const pinia = createPinia()
 
 // Register global directives
 Vue.directive('ClickOutside', ClickOutside)
@@ -81,4 +86,5 @@ export default new Vue({
 	router,
 	store,
 	render: h => h(App),
+	pinia,
 })

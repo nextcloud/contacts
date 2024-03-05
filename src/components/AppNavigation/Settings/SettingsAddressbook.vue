@@ -105,9 +105,16 @@
 						</template>
 					</ActionInput>
 				</template>
-
 				<!-- delete addressbook -->
-				<ActionButton v-if="hasMultipleAddressbooks"
+				<ActionButton v-if="hasMultipleAddressbooks && addressbook.owner !== principalUrl && addressbook.owner !== '/remote.php/dav/principals/system/system/'"
+					@click="confirmUnshare">
+					<template #icon>
+						<IconLoading v-if="deleteAddressbookLoading" :size="20" />
+						<IconDelete :size="20" />
+					</template>
+					{{ t('contacts', 'Unshare from me') }}
+				</ActionButton>
+				<ActionButton v-else-if="hasMultipleAddressbooks && addressbook.owner !== '/remote.php/dav/principals/system/system/'"
 					@click="confirmDeletion">
 					<template #icon>
 						<IconLoading v-if="deleteAddressbookLoading" :size="20" />
@@ -116,7 +123,6 @@
 					{{ t('contacts', 'Delete') }}
 				</ActionButton>
 			</Actions>
-
 			<!-- sharing input -->
 			<ShareAddressBook v-if="shareOpen && !addressbook.readOnly" :addressbook="addressbook" />
 		</li>
@@ -142,6 +148,8 @@ import ShareAddressBook from './SettingsAddressbookShare.vue'
 import { showError } from '@nextcloud/dialogs'
 
 import CopyToClipboardMixin from '../../../mixins/CopyToClipboardMixin.js'
+
+import usePrincipalsStore from '../../../store/principals.js'
 
 export default {
 	name: 'SettingsAddressbook',
@@ -241,6 +249,10 @@ export default {
 		groupsCount() {
 			return this.groups.length
 		},
+		principalUrl() {
+			const principalsStore = usePrincipalsStore()
+			return principalsStore.currentUserPrincipal.principalUrl
+		},
 	},
 	watch: {
 		menuOpen() {
@@ -277,7 +289,6 @@ export default {
 				this.toggleEnabledLoading = false
 			}
 		},
-
 		confirmDeletion() {
 			OC.dialogs.confirm(
 				t('contacts', 'This will delete the address book and every contacts within it'),
@@ -286,7 +297,14 @@ export default {
 				true,
 			)
 		},
-
+		confirmUnshare() {
+			OC.dialogs.confirm(
+				t('contacts', 'This will unshare the address book and every contacts within it'),
+				t('contacts', 'Unshare {addressbook}?', { addressbook: this.addressbook.displayName }),
+				this.deleteAddressbook,
+				true,
+			)
+		},
 		async deleteAddressbook(confirm) {
 			if (confirm) {
 				// change to loading status
