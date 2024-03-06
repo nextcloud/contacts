@@ -1,5 +1,10 @@
 # Changelog
 
+## 5.5.3 – 2024-03-06
+### Fixed
+- Remove contact from group
+- Focus trap preventing addressbook rename
+
 ## 5.5.2 – 2024-02-19
 ### Fixed
 - sort fallback if not member of circle
