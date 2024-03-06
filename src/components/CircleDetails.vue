@@ -34,44 +34,45 @@
 
 			<!-- display name -->
 			<template #title>
-				<input v-model="circle.displayName"
-					:readonly="!circle.isOwner"
-					:placeholder="t('contacts', 'Team name')"
-					type="text"
-					autocomplete="off"
-					autocorrect="off"
-					spellcheck="false"
-					name="displayname"
-					@input="onNameChangeDebounce">
 				<div v-if="loadingName" class="circle-name__loader icon-loading-small" />
+				<h2>
+					{{ circle.displayName }}
+				</h2>
 			</template>
 
 			<!-- org, title -->
 			<template v-if="!circle.isOwner" #subtitle>
 				{{ t('contacts', 'Team owned by {owner}', { owner: circle.owner.displayName}) }}
 			</template>
+
+			<template #actions>
+				<!-- copy circle link -->
+				<Button type="tertiary"
+					:href="circleUrl"
+					:title="copyButtonText"
+					:class="copyLinkIcon"
+					@click.stop.prevent="copyToClipboard(circleUrl)" />
+
+				<!-- Team settings modal -->
+				<Button v-if="(circle.isOwner || circle.isAdmin) && !circle.isPersonal" @click="showSettingsModal = true">
+					<template #icon>
+						<Cog :size="20" />
+					</template>
+					{{ t('contacts', 'Team settings') }}
+				</Button>
+
+				<!-- Only show the join button if the circle is accepting requests -->
+				<Button v-if="!circle.isPendingMember && !circle.isMember && circle.canJoin"
+					:disabled="loadingJoin"
+					class="primary"
+					@click="joinCircle">
+					<Login slot="icon"
+						:size="16"
+						decorative />
+					{{ t('contacts', 'Request to join') }}
+				</Button>
+			</template>
 		</DetailsHeader>
-
-		<section class="circle-details-section circle-details-section__actions">
-			<!-- copy circle link -->
-			<a class="circle-details__action-copy-link button"
-				:href="circleUrl"
-				:class="copyLinkIcon"
-				@click.stop.prevent="copyToClipboard(circleUrl)">
-				{{ copyButtonText }}
-			</a>
-
-			<!-- Only show the join button if the circle is accepting requests -->
-			<Button v-if="!circle.isPendingMember && !circle.isMember && circle.canJoin"
-				:disabled="loadingJoin"
-				class="primary"
-				@click="joinCircle">
-				<Login slot="icon"
-					:size="16"
-					decorative />
-				{{ t('contacts', 'Request to join') }}
-			</Button>
-		</section>
 
 		<section v-if="showDescription" class="circle-details-section">
 			<ContentHeading :loading="loadingDescription">
@@ -82,42 +83,123 @@
 				:auto-complete="onAutocomplete"
 				:maxlength="1024"
 				:multiline="true"
-				:contenteditable="circle.isOwner"
+				:contenteditable="false"
 				:placeholder="descriptionPlaceholder"
 				class="circle-details-section__description"
 				@update:value="onDescriptionChangeDebounce" />
 		</section>
 
-		<section v-if="(circle.isOwner || circle.isAdmin) && !circle.isPersonal" class="circle-details-section">
-			<CircleConfigs class="circle-details-section__configs" :circle="circle" />
-			<CirclePasswordSettings class="circle-details-section__configs" :circle="circle" />
+		<section v-if="circle.isMember" class="circle-details-section">
+			<ContentHeading>
+				{{ t('contacts', 'Members') }}
+			</ContentHeading>
+			<div ref="avatarList" class="avatar-list">
+				<Avatar v-for="member in membersLimited"
+					:key="member.singleId"
+					:user="member.userId"
+					:display-name="member.displayName"
+					:is-no-user="!member.isUser"
+					:size="44" />
+				<Button @click="showMembersModal = true">
+					<template #icon>
+						<AccountMultiplePlus :size="20" />
+					</template>
+					{{ t('contacts', 'Add members') }}
+				</Button>
+			</div>
+			<Modal v-if="showMembersModal" @close="showMembersModal=false">
+				<div class="members-modal">
+					<h2>{{ t('contacts', 'Team members') }}</h2>
+					<MemberList :list="members" />
+				</div>
+			</Modal>
 		</section>
+
+		<section>
+			<ContentHeading>
+				{{ t('contacts', 'Team resources') }}
+			</ContentHeading>
+			<p>{{ t('contacts', 'Anything shared with this team will show up here') }}</p>
+			<div v-for="provider in resourceProviders" :key="provider.id">
+				<ContentHeading>
+					<span v-show="false" class="provider__icon" v-html="provider.icon" /> {{ provider.name }}
+				</ContentHeading>
+
+				<ul>
+					<ListItem v-for="resource in resourcesForProvider(provider.id)"
+						:key="resource.url"
+						class="resource"
+						:name="resource.label"
+						:href="resource.url">
+						<template #icon>
+							<span v-if="resource.iconEmoji" class="resource__icon">
+								{{ resource.iconEmoji }}
+							</span>
+							<span v-else-if="resource.iconSvg" class="resource__icon" v-html="resource.iconSvg" />
+							<span v-if="resource.iconUrl" class="resource__icon">
+								<img :src="resource.iconURL" alt="">
+							</span>
+						</template>
+					</ListItem>
+				</ul>
+			</div>
+		</section>
+
+		<Modal v-if="(circle.isOwner || circle.isAdmin) && !circle.isPersonal && showSettingsModal" @close="showSettingsModal=false">
+			<div class="circle-settings">
+				<h2>{{ t('contacts', 'Team settings') }}</h2>
+
+				<h3>{{ t('contacts', 'Team name') }}</h3>
+				<input v-model="circle.displayName"
+					:readonly="!circle.isOwner"
+					:placeholder="t('contacts', 'Team name')"
+					type="text"
+					autocomplete="off"
+					autocorrect="off"
+					spellcheck="false"
+					name="displayname"
+					@input="onNameChangeDebounce">
+
+				<h3>{{ t('contacts', 'Description') }}</h3>
+				<RichContenteditable :value.sync="circle.description"
+					:auto-complete="onAutocomplete"
+					:maxlength="1024"
+					:multiline="true"
+					:contenteditable="circle.isOwner"
+					:placeholder="descriptionPlaceholder"
+					class="circle-details-section__description"
+					@update:value="onDescriptionChangeDebounce" />
+
+				<h3>{{ t('contacts', 'Settings') }}</h3>
+				<CircleConfigs class="circle-details-section__configs" :circle="circle" />
+				<CirclePasswordSettings class="circle-details-section__configs" :circle="circle" />
+
+				<h3>{{ t('contacts', 'Actions') }}</h3>
+				<!-- leave circle -->
+				<Button v-if="circle.canLeave"
+					type="warning"
+					@click="confirmLeaveCircle">
+					<Logout slot="icon"
+						:size="16"
+						decorative />
+					{{ t('contacts', 'Leave team') }}
+				</Button>
+
+				<!-- delete circle -->
+				<Button v-if="circle.canDelete"
+					type="error"
+					href="#"
+					@click.prevent.stop="confirmDeleteCircle">
+					<template #icon>
+						<IconDelete :size="20" />
+					</template>
+					{{ t('contacts', 'Delete team') }}
+				</Button>
+			</div>
+		</Modal>
 
 		<section v-else>
 			<slot />
-		</section>
-
-		<section class="circle-details-section">
-			<!-- leave circle -->
-			<Button v-if="circle.canLeave"
-				class="circle-details__action-copy-link"
-				@click="confirmLeaveCircle">
-				<Logout slot="icon"
-					:size="16"
-					decorative />
-				{{ t('contacts', 'Leave team') }}
-			</Button>
-
-			<!-- delete circle -->
-			<Button v-if="circle.canDelete"
-				class="circle-details__action-delete"
-				href="#"
-				@click.prevent.stop="confirmDeleteCircle">
-				<template #icon>
-					<IconDelete :size="20" />
-				</template>
-				{{ t('contacts', 'Delete team') }}
-			</Button>
 		</section>
 	</AppContentDetails>
 </template>
@@ -125,24 +207,32 @@
 <script>
 import { showError } from '@nextcloud/dialogs'
 import debounce from 'debounce'
+import { useResizeObserver } from '@vueuse/core'
 
 import {
 	NcAppContentDetails as AppContentDetails,
 	NcAvatar as Avatar,
 	NcButton as Button,
+	NcListItem as ListItem,
+	NcModal as Modal,
 	NcRichContenteditable as RichContenteditable,
 } from '@nextcloud/vue'
 
+import Cog from 'vue-material-design-icons/Cog.vue'
 import Login from 'vue-material-design-icons/Login.vue'
 import Logout from 'vue-material-design-icons/Logout.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
+import AccountMultiplePlus from 'vue-material-design-icons/AccountMultiplePlus.vue'
 
 import { CircleEdit, editCircle } from '../services/circles.ts'
 import CircleActionsMixin from '../mixins/CircleActionsMixin.js'
 import DetailsHeader from './DetailsHeader.vue'
 import CircleConfigs from './CircleDetails/CircleConfigs.vue'
+import MemberList from './MemberList.vue'
 import ContentHeading from './CircleDetails/ContentHeading.vue'
 import CirclePasswordSettings from './CircleDetails/CirclePasswordSettings.vue'
+import axios from '@nextcloud/axios'
+import { generateOcsUrl } from '@nextcloud/router'
 
 export default {
 	name: 'CircleDetails',
@@ -150,14 +240,19 @@ export default {
 	components: {
 		AppContentDetails,
 		Avatar,
+		MemberList,
 		Button,
 		CircleConfigs,
 		CirclePasswordSettings,
 		ContentHeading,
 		DetailsHeader,
+		ListItem,
+		Cog,
 		Login,
 		Logout,
+		Modal,
 		IconDelete,
+		AccountMultiplePlus,
 		RichContenteditable,
 	},
 
@@ -167,6 +262,10 @@ export default {
 		return {
 			loadingDescription: false,
 			loadingName: false,
+			showSettingsModal: false,
+			showMembersModal: false,
+			resources: null,
+			memberLimit: 1,
 		}
 	},
 
@@ -188,9 +287,52 @@ export default {
 			}
 			return !this.isEmptyDescription
 		},
+
+		members() {
+			return Object.values(this.$store.getters.getCircle(this.circle.id)?.members || [])
+		},
+
+		membersLimited() {
+			return this.members.slice(0, this.memberLimit)
+		},
+
+		resourceProviders() {
+			return this.resources?.reduce((acc, res) => {
+				if (!acc.find(p => p.id === res.provider.id)) {
+					acc.push(res.provider)
+				}
+				return acc
+			}, []) ?? []
+		},
+
+		resourcesForProvider() {
+			return (providerId) => {
+				return this.resources?.filter(res => res.provider.id === providerId) ?? []
+			}
+		},
+	},
+
+	watch: {
+		'circle.id': {
+			handler() {
+				this.fetchTeamResources()
+			},
+			immediate: true,
+		},
+	},
+
+	mounted() {
+		this.updateMemberLimit()
+		useResizeObserver(this.$refs.avatarList, () => {
+			this.updateMemberLimit()
+		})
 	},
 
 	methods: {
+		async fetchTeamResources() {
+			const response = await axios.get(generateOcsUrl(`/teams/${this.circle.id}/resources`))
+			this.resources = response.data.ocs.data.resources
+		},
 		/**
 		 * Autocomplete @mentions on the description
 		 *
@@ -232,11 +374,34 @@ export default {
 				this.loadingName = false
 			}
 		},
+		updateMemberLimit() {
+			this.memberLimit = Math.floor((this.$refs.avatarList.clientWidth - 44) / 44)
+			console.error(this.memberLimit)
+		},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
+.app-content-details header,
+.app-content-details section {
+	max-width: 800px;
+	margin: auto;
+	margin-bottom: 36px;
+
+	&:deep(.contact-header__avatar) {
+		width: 75px;
+	}
+
+	&:deep(.contact-header__no-wrap) {
+		flex-grow: 1;
+	}
+
+	&:deep(.contact-header__actions) {
+		flex-grow: 0;
+	}
+}
+
 .circle-name__loader {
 	margin-left: 8px;
 }
@@ -258,35 +423,50 @@ export default {
 	}
 }
 
-// TODO: replace by button component when available
-button,
-.circle-details__action-copy-link {
-	height: 44px;
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
-	text-align: left;
-	span {
-		margin-right: 10px;
+.avatar-list {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
+}
+
+.members-modal {
+	padding: 12px;
+
+	h2 {
+		margin-bottom: 16px;
 	}
 
-	&[class*='icon-'] {
-		padding-left: 44px;
-		background-position: 16px center;
-
+	:deep(.app-content-list) {
+		max-width: 100%;
+		border: 0;
 	}
 }
 
-.circle-details__action-delete {
-	background-color: var(--color-error);
-	color: white;
-	border-width: 2px;
-	border-color: var(--color-error) !important;
+.circle-settings {
+	margin: 12px;
+}
 
-	&:hover,
-	&:focus {
-		background-color: var(--color-main-background);
-		color: var(--color-error);
+.provider__icon {
+	display: inline-block;
+	width: 24px;
+	height: 24px;
+}
+.resource {
+	&__icon {
+		width: 44px;
+		height: 44px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		text-align: center;
+		svg {
+			width: 20px;
+			height: 20px;
+		}
+	}
+
+	&:deep(.line-one__name) {
+		font-weight: normal;
 	}
 }
 </style>

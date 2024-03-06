@@ -24,7 +24,7 @@
 	<AppContent v-if="!circle">
 		<EmptyContent :name="t('contacts', 'Please select a team')">
 			<template #icon>
-				<IconCircles :size="20" />
+				<AccountGroup :size="20" />
 			</template>
 		</EmptyContent>
 	</AppContent>
@@ -38,13 +38,6 @@
 	</AppContent>
 
 	<AppContent v-else :show-details.sync="showDetails">
-		<!-- member list -->
-		<template #list>
-			<MemberList :list="members"
-				:loading="loadingList"
-				:show-details.sync="showDetails" />
-		</template>
-
 		<!-- main contacts details -->
 		<CircleDetails :circle="circle">
 			<!-- not a member -->
@@ -58,7 +51,7 @@
 
 				<EmptyContent v-else :name="t('contacts', 'You are not a member of {circle}', { circle: circle.displayName})">
 					<template #icon>
-						<IconCircles :size="20" />
+						<AccountGroup :size="20" />
 					</template>
 				</EmptyContent>
 			</template>
@@ -73,9 +66,8 @@ import {
 	NcLoadingIcon as IconLoading,
 	isMobile,
 } from '@nextcloud/vue'
-import IconCircles from '../Icons/IconCircles.vue'
+import AccountGroup from 'vue-material-design-icons/AccountGroup.vue'
 import CircleDetails from '../CircleDetails.vue'
-import MemberList from '../MemberList.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
 
 export default {
@@ -85,8 +77,7 @@ export default {
 		AppContent,
 		CircleDetails,
 		EmptyContent,
-		MemberList,
-		IconCircles,
+		AccountGroup,
 		IconLoading,
 	},
 
