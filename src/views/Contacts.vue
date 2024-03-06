@@ -3,6 +3,7 @@
   -
   - @author John Molakvoæ <skjnldsv@protonmail.com>
   - @author Charismatic Claire <charismatic.claire@noservice.noreply>
+  - @author Richard Steinmetz <richard@steinmetz.cloud>
   -
   - @license GNU AGPL version 3 or any later version
   -
@@ -238,10 +239,6 @@ export default {
 	},
 
 	mounted() {
-		// Register search
-		// eslint-disable-next-line @nextcloud/no-removed-apis
-		this.search = new OCA.Search(this.search, this.resetSearch)
-
 		if (this.isCirclesEnabled) {
 			this.logger.info('Circles frontend enabled')
 		} else {
