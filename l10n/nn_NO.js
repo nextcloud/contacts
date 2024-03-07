@@ -13,6 +13,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Lagre",
     "Description" : "Skildring",
+    "Settings" : "nstillingar",
     "Cancel" : "Avbryt",
     "Invalid image" : "Ugyldig bilete",
     "Name" : "Namn",

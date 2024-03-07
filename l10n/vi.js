@@ -52,6 +52,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Lưu",
     "Description" : "Mô tả",
+    "Settings" : "Settings",
     "Cancel" : "Hủy bỏ",
     "Upload a new picture" : "Tải lên một ảnh mới",
     "Choose from Files" : "Chọn từ Tệp",

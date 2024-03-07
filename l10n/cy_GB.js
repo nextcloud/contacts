@@ -26,6 +26,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Cadw",
     "Description" : "Disgrifiad",
+    "Settings" : "Settings",
     "Cancel" : "Diddymu",
     "Upload a new picture" : "Llwythwch lun newydd i fyny",
     "Download picture" : "Llwytho llun i lawr",

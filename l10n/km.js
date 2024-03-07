@@ -11,6 +11,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "រក្សាទុក",
     "Description" : "ការ​អធិប្បាយ",
+    "Settings" : "Settings",
     "Cancel" : "បោះបង់",
     "Invalid image" : "រូបភាព​មិន​ត្រឹម​ត្រូវ",
     "Name" : "ឈ្មោះ",

@@ -22,6 +22,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Salvesta",
     "Description" : "Kirjeldus",
+    "Settings" : "Settings",
     "Cancel" : "Loobu",
     "Delete picture" : "Kustuta pilt",
     "Invalid image" : "Vigane pilt",

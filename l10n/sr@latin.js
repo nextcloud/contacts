@@ -10,6 +10,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Sačuvaj",
     "Description" : "Opis",
+    "Settings" : "Postavke",
     "Cancel" : "Otkaži",
     "Name" : "naziv",
     "Title" : "Naslov",

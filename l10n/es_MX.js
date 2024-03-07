@@ -23,6 +23,7 @@ OC.L10N.register(
     "Password protection" : "Protección con contraseña",
     "Save" : "Guardar",
     "Description" : "Descripción",
+    "Settings" : "Settings",
     "Cancel" : "Cancelar",
     "Choose from Files" : "Elegir desde Archivos",
     "Invalid image" : "Imagen inválida",

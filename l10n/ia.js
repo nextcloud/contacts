@@ -17,6 +17,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Salveguardar",
     "Description" : "Description",
+    "Settings" : "Settings",
     "Cancel" : "Cancellar",
     "Invalid image" : "Imagine invalide",
     "Name" : "Nomine",

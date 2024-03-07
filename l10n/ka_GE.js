@@ -20,6 +20,7 @@ OC.L10N.register(
     "Password protection" : "პაროლით თავდაცვა",
     "Save" : "შენახვა",
     "Description" : "აღწერილობა",
+    "Settings" : "Settings",
     "Cancel" : "უარყოფა",
     "Invalid image" : "არასწორი სურათი",
     "Name" : "სახელი",

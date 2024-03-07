@@ -8,6 +8,7 @@ OC.L10N.register(
     "can edit" : "﻿ಸಂಪಾದಿಸಬಹುದು",
     "Password protection" : "Password protection",
     "Save" : "﻿ಉಳಿಸಿ",
+    "Settings" : "Settings",
     "Cancel" : "﻿ರದ್ದು",
     "Invalid image" : "ಅಸಾಮರ್ಥ್ಯ ಚಿತ್ರ",
     "Name" : "﻿ಹೆಸರು",

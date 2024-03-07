@@ -14,6 +14,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Späicheren",
     "Description" : "Beschreiwung",
+    "Settings" : "Settings",
     "Cancel" : "Ofbriechen",
     "Invalid image" : "Ongülteg d'Bild",
     "Name" : "Numm",

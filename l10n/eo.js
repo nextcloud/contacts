@@ -28,6 +28,7 @@ OC.L10N.register(
     "Password protection" : "Protektita per pasvorto",
     "Save" : "Konservi",
     "Description" : "Priskribo",
+    "Settings" : "Settings",
     "Cancel" : "Nuligi",
     "Upload a new picture" : "Alŝuti novan bildon",
     "Download picture" : "Elŝuti bildon",

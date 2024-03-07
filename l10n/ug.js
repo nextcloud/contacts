@@ -9,6 +9,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "ساقلا",
     "Description" : "چۈشەندۈرۈش",
+    "Settings" : "Settings",
     "Cancel" : "ۋاز كەچ",
     "Name" : "ئاتى",
     "Title" : "ماۋزۇ",

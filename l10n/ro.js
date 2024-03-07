@@ -21,6 +21,7 @@ OC.L10N.register(
     "Password protection" : "Protecție parolă ",
     "Save" : "Salvează",
     "Description" : "Descriere",
+    "Settings" : "Settings",
     "Cancel" : "Anulează",
     "Invalid image" : "Imagine invalidă",
     "Name" : "Nume",

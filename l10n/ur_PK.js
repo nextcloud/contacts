@@ -8,6 +8,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "حفظ",
     "Description" : "تصریح",
+    "Settings" : "Settings",
     "Cancel" : "منسوخ کریں",
     "Invalid image" : "غلط تصویر",
     "Name" : "اسم",

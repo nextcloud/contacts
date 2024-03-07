@@ -28,6 +28,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Saglabāt",
     "Description" : "Apraksts",
+    "Settings" : "Settings",
     "Cancel" : "Atcelt",
     "Upload a new picture" : "Augšupielādēt jaunu attēlu",
     "Download picture" : "Lejupielādēt attēlu",

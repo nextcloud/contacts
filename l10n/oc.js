@@ -18,6 +18,7 @@ OC.L10N.register(
     "Password protection" : "Proteccion per senhal",
     "Save" : "Enregistrar",
     "Description" : "Descripcion",
+    "Settings" : "Settings",
     "Cancel" : "Anullar",
     "Invalid image" : "Imatge invalid",
     "Name" : "Nom",

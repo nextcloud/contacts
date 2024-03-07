@@ -20,6 +20,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Simpan",
     "Description" : "Deskrisi",
+    "Settings" : "Settings",
     "Cancel" : "Membatalkan",
     "Invalid image" : "Gambar tidak sah",
     "Name" : "Nama",

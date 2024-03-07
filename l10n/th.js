@@ -45,6 +45,7 @@ OC.L10N.register(
     "Save" : "บันทึก",
     "Request to join" : "ขอเข้าร่วม",
     "Description" : "รายละเอียด",
+    "Settings" : "Settings",
     "Cancel" : "ยกเลิก",
     "Upload a new picture" : "อัปโหลดรูปภาพใหม่",
     "Choose from Files" : "เลือกจากไฟล์",

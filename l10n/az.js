@@ -12,6 +12,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Saxla",
     "Description" : "Açıqlanma",
+    "Settings" : "Settings",
     "Cancel" : "Dayandır",
     "Invalid image" : "Yalnış şəkil",
     "Name" : "Ad",

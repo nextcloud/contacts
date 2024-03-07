@@ -9,6 +9,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Simpan",
     "Description" : "Keterangan",
+    "Settings" : "Settings",
     "Cancel" : "Batal",
     "Name" : "Nama",
     "Title" : "Judul",

@@ -13,6 +13,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Պահպանել",
     "Description" : "Նկարագրություն",
+    "Settings" : "Settings",
     "Cancel" : "ընդհատել",
     "Name" : "Անուն",
     "Title" : "Վերնագիր",

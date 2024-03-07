@@ -22,6 +22,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Хадгалах",
     "Description" : "Тайлбар",
+    "Settings" : "Settings",
     "Cancel" : "болиулах",
     "Upload a new picture" : "Шинэ зураг оруулах",
     "Choose from Files" : "Файлаас сонгох",
