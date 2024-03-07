@@ -136,7 +136,7 @@
 								{{ resource.iconEmoji }}
 							</span>
 							<span v-else-if="resource.iconSvg" class="resource__icon" v-html="resource.iconSvg" />
-							<span v-if="resource.iconUrl" class="resource__icon">
+							<span v-else-if="resource.iconURL" class="resource__icon">
 								<img :src="resource.iconURL" alt="">
 							</span>
 						</template>
@@ -462,6 +462,12 @@ export default {
 		svg {
 			width: 20px;
 			height: 20px;
+		}
+		img {
+			border-radius: var(--border-radius-pill);
+			overflow: hidden;
+			width: 32px;
+			height: 32px;
 		}
 	}
 
