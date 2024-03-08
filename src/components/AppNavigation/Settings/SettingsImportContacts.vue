@@ -337,7 +337,7 @@ export default {
 		}
 		&-disabled {
 			// Wrap warning about disabled button instead of ellipsing it
-			::v-deep .button-vue__text {
+			:deep(.button-vue__text) {
 				white-space: pre-wrap;
 			}
 		}

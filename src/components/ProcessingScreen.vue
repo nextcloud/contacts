@@ -52,15 +52,6 @@ export default {
 		flex-direction: column;
 		width: auto;
 		margin: 50px;
-
-		// Progress &desc wrapper
-		&::v-deep > p {
-			display: flex;
-			align-items: center;
-			flex-direction: column;
-			width: 80%;
-			margin: auto;
-		}
 	}
 
 	&__progress {

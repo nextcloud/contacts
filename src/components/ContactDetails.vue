@@ -1092,7 +1092,7 @@ section.contact-details {
 		}
 	}
 #qrcode-modal {
-	::v-deep .modal-container {
+	:deep(.modal-container) {
 		display: flex;
 		padding: 10px;
 		background-color: #fff;
@@ -1101,7 +1101,7 @@ section.contact-details {
 		}
 	}
 }
-::v-deep .v-select.select {
+:deep(.v-select.select) {
 	min-width: 0;
 	flex: 1 auto;
 	.vs__actions {
@@ -1109,7 +1109,7 @@ section.contact-details {
 	}
 }
 #pick-addressbook-modal {
-	::v-deep .modal-container {
+	:deep(.modal-container) {
 		display: flex;
 		overflow: visible;
 		flex-wrap: wrap;
@@ -1128,11 +1128,10 @@ section.contact-details {
 	background-color: var(--color-primary-element-light);
 	border-radius: var(--border-radius-rounded);
 }
-::v-deep .button-vue--vue-tertiary:hover,
-.button-vue--vue-tertiary:active {
-		background-color: var(--color-primary-element-light-hover) !important;
-
-	}
+:deep(.button-vue--vue-tertiary:hover),
+:deep(.button-vue--vue-tertiary:active) {
+	background-color: var(--color-primary-element-light-hover) !important;
+}
 .related-resources {
 	display:inline-grid;
 	margin-top: 88px;
@@ -1153,7 +1152,7 @@ section.contact-details {
 	display: inline-flex;
 }
 // forcing the size only for contacts app to fit the text size of the contacts app
-::v-deep .related-resources__header h5 {
+:deep(.related-resources__header h5) {
 	font-size: medium;
 	opacity: .7;
 	color: var(--color-primary-element);

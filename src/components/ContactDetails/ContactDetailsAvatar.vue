@@ -596,7 +596,7 @@ export default {
 			justify-content: space-between;
 		}
 
-		&::v-deep .cropper-view-box {
+		&:deep(.cropper-view-box) {
 			border-radius: 50%;
 		}
 	}
@@ -640,7 +640,7 @@ export default {
 		justify-content: center;
 		background-color: rgba(0, 0, 0, .2);
 		// Always show max opacity, let the background-color be the visual cue
-		&::v-deep .action-item__menutoggle {
+		&:deep(.action-item__menutoggle) {
 			opacity: 1;
 		}
 	}
@@ -654,7 +654,7 @@ export default {
 		width: 44px;
 		height: 44px;
 		margin: -50%;
-		&::v-deep {
+		&:deep {
 			.action-item__menutoggle {
 				opacity: .7;
 				background-color: rgba(0, 0, 0, .2);
@@ -675,7 +675,7 @@ export default {
 	// Because of that, we now fill the modal-container,
 	// so we need to watch for click on the photo-wrapper to
 	// close on image click outside.
-	&::v-deep .modal-container {
+	&:deep(.modal-container) {
 		background-color: transparent;
 		box-shadow: none;
 

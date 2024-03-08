@@ -151,7 +151,7 @@ export default {
 	text-overflow: ellipsis;
 	width: 107px;
 }
-::v-deep .button-vue--vue-secondary {
+:deep(.button-vue--vue-secondary) {
 	background-color: transparent;
 	border: none;
 	box-shadow: none;

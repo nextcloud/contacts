@@ -335,7 +335,7 @@ export default {
 		}
 	}
 
-	&::v-deep .empty-content {
+	:deep(.empty-content) {
 		margin: auto;
 	}
 }

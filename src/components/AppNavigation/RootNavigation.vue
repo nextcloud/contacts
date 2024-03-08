@@ -490,7 +490,7 @@ $caption-padding: 22px;
 #newcircle {
 	margin-top: $caption-padding;
 
-	::v-deep a {
+	:deep(a) {
 		color: var(--color-text-maxcontrast)
 	}
 }
@@ -499,10 +499,10 @@ $caption-padding: 22px;
 	margin: 0 $caption-padding;
 }
 
-.app-navigation__collapse ::v-deep a {
+.app-navigation__collapse :deep(a) {
 	color: var(--color-text-maxcontrast)
 }
-::v-deep .settings-button__label {
+:deep(.settings-button__label) {
 	opacity: .7;
 	font-weight: bold;
 }

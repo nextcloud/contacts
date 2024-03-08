@@ -466,13 +466,13 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 }
 
 // Properly center Entity Picker empty content
-::v-deep .empty-content {
+:deep(.empty-content) {
 	margin: auto 0 !important;
 }
 
 /** Size full in the modal component doesn't have border radius, this adds
 it back */
-::v-deep .modal-container {
+:deep(.modal-container) {
 	border-radius: var(--border-radius-large) !important;
 }
 
