@@ -128,7 +128,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 		&--selected,
 		&:hover,
 		&:focus {
-			::v-deep .user-bubble__content {
+			:deep(.user-bubble__content) {
 				// better visual with light default tint
 				background-color: var(--color-primary-element-light);
 			}
@@ -136,7 +136,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 	}
 }
 
-::v-deep .user-bubble__content {
+:deep(.user-bubble__content){
 	// Take full width
 	width: 100%;
 	// Override default styling

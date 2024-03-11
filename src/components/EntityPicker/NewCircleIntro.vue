@@ -212,7 +212,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 }
 
 // Make the checkboxes span full width
-::v-deep .checkbox-radio-switch__label {
+:deep(.checkbox-radio-switch__label) {
 	width: 100%;
 }
 
@@ -223,7 +223,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 
 /** Size full in the modal component doesn't have border radius, this adds
 it back */
-::v-deep .modal-container {
+:deep(.modal-container) {
 	border-radius: var(--border-radius-large) !important;
 }
 

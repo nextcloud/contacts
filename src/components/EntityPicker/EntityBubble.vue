@@ -87,7 +87,7 @@ export default {
 
 <style lang="scss" scoped>
 // better visual with light default tint
-::v-deep .user-bubble__content {
+:deep(.user-bubble__content) {
 	background-color: var(--color-pirimary-light);
 }
 

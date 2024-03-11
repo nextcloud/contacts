@@ -145,11 +145,11 @@ $top-padding: 50px;
 			margin: 0;
 		}
 
-		::v-deep input {
+		:deep(input) {
 			flex: 1 auto;
 		}
 
-		&-title ::v-deep input {
+		&-title :deep(input) {
 			font-weight: bold;
 		}
 
