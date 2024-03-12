@@ -1,17 +1,21 @@
 # Changelog
 
-## 6.0.0-alpha.1 – Unreleased
+## 6.0.0-rc.1 – Unreleased
 ### Added 
 - Nextcloud 29 support
 - Add confirmation dialog before importing contacts
+- Implement team overview page updates
 ### Removed
 - Drop Nextcloud 28 and older
+- Drop dead OCA.Search code
 ### Changed 
 - Migrate event buses to mitt
+- Migrate ::v-deep to :deep
 ### Fixed 
 - HTTP client usage
 - Remove import contact button from chart view
 - Subtitle encoding
+- Adjust styling of team resource image
 
 
 ## 5.5.2 – 2024-02-19
