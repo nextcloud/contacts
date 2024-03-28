@@ -12,6 +12,7 @@ OC.L10N.register(
     "Password protection" : "Password protection",
     "Save" : "Spremi",
     "Description" : "Opis",
+    "Settings" : "Settings",
     "Cancel" : "Otkaži",
     "Invalid image" : "Nevažeća datoteka",
     "Name" : "Ime",
