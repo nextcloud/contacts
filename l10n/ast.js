@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Details" : "Detalles",
     "All contacts" : "Tolos contautos",
+    "Contacts" : "Contautos",
     "Loading contacts …" : "Cargando los contautos…",
     "There are no contacts yet" : "Nun hai nengún contautu",
     "There are no contacts in this group" : "Nun hai nengún contautu nesti grupu",
@@ -45,6 +46,7 @@ OC.L10N.register(
     "Loading members list …" : "Cargando la llista de miembros…",
     "New contact" : "Contautu nuevu",
     "Unable to create the contact." : "Nun ye posible crear el contautu.",
+    "Close" : "Zarrar",
     "_{count} error_::_{count} errors_" : ["{count} error","{count} errores"],
     "Link copied to the clipboard" : "L'enllaz copióse nel cartafueyu",
     "Not grouped" : "Ensin grupu",
