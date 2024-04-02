@@ -1,4 +1,5 @@
 <!--
+  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
   - @copyright Copyright (c) 2022 Julia Kirschenheuter <julia.kirschenheuter@nextcloud.com>
   - @copyright Copyright (c) 2022 Informatyka Boguslawski sp. z o.o. sp.k., http://www.ib.pl/
   -
