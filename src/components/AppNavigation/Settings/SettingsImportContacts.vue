@@ -2,6 +2,7 @@
 	- @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
 	-
 	- @author Team Popcorn <teampopcornberlin@gmail.com>
+	- @author Richard Steinmetz <richard@steinmetz.cloud>
 	-
 	- @license GNU AGPL version 3 or any later version
 	-
@@ -38,15 +39,16 @@
 					<h2>{{ t('contacts', 'Import contacts') }}</h2>
 					<NcSelect v-if="!isSingleAddressbook"
 						id="select-addressbook"
-						v-model="importDestination"
+						v-model="selectedAddressbookOption"
 						:allow-empty="false"
+						:clearable="false"
 						:options="options"
 						:disabled="isSingleAddressbook || isImporting"
 						:placeholder="t('contacts', 'Contacts')"
 						label="displayName"
-						class="import-contact__multiselect">
-						<template slot="singleLabel" slot-scope="{ option }">
-							{{ t('contacts', 'Import into the {addressbookName} address book', { addressbookName: option.displayName }) }}
+						class="import-contact__modal-addressbook__select">
+						<template #selected-option="{ displayName }">
+							<span>{{ t('contacts', 'Import into the {addressbookName} address book', { addressbookName: displayName }) }}</span>
 						</template>
 					</NcSelect>
 				</section>
@@ -169,6 +171,20 @@ export default {
 			},
 			set(value) {
 				this.importDestination = value
+			},
+		},
+
+		/**
+		 * The selected address book option for the select component.
+		 * We can't use the actual address book here as it can't be converted to JSON.
+		 */
+		selectedAddressbookOption: {
+			get() {
+				return this.options.find((option) => option.id === this.selectedAddressbook.id)
+			},
+			set(value) {
+				this.selectedAddressbook = this.availableAddressbooks
+					.find((addressbook) => addressbook.id === value.id)
 			},
 		},
 
@@ -320,6 +336,13 @@ export default {
 			padding-top: 0 !important;
 		}
 	}
+
+	&__modal-addressbook {
+		&__select {
+			width: 100%;
+		}
+	}
+
 	&__button {
 		display: flex;
 		align-items: center;

@@ -38,11 +38,12 @@
 			<!-- contact header -->
 			<DetailsHeader>
 				<!-- avatar and upload photo -->
-				<ContactAvatar slot="avatar"
-					:contact="contact"
-					:is-read-only="isReadOnly"
-					:reload-bus="reloadBus"
-					@update-local-contact="updateLocalContact" />
+				<template #avatar>
+					<ContactAvatar :contact="contact"
+						:is-read-only="isReadOnly"
+						:reload-bus="reloadBus"
+						@update-local-contact="updateLocalContact" />
+				</template>
 
 				<!-- fullname -->
 				<template #title>

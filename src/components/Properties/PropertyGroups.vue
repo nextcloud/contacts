@@ -49,12 +49,14 @@
 					@option:deselected="updateValue"
 					@close="updateValue">
 					<!-- show how many groups are hidden and add tooltip -->
-					<span slot="limit" v-tooltip.auto="formatGroupsTitle" class="multiselect__limit">
-						+{{ localValue.length - 3 }}
-					</span>
-					<span slot="noResult">
-						{{ t('contacts', 'No results') }}
-					</span>
+					<template #limit>
+						<span v-tooltip.auto="formatGroupsTitle" class="multiselect__limit">
+							+{{ localValue.length - 3 }}
+						</span>
+					</template>
+					<template #no-options>
+						<span>{{ t('contacts', 'No results') }}</span>
+					</template>
 				</NcSelect>
 				<p v-else>
 					{{ localValue.length === 0 ? t('contacts','None'): localValue.toString() }}
