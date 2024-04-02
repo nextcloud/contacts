@@ -57,7 +57,7 @@
     "b64-to-blob": "^1.2.19",
     "camelcase": "^8.0.0",
     "d3": "^7.8.5",
-    "d3-org-chart": "^2.7.0",
+    "d3-org-chart": "^3.1.1",
     "debounce": "^1.2.1",
     "downloadjs": "^1.4.7",
     "ical.js": "^1.5.0",
