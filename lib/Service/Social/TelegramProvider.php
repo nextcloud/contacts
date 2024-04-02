@@ -41,7 +41,7 @@ class TelegramProvider implements ISocialProvider {
 	public $name = 'telegram';
 
 	public function __construct(IClientService $httpClient,
-								LoggerInterface $logger) {
+		LoggerInterface $logger) {
 		$this->httpClient = $httpClient->newClient();
 		$this->logger = $logger;
 	}

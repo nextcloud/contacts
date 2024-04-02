@@ -24,12 +24,12 @@
 
 namespace OCA\Contacts\Service\Social;
 
-use OCP\Http\Client\IClient;
-use OCP\Http\Client\IResponse;
-use OCP\Http\Client\IClientService;
-use Psr\Log\LoggerInterface;
 use ChristophWurst\Nextcloud\Testing\TestCase;
+use OCP\Http\Client\IClient;
+use OCP\Http\Client\IClientService;
+use OCP\Http\Client\IResponse;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\LoggerInterface;
 
 class InstagramProviderTest extends TestCase {
 	private $provider;

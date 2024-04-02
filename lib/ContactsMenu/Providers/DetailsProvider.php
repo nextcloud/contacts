@@ -49,9 +49,9 @@ class DetailsProvider implements IProvider {
 	 * @param IActionFactory $actionFactory
 	 */
 	public function __construct(IURLGenerator $urlGenerator,
-								IActionFactory $actionFactory,
-								IL10N $l10n,
-								IManager $manager) {
+		IActionFactory $actionFactory,
+		IL10N $l10n,
+		IManager $manager) {
 		$this->actionFactory = $actionFactory;
 		$this->urlGenerator = $urlGenerator;
 		$this->l10n = $l10n;

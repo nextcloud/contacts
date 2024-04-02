@@ -24,24 +24,24 @@
 
 namespace OCA\Contacts\Service;
 
-use OCA\Contacts\Service\Social\CompositeSocialProvider;
-use OCA\Contacts\Service\Social\ISocialProvider;
-
-use OCP\AppFramework\Http;
-use OCP\Http\Client\IClient;
-use OCP\Http\Client\IResponse;
-use OCP\Http\Client\IClientService;
-use OCP\IConfig;
-use OCP\Contacts\IManager;
-use OCP\IAddressBook;
-use OCA\DAV\CardDAV\CardDavBackend;
-use OCP\IURLGenerator;
-use OCP\IL10N;
-use OCP\Util;
-use OCP\AppFramework\Utility\ITimeFactory;
-
-use PHPUnit\Framework\MockObject\MockObject;
 use ChristophWurst\Nextcloud\Testing\TestCase;
+use OCA\Contacts\Service\Social\CompositeSocialProvider;
+
+use OCA\Contacts\Service\Social\ISocialProvider;
+use OCA\DAV\CardDAV\CardDavBackend;
+use OCP\AppFramework\Http;
+use OCP\AppFramework\Utility\ITimeFactory;
+use OCP\Contacts\IManager;
+use OCP\Http\Client\IClient;
+use OCP\Http\Client\IClientService;
+use OCP\Http\Client\IResponse;
+use OCP\IAddressBook;
+use OCP\IConfig;
+use OCP\IL10N;
+use OCP\IURLGenerator;
+
+use OCP\Util;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class SocialApiServiceTest extends TestCase {
 	private SocialApiService $service;

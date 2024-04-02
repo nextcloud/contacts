@@ -33,8 +33,8 @@ use OCA\Contacts\AppInfo\Application;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\BackgroundJob\IJobList;
 use OCP\BackgroundJob\TimedJob;
-use OCP\IUser;
 use OCP\IConfig;
+use OCP\IUser;
 use OCP\IUserManager;
 use function method_exists;
 
@@ -58,10 +58,10 @@ class SocialUpdateRegistration extends TimedJob {
 	 * @param IJobList $jobList
 	 */
 	public function __construct(
-					ITimeFactory $time,
-					IUserManager $userManager,
-					IConfig $config,
-					IJobList $jobList) {
+		ITimeFactory $time,
+		IUserManager $userManager,
+		IConfig $config,
+		IJobList $jobList) {
 		parent::__construct($time);
 
 		$this->appName = Application::APP_ID;

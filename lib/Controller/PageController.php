@@ -25,12 +25,12 @@
 namespace OCA\Contacts\Controller;
 
 use OC\App\CompareVersion;
-use OCP\App\IAppManager;
-use OCP\AppFramework\Controller;
-use OCP\AppFramework\Http\TemplateResponse;
-
 use OCA\Contacts\AppInfo\Application;
 use OCA\Contacts\Service\SocialApiService;
+use OCP\App\IAppManager;
+
+use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
 use OCP\IInitialStateService;
 use OCP\IRequest;
@@ -61,13 +61,13 @@ class PageController extends Controller {
 	private $compareVersion;
 
 	public function __construct(IRequest $request,
-								IConfig $config,
-								IInitialStateService $initialStateService,
-								IFactory $languageFactory,
-								IUserSession $userSession,
-								SocialApiService $socialApiService,
-								IAppManager $appManager,
-								CompareVersion $compareVersion) {
+		IConfig $config,
+		IInitialStateService $initialStateService,
+		IFactory $languageFactory,
+		IUserSession $userSession,
+		SocialApiService $socialApiService,
+		IAppManager $appManager,
+		CompareVersion $compareVersion) {
 		parent::__construct(Application::APP_ID, $request);
 
 		$this->config = $config;

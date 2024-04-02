@@ -150,7 +150,7 @@ class MastodonProvider implements ISocialProvider {
 			}
 			$masto_user = trim($masto_user, '/');
 			$masto_server = trim($masto_server, '/');
-			return array($masto_user, $masto_server);
+			return [$masto_user, $masto_server];
 		} catch (\Exception $e) {
 			return null;
 		}
