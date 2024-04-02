@@ -42,7 +42,7 @@ class InstagramProvider implements ISocialProvider {
 	public $name = 'instagram';
 
 	public function __construct(IClientService $httpClient,
-								LoggerInterface $logger) {
+		LoggerInterface $logger) {
 		$this->httpClient = $httpClient->newClient();
 		$this->logger = $logger;
 	}

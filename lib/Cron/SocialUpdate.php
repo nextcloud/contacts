@@ -43,9 +43,9 @@ class SocialUpdate extends QueuedJob {
 	private $userManager;
 
 	public function __construct(ITimeFactory $time,
-								SocialApiService $social,
-								IJobList $jobList,
-								IUserManager $userManager) {
+		SocialApiService $social,
+		IJobList $jobList,
+		IUserManager $userManager) {
 		parent::__construct($time);
 		$this->social = $social;
 		$this->jobList = $jobList;

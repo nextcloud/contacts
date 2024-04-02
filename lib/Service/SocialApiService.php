@@ -64,15 +64,15 @@ class SocialApiService {
 	private $imageResizer;
 
 	public function __construct(
-					CompositeSocialProvider $socialProvider,
-					IManager $manager,
-					IConfig $config,
-					IClientService $clientService,
-					IL10N $l10n,
-					IURLGenerator $urlGen,
-					CardDavBackend $davBackend,
-					ITimeFactory $timeFactory,
-					ImageResizer $imageResizer) {
+		CompositeSocialProvider $socialProvider,
+		IManager $manager,
+		IConfig $config,
+		IClientService $clientService,
+		IL10N $l10n,
+		IURLGenerator $urlGen,
+		CardDavBackend $davBackend,
+		ITimeFactory $timeFactory,
+		ImageResizer $imageResizer) {
 		$this->appName = Application::APP_ID;
 		$this->socialProvider = $socialProvider;
 		$this->manager = $manager;
@@ -136,7 +136,7 @@ class SocialApiService {
 	 *
 	 * @returns {IAddressBook} the corresponding addressbook or null
 	 */
-	protected function getAddressBook(string $addressbookId, IManager $manager = null) : ?IAddressBook {
+	protected function getAddressBook(string $addressbookId, ?IManager $manager = null) : ?IAddressBook {
 		$addressBook = null;
 		if ($manager === null) {
 			$manager = $this->manager;
@@ -367,7 +367,7 @@ class SocialApiService {
 	 *
 	 * @returns {JSONResponse} JSONResponse with the list of changed and failed contacts
 	 */
-	public function updateAddressbooks(string $userId, string $offsetBook = null, string $offsetContact = null, string $network = null) : JSONResponse {
+	public function updateAddressbooks(string $userId, ?string $offsetBook = null, ?string $offsetContact = null, ?string $network = null) : JSONResponse {
 		// double check!
 		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
 		$bgSyncEnabledByUser = $this->config->getUserValue($userId, $this->appName, 'enableSocialSync', 'no');

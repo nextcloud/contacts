@@ -38,8 +38,8 @@ class ContactsController extends Controller {
 	private $urlGenerator;
 
 	public function __construct(IRequest $request,
-								IL10N $l10n,
-								IURLGenerator $urlGenerator) {
+		IL10N $l10n,
+		IURLGenerator $urlGenerator) {
 		parent::__construct(Application::APP_ID, $request);
 
 		$this->l10n = $l10n;

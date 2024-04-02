@@ -24,10 +24,10 @@
 
 namespace OCA\Contacts\Service\Social;
 
-use OCP\Http\Client\IClient;
-use OCP\Http\Client\IResponse;
-use OCP\Http\Client\IClientService;
 use ChristophWurst\Nextcloud\Testing\TestCase;
+use OCP\Http\Client\IClient;
+use OCP\Http\Client\IClientService;
+use OCP\Http\Client\IResponse;
 use PHPUnit\Framework\MockObject\MockObject;
 
 class XingProviderTest extends TestCase {

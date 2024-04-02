@@ -45,9 +45,9 @@ class SocialApiController extends ApiController {
 	private $socialApiService;
 
 	public function __construct(IRequest $request,
-								IConfig $config,
-								IUserSession $userSession,
-								SocialApiService $socialApiService) {
+		IConfig $config,
+		IUserSession $userSession,
+		SocialApiService $socialApiService) {
 		parent::__construct(Application::APP_ID, $request);
 
 		$this->config = $config;

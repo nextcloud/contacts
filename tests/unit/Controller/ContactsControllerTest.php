@@ -23,12 +23,12 @@
 
 namespace OCA\Contacts\Controller;
 
-use PHPUnit\Framework\MockObject\MockObject;
+use ChristophWurst\Nextcloud\Testing\TestCase;
+use OCP\AppFramework\Http\RedirectResponse;
 use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IURLGenerator;
-use ChristophWurst\Nextcloud\Testing\TestCase;
-use OCP\AppFramework\Http\RedirectResponse;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class ContactsControllerTest extends TestCase {
 	private $controller;
