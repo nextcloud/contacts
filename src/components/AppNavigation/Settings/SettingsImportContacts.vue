@@ -110,10 +110,9 @@ const CancelToken = axios.CancelToken
 
 const picker = getFilePickerBuilder(t('contacts', 'Choose a vCard file to import'))
 	.setMultiSelect(false)
-	.setModal(true)
 	.setType(1)
 	.allowDirectories(false)
-	.setMimeTypeFilter('text/vcard')
+	.addMimeTypeFilter('text/vcard')
 	.build()
 
 export default {
