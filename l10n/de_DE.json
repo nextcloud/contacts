@@ -215,7 +215,7 @@
     "Could not leave the team {displayName}" : "Team {displayName} konnte nicht verlassen werden",
     "Unable to join the team" : "Beitritt zum Team nicht möglich",
     "You are about to delete {circle}.\nAre you sure?" : "Sie sind dabei {circle} zu löschen.\nSind Sie sich sicher?",
-    "Please confirm team deletion" : "Bitte bestätigen, dass Sie das Team löschen möchten",
+    "Please confirm team deletion" : "Löschen des Teams bestätigen",
     "Unable to delete the team" : "Team konnte nicht gelöscht werden",
     "Link copied to the clipboard" : "Link wurde in die Zwischenablage kopiert",
     "Could not copy link to the clipboard." : "Link konnte nicht in die Zwischenablage kopiert werden.",
@@ -302,7 +302,7 @@
     "Time zone" : "Zeitzone",
     "Spoken languages" : "Gesprochene Sprachen",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} Kontakt konnte nicht gelesen werden","{failed} Kontakte konnten nicht gelesen werden"],
-    "An error has occurred in team(s). Check the console for more details." : "In Teams(s) ist ein Fehler aufgetreten. Überprüfen Sie die Konsole für weitere Einzelheiten.",
+    "An error has occurred in team(s). Check the console for more details." : "Es ist ein Fehler in Team(s) aufgetreten. Bitte die Konsole für weitere Einzelheiten prüfen.",
     "Unable to create team {circleName}" : "Fehler beim Erstellen des Teams {circleName}",
     "Unable to delete team {circleId}" : "Fehler beim Löschen des Teams {circleId}",
     "Unable to delete contact" : "Kontakt konnte nicht gelöscht werden"
