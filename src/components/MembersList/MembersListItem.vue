@@ -65,9 +65,9 @@
 				<template v-if="canChangeLevel">
 					<ActionText>
 						{{ t('contacts', 'Manage level') }}
-						<ShieldCheck slot="icon"
-							:size="16"
-							decorative />
+						<template #icon>
+							<ShieldCheck :size="16" />
+						</template>
 					</ActionText>
 					<ActionButton v-for="level in availableLevelsChange"
 						:key="level"
@@ -82,9 +82,9 @@
 				<!-- Leave or delete member from circle -->
 				<ActionButton v-if="isCurrentUser && !circle.isOwner" @click="deleteMember">
 					{{ t('contacts', 'Leave team') }}
-					<ExitToApp slot="icon"
-						:size="16"
-						decorative />
+					<template #icon>
+						<ExitToApp :size="16" />
+					</template>
 				</ActionButton>
 				<ActionButton v-else-if="canDelete" @click="deleteMember">
 					<template #icon>

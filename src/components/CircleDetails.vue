@@ -66,9 +66,9 @@
 					:disabled="loadingJoin"
 					class="primary"
 					@click="joinCircle">
-					<Login slot="icon"
-						:size="16"
-						decorative />
+					<template #icon>
+						<Login :size="16" />
+					</template>
 					{{ t('contacts', 'Request to join') }}
 				</Button>
 			</template>
@@ -179,9 +179,9 @@
 				<Button v-if="circle.canLeave"
 					type="warning"
 					@click="confirmLeaveCircle">
-					<Logout slot="icon"
-						:size="16"
-						decorative />
+					<template #icon>
+						<Logout :size="16" />
+					</template>
 					{{ t('contacts', 'Leave team') }}
 				</Button>
 

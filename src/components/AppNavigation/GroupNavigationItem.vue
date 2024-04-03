@@ -26,7 +26,7 @@
 		<template #icon>
 			<IconContact :size="20" />
 		</template>
-		<template slot="actions">
+		<template #actions>
 			<ActionButton :close-after-click="true"
 				@click="addContactsToGroup(group)">
 				<template #icon>

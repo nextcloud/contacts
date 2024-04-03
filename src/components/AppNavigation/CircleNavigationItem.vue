@@ -28,59 +28,58 @@
 			<AccountGroup v-else-if="circle.isMember" :size="20" />
 			<AccountGroupOutline v-else :size="20" />
 		</template>
-		<template v-if="loadingAction" slot="actions">
-			<ActionText>
+		<template #actions>
+			<ActionText v-if="loadingAction">
 				<template #icon>
 					<IconLoading :size="20" />
 				</template>
 				{{ t('contacts', 'Loading …') }}
 			</ActionText>
-		</template>
+			<template v-else>
+				<ActionButton v-if="circle.canManageMembers"
+					:close-after-click="true"
+					@click="addMemberToCircle">
+					<template #icon>
+						<IconAdd :size="20" />
+					</template>
+					{{ t('contacts', 'Add member') }}
+				</ActionButton>
 
-		<template v-else slot="actions">
-			<ActionButton v-if="circle.canManageMembers"
-				:close-after-click="true"
-				@click="addMemberToCircle">
-				<template #icon>
-					<IconAdd :size="20" />
-				</template>
-				{{ t('contacts', 'Add member') }}
-			</ActionButton>
+				<!-- copy circle link -->
+				<ActionLink :href="circleUrl"
+					:icon="copyLinkIcon"
+					@click.stop.prevent="copyToClipboard(circleUrl)">
+					{{ copyButtonText }}
+				</ActionLink>
 
-			<!-- copy circle link -->
-			<ActionLink :href="circleUrl"
-				:icon="copyLinkIcon"
-				@click.stop.prevent="copyToClipboard(circleUrl)">
-				{{ copyButtonText }}
-			</ActionLink>
+				<!-- leave circle -->
+				<ActionButton v-if="circle.canLeave"
+					@click="confirmLeaveCircle">
+					{{ t('contacts', 'Leave team') }}
+					<template #icon>
+						<ExitToApp :size="16" />
+					</template>
+				</ActionButton>
 
-			<!-- leave circle -->
-			<ActionButton v-if="circle.canLeave"
-				@click="confirmLeaveCircle">
-				{{ t('contacts', 'Leave team') }}
-				<ExitToApp slot="icon"
-					:size="16"
-					decorative />
-			</ActionButton>
+				<!-- join circle -->
+				<ActionButton v-else-if="!circle.isMember && circle.canJoin"
+					:disabled="loadingJoin"
+					@click="joinCircle">
+					{{ joinButtonTitle }}
+					<template  #icon>
+						<LocationEnter :size="16" />
+					</template>
+				</ActionButton>
 
-			<!-- join circle -->
-			<ActionButton v-else-if="!circle.isMember && circle.canJoin"
-				:disabled="loadingJoin"
-				@click="joinCircle">
-				{{ joinButtonTitle }}
-				<LocationEnter slot="icon"
-					:size="16"
-					decorative />
-			</ActionButton>
-
-			<!-- delete circle -->
-			<ActionButton v-if="circle.canDelete"
-				@click="confirmDeleteCircle">
-				<template #icon>
-					<IconDelete :size="20" />
-				</template>
-				{{ t('contacts', 'Delete team') }}
-			</ActionButton>
+				<!-- delete circle -->
+				<ActionButton v-if="circle.canDelete"
+					@click="confirmDeleteCircle">
+					<template #icon>
+						<IconDelete :size="20" />
+					</template>
+					{{ t('contacts', 'Delete team') }}
+				</ActionButton>
+			</template>
 		</template>
 
 		<template #counter>
