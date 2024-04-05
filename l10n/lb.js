@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Details" : "Detailer",
     "Contacts" : "Kontakter",
+    "Loading …" : "Loading …",
     "Download" : "Eroflueden",
     "Rename" : "Ëmbenennen",
     "Delete" : "Läschen",

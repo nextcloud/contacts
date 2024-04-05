@@ -53,6 +53,8 @@
     "Toggling of address book was not successful" : "L'activation ou désactivation du carnet d'adresses a échoué",
     "This will delete the address book and every contacts within it" : "Le carnet d'adresses ainsi que tous les contacts qu'il contient va être supprimé",
     "Delete {addressbook}?" : "Supprimer {addressbook} ?",
+    "This will unshare the address book and every contacts within it" : "Le carnet d’adresses ainsi que tous les contacts qu’il contient ne sera plus partagé",
+    "Unshare {addressbook}?" : "Cesser le partage {addressbook} ?",
     "Deletion of address book was not successful." : "La suppression du carnet d'adresses a échoué.",
     "Renaming of address book was not successful." : "Le renommage du carnet d'adresses à échoué.",
     "_%n contact_::_%n contacts_" : ["%n contact","%n contacts","%n contacts"],
