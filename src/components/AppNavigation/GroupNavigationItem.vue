@@ -20,47 +20,54 @@
   -
   -->
 <template>
-	<AppNavigationItem :key="group.key"
-		:to="group.router"
-		:name="group.name">
-		<template #icon>
-			<IconContact :size="20" />
-		</template>
-		<template #actions>
-			<ActionButton :close-after-click="true"
-				@click="addContactsToGroup(group)">
-				<template #icon>
-					<IconAdd :size="20" />
-				</template>
-				{{ t('contacts', 'Add contacts') }}
-			</ActionButton>
-			<ActionButton :close-after-click="true"
-				@click="downloadGroup(group)">
-				<template #icon>
-					<IconDownload :size="20" />
-				</template>
-				{{ t('contacts', 'Export') }}
-			</ActionButton>
-			<ActionButton @click="emailGroup(group)">
-				<template #icon>
-					<IconEmail :size="20" />
-				</template>
-				{{ t('contacts', 'Send email') }}
-			</ActionButton>
-			<ActionButton @click="emailGroup(group, 'bcc')">
-				<template #icon>
-					<IconEmail :size="20" />
-				</template>
-				{{ t('contacts', 'Send email as BCC') }}
-			</ActionButton>
-		</template>
+	<div class="group-drop-area"
+		data-testid="group-drop-area"
+		@drop="onDrop($event, group)"
+		@dragenter.prevent
+		@dragover="onDragOver($event)"
+		@dragleave="onDragLeave($event)">
+		<AppNavigationItem :key="group.key"
+			:to="group.router"
+			:name="group.name">
+			<template #icon>
+				<IconContact :size="20" />
+			</template>
+			<template #actions>
+				<ActionButton :close-after-click="true"
+					@click="addContactsToGroup(group)">
+					<template #icon>
+						<IconAdd :size="20" />
+					</template>
+					{{ t('contacts', 'Add contacts') }}
+				</ActionButton>
+				<ActionButton :close-after-click="true"
+					@click="downloadGroup(group)">
+					<template #icon>
+						<IconDownload :size="20" />
+					</template>
+					{{ t('contacts', 'Export') }}
+				</ActionButton>
+				<ActionButton @click="emailGroup(group)">
+					<template #icon>
+						<IconEmail :size="20" />
+					</template>
+					{{ t('contacts', 'Send email') }}
+				</ActionButton>
+				<ActionButton @click="emailGroup(group, 'bcc')">
+					<template #icon>
+						<IconEmail :size="20" />
+					</template>
+					{{ t('contacts', 'Send email as BCC') }}
+				</ActionButton>
+			</template>
 
-		<template #counter>
-			<NcCounterBubble v-if="group.contacts.length > 0">
-				{{ group.contacts.length }}
-			</NcCounterBubble>
-		</template>
-	</AppNavigationItem>
+			<template #counter>
+				<NcCounterBubble v-if="group.contacts.length > 0">
+					{{ group.contacts.length }}
+				</NcCounterBubble>
+			</template>
+		</AppNavigationItem>
+	</div>
 </template>
 
 <script>
@@ -77,6 +84,7 @@ import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 import IconDownload from 'vue-material-design-icons/Download.vue'
 import IconEmail from 'vue-material-design-icons/Email.vue'
+import { showError } from '@nextcloud/dialogs'
 
 export default {
 	name: 'GroupNavigationItem',
@@ -105,6 +113,53 @@ export default {
 	},
 
 	methods: {
+		/**
+		 * @param groups
+		 * @param groupId
+		 */
+		isInGroup(groups, groupId) {
+			return groups.includes(groupId)
+		},
+		/**
+		 * Drop contact on group handler.
+		 *
+		 * @param {object} event drop event
+		 * @param {object} group to add to dropped contact
+		 * @return {Promise<void>}
+		 */
+		async onDrop(event, group) {
+			try {
+				const contactFromDropData = JSON.parse(event.dataTransfer.getData('item'))
+				const contactFromStore = this.$store.getters.getContact(`${contactFromDropData.uid}~${contactFromDropData.addressbookId}`)
+				if (contactFromStore && !this.isInGroup(contactFromStore.groups, group.id)) {
+					const contact = this.$store.getters.getContact(`${contactFromDropData.uid}~${contactFromDropData.addressbookId}`)
+					await this.$store.dispatch('updateContactGroups', {
+						groupNames: [...contactFromStore.groups, group.id],
+						contact,
+					})
+					const localContact = Object.assign(
+						Object.create(Object.getPrototypeOf(contact)),
+						contact,
+					)
+					localContact.groups = [...contactFromStore.groups, group.id]
+					await this.$store.dispatch('updateContact', localContact)
+				}
+			} catch (e) {
+				console.error(e)
+				showError('Tried to drop an invalid contact!')
+			} finally {
+				event.target.closest('.group-drop-area').removeAttribute('drop-active')
+			}
+		},
+		// Add marker for drop area
+		onDragOver(event) {
+			event.preventDefault()
+			event.target.closest('.group-drop-area').setAttribute('drop-active', true)
+		},
+		// Remove marker from drop area
+		onDragLeave(event) {
+			event.target.closest('.group-drop-area').removeAttribute('drop-active')
+		},
 		// Trigger the entity picker view
 		addContactsToGroup() {
 			emit('contacts:group:append', this.group.name)
@@ -184,3 +239,9 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.group-drop-area[drop-active=true] {
+	background-color: var(--color-primary-light);
+}
+</style>
