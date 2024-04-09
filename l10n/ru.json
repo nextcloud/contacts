@@ -112,6 +112,7 @@
     "Select address book" : "Выберите адресную книгу",
     "Go to talk conversation" : "Перейти в обсуждение",
     "View profile" : "Показать профиль",
+    "No shared items with this contact" : "Связанных с этим контактом элементов нет",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Контакт открыт в режиме «только чтение», для изменения недостаточно прав.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Контакт, который вы пытаетесь редактировать, был изменен. Выполните обновление контакта вручную. Все внесённые изменения не будут сохранены.",
     "Address book" : "Адресная книга",
