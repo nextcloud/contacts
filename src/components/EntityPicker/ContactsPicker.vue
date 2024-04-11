@@ -13,6 +13,7 @@
 		:data-types="pickerTypes"
 		:data-set="pickerData"
 		@close="onContactPickerClose"
+		@search="onSearch"
 		@submit="onContactPickerPick" />
 </template>
 
@@ -25,6 +26,8 @@ import { NcModal as Modal } from '@nextcloud/vue'
 import AddToGroupView from '../../views/Processing/AddToGroupView.vue'
 import appendContactToGroup from '../../services/appendContactToGroup.js'
 import EntityPicker from './EntityPicker.vue'
+import { getSuggestions } from '../../services/collaborationAutocompletion'
+import { showError } from '@nextcloud/dialogs'
 
 export default {
 	name: 'ContactsPicker',
@@ -165,6 +168,20 @@ export default {
 					setTimeout(this.closeProcess, 3000)
 				}
 			})
+		},
+
+		/**
+		 * On EntityPicker search.
+		 *
+		 * @param {string} term the searched term
+		 */
+		async onSearch(term) {
+			try {
+				this.pickerData = await getSuggestions(term)
+			} catch (error) {
+				console.error('Unable to get the results', error)
+				showError(t('contacts', 'Unable to get the results'))
+			}
 		},
 
 		closeProcess() {
