@@ -48,6 +48,7 @@ OC.L10N.register(
     "Download" : "Stiahnuť",
     "Show" : "Zobraziť",
     "Rename" : "Premenovať",
+    "Unshare from me" : "Zrušiť zdieľanie so mnou",
     "Delete" : "Zmazať",
     "Copied" : "Skopírované",
     "Cannot copy" : "Nemôžem kopírovať",
