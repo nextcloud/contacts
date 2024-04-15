@@ -34,14 +34,13 @@
 
 			<!-- multiselect taggable groups -->
 			<div class="property__value">
-				<NcSelect v-if="!showAsText"
+				<NcSelect v-if="!isReadOnly"
 					v-model="localValue"
 					:options="groups"
 					:no-wrap="true"
 					:placeholder="t('contacts', 'Add contact in group')"
 					:multiple="true"
 					:close-on-select="false"
-					:disabled="isReadOnly"
 					:clearable="true"
 					:deselect-from-dropdown="true"
 					:taggable="true"
@@ -58,9 +57,15 @@
 						<span>{{ t('contacts', 'No results') }}</span>
 					</template>
 				</NcSelect>
-				<p v-else>
-					{{ localValue.length === 0 ? t('contacts','None'): localValue.toString() }}
-				</p>
+				<div v-else>
+					<span v-if="localValue.length === 0">{{ t('contacts','None') }}</span>
+
+					<div v-else class="group__list">
+						<span v-for="(group, index) in localValue" :key="index">
+							{{ group }}{{ index === (localValue.length - 1) ? '' : ',&nbsp;' }}
+						</span>
+					</div>
+				</div>
 			</div>
 
 			<!-- empty actions to keep the layout -->
@@ -162,3 +167,10 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.group__list {
+	display: flex;
+	flex-wrap: wrap;
+}
+</style>
