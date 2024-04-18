@@ -1,8 +1,9 @@
 # Changelog
 
-## 6.0.0-rc.1 – Unreleased
+## 6.0.0 – 2024-04-18
 ### Added 
 - Nextcloud 29 support
+- Nextcloud 30 support
 - Add confirmation dialog before importing contacts
 - Implement team overview page updates
 ### Removed
