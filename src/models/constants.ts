@@ -111,7 +111,7 @@ export const PUBLIC_CIRCLE_CONFIG = {
 	[t('contacts', 'Invites')]: {
 		[CIRCLE_CONFIG_OPEN]: t('contacts', 'Anyone can request membership'),
 		[CIRCLE_CONFIG_INVITE]: t('contacts', 'Members need to accept invitation'),
-		[CIRCLE_CONFIG_REQUEST]: t('contacts', 'Memberships must be confirmed/accepted by a Moderator (requires Open)'),
+		[CIRCLE_CONFIG_REQUEST]: t('contacts', 'Memberships must be confirmed/accepted by a Moderator (requires "Anyone can request membership")'),
 		[CIRCLE_CONFIG_FRIEND]: t('contacts', 'Members can also invite'),
 		// Let's manage password protection independently as we also need a password
 		// [CIRCLE_CONFIG_PROTECTED]: t('contacts', 'Password protect'),
