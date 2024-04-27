@@ -190,7 +190,6 @@ OC.L10N.register(
     "Invites" : "초대",
     "Anyone can request membership" : "누구나 가입을 요청할 수 있음",
     "Members need to accept invitation" : "회원이 초대를 수락해야 함",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "중재자가 회원 가입을 확인 및 수락해야 합니다. (요청 가능)",
     "Members can also invite" : "회원도 초대 가능",
     "Visibility" : "표시 여부",
     "Visible to everyone" : "모두에게 보이기",

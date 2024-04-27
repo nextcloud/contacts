@@ -201,7 +201,6 @@ OC.L10N.register(
     "Invites" : "Inbjudningar",
     "Anyone can request membership" : "Vem som helst kan begära medlemskap",
     "Members need to accept invitation" : "Medlemmar måste godkänna inbjudan",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Medlemsskap måste bekräftas/godkännas av en moderator (requires Open)",
     "Members can also invite" : "Medlemmar kan också bjuda in",
     "Visibility" : "Synlighet",
     "Visible to everyone" : "Synlig för alla",

@@ -190,7 +190,6 @@ OC.L10N.register(
     "Invites" : "Приглашения",
     "Anyone can request membership" : "Участие в круге доступно для всех",
     "Members need to accept invitation" : "Необходимо принятие приглашений пользователями",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Участие должно быть одобрено модератором (требуется открытый тип круга)",
     "Members can also invite" : "Разрешить приглашать участникам",
     "Visibility" : "Видимость",
     "Visible to everyone" : "Видим для всех",

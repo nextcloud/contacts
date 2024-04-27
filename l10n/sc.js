@@ -157,7 +157,6 @@ OC.L10N.register(
     "Invites" : "Invitos",
     "Anyone can request membership" : "Chie si siat podet pedire sa partetzipatzione",
     "Members need to accept invitation" : "Is membros depent atzetare s'invitu",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Sa partetzipatzione depet èssere cunfirmada/atzetada dae una persone chi moderat (Open est rechèdidu)",
     "Members can also invite" : "Puru is membros podent invitare",
     "Visibility" : "Visibilidade",
     "Visible to everyone" : "Visìbile pro totus",

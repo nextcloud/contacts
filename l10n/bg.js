@@ -178,7 +178,6 @@ OC.L10N.register(
     "Invites" : "Покани",
     "Anyone can request membership" : "Всеки може да поиска членство",
     "Members need to accept invitation" : "Членовете трябва да приемат покана",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Членствата трябва да бъдат потвърдени/приети от модератор (изисква Отваряне)",
     "Members can also invite" : "Членовете също могат да канят",
     "Visibility" : "Видимост",
     "Visible to everyone" : "Видим за всеки",

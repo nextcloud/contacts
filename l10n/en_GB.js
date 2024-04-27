@@ -240,7 +240,6 @@ OC.L10N.register(
     "Invites" : "Invites",
     "Anyone can request membership" : "Anyone can request membership",
     "Members need to accept invitation" : "Members need to accept invitation",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Memberships must be confirmed/accepted by a Moderator (requires Open)",
     "Members can also invite" : "Members can also invite",
     "Visibility" : "Visibility",
     "Visible to everyone" : "Visible to everyone",

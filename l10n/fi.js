@@ -226,7 +226,6 @@ OC.L10N.register(
     "Invites" : "Kutsut",
     "Anyone can request membership" : "Kuka tahansa voi pyytää jäsenyyttä",
     "Members need to accept invitation" : "Jäsenten tulee hyväksyä kutsu",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Jäsenyydet tulee vahvistaa/hyväksyä moderaattorin toimesta (vaatii avoimen)",
     "Members can also invite" : "Myös jäsenet voivat kutsua",
     "Visibility" : "Näkyvyys",
     "Visible to everyone" : "Näkyy kaikille",

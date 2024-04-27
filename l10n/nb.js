@@ -240,7 +240,6 @@ OC.L10N.register(
     "Invites" : "Invitasjoner",
     "Anyone can request membership" : "Alle kan be om medlemskap",
     "Members need to accept invitation" : "Medlemmer må godta invitasjonen",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Medlemskap må bekreftes/aksepteres av en moderator (krever åpen)",
     "Members can also invite" : "Medlemmer kan også invitere",
     "Visibility" : "Synlighet",
     "Visible to everyone" : "Synlig for alle",

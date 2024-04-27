@@ -197,7 +197,6 @@ OC.L10N.register(
     "Invites" : "Προσκλήσεις",
     "Anyone can request membership" : "Οποιοσδήποτε μπορεί να αιτηθεί συμμετοχή",
     "Members need to accept invitation" : "Τα μέλη πρέπει να αποδεχτούν την πρόσκληση",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Τα αιτήματα μελών πρέπει να επιβεβαιωθούν/αποδεχθούν από έναν συντονιστή (απαιτείται Ανοιχτός κύκλος)",
     "Members can also invite" : "Τα μέλη μπορούν επίσης να προσκαλέσουν",
     "Visibility" : "Ορατότητα",
     "Visible to everyone" : "Ορατός σε όλους",

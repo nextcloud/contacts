@@ -190,7 +190,6 @@ OC.L10N.register(
     "Invites" : "دعوت‌ها",
     "Anyone can request membership" : "هر کسی می تواند درخواست عضویت کند",
     "Members need to accept invitation" : "اعضا باید دعوت را بپذیرند",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "عضویت باید توسط یک ناظر تأیید / پذیرفته شود (نیاز به باز بودن دارد)",
     "Members can also invite" : "اعضا نیز می توانند دعوت کنند",
     "Visibility" : "نمایانی",
     "Visible to everyone" : "برای همه قابل مشاهده است",

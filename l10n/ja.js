@@ -190,7 +190,6 @@ OC.L10N.register(
     "Invites" : "招待",
     "Anyone can request membership" : "誰でもメンバーへの参加をリクエストできます",
     "Members need to accept invitation" : "メンバーは招待を承認する必要があります",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "メンバーシップは、モデレーターにより確認/承認が必要です（開く要求）",
     "Members can also invite" : "メンバーによる招待も可能",
     "Visibility" : "公開レベル",
     "Visible to everyone" : "すべての人に公開",

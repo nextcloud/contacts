@@ -240,7 +240,6 @@ OC.L10N.register(
     "Invites" : "Einladungen",
     "Anyone can request membership" : "Jeder kann eine Mitgliedschaft beantragen ",
     "Members need to accept invitation" : "Mitglieder müssen die Einladung annehmen ",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Mitgliedschaften müssen von einem Moderator bestätigt/angenommen werden (erfordert Offen)",
     "Members can also invite" : "Mitglieder können auch einladen",
     "Visibility" : "Sichtbarkeit",
     "Visible to everyone" : "Für jeden sichtbar",

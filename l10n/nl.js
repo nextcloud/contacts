@@ -192,7 +192,6 @@ OC.L10N.register(
     "Invites" : "Uitnodigingen",
     "Anyone can request membership" : "Iedereen kan lid worden",
     "Members need to accept invitation" : "Leden moeten de uitnodiging accepteren",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Lidmaatschap moet worden bevestigd/geaccepteerd door een Moderator (vereist Open)",
     "Members can also invite" : "Leden kunnen anderen uitnodigen",
     "Visibility" : "Zichtbaarheid",
     "Visible to everyone" : "Zichtbaar voor iedereen",

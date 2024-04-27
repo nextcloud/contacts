@@ -240,7 +240,6 @@ OC.L10N.register(
     "Invites" : "يدعو",
     "Anyone can request membership" : "يمكن لأي شخص طلب العضوية",
     "Members need to accept invitation" : "يلزم أن يقبل العضو الدعوة",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "يلزم تأكيد/قبول العضويات من قِبَل المنسق (تستلزم الفتح)",
     "Members can also invite" : "يمكن للأعضاء أيضاً إرسال دعوات العضوية",
     "Visibility" : "الرؤية",
     "Visible to everyone" : "مرئي للجميع",

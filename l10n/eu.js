@@ -199,7 +199,6 @@ OC.L10N.register(
     "Invites" : "Gonbidapenak",
     "Anyone can request membership" : "Edonork eskatu dezake kidetza",
     "Members need to accept invitation" : "Kideek gonbidapena onartu behar dute",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Moderatzaile batek berretsi / onartu behar ditu kidetzak (Irekia behar du)",
     "Members can also invite" : "Kideek ere gonbidapenak egin ditzakete",
     "Visibility" : "Ikusgarritasuna",
     "Visible to everyone" : "Denontzat ikusgai",

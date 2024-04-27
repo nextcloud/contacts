@@ -190,7 +190,6 @@ OC.L10N.register(
     "Invites" : "Meghívók",
     "Anyone can request membership" : "Bárki kérheti a csatlakozást",
     "Members need to accept invitation" : "A tagoknak el kell fogadniuk a meghívást",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "A tagságokat meg kell erősítenie/el kell fogadnia egy moderátornak (Nyílt beállítás szükséges)",
     "Members can also invite" : "A tagok meghívhatnak másokat",
     "Visibility" : "Láthatóság",
     "Visible to everyone" : "Mindenki számára látható",

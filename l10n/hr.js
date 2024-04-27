@@ -155,7 +155,6 @@ OC.L10N.register(
     "Invites" : "Pozivi",
     "Anyone can request membership" : "Svatko može zatražiti članstvo",
     "Members need to accept invitation" : "Članovi moraju prihvatiti poziv",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Članstvo mora potvrditi/prihvatiti moderator (potrebno je Otvoreno)",
     "Members can also invite" : "Članovi također mogu pozivati",
     "Visibility" : "Vidljivost",
     "Visible to everyone" : "Vidljivo svima",
