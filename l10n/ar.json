@@ -238,6 +238,7 @@
     "Invites" : "يدعو",
     "Anyone can request membership" : "يمكن لأي شخص طلب العضوية",
     "Members need to accept invitation" : "يلزم أن يقبل العضو الدعوة",
+    "Memberships must be confirmed/accepted by a Moderator (requires \"Anyone can request membership\")" : "يجب أن يتم قبول العضويات من قِبَل مُنسّق (يستلزم \"أي أحدٍ يمكنه طلب العضوية Anyobe can request membership\")",
     "Members can also invite" : "يمكن للأعضاء أيضاً إرسال دعوات العضوية",
     "Visibility" : "الرؤية",
     "Visible to everyone" : "مرئي للجميع",

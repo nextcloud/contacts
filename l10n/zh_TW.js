@@ -240,6 +240,7 @@ OC.L10N.register(
     "Invites" : "邀請",
     "Anyone can request membership" : "任何人都可以請求成員資格",
     "Members need to accept invitation" : "成員必須接受邀請",
+    "Memberships must be confirmed/accepted by a Moderator (requires \"Anyone can request membership\")" : "成員資格必須由主持人確認／接受（必須為「任何人都可以請求成員資格）",
     "Members can also invite" : "成員也可以邀請",
     "Visibility" : "能見度",
     "Visible to everyone" : "對所有人可見",
