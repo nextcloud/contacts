@@ -240,6 +240,7 @@ OC.L10N.register(
     "Invites" : "Запрошення",
     "Anyone can request membership" : "Будь-хто може надіслати запит на участь",
     "Members need to accept invitation" : "Учасники мають прийняти запрошення",
+    "Memberships must be confirmed/accepted by a Moderator (requires \"Anyone can request membership\")" : "Участь має бути підтверджено/прийнято модератором (вимагає параметру \"Будь-хто може надіслати запит на участь\")",
     "Members can also invite" : "Учасники також можуть запрошувати",
     "Visibility" : "Видимість",
     "Visible to everyone" : "Видно для всіх",

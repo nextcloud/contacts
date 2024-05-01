@@ -238,6 +238,7 @@
     "Invites" : "Pozvánky",
     "Anyone can request membership" : "Ktokoľvek môže žiadať o členstvo",
     "Members need to accept invitation" : "Členovia musia potvrdiť pozvánku",
+    "Memberships must be confirmed/accepted by a Moderator (requires \"Anyone can request membership\")" : "Členstvo musí potvrdiť/prijať moderátor (vyžadované od  „Ktokoľvek môže požiadať o členstvo“)",
     "Members can also invite" : "Členovia môžu tiež pozývať",
     "Visibility" : "Viditeľnosť",
     "Visible to everyone" : "Viditeľné pre všetkých",
