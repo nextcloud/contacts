@@ -40,6 +40,7 @@ OC.L10N.register(
     "Download" : "Deskargatu",
     "Show" : "Erakutsi",
     "Rename" : "Aldatu izena",
+    "Unshare from me" : "Kendu nirekin partekatzea",
     "Delete" : "Ezabatu",
     "Copied" : "Kopiatuta",
     "Cannot copy" : "Ezin da kopiatu",
