@@ -104,7 +104,7 @@
 					<template #icon>
 						<AccountMultiplePlus :size="20" />
 					</template>
-					{{ t('contacts', 'Add members') }}
+					{{ t('contacts', 'Manage members') }}
 				</Button>
 			</div>
 			<Modal v-if="showMembersModal" @close="showMembersModal=false">
