@@ -240,6 +240,7 @@ OC.L10N.register(
     "Invites" : "Davetler",
     "Anyone can request membership" : "Herkes üyelik isteğinde bulunabilir",
     "Members need to accept invitation" : "Üyeler daveti kabul etmelidir",
+    "Memberships must be confirmed/accepted by a Moderator (requires \"Anyone can request membership\")" : "Üyelikler bir sorumlu tarafından onaylanmalıdır (\"Herkes üyelik isteğinde bulunabilir\" seçeneği açık olmalıdır)",
     "Members can also invite" : "Üyeler de davet gönderebilir",
     "Visibility" : "Görünürlük",
     "Visible to everyone" : "Herkes görebilir",
