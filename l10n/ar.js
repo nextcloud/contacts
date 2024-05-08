@@ -99,6 +99,7 @@ OC.L10N.register(
     "Request to join" : "طلب انضمام",
     "Description" : "الوصف",
     "Members" : "الأعضاء",
+    "Manage members" : "إدارة الأعضاء",
     "Team members" : "أعضاء الفريق",
     "Team resources" : "موارد الفريق",
     "Anything shared with this team will show up here" : "أي شيء مشترك لهذا الفريق سيظهر هنا",

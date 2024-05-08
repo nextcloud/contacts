@@ -99,6 +99,7 @@ OC.L10N.register(
     "Request to join" : "Request to join",
     "Description" : "Description",
     "Members" : "Members",
+    "Manage members" : "Manage members",
     "Team members" : "Team members",
     "Team resources" : "Team resources",
     "Anything shared with this team will show up here" : "Anything shared with this team will show up here",

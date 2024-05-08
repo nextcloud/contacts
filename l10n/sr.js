@@ -99,6 +99,7 @@ OC.L10N.register(
     "Request to join" : "Захтев за приступ",
     "Description" : "Опис",
     "Members" : "Чланови",
+    "Manage members" : "Управљај члановима",
     "Team members" : "Чланови тима",
     "Team resources" : "Ресурси тима",
     "Anything shared with this team will show up here" : "Овде ће се појавити све што се подели са овим тимом",

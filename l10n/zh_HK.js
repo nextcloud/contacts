@@ -99,6 +99,7 @@ OC.L10N.register(
     "Request to join" : "請求加入",
     "Description" : "描述",
     "Members" : "成員",
+    "Manage members" : "管理成員",
     "Team members" : "團隊成員",
     "Team resources" : "團隊資源",
     "Anything shared with this team will show up here" : "與此團隊分享的任何東西都會顯示在此處",
