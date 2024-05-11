@@ -85,6 +85,7 @@ OC.L10N.register(
     "Request to join" : "Eskatu elkartzeko baimena",
     "Description" : "Deskribapena",
     "Members" : "Kideak",
+    "Manage members" : "Kideak kudeatu",
     "Team name" : "Taldearen izena",
     "Settings" : "Settings",
     "Actions" : "Ekintzak",
