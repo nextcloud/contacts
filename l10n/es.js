@@ -310,6 +310,7 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se ha podido leer","{failed} contactos no se han podido leer","{failed} contactos no se han podido leer"],
     "An error has occurred in team(s). Check the console for more details." : "Ha ocurrido un error en el/los equipo(s). Verifique la consola para más detalles.",
     "Unable to create team {circleName}" : "No fue posible crear el equipo {circleName}",
+    "Unable to delete team {circleId}" : "No se pudo eliminar el equipo {circleId}",
     "Unable to delete contact" : "No se ha podido eliminar el contacto"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
