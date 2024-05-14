@@ -99,6 +99,7 @@ OC.L10N.register(
     "Request to join" : "Запит на приєднання",
     "Description" : "Опис",
     "Members" : "Учасники",
+    "Manage members" : "Керувати учасниками",
     "Team members" : "Учасники команди",
     "Team resources" : "Ресурси команди",
     "Anything shared with this team will show up here" : "Все, чим поділилися з комадою, показуватиметься тут",
