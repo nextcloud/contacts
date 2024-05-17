@@ -99,6 +99,7 @@ OC.L10N.register(
     "Request to join" : "Katılma isteğinde bulun",
     "Description" : "Açıklama",
     "Members" : "Üyeler",
+    "Manage members" : "Üye yönetimi",
     "Team members" : "Takım üyeleri",
     "Team resources" : "Takım kaynakları",
     "Anything shared with this team will show up here" : "Bu takım ile paylaşılmış her şey burada görüntülenir",
