@@ -139,6 +139,7 @@ OC.L10N.register(
     "No results" : "Sen resultados",
     "Add to group" : "Engadir ao grupo",
     "Add {type}" : "Engadir {type}",
+    "This team will not be shared with the other instances of the global scale" : "Este equipo non se compartirá coas outras instancias da escala global",
     "Loading members list …" : "Cargando a lista de membros…",
     "You currently have no access to the member list" : "Agora non ten acceso á lista de membros",
     "Add members" : "Engadir membros",
