@@ -147,7 +147,7 @@ OC.L10N.register(
     "Calendar events with you" : "Eventos de calendario contigo",
     "Deck cards with you" : "Tarjetas de Deck contigo",
     "No shared items with this contact" : "No hay artículos compartidos con este contacto",
-    "This contact is in read-only mode. You do not have permission to edit this contact." : "El contacto está en modo de solo lectura. No tienes permiso para editar este contacto.",
+    "This contact is in read-only mode. You do not have permission to edit this contact." : "El contacto está en modo de sólo lectura. No tiene permiso para editar este contacto.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "El contacto que estaba intentando editar ha cambiado, Por favor, actualice el contacto manualmente. Cualquier otra edición será descartada.",
     "Address book" : "Libreta de direcciones",
     "Add contact to Birthday Calendar" : "Añadir contacto al calendario de Cumpleaños",
