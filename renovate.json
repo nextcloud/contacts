@@ -1,0 +1,87 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": [
+		"config:base",
+		"helpers:pinGitHubActionDigests",
+		":dependencyDashboard",
+		":semanticCommits",
+		":gitSignOff"
+	],
+	"timezone": "Europe/Berlin",
+	"schedule": [
+		"before 5am on tuesday"
+	],
+	"labels": [
+		"dependencies",
+		"3. to review"
+	],
+	"commitMessageAction": "Bump",
+	"commitMessageTopic": "{{depName}}",
+	"commitMessageExtra": "from {{currentVersion}} to {{#if isPinDigest}}{{{newDigestShort}}}{{else}}{{#if isMajor}}{{prettyNewMajor}}{{else}}{{#if isSingleVersion}}{{prettyNewVersion}}{{else}}{{#if newValue}}{{{newValue}}}{{else}}{{{newDigestShort}}}{{/if}}{{/if}}{{/if}}{{/if}}",
+	"rangeStrategy": "bump",
+	"rebaseWhen": "conflicted",
+	"ignoreUnstable": false,
+	"baseBranches": [
+		"main"
+	],
+	"enabledManagers": [
+		"github-actions",
+		"npm"
+	],
+	"ignoreDeps": [
+		"node",
+		"npm",
+		"postcss-loader"
+	],
+	"packageRules": [
+		{
+			"description": "Request JavaScript reviews",
+			"matchManagers": ["npm"],
+			"reviewers": [
+				"hamza221"]
+		},
+		{
+			"description": "Bump Github actions monthly and request reviews",
+			"matchManagers": ["github-actions"],
+			"extends": ["schedule:monthly"],
+			"reviewers": [
+				"hamza221"]
+		},
+		{
+			"matchUpdateTypes": ["minor", "patch"],
+			"matchCurrentVersion": "!/^0/",
+			"automerge": true,
+			"automergeType": "pr",
+			"platformAutomerge": true,
+			"labels": [
+				"dependencies",
+				"4. to release"
+			],
+			"reviewers": []
+		},
+		{
+			"matchBaseBranches": ["main"],
+			"matchDepTypes": ["devDependencies"],
+			"extends": ["schedule:monthly"]
+		},
+		{
+			"groupName": "Jest family",
+			"matchPackageNames": [
+				"jest",
+				"jest-environment-jsdom",
+				"babel-jest",
+				"@vue/vue2-jest",
+				"@types/jest"
+			],
+			"automerge": true
+		}
+	],
+	"vulnerabilityAlerts": {
+		"enabled": true,
+		"semanticCommitType": "fix",
+		"schedule": "before 7am every weekday",
+		"dependencyDashboardApproval": false,
+		"commitMessageSuffix": ""
+	},
+	"osvVulnerabilityAlerts": true
+}
