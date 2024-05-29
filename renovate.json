@@ -25,12 +25,14 @@
 		"main"
 	],
 	"enabledManagers": [
+		"composer",
 		"github-actions",
 		"npm"
 	],
 	"ignoreDeps": [
 		"node",
 		"npm",
+		"php",
 		"postcss-loader"
 	],
 	"packageRules": [
@@ -38,14 +40,23 @@
 			"description": "Request JavaScript reviews",
 			"matchManagers": ["npm"],
 			"reviewers": [
-				"hamza221"]
+				"hamza221"
+			]
+		},
+		{
+			"description": "Request PHP reviews",
+			"matchManagers": ["composer"],
+			"reviewers": [
+				"hamza221"
+			]
 		},
 		{
 			"description": "Bump Github actions monthly and request reviews",
 			"matchManagers": ["github-actions"],
 			"extends": ["schedule:monthly"],
 			"reviewers": [
-				"hamza221"]
+				"hamza221"
+			]
 		},
 		{
 			"matchUpdateTypes": ["minor", "patch"],
@@ -58,6 +69,18 @@
 				"4. to release"
 			],
 			"reviewers": []
+		},
+		{
+			"description": "Only automerge packages that follow semver",
+			"matchPackageNames": ["@nextcloud/vue", "friendsofphp/php-cs-fixer"],
+			"automerge": false,
+			"labels": [
+				"dependencies",
+				"3. to review"
+			],
+			"reviewers": [
+				"hamza221"
+			]
 		},
 		{
 			"matchBaseBranches": ["main"],
