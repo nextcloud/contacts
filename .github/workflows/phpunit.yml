@@ -20,7 +20,7 @@ jobs:
       matrix:
         php-versions: ['8.0']
         databases: ['sqlite']
-        server-versions: ['stable28', 'stable27', 'stable26', 'stable25']
+        server-versions: ['stable29', 'stable28', 'stable27', 'stable26', 'stable25']
         include:
           - php-versions: '7.4'
             server-versions: stable25
