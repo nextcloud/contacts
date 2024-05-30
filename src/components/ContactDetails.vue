@@ -1071,11 +1071,13 @@ export default {
 		display: block;
 	}
 }
+
 section.contact-details {
 	display: flex;
 	flex-direction: column;
 	gap: 40px;
 }
+
 .quick-actions {
 	display: flex;
 	flex: 1 0 auto;
@@ -1084,14 +1086,15 @@ section.contact-details {
 	margin-left: 204px;
 	padding-bottom: 30px;
 }
-	@media only screen and (max-width: 600px) {
-		.quick-actions {
-			justify-content: center;
-			display: flex;
-			margin-top: -44px;
-			margin-left: 0;
-		}
+@media only screen and (max-width: 600px) {
+	.quick-actions {
+		justify-content: center;
+		display: flex;
+		margin-top: -44px;
+		margin-left: 0;
 	}
+}
+
 #qrcode-modal {
 	:deep(.modal-container) {
 		display: flex;
@@ -1102,6 +1105,7 @@ section.contact-details {
 		}
 	}
 }
+
 :deep(.v-select.select) {
 	min-width: 0;
 	flex: 1 auto;
@@ -1109,6 +1113,7 @@ section.contact-details {
 		display: none;
 	}
 }
+
 #pick-addressbook-modal {
 	:deep(.modal-container) {
 		display: flex;
@@ -1125,14 +1130,17 @@ section.contact-details {
 		}
 	}
 }
+
 .action-item {
 	background-color: var(--color-primary-element-light);
 	border-radius: var(--border-radius-rounded);
 }
+
 :deep(.button-vue--vue-tertiary:hover),
 :deep(.button-vue--vue-tertiary:active) {
 	background-color: var(--color-primary-element-light-hover) !important;
 }
+
 .related-resources {
 	display:inline-grid;
 	margin-top: 88px;
@@ -1149,6 +1157,7 @@ section.contact-details {
 		margin-top: 40px;
 	}
 }
+
 .last-edit {
 	display: inline-flex;
 }
@@ -1160,8 +1169,9 @@ section.contact-details {
 }
 
 .address-book {
-  min-width: 260px !important;
+	min-width: 260px !important;
 }
+
 .empty-content {
 	height: 100%;
 }

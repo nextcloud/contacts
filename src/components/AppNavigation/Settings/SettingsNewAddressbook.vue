@@ -92,6 +92,7 @@ export default {
 	display: flex;
 	width: calc(100% - 44px);
 }
+
 .new-addressbook-entry {
 	display: flex;
 	align-items: center;

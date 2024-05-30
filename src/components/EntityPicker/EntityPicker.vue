@@ -375,7 +375,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use "sass:math";
+@use 'sass:math';
 
 // Dialog variables
 $dialog-padding: 20px;

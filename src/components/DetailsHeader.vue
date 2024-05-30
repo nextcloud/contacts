@@ -82,7 +82,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../../css/ContactDetailsLayout.scss';
+@import '../../css/ContactDetailsLayout';
 
 $top-padding: 50px;
 

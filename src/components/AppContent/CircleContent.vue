@@ -167,7 +167,8 @@ button {
 		margin-right: 10px;
 	}
 }
+
 .empty-content {
-  height: 100%;
+	height: 100%;
 }
 </style>
