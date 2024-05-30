@@ -555,13 +555,10 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.avatar__container {
-	padding: 24px;
-}
-
 .avatar {
 	&__container {
 		margin: 0 auto;
+		padding: 24px;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;

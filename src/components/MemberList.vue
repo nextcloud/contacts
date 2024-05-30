@@ -339,7 +339,8 @@ export default {
 		margin: auto;
 	}
 }
+
 .empty-content {
-  height: 100%;
+	height: 100%;
 }
 </style>

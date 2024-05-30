@@ -412,6 +412,10 @@ export default {
 		}
 	}
 	&__share {
+		background-color: transparent;
+		border: none;
+		box-shadow: none;
+
 		&--shared {
 			opacity: .7;
 		}
@@ -420,6 +424,7 @@ export default {
 		opacity: .5;
 	}
 }
+
 .settings-addressbook-list {
 	display: flex;
 	width: 100%;
@@ -427,11 +432,7 @@ export default {
 		justify-content: flex-start;
 	}
 }
-.addressbook__share {
-	background-color: transparent;
-	border: none;
-	box-shadow: none;
-}
+
 .addressbook-shares {
 	padding-top: 10px;
 }

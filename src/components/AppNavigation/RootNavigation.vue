@@ -502,13 +502,16 @@ $caption-padding: 22px;
 .app-navigation__collapse :deep(a) {
 	color: var(--color-text-maxcontrast)
 }
+
 :deep(.settings-button__label) {
 	opacity: .7;
 	font-weight: bold;
 }
+
 .contacts-settings {
-	padding: calc(var(--default-grid-baseline, 4px)*2);
+	padding: calc(var(--default-grid-baseline, 4px) * 2);
 }
+
 .contacts-settings-button {
 	width: 100%;
 	justify-content: start !important;

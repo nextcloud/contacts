@@ -451,6 +451,7 @@ export default {
 	width: 24px;
 	height: 24px;
 }
+
 .resource {
 	&__icon {
 		width: 44px;

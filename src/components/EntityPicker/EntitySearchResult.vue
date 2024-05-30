@@ -76,7 +76,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@use "sass:math";
+@use 'sass:math';
 
 // https://uxplanet.org/7-rules-for-mobile-ui-button-design-e9cf2ea54556
 // recommended is 48px
