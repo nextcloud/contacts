@@ -1,3 +1,8 @@
+<!--
+  - SPDX-FileCopyrightText: 2016-2024 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-FileCopyrightText: 2015-2016 ownCloud, Inc. 
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 # Nextcloud Contacts
 ![Downloads](https://img.shields.io/github/downloads/nextcloud/contacts/total.svg?style=flat-square)
 [![Code coverage](https://img.shields.io/codecov/c/github/nextcloud/contacts.svg?style=flat-square)](https://codecov.io/gh/nextcloud/contacts/)

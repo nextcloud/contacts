@@ -1,1 +1,7 @@
-<svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="facebook" class="svg-inline--fa fa-facebook fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="currentColor" d="M504 256C504 119 393 8 256 8S8 119 8 256c0 123.78 90.69 226.38 209.25 245V327.69h-63V256h63v-54.64c0-62.15 37-96.48 93.67-96.48 27.14 0 55.52 4.84 55.52 4.84v61h-31.28c-30.8 0-40.41 19.12-40.41 38.73V256h68.78l-11 71.69h-57.78V501C413.31 482.38 504 379.78 504 256z"></path></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg width="100%" height="100%" viewBox="0 0 512 512" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;">
+    <g transform="matrix(0.992,0,0,0.992,504,254.184)">
+        <path d="M0,1.831C0,-136.24 -111.929,-248.169 -250,-248.169C-388.071,-248.169 -500,-136.24 -500,1.831C-500,119.076 -419.285,217.453 -310.394,244.469L-310.394,78.227L-361.946,78.227L-361.946,1.831L-310.394,1.831L-310.394,-31.088C-310.394,-116.18 -271.886,-155.62 -188.346,-155.62C-172.508,-155.62 -145.179,-152.515 -133.999,-149.409L-133.999,-80.155C-139.9,-80.776 -150.148,-81.087 -162.881,-81.087C-203.874,-81.087 -219.713,-65.559 -219.713,-25.187L-219.713,1.831L-138.054,1.831L-152.082,78.227L-219.713,78.227L-219.713,250C-95.927,235.049 0,129.649 0,1.831" style="fill-rule:nonzero;"/>
+    </g>
+</svg>
