@@ -108,7 +108,7 @@ OC.L10N.register(
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Este contacto rachou e recibiu unha solución. Revise o contido e prema aquí para gardalo.",
     "Edit" : "Editar",
     "Clone contact" : "Clonar o contacto",
-    "Generate QR Code" : "Xerar código QR",
+    "Generate QR Code" : "Xerar un código QR",
     "Contact vCard as QR code" : "Contacto con vCard como código QR",
     "Pick an address book" : "Escolla un caderno de enderezos",
     "Select address book" : "Seleccionar caderno de enderezos",
