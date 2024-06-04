@@ -1,4 +1,10 @@
+<!--
+  - SPDX-FileCopyrightText: 2016-2024 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-FileCopyrightText: 2015-2016 ownCloud, Inc. 
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 # Nextcloud Contacts
+[![REUSE status](https://api.reuse.software/badge/github.com/nextcloud/contacts)](https://api.reuse.software/info/github.com/nextcloud/contacts)
 ![Downloads](https://img.shields.io/github/downloads/nextcloud/contacts/total.svg?style=flat-square)
 [![Code coverage](https://img.shields.io/codecov/c/github/nextcloud/contacts.svg?style=flat-square)](https://codecov.io/gh/nextcloud/contacts/)
 [![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat-square&logo=dependabot)](https://dependabot.com)
@@ -80,9 +86,3 @@ If you contribute, participate or interact with this community, please respect [
 
 This guide will help you get started: 
 - :dancer: :smile: [Opening a pull request](https://opensource.guide/how-to-contribute/#opening-a-pull-request) 
-
-## Thanks
-- language icon by [nociconist](https://thenounproject.com/nociconist/)
-
-
-

@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
 // eslint-disable-next-line node/no-extraneous-import
 import 'regenerator-runtime/runtime'
 import Vue from 'vue'

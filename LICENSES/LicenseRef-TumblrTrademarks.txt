@@ -1,0 +1,50 @@
+Trademark Guidelines
+
+Tumblr and certain graphics, logos, badges, designs, page headers, button icons and scripts are trademarks, service marks and trade dress of Tumblr, Inc. (“Tumblr”, “we” or “us”) in the United States and other countries, (the “Tumblr Marks”). We support and encourage ideas, services, tools and other creative works that use and supplement the Tumblr services but we’re required to protect our reputation and brand identity and ask you to follow these guidelines.
+
+If you don’t agree to follow these guidelines, you don’t have a right to, and shouldn’t, use the Tumblr Marks. To help us address future branding concerns, we may modify these guidelines from time to time without notice to you. You’re responsible for following any modified terms, so you should review these guidelines and become familiar with any modifications we make.
+
+Why does Tumblr have to protect its Marks? Trademark law in the U.S. and other jurisdictions requires mark-holders to protect against improper or confusingly similar use of their marks, so that end users aren’t misled about the origin and endorsement of products and services. In some cases, mark-holders can lose their trademarks if they don’t protect them.
+General Guidelines
+
+Do:
+
+* Use the Tumblr Marks to refer to Tumblr, Inc., our services and websites, our apps, and anything else we offer.
+* Make sure the Tumblr Marks stand out in some way when you use them, and particularly make sure to at least capitalize the word “Tumblr.”
+* Use the Tumblr Marks as adjectives (for example, “Tumblr blog”) and not as nouns or verbs (for example, “Did you see that Tumblr?” or “Let’s Tumblr today!”), except when using them as nouns referring to our services and company.
+
+Don’t:
+
+* Don’t incorporate the Tumblr Marks, or anything confusingly similar, into domain names, screen names, website names, trademarks, trade names, company names, DBAs, etc. and don’t use the Tumblr Marks as part of the name for a product or service not offered by Tumblr, unless we have given express permission.
+* Don’t modify or alter the Tumblr Marks, like by adding to, changing or abbreviating the Tumblr Marks to create new words (for example, “Tumblr-ized”).
+* Don’t use the Tumblr Marks in a way that suggests incorrectly that Tumblr is affiliated with, sponsors or endorses you, your websites, your products or your services.
+* Don’t use other trademarks, service marks, designs, trade dress or logos that might be confusingly similar to the Tumblr Marks or the look and feel of Tumblr’s services. For example, using three-or-more-letter aspects of the word “Tumblr” as the name of your product or service may be confusing to some users, like “Rumblr” or “Tumbroll.”
+
+
+Appearance
+
+When you use the Tumblr Marks, you should make sure your use is consistent with how Tumblr uses the Tumblr Marks in similar media. We might provide you with guidelines on size, typeface, colors and other graphic characteristics of the Tumblr Marks, and those should be considered part of these guidelines.
+
+Other Specific Guidelines
+
+
+Tumblr Merchandise
+
+You shouldn’t use the Tumblr Marks on any merchandise without our permission. If you have great ideas for Tumblr merchandise, let us know (https://wip.tumblr.com/). Our ask box is open every Monday from 9AM to 6PM EST.
+
+
+Use of the Tumblr API
+
+If you use our API in your application or service, we ask that you follow these guidelines and, if your application or service displays any Tumblr Marks associated with Tumblr features made available through the API, somewhere include the statement:
+
+    “This [application/service] uses the Tumblr application programming interface but is not endorsed or certified by Tumblr, Inc. All of the Tumblr logos and trademarks displayed on this [application/service] are the property of Tumblr, Inc.”
+
+If you don’t follow these guidelines, Tumblr reserves the right to revoke your access to our API.
+
+
+List of Tumblr Marks, Recommended Images and Copy:
+
+You can view and download Tumblr wordmarks and icons right here (https://www.tumblr.com/logo).
+
+
+A copy can be found at https://help.tumblr.com/trademark-guidelines/
