@@ -43,7 +43,7 @@ jobs:
           path: apps/${{ env.APP_NAME }}
 
       - name: Set up php ${{ matrix.php-versions }}
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@fc14643b0a99ee9db10a3c025a33d76544fa3761 # v2
         with:
           php-version: ${{ matrix.php-versions }}
           tools: phpunit
@@ -124,7 +124,7 @@ jobs:
           sed -i 's/max-version="8.1"/max-version="8.2"/' apps/${{ env.APP_NAME }}/appinfo/info.xml
 
       - name: Set up php ${{ matrix.php-versions }}
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@fc14643b0a99ee9db10a3c025a33d76544fa3761 # v2
         with:
           php-version: ${{ matrix.php-versions }}
           tools: phpunit
@@ -189,7 +189,7 @@ jobs:
           path: apps/${{ env.APP_NAME }}
 
       - name: Set up php ${{ matrix.php-versions }}
-        uses: shivammathur/setup-php@v2
+        uses: shivammathur/setup-php@fc14643b0a99ee9db10a3c025a33d76544fa3761 # v2
         with:
           php-version: ${{ matrix.php-versions }}
           tools: phpunit
