@@ -86,9 +86,3 @@ If you contribute, participate or interact with this community, please respect [
 
 This guide will help you get started: 
 - :dancer: :smile: [Opening a pull request](https://opensource.guide/how-to-contribute/#opening-a-pull-request) 
-
-## Thanks
-- language icon by [nociconist](https://thenounproject.com/nociconist/)
-
-
-
