@@ -7,9 +7,9 @@ Files: l10n/*.js l10n/*.json js/*.js.map js/*.js
 Copyright: 2016 Nextcloud GmbH and Nextcloud contributors
 License: AGPL-3.0-or-later
 
-Files: img/favicon-mask.svg img/favicon-touch.png img/favicon-touch.svg img/favicon.ico img/favicon.png img/favicon.svg img/contacts.svg img/app.svg img/group.svg
-Copyright: 2015-2016 ownCloud, Inc.
-License: AGPL-3.0-or-later
+Files: img/favicon-mask.svg img/favicon-touch.png img/favicon-touch.svg img/favicon.ico img/favicon.png img/favicon.svg
+Copyright: 2018-2024 Google LLC, 2024 Nextcloud GmbH and Nextcloud contributors
+License: Apache-2.0
 
 Files: .tx/config package-lock.json package.json
 Copyright: 2016 ownCloud, Inc., 2016-2024 Nextcloud GmbH and Nextcloud contributors
@@ -31,7 +31,7 @@ Files: renovate.json
 Copyright: 2024 Nextcloud GmbH and Nextcloud contributors
 License: AGPL-3.0-or-later
 
-Files: img/address-book.svg img/circles.svg img/clone.svg img/eye.svg img/language.svg img/phone.svg img/qrcode.svg img/recent-actors.svg img/social.svg img/sync.svg img/up.svg
+Files: img/address-book.svg img/circles.svg img/clone.svg img/eye.svg img/language.svg img/phone.svg img/qrcode.svg img/recent-actors.svg img/social.svg img/sync.svg img/up.svg img/contacts.svg img/app.svg img/group.svg
 Copyright: 2018-2024 Google LLC
 License: Apache-2.0
 
