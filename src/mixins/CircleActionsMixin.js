@@ -53,12 +53,12 @@ export default {
 
 	methods: {
 		confirmLeaveCircle() {
-			OC.dialogs.confirmDestructive(
+			window.OC.dialogs.confirmDestructive(
 				t('contacts', 'You are about to leave {circle}.\nAre you sure?', {
 					circle: this.circle.displayName,
 				}),
 				t('contacts', 'Please confirm team leave'),
-				OC.dialogs.YES_NO_BUTTONS,
+				window.OC.dialogs.YES_NO_BUTTONS,
 				this.leaveCircle,
 				true,
 			)
@@ -110,12 +110,12 @@ export default {
 		},
 
 		confirmDeleteCircle() {
-			OC.dialogs.confirmDestructive(
+			window.OC.dialogs.confirmDestructive(
 				t('contacts', 'You are about to delete {circle}.\nAre you sure?', {
 					circle: this.circle.displayName,
 				}),
 				t('contacts', 'Please confirm team deletion'),
-				OC.dialogs.YES_NO_BUTTONS,
+				window.OC.dialogs.YES_NO_BUTTONS,
 				this.deleteCircle,
 				true,
 			)

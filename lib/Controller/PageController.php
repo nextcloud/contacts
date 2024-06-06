@@ -105,6 +105,8 @@ class PageController extends Controller {
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isCirclesEnabled', $isCirclesEnabled && $isCircleVersionCompatible);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isTalkEnabled', $isTalkEnabled && $isTalkVersionCompatible);
 
+		Util::addStyle(Application::APP_ID, 'contacts-index');
+		Util::addStyle(Application::APP_ID, 'contacts-main');
 		Util::addScript(Application::APP_ID, 'contacts-main');
 
 		return new TemplateResponse(Application::APP_ID, 'main');

@@ -26,7 +26,7 @@ function xhrProvider() {
 		}
 		return result
 	}
-	OC.registerXHRForErrorProcessing(xhr)
+	window.OC.registerXHRForErrorProcessing(xhr)
 	return xhr
 }
 

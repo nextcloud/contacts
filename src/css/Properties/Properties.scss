@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-@import '../ContactDetailsLayout.scss';
+@import '../ContactDetailsLayout';
 
 $property-label-max-width: $contact-details-label-max-width;
 $property-value-max-width: $contact-details-value-max-width;
@@ -63,8 +63,8 @@ $property-row-gap: $contact-details-row-gap;
 
 		textarea {
 			// Limit max height to make scrolling the form a bit easier
-			min-height: 2 * $grid-height-unit - 2*$grid-input-margin;
-			max-height: 5 * $grid-height-unit - 2*$grid-input-margin;
+			min-height: 2 * $grid-height-unit - 2 * $grid-input-margin;
+			max-height: 5 * $grid-height-unit - 2 * $grid-input-margin;
 		}
 
 		input,

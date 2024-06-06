@@ -18,6 +18,7 @@ yarn-error.log*
 .marginalia
 
 js/
+/css/
 build/
 coverage*
 vendor/

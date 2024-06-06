@@ -10,7 +10,7 @@ import { SHARES_TYPES_MEMBER_MAP } from '../models/constants.ts'
 
 // generate allowed shareType from SHARES_TYPES_MEMBER_MAP
 const shareType = Object.keys(SHARES_TYPES_MEMBER_MAP)
-const maxAutocompleteResults = parseInt(OC.config['sharing.maxAutocompleteResults'], 10) || 25
+const maxAutocompleteResults = parseInt(window.OC.config['sharing.maxAutocompleteResults'], 10) || 25
 
 /**
  * Get suggestions
@@ -107,7 +107,7 @@ const formatResults = function(result) {
 		label: result.label,
 		id: `${type}-${result.value.shareWith}`,
 		// If this is a user, set as user for avatar display by UserBubble
-		user: [OC.Share.SHARE_TYPE_USER, OC.Share.SHARE_TYPE_REMOTE].indexOf(result.value.shareType) > -1
+		user: [window.OC.Share.SHARE_TYPE_USER, window.OC.Share.SHARE_TYPE_REMOTE].indexOf(result.value.shareType) > -1
 			? result.value.shareWith
 			: null,
 		type,
