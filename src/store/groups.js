@@ -66,12 +66,32 @@ const mutations = {
 	 * @param {string} data.groupName the name of the group
 	 * @param {Contact} data.contact the contact
 	 */
-	removeContactToGroup(state, { groupName, contact }) {
+	removeContactFromGroup(state, { groupName, contact }) {
+		if (!state.groups.find(search => search.name === groupName)) {
+			return
+		}
+
 		const contacts = state.groups.find(search => search.name === groupName).contacts
 		const index = contacts.findIndex(search => search === contact.key)
 		if (index > -1) {
 			contacts.splice(index, 1)
 		}
+	},
+
+	/**
+	 * Rename contact from group
+	 *
+	 * @param {object} state the store data
+	 * @param {object} data destructuring object
+	 * @param {string} data.oldGroupName name that gets removed
+	 * @param {string} data.newGroupName name that gets added
+	 */
+	renameGroup(state, { oldGroupName, newGroupName }) {
+		state.groups.forEach((group) => {
+			if (group.name === oldGroupName) {
+				group.name = newGroupName
+			}
+		})
 	},
 
 	/**
@@ -100,6 +120,16 @@ const mutations = {
 			name: groupName,
 			contacts: [],
 		})
+	},
+
+	/**
+	 * Remove a group
+	 *
+	 * @param {object} state the store data
+	 * @param {string} groupName the name of the group
+	 */
+	removeGroup(state, groupName) {
+		state.groups = state.groups.filter(group => group.name !== groupName)
 	},
 }
 
@@ -143,8 +173,8 @@ const actions = {
 	 * @param {string} data.groupName the name of the group
 	 * @param {Contact} data.contact the contact
 	 */
-	removeContactToGroup(context, { groupName, contact }) {
-		context.commit('removeContactToGroup', { groupName, contact })
+	removeContactFromGroup(context, { groupName, contact }) {
+		context.commit('removeContactFromGroup', { groupName, contact })
 	},
 
 	/**
