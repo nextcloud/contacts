@@ -8,6 +8,8 @@ OC.L10N.register(
     "Copy to full name" : "คัดลอกไปยังชื่อเต็ม",
     "Omit year" : "ละเว้นปี",
     "Allow updating avatars from social media" : "อนุญาตให้อัปเดตภาพแทนตัวจากโซเชียลมีเดีย",
+    "Please select a team" : "โปรดเลือกทีม",
+    "Loading team…" : "กำลังโหลด ทีม",
     "Loading contacts …" : "กำลังโหลดรายชื่อ …",
     "There are no contacts yet" : "ยังไม่มีรายชื่อผู้ติดต่อ",
     "Create contact" : "สร้างรายชื่อ",
