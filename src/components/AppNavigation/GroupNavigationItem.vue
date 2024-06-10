@@ -23,6 +23,12 @@
 					</template>
 					{{ t('contacts', 'Add contacts') }}
 				</ActionButton>
+				<ActionInput @submit="renameGroup" :value.sync="newGroupName">
+					<template #icon>
+						<IconRename :size="20" />
+					</template>
+					{{ t('contacts', 'Rename') }}
+				</ActionInput>
 				<ActionButton :close-after-click="true"
 					@click="downloadGroup(group)">
 					<template #icon>
@@ -42,6 +48,12 @@
 					</template>
 					{{ t('contacts', 'Send email as BCC') }}
 				</ActionButton>
+				<ActionButton @click="deleteGroup">
+					<template #icon>
+						<IconDelete :size="20" />
+					</template>
+					{{ t('contacts', 'Delete') }}
+				</ActionButton>
 			</template>
 
 			<template #counter>
@@ -57,16 +69,21 @@
 import { emit } from '@nextcloud/event-bus'
 import download from 'downloadjs'
 import moment from 'moment'
+import renameContactFromGroup from '../../services/renameContactFromGroup.js'
+import removeContactFromGroup from '../../services/removeContactFromGroup.js'
 
 import {
 	NcActionButton as ActionButton,
 	NcCounterBubble,
 	NcAppNavigationItem as AppNavigationItem,
+	NcActionInput as ActionInput,
 } from '@nextcloud/vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 import IconDownload from 'vue-material-design-icons/Download.vue'
 import IconEmail from 'vue-material-design-icons/Email.vue'
+import IconRename from 'vue-material-design-icons/FolderEdit.vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
 import { showError } from '@nextcloud/dialogs'
 
 export default {
@@ -76,10 +93,19 @@ export default {
 		ActionButton,
 		NcCounterBubble,
 		AppNavigationItem,
+		ActionInput,
 		IconContact,
 		IconAdd,
 		IconDownload,
 		IconEmail,
+		IconRename,
+		IconDelete,
+	},
+
+	data() {
+		return {
+			newGroupName: '',
+		}
 	},
 
 	props: {
@@ -217,6 +243,55 @@ export default {
 			// We could just do mailto:${emails}, but if we want to use name-addr, not addr-spec, then we
 			// have to explicitly set the "to:" or "bcc:" header.
 			window.location.href = `mailto:?${mode}=${emails.map(encodeURIComponent).join(',')}`
+		},
+
+		/**
+		 * Rename group in store and on server
+		 */
+		renameGroup() {
+			if (this.newGroupName === '') {
+				return
+			}
+
+			this.group.contacts.forEach(async (key) => {
+				const contact = this.$store.getters.getContact(key)
+
+				if (contact === undefined) {
+					return
+				}
+
+				try {
+					await renameContactFromGroup(contact, this.group.name, this.newGroupName)
+				} catch (e) {
+					console.error('Error renaming group', e)
+				}
+			})
+
+			this.$store.commit('renameGroup', {
+				oldGroupName: this.group.name,
+				newGroupName: this.newGroupName,
+			})
+		},
+
+		/**
+		 * Delete group from store and on server
+		 */
+		deleteGroup() {
+			this.group.contacts.forEach(async (key) => {
+				const contact = this.$store.getters.getContact(key)
+
+				if (contact === undefined) {
+					return
+				}
+
+				try {
+					await removeContactFromGroup(contact, this.group.name)
+				} catch (e) {
+					console.error('Error deleting group', e)
+				}
+			})
+
+			this.$store.commit('removeGroup', this.group.name)
 		},
 
 	},
