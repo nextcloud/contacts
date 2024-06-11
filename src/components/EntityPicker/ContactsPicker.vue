@@ -61,6 +61,7 @@ export default {
 				total: 0,
 				name: '',
 			},
+			passedGroupName: '',
 		}
 	},
 	computed: {
@@ -85,6 +86,7 @@ export default {
 		addContactsToGroup(group) {
 			console.debug('Contacts picker opened for group', group)
 
+			this.passedGroupName = group.name ? group.name : group
 			// Get the full group if we provided the group name only
 			if (typeof group === 'string') {
 				group = this.groups.find(a => a.name === group)
@@ -164,6 +166,14 @@ export default {
 				this.isProcessDone = true
 				this.showPicker = false
 
+				// Select group
+				this.$router.push({
+					name: 'group',
+					params: {
+						selectedGroup: typeof this.passedGroupName === 'string' ? this.passedGroupName : this.passedGroupName.name,
+					},
+				})
+
 				// Auto close after 3 seconds if no errors
 				if (this.processStatus.failed === 0) {
 					setTimeout(this.closeProcess, 3000)
@@ -181,6 +191,17 @@ export default {
 			this.processStatus.progress = 0
 			this.processStatus.success = 0
 			this.processStatus.total = 0
+
+			if (this.passedGroupName === '' || this.passedGroupName === undefined) {
+				return
+			}
+			// Select group
+			this.$router.push({
+				name: 'group',
+				params: {
+					selectedGroup: typeof this.passedGroupName === 'string' ? this.passedGroupName : this.passedGroupName.name,
+				},
+			})
 		},
 	},
 }
