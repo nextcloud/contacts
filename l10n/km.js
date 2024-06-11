@@ -3,10 +3,10 @@ OC.L10N.register(
     {
     "Details" : "ព័ត៌មាន​លម្អិត",
     "Contacts" : "ទំនាក់​ទំនង",
-    "Send email" : "ផ្ញើ​អ៊ីមែល",
-    "Download" : "ទាញយក",
     "Rename" : "ប្ដូរ​ឈ្មោះ",
+    "Send email" : "ផ្ញើ​អ៊ីមែល",
     "Delete" : "លុប",
+    "Download" : "ទាញយក",
     "can edit" : "អាច​កែប្រែ",
     "Password protection" : "Password protection",
     "Save" : "រក្សាទុក",

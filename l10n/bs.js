@@ -2,10 +2,10 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Kontakti",
-    "Send email" : "Pošalji e-poštu",
-    "Download" : "Preuzmi",
     "Rename" : "Preimenuj",
+    "Send email" : "Pošalji e-poštu",
     "Delete" : "Obriši",
+    "Download" : "Preuzmi",
     "can edit" : "mogu mijenjati",
     "First name" : "Ime",
     "Last name" : "Prezime",

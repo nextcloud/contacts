@@ -2,9 +2,9 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "ئالاقەداشلار",
-    "Download" : "چۈشۈر",
     "Rename" : "ئات ئۆزگەرت",
     "Delete" : "ئۆچۈر",
+    "Download" : "چۈشۈر",
     "First name" : "ئاتى",
     "Password protection" : "Password protection",
     "Save" : "ساقلا",

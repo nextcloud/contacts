@@ -3,8 +3,8 @@ OC.L10N.register(
     {
     "Details" : "විස්තර",
     "Loading …" : "පූරණය වෙමින් …",
-    "Download" : "බාගන්න",
     "Rename" : "නැවත නම් කරන්න",
+    "Download" : "බාගන්න",
     "Copy link" : "සබැඳිය පිටපත් කරන්න",
     "First name" : "මුල් නම",
     "Last name" : "අවසන් නම",

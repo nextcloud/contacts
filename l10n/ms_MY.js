@@ -2,9 +2,9 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Hubungi ",
-    "Download" : "Muat turun",
     "Rename" : "Namakan",
     "Delete" : "Padam",
+    "Download" : "Muat turun",
     "can edit" : "boleh mengubah",
     "Password protection" : "Password protection",
     "Save" : "Simpan",

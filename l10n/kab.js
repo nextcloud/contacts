@@ -2,9 +2,9 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "Talqayt",
-    "Download" : "Sider",
     "Rename" : "Beddel isem",
     "Delete" : "Kkes",
+    "Download" : "Sider",
     "Copy link" : "Nɣel aseɣwen",
     "Save" : "Sekles",
     "Cancel" : "Sefsex",

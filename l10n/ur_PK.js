@@ -1,9 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
-    "Download" : "ڈاؤن لوڈ",
     "Rename" : "Rename",
     "Delete" : "حذف کریں",
+    "Download" : "ڈاؤن لوڈ",
     "can edit" : "تبدیل کر سکے ھیں",
     "Password protection" : "Password protection",
     "Save" : "حفظ",

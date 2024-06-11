@@ -2,9 +2,9 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "Մանրամասներ",
-    "Download" : "Ներբեռնել",
     "Rename" : "Վերանվանել",
     "Delete" : "հեռացնել",
+    "Download" : "Ներբեռնել",
     "Copy link" : "Պատճենել հղումը",
     "Share with users or groups" : "Կիսվել օգտատերերի կամ խմբերի հետ",
     "can edit" : "կարող է խմբագրել",

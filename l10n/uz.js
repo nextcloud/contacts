@@ -3,9 +3,9 @@ OC.L10N.register(
     {
     "Contacts" : "Contacts",
     "Loading contacts …" : "Loading contacts …",
-    "Download" : "Download",
     "Rename" : "Rename",
     "Delete" : "Delete",
+    "Download" : "Download",
     "Save" : "Save",
     "Cancel" : "Cancel",
     "Invalid image" : "Invalid image",

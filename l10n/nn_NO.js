@@ -3,9 +3,9 @@ OC.L10N.register(
     {
     "Details" : "Detaljar",
     "Contacts" : "Kontaktar",
-    "Download" : "Last ned",
     "Rename" : "Gje nytt namn",
     "Delete" : "Ta bort",
+    "Download" : "Last ned",
     "can edit" : "kan endra",
     "First name" : "Fornamn",
     "Last name" : "Etternamn",

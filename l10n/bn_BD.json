@@ -1,10 +1,10 @@
 { "translations": {
     "Details" : "বিসতারিত",
     "Contacts" : "পরিচিতজন",
-    "Send email" : "ইমেইল পাঠান ",
-    "Download" : "ডাউনলোড",
     "Rename" : "পূনঃনামকরণ",
+    "Send email" : "ইমেইল পাঠান ",
     "Delete" : "মুছে",
+    "Download" : "ডাউনলোড",
     "Copy link" : "লিঙ্ক কপি করো",
     "can edit" : "সম্পাদনা করতে পারবেন",
     "First name" : "নামের প্রথমাংশ ",

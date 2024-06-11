@@ -2,9 +2,9 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "Detalji",
-    "Download" : "Preuzmi",
     "Rename" : "Rename",
     "Delete" : "Delete",
+    "Download" : "Preuzmi",
     "Copy link" : "Kopiraj vezu",
     "can edit" : "može da menja",
     "Password protection" : "Password protection",

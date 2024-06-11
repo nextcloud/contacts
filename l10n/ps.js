@@ -2,9 +2,9 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "معلومات",
-    "Download" : "ښکته کول",
     "Rename" : "نوم بدلول",
     "Delete" : "ړنګول",
+    "Download" : "ښکته کول",
     "Copy link" : "لېنک کاپي کول",
     "Save" : "ساتل",
     "Cancel" : "پرېښول",
