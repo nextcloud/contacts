@@ -60,7 +60,7 @@ import {
 } from '@nextcloud/vue'
 
 import { showError } from '@nextcloud/dialogs'
-import { VCardTime } from 'ical.js'
+import ICAL from 'ical.js'
 
 import CircleContent from '../components/AppContent/CircleContent.vue'
 import ChartContent from '../components/AppContent/ChartContent.vue'
@@ -267,7 +267,7 @@ export default {
 
 	methods: {
 		async newContact() {
-			const rev = new VCardTime()
+			const rev = new ICAL.VCardTime()
 			const contact = new Contact(`
 				BEGIN:VCARD
 				VERSION:4.0

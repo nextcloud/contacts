@@ -354,7 +354,7 @@
 <script>
 import { showError } from '@nextcloud/dialogs'
 
-import { stringify } from 'ical.js'
+import ICAL from 'ical.js'
 import { getSVG } from '@shortcm/qr-image/lib/svg'
 import mitt from 'mitt'
 import {
@@ -793,7 +793,7 @@ export default {
 			// do not encode photo
 			jCal[1] = jCal[1].filter(props => props[0] !== 'photo')
 
-			const data = stringify(jCal)
+			const data = ICAL.stringify(jCal)
 			if (data.length > 0) {
 				const svgBytes = await getSVG(data)
 				const svgString = new TextDecoder().decode(svgBytes)
