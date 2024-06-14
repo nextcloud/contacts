@@ -75,7 +75,7 @@ import {
 	NcSelect,
 } from '@nextcloud/vue'
 import { getLocale } from '@nextcloud/l10n'
-import { VCardTime } from 'ical.js'
+import ICAL from 'ical.js'
 
 import PropertyMixin from '../../mixins/PropertyMixin.js'
 import PropertyTitle from './PropertyTitle.vue'
@@ -95,7 +95,7 @@ export default {
 
 	props: {
 		value: {
-			type: [VCardTime, String],
+			type: [ICAL.VCardTime, String],
 			default: '',
 			required: true,
 		},
@@ -136,7 +136,7 @@ export default {
 		vcardTimeLocalValue() {
 			if (typeof this.localValue === 'string') {
 				// eslint-disable-next-line new-cap
-				return new VCardTime.fromDateAndOrTimeString(this.localValue)
+				return new ICAL.VCardTime.fromDateAndOrTimeString(this.localValue)
 			}
 			return this.localValue
 		},
@@ -228,7 +228,7 @@ export default {
 			}
 
 			// reset the VCardTime component to the selected date/time
-			this.localValue = new VCardTime(dateObject, null, this.propType)
+			this.localValue = new ICAL.VCardTime(dateObject, null, this.propType)
 
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			// Use moment to convert the JsDate to Object

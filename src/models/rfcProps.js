@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import { VCardTime } from 'ical.js'
+import ICAL from 'ical.js'
 import { loadState } from '@nextcloud/initial-state'
 import { otherContacts } from '../utils/chartUtils.js'
 
@@ -128,7 +128,7 @@ const properties = {
 		icon: 'icon-calendar-dark',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
-			value: new VCardTime(null, null, 'date').fromJSDate(new Date()),
+			value: new ICAL.VCardTime(null, null, 'date').fromJSDate(new Date()),
 		},
 		actions: [
 			ActionToggleYear,
@@ -140,7 +140,7 @@ const properties = {
 		icon: 'icon-anniversary',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
-			value: new VCardTime(null, null, 'date').fromJSDate(new Date()),
+			value: new ICAL.VCardTime(null, null, 'date').fromJSDate(new Date()),
 		},
 		primary: false,
 	},
@@ -149,7 +149,7 @@ const properties = {
 		icon: 'icon-death-day',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
-			value: new VCardTime(null, null, 'date').fromJSDate(new Date()),
+			value: new ICAL.VCardTime(null, null, 'date').fromJSDate(new Date()),
 		},
 		primary: false,
 	},

@@ -28,7 +28,7 @@
 </template>
 
 <script>
-import { Property } from 'ical.js'
+import ICAL from 'ical.js'
 import rfcProps from '../../models/rfcProps.js'
 import Contact from '../../models/contact.js'
 
@@ -48,7 +48,7 @@ export default {
 
 	props: {
 		property: {
-			type: Property,
+			type: ICAL.Property,
 			default: true,
 		},
 
@@ -200,7 +200,7 @@ export default {
 		/**
 		 * Return the associated X-ABLABEL if any
 		 *
-		 * @return {Property}
+		 * @return {ICAL.Property}
 		 */
 		propLabel() {
 			return this.localContact.vCard.getFirstProperty(`${this.propGroup[0]}.x-ablabel`)

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { VCardTime } from 'ical.js'
+import ICAL from 'ical.js'
 
 // https://tools.ietf.org/html/rfc6350#section-6.7.4
 
@@ -41,7 +41,7 @@ export default {
 			contact.vCard.removeProperty('rev')
 
 			// creatiing new value
-			const rev = new VCardTime(null, null, 'date-time')
+			const rev = new ICAL.VCardTime(null, null, 'date-time')
 			rev.fromUnixTime(Date.now() / 1000)
 			contact.vCard.addPropertyWithValue('rev', rev)
 
