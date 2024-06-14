@@ -89,7 +89,7 @@
     "@nextcloud/eslint-config": "^8.3.0",
     "@nextcloud/stylelint-config": "^2.3.0",
     "@nextcloud/typings": "^1.7.0",
-    "@nextcloud/vite-config": "^1.2.4",
+    "@nextcloud/vite-config": "^1.2.5",
     "@types/jest": "^29.5.12",
     "@vue/vue2-jest": "^29.2.6",
     "babel-jest": "^29.7.0",
