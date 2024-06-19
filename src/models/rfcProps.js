@@ -226,6 +226,7 @@ const properties = {
 	'x-managersname': {
 		multiple: false,
 		force: 'select',
+		// TRANSLATORS The supervisor of an employee
 		readableName: t('contacts', 'Manager'),
 		icon: 'icon-manager',
 		default: false,
@@ -294,6 +295,7 @@ const properties = {
 			{ id: 'RELATIVE', name: t('contacts', 'Relative') },
 			{ id: 'FRIEND', name: t('contacts', 'Friend') },
 			{ id: 'COLLEAGUE', name: t('contacts', 'Colleague') },
+			// TRANSLATORS The supervisor of an employee
 			{ id: 'MANAGER', name: t('contacts', 'Manager') },
 			{ id: 'ASSISTANT', name: t('contacts', 'Assistant') },
 		],
@@ -314,6 +316,7 @@ const properties = {
 			{ id: 'FRIEND', name: t('contacts', 'Friend') },
 			{ id: 'COLLEAGUE', name: t('contacts', 'Colleague') },
 			{ id: 'COWORKER', name: t('contacts', 'Co-worker') },
+			// TRANSLATORS The supervisor of an employee
 			{ id: 'MANAGER', name: t('contacts', 'Manager') },
 			{ id: 'ASSISTANT', name: t('contacts', 'Assistant') },
 			{ id: 'SPOUSE', name: t('contacts', 'Spouse') },
