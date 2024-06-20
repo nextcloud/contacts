@@ -283,7 +283,7 @@ OC.L10N.register(
     "Voice" : "Anruf",
     "Car" : "Auto",
     "Work pager" : "Arbeit Pager",
-    "Manager" : "Geschäftsführer",
+    "Manager" : "Führungskraft",
     "Social network" : "Soziales Netzwerk",
     "Relationship to you" : "Verbindung zu dir",
     "Spouse" : "Partner",
