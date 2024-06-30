@@ -94,6 +94,7 @@ OC.L10N.register(
     "Request to join" : "Pyydä liittymistä",
     "Description" : "Kuvaus",
     "Members" : "Jäsenet",
+    "Manage members" : "Hallitse jäseniä",
     "Team members" : "Tiimijäsenet",
     "Team resources" : "Tiimiresurssit",
     "Anything shared with this team will show up here" : "Kaikki tämän tiimin kanssa jaettu näkyy täällä",
