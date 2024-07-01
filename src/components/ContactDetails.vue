@@ -134,7 +134,7 @@
 						{{ t('contacts', 'Download') }}
 					</ActionLink>
 					<!-- user can clone if there is at least one option available -->
-					<ActionButton v-if="isReadOnly && addressbooksOptions.length > 0"
+					<ActionButton v-if="addressbooksOptions.length > 0"
 						ref="cloneAction"
 						:close-after-click="true"
 						@click="cloneContact">
