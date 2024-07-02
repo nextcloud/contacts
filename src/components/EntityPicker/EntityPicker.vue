@@ -392,6 +392,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 		position: relative;
 		display: flex;
 		align-items: center;
+		width: 95%;
 		&-input {
 			width: 100%;
 			height: $clickable-area - $entity-spacing !important;
@@ -458,6 +459,10 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 it back */
 :deep(.modal-container) {
 	border-radius: var(--border-radius-large) !important;
+}
+
+:deep(.modal-container__close) {
+	margin-top: 19px;
 }
 
 </style>
