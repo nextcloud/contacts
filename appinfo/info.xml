@@ -43,8 +43,8 @@
 	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png</screenshot>
 
 	<dependencies>
-		<php min-version="7.4" max-version="8.3" />
-		<nextcloud min-version="29" max-version="30" />
+		<php min-version="8.1" max-version="8.3" />
+		<nextcloud min-version="30" max-version="30" />
 	</dependencies>
 
 	<background-jobs>
