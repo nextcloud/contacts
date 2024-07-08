@@ -29,7 +29,7 @@
 
 				<!-- fullname -->
 				<template #title>
-					<div v-if="isReadOnly">
+					<div v-if="isReadOnly" class="contact-title">
 						{{ contact.fullName }}
 					</div>
 					<input v-else
@@ -1158,5 +1158,10 @@ section.contact-details {
 
 .empty-content {
 	height: 100%;
+}
+.contact-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 </style>
