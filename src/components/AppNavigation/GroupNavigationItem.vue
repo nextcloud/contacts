@@ -23,9 +23,12 @@
 					</template>
 					{{ t('contacts', 'Add contacts') }}
 				</ActionButton>
-				<ActionInput @submit="renameGroup" :value.sync="newGroupName">
+				<ActionInput @submit="renameGroup"
+					:value.sync="newGroupName"
+					:disabled="renaming">
 					<template #icon>
-						<IconRename :size="20" />
+						<IconLoading v-if="renaming" :size="20" />
+						<IconRename v-else :size="20" />
 					</template>
 					{{ t('contacts', 'Rename') }}
 				</ActionInput>
@@ -48,9 +51,10 @@
 					</template>
 					{{ t('contacts', 'Send email as BCC') }}
 				</ActionButton>
-				<ActionButton @click="deleteGroup">
+				<ActionButton @click="deleteGroup" :disabled="deleting">
 					<template #icon>
-						<IconDelete :size="20" />
+						<IconLoading v-if="deleting" :size="20" />
+						<IconDelete v-else :size="20" />
 					</template>
 					{{ t('contacts', 'Delete') }}
 				</ActionButton>
@@ -77,6 +81,7 @@ import {
 	NcCounterBubble,
 	NcAppNavigationItem as AppNavigationItem,
 	NcActionInput as ActionInput,
+	NcLoadingIcon as IconLoading,
 } from '@nextcloud/vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
@@ -100,11 +105,14 @@ export default {
 		IconEmail,
 		IconRename,
 		IconDelete,
+		IconLoading,
 	},
 
 	data() {
 		return {
 			newGroupName: '',
+			renaming: false,
+			deleting: false,
 		}
 	},
 
@@ -248,12 +256,13 @@ export default {
 		/**
 		 * Rename group in store and on server
 		 */
-		renameGroup() {
+		async renameGroup() {
 			if (this.newGroupName === '') {
 				return
 			}
 
-			this.group.contacts.forEach(async (key) => {
+			this.renaming = true
+			for (const key of this.group.contacts) {
 				const contact = this.$store.getters.getContact(key)
 
 				if (contact === undefined) {
@@ -265,19 +274,21 @@ export default {
 				} catch (e) {
 					console.error('Error renaming group', e)
 				}
-			})
+			}
 
 			this.$store.commit('renameGroup', {
 				oldGroupName: this.group.name,
 				newGroupName: this.newGroupName,
 			})
+			this.renaming = false
 		},
 
 		/**
 		 * Delete group from store and on server
 		 */
-		deleteGroup() {
-			this.group.contacts.forEach(async (key) => {
+		async deleteGroup() {
+			this.deleting = true
+			for (const key of this.group.contacts) {
 				const contact = this.$store.getters.getContact(key)
 
 				if (contact === undefined) {
@@ -289,9 +300,10 @@ export default {
 				} catch (e) {
 					console.error('Error deleting group', e)
 				}
-			})
+			}
 
 			this.$store.commit('removeGroup', this.group.name)
+			this.deleting = false
 		},
 
 	},
