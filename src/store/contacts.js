@@ -237,7 +237,7 @@ const mutations = {
 	 * Set the order key
 	 *
 	 * @param {object} state the store data
-	 * @param {string} [orderKey='displayName'] the order key to sort by
+	 * @param {string} [orderKey] the order key to sort by
 	 */
 	setOrder(state, orderKey = 'displayName') {
 		state.orderKey = orderKey
@@ -292,7 +292,7 @@ const actions = {
 	 * @param {object} context the store mutations
 	 * @param {object} data destructuring object
 	 * @param {Contact} data.contact the contact to delete
-	 * @param {boolean} [data.dav=true] trigger a dav deletion
+	 * @param {boolean} [data.dav] trigger a dav deletion
 	 */
 	async deleteContact(context, { contact, dav = true }) {
 		// only local delete if the contact doesn't exists on the server

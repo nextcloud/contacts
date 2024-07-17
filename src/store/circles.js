@@ -230,7 +230,7 @@ const actions = {
 	 *
 	 * @param {object} context the store mutations Current context
 	 * @param {Member} member the member to remove
-	 * @param {boolean} [leave=false] leave the circle instead of removing the member
+	 * @param {boolean} [leave] leave the circle instead of removing the member
 	 */
 	async deleteMemberFromCircle(context, { member, leave = false }) {
 		const circleId = member.circle.id
