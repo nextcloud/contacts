@@ -154,16 +154,11 @@
 
 		<template #footer>
 			<div class="contacts-settings">
-				<Button v-if="!loading"
-					class="contacts-settings-button"
-					:wide="true"
-					:close-after-click="true"
+				<AppNavigationItem :aria-label="t('contacts', 'Open the contacts app settings')"
+					:name="CONTACTS_SETTINGS"
 					@click="showContactsSettings">
-					<template #icon>
-						<Cog :size="20" />
-					</template>
-					{{ CONTACTS_SETTINGS }}
-				</Button>
+					<Cog slot="icon" :size="20" />
+				</AppNavigationItem>
 			</div>
 		</template>
 		<ContactsSettings :open.sync="showSettings" />
@@ -178,7 +173,6 @@ import {
 	NcActionText as ActionText,
 	NcActionButton,
 	NcAppNavigation as AppNavigation,
-	NcButton as Button,
 	NcCounterBubble,
 	NcAppNavigationItem as AppNavigationItem,
 	NcAppNavigationCaption as AppNavigationCaption,
@@ -212,7 +206,6 @@ export default {
 		ActionText,
 		NcActionButton,
 		AppNavigation,
-		Button,
 		NcCounterBubble,
 		AppNavigationItem,
 		AppNavigationCaption,
