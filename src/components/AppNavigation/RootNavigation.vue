@@ -492,4 +492,11 @@ $caption-padding: 22px;
 	width: 100%;
 	justify-content: start !important;
 }
+
+:deep(.button-vue__icon), :deep(.button-vue--icon-only) {
+	min-height: auto;
+	min-width: auto;
+	height: var(--default-clickable-area) !important;
+	width: var(--default-clickable-area) !important;
+}
 </style>
