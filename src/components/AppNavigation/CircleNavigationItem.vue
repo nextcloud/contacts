@@ -49,7 +49,7 @@
 					:disabled="loadingJoin"
 					@click="joinCircle">
 					{{ joinButtonTitle }}
-					<template  #icon>
+					<template #icon>
 						<LocationEnter :size="16" />
 					</template>
 				</ActionButton>

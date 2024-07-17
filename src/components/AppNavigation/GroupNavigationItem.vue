@@ -23,9 +23,9 @@
 					</template>
 					{{ t('contacts', 'Add contacts') }}
 				</ActionButton>
-				<ActionInput @submit="renameGroup"
-					:value.sync="newGroupName"
-					:disabled="renaming">
+				<ActionInput :value.sync="newGroupName"
+					:disabled="renaming"
+					@submit="renameGroup">
 					<template #icon>
 						<IconLoading v-if="renaming" :size="20" />
 						<IconRename v-else :size="20" />
@@ -51,7 +51,7 @@
 					</template>
 					{{ t('contacts', 'Send email as BCC') }}
 				</ActionButton>
-				<ActionButton @click="deleteGroup" :disabled="deleting">
+				<ActionButton :disabled="deleting" @click="deleteGroup">
 					<template #icon>
 						<IconLoading v-if="deleting" :size="20" />
 						<IconDelete v-else :size="20" />
@@ -108,19 +108,19 @@ export default {
 		IconLoading,
 	},
 
+	props: {
+		group: {
+			type: Object,
+			required: true,
+		},
+	},
+
 	data() {
 		return {
 			newGroupName: '',
 			renaming: false,
 			deleting: false,
 		}
-	},
-
-	props: {
-		group: {
-			type: Object,
-			required: true,
-		},
 	},
 
 	computed: {
