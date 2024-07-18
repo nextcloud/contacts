@@ -70,6 +70,46 @@
 					</template>
 				</template>
 
+				<template #quick-actions>
+					<div v-if="!editMode && !loadingData">
+						<Actions :inline="6"
+							type="secondary">
+							<ActionButton v-if="isTalkEnabled && isInSystemAddressBook"
+								:aria-label="(t('contacts', 'Go to talk conversation'))"
+								:name="(t('contacts', 'Go to talk conversation'))"
+								class="icon-talk quick-action"
+								:href="callUrl" />
+							<ActionButton v-if="profilePageLink"
+								class="quick-action"
+								:aria-label="(t('contacts','View profile'))"
+								:name="(t('contacts','View profile'))"
+								:href="profilePageLink">
+								<template #icon>
+									<IconAccount :size="20" />
+								</template>
+							</ActionButton>
+							<ActionLink v-for="emailAddress in emailAddressList"
+								:key="emailAddress"
+								class="quick-action"
+								:href="'mailto:' + emailAddress">
+								<template #icon>
+									<IconMail :size="20" />
+								</template>
+								{{ emailAddress }}
+							</ActionLink>
+							<ActionLink v-for="phoneNumber in phoneNumberList"
+								:key="phoneNumber"
+								class="quick-action"
+								:href="'tel:' + phoneNumber">
+								<template #icon>
+									<IconCall :size="20" />
+								</template>
+								{{ phoneNumber }}
+							</ActionLink>
+						</Actions>
+					</div>
+				</template>
+
 				<!-- actions -->
 				<template #actions>
 					<!-- warning message -->
@@ -207,49 +247,6 @@
 			<IconLoading v-if="loadingData" :size="20" class="contact-details" />
 			<!-- quick actions -->
 			<div v-else-if="!loadingData" class="contact-details-wrapper">
-				<div v-if="!editMode" class="quick-actions">
-					<Actions v-if="emailAddressProperties"
-						type="secondary">
-						<template #icon>
-							<IconMail :size="20" />
-						</template>
-						<ActionLink v-for="emailAddress in emailAddressList"
-							:key="emailAddress"
-							:href="'mailto:' + emailAddress">
-							<template #icon>
-								<IconMail :size="20" />
-							</template>
-							{{ emailAddress }}
-						</ActionLink>
-					</Actions>
-					<Actions v-if="phoneNumberProperties"
-						type="secondary">
-						<template #icon>
-							<IconCall :size="20" />
-						</template>
-						<ActionLink v-for="phoneNumber in phoneNumberList"
-							:key="phoneNumber"
-							:href="'tel:' + phoneNumber">
-							<template #icon>
-								<IconCall :size="20" />
-							</template>
-							{{ phoneNumber }}
-						</ActionLink>
-					</Actions>
-					<NcButton v-if="isTalkEnabled && isInSystemAddressBook"
-						:aria-label="(t('contacts', 'Go to talk conversation'))"
-						:name="(t('contacts', 'Go to talk conversation'))"
-						class="icon-talk"
-						:href="callUrl" />
-					<NcButton v-if="profilePageLink"
-						:aria-label="(t('contacts','View profile'))"
-						:name="(t('contacts','View profile'))"
-						:href="profilePageLink">
-						<template #icon>
-							<IconAccount :size="20" />
-						</template>
-					</NcButton>
-				</div>
 				<!-- contact details -->
 				<section class="contact-details">
 					<!-- properties iteration -->
@@ -1046,7 +1043,7 @@ export default {
 .contact-details-wrapper {
 	display: inline;
 	align-items: flex-start;
-	padding: 50px 0 20px;
+	padding: 20px 0 20px;
 	gap: 15px;
 	float: left;
 }
@@ -1059,24 +1056,7 @@ export default {
 section.contact-details {
 	display: flex;
 	flex-direction: column;
-	gap: 40px;
-}
-
-.quick-actions {
-	display: flex;
-	flex: 1 0 auto;
-	gap: 15px;
-	margin-top: 40px;
-	margin-left: 204px;
-	padding-bottom: 30px;
-}
-@media only screen and (max-width: 600px) {
-	.quick-actions {
-		justify-content: center;
-		display: flex;
-		margin-top: -44px;
-		margin-left: 0;
-	}
+	gap: 10px;
 }
 
 #qrcode-modal {

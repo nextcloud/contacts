@@ -19,6 +19,9 @@
 				<div v-if="$slots.subtitle" class="contact-header__infos-subtitle">
 					<slot name="subtitle" />
 				</div>
+				<div class="contact-header__quick-actions">
+					<slot name="quick-actions" />
+				</div>
 			</div>
 		</div>
 
@@ -74,6 +77,9 @@ $top-padding: 50px;
 	align-items: center;
 	padding: $top-padding 0 20px;
 	gap: $contact-details-row-gap;
+	&__quick-actions{
+			padding: 5px 0;
+		}
 
 	@media (max-width: 1024px) {
 		// Top padding of 44px is already included in AppContent by default on mobile
@@ -125,6 +131,10 @@ $top-padding: 50px;
 			display: flex;
 			flex-wrap: wrap;
 			margin: 0;
+		}
+
+		&__quick-actions {
+			padding: 5px 0;
 		}
 
 		:deep(input) {
