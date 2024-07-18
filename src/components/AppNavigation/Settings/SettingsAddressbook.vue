@@ -4,7 +4,7 @@
 -->
 <template>
 	<div class="settings-addressbook-list">
-		<IconContact class="settings-line__icon" />
+		<IconContactPlus class="settings-line__icon" />
 		<li :class="{'addressbook--disabled': !addressbook.enabled}" class="addressbook">
 			<div class="addressbook__content">
 				<!-- addressbook name -->
@@ -124,7 +124,7 @@ import {
 import IconDownload from 'vue-material-design-icons/Download.vue'
 import IconRename from 'vue-material-design-icons/Pencil.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
-import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import IconContactPlus from 'vue-material-design-icons/AccountMultiplePlus.vue'
 import IconShare from 'vue-material-design-icons/ShareVariant.vue'
 import ShareAddressBook from './SettingsAddressbookShare.vue'
 import { showError } from '@nextcloud/dialogs'
@@ -146,7 +146,7 @@ export default {
 		IconDelete,
 		IconDownload,
 		IconRename,
-		IconContact,
+		IconContactPlus,
 		IconShare,
 		IconLoading,
 		ShareAddressBook,
@@ -369,7 +369,6 @@ export default {
 
 	&__count-wrapper {
 		display: flex;
-		flex-direction: center;
 	}
 
 	&__count {
@@ -384,8 +383,6 @@ export default {
 
 	&__share,
 	&__menu .icon-more {
-		width: 44px;
-		height: 44px;
 		opacity: .5;
 		&:hover,
 		&:focus,
