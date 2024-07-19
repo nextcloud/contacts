@@ -18,10 +18,10 @@
 					<BaseAvatar :display-name="source.displayName" :url="avatarUrl" :size="40" />
 				</div>
 			</template>
-			<template #subtitle>
+			<template #subname>
 				<div class="envelope__subtitle">
 					<span class="envelope__subtitle__subject">
-						{{ source.email }}
+						{{ source.email ? source.email : getTel }}
 					</span>
 				</div>
 			</template>
@@ -77,6 +77,14 @@ export default {
 		// usable and valid html id for scrollTo
 		id() {
 			return window.btoa(this.source.key).slice(0, -2)
+		},
+		getTel() {
+			this.source.properties.forEach((property) => {
+				if (property.name === 'tel') {
+					return property.getFirstValue()
+				}
+			})
+			return null
 		},
 	},
 
@@ -168,7 +176,6 @@ export default {
 		gap: 4px;
 
 		&__subject {
-			color: var(--color-main-text);
 			line-height: 130%;
 			overflow: hidden;
 			text-overflow: ellipsis;
