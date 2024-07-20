@@ -39,6 +39,7 @@ OC.L10N.register(
     "Contact group name" : "Nome do grupo de contato",
     "Teams" : "Equipes",
     "Create a new team" : "Criar uma nova equipe",
+    "Open the contacts app settings" : "Abra as configurações do aplicativo de contatos",
     "Show all groups" : "Mostrar todos os grupos",
     "Collapse groups" : "Recolher grupos",
     "Show all teams" : "Mostrar todas as equipes",

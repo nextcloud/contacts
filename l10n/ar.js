@@ -39,6 +39,7 @@ OC.L10N.register(
     "Contact group name" : "اسم مجموعة الاتصال",
     "Teams" : "الفرق",
     "Create a new team" : "إنشاء فريق جديد",
+    "Open the contacts app settings" : "إفتَح إعدادات تطبيق جهات الاتصال",
     "Show all groups" : "عرض كل المجموعات",
     "Collapse groups" : "تقويض collapse المجموعات",
     "Show all teams" : "عرض كل الفرق",
