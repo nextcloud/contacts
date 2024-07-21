@@ -39,6 +39,7 @@ OC.L10N.register(
     "Contact group name" : "Contact group name",
     "Teams" : "Teams",
     "Create a new team" : "Create a new team",
+    "Open the contacts app settings" : "Open the contacts app settings",
     "Show all groups" : "Show all groups",
     "Collapse groups" : "Collapse groups",
     "Show all teams" : "Show all teams",
