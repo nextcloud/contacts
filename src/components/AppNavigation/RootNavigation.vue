@@ -87,7 +87,7 @@
 					<IconAdd :size="20" />
 				</template>
 				<template #actions>
-					<ActionText>
+					<ActionText v-show="isNewGroupMenuOpen">
 						<template #icon>
 							<IconError v-if="createGroupError" :size="20" />
 							<IconContact v-else-if="!createGroupError" :size="20" />
@@ -95,6 +95,7 @@
 						{{ createGroupError ? createGroupError : t('contacts', 'Create a new contact group') }}
 					</ActionText>
 					<ActionInput icon=""
+						v-show="isNewGroupMenuOpen"
 						:placeholder="t('contacts','Contact group name')"
 						@submit.prevent.stop="createNewGroup" />
 				</template>
@@ -197,6 +198,7 @@ import IconError from 'vue-material-design-icons/AlertCircle.vue'
 
 import RouterMixin from '../../mixins/RouterMixin.js'
 import { showError } from '@nextcloud/dialogs'
+import { emit } from '@nextcloud/event-bus'
 
 export default {
 	name: 'RootNavigation',
@@ -383,22 +385,16 @@ export default {
 			// Check if already exists
 			if (this.groups.find(group => group.name === groupName)) {
 				this.createGroupError = t('contacts', 'This group already exists')
+				emit('contacts:group:append', this.groups.find(group => group.name === groupName).name)
 				return
 			}
 
 			this.createGroupError = null
-
 			this.logger.debug('Created new local group', { groupName })
 			this.$store.dispatch('addGroup', groupName)
 			this.isNewGroupMenuOpen = false
 
-			// Select group
-			this.$router.push({
-				name: 'group',
-				params: {
-					selectedGroup: groupName,
-				},
-			})
+			emit('contacts:group:append', groupName)
 		},
 
 		// Ellipsis item toggles

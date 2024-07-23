@@ -5,6 +5,7 @@
 <template>
 	<div class="group-drop-area"
 		data-testid="group-drop-area"
+		v-if="!isEmpty"
 		@drop="onDrop($event, group)"
 		@dragenter.prevent
 		@dragover="onDragOver($event)"
@@ -126,6 +127,10 @@ export default {
 	computed: {
 		contacts() {
 			return this.$store.getters.getContacts
+		},
+
+		isEmpty() {
+			return this.group.contacts.length === 0
 		},
 	},
 
