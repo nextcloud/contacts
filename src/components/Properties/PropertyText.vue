@@ -213,10 +213,4 @@ export default {
 	}
 }
 
-// Mobile tweaks
-@media (max-width: 600px) {
-	.property__value {
-		width: 125px;
-	}
-}
 </style>
