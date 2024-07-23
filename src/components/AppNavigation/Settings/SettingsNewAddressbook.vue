@@ -5,32 +5,27 @@
 
 <template>
 	<div class="new-addressbook-entry">
-		<IconAdd class="settings-line__icon" />
-		<form id="new-addressbook-form"
+		<IconLoading v-if="loading" :size="20" />
+		<NcTextField class="new-addressbook"
+			:value.sync="displayName"
 			:disabled="loading"
-			name="new-addressbook-form"
-			class="new-addressbook"
-			@submit.prevent.stop="addAddressbook">
-			<IconLoading v-if="loading" :size="20" />
-			<input id="new-addressbook"
-				ref="addressbook"
-				v-model="displayName"
-				:disabled="loading"
-				:placeholder="t('contacts', 'Add new address book')"
-				:pattern="addressBookRegex"
-				class="new-addressbook-input"
-				type="text"
-				autocomplete="off"
-				autocorrect="off"
-				spellcheck="false"
-				minlength="1"
-				required>
-			<input class="icon-confirm" type="submit" value="">
-		</form>
+			:label="t('contacts', 'Add new address book')"
+			:pattern="addressBookRegex"
+			:show-trailing-button="true"
+			:trailing-button-label="t('contacts', 'Add')"
+			trailing-button-icon="arrowRight"
+			type="text"
+			autocomplete="off"
+			autocorrect="off"
+			spellcheck="false"
+			@trailing-button-click="addAddressbook">
+			<IconAdd :size="20" />
+		</NcTextField>
 	</div>
 </template>
 
 <script>
+import { NcTextField } from '@nextcloud/vue'
 import { showError } from '@nextcloud/dialogs'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 import IconLoading from 'vue-material-design-icons/Loading.vue'
@@ -38,6 +33,7 @@ import IconLoading from 'vue-material-design-icons/Loading.vue'
 export default {
 	name: 'SettingsNewAddressbook',
 	components: {
+		NcTextField,
 		IconAdd,
 		IconLoading,
 	},
@@ -55,6 +51,10 @@ export default {
 		 * Add a new address book
 		 */
 		addAddressbook() {
+			if (this.displayName === '') {
+				return
+			}
+
 			this.loading = true
 			this.$store.dispatch('appendAddressbook', { displayName: this.displayName })
 				.then(() => {
@@ -70,14 +70,3 @@ export default {
 	},
 }
 </script>
-<style lang="scss" scoped>
-#new-addressbook-form {
-	display: flex;
-	width: calc(100% - 44px);
-}
-
-.new-addressbook-entry {
-	display: flex;
-	align-items: center;
-}
-</style>
