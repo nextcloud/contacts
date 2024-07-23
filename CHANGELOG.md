@@ -4,6 +4,26 @@
 -->
 # Changelog
 
+## 6.1.0-alpha.1 – Unreleased
+## Added
+- Nextcloud 30 support
+- Drag and Drop feature for adding contacts to group
+- Signal messenger option
+- Rename and delete groups
+- Loading icon when deleting or renaming groups
+- Responsiveness for contact details
+### Removed
+- Nextcloud 29 support
+## Changed
+- Group information display
+- Settings toggle design to match Nextcloud 30 style
+## Fixed
+- Import contacts filepicker
+- Clarify settings option for open circle
+- Spacing and alignment in the contact details view
+- Subtitle in contacts details
+
+
 ## 6.0.0-rc.1 – Unreleased
 ### Added 
 - Nextcloud 29 support
