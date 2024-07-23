@@ -28,6 +28,7 @@ $grid-input-height-with-margin: $grid-height-unit - $grid-input-margin * 2;
 	// Compensate top padding reserved for the back button on mobile
 	@media (max-width: 1024px) {
 		height: calc(100% - 44px);
+		padding: 0 20px;
 	}
 }
 

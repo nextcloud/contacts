@@ -41,7 +41,10 @@ $property-row-gap: $contact-details-row-gap;
 		justify-content: flex-end;
 		width: $contact-details-label-max-width;
 		min-width: 0; // Has to be zero unless we implement wrapping
-
+		@media screen and (max-width: 1024px) {
+			width: fit-content;
+			
+		}
 		// Text label styling
 		> :not(.multiselect):not(.material-design-icon) {
 			overflow: hidden;

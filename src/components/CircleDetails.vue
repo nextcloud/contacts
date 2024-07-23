@@ -371,9 +371,13 @@ export default {
 	max-width: 800px;
 	margin: auto;
 	margin-bottom: 36px;
+	@media screen and (max-width: 1024px) {
+		padding: 0 20px;
+
+	}
 
 	&:deep(.contact-header__avatar) {
-		width: 75px;
+		width: 75px !important;
 	}
 
 	&:deep(.contact-header__no-wrap) {

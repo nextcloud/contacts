@@ -84,18 +84,14 @@ $top-padding: 50px;
 	@media (max-width: 1024px) {
 		// Top padding of 44px is already included in AppContent by default on mobile
 		padding-top: calc($top-padding - 44px);
-
-		// Wrap actions on mobile
-		flex-wrap: wrap;
 		&__no-wrap {
 			width: 100%;
 		}
-		&__infos {
-			// Account for nonexistent actions menu
-			width: calc($contact-details-value-max-width + $contact-details-row-gap + 44px) !important;
-		}
 		&__actions .header-menu {
 			margin-left: auto;
+		}
+		&__avatar {
+			width: 150px !important;
 		}
 	}
 
