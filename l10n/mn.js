@@ -15,6 +15,7 @@ OC.L10N.register(
     "Copy link" : "Холбоос хуулах",
     "Share with users or groups" : "Бусдад түгээх",
     "can edit" : "засаж чадна",
+    "Add" : "нэмэх",
     "First name" : "Нэр",
     "Last name" : "Овог",
     "Display name" : "Харагдах нэр",

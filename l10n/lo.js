@@ -8,6 +8,7 @@ OC.L10N.register(
     "Delete" : "ລຶບ",
     "Download" : "ດາວໂຫລດ",
     "Copy link" : "ສຳເນົາລິງ",
+    "Add" : "ເພີ່ມ",
     "Password protection" : "ລະຫັດປ້ອງກັນ",
     "Save" : "ບັນທຶກ",
     "Cancel" : "ຍົກເລີກ",

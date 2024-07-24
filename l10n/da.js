@@ -62,6 +62,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "Indlæsning er deaktiveret da der ikke er nogen adressebog tilgængelig",
     "Choose a vCard file to import" : "Vælg en vCard fil at importere",
     "Add new address book" : "Tilføj ny adressebog",
+    "Add" : "Add",
     "An error occurred, unable to create the address book" : "Der opstod en fejl, og adressebogen kunne ikke oprettes",
     "First name" : "Fornavn",
     "Last name" : "Efternavn",

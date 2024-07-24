@@ -75,6 +75,7 @@
     "Importing is disabled because there are no address books available" : "Tá an iompórtáil díchumasaithe toisc nach bhfuil leabhair seoltaí ar fáil",
     "Choose a vCard file to import" : "Roghnaigh comhad vCard le hiompórtáil",
     "Add new address book" : "Cuir leabhar seoltaí nua leis",
+    "Add" : "Cuir",
     "An error occurred, unable to create the address book" : "Tharla earráid, níorbh fhéidir an leabhar seoltaí a chruthú",
     "First name" : "Ainm",
     "Last name" : "Sloinne",

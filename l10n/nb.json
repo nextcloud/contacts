@@ -75,6 +75,7 @@
     "Importing is disabled because there are no address books available" : "Import er deaktivert fordi det ikke finnes noen tilgjengelige adressebøker",
     "Choose a vCard file to import" : "Velg en vCard-fil å importere",
     "Add new address book" : "Legg til ny adressebok",
+    "Add" : "Legg til",
     "An error occurred, unable to create the address book" : "Det oppstod en feil, kan ikke opprette adresseboken",
     "First name" : "Fornavn",
     "Last name" : "Etternavn",

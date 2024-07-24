@@ -12,6 +12,7 @@ OC.L10N.register(
     "Download" : "Telecargar",
     "Copy link" : "Copiar lo ligam",
     "can edit" : "pòt modificar",
+    "Add" : "Ajustar",
     "First name" : "Prenom",
     "Last name" : "Nom",
     "Display name" : "Nom afichat",

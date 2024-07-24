@@ -6,6 +6,7 @@ OC.L10N.register(
     "Delete" : "﻿ಅಳಿಸಿ",
     "Download" : "ಪ್ರತಿಯನ್ನು ಸ್ಥಳೀಯವಾಗಿ ಉಳಿಸಿಕೊಳ್ಳಿ",
     "can edit" : "﻿ಸಂಪಾದಿಸಬಹುದು",
+    "Add" : "﻿ಸೇರಿಸಿ",
     "Password protection" : "Password protection",
     "Save" : "﻿ಉಳಿಸಿ",
     "Settings" : "Settings",

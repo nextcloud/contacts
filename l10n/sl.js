@@ -76,6 +76,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "Uvoz je onemogočen, ker ni mogoče najti razpoložljivega imenika.",
     "Choose a vCard file to import" : "Izbor datoteke vCard za uvoz",
     "Add new address book" : "Dodaj nov imenik",
+    "Add" : "Add",
     "An error occurred, unable to create the address book" : "Prišlo je do napake, zato ni mogoče ustvariti imenika.",
     "First name" : "Ime",
     "Last name" : "Priimek",

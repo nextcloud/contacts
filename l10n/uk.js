@@ -76,6 +76,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "Імпорт недоступний, оскільки відсутні адресні книги",
     "Choose a vCard file to import" : "Виберіть файл vCard для імпорту",
     "Add new address book" : "Нова адресна книга",
+    "Add" : "Додати",
     "An error occurred, unable to create the address book" : "Помилка: неможливо створити адресну книгу",
     "First name" : "Ім'я",
     "Last name" : "Прізвище",

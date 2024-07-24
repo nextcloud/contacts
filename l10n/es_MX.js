@@ -16,6 +16,7 @@ OC.L10N.register(
     "Share with users or groups" : "Compartir con otros usuarios o grupos",
     "can edit" : "puede editar",
     "Import from files" : "Importar desde archivos",
+    "Add" : "Agregar",
     "First name" : "Nombre",
     "Last name" : "Apellido",
     "Display name" : "Nombre a desplegar",

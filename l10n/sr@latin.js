@@ -7,6 +7,7 @@ OC.L10N.register(
     "Download" : "Preuzmi",
     "Copy link" : "Kopiraj vezu",
     "can edit" : "može da menja",
+    "Add" : "Dodaj",
     "Password protection" : "Password protection",
     "Save" : "Sačuvaj",
     "Description" : "Opis",

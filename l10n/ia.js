@@ -11,6 +11,7 @@ OC.L10N.register(
     "Copy link" : "Copiar ligamine",
     "Share with users or groups" : "Compartir con usatores o gruppos",
     "can edit" : "pote modificar",
+    "Add" : "Adder",
     "First name" : "Prime nomine",
     "Last name" : "Ultime nomine",
     "Display name" : "Monstrar nomine",

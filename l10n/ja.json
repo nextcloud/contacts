@@ -74,6 +74,7 @@
     "Importing is disabled because there are no address books available" : "使用可能なアドレス帳がないため、インポートは無効です",
     "Choose a vCard file to import" : "インポートするvCardファイルを選択",
     "Add new address book" : "新しいアドレス帳を追加する",
+    "Add" : "Add",
     "An error occurred, unable to create the address book" : "エラーが発生し、アドレス帳を作成できませんでした。",
     "First name" : "名",
     "Last name" : "姓",

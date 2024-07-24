@@ -61,6 +61,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "La importación está desactivada porque no hay libretas de direcciones disponibles",
     "Choose a vCard file to import" : "Elige un archivo vCard para importar",
     "Add new address book" : "Añadir nueva libreta de direcciones",
+    "Add" : "Agregar",
     "An error occurred, unable to create the address book" : "Ocurrió un error, no se pudo crear la libreta de direcciones",
     "First name" : "Nombre",
     "Last name" : "Apellido",

@@ -7,6 +7,7 @@ OC.L10N.register(
     "Delete" : "Ta bort",
     "Download" : "Last ned",
     "can edit" : "kan endra",
+    "Add" : "Legg til",
     "First name" : "Fornamn",
     "Last name" : "Etternamn",
     "Last modified" : "Siste endra",

@@ -49,6 +49,7 @@
     "Importing is disabled because there are no address books available" : "La importación está deshabilitada porque no hay libretas de direcciones disponibles",
     "Choose a vCard file to import" : "Elige un archivo vCard para importar",
     "Add new address book" : "Agregar nueva libreta de direcciones",
+    "Add" : "Añadir",
     "An error occurred, unable to create the address book" : "Ha ocurrido un error, no se ha podido crear la libreta de direcciones",
     "First name" : "Nombre",
     "Last name" : "Apellido",

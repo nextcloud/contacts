@@ -62,6 +62,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "Η λειτουργία εισαγωγής απενεργοποιήθηκε, καθώς δεν βρέθηκε κάποιο βιβλίο διευθύνσεων διαθέσιμο",
     "Choose a vCard file to import" : "Επιλογή αρχείου vCard για εισαγωγή",
     "Add new address book" : "Προσθήκη νέου βιβλίο διευθύνσεων",
+    "Add" : "Add",
     "An error occurred, unable to create the address book" : "Παρουσιάστηκε σφάλμα, δεν ήταν δυνατή η δημιουργία του βιβλίου διευθύνσεων",
     "First name" : "Όνομα",
     "Last name" : "Επώνυμο",

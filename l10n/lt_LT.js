@@ -59,6 +59,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "Importavimas yra išjungtas, nes nėra prieinamų adresų knygų",
     "Choose a vCard file to import" : "Pasirinkite norimą importuoti vCard failą",
     "Add new address book" : "Pridėti naują adresų knygą",
+    "Add" : "Add",
     "An error occurred, unable to create the address book" : "Įvyko klaida, nepavyko sukurti adresų knygos",
     "First name" : "Vardas",
     "Last name" : "Pavardė",

@@ -37,6 +37,7 @@ OC.L10N.register(
     "Copy link" : "คัดลอกลิงก์",
     "Share with users or groups" : "แชร์กับผู้ใช้หรือกลุ่ม",
     "can edit" : "สามารถแก้ไข",
+    "Add" : "เพิ่ม",
     "First name" : "ชื่อจริง",
     "Last name" : "นามสกุล",
     "Display name" : "ชื่อที่แสดง",

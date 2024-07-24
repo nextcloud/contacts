@@ -15,6 +15,7 @@ OC.L10N.register(
     "Share with users or groups" : "Partajează cu utilizatori sau grupuri",
     "No users or groups" : "Nu sunt utilizatori sau grupuri",
     "can edit" : "poate edita",
+    "Add" : "Add",
     "First name" : "Prenume",
     "Last name" : "Nume",
     "Display name" : "Nume afișat",

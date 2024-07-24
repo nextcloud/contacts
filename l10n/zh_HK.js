@@ -77,6 +77,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "已停用導入，因為沒有可用的通訊錄",
     "Choose a vCard file to import" : "選取要導入的 vCard 檔案",
     "Add new address book" : "添加新通訊錄",
+    "Add" : "加入",
     "An error occurred, unable to create the address book" : "發生錯誤，無法建立通訊錄",
     "First name" : "名",
     "Last name" : "姓",

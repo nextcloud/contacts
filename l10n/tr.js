@@ -76,6 +76,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "Kullanılabilecek bir adres defteri bulunamadığından içe aktarım işlemi devre dışı bırakıldı",
     "Choose a vCard file to import" : "İçe aktarılacak vCard dosyasını seçin",
     "Add new address book" : "Adres defteri ekle",
+    "Add" : "Add",
     "An error occurred, unable to create the address book" : "Bir sorun çıktı, adres defteri oluşturulamadı",
     "First name" : "Ad",
     "Last name" : "Soyad",

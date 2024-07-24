@@ -62,6 +62,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "Innflutningur er óvirkur því engar nafnaskrár eru tiltækar",
     "Choose a vCard file to import" : "Veldu vCard-skrá sem á að flytja inn",
     "Add new address book" : "Bæta við nýrri nafnaskrá",
+    "Add" : "Bæta við",
     "An error occurred, unable to create the address book" : "Villa kom upp, tókst ekki að útbúa nafnaskrána",
     "First name" : "Eiginnafn",
     "Last name" : "Kenninafn",

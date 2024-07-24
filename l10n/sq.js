@@ -17,6 +17,7 @@ OC.L10N.register(
     "Copy link" : "Kopjo linkun",
     "Share with users or groups" : "Nda me përdoruesit ose grupet",
     "can edit" : "mund të modifikoni",
+    "Add" : "Shto",
     "First name" : "Emër",
     "Last name" : "Mbiemër",
     "Display name" : "Shfaq emrin",

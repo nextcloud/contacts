@@ -20,6 +20,7 @@ OC.L10N.register(
     "No users or groups" : "Nav lietotāji vai grupas",
     "can edit" : "var rediģēt",
     "Importing is disabled because there are no address books available" : "Importēšana ir atspējota, jo nav pieejamas adrešu grāmatas",
+    "Add" : "Pievienot",
     "First name" : "Vārds",
     "Last name" : "Uzvārds",
     "Display name" : "Ekrāna vārds",

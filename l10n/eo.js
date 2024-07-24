@@ -20,6 +20,7 @@ OC.L10N.register(
     "No users or groups" : "Neniu uzanto aŭ grupo",
     "can edit" : "povas redakti",
     "Importing is disabled because there are no address books available" : "Importado estas malebligita, ĉar neniu adresaro disponeblas",
+    "Add" : "Aldoni",
     "First name" : "Persona nomo",
     "Last name" : "Familia nomo",
     "Display name" : "Montra nomo",

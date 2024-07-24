@@ -62,6 +62,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "واردات غیرفعال است زیرا هیچ دفترچه آدرسی در دسترس نیست",
     "Choose a vCard file to import" : "گزینش یک vCard برای درون‌ریزی",
     "Add new address book" : "دفترچه آدرس جدید اضافه کنید",
+    "Add" : "افزودن",
     "An error occurred, unable to create the address book" : "خطایی روی داد، دفترچه آدرس ایجاد نشد",
     "First name" : "نام",
     "Last name" : "نام‌خانوادگی",

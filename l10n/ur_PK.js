@@ -5,6 +5,7 @@ OC.L10N.register(
     "Delete" : "حذف کریں",
     "Download" : "ڈاؤن لوڈ",
     "can edit" : "تبدیل کر سکے ھیں",
+    "Add" : "شامل کریں",
     "Password protection" : "Password protection",
     "Save" : "حفظ",
     "Description" : "تصریح",

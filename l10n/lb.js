@@ -10,6 +10,7 @@ OC.L10N.register(
     "Copy link" : "Link kopéieren",
     "Share with users or groups" : "Mat Benotzer oder Gruppen deelen",
     "can edit" : "kann änneren",
+    "Add" : "Derbäimaachen",
     "First name" : "Virnumm",
     "Last name" : "Famillje Numm",
     "Password protection" : "Password protection",

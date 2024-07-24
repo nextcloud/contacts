@@ -6,6 +6,7 @@ OC.L10N.register(
     "Delete" : "Kkes",
     "Download" : "Sider",
     "Copy link" : "Nɣel aseɣwen",
+    "Add" : "Rnu",
     "Save" : "Sekles",
     "Cancel" : "Sefsex",
     "Name" : "Nom",

@@ -13,6 +13,7 @@ OC.L10N.register(
     "Copy link" : "ბმულის კოპირება",
     "Share with users or groups" : "გაზიარება მოხმარებლებთან ან ჯგუფებთან",
     "can edit" : "შეუძლია შეცვლა",
+    "Add" : "დამატება",
     "First name" : "სახელი",
     "Last name" : "გვარი",
     "Display name" : "დისპლეი სახელი",

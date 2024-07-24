@@ -62,6 +62,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "导入已被禁用，因为没有可用的地址簿",
     "Choose a vCard file to import" : "选择要导入的 vCard（电子名片） 文件",
     "Add new address book" : "添加新通讯录",
+    "Add" : "Add",
     "An error occurred, unable to create the address book" : "发生错误，无法创建通讯录",
     "First name" : "名",
     "Last name" : "姓",

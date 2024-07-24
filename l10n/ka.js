@@ -62,6 +62,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "Importing is disabled because there are no address books available",
     "Choose a vCard file to import" : "Choose a vCard file to import",
     "Add new address book" : "Add new address book",
+    "Add" : "Add",
     "An error occurred, unable to create the address book" : "An error occurred, unable to create the address book",
     "First name" : "First name",
     "Last name" : "Last name",

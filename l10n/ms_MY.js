@@ -6,6 +6,7 @@ OC.L10N.register(
     "Delete" : "Padam",
     "Download" : "Muat turun",
     "can edit" : "boleh mengubah",
+    "Add" : "Tambah",
     "Password protection" : "Password protection",
     "Save" : "Simpan",
     "Description" : "Keterangan",
