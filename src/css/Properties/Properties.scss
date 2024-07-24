@@ -23,6 +23,7 @@ $property-row-gap: $contact-details-row-gap;
 
 	// property row
 	&__row {
+		margin-top: var(--default-grid-baseline);
 		display: flex;
 		align-items: center;
 		gap: $property-row-gap;
@@ -43,7 +44,6 @@ $property-row-gap: $contact-details-row-gap;
 		min-width: 0; // Has to be zero unless we implement wrapping
 		@media screen and (max-width: 1024px) {
 			width: fit-content;
-			
 		}
 		// Text label styling
 		> :not(.multiselect):not(.material-design-icon) {

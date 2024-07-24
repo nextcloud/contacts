@@ -47,25 +47,25 @@
 
 			<!-- textarea for note -->
 			<div class="property__value">
-				<textarea v-if="propName === 'note'"
+				<NcTextArea v-if="propName === 'note'"
 					id="textarea"
 					ref="textarea"
-					v-model.trim="localValue"
+					:value.sync="localValue"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
-					@input="updateValueNoDebounce"
+					@update:value="updateValueNoDebounce"
 					@mousemove="resizeHeight"
 					@keypress="resizeHeight" />
 
 				<!-- OR default to input -->
-				<input v-else
-					v-model.trim="localValue"
+				<NcTextField v-else
+					:value.sync="localValue"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
 					:class="{'property__value--with-ext': haveExtHandler}"
 					type="text"
 					:placeholder="placeholder"
-					@input="updateValue">
+					@update:value="updateValue" />
 
 				<!-- external link -->
 				<a v-if="haveExtHandler && isReadOnly"
@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { NcSelect } from '@nextcloud/vue'
+import { NcSelect, NcTextArea, NcTextField } from '@nextcloud/vue'
 import debounce from 'debounce'
 import PropertyMixin from '../../mixins/PropertyMixin.js'
 import PropertyTitle from './PropertyTitle.vue'
@@ -100,6 +100,8 @@ export default {
 
 	components: {
 		NcSelect,
+		NcTextArea,
+		NcTextField,
 		PropertyTitle,
 		PropertyActions,
 		OpenInNewIcon,
