@@ -85,7 +85,17 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+h3 {
+	font-size: 22px;
+	margin: 0;
+}
+
 .property {
+	margin-top: 12px;
+	margin-bottom: 6px;
+	display: flex;
+	align-items: center;
+
 	// Left align icon and title on mobile
 	@media (max-width: 1024px) {
 		&__label {

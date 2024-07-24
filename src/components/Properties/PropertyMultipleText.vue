@@ -82,10 +82,12 @@
 						<span>{{ propModel.readableValues[index] }}</span>
 					</div>
 					<div class="property__value">
-						<input v-model.trim="localValue[index]"
+						<NcTextField :value.sync="localValue[index]"
 							:readonly="isReadOnly"
 							type="text"
-							@input="updateValue">
+							:label-outside="true"
+							:label="propModel.readableValues[index]"
+							@update:value="updateValue" />
 					</div>
 					<div class="property__actions" />
 				</template>
@@ -100,10 +102,12 @@
 				<template v-if="(isReadOnly && filteredValue[index]) || !isReadOnly">
 					<div class="property__label" />
 					<div class="property__value">
-						<input v-model.trim="filteredValue[index]"
+						<NcTextField :value.sync="filteredValue[index]"
 							:readonly="isReadOnly"
+							:label-outside="true"
+							:label="propModel.readableValues[index]"
 							type="text"
-							@input="updateValue">
+							@update:value="updateValue" />
 					</div>
 					<div class="property__actions" />
 				</template>
@@ -113,7 +117,7 @@
 </template>
 
 <script>
-import { NcSelect } from '@nextcloud/vue'
+import { NcSelect, NcTextField } from '@nextcloud/vue'
 import PropertyMixin from '../../mixins/PropertyMixin.js'
 import PropertyTitle from './PropertyTitle.vue'
 import PropertyActions from './PropertyActions.vue'
@@ -123,6 +127,7 @@ export default {
 
 	components: {
 		NcSelect,
+		NcTextField,
 		PropertyTitle,
 		PropertyActions,
 	},
@@ -165,17 +170,3 @@ export default {
 }
 
 </script>
-
-<style lang="scss" scoped>
-.property {
-	&__label {
-		&--read-only {
-			// Prevent jumping of the label when changing edit/view mode
-			// FIXME: drop forced height if NcMultiselect is migrated to NcSelect and can be
-			//        properly styled as read-only
-			height: 42px;
-			line-height: 42px;
-		}
-	}
-}
-</style>

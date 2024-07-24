@@ -339,6 +339,7 @@
 			</div>
 			<!-- new property select -->
 			<AddNewProp v-if="!isReadOnly"
+				class="last-edit"
 				:bus="bus"
 				:contact="contact" />
 
@@ -1043,7 +1044,7 @@ export default {
 .contact-details-wrapper {
 	display: inline;
 	align-items: flex-start;
-	padding: 20px 0 20px;
+	padding-bottom: 20px;
 	gap: 15px;
 	float: left;
 }
@@ -1073,9 +1074,16 @@ section.contact-details {
 :deep(.v-select.select) {
 	min-width: 0;
 	flex: 1 auto;
-	.vs__actions {
-		display: none;
-	}
+}
+
+:deep(.v-select.select .vs__selected-options), :deep(.vs__search) {
+	min-height: unset;
+	margin: 0 !important;
+}
+
+:deep(.vs__selected) {
+	height: calc(var(--default-clickable-area) - var(--default-grid-baseline)) !important;
+	margin: calc(var(--default-grid-baseline) / 2);
 }
 
 #pick-addressbook-modal {
