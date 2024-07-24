@@ -178,8 +178,10 @@ export default {
 	}
 }
 
-.list-item-style {
+:deep(.list-item) {
 	list-style: none;
+	padding-inline: calc(var(--default-grid-baseline) * 3);
+	padding-block: calc(var(--default-grid-baseline) * 2);
 }
 
 </style>
