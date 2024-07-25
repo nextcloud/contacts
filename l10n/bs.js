@@ -7,6 +7,7 @@ OC.L10N.register(
     "Delete" : "Obriši",
     "Download" : "Preuzmi",
     "can edit" : "mogu mijenjati",
+    "Add" : "Dodaj",
     "First name" : "Ime",
     "Last name" : "Prezime",
     "Password protection" : "Password protection",

@@ -9,6 +9,7 @@ OC.L10N.register(
     "Download" : "Yüklə",
     "Copy link" : "linki nüsxələ",
     "can edit" : "dəyişmək olar",
+    "Add" : "Əlavə etmək",
     "Password protection" : "Password protection",
     "Save" : "Saxla",
     "Description" : "Açıqlanma",

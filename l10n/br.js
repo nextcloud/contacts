@@ -14,6 +14,7 @@ OC.L10N.register(
     "Share with users or groups" : "Rannañ gant implijourienn pe strolladoù",
     "No users or groups" : "Implijourienn pe strodadoù ebet",
     "can edit" : "posuple eo embann",
+    "Add" : "Ouzhpennañ",
     "Display name" : "Anv ardivink",
     "Password protection" : "Gwareziñ gant ur ger-tremen",
     "Save" : "Enrollañ",

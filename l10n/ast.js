@@ -47,6 +47,7 @@ OC.L10N.register(
     "Unable to delete the share" : "Nun ye posible desaniciar l'elementu compartíu",
     "Unable to change permissions" : "Nun ye posible camudar los permisos",
     "Import contacts" : "Importar contautos",
+    "Add" : "Add",
     "An error occurred, unable to create the address book" : "Prodúxose un error, nun ye posible crear la llibreta de direiciones",
     "First name" : "Nome",
     "Last name" : "Apellíos",

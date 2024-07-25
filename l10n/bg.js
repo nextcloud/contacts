@@ -56,6 +56,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "Внасянето е деактивирано, защото няма налични адресни книги ",
     "Choose a vCard file to import" : "Избор на vCard файл за импортиране",
     "Add new address book" : "Добавяне на нова адресна книга",
+    "Add" : "Добави",
     "An error occurred, unable to create the address book" : "Възникна грешка, адресната книга не може да бъде създадена",
     "First name" : "Име",
     "Last name" : "Фамилия",

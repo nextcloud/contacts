@@ -75,6 +75,7 @@
     "Importing is disabled because there are no address books available" : "تمّ إيقاف الاستيراد لعدم وجود دفتر عناوين متاح",
     "Choose a vCard file to import" : "إختر ملف vCard لاستيراده",
     "Add new address book" : "أضف دفتر عناوين جديد",
+    "Add" : "أضف",
     "An error occurred, unable to create the address book" : "حدث خطأ؛ تعذّر إنشاء دفتر العناوين",
     "First name" : "الإسم",
     "Last name" : "اللقب",

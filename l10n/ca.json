@@ -60,6 +60,7 @@
     "Importing is disabled because there are no address books available" : "La importació està inhabilitada perquè no hi ha cap llibreta d'adreces disponible",
     "Choose a vCard file to import" : "Trieu un fitxer vCard per a importar-lo",
     "Add new address book" : "Afegeix una llibreta d'adreces",
+    "Add" : "Afegeix",
     "An error occurred, unable to create the address book" : "S'ha produït un error, no s'ha pogut crear la llibreta d'adreces",
     "First name" : "Nom",
     "Last name" : "Cognoms",
