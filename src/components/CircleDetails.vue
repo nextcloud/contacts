@@ -76,14 +76,22 @@
 			<ContentHeading>
 				{{ t('contacts', 'Members') }}
 			</ContentHeading>
-			<div ref="avatarList" class="avatar-list">
-				<Avatar v-for="member in membersLimited"
-					:key="member.singleId"
-					:user="member.userId"
-					:display-name="member.displayName"
-					:is-no-user="!member.isUser"
-					:size="44" />
-				<Button @click="showMembersModal = true">
+			<div class="avatar-box">
+				<div ref="avatarList" class="avatar-list">
+					<Avatar v-for="member in membersLimited"
+						:key="member.singleId"
+						:user="member.userId"
+						:display-name="member.displayName"
+						:is-no-user="!member.isUser"
+						:icon-class="member.isUser ? null : 'icon-group-white'"
+						:size="avatarSize" />
+					<Avatar v-if="hasExtraMembers">
+						<template #icon>
+							<DotsHorizontal :size="16" />
+						</template>
+					</Avatar>
+				</div>
+				<Button class="members-button" @click="showMembersModal = true">
 					<template #icon>
 						<AccountMultiplePlus :size="20" />
 					</template>
@@ -188,9 +196,12 @@
 </template>
 
 <script>
-import { showError } from '@nextcloud/dialogs'
+import { ref } from 'vue'
+import { useElementSize } from '@vueuse/core'
 import debounce from 'debounce'
-import { useResizeObserver } from '@vueuse/core'
+import { generateOcsUrl } from '@nextcloud/router'
+import { showError } from '@nextcloud/dialogs'
+import axios from '@nextcloud/axios'
 
 import {
 	NcAppContentDetails as AppContentDetails,
@@ -206,6 +217,7 @@ import Login from 'vue-material-design-icons/Login.vue'
 import Logout from 'vue-material-design-icons/Logout.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
 import AccountMultiplePlus from 'vue-material-design-icons/AccountMultiplePlus.vue'
+import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 import { CircleEdit, editCircle } from '../services/circles.ts'
 import CircleActionsMixin from '../mixins/CircleActionsMixin.js'
@@ -214,8 +226,6 @@ import CircleConfigs from './CircleDetails/CircleConfigs.vue'
 import MemberList from './MemberList.vue'
 import ContentHeading from './CircleDetails/ContentHeading.vue'
 import CirclePasswordSettings from './CircleDetails/CirclePasswordSettings.vue'
-import axios from '@nextcloud/axios'
-import { generateOcsUrl } from '@nextcloud/router'
 
 export default {
 	name: 'CircleDetails',
@@ -229,6 +239,7 @@ export default {
 		CirclePasswordSettings,
 		ContentHeading,
 		DetailsHeader,
+		DotsHorizontal,
 		ListItem,
 		Cog,
 		Login,
@@ -241,6 +252,12 @@ export default {
 
 	mixins: [CircleActionsMixin],
 
+	setup() {
+		const avatarList = ref()
+		const { width } = useElementSize(avatarList)
+		return { avatarList, width }
+	},
+
 	data() {
 		return {
 			loadingDescription: false,
@@ -248,7 +265,6 @@ export default {
 			showSettingsModal: false,
 			showMembersModal: false,
 			resources: null,
-			memberLimit: 1,
 		}
 	},
 
@@ -275,8 +291,25 @@ export default {
 			return Object.values(this.$store.getters.getCircle(this.circle.id)?.members || [])
 		},
 
+		maxMembers() {
+			// How many avatars (default-clickable-area + 12px gap) fit?
+			const avatarWidth = parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-clickable-area')) + 12
+			const maxMembers = Math.floor(this.width / avatarWidth)
+			return (this.members.length > maxMembers)
+				? maxMembers - 1
+				: maxMembers
+		},
+
+		memberLimit() {
+			return Math.min(this.members.length, this.maxMembers)
+		},
+
 		membersLimited() {
 			return this.members.slice(0, this.memberLimit)
+		},
+
+		hasExtraMembers() {
+			return this.members.length > this.maxMembers
 		},
 
 		resourceProviders() {
@@ -302,13 +335,6 @@ export default {
 			},
 			immediate: true,
 		},
-	},
-
-	mounted() {
-		this.updateMemberLimit()
-		useResizeObserver(this.$refs.avatarList, () => {
-			this.updateMemberLimit()
-		})
 	},
 
 	methods: {
@@ -356,10 +382,6 @@ export default {
 			} finally {
 				this.loadingName = false
 			}
-		},
-		updateMemberLimit() {
-			this.memberLimit = Math.floor((this.$refs.avatarList.clientWidth - 44) / 44)
-			console.error(this.memberLimit)
 		},
 	},
 }
@@ -410,10 +432,17 @@ export default {
 	}
 }
 
+.avatar-box {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
 .avatar-list {
 	display: flex;
 	flex-wrap: wrap;
-	gap: 8px;
+	flex-grow: 1;
+	gap: 12px;
 }
 
 .members-modal {
