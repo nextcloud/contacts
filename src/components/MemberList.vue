@@ -47,11 +47,9 @@
 			</Button>
 		</div>
 
-		<VirtualList class="members-list"
-			data-key="id"
-			:data-sources="filteredList"
-			:data-component="MembersListItem"
-			:estimate-size="68" />
+		<MembersListItem v-for="member in filteredList"
+			:key="member.singleId"
+			:source="member" />
 
 		<!-- member picker -->
 		<EntityPicker v-if="showPicker"
@@ -75,7 +73,6 @@ import {
 	NcLoadingIcon as IconLoading,
 	isMobile,
 } from '@nextcloud/vue'
-import VirtualList from 'vue-virtual-scroll-list'
 
 import MembersListItem from './MembersList/MembersListItem.vue'
 import EntityPicker from './EntityPicker/EntityPicker.vue'
@@ -95,13 +92,13 @@ export default {
 	components: {
 		AppContentList,
 		Button,
-		VirtualList,
 		EntityPicker,
 		EmptyContent,
 		IconContact,
 		IconAdd,
 		IconInfo,
 		IconLoading,
+		MembersListItem,
 	},
 	mixins: [isMobile, RouterMixin],
 
@@ -124,8 +121,6 @@ export default {
 
 	data() {
 		return {
-			MembersListItem,
-
 			pickerLoading: false,
 			showPicker: false,
 			showPickerIntro: true,

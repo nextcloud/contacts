@@ -23,9 +23,9 @@
 					:close-after-click="true"
 					@click="addMemberToCircle">
 					<template #icon>
-						<IconAdd :size="20" />
+						<IconCog :size="20" />
 					</template>
-					{{ t('contacts', 'Add member') }}
+					{{ t('contacts', 'Manage team') }}
 				</ActionButton>
 
 				<!-- copy circle link -->
@@ -84,7 +84,7 @@ import {
 } from '@nextcloud/vue'
 
 import ExitToApp from 'vue-material-design-icons/ExitToApp.vue'
-import IconAdd from 'vue-material-design-icons/Plus.vue'
+import IconCog from 'vue-material-design-icons/Cog.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
 import LocationEnter from 'vue-material-design-icons/LocationEnter.vue'
 import AccountStar from 'vue-material-design-icons/AccountStar.vue'
@@ -104,7 +104,7 @@ export default {
 		NcCounterBubble,
 		AppNavigationItem,
 		ExitToApp,
-		IconAdd,
+		IconCog,
 		IconDelete,
 		LocationEnter,
 		AccountStar,

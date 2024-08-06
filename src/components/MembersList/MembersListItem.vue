@@ -10,12 +10,12 @@
 
 	<ListItemIcon v-else
 		:id="source.singleId"
-		:key="source.singleId"
-		:avatar-size="44"
+		:avatar-size="avatarSize"
+		:display-name="source.displayName"
+		:icon-class="source.isUser ? null : 'icon-group-white'"
 		:is-no-user="!source.isUser"
 		:subname="levelName"
 		:name="source.displayName"
-		:user="source.userId"
 		class="members-list__item">
 		<!-- Accept invite -->
 		<template v-if="!loading && isPendingApproval && circle.canManageMembers">
@@ -243,6 +243,10 @@ export default {
 			return this.circle.canManageMembers
 				&& this.source.level <= this.currentUserLevel
 				&& !this.isCurrentUser
+		},
+
+		avatarSize() {
+			return parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-clickable-area'))
 		},
 	},
 	methods: {
