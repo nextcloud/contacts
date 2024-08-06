@@ -133,45 +133,45 @@ export const PUBLIC_CIRCLE_CONFIG = {
 export const CIRCLES_MEMBER_GROUPING = [
 	{
 		id: `picker-${Type.SHARE_TYPE_USER}`,
-		label: t('contacts', 'Users'),
+		label: t('contacts', 'users'),
 		share: Type.SHARE_TYPE_USER,
 		type: MEMBER_TYPE_USER,
 	},
 	{
 		id: `picker-${Type.SHARE_TYPE_GROUP}`,
-		label: t('contacts', 'Contact groups'),
+		label: t('contacts', 'groups'),
 		share: Type.SHARE_TYPE_GROUP,
 		type: MEMBER_TYPE_GROUP,
 	},
 	// TODO: implement federated
 	// {
 	// id: `picker-${Type.SHARE_TYPE_REMOTE}`,
-	// label: t('contacts', 'Federated users'),
+	// label: t('contacts', 'federated users'),
 	// share: Type.SHARE_TYPE_REMOTE,
 	// type: MEMBER_TYPE_USER
 	// },
 	// {
 	// id: `picker-${Type.SHARE_TYPE_REMOTE_GROUP}`,
-	// label: t('contacts', 'Federated groups'),
+	// label: t('contacts', 'federated groups'),
 	// share: Type.SHARE_TYPE_REMOTE_GROUP,
 	// type: MEMBER_TYPE_GROUP
 	// },
 	{
 		id: `picker-${Type.SHARE_TYPE_CIRCLE}`,
-		label: t('contacts', 'Teams'),
+		label: t('contacts', 'teams'),
 		share: Type.SHARE_TYPE_CIRCLE,
 		type: MEMBER_TYPE_CIRCLE,
 	},
 	{
 		id: `picker-${Type.SHARE_TYPE_EMAIL}`,
-		label: t('contacts', 'Email addresses'),
+		label: t('contacts', 'email addresses'),
 		share: Type.SHARE_TYPE_EMAIL,
 		type: MEMBER_TYPE_MAIL,
 	},
 	// TODO: implement SHARE_TYPE_CONTACT
 	{
 		id: 'picker-contact',
-		label: t('contacts', 'Teams'),
+		label: t('contacts', 'teams'),
 		share: Type.SHARE_TYPE_EMAIL,
 		type: MEMBER_TYPE_CONTACT,
 	},
