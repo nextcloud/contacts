@@ -28,7 +28,6 @@ OC.L10N.register(
     "Member" : "සාමාජික",
     "Admin" : "පරිපාලක",
     "Owner" : "හිමිකරු",
-    "Users" : "පරිශීලකයින්",
     "Detailed name" : "විස්තරාත්මක නම",
     "Additional names" : "අමතර නම්",
     "Nickname" : "අන්වර්ථ නාමය",

@@ -195,8 +195,6 @@ OC.L10N.register(
     "Members can also invite" : "I membri possono anche invitare",
     "Visibility" : "Visibilità",
     "Visible to everyone" : "Visibile a tutti",
-    "Users" : "Utenti",
-    "Email addresses" : "Indirizzi email",
     "Detailed name" : "Nome dettagliato",
     "Additional names" : "Nomi aggiuntivi",
     "Prefix" : "Prefisso",

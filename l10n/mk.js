@@ -177,8 +177,6 @@ OC.L10N.register(
     "Members can also invite" : "Членовите можат да испраќаат покани",
     "Visibility" : "Видливост",
     "Visible to everyone" : "Видлив за сите",
-    "Users" : "Корисници",
-    "Email addresses" : "Е-пошта адреси",
     "Detailed name" : "Детално име",
     "Additional names" : "Дополнителни имиња",
     "Prefix" : "Префикс",

@@ -199,8 +199,6 @@ OC.L10N.register(
     "Members can also invite" : "A tagok meghívhatnak másokat",
     "Visibility" : "Láthatóság",
     "Visible to everyone" : "Mindenki számára látható",
-    "Users" : "Felhasználók",
-    "Email addresses" : "E-mail-címek",
     "Detailed name" : "Részletes név",
     "Additional names" : "További nevek",
     "Prefix" : "Előtag",

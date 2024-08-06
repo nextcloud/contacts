@@ -248,8 +248,6 @@ OC.L10N.register(
     "Visible to everyone" : "Denontzat ikusgai",
     "Team membership" : "Lantaldearen kidetza",
     "Prevent teams from being a member of another team" : "Lantalde bat beste lantalde baten kidea izatea ukatu",
-    "Users" : "Erabiltzaileak",
-    "Email addresses" : "E-posta helbideak",
     "Detailed name" : "Izen osoa",
     "Additional names" : "Tarteko izenak",
     "Prefix" : "Aurrizkia",

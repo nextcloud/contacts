@@ -28,7 +28,6 @@ OC.L10N.register(
     "Email" : "Email",
     "Admin" : "İnzibatçı",
     "Owner" : "Owner",
-    "Users" : "İstifadəçilər",
     "Prefix" : "Prefiks",
     "Suffix" : "Suffiks",
     "Nickname" : "Ləqəb",

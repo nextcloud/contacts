@@ -64,7 +64,6 @@ OC.L10N.register(
     "Moderator" : "Moderator",
     "Admin" : "Administrator",
     "Owner" : "Zotëruesi",
-    "Users" : "Përdoruesit",
     "Detailed name" : "Emri i hollësishëm",
     "Additional names" : "Emra shtesë",
     "Prefix" : "Parashtesë",

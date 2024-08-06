@@ -197,8 +197,6 @@ OC.L10N.register(
     "Members can also invite" : "Členové také mohou zvát",
     "Visibility" : "Viditelnost",
     "Visible to everyone" : "Viditelné všem",
-    "Users" : "Uživatelé",
-    "Email addresses" : "E-mailové adresy",
     "Detailed name" : "Jméno podrobně",
     "Additional names" : "Další jména",
     "Prefix" : "Předpona",

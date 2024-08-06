@@ -22,7 +22,6 @@ OC.L10N.register(
     "Group" : "Group",
     "Email" : "تورخەت",
     "Owner" : "Owner",
-    "Users" : "ئىشلەتكۈچىلەر",
     "Nickname" : "تەخەللۇس",
     "Notes" : "ئىزاھاتلار",
     "Location" : "ئورنى",

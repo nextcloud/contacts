@@ -30,7 +30,6 @@ OC.L10N.register(
     "Moderator" : "Moderator",
     "Admin" : "Administrer",
     "Owner" : "Owner",
-    "Users" : "Brukarare",
     "Additional names" : "Andre namn",
     "Nickname" : "Kallenamn",
     "Notes" : "Notat",

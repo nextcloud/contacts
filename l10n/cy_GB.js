@@ -62,7 +62,6 @@ OC.L10N.register(
     "Contact" : "Cyswllt",
     "Admin" : "Gweinyddu",
     "Owner" : "Owner",
-    "Users" : "Defnyddwyr",
     "Detailed name" : "Enw manwl",
     "Additional names" : "Enwau ychwanegol",
     "Prefix" : "Rhagddodiad",

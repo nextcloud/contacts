@@ -22,7 +22,6 @@ OC.L10N.register(
     "Email" : "Email",
     "Admin" : "Admin",
     "Owner" : "Owner",
-    "Users" : "Pengguna",
     "Additional names" : "Nama tambahan",
     "Nickname" : "Nama Samaran",
     "Notes" : "Nota",

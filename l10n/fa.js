@@ -194,8 +194,6 @@ OC.L10N.register(
     "Members can also invite" : "اعضا نیز می توانند دعوت کنند",
     "Visibility" : "نمایانی",
     "Visible to everyone" : "برای همه قابل مشاهده است",
-    "Users" : "کاربران",
-    "Email addresses" : "نشانی‌های رایانامه",
     "Detailed name" : "نام کامل",
     "Additional names" : "نام های دیگر",
     "Prefix" : "پیشوند",

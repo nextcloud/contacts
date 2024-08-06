@@ -194,8 +194,6 @@ OC.L10N.register(
     "Members can also invite" : "회원도 초대 가능",
     "Visibility" : "표시 여부",
     "Visible to everyone" : "모두에게 보이기",
-    "Users" : "사용자",
-    "Email addresses" : "이메일 주소",
     "Detailed name" : "자세한 이름",
     "Additional names" : "추가 이름",
     "Prefix" : "접두사",

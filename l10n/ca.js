@@ -198,8 +198,6 @@ OC.L10N.register(
     "Members can also invite" : "Els membres també poden convidar altres usuaris",
     "Visibility" : "Visibilitat",
     "Visible to everyone" : "Visible per a tothom",
-    "Users" : "Usuaris",
-    "Email addresses" : "Adreces de correu electrònic",
     "Detailed name" : "Nom detallat",
     "Additional names" : "Noms addicionals",
     "Prefix" : "Prefix",

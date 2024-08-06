@@ -249,8 +249,6 @@ OC.L10N.register(
     "Visible to everyone" : "Visible para todos",
     "Team membership" : "Membresía del equipo",
     "Prevent teams from being a member of another team" : "Evitar que los equipos sean miembros de otros equipos",
-    "Users" : " Usuarios",
-    "Email addresses" : "Direcciones de correo electrónico",
     "Detailed name" : "Nombre detallado",
     "Additional names" : "Nombres adicionales",
     "Prefix" : "Prefijo",

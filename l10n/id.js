@@ -39,7 +39,6 @@ OC.L10N.register(
     "Email" : "Surel",
     "Admin" : "Admin",
     "Owner" : "Owner",
-    "Users" : "Pengguna",
     "Detailed name" : "Nama lengkap",
     "Additional names" : "Nama tambahan",
     "Prefix" : "Prefix",

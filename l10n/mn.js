@@ -48,7 +48,6 @@ OC.L10N.register(
     "Moderator" : "Шалгагч",
     "Admin" : "Админ",
     "Owner" : "Эзэмшигч",
-    "Users" : "хэрэглэгч",
     "Detailed name" : "Дэлгэрэнгүй нэр",
     "Additional names" : "Нэмэлт нэрүүд",
     "Nickname" : "Товч нэр",

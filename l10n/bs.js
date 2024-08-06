@@ -30,7 +30,6 @@ OC.L10N.register(
     "Member" : "Član",
     "Admin" : "Administrator",
     "Owner" : "Vlasnik",
-    "Users" : "Korisnici",
     "Additional names" : "Dodatna imena",
     "Nickname" : "Nadimak",
     "Notes" : "Notes",

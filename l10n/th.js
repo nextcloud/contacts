@@ -76,7 +76,6 @@ OC.L10N.register(
     "Email" : "อีเมล",
     "Admin" : "ผู้ดูแลระบบ",
     "Owner" : "เจ้าของ",
-    "Users" : "ผู้ใช้",
     "Detailed name" : "ชื่อโดยละเอียด",
     "Additional names" : "ชื่ออื่น ๆ",
     "Prefix" : "คำนำหน้า",

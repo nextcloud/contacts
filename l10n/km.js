@@ -28,7 +28,6 @@ OC.L10N.register(
     "Email" : "អ៊ីមែល",
     "Admin" : "អ្នក​គ្រប់​គ្រង",
     "Owner" : "Owner",
-    "Users" : "អ្នកប្រើ",
     "Notes" : "កំណត់​ចំណាំ",
     "Location" : "ទីតាំង",
     "Work" : "ធ្វើការ",

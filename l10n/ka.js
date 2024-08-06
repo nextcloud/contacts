@@ -199,8 +199,6 @@ OC.L10N.register(
     "Members can also invite" : "Members can also invite",
     "Visibility" : "Visibility",
     "Visible to everyone" : "Visible to everyone",
-    "Users" : "Users",
-    "Email addresses" : "Email addresses",
     "Detailed name" : "Detailed name",
     "Additional names" : "Additional names",
     "Prefix" : "Prefix",

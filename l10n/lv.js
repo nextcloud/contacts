@@ -68,7 +68,6 @@ OC.L10N.register(
     "Contact" : "Kontakts",
     "Admin" : "Admin",
     "Owner" : "Īpašnieks",
-    "Users" : "Lietotāji",
     "Detailed name" : "Izvērsts nosaukums",
     "Additional names" : "Papildu vārdi",
     "Prefix" : "Priedēklis",

@@ -248,8 +248,6 @@ OC.L10N.register(
     "Visible to everyone" : "すべての人に公開",
     "Team membership" : "チームのメンバー",
     "Prevent teams from being a member of another team" : "チームが別のチームのメンバーになることを禁止する",
-    "Users" : "ユーザー",
-    "Email addresses" : "メールアドレス",
     "Detailed name" : "詳細名",
     "Additional names" : "ミドルネーム",
     "Prefix" : "プレフィックス",

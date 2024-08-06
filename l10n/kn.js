@@ -23,7 +23,6 @@ OC.L10N.register(
     "Email" : "﻿ಇ-ಅಂಚೆ",
     "Admin" : "﻿ನಿರ್ವಹಕ",
     "Owner" : "Owner",
-    "Users" : "﻿ಬಳಕೆದಾರರು",
     "Notes" : "Notes",
     "Home" : "﻿ಮುಖಪುಟ",
     "Other" : "﻿ಇತರೆ",

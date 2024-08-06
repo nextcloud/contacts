@@ -30,7 +30,6 @@ OC.L10N.register(
     "Email" : "Email",
     "Admin" : "Admin",
     "Owner" : "Owner",
-    "Users" : "Benotzer",
     "Additional names" : "Weider Nimm",
     "Nickname" : "Spëtznumm",
     "Notes" : "Notizen",

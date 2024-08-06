@@ -46,7 +46,6 @@ OC.L10N.register(
     "Moderator" : "Moderaator",
     "Admin" : "Admin",
     "Owner" : "Omanik",
-    "Users" : "Kasutajad",
     "Detailed name" : "Üksikasjalik nimi",
     "Additional names" : "Lisanimed",
     "Prefix" : "Eesliide",

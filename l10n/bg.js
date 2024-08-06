@@ -182,8 +182,6 @@ OC.L10N.register(
     "Members can also invite" : "Членовете също могат да канят",
     "Visibility" : "Видимост",
     "Visible to everyone" : "Видим за всеки",
-    "Users" : "Потребители",
-    "Email addresses" : "Имейл адреси",
     "Detailed name" : "Детайлно име",
     "Additional names" : "Други имена",
     "Prefix" : "Обръщение",

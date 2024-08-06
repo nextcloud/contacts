@@ -249,8 +249,6 @@ OC.L10N.register(
     "Visible to everyone" : "مرئي للجميع",
     "Team membership" : "عضوية الفريق",
     "Prevent teams from being a member of another team" : "منع الفريق من ان يكون عضواً في فريق آخر",
-    "Users" : "المستخدمين",
-    "Email addresses" : "عناوين البريد الالكتروني",
     "Detailed name" : "الاسم بالتفصيل",
     "Additional names" : "الأسماء الإضافية",
     "Prefix" : "بادئة",

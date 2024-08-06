@@ -194,8 +194,6 @@ OC.L10N.register(
     "Members can also invite" : "Medlemmer kan også invitere",
     "Visibility" : "Synlighed",
     "Visible to everyone" : "Synlig for alle",
-    "Users" : "Brugere",
-    "Email addresses" : "Email adresse",
     "Detailed name" : "Detaljeret navn",
     "Additional names" : "Mellemnavne",
     "Prefix" : "Præfiks",

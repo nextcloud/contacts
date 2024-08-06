@@ -159,7 +159,6 @@ OC.L10N.register(
     "Members can also invite" : "Članovi također mogu pozivati",
     "Visibility" : "Vidljivost",
     "Visible to everyone" : "Vidljivo svima",
-    "Users" : "Korisnici",
     "Detailed name" : "Detaljan naziv",
     "Additional names" : "Dodatna imena",
     "Prefix" : "Prefiks",

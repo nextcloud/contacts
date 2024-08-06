@@ -20,7 +20,6 @@ OC.L10N.register(
     "Email" : "email",
     "Admin" : "ایڈمن",
     "Owner" : "Owner",
-    "Users" : "صارفین",
     "Notes" : "Notes",
     "Location" : "مقام",
     "Work" : "کام",

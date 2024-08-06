@@ -35,7 +35,6 @@ OC.L10N.register(
     "Email" : "Postel",
     "Admin" : "Merour",
     "Owner" : "Perc'henner",
-    "Users" : "Implijer",
     "Website" : "Lec'hien web",
     "Location" : "Lec'hiadur",
     "Home" : "Degemer",

@@ -43,7 +43,6 @@ OC.L10N.register(
     "Moderator" : "მოდერატორი",
     "Admin" : "ადმინისტრატორი",
     "Owner" : "მფლობელი",
-    "Users" : "მომხმარებლები",
     "Detailed name" : "დეტალური სახელი",
     "Additional names" : "დამატებითი სახელები",
     "Prefix" : "პრეფიქსი",

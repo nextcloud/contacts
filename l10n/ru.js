@@ -193,8 +193,6 @@ OC.L10N.register(
     "Members can also invite" : "Разрешить приглашать участникам",
     "Visibility" : "Видимость",
     "Visible to everyone" : "Видим для всех",
-    "Users" : "Пользователи",
-    "Email addresses" : "Адреса электронной почты",
     "Detailed name" : "Подробное имя",
     "Additional names" : "Отчество",
     "Prefix" : "Префикс",

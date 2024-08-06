@@ -233,8 +233,6 @@ OC.L10N.register(
     "Visible to everyone" : "Näkyy kaikille",
     "Team membership" : "Tiimijäsenyys",
     "Prevent teams from being a member of another team" : "Estä tiimejä olemasta muiden tiimien jäseniä",
-    "Users" : "Käyttäjät",
-    "Email addresses" : "Sähköpostiosoitteet",
     "Detailed name" : "Täsmällinen nimi",
     "Additional names" : "Lisänimet",
     "Prefix" : "Etuliite",

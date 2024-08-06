@@ -116,7 +116,6 @@ OC.L10N.register(
     "Admin" : "Quản trị viên",
     "Owner" : "Chủ",
     "Visibility" : "Hiển thị",
-    "Users" : "Người dùng",
     "Detailed name" : "Tên chi tiết",
     "Additional names" : "Tên bổ sung",
     "Prefix" : "Tiền tố",

@@ -116,7 +116,6 @@ OC.L10N.register(
     "Moderator" : "פיקוח",
     "Admin" : "מנהל",
     "Owner" : "בעלות",
-    "Users" : "משתמשים",
     "Detailed name" : "פרטי שם",
     "Additional names" : "שמות נוספים",
     "Prefix" : "תואר",

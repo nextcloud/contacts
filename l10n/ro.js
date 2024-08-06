@@ -48,7 +48,6 @@ OC.L10N.register(
     "Admin" : "Admin",
     "Owner" : "Proprietar",
     "Visibility" : "Vizibil",
-    "Users" : "Utilizatori",
     "Detailed name" : "Nume detaliat",
     "Additional names" : "Nume adiționale",
     "Prefix" : "Prefix",

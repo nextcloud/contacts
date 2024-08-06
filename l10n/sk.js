@@ -247,8 +247,6 @@ OC.L10N.register(
     "Visible to everyone" : "Viditeľné pre všetkých",
     "Team membership" : "Členstvo v tíme",
     "Prevent teams from being a member of another team" : "Zabraňte tímom byť členmi iného tímu.",
-    "Users" : "Používatelia",
-    "Email addresses" : "E-mailové adresy",
     "Detailed name" : "Podrobné meno",
     "Additional names" : "Ďalšie mená",
     "Prefix" : "Titul pred menom",

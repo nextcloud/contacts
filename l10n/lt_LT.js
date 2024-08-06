@@ -167,8 +167,6 @@ OC.L10N.register(
     "Invites" : "Pakvietimai",
     "Visibility" : "Matomumas",
     "Visible to everyone" : "Matomas visiems",
-    "Users" : "Naudotojai",
-    "Email addresses" : "El. pašto adresai",
     "Detailed name" : "Išsamus vardas",
     "Additional names" : "Papildomi vardai",
     "Prefix" : "Priešvardis",

@@ -31,7 +31,6 @@ OC.L10N.register(
     "Email" : "ইমেইল",
     "Admin" : "প্রশাসন",
     "Owner" : "Owner",
-    "Users" : "ব্যবহারকারী",
     "Additional names" : "অতিরিক্ত নামসমূহ",
     "Nickname" : "ছদ্মনাম",
     "Notes" : "নোট",

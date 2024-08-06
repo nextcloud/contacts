@@ -14,7 +14,6 @@ OC.L10N.register(
     "Pending" : "د انتظار په حال کې",
     "Close" : "بندول",
     "Admin" : "ستر کارن",
-    "Users" : "کارنان",
     "Notes" : "شسیب",
     "Home" : "کور",
     "Work" : "دفتر",

@@ -195,8 +195,6 @@ OC.L10N.register(
     "Members can also invite" : "Leden kunnen anderen uitnodigen",
     "Visibility" : "Zichtbaarheid",
     "Visible to everyone" : "Zichtbaar voor iedereen",
-    "Users" : "Gebruikers",
-    "Email addresses" : "E-mailadressen",
     "Detailed name" : "Gedetailleerde naam",
     "Additional names" : "Extra namen",
     "Prefix" : "Voorvoegsel",

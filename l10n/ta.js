@@ -24,7 +24,6 @@ OC.L10N.register(
     "Email" : "மின்னஞ்சல்",
     "Admin" : "நிர்வாகம்",
     "Owner" : "Owner",
-    "Users" : "பயனாளர்",
     "Additional names" : "மேலதிக பெயர்கள்",
     "Nickname" : "பட்டப்பெயர்",
     "Notes" : "குறிப்புகள்",

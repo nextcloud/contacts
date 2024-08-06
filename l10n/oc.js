@@ -41,7 +41,6 @@ OC.L10N.register(
     "Admin" : "Admin",
     "Owner" : "Owner",
     "Visibility" : "Visibilitat",
-    "Users" : "Utilizaires",
     "Additional names" : "Noms suplementaris",
     "Nickname" : "Escais",
     "Notes" : "Nòtas",

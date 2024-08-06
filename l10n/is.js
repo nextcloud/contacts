@@ -199,8 +199,6 @@ OC.L10N.register(
     "Members can also invite" : "Meðlimir geta einnig boðið",
     "Visibility" : "Sýnileiki",
     "Visible to everyone" : "Sýnilegt öllum",
-    "Users" : "Notendur",
-    "Email addresses" : "Tölvupóstföng",
     "Detailed name" : "Ítarlegt nafn",
     "Additional names" : "Aukanöfn",
     "Prefix" : "Forskeyti",

@@ -160,7 +160,6 @@ OC.L10N.register(
     "Members can also invite" : "Puru is membros podent invitare",
     "Visibility" : "Visibilidade",
     "Visible to everyone" : "Visìbile pro totus",
-    "Users" : "Utentes",
     "Detailed name" : "Nùmene a sa minuda",
     "Additional names" : "Nùmenes in agiunta",
     "Prefix" : "Prefissu",

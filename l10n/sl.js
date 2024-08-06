@@ -245,8 +245,6 @@ OC.L10N.register(
     "Visibility" : "Vidnost",
     "Visible to everyone" : "Vidno vsem",
     "Team membership" : "Članstvo skupine",
-    "Users" : "Uporabniki",
-    "Email addresses" : "Elektronski naslovi",
     "Detailed name" : "Podrobno ime",
     "Additional names" : "Druga imena",
     "Prefix" : "Predpona",

@@ -211,8 +211,6 @@ OC.L10N.register(
     "Visibility" : "可见性",
     "Visible to everyone" : "对所有人可见",
     "Team membership" : "团队成员",
-    "Users" : "用户",
-    "Email addresses" : "电子邮件地址",
     "Detailed name" : "全名",
     "Additional names" : "其他名称",
     "Prefix" : "前缀",

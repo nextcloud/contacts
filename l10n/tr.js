@@ -248,8 +248,6 @@ OC.L10N.register(
     "Visible to everyone" : "Herkes görebilir",
     "Team membership" : "Takım üyeliği",
     "Prevent teams from being a member of another team" : "Bu takım başka bir takıma üye olarak eklenemesin",
-    "Users" : "Kullanıcılar",
-    "Email addresses" : "E-posta adresleri",
     "Detailed name" : "Ayrıntılı ad",
     "Additional names" : "Ek adlar",
     "Prefix" : "Ön ek",

@@ -69,7 +69,6 @@ OC.L10N.register(
     "Moderator" : "Kontrolanto",
     "Admin" : "Administranto",
     "Owner" : "Posedanto",
-    "Users" : "Uzantoj",
     "Detailed name" : "Detala nomo",
     "Additional names" : "Pliaj nomoj",
     "Prefix" : "Prefikso",

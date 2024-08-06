@@ -14,7 +14,6 @@ OC.L10N.register(
     "Pending" : "Pending",
     "Member" : "Member",
     "Admin" : "Admin",
-    "Users" : "Users",
     "Notes" : "Notes",
     "Unknown" : "Unknown"
 },

@@ -33,7 +33,6 @@ OC.L10N.register(
     "Group" : "Gruppo",
     "Email" : "E-posta",
     "Owner" : "Owner",
-    "Users" : "Usatores",
     "Detailed name" : "Nomine detaliate",
     "Additional names" : "Nomines additional",
     "Prefix" : "Prefixo",

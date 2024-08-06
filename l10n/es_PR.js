@@ -42,7 +42,6 @@ OC.L10N.register(
     "Moderator" : "Moderador",
     "Admin" : "Administración",
     "Owner" : "Dueño",
-    "Users" : "Usuarios",
     "Detailed name" : "Nombre detallado",
     "Additional names" : "Nombres adicionales",
     "Prefix" : "Prefijo",

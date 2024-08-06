@@ -249,8 +249,6 @@ OC.L10N.register(
     "Visible to everyone" : "Synlig for alle",
     "Team membership" : "Lagmedlemskap",
     "Prevent teams from being a member of another team" : "Hindre lag fra å kunne bli medlem av en annet lag",
-    "Users" : "Brukere",
-    "Email addresses" : "E-postadresser",
     "Detailed name" : "Detaljert navn",
     "Additional names" : "Ev. mellomnavn",
     "Prefix" : "Prefiks",
