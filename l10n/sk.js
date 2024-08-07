@@ -21,7 +21,6 @@ OC.L10N.register(
     "Create contacts" : "Vytvoriť kontakty",
     "Add contacts" : "Pridať kontakty",
     "Loading …" : "Načítava sa...",
-    "Add member" : "Pridať člena",
     "Leave team" : "Opustiť tím",
     "Delete team" : "Zmazať tím",
     "Contacts settings" : "Nastavenia kontaktov",

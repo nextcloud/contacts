@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create contacts" : "Създаване на контакти",
     "Add contacts" : "Добавяне на контакти",
     "Loading …" : "Зарежда …",
-    "Add member" : "Добавяне на член",
     "Contacts settings" : "Настрройки на контакти",
     "General settings" : "Общи настройки",
     "Update avatars from social media" : "Актуализиране на аватари от социалните медии",

@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create contacts" : "新建联系人",
     "Add contacts" : "添加联系人",
     "Loading …" : "正在加载…",
-    "Add member" : "添加成员",
     "Contacts settings" : "联系人设置",
     "General settings" : "一般设置",
     "Update avatars from social media" : "从社交媒体更新头像",

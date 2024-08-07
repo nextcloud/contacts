@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create contacts" : "Búa til tengiliði",
     "Add contacts" : "Bæta við tengiliðum",
     "Loading …" : "Hleð inn …",
-    "Add member" : "Bæta við meðlimi",
     "Contacts settings" : "Stillingar tengiliða",
     "General settings" : "Almennar stillingar",
     "Update avatars from social media" : "Uppfæra auðkennismyndir af samfélagsmiðlum",

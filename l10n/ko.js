@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create contacts" : "연락처 만들기",
     "Add contacts" : "연락처 추가",
     "Loading …" : "불러오는 중 …",
-    "Add member" : "회원 추가",
     "Contacts settings" : "연락처 설정",
     "General settings" : "일반 설정",
     "Update avatars from social media" : "소셜 네트워크에서 아바타 업데이트",

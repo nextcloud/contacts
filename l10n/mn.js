@@ -6,7 +6,6 @@ OC.L10N.register(
     "Contacts" : "Харилцагчид",
     "Copy to full name" : "Бүтэн нэр хуулах",
     "Loading …" : "Уншиж байна...",
-    "Add member" : "Гишүүн нэмэх",
     "Rename" : "Нэр солих",
     "Delete" : "Устгах",
     "Download" : "Татаж авах",

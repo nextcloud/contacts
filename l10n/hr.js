@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create contacts" : "Stvori kontakte",
     "Add contacts" : "Dodaj kontakte",
     "Loading …" : "Učitavanje…",
-    "Add member" : "Dodaj člana",
     "General settings" : "Opće postavke",
     "Update avatars from social media" : "Ažuriraj avatare s društvenih mreža",
     "(refreshed once per week)" : "(osvježava se jednom tjedno)",

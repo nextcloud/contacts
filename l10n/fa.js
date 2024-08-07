@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create contacts" : "ایجاد آشنایان",
     "Add contacts" : "افزودن آشنایان",
     "Loading …" : "بار کردن …",
-    "Add member" : "افزودن عضو",
     "Contacts settings" : "تنظمیات آشنایان",
     "General settings" : "تنظیمات عمومی",
     "Update avatars from social media" : "به‌روز رسانی چهرک‌ها از رسانهٔ اجتماعی",

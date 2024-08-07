@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create contacts" : "Contactpersonen aanmaken",
     "Add contacts" : "Toevoegen contactpersonen",
     "Loading …" : "Laden ...",
-    "Add member" : "Toevoegen lid",
     "Contacts settings" : "Contacten instellingen",
     "General settings" : "Algemene instellingen",
     "Update avatars from social media" : "Werk de avatars van sociale media bij",

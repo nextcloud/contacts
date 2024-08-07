@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create contacts" : "Vytvořit kontakty",
     "Add contacts" : "Přidat kontakty",
     "Loading …" : "Načítání…",
-    "Add member" : "Přidat člena",
     "Contacts settings" : "Nastavení pro Kontakty",
     "General settings" : "Obecná nastavení",
     "Update avatars from social media" : "Aktualizovat zástupné obrázky ze sociálních médií",

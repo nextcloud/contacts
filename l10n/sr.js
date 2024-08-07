@@ -21,7 +21,6 @@ OC.L10N.register(
     "Create contacts" : "Направи контакте",
     "Add contacts" : "Додај контакте",
     "Loading …" : "Учитавање…",
-    "Add member" : "Додај члана",
     "Leave team" : "Напусти тим",
     "Delete team" : "Обриши тим",
     "Contacts settings" : "Подешавања контакта",

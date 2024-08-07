@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create contacts" : "Névjegyek létrehozása",
     "Add contacts" : "Névjegyek hozzáadása",
     "Loading …" : "Betöltés…",
-    "Add member" : "Tag felvétele",
     "Contacts settings" : "Névjegyek beállításai",
     "General settings" : "Általános beállítások",
     "Update avatars from social media" : "Profilképek frissítése a közösségi médiából",

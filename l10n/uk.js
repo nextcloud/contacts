@@ -21,7 +21,6 @@ OC.L10N.register(
     "Create contacts" : "Створити контакти",
     "Add contacts" : "Додати контакти",
     "Loading …" : "Завантаження...",
-    "Add member" : "Додати учасника",
     "Leave team" : "Залишити команду",
     "Delete team" : "Вилучити команду",
     "Contacts settings" : "Налаштування",

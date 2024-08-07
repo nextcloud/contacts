@@ -21,7 +21,6 @@ OC.L10N.register(
     "Create contacts" : "Kişiler ekle",
     "Add contacts" : "Kişileri ekle",
     "Loading …" : "Yükleniyor …",
-    "Add member" : "Üye ekle",
     "Leave team" : "Takımdan ayrıl",
     "Delete team" : "Takımı sil",
     "Contacts settings" : "Kişiler ayarları",

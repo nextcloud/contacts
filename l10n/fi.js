@@ -21,7 +21,6 @@ OC.L10N.register(
     "Create contacts" : "Luo yhteystietoja",
     "Add contacts" : "Lisää yhteystietoja",
     "Loading …" : "Ladataan…",
-    "Add member" : "Lisää jäsen",
     "Leave team" : "Poistu tiimistä",
     "Delete team" : "Poista tiimi",
     "Contacts settings" : "Yhteystietojen asetukset",

@@ -21,7 +21,6 @@ OC.L10N.register(
     "Create contacts" : "Ustvari stike",
     "Add contacts" : "Dodaj stike",
     "Loading …" : "Poteka nalaganje …",
-    "Add member" : "Dodaj člana",
     "Leave team" : "Zapusti skupino",
     "Delete team" : "Izbriši skupino",
     "Contacts settings" : "Nastavitve stikov",

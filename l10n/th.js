@@ -17,7 +17,6 @@ OC.L10N.register(
     "Create contacts" : "สร้างรายชื่อ",
     "Add contacts" : "เพิ่มรายชื่อ",
     "Loading …" : "กำลังโหลด …",
-    "Add member" : "เพิ่มสมาชิก",
     "Contacts settings" : "การตั้งค่ารายชื่อ",
     "General settings" : "การตั้งค่าทั่วไป",
     "Update avatars from social media" : "อัปเดตภาพแทนตัวจากโซเชียลมีเดีย",

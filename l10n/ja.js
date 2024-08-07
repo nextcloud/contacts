@@ -21,7 +21,6 @@ OC.L10N.register(
     "Create contacts" : "連絡先を作成",
     "Add contacts" : "連絡先を追加",
     "Loading …" : "読み込み中…",
-    "Add member" : "メンバーの追加",
     "Leave team" : "チームを離脱",
     "Delete team" : "チームを削除",
     "Contacts settings" : "連絡先の設定",

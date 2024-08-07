@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create contacts" : "Crea contatti",
     "Add contacts" : "Aggiungi contatti",
     "Loading …" : "Caricamento...",
-    "Add member" : "Aggiungi membro",
     "Contacts settings" : "Impostazioni Contatti",
     "General settings" : "Impostazioni generali",
     "Update avatars from social media" : "Aggiorna gli avatar dalle reti sociali",

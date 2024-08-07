@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create contacts" : "Sukurti adresatus",
     "Add contacts" : "Pridėti adresatus",
     "Loading …" : "Įkeliama…",
-    "Add member" : "Pridėti narį",
     "Contacts settings" : "Adresatų nustatymai",
     "General settings" : "Bendri nustatymai",
     "Update avatars from social media" : "Atnaujinti avatarus iš socialinių tinklų",

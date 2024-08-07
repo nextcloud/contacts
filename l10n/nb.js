@@ -21,7 +21,6 @@ OC.L10N.register(
     "Create contacts" : "Opprett kontakter",
     "Add contacts" : "Legg til kontaker",
     "Loading …" : "Laster...",
-    "Add member" : "Legg til et medlem",
     "Leave team" : "Forlat lag",
     "Delete team" : "Slett lag",
     "Contacts settings" : "Kontaktinnstillinger",

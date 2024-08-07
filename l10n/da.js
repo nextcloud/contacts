@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create contacts" : "Opret kontakter",
     "Add contacts" : "Tilføj kontakter",
     "Loading …" : "Indlæser…",
-    "Add member" : "Tilføj medlem",
     "Contacts settings" : "Kontaktindstillinger",
     "General settings" : "Generelle indstillinger",
     "Update avatars from social media" : "Opdater avatarer fra sociale medier",

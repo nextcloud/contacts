@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create contacts" : "Crea cuntatos ",
     "Add contacts" : "Agiunghe cuntatos",
     "Loading …" : "Carrrighende …",
-    "Add member" : "Agiunghe partetzipante",
     "General settings" : "Cunfiguratzione generale",
     "Update avatars from social media" : "Agiorna is avatar de is retes sotziales",
     "(refreshed once per week)" : "(agiornadu una borta a sa chida)",

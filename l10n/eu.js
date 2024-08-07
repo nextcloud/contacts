@@ -21,7 +21,6 @@ OC.L10N.register(
     "Create contacts" : "Sortu kontaktuak",
     "Add contacts" : "Gehitu kontaktuak",
     "Loading …" : "Kargatzen …",
-    "Add member" : "Gehitu kidea",
     "Leave team" : "Utzi lantaldea",
     "Delete team" : "Ezabatu lantaldea",
     "Contacts settings" : "Kontaktuen ezarpenak",

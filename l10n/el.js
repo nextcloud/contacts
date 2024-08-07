@@ -18,7 +18,6 @@ OC.L10N.register(
     "Create contacts" : "Δημιουργία επαφών",
     "Add contacts" : "Προσθήκη επαφών",
     "Loading …" : "Φόρτωση…",
-    "Add member" : "Προσθήκη μέλους",
     "Contacts settings" : "Ρυθμίσεις επαφών",
     "General settings" : "Γενικές ρυθμίσεις",
     "Update avatars from social media" : "Ενημέρωση των άβαταρ από τα κοινωνικά δίκτυα",
