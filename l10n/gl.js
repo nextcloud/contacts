@@ -21,6 +21,7 @@ OC.L10N.register(
     "Create contacts" : "Crear contactos",
     "Add contacts" : "Engadir contactos",
     "Loading …" : "Cargando…",
+    "Manage team" : "Xestionar o equipo",
     "Leave team" : "Deixar o equipo",
     "Delete team" : "Eliminar o equipo",
     "Contacts settings" : "Axustes de Contactos",

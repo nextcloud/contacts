@@ -21,6 +21,7 @@ OC.L10N.register(
     "Create contacts" : "建立聯絡人",
     "Add contacts" : "新增聯絡人",
     "Loading …" : "正在載入 …",
+    "Manage team" : "管理團隊",
     "Leave team" : "離開團隊",
     "Delete team" : "刪除團隊",
     "Contacts settings" : " 通訊錄設定",

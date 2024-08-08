@@ -21,6 +21,7 @@ OC.L10N.register(
     "Create contacts" : "أنشِيء جهات اتصال",
     "Add contacts" : "اضافة جهات اتصال",
     "Loading …" : "التحميل جارٍ …",
+    "Manage team" : "إدارة الفريق",
     "Leave team" : "مغادرة الفريق",
     "Delete team" : "حذف الفريق",
     "Contacts settings" : "إعدادات جهات الاتصال",

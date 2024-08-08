@@ -21,6 +21,7 @@ OC.L10N.register(
     "Create contacts" : "Skapa kontakter",
     "Add contacts" : "Lägg till kontakter",
     "Loading …" : "Läser in ...",
+    "Manage team" : "Hantera team",
     "Leave team" : "Lämna team",
     "Delete team" : "Ta bort team",
     "Contacts settings" : "Kontaktinställningar",
