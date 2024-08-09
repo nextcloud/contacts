@@ -21,6 +21,7 @@ OC.L10N.register(
     "Create contacts" : "Cruthaigh teagmhálaithe",
     "Add contacts" : "Cuir teagmhálaithe leis",
     "Loading …" : "Á lódáil…",
+    "Manage team" : "Foireann bhainistíochta",
     "Leave team" : "Fág an fhoireann",
     "Delete team" : "Scrios an fhoireann",
     "Contacts settings" : "Socruithe teagmhálaithe",
