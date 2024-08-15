@@ -3,9 +3,9 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<div class="group-drop-area"
+	<div v-if="!isEmpty"
+		class="group-drop-area"
 		data-testid="group-drop-area"
-		v-if="!isEmpty"
 		@drop="onDrop($event, group)"
 		@dragenter.prevent
 		@dragover="onDragOver($event)"
