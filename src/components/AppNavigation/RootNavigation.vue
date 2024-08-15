@@ -9,9 +9,11 @@
 			<IconLoading v-if="loading" :size="20" />
 		</template>
 
-		<header class="header">
-			<slot />
-		</header>
+		<template #search>
+			<header class="header">
+				<slot />
+			</header>
+		</template>
 
 		<!-- groups list -->
 		<template #list>
@@ -94,8 +96,8 @@
 						</template>
 						{{ createGroupError ? createGroupError : t('contacts', 'Create a new contact group') }}
 					</ActionText>
-					<ActionInput icon=""
-						v-show="isNewGroupMenuOpen"
+					<ActionInput v-show="isNewGroupMenuOpen"
+						icon=""
 						:placeholder="t('contacts','Contact group name')"
 						@submit.prevent.stop="createNewGroup" />
 				</template>
