@@ -9,9 +9,11 @@
 			<IconLoading v-if="loading" :size="20" />
 		</template>
 
-		<header class="header">
-			<slot />
-		</header>
+		<template #search>
+			<header class="header">
+				<slot />
+			</header>
+		</template>
 
 		<!-- groups list -->
 		<template #list>
