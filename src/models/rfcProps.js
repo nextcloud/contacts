@@ -1,34 +1,18 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import { VCardTime } from 'ical.js'
+import ICAL from 'ical.js'
 import { loadState } from '@nextcloud/initial-state'
+import { otherContacts } from '../utils/chartUtils.js'
 
-import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN'
-import ActionToggleYear from '../components/Actions/ActionToggleYear'
-import zones from './zones'
+import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN.vue'
+import ActionToggleYear from '../components/Actions/ActionToggleYear.vue'
+import zones from './zones.js'
 
 // Load the default profile (for example, home or work) configured by the user
-const defaultProfileState = loadState('contacts', 'defaultProfile')
-const localesState = loadState('contacts', 'locales')
+const defaultProfileState = loadState('contacts', 'defaultProfile', 'HOME')
+const localesState = loadState('contacts', 'locales', false)
 const locales = localesState
 	? localesState.map(({ code, name }) => ({
 		id: code.toLowerCase().replace('_', '-'),
@@ -40,10 +24,6 @@ console.debug('Initial state loaded', 'defaultProfileState', defaultProfileState
 console.debug('Initial state loaded', 'localesState', localesState)
 
 const properties = {
-	nickname: {
-		readableName: t('contacts', 'Nickname'),
-		icon: 'icon-user',
-	},
 	n: {
 		readableName: t('contacts', 'Detailed name'),
 		readableValues: [
@@ -57,40 +37,53 @@ const properties = {
 		defaultValue: {
 			value: ['', '', '', '', ''],
 		},
-		icon: 'icon-user',
+		icon: 'icon-detailed-name',
 		actions: [
 			ActionCopyNtoFN,
 		],
+		primary: false,
+	},
+	nickname: {
+		readableName: t('contacts', 'Nickname'),
+		icon: 'icon-detailed-name',
+		primary: false,
 	},
 	'x-phonetic-first-name': {
 		readableName: t('contacts', 'Phonetic first name'),
+		icon: 'icon-detailed-name',
 		force: 'text',
+		primary: false,
 	},
 	'x-phonetic-last-name': {
 		readableName: t('contacts', 'Phonetic last name'),
+		icon: 'icon-detailed-name',
 		force: 'text',
+		primary: false,
 	},
 	note: {
 		readableName: t('contacts', 'Notes'),
-		icon: 'icon-rename',
+		icon: 'icon-note',
+		primary: false,
 	},
 	url: {
 		multiple: true,
 		readableName: t('contacts', 'Website'),
 		icon: 'icon-public',
+		primary: true,
 	},
 	geo: {
 		multiple: true,
 		readableName: t('contacts', 'Location'),
-		icon: 'icon-address',
+		icon: 'icon-location',
 		defaultjCal: {
 			'3.0': [{}, 'FLOAT', '90.000;0.000'],
 			'4.0': [{}, 'URI', 'geo:90.000,0.000'],
 		},
+		primary: false,
 	},
 	cloud: {
 		multiple: true,
-		icon: 'icon-public',
+		icon: 'icon-federated-cloud-id',
 		readableName: t('contacts', 'Federated Cloud ID'),
 		force: 'text',
 		defaultValue: {
@@ -102,6 +95,7 @@ const properties = {
 			{ id: 'WORK', name: t('contacts', 'Work') },
 			{ id: 'OTHER', name: t('contacts', 'Other') },
 		],
+		primary: false,
 	},
 	adr: {
 		multiple: true,
@@ -127,33 +121,37 @@ const properties = {
 			{ id: 'WORK', name: t('contacts', 'Work') },
 			{ id: 'OTHER', name: t('contacts', 'Other') },
 		],
+		primary: true,
 	},
 	bday: {
 		readableName: t('contacts', 'Birthday'),
 		icon: 'icon-calendar-dark',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
-			value: new VCardTime(null, null, 'date').fromJSDate(new Date()),
+			value: new ICAL.VCardTime(null, null, 'date').fromJSDate(new Date()),
 		},
 		actions: [
 			ActionToggleYear,
 		],
+		primary: true,
 	},
 	anniversary: {
 		readableName: t('contacts', 'Anniversary'),
-		icon: 'icon-calendar-dark',
+		icon: 'icon-anniversary',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
-			value: new VCardTime(null, null, 'date').fromJSDate(new Date()),
+			value: new ICAL.VCardTime(null, null, 'date').fromJSDate(new Date()),
 		},
+		primary: false,
 	},
 	deathdate: {
 		readableName: t('contacts', 'Date of death'),
-		icon: 'icon-calendar-dark',
+		icon: 'icon-death-day',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
-			value: new VCardTime(null, null, 'date').fromJSDate(new Date()),
+			value: new ICAL.VCardTime(null, null, 'date').fromJSDate(new Date()),
 		},
+		primary: false,
 	},
 	email: {
 		multiple: true,
@@ -169,29 +167,33 @@ const properties = {
 			{ id: 'WORK', name: t('contacts', 'Work') },
 			{ id: 'OTHER', name: t('contacts', 'Other') },
 		],
+		primary: true,
 	},
 	impp: {
 		multiple: true,
 		readableName: t('contacts', 'Instant messaging'),
-		icon: 'icon-comment',
+		icon: 'icon-instant-message',
 		defaultValue: {
 			value: [''],
 			type: ['SKYPE'],
 		},
 		options: [
 			{ id: 'IRC', name: 'IRC' },
+			{ id: 'KAKAOTALK', name: 'KakaoTalk' },
 			{ id: 'KIK', name: 'KiK' },
+			{ id: 'LINE', name: 'Line' },
+			{ id: 'MATRIX', name: 'Matrix' },
+			{ id: 'QQ', name: 'QQ' },
+			{ id: 'SIGNAL', name: 'Signal' },
+			{ id: 'SIP', name: 'SIP' },
 			{ id: 'SKYPE', name: 'Skype' },
 			{ id: 'TELEGRAM', name: 'Telegram' },
-			{ id: 'XMPP', name: 'XMPP' },
-			{ id: 'SIP', name: 'SIP' },
-			{ id: 'QQ', name: 'QQ' },
+			{ id: 'THREEMA', name: 'Threema' },
 			{ id: 'WECHAT', name: 'WeChat' },
-			{ id: 'LINE', name: 'Line' },
-			{ id: 'KAKAOTALK', name: 'KakaoTalk' },
-			{ id: 'MATRIX', name: 'Matrix' },
+			{ id: 'XMPP', name: 'XMPP' },
 			{ id: 'ZOOM', name: 'Zoom' },
 		],
+		primary: false,
 	},
 	tel: {
 		multiple: true,
@@ -219,6 +221,35 @@ const properties = {
 			{ id: 'CAR', name: t('contacts', 'Car') },
 			{ id: 'WORK,PAGER', name: t('contacts', 'Work pager') },
 		],
+		primary: true,
+	},
+	'x-managersname': {
+		multiple: false,
+		force: 'select',
+		// TRANSLATORS The supervisor of an employee
+		readableName: t('contacts', 'Manager'),
+		icon: 'icon-manager',
+		default: false,
+		options({ contact, $store, selectType }) {
+			// Only allow contacts of the same address book
+			const contacts = otherContacts({
+				$store,
+				self: contact,
+			})
+
+			// Reduce to an object to eliminate duplicates
+			return Object.values(contacts.reduce((prev, { key }) => {
+				const contact = $store.getters.getContact(key)
+				return {
+					...prev,
+					[contact.uid]: {
+						id: contact.key,
+						name: contact.displayName,
+					},
+				}
+			}, selectType ? { [selectType.value]: selectType } : {}))
+		},
+		primary: true,
 	},
 	'x-socialprofile': {
 		multiple: true,
@@ -244,13 +275,15 @@ const properties = {
 			{ id: 'YOUTUBE', name: 'YouTube', placeholder: 'https://youtube.com/…' },
 			{ id: 'MASTODON', name: 'Mastodon', placeholder: 'https://mastodon.social/…' },
 			{ id: 'DIASPORA', name: 'Diaspora', placeholder: 'https://joindiaspora.com/…' },
-			{ id: 'OTHER', name: 'Other social media', placeholder: 'https://example.com/…' },
+			{ id: 'NEXTCLOUD', name: 'Nextcloud', placeholder: 'Link to profile page (https://nextcloud.example.com/…)' },
+			{ id: 'OTHER', name: 'Other', placeholder: 'https://example.com/…' },
 		],
+		primary: true,
 	},
 	relationship: {
 		readableName: t('contacts', 'Relationship to you'),
 		force: 'select',
-		icon: 'icon-group',
+		icon: 'icon-relation-to-you',
 		options: [
 			{ id: 'SPOUSE', name: t('contacts', 'Spouse') },
 			{ id: 'CHILD', name: t('contacts', 'Child') },
@@ -262,14 +295,16 @@ const properties = {
 			{ id: 'RELATIVE', name: t('contacts', 'Relative') },
 			{ id: 'FRIEND', name: t('contacts', 'Friend') },
 			{ id: 'COLLEAGUE', name: t('contacts', 'Colleague') },
+			// TRANSLATORS The supervisor of an employee
 			{ id: 'MANAGER', name: t('contacts', 'Manager') },
 			{ id: 'ASSISTANT', name: t('contacts', 'Assistant') },
 		],
+		primary: false,
 	},
 	related: {
 		multiple: true,
 		readableName: t('contacts', 'Related contacts'),
-		icon: 'icon-group',
+		icon: 'icon-related-contact',
 		defaultValue: {
 			value: [''],
 			type: ['CONTACT'],
@@ -281,6 +316,7 @@ const properties = {
 			{ id: 'FRIEND', name: t('contacts', 'Friend') },
 			{ id: 'COLLEAGUE', name: t('contacts', 'Colleague') },
 			{ id: 'COWORKER', name: t('contacts', 'Co-worker') },
+			// TRANSLATORS The supervisor of an employee
 			{ id: 'MANAGER', name: t('contacts', 'Manager') },
 			{ id: 'ASSISTANT', name: t('contacts', 'Assistant') },
 			{ id: 'SPOUSE', name: t('contacts', 'Spouse') },
@@ -292,6 +328,7 @@ const properties = {
 			{ id: 'SISTER', name: t('contacts', 'Sister') },
 			{ id: 'RELATIVE', name: t('contacts', 'Relative') },
 		],
+		primary: false,
 	},
 	gender: {
 		readableName: t('contacts', 'Gender'),
@@ -299,6 +336,7 @@ const properties = {
 			// default to Female 🙋
 			value: 'F',
 		},
+		icon: 'icon-gender',
 		force: 'select',
 		options: [
 			{ id: 'F', name: t('contacts', 'Female') },
@@ -307,6 +345,7 @@ const properties = {
 			{ id: 'N', name: t('contacts', 'None') },
 			{ id: 'U', name: t('contacts', 'Unknown') },
 		],
+		primary: false,
 	},
 	tz: {
 		readableName: t('contacts', 'Time zone'),
@@ -316,14 +355,16 @@ const properties = {
 			id: zone,
 			name: zone,
 		})),
+		primary: false,
 	},
 	lang: {
 		readableName: t('contacts', 'Spoken languages'),
-		icon: 'icon-language',
+		icon: 'icon-spoken-lang',
 		defaultValue: {
 			value: 'en',
 		},
 		multiple: true,
+		primary: false,
 	},
 }
 
@@ -342,28 +383,37 @@ if (locales.length > 0) {
 }
 
 const fieldOrder = [
-	'org',
 	'title',
-	'x-phonetic-first-name',
-	'x-phonetic-last-name',
+	'org',
+
+	// primary fields
 	'tel',
 	'email',
 	'adr',
-	'geo',
-	'impp',
-	'nick',
-	'cloud',
 	'bday',
+	'url',
+	'x-socialprofile',
+	'x-managersname',
+
+	// secondary fields
 	'anniversary',
 	'deathdate',
-	'url',
-	'X-SOCIALPROFILE',
-	'relationship',
-	'related',
+	'n',
+	'nickname',
+	'x-phonetic-first-name',
+	'x-phonetic-last-name',
+	'gender',
+	'cloud',
+	'impp',
+	'geo',
 	'note',
+	'lang',
+	'related',
+	'relationship',
+	'tz',
+
 	'categories',
 	'role',
-	'gender',
 ]
 
 export default { properties, fieldOrder }

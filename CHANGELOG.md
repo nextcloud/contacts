@@ -1,4 +1,195 @@
+<!--
+  - SPDX-FileCopyrightText: 2019-2024 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 # Changelog
+
+## 6.1.0-alpha.1 – Unreleased
+### Added
+- Nextcloud 30 support
+- Drag and Drop feature for adding contacts to group
+- Signal messenger option
+- Rename and delete groups
+- Loading icon when deleting or renaming groups
+- Responsiveness for contact details
+### Removed
+- Nextcloud 29 support
+### Changed
+- Group information display
+- Settings toggle design to match Nextcloud 30 style
+- Improve adding contacts to groups
+### Fixed
+- Import contacts filepicker
+- Clarify settings option for open circle
+- Spacing and alignment in the contact details view
+- Subtitle in contacts details
+- Make horizontal and  vertical padding equal
+
+
+## 6.0.0-rc.1 – Unreleased
+### Added 
+- Nextcloud 29 support
+- Add confirmation dialog before importing contacts
+- Implement team overview page updates
+### Removed
+- Drop Nextcloud 28 and older
+- Drop dead OCA.Search code
+### Changed 
+- Migrate event buses to mitt
+- Migrate ::v-deep to :deep
+### Fixed 
+- HTTP client usage
+- Remove import contact button from chart view
+- Subtitle encoding
+- Adjust styling of team resource image
+
+
+## 5.5.2 – 2024-02-19
+### Fixed
+- Sort fallback if not member of circle
+
+## 5.5.1 – 2024-01-03
+### Fixed
+- Rename types in propreties
+- Remove empty content overlaping related resources
+
+## 5.5.0 – 2023-12-11
+### Added
+- Nextcloud 28 file action compatibility
+- PHP8.3 support
+- Circle type icons
+- Shared items and events for each contact
+### Changed
+- Sort circles by initiator level
+- Upgrade to Nextcloud vue 8.0.0
+### Fixed
+- Localization
+- Telephone number type matching
+- Lost contact groups
+- Group deselection
+- Permission check on files-actions
+- Empty content showing on edit mode
+
+## 5.4.0-rc.1 - 2023-08-31
+### Added
+- Quick actions for contacts
+- Disabled wording to disabled address books
+- Show/hide option for system and shared addressbooks
+- Show address book description if provided
+- Nextcloud 28 support
+- Contact and group counters to address books
+- Improve quick actions design
+### Changed
+- Deactivate social avatars from twitter
+- Show single-value dropdowns as text in view mode
+- Better description of circles
+- Import modal improvement
+- Hide contact groups if its empty
+- Hide empty properties
+- Always display Circles info
+### Fixed
+- Import loads forever
+- Split up detailed-name again to fix vCard
+- Hide not copyable addressbooks in copy select
+- Handling group update
+- Allow dynamic autoloading for classes added during upgrade
+- Don't show groups in share placeholder if group sharing is disabled
+- Add missing loading Icon
+- Move QR code close button away from QR code image
+## 5.1.0 - 2023-02-02
+### Added
+- Support for Nextcloud 26
+- Support for PHP 8.2
+- Allow social avatars from telegram
+- Move app settings to a modal
+### Removed
+- Support for PHP 7.3 (EOL)
+- Support for PHP 7.4 (EOL)
+### Changed
+- Use composer's authoritative classmap
+- Rephrase "There is no member in this circle"
+- Rename 'Groups' to 'Contact groups'
+- Changed grammar of email address field label
+### Fixed
+- Prioritize local users in mastodon avatar download
+- Empty content for settings dialogs
+
+## 5.0.3 - 2023-01-24
+### Fixed
+- Social avatar background update
+- Double scrollbar in contact details pane
+- Use mastodon API instead of scraping HTML
+- Mime case matching
+
+## 4.2.4 - 2023-01-24
+### Fixed
+- Social avatar background update
+- Double scrollbar in contact details pane
+- Use mastodon API instead of scraping HTML
+- Mime case matching
+
+## 5.0.1 – 2022-10-18
+### Fixed
+- Org chart expand icon overlapped
+
+## 5.0.0 – 2022-10-11
+### Added
+- Nextcloud 25 design
+- Organization chart via manager property
+### Changed
+- New and updated translations
+### Removed
+- Nextcloud 22-24 support
+
+## 4.2.2 – 2022-10-02
+### Fixed
+- Sharing address books with groups that have spaces in their name
+
+## 4.2.1 – 2022-09-19
+### Changed
+- Important npm package updates
+
+## 4.2.0 - 2022-07-19
+### Added
+- Enforce circle share password
+- Quick search
+### Changed
+- Replaced icons with SVGs
+- Manual date input
+- New and updated translations
+- Updated dependencies
+### Fixed
+- Encode group names for x-property-replace header
+
+## 4.1.1 – 2022-05-18
+### Changed
+- Autosave birthdate
+### Fixed
+- Large social image import
+- Screenshot URL
+
+## 4.1.0 – 2022-03-22
+### Added
+- Nextcloud 24 support
+- PHP8.1 support
+- Sending emails to contact groups
+- Performance improvements
+### Changed
+- New and updated translations
+- Updated dependencies
+- Expensive background jobs run only at off-peak times
+### Fixed
+- App icon
+- Various small bugs
+### Removed
+- Nextcloud 20 support (EOL)
+
+## 4.0.8 - 2022-02-17
+### Fixed
+- Overlapping navigation toggle
+- Adding Circles members
+- Broken IE check
+- Date time picker
 
 ## 4.0.7 - 2021-12-16
 ### Fixed

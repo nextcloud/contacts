@@ -1,33 +1,16 @@
 <?php
 /**
- * @copyright Copyright (c) 2020 Matthias Heinisch <nextcloud@matthiasheinisch.de>
- *
- * @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 
 namespace OCA\Contacts\Service\Social;
 
-use OCP\Http\Client\IClient;
-use OCP\Http\Client\IResponse;
-use OCP\Http\Client\IClientService;
 use ChristophWurst\Nextcloud\Testing\TestCase;
+use OCP\Http\Client\IClient;
+use OCP\Http\Client\IClientService;
+use OCP\Http\Client\IResponse;
 use PHPUnit\Framework\MockObject\MockObject;
 
 class FacebookProviderTest extends TestCase {
@@ -49,26 +32,26 @@ class FacebookProviderTest extends TestCase {
 		$this->client = $this->createMock(IClient::class);
 
 		$this->clientService
-			->method('NewClient')
+			->method('newClient')
 			->willReturn($this->client);
 
 		$this->provider = new FacebookProvider(
-	  $this->clientService
+			$this->clientService
 		);
 	}
 
 	public function dataProviderSupportsContact() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "123124123", "type" => "facebook"],
-				["value" => "23426523423", "type" => "facebook"]
+				['value' => '123124123', 'type' => 'facebook'],
+				['value' => '23426523423', 'type' => 'facebook']
 			]
 		];
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 
@@ -89,19 +72,19 @@ class FacebookProviderTest extends TestCase {
 	public function dataProviderGetImageUrls() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "123456", "type" => "facebook"],
-				["value" => "7891011", "type" => "facebook"]
+				['value' => '123456', 'type' => 'facebook'],
+				['value' => '7891011', 'type' => 'facebook']
 			]
 		];
 		$contactWithSocialUrls = [
-			"https://graph.facebook.com/123456/picture?width=720",
-			"https://graph.facebook.com/7891011/picture?width=720",
+			'https://graph.facebook.com/123456/picture?width=720',
+			'https://graph.facebook.com/7891011/picture?width=720',
 		];
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 		$contactWithoutSocialUrls = [];
@@ -129,11 +112,11 @@ class FacebookProviderTest extends TestCase {
 	public function testGetImageUrlLookup() {
 		$contact = [
 			'X-SOCIALPROFILE' => [
-				["value" => "username1", "type" => "facebook"],
+				['value' => 'username1', 'type' => 'facebook'],
 			]
 		];
-		$url1 = "https://facebook.com/username1";
-		$url2 = "https://graph.facebook.com/1234567/picture?width=720";
+		$url1 = 'https://facebook.com/username1';
+		$url2 = 'https://graph.facebook.com/1234567/picture?width=720';
 		$html1 = '"entity_id":"1234567"';
 
 		$this->response

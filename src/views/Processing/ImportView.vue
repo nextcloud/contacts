@@ -1,49 +1,33 @@
 <!--
- * @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
- *
- * @author Team Popcorn <teampopcornberlin@gmail.com>
- *
- * @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 <template>
-	<ProcessingScreen :progress="progress" :total="total">
-		{{ total === progress
-			? importedHeader
-			: importingHeader }}
-		<template #desc>
-			<span v-if="failed > 0">
-				{{ importFailed }}
-			</span>
-			<button v-if="total === progress" class="primary" @click="onClose">
+	<div>
+		<ProcessingScreen :progress="progress"
+			:total="total"
+			:desc="failed > 0 ? importFailed : ''"
+			:title="total === progress
+				? importedHeader
+				: importingHeader" />
+		<div class="close__button">
+			<Button v-if="total === progress" class="primary" @click="onClose">
 				{{ t('contacts', 'Close') }}
-			</button>
-		</template>
-	</ProcessingScreen>
+			</Button>
+		</div>
+	</div>
 </template>
 
 <script>
-import ProcessingScreen from '../../components/ProcessingScreen'
-
+import ProcessingScreen from '../../components/ProcessingScreen.vue'
+import { NcButton as Button } from '@nextcloud/vue'
 export default {
 	name: 'ImportView',
 
 	components: {
 		ProcessingScreen,
+		Button,
 	},
 
 	computed: {
@@ -73,7 +57,7 @@ export default {
 				this.total,
 				{
 					addressbook: this.addressbook,
-				}
+				},
 			)
 		},
 
@@ -84,7 +68,7 @@ export default {
 				this.total,
 				{
 					addressbook: this.addressbook,
-				}
+				},
 			)
 		},
 
@@ -93,7 +77,7 @@ export default {
 				'{count} error',
 				'{count} errors',
 				this.failed,
-				{ count: this.failed }
+				{ count: this.failed },
 			)
 		},
 	},
@@ -105,3 +89,9 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+.close__button {
+	padding: 12px;
+	float: right;
+}
+</style>

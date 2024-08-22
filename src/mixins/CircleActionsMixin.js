@@ -1,30 +1,13 @@
 /**
- * @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { emit } from '@nextcloud/event-bus'
 import { showError } from '@nextcloud/dialogs'
 
 import { joinCircle } from '../services/circles.ts'
 import Circle from '../models/circle.ts'
-import CopyToClipboardMixin from './CopyToClipboardMixin'
+import CopyToClipboardMixin from './CopyToClipboardMixin.js'
 import Member from '../models/member.ts'
 
 export default {
@@ -64,20 +47,20 @@ export default {
 			if (this.circle.requireJoinAccept) {
 				return t('contacts', 'Request to join')
 			}
-			return t('contacts', 'Join circle')
+			return t('contacts', 'Join team')
 		},
 	},
 
 	methods: {
 		confirmLeaveCircle() {
-			OC.dialogs.confirmDestructive(
+			window.OC.dialogs.confirmDestructive(
 				t('contacts', 'You are about to leave {circle}.\nAre you sure?', {
 					circle: this.circle.displayName,
 				}),
-				t('contacts', 'Please confirm circle leave'),
-				OC.dialogs.YES_NO_BUTTONS,
+				t('contacts', 'Please confirm team leave'),
+				window.OC.dialogs.YES_NO_BUTTONS,
 				this.leaveCircle,
-				true
+				true,
 			)
 		},
 		async leaveCircle(confirm) {
@@ -99,7 +82,7 @@ export default {
 				this.circle.initiator = null
 			} catch (error) {
 				console.error('Could not leave the circle', member, error)
-				showError(t('contacts', 'Could not leave the circle {displayName}', this.circle))
+				showError(t('contacts', 'Could not leave the team {displayName}', this.circle))
 			} finally {
 				this.loadingAction = false
 			}
@@ -118,7 +101,7 @@ export default {
 				// Append new member
 				member.circle.addMember(member)
 			} catch (error) {
-				showError(t('contacts', 'Unable to join the circle'))
+				showError(t('contacts', 'Unable to join the team'))
 				console.error('Unable to join the circle', error)
 			} finally {
 				this.loadingJoin = false
@@ -127,14 +110,14 @@ export default {
 		},
 
 		confirmDeleteCircle() {
-			OC.dialogs.confirmDestructive(
+			window.OC.dialogs.confirmDestructive(
 				t('contacts', 'You are about to delete {circle}.\nAre you sure?', {
 					circle: this.circle.displayName,
 				}),
-				t('contacts', 'Please confirm circle deletion'),
-				OC.dialogs.YES_NO_BUTTONS,
+				t('contacts', 'Please confirm team deletion'),
+				window.OC.dialogs.YES_NO_BUTTONS,
 				this.deleteCircle,
-				true
+				true,
 			)
 		},
 		async deleteCircle(confirm) {
@@ -148,7 +131,7 @@ export default {
 			try {
 				this.$store.dispatch('deleteCircle', this.circle.id)
 			} catch (error) {
-				showError(t('contacts', 'Unable to delete the circle'))
+				showError(t('contacts', 'Unable to delete the team'))
 			} finally {
 				this.loadingAction = false
 			}

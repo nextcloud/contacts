@@ -1,29 +1,11 @@
 <!--
-  - @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
-  -
-  - @author Team Popcorn <teampopcornberlin@gmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <template>
 	<div class="addressbook-shares">
-		<Multiselect
-			id="users-groups-search"
+		<NcSelect id="users-groups-search"
 			:options="usersOrGroups"
 			:searchable="true"
 			:internal-search="false"
@@ -34,8 +16,8 @@
 			:user-select="true"
 			open-direction="bottom"
 			track-by="user"
-			label="user"
-			@search-change="findSharee"
+			label="displayName"
+			@search="findSharee"
 			@input="shareAddressbook" />
 		<!-- list of user or groups addressbook is shared with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressbook-shares__list">
@@ -48,17 +30,19 @@
 </template>
 
 <script>
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
-import client from '../../../services/cdav'
+import { NcSelect } from '@nextcloud/vue'
+import client from '../../../services/cdav.js'
+import isGroupSharingEnabled from '../../../services/isGroupSharingEnabled.js'
 
-import addressBookSharee from './SettingsAddressbookSharee'
+import addressBookSharee from './SettingsAddressbookSharee.vue'
 import debounce from 'debounce'
+import { urldecode } from '../../../utils/url.js'
 
 export default {
 	name: 'SettingsAddressbookShare',
 
 	components: {
-		Multiselect,
+		NcSelect,
 		addressBookSharee,
 	},
 
@@ -79,7 +63,11 @@ export default {
 	},
 	computed: {
 		placeholder() {
-			return t('contacts', 'Share with users or groups')
+			if (isGroupSharingEnabled) {
+				return t('contacts', 'Share with users or groups')
+			} else {
+				return t('contacts', 'Share with users')
+			}
 		},
 		noResult() {
 			return t('contacts', 'No users or groups')
@@ -100,10 +88,7 @@ export default {
 		 * @param {boolean} data.isGroup is this a group ?
 		 */
 		shareAddressbook({ user, displayName, uri, isGroup }) {
-			const addressbook = this.addressbook
-			uri = decodeURI(uri)
-			user = decodeURI(user)
-			this.$store.dispatch('shareAddressbook', { addressbook, user, displayName, uri, isGroup })
+			this.$store.dispatch('shareAddressbook', { addressbook: this.addressbook, user, displayName, uri, isGroup })
 		},
 
 		/**
@@ -121,10 +106,10 @@ export default {
 					&& !this.addressbook.shares.some((share) => share.uri === result.principalScheme)) {
 						const isGroup = result.calendarUserType === 'GROUP'
 						list.push({
-							user: result[isGroup ? 'groupId' : 'userId'],
+							user: urldecode(result[isGroup ? 'groupId' : 'userId']),
 							displayName: result.displayname,
 							icon: isGroup ? 'icon-group' : 'icon-user',
-							uri: result.principalScheme,
+							uri: urldecode(result.principalScheme),
 							isGroup,
 						})
 					}

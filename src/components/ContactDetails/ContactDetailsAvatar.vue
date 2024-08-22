@@ -1,26 +1,7 @@
 <!--
-  - @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
-  -
-  - @author Team Popcorn <teampopcornberlin@gmail.com>
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 <template>
 	<div v-click-outside="closeMenu" class="contact-header-avatar__wrapper">
@@ -29,123 +10,100 @@
 			type="file"
 			class="hidden"
 			accept="image/*"
-			@change="processFile">
+			@change="handleUploadedFile">
 
 		<!-- Avatar display -->
-		<Avatar
-			:disable-tooltip="true"
+		<Avatar :disable-tooltip="true"
 			:display-name="contact.displayName"
 			:is-no-user="true"
 			:size="75"
 			:url="photoUrl"
 			class="contact-header-avatar__photo" />
 
-		<!-- attention, this menu exists twice in this file -->
-		<Actions
-			v-if="!isReadOnly || contact.photo"
+		<NcModal :show.sync="showCropper" size="small" @close="cancel">
+			<div class="avatar__container">
+				<h2>{{ t('contacts', 'Crop contact photo') }}</h2>
+				<VueCropper ref="cropper"
+					class="avatar__cropper"
+					v-bind="cropperOptions" />
+				<div class="avatar__cropper-buttons">
+					<NcButton type="tertiary" @click="cancel">
+						{{ t('contacts', 'Cancel') }}
+					</NcButton>
+					<NcButton type="primary"
+						@click="saveAvatar">
+						{{ t('contacts', 'Save') }}
+					</NcButton>
+				</div>
+			</div>
+		</NcModal>
+
+		<Actions v-if="!isReadOnly"
 			:force-menu="true"
 			:open.sync="opened"
-			class="contact-header-avatar__menu"
-			default-icon="icon-picture-force-white">
-			<template v-if="!isReadOnly">
-				<ActionButton
-					icon="icon-upload"
-					@click.stop.prevent="selectFileInput">
-					{{ t('contacts', 'Upload a new picture') }}
-				</ActionButton>
-				<ActionButton
-					icon="icon-folder"
-					@click="selectFilePicker">
-					{{ t('contacts', 'Choose from Files') }}
-				</ActionButton>
-				<ActionButton
-					v-for="network in supportedSocial"
-					:key="network"
-					:icon="'icon-' + network.toLowerCase()"
-					@click="getSocialAvatar(network)">
-					{{ t('contacts', 'Get from ' + network) }}
-				</ActionButton>
+			class="contact-header-avatar__menu">
+			<template #icon>
+				<IconImage :size="20" fill-color="#fff" />
 			</template>
+			<ActionButton @click.stop.prevent="selectFileInput">
+				<template #icon>
+					<IconUpload :size="20" />
+				</template>
+				{{ t('contacts', 'Upload a new picture') }}
+			</ActionButton>
+			<ActionButton @click="selectFilePicker">
+				<template #icon>
+					<IconFolder :size="20" />
+				</template>
+				{{ t('contacts', 'Choose from Files') }}
+			</ActionButton>
+			<ActionButton v-for="network in supportedSocial"
+				:key="network"
+				@click="getSocialAvatar(network)">
+				<template #icon>
+					<IconCloudDownload :size="20" />
+				</template>
+				{{ t('contacts', 'Get from ' + network) }}
+			</ActionButton>
 
 			<template v-if="contact.photo">
 				<!-- FIXME: the link seems to have a bigger font size than the button caption -->
-				<ActionLink
-					:href="`${contact.url}?photo`"
-					icon="icon-download"
+				<ActionLink :href="`${contact.url}?photo`"
 					target="_blank">
+					<template #icon>
+						<IconDownload :size="20" />
+					</template>
 					{{ t('contacts', 'Download picture') }}
 				</ActionLink>
-				<ActionButton
-					v-if="!isReadOnly"
-					icon="icon-delete"
-					@click="removePhoto">
+				<ActionButton @click="removePhoto">
+					<template #icon>
+						<IconDelete :size="20" />
+					</template>
 					{{ t('contacts', 'Delete picture') }}
 				</ActionButton>
 			</template>
 		</Actions>
-
-		<!-- Big picture display modal -->
-		<Modal v-if="maximizeAvatar"
-			ref="modal"
-			:clear-view-delay="-1"
-			class="contact-header-modal"
-			size="large"
-			:title="contact.displayName"
-			@close="toggleModal">
-			<!-- attention, this menu exists twice in this file -->
-			<template #actions>
-				<template v-if="!isReadOnly">
-					<ActionButton
-						icon="icon-upload"
-						@click="selectFileInput">
-						{{ t('contacts', 'Upload a new picture') }}
-					</ActionButton>
-					<ActionButton
-						icon="icon-folder"
-						@click="selectFilePicker">
-						{{ t('contacts', 'Choose from Files') }}
-					</ActionButton>
-					<ActionButton
-						v-for="network in supportedSocial"
-						:key="network"
-						:icon="'icon-' + network.toLowerCase()"
-						@click="getSocialAvatar(network)">
-						{{ t('contacts', 'Get from ' + network) }}
-					</ActionButton>
-				</template>
-
-				<!-- FIXME: the link seems to have a bigger font size than the button caption -->
-				<ActionLink
-					v-if="contact.photo"
-					:href="`${contact.url}?photo`"
-					icon="icon-download"
-					target="_blank">
-					{{ t('contacts', 'Download picture') }}
-				</ActionLink>
-				<ActionButton
-					v-if="!isReadOnly && contact.photo"
-					icon="icon-delete"
-					@click="removePhoto">
-					{{ t('contacts', 'Delete picture') }}
-				</ActionButton>
-			</template>
-
-			<div class="contact-header-modal__photo-wrapper"
-				@click.exact.self="toggleModal">
-				<img ref="img"
-					:src="photoUrl"
-					class="contact-header-modal__photo">
-			</div>
-		</Modal>
 	</div>
 </template>
 
 <script>
-import Avatar from '@nextcloud/vue/dist/Components/Avatar'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
-import Actions from '@nextcloud/vue/dist/Components/Actions'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
+import {
+	NcAvatar as Avatar,
+	NcActions as Actions,
+	NcActionButton as ActionButton,
+	NcActionLink as ActionLink,
+	NcButton,
+	NcModal,
+} from '@nextcloud/vue'
+import IconDownload from 'vue-material-design-icons/Download.vue'
+import IconCloudDownload from 'vue-material-design-icons/CloudDownload.vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconUpload from 'vue-material-design-icons/Upload.vue'
+import IconFolder from 'vue-material-design-icons/Folder.vue'
+import IconImage from 'vue-material-design-icons/Image.vue'
+import VueCropper from 'vue-cropperjs'
+// eslint-disable-next-line n/no-extraneous-import
+import 'cropperjs/dist/cropper.css'
 
 import { showError, showInfo, getFilePickerBuilder, showSuccess } from '@nextcloud/dialogs'
 import { generateUrl, generateRemoteUrl } from '@nextcloud/router'
@@ -165,7 +123,15 @@ export default {
 		ActionLink,
 		Actions,
 		Avatar,
-		Modal,
+		IconCloudDownload,
+		IconDownload,
+		IconDelete,
+		IconUpload,
+		IconFolder,
+		IconImage,
+		NcButton,
+		VueCropper,
+		NcModal,
 	},
 
 	props: {
@@ -173,30 +139,46 @@ export default {
 			type: Object,
 			required: true,
 		},
+		isReadOnly: {
+			type: Boolean,
+			required: true,
+		},
+		reloadBus: {
+			type: Object,
+			required: true,
+		},
 	},
 
 	data() {
 		return {
-			maximizeAvatar: false,
 			opened: false,
 			loading: false,
 			photoUrl: undefined,
 			root: generateRemoteUrl(`dav/files/${getCurrentUser().uid}`),
+			showCropper: false,
+			cropperOptions: {
+				aspectRatio: 1 / 1,
+				viewMode: 3,
+				guides: false,
+				center: false,
+				highlight: false,
+				autoCropArea: 1,
+				dragMode: 'move',
+				minContainerWidth: 100,
+				minContainerHeight: 100,
+			},
 		}
 	},
 
 	computed: {
-		isReadOnly() {
-			if (this.contact.addressbook) {
-				return this.contact.addressbook.readOnly
-			}
-			return false
-		},
 		supportedSocial() {
 			const emails = this.contact.vCard.getAllProperties('email')
 			// get social networks set for the current contact
-			const available = this.contact.vCard.getAllProperties('x-socialprofile')
+			const availableSocial = this.contact.vCard.getAllProperties('x-socialprofile')
 				.map(a => a.jCal[1].type.toString().toLowerCase())
+			const availableMessenger = this.contact.vCard.getAllProperties('impp')
+				.map(a => a.jCal[1].type.toString().toLowerCase())
+			const available = [].concat(availableSocial, availableMessenger)
 			// get list of social networks that allow for avatar download
 			const supported = supportedNetworks.map(v => v.toLowerCase())
 			if (emails.length) {
@@ -219,72 +201,85 @@ export default {
 	},
 
 	methods: {
-		onLoad() {
-			console.debug(...arguments)
+		onLoad(...args) {
+			console.debug(...args)
 		},
+
 		/**
-		 * Handler to store a new photo on the current contact
+		 * Checks the selected image for mimetype
+		 * and open the cropper if valid, else show error
+		 *
+		 * @param {Buffer} data the image
+		 * @return {boolean}
+		 */
+		async processPicture(data) {
+
+			const type = this.getMimetype(data)
+
+			if (!type.startsWith('image/')) {
+				showError(t('contacts', 'Please select a valid format'))
+				return false
+			}
+
+			if (type === 'image/svg') {
+				const imageSvg = atob(data.toString('base64'))
+				const cleanSvg = await sanitizeSVG(imageSvg)
+				if (!cleanSvg) {
+					throw new Error('Unsafe svg image', imageSvg)
+				}
+			}
+
+			this.openCropper(data, type)
+			return true
+		},
+
+		/**
+		 * Open the cropper-modal with the provided data
+		 *
+		 * @param {Buffer} data the image
+		 * @param {string} type of the image
+		 */
+		openCropper(data, type) {
+			const ccc = `data:${type};base64,${data.toString('base64')}`
+			this.$refs.cropper.replace(ccc)
+			this.showCropper = true
+		},
+
+		/**
+		 * Handle the uploaded file
 		 *
 		 * @param {object} event the event object containing the image
 		 */
-		processFile(event) {
+		handleUploadedFile(event) {
 			if (event.target.files && !this.loading) {
 				this.closeMenu()
 
 				const file = event.target.files[0]
-				if (file && file.size && file.size <= 1 * 1024 * 1024) {
-					const reader = new FileReader()
-					const self = this
-					let type = ''
 
-					reader.onloadend = async function(e) {
-						try {
-							// We got an ArrayBuffer, checking the true mime type...
-							if (typeof e.target.result === 'object') {
-								const uint = new Uint8Array(e.target.result)
-								const bytes = []
-								uint.forEach((byte) => {
-									bytes.push(byte.toString(16))
-								})
-								const hex = bytes.join('').toUpperCase()
+				const reader = new FileReader()
 
-								if (self.getMimetype(hex).startsWith('image/')) {
-									type = self.getMimetype(hex)
-									// we got a valid image, read it again as base64
-									reader.readAsDataURL(file)
-									return
-								}
-								throw new Error('Wrong image mimetype')
+				reader.onload = (e) => {
+					try {
+						if (typeof e.target.result === 'object') {
+
+							const data = Buffer.from(e.target.result, 'binary')
+
+							if (this.processPicture(data)) {
+								return
 							}
 
-							// else we got the base64 and we're good to go!
-							const imageBase64 = e.target.result.split(',').pop()
-
-							if (e.target.result.indexOf('image/svg') > -1) {
-								const imageSvg = atob(imageBase64)
-								const cleanSvg = await sanitizeSVG(imageSvg)
-								if (!cleanSvg) {
-									throw new Error('Unsafe svg image', imageSvg)
-								}
-							}
-
-							// All is well! Set the photo
-							self.setPhoto(imageBase64, type)
-						} catch (error) {
-							console.error(error)
-							showError(t('contacts', 'Invalid image'))
-						} finally {
-							self.resetPicker()
+							throw new Error('Wrong image mimetype')
 						}
-					}
 
-					// start by reading the magic bytes to detect proper photo mimetype
-					const blob = file.slice(0, 4)
-					reader.readAsArrayBuffer(blob)
-				} else {
-					showError(t('contacts', 'Image is too big (max 1MB).'))
-					this.resetPicker()
+					} catch (error) {
+						console.error(error)
+						showError(t('contacts', 'Invalid image'))
+					} finally {
+						this.resetPicker()
+					}
 				}
+
+				reader.readAsArrayBuffer(file)
 			}
 		},
 
@@ -306,13 +301,19 @@ export default {
 			return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
 		},
 		/**
-		 * Return the mimetype based on the first magix byte
+		 * Return the mimetype based on the first 4 byte
 		 *
-		 * @param {string} signature the first 4 bytes
+		 * @param {Uint8Array} uint content
 		 * @return {string} the mimetype
 		 */
-		getMimetype(signature) {
-			switch (signature) {
+		getMimetype(uint) {
+			const bytes = []
+			uint.slice(0, 4).forEach((byte) => {
+				bytes.push(byte.toString(16))
+			})
+			const hex = bytes.join('').toUpperCase()
+
+			switch (hex) {
 			case '89504E47':
 				return 'image/png'
 			case '47494638':
@@ -335,7 +336,7 @@ export default {
 		 * @param {string} data the photo as base64 binary string
 		 * @param {string} type mimetype
 		 */
-		setPhoto(data, type) {
+		async setPhoto(data, type) {
 			// Init with empty data
 			if (this.contact.photo) {
 				this.contact.vCard.addPropertyWithValue('photo', '')
@@ -358,7 +359,12 @@ export default {
 				this.contact.photo = `data:${type};base64,${data}`
 			}
 
-			this.$store.dispatch('updateContact', this.contact)
+			await this.$store.dispatch('updateContact', this.contact)
+
+			await this.loadPhotoUrl()
+
+			await this.reloadBus.emit('reload-avatar', this.contact.key)
+
 			this.loading = false
 		},
 
@@ -377,32 +383,68 @@ export default {
 		},
 
 		/**
-		 * Toggle the full image preview
+		 * Save the cropped image
 		 */
-		toggleModal() {
-			// maximise or minimise avatar photo
-			this.maximizeAvatar = !this.maximizeAvatar
+		saveAvatar() {
+			this.showCropper = false
+			this.loading = true
+
+			this.$refs.cropper.getCroppedCanvas({
+				minWidth: 16,
+				minHeight: 16,
+				maxWidth: 512,
+				maxHeight: 512,
+			}).toBlob(async (blob) => {
+				if (blob === null) {
+					showError(t('contacts', 'Error cropping picture'))
+					this.cancel()
+					return
+				}
+
+				const reader = new FileReader()
+				reader.readAsDataURL(blob)
+				reader.onloadend = () => {
+					const base64data = reader.result
+					this.setPhoto(base64data.split(',').pop(), blob.type)
+				}
+			})
 		},
 
 		/**
 		 * Remove the contact's picture
 		 */
 		removePhoto() {
-			this.maximizeAvatar = false
 			this.contact.vCard.removeAllProperties('photo')
 			this.$store.dispatch('updateContact', this.contact)
+			// somehow the avatarUrl is not unavailable immediately, so we just set undefined
+			this.photoUrl = undefined
+			this.reloadBus.emit('delete-avatar', this.contact.key)
 		},
 
 		/**
-		 * Picker handlers
+		 * Cancel cropping
+		 */
+		cancel() {
+			this.showCropper = false
+			this.loading = false
+		},
+
+		/**
+		 * Picker handlers Upload
 		 */
 		selectFileInput() {
 			if (!this.loading) {
 				this.$refs.uploadInput.click()
 			}
 		},
+
+		/**
+		 * Picker handlers from Files
+		 */
 		async selectFilePicker() {
 			if (!this.loading) {
+				this.closeMenu()
+
 				const picker = getFilePickerBuilder(t('contacts', 'Pick an avatar'))
 					.setMimeTypeFilter([
 						'image/png',
@@ -415,19 +457,25 @@ export default {
 					.build()
 
 				const file = await picker.pick()
+
 				if (file) {
 					this.loading = true
 					try {
+
 						const response = await axios.get(`${this.root}${file}`, {
 							responseType: 'arraybuffer',
 						})
-						const type = response.headers['content-type']
-						const data = Buffer.from(response.data, 'binary').toString('base64')
-						this.setPhoto(data, type)
+
+						const data = Buffer.from(response.data, 'binary')
+
+						this.processPicture(data)
+
 					} catch (error) {
 						showError(t('contacts', 'Error while processing the picture.'))
 						console.error(error)
 						this.loading = false
+					} finally {
+						this.resetPicker()
 					}
 				}
 			}
@@ -460,6 +508,10 @@ export default {
 					const contact = this.$store.getters.getContact(this.contact.key)
 					await this.$emit('update-local-contact', contact)
 
+					await this.loadPhotoUrl()
+
+					await this.reloadBus.emit('reload-avatar', this.contact.key)
+
 					// Notify user
 					showSuccess(t('contacts', 'Avatar downloaded from social network'))
 				} catch (error) {
@@ -483,6 +535,50 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
+.avatar {
+	&__container {
+		margin: 0 auto;
+		padding: 24px;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		gap: 16px 0;
+		width: 300px;
+
+		span {
+			color: var(--color-text-lighter);
+		}
+	}
+
+	&__preview {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: 180px;
+		height: 180px;
+	}
+
+	&__buttons {
+		display: flex;
+		gap: 0 10px;
+	}
+
+	&__cropper {
+		overflow: hidden;
+
+		&-buttons {
+			width: 100%;
+			display: flex;
+			justify-content: space-between;
+		}
+
+		&:deep(.cropper-view-box) {
+			border-radius: 50%;
+		}
+	}
+}
+
 .contact-header-avatar {
 	// Wrap and cut
 	&__wrapper {
@@ -521,7 +617,7 @@ export default {
 		justify-content: center;
 		background-color: rgba(0, 0, 0, .2);
 		// Always show max opacity, let the background-color be the visual cue
-		&::v-deep .action-item__menutoggle {
+		&:deep(.action-item__menutoggle) {
 			opacity: 1;
 		}
 	}
@@ -535,7 +631,7 @@ export default {
 		width: 44px;
 		height: 44px;
 		margin: -50%;
-		&::v-deep {
+		&:deep {
 			.action-item__menutoggle {
 				opacity: .7;
 				background-color: rgba(0, 0, 0, .2);
@@ -556,7 +652,7 @@ export default {
 	// Because of that, we now fill the modal-container,
 	// so we need to watch for click on the photo-wrapper to
 	// close on image click outside.
-	&::v-deep .modal-container {
+	&:deep(.modal-container) {
 		background-color: transparent;
 		box-shadow: none;
 

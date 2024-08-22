@@ -1,58 +1,41 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 <template>
 	<AppContent v-if="!circle">
-		<EmptyContent icon="icon-circles">
-			{{ t('contacts', 'Please select a circle') }}
+		<EmptyContent :name="t('contacts', 'Please select a team')">
+			<template #icon>
+				<AccountGroup :size="20" />
+			</template>
 		</EmptyContent>
 	</AppContent>
 
 	<AppContent v-else-if="loading">
-		<EmptyContent icon="icon-loading">
-			{{ t('contacts', 'Loading circle …') }}
+		<EmptyContent class="empty-content" :name="t('contacts', 'Loading team…')">
+			<template #icon>
+				<IconLoading :size="20" />
+			</template>
 		</EmptyContent>
 	</AppContent>
 
 	<AppContent v-else :show-details.sync="showDetails">
-		<!-- member list -->
-		<template #list>
-			<MemberList
-				:list="members"
-				:loading="loadingList"
-				:show-details.sync="showDetails" />
-		</template>
-
 		<!-- main contacts details -->
 		<CircleDetails :circle="circle">
 			<!-- not a member -->
 			<template v-if="!circle.isMember">
 				<!-- Pending request validation -->
-				<EmptyContent v-if="circle.isPendingMember" icon="icon-loading">
-					{{ t('contacts', 'Your request to join this circle is pending approval') }}
+				<EmptyContent v-if="circle.isPendingMember" :name="t('contacts', 'Your request to join this team is pending approval')">
+					<template #icon>
+						<IconLoading :size="20" />
+					</template>
 				</EmptyContent>
 
-				<EmptyContent v-else icon="icon-circles">
-					{{ t('contacts', 'You are not a member of {circle}', { circle: circle.displayName}) }}
+				<EmptyContent v-else :name="t('contacts', 'You are not a member of {circle}', { circle: circle.displayName})">
+					<template #icon>
+						<AccountGroup :size="20" />
+					</template>
 				</EmptyContent>
 			</template>
 		</CircleDetails>
@@ -60,13 +43,15 @@
 </template>
 <script>
 import { showError } from '@nextcloud/dialogs'
-import AppContent from '@nextcloud/vue/dist/Components/AppContent'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
-import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
-
-import CircleDetails from '../CircleDetails'
-import MemberList from '../MemberList'
-import RouterMixin from '../../mixins/RouterMixin'
+import {
+	NcAppContent as AppContent,
+	NcEmptyContent as EmptyContent,
+	NcLoadingIcon as IconLoading,
+	isMobile,
+} from '@nextcloud/vue'
+import AccountGroup from 'vue-material-design-icons/AccountGroup.vue'
+import CircleDetails from '../CircleDetails.vue'
+import RouterMixin from '../../mixins/RouterMixin.js'
 
 export default {
 	name: 'CircleContent',
@@ -75,7 +60,8 @@ export default {
 		AppContent,
 		CircleDetails,
 		EmptyContent,
-		MemberList,
+		AccountGroup,
+		IconLoading,
 	},
 
 	mixins: [isMobile, RouterMixin],
@@ -163,5 +149,9 @@ button {
 	span {
 		margin-right: 10px;
 	}
+}
+
+.empty-content {
+	height: 100%;
 }
 </style>

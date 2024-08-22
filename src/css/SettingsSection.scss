@@ -1,0 +1,98 @@
+/*!
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+// contacts settings section
+.app-contacts #app-settings-content {
+	padding-left: 0px !important;
+}
+
+#app-settings-content {
+	.settings-section {
+		display: flex;
+		align-items: center;
+	}
+}
+
+.new-addressbook-entry {
+	display: flex;
+	align-items: center;
+}
+
+#new-addressbook-form {
+	display: flex;
+	width: calc(100% - 44px);
+	input {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+}
+
+.settings-addressbook-list {
+	display: flex;
+	li {
+		width: calc(100% - 44px);
+	}
+	&__header {
+		padding-left: 44px;
+		color: var(--color-primary-element);
+		padding-top: 8px;
+	}
+}
+
+.settings-line__icon {
+	width: 44px;
+	height: 44px;
+}
+
+// Sort Contacts
+.sort-contacts {
+	display: flex;
+	.multiselect {
+		width: calc(100% - 44px);
+		margin: 0;
+		.multiselect__single {
+			padding-right: 24px !important;
+			background-repeat: no-repeat;
+			background-position: right 4px center;
+		}
+		&__content-wrapper {
+			bottom: unset !important;
+		}
+	}
+}
+
+// Import contacts
+.import-contact {
+	display: flex;
+	flex-direction: column;
+	&__multiselect-label {
+		z-index: 2;
+		width: 100%;
+		margin: 0;
+		padding: 6px 12px;
+		padding-left: 34px;
+		border-radius: var(--border-radius) var(--border-radius) 0 0;
+		background-position: left 9px center;
+		&--no-select {
+			border-radius: var(--border-radius);
+		}
+	}
+	&__multiselect.multiselect {
+		width: 100%;
+		margin: 0;
+		margin-top: -1px;
+	}
+	&__button-main {
+		margin-left: 10px;
+		width: calc(100% - 10px) !important;
+	}
+}
+
+// Add address book
+.new-addressbook {
+	.new-addressbook-input {
+		border-color: var(--color-border-dark);
+	}
+}

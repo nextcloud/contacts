@@ -1,35 +1,16 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author Team Popcorn <teampopcornberlin@gmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 import { showError } from '@nextcloud/dialogs'
 import pLimit from 'p-limit'
 import Vue from 'vue'
 
-import Contact, { MinimalContactProperties } from '../models/contact'
+import Contact, { MinimalContactProperties } from '../models/contact.js'
 
-import client from '../services/cdav'
-import parseVcf from '../services/parseVcf'
+import client from '../services/cdav.js'
+import parseVcf from '../services/parseVcf.js'
 
 const addressbookModel = {
 	id: '',
@@ -61,6 +42,7 @@ export function mapDavCollectionToAddressbook(addressbook) {
 		enabled: addressbook.enabled !== false,
 		owner: addressbook.owner,
 		readOnly: addressbook.readOnly === true,
+		writeProps: addressbook.currentUserPrivilegeSet.includes('{DAV:}write-properties') === true,
 		url: addressbook.url,
 		dav: addressbook,
 		shares: addressbook.shares
@@ -318,10 +300,17 @@ const actions = {
 			.update()
 			.then((response) => {
 				context.commit('toggleAddressbookEnabled', addressbook)
-				if (addressbook.enabled && Object.values(addressbook.contacts).length === 0) {
-					context.dispatch('getContactsFromAddressBook', { addressbook })
+				if (addressbook.enabled) {
+					// Add contacts from the just enabled address book to the contacts store
+					Object.values(addressbook.contacts).forEach((contact) => {
+						context.commit('addContact', contact)
+					})
+				} else {
+					// Remove contacts from the just disabled address book from the contacts store
+					Object.values(addressbook.contacts).forEach((contact) => {
+						context.commit('deleteContact', contact)
+					})
 				}
-
 			})
 			.catch((error) => { throw error })
 	},
@@ -381,14 +370,18 @@ const actions = {
 						'{failed} contact failed to be read',
 						'{failed} contacts failed to be read',
 						failed,
-						{ failed }
+						{ failed },
 					))
 				}
 
 				context.commit('appendContactsToAddressbook', { addressbook, contacts })
-				context.commit('appendContacts', contacts)
 				context.commit('extractGroupsFromContacts', contacts)
-				context.commit('sortContacts')
+
+				// don't add contacts from disabled address book to contacts store
+				if (addressbook.enabled) {
+					context.commit('appendContacts', contacts)
+					context.commit('sortContacts')
+				}
 				return contacts
 			})
 			.catch((error) => {
@@ -421,7 +414,7 @@ const actions = {
 
 			// Get vcard string
 			try {
-				const vData = contact.vCard.toString()
+				const vData = contact.toStringStripQuotes()
 				// push contact to server and use limit
 				requests.push(limit(() => contact.addressbook.dav.createVCard(vData)
 					.then((response) => {
@@ -438,7 +431,7 @@ const actions = {
 						// error
 						context.commit('incrementDenied')
 						console.error(error)
-					})
+					}),
 				))
 			} catch (e) {
 				context.commit('incrementDenied')

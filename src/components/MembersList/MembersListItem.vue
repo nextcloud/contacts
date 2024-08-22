@@ -1,24 +1,7 @@
 <!--
-  - @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+  - SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 <template>
 	<span v-if="source.heading" class="members-list__heading">
@@ -27,26 +10,28 @@
 
 	<ListItemIcon v-else
 		:id="source.singleId"
-		:key="source.singleId"
-		:avatar-size="44"
+		:avatar-size="avatarSize"
+		:display-name="source.displayName"
+		:icon-class="source.isUser ? null : 'icon-group-white'"
 		:is-no-user="!source.isUser"
-		:subtitle="levelName"
-		:title="source.displayName"
-		:user="source.userId"
+		:subname="levelName"
+		:name="source.displayName"
 		class="members-list__item">
 		<!-- Accept invite -->
 		<template v-if="!loading && isPendingApproval && circle.canManageMembers">
 			<Actions>
-				<ActionButton
-					icon="icon-checkmark"
-					@click="acceptMember">
+				<ActionButton @click="acceptMember">
+					<template #icon>
+						<IconCheck :size="20" />
+					</template>
 					{{ t('contacts', 'Accept membership request') }}
 				</ActionButton>
 			</Actions>
 			<Actions>
-				<ActionButton
-					icon="icon-close"
-					@click="deleteMember">
+				<ActionButton @click="deleteMember">
+					<template #icon>
+						<IconClose :size="20" />
+					</template>
 					{{ t('contacts', 'Reject membership request') }}
 				</ActionButton>
 			</Actions>
@@ -63,12 +48,11 @@
 				<template v-if="canChangeLevel">
 					<ActionText>
 						{{ t('contacts', 'Manage level') }}
-						<ShieldCheck slot="icon"
-							:size="16"
-							decorative />
+						<template #icon>
+							<ShieldCheck :size="16" />
+						</template>
 					</ActionText>
-					<ActionButton
-						v-for="level in availableLevelsChange"
+					<ActionButton v-for="level in availableLevelsChange"
 						:key="level"
 						icon=""
 						@click="changeLevel(level)">
@@ -80,12 +64,15 @@
 
 				<!-- Leave or delete member from circle -->
 				<ActionButton v-if="isCurrentUser && !circle.isOwner" @click="deleteMember">
-					{{ t('contacts', 'Leave circle') }}
-					<ExitToApp slot="icon"
-						:size="16"
-						decorative />
+					{{ t('contacts', 'Leave team') }}
+					<template #icon>
+						<ExitToApp :size="16" />
+					</template>
 				</ActionButton>
-				<ActionButton v-else-if="canDelete" icon="icon-delete" @click="deleteMember">
+				<ActionButton v-else-if="canDelete" @click="deleteMember">
+					<template #icon>
+						<IconDelete :size="20" />
+					</template>
 					{{ t('contacts', 'Remove member') }}
 				</ActionButton>
 			</template>
@@ -96,18 +83,23 @@
 <script>
 import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberStatus } from '../../models/constants.ts'
 
-import Actions from '@nextcloud/vue/dist/Components/Actions'
-import ListItemIcon from '@nextcloud/vue/dist/Components/ListItemIcon'
-import ActionSeparator from '@nextcloud/vue/dist/Components/ActionSeparator'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionText from '@nextcloud/vue/dist/Components/ActionText'
+import {
+	NcActions as Actions,
+	NcListItemIcon as ListItemIcon,
+	NcActionSeparator as ActionSeparator,
+	NcActionButton as ActionButton,
+	NcActionText as ActionText,
+} from '@nextcloud/vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconCheck from 'vue-material-design-icons/Check.vue'
+import IconClose from 'vue-material-design-icons/Close.vue'
 
-import ExitToApp from 'vue-material-design-icons/ExitToApp'
-import ShieldCheck from 'vue-material-design-icons/ShieldCheck'
+import ExitToApp from 'vue-material-design-icons/ExitToApp.vue'
+import ShieldCheck from 'vue-material-design-icons/ShieldCheck.vue'
 
 import { changeMemberLevel } from '../../services/circles.ts'
 import { showError } from '@nextcloud/dialogs'
-import RouterMixin from '../../mixins/RouterMixin'
+import RouterMixin from '../../mixins/RouterMixin.js'
 
 export default {
 	name: 'MembersListItem',
@@ -117,6 +109,9 @@ export default {
 		ActionButton,
 		ActionSeparator,
 		ActionText,
+		IconDelete,
+		IconCheck,
+		IconClose,
 		ExitToApp,
 		ListItemIcon,
 		ShieldCheck,
@@ -249,6 +244,10 @@ export default {
 				&& this.source.level <= this.currentUserLevel
 				&& !this.isCurrentUser
 		},
+
+		avatarSize() {
+			return parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-clickable-area'))
+		},
 	},
 	methods: {
 		/**
@@ -362,6 +361,9 @@ export default {
 .members-list__item {
 	padding: 8px;
 	user-select: none;
+	box-sizing: border-box;
+	margin-bottom: 8px;
+	border-radius: var(--border-radius-rounded);
 
 	&:focus,
 	&:hover {

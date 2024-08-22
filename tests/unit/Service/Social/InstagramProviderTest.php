@@ -1,35 +1,18 @@
 <?php
 /**
- * @copyright Copyright (c) 2020 Matthias Heinisch <nextcloud@matthiasheinisch.de>
- *
- * @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 
 namespace OCA\Contacts\Service\Social;
 
-use OCP\Http\Client\IClient;
-use OCP\Http\Client\IResponse;
-use OCP\Http\Client\IClientService;
-use Psr\Log\LoggerInterface;
 use ChristophWurst\Nextcloud\Testing\TestCase;
+use OCP\Http\Client\IClient;
+use OCP\Http\Client\IClientService;
+use OCP\Http\Client\IResponse;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\LoggerInterface;
 
 class InstagramProviderTest extends TestCase {
 	private $provider;
@@ -54,11 +37,11 @@ class InstagramProviderTest extends TestCase {
 		$this->logger = $this->createMock(LoggerInterface::class);
 
 		$this->clientService
-			->method('NewClient')
+			->method('newClient')
 			->willReturn($this->client);
 
 		$this->provider = new InstagramProvider(
-	  $this->clientService, $this->logger
+			$this->clientService, $this->logger
 		);
 	}
 
@@ -104,10 +87,10 @@ class InstagramProviderTest extends TestCase {
 		];
 		$contactWithSocialJson = [
 			json_encode(
-		["graphql" => ["user" => ["profile_pic_url_hd" => "username1.jpg"]]]
+				["graphql" => ["user" => ["profile_pic_url_hd" => "username1.jpg"]]]
 			),
 			json_encode(
-		["graphql" => ["user" => ["profile_pic_url_hd" => "username2.jpg"]]]
+				["graphql" => ["user" => ["profile_pic_url_hd" => "username2.jpg"]]]
 			)
 		];
 		$contactWithSocialImgs = [

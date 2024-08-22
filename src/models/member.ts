@@ -1,28 +1,13 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 import { MemberLevel, MemberLevels, MemberType, MemberTypes } from './constants'
 import Circle from './circle'
-import logger from '../services/logger'
+import logger from '../services/logger.js'
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export default class Member {
 
 	_data: any = {}
@@ -30,6 +15,9 @@ export default class Member {
 
 	/**
 	 * Creates an instance of Member
+	 *
+	 * @param data
+	 * @param circle
 	 */
 	constructor(data: any, circle: Circle) {
 		if (typeof data !== 'object') {
@@ -97,8 +85,8 @@ export default class Member {
 	get userType(): MemberType {
 		// If the user type is a circle, this could originate from multiple sources
 		return this._data.userType !== MemberTypes.CIRCLE
-					? this._data.userType
-					: this.basedOn.source
+			? this._data.userType
+			: this.basedOn.source
 	}
 
 	/**
@@ -110,18 +98,10 @@ export default class Member {
 
 	/**
 	 * Member level
-	 * 
+	 *
 	 */
 	get level(): MemberLevel {
 		return this._data.level
-	}
-
-	/**
-	 * Member request status
-	 * 
-	 */
-	get status(): string {
-		return this._data.status
 	}
 
 	/**
@@ -132,6 +112,14 @@ export default class Member {
 			throw new Error('Invalid level')
 		}
 		this._data.level = level
+	}
+
+	/**
+	 * Member request status
+	 *
+	 */
+	get status(): string {
+		return this._data.status
 	}
 
 	/**

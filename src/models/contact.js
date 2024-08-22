@@ -1,31 +1,14 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 import { v4 as uuid } from 'uuid'
 import ICAL from 'ical.js'
 import b64toBlob from 'b64-to-blob'
 
-import store from '../store'
-import updateDesignSet from '../services/updateDesignSet'
+import store from '../store/index.js'
+import updateDesignSet from '../services/updateDesignSet.js'
 import sanitizeSVG from '@mattkrick/sanitize-svg'
 
 /**
@@ -41,7 +24,7 @@ const isEmpty = value => {
 export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
 
 export const MinimalContactProperties = [
-	'EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME',
+	'EMAIL', 'UID', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTES', 'RELATED',
 ].concat(ContactKindProperties)
 
 export default class Contact {
@@ -252,7 +235,7 @@ export default class Contact {
 		}
 
 		// Verify if SVG is valid
-		if (photoType.startsWith('svg')) {
+		if (photoType.toLowerCase().startsWith('svg')) {
 			const imageSvg = atob(photoB64Data)
 			const cleanSvg = await sanitizeSVG(imageSvg)
 
@@ -325,7 +308,7 @@ export default class Contact {
 				.map(s => s.toLowerCase())
 				.map(s => this.vCard.getFirstPropertyValue(s))
 				.flat()
-				.filter(k => k)
+				.filter(k => k),
 		)
 	}
 
@@ -362,6 +345,20 @@ export default class Contact {
 			return
 		}
 		this.vCard.updatePropertyWithValue('org', org)
+	}
+
+	/**
+	 * Return the first x-managersname
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get managersName() {
+		const prop = this.vCard.getFirstProperty('x-managersname')
+		if (!prop) {
+			return null
+		}
+		return prop.getFirstParameter('uid') ?? null
 	}
 
 	/**
@@ -514,6 +511,26 @@ export default class Contact {
 	}
 
 	/**
+	 * Return first matching link for provided type
+	 * Returns empty string otherwise
+	 *
+	 * @param {string} type of social
+	 * @readonly
+	 * @memberof Contact
+	 * @return {string} firstMatchingLink|''
+	 */
+	socialLink(type) {
+		if (this.vCard.hasProperty('x-socialprofile')) {
+			const x = this.vCard.getAllProperties('x-socialprofile').filter(a => a.jCal[1].type.toString() === type)
+
+			if (x.length > 0) {
+				return x[0].jCal[3].toString()
+			}
+		}
+		return ''
+	}
+
+	/**
 	 * Return the phonetic last name if exists
 	 * Returns the displayName otherwise
 	 *
@@ -564,6 +581,12 @@ export default class Contact {
 				this.vCard.updatePropertyWithValue('categories', [group])
 			}
 		}
+	}
+
+	toStringStripQuotes() {
+		const regexp = /TYPE="([a-zA-Z-,]+)"/gmi
+		const card = this.vCard.toString()
+		return card.replace(regexp, 'TYPE=$1')
 	}
 
 }

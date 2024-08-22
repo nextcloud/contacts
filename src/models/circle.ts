@@ -1,23 +1,6 @@
 /**
- * @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 import Vue from 'vue'
@@ -27,6 +10,7 @@ import { CircleConfigs, MemberLevels } from './constants'
 
 type MemberList = Record<string, Member>
 
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export default class Circle {
 
 	_data: any = {}
@@ -36,13 +20,17 @@ export default class Circle {
 
 	/**
 	 * Creates an instance of Circle
+	 *
+	 * @param data
 	 */
-	constructor(data: Object) {
+	constructor(data: object) {
 		this.updateData(data)
 	}
 
 	/**
 	 * Update inner circle data, owner and initiator
+	 *
+	 * @param data
 	 */
 	updateData(data: any) {
 		if (typeof data !== 'object') {
@@ -166,6 +154,8 @@ export default class Circle {
 
 	/**
 	 * Add a member to this circle
+	 *
+	 * @param member
 	 */
 	addMember(member: Member) {
 		if (member.constructor.name !== Member.name) {
@@ -181,6 +171,8 @@ export default class Circle {
 
 	/**
 	 * Remove a member from this circle
+	 *
+	 * @param member
 	 */
 	deleteMember(member: Member) {
 		if (member.constructor.name !== Member.name) {
@@ -258,6 +250,14 @@ export default class Circle {
 		return this.initiator?.level === MemberLevels.OWNER
 	}
 
+	// PERMISSIONS SHORTCUTS ------------------------------
+	/**
+	 * Is the initiator an admin of this circle?
+	 */
+	get isAdmin() {
+		return this.initiator?.level === MemberLevels.ADMIN
+	}
+
 	/**
 	 * Is the initiator a member of this circle?
 	 */
@@ -291,8 +291,9 @@ export default class Circle {
 	 * Can the initiator add/remove members to this circle?
 	 */
 	get canManageMembers() {
-		return this.initiator?.level
-			&& this.initiator?.level >= MemberLevels.MODERATOR
+		return (this.initiator?.level
+			&& this.initiator?.level >= MemberLevels.MODERATOR)
+			|| (this.config & CircleConfigs.FRIEND) !== 0
 	}
 
 	// PARAMS ---------------------------------------------

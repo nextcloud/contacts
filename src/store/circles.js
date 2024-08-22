@@ -1,35 +1,29 @@
 /**
- * @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 import { showError } from '@nextcloud/dialogs'
 import Vue from 'vue'
 
-import { acceptMember, createCircle, deleteCircle, deleteMember, getCircleMembers, getCircle, getCircles, leaveCircle, addMembers } from '../services/circles.ts'
+import {
+	acceptMember,
+	createCircle,
+	deleteCircle,
+	deleteMember,
+	getCircleMembers,
+	getCircle,
+	getCircles,
+	leaveCircle,
+	addMembers,
+	editCircleSetting,
+} from '../services/circles.ts'
 import Member from '../models/member.ts'
 import Circle from '../models/circle.ts'
-import logger from '../services/logger'
+import logger from '../services/logger.js'
 
 const state = {
-	/** @type {object.<string>} Circle */
+	/** @type {Object<string>} Circle */
 	circles: {},
 }
 
@@ -95,6 +89,10 @@ const mutations = {
 		// Circles dependencies are managed directly from the model
 		member.delete()
 	},
+
+	setCircleSettings(state, { circleId, settings }) {
+		Vue.set(state.circles[circleId]._data, 'settings', settings)
+	},
 }
 
 const getters = {
@@ -125,7 +123,7 @@ const actions = {
 		})
 
 		if (failure) {
-			showError(t('contacts', 'Some circle(s) an error occurred. Check the console for more details.'))
+			showError(t('contacts', 'An error has occurred in team(s). Check the console for more details.'))
 		}
 
 		return circles
@@ -185,7 +183,7 @@ const actions = {
 			return circle
 		} catch (error) {
 			console.error(error)
-			showError(t('contacts', 'Unable to create circle {circleName}', { circleName }))
+			showError(t('contacts', 'Unable to create team {circleName}', { circleName }))
 		}
 	},
 
@@ -203,7 +201,7 @@ const actions = {
 			logger.debug('Deleted circle', { circleId })
 		} catch (error) {
 			console.error(error)
-			showError(t('contacts', 'Unable to delete circle {circleId}', circleId))
+			showError(t('contacts', 'Unable to delete team {circleId}', circleId))
 		}
 	},
 
@@ -232,7 +230,7 @@ const actions = {
 	 *
 	 * @param {object} context the store mutations Current context
 	 * @param {Member} member the member to remove
-	 * @param {boolean} [leave=false] leave the circle instead of removing the member
+	 * @param {boolean} [leave] leave the circle instead of removing the member
 	 */
 	async deleteMemberFromCircle(context, { member, leave = false }) {
 		const circleId = member.circle.id
@@ -271,6 +269,14 @@ const actions = {
 		const member = new Member(result, circle)
 
 		await context.commit('addMemberToCircle', { circleId, member })
+	},
+
+	async editCircleSetting(context, { circleId, setting }) {
+		const { settings } = await editCircleSetting(circleId, setting)
+		await context.commit('setCircleSettings', {
+			circleId,
+			settings,
+		})
 	},
 
 }

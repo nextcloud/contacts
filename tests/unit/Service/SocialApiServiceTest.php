@@ -1,50 +1,33 @@
 <?php
 /**
- * @copyright Copyright (c) 2020 Matthias Heinisch <nextcloud@matthiasheinisch.de>
- *
- * @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 
 namespace OCA\Contacts\Service;
 
-use OCA\Contacts\Service\Social\CompositeSocialProvider;
-use OCA\Contacts\Service\Social\ISocialProvider;
-
-use OCP\AppFramework\Http;
-use OCP\Http\Client\IClient;
-use OCP\Http\Client\IResponse;
-use OCP\Http\Client\IClientService;
-use OCP\IConfig;
-use OCP\Contacts\IManager;
-use OCP\IAddressBook;
-use OCA\DAV\CardDAV\CardDavBackend;
-use OCP\IURLGenerator;
-use OCP\IL10N;
-use OCP\Util;
-use OCP\AppFramework\Utility\ITimeFactory;
-
-use PHPUnit\Framework\MockObject\MockObject;
 use ChristophWurst\Nextcloud\Testing\TestCase;
+use OCA\Contacts\Service\Social\CompositeSocialProvider;
+
+use OCA\Contacts\Service\Social\ISocialProvider;
+use OCA\DAV\CardDAV\CardDavBackend;
+use OCP\AppFramework\Http;
+use OCP\AppFramework\Utility\ITimeFactory;
+use OCP\Contacts\IManager;
+use OCP\Http\Client\IClient;
+use OCP\Http\Client\IClientService;
+use OCP\Http\Client\IResponse;
+use OCP\IAddressBook;
+use OCP\IConfig;
+use OCP\IL10N;
+use OCP\IURLGenerator;
+
+use OCP\Util;
+use PHPUnit\Framework\MockObject\MockObject;
 
 class SocialApiServiceTest extends TestCase {
-	private $service;
+	private SocialApiService $service;
 
 	/** @var CompositeSocialProvider|MockObject */
 	private $socialProvider;
@@ -62,8 +45,10 @@ class SocialApiServiceTest extends TestCase {
 	private $davBackend;
 	/** @var ITimeFactory|MockObject */
 	private $timeFactory;
+	/** @var ImageResizer|MockObject */
+	private $imageResizer;
 
-	public function allSocialProfileProviders() {
+	public function allSocialProfileProviders(): array {
 		$body = "the body";
 		$imageType = "jpg";
 		$contact = [
@@ -72,7 +57,7 @@ class SocialApiServiceTest extends TestCase {
 		];
 		$connector = $this->createMock(ISocialProvider::class);
 		$connector->method('supportsContact')->willReturn(true);
-		$connector->method('getImageUrls')->willReturn(["url1"]);
+		$connector->method('getImageUrls')->willReturn(["https://https://url1.com/an-url/an-url"]);
 
 		$connectorNoSupport = $this->createMock(ISocialProvider::class);
 		$connectorNoSupport->method('supportsContact')->willReturn(false);
@@ -107,7 +92,7 @@ class SocialApiServiceTest extends TestCase {
 		];
 	}
 
-	public function updateAddressbookProvider() {
+	public function updateAddressbookProvider(): array {
 		return [
 			'not user enabled' => ['yes',	'no',	Http::STATUS_FORBIDDEN],
 			'not admin allowed' => ['no',	'yes',	Http::STATUS_FORBIDDEN],
@@ -127,6 +112,7 @@ class SocialApiServiceTest extends TestCase {
 		$this->urlGen = $this->createMock(IURLGenerator::class);
 		$this->davBackend = $this->createMock(CardDavBackend::class);
 		$this->timeFactory = $this->createMock(ITimeFactory::class);
+		$this->imageResizer = $this->createMock(ImageResizer::class);
 		$this->service = new SocialApiService(
 			$this->socialProvider,
 			$this->manager,
@@ -135,7 +121,8 @@ class SocialApiServiceTest extends TestCase {
 			$this->l10n,
 			$this->urlGen,
 			$this->davBackend,
-			$this->timeFactory
+			$this->timeFactory,
+			$this->imageResizer
 		);
 	}
 
@@ -172,14 +159,18 @@ class SocialApiServiceTest extends TestCase {
 			->method('get')
 			->willReturn($response);
 		$this->clientService
-			->method('NewClient')
+			->method('newClient')
 			->willReturn($client);
+		$this->imageResizer
+			->expects($body ? $this->once() : $this->never())
+			->method('resizeImage')
+			->willReturn($body);
 
 		$result = $this->service
-									 ->updateContact(
-										 'contacts',
-										 '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
-										 null);
+			 ->updateContact(
+			 	'contacts',
+			 	'3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
+			 	null);
 		$this->assertEquals($status, $result->getStatus());
 	}
 
@@ -195,7 +186,7 @@ class SocialApiServiceTest extends TestCase {
 		];
 		$provider = $this->createMock(ISocialProvider::class);
 		$provider->method('supportsContact')->willReturn(true);
-		$provider->method('getImageUrls')->willReturn(["url1"]);
+		$provider->method('getImageUrls')->willReturn(["https://url1.com/an-url"]);
 
 		$addressbook = $this->createMock(IAddressBook::class);
 		$addressbook
@@ -229,8 +220,12 @@ class SocialApiServiceTest extends TestCase {
 			->method('get')
 			->willReturn($response);
 		$this->clientService
-			->method('NewClient')
+			->method('newClient')
 			->willReturn($client);
+		$this->imageResizer
+			->expects($this->once())
+			->method('resizeImage')
+			->willReturn($body);
 
 		$changes = [
 			'URI' => $contact['URI'],
@@ -245,9 +240,9 @@ class SocialApiServiceTest extends TestCase {
 
 		$result = $this->service
 									 ->updateContact(
-										 $addressBookId,
-										 $contactId,
-										 $network);
+									 	$addressBookId,
+									 	$contactId,
+									 	$network);
 
 		$this->assertEquals(Http::STATUS_OK, $result->getStatus());
 	}
@@ -264,7 +259,7 @@ class SocialApiServiceTest extends TestCase {
 		];
 		$provider = $this->createMock(ISocialProvider::class);
 		$provider->method('supportsContact')->willReturn(true);
-		$provider->method('getImageUrls')->willReturn(["url1"]);
+		$provider->method('getImageUrls')->willReturn(["https://url1.com/an-url"]);
 
 		$addressbook = $this->createMock(IAddressBook::class);
 		$addressbook
@@ -298,8 +293,12 @@ class SocialApiServiceTest extends TestCase {
 			->method('get')
 			->willReturn($response);
 		$this->clientService
-			->method('NewClient')
+			->method('newClient')
 			->willReturn($client);
+		$this->imageResizer
+			->expects($this->once())
+			->method('resizeImage')
+			->willReturn($body);
 
 		$changes = [
 			'URI' => $contact['URI'],
@@ -314,9 +313,9 @@ class SocialApiServiceTest extends TestCase {
 
 		$result = $this->service
 									 ->updateContact(
-										 $addressBookId,
-										 $contactId,
-										 $network);
+									 	$addressBookId,
+									 	$contactId,
+									 	$network);
 
 		$this->assertEquals(Http::STATUS_OK, $result->getStatus());
 	}
@@ -389,10 +388,10 @@ class SocialApiServiceTest extends TestCase {
 		];
 
 		$providerUrlMap = [
-			[$validContact1, ["url1"]],
+			[$validContact1, ["https://url1.com/an-url"]],
 			[$emptyContact, []],
 			[$invalidContact, []],
-			[$validContact2, ["url1"]]
+			[$validContact2, ["https://url1.com/an-url"]]
 		];
 
 		$provider = $this->createMock(ISocialProvider::class);
@@ -422,8 +421,11 @@ class SocialApiServiceTest extends TestCase {
 			->method('get')
 			->willReturn($validResponse);
 		$this->clientService
-			->method('NewClient')
+			->method('newClient')
 			->willReturn($client);
+		$this->imageResizer
+			->method('resizeImage')
+			->willReturn('someBody');
 	}
 
 	/**
@@ -466,7 +468,6 @@ class SocialApiServiceTest extends TestCase {
 			$this->assertArrayHasKey('failed', $report[0]);
 			$this->assertArrayHasKey('412', $report[0]['failed']);
 			$this->assertContains('Invalid Contact', $report[0]['failed']['412']);
-			$this->assertContains('Empty Contact', $report[0]['failed']['412']);
 		}
 	}
 

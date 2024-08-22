@@ -1,30 +1,12 @@
 <!--
-  - @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
-  -
-  - @author Team Popcorn <teampopcornberlin@gmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <template>
 	<div class="sort-contacts">
-		<div class="icon-category-organization settings-line__icon" />
-		<Multiselect
-			id="sort-by"
+		<IconList class="settings-line__icon" />
+		<NcSelect id="sort-by"
 			:value="orderKeyOption"
 			:searchable="false"
 			:allow-empty="false"
@@ -37,13 +19,15 @@
 </template>
 
 <script>
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import { NcSelect } from '@nextcloud/vue'
+import IconList from 'vue-material-design-icons/FormatListBulletedSquare.vue'
 
 export default {
 	name: 'SettingsSortContacts',
 
 	components: {
-		Multiselect,
+		NcSelect,
+		IconList,
 	},
 
 	computed: {
@@ -97,3 +81,8 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+.sort-contacts {
+	display: flex;
+}
+</style>

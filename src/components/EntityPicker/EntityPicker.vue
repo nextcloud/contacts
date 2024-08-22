@@ -1,35 +1,17 @@
 <!--
-  - @copyright Copyright (c) 2019 Marco Ambrosini <marcoambrosini@pm.me>
-  -
-  - @author Marco Ambrosini <marcoambrosini@pm.me>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  - SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <template>
-	<Modal
-		size="full"
+	<Modal size="normal"
 		@close="onCancel">
 		<!-- Wrapper for content & navigation -->
 		<div class="entity-picker">
 			<!-- Search -->
 			<div class="entity-picker__search">
 				<div class="entity-picker__search-icon icon-search" />
-				<input
-					ref="input"
+				<input ref="input"
 					v-model="searchQuery"
 					:placeholder="t('contacts', 'Search {types}', {types: searchPlaceholderTypes})"
 					class="entity-picker__search-input"
@@ -38,27 +20,29 @@
 			</div>
 
 			<!-- Loading -->
-			<EmptyContent v-if="loading" icon="icon-loading">
-				{{ t('contacts', 'Loading …') }}
+			<EmptyContent v-if="loading" :name="t('contacts', 'Loading …')">
+				<template #icon>
+					<IconLoading :size="20" />
+				</template>
 			</EmptyContent>
 
 			<template v-else>
 				<!-- Picked entities -->
-				<transition-group
-					v-if="Object.keys(selectionSet).length > 0"
+				<transition-group v-if="Object.keys(selectionSet).length > 0"
 					name="zoom"
 					tag="ul"
 					class="entity-picker__selection">
-					<EntityBubble
-						v-for="entity in selectionSet"
+					<EntityBubble v-for="entity in selectionSet"
 						:key="entity.key || `entity-${entity.type}-${entity.id}`"
 						v-bind="entity"
 						@delete="onDelete(entity)" />
 				</transition-group>
 
 				<!-- No recommendations -->
-				<EmptyContent v-if="dataSet.length === 0" icon="icon-search">
-					{{ t('contacts', 'Search for people to add') }}
+				<EmptyContent v-if="dataSet.length === 0" :name="t('contacts', 'Search for people to add')">
+					<template #icon>
+						<IconSearch :size="20" />
+					</template>
 				</EmptyContent>
 
 				<!-- Searched & picked entities -->
@@ -70,19 +54,19 @@
 					:estimate-size="44"
 					:extra-props="{ selection: selectionSet, onClick }" />
 
-				<EmptyContent v-else-if="searchQuery" icon="icon-search">
-					{{ t('contacts', 'No results') }}
+				<EmptyContent v-else-if="searchQuery" :name="t('contacts', 'No results')">
+					<template #icon>
+						<IconSearch :size="20" />
+					</template>
 				</EmptyContent>
 
 				<div class="entity-picker__navigation">
-					<button
-						:disabled="loading"
+					<button :disabled="loading"
 						class="navigation__button-left"
 						@click="onCancel">
 						{{ t('contacts', 'Cancel') }}
 					</button>
-					<button
-						:disabled="isEmptySelection || loading"
+					<button :disabled="isEmptySelection || loading"
 						class="navigation__button-right primary"
 						@click="onSubmit">
 						{{ confirmLabel }}
@@ -96,11 +80,14 @@
 <script>
 import debounce from 'debounce'
 import VirtualList from 'vue-virtual-scroll-list'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
-
-import EntityBubble from './EntityBubble'
-import EntitySearchResult from './EntitySearchResult'
+import {
+	NcEmptyContent as EmptyContent,
+	NcLoadingIcon as IconLoading,
+	NcModal as Modal,
+} from '@nextcloud/vue'
+import IconSearch from 'vue-material-design-icons/Magnify.vue'
+import EntityBubble from './EntityBubble.vue'
+import EntitySearchResult from './EntitySearchResult.vue'
 
 export default {
 	name: 'EntityPicker',
@@ -108,6 +95,8 @@ export default {
 	components: {
 		EmptyContent,
 		EntityBubble,
+		IconSearch,
+		IconLoading,
 		Modal,
 		VirtualList,
 	},
@@ -370,10 +359,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
 
 // Dialog variables
-$dialog-margin: 20px;
-$dialog-width: 320px;
+$dialog-padding: 20px;
 $dialog-height: 480px;
 $entity-spacing: 4px;
 
@@ -388,31 +377,27 @@ $icon-size: 16px;
 
 // icon padding for a $clickable-area width and a $icon-size icon
 // ( 44px - 16px ) / 2
-$icon-margin: ($clickable-area - $icon-size) / 2;
+$icon-margin: math.div($clickable-area - $icon-size, 2);
 
 .entity-picker {
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	/** This next 2 rules are pretty hacky, with the modal component somehow
-	the margin applied to the content is added to the total modal width,
-	so here we subtract it to the width and height of the content.
-	*/
-	width: $dialog-width;
-	max-width: 100vw;
-	height: $dialog-height;
-	max-height: calc(100vh - #{$dialog-margin} * 2 - 10px);
-	margin: $dialog-margin;
+	min-height: $dialog-height;
+	height: 100%;
+	padding: $dialog-padding;
+	box-sizing: border-box;
 
 	&__search {
 		position: relative;
 		display: flex;
 		align-items: center;
+		width: 95%;
 		&-input {
 			width: 100%;
 			height: $clickable-area - $entity-spacing !important;
 			margin: $entity-spacing 0;
-			padding-left: $clickable-area;
+			padding-left: $clickable-area !important;
 			font-size: 16px;
 			line-height: $clickable-area - $entity-spacing;
 		}
@@ -466,14 +451,18 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 }
 
 // Properly center Entity Picker empty content
-::v-deep .empty-content {
+:deep(.empty-content) {
 	margin: auto 0 !important;
 }
 
 /** Size full in the modal component doesn't have border radius, this adds
 it back */
-::v-deep .modal-container {
+:deep(.modal-container) {
 	border-radius: var(--border-radius-large) !important;
+}
+
+:deep(.modal-container__close) {
+	margin-top: 19px;
 }
 
 </style>

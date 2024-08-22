@@ -1,24 +1,7 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 <template>
 	<!-- If not in the rfcProps then we don't want to display it -->
@@ -32,34 +15,40 @@
 		:is-last-property="isLastProperty"
 		:class="{
 			'property--last': isLastProperty,
-			[`property-${propName}`]: true
+			[`property-${propName}`]: true,
 		}"
 		:local-contact="localContact"
 		:prop-name="propName"
 		:prop-type="propType"
 		:options="sortedModelOptions"
 		:is-read-only="isReadOnly"
-		@delete="onDelete"
-		@resize="onResize"
-		@update="updateContact" />
+		:bus="bus"
+		:is-multiple="isMultiple"
+		@delete="onDelete" />
 </template>
 
 <script>
-import { Property } from 'ical.js'
-import rfcProps from '../../models/rfcProps'
-import Contact from '../../models/contact'
+import ICAL from 'ical.js'
+import rfcProps from '../../models/rfcProps.js'
+import Contact from '../../models/contact.js'
 
-import PropertyText from '../Properties/PropertyText'
-import PropertyMultipleText from '../Properties/PropertyMultipleText'
-import PropertyDateTime from '../Properties/PropertyDateTime'
-import PropertySelect from '../Properties/PropertySelect'
+import OrgChartsMixin from '../../mixins/OrgChartsMixin.js'
+import PropertyText from '../Properties/PropertyText.vue'
+import PropertyMultipleText from '../Properties/PropertyMultipleText.vue'
+import PropertyDateTime from '../Properties/PropertyDateTime.vue'
+import PropertySelect from '../Properties/PropertySelect.vue'
+import { matchTypes } from '../../utils/matchTypes.ts'
 
 export default {
 	name: 'ContactDetailsProperty',
 
+	mixins: [
+		OrgChartsMixin,
+	],
+
 	props: {
 		property: {
-			type: Property,
+			type: ICAL.Property,
 			default: true,
 		},
 
@@ -86,13 +75,17 @@ export default {
 			type: Contact,
 			default: null,
 		},
-		/**
-		 * This is needed so that we can update
-		 * the contact within the rfcProps actions
-		 */
-		updateContact: {
-			type: Function,
-			default: () => {},
+		contacts: {
+			type: Array,
+			default: () => [],
+		},
+		bus: {
+			type: Object,
+			required: true,
+		},
+		isReadOnly: {
+			type: Boolean,
+			required: true,
 		},
 	},
 
@@ -116,14 +109,15 @@ export default {
 		properties() {
 			return rfcProps.properties
 		},
-		fieldOrder() {
-			return rfcProps.fieldOrder
-		},
-		isReadOnly() {
-			if (this.contact.addressbook) {
-				return this.contact.addressbook.readOnly
-			}
-			return false
+
+		/**
+		 * Return if property is multiple
+		 *
+		 * @return {boolean}
+		 */
+		isMultiple() {
+			// Make sure we have some model for the property and check for ITEM.PROP custom label format
+			return this.propModel.multiple
 		},
 
 		/**
@@ -173,7 +167,17 @@ export default {
 		 * @return {object[]}
 		 */
 		sortedModelOptions() {
-			if (this.propModel.options) {
+			if (!this.propModel.options) {
+				return []
+			}
+
+			if (typeof this.propModel.options === 'function') {
+				return this.propModel.options({
+					contact: this.contact,
+					$store: this.$store,
+					selectType: this.selectType,
+				})
+			} else {
 				return this.propModel.options.reduce((list, option) => {
 					if (!list.find(search => search.name === option.name)) {
 						list.push(option)
@@ -181,7 +185,6 @@ export default {
 					return list
 				}, this.selectType ? [this.selectType] : [])
 			}
-			return []
 		},
 
 		/**
@@ -197,7 +200,7 @@ export default {
 		/**
 		 * Return the associated X-ABLABEL if any
 		 *
-		 * @return {Property}
+		 * @return {ICAL.Property}
 		 */
 		propLabel() {
 			return this.localContact.vCard.getFirstProperty(`${this.propGroup[0]}.x-ablabel`)
@@ -227,22 +230,10 @@ export default {
 						// we only use uppercase strings
 						.map(str => str.toUpperCase())
 
-					// Compare array and score them by how many matches they have to the selected type
-					// sorting directly is cleaner but slower
-					// https://jsperf.com/array-map-and-intersection-perf
-					const matchingTypes = this.propModel.options
-						.map(type => {
-							return {
-								type,
-								// "WORK,HOME" => ['WORK', 'HOME']
-								score: type.id.split(',').filter(value => selectedType.indexOf(value) !== -1).length,
-							}
-						})
-
-					// Sort by score, filtering out the null score and selecting the first match
-					const matchingType = matchingTypes
-						.sort((a, b) => b.score - a.score)
-						.filter(type => type.score > 0)[0]
+					const matchingType = matchTypes(
+						selectedType,
+						this.propModel.options,
+					)
 
 					if (matchingType) {
 						return matchingType.type
@@ -263,6 +254,11 @@ export default {
 				return null
 			},
 			set(data) {
+				// Skip setting type if select is cleared
+				if (!data) {
+					return
+				}
+
 				// if a custom label exists and this is the one we selected
 				if (this.propLabel && data.id === this.propLabel.name) {
 					this.propLabel.setValue(data.name)
@@ -285,7 +281,6 @@ export default {
 						this.property.jCal[0] = this.propGroup[1]
 					}
 				}
-				this.updateContact()
 			},
 
 		},
@@ -299,6 +294,16 @@ export default {
 						? this.property.getValues()[0]
 						: this.property.getValues()
 				}
+				if (this.propName === 'x-managersname') {
+					if (this.property.getParameter('uid')) {
+						return this.property.getParameter('uid') + '~' + this.contact.addressbook.id
+					}
+					// Try to find the matching contact by display name
+					// TODO: this only *shows* the display name but doesn't assign the missing UID
+					const displayName = this.property.getFirstValue()
+					const other = this.otherContacts(this.contact).find(contact => contact.displayName === displayName)
+					return other?.key
+				}
 				return this.property.getFirstValue()
 			},
 			set(data) {
@@ -308,9 +313,14 @@ export default {
 						? this.property.setValues([data])
 						: this.property.setValues(data)
 				} else {
-					this.property.setValue(data)
+					if (this.propName === 'x-managersname') {
+						const manager = this.$store.getters.getContact(data)
+						this.property.setValue(manager.displayName)
+						this.property.setParameter('uid', manager.uid)
+					} else {
+						this.property.setValue(data)
+					}
 				}
-				this.updateContact()
 			},
 		},
 
@@ -340,20 +350,38 @@ export default {
 		},
 	},
 
+	created() {
+		this.bus.on('focus-prop', this.onFocusProp)
+	},
+
+	destroyed() {
+		this.bus.off('focus-prop', this.onFocusProp)
+	},
+
 	methods: {
+		/**
+		 * Focus first input element of the new prop
+		 *
+		 * @param {string} id the id of the property
+		 */
+		onFocusProp(id) {
+			if (id === this.propName && this.isLastProperty) {
+				this.$nextTick(() => {
+					const inputs = this.$refs.component.$el.querySelectorAll('input, textarea')
+					if (inputs === undefined || inputs.length === 0) {
+						console.warn('no input to focus found')
+					} else {
+						inputs[0].focus()
+					}
+				})
+			}
+		},
+
 		/**
 		 * Delete this property
 		 */
 		onDelete() {
 			this.localContact.vCard.removeProperty(this.property)
-			this.updateContact()
-		},
-
-		/**
-		 * Forward resize event
-		 */
-		onResize() {
-			this.$emit('resize')
 		},
 	},
 }

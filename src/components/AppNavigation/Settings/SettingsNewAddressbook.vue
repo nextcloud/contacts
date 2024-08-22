@@ -1,58 +1,42 @@
 <!--
-	- @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
-	-
-	- @author Team Popcorn <teampopcornberlin@gmail.com>
-	-
-	- @license GNU AGPL version 3 or any later version
-	-
-	- This program is free software: you can redistribute it and/or modify
-	- it under the terms of the GNU Affero General Public License as
-	- published by the Free Software Foundation, either version 3 of the
-	- License, or (at your option) any later version.
-	-
-	- This program is distributed in the hope that it will be useful,
-	- but WITHOUT ANY WARRANTY; without even the implied warranty of
-	- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-	- GNU Affero General Public License for more details.
-	-
-	- You should have received a copy of the GNU Affero General Public License
-	- along with this program. If not, see <http://www.gnu.org/licenses/>.
-	-
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <template>
 	<div class="new-addressbook-entry">
-		<div class="icon-add settings-line__icon" />
-		<form id="new-addressbook-form"
+		<IconLoading v-if="loading" :size="20" />
+		<NcTextField class="new-addressbook"
+			:value.sync="displayName"
 			:disabled="loading"
-			:class="{'icon-loading-small': loading}"
-			name="new-addressbook-form"
-			class="new-addressbook"
-			@submit.prevent.stop="addAddressbook">
-			<input id="new-addressbook"
-				ref="addressbook"
-				v-model="displayName"
-				:disabled="loading"
-				:placeholder="t('contacts', 'Add new address book')"
-				:pattern="addressBookRegex"
-				class="new-addressbook-input"
-				type="text"
-				autocomplete="off"
-				autocorrect="off"
-				spellcheck="false"
-				minlength="1"
-				required>
-			<input class="icon-confirm" type="submit" value="">
-		</form>
+			:label="t('contacts', 'Add new address book')"
+			:pattern="addressBookRegex"
+			:show-trailing-button="true"
+			:trailing-button-label="t('contacts', 'Add')"
+			trailing-button-icon="arrowRight"
+			type="text"
+			autocomplete="off"
+			autocorrect="off"
+			spellcheck="false"
+			@trailing-button-click="addAddressbook">
+			<IconAdd :size="20" />
+		</NcTextField>
 	</div>
 </template>
 
 <script>
+import { NcTextField } from '@nextcloud/vue'
 import { showError } from '@nextcloud/dialogs'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
+import IconLoading from 'vue-material-design-icons/Loading.vue'
 
 export default {
 	name: 'SettingsNewAddressbook',
-
+	components: {
+		NcTextField,
+		IconAdd,
+		IconLoading,
+	},
 	data() {
 		return {
 			loading: false,
@@ -67,6 +51,10 @@ export default {
 		 * Add a new address book
 		 */
 		addAddressbook() {
+			if (this.displayName === '') {
+				return
+			}
+
 			this.loading = true
 			this.$store.dispatch('appendAddressbook', { displayName: this.displayName })
 				.then(() => {

@@ -1,36 +1,18 @@
 <?php
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- * @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 namespace OCA\Contacts\Controller;
 
 use OC\App\CompareVersion;
-use OCP\App\IAppManager;
-use OCP\AppFramework\Controller;
-use OCP\AppFramework\Http\TemplateResponse;
-
 use OCA\Contacts\AppInfo\Application;
 use OCA\Contacts\Service\SocialApiService;
+use OCP\App\IAppManager;
+
+use OCP\AppFramework\Controller;
+use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
 use OCP\IInitialStateService;
 use OCP\IRequest;
@@ -61,13 +43,13 @@ class PageController extends Controller {
 	private $compareVersion;
 
 	public function __construct(IRequest $request,
-								IConfig $config,
-								IInitialStateService $initialStateService,
-								IFactory $languageFactory,
-								IUserSession $userSession,
-								SocialApiService $socialApiService,
-								IAppManager $appManager,
-								CompareVersion $compareVersion) {
+		IConfig $config,
+		IInitialStateService $initialStateService,
+		IFactory $languageFactory,
+		IUserSession $userSession,
+		SocialApiService $socialApiService,
+		IAppManager $appManager,
+		CompareVersion $compareVersion) {
 		parent::__construct(Application::APP_ID, $request);
 
 		$this->config = $config;
@@ -106,7 +88,14 @@ class PageController extends Controller {
 		$isCirclesEnabled = $this->appManager->isEnabledForUser('circles') === true;
 		// if circles is not installed, we use 0.0.0
 		$isCircleVersionCompatible = $this->compareVersion->isCompatible($circleVersion ? $circleVersion : '0.0.0', 22);
+		// Check whether group sharing is enabled or not
+		$isGroupSharingEnabled = $this->config->getAppValue('core', 'shareapi_allow_group_sharing', 'yes') === 'yes';
+		$talkVersion = $this->appManager->getAppVersion('spreed');
+		$isTalkEnabled = $this->appManager->isEnabledForUser('spreed') === true;
 
+		$isTalkVersionCompatible = $this->compareVersion->isCompatible($talkVersion ? $talkVersion : '0.0.0', 2);
+
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'isGroupSharingEnabled', $isGroupSharingEnabled);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'locales', $locales);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'defaultProfile', $defaultProfile);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'supportedNetworks', $supportedNetworks);
@@ -114,9 +103,11 @@ class PageController extends Controller {
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'enableSocialSync', $bgSyncEnabledByUser);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isContactsInteractionEnabled', $isContactsInteractionEnabled);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isCirclesEnabled', $isCirclesEnabled && $isCircleVersionCompatible);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'isTalkEnabled', $isTalkEnabled && $isTalkVersionCompatible);
 
+		Util::addStyle(Application::APP_ID, 'contacts-index');
+		Util::addStyle(Application::APP_ID, 'contacts-main');
 		Util::addScript(Application::APP_ID, 'contacts-main');
-		Util::addStyle(Application::APP_ID, 'contacts');
 
 		return new TemplateResponse(Application::APP_ID, 'main');
 	}

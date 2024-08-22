@@ -1,26 +1,9 @@
 /**
- * @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import Member from './member';
-declare type MemberList = Record<string, Member>;
+type MemberList = Record<string, Member>;
 export default class Circle {
     _data: any;
     _members: MemberList;
@@ -28,10 +11,14 @@ export default class Circle {
     _initiator: Member;
     /**
      * Creates an instance of Circle
+     *
+     * @param data
      */
-    constructor(data: Object);
+    constructor(data: object);
     /**
      * Update inner circle data, owner and initiator
+     *
+     * @param data
      */
     updateData(data: any): void;
     /**
@@ -91,10 +78,14 @@ export default class Circle {
     set members(members: MemberList);
     /**
      * Add a member to this circle
+     *
+     * @param member
      */
     addMember(member: Member): void;
     /**
      * Remove a member from this circle
+     *
+     * @param member
      */
     deleteMember(member: Member): void;
     get settings(): any;
@@ -131,6 +122,10 @@ export default class Circle {
      */
     get isOwner(): boolean;
     /**
+     * Is the initiator an admin of this circle?
+     */
+    get isAdmin(): boolean;
+    /**
      * Is the initiator a member of this circle?
      */
     get isMember(): boolean | 0 | undefined;
@@ -149,7 +144,7 @@ export default class Circle {
     /**
      * Can the initiator add/remove members to this circle?
      */
-    get canManageMembers(): boolean | 0 | undefined;
+    get canManageMembers(): boolean;
     /**
      * Vue router param
      */

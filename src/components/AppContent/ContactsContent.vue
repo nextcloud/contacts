@@ -1,53 +1,42 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 <template>
 	<AppContent v-if="loading">
-		<EmptyContent icon="icon-loading">
-			{{ t('contacts', 'Loading contacts …') }}
+		<EmptyContent class="empty-content" :name="t('contacts', 'Loading contacts …')">
+			<template #icon>
+				<IconLoading :size="20" />
+			</template>
 		</EmptyContent>
 	</AppContent>
 
 	<AppContent v-else-if="isEmptyGroup && !isRealGroup">
-		<EmptyContent icon="icon-contacts-dark">
-			{{ t('contacts', 'There are no contacts yet') }}
+		<EmptyContent class="empty-content" :name="t('contacts', 'There are no contacts yet')">
+			<template #icon>
+				<IconContact :size="20" />
+			</template>
 			<template #desc>
-				<button class="primary" @click="newContact">
+				<Button type="primary" @click="newContact">
 					{{ t('contacts', 'Create contact') }}
-				</button>
+				</Button>
 			</template>
 		</EmptyContent>
 	</AppContent>
 
 	<AppContent v-else-if="isEmptyGroup && isRealGroup">
-		<EmptyContent icon="icon-contacts-dark">
-			{{ t('contacts', 'There are no contacts in this group') }}
+		<EmptyContent class="empty-content" :name=" t('contacts', 'There are no contacts in this group')">
+			<template #icon>
+				<IconContact :size="20" />
+			</template>
 			<template #desc>
-				<button v-if="contacts.length === 0" class="primary" @click="addContactsToGroup(selectedGroup)">
+				<Button v-if="contacts.length === 0" type="primary" @click="addContactsToGroup(selectedGroup)">
 					{{ t('contacts', 'Create contacts') }}
-				</button>
-				<button v-else class="primary" @click="addContactsToGroup(selectedGroup)">
+				</Button>
+				<Button v-else type="primary" @click="addContactsToGroup(selectedGroup)">
 					{{ t('contacts', 'Add contacts') }}
-				</button>
+				</Button>
 			</template>
 		</EmptyContent>
 	</AppContent>
@@ -55,33 +44,42 @@
 	<AppContent v-else :show-details="showDetails" @update:showDetails="hideDetails">
 		<!-- contacts list -->
 		<template #list>
-			<ContactsList
-				:list="contactsList"
+			<ContactsList :list="contactsList"
 				:contacts="contacts"
-				:search-query="searchQuery" />
+				:search-query="searchQuery"
+				:reload-bus="reloadBus" />
 		</template>
 
 		<!-- main contacts details -->
-		<ContactDetails :contact-key="selectedContact" />
+		<ContactDetails :contact-key="selectedContact" :contacts="sortedContacts" :reload-bus="reloadBus" />
 	</AppContent>
 </template>
 <script>
 import { emit } from '@nextcloud/event-bus'
-import AppContent from '@nextcloud/vue/dist/Components/AppContent'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
+import {
+	NcAppContent as AppContent,
+	NcButton as Button,
+	NcEmptyContent as EmptyContent,
+	NcLoadingIcon as IconLoading,
+} from '@nextcloud/vue'
 
-import ContactDetails from '../ContactDetails'
-import ContactsList from '../ContactsList'
-import RouterMixin from '../../mixins/RouterMixin'
+import ContactDetails from '../ContactDetails.vue'
+import ContactsList from '../ContactsList.vue'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import RouterMixin from '../../mixins/RouterMixin.js'
+import mitt from 'mitt'
 
 export default {
 	name: 'ContactsContent',
 
 	components: {
 		AppContent,
+		Button,
 		ContactDetails,
 		ContactsList,
 		EmptyContent,
+		IconContact,
+		IconLoading,
 	},
 
 	mixins: [RouterMixin],
@@ -101,6 +99,8 @@ export default {
 	data() {
 		return {
 			searchQuery: '',
+			// communication for ContactListItem and ContactDetails (reload avatar)
+			reloadBus: mitt(),
 		}
 	},
 
@@ -175,3 +175,8 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+.empty-content {
+	height: 100%;
+}
+</style>

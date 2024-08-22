@@ -1,40 +1,28 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 <template>
-	<AppContentList>
-		<div class="contacts-list__header"></div>
+	<AppContentList class="content-list">
+		<div class="contacts-list__header">
+			<div class="search-contacts-field">
+				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
+			</div>
+		</div>
 		<VirtualList ref="scroller"
 			class="contacts-list"
 			data-key="key"
 			:data-sources="filteredList"
 			:data-component="ContactsListItem"
-			:estimate-size="68" />
+			:estimate-size="68"
+			:extra-props="{reloadBus}" />
 	</AppContentList>
 </template>
 
 <script>
-import AppContentList from '@nextcloud/vue/dist/Components/AppContentList'
-import ContactsListItem from './ContactsList/ContactsListItem'
+import { NcAppContentList as AppContentList } from '@nextcloud/vue'
+import ContactsListItem from './ContactsList/ContactsListItem.vue'
 import VirtualList from 'vue-virtual-scroll-list'
 
 export default {
@@ -58,11 +46,16 @@ export default {
 			type: String,
 			default: '',
 		},
+		reloadBus: {
+			type: Object,
+			required: true,
+		},
 	},
 
 	data() {
 		return {
 			ContactsListItem,
+			query: '',
 		}
 	},
 
@@ -96,6 +89,10 @@ export default {
 				})
 			}
 		},
+	},
+
+	mounted() {
+		this.query = this.searchQuery
 	},
 
 	methods: {
@@ -143,8 +140,8 @@ export default {
 		 * @return {boolean}
 		 */
 		matchSearch(contact) {
-			if (this.searchQuery.trim() !== '') {
-				return contact.searchData.toString().toLowerCase().search(this.searchQuery.trim().toLowerCase()) !== -1
+			if (this.query.trim() !== '') {
+				return contact.searchData.toString().toLowerCase().search(this.query.trim().toLowerCase()) !== -1
 			}
 			return true
 		},
@@ -163,4 +160,19 @@ export default {
 .contacts-list__header {
 	min-height: 48px;
 }
+
+// Search field
+.search-contacts-field {
+	padding: 5px 10px 5px 50px;
+
+	> input {
+		width: 100%;
+	}
+}
+
+.content-list {
+	overflow-y: auto;
+	padding: 0 4px;
+}
+
 </style>

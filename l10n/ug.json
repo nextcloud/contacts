@@ -1,17 +1,25 @@
 { "translations": {
     "Contacts" : "ئالاقەداشلار",
-    "Download" : "چۈشۈر",
-    "Groups" : "گۇرۇپپا",
-    "Group name" : "گۇرۇپپا ئاتى",
     "Rename" : "ئات ئۆزگەرت",
     "Delete" : "ئۆچۈر",
+    "Download" : "چۈشۈر",
+    "Add" : "قوش",
     "First name" : "ئاتى",
+    "Password protection" : "Password protection",
+    "Save" : "ساقلا",
+    "Description" : "چۈشەندۈرۈش",
+    "Settings" : "Settings",
+    "Cancel" : "ۋاز كەچ",
     "Name" : "ئاتى",
     "Title" : "ماۋزۇ",
-    "Cancel" : "ۋاز كەچ",
+    "Pending" : "كۈتۈۋاتىدۇ",
+    "None" : "يوق",
     "Close" : "ياپ",
     "Import" : "ئەكىر",
+    "User" : "User",
+    "Group" : "Group",
     "Email" : "تورخەت",
+    "Owner" : "Owner",
     "Nickname" : "تەخەللۇس",
     "Notes" : "ئىزاھاتلار",
     "Location" : "ئورنى",
@@ -27,7 +35,6 @@
     "Mobile" : "كۆچمە",
     "Fax" : "فاكىس",
     "Pager" : "چاقىرغۇ",
-    "Voice" : "ئاۋاز",
-    "None" : "يوق"
+    "Voice" : "ئاۋاز"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

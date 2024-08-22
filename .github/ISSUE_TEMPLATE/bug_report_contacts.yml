@@ -1,0 +1,95 @@
+name: "Bug report for contacts"
+description: "Help us improving by reporting a bug for the contacts feature of this app"
+labels: ["bug", "0. Needs triage", "feature: contacts"]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the bug
+      description: |
+        A clear and concise description of what the bug is.
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: |
+        Describe the steps to reproduce the bug.
+        The better your description is _(go 'here', click 'there'...)_ the fastest you'll get an _(accurate)_ answer.
+      value: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: Expected-behavior
+    attributes:
+      label: Expected behavior
+      description: |
+        Tell us what should happen
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior
+    attributes:
+      label: Actual behavior
+      description: Describe what you expected to happen instead.
+    validations:
+      required: true
+  - type: input
+    id: contact-app-version
+    attributes:
+      label: Contact version
+      description: |
+        See apps admin page, e.g. 0.5.3
+  - type: input
+    id: operating-system
+    attributes:
+      label: Operating system
+      description: |
+        Write down the operating system where Nextcloud Contacts app is installed.
+  - type: dropdown
+    id: php
+    attributes:
+      label: PHP engine version
+      description: |
+        Select PHP engine version serving Nextcloud Server.
+        _Describe in the "Additional info" section if you chose "Other"._
+      options:
+        - "PHP 7.3"
+        - "PHP 7.4"
+        - "PHP 8.0"
+        - "PHP 8.1"
+        - "Other"
+  - type: dropdown
+    id: webserver
+    attributes:
+      label: Web server
+      description: |
+        Select Webserver serving Nextcloud Server.
+        _Describe in the "Additional info" section if you chose "Other"._
+      options:
+        - "Apache (supported)"
+        - "Nginx"
+        - "Lighttpd"
+        - "Other"
+  - type: dropdown
+    id: database
+    attributes:
+      label: Database
+      description: |
+        Select Database engine serving Nextcloud Server.
+        _Describe in the "Additional info" section if you chose "Other"._
+      options:
+        - "MySQL"
+        - "MariaDB"
+        - "PostgreSQL"
+        - "SQLite"
+        - "Oracle"
+        - "Other"
+  - type: textarea
+    id: additional-info
+    attributes:
+      label: Additional info
+      description: Any additional information related to the issue (ex. browser console errors, software versions).

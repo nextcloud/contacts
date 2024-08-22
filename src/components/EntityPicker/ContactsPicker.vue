@@ -1,3 +1,7 @@
+<!--
+  - SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 <template>
 	<!-- Bulk contacts edit modal -->
 	<Modal v-if="isProcessing || isProcessDone"
@@ -20,11 +24,11 @@
 import { subscribe } from '@nextcloud/event-bus'
 import pLimit from 'p-limit'
 
-import Modal from '@nextcloud/vue/dist/Components/Modal'
+import { NcModal as Modal } from '@nextcloud/vue'
 
-import AddToGroupView from '../../views/Processing/AddToGroupView'
-import appendContactToGroup from '../../services/appendContactToGroup'
-import EntityPicker from './EntityPicker'
+import AddToGroupView from '../../views/Processing/AddToGroupView.vue'
+import appendContactToGroup from '../../services/appendContactToGroup.js'
+import EntityPicker from './EntityPicker.vue'
 
 export default {
 	name: 'ContactsPicker',
@@ -57,6 +61,7 @@ export default {
 				total: 0,
 				name: '',
 			},
+			passedGroupName: '',
 		}
 	},
 	computed: {
@@ -81,6 +86,7 @@ export default {
 		addContactsToGroup(group) {
 			console.debug('Contacts picker opened for group', group)
 
+			this.passedGroupName = group.name ? group.name : group
 			// Get the full group if we provided the group name only
 			if (typeof group === 'string') {
 				group = this.groups.find(a => a.name === group)
@@ -140,7 +146,7 @@ export default {
 
 					// push contact to server and use limit
 					requests.push(limit(() => appendContactToGroup(contact, groupName)
-						.then((response) => {
+						.then(() => {
 							this.$store.dispatch('addContactToGroup', { contact, groupName })
 							this.processStatus.progress++
 							this.processStatus.success++
@@ -149,7 +155,7 @@ export default {
 							this.processStatus.progress++
 							this.processStatus.error++
 							console.error(error)
-						})
+						}),
 					))
 				} catch (e) {
 					console.error(e)
@@ -159,6 +165,14 @@ export default {
 			Promise.all(requests).then(() => {
 				this.isProcessDone = true
 				this.showPicker = false
+
+				// Select group
+				this.$router.push({
+					name: 'group',
+					params: {
+						selectedGroup: typeof this.passedGroupName === 'string' ? this.passedGroupName : this.passedGroupName.name,
+					},
+				})
 
 				// Auto close after 3 seconds if no errors
 				if (this.processStatus.failed === 0) {
@@ -177,6 +191,17 @@ export default {
 			this.processStatus.progress = 0
 			this.processStatus.success = 0
 			this.processStatus.total = 0
+
+			if (this.passedGroupName === '' || this.passedGroupName === undefined) {
+				return
+			}
+			// Select group
+			this.$router.push({
+				name: 'group',
+				params: {
+					selectedGroup: typeof this.passedGroupName === 'string' ? this.passedGroupName : this.passedGroupName.name,
+				},
+			})
 		},
 	},
 }

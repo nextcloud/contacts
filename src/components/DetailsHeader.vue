@@ -1,39 +1,27 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 <template>
 	<!-- contact header -->
 	<header class="contact-header" :style="cssStyle">
-		<div class="contact-header__avatar">
-			<slot name="avatar" :avatar-size="avatarSize" />
-		</div>
+		<div class="contact-header__no-wrap">
+			<div class="contact-header__avatar">
+				<slot name="avatar" :avatar-size="avatarSize" />
+			</div>
 
-		<!-- fullname, org, title -->
-		<div class="contact-header__infos">
-			<h2 class="contact-header__infos-title">
-				<slot name="title" />
-			</h2>
-			<div v-if="$slots.subtitle" class="contact-header__infos-subtitle">
-				<slot name="subtitle" />
+			<!-- fullname, org, title -->
+			<div class="contact-header__infos">
+				<h2 class="contact-header__infos-title">
+					<slot name="title" />
+				</h2>
+				<div v-if="$slots.subtitle" class="contact-header__infos-subtitle">
+					<slot name="subtitle" />
+				</div>
+				<div class="contact-header__quick-actions">
+					<slot name="quick-actions" />
+				</div>
 			</div>
 		</div>
 
@@ -53,7 +41,7 @@
 </template>
 
 <script>
-import Actions from '@nextcloud/vue/dist/Components/Actions'
+import { NcActions as Actions } from '@nextcloud/vue'
 
 export default {
 	name: 'DetailsHeader',
@@ -79,26 +67,60 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '../css/ContactDetailsLayout';
+
+$top-padding: 50px;
+
 // Header with avatar, name, position, actions...
 .contact-header {
 	display: flex;
 	align-items: center;
-	padding: 50px 0 20px;
+	padding: $top-padding 0 20px;
+	gap: $contact-details-row-gap;
+	&__quick-actions{
+			padding: 5px 0;
+		}
 
-	&__avatar {
-		position: relative;
-		flex: 0 0 var(--avatar-size);
-		margin: 10px;
-		margin-left: 0;
+	@media (max-width: 1024px) {
+		// Top padding of 44px is already included in AppContent by default on mobile
+		padding-top: calc($top-padding - 44px);
+		&__no-wrap {
+			width: 100%;
+		}
+		&__actions .header-menu {
+			margin-left: auto;
+		}
+		&__avatar {
+			width: 150px !important;
+		}
+	}
+
+	&__no-wrap {
 		display: flex;
+		gap: $contact-details-row-gap;
+		align-items: center;
+		min-width: 0;
+	}
+
+	// AVATAR
+	&__avatar {
+		// Global single column layout
+		display: flex;
+		flex: 0 1 auto;
 		justify-content: flex-end;
+		width: $contact-details-label-max-width;
+		min-width: 0; // Has to be zero unless we implement wrapping
 	}
 
 	// ORG-TITLE-NAME
 	&__infos {
-		display: flex;
-		flex: 1 1 auto; // shrink avatar before this one
 		flex-direction: column;
+
+		// Global single column layout
+		display: flex;
+		flex: 0 1 auto;
+		width: $contact-details-value-max-width;
+		min-width: 0; // Has to be zero unless we implement wrapping
 
 		&-title,
 		&-subtitle {
@@ -106,21 +128,16 @@ export default {
 			flex-wrap: wrap;
 			margin: 0;
 		}
-		::v-deep input {
-			overflow: hidden;
-			flex: 1 1;
-			min-width: 100px;
-			max-width: 100%;
-			margin: 0;
-			padding: 0;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-			border: none;
-			background: transparent;
-			font-size: inherit;
+
+		&__quick-actions {
+			padding: 5px 0;
 		}
 
-		&-title ::v-deep input {
+		:deep(input) {
+			flex: 1 auto;
+		}
+
+		&-title :deep(input) {
 			font-weight: bold;
 		}
 
@@ -131,33 +148,9 @@ export default {
 
 	// ACTIONS
 	&__actions {
-		position: relative;
 		display: flex;
-
-		&-menu {
-			margin-right: 10px;
-		}
-
-		> div,
-		> a {
-			width: 44px;
-			height: 44px;
-			padding: 14px;
-			cursor: pointer;
-			opacity: .7;
-			border-radius: 22px;
-			background-size: 16px;
-			&:hover,
-			&:focus {
-				opacity: 1;
-			}
-			&.header-icon--pulse {
-				width: 16px;
-				height: 16px;
-				margin: 8px;
-			}
-		}
+		flex: 1 0 auto;
+		gap: 5px;
 	}
 }
-
 </style>

@@ -1,50 +1,40 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Charismatic Claire <charismatic.claire@noservice.noreply>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 <template>
 	<Content :app-name="appName">
 		<!-- new-contact-button + navigation + settings -->
-		<RootNavigation
-			:contacts-list="contactsList"
+		<RootNavigation :contacts-list="contactsList"
 			:loading="loadingContacts || loadingCircles"
 			:selected-group="selectedGroup"
 			:selected-contact="selectedContact">
-			<!-- new-contact-button -->
-			<AppNavigationNew v-if="!loadingContacts"
-				button-id="new-contact-button"
-				:text="t('contacts','New contact')"
-				button-class="icon-add"
-				:disabled="!defaultAddressbook"
-				@click="newContact" />
+			<div class="import-and-new-contact-buttons">
+				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView" />
+				<!-- new-contact-button -->
+				<Button v-if="!loadingContacts"
+					type="secondary"
+					:wide="true"
+					:disabled="!defaultAddressbook"
+					@click="newContact">
+					<template #icon>
+						<IconAdd :size="20" />
+					</template>
+					{{ t('contacts','New contact') }}
+				</Button>
+			</div>
 		</RootNavigation>
 
-		<!-- Main content: circle or contacts -->
+		<!-- Main content: circle, chart or contacts -->
 		<CircleContent v-if="selectedCircle"
 			:loading="loadingCircles" />
+		<ChartContent v-else-if="selectedChart"
+			:contacts-list="contacts" />
 		<ContactsContent v-else
 			:contacts-list="contactsList"
 			:loading="loadingContacts"
-			@newContact="newContact" />
+			@new-contact="newContact" />
 
 		<!-- Import modal -->
 		<Modal v-if="isImporting"
@@ -62,38 +52,48 @@
 <script>
 import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE } from '../models/constants.ts'
 
-import AppNavigationNew from '@nextcloud/vue/dist/Components/AppNavigationNew'
-import Content from '@nextcloud/vue/dist/Components/Content'
-import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
+import {
+	isMobile,
+	NcButton as Button,
+	NcContent as Content,
+	NcModal as Modal,
+} from '@nextcloud/vue'
 
 import { showError } from '@nextcloud/dialogs'
-import { VCardTime } from 'ical.js'
+import ICAL from 'ical.js'
 
-import CircleContent from '../components/AppContent/CircleContent'
-import ContactsContent from '../components/AppContent/ContactsContent'
-import ContactsPicker from '../components/EntityPicker/ContactsPicker'
-import ImportView from './Processing/ImportView'
-import RootNavigation from '../components/AppNavigation/RootNavigation'
+import CircleContent from '../components/AppContent/CircleContent.vue'
+import ChartContent from '../components/AppContent/ChartContent.vue'
+import ContactsContent from '../components/AppContent/ContactsContent.vue'
+import ContactsPicker from '../components/EntityPicker/ContactsPicker.vue'
+import ImportView from './Processing/ImportView.vue'
+import RootNavigation from '../components/AppNavigation/RootNavigation.vue'
+import SettingsImportContacts from '../components/AppNavigation/Settings/SettingsImportContacts.vue'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
 
-import Contact from '../models/contact'
-import rfcProps from '../models/rfcProps'
+import Contact from '../models/contact.js'
+import rfcProps from '../models/rfcProps.js'
 
-import client from '../services/cdav'
-import isCirclesEnabled from '../services/isCirclesEnabled'
+import client from '../services/cdav.js'
+import isCirclesEnabled from '../services/isCirclesEnabled.js'
+
+import usePrincipalsStore from '../store/principals.js'
 
 export default {
 	name: 'Contacts',
 
 	components: {
-		AppNavigationNew,
+		Button,
 		CircleContent,
+		ChartContent,
 		ContactsContent,
 		ContactsPicker,
 		Content,
 		ImportView,
+		IconAdd,
 		Modal,
 		RootNavigation,
+		SettingsImportContacts,
 	},
 
 	mixins: [
@@ -114,11 +114,17 @@ export default {
 			type: String,
 			default: undefined,
 		},
+		selectedChart: {
+			type: String,
+			default: undefined,
+		},
 	},
 
 	data() {
 		return {
-			appName,
+			// The object shorthand syntax is breaking builds (bug in @babel/preset-env)
+			/* eslint-disable object-shorthand */
+			appName: appName,
 
 			// Let's but the loading state to true if circles is enabled
 			loadingCircles: isCirclesEnabled,
@@ -146,7 +152,12 @@ export default {
 		importState() {
 			return this.$store.getters.getImportState
 		},
-
+		isEmptyGroup() {
+			return this.contactsList.length === 0
+		},
+		isChartView() {
+			return !!this.selectedChart
+		},
 		/**
 		 * Are we importing contacts ?
 		 *
@@ -198,22 +209,19 @@ export default {
 	watch: {
 		// watch url change and group select
 		selectedGroup() {
-			if (!this.isMobile) {
+			if (!this.isMobile && !this.selectedChart) {
 				this.selectFirstContactIfNone()
 			}
 		},
 		// watch url change and contact select
 		selectedContact() {
-			if (!this.isMobile) {
+			if (!this.isMobile && !this.selectedChart) {
 				this.selectFirstContactIfNone()
 			}
 		},
 	},
 
 	mounted() {
-		// Register search
-		this.search = new OCA.Search(this.search, this.resetSearch)
-
 		if (this.isCirclesEnabled) {
 			this.logger.info('Circles frontend enabled')
 		} else {
@@ -225,6 +233,8 @@ export default {
 		// get addressbooks then get contacts
 		client.connect({ enableCardDAV: true }).then(() => {
 			this.logger.debug('Connected to dav!', { client })
+			const principalsStore = usePrincipalsStore()
+			principalsStore.setCurrentUserPrincipal(client)
 			this.$store.dispatch('getAddressbooks')
 				.then((addressbooks) => {
 					const writeableAddressBooks = addressbooks.filter(addressbook => !addressbook.readOnly)
@@ -257,7 +267,7 @@ export default {
 
 	methods: {
 		async newContact() {
-			const rev = new VCardTime()
+			const rev = new ICAL.VCardTime()
 			const contact = new Contact(`
 				BEGIN:VCARD
 				VERSION:4.0
@@ -266,7 +276,7 @@ export default {
 			`.trim().replace(/\t/gm, ''),
 			this.defaultAddressbook)
 
-			contact.fullName = t('contacts', 'New contact')
+			contact.fullName = t('contacts', 'Name')
 			rev.fromUnixTime(Date.now() / 1000)
 			contact.rev = rev
 
@@ -275,8 +285,12 @@ export default {
 			for (const name in properties) {
 				if (properties[name].default) {
 					const defaultData = properties[name].defaultValue
+					let defaultValue = defaultData.value
+					if (Array.isArray(defaultValue)) {
+						defaultValue = [...defaultValue]
+					}
 					// add default field
-					const property = contact.vCard.addPropertyWithValue(name, defaultData.value)
+					const property = contact.vCard.addPropertyWithValue(name, defaultValue)
 					// add default type
 					if (defaultData.type) {
 						property.setParameter('type', defaultData.type)
@@ -321,14 +335,14 @@ export default {
 		 */
 		fetchContacts() {
 			// wait for all addressbooks to have fetch their contacts
+			// don't filter disabled at this point, because sum of contacts per address book is shown
 			Promise.all(this.addressbooks
-				.filter(addressbook => addressbook.enabled)
 				.map(addressbook => {
 					return this.$store.dispatch('getContactsFromAddressBook', { addressbook })
-				})
-			).then(results => {
+				}),
+			).then(() => {
 				this.loadingContacts = false
-				if (!this.isMobile) {
+				if (!this.isMobile && !this.selectedChart) {
 					this.selectFirstContactIfNone()
 				}
 			})
@@ -393,3 +407,11 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.import-and-new-contact-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
+}
+</style>

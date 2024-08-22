@@ -1,0 +1,30 @@
+/*!
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+ 
+@keyframes pulse {
+	0% {
+		box-shadow: 0 0 0 0 rgba(50, 50, 50, .4);
+	}
+	70% {
+		box-shadow: 0 0 0 15px rgba(50, 50, 50, 0);
+	}
+	100% {
+		box-shadow: 0 0 0 0 rgba(50, 50, 50, 0);
+	}
+}
+
+[class*='--pulse '],
+[class$='--pulse'] {
+	animation: pulse 1.5s infinite;
+}
+
+.list-enter-active, .list-leave-active {
+	transition: all 500ms ease-in-out;
+}
+
+.list-enter,
+.list-leave-to {
+	opacity: 0;
+}

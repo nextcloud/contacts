@@ -1,94 +1,110 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  - @author Team Popcorn <teampopcornberlin@gmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 <template>
 	<div class="settings-addressbook-list">
-		<div class="icon-group settings-line__icon" />
+		<IconContactPlus class="settings-line__icon" />
 		<li :class="{'addressbook--disabled': !addressbook.enabled}" class="addressbook">
-			<!-- addressbook name -->
-			<span class="addressbook__name" :title="addressbook.displayName">
-				{{ addressbook.displayName }}
-			</span>
+			<div class="addressbook__content">
+				<!-- addressbook name -->
+				<span class="addressbook__name" :title="addressbook.displayName">
+					{{ addressbook.enabled ? addressbook.displayName : t('contacts', '{addressbookname} (Disabled)', {addressbookname: addressbook.displayName}) }}
+				</span>
+
+				<div v-if="addressbook.dav.description" class="addressbook__description">
+					{{ addressbook.dav.description }}
+				</div>
+				<!-- counters -->
+				<div class="addressbook__count-wrapper">
+					<span class="addressbook__count">{{ n('contacts', '%n contact', '%n contacts', contactsCount) }}</span>
+					<span class="addressbook__count">- {{ n('contacts', '%n group', '%n groups', groupsCount) }}</span>
+				</div>
+			</div>
 
 			<!-- sharing button -->
-			<a v-if="!addressbook.readOnly"
+			<Button v-if="!addressbook.readOnly"
 				v-tooltip.top="sharedWithTooltip"
 				:class="{'addressbook__share--shared': hasShares}"
-				:title="sharedWithTooltip"
+				:name="sharedWithTooltip"
 				href="#"
-				class="addressbook__share icon-shared"
-				@click="toggleShare" />
+				class="addressbook__share"
+				@click="toggleShare">
+				<template #icon>
+					<IconShare :size="20" />
+				</template>
+			</Button>
 
 			<!-- popovermenu -->
 			<Actions class="addressbook__menu" menu-align="right">
 				<!-- copy addressbook link -->
-				<ActionLink
-					:href="addressbook.url"
+				<ActionLink :href="addressbook.url"
 					:icon="copyLinkIcon"
 					@click.stop.prevent="copyToClipboard(addressbookUrl)">
 					{{ copyButtonText }}
 				</ActionLink>
 
 				<!-- download addressbook -->
-				<ActionLink
-					:href="addressbook.url + '?export'"
-					icon="icon-download">
+				<ActionLink :href="addressbook.url + '?export'">
+					<template #icon>
+						<IconDownload :size="20" />
+					</template>
 					{{ t('contacts', 'Download') }}
 				</ActionLink>
+
+				<template v-if="addressbook.writeProps">
+					<!-- enable/disable addressbook -->
+					<ActionCheckbox v-if="!toggleEnabledLoading"
+						:checked="enabled"
+						@change.stop.prevent="toggleAddressbookEnabled">
+						{{ t('contacts', 'Show') }}
+					</ActionCheckbox>
+					<ActionButton v-else>
+						<template #icon>
+							<IconLoading :size="20" />
+						</template>
+						{{ t('contacts', 'Show') }}
+					</ActionButton>
+				</template>
 
 				<template v-if="!addressbook.readOnly">
 					<!-- rename addressbook -->
 					<ActionButton v-if="!editingName"
-						icon="icon-rename"
 						@click.stop.prevent="renameAddressbook">
+						<template #icon>
+							<IconRename :size="20" />
+						</template>
 						{{ t('contacts', 'Rename') }}
 					</ActionButton>
 					<ActionInput v-else
 						ref="renameInput"
 						:disabled="renameLoading"
-						:icon="renameLoading ? 'icon-loading-small' : 'icon-rename'"
 						:value="addressbook.displayName"
-						@submit="updateAddressbookName" />
-
-					<!-- enable/disable addressbook -->
-					<ActionCheckbox v-if="!toggleEnabledLoading"
-						:checked="enabled"
-						@change.stop.prevent="toggleAddressbookEnabled">
-						{{ enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled') }}
-					</ActionCheckbox>
-					<ActionButton v-else
-						icon="icon-loading-small">
-						{{ enabled ? t('contacts', 'Enabled') : t('contacts', 'Disabled') }}
-					</ActionButton>
+						@submit="updateAddressbookName">
+						<template #icon>
+							<IconLoading v-if="renameLoading" :size="20" />
+							<IconRename :size="20" />
+						</template>
+					</ActionInput>
 				</template>
-
 				<!-- delete addressbook -->
-				<ActionButton v-if="hasMultipleAddressbooks"
-					:icon="deleteAddressbookLoading ? 'icon-loading-small' : 'icon-delete'"
+				<ActionButton v-if="hasMultipleAddressbooks && addressbook.owner !== principalUrl && addressbook.owner !== '/remote.php/dav/principals/system/system/'"
+					@click="confirmUnshare">
+					<template #icon>
+						<IconLoading v-if="deleteAddressbookLoading" :size="20" />
+						<IconDelete :size="20" />
+					</template>
+					{{ t('contacts', 'Unshare from me') }}
+				</ActionButton>
+				<ActionButton v-else-if="hasMultipleAddressbooks && addressbook.owner !== '/remote.php/dav/principals/system/system/'"
 					@click="confirmDeletion">
+					<template #icon>
+						<IconLoading v-if="deleteAddressbookLoading" :size="20" />
+						<IconDelete :size="20" />
+					</template>
 					{{ t('contacts', 'Delete') }}
 				</ActionButton>
 			</Actions>
-
 			<!-- sharing input -->
 			<ShareAddressBook v-if="shareOpen && !addressbook.readOnly" :addressbook="addressbook" />
 		</li>
@@ -96,15 +112,26 @@
 </template>
 
 <script>
-import Actions from '@nextcloud/vue/dist/Components/Actions'
-import ActionLink from '@nextcloud/vue/dist/Components/ActionLink'
-import ActionButton from '@nextcloud/vue/dist/Components/ActionButton'
-import ActionInput from '@nextcloud/vue/dist/Components/ActionInput'
-import ActionCheckbox from '@nextcloud/vue/dist/Components/ActionCheckbox'
-import ShareAddressBook from './SettingsAddressbookShare'
+import {
+	NcActions as Actions,
+	NcActionLink as ActionLink,
+	NcActionButton as ActionButton,
+	NcActionInput as ActionInput,
+	NcActionCheckbox as ActionCheckbox,
+	NcLoadingIcon as IconLoading,
+	NcButton as Button,
+} from '@nextcloud/vue'
+import IconDownload from 'vue-material-design-icons/Download.vue'
+import IconRename from 'vue-material-design-icons/Pencil.vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconContactPlus from 'vue-material-design-icons/AccountMultiplePlus.vue'
+import IconShare from 'vue-material-design-icons/ShareVariant.vue'
+import ShareAddressBook from './SettingsAddressbookShare.vue'
 import { showError } from '@nextcloud/dialogs'
 
-import CopyToClipboardMixin from '../../../mixins/CopyToClipboardMixin'
+import CopyToClipboardMixin from '../../../mixins/CopyToClipboardMixin.js'
+
+import usePrincipalsStore from '../../../store/principals.js'
 
 export default {
 	name: 'SettingsAddressbook',
@@ -115,6 +142,13 @@ export default {
 		ActionInput,
 		ActionLink,
 		Actions,
+		Button,
+		IconDelete,
+		IconDownload,
+		IconRename,
+		IconContactPlus,
+		IconShare,
+		IconLoading,
 		ShareAddressBook,
 	},
 
@@ -178,6 +212,29 @@ export default {
 		addressbookUrl() {
 			return window.location.origin + this.addressbook.url
 		},
+
+		contacts() {
+			return Object.values(this.addressbook.contacts)
+		},
+
+		groups() {
+			const allGroups = this.contacts
+				.flatMap(contact => contact.vCard.getAllProperties('categories').map(prop => prop.getFirstValue()))
+			// Deduplicate
+			return [...new Set(allGroups)]
+		},
+
+		contactsCount() {
+			return this.contacts.length
+		},
+
+		groupsCount() {
+			return this.groups.length
+		},
+		principalUrl() {
+			const principalsStore = usePrincipalsStore()
+			return principalsStore.currentUserPrincipal.principalUrl
+		},
 	},
 	watch: {
 		menuOpen() {
@@ -214,16 +271,22 @@ export default {
 				this.toggleEnabledLoading = false
 			}
 		},
-
 		confirmDeletion() {
-			OC.dialogs.confirm(
+			window.OC.dialogs.confirm(
 				t('contacts', 'This will delete the address book and every contacts within it'),
 				t('contacts', 'Delete {addressbook}?', { addressbook: this.addressbook.displayName }),
 				this.deleteAddressbook,
-				true
+				true,
 			)
 		},
-
+		confirmUnshare() {
+			window.OC.dialogs.confirm(
+				t('contacts', 'This will unshare the address book and every contacts within it'),
+				t('contacts', 'Unshare {addressbook}?', { addressbook: this.addressbook.displayName }),
+				this.deleteAddressbook,
+				true,
+			)
+		},
 		async deleteAddressbook(confirm) {
 			if (confirm) {
 				// change to loading status
@@ -243,7 +306,7 @@ export default {
 		renameAddressbook() {
 			this.editingName = true
 		},
-		async updateAddressbookName(e) {
+		async updateAddressbookName() {
 			const addressbook = this.addressbook
 			// New name for addressbook - inputed value from form
 			const newName = this.$refs.renameInput.$el.querySelector('input[type="text"]').value
@@ -274,8 +337,9 @@ export default {
 	align-items: center;
 	white-space: nowrap;
 	text-overflow: ellipsis;
+	padding: 5px 0;
 
-	> .addressbook__name {
+	> .addressbook__content {
 		+ a,
 		+ div {
 			// put actions at the end
@@ -289,12 +353,36 @@ export default {
 		white-space: nowrap;
 		overflow: hidden;
 		text-overflow: ellipsis;
+	}
+
+	&__content {
+		display: flex;
+		flex-wrap: wrap;
+		flex-direction: column;
+		flex: 0 1 auto;
 		max-width: calc(100% - 2 * 44px);
 	}
+
+	&__description {
+		color: var(--color-text-lighter);
+	}
+
+	&__count-wrapper {
+		display: flex;
+	}
+
+	&__count {
+		margin-left: 2px;
+		font-size: smaller;
+		color: var(--color-text-lighter);
+	}
+
+	&__count:not(:last-child) {
+		margin-right: 5px;
+	}
+
 	&__share,
 	&__menu .icon-more {
-		width: 44px;
-		height: 44px;
 		opacity: .5;
 		&:hover,
 		&:focus,
@@ -303,6 +391,10 @@ export default {
 		}
 	}
 	&__share {
+		background-color: transparent;
+		border: none;
+		box-shadow: none;
+
 		&--shared {
 			opacity: .7;
 		}
@@ -310,5 +402,17 @@ export default {
 	&--disabled &__name {
 		opacity: .5;
 	}
+}
+
+.settings-addressbook-list {
+	display: flex;
+	width: 100%;
+	.material-design-icon {
+		justify-content: flex-start;
+	}
+}
+
+.addressbook-shares {
+	padding-top: 10px;
 }
 </style>

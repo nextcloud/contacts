@@ -1,0 +1,201 @@
+name: "Bug report for circles"
+description: "Help us improving by reporting a bug for the contacts feature of this app"
+labels: ["bug", "0. Needs triage", "feature: circles"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 👍Thanks for reporting issues back to Nextcloud!
+        This is the issue tracker of Nextcloud, if you have any support question please check out [the support on our website](https://nextcloud.com/support).
+
+        ⚠ Please report only issues corresponding to the contacts app for Nextcloud ⚠
+
+        Migration and CardDAV issues belong in the [server repo](https://github.com/nextcloud/server/issues)!
+
+        If you have any questions, head over to the [forum](https://help.nextcloud.com/c/apps/contacts)!
+
+        Note that Nextcloud is an open source project backed by Nextcloud GmbH. Most of our volunteers are home users and thus primarily care about issues that affect home users. Our paid engineers prioritize issues of our customers. If you are neither a home user nor a customer, consider paying somebody to fix your issue, do it yourself or become a customer.
+  - type: textarea
+    id: reproduce-circle
+    attributes:
+      label: Steps to reproduce
+      description: |
+        Describe the steps to reproduce the bug.
+        The better your description is _(go 'here', click 'there'...)_ the fastest you'll get an _(accurate)_ answer.
+      value: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: Expected-behavior-circle
+    attributes:
+      label: Expected behavior
+      description: |
+        Tell us what should happen
+    validations:
+      required: true
+  - type: textarea
+    id: actual-behavior-circle
+    attributes:
+      label: Actual behavior
+      description: Describe what you expected to happen instead.
+    validations:
+      required: true
+  - type: markdown
+    attributes:
+      value: "## Server configuration"
+  - type: input
+    id: server-os
+    attributes:
+      label: Server operating system
+      description: e.g. Arch Linux
+  - type: dropdown
+    id: webserver
+    attributes:
+      label: Web server
+      description: |
+        Select Webserver serving Nextcloud Server.
+        _Describe in the "Additional info" section if you chose "Other"._
+      options:
+        - "Apache"
+        - "Nginx"
+        - "Other"
+  - type: dropdown
+    id: database
+    attributes:
+      label: Database engine version
+      description: |
+        Select Database engine serving Nextcloud Server.
+        _Describe in the "Additional info" section if you chose "Other"._
+      options:
+        - "MySQL"
+        - "MariaDB"
+        - "PostgreSQL"
+        - "SQlite"
+        - "Oracle"
+        - "Other"
+  - type: dropdown
+    id: php
+    attributes:
+      label: PHP engine version
+      description: |
+        Select PHP engine version serving Nextcloud Server.
+        _Describe in the "Additional info" section if you chose "Other"._
+      options:
+        - "PHP 7.3"
+        - "PHP 7.4"
+        - "PHP 8.0"
+        - "PHP 8.1"
+        - "Other"
+  - type: input
+    id: nextcloud-version
+    attributes:
+      label: Nextcloud version
+      description: see admin page, e.g. 4.0.0
+  - type: dropdown
+    id: fresh-install-update
+    attributes:
+      label: Updated from an older installed version or fresh install
+      options:
+        - "Updated from an older version"
+        - "Fresh install"
+  - type: textarea
+    id: signin-status
+    attributes:
+      label: Signing status
+      description: |
+        Login as admin user into your Nextcloud and access
+        http://example.com/index.php/settings/integrity/failed
+        paste the results here
+      render: Text
+  - type: textarea
+    id: list-active-apps
+    attributes:
+      label: List of activated apps
+      description: |
+        If you have access to your command line run e.g.:
+        ``sudo -u www-data php occ app:list``
+        from within your instance's installation folder
+      render: Text
+  - type: textarea
+    id: config
+    attributes:
+      label: Nextcloud configuration
+      description: |
+        Provide information about your configuration.
+        ``sudo -u www-data php occ config:list system``
+        from within your instance's installation folder.
+      render: Text
+  - type: markdown
+    attributes:
+      value: "## Client configuration"
+  - type: input
+    id: browser
+    attributes:
+      label: Browser
+      description: e.g Firefox 56
+  - type: input
+    id: client-os
+    attributes:
+      label: Client operating system
+      description: e.g. Arch Linux
+  - type: input
+    id: carddav-clients
+    attributes:
+      label: CardDAV-clients
+  - type: markdown
+    attributes:
+      value: "## Logs"
+  - type: textarea
+    id: log
+    attributes:
+      label: Web server error log
+      description: |
+        Insert your webserver log here
+      render: Text
+  - type: textarea
+    id: log-file
+    attributes:
+      label: Nextcloud log
+      description: |
+        Insert your data/nextcloud.log file here
+      render: Text
+  - type: textarea
+    id: browser-log
+    attributes:
+      label: Browser log
+      description: |
+        Insert your browser log here, this could for example include:
+        a) The javascript console log
+        b) The network log
+        c) ...
+      render: Text
+  - type: textarea
+    id: browser-log-circle
+    attributes:
+      label: Browser log
+      description: |
+        Below you can see how to access your browser console. Please, use the browser log where you faced the error.
+        #### Chrome
+        - Press either CTRL + SHIFT + J to open the “console” tab of the Developer Tools.
+        - Alternative method:
+            1. Press either CTRL + SHIFT + I or F12 to open the Developer Tools.
+            2. Click the “console” tab.
+        #### Safari
+        - Press CTRL + ALT + I to open the Web Inspector.
+        - See Chrome’s step 2. (Chrome and Safari have pretty much identical dev tools.)
+        #### IE9
+        1. Press F12 to open the developer tools.
+        2. Click the “console” tab.
+        #### Firefox
+        - Press CTRL + SHIFT + K to open the Web console (COMMAND + SHIFT + K on Macs).
+        - or, if Firebug is installed (recommended):
+            1. Press F12 to open Firebug.
+            2. Click on the “console” tab.
+        #### Opera
+        1. Press CTRL + SHIFT + I to open Dragonfly.
+        2. Click on the “console” tab.
+      render: Text

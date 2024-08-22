@@ -1,0 +1,17 @@
+/*!
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
+ */
+
+.app-content-list-item-icon {
+	overflow: hidden;
+	&__avatar {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: inherit;
+		height: inherit;
+		cursor: pointer;
+		background-size: cover;
+	}
+}

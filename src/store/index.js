@@ -1,35 +1,18 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 import Vue from 'vue'
 import Vuex, { Store } from 'vuex'
 
-import addressbooks from './addressbooks'
-import circles from './circles'
-import contacts from './contacts'
-import groups from './groups'
-import importState from './importState'
+import addressbooks from './addressbooks.js'
+import circles from './circles.js'
+import contacts from './contacts.js'
+import groups from './groups.js'
+import importState from './importState.js'
 
-import isCirclesEnabled from '../services/isCirclesEnabled'
+import isCirclesEnabled from '../services/isCirclesEnabled.js'
 
 Vue.use(Vuex)
 
@@ -55,7 +38,7 @@ export default new Store({
 	 * the contat ical update itself on property getters
 	 * this is causing issues with the strict mode.
 	 * Since we're only getting the data for the contacts list
-	 * and considering we're initiating an independant contact
+	 * and considering we're initiating an independent contact
 	 * class for the details which replace itself into the
 	 * store by mutations we can ignore this and say that
 	 * the risk of losing track of changes is expandable.

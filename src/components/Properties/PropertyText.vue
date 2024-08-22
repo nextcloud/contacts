@@ -1,110 +1,110 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 <template>
-	<div v-if="propModel" class="property">
+	<div v-if="propModel && showProperty" class="property">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
+			:property="property"
+			:is-multiple="isMultiple"
+			:is-read-only="isReadOnly"
+			:bus="bus"
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName" />
 
 		<div class="property__row">
-			<!-- type selector -->
-			<Multiselect v-if="propModel.options"
-				v-model="localType"
-				:options="options"
-				:placeholder="t('contacts', 'Select type')"
-				:taggable="true"
-				tag-placeholder="create"
-				:disabled="isReadOnly"
-				class="property__label"
-				track-by="id"
-				label="name"
-				@tag="createLabel"
-				@input="updateType" />
+			<div class="property__label">
+				<!-- read-only type -->
+				<span v-if="isReadOnly && propModel.options">
+					{{ (localType && localType.name) || '' }}
+				</span>
 
-			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-else-if="selectType" class="property__label">
-				{{ selectType.name }}
-			</div>
+				<!-- type selector -->
+				<NcSelect v-else-if="!isReadOnly && propModel.options"
+					v-model="localType"
+					:options="options"
+					:placeholder="t('contacts', 'Select type')"
+					:taggable="true"
+					tag-placeholder="create"
+					:disabled="isReadOnly"
+					track-by="id"
+					label="name"
+					@option:created="createLabel"
+					@input="updateType" />
 
-			<!-- no options, empty space -->
-			<div v-else class="property__label">
-				{{ propModel.readableName }}
+				<!-- if we do not support any type on our model but one is set anyway -->
+				<span v-else-if="selectType">
+					{{ selectType.name }}
+				</span>
+
+				<!-- no options, empty space -->
+				<span v-else>
+					{{ propModel.readableName }}
+				</span>
 			</div>
 
 			<!-- textarea for note -->
-			<textarea v-if="propName === 'note'"
-				id="textarea"
-				ref="textarea"
-				v-model.trim="localValue"
-				:inputmode="inputmode"
-				:readonly="isReadOnly"
-				class="property__value"
-				@input="updateValueNoDebounce"
-				@mousemove="resizeHeight"
-				@keypress="resizeHeight" />
+			<div class="property__value">
+				<NcTextArea v-if="propName === 'note'"
+					id="textarea"
+					ref="textarea"
+					:value.sync="localValue"
+					:inputmode="inputmode"
+					:readonly="isReadOnly"
+					@update:value="updateValueNoDebounce"
+					@mousemove="resizeHeight"
+					@keypress="resizeHeight" />
 
-			<!-- OR default to input -->
-			<input v-else
-				v-model.trim="localValue"
-				:inputmode="inputmode"
-				:readonly="isReadOnly"
-				:class="{'property__value--with-ext': haveExtHandler}"
-				type="text"
-				class="property__value"
-				:placeholder="placeholder"
-				@input="updateValue">
+				<!-- OR default to input -->
+				<NcTextField v-else
+					:value.sync="localValue"
+					:inputmode="inputmode"
+					:readonly="isReadOnly"
+					:class="{'property__value--with-ext': haveExtHandler}"
+					type="text"
+					:placeholder="placeholder"
+					@update:value="updateValue" />
 
-			<!-- external link -->
-			<a v-if="haveExtHandler"
-				:href="externalHandler"
-				:class="{'property__ext': true, 'icon-external': true, 'no-move': isReadOnly}"
-				target="_blank" />
+				<!-- external link -->
+				<a v-if="haveExtHandler && isReadOnly"
+					:href="externalHandler"
+					class="property__ext"
+					target="_blank">
+					<OpenInNewIcon :size="20" />
+				</a>
+			</div>
 
 			<!-- props actions -->
-			<PropertyActions
-				v-if="!isReadOnly"
-				:actions="actions"
-				:property-component="this"
-				@delete="deleteProperty" />
+			<div class="property__actions">
+				<PropertyActions v-if="!isReadOnly"
+					:actions="actions"
+					:property-component="this"
+					@delete="deleteProperty" />
+			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import { NcSelect, NcTextArea, NcTextField } from '@nextcloud/vue'
 import debounce from 'debounce'
-import PropertyMixin from '../../mixins/PropertyMixin'
-import PropertyTitle from './PropertyTitle'
-import PropertyActions from './PropertyActions'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
+import PropertyTitle from './PropertyTitle.vue'
+import PropertyActions from './PropertyActions.vue'
+import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 
 export default {
 	name: 'PropertyText',
 
 	components: {
-		Multiselect,
+		NcSelect,
+		NcTextArea,
+		NcTextField,
 		PropertyTitle,
 		PropertyActions,
+		OpenInNewIcon,
 	},
 
 	mixins: [PropertyMixin],
@@ -123,6 +123,9 @@ export default {
 	},
 
 	computed: {
+		showProperty() {
+			return (this.isReadOnly && this.localValue) || !this.isReadOnly
+		},
 		inputmode() {
 			if (this.propName === 'tel') {
 				return 'tel'
@@ -181,12 +184,10 @@ export default {
 		/**
 		 * Watch textarea resize and update the gridSize accordingly
 		 */
-		resizeHeight: debounce(function(e) {
+		resizeHeight: debounce(function() {
 			if (this.$refs.textarea && this.$refs.textarea.offsetHeight) {
 				// adjust textarea size to content (2 = border)
 				this.$refs.textarea.style.height = `${this.$refs.textarea.scrollHeight + 2}px`
-				// send resize event to warn we changed from the inside
-				this.$emit('resize')
 			}
 		}, 100),
 
@@ -204,3 +205,14 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+.property {
+	&__value {
+		&--note {
+			white-space: pre-line;
+		}
+	}
+}
+
+</style>

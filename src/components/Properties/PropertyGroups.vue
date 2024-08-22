@@ -1,68 +1,65 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 <template>
-	<div v-if="propModel" class="property property--without-actions">
-		<PropertyTitle
-			icon="icon-contacts-dark"
-			:readable-name="t('contacts', 'Groups')" />
+	<div v-if="propModel && showProperty" class="property">
+		<PropertyTitle icon="icon-contacts-dark"
+			:readable-name="t('contacts', 'Contact groups')"
+			:is-read-only="isReadOnly" />
 
 		<div class="property__row">
 			<div class="property__label">
-				{{ propModel.readableName }}
+				<span>{{ propModel.readableName }}</span>
 			</div>
 
-			<!-- multiselect taggable groups with a limit to 3 groups shown -->
-			<Multiselect v-model="localValue"
-				:options="groups"
-				:placeholder="t('contacts', 'Add contact in group')"
-				:multiple="true"
-				:taggable="true"
-				:close-on-select="false"
-				:readonly="isReadOnly"
-				:tag-width="60"
-				tag-placeholder="create"
-				class="property__value"
-				@input="updateValue"
-				@tag="validateGroup"
-				@select="addContactToGroup"
-				@remove="removeContactToGroup">
-				<!-- show how many groups are hidden and add tooltip -->
-				<span slot="limit" v-tooltip.auto="formatGroupsTitle" class="multiselect__limit">
-					+{{ localValue.length - 3 }}
-				</span>
-				<span slot="noResult">
-					{{ t('contacts', 'No results') }}
-				</span>
-			</Multiselect>
+			<!-- multiselect taggable groups -->
+			<div class="property__value">
+				<NcSelect v-if="!isReadOnly"
+					v-model="localValue"
+					:options="groups"
+					:no-wrap="true"
+					:placeholder="t('contacts', 'Add contact in group')"
+					:multiple="true"
+					:close-on-select="false"
+					:clearable="true"
+					:deselect-from-dropdown="true"
+					:taggable="true"
+					tag-placeholder="create"
+					@option:deselected="updateValue"
+					@close="updateValue">
+					<!-- show how many groups are hidden and add tooltip -->
+					<template #limit>
+						<span v-tooltip.auto="formatGroupsTitle" class="multiselect__limit">
+							+{{ localValue.length - 3 }}
+						</span>
+					</template>
+					<template #no-options>
+						<span>{{ t('contacts', 'No results') }}</span>
+					</template>
+				</NcSelect>
+				<div v-else>
+					<span v-if="localValue.length === 0">{{ t('contacts','None') }}</span>
+
+					<div v-else class="group__list">
+						<span v-for="(group, index) in localValue" :key="index">
+							{{ group }}{{ index === (localValue.length - 1) ? '' : ',&nbsp;' }}
+						</span>
+					</div>
+				</div>
+			</div>
+
+			<!-- empty actions to keep the layout -->
+			<div class="property__actions" />
 		</div>
 	</div>
 </template>
 
 <script>
-import debounce from 'debounce'
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
-import Contact from '../../models/contact'
-import PropertyTitle from './PropertyTitle'
+import { NcSelect } from '@nextcloud/vue'
+import Contact from '../../models/contact.js'
+import PropertyTitle from './PropertyTitle.vue'
 import naturalCompare from 'string-natural-compare'
 
 export default {
@@ -70,7 +67,7 @@ export default {
 
 	components: {
 		PropertyTitle,
-		Multiselect,
+		NcSelect,
 	},
 
 	props: {
@@ -92,7 +89,7 @@ export default {
 		// Is it read-only?
 		isReadOnly: {
 			type: Boolean,
-			default: false,
+			required: true,
 		},
 	},
 
@@ -103,6 +100,12 @@ export default {
 	},
 
 	computed: {
+		showAsText() {
+			return this.isReadOnly && this.localValue.length <= 1
+		},
+		showProperty() {
+			return (this.isReadOnly && this.localValue.length > 0) || !this.isReadOnly
+		},
 		groups() {
 			return this.$store.getters.getGroups.slice(0).map(group => group.name)
 				.sort((a, b) => naturalCompare(a, b, { caseInsensitive: true }))
@@ -117,6 +120,7 @@ export default {
 		formatGroupsTitle() {
 			return this.localValue.slice(3).join(', ')
 		},
+
 	},
 
 	watch: {
@@ -136,50 +140,19 @@ export default {
 	methods: {
 
 		/**
-		 * Debounce and send update event to parent
+		 * Send update event to parent
 		 */
-		updateValue: debounce(function() {
-			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
+		updateValue() {
 			this.$emit('update:value', this.localValue)
-		}, 500),
 
-		/**
-		 * Dispatch contact addition to group
-		 *
-		 * @param {string} groupName the group name
-		 */
-		async addContactToGroup(groupName) {
-			await this.$store.dispatch('addContactToGroup', {
-				contact: this.contact,
-				groupName,
-			})
-			this.updateValue()
-		},
-
-		/**
-		 * Dispatch contact removal from group
-		 *
-		 * @param {string} groupName the group name
-		 */
-		removeContactToGroup(groupName) {
-			this.$store.dispatch('removeContactToGroup', {
-				contact: this.contact,
-				groupName,
-			})
-		},
-
-		/**
-		 * Validate groupname and dispatch creation
-		 *
-		 * @param {string} groupName the group name
-		 * @return {boolean}
-		 */
-		validateGroup(groupName) {
-			this.addContactToGroup(groupName)
-			this.localValue.push(groupName)
-			return true
 		},
 	},
 }
-
 </script>
+
+<style lang="scss" scoped>
+.group__list {
+	display: flex;
+	flex-wrap: wrap;
+}
+</style>

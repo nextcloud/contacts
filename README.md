@@ -1,4 +1,10 @@
+<!--
+  - SPDX-FileCopyrightText: 2016-2024 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-FileCopyrightText: 2015-2016 ownCloud, Inc. 
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 # Nextcloud Contacts
+[![REUSE status](https://api.reuse.software/badge/github.com/nextcloud/contacts)](https://api.reuse.software/info/github.com/nextcloud/contacts)
 ![Downloads](https://img.shields.io/github/downloads/nextcloud/contacts/total.svg?style=flat-square)
 [![Code coverage](https://img.shields.io/codecov/c/github/nextcloud/contacts.svg?style=flat-square)](https://codecov.io/gh/nextcloud/contacts/)
 [![Dependabot status](https://img.shields.io/badge/Dependabot-enabled-brightgreen.svg?longCache=true&style=flat-square&logo=dependabot)](https://dependabot.com)
@@ -16,22 +22,24 @@ This app only support vCard **3.0** and **4.0**. This app is compatible with the
 * :busts_in_silhouette: **Sharing of address books!** You want to share your contacts with your friends or coworkers? No problem!
 * :see_no_evil: **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 
+## Maintainers
+
+* [Hamza Mahjoubi](https://github.com/hamza221)
+* [Nextcloud Groupware team](https://github.com/nextcloud/groupware/#members)
+
 ## :hammer_and_wrench: Installation
 
-In your Nextcloud, simply navigate to "Apps", choose the category "Organization", find the Contacts app and enable it.
-Then open the Contacts app from the app menu.
+The app is distributed through the [app store](https://apps.nextcloud.com/apps/contacts) and you can install it [right from your Nextcloud installation](https://docs.nextcloud.com/server/stable/admin_manual/apps_management.html).
+
+Release tarballs are hosted at https://github.com/nextcloud-releases/contacts/releases.
 
 ## :satellite: Support
 
-If you need assistance or want to ask a question about Contacts, you are welcome to [ask for support](https://help.nextcloud.com) in our Forums or the [IRC-Channel](https://webchat.freenode.net/?channels=nextcloud-contacts). If you have found a bug, feel free to open a new Issue on GitHub. Keep in mind, that this repository only manages the frontend. If you find bugs or have problems with the CardDAV-Backend, you should ask the team at [Nextcloud server](https://github.com/nextcloud/server) for help!
+If you need assistance or want to ask a question about Contacts, you are welcome to [ask for support](https://help.nextcloud.com) in our forums. If you have found a bug, feel free to open a new Issue on GitHub. Keep in mind, that this repository only manages the frontend. If you find bugs or have problems with the CardDAV-Backend, you should ask the team at [Nextcloud server](https://github.com/nextcloud/server) for help!
 
 ### Could you add XXX property?
 > This is a complicated answer. We did not invent the way contacts works. We are following the official vCard format. This format include a predefined set of properties that other applications/devices supports too (Android, iOS, Windows, Gnome...). Adding a custom property would just make it compatible with Nextcloud and will not be understood by any other clients and make it complicated for us to ensure its sustainability over time.
 Long story short, we suggest you use the Notes field to add your custom data :)
-
-## Maintainers:
-
-- [John Molakvoæ](https://github.com/skjnldsv)
 
 If you'd like to join, just go through the [issue list](https://github.com/nextcloud/contacts/issues) and fix some. :)
 
@@ -39,26 +47,33 @@ If you'd like to join, just go through the [issue list](https://github.com/nextc
 
 ``` bash
 # set up and build for production
-make
+composer install
+npm ci
+npm run build
 
 # install dependencies
-make dev-setup
+composer install
+npm ci
 
 # build for dev and watch changes
-make watch-js
+npm run watch
 
 # build for dev
-make build-js
+npm run dev
 
 # build for production with minification
-make build-js-production
+npm run build
 
 ```
 ## Running tests
-You can use the provided Makefile to run all tests by using:
+You can run all front-end tests by using:
 
 ```
-make test
+# run tests once
+npm run test
+
+# run tests continuously after every change
+npm run test:watch
 ```
 
 ## :v: Code of conduct
@@ -71,9 +86,3 @@ If you contribute, participate or interact with this community, please respect [
 
 This guide will help you get started: 
 - :dancer: :smile: [Opening a pull request](https://opensource.guide/how-to-contribute/#opening-a-pull-request) 
-
-## Thanks
-- language icon by [nociconist](https://thenounproject.com/nociconist/)
-
-
-

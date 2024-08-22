@@ -1,4 +1,9 @@
 <?xml version="1.0"?>
+<!--
+  - SPDX-FileCopyrightText: 2016-2024 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-FileCopyrightText: 2015-2016 ownCloud, Inc.
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 <info xmlns:xsi= "http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://apps.nextcloud.com/schema/apps/info.xsd">
 	<id>contacts</id>
 	<name>Contacts</name>
@@ -11,11 +16,11 @@
 * 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 	</description>
 
-	<version>4.1.0-alpha.1</version>
+	<version>6.1.0-alpha.2</version>
 	<licence>agpl</licence>
 
-	<author>John Molakvoæ</author>
-	<author>Team Popcorn</author>
+	<author mail="hamza221@users.noreply.github.com">Hamza Mahjoubi</author>
+	<author homepage="https://github.com/nextcloud/groupware">Nextcloud Groupware Team</author>
 
 	<!-- required for dav plugins registration -->
 	<types>
@@ -23,7 +28,7 @@
 	</types>
 
 	<documentation>
-		<user>https://docs.nextcloud.com/server/stable/user_manual/en/pim/contacts.html</user>
+		<user>https://docs.nextcloud.com/server/stable/user_manual/en/groupware/contacts.html</user>
 		<admin>https://docs.nextcloud.com/server/stable/admin_manual/configuration_server/occ_command.html?highlight=occ%20commands#dav-label</admin>
 		<developer>https://github.com/nextcloud/contacts#build-the-app</developer>
 	</documentation>
@@ -35,11 +40,11 @@
 	<website>https://github.com/nextcloud/contacts#readme</website>
 	<bugs>https://github.com/nextcloud/contacts/issues</bugs>
 	<repository type="git">https://github.com/nextcloud/contacts.git</repository>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/main/apps/Contacts/contacts.png</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png</screenshot>
 
 	<dependencies>
-		<php min-version="7.3" max-version="8.0" />
-		<nextcloud min-version="21" max-version="24" />
+		<php min-version="8.1" max-version="8.3" />
+		<nextcloud min-version="30" max-version="30" />
 	</dependencies>
 
 	<background-jobs>

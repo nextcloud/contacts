@@ -2,9 +2,14 @@
 	"name": "nextcloud/contacts",
 	"config": {
 		"optimize-autoloader": true,
-		"classmap-authoritative": true,
 		"platform": {
-			"php": "7.3"
+			"php": "7.4"
+		},
+		"autoloader-suffix": "Contacts"
+	},
+	"autoload": {
+		"psr-4": {
+			"OCA\\Contacts\\": "lib/"
 		}
 	},
 	"scripts": {
@@ -14,9 +19,12 @@
 		"test:unit": "phpunit -c phpunit.xml --fail-on-warning",
 		"test:integration": "phpunit -c phpunit.integration.xml --fail-on-warning"
 	},
+	"require": {
+		"php": ">=7.4 <=8.3"
+	},
 	"require-dev": {
-        "christophwurst/nextcloud_testing": "^0.12.4",
-		"nextcloud/coding-standard": "^0.5.0",
-		"phpunit/phpunit": "^9"
+        "christophwurst/nextcloud_testing": "^1.0.0",
+		"phpunit/phpunit": "^9",
+		"nextcloud/coding-standard": "^1.2.1"
 	}
 }

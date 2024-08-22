@@ -1,36 +1,18 @@
 <!--
-  - @copyright Copyright (c) 2019 Marco Ambrosini <marcoambrosini@pm.me>
-  -
-  - @author Marco Ambrosini <marcoambrosini@pm.me>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  - SPDX-FileCopyrightText: 2019 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <template>
-	<Modal
-		size="full"
+	<Modal size="normal"
 		@close="onCancel">
 		<!-- Wrapper for content & navigation -->
 		<div class="entity-picker">
 			<!-- Search -->
 			<div class="entity-picker__new">
-				<input
-					ref="input"
+				<input ref="input"
 					v-model="circleName"
-					:placeholder="t('contacts', 'New circle name')"
+					:placeholder="t('contacts', 'New team name')"
 					class="entity-picker__new-input"
 					type="text"
 					@keypress.enter="onSubmit">
@@ -42,41 +24,37 @@
 
 				<!-- Personal circle, TODO: IMPLEMENT -->
 				<template v-if="false">
-					<CheckboxRadioSwitch
-						:checked.sync="isPersonal"
+					<CheckboxRadioSwitch :checked.sync="isPersonal"
 						:disabled="loading !== false">
-						{{ t('contacts', 'Personal circle') }}
+						{{ t('contacts', 'Personal team') }}
 					</CheckboxRadioSwitch>
 					<p>
-						{{ t('contacts', 'This circle will only be visible to you. Other members will not be able to see or use it.') }}
+						{{ t('contacts', 'This team will only be visible to you. Other members will not be able to see or use it.') }}
 					</p>
 				</template>
 
 				<!-- Local circle -->
 				<template v-if="isGlobalScale">
-					<CheckboxRadioSwitch
-						:checked.sync="isLocal"
+					<CheckboxRadioSwitch :checked.sync="isLocal"
 						:disabled="loading !== false">
-						{{ t('contacts', 'Local circle') }}
+						{{ t('contacts', 'Local team') }}
 					</CheckboxRadioSwitch>
 					<p>
-						{{ t('contacts', 'This circle will not be shared with the other instances of the global scale') }}
+						{{ t('contacts', 'This team will not be shared with the other instances of the global scale') }}
 					</p>
 				</template>
 			</div>
 
 			<div class="entity-picker__navigation">
-				<button
-					:disabled="loading"
+				<button :disabled="loading"
 					class="navigation__button-left"
 					@click="onCancel">
 					{{ t('contacts', 'Cancel') }}
 				</button>
-				<button
-					:disabled="isEmptyName || loading"
+				<button :disabled="isEmptyName || loading"
 					class="navigation__button-right primary"
 					@click="onSubmit">
-					{{ t('contacts', 'Create circle') }}
+					{{ t('contacts', 'Create team') }}
 				</button>
 			</div>
 		</div>
@@ -85,8 +63,10 @@
 
 <script>
 import { getCapabilities } from '@nextcloud/capabilities'
-import CheckboxRadioSwitch from '@nextcloud/vue/dist/Components/CheckboxRadioSwitch'
-import Modal from '@nextcloud/vue/dist/Components/Modal'
+import {
+	NcCheckboxRadioSwitch as CheckboxRadioSwitch,
+	NcModal as Modal,
+} from '@nextcloud/vue'
 
 import { CIRCLE_DESC } from '../../models/constants.ts'
 
@@ -152,9 +132,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
+
 // Dialog variables
-$dialog-margin: 20px;
-$dialog-width: 320px;
+$dialog-padding: 20px;
 $dialog-height: 480px;
 $entity-spacing: 4px;
 
@@ -169,22 +150,17 @@ $icon-size: 16px;
 
 // icon padding for a $clickable-area width and a $icon-size icon
 // ( 44px - 16px ) / 2
-$icon-margin: ($clickable-area - $icon-size) / 2;
+$icon-margin: math.div($clickable-area - $icon-size, 2);
 
 .entity-picker {
 	position: relative;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
-	/** This next 2 rules are pretty hacky, with the modal component somehow
-	the margin applied to the content is added to the total modal width,
-	so here we subtract it to the width and height of the content.
-	*/
-	width: $dialog-width;
-	max-width: 100vw;
-	height: $dialog-height;
-	max-height: calc(100vh - #{$dialog-margin} * 2 - 10px);
-	margin: $dialog-margin;
+	min-height: $dialog-height;
+	height: 100%;
+	padding: $dialog-padding;
+	box-sizing: border-box;
 
 	&__new {
 		position: relative;
@@ -220,7 +196,7 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 }
 
 // Make the checkboxes span full width
-::v-deep .checkbox-radio-switch__label {
+:deep(.checkbox-radio-switch__label) {
 	width: 100%;
 }
 
@@ -231,7 +207,7 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 
 /** Size full in the modal component doesn't have border radius, this adds
 it back */
-::v-deep .modal-container {
+:deep(.modal-container) {
 	border-radius: var(--border-radius-large) !important;
 }
 

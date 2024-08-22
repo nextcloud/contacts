@@ -1,25 +1,31 @@
+<!--
+  - SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 <template>
-	<EmptyContent class="processing-screen__wrapper" icon="icon-contacts-dark">
-		<slot />
-		<template #desc>
-			<div class="processing-screen__progress">
-				<progress :max="total" :value="progress" />
-			</div>
-			<div class="processing-screen__desc">
-				<slot name="desc" />
-			</div>
-		</template>
-	</EmptyContent>
+	<div>
+		<EmptyContent :description="desc"
+			:name="title"
+			class="processing-screen__wrapper">
+			<template #icon>
+				<IconContact :size="20" />
+			</template>
+		</EmptyContent>
+		<div class="processing-screen__progress">
+			<progress :max="total" :value="progress" />
+		</div>
+	</div>
 </template>
 
 <script>
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
-
+import { NcEmptyContent as EmptyContent } from '@nextcloud/vue'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 export default {
 	name: 'ProcessingScreen',
 
 	components: {
 		EmptyContent,
+		IconContact,
 	},
 
 	props: {
@@ -29,6 +35,14 @@ export default {
 		},
 		progress: {
 			type: Number,
+			required: true,
+		},
+		desc: {
+			type: String,
+			required: true,
+		},
+		title: {
+			type: String,
 			required: true,
 		},
 	},
@@ -41,42 +55,11 @@ export default {
 		display: flex;
 		flex-direction: column;
 		width: auto;
-		min-width: 30vw;
 		margin: 50px;
-
-		// Progress &desc wrapper
-		&::v-deep > p {
-			display: flex;
-			align-items: center;
-			flex-direction: column;
-			width: 80%;
-			margin: auto;
-		}
 	}
 
 	&__progress {
-		display: flex;
-		width: 100%;
-	}
-
-	&__desc {
-		display: inline-flex;
-		align-items: center;
-		width: 100%;
-		margin-top: 22px;
-		color: var(--color-text-maxcontrast);
-
-		&::v-deep button {
-			min-width: 100px;
-			height: 44px;
-			padding: 10px 20px;
-
-			// Put buttons at the end
-			&:first-of-type {
-				margin-left: auto;
-			}
-		}
+		padding: 0 12px;
 	}
 }
-
 </style>

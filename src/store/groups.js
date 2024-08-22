@@ -1,23 +1,6 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 const state = {
@@ -53,7 +36,7 @@ const mutations = {
 	},
 
 	/**
-	 * Add contact to group and create groupif not existing
+	 * Add contact to group and create group if not existing
 	 *
 	 * @param {object} state the store data
 	 * @param {object} data destructuring object
@@ -83,12 +66,32 @@ const mutations = {
 	 * @param {string} data.groupName the name of the group
 	 * @param {Contact} data.contact the contact
 	 */
-	removeContactToGroup(state, { groupName, contact }) {
+	removeContactFromGroup(state, { groupName, contact }) {
+		if (!state.groups.find(search => search.name === groupName)) {
+			return
+		}
+
 		const contacts = state.groups.find(search => search.name === groupName).contacts
 		const index = contacts.findIndex(search => search === contact.key)
 		if (index > -1) {
 			contacts.splice(index, 1)
 		}
+	},
+
+	/**
+	 * Rename contact from group
+	 *
+	 * @param {object} state the store data
+	 * @param {object} data destructuring object
+	 * @param {string} data.oldGroupName name that gets removed
+	 * @param {string} data.newGroupName name that gets added
+	 */
+	renameGroup(state, { oldGroupName, newGroupName }) {
+		state.groups.forEach((group) => {
+			if (group.name === oldGroupName) {
+				group.name = newGroupName
+			}
+		})
 	},
 
 	/**
@@ -118,6 +121,16 @@ const mutations = {
 			contacts: [],
 		})
 	},
+
+	/**
+	 * Remove a group
+	 *
+	 * @param {object} state the store data
+	 * @param {string} groupName the name of the group
+	 */
+	removeGroup(state, groupName) {
+		state.groups = state.groups.filter(group => group.name !== groupName)
+	},
 }
 
 const getters = {
@@ -126,6 +139,10 @@ const getters = {
 
 const actions = {
 
+	updateContactGroups(context, { groupNames, contact }) {
+		context.commit('removeContactFromGroups', contact)
+		context.commit('addContactToGroups', { groupNames, contact })
+	},
 	/**
 	 * Add contact and to a group
 	 *
@@ -156,8 +173,8 @@ const actions = {
 	 * @param {string} data.groupName the name of the group
 	 * @param {Contact} data.contact the contact
 	 */
-	removeContactToGroup(context, { groupName, contact }) {
-		context.commit('removeContactToGroup', { groupName, contact })
+	removeContactFromGroup(context, { groupName, contact }) {
+		context.commit('removeContactFromGroup', { groupName, contact })
 	},
 
 	/**

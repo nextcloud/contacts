@@ -1,33 +1,16 @@
 <?php
 /**
- * @copyright Copyright (c) 2020 Matthias Heinisch <nextcloud@matthiasheinisch.de>
- *
- * @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 
 namespace OCA\Contacts\Service\Social;
 
-use OCP\Http\Client\IClient;
-use OCP\Http\Client\IResponse;
-use OCP\Http\Client\IClientService;
 use ChristophWurst\Nextcloud\Testing\TestCase;
+use OCP\Http\Client\IClient;
+use OCP\Http\Client\IClientService;
+use OCP\Http\Client\IResponse;
 use PHPUnit\Framework\MockObject\MockObject;
 
 class DiasporaProviderTest extends TestCase {
@@ -49,26 +32,26 @@ class DiasporaProviderTest extends TestCase {
 		$this->client = $this->createMock(IClient::class);
 
 		$this->clientService
-			->method('NewClient')
+			->method('newClient')
 			->willReturn($this->client);
 
 		$this->provider = new DiasporaProvider(
-	  $this->clientService
+			$this->clientService
 		);
 	}
 
 	public function dataProviderSupportsContact() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "diaspora"],
-				["value" => "two", "type" => "diaspora"]
+				['value' => 'one', 'type' => 'diaspora'],
+				['value' => 'two', 'type' => 'diaspora']
 			]
 		];
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 
@@ -89,25 +72,25 @@ class DiasporaProviderTest extends TestCase {
 	public function dataProviderGetImageUrls() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one@two", "type" => "diaspora"],
-				["value" => "two@three", "type" => "diaspora"]
+				['value' => 'one@two', 'type' => 'diaspora'],
+				['value' => 'two@three', 'type' => 'diaspora']
 			]
 		];
 		$contactWithSocialUrls = [
-			"https://two/public/one.atom",
-			"https://three/public/two.atom"
+			'https://two/public/one.atom',
+			'https://three/public/two.atom'
 		];
 		$contactWithSocialHtml = array_map(function ($url) {
-			return "<logo>".$url."-small-avatar.jpg</logo>";
+			return '<logo>'.$url.'-small-avatar.jpg</logo>';
 		}, $contactWithSocialUrls);
 		$contactWithSocialImg = array_map(function ($url) {
-			return $url."-large-avatar.jpg";
+			return $url.'-large-avatar.jpg';
 		}, $contactWithSocialUrls);
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 		$contactWithoutSocialUrls = [];
@@ -157,14 +140,14 @@ class DiasporaProviderTest extends TestCase {
 	public function testGetImageUrlLoop() {
 		$contact = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one@two", "type" => "diaspora"],
+				['value' => 'one@two', 'type' => 'diaspora'],
 			]
 		];
-		$url1 = "https://two/public/one.atom";
-		$url2 = "https://four/public/three.atom";
+		$url1 = 'https://two/public/one.atom';
+		$url2 = 'https://four/public/three.atom';
 		$html1 = '<link rel="alternate" href="'.$url2.'" />';
-		$html2 = "<logo>".$url2."-small-avatar.jpg</logo>";
-		$img = $url2."-large-avatar.jpg";
+		$html2 = '<logo>'.$url2.'-small-avatar.jpg</logo>';
+		$img = $url2.'-large-avatar.jpg';
 
 		$this->response
 		->method('getBody')

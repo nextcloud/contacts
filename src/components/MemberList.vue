@@ -1,59 +1,55 @@
 <!--
-  - @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+  - SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 <template>
 	<AppContentList v-if="!hasMembers" class="members-list">
-		<EmptyContent v-if="loading" icon="icon-loading">
-			{{ t('contacts', 'Loading members list …') }}
-		</EmptyContent>
-
-		<EmptyContent v-else-if="!circle.isMember" icon="icon-contacts-dark">
-			{{ t('contacts', 'The list of members is only visible to members of this circle') }}
-		</EmptyContent>
-
-		<EmptyContent v-else icon="icon-contacts-dark">
-			{{ t('contacts', 'There is no member in this circle') }}
-		</EmptyContent>
+		<template v-if="loading">
+			<EmptyContent class="empty-content" :name="t('contacts', 'Loading members list …')">
+				<template #icon>
+					<IconLoading :size="20" />
+				</template>
+			</EmptyContent>
+		</template>
+		<template v-else-if="!circle.isMember">
+			<EmptyContent class="empty-content" :name="t('contacts', 'The list of members is only visible to members of this team')">
+				<template #icon>
+					<IconContact :size="20" />
+				</template>
+			</EmptyContent>
+		</template>
+		<template v-else>
+			<EmptyContent class="empty-content" :name="t('contacts', 'You currently have no access to the member list')">
+				<template #icon>
+					<IconContact :size="20" />
+				</template>
+			</EmptyContent>
+		</template>
 	</AppContentList>
 
-	<AppContentList v-else :class="{ 'icon-loading': loading, showdetails: showDetails }">
+	<AppContentList v-else :class="{ showdetails: showDetails }">
 		<div class="members-list__new">
-			<button v-if="circle.canManageMembers"
-				class="icon-add"
+			<Button v-if="circle.canManageMembers"
 				@click="onShowPicker(circle.id)">
+				<template #icon>
+					<IconLoading v-if="loading" />
+					<IconAdd :size="20" />
+				</template>
 				{{ t('contacts', 'Add members') }}
-			</button>
-			<button v-if="isMobile"
-				class="icon-info"
+			</Button>
+			<Button v-if="isMobile"
 				@click="showCircleDetails">
-				{{ t('contacts', 'Show circle details') }}
-			</button>
+				<template #icon>
+					<IconInfo :size="20" />
+				</template>
+				{{ t('contacts', 'Show team details') }}
+			</Button>
 		</div>
 
-		<VirtualList class="members-list"
-			data-key="id"
-			:data-sources="filteredList"
-			:data-component="MembersListItem"
-			:estimate-size="68" />
+		<MembersListItem v-for="member in filteredList"
+			:key="member.singleId"
+			:source="member" />
 
 		<!-- member picker -->
 		<EntityPicker v-if="showPicker"
@@ -70,16 +66,22 @@
 </template>
 
 <script>
-import AppContentList from '@nextcloud/vue/dist/Components/AppContentList'
-import EmptyContent from '@nextcloud/vue/dist/Components/EmptyContent'
-import isMobile from '@nextcloud/vue/dist/Mixins/isMobile'
-import VirtualList from 'vue-virtual-scroll-list'
+import {
+	NcAppContentList as AppContentList,
+	NcButton as Button,
+	NcEmptyContent as EmptyContent,
+	NcLoadingIcon as IconLoading,
+	isMobile,
+} from '@nextcloud/vue'
 
-import MembersListItem from './MembersList/MembersListItem'
-import EntityPicker from './EntityPicker/EntityPicker'
-import RouterMixin from '../mixins/RouterMixin'
+import MembersListItem from './MembersList/MembersListItem.vue'
+import EntityPicker from './EntityPicker/EntityPicker.vue'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
+import IconInfo from 'vue-material-design-icons/InformationOutline.vue'
+import RouterMixin from '../mixins/RouterMixin.js'
 
-import { getRecommendations, getSuggestions } from '../services/collaborationAutocompletion'
+import { getRecommendations, getSuggestions } from '../services/collaborationAutocompletion.js'
 import { showError, showWarning } from '@nextcloud/dialogs'
 import { subscribe } from '@nextcloud/event-bus'
 import { SHARES_TYPES_MEMBER_MAP, CIRCLES_MEMBER_GROUPING } from '../models/constants.ts'
@@ -89,9 +91,14 @@ export default {
 
 	components: {
 		AppContentList,
-		VirtualList,
+		Button,
 		EntityPicker,
 		EmptyContent,
+		IconContact,
+		IconAdd,
+		IconInfo,
+		IconLoading,
+		MembersListItem,
 	},
 	mixins: [isMobile, RouterMixin],
 
@@ -114,8 +121,6 @@ export default {
 
 	data() {
 		return {
-			MembersListItem,
-
 			pickerLoading: false,
 			showPicker: false,
 			showPickerIntro: true,
@@ -267,7 +272,7 @@ export default {
 
 				this.resetPicker()
 			} catch (error) {
-				showError(t('contacts', 'There was an issue adding members to the circle'))
+				showError(t('contacts', 'There was an issue adding members to the team'))
 				console.error('There was an issue adding members to the circle', this.pickerCircle, error)
 			} finally {
 				this.pickerLoading = false
@@ -302,15 +307,18 @@ export default {
 
 		button {
 			height: 44px;
-			padding-left: 44px;
 			background-position: 14px center;
 			text-align: left;
 			width: 100%;
 		}
 	}
 
-	&::v-deep .empty-content {
+	:deep(.empty-content) {
 		margin: auto;
 	}
+}
+
+.empty-content {
+	height: 100%;
 }
 </style>

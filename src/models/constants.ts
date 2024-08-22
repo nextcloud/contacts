@@ -1,23 +1,6 @@
 /**
- * @copyright Copyright (c) 2021 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 /// <reference types="@nextcloud/typings" />
 
@@ -25,6 +8,7 @@ import { translate as t } from '@nextcloud/l10n'
 import { Type } from '@nextcloud/sharing'
 
 export type DefaultGroup = string
+export type DefaultChart = string
 export type CircleConfig = number
 export type MemberLevel = number
 export type MemberType = number
@@ -37,8 +21,15 @@ export const GROUP_ALL_CONTACTS: DefaultGroup = t('contacts', 'All contacts')
 export const GROUP_NO_GROUP_CONTACTS: DefaultGroup = t('contacts', 'Not grouped')
 export const GROUP_RECENTLY_CONTACTED: DefaultGroup = t('contactsinteraction', 'Recently contacted')
 
+// Organization default chart for all contacts
+export const CHART_ALL_CONTACTS: DefaultChart = t('contacts', 'Organization chart')
+
 // Circle route, see vue-router conf
 export const ROUTE_CIRCLE = 'circle'
+export const ROUTE_CHART = 'chart'
+
+// Contact settings
+export const CONTACTS_SETTINGS: DefaultGroup = t('contacts', 'Contacts settings')
 
 // Default max number of items to show in the navigation
 export const ELLIPSIS_COUNT = 5
@@ -51,16 +42,18 @@ const MEMBER_LEVEL_ADMIN: MemberLevel = 8
 const MEMBER_LEVEL_OWNER: MemberLevel = 9
 
 // Circles member types
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const MEMBER_TYPE_SINGLEID: MemberType = 0
 const MEMBER_TYPE_USER: MemberType = 1
-const MEMBER_TYPE_GROUP : MemberType= 2
+const MEMBER_TYPE_GROUP : MemberType = 2
 const MEMBER_TYPE_MAIL: MemberType = 4
 const MEMBER_TYPE_CONTACT: MemberType = 8
 const MEMBER_TYPE_CIRCLE: MemberType = 16
 
-export const CIRCLE_DESC = t('contacts', 'Circles allow you to create groups with other users on a Nextcloud instance and share with them.')
+export const CIRCLE_DESC = t('contacts', 'Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses.')
 
 // Circles config flags
+/* eslint-disable no-tabs */
 const CIRCLE_CONFIG_PERSONAL: CircleConfig = 2				// Personal circle, only the owner can see it.
 const CIRCLE_CONFIG_SYSTEM: CircleConfig = 4				// System Circle (not managed by the official front-end). Meaning some config are limited
 const CIRCLE_CONFIG_VISIBLE: CircleConfig = 8				// Visible to everyone, if not visible, people have to know its name to be able to find it
@@ -76,23 +69,24 @@ const CIRCLE_CONFIG_LOCAL: CircleConfig = 4096				// Circle is not shared to oth
 const CIRCLE_CONFIG_ROOT: CircleConfig = 8192				// Circle cannot be a member of another Circle
 const CIRCLE_CONFIG_CIRCLE_INVITE: CircleConfig = 16384		// Circle must confirm when invited in another circle
 const CIRCLE_CONFIG_FEDERATED: CircleConfig = 32768			// Federated
+/* eslint-enable no-tabs */
 
 // Existing members types
 export const CIRCLES_MEMBER_TYPES = {
-	[MEMBER_TYPE_CIRCLE]: t('circles', 'Circle'),
-	[MEMBER_TYPE_USER]: t('circles', 'User'),
-	[MEMBER_TYPE_GROUP]: t('circles', 'Group'),
-	[MEMBER_TYPE_MAIL]: t('circles', 'Email'),
-	[MEMBER_TYPE_CONTACT]: t('circles', 'Contact'),
+	[MEMBER_TYPE_CIRCLE]: t('contacts', 'Team'),
+	[MEMBER_TYPE_USER]: t('contacts', 'User'),
+	[MEMBER_TYPE_GROUP]: t('contacts', 'Group'),
+	[MEMBER_TYPE_MAIL]: t('contacts', 'Email'),
+	[MEMBER_TYPE_CONTACT]: t('contacts', 'Contact'),
 }
 
 // Available circles promote/demote levels
 export const CIRCLES_MEMBER_LEVELS = {
-	// [MEMBER_LEVEL_NONE]: t('circles', 'Pending'),
-	[MEMBER_LEVEL_MEMBER]: t('circles', 'Member'),
-	[MEMBER_LEVEL_MODERATOR]: t('circles', 'Moderator'),
-	[MEMBER_LEVEL_ADMIN]: t('circles', 'Admin'),
-	[MEMBER_LEVEL_OWNER]: t('circles', 'Owner'),
+	// [MEMBER_LEVEL_NONE]: t('contacts', 'Pending'),
+	[MEMBER_LEVEL_MEMBER]: t('contacts', 'Member'),
+	[MEMBER_LEVEL_MODERATOR]: t('contacts', 'Moderator'),
+	[MEMBER_LEVEL_ADMIN]: t('contacts', 'Admin'),
+	[MEMBER_LEVEL_OWNER]: t('contacts', 'Owner'),
 }
 
 // Available circle configs in the circle details view
@@ -100,7 +94,7 @@ export const PUBLIC_CIRCLE_CONFIG = {
 	[t('contacts', 'Invites')]: {
 		[CIRCLE_CONFIG_OPEN]: t('contacts', 'Anyone can request membership'),
 		[CIRCLE_CONFIG_INVITE]: t('contacts', 'Members need to accept invitation'),
-		[CIRCLE_CONFIG_REQUEST]: t('contacts', 'Memberships must be confirmed/accepted by a Moderator (requires Open)'),
+		[CIRCLE_CONFIG_REQUEST]: t('contacts', 'Memberships must be confirmed/accepted by a Moderator (requires "Anyone can request membership")'),
 		[CIRCLE_CONFIG_FRIEND]: t('contacts', 'Members can also invite'),
 		// Let's manage password protection independently as we also need a password
 		// [CIRCLE_CONFIG_PROTECTED]: t('contacts', 'Password protect'),
@@ -110,60 +104,59 @@ export const PUBLIC_CIRCLE_CONFIG = {
 		[CIRCLE_CONFIG_VISIBLE]: t('contacts', 'Visible to everyone'),
 	},
 
-	[t('contacts', 'Circle membership')]: {
+	[t('contacts', 'Team membership')]: {
 		// TODO: implement backend
-		// [CIRCLE_CONFIG_CIRCLE_INVITE]: t('contacts', 'Circle must confirm when invited in another circle'),
-		[CIRCLE_CONFIG_ROOT]: t('contacts', 'Prevent circle from being a member of another circle'),
+		// [CIRCLE_CONFIG_CIRCLE_INVITE]: t('contacts', 'Team must confirm when invited in another circle'),
+		[CIRCLE_CONFIG_ROOT]: t('contacts', 'Prevent teams from being a member of another team'),
 	},
 }
-
 
 // Represents the picker options but also the
 // sorting of the members list
 export const CIRCLES_MEMBER_GROUPING = [
 	{
 		id: `picker-${Type.SHARE_TYPE_USER}`,
-		label: t('contacts', 'Users'),
+		label: t('contacts', 'users'),
 		share: Type.SHARE_TYPE_USER,
-		type: MEMBER_TYPE_USER
+		type: MEMBER_TYPE_USER,
 	},
 	{
 		id: `picker-${Type.SHARE_TYPE_GROUP}`,
-		label: t('contacts', 'Groups'),
+		label: t('contacts', 'groups'),
 		share: Type.SHARE_TYPE_GROUP,
-		type: MEMBER_TYPE_GROUP
+		type: MEMBER_TYPE_GROUP,
 	},
 	// TODO: implement federated
 	// {
-	// 	id: `picker-${Type.SHARE_TYPE_REMOTE}`,
-	// 	label: t('contacts', 'Federated users'),
-	// 	share: Type.SHARE_TYPE_REMOTE,
-	// 	type: MEMBER_TYPE_USER
+	// id: `picker-${Type.SHARE_TYPE_REMOTE}`,
+	// label: t('contacts', 'federated users'),
+	// share: Type.SHARE_TYPE_REMOTE,
+	// type: MEMBER_TYPE_USER
 	// },
 	// {
-	// 	id: `picker-${Type.SHARE_TYPE_REMOTE_GROUP}`,
-	// 	label: t('contacts', 'Federated groups'),
-	// 	share: Type.SHARE_TYPE_REMOTE_GROUP,
-	// 	type: MEMBER_TYPE_GROUP
+	// id: `picker-${Type.SHARE_TYPE_REMOTE_GROUP}`,
+	// label: t('contacts', 'federated groups'),
+	// share: Type.SHARE_TYPE_REMOTE_GROUP,
+	// type: MEMBER_TYPE_GROUP
 	// },
 	{
 		id: `picker-${Type.SHARE_TYPE_CIRCLE}`,
-		label: t('contacts', 'Circles'),
+		label: t('contacts', 'teams'),
 		share: Type.SHARE_TYPE_CIRCLE,
-		type: MEMBER_TYPE_CIRCLE
+		type: MEMBER_TYPE_CIRCLE,
 	},
 	{
 		id: `picker-${Type.SHARE_TYPE_EMAIL}`,
-		label: t('contacts', 'Emails'),
+		label: t('contacts', 'email addresses'),
 		share: Type.SHARE_TYPE_EMAIL,
-		type: MEMBER_TYPE_MAIL
+		type: MEMBER_TYPE_MAIL,
 	},
 	// TODO: implement SHARE_TYPE_CONTACT
 	{
-		id: `picker-contact`,
-		label: t('contacts', 'Contacts'),
+		id: 'picker-contact',
+		label: t('contacts', 'teams'),
 		share: Type.SHARE_TYPE_EMAIL,
-		type: MEMBER_TYPE_CONTACT
+		type: MEMBER_TYPE_CONTACT,
 	},
 ]
 

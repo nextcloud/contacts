@@ -1,27 +1,10 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import debounce from 'debounce'
-import Contact from '../models/contact'
-import { setPropertyAlias } from '../services/updateDesignSet'
+import Contact from '../models/contact.js'
+import { setPropertyAlias } from '../services/updateDesignSet.js'
 
 export default {
 	props: {
@@ -61,7 +44,7 @@ export default {
 		// Is it read-only?
 		isReadOnly: {
 			type: Boolean,
-			default: false,
+			required: true,
 		},
 		// The available TYPE options from the propModel
 		// not used on the PropertySelect
@@ -72,6 +55,14 @@ export default {
 		localContact: {
 			type: Contact,
 			default: null,
+		},
+		isMultiple: {
+			type: Boolean,
+			default: false,
+		},
+		bus: {
+			type: Object,
+			required: false,
 		},
 	},
 
@@ -139,7 +130,7 @@ export default {
 			const group = propGroup.split('.')[0]
 			const name = propGroup.split('.')[1]
 
-			this.localContact.vCard.addPropertyWithValue(`${group}.x-ablabel`, label)
+			this.localContact.vCard.addPropertyWithValue(`${group}.x-ablabel`, label.name)
 
 			// force update the main design sets
 			setPropertyAlias(name, propGroup)

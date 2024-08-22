@@ -1,31 +1,14 @@
 /**
- * @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @author John Molakvoæ <skjnldsv@protonmail.com>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 import { showError } from '@nextcloud/dialogs'
 import ICAL from 'ical.js'
 import Vue from 'vue'
 
-import Contact from '../models/contact'
-import validate from '../services/validate'
+import Contact from '../models/contact.js'
+import validate from '../services/validate.js'
 
 /*
  * Currently ical.js does not serialize parameters with multiple values correctly. This is
@@ -242,6 +225,7 @@ const mutations = {
 	 * @param {object} state the store data
 	 */
 	sortContacts(state) {
+
 		state.sortedContacts = Object.values(state.contacts)
 			// exclude groups
 			.filter(contact => contact.kind !== 'group')
@@ -253,7 +237,7 @@ const mutations = {
 	 * Set the order key
 	 *
 	 * @param {object} state the store data
-	 * @param {string} [orderKey='displayName'] the order key to sort by
+	 * @param {string} [orderKey] the order key to sort by
 	 */
 	setOrder(state, orderKey = 'displayName') {
 		state.orderKey = orderKey
@@ -308,7 +292,7 @@ const actions = {
 	 * @param {object} context the store mutations
 	 * @param {object} data destructuring object
 	 * @param {Contact} data.contact the contact to delete
-	 * @param {boolean} [data.dav=true] trigger a dav deletion
+	 * @param {boolean} [data.dav] trigger a dav deletion
 	 */
 	async deleteContact(context, { contact, dav = true }) {
 		// only local delete if the contact doesn't exists on the server
@@ -353,7 +337,7 @@ const actions = {
 		rev.fromUnixTime(Date.now() / 1000)
 		contact.rev = rev
 
-		const vData = contact.vCard.toString()
+		const vData = contact.toStringStripQuotes()
 
 		// if no dav key, contact does not exists on server
 		if (!contact.dav) {
@@ -380,6 +364,7 @@ const actions = {
 					context.commit('setContactAsConflict', { contact, etag: error.xhr.getResponseHeader('etag') })
 					console.error('This contact is outdated, the server refused it', contact)
 				}
+				throw (error)
 			}
 		} else {
 			console.error('This contact is outdated, refusing to push', contact)

@@ -1,80 +1,68 @@
 <!--
-  - @copyright Copyright (c) 2018 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
-  -
-  -->
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
 
 <template>
 	<div v-if="propModel" class="property">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
+			:property="property"
+			:is-multiple="isMultiple"
+			:is-read-only="isReadOnly"
+			:bus="bus"
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName" />
 
 		<div class="property__row">
-			<!-- type selector -->
-			<Multiselect v-if="propModel.options"
-				v-model="localType"
-				:options="options"
-				:searchable="false"
-				:placeholder="t('contacts', 'Select type')"
-				:disabled="isReadOnly"
-				class="property__label"
-				track-by="id"
-				label="name"
-				@input="updateType" />
+			<div class="property__label">
+				<!-- type selector -->
+				<NcSelect v-if="propModel.options"
+					v-model="localType"
+					:options="options"
+					:searchable="false"
+					:placeholder="t('contacts', 'Select type')"
+					:disabled="isReadOnly"
+					track-by="id"
+					label="name"
+					@input="updateType" />
 
-			<!-- if we do not support any type on our model but one is set anyway -->
-			<div v-else-if="selectType" class="property__label">
-				{{ selectType.name }}
+				<!-- if we do not support any type on our model but one is set anyway -->
+				<span v-else-if="selectType">
+					{{ selectType.name }}
+				</span>
+
+				<!-- no options, empty space -->
+				<span v-else>
+					{{ propModel.readableName }}
+				</span>
 			</div>
 
-			<!-- no options, empty space -->
-			<div v-else class="property__label">
-				{{ propModel.readableName }}
+			<div class="property__value">
+				<!-- Real input where the picker shows -->
+				<DateTimePicker v-if="!isReadOnly"
+					:value="vcardTimeLocalValue.toJSDate()"
+					:minute-step="10"
+					:lang="lang"
+					:clearable="false"
+					:first-day-of-week="firstDay"
+					:type="inputType"
+					:readonly="isReadOnly"
+					:formatter="dateFormat"
+					@change="debounceUpdateValue" />
+
+				<input v-else
+					:readonly="true"
+					:value="formatDateTime()">
 			</div>
-
-			<!-- Real input where the picker shows -->
-			<DatetimePicker
-				v-if="!isReadOnly"
-				:value="vcardTimeLocalValue.toJSDate()"
-				:minute-step="10"
-				:lang="lang"
-				:clearable="false"
-				:first-day-of-week="firstDay"
-				:type="inputType"
-				:readonly="isReadOnly"
-				:format="dateFormat"
-				class="property__value"
-				confirm
-				@confirm="debounceUpdateValue" />
-
-			<input v-else
-				:readonly="true"
-				:value="formatDateTime()"
-				class="property__value">
 
 			<!-- props actions -->
-			<PropertyActions
-				v-if="!isReadOnly"
-				:actions="actions"
-				@delete="deleteProperty" />
+			<div class="property__actions">
+				<PropertyActions v-if="!isReadOnly"
+					:actions="actions"
+					:property-component="this"
+					@delete="deleteProperty" />
+			</div>
 		</div>
 	</div>
 </template>
@@ -82,21 +70,23 @@
 <script>
 import debounce from 'debounce'
 import moment from 'moment'
-import DatetimePicker from '@nextcloud/vue/dist/Components/DatetimePicker'
-import Multiselect from '@nextcloud/vue/dist/Components/Multiselect'
+import {
+	NcDateTimePicker as DateTimePicker,
+	NcSelect,
+} from '@nextcloud/vue'
 import { getLocale } from '@nextcloud/l10n'
-import { VCardTime } from 'ical.js'
+import ICAL from 'ical.js'
 
-import PropertyMixin from '../../mixins/PropertyMixin'
-import PropertyTitle from './PropertyTitle'
-import PropertyActions from './PropertyActions'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
+import PropertyTitle from './PropertyTitle.vue'
+import PropertyActions from './PropertyActions.vue'
 
 export default {
 	name: 'PropertyDateTime',
 
 	components: {
-		Multiselect,
-		DatetimePicker,
+		NcSelect,
+		DateTimePicker,
 		PropertyTitle,
 		PropertyActions,
 	},
@@ -105,7 +95,7 @@ export default {
 
 	props: {
 		value: {
-			type: [VCardTime, String],
+			type: [ICAL.VCardTime, String],
 			default: '',
 			required: true,
 		},
@@ -134,6 +124,9 @@ export default {
 				stringify: (date) => {
 					return date ? this.formatDateTime() : null
 				},
+				parse: (value) => {
+					return value ? moment(value, ['LL', 'L']).toDate() : null
+				},
 			},
 		}
 	},
@@ -143,7 +136,7 @@ export default {
 		vcardTimeLocalValue() {
 			if (typeof this.localValue === 'string') {
 				// eslint-disable-next-line new-cap
-				return new VCardTime.fromDateAndOrTimeString(this.localValue)
+				return new ICAL.VCardTime.fromDateAndOrTimeString(this.localValue)
 			}
 			return this.localValue
 		},
@@ -235,7 +228,7 @@ export default {
 			}
 
 			// reset the VCardTime component to the selected date/time
-			this.localValue = new VCardTime(dateObject, null, this.propType)
+			this.localValue = new ICAL.VCardTime(dateObject, null, this.propType)
 
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			// Use moment to convert the JsDate to Object
@@ -293,7 +286,7 @@ export default {
 							? 'llll' // date & time display
 							: this.inputType === 'date'
 								? 'll' // only date
-								: 'LTS' // only time
+								: 'LTS', // only time
 					)
 			}
 

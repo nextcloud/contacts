@@ -1,22 +1,6 @@
 <!--
-  - @copyright Copyright (c) 2020 John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @author John Molakvoæ <skjnldsv@protonmail.com>
-  -
-  - @license GNU AGPL version 3 or any later version
-  -
-  - This program is free software: you can redistribute it and/or modify
-  - it under the terms of the GNU Affero General Public License as
-  - published by the Free Software Foundation, either version 3 of the
-  - License, or (at your option) any later version.
-  -
-  - This program is distributed in the hope that it will be useful,
-  - but WITHOUT ANY WARRANTY; without even the implied warranty of
-  - MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-  - GNU Affero General Public License for more details.
-  -
-  - You should have received a copy of the GNU Affero General Public License
-  - along with this program. If not, see <http://www.gnu.org/licenses/>.
+  - SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <template>
@@ -24,8 +8,7 @@
 		{{ t('contacts', 'Add {type}', {type: source.label.toLowerCase()}) }}
 	</h4>
 
-	<UserBubble
-		v-else
+	<UserBubble v-else
 		class="entity-picker__bubble"
 		:class="{'entity-picker__bubble--selected': isSelected}"
 		:display-name="source.label"
@@ -41,7 +24,7 @@
 </template>
 
 <script>
-import UserBubble from '@nextcloud/vue/dist/Components/UserBubble'
+import { NcUserBubble as UserBubble } from '@nextcloud/vue'
 
 export default {
 	name: 'EntitySearchResult',
@@ -77,6 +60,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@use 'sass:math';
+
 // https://uxplanet.org/7-rules-for-mobile-ui-button-design-e9cf2ea54556
 // recommended is 48px
 // 44px is what we choose and have very good visual-to-usability ratio
@@ -88,7 +73,7 @@ $icon-size: 16px;
 
 // icon padding for a $clickable-area width and a $icon-size icon
 // ( 44px - 16px ) / 2
-$icon-margin: ($clickable-area - $icon-size) / 2;
+$icon-margin: math.div($clickable-area - $icon-size, 2);
 
 .entity-picker {
 	&__option {
@@ -99,12 +84,12 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			pointer-events: none;
-			color: var(--color-primary);
+			color: var(--color-primary-element);
 			box-shadow: none !important;
 			line-height: $clickable-area;
 
 			&:not(:first-child) {
-				margin-top: $clickable-area / 2;
+				margin-top: math.div($clickable-area, 2);
 			}
 		}
 	}
@@ -127,15 +112,15 @@ $icon-margin: ($clickable-area - $icon-size) / 2;
 		&--selected,
 		&:hover,
 		&:focus {
-			::v-deep .user-bubble__content {
+			:deep(.user-bubble__content) {
 				// better visual with light default tint
-				background-color: var(--color-primary-light);
+				background-color: var(--color-primary-element-light);
 			}
 		}
 	}
 }
 
-::v-deep .user-bubble__content {
+:deep(.user-bubble__content){
 	// Take full width
 	width: 100%;
 	// Override default styling

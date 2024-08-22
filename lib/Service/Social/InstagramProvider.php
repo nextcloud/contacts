@@ -1,24 +1,7 @@
 <?php
 /**
- * @copyright Copyright (c) 2020 Matthias Heinisch <nextcloud@matthiasheinisch.de>
- *
- * @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 namespace OCA\Contacts\Service\Social;
@@ -27,23 +10,23 @@ use GuzzleHttp\Exception\RequestException;
 use GuzzleHttp\RequestOptions;
 use OC\AppFramework\Http\Request;
 use OCA\Contacts\AppInfo\Application;
+use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 use Psr\Log\LoggerInterface;
 
 class InstagramProvider implements ISocialProvider {
-
-	/** @var IClientService */
+	/** @var IClient */
 	private $httpClient;
 
 	/** @var LoggerInterface */
 	private $logger;
 
 	/** @var string */
-	public $name = "instagram";
+	public $name = 'instagram';
 
 	public function __construct(IClientService $httpClient,
-								LoggerInterface $logger) {
-		$this->httpClient = $httpClient->NewClient();
+		LoggerInterface $logger) {
+		$this->httpClient = $httpClient->newClient();
 		$this->logger = $logger;
 	}
 
@@ -55,7 +38,7 @@ class InstagramProvider implements ISocialProvider {
 	 * @return bool
 	 */
 	public function supportsContact(array $contact):bool {
-		if (!array_key_exists("X-SOCIALPROFILE",$contact)) {
+		if (!array_key_exists('X-SOCIALPROFILE', $contact)) {
 			return false;
 		}
 		$socialprofiles = $this->getProfiles($contact);
@@ -74,7 +57,7 @@ class InstagramProvider implements ISocialProvider {
 		$urls = [];
 		foreach ($profileIds as $profileId) {
 			$recipe = 'https://www.instagram.com/{socialId}/?__a=1';
-			$connector = str_replace("{socialId}", $profileId, $recipe);
+			$connector = str_replace('{socialId}', $profileId, $recipe);
 			$connector = $this->getFromJson($connector, 'graphql->user->profile_pic_url_hd');
 			$urls[] = $connector;
 		}
@@ -92,7 +75,7 @@ class InstagramProvider implements ISocialProvider {
 		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
 		return basename($candidate);
 	}
-  
+
 	/**
 	 * Returns all possible profile urls for contact
 	 *
@@ -146,8 +129,8 @@ class InstagramProvider implements ISocialProvider {
 				]
 			]);
 
-			$jsonResult = json_decode($result->getBody(),true);
-			$location = explode('->' , $desired);
+			$jsonResult = json_decode($result->getBody(), true);
+			$location = explode('->', $desired);
 			foreach ($location as $loc) {
 				if (!isset($jsonResult[$loc])) {
 					return null;
@@ -156,7 +139,7 @@ class InstagramProvider implements ISocialProvider {
 			}
 			return $jsonResult;
 		} catch (RequestException $e) {
-			$this->logger->debug('Error fetching instagram urls',  [
+			$this->logger->debug('Error fetching instagram urls', [
 				'app' => Application::APP_ID,
 				'exception' => $e
 			]);

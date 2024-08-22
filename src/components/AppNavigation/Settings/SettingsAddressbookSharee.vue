@@ -1,40 +1,19 @@
 <!--
-	- @copyright Copyright (c) 2018 Team Popcorn <teampopcornberlin@gmail.com>
-	-
-	- @author Team Popcorn <teampopcornberlin@gmail.com>
-	-
-	- @license GNU AGPL version 3 or any later version
-	-
-	- This program is free software: you can redistribute it and/or modify
-	- it under the terms of the GNU Affero General Public License as
-	- published by the Free Software Foundation, either version 3 of the
-	- License, or (at your option) any later version.
-	-
-	- This program is distributed in the hope that it will be useful,
-	- but WITHOUT ANY WARRANTY; without even the implied warranty of
-	- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-	- GNU Affero General Public License for more details.
-	-
-	- You should have received a copy of the GNU Affero General Public License
-	- along with this program. If not, see <http://www.gnu.org/licenses/>.
-	-
+  - SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 
 <template>
 	<li class="addressbook-sharee">
-		<span :class="{
-				'icon-loading-small': loading,
-				'icon-group': sharee.isGroup && !loading,
-				'icon-user': !sharee.isGroup && !loading
-			}"
-			class="icon" />
+		<IconLoading v-if="loading" :size="20" />
+		<IconGroup v-else-if="sharee.isGroup && !loading" />
+		<IconUser v-else-if="!sharee.isGroup && !loading" />
 		<span class="addressbook-sharee__identifier"
 			:title="sharee.displayName">
 			{{ sharee.displayName }}
 		</span>
 		<span class="addressbook-sharee__utils">
-			<input
-				:id="uid"
+			<input :id="uid"
 				:checked="writeable"
 				:disabled="loading"
 				class="checkbox"
@@ -45,20 +24,37 @@
 				:title="t('contacts', 'can edit')">
 				{{ t('contacts', 'can edit') }}
 			</label>
-			<a :class="{'addressbook-sharee__utils--disabled': loading}"
+			<Button :class="{'addressbook-sharee__utils--disabled': loading}"
 				href="#"
 				title="Delete"
-				class="icon-delete"
-				@click="deleteSharee" />
+				@click="deleteSharee">
+				<template #icon>
+					<IconDelete :size="20" />
+				</template>
+			</Button>
 		</span>
 	</li>
 </template>
 
 <script>
 import { showError } from '@nextcloud/dialogs'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconGroup from 'vue-material-design-icons/AccountMultiple.vue'
+import IconUser from 'vue-material-design-icons/Account.vue'
+import {
+	NcButton as Button,
+	NcLoadingIcon as IconLoading,
+} from '@nextcloud/vue'
 
 export default {
 	name: 'SettingsAddressbookSharee',
+	components: {
+		Button,
+		IconDelete,
+		IconGroup,
+		IconLoading,
+		IconUser,
+	},
 
 	props: {
 		addressbook: {
@@ -137,5 +133,11 @@ export default {
 	overflow: hidden;
 	text-overflow: ellipsis;
 	width: 107px;
+}
+
+:deep(.button-vue--vue-secondary) {
+	background-color: transparent;
+	border: none;
+	box-shadow: none;
 }
 </style>

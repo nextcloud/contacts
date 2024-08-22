@@ -1,24 +1,10 @@
 <?php
+
+declare(strict_types=1);
+
 /**
- * @copyright Copyright (c) 2020 Matthias Heinisch <nextcloud@matthiasheinisch.de>
- *
- * @author Matthias Heinisch <nextcloud@matthiasheinisch.de>
- *
- * @license GNU AGPL version 3 or any later version
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Affero General Public License as
- * published by the Free Software Foundation, either version 3 of the
- * License, or (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
- * GNU Affero General Public License for more details.
- *
- * You should have received a copy of the GNU Affero General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
- *
+ * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
+ * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
 namespace OCA\Contacts\Service;
@@ -38,7 +24,6 @@ use OCP\IAddressBook;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
-use OCP\Util;
 
 class SocialApiService {
 	private $appName;
@@ -58,17 +43,19 @@ class SocialApiService {
 	private $davBackend;
 	/** @var ITimeFactory */
 	private $timeFactory;
-
+	/** @var ImageResizer */
+	private $imageResizer;
 
 	public function __construct(
-					CompositeSocialProvider $socialProvider,
-					IManager $manager,
-					IConfig $config,
-					IClientService $clientService,
-					IL10N $l10n,
-					IURLGenerator $urlGen,
-					CardDavBackend $davBackend,
-					ITimeFactory $timeFactory) {
+		CompositeSocialProvider $socialProvider,
+		IManager $manager,
+		IConfig $config,
+		IClientService $clientService,
+		IL10N $l10n,
+		IURLGenerator $urlGen,
+		CardDavBackend $davBackend,
+		ITimeFactory $timeFactory,
+		ImageResizer $imageResizer) {
 		$this->appName = Application::APP_ID;
 		$this->socialProvider = $socialProvider;
 		$this->manager = $manager;
@@ -78,6 +65,7 @@ class SocialApiService {
 		$this->urlGen = $urlGen;
 		$this->davBackend = $davBackend;
 		$this->timeFactory = $timeFactory;
+		$this->imageResizer = $imageResizer;
 	}
 
 
@@ -111,7 +99,7 @@ class SocialApiService {
 
 		if ($version >= 4.0) {
 			// overwrite photo
-			$contact['PHOTO'] = "data:" . $imageType . ";base64," . $photo;
+			$contact['PHOTO'] = 'data:' . $imageType . ';base64,' . $photo;
 		} elseif ($version >= 3.0) {
 			// add new photo
 			$imageType = str_replace('image/', '', $imageType);
@@ -131,7 +119,7 @@ class SocialApiService {
 	 *
 	 * @returns {IAddressBook} the corresponding addressbook or null
 	 */
-	protected function getAddressBook(string $addressbookId, IManager $manager = null) : ?IAddressBook {
+	protected function getAddressBook(string $addressbookId, ?IManager $manager = null) : ?IAddressBook {
 		$addressBook = null;
 		if ($manager === null) {
 			$manager = $this->manager;
@@ -181,11 +169,13 @@ class SocialApiService {
 			}
 
 			// search contact in that addressbook, get social data
-			$contact = $addressBook->search($contactId, ['UID'], ['types' => true])[0];
+			$contacts = $addressBook->search($contactId, ['UID'], ['types' => true]);
 
-			if (!isset($contact)) {
+			if (!isset($contacts[0])) {
 				return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
 			}
+
+			$contact = $contacts[0];
 
 			if ($network) {
 				$allConnectors = [$this->socialProvider->getSocialConnector($network)];
@@ -200,7 +190,9 @@ class SocialApiService {
 			}
 
 			foreach ($connectors as $connector) {
-				$urls = array_merge($connector->getImageUrls($contact), $urls);
+				$urls = array_filter(array_merge($urls, $connector->getImageUrls($contact)), function ($url) {
+					return filter_var($url, FILTER_VALIDATE_URL) !== false;
+				});
 			}
 
 			if (count($urls) == 0) {
@@ -209,7 +201,7 @@ class SocialApiService {
 
 			foreach ($urls as $url) {
 				try {
-					$httpResult = $this->clientService->NewClient()->get($url);
+					$httpResult = $this->clientService->newClient()->get($url);
 					$socialdata = $httpResult->getBody();
 					$imageType = $httpResult->getHeader('content-type');
 					if (isset($socialdata) && isset($imageType)) {
@@ -221,6 +213,16 @@ class SocialApiService {
 
 			if (!$socialdata || $imageType === null) {
 				return new JSONResponse([], Http::STATUS_NOT_FOUND);
+			}
+
+			if (is_resource($socialdata)) {
+				$socialdata = stream_get_contents($socialdata);
+			}
+
+			$socialdata = $this->imageResizer->resizeImage($socialdata);
+
+			if (!$socialdata) {
+				return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 			}
 
 			// update contact
@@ -286,11 +288,11 @@ class SocialApiService {
 	 *
 	 * @param {array} report where the results are added
 	 * @param {String} entry the element to add
-	 * @param {string} status the (http) status code
+	 * @param {int} status the (http) status code
 	 *
 	 * @returns {array} the report including the new entry
 	 */
-	protected function registerUpdateResult(array $report, string $entry, string $status) : array {
+	protected function registerUpdateResult(array $report, string $entry, int $status) : array {
 		// initialize report on first call
 		if (empty($report)) {
 			$report = [
@@ -348,8 +350,7 @@ class SocialApiService {
 	 *
 	 * @returns {JSONResponse} JSONResponse with the list of changed and failed contacts
 	 */
-	public function updateAddressbooks(string $userId, string $offsetBook = null, string $offsetContact = null, string $network = null) : JSONResponse {
-
+	public function updateAddressbooks(string $userId, ?string $offsetBook = null, ?string $offsetContact = null, ?string $network = null) : JSONResponse {
 		// double check!
 		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
 		$bgSyncEnabledByUser = $this->config->getUserValue($userId, $this->appName, 'enableSocialSync', 'no');
@@ -368,8 +369,6 @@ class SocialApiService {
 
 		foreach ($addressBooks as $addressBook) {
 			if ((is_null($addressBook) ||
-				(Util::getVersion()[0] >= 20) &&
-				//TODO: remove version check ^ when dependency for contacts is min NCv20 (see info.xml)
 				($addressBook->isShared() || $addressBook->isSystemAddressBook()))) {
 				// TODO: filter out deactivated books, see https://github.com/nextcloud/server/issues/17537
 				continue;
@@ -384,16 +383,7 @@ class SocialApiService {
 			}
 
 			// get contacts in that addressbook
-			//TODO: activate this optimization when nextcloud/server#22085 is merged
-			/*
-			if (Util::getVersion()[0] < 21) {
-				//TODO: remove this branch when dependency for contacts is min NCv21 (see info.xml)
-				$contacts = $addressBook->search('', ['UID'], ['types' => true]);
-			} else {
-				$contacts = $addressBook->search('', ['X-SOCIALPROFILE'], ['types' => true]);
-			}
-			*/
-			$contacts = $addressBook->search('', ['UID'], ['types' => true]);
+			$contacts = $addressBook->search('', ['X-SOCIALPROFILE'], ['types' => true]);
 			usort($contacts, [$this, 'sortContacts']); // make sure the order stays the same in consecutive calls
 
 			// update one contact after another
@@ -408,9 +398,9 @@ class SocialApiService {
 
 				try {
 					$r = $this->updateContact($addressBook->getURI(), $contact['UID'], $network);
-					$response = $this->registerUpdateResult($response, $contact['FN'], $r->getStatus());
+					$response = $this->registerUpdateResult($response, $contact['FN'], (int) $r->getStatus());
 				} catch (\Exception $e) {
-					$response = $this->registerUpdateResult($response, $contact['FN'], '-1');
+					$response = $this->registerUpdateResult($response, $contact['FN'], -1);
 				}
 
 				// stop after 15sec (to be continued with next chunk)
