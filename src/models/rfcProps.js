@@ -227,7 +227,7 @@ const properties = {
 		multiple: false,
 		force: 'select',
 		// TRANSLATORS The supervisor of an employee
-		readableName: t('contacts', 'Manager'),
+		readableName: t('contacts', 'Line manager'),
 		icon: 'icon-manager',
 		default: false,
 		options({ contact, $store, selectType }) {
@@ -296,7 +296,7 @@ const properties = {
 			{ id: 'FRIEND', name: t('contacts', 'Friend') },
 			{ id: 'COLLEAGUE', name: t('contacts', 'Colleague') },
 			// TRANSLATORS The supervisor of an employee
-			{ id: 'MANAGER', name: t('contacts', 'Manager') },
+			{ id: 'MANAGER', name: t('contacts', 'Line manager') },
 			{ id: 'ASSISTANT', name: t('contacts', 'Assistant') },
 		],
 		primary: false,
@@ -317,7 +317,7 @@ const properties = {
 			{ id: 'COLLEAGUE', name: t('contacts', 'Colleague') },
 			{ id: 'COWORKER', name: t('contacts', 'Co-worker') },
 			// TRANSLATORS The supervisor of an employee
-			{ id: 'MANAGER', name: t('contacts', 'Manager') },
+			{ id: 'MANAGER', name: t('contacts', 'Line manager') },
 			{ id: 'ASSISTANT', name: t('contacts', 'Assistant') },
 			{ id: 'SPOUSE', name: t('contacts', 'Spouse') },
 			{ id: 'CHILD', name: t('contacts', 'Child') },
