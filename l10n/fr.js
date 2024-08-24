@@ -104,7 +104,7 @@ OC.L10N.register(
     "Manage members" : "Gérer les membres",
     "Team members" : "Membres de l'équipe",
     "Team resources" : "Ressources de l'équipe",
-    "Anything shared with this team will show up here" : "Tout ce qui a été partagé avec cette équipe s'affichera ici",
+    "Anything shared with this team will show up here" : "Tout ce qui a été partagé avec cette équipe apparaîtra ici",
     "Team name" : "Nom de l'équipe",
     "Settings" : "Paramètres",
     "Actions" : "Actions",
