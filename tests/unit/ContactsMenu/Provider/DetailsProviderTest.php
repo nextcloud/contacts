@@ -66,63 +66,63 @@ class DetailsProviderTest extends Base {
 		$resultUri = "$domain/index.php/apps/contacts/direct/contact/$uid~$abUri";
 
 		$entry->expects($this->exactly(3))
-			  ->method('getProperty')
-			  ->will($this->returnValueMap([
-			  	['UID', $uid],
-			  	['isLocalSystemBook', null],
-			  	['addressbook-key', 1]
-			  ]));
+			->method('getProperty')
+			->will($this->returnValueMap([
+				['UID', $uid],
+				['isLocalSystemBook', null],
+				['addressbook-key', 1]
+			]));
 
 		$addressbook->expects($this->once())
-					->method('getKey')
-					->willReturn(1);
+			->method('getKey')
+			->willReturn(1);
 
 		$addressbook->expects($this->once())
-					->method('getUri')
-					->willReturn($abUri);
+			->method('getUri')
+			->willReturn($abUri);
 
 		$this->manager->expects($this->once())
-			 ->method('getUserAddressbooks')
-			 ->willReturn([1 => $addressbook]);
+			->method('getUserAddressbooks')
+			->willReturn([1 => $addressbook]);
 
 		// Action icon
 		$this->urlGenerator->expects($this->once())
-			 ->method('imagePath')
-			 ->with('core', 'actions/info.svg')
-			 ->willReturn($iconUrl);
+			->method('imagePath')
+			->with('core', 'actions/info.svg')
+			->willReturn($iconUrl);
 
 		//
 		$this->urlGenerator->expects($this->once())
-			 ->method('linkToRoute')
-			 ->with('contacts.contacts.direct', [
-			 	'contact' => $uid . '~' . $abUri
-			 ])
-			 ->willReturn("/apps/contacts/direct/contact/$uid~$abUri");
+			->method('linkToRoute')
+			->with('contacts.contacts.direct', [
+				'contact' => $uid . '~' . $abUri
+			])
+			->willReturn("/apps/contacts/direct/contact/$uid~$abUri");
 
 		// Action icon and contact absolute urls
 		$this->urlGenerator->expects($this->exactly(2))
-			 ->method('getAbsoluteURL')
-			 ->will($this->returnValueMap([
-			 	[$iconUrl, "$domain/$iconUrl"],
-			 	["/apps/contacts/direct/contact/$uid~$abUri", $resultUri]
-			 ]));
+			->method('getAbsoluteURL')
+			->will($this->returnValueMap([
+				[$iconUrl, "$domain/$iconUrl"],
+				["/apps/contacts/direct/contact/$uid~$abUri", $resultUri]
+			]));
 
 		// Translations
 		$this->l10n->expects($this->once())
-			 ->method('t')
-			 ->with('Details')
-			 ->willReturnArgument(0);
+			->method('t')
+			->with('Details')
+			->willReturnArgument(0);
 			 
 		$this->actionFactory->expects($this->once())
-			 ->method('newLinkAction')
-			 ->with($this->equalTo("$domain/$iconUrl"), $this->equalTo('Details'), $this->equalTo($resultUri))
-			 ->willReturn($action);
+			->method('newLinkAction')
+			->with($this->equalTo("$domain/$iconUrl"), $this->equalTo('Details'), $this->equalTo($resultUri))
+			->willReturn($action);
 		$action->expects($this->once())
-			   ->method('setPriority')
-			   ->with($this->equalTo(0));
+			->method('setPriority')
+			->with($this->equalTo(0));
 		$entry->expects($this->once())
-			  ->method('addAction')
-			  ->with($action);
+			->method('addAction')
+			->with($action);
 
 		$this->provider->process($entry);
 	}
@@ -130,11 +130,11 @@ class DetailsProviderTest extends Base {
 	public function testProcessNoUID() {
 		$entry = $this->createMock(IEntry::class);
 		$entry->expects($this->once())
-			  ->method('getProperty')
-			  ->with($this->equalTo('UID'))
-			  ->willReturn(null);
+			->method('getProperty')
+			->with($this->equalTo('UID'))
+			->willReturn(null);
 		$entry->expects($this->never())
-			  ->method('addAction');
+			->method('addAction');
 
 		$this->provider->process($entry);
 	}
@@ -142,13 +142,13 @@ class DetailsProviderTest extends Base {
 	public function testProcessSystemContact() {
 		$entry = $this->createMock(IEntry::class);
 		$entry->expects($this->exactly(2))
-			  ->method('getProperty')
-			  ->will($this->returnValueMap([
-			  	['UID', 1234],
-			  	['isLocalSystemBook', true]
-			  ]));
+			->method('getProperty')
+			->will($this->returnValueMap([
+				['UID', 1234],
+				['isLocalSystemBook', true]
+			]));
 		$entry->expects($this->never())
-			  ->method('addAction');
+			->method('addAction');
 
 		$this->provider->process($entry);
 	}

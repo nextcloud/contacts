@@ -119,18 +119,18 @@ class DiasporaProviderTest extends TestCase {
 	public function testGetImageUrls($contact, $urls, $htmls, $imgs) {
 		if (count($urls)) {
 			$this->response
-		  ->method('getBody')
-		->willReturnOnConsecutiveCalls(...$htmls);
+				->method('getBody')
+				->willReturnOnConsecutiveCalls(...$htmls);
 
 			$urlArgs = array_map(function ($url) {
 				return [$url];
 			}, $urls);
 
 			$this->client
-		->expects($this->exactly(count($urls)))
-			->method('get')
-		->withConsecutive(...$urlArgs)
-		->willReturn($this->response);
+				->expects($this->exactly(count($urls)))
+				->method('get')
+				->withConsecutive(...$urlArgs)
+				->willReturn($this->response);
 		}
 
 		$result = $this->provider->getImageUrls($contact);
@@ -150,14 +150,14 @@ class DiasporaProviderTest extends TestCase {
 		$img = $url2.'-large-avatar.jpg';
 
 		$this->response
-		->method('getBody')
-	  ->willReturnOnConsecutiveCalls($html1, $html2);
+			->method('getBody')
+			->willReturnOnConsecutiveCalls($html1, $html2);
 
 		$this->client
-	  ->expects($this->exactly(2))
-		->method('get')
-	  ->withConsecutive([$url1], [$url2])
-	  ->willReturn($this->response);
+			->expects($this->exactly(2))
+			->method('get')
+			->withConsecutive([$url1], [$url2])
+			->willReturn($this->response);
 
 		$result = $this->provider->getImageUrls($contact);
 		$this->assertEquals([$img], $result);

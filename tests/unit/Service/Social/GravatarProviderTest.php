@@ -25,7 +25,7 @@ class GravatarProviderTest extends TestCase {
 		];
 
 		$contactWithoutEmail = [
-			'PHONE' => [['value' => 'one'], ["value" => "two"]]
+			'PHONE' => [['value' => 'one'], ['value' => 'two']]
 		];
 
 		return [
@@ -44,11 +44,11 @@ class GravatarProviderTest extends TestCase {
 
 	public function dataProviderGetImageUrls() {
 		$contactWithEmail = [
-			'EMAIL' => [["value" => "one"], ["value" => "two"]]
+			'EMAIL' => [['value' => 'one'], ['value' => 'two']]
 		];
 
 		$contactWithoutEmail = [
-			'PHONE' => [["value" => "one"], ["value" => "two"]]
+			'PHONE' => [['value' => 'one'], ['value' => 'two']]
 		];
 
 		$urls = [];
@@ -56,7 +56,7 @@ class GravatarProviderTest extends TestCase {
 		foreach ($contactWithEmail['EMAIL'] as $email) {
 			$hash = md5(strtolower(trim($email['value'])));
 			$recipe = 'https://www.gravatar.com/avatar/{hash}?s=720&d=404';
-			$urls[] = str_replace("{hash}", $hash, $recipe);
+			$urls[] = str_replace('{hash}', $hash, $recipe);
 		}
 
 		return [

@@ -65,7 +65,7 @@ class MastodonProvider implements ISocialProvider {
 		try {
 			$result = $this->httpClient->get($profileUrl, ['headers' => ['Accept' => 'application/json']]);
 			$jsonResult = json_decode($result->getBody(), true);
-			return $jsonResult["icon"]["url"] ?? null;
+			return $jsonResult['icon']['url'] ?? null;
 		} catch (\Exception $e) {
 			return null;
 		}
@@ -89,12 +89,12 @@ class MastodonProvider implements ISocialProvider {
 						try {
 							[$masto_user, $masto_server] = $masto_user_server;
 							# search for user webfinger
-							$webfinger = $masto_server . '/.well-known/webfinger?resource=acct:' . $masto_user . '@' . parse_url($masto_server)["host"];
+							$webfinger = $masto_server . '/.well-known/webfinger?resource=acct:' . $masto_user . '@' . parse_url($masto_server)['host'];
 							$result = $this->httpClient->get($webfinger);
 							$jsonResult = json_decode($result->getBody(), null, 512, JSON_THROW_ON_ERROR);
 							# find account link
 							foreach ($jsonResult->links as $link) {
-								if (($link->rel == "self") and ($link->type == "application/activity+json")) {
+								if (($link->rel == 'self') and ($link->type == 'application/activity+json')) {
 									$profileId = $link->href;
 									$profileIds[] = $profileId;
 									break;
@@ -122,7 +122,7 @@ class MastodonProvider implements ISocialProvider {
 		try {
 			$user_server = explode('@', $candidate);
 			if (strpos($candidate, 'http') !== 0) {
-				$masto_server = "https://" . array_pop($user_server);
+				$masto_server = 'https://' . array_pop($user_server);
 				$masto_user = array_pop($user_server);
 			} else {
 				$masto_user = array_pop($user_server);

@@ -71,7 +71,7 @@ class TelegramProvider implements ISocialProvider {
 	 * @return string
 	 */
 	protected function cleanupId(string $candidate):string {
-		$candidate = basename($candidate, ".t.me");
+		$candidate = basename($candidate, '.t.me');
 		if ($candidate[0] === '@') {
 			$candidate = substr($candidate, 1);
 		}
