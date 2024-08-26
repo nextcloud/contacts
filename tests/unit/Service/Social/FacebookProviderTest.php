@@ -120,18 +120,18 @@ class FacebookProviderTest extends TestCase {
 		$html1 = '"entity_id":"1234567"';
 
 		$this->response
-		->method('getBody')
-	  ->willReturn($html1);
+			->method('getBody')
+			->willReturn($html1);
 
 		$this->response
-		->method('getStatusCode')
-	  ->willReturn(200);
+			->method('getStatusCode')
+			->willReturn(200);
 
 		$this->client
-	  ->expects($this->once())
-		->method('get')
-	  ->with($url1)
-	  ->willReturn($this->response);
+			->expects($this->once())
+			->method('get')
+			->with($url1)
+			->willReturn($this->response);
 
 		$result = $this->provider->getImageUrls($contact);
 		$this->assertEquals([$url2], $result);

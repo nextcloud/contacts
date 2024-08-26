@@ -144,12 +144,12 @@ class TelegramProviderTest extends TestCase {
 		if (count($urls)) {
 			$this->response->method('getBody')->willReturnOnConsecutiveCalls(...$htmls);
 			$this->client
-		   ->expects($this->exactly(count($urls)))
-		   ->method('get')
-		   ->withConsecutive(...array_map(function ($a) {
-		   	return [$a];
-		   }, $urls))
-		   ->willReturn($this->response);
+				->expects($this->exactly(count($urls)))
+				->method('get')
+				->withConsecutive(...array_map(function ($a) {
+					return [$a];
+				}, $urls))
+				->willReturn($this->response);
 		}
 
 

@@ -48,15 +48,15 @@ class InstagramProviderTest extends TestCase {
 	public function dataProviderSupportsContact() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "username1", "type" => "instagram"],
-				["value" => "username2", "type" => "instagram"]
+				['value' => 'username1', 'type' => 'instagram'],
+				['value' => 'username2', 'type' => 'instagram']
 			]
 		];
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 
@@ -77,31 +77,31 @@ class InstagramProviderTest extends TestCase {
 	public function dataProviderGetImageUrls() {
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "username1", "type" => "instagram"],
-				["value" => "username2", "type" => "instagram"]
+				['value' => 'username1', 'type' => 'instagram'],
+				['value' => 'username2', 'type' => 'instagram']
 			]
 		];
 		$contactWithSocialUrls = [
-			"https://www.instagram.com/username1/?__a=1",
-			"https://www.instagram.com/username2/?__a=1",
+			'https://www.instagram.com/username1/?__a=1',
+			'https://www.instagram.com/username2/?__a=1',
 		];
 		$contactWithSocialJson = [
 			json_encode(
-				["graphql" => ["user" => ["profile_pic_url_hd" => "username1.jpg"]]]
+				['graphql' => ['user' => ['profile_pic_url_hd' => 'username1.jpg']]]
 			),
 			json_encode(
-				["graphql" => ["user" => ["profile_pic_url_hd" => "username2.jpg"]]]
+				['graphql' => ['user' => ['profile_pic_url_hd' => 'username2.jpg']]]
 			)
 		];
 		$contactWithSocialImgs = [
-			"username1.jpg",
-			"username2.jpg"
+			'username1.jpg',
+			'username2.jpg'
 		];
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 		$contactWithoutSocialUrls = [];
@@ -129,14 +129,14 @@ class InstagramProviderTest extends TestCase {
 	 */
 	public function testGetImageUrls($contact, $json, $urls, $imgs) {
 		if (count($urls)) {
-			$this->response->method("getBody")->willReturnOnConsecutiveCalls(...$json);
+			$this->response->method('getBody')->willReturnOnConsecutiveCalls(...$json);
 			$this->client
-		   ->expects($this->exactly(count($urls)))
-		   ->method("get")
-		   ->withConsecutive(...array_map(function ($a) {
-		   	return [$a];
-		   }, $urls))
-		   ->willReturn($this->response);
+				->expects($this->exactly(count($urls)))
+				->method('get')
+				->withConsecutive(...array_map(function ($a) {
+					return [$a];
+				}, $urls))
+				->willReturn($this->response);
 		}
 
 

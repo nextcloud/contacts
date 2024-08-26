@@ -25,7 +25,7 @@ class PageControllerTest extends TestCase {
 	/** @var IRequest|MockObject */
 	private $request;
 
-	/** @var IConfig|MockObject*/
+	/** @var IConfig|MockObject */
 	private $config;
 
 	/** @var IInitialStateService|MockObject */
@@ -37,13 +37,13 @@ class PageControllerTest extends TestCase {
 	/** @var IUserSession|MockObject */
 	private $userSession;
 
-	/** @var SocialApiService|MockObject*/
+	/** @var SocialApiService|MockObject */
 	private $socialApi;
 
-	/** @var IAppManager|MockObject*/
+	/** @var IAppManager|MockObject */
 	private $appManager;
 
-	/** @var CompareVersion|MockObject*/
+	/** @var CompareVersion|MockObject */
 	private $compareVersion;
 
 	protected function setUp(): void {

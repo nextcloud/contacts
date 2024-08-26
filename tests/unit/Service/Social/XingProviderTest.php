@@ -50,8 +50,8 @@ class XingProviderTest extends TestCase {
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				['value' => 'one', "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 
@@ -71,21 +71,21 @@ class XingProviderTest extends TestCase {
 
 	public function dataProviderGetImageUrls() {
 		$contactImages = [
-			"username1" => "https://profile-images-abcusername1.jpg",
-			"username2" => "https://profile-images-abcusername2.jpg",
-			"username3" => "https://".urlencode("profile-images-abc.ÄÖÜ/äöü_ß.jpg")
+			'username1' => 'https://profile-images-abcusername1.jpg',
+			'username2' => 'https://profile-images-abcusername2.jpg',
+			'username3' => 'https://'.urlencode('profile-images-abc.ÄÖÜ/äöü_ß.jpg')
 		];
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "username1", "type" => "xing"],
-				["value" => "username2", "type" => "xing"],
-				["value" => "username3", "type" => "xing"]
+				['value' => 'username1', 'type' => 'xing'],
+				['value' => 'username2', 'type' => 'xing'],
+				['value' => 'username3', 'type' => 'xing']
 			]
 		];
 		$contactWithSocialUrls = [
-			"https://www.xing.com/profile/username1",
-			"https://www.xing.com/profile/username2",
-			"https://www.xing.com/profile/username3"
+			'https://www.xing.com/profile/username1',
+			'https://www.xing.com/profile/username2',
+			'https://www.xing.com/profile/username3'
 		];
 		$contactWithSocialHtml = array_map(function ($profile) use ($contactImages) {
 			return '<img src="'.$contactImages[$profile['value']].'" />';
@@ -96,8 +96,8 @@ class XingProviderTest extends TestCase {
 
 		$contactWithoutSocial = [
 			'X-SOCIALPROFILE' => [
-				["value" => "one", "type" => "social2"],
-				["value" => "two", "type" => "social1"]
+				['value' => 'one', 'type' => 'social2'],
+				['value' => 'two', 'type' => 'social1']
 			]
 		];
 		$contactWithoutSocialUrls = [];
@@ -126,18 +126,18 @@ class XingProviderTest extends TestCase {
 	public function testGetImageUrls($contact, $urls, $htmls, $imgs) {
 		if (count($urls)) {
 			$this->response
-		  ->method('getBody')
-		->willReturnOnConsecutiveCalls(...$htmls);
+				->method('getBody')
+				->willReturnOnConsecutiveCalls(...$htmls);
 
 			$urlArgs = array_map(function ($url) {
 				return [$url];
 			}, $urls);
 
 			$this->client
-		->expects($this->exactly(count($urls)))
-			->method('get')
-		->withConsecutive(...$urlArgs)
-		->willReturn($this->response);
+				->expects($this->exactly(count($urls)))
+				->method('get')
+				->withConsecutive(...$urlArgs)
+				->willReturn($this->response);
 		}
 
 		$result = $this->provider->getImageUrls($contact);

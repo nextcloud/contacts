@@ -19,7 +19,7 @@ class ContactsControllerTest extends TestCase {
 	/** @var IL10N|MockObject */
 	private $l10n;
 
-	/** @var IURLGenerator|MockObject*/
+	/** @var IURLGenerator|MockObject */
 	private $urlGenerator;
 
 

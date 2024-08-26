@@ -35,9 +35,9 @@ class SocialApiService {
 	private $config;
 	/** @var IClientService */
 	private $clientService;
-	/** @var IL10N	*/
+	/** @var IL10N */
 	private $l10n;
-	/** @var IURLGenerator	*/
+	/** @var IURLGenerator */
 	private $urlGen;
 	/** @var CardDavBackend */
 	private $davBackend;
@@ -398,7 +398,7 @@ class SocialApiService {
 
 				try {
 					$r = $this->updateContact($addressBook->getURI(), $contact['UID'], $network);
-					$response = $this->registerUpdateResult($response, $contact['FN'], (int) $r->getStatus());
+					$response = $this->registerUpdateResult($response, $contact['FN'], (int)$r->getStatus());
 				} catch (\Exception $e) {
 					$response = $this->registerUpdateResult($response, $contact['FN'], -1);
 				}

@@ -37,9 +37,9 @@ class SocialApiServiceTest extends TestCase {
 	private $config;
 	/** @var IClientService|MockObject */
 	private $clientService;
-	/** @var IL10N|MockObject	*/
+	/** @var IL10N|MockObject */
 	private $l10n;
-	/** @var IURLGenerator|MockObject	*/
+	/** @var IURLGenerator|MockObject */
 	private $urlGen;
 	/** @var CardDavBackend|MockObject */
 	private $davBackend;
@@ -49,15 +49,15 @@ class SocialApiServiceTest extends TestCase {
 	private $imageResizer;
 
 	public function allSocialProfileProviders(): array {
-		$body = "the body";
-		$imageType = "jpg";
+		$body = 'the body';
+		$imageType = 'jpg';
 		$contact = [
 			'URI' => '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
 			'VERSION' => '4.0'
 		];
 		$connector = $this->createMock(ISocialProvider::class);
 		$connector->method('supportsContact')->willReturn(true);
-		$connector->method('getImageUrls')->willReturn(["https://https://url1.com/an-url/an-url"]);
+		$connector->method('getImageUrls')->willReturn(['https://https://url1.com/an-url/an-url']);
 
 		$connectorNoSupport = $this->createMock(ISocialProvider::class);
 		$connectorNoSupport->method('supportsContact')->willReturn(false);
@@ -83,11 +83,11 @@ class SocialApiServiceTest extends TestCase {
 			->willReturn([$contact]);
 
 		return [
-			'no address book found' => [null, [], "", "", Http::STATUS_BAD_REQUEST],
-			'no contact found' => [[$addressbookEmpty], [], "", "", Http::STATUS_PRECONDITION_FAILED],
-			'no supporting contacts found' => [[$addressbook], [$connectorNoSupport], "", "", Http::STATUS_PRECONDITION_FAILED],
-			'no url found' => [[$addressbook], [$connectorNoUrl], "", "", Http::STATUS_BAD_REQUEST],
-			'no image found' => [[$addressbook], [$connector], "", "", Http::STATUS_NOT_FOUND],
+			'no address book found' => [null, [], '', '', Http::STATUS_BAD_REQUEST],
+			'no contact found' => [[$addressbookEmpty], [], '', '', Http::STATUS_PRECONDITION_FAILED],
+			'no supporting contacts found' => [[$addressbook], [$connectorNoSupport], '', '', Http::STATUS_PRECONDITION_FAILED],
+			'no url found' => [[$addressbook], [$connectorNoUrl], '', '', Http::STATUS_BAD_REQUEST],
+			'no image found' => [[$addressbook], [$connector], '', '', Http::STATUS_NOT_FOUND],
 			'image found' => [[$addressbook], [$connector], $body, $imageType, Http::STATUS_OK]
 		];
 	}
@@ -167,26 +167,26 @@ class SocialApiServiceTest extends TestCase {
 			->willReturn($body);
 
 		$result = $this->service
-			 ->updateContact(
-			 	'contacts',
-			 	'3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
-			 	null);
+			->updateContact(
+				'contacts',
+				'3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
+				null);
 		$this->assertEquals($status, $result->getStatus());
 	}
 
 	public function testUpdateContactWithNetworkVersion3() {
-		$network = "mastodon";
-		$body = "the body";
-		$imageType = "jpg";
-		$addressBookId = "contacts";
-		$contactId = "3225c0d5-1bd2-43e5-a08c-4e65eaa406b0";
+		$network = 'mastodon';
+		$body = 'the body';
+		$imageType = 'jpg';
+		$addressBookId = 'contacts';
+		$contactId = '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0';
 		$contact = [
 			'URI' => $contactId,
 			'VERSION' => '3.0'
 		];
 		$provider = $this->createMock(ISocialProvider::class);
 		$provider->method('supportsContact')->willReturn(true);
-		$provider->method('getImageUrls')->willReturn(["https://url1.com/an-url"]);
+		$provider->method('getImageUrls')->willReturn(['https://url1.com/an-url']);
 
 		$addressbook = $this->createMock(IAddressBook::class);
 		$addressbook
@@ -234,32 +234,32 @@ class SocialApiServiceTest extends TestCase {
 		];
 
 		$this->socialProvider
-			->expects($this->once())->method("getSocialConnector")->with($network);
-		$provider->expects($this->once())->method("supportsContact")->with($contact);
-		$addressbook->expects($this->once())->method("createOrUpdate")->with($changes, $addressBookId);
+			->expects($this->once())->method('getSocialConnector')->with($network);
+		$provider->expects($this->once())->method('supportsContact')->with($contact);
+		$addressbook->expects($this->once())->method('createOrUpdate')->with($changes, $addressBookId);
 
 		$result = $this->service
-									 ->updateContact(
-									 	$addressBookId,
-									 	$contactId,
-									 	$network);
+			->updateContact(
+				$addressBookId,
+				$contactId,
+				$network);
 
 		$this->assertEquals(Http::STATUS_OK, $result->getStatus());
 	}
 
 	public function testUpdateContactWithNetworkVersion4() {
-		$network = "mastodon";
-		$body = "the body";
-		$imageType = "jpg";
-		$addressBookId = "contacts";
-		$contactId = "3225c0d5-1bd2-43e5-a08c-4e65eaa406b0";
+		$network = 'mastodon';
+		$body = 'the body';
+		$imageType = 'jpg';
+		$addressBookId = 'contacts';
+		$contactId = '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0';
 		$contact = [
 			'URI' => $contactId,
 			'VERSION' => '4.0'
 		];
 		$provider = $this->createMock(ISocialProvider::class);
 		$provider->method('supportsContact')->willReturn(true);
-		$provider->method('getImageUrls')->willReturn(["https://url1.com/an-url"]);
+		$provider->method('getImageUrls')->willReturn(['https://url1.com/an-url']);
 
 		$addressbook = $this->createMock(IAddressBook::class);
 		$addressbook
@@ -303,19 +303,19 @@ class SocialApiServiceTest extends TestCase {
 		$changes = [
 			'URI' => $contact['URI'],
 			'VERSION' => $contact['VERSION'],
-			'PHOTO' => "data:".$imageType.";base64," . base64_encode($body)
+			'PHOTO' => 'data:'.$imageType.';base64,' . base64_encode($body)
 		];
 
 		$this->socialProvider
-			 ->expects($this->once())->method("getSocialConnector")->with($network);
-		$provider->expects($this->once())->method("supportsContact")->with($contact);
-		$addressbook->expects($this->once())->method("createOrUpdate")->with($changes, $addressBookId);
+			->expects($this->once())->method('getSocialConnector')->with($network);
+		$provider->expects($this->once())->method('supportsContact')->with($contact);
+		$addressbook->expects($this->once())->method('createOrUpdate')->with($changes, $addressBookId);
 
 		$result = $this->service
-									 ->updateContact(
-									 	$addressBookId,
-									 	$contactId,
-									 	$network);
+			->updateContact(
+				$addressBookId,
+				$contactId,
+				$network);
 
 		$this->assertEquals(Http::STATUS_OK, $result->getStatus());
 	}
@@ -331,7 +331,7 @@ class SocialApiServiceTest extends TestCase {
 			'UID' => '22222222-2222-2222-2222-222222222222',
 			'FN' => 'Valid Contact Two',
 			'VERSION' => '4.0',
-			'PHOTO' => "data:someHeader;base64," . base64_encode('someBody'),
+			'PHOTO' => 'data:someHeader;base64,' . base64_encode('someBody'),
 			'X-SOCIALPROFILE' => [['type' => 'someNetwork', 'value' => 'someId2']],
 		];
 		$emptyContact = [
@@ -388,17 +388,17 @@ class SocialApiServiceTest extends TestCase {
 		];
 
 		$providerUrlMap = [
-			[$validContact1, ["https://url1.com/an-url"]],
+			[$validContact1, ['https://url1.com/an-url']],
 			[$emptyContact, []],
 			[$invalidContact, []],
-			[$validContact2, ["https://url1.com/an-url"]]
+			[$validContact2, ['https://url1.com/an-url']]
 		];
 
 		$provider = $this->createMock(ISocialProvider::class);
 		$provider->method('getImageUrls')
-					 ->will($this->returnValueMap($providerUrlMap));
+			->will($this->returnValueMap($providerUrlMap));
 		$provider->method('supportsContact')
-					 ->will($this->returnValueMap($providerSupportsMap));
+			->will($this->returnValueMap($providerSupportsMap));
 
 		$this->socialProvider
 			->method('getSocialConnectors')
