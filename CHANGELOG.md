@@ -4,7 +4,7 @@
 -->
 # Changelog
 
-## 6.1.0 – 2024-08-22
+## 6.1.0 – 2024-08-28
 ### Added
 - Nextcloud 30 support
 - Drag and Drop feature for adding contacts to group
