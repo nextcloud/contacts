@@ -4,7 +4,7 @@
 -->
 # Changelog
 
-## 6.1.0-alpha.1 – Unreleased
+## 6.1.0 – 2024-08-22
 ### Added
 - Nextcloud 30 support
 - Drag and Drop feature for adding contacts to group
@@ -24,7 +24,12 @@
 - Spacing and alignment in the contact details view
 - Subtitle in contacts details
 - Make horizontal and  vertical padding equal
-
+- Improve calculation of member list
+- Don't use VirtualList for listing members
+- Rename 'add member' to 'manage team'
+- Rename 'Contact groups' to 'groups'
+- Adjustments to ListItemIcon properties
+- Scrobbale button in navigation
 
 ## 6.0.0-rc.1 – Unreleased
 ### Added 
