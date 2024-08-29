@@ -102,7 +102,6 @@ OC.L10N.register(
     "Voice" : "Balss",
     "Car" : "Automašīna",
     "Work pager" : "Darba peidžeris",
-    "Manager" : "Vadītājs",
     "Social network" : "Sociālais tīkls",
     "Spouse" : "Dzīvesbiedrs",
     "Child" : "Bērns",

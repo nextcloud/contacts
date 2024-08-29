@@ -287,7 +287,6 @@ OC.L10N.register(
     "Voice" : "Röst",
     "Car" : "Bil",
     "Work pager" : "Personsökare Arbete",
-    "Manager" : "Chef",
     "Social network" : "Socialt nätverk",
     "Relationship to you" : "Relation till dig",
     "Spouse" : "Make/Maka",

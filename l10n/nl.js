@@ -228,7 +228,6 @@ OC.L10N.register(
     "Voice" : "Stem",
     "Car" : "Auto",
     "Work pager" : "Werk pieper",
-    "Manager" : "Manager",
     "Social network" : "Sociaal netwerk",
     "Relationship to you" : "Relatie met jou",
     "Spouse" : "Echtgenoot",

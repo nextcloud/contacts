@@ -192,7 +192,6 @@ OC.L10N.register(
     "Voice" : "Glas",
     "Car" : "Automobil",
     "Work pager" : "Poslovni dojavljivač",
-    "Manager" : "Voditelj",
     "Social network" : "Društvena mreža",
     "Relationship to you" : "Odnos s vama",
     "Spouse" : "Supružnik",

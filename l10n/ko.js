@@ -227,7 +227,6 @@ OC.L10N.register(
     "Voice" : "음성 번호",
     "Car" : "카폰",
     "Work pager" : "직장 호출기",
-    "Manager" : "관리자",
     "Social network" : "소셜 네트워크",
     "Relationship to you" : "나와의 관계",
     "Spouse" : "배우자",

@@ -193,7 +193,6 @@ OC.L10N.register(
     "Voice" : "Boghe",
     "Car" : "Vetura",
     "Work pager" : "Chircapersones de traballu",
-    "Manager" : "Responsàbile",
     "Social network" : "Rete sotziale",
     "Relationship to you" : "Amorende cun tegus",
     "Spouse" : "Còjube",

@@ -278,7 +278,6 @@ OC.L10N.register(
     "Voice" : "Glasovna pošta",
     "Car" : "Avto",
     "Work pager" : "Pozivnik",
-    "Manager" : "Vodja",
     "Social network" : "Družbeno omrežje",
     "Relationship to you" : "Odnos z vami",
     "Spouse" : "Partner",

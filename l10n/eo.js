@@ -103,7 +103,6 @@ OC.L10N.register(
     "Voice" : "Voĉo",
     "Car" : "Aŭto",
     "Work pager" : "Labora televokilo",
-    "Manager" : "Estr(in)o",
     "Social network" : "Socia reto",
     "Spouse" : "Edz(in)o",
     "Child" : "Infano",

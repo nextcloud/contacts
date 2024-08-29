@@ -244,7 +244,6 @@ OC.L10N.register(
     "Voice" : "语音",
     "Car" : "车",
     "Work pager" : "工作传呼机",
-    "Manager" : "经理",
     "Social network" : "社交网络",
     "Relationship to you" : "和您的关系",
     "Spouse" : "配偶",

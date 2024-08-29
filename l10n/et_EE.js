@@ -78,7 +78,6 @@ OC.L10N.register(
     "Voice" : "Hääl",
     "Car" : "Auto",
     "Work pager" : "Piipar (tööl)",
-    "Manager" : "Juht",
     "Social network" : "Sotsiaalvõrk",
     "Spouse" : "Abikaasa",
     "Child" : "Laps",

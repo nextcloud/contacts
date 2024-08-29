@@ -69,7 +69,6 @@ OC.L10N.register(
     "Fax" : "Факс",
     "Fax home" : "Гэрийн факс",
     "Fax work" : "Ажлын факс",
-    "Manager" : "Менежер",
     "Social network" : "Олон нийтийн сүлжээ",
     "Child" : "хүүхэд",
     "Mother" : "эх",

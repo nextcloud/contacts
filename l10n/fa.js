@@ -227,7 +227,6 @@ OC.L10N.register(
     "Voice" : "صدا",
     "Car" : "خودرو",
     "Work pager" : "پی‌چوی کاری",
-    "Manager" : "مدیر",
     "Social network" : "شبکه اجتماعی",
     "Relationship to you" : "رابطه با شما",
     "Spouse" : "همسر",

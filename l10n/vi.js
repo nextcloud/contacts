@@ -150,7 +150,6 @@ OC.L10N.register(
     "Voice" : "Giọng nói",
     "Car" : "Xe",
     "Work pager" : "Máy nhắn tin",
-    "Manager" : "Trưởng phòng",
     "Social network" : "Mạng xã hội",
     "Relationship to you" : "Quan hệ với bạn",
     "Spouse" : "Vợ / chồng",

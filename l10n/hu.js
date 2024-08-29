@@ -263,7 +263,6 @@ OC.L10N.register(
     "Voice" : "Hang",
     "Car" : "Autó",
     "Work pager" : "Munkahelyi csipogó",
-    "Manager" : "Vezető",
     "Social network" : "Közösségi hálózat",
     "Relationship to you" : "Kapcsolat Önnel",
     "Spouse" : "Házastárs",

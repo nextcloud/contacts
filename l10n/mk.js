@@ -210,7 +210,6 @@ OC.L10N.register(
     "Voice" : "Глас",
     "Car" : "Автомобил",
     "Work pager" : "Службен пејџер",
-    "Manager" : "Менаџер",
     "Social network" : "Социјална мрежа",
     "Relationship to you" : "Врска со вас",
     "Spouse" : "Брачен другар",

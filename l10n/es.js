@@ -280,7 +280,6 @@ OC.L10N.register(
     "Voice" : "Voz",
     "Car" : "Coche",
     "Work pager" : "Busca del trabajo",
-    "Manager" : "Mánager",
     "Social network" : "Redes sociales",
     "Relationship to you" : "Relación contigo",
     "Spouse" : "Cónyuge",

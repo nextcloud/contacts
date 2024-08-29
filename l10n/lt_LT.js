@@ -200,7 +200,6 @@ OC.L10N.register(
     "Voice" : "Balso pašto",
     "Car" : "Automobilis",
     "Work pager" : "Darbo pranešimų gaviklis",
-    "Manager" : "Vadovas",
     "Social network" : "Socialinis tinklas",
     "Relationship to you" : "Ryšys su jumis",
     "Spouse" : "Sutuoktinis",

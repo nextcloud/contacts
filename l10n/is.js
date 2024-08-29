@@ -232,7 +232,6 @@ OC.L10N.register(
     "Voice" : "Raddskilaboð",
     "Car" : "Bíll",
     "Work pager" : "Vinnufriðþjófur",
-    "Manager" : "Yfirmaður",
     "Social network" : "Samfélagsnet",
     "Relationship to you" : "Vensl við þig",
     "Spouse" : "Maki",

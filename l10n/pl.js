@@ -281,7 +281,6 @@ OC.L10N.register(
     "Voice" : "Połączenie głosowe",
     "Car" : "Samochód",
     "Work pager" : "Pager służbowy",
-    "Manager" : "Menadżer",
     "Social network" : "Sieć społecznościowa",
     "Relationship to you" : "Powiązane z Tobą",
     "Spouse" : "Współmałżonek",

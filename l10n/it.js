@@ -228,7 +228,6 @@ OC.L10N.register(
     "Voice" : "Voce",
     "Car" : "Automobile",
     "Work pager" : "Cercapersone lavoro",
-    "Manager" : "Responsabile",
     "Social network" : "Rete sociale",
     "Relationship to you" : "Rapporto con te",
     "Spouse" : "Coniuge",

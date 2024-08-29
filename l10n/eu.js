@@ -281,7 +281,6 @@ OC.L10N.register(
     "Voice" : "Ahotsa",
     "Car" : "Kotxea",
     "Work pager" : "Laneko orriztapena",
-    "Manager" : "Zuzendaria",
     "Social network" : "Sare soziala",
     "Relationship to you" : "Zureganako erlazioa",
     "Spouse" : "Emaztea",

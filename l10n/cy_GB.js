@@ -96,7 +96,6 @@ OC.L10N.register(
     "Voice" : "Llais",
     "Car" : "Car",
     "Work pager" : "Swnyn gwaith",
-    "Manager" : "Rheolwr",
     "Social network" : "Rhwydwaith cymdeithasol",
     "Spouse" : "Priod",
     "Child" : "Plentyn",

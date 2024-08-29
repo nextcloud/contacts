@@ -287,7 +287,6 @@ OC.L10N.register(
     "Voice" : "音声番号",
     "Car" : "自動車",
     "Work pager" : "ワークページャー",
-    "Manager" : "マネージャー",
     "Social network" : "ソーシャルネットワーク",
     "Relationship to you" : "あなたとの関係",
     "Spouse" : "配偶者",

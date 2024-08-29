@@ -287,7 +287,6 @@ OC.L10N.register(
     "Voice" : "音頻",
     "Car" : "車子",
     "Work pager" : "傳呼機（業務）",
-    "Manager" : "上司",
     "Social network" : "社交網絡",
     "Relationship to you" : "與您的關係",
     "Spouse" : "配偶",

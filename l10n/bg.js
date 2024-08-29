@@ -215,7 +215,6 @@ OC.L10N.register(
     "Voice" : "Гласов",
     "Car" : "Кола",
     "Work pager" : "Служебен пейджър",
-    "Manager" : "Управител",
     "Social network" : "Социална мрежа",
     "Relationship to you" : "Връзка с теб",
     "Spouse" : "Съпруг(а)",

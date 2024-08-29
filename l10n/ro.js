@@ -80,7 +80,6 @@ OC.L10N.register(
     "Voice" : "Voce",
     "Car" : "Mașina",
     "Work pager" : "Pager de serviciu",
-    "Manager" : "Director",
     "Social network" : "Rețea socială",
     "Spouse" : "Soție",
     "Child" : "Copil",

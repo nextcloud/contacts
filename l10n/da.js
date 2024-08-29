@@ -283,7 +283,6 @@ OC.L10N.register(
     "Voice" : "Telefonsvarer",
     "Car" : "Bil",
     "Work pager" : "Arbejdespager ",
-    "Manager" : "Leder",
     "Social network" : "Socialt netværk",
     "Relationship to you" : "Forhold til dig",
     "Spouse" : "Ægtefælle",

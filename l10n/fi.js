@@ -266,7 +266,6 @@ OC.L10N.register(
     "Voice" : "Ääni",
     "Car" : "Auto",
     "Work pager" : "Työhakulaite",
-    "Manager" : "Esimies",
     "Social network" : "Sosiaalinen verkosto",
     "Relationship to you" : "Suhde sinuun",
     "Spouse" : "Puoliso",

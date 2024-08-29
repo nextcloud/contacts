@@ -287,7 +287,6 @@ OC.L10N.register(
     "Voice" : "Guth",
     "Car" : "Carr",
     "Work pager" : "Próiseálaí oibre",
-    "Manager" : "Bainisteoir",
     "Social network" : "Líonra sóisialta",
     "Relationship to you" : "Gaol leat",
     "Spouse" : "Céile",

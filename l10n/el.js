@@ -234,7 +234,6 @@ OC.L10N.register(
     "Voice" : "Ομιλία",
     "Car" : "Αμάξι",
     "Work pager" : "Βομβητής δουλειάς",
-    "Manager" : "Διευθυντής",
     "Social network" : "Κοινωνικό δίκτυο",
     "Relationship to you" : "Σχέση με εσάς",
     "Spouse" : "Σύζυγος",

@@ -231,7 +231,6 @@ OC.L10N.register(
     "Voice" : "Veu",
     "Car" : "Cotxe",
     "Work pager" : "Cercapersones de la feina",
-    "Manager" : "Gerent",
     "Social network" : "Xarxa social",
     "Relationship to you" : "Relació",
     "Spouse" : "Parella",

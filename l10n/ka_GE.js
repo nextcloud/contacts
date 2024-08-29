@@ -75,7 +75,6 @@ OC.L10N.register(
     "Voice" : "ხმა",
     "Car" : "მაქნანა",
     "Work pager" : "სამუშაო პეიჯერი",
-    "Manager" : "მენეჯერი",
     "Social network" : "სოციალური ქსელი",
     "Spouse" : "მეუღლე",
     "Child" : "შვილი",

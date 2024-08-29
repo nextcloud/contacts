@@ -94,7 +94,6 @@ OC.L10N.register(
     "Pager" : "Faques",
     "Voice" : "Zë",
     "Car" : "Makine",
-    "Manager" : "Manaxher/e",
     "Social network" : "Rrjet social",
     "Spouse" : "Bashkëshort/e",
     "Child" : "Fëmijë",

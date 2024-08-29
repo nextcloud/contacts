@@ -272,7 +272,6 @@ OC.L10N.register(
     "Voice" : "Hlas",
     "Car" : "Auto",
     "Work pager" : "Pracovní pager",
-    "Manager" : "Nadřízený",
     "Social network" : "Sociální síť",
     "Relationship to you" : "Souvislost s vámi",
     "Spouse" : "Partner(ka)",

@@ -287,7 +287,6 @@ OC.L10N.register(
     "Voice" : "Ses",
     "Car" : "Araç telefonu",
     "Work pager" : "İş çağrı cihazı",
-    "Manager" : "Yönetici",
     "Social network" : "Sosyal ağ",
     "Relationship to you" : "Sizinle ilişkili",
     "Spouse" : "Eş",

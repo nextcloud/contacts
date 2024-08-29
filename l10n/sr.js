@@ -287,7 +287,6 @@ OC.L10N.register(
     "Voice" : "Гласовна пошта",
     "Car" : "Кола",
     "Work pager" : "Пословни пејџер",
-    "Manager" : "Менаџер",
     "Social network" : "Друштвена мрежа",
     "Relationship to you" : "Веза са Вама",
     "Spouse" : "Супружник",

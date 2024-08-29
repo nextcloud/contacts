@@ -150,7 +150,6 @@ OC.L10N.register(
     "Voice" : "קולי",
     "Car" : "רכב",
     "Work pager" : "זימונית מהעבודה",
-    "Manager" : "מנהל/ת",
     "Social network" : "רשת חברתית",
     "Relationship to you" : "מערכת יחסים אליך",
     "Spouse" : "בן/בת זוג",

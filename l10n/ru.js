@@ -226,7 +226,6 @@ OC.L10N.register(
     "Voice" : "Голосовая почта",
     "Car" : "Номер в авто",
     "Work pager" : "Рабочий пейджер",
-    "Manager" : "Руководитель",
     "Social network" : "Социальная сеть",
     "Relationship to you" : "Отношение к вам",
     "Spouse" : "Супруг",
