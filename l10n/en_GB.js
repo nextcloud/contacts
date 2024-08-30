@@ -287,6 +287,7 @@ OC.L10N.register(
     "Voice" : "Voice",
     "Car" : "Car",
     "Work pager" : "Work pager",
+    "Line manager" : "Line manager",
     "Social network" : "Social network",
     "Relationship to you" : "Relationship to you",
     "Spouse" : "Spouse",

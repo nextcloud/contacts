@@ -106,7 +106,7 @@ OC.L10N.register(
     "Title" : "عنوان",
     "Company" : "شرکت",
     "Go to talk conversation" : "Go to talk conversation",
-    "View profile" : "View profile",
+    "View profile" : "دیدن نمایه",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "This contact was broken and received a fix. Please review the content and click here to save it.",
     "Edit" : "ویرایش",
     "Clone contact" : "Clone contact",
