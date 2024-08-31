@@ -287,6 +287,7 @@ OC.L10N.register(
     "Voice" : "صوت",
     "Car" : "سيارة",
     "Work pager" : "مُنادِي العمل Work pager",
+    "Line manager" : "مدير الخط",
     "Social network" : "شبكة اجتماعية",
     "Relationship to you" : "العلاقة معك",
     "Spouse" : "زوج/زوجة",

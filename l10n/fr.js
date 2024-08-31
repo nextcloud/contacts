@@ -287,6 +287,7 @@ OC.L10N.register(
     "Voice" : "Voix",
     "Car" : "Voiture",
     "Work pager" : "Bipper professionnel",
+    "Line manager" : "Supérieur hiérarchique",
     "Social network" : "Réseau social",
     "Relationship to you" : "Relation avec vous",
     "Spouse" : "Conjoint",
