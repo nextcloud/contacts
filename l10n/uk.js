@@ -287,6 +287,7 @@ OC.L10N.register(
     "Voice" : "Голос",
     "Car" : "В автомобілі",
     "Work pager" : "Роб. пейджер",
+    "Line manager" : "Безпосередній керівник",
     "Social network" : "Сторінка у соціальній мережі",
     "Relationship to you" : "Взаємини з вами",
     "Spouse" : "Чоловік/дружина",
