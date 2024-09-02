@@ -21,7 +21,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        branches: ['main', 'stable5.5', 'stable6.0']
+        branches: ['main', 'master', 'stable30', 'stable29', 'stable28']
 
     name: npm-audit-fix-${{ matrix.branches }}
 
@@ -39,12 +39,12 @@ jobs:
           fallbackNpm: '^10'
 
       - name: Set up node ${{ steps.versions.outputs.nodeVersion }}
-        uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
+        uses: actions/setup-node@1e60f620b9541d16bece96c5465dc8ee9832be0b # v4.0.3
         with:
           node-version: ${{ steps.versions.outputs.nodeVersion }}
 
       - name: Set up npm ${{ steps.versions.outputs.npmVersion }}
-        run: npm i -g npm@"${{ steps.versions.outputs.npmVersion }}"
+        run: npm i -g 'npm@${{ steps.versions.outputs.npmVersion }}'
 
       - name: Fix npm audit
         id: npm-audit
@@ -63,12 +63,12 @@ jobs:
         uses: peter-evans/create-pull-request@c5a7806660adbe173f04e3e038b0ccdcd758773c # v6.1.0
         with:
           token: ${{ secrets.COMMAND_BOT_PAT }}
-          commit-message: "fix(deps): fix npm audit"
+          commit-message: 'fix(deps): Fix npm audit'
           committer: GitHub <noreply@github.com>
           author: nextcloud-command <nextcloud-command@users.noreply.github.com>
           signoff: true
           branch: automated/noid/${{ matrix.branches }}-fix-npm-audit
-          title: "[${{ matrix.branches }}] Fix npm audit"
+          title: '[${{ matrix.branches }}] Fix npm audit'
           body: ${{ steps.npm-audit.outputs.markdown }}
           labels: |
             dependencies

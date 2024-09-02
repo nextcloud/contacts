@@ -26,6 +26,9 @@ concurrency:
 jobs:
   changes:
     runs-on: ubuntu-latest-low
+    permissions:
+      contents: read
+      pull-requests: read
 
     outputs:
       src: ${{ steps.changes.outputs.src}}
@@ -72,7 +75,7 @@ jobs:
           node-version: ${{ steps.versions.outputs.nodeVersion }}
 
       - name: Set up npm ${{ steps.versions.outputs.npmVersion }}
-        run: npm i -g npm@"${{ steps.versions.outputs.npmVersion }}"
+        run: npm i -g 'npm@${{ steps.versions.outputs.npmVersion }}'
 
       - name: Install dependencies & build
         env:
