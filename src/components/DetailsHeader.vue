@@ -78,8 +78,8 @@ $top-padding: 50px;
 	padding: $top-padding 0 20px;
 	gap: $contact-details-row-gap;
 	&__quick-actions{
-			padding: 5px 0;
-		}
+		padding: 5px 0;
+	}
 
 	@media (max-width: 1024px) {
 		// Top padding of 44px is already included in AppContent by default on mobile

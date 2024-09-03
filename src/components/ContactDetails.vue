@@ -1147,9 +1147,10 @@ section.contact-details {
 .empty-content {
 	height: 100%;
 }
+
 .contact-title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 </style>
