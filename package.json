@@ -68,7 +68,7 @@
     "p-limit": "^5.0.0",
     "pinia": "^2.1.7",
     "string-natural-compare": "^3.0.1",
-    "uuid": "^9.0.1",
+    "uuid": "^10.0.0",
     "vue": "~2.7.16",
     "vue-click-outside": "^1.1.0",
     "vue-cropperjs": "^4.2.0",
