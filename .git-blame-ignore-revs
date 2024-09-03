@@ -5,3 +5,6 @@
 
 # Update to coding-standard 1.2.3
 fe16be69e7a10647508f8c0b63383cbb5ffbde84
+
+# Bump @nextcloud/stylelint-config from 2.3.0 to ^2.4.0
+b6e141bba3b4a19718d7eef1f89dfab6bcfcf6aa
