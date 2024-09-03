@@ -40,7 +40,8 @@
 			"description": "Request JavaScript reviews",
 			"matchManagers": ["npm"],
 			"reviewers": [
-				"hamza221"
+				"hamza221",
+				"GVodyanov"
 			]
 		},
 		{
@@ -71,7 +72,8 @@
 			"description": "Request PHP reviews",
 			"matchManagers": ["composer"],
 			"reviewers": [
-				"hamza221"
+				"hamza221",
+				"SebastianKrupinski"
 			]
 		},
 		{
@@ -79,7 +81,9 @@
 			"matchManagers": ["github-actions"],
 			"extends": ["schedule:monthly"],
 			"reviewers": [
-				"hamza221"
+				"hamza221",
+				"GVodyanov",
+				"SebastianKrupinski"
 			]
 		},
 		{
@@ -96,14 +100,28 @@
 		},
 		{
 			"description": "Only automerge packages that follow semver",
-			"matchPackageNames": ["@nextcloud/vue", "friendsofphp/php-cs-fixer"],
+			"matchPackageNames": ["@nextcloud/vue"],
 			"automerge": false,
 			"labels": [
 				"dependencies",
 				"3. to review"
 			],
 			"reviewers": [
-				"hamza221"
+				"hamza221",
+				"GVodyanov"
+			]
+		},
+		{
+			"description": "Only automerge packages that follow semver",
+			"matchPackageNames": ["friendsofphp/php-cs-fixer"],
+			"automerge": false,
+			"labels": [
+				"dependencies",
+				"3. to review"
+			],
+			"reviewers": [
+				"hamza221",
+				"SebastianKrupinski"
 			]
 		},
 		{
