@@ -8,3 +8,6 @@ fe16be69e7a10647508f8c0b63383cbb5ffbde84
 
 # Bump @nextcloud/stylelint-config from 2.3.0 to ^2.4.0
 b6e141bba3b4a19718d7eef1f89dfab6bcfcf6aa
+
+# Bump @nextcloud/eslint-config from 8.3.0 to ^8.4.1
+8409243f7c4ee92a2666f30dbc4e241ffba28992
