@@ -216,16 +216,16 @@ export default {
 			 * If we force the removal of the year (vcard 4.0 only)
 			 * year is still valid on the apple format x-apple-omit-year
 			 */
-			if (!this.value.year) {
-				dateObject.year = null
-			} else
+				if (!this.value.year) {
+					dateObject.year = null
+				} else
 
-			// Apple style omit year parameter
-			// if year changed and we were already
-			// ignoring the year, we update the parameter
-			if (ignoreYear && dateObject.year) {
-				this.property.setParameter('x-apple-omit-year', parseInt(dateObject.year).toString())
-			}
+				// Apple style omit year parameter
+				// if year changed and we were already
+				// ignoring the year, we update the parameter
+					if (ignoreYear && dateObject.year) {
+						this.property.setParameter('x-apple-omit-year', parseInt(dateObject.year).toString())
+					}
 
 			// reset the VCardTime component to the selected date/time
 			this.localValue = new ICAL.VCardTime(dateObject, null, this.propType)
