@@ -287,7 +287,7 @@ OC.L10N.register(
     "Voice" : "Anruf",
     "Car" : "Auto",
     "Work pager" : "Arbeit Pager",
-    "Line manager" : "Linien-Manager",
+    "Line manager" : "Vorgesetzter",
     "Social network" : "Soziales Netzwerk",
     "Relationship to you" : "Verbindung zu Ihnen",
     "Spouse" : "Partner",
