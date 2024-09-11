@@ -13,7 +13,6 @@ OC.L10N.register(
     "Download" : "Llwytho i lawr",
     "Copied" : "Copïwyd",
     "Copy link" : "Copïo dolen",
-    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid"],
     "Share with users or groups" : "Rhannwch gyda defnyddwyr neu grwpiau",
     "No users or groups" : "Dim defnyddwyr na grwpiau",
     "can edit" : "yn gallu golygu",

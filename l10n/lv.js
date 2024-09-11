@@ -15,7 +15,6 @@ OC.L10N.register(
     "Download" : "Lejupielādēt",
     "Copied" : "Nokopēts",
     "Copy link" : "Kopēt saiti",
-    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Kopīgots ar {num} entītijām","Kopīgots ar {num} entītiju","Kopīgots ar {num} entītijām"],
     "Share with users or groups" : "Koplietot ar lietotājiem vai grupām",
     "No users or groups" : "Nav lietotāji vai grupas",
     "can edit" : "var rediģēt",

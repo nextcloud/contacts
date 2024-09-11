@@ -21,7 +21,6 @@ OC.L10N.register(
     "Add to group" : "සමූහයට එකතු කරන්න ",
     "Select Date" : "දිනය තෝරන්න",
     "Close" : "වසන්න",
-    "_{count} error_::_{count} errors_" : ["දෝෂ {count}","දෝෂ {count}"],
     "User" : "පරිශීලක",
     "Group" : "සමූහය",
     "Email" : "විද්‍යුත් තැපෑල",

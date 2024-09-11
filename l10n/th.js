@@ -51,7 +51,6 @@ OC.L10N.register(
     "Cancel" : "ยกเลิก",
     "Upload a new picture" : "อัปโหลดรูปภาพใหม่",
     "Choose from Files" : "เลือกจากไฟล์",
-    "Get from " : "รับจาก",
     "Download picture" : "ดาวน์โหลดรูปภาพ",
     "Delete picture" : "ลบรูปภาพ",
     "Invalid image" : "รูปภาพไม่ถูกต้อง",
