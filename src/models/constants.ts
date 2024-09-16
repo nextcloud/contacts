@@ -5,7 +5,7 @@
 /// <reference types="@nextcloud/typings" />
 
 import { translate as t } from '@nextcloud/l10n'
-import { Type } from '@nextcloud/sharing'
+import { ShareType } from '@nextcloud/sharing'
 
 export type DefaultGroup = string
 export type DefaultChart = string
@@ -115,47 +115,47 @@ export const PUBLIC_CIRCLE_CONFIG = {
 // sorting of the members list
 export const CIRCLES_MEMBER_GROUPING = [
 	{
-		id: `picker-${Type.SHARE_TYPE_USER}`,
+		id: `picker-${ShareType.User}`,
 		label: t('contacts', 'users'),
-		share: Type.SHARE_TYPE_USER,
+		share: ShareType.User,
 		type: MEMBER_TYPE_USER,
 	},
 	{
-		id: `picker-${Type.SHARE_TYPE_GROUP}`,
+		id: `picker-${ShareType.Group}`,
 		label: t('contacts', 'groups'),
-		share: Type.SHARE_TYPE_GROUP,
+		share: ShareType.Group,
 		type: MEMBER_TYPE_GROUP,
 	},
 	// TODO: implement federated
 	// {
-	// id: `picker-${Type.SHARE_TYPE_REMOTE}`,
+	// id: `picker-${ShareType.Remote}`,
 	// label: t('contacts', 'federated users'),
-	// share: Type.SHARE_TYPE_REMOTE,
+	// share: ShareType.Remote,
 	// type: MEMBER_TYPE_USER
 	// },
 	// {
-	// id: `picker-${Type.SHARE_TYPE_REMOTE_GROUP}`,
+	// id: `picker-${ShareType.RemoteGroup}`,
 	// label: t('contacts', 'federated groups'),
-	// share: Type.SHARE_TYPE_REMOTE_GROUP,
+	// share: ShareType.RemoteGroup,
 	// type: MEMBER_TYPE_GROUP
 	// },
 	{
-		id: `picker-${Type.SHARE_TYPE_CIRCLE}`,
+		id: `picker-${ShareType.Team}`,
 		label: t('contacts', 'teams'),
-		share: Type.SHARE_TYPE_CIRCLE,
+		share: ShareType.Team,
 		type: MEMBER_TYPE_CIRCLE,
 	},
 	{
-		id: `picker-${Type.SHARE_TYPE_EMAIL}`,
+		id: `picker-${ShareType.Email}`,
 		label: t('contacts', 'email addresses'),
-		share: Type.SHARE_TYPE_EMAIL,
+		share: ShareType.Email,
 		type: MEMBER_TYPE_MAIL,
 	},
 	// TODO: implement SHARE_TYPE_CONTACT
 	{
 		id: 'picker-contact',
 		label: t('contacts', 'teams'),
-		share: Type.SHARE_TYPE_EMAIL,
+		share: ShareType.Email,
 		type: MEMBER_TYPE_CONTACT,
 	},
 ]
