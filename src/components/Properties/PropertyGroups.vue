@@ -95,7 +95,7 @@ export default {
 
 	data() {
 		return {
-			localValue: this.value.sort(),
+			localValue: [...this.value].sort(),
 		}
 	},
 
