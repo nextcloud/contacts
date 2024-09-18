@@ -2,7 +2,7 @@
  * SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import { Type } from '@nextcloud/sharing';
+import { ShareType } from '@nextcloud/sharing';
 export type DefaultGroup = string;
 export type DefaultChart = string;
 export type CircleConfig = number;
@@ -32,7 +32,7 @@ export declare const PUBLIC_CIRCLE_CONFIG: {
 export declare const CIRCLES_MEMBER_GROUPING: {
     id: string;
     label: string;
-    share: Type;
+    share: ShareType;
     type: number;
 }[];
 export declare const SHARES_TYPES_MEMBER_MAP: {};
