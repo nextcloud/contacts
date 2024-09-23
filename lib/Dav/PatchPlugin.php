@@ -129,7 +129,7 @@ class PatchPlugin extends ServerPlugin {
 		// Append to existing value
 		if ($method === self::METHOD_APPEND) {
 			$oldData = $properties[0]->getValue();
-			$properties[0]->setRawMimeDirValue($oldData.$propertyData);
+			$properties[0]->setRawMimeDirValue($oldData . $propertyData);
 		}
 
 		// Validate & write

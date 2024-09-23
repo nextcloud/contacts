@@ -81,10 +81,10 @@ class DiasporaProviderTest extends TestCase {
 			'https://three/public/two.atom'
 		];
 		$contactWithSocialHtml = array_map(function ($url) {
-			return '<logo>'.$url.'-small-avatar.jpg</logo>';
+			return '<logo>' . $url . '-small-avatar.jpg</logo>';
 		}, $contactWithSocialUrls);
 		$contactWithSocialImg = array_map(function ($url) {
-			return $url.'-large-avatar.jpg';
+			return $url . '-large-avatar.jpg';
 		}, $contactWithSocialUrls);
 
 		$contactWithoutSocial = [
@@ -145,9 +145,9 @@ class DiasporaProviderTest extends TestCase {
 		];
 		$url1 = 'https://two/public/one.atom';
 		$url2 = 'https://four/public/three.atom';
-		$html1 = '<link rel="alternate" href="'.$url2.'" />';
-		$html2 = '<logo>'.$url2.'-small-avatar.jpg</logo>';
-		$img = $url2.'-large-avatar.jpg';
+		$html1 = '<link rel="alternate" href="' . $url2 . '" />';
+		$html2 = '<logo>' . $url2 . '-small-avatar.jpg</logo>';
+		$img = $url2 . '-large-avatar.jpg';
 
 		$this->response
 			->method('getBody')

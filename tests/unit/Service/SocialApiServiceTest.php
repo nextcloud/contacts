@@ -303,7 +303,7 @@ class SocialApiServiceTest extends TestCase {
 		$changes = [
 			'URI' => $contact['URI'],
 			'VERSION' => $contact['VERSION'],
-			'PHOTO' => 'data:'.$imageType.';base64,' . base64_encode($body)
+			'PHOTO' => 'data:' . $imageType . ';base64,' . base64_encode($body)
 		];
 
 		$this->socialProvider

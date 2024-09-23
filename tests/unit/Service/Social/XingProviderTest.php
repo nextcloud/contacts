@@ -73,7 +73,7 @@ class XingProviderTest extends TestCase {
 		$contactImages = [
 			'username1' => 'https://profile-images-abcusername1.jpg',
 			'username2' => 'https://profile-images-abcusername2.jpg',
-			'username3' => 'https://'.urlencode('profile-images-abc.ÄÖÜ/äöü_ß.jpg')
+			'username3' => 'https://' . urlencode('profile-images-abc.ÄÖÜ/äöü_ß.jpg')
 		];
 		$contactWithSocial = [
 			'X-SOCIALPROFILE' => [
@@ -88,7 +88,7 @@ class XingProviderTest extends TestCase {
 			'https://www.xing.com/profile/username3'
 		];
 		$contactWithSocialHtml = array_map(function ($profile) use ($contactImages) {
-			return '<img src="'.$contactImages[$profile['value']].'" />';
+			return '<img src="' . $contactImages[$profile['value']] . '" />';
 		}, $contactWithSocial['X-SOCIALPROFILE']);
 		$contactWithSocialImg = array_map(function ($profile) use ($contactImages) {
 			return $contactImages[$profile['value']];
