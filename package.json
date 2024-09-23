@@ -40,7 +40,7 @@
     "@mattkrick/sanitize-svg": "^0.4.0",
     "@mdi/svg": "^7.4.47",
     "@nextcloud/auth": "^2.4.0",
-    "@nextcloud/axios": "^2.5.0",
+    "@nextcloud/axios": "^2.5.1",
     "@nextcloud/capabilities": "^1.2.0",
     "@nextcloud/cdav-library": "^1.5.1",
     "@nextcloud/dialogs": "^5.3.7",
