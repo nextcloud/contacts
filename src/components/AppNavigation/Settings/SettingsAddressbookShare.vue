@@ -101,20 +101,25 @@ export default {
 			this.usersOrGroups = []
 			if (query.length > 0) {
 				const results = await client.principalPropertySearchByDisplayname(query)
-				this.usersOrGroups = results.reduce((list, result) => {
-					if (['GROUP', 'INDIVIDUAL'].indexOf(result.calendarUserType) > -1
-					&& !this.addressbook.shares.some((share) => share.uri === result.principalScheme)) {
+				this.usersOrGroups = results
+					.filter((result) => {
+						const allowedCalendarUserTypes = ['INDIVIDUAL']
+						if (this.isGroupSharingEnabled) {
+							allowedCalendarUserTypes.push('GROUP')
+						}
+						return allowedCalendarUserTypes.includes(result.calendarUserType)
+							&& !this.addressbook.shares.some((share) => share.uri === result.principalScheme)
+					})
+					.map((result) => {
 						const isGroup = result.calendarUserType === 'GROUP'
-						list.push({
+						return {
 							user: urldecode(result[isGroup ? 'groupId' : 'userId']),
 							displayName: result.displayname,
 							icon: isGroup ? 'icon-group' : 'icon-user',
 							uri: urldecode(result.principalScheme),
 							isGroup,
-						})
-					}
-					return list
-				}, [])
+						}
+					})
 				this.isLoading = false
 				this.inputGiven = true
 			} else {
