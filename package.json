@@ -55,7 +55,7 @@
     "@nextcloud/sharing": "^0.2.3",
     "@nextcloud/vue": "^8.18.0",
     "@shortcm/qr-image": "^9.0.4",
-    "@vueuse/core": "^11.0.3",
+    "@vueuse/core": "^11.1.0",
     "b64-to-blob": "^1.2.19",
     "camelcase": "^8.0.0",
     "d3": "^7.9.0",
