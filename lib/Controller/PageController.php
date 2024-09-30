@@ -25,6 +25,7 @@
 namespace OCA\Contacts\Controller;
 
 use OC\App\CompareVersion;
+use OCA\Contacts\Service\GroupSharingService;
 use OCP\App\IAppManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -60,6 +61,8 @@ class PageController extends Controller {
 	/** @var CompareVersion */
 	private $compareVersion;
 
+	private GroupSharingService $groupSharingService;
+
 	public function __construct(IRequest $request,
 								IConfig $config,
 								IInitialStateService $initialStateService,
@@ -67,7 +70,8 @@ class PageController extends Controller {
 								IUserSession $userSession,
 								SocialApiService $socialApiService,
 								IAppManager $appManager,
-								CompareVersion $compareVersion) {
+								CompareVersion $compareVersion,
+								GroupSharingService $groupSharingService) {
 		parent::__construct(Application::APP_ID, $request);
 
 		$this->config = $config;
@@ -77,6 +81,7 @@ class PageController extends Controller {
 		$this->socialApiService = $socialApiService;
 		$this->appManager = $appManager;
 		$this->compareVersion = $compareVersion;
+		$this->groupSharingService = $groupSharingService;
 	}
 
 	/**
@@ -87,10 +92,7 @@ class PageController extends Controller {
 	 */
 	public function index(): TemplateResponse {
 		$user = $this->userSession->getUser();
-		$userId = '';
-		if (!is_null($user)) {
-			$userId = $user->getUid();
-		}
+		$userId = $user->getUid();
 
 		$locales = $this->languageFactory->findAvailableLocales();
 		$defaultProfile = $this->config->getAppValue(Application::APP_ID, 'defaultProfile', 'HOME');
@@ -107,7 +109,7 @@ class PageController extends Controller {
 		// if circles is not installed, we use 0.0.0
 		$isCircleVersionCompatible = $this->compareVersion->isCompatible($circleVersion ? $circleVersion : '0.0.0', 22);
 		// Check whether group sharing is enabled or not
-		$isGroupSharingEnabled = $this->config->getAppValue('core', 'shareapi_allow_group_sharing', 'yes') === 'yes';
+		$isGroupSharingEnabled = $this->groupSharingService->isGroupSharingAllowed($user);
 		$talkVersion = $this->appManager->getAppVersion('spreed');
 		$isTalkEnabled = $this->appManager->isEnabledForUser('spreed') === true;
 
