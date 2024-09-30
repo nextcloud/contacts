@@ -116,7 +116,7 @@ class FacebookProvider implements ISocialProvider {
 	 */
 	protected function findFacebookId(string $profileName):string {
 		try {
-			$result = $this->httpClient->get('https://facebook.com/'.$profileName);
+			$result = $this->httpClient->get('https://facebook.com/' . $profileName);
 			if ($result->getStatusCode() !== 200) {
 				return $profileName;
 			}

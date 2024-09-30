@@ -64,7 +64,7 @@ class TumblrProviderTest extends TestCase {
 		];
 
 		foreach ($contactWithSocial['X-SOCIALPROFILE'] as $profile) {
-			$urls[] = 'https://api.tumblr.com/v2/blog/'.$profile['value'].'/avatar/512';
+			$urls[] = 'https://api.tumblr.com/v2/blog/' . $profile['value'] . '/avatar/512';
 		}
 
 		return [
