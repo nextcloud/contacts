@@ -130,8 +130,9 @@ import { generateUrl, generateRemoteUrl } from '@nextcloud/router'
 import { getCurrentUser } from '@nextcloud/auth'
 import { loadState } from '@nextcloud/initial-state'
 import sanitizeSVG from '@mattkrick/sanitize-svg'
-
 import axios from '@nextcloud/axios'
+
+import logger from '../../services/logger.js'
 
 const supportedNetworks = loadState('contacts', 'supportedNetworks')
 
@@ -473,7 +474,11 @@ export default {
 						'image/x-xbitmap',
 						'image/bmp',
 						'image/svg+xml',
-					])
+					]).addButton({
+						label: t('calendar', 'Pick'),
+						type: 'primary',
+						callback: (nodes) => logger.debug('Picked avatar', { nodes }),
+					})
 					.build()
 
 				const file = await picker.pick()
