@@ -135,6 +135,12 @@ const properties = {
 		],
 		primary: true,
 	},
+	birthplace: {
+		readableName: t('contacts', 'Place of birth'),
+		icon: 'icon-location',
+		force: 'text',
+		primary: false,
+	},
 	anniversary: {
 		readableName: t('contacts', 'Anniversary'),
 		icon: 'icon-anniversary',
@@ -151,6 +157,12 @@ const properties = {
 		defaultValue: {
 			value: new ICAL.VCardTime(null, null, 'date').fromJSDate(new Date()),
 		},
+		primary: false,
+	},
+	deathplace: {
+		readableName: t('contacts', 'Place of death'),
+		icon: 'icon-location',
+		force: 'text',
 		primary: false,
 	},
 	email: {
@@ -396,8 +408,10 @@ const fieldOrder = [
 	'x-managersname',
 
 	// secondary fields
+	'birthplace',
 	'anniversary',
 	'deathdate',
+	'deathplace',
 	'n',
 	'nickname',
 	'x-phonetic-first-name',
