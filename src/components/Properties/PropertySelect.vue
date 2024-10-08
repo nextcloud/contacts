@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<div v-if="propModel && showProperty" class="property">
+	<div v-if="propModel && showProperty && !isSingleOption" class="property">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:property="property"
