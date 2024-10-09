@@ -124,6 +124,7 @@ OC.L10N.register(
     "Invalid image" : "Неисправна слика",
     "Error cropping picture" : "Грешка приликом опсецања слике",
     "Pick an avatar" : "Одабери аватар",
+    "Pick" : "Изаберите",
     "Error while processing the picture." : "Грешка приликом обраде слике.",
     "Avatar downloaded from social network" : "Аватар преузет са друштвене мреже",
     "Avatar already up to date" : "Аватар већ ажуран",

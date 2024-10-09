@@ -124,6 +124,7 @@ OC.L10N.register(
     "Invalid image" : "Invalid image",
     "Error cropping picture" : "Error cropping picture",
     "Pick an avatar" : "Pick an avatar",
+    "Pick" : "Pick",
     "Error while processing the picture." : "Error while processing the picture.",
     "Avatar downloaded from social network" : "Avatar downloaded from social network",
     "Avatar already up to date" : "Avatar already up to date",

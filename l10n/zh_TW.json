@@ -122,6 +122,7 @@
     "Invalid image" : "圖片無效",
     "Error cropping picture" : "裁剪照片時發生錯誤",
     "Pick an avatar" : "選擇一個大頭照",
+    "Pick" : "挑選",
     "Error while processing the picture." : "處理相片時錯誤。",
     "Avatar downloaded from social network" : "從社群網路下載大頭照",
     "Avatar already up to date" : "大頭照已是最新",

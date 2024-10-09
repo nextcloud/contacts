@@ -124,6 +124,7 @@ OC.L10N.register(
     "Invalid image" : "Ungültiges Bild",
     "Error cropping picture" : "Fehler beim Beschneiden des Bildes",
     "Pick an avatar" : "Avatar auswählen",
+    "Pick" : "Auswählen",
     "Error while processing the picture." : "Fehler beim Verarbeiten des Bildes.",
     "Avatar downloaded from social network" : "Avatar vom sozialen Netzwerk heruntergeladen",
     "Avatar already up to date" : "Avatar bereits auf dem neuesten Stand",
