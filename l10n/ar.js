@@ -156,7 +156,7 @@ OC.L10N.register(
     "{title} at {organization}" : "{title} في {organization}",
     "Syntax error. Cannot open the contact." : "خطأ في بناء الجملة syntax. لا يمكن فتح جهة الاتصال.",
     "The contact does not exist on the server anymore." : "لم تعد جهة الاتصال هذه موجودة على الخادم.",
-    "Unable to retrieve the contact from the server, please check your network connection." : "تعذر استرداد جهة الاتصال من الخادوم ، يرجى التحقق من اتصال الشبكة.",
+    "Unable to retrieve the contact from the server, please check your network connection." : "تعذر استرداد جهة الاتصال من الخادم ، يرجى التحقق من اتصال الشبكة.",
     "An error occurred while trying to move the contact" : "حدث خطأ أثناء محاولة نقل جهة الاتصال",
     "An error occurred while trying to copy the contact" : "حدث خطأ أثناء محاولة نسخ جهة الاتصال",
     "Unable to update contact" : "تعذّر تحديث جهة الاتصال",
