@@ -60,7 +60,7 @@
     "camelcase": "^8.0.0",
     "d3": "^7.9.0",
     "d3-org-chart": "^3.1.1",
-    "debounce": "^2.1.1",
+    "debounce": "^2.2.0",
     "downloadjs": "^1.4.7",
     "ical.js": "^2.1.0",
     "mitt": "^3.0.1",
