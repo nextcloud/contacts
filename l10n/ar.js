@@ -162,7 +162,7 @@ OC.L10N.register(
     "Unable to update contact" : "تعذّر تحديث جهة الاتصال",
     "Search contacts …" : "البحث عن جهات الاتصال",
     "Add to {group}" : "أضِف إلى {group}",
-    "Remove {type}" : "إحذِف {type}",
+    "Remove {type}" : "حذف {type}",
     "Search {types}" : "بحث {types}",
     "Search for people to add" : "البحث عن أشخاص لإضافتهم",
     "No results" : "لا توجد نتائج",
