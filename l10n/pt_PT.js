@@ -80,6 +80,7 @@ OC.L10N.register(
     "Generate QR Code" : "Gera um código QR",
     "Pick an address book" : "Escolha livro de endereços",
     "Select address book" : "Seleccionar livro de endereços",
+    "No shared items with this contact" : "Sem itens partilhados com este contacto",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Este contacto está protegido contra escrita. Não tem permissão para o modificar.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Este contacto que está a editar foi já modificado por outrem. Carregue-o novamente sff. Qualquer modificação será descartada.",
     "Address book" : "Livro de endereços",
