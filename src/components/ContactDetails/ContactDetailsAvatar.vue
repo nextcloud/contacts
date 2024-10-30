@@ -309,12 +309,20 @@ export default {
 		 */
 		getMimetype(uint) {
 			const bytes = []
-			uint.slice(0, 4).forEach((byte) => {
-				bytes.push(byte.toString(16))
+			uint.slice(0, 12).forEach((byte) => {
+				bytes.push(byte.toString(16).padStart(2, '0'))
 			})
 			const hex = bytes.join('').toUpperCase()
 
-			switch (hex) {
+			const nextcloudMajorVersion = parseInt(window.OC.config.version.split('.')[0])
+			if (nextcloudMajorVersion >= 31
+				&& hex.slice(0, 8) === '52494646'
+				&& hex.slice(16, 24) === '57454250'
+			) {
+				return 'image/webp'
+			}
+
+			switch (hex.slice(0, 8)) {
 			case '89504E47':
 				return 'image/png'
 			case '47494638':
