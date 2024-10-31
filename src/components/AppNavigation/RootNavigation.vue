@@ -393,10 +393,14 @@ export default {
 
 			this.createGroupError = null
 			this.logger.debug('Created new local group', { groupName })
-			this.$store.dispatch('addGroup', groupName)
-			this.isNewGroupMenuOpen = false
 
-			emit('contacts:group:append', groupName)
+			try {
+				this.$store.dispatch('addGroup', groupName)
+				this.isNewGroupMenuOpen = false
+				emit('contacts:group:append', groupName)
+			} catch (error) {
+				showError(t('contacts', 'An error occurred while creating the group'))
+			}
 		},
 
 		// Ellipsis item toggles

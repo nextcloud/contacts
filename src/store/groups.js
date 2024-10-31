@@ -184,6 +184,9 @@ const actions = {
 	 * @param {string} groupName the name of the group
 	 */
 	addGroup(context, groupName) {
+		if (!groupName || groupName.trim() === '') {
+			throw new Error('Group name cannot be empty')
+		}
 		context.commit('addGroup', groupName)
 	},
 }
