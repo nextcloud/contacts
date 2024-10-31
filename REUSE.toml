@@ -94,3 +94,9 @@ path = "img/gravatar.svg"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "svgrepo.com <https://www.svgrepo.com/page/licensing>"
 SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
+path = [".tx/backport"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "none"
+SPDX-License-Identifier = "CC0-1.0"
