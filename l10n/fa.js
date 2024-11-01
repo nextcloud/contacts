@@ -244,6 +244,8 @@ OC.L10N.register(
     "Time zone" : "منطقهٔ زمانی",
     "Spoken languages" : "زبان‌های صحبت",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contact failed to be read","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Unable to delete contact"
+    "Unable to delete contact" : "Unable to delete contact",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "عضویت باید توسط یک ناظر تأیید / پذیرفته شود (نیاز به باز بودن دارد)",
+    "Manager" : "مدیر"
 },
 "nplurals=2; plural=(n > 1);");

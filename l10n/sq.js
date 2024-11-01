@@ -112,6 +112,7 @@ OC.L10N.register(
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "Unknown" : "I/E panjohur"
+    "Unknown" : "I/E panjohur",
+    "Manager" : "Manaxher/e"
 },
 "nplurals=2; plural=(n != 1);");

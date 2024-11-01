@@ -95,6 +95,7 @@ OC.L10N.register(
     "Gender" : "Sex",
     "Female" : "Femeie",
     "Male" : "Bărbat",
-    "Unknown" : "Necunoscut"
+    "Unknown" : "Necunoscut",
+    "Manager" : "Director"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");

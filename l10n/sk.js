@@ -300,6 +300,8 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "V aplikácii Tím sa vyskytla chyba. Pre viac informácií skontrolujte konzolu.",
     "Unable to create team {circleName}" : "Nie je možné vytvoriť tím {circleName}",
     "Unable to delete team {circleId}" : "Nie je možné zmazať tím {circleId}",
-    "Unable to delete contact" : "Nepodarilo sa zmazať kontakt."
+    "Unable to delete contact" : "Nepodarilo sa zmazať kontakt.",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Členstvo musí byť potvrdené/prijaté moderátorom (vyžaduje sa Otvorené)",
+    "Manager" : "Manažér"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

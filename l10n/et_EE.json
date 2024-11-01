@@ -91,6 +91,7 @@
     "Gender" : "Sugu",
     "Female" : "Naine",
     "Male" : "Mees",
-    "Unknown" : "Teadmata"
+    "Unknown" : "Teadmata",
+    "Manager" : "Juht"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -93,6 +93,7 @@ OC.L10N.register(
     "Gender" : "Sugu",
     "Female" : "Naine",
     "Male" : "Mees",
-    "Unknown" : "Teadmata"
+    "Unknown" : "Teadmata",
+    "Manager" : "Juht"
 },
 "nplurals=2; plural=(n != 1);");

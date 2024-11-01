@@ -249,6 +249,8 @@ OC.L10N.register(
     "Time zone" : "Tímabelti",
     "Spoken languages" : "Töluð tungumál",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Mistókst að lesa {failed} tengilið","Mistókst að lesa {failed} tengiliði"],
-    "Unable to delete contact" : "Tókst ekki að eyða tengilið"
+    "Unable to delete contact" : "Tókst ekki að eyða tengilið",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Þátttakendur þurfa að vera staðfestir/samþykktir af umsjónarmanni (krefst opins)",
+    "Manager" : "Yfirmaður"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

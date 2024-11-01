@@ -248,6 +248,8 @@ OC.L10N.register(
     "Time zone" : "Fus horari",
     "Spoken languages" : "Llengües que parla",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["No s'ha pogut llegir {failed} contacte","No s'han pogut llegir {failed} contactes"],
-    "Unable to delete contact" : "No s'ha pogut suprimir el contacte"
+    "Unable to delete contact" : "No s'ha pogut suprimir el contacte",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Un moderador ha de confirmar o acceptar les incorporacions (cal que sigui un cercle obert)",
+    "Manager" : "Gerent"
 },
 "nplurals=2; plural=(n != 1);");

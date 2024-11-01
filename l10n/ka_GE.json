@@ -88,6 +88,7 @@
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
     "Male" : "მამრობითი",
-    "Unknown" : "ამოუცნობი"
+    "Unknown" : "ამოუცნობი",
+    "Manager" : "მენეჯერი"
 },"pluralForm" :"nplurals=2; plural=(n!=1);"
 }

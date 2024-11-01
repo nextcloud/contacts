@@ -311,6 +311,8 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Takımlarda bir sorun çıktı. Ayrıntılı bilgi almak için konsola bakabilirsiniz.",
     "Unable to create team {circleName}" : "{circleName} takımı eklenemedi",
     "Unable to delete team {circleId}" : "{circleName} takımı silinemedi",
-    "Unable to delete contact" : "Kişi silinemedi"
+    "Unable to delete contact" : "Kişi silinemedi",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Üyelikler bir sorumlu tarafından onaylanmalıdır (Open gereklidir)",
+    "Manager" : "Yönetici"
 },
 "nplurals=2; plural=(n > 1);");

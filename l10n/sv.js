@@ -311,6 +311,8 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Ett fel har uppstått i team(s). Kontrollera konsolen för mer information.",
     "Unable to create team {circleName}" : "Kunde inte skapa team {circleName}",
     "Unable to delete team {circleId}" : "Kan inte ta bort team {circleId}",
-    "Unable to delete contact" : "Kunde inte radera kontakten"
+    "Unable to delete contact" : "Kunde inte radera kontakten",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Medlemsskap måste bekräftas/godkännas av en moderator (requires Open)",
+    "Manager" : "Chef"
 },
 "nplurals=2; plural=(n != 1);");

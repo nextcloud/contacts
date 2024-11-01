@@ -263,6 +263,8 @@ OC.L10N.register(
     "Spoken languages" : "口语",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} 个联系人读取失败"],
     "Unable to create team {circleName}" : "无法创建团队 {圈子名称}",
-    "Unable to delete contact" : "无法删除联系人"
+    "Unable to delete contact" : "无法删除联系人",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "成员资格必须由一名主持人确认/接受（必须为开放圈子）",
+    "Manager" : "经理"
 },
 "nplurals=1; plural=0;");

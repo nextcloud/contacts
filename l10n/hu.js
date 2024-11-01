@@ -299,6 +299,8 @@ OC.L10N.register(
     "Time zone" : "Időzóna",
     "Spoken languages" : "Beszélt nyelvek",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} névjegyet nem sikerült olvasni","{failed} névjegyet nem sikerült olvasni"],
-    "Unable to delete contact" : "A névjegy törlése sikertelen"
+    "Unable to delete contact" : "A névjegy törlése sikertelen",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "A tagságokat meg kell erősítenie/el kell fogadnia egy moderátornak (Nyílt beállítás szükséges)",
+    "Manager" : "Vezető"
 },
 "nplurals=2; plural=(n != 1);");

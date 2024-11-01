@@ -90,6 +90,7 @@ OC.L10N.register(
     "Gender" : "Género",
     "Female" : "Femenino",
     "Male" : "Masculino",
-    "Unknown" : "Desconocido"
+    "Unknown" : "Desconocido",
+    "Manager" : "Gerente"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

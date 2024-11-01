@@ -296,6 +296,8 @@ OC.L10N.register(
     "Spoken languages" : "Govorjeni jezik",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} stika ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati"],
     "An error has occurred in team(s). Check the console for more details." : "Prišlo je do napake v nekaterih skupinah. Preverite konzolo za več podrobnosti.",
-    "Unable to delete contact" : "Ni mogoče izbrisati stika"
+    "Unable to delete contact" : "Ni mogoče izbrisati stika",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Članstvo potrduje/sprejema moderator (zahteva Open)",
+    "Manager" : "Vodja"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");

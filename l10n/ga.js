@@ -311,6 +311,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Tharla earráid san fhoireann(í). Seiceáil an consól le haghaidh tuilleadh sonraí.",
     "Unable to create team {circleName}" : "Ní féidir foireann {circleName} a chruthú",
     "Unable to delete team {circleId}" : "Ní féidir foireann {circleId} a scriosadh",
-    "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh"
+    "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh",
+    "Manager" : "Bainisteoir"
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");

@@ -249,6 +249,8 @@ OC.L10N.register(
     "Time zone" : "Time zone",
     "Spoken languages" : "Spoken languages",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contact failed to be read","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Unable to delete contact"
+    "Unable to delete contact" : "Unable to delete contact",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Memberships must be confirmed/accepted by a Moderator (requires Open)",
+    "Manager" : "Manager"
 },
 "nplurals=2; plural=(n!=1);");

@@ -311,6 +311,8 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Une erreur est survenue dans le(s) équipe(s). Vérifiez la console pour plus de détails.",
     "Unable to create team {circleName}" : "Impossible de créer l'équipe {circleName}",
     "Unable to delete team {circleId}" : "Impossible de supprimer l'équipe {circleId}",
-    "Unable to delete contact" : "Impossible de supprimer le contact."
+    "Unable to delete contact" : "Impossible de supprimer le contact.",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Les adhésions doivent être confirmées/acceptées par un Modérateur (nécessite Open)",
+    "Manager" : "Supérieur"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
