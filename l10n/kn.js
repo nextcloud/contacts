@@ -1,11 +1,12 @@
 OC.L10N.register(
     "contacts",
     {
-    "Send email" : "ಇ-ಅಂಚೆಯನ್ನು  ಕಳುಹಿಸಿ",
-    "Download" : "ಪ್ರತಿಯನ್ನು ಸ್ಥಳೀಯವಾಗಿ ಉಳಿಸಿಕೊಳ್ಳಿ",
     "Rename" : "﻿ಮರುಹೆಸರಿಸು",
+    "Send email" : "ಇ-ಅಂಚೆಯನ್ನು  ಕಳುಹಿಸಿ",
     "Delete" : "﻿ಅಳಿಸಿ",
+    "Download" : "ಪ್ರತಿಯನ್ನು ಸ್ಥಳೀಯವಾಗಿ ಉಳಿಸಿಕೊಳ್ಳಿ",
     "can edit" : "﻿ಸಂಪಾದಿಸಬಹುದು",
+    "Add" : "﻿ಸೇರಿಸಿ",
     "Password protection" : "Password protection",
     "Save" : "﻿ಉಳಿಸಿ",
     "Settings" : "Settings",
@@ -22,7 +23,6 @@ OC.L10N.register(
     "Email" : "﻿ಇ-ಅಂಚೆ",
     "Admin" : "﻿ನಿರ್ವಹಕ",
     "Owner" : "Owner",
-    "Users" : "﻿ಬಳಕೆದಾರರು",
     "Notes" : "Notes",
     "Home" : "﻿ಮುಖಪುಟ",
     "Other" : "﻿ಇತರೆ",

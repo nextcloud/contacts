@@ -7,14 +7,15 @@
     "Omit year" : "Shmang vitin",
     "Loading contacts …" : "Duke ngarkuar kontaktet ...",
     "General settings" : "Opsjonet e Pergjithshme",
-    "Send email" : "Dërgo email",
-    "Download" : "Shkarko",
     "Rename" : "Riemëro",
+    "Send email" : "Dërgo email",
     "Delete" : "Fshije",
+    "Download" : "Shkarko",
     "Copied" : "Kopjuar",
     "Copy link" : "Kopjo linkun",
     "Share with users or groups" : "Nda me përdoruesit ose grupet",
     "can edit" : "mund të modifikoni",
+    "Add" : "Shto",
     "First name" : "Emër",
     "Last name" : "Mbiemër",
     "Display name" : "Shfaq emrin",
@@ -61,7 +62,6 @@
     "Moderator" : "Moderator",
     "Admin" : "Administrator",
     "Owner" : "Zotëruesi",
-    "Users" : "Përdoruesit",
     "Detailed name" : "Emri i hollësishëm",
     "Additional names" : "Emra shtesë",
     "Prefix" : "Parashtesë",
@@ -92,7 +92,6 @@
     "Pager" : "Faques",
     "Voice" : "Zë",
     "Car" : "Makine",
-    "Manager" : "Manaxher/e",
     "Social network" : "Rrjet social",
     "Spouse" : "Bashkëshort/e",
     "Child" : "Fëmijë",
@@ -111,6 +110,7 @@
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "Unknown" : "I/E panjohur"
+    "Unknown" : "I/E panjohur",
+    "Manager" : "Manaxher/e"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

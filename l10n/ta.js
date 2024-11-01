@@ -3,9 +3,9 @@ OC.L10N.register(
     {
     "Details" : "விவரங்கள்",
     "Contacts" : "தொடர்புகள்",
-    "Download" : "பதிவிறக்குக",
     "Rename" : "பெயர்மாற்றம்",
     "Delete" : "நீக்குக",
+    "Download" : "பதிவிறக்குக",
     "can edit" : "தொகுக்க முடியும்",
     "First name" : "முதல் பெயர்",
     "Last name" : "கடைசிப் பெயர்",
@@ -24,7 +24,6 @@ OC.L10N.register(
     "Email" : "மின்னஞ்சல்",
     "Admin" : "நிர்வாகம்",
     "Owner" : "Owner",
-    "Users" : "பயனாளர்",
     "Additional names" : "மேலதிக பெயர்கள்",
     "Nickname" : "பட்டப்பெயர்",
     "Notes" : "குறிப்புகள்",

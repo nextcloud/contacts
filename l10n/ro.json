@@ -4,15 +4,16 @@
     "Contacts" : "Contacte",
     "Loading contacts …" : "Se încarcă contactele ...",
     "Loading …" : "Se încarcă…",
-    "Send email" : "Trimite email-ul",
-    "Download" : "Descărcare",
     "Rename" : "Redenumește",
+    "Send email" : "Trimite email-ul",
     "Delete" : "Șterge",
+    "Download" : "Descărcare",
     "Copied" : "Copiat",
     "Copy link" : "Copiază linkul",
     "Share with users or groups" : "Partajează cu utilizatori sau grupuri",
     "No users or groups" : "Nu sunt utilizatori sau grupuri",
     "can edit" : "poate edita",
+    "Add" : "Add",
     "First name" : "Prenume",
     "Last name" : "Nume",
     "Display name" : "Nume afișat",
@@ -45,7 +46,6 @@
     "Admin" : "Admin",
     "Owner" : "Proprietar",
     "Visibility" : "Vizibil",
-    "Users" : "Utilizatori",
     "Detailed name" : "Nume detaliat",
     "Additional names" : "Nume adiționale",
     "Prefix" : "Prefix",
@@ -78,7 +78,6 @@
     "Voice" : "Voce",
     "Car" : "Mașina",
     "Work pager" : "Pager de serviciu",
-    "Manager" : "Director",
     "Social network" : "Rețea socială",
     "Spouse" : "Soție",
     "Child" : "Copil",
@@ -94,6 +93,7 @@
     "Gender" : "Sex",
     "Female" : "Femeie",
     "Male" : "Bărbat",
-    "Unknown" : "Necunoscut"
+    "Unknown" : "Necunoscut",
+    "Manager" : "Director"
 },"pluralForm" :"nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));"
 }

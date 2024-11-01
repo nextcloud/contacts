@@ -2,9 +2,9 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "Jikme-jiklikler",
-    "Download" : "12",
     "Rename" : "Adyny üýtgetmek",
     "Delete" : "Pozmak",
+    "Download" : "12",
     "Copy link" : "Link-y nusgalaň",
     "Save" : "Saklamak",
     "Cancel" : "ýatyrmak",

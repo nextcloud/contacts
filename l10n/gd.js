@@ -2,9 +2,9 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "Mion-fhiosrachadh",
-    "Download" : "Luchdaich a-nuas",
     "Rename" : "Thoir ainm ùr air",
     "Delete" : "Sguab às",
+    "Download" : "Luchdaich a-nuas",
     "Copy link" : "Dèan lethbhreac dhen cheangal",
     "Save" : "Sàbhail",
     "Cancel" : "Sguir dheth",

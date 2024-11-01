@@ -4,15 +4,15 @@
     "Contacts" : "Харилцагчид",
     "Copy to full name" : "Бүтэн нэр хуулах",
     "Loading …" : "Уншиж байна...",
-    "Add member" : "Гишүүн нэмэх",
-    "Download" : "Татаж авах",
     "Rename" : "Нэр солих",
     "Delete" : "Устгах",
+    "Download" : "Татаж авах",
     "Copied" : "Хуулагдсан",
     "Cannot copy" : "Хуулагдаагүй",
     "Copy link" : "Холбоос хуулах",
     "Share with users or groups" : "Бусдад түгээх",
     "can edit" : "засаж чадна",
+    "Add" : "нэмэх",
     "First name" : "Нэр",
     "Last name" : "Овог",
     "Display name" : "Харагдах нэр",
@@ -45,7 +45,6 @@
     "Moderator" : "Шалгагч",
     "Admin" : "Админ",
     "Owner" : "Эзэмшигч",
-    "Users" : "хэрэглэгч",
     "Detailed name" : "Дэлгэрэнгүй нэр",
     "Additional names" : "Нэмэлт нэрүүд",
     "Nickname" : "Товч нэр",
@@ -68,7 +67,6 @@
     "Fax" : "Факс",
     "Fax home" : "Гэрийн факс",
     "Fax work" : "Ажлын факс",
-    "Manager" : "Менежер",
     "Social network" : "Олон нийтийн сүлжээ",
     "Child" : "хүүхэд",
     "Mother" : "эх",
@@ -83,6 +81,7 @@
     "Female" : "Эмэгтэй",
     "Male" : "Эрэгтэй",
     "Unknown" : "Үл танигдах зүйл",
-    "Time zone" : "Цагийн бүс"
+    "Time zone" : "Цагийн бүс",
+    "Manager" : "Менежер"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

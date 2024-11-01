@@ -1,11 +1,12 @@
 { "translations": {
     "Details" : "Մանրամասներ",
-    "Download" : "Ներբեռնել",
     "Rename" : "Վերանվանել",
     "Delete" : "հեռացնել",
+    "Download" : "Ներբեռնել",
     "Copy link" : "Պատճենել հղումը",
     "Share with users or groups" : "Կիսվել օգտատերերի կամ խմբերի հետ",
     "can edit" : "կարող է խմբագրել",
+    "Add" : "Ավելացնել",
     "First name" : "Անուն",
     "Last name" : "Ազգանուն",
     "Password protection" : "Password protection",
