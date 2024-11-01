@@ -38,7 +38,6 @@
     "Delete {addressbook}?" : "Remover {addressbook}?",
     "Deletion of address book was not successful." : "Não foi possível eliminar o livro de endereços.",
     "Renaming of address book was not successful." : "Não foi possível renomear o livro de endereços.",
-    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Partilhado com {num} entidades","Partilhado com {num} entidades","Partilhado com {num} entidades"],
     "Share with users or groups" : "Partilhe com os utilizadores ou grupos",
     "No users or groups" : "Sem utilizadores ou grupos",
     "can edit" : "pode editar",
@@ -65,7 +64,6 @@
     "Cancel" : "Cancelar",
     "Upload a new picture" : "Carregar nova imagem",
     "Choose from Files" : "Escolher a partir dos ficheiros",
-    "Get from " : "Obter de",
     "Download picture" : "Transferir imagem",
     "Delete picture" : "Apagar imagem",
     "Invalid image" : "Imagem inválida",
@@ -80,6 +78,7 @@
     "Generate QR Code" : "Gera um código QR",
     "Pick an address book" : "Escolha livro de endereços",
     "Select address book" : "Seleccionar livro de endereços",
+    "No shared items with this contact" : "Sem itens partilhados com este contacto",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Este contacto está protegido contra escrita. Não tem permissão para o modificar.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Este contacto que está a editar foi já modificado por outrem. Carregue-o novamente sff. Qualquer modificação será descartada.",
     "Address book" : "Livro de endereços",
@@ -99,8 +98,6 @@
     "Unable to create the contact." : "Não é possível criar o contacto.",
     "Contact not found" : "Contacto não encontrado",
     "Close" : "Fechar",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importar %n contactos para o {addressbook}","Importar %n contactos para o {addressbook}","Importar %n contactos para o {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Importação de %n contactos para o {addressbook} está concluída.","Importação de %n contactos para o {addressbook} está concluída.","Importação de %n contactos para o {addressbook} está concluída."],
     "Import" : "Importar",
     "Not grouped" : "Não agrupados",
     "Recently contacted" : "Contactados recentemente",
@@ -146,7 +143,6 @@
     "Voice" : "Voz",
     "Car" : "Carro",
     "Work pager" : "Pager de trabalho",
-    "Manager" : "Gestor",
     "Social network" : "Rede Social",
     "Spouse" : "Cônjuge",
     "Child" : "Filho",
@@ -170,6 +166,7 @@
     "Time zone" : "Fuso horário",
     "Spoken languages" : "Línguas faladas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contactos cuja leitura falhou","{failed} contactos cuja leitura falhou","{failed} contactos cuja leitura falhou"],
-    "Unable to delete contact" : "Não é possível eliminar o contacto."
+    "Unable to delete contact" : "Não é possível eliminar o contacto.",
+    "Manager" : "Gestor"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

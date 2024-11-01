@@ -45,7 +45,6 @@
     "Renaming of address book was not successful." : "Renaming of address book was not successful.",
     "_%n contact_::_%n contacts_" : ["%n contact","%n contacts"],
     "_%n group_::_%n groups_" : ["%n group","%n groups"],
-    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Shared with {num} entity","Shared with {num} entities"],
     "Share with users or groups" : "Share with users or groups",
     "Share with users" : "Share with users",
     "No users or groups" : "No users or groups",
@@ -87,7 +86,6 @@
     "Crop contact photo" : "Crop contact photo",
     "Upload a new picture" : "Upload a new picture",
     "Choose from Files" : "Choose from Files",
-    "Get from " : "Get from ",
     "Download picture" : "Download picture",
     "Delete picture" : "Delete picture",
     "Please select a valid format" : "Please select a valid format",
@@ -168,11 +166,6 @@
     "Contact not found" : "Contact not found",
     "Group {group} not found" : "Group {group} not found",
     "Close" : "Close",
-    "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} contact added to {name}","{success} contacts added to {name}"],
-    "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Adding {success} contact to {name}","Adding {success} contacts to {name}"],
-    "_{count} error_::_{count} errors_" : ["{count} error","{count} errors"],
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importing %n contact into {addressbook}","Importing %n contacts into {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Done importing %n contact into {addressbook}","Done importing %n contacts into {addressbook}"],
     "Import" : "Import",
     "Could not copy" : "Could not copy",
     "You are about to leave {circle}.\nAre you sure?" : "You are about to leave {circle}.\nAre you sure?",
@@ -230,7 +223,6 @@
     "Voice" : "Voice",
     "Car" : "Car",
     "Work pager" : "Work pager",
-    "Manager" : "Manager",
     "Social network" : "Social network",
     "Relationship to you" : "Relationship to you",
     "Spouse" : "Spouse",
@@ -255,6 +247,8 @@
     "Time zone" : "Time zone",
     "Spoken languages" : "Spoken languages",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contact failed to be read","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Unable to delete contact"
+    "Unable to delete contact" : "Unable to delete contact",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Memberships must be confirmed/accepted by a Moderator (requires Open)",
+    "Manager" : "Manager"
 },"pluralForm" :"nplurals=2; plural=(n!=1);"
 }

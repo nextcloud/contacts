@@ -15,7 +15,6 @@ OC.L10N.register(
     "Download" : "Elŝuti",
     "Copied" : "Kopiita",
     "Copy link" : "Kopii ligilon",
-    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Kunhavigitaj kun {num} entoj","Kunhavigitaj kun {num} entoj"],
     "Share with users or groups" : "Kunhavigi kun uzantoj aŭ grupoj",
     "No users or groups" : "Neniu uzanto aŭ grupo",
     "can edit" : "povas redakti",
@@ -103,7 +102,6 @@ OC.L10N.register(
     "Voice" : "Voĉo",
     "Car" : "Aŭto",
     "Work pager" : "Labora televokilo",
-    "Manager" : "Estr(in)o",
     "Social network" : "Socia reto",
     "Spouse" : "Edz(in)o",
     "Child" : "Infano",
@@ -124,6 +122,7 @@ OC.L10N.register(
     "Male" : "Vira",
     "Unknown" : "Nekonata",
     "Spoken languages" : "Lingvoj parolataj",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"]
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"],
+    "Manager" : "Estr(in)o"
 },
 "nplurals=2; plural=(n != 1);");

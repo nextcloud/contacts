@@ -36,7 +36,6 @@
     "Delete {addressbook}?" : "¿Eliminar {addressbook}?",
     "Deletion of address book was not successful." : "El borrado de la libreta de direcciones falló.",
     "Renaming of address book was not successful." : "El renombrado de la libreta de direcciones falló.",
-    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Compartido con {num} entidad","Compartido con {num} entidades","Compartido con {num} entidades"],
     "Share with users or groups" : "Compartir con otros usuarios o grupos",
     "No users or groups" : "No hay usuarios ni grupos.",
     "can edit" : "poder editar",
@@ -71,7 +70,6 @@
     "Cancel" : "Cancelar",
     "Upload a new picture" : "Subir una nueva imagen",
     "Choose from Files" : "Escoger desde Archivos",
-    "Get from " : "Tomar de",
     "Download picture" : "Descargar imágen",
     "Delete picture" : "Eliminar imagen",
     "Invalid image" : "Imagen inválida",
@@ -133,11 +131,6 @@
     "Contact not found" : "Contacto no encontrado",
     "Group {group} not found" : "Grupo {group} no encontrado",
     "Close" : "Cerrar",
-    "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} contacto añadido a {name}","{success} contactos añadidos a {name}","{success} contactos añadidos a {name}"],
-    "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Añadiendo {success} contacto a {name}","Añadiendo {success} contactos a {name}","Añadiendo {success} contactos a {name}"],
-    "_{count} error_::_{count} errors_" : ["{count} error","{count} errores","{count} errores"],
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importando %n contacto en {addressbook}","Importandos %n contactos en {addressbook}","Importando %n contactos en {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Completado importando %n contacto en {addressbook}","Completado importando %n contactos en {addressbook}","Completado importando %n contactos en {addressbook}"],
     "Import" : "Importar",
     "Could not copy" : "No se ha podido copiar",
     "You are about to leave {circle}.\nAre you sure?" : "Está a punto de salir de {circle}.\n¿Está seguro?",
@@ -194,7 +187,6 @@
     "Voice" : "Voz",
     "Car" : "Coche",
     "Work pager" : "Buscapersonas de trabajo",
-    "Manager" : "Gerente",
     "Social network" : "Red social",
     "Relationship to you" : "Relación contigo",
     "Spouse" : "Cónyuge",
@@ -219,6 +211,8 @@
     "Time zone" : "Zona horaria",
     "Spoken languages" : "Idiomas hablados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se ha podido leer","{failed} contactos no se han podido leer","{failed} contactos no se han podido leer"],
-    "Unable to delete contact" : "No se ha podido eliminar el contacto"
+    "Unable to delete contact" : "No se ha podido eliminar el contacto",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Las membresías deben ser confirmadas/aceptadas por un moderador (requiere Open)",
+    "Manager" : "Gerente"
 },"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

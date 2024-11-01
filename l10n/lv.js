@@ -15,7 +15,6 @@ OC.L10N.register(
     "Download" : "Lejupielādēt",
     "Copied" : "Nokopēts",
     "Copy link" : "Kopēt saiti",
-    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Kopīgots ar {num} entītijām","Kopīgots ar {num} entītiju","Kopīgots ar {num} entītijām"],
     "Share with users or groups" : "Koplietot ar lietotājiem vai grupām",
     "No users or groups" : "Nav lietotāji vai grupas",
     "can edit" : "var rediģēt",
@@ -102,7 +101,6 @@ OC.L10N.register(
     "Voice" : "Balss",
     "Car" : "Automašīna",
     "Work pager" : "Darba peidžeris",
-    "Manager" : "Vadītājs",
     "Social network" : "Sociālais tīkls",
     "Spouse" : "Dzīvesbiedrs",
     "Child" : "Bērns",
@@ -122,6 +120,8 @@ OC.L10N.register(
     "Female" : "Sieviete",
     "Male" : "Vīrietis",
     "Unknown" : "Nezināms",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontaktpersonas neizdevās nolasīt","{failed} kontaktpersonu neizdevās nolasīt","{failed} kontaktpersonas neizdevās nolasīt"]
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontaktpersonas neizdevās nolasīt","{failed} kontaktpersonu neizdevās nolasīt","{failed} kontaktpersonas neizdevās nolasīt"],
+    "An error has occurred in team(s). Check the console for more details." : "Atgadījās kļūda komandā(s). Jāpārbauda konsole, lai iegūtu vairāk informācijas.",
+    "Manager" : "Vadītājs"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");

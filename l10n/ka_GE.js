@@ -75,7 +75,6 @@ OC.L10N.register(
     "Voice" : "ხმა",
     "Car" : "მაქნანა",
     "Work pager" : "სამუშაო პეიჯერი",
-    "Manager" : "მენეჯერი",
     "Social network" : "სოციალური ქსელი",
     "Spouse" : "მეუღლე",
     "Child" : "შვილი",
@@ -91,6 +90,7 @@ OC.L10N.register(
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
     "Male" : "მამრობითი",
-    "Unknown" : "ამოუცნობი"
+    "Unknown" : "ამოუცნობი",
+    "Manager" : "მენეჯერი"
 },
 "nplurals=2; plural=(n!=1);");

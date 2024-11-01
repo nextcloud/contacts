@@ -69,7 +69,6 @@ OC.L10N.register(
     "Fax" : "Факс",
     "Fax home" : "Гэрийн факс",
     "Fax work" : "Ажлын факс",
-    "Manager" : "Менежер",
     "Social network" : "Олон нийтийн сүлжээ",
     "Child" : "хүүхэд",
     "Mother" : "эх",
@@ -84,6 +83,7 @@ OC.L10N.register(
     "Female" : "Эмэгтэй",
     "Male" : "Эрэгтэй",
     "Unknown" : "Үл танигдах зүйл",
-    "Time zone" : "Цагийн бүс"
+    "Time zone" : "Цагийн бүс",
+    "Manager" : "Менежер"
 },
 "nplurals=2; plural=(n != 1);");

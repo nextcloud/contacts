@@ -76,7 +76,6 @@
     "Voice" : "Hääl",
     "Car" : "Auto",
     "Work pager" : "Piipar (tööl)",
-    "Manager" : "Juht",
     "Social network" : "Sotsiaalvõrk",
     "Spouse" : "Abikaasa",
     "Child" : "Laps",
@@ -92,6 +91,7 @@
     "Gender" : "Sugu",
     "Female" : "Naine",
     "Male" : "Mees",
-    "Unknown" : "Teadmata"
+    "Unknown" : "Teadmata",
+    "Manager" : "Juht"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -61,7 +61,6 @@
     "Renaming of address book was not successful." : "Omdøping av adresseboken var ikke vellykket.",
     "_%n contact_::_%n contacts_" : ["%n kontakt","%n kontakter"],
     "_%n group_::_%n groups_" : ["%n gruppe","%n grupper"],
-    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Delt med {num} entitet","Delt med {num} entiteter"],
     "Share with users or groups" : "Del med brukere eller grupper",
     "Share with users" : "Del med brukere",
     "No users or groups" : "Ingen brukere eller grupper",
@@ -117,7 +116,6 @@
     "Crop contact photo" : "Beskjær kontaktbilde",
     "Upload a new picture" : "Last opp et nytt bilde",
     "Choose from Files" : "Velg fra Filer",
-    "Get from " : "Få fra",
     "Download picture" : "Last ned bilde",
     "Delete picture" : "Slett bilde",
     "Please select a valid format" : "Vennligst velg et gyldig format",
@@ -207,11 +205,6 @@
     "Contact not found" : "Kontakten ble ikke funnet",
     "Group {group} not found" : "Fant ikke gruppen {group}",
     "Close" : "Lukk",
-    "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} kontakt lagt til {name}","{success} kontakter lagt til {name}"],
-    "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Legger til {success} kontakt til {name}","Legger til {success} kontakter til {name}"],
-    "_{count} error_::_{count} errors_" : ["{count} feil","{count} feil"],
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importerer %n kontakt til {addressbook}","Importerer %n kontakter til {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Ferdig med å importere %n kontakt til {addressbook}","Ferdig med å importere %n kontakter til {addressbook}"],
     "Import" : "Importer",
     "Are you sure you want to import this contact file?" : "Er du sikker på at du vil importere denne kontaktfilen?",
     "Could not copy" : "Kunne ikke kopiere",
@@ -285,7 +278,7 @@
     "Voice" : "Svarer",
     "Car" : "Bil",
     "Work pager" : "Arbeidspersonsøker",
-    "Manager" : "Sjef",
+    "Line manager" : "Linjeleder",
     "Social network" : "Sosialt nettverk",
     "Relationship to you" : "Relasjon til deg",
     "Spouse" : "Ektefelle",
@@ -313,6 +306,8 @@
     "An error has occurred in team(s). Check the console for more details." : "Det har oppstått en feil i laget(ene). Sjekk konsollen hvis du vil ha mer informasjon.",
     "Unable to create team {circleName}" : "Ikke i stand til å opprette lag {circleName}",
     "Unable to delete team {circleId}" : "Ikke i stand til å slette lag {circleId}",
-    "Unable to delete contact" : "Ikke i stand til å slette kontakt"
+    "Unable to delete contact" : "Ikke i stand til å slette kontakt",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Medlemskap må bekreftes/aksepteres av en moderator (krever åpen)",
+    "Manager" : "Sjef"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

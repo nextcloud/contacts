@@ -76,7 +76,6 @@ OC.L10N.register(
     "Pager" : "Pagineerder",
     "Voice" : "Stem",
     "Car" : "Motorkar",
-    "Manager" : "Bestuurder",
     "Social network" : "Sosiale netwerk",
     "Spouse" : "Eggenoot",
     "Child" : "Kind",

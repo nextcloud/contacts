@@ -76,7 +76,6 @@ OC.L10N.register(
     "Voice" : "Voz",
     "Car" : "Auto",
     "Work pager" : "Localizador de trabajo",
-    "Manager" : "Gerente",
     "Social network" : "Red social",
     "Spouse" : "Cónyuge",
     "Child" : "Hijo",
@@ -95,6 +94,7 @@ OC.L10N.register(
     "Gender" : "Género",
     "Female" : "Femenino",
     "Male" : "Masculino",
-    "Unknown" : "Desconocido"
+    "Unknown" : "Desconocido",
+    "Manager" : "Gerente"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

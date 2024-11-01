@@ -78,7 +78,6 @@ OC.L10N.register(
     "Voice" : "Hääl",
     "Car" : "Auto",
     "Work pager" : "Piipar (tööl)",
-    "Manager" : "Juht",
     "Social network" : "Sotsiaalvõrk",
     "Spouse" : "Abikaasa",
     "Child" : "Laps",
@@ -94,6 +93,7 @@ OC.L10N.register(
     "Gender" : "Sugu",
     "Female" : "Naine",
     "Male" : "Mees",
-    "Unknown" : "Teadmata"
+    "Unknown" : "Teadmata",
+    "Manager" : "Juht"
 },
 "nplurals=2; plural=(n != 1);");

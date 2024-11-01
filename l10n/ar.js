@@ -5,28 +5,28 @@ OC.L10N.register(
     "All contacts" : "كل جهات الإتصال",
     "Contacts" : "جهات الاتصال",
     "A contacts app for Nextcloud" : "تطبيق \"جهات الاتصال\" Contacts لنكست كلاود",
-    "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "تطبيق \"جهات الاتصال\" Contacts لنكست كلاود هو واجهة مستخدم لخادوم CardDAV الخاص بـنكست كلاود. يمكنك مزامنة جهات الاتصال بسهولة من مختلف الأجهزة مع نكست كلاود وتحريرها عبر الإنترنت. \n\n* 🚀 ** التكامل مع تطبيقات نكست كلاود الأخرى! ** حاليًا البريد والتقويم - المزيد في المستقبل. \n* 🎉 ** يمكنك مزامنة أعياد الميلاد والأحداث المتكررة الأخرى مع تقويم نكست كلاود الخاص بك. \n* 👥 ** مشاركة دفاتر العناوين! ** تريد مشاركة جهات الاتصال الخاصة بك مع أصدقائك أو زملائك في العمل؟ لا مشكلة! \n* 🙈 ** نحن لا نعيد اختراع العجلة! ** استنادًا إلى مكتبة SabreDAV الرائعة والمفتوحة.",
+    "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "تطبيق \"جهات الاتصال\" Contacts لنكست كلاود هو واجهة مستخدم لخادم CardDAV الخاص بـنكست كلاود. يمكنك مزامنة جهات الاتصال بسهولة من مختلف الأجهزة مع نكست كلاود وتحريرها عبر الإنترنت. \n\n* 🚀 ** التكامل مع تطبيقات نكست كلاود الأخرى! ** حاليًا البريد والتقويم - المزيد في المستقبل. \n* 🎉 ** يمكنك مزامنة أعياد الميلاد والأحداث المتكررة الأخرى مع تقويم نكست كلاود الخاص بك. \n* 👥 ** مشاركة دفاتر العناوين! ** تريد مشاركة جهات الاتصال الخاصة بك مع أصدقائك أو زملائك في العمل؟ لا مشكلة! \n* 🙈 ** نحن لا نعيد اختراع العجلة! ** استنادًا إلى مكتبة SabreDAV الرائعة والمفتوحة.",
     "Copy to full name" : "إنسخ إلى الإسم الكامل",
     "Omit year" : "تَجَاهَل السَّنَة",
     "Allow updating avatars from social media" : "السماح بتحديث التجسيد الرمزي avatar من وسائل التواصل الاجتماعي.",
-    "Please select a team" : "من فضلك، إختَر فريقاً",
+    "Please select a team" : "يرجى اختيار فريق",
     "Loading team…" : "تحميل الفريق ...",
     "Your request to join this team is pending approval" : "طلبك الانضمام إلى هذا الفريق في انتظار الموافقة",
     "You are not a member of {circle}" : "أنت لست عضواً في {circle}",
     "There was an error fetching the member list" : "حدث خطأٌ في جلب أعضاء القائمة",
     "Loading contacts …" : "تحميل جهات الاتصال ...",
     "There are no contacts yet" : "لا توجد أي جهات اتصال بعدُ",
-    "Create contact" : "أنشِيء جهة اتصال",
+    "Create contact" : "إنشاء جهة اتصال",
     "There are no contacts in this group" : "لا توجد أي جهات اتصال في هذه المجموعة",
-    "Create contacts" : "أنشِيء جهات اتصال",
+    "Create contacts" : "إنشاء جهات اتصال",
     "Add contacts" : "اضافة جهات اتصال",
-    "Loading …" : "التحميل جارٍ …",
+    "Loading …" : "يتم التحميل…",
     "Manage team" : "إدارة الفريق",
     "Leave team" : "مغادرة الفريق",
     "Delete team" : "حذف الفريق",
     "Contacts settings" : "إعدادات جهات الاتصال",
     "General settings" : "الإعدادات العامة",
-    "Update avatars from social media" : "تحديث التجسيد الرمزي avatar من وسائط التواصل الاجتماعي",
+    "Update avatars from social media" : "تحديث الصورة الرمزية من وسائط التواصل الاجتماعي",
     "(refreshed once per week)" : "(يتم تحديثه مرةً في الأسبوع)",
     "Address books" : "دفاتر العناوين",
     "Rename" : "تعديل الإسم",
@@ -43,12 +43,12 @@ OC.L10N.register(
     "Show all groups" : "عرض كل المجموعات",
     "Collapse groups" : "تقويض collapse المجموعات",
     "Show all teams" : "عرض كل الفرق",
-    "Collapse teams" : "طَيِ الفِرَق",
+    "Collapse teams" : "طي الفرق",
     "This group already exists" : "المجموعة موجودة مسبقاً",
     "This team already exists" : "هذا الفريق موجود سلفاً",
     "An error happened during the creation of the team" : "حدث خطأ أثناء إنشاء الفريق",
     "{addressbookname} (Disabled)" : "{addressbookname} (معطل)",
-    "Download" : "تحميل",
+    "Download" : "تنزيل",
     "Show" : "عرض",
     "Unshare from me" : "إلغِ المشاركة من جانبي",
     "Copied" : "نُسخت ",
@@ -63,7 +63,6 @@ OC.L10N.register(
     "Renaming of address book was not successful." : "تعذّرت إعادة تسمية دفتر العناوين",
     "_%n contact_::_%n contacts_" : ["%n جهات اتصال","%n جهة اتصال","%n جهات اتصال","%n جهات اتصال","%n جهات اتصال","%n جهات اتصال"],
     "_%n group_::_%n groups_" : ["%n مجموعات","%n مجموعة","%n مجموعات","%n مجموعات","%n مجموعات","%n مجموعات"],
-    "_Shared with {num} entity_::_Shared with {num} entities_" : ["تم مشاركته مع {num} كيانات","تم مشاركته مع {num} كيان","تم مشاركته مع {num} كيانات","تم مشاركته مع {num} كيانات","تم مشاركته مع {num} كيانات","تم مشاركته مع {num} كيانات"],
     "Share with users or groups" : "شارِك مع مستخدمين او مجموعات",
     "Share with users" : "مشاركة مع المستخدمين",
     "No users or groups" : "لا يوجد مستخدمون أو مجموعات",
@@ -72,7 +71,7 @@ OC.L10N.register(
     "Unable to change permissions" : "تعذّر تغيير الأذونات",
     "Import contacts" : "إستيراد جهات الاتصال",
     "Import into the {addressbookName} address book" : "الإستيراد إلى دفتر العناوين {addressbookName} ",
-    "Select local file" : "إختر ملفّاً محليّاً",
+    "Select local file" : "إختر ملف محلي",
     "Import from files" : "إستيراد من تطبيق الملفات ",
     "Importing is disabled because there are no address books available" : "تمّ إيقاف الاستيراد لعدم وجود دفتر عناوين متاح",
     "Choose a vCard file to import" : "إختر ملف vCard لاستيراده",
@@ -83,19 +82,19 @@ OC.L10N.register(
     "Last name" : "اللقب",
     "Phonetic first name" : "الاسم الأول نُطقاً",
     "Phonetic last name" : "الاسم الأخير نُطقاً",
-    "Display name" : "الاسم المعروض",
+    "Display name" : "اسم العرض",
     "Last modified" : "آخر تعديل",
     "Sort by {sorting}" : "الترتيب بحسب {sorting}",
     "Manages" : "يُدير",
     "Oversees" : "يُشرف على",
     "An error happened during the config change" : "حدث خطأ أثناء تعديل التهيئة",
-    "Password protection" : "الحماية بكلمة السر",
+    "Password protection" : "الحماية بكلمة المرور",
     "Enforce password protection on files shared to this team" : "فرض الحماية بكلمات المرور للملفات المشتركة مع هذا الفريق",
     "Use a unique password for all shares to this team" : "استخدام كلمة مرور فريدة لكل مشاركات هذا الفريق",
     "Unique password …" : "كلمة سر مُتفرّدة ...",
-    "Save" : "يحفظ",
-    "Change unique password" : "تغيير كلمة السر المُتفرّدة",
-    "Failed to save password. Please try again later." : "تعذّر حفظ كلمة السر. رجاءً، حاول مرة أخرى لاحقاً.",
+    "Save" : "حفظ",
+    "Change unique password" : "تغيير كلمة المرور الفريدة",
+    "Failed to save password. Please try again later." : "تعذّر حفظ كلمة المرور. رجاءً، حاول مرة أخرى لاحقاً.",
     "Team owned by {owner}" : "مالك الفريق {owner}",
     "Team settings" : "إعدادات الفريق",
     "Request to join" : "طلب انضمام",
@@ -114,22 +113,22 @@ OC.L10N.register(
     "An error happened during name sync" : "حدث خطأ أثناء مزامنة الاسم",
     "Cancel" : "إلغاء",
     "Confirm" : "تأكيد",
-    "Add more info" : "أضِف معلومات أكثر",
+    "Add more info" : "إضافة معلومات أكثر",
     "More fields" : "حقول أكثر",
     "Crop contact photo" : "قص صورة جهة الاتصال",
     "Upload a new picture" : "تحميل صورة جديدة",
     "Choose from Files" : "اختر من الملفات",
-    "Get from " : "خذ من",
     "Download picture" : "تنزيل الصورة",
     "Delete picture" : "حذف الصورة",
-    "Please select a valid format" : "رجاءً، إختر نسقاً صحيحاً valid format",
+    "Please select a valid format" : "يرجى اختيار تنسيق صحيح",
     "Invalid image" : "الصورة غير صالحة",
     "Error cropping picture" : "خطأ أثناء قصقصة الصورة cropping",
-    "Pick an avatar" : "إختر تجسيداً رمزيّاً avatar",
+    "Pick an avatar" : "إختر صورة الملف الشخصي الرمزية",
+    "Pick" : "إختَر",
     "Error while processing the picture." : "حدث خطأ أثناء معالجة الصورة.",
-    "Avatar downloaded from social network" : "تمّ تنزيل التجسيد الرمزي avatar من وسائط التواصل الاجتماعي",
-    "Avatar already up to date" : "التجسيد الرمزي avatar على آخر تحديث",
-    "Avatar download failed" : "فشل تحميل التجسيد الرمزي avatar",
+    "Avatar downloaded from social network" : "تمّ تنزيل صورة الملف الشخصي الرمزية من وسائط التواصل الاجتماعي",
+    "Avatar already up to date" : "صورة الملف الشخصي الرمزية محدثة",
+    "Avatar download failed" : "فشل تنزيل الصورة الرمزية لجهة الاتصال",
     "No contact selected" : "لم يتم تحديد جهة اتصال",
     "Select a contact on the list to begin" : "حدّد جهة اتصال في القائمة للبدء",
     "Name" : "الاسم",
@@ -147,7 +146,7 @@ OC.L10N.register(
     "Media shares with you" : "وسائط تمّت مُشارَكتها معك",
     "Talk conversations with you" : "مُحادثاتك",
     "Calendar events with you" : "أحداثك على التقويم",
-    "Deck cards with you" : "بطاقات لك على الرقعة",
+    "Deck cards with you" : "بطاقات لك",
     "No shared items with this contact" : "لا توجد عناصر مُشارَكة مع جهة الاتصال هذه",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "جهة الاتصال هذه في وضع القراءة فقط. ليس لديك إذن لتعديل جهة الاتصال هذه.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "تم تغيير جهة الاتصال التي كنت تحاول تحريرها. يرجى تحديث جهة الاتصال يدويًا. سيتم تجاهل أي تعديلات أخرى.",
@@ -156,19 +155,19 @@ OC.L10N.register(
     "Exclude contact from Birthday Calendar" : "إستبعد جهة اتصال من تقويم أعياد الميلاد",
     "{title} at {organization}" : "{title} في {organization}",
     "Syntax error. Cannot open the contact." : "خطأ في بناء الجملة syntax. لا يمكن فتح جهة الاتصال.",
-    "The contact does not exist on the server anymore." : "لم تعد جهة الاتصال هذه موجودة على الخادوم.",
-    "Unable to retrieve the contact from the server, please check your network connection." : "تعذر استرداد جهة الاتصال من الخادوم ، يرجى التحقق من اتصال الشبكة.",
+    "The contact does not exist on the server anymore." : "لم تعد جهة الاتصال هذه موجودة على الخادم.",
+    "Unable to retrieve the contact from the server, please check your network connection." : "تعذر استرداد جهة الاتصال من الخادم ، يرجى التحقق من اتصال الشبكة.",
     "An error occurred while trying to move the contact" : "حدث خطأ أثناء محاولة نقل جهة الاتصال",
     "An error occurred while trying to copy the contact" : "حدث خطأ أثناء محاولة نسخ جهة الاتصال",
     "Unable to update contact" : "تعذّر تحديث جهة الاتصال",
-    "Search contacts …" : "البحث عن جهات الإتصال",
-    "Add to {group}" : "أضِف إلى {group}",
-    "Remove {type}" : "إحذِف {type}",
+    "Search contacts …" : "البحث عن جهات الاتصال",
+    "Add to {group}" : "إضافة إلى {group}",
+    "Remove {type}" : "حذف {type}",
     "Search {types}" : "بحث {types}",
     "Search for people to add" : "البحث عن أشخاص لإضافتهم",
     "No results" : "لا توجد نتائج",
     "Add to group" : "إضافة إلى مجموعة",
-    "Add {type}" : "أضِف {type}",
+    "Add {type}" : "إضافة {type}",
     "New team name" : "اسم الفريق الجديد",
     "Personal team" : "فريق شخصي",
     "This team will only be visible to you. Other members will not be able to see or use it." : "هذا الفريق سيكون مرئياً لك أنت فقط. لن يتمكن الأعضاء الآخرون من رؤيته و لا من استعماله.",
@@ -178,9 +177,9 @@ OC.L10N.register(
     "Loading members list …" : "تحميل قائمة الأعضاء ...",
     "The list of members is only visible to members of this team" : "قائمة الأعضاء تظهر فقط لأعضاء هذا الفريق",
     "You currently have no access to the member list" : "لا يحق لك حاليّاً الوصول إلى قائمة الأعضاء",
-    "Add members" : "أضِف أعضاءً",
+    "Add members" : "إضافة أعضاء",
     "Show team details" : "عرض تفاصيل الفريق",
-    "Add to {circle}" : "أضِف إلى {circle}",
+    "Add to {circle}" : "إضافة إلى {circle}",
     "Unable to get the recommendations list" : "تعذّر الحصول على قائمة التوصيات",
     "Unable to get the results" : "تعذّر الحصول على النتائج",
     "Some members could not be added" : "تعذّرت إضافة بعض الأعضاء",
@@ -200,20 +199,15 @@ OC.L10N.register(
     "Select chart …" : "إختر شكلاً ...",
     "Select type" : "إختر نوعاً",
     "Select Date" : "اختر التاريخ ",
-    "Add contact in group" : "أضِف جهة اتصالٍ في المجموعة",
+    "Add contact in group" : "إضافة جهة اتصال في المجموعة",
     "None" : "لا شيء",
     "Select option" : "حدّد خياراً",
-    "Add property of this type" : "أضِف خاصّيّةً property من هذا النوع ",
+    "Add property of this type" : "إضافة خاصية من هذا النوع ",
     "New contact" : "جهة إتصال جديدة",
     "Unable to create the contact." : "تعذّر إنشاء جهة الاتصال",
     "Contact not found" : "جهة الاتصال غير موجودة",
     "Group {group} not found" : "المجموعة {group} غير موجودة",
     "Close" : "إغلاق",
-    "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} أضيفت جهات الاتصال إلى {name}","{success} أضيفت جهة الاتصال إلى {name}","{success} أضيفت جهات الاتصال إلى {name}","{success} أضيفت جهات الاتصال إلى {name}","{success} أضيفت جهات الاتصال إلى {name}","{success} أضيفت جهات الاتصال إلى {name}"],
-    "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["جار {success} إضافة جهات اتصال إلى {name}","جار {success} إضافة جهة اتصال إلى {name}","جار {success} إضافة جهات اتصال إلى {name}","جار {success} إضافة جهات اتصال إلى {name}","جار {success} إضافة جهات اتصال إلى {name}","جار {success} إضافة جهات اتصال إلى {name}"],
-    "_{count} error_::_{count} errors_" : ["{count} أخطاء","{count} خطأ","{count} أخطاء","{count} أخطاء","{count} أخطاء","{count} أخطاء"],
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["جار استيراد %n جهات اتصال إلى {addressbook}","جار استيراد %n جهة اتصال إلى {addressbook}","جار استيراد %n جهات اتصال إلى {addressbook}","جار استيراد %n جهات اتصال إلى {addressbook}","جار استيراد %n جهات اتصال إلى {addressbook}","جار استيراد %n جهات اتصال إلى {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["تم استيراد %nجهات اتصال إلى {addressbook}","تم استيراد %n جهة اتصال إلى {addressbook}","تم استيراد %nجهات اتصال إلى {addressbook}","تم استيراد %nجهات اتصال إلى {addressbook}","تم استيراد  %nجهات اتصال إلى {addressbook}","تم استيراد %n جهات اتصال إلى {addressbook}"],
     "Import" : "استيراد",
     "Are you sure you want to import this contact file?" : "هل أنت متأكد أنك تريد استيراد ملف جهات الاتصال هذا؟",
     "Could not copy" : "تعذّر النسخ",
@@ -234,7 +228,7 @@ OC.L10N.register(
     "Team" : "الفريق",
     "User" : "المستخدم",
     "Group" : "المجموعة",
-    "Email" : "البريد الإلكترونى",
+    "Email" : "البريد الإلكتروني",
     "Contact" : "جهة اتصال",
     "Member" : "عضو",
     "Moderator" : "مشرِف",
@@ -243,7 +237,7 @@ OC.L10N.register(
     "Invites" : "يدعو",
     "Anyone can request membership" : "يمكن لأي شخص طلب العضوية",
     "Members need to accept invitation" : "يلزم أن يقبل العضو الدعوة",
-    "Memberships must be confirmed/accepted by a Moderator (requires \"Anyone can request membership\")" : "يجب أن يتم قبول العضويات من قِبَل مُنسّق (يستلزم \"أي أحدٍ يمكنه طلب العضوية Anyobe can request membership\")",
+    "Memberships must be confirmed/accepted by a Moderator (requires \"Anyone can request membership\")" : "يجب أن يتم قبول العضويات من قِبَل مشرف (يستلزم \"أي أحدٍ يمكنه طلب العضوية Anyobe can request membership\")",
     "Members can also invite" : "يمكن للأعضاء أيضاً إرسال دعوات العضوية",
     "Visibility" : "الرؤية",
     "Visible to everyone" : "مرئي للجميع",
@@ -251,7 +245,7 @@ OC.L10N.register(
     "Prevent teams from being a member of another team" : "منع الفريق من ان يكون عضواً في فريق آخر",
     "users" : "مستخدِمون",
     "groups" : "مجموعات",
-    "teams" : "فِرَق",
+    "teams" : "الفرق",
     "email addresses" : "عناوين بريد الكتروني",
     "Detailed name" : "الاسم بالتفصيل",
     "Additional names" : "الأسماء الإضافية",
@@ -261,20 +255,22 @@ OC.L10N.register(
     "Notes" : "ملاحظات",
     "Website" : "موقع إلكتروني",
     "Location" : "المكان",
-    "Federated Cloud ID" : "مُعرّف السحابة الاتحاديّة",
+    "Federated Cloud ID" : "معرف السحابة الموحدة",
     "Home" : "المنزل",
     "Work" : "العمل",
     "Other" : "آخر",
     "Address" : "العنوان",
     "Post office box" : "صندوق البريد",
-    "Extended address" : "عنوان مُوسّع Extended address",
+    "Extended address" : "عنوان مفصل",
     "City" : "المدينة",
     "State or province" : "الولاية أو المقاطعة",
     "Postal code" : "الرمز البريدي",
     "Country" : "البلد",
     "Birthday" : "عيد ميلاد",
+    "Place of birth" : "مكان الميلاد",
     "Anniversary" : "ذكرى سنوية",
     "Date of death" : "تاريخ وفاة",
+    "Place of death" : "مكان الوفاة",
     "Instant messaging" : "مراسلة فورية",
     "Phone" : "الهاتف",
     "Mobile" : "النقّال",
@@ -287,7 +283,7 @@ OC.L10N.register(
     "Voice" : "صوت",
     "Car" : "سيارة",
     "Work pager" : "مُنادِي العمل Work pager",
-    "Manager" : "مدير",
+    "Line manager" : "مدير الخط",
     "Social network" : "شبكة اجتماعية",
     "Relationship to you" : "العلاقة معك",
     "Spouse" : "زوج/زوجة",
@@ -312,7 +308,7 @@ OC.L10N.register(
     "Time zone" : "المنطقة الزمنية",
     "Spoken languages" : "اللغات المحكية",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} فشل قراءة جهات الاتصال","{failed} فشل قراءة جهة الاتصال","{failed} فشل قراءة جهات الاتصال","{failed} فشل قراءة جهات الاتصال","{failed} فشل قراءة جهات الاتصال","{failed} فشل قراءة جهات الاتصال"],
-    "An error has occurred in team(s). Check the console for more details." : "حدث خطأ في الفَرِيق أو الفِرَق. إفحص شاشة التحكم (console) لمزيد من التفاصيل.",
+    "An error has occurred in team(s). Check the console for more details." : "حدث خطأ في الفريق أو الفرق. إفحص شاشة التحكم (console) لمزيد من التفاصيل.",
     "Unable to create team {circleName}" : "تعذّر إنشاء الفريق {circleName}",
     "Unable to delete team {circleId}" : "تعذّر حذف الفريق {circleId}",
     "Unable to delete contact" : "تعذّر حذف جهة الاتصال"
