@@ -45,6 +45,7 @@ OC.L10N.register(
     "Show all teams" : "Visa alla team",
     "Collapse teams" : "Dölj team",
     "This group already exists" : "Denna grupp existerar redan",
+    "An error occurred while creating the group" : "Ett fel uppstod när gruppen skulle skapas",
     "This team already exists" : "Detta team finns redan",
     "An error happened during the creation of the team" : "Ett fel inträffade när team skulle skapades",
     "{addressbookname} (Disabled)" : "{addressbookname} (Inaktiverad)",
