@@ -94,6 +94,7 @@ OC.L10N.register(
     "Gender" : "Geslag",
     "Female" : "Vroulik",
     "Male" : "Manlik",
-    "Unknown" : "Onbekend"
+    "Unknown" : "Onbekend",
+    "Manager" : "Bestuurder"
 },
 "nplurals=2; plural=(n != 1);");
