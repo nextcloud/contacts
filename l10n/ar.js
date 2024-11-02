@@ -45,6 +45,7 @@ OC.L10N.register(
     "Show all teams" : "عرض كل الفرق",
     "Collapse teams" : "طي الفرق",
     "This group already exists" : "المجموعة موجودة مسبقاً",
+    "An error occurred while creating the group" : "حدث خطأ أثناء إنشاء المجموعة",
     "This team already exists" : "هذا الفريق موجود سلفاً",
     "An error happened during the creation of the team" : "حدث خطأ أثناء إنشاء الفريق",
     "{addressbookname} (Disabled)" : "{addressbookname} (معطل)",
@@ -311,6 +312,8 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "حدث خطأ في الفريق أو الفرق. إفحص شاشة التحكم (console) لمزيد من التفاصيل.",
     "Unable to create team {circleName}" : "تعذّر إنشاء الفريق {circleName}",
     "Unable to delete team {circleId}" : "تعذّر حذف الفريق {circleId}",
-    "Unable to delete contact" : "تعذّر حذف جهة الاتصال"
+    "Unable to delete contact" : "تعذّر حذف جهة الاتصال",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "يلزم تأكيد/قبول العضويات من قِبَل المنسق (تستلزم الفتح)",
+    "Manager" : "مدير"
 },
 "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;");

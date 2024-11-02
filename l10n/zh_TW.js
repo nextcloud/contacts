@@ -45,6 +45,7 @@ OC.L10N.register(
     "Show all teams" : "顯示所有團隊",
     "Collapse teams" : "折疊團隊",
     "This group already exists" : "該群組已存在",
+    "An error occurred while creating the group" : "建立群組時發生錯誤",
     "This team already exists" : "此團隊已存在",
     "An error happened during the creation of the team" : "建立團隊時發生錯誤",
     "{addressbookname} (Disabled)" : "{addressbookname}（已停用）",

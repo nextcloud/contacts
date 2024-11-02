@@ -92,6 +92,7 @@
     "Gender" : "Geslag",
     "Female" : "Vroulik",
     "Male" : "Manlik",
-    "Unknown" : "Onbekend"
+    "Unknown" : "Onbekend",
+    "Manager" : "Bestuurder"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
