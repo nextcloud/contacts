@@ -43,6 +43,7 @@
     "Show all teams" : "Taispeáin gach foireann",
     "Collapse teams" : "Laghdaigh foirne",
     "This group already exists" : "Tá an grúpa seo ann cheana féin",
+    "An error occurred while creating the group" : "Tharla earráid agus an grúpa á chruthú",
     "This team already exists" : "Tá an fhoireann seo ann cheana féin",
     "An error happened during the creation of the team" : "Tharla earráid le linn cruthú na foirne",
     "{addressbookname} (Disabled)" : "{addressbookname} (Díchumasaithe)",
@@ -310,6 +311,7 @@
     "Unable to create team {circleName}" : "Ní féidir foireann {circleName} a chruthú",
     "Unable to delete team {circleId}" : "Ní féidir foireann {circleId} a scriosadh",
     "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh",
+    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Ní mór do Mhodhnóir ballraíocht a dheimhniú/glacadh leis (riachtanach)",
     "Manager" : "Bainisteoir"
 },"pluralForm" :"nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);"
 }
