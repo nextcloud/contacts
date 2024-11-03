@@ -43,6 +43,7 @@
     "Show all teams" : "Mostrar todas as equipes",
     "Collapse teams" : "Recolher equipes",
     "This group already exists" : "Este grupo já existe",
+    "An error occurred while creating the group" : "Ocorreu um erro ao criar o grupo",
     "This team already exists" : "Essa equipe já existe",
     "An error happened during the creation of the team" : "Ocorreu um erro durante a criação da equipe",
     "{addressbookname} (Disabled)" : "{addressbookname} (desativado)",
