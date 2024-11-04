@@ -45,6 +45,7 @@ OC.L10N.register(
     "Show all teams" : "Показати всі команди",
     "Collapse teams" : "Згорнути команди",
     "This group already exists" : "Така група вже існує",
+    "An error occurred while creating the group" : "Помилка під час створення групи",
     "This team already exists" : "Така команда вже існує",
     "An error happened during the creation of the team" : "Помилка під час створення команди",
     "{addressbookname} (Disabled)" : "{addressbookname} (Вимкнено)",
