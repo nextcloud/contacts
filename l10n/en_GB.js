@@ -45,6 +45,7 @@ OC.L10N.register(
     "Show all teams" : "Show all teams",
     "Collapse teams" : "Collapse teams",
     "This group already exists" : "This group already exists",
+    "An error occurred while creating the group" : "An error occurred while creating the group",
     "This team already exists" : "This team already exists",
     "An error happened during the creation of the team" : "An error happened during the creation of the team",
     "{addressbookname} (Disabled)" : "{addressbookname} (Disabled)",

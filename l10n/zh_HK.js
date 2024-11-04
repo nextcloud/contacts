@@ -45,6 +45,7 @@ OC.L10N.register(
     "Show all teams" : "顯示所有團隊",
     "Collapse teams" : "折疊團隊",
     "This group already exists" : "該群組已存在",
+    "An error occurred while creating the group" : "建立群組時發生錯誤",
     "This team already exists" : "此團隊已存在",
     "An error happened during the creation of the team" : "建立團隊時發生錯誤",
     "{addressbookname} (Disabled)" : "{addressbookname}（已停用）",
@@ -313,6 +314,6 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "無法刪除團隊 {circleId}",
     "Unable to delete contact" : "無法刪除聯絡人",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "會員資格必須由版主確認/接受（需要開放）",
-    "Manager" : "上司"
+    "Manager" : "經理"
 },
 "nplurals=1; plural=0;");
