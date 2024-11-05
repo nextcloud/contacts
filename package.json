@@ -66,7 +66,7 @@
     "mitt": "^3.0.1",
     "moment": "^2.30.1",
     "p-limit": "^6.1.0",
-    "pinia": "^2.2.4",
+    "pinia": "^2.2.6",
     "string-natural-compare": "^3.0.1",
     "uuid": "^11.0.2",
     "vue": "~2.7.16",
