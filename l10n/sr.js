@@ -45,6 +45,7 @@ OC.L10N.register(
     "Show all teams" : "Прикажи све тимове",
     "Collapse teams" : "Сажми тимове",
     "This group already exists" : "Група већ постоји",
+    "An error occurred while creating the group" : "Дошло је до грешке током креирања групе",
     "This team already exists" : "Овај тим већ постоји",
     "An error happened during the creation of the team" : "Дошло је до грешке приликом креирања тима",
     "{addressbookname} (Disabled)" : "{addressbookname} (Искључен)",
