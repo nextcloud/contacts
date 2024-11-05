@@ -65,7 +65,7 @@ OC.L10N.register(
     "Group" : "Grupa",
     "Email" : "E-pasts",
     "Contact" : "Kontakts",
-    "Admin" : "Admin",
+    "Admin" : "Pārvaldītājs",
     "Owner" : "Īpašnieks",
     "Detailed name" : "Izvērsts nosaukums",
     "Additional names" : "Papildu vārdi",
