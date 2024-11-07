@@ -45,6 +45,7 @@ OC.L10N.register(
     "Show all teams" : "Zobrazit veškeré týmy",
     "Collapse teams" : "Sbalit týmy",
     "This group already exists" : "Tato skupina už existuje",
+    "An error occurred while creating the group" : "Při vytváření skupiny došlo k chybě",
     "This team already exists" : "Tento tým už existuje",
     "An error happened during the creation of the team" : "V průběhu vytváření týmu došlo k chybě",
     "{addressbookname} (Disabled)" : "{addressbookname} (vypnuto)",
