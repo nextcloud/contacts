@@ -4,6 +4,11 @@
 -->
 # Changelog
 
+## 6.1.1 – 2024-11-12
+### Fixed
+- Encode exported contact groups as UTF-8
+- Respect advanced group sharing settings in frontend
+
 ## 6.1.0 – 2024-08-28
 ### Added
 - Nextcloud 30 support
