@@ -1,5 +1,14 @@
 # Changelog
 
+## 6.0.1 – 2024-11-12
+### Fixed
+- Rename 'Contact groups' to 'groups
+- Don't use VirtualList for listing members
+- Rename 'add member' to 'manage team'
+- Adjustments to ListItemIcon properties
+- Encode exported contact groups as UTF-8
+- Respect advanced group sharing settings in frontend
+
 ## 6.0.0 – 2024-04-18
 ### Added 
 - Nextcloud 29 support
