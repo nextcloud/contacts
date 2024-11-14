@@ -72,7 +72,7 @@ OC.L10N.register(
     "Unable to change permissions" : "Impossible de modifier les autorisations",
     "Import contacts" : "Importer des contacts",
     "Import into the {addressbookName} address book" : "Importer dans le carnet d'adresses {addressbookName}",
-    "Select local file" : "Sélectionnez un fichier local",
+    "Select local file" : "Sélectionner un fichier local",
     "Import from files" : "Importer depuis Fichiers",
     "Importing is disabled because there are no address books available" : "L'import n'est pas disponible car il n'existe aucun carnet d'adresses",
     "Choose a vCard file to import" : "Sélectionnez un fichier vCard à importer",
