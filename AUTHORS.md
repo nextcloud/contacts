@@ -9,6 +9,7 @@
 - Christian Kraus <hanzi@hanzi.cc>
 - Christoph Wurst <christoph@winzerhof-wurst.at>
 - Daniel Kesselberg <mail@danielkesselberg.de>
+- Dominik Kuzila <kuziladominik@gmail.com>
 - Gary Kim <gary@garykim.dev>
 - Georg Ehrke <oc.list@georgehrke.com>
 - Greta Doci <gretadoci@gmail.com>
