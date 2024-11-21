@@ -284,6 +284,7 @@ OC.L10N.register(
     "Voice" : "Odkazová schránka",
     "Car" : "Auto",
     "Work pager" : "Pracovný pager",
+    "Line manager" : "Líniový manažér",
     "Social network" : "Sociálna sieť",
     "Relationship to you" : "Vzťah s vami",
     "Spouse" : "Partner/ka",
