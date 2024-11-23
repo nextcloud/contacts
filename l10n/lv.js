@@ -75,7 +75,7 @@ OC.L10N.register(
     "Nickname" : "Iesauka",
     "Notes" : "Piezīmes",
     "Website" : "Mājaslapa",
-    "Location" : "Vieta",
+    "Location" : "Atrašanās vieta",
     "Federated Cloud ID" : "Federated Cloud ID",
     "Home" : "Mājas",
     "Work" : "Darbs",
