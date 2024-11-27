@@ -19,7 +19,10 @@ yarn-error.log*
 
 js/
 /css/
-build/
+
+# packaged app
+build/artifacts
+
 coverage*
 vendor/
 
