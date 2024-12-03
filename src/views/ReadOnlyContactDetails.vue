@@ -66,7 +66,7 @@ export default {
 
 	props: {
 		contactEmailAddress: {
-			types: String,
+			type: String,
 			required: true,
 		},
 		desc: {
@@ -210,7 +210,7 @@ export default {
 						name: [NS.IETF_CARDDAV, 'prop-filter'],
 						attributes: [['name', 'EMAIL']],
 						children: [{
-							name: [NS.IETF_CALDAV, 'text-match'],
+							name: [NS.IETF_CARDDAV, 'text-match'],
 							value: email,
 						}],
 					}]),
