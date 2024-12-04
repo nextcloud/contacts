@@ -122,6 +122,7 @@ OC.L10N.register(
     "Invalid image" : "Baliogabeko irudia",
     "Error cropping picture" : "Errore bat gertatu da argazkia moztean",
     "Pick an avatar" : "Aukeratu avatar bat",
+    "Pick" : "Aukeratu",
     "Error while processing the picture." : "Errorea irudia prozesatzen.",
     "Avatar downloaded from social network" : "Abatarra deskargatu da sare sozialetik ",
     "Avatar already up to date" : "Abatarra eguneratuta",
