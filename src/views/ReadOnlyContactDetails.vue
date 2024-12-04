@@ -4,42 +4,47 @@
 -->
 
 <template>
-	<!-- nothing selected or contact not found -->
-	<NcEmptyContent v-if="!contact"
-		class="empty-content"
-		:name="t('mail', 'No data for this contact')"
-		:description="t('mail', 'No data for this contact on their profile')">
-		<template #icon>
-			<IconContact :size="20" />
-		</template>
-	</NcEmptyContent>
-	<div v-else
-		class="recipient-details-content">
-		<div class="contact-title">
-			<h6>{{ contact.fullName }}</h6>
-			<!-- Subtitle -->
-			<span v-html="formattedSubtitle" />
+	<div class="display-contact-details">
+		<div v-if="loading" class="recipient-details-loading">
+			<NcLoadingIcon />
 		</div>
-		<div class="contact-details-wrapper">
-			<div v-for="(properties, name) in groupedProperties"
-				:key="name">
-				<ContactDetailsProperty v-for="(property, index) in properties"
-					:key="`${index}-${contact.key}-${property.name}`"
-					:is-first-property="index === 0"
-					:is-last-property="index === properties.length - 1"
-					:property="property"
-					:contact="contact"
-					:local-contact="localContact"
-					:contacts="[contact]"
-					:is-read-only="true"
-					:bus="bus" />
+		<!-- nothing selected or contact not found -->
+		<NcEmptyContent v-else-if="!contact"
+			class="empty-content"
+			:name="t('mail', 'No data for this contact')"
+			:description="t('mail', 'No data for this contact on their profile')">
+			<template #icon>
+				<IconContact :size="20" />
+			</template>
+		</NcEmptyContent>
+		<div v-else
+			class="recipient-details-content">
+			<div class="contact-title">
+				<h6>{{ contact.fullName }}</h6>
+				<!-- Subtitle -->
+				<span v-html="formattedSubtitle" />
+			</div>
+			<div class="contact-details-wrapper">
+				<div v-for="(properties, name) in groupedProperties"
+					:key="name">
+					<ContactDetailsProperty v-for="(property, index) in properties"
+						:key="`${index}-${contact.key}-${property.name}`"
+						:is-first-property="index === 0"
+						:is-last-property="index === properties.length - 1"
+						:property="property"
+						:contact="contact"
+						:local-contact="localContact"
+						:contacts="[contact]"
+						:is-read-only="true"
+						:bus="bus" />
+				</div>
 			</div>
 		</div>
 	</div>
 </template>
 
 <script>
-import { isMobile, NcEmptyContent } from '@nextcloud/vue'
+import { isMobile, NcEmptyContent, NcLoadingIcon } from '@nextcloud/vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import mitt from 'mitt'
 import { namespaces as NS } from '@nextcloud/cdav-library'
@@ -60,6 +65,7 @@ export default {
 		ContactDetailsProperty,
 		NcEmptyContent,
 		IconContact,
+		NcLoadingIcon,
 	},
 
 	mixins: [isMobile],
@@ -86,6 +92,7 @@ export default {
 			profileEnabled,
 			contact: undefined,
 			localContact: undefined,
+			loading: true,
 		}
 	},
 
@@ -201,27 +208,36 @@ export default {
 	},
 	methods: {
 		async fetchContact() {
-			const email = this.contactEmailAddress
+			try {
+				const email = this.contactEmailAddress
+				const result = await Promise.all(
+					this.addressbooks.map(async (addressBook) => [
+						addressBook.dav,
+						await addressBook.dav.addressbookQuery([
+							{
+								name: [NS.IETF_CARDDAV, 'prop-filter'],
+								attributes: [['name', 'EMAIL']],
+								children: [
+									{
+										name: [NS.IETF_CARDDAV, 'text-match'],
+										value: email,
+									},
+								],
+							},
+						]),
+					]),
+				)
 
-			const result = await Promise.all(
-				this.addressbooks.map(async (addressBook) => [
-					addressBook.dav,
-					await addressBook.dav.addressbookQuery([{
-						name: [NS.IETF_CARDDAV, 'prop-filter'],
-						attributes: [['name', 'EMAIL']],
-						children: [{
-							name: [NS.IETF_CARDDAV, 'text-match'],
-							value: email,
-						}],
-					}]),
-				]),
-			)
-			const contacts = result.flatMap(([addressBook, vcards]) =>
-				vcards.map((vcard) => new Contact(vcard.data, addressBook)),
-			)
+				const contacts = result.flatMap(([addressBook, vcards]) =>
+					vcards.map((vcard) => new Contact(vcard.data, addressBook)),
+				)
 
-			// TODO: find strategy to merge contacts?
-			this.contact = contacts.find(contact => contact.email === email)
+				this.contact = contacts.find((contact) => contact.email === email)
+			} catch (error) {
+				console.error('Error fetching contact:', error)
+			} finally {
+				this.loading = false
+			}
 		},
 		updateGroups(value) {
 			this.newGroupsValue = value
@@ -279,5 +295,8 @@ export default {
 }
 :deep(.property__value) {
 	font-size: medium !important;
+}
+.recipient-details-loading {
+	margin-top: 64px;
 }
 </style>
