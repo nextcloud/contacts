@@ -68,6 +68,10 @@ class ProfilePickerReferenceProviderTest extends TestCase {
 				'scope' => IAccountManager::SCOPE_LOCAL,
 				'value' => 'Non-existing user',
 			],
+			IAccountManager::PROPERTY_PROFILE_ENABLED => [
+				'scope' => IAccountManager::SCOPE_LOCAL,
+				'value' => '1',
+			],
 		],
 		'user2' => [
 			IAccountManager::PROPERTY_BIOGRAPHY => [
@@ -93,6 +97,10 @@ class ProfilePickerReferenceProviderTest extends TestCase {
 			IAccountManager::PROPERTY_ROLE => [
 				'scope' => IAccountManager::SCOPE_LOCAL,
 				'value' => 'Non-existing user',
+			],
+			IAccountManager::PROPERTY_PROFILE_ENABLED => [
+				'scope' => IAccountManager::SCOPE_LOCAL,
+				'value' => '1',
 			],
 		],
 		'user3' => null,
@@ -166,10 +174,10 @@ class ProfilePickerReferenceProviderTest extends TestCase {
 					$propertyMock = $this->createMock(IAccountProperty::class);
 					$propertyMock->expects($this->any())
 						->method('getValue')
-						->willReturn($this->testAccountsData[$userId][$property]['value']);
+						->willReturn($this->testAccountsData[$userId][$property]['value'] ?? '');
 					$propertyMock->expects($this->any())
 						->method('getScope')
-						->willReturn($this->testAccountsData[$userId][$property]['scope']);
+						->willReturn($this->testAccountsData[$userId][$property]['scope'] ?? '');
 					return $propertyMock;
 				});
 
@@ -194,7 +202,12 @@ class ProfilePickerReferenceProviderTest extends TestCase {
 					'title' => $this->testUsersData[$userId]['displayname'],
 					'subline' => $this->testUsersData[$userId]['email'] ?? $this->testUsersData[$userId]['displayname'],
 					'email' => $this->testUsersData[$userId]['email'],
-					'bio' => $bio !== null ? substr_replace($bio, '...', 80, strlen($bio)) : null,
+					'bio' => isset($bio) && $bio !== ''
+						? (mb_strlen($bio) > 80
+							? (mb_substr($bio, 0, 80) . '...')
+							: $bio)
+						: null,
+					'full_bio' => $bio,
 					'headline' => $this->getTestAccountPropertyValue($userId, IAccountManager::PROPERTY_HEADLINE),
 					'location' => $location,
 					'location_url' => $location !== null ? 'https://www.openstreetmap.org/search?query=' . urlencode($location) : null,
