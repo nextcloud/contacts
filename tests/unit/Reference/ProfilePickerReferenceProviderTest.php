@@ -17,14 +17,17 @@ use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\IUser;
 use OCP\IUserManager;
+use OCP\Profile\IProfileManager;
 use PHPUnit\Framework\MockObject\MockObject;
 
 class ProfilePickerReferenceProviderTest extends TestCase {
 	private string $userId = 'admin';
+	private IUser|MockObject $adminUser;
 	private IL10N|MockObject $l10n;
 	private IURLGenerator|MockObject $urlGenerator;
 	private IUserManager|MockObject $userManager;
 	private IAccountManager|MockObject $accountManager;
+	private IProfileManager|MockObject $profileManager;
 	private ProfilePickerReferenceProvider $referenceProvider;
 
 	private array $testUsersData = [
@@ -46,60 +49,74 @@ class ProfilePickerReferenceProviderTest extends TestCase {
 		'user1' => [
 			IAccountManager::PROPERTY_BIOGRAPHY => [
 				'scope' => IAccountManager::SCOPE_PRIVATE,
+				'visible' => true,
 				'value' => 'This is a first test user',
 			],
 			IAccountManager::PROPERTY_HEADLINE => [
 				'scope' => IAccountManager::SCOPE_LOCAL,
+				'visible' => false,
 				'value' => 'I\'m a first test user',
 			],
 			IAccountManager::PROPERTY_ADDRESS => [
 				'scope' => IAccountManager::SCOPE_LOCAL,
+				'visible' => true,
 				'value' => 'Odessa',
 			],
 			IAccountManager::PROPERTY_WEBSITE => [
 				'scope' => IAccountManager::SCOPE_LOCAL,
+				'visible' => true,
 				'value' => 'https://domain.co/testuser1',
 			],
 			IAccountManager::PROPERTY_ORGANISATION => [
 				'scope' => IAccountManager::SCOPE_PRIVATE,
+				'visible' => true,
 				'value' => 'Nextcloud GmbH',
 			],
 			IAccountManager::PROPERTY_ROLE => [
 				'scope' => IAccountManager::SCOPE_LOCAL,
+				'visible' => true,
 				'value' => 'Non-existing user',
 			],
 			IAccountManager::PROPERTY_PROFILE_ENABLED => [
 				'scope' => IAccountManager::SCOPE_LOCAL,
+				'visible' => true,
 				'value' => '1',
 			],
 		],
 		'user2' => [
 			IAccountManager::PROPERTY_BIOGRAPHY => [
 				'scope' => IAccountManager::SCOPE_LOCAL,
+				'visible' => true,
 				'value' => 'This is a test user',
 			],
 			IAccountManager::PROPERTY_HEADLINE => [
 				'scope' => IAccountManager::SCOPE_LOCAL,
+				'visible' => true,
 				'value' => 'Second test user',
 			],
 			IAccountManager::PROPERTY_ADDRESS => [
 				'scope' => IAccountManager::SCOPE_LOCAL,
+				'visible' => true,
 				'value' => 'Berlin',
 			],
 			IAccountManager::PROPERTY_WEBSITE => [
 				'scope' => IAccountManager::SCOPE_LOCAL,
+				'visible' => true,
 				'value' => 'https://domain.co/testuser2',
 			],
 			IAccountManager::PROPERTY_ORGANISATION => [
 				'scope' => IAccountManager::SCOPE_PRIVATE,
+				'visible' => true,
 				'value' => 'Nextcloud GmbH',
 			],
 			IAccountManager::PROPERTY_ROLE => [
 				'scope' => IAccountManager::SCOPE_LOCAL,
+				'visible' => true,
 				'value' => 'Non-existing user',
 			],
 			IAccountManager::PROPERTY_PROFILE_ENABLED => [
 				'scope' => IAccountManager::SCOPE_LOCAL,
+				'visible' => true,
 				'value' => '1',
 			],
 		],
@@ -120,22 +137,44 @@ class ProfilePickerReferenceProviderTest extends TestCase {
 		$this->urlGenerator = $this->createMock(IURLGenerator::class);
 		$this->userManager = $this->createMock(IUserManager::class);
 		$this->accountManager = $this->createMock(IAccountManager::class);
+		$this->profileManager = $this->createMock(IProfileManager::class);
 
 		$this->referenceProvider = new ProfilePickerReferenceProvider(
 			$this->l10n,
 			$this->urlGenerator,
 			$this->userManager,
 			$this->accountManager,
+			$this->profileManager,
 			$this->userId
 		);
 
 		$this->urlGenerator->expects($this->any())
 			->method('getBaseUrl')
 			->willReturn($this->baseUrl);
+
+		$this->profileManager->expects($this->any())
+			->method('isProfileEnabled')
+			->willReturn(true);
+
+		$this->profileManager->expects($this->any())
+			->method('isProfileFieldVisible')
+			->willReturnCallback(function (string $profileField, IUser $targetUser, ?IUser $visitingUser) {
+				return $this->testAccountsData[$targetUser->getUID()][$profileField]['visible']
+					&& $this->testAccountsData[$targetUser->getUID()][$profileField]['scope'] !== IAccountManager::SCOPE_PRIVATE;
+			});
+
+		$this->adminUser = $this->createMock(IUser::class);
+		$this->adminUser->expects($this->any())
+			->method('getUID')
+			->willReturn('admin');
+		$this->adminUser->expects($this->any())
+			->method('getDisplayName')
+			->willReturn('admin');
 	}
 
 	private function getTestAccountPropertyValue(string $testUserId, string $property): mixed {
-		if ($this->testAccountsData[$testUserId][$property]['scope'] === IAccountManager::SCOPE_PRIVATE) {
+		if (!$this->testAccountsData[$testUserId][$property]['visible']
+			|| $this->testAccountsData[$testUserId][$property]['scope'] === IAccountManager::SCOPE_PRIVATE) {
 			return null;
 		}
 		return $this->testAccountsData[$testUserId][$property]['value'];
@@ -163,8 +202,14 @@ class ProfilePickerReferenceProviderTest extends TestCase {
 
 			$this->userManager->expects($this->any())
 				->method('get')
-				->with($userId)
-				->willReturn($user);
+				->willReturnCallback(function (string $uid) use ($user, $userId) {
+					if ($uid === $userId) {
+						return $user;
+					} elseif ($uid === 'admin') {
+						return $this->adminUser;
+					}
+					return null;
+				});
 
 			// setup account expectations
 			$account = $this->createMock(IAccount::class);

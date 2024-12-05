@@ -18,6 +18,7 @@ use OCP\Collaboration\Reference\Reference;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use OCP\IUserManager;
+use OCP\Profile\IProfileManager;
 
 class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
 	public const RICH_OBJECT_TYPE = 'users_picker_profile';
@@ -27,6 +28,7 @@ class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
 		private IURLGenerator $urlGenerator,
 		private IUserManager $userManager,
 		private IAccountManager $accountManager,
+		private IProfileManager $profileManager,
 		private ?string $userId,
 	) {
 	}
@@ -79,11 +81,12 @@ class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
 		if ($user === null) {
 			return null;
 		}
-		$account = $this->accountManager->getAccount($user);
-		$profileEnabled = $account->getProperty(IAccountManager::PROPERTY_PROFILE_ENABLED)->getValue() === '1';
-		if (!$profileEnabled) {
+		if (!$this->profileManager->isProfileEnabled($user)) {
 			return null;
 		}
+		$account = $this->accountManager->getAccount($user);
+
+		$currentUser = $this->userManager->get($this->userId);
 
 		$reference = new Reference($referenceText);
 
@@ -91,8 +94,17 @@ class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
 		$userEmail = $user->getEMailAddress();
 		$userAvatarUrl = $this->urlGenerator->linkToRouteAbsolute('core.avatar.getAvatar', ['userId' => $userId, 'size' => '64']);
 
-		$bio = $account->getProperty(IAccountManager::PROPERTY_BIOGRAPHY);
-		$bio = $bio->getScope() !== IAccountManager::SCOPE_PRIVATE ? $bio->getValue() : null;
+		$bioProperty = $account->getProperty(IAccountManager::PROPERTY_BIOGRAPHY);
+		$bio = null;
+		$fullBio = null;
+		if ($this->profileManager->isProfileFieldVisible(IAccountManager::PROPERTY_BIOGRAPHY, $user, $currentUser)) {
+			$fullBio = $bioProperty->getValue();
+			$bio = $fullBio !== ''
+				? (mb_strlen($fullBio) > 80
+					? (mb_substr($fullBio, 0, 80) . '...')
+					: $fullBio)
+				: null;
+		}
 		$headline = $account->getProperty(IAccountManager::PROPERTY_HEADLINE);
 		$location = $account->getProperty(IAccountManager::PROPERTY_ADDRESS);
 		$website = $account->getProperty(IAccountManager::PROPERTY_WEBSITE);
@@ -104,6 +116,8 @@ class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
 		$reference->setDescription($userEmail ?? $userDisplayName);
 		$reference->setImageUrl($userAvatarUrl);
 
+		$isLocationVisible = $this->profileManager->isProfileFieldVisible(IAccountManager::PROPERTY_ADDRESS, $user, $currentUser);
+
 		// for the Vue reference widget
 		$reference->setRichObject(
 			self::RICH_OBJECT_TYPE,
@@ -112,18 +126,14 @@ class ProfilePickerReferenceProvider extends ADiscoverableReferenceProvider {
 				'title' => $userDisplayName,
 				'subline' => $userEmail ?? $userDisplayName,
 				'email' => $userEmail,
-				'bio' => isset($bio) && $bio !== ''
-					? (mb_strlen($bio) > 80
-						? (mb_substr($bio, 0, 80) . '...')
-						: $bio)
-					: null,
-				'full_bio' => $bio,
-				'headline' => $headline->getScope() !== IAccountManager::SCOPE_PRIVATE ? $headline->getValue() : null,
-				'location' => $location->getScope() !== IAccountManager::SCOPE_PRIVATE ? $location->getValue() : null,
-				'location_url' => $location->getScope() !== IAccountManager::SCOPE_PRIVATE ? $this->getOpenStreetLocationUrl($location->getValue()) : null,
-				'website' => $website->getScope() !== IAccountManager::SCOPE_PRIVATE ? $website->getValue() : null,
-				'organisation' => $organisation->getScope() !== IAccountManager::SCOPE_PRIVATE ? $organisation->getValue() : null,
-				'role' => $role->getScope() !== IAccountManager::SCOPE_PRIVATE ? $role->getValue() : null,
+				'bio' => $bio,
+				'full_bio' => $fullBio,
+				'headline' => $this->profileManager->isProfileFieldVisible(IAccountManager::PROPERTY_HEADLINE, $user, $currentUser) ? $headline->getValue() : null,
+				'location' => $isLocationVisible ? $location->getValue() : null,
+				'location_url' => $isLocationVisible ? $this->getOpenStreetLocationUrl($location->getValue()) : null,
+				'website' => $this->profileManager->isProfileFieldVisible(IAccountManager::PROPERTY_WEBSITE, $user, $currentUser) ? $website->getValue() : null,
+				'organisation' => $this->profileManager->isProfileFieldVisible(IAccountManager::PROPERTY_ORGANISATION, $user, $currentUser) ? $organisation->getValue() : null,
+				'role' => $this->profileManager->isProfileFieldVisible(IAccountManager::PROPERTY_ROLE, $user, $currentUser) ? $role->getValue() : null,
 				'url' => $referenceText,
 			]
 		);
