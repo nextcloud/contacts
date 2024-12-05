@@ -17,18 +17,11 @@ use OCP\Util;
 
 class LoadContactsFilesActions implements IEventListener {
 	public function handle(Event $event): void {
-		if (!($event instanceof LoadAdditionalScriptsEvent)) {
+		if (!$event instanceof LoadAdditionalScriptsEvent) {
 			return;
 		}
 
-		Util::addStyle(Application::APP_ID, 'contacts-index');
 		Util::addStyle(Application::APP_ID, 'contacts-files-action');
-
-		// only available since Nc 28
-		if (method_exists(Util::class, 'addInitScript')) {
-			Util::addInitScript(Application::APP_ID, 'contacts-files-action');
-		} else {
-			Util::addScript(Application::APP_ID, 'contacts-files-action', 'files');
-		}
+		Util::addInitScript(Application::APP_ID, 'contacts-files-action');
 	}
 }
