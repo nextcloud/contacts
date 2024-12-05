@@ -11,7 +11,6 @@ use OCA\Contacts\AppInfo\Application;
 use OCA\Contacts\Service\GroupSharingService;
 use OCA\Contacts\Service\SocialApiService;
 use OCP\App\IAppManager;
-
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
@@ -22,48 +21,19 @@ use OCP\L10N\IFactory;
 use OCP\Util;
 
 class PageController extends Controller {
-	/** @var IConfig */
-	private $config;
 
-	/** @var IInitialStateService */
-	private $initialStateService;
-
-	/** @var IFactory */
-	private $languageFactory;
-
-	/** @var IUserSession */
-	private $userSession;
-
-	/** @var SocialApiService */
-	private $socialApiService;
-
-	/** @var IAppManager */
-	private $appManager;
-
-	/** @var CompareVersion */
-	private $compareVersion;
-
-	private GroupSharingService $groupSharingService;
-
-	public function __construct(IRequest $request,
-		IConfig $config,
-		IInitialStateService $initialStateService,
-		IFactory $languageFactory,
-		IUserSession $userSession,
-		SocialApiService $socialApiService,
-		IAppManager $appManager,
-		CompareVersion $compareVersion,
-		GroupSharingService $groupSharingService) {
+	public function __construct(
+		IRequest $request,
+		private IConfig $config,
+		private IInitialStateService $initialStateService,
+		private IFactory $languageFactory,
+		private IUserSession $userSession,
+		private SocialApiService $socialApiService,
+		private IAppManager $appManager,
+		private CompareVersion $compareVersion,
+		private GroupSharingService $groupSharingService,
+	) {
 		parent::__construct(Application::APP_ID, $request);
-
-		$this->config = $config;
-		$this->initialStateService = $initialStateService;
-		$this->languageFactory = $languageFactory;
-		$this->userSession = $userSession;
-		$this->socialApiService = $socialApiService;
-		$this->appManager = $appManager;
-		$this->compareVersion = $compareVersion;
-		$this->groupSharingService = $groupSharingService;
 	}
 
 	/**
@@ -107,7 +77,6 @@ class PageController extends Controller {
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isCirclesEnabled', $isCirclesEnabled && $isCircleVersionCompatible);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isTalkEnabled', $isTalkEnabled && $isTalkVersionCompatible);
 
-		Util::addStyle(Application::APP_ID, 'contacts-index');
 		Util::addStyle(Application::APP_ID, 'contacts-main');
 		Util::addScript(Application::APP_ID, 'contacts-main');
 
