@@ -256,7 +256,7 @@ OC.L10N.register(
     "Notes" : "Poznámky",
     "Website" : "Webstránka",
     "Location" : "Umiestnenie",
-    "Federated Cloud ID" : "Identifikátor združeného cloudu",
+    "Federated Cloud ID" : "Identifikátor federovaného cloudu",
     "Home" : "Domov",
     "Work" : "Práca",
     "Other" : "Iné",
