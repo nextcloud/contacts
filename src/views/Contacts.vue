@@ -146,6 +146,9 @@ export default {
 		groups() {
 			return this.$store.getters.getGroups
 		},
+		circles() {
+			return this.$store.getters.getCircles
+		},
 		orderKey() {
 			return this.$store.getters.getOrderKey
 		},
@@ -193,6 +196,8 @@ export default {
 				return this.sortedContacts
 			} else if (this.selectedGroup === GROUP_NO_GROUP_CONTACTS) {
 				return this.ungroupedContacts.map(contact => this.sortedContacts.find(item => item.key === contact.key))
+			} else if (this.selectedGroup === ROUTE_CIRCLE) {
+				return this.circles
 			}
 			const group = this.groups.filter(group => group.name === this.selectedGroup)[0]
 			if (group) {
