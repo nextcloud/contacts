@@ -104,7 +104,7 @@ OC.L10N.register(
     "Manage members" : "Керувати учасниками",
     "Team members" : "Учасники команди",
     "Team resources" : "Ресурси команди",
-    "Anything shared with this team will show up here" : "Все, чим поділилися з комадою, показуватиметься тут",
+    "Anything shared with this team will show up here" : "Все, чим поділилися з командою, показуватиметься тут",
     "Team name" : "Назва команди",
     "Settings" : "Settings",
     "Actions" : "Дії",
