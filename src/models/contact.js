@@ -210,6 +210,16 @@ export default class Contact {
 	}
 
 	/**
+	 * Return whether a photo is available
+	 *
+	 * @readonly
+	 * @memberof Contact
+ 	 */
+	get hasPhoto() {
+		return this.dav && this.dav.hasphoto
+	}
+
+	/**
 	 * Return the photo usable url
 	 * We cannot fetch external url because of csp policies
 	 *
