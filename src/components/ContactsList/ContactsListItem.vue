@@ -141,7 +141,7 @@ export default {
 					return
 				}
 				this.avatarUrl = photoUrl
-			} else if (this.source.url) {
+			} else if (this.source.hasPhoto && this.source.url) {
 				this.avatarUrl = `${this.source.url}?photo`
 			}
 		},
