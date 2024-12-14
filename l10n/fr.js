@@ -238,7 +238,7 @@ OC.L10N.register(
     "Invites" : "Invitations et adhésions",
     "Anyone can request membership" : "Tout le monde peut demander à adhérer",
     "Members need to accept invitation" : "Les membres doivent accepter l'invitation",
-    "Memberships must be confirmed/accepted by a Moderator (requires \"Anyone can request membership\")" : "Les adhésions doivent être confirmées/acceptées par un modérateur (nécessite « N'importe qui peut demander une adhésion »)",
+    "Memberships must be confirmed/accepted by a Moderator (requires \"Anyone can request membership\")" : "Les adhésions doivent être confirmées/acceptées par un modérateur (nécessite « Tout le monde peut demander à adhérer »)",
     "Members can also invite" : "Les membres peuvent aussi inviter",
     "Visibility" : "Visibilité",
     "Visible to everyone" : "Visible pour tous",
