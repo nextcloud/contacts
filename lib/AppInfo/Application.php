@@ -7,11 +7,14 @@ namespace OCA\Contacts\AppInfo;
 
 use OCA\Contacts\Dav\PatchPlugin;
 use OCA\Contacts\Listener\LoadContactsFilesActions;
+use OCA\Contacts\Listener\ProfilePickerReferenceListener;
+use OCA\Contacts\Reference\ProfilePickerReferenceProvider;
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
+use OCP\Collaboration\Reference\RenderReferenceEvent;
 use OCP\EventDispatcher\IEventDispatcher;
 use OCP\SabrePluginEvent;
 
@@ -28,6 +31,9 @@ class Application extends App implements IBootstrap {
 
 	public function register(IRegistrationContext $context): void {
 		$context->registerEventListener(LoadAdditionalScriptsEvent::class, LoadContactsFilesActions::class);
+
+		$context->registerEventListener(RenderReferenceEvent::class, ProfilePickerReferenceListener::class);
+		$context->registerReferenceProvider(ProfilePickerReferenceProvider::class);
 	}
 
 	public function boot(IBootContext $context): void {
