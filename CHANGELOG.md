@@ -1,3 +1,14 @@
+## [6.1.3](https://github.com/nextcloud/contacts/compare/v6.1.2...v6.1.3) (2024-12-19)
+
+
+### Bug Fixes
+
+* check if photo property is set before downloading ([243d957](https://github.com/nextcloud/contacts/commit/243d95701e27bda19a854eb09a6290d2eb639073))
+* convert pre-commit to common js ([06689fd](https://github.com/nextcloud/contacts/commit/06689fd1c9ff09d8b0773b6471ec6e3264bcc11a))
+* convert pre-commit.js to ES module ([6ec1672](https://github.com/nextcloud/contacts/commit/6ec1672cf5103de49776cc69822ebf2f3c1e74aa))
+
+
+
 ## [6.1.2](https://github.com/nextcloud/contacts/compare/v6.1.1...v6.1.2) (2024-11-27)
 
 
