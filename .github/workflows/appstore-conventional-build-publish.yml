@@ -45,7 +45,7 @@ jobs:
           git-user-email: nextcloud-command@users.noreply.github.com
           git-user-name: Nextcloud Command Bot
           skip-git-pull: "true"
-          pre-commit: build/pre-commit.js
+          pre-commit: build/pre-commit.cjs
           release-count: 0
           version-file: "package.json, package-lock.json"
 
