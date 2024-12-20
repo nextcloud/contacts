@@ -209,6 +209,8 @@ OC.L10N.register(
     "Contact not found" : "找不到聯絡人",
     "Group {group} not found" : "找不到群組 {group}",
     "Close" : "關閉",
+    "No data for this contact" : "此聯絡人無資料",
+    "No data for this contact on their profile" : "此聯絡人的個人檔案中沒有資料",
     "Import" : "匯入",
     "Are you sure you want to import this contact file?" : "您確定您想要匯入此聯絡人檔案嗎？",
     "Could not copy" : "無法複製",
