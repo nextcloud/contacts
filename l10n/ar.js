@@ -209,6 +209,8 @@ OC.L10N.register(
     "Contact not found" : "جهة الاتصال غير موجودة",
     "Group {group} not found" : "المجموعة {group} غير موجودة",
     "Close" : "إغلاق",
+    "No data for this contact" : "لا توجد أي بيانات حول جهة الاتصال هذه",
+    "No data for this contact on their profile" : "لا توجد أي بيانات حول جهة الاتصال هذا في ملفها الشخصي",
     "Import" : "استيراد",
     "Are you sure you want to import this contact file?" : "هل أنت متأكد أنك تريد استيراد ملف جهات الاتصال هذا؟",
     "Could not copy" : "تعذّر النسخ",
