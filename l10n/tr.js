@@ -209,6 +209,8 @@ OC.L10N.register(
     "Contact not found" : "Kişi bulunamadı",
     "Group {group} not found" : "{group} grubu bulunamadı",
     "Close" : "Kapat",
+    "No data for this contact" : "Bu kişi için herhangi bir veri yok",
+    "No data for this contact on their profile" : "Bu kişinin profilinde herhangi bir veri yok",
     "Import" : "İçe aktar",
     "Are you sure you want to import this contact file?" : "Bu kişi dosyasını içe aktarmak istediğinize emin misiniz?",
     "Could not copy" : "Kopyalanamadı",
