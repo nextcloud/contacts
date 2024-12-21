@@ -207,6 +207,8 @@
     "Contact not found" : "Teagmháil gan aimsiú",
     "Group {group} not found" : "Grúpa {group} gan aimsiú",
     "Close" : "Dún",
+    "No data for this contact" : "Níl aon sonraí don teagmhálaí seo",
+    "No data for this contact on their profile" : "Níl aon sonraí don teagmhálaí seo ar a bpróifíl",
     "Import" : "Iompórtáil",
     "Are you sure you want to import this contact file?" : "An bhfuil tú cinnte gur mhaith leat an comhad teagmhála seo a iompórtáil?",
     "Could not copy" : "Níorbh fhéidir a chóipeáil",
