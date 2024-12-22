@@ -209,6 +209,8 @@ OC.L10N.register(
     "Contact not found" : "Kontakt nenalezen",
     "Group {group} not found" : "Skupina {group} nenalezena",
     "Close" : "Zavřít",
+    "No data for this contact" : "Žádné údaje pro tento kontakt",
+    "No data for this contact on their profile" : "Žádné údaje pro tento kontakt v jeho profilu",
     "Import" : "Importovat",
     "Are you sure you want to import this contact file?" : "Opravdu chcete tento soubor s kontakty naimportovat?",
     "Could not copy" : "Nedaří se zkopírovat",
