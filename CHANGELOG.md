@@ -1,19 +1,4 @@
-<!--
-  - SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
-  - SPDX-License-Identifier: AGPL-3.0-or-later
--->
-## [6.1.3](https://github.com/nextcloud/contacts/compare/v6.1.2...v6.1.3) (2024-12-19)
-
-
-### Bug Fixes
-
-* check if photo property is set before downloading ([243d957](https://github.com/nextcloud/contacts/commit/243d95701e27bda19a854eb09a6290d2eb639073))
-* convert pre-commit to common js ([06689fd](https://github.com/nextcloud/contacts/commit/06689fd1c9ff09d8b0773b6471ec6e3264bcc11a))
-* convert pre-commit.js to ES module ([6ec1672](https://github.com/nextcloud/contacts/commit/6ec1672cf5103de49776cc69822ebf2f3c1e74aa))
-
-
-
-## [6.1.2](https://github.com/nextcloud/contacts/compare/v6.1.1...v6.1.2) (2024-11-27)
+## [6.1.4](https://github.com/nextcloud/contacts/compare/v6.1.1...v6.1.4) (2024-12-23)
 
 
 ### Bug Fixes
@@ -22,10 +7,13 @@
 * Adjust styling of team resource images ([8b65d58](https://github.com/nextcloud/contacts/commit/8b65d581e5ce6ddffa75695f141abda824dd12ce))
 * Allow dynamic autoloading for classes added during upgrade ([08e5f9e](https://github.com/nextcloud/contacts/commit/08e5f9e9241c1162b277764d6711823f3b0e7182))
 * bundle moment.js locale data ([9fb1d09](https://github.com/nextcloud/contacts/commit/9fb1d09b20a6b702da000431b44ededce9a1f35a))
+* check if photo property is set before downloading ([243d957](https://github.com/nextcloud/contacts/commit/243d95701e27bda19a854eb09a6290d2eb639073))
 * **CircleDetails:** Improve calculation of member list ([05be5e3](https://github.com/nextcloud/contacts/commit/05be5e320697d45371c7a91ae07e31196e931830))
 * **CircleNavigationItem:** Rename 'add member' to 'manage team' ([eda53a5](https://github.com/nextcloud/contacts/commit/eda53a564d23bc87d9c5bfd614e5ddc8f7fe4777))
 * **circles:** sort fallback if not member of circle ([05f04df](https://github.com/nextcloud/contacts/commit/05f04df69e9c09d9f4443e11d53601f9d2381d50))
 * **contacts:** split up detailed-name again to fix vCard ([501b990](https://github.com/nextcloud/contacts/commit/501b9905abdf55f45f3d67b72680c2cf6918b13c))
+* convert pre-commit to common js ([06689fd](https://github.com/nextcloud/contacts/commit/06689fd1c9ff09d8b0773b6471ec6e3264bcc11a))
+* convert pre-commit.js to ES module ([6ec1672](https://github.com/nextcloud/contacts/commit/6ec1672cf5103de49776cc69822ebf2f3c1e74aa))
 * **copy:** Hide not copyable addressbooks in copy select ([b588aac](https://github.com/nextcloud/contacts/commit/b588aac99118e649c02abb3ac0cd1dc5e7ac3468))
 * **deps:** bump @nextcloud/cdav-library from 1.3.0 to ^1.4.0 ([a02a4b5](https://github.com/nextcloud/contacts/commit/a02a4b5d5f60e62abcf5b39cf12474a6a5d47afa))
 * **deps:** bump @nextcloud/cdav-library from 1.4.0 to ^1.5.1 ([ff451d0](https://github.com/nextcloud/contacts/commit/ff451d02c0749cbe85688f6a17b49e2568efe399))
