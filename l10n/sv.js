@@ -209,6 +209,8 @@ OC.L10N.register(
     "Contact not found" : "Kontakt hittades inte",
     "Group {group} not found" : "Gruppen {group} hittades inte",
     "Close" : "Stäng",
+    "No data for this contact" : "Inga uppgifter för denna kontakt",
+    "No data for this contact on their profile" : "Inga uppgifter för denna kontakt i dess profil",
     "Import" : "Importera",
     "Are you sure you want to import this contact file?" : "Är du säker på att du vill importera denna kontaktfil?",
     "Could not copy" : "Kunde inte kopiera",
