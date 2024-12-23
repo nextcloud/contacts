@@ -1,763 +1,255 @@
-<!--
-  - SPDX-FileCopyrightText: 2019-2024 Nextcloud GmbH and Nextcloud contributors
-  - SPDX-License-Identifier: AGPL-3.0-or-later
--->
-# Changelog
-
-## 6.1.1 – 2024-11-12
-### Fixed
-- Encode exported contact groups as UTF-8
-- Respect advanced group sharing settings in frontend
-
-## 6.1.0 – 2024-08-28
-### Added
-- Nextcloud 30 support
-- Drag and Drop feature for adding contacts to group
-- Signal messenger option
-- Rename and delete groups
-- Loading icon when deleting or renaming groups
-- Responsiveness for contact details
-### Removed
-- Nextcloud 29 support
-### Changed
-- Group information display
-- Settings toggle design to match Nextcloud 30 style
-- Improve adding contacts to groups
-### Fixed
-- Import contacts filepicker
-- Clarify settings option for open circle
-- Spacing and alignment in the contact details view
-- Subtitle in contacts details
-- Make horizontal and  vertical padding equal
-- Improve calculation of member list
-- Don't use VirtualList for listing members
-- Rename 'add member' to 'manage team'
-- Rename 'Contact groups' to 'groups'
-- Adjustments to ListItemIcon properties
-- Scrobbale button in navigation
-
-## 6.0.0-rc.1 – Unreleased
-### Added 
-- Nextcloud 29 support
-- Add confirmation dialog before importing contacts
-- Implement team overview page updates
-### Removed
-- Drop Nextcloud 28 and older
-- Drop dead OCA.Search code
-### Changed 
-- Migrate event buses to mitt
-- Migrate ::v-deep to :deep
-### Fixed 
-- HTTP client usage
-- Remove import contact button from chart view
-- Subtitle encoding
-- Adjust styling of team resource image
-
-
-## 5.5.2 – 2024-02-19
-### Fixed
-- Sort fallback if not member of circle
-
-## 5.5.1 – 2024-01-03
-### Fixed
-- Rename types in propreties
-- Remove empty content overlaping related resources
-
-## 5.5.0 – 2023-12-11
-### Added
-- Nextcloud 28 file action compatibility
-- PHP8.3 support
-- Circle type icons
-- Shared items and events for each contact
-### Changed
-- Sort circles by initiator level
-- Upgrade to Nextcloud vue 8.0.0
-### Fixed
-- Localization
-- Telephone number type matching
-- Lost contact groups
-- Group deselection
-- Permission check on files-actions
-- Empty content showing on edit mode
-
-## 5.4.0-rc.1 - 2023-08-31
-### Added
-- Quick actions for contacts
-- Disabled wording to disabled address books
-- Show/hide option for system and shared addressbooks
-- Show address book description if provided
-- Nextcloud 28 support
-- Contact and group counters to address books
-- Improve quick actions design
-### Changed
-- Deactivate social avatars from twitter
-- Show single-value dropdowns as text in view mode
-- Better description of circles
-- Import modal improvement
-- Hide contact groups if its empty
-- Hide empty properties
-- Always display Circles info
-### Fixed
-- Import loads forever
-- Split up detailed-name again to fix vCard
-- Hide not copyable addressbooks in copy select
-- Handling group update
-- Allow dynamic autoloading for classes added during upgrade
-- Don't show groups in share placeholder if group sharing is disabled
-- Add missing loading Icon
-- Move QR code close button away from QR code image
-## 5.1.0 - 2023-02-02
-### Added
-- Support for Nextcloud 26
-- Support for PHP 8.2
-- Allow social avatars from telegram
-- Move app settings to a modal
-### Removed
-- Support for PHP 7.3 (EOL)
-- Support for PHP 7.4 (EOL)
-### Changed
-- Use composer's authoritative classmap
-- Rephrase "There is no member in this circle"
-- Rename 'Groups' to 'Contact groups'
-- Changed grammar of email address field label
-### Fixed
-- Prioritize local users in mastodon avatar download
-- Empty content for settings dialogs
-
-## 5.0.3 - 2023-01-24
-### Fixed
-- Social avatar background update
-- Double scrollbar in contact details pane
-- Use mastodon API instead of scraping HTML
-- Mime case matching
-
-## 4.2.4 - 2023-01-24
-### Fixed
-- Social avatar background update
-- Double scrollbar in contact details pane
-- Use mastodon API instead of scraping HTML
-- Mime case matching
-
-## 5.0.1 – 2022-10-18
-### Fixed
-- Org chart expand icon overlapped
-
-## 5.0.0 – 2022-10-11
-### Added
-- Nextcloud 25 design
-- Organization chart via manager property
-### Changed
-- New and updated translations
-### Removed
-- Nextcloud 22-24 support
-
-## 4.2.2 – 2022-10-02
-### Fixed
-- Sharing address books with groups that have spaces in their name
-
-## 4.2.1 – 2022-09-19
-### Changed
-- Important npm package updates
-
-## 4.2.0 - 2022-07-19
-### Added
-- Enforce circle share password
-- Quick search
-### Changed
-- Replaced icons with SVGs
-- Manual date input
-- New and updated translations
-- Updated dependencies
-### Fixed
-- Encode group names for x-property-replace header
-
-## 4.1.1 – 2022-05-18
-### Changed
-- Autosave birthdate
-### Fixed
-- Large social image import
-- Screenshot URL
-
-## 4.1.0 – 2022-03-22
-### Added
-- Nextcloud 24 support
-- PHP8.1 support
-- Sending emails to contact groups
-- Performance improvements
-### Changed
-- New and updated translations
-- Updated dependencies
-- Expensive background jobs run only at off-peak times
-### Fixed
-- App icon
-- Various small bugs
-### Removed
-- Nextcloud 20 support (EOL)
-
-## 4.0.8 - 2022-02-17
-### Fixed
-- Overlapping navigation toggle
-- Adding Circles members
-- Broken IE check
-- Date time picker
-
-## 4.0.7 - 2021-12-16
-### Fixed
-- Missing action button closing after clicking QR code
-- Circles
-
-## 4.0.6 - 2021-11-03
-### Fixed
-- Missing front-end build artifacts
-
-## 4.0.5 - 2021-11-03
-### Fixed
-- Missing front-end build artifacts
-
-## 4.0.4 - 2021-11-03
-### Fixed
-- Missing avatars
-- Group download
-
-## 4.0.3 – 2021-09-15
-### Fixed
-- Missing SVG sanitization for SVG contact images
-
-## 4.0.2 – 2021-08-25
-### Changed
-- App initialization logic migrated to silence a deprecation notice
-### Fixed
-- Blank page when files_sharing is disabled
-- Mobile contacts list
-- Scrolling of the app content details
-
-## 4.0.1 - 2021-07-28
-
-[Full Changelog](https://github.com/nextcloud/contacts/compare/v4.0.0...v4.0.1)
-
-### Enhancements
-- Streamlined Settings 
-  [\#2372](https://github.com/nextcloud/contacts/pull/2372) ([szaimen](https://github.com/szaimen))
-- Wording improvements 
-  [\#2350](https://github.com/nextcloud/contacts/pull/2350) ([Valdnet](https://github.com/Valdnet))
-- Various dependencies updates
-
-### Fixed
-- Fixed dark contacts icon 
-  [\#2340](https://github.com/nextcloud/contacts/pull/2340) ([skjnldsv](https://github.com/skjnldsv))
-- Adjusted the padding of app-content-details 
-  [\#2341](https://github.com/nextcloud/contacts/pull/2341) ([szaimen](https://github.com/szaimen)) 
-- Fixed call on null in SocialApiService
-  [\#2351](https://github.com/nextcloud/contacts/pull/2351) ([juliushaertl](https://github.com/juliushaertl)) 
-
-## 4.0.0 - 2021-07-06
-
-[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.5.1...v4.0.0)
-
-### Featured enhancement
-- Circles integration 
-  [\#2098](https://github.com/nextcloud/contacts/pull/2098) ([skjnldsv](https://github.com/skjnldsv))
-
-### Enhancements
-- Comply to new resizeable list feature 
-  [\#2246](https://github.com/nextcloud/contacts/pull/2246) ([skjnldsv](https://github.com/skjnldsv))
-- Bump deps and use npm7 
-  [\#2281](https://github.com/nextcloud/contacts/pull/2281) ([skjnldsv](https://github.com/skjnldsv))
-- Bump dependencies and webpack 5 
-  [\#2140](https://github.com/nextcloud/contacts/pull/2140) ([skjnldsv](https://github.com/skjnldsv))
-- Remove core-js 
-  [\#2323](https://github.com/nextcloud/contacts/pull/2323) ([skjnldsv](https://github.com/skjnldsv))
-- Various dependencies updates
-
-### Fixed
-- Improve Compatibily with macOS Contacts 
-  [\#1999](https://github.com/nextcloud/contacts/pull/1999) ([zlajo](https://github.com/zlajo))
-- Fix chain condition of responses 
-  [\#2286](https://github.com/nextcloud/contacts/pull/2286) ([skjnldsv](https://github.com/skjnldsv))
-- Increase max-version to current dev version 22 
-  [\#2169](https://github.com/nextcloud/contacts/pull/2169) ([jancborchardt](https://github.com/jancborchardt))
-- l10n: Change spelling 
-  [\#2189](https://github.com/nextcloud/contacts/pull/2189) ([Valdnet](https://github.com/Valdnet))
-- l10n: Change to lowercase 
-  [\#2190](https://github.com/nextcloud/contacts/pull/2190) ([Valdnet](https://github.com/Valdnet))
-- l10n: Correct spelling 
-  [\#2244](https://github.com/nextcloud/contacts/pull/2244) ([Valdnet](https://github.com/Valdnet))
-- l10n: Spelling unification 
-  [\#2233](https://github.com/nextcloud/contacts/pull/2233) ([Valdnet](https://github.com/Valdnet))
-- l10n: Unify spelling 
-  [\#2162](https://github.com/nextcloud/contacts/pull/2162) ([Valdnet](https://github.com/Valdnet))
-- l10n: Error message changed 
-  [\#2326](https://github.com/nextcloud/contacts/pull/2326) ([Valdnet](https://github.com/Valdnet))
-- l10n: Change to a capital letter 
-  [\#2305](https://github.com/nextcloud/contacts/pull/2305) ([Valdnet](https://github.com/Valdnet))
-- l10n: Change to a capital letter 
-  [\#2304](https://github.com/nextcloud/contacts/pull/2304) ([Valdnet](https://github.com/Valdnet))
-
-## 3.5.1 - 2021-03-17
-
-[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.5.0...v3.5.1)
-
-### Fixed
-- Min support version is 19
-  ([skjnldsv](https://github.com/skjnldsv))
-
-## 3.5.0 - 2021-03-15
-
-[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.3...v3.5.0)
-
-### Fixed
-- Fix contact deletion from addressbook
-  [\#2086](https://github.com/nextcloud/contacts/pull/2086) ([skjnldsv](https://github.com/skjnldsv))
-- Alphabetically order groups in contact details \(\#2051\)
-  [\#2076](https://github.com/nextcloud/contacts/pull/2076) ([harryyoud](https://github.com/harryyoud))
-- Fix custom labels not being displayed
-  [\#2064](https://github.com/nextcloud/contacts/pull/2064) ([Y0hy0h](https://github.com/Y0hy0h))
-- Fix display name with empty last name when sorting by last name
-  [\#2040](https://github.com/nextcloud/contacts/pull/2040) ([NerLOR](https://github.com/NerLOR))
-- Make sure twitter returns the raw static html page so we can get the …
-  [\#2013](https://github.com/nextcloud/contacts/pull/2013) ([skjnldsv](https://github.com/skjnldsv))
-- Instagram profile sync with agent
-  [\#2083](https://github.com/nextcloud/contacts/pull/2083) ([call-me-matt](https://github.com/call-me-matt))
-- Adapted twitter uri
-  [\#2081](https://github.com/nextcloud/contacts/pull/2081) ([call-me-matt](https://github.com/call-me-matt))
-
-### Enhancements
-- Use all email addresses for gravatar search
-  [\#2085](https://github.com/nextcloud/contacts/pull/2085) ([call-me-matt](https://github.com/call-me-matt))
-
-
-## 3.4.3 - 2021-01-04)
-
-[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.2...v3.4.3)
-
-### Fixed
-- Remove Workaround for Postal Addresses Containing Commas
-  [\#2000](https://github.com/nextcloud/contacts/pull/2000) ([zlajo](https://github.com/zlajo))
-- Fix masonry redraw
-  [\#1982](https://github.com/nextcloud/contacts/pull/1982) ([skjnldsv](https://github.com/skjnldsv))
-- Fix generating the redirect url
-  [\#1972](https://github.com/nextcloud/contacts/pull/1972) ([juliushaertl](https://github.com/juliushaertl))
-- Change to the name of the app
-  [\#1965](https://github.com/nextcloud/contacts/pull/1965) ([Valdnet](https://github.com/Valdnet))
-- Add favicons
-  [\#1960](https://github.com/nextcloud/contacts/pull/1960) ([st3iny](https://github.com/st3iny))
-
-## 3.4.2 - 2020-11-18
-
-[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.1...v3.4.2)
-
-### Enhancements
-- add support for downloading avatars from gravatar
-  [\#1906](https://github.com/nextcloud/contacts/pull/1906) ([eleith](https://github.com/eleith))
-- add xing to list of social networks
-  [\#1871](https://github.com/nextcloud/contacts/pull/1871) ([call-me-matt](https://github.com/call-me-matt))
-- add xing to social sync
-  [\#1869](https://github.com/nextcloud/contacts/pull/1869) ([call-me-matt](https://github.com/call-me-matt))
-
-### Fixed
-- Replace the deprecated OC.Util.relativeModifiedDate by nextcloud/moment
-  [\#1936](https://github.com/nextcloud/contacts/pull/1936) ([tintou](https://github.com/tintou))
-- l10n: Rebuild string text
-  [\#1893](https://github.com/nextcloud/contacts/pull/1893) ([Valdnet](https://github.com/Valdnet))
-- Fix/dav plugins groups registration
-  [\#1938](https://github.com/nextcloud/contacts/pull/1938) ([skjnldsv](https://github.com/skjnldsv))
-- vcard should only have 1 photo field when adding/removing photos
-  [\#1918](https://github.com/nextcloud/contacts/pull/1918) ([eleith](https://github.com/eleith))
-- new facebook api prevents usage without authentication
-  [\#1894](https://github.com/nextcloud/contacts/pull/1894) ([call-me-matt](https://github.com/call-me-matt))
-- Fix Avatar ratio display
-  [\#1884](https://github.com/nextcloud/contacts/pull/1884) ([skjnldsv](https://github.com/skjnldsv))
-- Fix bulk contacts add to group
-  [\#1883](https://github.com/nextcloud/contacts/pull/1883) ([skjnldsv](https://github.com/skjnldsv))
-- l10n: Correct text string tag
-  [\#1896](https://github.com/nextcloud/contacts/pull/1896) ([Valdnet](https://github.com/Valdnet))
-- l10n: Correct text string tag for Settings
-  [\#1895](https://github.com/nextcloud/contacts/pull/1895) ([Valdnet](https://github.com/Valdnet))
-- l10n: Remove the quotation marks
-  [\#1892](https://github.com/nextcloud/contacts/pull/1892) ([Valdnet](https://github.com/Valdnet))
-
-## 3.4.1 - 2020-10-20
-
-[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.4.0...v3.4.1)
-
-### Enhancements
-- adding diaspora to the list for social sync
-  [\#1853](https://github.com/nextcloud/contacts/pull/1853) ([call-me-matt](https://github.com/call-me-matt))
-
-### Fixed
-- Fix avatar display on read-only contacts and use global Avatar component
-  [\#1846](https://github.com/nextcloud/contacts/pull/1846) ([skjnldsv](https://github.com/skjnldsv))
-- Ignore errors from invalid social ids
-  [\#1829](https://github.com/nextcloud/contacts/pull/1829) ([call-me-matt](https://github.com/call-me-matt))
-- Fix placeholder display
-  [\#1828](https://github.com/nextcloud/contacts/pull/1828) ([skjnldsv](https://github.com/skjnldsv))
-- Fix social sync admin settings
-  [\#1821](https://github.com/nextcloud/contacts/pull/1821) ([skjnldsv](https://github.com/skjnldsv))
-- Force redraw masonry on property resize
-  [\#1819](https://github.com/nextcloud/contacts/pull/1819) ([skjnldsv](https://github.com/skjnldsv))
-- More robust social ids for social sync
-  [\#1843](https://github.com/nextcloud/contacts/pull/1843) ([call-me-matt](https://github.com/call-me-matt))
-
-## 3.4.0 - 2020-09-30
-
-[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.3.0...v3.4.0)
-
-### Enhancements
-- Add Matrix to list of instant messaging networks
-  [\#1761](https://github.com/nextcloud/contacts/pull/1761) ([jtrees](https://github.com/jtrees))
-- Add Zoom as instant messaging
-  [\#1759](https://github.com/nextcloud/contacts/pull/1759) ([EmTeedee](https://github.com/EmTeedee))
-- Update social avatars in chunks
-  [\#1745](https://github.com/nextcloud/contacts/pull/1745) ([call-me-matt](https://github.com/call-me-matt))
-- Allow to get direct contact route
-  [\#1730](https://github.com/nextcloud/contacts/pull/1730) ([skjnldsv](https://github.com/skjnldsv))
-- Allow for regular background updates of avatars from social networks
-  [\#1722](https://github.com/nextcloud/contacts/pull/1722) ([call-me-matt](https://github.com/call-me-matt))
-- Enh/social sync
-  [\#1692](https://github.com/nextcloud/contacts/pull/1692) ([skjnldsv](https://github.com/skjnldsv))
-- Add php cs & stylelint
-  [\#1690](https://github.com/nextcloud/contacts/pull/1690) ([skjnldsv](https://github.com/skjnldsv))
-- Import vcf from files
-  [\#1688](https://github.com/nextcloud/contacts/pull/1688) ([skjnldsv](https://github.com/skjnldsv))
-- Enh/add virtual group
-  [\#1687](https://github.com/nextcloud/contacts/pull/1687) ([skjnldsv](https://github.com/skjnldsv))
-- Additional link to picture menu
-  [\#1645](https://github.com/nextcloud/contacts/pull/1645) ([call-me-matt](https://github.com/call-me-matt))
-- Simplify form
-  [\#1446](https://github.com/nextcloud/contacts/pull/1446) ([jancborchardt](https://github.com/jancborchardt))
-- Support X-PHONETIC-FIRST-NAME and X-PHONETIC-LAST-NAME
-  [\#1741](https://github.com/nextcloud/contacts/pull/1741) ([t-bucchi](https://github.com/t-bucchi))
-
-### Fixed
-- Fix/various design
-  [\#1792](https://github.com/nextcloud/contacts/pull/1792) ([skjnldsv](https://github.com/skjnldsv))
-- Add back the app details toggle
-  [\#1790](https://github.com/nextcloud/contacts/pull/1790) ([skjnldsv](https://github.com/skjnldsv))
-- Properly sort groups
-  [\#1788](https://github.com/nextcloud/contacts/pull/1788) ([skjnldsv](https://github.com/skjnldsv))
-- Fix default addressbook creation
-  [\#1787](https://github.com/nextcloud/contacts/pull/1787) ([skjnldsv](https://github.com/skjnldsv))
-- Fix avatar sanitize and cleanup code & css
-  [\#1786](https://github.com/nextcloud/contacts/pull/1786) ([skjnldsv](https://github.com/skjnldsv))
-- Fix/virtual group
-  [\#1770](https://github.com/nextcloud/contacts/pull/1770) ([skjnldsv](https://github.com/skjnldsv))
-- Implement masonry
-  [\#1755](https://github.com/nextcloud/contacts/pull/1755) ([skjnldsv](https://github.com/skjnldsv))
-- Fix group filter trim
-  [\#1732](https://github.com/nextcloud/contacts/pull/1732) ([skjnldsv](https://github.com/skjnldsv))
-
-## 3.3.0 – 2020-04-14
-
-[Full Changelog](https://github.com/nextcloud/contacts/compare/v3.2.0...v3.3.0)
-
-### Enhancements
-- Add ability to clone contact
-  [\#1462](https://github.com/nextcloud/contacts/pull/1462) ([skjnldsv](https://github.com/skjnldsv))
-
-### Fixed
-- Fix no sharing menu position
-  [\#1500](https://github.com/nextcloud/contacts/pull/1500) ([skjnldsv](https://github.com/skjnldsv))
-- Support multiple type declaration
-  [\#942](https://github.com/nextcloud/contacts/issues/942) ([skjnldsv](https://github.com/skjnldsv))
-
-### Security fixed
-- Properly sanitize avatars in upload
-  [\#1514](https://github.com/nextcloud/contacts/pull/1514) ([skjnldsv](https://github.com/skjnldsv))
-
-## 3.2.0 – 2020-02-29
-### Fixed
-- Fix first contact sync (Contact saving hangs and protocol says uid already exists)
-  [\#1488](https://github.com/nextcloud/contacts/pull/1488) ([skjnldsv](https://github.com/skjnldsv))
-
-### Updated
-- Translations
-
-## 3.1.9 – 2020-02-26
-### Enhancements
-- Fix sorting and wording of contact picture actions
-  [\#1448](https://github.com/nextcloud/contacts/pull/1448) ([jancborchardt](https://github.com/jancborchardt))
-- Allow importing from files
-  [\#1438](https://github.com/nextcloud/contacts/pull/1438) ([skjnldsv](https://github.com/skjnldsv))
-- Remove delete action from list, fix \#1368
-  [\#1430](https://github.com/nextcloud/contacts/pull/1430) ([jancborchardt](https://github.com/jancborchardt))
-
-### Fixed
-- l10n: Changed spelling
-  [\#1463](https://github.com/nextcloud/contacts/pull/1463) ([rakekniven](https://github.com/rakekniven))
-- Disable form validation for text properties
-  [\#1418](https://github.com/nextcloud/contacts/pull/1418) ([hanzi](https://github.com/hanzi))
-
-## 3.1.8 – 2020-01-22
-### Fixed
-- Fixed release number and 15 is EOL
-- Fix issue that prevented new contacts from being saved
-  [#1416](https://github.com/nextcloud/contacts/pull/1416) ([hanzi](https://github.com/hanzi))
-- remove delete buttons and other actions if contact is not readable
-  [#1413](https://github.com/nextcloud/contacts/pull/1413) ([myrho](https://github.com/myrho))
-- Only add sharee if not present already
-  [#1401](https://github.com/nextcloud/contacts/pull/1401) ([raimund-schluessler](https://github.com/raimund-schluessler))
-- Fix 'duplicate types' check for properties with a single type
-  [#1399](https://github.com/nextcloud/contacts/pull/1399) ([hanzi](https://github.com/hanzi))
-- Workaround for bug that prevented editing vCards with commas in the address
-  [#1394](https://github.com/nextcloud/contacts/pull/1394) ([hanzi](https://github.com/hanzi))
-- Use correct syntax for vCard version when saving
-  [#1393](https://github.com/nextcloud/contacts/pull/1393) ([hanzi](https://github.com/hanzi))
-- short company field only if empty
-  [#1412](https://github.com/nextcloud/contacts/pull/1412) ([myrho](https://github.com/myrho))
-
-## 3.1.7 – 2019-12-09
-### Enhancements
-- Make the work profile the default one when adding Contacts
-  [#1307](https://github.com/nextcloud/contacts/pull/1307)
-
-### Fixed
-- Fix first day of datepicker
-  [#1314](https://github.com/nextcloud/contacts/pull/1314)
-
-### Updated
-- Dependencies
-- Translations
-
-## 3.1.6 – 2019-10-03
-### Fixed
-- Fix initialStateService for 15
-  [#1292](https://github.com/nextcloud/contacts/pull/1292)
-
-## 3.1.5 – 2019-10-03
-### Fixed
-- Better debug of the duplicate types check
-  [#1290](https://github.com/nextcloud/contacts/pull/1290)
-- Fix initialStateService for 15
-  [#1291](https://github.com/nextcloud/contacts/pull/1291)
-
-## 3.1.4 – 2019-09-28
-### Enhancements
-- Enhancement/allow year removal
-  [#1248](https://github.com/nextcloud/contacts/pull/1248)
-- Add TZ & LANG
-  [#1264](https://github.com/nextcloud/contacts/pull/1264)
-- Added possibility to show and edit vCard Geo attributes
-  [#1250](https://github.com/nextcloud/contacts/pull/1250)
-
-### Fixed
-- Support vcard 3 photo syntax
-  [#1239](https://github.com/nextcloud/contacts/pull/1239)
-- Fix moment loading
-  [#1249](https://github.com/nextcloud/contacts/pull/1249)
-- Add push warning on fixed contact
-  [#982](https://github.com/nextcloud/contacts/pull/982)
-
-### Updated
-- Dependencies
-- Translations
-
-## 3.1.3 – 2019-06-11
-### Fixed
-- Error on instances <16
-  [853c3de](https://github.com/nextcloud/contacts/commit/853c3dead32d1375954e252bb4c3ccce867b56ec)
-
-### Updated
-- Translations
-
-## 3.1.2 – 2019-06-10
-### Added
-- Components update, enhanced design and avatar management
-  [#1103](https://github.com/nextcloud/contacts/pull/1103)
-
-### Fixed
-- Capture ctrl+s
-  [#1102](https://github.com/nextcloud/contacts/pull/1102)
-- Fix ghost contact when scrolling
-  [#1132](https://github.com/nextcloud/contacts/pull/1132)
-- Fix alignment and remove addressbook selector if only one
-  [#1074](https://github.com/nextcloud/contacts/pull/1074)
-
-### Updated
-- [Security] axios library
-- Dependencies
-- Translations
-
-## 3.1.1 – 2019-04-16
-### Fixed
-- Edge support
-  [#1064](https://github.com/nextcloud/contacts/pull/1064)
-- Cannot remove some properties
-  [#1050](https://github.com/nextcloud/contacts/pull/1050)
-- Avoid qrcode getting cropped
-  [#1055](https://github.com/nextcloud/contacts/pull/1055)
-- Add CLOUD property to fieldOrder, so it can be grouped in the UI
-  [#1056](https://github.com/nextcloud/contacts/pull/1056)
-- Add some padding between header and properties in contact details
-  [#1052](https://github.com/nextcloud/contacts/pull/1052)
-- Fix some photos not being shown in the list
-  [6a9025c](https://github.com/nextcloud/contacts/commit/6a9025c57dfd738d3d25651853bc38e15db90f1c)
-
-### Updated
-- Dependencies
-- Translations
-
-## 3.1.0 – 2019-04-08
-### Added
-- Add undo deletion
-  [#1025](https://github.com/nextcloud/contacts/pull/1025)
-- Allow to pick avatar from files + use modal
-  [#1024](https://github.com/nextcloud/contacts/pull/1024)
-- Add ABLABEL and ITEMX.property support
-  [#991](https://github.com/nextcloud/contacts/pull/991)
-- Use displayname as file name when downloading a contact
-  [#1022](https://github.com/nextcloud/contacts/pull/1022)
-- Show vCard as qrcode
-  [#1017](https://github.com/nextcloud/contacts/pull/1017)
-- Use virtual scroller for big contacts list display performances
-  [#1018](https://github.com/nextcloud/contacts/pull/1018)
-- Add sorting by last modified
-  [#992](https://github.com/nextcloud/contacts/pull/992)
-
-
-### Fixed
-- Automatic repair of duplicate types
-  [#1042](https://github.com/nextcloud/contacts/issues/1042)
-- Remove some properties if empty
-  [#1035](https://github.com/nextcloud/contacts/issues/1035)
-- Use dav hasPhoto to properly load photos into the list
-  [#1021](https://github.com/nextcloud/contacts/issues/1021)
-- Unable to create new user since v3.0.5 on some browsers, oca_contacts
-  [#1010](https://github.com/nextcloud/contacts/issues/1010)
-- Cannot see Date of Death to existing contacts
-  [#988](https://github.com/nextcloud/contacts/issues/988)
-- Properly update store contact on first push
-  [#987](https://github.com/nextcloud/contacts/issues/987)
-
-### Updated
-- Dependencies
-- Translations
-
-## 3.0.5 – 2019-03-11
-### Fixed
-- Initial contact loading:
-  [#984](https://github.com/nextcloud/contacts/issues/984)
-
-
-## 3.0.4 – 2019-03-10
-### Added
-- Add REV on update
-  [#969](https://github.com/nextcloud/contacts/pull/969)
-- Better handle parsing errors
-  [#971](https://github.com/nextcloud/contacts/pull/971)
-- Add not grouped entry
-  [#970](https://github.com/nextcloud/contacts/pull/970)
-
-### Fixed
-- Spelling mistake in error message
-  [#945](https://github.com/nextcloud/contacts/issues/945)
-- Automatically redirect if modRewriteWorking is supported
-  [#899](https://github.com/nextcloud/contacts/issues/899)
-- Force display date for bday, anniversary and deathdate
-  [9057462c34977103a2c68124ee8f50a2d1a967ce](https://github.com/nextcloud/contacts/commit/9057462c34977103a2c68124ee8f50a2d1a967ce)
-- Fix FN repair step for ORG
-  [bdd93836aa0613e5f9c61f2496505e4c45f1febc](https://github.com/nextcloud/contacts/commit/bdd93836aa0613e5f9c61f2496505e4c45f1febc)
-- Saving reverts changes which happened during the save
-  [#923](https://github.com/nextcloud/contacts/issues/923)
-  [#968](https://github.com/nextcloud/contacts/issues/968)
-- White icons fix for preview
-  [91dd5c38df05ebb9247df4611703beffa6d08b0e](https://github.com/nextcloud/contacts/commit/91dd5c38df05ebb9247df4611703beffa6d08b0e) 
-- Validate on app initialisation
-  [#973](https://github.com/nextcloud/contacts/issues/973)
-- Fix gender select + auto repair
-  [#972](https://github.com/nextcloud/contacts/issues/972)
-- Fix conflict mode
-  [#981](https://github.com/nextcloud/contacts/issues/981)
-
-### Updated
-- Dependencies
-- Translations
-
-
-## 3.0.3 – 2019-02-01
-### Added
-- Auto fill the display name from the detailed name field if empty, invalid or unchanged from New Contact
-  [#898](https://github.com/nextcloud/contacts/issues/898)
-
-### Fixed
-- Address book url copy to clipboard
-  [#878](https://github.com/nextcloud/contacts/issues/878)
-- Conflicting issue when multiple changes to a contact
-  [#879](https://github.com/nextcloud/contacts/issues/879)
-- Auto fix the display name if invalid
-  [#880](https://github.com/nextcloud/contacts/issues/880)
-- Fix the display name Format and sorting display
-  [#880](https://github.com/nextcloud/contacts/issues/880)
-- Removed unnecessary request on contact creation
-
-### Updated
-- Dependencies
-- Translations
-
-
-## 3.0.2 – 2019-01-21
-### Changed
-- Search case is now insensitive
-
-### Fixed
-- VCard group download on firefox
-- Data propagation across different set of fields
-- Dates off by one month
-- Property deletion
-- Addressbook deletion
-- Federated cloud fields
-- Contactsmenu
-- Datepicker design
-
-### Updated
-- Dependencies
-- Translations
-
-
-## 3.0.1 – 2018-12-24
-### Changed
-- Better error handling
-
-### Fixed
-- Deathdate
-- Datepicker
-- Add new property
-
-### Updated
-- Dependencies
-- Translations
-
-
-## 3.0.0 – 2018-12-15
-### Added
-- Use nextcloud locale settings to display dates
-- Faster loading and overall reactivity
-- Better import process
-- Show default set of fields on new contacts
-- Design enhancement
-- You can now delete contacts from the list
-- You can now download groups as vcf file
-- New contacts are not synced to the server until edited. No more empty contacts on your addressbooks!
-- Better compatibility with other vcard editors
-
-### Fixed
-- #122, BDAY format in VCARD, missing "-"
-- #133, allow to enter and differentiate more than one mobile phone - number, e.g for business and private use
-- #146, German Date Format
-- #200, Empty field property options missing
-- #270, FN field behaviour: first and last name
-- #488, Removing default name for new contact and leaving it blank
-- #253, Show fields for phone, email, address and groups by default for new contact
-- #259, Show fields for phone, email, address and groups by default
-- #293, Improve the sharing view of addressbooks
-- #337, "undefined" group is created
-- #361, Display Name is overwritten by First Name / Last Name changes.
-- #372, sorting order to 'first name' or 'last name' leads to strange behavior when scrolling to contacts
-- #379, "/" in a user group name doesn't work
-- #394, optimize the shortening and alignment of field labels
-- #433, vCard import broken: window.localStorage is null
-- #468, SVG not encoded or rendered correctly
-- #520, please clarify which formats AND versions are supported
-- #545, Social Network types drop-down is missing "Mastodon"
-- #547, Company contact entries don't display properly on load
-- #585, Click on a non existing contact results in a endless spinner
-- #592, Inconsistent use of username when sharing an address book
+## [6.1.2](https://github.com/nextcloud/contacts/compare/v6.1.1...v6.1.2) (2024-12-23)
+
+
+### Bug Fixes
+
+* adjust spacing and alignment in the contact details view ([75ee842](https://github.com/nextcloud/contacts/commit/75ee842cd90db8c6436c18855090b4319c442f75))
+* Adjust styling of team resource images ([8b65d58](https://github.com/nextcloud/contacts/commit/8b65d581e5ce6ddffa75695f141abda824dd12ce))
+* Allow dynamic autoloading for classes added during upgrade ([08e5f9e](https://github.com/nextcloud/contacts/commit/08e5f9e9241c1162b277764d6711823f3b0e7182))
+* bundle moment.js locale data ([9fb1d09](https://github.com/nextcloud/contacts/commit/9fb1d09b20a6b702da000431b44ededce9a1f35a))
+* check if photo property is set before downloading ([243d957](https://github.com/nextcloud/contacts/commit/243d95701e27bda19a854eb09a6290d2eb639073))
+* **CircleDetails:** Improve calculation of member list ([05be5e3](https://github.com/nextcloud/contacts/commit/05be5e320697d45371c7a91ae07e31196e931830))
+* **CircleNavigationItem:** Rename 'add member' to 'manage team' ([eda53a5](https://github.com/nextcloud/contacts/commit/eda53a564d23bc87d9c5bfd614e5ddc8f7fe4777))
+* **circles:** sort fallback if not member of circle ([05f04df](https://github.com/nextcloud/contacts/commit/05f04df69e9c09d9f4443e11d53601f9d2381d50))
+* **contacts:** split up detailed-name again to fix vCard ([501b990](https://github.com/nextcloud/contacts/commit/501b9905abdf55f45f3d67b72680c2cf6918b13c))
+* convert pre-commit to common js ([06689fd](https://github.com/nextcloud/contacts/commit/06689fd1c9ff09d8b0773b6471ec6e3264bcc11a))
+* convert pre-commit.js to ES module ([6ec1672](https://github.com/nextcloud/contacts/commit/6ec1672cf5103de49776cc69822ebf2f3c1e74aa))
+* **copy:** Hide not copyable addressbooks in copy select ([b588aac](https://github.com/nextcloud/contacts/commit/b588aac99118e649c02abb3ac0cd1dc5e7ac3468))
+* **deps:** bump @nextcloud/cdav-library from 1.3.0 to ^1.4.0 ([a02a4b5](https://github.com/nextcloud/contacts/commit/a02a4b5d5f60e62abcf5b39cf12474a6a5d47afa))
+* **deps:** bump @nextcloud/cdav-library from 1.4.0 to ^1.5.1 ([ff451d0](https://github.com/nextcloud/contacts/commit/ff451d02c0749cbe85688f6a17b49e2568efe399))
+* **deps:** bump @nextcloud/dialogs from 5.3.1 to ^5.3.2 ([c89c5e1](https://github.com/nextcloud/contacts/commit/c89c5e1e18a73699c16779b019359fbaf3742927))
+* **deps:** bump @nextcloud/dialogs from 5.3.2 to ^5.3.3 ([f2941f8](https://github.com/nextcloud/contacts/commit/f2941f876fcc67c0b1d09a287462a430194e0f7c))
+* **deps:** bump @nextcloud/dialogs from 5.3.3 to ^5.3.4 ([63bdf07](https://github.com/nextcloud/contacts/commit/63bdf07c90e807cf95bd7f1c2a2e26c7a68e02b8))
+* **deps:** bump @nextcloud/dialogs from 5.3.4 to ^5.3.5 ([fd6bb23](https://github.com/nextcloud/contacts/commit/fd6bb234d140157a72e495df884d6cc9cd5e99a8))
+* **deps:** bump @nextcloud/event-bus from 3.3.1 to ^3.3.1 ([b1af001](https://github.com/nextcloud/contacts/commit/b1af00165ed4ec0292ef87a29a18c8aff8b5f1e8))
+* **deps:** bump @nextcloud/files from 3.4.1 to ^3.4.1 ([cb81009](https://github.com/nextcloud/contacts/commit/cb810095c4d3ba91e4ca1a1f568a14b3210f2e56))
+* **deps:** bump @nextcloud/files from 3.4.1 to ^3.5.0 ([718a090](https://github.com/nextcloud/contacts/commit/718a0900392d77f081fad22838d39e7d6950a710))
+* **deps:** bump @nextcloud/files from 3.5.0 to ^3.5.1 ([ef312d3](https://github.com/nextcloud/contacts/commit/ef312d362319eb78152886487f0428d0301b7687))
+* **deps:** bump @nextcloud/files from 3.5.1 to ^3.6.0 ([770b27c](https://github.com/nextcloud/contacts/commit/770b27c738763358faf3c6ecb6bcb8568ad01895))
+* **deps:** bump @nextcloud/l10n from 2.2.0 to v3 ([df25646](https://github.com/nextcloud/contacts/commit/df25646a5392d66b648bd83b3265160bf417ea6e))
+* **deps:** bump @nextcloud/logger from 2.7.0 to v3 ([73eecbc](https://github.com/nextcloud/contacts/commit/73eecbcde459436095a23bb7b2c9773b8d18bc96))
+* **deps:** bump @nextcloud/router from 2.2.0 to v3 ([96af3c5](https://github.com/nextcloud/contacts/commit/96af3c573aa4300ca258961046e8b149f58de3c6))
+* **deps:** bump @nextcloud/sharing from 0.1.0 to ^0.2.2 ([29c3f76](https://github.com/nextcloud/contacts/commit/29c3f7603722548160a994262f5df616534686ca))
+* **deps:** bump @nextcloud/vue from 8.11.3 to ^8.12.0 ([21dbcf5](https://github.com/nextcloud/contacts/commit/21dbcf5653b9fdd11da99f5cc88ddb8a7636ba88))
+* **deps:** bump @nextcloud/vue from 8.12.0 to ^8.13.0 ([56fc63c](https://github.com/nextcloud/contacts/commit/56fc63c07b1f2c69c25433c1f896f9fecd18f6d4))
+* **deps:** bump @nextcloud/vue from 8.13.0 to ^8.14.0 ([5d85e20](https://github.com/nextcloud/contacts/commit/5d85e2098ca802b7998535618e4c76009197f0f9))
+* **deps:** bump @nextcloud/vue from 8.14.0 to ^8.15.0 ([5dc3c14](https://github.com/nextcloud/contacts/commit/5dc3c1419c38b05f9eac5f7c8f9d63a540a40724))
+* **deps:** bump @nextcloud/vue from 8.15.0 to ^8.15.1 ([0919189](https://github.com/nextcloud/contacts/commit/0919189714270b519fe2fd7cedd695ca230bf99a))
+* **deps:** bump @vueuse/core from 10.9.0 to ^10.11.0 ([09b06c9](https://github.com/nextcloud/contacts/commit/09b06c9a933974e1b8e6b6d02e1a929a9ea3f249))
+* **deps:** bump debounce from 2.0.0 to ^2.1.0 ([1834ff5](https://github.com/nextcloud/contacts/commit/1834ff551a615545bf8d9f6adf1514093201110e))
+* **deps:** bump ical.js from 1.5.0 to v2 ([ef70705](https://github.com/nextcloud/contacts/commit/ef70705cb84b033e33dab46f68f94c947deed73b))
+* **deps:** bump vue monorepo from 2.7.16 to ~2.7.16 ([bda5244](https://github.com/nextcloud/contacts/commit/bda5244373d44f82e6eb2f5ed1fc302bf5968b0e))
+* **deps:** fix npm audit ([7d53f6c](https://github.com/nextcloud/contacts/commit/7d53f6c45b90be54dcb09016682531c7c3794991))
+* **deps:** fix npm audit ([85197a0](https://github.com/nextcloud/contacts/commit/85197a0eb40ab9d16233ce2989dc3862047e17da))
+* **deps:** Update npm packages ([ff493e6](https://github.com/nextcloud/contacts/commit/ff493e6b4f5ea9572cdd61a842db47c3463d2b52))
+* **GroupNavigationItem:** encode exported contact groups as UTF-8 ([4542415](https://github.com/nextcloud/contacts/commit/454241532e9b514c892e3638187928214258e1b5))
+* improve matching for tel type parameter ([503ae11](https://github.com/nextcloud/contacts/commit/503ae11e1f23c5d77c7e704cb65f813b43327066))
+* long contact name overlapping with other content ([1db37fb](https://github.com/nextcloud/contacts/commit/1db37fb0e3a51d9dd046be576723f2ed9891659e))
+* **MemberList:** Don't use VirtualList for listing members ([3bf8e6c](https://github.com/nextcloud/contacts/commit/3bf8e6c797fddcc836ef5a8dbfb81373185d7ddb)), closes [#3996](https://github.com/nextcloud/contacts/issues/3996)
+* **MembersListItem:** Adjustments to ListItemIcon properties ([5bb226f](https://github.com/nextcloud/contacts/commit/5bb226f36aa538f98424341b7b5fa8129d277c20))
+* **Members:** Rename 'Contact groups' to 'groups' ([2d98c29](https://github.com/nextcloud/contacts/commit/2d98c296f8da282f340b4afaed157ae25f6fde49)), closes [#3607](https://github.com/nextcloud/contacts/issues/3607)
+* redesign seetings toggle to Nextcloud 30 style ([3e2e7e3](https://github.com/nextcloud/contacts/commit/3e2e7e37639c5a6a13dd40d2b794a917a387ef9c))
+* respect advanced group sharing settings in frontend ([dfabc76](https://github.com/nextcloud/contacts/commit/dfabc76a96ba2851990950ceaf58507595a3d15a))
+* responsivness for contacts details ([71d3bc9](https://github.com/nextcloud/contacts/commit/71d3bc972b102e43fde5495420928eaf68d04e11))
+* scrobbale button in navigation ([195a58e](https://github.com/nextcloud/contacts/commit/195a58e74f8f7ba03888ef15abc12f6630d45c5b))
+* **settings:** clarify settings option for open circle ([0aba545](https://github.com/nextcloud/contacts/commit/0aba5455be6362c1e5e5306a4c71cab34097ec28))
+* **socialavatar:** Match base class argument name ([b0abe36](https://github.com/nextcloud/contacts/commit/b0abe36e461da17a550f119b4a11c18e7a6c290e))
+* **socialavatars:** Fix HTTP client usage ([687ab6b](https://github.com/nextcloud/contacts/commit/687ab6b81d61d6a8cfa278d01f491df21ed6eb03))
+* update icon work ([b224e5e](https://github.com/nextcloud/contacts/commit/b224e5eebaf0a3abf9c40f386d18b8b258267237))
+* update wrong release date ([fbf211b](https://github.com/nextcloud/contacts/commit/fbf211b6e293203dcae8e7d6f68ecc6255737f53))
+* validate group name ([893b0ce](https://github.com/nextcloud/contacts/commit/893b0ce59cc398cd1714964b526451365301e811))
+
+
+### Features
+
+* **circles:** sort by initiator level and change icons ([143edd6](https://github.com/nextcloud/contacts/commit/143edd6c00b644706574ede20b669f613de62910))
+* **contacts:** Show address book description if provided ([69d14aa](https://github.com/nextcloud/contacts/commit/69d14aa496563295886b0ab5b828dc9a24dd3106))
+* **deps:** Add Nextcloud 29 support ([cd6b367](https://github.com/nextcloud/contacts/commit/cd6b367783e6b98539420139e1fb8272eddd1ecb))
+* **deps:** Add nextcloud 30 support ([425a906](https://github.com/nextcloud/contacts/commit/425a906c101027f489af607b78b4ed35fb86ac5e))
+* Implement team overview page updates ([e947bcc](https://github.com/nextcloud/contacts/commit/e947bccda653851ca999ba980143c1290e162f43))
+* improve group adding ([ed0e80e](https://github.com/nextcloud/contacts/commit/ed0e80e91fc16c5d8133c4474d10a33e31d7089b))
+* Rebrand circles to teams in the frontend ([45b7dca](https://github.com/nextcloud/contacts/commit/45b7dcadcf61d28f52c8252164f6f7b991eeb8d7))
+* rename and delete groups ([88d9e72](https://github.com/nextcloud/contacts/commit/88d9e72ed1b7664cdc7965abcb4a4209a34f62e6))
+* show loading icon when deleting or renaming groups ([0f43086](https://github.com/nextcloud/contacts/commit/0f43086c251a3a0986e50146d7398745bc999d7e))
+
+
+### Performance Improvements
+
+* migrate to vite ([5a2d57d](https://github.com/nextcloud/contacts/commit/5a2d57de2c265d29d1178e9aa828c5ed0d21e6d6))
+
+
+### Reverts
+
+* Revert "style(ContactsListItem): fix subtitle" ([1c1b865](https://github.com/nextcloud/contacts/commit/1c1b865272d27c0db23aed779a778b3c70ebba73))
+
+
+
+# [5.3.0-beta2](https://github.com/nextcloud/contacts/compare/v5.3.0-beta1...v5.3.0-beta2) (2023-05-12)
+
+
+### Bug Fixes
+
+* **contacts:** display the new avatar on change ([de726e1](https://github.com/nextcloud/contacts/commit/de726e10d6a68907397060627fe1bcd53dca5cb8))
+
+
+
+# [5.3.0-beta1](https://github.com/nextcloud/contacts/compare/v5.3.0-alpha1...v5.3.0-beta1) (2023-05-05)
+
+
+### Bug Fixes
+
+* **contacts:** defer birthday exclusion until contact was loaded ([2e1e139](https://github.com/nextcloud/contacts/commit/2e1e13980542bf53d6178d54ce9d9d23dda7fba2))
+* **contacts:** display name not uri for recent-contacted address book ([6421bd4](https://github.com/nextcloud/contacts/commit/6421bd4499a90bf35ce777641a411f3ee64e43af))
+* **contacts:** remove obsolete warning and fix header alignment ([8ef7e85](https://github.com/nextcloud/contacts/commit/8ef7e854a5f47dc4312e46c1f6446f74a2050866))
+* defer rendering contact import button ([8435aa7](https://github.com/nextcloud/contacts/commit/8435aa7a9efaeec1312fe156eabbcca533c92cbf))
+* disable select component if single option ([836bb9a](https://github.com/nextcloud/contacts/commit/836bb9af1733368baecaf21e42a7e28e40a06301))
+* double scrollbar in details pane ([1f2f0fe](https://github.com/nextcloud/contacts/commit/1f2f0fef17c6312c03eb1da74496b0c8d26302a3))
+* ellipsized "other social media" dropdown ([85fde3a](https://github.com/nextcloud/contacts/commit/85fde3a480e7356a84ec819d5a03d74267bf3361))
+* improve design add new Property and change behaviour ([16b93f8](https://github.com/nextcloud/contacts/commit/16b93f8cee1ca48aa8301e70662de9d5587682f3))
+* mime case matching ([fdbd984](https://github.com/nextcloud/contacts/commit/fdbd9849d42aa4441f1374dabff75c143c68dfe4))
+
+
+### Features
+
+* **2464:** exclude contact from birthday calendar ([e9730d6](https://github.com/nextcloud/contacts/commit/e9730d6b425cf30a6345685af9f987b166d4a16c))
+* **contacts:** add add-prop button direct in prop ([9fa3e81](https://github.com/nextcloud/contacts/commit/9fa3e817cd7690b9c7e84a4c5ec61ba17fc7e9cd))
+* **contacts:** adjust header to single column layout ([f348b2e](https://github.com/nextcloud/contacts/commit/f348b2e19c949a916e7b8974ea32e5d5c4add435))
+* **contacts:** implement final design enhancements from mockups ([923d14b](https://github.com/nextcloud/contacts/commit/923d14b652e121b260ebad5cf1dfb9094ea257ba))
+* **contacts:** implement read-only and edit modes ([0972b74](https://github.com/nextcloud/contacts/commit/0972b744116bfa7bd8fcb4ee9dd29c0eda23b872))
+* **contacts:** implement single column layout ([7a7a95e](https://github.com/nextcloud/contacts/commit/7a7a95e4e428f33a7cd4969961832b786806ee42))
+* **deps:** Add Nextcloud 27 support ([dc5ae56](https://github.com/nextcloud/contacts/commit/dc5ae56ce9977c54267788bbf32961f54a4d1ce2))
+* **deps:** Revive PHP7.4 support ([508c5a1](https://github.com/nextcloud/contacts/commit/508c5a151d6b8f8c4443c38c151aa5dc566d2e72))
+
+
+### Performance Improvements
+
+* **autoloader:** Use Composer's authoritative classmap ([3ed7e01](https://github.com/nextcloud/contacts/commit/3ed7e017dbd72ebf6f3171fecfb489043945ff78))
+* **bundles:** migrate nc-vue imports ([69a29d9](https://github.com/nextcloud/contacts/commit/69a29d9203382d0d86cd13e4ec03fc5cf79b205c))
+
+
+### Reverts
+
+* Revert "Bump vue and vue-template-compiler" ([75518ea](https://github.com/nextcloud/contacts/commit/75518ea21314884c4d8088f5f46f93410b36d8ba))
+* Revert "Add manually-triggered branch-off workflow" ([d1f2ea1](https://github.com/nextcloud/contacts/commit/d1f2ea1925678f8629dc0476139ca92c977f214c))
+
+
+
+# [5.0.0-alpha4](https://github.com/nextcloud/contacts/compare/v5.0.0-alpha3...v5.0.0-alpha4) (2022-09-27)
+
+
+
+# [5.0.0-alpha3](https://github.com/nextcloud/contacts/compare/v5.0.0-alpha2...v5.0.0-alpha3) (2022-09-22)
+
+
+
+# [5.0.0-alpha2](https://github.com/nextcloud/contacts/compare/v5.0.0-alpha1...v5.0.0-alpha2) (2022-09-19)
+
+
+
+# [5.0.0-alpha1](https://github.com/nextcloud/contacts/compare/v4.1.0...v5.0.0-alpha1) (2022-09-16)
+
+
+
+# [4.1.0](https://github.com/nextcloud/contacts/compare/v4.0.1...v4.1.0) (2022-03-22)
+
+
+
+## [4.0.2](https://github.com/nextcloud/contacts/compare/v4.0.0...v4.0.2) (2021-08-25)
+
+
+
+# [4.0.0-rc.0](https://github.com/nextcloud/contacts/compare/v4.0.0-beta.3...v4.0.0-rc.0) (2021-07-05)
+
+
+
+# [4.0.0-beta.3](https://github.com/nextcloud/contacts/compare/v4.0.0-beta.2...v4.0.0-beta.3) (2021-06-21)
+
+
+
+# [4.0.0-beta.2](https://github.com/nextcloud/contacts/compare/v3.5.1...v4.0.0-beta.2) (2021-06-17)
+
+
+
+## [3.5.1](https://github.com/nextcloud/contacts/compare/v3.5.0...v3.5.1) (2021-03-17)
+
+
+
+# [3.5.0](https://github.com/nextcloud/contacts/compare/v3.4.3...v3.5.0) (2021-03-15)
+
+
+
+## [3.4.3](https://github.com/nextcloud/contacts/compare/v3.4.2...v3.4.3) (2021-01-04)
+
+
+
+## [3.4.2](https://github.com/nextcloud/contacts/compare/v3.4.1...v3.4.2) (2020-11-18)
+
+
+
+## [3.4.1](https://github.com/nextcloud/contacts/compare/v3.4.0...v3.4.1) (2020-10-20)
+
+
+
+# [3.4.0](https://github.com/nextcloud/contacts/compare/v3.3.0...v3.4.0) (2020-09-30)
+
+
+
+# [3.2.0](https://github.com/nextcloud/contacts/compare/v3.1.9...v3.2.0) (2020-02-29)
+
+
+
+## [3.1.9](https://github.com/nextcloud/contacts/compare/v3.1.6...v3.1.9) (2020-02-26)
+
+
+
+## [3.1.6](https://github.com/nextcloud/contacts/compare/v3.1.5...v3.1.6) (2019-10-03)
+
+
+
+## [3.1.5](https://github.com/nextcloud/contacts/compare/v3.1.4...v3.1.5) (2019-10-03)
+
+
+
+## [3.1.4](https://github.com/nextcloud/contacts/compare/v3.1.3...v3.1.4) (2019-09-28)
+
+
+
+## [3.1.3](https://github.com/nextcloud/contacts/compare/v3.1.2...v3.1.3) (2019-06-11)
+
+
+
+## [3.1.2](https://github.com/nextcloud/contacts/compare/v3.1.1...v3.1.2) (2019-06-10)
+
+
+
+## [3.1.1](https://github.com/nextcloud/contacts/compare/v3.1.0...v3.1.1) (2019-04-16)
+
+
+
+# [3.1.0](https://github.com/nextcloud/contacts/compare/v3.0.1...v3.1.0) (2019-04-08)
+
+
+
+## [3.0.1](https://github.com/nextcloud/contacts/compare/v3.0.0...v3.0.1) (2018-12-24)
+
+
+
+# [3.0.0-beta1](https://github.com/nextcloud/contacts/compare/v3.0.0-alpha1...v3.0.0-beta1) (2018-11-14)
+
+
+
+## [2.1.6-beta](https://github.com/nextcloud/contacts/compare/v2.1.6...v2.1.6-beta) (2018-08-02)
+
+
+
+## [2.1.5](https://github.com/nextcloud/contacts/compare/v2.1.4...v2.1.5) (2018-06-01)
+
+
+### Reverts
+
+* Revert "Init addressbook disabling ability" ([3455b79](https://github.com/nextcloud/contacts/commit/3455b790b877ac746f974cafb60c6f7f371f13ad))
+* Revert "Do not rely on the file type but simply try to parse the given file as vcard - fixes #385" ([b28ef41](https://github.com/nextcloud/contacts/commit/b28ef41c9e47d7c791b29bc8c185067eba359718)), closes [#385](https://github.com/nextcloud/contacts/issues/385)
+* Revert "Add support for X-ABLABEL refs #204" ([a4fe8a0](https://github.com/nextcloud/contacts/commit/a4fe8a06a814a216a20e8c861ada446f45a7ffbc)), closes [#204](https://github.com/nextcloud/contacts/issues/204)
+
+
+
