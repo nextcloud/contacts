@@ -209,6 +209,8 @@ OC.L10N.register(
     "Contact not found" : "Контакт није нађен",
     "Group {group} not found" : "Група {group} не може да се пронађе",
     "Close" : "Затвори",
+    "No data for this contact" : "Нема података о овом контакту",
+    "No data for this contact on their profile" : "На профилу корисника нема података о овом контакту",
     "Import" : "Увоз",
     "Are you sure you want to import this contact file?" : "Да ли сте сигурни да желите да увезете овај фајл контаката?",
     "Could not copy" : "Не може да се копира",
