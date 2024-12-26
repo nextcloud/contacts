@@ -207,6 +207,8 @@
     "Contact not found" : "Non se atopou o contacto",
     "Group {group} not found" : "Non se atopou o grupo {group}",
     "Close" : "Pechar",
+    "No data for this contact" : "Non hai datos para este contacto",
+    "No data for this contact on their profile" : "Non hai datos para este contacto no seu perfil",
     "Import" : "Importar",
     "Are you sure you want to import this contact file?" : "Confirma que quere importar este ficheiro de contacto?",
     "Could not copy" : "Non foi posíbel copiar",
