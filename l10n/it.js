@@ -209,6 +209,8 @@ OC.L10N.register(
     "Contact not found" : "Contatto non trovato",
     "Group {group} not found" : "Gruppo {group} non trovato",
     "Close" : "Chiudi",
+    "No data for this contact" : "Nessun dato per questo contatto",
+    "No data for this contact on their profile" : "Nessun dato per questo contatto sul suo profilo",
     "Import" : "Importa",
     "Are you sure you want to import this contact file?" : "Sei sicuro di voler importare questo file di contatti?",
     "Could not copy" : "Impossibile copiare",
