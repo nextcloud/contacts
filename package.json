@@ -99,7 +99,7 @@
     "jest-transform-stub": "^2.0.0",
     "ts-jest": "^29.2.5",
     "ts-loader": "^9.5.1",
-    "typescript": "^5.6.2",
+    "typescript": "^5.7.2",
     "vite": "^5.4.11",
     "vue-template-compiler": "~2.7.16"
   },
