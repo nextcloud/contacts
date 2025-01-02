@@ -21,7 +21,7 @@ export const getSuggestions = async function(search) {
 	const request = await axios.get(generateOcsUrl('apps/files_sharing/api/v1/sharees'), {
 		params: {
 			format: 'json',
-			itemType: 'file',
+			itemType: 'contacts',
 			search,
 			perPage: maxAutocompleteResults,
 			shareType,
@@ -83,7 +83,7 @@ export const getRecommendations = async function() {
 	const request = await axios.get(generateOcsUrl('apps/files_sharing/api/v1/sharees_recommended'), {
 		params: {
 			format: 'json',
-			itemType: 'file',
+			itemType: 'contacts',
 			shareType,
 		},
 	})
