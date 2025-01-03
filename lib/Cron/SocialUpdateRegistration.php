@@ -22,27 +22,20 @@ use function method_exists;
 class SocialUpdateRegistration extends TimedJob {
 	private $appName;
 
-	/** @var IUserManager */
-	private $userManager;
-
-	/** @var IJobList */
-	private $jobList;
-
-	/** @var IConfig */
-	private $config;
-
 	/**
 	 * RegisterSocialUpdate constructor.
 	 *
 	 * @param ITimeFactory $time
 	 * @param IUserManager $userManager
+	 * @param IConfig $config
 	 * @param IJobList $jobList
 	 */
 	public function __construct(
 		ITimeFactory $time,
-		IUserManager $userManager,
-		IConfig $config,
-		IJobList $jobList) {
+		private IUserManager $userManager,
+		private IConfig $config,
+		private IJobList $jobList,
+	) {
 		parent::__construct($time);
 
 		$this->appName = Application::APP_ID;

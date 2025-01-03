@@ -15,22 +15,17 @@ use OCP\Settings\ISettings;
 class AdminSettings implements ISettings {
 	protected $appName;
 
-	/** @var IConfig */
-	private $config;
-
-	/** @var IInitialStateService */
-	private $initialStateService;
-
 	/**
 	 * Admin constructor.
 	 *
 	 * @param IConfig $config
 	 * @param IL10N $l
 	 */
-	public function __construct(IConfig $config, IInitialStateService $initialStateService) {
+	public function __construct(
+		private IConfig $config,
+		private IInitialStateService $initialStateService,
+	) {
 		$this->appName = Application::APP_ID;
-		$this->config = $config;
-		$this->initialStateService = $initialStateService;
 	}
 
 	/**
