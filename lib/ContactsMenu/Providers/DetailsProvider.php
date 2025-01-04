@@ -15,30 +15,19 @@ use OCP\IL10N;
 use OCP\IURLGenerator;
 
 class DetailsProvider implements IProvider {
-	/** @var IURLGenerator */
-	private $urlGenerator;
-
-	/** @var IActionFactory */
-	private $actionFactory;
-
-	/** @var IL10N */
-	private $l10n;
-
-	/** @var IManager */
-	private $manager;
 
 	/**
 	 * @param IURLGenerator $urlGenerator
 	 * @param IActionFactory $actionFactory
+	 * @param IL10N $l10n
+	 * @param IManager $manager
 	 */
-	public function __construct(IURLGenerator $urlGenerator,
-		IActionFactory $actionFactory,
-		IL10N $l10n,
-		IManager $manager) {
-		$this->actionFactory = $actionFactory;
-		$this->urlGenerator = $urlGenerator;
-		$this->l10n = $l10n;
-		$this->manager = $manager;
+	public function __construct(
+		private IURLGenerator $urlGenerator,
+		private IActionFactory $actionFactory,
+		private IL10N $l10n,
+		private IManager $manager,
+	) {
 	}
 
 	/**

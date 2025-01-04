@@ -18,21 +18,14 @@ use OCP\BackgroundJob\QueuedJob;
 use OCP\IUserManager;
 
 class SocialUpdate extends QueuedJob {
-	/** @var SocialApiService */
-	private $social;
-	/** @var IJobList */
-	private $jobList;
-	/** @var IUserManager */
-	private $userManager;
 
-	public function __construct(ITimeFactory $time,
-		SocialApiService $social,
-		IJobList $jobList,
-		IUserManager $userManager) {
+	public function __construct(
+		ITimeFactory $time,
+		private SocialApiService $social,
+		private IJobList $jobList,
+		private IUserManager $userManager,
+	) {
 		parent::__construct($time);
-		$this->social = $social;
-		$this->jobList = $jobList;
-		$this->userManager = $userManager;
 	}
 
 	protected function run($argument) {

@@ -27,45 +27,19 @@ use OCP\IURLGenerator;
 
 class SocialApiService {
 	private $appName;
-	/** @var CompositeSocialProvider */
-	private $socialProvider;
-	/** @var IManager */
-	private $manager;
-	/** @var IConfig */
-	private $config;
-	/** @var IClientService */
-	private $clientService;
-	/** @var IL10N */
-	private $l10n;
-	/** @var IURLGenerator */
-	private $urlGen;
-	/** @var CardDavBackend */
-	private $davBackend;
-	/** @var ITimeFactory */
-	private $timeFactory;
-	/** @var ImageResizer */
-	private $imageResizer;
 
 	public function __construct(
-		CompositeSocialProvider $socialProvider,
-		IManager $manager,
-		IConfig $config,
-		IClientService $clientService,
-		IL10N $l10n,
-		IURLGenerator $urlGen,
-		CardDavBackend $davBackend,
-		ITimeFactory $timeFactory,
-		ImageResizer $imageResizer) {
+		private CompositeSocialProvider $socialProvider,
+		private IManager $manager,
+		private IConfig $config,
+		private IClientService $clientService,
+		private IL10N $l10n,
+		private IURLGenerator $urlGen,
+		private CardDavBackend $davBackend,
+		private ITimeFactory $timeFactory,
+		private ImageResizer $imageResizer,
+	) {
 		$this->appName = Application::APP_ID;
-		$this->socialProvider = $socialProvider;
-		$this->manager = $manager;
-		$this->config = $config;
-		$this->clientService = $clientService;
-		$this->l10n = $l10n;
-		$this->urlGen = $urlGen;
-		$this->davBackend = $davBackend;
-		$this->timeFactory = $timeFactory;
-		$this->imageResizer = $imageResizer;
 	}
 
 
