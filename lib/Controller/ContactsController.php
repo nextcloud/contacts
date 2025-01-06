@@ -14,19 +14,13 @@ use OCP\IRequest;
 use OCP\IURLGenerator;
 
 class ContactsController extends Controller {
-	/** @var IL10N */
-	private $l10n;
 
-	/** @var IURLGenerator */
-	private $urlGenerator;
-
-	public function __construct(IRequest $request,
-		IL10N $l10n,
-		IURLGenerator $urlGenerator) {
+	public function __construct(
+		IRequest $request,
+		private IL10N $l10n,
+		private IURLGenerator $urlGenerator,
+	) {
 		parent::__construct(Application::APP_ID, $request);
-
-		$this->l10n = $l10n;
-		$this->urlGenerator = $urlGenerator;
 	}
 
 
