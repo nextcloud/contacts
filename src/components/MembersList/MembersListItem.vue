@@ -364,7 +364,6 @@ export default {
 	display: flex;
 	overflow: hidden;
 	flex-shrink: 0;
-	order: 1;
 	padding-top: 22px;
 	padding-left: 8px;
 	user-select: none;
