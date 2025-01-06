@@ -62,3 +62,7 @@ License: CC-BY-4.0
 Files: img/gravatar.svg
 Copyright: svgrepo.com <https://www.svgrepo.com/page/licensing>
 License: CC0-1.0
+
+Files: CHANGELOG.md
+Copyright: 2019 Nextcloud GmbH and Nextcloud contributors
+License: AGPL-3.0-or-later
