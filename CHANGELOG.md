@@ -2,11 +2,12 @@
   - SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
-# [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0) (2024-12-19)
+# [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0-alpha.1) (2025-01-07)
 
 
 ### Bug Fixes
 
+* **circles** misaligned member modal headings ([a5ec367](https://github.com/nextcloud/contacts/commit/a5ec3675565a450b5b2da09b5b97714df059d483))
 * adjust spacing and alignment in the contact details view ([75ee842](https://github.com/nextcloud/contacts/commit/75ee842cd90db8c6436c18855090b4319c442f75))
 * Adjust styling of team resource images ([8b65d58](https://github.com/nextcloud/contacts/commit/8b65d581e5ce6ddffa75695f141abda824dd12ce))
 * Allow dynamic autoloading for classes added during upgrade ([08e5f9e](https://github.com/nextcloud/contacts/commit/08e5f9e9241c1162b277764d6711823f3b0e7182))
@@ -126,6 +127,9 @@
 
 * Revert "style(ContactsListItem): fix subtitle" ([1c1b865](https://github.com/nextcloud/contacts/commit/1c1b865272d27c0db23aed779a778b3c70ebba73))
 
+### Refactors
+
+* simplify constructor property declarations ([0c0bf64](https://github.com/nextcloud/contacts/commit/0c0bf64e5d0f8d9337740e80270e7d18c186ddb7))
 
 
 # [5.3.0-beta2](https://github.com/nextcloud/contacts/compare/v5.3.0-beta1...v5.3.0-beta2) (2023-05-12)
