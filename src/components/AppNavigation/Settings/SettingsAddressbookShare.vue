@@ -121,7 +121,7 @@ export default {
 				this.usersOrGroups = results
 					.filter((result) => {
 						const allowedCalendarUserTypes = ['INDIVIDUAL']
-						if (this.isGroupSharingEnabled) {
+						if (isGroupSharingEnabled) {
 							allowedCalendarUserTypes.push('GROUP')
 						}
 						return allowedCalendarUserTypes.includes(result.calendarUserType)
