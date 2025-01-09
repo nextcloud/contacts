@@ -2,11 +2,12 @@
   - SPDX-FileCopyrightText: 2018-2024 Nextcloud GmbH and Nextcloud contributors
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
-# [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0-alpha.1) (2025-01-07)
+# [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0-beta.1) (2025-01-09)
 
 
 ### Bug Fixes
 
+* share address books with user groups ([6e87aca](https://github.com/nextcloud/contacts/pull/4291/commits/6e87aca3c4406cebc4b0699a489bd247355c91b3))
 * **circles** misaligned member modal headings ([a5ec367](https://github.com/nextcloud/contacts/commit/a5ec3675565a450b5b2da09b5b97714df059d483))
 * adjust spacing and alignment in the contact details view ([75ee842](https://github.com/nextcloud/contacts/commit/75ee842cd90db8c6436c18855090b4319c442f75))
 * Adjust styling of team resource images ([8b65d58](https://github.com/nextcloud/contacts/commit/8b65d581e5ce6ddffa75695f141abda824dd12ce))
