@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.2 – 2025-01-09
+### Fixed
+- Share address books with user groups
+
 ## 6.0.1 – 2024-11-12
 ### Fixed
 - Rename 'Contact groups' to 'groups
