@@ -1,3 +1,13 @@
+## [6.1.3](https://github.com/nextcloud/contacts/compare/v6.1.2...v6.1.3) (2025-01-09)
+
+
+### Bug Fixes
+
+* **circles:** misaligned member modal headings ([1380da1](https://github.com/nextcloud/contacts/commit/1380da178adf6aa81ecfcaea9d2cff6114353c48))
+* share address books with user groups ([02e27da](https://github.com/nextcloud/contacts/commit/02e27da02cfe1f7497e736e0e9a86859fe0bd631))
+
+
+
 ## [6.1.2](https://github.com/nextcloud/contacts/compare/v6.1.1...v6.1.2) (2024-12-23)
 
 
