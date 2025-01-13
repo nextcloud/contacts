@@ -42,6 +42,7 @@ OC.L10N.register(
     "Show all groups" : "Rodyti visas grupes",
     "Collapse groups" : "Suskleisti grupes",
     "Show all teams" : "Rodyti visas komandas",
+    "Collapse teams" : "Suskleisti komandas",
     "This group already exists" : "Ši grupė jau yra",
     "An error occurred while creating the group" : "Kuriant grupę įvyko klaida",
     "This team already exists" : "Ši komanda jau yra",
