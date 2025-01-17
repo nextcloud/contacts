@@ -22,6 +22,7 @@ class Application extends App implements IBootstrap {
 
 	public const AVAIL_SETTINGS = [
 		'allowSocialSync' => 'yes',
+		'enableDefaultContact' => 'yes',
 	];
 
 	public function __construct() {
