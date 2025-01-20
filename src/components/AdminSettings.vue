@@ -22,6 +22,7 @@
 				@change="updateEnableDefaultContact">
 			<label for="enable-default-contact"> {{ t('mail',"Default contact is added to the user's own address book on user's first login.") }} </label>
 			<NcButton v-if="enableDefaultContact"
+				class="import-button"
 				type="primary"
 				@click="toggleModal">
 				<template #icon>
@@ -29,26 +30,18 @@
 				</template>
 				{{ t('contacts', 'Import contact') }}
 			</NcButton>
-			<NcDialog v-if="isModalOpen"
-				ref="modal"
-				class="import-contact__modal"
+			<NcDialog :open.sync="isModalOpen"
 				:name="t('contacts', 'Import contacts')"
-				@close="toggleModal">
-				<section class="import-contact__modal-pick">
+				:buttons="buttons">
+				<div>
+					<p>{{ t('contacts', 'Importing a new .vcf file will delete the existing default contact and replace it with the new one. Do you want to continue?') }}</p>
 					<input id="contact-import"
 						ref="contact-import-input"
 						:disabled="loading"
 						type="file"
 						class="hidden-visually"
 						@change="processFile">
-					<NcButton :disabled="loading"
-						@click="clickImportInput">
-						<template #icon>
-							<IconUpload :size="20" />
-						</template>
-						{{ t('contacts', 'Select local file') }}
-					</NcButton>
-				</section>
+				</div>
 			</NcDialog>
 		</p>
 	</div>
@@ -63,6 +56,8 @@ import Contact from '../models/contact.js'
 import validate from '../services/validate.js'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import IconUpload from 'vue-material-design-icons/Upload.vue'
+import IconCancel from '@mdi/svg/svg/cancel.svg'
+import IconCheck from '@mdi/svg/svg/check.svg'
 
 export default {
 	name: 'AdminSettings',
@@ -77,6 +72,19 @@ export default {
 			enableDefaultContact: loadState('contacts', 'enableDefaultContact') === 'yes',
 			isModalOpen: false,
 			loading: false,
+			buttons: [
+				{
+					label: t('contacts', 'Cancel'),
+					icon: IconCancel,
+					callback: () => { this.isModalOpen = false },
+				},
+				{
+					label: t('contacts', 'Import'),
+					type: 'primary',
+					icon: IconCheck,
+					callback: () => { this.clickImportInput() },
+				},
+			],
 		}
 	},
 	methods: {
@@ -97,12 +105,7 @@ export default {
 			this.$refs['contact-import-input'].click()
 		},
 
-		/**
-		 * Process input type file change
-		 *
-		 * @param {Event} event the input change event
-		 */
-		 processFile(event) {
+		processFile(event) {
 			this.loading = true
 
 			const file = event.target.files[0]
@@ -125,3 +128,8 @@ export default {
 	},
 }
 </script>
+<style lang="scss" scoped>
+.import-button {
+	margin-top: 1rem;
+}
+</style>
