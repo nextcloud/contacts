@@ -6,7 +6,7 @@
 import Vue from 'vue'
 import Member from './member'
 
-import { CircleConfigs, MemberLevels } from './constants'
+import { CircleConfigs, MemberLevels, ROUTE_CIRCLE } from './constants'
 
 type MemberList = Record<string, Member>
 
@@ -303,7 +303,7 @@ export default class Circle {
 	get router() {
 		return {
 			name: 'circle',
-			params: { selectedCircle: this.id },
+			params: { selectedCircle: this.id, selectedGroup: ROUTE_CIRCLE },
 		}
 	}
 

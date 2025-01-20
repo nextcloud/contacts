@@ -11,7 +11,7 @@
 			:selected-group="selectedGroup"
 			:selected-contact="selectedContact">
 			<div class="import-and-new-contact-buttons">
-				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView" />
+				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView" />
 				<!-- new-contact-button -->
 				<Button v-if="!loadingContacts"
 					type="secondary"
@@ -146,6 +146,9 @@ export default {
 		groups() {
 			return this.$store.getters.getGroups
 		},
+		circles() {
+			return this.$store.getters.getCircles
+		},
 		orderKey() {
 			return this.$store.getters.getOrderKey
 		},
@@ -193,12 +196,18 @@ export default {
 				return this.sortedContacts
 			} else if (this.selectedGroup === GROUP_NO_GROUP_CONTACTS) {
 				return this.ungroupedContacts.map(contact => this.sortedContacts.find(item => item.key === contact.key))
+			} else if (this.selectedGroup === ROUTE_CIRCLE) {
+				return []
 			}
 			const group = this.groups.filter(group => group.name === this.selectedGroup)[0]
 			if (group) {
 				return this.sortedContacts.filter(contact => group.contacts.indexOf(contact.key) >= 0)
 			}
 			return []
+		},
+
+		isCirclesView() {
+			return this.selectedGroup === ROUTE_CIRCLE
 		},
 
 		ungroupedContacts() {
