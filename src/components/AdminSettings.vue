@@ -52,9 +52,7 @@ import axios from '@nextcloud/axios'
 import { generateUrl } from '@nextcloud/router'
 import { loadState } from '@nextcloud/initial-state'
 import { NcDialog, NcButton } from '@nextcloud/vue'
-import Contact from '../models/contact.js'
-import validate from '../services/validate.js'
-import { showError, showSuccess } from '@nextcloud/dialogs'
+import { showSuccess } from '@nextcloud/dialogs'
 import IconUpload from 'vue-material-design-icons/Upload.vue'
 import IconCancel from '@mdi/svg/svg/cancel.svg'
 import IconCheck from '@mdi/svg/svg/check.svg'
@@ -113,12 +111,6 @@ export default {
 
 			reader.onload = () => {
 				this.isModalOpen = false
-				const contact = new Contact(reader.result)
-				/* if (!validate(contact)) {
-					showError(t('contacts', 'Invalid VCF file'))
-					event.target.value = ''
-					return
-				} */
 				axios.put(generateUrl('/apps/contacts/api/defaultcontact/contact'), { contactData: reader.result })
 				event.target.value = ''
 			}
