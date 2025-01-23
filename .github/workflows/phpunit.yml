@@ -22,7 +22,7 @@ jobs:
       matrix:
         php-versions: ['8.1']
         databases: ['sqlite']
-        server-versions: ['master', 'stable30']
+        server-versions: ['master', 'stable31', 'stable30']
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
@@ -88,7 +88,7 @@ jobs:
       matrix:
         php-versions: ['8.1', '8.2', '8.3', '8.4']
         databases: ['mysql']
-        server-versions: ['master', 'stable30']
+        server-versions: ['master', 'stable31', 'stable30']
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
@@ -232,4 +232,4 @@ jobs:
       - name : Mysql test status
         run: if ${{ needs.mysql.result != 'success' && needs.mysql.result != 'skipped' }}; then exit 1; fi
       - name : Pgsql test status
-        run: if ${{ needs.pgsql.result != 'success' && needs.pgsql.result != 'skipped' }}; then exit 1; fi    
+        run: if ${{ needs.pgsql.result != 'success' && needs.pgsql.result != 'skipped' }}; then exit 1; fi
