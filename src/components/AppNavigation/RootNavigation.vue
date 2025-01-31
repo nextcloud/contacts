@@ -382,6 +382,10 @@ export default {
 		createNewGroup(e) {
 			const input = e.target.querySelector('input[type=text]')
 			const groupName = input.value.trim()
+			if (groupName.length === 0) {
+				showError(t('contacts', 'Group name cannot be empty'))
+				return
+			}
 			this.logger.debug('Creating new group', { groupName })
 
 			// Check if already exists
