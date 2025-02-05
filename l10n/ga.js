@@ -44,6 +44,7 @@ OC.L10N.register(
     "Collapse groups" : "Laghdaigh grúpaí",
     "Show all teams" : "Taispeáin gach foireann",
     "Collapse teams" : "Laghdaigh foirne",
+    "Group name cannot be empty" : "Ní féidir ainm an ghrúpa a bheith folamh",
     "This group already exists" : "Tá an grúpa seo ann cheana féin",
     "An error occurred while creating the group" : "Tharla earráid agus an grúpa á chruthú",
     "This team already exists" : "Tá an fhoireann seo ann cheana féin",

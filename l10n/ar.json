@@ -42,6 +42,7 @@
     "Collapse groups" : "تقويض collapse المجموعات",
     "Show all teams" : "عرض كل الفرق",
     "Collapse teams" : "طي الفرق",
+    "Group name cannot be empty" : "اسم المجموعة يجب ألاّ يكون خالياً",
     "This group already exists" : "المجموعة موجودة مسبقاً",
     "An error occurred while creating the group" : "حدث خطأ أثناء إنشاء المجموعة",
     "This team already exists" : "هذا الفريق موجود سلفاً",
