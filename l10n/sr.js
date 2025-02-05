@@ -44,6 +44,7 @@ OC.L10N.register(
     "Collapse groups" : "Сажми групе",
     "Show all teams" : "Прикажи све тимове",
     "Collapse teams" : "Сажми тимове",
+    "Group name cannot be empty" : "Назив групе не може бити празан",
     "This group already exists" : "Група већ постоји",
     "An error occurred while creating the group" : "Дошло је до грешке током креирања групе",
     "This team already exists" : "Овај тим већ постоји",

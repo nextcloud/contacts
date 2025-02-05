@@ -44,6 +44,7 @@ OC.L10N.register(
     "Collapse groups" : "Replier les groupes",
     "Show all teams" : "Afficher toutes les équipes",
     "Collapse teams" : "Replier les équipes ",
+    "Group name cannot be empty" : "Le nom du groupe ne peut pas être vide",
     "This group already exists" : "Ce groupe existe déjà",
     "An error occurred while creating the group" : "Une erreur s'est produite lors de la création du groupe",
     "This team already exists" : "Cette équipe existe déjà",

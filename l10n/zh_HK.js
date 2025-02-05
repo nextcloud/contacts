@@ -44,6 +44,7 @@ OC.L10N.register(
     "Collapse groups" : "收合群組",
     "Show all teams" : "顯示所有團隊",
     "Collapse teams" : "折疊團隊",
+    "Group name cannot be empty" : "群組名稱不能為空的",
     "This group already exists" : "該群組已存在",
     "An error occurred while creating the group" : "建立群組時發生錯誤",
     "This team already exists" : "此團隊已存在",
