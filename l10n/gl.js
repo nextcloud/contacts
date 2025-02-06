@@ -44,6 +44,7 @@ OC.L10N.register(
     "Collapse groups" : "Contraer grupos",
     "Show all teams" : "Amosar todos os equipos",
     "Collapse teams" : "Contraer os equipos",
+    "Group name cannot be empty" : "O nome do grupo non pode estar baleiro",
     "This group already exists" : "Xa existe este grupo",
     "An error occurred while creating the group" : "Produciuse un erro ao crear o grupo",
     "This team already exists" : "Xa existe este equipo",
