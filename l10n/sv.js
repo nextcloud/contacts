@@ -44,6 +44,7 @@ OC.L10N.register(
     "Collapse groups" : "Dölj grupper",
     "Show all teams" : "Visa alla team",
     "Collapse teams" : "Dölj team",
+    "Group name cannot be empty" : "Gruppnamn kan inte vara tomt",
     "This group already exists" : "Denna grupp existerar redan",
     "An error occurred while creating the group" : "Ett fel uppstod när gruppen skulle skapas",
     "This team already exists" : "Detta team finns redan",
