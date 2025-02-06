@@ -44,6 +44,7 @@ OC.L10N.register(
     "Collapse groups" : "Collapse groups",
     "Show all teams" : "Show all teams",
     "Collapse teams" : "Collapse teams",
+    "Group name cannot be empty" : "Group name cannot be empty",
     "This group already exists" : "This group already exists",
     "An error occurred while creating the group" : "An error occurred while creating the group",
     "This team already exists" : "This team already exists",
