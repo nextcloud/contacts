@@ -44,6 +44,7 @@ OC.L10N.register(
     "Collapse groups" : "Grupları daralt",
     "Show all teams" : "Tüm takımları görüntüle",
     "Collapse teams" : "Takımları daralt",
+    "Group name cannot be empty" : "Grup adı boş olamaz",
     "This group already exists" : "Bu grup zaten var",
     "An error occurred while creating the group" : "Grup oluşturulurken bir sorun çıktı",
     "This team already exists" : "Bu takım zaten var",
