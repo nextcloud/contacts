@@ -111,18 +111,20 @@ export const PUBLIC_CIRCLE_CONFIG = {
 	},
 }
 
-// Represents the picker options but also the
-// sorting of the members list
+// Represents the picker options (label is used lower case in a list of options: Search users, groups, teams, ...)
+// labelStandalone is used as heading for the member list where we need it starting captialized
 export const CIRCLES_MEMBER_GROUPING = [
 	{
 		id: `picker-${ShareType.User}`,
 		label: t('contacts', 'users'),
+		labelStandalone: t('contacts', 'Users'),
 		share: ShareType.User,
 		type: MEMBER_TYPE_USER,
 	},
 	{
 		id: `picker-${ShareType.Group}`,
 		label: t('contacts', 'groups'),
+		labelStandalone: t('contacts', 'Groups'),
 		share: ShareType.Group,
 		type: MEMBER_TYPE_GROUP,
 	},
@@ -142,19 +144,22 @@ export const CIRCLES_MEMBER_GROUPING = [
 	{
 		id: `picker-${ShareType.Team}`,
 		label: t('contacts', 'teams'),
+		labelStandalone: t('contacts', 'Teams'),
 		share: ShareType.Team,
 		type: MEMBER_TYPE_CIRCLE,
 	},
 	{
 		id: `picker-${ShareType.Email}`,
 		label: t('contacts', 'email addresses'),
+		labelStandalone: t('contacts', 'Email addresses'),
 		share: ShareType.Email,
 		type: MEMBER_TYPE_MAIL,
 	},
 	// TODO: implement SHARE_TYPE_CONTACT
 	{
 		id: 'picker-contact',
-		label: t('contacts', 'teams'),
+		label: t('contacts', 'contacts'),
+		labelStandalone: t('contacts', 'Contacts'),
 		share: ShareType.Email,
 		type: MEMBER_TYPE_CONTACT,
 	},
