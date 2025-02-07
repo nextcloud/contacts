@@ -45,7 +45,7 @@
 		</template>
 	</AppContentList>
 
-	<AppContentList v-else :class="{ showdetails: showDetails }">
+	<AppContentList v-else>
 		<div class="members-list__new">
 			<Button v-if="circle.canManageMembers"
 				@click="onShowPicker(circle.id)">
@@ -98,7 +98,6 @@ import MembersListItem from './MembersList/MembersListItem.vue'
 import EntityPicker from './EntityPicker/EntityPicker.vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
-import IconInfo from 'vue-material-design-icons/InformationOutline.vue'
 import RouterMixin from '../mixins/RouterMixin.js'
 
 import { getRecommendations, getSuggestions } from '../services/collaborationAutocompletion.js'
@@ -117,7 +116,6 @@ export default {
 		EmptyContent,
 		IconContact,
 		IconAdd,
-		IconInfo,
 		IconLoading,
 	},
 	mixins: [isMobile, RouterMixin],
@@ -129,11 +127,6 @@ export default {
 		},
 
 		loading: {
-			type: Boolean,
-			default: false,
-		},
-
-		showDetails: {
 			type: Boolean,
 			default: false,
 		},
@@ -176,11 +169,15 @@ export default {
 		},
 
 		filteredList() {
+			const groupList = CIRCLES_MEMBER_GROUPING.map((group) => {
+				group.label = group.labelStandalone
+				return group
+			})
 			return Object.keys(this.groupedList)
 				// Object.keys returns string
 				.map(type => parseInt(type, 10))
 				// Map populated types to the group entry
-				.map(type => CIRCLES_MEMBER_GROUPING.find(group => group.type === type))
+				.map(type => groupList.find(group => group.type === type))
 				// Removed undefined group
 				.filter(group => group !== undefined)
 				// Injecting headings
@@ -310,10 +307,6 @@ export default {
 			this.pickerData = []
 			this.pickerSelection = {}
 		},
-
-		showCircleDetails() {
-			this.$emit('update:showDetails', true)
-		},
 	},
 }
 </script>
@@ -326,12 +319,12 @@ export default {
 
 	&__new {
 		padding: 10px;
+		display: inline-flex;
 
 		button {
-			height: 44px;
 			background-position: 14px center;
 			text-align: left;
-			width: 100%;
+
 		}
 	}
 
