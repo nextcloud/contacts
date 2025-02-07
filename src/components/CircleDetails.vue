@@ -72,41 +72,7 @@
 				@update:value="onDescriptionChangeDebounce" />
 		</section>
 
-		<section v-if="circle.isMember" class="circle-details-section">
-			<ContentHeading>
-				{{ t('contacts', 'Members') }}
-			</ContentHeading>
-			<div class="avatar-box">
-				<div ref="avatarList" class="avatar-list">
-					<Avatar v-for="member in membersLimited"
-						:key="member.singleId"
-						:user="member.userId"
-						:display-name="member.displayName"
-						:is-no-user="!member.isUser"
-						:icon-class="member.isUser ? null : 'icon-group-white'"
-						:size="avatarSize" />
-					<Avatar v-if="hasExtraMembers">
-						<template #icon>
-							<DotsHorizontal :size="16" />
-						</template>
-					</Avatar>
-				</div>
-				<Button class="members-button" @click="showMembersModal = true">
-					<template #icon>
-						<AccountMultiplePlus :size="20" />
-					</template>
-					{{ t('contacts', 'Manage members') }}
-				</Button>
-			</div>
-			<Modal v-if="showMembersModal" @close="showMembersModal=false">
-				<div class="members-modal">
-					<h2>{{ t('contacts', 'Team members') }}</h2>
-					<MemberList :list="members" />
-				</div>
-			</Modal>
-		</section>
-
-		<section>
+		<section v-if="circle.isMember">
 			<ContentHeading>
 				{{ t('contacts', 'Team resources') }}
 			</ContentHeading>
@@ -134,6 +100,13 @@
 					</ListItem>
 				</ul>
 			</div>
+		</section>
+
+		<section v-if="members.length > 0">
+			<ContentHeading>
+				{{ t('contacts', 'Team members') }}
+			</ContentHeading>
+			<MemberList :list="members" />
 		</section>
 
 		<Modal v-if="(circle.isOwner || circle.isAdmin) && !circle.isPersonal && showSettingsModal" @close="showSettingsModal=false">
@@ -216,8 +189,6 @@ import Cog from 'vue-material-design-icons/Cog.vue'
 import Login from 'vue-material-design-icons/Login.vue'
 import Logout from 'vue-material-design-icons/Logout.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
-import AccountMultiplePlus from 'vue-material-design-icons/AccountMultiplePlus.vue'
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
 
 import { CircleEdit, editCircle } from '../services/circles.ts'
 import CircleActionsMixin from '../mixins/CircleActionsMixin.js'
@@ -239,14 +210,12 @@ export default {
 		CirclePasswordSettings,
 		ContentHeading,
 		DetailsHeader,
-		DotsHorizontal,
 		ListItem,
 		Cog,
 		Login,
 		Logout,
 		Modal,
 		IconDelete,
-		AccountMultiplePlus,
 		RichContenteditable,
 	},
 
@@ -445,17 +414,9 @@ export default {
 	gap: 12px;
 }
 
-.members-modal {
-	padding: 12px;
-
-	h2 {
-		margin-bottom: 16px;
-	}
-
-	:deep(.app-content-list) {
-		max-width: 100%;
-		border: 0;
-	}
+:deep(.app-content-list) {
+	max-width: 100%;
+	border: 0;
 }
 
 .circle-settings {
