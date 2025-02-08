@@ -42,6 +42,7 @@
     "Collapse groups" : "Sbalit skupiny",
     "Show all teams" : "Zobrazit veškeré týmy",
     "Collapse teams" : "Sbalit týmy",
+    "Group name cannot be empty" : "Skupinu je třeba nějak nazvat",
     "This group already exists" : "Tato skupina už existuje",
     "An error occurred while creating the group" : "Při vytváření skupiny došlo k chybě",
     "This team already exists" : "Tento tým už existuje",
