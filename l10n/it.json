@@ -42,6 +42,7 @@
     "Collapse groups" : "Contrai i gruppi",
     "Show all teams" : "Mostra tutti i team",
     "Collapse teams" : "Appiattisci team",
+    "Group name cannot be empty" : "Il nome del gruppo non può essere vuoto",
     "This group already exists" : "Questo gruppo esiste già",
     "An error occurred while creating the group" : "Si è verificato un errore durante la creazione del gruppo",
     "This team already exists" : "Questo team esiste già",
