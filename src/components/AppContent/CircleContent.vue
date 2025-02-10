@@ -27,7 +27,6 @@
 				<IconCircles :size="20" />
 			</template>
 		</EmptyContent>
-	</AppContent>
 
 	<AppContent v-else-if="loading">
 		<EmptyContent class="empty-content" :name="t('contacts', 'Loading circle …')">
@@ -35,7 +34,6 @@
 				<IconLoading :size="20" />
 			</template>
 		</EmptyContent>
-	</AppContent>
 
 	<AppContent v-else :show-details.sync="showDetails">
 		<!-- member list -->
@@ -102,7 +100,6 @@ export default {
 	data() {
 		return {
 			loadingList: false,
-			showDetails: false,
 		}
 	},
 
@@ -155,11 +152,6 @@ export default {
 			} finally {
 				this.loadingList = false
 			}
-		},
-
-		// Hide the circle details
-		hideDetails() {
-			this.showDetails = false
 		},
 	},
 }

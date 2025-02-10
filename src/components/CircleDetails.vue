@@ -21,7 +21,7 @@
 	-->
 
 <template>
-	<AppContentDetails>
+	<div class="circle-details">
 		<!-- contact header -->
 		<DetailsHeader>
 			<!-- avatar and upload photo -->
@@ -127,7 +127,6 @@ import { showError } from '@nextcloud/dialogs'
 import debounce from 'debounce'
 
 import {
-	NcAppContentDetails as AppContentDetails,
 	NcAvatar as Avatar,
 	NcButton as Button,
 	NcRichContenteditable as RichContenteditable,
@@ -136,6 +135,7 @@ import {
 import Login from 'vue-material-design-icons/Login.vue'
 import Logout from 'vue-material-design-icons/Logout.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconAccountGroup from 'vue-material-design-icons/AccountGroup.vue'
 
 import { CircleEdit, editCircle } from '../services/circles.ts'
 import CircleActionsMixin from '../mixins/CircleActionsMixin.js'
@@ -148,7 +148,6 @@ export default {
 	name: 'CircleDetails',
 
 	components: {
-		AppContentDetails,
 		Avatar,
 		Button,
 		CircleConfigs,
@@ -239,6 +238,10 @@ export default {
 <style lang="scss" scoped>
 .circle-name__loader {
 	margin-left: 8px;
+}
+
+.circle-details {
+	padding-inline: 20px;
 }
 
 .circle-details-section {

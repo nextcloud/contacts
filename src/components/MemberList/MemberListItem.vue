@@ -54,16 +54,37 @@
 			</Actions>
 		</template>
 
-		<Actions v-else @close="onMenuClose">
-			<ActionText v-if="loading" icon="icon-loading-small">
+		<!-- Level -->
+		<template #subname>
+			{{ levelName }}
+		</template>
+
+		<!-- Accept invite -->
+		<template v-if="!loading && isPendingApproval && circle.canManageMembers" #extra-actions>
+			<NcButton @click="acceptMember">
+				<template #icon>
+					<IconCheck :size="20" />
+				</template>
+				{{ t('contacts', 'Accept membership request') }}
+			</NcButton>
+			<NcButton @click="deleteMember">
+				<template #icon>
+					<IconClose :size="20" />
+				</template>
+				{{ t('contacts', 'Reject membership request') }}
+			</NcButton>
+		</template>
+
+		<template v-else #actions>
+			<NcActionText v-if="loading" icon="icon-loading-small">
 				{{ t('contacts', 'Loading …') }}
-			</ActionText>
+			</NcActionText>
 
 			<!-- Normal menu -->
 			<template v-else>
 				<!-- Level picker -->
 				<template v-if="canChangeLevel">
-					<ActionText>
+					<NcActionText>
 						{{ t('contacts', 'Manage level') }}
 						<ShieldCheck slot="icon"
 							:size="16"
@@ -74,9 +95,9 @@
 						icon=""
 						@click="changeLevel(level)">
 						{{ levelChangeLabel(level) }}
-					</ActionButton>
+					</NcActionButton>
 
-					<ActionSeparator />
+					<NcActionSeparator />
 				</template>
 
 				<!-- Leave or delete member from circle -->
@@ -91,48 +112,48 @@
 						<IconDelete :size="20" />
 					</template>
 					{{ t('contacts', 'Remove member') }}
-				</ActionButton>
+				</NcActionButton>
 			</template>
-		</Actions>
-	</ListItemIcon>
+		</template>
+	</NcListItem>
 </template>
 
 <script>
 import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberStatus } from '../../models/constants.ts'
 
 import {
-	NcActions as Actions,
-	NcListItemIcon as ListItemIcon,
-	NcActionSeparator as ActionSeparator,
-	NcActionButton as ActionButton,
-	NcActionText as ActionText,
+	NcAvatar,
+	NcListItem,
+	NcActionSeparator,
+	NcActionButton,
+	NcActionText,
 } from '@nextcloud/vue'
-import IconDelete from 'vue-material-design-icons/Delete.vue'
 import IconCheck from 'vue-material-design-icons/Check.vue'
 import IconClose from 'vue-material-design-icons/Close.vue'
-
-import ExitToApp from 'vue-material-design-icons/ExitToApp.vue'
-import ShieldCheck from 'vue-material-design-icons/ShieldCheck.vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconExitToApp from 'vue-material-design-icons/ExitToApp.vue'
+import IconShieldCheck from 'vue-material-design-icons/ShieldCheck.vue'
 
 import { changeMemberLevel } from '../../services/circles.ts'
 import { showError } from '@nextcloud/dialogs'
 import RouterMixin from '../../mixins/RouterMixin.js'
 
 export default {
-	name: 'MembersListItem',
+	name: 'MemberListItem',
 
 	components: {
-		Actions,
-		ActionButton,
-		ActionSeparator,
-		ActionText,
-		IconDelete,
 		IconCheck,
 		IconClose,
-		ExitToApp,
-		ListItemIcon,
-		ShieldCheck,
+		IconDelete,
+		IconExitToApp,
+		IconShieldCheck,
+		NcListItem,
+		NcActionButton,
+		NcActionSeparator,
+		NcActionText,
+		NcAvatar,
 	},
+
 	mixins: [RouterMixin],
 
 	props: {
@@ -371,8 +392,8 @@ export default {
 	line-height: 22px;
 }
 
-.members-list__item {
-	padding: 8px;
+<style lang="scss">
+.members-list-item {
 	user-select: none;
 
 	&:focus,
@@ -380,5 +401,4 @@ export default {
 		background-color: var(--color-background-hover);
 	}
 }
-
 </style>
