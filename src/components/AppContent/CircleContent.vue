@@ -21,41 +21,20 @@
   -->
 
 <template>
-	<AppContent v-if="!circle">
-		<EmptyContent :name="t('contacts', 'Please select a team')">
+	<AppContent>
+		<EmptyContent v-if="!circle" :name="t('contacts', 'Please select a team')">
 			<template #icon>
 				<AccountGroup :size="20" />
 			</template>
 		</EmptyContent>
-	</AppContent>
 
-	<AppContent v-else-if="loading">
-		<EmptyContent class="empty-content" :name="t('contacts', 'Loading team…')">
+		<EmptyContent v-else-if="loading" class="empty-content" :name="t('contacts', 'Loading team…')">
 			<template #icon>
 				<IconLoading :size="20" />
 			</template>
 		</EmptyContent>
-	</AppContent>
 
-	<AppContent v-else :show-details.sync="showDetails">
-		<!-- main contacts details -->
-		<CircleDetails :circle="circle">
-			<!-- not a member -->
-			<template v-if="!circle.isMember">
-				<!-- Pending request validation -->
-				<EmptyContent v-if="circle.isPendingMember" :name="t('contacts', 'Your request to join this team is pending approval')">
-					<template #icon>
-						<IconLoading :size="20" />
-					</template>
-				</EmptyContent>
-
-				<EmptyContent v-else :name="t('contacts', 'You are not a member of {circle}', { circle: circle.displayName})">
-					<template #icon>
-						<AccountGroup :size="20" />
-					</template>
-				</EmptyContent>
-			</template>
-		</CircleDetails>
+		<CircleDetails v-else :circle="circle" />
 	</AppContent>
 </template>
 <script>
@@ -93,7 +72,6 @@ export default {
 	data() {
 		return {
 			loadingList: false,
-			showDetails: false,
 		}
 	},
 
@@ -146,11 +124,6 @@ export default {
 			} finally {
 				this.loadingList = false
 			}
-		},
-
-		// Hide the circle details
-		hideDetails() {
-			this.showDetails = false
 		},
 	},
 }
