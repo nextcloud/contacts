@@ -43,6 +43,7 @@ OC.L10N.register(
     "Collapse groups" : "Suskleisti grupes",
     "Show all teams" : "Rodyti visas komandas",
     "Collapse teams" : "Suskleisti komandas",
+    "Group name cannot be empty" : "Grupės pavadinimas negali būti tuščias",
     "This group already exists" : "Ši grupė jau yra",
     "An error occurred while creating the group" : "Kuriant grupę įvyko klaida",
     "This team already exists" : "Ši komanda jau yra",
