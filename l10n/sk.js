@@ -69,7 +69,7 @@ OC.L10N.register(
     "Share with users" : "Zdieľať s používateľmi",
     "No users or groups" : "Žiadny používatelia alebo skupiny",
     "can edit" : "môže upravovať",
-    "Unable to delete the share" : "Nemožno zmazať zdieľanie.",
+    "Unable to delete the share" : "Nepodarilo sa zmazať zdieľanie.",
     "Unable to change permissions" : "Nepodarilo sa zmeniť oprávnenia",
     "Import contacts" : "Importovať kontakty",
     "Import into the {addressbookName} address book" : "Importovať do {addressbookName} adresára",
