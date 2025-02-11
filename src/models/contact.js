@@ -214,7 +214,7 @@ export default class Contact {
 	 *
 	 * @readonly
 	 * @memberof Contact
- 	 */
+	 */
 	get hasPhoto() {
 		return this.dav && this.dav.hasphoto
 	}
