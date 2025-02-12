@@ -21,52 +21,49 @@
   -->
 
 <template>
-	<AppContentList v-if="!hasMembers" class="members-list">
-		<template v-if="loading">
-			<EmptyContent class="empty-content" :name="t('contacts', 'Loading members list …')">
-				<template #icon>
-					<IconLoading :size="20" />
-				</template>
-			</EmptyContent>
-		</template>
-		<template v-else-if="!circle.isMember">
-			<EmptyContent class="empty-content" :name="t('contacts', 'The list of members is only visible to members of this team')">
-				<template #icon>
-					<IconContact :size="20" />
-				</template>
-			</EmptyContent>
-		</template>
-		<template v-else>
-			<EmptyContent class="empty-content" :name="t('contacts', 'You currently have no access to the member list')">
-				<template #icon>
-					<IconContact :size="20" />
-				</template>
-			</EmptyContent>
-		</template>
-	</AppContentList>
+	<section class="member-list">
+		<ContentHeading>
+			{{ t('contacts', 'Team members') }}
+		</ContentHeading>
 
-	<AppContentList v-else :class="{ showdetails: showDetails }">
-		<div class="members-list__new">
-			<Button v-if="circle.canManageMembers"
-				@click="onShowPicker(circle.id)">
-				<template #icon>
-					<IconLoading v-if="loading" />
-					<IconAdd :size="20" />
-				</template>
-				{{ t('contacts', 'Add members') }}
-			</Button>
-			<Button v-if="isMobile"
-				@click="showCircleDetails">
-				<template #icon>
-					<IconInfo :size="20" />
-				</template>
-				{{ t('contacts', 'Show team details') }}
-			</Button>
+		<NcEmptyContent v-if="loading" class="empty-content" :name="t('contacts', 'Loading members list …')">
+			<template #icon>
+				<NcLoadingIcon :size="20" />
+			</template>
+		</NcEmptyContent>
+
+		<NcEmptyContent v-else-if="!circle.isMember"
+			class="empty-content"
+			:name="t('contacts', 'The list of members is only visible to members of this team')">
+			<template #icon>
+				<IconContact :size="20" />
+			</template>
+		</NcEmptyContent>
+
+		<NcEmptyContent v-else-if="!hasMembers"
+			class="empty-content"
+			:name="t('contacts', 'You currently have no access to the member list')">
+			<template #icon>
+				<IconContact :size="20" />
+			</template>
+		</NcEmptyContent>
+
+		<div v-else>
+			<div class="member-list__new">
+				<NcButton v-if="circle.canManageMembers"
+					@click="onShowPicker(circle.id)">
+					<template #icon>
+						<NcLoadingIcon v-if="loading" />
+						<IconAdd v-else :size="20" />
+					</template>
+					{{ t('contacts', 'Add members') }}
+				</NcButton>
+			</div>
+
+			<MemberListGroup v-for="group, index in groupedList"
+				:key="`member-list-group-${index}`"
+				v-bind="group" />
 		</div>
-
-		<MembersListItem v-for="member in filteredList"
-			:key="member.singleId"
-			:source="member" />
 
 		<!-- member picker -->
 		<EntityPicker v-if="showPicker"
@@ -79,44 +76,45 @@
 			@close="resetPicker"
 			@search="onSearch"
 			@submit="onPickerPick" />
-	</AppContentList>
+	</section>
 </template>
 
 <script>
 import {
-	NcAppContentList as AppContentList,
-	NcButton as Button,
-	NcEmptyContent as EmptyContent,
-	NcLoadingIcon as IconLoading,
+	NcButton,
+	NcEmptyContent,
+	NcLoadingIcon,
 	isMobile,
 } from '@nextcloud/vue'
 
-import MembersListItem from './MembersList/MembersListItem.vue'
-import EntityPicker from './EntityPicker/EntityPicker.vue'
+import MemberListGroup from './MemberListGroup.vue'
+import ContentHeading from '../CircleDetails/ContentHeading.vue'
+import EntityPicker from '../EntityPicker/EntityPicker.vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
-import IconInfo from 'vue-material-design-icons/InformationOutline.vue'
-import RouterMixin from '../mixins/RouterMixin.js'
+import RouterMixin from '../../mixins/RouterMixin.js'
 
-import { getRecommendations, getSuggestions } from '../services/collaborationAutocompletion.js'
 import { showError, showWarning } from '@nextcloud/dialogs'
 import { subscribe } from '@nextcloud/event-bus'
-import { SHARES_TYPES_MEMBER_MAP, CIRCLES_MEMBER_GROUPING } from '../models/constants.ts'
+import { translate as t } from '@nextcloud/l10n'
+import { getRecommendations, getSuggestions } from '../../services/collaborationAutocompletion.js'
+import { SHARES_TYPES_MEMBER_MAP, CIRCLES_MEMBER_GROUPING } from '../../models/constants'
+import { defineComponent } from 'vue'
 
-export default {
+export default defineComponent({
 	name: 'MemberList',
 
 	components: {
-		AppContentList,
-		Button,
 		EntityPicker,
-		EmptyContent,
+		ContentHeading,
 		IconContact,
 		IconAdd,
-		IconInfo,
-		IconLoading,
-		MembersListItem,
+		MemberListGroup,
+		NcButton,
+		NcEmptyContent,
+		NcLoadingIcon,
 	},
+
 	mixins: [isMobile, RouterMixin],
 
 	props: {
@@ -126,11 +124,6 @@ export default {
 		},
 
 		loading: {
-			type: Boolean,
-			default: false,
-		},
-
-		showDetails: {
 			type: Boolean,
 			default: false,
 		},
@@ -160,49 +153,30 @@ export default {
 			return this.$store.getters.getCircle(this.selectedCircle)
 		},
 
-		groupedList() {
-			// Group per userType
-			return this.list.reduce(function(list, member) {
-				const userType = member.userType
-				list[userType] = list[userType] || []
-				list[userType].push(member)
-				return list
-			}, Object.create(null))
-		},
-
-		filteredList() {
-			return Object.keys(this.groupedList)
-				// Object.keys returns string
-				.map(type => parseInt(type, 10))
-				// Map populated types to the group entry
-				.map(type => CIRCLES_MEMBER_GROUPING.find(group => group.type === type))
-				// Removed undefined group
-				.filter(group => group !== undefined)
-				// Injecting headings
-				.map(group => {
-					return [{
-						heading: true,
-						...group,
-					}, ...(this.groupedList[group.type] || [])]
-				})
-				// Merging sub-arrays
-				.flat()
-		},
-
 		hasMembers() {
-			return this.filteredList.length > 0
+			return this.groupedList.length > 0
 		},
 
 		filteredPickerData() {
 			return this.pickerData.filter(entity => {
 				const type = SHARES_TYPES_MEMBER_MAP[entity.shareType]
-				const list = this.groupedList[type]
+				const list = this.list.filter(({ userType }) => userType === type)
 				if (list) {
-					return list.find(member => member.userId === entity.shareWith) === undefined
+					return list.find((member) => member.userId === entity.shareWith) === undefined
 				}
 				// If the type doesn't exists, there is no member of this type
 				return true
 			})
+		},
+
+		groupedList() {
+			return CIRCLES_MEMBER_GROUPING
+				.map(({ label, type }) => ({
+					type,
+					label,
+					members: [...this.list.filter(({ userType }) => userType === type)],
+				}))
+				.filter(({ members }) => members.length > 0)
 		},
 	},
 
@@ -280,7 +254,7 @@ export default {
 			try {
 				const members = await this.$store.dispatch('addMembersToCircle', { circleId: this.pickerCircle, selection })
 
-				if (members.length !== selection.length) {
+				if (members.length < selection.length) {
 					showWarning(t('contacts', 'Some members could not be added'))
 					// TODO filter successful members and edit selection
 					this.pickerSelection = {}
@@ -305,28 +279,25 @@ export default {
 			this.pickerData = []
 			this.pickerSelection = {}
 		},
-
-		showCircleDetails() {
-			this.$emit('update:showDetails', true)
-		},
 	},
-}
+})
 </script>
 
 <style lang="scss" scoped>
-.members-list {
+.member-list {
 	// Make virtual scroller scrollable
 	max-height: 100%;
+	max-width: 900px;
 	overflow: auto;
 
 	&__new {
 		padding: 10px;
+		display: inline-flex;
 
 		button {
-			height: 44px;
 			background-position: 14px center;
 			text-align: left;
-			width: 100%;
+
 		}
 	}
 

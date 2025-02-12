@@ -21,118 +21,116 @@
   -->
 
 <template>
-	<span v-if="source.heading" class="members-list__heading">
-		{{ source.label }}
-	</span>
-
-	<ListItemIcon v-else
-		:id="source.singleId"
-		:avatar-size="avatarSize"
-		:display-name="source.displayName"
-		:icon-class="source.isUser ? null : 'icon-group-white'"
-		:is-no-user="!source.isUser"
-		:subname="levelName"
+	<NcListItem compact
 		:name="source.displayName"
-		class="members-list__item">
-		<!-- Accept invite -->
-		<template v-if="!loading && isPendingApproval && circle.canManageMembers">
-			<Actions>
-				<ActionButton @click="acceptMember">
-					<template #icon>
-						<IconCheck :size="20" />
-					</template>
-					{{ t('contacts', 'Accept membership request') }}
-				</ActionButton>
-			</Actions>
-			<Actions>
-				<ActionButton @click="deleteMember">
-					<template #icon>
-						<IconClose :size="20" />
-					</template>
-					{{ t('contacts', 'Reject membership request') }}
-				</ActionButton>
-			</Actions>
+		class="members-list-item">
+		<template #icon>
+			<NcAvatar disable-menu
+				:size="avatarSize"
+				:display-name="source.displayName"
+				:is-no-user="!source.isUser" />
 		</template>
 
-		<Actions v-else @close="onMenuClose">
-			<ActionText v-if="loading" icon="icon-loading-small">
+		<!-- Level -->
+		<template #subname>
+			{{ levelName }}
+		</template>
+
+		<!-- Accept invite -->
+		<template v-if="!loading && isPendingApproval && circle.canManageMembers" #extra-actions>
+			<NcButton @click="acceptMember">
+				<template #icon>
+					<IconCheck :size="20" />
+				</template>
+				{{ t('contacts', 'Accept membership request') }}
+			</NcButton>
+			<NcButton @click="deleteMember">
+				<template #icon>
+					<IconClose :size="20" />
+				</template>
+				{{ t('contacts', 'Reject membership request') }}
+			</NcButton>
+		</template>
+
+		<template v-else #actions>
+			<NcActionText v-if="loading" icon="icon-loading-small">
 				{{ t('contacts', 'Loading …') }}
-			</ActionText>
+			</NcActionText>
 
 			<!-- Normal menu -->
 			<template v-else>
 				<!-- Level picker -->
 				<template v-if="canChangeLevel">
-					<ActionText>
+					<NcActionText>
 						{{ t('contacts', 'Manage level') }}
-						<ShieldCheck slot="icon"
+						<IconShieldCheck slot="icon"
 							:size="16"
 							decorative />
-					</ActionText>
-					<ActionButton v-for="level in availableLevelsChange"
+					</NcActionText>
+					<NcActionButton v-for="level in availableLevelsChange"
 						:key="level"
 						icon=""
 						@click="changeLevel(level)">
 						{{ levelChangeLabel(level) }}
-					</ActionButton>
+					</NcActionButton>
 
-					<ActionSeparator />
+					<NcActionSeparator />
 				</template>
 
 				<!-- Leave or delete member from circle -->
-				<ActionButton v-if="isCurrentUser && !circle.isOwner" @click="deleteMember">
+				<NcActionButton v-if="isCurrentUser && !circle.isOwner" @click="deleteMember">
 					{{ t('contacts', 'Leave team') }}
-					<ExitToApp slot="icon"
+					<IconExitToApp slot="icon"
 						:size="16"
 						decorative />
-				</ActionButton>
-				<ActionButton v-else-if="canDelete" @click="deleteMember">
+				</NcActionButton>
+				<NcActionButton v-else-if="canDelete" @click="deleteMember">
 					<template #icon>
 						<IconDelete :size="20" />
 					</template>
 					{{ t('contacts', 'Remove member') }}
-				</ActionButton>
+				</NcActionButton>
 			</template>
-		</Actions>
-	</ListItemIcon>
+		</template>
+	</NcListItem>
 </template>
 
 <script>
 import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberStatus } from '../../models/constants.ts'
 
 import {
-	NcActions as Actions,
-	NcListItemIcon as ListItemIcon,
-	NcActionSeparator as ActionSeparator,
-	NcActionButton as ActionButton,
-	NcActionText as ActionText,
+	NcAvatar,
+	NcListItem,
+	NcActionSeparator,
+	NcActionButton,
+	NcActionText,
 } from '@nextcloud/vue'
-import IconDelete from 'vue-material-design-icons/Delete.vue'
 import IconCheck from 'vue-material-design-icons/Check.vue'
 import IconClose from 'vue-material-design-icons/Close.vue'
-
-import ExitToApp from 'vue-material-design-icons/ExitToApp.vue'
-import ShieldCheck from 'vue-material-design-icons/ShieldCheck.vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconExitToApp from 'vue-material-design-icons/ExitToApp.vue'
+import IconShieldCheck from 'vue-material-design-icons/ShieldCheck.vue'
 
 import { changeMemberLevel } from '../../services/circles.ts'
 import { showError } from '@nextcloud/dialogs'
 import RouterMixin from '../../mixins/RouterMixin.js'
 
 export default {
-	name: 'MembersListItem',
+	name: 'MemberListItem',
 
 	components: {
-		Actions,
-		ActionButton,
-		ActionSeparator,
-		ActionText,
-		IconDelete,
 		IconCheck,
 		IconClose,
-		ExitToApp,
-		ListItemIcon,
-		ShieldCheck,
+		IconDelete,
+		IconExitToApp,
+		IconShieldCheck,
+		NcListItem,
+		NcActionButton,
+		NcActionSeparator,
+		NcActionText,
+		NcAvatar,
 	},
+
 	mixins: [RouterMixin],
 
 	props: {
@@ -359,32 +357,10 @@ export default {
 	},
 }
 </script>
-<style lang="scss">
-.members-list__heading {
-	display: flex;
-	overflow: hidden;
-	flex-shrink: 0;
-	padding-top: 22px;
-	padding-left: 8px;
-	user-select: none;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	pointer-events: none;
-	color: var(--color-primary-element);
-	line-height: 22px;
-}
 
-.members-list__item {
-	padding: 8px;
+<style lang="scss">
+.members-list-item {
 	user-select: none;
 	box-sizing: border-box;
-	margin-bottom: 8px;
-	border-radius: var(--border-radius-rounded);
-
-	&:focus,
-	&:hover {
-		background-color: var(--color-background-hover);
-	}
 }
-
 </style>
