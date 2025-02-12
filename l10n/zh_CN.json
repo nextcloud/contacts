@@ -7,7 +7,6 @@
     "Copy to full name" : "复制到全名",
     "Omit year" : "忽略年份",
     "Allow updating avatars from social media" : "允许从社交媒体资料更新头像",
-    "You are not a member of {circle}" : "您并非 {circle} 的成员",
     "There was an error fetching the member list" : "获取成员列表时发生一个错误",
     "Loading contacts …" : "正在加载联系人 ...",
     "There are no contacts yet" : "尚无联系人",
@@ -79,9 +78,7 @@
     "Team settings" : "团队设置",
     "Request to join" : "请求加入",
     "Description" : "描述",
-    "Members" : "成员",
-    "Manage members" : "管理成员",
-    "Team members" : "团队成员",
+    "You are not a member of {circle}" : "您并非 {circle} 的成员",
     "Team resources" : "团队资源",
     "Team name" : "团队名称",
     "Settings" : "设置",
@@ -144,6 +141,7 @@
     "Add to group" : "添加到群组",
     "Add {type}" : "添加  {type}",
     "New team name" : "新团队名称",
+    "Team members" : "团队成员",
     "Loading members list …" : "正在加载成员列表 ...",
     "You currently have no access to the member list" : "您目前无法访问成员列表",
     "Add members" : "添加成员",
@@ -202,6 +200,8 @@
     "Visibility" : "可见性",
     "Visible to everyone" : "对所有人可见",
     "Team membership" : "团队成员",
+    "Users" : "用户",
+    "Email addresses" : "电子邮件地址",
     "Detailed name" : "全名",
     "Additional names" : "其他名称",
     "Prefix" : "前缀",
@@ -262,7 +262,9 @@
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} 个联系人读取失败"],
     "Unable to create team {circleName}" : "无法创建团队 {圈子名称}",
     "Unable to delete contact" : "无法删除联系人",
+    "Members" : "成员",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "成员资格必须由一名主持人确认/接受（必须为开放圈子）",
-    "Manager" : "经理"
+    "Manager" : "经理",
+    "Manage members" : "管理成员"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

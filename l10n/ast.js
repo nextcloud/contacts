@@ -59,8 +59,6 @@ OC.L10N.register(
     "Failed to save password. Please try again later." : "Nun se pue guardar la contraseña. Volvi tentalo dempués.",
     "Team settings" : "Configuración del equipu",
     "Description" : "Descripción",
-    "Members" : "Miiembros",
-    "Team members" : "Miemrbos del equipu",
     "Team resources" : "Recursos del equipu",
     "Team name" : "Nome del equipu",
     "Settings" : "Configuración",
@@ -99,6 +97,7 @@ OC.L10N.register(
     "Unable to update contact" : "Nun ye posible anovar el contautu",
     "Personal team" : "Equipu personal",
     "Local team" : "Equipu llocal",
+    "Team members" : "Miemrbos del equipu",
     "Loading members list …" : "Cargando la llista de miembros…",
     "Add members" : "Amestar miembros",
     "Unable to get the recommendations list" : "Nun ye posible consiguir la llista de recomendaciones",
@@ -155,6 +154,7 @@ OC.L10N.register(
     "Spoken languages" : "Llingües falaes",
     "Unable to create team {circleName}" : "Nun ye posible crear l'equipu «{circleName}»",
     "Unable to delete team {circleId}" : "Nun ye posible crear l'equipu «{circled}»",
-    "Unable to delete contact" : "Nun ye posible desaniciar el contautu"
+    "Unable to delete contact" : "Nun ye posible desaniciar el contautu",
+    "Members" : "Miiembros"
 },
 "nplurals=2; plural=(n != 1);");
