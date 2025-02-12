@@ -1,5 +1,11 @@
 # Changelog
 
+## 6.0.3 – 2025-02-12
+### Fixed
+- Make circle members visible again by moving them out of the modal
+- Filepicker for contact avatar
+- Show error on empty group name
+
 ## 6.0.2 – 2025-01-09
 ### Fixed
 - Share address books with user groups
