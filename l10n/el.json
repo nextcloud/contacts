@@ -7,7 +7,6 @@
     "Copy to full name" : "Αντιγραφή στο πλήρες όνομα",
     "Omit year" : "Παράλειψη έτους",
     "Allow updating avatars from social media" : "Να επιτρέπεται η ενημέρωση του άβαταρ από τα μέσα κοινωνικής δικτύωσης.",
-    "You are not a member of {circle}" : "Δεν είστε μέλος του κύκλου {circle}",
     "There was an error fetching the member list" : "Παρουσιάστηκε σφάλμα κατά την ανάκτηση της λίστας μελών",
     "Loading contacts …" : "Φόρτωση επαφών ...",
     "There are no contacts yet" : "Δεν υπάρχουν ακόμη επαφές",
@@ -77,7 +76,7 @@
     "Failed to save password. Please try again later." : "Αποτυχία αποθήκευσης κωδικού πρόσβασης. Παρακαλώ προσπαθήστε ξανά αργότερα.",
     "Request to join" : "Αίτημα συμμετοχής",
     "Description" : "Περιγραφή",
-    "Members" : "Μέλη",
+    "You are not a member of {circle}" : "Δεν είστε μέλος του κύκλου {circle}",
     "Settings" : "Settings",
     "Actions" : "Ενέργειες",
     "An error happened during description sync" : "Παρουσιάστηκε σφάλμα κατά τον συγχρονισμό της περιγραφής",
@@ -191,6 +190,7 @@
     "Members can also invite" : "Τα μέλη μπορούν επίσης να προσκαλέσουν",
     "Visibility" : "Ορατότητα",
     "Visible to everyone" : "Ορατός σε όλους",
+    "Email addresses" : "Διευθύνσεις ηλεκτρονικού ταχυδρομείου",
     "Detailed name" : "Λεπτομερές όνομα",
     "Additional names" : "Επιπλέον ονόματα",
     "Prefix" : "Πρόθεμα",
@@ -250,6 +250,7 @@
     "Spoken languages" : "Ομιλούσες γλώσσες",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Αποτυχία ανάγνωσης {failed} επαφής","Αποτυχία ανάγνωσης {failed} επαφών"],
     "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής",
+    "Members" : "Μέλη",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Τα αιτήματα μελών πρέπει να επιβεβαιωθούν/αποδεχθούν από έναν συντονιστή (απαιτείται Ανοιχτός κύκλος)",
     "Manager" : "Διευθυντής"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
