@@ -245,9 +245,11 @@
     "users" : "utilisateurs",
     "Users" : "Utilisateurs",
     "groups" : "groupes",
+    "Groups" : "Groupes",
     "teams" : "équipes",
     "email addresses" : "adresses mail",
     "Email addresses" : "Adresses e-mail",
+    "contacts" : "contacts",
     "Detailed name" : "Nom détaillé",
     "Additional names" : "Noms supplémentaires",
     "Prefix" : "Civilité",
@@ -313,10 +315,10 @@
     "Unable to create team {circleName}" : "Impossible de créer l'équipe {circleName}",
     "Unable to delete team {circleId}" : "Impossible de supprimer l'équipe {circleId}",
     "Unable to delete contact" : "Impossible de supprimer le contact.",
-    "Members" : "Membres",
-    "Show team details" : "Afficher les détails de l'équipe",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Les adhésions doivent être confirmées/acceptées par un Modérateur (nécessite Open)",
     "Manager" : "Supérieur",
-    "Manage members" : "Gérer les membres"
+    "Members" : "Membres",
+    "Manage members" : "Gérer les membres",
+    "Show team details" : "Afficher les détails de l'équipe"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

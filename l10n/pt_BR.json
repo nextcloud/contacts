@@ -310,10 +310,10 @@
     "Unable to create team {circleName}" : "Não foi possível criar a equipe {circleName}",
     "Unable to delete team {circleId}" : "Não foi possível excluir a equipe {circleId}",
     "Unable to delete contact" : "Não foi possível excluir o contato",
-    "Members" : "Membros",
-    "Show team details" : "Mostrar detalhes da equipe",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "As adesões devem ser confirmadas/aceitas por um moderador (requer Aberto)",
     "Manager" : "Gerente",
-    "Manage members" : "Gerenciar membros"
+    "Members" : "Membros",
+    "Manage members" : "Gerenciar membros",
+    "Show team details" : "Mostrar detalhes da equipe"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

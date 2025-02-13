@@ -308,7 +308,7 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "گۇرۇپپا {circleId} ئۆچۈرگىلى بولمىدى",
     "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى",
     "Members" : "ئەزالار",
-    "Show team details" : "گۇرۇپپا تەپسىلاتلىرىنى كۆرسەت",
-    "Manage members" : "ئەزالارنى باشقۇرۇش"
+    "Manage members" : "ئەزالارنى باشقۇرۇش",
+    "Show team details" : "گۇرۇپپا تەپسىلاتلىرىنى كۆرسەت"
 },
 "nplurals=2; plural=(n != 1);");

@@ -312,10 +312,10 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Ezin izan da {circleName} lantaldea sortu",
     "Unable to delete team {circleId}" : "Ezin izan da {circleId} lantaldea ezabatu",
     "Unable to delete contact" : "Ezin izan da kontaktua ezabatu",
-    "Members" : "Kideak",
-    "Show team details" : "Erakutsi lantaldearen xehetasunak",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Moderatzaile batek berretsi / onartu behar ditu kidetzak (Irekia behar du)",
     "Manager" : "Zuzendaria",
-    "Manage members" : "Kideak kudeatu"
+    "Members" : "Kideak",
+    "Manage members" : "Kideak kudeatu",
+    "Show team details" : "Erakutsi lantaldearen xehetasunak"
 },
 "nplurals=2; plural=(n != 1);");

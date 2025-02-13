@@ -285,10 +285,10 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Tiimiä {circleName} ei voitu luoda",
     "Unable to delete team {circleId}" : "Tiimiä {circleId} ei voitu poistaa",
     "Unable to delete contact" : "Yhteystietoa ei voitu poistaa",
-    "Members" : "Jäsenet",
-    "Show team details" : "Näytä tiimin tiedot",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Jäsenyydet tulee vahvistaa/hyväksyä moderaattorin toimesta (vaatii avoimen)",
     "Manager" : "Esimies",
-    "Manage members" : "Hallitse jäseniä"
+    "Members" : "Jäsenet",
+    "Manage members" : "Hallitse jäseniä",
+    "Show team details" : "Näytä tiimin tiedot"
 },
 "nplurals=2; plural=(n != 1);");
