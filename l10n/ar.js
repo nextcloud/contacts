@@ -245,9 +245,13 @@ OC.L10N.register(
     "Team membership" : "عضوية الفريق",
     "Prevent teams from being a member of another team" : "منع الفريق من ان يكون عضواً في فريق آخر",
     "users" : "مستخدِمون",
+    "Users" : "المستخدمين",
     "groups" : "مجموعات",
+    "Groups" : "مجموعات",
     "teams" : "الفرق",
     "email addresses" : "عناوين بريد الكتروني",
+    "Email addresses" : "عناوين البريد الالكتروني",
+    "contacts" : "جهات اتصال",
     "Detailed name" : "الاسم بالتفصيل",
     "Additional names" : "الأسماء الإضافية",
     "Prefix" : "بادئة",
@@ -313,10 +317,10 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "تعذّر إنشاء الفريق {circleName}",
     "Unable to delete team {circleId}" : "تعذّر حذف الفريق {circleId}",
     "Unable to delete contact" : "تعذّر حذف جهة الاتصال",
-    "Members" : "الأعضاء",
-    "Show team details" : "عرض تفاصيل الفريق",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "يلزم تأكيد/قبول العضويات من قِبَل المنسق (تستلزم الفتح)",
     "Manager" : "مدير",
-    "Manage members" : "إدارة الأعضاء"
+    "Members" : "الأعضاء",
+    "Manage members" : "إدارة الأعضاء",
+    "Show team details" : "عرض تفاصيل الفريق"
 },
 "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;");

@@ -264,9 +264,9 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} 个联系人读取失败"],
     "Unable to create team {circleName}" : "无法创建团队 {圈子名称}",
     "Unable to delete contact" : "无法删除联系人",
-    "Members" : "成员",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "成员资格必须由一名主持人确认/接受（必须为开放圈子）",
     "Manager" : "经理",
+    "Members" : "成员",
     "Manage members" : "管理成员"
 },
 "nplurals=1; plural=0;");

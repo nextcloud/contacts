@@ -315,10 +315,10 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Ní féidir foireann {circleName} a chruthú",
     "Unable to delete team {circleId}" : "Ní féidir foireann {circleId} a scriosadh",
     "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh",
-    "Members" : "Baill",
-    "Show team details" : "Taispeáin sonraí na foirne",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Ní mór do Mhodhnóir ballraíocht a dheimhniú/glacadh leis (riachtanach)",
     "Manager" : "Bainisteoir",
-    "Manage members" : "Bainistigh baill"
+    "Members" : "Baill",
+    "Manage members" : "Bainistigh baill",
+    "Show team details" : "Taispeáin sonraí na foirne"
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");

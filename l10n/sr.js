@@ -247,8 +247,11 @@ OC.L10N.register(
     "users" : "корисници",
     "Users" : "Корисници",
     "groups" : "групе",
+    "Groups" : "Групе",
     "teams" : "тимови",
     "email addresses" : "е-мејл адресе",
+    "Email addresses" : "И-мејл адресе",
+    "contacts" : "контакти",
     "Detailed name" : "Пуно име",
     "Additional names" : "Додатна имена",
     "Prefix" : "Префикс",
@@ -314,10 +317,10 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Не може да се креира тим {circleName}",
     "Unable to delete team {circleId}" : "Не може да се обрише тим {circleId}",
     "Unable to delete contact" : "Не могу да обришем контакт",
-    "Members" : "Чланови",
-    "Show team details" : "Прикажи детаље тима",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Чланство мора да потврди/прихвати Модератор (захтева се Отворено)",
     "Manager" : "Менаџер",
-    "Manage members" : "Управљај члановима"
+    "Members" : "Чланови",
+    "Manage members" : "Управљај члановима",
+    "Show team details" : "Прикажи детаље тима"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

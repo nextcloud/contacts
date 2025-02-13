@@ -247,9 +247,11 @@ OC.L10N.register(
     "users" : "用戶",
     "Users" : "用戶",
     "groups" : "群組",
+    "Groups" : "群組",
     "teams" : "團隊",
     "email addresses" : "電郵地址",
     "Email addresses" : "電郵地址",
+    "contacts" : "聯絡人",
     "Detailed name" : "詳細名稱",
     "Additional names" : "別名/中間名",
     "Prefix" : "前綴",
@@ -315,10 +317,10 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "無法建立團隊 {circleName}",
     "Unable to delete team {circleId}" : "無法刪除團隊 {circleId}",
     "Unable to delete contact" : "無法刪除聯絡人",
-    "Members" : "成員",
-    "Show team details" : "顯示團隊詳細資訊",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "會員資格必須由版主確認/接受（需要開放）",
     "Manager" : "經理",
-    "Manage members" : "管理成員"
+    "Members" : "成員",
+    "Manage members" : "管理成員",
+    "Show team details" : "顯示團隊詳細資訊"
 },
 "nplurals=1; plural=0;");

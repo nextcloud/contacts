@@ -246,7 +246,7 @@ OC.L10N.register(
     "groups" : "grupper",
     "teams" : "teams",
     "email addresses" : "e-mailadresser",
-    "Email addresses" : "Email adresse",
+    "Email addresses" : "E-mailadresser",
     "Detailed name" : "Detaljeret navn",
     "Additional names" : "Mellemnavne",
     "Prefix" : "Præfiks",
@@ -312,10 +312,10 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Kan ikke oprette team {circleName}",
     "Unable to delete team {circleId}" : "Kan ikke slette team {circleId}",
     "Unable to delete contact" : "Kan ikke slette kontakten",
-    "Members" : "Medlemmer",
-    "Show team details" : "Vis teamdetaljer",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Medlemskaber skal bekræftes/accepteres af en moderator (kræver åbent)",
     "Manager" : "Leder",
-    "Manage members" : "Styr medlemmer"
+    "Members" : "Medlemmer",
+    "Manage members" : "Styr medlemmer",
+    "Show team details" : "Vis teamdetaljer"
 },
 "nplurals=2; plural=(n != 1);");
