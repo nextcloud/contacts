@@ -315,10 +315,10 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "{circleName} takımı eklenemedi",
     "Unable to delete team {circleId}" : "{circleName} takımı silinemedi",
     "Unable to delete contact" : "Kişi silinemedi",
-    "Members" : "Üyeler",
-    "Show team details" : "Takım ayrıntılarını görüntüle",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Üyelikler bir sorumlu tarafından onaylanmalıdır (Open gereklidir)",
     "Manager" : "Yönetici",
-    "Manage members" : "Üye yönetimi"
+    "Members" : "Üyeler",
+    "Manage members" : "Üye yönetimi",
+    "Show team details" : "Takım ayrıntılarını görüntüle"
 },
 "nplurals=2; plural=(n > 1);");

@@ -313,10 +313,10 @@
     "Unable to create team {circleName}" : "A(z) {circleName} csapat nem hozható létre",
     "Unable to delete team {circleId}" : "A(z) {circleId} csapat nem törölhető",
     "Unable to delete contact" : "A névjegy törlése sikertelen",
-    "Members" : "Tagok",
-    "Show team details" : "Csapat részleteinek megjelenítése",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "A tagságokat meg kell erősítenie/el kell fogadnia egy moderátornak (Nyílt beállítás szükséges)",
     "Manager" : "Vezető",
-    "Manage members" : "Tagok kezelése"
+    "Members" : "Tagok",
+    "Manage members" : "Tagok kezelése",
+    "Show team details" : "Csapat részleteinek megjelenítése"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -308,10 +308,10 @@
     "Unable to create team {circleName}" : "Невозможно создать команду {circleName}",
     "Unable to delete team {circleId}" : "Невозможно удалить команду {circleId}",
     "Unable to delete contact" : "Невозможно удалить контакт",
-    "Members" : "Члены",
-    "Show team details" : "Показать данные команды",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Участие должно быть одобрено модератором (требуется открытый тип круга)",
     "Manager" : "Руководитель",
-    "Manage members" : "Управление участниками"
+    "Members" : "Члены",
+    "Manage members" : "Управление участниками",
+    "Show team details" : "Показать данные команды"
 },"pluralForm" :"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);"
 }
