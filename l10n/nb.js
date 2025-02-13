@@ -308,10 +308,10 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Ikke i stand til å opprette lag {circleName}",
     "Unable to delete team {circleId}" : "Ikke i stand til å slette lag {circleId}",
     "Unable to delete contact" : "Ikke i stand til å slette kontakt",
-    "Members" : "Medlemmer",
-    "Show team details" : "Vis lagdetaljer",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Medlemskap må bekreftes/aksepteres av en moderator (krever åpen)",
     "Manager" : "Sjef",
-    "Manage members" : "Administrer medlemmer"
+    "Members" : "Medlemmer",
+    "Manage members" : "Administrer medlemmer",
+    "Show team details" : "Vis lagdetaljer"
 },
 "nplurals=2; plural=(n != 1);");

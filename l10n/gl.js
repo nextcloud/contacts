@@ -247,9 +247,11 @@ OC.L10N.register(
     "users" : "usuarios",
     "Users" : "Usuarios",
     "groups" : "grupos",
+    "Groups" : "Grupos",
     "teams" : "equipos",
     "email addresses" : "enderezos de correo",
     "Email addresses" : "Enderezos de correo",
+    "contacts" : "contactos",
     "Detailed name" : "Nome completo",
     "Additional names" : "Nomes adicionais",
     "Prefix" : "Prefixo",
@@ -315,10 +317,10 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Non é posíbel crear o equipo {circleName}",
     "Unable to delete team {circleId}" : "Non é posíbel eliminar o equipo {circleId}",
     "Unable to delete contact" : "Non é posíbel eliminar o contacto",
-    "Members" : "Membros",
-    "Show team details" : "Amosar os detalles do equipo",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "As pertenzas deben ser confirmadas/aceptadas por un moderador (precisa Aberto)",
     "Manager" : "Xestor/a",
-    "Manage members" : "Xestionar os membros"
+    "Members" : "Membros",
+    "Manage members" : "Xestionar os membros",
+    "Show team details" : "Amosar os detalles do equipo"
 },
 "nplurals=2; plural=(n != 1);");

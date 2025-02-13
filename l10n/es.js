@@ -313,10 +313,10 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "No fue posible crear el equipo {circleName}",
     "Unable to delete team {circleId}" : "No se pudo eliminar el equipo {circleId}",
     "Unable to delete contact" : "No se ha podido eliminar el contacto",
-    "Members" : "Miembros",
-    "Show team details" : "Mostrar detalles del equipo",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Las membresías deben ser confirmadas/aceptadas por un moderador (requiere Open)",
     "Manager" : "Mánager",
-    "Manage members" : "Administrar miembros"
+    "Members" : "Miembros",
+    "Manage members" : "Administrar miembros",
+    "Show team details" : "Mostrar detalles del equipo"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

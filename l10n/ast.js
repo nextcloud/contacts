@@ -124,6 +124,7 @@ OC.L10N.register(
     "Members need to accept invitation" : "Los miembros precisen aceptar la invitación",
     "Members can also invite" : "Los miembros tamién puen convidar",
     "Visibility" : "Visibilidá",
+    "Users" : "Usuarios",
     "Prefix" : "Prefixu",
     "Suffix" : "Sufixu",
     "Nickname" : "Nomatu",

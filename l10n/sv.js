@@ -315,10 +315,10 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Kunde inte skapa team {circleName}",
     "Unable to delete team {circleId}" : "Kan inte ta bort team {circleId}",
     "Unable to delete contact" : "Kunde inte radera kontakten",
-    "Members" : "Medlemmar",
-    "Show team details" : "Visa detaljer för team",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Medlemsskap måste bekräftas/godkännas av en moderator (requires Open)",
     "Manager" : "Chef",
-    "Manage members" : "Hantera medlemmar"
+    "Members" : "Medlemmar",
+    "Manage members" : "Hantera medlemmar",
+    "Show team details" : "Visa detaljer för team"
 },
 "nplurals=2; plural=(n != 1);");

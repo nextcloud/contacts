@@ -247,9 +247,11 @@ OC.L10N.register(
     "users" : "uživatelé",
     "Users" : "Uživatelé",
     "groups" : "skupiny",
+    "Groups" : "Skupiny",
     "teams" : "týmy",
     "email addresses" : "e-mailové adresy",
     "Email addresses" : "E-mailové adresy",
+    "contacts" : "kontakty",
     "Detailed name" : "Jméno podrobně",
     "Additional names" : "Další jména",
     "Prefix" : "Předpona",
@@ -315,10 +317,10 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Nedaří se vytvořit tým {circleName}",
     "Unable to delete team {circleId}" : "Nedaří se smazat tým {circleId}",
     "Unable to delete contact" : "Nedaří se smazat kontakt",
-    "Members" : "Členové",
-    "Show team details" : "Zobrazit podrobnosti o týmu",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Členství bude muset být potvrzeno/přijato moderátorem (vyžaduje Otevřené)",
     "Manager" : "Nadřízený",
-    "Manage members" : "Spravovat členy"
+    "Members" : "Členové",
+    "Manage members" : "Spravovat členy",
+    "Show team details" : "Zobrazit podrobnosti o týmu"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

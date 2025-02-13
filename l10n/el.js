@@ -252,8 +252,8 @@ OC.L10N.register(
     "Spoken languages" : "Ομιλούσες γλώσσες",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Αποτυχία ανάγνωσης {failed} επαφής","Αποτυχία ανάγνωσης {failed} επαφών"],
     "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής",
-    "Members" : "Μέλη",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Τα αιτήματα μελών πρέπει να επιβεβαιωθούν/αποδεχθούν από έναν συντονιστή (απαιτείται Ανοιχτός κύκλος)",
-    "Manager" : "Διευθυντής"
+    "Manager" : "Διευθυντής",
+    "Members" : "Μέλη"
 },
 "nplurals=2; plural=(n != 1);");

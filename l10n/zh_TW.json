@@ -243,10 +243,13 @@
     "Team membership" : "團隊成員資格",
     "Prevent teams from being a member of another team" : "避免團隊成為其他團隊的成員",
     "users" : "使用者",
+    "Users" : "使用者",
     "groups" : "群組",
+    "Groups" : "群組",
     "teams" : "團隊",
     "email addresses" : "電子郵件地址",
     "Email addresses" : "電子郵件地址",
+    "contacts" : "聯絡人",
     "Detailed name" : "詳細名稱",
     "Additional names" : "別名/中間名",
     "Prefix" : "前綴",
@@ -312,10 +315,10 @@
     "Unable to create team {circleName}" : "無法建立團隊 {circleName}",
     "Unable to delete team {circleId}" : "無法刪除團隊 {circleId}",
     "Unable to delete contact" : "無法刪除聯絡人",
-    "Members" : "成員",
-    "Show team details" : "顯示團隊詳細資訊",
     "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "成員資格必須由主持人（必須為開放小圈圈）確認／接受",
     "Manager" : "經理",
-    "Manage members" : "管理成員"
+    "Members" : "成員",
+    "Manage members" : "管理成員",
+    "Show team details" : "顯示團隊詳細資訊"
 },"pluralForm" :"nplurals=1; plural=0;"
 }
