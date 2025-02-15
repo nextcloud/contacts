@@ -50,7 +50,7 @@ OC.L10N.register(
     "{addressbookname} (Disabled)" : "{addressbookname} (Desactivdo)",
     "Download" : "Descargar",
     "Show" : "Amosar",
-    "Unshare from me" : "Deixar de compartir",
+    "Unshare from me" : "Deixar de compartir comigo",
     "Copied" : "Copiado",
     "Cannot copy" : "Non se pode copiar",
     "Copy link" : "Copiar a ligazón",
