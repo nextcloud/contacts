@@ -75,6 +75,7 @@ $top-padding: 50px;
 .contact-header {
 	display: flex;
 	align-items: center;
+	flex-wrap: wrap;
 	padding: $top-padding 0 20px;
 	gap: $contact-details-row-gap;
 	&__quick-actions{
