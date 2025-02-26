@@ -233,7 +233,7 @@ OC.L10N.register(
     "Contact" : "Kontakt",
     "Member" : "Mitglied",
     "Moderator" : "Moderator",
-    "Admin" : "Administrator",
+    "Admin" : "Administration",
     "Owner" : "Besitzer",
     "Invites" : "Einladungen",
     "Anyone can request membership" : "Jeder kann eine Mitgliedschaft beantragen",
