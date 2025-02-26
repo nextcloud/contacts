@@ -1,16 +1,8 @@
-<!--
-  - SPDX-FileCopyrightText: 2018-2025 Nextcloud GmbH and Nextcloud contributors
-  - SPDX-License-Identifier: AGPL-3.0-or-later
--->
-# [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0) (2025-02-19)
+## [7.0.1](https://github.com/nextcloud/contacts/compare/v7.0.0...v7.0.1) (2025-02-26)
 
 
 ### Bug Fixes
 
-* remove app-content-details from global styling ([12707c4](https://github.com/nextcloud/contacts/commit/12707c44de901e44950cb37df6cc3fd1f1f17303))
-* **routing** add proper routing for circles([a0a80c9](https://github.com/nextcloud/contacts/commit/a0a80c9f11cd8fb934699ffd92ac9d822e115eaf))
-* share address books with user groups ([6e87aca](https://github.com/nextcloud/contacts/pull/4291/commits/6e87aca3c4406cebc4b0699a489bd247355c91b3))
-* **circles** misaligned member modal headings ([a5ec367](https://github.com/nextcloud/contacts/commit/a5ec3675565a450b5b2da09b5b97714df059d483))
 * adjust spacing and alignment in the contact details view ([75ee842](https://github.com/nextcloud/contacts/commit/75ee842cd90db8c6436c18855090b4319c442f75))
 * Adjust styling of team resource images ([8b65d58](https://github.com/nextcloud/contacts/commit/8b65d581e5ce6ddffa75695f141abda824dd12ce))
 * Allow dynamic autoloading for classes added during upgrade ([08e5f9e](https://github.com/nextcloud/contacts/commit/08e5f9e9241c1162b277764d6711823f3b0e7182))
@@ -18,6 +10,7 @@
 * check if photo property is set before downloading ([f33c353](https://github.com/nextcloud/contacts/commit/f33c353ce92096a5c715a75a1c4fd8629eed932b))
 * **CircleDetails:** Improve calculation of member list ([05be5e3](https://github.com/nextcloud/contacts/commit/05be5e320697d45371c7a91ae07e31196e931830))
 * **CircleNavigationItem:** Rename 'add member' to 'manage team' ([eda53a5](https://github.com/nextcloud/contacts/commit/eda53a564d23bc87d9c5bfd614e5ddc8f7fe4777))
+* **circles:** misaligned member modal headings ([a5ec367](https://github.com/nextcloud/contacts/commit/a5ec3675565a450b5b2da09b5b97714df059d483))
 * **circles:** sort fallback if not member of circle ([05f04df](https://github.com/nextcloud/contacts/commit/05f04df69e9c09d9f4443e11d53601f9d2381d50))
 * **contacts:** split up detailed-name again to fix vCard ([501b990](https://github.com/nextcloud/contacts/commit/501b9905abdf55f45f3d67b72680c2cf6918b13c))
 * convert pre-commit to common js ([afd5a5a](https://github.com/nextcloud/contacts/commit/afd5a5a0600e0bfb9836e137105e3ede8cd7d749))
@@ -35,6 +28,7 @@
 * **deps:** bump @nextcloud/dialogs from 5.3.5 to ^5.3.7 ([2e6b7cf](https://github.com/nextcloud/contacts/commit/2e6b7cf8aee60612a66cefaf8c3415c6068f75d3))
 * **deps:** bump @nextcloud/dialogs from 5.3.7 to ^5.3.8 ([a7abab3](https://github.com/nextcloud/contacts/commit/a7abab3de1b26f4f89ee3140d16dc41657297fd4))
 * **deps:** bump @nextcloud/event-bus from 3.3.1 to ^3.3.1 ([b1af001](https://github.com/nextcloud/contacts/commit/b1af00165ed4ec0292ef87a29a18c8aff8b5f1e8))
+* **deps:** bump @nextcloud/files from 3.10.0 to ^3.10.1 ([01bfdae](https://github.com/nextcloud/contacts/commit/01bfdae1a5df9e3c89b76bd3228f14278cba107a))
 * **deps:** bump @nextcloud/files from 3.4.1 to ^3.4.1 ([cb81009](https://github.com/nextcloud/contacts/commit/cb810095c4d3ba91e4ca1a1f568a14b3210f2e56))
 * **deps:** bump @nextcloud/files from 3.4.1 to ^3.5.0 ([718a090](https://github.com/nextcloud/contacts/commit/718a0900392d77f081fad22838d39e7d6950a710))
 * **deps:** bump @nextcloud/files from 3.5.0 to ^3.5.1 ([ef312d3](https://github.com/nextcloud/contacts/commit/ef312d362319eb78152886487f0428d0301b7687))
@@ -45,6 +39,7 @@
 * **deps:** bump @nextcloud/files from 3.9.1 to ^3.9.1 ([1e086f9](https://github.com/nextcloud/contacts/commit/1e086f91bb0763e9e618f302108d7334ab2433bb))
 * **deps:** bump @nextcloud/l10n from 2.2.0 to v3 ([df25646](https://github.com/nextcloud/contacts/commit/df25646a5392d66b648bd83b3265160bf417ea6e))
 * **deps:** bump @nextcloud/logger from 2.7.0 to v3 ([73eecbc](https://github.com/nextcloud/contacts/commit/73eecbcde459436095a23bb7b2c9773b8d18bc96))
+* **deps:** bump @nextcloud/moment from 1.3.1 to ^1.3.2 ([41c601c](https://github.com/nextcloud/contacts/commit/41c601cf58ac7b61db7ac42b1b64380e37dc4531))
 * **deps:** bump @nextcloud/paths from 2.2.1 to ^2.2.1 ([9b6c6d3](https://github.com/nextcloud/contacts/commit/9b6c6d38ba88f2dd69b65a5a0587db98adc02ca5))
 * **deps:** bump @nextcloud/router from 2.2.0 to v3 ([96af3c5](https://github.com/nextcloud/contacts/commit/96af3c573aa4300ca258961046e8b149f58de3c6))
 * **deps:** bump @nextcloud/sharing from 0.1.0 to ^0.2.2 ([29c3f76](https://github.com/nextcloud/contacts/commit/29c3f7603722548160a994262f5df616534686ca))
@@ -56,6 +51,8 @@
 * **deps:** bump @nextcloud/vue from 8.15.0 to ^8.15.1 ([0919189](https://github.com/nextcloud/contacts/commit/0919189714270b519fe2fd7cedd695ca230bf99a))
 * **deps:** bump @nextcloud/vue from 8.15.1 to ^8.18.0 ([096dd07](https://github.com/nextcloud/contacts/commit/096dd0713df368cc86ce7dc36aa55e4740ec6750))
 * **deps:** bump @nextcloud/vue from 8.18.0 to ^8.19.0 ([f59b0f2](https://github.com/nextcloud/contacts/commit/f59b0f2dd13292262a474d12e9e0eb2bdd85891c))
+* **deps:** bump @nextcloud/vue from 8.19.0 to ^8.22.0 ([a7d4203](https://github.com/nextcloud/contacts/commit/a7d4203a843e846d1d8f2b3a21823d432f71f33c))
+* **deps:** bump @nextcloud/vue from 8.22.0 to ^8.23.1 ([59be247](https://github.com/nextcloud/contacts/commit/59be247a9255abcbd8fbf839cf4965f895103275))
 * **deps:** bump @vueuse/core from 10.11.1 to ^10.11.1 ([17b1ac7](https://github.com/nextcloud/contacts/commit/17b1ac7ab4dd0248d52cd80c44dca61fff48d6f2))
 * **deps:** bump @vueuse/core from 10.11.1 to v11 ([5545596](https://github.com/nextcloud/contacts/commit/5545596592dd0b51ab3bb9e026dc8bdc97732a92))
 * **deps:** bump @vueuse/core from 10.9.0 to ^10.11.0 ([09b06c9](https://github.com/nextcloud/contacts/commit/09b06c9a933974e1b8e6b6d02e1a929a9ea3f249))
@@ -68,35 +65,44 @@
 * **deps:** bump ical.js from 1.5.0 to v2 ([ef70705](https://github.com/nextcloud/contacts/commit/ef70705cb84b033e33dab46f68f94c947deed73b))
 * **deps:** bump ical.js from 2.0.1 to ^2.1.0 ([5ae2289](https://github.com/nextcloud/contacts/commit/5ae2289795d5cddacc89373f7c330cb642ed742a))
 * **deps:** bump p-limit from 5.0.0 to v6 ([f8996aa](https://github.com/nextcloud/contacts/commit/f8996aa6de495ac632542bcf71b77ac185811151))
+* **deps:** bump p-limit from 6.1.0 to ^6.2.0 ([37a29a4](https://github.com/nextcloud/contacts/commit/37a29a4d82f89c1c29d6f1ce69275f025594b6dd))
 * **deps:** bump pinia from 2.1.7 to ^2.2.2 ([5e0ec67](https://github.com/nextcloud/contacts/commit/5e0ec67c3321c5e9f412f8c79e4aaaadc40953f0))
 * **deps:** bump pinia from 2.2.2 to ^2.2.4 ([92bcb60](https://github.com/nextcloud/contacts/commit/92bcb60ade7c742a25aad66f3906787ee3e74cde))
 * **deps:** bump pinia from 2.2.4 to ^2.2.6 ([81d78eb](https://github.com/nextcloud/contacts/commit/81d78eb0fc9127e3b745082f2ab4341a92dc4eb7))
 * **deps:** bump pinia from 2.2.6 to ^2.2.8 ([1fe78fe](https://github.com/nextcloud/contacts/commit/1fe78fe1d9fb0616c9b94c7c4e3a37c55b0e8a1f))
 * **deps:** bump pinia from 2.2.8 to ^2.3.0 ([04a1d6f](https://github.com/nextcloud/contacts/commit/04a1d6fc2019d7d5c6f09cfc6ae1e7e8d1dbe3de))
+* **deps:** bump pinia from 2.3.0 to ^2.3.1 ([1940948](https://github.com/nextcloud/contacts/commit/1940948208165075defd04a44d9462b167279262))
 * **deps:** bump uuid from 10.0.0 to v11 ([35dbc90](https://github.com/nextcloud/contacts/commit/35dbc9005f7c35228c9bc19f432bda4bc7e6708d))
 * **deps:** bump uuid from 11.0.2 to ^11.0.3 ([a854c30](https://github.com/nextcloud/contacts/commit/a854c305e3f1f75477c7a771297546e1476c3b1a))
+* **deps:** bump uuid from 11.0.3 to ^11.0.5 ([546148d](https://github.com/nextcloud/contacts/commit/546148d1974c521c78c0b1fd3a68c7068a37c077))
 * **deps:** bump uuid from 9.0.1 to v10 ([b350b27](https://github.com/nextcloud/contacts/commit/b350b2781f3b4e394e0ea80926c127b401defb8d))
 * **deps:** bump vue monorepo from 2.7.16 to ~2.7.16 ([bda5244](https://github.com/nextcloud/contacts/commit/bda5244373d44f82e6eb2f5ed1fc302bf5968b0e))
 * **deps:** bump vue-material-design-icons from 5.3.0 to ^5.3.1 ([b94efd8](https://github.com/nextcloud/contacts/commit/b94efd8c389c3508de9113269e9cf1687517d243))
 * **deps:** fix npm audit ([7d53f6c](https://github.com/nextcloud/contacts/commit/7d53f6c45b90be54dcb09016682531c7c3794991))
 * **deps:** fix npm audit ([85197a0](https://github.com/nextcloud/contacts/commit/85197a0eb40ab9d16233ce2989dc3862047e17da))
+* **deps:** Fix npm audit ([1ec8218](https://github.com/nextcloud/contacts/commit/1ec821875b98c60444b42f3d971f5feeb3e515a9))
 * **deps:** Fix npm audit ([f3087bc](https://github.com/nextcloud/contacts/commit/f3087bc5e5df5bccaa614fa51ce7bc20d63ddf1d))
 * **deps:** Fix npm audit ([c46b418](https://github.com/nextcloud/contacts/commit/c46b418658c1bc1d35403dd3f4641e8e4c45e493))
 * **GroupNavigationItem:** encode exported contact groups as UTF-8 ([7e54582](https://github.com/nextcloud/contacts/commit/7e5458245f7206e1ae91c876fe9cfbeaa8a88990))
 * improve matching for tel type parameter ([503ae11](https://github.com/nextcloud/contacts/commit/503ae11e1f23c5d77c7e704cb65f813b43327066))
 * long contact name overlapping with other content ([1db37fb](https://github.com/nextcloud/contacts/commit/1db37fb0e3a51d9dd046be576723f2ed9891659e))
+* Make circle members visible again by moving them out of the modal ([eff7622](https://github.com/nextcloud/contacts/commit/eff76225b353f3f3b07d33eb426018c634987f46))
 * **MemberList:** Don't use VirtualList for listing members ([3bf8e6c](https://github.com/nextcloud/contacts/commit/3bf8e6c797fddcc836ef5a8dbfb81373185d7ddb)), closes [#3996](https://github.com/nextcloud/contacts/issues/3996)
 * **MembersListItem:** Adjustments to ListItemIcon properties ([5bb226f](https://github.com/nextcloud/contacts/commit/5bb226f36aa538f98424341b7b5fa8129d277c20))
 * **Members:** Rename 'Contact groups' to 'groups' ([2d98c29](https://github.com/nextcloud/contacts/commit/2d98c296f8da282f340b4afaed157ae25f6fde49)), closes [#3607](https://github.com/nextcloud/contacts/issues/3607)
 * redesign seetings toggle to Nextcloud 30 style ([3e2e7e3](https://github.com/nextcloud/contacts/commit/3e2e7e37639c5a6a13dd40d2b794a917a387ef9c))
 * **release:** Fix wget output option ([75c3b5b](https://github.com/nextcloud/contacts/commit/75c3b5b94038ebd87d9cb583a2f94a93d01a3b17))
+* remove app-content-details from global styling ([12707c4](https://github.com/nextcloud/contacts/commit/12707c44de901e44950cb37df6cc3fd1f1f17303))
 * remove loading contacts-index style ([eca822f](https://github.com/nextcloud/contacts/commit/eca822f6850254d7122b7588c572c101d6e11fd8))
 * remove prop mutation ([cec394e](https://github.com/nextcloud/contacts/commit/cec394e8e6b9d4fab324d0a63b94ba768928af3f))
 * remove unused style ([2f0282a](https://github.com/nextcloud/contacts/commit/2f0282a354dad9b49165eb635337f9b9cd7960e3))
 * respect advanced group sharing settings in frontend ([5450606](https://github.com/nextcloud/contacts/commit/5450606f4832da9e0c60168f827d287423832dfd))
 * responsivness for contacts details ([71d3bc9](https://github.com/nextcloud/contacts/commit/71d3bc972b102e43fde5495420928eaf68d04e11))
+* **Routing:** add proper routing for circles ([a0a80c9](https://github.com/nextcloud/contacts/commit/a0a80c9f11cd8fb934699ffd92ac9d822e115eaf))
 * scrobbale button in navigation ([195a58e](https://github.com/nextcloud/contacts/commit/195a58e74f8f7ba03888ef15abc12f6630d45c5b))
 * **settings:** clarify settings option for open circle ([0aba545](https://github.com/nextcloud/contacts/commit/0aba5455be6362c1e5e5306a4c71cab34097ec28))
+* share address books with user groups ([6e87aca](https://github.com/nextcloud/contacts/commit/6e87aca3c4406cebc4b0699a489bd247355c91b3))
+* show error on empty group name ([0baf96b](https://github.com/nextcloud/contacts/commit/0baf96b090ee1dc0afc663a57b62ee352920ba85))
 * **socialavatar:** Match base class argument name ([b0abe36](https://github.com/nextcloud/contacts/commit/b0abe36e461da17a550f119b4a11c18e7a6c290e))
 * **socialavatars:** Fix HTTP client usage ([687ab6b](https://github.com/nextcloud/contacts/commit/687ab6b81d61d6a8cfa278d01f491df21ed6eb03))
 * support for RFC 6474 ([b4e205d](https://github.com/nextcloud/contacts/commit/b4e205d946cec2c88eb4d1541c4295c82223a463))
@@ -113,6 +119,7 @@
 * **deps:** Add Nextcloud 29 support ([cd6b367](https://github.com/nextcloud/contacts/commit/cd6b367783e6b98539420139e1fb8272eddd1ecb))
 * **deps:** Add nextcloud 30 support ([425a906](https://github.com/nextcloud/contacts/commit/425a906c101027f489af607b78b4ed35fb86ac5e))
 * **deps:** Add Nextcloud 31 support ([166c6ff](https://github.com/nextcloud/contacts/commit/166c6fffff1b33029506d9f61130fd6847a82752))
+* **deps:** Add Nextcloud 32 support ([2605739](https://github.com/nextcloud/contacts/commit/2605739e39b836ceca6fcad0dce947232c6325fe))
 * Implement team overview page updates ([e947bcc](https://github.com/nextcloud/contacts/commit/e947bccda653851ca999ba980143c1290e162f43))
 * improve group adding ([ed0e80e](https://github.com/nextcloud/contacts/commit/ed0e80e91fc16c5d8133c4474d10a33e31d7089b))
 * **PropertyGroups:** sort groups alphabetically ([0ab7fea](https://github.com/nextcloud/contacts/commit/0ab7feab20ba46a8af2cc257ee0054d164edf396))
@@ -130,9 +137,6 @@
 
 * Revert "style(ContactsListItem): fix subtitle" ([1c1b865](https://github.com/nextcloud/contacts/commit/1c1b865272d27c0db23aed779a778b3c70ebba73))
 
-### Refactors
-
-* simplify constructor property declarations ([0c0bf64](https://github.com/nextcloud/contacts/commit/0c0bf64e5d0f8d9337740e80270e7d18c186ddb7))
 
 
 # [5.3.0-beta2](https://github.com/nextcloud/contacts/compare/v5.3.0-beta1...v5.3.0-beta2) (2023-05-12)
