@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<AppContentDetails>
+	<div class="circle-details">
 		<!-- contact header -->
 		<DetailsHeader>
 			<!-- avatar and upload photo -->
@@ -72,41 +72,25 @@
 				@update:value="onDescriptionChangeDebounce" />
 		</section>
 
-		<section v-if="circle.isMember" class="circle-details-section">
-			<ContentHeading>
-				{{ t('contacts', 'Members') }}
-			</ContentHeading>
-			<div class="avatar-box">
-				<div ref="avatarList" class="avatar-list">
-					<Avatar v-for="member in membersLimited"
-						:key="member.singleId"
-						:user="member.userId"
-						:display-name="member.displayName"
-						:is-no-user="!member.isUser"
-						:icon-class="member.isUser ? null : 'icon-group-white'"
-						:size="avatarSize" />
-					<Avatar v-if="hasExtraMembers">
-						<template #icon>
-							<DotsHorizontal :size="16" />
-						</template>
-					</Avatar>
-				</div>
-				<Button class="members-button" @click="showMembersModal = true">
-					<template #icon>
-						<AccountMultiplePlus :size="20" />
-					</template>
-					{{ t('contacts', 'Manage members') }}
-				</Button>
-			</div>
-			<Modal v-if="showMembersModal" @close="showMembersModal=false">
-				<div class="members-modal">
-					<h2>{{ t('contacts', 'Team members') }}</h2>
-					<MemberList :list="members" />
-				</div>
-			</Modal>
-		</section>
+		<!-- not a member -->
+		<template v-if="!circle.isMember">
+			<!-- Pending request validation -->
+			<NcEmptyContent v-if="circle.isPendingMember"
+				:name="t('contacts', 'Your request to join this team is pending approval')">
+				<template #icon>
+					<NcLoadingIcon :size="20" />
+				</template>
+			</NcEmptyContent>
 
-		<section>
+			<NcEmptyContent v-else
+				:name="t('contacts', 'You are not a member of {circle}', { circle: circle.displayName})">
+				<template #icon>
+					<IconAccountGroup :size="20" />
+				</template>
+			</NcEmptyContent>
+		</template>
+
+		<section v-else>
 			<ContentHeading>
 				{{ t('contacts', 'Team resources') }}
 			</ContentHeading>
@@ -135,6 +119,8 @@
 				</ul>
 			</div>
 		</section>
+
+		<MemberList v-if="members.length" :list="members" />
 
 		<Modal v-if="(circle.isOwner || circle.isAdmin) && !circle.isPersonal && showSettingsModal" @close="showSettingsModal=false">
 			<div class="circle-settings">
@@ -188,11 +174,7 @@
 				</Button>
 			</div>
 		</Modal>
-
-		<section v-else>
-			<slot />
-		</section>
-	</AppContentDetails>
+	</div>
 </template>
 
 <script>
@@ -204,10 +186,11 @@ import { showError } from '@nextcloud/dialogs'
 import axios from '@nextcloud/axios'
 
 import {
-	NcAppContentDetails as AppContentDetails,
 	NcAvatar as Avatar,
 	NcButton as Button,
+	NcEmptyContent,
 	NcListItem as ListItem,
+	NcLoadingIcon,
 	NcModal as Modal,
 	NcRichContenteditable as RichContenteditable,
 } from '@nextcloud/vue'
@@ -216,14 +199,13 @@ import Cog from 'vue-material-design-icons/Cog.vue'
 import Login from 'vue-material-design-icons/Login.vue'
 import Logout from 'vue-material-design-icons/Logout.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
-import AccountMultiplePlus from 'vue-material-design-icons/AccountMultiplePlus.vue'
-import DotsHorizontal from 'vue-material-design-icons/DotsHorizontal.vue'
+import IconAccountGroup from 'vue-material-design-icons/AccountGroup.vue'
 
 import { CircleEdit, editCircle } from '../services/circles.ts'
 import CircleActionsMixin from '../mixins/CircleActionsMixin.js'
 import DetailsHeader from './DetailsHeader.vue'
 import CircleConfigs from './CircleDetails/CircleConfigs.vue'
-import MemberList from './MemberList.vue'
+import MemberList from './MemberList/MemberList.vue'
 import ContentHeading from './CircleDetails/ContentHeading.vue'
 import CirclePasswordSettings from './CircleDetails/CirclePasswordSettings.vue'
 
@@ -231,22 +213,22 @@ export default {
 	name: 'CircleDetails',
 
 	components: {
-		AppContentDetails,
 		Avatar,
-		MemberList,
 		Button,
 		CircleConfigs,
 		CirclePasswordSettings,
 		ContentHeading,
 		DetailsHeader,
-		DotsHorizontal,
 		ListItem,
 		Cog,
+		IconAccountGroup,
+		IconDelete,
 		Login,
 		Logout,
+		MemberList,
 		Modal,
-		IconDelete,
-		AccountMultiplePlus,
+		NcEmptyContent,
+		NcLoadingIcon,
 		RichContenteditable,
 	},
 
@@ -415,6 +397,10 @@ export default {
 	margin-left: 8px;
 }
 
+.circle-details {
+	padding-inline: 20px;
+}
+
 .circle-details-section {
 	&:not(:first-of-type) {
 		margin-top: 24px;
@@ -445,17 +431,9 @@ export default {
 	gap: 12px;
 }
 
-.members-modal {
-	padding: 12px;
-
-	h2 {
-		margin-bottom: 16px;
-	}
-
-	:deep(.app-content-list) {
-		max-width: 100%;
-		border: 0;
-	}
+:deep(.app-content-list) {
+	max-width: 100%;
+	border: 0;
 }
 
 .circle-settings {
