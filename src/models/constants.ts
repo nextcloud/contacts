@@ -111,8 +111,8 @@ export const PUBLIC_CIRCLE_CONFIG = {
 	},
 }
 
-// Represents the picker options but also the
-// sorting of the members list
+// Represents the picker options (label is used lower case in a list of options: Search users, groups, teams, ...)
+// labelStandalone is used as heading for the member list where we need it starting captialized
 export const CIRCLES_MEMBER_GROUPING = [
 	{
 		id: `picker-${Type.SHARE_TYPE_USER}`,
