@@ -211,6 +211,7 @@ OC.L10N.register(
     "_{count} error_::_{count} errors_" : ["{count} erro","{count} erros"],
     "Close" : "Pechar",
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importando %n contacto en {addressbook}","Importando %n contactos en {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Finalizada a importación de %n contacto en {addressbook}","Finalizada a importación de %n contactos en {addressbook}"],
     "No data for this contact" : "Non hai datos para este contacto",
     "No data for this contact on their profile" : "Non hai datos para este contacto no seu perfil",
     "Import" : "Importar",
