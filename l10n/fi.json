@@ -191,6 +191,7 @@
     "_{count} error_::_{count} errors_" : ["{count} virhe","{count} virhettä"],
     "Close" : "Sulje",
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Tuodaan %n yhteystieto osoitekirjaan {addressbook}","Tuodaan %n yhteystietoa osoitekirjaan {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["%n yhteystiedon tuominen osoitekirjaan {addressbook} valmistui","%n yhteystiedon tuominen osoitekirjaan {addressbook} onnistui"],
     "Import" : "Tuo",
     "Are you sure you want to import this contact file?" : "Haluatko varmasti tuoda tämän yhteystietotiedoston?",
     "Could not copy" : "Ei voitu kopioida",
