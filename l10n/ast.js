@@ -105,6 +105,7 @@ OC.L10N.register(
     "Pending" : "Pendiente",
     "Unable to create the contact." : "Nun ye posible crear el contautu.",
     "New contact" : "Contautu nuevu",
+    "_{count} error_::_{count} errors_" : ["{count} error","{count} errores"],
     "Close" : "Zarrar",
     "Unable to join the team" : "Nun ye posible xunise al equipu",
     "Unable to delete the team" : "Nun ye posible desaniciar l'equipu",

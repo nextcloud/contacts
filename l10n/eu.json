@@ -208,6 +208,7 @@
     "_{count} error_::_{count} errors_" : ["{count} errorea","{count} erroreak"],
     "Close" : "Itxi",
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Kontaktu %n inportatzen {addressbook}(e)ra","%n kontaktu inportaten {addressbook}(e)ra"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Kontaktu %n inportatu da {addressbook}(e)ra"," %n kontaktu inportatu dira {addressbook}(e)ra"],
     "Import" : "Inportatu",
     "Are you sure you want to import this contact file?" : "Ziur kontaktuen fitxategi hau inportatu nahi duzula?",
     "Could not copy" : "Ezin izan da kopiatu",
