@@ -208,6 +208,7 @@ OC.L10N.register(
     "_{count} error_::_{count} errors_" : ["{count} error","{count} errores","{count} errores"],
     "Close" : "Cerrar",
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importando %n contacto a {addressbook}","Importando %n contactos a {addressbook}","Importando %n contactos a {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Importación de %n contacto a {addressbook} completada","Importación de %n contactos a {addressbook} completada","Importación de %n contactos a {addressbook} completada"],
     "Import" : "Importar",
     "Are you sure you want to import this contact file?" : "¿Está seguro de querer importar este archivo de contacto?",
     "Could not copy" : "No se pudo copiar",

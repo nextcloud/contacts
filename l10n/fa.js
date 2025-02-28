@@ -167,6 +167,7 @@ OC.L10N.register(
     "_{count} error_::_{count} errors_" : ["{count} خطا","{count} خطا"],
     "Close" : "بستن",
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importing %n contact into {addressbook}","وارد کردن مخاطبین به {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Done importing %n contact into {addressbook}","وارد کردن مخاطبین به {addressbook} انجام شد"],
     "Import" : "درون‌ریزی",
     "Could not copy" : "نتوانست رونوشت کند",
     "You are about to leave {circle}.\nAre you sure?" : "شما در شرف خروج از {circle} هستید.\nمطمئن هستید ؟",

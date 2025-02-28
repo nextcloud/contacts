@@ -211,6 +211,7 @@ OC.L10N.register(
     "_{count} error_::_{count} errors_" : ["{count} earráid","{count} earráidí","{count} earráidí","{count} earráidí","{count} earráidí"],
     "Close" : "Dún",
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : [" %n agus teagmhálaí á iompórtáil isteach i {addressbook}"," %n agus teagmhálaithe á iompórtáil isteach i {addressbook}"," %n agus teagmhálaithe á iompórtáil isteach i {addressbook}"," %n agus teagmhálaithe á iompórtáil isteach i {addressbook}"," %n agus teagmhálaithe á iompórtáil isteach i {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Déanta ag iompórtáil %n agus teagmhálaí go {addressbook}","Déanta ag iompórtáil %n agus teagmhálaithe go {addressbook}","Déanta ag iompórtáil %n agus teagmhálaithe go {addressbook}","Déanta ag iompórtáil %n agus teagmhálaithe go {addressbook}","Déanta ag iompórtáil %n agus teagmhálaithe go {addressbook}"],
     "No data for this contact" : "Níl aon sonraí don teagmhálaí seo",
     "No data for this contact on their profile" : "Níl aon sonraí don teagmhálaí seo ar a bpróifíl",
     "Import" : "Iompórtáil",
