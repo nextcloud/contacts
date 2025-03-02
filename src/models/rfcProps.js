@@ -124,11 +124,21 @@ const properties = {
 		primary: true,
 	},
 	bday: {
-		readableName: t('contacts', 'Birthday'),
+		multiple: true,
+		readableName: t('contacts', 'Birthday and date of death'),
+		readableValues: [
+			t('contacts', 'Birthday'),
+			t('contacts', 'Date of death'),
+		],
+		displayOrder: [0, 1],
 		icon: 'icon-calendar-dark',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
+		default: true,
 		defaultValue: {
-			value: new ICAL.VCardTime(null, null, 'date').fromJSDate(new Date()),
+			value: [
+				new ICAL.VCardTime(null, null, 'date').fromJSDate(new Date()),
+				new ICAL.VCardTime(null, null, 'date').fromJSDate(new Date()),
+			],
 		},
 		actions: [
 			ActionToggleYear,
@@ -144,15 +154,6 @@ const properties = {
 	anniversary: {
 		readableName: t('contacts', 'Anniversary'),
 		icon: 'icon-anniversary',
-		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
-		defaultValue: {
-			value: new ICAL.VCardTime(null, null, 'date').fromJSDate(new Date()),
-		},
-		primary: false,
-	},
-	deathdate: {
-		readableName: t('contacts', 'Date of death'),
-		icon: 'icon-death-day',
 		force: 'date', // most ppl prefer date for birthdays, time is usually irrelevant
 		defaultValue: {
 			value: new ICAL.VCardTime(null, null, 'date').fromJSDate(new Date()),
@@ -402,16 +403,15 @@ const fieldOrder = [
 	'tel',
 	'email',
 	'adr',
-	'bday',
 	'url',
 	'x-socialprofile',
 	'x-managersname',
+	'bday',
 
 	// secondary fields
 	'birthplace',
 	'anniversary',
 	'deathdate',
-	'deathplace',
 	'n',
 	'nickname',
 	'x-phonetic-first-name',
