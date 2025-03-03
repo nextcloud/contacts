@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<div v-if="propModel" class="property property--multiple-text">
+	<div v-if="propModel" class="property property--multiple-text" role="group">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:property="property"
@@ -23,8 +23,8 @@
 			</template>
 		</PropertyTitle>
 
-		<div v-if="showActionsInFirstRow" class="property__row">
-			<div class="property__label">
+		<div v-if="showActionsInFirstRow" class="property__row" role="rowgroup">
+			<div class="property__label" role="rowheader">
 				<!-- read-only type because NcMultiselect can't be styled properly -->
 				<span v-if="isReadOnly && propModel.options">
 					{{ (localType && localType.name) || '' }}
@@ -54,7 +54,7 @@
 				</span>
 			</div>
 
-			<div class="property__value">
+			<div class="property__value" role="cell">
 				<!-- show the first input if not a structured value -->
 				<input v-if="!property.isStructuredValue"
 					v-model.trim="localValue[0]"
@@ -64,7 +64,7 @@
 			</div>
 
 			<!-- props actions -->
-			<div class="property__actions">
+			<div class="property__actions" role="cell">
 				<PropertyActions v-if="showActionsInFirstRow && !isReadOnly"
 					:actions="actions"
 					:property-component="this"
@@ -76,12 +76,12 @@
 		<template v-if="propModel.displayOrder && propModel.readableValues">
 			<div v-for="index in propModel.displayOrder"
 				:key="index"
-				class="property__row">
+				class="property__row" role="rowgroup">
 				<template v-if="(isReadOnly && localValue[index]) || !isReadOnly">
-					<div class="property__label">
+					<div class="property__label" role="rowheader">
 						<span>{{ propModel.readableValues[index] }}</span>
 					</div>
-					<div class="property__value">
+					<div class="property__value" role="cell">
 						<NcTextField :value.sync="localValue[index]"
 							:readonly="isReadOnly"
 							type="text"
@@ -98,10 +98,10 @@
 		<template v-else>
 			<div v-for="(value, index) in filteredValue"
 				:key="index"
-				class="property__row">
+				class="property__row" rolw="rowgroup">
 				<template v-if="(isReadOnly && filteredValue[index]) || !isReadOnly">
 					<div class="property__label" />
-					<div class="property__value">
+					<div class="property__value" role="cell">
 						<NcTextField :value.sync="filteredValue[index]"
 							:readonly="isReadOnly"
 							:label-outside="true"

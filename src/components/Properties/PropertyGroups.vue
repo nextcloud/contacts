@@ -4,18 +4,18 @@
 -->
 
 <template>
-	<div v-if="propModel && showProperty" class="property">
+	<div v-if="propModel && showProperty" class="property" role="group">
 		<PropertyTitle icon="icon-contacts-dark"
 			:readable-name="t('contacts', 'Contact groups')"
 			:is-read-only="isReadOnly" />
 
-		<div class="property__row">
+		<div class="property__row" role="rowgroup">
 			<div class="property__label">
 				<span>{{ propModel.readableName }}</span>
 			</div>
 
 			<!-- multiselect taggable groups -->
-			<div class="property__value">
+			<div class="property__value" role="cell">
 				<NcSelect v-if="!isReadOnly"
 					v-model="localValue"
 					:options="groups"
