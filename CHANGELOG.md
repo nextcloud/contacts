@@ -1,3 +1,8 @@
+<!--
+  - SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+
 ## [7.0.1](https://github.com/nextcloud/contacts/compare/v7.0.0...v7.0.1) (2025-02-26)
 
 
