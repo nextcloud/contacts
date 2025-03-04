@@ -45,6 +45,7 @@
     "Teams" : "團隊",
     "Create a new team" : "建立新團隊",
     "Open the contacts app settings" : "開啟通訊錄應用程式設定",
+    "_Shared with {num} entity_::_Shared with {num} entities_" : ["與 {num} 個實體分享"],
     "Copied" : "已複製",
     "Cannot copy" : "無法複製",
     "Copy link" : "複製連結",
