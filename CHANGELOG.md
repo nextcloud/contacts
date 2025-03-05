@@ -1,3 +1,12 @@
+## [7.0.3](https://github.com/nextcloud/contacts/compare/v7.0.2...v7.0.3) (2025-03-05)
+
+
+### Bug Fixes
+
+* **release:** Prevent double build/upload ([39a7fa9](https://github.com/nextcloud/contacts/commit/39a7fa9e3d4abd7a1fa91e770a9d8d93c19b2ca9))
+
+
+
 ## [7.0.2](https://github.com/nextcloud/contacts/compare/v7.0.1...v7.0.2) (2025-03-04)
 
 
