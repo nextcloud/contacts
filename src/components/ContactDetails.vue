@@ -252,6 +252,20 @@
 					<!-- properties iteration -->
 					<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
 
+					<!-- Special handling for lifeEvents -->
+					<div v-if="name === 'lifeEvents'" class="life-events-group">
+						<ContactDetailsProperty v-for="(property, index) in properties"
+							:key="`${index}-${contact.key}-${property.name}`"
+							:is-first-property="index===0"
+							:is-last-property="index === properties.length - 1"
+							:property="property"
+							:contact="contact"
+							:local-contact="localContact"
+							:contacts="contacts"
+							:bus="bus"
+							:is-read-only="isReadOnly" />
+					</div>
+
 					<div v-for="(properties, name) in groupedProperties"
 						:key="name">
 						<ContactDetailsProperty v-for="(property, index) in properties"
@@ -356,18 +370,18 @@ import ICAL from 'ical.js'
 import { getSVG } from '@shortcm/qr-image/lib/svg'
 import mitt from 'mitt'
 import {
-	NcActions as Actions,
+	isMobile,
 	NcActionButton as ActionButton,
 	NcActionLink as ActionLink,
+	NcActions as Actions,
 	NcAppContentDetails as AppContentDetails,
-	NcEmptyContent as EmptyContent,
-	NcModal as Modal,
-	NcSelect,
-	NcLoadingIcon as IconLoading,
 	NcButton,
-	NcRelatedResourcesPanel,
-	isMobile,
+	NcEmptyContent as EmptyContent,
 	NcEmptyContent,
+	NcLoadingIcon as IconLoading,
+	NcModal as Modal,
+	NcRelatedResourcesPanel,
+	NcSelect,
 } from '@nextcloud/vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import IconDownload from 'vue-material-design-icons/Download.vue'
@@ -572,6 +586,15 @@ export default {
 				.reduce((list, property) => {
 					// If there is no component to display this prop, ignore it
 					if (!this.canDisplay(property)) {
+						return list
+					}
+
+					// Group bday and deathdate together under 'lifeEvents'
+					if (property.name === 'bday' || property.name === 'deathdate') {
+						if (!list.lifeEvents) {
+							list.lifeEvents = []
+						}
+						list.lifeEvents.push(property)
 						return list
 					}
 
