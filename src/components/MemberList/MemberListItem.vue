@@ -345,5 +345,6 @@ export default {
 .members-list-item {
 	user-select: none;
 	box-sizing: border-box;
+	page-break-inside: avoid;
 }
 </style>
