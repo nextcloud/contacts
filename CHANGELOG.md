@@ -1,3 +1,13 @@
+## [7.0.4](https://github.com/nextcloud/contacts/compare/v7.0.3...v7.0.4) (2025-03-13)
+
+
+### Bug Fixes
+
+* **deps:** Fix npm audit ([4263426](https://github.com/nextcloud/contacts/commit/42634266d0c298a03fef24bd00c53326bbe5e84f))
+* fix team members colum layout in chromium based browsers ([b2a3496](https://github.com/nextcloud/contacts/commit/b2a3496e91285ef8d48858655aa392df51757fa7))
+
+
+
 ## [7.0.3](https://github.com/nextcloud/contacts/compare/v7.0.2...v7.0.3) (2025-03-05)
 
 
