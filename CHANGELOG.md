@@ -1,3 +1,6 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
 # [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0-beta.Z) (2025-01-09)
 
 
