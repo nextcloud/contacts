@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.4 – 2025-03-13
+### Fixed
+- Fix team members colum layout in chromium based browsers
+
 ## 6.0.3 – 2025-02-12
 ### Fixed
 - Make circle members visible again by moving them out of the modal
