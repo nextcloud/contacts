@@ -1,3 +1,6 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
 ## [7.0.4](https://github.com/nextcloud/contacts/compare/v7.0.3...v7.0.4) (2025-03-13)
 
 
