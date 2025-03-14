@@ -142,6 +142,7 @@ export default {
 	data() {
 		return {
 			helperText: null,
+			valueValid: false,
 		}
 	},
 
@@ -202,9 +203,11 @@ export default {
 	watch: {
 		isReadOnly(newValue) {
 			if (newValue && this.propName === 'email') {
-				// Reset shown value to last stored (reset if invalid value)
-				this.localValue = this.value
-				this.helperText = null
+				// If value invalid restore saved valid value
+				if (!this.valueValid) {
+					this.localValue = this.value
+					this.helperText = null
+				}
 			}
 		},
 	},
@@ -214,23 +217,16 @@ export default {
 	},
 
 	methods: {
-		updateEmailValue(e) {
-			// Remove all spaces from email
-			if (e.includes(' ')) {
-				this.localValue = e.replaceAll(' ', '')
-				return
-			}
-
-			// TODO: provide method to get native input in NcTextField
-			this.helperText = this.$refs.email.$refs.inputField.$refs.input.validationMessage || null
-			if (this.helperText !== null) {
-				return
-			}
-
-			// If email valid or empty store
-			if (validateEmail(this.localValue) || this.localValue === '') {
+		updateEmailValue() {
+			// If email valid or empty
+			this.valueValid = validateEmail(this.localValue) || this.localValue === ''
+			if (this.valueValid) {
+				this.helperText = null
+				this.disableError = true
 				this.updateValue(this.localValue)
+				return
 			}
+			this.helperText = this.$refs.email.$refs.inputField.$refs.input.validationMessage || null
 		},
 
 		/**
