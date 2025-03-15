@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<div v-if="propModel" class="property property--multiple-text" role="group">
+	<div v-if="propModel" class="property property--multiple-text" role="group" aria-live="polite" :aria-label="propModel.readableName">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:property="property"

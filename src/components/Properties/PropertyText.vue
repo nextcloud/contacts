@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<div v-if="propModel && showProperty" class="property" role="group">
+	<div v-if="propModel && showProperty" class="property" role="group" aria-live="polite" :aria-label="propModel.readableName">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:property="property"
@@ -14,12 +14,12 @@
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName" />
 
-		<div class="property__row" role="rowgroup">
-			<div class="property__label" role="rowheader">
+		<div class="property__row">
+			<div class="property__label">
 				<!-- read-only type -->
-				<span v-if="isReadOnly && propModel.options">
+				<label v-if="isReadOnly && propModel.options" :for="bindId">
 					{{ (localType && localType.name) || '' }}
-				</span>
+				</label>
 
 				<!-- type selector -->
 				<NcSelect v-else-if="!isReadOnly && propModel.options"
@@ -35,18 +35,18 @@
 					@input="updateType" />
 
 				<!-- if we do not support any type on our model but one is set anyway -->
-				<span v-else-if="selectType">
+				<label v-else-if="selectType" :for="bindId">
 					{{ selectType.name }}
-				</span>
+				</label>
 
 				<!-- no options, empty space -->
-				<span v-else>
+				<label v-else :for="bindId">
 					{{ propModel.readableName }}
-				</span>
+				</label>
 			</div>
 
 			<!-- textarea for note -->
-			<div class="property__value" role="cell">
+			<div class="property__value">
 				<NcTextArea v-if="propName === 'note'"
 					id="textarea"
 					ref="textarea"
@@ -55,7 +55,8 @@
 					:readonly="isReadOnly"
 					@update:value="updateValueNoDebounce"
 					@mousemove="resizeHeight"
-					@keypress="resizeHeight" />
+					@keypress="resizeHeight"
+					:id="bindId" />
 
 				<!-- OR default to input -->
 				<NcTextField v-else
@@ -65,7 +66,8 @@
 					:class="{'property__value--with-ext': haveExtHandler}"
 					type="text"
 					:placeholder="placeholder"
-					@update:value="updateValue" />
+					@update:value="updateValue"
+					:id="bindId" />
 
 				<!-- external link -->
 				<a v-if="haveExtHandler && isReadOnly"
@@ -77,7 +79,7 @@
 			</div>
 
 			<!-- props actions -->
-			<div class="property__actions" role="cell">
+			<div class="property__actions">
 				<PropertyActions v-if="!isReadOnly"
 					:actions="actions"
 					:property-component="this"
@@ -120,9 +122,16 @@ export default {
 			default: '',
 			required: true,
 		},
+		randomId: {
+			type: String,
+			default: Math.floor(Math.random() * 65535),
+		},
 	},
 
 	computed: {
+		bindId() {
+			return this.propType + '-' + this.randomId
+		},
 		showProperty() {
 			return (this.isReadOnly && this.localValue) || !this.isReadOnly
 		},

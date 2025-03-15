@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<div v-if="propModel" class="property" role="group">
+	<div v-if="propModel" class="property" role="group" aria-live="polite" :aria-label="propModel.readableName">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:property="property"
@@ -14,8 +14,8 @@
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName" />
 
-		<div class="property__row" role="rowgroup">
-			<div class="property__label" role="rowheader">
+		<div class="property__row">
+			<div class="property__label">
 				<!-- type selector -->
 				<NcSelect v-if="propModel.options"
 					v-model="localType"
@@ -28,17 +28,17 @@
 					@input="updateType" />
 
 				<!-- if we do not support any type on our model but one is set anyway -->
-				<span v-else-if="selectType">
+				<label v-else-if="selectType" :for="bindId">
 					{{ selectType.name }}
-				</span>
+				</label>
 
 				<!-- no options, empty space -->
-				<span v-else>
+				<label v-else :for="bindId">
 					{{ propModel.readableName }}
-				</span>
+				</label>
 			</div>
 
-			<div class="property__value" role="cell">
+			<div class="property__value">
 				<!-- Real input where the picker shows -->
 				<DateTimePicker v-if="!isReadOnly"
 					:value="vcardTimeLocalValue.toJSDate()"
@@ -49,7 +49,8 @@
 					:type="inputType"
 					:readonly="isReadOnly"
 					:formatter="dateFormat"
-					@change="debounceUpdateValue" />
+					@change="debounceUpdateValue" 
+					:id="bindId" />
 
 				<input v-else
 					:readonly="true"
@@ -57,7 +58,7 @@
 			</div>
 
 			<!-- props actions -->
-			<div class="property__actions" role="cell">
+			<div class="property__actions">
 				<PropertyActions v-if="!isReadOnly"
 					:actions="actions"
 					:property-component="this"
@@ -99,6 +100,10 @@ export default {
 			default: '',
 			required: true,
 		},
+		randomId: {
+			type: String,
+			default: Math.floor(Math.random() * 65535),
+		},
 	},
 
 	data() {
@@ -139,6 +144,9 @@ export default {
 				return new ICAL.VCardTime.fromDateAndOrTimeString(this.localValue)
 			}
 			return this.localValue
+		},
+		bindId() {
+			return this.propType + '-' + this.randomId
 		},
 	},
 
