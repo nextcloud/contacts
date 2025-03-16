@@ -590,7 +590,7 @@ export default {
 					}
 
 					// Group bday and deathdate together under 'lifeEvents'
-					if (property.name === 'bday' || property.name === 'deathdate') {
+					if (property.name === 'bday' || property.name === 'deathdate' || property.name === 'anniversary') {
 						if (!list.lifeEvents) {
 							list.lifeEvents = []
 						}
