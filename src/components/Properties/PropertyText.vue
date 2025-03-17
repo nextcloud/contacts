@@ -57,6 +57,22 @@
 					@mousemove="resizeHeight"
 					@keypress="resizeHeight" />
 
+				<!-- email with validation-->
+				<NcTextField v-else-if="propName === 'email'"
+					ref="email"
+					:class="{'property__value--with-ext': haveExtHandler}"
+					autocapitalize="none"
+					autocomplete="email"
+					:inputmode="inputmode"
+					:readonly="isReadOnly"
+					:error="!!helperText && !isReadonly"
+					:helper-text="!helperText || isReadonly ? '' : helperText"
+					label-outside
+					:placeholder="placeholder"
+					:value.sync="localValue"
+					type="email"
+					@update:value="updateEmailValue" />
+
 				<!-- OR default to input -->
 				<NcTextField v-else
 					:value.sync="localValue"
@@ -90,10 +106,11 @@
 <script>
 import { NcSelect, NcTextArea, NcTextField } from '@nextcloud/vue'
 import debounce from 'debounce'
-import PropertyMixin from '../../mixins/PropertyMixin.js'
-import PropertyTitle from './PropertyTitle.vue'
-import PropertyActions from './PropertyActions.vue'
+import isEmail from 'validator/lib/isEmail'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
+import PropertyActions from './PropertyActions.vue'
+import PropertyTitle from './PropertyTitle.vue'
 
 export default {
 	name: 'PropertyText',
@@ -120,6 +137,13 @@ export default {
 			default: '',
 			required: true,
 		},
+	},
+
+	data() {
+		return {
+			helperText: null,
+			valueValid: false,
+		}
 	},
 
 	computed: {
@@ -176,11 +200,34 @@ export default {
 		},
 	},
 
+	watch: {
+		isReadOnly(newValue) {
+			if (newValue && this.propName === 'email') {
+				// If value invalid restore saved valid value
+				if (!this.valueValid) {
+					this.localValue = this.value
+					this.helperText = null
+				}
+			}
+		},
+	},
+
 	mounted() {
 		this.resizeHeight()
 	},
 
 	methods: {
+		updateEmailValue() {
+			// If email valid or empty
+			this.valueValid = this.localValue === '' || isEmail(this.localValue)
+			if (this.valueValid) {
+				this.helperText = null
+				this.updateValue(this.localValue)
+				return
+			}
+			this.helperText = this.$refs.email.$refs.inputField.$refs.input.validationMessage || null
+		},
+
 		/**
 		 * Watch textarea resize and update the gridSize accordingly
 		 */
