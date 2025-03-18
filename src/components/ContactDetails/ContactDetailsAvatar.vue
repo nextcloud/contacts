@@ -322,6 +322,10 @@ export default {
 				return 'image/webp'
 			}
 
+			if (nextcloudMajorVersion >= 32 && hex.slice(8, 24) === '6674797061766966') {
+				return 'image/avif'
+			}
+
 			switch (hex.slice(0, 8)) {
 			case '89504E47':
 				return 'image/png'
