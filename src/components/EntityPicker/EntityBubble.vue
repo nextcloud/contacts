@@ -7,7 +7,7 @@
 		:margin="0"
 		:size="22"
 		:display-name="label">
-		<template #title>
+		<template #name>
 			<a href="#"
 				:title="t('contacts', 'Remove {type}', { type })"
 				class="entity-picker__bubble-delete icon-close"
@@ -90,5 +90,4 @@ export default {
 		}
 	}
 }
-
 </style>
