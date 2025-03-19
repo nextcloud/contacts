@@ -42,28 +42,31 @@ use OCP\AppFramework\Utility\ITimeFactory;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use ChristophWurst\Nextcloud\Testing\TestCase;
+use OCA\DAV\Db\PropertyMapper;
 
 class SocialApiServiceTest extends TestCase {
 	private SocialApiService $service;
 
-	/** @var CompositeSocialProvider|MockObject */
+	/** @var CompositeSocialProvider&MockObject */
 	private $socialProvider;
-	/** @var IManager|MockObject */
+	/** @var IManager&MockObject */
 	private $manager;
-	/** @var IConfig|MockObject */
+	/** @var IConfig&MockObject */
 	private $config;
-	/** @var IClientService|MockObject */
+	/** @var IClientService&MockObject */
 	private $clientService;
-	/** @var IL10N|MockObject	*/
+	/** @var IL10N&MockObject	*/
 	private $l10n;
-	/** @var IURLGenerator|MockObject	*/
+	/** @var IURLGenerator&MockObject	*/
 	private $urlGen;
-	/** @var CardDavBackend|MockObject */
+	/** @var CardDavBackend&MockObject */
 	private $davBackend;
-	/** @var ITimeFactory|MockObject */
+	/** @var ITimeFactory&MockObject */
 	private $timeFactory;
-	/** @var ImageResizer|MockObject */
+	/** @var ImageResizer&MockObject */
 	private $imageResizer;
+	/** @var PropertyMapper&MockObject */
+	private $propertyMapper;
 
 	public function allSocialProfileProviders(): array {
 		$body = "the body";
@@ -130,6 +133,7 @@ class SocialApiServiceTest extends TestCase {
 		$this->davBackend = $this->createMock(CardDavBackend::class);
 		$this->timeFactory = $this->createMock(ITimeFactory::class);
 		$this->imageResizer = $this->createMock(ImageResizer::class);
+		$this->propertyMapper = $this->createMock(PropertyMapper::class);
 		$this->service = new SocialApiService(
 			$this->socialProvider,
 			$this->manager,
@@ -139,7 +143,8 @@ class SocialApiServiceTest extends TestCase {
 			$this->urlGen,
 			$this->davBackend,
 			$this->timeFactory,
-			$this->imageResizer
+			$this->imageResizer,
+			$this->propertyMapper,
 		);
 	}
 
