@@ -10,6 +10,7 @@ OC.L10N.register(
     "Loading …" : "Yn llwytho …",
     "Rename" : "Ailenwi",
     "Delete" : "Dileu",
+    "_Shared with {num} entity_::_Shared with {num} entities_" : ["Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid"],
     "Copied" : "Copïwyd",
     "Copy link" : "Copïo dolen",
     "Download" : "Llwytho i lawr",

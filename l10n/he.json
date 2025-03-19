@@ -100,6 +100,7 @@
     "_{count} error_::_{count} errors_" : ["{count} שגיאה","{count} שגיאה","{count} שגיאות"],
     "Close" : "סגירה",
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["איש קשר מיובא לתוך {addressbook}","%n אנשי קשר מיובאים לתוך {addressbook}","%n אנשי קשר מיובאים לתוך {addressbook}"],
+    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["הסתיים ייבוא של איש קשר לתוך {addressbook}","הסתיים ייבוא של %n אנשי קשר לתוך {addressbook}","הסתיים ייבוא של %n אנשי קשר לתוך {addressbook}"],
     "Import" : "ייבוא",
     "Not grouped" : "לא מקובץ",
     "Recently contacted" : "נוצר קשר לאחרונה",
