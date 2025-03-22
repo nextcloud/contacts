@@ -168,7 +168,7 @@ export default {
 
 	&__subtitle {
 		display: flex;
-		gap: 4px;
+		gap: var(--default-grid-baseline);
 
 		&__subject {
 			line-height: 130%;
