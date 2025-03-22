@@ -132,7 +132,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .addressbook-shares__list {
-	margin-left: -8px;
+	margin-left: calc(var(--default-grid-baseline) * -2);
 	width: 282px;
 }
 </style>

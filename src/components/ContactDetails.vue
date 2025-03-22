@@ -1044,8 +1044,8 @@ export default {
 .contact-details-wrapper {
 	display: inline;
 	align-items: flex-start;
-	padding-bottom: 20px;
-	gap: 15px;
+	padding-bottom: calc(var(--default-grid-baseline) * 5);
+	gap: calc(var(--default-grid-baseline) * 4);
 	float: left;
 }
 @media only screen and (max-width: 600px) {

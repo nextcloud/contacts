@@ -91,8 +91,8 @@ h3 {
 }
 
 .property {
-	margin-top: 12px;
-	margin-bottom: 6px;
+	margin-top: calc(var(--default-grid-baseline) * 3);
+	margin-bottom: calc(var(--default-grid-baseline) * 1.5);
 	display: flex;
 	align-items: center;
 

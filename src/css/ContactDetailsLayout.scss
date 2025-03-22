@@ -2,11 +2,11 @@
  * SPDX-FileCopyrightText: 2023 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
- 
+
 $contact-details-label-max-width: 200px;
 $contact-details-value-max-width: 300px;
 $contact-details-row-gap: 15px;
 
 .quick-action {
-	margin-right: 5px;
+	margin-right: var(--default-grid-baseline);
 }

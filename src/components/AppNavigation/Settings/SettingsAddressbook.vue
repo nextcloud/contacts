@@ -337,7 +337,7 @@ export default {
 	align-items: center;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	padding: 5px 0;
+	padding: var(--default-grid-baseline) 0;
 
 	> .addressbook__content {
 		+ a,
@@ -372,13 +372,13 @@ export default {
 	}
 
 	&__count {
-		margin-left: 2px;
+		margin-left: calc(var(--default-grid-baseline) * 0.5);
 		font-size: smaller;
 		color: var(--color-text-lighter);
 	}
 
 	&__count:not(:last-child) {
-		margin-right: 5px;
+		margin-right: var(--default-grid-baseline);
 	}
 
 	&__share,
@@ -413,6 +413,6 @@ export default {
 }
 
 .addressbook-shares {
-	padding-top: 10px;
+	padding-top: calc(var(--default-grid-baseline) * 2);
 }
 </style>
