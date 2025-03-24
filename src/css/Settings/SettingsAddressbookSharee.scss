@@ -4,18 +4,18 @@
  */
 
 .addressbook-sharee {
-	padding: 0 5px;
+	padding: 0 var(--default-grid-baseline);
 	display: inline-flex;
 	align-items: center;
 	width: 100%;
-	
+
 	.icon {
-		margin-right: 5px;
+		margin-right: var(--default-grid-baseline);
 		opacity: 0.2;
 		width: 16px;
 		height: 16px;
 		display: inline-block;
-		margin-bottom: 2px;
+		margin-bottom: calc(var(--default-grid-baseline) / 2);
 		&.icon-loading-small {
 			opacity: 1;
 		}
@@ -39,16 +39,16 @@
 		align-items: center;
 		flex-shrink: 0;
 		height: 20px;
-		
+
 		.icon-delete {
 			display: inline-block;
 			width: 20px;
 			height: 20px;
 			opacity: 0.4;
-			margin-bottom: 2px;
-			margin-left: 4px;
+			margin-bottom: calc(var(--default-grid-baseline) / 2);
+			margin-left: var(--default-grid-baseline);
 		}
-		
+
 		// loading state
 		&--disabled {
 			opacity: .2 !important;
