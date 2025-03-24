@@ -47,6 +47,7 @@ export default {
 
 	methods: {
 		deleteProperty() {
+			console.log('going to delete property');
 			this.$emit('delete')
 		},
 	},
