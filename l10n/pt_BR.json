@@ -34,6 +34,7 @@
     "Collapse groups" : "Recolher grupos",
     "Show all teams" : "Mostrar todas as equipes",
     "Collapse teams" : "Recolher equipes",
+    "Group name cannot be empty" : "O nome do grupo não pode ser vazio",
     "This group already exists" : "Este grupo já existe",
     "An error occurred while creating the group" : "Ocorreu um erro ao criar o grupo",
     "This team already exists" : "Essa equipe já existe",
