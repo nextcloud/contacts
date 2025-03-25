@@ -105,6 +105,7 @@ OC.L10N.register(
     "Confirm" : "Patvirtinti",
     "Cancel" : "Atsisakyti",
     "Add more info" : "Pridėti daugiau informacijos",
+    "More fields" : "Daugiau laukų",
     "Please select a valid format" : "Pasirinkite tinkamą formatą",
     "Invalid image" : "Netinkamas paveikslas",
     "Error cropping picture" : "Klaida apkerpant nuotrauką",
