@@ -29,6 +29,7 @@ OC.L10N.register(
     "Save" : "Salvesta",
     "Description" : "Kirjeldus",
     "Settings" : "Settings",
+    "Confirm" : "Kinnita",
     "Cancel" : "Loobu",
     "Invalid image" : "Vigane pilt",
     "Delete picture" : "Kustuta pilt",
