@@ -10,7 +10,7 @@
 		</div>
 
 		<h3 class="property__value">
-			{{ readableName }}
+			{{ displayName }}
 		</h3>
 
 		<div class="property__actions">
@@ -69,6 +69,15 @@ export default {
 		bus: {
 			type: Object,
 			required: false,
+		},
+	},
+	computed: {
+		displayName() {
+			if (this.property.name === 'bday' || this.property.name === 'deathdate' || this.property.name === 'anniversary') {
+				return this.t('contacts', 'Personal dates')
+			}
+
+			return this.readableName
 		},
 	},
 	methods: {
