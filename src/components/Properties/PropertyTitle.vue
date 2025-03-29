@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<div class="property property--title">
+	<div class="property property--title" role="heading">
 		<div class="property__label">
 			<PropertyTitleIcon :icon="icon" />
 		</div>
