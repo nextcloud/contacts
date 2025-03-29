@@ -158,7 +158,7 @@ OC.L10N.register(
     "Media shares with you" : "A mídia compartilha com você",
     "Talk conversations with you" : "Converse com você",
     "Calendar events with you" : "Eventos da agenda com você",
-    "Deck cards with you" : "Cartas de baralho com você",
+    "Deck cards with you" : "Cartões de Deck com você",
     "No shared items with this contact" : "Nenhum item compartilhado com este contato",
     "Search contacts …" : "Procurar contatos...",
     "Add to {group}" : "Adicionar a {group}",
