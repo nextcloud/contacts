@@ -61,7 +61,7 @@ OC.L10N.register(
     "{addressbookname} (Disabled)" : "{addressbookname} (desativado)",
     "Download" : "Baixar",
     "Show" : "Show",
-    "Unshare from me" : "Cancelar o compartilhamento comigo",
+    "Unshare from me" : "Descompartilhar comigo",
     "_%n contact_::_%n contacts_" : ["%n contato","%n contatos","%n contatos"],
     "_%n group_::_%n groups_" : ["%n grupo","%n grupos","%n grupos"],
     "Share with users or groups" : "Compartilhar com usuários ou grupos",
