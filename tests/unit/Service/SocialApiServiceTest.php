@@ -8,11 +8,11 @@
 namespace OCA\Contacts\Service;
 
 use ChristophWurst\Nextcloud\Testing\TestCase;
-use OCA\Contacts\Service\Social\CompositeSocialProvider;
 
+use OCA\Contacts\Service\Social\CompositeSocialProvider;
 use OCA\Contacts\Service\Social\ISocialProvider;
-use OCA\DAV\CardDAV\CardDavBackend;
-use OCA\DAV\Db\PropertyMapper;
+use OCA\DAV\CardDAV\ContactsManager;
+
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\Contacts\IManager;
@@ -23,9 +23,10 @@ use OCP\IAddressBook;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
-
 use OCP\Util;
+
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Container\ContainerInterface;
 
 class SocialApiServiceTest extends TestCase {
 	private SocialApiService $service;
@@ -42,14 +43,12 @@ class SocialApiServiceTest extends TestCase {
 	private $l10n;
 	/** @var IURLGenerator&MockObject */
 	private $urlGen;
-	/** @var CardDavBackend&MockObject */
-	private $davBackend;
 	/** @var ITimeFactory&MockObject */
 	private $timeFactory;
 	/** @var ImageResizer&MockObject */
 	private $imageResizer;
-	/** @var PropertyMapper&MockObject */
-	private $propertyMapper;
+	/** @var ContainerInterface&MockObject */
+	private $container;
 
 	public function allSocialProfileProviders(): array {
 		$body = 'the body';
@@ -113,21 +112,22 @@ class SocialApiServiceTest extends TestCase {
 		$this->clientService = $this->createMock(IClientService::class);
 		$this->l10n = $this->createMock(IL10N::class);
 		$this->urlGen = $this->createMock(IURLGenerator::class);
-		$this->davBackend = $this->createMock(CardDavBackend::class);
 		$this->timeFactory = $this->createMock(ITimeFactory::class);
 		$this->imageResizer = $this->createMock(ImageResizer::class);
-		$this->propertyMapper = $this->createMock(PropertyMapper::class);
+		$this->container = $this->createMock(ContainerInterface::class);
+		$this->container
+			->method('get')
+			->willReturn($this->createMock(ContactsManager::class));
 		$this->service = new SocialApiService(
 			$this->socialProvider,
+			$this->container,
 			$this->manager,
 			$this->config,
 			$this->clientService,
 			$this->l10n,
 			$this->urlGen,
-			$this->davBackend,
 			$this->timeFactory,
 			$this->imageResizer,
-			$this->propertyMapper,
 		);
 	}
 
