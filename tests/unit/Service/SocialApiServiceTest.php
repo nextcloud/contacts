@@ -127,17 +127,16 @@ class SocialApiServiceTest extends TestCase {
 		$this->clientService = $this->createMock(IClientService::class);
 		$this->l10n = $this->createMock(IL10N::class);
 		$this->urlGen = $this->createMock(IURLGenerator::class);
-		$this->davBackend = $this->createMock(CardDavBackend::class);
 		$this->timeFactory = $this->createMock(ITimeFactory::class);
 		$this->imageResizer = $this->createMock(ImageResizer::class);
 		$this->service = new SocialApiService(
 			$this->socialProvider,
+			$this->container,
 			$this->manager,
 			$this->config,
 			$this->clientService,
 			$this->l10n,
 			$this->urlGen,
-			$this->davBackend,
 			$this->timeFactory,
 			$this->imageResizer
 		);

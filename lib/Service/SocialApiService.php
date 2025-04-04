@@ -28,8 +28,6 @@ namespace OCA\Contacts\Service;
 
 use OCA\Contacts\AppInfo\Application;
 use OCA\Contacts\Service\Social\CompositeSocialProvider;
-
-use OCA\DAV\CardDAV\CardDavBackend;
 use OCA\DAV\CardDAV\ContactsManager;
 
 use OCP\AppFramework\Http;
@@ -41,6 +39,7 @@ use OCP\IAddressBook;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
+use Psr\Container\ContainerInterface;
 
 class SocialApiService {
 	private $appName;
@@ -272,7 +271,6 @@ class SocialApiService {
 		$manager = $this->manager;
 		$coma = new ContactsManager($this->davBackend, $this->l10n);
 		$coma->setupContactsProvider($manager, $userId, $this->urlGen);
-		$addressBooks = $manager->getUserAddressBooks();
 		return $this->getAddressBook($searchBookId, $manager) !== null;
 	}
 
