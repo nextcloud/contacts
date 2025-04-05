@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<div v-if="propModel" class="property">
+	<div v-if="propModel" class="property" role="group">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:property="property"
@@ -14,8 +14,8 @@
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName" />
 
-		<div class="property__row">
-			<div class="property__label">
+		<div class="property__row" role="rowgroup">
+			<div class="property__label" role="rowheader">
 				<!-- type selector -->
 				<NcSelect v-if="propModel.options"
 					v-model="localType"
@@ -38,7 +38,7 @@
 				</span>
 			</div>
 
-			<div class="property__value">
+			<div class="property__value" role="cell">
 				<!-- Real input where the picker shows -->
 				<DateTimePicker v-if="!isReadOnly"
 					:value="vcardTimeLocalValue.toJSDate()"
@@ -57,7 +57,7 @@
 			</div>
 
 			<!-- props actions -->
-			<div class="property__actions">
+			<div class="property__actions" role="cell">
 				<PropertyActions v-if="!isReadOnly"
 					:actions="actions"
 					:property-component="this"
