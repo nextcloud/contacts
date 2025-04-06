@@ -11,7 +11,7 @@ OC.L10N.register(
     "Loading …" : "Notiek ielāde ...",
     "General settings" : "Vispārīgie iestatījumi",
     "Rename" : "Pārsaukt",
-    "Send email" : "Sūtīt e-pastu",
+    "Send email" : "Sūtīt e-pasta ziņojumu",
     "Delete" : "Dzēst",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Kopīgots ar {num} entītijām","Kopīgots ar {num} entītiju","Kopīgots ar {num} entītijām"],
     "Copied" : "Nokopēts",
