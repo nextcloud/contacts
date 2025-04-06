@@ -201,6 +201,7 @@ OC.L10N.register(
     "Add contact in group" : "Додати контакт до групи",
     "None" : "Відсутній",
     "Select option" : "Виберіть",
+    "Personal dates" : "Приватні дати",
     "Add property of this type" : "Додайте властивості такого типу",
     "Unable to create the contact." : "Неможливо створити контакт.",
     "Contact not found" : "Контакт не знайдено",

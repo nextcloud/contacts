@@ -201,6 +201,7 @@ OC.L10N.register(
     "Add contact in group" : "إضافة جهة اتصال في المجموعة",
     "None" : "لا شيء",
     "Select option" : "حدّد خياراً",
+    "Personal dates" : "تواريخ شخصية",
     "Add property of this type" : "إضافة خاصية من هذا النوع ",
     "Unable to create the contact." : "تعذّر إنشاء جهة الاتصال",
     "Contact not found" : "جهة الاتصال غير موجودة",
