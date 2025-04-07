@@ -201,6 +201,7 @@ OC.L10N.register(
     "Add contact in group" : "Lägg till kontakt i grupp",
     "None" : "Ingen",
     "Select option" : "Välj alternativ",
+    "Personal dates" : "Personliga datum",
     "Add property of this type" : "Lägg till egenskap av denna typ",
     "Unable to create the contact." : "Kunde inte skapa kontakten.",
     "Contact not found" : "Kontakt hittades inte",
