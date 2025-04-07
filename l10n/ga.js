@@ -201,6 +201,7 @@ OC.L10N.register(
     "Add contact in group" : "Cuir teagmhálaí leis sa ghrúpa",
     "None" : "Dada",
     "Select option" : "Roghnaigh rogha",
+    "Personal dates" : "Dátaí pearsanta",
     "Add property of this type" : "Cuir airí den chineál seo leis",
     "Unable to create the contact." : "Ní féidir an teagmhálaí a chruthú.",
     "Contact not found" : "Teagmháil gan aimsiú",
