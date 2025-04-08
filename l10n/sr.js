@@ -201,6 +201,7 @@ OC.L10N.register(
     "Add contact in group" : "Додај контакт у групу",
     "None" : "Ништа",
     "Select option" : "Изаберите опцију",
+    "Personal dates" : "Лични датуми",
     "Add property of this type" : "Додај особину овог типа",
     "Unable to create the contact." : "Не могу да направим контакт.",
     "Contact not found" : "Контакт није нађен",
