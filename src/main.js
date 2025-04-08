@@ -44,6 +44,11 @@ Vue.prototype.logger = logger
 Vue.prototype.OC = window.OC
 Vue.prototype.OCA = window.OCA
 
+// enable devtools in development mode
+if (import.meta.env.MODE === 'development') {
+	Vue.config.devtools = true
+}
+
 // Force redirect if rewrite enabled but accessed through index.php
 if (window.location.pathname.split('/')[1] === 'index.php'
 	&& window.OC.config.modRewriteWorking) {
