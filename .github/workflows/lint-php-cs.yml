@@ -31,10 +31,10 @@ jobs:
         id: versions
         uses: icewind1991/nextcloud-version-matrix@58becf3b4bb6dc6cef677b15e2fd8e7d48c0908f # v1.3.1
 
-      - name: Set up php${{ steps.versions.outputs.php-available }}
+      - name: Set up php${{ steps.versions.outputs.php-min }}
         uses: shivammathur/setup-php@9e72090525849c5e82e596468b86eb55e9cc5401 # 2.32.0
         with:
-          php-version: ${{ steps.versions.outputs.php-available }}
+          php-version: ${{ steps.versions.outputs.php-min }}
           extensions: bz2, ctype, curl, dom, fileinfo, gd, iconv, intl, json, libxml, mbstring, openssl, pcntl, posix, session, simplexml, xmlreader, xmlwriter, zip, zlib, sqlite, pdo_sqlite
           coverage: none
           ini-file: development
@@ -44,6 +44,5 @@ jobs:
       - name: Install dependencies
         run: composer i
       
-      #TODO: remove force when php8.4 is supported https://github.com/PHP-CS-Fixer/PHP-CS-Fixer?tab=readme-ov-file#supported-php-versions
       - name: Lint
-        run: composer run cs:check:force || ( echo 'Please run `composer run cs:fix` to format your code' && exit 1 )
+        run: composer run cs:check || ( echo 'Please run `composer run cs:fix` to format your code' && exit 1 )
