@@ -24,6 +24,7 @@ OC.L10N.register(
     "Name" : "Anv",
     "Title" : "Titl",
     "Company" : "Embregerez",
+    "View profile" : "Gwelet ar profil",
     "Search contacts …" : "Klask darempred ...",
     "No results" : "Disoc'h ebet",
     "Pending" : "O c'hortoz",
