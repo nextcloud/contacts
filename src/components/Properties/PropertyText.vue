@@ -65,8 +65,8 @@
 					autocomplete="email"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
-					:error="!!helperText && !isReadonly"
-					:helper-text="!helperText || isReadonly ? '' : helperText"
+					:error="!isEmailValid"
+					:helper-text="!emailHelpText || isReadonly ? '' : emailHelpText"
 					label-outside
 					:placeholder="placeholder"
 					:value.sync="localValue"
@@ -106,7 +106,7 @@
 <script>
 import { NcSelect, NcTextArea, NcTextField } from '@nextcloud/vue'
 import debounce from 'debounce'
-import isEmail from 'validator/lib/isEmail'
+import isEmail from 'validator/lib/isEmail.js'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 import PropertyMixin from '../../mixins/PropertyMixin.js'
 import PropertyActions from './PropertyActions.vue'
@@ -125,6 +125,7 @@ export default {
 	},
 
 	mixins: [PropertyMixin],
+	inject: ['sharedState'],
 
 	props: {
 		propName: {
@@ -141,8 +142,8 @@ export default {
 
 	data() {
 		return {
-			helperText: null,
-			valueValid: false,
+			emailHelpText: null,
+			isEmailValid: true,
 		}
 	},
 
@@ -200,18 +201,6 @@ export default {
 		},
 	},
 
-	watch: {
-		isReadOnly(newValue) {
-			if (newValue && this.propName === 'email') {
-				// If value invalid restore saved valid value
-				if (!this.valueValid) {
-					this.localValue = this.value
-					this.helperText = null
-				}
-			}
-		},
-	},
-
 	mounted() {
 		this.resizeHeight()
 	},
@@ -219,13 +208,15 @@ export default {
 	methods: {
 		updateEmailValue() {
 			// If email valid or empty
-			this.valueValid = this.localValue === '' || isEmail(this.localValue)
-			if (this.valueValid) {
-				this.helperText = null
+			this.isEmailValid = this.localValue === '' || isEmail(this.localValue)
+			if (this.isEmailValid) {
+				this.emailHelpText = null
 				this.updateValue(this.localValue)
+				this.sharedState.validEmail = true
 				return
 			}
-			this.helperText = this.$refs.email.$refs.inputField.$refs.input.validationMessage || null
+			this.sharedState.validEmail = false
+			this.emailHelpText = this.$refs.email.$refs.inputField.$refs.input.validationMessage || null
 		},
 
 		/**
