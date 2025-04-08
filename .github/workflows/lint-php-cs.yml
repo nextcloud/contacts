@@ -43,6 +43,7 @@ jobs:
 
       - name: Install dependencies
         run: composer i
-
+      
+      #TODO: remove force when php8.4 is supported https://github.com/PHP-CS-Fixer/PHP-CS-Fixer?tab=readme-ov-file#supported-php-versions
       - name: Lint
-        run: composer run cs:check || ( echo 'Please run `composer run cs:fix` to format your code' && exit 1 )
+        run: composer run cs:check:force || ( echo 'Please run `composer run cs:fix` to format your code' && exit 1 )
