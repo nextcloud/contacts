@@ -1,5 +1,14 @@
-# Changelog
-All notable changes to this project will be documented in this file.
+## [7.0.5](https://github.com/nextcloud/contacts/compare/v7.0.4...v7.0.5) (2025-04-08)
+
+
+### Bug Fixes
+
+* **deps:** Fix npm audit ([e3dcd21](https://github.com/nextcloud/contacts/commit/e3dcd2190dcca60521b4d78eee6a2f7e2ba6dc87))
+* Instantiation of ContactsManager ([cbf9d6b](https://github.com/nextcloud/contacts/commit/cbf9d6b28136da4884be0ea443637a66299461f3))
+* **lint-php-cs:** use minimum available php version ([af48f18](https://github.com/nextcloud/contacts/commit/af48f18fc914c40739bffed87328a586baab720c))
+* Slot name from title to name for UserBubble ([dd443bd](https://github.com/nextcloud/contacts/commit/dd443bd023680c605d17a1f85ffe33e26d421459))
+
+
 
 ## [7.0.4](https://github.com/nextcloud/contacts/compare/v7.0.3...v7.0.4) (2025-03-13)
 
