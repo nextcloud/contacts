@@ -201,6 +201,7 @@ OC.L10N.register(
     "Add contact in group" : "Add contact in group",
     "None" : "None",
     "Select option" : "Select option",
+    "Personal dates" : "Personal dates",
     "Add property of this type" : "Add property of this type",
     "Unable to create the contact." : "Unable to create the contact.",
     "Contact not found" : "Contact not found",
