@@ -322,11 +322,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "團隊中出現錯誤。請檢查主控台以取得更多詳細資訊。",
     "Unable to create team {circleName}" : "無法建立團隊 {circleName}",
     "Unable to delete team {circleId}" : "無法刪除團隊 {circleId}",
-    "Unable to delete contact" : "無法刪除聯絡人",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "會員資格必須由版主確認/接受（需要開放）",
-    "Manager" : "經理",
-    "Members" : "成員",
-    "Manage members" : "管理成員",
-    "Show team details" : "顯示團隊詳細資訊"
+    "Unable to delete contact" : "無法刪除聯絡人"
 },
 "nplurals=1; plural=0;");

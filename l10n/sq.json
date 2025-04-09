@@ -110,7 +110,6 @@
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "Unknown" : "I/E panjohur",
-    "Manager" : "Manaxher/e"
+    "Unknown" : "I/E panjohur"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

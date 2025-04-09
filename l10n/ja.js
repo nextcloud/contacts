@@ -321,11 +321,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "チームでエラーが発生しました。詳細については、コンソールを確認してください。",
     "Unable to create team {circleName}" : "チーム{circleName}を作成できません",
     "Unable to delete team {circleId}" : "チーム {circleId} を削除できません",
-    "Unable to delete contact" : "連絡先を削除できません。",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "メンバーシップは、モデレーターにより確認/承認が必要です（開く要求）",
-    "Manager" : "マネージャー",
-    "Members" : "メンバー",
-    "Manage members" : "メンバーの管理",
-    "Show team details" : "チームの詳細を表示"
+    "Unable to delete contact" : "連絡先を削除できません。"
 },
 "nplurals=1; plural=0;");

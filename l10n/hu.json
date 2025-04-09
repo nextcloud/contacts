@@ -317,11 +317,6 @@
     "An error has occurred in team(s). Check the console for more details." : "Hiba történt a csapat(ok)ban. További részletekért nézze meg a konzolt.",
     "Unable to create team {circleName}" : "A(z) {circleName} csapat nem hozható létre",
     "Unable to delete team {circleId}" : "A(z) {circleId} csapat nem törölhető",
-    "Unable to delete contact" : "A névjegy törlése sikertelen",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "A tagságokat meg kell erősítenie/el kell fogadnia egy moderátornak (Nyílt beállítás szükséges)",
-    "Manager" : "Vezető",
-    "Members" : "Tagok",
-    "Manage members" : "Tagok kezelése",
-    "Show team details" : "Csapat részleteinek megjelenítése"
+    "Unable to delete contact" : "A névjegy törlése sikertelen"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

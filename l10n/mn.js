@@ -84,7 +84,6 @@ OC.L10N.register(
     "Female" : "Эмэгтэй",
     "Male" : "Эрэгтэй",
     "Unknown" : "Үл танигдах зүйл",
-    "Time zone" : "Цагийн бүс",
-    "Manager" : "Менежер"
+    "Time zone" : "Цагийн бүс"
 },
 "nplurals=2; plural=(n != 1);");

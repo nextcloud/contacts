@@ -220,8 +220,6 @@ OC.L10N.register(
     "Time zone" : "Zona orària",
     "Spoken languages" : "Limbas faeddadas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["no at fatu a lèghere {failed} ","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Sa partetzipatzione depet èssere cunfirmada/atzetada dae una persone chi moderat (Open est rechèdidu)",
-    "Manager" : "Responsàbile"
+    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu"
 },
 "nplurals=2; plural=(n != 1);");

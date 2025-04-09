@@ -319,11 +319,6 @@
     "An error has occurred in team(s). Check the console for more details." : "S'ha produït un error al(s) equip(s). Consulteu la consola per obtenir més detalls.",
     "Unable to create team {circleName}" : "No es pot crear l'equip {circleName}",
     "Unable to delete team {circleId}" : "No es pot suprimir l'equip {circleId}",
-    "Unable to delete contact" : "No s'ha pogut suprimir el contacte",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Un moderador ha de confirmar o acceptar les incorporacions (cal que sigui un cercle obert)",
-    "Manager" : "Gerent",
-    "Members" : "Membres",
-    "Manage members" : "Administrar els membres",
-    "Show team details" : "Mostra els detalls de l'equip"
+    "Unable to delete contact" : "No s'ha pogut suprimir el contacte"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

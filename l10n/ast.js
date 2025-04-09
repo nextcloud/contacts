@@ -155,7 +155,6 @@ OC.L10N.register(
     "Spoken languages" : "Llingües falaes",
     "Unable to create team {circleName}" : "Nun ye posible crear l'equipu «{circleName}»",
     "Unable to delete team {circleId}" : "Nun ye posible crear l'equipu «{circled}»",
-    "Unable to delete contact" : "Nun ye posible desaniciar el contautu",
-    "Members" : "Miiembros"
+    "Unable to delete contact" : "Nun ye posible desaniciar el contautu"
 },
 "nplurals=2; plural=(n != 1);");
