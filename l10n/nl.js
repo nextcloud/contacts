@@ -277,11 +277,6 @@ OC.L10N.register(
     "Time zone" : "Tijdzone",
     "Spoken languages" : "Gesproken talen",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contactpersoon werd niet ingelezen","{failed} contactpersonen werden niet ingelezen"],
-    "Unable to delete contact" : "Kan contactpersoon niet verwijderen",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Lidmaatschap moet worden bevestigd/geaccepteerd door een Moderator (vereist Open)",
-    "Manager" : "Manager",
-    "Members" : "Leden",
-    "Manage members" : "Leden beheren",
-    "Show team details" : "Team details weergeven"
+    "Unable to delete contact" : "Kan contactpersoon niet verwijderen"
 },
 "nplurals=2; plural=(n != 1);");

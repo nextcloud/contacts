@@ -234,8 +234,6 @@ OC.L10N.register(
     "Time zone" : "Временска зона",
     "Spoken languages" : "Говорни јазици",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} еден контакт неможе да се прочита","{failed} контакти неможат да се прочитат"],
-    "Unable to delete contact" : "Неможе да се избрише контакт",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : " Членството мора предходно да се одобри/прифати од модератор (барањето е отворено)",
-    "Manager" : "Менаџер"
+    "Unable to delete contact" : "Неможе да се избрише контакт"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

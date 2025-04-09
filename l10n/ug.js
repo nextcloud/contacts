@@ -305,9 +305,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "گۇرۇپپا (لار) دا خاتالىق كۆرۈلدى. تېخىمۇ كۆپ تەپسىلاتلارنى كونترول سۇپىسىدىن تەكشۈرۈڭ.",
     "Unable to create team {circleName}" : "گۇرۇپپا {circleName} create قۇرالمىدى",
     "Unable to delete team {circleId}" : "گۇرۇپپا {circleId} ئۆچۈرگىلى بولمىدى",
-    "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى",
-    "Members" : "ئەزالار",
-    "Manage members" : "ئەزالارنى باشقۇرۇش",
-    "Show team details" : "گۇرۇپپا تەپسىلاتلىرىنى كۆرسەت"
+    "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى"
 },
 "nplurals=2; plural=(n != 1);");

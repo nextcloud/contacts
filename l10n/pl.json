@@ -318,11 +318,6 @@
     "An error has occurred in team(s). Check the console for more details." : "Wystąpił błąd w zespole(-łach). Sprawdź konsolę po więcej informacji.",
     "Unable to create team {circleName}" : "Nie można utworzyć zespołu {circleName}",
     "Unable to delete team {circleId}" : "Nie można usunąć zespołu {circleId}",
-    "Unable to delete contact" : "Nie można usunąć kontaktu",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Członkostwo musi być potwierdzone/zaakceptowane przez moderatora (wymaga otwarcia)",
-    "Manager" : "Menadżer",
-    "Members" : "Członkowie",
-    "Manage members" : "Zarządzaj członkami",
-    "Show team details" : "Pokaż szczegóły zespołu"
+    "Unable to delete contact" : "Nie można usunąć kontaktu"
 },"pluralForm" :"nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);"
 }

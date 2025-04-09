@@ -90,7 +90,6 @@ OC.L10N.register(
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
     "Male" : "მამრობითი",
-    "Unknown" : "ამოუცნობი",
-    "Manager" : "მენეჯერი"
+    "Unknown" : "ამოუცნობი"
 },
 "nplurals=2; plural=(n!=1);");

@@ -248,8 +248,6 @@
     "Time zone" : "시간대",
     "Spoken languages" : "사용 언어",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["연락처 {failed}개를 읽을 수 없음"],
-    "Unable to delete contact" : "연락처를 삭제할 수 없음",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "중재자가 회원 가입을 확인 및 수락해야 합니다. (요청 가능)",
-    "Manager" : "관리자"
+    "Unable to delete contact" : "연락처를 삭제할 수 없음"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

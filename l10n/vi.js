@@ -172,7 +172,6 @@ OC.L10N.register(
     "Unknown" : "Không xác định",
     "Spoken languages" : "Ngôn ngữ có thể nói",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} liên hệ không thể đọc được"],
-    "Unable to delete contact" : "Không thể xoá liên hệ",
-    "Manager" : "Trưởng phòng"
+    "Unable to delete contact" : "Không thể xoá liên hệ"
 },
 "nplurals=1; plural=0;");

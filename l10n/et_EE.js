@@ -149,9 +149,6 @@ OC.L10N.register(
     "Gender" : "Sugu",
     "Female" : "Naine",
     "Male" : "Mees",
-    "Unknown" : "Teadmata",
-    "Manager" : "Juht",
-    "Members" : "Liikmed",
-    "Manage members" : "Halda liikmeid"
+    "Unknown" : "Teadmata"
 },
 "nplurals=2; plural=(n != 1);");

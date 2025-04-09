@@ -321,11 +321,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "En fejl er opstået i team(s). Kontroller konsollen for flere detaljer.",
     "Unable to create team {circleName}" : "Kan ikke oprette team {circleName}",
     "Unable to delete team {circleId}" : "Kan ikke slette team {circleId}",
-    "Unable to delete contact" : "Kan ikke slette kontakten",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Medlemskaber skal bekræftes/accepteres af en moderator (kræver åbent)",
-    "Manager" : "Leder",
-    "Members" : "Medlemmer",
-    "Manage members" : "Styr medlemmer",
-    "Show team details" : "Vis teamdetaljer"
+    "Unable to delete contact" : "Kan ikke slette kontakten"
 },
 "nplurals=2; plural=(n != 1);");

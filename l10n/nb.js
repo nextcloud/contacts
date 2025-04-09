@@ -312,11 +312,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Det har oppstått en feil i laget(ene). Sjekk konsollen hvis du vil ha mer informasjon.",
     "Unable to create team {circleName}" : "Ikke i stand til å opprette lag {circleName}",
     "Unable to delete team {circleId}" : "Ikke i stand til å slette lag {circleId}",
-    "Unable to delete contact" : "Ikke i stand til å slette kontakt",
-    "Memberships must be confirmed/accepted by a Moderator (requires Open)" : "Medlemskap må bekreftes/aksepteres av en moderator (krever åpen)",
-    "Manager" : "Sjef",
-    "Members" : "Medlemmer",
-    "Manage members" : "Administrer medlemmer",
-    "Show team details" : "Vis lagdetaljer"
+    "Unable to delete contact" : "Ikke i stand til å slette kontakt"
 },
 "nplurals=2; plural=(n != 1);");
