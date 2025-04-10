@@ -19,7 +19,7 @@ OC.L10N.register(
     "Password protection" : "Gwareziñ gant ur ger-tremen",
     "Save" : "Enrollañ",
     "Description" : "Deskrivadur",
-    "Cancel" : "Arrest",
+    "Cancel" : "Nullañ",
     "Invalid image" : "N'eo ket aotreet ar skeudenn",
     "Name" : "Anv",
     "Title" : "Titl",
