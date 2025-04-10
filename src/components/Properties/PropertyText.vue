@@ -57,6 +57,22 @@
 					@mousemove="resizeHeight"
 					@keypress="resizeHeight" />
 
+				<!-- email with validation-->
+				<NcTextField v-else-if="propName === 'email'"
+					ref="email"
+					:class="{'property__value--with-ext': haveExtHandler}"
+					autocapitalize="none"
+					autocomplete="email"
+					:inputmode="inputmode"
+					:readonly="isReadOnly"
+					:error="!isEmailValid"
+					:helper-text="!emailHelpText || isReadonly ? '' : emailHelpText"
+					label-outside
+					:placeholder="placeholder"
+					:value.sync="localValue"
+					type="email"
+					@update:value="updateEmailValue" />
+
 				<!-- OR default to input -->
 				<NcTextField v-else
 					:value.sync="localValue"
@@ -90,10 +106,11 @@
 <script>
 import { NcSelect, NcTextArea, NcTextField } from '@nextcloud/vue'
 import debounce from 'debounce'
-import PropertyMixin from '../../mixins/PropertyMixin.js'
-import PropertyTitle from './PropertyTitle.vue'
-import PropertyActions from './PropertyActions.vue'
+import isEmail from 'validator/lib/isEmail.js'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
+import PropertyActions from './PropertyActions.vue'
+import PropertyTitle from './PropertyTitle.vue'
 
 export default {
 	name: 'PropertyText',
@@ -108,6 +125,7 @@ export default {
 	},
 
 	mixins: [PropertyMixin],
+	inject: ['sharedState'],
 
 	props: {
 		propName: {
@@ -120,6 +138,13 @@ export default {
 			default: '',
 			required: true,
 		},
+	},
+
+	data() {
+		return {
+			emailHelpText: null,
+			isEmailValid: true,
+		}
 	},
 
 	computed: {
@@ -181,6 +206,19 @@ export default {
 	},
 
 	methods: {
+		updateEmailValue() {
+			// If email valid or empty
+			this.isEmailValid = this.localValue === '' || isEmail(this.localValue)
+			if (this.isEmailValid) {
+				this.emailHelpText = null
+				this.updateValue(this.localValue)
+				this.sharedState.validEmail = true
+				return
+			}
+			this.sharedState.validEmail = false
+			this.emailHelpText = this.$refs.email.$refs.inputField.$refs.input.validationMessage || null
+		},
+
 		/**
 		 * Watch textarea resize and update the gridSize accordingly
 		 */

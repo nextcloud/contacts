@@ -25,7 +25,7 @@ $property-row-gap: $contact-details-row-gap;
 	&__row {
 		margin-top: var(--default-grid-baseline);
 		display: flex;
-		align-items: center;
+		align-items: flex-start;
 		gap: $property-row-gap;
 
 		// fix default margin from server stylesheet causing slight misalignment

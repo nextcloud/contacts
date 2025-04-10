@@ -154,7 +154,7 @@
 						</NcButton>
 						<NcButton v-else
 							type="secondary"
-							:disabled="loadingUpdate"
+							:disabled="loadingUpdate || !isDataValid"
 							@click="onSave">
 							<template #icon>
 								<IconLoading v-if="loadingUpdate" :size="20" />
@@ -411,6 +411,7 @@ import PropertySelect from './Properties/PropertySelect.vue'
 import { generateUrl } from '@nextcloud/router'
 import { loadState } from '@nextcloud/initial-state'
 import isTalkEnabled from '../services/isTalkEnabled.js'
+import Vue from 'vue'
 
 const { profileEnabled } = loadState('user_status', 'profileEnabled', false)
 
@@ -452,6 +453,11 @@ export default {
 	},
 
 	mixins: [isMobile],
+	provide() {
+		return {
+			sharedState: this.sharedState,
+		}
+	},
 
 	props: {
 		contactKey: {
@@ -507,6 +513,7 @@ export default {
 			filesPanelHasError: false,
 			talkPanelHasError: false,
 			calendarPanelHasError: false,
+			sharedState: Vue.observable({ validEmail: true }),
 
 		}
 	},
@@ -531,6 +538,10 @@ export default {
 		 */
 		isReadOnly() {
 			return this.addressbookIsReadOnly || !this.editMode
+		},
+
+		isDataValid() {
+			return this.sharedState.validEmail
 		},
 
 		/**
