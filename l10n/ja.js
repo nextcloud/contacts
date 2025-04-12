@@ -201,6 +201,7 @@ OC.L10N.register(
     "Add contact in group" : "グループに連絡先を追加",
     "None" : "なし",
     "Select option" : "オプションを選択",
+    "Personal dates" : "個人的な日程",
     "Add property of this type" : "このタイプのプロパティーを追加",
     "Unable to create the contact." : "連絡先を追加できません。",
     "Contact not found" : "連絡先がありません",
