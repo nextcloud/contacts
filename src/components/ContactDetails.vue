@@ -273,13 +273,14 @@
 					duplication, we created a fake propModel and property with our own options here) -->
 				<PropertySelect :prop-model="addressbookModel"
 					:options="addressbooksOptions"
-					:value.sync="addressbook"
+					:value="addressbook"
 					:is-first-property="true"
 					:is-last-property="true"
 					:property="{}"
 					:hide-actions="true"
 					:is-read-only="isReadOnly"
-					class="property--addressbooks property--last" />
+					class="property--addressbooks property--last"
+					@update:value="updateAddressbook" />
 
 				<!-- Groups always visible -->
 				<PropertyGroups :prop-model="groupsModel"
@@ -477,6 +478,7 @@ export default {
 			pickedAddressbook: null,
 			editMode: false,
 			newGroupsValue: [],
+			newAddressBook: null,
 			contactDetailsSelector: '.contact-details',
 			excludeFromBirthdayKey: 'x-nc-exclude-from-birthday-calendar',
 
@@ -601,19 +603,10 @@ export default {
 		/**
 		 * Usable addressbook object linked to the local contact
 		 *
-		 * @param {string} [addressbookId] set the addressbook id
 		 * @return {string}
 		 */
-		addressbook: {
-			get() {
-				return this.contact.addressbook.id
-			},
-			set(addressbookId) {
-				// Only move when the address book actually changed to prevent a conflict.
-				if (this.contact.addressbook.id !== addressbookId) {
-					this.moveContactToAddressbook(addressbookId)
-				}
-			},
+		addressbook() {
+			return this.contact.addressbook.id
 		},
 
 		/**
@@ -760,6 +753,9 @@ export default {
 	methods: {
 		updateGroups(value) {
 			this.newGroupsValue = value
+		},
+		updateAddressbook(value) {
+			this.newAddressBook = value
 		},
 		/**
 		 * Send the local clone of contact to the store
@@ -1030,6 +1026,10 @@ export default {
 					contact: this.contact,
 				})
 				await this.updateContact()
+				if (this.newAddressBook && this.newAddressBook !== this.contact.addressbook.id) {
+					this.moveContactToAddressbook(this.newAddressBook)
+					this.newAddressBook = null
+				}
 				this.editMode = false
 			} catch (error) {
 				showError(t('contacts', 'Unable to update contact'))
