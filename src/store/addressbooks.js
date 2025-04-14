@@ -526,9 +526,12 @@ const actions = {
 				throw error
 			}
 		}
+		const groups = contact.groups
 		await context.commit('deleteContactFromAddressbook', contact)
+		await context.commit('removeContactFromGroups', contact)
 		await context.commit('updateContactAddressbook', { contact, addressbook })
 		await context.commit('addContactToAddressbook', contact)
+		await context.commit('addContactToGroups', { contact, groupNames: groups })
 		return contact
 	},
 
