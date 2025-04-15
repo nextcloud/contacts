@@ -69,7 +69,7 @@
     "pinia": "^2.3.1",
     "string-natural-compare": "^3.0.1",
     "uuid": "^11.1.0",
-    "validator": "^13.12.0",
+    "validator": "^13.15.0",
     "vue": "~2.7.16",
     "vue-click-outside": "^1.1.0",
     "vue-cropperjs": "^4.2.0",
