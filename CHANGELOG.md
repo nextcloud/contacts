@@ -1,3 +1,12 @@
+## [7.0.6](https://github.com/nextcloud/contacts/compare/v7.0.5...v7.0.6) (2025-04-15)
+
+
+### Bug Fixes
+
+* update store state after addressbook change ([fd53190](https://github.com/nextcloud/contacts/commit/fd531905f81e823a3709664ecff669b95e61ce0e))
+
+
+
 ## [7.0.5](https://github.com/nextcloud/contacts/compare/v7.0.4...v7.0.5) (2025-04-08)
 
 
