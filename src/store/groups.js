@@ -156,6 +156,18 @@ const actions = {
 	},
 
 	/**
+	 * Add contact to multiple groups
+	 *
+	 * @param {object} context the store mutations
+	 * @param {object} data destructuring object
+	 * @param {string} data.groupNames group names
+	 * @param {Contact} data.contact the contact
+	 */
+	addContactToGroups(context, { groupNames, contact }) {
+		context.commit('addContactToGroups', { groupNames, contact })
+	},
+
+	/**
 	 * Remove contact from its groups
 	 *
 	 * @param {object} context the store mutations

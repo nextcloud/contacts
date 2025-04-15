@@ -188,10 +188,8 @@ const mutations = {
 
 			// Update sorted contacts list, replace at exact same position
 			const index = state.sortedContacts.findIndex(search => search.key === oldKey)
-			state.sortedContacts[index] = {
-				key: newContact.key,
-				value: newContact[state.orderKey],
-			}
+			Vue.set(state.sortedContacts[index], 'key', newContact.key)
+			Vue.set(state.sortedContacts[index], 'value', newContact[state.orderKey])
 		} else {
 			console.error('Error while replacing the addressbook of following contact', contact)
 		}
