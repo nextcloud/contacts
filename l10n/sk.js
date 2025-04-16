@@ -201,6 +201,7 @@ OC.L10N.register(
     "Add contact in group" : "Pridať kontakt do skupiny",
     "None" : "Žiadne",
     "Select option" : "Vyberte možnosť",
+    "Personal dates" : "Osobné termíny",
     "Add property of this type" : "Pridať vlastnosť tohto typu",
     "Unable to create the contact." : "Nepodarilo sa vytvoriť kontakt.",
     "Contact not found" : "Kontakt sa nenašiel",
