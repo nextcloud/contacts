@@ -73,8 +73,10 @@ export default {
 	},
 	computed: {
 		displayName() {
-			if (this.property.name === 'bday' || this.property.name === 'deathdate' || this.property.name === 'anniversary') {
-				return this.t('contacts', 'Personal dates')
+			if (this.property) {
+				if (this.property.name === 'bday' || this.property.name === 'deathdate' || this.property.name === 'anniversary') {
+					return this.t('contacts', 'Personal dates')
+				}
 			}
 
 			return this.readableName
