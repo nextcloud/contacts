@@ -201,6 +201,7 @@ OC.L10N.register(
     "Add contact in group" : "Kişiyi şu gruba ekle",
     "None" : "Yok",
     "Select option" : "Seçeneği seçin",
+    "Personal dates" : "Kişisel tarihler",
     "Add property of this type" : "Bu türün özniteliğini ekle",
     "Unable to create the contact." : "Kişi eklenemedi.",
     "Contact not found" : "Kişi bulunamadı",
