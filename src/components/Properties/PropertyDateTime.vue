@@ -69,12 +69,11 @@
 
 <script>
 import debounce from 'debounce'
-import moment from 'moment'
+import moment from '@nextcloud/moment'
 import {
 	NcDateTimePicker as DateTimePicker,
 	NcSelect,
 } from '@nextcloud/vue'
-import { getLocale } from '@nextcloud/l10n'
 import ICAL from 'ical.js'
 
 import PropertyMixin from '../../mixins/PropertyMixin.js'
@@ -110,8 +109,6 @@ export default {
 					? 'date'
 					: 'time',
 
-			// locale and lang data
-			locale: 'en',
 			firstDay: window.firstDay === 0 ? 7 : window.firstDay, // provided by nextcloud
 			lang: {
 				days: window.dayNamesShort, // provided by nextcloud
@@ -267,20 +264,17 @@ export default {
 			// No hour, no minute and no second = date only
 			if (datetimeData.hour === null && datetimeData.minute === null && datetimeData.second === null) {
 				datetime = moment(datetimeData)
-					.locale(this.locale)
 					.format('LL')
 
 			// No year, no month and no day = time only
 			} else if (datetimeData.year === null && datetimeData.month === null && datetimeData.day === null) {
 				datetime = moment(datetimeData)
-					.locale(this.locale)
 					.format('LTS')
 			}
 
 			// Use input type to properly format our data
 			if (datetime === '') {
 				datetime = moment(datetimeData)
-					.locale(this.locale)
 					.format(
 						this.inputType === 'datetime'
 							? 'llll' // date & time display
