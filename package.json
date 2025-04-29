@@ -37,7 +37,7 @@
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
-    "@mattkrick/sanitize-svg": "^0.4.0",
+    "@mattkrick/sanitize-svg": "^0.4.1",
     "@mdi/svg": "^7.4.47",
     "@nextcloud/auth": "^2.4.0",
     "@nextcloud/axios": "^2.5.1",
