@@ -52,7 +52,7 @@
     "@nextcloud/moment": "^1.3.2",
     "@nextcloud/paths": "^2.2.1",
     "@nextcloud/router": "^3.0.1",
-    "@nextcloud/sharing": "^0.2.3",
+    "@nextcloud/sharing": "^0.2.4",
     "@nextcloud/vue": "^8.25.1",
     "@shortcm/qr-image": "^9.0.4",
     "@vueuse/core": "^11.3.0",
