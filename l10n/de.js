@@ -95,7 +95,7 @@ OC.L10N.register(
     "Unique password …" : "Eindeutiges Passwort …",
     "Save" : "Speichern",
     "Change unique password" : "Eindeutiges Passwort ändern",
-    "Failed to save password. Please try again later." : "Das Passwort konnte nicht gespeichert werden. Bitte versuchen Sie es später erneut.",
+    "Failed to save password. Please try again later." : "Das Passwort konnte nicht gespeichert werden. Bitte später erneut versuchen.",
     "There is no description for this team" : "Es gibt keine Beschreibung für dieses Team.",
     "Enter a description for the team" : "Beschreibung für das Team eingeben",
     "An error happened during description sync" : "Es ist ein Fehler bei der Synchronisation der Beschreibung aufgetreten",
