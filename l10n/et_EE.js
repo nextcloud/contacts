@@ -307,7 +307,7 @@ OC.L10N.register(
     "Relative" : "Sugulane",
     "Friend" : "Sõber",
     "Colleague" : "Kolleeg",
-    "Assistant" : "Assistent",
+    "Assistant" : "Abiline",
     "Related contacts" : "Seotud kontaktid",
     "Agent" : "Esindaja / agent",
     "Emergency" : "Kontakt eriolukorras",
