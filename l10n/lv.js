@@ -52,7 +52,7 @@ OC.L10N.register(
     "Edit" : "Labot",
     "Generate QR Code" : "Izveidot kvadrātkodu",
     "Search contacts …" : "Meklēt kontaktpersonu",
-    "No results" : "Nav rezultātu",
+    "No results" : "Nav iznākuma",
     "Pending" : "Gaida",
     "Select Date" : "Izvēlieties datumu",
     "Select type" : "Izvēlieties tipu",
