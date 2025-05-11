@@ -266,7 +266,7 @@ OC.L10N.register(
     "Notes" : "Anotações",
     "Website" : "Website",
     "Location" : "Localização",
-    "Federated Cloud ID" : "ID da Nuvem Federada",
+    "Federated Cloud ID" : "ID de Nuvem Federada",
     "Home" : "Casa",
     "Work" : "Trabalho",
     "Other" : "Outro",
