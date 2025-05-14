@@ -16,7 +16,7 @@
 					{{ addressbook.dav.description }}
 				</div>
 				<!-- counters -->
-				<div class="addressbook__count-wrapper">
+				<div v-if="addressbook.enabled" class="addressbook__count-wrapper">
 					<span class="addressbook__count">{{ n('contacts', '%n contact', '%n contacts', contactsCount) }}</span>
 					<span class="addressbook__count">- {{ n('contacts', '%n group', '%n groups', groupsCount) }}</span>
 				</div>
