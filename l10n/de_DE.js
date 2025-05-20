@@ -24,7 +24,7 @@ OC.L10N.register(
     "Delete team" : "Team löschen",
     "Contacts settings" : "Kontakte-Einstellungen",
     "General settings" : "Allgemeine Einstellungen",
-    "Update avatars from social media" : "Aktualisiere Avatare aus sozialen Medien",
+    "Update avatars from social media" : "Avatare aus sozialen Medien aktualisieren",
     "(refreshed once per week)" : "(Einmal wöchentlich aktualisiert)",
     "Address books" : "Adressbücher",
     "Rename" : "Umbenennen",
