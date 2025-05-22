@@ -277,7 +277,9 @@
 							:local-contact="localContact"
 							:contacts="contacts"
 							:bus="bus"
-							:is-read-only="isReadOnly" />
+							:is-read-only="isReadOnly" 
+							:contactFormEditMode="editMode"
+							@setContactFormEditModeEvent:value="setEditMode" />
 					</div>
 				</section>
 
@@ -1069,6 +1071,9 @@ export default {
 				showError(t('contacts', 'Unable to update contact'))
 			}
 		},
+		setEditMode(value) {
+			this.editMode = value
+		}
 	},
 }
 </script>
