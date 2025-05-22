@@ -14,14 +14,14 @@
 				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView" />
 				<!-- new-contact-button -->
 				<Button v-if="!loadingContacts"
-					type="secondary"
-					:wide="true"
 					:disabled="!defaultAddressbook"
+					type="secondary"
+					wide
 					@click="newContact">
 					<template #icon>
 						<IconAdd :size="20" />
 					</template>
-					{{ t('contacts','New contact') }}
+					{{ isCirclesView ? t('contacts','Add member') : t('contacts','New contact') }}
 				</Button>
 			</div>
 		</RootNavigation>
@@ -76,6 +76,7 @@ import rfcProps from '../models/rfcProps.js'
 
 import client from '../services/cdav.js'
 import isCirclesEnabled from '../services/isCirclesEnabled.js'
+import { emit } from '@nextcloud/event-bus'
 
 import usePrincipalsStore from '../store/principals.js'
 
@@ -276,6 +277,10 @@ export default {
 
 	methods: {
 		async newContact() {
+			if (this.isCirclesView) {
+				emit('contacts:circles:append', this.selectedCircle.id)
+				return
+			}
 			const rev = new ICAL.VCardTime()
 			const contact = new Contact(`
 				BEGIN:VCARD
