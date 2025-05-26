@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<AppContentList class="content-list" data-testid="contacts-list">
+	<AppContentList class="content-list">
 		<NcDialog :open="showDeleteConfirmationDialog"
 			:name="n(
 				'contacts',
@@ -19,8 +19,8 @@
 			<NcNoteCard v-if="readOnlyMultiSelectedCount"
 				type="info"
 				:text="n('contacts',
-					'Please note that {number} contact is read only and will not be deleted',
-					'Please note that {number} contacts are read only and will not be deleted',
+					'Please note that {number} contact is read only and won\'t be deleted',
+					'Please note that {number} contacts are read only and won\'t be deleted',
 					readOnlyMultiSelectedCount,
 					{ number: readOnlyMultiSelectedCount })" />
 		</NcDialog>
@@ -106,6 +106,7 @@ export default {
 			ContactsListItem,
 			query: '',
 			multiSelectedContacts: new Map(),
+			refreshKey: 0, // used to force re-render of the list when search query changes, can be removed in vue3
 			showDeleteConfirmationDialog: false,
 			buttons: [
 				{
