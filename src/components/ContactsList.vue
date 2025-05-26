@@ -16,7 +16,7 @@
 			:data-sources="filteredList"
 			:data-component="ContactsListItem"
 			:estimate-size="68"
-			:extra-props="{reloadBus}" />
+			:extra-props="{reloadBus, onSelectMultiple: onSelectMultiple()}" />
 	</AppContentList>
 </template>
 
@@ -56,6 +56,7 @@ export default {
 		return {
 			ContactsListItem,
 			query: '',
+
 		}
 	},
 
@@ -93,6 +94,14 @@ export default {
 
 	mounted() {
 		this.query = this.searchQuery
+	},
+
+	created() {
+		window.addEventListener('click', this.handleKeyDown)
+	},
+
+	beforeDestroy() {
+		window.removeEventListener('click', this.handleKeyDown)
 	},
 
 	methods: {
@@ -144,6 +153,15 @@ export default {
 				return contact.searchData.toString().toLowerCase().search(this.query.trim().toLowerCase()) !== -1
 			}
 			return true
+		},
+		onSelectMultiple(event) {
+			console.log('selecting multiple', event)
+		},
+		handleKeyDown(event) {
+			// We only want the multiselect action to be triggered on shift click, not opening a new window
+			if (event.shiftKey && event.button === 0) {
+				event.preventDefault()
+			}
 		},
 	},
 }

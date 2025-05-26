@@ -156,6 +156,10 @@ export default {
 				params: { selectedGroup: this.selectedGroup, selectedContact: this.source.key },
 			})
 		},
+		onSelectMultiple() {
+			console.log('clicked inner')
+			this.$emit('select-multiple')
+		},
 	},
 }
 </script>
