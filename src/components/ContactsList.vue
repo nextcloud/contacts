@@ -16,7 +16,7 @@
 			:data-sources="filteredList"
 			:data-component="ContactsListItem"
 			:estimate-size="68"
-			:extra-props="{reloadBus, onSelectMultiple: onSelectMultiple()}" />
+			:extra-props="{reloadBus, onSelectMultipleFromParent: onSelectMultiple }" />
 	</AppContentList>
 </template>
 
@@ -56,7 +56,7 @@ export default {
 		return {
 			ContactsListItem,
 			query: '',
-
+			multiSelectedIndexes: [],
 		}
 	},
 
@@ -68,9 +68,15 @@ export default {
 			return this.$route.params.selectedGroup
 		},
 		filteredList() {
-			return this.list
+			const contactsList = this.list
 				.filter(item => this.matchSearch(this.contacts[item.key]))
 				.map(item => this.contacts[item.key])
+
+			contactsList.forEach((contact, index) => {
+				contact.isMultiSelected = this.multiSelectedIndexes.includes(index)
+			})
+
+			return contactsList
 		},
 	},
 
@@ -94,14 +100,6 @@ export default {
 
 	mounted() {
 		this.query = this.searchQuery
-	},
-
-	created() {
-		window.addEventListener('click', this.handleKeyDown)
-	},
-
-	beforeDestroy() {
-		window.removeEventListener('click', this.handleKeyDown)
 	},
 
 	methods: {
@@ -154,13 +152,11 @@ export default {
 			}
 			return true
 		},
-		onSelectMultiple(event) {
-			console.log('selecting multiple', event)
-		},
-		handleKeyDown(event) {
-			// We only want the multiselect action to be triggered on shift click, not opening a new window
-			if (event.shiftKey && event.button === 0) {
-				event.preventDefault()
+		onSelectMultiple(contact, index) {
+			if (this.multiSelectedIndexes.includes(index)) {
+				this.multiSelectedIndexes = this.multiSelectedIndexes.filter(i => i !== index)
+			} else {
+				this.multiSelectedIndexes.push(index)
 			}
 		},
 	},
