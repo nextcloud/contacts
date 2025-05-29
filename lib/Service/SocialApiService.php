@@ -31,7 +31,7 @@ use OCA\Contacts\Service\Social\CompositeSocialProvider;
 
 use OCA\DAV\CardDAV\CardDavBackend;
 use OCA\DAV\CardDAV\ContactsManager;
-
+use OCA\DAV\Db\PropertyMapper;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Utility\ITimeFactory;
@@ -62,6 +62,8 @@ class SocialApiService {
 	private $timeFactory;
 	/** @var ImageResizer */
 	private $imageResizer;
+	/** @var PropertyMapper */
+	private $propertyMapper;
 
 	public function __construct(
 					CompositeSocialProvider $socialProvider,
@@ -72,7 +74,8 @@ class SocialApiService {
 					IURLGenerator $urlGen,
 					CardDavBackend $davBackend,
 					ITimeFactory $timeFactory,
-					ImageResizer $imageResizer) {
+					ImageResizer $imageResizer,
+					PropertyMapper $propertyMapper) {
 		$this->appName = Application::APP_ID;
 		$this->socialProvider = $socialProvider;
 		$this->manager = $manager;
@@ -83,6 +86,7 @@ class SocialApiService {
 		$this->davBackend = $davBackend;
 		$this->timeFactory = $timeFactory;
 		$this->imageResizer = $imageResizer;
+		$this->propertyMapper = $propertyMapper;
 	}
 
 
@@ -158,7 +162,7 @@ class SocialApiService {
 	 * @param {IManager} the contact manager to load
 	 */
 	protected function registerAddressbooks($userId, IManager $manager) {
-		$coma = new ContactsManager($this->davBackend, $this->l10n);
+		$coma = new ContactsManager($this->davBackend, $this->l10n, $this->propertyMapper);
 		$coma->setupContactsProvider($manager, $userId, $this->urlGen);
 		$this->manager = $manager;
 	}
@@ -270,7 +274,7 @@ class SocialApiService {
 	 */
 	public function existsAddressBook(string $searchBookId, string $userId): bool {
 		$manager = $this->manager;
-		$coma = new ContactsManager($this->davBackend, $this->l10n);
+		$coma = new ContactsManager($this->davBackend, $this->l10n, $this->propertyMapper);
 		$coma->setupContactsProvider($manager, $userId, $this->urlGen);
 		$addressBooks = $manager->getUserAddressBooks();
 		return $this->getAddressBook($searchBookId, $manager) !== null;
@@ -288,7 +292,7 @@ class SocialApiService {
 	public function existsContact(string $searchContactId, string $searchBookId, string $userId): bool {
 		// load address books for the user
 		$manager = $this->manager;
-		$coma = new ContactsManager($this->davBackend, $this->l10n);
+		$coma = new ContactsManager($this->davBackend, $this->l10n, $this->propertyMapper);
 		$coma->setupContactsProvider($manager, $userId, $this->urlGen);
 		$addressBook = $this->getAddressBook($searchBookId, $manager);
 		if ($addressBook == null) {
