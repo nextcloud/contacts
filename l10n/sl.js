@@ -199,6 +199,7 @@ OC.L10N.register(
     "Unable to create the contact." : "Ni mogoče ustvariti stika.",
     "Contact not found" : "Stika ni mogoče najti",
     "Group {group} not found" : "Skupine {group} ni mogoče najti",
+    "Add member" : "Dodaj člana",
     "New contact" : "Nov stik",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} stik je dodan v {name}.","{success} stika sta dodana v {name}.","{success} stiki so dodani v {name}.","{success} stikov je dodanih v {name}."],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Poteka dodajanje {success} stika v {name}","Poteka dodajanje {success} stikov v {name}","Poteka dodajanje {success} stikov v {name}","Poteka dodajanje {success} stikov v {name}"],

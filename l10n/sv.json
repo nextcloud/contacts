@@ -204,6 +204,7 @@
     "Unable to create the contact." : "Kunde inte skapa kontakten.",
     "Contact not found" : "Kontakt hittades inte",
     "Group {group} not found" : "Gruppen {group} hittades inte",
+    "Add member" : "Lägg till medlem",
     "New contact" : "Ny kontakt",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} kontakt tillagd till  {name}","{success} kontakter tillagda till {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Lägger till {success} kontakt till {name}","Lägger till {success} kontakter till {name}"],

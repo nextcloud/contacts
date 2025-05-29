@@ -206,6 +206,7 @@ OC.L10N.register(
     "Unable to create the contact." : "Kişi eklenemedi.",
     "Contact not found" : "Kişi bulunamadı",
     "Group {group} not found" : "{group} grubu bulunamadı",
+    "Add member" : "Üye ekle",
     "New contact" : "Yeni kişi",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} kişi {name} üzerine eklendi","{success} kişi {name} üzerine eklendi"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["{success} kişi {name} üzerine ekleniyor","{success} kişi {name} üzerine ekleniyor"],

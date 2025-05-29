@@ -204,6 +204,7 @@
     "Unable to create the contact." : "未能成功创建联系人。",
     "Contact not found" : "未找到联系人",
     "Group {group} not found" : "未找到群组 {group} ",
+    "Add member" : "添加成员",
     "New contact" : "新建联系人",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} 位联系人已添加到 {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["正在添加 {success} 位联系人到 {name}"],

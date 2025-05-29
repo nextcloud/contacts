@@ -99,6 +99,7 @@ OC.L10N.register(
     "Select option" : "Escolher uma opção",
     "Unable to create the contact." : "Não é possível criar o contacto.",
     "Contact not found" : "Contacto não encontrado",
+    "Add member" : "Adicionar membro",
     "New contact" : "Novo contacto",
     "Close" : "Fechar",
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importar %n contactos para o {addressbook}","Importar %n contactos para o {addressbook}","Importar %n contactos para o {addressbook}"],

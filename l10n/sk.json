@@ -204,6 +204,7 @@
     "Unable to create the contact." : "Nepodarilo sa vytvoriť kontakt.",
     "Contact not found" : "Kontakt sa nenašiel",
     "Group {group} not found" : "Skupina {group} nebola nájdená",
+    "Add member" : "Pridať člena",
     "New contact" : "Nový kontakt",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} kontakt pridaný pre {name}","{success} kontakty pridané pre {name}","{success} kontakty pridané pre {name}","{success} kontakty pridané pre {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Pridanie kontaktu k {name} bolo {success}","Pridanie kontaktov k {name} bolo {success}","Pridanie kontaktov k {name} bolo {success}","Pridanie kontaktov k {name} bolo {success}"],

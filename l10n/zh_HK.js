@@ -206,6 +206,7 @@ OC.L10N.register(
     "Unable to create the contact." : "無法建立聯絡人",
     "Contact not found" : "找不到聯絡人",
     "Group {group} not found" : "找不到群組 {group}",
+    "Add member" : "添加成員",
     "New contact" : "新聯絡人",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} 個聯絡人已新增至 {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["已新增 {success} 個聯絡人至 {name}"],

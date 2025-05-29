@@ -206,6 +206,7 @@ OC.L10N.register(
     "Unable to create the contact." : "Não foi possível criar o contato.",
     "Contact not found" : "Contato não encontrado",
     "Group {group} not found" : "Grupo {group} não encontrado",
+    "Add member" : "Adicionar membro",
     "New contact" : "Novo contato",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} contato adicionado a {name}","{success} contatos adicionados a {name}","{success} contatos adicionados a {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Adicionando {success} contato a {name}","Adicionando {success} contatos a {name}","Adicionando {success} contatos a {name}"],

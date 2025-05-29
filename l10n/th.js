@@ -65,6 +65,7 @@ OC.L10N.register(
     "Pending" : "รอดำเนินการ",
     "None" : "ไม่มี",
     "Select option" : "เลือกตัวเลือก",
+    "Add member" : "เพิ่มสมาชิก",
     "New contact" : "รายชื่อใหม่",
     "Close" : "ปิด",
     "Import" : "นำเข้า",

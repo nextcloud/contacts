@@ -185,6 +185,7 @@ OC.L10N.register(
     "Unable to create the contact." : "Kan contactpersoon niet aanmaken.",
     "Contact not found" : "Contactpersoon niet gevonden",
     "Group {group} not found" : "Groep {group} niet gevonden",
+    "Add member" : "Toevoegen lid",
     "New contact" : "Nieuwe contactpersoon",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} contactpersoon toegevoegd aan {name}","{success} contactpersonen toegevoegd aan {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["{success} contactpersonen aan het toevoegen aan {name}","{success} contactpersonen aan het toevoegen aan {name}"],
