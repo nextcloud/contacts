@@ -33,14 +33,14 @@
 				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView" />
 				<!-- new-contact-button -->
 				<Button v-if="!loadingContacts"
-					type="secondary"
-					:wide="true"
 					:disabled="!defaultAddressbook"
+					type="secondary"
+					wide
 					@click="newContact">
 					<template #icon>
 						<IconAdd :size="20" />
 					</template>
-					{{ t('contacts','New contact') }}
+					{{ isCirclesView ? t('contacts','Add member') : t('contacts','New contact') }}
 				</Button>
 			</div>
 		</RootNavigation>
@@ -95,6 +95,7 @@ import rfcProps from '../models/rfcProps.js'
 
 import client from '../services/cdav.js'
 import isCirclesEnabled from '../services/isCirclesEnabled.js'
+import { emit } from '@nextcloud/event-bus'
 
 export default {
 	name: 'Contacts',
@@ -175,6 +176,11 @@ export default {
 		isChartView() {
 			return !!this.selectedChart
 		},
+
+		isCirclesView() {
+			return !!this.selectedCircle
+		},
+
 		/**
 		 * Are we importing contacts ?
 		 *
@@ -282,6 +288,10 @@ export default {
 
 	methods: {
 		async newContact() {
+			if (this.isCirclesView) {
+				emit('contacts:circles:append', this.selectedCircle.id)
+				return
+			}
 			const rev = new VCardTime()
 			const contact = new Contact(`
 				BEGIN:VCARD
