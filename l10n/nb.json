@@ -200,6 +200,7 @@
     "Unable to create the contact." : "Kontakten kunne ikke opprettes.",
     "Contact not found" : "Kontakten ble ikke funnet",
     "Group {group} not found" : "Fant ikke gruppen {group}",
+    "Add member" : "Legg til et medlem",
     "New contact" : "Ny kontakt",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} kontakt lagt til {name}","{success} kontakter lagt til {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Legger til {success} kontakt til {name}","Legger til {success} kontakter til {name}"],

@@ -36,6 +36,7 @@ OC.L10N.register(
     "No results" : "Үр дүн байхгүй",
     "Pending" : "Хүлээгдэж байгаа",
     "None" : "юу ч үгүй",
+    "Add member" : "Гишүүн нэмэх",
     "New contact" : "Шинэ харилцагч",
     "Close" : "Хаах",
     "Import" : "Импорт",
