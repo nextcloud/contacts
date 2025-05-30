@@ -203,6 +203,7 @@
     "Unable to create the contact." : "Non é posíbel crear o contacto.",
     "Contact not found" : "Non se atopou o contacto",
     "Group {group} not found" : "Non se atopou o grupo {group}",
+    "Add member" : "Engadir membro",
     "New contact" : "Novo contacto",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["Engadiuse {success} contacto a {name}","Engadironse {success} contactos a {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Engadindo {success} contacto a {name}","Engadindo {success} contactos a {name}"],

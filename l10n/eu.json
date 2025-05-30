@@ -202,6 +202,7 @@
     "Unable to create the contact." : "Ezin izan da kontaktua sortu.",
     "Contact not found" : "Kontaktua ez da aurkitu",
     "Group {group} not found" : "Ez da {group} taldea aurkitu",
+    "Add member" : "Gehitu kidea",
     "New contact" : "Kontaktu berria",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} kontaktuak gehitu dira {name}-ra","{success} kontaktuak gehitu dira {name}-ra"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["{success} kontaktuak {name}-ra gehitzen","{success} kontaktuak gehitu dira {name}-ra"],

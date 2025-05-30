@@ -206,6 +206,7 @@ OC.L10N.register(
     "Unable to create the contact." : "تعذّر إنشاء جهة الاتصال",
     "Contact not found" : "جهة الاتصال غير موجودة",
     "Group {group} not found" : "المجموعة {group} غير موجودة",
+    "Add member" : "أضِف عُضْواً",
     "New contact" : "جهة إتصال جديدة",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} أضيفت جهات الاتصال إلى {name}","{success} أضيفت جهة الاتصال إلى {name}","{success} أضيفت جهات الاتصال إلى {name}","{success} أضيفت جهات الاتصال إلى {name}","{success} أضيفت جهات الاتصال إلى {name}","{success} أضيفت جهات الاتصال إلى {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["جار {success} إضافة جهات اتصال إلى {name}","جار {success} إضافة جهة اتصال إلى {name}","جار {success} إضافة جهات اتصال إلى {name}","جار {success} إضافة جهات اتصال إلى {name}","جار {success} إضافة جهات اتصال إلى {name}","جار {success} إضافة جهات اتصال إلى {name}"],

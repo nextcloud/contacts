@@ -104,6 +104,7 @@ OC.L10N.register(
     "Add members" : "Amestar miembros",
     "Pending" : "Pendiente",
     "Unable to create the contact." : "Nun ye posible crear el contautu.",
+    "Add member" : "Amestar un miembru",
     "New contact" : "Contautu nuevu",
     "_{count} error_::_{count} errors_" : ["{count} error","{count} errores"],
     "Close" : "Zarrar",

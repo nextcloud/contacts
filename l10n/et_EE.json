@@ -204,6 +204,7 @@
     "Unable to create the contact." : "Ei õnnestu luua kontakti",
     "Contact not found" : "Kontakti ei leidu",
     "Group {group} not found" : "„{group}“ gruppi ei leidunud",
+    "Add member" : "Lisa liige",
     "New contact" : "Uus kontakt",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} kontakt lisatud kasutajale {name}","{success} kontakti lisatud kasutajale {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Lisan {success} kontakti kasutajale {name}","Lisan {success} kontakti kasutajale {name}"],
