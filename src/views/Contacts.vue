@@ -294,9 +294,16 @@ export default {
 			rev.fromUnixTime(Date.now() / 1000)
 			contact.rev = rev
 
-			// itterate over all properties (filter is not usable on objects and we need the key of the property)
+			// iterate over all properties (filter is not usable on objects and we need the key of the property)
 			const properties = rfcProps.properties
 			for (const name in properties) {
+				// Show cloud ID property if cloud ID exchange capability present
+				// TODO add check for:
+				// 	1. cloud ID exchange invitation capability present ?
+				//	2. is it active ?
+				if(name === 'cloud') {
+					properties[name].default = true
+				}
 				if (properties[name].default) {
 					const defaultData = properties[name].defaultValue
 					let defaultValue = defaultData.value
