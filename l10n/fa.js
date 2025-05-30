@@ -161,6 +161,7 @@ OC.L10N.register(
     "Unable to create the contact." : "ناتوان در ایجاد آشنا.",
     "Contact not found" : "آشنا پیدا نشد",
     "Group {group} not found" : "گروه {group} پیدا نشد",
+    "Add member" : "افزودن عضو",
     "New contact" : "مخاطب جدید",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} contact added to {name}","{success} contacts added to {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Adding {success} contact to {name}","افزودن مخاطبین {success} به {name}"],

@@ -167,6 +167,7 @@ OC.L10N.register(
     "Unable to create the contact." : "Αδυναμία δημιουργίας επαφής.",
     "Contact not found" : "Δεν βρέθηκε η επαφή.",
     "Group {group} not found" : "Η ομάδα {group} δε βρέθηκε",
+    "Add member" : "Προσθήκη μέλους",
     "New contact" : "Νέα επαφή",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["Προστέθηκε {success} επαφή σε {name}","Προστέθηκαν {success} επαφές σε {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Προσθήκη {success} επαφής σε {name}","Προσθήκη {success} επαφών σε {name}"],

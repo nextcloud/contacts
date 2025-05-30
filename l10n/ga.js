@@ -206,6 +206,7 @@ OC.L10N.register(
     "Unable to create the contact." : "Ní féidir an teagmhálaí a chruthú.",
     "Contact not found" : "Teagmháil gan aimsiú",
     "Group {group} not found" : "Grúpa {group} gan aimsiú",
+    "Add member" : "Cuir ball leis",
     "New contact" : "Teagmháil nua",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} teagmhálaí curtha le {name}","{success} teagmhálaithe curtha le {name}","{success} teagmhálaithe curtha le {name}","{success} teagmhálaithe curtha le {name}","{success} teagmhálaithe curtha le {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Ag cur {success} teagmhálaí le {name}","Ag cur {success} teagmhálaithe le {name}","Ag cur {success} teagmhálaithe le {name}","Ag cur {success} teagmhálaithe le {name}","Ag cur {success} teagmhálaithe le {name}"],

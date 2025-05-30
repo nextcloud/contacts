@@ -205,6 +205,7 @@ OC.L10N.register(
     "Unable to create the contact." : "Tókst ekki að búa til tengiliðinn.",
     "Contact not found" : "Tengiliður fannst ekki",
     "Group {group} not found" : "Hópurinn {group} fannst ekki",
+    "Add member" : "Bæta við meðlimi",
     "New contact" : "Nýr tengiliður",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} tengilið bætt við {name}","{success} tengiliðum bætt við {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Bæti {success} tengilið við {name}","Bæti {success} tengiliðum við {name}"],

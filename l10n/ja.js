@@ -206,6 +206,7 @@ OC.L10N.register(
     "Unable to create the contact." : "連絡先を追加できません。",
     "Contact not found" : "連絡先がありません",
     "Group {group} not found" : "グループ {group} が見つかりません",
+    "Add member" : "メンバーの追加",
     "New contact" : "新しい連絡先",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} 件の連絡先を {name} に追加しました"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["{success} 件の連絡先を {name} に追加中"],
