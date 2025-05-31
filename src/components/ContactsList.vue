@@ -16,7 +16,7 @@
 			:data-sources="filteredList"
 			:data-component="ContactsListItem"
 			:estimate-size="68"
-			:extra-props="{reloadBus}" />
+			:extra-props="{reloadBus, onSelectMultipleFromParent: onSelectMultiple }" />
 	</AppContentList>
 </template>
 
@@ -56,6 +56,7 @@ export default {
 		return {
 			ContactsListItem,
 			query: '',
+			multiSelectedIndexes: [],
 		}
 	},
 
@@ -67,9 +68,15 @@ export default {
 			return this.$route.params.selectedGroup
 		},
 		filteredList() {
-			return this.list
+			const contactsList = this.list
 				.filter(item => this.matchSearch(this.contacts[item.key]))
 				.map(item => this.contacts[item.key])
+
+			contactsList.forEach((contact, index) => {
+				contact.isMultiSelected = this.multiSelectedIndexes.includes(index)
+			})
+
+			return contactsList
 		},
 	},
 
@@ -144,6 +151,13 @@ export default {
 				return contact.searchData.toString().toLowerCase().search(this.query.trim().toLowerCase()) !== -1
 			}
 			return true
+		},
+		onSelectMultiple(contact, index) {
+			if (this.multiSelectedIndexes.includes(index)) {
+				this.multiSelectedIndexes = this.multiSelectedIndexes.filter(i => i !== index)
+			} else {
+				this.multiSelectedIndexes.push(index)
+			}
 		},
 	},
 }
