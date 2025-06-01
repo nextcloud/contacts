@@ -10,6 +10,27 @@
 				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
 			</div>
 		</div>
+		<div v-if="isMultiSelecting" class="contacts-list__multiselect-header">
+			<NcButton type="tertiary"
+				:title="n('contacts', 'Unselect {number}', 'Unselect {number}', multiSelectedContacts.size, { number: multiSelectedContacts.size })"
+				:close-after-click="true"
+				@click.prevent="unselectAllMultiSelected">
+				<IconSelect :size="16" />
+			</NcButton>
+			<NcButton type="tertiary"
+				:title="n(
+					'mail',
+					'Delete {number} thread',
+					'Delete {number} threads',
+					multiSelectedContacts.size,
+					{ number: multiSelectedContacts.size }
+				)"
+				:close-after-click="true"
+				@click.prevent="deleteAllMultiSelected">
+				<IconDelete :size="16" />
+			</NcButton>
+		</div>
+
 		<VirtualList ref="scroller"
 			class="contacts-list"
 			data-key="key"
@@ -21,9 +42,11 @@
 </template>
 
 <script>
-import { NcAppContentList as AppContentList } from '@nextcloud/vue'
+import { NcAppContentList as AppContentList, NcButton } from '@nextcloud/vue'
 import ContactsListItem from './ContactsList/ContactsListItem.vue'
 import VirtualList from 'vue-virtual-scroll-list'
+import IconSelect from 'vue-material-design-icons/CloseThick.vue'
+import IconDelete from 'vue-material-design-icons/Delete.vue'
 
 export default {
 	name: 'ContactsList',
@@ -31,6 +54,9 @@ export default {
 	components: {
 		AppContentList,
 		VirtualList,
+		NcButton,
+		IconSelect,
+		IconDelete,
 	},
 
 	props: {
@@ -56,7 +82,8 @@ export default {
 		return {
 			ContactsListItem,
 			query: '',
-			multiSelectedIndexes: [],
+			multiSelectedContacts: new Map(),
+			refreshKey: 0, // used to force re-render of the list when search query changes, can be removed in vue3
 		}
 	},
 
@@ -68,15 +95,22 @@ export default {
 			return this.$route.params.selectedGroup
 		},
 		filteredList() {
+			// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+			this.refreshKey++
 			const contactsList = this.list
 				.filter(item => this.matchSearch(this.contacts[item.key]))
 				.map(item => this.contacts[item.key])
 
 			contactsList.forEach((contact, index) => {
-				contact.isMultiSelected = this.multiSelectedIndexes.includes(index)
+				contact.isMultiSelected = this.multiSelectedContacts.has(index)
 			})
 
 			return contactsList
+		},
+		isMultiSelecting() {
+			// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+			this.refreshKey++
+			return this.multiSelectedContacts.size > 0
 		},
 	},
 
@@ -153,11 +187,21 @@ export default {
 			return true
 		},
 		onSelectMultiple(contact, index) {
-			if (this.multiSelectedIndexes.includes(index)) {
-				this.multiSelectedIndexes = this.multiSelectedIndexes.filter(i => i !== index)
+			if (this.multiSelectedContacts.has(index)) {
+				this.multiSelectedContacts.delete(index)
 			} else {
-				this.multiSelectedIndexes.push(index)
+				this.multiSelectedContacts.set(index, contact)
 			}
+			this.refreshKey++
+		},
+		unselectAllMultiSelected() {
+			this.multiSelectedContacts.clear()
+		},
+		deleteAllMultiSelected() {
+			this.multiSelectedContacts.forEach((contact) => {
+				this.$store.dispatch('deleteContact', { contact })
+			})
+			this.multiSelectedContacts.clear()
 		},
 	},
 }
@@ -187,6 +231,17 @@ export default {
 .content-list {
 	overflow-y: auto;
 	padding: 0 var(--default-grid-baseline);
+}
+
+.contacts-list__multiselect-header {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	background-color: var(--color-main-background-translucent);
+	position: sticky;
+	height: calc(var(--default-grid-baseline) * 12);
+	z-index: 100;
 }
 
 </style>
