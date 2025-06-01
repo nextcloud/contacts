@@ -5,6 +5,17 @@
 
 <template>
 	<AppContentList class="content-list">
+		<NcDialog :open="showDeleteConfirmationDialog"
+			:name="n(
+				'contacts',
+				'Delete {number} contact',
+				'Delete {number} contacts',
+				multiSelectedContacts.size,
+				{ number: multiSelectedContacts.size }
+			)"
+			:message="t('contacts', 'Are you sure to proceed?')"
+			:buttons="buttons" />
+
 		<div class="contacts-list__header">
 			<div class="search-contacts-field">
 				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
@@ -19,14 +30,14 @@
 			</NcButton>
 			<NcButton type="tertiary"
 				:title="n(
-					'mail',
-					'Delete {number} thread',
-					'Delete {number} threads',
+					'contacts',
+					'Delete {number} contact',
+					'Delete {number} contacts',
 					multiSelectedContacts.size,
 					{ number: multiSelectedContacts.size }
 				)"
 				:close-after-click="true"
-				@click.prevent="deleteAllMultiSelected">
+				@click.prevent="attemptDeleteAllMultiSelected">
 				<IconDelete :size="16" />
 			</NcButton>
 		</div>
@@ -42,11 +53,15 @@
 </template>
 
 <script>
-import { NcAppContentList as AppContentList, NcButton } from '@nextcloud/vue'
+import { NcAppContentList as AppContentList, NcButton, NcDialog } from '@nextcloud/vue'
 import ContactsListItem from './ContactsList/ContactsListItem.vue'
 import VirtualList from 'vue-virtual-scroll-list'
 import IconSelect from 'vue-material-design-icons/CloseThick.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
+// eslint-disable-next-line import/no-unresolved
+import IconCancelRaw from '@mdi/svg/svg/cancel.svg?raw'
+// eslint-disable-next-line import/no-unresolved
+import IconDeleteRaw from '@mdi/svg/svg/delete.svg?raw'
 
 export default {
 	name: 'ContactsList',
@@ -57,6 +72,7 @@ export default {
 		NcButton,
 		IconSelect,
 		IconDelete,
+		NcDialog,
 	},
 
 	props: {
@@ -84,6 +100,20 @@ export default {
 			query: '',
 			multiSelectedContacts: new Map(),
 			refreshKey: 0, // used to force re-render of the list when search query changes, can be removed in vue3
+			showDeleteConfirmationDialog: false,
+			buttons: [
+				{
+					label: t('contacts', 'Cancel'),
+					icon: IconCancelRaw,
+					callback: () => { this.showDeleteConfirmationDialog = false },
+				},
+				{
+					label: t('contacts', 'Delete'),
+					type: 'primary',
+					icon: IconDeleteRaw,
+					callback: () => { this.deleteAllMultiSelected() },
+				},
+			],
 		}
 	},
 
@@ -95,8 +125,6 @@ export default {
 			return this.$route.params.selectedGroup
 		},
 		filteredList() {
-			// eslint-disable-next-line vue/no-side-effects-in-computed-properties
-			this.refreshKey++
 			const contactsList = this.list
 				.filter(item => this.matchSearch(this.contacts[item.key]))
 				.map(item => this.contacts[item.key])
@@ -108,8 +136,6 @@ export default {
 			return contactsList
 		},
 		isMultiSelecting() {
-			// eslint-disable-next-line vue/no-side-effects-in-computed-properties
-			this.refreshKey++
 			return this.multiSelectedContacts.size > 0
 		},
 	},
@@ -192,16 +218,21 @@ export default {
 			} else {
 				this.multiSelectedContacts.set(index, contact)
 			}
-			this.refreshKey++
+			this.$set(this, 'multiSelectedContacts', new Map(this.multiSelectedContacts))
 		},
 		unselectAllMultiSelected() {
-			this.multiSelectedContacts.clear()
+			this.$set(this, 'multiSelectedContacts', new Map())
+		},
+		attemptDeleteAllMultiSelected() {
+			this.showDeleteConfirmationDialog = true
 		},
 		deleteAllMultiSelected() {
-			this.multiSelectedContacts.forEach((contact) => {
-				this.$store.dispatch('deleteContact', { contact })
+			this.multiSelectedContacts.forEach(async (contact) => {
+				await new Promise(resolve => setTimeout(resolve, 500))
+				await this.$store.dispatch('deleteContact', { contact })
 			})
-			this.multiSelectedContacts.clear()
+			this.$set(this, 'multiSelectedContacts', new Map())
+			this.showDeleteConfirmationDialog = false
 		},
 	},
 }
