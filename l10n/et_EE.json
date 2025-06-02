@@ -73,7 +73,7 @@
     "Import into the {addressbookName} address book" : "Impordi aadressiraamatusse „{addressbookName}“",
     "Select local file" : "Vali kohalik fail",
     "Import from files" : "Impordi failirakendusest",
-    "Importing is disabled because there are no address books available" : "Kuna ühtegi aadressiraamatut pole saadaval, siis importimine poel võimalik",
+    "Importing is disabled because there are no address books available" : "Kuna ühtegi aadressiraamatut pole saadaval, siis importimine pole võimalik",
     "An error occurred, unable to create the address book" : "Tekkis viga, aadressiraamatu loomine ei õnnestu",
     "Add new address book" : "Lisa uus aadressiraamat",
     "Add" : "Lisa",
