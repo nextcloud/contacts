@@ -1,3 +1,12 @@
+## [7.1.3](https://github.com/nextcloud/contacts/compare/v7.1.2...v7.1.3) (2025-06-03)
+
+
+### Bug Fixes
+
+* delete appstore-build-publish.yml ([15db420](https://github.com/nextcloud/contacts/commit/15db4207818b7798fea9d6112245db45e1e9d661))
+
+
+
 ## [7.1.2](https://github.com/nextcloud/contacts/compare/v7.1.1...v7.1.2) (2025-06-03)
 
 
