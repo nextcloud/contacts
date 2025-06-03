@@ -14,7 +14,8 @@
 				{ number: multiSelectedContacts.size }
 			)"
 			:message="t('contacts', 'Are you sure to proceed?')"
-			:buttons="buttons" />
+			:buttons="buttons"
+			no-close />
 
 		<div class="contacts-list__header">
 			<div class="search-contacts-field">
