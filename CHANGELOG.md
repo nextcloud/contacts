@@ -1,3 +1,12 @@
+## [7.1.2](https://github.com/nextcloud/contacts/compare/v7.1.1...v7.1.2) (2025-06-03)
+
+
+### Bug Fixes
+
+* add member in circles view instead of trying to add contacts ([24022ca](https://github.com/nextcloud/contacts/commit/24022cad56f485b151d056b732db00e0e5cd9078))
+
+
+
 ## [7.1.1](https://github.com/nextcloud/contacts/compare/v7.1.0...v7.1.1) (2025-05-20)
 
 
