@@ -1,5 +1,10 @@
 # Changelog
 
+## 6.0.5 - 2025-06-03
+### Fixed 
+- Instantiation of ContactsManager
+- Add member in circles view instead of trying to add contacts
+
 ## 6.0.4 – 2025-03-13
 ### Fixed
 - Fix team members colum layout in chromium based browsers
