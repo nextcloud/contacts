@@ -13,9 +13,18 @@
 				multiSelectedContacts.size,
 				{ number: multiSelectedContacts.size }
 			)"
-			:message="t('contacts', 'Are you sure to proceed?')"
 			:buttons="buttons"
-			no-close />
+			no-close>
+			{{ t('contacts', 'Are you sure to proceed?') }}
+			<span v-if="readOnlyMultiSelectedCount" class="content-list-dialog-warning">
+				{{ n('contacts',
+					'Please note that {number} contact is read only and won\'t be deleted',
+					'Please note that {number} contacts are read only and won\'t be deleted',
+					readOnlyMultiSelectedCount,
+					{ number: readOnlyMultiSelectedCount })
+				}}
+			</span>
+		</NcDialog>
 
 		<div class="contacts-list__header">
 			<div class="search-contacts-field">
@@ -139,6 +148,17 @@ export default {
 		isMultiSelecting() {
 			return this.multiSelectedContacts.size > 0
 		},
+		readOnlyMultiSelectedCount() {
+			let count = 0
+
+			this.multiSelectedContacts.forEach((contact) => {
+				if (contact.addressbook.readOnly) {
+					count++
+				}
+			})
+
+			return count
+		},
 	},
 
 	watch: {
@@ -229,6 +249,10 @@ export default {
 		},
 		deleteAllMultiSelected() {
 			this.multiSelectedContacts.forEach(async (contact) => {
+				if (contact.addressbook.readOnly) {
+					// Do not try to delete read only contacts
+					return
+				}
 				await new Promise(resolve => setTimeout(resolve, 500))
 				await this.$store.dispatch('deleteContact', { contact })
 			})
@@ -274,6 +298,12 @@ export default {
 	position: sticky;
 	height: calc(var(--default-grid-baseline) * 12);
 	z-index: 100;
+}
+
+.content-list-dialog-warning {
+	display: block;
+	margin-top: var(--default-grid-baseline);
+	color: var(--color-text-lighter);
 }
 
 </style>
