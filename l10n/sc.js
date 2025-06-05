@@ -132,6 +132,7 @@ OC.L10N.register(
     "Unable to create the contact." : "Non faghet a creare su cuntatu.",
     "Contact not found" : "Cuntatu no agatadu",
     "Group {group} not found" : "Grupu {group} no agatadu",
+    "Add member" : "Agiunghe partetzipante",
     "New contact" : "Cuntatu nou",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} cuntatos agiuntos a {name}","{success} cuntatos agiuntos a {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Agiunta de {success} contatos a {name}","Agiunta {success} contacts to {name}"],

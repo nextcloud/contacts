@@ -203,6 +203,7 @@
     "Unable to create the contact." : "No s'ha pogut crear el contacte.",
     "Contact not found" : "No s'ha trobat el contacte",
     "Group {group} not found" : "No s'ha trobat el grup {group}",
+    "Add member" : "Afegeix un membre",
     "New contact" : "Contacte nou",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["S'ha afegit {success} contacte a {name}","S'han afegit {success} contactes a {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["S'està afegint {success} contacte a {name}","S'estan afegint {success} contactes a {name}"],

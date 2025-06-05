@@ -190,6 +190,7 @@ OC.L10N.register(
     "Unable to create the contact." : "Yhteystiedon luominen ei onnistunut.",
     "Contact not found" : "Yhteytietoa ei löytynyt",
     "Group {group} not found" : "Ryhmää {group} ei löydy",
+    "Add member" : "Lisää jäsen",
     "New contact" : "Uusi yhteystieto",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} yhteystieto lisätty ryhmään {name}","{success} yhteystietoa lisätty ryhmään {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Lisätään {success} yhteystieto ryhmään {name}","Lisätään {success} yhteystietoa ryhmään {name}"],

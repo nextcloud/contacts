@@ -205,6 +205,7 @@ OC.L10N.register(
     "Unable to create the contact." : "Nem lehet létrehozni a névjegyet.",
     "Contact not found" : "A névjegy nem található",
     "Group {group} not found" : "A(z) {group} csoport nem található",
+    "Add member" : "Tag felvétele",
     "New contact" : "Új névjegy",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} névjegy hozzáadva a következőhöz: {name}","{success} névjegy hozzáadva a következőhöz: {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["{success} névjegy hozzáadása a következőhöz: {name}","{success} névjegy hozzáadása a következőhöz: {name}"],

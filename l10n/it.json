@@ -204,6 +204,7 @@
     "Unable to create the contact." : "Impossibile creare il contatto.",
     "Contact not found" : "Contatto non trovato",
     "Group {group} not found" : "Gruppo {group} non trovato",
+    "Add member" : "Aggiungi membro",
     "New contact" : "Nuovo contatto",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} contatto aggiunto a {name}","{success} contatti aggiunti a {name}","{success} contatti aggiunti a {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Aggiunta di {success} contatto a {name}","Aggiunta di {success} contatti a {name}","Aggiunta di {success} contatti a {name}"],

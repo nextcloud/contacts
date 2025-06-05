@@ -206,6 +206,7 @@ OC.L10N.register(
     "Unable to create the contact." : "Неможливо створити контакт.",
     "Contact not found" : "Контакт не знайдено",
     "Group {group} not found" : "Групу {group} не знайдено",
+    "Add member" : "Додати учасника",
     "New contact" : "Новий контакт",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} контакт додано до {name}","{success} контакти додано до {name}","{success} контактів додано до {name}","{success} контактів додано до {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Додавання {success} контакту до {name}","Додавання {success} контактів до {name}","Додавання {success} контактів до {name}","Додавання {success} контактів до {name}"],
