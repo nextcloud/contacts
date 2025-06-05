@@ -15,7 +15,7 @@
 			)"
 			:buttons="buttons"
 			no-close>
-			{{ t('contacts', 'Are you sure to proceed?') }}
+			{{ t('contacts', 'Are you sure you want to proceed?') }}
 			<span v-if="readOnlyMultiSelectedCount" class="content-list-dialog-warning">
 				{{ n('contacts',
 					'Please note that {number} contact is read only and won\'t be deleted',
