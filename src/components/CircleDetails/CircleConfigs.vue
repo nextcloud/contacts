@@ -29,7 +29,7 @@
 import { NcCheckboxRadioSwitch as CheckboxRadioSwitch } from '@nextcloud/vue'
 import ContentHeading from './ContentHeading.vue'
 
-import { PUBLIC_CIRCLE_CONFIG } from '../../models/constants.ts'
+import { PUBLIC_CIRCLE_CONFIG, CircleConfig } from '../../models/constants.ts'
 import Circle from '../../models/circle.ts'
 import { CircleEdit, editCircle } from '../../services/circles.ts'
 import { showError } from '@nextcloud/dialogs'

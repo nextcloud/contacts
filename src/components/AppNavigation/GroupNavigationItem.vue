@@ -135,10 +135,6 @@ export default {
 	},
 
 	methods: {
-		/**
-		 * @param groups
-		 * @param groupId
-		 */
 		isInGroup(groups, groupId) {
 			return groups.includes(groupId)
 		},
@@ -236,7 +232,7 @@ export default {
 		 * Open mailto: for contacts in a group
 		 *
 		 * @param {object} group of contacts to be emailed
-		 * @param {string} mode
+		 * @param {string} mode 'to', 'cc' or 'bcc' header
 		 */
 		emailGroup(group, mode = 'to') {
 			const emails = []

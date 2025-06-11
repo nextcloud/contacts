@@ -15,8 +15,10 @@ import store from '../store/index.js'
 import logger from '../services/logger.js'
 
 /**
- * @param {HTMLElement} el
- * @param {string} contactEmailAddress
+ * Mount the contact details component
+ *
+ * @param {HTMLElement} el The element to mount the component to
+ * @param {string} contactEmailAddress The email address of the contact
  * @return {Promise<object>}
  */
 export function mountContactDetails(el, contactEmailAddress) {

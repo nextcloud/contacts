@@ -97,6 +97,7 @@
 			<p>{{ t('contacts', 'Anything shared with this team will show up here') }}</p>
 			<div v-for="provider in resourceProviders" :key="provider.id">
 				<ContentHeading>
+					<!-- eslint-disable-next-line vue/no-v-html -->
 					<span v-show="false" class="provider__icon" v-html="provider.icon" /> {{ provider.name }}
 				</ContentHeading>
 
@@ -110,6 +111,7 @@
 							<span v-if="resource.iconEmoji" class="resource__icon">
 								{{ resource.iconEmoji }}
 							</span>
+							<!-- eslint-disable-next-line vue/no-v-html -->
 							<span v-else-if="resource.iconSvg" class="resource__icon" v-html="resource.iconSvg" />
 							<span v-else-if="resource.iconURL" class="resource__icon">
 								<img :src="resource.iconURL" alt="">

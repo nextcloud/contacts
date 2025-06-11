@@ -7,7 +7,9 @@ import Contact from '../models/contact.js'
 import checks from './checks/index.js'
 
 /**
- * @param contact
+ * Validate a contact by running it through various checks
+ *
+ * @param {Contact} contact The contact to validate
  */
 export default function(contact) {
 	let result = false

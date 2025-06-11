@@ -48,6 +48,7 @@
 				<!-- org, title -->
 				<template #subtitle>
 					<template v-if="isReadOnly">
+						<!-- eslint-disable-next-line vue/no-v-html -->
 						<span v-html="formattedSubtitle" />
 					</template>
 					<template v-else>
@@ -88,14 +89,14 @@
 									<IconAccount :size="20" />
 								</template>
 							</ActionButton>
-							<ActionLink v-for="emailAddress in emailAddressList"
-								:key="emailAddress"
+							<ActionLink v-for="address in emailAddressList"
+								:key="address"
 								class="quick-action"
-								:href="'mailto:' + emailAddress">
+								:href="'mailto:' + address">
 								<template #icon>
 									<IconMail :size="20" />
 								</template>
-								{{ emailAddress }}
+								{{ address }}
 							</ActionLink>
 							<ActionLink v-for="phoneNumber in phoneNumberList"
 								:key="phoneNumber"
@@ -402,6 +403,7 @@ import FolderMultipleImage from 'vue-material-design-icons/FolderMultipleImage.v
 import rfcProps from '../models/rfcProps.js'
 import validate from '../services/validate.js'
 
+import Contact from '../models/contact.js'
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp.vue'
 import ContactAvatar from './ContactDetails/ContactDetailsAvatar.vue'
 import ContactDetailsProperty from './ContactDetails/ContactDetailsProperty.vue'
@@ -1035,7 +1037,7 @@ export default {
 		/**
 		 * Should display the property
 		 *
-		 * @param {Property} property the property to check
+		 * @param {object} property the property to check
 		 * @return {boolean}
 		 */
 		canDisplay(property) {

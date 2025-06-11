@@ -22,7 +22,7 @@
 			<div class="contact-title">
 				<h6>{{ contact.fullName }}</h6>
 				<!-- Subtitle -->
-				<span v-html="formattedSubtitle" />
+				<span>{{ formattedSubtitle }}</span>
 			</div>
 			<div class="contact-details-wrapper">
 				<div v-for="(properties, name) in groupedProperties"
