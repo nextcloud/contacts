@@ -24,6 +24,8 @@
 		:is-read-only="isReadOnly"
 		:bus="bus"
 		:is-multiple="isMultiple"
+		:contactFormEditMode="contactFormEditMode"
+		@setContactFormEditModeEvent:value="setEditMode"
 		@delete="onDelete" />
 </template>
 
@@ -38,6 +40,7 @@ import PropertyMultipleText from '../Properties/PropertyMultipleText.vue'
 import PropertyDateTime from '../Properties/PropertyDateTime.vue'
 import PropertySelect from '../Properties/PropertySelect.vue'
 import { matchTypes } from '../../utils/matchTypes.ts'
+import PropertyCloudId from '../Properties/PropertyCloudId.vue'
 
 export default {
 	name: 'ContactDetailsProperty',
@@ -99,6 +102,8 @@ export default {
 				return PropertyDateTime
 			} else if (this.propType && this.propType === 'select') {
 				return PropertySelect
+			} else if (this.propType && this.propName === 'cloud') {
+				return PropertyCloudId
 			} else if (this.propType && this.propType !== 'unknown') {
 				return PropertyText
 			}
@@ -358,6 +363,14 @@ export default {
 		this.bus.off('focus-prop', this.onFocusProp)
 	},
 
+	data() {
+		return {
+			contactFormEditMode: false,
+		}
+	},
+	emits: [
+		'setContactFormEditModeEvent:value'
+	],
 	methods: {
 		/**
 		 * Focus first input element of the new prop
@@ -383,6 +396,10 @@ export default {
 		onDelete() {
 			this.localContact.vCard.removeProperty(this.property)
 		},
+
+		setEditMode(value) {
+			this.$emit('setContactFormEditModeEvent:value', value)
+		}
 	},
 }
 </script>
