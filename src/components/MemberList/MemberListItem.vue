@@ -95,6 +95,7 @@ import IconExitToApp from 'vue-material-design-icons/ExitToApp.vue'
 import IconShieldCheck from 'vue-material-design-icons/ShieldCheck.vue'
 
 import { changeMemberLevel } from '../../services/circles.ts'
+import Circle from '../../models/circle.ts'
 import { showError } from '@nextcloud/dialogs'
 import RouterMixin from '../../mixins/RouterMixin.js'
 
@@ -251,7 +252,7 @@ export default {
 		/**
 		 * Return the promote/demote member action label
 		 *
-		 * @param {MemberLevel} level the member level
+		 * @param {number} level the member level
 		 * @return {string}
 		 */
 		levelChangeLabel(level) {

@@ -560,7 +560,7 @@ export default class Contact {
 	 *
 	 * @readonly
 	 * @memberof Contact
-	 * @return {Property[]} http://mozilla-comm.github.io/ical.js/api/ICAL.Property.html
+	 * @return {object[]} http://mozilla-comm.github.io/ical.js/api/ICAL.Property.html
 	 */
 	get properties() {
 		return this.vCard.getAllProperties()

@@ -24,6 +24,7 @@
 import { NcAppContentList as AppContentList } from '@nextcloud/vue'
 import ContactsListItem from './ContactsList/ContactsListItem.vue'
 import VirtualList from 'vue-virtual-scroll-list'
+import Contact from '../models/contact.js'
 
 export default {
 	name: 'ContactsList',

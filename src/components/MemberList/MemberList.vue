@@ -81,6 +81,7 @@ import { subscribe } from '@nextcloud/event-bus'
 import { t } from '@nextcloud/l10n'
 import { getRecommendations, getSuggestions } from '../../services/collaborationAutocompletion.js'
 import { SHARES_TYPES_MEMBER_MAP, CIRCLES_MEMBER_GROUPING } from '../../models/constants'
+import Circle from '../../models/circle.js'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -125,12 +126,8 @@ export default defineComponent({
 	},
 
 	computed: {
-		/**
-		 * Return the current circle
-		 *
-		 * @return {Circle}
-		 */
-		circle() {
+
+		circle(): Circle {
 			return this.$store.getters.getCircle(this.selectedCircle)
 		},
 
