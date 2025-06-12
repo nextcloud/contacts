@@ -33,7 +33,7 @@
 		</div>
 		<div v-if="isMultiSelecting" class="contacts-list__multiselect-header">
 			<NcButton type="tertiary"
-				:title="n('contacts', 'Unselect {number}', 'Unselect {number}', multiSelectedContacts.size, { number: multiSelectedContacts.size })"
+				:title="t('contacts', 'Unselect {number}', { number: multiSelectedContacts.size })"
 				:close-after-click="true"
 				@click.prevent="unselectAllMultiSelected">
 				<IconSelect :size="16" />
