@@ -25,7 +25,7 @@
 						:url="avatarUrl"
 						:size="40" />
 					<CheckIcon v-if="source.isMultiSelected || hoveringAvatar"
-						:size="40"
+						:size="28"
 						:class="{ 'contacts-list__item-avatar-selected': source.isMultiSelected, 'contacts-list__item-avatar-hovered': !source.isMultiSelected }" />
 				</div>
 			</template>
@@ -229,6 +229,11 @@ export default {
 
 	&-selected, &-hovered {
 		border-radius: 32px;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 
 	&-selected {

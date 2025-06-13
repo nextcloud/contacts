@@ -39,13 +39,8 @@
 				<IconSelect :size="16" />
 			</NcButton>
 			<NcButton type="tertiary"
-				:title="n(
-					'contacts',
-					'Delete {number} contact',
-					'Delete {number} contacts',
-					multiSelectedContacts.size,
-					{ number: multiSelectedContacts.size }
-				)"
+				:disabled="!isAtLeastOneEditable"
+				:title="deleteActionTitle"
 				:close-after-click="true"
 				@click.prevent="attemptDeleteAllMultiSelected">
 				<IconDelete :size="16" />
@@ -159,6 +154,14 @@ export default {
 			})
 
 			return count
+		},
+		isAtLeastOneEditable() {
+			return this.readOnlyMultiSelectedCount !== this.multiSelectedContacts.size;
+		},
+		deleteActionTitle() {
+			return this.isAtLeastOneEditable
+				? n('contacts', 'Delete {number} contact', 'Delete {number} contacts', this.multiSelectedContacts.size, { number: this.multiSelectedContacts.size })
+				: t('contacts', 'Please select at least one editable contact to delete')
 		},
 	},
 
