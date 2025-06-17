@@ -163,6 +163,8 @@ OC.L10N.register(
     "Close" : "Затваряне",
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Импортиране на %n контакта в {addressbook}","Импортиране на %n контакта в {addressbook}"],
     "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Импортирането на%n контакта в {addressbook} приключи","Импортирането на %n контакта в {addressbook} приключи"],
+    "No data for this contact" : "Няма информация за този контакт",
+    "No data for this contact on their profile" : "Не е налична профилна информация за този контакт",
     "Import" : "Внасяне",
     "Could not copy" : "Не можа да се копира",
     "You are about to leave {circle}.\nAre you sure?" : "На път сте да напуснете {circle}.\nСигурни ли сте?",
