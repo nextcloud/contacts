@@ -6,11 +6,14 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import { generateUrl } from '@nextcloud/router'
+import { loadState } from '@nextcloud/initial-state'
 
 import { ROUTE_CIRCLE, ROUTE_CHART } from '../models/constants.ts'
 import Contacts from '../views/Contacts.vue'
 
 Vue.use(Router)
+
+const acceptInviteDialogUrl = loadState('contacts', 'acceptInviteDialogUrl', '')
 
 export default new Router({
 	mode: 'history',
@@ -30,6 +33,11 @@ export default new Router({
 				params: { selectedGroup: t('contacts', 'All contacts') },
 			},
 			children: [
+				{
+					path: acceptInviteDialogUrl,
+					name: 'invite_accept_dialog',
+					component: Contacts,
+				},
 				{
 					path: `/${ROUTE_CHART}/:selectedChart`,
 					name: 'chart',

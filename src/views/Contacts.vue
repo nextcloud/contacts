@@ -44,6 +44,30 @@
 			<ImportView @close="closeImport" />
 		</Modal>
 
+		<!-- invite accept dialog -->
+		 <Modal v-if="showInviteAcceptDialog" >
+			<OcmInviteAccept :token="inviteToken" :provider="inviteProvider">
+				<template #accept-invite-actions>
+					<div class="invite-accept-form__buttons-row">
+						<Button @click="acceptInvite">
+							<template #icon>
+								<IconLoading v-if="loadingUpdate" :size="20" />
+								<IconCheck v-else :size="20" />
+							</template>
+							{{ t('contacts', 'Accept') }}
+						</Button>
+						<Button @click="cancelInvite">
+							<template #icon>
+								<IconLoading v-if="loadingUpdate" :size="20" />
+								<IconCancel v-else :size="20" />
+							</template>
+							{{ t('contacts', 'Cancel') }}
+						</Button>
+					</div>
+				</template>
+			</OcmInviteAccept>
+		 </Modal>
+
 		<!-- Select contacts group modal -->
 		<ContactsPicker />
 	</Content>
@@ -56,10 +80,13 @@ import {
 	isMobile,
 	NcButton as Button,
 	NcContent as Content,
+	NcLoadingIcon as IconLoading,
 	NcModal as Modal,
 } from '@nextcloud/vue'
 
+import axios from '@nextcloud/axios'
 import { showError } from '@nextcloud/dialogs'
+import { loadState } from '@nextcloud/initial-state'
 import ICAL from 'ical.js'
 
 import CircleContent from '../components/AppContent/CircleContent.vue'
@@ -67,9 +94,12 @@ import ChartContent from '../components/AppContent/ChartContent.vue'
 import ContactsContent from '../components/AppContent/ContactsContent.vue'
 import ContactsPicker from '../components/EntityPicker/ContactsPicker.vue'
 import ImportView from './Processing/ImportView.vue'
+import logger from '../services/logger.js'
 import RootNavigation from '../components/AppNavigation/RootNavigation.vue'
 import SettingsImportContacts from '../components/AppNavigation/Settings/SettingsImportContacts.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
+import IconCancel from 'vue-material-design-icons/Cancel.vue'
+import IconCheck from 'vue-material-design-icons/Check.vue'
 
 import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
@@ -79,6 +109,10 @@ import isCirclesEnabled from '../services/isCirclesEnabled.js'
 import { emit } from '@nextcloud/event-bus'
 
 import usePrincipalsStore from '../store/principals.js'
+import OcmInviteAccept from '../components/Ocm/OcmInviteAccept.vue'
+
+const inviteToken = loadState('contacts', 'inviteToken', '')
+const inviteProvider = loadState('contacts', 'inviteProvider', '')
 
 export default {
 	name: 'Contacts',
@@ -92,7 +126,11 @@ export default {
 		Content,
 		ImportView,
 		IconAdd,
+		IconCancel,
+		IconCheck,
+		IconLoading,
 		Modal,
+		OcmInviteAccept,
 		RootNavigation,
 		SettingsImportContacts,
 	},
@@ -130,6 +168,9 @@ export default {
 			// Let's but the loading state to true if circles is enabled
 			loadingCircles: isCirclesEnabled,
 			loadingContacts: true,
+			showInviteAcceptDialog: false,
+			inviteToken: inviteToken,
+			inviteProvider: inviteProvider,
 		}
 	},
 
@@ -294,9 +335,18 @@ export default {
 			rev.fromUnixTime(Date.now() / 1000)
 			contact.rev = rev
 
-			// itterate over all properties (filter is not usable on objects and we need the key of the property)
+			// iterate over all properties (filter is not usable on objects and we need the key of the property)
 			const properties = rfcProps.properties
 			for (const name in properties) {
+				// Show cloud ID property if cloud ID exchange capability present
+				// TODO add check for:
+				// 	1. OCM invitation flow capability present ?
+				//	2. is it active ?
+				// then display it more prominently
+				if(name === 'cloud') {
+					properties[name].default = true
+					properties[name].multiple = false
+				}
 				if (properties[name].default) {
 					const defaultData = properties[name].defaultValue
 					let defaultValue = defaultData.value
@@ -394,9 +444,11 @@ export default {
 					&& GROUP_ALL_CONTACTS !== this.selectedGroup
 					&& GROUP_NO_GROUP_CONTACTS !== this.selectedGroup
 					&& ROUTE_CIRCLE !== this.selectedGroup) {
-					showError(t('contacts', 'Group {group} not found', { group: this.selectedGroup }))
-					console.error('Group not found', this.selectedGroup)
-
+					// no error when displaying invite accept dialog
+					if(this.$route.name !== 'invite_accept_dialog') {
+						showError(t('contacts', 'Group {group} not found', { group: this.selectedGroup }))
+						console.error('Group not found', this.selectedGroup)
+					}
 					this.$router.push({
 						name: 'root',
 					})
@@ -412,6 +464,9 @@ export default {
 						},
 					})
 				}
+				if (this.inviteToken !== "" && this.inviteProvider !== "") {
+					this.showInviteAcceptDialog = true
+				}
 			}
 		},
 
@@ -421,6 +476,23 @@ export default {
 		closeImport() {
 			this.$store.dispatch('changeStage', 'default')
 		},
+		async acceptInvite() {
+			try {
+				const response = await axios.patch('/apps/contacts/ocm/invitations/accept', {
+					token: inviteToken,
+					provider: inviteProvider,
+				})
+				window.open(response.data.contact, '_self')
+			} catch (error) {
+				const message = error.response.data.message
+				logger.error('Could not accept invite: ' + message, { error })
+			} finally {
+				this.showInviteAcceptDialog = false
+			}
+		},
+		cancelInvite() {
+			this.showInviteAcceptDialog = false
+		}
 	},
 }
 </script>
@@ -430,5 +502,10 @@ export default {
 	display: flex;
 	flex-direction: column;
 	gap: 4px;
+}
+.invite-accept-form__buttons-row {
+	display: flex;
+	gap: .6em;
+	margin-top: 1em;
 }
 </style>
