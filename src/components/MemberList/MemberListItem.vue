@@ -95,7 +95,7 @@ import IconExitToApp from 'vue-material-design-icons/ExitToApp.vue'
 import IconShieldCheck from 'vue-material-design-icons/ShieldCheck.vue'
 
 import { changeMemberLevel } from '../../services/circles.ts'
-import { showError } from '@nextcloud/dialogs'
+import { showError, DialogBuilder } from '@nextcloud/dialogs'
 import RouterMixin from '../../mixins/RouterMixin.js'
 
 export default {
@@ -269,6 +269,42 @@ export default {
 		 * Delete the current member
 		 */
 		async deleteMember() {
+			if (this.isCurrentUser) {
+				try {
+					const dialog = new DialogBuilder()
+						.setName(t('contacts', 'Leave team'))
+						.setText(t('contacts', 'Are you sure you want to leave this team? This action cannot be undone.'))
+						.setButtons([
+							{
+								label: t('contacts', 'Cancel'),
+								type: 'secondary',
+								callback: () => { /* do nothing, just close */ },
+							},
+							{
+								label: t('contacts', 'Leave team'),
+								type: 'error',
+								callback: async () => {
+									try {
+										await this.doDeleteMember()
+									} catch (e) {
+										this.logger.error('Error in delete member callback', { e })
+										showError(t('contacts', 'Leave team failed.'))
+									}
+								},
+							},
+						])
+						.build()
+
+					await dialog.show()
+				} catch (error) {
+					// User cancelled the dialog - no action needed
+				}
+			} else {
+				await this.doDeleteMember()
+			}
+		},
+
+		async doDeleteMember() {
 			this.loading = true
 
 			try {
