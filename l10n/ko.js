@@ -161,6 +161,7 @@ OC.L10N.register(
     "Unable to create the contact." : "연락처를 만들 수 없습니다.",
     "Contact not found" : "연락처를 찾을 수 없음",
     "Group {group} not found" : "그룹 {group}을(를) 찾을 수 없음",
+    "Add member" : "회원 추가",
     "New contact" : "새 연락처",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} 연락처를 {name}에 추가하는 중"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["{success} 연락처를 {name}에 추가하는 중"],
