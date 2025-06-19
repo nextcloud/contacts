@@ -32,7 +32,7 @@ class GroupSharingService {
 		$userGroups = $this->groupManager->getUserGroups($user);
 		$userGroupNames = array_map(static fn (IGroup $group) => $group->getGID(), $userGroups);
 
-		$excludeGroupList = json_decode($this->config->getAppValue('core', 'shareapi_exclude_groups_list', '[]'));
+		$excludeGroupList = json_decode($this->config->getAppValue('core', 'shareapi_exclude_groups_list', '[]'), true);
 		$excludeGroups = $this->config->getAppValue('core', 'shareapi_exclude_groups');
 
 		// "no"    => Allow sharing for everyone
