@@ -112,7 +112,7 @@ class DetailsProviderTest extends Base {
 			->method('t')
 			->with('Details')
 			->willReturnArgument(0);
-			 
+
 		$this->actionFactory->expects($this->once())
 			->method('newLinkAction')
 			->with($this->equalTo("$domain/$iconUrl"), $this->equalTo('Details'), $this->equalTo($resultUri))
