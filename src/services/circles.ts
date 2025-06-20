@@ -37,7 +37,7 @@ export const getCircles = async function() {
 /**
  * Get a specific circle
  *
- * @param {string} circleId
+ * @param {string} circleId The ID of the circle to fetch
  * @return {object}
  */
 export const getCircle = async function(circleId: string) {
@@ -49,8 +49,8 @@ export const getCircle = async function(circleId: string) {
  * Create a new circle
  *
  * @param {string} name the circle name
- * @param personal
- * @param local
+ * @param {boolean} personal Whether the circle is personal
+ * @param {boolean} local Whether the circle is local
  * @return {object}
  */
 export const createCircle = async function(name: string, personal: boolean, local: boolean) {
