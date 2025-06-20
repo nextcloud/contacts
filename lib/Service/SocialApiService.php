@@ -339,8 +339,8 @@ class SocialApiService {
 		usort($addressBooks, [$this, 'sortAddressBooks']); // make sure the order stays the same in consecutive calls
 
 		foreach ($addressBooks as $addressBook) {
-			if ((is_null($addressBook) ||
-				($addressBook->isShared() || $addressBook->isSystemAddressBook()))) {
+			if ((is_null($addressBook)
+				|| ($addressBook->isShared() || $addressBook->isSystemAddressBook()))) {
 				// TODO: filter out deactivated books, see https://github.com/nextcloud/server/issues/17537
 				continue;
 			}
