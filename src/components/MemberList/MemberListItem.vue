@@ -317,7 +317,7 @@ export default {
 					this.logger.debug('Member is not in circle')
 					return
 				}
-				console.error('Could not delete the member', this.source, error)
+				this.logger.error('Could not delete the member', { member: this.source, error })
 				showError(t('contacts', 'Could not delete the member {displayName}', this.source))
 			} finally {
 				this.loading = false
@@ -342,7 +342,7 @@ export default {
 				// eslint-disable-next-line vue/no-mutating-props
 				this.source.level = level
 			} catch (error) {
-				console.error('Could not change the member level to', CIRCLES_MEMBER_LEVELS[level])
+				this.logger.error('Could not change the member level', { level: CIRCLES_MEMBER_LEVELS[level], error })
 				showError(t('contacts', 'Could not change the member level to {level}', {
 					level: CIRCLES_MEMBER_LEVELS[level],
 				}))
@@ -360,7 +360,7 @@ export default {
 					memberId: this.source.id,
 				})
 			} catch (error) {
-				console.error('Could not accept membership request', this.source, error)
+				this.logger.error('Could not accept membership request', { member: this.source, error })
 				showError(t('contacts', 'Could not accept membership request'))
 			} finally {
 				this.loading = false
