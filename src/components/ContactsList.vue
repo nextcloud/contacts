@@ -25,6 +25,13 @@
 					{ number: readOnlyMultiSelectedCount })" />
 		</NcDialog>
 
+		<NcModal v-if="isMerging"
+			:name="t('contacts', 'Merge contacts')"
+			size="large"
+			@close="isMerging = false">
+			<Merging :contacts="multiSelectedContacts" @finished="finishContactMerging" />
+		</NcModal>
+
 		<div class="contacts-list__header">
 			<div class="search-contacts-field">
 				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
@@ -45,6 +52,13 @@
 					@click.prevent="attemptDeleteAllMultiSelected">
 					<IconDelete :size="16" />
 				</NcButton>
+				<NcButton type="tertiary"
+					:disabled="!areTwoEditable"
+					:title="mergeActionTitle"
+					:close-after-click="true"
+					@click.prevent="initiateContactMerging">
+					<IconSetMerge :size="18" />
+				</NcButton>
 			</div>
 		</transition>
 
@@ -59,11 +73,14 @@
 </template>
 
 <script>
-import { NcAppContentList as AppContentList, NcButton, NcDialog, NcNoteCard } from '@nextcloud/vue'
+import { NcAppContentList as AppContentList, NcButton, NcDialog, NcNoteCard, NcModal } from '@nextcloud/vue'
 import ContactsListItem from './ContactsList/ContactsListItem.vue'
 import VirtualList from 'vue-virtual-scroll-list'
 import IconSelect from 'vue-material-design-icons/CloseThick.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconSetMerge from 'vue-material-design-icons/SetMerge.vue'
+import Merging from './ContactsList/Merging.vue'
+
 // eslint-disable-next-line import/no-unresolved
 import IconCancelRaw from '@mdi/svg/svg/cancel.svg?raw'
 // eslint-disable-next-line import/no-unresolved
@@ -79,7 +96,10 @@ export default {
 		NcButton,
 		IconSelect,
 		IconDelete,
+		IconSetMerge,
 		NcDialog,
+		NcModal,
+		Merging,
 	},
 
 	props: {
@@ -122,6 +142,7 @@ export default {
 				},
 			],
 			lastToggledIndex: undefined,
+			isMerging: false,
 		}
 	},
 
@@ -160,10 +181,18 @@ export default {
 		isAtLeastOneEditable() {
 			return this.readOnlyMultiSelectedCount !== this.multiSelectedContacts.size
 		},
+		areTwoEditable() {
+			return this.multiSelectedContacts.size - this.readOnlyMultiSelectedCount === 2
+		},
 		deleteActionTitle() {
 			return this.isAtLeastOneEditable
 				? n('contacts', 'Delete {number} contact', 'Delete {number} contacts', this.multiSelectedContacts.size, { number: this.multiSelectedContacts.size })
 				: t('contacts', 'Please select at least one editable contact to delete')
+		},
+		mergeActionTitle() {
+			return this.areTwoEditable
+				? t('contacts', 'Merge contacts')
+				: t('contacts', 'Please select two editable contacts to merge')
 		},
 	},
 
@@ -302,6 +331,28 @@ export default {
 			})
 			this.unselectAllMultiSelected()
 			this.showDeleteConfirmationDialog = false
+		},
+
+		async initiateContactMerging() {
+			// For every contact in the multiSelectedContacts, we need to dispatch the load contact action
+			const contacts = Array.from(this.multiSelectedContacts.values())
+			for (const contact of contacts) {
+				await this.$store.dispatch('fetchFullContact', { contact })
+			}
+
+			this.isMerging = true
+		},
+
+		async finishContactMerging(mergedContact) {
+			// After merging, we need to update the contact in the store
+			await this.$store.dispatch('fetchFullContact', { contact: mergedContact, forceReFetch: true })
+
+			this.unselectAllMultiSelected()
+			this.isMerging = false
+
+			await this.$router.push({
+				name: 'root',
+			})
 		},
 	},
 }
