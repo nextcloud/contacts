@@ -187,6 +187,8 @@ OC.L10N.register(
     "Promote as sole owner" : "Promuovi come unico proprietario",
     "Promote to {level}" : "Promuovi a {level}",
     "Demote to {level}" : "Declassa a {level}",
+    "Are you sure you want to leave this team? This action cannot be undone." : "Vuoi davvero abbandonare questo team? Questa azione non può essere annullata.",
+    "Leave team failed." : "L'abbandono del team è fallito.",
     "Could not delete the member {displayName}" : "Impossibile eliminare il membro {displayName}",
     "Could not change the member level to {level}" : "Impossibile cambiare il livello del membro a {level}",
     "Could not accept membership request" : "Impossibile accettare la richiesta di adesione",

@@ -187,6 +187,8 @@ OC.L10N.register(
     "Promote as sole owner" : "Promote as sole owner",
     "Promote to {level}" : "Promote to {level}",
     "Demote to {level}" : "Demote to {level}",
+    "Are you sure you want to leave this team? This action cannot be undone." : "Are you sure you want to leave this team? This action cannot be undone.",
+    "Leave team failed." : "Leave team failed.",
     "Could not delete the member {displayName}" : "Could not delete the member {displayName}",
     "Could not change the member level to {level}" : "Could not change the member level to {level}",
     "Could not accept membership request" : "Could not accept membership request",
