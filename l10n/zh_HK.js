@@ -187,6 +187,8 @@ OC.L10N.register(
     "Promote as sole owner" : "晉升作為唯一所有者",
     "Promote to {level}" : "晉升到 {level}",
     "Demote to {level}" : "降級到 {level}",
+    "Are you sure you want to leave this team? This action cannot be undone." : "您確定要離開此團隊嗎？此操作無法復原。",
+    "Leave team failed." : "離開團隊失敗。",
     "Could not delete the member {displayName}" : "不能刪除成員 {displayName}",
     "Could not change the member level to {level}" : "無法將成員級別更改為 {level}",
     "Could not accept membership request" : "無法接受成為成員的申請",

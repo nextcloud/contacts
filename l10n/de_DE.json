@@ -185,6 +185,8 @@
     "Promote as sole owner" : "Als Alleineigentümer ernennen",
     "Promote to {level}" : "Zum {level} ernennen",
     "Demote to {level}" : "Herabstufen auf {level}",
+    "Are you sure you want to leave this team? This action cannot be undone." : "Möchten Sie das Team wirklich verlassen. Dieser Vorgang kann nicht rückgängig gemacht werden.",
+    "Leave team failed." : "Team verlassen fehlgeschlagen",
     "Could not delete the member {displayName}" : "Das Mitglied {displayName} konnte nicht gelöscht werden ",
     "Could not change the member level to {level}" : "Mitgliedsstufe konnte nicht geändert werden auf {level}",
     "Could not accept membership request" : "Mitgliedsanfrage konnte nicht akzeptiert werden",

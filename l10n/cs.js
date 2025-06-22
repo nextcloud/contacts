@@ -187,6 +187,8 @@ OC.L10N.register(
     "Promote as sole owner" : "Povýšit na jediného vlastníka",
     "Promote to {level}" : "Povýšit na {level}",
     "Demote to {level}" : "Degradovat na {level}",
+    "Are you sure you want to leave this team? This action cannot be undone." : "Opravdu chcete tento tým opustit? Tuto akci nelze vzít zpět.",
+    "Leave team failed." : "Opuštění týmu se nezdařilo",
     "Could not delete the member {displayName}" : "Nedaří se smazat člena {displayName}",
     "Could not change the member level to {level}" : "Nedaří se změnit oprávnění člena na stupeň {level}",
     "Could not accept membership request" : "Žádost o členství nemohla být přijata",
