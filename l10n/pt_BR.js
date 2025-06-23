@@ -187,6 +187,7 @@ OC.L10N.register(
     "Promote as sole owner" : "Promover como único proprietário",
     "Promote to {level}" : "Promover para {level}",
     "Demote to {level}" : "Rebaixar para {level}",
+    "Leave team failed." : "Falha na saída da equipe.",
     "Could not delete the member {displayName}" : "Não foi possível excluir o membro {displayName}",
     "Could not change the member level to {level}" : "Não foi possível alterar o nível de membro para {level}",
     "Could not accept membership request" : "Não foi possível aceitar o pedido de adesão ",
