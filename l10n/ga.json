@@ -185,6 +185,8 @@
     "Promote as sole owner" : "A chur chun cinn mar úinéir aonair",
     "Promote to {level}" : "Cuir chun cinn go {level}",
     "Demote to {level}" : "Léim go {level}",
+    "Are you sure you want to leave this team? This action cannot be undone." : "An bhfuil tú cinnte gur mian leat an fhoireann seo a fhágáil? Ní féidir an gníomh seo a chealú.",
+    "Leave team failed." : "Theip ar an bhfoireann a fhágáil.",
     "Could not delete the member {displayName}" : "Níorbh fhéidir an ball {displayName} a scriosadh",
     "Could not change the member level to {level}" : "Níorbh fhéidir an leibhéal ball a athrú go {level}",
     "Could not accept membership request" : "Níorbh fhéidir glacadh leis an iarratas ballraíochta",
