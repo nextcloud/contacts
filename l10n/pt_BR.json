@@ -185,6 +185,7 @@
     "Promote as sole owner" : "Promover como único proprietário",
     "Promote to {level}" : "Promover para {level}",
     "Demote to {level}" : "Rebaixar para {level}",
+    "Are you sure you want to leave this team? This action cannot be undone." : "Tem certeza de que deseja deixar esta equipe? Esta ação não pode ser desfeita.",
     "Leave team failed." : "Falha na saída da equipe.",
     "Could not delete the member {displayName}" : "Não foi possível excluir o membro {displayName}",
     "Could not change the member level to {level}" : "Não foi possível alterar o nível de membro para {level}",
