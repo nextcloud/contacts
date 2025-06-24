@@ -187,6 +187,8 @@ OC.L10N.register(
     "Promote as sole owner" : "Унапреди као јединог власника",
     "Promote to {level}" : "Унапреди у {level}",
     "Demote to {level}" : "Врати на {level}",
+    "Are you sure you want to leave this team? This action cannot be undone." : "Да ли сте сигурни да желите да напустите овај тим? Ова операција не може да се поништи.",
+    "Leave team failed." : "Није успело напуштање тима.`",
     "Could not delete the member {displayName}" : "Члан {displayName} не може да се обрише",
     "Could not change the member level to {level}" : "Ниво члана није могао да се промени у {level}",
     "Could not accept membership request" : "Захтев за чланство није могао да се прихвати",
