@@ -39,7 +39,9 @@
 				</transition-group>
 
 				<!-- No recommendations -->
-				<EmptyContent v-if="dataSet.length === 0" :name="t('contacts', 'Search for people to add')">
+				<EmptyContent v-if="dataSet.length === 0"
+					:name="t('contacts', 'Search for people to add')"
+					:description="t('contacts', 'Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added.')">
 					<template #icon>
 						<IconSearch :size="20" />
 					</template>
