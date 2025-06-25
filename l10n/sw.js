@@ -187,6 +187,8 @@ OC.L10N.register(
     "Promote as sole owner" : "Kuza kama mmiliki pekee",
     "Promote to {level}" : "Pandisha daraja hadi {level}",
     "Demote to {level}" : "Shusha daraja hadi {level}",
+    "Are you sure you want to leave this team? This action cannot be undone." : "Je, una uhakika unataka kuondoka kwenye timu hii? Kitendo hiki hakiwezi kutenduliwa.",
+    "Leave team failed." : "Imeshindwa kuondoka kwenye timu.",
     "Could not delete the member {displayName}" : "Haikuweza kufuta mwanachama {displayName}",
     "Could not change the member level to {level}" : "Haikuweza kubadili kiwango cha uanachama kwa {level}",
     "Could not accept membership request" : "Haikuweza kukubali maombi ya uanachama",
