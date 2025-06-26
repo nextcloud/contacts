@@ -14,8 +14,9 @@ return [
 		['name' => 'contacts#direct', 'url' => '/direct/contact/{contact}', 'verb' => 'GET'],
 		['name' => 'contacts#directcircle', 'url' => '/direct/circle/{singleId}', 'verb' => 'GET'],
 
+		['name' => 'federated_invites#get_invites', 'url' => '/ocm/invitations', 'verb' => 'GET'],
 		['name' => 'federated_invites#create_invite', 'url' => '/ocm/invitations', 'verb' => 'POST'],
-		['name' => 'federated_invites#invite_accepted', 'url' => '/ocm/invitations/accept', 'verb' => 'PATCH'],
+		['name' => 'federated_invites#invite_accepted', 'url' => '/ocm/invitations/{token}/accept', 'verb' => 'PATCH'],
 		['name' => 'federated_invites#invite_accept_dialog', 'url' => $inviteAcceptDialogPath, 'verb' => 'GET'],
 
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],

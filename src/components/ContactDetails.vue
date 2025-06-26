@@ -277,9 +277,9 @@
 							:local-contact="localContact"
 							:contacts="contacts"
 							:bus="bus"
-							:is-read-only="isReadOnly" 
-							:contactFormEditMode="editMode"
-							@setContactFormEditModeEvent:value="setEditMode" />
+							:is-read-only="isReadOnly"
+							:edit-mode="editMode"
+							:is-new-contact="isNewContact" />
 					</div>
 				</section>
 
@@ -761,6 +761,9 @@ export default {
 		nextcloudVersionAtLeast28() {
 			return parseInt(window.OC.config.version.split('.')[0]) >= 28
 		},
+		isNewContact() {
+			return !this.localContact.dav ? true : false
+		}
 	},
 
 	watch: {
@@ -1071,9 +1074,6 @@ export default {
 				showError(t('contacts', 'Unable to update contact'))
 			}
 		},
-		setEditMode(value) {
-			this.editMode = value
-		}
 	},
 }
 </script>

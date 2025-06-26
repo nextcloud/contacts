@@ -14,13 +14,14 @@
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName" />
 
-		<ExchangeInvite 
+		<OcmInvite 
 			:local-contact="localContact"
 			:value.sync="localValue"
 			:prop-name="propName"
 			:value="value" 
 			:contactFormEditMode="contactFormEditMode"
-			@setContactFormEditModeEvent:value="setEditMode" />
+			@setContactFormEditModeEvent:value="setEditMode" 
+			@saveInvite="saveInvite" />
 		
 		<div class="property__row">
 			<div class="property__label">
@@ -55,18 +56,7 @@
 
 			<!-- textarea for note -->
 			<div class="property__value">
-				<NcTextArea v-if="propName === 'note'"
-					id="textarea"
-					ref="textarea"
-					:value.sync="localValue"
-					:inputmode="inputmode"
-					:readonly="isReadOnly"
-					@update:value="updateValueNoDebounce"
-					@mousemove="resizeHeight"
-					@keypress="resizeHeight" />
-
-				<!-- OR default to input -->
-				<NcTextField v-else
+				<NcTextField
 					:value.sync="localValue"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
@@ -74,14 +64,6 @@
 					type="text"
 					:placeholder="placeholder"
 					@update:value="updateValue" />
-
-				<!-- external link -->
-				<a v-if="haveExtHandler && isReadOnly"
-					:href="externalHandler"
-					class="property__ext"
-					target="_blank">
-					<OpenInNewIcon :size="20" />
-				</a>
 			</div>
 
 			<!-- props actions -->
@@ -98,17 +80,18 @@
 <script>
 import { NcSelect, NcTextArea, NcTextField } from '@nextcloud/vue'
 import debounce from 'debounce'
-import ExchangeInvite from '../CloudIdExchangeInvite.vue'
+import OcmInvite from '../Ocm/OcmInvite.vue'
 import PropertyMixin from '../../mixins/PropertyMixin.js'
 import PropertyTitle from './PropertyTitle.vue'
 import PropertyActions from './PropertyActions.vue'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+import { isReadonly } from 'vue'
 
 export default {
 	name: 'PropertyText',
 
 	components: {
-		ExchangeInvite,
+		OcmInvite,
 		NcSelect,
 		NcTextArea,
 		NcTextField,

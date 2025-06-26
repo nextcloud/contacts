@@ -10,8 +10,10 @@ namespace OCA\Contacts\Controller;
 use Exception;
 use OC\App\CompareVersion;
 use OCA\DAV\CardDAV\CardDavBackend;
-use OCA\CloudFederationAPI\Db\FederatedInviteMapper;
 use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\Db\FederatedInvite;
+use OCA\Contacts\Db\FederatedInviteMapper;
+use OCA\Contacts\Service\FederatedInvitesService;
 use OCA\Contacts\Service\GroupSharingService;
 use OCA\Contacts\Service\SocialApiService;
 use OCA\FederatedFileSharing\AddressHandler;
@@ -19,6 +21,7 @@ use OCP\App\IAppManager;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\Contacts\IManager;
 use OCP\Http\Client\IClientService;
 use OCP\IConfig;
@@ -30,6 +33,7 @@ use OCP\IUserManager;
 use OCP\IUserSession;
 use OCP\L10N\IFactory;
 use Psr\Log\LoggerInterface;
+use Sabre\DAV\UUIDUtil;
 
 /**
  * Controller for federated invites related routes.
@@ -43,6 +47,9 @@ class FederatedInvitesController extends PageController
 		IRequest $request,
 		private AddressHandler $addressHandler,
 		private CardDavBackend $cardDavBackend,
+		private FederatedInviteMapper $federatedInviteMapper,
+		private FederatedInvitesService $federatedInvitesService,
+		private IAppManager $appManager,
 		private IClientService $httpClient,
 		private IConfig $config,
 		private IInitialStateService $initialStateService,
@@ -50,17 +57,17 @@ class FederatedInvitesController extends PageController
 		private IManager $contactsManager,
 		private IUserSession $userSession,
 		private SocialApiService $socialApiService,
-		private IAppManager $appManager,
+		private ITimeFactory $timeFactory,
 		private CompareVersion $compareVersion,
 		private GroupSharingService $groupSharingService,
 		private IL10N $il10,
 		private IURLGenerator $urlGenerator,
 		private IUserManager $userManager,
-		private FederatedInviteMapper $federatedInviteMapper,
 		private LoggerInterface $logger,
 	) {
 		parent::__construct(
 			$request,
+			$federatedInvitesService,
 			$config,
 			$initialStateService,
 			$languageFactory,
@@ -77,14 +84,34 @@ class FederatedInvitesController extends PageController
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 *
+	 * Returns all open (not yet accepted) invites.
+	 * 
+	 * @return DataResponse
+	 */
+	public function getInvites(): DataResponse {
+		$_invites = $this->federatedInviteMapper->findOpenInvitesByUiddd($this->userSession->getUser()->getUID());
+		$invites = [];
+		foreach ($_invites as $invite) {
+			if ($invite instanceof FederatedInvite) {
+				array_push(
+					$invites, 
+					$invite->jsonSerialize()
+				);
+			}
+		}
+		return new DataResponse($invites, Http::STATUS_OK);
+	}
+
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 *
 	 * Sets the token and provider states which triggers display of the invite accept dialog.
 	 * 
 	 * @param string $token
 	 * @param string $provider
 	 */
-	public function inviteAcceptDialog(string $token = "", string $provider = ""): TemplateResponse
-	{
-		$this->logger->debug(" - FederatedInvitesController inviteAcceptDialog method: setting initial state ($token, $provider) and returning PageController index ", ['app' => Application::APP_ID]);
+	public function inviteAcceptDialog(string $token = "", string $provider = ""): TemplateResponse {
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'inviteToken', $token);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'inviteProvider', $provider);
 		// TODO read from config
@@ -99,11 +126,29 @@ class FederatedInvitesController extends PageController
 	 *
 	 * Creates an invitation to exchange contact info for the user with the specified uid.
 	 * 
-	 * @return DataResponse 
+	 * @param string $email the recipient email to send the invitation to
+	 * @param string $message the optional message to send with the invitation 
+	 * @return DataResponse with data signature ['token' | 'error'] - the token of the invitation or an error message in case of error
 	 */
-	public function createInvite(string $uid = ''): DataResponse
-	{
-		return new DataResponse(['message' => "Route not implemented"], Http::STATUS_NOT_IMPLEMENTED);
+	public function createInvite(string $email = null, string $message = null): DataResponse {
+		if(!isset($email)) {
+			return new DataResponse(['error' => 'Recipient email is required'], Http::STATUS_BAD_REQUEST);
+		}
+		$invite = new FederatedInvite();
+		$invite->setUserId($this->userSession->getUser()->getUID());
+		$token = UUIDUtil::getUUID();
+		$invite->setToken($token);
+		$invite->setCreatedAt($this->timeFactory->getTime());
+		// TODO get expiration period from config
+		// take 30 days
+		$invite->setExpiredAt($invite->getCreatedAt() + 2592000000);
+		$invite->setRecipientEmail($email);
+		$invite->setAccepted(false);
+		$this->federatedInviteMapper->insert($invite);
+
+		// TODO send email
+
+		return new DataResponse(['token' => $token], Http::STATUS_OK);
 	}
 
 	/**
@@ -115,12 +160,12 @@ class FederatedInvitesController extends PageController
 	 * 
 	 * @param string $token the token of the invite
 	 * @param string $provider the provider of the sender of the invite 
-	 * @return DataResponse with data signature ['contact' | 'message'] - the new contact url or a message in case of error
+	 * @return DataResponse with data signature ['contact' | 'error'] - the new contact url or an error message in case of error
 	 */
 	public function inviteAccepted(string $token = "", string $provider = ""): DataResponse {
 		if ($token === "" || $provider === "") {
 			$this->logger->error("Both token and provider must be specified. Received: token=$token, provider=$provider", ['app' => Application::APP_ID]);
-			return new DataResponse(['message' => 'Both token and provider must be specified.'], Http::STATUS_NOT_FOUND);
+			return new DataResponse(['error' => 'Both token and provider must be specified.'], Http::STATUS_NOT_FOUND);
 		}
 		try {
 			// delegate further to OCM /invite-accepted
@@ -147,14 +192,14 @@ class FederatedInvitesController extends PageController
 			$responseData = $response->getBody();
 			$data = json_decode($responseData, true);
 			$newContact = $this->socialApiService->createFederatedContact(
-				// nextcloud cloud id format, ie. the ocm address
+				// the ocm address: nextcloud cloud id format
 				$data['userID'] . "@" . $this->addressHandler->removeProtocolFromUrl($provider),
 				$data['email'],
 				$data['name'],
 				$localUser->getUID(),
 			);
 			if (!isset($newContact)) {
-				return new DataResponse(['message' => 'An unexpected error occurred trying to accept invite: could not create new contact'], Http::STATUS_NOT_FOUND);
+				return new DataResponse(['error' => 'An unexpected error occurred trying to accept invite: could not create new contact'], Http::STATUS_NOT_FOUND);
 			}
 			$this->logger->info("Created new contact with UID: " . $newContact['UID'] . " for user with UID: " . $localUser->getUID(), ['app' => Application::APP_ID]);
 
@@ -172,15 +217,15 @@ class FederatedInvitesController extends PageController
 			$statusCode = $e->getCode();
 			switch ($statusCode) {
 				case Http::STATUS_BAD_REQUEST:
-					return new DataResponse(['message' => 'Invalid, non existing or expired token'], $e->getCode());
+					return new DataResponse(['error' => 'Invalid, non existing or expired token'], $e->getCode());
 				case Http::STATUS_CONFLICT:
-					return new DataResponse(['message' => 'Invite already accepted'], $e->getCode());
+					return new DataResponse(['error' => 'Invite already accepted'], $e->getCode());
 			}
 			$this->logger->error("An unexpected error occurred accepting invite with token=$token and provider=$provider. Stacktrace: " . $e->getTraceAsString(), ['app' => Application::APP_ID]);
-			return new DataResponse(['message' => 'An unexpected error occurred trying to accept invite.'], Http::STATUS_NOT_FOUND);
+			return new DataResponse(['error' => 'An unexpected error occurred trying to accept invite.'], Http::STATUS_NOT_FOUND);
 		} catch (Exception $e) {
 			$this->logger->error("An unexpected error occurred accepting invite with token=$token and provider=$provider. Stacktrace: " . $e->getTraceAsString(), ['app' => Application::APP_ID]);
-			return new DataResponse(['message' => 'An unexpected error occurred trying to accept invite'], Http::STATUS_NOT_FOUND);
+			return new DataResponse(['error' => 'An unexpected error occurred trying to accept invite'], Http::STATUS_NOT_FOUND);
 		}
 	}
 }

@@ -26,6 +26,7 @@
 		:is-multiple="isMultiple"
 		:contactFormEditMode="contactFormEditMode"
 		@setContactFormEditModeEvent:value="setEditMode"
+		@saveInvite="saveInvite"
 		@delete="onDelete" />
 </template>
 
@@ -35,6 +36,7 @@ import rfcProps from '../../models/rfcProps.js'
 import Contact from '../../models/contact.js'
 
 import OrgChartsMixin from '../../mixins/OrgChartsMixin.js'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
 import PropertyText from '../Properties/PropertyText.vue'
 import PropertyMultipleText from '../Properties/PropertyMultipleText.vue'
 import PropertyDateTime from '../Properties/PropertyDateTime.vue'
@@ -47,6 +49,7 @@ export default {
 
 	mixins: [
 		OrgChartsMixin,
+		PropertyMixin,
 	],
 
 	props: {
@@ -90,6 +93,14 @@ export default {
 			type: Boolean,
 			required: true,
 		},
+		editMode: {
+			type: Boolean,
+			required: true
+		},
+		isNewContact: {
+			type: Boolean,
+			required: true
+		}
 	},
 
 	computed: {
@@ -102,7 +113,7 @@ export default {
 				return PropertyDateTime
 			} else if (this.propType && this.propType === 'select') {
 				return PropertySelect
-			} else if (this.propType && this.propName === 'cloud') {
+			} else if (this.propType && this.propName === 'cloud' && this.editMode === true && !this.isNewContact && !this.propHasValue()) {
 				return PropertyCloudId
 			} else if (this.propType && this.propType !== 'unknown') {
 				return PropertyText
@@ -399,7 +410,15 @@ export default {
 
 		setEditMode(value) {
 			this.$emit('setContactFormEditModeEvent:value', value)
+		},
+
+		propHasValue() {
+			if(typeof this.property.getFirstValue() === 'string' && this.property.getFirstValue().length > 0) {
+				return true
+			}
+			return false
 		}
+
 	},
 }
 </script>
