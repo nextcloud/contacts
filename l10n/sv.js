@@ -187,6 +187,8 @@ OC.L10N.register(
     "Promote as sole owner" : "Gör till ensam ägare",
     "Promote to {level}" : "Befordra till {level}",
     "Demote to {level}" : "Degradera till {level}",
+    "Are you sure you want to leave this team? This action cannot be undone." : "Är du säker på att du vill lämna det här teamet? Den här åtgärden går inte att ångra.",
+    "Leave team failed." : "Kunde inte lämna teamet.",
     "Could not delete the member {displayName}" : "Kunde inte radera medlemmen {displayName}",
     "Could not change the member level to {level}" : "Kunde inte ändra medlemmens behörighet till {level}",
     "Could not accept membership request" : "Kunde inte acceptera medlemsförfrågan",
