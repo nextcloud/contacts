@@ -164,6 +164,7 @@
     "Add to group" : "Lisa gruppi",
     "Search {types}" : "Otsi: {types}",
     "Search for people to add" : "Otsi inimesi, keda liikmeks lisada",
+    "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Palun arvesta, et kontaktigruppidesse saad kontakte lisada vaid kirjutusõigustega aadressiraamatutest. Kontakte ainult lugemisõigusega aadressiraamatutest, nagu näiteks süsteemne aadressiraamatut, lisada ei saa.",
     "No results" : "Vasteid ei leitud",
     "Add {type}" : "Lisa {type}",
     "New team name" : "Tiimi uus nimi",

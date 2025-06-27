@@ -164,6 +164,7 @@
     "Add to group" : "新增至群組",
     "Search {types}" : "搜尋 {types}",
     "Search for people to add" : "搜尋要新增的人",
+    "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "請注意，您只能將可寫通訊錄中的聯絡人新增至聯絡人群組。來自唯讀通訊錄（例如系統通訊錄）的聯絡人則無法新增。",
     "No results" : "沒有結果",
     "Add {type}" : "新增 {type}",
     "New team name" : "新團隊名稱",

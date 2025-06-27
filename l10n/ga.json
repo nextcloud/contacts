@@ -164,6 +164,7 @@
     "Add to group" : "Cuir leis an ngrúpa",
     "Search {types}" : "Cuardaigh {types}",
     "Search for people to add" : "Cuardaigh daoine le cur leis",
+    "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Tabhair faoi deara nach féidir leat ach teagmhálaithe ó leabhair sheoltaí inscríofa a chur le grúpaí teagmhálaithe. Ní féidir teagmhálaithe ó leabhair sheoltaí inléite amháin, amhail leabhar seoltaí an chórais, a chur leis.",
     "No results" : "Gan torthaí",
     "Add {type}" : "Cuir {type} leis",
     "New team name" : "Ainm foirne nua",
