@@ -298,9 +298,16 @@ const actions = {
 		addressbook.dav.enabled = !addressbook.enabled
 		return addressbook.dav
 			.update()
-			.then((response) => {
+			.then(async (response) => {
 				context.commit('toggleAddressbookEnabled', addressbook)
 				if (addressbook.enabled) {
+					const contacts = Object.values(addressbook.contacts)
+
+					// If the address book is disabled on first load, the store does not fetch/store the AB's contacts
+					if (contacts.length === 0) {
+						await context.dispatch('getContactsFromAddressBook', { addressbook })
+					}
+
 					// Add contacts from the just enabled address book to the contacts store
 					Object.values(addressbook.contacts).forEach((contact) => {
 						context.commit('addContact', contact)
