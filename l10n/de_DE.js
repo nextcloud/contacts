@@ -166,6 +166,7 @@ OC.L10N.register(
     "Add to group" : "Zur Gruppe hinzufügen",
     "Search {types}" : "Suche {types}",
     "Search for people to add" : "Nach Personen zum Hinzufügen suchen",
+    "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Bitte beachten Sie, dass Sie nur Kontakte aus beschreibbaren Adressbüchern zu Kontaktgruppen hinzufügen können. Kontakte aus schreibgeschützten Adressbüchern, wie z. B. dem Systemadressbuch, können nicht hinzugefügt werden.",
     "No results" : "Keine Ergebnisse",
     "Add {type}" : "Hinzufügen von {type}",
     "New team name" : "Neuer Teamname",

@@ -166,6 +166,7 @@ OC.L10N.register(
     "Add to group" : "添加到群组",
     "Search {types}" : "搜索 {types}",
     "Search for people to add" : "搜索要添加的人",
+    "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "请注意，您只能将可写通讯录中的联系人添加到联系人组。无法添加只读通讯录（如系统通讯录）中的联系人。",
     "No results" : "无结果",
     "Add {type}" : "添加  {type}",
     "New team name" : "新团队名称",
