@@ -166,6 +166,7 @@ OC.L10N.register(
     "Add to group" : "Додај у групу",
     "Search {types}" : "Претражи {types}",
     "Search for people to add" : "Претражите особе које желите да додате",
+    "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Имајте на уму да контакте можете да додате у групе контаката само из адресара у које може да се уписује. Не могу да се додају контакти из адресара из којих може само да се чита, као што је системски адресар.",
     "No results" : "Нема резултата",
     "Add {type}" : "Додај {type}",
     "New team name" : "Нови назив тима",
