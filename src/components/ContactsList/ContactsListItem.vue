@@ -5,7 +5,8 @@
 <template>
 	<div class="contacts-list__item-wrapper"
 		:draggable="isDraggable"
-		@dragstart="startDrag($event, source)">
+		@dragstart="startDrag($event, source)"
+		@click.shift.exact.prevent="onSelectMultipleRange">
 		<ListItem :id="id"
 			:key="source.key"
 			class="list-item-style envelope"
@@ -14,8 +15,17 @@
 			<!-- @slot Icon slot -->
 
 			<template #icon>
-				<div class="app-content-list-item-icon">
-					<BaseAvatar :display-name="source.displayName" :url="avatarUrl" :size="40" />
+				<div class="contacts-list__item-icon"
+					@click.exact.prevent="onSelectMultiple"
+					@mouseenter="hoveringAvatar = true"
+					@mouseleave="hoveringAvatar = false">
+					<BaseAvatar v-if="!source.isMultiSelected && !hoveringAvatar"
+						:display-name="source.displayName"
+						:url="avatarUrl"
+						:size="40" />
+					<CheckIcon v-if="source.isMultiSelected || hoveringAvatar"
+						:size="28"
+						:class="{ 'contacts-list__item-avatar-selected': source.isMultiSelected, 'contacts-list__item-avatar-hovered': !source.isMultiSelected }" />
 				</div>
 			</template>
 			<template #subname>
@@ -34,6 +44,7 @@ import {
 	NcListItem as ListItem,
 	NcAvatar as BaseAvatar,
 } from '@nextcloud/vue'
+import CheckIcon from 'vue-material-design-icons/Check.vue'
 
 export default {
 	name: 'ContactsListItem',
@@ -41,6 +52,7 @@ export default {
 	components: {
 		ListItem,
 		BaseAvatar,
+		CheckIcon,
 	},
 
 	props: {
@@ -56,10 +68,15 @@ export default {
 			type: Object,
 			required: true,
 		},
+		onSelectMultipleFromParent: {
+			type: Function,
+			default: () => {},
+		},
 	},
 	data() {
 		return {
 			avatarUrl: undefined,
+			hoveringAvatar: false,
 		}
 	},
 
@@ -156,13 +173,20 @@ export default {
 				params: { selectedGroup: this.selectedGroup, selectedContact: this.source.key },
 			})
 		},
+		onSelectMultiple() {
+			// This weirdness of passing a function as a prop is because the VirtualList extra-props prop object does not support listening to custom events (afaik)
+			this.onSelectMultipleFromParent(this.source, this.index)
+		},
+		onSelectMultipleRange() {
+			this.onSelectMultipleFromParent(this.source, this.index, true)
+		},
 	},
 }
 </script>
 <style lang="scss" scoped>
 
 .envelope {
-	.app-content-list-item-icon {
+	.contacts-list__item-icon {
 		height: 40px; // To prevent some unexpected spacing below the avatar
 	}
 
@@ -193,6 +217,32 @@ export default {
 
 	&[draggable='false'] .avatardiv * {
 		cursor: not-allowed !important;
+	}
+}
+
+.contacts-list__item-icon {
+	cursor: pointer !important;
+}
+
+.contacts-list__item-avatar {
+
+	&-selected, &-hovered {
+		border-radius: 32px;
+		width: 40px;
+		height: 40px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+
+	&-selected {
+		background-color: var(--color-primary-element);
+		color: var(--color-primary-light);
+	}
+
+	&-hovered {
+		color: var(--color-primary-hover);
+		background-color: var(--color-primary-light-hover);
 	}
 }
 </style>
