@@ -1,3 +1,37 @@
+## [7.1.4](https://github.com/nextcloud/contacts/compare/v7.1.3...v7.1.4) (2025-07-01)
+
+
+### Bug Fixes
+
+* **deps:** Fix npm audit ([60585c4](https://github.com/nextcloud/contacts/commit/60585c46455a1c50d484951e9ead729c8db9dec8))
+* **deps:** Fix npm audit ([7768ea2](https://github.com/nextcloud/contacts/commit/7768ea20ca601dcec42469b13db5d1b8cb7a5be5))
+* fetch addressbook contacts when enabled ([5b5e02e](https://github.com/nextcloud/contacts/commit/5b5e02e2dab94b2c18e399773c34dec845f94242))
+* **groups:** show hint about adding read-only contacts to contact groups ([4c8b228](https://github.com/nextcloud/contacts/commit/4c8b2284f73b8a4afce3007a4b6be6a968871ff1))
+* **l10n:** Update translations from Transifex ([a69f4f1](https://github.com/nextcloud/contacts/commit/a69f4f1e7757bfc935d606679c4a3ce221e3e945))
+* **l10n:** Update translations from Transifex ([cdf808d](https://github.com/nextcloud/contacts/commit/cdf808d1c70d71c7a6459aeeb2173ef11ef1023a))
+* **l10n:** Update translations from Transifex ([c3207cf](https://github.com/nextcloud/contacts/commit/c3207cf68e07714d9961a08028eec6bb6b813702))
+* **l10n:** Update translations from Transifex ([7568734](https://github.com/nextcloud/contacts/commit/7568734f70b22d452240d9e9c3872b7b2011e5cb))
+* **l10n:** Update translations from Transifex ([b501586](https://github.com/nextcloud/contacts/commit/b50158624cc9e32ae6562df336ac0e9910ab59dc))
+* **l10n:** Update translations from Transifex ([2050255](https://github.com/nextcloud/contacts/commit/2050255c7259fcdb09ea7425628387638f7f166e))
+* **l10n:** Update translations from Transifex ([f06db0d](https://github.com/nextcloud/contacts/commit/f06db0d4c1236fe6ba5cd6a5df431c1c330cf27f))
+* **l10n:** Update translations from Transifex ([7ce721a](https://github.com/nextcloud/contacts/commit/7ce721aae6ef931c08bc29a1fcceca7bc25d337b))
+* **l10n:** Update translations from Transifex ([ff64b95](https://github.com/nextcloud/contacts/commit/ff64b95e7dcf557eff279e905c86cb8432d4d1e2))
+* **l10n:** Update translations from Transifex ([7bbfae5](https://github.com/nextcloud/contacts/commit/7bbfae56510489d3881ed72f33414221ebc73c6a))
+* **l10n:** Update translations from Transifex ([0f0aeb6](https://github.com/nextcloud/contacts/commit/0f0aeb669a78d74c478ab886db6551558c147683))
+* **l10n:** Update translations from Transifex ([dd203ee](https://github.com/nextcloud/contacts/commit/dd203eead05b0d76b8514b74fb5d016054b1a37b))
+* **l10n:** Update translations from Transifex ([8bfe5f1](https://github.com/nextcloud/contacts/commit/8bfe5f157f8b7a998f36b5fb75a31fa8fa656bab))
+* **l10n:** Update translations from Transifex ([8612bf3](https://github.com/nextcloud/contacts/commit/8612bf3a21ba0aa39d3f51c5bbda6c5abee899bc))
+* **l10n:** Update translations from Transifex ([165584a](https://github.com/nextcloud/contacts/commit/165584a555fe9b79670c0a8123554c9fe7081807))
+* **l10n:** Update translations from Transifex ([1836ca9](https://github.com/nextcloud/contacts/commit/1836ca975cd4234d835acf643968ea45fc77ab0a))
+* **l10n:** Update translations from Transifex ([f69b5e1](https://github.com/nextcloud/contacts/commit/f69b5e124b0e9795652e4ea677308f46e99a0bce))
+* **l10n:** Update translations from Transifex ([eb1ee12](https://github.com/nextcloud/contacts/commit/eb1ee1262bf25f21605f0ec4301c65bdd6e9d110))
+* **l10n:** Update translations from Transifex ([f3b3054](https://github.com/nextcloud/contacts/commit/f3b30542ddc7b3e89a61b444f2ebce778bd2fbec))
+* **l10n:** Update translations from Transifex ([cad036a](https://github.com/nextcloud/contacts/commit/cad036a3afe644ac812dbba5d2e2d54743dc5836))
+* npm audit fix ([2ca519f](https://github.com/nextcloud/contacts/commit/2ca519f3a060311967bda6fc2eeb6c0eb97a3ca9))
+* pre fetch note field to enable searching ([91ef25b](https://github.com/nextcloud/contacts/commit/91ef25bc9273dac39cd54552c5fd5710c9839c0e))
+
+
+
 ## [7.1.3](https://github.com/nextcloud/contacts/compare/v7.1.2...v7.1.3) (2025-06-03)
 
 
