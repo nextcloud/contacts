@@ -166,6 +166,7 @@ OC.L10N.register(
     "Add to group" : "Lägg till grupp",
     "Search {types}" : "Sök {types}",
     "Search for people to add" : "Sök efter personer att lägga till",
+    "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Observera att du bara kan lägga till kontakter från skrivbara adressböcker i kontaktgrupper. Kontakter från skrivskyddade adressböcker, såsom systemets adressbok, kan inte läggas till.",
     "No results" : "Inga resultat",
     "Add {type}" : "Lägg till {type}",
     "New team name" : "Nytt namn på team",
