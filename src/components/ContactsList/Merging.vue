@@ -6,25 +6,23 @@
 <template>
 	<div class="merging">
 		<div class="merging-title">
-			<h3>{{ t('contacts', 'Merged contacts summary') }}</h3>
-			<NcButton :disabled="conflictsToResolve !== 0" variant="secondary">
-				{{ t('contacts', 'Merge contacts') }}
-				<template #icon>
-					<IconSetMerge :size="16" />
-				</template>
-			</NcButton>
+			<h3>{{ t('contacts', 'Confirm merging contacts') }}</h3>
 		</div>
 
 		<NcNoteCard v-if="conflictsToResolve"
 			type="warning"
-			:text="n('contacts', 'You have {x} conflict to resolve', 'You have {x} conflicts to resolve', conflictsToResolve, { x: conflictsToResolve })" />
+			:text="t('contacts', 'The selected contacts have conflicting information. Choose which information to keep')" />
+
+		<NcNoteCard v-else
+			type="success"
+			:text="t('contacts', 'Contacts can be merged')" />
 
 		<div class="merging-conflicts">
-			<div v-for="(property) in usedProperties"
+			<div v-for="(property, index) in sortedProperties"
 				:key="property"
-				:class="['merging-conflicts__row', { conflict: conflictInformation[property]?.type === 'conflict' }]">
-				<IconCheckCircleOutline v-if="conflictInformation[property]?.type !== 'conflict'" :size="20" />
-				<IconCloseCircleOutline v-if="conflictInformation[property]?.type === 'conflict'" :size="20" :class="[{ 'needs-action': resolvedConflicts.get(property) === undefined}]" />
+				:class="['merging-conflicts__row', { conflict: conflictInformation[property]?.type === 'conflict', last: index === sortedProperties.length - 1 }]">
+				<IconCheckCircleOutline v-if="conflictInformation[property]?.type !== 'conflict' || resolvedConflicts.get(property) !== undefined" :size="20" />
+				<IconCloseCircleOutline v-if="conflictInformation[property]?.type === 'conflict' && resolvedConflicts.get(property) === undefined" :size="20" class="needs-action" />
 
 				<NcCheckboxRadioSwitch v-if="conflictInformation[property]?.type === 'conflict'"
 					:checked="resolvedConflicts.get(property) === 0"
@@ -57,6 +55,15 @@
 						:is-read-only="true" />
 				</div>
 			</div>
+		</div>
+
+		<div class="merging-actions">
+			<NcButton :disabled="conflictsToResolve !== 0" variant="secondary">
+				{{ t('contacts', 'Merge contacts') }}
+				<template #icon>
+					<IconSetMerge :size="16" />
+				</template>
+			</NcButton>
 		</div>
 	</div>
 </template>
@@ -97,6 +104,7 @@ export default {
 			bus: mitt(),
 			resolvedConflicts: new Map(),
 			conflictsToResolve: 0,
+			sortedProperties: [],
 		}
 	},
 
@@ -128,6 +136,7 @@ export default {
 
 		usedProperties() {
 			const allKeys = this.dividedProperties.flatMap(map => Object.keys(map))
+
 			return [...new Set(allKeys)]
 		},
 
@@ -178,6 +187,7 @@ export default {
 
 	mounted() {
 		this.calculateConflictsToResolve()
+		this.sortedProperties = this.sortUsedProperties()
 	},
 
 	methods: {
@@ -278,7 +288,22 @@ export default {
 					: property.getValues()
 			}
 			return property.getFirstValue()
-		}
+		},
+		sortUsedProperties() {
+			// the properties where this.conflictInformation[property].type === 'conflict' should have priority
+			return this.usedProperties.sort((a, b) => {
+				const aType = this.conflictInformation[a]?.type
+				const bType = this.conflictInformation[b]?.type
+
+				if (aType === 'conflict' && bType !== 'conflict') {
+					return -1
+				}
+				if (bType === 'conflict' && aType !== 'conflict') {
+					return 1
+				}
+				return 0
+			})
+		},
 	},
 }
 </script>
@@ -291,7 +316,6 @@ export default {
 
 	&-title {
 		display: flex;
-		justify-content: space-between;
 		width: 100%;
 		margin: calc(var(--default-grid-baseline) * 3) 0;
 
@@ -310,6 +334,8 @@ export default {
 			display: flex;
 			gap: calc(var(--default-grid-baseline) * 5);
 			align-items: start;
+			border-bottom: var(--border-width-input) solid var(--color-background-darker);
+			padding-bottom: calc(var(--default-grid-baseline) * 3);
 
 			.material-design-icon {
 				align-self: start;
@@ -337,12 +363,22 @@ export default {
 		}
 	}
 
+	.last {
+		border-bottom: none;
+	}
+
 	.property__label {
 		width: unset;
 	}
 
 	.checkbox-radio-switch {
 		margin-top: calc(var(--default-grid-baseline) * 2);
+	}
+
+	&-actions {
+		display: flex;
+		justify-content: flex-end;
+		margin-top: calc(var(--default-grid-baseline) * 4);
 	}
 }
 
