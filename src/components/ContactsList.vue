@@ -19,8 +19,8 @@
 			<NcNoteCard v-if="readOnlyMultiSelectedCount"
 				type="info"
 				:text="n('contacts',
-					'Please note that {number} contact is read only and won\'t be deleted',
-					'Please note that {number} contacts are read only and won\'t be deleted',
+					'Please note that {number} contact is read only and will not be deleted',
+					'Please note that {number} contacts are read only and will not be deleted',
 					readOnlyMultiSelectedCount,
 					{ number: readOnlyMultiSelectedCount })" />
 		</NcDialog>
