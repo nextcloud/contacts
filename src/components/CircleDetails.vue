@@ -394,7 +394,7 @@ export default {
 }
 
 .circle-name__loader {
-	margin-left: 8px;
+	margin-inline-start: 8px;
 }
 
 .circle-details {
@@ -409,7 +409,7 @@ export default {
 	&__actions {
 		display: flex;
 		a, button {
-			margin-right: 8px;
+			margin-inline-end: 8px;
 		}
 	}
 

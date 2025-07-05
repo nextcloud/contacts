@@ -30,7 +30,7 @@ $property-row-gap: $contact-details-row-gap;
 
 		// fix default margin from server stylesheet causing slight misalignment
 		input {
-			margin-right: 0;
+			margin-inline-end: 0;
 		}
 	}
 

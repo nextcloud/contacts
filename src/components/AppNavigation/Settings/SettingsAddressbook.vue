@@ -343,7 +343,7 @@ export default {
 		+ a,
 		+ div {
 			// put actions at the end
-			margin-left: auto;
+			margin-inline-start: auto;
 		}
 	}
 
@@ -372,13 +372,13 @@ export default {
 	}
 
 	&__count {
-		margin-left: calc(var(--default-grid-baseline) * 0.5);
+		margin-inline-start: calc(var(--default-grid-baseline) * 0.5);
 		font-size: smaller;
 		color: var(--color-text-lighter);
 	}
 
 	&__count:not(:last-child) {
-		margin-right: var(--default-grid-baseline);
+		margin-inline-end: var(--default-grid-baseline);
 	}
 
 	&__share,

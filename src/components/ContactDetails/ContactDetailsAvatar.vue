@@ -606,7 +606,7 @@ export default {
 	&__background {
 		z-index: 0;
 		top: 50px;
-		left: 0;
+		inset-inline-start: 0;
 		opacity: .2;
 	}
 
@@ -644,7 +644,7 @@ export default {
 		position: absolute !important;
 		// bottom right
 		top: 100%;
-		left: 100%;
+		inset-inline-start: 100%;
 		width: 44px;
 		height: 44px;
 		margin: -50%;

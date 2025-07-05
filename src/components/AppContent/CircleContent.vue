@@ -120,7 +120,7 @@ button {
 	justify-content: center;
 	align-items: center;
 	span {
-		margin-right: 10px;
+		margin-inline-end: 10px;
 	}
 }
 
