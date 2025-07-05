@@ -160,6 +160,7 @@ OC.L10N.register(
     "Calendar events with you" : "Eventos de calendário com você",
     "Deck cards with you" : "Cartões de Deck com você",
     "No shared items with this contact" : "Nenhum item compartilhado com este contato",
+    "_Delete {number} contact_::_Delete {number} contacts_" : ["Excluir {number} contato","Excluir {number} de contatos","Excluir {number} contatos"],
     "Search contacts …" : "Pesquisar contatos …",
     "Add to {group}" : "Adicionar a {group}",
     "Remove {type}" : "Excluir {type}",
