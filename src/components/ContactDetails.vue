@@ -1080,7 +1080,7 @@ export default {
 	align-items: flex-start;
 	padding-bottom: calc(var(--default-grid-baseline) * 5);
 	gap: calc(var(--default-grid-baseline) * 4);
-	float: left;
+	float: inline-start;
 }
 @media only screen and (max-width: 600px) {
 	.contact-details-wrapper {
@@ -1155,9 +1155,9 @@ section.contact-details {
 }
 @media only screen and (max-width: 1600px) {
 	.related-resources {
-		float: left;
+		float: inline-start;
 		display: inline-grid;
-		margin-left: 80px;
+		margin-inline-start: 80px;
 		flex-direction: column;
 		margin-bottom: 0;
 		margin-top: 40px;

@@ -154,7 +154,7 @@ export default {
 	min-height: 44px;
 	height: 44px;
 	border-color: var(--color-border-dark) !important;
-	border-left: none;
+	border-inline-start: none;
 }
 
 </style>

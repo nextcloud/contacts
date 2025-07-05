@@ -92,6 +92,6 @@ export default {
 <style lang="scss" scoped>
 .close__button {
 	padding: 12px;
-	float: right;
+	float: inline-end;
 }
 </style>

@@ -176,8 +176,7 @@ export default {
 		border: 1px solid var(--color-border);
 
 		h3 {
-			padding-left: 50px;
-			padding-right: 10px;
+			padding-inline: 50px 10px;
 			margin: 9px 0;
 		}
 	}

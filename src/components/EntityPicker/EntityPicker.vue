@@ -399,7 +399,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 			width: 100%;
 			height: $clickable-area - $entity-spacing !important;
 			margin: $entity-spacing 0;
-			padding-left: $clickable-area !important;
+			padding-inline-start: $clickable-area !important;
 			font-size: 16px;
 			line-height: $clickable-area - $entity-spacing;
 		}
@@ -426,7 +426,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 		// Allows 2 per line
 		.entity-picker__bubble {
 			max-width: calc(50% - #{$entity-spacing});
-			margin-right: $entity-spacing;
+			margin-inline-end: $entity-spacing;
 			margin-bottom: $entity-spacing;
 		}
 	}
@@ -447,7 +447,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 		width: 100%;
 		box-shadow: 0 -10px 5px var(--color-main-background);
 		&__button-right {
-			margin-left: auto;
+			margin-inline-start: auto;
 		}
 	}
 }

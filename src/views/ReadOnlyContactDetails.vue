@@ -291,7 +291,7 @@ export default {
 }
 
 .contact-title {
-	margin-left: 100px;
+	margin-inline-start: 100px;
 	margin-top: 40px;
 }
 

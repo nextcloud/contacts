@@ -277,7 +277,7 @@ export default defineComponent({
 
 		button {
 			background-position: 14px center;
-			text-align: left;
+			text-align: start;
 
 		}
 	}

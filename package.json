@@ -30,8 +30,8 @@
     "watch": "vite build --mode development --watch",
     "lint": "eslint --ext .js,.ts,.vue src",
     "lint:fix": "eslint --ext .js,.ts,.vue src --fix",
-    "stylelint": "stylelint src",
-    "stylelint:fix": "stylelint src --fix",
+    "stylelint": "stylelint  \"src/**/*.scss\" \"src/**/*.vue\"",
+    "stylelint:fix": "stylelint  \"src/**/*.scss\" \"src/**/*.vue\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage"

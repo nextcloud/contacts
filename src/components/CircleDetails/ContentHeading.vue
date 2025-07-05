@@ -29,7 +29,7 @@ export default {
 	display: flex;
 
 	&__loader {
-		margin-left: 8px;
+		margin-inline-start: 8px;
 	}
 }
 </style>

@@ -333,11 +333,11 @@ export default {
 		&-icon {
 			width: 32px;
 			height: 32px;
-			margin-right: 5px;
+			margin-inline-end: 5px;
 		}
 		&-main {
 			width: 100% !important;
-			margin-left: 0 !important;
+			margin-inline-start: 0 !important;
 		}
 		&-disabled {
 			// Wrap warning about disabled button instead of ellipsing it

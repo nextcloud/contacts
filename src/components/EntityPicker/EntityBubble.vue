@@ -80,7 +80,7 @@ export default {
 		display: block;
 		height: 100%;
 		// squeeze in the border radius
-		margin-right: -4px;
+		margin-inline-end: -4px;
 		opacity: .7;
 
 		&:hover,

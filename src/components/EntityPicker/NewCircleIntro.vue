@@ -190,7 +190,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 		width: 100%;
 		box-shadow: 0 -10px 5px var(--color-main-background);
 		&__button-right {
-			margin-left: auto;
+			margin-inline-start: auto;
 		}
 	}
 }
