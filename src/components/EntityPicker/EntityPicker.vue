@@ -41,7 +41,7 @@
 				<!-- No recommendations -->
 				<EmptyContent v-if="dataSet.length === 0"
 					:name="t('contacts', 'Search for people to add')"
-					:description="t('contacts', 'Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added.')">
+					:description="emptyDataSetDescription">
 					<template #icon>
 						<IconSearch :size="20" />
 					</template>
@@ -174,6 +174,11 @@ export default {
 		selection: {
 			type: Object,
 			default: null,
+		},
+
+		emptyDataSetDescription: {
+			type: String,
+			default: '',
 		},
 	},
 
