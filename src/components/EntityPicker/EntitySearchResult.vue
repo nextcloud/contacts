@@ -78,7 +78,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 .entity-picker {
 	&__option {
 		&-caption {
-			padding-left: 10px;
+			padding-inline-start: 10px;
 			list-style-type: none;
 			user-select: none;
 			white-space: nowrap;
@@ -128,8 +128,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 	.user-bubble__secondary {
 		// Force show checkmark
 		display: inline-flex;
-		margin-right: 4px;
-		margin-left: auto;
+		margin-inline: auto 4px;
 	}
 	&, * {
 		// the whole row is clickable,let's force the proper cursor

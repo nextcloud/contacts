@@ -89,7 +89,7 @@ $top-padding: 50px;
 			width: 100%;
 		}
 		&__actions .header-menu {
-			margin-left: auto;
+			margin-inline-start: auto;
 		}
 		&__avatar {
 			width: 150px !important;
