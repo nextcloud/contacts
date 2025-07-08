@@ -1,6 +1,13 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## [7.2.0](https://github.com/nextcloud/contacts/compare/v7.1.5...v7.2.0-rc.1) (tbd)
+
+
+### Features
+
+* **ContactsList** add multiselect action and batch deleting ([e1639fdb](https://github.com/nextcloud/contacts/commit/e1639fdb))
+
 # [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0-beta.Z) (2025-01-09)
 
 
