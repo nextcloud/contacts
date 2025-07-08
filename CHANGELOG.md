@@ -1,3 +1,18 @@
+## [7.1.5](https://github.com/nextcloud/contacts/compare/v7.1.4...v7.1.5) (2025-07-08)
+
+
+### Bug Fixes
+
+* **deps:** Fix npm audit ([86e5392](https://github.com/nextcloud/contacts/commit/86e53928e866c4693bda6ea5a9518042a60193f7))
+* **groups:** show read-only contacts hint only for contact groups ([0f1c458](https://github.com/nextcloud/contacts/commit/0f1c45838ac102b9588b1fa8833b3d03d42df2ab))
+* **l10n:** Update translations from Transifex ([ba1c486](https://github.com/nextcloud/contacts/commit/ba1c4860d846567d1b903816a96dfe145c77598d))
+* **l10n:** Update translations from Transifex ([861c800](https://github.com/nextcloud/contacts/commit/861c80067bcc46a58989a2b02354809de8dc0a6d))
+* **l10n:** Update translations from Transifex ([562e7a2](https://github.com/nextcloud/contacts/commit/562e7a2c4ba0eb4d211ae4487f36d5b279531e92))
+* **l10n:** Update translations from Transifex ([4704cd1](https://github.com/nextcloud/contacts/commit/4704cd1279ee100771b1eed6609373613eee4da6))
+* **l10n:** Update translations from Transifex ([d9da0ea](https://github.com/nextcloud/contacts/commit/d9da0ea4de022c469f3e8313c044138e6564cb90))
+
+
+
 ## [7.1.4](https://github.com/nextcloud/contacts/compare/v7.1.3...v7.1.4) (2025-07-01)
 
 
