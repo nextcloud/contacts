@@ -44,7 +44,7 @@
 
 	<dependencies>
 		<php min-version="8.1" max-version="8.4" />
-		<nextcloud min-version="30" max-version="32" />
+		<nextcloud min-version="30" max-version="31" />
 	</dependencies>
 
 	<background-jobs>
