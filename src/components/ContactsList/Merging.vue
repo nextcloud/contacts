@@ -29,7 +29,8 @@
 					@update:checked="resolveConflict(0, property)" />
 				<div v-if="dividedProperties[0][property]"
 					:class="['merging-conflicts__property', { 'no-conflict': conflictInformation[property]?.type !== 'conflict' }]">
-					<ContactDetailsProperty :is-first-property="true"
+					<ContactDetailsProperty v-if="!simpleProperties.includes(property)"
+						:is-first-property="true"
 						:is-last-property="false"
 						:property="dividedProperties[0][property]"
 						:contact="contactsList[0]"
@@ -37,6 +38,13 @@
 						:contacts="contacts"
 						:bus="bus"
 						:is-read-only="true" />
+					<div v-else class="simple-property">
+						<div class="simple-property__title">
+							<component :is="simplePropertyDescriptions[property]?.icon || 'span'" :size="20" />
+							<h3>{{ simplePropertyDescriptions[property]?.description || property }}</h3>
+						</div>
+						{{ dividedProperties[0][property].getFirstValue() }}
+					</div>
 				</div>
 				<div v-if="!dividedProperties[0][property]" class="merging-conflicts__filler" />
 
@@ -45,7 +53,8 @@
 					@update:checked="resolveConflict(1, property)" />
 				<div v-if="dividedProperties[1][property]"
 					:class="['merging-conflicts__property', { 'no-conflict': conflictInformation[property]?.type !== 'conflict' }]">
-					<ContactDetailsProperty :is-first-property="true"
+					<ContactDetailsProperty v-if="!simpleProperties.includes(property)"
+						:is-first-property="true"
 						:is-last-property="false"
 						:property="dividedProperties[1][property]"
 						:contact="contactsList[1]"
@@ -53,6 +62,13 @@
 						:contacts="contacts"
 						:bus="bus"
 						:is-read-only="true" />
+					<div v-else class="simple-property">
+						<div class="simple-property__title">
+							<component :is="simplePropertyDescriptions[property]?.icon || 'span'" :size="20" />
+							<h3>{{ simplePropertyDescriptions[property]?.description || property }}</h3>
+						</div>
+						{{ dividedProperties[1][property].getFirstValue() }}
+					</div>
 				</div>
 			</div>
 		</div>
@@ -74,6 +90,9 @@ import { NcAppContentList as AppContentList, NcButton, NcDialog, NcNoteCard, NcC
 import IconCheckCircleOutline from 'vue-material-design-icons/CheckCircleOutline.vue'
 import IconCloseCircleOutline from 'vue-material-design-icons/CloseCircleOutline.vue'
 import IconSetMerge from 'vue-material-design-icons/SetMerge.vue'
+import IconDomain from 'vue-material-design-icons/Domain.vue'
+import IconAccount from 'vue-material-design-icons/Account.vue'
+import IconBadgeAccount from 'vue-material-design-icons/BadgeAccount.vue'
 
 import ContactDetailsProperty from '../ContactDetails/ContactDetailsProperty.vue'
 import rfcProps from '../../models/rfcProps.js'
@@ -90,6 +109,9 @@ export default {
 		IconSetMerge,
 		NcNoteCard,
 		NcButton,
+		IconDomain,
+		IconAccount,
+		IconBadgeAccount,
 	},
 
 	props: {
@@ -105,6 +127,21 @@ export default {
 			resolvedConflicts: new Map(),
 			conflictsToResolve: 0,
 			sortedProperties: [],
+			simpleProperties: ['fn', 'org', 'title'],
+			simplePropertyDescriptions: {
+				fn: {
+					description: this.t('contacts', 'Name'),
+					icon: IconAccount,
+				},
+				org: {
+					description: this.t('contacts', 'Company'),
+					icon: IconDomain,
+				},
+				title: {
+					description: this.t('contacts', 'Title'),
+					icon: IconBadgeAccount,
+				},
+			},
 		}
 	},
 
@@ -245,7 +282,7 @@ export default {
 			return sortedProperties
 				.reduce((list, property) => {
 					// If there is no component to display this prop, ignore it
-					if (!this.canDisplay(property)) {
+					if (!this.canDisplay(property) && property.name !== 'title' && property.name !== 'org' && property.name !== 'fn') {
 						return list
 					}
 
@@ -379,6 +416,27 @@ export default {
 		display: flex;
 		justify-content: flex-end;
 		margin-top: calc(var(--default-grid-baseline) * 4);
+	}
+}
+
+.simple-property {
+	display: flex;
+	flex-direction: column;
+
+	&__title {
+		display: flex;
+		align-items: center;
+		gap: 15px;
+		margin-bottom: calc(var(--default-grid-baseline) * 2);
+
+		h3 {
+			font-size: 22px;
+		}
+
+		.material-design-icon {
+			align-self: center;
+			margin-top: 0;
+		}
 	}
 }
 

@@ -56,7 +56,7 @@
 					:disabled="!areTwoEditable"
 					:title="mergeActionTitle"
 					:close-after-click="true"
-					@click.prevent="isMerging = true">
+					@click.prevent="initiateContactMerging">
 					<IconSetMerge :size="18" />
 				</NcButton>
 			</div>
@@ -331,6 +331,16 @@ export default {
 			})
 			this.unselectAllMultiSelected()
 			this.showDeleteConfirmationDialog = false
+		},
+
+		async initiateContactMerging() {
+			// For every contact in the multiSelectedContacts, we need to dispatch the load contact action
+			const contacts = Array.from(this.multiSelectedContacts.values())
+			for (const contact of contacts) {
+				await this.$store.dispatch('fetchFullContact', { contact })
+			}
+
+			this.isMerging = true
 		},
 	},
 }
