@@ -7,6 +7,14 @@
 	<div class="merging">
 		<div class="merging-title">
 			<h3>{{ t('contacts', 'Confirm merging contacts') }}</h3>
+			<div class="merging-title__addressbooks">
+				<IconCloseCircleOutline v-if="chosenAddressBook === null" :size="20" class="needs-action" />
+				<NcSelect v-bind="addressBookSelect"
+					v-model="chosenAddressBook"
+					:disabled="contactsList[0].addressbook.id === contactsList[1].addressbook.id"
+					:title="t('contacts', 'Select address book')"
+					@update:modelValue="calculateConflictsToResolve" />
+			</div>
 		</div>
 
 		<NcNoteCard v-if="conflictsToResolve"
@@ -20,15 +28,32 @@
 		<div class="merging-conflicts">
 			<div v-for="(property, index) in sortedProperties"
 				:key="property"
-				:class="['merging-conflicts__row', { conflict: conflictInformation[property]?.type === 'conflict', last: index === sortedProperties.length - 1 }]">
-				<IconCheckCircleOutline v-if="conflictInformation[property]?.type !== 'conflict' || resolvedConflicts.get(property) !== undefined" :size="20" />
+				:class="['merging-conflicts__row', {
+					conflict: (conflictInformation[property]?.type === 'conflict' || conflictInformation[property]?.type === 'conflictWithMultipleValues'),
+					last: index === sortedProperties.length - 1
+				}]">
+				<!-- Indicators for whether there is a conflict -->
+				<IconCheckCircleOutline v-if="(conflictInformation[property]?.type !== 'conflict' || resolvedConflicts.get(property) !== undefined)
+						&& (conflictInformation[property]?.type !== 'conflictWithMultipleValues' || resolvedConflicts.get(property)?.size)"
+					:size="20" />
 				<IconCloseCircleOutline v-if="conflictInformation[property]?.type === 'conflict' && resolvedConflicts.get(property) === undefined" :size="20" class="needs-action" />
+				<IconCloseCircleOutline v-if="conflictInformation[property]?.type === 'conflictWithMultipleValues' && !resolvedConflicts.get(property)?.size" :size="20" class="needs-action" />
 
+				<!-- Checkboxes for resolving single conflicts or conflicts with multiple possible values, for contact 0 -->
 				<NcCheckboxRadioSwitch v-if="conflictInformation[property]?.type === 'conflict'"
 					:checked="resolvedConflicts.get(property) === 0"
+					type="radio"
 					@update:checked="resolveConflict(0, property)" />
+				<NcCheckboxRadioSwitch v-if="conflictInformation[property]?.type === 'conflictWithMultipleValues'"
+					:checked="resolvedConflicts.get(property)?.has(0)"
+					@update:checked="resolveMultiConflict(0, property)" />
+
+				<!-- Information of contact 0, either shown through DetailsProperty if possible or in a custom way -->
 				<div v-if="dividedProperties[0][property]"
-					:class="['merging-conflicts__property', { 'no-conflict': conflictInformation[property]?.type !== 'conflict' }]">
+					:class="['merging-conflicts__property', {
+						'no-conflict': conflictInformation[property]?.type !== 'conflict' &&
+							conflictInformation[property]?.type !== 'conflictWithMultipleValues'
+					}]">
 					<ContactDetailsProperty v-if="!simpleProperties.includes(property)"
 						:is-first-property="true"
 						:is-last-property="false"
@@ -48,11 +73,21 @@
 				</div>
 				<div v-if="!dividedProperties[0][property]" class="merging-conflicts__filler" />
 
+				<!-- Checkboxes for resolving single conflicts or conflicts with multiple possible values, for contact 1 -->
 				<NcCheckboxRadioSwitch v-if="conflictInformation[property]?.type === 'conflict'"
 					:checked="resolvedConflicts.get(property) === 1"
+					type="radio"
 					@update:checked="resolveConflict(1, property)" />
+				<NcCheckboxRadioSwitch v-if="conflictInformation[property]?.type === 'conflictWithMultipleValues'"
+					:checked="resolvedConflicts.get(property)?.has(1)"
+					@update:checked="resolveMultiConflict(1, property)" />
+
+				<!-- Information of contact 1, either shown through DetailsProperty if possible or in a custom way -->
 				<div v-if="dividedProperties[1][property]"
-					:class="['merging-conflicts__property', { 'no-conflict': conflictInformation[property]?.type !== 'conflict' }]">
+					:class="['merging-conflicts__property', {
+						'no-conflict': conflictInformation[property]?.type !== 'conflict' &&
+							conflictInformation[property]?.type !== 'conflictWithMultipleValues'
+					}]">
 					<ContactDetailsProperty v-if="!simpleProperties.includes(property)"
 						:is-first-property="true"
 						:is-last-property="false"
@@ -73,8 +108,18 @@
 			</div>
 		</div>
 
+		<div v-if="contactsList[0].groups.length || contactsList[1].groups.length" class="merging-groups">
+			<h4>{{ t('contacts', 'Groups') }}</h4>
+			<NcSelect v-model="selectedGroups"
+				:options="contactsList[0].groups.concat(contactsList[1].groups)"
+				:multiple="true"
+				:placeholder="t('contacts', 'Select groups to add the merged contact to')"
+				:disabled="!contactsList[0].groups.length && !contactsList[1].groups.length"
+				@update:modelValue="calculateConflictsToResolve" />
+		</div>
+
 		<div class="merging-actions">
-			<NcButton :disabled="conflictsToResolve !== 0" variant="secondary">
+			<NcButton :disabled="conflictsToResolve !== 0" variant="secondary" @click="mergeContacts">
 				{{ t('contacts', 'Merge contacts') }}
 				<template #icon>
 					<IconSetMerge :size="16" />
@@ -85,7 +130,7 @@
 </template>
 
 <script>
-import { NcAppContentList as AppContentList, NcButton, NcDialog, NcNoteCard, NcCheckboxRadioSwitch } from '@nextcloud/vue'
+import { NcButton, NcNoteCard, NcCheckboxRadioSwitch, NcSelect } from '@nextcloud/vue'
 
 import IconCheckCircleOutline from 'vue-material-design-icons/CheckCircleOutline.vue'
 import IconCloseCircleOutline from 'vue-material-design-icons/CloseCircleOutline.vue'
@@ -112,6 +157,7 @@ export default {
 		IconDomain,
 		IconAccount,
 		IconBadgeAccount,
+		NcSelect,
 	},
 
 	props: {
@@ -142,6 +188,8 @@ export default {
 					icon: IconBadgeAccount,
 				},
 			},
+			chosenAddressBook: null,
+			selectedGroups: [],
 		}
 	},
 
@@ -184,7 +232,7 @@ export default {
 				if (!this.dividedProperties[0][property]) {
 					conflictInformation[property] = {
 						type: 'onlyInSecond',
-						value: this.dividedProperties[1][property],
+						value: this.getPropertyValue(this.dividedProperties[1][property]),
 					}
 
 					return
@@ -193,7 +241,7 @@ export default {
 				if (!this.dividedProperties[1][property]) {
 					conflictInformation[property] = {
 						type: 'onlyInFirst',
-						value: this.dividedProperties[0][property],
+						value: this.getPropertyValue(this.dividedProperties[0][property]),
 					}
 
 					return
@@ -202,7 +250,16 @@ export default {
 				if (this.getPropertyValue(this.dividedProperties[0][property]) === this.getPropertyValue(this.dividedProperties[1][property])) {
 					conflictInformation[property] = {
 						type: 'equal',
-						value: this.dividedProperties[0][property],
+						value: this.getPropertyValue(this.dividedProperties[0][property]),
+					}
+
+					return
+				}
+
+				if (rfcProps.properties[property]?.multiple === true) {
+					conflictInformation[property] = {
+						type: 'conflictWithMultipleValues',
+						value: null,
 					}
 
 					return
@@ -216,6 +273,22 @@ export default {
 
 			return conflictInformation
 		},
+
+		addressBookSelect() {
+			return {
+				placeholder: this.t('contacts', 'Select address book'),
+				options: [
+					{
+						id: this.contactsList[0].addressbook.id,
+						label: this.contactsList[0].addressbook.displayName,
+					},
+					{
+						id: this.contactsList[1].addressbook.id,
+						label: this.contactsList[1].addressbook.displayName,
+					},
+				],
+			}
+		},
 	},
 
 	watch: {
@@ -225,6 +298,16 @@ export default {
 	mounted() {
 		this.calculateConflictsToResolve()
 		this.sortedProperties = this.sortUsedProperties()
+
+		if (this.contactsList[0].addressbook.id === this.contactsList[1].addressbook.id) {
+			this.chosenAddressBook = {
+				id: this.contactsList[0].addressbook.id,
+				label: this.contactsList[0].addressbook.displayName,
+			}
+		}
+
+		this.selectedGroups = this.selectedGroups.concat(this.contactsList[0].groups)
+		this.selectedGroups = this.selectedGroups.concat(this.contactsList[1].groups)
 	},
 
 	methods: {
@@ -235,6 +318,23 @@ export default {
 			} else {
 				// Otherwise, set the version as resolved
 				this.resolvedConflicts.set(property, version)
+			}
+			this.$forceUpdate()
+			this.calculateConflictsToResolve()
+		},
+		resolveMultiConflict(version, property) {
+			if (this.resolvedConflicts.has(property)) {
+				const currentVersions = this.resolvedConflicts.get(property)
+				if (currentVersions.has(version)) {
+					currentVersions.delete(version)
+				} else {
+					currentVersions.add(version)
+				}
+				this.resolvedConflicts.set(property, currentVersions)
+			} else {
+				const resolutions = new Set()
+				resolutions.add(version)
+				this.resolvedConflicts.set(property, resolutions)
 			}
 			this.$forceUpdate()
 			this.calculateConflictsToResolve()
@@ -312,7 +412,15 @@ export default {
 				if (this.conflictInformation[property]?.type === 'conflict' && this.resolvedConflicts.get(property) === undefined) {
 					conflictsCount++
 				}
+
+				if (this.conflictInformation[property]?.type === 'conflictWithMultipleValues' && !this.resolvedConflicts.get(property)?.size) {
+					conflictsCount++
+				}
 			})
+
+			if (this.chosenAddressBook === null) {
+				conflictsCount++
+			}
 
 			this.conflictsToResolve = conflictsCount
 		},
@@ -326,6 +434,7 @@ export default {
 			}
 			return property.getFirstValue()
 		},
+
 		sortUsedProperties() {
 			// the properties where this.conflictInformation[property].type === 'conflict' should have priority
 			return this.usedProperties.sort((a, b) => {
@@ -341,6 +450,35 @@ export default {
 				return 0
 			})
 		},
+
+		async mergeContacts() {
+			const contactToSave = this.contactsList[0]
+
+			this.usedProperties.forEach(property => {
+				if (this.conflictInformation[property]?.type === 'conflict') {
+					const resolvedVersion = this.resolvedConflicts.get(property)
+					if (resolvedVersion !== undefined) {
+
+						 this.dividedProperties[resolvedVersion][property]
+					}
+				} else if (this.conflictInformation[property]?.type === 'conflictWithMultipleValues') {
+					const resolvedVersions = this.resolvedConflicts.get(property)
+					if (resolvedVersions?.size) {
+						const values = Array.from(resolvedVersions).map(version => this.dividedProperties[version][property])
+					}
+				} else {
+					// If there is no conflict, just take the value from the first contact
+					contactToSave.setProperty(property, this.dividedProperties[0][property])
+				}
+			})
+
+			contactToSave.groups = this.selectedGroups
+
+			await this.$store.dispatch('deleteContact', { contact: this.contactsList[0] })
+			await this.$store.dispatch('deleteContact', { contact: this.contactsList[1] })
+
+			await this.$store.dispatch('addContact', contactToSave)
+		},
 	},
 }
 </script>
@@ -355,10 +493,29 @@ export default {
 		display: flex;
 		width: 100%;
 		margin: calc(var(--default-grid-baseline) * 3) 0;
+		justify-content: space-between;
+		gap: calc(var(--default-grid-baseline) * 2);
+		align-items: center;
 
 		h3 {
 			margin: 0;
 		}
+
+		&__addressbooks {
+			display: flex;
+			gap: calc(var(--default-grid-baseline) * 2);
+
+			.v-select {
+				margin-bottom: unset !important;
+			}
+		}
+	}
+
+	&-groups {
+		display: flex;
+		gap: calc(var(--default-grid-baseline) * 4);
+		margin: calc(var(--default-grid-baseline) * 4) 0;
+		margin-left: calc(var(--default-grid-baseline) * 5);
 	}
 
 	&-conflicts {
@@ -379,12 +536,12 @@ export default {
 				margin-top: calc(var(--default-grid-baseline) * 4 + 2px);
 			}
 
-			.needs-action {
-				color: var(--color-warning-text);
+			.no-conflict {
+				margin-left: 55px;
 			}
 
-			.no-conflict {
-				margin-left: 50px;
+			:deep(.property__label) {
+				all: unset;
 			}
 		}
 
@@ -393,10 +550,12 @@ export default {
 			gap: calc(var(--default-grid-baseline) * 2);
 			min-width: 300px;
 			max-width: 300px;
+			min-height: 85px;
+			align-items: center;
 		}
 
 		&__filler {
-			min-width: 350px;
+			min-width: 352px;
 		}
 	}
 
@@ -419,6 +578,10 @@ export default {
 	}
 }
 
+.needs-action {
+	color: var(--color-warning-text);
+}
+
 .simple-property {
 	display: flex;
 	flex-direction: column;
@@ -431,6 +594,7 @@ export default {
 
 		h3 {
 			font-size: 22px;
+			margin: 0;
 		}
 
 		.material-design-icon {
