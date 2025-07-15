@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-## [7.2.0](https://github.com/nextcloud/contacts/compare/v7.1.5...v7.2.0-rc.1) (tbd)
+## [7.2.0](https://github.com/nextcloud/contacts/compare/v7.1.5...v7.2.0) (2025-07-2025)
 
 
 ### Features
