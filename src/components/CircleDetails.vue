@@ -128,42 +128,20 @@
 					</template>
 
 					<section v-else>
-						<!-- Files Section -->
-						<div class="circle-details-section">
+						<div v-for="(group, providerId) in groupedResources" :key="providerId" class="circle-details-section">
 							<div class="section-header">
-								<ContentHeading>{{ t('contacts', 'Files') }}</ContentHeading>
+								<ContentHeading>{{ group.name }}</ContentHeading>
 							</div>
 							<ul class="item-list">
-								<ListItem name="dummy-file-1.txt">
+								<ListItem v-for="resource in group.resources"
+									:key="resource.id"
+									:href="resource.link"
+									:name="resource.label">
 									<template #icon>
-										<FileDocumentOutline :size="20" />
-									</template>
-								</ListItem>
-								<ListItem name="important-document.docx">
-									<template #icon>
-										<FileDocumentOutline :size="20" />
-									</template>
-								</ListItem>
-								<ListItem name="project-notes.md">
-									<template #icon>
-										<FileDocumentOutline :size="20" />
-									</template>
-								</ListItem>
-							</ul>
-							<Button type="secondary" style="align-self: flex-start; margin-top: 8px;" @click="() => {}">
-								{{ t('contacts', 'Show all') }}
-							</Button>
-						</div>
-
-						<!-- Collective Section -->
-						<div class="circle-details-section">
-							<div class="section-header">
-								<ContentHeading>{{ t('contacts', 'Collective') }}</ContentHeading>
-							</div>
-							<ul class="item-list">
-								<ListItem name="Team Workspace">
-									<template #icon>
-										<IconAccountGroup :size="20" />
+										<!-- eslint-disable-next-line vue/no-v-html -->
+										<div v-if="resource.iconSvg" class="resource__icon" v-html="resource.iconSvg" />
+										<img v-else-if="resource.iconURL" :src="resource.iconURL" class="resource__icon">
+										<FileDocumentOutline v-else :size="20" />
 									</template>
 								</ListItem>
 							</ul>
@@ -320,13 +298,18 @@ export default {
 			return this.members.length > this.maxMembers
 		},
 
-		resourceProviders() {
-			return this.resources?.reduce((acc, res) => {
-				if (!acc.find(p => p.id === res.provider.id)) {
-					acc.push(res.provider)
+		groupedResources() {
+			return this.resources.reduce((acc, resource) => {
+				const providerId = resource.provider.id
+				if (!acc[providerId]) {
+					acc[providerId] = {
+						name: resource.provider.name,
+						resources: [],
+					}
 				}
+				acc[providerId].resources.push(resource)
 				return acc
-			}, []) ?? []
+			}, {})
 		},
 
 		resourcesForProvider() {
@@ -371,6 +354,7 @@ export default {
 		async fetchTeamResources() {
 			const response = await axios.get(generateOcsUrl(`/teams/${this.circle.id}/resources`))
 			this.resources = response.data.ocs.data.resources
+			console.debug('Team resources', this.resources)
 		},
 		/**
 		 * Autocomplete @mentions on the description
@@ -431,6 +415,7 @@ export default {
 	.circle-details-grid {
 		display: grid;
 		grid-template-columns: auto 1fr;
+		align-items: start;
 		gap: 24px;
 		max-width: 800px;
 		margin-inline: auto;
@@ -453,7 +438,7 @@ export default {
 				display: flex;
 				flex-direction: column;
 				align-items: flex-start;
-				gap: 8px;
+				gap: 2px;
 
 				.circle-description-wrapper {
 					margin-bottom: 4px;
@@ -467,7 +452,7 @@ export default {
 				}
 
 				.subtitle {
-					margin-bottom: 2px;
+					color: var(--color-text-maxcontrast);
 				}
 
 				.actions {
@@ -506,10 +491,9 @@ export default {
 						flex-direction: column;
 						gap: 2px;
 
-						li {
-							&:deep(.list-item) {
-								padding: 0 !important;
-							}
+						// Remove left padding added in ListItem (external component)
+						:deep(.list-item__wrapper) {
+							padding-left: 0;
 						}
 
 						.resource {
