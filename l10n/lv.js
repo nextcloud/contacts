@@ -51,7 +51,7 @@ OC.L10N.register(
     "Company" : "Uzņēmums",
     "Edit" : "Labot",
     "Generate QR Code" : "Izveidot kvadrātkodu",
-    "Search contacts …" : "Meklēt kontaktpersonu",
+    "Search contacts …" : "Meklēt kontaktpersonas…",
     "No results" : "Nav iznākuma",
     "Pending" : "Gaida",
     "Select Date" : "Izvēlieties datumu",
