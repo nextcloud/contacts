@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<div v-if="propModel && showProperty && !isSingleOption" class="property">
+	<div v-if="propModel && showProperty && !isSingleOption" class="property" role="group">
 		<!-- title if first element -->
 		<PropertyTitle v-if="isFirstProperty && propModel.icon"
 			:property="property"
@@ -14,8 +14,8 @@
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName" />
 
-		<div class="property__row">
-			<div class="property__label">
+		<div class="property__row" role="rowgroup">
+			<div class="property__label" role="rowheader">
 				<!-- if we do not support any type on our model but one is set anyway -->
 				<span v-if="selectType">
 					{{ selectType.name }}
@@ -27,7 +27,7 @@
 				</span>
 			</div>
 
-			<div class="property__value">
+			<div class="property__value" role="cell">
 				<NcSelect v-if="!isReadOnly"
 					v-model="matchedOptions"
 					:options="selectableOptions"
@@ -43,7 +43,7 @@
 			</div>
 
 			<!-- props actions -->
-			<div class="property__actions">
+			<div class="property__actions" role="cell">
 				<PropertyActions v-if="!isReadOnly && !hideActions"
 					:actions="actions"
 					:property-component="this"
