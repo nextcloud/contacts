@@ -27,6 +27,9 @@ export default {
 .app-content-heading {
 	font-weight: bold;
 	display: flex;
+	line-height: 0;
+	font-size: 1.2rem;
+	margin-bottom: 16px;
 
 	&__loader {
 		margin-inline-start: 8px;
