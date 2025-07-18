@@ -15,7 +15,6 @@ import store from './store/index.js'
 import logger from './services/logger.js'
 
 /** GLOBAL COMPONENTS AND DIRECTIVE */
-import ClickOutside from 'vue-click-outside'
 import { Tooltip as VTooltip } from '@nextcloud/vue'
 
 // Global scss sheets
@@ -30,7 +29,6 @@ Vue.use(PiniaVuePlugin)
 const pinia = createPinia()
 
 // Register global directives
-Vue.directive('ClickOutside', ClickOutside)
 Vue.directive('Tooltip', VTooltip)
 
 sync(store, router)
