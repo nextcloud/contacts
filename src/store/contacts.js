@@ -331,9 +331,7 @@ const actions = {
 		validate(contact)
 
 		// Update REV
-		const rev = new ICAL.VCardTime()
-		rev.fromUnixTime(Date.now() / 1000)
-		contact.rev = rev
+		contact.rev = ICAL.VCardTime.now().convertToZone(ICAL.Timezone.utcTimezone)
 
 		const vData = contact.toStringStripQuotes()
 
