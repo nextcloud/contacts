@@ -331,9 +331,10 @@ const actions = {
 		validate(contact)
 
 		// Update REV
-		const rev = new ICAL.VCardTime()
-		rev.fromUnixTime(Date.now() / 1000)
-		contact.rev = rev
+		// ICAL.Time.now() would also work, but I’m using fromJsDate with useUTC=true on purpose
+		// to create an ical date in UTC rather than in a local timezone for better interoperability.
+		const rev = ICAL.Time.fromJSDate(new Date(), true)
+		contact.rev = rev.toICALString()
 
 		const vData = contact.toStringStripQuotes()
 
