@@ -368,7 +368,7 @@
 import { showError } from '@nextcloud/dialogs'
 
 import ICAL from 'ical.js'
-import { getSVG } from '@shortcm/qr-image/lib/svg'
+import { getSVG } from 'qreator/lib/svg'
 import mitt from 'mitt'
 import {
 	isMobile,
