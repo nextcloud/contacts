@@ -49,9 +49,9 @@
 
 				<!-- Searched & picked entities -->
 				<VList v-else-if="searchSet.length > 0 && availableEntities.length > 0"
+					v-slot="{ item }"
 					class="entity-picker__options"
-					:data="availableEntities"
-					#default="{ item }">
+					:data="availableEntities">
 					<EntitySearchResult :key="item.id"
 						:source="item"
 						:selection="selectionSet"

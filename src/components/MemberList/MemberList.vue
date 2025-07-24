@@ -50,12 +50,12 @@
 
 		<!-- member picker -->
 		<EntityPicker v-if="showPicker"
+			v-model:selection="pickerSelection"
 			:confirm-label="t('contacts', 'Add to {circle}', { circle: circle.displayName })"
 			:data-types="pickerTypes"
 			:data-set="filteredPickerData"
 			:internal-search="false"
 			:loading="pickerLoading"
-			:selection.sync="pickerSelection"
 			@close="resetPicker"
 			@search="onSearch"
 			@submit="onPickerPick" />

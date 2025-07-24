@@ -41,7 +41,7 @@ app.mixin({
 		logger: () => logger,
 		OC: () => window.OC,
 		OCA: () => window.OCA,
-	}
+	},
 })
 
 // Force redirect if rewrite enabled but accessed through index.php

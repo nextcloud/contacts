@@ -35,7 +35,7 @@ export function mountContactDetails(el, contactEmailAddress) {
 			logger: () => logger,
 			OC: () => window.OC,
 			OCA: () => window.OCA,
-		}
+		},
 	})
 
 	return app.mount(el)

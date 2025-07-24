@@ -5,9 +5,9 @@
 
 <template>
 	<AppSettingsDialog id="app-settings-dialog"
+		v-model:open="showSettings"
 		:name="t('contacts', 'Contacts settings')"
-		:show-navigation="true"
-		:open.sync="showSettings">
+		:show-navigation="true">
 		<AppSettingsSection id="general-settings" :name="t('contacts', 'General settings')">
 			<CheckboxRadioSwitch :checked="enableSocialSync"
 				:loading="enableSocialSyncLoading"

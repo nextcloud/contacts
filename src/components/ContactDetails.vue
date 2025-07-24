@@ -286,8 +286,8 @@
 					@update:value="updateAddressbook" />
 
 				<!-- Groups always visible -->
-				<PropertyGroups :prop-model="groupsModel"
-					:value.sync="localContact.groups"
+				<PropertyGroups v-model:value="localContact.groups"
+					:prop-model="groupsModel"
 					:contact="contact"
 					:is-read-only="isReadOnly"
 					class="property--groups property--last"
@@ -769,7 +769,7 @@ export default {
 		document.addEventListener('keydown', this.onCtrlSave)
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		// unbind capture ctrl+s
 		document.removeEventListener('keydown', this.onCtrlSave)
 	},

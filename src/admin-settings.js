@@ -19,7 +19,7 @@ function main() {
 	app.mixin({
 		methods: {
 			t,
-		}
+		},
 	})
 	app.mount('#contacts-settings')
 }

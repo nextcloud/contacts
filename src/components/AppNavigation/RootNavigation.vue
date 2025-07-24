@@ -78,8 +78,8 @@
 			</AppNavigationItem>
 
 			<AppNavigationCaption id="newgroup"
+				v-model:menu-open="isNewGroupMenuOpen"
 				:force-menu="true"
-				:menu-open.sync="isNewGroupMenuOpen"
 				:name="t('contacts', 'Contact groups')"
 				@click.prevent.stop="toggleNewGroupMenu">
 				<template #actionsTriggerIcon>
@@ -157,11 +157,13 @@
 				<AppNavigationItem :aria-label="t('contacts', 'Open the contacts app settings')"
 					:name="CONTACTS_SETTINGS"
 					@click="showContactsSettings">
-					<Cog slot="icon" :size="20" />
+					<template #icon>
+						<Cog :size="20" />
+					</template>
 				</AppNavigationItem>
 			</div>
 		</template>
-		<ContactsSettings :open.sync="showSettings" />
+		<ContactsSettings v-model:open="showSettings" />
 	</AppNavigation>
 </template>
 

@@ -47,7 +47,7 @@ registerFileAction(new FileAction({
 				app.mixin({
 					methods: {
 						t,
-					}
+					},
 				})
 				app.mount(`#${containerId}`)
 			})

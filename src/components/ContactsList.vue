@@ -48,9 +48,9 @@
 			</div>
 		</transition>
 
-		<VList class="contacts-list"
-			:data="filteredList"
-			#default="{ item, index }">
+		<VList v-slot="{ item, index }"
+			class="contacts-list"
+			:data="filteredList">
 			<ContactsListItem :key="item.key"
 				:index="index"
 				:source="item"
