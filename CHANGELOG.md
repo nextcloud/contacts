@@ -1,3 +1,15 @@
+## [7.2.2](https://github.com/nextcloud/contacts/compare/v7.2.1...v7.2.2) (2025-07-24)
+
+
+### Bug Fixes
+
+* always convert vcard photo urls to string ([25b25fa](https://github.com/nextcloud/contacts/commit/25b25fa101235c7c0c6dea7724aeaf08c42aa2a8))
+* **l10n:** Update translations from Transifex ([f3b54c7](https://github.com/nextcloud/contacts/commit/f3b54c70ee3c318d514b7f6f49ad1a23a5607563))
+* log error while saving contact ([39aecea](https://github.com/nextcloud/contacts/commit/39aeceaa11381ec792e880aa559e79a0ef876a1a))
+* use built now function instead of manually creating date ([a2f7c57](https://github.com/nextcloud/contacts/commit/a2f7c57b4f3fc7ec4ad1f854ad8d9c65d71ec6e3))
+
+
+
 ## [7.2.1](https://github.com/nextcloud/contacts/compare/v7.2.0...v7.2.1) (2025-07-22)
 
 
