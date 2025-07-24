@@ -230,7 +230,9 @@ export default class Contact {
 		}
 		const encoding = photo.getFirstParameter('encoding')
 		let photoType = photo.getFirstParameter('type')
-		const photoB64 = this.photo
+
+		// Always convert to a string as this might be a binary value (and not a string)
+		const photoB64 = this.photo.toString()
 
 		const isBinary = photo.type === 'binary' || encoding === 'b'
 
