@@ -15,7 +15,7 @@
 				<!-- new-contact-button -->
 				<Button v-if="!loadingContacts"
 					:disabled="!defaultAddressbook"
-					type="secondary"
+					variant="secondary"
 					wide
 					@click="newContact">
 					<template #icon>

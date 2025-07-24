@@ -12,7 +12,7 @@
 		<div class="property__value">
 			<Actions menu-align="right"
 				event=""
-				type="secondary"
+				variant="secondary"
 				:menu-name="t('contacts', 'Add more info')"
 				@click.prevent>
 				<template #icon>

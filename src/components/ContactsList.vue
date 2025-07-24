@@ -17,7 +17,7 @@
 			no-close>
 			{{ t('contacts', 'Are you sure you want to proceed?') }}
 			<NcNoteCard v-if="readOnlyMultiSelectedCount"
-				type="info"
+				variant="info"
 				:text="n('contacts',
 					'Please note that {number} contact is read only and will not be deleted',
 					'Please note that {number} contacts are read only and will not be deleted',
@@ -32,13 +32,13 @@
 		</div>
 		<transition name="contacts-list__multiselect-header">
 			<div v-if="isMultiSelecting" class="contacts-list__multiselect-header">
-				<NcButton type="tertiary"
+				<NcButton variant="tertiary"
 					:title="t('contacts', 'Unselect {number}', { number: multiSelectedContacts.size })"
 					:close-after-click="true"
 					@click.prevent="unselectAllMultiSelected">
 					<IconSelect :size="16" />
 				</NcButton>
-				<NcButton type="tertiary"
+				<NcButton variant="tertiary"
 					:disabled="!isAtLeastOneEditable"
 					:title="deleteActionTitle"
 					:close-after-click="true"

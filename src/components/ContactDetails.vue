@@ -73,7 +73,7 @@
 				<template #quick-actions>
 					<div v-if="!editMode && !loadingData">
 						<Actions :inline="6"
-							type="secondary">
+							variant="secondary">
 							<ActionButton v-if="isTalkEnabled && isInSystemAddressBook"
 								:aria-label="(t('contacts', 'Go to talk conversation'))"
 								:name="(t('contacts', 'Go to talk conversation'))"
@@ -134,7 +134,7 @@
 					<!-- edit and save buttons -->
 					<template v-if="!addressbookIsReadOnly">
 						<NcButton v-if="!editMode"
-							:type="isMobile ? 'secondary' : 'tertiary'"
+							:variant="isMobile ? 'secondary' : 'tertiary'"
 							@click="editMode = true">
 							<template #icon>
 								<PencilIcon :size="20" />
@@ -142,7 +142,7 @@
 							{{ t('contacts', 'Edit') }}
 						</NcButton>
 						<NcButton v-else
-							type="secondary"
+							variant="secondary"
 							:disabled="loadingUpdate || !isDataValid"
 							@click="onSave">
 							<template #icon>

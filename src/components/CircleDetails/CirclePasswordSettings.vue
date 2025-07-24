@@ -35,7 +35,7 @@
 							:placeholder="t('contacts', 'Unique password …')"
 							type="text"
 							@keyup.enter="saveUniquePassword">
-						<Button type="tertiary-no-background"
+						<Button variant="tertiary-no-background"
 							:disabled="loading.length > 0 || uniquePassword.length === 0"
 							@click="saveUniquePassword">
 							{{ t('contacts', 'Save') }}

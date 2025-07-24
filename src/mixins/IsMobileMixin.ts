@@ -9,6 +9,6 @@ export default {
 	computed: {
 		isMobile() {
 			return useIsMobile().value
-		}
+		},
 	},
 }

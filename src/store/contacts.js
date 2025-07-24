@@ -124,7 +124,7 @@ const mutations = {
 			}
 
 			// default contacts list
-			state.contacts[contact.ke] = contact
+			state.contacts[contact.key] = contact
 
 		} else {
 			console.error('Error while adding the following contact', contact)

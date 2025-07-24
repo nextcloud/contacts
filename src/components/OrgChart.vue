@@ -17,7 +17,7 @@
 				:placeholder="placeholder"
 				input-id="select-chart-input"
 				label="label"
-				@input="chartChanged" />
+				@update:model-value="chartChanged" />
 		</div>
 		<div ref="svgElementContainer" class="org-chart__container" />
 	</div>

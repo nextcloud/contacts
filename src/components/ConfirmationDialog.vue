@@ -8,12 +8,12 @@
 			<h2>{{ title }}</h2>
 			<slot />
 			<div class="confirm-modal__buttons">
-				<NcButton type="tertiary" :disabled="disabled" @click="cancel">
+				<NcButton variant="tertiary" :disabled="disabled" @click="cancel">
 					{{ t('contacts', 'Cancel') }}
 				</NcButton>
 				<NcButton v-if="resolve"
 					:disabled="disabled"
-					type="primary"
+					variant="primary"
 					@click="confirm">
 					{{ confirmText }}
 				</NcButton>

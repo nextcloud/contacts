@@ -18,7 +18,7 @@
 				<IconContact :size="20" />
 			</template>
 			<template #desc>
-				<Button type="primary" @click="newContact">
+				<Button variant="primary" @click="newContact">
 					{{ t('contacts', 'Create contact') }}
 				</Button>
 			</template>
@@ -31,10 +31,10 @@
 				<IconContact :size="20" />
 			</template>
 			<template #desc>
-				<Button v-if="contacts.length === 0" type="primary" @click="addContactsToGroup(selectedGroup)">
+				<Button v-if="contacts.length === 0" variant="primary" @click="addContactsToGroup(selectedGroup)">
 					{{ t('contacts', 'Create contacts') }}
 				</Button>
-				<Button v-else type="primary" @click="addContactsToGroup(selectedGroup)">
+				<Button v-else variant="primary" @click="addContactsToGroup(selectedGroup)">
 					{{ t('contacts', 'Add contacts') }}
 				</Button>
 			</template>

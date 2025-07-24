@@ -27,10 +27,10 @@
 					class="avatar__cropper"
 					v-bind="cropperOptions" />
 				<div class="avatar__cropper-buttons">
-					<NcButton type="tertiary" @click="cancel">
+					<NcButton variant="tertiary" @click="cancel">
 						{{ t('contacts', 'Cancel') }}
 					</NcButton>
-					<NcButton type="primary"
+					<NcButton variant="primary"
 						@click="saveAvatar">
 						{{ t('contacts', 'Save') }}
 					</NcButton>
