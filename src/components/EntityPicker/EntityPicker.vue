@@ -48,13 +48,15 @@
 				</EmptyContent>
 
 				<!-- Searched & picked entities -->
-				<VirtualList v-else-if="searchSet.length > 0 && availableEntities.length > 0"
+				<VList v-else-if="searchSet.length > 0 && availableEntities.length > 0"
 					class="entity-picker__options"
-					data-key="id"
-					:data-sources="availableEntities"
-					:data-component="EntitySearchResult"
-					:estimate-size="44"
-					:extra-props="{ selection: selectionSet, onClick }" />
+					:data="availableEntities"
+					#default="{ item }" >
+					<EntitySearchResult :key="item.id"
+						:source="item"
+						:selection="selectionSet"
+						:on-click="onClick" />
+				</VList>
 
 				<EmptyContent v-else-if="searchQuery" :name="t('contacts', 'No results')">
 					<template #icon>
@@ -81,7 +83,7 @@
 
 <script>
 import debounce from 'debounce'
-import VirtualList from 'vue-virtual-scroll-list'
+import { VList } from 'virtua/vue'
 import {
 	NcEmptyContent as EmptyContent,
 	NcLoadingIcon as IconLoading,
@@ -100,7 +102,8 @@ export default {
 		IconSearch,
 		IconLoading,
 		Modal,
-		VirtualList,
+		VList,
+		EntitySearchResult,
 	},
 
 	props: {
@@ -186,7 +189,6 @@ export default {
 		return {
 			searchQuery: '',
 			localSelection: {},
-			EntitySearchResult,
 		}
 	},
 
@@ -327,7 +329,7 @@ export default {
 		 * @param {object} entity the entity to remove
 		 */
 		onDelete(entity) {
-			this.$delete(this.selectionSet, entity.id, entity)
+			delete this.selectionSet[entity.id]
 			console.debug('Removing entity from selection', entity)
 		},
 
@@ -338,12 +340,12 @@ export default {
 		 */
 		onClick(entity) {
 			if (entity.id in this.selectionSet) {
-				this.$delete(this.selectionSet, entity.id)
+				delete this.selectionSet[entity.id]
 				console.debug('Removed entity to selection', entity)
 				return
 			}
 
-			this.$set(this.selectionSet, entity.id, entity)
+			this.selectionSet[entity.id] = entity
 			console.debug('Added entity to selection', entity)
 		},
 

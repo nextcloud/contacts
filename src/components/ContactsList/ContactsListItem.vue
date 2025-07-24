@@ -73,6 +73,7 @@ export default {
 			default: () => {},
 		},
 	},
+
 	data() {
 		return {
 			avatarUrl: undefined,

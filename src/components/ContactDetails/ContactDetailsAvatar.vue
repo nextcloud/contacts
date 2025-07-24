@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<div v-click-outside="closeMenu" class="contact-header-avatar__wrapper">
+	<div class="contact-header-avatar__wrapper">
 		<input id="contact-avatar-upload"
 			ref="uploadInput"
 			type="file"

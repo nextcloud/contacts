@@ -6,17 +6,12 @@
 // eslint-disable-next-line import/no-unresolved, n/no-missing-import
 import 'vite/modulepreload-polyfill'
 
-import { sync } from 'vuex-router-sync'
-import Vue from 'vue'
+import { createApp } from 'vue'
 
 import App from './ContactsRoot.vue'
 import router from './router/index.js'
 import store from './store/index.js'
 import logger from './services/logger.js'
-
-/** GLOBAL COMPONENTS AND DIRECTIVE */
-import ClickOutside from 'vue-click-outside'
-import { Tooltip as VTooltip } from '@nextcloud/vue'
 
 // Global scss sheets
 import './css/contacts.scss'
@@ -24,30 +19,30 @@ import './css/contacts.scss'
 // Dialogs css
 import '@nextcloud/dialogs/style.css'
 
-import { createPinia, PiniaVuePlugin } from 'pinia'
+import { createPinia } from 'pinia'
 
-Vue.use(PiniaVuePlugin)
+const app = createApp(App)
+
 const pinia = createPinia()
+app.use(pinia)
 
-// Register global directives
-Vue.directive('ClickOutside', ClickOutside)
-Vue.directive('Tooltip', VTooltip)
+app.use(store)
+app.use(router)
 
-sync(store, router)
-
-Vue.prototype.t = t
-Vue.prototype.n = n
-
-Vue.prototype.appName = appName
-Vue.prototype.appVersion = appVersion
-Vue.prototype.logger = logger
-Vue.prototype.OC = window.OC
-Vue.prototype.OCA = window.OCA
-
-// enable devtools in development mode
-if (import.meta.env.MODE === 'development') {
-	Vue.config.devtools = true
-}
+// Mixin for translations and legacy stuff
+app.mixin({
+	methods: {
+		t,
+		n,
+	},
+	computed: {
+		appName: () => appName,
+		appVersion: () => appVersion,
+		logger: () => logger,
+		OC: () => window.OC,
+		OCA: () => window.OCA,
+	}
+})
 
 // Force redirect if rewrite enabled but accessed through index.php
 if (window.location.pathname.split('/')[1] === 'index.php'
@@ -58,11 +53,4 @@ if (window.location.pathname.split('/')[1] === 'index.php'
 	})
 }
 
-export default new Vue({
-	el: '#content',
-	name: 'ContactsApp',
-	router,
-	store,
-	render: h => h(App),
-	pinia,
-})
+app.mount('#content')

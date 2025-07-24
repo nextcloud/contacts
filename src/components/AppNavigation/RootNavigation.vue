@@ -28,9 +28,8 @@
 					<IconContact :size="20" />
 				</template>
 				<template #counter>
-					<NcCounterBubble v-if="sortedContacts.length">
-						{{ sortedContacts.length }}
-					</NcCounterBubble>
+					<NcCounterBubble v-if="sortedContacts.length"
+						:count="sortedContacts.length" />
 				</template>
 			</AppNavigationItem>
 
@@ -56,9 +55,8 @@
 					<IconUser :size="20" />
 				</template>
 				<template #counter>
-					<NcCounterBubble v-if="ungroupedContacts.length">
-						{{ ungroupedContacts.length }}
-					</NcCounterBubble>
+					<NcCounterBubble v-if="ungroupedContacts.length"
+						:count="ungroupedContacts.length" />
 				</template>
 			</AppNavigationItem>
 
@@ -74,9 +72,8 @@
 					<IconRecentlyContacted :size="20" />
 				</template>
 				<template #counter>
-					<NcCounterBubble v-if="recentlyContactedContacts.contacts.length">
-						{{ recentlyContactedContacts.contacts.length }}
-					</NcCounterBubble>
+					<NcCounterBubble v-if="recentlyContactedContacts.contacts.length"
+						:count="recentlyContactedContacts.contacts.length" />
 				</template>
 			</AppNavigationItem>
 

@@ -115,30 +115,19 @@
 					<!-- warning message -->
 					<component :is="warning.icon"
 						v-if="warning"
-						v-tooltip.bottom="{
-							content: warning ? warning.msg : '',
-							trigger: 'hover focus'
-						}"
+						:title="warning ? warning.msg : ''"
 						class="header-icon"
 						:classes="warning.classes" />
 
 					<!-- conflict message -->
 					<div v-if="conflict"
-						v-tooltip="{
-							content: conflict,
-							show: true,
-							trigger: 'manual',
-						}"
+						:title="conflict"
 						class="header-icon header-icon--pulse icon-history"
 						@click="refreshContact" />
 
 					<!-- repaired contact message -->
 					<div v-if="fixed"
-						v-tooltip="{
-							content: t('contacts', 'This contact was broken and received a fix. Please review the content and click here to save it.'),
-							show: true,
-							trigger: 'manual',
-						}"
+						:title="t('contacts', 'This contact was broken and received a fix. Please review the content and click here to save it.')",
 						class="header-icon header-icon--pulse icon-up"
 						@click="updateContact" />
 
@@ -371,7 +360,6 @@ import ICAL from 'ical.js'
 import { getSVG } from '@shortcm/qr-image/lib/svg'
 import mitt from 'mitt'
 import {
-	isMobile,
 	NcActionButton as ActionButton,
 	NcActionLink as ActionLink,
 	NcActions as Actions,
@@ -412,7 +400,8 @@ import PropertySelect from './Properties/PropertySelect.vue'
 import { generateUrl } from '@nextcloud/router'
 import { loadState } from '@nextcloud/initial-state'
 import isTalkEnabled from '../services/isTalkEnabled.js'
-import Vue from 'vue'
+import { reactive } from 'vue'
+import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 
 const { profileEnabled } = loadState('user_status', 'profileEnabled', false)
 
@@ -453,7 +442,8 @@ export default {
 		FolderMultipleImage,
 	},
 
-	mixins: [isMobile],
+	mixins: [IsMobileMixin],
+
 	provide() {
 		return {
 			sharedState: this.sharedState,
@@ -515,7 +505,7 @@ export default {
 			filesPanelHasError: false,
 			talkPanelHasError: false,
 			calendarPanelHasError: false,
-			sharedState: Vue.observable({ validEmail: true }),
+			sharedState: reactive({ validEmail: true }),
 
 		}
 	},

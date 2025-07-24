@@ -4,7 +4,8 @@
 -->
 
 <template>
-	<router-view />
+	<h1>It works!</h1>
+	<RouterView />
 </template>
 
 <script>

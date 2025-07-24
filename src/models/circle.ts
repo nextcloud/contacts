@@ -3,7 +3,6 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import Vue from 'vue'
 import Member from './member'
 
 import { CircleConfigs, MemberLevels, ROUTE_CIRCLE } from './constants'
@@ -114,11 +113,11 @@ export default class Circle {
 	 * Set new circle initiator
 	 * null if not a member
 	 */
-	set initiator(initiator: Member|null) {
+	set initiator(initiator: Member) {
 		if (initiator && initiator.constructor.name !== Member.name) {
 			throw new Error('Initiator must be a Member type')
 		}
-		Vue.set(this, '_initiator', initiator)
+		this._initiator = initiator
 	}
 
 	/**
@@ -135,7 +134,7 @@ export default class Circle {
 		if (owner.constructor.name !== Member.name) {
 			throw new Error('Owner must be a Member type')
 		}
-		Vue.set(this, '_owner', owner)
+		this._owner = owner
 	}
 
 	/**
@@ -166,7 +165,7 @@ export default class Circle {
 		if (this._members[singleId]) {
 			console.warn('Replacing existing member data', member)
 		}
-		Vue.set(this._members, singleId, member)
+		this._members[singleId] = member
 	}
 
 	/**
@@ -185,7 +184,7 @@ export default class Circle {
 		}
 
 		// Delete and clear memory
-		Vue.delete(this._members, singleId)
+		delete this._members[singleId]
 	}
 
 	// CONFIGS --------------------------------------------

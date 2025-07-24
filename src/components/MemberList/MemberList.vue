@@ -67,7 +67,6 @@ import {
 	NcButton,
 	NcEmptyContent,
 	NcLoadingIcon,
-	isMobile,
 } from '@nextcloud/vue'
 
 import MemberListGroup from './MemberListGroup.vue'
@@ -82,6 +81,7 @@ import { t } from '@nextcloud/l10n'
 import { getRecommendations, getSuggestions } from '../../services/collaborationAutocompletion.js'
 import { SHARES_TYPES_MEMBER_MAP, CIRCLES_MEMBER_GROUPING } from '../../models/constants'
 import { defineComponent } from 'vue'
+import IsMobileMixin from '../../mixins/IsMobileMixin.ts'
 
 export default defineComponent({
 	name: 'MemberList',
@@ -96,7 +96,7 @@ export default defineComponent({
 		NcLoadingIcon,
 	},
 
-	mixins: [isMobile, RouterMixin],
+	mixins: [IsMobileMixin, RouterMixin],
 
 	props: {
 		list: {

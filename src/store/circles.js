@@ -4,7 +4,6 @@
  */
 
 import { showError } from '@nextcloud/dialogs'
-import Vue from 'vue'
 
 import {
 	acceptMember,
@@ -39,7 +38,7 @@ const mutations = {
 		if (circle.constructor.name !== Circle.name) {
 			throw new Error('circle must be a Circle type')
 		}
-		Vue.set(state.circles, circle.id, circle)
+		state.circles[circle.id] = circle
 	},
 
 	/**
@@ -52,7 +51,7 @@ const mutations = {
 		if (!(circle.id in state.circles)) {
 			logger.warn('Skipping deletion of unknown circle', { circle })
 		}
-		Vue.delete(state.circles, circle.id)
+		delete state.circles[circle.id]
 	},
 
 	/**
@@ -91,7 +90,7 @@ const mutations = {
 	},
 
 	setCircleSettings(state, { circleId, settings }) {
-		Vue.set(state.circles[circleId]._data, 'settings', settings)
+		state.circles[circleId]._data.settings = settings
 	},
 }
 
