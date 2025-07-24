@@ -51,7 +51,7 @@
 				<VList v-else-if="searchSet.length > 0 && availableEntities.length > 0"
 					class="entity-picker__options"
 					:data="availableEntities"
-					#default="{ item }" >
+					#default="{ item }">
 					<EntitySearchResult :key="item.id"
 						:source="item"
 						:selection="selectionSet"

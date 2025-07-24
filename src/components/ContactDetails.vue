@@ -127,7 +127,7 @@
 
 					<!-- repaired contact message -->
 					<div v-if="fixed"
-						:title="t('contacts', 'This contact was broken and received a fix. Please review the content and click here to save it.')",
+						:title="t('contacts', 'This contact was broken and received a fix. Please review the content and click here to save it.')"
 						class="header-icon header-icon--pulse icon-up"
 						@click="updateContact" />
 

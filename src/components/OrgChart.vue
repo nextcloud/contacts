@@ -122,6 +122,7 @@ export default {
 							containerHTMLElement.appendChild(d.data.rendered)
 						} else {
 							const app = createApp(ChartTemplate, {
+								// eslint-disable-next-line vue/no-shared-component-data
 								data: d.data,
 								onAvatarClick: (uid) => that.goToContact(uid),
 							})
