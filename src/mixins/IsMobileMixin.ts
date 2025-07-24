@@ -6,9 +6,9 @@
 import { useIsMobile } from '@nextcloud/vue'
 
 export default {
-	setup() {
-		return {
-			isMobile: useIsMobile(),
+	computed: {
+		isMobile() {
+			return useIsMobile().value
 		}
 	},
 }
