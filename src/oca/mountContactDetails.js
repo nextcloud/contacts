@@ -3,15 +3,12 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import Vue from 'vue'
+import { createApp } from 'vue'
 import ReadOnlyContactDetails from '../views/ReadOnlyContactDetails.vue'
-import { createPinia, PiniaVuePlugin } from 'pinia'
-
-/** GLOBAL COMPONENTS AND DIRECTIVE */
-import { Tooltip as VTooltip } from '@nextcloud/vue'
+import { createPinia } from 'pinia'
 
 import store from '../store/index.js'
-import logger from '../services/logger.js'
+import LegacyGlobalMixin from '../mixins/LegacyGlobalMixin.js'
 
 /**
  * @param {HTMLElement} el
@@ -19,28 +16,15 @@ import logger from '../services/logger.js'
  * @return {Promise<object>}
  */
 export function mountContactDetails(el, contactEmailAddress) {
-	Vue.use(PiniaVuePlugin)
+	const app = createApp(ReadOnlyContactDetails, {
+		contactEmailAddress,
+	})
+
 	const pinia = createPinia()
+	app.use(pinia)
+	app.use(store)
 
-	// Register global directives
-	Vue.directive('Tooltip', VTooltip)
+	app.mixin(LegacyGlobalMixin)
 
-	Vue.prototype.t = t
-	Vue.prototype.n = n
-
-	Vue.prototype.appName = appName
-	Vue.prototype.appVersion = appVersion
-	Vue.prototype.logger = logger
-	Vue.prototype.OC = window.OC
-	Vue.prototype.OCA = window.OCA
-
-	const Component = Vue.extend(ReadOnlyContactDetails)
-	const vueElement = new Component({
-		pinia,
-		store,
-		propsData: {
-			contactEmailAddress,
-		},
-	}).$mount(el)
-	return vueElement
+	return app.mount(el)
 }

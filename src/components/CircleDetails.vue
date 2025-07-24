@@ -40,13 +40,13 @@
 					</div>
 					<div class="actions">
 						<template v-if="!isEditing">
-							<Button v-if="canManageTeam" type="primary" @click="startEditing">
+							<Button v-if="canManageTeam" variant="primary" @click="startEditing">
 								<template #icon>
 									<PencilIcon :size="20" />
 								</template>
 								{{ t('contacts', 'Edit') }}
 							</Button>
-							<Button type="secondary"
+							<Button variant="secondary"
 								:href="circleUrl"
 								@click.stop.prevent="copyToClipboard(circleUrl)">
 								<template #icon>
@@ -71,10 +71,10 @@
 							</NcPopover>
 						</template>
 						<template v-else>
-							<Button type="secondary" @click="cancelEditing">
+							<Button variant="secondary" @click="cancelEditing">
 								{{ t('contacts', 'Cancel') }}
 							</Button>
-							<Button type="primary" @click="saveChanges">
+							<Button variant="primary" @click="saveChanges">
 								{{ t('contacts', 'Save') }}
 							</Button>
 						</template>
@@ -91,7 +91,7 @@
 						<!-- Leave team button -->
 						<Button v-if="circle.isMember && circle.canLeave"
 							:disabled="loadingLeave"
-							type="warning"
+							variant="warning"
 							@click="confirmLeaveCircle">
 							<template #icon>
 								<LogoutIcon :size="16" />
@@ -147,7 +147,7 @@
 						<div class="member-section-layout">
 							<div class="section-header">
 								<ContentHeading>{{ t('contacts', 'Members') }}</ContentHeading>
-								<Button v-if="circle.canManageMembers" type="tertiary" @click="addMembers">
+								<Button v-if="circle.canManageMembers" variant="tertiary" @click="addMembers">
 									<template #icon>
 										<AccountPlusIcon :size="20" />
 									</template>

@@ -7,9 +7,9 @@
 	<!-- If not in the rfcProps then we don't want to display it -->
 	<component :is="componentInstance"
 		ref="component"
-		:select-type.sync="selectType"
+		v-model:select-type="selectType"
+		v-model:value="value"
 		:prop-model="propModel"
-		:value.sync="value"
 		:is-first-property="isFirstProperty"
 		:property="property"
 		:is-last-property="isLastProperty"
@@ -354,7 +354,7 @@ export default {
 		this.bus.on('focus-prop', this.onFocusProp)
 	},
 
-	destroyed() {
+	unmounted() {
 		this.bus.off('focus-prop', this.onFocusProp)
 	},
 

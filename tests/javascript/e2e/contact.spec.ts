@@ -24,5 +24,6 @@ test('create a contact', async ({ page }) => {
 	await page.getByRole('button', { name: 'Save' }).click()
 
 	// Assert that the contact exists and was saved
-	await expect(page.getByTestId('contacts-list').getByRole('group')).toContainText(name)
+	await expect(page.getByRole('button', { name: 'Edit' })).toBeVisible()
+	await expect(page.locator('#app-content-vue').getByRole('heading', { name })).toBeVisible()
 })

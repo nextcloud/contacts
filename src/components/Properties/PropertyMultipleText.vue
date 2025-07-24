@@ -37,10 +37,9 @@
 					:placeholder="t('contacts', 'Select type')"
 					:taggable="true"
 					tag-placeholder="create"
-					track-by="id"
 					label="name"
 					@option:created="createLabel"
-					@input="updateType" />
+					@update:model-value="updateType" />
 
 				<!-- if we do not support any type on our model but one is set anyway -->
 				<span v-else-if="selectType">
@@ -82,12 +81,12 @@
 						<span>{{ propModel.readableValues[index] }}</span>
 					</div>
 					<div class="property__value">
-						<NcTextField :value.sync="localValue[index]"
+						<NcTextField v-model:model-value="localValue[index]"
 							:readonly="isReadOnly"
 							type="text"
 							:label-outside="true"
 							:label="propModel.readableValues[index]"
-							@update:value="updateValue" />
+							@update:model-value="updateValue" />
 					</div>
 					<div class="property__actions" />
 				</template>
@@ -102,12 +101,12 @@
 				<template v-if="(isReadOnly && filteredValue[index]) || !isReadOnly">
 					<div class="property__label" />
 					<div class="property__value">
-						<NcTextField :value.sync="filteredValue[index]"
+						<NcTextField v-model:model-value="filteredValue[index]"
 							:readonly="isReadOnly"
 							:label-outside="true"
 							:label="propModel.readableValues[index]"
 							type="text"
-							@update:value="updateValue" />
+							@update:model-value="updateValue" />
 					</div>
 					<div class="property__actions" />
 				</template>

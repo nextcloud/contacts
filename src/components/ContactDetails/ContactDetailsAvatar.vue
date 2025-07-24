@@ -27,17 +27,17 @@
 			:url="photoUrl"
 			class="contact-header-avatar__photo" />
 
-		<NcModal :show.sync="showCropper" size="small" @close="cancel">
+		<NcModal v-model:show="showCropper" size="small" @close="cancel">
 			<div class="avatar__container">
 				<h2>{{ t('contacts', 'Crop contact photo') }}</h2>
 				<VueCropper ref="cropper"
 					class="avatar__cropper"
 					v-bind="cropperOptions" />
 				<div class="avatar__cropper-buttons">
-					<NcButton type="tertiary" @click="cancel">
+					<NcButton variant="tertiary" @click="cancel">
 						{{ t('contacts', 'Cancel') }}
 					</NcButton>
-					<NcButton type="primary"
+					<NcButton variant="primary"
 						@click="saveAvatar">
 						{{ t('contacts', 'Save') }}
 					</NcButton>
@@ -46,8 +46,8 @@
 		</NcModal>
 
 		<Actions v-if="!isReadOnly"
+			v-model:open="opened"
 			:force-menu="true"
-			:open.sync="opened"
 			class="contact-header-avatar__menu">
 			<template #icon>
 				<IconImage :size="20" fill-color="#fff" />

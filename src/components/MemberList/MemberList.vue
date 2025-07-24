@@ -37,12 +37,12 @@
 		<!-- member picker -->
 		<EntityPicker v-if="showPicker"
 			ref="entityPicker"
+			v-model:selection="pickerSelection"
 			:confirm-label="t('contacts', 'Add to {circle}', { circle: circle.displayName })"
 			:data-types="pickerTypes"
 			:data-set="filteredPickerData"
 			:internal-search="false"
 			:loading="pickerLoading"
-			:selection.sync="pickerSelection"
 			@close="resetPicker"
 			@search="onSearch"
 			@submit="onPickerPick" />
@@ -50,10 +50,7 @@
 </template>
 
 <script lang="ts">
-import {
-	NcEmptyContent,
-	isMobile,
-} from '@nextcloud/vue'
+import { NcEmptyContent } from '@nextcloud/vue'
 
 import MemberGridItem from './MemberGridItem.vue'
 import EntityPicker from '../EntityPicker/EntityPicker.vue'
@@ -67,6 +64,7 @@ import { t } from '@nextcloud/l10n'
 import { getRecommendations, getSuggestions } from '../../services/collaborationAutocompletion.js'
 import { SHARES_TYPES_MEMBER_MAP, CIRCLES_MEMBER_GROUPING } from '../../models/constants'
 import { defineComponent } from 'vue'
+import IsMobileMixin from '../../mixins/IsMobileMixin.ts'
 
 export default defineComponent({
 	name: 'MemberList',
@@ -78,7 +76,7 @@ export default defineComponent({
 		NcEmptyContent,
 	},
 
-	mixins: [isMobile, RouterMixin],
+	mixins: [IsMobileMixin, RouterMixin],
 
 	props: {
 		list: {

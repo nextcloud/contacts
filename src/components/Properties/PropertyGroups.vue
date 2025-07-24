@@ -144,7 +144,6 @@ export default {
 		 */
 		updateValue() {
 			this.$emit('update:value', this.localValue)
-
 		},
 	},
 }

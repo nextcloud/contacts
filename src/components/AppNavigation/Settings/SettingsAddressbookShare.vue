@@ -5,7 +5,7 @@
 
 <template>
 	<div class="addressbook-shares">
-		<NcSelect id="users-groups-search"
+		<NcSelectUsers id="users-groups-search"
 			:options="usersOrGroups"
 			:searchable="true"
 			:internal-search="false"
@@ -13,15 +13,14 @@
 			:show-no-results="true"
 			:placeholder="placeholder"
 			:class="{ 'showContent': inputGiven, 'icon-loading': isLoading }"
-			:user-select="true"
+			:get-option-key="(option) => option.user"
 			open-direction="bottom"
-			track-by="user"
 			label="displayName"
 			@search="findSharee"
-			@input="shareAddressbook" />
+			@update:model-value="shareAddressbook" />
 		<!-- list of user or groups addressbook is shared with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressbook-shares__list">
-			<address-book-sharee v-for="sharee in addressbook.shares"
+			<addressBookSharee v-for="sharee in addressbook.shares"
 				:key="sharee.uri"
 				:sharee="sharee"
 				:addressbook="addressbook" />
@@ -30,7 +29,7 @@
 </template>
 
 <script>
-import { NcSelect } from '@nextcloud/vue'
+import { NcSelectUsers } from '@nextcloud/vue'
 import client from '../../../services/cdav.js'
 import isGroupSharingEnabled from '../../../services/isGroupSharingEnabled.js'
 
@@ -42,7 +41,7 @@ export default {
 	name: 'SettingsAddressbookShare',
 
 	components: {
-		NcSelect,
+		NcSelectUsers,
 		addressBookSharee,
 	},
 

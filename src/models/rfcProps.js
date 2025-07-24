@@ -7,7 +7,7 @@ import { loadState } from '@nextcloud/initial-state'
 import { otherContacts } from '../utils/chartUtils.js'
 
 import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN.vue'
-import ActionToggleYear from '../components/Actions/ActionToggleYear.vue'
+import NcActionToggleYear from '../components/Actions/NcActionToggleYear.vue'
 import zones from './zones.js'
 
 // Load the default profile (for example, home or work) configured by the user
@@ -131,7 +131,7 @@ const properties = {
 			value: new ICAL.VCardTime(null, null, 'date').fromJSDate(new Date()),
 		},
 		actions: [
-			ActionToggleYear,
+			NcActionToggleYear,
 		],
 		primary: true,
 	},

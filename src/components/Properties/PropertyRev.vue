@@ -19,6 +19,7 @@
 
 <script>
 import moment from '@nextcloud/moment'
+import { toRaw } from 'vue'
 
 export default {
 	name: 'PropertyRev',
@@ -32,7 +33,9 @@ export default {
 
 	computed: {
 		relativeDate() {
-			return moment.unix(this.value.toUnixTime()).fromNow()
+			// Need to unwrap the proxy here due to ical.js comparing the time zone to a static
+			// value (which will never match the proxied object)
+			return moment.unix(toRaw(this.value).toUnixTime()).fromNow()
 		},
 	},
 }

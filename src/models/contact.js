@@ -6,6 +6,7 @@
 import { v4 as uuid } from 'uuid'
 import ICAL from 'ical.js'
 import b64toBlob from 'b64-to-blob'
+import { shallowRef, unref } from 'vue'
 
 import store from '../store/index.js'
 import updateDesignSet from '../services/updateDesignSet.js'
@@ -68,6 +69,14 @@ export default class Contact {
 		if (!this.vCard.hasProperty('rev')) {
 			this.vCard.addPropertyWithValue('rev', ICAL.VCardTime.now().convertToZone(ICAL.Timezone.utcTimezone))
 		}
+	}
+
+	get vCard() {
+		return unref(this._vCard)
+	}
+
+	set vCard(value) {
+		this._vCard = shallowRef(value)
 	}
 
 	/**
