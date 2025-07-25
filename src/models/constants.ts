@@ -96,18 +96,16 @@ export const PUBLIC_CIRCLE_CONFIG = {
 		[CIRCLE_CONFIG_INVITE]: t('contacts', 'Members need to accept invitation'),
 		[CIRCLE_CONFIG_REQUEST]: t('contacts', 'Memberships must be confirmed/accepted by a Moderator (requires "Anyone can request membership")'),
 		[CIRCLE_CONFIG_FRIEND]: t('contacts', 'Members can also invite'),
-		// Let's manage password protection independently as we also need a password
-		// [CIRCLE_CONFIG_PROTECTED]: t('contacts', 'Password protect'),
 	},
 
-	[t('contacts', 'Visibility')]: {
-		[CIRCLE_CONFIG_VISIBLE]: t('contacts', 'Visible to everyone'),
-	},
-
-	[t('contacts', 'Team membership')]: {
+	[t('contacts', 'Membership')]: {
 		// TODO: implement backend
 		// [CIRCLE_CONFIG_CIRCLE_INVITE]: t('contacts', 'Team must confirm when invited in another circle'),
 		[CIRCLE_CONFIG_ROOT]: t('contacts', 'Prevent teams from being a member of another team'),
+	},
+
+	[t('contacts', 'Privacy')]: {
+		[CIRCLE_CONFIG_VISIBLE]: t('contacts', 'Visible to everyone'),
 	},
 }
 
