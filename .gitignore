@@ -28,3 +28,6 @@ vendor/
 
 .php-cs-fixer.cache
 composer.phar
+
+/playwright-report
+/test-results
