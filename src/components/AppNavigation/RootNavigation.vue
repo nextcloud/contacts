@@ -80,6 +80,23 @@
 				</template>
 			</AppNavigationItem>
 
+			<!-- All OCM invites -->
+			<AppNavigationItem v-if="isOcmInvitesEnabled"
+				id="ocm-invites"
+				:name="GROUP_ALL_OCM_INVITES"
+				:to="{
+					name: ROUTE_NAME_ALL_OCM_INVITES,
+				}">
+				<template #icon>
+					<IconAccountSwitchOutline :size="20" />
+				</template>
+				<template #counter>
+					<NcCounterBubble v-if="ocmInvites.length">
+						{{ ocmInvites.length }}
+					</NcCounterBubble>
+				</template>
+			</AppNavigationItem>
+
 			<AppNavigationCaption id="newgroup"
 				:force-menu="true"
 				:menu-open.sync="isNewGroupMenuOpen"
@@ -169,7 +186,7 @@
 </template>
 
 <script>
-import { GROUP_ALL_CONTACTS, CHART_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC, CONTACTS_SETTINGS } from '../../models/constants.ts'
+import { GROUP_ALL_CONTACTS, CHART_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC, CONTACTS_SETTINGS, GROUP_ALL_OCM_INVITES, ROUTE_NAME_ALL_OCM_INVITES } from '../../models/constants.ts'
 
 import {
 	NcActionInput as ActionInput,
@@ -192,6 +209,8 @@ import NewCircleIntro from '../EntityPicker/NewCircleIntro.vue'
 
 import isCirclesEnabled from '../../services/isCirclesEnabled.js'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled.js'
+import IconAccountSwitchOutline from 'vue-material-design-icons/AccountSwitchOutline.vue'
+import isOcmInvitesEnabled from '../../services/isOcmInvitesEnabled.js'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import IconUser from 'vue-material-design-icons/Account.vue'
 import IconRecentlyContacted from '../Icons/IconRecentlyContacted.vue'
@@ -217,6 +236,7 @@ export default {
 		Cog,
 		ContactsSettings,
 		GroupNavigationItem,
+		IconAccountSwitchOutline,
 		IconContact,
 		IconUser,
 		IconAdd,
@@ -249,6 +269,8 @@ export default {
 			CHART_ALL_CONTACTS,
 			GROUP_NO_GROUP_CONTACTS,
 			GROUP_RECENTLY_CONTACTED,
+			GROUP_ALL_OCM_INVITES,
+			ROUTE_NAME_ALL_OCM_INVITES,
 
 			// create group
 			isNewGroupMenuOpen: false,
@@ -266,6 +288,7 @@ export default {
 			collapsedCircles: true,
 
 			showSettings: false,
+			isOcmInvitesEnabled,
 		}
 	},
 
@@ -282,6 +305,9 @@ export default {
 		},
 		sortedContacts() {
 			return this.$store.getters.getSortedContacts
+		},
+		ocmInvites() {
+			return this.$store.getters.getSortedOcmInvites
 		},
 
 		// list all the contacts that doesn't have a group
