@@ -17,7 +17,7 @@
 			no-close>
 			{{ t('contacts', 'Are you sure you want to proceed?') }}
 			<NcNoteCard v-if="readOnlyMultiSelectedCount"
-				type="info"
+				variant="info"
 				:text="n('contacts',
 					'Please note that {number} contact is read only and will not be deleted',
 					'Please note that {number} contacts are read only and will not be deleted',
@@ -32,13 +32,13 @@
 		</div>
 		<transition name="contacts-list__multiselect-header">
 			<div v-if="isMultiSelecting" class="contacts-list__multiselect-header">
-				<NcButton type="tertiary"
+				<NcButton variant="tertiary"
 					:title="t('contacts', 'Unselect {number}', { number: multiSelectedContacts.size })"
 					:close-after-click="true"
 					@click.prevent="unselectAllMultiSelected">
 					<IconSelect :size="16" />
 				</NcButton>
-				<NcButton type="tertiary"
+				<NcButton variant="tertiary"
 					:disabled="!isAtLeastOneEditable"
 					:title="deleteActionTitle"
 					:close-after-click="true"
@@ -48,20 +48,22 @@
 			</div>
 		</transition>
 
-		<VirtualList ref="scroller"
+		<VList v-slot="{ item, index }"
 			class="contacts-list"
-			data-key="key"
-			:data-sources="filteredList"
-			:data-component="ContactsListItem"
-			:estimate-size="68"
-			:extra-props="{reloadBus, onSelectMultipleFromParent: onSelectMultiple, onSelectRangeFromParent: onSelectRange }" />
+			:data="filteredList">
+			<ContactsListItem :key="item.key"
+				:index="index"
+				:source="item"
+				:reload-bus="reloadBus"
+				:on-select-multiple-from-parent="onSelectMultiple" />
+		</VList>
 	</AppContentList>
 </template>
 
 <script>
 import { NcAppContentList as AppContentList, NcButton, NcDialog, NcNoteCard } from '@nextcloud/vue'
 import ContactsListItem from './ContactsList/ContactsListItem.vue'
-import VirtualList from 'vue-virtual-scroll-list'
+import { VList } from 'virtua/vue'
 import IconSelect from 'vue-material-design-icons/CloseThick.vue'
 import IconDelete from 'vue-material-design-icons/Delete.vue'
 // eslint-disable-next-line import/no-unresolved
@@ -75,11 +77,12 @@ export default {
 	components: {
 		AppContentList,
 		NcNoteCard,
-		VirtualList,
+		VList,
 		NcButton,
 		IconSelect,
 		IconDelete,
 		NcDialog,
+		ContactsListItem,
 	},
 
 	props: {
@@ -103,7 +106,6 @@ export default {
 
 	data() {
 		return {
-			ContactsListItem,
 			query: '',
 			multiSelectedContacts: new Map(),
 			showDeleteConfirmationDialog: false,
@@ -252,7 +254,7 @@ export default {
 				this.multiSelectedContacts.set(index, contact)
 			}
 			this.lastToggledIndex = index
-			this.$set(this, 'multiSelectedContacts', new Map(this.multiSelectedContacts))
+			this.multiSelectedContacts = new Map(this.multiSelectedContacts)
 		},
 
 		onSelectRange(index) {
@@ -276,13 +278,13 @@ export default {
 			}
 
 			this.lastToggledIndex = index
-			this.$set(this, 'multiSelectedContacts', newSelection)
+			this.multiSelectedContacts = newSelection
 
 			return true
 		},
 
 		unselectAllMultiSelected() {
-			this.$set(this, 'multiSelectedContacts', new Map())
+			this.multiSelectedContacts = new Map()
 			this.lastToggledIndex = undefined
 		},
 
@@ -309,8 +311,7 @@ export default {
 <style lang="scss" scoped>
 // Make virtual scroller scrollable
 .contacts-list {
-	max-height: calc(100vh - var(--header-height) - 48px);
-	overflow: auto;
+	flex: 1 auto;
 }
 
 // Add empty header to contacts-list that solves overlapping of contacts with app-navigation-toogle

@@ -12,9 +12,9 @@
 		<div class="property__value">
 			<Actions menu-align="right"
 				event=""
-				type="secondary"
+				variant="secondary"
 				:menu-name="t('contacts', 'Add more info')"
-				@click.native.prevent>
+				@click.prevent>
 				<template #icon>
 					<IconAdd :size="20" />
 				</template>
@@ -180,7 +180,7 @@ export default {
 		this.bus.on('add-prop', this.addProp)
 	},
 
-	destroyed() {
+	unmounted() {
 		this.bus.off('add-prop', this.addProp)
 	},
 

@@ -3,20 +3,18 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import Vue from 'vue'
-import Router from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router'
 import { generateUrl } from '@nextcloud/router'
 
 import { ROUTE_CIRCLE, ROUTE_CHART } from '../models/constants.ts'
 import Contacts from '../views/Contacts.vue'
 
-Vue.use(Router)
+// if index.php is in the url AND we got this far, then it's working:
+// let's keep using index.php in the url
+const routerHistory = createWebHistory(generateUrl('/apps/contacts', ''))
 
-export default new Router({
-	mode: 'history',
-	// if index.php is in the url AND we got this far, then it's working:
-	// let's keep using index.php in the url
-	base: generateUrl('/apps/contacts', ''),
+export default createRouter({
+	history: routerHistory,
 	linkActiveClass: 'active',
 	routes: [
 		{

@@ -15,7 +15,7 @@
 				<!-- new-contact-button -->
 				<Button v-if="!loadingContacts"
 					:disabled="!defaultAddressbook"
-					type="secondary"
+					variant="secondary"
 					wide
 					@click="newContact">
 					<template #icon>
@@ -53,7 +53,6 @@
 import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE } from '../models/constants.ts'
 
 import {
-	isMobile,
 	NcButton as Button,
 	NcContent as Content,
 	NcModal as Modal,
@@ -79,6 +78,7 @@ import isCirclesEnabled from '../services/isCirclesEnabled.js'
 import { emit } from '@nextcloud/event-bus'
 
 import usePrincipalsStore from '../store/principals.js'
+import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 
 export default {
 	name: 'Contacts',
@@ -98,7 +98,7 @@ export default {
 	},
 
 	mixins: [
-		isMobile,
+		IsMobileMixin,
 	],
 
 	// passed by the router

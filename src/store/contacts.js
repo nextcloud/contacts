@@ -5,7 +5,6 @@
 
 import { showError } from '@nextcloud/dialogs'
 import ICAL from 'ical.js'
-import Vue from 'vue'
 
 import Contact from '../models/contact.js'
 import validate from '../services/validate.js'
@@ -64,7 +63,7 @@ const mutations = {
 	appendContacts(state, contacts = []) {
 		state.contacts = contacts.reduce(function(list, contact) {
 			if (contact instanceof Contact) {
-				Vue.set(list, contact.key, contact)
+				list[contact.key] = contact
 			} else {
 				console.error('Invalid contact object', contact)
 			}
@@ -83,7 +82,7 @@ const mutations = {
 
 			const index = state.sortedContacts.findIndex(search => search.key === contact.key)
 			state.sortedContacts.splice(index, 1)
-			Vue.delete(state.contacts, contact.key)
+			delete state.contacts[contact.key]
 
 		} else {
 			console.error('Error while deleting the following contact', contact)
@@ -125,7 +124,7 @@ const mutations = {
 			}
 
 			// default contacts list
-			Vue.set(state.contacts, contact.key, contact)
+			state.contacts[contact.key] = contact
 
 		} else {
 			console.error('Error while adding the following contact', contact)
@@ -178,18 +177,18 @@ const mutations = {
 			const newContact = contact
 
 			// delete old key, cut reference
-			Vue.delete(state.contacts, oldKey)
+			delete state.contacts[oldKey]
 
 			// replace addressbook
-			Vue.set(newContact, 'addressbook', addressbook)
+			newContact.addressbook = addressbook
 
 			// set new key, re-assign reference
-			Vue.set(state.contacts, newContact.key, newContact)
+			state.contacts[newContact.ke] = newContact
 
 			// Update sorted contacts list, replace at exact same position
 			const index = state.sortedContacts.findIndex(search => search.key === oldKey)
-			Vue.set(state.sortedContacts[index], 'key', newContact.key)
-			Vue.set(state.sortedContacts[index], 'value', newContact[state.orderKey])
+			state.sortedContacts[index].key = newContact.key
+			state.sortedContacts[index].value = newContact[state.orderKey]
 		} else {
 			console.error('Error while replacing the addressbook of following contact', contact)
 		}
@@ -268,7 +267,7 @@ const mutations = {
 	setContactDav(state, { contact, dav }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
 			contact = state.contacts[contact.key]
-			Vue.set(contact, 'dav', dav)
+			contact.dav = dav
 		} else {
 			console.error('Error while handling the following contact', contact)
 		}

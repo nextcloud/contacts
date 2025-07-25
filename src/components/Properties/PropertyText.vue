@@ -50,7 +50,7 @@
 				<NcTextArea v-if="propName === 'note'"
 					id="textarea"
 					ref="textarea"
-					:value.sync="localValue"
+					v-model:value="localValue"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
 					@update:value="updateValueNoDebounce"
@@ -60,6 +60,7 @@
 				<!-- email with validation-->
 				<NcTextField v-else-if="propName === 'email'"
 					ref="email"
+					v-model:value="localValue"
 					:class="{'property__value--with-ext': haveExtHandler}"
 					autocapitalize="none"
 					autocomplete="email"
@@ -69,13 +70,12 @@
 					:helper-text="!emailHelpText || isReadonly ? '' : emailHelpText"
 					label-outside
 					:placeholder="placeholder"
-					:value.sync="localValue"
 					type="email"
 					@update:value="updateEmailValue" />
 
 				<!-- OR default to input -->
 				<NcTextField v-else
-					:value.sync="localValue"
+					v-model:value="localValue"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
 					:class="{'property__value--with-ext': haveExtHandler}"

@@ -5,7 +5,6 @@
 
 import { showError } from '@nextcloud/dialogs'
 import pLimit from 'p-limit'
-import Vue from 'vue'
 
 import Contact, { MinimalContactProperties } from '../models/contact.js'
 
@@ -139,7 +138,7 @@ const mutations = {
 			if (list[contact.uid]) {
 				console.info('Duplicate contact overrided', list[contact.uid], contact)
 			}
-			Vue.set(list, contact.uid, contact)
+			list[contact.uid] = contact
 			return list
 		}, addressbook.contacts)
 	},
@@ -152,7 +151,7 @@ const mutations = {
 	 */
 	addContactToAddressbook(state, contact) {
 		const addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
-		Vue.set(addressbook.contacts, contact.uid, contact)
+		addressbook.contacts[contact.uid] = contact
 	},
 
 	/**
@@ -163,7 +162,7 @@ const mutations = {
 	 */
 	deleteContactFromAddressbook(state, contact) {
 		const addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
-		Vue.delete(addressbook.contacts, contact.uid)
+		delete addressbook.contacts[contact.uid]
 	},
 
 	/**
@@ -360,7 +359,7 @@ const actions = {
 					.reduce((contacts, item) => {
 						try {
 							const contact = new Contact(item.data, addressbook)
-							Vue.set(contact, 'dav', item)
+							contact.dav = item
 							contacts.push(contact)
 						} catch (error) {
 							// PARSING FAILED
@@ -426,7 +425,7 @@ const actions = {
 				requests.push(limit(() => contact.addressbook.dav.createVCard(vData)
 					.then((response) => {
 						// setting the contact dav property
-						Vue.set(contact, 'dav', response)
+						contact.dav = response
 
 						// success, update store
 						context.commit('addContact', contact)
@@ -559,7 +558,7 @@ const actions = {
 		try {
 			const response = await contact.dav.copy(addressbook.dav)
 			// setting the contact dav property
-			Vue.set(newContact, 'dav', response)
+			newContact.dav = response
 		} catch (error) {
 			console.error(error)
 			throw error

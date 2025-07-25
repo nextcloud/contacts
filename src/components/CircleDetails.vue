@@ -30,7 +30,7 @@
 
 			<template #actions>
 				<!-- copy circle link -->
-				<Button type="tertiary"
+				<Button variant="tertiary"
 					:href="circleUrl"
 					:title="copyButtonText"
 					:class="copyLinkIcon"
@@ -62,7 +62,7 @@
 				{{ t('contacts', 'Description') }}
 			</ContentHeading>
 
-			<RichContenteditable :value.sync="circle.description"
+			<RichContenteditable v-model:value="circle.description"
 				:auto-complete="onAutocomplete"
 				:maxlength="1024"
 				:multiline="true"
@@ -138,7 +138,7 @@
 					@input="onNameChangeDebounce">
 
 				<h3>{{ t('contacts', 'Description') }}</h3>
-				<RichContenteditable :value.sync="circle.description"
+				<RichContenteditable v-model:value="circle.description"
 					:auto-complete="onAutocomplete"
 					:maxlength="1024"
 					:multiline="true"
@@ -154,7 +154,7 @@
 				<h3>{{ t('contacts', 'Actions') }}</h3>
 				<!-- leave circle -->
 				<Button v-if="circle.canLeave"
-					type="warning"
+					variant="warning"
 					@click="confirmLeaveCircle">
 					<template #icon>
 						<Logout :size="16" />
@@ -164,7 +164,7 @@
 
 				<!-- delete circle -->
 				<Button v-if="circle.canDelete"
-					type="error"
+					variant="error"
 					href="#"
 					@click.prevent.stop="confirmDeleteCircle">
 					<template #icon>
