@@ -53,7 +53,7 @@
 					v-model:value="localValue"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
-					@update:value="updateValueNoDebounce"
+					@update:model-value="updateValueNoDebounce"
 					@mousemove="resizeHeight"
 					@keypress="resizeHeight" />
 
@@ -71,7 +71,7 @@
 					label-outside
 					:placeholder="placeholder"
 					type="email"
-					@update:value="updateEmailValue" />
+					@update:model-value="updateEmailValue" />
 
 				<!-- OR default to input -->
 				<NcTextField v-else
@@ -81,7 +81,7 @@
 					:class="{'property__value--with-ext': haveExtHandler}"
 					type="text"
 					:placeholder="placeholder"
-					@update:value="updateValue" />
+					@update:model-value="updateValue" />
 
 				<!-- external link -->
 				<a v-if="haveExtHandler && isReadOnly"

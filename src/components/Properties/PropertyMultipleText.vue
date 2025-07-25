@@ -87,7 +87,7 @@
 							type="text"
 							:label-outside="true"
 							:label="propModel.readableValues[index]"
-							@update:value="updateValue" />
+							@update:model-value="updateValue" />
 					</div>
 					<div class="property__actions" />
 				</template>
@@ -107,7 +107,7 @@
 							:label-outside="true"
 							:label="propModel.readableValues[index]"
 							type="text"
-							@update:value="updateValue" />
+							@update:model-value="updateValue" />
 					</div>
 					<div class="property__actions" />
 				</template>

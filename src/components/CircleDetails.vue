@@ -69,7 +69,7 @@
 				:contenteditable="false"
 				:placeholder="descriptionPlaceholder"
 				class="circle-details-section__description"
-				@update:value="onDescriptionChangeDebounce" />
+				@update:model-value="onDescriptionChangeDebounce" />
 		</section>
 
 		<!-- not a member -->
@@ -145,7 +145,7 @@
 					:contenteditable="circle.isOwner"
 					:placeholder="descriptionPlaceholder"
 					class="circle-details-section__description"
-					@update:value="onDescriptionChangeDebounce" />
+					@update:model-value="onDescriptionChangeDebounce" />
 
 				<h3>{{ t('contacts', 'Settings') }}</h3>
 				<CircleConfigs class="circle-details-section__configs" :circle="circle" />
