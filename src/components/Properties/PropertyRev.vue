@@ -4,15 +4,15 @@
 -->
 
 <template>
-	<div class="property property--rev">
-		<div class="property__row">
-			<div class="property__label" />
+	<div class="property property--rev" role="group">
+		<div class="property__row" role="rowgroup">
+			<div class="property__label" role="rowheader" />
 
-			<div class="property__value">
+			<div class="property__value" role="cell">
 				{{ t('contacts', 'Last modified') }} {{ relativeDate }}
 			</div>
 
-			<div class="property__actions" />
+			<div class="property__actions" role="cell" />
 		</div>
 	</div>
 </template>
