@@ -82,7 +82,7 @@
 						<span>{{ propModel.readableValues[index] }}</span>
 					</div>
 					<div class="property__value">
-						<NcTextField v-model:value="localValue[index]"
+						<NcTextField v-model:model-value="localValue[index]"
 							:readonly="isReadOnly"
 							type="text"
 							:label-outside="true"
@@ -102,7 +102,7 @@
 				<template v-if="(isReadOnly && filteredValue[index]) || !isReadOnly">
 					<div class="property__label" />
 					<div class="property__value">
-						<NcTextField v-model:value="filteredValue[index]"
+						<NcTextField v-model:model-value="filteredValue[index]"
 							:readonly="isReadOnly"
 							:label-outside="true"
 							:label="propModel.readableValues[index]"

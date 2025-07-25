@@ -24,7 +24,7 @@
 					</template>
 					{{ t('contacts', 'Add contacts') }}
 				</ActionButton>
-				<ActionInput v-model:value="newGroupName"
+				<ActionInput v-model:model-value="newGroupName"
 					:disabled="renaming"
 					@submit="renameGroup">
 					<template #icon>

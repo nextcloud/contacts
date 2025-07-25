@@ -6,7 +6,7 @@
 <template>
 	<div class="new-addressbook-entry">
 		<IconLoading v-if="loading" :size="20" />
-		<NcTextField v-model:value="displayName"
+		<NcTextField v-model:model-value="displayName"
 			class="new-addressbook"
 			:disabled="loading"
 			:label="t('contacts', 'Add new address book')"

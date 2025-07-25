@@ -62,7 +62,7 @@
 				{{ t('contacts', 'Description') }}
 			</ContentHeading>
 
-			<RichContenteditable v-model:value="circle.description"
+			<RichContenteditable v-model:model-value="circle.description"
 				:auto-complete="onAutocomplete"
 				:maxlength="1024"
 				:multiline="true"
@@ -138,7 +138,7 @@
 					@input="onNameChangeDebounce">
 
 				<h3>{{ t('contacts', 'Description') }}</h3>
-				<RichContenteditable v-model:value="circle.description"
+				<RichContenteditable v-model:model-value="circle.description"
 					:auto-complete="onAutocomplete"
 					:maxlength="1024"
 					:multiline="true"

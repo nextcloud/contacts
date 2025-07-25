@@ -286,7 +286,7 @@
 					@update:value="updateAddressbook" />
 
 				<!-- Groups always visible -->
-				<PropertyGroups v-model:value="localContact.groups"
+				<PropertyGroups v-model:model-value="localContact.groups"
 					:prop-model="groupsModel"
 					:contact="contact"
 					:is-read-only="isReadOnly"
