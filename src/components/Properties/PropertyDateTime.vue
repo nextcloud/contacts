@@ -75,6 +75,7 @@ import {
 	NcSelect,
 } from '@nextcloud/vue'
 import ICAL from 'ical.js'
+import { getLocale } from '@nextcloud/l10n'
 
 import PropertyMixin from '../../mixins/PropertyMixin.js'
 import PropertyTitle from './PropertyTitle.vue'
