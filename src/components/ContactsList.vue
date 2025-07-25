@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<AppContentList class="content-list">
+	<AppContentList class="content-list" data-testid="contacts-list">
 		<NcDialog :open="showDeleteConfirmationDialog"
 			:name="n(
 				'contacts',
