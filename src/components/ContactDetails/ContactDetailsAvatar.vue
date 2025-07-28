@@ -45,19 +45,22 @@
 			<template #icon>
 				<IconImage :size="20" fill-color="#fff" />
 			</template>
-			<ActionButton @click.stop.prevent="selectFileInput">
+			<ActionButton :close-after-click="true"
+				@click.stop.prevent="selectFileInput">
 				<template #icon>
 					<IconUpload :size="20" />
 				</template>
 				{{ t('contacts', 'Upload a new picture') }}
 			</ActionButton>
-			<ActionButton @click="selectFilePicker">
+			<ActionButton :close-after-click="true"
+				@click="selectFilePicker">
 				<template #icon>
 					<IconFolder :size="20" />
 				</template>
 				{{ t('contacts', 'Choose from Files') }}
 			</ActionButton>
 			<ActionButton v-for="network in supportedSocial"
+				:close-after-click="true"
 				:key="network"
 				@click="getSocialAvatar(network)">
 				<template #icon>
@@ -69,13 +72,15 @@
 			<template v-if="contact.photo">
 				<!-- FIXME: the link seems to have a bigger font size than the button caption -->
 				<ActionLink :href="`${contact.url}?photo`"
-					target="_blank">
+					target="_blank"
+					:close-after-click="true">
 					<template #icon>
 						<IconDownload :size="20" />
 					</template>
 					{{ t('contacts', 'Download picture') }}
 				</ActionLink>
-				<ActionButton @click="removePhoto">
+				<ActionButton :close-after-click="true"
+					@click="removePhoto">
 					<template #icon>
 						<IconDelete :size="20" />
 					</template>
