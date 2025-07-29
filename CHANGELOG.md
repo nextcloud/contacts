@@ -1,3 +1,14 @@
+## [7.2.3](https://github.com/nextcloud/contacts/compare/v7.2.2...v7.2.3) (2025-07-29)
+
+
+### Bug Fixes
+
+* **deps:** bump form-data to 4.0.4 ([f0594c5](https://github.com/nextcloud/contacts/commit/f0594c508be5d8850548bb5a76c642c195c94996))
+* **l10n:** Update translations from Transifex ([92ed773](https://github.com/nextcloud/contacts/commit/92ed77318dd65794dabea2f19d5b6fcf1e493c16))
+* missing getLocale import ([0c355d2](https://github.com/nextcloud/contacts/commit/0c355d2acb52e0e3aae5fbae034605fef2f1d647))
+
+
+
 ## [7.2.2](https://github.com/nextcloud/contacts/compare/v7.2.1...v7.2.2) (2025-07-24)
 
 
