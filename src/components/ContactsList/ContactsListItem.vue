@@ -19,7 +19,11 @@
 					@click.exact.prevent="onSelectMultiple"
 					@mouseenter="hoveringAvatar = true"
 					@mouseleave="hoveringAvatar = false">
-					<BaseAvatar v-if="!source.isMultiSelected && !hoveringAvatar"
+					<NcAvatar v-if="!source.isMultiSelected && !hoveringAvatar && source.addressbook.id === 'z-server-generated--system'"
+						:user="source.uid"
+						:show-user-status="false"
+						:size="40" />
+					<NcAvatar v-if="!source.isMultiSelected && !hoveringAvatar && source.addressbook.id !== 'z-server-generated--system'"
 						:display-name="source.displayName"
 						:url="avatarUrl"
 						:size="40" />
@@ -42,7 +46,7 @@
 <script>
 import {
 	NcListItem as ListItem,
-	NcAvatar as BaseAvatar,
+	NcAvatar,
 } from '@nextcloud/vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
 
@@ -51,7 +55,7 @@ export default {
 
 	components: {
 		ListItem,
-		BaseAvatar,
+		NcAvatar,
 		CheckIcon,
 	},
 
