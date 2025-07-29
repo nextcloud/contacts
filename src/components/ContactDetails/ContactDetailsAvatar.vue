@@ -13,7 +13,14 @@
 			@change="handleUploadedFile">
 
 		<!-- Avatar display -->
-		<Avatar :disable-tooltip="true"
+		<Avatar v-if="contact.addressbook.id === 'z-server-generated--system'"
+			disable-menu
+			:show-user-status="false"
+			:user="contact.uid"
+			:size="75"
+			class="contact-header-avatar__photo" />
+		<Avatar v-else
+			:disable-tooltip="true"
 			:display-name="contact.displayName"
 			:is-no-user="true"
 			:size="75"
