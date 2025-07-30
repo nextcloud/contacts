@@ -5,10 +5,6 @@
 
 <template>
 	<section class="member-list">
-		<ContentHeading>
-			{{ t('contacts', 'Team members') }}
-		</ContentHeading>
-
 		<NcEmptyContent v-if="loading" class="empty-content" :name="t('contacts', 'Loading members list …')">
 			<template #icon>
 				<IconLoading :size="20" />
@@ -31,21 +27,11 @@
 			</template>
 		</NcEmptyContent>
 
-		<div v-else>
-			<div class="member-list__new">
-				<NcButton v-if="circle.canManageMembers"
-					@click="onShowPicker(circle.id)">
-					<template #icon>
-						<NcLoadingIcon v-if="loading" />
-						<IconAdd v-else :size="20" />
-					</template>
-					{{ t('contacts', 'Add members') }}
-				</NcButton>
-			</div>
-
-			<MemberListGroup v-for="group, index in groupedList"
-				:key="`member-list-group-${index}`"
-				v-bind="group" />
+		<div v-else class="member-grid">
+			<MemberGridItem v-for="(member, index) in flatList"
+				:key="`member-grid-item-${index}`"
+				:member="member"
+				:is-team="!member.isUser" />
 		</div>
 
 		<!-- member picker -->
@@ -64,16 +50,14 @@
 
 <script lang="ts">
 import {
-	NcButton,
 	NcEmptyContent,
-	NcLoadingIcon,
 	isMobile,
 } from '@nextcloud/vue'
 
-import MemberListGroup from './MemberListGroup.vue'
+import MemberGridItem from './MemberGridItem.vue'
 import EntityPicker from '../EntityPicker/EntityPicker.vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
-import IconAdd from 'vue-material-design-icons/Plus.vue'
+
 import RouterMixin from '../../mixins/RouterMixin.js'
 
 import { showError, showWarning } from '@nextcloud/dialogs'
@@ -89,11 +73,8 @@ export default defineComponent({
 	components: {
 		EntityPicker,
 		IconContact,
-		IconAdd,
-		MemberListGroup,
-		NcButton,
+		MemberGridItem,
 		NcEmptyContent,
-		NcLoadingIcon,
 	},
 
 	mixins: [isMobile, RouterMixin],
@@ -128,14 +109,10 @@ export default defineComponent({
 		/**
 		 * Return the current circle
 		 *
-		 * @return {Circle}
+		 * @return {object}
 		 */
 		circle() {
 			return this.$store.getters.getCircle(this.selectedCircle)
-		},
-
-		hasMembers() {
-			return this.groupedList.length > 0
 		},
 
 		filteredPickerData() {
@@ -150,14 +127,14 @@ export default defineComponent({
 			})
 		},
 
-		groupedList() {
-			return CIRCLES_MEMBER_GROUPING
-				.map(({ labelStandalone, type }) => ({
-					type,
-					label: labelStandalone,
-					members: [...this.list.filter(({ userType }) => userType === type)],
-				}))
-				.filter(({ members }) => members.length > 0)
+		flatList() {
+			const teams = this.list.filter(member => !member.isUser)
+			const users = this.list.filter(member => member.isUser)
+			return [...teams, ...users]
+		},
+
+		hasMembers() {
+			return this.flatList.length > 0
 		},
 	},
 
@@ -271,20 +248,15 @@ export default defineComponent({
 	max-width: 900px;
 	overflow: auto;
 
-	&__new {
-		padding: 10px;
-		display: inline-flex;
-
-		button {
-			background-position: 14px center;
-			text-align: start;
-
-		}
-	}
-
 	:deep(.empty-content) {
 		margin: auto;
 	}
+}
+
+.member-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 8px;
 }
 
 .empty-content {

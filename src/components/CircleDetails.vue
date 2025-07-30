@@ -146,10 +146,18 @@
 
 					<!-- Members Section -->
 					<div class="circle-details-section">
-						<div class="section-header">
-							<ContentHeading>{{ t('contacts', 'Members') }}</ContentHeading>
+						<div class="member-section-layout">
+							<div class="section-header">
+								<ContentHeading>{{ t('contacts', 'Members') }}</ContentHeading>
+								<Button v-if="circle.canManageMembers" type="tertiary" @click="addMembers">
+									<template #icon>
+										<AccountPlusIcon :size="20" />
+									</template>
+									{{ t('contacts', 'Add') }}
+								</Button>
+							</div>
+							<MemberList ref="memberList" :list="members" />
 						</div>
-						<MemberList v-if="members.length" :list="members" />
 					</div>
 				</section>
 			</div>
@@ -181,6 +189,7 @@ import CogIcon from 'vue-material-design-icons/CogOutline.vue'
 import CopyIcon from 'vue-material-design-icons/ContentCopy.vue'
 import LoginIcon from 'vue-material-design-icons/Login.vue'
 import LogoutIcon from 'vue-material-design-icons/Logout.vue'
+import AccountPlusIcon from 'vue-material-design-icons/AccountPlusOutline.vue'
 import PencilIcon from 'vue-material-design-icons/PencilOutline.vue'
 import IconAccountGroup from 'vue-material-design-icons/AccountGroupOutline.vue'
 import FileDocumentOutline from 'vue-material-design-icons/FileDocumentOutline.vue'
@@ -194,6 +203,7 @@ export default {
 	name: 'CircleDetails',
 
 	components: {
+		AccountPlusIcon,
 		Avatar,
 		Button,
 		ContentHeading,
@@ -325,16 +335,17 @@ export default {
 	},
 
 	methods: {
+		addMembers() {
+			this.$refs.memberList.onShowPicker(this.circle.id)
+		},
 		onLeave() {
 			this.isSettingsPopoverShown = false
 			this.confirmLeaveCircle()
 		},
-
 		onDelete() {
 			this.isSettingsPopoverShown = false
 			this.confirmDeleteCircle()
 		},
-
 		startEditing() {
 			this.originalDisplayName = this.circle.displayName
 			this.originalDescription = this.circle.description
@@ -465,6 +476,12 @@ export default {
 
 	.circle-details-section {
 		margin-bottom: 2rem;
+
+		.member-section-layout {
+			display: inline-block;
+			width: 100%;
+			max-width: 500px; // Adjust this value to match the grid width if necessary
+		}
 
 		.section-header {
 			display: flex;
