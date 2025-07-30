@@ -6,16 +6,14 @@
 <template>
 	<div class="circle-details-container">
 		<div class="circle-details-grid" :class="{ 'is-editing': isEditing }">
-			<div class="circle-details-grid__avatar">
-				<!-- avatar and upload photo -->
-				<Avatar :disable-tooltip="true"
-					:display-name="circle.displayName"
-					:is-no-user="true"
-					:size="75" />
-			</div>
-			<div class="circle-details-grid__content">
+			<div class="circle-details__header-wrapper">
+				<div class="circle-details-grid__avatar">
+					<Avatar :disable-tooltip="true"
+						:display-name="circle.displayName"
+						:is-no-user="true"
+						:size="75" />
+				</div>
 				<div class="circle-details__header">
-					<!-- display name -->
 					<div class="circle-name-wrapper">
 						<h2 v-if="!isEditing" class="circle-name">
 							<span :title="circle.displayName">{{ circle.displayName }}</span>
@@ -50,7 +48,6 @@
 								</template>
 								{{ t('contacts', 'Edit') }}
 							</Button>
-							<!-- copy circle link -->
 							<Button type="secondary"
 								:href="circleUrl"
 								@click.stop.prevent="copyToClipboard(circleUrl)">
@@ -83,8 +80,6 @@
 								{{ t('contacts', 'Save') }}
 							</Button>
 						</template>
-
-						<!-- Only show the join button if the circle is accepting requests -->
 						<Button v-if="!circle.isPendingMember && !circle.isMember && circle.canJoin"
 							:disabled="loadingJoin"
 							class="primary"
@@ -107,55 +102,56 @@
 						</Button>
 					</div>
 				</div>
+			</div>
 
-				<div class="circle-details__main-content">
-					<!-- not a member -->
-					<template v-if="!circle.isMember">
-						<!-- Pending request validation -->
-						<NcEmptyContent v-if="circle.isPendingMember"
-							:name="t('contacts', 'Your request to join this team is pending approval')">
-							<template #icon>
-								<NcLoadingIcon :size="20" />
-							</template>
-						</NcEmptyContent>
+			<!-- Main content now a direct child of the grid -->
+			<div class="circle-details__main-content">
+				<!-- not a member -->
+				<template v-if="!circle.isMember">
+					<!-- Pending request validation -->
+					<NcEmptyContent v-if="circle.isPendingMember"
+						:name="t('contacts', 'Your request to join this team is pending approval')">
+						<template #icon>
+							<NcLoadingIcon :size="20" />
+						</template>
+					</NcEmptyContent>
 
-						<NcEmptyContent v-else
-							:name="t('contacts', 'You are not a member of {circle}', { circle: circle.displayName})">
-							<template #icon>
-								<IconAccountGroup :size="20" />
-							</template>
-						</NcEmptyContent>
-					</template>
+					<NcEmptyContent v-else
+						:name="t('contacts', 'You are not a member of {circle}', { circle: circle.displayName})">
+						<template #icon>
+							<IconAccountGroup :size="20" />
+						</template>
+					</NcEmptyContent>
+				</template>
 
-					<section v-else>
-						<div v-for="(group, providerId) in groupedResources" :key="providerId" class="circle-details-section">
-							<div class="section-header">
-								<ContentHeading>{{ group.name }}</ContentHeading>
-							</div>
-							<ul class="item-list">
-								<ListItem v-for="resource in group.resources"
-									:key="resource.id"
-									:href="resource.link"
-									:name="resource.label">
-									<template #icon>
-										<!-- eslint-disable-next-line vue/no-v-html -->
-										<div v-if="resource.iconSvg" class="resource__icon" v-html="resource.iconSvg" />
-										<img v-else-if="resource.iconURL" :src="resource.iconURL" class="resource__icon">
-										<FileDocumentOutline v-else :size="20" />
-									</template>
-								</ListItem>
-							</ul>
+				<section v-else>
+					<div v-for="(group, providerId) in groupedResources" :key="providerId" class="circle-details-section">
+						<div class="section-header">
+							<ContentHeading>{{ group.name }}</ContentHeading>
 						</div>
+						<ul class="item-list">
+							<ListItem v-for="resource in group.resources"
+								:key="resource.id"
+								:href="resource.link"
+								:name="resource.label">
+								<template #icon>
+									<!-- eslint-disable-next-line vue/no-v-html -->
+									<div v-if="resource.iconSvg" class="resource__icon" v-html="resource.iconSvg" />
+									<img v-else-if="resource.iconURL" :src="resource.iconURL" class="resource__icon">
+									<FileDocumentOutline v-else :size="20" />
+								</template>
+							</ListItem>
+						</ul>
+					</div>
 
-						<!-- Members Section -->
-						<div class="circle-details-section">
-							<div class="section-header">
-								<ContentHeading>{{ t('contacts', 'Members') }}</ContentHeading>
-							</div>
-							<MemberList v-if="members.length" :list="members" />
+					<!-- Members Section -->
+					<div class="circle-details-section">
+						<div class="section-header">
+							<ContentHeading>{{ t('contacts', 'Members') }}</ContentHeading>
 						</div>
-					</section>
-				</div>
+						<MemberList v-if="members.length" :list="members" />
+					</div>
+				</section>
 			</div>
 		</div>
 	</div>
@@ -414,9 +410,8 @@ export default {
 
 	.circle-details-grid {
 		display: grid;
-		grid-template-columns: auto 1fr;
-		align-items: start;
-		gap: 24px;
+		grid-template-columns: 1fr;
+		gap: 36px;
 		max-width: 800px;
 		margin-inline: auto;
 
@@ -427,123 +422,111 @@ export default {
 			}
 		}
 
-		&__content {
+		.circle-details__header-wrapper {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			align-items: center;
+			gap: 24px;
+		}
 
+		.circle-details__main-content {
+			margin-left: 99px;
+		}
+	}
+
+	.circle-details__header {
+		background-color: transparent;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 2px;
+		width: 100%;
+
+		.circle-description-wrapper {
+			margin-bottom: 4px;
+		}
+
+		.circle-name {
+			font-size: 1.5rem;
+			font-weight: bold;
+			margin: 0;
+			margin-bottom: 2px;
+		}
+
+		.subtitle {
+			color: var(--color-text-maxcontrast);
+		}
+
+		.actions {
+			display: flex;
+			gap: 8px;
+		}
+	}
+
+	.circle-details-section {
+		margin-bottom: 2rem;
+
+		.section-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			margin-bottom: 4px;
+
+			:deep(h2),
+			:deep(h3) {
+				line-height: 2px;
+				margin: 4px 0 8px 0;
+			}
+		}
+
+		.item-list {
+			list-style: none;
+			padding: 0;
+			margin: 0;
 			display: flex;
 			flex-direction: column;
-			gap: 36px;
+			gap: 2px;
 
-			.circle-details__header {
-				background-color: transparent;
-				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				gap: 2px;
-
-				.circle-description-wrapper {
-					margin-bottom: 4px;
-				}
-
-				.circle-name {
-					font-size: 1.5rem;
-					font-weight: bold;
-					margin: 0;
-					margin-bottom: 2px;
-				}
-
-				.subtitle {
-					color: var(--color-text-maxcontrast);
-				}
-
-				.actions {
-					display: flex;
-					gap: 8px;
-				}
+			// Remove left padding added in ListItem (external component)
+			:deep(.list-item__wrapper) {
+				padding-left: 0;
 			}
 
-			.circle-details__main-content {
-				.circle-details-section {
-					width: 100%;
-					margin-bottom: 24px;
-
-					&:not(:first-of-type) {
-						margin-top: 24px;
+			.resource {
+				&__icon {
+					width: 44px;
+					height: 44px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					text-align: center;
+					svg {
+						width: 20px;
+						height: 20px;
 					}
-
-					.section-header {
-						display: flex;
-						justify-content: space-between;
-						align-items: center;
-						width: 100%;
-						margin-bottom: 4px;
-
-						:deep(h2), :deep(h3) {
-							line-height: 2px;
-							margin: 4px 0 8px 0;
-						}
-					}
-
-					.item-list {
-						list-style: none;
-						padding: 0;
-						margin: 0;
-						display: flex;
-						flex-direction: column;
-						gap: 2px;
-
-						// Remove left padding added in ListItem (external component)
-						:deep(.list-item__wrapper) {
-							padding-left: 0;
-						}
-
-						.resource {
-							&__icon {
-								width: 44px;
-								height: 44px;
-								display: flex;
-								align-items: center;
-								justify-content: center;
-								text-align: center;
-								svg {
-									width: 20px;
-									height: 20px;
-								}
-								img {
-									border-radius: var(--border-radius-pill);
-									overflow: hidden;
-									width: 32px;
-									height: 32px;
-								}
-							}
-
-							&:deep(.line-one__name) {
-								font-weight: normal;
-							}
-						}
-					}
-
-					.avatar-box {
-						display: flex;
-						justify-content: space-between;
-						align-items: center;
-					}
-
-					.avatar-list {
-						display: flex;
-						flex-wrap: wrap;
-						flex-grow: 1;
-						gap: 12px;
-					}
-
-					:deep(.app-content-list) {
-						max-width: 100%;
-						border: 0;
+					img {
+						border-radius: var(--border-radius-pill);
+						overflow: hidden;
+						width: 32px;
+						height: 32px;
 					}
 				}
 			}
 		}
-	}
 
+		.avatar-list {
+			display: flex;
+			flex-wrap: wrap;
+			flex-grow: 1;
+			gap: 12px;
+		}
+
+		:deep(.app-content-list) {
+			max-width: 100%;
+			border: 0;
+		}
+	}
 }
 
 </style>
