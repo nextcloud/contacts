@@ -73,7 +73,7 @@ OC.L10N.register(
     "Phonetic first name" : "Име (Фонетски)",
     "Phonetic last name" : "Презиме (Фонетски)",
     "Display name" : "Име и презиме",
-    "Last modified" : "Скоро изменети",
+    "Last modified" : "Последно изменето",
     "Sort by {sorting}" : "Подреди според {sorting}",
     "Manages" : "Менаџмент",
     "Oversees" : "Надгледувачи",
