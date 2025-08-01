@@ -2,14 +2,9 @@
   - SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
-
 <template>
 	<ul>
 		<li class="circle-config">
-			<ContentHeading class="circle-config__title">
-				{{ t('contacts', 'Password protection') }}
-			</ContentHeading>
-
 			<ul class="circle-config__list">
 				<CheckboxRadioSwitch :checked="enforcePasswordProtection"
 					:loading="loading.includes(ENFORCE_PASSWORD_PROTECTION)"
@@ -57,7 +52,6 @@
 </template>
 
 <script>
-import ContentHeading from './ContentHeading.vue'
 import {
 	NcCheckboxRadioSwitch as CheckboxRadioSwitch,
 	NcButton as Button,
@@ -71,7 +65,6 @@ const UNIQUE_PASSWORD = 'password_single'
 export default {
 	name: 'CirclePasswordSettings',
 	components: {
-		ContentHeading,
 		CheckboxRadioSwitch,
 		Button,
 	},
@@ -233,6 +226,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+ul {
+	margin-top: -12px; // Merge with privacy settings list
+}
+
 .unique-password {
 	display: flex;
 	align-items: center;

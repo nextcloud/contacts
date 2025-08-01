@@ -4,176 +4,164 @@
 -->
 
 <template>
-	<div class="circle-details">
-		<!-- contact header -->
-		<DetailsHeader>
-			<!-- avatar and upload photo -->
-			<template #avatar="{avatarSize}">
-				<Avatar :disable-tooltip="true"
-					:display-name="circle.displayName"
-					:is-no-user="true"
-					:size="avatarSize" />
-			</template>
+	<div class="circle-details-container">
+		<div class="circle-details-grid" :class="{ 'is-editing': isEditing }">
+			<div class="circle-details__header-wrapper">
+				<div class="circle-details-grid__avatar">
+					<Avatar :disable-tooltip="true"
+						:display-name="circle.displayName"
+						:is-no-user="true"
+						:size="75" />
+				</div>
+				<div class="circle-details__header">
+					<div class="circle-name-wrapper">
+						<h2 v-if="!isEditing" class="circle-name">
+							<span :title="circle.displayName">{{ circle.displayName }}</span>
+							<NcLoading v-if="loadingName" :size="24" />
+						</h2>
+						<NcTextField v-else
+							:value="circle.displayName"
+							:placeholder="t('contacts', 'Team name')"
+							label="Team name"
+							@update:value="onNameChangeDebounce($event)" />
+					</div>
+					<div v-if="!isEditing" class="subtitle">
+						<span>{{ t('files', 'Team owner') }}</span> <UserBubble :user="circle.owner.userId"
+							:display-name="circle.isOwner ? 'you': circle.owner.displayName" />
+					</div>
+					<div v-if="showDescription" class="circle-description-wrapper">
+						<div v-if="!isEditing" class="circle-description">
+							{{ circle.description }}
+						</div>
+						<NcTextArea v-else
+							:value="circle.description"
+							:placeholder="descriptionPlaceholder"
+							label="Description"
+							:maxlength="1024"
+							@update:value="onDescriptionChangeDebounce($event)" />
+					</div>
+					<div class="actions">
+						<template v-if="!isEditing">
+							<Button v-if="canManageTeam" type="primary" @click="startEditing">
+								<template #icon>
+									<PencilIcon :size="20" />
+								</template>
+								{{ t('contacts', 'Edit') }}
+							</Button>
+							<Button type="secondary"
+								:href="circleUrl"
+								@click.stop.prevent="copyToClipboard(circleUrl)">
+								<template #icon>
+									<CopyIcon :size="20" />
+								</template>
+								{{ t('contacts', 'Copy link') }}
+							</Button>
 
-			<!-- display name -->
-			<template #title>
-				<div v-if="loadingName" class="circle-name__loader icon-loading-small" />
-				<h2>
-					{{ circle.displayName }}
-				</h2>
-			</template>
-
-			<!-- org, title -->
-			<template v-if="!circle.isOwner" #subtitle>
-				{{ t('contacts', 'Team owned by {owner}', { owner: circle.owner.displayName}) }}
-			</template>
-
-			<template #actions>
-				<!-- copy circle link -->
-				<Button type="tertiary"
-					:href="circleUrl"
-					:title="copyButtonText"
-					:class="copyLinkIcon"
-					@click.stop.prevent="copyToClipboard(circleUrl)" />
-
-				<!-- Team settings modal -->
-				<Button v-if="(circle.isOwner || circle.isAdmin) && !circle.isPersonal" @click="showSettingsModal = true">
-					<template #icon>
-						<Cog :size="20" />
-					</template>
-					{{ t('contacts', 'Team settings') }}
-				</Button>
-
-				<!-- Only show the join button if the circle is accepting requests -->
-				<Button v-if="!circle.isPendingMember && !circle.isMember && circle.canJoin"
-					:disabled="loadingJoin"
-					class="primary"
-					@click="joinCircle">
-					<template #icon>
-						<Login :size="16" />
-					</template>
-					{{ t('contacts', 'Request to join') }}
-				</Button>
-			</template>
-		</DetailsHeader>
-
-		<section v-if="showDescription" class="circle-details-section">
-			<ContentHeading :loading="loadingDescription">
-				{{ t('contacts', 'Description') }}
-			</ContentHeading>
-
-			<RichContenteditable :value.sync="circle.description"
-				:auto-complete="onAutocomplete"
-				:maxlength="1024"
-				:multiline="true"
-				:contenteditable="false"
-				:placeholder="descriptionPlaceholder"
-				class="circle-details-section__description"
-				@update:value="onDescriptionChangeDebounce" />
-		</section>
-
-		<!-- not a member -->
-		<template v-if="!circle.isMember">
-			<!-- Pending request validation -->
-			<NcEmptyContent v-if="circle.isPendingMember"
-				:name="t('contacts', 'Your request to join this team is pending approval')">
-				<template #icon>
-					<NcLoadingIcon :size="20" />
-				</template>
-			</NcEmptyContent>
-
-			<NcEmptyContent v-else
-				:name="t('contacts', 'You are not a member of {circle}', { circle: circle.displayName})">
-				<template #icon>
-					<IconAccountGroup :size="20" />
-				</template>
-			</NcEmptyContent>
-		</template>
-
-		<section v-else>
-			<ContentHeading>
-				{{ t('contacts', 'Team resources') }}
-			</ContentHeading>
-			<p>{{ t('contacts', 'Anything shared with this team will show up here') }}</p>
-			<div v-for="provider in resourceProviders" :key="provider.id">
-				<ContentHeading>
-					<span v-show="false" class="provider__icon" v-html="provider.icon" /> {{ provider.name }}
-				</ContentHeading>
-
-				<ul>
-					<ListItem v-for="resource in resourcesForProvider(provider.id)"
-						:key="resource.url"
-						class="resource"
-						:name="resource.label"
-						:href="resource.url">
-						<template #icon>
-							<span v-if="resource.iconEmoji" class="resource__icon">
-								{{ resource.iconEmoji }}
-							</span>
-							<span v-else-if="resource.iconSvg" class="resource__icon" v-html="resource.iconSvg" />
-							<span v-else-if="resource.iconURL" class="resource__icon">
-								<img :src="resource.iconURL" alt="">
-							</span>
+							<!-- Team settings popover -->
+							<NcPopover v-if="canManageTeam"
+								:shown="isSettingsPopoverShown"
+								popup-role="dialog"
+								@update:shown="isSettingsPopoverShown = $event">
+								<template #trigger>
+									<Button @click="isSettingsPopoverShown = true">
+										<template #icon>
+											<CogIcon :size="20" />
+										</template>
+									</Button>
+								</template>
+								<CircleSettings :circle="circle" @leave="onLeave" @delete="onDelete" />
+							</NcPopover>
 						</template>
-					</ListItem>
-				</ul>
+						<template v-else>
+							<Button type="secondary" @click="cancelEditing">
+								{{ t('contacts', 'Cancel') }}
+							</Button>
+							<Button type="primary" @click="isEditing = false">
+								{{ t('contacts', 'Save') }}
+							</Button>
+						</template>
+						<Button v-if="!circle.isPendingMember && !circle.isMember && circle.canJoin"
+							:disabled="loadingJoin"
+							class="primary"
+							@click="joinCircle">
+							<template #icon>
+								<LoginIcon :size="16" />
+							</template>
+							{{ t('contacts', 'Request to join') }}
+						</Button>
+
+						<!-- Leave team button -->
+						<Button v-if="circle.isMember && circle.canLeave"
+							:disabled="loadingLeave"
+							type="warning"
+							@click="confirmLeaveCircle">
+							<template #icon>
+								<LogoutIcon :size="16" />
+							</template>
+							{{ t('contacts', 'Leave team') }}
+						</Button>
+					</div>
+				</div>
 			</div>
-		</section>
 
-		<MemberList v-if="members.length" :list="members" />
+			<!-- Main content now a direct child of the grid -->
+			<div class="circle-details__main-content">
+				<!-- not a member -->
+				<template v-if="!circle.isMember">
+					<!-- Pending request validation -->
+					<NcEmptyContent v-if="circle.isPendingMember"
+						:name="t('contacts', 'Your request to join this team is pending approval')">
+						<template #icon>
+							<NcLoadingIcon :size="20" />
+						</template>
+					</NcEmptyContent>
 
-		<Modal v-if="(circle.isOwner || circle.isAdmin) && !circle.isPersonal && showSettingsModal" @close="showSettingsModal=false">
-			<div class="circle-settings">
-				<h2>{{ t('contacts', 'Team settings') }}</h2>
+					<NcEmptyContent v-else
+						:name="t('contacts', 'You are not a member of {circle}', { circle: circle.displayName})">
+						<template #icon>
+							<IconAccountGroup :size="20" />
+						</template>
+					</NcEmptyContent>
+				</template>
 
-				<h3>{{ t('contacts', 'Team name') }}</h3>
-				<input v-model="circle.displayName"
-					:readonly="!circle.isOwner"
-					:placeholder="t('contacts', 'Team name')"
-					type="text"
-					autocomplete="off"
-					autocorrect="off"
-					spellcheck="false"
-					name="displayname"
-					@input="onNameChangeDebounce">
+				<section v-else>
+					<div v-for="(group, providerId) in groupedResources" :key="providerId" class="circle-details-section">
+						<div class="section-header">
+							<ContentHeading>{{ group.name }}</ContentHeading>
+						</div>
+						<ul class="item-list">
+							<ListItem v-for="resource in group.resources"
+								:key="resource.id"
+								:href="resource.link"
+								:name="resource.label">
+								<template #icon>
+									<!-- eslint-disable-next-line vue/no-v-html -->
+									<div v-if="resource.iconSvg" class="resource__icon" v-html="resource.iconSvg" />
+									<img v-else-if="resource.iconURL" :src="resource.iconURL" class="resource__icon">
+									<FileDocumentOutline v-else :size="20" />
+								</template>
+							</ListItem>
+						</ul>
+					</div>
 
-				<h3>{{ t('contacts', 'Description') }}</h3>
-				<RichContenteditable :value.sync="circle.description"
-					:auto-complete="onAutocomplete"
-					:maxlength="1024"
-					:multiline="true"
-					:contenteditable="circle.isOwner"
-					:placeholder="descriptionPlaceholder"
-					class="circle-details-section__description"
-					@update:value="onDescriptionChangeDebounce" />
-
-				<h3>{{ t('contacts', 'Settings') }}</h3>
-				<CircleConfigs class="circle-details-section__configs" :circle="circle" />
-				<CirclePasswordSettings class="circle-details-section__configs" :circle="circle" />
-
-				<h3>{{ t('contacts', 'Actions') }}</h3>
-				<!-- leave circle -->
-				<Button v-if="circle.canLeave"
-					type="warning"
-					@click="confirmLeaveCircle">
-					<template #icon>
-						<Logout :size="16" />
-					</template>
-					{{ t('contacts', 'Leave team') }}
-				</Button>
-
-				<!-- delete circle -->
-				<Button v-if="circle.canDelete"
-					type="error"
-					href="#"
-					@click.prevent.stop="confirmDeleteCircle">
-					<template #icon>
-						<IconDelete :size="20" />
-					</template>
-					{{ t('contacts', 'Delete team') }}
-				</Button>
+					<!-- Members Section -->
+					<div class="circle-details-section">
+						<div class="member-section-layout">
+							<div class="section-header">
+								<ContentHeading>{{ t('contacts', 'Members') }}</ContentHeading>
+								<Button v-if="circle.canManageMembers" type="tertiary" @click="addMembers">
+									<template #icon>
+										<AccountPlusIcon :size="20" />
+									</template>
+									{{ t('contacts', 'Add') }}
+								</Button>
+							</div>
+							<MemberList ref="memberList" :list="members" />
+						</div>
+					</div>
+				</section>
 			</div>
-		</Modal>
+		</div>
 	</div>
 </template>
 
@@ -191,45 +179,51 @@ import {
 	NcEmptyContent,
 	NcListItem as ListItem,
 	NcLoadingIcon,
-	NcModal as Modal,
-	NcRichContenteditable as RichContenteditable,
+	NcPopover,
+	NcUserBubble as UserBubble,
+	NcTextField,
+	NcTextArea,
 } from '@nextcloud/vue'
 
-import Cog from 'vue-material-design-icons/Cog.vue'
-import Login from 'vue-material-design-icons/Login.vue'
-import Logout from 'vue-material-design-icons/Logout.vue'
-import IconDelete from 'vue-material-design-icons/Delete.vue'
-import IconAccountGroup from 'vue-material-design-icons/AccountGroup.vue'
-
+import CogIcon from 'vue-material-design-icons/CogOutline.vue'
+import CopyIcon from 'vue-material-design-icons/ContentCopy.vue'
+import LoginIcon from 'vue-material-design-icons/Login.vue'
+import LogoutIcon from 'vue-material-design-icons/Logout.vue'
+import AccountPlusIcon from 'vue-material-design-icons/AccountPlusOutline.vue'
+import PencilIcon from 'vue-material-design-icons/PencilOutline.vue'
+import IconAccountGroup from 'vue-material-design-icons/AccountGroupOutline.vue'
+import FileDocumentOutline from 'vue-material-design-icons/FileDocumentOutline.vue'
 import { CircleEdit, editCircle } from '../services/circles.ts'
-import CircleActionsMixin from '../mixins/CircleActionsMixin.js'
-import DetailsHeader from './DetailsHeader.vue'
-import CircleConfigs from './CircleDetails/CircleConfigs.vue'
+import CircleActionsMixin from '../mixins/CircleActionsMixin'
+import CircleSettings from './CircleDetails/CircleSettings.vue'
 import MemberList from './MemberList/MemberList.vue'
 import ContentHeading from './CircleDetails/ContentHeading.vue'
-import CirclePasswordSettings from './CircleDetails/CirclePasswordSettings.vue'
 
 export default {
 	name: 'CircleDetails',
 
 	components: {
+		AccountPlusIcon,
 		Avatar,
 		Button,
-		CircleConfigs,
-		CirclePasswordSettings,
 		ContentHeading,
-		DetailsHeader,
 		ListItem,
-		Cog,
+		CogIcon,
+		CopyIcon,
 		IconAccountGroup,
-		IconDelete,
-		Login,
-		Logout,
+		FileDocumentOutline,
+		LoginIcon,
+		LogoutIcon,
 		MemberList,
-		Modal,
+		CircleSettings,
 		NcEmptyContent,
 		NcLoadingIcon,
-		RichContenteditable,
+		NcPopover,
+		PencilIcon,
+
+		UserBubble,
+		NcTextField,
+		NcTextArea,
 	},
 
 	mixins: [CircleActionsMixin],
@@ -242,11 +236,19 @@ export default {
 
 	data() {
 		return {
-			loadingDescription: false,
-			loadingName: false,
-			showSettingsModal: false,
+			active: false,
+			isEditing: false,
 			showMembersModal: false,
-			resources: null,
+			loading: false,
+			loadingJoin: false,
+			loadingLeave: false,
+			loadingName: false,
+			loadingDescription: false,
+			isSettingsPopoverShown: false,
+
+			resources: [],
+			originalDisplayName: '',
+			originalDescription: '',
 		}
 	},
 
@@ -273,6 +275,14 @@ export default {
 			return Object.values(this.$store.getters.getCircle(this.circle.id)?.members || [])
 		},
 
+		circleUrl() {
+			return window.location.href
+		},
+
+		canManageTeam() {
+			return (this.circle.isOwner || this.circle.isAdmin) && !this.circle.isPersonal
+		},
+
 		maxMembers() {
 			// How many avatars (default-clickable-area + 12px gap) fit?
 			const avatarWidth = parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-clickable-area')) + 12
@@ -294,13 +304,18 @@ export default {
 			return this.members.length > this.maxMembers
 		},
 
-		resourceProviders() {
-			return this.resources?.reduce((acc, res) => {
-				if (!acc.find(p => p.id === res.provider.id)) {
-					acc.push(res.provider)
+		groupedResources() {
+			return this.resources.reduce((acc, resource) => {
+				const providerId = resource.provider.id
+				if (!acc[providerId]) {
+					acc[providerId] = {
+						name: resource.provider.name,
+						resources: [],
+					}
 				}
+				acc[providerId].resources.push(resource)
 				return acc
-			}, []) ?? []
+			}, {})
 		},
 
 		resourcesForProvider() {
@@ -320,9 +335,33 @@ export default {
 	},
 
 	methods: {
+		addMembers() {
+			this.$refs.memberList.onShowPicker(this.circle.id)
+		},
+		onLeave() {
+			this.isSettingsPopoverShown = false
+			this.confirmLeaveCircle()
+		},
+		onDelete() {
+			this.isSettingsPopoverShown = false
+			this.confirmDeleteCircle()
+		},
+		startEditing() {
+			this.originalDisplayName = this.circle.displayName
+			this.originalDescription = this.circle.description
+			this.isEditing = true
+		},
+
+		cancelEditing() {
+			this.circle.displayName = this.originalDisplayName
+			this.circle.description = this.originalDescription
+			this.isEditing = false
+		},
+
 		async fetchTeamResources() {
 			const response = await axios.get(generateOcsUrl(`/teams/${this.circle.id}/resources`))
 			this.resources = response.data.ocs.data.resources
+			console.debug('Team resources', this.resources)
 		},
 		/**
 		 * Autocomplete @mentions on the description
@@ -340,27 +379,33 @@ export default {
 			this.onDescriptionChange(...args)
 		}, 500),
 		async onDescriptionChange(description) {
+			this.circle.description = description
 			this.loadingDescription = true
 			try {
 				await editCircle(this.circle.id, CircleEdit.Description, description)
+				this.originalDescription = description
 			} catch (error) {
 				console.error('Unable to edit team description', description, error)
 				showError(t('contacts', 'An error happened during description sync'))
+				this.circle.description = this.originalDescription
 			} finally {
 				this.loadingDescription = false
 			}
 		},
 
-		onNameChangeDebounce: debounce(function(event) {
-			this.onNameChange(event.target.value)
+		onNameChangeDebounce: debounce(function(value) {
+			this.onNameChange(value)
 		}, 500),
 		async onNameChange(name) {
+			this.circle.displayName = name
 			this.loadingName = true
 			try {
 				await editCircle(this.circle.id, CircleEdit.Name, name)
+				this.originalDisplayName = name
 			} catch (error) {
 				console.error('Unable to edit name', name, error)
 				showError(t('contacts', 'An error happened during name sync'))
+				this.circle.displayName = this.originalDisplayName
 			} finally {
 				this.loadingName = false
 			}
@@ -370,104 +415,135 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.app-content-details header,
-.app-content-details section {
-	max-width: 800px;
-	margin: auto;
-	margin-bottom: 36px;
-	@media screen and (max-width: 1024px) {
-		padding: 0 20px;
-
-	}
-
-	&:deep(.contact-header__avatar) {
-		width: 75px !important;
-	}
-
-	&:deep(.contact-header__no-wrap) {
-		flex-grow: 1;
-	}
-
-	&:deep(.contact-header__actions) {
-		flex-grow: 0;
-	}
-}
-
-.circle-name__loader {
-	margin-inline-start: 8px;
-}
-
-.circle-details {
+.circle-details-container {
 	padding-inline: 20px;
-}
+	margin-top: 1rem;
 
-.circle-details-section {
-	&:not(:first-of-type) {
-		margin-top: 24px;
-	}
-
-	&__actions {
-		display: flex;
-		a, button {
-			margin-inline-end: 8px;
-		}
-	}
-
-	&__description {
+	.circle-details-grid {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 36px;
 		max-width: 800px;
+		margin-inline: auto;
+
+		&.is-editing {
+			.circle-name-wrapper,
+			.circle-description-wrapper {
+				width: 100%;
+			}
+		}
+
+		.circle-details__header-wrapper {
+			display: grid;
+			grid-template-columns: auto 1fr;
+			align-items: center;
+			gap: 24px;
+		}
+
+		.circle-details__main-content {
+			margin-left: 99px;
+		}
 	}
-}
 
-.avatar-box {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-}
-
-.avatar-list {
-	display: flex;
-	flex-wrap: wrap;
-	flex-grow: 1;
-	gap: 12px;
-}
-
-:deep(.app-content-list) {
-	max-width: 100%;
-	border: 0;
-}
-
-.circle-settings {
-	margin: 12px;
-}
-
-.provider__icon {
-	display: inline-block;
-	width: 24px;
-	height: 24px;
-}
-
-.resource {
-	&__icon {
-		width: 44px;
-		height: 44px;
+	.circle-details__header {
+		background-color: transparent;
 		display: flex;
-		align-items: center;
-		justify-content: center;
-		text-align: center;
-		svg {
-			width: 20px;
-			height: 20px;
+		flex-direction: column;
+		align-items: flex-start;
+		gap: 2px;
+		width: 100%;
+
+		.circle-description-wrapper {
+			margin-bottom: 4px;
 		}
-		img {
-			border-radius: var(--border-radius-pill);
-			overflow: hidden;
-			width: 32px;
-			height: 32px;
+
+		.circle-name {
+			font-size: 1.5rem;
+			font-weight: bold;
+			margin: 0;
+			margin-bottom: 2px;
+		}
+
+		.subtitle {
+			color: var(--color-text-maxcontrast);
+		}
+
+		.actions {
+			display: flex;
+			gap: 8px;
 		}
 	}
 
-	&:deep(.line-one__name) {
-		font-weight: normal;
+	.circle-details-section {
+		margin-bottom: 2rem;
+
+		.member-section-layout {
+			display: inline-block;
+			width: 100%;
+			max-width: 500px; // Adjust this value to match the grid width if necessary
+		}
+
+		.section-header {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			width: 100%;
+			margin-bottom: 4px;
+
+			:deep(h2),
+			:deep(h3) {
+				line-height: 2px;
+				margin: 4px 0 8px 0;
+			}
+		}
+
+		.item-list {
+			list-style: none;
+			padding: 0;
+			margin: 0;
+			display: flex;
+			flex-direction: column;
+			gap: 2px;
+
+			// Remove left padding added in ListItem (external component)
+			:deep(.list-item__wrapper) {
+				padding-left: 0;
+			}
+
+			.resource {
+				&__icon {
+					width: 44px;
+					height: 44px;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					text-align: center;
+					svg {
+						width: 20px;
+						height: 20px;
+					}
+					img {
+						border-radius: var(--border-radius-pill);
+						overflow: hidden;
+						width: 32px;
+						height: 32px;
+					}
+				}
+			}
+		}
+
+		.avatar-list {
+			display: flex;
+			flex-wrap: wrap;
+			flex-grow: 1;
+			gap: 12px;
+		}
+
+		:deep(.app-content-list) {
+			max-width: 100%;
+			border: 0;
+		}
 	}
 }
+
 </style>
