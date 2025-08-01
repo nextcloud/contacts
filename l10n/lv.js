@@ -26,7 +26,7 @@ OC.L10N.register(
     "First name" : "Vārds",
     "Last name" : "Uzvārds",
     "Display name" : "Ekrāna vārds",
-    "Last modified" : "Pēdējoreiz modificēts",
+    "Last modified" : "Pēdējoreiz izmainīts",
     "Sort by {sorting}" : "Kārtot pēc {sorting}",
     "Password protection" : "Password protection",
     "Save" : "Saglabāt",
