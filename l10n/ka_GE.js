@@ -18,10 +18,7 @@ OC.L10N.register(
     "Last name" : "გვარი",
     "Display name" : "დისპლეი სახელი",
     "Last modified" : "ბოლო ცვლილება",
-    "Password protection" : "პაროლით თავდაცვა",
     "Save" : "შენახვა",
-    "Description" : "აღწერილობა",
-    "Settings" : "Settings",
     "Cancel" : "უარყოფა",
     "Invalid image" : "არასწორი სურათი",
     "Address book" : "მისამართების წიგნი",
@@ -43,6 +40,7 @@ OC.L10N.register(
     "Moderator" : "მოდერატორი",
     "Admin" : "ადმინისტრატორი",
     "Owner" : "მფლობელი",
+    "Privacy" : "კონფიდენციალურობა",
     "Detailed name" : "დეტალური სახელი",
     "Additional names" : "დამატებითი სახელები",
     "Prefix" : "პრეფიქსი",
@@ -90,6 +88,9 @@ OC.L10N.register(
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
     "Male" : "მამრობითი",
-    "Unknown" : "ამოუცნობი"
+    "Unknown" : "ამოუცნობი",
+    "Password protection" : "პაროლით თავდაცვა",
+    "Description" : "აღწერილობა",
+    "Settings" : "Settings"
 },
 "nplurals=2; plural=(n!=1);");

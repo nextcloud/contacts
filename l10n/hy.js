@@ -11,10 +11,7 @@ OC.L10N.register(
     "Add" : "Ավելացնել",
     "First name" : "Անուն",
     "Last name" : "Ազգանուն",
-    "Password protection" : "Password protection",
     "Save" : "Պահպանել",
-    "Description" : "Նկարագրություն",
-    "Settings" : "Settings",
     "Cancel" : "ընդհատել",
     "Name" : "Անուն",
     "Title" : "Վերնագիր",
@@ -33,6 +30,9 @@ OC.L10N.register(
     "Country" : "Երկիր",
     "Birthday" : "Ծննդյան օր",
     "Relative" : "Հարաբերական",
-    "Unknown" : "Անհայտ"
+    "Unknown" : "Անհայտ",
+    "Password protection" : "Password protection",
+    "Description" : "Նկարագրություն",
+    "Settings" : "Settings"
 },
 "nplurals=2; plural=(n != 1);");

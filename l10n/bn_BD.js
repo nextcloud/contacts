@@ -12,10 +12,7 @@ OC.L10N.register(
     "Add" : "যোগ করুন",
     "First name" : "নামের প্রথমাংশ ",
     "Last name" : "নামের শেষাংশ",
-    "Password protection" : "Password protection",
     "Save" : "সংরক্ষণ",
-    "Description" : "বিবরণ",
-    "Settings" : "Settings",
     "Cancel" : "বাতির",
     "Invalid image" : "অবৈধ চিত্র",
     "Name" : "নাম",
@@ -51,6 +48,9 @@ OC.L10N.register(
     "Fax" : "ফ্যাক্স",
     "Pager" : "পেজার",
     "Voice" : "কন্ঠ",
-    "Unknown" : "অজানা"
+    "Unknown" : "অজানা",
+    "Password protection" : "Password protection",
+    "Description" : "বিবরণ",
+    "Settings" : "Settings"
 },
 "nplurals=2; plural=(n != 1);");

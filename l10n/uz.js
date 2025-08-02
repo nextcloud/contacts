@@ -8,7 +8,6 @@ OC.L10N.register(
     "Download" : "Yuklab olish",
     "Add" : "Qo'shish",
     "Save" : "Saqlash",
-    "Settings" : "Sozlamalar",
     "Cancel" : "Bekor qilish",
     "Invalid image" : "Invalid image",
     "Name" : "Name",
@@ -20,6 +19,7 @@ OC.L10N.register(
     "Admin" : "Admin",
     "Users" : "Users",
     "Notes" : "Notes",
-    "Unknown" : "Unknown"
+    "Unknown" : "Unknown",
+    "Settings" : "Sozlamalar"
 },
 "nplurals=1; plural=0;");

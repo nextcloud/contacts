@@ -8,14 +8,12 @@ OC.L10N.register(
     "Copy link" : "Скапіяваць спасылку",
     "Add" : "Дадаць",
     "First name" : "Імя",
-    "Password protection" : "Абарона паролем",
     "Save" : "Захаваць",
-    "Settings" : "Налады",
+    "Edit" : "Рэдагаваць",
     "Cancel" : "Скасаваць",
     "Add contact to Birthday Calendar" : "Дадаць кантакт у каляндар дзён нараджэння",
     "Exclude contact from Birthday Calendar" : "Выключыць кантакт з календара дзён нараджэння",
     "Title" : "Загаловак",
-    "Edit" : "Рэдагаваць",
     "User" : "Карыстальнік",
     "Group" : "Група",
     "Email" : "Электронная пошта",
@@ -24,6 +22,8 @@ OC.L10N.register(
     "Home" : "Дадому",
     "Birthday" : "Дзень нараджэння",
     "Place of birth" : "Месца нараджэння",
-    "Unknown" : "Невядомы"
+    "Unknown" : "Невядомы",
+    "Password protection" : "Абарона паролем",
+    "Settings" : "Налады"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

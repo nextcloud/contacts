@@ -8,10 +8,7 @@ OC.L10N.register(
     "Download" : "Preuzmi",
     "can edit" : "može da menja",
     "Add" : "Dodaj",
-    "Password protection" : "Password protection",
     "Save" : "Sačuvaj",
-    "Description" : "Opis",
-    "Settings" : "Postavke",
     "Cancel" : "Otkaži",
     "Name" : "naziv",
     "Title" : "Naslov",
@@ -25,12 +22,16 @@ OC.L10N.register(
     "Email" : "email",
     "Moderator" : "Moderator",
     "Owner" : "Vlasnik",
+    "Privacy" : "Privatnost",
     "Notes" : "Notes",
     "Website" : "Sajt",
     "Home" : "Почетна",
     "Work" : "Posao",
     "Other" : "Ostali",
     "Address" : "Adresa",
-    "Unknown" : "Nepoznato"
+    "Unknown" : "Nepoznato",
+    "Password protection" : "Password protection",
+    "Description" : "Opis",
+    "Settings" : "Postavke"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

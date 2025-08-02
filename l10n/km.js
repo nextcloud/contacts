@@ -9,10 +9,7 @@ OC.L10N.register(
     "Download" : "ទាញយក",
     "can edit" : "អាច​កែប្រែ",
     "Add" : "បញ្ចូល",
-    "Password protection" : "Password protection",
     "Save" : "រក្សាទុក",
-    "Description" : "ការ​អធិប្បាយ",
-    "Settings" : "Settings",
     "Cancel" : "បោះបង់",
     "Invalid image" : "រូបភាព​មិន​ត្រឹម​ត្រូវ",
     "Name" : "ឈ្មោះ",
@@ -33,6 +30,9 @@ OC.L10N.register(
     "Work" : "ធ្វើការ",
     "Other" : "ផ្សេងៗ",
     "Address" : "អាសយដ្ឋាន",
-    "Birthday" : "ថ្ងៃ​កំណើត"
+    "Birthday" : "ថ្ងៃ​កំណើត",
+    "Password protection" : "Password protection",
+    "Description" : "ការ​អធិប្បាយ",
+    "Settings" : "Settings"
 },
 "nplurals=1; plural=0;");

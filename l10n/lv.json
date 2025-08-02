@@ -26,11 +26,8 @@
     "Display name" : "Ekrāna vārds",
     "Last modified" : "Pēdējoreiz izmainīts",
     "Sort by {sorting}" : "Kārtot pēc {sorting}",
-    "Password protection" : "Password protection",
     "Save" : "Saglabāt",
-    "Team settings" : "Komandas iestatījumi",
-    "Description" : "Apraksts",
-    "Settings" : "Settings",
+    "Edit" : "Labot",
     "Cancel" : "Atcelt",
     "More fields" : "Vairāk lauku",
     "Invalid image" : "Nederīgs attēls",
@@ -47,7 +44,6 @@
     "Select a contact on the list to begin" : "Jāatlasa kontaktpersona no saraksta, lai sāktu",
     "Title" : "Amats",
     "Company" : "Uzņēmums",
-    "Edit" : "Labot",
     "Generate QR Code" : "Izveidot kvadrātkodu",
     "Search contacts …" : "Meklēt kontaktpersonas…",
     "No results" : "Nav iznākuma",
@@ -69,6 +65,7 @@
     "Contact" : "Kontakts",
     "Admin" : "Pārvaldītājs",
     "Owner" : "Īpašnieks",
+    "Privacy" : "Privātums",
     "Detailed name" : "Izvērsts nosaukums",
     "Additional names" : "Papildu vārdi",
     "Prefix" : "Priedēklis",
@@ -123,6 +120,10 @@
     "Male" : "Vīrietis",
     "Unknown" : "Nezināms",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontaktpersonas neizdevās nolasīt","{failed} kontaktpersonu neizdevās nolasīt","{failed} kontaktpersonas neizdevās nolasīt"],
-    "An error has occurred in team(s). Check the console for more details." : "Atgadījās kļūda komandā(s). Jāpārbauda konsole, lai iegūtu vairāk informācijas."
+    "An error has occurred in team(s). Check the console for more details." : "Atgadījās kļūda komandā(s). Jāpārbauda konsole, lai iegūtu vairāk informācijas.",
+    "Password protection" : "Password protection",
+    "Team settings" : "Komandas iestatījumi",
+    "Description" : "Apraksts",
+    "Settings" : "Settings"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);"
 }

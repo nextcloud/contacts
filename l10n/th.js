@@ -43,12 +43,10 @@ OC.L10N.register(
     "Last modified" : "แก้ไขล่าสุด",
     "Sort by {sorting}" : "เรียงตาม {sorting}",
     "Manages" : "จัดการ",
-    "Password protection" : "ป้องกันด้วยรหัสผ่าน",
     "Save" : "บันทึก",
-    "Request to join" : "ขอเข้าร่วม",
-    "Description" : "รายละเอียด",
-    "Settings" : "Settings",
+    "Edit" : "แก้ไข",
     "Cancel" : "ยกเลิก",
+    "Request to join" : "ขอเข้าร่วม",
     "Invalid image" : "รูปภาพไม่ถูกต้อง",
     "Pick an avatar" : "เลือกภาพแทนตัว",
     "Error while processing the picture." : "เกิดข้อผิดพลาดขณะประมวลผลรูปภาพ",
@@ -59,7 +57,6 @@ OC.L10N.register(
     "Name" : "ชื่อ",
     "Title" : "ชื่อเรื่อง",
     "Company" : "บริษัท",
-    "Edit" : "แก้ไข",
     "Search contacts …" : "ค้นหารายชื่อผู้ติดต่อ …",
     "No results" : "ไม่มีผลลัพธ์",
     "Pending" : "รอดำเนินการ",
@@ -107,6 +104,9 @@ OC.L10N.register(
     "Voice" : "เสียงพูด",
     "Social network" : "เครือข่ายโซเชียล",
     "Relative" : "สัมพัทธ์",
-    "Unknown" : "ไม่ทราบ"
+    "Unknown" : "ไม่ทราบ",
+    "Password protection" : "ป้องกันด้วยรหัสผ่าน",
+    "Description" : "รายละเอียด",
+    "Settings" : "Settings"
 },
 "nplurals=1; plural=0;");

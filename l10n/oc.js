@@ -16,10 +16,7 @@ OC.L10N.register(
     "First name" : "Prenom",
     "Last name" : "Nom",
     "Display name" : "Nom afichat",
-    "Password protection" : "Proteccion per senhal",
     "Save" : "Enregistrar",
-    "Description" : "Descripcion",
-    "Settings" : "Settings",
     "Cancel" : "Anullar",
     "Invalid image" : "Imatge invalid",
     "Name" : "Nom",
@@ -40,7 +37,6 @@ OC.L10N.register(
     "Contact" : "Contacte",
     "Admin" : "Admin",
     "Owner" : "Owner",
-    "Visibility" : "Visibilitat",
     "Groups" : "Gropes",
     "Additional names" : "Noms suplementaris",
     "Nickname" : "Escais",
@@ -66,6 +62,10 @@ OC.L10N.register(
     "Voice" : "Votz",
     "Relative" : "Relatiu",
     "Unknown" : "Desconegut",
-    "Spoken languages" : "Lengas parladas"
+    "Spoken languages" : "Lengas parladas",
+    "Password protection" : "Proteccion per senhal",
+    "Description" : "Descripcion",
+    "Settings" : "Settings",
+    "Visibility" : "Visibilitat"
 },
 "nplurals=2; plural=(n > 1);");

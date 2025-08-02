@@ -7,9 +7,7 @@ OC.L10N.register(
     "Download" : "ಪ್ರತಿಯನ್ನು ಸ್ಥಳೀಯವಾಗಿ ಉಳಿಸಿಕೊಳ್ಳಿ",
     "can edit" : "﻿ಸಂಪಾದಿಸಬಹುದು",
     "Add" : "﻿ಸೇರಿಸಿ",
-    "Password protection" : "Password protection",
     "Save" : "﻿ಉಳಿಸಿ",
-    "Settings" : "Settings",
     "Cancel" : "﻿ರದ್ದು",
     "Invalid image" : "ಅಸಾಮರ್ಥ್ಯ ಚಿತ್ರ",
     "Name" : "﻿ಹೆಸರು",
@@ -26,6 +24,8 @@ OC.L10N.register(
     "Notes" : "Notes",
     "Home" : "﻿ಮುಖಪುಟ",
     "Other" : "﻿ಇತರೆ",
-    "Address" : "ವಿಳಾಸ"
+    "Address" : "ವಿಳಾಸ",
+    "Password protection" : "Password protection",
+    "Settings" : "Settings"
 },
 "nplurals=2; plural=(n > 1);");

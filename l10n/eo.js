@@ -26,10 +26,7 @@ OC.L10N.register(
     "Display name" : "Montra nomo",
     "Last modified" : "Laste modifita",
     "Sort by {sorting}" : "Ordigi laŭ {sorting}",
-    "Password protection" : "Protektita per pasvorto",
     "Save" : "Konservi",
-    "Description" : "Priskribo",
-    "Settings" : "Settings",
     "Cancel" : "Nuligi",
     "Invalid image" : "Nevalida bildo",
     "Pick an avatar" : "Elekti avataron",
@@ -69,6 +66,7 @@ OC.L10N.register(
     "Moderator" : "Kontrolanto",
     "Admin" : "Administranto",
     "Owner" : "Posedanto",
+    "Privacy" : "Privateco",
     "Detailed name" : "Detala nomo",
     "Additional names" : "Pliaj nomoj",
     "Prefix" : "Prefikso",
@@ -123,6 +121,9 @@ OC.L10N.register(
     "Male" : "Vira",
     "Unknown" : "Nekonata",
     "Spoken languages" : "Lingvoj parolataj",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"]
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"],
+    "Password protection" : "Protektita per pasvorto",
+    "Description" : "Priskribo",
+    "Settings" : "Settings"
 },
 "nplurals=2; plural=(n != 1);");
