@@ -14,6 +14,7 @@
 			:placeholder="placeholder"
 			:class="{ 'showContent': inputGiven, 'icon-loading': isLoading }"
 			:user-select="true"
+			:filter-by="filterResults"
 			open-direction="bottom"
 			track-by="user"
 			label="displayName"
@@ -90,6 +91,18 @@ export default {
 		shareAddressbook({ user, displayName, uri, isGroup }) {
 			this.$store.dispatch('shareAddressbook', { addressbook: this.addressbook, user, displayName, uri, isGroup })
 		},
+		/**
+		 * Function to filter results in NcSelect
+		 *
+		 * @param {object} option
+		 * @param {string} label
+		 * @param {string} search
+		 */
+		/* eslint-disable @typescript-eslint/no-unused-vars */
+		filterResults(option, label, search) {
+			return true
+		},
+		/* eslint-enable @typescript-eslint/no-unused-vars */
 
 		/**
 		 * Use the cdav client call to find matches to the query from the existing Users & Groups
