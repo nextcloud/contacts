@@ -8,9 +8,7 @@ OC.L10N.register(
     "Download" : "බාගන්න",
     "First name" : "මුල් නම",
     "Last name" : "අවසන් නම",
-    "Password protection" : "මුරපද ආරක්ෂාව",
     "Save" : "සුරකින්න",
-    "Description" : "විස්තරය",
     "Cancel" : "අවලංගු කරන්න",
     "Invalid image" : "වලංගු නොවන පින්තූරයකි",
     "Name" : "නම",
@@ -51,6 +49,8 @@ OC.L10N.register(
     "Spouse" : "කලත්‍රයා",
     "Mother" : "මව",
     "Father" : "පියා",
-    "Unknown" : "නොදන්නා"
+    "Unknown" : "නොදන්නා",
+    "Password protection" : "මුරපද ආරක්ෂාව",
+    "Description" : "විස්තරය"
 },
 "nplurals=2; plural=(n != 1);");

@@ -19,10 +19,7 @@ OC.L10N.register(
     "Last name" : "Овог",
     "Display name" : "Харагдах нэр",
     "Last modified" : "Сүүлд өөрчилсөн",
-    "Password protection" : "Password protection",
     "Save" : "Хадгалах",
-    "Description" : "Тайлбар",
-    "Settings" : "Settings",
     "Cancel" : "болиулах",
     "Invalid image" : "буруу зураг",
     "Upload a new picture" : "Шинэ зураг оруулах",
@@ -48,6 +45,7 @@ OC.L10N.register(
     "Moderator" : "Шалгагч",
     "Admin" : "Админ",
     "Owner" : "Эзэмшигч",
+    "Privacy" : "Хувийн нууц",
     "Groups" : "Багууд",
     "Detailed name" : "Дэлгэрэнгүй нэр",
     "Additional names" : "Нэмэлт нэрүүд",
@@ -85,6 +83,9 @@ OC.L10N.register(
     "Female" : "Эмэгтэй",
     "Male" : "Эрэгтэй",
     "Unknown" : "Үл танигдах зүйл",
-    "Time zone" : "Цагийн бүс"
+    "Time zone" : "Цагийн бүс",
+    "Password protection" : "Password protection",
+    "Description" : "Тайлбар",
+    "Settings" : "Settings"
 },
 "nplurals=2; plural=(n != 1);");

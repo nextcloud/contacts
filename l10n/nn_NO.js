@@ -11,10 +11,7 @@ OC.L10N.register(
     "First name" : "Fornamn",
     "Last name" : "Etternamn",
     "Last modified" : "Siste endra",
-    "Password protection" : "Password protection",
     "Save" : "Lagre",
-    "Description" : "Skildring",
-    "Settings" : "nstillingar",
     "Cancel" : "Avbryt",
     "Invalid image" : "Ugyldig bilete",
     "Name" : "Namn",
@@ -48,6 +45,9 @@ OC.L10N.register(
     "Fax" : "Faks",
     "Pager" : "Personsøkjar",
     "Voice" : "Tale",
-    "Unknown" : "Ukjend"
+    "Unknown" : "Ukjend",
+    "Password protection" : "Password protection",
+    "Description" : "Skildring",
+    "Settings" : "nstillingar"
 },
 "nplurals=2; plural=(n != 1);");

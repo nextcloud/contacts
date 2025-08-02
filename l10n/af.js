@@ -20,13 +20,12 @@ OC.L10N.register(
     "Display name" : "Vertoonnaam",
     "Last modified" : "Laas gewysig",
     "Save" : "Bewaar",
-    "Description" : "Beskrywing",
+    "Edit" : "Wysig",
     "Cancel" : "Kanselleer",
     "Invalid image" : "Ongeldige beeld",
     "Name" : "Naam",
     "Title" : "Titel",
     "Company" : "Maatskappy",
-    "Edit" : "Wysig",
     "Search contacts …" : "Soek kontakte …",
     "Pending" : "Hangend",
     "Select Date" : "Kies Datum",
@@ -94,6 +93,7 @@ OC.L10N.register(
     "Gender" : "Geslag",
     "Female" : "Vroulik",
     "Male" : "Manlik",
-    "Unknown" : "Onbekend"
+    "Unknown" : "Onbekend",
+    "Description" : "Beskrywing"
 },
 "nplurals=2; plural=(n != 1);");

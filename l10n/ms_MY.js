@@ -7,10 +7,7 @@ OC.L10N.register(
     "Download" : "Muat turun",
     "can edit" : "boleh mengubah",
     "Add" : "Tambah",
-    "Password protection" : "Password protection",
     "Save" : "Simpan",
-    "Description" : "Keterangan",
-    "Settings" : "Settings",
     "Cancel" : "Batal",
     "Name" : "Nama",
     "Title" : "Judul",
@@ -37,6 +34,9 @@ OC.L10N.register(
     "Mobile" : "Mudah alih",
     "Fax" : "Fax",
     "Pager" : "Alat Kelui",
-    "Voice" : "Suara"
+    "Voice" : "Suara",
+    "Password protection" : "Password protection",
+    "Description" : "Keterangan",
+    "Settings" : "Settings"
 },
 "nplurals=1; plural=0;");

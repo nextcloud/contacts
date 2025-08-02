@@ -10,10 +10,7 @@ OC.L10N.register(
     "Download" : "Yüklə",
     "can edit" : "dəyişmək olar",
     "Add" : "Əlavə etmək",
-    "Password protection" : "Password protection",
     "Save" : "Saxla",
-    "Description" : "Açıqlanma",
-    "Settings" : "Settings",
     "Cancel" : "Dayandır",
     "Invalid image" : "Yalnış şəkil",
     "Name" : "Ad",
@@ -45,6 +42,9 @@ OC.L10N.register(
     "Phone" : "Telefon",
     "Mobile" : "Mobil",
     "Fax" : "Faks",
-    "Pager" : "Peycer"
+    "Pager" : "Peycer",
+    "Password protection" : "Password protection",
+    "Description" : "Açıqlanma",
+    "Settings" : "Settings"
 },
 "nplurals=2; plural=(n != 1);");

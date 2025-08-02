@@ -18,10 +18,7 @@ OC.L10N.register(
     "Last name" : "Nama belakang",
     "Display name" : "Nama tampilan",
     "Last modified" : "Terakhir diubah",
-    "Password protection" : "Password protection",
     "Save" : "Simpan",
-    "Description" : "Deskrisi",
-    "Settings" : "Settings",
     "Cancel" : "Membatalkan",
     "Invalid image" : "Gambar tidak sah",
     "Name" : "Nama",
@@ -39,6 +36,7 @@ OC.L10N.register(
     "Email" : "Email",
     "Admin" : "Admin",
     "Owner" : "Owner",
+    "Privacy" : "Privasi",
     "Detailed name" : "Nama lengkap",
     "Additional names" : "Nama tambahan",
     "Prefix" : "Prefix",
@@ -69,6 +67,9 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Suara",
     "Social network" : "Media sosial",
-    "Unknown" : "Tidak diketahui"
+    "Unknown" : "Tidak diketahui",
+    "Password protection" : "Password protection",
+    "Description" : "Deskrisi",
+    "Settings" : "Settings"
 },
 "nplurals=1; plural=0;");

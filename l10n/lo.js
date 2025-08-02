@@ -9,7 +9,6 @@ OC.L10N.register(
     "Copy link" : "ສຳເນົາລິງ",
     "Download" : "ດາວໂຫລດ",
     "Add" : "ເພີ່ມ",
-    "Password protection" : "ລະຫັດປ້ອງກັນ",
     "Save" : "ບັນທຶກ",
     "Cancel" : "ຍົກເລີກ",
     "Invalid image" : "ບໍ່ມີຮູບພາບ",
@@ -25,11 +24,13 @@ OC.L10N.register(
     "Email" : "ອິເມວ",
     "Admin" : "ຜູ້ເບິ່ງເເຍງລະບົບ",
     "Owner" : "ເຈົ້າຂອງ",
+    "Privacy" : "ຄວາມເປັນສ່ວນຕົວ",
     "Website" : "ເວັບໄຊ",
     "Home" : "ໜ້າຫຼັກ",
     "Address" : "ທີ່ຢູ່",
     "City" : "ເມືອງ",
     "Country" : "ປະເທດ",
-    "Unknown" : "ບໍ່ຮູ້"
+    "Unknown" : "ບໍ່ຮູ້",
+    "Password protection" : "ລະຫັດປ້ອງກັນ"
 },
 "nplurals=1; plural=0;");

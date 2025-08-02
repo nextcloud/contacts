@@ -19,10 +19,7 @@ OC.L10N.register(
     "Last name" : "Apellido",
     "Display name" : "Nombre a desplegar",
     "Last modified" : "Última modificación",
-    "Password protection" : "Protección con contraseña",
     "Save" : "Guardar",
-    "Description" : "Descripción",
-    "Settings" : "Settings",
     "Cancel" : "Cancelar",
     "Invalid image" : "Imagen inválida",
     "Address book" : "Libreta de direcciones",
@@ -44,6 +41,7 @@ OC.L10N.register(
     "Moderator" : "Moderador",
     "Admin" : "Admin",
     "Owner" : "Dueño",
+    "Privacy" : "Privacidad",
     "Detailed name" : "Nombre detallado",
     "Additional names" : "Nombres adicionales",
     "Prefix" : "Prefijo",
@@ -94,6 +92,9 @@ OC.L10N.register(
     "Gender" : "Género",
     "Female" : "Femenino",
     "Male" : "Masculino",
-    "Unknown" : "Desconocido"
+    "Unknown" : "Desconocido",
+    "Password protection" : "Protección con contraseña",
+    "Description" : "Descripción",
+    "Settings" : "Settings"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

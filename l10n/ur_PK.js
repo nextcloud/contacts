@@ -6,10 +6,7 @@ OC.L10N.register(
     "Download" : "ڈاؤن لوڈ",
     "can edit" : "تبدیل کر سکے ھیں",
     "Add" : "شامل کریں",
-    "Password protection" : "Password protection",
     "Save" : "حفظ",
-    "Description" : "تصریح",
-    "Settings" : "Settings",
     "Cancel" : "منسوخ کریں",
     "Invalid image" : "غلط تصویر",
     "Name" : "اسم",
@@ -24,6 +21,9 @@ OC.L10N.register(
     "Location" : "مقام",
     "Work" : "کام",
     "Other" : "دیگر",
-    "Birthday" : "سالگرہ"
+    "Birthday" : "سالگرہ",
+    "Password protection" : "Password protection",
+    "Description" : "تصریح",
+    "Settings" : "Settings"
 },
 "nplurals=2; plural=(n != 1);");

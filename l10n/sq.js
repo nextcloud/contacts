@@ -22,9 +22,7 @@ OC.L10N.register(
     "Last name" : "Mbiemër",
     "Display name" : "Shfaq emrin",
     "Last modified" : "Ndryshuar së fundmi",
-    "Password protection" : "Password protection",
     "Save" : "Ruaj",
-    "Description" : "Përshkrim",
     "Cancel" : "Anullo",
     "Invalid image" : "Figurë e pavlefshme",
     "Pick an avatar" : "Zgjidh një avatar",
@@ -64,6 +62,7 @@ OC.L10N.register(
     "Moderator" : "Moderator",
     "Admin" : "Administrator",
     "Owner" : "Zotëruesi",
+    "Privacy" : "Privatësia",
     "Detailed name" : "Emri i hollësishëm",
     "Additional names" : "Emra shtesë",
     "Prefix" : "Parashtesë",
@@ -112,6 +111,8 @@ OC.L10N.register(
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "Unknown" : "I/E panjohur"
+    "Unknown" : "I/E panjohur",
+    "Password protection" : "Password protection",
+    "Description" : "Përshkrim"
 },
 "nplurals=2; plural=(n != 1);");

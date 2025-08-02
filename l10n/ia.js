@@ -15,10 +15,7 @@ OC.L10N.register(
     "First name" : "Prime nomine",
     "Last name" : "Ultime nomine",
     "Display name" : "Monstrar nomine",
-    "Password protection" : "Password protection",
     "Save" : "Salveguardar",
-    "Description" : "Description",
-    "Settings" : "Settings",
     "Cancel" : "Cancellar",
     "Invalid image" : "Imagine invalide",
     "Name" : "Nomine",
@@ -64,6 +61,9 @@ OC.L10N.register(
     "Voice" : "Voce",
     "Social network" : "Medios Social",
     "Relative" : "Relative",
-    "Unknown" : "Incognite"
+    "Unknown" : "Incognite",
+    "Password protection" : "Password protection",
+    "Description" : "Description",
+    "Settings" : "Settings"
 },
 "nplurals=2; plural=(n != 1);");

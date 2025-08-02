@@ -9,9 +9,7 @@ OC.L10N.register(
     "can edit" : "தொகுக்க முடியும்",
     "First name" : "முதல் பெயர்",
     "Last name" : "கடைசிப் பெயர்",
-    "Password protection" : "Password protection",
     "Save" : "சேமிக்க ",
-    "Description" : "விவரிப்பு",
     "Cancel" : "இரத்து செய்க",
     "Name" : "பெயர்",
     "Title" : "தலைப்பு",
@@ -41,6 +39,8 @@ OC.L10N.register(
     "Fax" : "தொலை நகல்",
     "Pager" : "தொலை அழைப்பான்",
     "Voice" : "குரல்",
-    "Unknown" : "தெரியாத"
+    "Unknown" : "தெரியாத",
+    "Password protection" : "Password protection",
+    "Description" : "விவரிப்பு"
 },
 "nplurals=2; plural=(n != 1);");

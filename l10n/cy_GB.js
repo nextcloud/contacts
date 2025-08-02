@@ -24,10 +24,7 @@ OC.L10N.register(
     "Display name" : "Enw Dangos",
     "Last modified" : "Newidiwyd diwethaf",
     "Sort by {sorting}" : "Trefnu yn ôl {sorting}",
-    "Password protection" : "Password protection",
     "Save" : "Cadw",
-    "Description" : "Disgrifiad",
-    "Settings" : "Settings",
     "Cancel" : "Diddymu",
     "Pick an avatar" : "Dewiswch afatar",
     "Error while processing the picture." : "Gwall wrth brosesu'r llun.",
@@ -115,6 +112,9 @@ OC.L10N.register(
     "Female" : "Benyw",
     "Male" : "Gwryw",
     "Unknown" : "Anhysbys",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt"]
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt"],
+    "Password protection" : "Password protection",
+    "Description" : "Disgrifiad",
+    "Settings" : "Settings"
 },
 "nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3;");

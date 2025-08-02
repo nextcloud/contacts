@@ -20,9 +20,7 @@
     "Last name" : "Mbiemër",
     "Display name" : "Shfaq emrin",
     "Last modified" : "Ndryshuar së fundmi",
-    "Password protection" : "Password protection",
     "Save" : "Ruaj",
-    "Description" : "Përshkrim",
     "Cancel" : "Anullo",
     "Invalid image" : "Figurë e pavlefshme",
     "Pick an avatar" : "Zgjidh një avatar",
@@ -62,6 +60,7 @@
     "Moderator" : "Moderator",
     "Admin" : "Administrator",
     "Owner" : "Zotëruesi",
+    "Privacy" : "Privatësia",
     "Detailed name" : "Emri i hollësishëm",
     "Additional names" : "Emra shtesë",
     "Prefix" : "Parashtesë",
@@ -110,6 +109,8 @@
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "Unknown" : "I/E panjohur"
+    "Unknown" : "I/E panjohur",
+    "Password protection" : "Password protection",
+    "Description" : "Përshkrim"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

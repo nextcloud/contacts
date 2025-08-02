@@ -50,10 +50,7 @@ OC.L10N.register(
     "Display name" : "Tên hiển thị",
     "Last modified" : "Lần cuối chỉnh sửa",
     "Sort by {sorting}" : "Sắp xếp theo {sorting}",
-    "Password protection" : "Password protection",
     "Save" : "Lưu",
-    "Description" : "Mô tả",
-    "Settings" : "Settings",
     "Cancel" : "Hủy bỏ",
     "Invalid image" : "Hình ảnh không hợp lệ",
     "Pick an avatar" : "Chọn 1 ảnh đại diện",
@@ -114,7 +111,6 @@ OC.L10N.register(
     "Moderator" : "Kiểm duyệt",
     "Admin" : "Quản trị viên",
     "Owner" : "Chủ",
-    "Visibility" : "Hiển thị",
     "Detailed name" : "Tên chi tiết",
     "Additional names" : "Tên bổ sung",
     "Prefix" : "Tiền tố",
@@ -172,6 +168,10 @@ OC.L10N.register(
     "Unknown" : "Không xác định",
     "Spoken languages" : "Ngôn ngữ có thể nói",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} liên hệ không thể đọc được"],
-    "Unable to delete contact" : "Không thể xoá liên hệ"
+    "Unable to delete contact" : "Không thể xoá liên hệ",
+    "Password protection" : "Password protection",
+    "Description" : "Mô tả",
+    "Settings" : "Settings",
+    "Visibility" : "Hiển thị"
 },
 "nplurals=1; plural=0;");

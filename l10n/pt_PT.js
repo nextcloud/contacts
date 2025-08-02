@@ -60,11 +60,9 @@ OC.L10N.register(
     "Display name" : "Nome de apresentação",
     "Last modified" : "Última modificação",
     "Sort by {sorting}" : "Ordenar por {sorting}",
-    "Password protection" : "Protegido por palavra-passe",
     "Save" : "Guardar",
-    "Description" : "Descrição",
-    "You are not a member of {circle}" : "Não é um membro de {circle}",
     "Cancel" : "Cancelar",
+    "You are not a member of {circle}" : "Não é um membro de {circle}",
     "Invalid image" : "Imagem inválida",
     "Pick an avatar" : "Escolhe um avatar",
     "Error while processing the picture." : "Erro no processamento da imagem.",
@@ -115,6 +113,7 @@ OC.L10N.register(
     "Moderator" : "Moderador",
     "Admin" : "Administrador",
     "Owner" : "Proprietário",
+    "Privacy" : "Privacidade",
     "Detailed name" : "Nome em detalhe",
     "Additional names" : "Nomes adicionais",
     "Prefix" : "Prefixo",
@@ -172,6 +171,8 @@ OC.L10N.register(
     "Time zone" : "Fuso horário",
     "Spoken languages" : "Línguas faladas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contactos cuja leitura falhou","{failed} contactos cuja leitura falhou","{failed} contactos cuja leitura falhou"],
-    "Unable to delete contact" : "Não é possível eliminar o contacto."
+    "Unable to delete contact" : "Não é possível eliminar o contacto.",
+    "Password protection" : "Protegido por palavra-passe",
+    "Description" : "Descrição"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

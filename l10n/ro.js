@@ -19,10 +19,7 @@ OC.L10N.register(
     "First name" : "Prenume",
     "Last name" : "Nume",
     "Display name" : "Nume afișat",
-    "Password protection" : "Protecție parolă ",
     "Save" : "Salvează",
-    "Description" : "Descriere",
-    "Settings" : "Settings",
     "Cancel" : "Anulează",
     "Invalid image" : "Imagine invalidă",
     "Address book" : "Listă de contacte",
@@ -47,7 +44,7 @@ OC.L10N.register(
     "Moderator" : "Moderator",
     "Admin" : "Admin",
     "Owner" : "Proprietar",
-    "Visibility" : "Vizibil",
+    "Privacy" : "Confidențialitate",
     "Detailed name" : "Nume detaliat",
     "Additional names" : "Nume adiționale",
     "Prefix" : "Prefix",
@@ -95,6 +92,10 @@ OC.L10N.register(
     "Gender" : "Sex",
     "Female" : "Femeie",
     "Male" : "Bărbat",
-    "Unknown" : "Necunoscut"
+    "Unknown" : "Necunoscut",
+    "Password protection" : "Protecție parolă ",
+    "Description" : "Descriere",
+    "Settings" : "Settings",
+    "Visibility" : "Vizibil"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");
