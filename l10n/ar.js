@@ -105,6 +105,7 @@ OC.L10N.register(
     "Request to join" : "طلب انضمام",
     "Your request to join this team is pending approval" : "طلبك الانضمام إلى هذا الفريق في انتظار الموافقة",
     "You are not a member of {circle}" : "أنت لست عضواً في {circle}",
+    "Members" : "الأعضاء",
     "Confirm" : "تأكيد",
     "Add more info" : "إضافة معلومات أكثر",
     "More fields" : "حقول أكثر",
