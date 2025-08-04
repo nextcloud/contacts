@@ -248,6 +248,7 @@ OC.L10N.register(
     "Members can also invite" : "Mitglieder können auch einladen",
     "Membership" : "Mitgliedschaft",
     "Prevent teams from being a member of another team" : "Teams daran hindern, Mitglied eines anderen Teams zu werden",
+    "Privacy" : "Datenschutz",
     "Visible to everyone" : "Für jeden sichtbar",
     "users" : "Benutzer",
     "Users" : "Benutzer",
