@@ -121,8 +121,8 @@ export default {
 		margin: -34px -1px 0 -1px;
 		background-color: var(--color-primary-element);
 		height: 15px;
-		border-top-left-radius: var(--border-radius-large);
-		border-top-right-radius: var(--border-radius-large);
+		border-start-start-radius: var(--border-radius-large);
+		border-start-end-radius: var(--border-radius-large);
 	}
 }
 </style>

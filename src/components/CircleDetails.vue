@@ -441,7 +441,7 @@ export default {
 		}
 
 		.circle-details__main-content {
-			margin-left: 99px;
+			margin-inline-start: 99px;
 		}
 	}
 
@@ -507,7 +507,7 @@ export default {
 
 			// Remove left padding added in ListItem (external component)
 			:deep(.list-item__wrapper) {
-				padding-left: 0;
+				padding-inline-start: 0;
 			}
 
 			.resource {
