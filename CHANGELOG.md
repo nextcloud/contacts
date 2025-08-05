@@ -1,3 +1,18 @@
+## [7.2.4](https://github.com/nextcloud/contacts/compare/v7.2.3...v7.2.4) (2025-08-05)
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([d5ac7a2](https://github.com/nextcloud/contacts/commit/d5ac7a2d8f99304f093eb7965c4f4d2e27be98ac))
+* **l10n:** Update translations from Transifex ([b2e6c3c](https://github.com/nextcloud/contacts/commit/b2e6c3ca052ff5fcef573409f0bbf5a73ffba6d4))
+* **l10n:** Update translations from Transifex ([d2cda68](https://github.com/nextcloud/contacts/commit/d2cda6802f0b2a29adf1687a90ed47a67a378962))
+* **l10n:** Update translations from Transifex ([9ff8259](https://github.com/nextcloud/contacts/commit/9ff8259b5be34459cc1d8d8f7a61f4d52c87818c))
+* **l10n:** Update translations from Transifex ([7b74f3b](https://github.com/nextcloud/contacts/commit/7b74f3bc120ad1af67e41eecd4c55821eda67c4c))
+* **l10n:** Update translations from Transifex ([7a89782](https://github.com/nextcloud/contacts/commit/7a89782b8844e8028d41c7e176b056766b7dcf75))
+* use correct user avatars ([f4c627f](https://github.com/nextcloud/contacts/commit/f4c627f5a4f748d36f0381e1e64e98305bee8861))
+
+
+
 ## [7.2.3](https://github.com/nextcloud/contacts/compare/v7.2.2...v7.2.3) (2025-07-29)
 
 
