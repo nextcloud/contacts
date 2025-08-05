@@ -400,7 +400,7 @@ import PropertySelect from './Properties/PropertySelect.vue'
 import { generateUrl } from '@nextcloud/router'
 import { loadState } from '@nextcloud/initial-state'
 import isTalkEnabled from '../services/isTalkEnabled.js'
-import { reactive } from 'vue'
+import { reactive, toRaw } from 'vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 
 const { profileEnabled } = loadState('user_status', 'profileEnabled', false)
@@ -1057,6 +1057,11 @@ export default {
 				this.editMode = false
 			} catch (error) {
 				showError(t('contacts', 'Unable to update contact'))
+				this.logger.error(`Unable to update contact: ${error}`, {
+					error,
+					contact: toRaw(this.contact),
+					localContact: toRaw(this.localContact),
+				})
 			}
 		},
 	},

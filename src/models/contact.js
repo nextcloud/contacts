@@ -6,6 +6,7 @@
 import { v4 as uuid } from 'uuid'
 import ICAL from 'ical.js'
 import b64toBlob from 'b64-to-blob'
+import { toRaw } from 'vue'
 
 import store from '../store/index.js'
 import updateDesignSet from '../services/updateDesignSet.js'
@@ -71,6 +72,24 @@ export default class Contact {
 			this.vCard.addPropertyWithValue('rev', rev)
 		}
 	}
+
+	// Avoid wrapping ical.js objects in Vue 3 proxies ...
+	get jCal() {
+		return toRaw(this._jCal)
+	}
+
+	set jCal(value) {
+		this._jCal = toRaw(value)
+	}
+
+	get vCard() {
+		return toRaw(this._vCard)
+	}
+
+	set vCard(value) {
+		this._vCard = toRaw(value)
+	}
+	// ---
 
 	/**
 	 * Update internal data of this contact
