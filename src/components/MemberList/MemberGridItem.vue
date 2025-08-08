@@ -18,14 +18,27 @@
 			:display-name="member.displayName"
 			:size="32" />
 		<span class="member-name">{{ member.displayName }}</span>
-		<NcActions v-if="!isTeam">
+
+		<!-- Accept invite -->
+		<div v-if="!loading && isPendingApproval && circle.canManageMembers" class="member-grid-item__actions">
+			<NcButton :aria-label="t('contacts', 'Accept membership request')" @click="acceptMember">
+				<template #icon>
+					<IconCheckOutline :size="20" />
+				</template>
+			</NcButton>
+			<NcButton :aria-label="t('contacts', 'Reject membership request')" @click="deleteMember">
+				<template #icon>
+					<IconCloseOutline :size="20" />
+				</template>
+			</NcButton>
+		</div>
+
+		<NcActions v-else-if="!isTeam">
 			<NcActionText v-if="loading" icon="icon-loading-small">
 				{{ t('contacts', 'Loading …') }}
 			</NcActionText>
 
-			<!-- Normal menu -->
 			<template v-else>
-				<!-- Level picker -->
 				<template v-if="canChangeLevel">
 					<NcActionText>
 						{{ t('contacts', 'Manage level') }}
@@ -43,7 +56,6 @@
 					<NcActionSeparator />
 				</template>
 
-				<!-- Leave or delete member from circle -->
 				<NcActionButton v-if="isCurrentUser && !circle.isOwner" @click="deleteMember">
 					{{ t('contacts', 'Leave team') }}
 					<template #icon>
@@ -62,10 +74,12 @@
 </template>
 
 <script>
-import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberLevel } from '../../models/constants.ts'
+import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberLevel, MemberStatus } from '../../models/constants.ts'
 import Circle from '../../models/circle.ts'
-import { NcAvatar, NcActions, NcActionButton, NcActionSeparator, NcActionText } from '@nextcloud/vue'
+import { NcAvatar, NcActions, NcActionButton, NcActionSeparator, NcActionText, NcButton } from '@nextcloud/vue'
 import IconAccountGroupOutline from 'vue-material-design-icons/AccountGroupOutline.vue'
+import IconCheckOutline from 'vue-material-design-icons/CheckOutline.vue'
+import IconCloseOutline from 'vue-material-design-icons/CloseOutline.vue'
 import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
 import IconExitToApp from 'vue-material-design-icons/ExitToApp.vue'
 import IconShieldCheckOutline from 'vue-material-design-icons/ShieldCheckOutline.vue'
@@ -86,6 +100,9 @@ export default {
 		IconDeleteOutline,
 		IconExitToApp,
 		IconShieldCheckOutline,
+		IconCheckOutline,
+		IconCloseOutline,
+		NcButton,
 	},
 	mixins: [RouterMixin],
 	props: {
@@ -175,6 +192,16 @@ export default {
 		 */
 		isCurrentUser() {
 			return this.member.id === this.currentUserId
+		},
+
+		/**
+		 * Is the current member pending moderator approval?
+		 *
+		 * @return {boolean}
+		 */
+		isPendingApproval() {
+			return this.member.level === MemberLevels.NONE
+				&& this.member.status === MemberStatus.PENDING
 		},
 
 		/**
@@ -302,12 +329,32 @@ export default {
 				this.loading = false
 			}
 		},
+
+		async acceptMember() {
+			this.loading = true
+
+			try {
+				await await this.$store.dispatch('acceptCircleMember', {
+					circleId: this.circle.id,
+					memberId: this.member.id,
+				})
+			} catch (error) {
+				this.logger.error('Could not accept membership request', { member: this.member, error })
+				showError(t('contacts', 'Could not accept membership request'))
+			} finally {
+				this.loading = false
+			}
+		},
 	},
 }
 </script>
 
 <style lang="scss" scoped>
 .member-grid-item {
+	&__actions {
+		display: flex;
+		gap: 8px;
+	}
 	display: flex;
 	align-items: center;
 	gap: 8px;
