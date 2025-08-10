@@ -185,18 +185,18 @@ import {
 import naturalCompare from 'string-natural-compare'
 
 import CircleNavigationItem from './CircleNavigationItem.vue'
-import Cog from 'vue-material-design-icons/Cog.vue'
+import Cog from 'vue-material-design-icons/CogOutline.vue'
 import ContactsSettings from './ContactsSettings.vue'
 import GroupNavigationItem from './GroupNavigationItem.vue'
 import NewCircleIntro from '../EntityPicker/NewCircleIntro.vue'
 
 import isCirclesEnabled from '../../services/isCirclesEnabled.js'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled.js'
-import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
-import IconUser from 'vue-material-design-icons/Account.vue'
+import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
+import IconUser from 'vue-material-design-icons/AccountOutline.vue'
 import IconRecentlyContacted from '../Icons/IconRecentlyContacted.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
-import IconError from 'vue-material-design-icons/AlertCircle.vue'
+import IconError from 'vue-material-design-icons/AlertCircleOutline.vue'
 
 import RouterMixin from '../../mixins/RouterMixin.js'
 import { showError } from '@nextcloud/dialogs'

@@ -84,10 +84,10 @@ import {
 } from '@nextcloud/vue'
 
 import ExitToApp from 'vue-material-design-icons/ExitToApp.vue'
-import IconCog from 'vue-material-design-icons/Cog.vue'
-import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconCog from 'vue-material-design-icons/CogOutline.vue'
+import IconDelete from 'vue-material-design-icons/DeleteOutline.vue'
 import LocationEnter from 'vue-material-design-icons/LocationEnter.vue'
-import AccountStar from 'vue-material-design-icons/AccountStar.vue'
+import AccountStar from 'vue-material-design-icons/AccountStarOutline.vue'
 import AccountGroup from 'vue-material-design-icons/AccountGroup.vue'
 import AccountGroupOutline from 'vue-material-design-icons/AccountGroupOutline.vue'
 

@@ -19,7 +19,7 @@
 
 <script>
 import { NcEmptyContent as EmptyContent } from '@nextcloud/vue'
-import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 export default {
 	name: 'ProcessingScreen',
 

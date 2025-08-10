@@ -84,12 +84,12 @@ import {
 	NcActionInput as ActionInput,
 	NcLoadingIcon as IconLoading,
 } from '@nextcloud/vue'
-import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
-import IconDownload from 'vue-material-design-icons/Download.vue'
-import IconEmail from 'vue-material-design-icons/Email.vue'
-import IconRename from 'vue-material-design-icons/FolderEdit.vue'
-import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconDownload from 'vue-material-design-icons/DownloadOutline.vue'
+import IconEmail from 'vue-material-design-icons/EmailOutline.vue'
+import IconRename from 'vue-material-design-icons/FolderEditOutline.vue'
+import IconDelete from 'vue-material-design-icons/DeleteOutline.vue'
 import { showError } from '@nextcloud/dialogs'
 
 export default {

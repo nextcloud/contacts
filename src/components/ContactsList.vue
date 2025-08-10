@@ -63,11 +63,11 @@ import { NcAppContentList as AppContentList, NcButton, NcDialog, NcNoteCard } fr
 import ContactsListItem from './ContactsList/ContactsListItem.vue'
 import VirtualList from 'vue-virtual-scroll-list'
 import IconSelect from 'vue-material-design-icons/CloseThick.vue'
-import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconDelete from 'vue-material-design-icons/DeleteOutline.vue'
 // eslint-disable-next-line import/no-unresolved
 import IconCancelRaw from '@mdi/svg/svg/cancel.svg?raw'
 // eslint-disable-next-line import/no-unresolved
-import IconDeleteRaw from '@mdi/svg/svg/delete.svg?raw'
+import IconDeleteRaw from '@mdi/svg/svg/delete-outline.svg'
 
 export default {
 	name: 'ContactsList',

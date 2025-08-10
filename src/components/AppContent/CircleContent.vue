@@ -28,7 +28,7 @@ import {
 	NcLoadingIcon as IconLoading,
 	isMobile,
 } from '@nextcloud/vue'
-import AccountGroup from 'vue-material-design-icons/AccountGroup.vue'
+import AccountGroup from 'vue-material-design-icons/AccountGroupOutline.vue'
 import CircleDetails from '../CircleDetails.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
 

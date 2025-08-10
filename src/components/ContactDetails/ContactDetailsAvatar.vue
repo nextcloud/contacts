@@ -107,12 +107,12 @@ import {
 	NcButton,
 	NcModal,
 } from '@nextcloud/vue'
-import IconDownload from 'vue-material-design-icons/Download.vue'
-import IconCloudDownload from 'vue-material-design-icons/CloudDownload.vue'
-import IconDelete from 'vue-material-design-icons/Delete.vue'
-import IconUpload from 'vue-material-design-icons/Upload.vue'
-import IconFolder from 'vue-material-design-icons/Folder.vue'
-import IconImage from 'vue-material-design-icons/Image.vue'
+import IconDownload from 'vue-material-design-icons/DownloadOutline.vue'
+import IconCloudDownload from 'vue-material-design-icons/CloudDownloadOutline.vue'
+import IconDelete from 'vue-material-design-icons/DeleteOutline.vue'
+import IconUpload from 'vue-material-design-icons/UploadOutline.vue'
+import IconFolder from 'vue-material-design-icons/FolderOutline.vue'
+import IconImage from 'vue-material-design-icons/ImageOutline.vue'
 import VueCropper from 'vue-cropperjs'
 // eslint-disable-next-line n/no-extraneous-import
 import 'cropperjs/dist/cropper.css'

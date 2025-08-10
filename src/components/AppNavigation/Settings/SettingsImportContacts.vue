@@ -86,9 +86,9 @@ import { getCurrentUser } from '@nextcloud/auth'
 import { generateRemoteUrl } from '@nextcloud/router'
 import { getFilePickerBuilder } from '@nextcloud/dialogs'
 import axios from '@nextcloud/axios'
-import IconUpload from 'vue-material-design-icons/Upload.vue'
-import IconError from 'vue-material-design-icons/AlertCircle.vue'
-import IconFolder from 'vue-material-design-icons/Folder.vue'
+import IconUpload from 'vue-material-design-icons/UploadOutline.vue'
+import IconError from 'vue-material-design-icons/AlertCircleOutline.vue'
+import IconFolder from 'vue-material-design-icons/FolderOutline.vue'
 
 const CancelToken = axios.CancelToken
 
