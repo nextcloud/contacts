@@ -41,9 +41,7 @@ export default {
 			contact.vCard.removeProperty('rev')
 
 			// creatiing new value
-			const rev = new ICAL.VCardTime(null, null, 'date-time')
-			rev.fromUnixTime(Date.now() / 1000)
-			contact.vCard.addPropertyWithValue('rev', rev)
+			contact.vCard.addPropertyWithValue('rev', ICAL.VCardTime.now().convertToZone(ICAL.Timezone.utcTimezone))
 
 			return true
 		} catch (error) {

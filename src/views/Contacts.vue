@@ -281,7 +281,7 @@ export default {
 				emit('contacts:circles:append', this.selectedCircle.id)
 				return
 			}
-			const rev = new ICAL.VCardTime()
+
 			const contact = new Contact(`
 				BEGIN:VCARD
 				VERSION:4.0
@@ -291,8 +291,8 @@ export default {
 			this.defaultAddressbook)
 
 			contact.fullName = t('contacts', 'Name')
-			rev.fromUnixTime(Date.now() / 1000)
-			contact.rev = rev
+
+			contact.rev = ICAL.VCardTime.now().convertToZone(ICAL.Timezone.utcTimezone)
 
 			// itterate over all properties (filter is not usable on objects and we need the key of the property)
 			const properties = rfcProps.properties
