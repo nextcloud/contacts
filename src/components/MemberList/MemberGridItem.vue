@@ -23,7 +23,7 @@
 
 <script>
 import { NcAvatar } from '@nextcloud/vue'
-import IconAccountGroup from 'vue-material-design-icons/AccountGroup.vue'
+import IconAccountGroup from 'vue-material-design-icons/AccountGroupOutline.vue'
 
 export default {
 	name: 'MemberGridItem',

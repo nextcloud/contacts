@@ -38,9 +38,9 @@
 
 <script>
 import { showError } from '@nextcloud/dialogs'
-import IconDelete from 'vue-material-design-icons/Delete.vue'
-import IconGroup from 'vue-material-design-icons/AccountMultiple.vue'
-import IconUser from 'vue-material-design-icons/Account.vue'
+import IconDelete from 'vue-material-design-icons/DeleteOutline.vue'
+import IconGroup from 'vue-material-design-icons/AccountMultipleOutline.vue'
+import IconUser from 'vue-material-design-icons/AccountOutline.vue'
 import {
 	NcButton as Button,
 	NcLoadingIcon as IconLoading,

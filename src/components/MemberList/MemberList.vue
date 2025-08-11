@@ -56,7 +56,7 @@ import {
 
 import MemberGridItem from './MemberGridItem.vue'
 import EntityPicker from '../EntityPicker/EntityPicker.vue'
-import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 
 import RouterMixin from '../../mixins/RouterMixin.js'
 

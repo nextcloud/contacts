@@ -121,11 +121,11 @@ import {
 	NcLoadingIcon as IconLoading,
 	NcButton as Button,
 } from '@nextcloud/vue'
-import IconDownload from 'vue-material-design-icons/Download.vue'
-import IconRename from 'vue-material-design-icons/Pencil.vue'
-import IconDelete from 'vue-material-design-icons/Delete.vue'
-import IconContactPlus from 'vue-material-design-icons/AccountMultiplePlus.vue'
-import IconShare from 'vue-material-design-icons/ShareVariant.vue'
+import IconDownload from 'vue-material-design-icons/DownloadOutline.vue'
+import IconRename from 'vue-material-design-icons/PencilOutline.vue'
+import IconDelete from 'vue-material-design-icons/DeleteOutline.vue'
+import IconContactPlus from 'vue-material-design-icons/AccountMultiplePlusOutline.vue'
+import IconShare from 'vue-material-design-icons/ShareVariantOutline.vue'
 import ShareAddressBook from './SettingsAddressbookShare.vue'
 import { showError } from '@nextcloud/dialogs'
 

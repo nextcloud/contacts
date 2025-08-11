@@ -65,7 +65,7 @@ import {
 
 import ContactDetails from '../ContactDetails.vue'
 import ContactsList from '../ContactsList.vue'
-import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
 import mitt from 'mitt'
 
