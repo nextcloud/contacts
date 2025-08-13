@@ -14,5 +14,8 @@ export default {
 		selectedCircle() {
 			return this.$route.params.selectedCircle
 		},
+		selectedChart() {
+			return this.$route.params.selectedChart
+		},
 	},
 }
