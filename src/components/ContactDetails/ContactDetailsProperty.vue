@@ -296,7 +296,7 @@ export default {
 				}
 				if (this.propName === 'x-managersname') {
 					if (this.property.getParameter('uid')) {
-						return this.property.getParameter('uid') + '~' + this.contact.addressbook.id
+						return Buffer.from(this.property.getParameter('uid') + '~' + this.contact.addressbook.id, 'utf-8').toString('base64')
 					}
 					// Try to find the matching contact by display name
 					// TODO: this only *shows* the display name but doesn't assign the missing UID
