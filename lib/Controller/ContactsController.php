@@ -33,6 +33,11 @@ class ContactsController extends Controller {
 	 * @param string $uuid
 	 */
 	public function direct(string $contact): RedirectResponse {
+		// Keep compatibility with old routing scheme
+		if (str_contains($contact, '~')) {
+			$contact = base64_encode($contact);
+		}
+
 		$url = $this->urlGenerator->getAbsoluteURL(
 			$this->urlGenerator->linkToRoute('contacts.page.index') . $this->l10n->t('All contacts') . '/' . $contact
 		);
