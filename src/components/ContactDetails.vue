@@ -365,6 +365,7 @@
 </template>
 
 <script>
+import escape from 'lodash/fp/escape.js'
 import { showError } from '@nextcloud/dialogs'
 
 import ICAL from 'ical.js'
@@ -725,9 +726,9 @@ export default {
 					organization,
 				})
 			} else if (title) {
-				return title
+				return escape(title)
 			} else if (organization) {
-				return organization
+				return escape(organization)
 			}
 
 			return ''
