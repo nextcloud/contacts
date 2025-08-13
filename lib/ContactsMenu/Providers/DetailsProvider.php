@@ -82,7 +82,7 @@ class DetailsProvider implements IProvider {
 
 		$contactsUrl = $this->urlGenerator->getAbsoluteURL(
 			$this->urlGenerator->linkToRoute('contacts.contacts.direct', [
-				'contact' => $uid . '~' . $addressBookUri
+				'contact' => base64_encode($uid . '~' . $addressBookUri),
 			])
 		);
 

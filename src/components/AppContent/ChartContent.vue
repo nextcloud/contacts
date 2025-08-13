@@ -36,7 +36,7 @@ export default {
 		transformData() {
 			const contactsByUid = {}
 			const contacts = Object.keys(this.contactsList).map(key => {
-				const [uid, addressbook] = key.split('~')
+				const [uid, addressbook] = Buffer.from(key, 'base64').toString('utf-8').split('~')
 				if (!contactsByUid[addressbook]) {
 					contactsByUid[addressbook] = {}
 				}

@@ -199,7 +199,7 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get key() {
-		return this.uid + '~' + this.addressbook.id
+		return Buffer.from(this.uid + '~' + this.addressbook.id, 'utf8').toString('base64')
 	}
 
 	/**
