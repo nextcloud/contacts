@@ -97,14 +97,14 @@ class DetailsProviderTest extends Base {
 			->with('contacts.contacts.direct', [
 				'contact' => 'ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJifmNvbnRhY3RzLTE=',
 			])
-			->willReturn("/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJifmNvbnRhY3RzLTE=");
+			->willReturn('/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJifmNvbnRhY3RzLTE=');
 
 		// Action icon and contact absolute urls
 		$this->urlGenerator->expects($this->exactly(2))
 			->method('getAbsoluteURL')
 			->will($this->returnValueMap([
 				[$iconUrl, "$domain/$iconUrl"],
-				["/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJifmNvbnRhY3RzLTE=", $resultUri]
+				['/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJifmNvbnRhY3RzLTE=', $resultUri]
 			]));
 
 		// Translations
@@ -174,14 +174,14 @@ class DetailsProviderTest extends Base {
 				// To ensure interop between JavaScript and PHP
 				'contact' => 'ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJiLcOpfmNvbnRhY3RzLTE=',
 			])
-			->willReturn("/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJiLcOpfmNvbnRhY3RzLTE=");
+			->willReturn('/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJiLcOpfmNvbnRhY3RzLTE=');
 
 		// Action icon and contact absolute urls
 		$this->urlGenerator->expects($this->exactly(2))
 			->method('getAbsoluteURL')
 			->will($this->returnValueMap([
 				[$iconUrl, "$domain/$iconUrl"],
-				["/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJiLcOpfmNvbnRhY3RzLTE=", $resultUri]
+				['/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJiLcOpfmNvbnRhY3RzLTE=', $resultUri]
 			]));
 
 		// Translations
