@@ -14,6 +14,7 @@ OC.L10N.register(
     "Add contact to Birthday Calendar" : "Дадаць кантакт у каляндар дзён нараджэння",
     "Exclude contact from Birthday Calendar" : "Выключыць кантакт з календара дзён нараджэння",
     "Title" : "Загаловак",
+    "Close" : "Закрыць",
     "User" : "Карыстальнік",
     "Group" : "Група",
     "Email" : "Электронная пошта",
