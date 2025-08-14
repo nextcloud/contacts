@@ -134,7 +134,7 @@ export default {
 		vcardTimeLocalValue() {
 			if (typeof this.localValue === 'string') {
 				// eslint-disable-next-line new-cap
-				return new ICAL.VCardTime.fromDateAndOrTimeString(this.localValue)
+				return new ICAL.VCardTime.fromDateAndOrTimeString(this.localValue, this.propType)
 			}
 			return this.localValue
 		},
