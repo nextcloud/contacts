@@ -17,7 +17,10 @@
 			:user="member.userId"
 			:display-name="member.displayName"
 			:size="32" />
-		<span class="member-name">{{ member.displayName }}</span>
+		<div class="member-info">
+			<span class="member-name">{{ member.displayName }}</span>
+			<span v-if="memberRole" class="member-role">{{ memberRole }}</span>
+		</div>
 
 		<!-- Accept invite -->
 		<div v-if="!loading && isPendingApproval && circle.canManageMembers" class="member-grid-item__actions">
@@ -225,6 +228,18 @@ export default {
 				&& this.member.level <= this.currentUserLevel
 				&& !this.isCurrentUser
 		},
+
+		/**
+		 * Get the member role name
+		 *
+		 * @return {string|null}
+		 */
+		memberRole() {
+			if (!this.member.level || this.member.level === MemberLevels.NONE) {
+				return null
+			}
+			return CIRCLES_MEMBER_LEVELS[this.member.level] || null
+		},
 	},
 	methods: {
 		/**
@@ -363,8 +378,22 @@ export default {
 	border-radius: var(--border-radius);
 	background-color: var(--color-background-soft);
 
-	.member-name {
+	.member-info {
 		flex-grow: 1;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+	}
+
+	.member-name {
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	.member-role {
+		font-size: 0.75rem;
+		color: var(--color-text-maxcontrast);
 		overflow: hidden;
 		text-overflow: ellipsis;
 		white-space: nowrap;

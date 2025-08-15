@@ -442,6 +442,10 @@ export default {
 
 		.circle-details__main-content {
 			margin-inline-start: 99px;
+
+			@media (max-width: 768px) {
+				margin-inline-start: 0;
+			}
 		}
 	}
 
