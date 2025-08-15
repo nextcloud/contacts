@@ -28,8 +28,8 @@
 		</NcEmptyContent>
 
 		<div v-else class="member-grid">
-			<MemberGridItem v-for="(member, index) in flatList"
-				:key="`member-grid-item-${index}`"
+			<MemberGridItem v-for="member in flatList"
+				:key="`member-grid-item-${member.id}`"
 				:member="member"
 				:is-team="!member.isUser" />
 		</div>

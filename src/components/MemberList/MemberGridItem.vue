@@ -33,7 +33,7 @@
 			</NcButton>
 		</div>
 
-		<NcActions v-else-if="!isTeam">
+		<NcActions v-else>
 			<NcActionText v-if="loading" icon="icon-loading-small">
 				{{ t('contacts', 'Loading …') }}
 			</NcActionText>
@@ -248,38 +248,39 @@ export default {
 		 * Delete the current member
 		 */
 		async deleteMember() {
-			if (this.isCurrentUser) {
-				try {
-					const dialog = new DialogBuilder()
-						.setName(t('contacts', 'Leave team'))
-						.setText(t('contacts', 'Are you sure you want to leave this team? This action cannot be undone.'))
-						.setButtons([
-							{
-								label: t('contacts', 'Cancel'),
-								type: 'secondary',
-								callback: () => { /* do nothing, just close */ },
-							},
-							{
-								label: t('contacts', 'Leave team'),
-								type: 'error',
-								callback: async () => {
-									try {
-										await this.doDeleteMember()
-									} catch (e) {
-										this.logger.error('Error in delete member callback', { e })
-										showError(t('contacts', 'Leave team failed.'))
-									}
-								},
-							},
-						])
-						.build()
-
-					await dialog.show()
-				} catch (error) {
-					// User cancelled the dialog - no action needed
-				}
-			} else {
+			if (!this.isCurrentUser) {
 				await this.doDeleteMember()
+				return
+			}
+
+			try {
+				const dialog = new DialogBuilder()
+					.setName(t('contacts', 'Leave team'))
+					.setText(t('contacts', 'Are you sure you want to leave this team? This action cannot be undone.'))
+					.setButtons([
+						{
+							label: t('contacts', 'Cancel'),
+							type: 'secondary',
+							callback: () => { /* do nothing, just close */ },
+						},
+						{
+							label: t('contacts', 'Leave team'),
+							type: 'error',
+							callback: async () => {
+								try {
+									await this.doDeleteMember()
+								} catch (e) {
+									this.logger.error('Error in delete member callback', { e })
+									showError(t('contacts', 'Leave team failed.'))
+								}
+							},
+						},
+					])
+					.build()
+
+				await dialog.show()
+			} catch (error) {
+				// User cancelled the dialog - no action needed
 			}
 		},
 
