@@ -28,8 +28,8 @@
 		</NcEmptyContent>
 
 		<div v-else class="member-grid">
-			<MemberGridItem v-for="(member, index) in flatList"
-				:key="`member-grid-item-${index}`"
+			<MemberGridItem v-for="member in flatList"
+				:key="`member-grid-item-${member.id}`"
 				:member="member"
 				:is-team="!member.isUser" />
 		</div>
@@ -257,6 +257,14 @@ export default defineComponent({
 	display: grid;
 	grid-template-columns: repeat(2, 1fr);
 	gap: 8px;
+
+	@media (max-width: 768px) {
+		grid-template-columns: 1fr;
+	}
+
+	@media (min-width: 1200px) {
+		grid-template-columns: repeat(3, 1fr);
+	}
 }
 
 .empty-content {
