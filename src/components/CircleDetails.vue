@@ -486,6 +486,7 @@ export default {
 
 	.circle-details-section {
 		margin-bottom: 2rem;
+		max-width: 500px;
 
 		.member-section-layout {
 			display: inline-block;
@@ -514,6 +515,8 @@ export default {
 			display: flex;
 			flex-direction: column;
 			gap: 2px;
+			max-height: 300px;
+			overflow-y: auto;
 
 			// Remove left padding added in ListItem (external component)
 			:deep(.list-item__wrapper) {
