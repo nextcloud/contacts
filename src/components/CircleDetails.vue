@@ -20,10 +20,9 @@
 							<NcLoading v-if="loadingName" :size="24" />
 						</h2>
 						<NcTextField v-else
-							:value="circle.displayName"
+							v-model="circle.displayName"
 							:placeholder="t('contacts', 'Team name')"
-							label="Team name"
-							@update:value="onNameChangeDebounce($event)" />
+							label="Team name" />
 					</div>
 					<div v-if="!isEditing" class="subtitle">
 						<span>{{ t('files', 'Team owner') }}</span> <UserBubble :user="circle.owner.userId"
@@ -34,11 +33,10 @@
 							{{ circle.description }}
 						</div>
 						<NcTextArea v-else
-							:value="circle.description"
+							v-model="circle.description"
 							:placeholder="descriptionPlaceholder"
 							label="Description"
-							:maxlength="1024"
-							@update:value="onDescriptionChangeDebounce($event)" />
+							:maxlength="1024" />
 					</div>
 					<div class="actions">
 						<template v-if="!isEditing">
@@ -76,7 +74,7 @@
 							<Button type="secondary" @click="cancelEditing">
 								{{ t('contacts', 'Cancel') }}
 							</Button>
-							<Button type="primary" @click="isEditing = false">
+							<Button type="primary" @click="saveChanges">
 								{{ t('contacts', 'Save') }}
 							</Button>
 						</template>
@@ -168,7 +166,6 @@
 <script>
 import { ref } from 'vue'
 import { useElementSize } from '@vueuse/core'
-import debounce from 'debounce'
 import { generateOcsUrl } from '@nextcloud/router'
 import { showError } from '@nextcloud/dialogs'
 import axios from '@nextcloud/axios'
@@ -375,40 +372,49 @@ export default {
 			callback([])
 		},
 
-		onDescriptionChangeDebounce: debounce(function(...args) {
-			this.onDescriptionChange(...args)
-		}, 500),
-		async onDescriptionChange(description) {
-			this.circle.description = description
-			this.loadingDescription = true
-			try {
-				await editCircle(this.circle.id, CircleEdit.Description, description)
-				this.originalDescription = description
-			} catch (error) {
-				console.error('Unable to edit team description', description, error)
-				showError(t('contacts', 'An error happened during description sync'))
-				this.circle.description = this.originalDescription
-			} finally {
-				this.loadingDescription = false
-			}
-		},
+		async saveChanges() {
+			const errors = []
 
-		onNameChangeDebounce: debounce(function(value) {
-			this.onNameChange(value)
-		}, 500),
-		async onNameChange(name) {
-			this.circle.displayName = name
-			this.loadingName = true
-			try {
-				await editCircle(this.circle.id, CircleEdit.Name, name)
-				this.originalDisplayName = name
-			} catch (error) {
-				console.error('Unable to edit name', name, error)
-				showError(t('contacts', 'An error happened during name sync'))
-				this.circle.displayName = this.originalDisplayName
-			} finally {
-				this.loadingName = false
+			// Save name and description sequentially to avoid race conditions
+			// Save name if changed
+			if (this.circle.displayName !== this.originalDisplayName) {
+				this.loadingName = true
+				try {
+					await editCircle(this.circle.id, CircleEdit.Name, this.circle.displayName)
+					this.originalDisplayName = this.circle.displayName
+				} catch (error) {
+					console.error('Unable to edit name', this.circle.displayName, error)
+					errors.push('name')
+					this.circle.displayName = this.originalDisplayName
+				} finally {
+					this.loadingName = false
+				}
 			}
+
+			// Save description if changed
+			if (this.circle.description !== this.originalDescription) {
+				this.loadingDescription = true
+				try {
+					await editCircle(this.circle.id, CircleEdit.Description, this.circle.description)
+					this.originalDescription = this.circle.description
+				} catch (error) {
+					console.error('Unable to edit team description', this.circle.description, error)
+					errors.push('description')
+					this.circle.description = this.originalDescription
+				} finally {
+					this.loadingDescription = false
+				}
+			}
+
+			// Show error if any saves failed
+			if (errors.length > 0) {
+				const errorFields = errors.join(' and ')
+				showError(t('contacts', 'An error happened while saving {fields}', { fields: errorFields }))
+				return
+			}
+
+			// Only exit editing mode if all saves succeeded
+			this.isEditing = false
 		},
 	},
 }
