@@ -63,7 +63,7 @@ class DetailsProviderTest extends Base {
 		$uid = 'e3a71614-c602-4eb5-9994-47eec551542b';
 		$abUri = 'contacts-1';
 		$iconUrl = 'core/img/actions/info.svg';
-		$resultUri = "$domain/index.php/apps/contacts/direct/contact/$uid~$abUri";
+		$resultUri = "$domain/index.php/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJifmNvbnRhY3RzLTE=";
 
 		$entry->expects($this->exactly(3))
 			->method('getProperty')
@@ -95,16 +95,93 @@ class DetailsProviderTest extends Base {
 		$this->urlGenerator->expects($this->once())
 			->method('linkToRoute')
 			->with('contacts.contacts.direct', [
-				'contact' => $uid . '~' . $abUri
+				'contact' => 'ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJifmNvbnRhY3RzLTE=',
 			])
-			->willReturn("/apps/contacts/direct/contact/$uid~$abUri");
+			->willReturn('/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJifmNvbnRhY3RzLTE=');
 
 		// Action icon and contact absolute urls
 		$this->urlGenerator->expects($this->exactly(2))
 			->method('getAbsoluteURL')
 			->will($this->returnValueMap([
 				[$iconUrl, "$domain/$iconUrl"],
-				["/apps/contacts/direct/contact/$uid~$abUri", $resultUri]
+				['/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJifmNvbnRhY3RzLTE=', $resultUri]
+			]));
+
+		// Translations
+		$this->l10n->expects($this->once())
+			->method('t')
+			->with('Details')
+			->willReturnArgument(0);
+
+		$this->actionFactory->expects($this->once())
+			->method('newLinkAction')
+			->with($this->equalTo("$domain/$iconUrl"), $this->equalTo('Details'), $this->equalTo($resultUri))
+			->willReturn($action);
+		$action->expects($this->once())
+			->method('setPriority')
+			->with($this->equalTo(0));
+		$entry->expects($this->once())
+			->method('addAction')
+			->with($action);
+
+		$this->provider->process($entry);
+	}
+
+	public function testProcessContactWithUnicodeUid() {
+		$entry = $this->createMock(IEntry::class);
+		$action = $this->createMock(ILinkAction::class);
+		$addressbook = $this->createMock(IAddressBook::class);
+
+		// DATA
+		$domain = 'https://cloud.example.com';
+		$uid = 'e3a71614-c602-4eb5-9994-47eec551542b-é';
+		$abUri = 'contacts-1';
+		$iconUrl = 'core/img/actions/info.svg';
+		$resultUri = "$domain/index.php/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJiLcOpfmNvbnRhY3RzLTE=";
+
+
+		$entry->expects($this->exactly(3))
+			->method('getProperty')
+			->will($this->returnValueMap([
+				['UID', $uid],
+				['isLocalSystemBook', null],
+				['addressbook-key', 1]
+			]));
+
+		$addressbook->expects($this->once())
+			->method('getKey')
+			->willReturn(1);
+
+		$addressbook->expects($this->once())
+			->method('getUri')
+			->willReturn($abUri);
+
+		$this->manager->expects($this->once())
+			->method('getUserAddressbooks')
+			->willReturn([1 => $addressbook]);
+
+		// Action icon
+		$this->urlGenerator->expects($this->once())
+			->method('imagePath')
+			->with('core', 'actions/info.svg')
+			->willReturn($iconUrl);
+
+		//
+		$this->urlGenerator->expects($this->once())
+			->method('linkToRoute')
+			->with('contacts.contacts.direct', [
+				// Taken from node: Buffer.from('e3a71614-c602-4eb5-9994-47eec551542b-é~contacts-1', 'utf-8').toString('base64')
+				// To ensure interop between JavaScript and PHP
+				'contact' => 'ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJiLcOpfmNvbnRhY3RzLTE=',
+			])
+			->willReturn('/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJiLcOpfmNvbnRhY3RzLTE=');
+
+		// Action icon and contact absolute urls
+		$this->urlGenerator->expects($this->exactly(2))
+			->method('getAbsoluteURL')
+			->will($this->returnValueMap([
+				[$iconUrl, "$domain/$iconUrl"],
+				['/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJiLcOpfmNvbnRhY3RzLTE=', $resultUri]
 			]));
 
 		// Translations

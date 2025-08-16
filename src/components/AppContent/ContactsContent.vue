@@ -116,10 +116,6 @@ export default {
 			return this.$store.getters.getSortedContacts
 		},
 
-		selectedContact() {
-			return this.$route.params.selectedContact
-		},
-
 		/**
 		 * Is this a real group ?
 		 * Aka not a dynamically generated one like `All contacts`
