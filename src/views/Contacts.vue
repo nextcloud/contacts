@@ -292,7 +292,7 @@ export default {
 
 			contact.fullName = t('contacts', 'Name')
 
-			contact.rev = ICAL.VCardTime.now().convertToZone(ICAL.Timezone.utcTimezone)
+			contact.rev = ICAL.VCardTime.fromDateAndOrTimeString(new Date().toISOString(), 'date-time')
 
 			// itterate over all properties (filter is not usable on objects and we need the key of the property)
 			const properties = rfcProps.properties
