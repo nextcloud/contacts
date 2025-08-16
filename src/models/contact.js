@@ -66,7 +66,9 @@ export default class Contact {
 
 		// if no rev set, init one
 		if (!this.vCard.hasProperty('rev')) {
-			this.vCard.addPropertyWithValue('rev', ICAL.VCardTime.now().convertToZone(ICAL.Timezone.utcTimezone))
+			const rev = new ICAL.VCardTime(null, null, 'date-time')
+			rev.fromUnixTime(Date.now() / 1000)
+			this.vCard.addPropertyWithValue('rev', rev)
 		}
 	}
 
