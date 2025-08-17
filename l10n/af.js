@@ -42,6 +42,7 @@ OC.L10N.register(
     "Contact" : "Kontak",
     "Admin" : "Admin",
     "Owner" : "Eienaar",
+    "Privacy" : "Privaatheid",
     "Detailed name" : "Gedetailleerde naam",
     "Additional names" : "Addisionele name",
     "Prefix" : "Voorvoegsel",
