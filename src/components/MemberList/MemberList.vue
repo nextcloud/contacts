@@ -27,12 +27,37 @@
 			</template>
 		</NcEmptyContent>
 
-		<div v-else class="member-grid">
-			<MemberGridItem v-for="member in flatList"
-				:key="`member-grid-item-${member.id}`"
-				:member="member"
-				:is-team="!member.isUser" />
-		</div>
+		<template v-else>
+			<NcTextField v-if="flatList.length > 20"
+				v-model="searchQuery"
+				:label="t('contacts', 'Search among current members')"
+				trailing-button-icon="close"
+				:show-trailing-button="searchQuery !== ''"
+				@trailing-button-click="clearSearchField">
+				<IconSearch :size="20" />
+			</NcTextField>
+			<RecycleScroller ref="scroller"
+				class="member-scroller"
+				:items="filteredList"
+				:item-size="56"
+				:grid-items="gridItems"
+				:item-secondary-size="itemSecondarySize">
+				<template #default="{ item }">
+					<MemberGridItem :key="`member-grid-item-${item.id}`"
+						:member="item"
+						:is-team="!item.isUser" />
+				</template>
+				<template #empty v-if="!filteredList.length">
+					<div class="empty-search-results">
+						<NcEmptyContent :name="t('contacts', 'No results found')">
+							<template #icon>
+								<IconSearch :size="20" />
+							</template>
+						</NcEmptyContent>
+					</div>
+				</template>
+			</RecycleScroller>
+		</template>
 
 		<!-- member picker -->
 		<EntityPicker v-if="showPicker"
@@ -50,11 +75,19 @@
 </template>
 
 <script lang="ts">
-import { NcEmptyContent } from '@nextcloud/vue'
+import {
+	NcEmptyContent,
+	isMobile,
+	NcLoadingIcon as IconLoading,
+	NcTextField
+} from '@nextcloud/vue'
+import { RecycleScroller } from 'vue-virtual-scroller'
+import 'vue-virtual-scroller/dist/vue-virtual-scroller.css'
 
 import MemberGridItem from './MemberGridItem.vue'
 import EntityPicker from '../EntityPicker/EntityPicker.vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
+import IconSearch from 'vue-material-design-icons/Magnify.vue'
 
 import RouterMixin from '../../mixins/RouterMixin.js'
 
@@ -72,8 +105,12 @@ export default defineComponent({
 	components: {
 		EntityPicker,
 		IconContact,
+		IconLoading,
+		IconSearch,
 		MemberGridItem,
 		NcEmptyContent,
+		RecycleScroller,
+		NcTextField,
 	},
 
 	mixins: [IsMobileMixin, RouterMixin],
@@ -101,6 +138,8 @@ export default defineComponent({
 			pickerData: [],
 			pickerSelection: {},
 			pickerTypes: CIRCLES_MEMBER_GROUPING,
+			windowWidth: window.innerWidth,
+			searchQuery: '',
 		}
 	},
 
@@ -132,17 +171,59 @@ export default defineComponent({
 			return [...teams, ...users]
 		},
 
+		filteredList() {
+			const query = this.searchQuery.toLowerCase()
+
+			return this.flatList.filter(member =>
+				!this.searchQuery || member.displayName.toLowerCase().includes(query)
+			)
+		},
+
 		hasMembers() {
 			return this.flatList.length > 0
+		},
+
+		gridItems() {
+			if (this.windowWidth < 768) {
+				// undefined means that the grid will be rendered as a list
+				return undefined
+			}
+
+			return 2
+		},
+
+		itemSecondarySize() {
+			if (this.windowWidth < 768) {
+				// undefined means that the grid will be rendered as a list
+				return undefined
+			}
+
+			// The maximum width of the member list is 500px,
+			// so with two columns, each column is 242px wide (with scroll)
+			return 242
 		},
 	},
 
 	mounted() {
 		subscribe('contacts:circles:append', this.onShowPicker)
 		subscribe('guests:user:created', this.onGuestCreated)
+
+		window.addEventListener('resize', this.onResize)
+	},
+
+	beforeDestroy() {
+		window.removeEventListener('resize', this.onResize)
 	},
 
 	methods: {
+		onResize() {
+			this.windowWidth = window.innerWidth
+		},
+
+		clearSearchField() {
+			this.searchQuery = ''
+		},
+
 		/**
 		 * Show picker and fetch for recommendations
 		 * Cache the circleId in case the url change or something
@@ -258,21 +339,16 @@ export default defineComponent({
 	}
 }
 
-.member-grid {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 8px;
-
-	@media (max-width: 768px) {
-		grid-template-columns: 1fr;
-	}
-
-	@media (min-width: 1200px) {
-		grid-template-columns: repeat(3, 1fr);
-	}
+.member-scroller {
+	height: 100%;
+	max-height: 200px;
 }
 
 .empty-content {
 	height: 100%;
+}
+
+.empty-search-results {
+	margin-top: 2rem;
 }
 </style>
