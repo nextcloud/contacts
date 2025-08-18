@@ -1,3 +1,18 @@
+## [7.2.5](https://github.com/nextcloud/contacts/compare/v7.2.4...v7.2.5) (2025-08-18)
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([ca9bac2](https://github.com/nextcloud/contacts/commit/ca9bac245f9b463a524962c63f82a38933526ca0))
+* **l10n:** Update translations from Transifex ([26ca71f](https://github.com/nextcloud/contacts/commit/26ca71f59dc2d4aa6a5013861e39d8742f5e4470))
+* **l10n:** Update translations from Transifex ([ec1c180](https://github.com/nextcloud/contacts/commit/ec1c180836940aedbd01c5f1e5fd9ba46e09d80a))
+* **l10n:** Update translations from Transifex ([f31742b](https://github.com/nextcloud/contacts/commit/f31742b9a202737a709873db7e157c480c300447))
+* **l10n:** Update translations from Transifex ([cd71eb9](https://github.com/nextcloud/contacts/commit/cd71eb964aa47eb0df3422223e4b0450e853a43e))
+* **l10n:** Update translations from Transifex ([1aa4568](https://github.com/nextcloud/contacts/commit/1aa45681c318b88bcff7aedac07e20bbdc5f7e70))
+* **ui:** escape organization/title properties ([0b15e98](https://github.com/nextcloud/contacts/commit/0b15e980928eb7b167237e7f893bebfb7eb026d5))
+
+
+
 ## [7.2.4](https://github.com/nextcloud/contacts/compare/v7.2.3...v7.2.4) (2025-08-05)
 
 
