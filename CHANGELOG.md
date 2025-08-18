@@ -1,5 +1,9 @@
 # Changelog
 
+## 6.0.6 - 2025-08-18
+### Fixed 
+- Escape organization/title properties
+
 ## 6.0.5 - 2025-06-03
 ### Fixed 
 - Instantiation of ContactsManager
