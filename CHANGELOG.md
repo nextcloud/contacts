@@ -1,5 +1,9 @@
 # Changelog
 
+## 5.5.4 – 2025-08-18
+### Fixed
+- Escape organization/title properties
+
 ## 5.5.3 – 2024-03-06
 ### Fixed
 - Remove contact from group
