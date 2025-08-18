@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import escape from 'lodash/fp/escape.js'
 import { isMobile, NcEmptyContent, NcLoadingIcon } from '@nextcloud/vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import mitt from 'mitt'
@@ -112,9 +113,9 @@ export default {
 					organization,
 				})
 			} else if (title) {
-				return title
+				return escape(title)
 			} else if (organization) {
-				return organization
+				return escape(organization)
 			}
 
 			return ''
