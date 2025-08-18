@@ -9,14 +9,29 @@
 		<!-- Wrapper for content & navigation -->
 		<div class="entity-picker">
 			<!-- Search -->
-			<div class="entity-picker__search">
-				<div class="entity-picker__search-icon icon-search" />
-				<input ref="input"
-					v-model="searchQuery"
-					:placeholder="t('contacts', 'Search {types}', {types: searchPlaceholderTypes})"
-					class="entity-picker__search-input"
-					type="search"
-					@input="onSearch">
+			<div class="entity-picker__heading">
+				<h2 class="entity-picker__title">
+					{{ t('contacts', 'Invite members to team') }}
+				</h2>
+			</div>
+			<div class="entity-picker__search-container">
+				<div class="entity-picker__search">
+					<div class="entity-picker__search-icon icon-search" />
+					<input ref="input"
+						v-model="searchQuery"
+						:placeholder="t('contacts', 'Search {types}', {types: searchPlaceholderTypes})"
+						class="entity-picker__search-input"
+						type="search"
+						@input="onSearch">
+				</div>
+				<Button v-if="canInviteGuests"
+					type="button"
+					variant="tertiary-no-background"
+					:title="t('contacts', 'Add guest')"
+					:aria-label="t('contacts', 'Add guest')"
+					@click="onGuestButtonClick">
+					<IconAccountPlusOutline :size="20" />
+				</Button>
 			</div>
 
 			<!-- Loading -->
@@ -83,11 +98,14 @@
 import debounce from 'debounce'
 import VirtualList from 'vue-virtual-scroll-list'
 import {
+	NcButton as Button,
 	NcEmptyContent as EmptyContent,
 	NcLoadingIcon as IconLoading,
 	NcModal as Modal,
 } from '@nextcloud/vue'
+import { subscribe } from '@nextcloud/event-bus'
 import IconSearch from 'vue-material-design-icons/Magnify.vue'
+import IconAccountPlusOutline from 'vue-material-design-icons/AccountPlusOutline.vue'
 import EntityBubble from './EntityBubble.vue'
 import EntitySearchResult from './EntitySearchResult.vue'
 
@@ -95,8 +113,10 @@ export default {
 	name: 'EntityPicker',
 
 	components: {
+		Button,
 		EmptyContent,
 		EntityBubble,
+		IconAccountPlusOutline,
 		IconSearch,
 		IconLoading,
 		Modal,
@@ -184,6 +204,7 @@ export default {
 
 	data() {
 		return {
+			canInviteGuests: !!window?.OCA?.Guests?.openGuestDialog,
 			searchQuery: '',
 			localSelection: {},
 			EntitySearchResult,
@@ -294,6 +315,10 @@ export default {
 			this.$refs.input.focus()
 			this.$refs.input.select()
 		})
+
+		if (this.canInviteGuests) {
+			subscribe('guests:user:created', this.addGuest)
+		}
 	},
 
 	methods: {
@@ -359,6 +384,12 @@ export default {
 				this.onPick(entity)
 			}
 		},
+
+		onGuestButtonClick() {
+			if (this.canInviteGuests) {
+				window?.OCA?.Guests?.openGuestDialog('contacts')
+			}
+		},
 	},
 
 }
@@ -393,13 +424,25 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 	min-height: $dialog-height;
 	height: 100%;
 	padding: $dialog-padding;
+	padding-top: 10px;
 	box-sizing: border-box;
+
+	&__title {
+		margin-top: 0px;
+	}
 
 	&__search {
 		position: relative;
 		display: flex;
 		align-items: center;
 		width: 95%;
+
+		&-container {
+			display: flex;
+			flex-flow: row nowrap;
+			column-gap: 12px;
+		}
+
 		&-input {
 			width: 100%;
 			height: $clickable-area - $entity-spacing !important;
@@ -419,7 +462,6 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 		display: flex;
 		overflow-y: auto;
 		align-content: flex-start;
-		flex: 1 0 auto;
 		flex-wrap: wrap;
 		justify-content: flex-start;
 		// half a line height to know there is more lines
@@ -438,7 +480,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 
 	&__options {
 		overflow-y: auto;
-		flex: 1 1 100%;
+		flex: 1 1 auto;
 		margin: $entity-spacing 0;
 	}
 
@@ -469,7 +511,7 @@ it back */
 }
 
 :deep(.modal-container__close) {
-	margin-top: 19px;
+	margin-top: 10px;
 }
 
 </style>

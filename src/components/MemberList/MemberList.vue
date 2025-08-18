@@ -36,6 +36,7 @@
 
 		<!-- member picker -->
 		<EntityPicker v-if="showPicker"
+			ref="entityPicker"
 			:confirm-label="t('contacts', 'Add to {circle}', { circle: circle.displayName })"
 			:data-types="pickerTypes"
 			:data-set="filteredPickerData"
@@ -140,6 +141,7 @@ export default defineComponent({
 
 	mounted() {
 		subscribe('contacts:circles:append', this.onShowPicker)
+		subscribe('guests:user:created', this.onGuestCreated)
 	},
 
 	methods: {
@@ -236,6 +238,11 @@ export default defineComponent({
 			this.pickerCircle = null
 			this.pickerData = []
 			this.pickerSelection = {}
+		},
+
+		async onGuestCreated(guest) {
+			const results = await getSuggestions(guest.username)
+			this.$refs.entityPicker.onClick(results[0])
 		},
 	},
 })
