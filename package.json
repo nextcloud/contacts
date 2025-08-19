@@ -55,7 +55,7 @@
     "@nextcloud/paths": "^2.2.1",
     "@nextcloud/router": "^3.0.1",
     "@nextcloud/sharing": "^0.2.5",
-    "@nextcloud/vue": "^8.27.0",
+    "@nextcloud/vue": "^8.29.1",
     "@vueuse/core": "^11.3.0",
     "b64-to-blob": "^1.2.19",
     "camelcase": "^8.0.0",
