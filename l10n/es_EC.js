@@ -75,8 +75,6 @@ OC.L10N.register(
     "Change unique password" : "Cambiar contraseña única",
     "Failed to save password. Please try again later." : "Error al guardar la contraseña. Por favor, inténtalo de nuevo más tarde.",
     "An error happened during the config change" : "Ocurrió un error durante el cambio de configuración",
-    "An error happened during description sync" : "Ocurrió un error durante la sincronización de la descripción",
-    "An error happened during name sync" : "Ocurrió un error durante la sincronización del nombre",
     "Edit" : "Editar",
     "Cancel" : "Cancelar",
     "Request to join" : "Solicitud para unirse",
@@ -247,6 +245,8 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se pudo leer","{failed} contactos no se pudieron leer","{failed} contactos no se pudieron leer"],
     "Unable to delete contact" : "No se pudo eliminar el contacto",
     "Password protection" : "Protección con contraseña",
+    "An error happened during description sync" : "Ocurrió un error durante la sincronización de la descripción",
+    "An error happened during name sync" : "Ocurrió un error durante la sincronización del nombre",
     "Description" : "Descripción",
     "Add members" : "Añadir miembros",
     "Visibility" : "Visibilidad"
