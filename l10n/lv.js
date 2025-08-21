@@ -64,7 +64,7 @@ OC.L10N.register(
     "No results" : "Nav iznākuma",
     "Pending" : "Gaida",
     "Select Date" : "Izvēlieties datumu",
-    "Select type" : "Izvēlieties tipu",
+    "Select type" : "Atlasīt veidu",
     "Add contact in group" : "Pievienot kontaktpersonu grupai",
     "None" : "Nav",
     "Select option" : "Izvēlieties opciju",
