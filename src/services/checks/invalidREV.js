@@ -14,25 +14,10 @@ export default {
 	run: contact => {
 		try {
 			const hasRev = contact.vCard.hasProperty('rev')
-			const rev = hasRev && contact.vCard.getFirstProperty('rev')
-			const revValue = rev && rev.getFirstValue()
-
-			if (revValue) {
-				const version = contact.version
-				const type = revValue.icalclass
-
-				if (version === '3.0' && type === 'vcardtime') {
-					return false
-				}
-
-				if (version === '4.0' && type === 'icaltime') {
-					return false
-				}
-			}
+			return !hasRev
 		} catch (error) {
 			return true
 		}
-		return true
 	},
 
 	fix: contact => {
@@ -40,11 +25,18 @@ export default {
 			// removing old invalid data
 			contact.vCard.removeProperty('rev')
 
-			// creatiing new value
-			contact.vCard.addPropertyWithValue('rev', ICAL.VCardTime.now().convertToZone(ICAL.Timezone.utcTimezone))
+			// creating new value
+			const version = contact.version
+			if (version === '4.0') {
+				contact.vCard.addPropertyWithValue('rev', ICAL.Time.fromJSDate(new Date(), true))
+			}
+			if (version === '3.0') {
+				contact.vCard.addPropertyWithValue('rev', ICAL.VCardTime.fromDateAndOrTimeString(new Date().toISOString(), 'date-time'))
+			}
 
 			return true
 		} catch (error) {
+			console.error('Error fixing invalid REV:', error)
 			return false
 		}
 	},
