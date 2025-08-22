@@ -151,9 +151,9 @@ export default {
 		async onDrop(event, group) {
 			try {
 				const contactFromDropData = JSON.parse(event.dataTransfer.getData('item'))
-				const contactFromStore = this.$store.getters.getContact(`${contactFromDropData.uid}~${contactFromDropData.addressbookId}`)
+				const contactFromStore = this.$store.getters.getContact(Buffer.from(`${contactFromDropData.uid}~${contactFromDropData.addressbookId}`, 'utf-8').toString('base64'))
 				if (contactFromStore && !this.isInGroup(contactFromStore.groups, group.id)) {
-					const contact = this.$store.getters.getContact(`${contactFromDropData.uid}~${contactFromDropData.addressbookId}`)
+					const contact = this.$store.getters.getContact(Buffer.from(`${contactFromDropData.uid}~${contactFromDropData.addressbookId}`, 'utf-8').toString('base64'))
 					await this.$store.dispatch('updateContactGroups', {
 						groupNames: [...contactFromStore.groups, group.id],
 						contact,

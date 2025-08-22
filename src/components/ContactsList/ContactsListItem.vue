@@ -49,9 +49,14 @@ import {
 	NcAvatar,
 } from '@nextcloud/vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
+import RouterMixin from '../../mixins/RouterMixin.js'
 
 export default {
 	name: 'ContactsListItem',
+
+	mixins: [
+		RouterMixin,
+	],
 
 	components: {
 		ListItem,
@@ -86,19 +91,13 @@ export default {
 	},
 
 	computed: {
-		selectedGroup() {
-			return this.$route.params.selectedGroup
-		},
-		selectedContact() {
-			return this.$route.params.selectedContact
-		},
 		// contact is not draggable when it has not been saved on server as it can't be added to groups/circles before
 		isDraggable() {
 			return !!this.source.dav && this.source.addressbook.id !== 'z-server-generated--system'
 		},
 		// usable and valid html id for scrollTo
 		id() {
-			return window.btoa(this.source.key).slice(0, -2)
+			return this.source.key.slice(0, -2)
 		},
 		getTel() {
 			return this.source.properties.find(property => property.name === 'tel')?.getFirstValue()
