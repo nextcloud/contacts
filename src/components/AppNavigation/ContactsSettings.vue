@@ -5,15 +5,15 @@
 
 <template>
 	<AppSettingsDialog id="app-settings-dialog"
+		v-model:open="showSettings"
 		:name="t('contacts', 'Contacts settings')"
-		:show-navigation="true"
-		:open.sync="showSettings">
+		:show-navigation="true">
 		<AppSettingsSection id="general-settings" :name="t('contacts', 'General settings')">
-			<CheckboxRadioSwitch :checked="enableSocialSync"
+			<CheckboxRadioSwitch :model-value="enableSocialSync"
 				:loading="enableSocialSyncLoading"
 				:disabled="enableSocialSyncLoading"
 				class="social-sync__checkbox contacts-settings-modal__form__row"
-				@update:checked="toggleSocialSync">
+				@update:model-value="toggleSocialSync">
 				<div class="social-sync__checkbox__label">
 					<span>
 						{{ t('contacts', 'Update avatars from social media') }}

@@ -34,9 +34,8 @@
 					:no-wrap="true"
 					:placeholder="t('contacts', 'Select option')"
 					:disabled="isSingleOption || isReadOnly"
-					track-by="id"
 					label="name"
-					@input="updateValue" />
+					@update:model-value="updateValue" />
 				<p v-else>
 					{{ matchedOptions.name }}
 				</p>

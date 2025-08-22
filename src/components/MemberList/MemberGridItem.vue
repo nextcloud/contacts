@@ -77,7 +77,7 @@
 </template>
 
 <script>
-import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberLevel, MemberStatus } from '../../models/constants.ts'
+import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberStatus } from '../../models/constants.ts'
 import Circle from '../../models/circle.ts'
 import { NcAvatar, NcActions, NcActionButton, NcActionSeparator, NcActionText, NcButton } from '@nextcloud/vue'
 import IconAccountGroupOutline from 'vue-material-design-icons/AccountGroupOutline.vue'

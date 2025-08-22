@@ -12,7 +12,7 @@
 			:allow-empty="false"
 			:options="options"
 			:custom-label="formatSortByLabel"
-			track-by="key"
+			:get-option-key="(option) => option.key"
 			label="label"
 			@input="sortContacts" />
 	</div>

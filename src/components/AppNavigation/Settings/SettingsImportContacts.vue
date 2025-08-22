@@ -49,7 +49,7 @@
 						</template>
 						{{ t('contacts', 'Select local file') }}
 					</Button>
-					<Button type="primary"
+					<Button variant="primary"
 						:disabled="loading"
 						class="import-contact__button import-contact__button--files"
 						@click="openPicker">

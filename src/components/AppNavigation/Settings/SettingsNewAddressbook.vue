@@ -6,26 +6,27 @@
 <template>
 	<div class="new-addressbook-entry">
 		<IconLoading v-if="loading" :size="20" />
-		<NcTextField class="new-addressbook"
-			:value.sync="displayName"
+		<NcInputField v-model:model-value="displayName"
+			class="new-addressbook"
 			:disabled="loading"
 			:label="t('contacts', 'Add new address book')"
-			:pattern="addressBookRegex"
 			:show-trailing-button="true"
 			:trailing-button-label="t('contacts', 'Add')"
-			trailing-button-icon="arrowRight"
+			:error="inputErrorState"
 			type="text"
 			autocomplete="off"
 			autocorrect="off"
 			spellcheck="false"
 			@trailing-button-click="addAddressbook">
-			<IconAdd :size="20" />
-		</NcTextField>
+			<template #trailing-button-icon>
+				<IconAdd :size="20" />
+			</template>
+		</NcInputField>
 	</div>
 </template>
 
 <script>
-import { NcTextField } from '@nextcloud/vue'
+import { NcInputField } from '@nextcloud/vue'
 import { showError } from '@nextcloud/dialogs'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 import IconLoading from 'vue-material-design-icons/Loading.vue'
@@ -33,7 +34,7 @@ import IconLoading from 'vue-material-design-icons/Loading.vue'
 export default {
 	name: 'SettingsNewAddressbook',
 	components: {
-		NcTextField,
+		NcInputField,
 		IconAdd,
 		IconLoading,
 	},
@@ -41,10 +42,17 @@ export default {
 		return {
 			loading: false,
 			displayName: '',
-			// no slashes!
-			// eslint-disable-next-line
-			addressBookRegex: '[^/\\\\]+'
 		}
+	},
+	computed: {
+		inputErrorState() {
+			if (this.displayName === '') {
+				return false
+			}
+
+			// no slashes!
+			return /[/\\]/.test(this.displayName)
+		},
 	},
 	methods: {
 		/**

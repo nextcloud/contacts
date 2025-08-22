@@ -55,8 +55,8 @@
 				<template v-if="addressbook.writeProps">
 					<!-- enable/disable addressbook -->
 					<ActionCheckbox v-if="!toggleEnabledLoading"
-						:checked="enabled"
-						@change.stop.prevent="toggleAddressbookEnabled">
+						:model-value="enabled"
+						@update:model-value="toggleAddressbookEnabled">
 						{{ t('contacts', 'Show') }}
 					</ActionCheckbox>
 					<ActionButton v-else>

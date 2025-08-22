@@ -6,20 +6,20 @@
 	<ul>
 		<li class="circle-config">
 			<ul class="circle-config__list">
-				<CheckboxRadioSwitch :checked="enforcePasswordProtection"
+				<CheckboxRadioSwitch :model-value="enforcePasswordProtection"
 					:loading="loading.includes(ENFORCE_PASSWORD_PROTECTION)"
 					:disabled="loading.length > 0"
 					wrapper-element="li"
-					@update:checked="changePasswordProtection">
+					@update:model-value="changePasswordProtection">
 					{{ t('contacts', 'Enforce password protection on files shared to this team') }}
 				</CheckboxRadioSwitch>
 
 				<CheckboxRadioSwitch v-if="enforcePasswordProtection"
-					:checked="useUniquePassword || showUniquePasswordInput"
+					:model-value="useUniquePassword || showUniquePasswordInput"
 					:loading="loading.includes(USE_UNIQUE_PASSWORD)"
 					:disabled="loading.length > 0"
 					wrapper-element="li"
-					@update:checked="changeUseUniquePassword">
+					@update:model-value="changeUseUniquePassword">
 					{{ t('contacts', 'Use a unique password for all shares to this team') }}
 				</CheckboxRadioSwitch>
 
@@ -30,7 +30,7 @@
 							:placeholder="t('contacts', 'Unique password …')"
 							type="text"
 							@keyup.enter="saveUniquePassword">
-						<Button type="tertiary-no-background"
+						<Button variant="tertiary-no-background"
 							:disabled="loading.length > 0 || uniquePassword.length === 0"
 							@click="saveUniquePassword">
 							{{ t('contacts', 'Save') }}

@@ -13,7 +13,7 @@
 					v-model="chosenAddressBook"
 					:disabled="contactsList[0].addressbook.id === contactsList[1].addressbook.id"
 					:title="t('contacts', 'Select address book')"
-					@update:modelValue="calculateConflictsToResolve" />
+					@update:model-value="calculateConflictsToResolve" />
 			</div>
 		</div>
 
@@ -41,12 +41,12 @@
 
 				<!-- Checkboxes for resolving single conflicts or conflicts with multiple possible values, for contact 0 -->
 				<NcCheckboxRadioSwitch v-if="conflictInformation[property]?.type === 'conflict'"
-					:checked="resolvedConflicts.get(property) === 0"
+					:model-value="resolvedConflicts.get(property) === 0"
 					type="radio"
-					@update:checked="resolveConflict(0, property)" />
+					@update:model-value="resolveConflict(0, property)" />
 				<NcCheckboxRadioSwitch v-if="conflictInformation[property]?.type === 'conflictWithMultipleValues'"
-					:checked="resolvedConflicts.get(property)?.has(0)"
-					@update:checked="resolveMultiConflict(0, property)" />
+					:model-value="resolvedConflicts.get(property)?.has(0)"
+					@update:model-value="resolveMultiConflict(0, property)" />
 
 				<!-- Information of contact 0, either shown through DetailsProperty if possible or in a custom way -->
 				<div v-if="conflictInformation[property]?.type !== 'onlyInSecond'"
@@ -78,12 +78,12 @@
 
 				<!-- Checkboxes for resolving single conflicts or conflicts with multiple possible values, for contact 1 -->
 				<NcCheckboxRadioSwitch v-if="conflictInformation[property]?.type === 'conflict'"
-					:checked="resolvedConflicts.get(property) === 1"
+					:model-value="resolvedConflicts.get(property) === 1"
 					type="radio"
-					@update:checked="resolveConflict(1, property)" />
+					@update:model-value="resolveConflict(1, property)" />
 				<NcCheckboxRadioSwitch v-if="conflictInformation[property]?.type === 'conflictWithMultipleValues'"
-					:checked="resolvedConflicts.get(property)?.has(1)"
-					@update:checked="resolveMultiConflict(1, property)" />
+					:model-value="resolvedConflicts.get(property)?.has(1)"
+					@update:model-value="resolveMultiConflict(1, property)" />
 
 				<!-- Information of contact 1, either shown through DetailsProperty if possible or in a custom way -->
 				<div v-if="conflictInformation[property]?.type !== 'onlyInFirst'"
@@ -115,13 +115,13 @@
 		</div>
 
 		<div v-if="contactsList[0].groups.length || contactsList[1].groups.length" class="merging__groups">
-			<h4>{{ t('contacts', 'Groups') }}</h4>
+			<h4 class="merging__groups__header">{{ t('contacts', 'Groups') }}</h4>
 			<NcSelect v-model="selectedGroups"
 				:options="contactsList[0].groups.concat(contactsList[1].groups)"
 				:multiple="true"
 				:placeholder="t('contacts', 'Select groups to add the merged contact to')"
 				:disabled="!contactsList[0].groups.length && !contactsList[1].groups.length"
-				@update:modelValue="calculateConflictsToResolve" />
+				@update:model-value="calculateConflictsToResolve" />
 		</div>
 
 		<div class="merging__actions">
@@ -562,6 +562,10 @@ export default {
 		gap: calc(var(--default-grid-baseline) * 4);
 		margin: calc(var(--default-grid-baseline) * 4) 0;
 		margin-inline-start: calc(var(--default-grid-baseline) * 5);
+
+		&__header {
+			margin: 0;
+		}
 	}
 
 	&__conflicts {

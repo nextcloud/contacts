@@ -45,7 +45,7 @@
 
 <script>
 import escape from 'lodash/fp/escape.js'
-import { isMobile, NcEmptyContent, NcLoadingIcon } from '@nextcloud/vue'
+import { NcEmptyContent, NcLoadingIcon } from '@nextcloud/vue'
 import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import mitt from 'mitt'
 import { namespaces as NS } from '@nextcloud/cdav-library'
@@ -56,6 +56,7 @@ import rfcProps from '../models/rfcProps.js'
 import validate from '../services/validate.js'
 import client from '../services/cdav.js'
 import usePrincipalsStore from '../store/principals.js'
+import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 
 const { profileEnabled } = loadState('user_status', 'profileEnabled', false)
 
@@ -69,7 +70,7 @@ export default {
 		NcLoadingIcon,
 	},
 
-	mixins: [isMobile],
+	mixins: [IsMobileMixin],
 
 	props: {
 		contactEmailAddress: {

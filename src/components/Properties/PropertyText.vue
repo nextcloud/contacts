@@ -29,10 +29,9 @@
 					:taggable="true"
 					tag-placeholder="create"
 					:disabled="isReadOnly"
-					track-by="id"
 					label="name"
 					@option:created="createLabel"
-					@input="updateType" />
+					@update:model-value="updateType" />
 
 				<!-- if we do not support any type on our model but one is set anyway -->
 				<span v-else-if="selectType">
@@ -50,16 +49,17 @@
 				<NcTextArea v-if="propName === 'note'"
 					id="textarea"
 					ref="textarea"
-					:value.sync="localValue"
+					v-model:model-value="localValue"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
-					@update:value="updateValueNoDebounce"
+					@update:model-value="updateValueNoDebounce"
 					@mousemove="resizeHeight"
 					@keypress="resizeHeight" />
 
 				<!-- email with validation-->
 				<NcTextField v-else-if="propName === 'email'"
 					ref="email"
+					v-model:model-value="localValue"
 					:class="{'property__value--with-ext': haveExtHandler}"
 					autocapitalize="none"
 					autocomplete="email"
@@ -69,19 +69,18 @@
 					:helper-text="!emailHelpText || isReadonly ? '' : emailHelpText"
 					label-outside
 					:placeholder="placeholder"
-					:value.sync="localValue"
 					type="email"
-					@update:value="updateEmailValue" />
+					@update:model-value="updateEmailValue" />
 
 				<!-- OR default to input -->
 				<NcTextField v-else
-					:value.sync="localValue"
+					v-model:model-value="localValue"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
 					:class="{'property__value--with-ext': haveExtHandler}"
 					type="text"
 					:placeholder="placeholder"
-					@update:value="updateValue" />
+					@update:model-value="updateValue" />
 
 				<!-- external link -->
 				<a v-if="haveExtHandler && isReadOnly"

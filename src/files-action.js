@@ -13,9 +13,8 @@ import { translate as t } from '@nextcloud/l10n'
 import { DefaultType, FileAction, Permission, registerFileAction } from '@nextcloud/files'
 /* eslint-disable-next-line import/no-unresolved */
 import ContactSvg from '@mdi/svg/svg/account-multiple.svg?raw'
-import Vue from 'vue'
-
-Vue.prototype.t = t
+import { createApp } from 'vue'
+import LegacyGlobalMixin from './mixins/LegacyGlobalMixin.js'
 
 const mime = 'text/vcard'
 const name = 'contacts-import'
@@ -41,15 +40,13 @@ registerFileAction(new FileAction({
 			container.id = containerId
 			document.body.appendChild(container)
 			await new Promise((resolve, reject) => {
-				const ImportConfirmationDialog = Vue.extend(ConfirmationDialog)
-				dialog = new ImportConfirmationDialog({
-					propsData: {
-						title: t('contacts', 'Are you sure you want to import this contact file?'),
-						resolve,
-						reject,
-					},
+				const app = createApp(ConfirmationDialog, {
+					title: t('contacts', 'Are you sure you want to import this contact file?'),
+					resolve,
+					reject,
 				})
-				dialog.$mount(`#${containerId}`)
+				app.mixin(LegacyGlobalMixin)
+				app.mount(`#${containerId}`)
 			})
 
 			// Redirect to the import page if the user confirmed

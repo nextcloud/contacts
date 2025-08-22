@@ -17,7 +17,7 @@
 				:placeholder="placeholder"
 				input-id="select-chart-input"
 				label="label"
-				@input="chartChanged" />
+				@update:model-value="chartChanged" />
 		</div>
 		<div ref="svgElementContainer" class="org-chart__container" />
 	</div>
@@ -30,7 +30,8 @@ import { getLocale } from '@nextcloud/l10n'
 import { NcSelect } from '@nextcloud/vue'
 import { OrgChart } from 'd3-org-chart'
 import router from './../router/index.js'
-import Vue from 'vue'
+import { createApp } from 'vue'
+import LegacyGlobalMixin from '../mixins/LegacyGlobalMixin.js'
 
 export default {
 	name: 'OrgChart',
@@ -121,16 +122,16 @@ export default {
 						if (d.data.rendered) {
 							containerHTMLElement.appendChild(d.data.rendered)
 						} else {
-							const ComponentClass = Vue.extend(ChartTemplate)
-							const instance = new ComponentClass({
-								propsData: {
-									data: d.data,
-									onAvatarClick: (uid) => that.goToContact(uid),
-								},
-								router,
-							}).$mount()
-							d.data.rendered = instance.$el
-							containerHTMLElement.appendChild(instance.$el)
+							const app = createApp(ChartTemplate, {
+								chartData: d.data,
+								onAvatarClick: (uid) => that.goToContact(uid),
+							})
+							app.use(router)
+							app.mixin(LegacyGlobalMixin)
+							const $el = document.createElement('div')
+							app.mount($el)
+							d.data.rendered = $el
+							containerHTMLElement.appendChild($el)
 						}
 					}
 

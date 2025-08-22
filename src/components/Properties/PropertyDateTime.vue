@@ -23,9 +23,8 @@
 					:searchable="false"
 					:placeholder="t('contacts', 'Select type')"
 					:disabled="isReadOnly"
-					track-by="id"
 					label="name"
-					@input="updateType" />
+					@update:model-value="updateType" />
 
 				<!-- if we do not support any type on our model but one is set anyway -->
 				<span v-else-if="selectType">
@@ -41,15 +40,14 @@
 			<div class="property__value">
 				<!-- Real input where the picker shows -->
 				<DateTimePicker v-if="!isReadOnly"
-					:value="vcardTimeLocalValue.toJSDate()"
+					:model-value="datePickerValue"
 					:minute-step="10"
 					:lang="lang"
 					:clearable="false"
 					:first-day-of-week="firstDay"
 					:type="inputType"
-					:readonly="isReadOnly"
 					:formatter="dateFormat"
-					@change="debounceUpdateValue" />
+					@update:model-value="debounceUpdateValue" />
 
 				<input v-else
 					:readonly="true"
@@ -76,6 +74,7 @@ import {
 } from '@nextcloud/vue'
 import ICAL from 'ical.js'
 import { getLocale } from '@nextcloud/l10n'
+import { toRaw } from 'vue'
 
 import PropertyMixin from '../../mixins/PropertyMixin.js'
 import PropertyTitle from './PropertyTitle.vue'
@@ -134,9 +133,17 @@ export default {
 		vcardTimeLocalValue() {
 			if (typeof this.localValue === 'string') {
 				// eslint-disable-next-line new-cap
-				return new ICAL.VCardTime.fromDateAndOrTimeString(this.localValue)
+				return new ICAL.VCardTime.fromDateAndOrTimeString(this.localValue, this.propType)
 			}
 			return this.localValue
+		},
+		datePickerValue() {
+			if (!this.vcardTimeLocalValue) {
+				return this.vcardTimeLocalValue
+			}
+
+			// ical.js can't cope with proxies, hence we need to unwrap the proxy first
+			return toRaw(this.vcardTimeLocalValue).toJSDate()
 		},
 	},
 
@@ -230,7 +237,8 @@ export default {
 
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			// Use moment to convert the JsDate to Object
-			this.$emit('update:value', this.localValue)
+			// ical.js can't cope with proxies, hence we need to unwrap the proxy first
+			this.$emit('update:value', toRaw(this.localValue))
 		},
 
 		/**

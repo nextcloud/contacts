@@ -4,24 +4,24 @@
 -->
 
 <template>
-	<Actions>
-		<ActionButton @click="deleteProperty">
+	<NcActions>
+		<NcActionButton @click="deleteProperty">
 			<template #icon>
 				<IconDelete :size="20" />
 			</template>
 			{{ t('contacts', 'Delete') }}
-		</ActionButton>
-		<component :is="action"
-			v-for="action in actions"
+		</NcActionButton>
+		<component v-for="action in actions"
+			:is="action"
 			:key="action.name"
 			:component="propertyComponent" />
-	</Actions>
+	</NcActions>
 </template>
 
 <script>
 import {
-	NcActions as Actions,
-	NcActionButton as ActionButton,
+	NcActions,
+	NcActionButton,
 } from '@nextcloud/vue'
 import IconDelete from 'vue-material-design-icons/DeleteOutline.vue'
 
@@ -29,8 +29,8 @@ export default {
 	name: 'PropertyActions',
 
 	components: {
-		Actions,
-		ActionButton,
+		NcActions,
+		NcActionButton,
 		IconDelete,
 	},
 

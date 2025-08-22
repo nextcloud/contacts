@@ -77,6 +77,7 @@ export default {
 			default: () => {},
 		},
 	},
+
 	data() {
 		return {
 			avatarUrl: undefined,
@@ -108,7 +109,7 @@ export default {
 		this.reloadBus.on('reload-avatar', this.reloadAvatarUrl)
 		this.reloadBus.on('delete-avatar', this.deleteAvatar)
 	},
-	destroyed() {
+	unmounted() {
 		this.reloadBus.off('reload-avatar', this.reloadAvatarUrl)
 		this.reloadBus.off('delete-avatar', this.deleteAvatar)
 	},

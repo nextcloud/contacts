@@ -73,7 +73,7 @@
 				<template #quick-actions>
 					<div v-if="!editMode && !loadingData">
 						<Actions :inline="6"
-							type="secondary">
+							variant="secondary">
 							<ActionButton v-if="isTalkEnabled && isInSystemAddressBook"
 								:aria-label="(t('contacts', 'Go to talk conversation'))"
 								:name="(t('contacts', 'Go to talk conversation'))"
@@ -115,37 +115,26 @@
 					<!-- warning message -->
 					<component :is="warning.icon"
 						v-if="warning"
-						v-tooltip.bottom="{
-							content: warning ? warning.msg : '',
-							trigger: 'hover focus'
-						}"
+						:title="warning ? warning.msg : ''"
 						class="header-icon"
 						:classes="warning.classes" />
 
 					<!-- conflict message -->
 					<div v-if="conflict"
-						v-tooltip="{
-							content: conflict,
-							show: true,
-							trigger: 'manual',
-						}"
+						:title="conflict"
 						class="header-icon header-icon--pulse icon-history"
 						@click="refreshContact" />
 
 					<!-- repaired contact message -->
 					<div v-if="fixed"
-						v-tooltip="{
-							content: t('contacts', 'This contact was broken and received a fix. Please review the content and click here to save it.'),
-							show: true,
-							trigger: 'manual',
-						}"
+						:title="t('contacts', 'This contact was broken and received a fix. Please review the content and click here to save it.')"
 						class="header-icon header-icon--pulse icon-up"
 						@click="updateContact" />
 
 					<!-- edit and save buttons -->
 					<template v-if="!addressbookIsReadOnly">
 						<NcButton v-if="!editMode"
-							:type="isMobile ? 'secondary' : 'tertiary'"
+							:variant="isMobile ? 'secondary' : 'tertiary'"
 							@click="editMode = true">
 							<template #icon>
 								<PencilIcon :size="20" />
@@ -153,7 +142,7 @@
 							{{ t('contacts', 'Edit') }}
 						</NcButton>
 						<NcButton v-else
-							type="secondary"
+							variant="secondary"
 							:disabled="loadingUpdate || !isDataValid"
 							@click="onSave">
 							<template #icon>
@@ -233,7 +222,6 @@
 					:allow-empty="false"
 					:options="copyableAddressbooksOptions"
 					:placeholder="t('contacts', 'Select address book')"
-					track-by="id"
 					label="name" />
 				<button @click="closePickAddressbookModal">
 					{{ t('contacts', 'Cancel') }}
@@ -297,8 +285,8 @@
 					@update:value="updateAddressbook" />
 
 				<!-- Groups always visible -->
-				<PropertyGroups :prop-model="groupsModel"
-					:value.sync="localContact.groups"
+				<PropertyGroups :value="localContact.groups"
+					:prop-model="groupsModel"
 					:contact="contact"
 					:is-read-only="isReadOnly"
 					class="property--groups property--last"
@@ -372,7 +360,6 @@ import ICAL from 'ical.js'
 import { getSVG } from 'qreator/lib/svg'
 import mitt from 'mitt'
 import {
-	isMobile,
 	NcActionButton as ActionButton,
 	NcActionLink as ActionLink,
 	NcActions as Actions,
@@ -413,7 +400,8 @@ import PropertySelect from './Properties/PropertySelect.vue'
 import { generateUrl } from '@nextcloud/router'
 import { loadState } from '@nextcloud/initial-state'
 import isTalkEnabled from '../services/isTalkEnabled.js'
-import Vue from 'vue'
+import { reactive, toRaw } from 'vue'
+import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 
 const { profileEnabled } = loadState('user_status', 'profileEnabled', false)
 
@@ -454,7 +442,8 @@ export default {
 		FolderMultipleImage,
 	},
 
-	mixins: [isMobile],
+	mixins: [IsMobileMixin],
+
 	provide() {
 		return {
 			sharedState: this.sharedState,
@@ -516,7 +505,7 @@ export default {
 			filesPanelHasError: false,
 			talkPanelHasError: false,
 			calendarPanelHasError: false,
-			sharedState: Vue.observable({ validEmail: true }),
+			sharedState: reactive({ validEmail: true }),
 
 		}
 	},
@@ -780,7 +769,7 @@ export default {
 		document.addEventListener('keydown', this.onCtrlSave)
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		// unbind capture ctrl+s
 		document.removeEventListener('keydown', this.onCtrlSave)
 	},
@@ -1069,6 +1058,11 @@ export default {
 			} catch (error) {
 				this.logger.error('error while saving contact', { error })
 				showError(t('contacts', 'Unable to update contact'))
+				this.logger.error(`Unable to update contact: ${error}`, {
+					error,
+					contact: toRaw(this.contact),
+					localContact: toRaw(this.localContact),
+				})
 			}
 		},
 	},

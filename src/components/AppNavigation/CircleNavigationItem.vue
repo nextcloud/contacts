@@ -66,9 +66,8 @@
 		</template>
 
 		<template #counter>
-			<NcCounterBubble v-if="memberCount > 0">
-				{{ memberCount }}
-			</NcCounterBubble>
+			<NcCounterBubble v-if="memberCount > 0"
+				:count="memberCount" />
 		</template>
 	</AppNavigationItem>
 </template>

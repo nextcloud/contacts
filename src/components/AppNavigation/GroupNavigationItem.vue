@@ -24,7 +24,7 @@
 					</template>
 					{{ t('contacts', 'Add contacts') }}
 				</ActionButton>
-				<ActionInput :value.sync="newGroupName"
+				<ActionInput v-model:model-value="newGroupName"
 					:disabled="renaming"
 					@submit="renameGroup">
 					<template #icon>
@@ -62,9 +62,8 @@
 			</template>
 
 			<template #counter>
-				<NcCounterBubble v-if="group.contacts.length > 0">
-					{{ group.contacts.length }}
-				</NcCounterBubble>
+				<NcCounterBubble v-if="group.contacts.length > 0"
+					:count="group.contacts.length" />
 			</template>
 		</AppNavigationItem>
 	</div>
