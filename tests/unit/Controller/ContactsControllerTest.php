@@ -12,6 +12,7 @@ use OCP\AppFramework\Http\RedirectResponse;
 use OCP\IL10N;
 use OCP\IRequest;
 use OCP\IURLGenerator;
+use PHPUnit\Framework\Attributes\DataProvider;
 use PHPUnit\Framework\MockObject\MockObject;
 
 class ContactsControllerTest extends TestCase {
@@ -38,10 +39,17 @@ class ContactsControllerTest extends TestCase {
 		);
 	}
 
+	public static function provideDirectContactData(): array {
+		return [
+			['uuid~addressbook', 'dXVpZH5hZGRyZXNzYm9vaw=='],
+			['dXVpZH5hZGRyZXNzYm9vaw==', 'dXVpZH5hZGRyZXNzYm9vaw=='],
+		];
+	}
 
-	public function testRedirect() {
-		$contact = 'uuid~addressbook';
-
+	/**
+	 * @dataProvider provideDirectContactData
+	 */
+	public function testRedirect(string $contact, string $expectedContact): void {
 		$this->l10n->method('t')
 			->with('All contacts')
 			->willReturn('All contacts');
@@ -53,11 +61,11 @@ class ContactsControllerTest extends TestCase {
 
 		$this->urlGenerator->expects($this->once())
 			->method('getAbsoluteURL')
-			->with('/index.php/apps/contacts/All contacts/' . $contact)
-			->willReturn('/index.php/apps/contacts/All contacts/' . $contact);
+			->with('/index.php/apps/contacts/All contacts/' . $expectedContact)
+			->willReturn('/index.php/apps/contacts/All contacts/' . $expectedContact);
 
-		$result = $this->controller->direct('uuid~addressbook');
+		$result = $this->controller->direct($contact);
 		$this->assertTrue($result instanceof RedirectResponse);
-		$this->assertEquals('/index.php/apps/contacts/All contacts/' . $contact, $result->getRedirectURL());
+		$this->assertEquals('/index.php/apps/contacts/All contacts/' . $expectedContact, $result->getRedirectURL());
 	}
 }

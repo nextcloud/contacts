@@ -71,6 +71,8 @@ import RootNavigation from '../components/AppNavigation/RootNavigation.vue'
 import SettingsImportContacts from '../components/AppNavigation/Settings/SettingsImportContacts.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 
+import RouterMixin from '../mixins/RouterMixin.js'
+
 import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
 
@@ -99,27 +101,8 @@ export default {
 
 	mixins: [
 		isMobile,
+		RouterMixin,
 	],
-
-	// passed by the router
-	props: {
-		selectedCircle: {
-			type: String,
-			default: undefined,
-		},
-		selectedGroup: {
-			type: String,
-			default: undefined,
-		},
-		selectedContact: {
-			type: String,
-			default: undefined,
-		},
-		selectedChart: {
-			type: String,
-			default: undefined,
-		},
-	},
 
 	data() {
 		return {
@@ -376,7 +359,7 @@ export default {
 			}
 
 			const inList = this.contactsList.findIndex(contact => contact.key === this.selectedContact) > -1
-			if (this.selectedContact === undefined || !inList) {
+			if (!this.selectedContact || !inList) {
 				// Unknown contact
 				if (this.selectedContact && !inList) {
 					showError(t('contacts', 'Contact not found'))
