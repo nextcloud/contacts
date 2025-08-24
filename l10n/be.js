@@ -32,6 +32,7 @@ OC.L10N.register(
     "Edit" : "Рэдагаваць",
     "Cancel" : "Скасаваць",
     "Members" : "Удзельнікі",
+    "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Кантакт, які вы спрабавалі рэдагаваць, змяніўся. Абнавіце кантакт уручную. Усе далейшыя змены будуць адхілены.",
     "Add contact to Birthday Calendar" : "Дадаць кантакт у каляндар дзён нараджэння",
     "Exclude contact from Birthday Calendar" : "Выключыць кантакт з календара дзён нараджэння",
     "Title" : "Загаловак",
