@@ -89,9 +89,14 @@ import Merging from './ContactsList/Merging.vue'
 import IconCancelRaw from '@mdi/svg/svg/cancel.svg?raw'
 // eslint-disable-next-line import/no-unresolved
 import IconDeleteRaw from '@mdi/svg/svg/delete-outline.svg'
+import RouterMixin from '../mixins/RouterMixin.js'
 
 export default {
 	name: 'ContactsList',
+
+	mixins: [
+		RouterMixin,
+	],
 
 	components: {
 		AppContentList,
@@ -153,12 +158,6 @@ export default {
 	},
 
 	computed: {
-		selectedContact() {
-			return this.$route.params.selectedContact
-		},
-		selectedGroup() {
-			return this.$route.params.selectedGroup
-		},
 		filteredList() {
 			const contactsList = this.list
 				.filter(item => this.matchSearch(this.contacts[item.key]))
@@ -242,7 +241,7 @@ export default {
 		 * @param {string} key the contact unique key
 		 */
 		scrollToContact(key) {
-			const item = this.$el.querySelector('#' + btoa(key).slice(0, -2))
+			const item = this.$el.querySelector('#' + key.slice(0, -2))
 
 			// if the item is not visible in the list or barely visible
 			if (!(item && item.getBoundingClientRect().y > 50)) { // header height
