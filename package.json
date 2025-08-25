@@ -81,8 +81,8 @@
     "vuex": "^4.1.0"
   },
   "engines": {
-    "node": "^20.0.0",
-    "npm": "^9.0.0"
+    "node": "^22.0.0",
+    "npm": "^10.5.0"
   },
   "devDependencies": {
     "@nextcloud/babel-config": "^1.2.0",
