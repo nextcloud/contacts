@@ -79,6 +79,11 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		propType: {
+			type: String,
+			default: 'text',
+			required: true,
+		},
 	},
 
 	computed: {

@@ -164,7 +164,9 @@ export default {
 				.map(item => this.contacts[item.key])
 
 			contactsList.forEach((contact, index) => {
-				contact.isMultiSelected = this.multiSelectedContacts.has(index)
+				if (contact !== undefined) {
+					contact.isMultiSelected = this.multiSelectedContacts.has(index)
+				}
 			})
 
 			return contactsList

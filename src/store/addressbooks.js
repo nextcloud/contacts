@@ -70,6 +70,53 @@ export function mapDavShareeToSharee(sharee) {
 	}
 }
 
+/**
+ * Sorts addressbooks by rules:
+ *  1. Default personal addressbook ("contacts") goes first
+ *  2. Recently used (based on lastUsedAddressBooks)
+ *  3. Addressbooks with more contacts go first
+ *  4. Read-only go after normal
+ *  5. Disabled go very last
+ *
+ * @param {Array} addressbooks
+ * @return {Array}
+ */
+function sortAddressbooks(addressbooks) {
+	const lastUsed = lastUsedAddressBooks(addressbooks)
+
+	return addressbooks.slice().sort((a, b) => {
+		if (a.id === 'contacts' && b.id !== 'contacts') return -1
+		if (b.id === 'contacts' && a.id !== 'contacts') return 1
+
+		const aUsed = lastUsed.includes(a.id)
+		const bUsed = lastUsed.includes(b.id)
+		if (aUsed !== bUsed) return aUsed ? -1 : 1
+
+		const aCount = Object.keys(a.contacts || {}).length
+		const bCount = Object.keys(b.contacts || {}).length
+		if (aCount !== bCount) return bCount - aCount
+
+		if (a.enabled !== b.enabled) return a.enabled ? -1 : 1
+
+		if (a.readOnly !== b.readOnly) return a.readOnly ? 1 : -1
+
+		return 0
+	})
+}
+
+/**
+ *
+ * @param addressbooks
+ */
+function lastUsedAddressBooks(addressbooks) {
+	const accesses = JSON.parse(localStorage.getItem('addressbook-accesses') || '{}')
+
+	return addressbooks
+		.map(ab => ({ id: ab.id, ts: accesses[ab.id] || 0 }))
+		.sort((a, b) => b.ts - a.ts)
+		.map(entry => entry.id)
+}
+
 const mutations = {
 
 	/**
