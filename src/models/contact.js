@@ -438,7 +438,7 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get displayName() {
-		const orderKey = store.getters.getOrderKey
+		const orderKey = store?.getters.getOrderKey
 		const n = this.vCard.getFirstPropertyValue('n')
 		const fn = this.vCard.getFirstPropertyValue('fn')
 		const org = this.vCard.getFirstPropertyValue('org')
