@@ -64,7 +64,7 @@
 			</div>
 		</transition>
 
-		<VList v-slot="{ item, index }"
+		<VList v-slot="{ item, index }" ref="scroller"
 			class="contacts-list"
 			:data="filteredList">
 			<ContactsListItem :key="item.key"
@@ -159,9 +159,11 @@ export default {
 
 	computed: {
 		filteredList() {
-			const contactsList = this.list
+			let contactsList = this.list
 				.filter(item => this.matchSearch(this.contacts[item.key]))
 				.map(item => this.contacts[item.key])
+
+			contactsList = contactsList.filter(item => item !== undefined)
 
 			contactsList.forEach((contact, index) => {
 				if (contact !== undefined) {

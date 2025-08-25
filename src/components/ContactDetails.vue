@@ -1056,6 +1056,7 @@ export default defineComponent({
 					this.newAddressBook = null
 				}
 				this.editMode = false
+				await this.$store.commit('updateLastAccessAddressbook')
 			} catch (error) {
 				this.logger.error('error while saving contact', { error })
 				showError(t('contacts', 'Unable to update contact'))

@@ -51,6 +51,7 @@ import SettingsImportContacts from './Settings/SettingsImportContacts.vue'
 import SettingsSortContacts from './Settings/SettingsSortContacts.vue'
 import { NcCheckboxRadioSwitch as CheckboxRadioSwitch, NcAppSettingsDialog as AppSettingsDialog, NcAppSettingsSection as AppSettingsSection } from '@nextcloud/vue'
 import { CONTACTS_SETTINGS } from '../../models/constants.ts'
+import { sortAddressbooks } from '../../store/addressbooks.js'
 
 export default {
 	name: 'ContactsSettings',
@@ -81,7 +82,7 @@ export default {
 	computed: {
 		// store getters
 		addressbooks() {
-			return this.$store.getters.getAddressbooks
+			return sortAddressbooks(this.$store.getters.getAddressbooks)
 		},
 	},
 	watch: {
@@ -120,6 +121,9 @@ export default {
 		},
 		async onOpen() {
 			this.showSettings = true
+		},
+		addressbooks() {
+			return sortAddressbooks(this.$store.getters.getAddressbooks)
 		},
 	},
 }

@@ -47,6 +47,7 @@ export function mapDavCollectionToAddressbook(addressbook) {
 		shares: addressbook.shares
 			? addressbook.shares.map(sharee => Object.assign({}, mapDavShareeToSharee(sharee)))
 			: [],
+		lastAccessUpdate: Date.now(),
 	}
 }
 
@@ -72,49 +73,67 @@ export function mapDavShareeToSharee(sharee) {
 
 /**
  * Sorts addressbooks by rules:
- *  1. Default personal addressbook ("contacts") goes first
- *  2. Recently used (based on lastUsedAddressBooks)
- *  3. Addressbooks with more contacts go first
- *  4. Read-only go after normal
- *  5. Disabled go very last
+ *  1. First group: Default personal addressbook ("contacts")
+ *  2. Second group: Recently used (based on lastUsedAddressBooks) go second, ordered from newest to oldest
+ *  3. Third group: Writeable enabled contacts, sorted by the amount of contacts they have, from more to less
+ *  4. Fourth group: Read-only enabled contacts, sorted by the amount of contacts
+ *  5. Fifth group: Disabled contacts, sorted by the amount of contacts
  *
  * @param {Array} addressbooks
  * @return {Array}
  */
-function sortAddressbooks(addressbooks) {
+export function sortAddressbooks(addressbooks) {
 	const lastUsed = lastUsedAddressBooks(addressbooks)
 
-	return addressbooks.slice().sort((a, b) => {
-		if (a.id === 'contacts' && b.id !== 'contacts') return -1
-		if (b.id === 'contacts' && a.id !== 'contacts') return 1
+	return addressbooks
+		.slice()
+		.sort((a, b) => {
+			const getContactCount = (ab) => Object.keys(ab.contacts || {}).length
 
-		const aUsed = lastUsed.includes(a.id)
-		const bUsed = lastUsed.includes(b.id)
-		if (aUsed !== bUsed) return aUsed ? -1 : 1
+			const getPriorityGroup = (ab) => {
+				if (ab.id === 'contacts') return 0
+				if (ab.enabled === false) return 4
+				if (lastUsed.includes(ab.id)) return 1
+				if (ab.readOnly) return 3
+				return 2
+			};
 
-		const aCount = Object.keys(a.contacts || {}).length
-		const bCount = Object.keys(b.contacts || {}).length
-		if (aCount !== bCount) return bCount - aCount
+			const groupA = getPriorityGroup(a)
+			const groupB = getPriorityGroup(b)
 
-		if (a.enabled !== b.enabled) return a.enabled ? -1 : 1
+			// First, sort by priority group
+			if (groupA !== groupB) {
+				return groupA - groupB
+			}
 
-		if (a.readOnly !== b.readOnly) return a.readOnly ? 1 : -1
+			// Within the same group, apply specific sorting rules
+			if (groupA === 0) {
+				return 0
+			}
+			else if (groupA === 1) {
+				// Sort by position in lastUsed array (newest first)
+				return lastUsed.indexOf(a.id) - lastUsed.indexOf(b.id)
+			}
+			else { // Groups 2, 3, 4 - sort by contact count (descending)
+				const countA = getContactCount(a)
+				const countB = getContactCount(b)
 
-		return 0
+				if (countA !== countB) {
+					return countB - countA
+				}
+
+				// If contact counts are equal, sort alphabetically by ID as tiebreaker
+				return a.id.localeCompare(b.id)
+			}
 	})
 }
 
-/**
- *
- * @param addressbooks
- */
-function lastUsedAddressBooks(addressbooks) {
+function lastUsedAddressBooks() {
 	const accesses = JSON.parse(localStorage.getItem('addressbook-accesses') || '{}')
 
-	return addressbooks
-		.map(ab => ({ id: ab.id, ts: accesses[ab.id] || 0 }))
-		.sort((a, b) => b.ts - a.ts)
-		.map(entry => entry.id)
+	return Object.entries(accesses)
+		.sort(([, a], [, b]) => new Date(b) - new Date(a))
+		.map(([id]) => id)
 }
 
 const mutations = {
@@ -265,10 +284,18 @@ const mutations = {
 		sharee.writeable = !sharee.writeable
 	},
 
+	/**
+	 * Needed to track indirect state changes for addressbook sorting
+	 *
+	 * @param state
+	 */
+	updateLastAccessAddressbook(state) {
+		state.lastAccessUpdate = Date.now();
+	}
 }
 
 const getters = {
-	getAddressbooks: state => state.addressbooks,
+	getAddressbooks: state => sortAddressbooks(state.addressbooks),
 }
 
 const actions = {
