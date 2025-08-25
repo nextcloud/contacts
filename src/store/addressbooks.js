@@ -70,6 +70,72 @@ export function mapDavShareeToSharee(sharee) {
 	}
 }
 
+/**
+ * Sorts addressbooks by rules:
+ *  1. First group: Default personal addressbook ("contacts")
+ *  2. Second group: Recently used (based on lastUsedAddressBooks) go second, ordered from newest to oldest
+ *  3. Third group: Writeable enabled contacts, sorted by the amount of contacts they have, from more to less
+ *  4. Fourth group: Read-only enabled contacts, sorted by the amount of contacts
+ *  5. Fifth group: Disabled contacts, sorted by the amount of contacts
+ *
+ * @param {Array} addressbooks
+ * @return {Array}
+ */
+export function sortAddressbooks(addressbooks) {
+	const lastUsed = lastUsedAddressBooks(addressbooks)
+
+	return addressbooks
+		.slice()
+		.sort((a, b) => {
+			const getContactCount = (ab) => Object.keys(ab.contacts || {}).length
+
+			const getPriorityGroup = (ab) => {
+				if (ab.id === 'contacts') return 0
+				if (ab.enabled === false) return 4
+				if (lastUsed.includes(ab.id)) return 1
+				if (ab.readOnly) return 3
+				return 2
+			}
+
+			const groupA = getPriorityGroup(a)
+			const groupB = getPriorityGroup(b)
+
+			// First, sort by priority group
+			if (groupA !== groupB) {
+				return groupA - groupB
+			}
+
+			// Within the same group, apply specific sorting rules
+			if (groupA === 0) {
+				return 0
+			} else if (groupA === 1) {
+				// Sort by position in lastUsed array (newest first)
+				return lastUsed.indexOf(a.id) - lastUsed.indexOf(b.id)
+			} else { // Groups 2, 3, 4 - sort by contact count (descending)
+				const countA = getContactCount(a)
+				const countB = getContactCount(b)
+
+				if (countA !== countB) {
+					return countB - countA
+				}
+
+				// If contact counts are equal, sort alphabetically by ID as tiebreaker
+				return a.id.localeCompare(b.id)
+			}
+		})
+}
+
+/**
+ *
+ */
+function lastUsedAddressBooks() {
+	const accesses = JSON.parse(localStorage.getItem('addressbook-accesses') || '{}')
+
+	return Object.entries(accesses)
+		.sort(([, a], [, b]) => new Date(b) - new Date(a))
+		.map(([id]) => id)
+}
+
 const mutations = {
 
 	/**
@@ -218,6 +284,14 @@ const mutations = {
 		sharee.writeable = !sharee.writeable
 	},
 
+	/**
+	 * Needed to track indirect state changes for addressbook sorting
+	 *
+	 * @param state
+	 */
+	resortAddressbooks(state) {
+		state.addressbooks = sortAddressbooks(state.addressbooks)
+	},
 }
 
 const getters = {
@@ -245,6 +319,8 @@ const actions = {
 		addressbooks.forEach(addressbook => {
 			context.commit('addAddressbook', addressbook)
 		})
+
+		context.commit('resortAddressbooks')
 
 		return addressbooks
 	},
