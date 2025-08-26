@@ -32,7 +32,7 @@ registerFileAction(new FileAction({
 	},
 	iconSvgInline: () => ContactSvg,
 	async exec(file) {
-		let dialog
+		let app
 		try {
 			// Open the confirmation dialog
 			const containerId = 'confirmation-' + Math.random().toString(16).slice(2)
@@ -40,7 +40,7 @@ registerFileAction(new FileAction({
 			container.id = containerId
 			document.body.appendChild(container)
 			await new Promise((resolve, reject) => {
-				const app = createApp(ConfirmationDialog, {
+				app = createApp(ConfirmationDialog, {
 					title: t('contacts', 'Are you sure you want to import this contact file?'),
 					resolve,
 					reject,
@@ -53,9 +53,12 @@ registerFileAction(new FileAction({
 			window.location = generateUrl(`/apps/contacts/import?file=${file.path}`)
 		} catch (e) {
 			// Do nothing if the user cancels
+		} finally {
+			// Destroy confirmation modal (div element is removed from the DOM by vue)
+			app?.unmount()
 		}
 
-		// Destroy confirmation modal (div element is removed from the DOM by vue)
-		dialog.$destroy()
+		// No toast should be shown -> indicate "unknown" action state
+		return null
 	},
 }))
