@@ -10,7 +10,7 @@ OC.L10N.register(
     "Omit year" : "Izlaiduma gads",
     "Loading …" : "Notiek ielāde ...",
     "Contacts settings" : "Kontaktpersonu iestatījumi",
-    "General settings" : "Vispārīgie iestatījumi",
+    "General settings" : "Vispārīgi iestatījumi",
     "Address books" : "Adrešu grāmatas",
     "Rename" : "Pārdēvēt",
     "Send email" : "Sūtīt e-pasta ziņojumu",
