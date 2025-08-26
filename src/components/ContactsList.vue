@@ -65,6 +65,7 @@
 		</transition>
 
 		<VList v-slot="{ item, index }"
+			ref="scroller"
 			class="contacts-list"
 			:data="filteredList">
 			<ContactsListItem :key="item.key"
@@ -202,10 +203,13 @@ export default {
 	},
 
 	watch: {
-		selectedContact(key) {
-			this.$nextTick(() => {
-				this.scrollToContact(key)
-			})
+		async selectedContact(key) {
+			if (!key) {
+				return
+			}
+
+			await this.$nextTick()
+			this.scrollToContact(key)
 		},
 		list(val, old) {
 			// we just loaded the list and the url already have a selected contact
@@ -241,22 +245,26 @@ export default {
 		 * @param {string} key the contact unique key
 		 */
 		scrollToContact(key) {
-			const item = this.$el.querySelector('#' + key.slice(0, -2))
-
-			// if the item is not visible in the list or barely visible
-			if (!(item && item.getBoundingClientRect().y > 50)) { // header height
-				const index = this.list.findIndex(contact => contact.key === key)
-				if (index > -1) {
-					this.$refs.scroller.scrollToIndex(index)
-				}
+			const index = this.list.findIndex(contact => contact.key === key)
+			if (index === -1) {
+				return
 			}
 
-			// if item is a bit out (bottom) of the list, let's just scroll a bit to the top
-			if (item) {
-				const pos = item.getBoundingClientRect().y + this.itemHeight - (this.$el.offsetHeight + 50)
+			const scroller = this.$refs.scroller
+			const scrollerBoundingRect = scroller.$el.getBoundingClientRect()
+			const item = this.$el.querySelector('#' + key.slice(0, -2))
+			const itemBoundingRect = item?.getBoundingClientRect()
+
+			// Try to scroll the item fully into view
+			if (!item || itemBoundingRect.y < scrollerBoundingRect.y) {
+				// Item is above the current scroll window (or partly overlapping)
+				scroller.scrollToIndex(index)
+			} else if (item) {
+				const itemHeight = scroller.getItemSize(index)
+				const pos = itemBoundingRect.y + itemHeight - (this.$el.offsetHeight + 50)
 				if (pos > 0) {
-					const scroller = this.$refs.scroller.$el
-					scroller.scrollToOffset(scroller.scrollTop + pos)
+					// Item is below the current scroll window (or partly overlapping)
+					scroller.scrollTo(scroller.scrollOffset + pos)
 				}
 			}
 		},
