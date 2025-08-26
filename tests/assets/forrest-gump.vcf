@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+PRODID:-//Sabre//Sabre VObject 4.5.6//EN
+N:Gump;Forrest;;Mr.;
+FN:Forrest Gump
+ORG:Sheri Nom Co.
+TITLE:Ultimate Warrior
+EMAIL:sherinnom@example.com
+REV;VALUE=DATE:20250822
+X-QQ:21588891
+UID:5efe2430-92e5-4ea2-9a7c-a05aed152ec92
+END:VCARD
