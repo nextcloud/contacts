@@ -19,6 +19,7 @@
 		"cs:check:force": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --dry-run --diff",
 		"lint": "find . -name \\*.php -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
 		"test:unit": "phpunit -c phpunit.xml --fail-on-warning",
+		"test:unit:dev": "phpunit -c phpunit.xml --fail-on-warning --stop-on-error --stop-on-failure",
 		"test:integration": "phpunit -c phpunit.integration.xml --fail-on-warning"
 	},
 	"require": {
