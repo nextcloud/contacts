@@ -1,3 +1,20 @@
+## [7.2.6](https://github.com/nextcloud/contacts/compare/v7.2.5...v7.2.6) (2025-08-26)
+
+
+### Bug Fixes
+
+* generate rev depending on card version ([77e223d](https://github.com/nextcloud/contacts/commit/77e223dbb4ed4c24e86a85639eaca48251a494c0))
+* **l10n:** Update translations from Transifex ([521ca4a](https://github.com/nextcloud/contacts/commit/521ca4ab5c599abdacdd904bb22cc63b60c23299))
+* **l10n:** Update translations from Transifex ([06fafec](https://github.com/nextcloud/contacts/commit/06fafecb7fdf2b648c438f9b35a1efc70f93d3f2))
+* **l10n:** Update translations from Transifex ([806fae4](https://github.com/nextcloud/contacts/commit/806fae40ac7faf678e4b44db32990c7b7d3f7446))
+* **l10n:** Update translations from Transifex ([539fbe5](https://github.com/nextcloud/contacts/commit/539fbe5fb3586e8494571cea508ebf89c26fd830))
+* **l10n:** Update translations from Transifex ([224899d](https://github.com/nextcloud/contacts/commit/224899d72922de454e3ebfc48c28a7dcdec00091))
+* **l10n:** Update translations from Transifex ([bd20d8d](https://github.com/nextcloud/contacts/commit/bd20d8dec8a86eac2bf6a56801969c1137bc66b8))
+* **l10n:** Update translations from Transifex ([d42fae7](https://github.com/nextcloud/contacts/commit/d42fae73a78817e5c4496adf7c643de8d3223538))
+* routing based on base64 encoding ([2f98a4c](https://github.com/nextcloud/contacts/commit/2f98a4c7056bc8e6f28a7ff064df8fd1b4844646))
+
+
+
 ## [7.2.5](https://github.com/nextcloud/contacts/compare/v7.2.4...v7.2.5) (2025-08-18)
 
 
