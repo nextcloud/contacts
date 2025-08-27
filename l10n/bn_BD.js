@@ -48,9 +48,6 @@ OC.L10N.register(
     "Fax" : "ফ্যাক্স",
     "Pager" : "পেজার",
     "Voice" : "কন্ঠ",
-    "Unknown" : "অজানা",
-    "Password protection" : "Password protection",
-    "Description" : "বিবরণ",
-    "Settings" : "Settings"
+    "Unknown" : "অজানা"
 },
 "nplurals=2; plural=(n != 1);");

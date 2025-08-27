@@ -30,9 +30,6 @@ OC.L10N.register(
     "Work" : "ធ្វើការ",
     "Other" : "ផ្សេងៗ",
     "Address" : "អាសយដ្ឋាន",
-    "Birthday" : "ថ្ងៃ​កំណើត",
-    "Password protection" : "Password protection",
-    "Description" : "ការ​អធិប្បាយ",
-    "Settings" : "Settings"
+    "Birthday" : "ថ្ងៃ​កំណើត"
 },
 "nplurals=1; plural=0;");

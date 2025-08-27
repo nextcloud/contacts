@@ -58,11 +58,11 @@ OC.L10N.register(
     "Display name" : "Nombre para mostrar",
     "Last modified" : "Última modificación",
     "Sort by {sorting}" : "Ordenar por {sorting}",
+    "An error happened during the config change" : "Ha ocurrido un error durante el cambio de la configuración",
     "Unique password …" : "Contraseña única ...",
     "Save" : "Guardar",
     "Change unique password" : "Cambiar la contraseña única",
     "Failed to save password. Please try again later." : "No se ha podido guardar la contraseña. Por favor, inténtelo de nuevo más tarde.",
-    "An error happened during the config change" : "Ha ocurrido un error durante el cambio de la configuración",
     "Cancel" : "Cancelar",
     "Request to join" : "Solicitud de unión",
     "You are not a member of {circle}" : "No eres miembro de {circle}",
@@ -213,13 +213,6 @@ OC.L10N.register(
     "Time zone" : "Zona horaria",
     "Spoken languages" : "Idiomas hablados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se ha podido leer","{failed} contactos no se han podido leer","{failed} contactos no se han podido leer"],
-    "Unable to delete contact" : "No se ha podido eliminar el contacto",
-    "Password protection" : "Protección con contraseña",
-    "An error happened during description sync" : "Ha ocurrido un error al sincronizar la descripción",
-    "An error happened during name sync" : "Ha ocurrido un error al sincronizar el nombre",
-    "Description" : "Descripción",
-    "Settings" : "Settings",
-    "Add members" : "Añadir miembros",
-    "Visibility" : "Visibilidad"
+    "Unable to delete contact" : "No se ha podido eliminar el contacto"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

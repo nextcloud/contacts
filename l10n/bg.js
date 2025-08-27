@@ -67,11 +67,11 @@ OC.L10N.register(
     "Sort by {sorting}" : "Сортиране по {sorting}",
     "Manages" : "Управление на",
     "Oversees" : "Наблюдава се",
+    "An error happened during the config change" : "Възникна грешка по време на промяна на конфигурацията",
     "Unique password …" : "Уникална парола …",
     "Save" : "Запиши",
     "Change unique password" : "Промяна на уникална парола",
     "Failed to save password. Please try again later." : "Неуспешно запазване на паролата. Моля, опитайте отново по-късно.",
-    "An error happened during the config change" : "Възникна грешка по време на промяна на конфигурацията",
     "Edit" : "Редактирай",
     "Cancel" : "Отказ",
     "Request to join" : "Заявка за присъединяване",
@@ -241,13 +241,6 @@ OC.L10N.register(
     "Time zone" : "Часова зона",
     "Spoken languages" : "Говорими езици",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контактите не бяха прочетени","{failed} контактите не бяха прочетени"],
-    "Unable to delete contact" : "Контактът не може да се изтрие",
-    "Password protection" : "Защита с парола",
-    "An error happened during description sync" : "Възникна грешка по време на синхронизиране на описанието",
-    "An error happened during name sync" : "Възникна грешка по време на синхронизиране на името",
-    "Description" : "Описание",
-    "Settings" : "Settings",
-    "Add members" : "Добавяне на членове",
-    "Visibility" : "Видимост"
+    "Unable to delete contact" : "Контактът не може да се изтрие"
 },
 "nplurals=2; plural=(n != 1);");

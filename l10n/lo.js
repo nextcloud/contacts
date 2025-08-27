@@ -30,7 +30,6 @@ OC.L10N.register(
     "Address" : "ທີ່ຢູ່",
     "City" : "ເມືອງ",
     "Country" : "ປະເທດ",
-    "Unknown" : "ບໍ່ຮູ້",
-    "Password protection" : "ລະຫັດປ້ອງກັນ"
+    "Unknown" : "ບໍ່ຮູ້"
 },
 "nplurals=1; plural=0;");

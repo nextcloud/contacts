@@ -44,9 +44,6 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Voice",
     "Relative" : "Relativ",
-    "Unknown" : "Onbekannt",
-    "Password protection" : "Password protection",
-    "Description" : "Beschreiwung",
-    "Settings" : "Settings"
+    "Unknown" : "Onbekannt"
 },
 "nplurals=2; plural=(n != 1);");

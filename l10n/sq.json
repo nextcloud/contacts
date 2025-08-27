@@ -109,8 +109,6 @@
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "Unknown" : "I/E panjohur",
-    "Password protection" : "Password protection",
-    "Description" : "Përshkrim"
+    "Unknown" : "I/E panjohur"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

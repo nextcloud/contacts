@@ -78,11 +78,11 @@
     "Sort by {sorting}" : "Sorteren op {sorting}",
     "Manages" : "Leid",
     "Oversees" : "Ziet toe op",
+    "An error happened during the config change" : "Er trad een fout op bij de config-wijziging",
     "Unique password …" : "Uniek wachtwoord ...",
     "Save" : "Opslaan",
     "Change unique password" : "Wijzig uniek wachtwoord",
     "Failed to save password. Please try again later." : "Niet gelukt om het wachtwoord op te slaan. Probeer aub later nogmaals.",
-    "An error happened during the config change" : "Er trad een fout op bij de config-wijziging",
     "Team name" : "Team naam",
     "Edit" : "Bewerken",
     "Cancel" : "Annuleren",
@@ -265,18 +265,6 @@
     "Time zone" : "Tijdzone",
     "Spoken languages" : "Gesproken talen",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contactpersoon werd niet ingelezen","{failed} contactpersonen werden niet ingelezen"],
-    "Unable to delete contact" : "Kan contactpersoon niet verwijderen",
-    "Password protection" : "Wachtwoordbeveiliging",
-    "An error happened during description sync" : "Er trad een fout op bij synch beschrijvingen",
-    "An error happened during name sync" : "Er trad een fout op bij sync naam",
-    "Team owned by {owner}" : "Team eigenaar van {owner}",
-    "Team settings" : "Team instelllingen",
-    "Description" : "Beschrijving",
-    "Settings" : "Instellingen",
-    "Actions" : "Acties",
-    "Team members" : "Teamleden",
-    "Add members" : "Toevoegen leden",
-    "Visibility" : "Zichtbaarheid",
-    "Team membership" : "Team lidmaatschap"
+    "Unable to delete contact" : "Kan contactpersoon niet verwijderen"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

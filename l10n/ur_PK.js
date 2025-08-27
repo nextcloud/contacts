@@ -21,9 +21,6 @@ OC.L10N.register(
     "Location" : "مقام",
     "Work" : "کام",
     "Other" : "دیگر",
-    "Birthday" : "سالگرہ",
-    "Password protection" : "Password protection",
-    "Description" : "تصریح",
-    "Settings" : "Settings"
+    "Birthday" : "سالگرہ"
 },
 "nplurals=2; plural=(n != 1);");

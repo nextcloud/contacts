@@ -66,11 +66,11 @@
     "Display name" : "표시 이름",
     "Last modified" : "수정한 날짜",
     "Sort by {sorting}" : "{sorting}(으)로 정렬",
+    "An error happened during the config change" : "변경 사항을 설정하는 중 오류 발생",
     "Unique password …" : "독자 암호 ...",
     "Save" : "저장",
     "Change unique password" : "독자 암호 변경",
     "Failed to save password. Please try again later." : "암호를 저장하는 데 실패했습니다. 잠시 후 다시 시도하십시오.",
-    "An error happened during the config change" : "변경 사항을 설정하는 중 오류 발생",
     "Edit" : "편집",
     "Cancel" : "취소",
     "Request to join" : "등록 요청",
@@ -243,13 +243,6 @@
     "Time zone" : "시간대",
     "Spoken languages" : "사용 언어",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["연락처 {failed}개를 읽을 수 없음"],
-    "Unable to delete contact" : "연락처를 삭제할 수 없음",
-    "Password protection" : "암호 보호",
-    "An error happened during description sync" : "설명 동기화 중 오류 발생",
-    "An error happened during name sync" : "이름 동기화 중 오류 발생",
-    "Description" : "설명",
-    "Settings" : "Settings",
-    "Add members" : "회원 추가",
-    "Visibility" : "표시 여부"
+    "Unable to delete contact" : "연락처를 삭제할 수 없음"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

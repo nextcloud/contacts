@@ -69,11 +69,11 @@
     "Sort by {sorting}" : "Ταξινόμηση κατά {sorting}",
     "Manages" : "Διαχειρίζεται",
     "Oversees" : "Επιβλέπει",
+    "An error happened during the config change" : "Παρουσιάστηκε σφάλμα κατά την αλλαγή της ρύθμισης",
     "Unique password …" : "Μοναδικός κωδικός πρόσβασης…",
     "Save" : "Αποθήκευση",
     "Change unique password" : "Αλλαγή μοναδικού κωδικού πρόσβασης",
     "Failed to save password. Please try again later." : "Αποτυχία αποθήκευσης κωδικού πρόσβασης. Παρακαλώ προσπαθήστε ξανά αργότερα.",
-    "An error happened during the config change" : "Παρουσιάστηκε σφάλμα κατά την αλλαγή της ρύθμισης",
     "Edit" : "Επεξεργασία",
     "Cancel" : "Ακύρωση",
     "Request to join" : "Αίτημα συμμετοχής",
@@ -248,14 +248,6 @@
     "Time zone" : "Ζώνη ώρας",
     "Spoken languages" : "Ομιλούσες γλώσσες",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Αποτυχία ανάγνωσης {failed} επαφής","Αποτυχία ανάγνωσης {failed} επαφών"],
-    "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής",
-    "Password protection" : "Προστασία συνθηματικού",
-    "An error happened during description sync" : "Παρουσιάστηκε σφάλμα κατά τον συγχρονισμό της περιγραφής",
-    "An error happened during name sync" : "Παρουσιάστηκε σφάλμα κατά τον συγχρονισμό του ονόματος",
-    "Description" : "Περιγραφή",
-    "Settings" : "Settings",
-    "Actions" : "Ενέργειες",
-    "Add members" : "Προσθήκη μελών",
-    "Visibility" : "Ορατότητα"
+    "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

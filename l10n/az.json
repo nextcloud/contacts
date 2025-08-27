@@ -40,9 +40,6 @@
     "Phone" : "Telefon",
     "Mobile" : "Mobil",
     "Fax" : "Faks",
-    "Pager" : "Peycer",
-    "Password protection" : "Password protection",
-    "Description" : "Açıqlanma",
-    "Settings" : "Settings"
+    "Pager" : "Peycer"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

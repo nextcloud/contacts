@@ -88,9 +88,6 @@ OC.L10N.register(
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
     "Male" : "მამრობითი",
-    "Unknown" : "ამოუცნობი",
-    "Password protection" : "პაროლით თავდაცვა",
-    "Description" : "აღწერილობა",
-    "Settings" : "Settings"
+    "Unknown" : "ამოუცნობი"
 },
 "nplurals=2; plural=(n!=1);");

@@ -71,11 +71,11 @@ OC.L10N.register(
     "Sort by {sorting}" : "چینش بر اساس {sorting}",
     "Manages" : "مدیریت می‌کند",
     "Oversees" : "نظارت می‌کند",
+    "An error happened during the config change" : "An error happened during the config change",
     "Unique password …" : "گذرواژهٔ یکتا …",
     "Save" : "ذخیره",
     "Change unique password" : "تغییر گذرواژهٔ یکتا",
     "Failed to save password. Please try again later." : "رمز عبور ذخیره نشد. لطفاً بعداً دوباره امتحان کنید.",
-    "An error happened during the config change" : "An error happened during the config change",
     "Edit" : "ویرایش",
     "Cancel" : "لغو",
     "Request to join" : "Request to join",
@@ -246,13 +246,6 @@ OC.L10N.register(
     "Time zone" : "منطقهٔ زمانی",
     "Spoken languages" : "زبان‌های صحبت",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contact failed to be read","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Unable to delete contact",
-    "Password protection" : "محافظت از گذرواژه",
-    "An error happened during description sync" : "An error happened during description sync",
-    "An error happened during name sync" : "An error happened during name sync",
-    "Description" : "شرح",
-    "Settings" : "Settings",
-    "Add members" : "افزودن عضو",
-    "Visibility" : "نمایانی"
+    "Unable to delete contact" : "Unable to delete contact"
 },
 "nplurals=2; plural=(n > 1);");

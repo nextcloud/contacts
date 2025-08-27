@@ -34,9 +34,6 @@ OC.L10N.register(
     "Mobile" : "Mudah alih",
     "Fax" : "Fax",
     "Pager" : "Alat Kelui",
-    "Voice" : "Suara",
-    "Password protection" : "Password protection",
-    "Description" : "Keterangan",
-    "Settings" : "Settings"
+    "Voice" : "Suara"
 },
 "nplurals=1; plural=0;");
