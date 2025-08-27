@@ -321,20 +321,6 @@
     "An error has occurred in team(s). Check the console for more details." : "V Týmy došlo k chybě. Další podrobnosti naleznete v konzoli.",
     "Unable to create team {circleName}" : "Nedaří se vytvořit tým {circleName}",
     "Unable to delete team {circleId}" : "Nedaří se smazat tým {circleId}",
-    "Unable to delete contact" : "Nedaří se smazat kontakt",
-    "Password protection" : "Ochrana heslem",
-    "An error happened during description sync" : "V průběhu synchronizace popisu došlo k chybě",
-    "An error happened during name sync" : "V průběhu synchronizace jména došlo k chybě",
-    "Team owned by {owner}" : "Tým vlastněný {owner}",
-    "Team settings" : "Nastavení týmu",
-    "Description" : "Popis",
-    "Team resources" : "Prostředky týmu",
-    "Anything shared with this team will show up here" : "Cokoli nasdíleného tomuto týmu se zobrazí zde",
-    "Settings" : "Nastavení",
-    "Actions" : "Akce",
-    "Team members" : "Členové týmu",
-    "Add members" : "Přidat členy",
-    "Visibility" : "Viditelnost",
-    "Team membership" : "Členství v týmech"
+    "Unable to delete contact" : "Nedaří se smazat kontakt"
 },"pluralForm" :"nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;"
 }

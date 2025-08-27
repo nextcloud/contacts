@@ -61,9 +61,6 @@ OC.L10N.register(
     "Voice" : "Voce",
     "Social network" : "Medios Social",
     "Relative" : "Relative",
-    "Unknown" : "Incognite",
-    "Password protection" : "Password protection",
-    "Description" : "Description",
-    "Settings" : "Settings"
+    "Unknown" : "Incognite"
 },
 "nplurals=2; plural=(n != 1);");

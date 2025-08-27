@@ -243,12 +243,6 @@ OC.L10N.register(
     "Time zone" : "Zona horaria",
     "Spoken languages" : "Idiomas hablados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se pudo leer","{failed} contactos no se pudieron leer","{failed} contactos no se pudieron leer"],
-    "Unable to delete contact" : "No se pudo eliminar el contacto",
-    "Password protection" : "Protección con contraseña",
-    "An error happened during description sync" : "Ocurrió un error durante la sincronización de la descripción",
-    "An error happened during name sync" : "Ocurrió un error durante la sincronización del nombre",
-    "Description" : "Descripción",
-    "Add members" : "Añadir miembros",
-    "Visibility" : "Visibilidad"
+    "Unable to delete contact" : "No se pudo eliminar el contacto"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

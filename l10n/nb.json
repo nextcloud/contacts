@@ -298,20 +298,6 @@
     "An error has occurred in team(s). Check the console for more details." : "Det har oppstått en feil i laget(ene). Sjekk konsollen hvis du vil ha mer informasjon.",
     "Unable to create team {circleName}" : "Ikke i stand til å opprette lag {circleName}",
     "Unable to delete team {circleId}" : "Ikke i stand til å slette lag {circleId}",
-    "Unable to delete contact" : "Ikke i stand til å slette kontakt",
-    "Password protection" : "Passordbeskyttelse",
-    "An error happened during description sync" : "Det oppstod en feil under synkronisering av beskrivelse",
-    "An error happened during name sync" : "Det oppstod en feil under synkronisering av navn",
-    "Team owned by {owner}" : "Lag eid av {owner}",
-    "Team settings" : "Innstillinger for lag",
-    "Description" : "Beskrivelse",
-    "Team resources" : "Lagressurser",
-    "Anything shared with this team will show up here" : "Alt som deles med dette laget vil dukke opp her",
-    "Settings" : "Settings",
-    "Actions" : "Handlinger",
-    "Team members" : "Lagmedlemmer",
-    "Add members" : "Legg til medlemmer",
-    "Visibility" : "Synlighet",
-    "Team membership" : "Lagmedlemskap"
+    "Unable to delete contact" : "Ikke i stand til å slette kontakt"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

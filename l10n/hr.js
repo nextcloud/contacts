@@ -208,13 +208,6 @@ OC.L10N.register(
     "Time zone" : "Vremenska zona",
     "Spoken languages" : "Poznati jezici",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt nije pročitan","{failed} kontakata nije pročitano","{failed} kontakata nije pročitano"],
-    "Unable to delete contact" : "Nije moguće izbrisati kontakt",
-    "Password protection" : "Zaštita zaporkom",
-    "An error happened during description sync" : "Došlo je do pogreške tijekom sinkronizacije opisa",
-    "An error happened during name sync" : "Došlo je do pogreške tijekom sinkronizacije naziva",
-    "Description" : "Opis",
-    "Settings" : "Settings",
-    "Add members" : "Dodaj članove",
-    "Visibility" : "Vidljivost"
+    "Unable to delete contact" : "Nije moguće izbrisati kontakt"
 },
 "nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;");

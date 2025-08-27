@@ -318,20 +318,6 @@
     "An error has occurred in team(s). Check the console for more details." : "Ocorreu um erro na(s) equipe(s). Verifique o console para mais detalhes.",
     "Unable to create team {circleName}" : "Não foi possível criar a equipe {circleName}",
     "Unable to delete team {circleId}" : "Não foi possível excluir a equipe {circleId}",
-    "Unable to delete contact" : "Não foi possível excluir o contato",
-    "Password protection" : "Proteção por senha",
-    "An error happened during description sync" : "Ocorreu um erro durante a sincronização da descrição",
-    "An error happened during name sync" : "Ocorreu um erro durante a sincronização do nome",
-    "Team owned by {owner}" : "Equipe de propriedade de {owner}",
-    "Team settings" : "Configurações da equipe",
-    "Description" : "Descrição",
-    "Team resources" : "Recursos da equipe",
-    "Anything shared with this team will show up here" : "Qualquer coisa compartilhada com esta equipe aparecerá aqui",
-    "Settings" : "Configurações",
-    "Actions" : "Ações",
-    "Team members" : "Membros da equipe",
-    "Add members" : "Adicionar membros",
-    "Visibility" : "Visibilidade",
-    "Team membership" : "Adesões de equipes"
+    "Unable to delete contact" : "Não foi possível excluir o contato"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

@@ -327,20 +327,6 @@
     "An error has occurred in team(s). Check the console for more details." : "Takımlarda bir sorun çıktı. Ayrıntılı bilgi almak için konsola bakabilirsiniz.",
     "Unable to create team {circleName}" : "{circleName} takımı eklenemedi",
     "Unable to delete team {circleId}" : "{circleName} takımı silinemedi",
-    "Unable to delete contact" : "Kişi silinemedi",
-    "Password protection" : "Parola koruması",
-    "An error happened during description sync" : "Açıklama eşitlenirken bir sorun çıktı",
-    "An error happened during name sync" : "Ad eşitlenirken bir sorun çıktı",
-    "Team owned by {owner}" : "Sahibi {owner} olan takımlar ",
-    "Team settings" : "Takım ayarları",
-    "Description" : "Açıklama",
-    "Team resources" : "Takım kaynakları",
-    "Anything shared with this team will show up here" : "Bu takım ile paylaşılmış her şey burada görüntülenir",
-    "Settings" : "Ayarlar",
-    "Actions" : "İşlemler",
-    "Team members" : "Takım üyeleri",
-    "Add members" : "Üye ekle",
-    "Visibility" : "Görünürlük",
-    "Team membership" : "Takım üyeliği"
+    "Unable to delete contact" : "Kişi silinemedi"
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

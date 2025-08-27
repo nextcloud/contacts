@@ -282,14 +282,6 @@ OC.L10N.register(
     "Time zone" : "Временска зона",
     "Spoken languages" : "Говорни јазици",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} еден контакт неможе да се прочита","{failed} контакти неможат да се прочитат"],
-    "Unable to delete contact" : "Неможе да се избрише контакт",
-    "Password protection" : "Заштитено со лозинка",
-    "An error happened during description sync" : "Настана грешка при обидот за синхронизација на описот",
-    "An error happened during name sync" : "Настана грешка при обидот за синхронизација на името",
-    "Description" : "Опис",
-    "Settings" : "Settings",
-    "Actions" : "Акции",
-    "Add members" : "Додади членови",
-    "Visibility" : "Видливост"
+    "Unable to delete contact" : "Неможе да се избрише контакт"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

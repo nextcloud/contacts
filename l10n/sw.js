@@ -320,20 +320,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Hitilafu imetokea katika vipengele. Angalia mixer kwa maelezo zaidii",
     "Unable to create team {circleName}" : "Haiwezi kutengeneza timu {circleName}",
     "Unable to delete team {circleId}" : "Haiwezi kufuta timu {circleId}",
-    "Unable to delete contact" : "Haiwezi kufuta mawasiliano",
-    "Password protection" : "Ulinzi wa nenosiri",
-    "An error happened during description sync" : "Hitilafu imetokea wakati wa usawazishaji wa maelezo ya kina",
-    "An error happened during name sync" : "Hitilafu imetokea wakati wa usawazishaji wa jina",
-    "Team owned by {owner}" : "Timu inamilikiwa na {owner}",
-    "Team settings" : "Mipangilio ya timu",
-    "Description" : "Maelezo",
-    "Team resources" : "Rasilimali za timu",
-    "Anything shared with this team will show up here" : "Kila kitu kilichoshirikishwa na timu hii kitaonekana hapa",
-    "Settings" : "Mipangilio",
-    "Actions" : "Vitendo",
-    "Team members" : "Wanachama wa timu",
-    "Add members" : "Ongeza wanachama",
-    "Visibility" : "Mwonekano",
-    "Team membership" : "Uanachama wa timu"
+    "Unable to delete contact" : "Haiwezi kufuta mawasiliano"
 },
 "nplurals=2; plural=(n != 1);");

@@ -267,18 +267,6 @@ OC.L10N.register(
     "Time zone" : "Tijdzone",
     "Spoken languages" : "Gesproken talen",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contactpersoon werd niet ingelezen","{failed} contactpersonen werden niet ingelezen"],
-    "Unable to delete contact" : "Kan contactpersoon niet verwijderen",
-    "Password protection" : "Wachtwoordbeveiliging",
-    "An error happened during description sync" : "Er trad een fout op bij synch beschrijvingen",
-    "An error happened during name sync" : "Er trad een fout op bij sync naam",
-    "Team owned by {owner}" : "Team eigenaar van {owner}",
-    "Team settings" : "Team instelllingen",
-    "Description" : "Beschrijving",
-    "Settings" : "Instellingen",
-    "Actions" : "Acties",
-    "Team members" : "Teamleden",
-    "Add members" : "Toevoegen leden",
-    "Visibility" : "Zichtbaarheid",
-    "Team membership" : "Team lidmaatschap"
+    "Unable to delete contact" : "Kan contactpersoon niet verwijderen"
 },
 "nplurals=2; plural=(n != 1);");

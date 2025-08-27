@@ -146,16 +146,6 @@
     "Spoken languages" : "Llingües falaes",
     "Unable to create team {circleName}" : "Nun ye posible crear l'equipu «{circleName}»",
     "Unable to delete team {circleId}" : "Nun ye posible crear l'equipu «{circled}»",
-    "Unable to delete contact" : "Nun ye posible desaniciar el contautu",
-    "An error happened during description sync" : "Prodúxose un error demientres la sincronización de la descripción",
-    "An error happened during name sync" : "Prodúxose un error demientres la sincronización del nome",
-    "Team settings" : "Configuración del equipu",
-    "Description" : "Descripción",
-    "Team resources" : "Recursos del equipu",
-    "Settings" : "Configuración",
-    "Actions" : "Aiciones",
-    "Team members" : "Miemrbos del equipu",
-    "Add members" : "Amestar miembros",
-    "Visibility" : "Visibilidá"
+    "Unable to delete contact" : "Nun ye posible desaniciar el contautu"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

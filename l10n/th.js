@@ -104,9 +104,6 @@ OC.L10N.register(
     "Voice" : "เสียงพูด",
     "Social network" : "เครือข่ายโซเชียล",
     "Relative" : "สัมพัทธ์",
-    "Unknown" : "ไม่ทราบ",
-    "Password protection" : "ป้องกันด้วยรหัสผ่าน",
-    "Description" : "รายละเอียด",
-    "Settings" : "Settings"
+    "Unknown" : "ไม่ทราบ"
 },
 "nplurals=1; plural=0;");

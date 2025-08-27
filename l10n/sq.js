@@ -111,8 +111,6 @@ OC.L10N.register(
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "Unknown" : "I/E panjohur",
-    "Password protection" : "Password protection",
-    "Description" : "Përshkrim"
+    "Unknown" : "I/E panjohur"
 },
 "nplurals=2; plural=(n != 1);");

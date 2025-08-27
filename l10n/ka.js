@@ -250,13 +250,6 @@ OC.L10N.register(
     "Time zone" : "Time zone",
     "Spoken languages" : "Spoken languages",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contact failed to be read","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Unable to delete contact",
-    "Password protection" : "Password protection",
-    "An error happened during description sync" : "An error happened during description sync",
-    "An error happened during name sync" : "An error happened during name sync",
-    "Description" : "Description",
-    "Settings" : "Settings",
-    "Add members" : "Add members",
-    "Visibility" : "Visibility"
+    "Unable to delete contact" : "Unable to delete contact"
 },
 "nplurals=2; plural=(n!=1);");

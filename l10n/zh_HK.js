@@ -329,20 +329,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "團隊中出現錯誤。請檢查主控台以取得更多詳細資訊。",
     "Unable to create team {circleName}" : "無法建立團隊 {circleName}",
     "Unable to delete team {circleId}" : "無法刪除團隊 {circleId}",
-    "Unable to delete contact" : "無法刪除聯絡人",
-    "Password protection" : "密碼保護",
-    "An error happened during description sync" : "描述同步期間發生錯誤",
-    "An error happened during name sync" : "名稱同步期間發生錯誤",
-    "Team owned by {owner}" : "{owner} 擁有的團隊",
-    "Team settings" : "團隊設定",
-    "Description" : "描述",
-    "Team resources" : "團隊資源",
-    "Anything shared with this team will show up here" : "與此團隊分享的任何東西都會顯示在此處",
-    "Settings" : "Settings",
-    "Actions" : "操作",
-    "Team members" : "團隊成員",
-    "Add members" : "添加成員",
-    "Visibility" : "可見性",
-    "Team membership" : "團隊成員身分"
+    "Unable to delete contact" : "無法刪除聯絡人"
 },
 "nplurals=1; plural=0;");

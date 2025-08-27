@@ -269,18 +269,6 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Nepavyko perskaityti {failed} adresato","Nepavyko perskaityti {failed} adresatų","Nepavyko perskaityti {failed} adresatų","Nepavyko perskaityti {failed} adresato"],
     "Unable to create team {circleName}" : "Nepavyko sukurti komandos {circleName}",
     "Unable to delete team {circleId}" : "Nepavyko ištrinti komandos {circleId}",
-    "Unable to delete contact" : "Nepavyko ištrinti adresato",
-    "Password protection" : "Apsauga slaptažodžiu",
-    "An error happened during description sync" : "Sinchronizuojant aprašą įvyko klaida",
-    "An error happened during name sync" : "Sinchronizuojant pavadinimą įvyko klaida",
-    "Team owned by {owner}" : "Komanda, kurios savininkas yra {owner}",
-    "Team settings" : "Komandos nustatymai",
-    "Description" : "Aprašas",
-    "Team resources" : "Komandos ištekliai",
-    "Settings" : "Nustatymai",
-    "Actions" : "Veiksmai",
-    "Team members" : "Komandos nariai",
-    "Add members" : "Pridėti narius",
-    "Visibility" : "Matomumas"
+    "Unable to delete contact" : "Nepavyko ištrinti adresato"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

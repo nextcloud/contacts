@@ -92,9 +92,6 @@ OC.L10N.register(
     "Gender" : "Género",
     "Female" : "Femenino",
     "Male" : "Masculino",
-    "Unknown" : "Desconocido",
-    "Password protection" : "Protección con contraseña",
-    "Description" : "Descripción",
-    "Settings" : "Settings"
+    "Unknown" : "Desconocido"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

@@ -310,20 +310,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Villa hefur átt sér stað í teymi/teymum. Skoðaðu stjórnskjáinn til að sjá nánari upplýsingar.",
     "Unable to create team {circleName}" : "Tókst ekki að búa til teymið {circleName}",
     "Unable to delete team {circleId}" : "Tókst ekki að eyða teyminu {circleId}",
-    "Unable to delete contact" : "Tókst ekki að eyða tengilið",
-    "Password protection" : "Verndun með lykilorði",
-    "An error happened during description sync" : "Villa kom upp við samstillingu á lýsingu",
-    "An error happened during name sync" : "Villa kom upp við samstillingu á nafni",
-    "Team owned by {owner}" : "Teymi í eigu notandans {owner}",
-    "Team settings" : "Stillingar teymis",
-    "Description" : "Lýsing",
-    "Team resources" : "Tilföng teymis",
-    "Anything shared with this team will show up here" : "Allt sem deilt er með þessu teymi mun birtast hér",
-    "Settings" : "Settings",
-    "Actions" : "Aðgerðir",
-    "Team members" : "Meðlimir teymisins",
-    "Add members" : "Bæta við meðlimum",
-    "Visibility" : "Sýnileiki",
-    "Team membership" : "Meðlimir í teyminu"
+    "Unable to delete contact" : "Tókst ekki að eyða tengilið"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

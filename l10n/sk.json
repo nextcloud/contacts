@@ -309,20 +309,6 @@
     "An error has occurred in team(s). Check the console for more details." : "V aplikácii Tím sa vyskytla chyba. Pre viac informácií skontrolujte konzolu.",
     "Unable to create team {circleName}" : "Nie je možné vytvoriť tím {circleName}",
     "Unable to delete team {circleId}" : "Nie je možné zmazať tím {circleId}",
-    "Unable to delete contact" : "Nepodarilo sa zmazať kontakt.",
-    "Password protection" : "Ochrana heslom",
-    "An error happened during description sync" : "Pri synchronizovaní popisu sa stala chyba",
-    "An error happened during name sync" : "Pri synchronizovaní názvu sa stala chyba",
-    "Team owned by {owner}" : "Tím vlastnený {owner}",
-    "Team settings" : "Nastavenia tímu",
-    "Description" : "Popis",
-    "Team resources" : "Tímové zdroje",
-    "Anything shared with this team will show up here" : "Všetko nazdieľané tomuto tímu sa zobrazí tu",
-    "Settings" : "Settings",
-    "Actions" : "Akcie",
-    "Team members" : "Členovia tímu",
-    "Add members" : "Pridať členov",
-    "Visibility" : "Viditeľnosť",
-    "Team membership" : "Členstvo v tíme"
+    "Unable to delete contact" : "Nepodarilo sa zmazať kontakt."
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);"
 }

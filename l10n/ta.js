@@ -39,8 +39,6 @@ OC.L10N.register(
     "Fax" : "தொலை நகல்",
     "Pager" : "தொலை அழைப்பான்",
     "Voice" : "குரல்",
-    "Unknown" : "தெரியாத",
-    "Password protection" : "Password protection",
-    "Description" : "விவரிப்பு"
+    "Unknown" : "தெரியாத"
 },
 "nplurals=2; plural=(n != 1);");

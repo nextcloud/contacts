@@ -241,13 +241,6 @@ OC.L10N.register(
     "Time zone" : "Часова зона",
     "Spoken languages" : "Говорими езици",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контактите не бяха прочетени","{failed} контактите не бяха прочетени"],
-    "Unable to delete contact" : "Контактът не може да се изтрие",
-    "Password protection" : "Защита с парола",
-    "An error happened during description sync" : "Възникна грешка по време на синхронизиране на описанието",
-    "An error happened during name sync" : "Възникна грешка по време на синхронизиране на името",
-    "Description" : "Описание",
-    "Settings" : "Settings",
-    "Add members" : "Добавяне на членове",
-    "Visibility" : "Видимост"
+    "Unable to delete contact" : "Контактът не може да се изтрие"
 },
 "nplurals=2; plural=(n != 1);");

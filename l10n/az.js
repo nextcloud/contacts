@@ -42,9 +42,6 @@ OC.L10N.register(
     "Phone" : "Telefon",
     "Mobile" : "Mobil",
     "Fax" : "Faks",
-    "Pager" : "Peycer",
-    "Password protection" : "Password protection",
-    "Description" : "Açıqlanma",
-    "Settings" : "Settings"
+    "Pager" : "Peycer"
 },
 "nplurals=2; plural=(n != 1);");

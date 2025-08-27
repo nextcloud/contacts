@@ -318,20 +318,6 @@
     "An error has occurred in team(s). Check the console for more details." : "Произошла ошибка в команде(ах). Проверьте консоль для получения более подробной информации.",
     "Unable to create team {circleName}" : "Невозможно создать команду {circleName}",
     "Unable to delete team {circleId}" : "Невозможно удалить команду {circleId}",
-    "Unable to delete contact" : "Невозможно удалить контакт",
-    "Password protection" : "Защита паролем",
-    "An error happened during description sync" : "Не удалось синхронизировать описание круга",
-    "An error happened during name sync" : "Не удалось синхронизировать название круга",
-    "Team owned by {owner}" : "Команда принадлежит {owner}",
-    "Team settings" : "Настройки команды",
-    "Description" : "Описание",
-    "Team resources" : "Ресурсы команды",
-    "Anything shared with this team will show up here" : "Все, чем вы поделились с этой командой, будет отображаться здесь",
-    "Settings" : "Настройки",
-    "Actions" : "Действия",
-    "Team members" : "Члены команды",
-    "Add members" : "Добавить участников",
-    "Visibility" : "Видимость",
-    "Team membership" : "Членство в команде"
+    "Unable to delete contact" : "Невозможно удалить контакт"
 },"pluralForm" :"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);"
 }

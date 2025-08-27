@@ -310,20 +310,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "チームでエラーが発生しました。詳細については、コンソールを確認してください。",
     "Unable to create team {circleName}" : "チーム{circleName}を作成できません",
     "Unable to delete team {circleId}" : "チーム {circleId} を削除できません",
-    "Unable to delete contact" : "連絡先を削除できません。",
-    "Password protection" : "パスワード保護",
-    "An error happened during description sync" : "説明の同期中にエラーが発生しました",
-    "An error happened during name sync" : "名前の同期中にエラーが発生しました",
-    "Team owned by {owner}" : "{owner}が所有するチーム",
-    "Team settings" : "チーム設定",
-    "Description" : "詳細",
-    "Team resources" : "チームのリソース",
-    "Anything shared with this team will show up here" : "このチームと共有されているものはすべてここに表示されます",
-    "Settings" : "Settings",
-    "Actions" : "アクション",
-    "Team members" : "チームのメンバー",
-    "Add members" : "メンバーの追加",
-    "Visibility" : "公開レベル",
-    "Team membership" : "チームのメンバー"
+    "Unable to delete contact" : "連絡先を削除できません。"
 },
 "nplurals=1; plural=0;");

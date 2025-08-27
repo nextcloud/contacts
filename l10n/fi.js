@@ -284,20 +284,6 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} yhteystietoa ei voitu lukea","{failed} yhteystietoa ei voitu lukea"],
     "Unable to create team {circleName}" : "Tiimiä {circleName} ei voitu luoda",
     "Unable to delete team {circleId}" : "Tiimiä {circleId} ei voitu poistaa",
-    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa",
-    "Password protection" : "Salasanasuojaus",
-    "An error happened during description sync" : "Kuvaussynkronoinnin aikana tapahtui virhe",
-    "An error happened during name sync" : "Nimisynkronoinnin aikana tapahtui virhe",
-    "Team owned by {owner}" : "Tiimin omistaa {owner}",
-    "Team settings" : "Tiimin asetukset",
-    "Description" : "Kuvaus",
-    "Team resources" : "Tiimiresurssit",
-    "Anything shared with this team will show up here" : "Kaikki tämän tiimin kanssa jaettu näkyy täällä",
-    "Settings" : "Settings",
-    "Actions" : "Toiminnot",
-    "Team members" : "Tiimijäsenet",
-    "Add members" : "Lisää jäseniä",
-    "Visibility" : "Näkyvyys",
-    "Team membership" : "Tiimijäsenyys"
+    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa"
 },
 "nplurals=2; plural=(n != 1);");

@@ -289,19 +289,6 @@ OC.L10N.register(
     "Spoken languages" : "Govorjeni jezik",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} stika ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati"],
     "An error has occurred in team(s). Check the console for more details." : "Prišlo je do napake v nekaterih skupinah. Preverite konzolo za več podrobnosti.",
-    "Unable to delete contact" : "Ni mogoče izbrisati stika",
-    "Password protection" : "Zaščita z geslom",
-    "An error happened during description sync" : "Prišlo je do napake med shranjevanjem opisa",
-    "An error happened during name sync" : "Prišlo je do napake med shranjevanjem imena",
-    "Team settings" : "Nastavitve skupine",
-    "Description" : "Opis",
-    "Team resources" : "Viri skupine",
-    "Anything shared with this team will show up here" : "Predmeti v souporabo s to skupino bodo prikazani na tem mestu",
-    "Settings" : "Nastavitve",
-    "Actions" : "Dejanja",
-    "Team members" : "Člani skupine",
-    "Add members" : "Dodaj člane",
-    "Visibility" : "Vidnost",
-    "Team membership" : "Članstvo skupine"
+    "Unable to delete contact" : "Ni mogoče izbrisati stika"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");

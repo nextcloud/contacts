@@ -317,20 +317,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Ett fel har uppstått i team(s). Kontrollera konsolen för mer information.",
     "Unable to create team {circleName}" : "Kunde inte skapa team {circleName}",
     "Unable to delete team {circleId}" : "Kan inte ta bort team {circleId}",
-    "Unable to delete contact" : "Kunde inte radera kontakten",
-    "Password protection" : "Lösenordsskydd",
-    "An error happened during description sync" : "Ett fel inträffade vid avstämning av beskrivningstext",
-    "An error happened during name sync" : "Ett fel inträffade vid avstämning av namn",
-    "Team owned by {owner}" : "Team ägs av {owner}",
-    "Team settings" : "Teaminställningar",
-    "Description" : "Beskrivning",
-    "Team resources" : "Teamresurser",
-    "Anything shared with this team will show up here" : "Allt som delas med detta team kommer att visas här",
-    "Settings" : "Inställingar",
-    "Actions" : "Åtgärder",
-    "Team members" : "Teammedlemmar",
-    "Add members" : "Lägg till medlemmar",
-    "Visibility" : "Synlighet",
-    "Team membership" : "Teammedlemskap"
+    "Unable to delete contact" : "Kunde inte radera kontakten"
 },
 "nplurals=2; plural=(n != 1);");

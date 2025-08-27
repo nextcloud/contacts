@@ -327,20 +327,6 @@
     "An error has occurred in team(s). Check the console for more details." : "Tiimi(de)s tekkis viga. Lisateavet palun vaata konsoolilt.",
     "Unable to create team {circleName}" : "„{circleName}“ tiimi loomine pole võimalik",
     "Unable to delete team {circleId}" : "„{circleId}“ tiimi kustutamine pole võimalik",
-    "Unable to delete contact" : "Ei õnnestu kustutada kontakti",
-    "Password protection" : "Kaitstud salasõnaga",
-    "An error happened during description sync" : "Kirjelduse sünkroniseerimisel tekkis viga",
-    "An error happened during name sync" : "Nime sünkroniseerimisel tekkis viga",
-    "Team owned by {owner}" : "Tiimi omanik on {owner}",
-    "Team settings" : "Tiimi seadistused",
-    "Description" : "Kirjeldus",
-    "Team resources" : "Tiimi ressursid",
-    "Anything shared with this team will show up here" : "Kõik selle tiimiga jagatu saab olema nähtav siin",
-    "Settings" : "Seadistused",
-    "Actions" : "Tegevused",
-    "Team members" : "Tiimi liikmed",
-    "Add members" : "Lisa liikmeid",
-    "Visibility" : "Nähtavus",
-    "Team membership" : "Tiimi liikmelisus"
+    "Unable to delete contact" : "Ei õnnestu kustutada kontakti"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

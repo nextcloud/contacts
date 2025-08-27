@@ -293,20 +293,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "گۇرۇپپا (لار) دا خاتالىق كۆرۈلدى. تېخىمۇ كۆپ تەپسىلاتلارنى كونترول سۇپىسىدىن تەكشۈرۈڭ.",
     "Unable to create team {circleName}" : "گۇرۇپپا {circleName} create قۇرالمىدى",
     "Unable to delete team {circleId}" : "گۇرۇپپا {circleId} ئۆچۈرگىلى بولمىدى",
-    "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى",
-    "Password protection" : "Password protection",
-    "An error happened during description sync" : "چۈشەندۈرۈش ماسقەدەملەش جەريانىدا خاتالىق كۆرۈلدى",
-    "An error happened during name sync" : "ئىسىم ماسقەدەملەش جەريانىدا خاتالىق كۆرۈلدى",
-    "Team owned by {owner}" : "Team ئىگىدارچىلىق قىلغان كوماندا}",
-    "Team settings" : "گۇرۇپپا تەڭشىكى",
-    "Description" : "چۈشەندۈرۈش",
-    "Team resources" : "گۇرۇپپا بايلىقى",
-    "Anything shared with this team will show up here" : "بۇ گۇرۇپپا بىلەن ئورتاقلاشقان ھەر قانداق نەرسە بۇ يەردە كۆرۈنىدۇ",
-    "Settings" : "Settings",
-    "Actions" : "ھەرىكەتلەر",
-    "Team members" : "گۇرۇپپا ئەزالىرى",
-    "Add members" : "ئەزا قوشۇڭ",
-    "Visibility" : "كۆرۈنۈشچانلىقى",
-    "Team membership" : "گۇرۇپپا ئەزالىقى"
+    "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى"
 },
 "nplurals=2; plural=(n != 1);");

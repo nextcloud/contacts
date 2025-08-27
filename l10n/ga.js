@@ -329,20 +329,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Tharla earráid san fhoireann(í). Seiceáil an consól le haghaidh tuilleadh sonraí.",
     "Unable to create team {circleName}" : "Ní féidir foireann {circleName} a chruthú",
     "Unable to delete team {circleId}" : "Ní féidir foireann {circleId} a scriosadh",
-    "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh",
-    "Password protection" : "Cosaint pasfhocal",
-    "An error happened during description sync" : "Tharla earráid le linn sioncronaithe tuairisce",
-    "An error happened during name sync" : "Tharla earráid le linn sioncronaithe ainm",
-    "Team owned by {owner}" : "Foireann le {owner}",
-    "Team settings" : "Socruithe foirne",
-    "Description" : "Cur síos",
-    "Team resources" : "Acmhainní foirne",
-    "Anything shared with this team will show up here" : "Taispeánfar aon rud a roinntear leis an bhfoireann seo anseo",
-    "Settings" : "Socruithe",
-    "Actions" : "Gníomhartha",
-    "Team members" : "Baill foirne",
-    "Add members" : "Cuir baill leis",
-    "Visibility" : "Infheictheacht",
-    "Team membership" : "Ballraíocht foirne"
+    "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh"
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");

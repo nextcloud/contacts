@@ -329,20 +329,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Es ist ein Fehler in Team(s) aufgetreten. Bitte die Konsole für weitere Einzelheiten prüfen.",
     "Unable to create team {circleName}" : "Fehler beim Erstellen des Teams {circleName}",
     "Unable to delete team {circleId}" : "Fehler beim Löschen des Teams {circleId}",
-    "Unable to delete contact" : "Kontakt konnte nicht gelöscht werden",
-    "Password protection" : "Passwortschutz",
-    "An error happened during description sync" : "Es ist ein Fehler bei der Synchronisation der Beschreibung aufgetreten",
-    "An error happened during name sync" : "Es ist ein Fehler bei der Namenssynchronisation aufgetreten",
-    "Team owned by {owner}" : "Team im Besitz von {owner}",
-    "Team settings" : "Team Einstellungen",
-    "Description" : "Beschreibung",
-    "Team resources" : "Team-Ressourcen",
-    "Anything shared with this team will show up here" : "Alles, was mit diesem Team geteilt wird, wird hier angezeigt.",
-    "Settings" : "Einstellungen",
-    "Actions" : "Aktionen",
-    "Team members" : "Teammitglieder",
-    "Add members" : "Mitglieder hinzufügen",
-    "Visibility" : "Sichtbarkeit",
-    "Team membership" : "Teammitgliedschaft"
+    "Unable to delete contact" : "Kontakt konnte nicht gelöscht werden"
 },
 "nplurals=2; plural=(n != 1);");

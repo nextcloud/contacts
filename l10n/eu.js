@@ -304,20 +304,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Errore bat gertatu da lantaldeetan. Begiratu kontsola xehetasun gehiago lortzeko.",
     "Unable to create team {circleName}" : "Ezin izan da {circleName} lantaldea sortu",
     "Unable to delete team {circleId}" : "Ezin izan da {circleId} lantaldea ezabatu",
-    "Unable to delete contact" : "Ezin izan da kontaktua ezabatu",
-    "Password protection" : "Pasahitz bidezko babesa",
-    "An error happened during description sync" : "Errore bat gertatu da deskribapena sinkronizatzean",
-    "An error happened during name sync" : "Errore bat gertatu da izena sinkronizatzean",
-    "Team owned by {owner}" : "Lantalde honen jabea {owner} da",
-    "Team settings" : "Lantaldearen ezarpenak",
-    "Description" : "Deskribapena",
-    "Team resources" : "Lantaldeko baliabideak",
-    "Anything shared with this team will show up here" : "Lantalde honekin partekatutako guztia hemen agertuko da",
-    "Settings" : "Settings",
-    "Actions" : "Ekintzak",
-    "Team members" : "Lantaldeko kideak",
-    "Add members" : "Gehitu kideak",
-    "Visibility" : "Ikusgarritasuna",
-    "Team membership" : "Lantaldearen kidetza"
+    "Unable to delete contact" : "Ezin izan da kontaktua ezabatu"
 },
 "nplurals=2; plural=(n != 1);");

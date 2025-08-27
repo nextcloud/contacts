@@ -310,20 +310,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "En fejl er opstået i team(s). Kontroller konsollen for flere detaljer.",
     "Unable to create team {circleName}" : "Kan ikke oprette team {circleName}",
     "Unable to delete team {circleId}" : "Kan ikke slette team {circleId}",
-    "Unable to delete contact" : "Kan ikke slette kontakten",
-    "Password protection" : "Adgangskodebeskyttelse",
-    "An error happened during description sync" : "Der opstod en fejl under beskrivelsessynkronisering",
-    "An error happened during name sync" : "Der opstod en fejl under navnesynkronisering",
-    "Team owned by {owner}" : "Team ejet af {owner}",
-    "Team settings" : "Team indstillinger",
-    "Description" : "Beskrivelse",
-    "Team resources" : "Teamressourcer",
-    "Anything shared with this team will show up here" : "Alt der er delt med dette team vil vises her",
-    "Settings" : "Indstillinger",
-    "Actions" : "Handlinger",
-    "Team members" : "Teammedlemmer",
-    "Add members" : "Tilføj medlemmer",
-    "Visibility" : "Synlighed",
-    "Team membership" : "Team medlemskab"
+    "Unable to delete contact" : "Kan ikke slette kontakten"
 },
 "nplurals=2; plural=(n != 1);");

@@ -215,13 +215,6 @@ OC.L10N.register(
     "Time zone" : "Zona orària",
     "Spoken languages" : "Limbas faeddadas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["no at fatu a lèghere {failed} ","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu",
-    "Password protection" : "Bardiadura de sa crae",
-    "An error happened during description sync" : "B'at àpidu un'errore in sa sincronizatzione de sa descritzione",
-    "An error happened during name sync" : "B'at àpidu un'errore in sa sincronizatzione de su nùmene",
-    "Description" : "Descritzione",
-    "Settings" : "Cunfiguratzione",
-    "Add members" : "Agiunghe partetzipante",
-    "Visibility" : "Visibilidade"
+    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu"
 },
 "nplurals=2; plural=(n != 1);");

@@ -248,14 +248,6 @@
     "Time zone" : "Ζώνη ώρας",
     "Spoken languages" : "Ομιλούσες γλώσσες",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Αποτυχία ανάγνωσης {failed} επαφής","Αποτυχία ανάγνωσης {failed} επαφών"],
-    "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής",
-    "Password protection" : "Προστασία συνθηματικού",
-    "An error happened during description sync" : "Παρουσιάστηκε σφάλμα κατά τον συγχρονισμό της περιγραφής",
-    "An error happened during name sync" : "Παρουσιάστηκε σφάλμα κατά τον συγχρονισμό του ονόματος",
-    "Description" : "Περιγραφή",
-    "Settings" : "Settings",
-    "Actions" : "Ενέργειες",
-    "Add members" : "Προσθήκη μελών",
-    "Visibility" : "Ορατότητα"
+    "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
