@@ -82,7 +82,7 @@ import { NcAppContentList as AppContentList, NcButton, NcDialog, NcNoteCard, NcM
 import ContactsListItem from './ContactsList/ContactsListItem.vue'
 import { VList } from 'virtua/vue'
 import IconSelect from 'vue-material-design-icons/CloseThick.vue'
-import IconDelete from 'vue-material-design-icons/DeleteOutline.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconSetMerge from 'vue-material-design-icons/SetMerge.vue'
 import Merging from './ContactsList/Merging.vue'
 

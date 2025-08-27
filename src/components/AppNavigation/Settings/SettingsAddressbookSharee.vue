@@ -38,7 +38,7 @@
 
 <script>
 import { showError } from '@nextcloud/dialogs'
-import IconDelete from 'vue-material-design-icons/DeleteOutline.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconGroup from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconUser from 'vue-material-design-icons/AccountOutline.vue'
 import {

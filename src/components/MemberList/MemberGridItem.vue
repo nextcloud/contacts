@@ -83,7 +83,7 @@ import { NcAvatar, NcActions, NcActionButton, NcActionSeparator, NcActionText, N
 import IconAccountGroupOutline from 'vue-material-design-icons/AccountGroupOutline.vue'
 import IconCheckOutline from 'vue-material-design-icons/CheckOutline.vue'
 import IconCloseOutline from 'vue-material-design-icons/CloseOutline.vue'
-import IconDeleteOutline from 'vue-material-design-icons/DeleteOutline.vue'
+import IconDeleteOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconExitToApp from 'vue-material-design-icons/ExitToApp.vue'
 import IconShieldCheckOutline from 'vue-material-design-icons/ShieldCheckOutline.vue'
 

@@ -90,7 +90,7 @@ import {
 } from '@nextcloud/vue'
 import IconCheck from 'vue-material-design-icons/Check.vue'
 import IconClose from 'vue-material-design-icons/Close.vue'
-import IconDelete from 'vue-material-design-icons/DeleteOutline.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconExitToApp from 'vue-material-design-icons/ExitToApp.vue'
 import IconShieldCheck from 'vue-material-design-icons/ShieldCheckOutline.vue'
 

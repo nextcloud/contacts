@@ -109,7 +109,7 @@ import {
 } from '@nextcloud/vue'
 import IconDownload from 'vue-material-design-icons/DownloadOutline.vue'
 import IconCloudDownload from 'vue-material-design-icons/CloudDownloadOutline.vue'
-import IconDelete from 'vue-material-design-icons/DeleteOutline.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconUpload from 'vue-material-design-icons/UploadOutline.vue'
 import IconFolder from 'vue-material-design-icons/FolderOutline.vue'
 import IconImage from 'vue-material-design-icons/ImageOutline.vue'
