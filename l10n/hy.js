@@ -30,9 +30,6 @@ OC.L10N.register(
     "Country" : "Երկիր",
     "Birthday" : "Ծննդյան օր",
     "Relative" : "Հարաբերական",
-    "Unknown" : "Անհայտ",
-    "Password protection" : "Password protection",
-    "Description" : "Նկարագրություն",
-    "Settings" : "Settings"
+    "Unknown" : "Անհայտ"
 },
 "nplurals=2; plural=(n != 1);");

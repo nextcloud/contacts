@@ -62,10 +62,6 @@ OC.L10N.register(
     "Voice" : "Votz",
     "Relative" : "Relatiu",
     "Unknown" : "Desconegut",
-    "Spoken languages" : "Lengas parladas",
-    "Password protection" : "Proteccion per senhal",
-    "Description" : "Descripcion",
-    "Settings" : "Settings",
-    "Visibility" : "Visibilitat"
+    "Spoken languages" : "Lengas parladas"
 },
 "nplurals=2; plural=(n > 1);");

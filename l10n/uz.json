@@ -17,7 +17,6 @@
     "Admin" : "Admin",
     "Users" : "Users",
     "Notes" : "Notes",
-    "Unknown" : "Unknown",
-    "Settings" : "Sozlamalar"
+    "Unknown" : "Unknown"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

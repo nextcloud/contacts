@@ -71,11 +71,11 @@ OC.L10N.register(
     "Sort by {sorting}" : "Sort by {sorting}",
     "Manages" : "Manages",
     "Oversees" : "Oversees",
+    "An error happened during the config change" : "An error happened during the config change",
     "Unique password …" : "Unique password …",
     "Save" : "Save",
     "Change unique password" : "Change unique password",
     "Failed to save password. Please try again later." : "Failed to save password. Please try again later.",
-    "An error happened during the config change" : "An error happened during the config change",
     "Edit" : "Edit",
     "Cancel" : "Cancel",
     "Request to join" : "Request to join",
@@ -250,13 +250,6 @@ OC.L10N.register(
     "Time zone" : "Time zone",
     "Spoken languages" : "Spoken languages",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contact failed to be read","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Unable to delete contact",
-    "Password protection" : "Password protection",
-    "An error happened during description sync" : "An error happened during description sync",
-    "An error happened during name sync" : "An error happened during name sync",
-    "Description" : "Description",
-    "Settings" : "Settings",
-    "Add members" : "Add members",
-    "Visibility" : "Visibility"
+    "Unable to delete contact" : "Unable to delete contact"
 },
 "nplurals=2; plural=(n!=1);");

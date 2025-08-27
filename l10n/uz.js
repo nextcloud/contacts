@@ -19,7 +19,6 @@ OC.L10N.register(
     "Admin" : "Admin",
     "Users" : "Users",
     "Notes" : "Notes",
-    "Unknown" : "Unknown",
-    "Settings" : "Sozlamalar"
+    "Unknown" : "Unknown"
 },
 "nplurals=1; plural=0;");

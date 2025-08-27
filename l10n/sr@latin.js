@@ -29,9 +29,6 @@ OC.L10N.register(
     "Work" : "Posao",
     "Other" : "Ostali",
     "Address" : "Adresa",
-    "Unknown" : "Nepoznato",
-    "Password protection" : "Password protection",
-    "Description" : "Opis",
-    "Settings" : "Postavke"
+    "Unknown" : "Nepoznato"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

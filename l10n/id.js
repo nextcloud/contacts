@@ -67,9 +67,6 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Suara",
     "Social network" : "Media sosial",
-    "Unknown" : "Tidak diketahui",
-    "Password protection" : "Password protection",
-    "Description" : "Deskrisi",
-    "Settings" : "Settings"
+    "Unknown" : "Tidak diketahui"
 },
 "nplurals=1; plural=0;");
