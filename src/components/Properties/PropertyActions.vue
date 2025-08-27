@@ -23,7 +23,7 @@ import {
 	NcActions,
 	NcActionButton,
 } from '@nextcloud/vue'
-import IconDelete from 'vue-material-design-icons/DeleteOutline.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 
 export default {
 	name: 'PropertyActions',

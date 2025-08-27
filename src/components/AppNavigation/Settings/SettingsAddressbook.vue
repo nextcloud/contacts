@@ -123,7 +123,7 @@ import {
 } from '@nextcloud/vue'
 import IconDownload from 'vue-material-design-icons/DownloadOutline.vue'
 import IconRename from 'vue-material-design-icons/PencilOutline.vue'
-import IconDelete from 'vue-material-design-icons/DeleteOutline.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconContactPlus from 'vue-material-design-icons/AccountMultiplePlusOutline.vue'
 import IconShare from 'vue-material-design-icons/ShareVariantOutline.vue'
 import ShareAddressBook from './SettingsAddressbookShare.vue'
