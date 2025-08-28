@@ -274,6 +274,12 @@ export default {
 			return this.$store.getters.getCircles
 		},
 		contacts() {
+			const contacts = this.$store.getters.getContacts
+			if (contacts.undefined) {
+				contacts[this.selectedContact] = contacts.undefined
+				delete contacts.undefined
+			}
+
 			return this.$store.getters.getContacts
 		},
 		groups() {
@@ -285,7 +291,7 @@ export default {
 
 		// list all the contacts that doesn't have a group
 		ungroupedContacts() {
-			return this.sortedContacts.filter(contact => this.contacts[contact.key].groups && this.contacts[contact.key].groups.length === 0)
+			return this.sortedContacts.filter(contact => this.contacts[contact.key]?.groups && this.contacts[contact.key]?.groups?.length === 0)
 		},
 
 		// check if any contact has manager, if not then is no need for organization chart menu
