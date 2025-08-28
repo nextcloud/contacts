@@ -6,7 +6,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { generateUrl } from '@nextcloud/router'
 
-import { ROUTE_CIRCLE, ROUTE_CHART } from '../models/constants.ts'
+import { ROUTE_CIRCLE, ROUTE_CHART, ROUTE_USER_GROUP } from '../models/constants.ts'
 import Contacts from '../views/Contacts.vue'
 
 // if index.php is in the url AND we got this far, then it's working:
@@ -51,6 +51,11 @@ export default createRouter({
 				{
 					path: ':selectedGroup/:selectedContact',
 					name: 'contact',
+					component: Contacts,
+				},
+				{
+					path: `${ROUTE_USER_GROUP}/:selectedUserGroup`,
+					name: 'user_group',
 					component: Contacts,
 				},
 			],
