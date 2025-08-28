@@ -163,6 +163,7 @@ OC.L10N.register(
     "Remove {type}" : "Excluir {type}",
     "Add to group" : "Adicionar ao grupo",
     "Search {types}" : "Pesquisar {types}",
+    "Add guest" : "Adicionar convidado",
     "Search for people to add" : "Pesquisar pessoas para adicionar",
     "No results" : "Sem resultados",
     "Add {type}" : "Adicionar {type}",
