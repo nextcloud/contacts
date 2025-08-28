@@ -95,10 +95,6 @@ import RouterMixin from '../mixins/RouterMixin.js'
 export default {
 	name: 'ContactsList',
 
-	mixins: [
-		RouterMixin,
-	],
-
 	components: {
 		AppContentList,
 		NcNoteCard,
@@ -113,6 +109,10 @@ export default {
 		NcLoadingIcon,
 		ContactsListItem,
 	},
+
+	mixins: [
+		RouterMixin,
+	],
 
 	props: {
 		list: {
@@ -160,12 +160,16 @@ export default {
 
 	computed: {
 		filteredList() {
-			const contactsList = this.list
+			let contactsList = this.list
 				.filter(item => this.matchSearch(this.contacts[item.key]))
 				.map(item => this.contacts[item.key])
 
+			contactsList = contactsList.filter(item => item !== undefined)
+
 			contactsList.forEach((contact, index) => {
-				contact.isMultiSelected = this.multiSelectedContacts.has(index)
+				if (contact !== undefined) {
+					contact.isMultiSelected = this.multiSelectedContacts.has(index)
+				}
 			})
 
 			return contactsList
