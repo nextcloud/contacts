@@ -36,7 +36,7 @@ export const LIST_SIZE = 60
 // Dynamic default groups
 export const GROUP_ALL_CONTACTS: DefaultGroup = t('contacts', 'All contacts')
 export const GROUP_NO_GROUP_CONTACTS: DefaultGroup = t('contacts', 'Not grouped')
-export const GROUP_RECENTLY_CONTACTED: DefaultGroup = t('contactsinteraction', 'Recently contacted')
+export const GROUP_RECENTLY_CONTACTED: DefaultGroup = t('contacts', 'Recently contacted')
 
 // Organization default chart for all contacts
 export const CHART_ALL_CONTACTS: DefaultChart = t('contacts', 'Organization chart')
