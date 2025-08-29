@@ -88,7 +88,7 @@ import IconAdd from 'vue-material-design-icons/Plus.vue'
 import IconDownload from 'vue-material-design-icons/DownloadOutline.vue'
 import IconEmail from 'vue-material-design-icons/EmailOutline.vue'
 import IconRename from 'vue-material-design-icons/FolderEditOutline.vue'
-import IconDelete from 'vue-material-design-icons/DeleteOutline.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import { showError } from '@nextcloud/dialogs'
 
 export default {
