@@ -92,6 +92,7 @@ import AccountGroupOutline from 'vue-material-design-icons/AccountGroupOutline.v
 
 import Circle from '../../models/circle.ts'
 import CircleActionsMixin from '../../mixins/CircleActionsMixin.js'
+import UserGroup from '../../models/userGroup.ts'
 
 export default {
 	name: 'CircleNavigationItem',
@@ -116,7 +117,7 @@ export default {
 
 	props: {
 		circle: {
-			type: Circle,
+			type: [Circle, UserGroup],
 			required: true,
 		},
 	},

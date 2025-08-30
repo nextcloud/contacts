@@ -14,6 +14,9 @@ export default {
 		selectedCircle() {
 			return this.$route.params.selectedCircle
 		},
+		selectedUserGroup() {
+			return this.$route.params.selectedUserGroup
+		},
 		selectedChart() {
 			return this.$route.params.selectedChart
 		},

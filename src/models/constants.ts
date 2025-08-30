@@ -27,6 +27,7 @@ export const CHART_ALL_CONTACTS: DefaultChart = t('contacts', 'Organization char
 // Circle route, see vue-router conf
 export const ROUTE_CIRCLE = 'circle'
 export const ROUTE_CHART = 'chart'
+export const ROUTE_USER_GROUP = 'user_group'
 
 // Contact settings
 export const CONTACTS_SETTINGS: DefaultGroup = t('contacts', 'Contacts settings')
