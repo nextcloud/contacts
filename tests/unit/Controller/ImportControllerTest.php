@@ -74,33 +74,8 @@ class ImportControllerTest extends TestCase {
 		string $mimeType,
 		string $extension,
 	): void {
-		$vCard1 = <<<EOF
-BEGIN:VCARD
-VERSION:3.0
-PRODID:-//Sabre//Sabre VObject 4.5.6//EN
-N:Gump;Forrest;;Mr.;
-FN:Forrest Gump
-ORG:Sheri Nom Co.
-TITLE:Ultimate Warrior
-EMAIL:sherinnom@example.com
-REV;VALUE=DATE:20250822
-X-QQ:21588891
-UID:5efe2430-92e5-4ea2-9a7c-a05aed152ec92
-END:VCARD
-EOF;
-		$vCard2 = <<<EOF
-BEGIN:VCARD
-VERSION:3.0
-PRODID:-//Sabre//Sabre VObject 4.5.6//EN
-N:Bar;Foo;;;
-FN:Foo Bar
-TITLE:Testing Data
-EMAIL:foobar@baz.com
-REV;VALUE=DATE:20250822
-X-CUSTOM:foobarbaz
-UID:8befe502-6cff-4435-a6a5-96ab7cc8df8b
-END:VCARD
-EOF;
+		$vCard1 = file_get_contents(__DIR__ . '/../../assets/forrest-gump.vcf');
+		$vCard2 = file_get_contents(__DIR__ . '/../../assets/without-uid.vcf');
 		$vCards = "$vCard1\n\n$vCard2";
 
 		$user = $this->createMock(IUser::class);
@@ -145,6 +120,16 @@ EOF;
 			->with('user1')
 			->willReturn($userFolder);
 
+		$addressBook1->expects(self::never())
+			->method('search');
+		$addressBook2->expects(self::once())
+			->method('search')
+			->with('5efe2430-92e5-4ea2-9a7c-a05aed152ec92', ['UID'], [
+				'limit' => 1,
+				'wildcard' => false,
+			])
+			->willReturn([]);
+
 		$this->secureRandom->expects(self::exactly(2))
 			->method('generate')
 			->with(32, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789')
@@ -165,6 +150,69 @@ EOF;
 				'RANDOM-UID.vcf',
 				'RANDOM-UID.vcf',
 			],
+			'skipped' => 0,
+			'errors' => [],
+		], $actual->getData());
+		$this->assertEquals(200, $actual->getStatus());
+	}
+
+	public function testImportWithExisting(): void {
+		$vCard = file_get_contents(__DIR__ . '/../../assets/forrest-gump.vcf');
+
+		$user = $this->createMock(IUser::class);
+		$user->method('getUID')
+			->willReturn('user1');
+		$this->userSession->expects(self::once())
+			->method('getUser')
+			->willReturn($user);
+
+		$addressBook1 = $this->createMock(ICreateContactFromString::class);
+		$addressBook1->method('getKey')
+			->willReturn('10');
+		$addressBook1->method('getUri')
+			->willReturn('contacts');
+		$this->contactsManager->expects(self::once())
+			->method('getUserAddressBooks')
+			->willReturn([
+				$addressBook1,
+			]);
+
+		$file = $this->createMock(File::class);
+		$file->method('getMimeType')
+			->willReturn('text/vcard');
+		$file->method('getExtension')
+			->willReturn('vcf');
+		$file->expects(self::once())
+			->method('getContent')
+			->willReturn($vCard);
+		$userFolder = $this->createMock(Folder::class);
+		$userFolder->expects(self::once())
+			->method('getFirstNodeById')
+			->with(42)
+			->willReturn($file);
+		$this->rootFolder->expects(self::once())
+			->method('getUserFolder')
+			->with('user1')
+			->willReturn($userFolder);
+
+		$addressBook1->expects(self::once())
+			->method('search')
+			->with('5efe2430-92e5-4ea2-9a7c-a05aed152ec92', ['UID'], [
+				'limit' => 1,
+				'wildcard' => false,
+			])
+			->willReturn([
+				['UID' => '5efe2430-92e5-4ea2-9a7c-a05aed152ec92'],
+			]);
+
+		$addressBook1->expects(self::never())
+			->method('createFromString');
+
+		$actual = $this->controller->import(42, '10');
+		$this->assertEqualsCanonicalizing([
+			'importedContactUris' => [],
+			'skipped' => 1,
+			'errors' => [],
 		], $actual->getData());
 		$this->assertEquals(200, $actual->getStatus());
 	}
