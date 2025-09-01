@@ -20,7 +20,6 @@ use OCP\Files\File;
 use OCP\Files\IRootFolder;
 use OCP\ICreateContactFromString;
 use OCP\IRequest;
-use OCP\IUserSession;
 use OCP\Security\ISecureRandom;
 
 class ImportController extends OCSController {
@@ -28,7 +27,7 @@ class ImportController extends OCSController {
 
 	public function __construct(
 		IRequest $request,
-		private readonly IUserSession $userSession,
+		private readonly ?string $userId,
 		private readonly IContactsManager $contactsManager,
 		private readonly IRootFolder $rootFolder,
 		private readonly ISecureRandom $random,
@@ -64,8 +63,7 @@ class ImportController extends OCSController {
 			);
 		}
 
-		$user = $this->userSession->getUser();
-		if ($user === null) {
+		if ($this->userId === null) {
 			return new DataResponse('Not logged in', Http::STATUS_UNAUTHORIZED);
 		}
 
@@ -74,7 +72,7 @@ class ImportController extends OCSController {
 			return new DataResponse('Address book not found', Http::STATUS_NOT_FOUND);
 		}
 
-		$userRoot = $this->rootFolder->getUserFolder($user->getUID());
+		$userRoot = $this->rootFolder->getUserFolder($this->userId);
 		$file = $userRoot->getFirstNodeById($fileId);
 		if ($file === null) {
 			return new DataResponse('File not found', Http::STATUS_NOT_FOUND);

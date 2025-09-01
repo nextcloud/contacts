@@ -17,16 +17,15 @@ use OCP\Files\IRootFolder;
 use OCP\IAddressBook;
 use OCP\ICreateContactFromString;
 use OCP\IRequest;
-use OCP\IUser;
-use OCP\IUserSession;
 use OCP\Security\ISecureRandom;
 use PHPUnit\Framework\MockObject\MockObject;
 
 class ImportControllerTest extends TestCase {
+	private const USER_ID = 'user1';
+
 	private ImportController $controller;
 
 	private IRequest&MockObject $request;
-	private IUserSession&MockObject $userSession;
 	private IContactsManager&MockObject $contactsManager;
 	private IRootFolder&MockObject $rootFolder;
 	private ISecureRandom&MockObject $secureRandom;
@@ -35,14 +34,13 @@ class ImportControllerTest extends TestCase {
 		parent::setUp();
 
 		$this->request = $this->createMock(IRequest::class);
-		$this->userSession = $this->createMock(IUserSession::class);
 		$this->contactsManager = $this->createMock(IContactsManager::class);
 		$this->rootFolder = $this->createMock(IRootFolder::class);
 		$this->secureRandom = $this->createMock(ISecureRandom::class);
 
 		$this->controller = new ImportController(
 			$this->request,
-			$this->userSession,
+			self::USER_ID,
 			$this->contactsManager,
 			$this->rootFolder,
 			$this->secureRandom,
@@ -78,13 +76,6 @@ class ImportControllerTest extends TestCase {
 		$vCard2 = file_get_contents(__DIR__ . '/../../assets/without-uid.vcf');
 		$vCards = "$vCard1\n\n$vCard2";
 
-		$user = $this->createMock(IUser::class);
-		$user->method('getUID')
-			->willReturn('user1');
-		$this->userSession->expects(self::once())
-			->method('getUser')
-			->willReturn($user);
-
 		$addressBook1 = $this->createMock(ICreateContactFromString::class);
 		$addressBook1->method('getKey')
 			->willReturn('10');
@@ -117,7 +108,7 @@ class ImportControllerTest extends TestCase {
 			->willReturn($file);
 		$this->rootFolder->expects(self::once())
 			->method('getUserFolder')
-			->with('user1')
+			->with(self::USER_ID)
 			->willReturn($userFolder);
 
 		$addressBook1->expects(self::never())
@@ -159,13 +150,6 @@ class ImportControllerTest extends TestCase {
 	public function testImportWithExisting(): void {
 		$vCard = file_get_contents(__DIR__ . '/../../assets/forrest-gump.vcf');
 
-		$user = $this->createMock(IUser::class);
-		$user->method('getUID')
-			->willReturn('user1');
-		$this->userSession->expects(self::once())
-			->method('getUser')
-			->willReturn($user);
-
 		$addressBook1 = $this->createMock(ICreateContactFromString::class);
 		$addressBook1->method('getKey')
 			->willReturn('10');
@@ -192,7 +176,7 @@ class ImportControllerTest extends TestCase {
 			->willReturn($file);
 		$this->rootFolder->expects(self::once())
 			->method('getUserFolder')
-			->with('user1')
+			->with(self::USER_ID)
 			->willReturn($userFolder);
 
 		$addressBook1->expects(self::once())
@@ -218,11 +202,15 @@ class ImportControllerTest extends TestCase {
 	}
 
 	public function testImportWithoutUserSession(): void {
-		$this->userSession->expects(self::once())
-			->method('getUser')
-			->willReturn(null);
+		$controller = new ImportController(
+			$this->request,
+			null,
+			$this->contactsManager,
+			$this->rootFolder,
+			$this->secureRandom,
+		);
 
-		$actual = $this->controller->import(42, '11');
+		$actual = $controller->import(42, '11');
 		$this->assertEquals(401, $actual->getStatus());
 		$this->assertEquals('Not logged in', $actual->getData());
 	}
@@ -289,13 +277,6 @@ class ImportControllerTest extends TestCase {
 		?string $uri,
 		array $addressBooks,
 	): void {
-		$user = $this->createMock(IUser::class);
-		$user->method('getUID')
-			->willReturn('user1');
-		$this->userSession->expects(self::once())
-			->method('getUser')
-			->willReturn($user);
-
 		$this->contactsManager->expects(self::once())
 			->method('getUserAddressBooks')
 			->willReturn($addressBooks);
@@ -306,13 +287,6 @@ class ImportControllerTest extends TestCase {
 	}
 
 	public function testImportWithFileNotFound(): void {
-		$user = $this->createMock(IUser::class);
-		$user->method('getUID')
-			->willReturn('user1');
-		$this->userSession->expects(self::once())
-			->method('getUser')
-			->willReturn($user);
-
 		$addressBook1 = $this->createMock(ICreateContactFromString::class);
 		$addressBook1->method('getKey')
 			->willReturn('10');
@@ -326,7 +300,6 @@ class ImportControllerTest extends TestCase {
 				$addressBook2,
 			]);
 
-		$file = $this->createMock(File::class);
 		$userFolder = $this->createMock(Folder::class);
 		$userFolder->expects(self::once())
 			->method('getFirstNodeById')
@@ -334,7 +307,7 @@ class ImportControllerTest extends TestCase {
 			->willReturn(null);
 		$this->rootFolder->expects(self::once())
 			->method('getUserFolder')
-			->with('user1')
+			->with(self::USER_ID)
 			->willReturn($userFolder);
 
 		$addressBook1->expects(self::never())
@@ -348,13 +321,6 @@ class ImportControllerTest extends TestCase {
 	}
 
 	public function testImportWithNotAFile(): void {
-		$user = $this->createMock(IUser::class);
-		$user->method('getUID')
-			->willReturn('user1');
-		$this->userSession->expects(self::once())
-			->method('getUser')
-			->willReturn($user);
-
 		$addressBook1 = $this->createMock(ICreateContactFromString::class);
 		$addressBook1->method('getKey')
 			->willReturn('10');
@@ -376,7 +342,7 @@ class ImportControllerTest extends TestCase {
 			->willReturn($file);
 		$this->rootFolder->expects(self::once())
 			->method('getUserFolder')
-			->with('user1')
+			->with(self::USER_ID)
 			->willReturn($userFolder);
 
 		$addressBook1->expects(self::never())
@@ -390,13 +356,6 @@ class ImportControllerTest extends TestCase {
 	}
 
 	public function testImportWithInvalidFileType(): void {
-		$user = $this->createMock(IUser::class);
-		$user->method('getUID')
-			->willReturn('user1');
-		$this->userSession->expects(self::once())
-			->method('getUser')
-			->willReturn($user);
-
 		$addressBook1 = $this->createMock(ICreateContactFromString::class);
 		$addressBook1->method('getKey')
 			->willReturn('10');
@@ -422,7 +381,7 @@ class ImportControllerTest extends TestCase {
 			->willReturn($file);
 		$this->rootFolder->expects(self::once())
 			->method('getUserFolder')
-			->with('user1')
+			->with(self::USER_ID)
 			->willReturn($userFolder);
 
 		$addressBook1->expects(self::never())
