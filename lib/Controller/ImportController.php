@@ -43,9 +43,9 @@ class ImportController extends OCSController {
 	 * @param int $fileId The id of a vCard file to import
 	 * @param ?string $addressBookKey The key or id of the address book - {@see \OCP\IAddressBook::getKey}
 	 * @param ?string $addressBookUri The uri of the address book - {@see \OCP\IAddressBook::getUri}
-	 * @return DataResponse
+	 * @return DataResponse A list of imported contact URIs, amount of skipped contacts and a list of errors.
 	 *
-	 * 200: Contacts were imported successfully
+	 * 200: Contacts were imported (check the response data for stats)
 	 * 400: Not a vCard file or given both $addressBookKey and $addressBookUri
 	 * 401: User is not logged in
 	 * 404: File or address book was not found
@@ -88,8 +88,10 @@ class ImportController extends OCSController {
 			return new DataResponse('Not a vCard file', Http::STATUS_BAD_REQUEST);
 		}
 
+		/** @var array{uid: ?string, data: string}[] $contacts */
 		$contacts = [];
 		$currentContact = null;
+		$currentContactUid = null;
 
 		// The vcf file might contain multiple contacts -> split each vcard
 		$vcf = $file->getContent();
@@ -104,8 +106,12 @@ class ImportController extends OCSController {
 
 			if ($line === 'END:VCARD') {
 				$currentContact[] = $line;
-				$contacts[] = implode("\n", $currentContact);
+				$contacts[] = [
+					'uid' => $currentContactUid,
+					'data' => implode("\n", $currentContact),
+				];
 				$currentContact = null;
+				$currentContactUid = null;
 				continue;
 			}
 
@@ -113,26 +119,49 @@ class ImportController extends OCSController {
 				continue;
 			}
 
+			if (str_starts_with($line, self::UID_PREFIX)) {
+				$currentContactUid = substr($line, strlen(self::UID_PREFIX));
+			}
+
 			$currentContact[] = $line;
 		}
 
+		$skipped = 0;
+		$errors = [];
 		$imported = [];
 		foreach ($contacts as $contact) {
-			$uid = $this->random->generate(
+			$uid = $contact['uid'];
+			$vcf = $contact['data'];
+
+			if ($uid !== null) {
+				$existingContacts = $addressBook->search($uid, ['UID'], [
+					'limit' => 1,
+					'wildcard' => false,
+				]);
+				if (!empty($existingContacts) && $existingContacts[0]['UID'] === $uid) {
+					$skipped++;
+					continue;
+				}
+			}
+
+			$uri = $this->random->generate(
 				32,
 				'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
 			);
-			$name = "$uid.vcf";
+			$uri = "$uri.vcf";
 			try {
-				$addressBook->createFromString($name, $contact);
+				$addressBook->createFromString($uri, $vcf);
 			} catch (\Exception $e) {
+				$errors[] = $e->getMessage();
 				continue;
 			}
 
-			$imported[] = $name;
+			$imported[] = $uri;
 		}
 
 		return new DataResponse([
+			'skipped' => $skipped,
+			'errors' => $errors,
 			'importedContactUris' => $imported,
 		]);
 	}
