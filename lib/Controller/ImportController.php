@@ -56,6 +56,7 @@ class ImportController extends OCSController {
 		?string $addressBookKey = null,
 		?string $addressBookUri = null,
 	): DataResponse {
+		// This is a negated xor in disguise (both or neither is empty)
 		if (empty($addressBookKey) === empty($addressBookUri)) {
 			return new DataResponse(
 				'Expected one of addressBookKey or addressBookUri',
