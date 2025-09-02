@@ -150,6 +150,7 @@
     "Calendar events with you" : "Календарь событий с вами",
     "Deck cards with you" : "Карточки с вами",
     "No shared items with this contact" : "Связанных с этим контактом элементов нет",
+    "The selected contacts have conflicting information. Choose which information to keep" : "Выбранные контакты содержат противоречивую информацию. Выберите, какую информацию сохранить.",
     "Groups" : "Группы",
     "_Delete {number} contact_::_Delete {number} contacts_" : ["Удалить {number} контакт","Удалить {number} контакта","Удалить {number} контактов","Удалить {number} контактов"],
     "Please select at least one editable contact to delete" : "Пожалуйста, выберите хотя бы один редактируемый контакт для удаления",
