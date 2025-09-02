@@ -373,7 +373,7 @@ import {
 	NcSelect,
 } from '@nextcloud/vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
-import IconDownload from 'vue-material-design-icons/DownloadOutline.vue'
+import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconQr from 'vue-material-design-icons/Qrcode.vue'
 import CakeIcon from 'vue-material-design-icons/Cake.vue'

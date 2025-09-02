@@ -121,7 +121,7 @@ import {
 	NcLoadingIcon as IconLoading,
 	NcButton as Button,
 } from '@nextcloud/vue'
-import IconDownload from 'vue-material-design-icons/DownloadOutline.vue'
+import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
 import IconRename from 'vue-material-design-icons/PencilOutline.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconContactPlus from 'vue-material-design-icons/AccountMultiplePlusOutline.vue'
