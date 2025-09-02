@@ -85,7 +85,7 @@ import {
 } from '@nextcloud/vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
-import IconDownload from 'vue-material-design-icons/DownloadOutline.vue'
+import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
 import IconEmail from 'vue-material-design-icons/EmailOutline.vue'
 import IconRename from 'vue-material-design-icons/FolderEditOutline.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
