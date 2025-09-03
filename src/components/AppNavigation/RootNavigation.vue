@@ -169,6 +169,7 @@
 
 <script>
 import { GROUP_ALL_CONTACTS, CHART_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC, CONTACTS_SETTINGS } from '../../models/constants.ts'
+import useUserGroupStore from '../../store/userGroup.ts'
 
 import {
 	NcActionInput as ActionInput,
@@ -182,6 +183,7 @@ import {
 } from '@nextcloud/vue'
 
 import naturalCompare from 'string-natural-compare'
+import { mapStores } from 'pinia'
 
 import CircleNavigationItem from './CircleNavigationItem.vue'
 import Cog from 'vue-material-design-icons/CogOutline.vue'
@@ -288,6 +290,9 @@ export default {
 		sortedContacts() {
 			return this.$store.getters.getSortedContacts
 		},
+		userGroups() {
+			return this.userGroupStore.userGroupList
+		},
 
 		// list all the contacts that doesn't have a group
 		ungroupedContacts() {
@@ -332,7 +337,8 @@ export default {
 
 		// generate circles menu from the circles store
 		circlesMenu() {
-			const menu = this.circles || []
+			const menu = [...(this.circles || []), ...(this.userGroups || [])]
+
 			menu.sort((a, b) => {
 				// If user is member of a and b, sort by level
 				if (a?.initiator?.level !== b?.initiator?.level && a?.initiator?.level && b?.initiator?.level) {
@@ -378,6 +384,7 @@ export default {
 				? t('contacts', 'Show all teams')
 				: t('contacts', 'Collapse teams')
 		},
+		...mapStores(useUserGroupStore),
 	},
 
 	methods: {

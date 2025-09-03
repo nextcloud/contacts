@@ -27,7 +27,9 @@
 		</RootNavigation>
 
 		<!-- Main content: circle, chart or contacts -->
-		<CircleContent v-if="selectedCircle"
+		<UserGroupContent v-if="selectedUserGroup"
+			:loding="loadingCircles" />
+		<CircleContent v-if="selectedCircle || selectedUserGroup"
 			:loading="loadingCircles" />
 		<ChartContent v-else-if="selectedChart"
 			:contacts-list="contacts" />
@@ -50,7 +52,7 @@
 </template>
 
 <script>
-import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE } from '../models/constants.ts'
+import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE, ROUTE_USER_GROUP } from '../models/constants.ts'
 
 import {
 	NcButton as Button,
@@ -58,6 +60,7 @@ import {
 	NcModal as Modal,
 } from '@nextcloud/vue'
 
+import { getCurrentUser } from '@nextcloud/auth'
 import { showError } from '@nextcloud/dialogs'
 import ICAL from 'ical.js'
 
@@ -80,6 +83,7 @@ import isCirclesEnabled from '../services/isCirclesEnabled.js'
 import { emit } from '@nextcloud/event-bus'
 
 import usePrincipalsStore from '../store/principals.js'
+import useUserGroupStore from '../store/userGroup.ts'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 
 export default {
@@ -180,7 +184,7 @@ export default {
 				return this.sortedContacts
 			} else if (this.selectedGroup === GROUP_NO_GROUP_CONTACTS) {
 				return this.ungroupedContacts.map(contact => this.sortedContacts.find(item => item.key === contact.key))
-			} else if (this.selectedGroup === ROUTE_CIRCLE) {
+			} else if (this.selectedGroup === ROUTE_CIRCLE || this.selectedGroup === ROUTE_USER_GROUP) {
 				return []
 			}
 			const group = this.groups.filter(group => group.name === this.selectedGroup)[0]
@@ -191,7 +195,7 @@ export default {
 		},
 
 		isCirclesView() {
-			return this.selectedGroup === ROUTE_CIRCLE
+			return this.selectedGroup === ROUTE_CIRCLE || this.selectedGroup === ROUTE_USER_GROUP
 		},
 
 		ungroupedContacts() {
@@ -252,9 +256,12 @@ export default {
 
 		// Get circles if enabled
 		if (isCirclesEnabled) {
-			this.$store.dispatch('getCircles').then(() => {
-				this.loadingCircles = false
-			})
+			const userGroupStore = useUserGroupStore()
+			this.$store.dispatch('getCircles')
+				.then(userGroupStore.getUserGroups(getCurrentUser().uid))
+				.then(() => {
+					this.loadingCircles = false
+				})
 		}
 	},
 
@@ -373,10 +380,12 @@ export default {
 
 				// Unknown group
 				if (!this.selectedCircle
+					&& !this.selectedUserGroup
 					&& !this.groups.find(group => group.name === this.selectedGroup)
 					&& GROUP_ALL_CONTACTS !== this.selectedGroup
 					&& GROUP_NO_GROUP_CONTACTS !== this.selectedGroup
-					&& ROUTE_CIRCLE !== this.selectedGroup) {
+					&& ROUTE_CIRCLE !== this.selectedGroup
+					&& ROUTE_USER_GROUP !== this.selectedGroup) {
 					showError(t('contacts', 'Group {group} not found', { group: this.selectedGroup }))
 					console.error('Group not found', this.selectedGroup)
 
