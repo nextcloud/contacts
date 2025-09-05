@@ -211,6 +211,7 @@ OC.L10N.register(
     "Personal dates" : "Приватні дати",
     "Add property of this type" : "Додайте властивості такого типу",
     "Member" : "Учасник",
+    "This is a read-only group managed by administrators. Group members can only view this group." : "Це група з правами для читання, якою керують адміністратори. Учасники групи можуть лише переглядати цю групу.",
     "Unable to create the contact." : "Неможливо створити контакт.",
     "Contact not found" : "Контакт не знайдено",
     "Group {group} not found" : "Групу {group} не знайдено",
