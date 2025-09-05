@@ -223,9 +223,12 @@ export default {
 		 * Watch textarea resize and update the gridSize accordingly
 		 */
 		resizeHeight: debounce(function() {
-			if (this.$refs.textarea && this.$refs.textarea.offsetHeight) {
+			const textarea = this.$refs.textarea.$el.querySelector('textarea')
+
+			if (textarea && textarea?.offsetHeight) {
 				// adjust textarea size to content (2 = border)
-				this.$refs.textarea.style.height = `${this.$refs.textarea.scrollHeight + 2}px`
+				textarea.style.height = 'auto'
+				textarea.style.height = `${textarea.scrollHeight + 2}px`
 			}
 		}, 100),
 
@@ -253,4 +256,11 @@ export default {
 	}
 }
 
+:deep(.textarea__main-wrapper) {
+	height: unset;
+
+	textarea {
+		resize: none !important;
+	}
+}
 </style>
