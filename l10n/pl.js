@@ -211,6 +211,7 @@ OC.L10N.register(
     "Personal dates" : "Dane osobiste (daty)",
     "Add property of this type" : "Dodaj właściwość do tego typu",
     "Member" : "Członek",
+    "This is a read-only group managed by administrators. Group members can only view this group." : "To jest grupa tylko do odczytu zarządzana przez administratorów. Członkowie grupy mogą jedynie przeglądać tę grupę.",
     "Unable to create the contact." : "Nie można utworzyć kontaktu.",
     "Contact not found" : "Nie znaleziono kontaktu",
     "Group {group} not found" : "Nie znaleziono grupy {group}",

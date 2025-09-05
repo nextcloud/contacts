@@ -211,6 +211,7 @@ OC.L10N.register(
     "Personal dates" : "Kişisel tarihler",
     "Add property of this type" : "Bu türün özniteliğini ekle",
     "Member" : "Üye",
+    "This is a read-only group managed by administrators. Group members can only view this group." : "Bu grup, yöneticiler tarafından yönetilen salt okunur bir gruptur. Grup üyeleri bu grubu yalnızca görüntüleyebilir.",
     "Unable to create the contact." : "Kişi eklenemedi.",
     "Contact not found" : "Kişi bulunamadı",
     "Group {group} not found" : "{group} grubu bulunamadı",

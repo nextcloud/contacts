@@ -209,6 +209,7 @@
     "Personal dates" : "個人日期",
     "Add property of this type" : "新增此類型的屬性",
     "Member" : "成員",
+    "This is a read-only group managed by administrators. Group members can only view this group." : "此為由管理員管理的唯讀群組。群組成員僅能檢視此群組。",
     "Unable to create the contact." : "無法建立聯絡人",
     "Contact not found" : "找不到聯絡人",
     "Group {group} not found" : "找不到群組 {group}",
