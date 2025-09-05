@@ -209,6 +209,7 @@
     "Personal dates" : "Dátaí pearsanta",
     "Add property of this type" : "Cuir airí den chineál seo leis",
     "Member" : "Ball",
+    "This is a read-only group managed by administrators. Group members can only view this group." : "Is grúpa inléite amháin é seo atá á bhainistiú ag riarthóirí. Ní féidir ach le baill an ghrúpa an grúpa seo a fheiceáil.",
     "Unable to create the contact." : "Ní féidir an teagmhálaí a chruthú.",
     "Contact not found" : "Teagmháil gan aimsiú",
     "Group {group} not found" : "Grúpa {group} gan aimsiú",
