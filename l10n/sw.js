@@ -211,6 +211,7 @@ OC.L10N.register(
     "Personal dates" : "Tarehe za kibinafsi",
     "Add property of this type" : "Ongeza mali za aina hii",
     "Member" : "Mwanachama",
+    "This is a read-only group managed by administrators. Group members can only view this group." : "Hiki ni kikundi cha kusoma pekee kinachosimamiwa na wasimamizi. Wanakikundi wanaweza kutazama kikundi hiki pekee.",
     "Unable to create the contact." : "Haiwezi kutengeneza mawasiliano",
     "Contact not found" : "Mawasiliano hayapatikani",
     "Group {group} not found" : "Kundi {group} halipatikani",
