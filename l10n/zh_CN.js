@@ -211,6 +211,7 @@ OC.L10N.register(
     "Personal dates" : "个人行程",
     "Add property of this type" : "为此类型添加属性",
     "Member" : "成员",
+    "This is a read-only group managed by administrators. Group members can only view this group." : "这是由管理员管理的只读组。组成员只能查看此组。",
     "Unable to create the contact." : "未能成功创建联系人。",
     "Contact not found" : "未找到联系人",
     "Group {group} not found" : "未找到群组 {group} ",
