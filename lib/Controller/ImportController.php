@@ -18,6 +18,7 @@ use OCP\AppFramework\OCSController;
 use OCP\Contacts\IManager as IContactsManager;
 use OCP\Files\File;
 use OCP\Files\IRootFolder;
+use OCP\IAddressBook;
 use OCP\ICreateContactFromString;
 use OCP\IRequest;
 use OCP\Security\ISecureRandom;
@@ -178,5 +179,29 @@ class ImportController extends OCSController {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Get a list of all available address books of the currently logged in user.
+	 *
+	 * @return DataResponse A list of address books with. Each one has an id and a display name.
+	 *
+	 * 200: List of address book options
+	 * 401: User is not logged in
+	 */
+	#[NoAdminRequired]
+	#[ApiRoute('POST', '/api/v1/address-book-options')]
+	public function addressBookOptions(): DataResponse {
+		if ($this->userId === null) {
+			return new DataResponse('Not logged in', Http::STATUS_UNAUTHORIZED);
+		}
+
+		$addressBooks = $this->contactsManager->getUserAddressBooks();
+		$options = array_map(static fn (IAddressBook $addressBook) => [
+			'id' => $addressBook->getKey(),
+			'displayName' => $addressBook->getDisplayName(),
+		], $addressBooks);
+
+		return new DataResponse($options);
 	}
 }
