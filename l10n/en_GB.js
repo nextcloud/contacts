@@ -240,7 +240,7 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Could not copy link to the clipboard.",
     "Not grouped" : "Not grouped",
     "Recently contacted" : "Recently contacted",
-    "Organization chart" : "Organization chart",
+    "Organization chart" : "Organisation chart",
     "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses.",
     "Team" : "Team",
     "User" : "User",
