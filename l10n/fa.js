@@ -208,6 +208,7 @@ OC.L10N.register(
     "Postal code" : "کد پستی",
     "Country" : "کشور",
     "Birthday" : "روزتولد",
+    "Place of birth" : "محل تولد",
     "Anniversary" : "سالگرد",
     "Date of death" : "تاریخ فوت",
     "Instant messaging" : "پیام رسانی فوری",
