@@ -211,6 +211,7 @@ OC.L10N.register(
     "Personal dates" : "Лични датуми",
     "Add property of this type" : "Додај особину овог типа",
     "Member" : "Члан",
+    "This is a read-only group managed by administrators. Group members can only view this group." : "Ово је група само-за-читање којом управљају администратори. Чланови групе могу само да приказују ову групу.",
     "Unable to create the contact." : "Не могу да направим контакт.",
     "Contact not found" : "Контакт није нађен",
     "Group {group} not found" : "Група {group} не може да се пронађе",
