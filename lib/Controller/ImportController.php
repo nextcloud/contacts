@@ -54,24 +54,12 @@ class ImportController extends OCSController {
 	 */
 	#[NoAdminRequired]
 	#[ApiRoute('POST', '/api/v1/import')]
-	public function import(
-		int $fileId,
-		?string $addressBookKey = null,
-		?string $addressBookUri = null,
-	): DataResponse {
-		// This is a negated xor in disguise (both or neither is empty)
-		if (empty($addressBookKey) === empty($addressBookUri)) {
-			return new DataResponse(
-				'Expected one of addressBookKey or addressBookUri',
-				Http::STATUS_BAD_REQUEST,
-			);
-		}
-
+	public function import(int $fileId, ?string $addressBookUri = null): DataResponse {
 		if ($this->userId === null) {
 			return new DataResponse('Not logged in', Http::STATUS_UNAUTHORIZED);
 		}
 
-		$addressBook = $this->findUserAddressBook($addressBookKey, $addressBookUri);
+		$addressBook = $this->findUserAddressBook($addressBookUri);
 		if ($addressBook === null) {
 			return new DataResponse('Address book not found', Http::STATUS_NOT_FOUND);
 		}
@@ -168,23 +156,25 @@ class ImportController extends OCSController {
 		]);
 	}
 
-	private function findUserAddressBook(?string $key, ?string $uri): ?ICreateContactFromString {
-		$addressBooks = $this->contactsManager->getUserAddressBooks();
+	private function findUserAddressBook(?string $uri): ?ICreateContactFromString {
+		/** @var ICreateContactFromString[] $addressBooks */
+		$addressBooks = array_filter(
+			$this->contactsManager->getUserAddressBooks(),
+			static fn ($addressBook) => $addressBook instanceof ICreateContactFromString,
+		);
 
-		// Try the given address book first
-		if ($key !== null || $uri !== null) {
+		// Try the given address book by URI first
+		if ($uri !== null) {
 			foreach ($addressBooks as $addressBook) {
-				if (!($addressBook instanceof ICreateContactFromString)) {
-					continue;
-				}
-
-				if ($addressBook->getKey() === $key || $addressBook->getUri() === $uri) {
+				if ($addressBook->getUri() === $uri) {
 					return $addressBook;
 				}
 			}
+
+			return null;
 		}
 
-		// Try to find the default address book (named contacts)
+		// Try to find the user's default address book
 		foreach ($addressBooks as $addressBook) {
 			if ($addressBook->getUri() === CardDavBackend::PERSONAL_ADDRESSBOOK_URI) {
 				return $addressBook;

@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace OCA\Contacts\Controller;
 
 use ChristophWurst\Nextcloud\Testing\TestCase;
+use OCP\Constants;
 use OCP\Contacts\IManager as IContactsManager;
 use OCP\Files\File;
 use OCP\Files\Folder;
@@ -50,40 +51,26 @@ class ImportControllerTest extends TestCase {
 	public static function provideImportFileData(): array {
 		return [
 			// Correct mime type and ending
-			['11', null, 'text/vcard', 'vcf'],
-			[null, 'foo', 'text/vcard', 'vcf'],
-
+			['text/vcard', 'vcf'],
 			// Correct mime type but incorrect ending
-			['11', null, 'text/vcard', 'baz'],
-			[null, 'foo', 'text/vcard', 'baz'],
-
+			['text/vcard', 'baz'],
 			// Incorrect mime type but correct ending
-			['11', null, 'invalid/mimetype', 'vcf'],
-			[null, 'foo', 'invalid/mimetype', 'vcf'],
+			['invalid/mimetype', 'vcf'],
 		];
 	}
 
 	/**
 	 * @dataProvider provideImportFileData
 	 */
-	public function testImport(
-		?string $addressBookKey,
-		?string $addressBookUri,
-		string $mimeType,
-		string $extension,
-	): void {
+	public function testImport(string $mimeType, string $extension): void {
 		$vCard1 = file_get_contents(__DIR__ . '/../../assets/forrest-gump.vcf');
 		$vCard2 = file_get_contents(__DIR__ . '/../../assets/without-uid.vcf');
 		$vCards = "$vCard1\n\n$vCard2";
 
 		$addressBook1 = $this->createMock(ICreateContactFromString::class);
-		$addressBook1->method('getKey')
-			->willReturn('10');
 		$addressBook1->method('getUri')
 			->willReturn('contacts');
 		$addressBook2 = $this->createMock(ICreateContactFromString::class);
-		$addressBook2->method('getKey')
-			->willReturn('11');
 		$addressBook2->method('getUri')
 			->willReturn('foo');
 		$this->contactsManager->expects(self::once())
@@ -135,7 +122,86 @@ class ImportControllerTest extends TestCase {
 				['RANDOM-UID.vcf', $vCard2],
 			]);
 
-		$actual = $this->controller->import(42, $addressBookKey, $addressBookUri);
+		$actual = $this->controller->import(42, 'foo');
+		$this->assertEqualsCanonicalizing([
+			'importedContactUris' => [
+				'RANDOM-UID.vcf',
+				'RANDOM-UID.vcf',
+			],
+			'skipped' => 0,
+			'errors' => [],
+		], $actual->getData());
+		$this->assertEquals(200, $actual->getStatus());
+	}
+
+	public function provideImportDefaultAddressBookData(): array {
+		$createMockAddressBook = function (
+			string $class,
+			string $uri,
+			bool $isShared,
+			int $permissions,
+		): MockObject {
+			$addressBook = $this->createMock($class);
+			$addressBook->method('getUri')
+				->willReturn($uri);
+			$addressBook->method('isShared')
+				->willReturn($isShared);
+			$addressBook->method('getPermissions')
+				->willReturn($permissions);
+			return $addressBook;
+		};
+
+		return [
+			// Default address book
+			[$createMockAddressBook(ICreateContactFromString::class, 'contacts', false, Constants::PERMISSION_ALL)],
+			// Owned and writable
+			[$createMockAddressBook(ICreateContactFromString::class, 'foo', false, Constants::PERMISSION_CREATE)],
+		];
+	}
+
+	/**
+	 * @dataProvider provideImportDefaultAddressBookData
+	 */
+	public function testImportWithDefaultAddressBook(MockObject $addressBook): void {
+		$vCard1 = file_get_contents(__DIR__ . '/../../assets/forrest-gump.vcf');
+		$vCard2 = file_get_contents(__DIR__ . '/../../assets/without-uid.vcf');
+		$vCards = "$vCard1\n\n$vCard2";
+
+		$this->contactsManager->expects(self::once())
+			->method('getUserAddressBooks')
+			->willReturn([$addressBook]);
+
+		$file = $this->createMock(File::class);
+		$file->method('getMimeType')
+			->willReturn('text/vcard');
+		$file->method('getExtension')
+			->willReturn('vcf');
+		$file->expects(self::once())
+			->method('getContent')
+			->willReturn($vCards);
+		$userFolder = $this->createMock(Folder::class);
+		$userFolder->expects(self::once())
+			->method('getFirstNodeById')
+			->with(42)
+			->willReturn($file);
+		$this->rootFolder->expects(self::once())
+			->method('getUserFolder')
+			->with(self::USER_ID)
+			->willReturn($userFolder);
+
+		$this->secureRandom->expects(self::exactly(2))
+			->method('generate')
+			->with(32, 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789')
+			->willReturn('RANDOM-UID');
+
+		$addressBook->expects(self::exactly(2))
+			->method('createFromString')
+			->willReturnMap([
+				['RANDOM-UID.vcf', $vCard1],
+				['RANDOM-UID.vcf', $vCard2],
+			]);
+
+		$actual = $this->controller->import(42);
 		$this->assertEqualsCanonicalizing([
 			'importedContactUris' => [
 				'RANDOM-UID.vcf',
@@ -151,8 +217,6 @@ class ImportControllerTest extends TestCase {
 		$vCard = file_get_contents(__DIR__ . '/../../assets/forrest-gump.vcf');
 
 		$addressBook1 = $this->createMock(ICreateContactFromString::class);
-		$addressBook1->method('getKey')
-			->willReturn('10');
 		$addressBook1->method('getUri')
 			->willReturn('contacts');
 		$this->contactsManager->expects(self::once())
@@ -192,7 +256,7 @@ class ImportControllerTest extends TestCase {
 		$addressBook1->expects(self::never())
 			->method('createFromString');
 
-		$actual = $this->controller->import(42, '10');
+		$actual = $this->controller->import(42, 'contacts');
 		$this->assertEqualsCanonicalizing([
 			'importedContactUris' => [],
 			'skipped' => 1,
@@ -210,20 +274,14 @@ class ImportControllerTest extends TestCase {
 			$this->secureRandom,
 		);
 
-		$actual = $controller->import(42, '11');
+		$actual = $controller->import(42);
 		$this->assertEquals(401, $actual->getStatus());
 		$this->assertEquals('Not logged in', $actual->getData());
 	}
 
 	public function provideAddressBookNotFoundData(): array {
-		$addressBook1 = $this->createMock(ICreateContactFromString::class);
-		$addressBook1->method('getKey')
-			->willReturn('10');
-
-		$createAddressBook = function (string $class, string $key, string $uri) {
+		$createMockAddressBook = function (string $class, string $uri): MockObject {
 			$addressBook = $this->createMock($class);
-			$addressBook->method('getKey')
-				->willReturn($key);
 			$addressBook->method('getUri')
 				->willReturn($uri);
 			if ($class === ICreateContactFromString::class) {
@@ -234,36 +292,22 @@ class ImportControllerTest extends TestCase {
 		};
 
 		return [
-			// Invalid key
-			[
-				'12', null,
-				[
-					$createAddressBook(ICreateContactFromString::class, '10', 'contacts'),
-					$createAddressBook(ICreateContactFromString::class, '11', 'foo'),
-				],
-			],
 			// Invalid uri
 			[
-				null, 'not-existing',
+				'not-existing',
 				[
-					$createAddressBook(ICreateContactFromString::class, '10', 'contacts'),
-					$createAddressBook(ICreateContactFromString::class, '11', 'foo'),
-				],
-			],
-			// Correct key but incorrect interface
-			[
-				'11', null,
-				[
-					$createAddressBook(ICreateContactFromString::class, '10', 'contacts'),
-					$createAddressBook(IAddressBook::class, '11', 'foo'),
+					$createMockAddressBook(ICreateContactFromString::class, 'contacts'),
+					$createMockAddressBook(ICreateContactFromString::class, 'foo'),
+					$createMockAddressBook(ICreateContactFromString::class, 'bar'),
 				],
 			],
 			// Correct uri but incorrect interface
 			[
-				null, 'foo',
+				'bar',
 				[
-					$createAddressBook(ICreateContactFromString::class, '10', 'contacts'),
-					$createAddressBook(IAddressBook::class, '11', 'foo'),
+					$createMockAddressBook(ICreateContactFromString::class, 'contacts'),
+					$createMockAddressBook(ICreateContactFromString::class, 'foo'),
+					$createMockAddressBook(IAddressBook::class, 'bar'),
 				],
 			],
 		];
@@ -272,27 +316,58 @@ class ImportControllerTest extends TestCase {
 	/**
 	 * @dataProvider provideAddressBookNotFoundData
 	 */
-	public function testImportWithAddressBookNotFound(
-		?string $key,
-		?string $uri,
-		array $addressBooks,
-	): void {
+	public function testImportWithAddressBookNotFound(string $uri, array $addressBooks): void {
 		$this->contactsManager->expects(self::once())
 			->method('getUserAddressBooks')
 			->willReturn($addressBooks);
 
-		$actual = $this->controller->import(42, $key, $uri);
+		$actual = $this->controller->import(42, $uri);
+		$this->assertEquals('Address book not found', $actual->getData());
+		$this->assertEquals(404, $actual->getStatus());
+	}
+
+	public function testImportWithAddressBookNotFoundWithDefaultAddressBook(): void {
+		$addressBook1 = $this->createMock(ICreateContactFromString::class);
+		$addressBook1->method('getUri')
+			->willReturn('shared-ro');
+		$addressBook1->method('isShared')
+			->willReturn(true);
+		$addressBook1->method('getPermissions')
+			->willReturn(Constants::PERMISSION_READ);
+		$addressBook2 = $this->createMock(ICreateContactFromString::class);
+		$addressBook2->method('getUri')
+			->willReturn('shared-rw');
+		$addressBook2->method('isShared')
+			->willReturn(true);
+		$addressBook2->method('getPermissions')
+			->willReturn(Constants::PERMISSION_CREATE);
+		$addressBook3 = $this->createMock(ICreateContactFromString::class);
+		$addressBook3->method('getUri')
+			->willReturn('owned-ro');
+		$addressBook3->method('isShared')
+			->willReturn(false);
+		$addressBook3->method('getPermissions')
+			->willReturn(Constants::PERMISSION_READ);
+		$this->contactsManager->expects(self::once())
+			->method('getUserAddressBooks')
+			->willReturn([
+				$addressBook1,
+				$addressBook2,
+				$addressBook3,
+			]);
+
+		$actual = $this->controller->import(42);
 		$this->assertEquals('Address book not found', $actual->getData());
 		$this->assertEquals(404, $actual->getStatus());
 	}
 
 	public function testImportWithFileNotFound(): void {
 		$addressBook1 = $this->createMock(ICreateContactFromString::class);
-		$addressBook1->method('getKey')
-			->willReturn('10');
+		$addressBook1->method('getUri')
+			->willReturn('contacts');
 		$addressBook2 = $this->createMock(ICreateContactFromString::class);
-		$addressBook2->method('getKey')
-			->willReturn('11');
+		$addressBook2->method('getUri')
+			->willReturn('foo');
 		$this->contactsManager->expects(self::once())
 			->method('getUserAddressBooks')
 			->willReturn([
@@ -315,18 +390,18 @@ class ImportControllerTest extends TestCase {
 		$addressBook2->expects(self::never())
 			->method('createFromString');
 
-		$actual = $this->controller->import(42, '11');
+		$actual = $this->controller->import(42);
 		$this->assertEquals('File not found', $actual->getData());
 		$this->assertEquals(404, $actual->getStatus());
 	}
 
 	public function testImportWithNotAFile(): void {
 		$addressBook1 = $this->createMock(ICreateContactFromString::class);
-		$addressBook1->method('getKey')
-			->willReturn('10');
+		$addressBook1->method('getUri')
+			->willReturn('contacts');
 		$addressBook2 = $this->createMock(ICreateContactFromString::class);
-		$addressBook2->method('getKey')
-			->willReturn('11');
+		$addressBook2->method('getUri')
+			->willReturn('foo');
 		$this->contactsManager->expects(self::once())
 			->method('getUserAddressBooks')
 			->willReturn([
@@ -350,18 +425,18 @@ class ImportControllerTest extends TestCase {
 		$addressBook2->expects(self::never())
 			->method('createFromString');
 
-		$actual = $this->controller->import(42, '11');
+		$actual = $this->controller->import(42);
 		$this->assertEquals('Not a file', $actual->getData());
 		$this->assertEquals(400, $actual->getStatus());
 	}
 
 	public function testImportWithInvalidFileType(): void {
 		$addressBook1 = $this->createMock(ICreateContactFromString::class);
-		$addressBook1->method('getKey')
-			->willReturn('10');
+		$addressBook1->method('getUri')
+			->willReturn('contacts');
 		$addressBook2 = $this->createMock(ICreateContactFromString::class);
-		$addressBook2->method('getKey')
-			->willReturn('11');
+		$addressBook2->method('getUri')
+			->willReturn('foo');
 		$this->contactsManager->expects(self::once())
 			->method('getUserAddressBooks')
 			->willReturn([
@@ -389,7 +464,7 @@ class ImportControllerTest extends TestCase {
 		$addressBook2->expects(self::never())
 			->method('createFromString');
 
-		$actual = $this->controller->import(42, '11');
+		$actual = $this->controller->import(42);
 		$this->assertEqualsCanonicalizing('Not a vCard file', $actual->getData());
 		$this->assertEquals(400, $actual->getStatus());
 	}
