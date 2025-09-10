@@ -1,6 +1,26 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 8.0.O
+
+### Bug Fixes
+* virtual contacts list scroller logic
+* translation for recently contacted not working
+* textarea auto resizing
+* adjust import files action to vue 3
+* save team name and description on Save button click
+* make team resources scrollable
+* restore member management in new ui
+* restore accept/reject requests in new ui
+
+### Features 
+* migrate app to Vue 3
+* use material symbol variant of delete icon
+* make icons outline
+* add multiselect action and batch deleting
+* Add support for Nextcloud 32 and drop support for lower versions
+
+
 # [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0-beta.Z) (2025-01-09)
 
 
