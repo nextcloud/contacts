@@ -1,6 +1,26 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [7.3.0]
+
+### Bug fixes
+
+* textarea auto resizing
+* routing based on base64 encoding
+* generate rev depending on card version
+* escape organization/title properties
+* ùake team resources scrollabl
+* restore member management in new ui
+* restore accept/reject requests in new ui
+
+### Features 
+
+* create and add guests to teams
+* member roles in list & responsive ui
+* add contact merging action
+* add multiselect action and batch deleting
+* make icons outline
+
 # [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0-beta.Z) (2025-01-09)
 
 
