@@ -10,15 +10,16 @@ declare(strict_types=1);
 namespace OCA\Contacts\Controller;
 
 use OCA\Contacts\AppInfo\Application;
+use OCA\DAV\CardDAV\CardDavBackend;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\ApiRoute;
 use OCP\AppFramework\Http\Attribute\NoAdminRequired;
 use OCP\AppFramework\Http\DataResponse;
 use OCP\AppFramework\OCSController;
+use OCP\Constants;
 use OCP\Contacts\IManager as IContactsManager;
 use OCP\Files\File;
 use OCP\Files\IRootFolder;
-use OCP\IAddressBook;
 use OCP\ICreateContactFromString;
 use OCP\IRequest;
 use OCP\Security\ISecureRandom;
@@ -37,12 +38,9 @@ class ImportController extends OCSController {
 	}
 
 	/**
-	 * Import the given vCard file (by id) into the given address book of the current user.
-	 * Exactly one of $addressBookKey or $addressBookUri is expected.
+	 * Import the given vCard file (by id) into the default address book of the current user.
 	 *
 	 * @param int $fileId The id of a vCard file to import
-	 * @param ?string $addressBookKey The key or id of the address book - {@see \OCP\IAddressBook::getKey}
-	 * @param ?string $addressBookUri The uri of the address book - {@see \OCP\IAddressBook::getUri}
 	 * @return DataResponse A list of imported contact URIs, amount of skipped contacts and a list of errors.
 	 *
 	 * 200: Contacts were imported (check the response data for stats)
@@ -52,26 +50,17 @@ class ImportController extends OCSController {
 	 */
 	#[NoAdminRequired]
 	#[ApiRoute('POST', '/api/v1/import')]
-	public function import(
-		int $fileId,
-		?string $addressBookKey = null,
-		?string $addressBookUri = null,
-	): DataResponse {
-		// This is a negated xor in disguise (both or neither is empty)
-		if (empty($addressBookKey) === empty($addressBookUri)) {
-			return new DataResponse(
-				'Expected one of addressBookKey or addressBookUri',
-				Http::STATUS_BAD_REQUEST,
-			);
-		}
-
+	public function import(int $fileId): DataResponse {
 		if ($this->userId === null) {
 			return new DataResponse('Not logged in', Http::STATUS_UNAUTHORIZED);
 		}
 
-		$addressBook = $this->findUserAddressBook($addressBookKey, $addressBookUri);
+		$addressBook = $this->findUserAddressBook();
 		if ($addressBook === null) {
-			return new DataResponse('Address book not found', Http::STATUS_NOT_FOUND);
+			return new DataResponse(
+				'User does not have a suitable address book',
+				Http::STATUS_NOT_FOUND,
+			);
 		}
 
 		$userRoot = $this->rootFolder->getUserFolder($this->userId);
@@ -166,42 +155,29 @@ class ImportController extends OCSController {
 		]);
 	}
 
-	private function findUserAddressBook(?string $key, ?string $uri): ?ICreateContactFromString {
+	private function findUserAddressBook(): ?ICreateContactFromString {
 		$addressBooks = $this->contactsManager->getUserAddressBooks();
-		foreach ($addressBooks as $addressBook) {
-			if (!($addressBook instanceof ICreateContactFromString)) {
-				continue;
-			}
 
-			if ($addressBook->getKey() === $key || $addressBook->getUri() === $uri) {
+		// Try to find the default address book (named contacts)
+		foreach ($addressBooks as $addressBook) {
+			if ($addressBook->getUri() === CardDavBackend::PERSONAL_ADDRESSBOOK_URI) {
 				return $addressBook;
 			}
 		}
 
-		return null;
-	}
+		// Otherwise, use the first writable, owned address book
+		foreach ($addressBooks as $addressBook) {
+			if ($addressBook->isShared()) {
+				continue;
+			}
 
-	/**
-	 * Get a list of all available address books of the currently logged in user.
-	 *
-	 * @return DataResponse A list of address books with. Each one has an id and a display name.
-	 *
-	 * 200: List of address book options
-	 * 401: User is not logged in
-	 */
-	#[NoAdminRequired]
-	#[ApiRoute('POST', '/api/v1/address-book-options')]
-	public function addressBookOptions(): DataResponse {
-		if ($this->userId === null) {
-			return new DataResponse('Not logged in', Http::STATUS_UNAUTHORIZED);
+			if (($addressBook->getPermissions() & Constants::PERMISSION_CREATE) === 0) {
+				continue;
+			}
+
+			return $addressBook;
 		}
 
-		$addressBooks = $this->contactsManager->getUserAddressBooks();
-		$options = array_map(static fn (IAddressBook $addressBook) => [
-			'id' => $addressBook->getKey(),
-			'displayName' => $addressBook->getDisplayName(),
-		], $addressBooks);
-
-		return new DataResponse($options);
+		return null;
 	}
 }
