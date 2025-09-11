@@ -384,8 +384,6 @@ export default {
 				this.contact.photo = `data:${type};base64,${data}`
 			}
 
-			await this.$store.dispatch('updateContact', this.contact)
-
 			await this.loadPhotoUrl()
 
 			await this.reloadBus.emit('reload-avatar', this.contact.key)
@@ -440,7 +438,6 @@ export default {
 		 */
 		removePhoto() {
 			this.contact.vCard.removeAllProperties('photo')
-			this.$store.dispatch('updateContact', this.contact)
 			// somehow the avatarUrl is not unavailable immediately, so we just set undefined
 			this.photoUrl = undefined
 			this.reloadBus.emit('delete-avatar', this.contact.key)
