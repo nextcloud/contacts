@@ -624,7 +624,9 @@ export default {
 		overflow: hidden;
 		width: 100%;
 		height: 100%;
-		border-radius: 50%;
+		border-radius: unset !important;
+		background-color: unset !important;
+		box-shadow: none !important;
 	}
 
 	&__photo {
