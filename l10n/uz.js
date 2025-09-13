@@ -11,6 +11,7 @@ OC.L10N.register(
     "Cancel" : "Bekor qilish",
     "Invalid image" : "Invalid image",
     "Name" : "Name",
+    "Title" : "Sarlavha",
     "Search contacts …" : "Search contacts …",
     "Pending" : "Pending",
     "None" : "Yo'q",
