@@ -48,6 +48,7 @@ OC.L10N.register(
     "New team name" : "Назва новай каманды",
     "Remove member" : "Выдаліць удзельніка",
     "Add to {circle}" : "Дадаць у {circle}",
+    "Pending" : "У чаканні",
     "Add contact in group" : "Дадаць кантакт у групу",
     "Member" : "Удзельнік",
     "Add member" : "Дадаць удзельніка",
@@ -61,6 +62,7 @@ OC.L10N.register(
     "Notes" : "Нататкі",
     "Website" : "Вэб-сайт",
     "Home" : "Дадому",
+    "Address" : "Адрас",
     "Birthday" : "Дзень нараджэння",
     "Place of birth" : "Месца нараджэння",
     "Unknown" : "Невядомы"
