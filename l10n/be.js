@@ -57,6 +57,7 @@ OC.L10N.register(
     "Group" : "Група",
     "Email" : "Электронная пошта",
     "Owner" : "Уладальнік",
+    "Users" : "Карыстальнікі",
     "Additional names" : "Дадатковыя імёны",
     "Nickname" : "Псеўданім",
     "Notes" : "Нататкі",
