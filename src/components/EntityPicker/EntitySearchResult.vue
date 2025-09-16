@@ -78,13 +78,11 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 .entity-picker {
 	&__option {
 		&-caption {
-			padding-inline-start: 10px;
 			list-style-type: none;
 			user-select: none;
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			pointer-events: none;
-			color: var(--color-primary-element);
 			box-shadow: none !important;
 			line-height: $clickable-area;
 
