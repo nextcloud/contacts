@@ -26,6 +26,7 @@ const addressbookModel = {
 
 const state = {
 	addressbooks: [],
+	addressbooksFetched: false,
 }
 
 /**
@@ -234,6 +235,10 @@ const actions = {
 	 * @return {object[]} the addressbooks
 	 */
 	async getAddressbooks(context) {
+		if (context.state.addressbooksFetched) {
+			return context.getters.getAddressbooks
+		}
+
 		const addressbooks = await client.addressBookHomes[0]
 			.findAllAddressBooks()
 			.then(addressbooks => {
@@ -246,6 +251,8 @@ const actions = {
 		addressbooks.forEach(addressbook => {
 			context.commit('addAddressbook', addressbook)
 		})
+
+		context.state.addressbooksFetched = true
 
 		return addressbooks
 	},
