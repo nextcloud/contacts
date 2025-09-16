@@ -25,6 +25,7 @@ class Capabilities implements ICapability {
 		$this->l10n = $l10nFactory->get(Application::APP_ID);
 	}
 
+	#[\Override]
 	public function getCapabilities(): array {
 		return [
 			'declarativeui' => [

@@ -15,7 +15,11 @@ use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\Util;
 
+/**
+ * @template-implements IEventListener<Event|LoadAdditionalScriptsEvent>
+ */
 class LoadContactsFilesActions implements IEventListener {
+	#[\Override]
 	public function handle(Event $event): void {
 		if (!$event instanceof LoadAdditionalScriptsEvent) {
 			return;

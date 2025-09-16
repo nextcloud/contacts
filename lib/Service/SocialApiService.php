@@ -44,7 +44,7 @@ class SocialApiService {
 	/**
 	 * returns an array of supported social networks
 	 *
-	 * @return {array} array of the supported social networks
+	 * @return array array of the supported social networks
 	 */
 	public function getSupportedNetworks() : array {
 		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
@@ -176,7 +176,7 @@ class SocialApiService {
 					$httpResult = $this->clientService->newClient()->get($url);
 					$socialdata = $httpResult->getBody();
 					$imageType = $httpResult->getHeader('content-type');
-					if (isset($socialdata) && isset($imageType)) {
+					if (isset($socialdata) && !empty($imageType)) {
 						break;
 					}
 				} catch (\Exception $e) {
@@ -208,7 +208,7 @@ class SocialApiService {
 				return new JSONResponse([], Http::STATUS_NOT_MODIFIED);
 			}
 
-			$addressBook->createOrUpdate($changes, $addressbookId);
+			$addressBook->createOrUpdate($changes);
 		} catch (\Exception $e) {
 			return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}

@@ -1,28 +1,25 @@
-<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8"?>
 <!--
   - SPDX-FileCopyrightText: 2019-2024 Nextcloud GmbH and Nextcloud contributors
   - SPDX-FileCopyrightText: 2015-2016 ownCloud, Inc.
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
-<phpunit bootstrap="tests/bootstrap.php"
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		 bootstrap="tests/bootstrap.php"
 		 verbose="true"
 		 convertDeprecationsToExceptions="true"
 		 colors="true"
 		 timeoutForSmallTests="900"
 		 timeoutForMediumTests="900"
-		 timeoutForLargeTests="900">
-	<testsuite name='Contacts app tests'>
-        <directory>./tests/unit</directory>
+		 timeoutForLargeTests="900"
+		 xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/9.3/phpunit.xsd">
+	<coverage>
+		<include>
+			<directory suffix=".php">./appinfo</directory>
+			<directory suffix=".php">./lib</directory>
+		</include>
+	</coverage>
+	<testsuite name="Contacts app tests">
+		<directory>./tests/unit</directory>
 	</testsuite>
-	<!-- filters for code coverage -->
-	<filter>
-		<whitelist>
-			<directory suffix=".php">./</directory>
-			<exclude>
-				<directory suffix=".php">./l10n</directory>
-				<directory suffix=".php">./templates</directory>
-				<directory suffix=".php">./tests</directory>
-			</exclude>
-		</whitelist>
-	</filter>
 </phpunit>

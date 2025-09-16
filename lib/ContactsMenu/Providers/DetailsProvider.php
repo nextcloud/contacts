@@ -47,11 +47,8 @@ class DetailsProvider implements IProvider {
 
 	/**
 	 * Get (and load when needed) the address book URI for $key
-	 *
-	 * @param string $addressBookKey
-	 * @return string
 	 */
-	protected function getAddressBookUri($addressBookKey) {
+	protected function getAddressBookUri(string $addressBookKey): ?string {
 		$addressBooks = $this->getAddressBooksUris();
 		if (!array_key_exists($addressBookKey, $addressBooks)) {
 			return null;
@@ -63,6 +60,7 @@ class DetailsProvider implements IProvider {
 	/**
 	 * @param IEntry $entry
 	 */
+	#[\Override]
 	public function process(IEntry $entry) {
 		$uid = $entry->getProperty('UID');
 

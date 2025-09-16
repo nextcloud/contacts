@@ -7,9 +7,6 @@
 
 namespace OCA\Contacts\Service\Social;
 
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\RequestOptions;
-use OC\AppFramework\Http\Request;
 use OCA\Contacts\AppInfo\Application;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
@@ -38,12 +35,13 @@ class InstagramProvider implements ISocialProvider {
 	 *
 	 * @return bool
 	 */
+	#[\Override]
 	public function supportsContact(array $contact):bool {
 		if (!array_key_exists('X-SOCIALPROFILE', $contact)) {
 			return false;
 		}
 		$socialprofiles = $this->getProfiles($contact);
-		return isset($socialprofiles) && count($socialprofiles) > 0;
+		return count($socialprofiles) > 0;
 	}
 
 	/**
@@ -53,6 +51,7 @@ class InstagramProvider implements ISocialProvider {
 	 *
 	 * @return array
 	 */
+	#[\Override]
 	public function getImageUrls(array $contact):array {
 		$profileIds = $this->getProfileIds($contact);
 		$urls = [];
@@ -124,7 +123,7 @@ class InstagramProvider implements ISocialProvider {
 	protected function getFromJson(string $url, string $desired) : ?string {
 		try {
 			$result = $this->httpClient->get($url, [
-				RequestOptions::HEADERS => [
+				'headers' => [
 					// Make the request as google bot so insta displays the full static html page
 					'User-Agent' => 'Googlebot/2.1'
 				]
@@ -139,7 +138,7 @@ class InstagramProvider implements ISocialProvider {
 				$jsonResult = $jsonResult[$loc];
 			}
 			return $jsonResult;
-		} catch (RequestException $e) {
+		} catch (\Exception $e) {
 			$this->logger->debug('Error fetching instagram urls', [
 				'app' => Application::APP_ID,
 				'exception' => $e

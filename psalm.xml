@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  - SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<psalm
+	errorLevel="4"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="https://getpsalm.org/schema/config"
+	xsi:schemaLocation="https://getpsalm.org/schema/config"
+	errorBaseline="tests/psalm-baseline.xml"
+	findUnusedCode="false"
+	findUnusedBaselineEntry="false"
+	findMissingOverrideAttribte="false"
+	phpVersion="8.1"
+>
+	<projectFiles>
+		<directory name="lib" />
+		<ignoreFiles>
+			<directory name="vendor" />
+			<directory name="vendor-bin" />
+		</ignoreFiles>
+	</projectFiles>
+	<extraFiles>
+		<directory name="vendor" />
+		<directory name="vendor/nextcloud/ocp" />
+	</extraFiles>
+	<issueHandlers>
+		<UndefinedClass>
+			<errorLevel type="suppress">
+				<referencedClass name="OCA\DAV\CardDAV\CardDavBackend" />
+				<referencedClass name="OCA\DAV\CardDAV\ContactsManager" />
+				<referencedClass name="OCA\Files\Event\LoadAdditionalScriptsEvent" />
+				<referencedClass name="OC\App\CompareVersion" />
+				<referencedClass name="Sabre\DAV\Server" />
+			</errorLevel>
+		</UndefinedClass>
+		<UndefinedDocblockClass>
+			<errorLevel type="suppress">
+				<referencedClass name="OCA\Files\Event\LoadAdditionalScriptsEvent" />
+				<referencedClass name="Sabre\DAV\Server" />
+			</errorLevel>
+		</UndefinedDocblockClass>
+	</issueHandlers>
+</psalm>

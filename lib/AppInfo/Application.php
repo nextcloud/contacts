@@ -30,12 +30,14 @@ class Application extends App implements IBootstrap {
 		parent::__construct(self::APP_ID);
 	}
 
+	#[\Override]
 	public function register(IRegistrationContext $context): void {
 		$context->registerCapability(Capabilities::class);
 		$context->registerEventListener(LoadAdditionalScriptsEvent::class, LoadContactsFilesActions::class);
 		$context->registerEventListener(LoadContactsOcaApiEvent::class, LoadContactsOcaApi::class);
 	}
 
+	#[\Override]
 	public function boot(IBootContext $context): void {
 		$appContainer = $context->getAppContainer();
 		$serverContainer = $context->getServerContainer();

@@ -21,6 +21,7 @@ class GravatarProvider implements ISocialProvider {
 	 *
 	 * @return bool
 	 */
+	#[\Override]
 	public function supportsContact(array $contact):bool {
 		if (!array_key_exists('EMAIL', $contact)) {
 			return false;
@@ -36,6 +37,7 @@ class GravatarProvider implements ISocialProvider {
 	 *
 	 * @return array
 	 */
+	#[\Override]
 	public function getImageUrls(array $contact):array {
 		$urls = [];
 		$emails = $contact['EMAIL'];

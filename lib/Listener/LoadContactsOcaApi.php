@@ -16,12 +16,16 @@ use OCP\EventDispatcher\Event;
 use OCP\EventDispatcher\IEventListener;
 use OCP\Util;
 
+/**
+ * @template-implements IEventListener<Event|LoadContactsOcaApiEvent>
+ */
 class LoadContactsOcaApi implements IEventListener {
 	public function __construct(
 		private IInitialState $initialState,
 	) {
 	}
 
+	#[\Override]
 	public function handle(Event $event): void {
 		if (!($event instanceof LoadContactsOcaApiEvent)) {
 			return;
