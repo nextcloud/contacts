@@ -28,12 +28,13 @@ class MastodonProvider implements ISocialProvider {
 	 *
 	 * @return bool
 	 */
+	#[\Override]
 	public function supportsContact(array $contact):bool {
 		if (!array_key_exists('X-SOCIALPROFILE', $contact)) {
 			return false;
 		}
 		$profiles = $this->getProfileIds($contact);
-		return isset($profiles) && count($profiles) > 0;
+		return count($profiles) > 0;
 	}
 
 	/**
@@ -43,6 +44,7 @@ class MastodonProvider implements ISocialProvider {
 	 *
 	 * @return array
 	 */
+	#[\Override]
 	public function getImageUrls(array $contact):array {
 		$profileIds = $this->getProfileIds($contact);
 		$urls = [];

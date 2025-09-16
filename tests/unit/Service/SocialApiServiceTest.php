@@ -242,7 +242,7 @@ class SocialApiServiceTest extends TestCase {
 		$this->socialProvider
 			->expects($this->once())->method('getSocialConnector')->with($network);
 		$provider->expects($this->once())->method('supportsContact')->with($contact);
-		$addressbook->expects($this->once())->method('createOrUpdate')->with($changes, $addressBookId);
+		$addressbook->expects($this->once())->method('createOrUpdate')->with($changes);
 
 		$result = $this->service
 			->updateContact(
@@ -315,7 +315,7 @@ class SocialApiServiceTest extends TestCase {
 		$this->socialProvider
 			->expects($this->once())->method('getSocialConnector')->with($network);
 		$provider->expects($this->once())->method('supportsContact')->with($contact);
-		$addressbook->expects($this->once())->method('createOrUpdate')->with($changes, $addressBookId);
+		$addressbook->expects($this->once())->method('createOrUpdate')->with($changes);
 
 		$result = $this->service
 			->updateContact(

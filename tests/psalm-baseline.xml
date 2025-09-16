@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<files psalm-version="6.13.1@1e3b7f0a8ab32b23197b91107adc0a7ed8a05b51">
+  <file src="lib/AppInfo/Application.php">
+    <InvalidArgument>
+      <code><![CDATA[LoadContactsFilesActions::class]]></code>
+      <code><![CDATA[registerEventListener]]></code>
+    </InvalidArgument>
+    <MissingDependency>
+      <code><![CDATA[PatchPlugin]]></code>
+    </MissingDependency>
+  </file>
+  <file src="lib/Controller/ImportController.php">
+    <MissingDependency>
+      <code><![CDATA[$this->rootFolder]]></code>
+      <code><![CDATA[private]]></code>
+    </MissingDependency>
+  </file>
+  <file src="lib/Dav/PatchPlugin.php">
+    <UndefinedClass>
+      <code><![CDATA[ServerPlugin]]></code>
+    </UndefinedClass>
+  </file>
+  <file src="lib/Listener/LoadContactsFilesActions.php">
+    <InvalidTemplateParam>
+      <code><![CDATA[IEventListener]]></code>
+    </InvalidTemplateParam>
+    <MoreSpecificImplementedParamType>
+      <code><![CDATA[$event]]></code>
+    </MoreSpecificImplementedParamType>
+  </file>
+  <file src="lib/Service/ImageResizer.php">
+    <MissingDependency>
+      <code><![CDATA[Image]]></code>
+    </MissingDependency>
+  </file>
+</files>

@@ -7,8 +7,6 @@
 
 namespace OCA\Contacts\Service\Social;
 
-use GuzzleHttp\Exception\RequestException;
-use GuzzleHttp\RequestOptions;
 use OCA\Contacts\AppInfo\Application;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
@@ -37,12 +35,13 @@ class TelegramProvider implements ISocialProvider {
 	 *
 	 * @return bool
 	 */
+	#[\Override]
 	public function supportsContact(array $contact):bool {
 		if (!array_key_exists('IMPP', $contact)) {
 			return false;
 		}
 		$socialprofiles = $this->getProfileIds($contact);
-		return isset($socialprofiles) && count($socialprofiles) > 0;
+		return count($socialprofiles) > 0;
 	}
 
 	/**
@@ -52,6 +51,7 @@ class TelegramProvider implements ISocialProvider {
 	 *
 	 * @return array
 	 */
+	#[\Override]
 	public function getImageUrls(array $contact):array {
 		$profileIds = $this->getProfileIds($contact);
 		$urls = [];
@@ -110,13 +110,17 @@ class TelegramProvider implements ISocialProvider {
 	protected function getFromHtml(string $url, string $desired) : ?string {
 		try {
 			$result = $this->httpClient->get($url, [
-				RequestOptions::HEADERS => [
+				'headers' => [
 					'User-Agent' => 'Googlebot/2.1'
 				]
 			]);
+			$body = $result->getBody();
+			if (!is_string($body)) {
+				throw new \Exception('Response body is not a string');
+			}
 
 			$htmlResult = new \DOMDocument();
-			$htmlResult->loadHTML($result->getBody());
+			$htmlResult->loadHTML($body);
 			$imgs = $htmlResult->getElementsByTagName('img');
 			foreach ($imgs as $img) {
 				foreach ($img->attributes as $attr) {
@@ -127,7 +131,7 @@ class TelegramProvider implements ISocialProvider {
 				}
 			}
 			return null;
-		} catch (RequestException $e) {
+		} catch (\Exception $e) {
 			$this->logger->debug('Error fetching telegram urls', [
 				'app' => Application::APP_ID,
 				'exception' => $e

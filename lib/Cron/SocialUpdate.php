@@ -28,6 +28,7 @@ class SocialUpdate extends QueuedJob {
 		parent::__construct($time);
 	}
 
+	#[\Override]
 	protected function run($argument) {
 		$userId = $argument['userId'];
 		$offsetBook = $argument['offsetBook'] ?? null;
@@ -43,6 +44,7 @@ class SocialUpdate extends QueuedJob {
 
 		if ($result->getStatus() === Http::STATUS_PARTIAL_CONTENT) {
 			// not finished; schedule a follow-up
+			/** @var array $report */
 			$report = $result->getData();
 			$stoppedAtBook = $report[0]['stoppedAt']['addressBook'];
 			$stoppedAtContact = $report[0]['stoppedAt']['contact'];
