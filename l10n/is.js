@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Flytja inn tengiliði",
     "Details" : "Nánar",
     "All contacts" : "Allir tengiliðir",
     "Contacts" : "Tengiliðir",
@@ -71,7 +72,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Tekst ekki að breyta heimildum",
     "can edit" : "getur breytt",
     "Choose a vCard file to import" : "Veldu vCard-skrá sem á að flytja inn",
-    "Import contacts" : "Flytja inn tengiliði",
     "Import into the {addressbookName} address book" : "Flytja inn í {addressbookName} nafnaskrána",
     "Select local file" : "Veldu skrá á tölvunni",
     "Import from files" : "Flytja inn úr skrám",

@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Εισαγωγή επαφών",
     "Details" : "Λεπτομέριες",
     "All contacts" : "Όλες οι επαφές",
     "Contacts" : "Επαφές",
@@ -54,7 +55,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Δεν είναι δυνατή η αλλαγή δικαιωμάτων",
     "can edit" : "με δυνατότητα επεξεργασίας",
     "Choose a vCard file to import" : "Επιλογή αρχείου vCard για εισαγωγή",
-    "Import contacts" : "Εισαγωγή επαφών",
     "Import into the {addressbookName} address book" : "Εισαγωγή στο {addressbookName} βιβλίο διευθύνσεων",
     "Select local file" : "Επιλογή τοπικού αρχείου",
     "Import from files" : "Εισαγωγή απο αρχεία",

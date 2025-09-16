@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "連絡先のインポート",
     "Details" : "詳細",
     "All contacts" : "すべての連絡先",
     "Contacts" : "連絡先",
@@ -71,7 +72,6 @@ OC.L10N.register(
     "Unable to change permissions" : "権限を変更できません。",
     "can edit" : "編集を許可",
     "Choose a vCard file to import" : "インポートするvCardファイルを選択",
-    "Import contacts" : "連絡先のインポート",
     "Import into the {addressbookName} address book" : "アドレス帳 {addressbookName} にインポートします",
     "Select local file" : "ローカルファイルの選択",
     "Import from files" : "ファイルからインポート ",

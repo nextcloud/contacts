@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Importa contactes",
     "Details" : "Detalls",
     "All contacts" : "Tots els contactes",
     "Contacts" : "Contactes",
@@ -71,7 +72,6 @@ OC.L10N.register(
     "Unable to change permissions" : "No s'han pogut canviar els permisos",
     "can edit" : "pot editar",
     "Choose a vCard file to import" : "Trieu un fitxer vCard per a importar-lo",
-    "Import contacts" : "Importa contactes",
     "Import into the {addressbookName} address book" : "Importa a la llibreta d'adreces {addressbookName}",
     "Select local file" : "Selecciona un fitxer local",
     "Import from files" : "Importa des de fitxers",

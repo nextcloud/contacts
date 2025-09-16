@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Uvozi stike",
     "Details" : "Podrobnosti",
     "All contacts" : "Vsi stiki",
     "Contacts" : "Stiki",
@@ -67,7 +68,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Ni mogoče spremeniti dovoljenj.",
     "can edit" : "lahko ureja",
     "Choose a vCard file to import" : "Izbor datoteke vCard za uvoz",
-    "Import contacts" : "Uvozi stike",
     "Import into the {addressbookName} address book" : "Uvozi v imenik {addressbookName}",
     "Select local file" : "Izbor krajevne datoteke",
     "Import from files" : "Uvozi iz datotek",
