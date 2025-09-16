@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Teagmhálaithe a allmhairiú",
     "Details" : "Sonraí",
     "All contacts" : "Gach teagmhálaí",
     "Contacts" : "Teagmhálaithe",
@@ -71,7 +72,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Ní féidir ceadanna a athrú",
     "can edit" : "is féidir in eagar",
     "Choose a vCard file to import" : "Roghnaigh comhad vCard le hiompórtáil",
-    "Import contacts" : "Teagmhálaithe a allmhairiú",
     "Import into the {addressbookName} address book" : "Iompórtáil isteach sa leabhar seoltaí {addressbookName}",
     "Select local file" : "Roghnaigh comhad áitiúil",
     "Import from files" : "Iompórtáil ó chomhaid",

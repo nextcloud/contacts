@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Importuoti adresatus",
     "Details" : "Išsamiau",
     "All contacts" : "Visi adresatai",
     "Contacts" : "Adresatai",
@@ -67,7 +68,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Nepavyko pakeisti leidimų",
     "can edit" : "gali redaguoti",
     "Choose a vCard file to import" : "Pasirinkite norimą importuoti vCard failą",
-    "Import contacts" : "Importuoti adresatus",
     "Import into the {addressbookName} address book" : "Importuoti į {addressbookName} adresų knygą",
     "Select local file" : "Pasirinkti vietinį failą",
     "Import from files" : "Importuoti iš failų",

@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Importa cuntatos",
     "Details" : "Detàllios",
     "All contacts" : "Totu is cuntatos",
     "Contacts" : "Cuntatos",
@@ -45,7 +46,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Non faghet a cambiare is permissos",
     "can edit" : "podet modificare",
     "Choose a vCard file to import" : "Sèbera un'archìviu vCard de importare",
-    "Import contacts" : "Importa cuntatos",
     "Import into the {addressbookName} address book" : "Importa in sa rubrica {addressbookName}",
     "Select local file" : "Sèbera archìviu locale",
     "Import from files" : "Importa dae is archìvios",

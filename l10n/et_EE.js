@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Impordi kontaktid",
     "Details" : "Üksikasjad",
     "All contacts" : "Kõik kontaktid",
     "Contacts" : "Kontaktid",
@@ -71,7 +72,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Ei õnnestu muuta õigusi",
     "can edit" : "saab muuta",
     "Choose a vCard file to import" : "Importimiseks vali vCardi fail",
-    "Import contacts" : "Impordi kontaktid",
     "Import into the {addressbookName} address book" : "Impordi aadressiraamatusse „{addressbookName}“",
     "Select local file" : "Vali kohalik fail",
     "Import from files" : "Impordi failirakendusest",

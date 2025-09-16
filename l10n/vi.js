@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Nhập liên hệ",
     "Details" : "Chi tiết",
     "All contacts" : "Tất cả các tên liên lạc",
     "Contacts" : "Danh bạ",
@@ -37,7 +38,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Không thể thay đổi quyền",
     "can edit" : "Có thể chỉnh sửa",
     "Choose a vCard file to import" : "Chọn một tệp vCard để nhập",
-    "Import contacts" : "Nhập liên hệ",
     "Select local file" : "Chọn tệp từ máy",
     "Import from files" : "Nhập từ tệp",
     "Importing is disabled because there are no address books available" : "Nhập đã bị tắt do không có sổ địa chỉ nào hiện hành",

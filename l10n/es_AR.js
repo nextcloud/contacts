@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Importar contactos",
     "Details" : "Detalles",
     "All contacts" : "Todos los contactos",
     "Contacts" : "Contactos",
@@ -44,7 +45,6 @@ OC.L10N.register(
     "Unable to change permissions" : "No se han podido cambiar los permisos",
     "can edit" : "poder editar",
     "Choose a vCard file to import" : "Elige un archivo vCard para importar",
-    "Import contacts" : "Importar contactos",
     "Import into the {addressbookName} address book" : "Importar en la libreta de direcciones {addressbookName}",
     "Select local file" : "Selecciona archivo local",
     "Importing is disabled because there are no address books available" : "La importación está deshabilitada porque no hay libretas de direcciones disponibles",

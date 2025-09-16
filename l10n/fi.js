@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Tuo yhteystietoja",
     "Details" : "Tiedot",
     "All contacts" : "Kaikki yhteystiedot",
     "Contacts" : "Yhteystiedot",
@@ -66,7 +67,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Käyttöoikeuksia ei voitu muuttaa",
     "can edit" : "voi muokata",
     "Choose a vCard file to import" : "Valitse tuotava vCard-tiedosto",
-    "Import contacts" : "Tuo yhteystietoja",
     "Import into the {addressbookName} address book" : "Tuo osoitekirjaan \"{addressbookName}\"",
     "Select local file" : "Valitse paikallinen tiedosto",
     "Import from files" : "Tuo tiedostoista",

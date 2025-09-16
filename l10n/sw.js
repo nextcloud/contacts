@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Agiza mawasiliano",
     "Details" : "Maelezo ya kina",
     "All contacts" : "Mawasiliano yote",
     "Contacts" : "Mawasiliano",
@@ -71,7 +72,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Haiwezi kubadili ruhusa",
     "can edit" : "inaweza kuhariri",
     "Choose a vCard file to import" : "Chagua faili la vCard la kuagiza",
-    "Import contacts" : "Agiza mawasiliano",
     "Import into the {addressbookName} address book" : "Agiza ndani ya {addressbookName} kitabu cha mawasiliano",
     "Select local file" : "Chagua faili la ndani",
     "Import from files" : "Agiza kutoka katika mafaili",

@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Importeer contactpersonen",
     "Details" : "Details",
     "All contacts" : "Alle contactpersonen",
     "Contacts" : "Contactpersonen",
@@ -63,7 +64,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Kan de machtigingen niet wijzigen",
     "can edit" : "kan bewerken",
     "Choose a vCard file to import" : "Kies een vCard bestand om te importeren",
-    "Import contacts" : "Importeer contactpersonen",
     "Import into the {addressbookName} address book" : "Importeren in het {addressbookName} adresboek",
     "Select local file" : "Selecteer lokaal bestand",
     "Import from files" : "Importeren uit bestanden",

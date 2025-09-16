@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "導入聯絡人",
     "Details" : "詳細資料",
     "All contacts" : "所有聯絡人",
     "Contacts" : "通訊錄",
@@ -71,7 +72,6 @@ OC.L10N.register(
     "Unable to change permissions" : "無法變更權限",
     "can edit" : "允許編輯",
     "Choose a vCard file to import" : "選取要導入的 vCard 檔案",
-    "Import contacts" : "導入聯絡人",
     "Import into the {addressbookName} address book" : "導入至 {addressbookName} 通訊錄",
     "Select local file" : "選擇本機檔案",
     "Import from files" : "從檔案導入",

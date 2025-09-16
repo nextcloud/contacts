@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Névjegyek importálása",
     "Details" : "Részletek",
     "All contacts" : "Összes névjegy",
     "Contacts" : "Névjegyek",
@@ -71,7 +72,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Nem lehet megváltoztatni a jogosultságokat",
     "can edit" : "szerkesztheti",
     "Choose a vCard file to import" : "Válasszon egy importálandó vCard fájlt",
-    "Import contacts" : "Névjegyek importálása",
     "Import into the {addressbookName} address book" : "Importálás a(z) {addressbookName} címjegyzékbe",
     "Select local file" : "Helyi fájl kiválasztása",
     "Import from files" : "Importálás fájlokból",

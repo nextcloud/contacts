@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Importera kontakter",
     "Details" : "Detaljer",
     "All contacts" : "Alla kontakter",
     "Contacts" : "Kontakter",
@@ -71,7 +72,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Kunde inte ändra behörigheter",
     "can edit" : "kan redigera",
     "Choose a vCard file to import" : "Välj en vCard-fil att importera",
-    "Import contacts" : "Importera kontakter",
     "Import into the {addressbookName} address book" : "Importera till adressboken {addressbookName}",
     "Select local file" : "Välj lokal fil",
     "Import from files" : "Importera från filer",
