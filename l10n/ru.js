@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Импорт контактов",
     "Details" : "Подробно",
     "All contacts" : "Все контакты",
     "Contacts" : "Контакты",
@@ -71,7 +72,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Невозможно изменить права доступа",
     "can edit" : "разрешить редактировать",
     "Choose a vCard file to import" : "Выберите файл в формате vCard для импорта",
-    "Import contacts" : "Импорт контактов",
     "Import into the {addressbookName} address book" : "Импортировать в адресную книгу «{addressbookName}»",
     "Select local file" : "Загрузить с ПК",
     "Import from files" : "Выбрать в Nextcloud",

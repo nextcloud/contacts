@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "إستيراد جهات الاتصال",
     "Details" : "التفاصيل",
     "All contacts" : "كل جهات الإتصال",
     "Contacts" : "جهات الاتصال",
@@ -71,7 +72,6 @@ OC.L10N.register(
     "Unable to change permissions" : "تعذّر تغيير الأذونات",
     "can edit" : "يمكن التعديل",
     "Choose a vCard file to import" : "إختر ملف vCard لاستيراده",
-    "Import contacts" : "إستيراد جهات الاتصال",
     "Import into the {addressbookName} address book" : "الإستيراد إلى دفتر العناوين {addressbookName} ",
     "Select local file" : "إختر ملف محلي",
     "Import from files" : "إستيراد من تطبيق الملفات ",

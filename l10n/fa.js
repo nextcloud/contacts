@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "درون‌ریزی آشنایان",
     "Details" : "جزئیات",
     "All contacts" : "تمام مخاطبین",
     "Contacts" : "مخاطبین",
@@ -54,7 +55,6 @@ OC.L10N.register(
     "Unable to change permissions" : "ناتوان در تغییر اجازه‌ها",
     "can edit" : "توانایی ویرایش",
     "Choose a vCard file to import" : "گزینش یک vCard برای درون‌ریزی",
-    "Import contacts" : "درون‌ریزی آشنایان",
     "Import into the {addressbookName} address book" : "وارد کردن به دفترچه آدرس {addressbookName}",
     "Select local file" : "گزینش پروندهٔ محلی",
     "Import from files" : "وارد کردن از فایل ها",

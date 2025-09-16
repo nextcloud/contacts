@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Внасяне на контакти",
     "Details" : "Подробности",
     "All contacts" : "Всички контакти",
     "Contacts" : "Контакти",
@@ -51,7 +52,6 @@ OC.L10N.register(
     "Unable to change permissions" : "Неуспешна промяна на права.",
     "can edit" : "може да редактира",
     "Choose a vCard file to import" : "Избор на vCard файл за импортиране",
-    "Import contacts" : "Внасяне на контакти",
     "Import into the {addressbookName} address book" : "Внасяне в адресната книга {addressbookName}",
     "Select local file" : "Избор на локален файл",
     "Importing is disabled because there are no address books available" : "Внасянето е деактивирано, защото няма налични адресни книги ",

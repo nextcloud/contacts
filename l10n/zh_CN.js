@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "导入联系人",
     "Details" : "详情",
     "All contacts" : "全部联系人",
     "Contacts" : "联系人",
@@ -71,7 +72,6 @@ OC.L10N.register(
     "Unable to change permissions" : "无法更改权限",
     "can edit" : "可编辑",
     "Choose a vCard file to import" : "选择要导入的 vCard（电子名片） 文件",
-    "Import contacts" : "导入联系人",
     "Import into the {addressbookName} address book" : "导入 {addressbookName} 通讯录",
     "Select local file" : "选择本地文件",
     "Import from files" : "从文件导入",

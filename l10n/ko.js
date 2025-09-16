@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "연락처 가져오기",
     "Details" : "자세한 정보",
     "All contacts" : "모든 연락처",
     "Contacts" : "연락처",
@@ -53,7 +54,6 @@ OC.L10N.register(
     "Unable to change permissions" : "권한을 변경하지 못했습니다.",
     "can edit" : "편집 가능",
     "Choose a vCard file to import" : "불러올 vCard 파일을 고르기",
-    "Import contacts" : "연락처 가져오기",
     "Import into the {addressbookName} address book" : "{addressbookName} 주소록에 불러오기",
     "Select local file" : "로컬 파일 선택",
     "Import from files" : "파일로부터 가져오기",

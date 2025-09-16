@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "ייבוא אנשי קשר",
     "Details" : "פרטים",
     "All contacts" : "כל אנשי הקשר",
     "Contacts" : "אנשי קשר",
@@ -36,7 +37,6 @@ OC.L10N.register(
     "Unable to change permissions" : "לא ניתן לשנות את ההרשאות",
     "can edit" : "יש הרשאת עריכה",
     "Choose a vCard file to import" : "נא לבחור קובץ vCard לייבוא",
-    "Import contacts" : "ייבוא אנשי קשר",
     "Select local file" : "בחירת קובץ מקומי",
     "Import from files" : "ייבוא מקבצים",
     "Importing is disabled because there are no address books available" : "הייבוא מושבת כיוון שאין לך ספרי כתובות זמינים",

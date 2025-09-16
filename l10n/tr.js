@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Kişileri içe aktar",
     "Details" : "Ayrıntılar",
     "All contacts" : "Tüm kişiler",
     "Contacts" : "Kişiler",
@@ -71,7 +72,6 @@ OC.L10N.register(
     "Unable to change permissions" : "İzinler değiştirilemedi",
     "can edit" : "düzenleyebilir",
     "Choose a vCard file to import" : "İçe aktarılacak vCard dosyasını seçin",
-    "Import contacts" : "Kişileri içe aktar",
     "Import into the {addressbookName} address book" : "{addressbookName} adres defteri içine aktar",
     "Select local file" : "Yerel dosyayı seçin",
     "Import from files" : "Dosya ile içe aktar",

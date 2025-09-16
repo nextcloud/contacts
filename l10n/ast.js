@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Importar contautos",
     "Details" : "Detalles",
     "All contacts" : "Tolos contautos",
     "Contacts" : "Contautos",
@@ -45,7 +46,6 @@ OC.L10N.register(
     "_%n group_::_%n groups_" : ["%n grupu","%n grupos"],
     "Unable to delete the share" : "Nun ye posible desaniciar l'elementu compartíu",
     "Unable to change permissions" : "Nun ye posible camudar los permisos",
-    "Import contacts" : "Importar contautos",
     "An error occurred, unable to create the address book" : "Prodúxose un error, nun ye posible crear la llibreta de direiciones",
     "Add" : "Add",
     "First name" : "Nome",

@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "ئالاقىنى ئەكىرىش",
     "Details" : "تەپسىلاتى",
     "All contacts" : "بارلىق ئالاقىداشلار",
     "Contacts" : "ئالاقەداشلار",
@@ -66,7 +67,6 @@ OC.L10N.register(
     "Unable to change permissions" : "ئىجازەتنى ئۆزگەرتەلمىدى",
     "can edit" : "تەھرىرلىيەلەيدۇ",
     "Choose a vCard file to import" : "ئەكىرىش ئۈچۈن vCard ھۆججىتىنى تاللاڭ",
-    "Import contacts" : "ئالاقىنى ئەكىرىش",
     "Import into the {addressbookName} address book" : "{addressbookName} دەپتىرى Name ئادرېس دەپتىرىگە ئەكىرىڭ",
     "Select local file" : "يەرلىك ھۆججەتنى تاللاڭ",
     "Import from files" : "ھۆججەتلەردىن ئەكىرىش",

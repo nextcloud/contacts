@@ -62,6 +62,7 @@ OC.L10N.register(
     "Nickname" : "Псеўданім",
     "Notes" : "Нататкі",
     "Website" : "Вэб-сайт",
+    "Location" : "Месцазнаходжанне",
     "Home" : "Дадому",
     "Address" : "Адрас",
     "Birthday" : "Дзень нараджэння",
