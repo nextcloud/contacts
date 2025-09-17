@@ -130,7 +130,7 @@
 						<ul class="item-list">
 							<ListItem v-for="resource in group.resources"
 								:key="resource.id"
-								:href="resource.link"
+								:href="resource.url"
 								:name="resource.label">
 								<template #icon>
 									<!-- eslint-disable-next-line vue/no-v-html -->
