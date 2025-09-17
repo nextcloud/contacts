@@ -706,9 +706,15 @@ export default {
 				: t('contacts', 'Exclude contact from Birthday Calendar')
 		},
 
+		/**
+		 * True if the contact can be excluded from (or added to) the user's birthday calendar
+		 *
+		 * @return {boolean}
+		 */
 		enableToggleBirthdayExclusion() {
-			return parseInt(window.OC.config.version.split('.')[0]) >= 26
-				&& this.localContact?.vCard // Wait until localContact was fetched
+			// Wait until localContact was fetched
+			const isFetched = !!this.localContact?.vCard
+			return isFetched && !this.isInSystemAddressBook
 		},
 
 		/**
