@@ -39,6 +39,7 @@
 			ref="entityPicker"
 			v-model:selection="pickerSelection"
 			:confirm-label="t('contacts', 'Add to {circle}', { circle: circle.displayName })"
+			:title-label="t('contacts', 'Invite members to {circle}', { circle: circle.displayName })"
 			:data-types="pickerTypes"
 			:data-set="filteredPickerData"
 			:internal-search="false"

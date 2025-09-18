@@ -10,9 +10,9 @@
 		<div class="entity-picker">
 			<!-- Search -->
 			<div class="entity-picker__heading">
-				<h2 class="entity-picker__title">
-					{{ t('contacts', 'Invite members to team') }}
-				</h2>
+				<h3 class="entity-picker__title">
+					{{ titleLabel }}
+				</h3>
 			</div>
 			<div class="entity-picker__search-container">
 				<div class="entity-picker__search">
@@ -179,6 +179,14 @@ export default {
 		confirmLabel: {
 			type: String,
 			default: t('contacts', 'Add to group'),
+		},
+
+		/**
+		 * Title text
+		 */
+		titleLabel: {
+			type: String,
+			default: t('contacts', 'Add members to group'),
 		},
 
 		/**

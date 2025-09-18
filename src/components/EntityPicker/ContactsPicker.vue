@@ -14,6 +14,7 @@
 	<!-- contacts picker -->
 	<EntityPicker v-else-if="showPicker"
 		:confirm-label="t('contacts', 'Add to {group}', { group: pickerforGroup.name })"
+		:title-label="t('contacts', 'Add members to {group}', { group: pickerforGroup.name })"
 		:data-types="pickerTypes"
 		:data-set="pickerData"
 		:empty-data-set-description="t('contacts', 'Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added.')"
