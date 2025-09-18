@@ -63,7 +63,11 @@ const properties = {
 	note: {
 		readableName: t('contacts', 'Notes'),
 		icon: 'icon-note',
-		primary: false,
+		primary: true,
+		default: true,
+		defaultValue: {
+			value: '',
+		},
 	},
 	url: {
 		multiple: true,
