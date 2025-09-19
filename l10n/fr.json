@@ -167,7 +167,6 @@
     "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Veuillez noter que vous ne pouvez ajouter à des groupes de contacts que des contacts provenant de carnets d'adresses modifiables. Les contacts provenant de carnets d'adresses en lecture seule, tels que le carnet d'adresses système, ne peuvent pas être ajoutés.",
     "Remove {type}" : "Retirer {type}",
     "Add to group" : "Ajouter au groupe",
-    "Invite members to team" : "Inviter des membres à rejoindre l'équipe",
     "Search {types}" : "Rechercher {types}",
     "Add guest" : "Ajouter un invité",
     "Search for people to add" : "Chercher des personnes à ajouter",
@@ -328,6 +327,7 @@
     "An error has occurred in team(s). Check the console for more details." : "Une erreur est survenue dans le(s) équipe(s). Vérifiez la console pour plus de détails.",
     "Unable to create team {circleName}" : "Impossible de créer l'équipe {circleName}",
     "Unable to delete team {circleId}" : "Impossible de supprimer l'équipe {circleId}",
-    "Unable to delete contact" : "Impossible de supprimer le contact."
+    "Unable to delete contact" : "Impossible de supprimer le contact.",
+    "Invite members to team" : "Inviter des membres à rejoindre l'équipe"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

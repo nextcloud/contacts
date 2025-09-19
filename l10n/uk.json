@@ -167,7 +167,6 @@
     "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Зауважте, можна додавати контакти тільки з адресних книг, відкритих на запис, до груп контактів. Контакти з адресних книг, до яких є доступ тільки для читання, напр., системна адресна книга, неможливо додати.",
     "Remove {type}" : "Вилучити {type}",
     "Add to group" : "Додати до групи",
-    "Invite members to team" : "Запросити членів до команди",
     "Search {types}" : "Шукати {types}",
     "Add guest" : "Додати гостя",
     "Search for people to add" : "Шукати контакти для додавання",
@@ -328,6 +327,7 @@
     "An error has occurred in team(s). Check the console for more details." : "Помилка з командою(-ами). Перевірте консоль для отримання докладної інформації.",
     "Unable to create team {circleName}" : "Не вдалося створити команду {circleName}",
     "Unable to delete team {circleId}" : "Не вдалося вилучити команду {circleId}",
-    "Unable to delete contact" : "Неможливо вилучити контакт"
+    "Unable to delete contact" : "Неможливо вилучити контакт",
+    "Invite members to team" : "Запросити членів до команди"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);"
 }
