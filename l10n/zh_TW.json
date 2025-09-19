@@ -167,7 +167,6 @@
     "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "請注意，您只能將可寫通訊錄中的聯絡人新增至聯絡人群組。來自唯讀通訊錄（例如系統通訊錄）的聯絡人則無法新增。",
     "Remove {type}" : "移除 {type}",
     "Add to group" : "新增至群組",
-    "Invite members to team" : "邀請成員加入團隊",
     "Search {types}" : "搜尋 {types}",
     "Add guest" : "新增訪客",
     "Search for people to add" : "搜尋要新增的人",
@@ -328,6 +327,7 @@
     "An error has occurred in team(s). Check the console for more details." : "團隊中出現錯誤。請檢查主控台以取得更多詳細資訊。",
     "Unable to create team {circleName}" : "無法建立團隊 {circleName}",
     "Unable to delete team {circleId}" : "無法刪除團隊 {circleId}",
-    "Unable to delete contact" : "無法刪除聯絡人"
+    "Unable to delete contact" : "無法刪除聯絡人",
+    "Invite members to team" : "邀請成員加入團隊"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

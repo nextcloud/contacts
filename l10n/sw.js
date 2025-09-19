@@ -169,7 +169,6 @@ OC.L10N.register(
     "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Tafadhali kumbuka kuwa unaweza tu kuongeza anwani kutoka kwa vitabu vya anwani vinavyoweza kuandikwa kwa vikundi vya anwani. Anwani kutoka kwa vitabu vya anwani vya kusoma pekee, kama vile kitabu cha anwani za mfumo, haziwezi kuongezwa.",
     "Remove {type}" : "Ondoa {type}",
     "Add to group" : "Ongeza kwenye kundi",
-    "Invite members to team" : "Alika wanachama kwenye timu",
     "Search {types}" : "Tafuta {types}",
     "Add guest" : "Ongeza mgeni",
     "Search for people to add" : "Tafuta watu wa kuongeza",
@@ -330,6 +329,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Hitilafu imetokea katika vipengele. Angalia mixer kwa maelezo zaidii",
     "Unable to create team {circleName}" : "Haiwezi kutengeneza timu {circleName}",
     "Unable to delete team {circleId}" : "Haiwezi kufuta timu {circleId}",
-    "Unable to delete contact" : "Haiwezi kufuta mawasiliano"
+    "Unable to delete contact" : "Haiwezi kufuta mawasiliano",
+    "Invite members to team" : "Alika wanachama kwenye timu"
 },
 "nplurals=2; plural=(n != 1);");

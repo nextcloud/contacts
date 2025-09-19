@@ -169,7 +169,6 @@ OC.L10N.register(
     "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Por favor, tenga en cuenta que solo puede agregar contactos desde las libretas de direcciones a las que puede escribir a los grupos de contactos. Los contactos de las libretas de direcciones de sólo lectura, tales como la libreta de direcciones del sistema, no pueden ser añadidos.",
     "Remove {type}" : "Eliminar {type}",
     "Add to group" : "Añadir a grupo",
-    "Invite members to team" : "Invitar miembros al equipo",
     "Search {types}" : "Buscar en {types}",
     "Add guest" : "Añadir invitado",
     "Search for people to add" : "Buscar personas para añadir",
@@ -330,6 +329,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Ha ocurrido un error en el/los equipo(s). Verifique la consola para más detalles.",
     "Unable to create team {circleName}" : "No fue posible crear el equipo {circleName}",
     "Unable to delete team {circleId}" : "No se pudo eliminar el equipo {circleId}",
-    "Unable to delete contact" : "No se ha podido eliminar el contacto"
+    "Unable to delete contact" : "No se ha podido eliminar el contacto",
+    "Invite members to team" : "Invitar miembros al equipo"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

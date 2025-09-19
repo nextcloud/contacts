@@ -169,7 +169,6 @@ OC.L10N.register(
     "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Palun arvesta, et kontaktigruppidesse saad kontakte lisada vaid kirjutusõigustega aadressiraamatutest. Kontakte ainult lugemisõigusega aadressiraamatutest, nagu näiteks süsteemne aadressiraamatut, lisada ei saa.",
     "Remove {type}" : "Eemalda {type}",
     "Add to group" : "Lisa gruppi",
-    "Invite members to team" : "Kutsi tiimi uusi liikmeid",
     "Search {types}" : "Otsi: {types}",
     "Add guest" : "Lisa külaline",
     "Search for people to add" : "Otsi inimesi, keda liikmeks lisada",
@@ -329,6 +328,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Tiimi(de)s tekkis viga. Lisateavet palun vaata konsoolilt.",
     "Unable to create team {circleName}" : "„{circleName}“ tiimi loomine pole võimalik",
     "Unable to delete team {circleId}" : "„{circleId}“ tiimi kustutamine pole võimalik",
-    "Unable to delete contact" : "Ei õnnestu kustutada kontakti"
+    "Unable to delete contact" : "Ei õnnestu kustutada kontakti",
+    "Invite members to team" : "Kutsi tiimi uusi liikmeid"
 },
 "nplurals=2; plural=(n != 1);");

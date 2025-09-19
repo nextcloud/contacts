@@ -169,7 +169,6 @@ OC.L10N.register(
     "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Observera att du bara kan lägga till kontakter från skrivbara adressböcker i kontaktgrupper. Kontakter från skrivskyddade adressböcker, såsom systemets adressbok, kan inte läggas till.",
     "Remove {type}" : "Ta bort {type}",
     "Add to group" : "Lägg till grupp",
-    "Invite members to team" : "Bjud in medlemmar till teamet",
     "Search {types}" : "Sök {types}",
     "Add guest" : "Lägg till gäst",
     "Search for people to add" : "Sök efter personer att lägga till",
@@ -330,6 +329,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Ett fel har uppstått i team(s). Kontrollera konsolen för mer information.",
     "Unable to create team {circleName}" : "Kunde inte skapa team {circleName}",
     "Unable to delete team {circleId}" : "Kan inte ta bort team {circleId}",
-    "Unable to delete contact" : "Kunde inte radera kontakten"
+    "Unable to delete contact" : "Kunde inte radera kontakten",
+    "Invite members to team" : "Bjud in medlemmar till teamet"
 },
 "nplurals=2; plural=(n != 1);");
