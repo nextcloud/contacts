@@ -148,7 +148,6 @@ OC.L10N.register(
     "Add to {group}" : "Lisää ryhmään {group}",
     "Remove {type}" : "Poista {type}",
     "Add to group" : "Lisää ryhmään",
-    "Invite members to team" : "Kutsu jäseniä tiimiin",
     "Search {types}" : "Hae {types}",
     "Search for people to add" : "Etsi ihmisiä lisättäväksi",
     "No results" : "Ei tuloksia",
@@ -292,6 +291,7 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} yhteystietoa ei voitu lukea","{failed} yhteystietoa ei voitu lukea"],
     "Unable to create team {circleName}" : "Tiimiä {circleName} ei voitu luoda",
     "Unable to delete team {circleId}" : "Tiimiä {circleId} ei voitu poistaa",
-    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa"
+    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa",
+    "Invite members to team" : "Kutsu jäseniä tiimiin"
 },
 "nplurals=2; plural=(n != 1);");

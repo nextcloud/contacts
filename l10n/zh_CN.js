@@ -169,7 +169,6 @@ OC.L10N.register(
     "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "请注意，您只能将可写通讯录中的联系人添加到联系人组。无法添加只读通讯录（如系统通讯录）中的联系人。",
     "Remove {type}" : "移除 {type}",
     "Add to group" : "添加到群组",
-    "Invite members to team" : "邀请成员加入团队",
     "Search {types}" : "搜索 {types}",
     "Add guest" : "添加访客",
     "Search for people to add" : "搜索要添加的人",
@@ -330,6 +329,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "团队中出现错误。有关更多详情，请查看控制台。",
     "Unable to create team {circleName}" : "无法创建团队 {圈子名称}",
     "Unable to delete team {circleId}" : "无法删除团队 {circleId}",
-    "Unable to delete contact" : "无法删除联系人"
+    "Unable to delete contact" : "无法删除联系人",
+    "Invite members to team" : "邀请成员加入团队"
 },
 "nplurals=1; plural=0;");

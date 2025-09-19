@@ -167,7 +167,6 @@
     "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Tabhair faoi deara nach féidir leat ach teagmhálaithe ó leabhair sheoltaí inscríofa a chur le grúpaí teagmhálaithe. Ní féidir teagmhálaithe ó leabhair sheoltaí inléite amháin, amhail leabhar seoltaí an chórais, a chur leis.",
     "Remove {type}" : "Bain {type}",
     "Add to group" : "Cuir leis an ngrúpa",
-    "Invite members to team" : "Tabhair cuireadh do bhaill chuig an bhfoireann",
     "Search {types}" : "Cuardaigh {types}",
     "Add guest" : "Cuir aoi leis",
     "Search for people to add" : "Cuardaigh daoine le cur leis",
@@ -328,6 +327,7 @@
     "An error has occurred in team(s). Check the console for more details." : "Tharla earráid san fhoireann(í). Seiceáil an consól le haghaidh tuilleadh sonraí.",
     "Unable to create team {circleName}" : "Ní féidir foireann {circleName} a chruthú",
     "Unable to delete team {circleId}" : "Ní féidir foireann {circleId} a scriosadh",
-    "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh"
+    "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh",
+    "Invite members to team" : "Tabhair cuireadh do bhaill chuig an bhfoireann"
 },"pluralForm" :"nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);"
 }

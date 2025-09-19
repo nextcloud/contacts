@@ -169,7 +169,6 @@ OC.L10N.register(
     "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added.",
     "Remove {type}" : "Remove {type}",
     "Add to group" : "Add to group",
-    "Invite members to team" : "Invite members to team",
     "Search {types}" : "Search {types}",
     "Add guest" : "Add guest",
     "Search for people to add" : "Search for people to add",
@@ -330,6 +329,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "An error has occurred in team(s). Check the console for more details.",
     "Unable to create team {circleName}" : "Unable to create team {circleName}",
     "Unable to delete team {circleId}" : "Unable to delete team {circleId}",
-    "Unable to delete contact" : "Unable to delete contact"
+    "Unable to delete contact" : "Unable to delete contact",
+    "Invite members to team" : "Invite members to team"
 },
 "nplurals=2; plural=(n != 1);");

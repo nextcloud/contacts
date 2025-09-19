@@ -95,6 +95,7 @@
     "Failed to save password. Please try again later." : "Heslo se nepodařilo uložit. Zkuste to prosím znovu později.",
     "There is no description for this team" : "K tomuto týmu neexistuje popis",
     "Enter a description for the team" : "Zadejte popis pro tým",
+    "An error happened while saving {fields}" : "Při ukládání {fields} došlo k chybě",
     "Team name" : "Název týmu",
     "Team owner" : "Vlastník týmu",
     "Edit" : "Upravit",
@@ -153,9 +154,11 @@
     "Confirm merging contacts" : "Potvrďte sloučení kontaktů",
     "Contacts can be merged" : "Kontakty je možné sloučit",
     "Groups" : "Skupiny",
+    "Select groups to add the merged contact to" : "Vyberte skupiny, do kterých sloučený kontakt přidat",
     "Merge contacts" : "Sloučit kontakty",
     "_Delete {number} contact_::_Delete {number} contacts_" : ["Smazat {number} kontakt","Smazat {number} kontakty","Smazat {number} kontaktů","Smazat {number} kontakty"],
     "Please select at least one editable contact to delete" : "Vyberte alespoň jeden kontakt, který je možné upravovat, pro smazání",
+    "Please select two editable contacts to merge" : "Vyberte dva kontakty (které můžete upravovat), které sloučit",
     "Are you sure you want to proceed?" : "Opravdu chcete pokračovat?",
     "Search contacts …" : "Hledat v kontaktech…",
     "Unselect {number}" : "Zrušit výběr {number}",
@@ -163,7 +166,6 @@
     "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Všimněte si, že do skupin kontaktů je možné přidávat kontakty z adresářů kontaktů, do kterých lze zapisovat. Kontakty z adresářů, které jsou pouze pro čtení, jako například systémový adresář kontaktů, není možné přidávat.",
     "Remove {type}" : "Odebrat {type}",
     "Add to group" : "Přidat do skupiny",
-    "Invite members to team" : "Pozvat členy do týmu",
     "Search {types}" : "Hledat {types}",
     "Add guest" : "Přidat hosta",
     "Search for people to add" : "Vyhledat lidi které přidat",
@@ -323,6 +325,7 @@
     "An error has occurred in team(s). Check the console for more details." : "V Týmy došlo k chybě. Další podrobnosti naleznete v konzoli.",
     "Unable to create team {circleName}" : "Nedaří se vytvořit tým {circleName}",
     "Unable to delete team {circleId}" : "Nedaří se smazat tým {circleId}",
-    "Unable to delete contact" : "Nedaří se smazat kontakt"
+    "Unable to delete contact" : "Nedaří se smazat kontakt",
+    "Invite members to team" : "Pozvat členy do týmu"
 },"pluralForm" :"nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;"
 }

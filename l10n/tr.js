@@ -169,7 +169,6 @@ OC.L10N.register(
     "Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added." : "Yalnızca yazılabilir adres defterlerinden kişi gruplarına kişi ekleyebileceğinizi lütfen unutmayın. Sistem adres defteri gibi salt okunur adres defterlerinden kişiler eklenemez.",
     "Remove {type}" : "{type} sil",
     "Add to group" : "Gruba ekle",
-    "Invite members to team" : "Takıma üyeler davet edin",
     "Search {types}" : "{types} arama",
     "Add guest" : "Konuk ekle",
     "Search for people to add" : "Eklenecek kişileri ara",
@@ -330,6 +329,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Takımlarda bir sorun çıktı. Ayrıntılı bilgi almak için konsola bakabilirsiniz.",
     "Unable to create team {circleName}" : "{circleName} takımı eklenemedi",
     "Unable to delete team {circleId}" : "{circleName} takımı silinemedi",
-    "Unable to delete contact" : "Kişi silinemedi"
+    "Unable to delete contact" : "Kişi silinemedi",
+    "Invite members to team" : "Takıma üyeler davet edin"
 },
 "nplurals=2; plural=(n > 1);");
