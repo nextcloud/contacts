@@ -86,7 +86,10 @@ const mutations = {
 	 */
 	deleteMemberFromCircle(state, member) {
 		// Circles dependencies are managed directly from the model
-		member.delete()
+		const singleId = member.singleId
+		if (member.circle._members[singleId]) {
+			Vue.delete(member.circle._members, singleId)
+		}
 	},
 
 	setCircleSettings(state, { circleId, settings }) {
