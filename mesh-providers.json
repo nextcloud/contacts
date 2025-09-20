@@ -1,0 +1,14 @@
+[
+    {
+        "provider": "SURF test instance",
+        "name": "SURF",
+        "fqdn": "tst-aperture.data.surf.nl",
+        "inviteAcceptDialog": "/apps/contacts/ocm/invite-accept-dialog"
+    },
+    {
+        "provider": "NC-OCM",
+        "name": "NC-OCM",
+        "fqdn": "nc-ocm.nl",
+        "inviteAcceptDialog": "/apps/contacts/ocm/invite-accept-dialog"
+    }
+]

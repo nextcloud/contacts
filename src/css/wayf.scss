@@ -1,0 +1,37 @@
+#contacts-wayf {
+  background: var(--color-background-plain);
+  color: var(--color-background-plain-text);
+  border-radius: 8px;
+}
+
+.wayf-list {
+  text-align: start;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.wayf-list > li {
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+
+  padding: 0.75rem 1rem;
+  margin: 0.25rem 0;
+
+  background-color: var(--color-background-dark);
+  color: var(--color-main-text);
+
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.15s;
+}
+
+.wayf-list > li:hover {
+  background-color: var(--color-background-darker);
+}
+
+.wayf-list > li:active {
+  background-color: var(--color-primary);
+  color: var(--color-primary-text);
+}

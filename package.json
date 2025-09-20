@@ -78,6 +78,7 @@
     "vue-cropperjs": "^5.0.0",
     "vue-material-design-icons": "^5.3.1",
     "vue-router": "^4.5.1",
+    "vue-virtual-scroll-list": "^2.3.5",
     "vuex": "^4.1.0"
   },
   "engines": {
@@ -101,7 +102,7 @@
     "ts-jest": "^29.4.1",
     "ts-loader": "^9.5.4",
     "typescript": "^5.9.2",
-    "vite": "^5.4.19"
+    "vite": "^5.4.20"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"

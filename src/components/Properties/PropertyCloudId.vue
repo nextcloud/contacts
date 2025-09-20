@@ -14,6 +14,15 @@
 			:icon="propModel.icon"
 			:readable-name="propModel.readableName" />
 
+		<!-- <OcmInvite 
+			:local-contact="localContact"
+			:value.sync="localValue"
+			:prop-name="propName"
+			:value="value" 
+			:contactFormEditMode="contactFormEditMode"
+			@setContactFormEditModeEvent:value="setEditMode" 
+			@saveInvite="saveInvite" /> -->
+		
 		<div class="property__row">
 			<div class="property__label">
 				<!-- read-only type -->
@@ -29,9 +38,10 @@
 					:taggable="true"
 					tag-placeholder="create"
 					:disabled="isReadOnly"
+					track-by="id"
 					label="name"
 					@option:created="createLabel"
-					@update:model-value="updateType" />
+					@input="updateType" />
 
 				<!-- if we do not support any type on our model but one is set anyway -->
 				<span v-else-if="selectType">
@@ -46,49 +56,14 @@
 
 			<!-- textarea for note -->
 			<div class="property__value">
-				<NcTextArea v-if="propName === 'note'"
-					id="textarea"
-					ref="textarea"
-					v-model:model-value="localValue"
-					:inputmode="inputmode"
-					:readonly="isReadOnly"
-					@update:model-value="updateValueNoDebounce"
-					@mousemove="resizeHeight"
-					@keypress="resizeHeight" />
-
-				<!-- email with validation-->
-				<NcTextField v-else-if="propName === 'email'"
-					ref="email"
-					v-model:model-value="localValue"
-					:class="{'property__value--with-ext': haveExtHandler}"
-					autocapitalize="none"
-					autocomplete="email"
-					:inputmode="inputmode"
-					:readonly="isReadOnly"
-					:error="!isEmailValid"
-					:helper-text="!emailHelpText || isReadonly ? '' : emailHelpText"
-					label-outside
-					:placeholder="placeholder"
-					type="email"
-					@update:model-value="updateEmailValue" />
-
-				<!-- OR default to input -->
-				<NcTextField v-else
-					v-model:model-value="localValue"
+				<NcTextField
+					:value.sync="localValue"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
 					:class="{'property__value--with-ext': haveExtHandler}"
 					type="text"
 					:placeholder="placeholder"
-					@update:model-value="updateValue" />
-
-				<!-- external link -->
-				<a v-if="haveExtHandler && isReadOnly"
-					:href="externalHandler"
-					class="property__ext"
-					target="_blank">
-					<OpenInNewIcon :size="20" />
-				</a>
+					@update:value="updateValue" />
 			</div>
 
 			<!-- props actions -->
@@ -105,16 +80,18 @@
 <script>
 import { NcSelect, NcTextArea, NcTextField } from '@nextcloud/vue'
 import debounce from 'debounce'
-import isEmail from 'validator/lib/isEmail.js'
-import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+// import OcmInvite from '../Ocm/OcmInvite.vue'
 import PropertyMixin from '../../mixins/PropertyMixin.js'
-import PropertyActions from './PropertyActions.vue'
 import PropertyTitle from './PropertyTitle.vue'
+import PropertyActions from './PropertyActions.vue'
+import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+import { isReadonly } from 'vue'
 
 export default {
 	name: 'PropertyText',
 
 	components: {
+		// OcmInvite,
 		NcSelect,
 		NcTextArea,
 		NcTextField,
@@ -124,7 +101,6 @@ export default {
 	},
 
 	mixins: [PropertyMixin],
-	inject: ['sharedState'],
 
 	props: {
 		propName: {
@@ -137,12 +113,10 @@ export default {
 			default: '',
 			required: true,
 		},
-	},
-
-	data() {
-		return {
-			emailHelpText: null,
-			isEmailValid: true,
+		contactFormEditMode: {
+			type: Boolean,
+			default: false,
+			required: true,
 		}
 	},
 
@@ -193,6 +167,17 @@ export default {
 		 * @return {string}
 		 */
 		placeholder() {
+			// This is for contacts that are added 'by hand' or imported with no cloud ID yet.
+			//
+			// TODO create newInvite method that ckecks for the existence of an invite for this existing contact
+			if(this.isNewInvite) {
+				return t('contacts', '... awaiting invite response')
+			}
+			if (this.propName == 'cloud') {
+				return t('contacts', '... you may use exchange cloud ID option')
+			}
+
+			// Regular placeholders if no cloud id exchange option is available
 			if (this.localType?.placeholder) {
 				return this.localType.placeholder
 			}
@@ -201,33 +186,26 @@ export default {
 	},
 
 	mounted() {
-		this.resizeHeight()
+		// this.resizeHeight()
 	},
 
+	data() {
+		return {
+			isNewInvite: false,
+			contactFormEditMode: false,
+		}
+	},
+	emits: [
+		'setContactFormEditModeEvent:value'
+	],
 	methods: {
-		updateEmailValue() {
-			// If email valid or empty
-			this.isEmailValid = this.localValue === '' || isEmail(this.localValue)
-			if (this.isEmailValid) {
-				this.emailHelpText = null
-				this.updateValue(this.localValue)
-				this.sharedState.validEmail = true
-				return
-			}
-			this.sharedState.validEmail = false
-			this.emailHelpText = this.$refs.email.$refs.inputField.$refs.input.validationMessage || null
-		},
-
 		/**
 		 * Watch textarea resize and update the gridSize accordingly
 		 */
 		resizeHeight: debounce(function() {
-			const textarea = this.$refs.textarea !== undefined ? this.$refs.textarea.$el.querySelector('textarea') : undefined
-
-			if (textarea && textarea?.offsetHeight) {
+			if (this.$refs.textarea && this.$refs.textarea.offsetHeight) {
 				// adjust textarea size to content (2 = border)
-				textarea.style.height = 'auto'
-				textarea.style.height = `${textarea.scrollHeight + 2}px`
+				this.$refs.textarea.style.height = `${this.$refs.textarea.scrollHeight + 2}px`
 			}
 		}, 100),
 
@@ -242,6 +220,20 @@ export default {
 			this.resizeHeight(e)
 			this.updateValue(e)
 		},
+		setName(name) {
+			console.log(`received name: ${name}`)
+			this.localContact.properties.find(p => p.name === 'fn').setValue(name)
+			// this.propModel.placeholder = '... awaiting response'
+			// this.$emit('update:value', '... awaiting response')
+			this.isNewInvite = true
+			// const i = ref('iets')
+			// console.log(i)
+			// this.$forceUpdate()
+
+		},
+		setEditMode(value) {
+			this.$emit('setContactFormEditModeEvent:value', value)
+		}
 	},
 }
 </script>
@@ -255,11 +247,4 @@ export default {
 	}
 }
 
-:deep(.textarea__main-wrapper) {
-	height: unset;
-
-	textarea {
-		resize: none !important;
-	}
-}
 </style>

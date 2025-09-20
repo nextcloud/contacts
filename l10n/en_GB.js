@@ -1,6 +1,9 @@
 OC.L10N.register(
     "contacts",
     {
+	"Where are you from?" : "Where are you from?",
+	"Please tell us your Cloud Provider." : "Please tell us your Cloud Provider.",
+    "Import contacts" : "Import contacts",
     "Import contacts" : "Import contacts",
     "Details" : "Details",
     "All contacts" : "All contacts",

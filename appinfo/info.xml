@@ -67,4 +67,10 @@
 	<contactsmenu>
 		<provider>OCA\Contacts\ContactsMenu\Providers\DetailsProvider</provider>
 	</contactsmenu>
+
+	<commands>
+		<command>OCA\Contacts\Command\EnableOcmInvites</command>
+		<command>OCA\Contacts\Command\DisableOcmInvites</command>
+		<command>OCA\Contacts\Command\SetMeshProvidersService</command>
+	</commands>
 </info>

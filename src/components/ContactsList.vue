@@ -171,7 +171,6 @@ export default {
 					contact.isMultiSelected = this.multiSelectedContacts.has(index)
 				}
 			})
-
 			return contactsList
 		},
 		isMultiSelecting() {
