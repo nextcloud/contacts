@@ -400,12 +400,12 @@ import PropertySelect from './Properties/PropertySelect.vue'
 import { generateUrl } from '@nextcloud/router'
 import { loadState } from '@nextcloud/initial-state'
 import isTalkEnabled from '../services/isTalkEnabled.js'
-import { reactive, toRaw } from 'vue'
+import { reactive, toRaw, defineComponent } from 'vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 
 const { profileEnabled } = loadState('user_status', 'profileEnabled', false)
 
-export default {
+export default defineComponent({
 	name: 'ContactDetails',
 
 	components: {
@@ -1057,10 +1057,12 @@ export default {
 				})
 				await this.updateContact()
 				if (this.newAddressBook && this.newAddressBook !== this.contact.addressbook.id) {
+					this.updateAddressBookAccesses(this.newAddressBook)
 					this.moveContactToAddressbook(this.newAddressBook)
 					this.newAddressBook = null
 				}
 				this.editMode = false
+				await this.$store.commit('resortAddressbooks')
 			} catch (error) {
 				this.logger.error('error while saving contact', { error })
 				showError(t('contacts', 'Unable to update contact'))
@@ -1071,8 +1073,15 @@ export default {
 				})
 			}
 		},
+
+		updateAddressBookAccesses(newAddressBook) {
+			const accesses = JSON.parse(localStorage.getItem('addressbook-accesses') || '{}')
+			accesses[newAddressBook] = new Date()
+
+			localStorage.setItem('addressbook-accesses', JSON.stringify(accesses))
+		},
 	},
-}
+})
 </script>
 
 <style lang="scss" scoped>
