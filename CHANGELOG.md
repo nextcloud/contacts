@@ -1,3 +1,18 @@
+## [8.0.2](https://github.com/nextcloud/contacts/compare/v8.0.1...v8.0.2) (2025-09-22)
+
+
+### Bug Fixes
+
+* do not allow to exclude system accounts from the bday calendar ([c9f1710](https://github.com/nextcloud/contacts/commit/c9f171047af364cf8e435df482ad0a7592f1a8dd))
+* duplication of address books requests ([333fdd2](https://github.com/nextcloud/contacts/commit/333fdd21cfcbd31f0466482bdb3ab438e1666f61))
+* **l10n:** Update translations from Transifex ([83d78fb](https://github.com/nextcloud/contacts/commit/83d78fb2b4421b9e85d239cbee3ee7fab711bcb1))
+* **l10n:** Update translations from Transifex ([75b2868](https://github.com/nextcloud/contacts/commit/75b2868d260185f59bcf397d713509478cd2fd01))
+* **l10n:** Update translations from Transifex ([79adfa0](https://github.com/nextcloud/contacts/commit/79adfa05992afe1340bb0949c9cc2f8a8e7efc84))
+* **l10n:** Update translations from Transifex ([c573333](https://github.com/nextcloud/contacts/commit/c573333ffc17778a62e2e65f37af5e600d5c5dab))
+* resource url ([f220344](https://github.com/nextcloud/contacts/commit/f2203446807346872d5dafd21185b4c6ef6c8712))
+
+
+
 ## [8.0.1](https://github.com/nextcloud/contacts/compare/v8.0.0...v8.0.1) (2025-09-16)
 
 

@@ -1,7 +1,7 @@
 {
   "name": "contacts",
   "description": "A contacts app for Nextcloud. Easily sync contacts from various devices, share and edit them online.",
-  "version": "8.0.1",
+  "version": "8.0.2",
   "author": "John Molakvoæ <skjnldsv@protonmail.com>",
   "contributors": [
     "John Molakvoæ <skjnldsv@protonmail.com>",
