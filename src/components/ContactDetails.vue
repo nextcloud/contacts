@@ -143,7 +143,7 @@
 						@click="updateContact" />
 
 					<!-- edit and save buttons -->
-					<template v-if="!addressbookIsReadOnly">
+					<template v-if="canModifyCard">
 						<NcButton v-if="!editMode"
 							:type="isMobile ? 'secondary' : 'tertiary'"
 							@click="editMode = true">
@@ -197,7 +197,7 @@
 						</template>
 						{{ excludeFromBirthdayLabel }}
 					</ActionButton>
-					<ActionButton v-if="!addressbookIsReadOnly"
+					<ActionButton v-if="canDeleteCard"
 						@click="deleteContact">
 						<template #icon>
 							<IconDelete :size="20" />
@@ -526,12 +526,20 @@ export default {
 			return this.hasFilesResources || this.hasTalkResources || this.hasCalendarResources || this.hasDeckResources
 		},
 		/**
-		 * The address book is read-only (e.g. shared with me).
+		 * True if the contact is in the system address book
 		 *
 		 * @return {boolean}
 		 */
-		addressbookIsReadOnly() {
-			return this.contact.addressbook?.readOnly
+		canModifyCard() {
+			return this.contact.addressbook?.canModifyCard
+		},
+		/**
+		 * True if the contact is in the system address book
+		 *
+		 * @return {boolean}
+		 */
+		canDeleteCard() {
+			return this.contact.addressbook?.canDeleteCard
 		},
 
 		/**
@@ -540,7 +548,7 @@ export default {
 		 * @return {boolean}
 		 */
 		isReadOnly() {
-			return this.addressbookIsReadOnly || !this.editMode
+			return !this.canModifyCard || !this.editMode
 		},
 
 		isDataValid() {
@@ -553,7 +561,7 @@ export default {
 		 * @return {object | boolean}
 		 */
 		warning() {
-			if (this.addressbookIsReadOnly) {
+			if (this.canModifyCard === false) {
 				return {
 					icon: EyeCircleIcon,
 					classes: [],
