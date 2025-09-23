@@ -48,6 +48,7 @@ OC.L10N.register(
     "New team name" : "Назва новай каманды",
     "Promote as sole owner" : "Прызначыць як адзінага ўладальніка",
     "Promote to {level}" : "Павысіць да {level}",
+    "Demote to {level}" : "Панізіць да {level}",
     "Remove member" : "Выдаліць удзельніка",
     "Add to {circle}" : "Дадаць у {circle}",
     "Pending" : "У чаканні",
