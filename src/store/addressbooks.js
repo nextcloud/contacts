@@ -21,6 +21,10 @@ const addressbookModel = {
 	contacts: {},
 	url: '',
 	readOnly: false,
+	canCreateCard: false,
+	canModifyCard: false,
+	canDeleteCard: false,
+	writeProps: false,
 	dav: false,
 }
 
@@ -44,6 +48,9 @@ export function mapDavCollectionToAddressbook(addressbook) {
 		owner: addressbook.owner,
 		readOnly: addressbook.readOnly === true,
 		writeProps: addressbook.currentUserPrivilegeSet.includes('{DAV:}write-properties') === true,
+		canCreateCard: addressbook.currentUserPrivilegeSet.includes('{DAV:}bind') || addressbook.currentUserPrivilegeSet.includes('{DAV:}write') || addressbook.currentUserPrivilegeSet.includes('{DAV:}all') === true,
+		canModifyCard: addressbook.currentUserPrivilegeSet.includes('{DAV:}write-content') || addressbook.currentUserPrivilegeSet.includes('{DAV:}write') || addressbook.currentUserPrivilegeSet.includes('{DAV:}all') === true,
+		canDeleteCard: addressbook.currentUserPrivilegeSet.includes('{DAV:}unbind') || addressbook.currentUserPrivilegeSet.includes('{DAV:}write') || addressbook.currentUserPrivilegeSet.includes('{DAV:}all') === true,
 		url: addressbook.url,
 		dav: addressbook,
 		shares: addressbook.shares
