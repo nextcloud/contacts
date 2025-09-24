@@ -10,6 +10,7 @@ import circles from './circles.js'
 import contacts from './contacts.js'
 import groups from './groups.js'
 import importState from './importState.js'
+import ocminvites from './ocminvites.js'
 
 const mutations = {}
 
@@ -18,6 +19,7 @@ const modules = {
 	contacts,
 	groups,
 	importState,
+	ocminvites,
 }
 
 // If circles is enabled let's init the store

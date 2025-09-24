@@ -286,6 +286,22 @@
 							:bus="bus"
 							:is-read-only="isReadOnly" />
 					</div>
+
+					<div v-for="(properties, name) in groupedProperties"
+						:key="name">
+						<ContactDetailsProperty v-for="(property, index) in properties"
+							:key="`${index}-${contact.key}-${property.name}`"
+							:is-first-property="index===0"
+							:is-last-property="index === properties.length - 1"
+							:property="property"
+							:contact="contact"
+							:local-contact="localContact"
+							:contacts="contacts"
+							:bus="bus"
+							:is-read-only="isReadOnly"
+							:edit-mode="editMode"
+							:is-new-contact="isNewContact" />
+					</div>
 				</section>
 
 				<!-- addressbook change select - no last property because class is not applied here,
@@ -804,6 +820,9 @@ export default defineComponent({
 		nextcloudVersionAtLeast28() {
 			return parseInt(window.OC.config.version.split('.')[0]) >= 28
 		},
+		isNewContact() {
+			return !this.localContact.dav ? true : false
+		}
 	},
 
 	watch: {

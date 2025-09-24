@@ -28,6 +28,7 @@ use OCP\Util;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 class SocialApiServiceTest extends TestCase {
 	private SocialApiService $service;
@@ -50,6 +51,8 @@ class SocialApiServiceTest extends TestCase {
 	private $imageResizer;
 	/** @var ContainerInterface&MockObject */
 	private $container;
+	/** @var LoggerInterface|MockObject */
+	private $logger;
 
 	public function allSocialProfileProviders(): array {
 		$body = 'the body';
@@ -116,6 +119,7 @@ class SocialApiServiceTest extends TestCase {
 		$this->timeFactory = $this->createMock(ITimeFactory::class);
 		$this->imageResizer = $this->createMock(ImageResizer::class);
 		$this->container = $this->createMock(ContainerInterface::class);
+		$this->logger = $this->createMock(LoggerInterface::class);
 		$this->container
 			->method('get')
 			->willReturn($this->createMock(ContactsManager::class));
@@ -129,6 +133,7 @@ class SocialApiServiceTest extends TestCase {
 			$this->urlGen,
 			$this->timeFactory,
 			$this->imageResizer,
+			$this->logger,
 		);
 	}
 

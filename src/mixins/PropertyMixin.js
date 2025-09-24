@@ -107,6 +107,9 @@ export default {
 		deleteProperty() {
 			this.$emit('delete')
 		},
+		saveInvite() {
+			this.$emit('saveInvite')
+		},
 
 		/**
 		 * Debounce and send update event to parent
