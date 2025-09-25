@@ -77,6 +77,7 @@ OC.L10N.register(
     "Cancel" : "취소",
     "Request to join" : "등록 요청",
     "You are not a member of {circle}" : "당신은 {circle}의 회원이 아닙니다.",
+    "Confirm" : "확정",
     "Add more info" : "정보 추가",
     "More fields" : "더 많은 입력란",
     "Please select a valid format" : "유효한 형식을 선택하십시오",
