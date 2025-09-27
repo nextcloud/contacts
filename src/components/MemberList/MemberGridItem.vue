@@ -185,6 +185,11 @@ export default {
 				}
 			}
 
+			// Owners can transfer ownership to another member
+			if (this.circle.isOwner) {
+				levels.push(MemberLevels.OWNER)
+			}
+
 			return levels
 		},
 
