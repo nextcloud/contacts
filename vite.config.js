@@ -11,6 +11,7 @@ export default createAppConfig({
 	'files-action': path.join(__dirname, 'src', 'files-action.js'),
 	'admin-settings': path.join(__dirname, 'src', 'admin-settings.js'),
 	'oca': path.join(__dirname, 'src', 'oca.ts'),
+	'wayf': path.join(__dirname, 'src', 'wayf.js'),
 }, {
 	inlineCSS: false,
 })
