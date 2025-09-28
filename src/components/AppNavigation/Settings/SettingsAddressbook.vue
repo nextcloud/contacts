@@ -23,7 +23,7 @@
 			</div>
 
 			<!-- sharing button -->
-			<Button v-if="!addressbook.readOnly"
+			<Button v-if="!addressbook.readOnly && !isSharedWithMe"
 				v-tooltip.top="sharedWithTooltip"
 				:class="{'addressbook__share--shared': hasShares}"
 				:name="sharedWithTooltip"
@@ -231,9 +231,14 @@ export default {
 		groupsCount() {
 			return this.groups.length
 		},
+
 		principalUrl() {
 			const principalsStore = usePrincipalsStore()
 			return principalsStore.currentUserPrincipal.principalUrl
+		},
+
+		isSharedWithMe() {
+			return this.addressbook.owner !== this.principalUrl
 		},
 	},
 	watch: {
