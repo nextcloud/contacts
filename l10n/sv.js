@@ -258,7 +258,7 @@ OC.L10N.register(
     "Memberships must be confirmed/accepted by a Moderator (requires \"Anyone can request membership\")" : "Medlemskap måste bekräftas/accepteras av en moderator (kräver \"Vem som helst kan begära medlemskap\")",
     "Members can also invite" : "Medlemmar kan också bjuda in",
     "Membership" : "Medlemskap",
-    "Prevent teams from being a member of another team" : "Förhindra team från att bli medlem av ett annat team",
+    "Prevent teams from being a member of another team" : "Förhindra detta team från att bli medlem av ett annat team",
     "Privacy" : "Integritet",
     "Visible to everyone" : "Synlig för alla",
     "users" : "användare",
