@@ -87,7 +87,7 @@ OC.L10N.register(
     "Last modified" : "Sidst ændret",
     "Sort by {sorting}" : "Sorter efter {sorting}",
     "Manages" : "Leder",
-    "Oversees" : "Fører tilsyn",
+    "Oversees" : "Overvåger",
     "An error happened during the config change" : "Der opstod en fejl under konfigurationsændringen",
     "Enforce password protection on files shared to this team" : "Styrk adgangskodebeskyttelse på filer der er delt med dette team",
     "Use a unique password for all shares to this team" : "Anvend en unik adgangskode for alle delinger med dette team",
