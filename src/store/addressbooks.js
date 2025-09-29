@@ -7,6 +7,7 @@ import { showError } from '@nextcloud/dialogs'
 import pLimit from 'p-limit'
 
 import Contact, { MinimalContactProperties } from '../models/contact.js'
+import { sortAddressbooks } from '../utils/addressbookUtils.js'
 
 import client from '../services/cdav.js'
 import parseVcf from '../services/parseVcf.js'
@@ -226,6 +227,14 @@ const mutations = {
 		sharee.writeable = !sharee.writeable
 	},
 
+	/**
+	 * Needed to track indirect state changes for addressbook sorting
+	 *
+	 * @param state
+	 */
+	resortAddressbooks(state) {
+		state.addressbooks = sortAddressbooks(state.addressbooks)
+	},
 }
 
 const getters = {
@@ -257,6 +266,8 @@ const actions = {
 		addressbooks.forEach(addressbook => {
 			context.commit('addAddressbook', addressbook)
 		})
+
+		context.commit('resortAddressbooks')
 
 		context.state.addressbooksFetched = true
 

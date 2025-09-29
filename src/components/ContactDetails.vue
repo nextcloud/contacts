@@ -400,12 +400,14 @@ import PropertySelect from './Properties/PropertySelect.vue'
 import { generateUrl } from '@nextcloud/router'
 import { loadState } from '@nextcloud/initial-state'
 import isTalkEnabled from '../services/isTalkEnabled.js'
-import { reactive, toRaw } from 'vue'
+import { reactive, toRaw, defineComponent } from 'vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
+import { getBuilder } from '@nextcloud/browser-storage'
 
 const { profileEnabled } = loadState('user_status', 'profileEnabled', false)
+const browserStorage = getBuilder('contacts').persist().build()
 
-export default {
+export default defineComponent({
 	name: 'ContactDetails',
 
 	components: {
@@ -506,7 +508,7 @@ export default {
 			talkPanelHasError: false,
 			calendarPanelHasError: false,
 			sharedState: reactive({ validEmail: true }),
-
+			lastUsedAddressBook: undefined,
 		}
 	},
 
@@ -638,7 +640,7 @@ export default {
 		 * @return {string}
 		 */
 		addressbook() {
-			return this.contact.addressbook.id
+			return this.lastUsedAddressBook?.id || this.contact.addressbook.id
 		},
 
 		/**
@@ -781,6 +783,8 @@ export default {
 
 		// capture ctrl+s
 		document.addEventListener('keydown', this.onCtrlSave)
+
+		this.lastUsedAddressBook = this.getLastUsedAddressBook()
 	},
 
 	beforeUnmount() {
@@ -1065,10 +1069,12 @@ export default {
 				})
 				await this.updateContact()
 				if (this.newAddressBook && this.newAddressBook !== this.contact.addressbook.id) {
+					this.updateAddressBookAccesses(this.newAddressBook)
 					this.moveContactToAddressbook(this.newAddressBook)
 					this.newAddressBook = null
 				}
 				this.editMode = false
+				await this.$store.commit('resortAddressbooks')
 			} catch (error) {
 				this.logger.error('error while saving contact', { error })
 				showError(t('contacts', 'Unable to update contact'))
@@ -1079,8 +1085,30 @@ export default {
 				})
 			}
 		},
+
+		getLastUsedAddressBook() {
+			const lastUsed = JSON.parse(browserStorage.getItem('last-used-addressbook') || '{}')
+
+			if (lastUsed?.id === null || lastUsed?.id === undefined) {
+				return
+			}
+
+			return this.addressbooksOptions?.find(option => option.id === lastUsed.id) ?? undefined
+		},
+
+		updateAddressBookAccesses(newAddressBook) {
+			let lastUsedAddressBook = JSON.parse(browserStorage.getItem('last-used-addressbook') || '{}')
+
+			if (!lastUsedAddressBook || typeof lastUsedAddressBook !== 'object') {
+				lastUsedAddressBook = {}
+			}
+
+			lastUsedAddressBook.id = newAddressBook
+
+			browserStorage.setItem('last-used-addressbook', JSON.stringify(lastUsedAddressBook))
+		},
 	},
-}
+})
 </script>
 
 <style lang="scss" scoped>
