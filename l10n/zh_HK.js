@@ -200,8 +200,6 @@ OC.L10N.register(
     "Loading members list …" : "正在加載成員清單 …",
     "The list of members is only visible to members of this team" : "成員清單僅有此團隊的成員可見",
     "You currently have no access to the member list" : "您目前無權存取會員清單",
-    "Add to {circle}" : "添加到 {circle}",
-    "Invite members to {circle}" : "邀請成員至 {circle}",
     "Pending" : "待定的",
     "Select chart …" : "選擇圖表 ...",
     "Chart" : "圖表",
@@ -333,6 +331,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "無法建立團隊 {circleName}",
     "Unable to delete team {circleId}" : "無法刪除團隊 {circleId}",
     "Unable to delete contact" : "無法刪除聯絡人",
-    "Invite members to team" : "邀請成員加入團隊"
+    "Invite members to team" : "邀請成員加入團隊",
+    "Add to {circle}" : "添加到 {circle}"
 },
 "nplurals=1; plural=0;");

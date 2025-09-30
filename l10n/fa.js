@@ -142,7 +142,6 @@ OC.L10N.register(
     "Some members could not be added" : "برخی از اعضا نمی توانند اضافه شوند",
     "Loading members list …" : "Loading members list …",
     "You currently have no access to the member list" : "You currently have no access to the member list",
-    "Add to {circle}" : "افزودن به {circle}",
     "Pending" : "منتظر",
     "Select chart …" : "گزینش نمودار …",
     "Chart" : "نمودار",
@@ -247,6 +246,7 @@ OC.L10N.register(
     "Time zone" : "منطقهٔ زمانی",
     "Spoken languages" : "زبان‌های صحبت",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contact failed to be read","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Unable to delete contact"
+    "Unable to delete contact" : "Unable to delete contact",
+    "Add to {circle}" : "افزودن به {circle}"
 },
 "nplurals=2; plural=(n > 1);");

@@ -190,7 +190,6 @@ OC.L10N.register(
     "Loading members list …" : "Taglista betöltése…",
     "The list of members is only visible to members of this team" : "A taglista csak a csapattagok számára látható",
     "You currently have no access to the member list" : "Jelenleg nem fér hozzá a taglistához",
-    "Add to {circle}" : "Hozzáadása a(z) {circle} körhöz",
     "Pending" : "Függőben",
     "Select chart …" : "Válasszon diagramot…",
     "Chart" : "Diagram",
@@ -320,6 +319,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Hiba történt a csapatokban. További részletekért nézze meg a konzolt.",
     "Unable to create team {circleName}" : "A(z) {circleName} csapat nem hozható létre",
     "Unable to delete team {circleId}" : "A(z) {circleId} csapat nem törölhető",
-    "Unable to delete contact" : "A névjegy törlése sikertelen"
+    "Unable to delete contact" : "A névjegy törlése sikertelen",
+    "Add to {circle}" : "Hozzáadása a(z) {circle} körhöz"
 },
 "nplurals=2; plural=(n != 1);");

@@ -189,7 +189,6 @@
     "Loading members list …" : "Загрузка списка участников…",
     "The list of members is only visible to members of this team" : "Список участников виден только членам этой команды.",
     "You currently have no access to the member list" : "В настоящее время у вас нет доступа к списку участников",
-    "Add to {circle}" : "Добавить в круг {circle}",
     "Pending" : "В очереди",
     "Select chart …" : "Выберите структуру…",
     "Chart" : "График",
@@ -319,6 +318,7 @@
     "An error has occurred in team(s). Check the console for more details." : "Произошла ошибка в команде(ах). Проверьте консоль для получения более подробной информации.",
     "Unable to create team {circleName}" : "Невозможно создать команду {circleName}",
     "Unable to delete team {circleId}" : "Невозможно удалить команду {circleId}",
-    "Unable to delete contact" : "Невозможно удалить контакт"
+    "Unable to delete contact" : "Невозможно удалить контакт",
+    "Add to {circle}" : "Добавить в круг {circle}"
 },"pluralForm" :"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);"
 }

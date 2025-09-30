@@ -176,7 +176,6 @@ OC.L10N.register(
     "Loading members list …" : "ئەزالار تىزىملىكى يۈكلىنىۋاتىدۇ…",
     "The list of members is only visible to members of this team" : "ئەزالار تىزىملىكىنى پەقەت بۇ ئەترەت ئەزالىرىلا كۆرەلەيدۇ",
     "You currently have no access to the member list" : "ھازىر ئەزالار تىزىملىكىنى زىيارەت قىلالمايسىز",
-    "Add to {circle}" : "{circle} غا قوش",
     "Pending" : "كۈتۈۋاتىدۇ",
     "Select chart …" : "جەدۋەلنى تاللاڭ…",
     "Chart" : "Chart",
@@ -293,6 +292,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "گۇرۇپپا (لار) دا خاتالىق كۆرۈلدى. تېخىمۇ كۆپ تەپسىلاتلارنى كونترول سۇپىسىدىن تەكشۈرۈڭ.",
     "Unable to create team {circleName}" : "گۇرۇپپا {circleName} create قۇرالمىدى",
     "Unable to delete team {circleId}" : "گۇرۇپپا {circleId} ئۆچۈرگىلى بولمىدى",
-    "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى"
+    "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى",
+    "Add to {circle}" : "{circle} غا قوش"
 },
 "nplurals=2; plural=(n != 1);");

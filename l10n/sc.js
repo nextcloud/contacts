@@ -116,7 +116,6 @@ OC.L10N.register(
     "Unable to get the results" : "No faghet a otènnere resurtados",
     "Some members could not be added" : "B'at membros chi no si podent agiùnghere",
     "Loading members list …" : "Carrighende s'elencu de is membros ... ",
-    "Add to {circle}" : "Agiunghe a {circle}",
     "Pending" : "In suspesu",
     "Chart" : "Gràficu",
     "Select Date" : "Seletziona data",
@@ -215,6 +214,7 @@ OC.L10N.register(
     "Time zone" : "Zona orària",
     "Spoken languages" : "Limbas faeddadas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["no at fatu a lèghere {failed} ","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu"
+    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu",
+    "Add to {circle}" : "Agiunghe a {circle}"
 },
 "nplurals=2; plural=(n != 1);");
