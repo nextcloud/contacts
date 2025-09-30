@@ -200,8 +200,6 @@ OC.L10N.register(
     "Loading members list …" : "Φόρτωση λίστας μελών …",
     "The list of members is only visible to members of this team" : "Η λίστα μελών είναι ορατή μόνο σε μέλη αυτής της ομάδας",
     "You currently have no access to the member list" : "Αυτήν τη στιγμή δεν έχετε πρόσβαση στη λίστα μελών",
-    "Add to {circle}" : "Προσθήκη σε {circle}",
-    "Invite members to {circle}" : "Πρόσκληση μελών σε {circle}",
     "Pending" : "Εκκρεμεί",
     "Select chart …" : "Επιλέξτε διάγραμμα …",
     "Chart" : "Διάγραμμα",
@@ -333,6 +331,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Αδυναμία δημιουργίας ομάδας {circleName}",
     "Unable to delete team {circleId}" : "Αδυναμία διαγραφής ομάδας {circleId}",
     "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής",
-    "Invite members to team" : "Πρόσκληση μελών στην ομάδα"
+    "Invite members to team" : "Πρόσκληση μελών στην ομάδα",
+    "Add to {circle}" : "Προσθήκη σε {circle}"
 },
 "nplurals=2; plural=(n != 1);");

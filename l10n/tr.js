@@ -198,7 +198,6 @@ OC.L10N.register(
     "Loading members list …" : "Üye listesi ekleniyor …",
     "The list of members is only visible to members of this team" : "Üye listesi yalnızca bu takımdaki üyeler tarafından görülebilir",
     "You currently have no access to the member list" : "Üye listesine erişme izniniz yok ",
-    "Add to {circle}" : "{circle} takımına ekle",
     "Pending" : "Bekleyen",
     "Select chart …" : "Çizelge seçin…",
     "Chart" : "Çizelge",
@@ -330,6 +329,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "{circleName} takımı eklenemedi",
     "Unable to delete team {circleId}" : "{circleName} takımı silinemedi",
     "Unable to delete contact" : "Kişi silinemedi",
-    "Invite members to team" : "Takıma üyeler davet edin"
+    "Invite members to team" : "Takıma üyeler davet edin",
+    "Add to {circle}" : "{circle} takımına ekle"
 },
 "nplurals=2; plural=(n > 1);");

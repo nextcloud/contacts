@@ -182,7 +182,6 @@ OC.L10N.register(
     "Loading members list …" : "Načítavam zoznam členov ...",
     "The list of members is only visible to members of this team" : "Zoznam členov je viditeľný iba pre členov tohto tímu",
     "You currently have no access to the member list" : "Momentálne nemáte prístup k zoznamu členov",
-    "Add to {circle}" : "Pridať do {circle}",
     "Pending" : "Čakajúce",
     "Select chart …" : "Vybrať graf ...",
     "Chart" : "Graf",
@@ -311,6 +310,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "V aplikácii Tím sa vyskytla chyba. Pre viac informácií skontrolujte konzolu.",
     "Unable to create team {circleName}" : "Nie je možné vytvoriť tím {circleName}",
     "Unable to delete team {circleId}" : "Nie je možné zmazať tím {circleId}",
-    "Unable to delete contact" : "Nepodarilo sa zmazať kontakt."
+    "Unable to delete contact" : "Nepodarilo sa zmazať kontakt.",
+    "Add to {circle}" : "Pridať do {circle}"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

@@ -178,7 +178,6 @@ OC.L10N.register(
     "Loading members list …" : "Laster liste over medlemmer...",
     "The list of members is only visible to members of this team" : "Listen over medlemmer er kun synlig for medlemmer av dette laget",
     "You currently have no access to the member list" : "Du har for øyeblikket ingen adgang til medlemslisten",
-    "Add to {circle}" : "Legg til i {circle}",
     "Pending" : "Venter",
     "Select chart …" : "Velg kart...",
     "Chart" : "Kart",
@@ -300,6 +299,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Det har oppstått en feil i laget(ene). Sjekk konsollen hvis du vil ha mer informasjon.",
     "Unable to create team {circleName}" : "Ikke i stand til å opprette lag {circleName}",
     "Unable to delete team {circleId}" : "Ikke i stand til å slette lag {circleId}",
-    "Unable to delete contact" : "Ikke i stand til å slette kontakt"
+    "Unable to delete contact" : "Ikke i stand til å slette kontakt",
+    "Add to {circle}" : "Legg til i {circle}"
 },
 "nplurals=2; plural=(n != 1);");

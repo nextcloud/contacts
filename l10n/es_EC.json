@@ -137,7 +137,6 @@
     "Some members could not be added" : "No se pudieron agregar algunos miembros",
     "Loading members list …" : "Cargando lista de miembros...",
     "You currently have no access to the member list" : "Actualmente no tienes acceso a la lista de miembros",
-    "Add to {circle}" : "Añadir a {circle}",
     "Pending" : "Pendiente",
     "Select chart …" : "Seleccionar gráfico...",
     "Chart" : "Gráfico",
@@ -241,6 +240,7 @@
     "Time zone" : "Zona horaria",
     "Spoken languages" : "Idiomas hablados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se pudo leer","{failed} contactos no se pudieron leer","{failed} contactos no se pudieron leer"],
-    "Unable to delete contact" : "No se pudo eliminar el contacto"
+    "Unable to delete contact" : "No se pudo eliminar el contacto",
+    "Add to {circle}" : "Añadir a {circle}"
 },"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

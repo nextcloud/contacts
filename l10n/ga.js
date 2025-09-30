@@ -200,8 +200,6 @@ OC.L10N.register(
     "Loading members list …" : "Liosta ball á lódáil…",
     "The list of members is only visible to members of this team" : "Níl liosta na mball le feiceáil ach ag baill na foirne seo",
     "You currently have no access to the member list" : "Níl rochtain agat ar liosta na mball faoi láthair",
-    "Add to {circle}" : "Cuir le {circle}",
-    "Invite members to {circle}" : "Tabhair cuireadh do bhaill chuig {circle}",
     "Pending" : "Ar feitheamh",
     "Select chart …" : "Roghnaigh cairt…",
     "Chart" : "Cairt",
@@ -333,6 +331,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Ní féidir foireann {circleName} a chruthú",
     "Unable to delete team {circleId}" : "Ní féidir foireann {circleId} a scriosadh",
     "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh",
-    "Invite members to team" : "Tabhair cuireadh do bhaill chuig an bhfoireann"
+    "Invite members to team" : "Tabhair cuireadh do bhaill chuig an bhfoireann",
+    "Add to {circle}" : "Cuir le {circle}"
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");

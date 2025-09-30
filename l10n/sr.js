@@ -200,8 +200,6 @@ OC.L10N.register(
     "Loading members list …" : "Учитавање листе чланова ...",
     "The list of members is only visible to members of this team" : "Листу чланова могу да виде само чланови овог тима",
     "You currently have no access to the member list" : "Тренутно немате приступ листи чланова",
-    "Add to {circle}" : "Додај у {circle}",
-    "Invite members to {circle}" : "Позови чланове у {circle}",
     "Pending" : "На чекању",
     "Select chart …" : "Изаберите график ...",
     "Chart" : "График",
@@ -333,6 +331,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Не може да се креира тим {circleName}",
     "Unable to delete team {circleId}" : "Не може да се обрише тим {circleId}",
     "Unable to delete contact" : "Не могу да обришем контакт",
-    "Invite members to team" : "Позови чланове у тим"
+    "Invite members to team" : "Позови чланове у тим",
+    "Add to {circle}" : "Додај у {circle}"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

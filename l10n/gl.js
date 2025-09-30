@@ -200,8 +200,6 @@ OC.L10N.register(
     "Loading members list …" : "Cargando a lista de membros…",
     "The list of members is only visible to members of this team" : "A lista de membros só é visíbel para os membros deste equipo",
     "You currently have no access to the member list" : "Agora non ten acceso á lista de membros",
-    "Add to {circle}" : "Engadir a {circle}",
-    "Invite members to {circle}" : "Convidar a membros a {circle}",
     "Pending" : "Pendentes",
     "Select chart …" : "Seleccionar o gráfico…",
     "Chart" : "Gráfico",
@@ -333,6 +331,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Non é posíbel crear o equipo {circleName}",
     "Unable to delete team {circleId}" : "Non é posíbel eliminar o equipo {circleId}",
     "Unable to delete contact" : "Non é posíbel eliminar o contacto",
-    "Invite members to team" : "Convidar aos membros ao equipo"
+    "Invite members to team" : "Convidar aos membros ao equipo",
+    "Add to {circle}" : "Engadir a {circle}"
 },
 "nplurals=2; plural=(n != 1);");

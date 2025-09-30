@@ -200,8 +200,6 @@ OC.L10N.register(
     "Loading members list …" : "Inapakia orodha ya wanachama",
     "The list of members is only visible to members of this team" : "Orodha ya wanachama inaonekana tu kwa wanachama wa timu",
     "You currently have no access to the member list" : "Kwa sasa huna ufukikaji wa orodha ya wanachama",
-    "Add to {circle}" : "Ongeza hadi {circle}",
-    "Invite members to {circle}" : "Alika wanachama kwenye {circle}",
     "Pending" : "Inasubiri",
     "Select chart …" : "Chagua chati",
     "Chart" : "Chati",
@@ -333,6 +331,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Haiwezi kutengeneza timu {circleName}",
     "Unable to delete team {circleId}" : "Haiwezi kufuta timu {circleId}",
     "Unable to delete contact" : "Haiwezi kufuta mawasiliano",
-    "Invite members to team" : "Alika wanachama kwenye timu"
+    "Invite members to team" : "Alika wanachama kwenye timu",
+    "Add to {circle}" : "Ongeza hadi {circle}"
 },
 "nplurals=2; plural=(n != 1);");

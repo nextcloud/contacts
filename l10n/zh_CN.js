@@ -200,8 +200,6 @@ OC.L10N.register(
     "Loading members list …" : "正在加载成员列表 ...",
     "The list of members is only visible to members of this team" : "成员列表仅对此团队的成员可见",
     "You currently have no access to the member list" : "您目前无法访问成员列表",
-    "Add to {circle}" : "添加到 {circle}",
-    "Invite members to {circle}" : "邀请成员加入 {circle}",
     "Pending" : "待定",
     "Select chart …" : "选择图表 ...",
     "Chart" : "图表",
@@ -333,6 +331,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "无法创建团队 {circleName}",
     "Unable to delete team {circleId}" : "无法删除团队 {circleId}",
     "Unable to delete contact" : "无法删除联系人",
-    "Invite members to team" : "邀请成员加入团队"
+    "Invite members to team" : "邀请成员加入团队",
+    "Add to {circle}" : "添加到 {circle}"
 },
 "nplurals=1; plural=0;");

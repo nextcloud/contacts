@@ -156,7 +156,6 @@ OC.L10N.register(
     "Loading members list …" : "Įkeliamas narių sąrašas…",
     "The list of members is only visible to members of this team" : "Narių sąrašas yra matomas tik šios komandos nariams",
     "You currently have no access to the member list" : "Jūs šiuo metu neturite prieigos prie narių sąrašo",
-    "Add to {circle}" : "Pridėti į {circle}",
     "Pending" : "Laukiantis",
     "Select Date" : "Pasirinkti datą",
     "Select type" : "Pasirinkite tipą",
@@ -269,6 +268,7 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Nepavyko perskaityti {failed} adresato","Nepavyko perskaityti {failed} adresatų","Nepavyko perskaityti {failed} adresatų","Nepavyko perskaityti {failed} adresato"],
     "Unable to create team {circleName}" : "Nepavyko sukurti komandos {circleName}",
     "Unable to delete team {circleId}" : "Nepavyko ištrinti komandos {circleId}",
-    "Unable to delete contact" : "Nepavyko ištrinti adresato"
+    "Unable to delete contact" : "Nepavyko ištrinti adresato",
+    "Add to {circle}" : "Pridėti į {circle}"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

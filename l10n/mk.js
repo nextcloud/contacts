@@ -165,7 +165,6 @@ OC.L10N.register(
     "Some members could not be added" : "Некој членови неможе да бидат додадени",
     "Loading members list …" : "Вчитување на листата со членови ...",
     "You currently have no access to the member list" : "Немате пристап до листата со членови",
-    "Add to {circle}" : "Додади во {circle}",
     "Pending" : "Чекање",
     "Select chart …" : "Избери график ...",
     "Chart" : "График",
@@ -282,6 +281,7 @@ OC.L10N.register(
     "Time zone" : "Временска зона",
     "Spoken languages" : "Говорни јазици",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} еден контакт неможе да се прочита","{failed} контакти неможат да се прочитат"],
-    "Unable to delete contact" : "Неможе да се избрише контакт"
+    "Unable to delete contact" : "Неможе да се избрише контакт",
+    "Add to {circle}" : "Додади во {circle}"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

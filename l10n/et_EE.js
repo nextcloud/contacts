@@ -200,8 +200,6 @@ OC.L10N.register(
     "Loading members list …" : "Laadin liikmete loendit…",
     "The list of members is only visible to members of this team" : "Liikmete loendit näevad vaid teised tiimi liikmed",
     "You currently have no access to the member list" : "Sul hetkel puudub ligipääs liikmete loendile",
-    "Add to {circle}" : "Lisa „{circle}“ tiimi",
-    "Invite members to {circle}" : "Kutsi uusi liikmeid „{circle}“ tiimi",
     "Pending" : "Ootel",
     "Select chart …" : "Vali joonis…",
     "Chart" : "Joonis",
@@ -333,6 +331,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "„{circleName}“ tiimi loomine pole võimalik",
     "Unable to delete team {circleId}" : "„{circleId}“ tiimi kustutamine pole võimalik",
     "Unable to delete contact" : "Ei õnnestu kustutada kontakti",
-    "Invite members to team" : "Kutsi tiimi uusi liikmeid"
+    "Invite members to team" : "Kutsi tiimi uusi liikmeid",
+    "Add to {circle}" : "Lisa „{circle}“ tiimi"
 },
 "nplurals=2; plural=(n != 1);");

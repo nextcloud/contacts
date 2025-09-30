@@ -180,7 +180,6 @@
     "Loading members list …" : "Hleður lista yfir meðlimi …",
     "The list of members is only visible to members of this team" : "Meðlimalistinn er aðeins sýnilegur meðlimum teymisins",
     "You currently have no access to the member list" : "Þú ert í augnablikinu ekki ekki aðgang að meðlimalistanum",
-    "Add to {circle}" : "Bæta við {circle}",
     "Pending" : "Í bið",
     "Select chart …" : "Veldu graf …",
     "Chart" : "Graf",
@@ -308,6 +307,7 @@
     "An error has occurred in team(s). Check the console for more details." : "Villa hefur átt sér stað í teymi/teymum. Skoðaðu stjórnskjáinn til að sjá nánari upplýsingar.",
     "Unable to create team {circleName}" : "Tókst ekki að búa til teymið {circleName}",
     "Unable to delete team {circleId}" : "Tókst ekki að eyða teyminu {circleId}",
-    "Unable to delete contact" : "Tókst ekki að eyða tengilið"
+    "Unable to delete contact" : "Tókst ekki að eyða tengilið",
+    "Add to {circle}" : "Bæta við {circle}"
 },"pluralForm" :"nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);"
 }
