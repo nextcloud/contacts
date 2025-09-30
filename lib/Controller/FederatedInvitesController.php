@@ -372,7 +372,6 @@ class FederatedInvitesController extends PageController {
 		}
 		$base = rtrim($base, '/');
 
-<<<<<<< HEAD
 		/**
 		 * @var OCP\OCM\ICapabilityAwareOCMProvider $provider
 		 *
@@ -398,46 +397,6 @@ class FederatedInvitesController extends PageController {
 				'inviteAcceptDialogAbsolute' => $absolute,
 				'raw' => $provider->jsonSerialize(),
 			]);
-=======
-		$client = $this->httpClient->newClient([
-			'timeout' => 5,
-			'connect_timeout' => 5,
-			'allow_redirects' => true,
-		]);
-
-		foreach ([$base . '/.well-known/ocm', $base . '/ocm-provider'] as $ep) {
-			try {
-				$resp = $client->get($ep, ['headers' => ['Accept' => 'application/json']]);
-				$code = $resp->getStatusCode();
-				if ($code >= 200 && $code < 300) {
-					$data = json_decode($resp->getBody(), true);
-					if (is_array($data) && !empty($data['inviteAcceptDialog'])) {
-						$dialog = $data['inviteAcceptDialog'];
-						$absolute = preg_match('#^https?://#i', $dialog) ? $dialog : $base . $dialog;
-						return new DataResponse([
-							'base' => $base,
-							'inviteAcceptDialog' => $dialog,
-							'inviteAcceptDialogAbsolute' => $absolute,
-							'raw' => $data,
-						]);
-					} elseif (empty($data['inviteAcceptDialog'])) {
-						// We can not check and see, because we have to be logged in here
-						// so we will just risk it.
-						$dialog = $base . $this->wayfProvider::INVITE_ACCEPT_DIALOG;
-						$absolute = preg_match('#^https?://#i', $dialog) ? $dialog : $base . $dialog;
-						return new DataResponse([
-							'base' => $base,
-							'inviteAcceptDialog' => $dialog,
-							'inviteAcceptDialogAbsolute' => $absolute,
-							'raw' => $data,
-						]);
-					}
-
-				}
-			} catch (\Throwable $e) {
-				// try next endpoint
-			}
->>>>>>> 5cbbe194 (fix(OCM-Cron/WAYF): Correct provider discovery and cron job behavior)
 		}
 		return new DataResponse(['error' => 'OCM discovery failed', 'base' => $base], 404);
 	}
