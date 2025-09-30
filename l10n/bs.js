@@ -181,7 +181,6 @@ OC.L10N.register(
     "Loading members list …" : "Loading members list …",
     "The list of members is only visible to members of this team" : "The list of members is only visible to members of this team",
     "You currently have no access to the member list" : "You currently have no access to the member list",
-    "Add to {circle}" : "Add to {circle}",
     "Pending" : "Na čekanju",
     "Select chart …" : "Select chart …",
     "Chart" : "Chart",
@@ -309,6 +308,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "An error has occurred in team(s). Check the console for more details.",
     "Unable to create team {circleName}" : "Unable to create team {circleName}",
     "Unable to delete team {circleId}" : "Unable to delete team {circleId}",
-    "Unable to delete contact" : "Unable to delete contact"
+    "Unable to delete contact" : "Unable to delete contact",
+    "Add to {circle}" : "Add to {circle}"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

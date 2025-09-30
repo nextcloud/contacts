@@ -182,7 +182,6 @@ OC.L10N.register(
     "Loading members list …" : "تحميل قائمة الأعضاء ...",
     "The list of members is only visible to members of this team" : "قائمة الأعضاء تظهر فقط لأعضاء هذا الفريق",
     "You currently have no access to the member list" : "لا يحق لك حاليّاً الوصول إلى قائمة الأعضاء",
-    "Add to {circle}" : "إضافة إلى {circle}",
     "Pending" : "في انتظار الموافقة",
     "Select chart …" : "إختر شكلاً ...",
     "Chart" : "شكل Chart",
@@ -310,6 +309,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "حدث خطأ في الفريق أو الفرق. إفحص شاشة التحكم (console) لمزيد من التفاصيل.",
     "Unable to create team {circleName}" : "تعذّر إنشاء الفريق {circleName}",
     "Unable to delete team {circleId}" : "تعذّر حذف الفريق {circleId}",
-    "Unable to delete contact" : "تعذّر حذف جهة الاتصال"
+    "Unable to delete contact" : "تعذّر حذف جهة الاتصال",
+    "Add to {circle}" : "إضافة إلى {circle}"
 },
 "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;");

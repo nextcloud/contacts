@@ -163,7 +163,6 @@ OC.L10N.register(
     "Some members could not be added" : "Sommige leden konden niet worden toegevoegd",
     "Loading members list …" : "Laden ledenlijst ...",
     "You currently have no access to the member list" : "Je hebt momenteel geen toegang tot de ledenlijst",
-    "Add to {circle}" : "Toevoegen aan {circle}",
     "Pending" : "In behandeling",
     "Select chart …" : "Selecteer grafiek ...",
     "Chart" : "Grafiek",
@@ -267,6 +266,7 @@ OC.L10N.register(
     "Time zone" : "Tijdzone",
     "Spoken languages" : "Gesproken talen",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contactpersoon werd niet ingelezen","{failed} contactpersonen werden niet ingelezen"],
-    "Unable to delete contact" : "Kan contactpersoon niet verwijderen"
+    "Unable to delete contact" : "Kan contactpersoon niet verwijderen",
+    "Add to {circle}" : "Toevoegen aan {circle}"
 },
 "nplurals=2; plural=(n != 1);");

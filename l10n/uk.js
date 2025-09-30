@@ -198,7 +198,6 @@ OC.L10N.register(
     "Loading members list …" : "Завантаження списку учасників...",
     "The list of members is only visible to members of this team" : "Перелік учасників доступний лише учасникам цієї команди",
     "You currently have no access to the member list" : "Зараз у ас відсутній доступ до списку учасників",
-    "Add to {circle}" : "Додати до кола {circle}",
     "Pending" : "Очікування",
     "Select chart …" : "Виберіть діаграму",
     "Chart" : "Діаграма",
@@ -330,6 +329,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Не вдалося створити команду {circleName}",
     "Unable to delete team {circleId}" : "Не вдалося вилучити команду {circleId}",
     "Unable to delete contact" : "Неможливо вилучити контакт",
-    "Invite members to team" : "Запросити членів до команди"
+    "Invite members to team" : "Запросити членів до команди",
+    "Add to {circle}" : "Додати до кола {circle}"
 },
 "nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);");

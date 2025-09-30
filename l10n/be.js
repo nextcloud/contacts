@@ -51,7 +51,6 @@ OC.L10N.register(
     "Promote to {level}" : "Павысіць да {level}",
     "Demote to {level}" : "Панізіць да {level}",
     "Remove member" : "Выдаліць удзельніка",
-    "Add to {circle}" : "Дадаць у {circle}",
     "Pending" : "У чаканні",
     "Add contact in group" : "Дадаць кантакт у групу",
     "Member" : "Удзельнік",
@@ -72,6 +71,7 @@ OC.L10N.register(
     "Address" : "Адрас",
     "Birthday" : "Дзень нараджэння",
     "Place of birth" : "Месца нараджэння",
-    "Unknown" : "Невядомы"
+    "Unknown" : "Невядомы",
+    "Add to {circle}" : "Дадаць у {circle}"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

@@ -115,7 +115,6 @@ OC.L10N.register(
     "Unable to get the results" : "No se puede obtener los resultados",
     "Some members could not be added" : "Algunos miembros no se han podido añadir",
     "Loading members list …" : "Cargando la lista de miembros ...",
-    "Add to {circle}" : "Añadir a {circle}",
     "Pending" : "Pendiente",
     "Select Date" : "Seleccionar fecha",
     "Select type" : "Seleccionar tipo",
@@ -213,6 +212,7 @@ OC.L10N.register(
     "Time zone" : "Zona horaria",
     "Spoken languages" : "Idiomas hablados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se ha podido leer","{failed} contactos no se han podido leer","{failed} contactos no se han podido leer"],
-    "Unable to delete contact" : "No se ha podido eliminar el contacto"
+    "Unable to delete contact" : "No se ha podido eliminar el contacto",
+    "Add to {circle}" : "Añadir a {circle}"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

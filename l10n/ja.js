@@ -184,8 +184,6 @@ OC.L10N.register(
     "Loading members list …" : "メンバーリストを読み込んでいます…",
     "The list of members is only visible to members of this team" : "メンバーのリストは、このチームのメンバーにのみ表示されます",
     "You currently have no access to the member list" : "メンバーリストへのアクセス権がありません",
-    "Add to {circle}" : "{circle} に追加",
-    "Invite members to {circle}" : "メンバーに{circle} に参加するように招待します",
     "Pending" : "保留中",
     "Select chart …" : "組織図を選択...",
     "Chart" : "チャート",
@@ -313,6 +311,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "チームでエラーが発生しました。詳細については、コンソールを確認してください。",
     "Unable to create team {circleName}" : "チーム{circleName}を作成できません",
     "Unable to delete team {circleId}" : "チーム {circleId} を削除できません",
-    "Unable to delete contact" : "連絡先を削除できません。"
+    "Unable to delete contact" : "連絡先を削除できません。",
+    "Add to {circle}" : "{circle} に追加"
 },
 "nplurals=1; plural=0;");

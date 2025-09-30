@@ -173,7 +173,6 @@ OC.L10N.register(
     "Loading members list …" : "Ladataan jäsenluetteloa…",
     "The list of members is only visible to members of this team" : "Jäsenlista on näkyvissä vain muille tämän tiimin jäsenille",
     "You currently have no access to the member list" : "Sinulla ei ole pääsyä käyttäjälistaan",
-    "Add to {circle}" : "Lisää piiriin {circle}",
     "Pending" : "Odottaa",
     "Select chart …" : "Valitse kaavio…",
     "Chart" : "Kaavio",
@@ -292,6 +291,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Tiimiä {circleName} ei voitu luoda",
     "Unable to delete team {circleId}" : "Tiimiä {circleId} ei voitu poistaa",
     "Unable to delete contact" : "Yhteystietoa ei voitu poistaa",
-    "Invite members to team" : "Kutsu jäseniä tiimiin"
+    "Invite members to team" : "Kutsu jäseniä tiimiin",
+    "Add to {circle}" : "Lisää piiriin {circle}"
 },
 "nplurals=2; plural=(n != 1);");

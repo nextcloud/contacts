@@ -174,7 +174,6 @@
     "Loading members list …" : "Poteka nalaganje seznama članov ...",
     "The list of members is only visible to members of this team" : "Seznam članov je viden le članom te skupine",
     "You currently have no access to the member list" : "Trenutno nimate dostopa do seznama članov",
-    "Add to {circle}" : "Dodaj v krog {circle}",
     "Pending" : "Na čakanju",
     "Select chart …" : "Izbor diagrama ...",
     "Chart" : "Diagram",
@@ -287,6 +286,7 @@
     "Spoken languages" : "Govorjeni jezik",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} stika ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati"],
     "An error has occurred in team(s). Check the console for more details." : "Prišlo je do napake v nekaterih skupinah. Preverite konzolo za več podrobnosti.",
-    "Unable to delete contact" : "Ni mogoče izbrisati stika"
+    "Unable to delete contact" : "Ni mogoče izbrisati stika",
+    "Add to {circle}" : "Dodaj v krog {circle}"
 },"pluralForm" :"nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);"
 }

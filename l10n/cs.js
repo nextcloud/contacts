@@ -200,8 +200,6 @@ OC.L10N.register(
     "Loading members list …" : "Načítání seznamu členů…",
     "The list of members is only visible to members of this team" : "Seznam členů je viditelný pouze členům tohoto týmu",
     "You currently have no access to the member list" : "V tuto chvíli nemáte přístup k seznamu členů",
-    "Add to {circle}" : "Přidat do {circle}",
-    "Invite members to {circle}" : "Pozvat členy do {circle}",
     "Pending" : "Čekající",
     "Select chart …" : "Vybrat graf…",
     "Chart" : "Graf",
@@ -333,6 +331,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Nedaří se vytvořit tým {circleName}",
     "Unable to delete team {circleId}" : "Nedaří se smazat tým {circleId}",
     "Unable to delete contact" : "Nedaří se smazat kontakt",
-    "Invite members to team" : "Pozvat členy do týmu"
+    "Invite members to team" : "Pozvat členy do týmu",
+    "Add to {circle}" : "Přidat do {circle}"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

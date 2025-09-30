@@ -144,7 +144,6 @@ OC.L10N.register(
     "Some members could not be added" : "일부 회원을 추가할 수 없음",
     "Loading members list …" : "회원 목록 불러오는 중 ...",
     "You currently have no access to the member list" : "현재 이 구성원 목록에 접근할 수 없습니다",
-    "Add to {circle}" : "{circle}에 추가",
     "Pending" : "보류 중",
     "Select chart …" : "차트 선택 ...",
     "Chart" : "차트",
@@ -246,6 +245,7 @@ OC.L10N.register(
     "Time zone" : "시간대",
     "Spoken languages" : "사용 언어",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["연락처 {failed}개를 읽을 수 없음"],
-    "Unable to delete contact" : "연락처를 삭제할 수 없음"
+    "Unable to delete contact" : "연락처를 삭제할 수 없음",
+    "Add to {circle}" : "{circle}에 추가"
 },
 "nplurals=1; plural=0;");

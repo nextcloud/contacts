@@ -200,8 +200,6 @@ OC.L10N.register(
     "Loading members list …" : "Hämtar lista över medlemmar …",
     "The list of members is only visible to members of this team" : "Listan över medlemmar är endast synlig för medlemmar i detta team",
     "You currently have no access to the member list" : "Du har för närvarande inte tillgång till medlemslistan",
-    "Add to {circle}" : "Lägg till i {circle}",
-    "Invite members to {circle}" : "Bjud in medlemmar till {circle}",
     "Pending" : "Väntande",
     "Select chart …" : "Välj schema ...",
     "Chart" : "Diagram",
@@ -333,6 +331,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Kunde inte skapa team {circleName}",
     "Unable to delete team {circleId}" : "Kan inte ta bort team {circleId}",
     "Unable to delete contact" : "Kunde inte radera kontakten",
-    "Invite members to team" : "Bjud in medlemmar till teamet"
+    "Invite members to team" : "Bjud in medlemmar till teamet",
+    "Add to {circle}" : "Lägg till i {circle}"
 },
 "nplurals=2; plural=(n != 1);");

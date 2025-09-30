@@ -180,7 +180,6 @@ OC.L10N.register(
     "Loading members list …" : "Kideen zerrenda kargatzen...",
     "The list of members is only visible to members of this team" : "Kideen zerrenda lantalde honetako kideentzat bakarrik dago ikusgarri",
     "You currently have no access to the member list" : "Ez duzu sarbiderik kideen zerrendara",
-    "Add to {circle}" : "Gehitu {circle} zirkulura",
     "Pending" : "Zain",
     "Select chart …" : "Hautatu diagrama ...",
     "Chart" : "Diagrama",
@@ -304,6 +303,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Errore bat gertatu da lantaldeetan. Begiratu kontsola xehetasun gehiago lortzeko.",
     "Unable to create team {circleName}" : "Ezin izan da {circleName} lantaldea sortu",
     "Unable to delete team {circleId}" : "Ezin izan da {circleId} lantaldea ezabatu",
-    "Unable to delete contact" : "Ezin izan da kontaktua ezabatu"
+    "Unable to delete contact" : "Ezin izan da kontaktua ezabatu",
+    "Add to {circle}" : "Gehitu {circle} zirkulura"
 },
 "nplurals=2; plural=(n != 1);");
