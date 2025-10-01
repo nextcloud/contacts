@@ -498,6 +498,13 @@ const _default = {
 			this.loadingInvites = false
 		},
 
+		manualInviteAccept() {
+			this.showManualInvite = true
+		},
+		manualInviteCancel() {
+			this.showManualInvite = false
+		},
+
 		/**
 		 * Select the first contact of the list
 		 * if none are selected already
