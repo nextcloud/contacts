@@ -200,6 +200,8 @@ OC.L10N.register(
     "Loading members list …" : "Laadin liikmete loendit…",
     "The list of members is only visible to members of this team" : "Liikmete loendit näevad vaid teised tiimi liikmed",
     "You currently have no access to the member list" : "Sul hetkel puudub ligipääs liikmete loendile",
+    "Add to {team}" : "Lisa „{team}“ tiimi",
+    "Invite members to {team}" : "Kutsi uusi liikmeid „{team}“ tiimi",
     "Pending" : "Ootel",
     "Select chart …" : "Vali joonis…",
     "Chart" : "Joonis",
