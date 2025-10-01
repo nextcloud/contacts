@@ -101,8 +101,7 @@
     "jest-transform-stub": "^2.0.0",
     "ts-jest": "^29.4.1",
     "ts-loader": "^9.5.4",
-    "typescript": "^5.9.2",
-    "vite": "^5.4.19"
+    "typescript": "^5.9.2"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
