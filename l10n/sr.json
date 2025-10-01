@@ -198,6 +198,8 @@
     "Loading members list …" : "Учитавање листе чланова ...",
     "The list of members is only visible to members of this team" : "Листу чланова могу да виде само чланови овог тима",
     "You currently have no access to the member list" : "Тренутно немате приступ листи чланова",
+    "Add to {team}" : "Додај у {team}",
+    "Invite members to {team}" : "Позови чланове у {team}",
     "Pending" : "На чекању",
     "Select chart …" : "Изаберите график ...",
     "Chart" : "График",

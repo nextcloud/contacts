@@ -200,6 +200,8 @@ OC.L10N.register(
     "Loading members list …" : "Wczytywanie listy członków…",
     "The list of members is only visible to members of this team" : "Lista członków jest widoczna tylko dla członków tego zespołu",
     "You currently have no access to the member list" : "Obecnie nie masz dostępu do listy członków",
+    "Add to {team}" : "Dodaj do {team}",
+    "Invite members to {team}" : "Zaproś członków do {team}",
     "Pending" : "Oczekuje",
     "Select chart …" : "Wybierz wykres…",
     "Chart" : "Wykres",

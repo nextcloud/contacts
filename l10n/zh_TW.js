@@ -200,6 +200,8 @@ OC.L10N.register(
     "Loading members list …" : "正在載入成員清單……",
     "The list of members is only visible to members of this team" : "成員清單僅有此團隊的成員可見",
     "You currently have no access to the member list" : "您目前無權存取成員清單",
+    "Add to {team}" : "新增至 {team}",
+    "Invite members to {team}" : "邀請成員至 {team}",
     "Pending" : "擱置中",
     "Select chart …" : "選取圖表……",
     "Chart" : "圖表",
