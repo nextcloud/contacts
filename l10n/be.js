@@ -51,6 +51,7 @@ OC.L10N.register(
     "Promote to {level}" : "Павысіць да {level}",
     "Demote to {level}" : "Панізіць да {level}",
     "Remove member" : "Выдаліць удзельніка",
+    "Add to {team}" : "Дадаць у {team}",
     "Pending" : "У чаканні",
     "Add contact in group" : "Дадаць кантакт у групу",
     "Member" : "Удзельнік",
