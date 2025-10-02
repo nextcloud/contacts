@@ -6,7 +6,8 @@
 <template>
 	<div v-if="propModel" class="property property--multiple-text">
 		<!-- title if first element -->
-		<PropertyTitle v-if="isFirstProperty && propModel.icon"
+		<PropertyTitle
+			v-if="isFirstProperty && propModel.icon"
 			:property="property"
 			:is-multiple="isMultiple"
 			:is-read-only="isReadOnly"
@@ -15,7 +16,8 @@
 			:readable-name="propModel.readableName">
 			<template #actions>
 				<!-- props actions -->
-				<PropertyActions v-if="!showActionsInFirstRow && !isReadOnly"
+				<PropertyActions
+					v-if="!showActionsInFirstRow && !isReadOnly"
 					class="property__actions"
 					:actions="actions"
 					:property-component="self"
@@ -31,7 +33,8 @@
 				</span>
 
 				<!-- type selector -->
-				<NcSelect v-else-if="!isReadOnly && propModel.options"
+				<NcSelect
+					v-else-if="!isReadOnly && propModel.options"
 					v-model="localType"
 					:options="options"
 					:placeholder="t('contacts', 'Select type')"
@@ -55,7 +58,8 @@
 
 			<div class="property__value">
 				<!-- show the first input if not a structured value -->
-				<input v-if="!property.isStructuredValue"
+				<input
+					v-if="!property.isStructuredValue"
 					v-model.trim="localValue[0]"
 					:readonly="isReadOnly"
 					type="text"
@@ -64,7 +68,8 @@
 
 			<!-- props actions -->
 			<div class="property__actions">
-				<PropertyActions v-if="showActionsInFirstRow && !isReadOnly"
+				<PropertyActions
+					v-if="showActionsInFirstRow && !isReadOnly"
 					:actions="actions"
 					:property-component="this"
 					@delete="deleteProperty" />
@@ -73,7 +78,8 @@
 
 		<!-- force order based on model -->
 		<template v-if="propModel.displayOrder && propModel.readableValues">
-			<div v-for="index in propModel.displayOrder"
+			<div
+				v-for="index in propModel.displayOrder"
 				:key="index"
 				class="property__row">
 				<template v-if="(isReadOnly && localValue[index]) || !isReadOnly">
@@ -81,7 +87,8 @@
 						<span>{{ propModel.readableValues[index] }}</span>
 					</div>
 					<div class="property__value">
-						<NcTextField v-model:model-value="localValue[index]"
+						<NcTextField
+							v-model:model-value="localValue[index]"
 							:readonly="isReadOnly"
 							type="text"
 							:label-outside="true"
@@ -95,13 +102,15 @@
 
 		<!-- no order enforced: just iterate on all the values -->
 		<template v-else>
-			<div v-for="(value, index) in filteredValue"
+			<div
+				v-for="(value, index) in filteredValue"
 				:key="index"
 				class="property__row">
 				<template v-if="(isReadOnly && filteredValue[index]) || !isReadOnly">
 					<div class="property__label" />
 					<div class="property__value">
-						<NcTextField v-model:model-value="filteredValue[index]"
+						<NcTextField
+							v-model:model-value="filteredValue[index]"
 							:readonly="isReadOnly"
 							:label-outside="true"
 							:label="propModel.readableValues[index]"
@@ -117,9 +126,9 @@
 
 <script>
 import { NcSelect, NcTextField } from '@nextcloud/vue'
-import PropertyMixin from '../../mixins/PropertyMixin.js'
-import PropertyTitle from './PropertyTitle.vue'
 import PropertyActions from './PropertyActions.vue'
+import PropertyTitle from './PropertyTitle.vue'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
 
 export default {
 	name: 'PropertyMultipleText',
@@ -136,7 +145,6 @@ export default {
 	props: {
 		value: {
 			type: [Array, Object],
-			default: () => [],
 			required: true,
 		},
 	},

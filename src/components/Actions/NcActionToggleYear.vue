@@ -4,7 +4,8 @@
 -->
 
 <template>
-	<NcActionCheckbox :model-value="omitYear"
+	<NcActionCheckbox
+		:model-value="omitYear"
 		@update:model-value="onUpdate">
 		{{ t('contacts', 'Omit year') }}
 	</NcActionCheckbox>
@@ -33,7 +34,7 @@ export default {
 
 	beforeMount() {
 		this.omitYear = !!this.component.property.getFirstParameter('x-apple-omit-year')
-				|| !this.component.value.year // if null
+			|| !this.component.value.year // if null
 	},
 
 	methods: {
@@ -46,6 +47,7 @@ export default {
 
 			this.omitYear = omitYear
 		},
+
 		removeYear() {
 			const dateObject = this.component.localValue.toJSON()
 
@@ -66,6 +68,7 @@ export default {
 				}
 			}
 		},
+
 		addYear() {
 			const dateObject = this.component.localValue.toJSON()
 			this.component.updateValue(dateObject, true)

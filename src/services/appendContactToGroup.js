@@ -10,14 +10,14 @@ import axios from '@nextcloud/axios'
  * @param {Contact} contact the contact model
  * @param {string} groupName the group name
  */
-const appendContactToGroup = async function(contact, groupName) {
+async function appendContactToGroup(contact, groupName) {
 	const groups = contact.groups
 	groups.push(groupName)
 
 	return axios.patch(contact.url, {}, {
 		headers: {
 			'X-PROPERTY': 'CATEGORIES',
-			'X-PROPERTY-REPLACE': groups.map(groupName => encodeURIComponent(groupName)).join(','),
+			'X-PROPERTY-REPLACE': groups.map((groupName) => encodeURIComponent(groupName)).join(','),
 		},
 	})
 }

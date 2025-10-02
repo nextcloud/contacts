@@ -4,7 +4,8 @@
 -->
 <template>
 	<div>
-		<EmptyContent :description="desc"
+		<EmptyContent
+			:description="desc"
 			:name="title"
 			class="processing-screen__wrapper">
 			<template #icon>
@@ -33,14 +34,17 @@ export default {
 			type: Number,
 			required: true,
 		},
+
 		progress: {
 			type: Number,
 			required: true,
 		},
+
 		desc: {
 			type: String,
 			required: true,
 		},
+
 		title: {
 			type: String,
 			required: true,

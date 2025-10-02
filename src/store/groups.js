@@ -17,17 +17,17 @@ const mutations = {
 	 */
 	extractGroupsFromContacts(state, contacts) {
 		// iterate contacts
-		contacts.forEach(contact => {
+		contacts.forEach((contact) => {
 			if (contact.groups) {
-				contact.groups.forEach(groupName => {
-					let group = state.groups.find(search => search.name === groupName)
+				contact.groups.forEach((groupName) => {
+					let group = state.groups.find((search) => search.name === groupName)
 					// nothing? create a new one
 					if (!group) {
 						state.groups.push({
 							name: groupName,
 							contacts: [],
 						})
-						group = state.groups.find(search => search.name === groupName)
+						group = state.groups.find((search) => search.name === groupName)
 					}
 					group.contacts.push(contact.key)
 				})
@@ -44,15 +44,15 @@ const mutations = {
 	 * @param {Contact} data.contact the contact
 	 */
 	addContactToGroups(state, { groupNames, contact }) {
-		groupNames.forEach(groupName => {
-			let group = state.groups.find(search => search.name === groupName)
+		groupNames.forEach((groupName) => {
+			let group = state.groups.find((search) => search.name === groupName)
 			// nothing? create a new one
 			if (!group) {
 				state.groups.push({
 					name: groupName,
 					contacts: [],
 				})
-				group = state.groups.find(search => search.name === groupName)
+				group = state.groups.find((search) => search.name === groupName)
 			}
 			group.contacts.push(contact.key)
 		})
@@ -67,12 +67,12 @@ const mutations = {
 	 * @param {Contact} data.contact the contact
 	 */
 	removeContactFromGroup(state, { groupName, contact }) {
-		if (!state.groups.find(search => search.name === groupName)) {
+		if (!state.groups.find((search) => search.name === groupName)) {
 			return
 		}
 
-		const contacts = state.groups.find(search => search.name === groupName).contacts
-		const index = contacts.findIndex(search => search === contact.key)
+		const contacts = state.groups.find((search) => search.name === groupName).contacts
+		const index = contacts.findIndex((search) => search === contact.key)
 		if (index > -1) {
 			contacts.splice(index, 1)
 		}
@@ -101,7 +101,7 @@ const mutations = {
 	 * @param {Contact} contact the contact
 	 */
 	removeContactFromGroups(state, contact) {
-		state.groups.forEach(group => {
+		state.groups.forEach((group) => {
 			const index = group.contacts.indexOf(contact.key)
 			if (index !== -1) {
 				group.contacts.splice(index, 1)
@@ -129,12 +129,12 @@ const mutations = {
 	 * @param {string} groupName the name of the group
 	 */
 	removeGroup(state, groupName) {
-		state.groups = state.groups.filter(group => group.name !== groupName)
+		state.groups = state.groups.filter((group) => group.name !== groupName)
 	},
 }
 
 const getters = {
-	getGroups: state => state.groups,
+	getGroups: (state) => state.groups,
 }
 
 const actions = {

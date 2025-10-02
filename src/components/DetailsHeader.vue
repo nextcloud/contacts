@@ -30,7 +30,8 @@
 			<slot name="actions" />
 
 			<!-- menu actions -->
-			<Actions ref="actions"
+			<Actions
+				ref="actions"
 				class="header-menu"
 				menu-align="right"
 				v-bind="$attrs">

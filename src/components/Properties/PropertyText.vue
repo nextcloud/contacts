@@ -6,7 +6,8 @@
 <template>
 	<div v-if="propModel && showProperty" class="property">
 		<!-- title if first element -->
-		<PropertyTitle v-if="isFirstProperty && propModel.icon"
+		<PropertyTitle
+			v-if="isFirstProperty && propModel.icon"
 			:property="property"
 			:is-multiple="isMultiple"
 			:is-read-only="isReadOnly"
@@ -22,7 +23,8 @@
 				</span>
 
 				<!-- type selector -->
-				<NcSelect v-else-if="!isReadOnly && propModel.options"
+				<NcSelect
+					v-else-if="!isReadOnly && propModel.options"
 					v-model="localType"
 					:options="options"
 					:placeholder="t('contacts', 'Select type')"
@@ -46,7 +48,8 @@
 
 			<!-- textarea for note -->
 			<div class="property__value">
-				<NcTextArea v-if="propName === 'note'"
+				<NcTextArea
+					v-if="propName === 'note'"
 					id="textarea"
 					ref="textarea"
 					v-model:model-value="localValue"
@@ -57,10 +60,11 @@
 					@keypress="resizeHeight" />
 
 				<!-- email with validation-->
-				<NcTextField v-else-if="propName === 'email'"
+				<NcTextField
+					v-else-if="propName === 'email'"
 					ref="email"
 					v-model:model-value="localValue"
-					:class="{'property__value--with-ext': haveExtHandler}"
+					:class="{ 'property__value--with-ext': haveExtHandler }"
 					autocapitalize="none"
 					autocomplete="email"
 					:inputmode="inputmode"
@@ -73,17 +77,19 @@
 					@update:model-value="updateEmailValue" />
 
 				<!-- OR default to input -->
-				<NcTextField v-else
+				<NcTextField
+					v-else
 					v-model:model-value="localValue"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
-					:class="{'property__value--with-ext': haveExtHandler}"
+					:class="{ 'property__value--with-ext': haveExtHandler }"
 					type="text"
 					:placeholder="placeholder"
 					@update:model-value="updateValue" />
 
 				<!-- external link -->
-				<a v-if="haveExtHandler && isReadOnly"
+				<a
+					v-if="haveExtHandler && isReadOnly"
 					:href="externalHandler"
 					class="property__ext"
 					target="_blank">
@@ -93,7 +99,8 @@
 
 			<!-- props actions -->
 			<div class="property__actions">
-				<PropertyActions v-if="!isReadOnly"
+				<PropertyActions
+					v-if="!isReadOnly"
 					:actions="actions"
 					:property-component="this"
 					@delete="deleteProperty" />
@@ -107,9 +114,9 @@ import { NcSelect, NcTextArea, NcTextField } from '@nextcloud/vue'
 import debounce from 'debounce'
 import isEmail from 'validator/lib/isEmail.js'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
-import PropertyMixin from '../../mixins/PropertyMixin.js'
 import PropertyActions from './PropertyActions.vue'
 import PropertyTitle from './PropertyTitle.vue'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
 
 export default {
 	name: 'PropertyText',
@@ -130,11 +137,10 @@ export default {
 		propName: {
 			type: String,
 			default: 'text',
-			required: true,
 		},
+
 		value: {
 			type: String,
-			default: '',
 			required: true,
 		},
 	},
@@ -150,6 +156,7 @@ export default {
 		showProperty() {
 			return (this.isReadOnly && this.localValue) || !this.isReadOnly
 		},
+
 		inputmode() {
 			if (this.propName === 'tel') {
 				return 'tel'
@@ -160,6 +167,7 @@ export default {
 			}
 			return false
 		},
+
 		URLScheme() {
 			if (this.propName === 'tel') {
 				return 'tel:'

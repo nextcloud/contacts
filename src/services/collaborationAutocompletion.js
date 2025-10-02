@@ -5,7 +5,6 @@
 
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
-
 import { SHARES_TYPES_MEMBER_MAP } from '../models/constants.ts'
 
 // generate allowed shareType from SHARES_TYPES_MEMBER_MAP
@@ -17,7 +16,7 @@ const maxAutocompleteResults = parseInt(window.OC.config['sharing.maxAutocomplet
  *
  * @param {string} search the search query
  */
-export const getSuggestions = async function(search) {
+export async function getSuggestions(search) {
 	const request = await axios.get(generateOcsUrl('apps/files_sharing/api/v1/sharees'), {
 		params: {
 			format: 'json',
@@ -39,13 +38,13 @@ export const getSuggestions = async function(search) {
 
 	// remove invalid data and format to user-select layout
 	const exactSuggestions = rawExactSuggestions
-		.filter(result => typeof result === 'object')
-		.map(share => formatResults(share))
+		.filter((result) => typeof result === 'object')
+		.map((share) => formatResults(share))
 		// sort by type so we can get user&groups first...
 		.sort((a, b) => a.shareType - b.shareType)
 	const suggestions = rawSuggestions
-		.filter(result => typeof result === 'object')
-		.map(share => formatResults(share))
+		.filter((result) => typeof result === 'object')
+		.map((share) => formatResults(share))
 		// sort by type so we can get user&groups first...
 		.sort((a, b) => a.shareType - b.shareType)
 
@@ -63,7 +62,7 @@ export const getSuggestions = async function(search) {
 		return nameCounts
 	}, {})
 
-	const finalResults = allSuggestions.map(item => {
+	const finalResults = allSuggestions.map((item) => {
 		// Make sure that items with duplicate displayName get the shareWith applied as a description
 		if (nameCounts[item.displayName] > 1 && !item.desc) {
 			return { ...item, desc: item.shareWithDisplayNameUnique }
@@ -79,7 +78,7 @@ export const getSuggestions = async function(search) {
 /**
  * Get the sharing recommendations
  */
-export const getRecommendations = async function() {
+export async function getRecommendations() {
 	const request = await axios.get(generateOcsUrl('apps/files_sharing/api/v1/sharees_recommended'), {
 		params: {
 			format: 'json',
@@ -94,14 +93,14 @@ export const getRecommendations = async function() {
 
 	// remove invalid data and format to user-select layout
 	const finalResults = recommendations
-		.map(share => formatResults(share))
+		.map((share) => formatResults(share))
 
 	console.info('recommendations', finalResults)
 
 	return finalResults
 }
 
-const formatResults = function(result) {
+function formatResults(result) {
 	const type = `picker-${result.value.shareType}`
 	return {
 		label: result.label,

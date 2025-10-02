@@ -1,13 +1,12 @@
+import { loadState } from '@nextcloud/initial-state'
 /**
  * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import ICAL from 'ical.js'
-import { loadState } from '@nextcloud/initial-state'
-import { otherContacts } from '../utils/chartUtils.js'
-
 import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN.vue'
 import NcActionToggleYear from '../components/Actions/NcActionToggleYear.vue'
+import { otherContacts } from '../utils/chartUtils.js'
 import zones from './zones.js'
 
 // Load the default profile (for example, home or work) configured by the user
@@ -15,9 +14,9 @@ const defaultProfileState = loadState('contacts', 'defaultProfile', 'HOME')
 const localesState = loadState('contacts', 'locales', false)
 const locales = localesState
 	? localesState.map(({ code, name }) => ({
-		id: code.toLowerCase().replace('_', '-'),
-		name,
-	}))
+			id: code.toLowerCase().replace('_', '-'),
+			name,
+		}))
 	: []
 
 console.debug('Initial state loaded', 'defaultProfileState', defaultProfileState)
@@ -367,7 +366,7 @@ const properties = {
 		readableName: t('contacts', 'Time zone'),
 		force: 'select',
 		icon: 'icon-timezone',
-		options: zones.map(zone => ({
+		options: zones.map((zone) => ({
 			id: zone,
 			name: zone,
 		})),

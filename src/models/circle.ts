@@ -3,15 +3,12 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import Member from './member'
-
-import { CircleConfigs, MemberLevels, ROUTE_CIRCLE } from './constants'
+import { CircleConfigs, MemberLevels, ROUTE_CIRCLE } from './constants.ts'
+import Member from './member.ts'
 
 type MemberList = Record<string, Member>
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export default class Circle {
-
 	_data: any = {}
 	_members: MemberList = {}
 	_owner: Member
@@ -105,7 +102,7 @@ export default class Circle {
 	 * user info for this circle
 	 * null if not a member
 	 */
-	get initiator(): Member|null {
+	get initiator(): Member | null {
 		return this._initiator
 	}
 
@@ -292,7 +289,7 @@ export default class Circle {
 	get canManageMembers() {
 		return (this.initiator?.level
 			&& this.initiator?.level >= MemberLevels.MODERATOR)
-			|| (this.config & CircleConfigs.FRIEND) !== 0
+		|| (this.config & CircleConfigs.FRIEND) !== 0
 	}
 
 	// PARAMS ---------------------------------------------
@@ -313,5 +310,4 @@ export default class Circle {
 	toString() {
 		return this.displayName
 	}
-
 }

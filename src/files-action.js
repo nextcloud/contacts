@@ -3,18 +3,15 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-// eslint-disable-next-line import/no-unresolved, n/no-missing-import
-import 'vite/modulepreload-polyfill'
-
-import ConfirmationDialog from './components/ConfirmationDialog.vue'
-
-import { generateUrl } from '@nextcloud/router'
-import { translate as t } from '@nextcloud/l10n'
-import { DefaultType, FileAction, Permission, registerFileAction } from '@nextcloud/files'
-/* eslint-disable-next-line import/no-unresolved */
 import ContactSvg from '@mdi/svg/svg/account-multiple.svg?raw'
+import { DefaultType, FileAction, Permission, registerFileAction } from '@nextcloud/files'
+import { translate as t } from '@nextcloud/l10n'
+import { generateUrl } from '@nextcloud/router'
 import { createApp } from 'vue'
+import ConfirmationDialog from './components/ConfirmationDialog.vue'
 import LegacyGlobalMixin from './mixins/LegacyGlobalMixin.js'
+
+import 'vite/modulepreload-polyfill'
 
 const mime = 'text/vcard'
 const name = 'contacts-import'

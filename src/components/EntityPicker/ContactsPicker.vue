@@ -4,7 +4,8 @@
 -->
 <template>
 	<!-- Bulk contacts edit modal -->
-	<Modal v-if="isProcessing || isProcessDone"
+	<Modal
+		v-if="isProcessing || isProcessDone"
 		:clear-view-delay="-1"
 		:can-close="isProcessDone"
 		@close="closeProcess">
@@ -12,7 +13,8 @@
 	</Modal>
 
 	<!-- contacts picker -->
-	<EntityPicker v-else-if="showPicker"
+	<EntityPicker
+		v-else-if="showPicker"
 		:confirm-label="t('contacts', 'Add to {group}', { group: pickerforGroup.name })"
 		:title-label="t('contacts', 'Add members to {group}', { group: pickerforGroup.name })"
 		:data-types="pickerTypes"
@@ -24,13 +26,11 @@
 
 <script>
 import { subscribe } from '@nextcloud/event-bus'
-import pLimit from 'p-limit'
-
 import { NcModal as Modal } from '@nextcloud/vue'
-
+import pLimit from 'p-limit'
 import AddToGroupView from '../../views/Processing/AddToGroupView.vue'
-import appendContactToGroup from '../../services/appendContactToGroup.js'
 import EntityPicker from './EntityPicker.vue'
+import appendContactToGroup from '../../services/appendContactToGroup.js'
 
 export default {
 	name: 'ContactsPicker',
@@ -63,16 +63,20 @@ export default {
 				total: 0,
 				name: '',
 			},
+
 			passedGroupName: '',
 		}
 	},
+
 	computed: {
 		contacts() {
 			return this.$store.getters.getContacts
 		},
+
 		groups() {
 			return this.$store.getters.getGroups
 		},
+
 		sortedContacts() {
 			return this.$store.getters.getSortedContacts
 		},
@@ -91,7 +95,7 @@ export default {
 			this.passedGroupName = group.name ? group.name : group
 			// Get the full group if we provided the group name only
 			if (typeof group === 'string') {
-				group = this.groups.find(a => a.name === group)
+				group = this.groups.find((a) => a.name === group)
 				if (!group) {
 					console.error('Cannot add contact to an undefined group', group)
 					return
@@ -111,9 +115,9 @@ export default {
 					}
 				})
 				// No read only contacts
-				.filter(contact => !contact.readOnly)
+				.filter((contact) => !contact.readOnly)
 				// No contacts already present in group
-				.filter(contact => contact.groups.indexOf(group.name) === -1)
+				.filter((contact) => contact.groups.indexOf(group.name) === -1)
 
 			this.showPicker = true
 			this.pickerforGroup = group
@@ -141,7 +145,7 @@ export default {
 			const requests = []
 
 			// create the array of requests to send
-			selection.map(async entity => {
+			selection.map(async (entity) => {
 				try {
 					// Get contact
 					const contact = this.contacts[entity.id]
@@ -157,8 +161,7 @@ export default {
 							this.processStatus.progress++
 							this.processStatus.error++
 							console.error(error)
-						}),
-					))
+						})))
 				} catch (e) {
 					console.error(e)
 				}

@@ -3,28 +3,32 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<div v-if="!isEmpty"
+	<div
+		v-if="!isEmpty"
 		class="group-drop-area"
 		data-testid="group-drop-area"
 		@drop="onDrop($event, group)"
 		@dragenter.prevent
 		@dragover="onDragOver($event)"
 		@dragleave="onDragLeave($event)">
-		<AppNavigationItem :key="group.key"
+		<AppNavigationItem
+			:key="group.key"
 			:to="group.router"
 			:name="group.name">
 			<template #icon>
 				<IconContact :size="20" />
 			</template>
 			<template #actions>
-				<ActionButton :close-after-click="true"
+				<ActionButton
+					:close-after-click="true"
 					@click="addContactsToGroup(group)">
 					<template #icon>
 						<IconAdd :size="20" />
 					</template>
 					{{ t('contacts', 'Add contacts') }}
 				</ActionButton>
-				<ActionInput v-model:model-value="newGroupName"
+				<ActionInput
+					v-model:model-value="newGroupName"
 					:disabled="renaming"
 					@submit="renameGroup">
 					<template #icon>
@@ -33,7 +37,8 @@
 					</template>
 					{{ t('contacts', 'Rename') }}
 				</ActionInput>
-				<ActionButton :close-after-click="true"
+				<ActionButton
+					:close-after-click="true"
 					@click="downloadGroup(group)">
 					<template #icon>
 						<IconDownload :size="20" />
@@ -62,7 +67,8 @@
 			</template>
 
 			<template #counter>
-				<NcCounterBubble v-if="group.contacts.length > 0"
+				<NcCounterBubble
+					v-if="group.contacts.length > 0"
 					:count="group.contacts.length" />
 			</template>
 		</AppNavigationItem>
@@ -70,26 +76,25 @@
 </template>
 
 <script>
+import { showError } from '@nextcloud/dialogs'
 import { emit } from '@nextcloud/event-bus'
-import download from 'downloadjs'
-import moment from 'moment'
-import renameContactFromGroup from '../../services/renameContactFromGroup.js'
-import removeContactFromGroup from '../../services/removeContactFromGroup.js'
-
 import {
 	NcActionButton as ActionButton,
-	NcCounterBubble,
-	NcAppNavigationItem as AppNavigationItem,
 	NcActionInput as ActionInput,
+	NcAppNavigationItem as AppNavigationItem,
 	NcLoadingIcon as IconLoading,
+	NcCounterBubble,
 } from '@nextcloud/vue'
+import download from 'downloadjs'
+import moment from 'moment'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
-import IconAdd from 'vue-material-design-icons/Plus.vue'
-import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
 import IconEmail from 'vue-material-design-icons/EmailOutline.vue'
 import IconRename from 'vue-material-design-icons/FolderEditOutline.vue'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
-import { showError } from '@nextcloud/dialogs'
+import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
+import removeContactFromGroup from '../../services/removeContactFromGroup.js'
+import renameContactFromGroup from '../../services/renameContactFromGroup.js'
 
 export default {
 	name: 'GroupNavigationItem',
@@ -134,13 +139,10 @@ export default {
 	},
 
 	methods: {
-		/**
-		 * @param groups
-		 * @param groupId
-		 */
 		isInGroup(groups, groupId) {
 			return groups.includes(groupId)
 		},
+
 		/**
 		 * Drop contact on group handler.
 		 *
@@ -172,15 +174,18 @@ export default {
 				event.target.closest('.group-drop-area').removeAttribute('drop-active')
 			}
 		},
+
 		// Add marker for drop area
 		onDragOver(event) {
 			event.preventDefault()
 			event.target.closest('.group-drop-area').setAttribute('drop-active', true)
 		},
+
 		// Remove marker from drop area
 		onDragLeave(event) {
 			event.target.closest('.group-drop-area').removeAttribute('drop-active')
 		},
+
 		// Trigger the entity picker view
 		addContactsToGroup() {
 			emit('contacts:group:append', this.group.name)
@@ -194,24 +199,23 @@ export default {
 		downloadGroup(group) {
 			// get grouped contacts
 			let groupedContacts = {}
-			group.contacts.forEach(key => {
+			group.contacts.forEach((key) => {
 				const id = this.contacts[key].addressbook.id
-				groupedContacts = Object.assign({
+				groupedContacts = {
 					[id]: {
 						addressbook: this.contacts[key].addressbook,
 						contacts: [],
 					},
-				}, groupedContacts)
+					...groupedContacts,
+				}
 				groupedContacts[id].contacts.push(this.contacts[key].url)
 			})
 
 			// create vcard promise with the requested contacts
-			const vcardPromise = Promise.all(
-				Object.keys(groupedContacts).map(key =>
-					groupedContacts[key].addressbook.dav.addressbookMultigetExport(groupedContacts[key].contacts)))
-				.then(response => ({
+			const vcardPromise = Promise.all(Object.keys(groupedContacts).map((key) => groupedContacts[key].addressbook.dav.addressbookMultigetExport(groupedContacts[key].contacts)))
+				.then((response) => ({
 					groupName: group.name,
-					data: response.map(data => data.body).join(''),
+					data: response.map((data) => data.body).join(''),
 				}))
 
 			// download vcard
@@ -224,7 +228,7 @@ export default {
 		 * @param {Promise} vcardPromise the full vcf file promise
 		 */
 		async downloadVcardPromise(vcardPromise) {
-			vcardPromise.then(response => {
+			vcardPromise.then((response) => {
 				const filename = moment().format('YYYY-MM-DD_HH-mm') + '_' + response.groupName + '.vcf'
 				const content = 'data:text/plain;charset=utf-8,' + window.encodeURIComponent(response.data)
 				download(content, filename, 'text/vcard')
@@ -239,7 +243,7 @@ export default {
 		 */
 		emailGroup(group, mode = 'to') {
 			const emails = []
-			group.contacts.filter(key => this.contacts[key].email !== null).forEach(key => {
+			group.contacts.filter((key) => this.contacts[key].email !== null).forEach((key) => {
 				// The email property could contain "John Doe <john.doe@example.com>", but vcard spec only
 				// allows addr-spec, not name-addr, so to stay compliant, replace everything outside of <>
 				const email = this.contacts[key].email.replace(/(.*<)([^>]*)(>)/g, '$2').trim()

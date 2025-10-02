@@ -4,7 +4,8 @@
 -->
 
 <template>
-	<Modal size="normal"
+	<Modal
+		size="normal"
 		@close="onCancel">
 		<!-- Wrapper for content & navigation -->
 		<div class="entity-picker">
@@ -17,25 +18,27 @@
 			<div class="entity-picker__search-container">
 				<div class="entity-picker__search">
 					<div class="entity-picker__search-icon icon-search" />
-					<input ref="input"
+					<input
+						ref="input"
 						v-model="searchQuery"
-						:placeholder="t('contacts', 'Search {types}', {types: searchPlaceholderTypes})"
+						:placeholder="t('contacts', 'Search {types}', { types: searchPlaceholderTypes })"
 						class="entity-picker__search-input"
 						type="search"
 						@input="onSearch">
 				</div>
-				<Button v-if="canInviteGuests"
+				<NcButton
+					v-if="canInviteGuests"
 					type="button"
 					variant="tertiary-no-background"
 					:title="t('contacts', 'Add guest')"
 					:aria-label="t('contacts', 'Add guest')"
 					@click="onGuestButtonClick">
 					<IconAccountPlusOutline :size="20" />
-				</Button>
+				</NcButton>
 			</div>
 
 			<!-- Loading -->
-			<EmptyContent v-if="loading" :name="t('contacts', 'Loading …')">
+			<EmptyContent v-if="loading" :name="t('contacts', 'Loading …')">
 				<template #icon>
 					<IconLoading :size="20" />
 				</template>
@@ -43,18 +46,21 @@
 
 			<template v-else>
 				<!-- Picked entities -->
-				<transition-group v-if="Object.keys(selectionSet).length > 0"
+				<transition-group
+					v-if="Object.keys(selectionSet).length > 0"
 					name="zoom"
 					tag="ul"
 					class="entity-picker__selection">
-					<EntityBubble v-for="entity in selectionSet"
+					<EntityBubble
+						v-for="entity in selectionSet"
 						:key="entity.key || `entity-${entity.type}-${entity.id}`"
 						v-bind="entity"
 						@delete="onDelete(entity)" />
 				</transition-group>
 
 				<!-- No recommendations -->
-				<EmptyContent v-if="dataSet.length === 0"
+				<EmptyContent
+					v-if="dataSet.length === 0"
 					:name="t('contacts', 'Search for people to add')"
 					:description="emptyDataSetDescription">
 					<template #icon>
@@ -63,11 +69,13 @@
 				</EmptyContent>
 
 				<!-- Searched & picked entities -->
-				<VList v-else-if="searchSet.length > 0 && availableEntities.length > 0"
+				<VList
+					v-else-if="searchSet.length > 0 && availableEntities.length > 0"
 					v-slot="{ item }"
 					class="entity-picker__options"
 					:data="availableEntities">
-					<EntitySearchResult :key="item.id"
+					<EntitySearchResult
+						:key="item.id"
 						:source="item"
 						:selection="selectionSet"
 						:on-click="onClick" />
@@ -80,16 +88,18 @@
 				</EmptyContent>
 
 				<div class="entity-picker__navigation">
-					<button :disabled="loading"
+					<NcButton
+						:disabled="loading"
 						class="navigation__button-left"
 						@click="onCancel">
 						{{ t('contacts', 'Cancel') }}
-					</button>
-					<button :disabled="isEmptySelection || loading"
+					</NcButton>
+					<NcButton
+						:disabled="isEmptySelection || loading"
 						class="navigation__button-right primary"
 						@click="onSubmit">
 						{{ confirmLabel }}
-					</button>
+					</NcButton>
 				</div>
 			</template>
 		</div>
@@ -97,17 +107,17 @@
 </template>
 
 <script>
-import debounce from 'debounce'
-import { VList } from 'virtua/vue'
+import { subscribe } from '@nextcloud/event-bus'
 import {
-	NcButton as Button,
 	NcEmptyContent as EmptyContent,
 	NcLoadingIcon as IconLoading,
 	NcModal as Modal,
+	NcButton,
 } from '@nextcloud/vue'
-import { subscribe } from '@nextcloud/event-bus'
-import IconSearch from 'vue-material-design-icons/Magnify.vue'
+import debounce from 'debounce'
+import { VList } from 'virtua/vue'
 import IconAccountPlusOutline from 'vue-material-design-icons/AccountPlusOutline.vue'
+import IconSearch from 'vue-material-design-icons/Magnify.vue'
 import EntityBubble from './EntityBubble.vue'
 import EntitySearchResult from './EntitySearchResult.vue'
 
@@ -115,7 +125,7 @@ export default {
 	name: 'EntityPicker',
 
 	components: {
-		Button,
+		NcButton,
 		EmptyContent,
 		EntityBubble,
 		IconAccountPlusOutline,
@@ -139,8 +149,8 @@ export default {
 		dataTypes: {
 			type: Array,
 			required: true,
-			validator: types => {
-				const invalidTypes = types.filter(type => !type.id && !type.label)
+			validator: (types) => {
+				const invalidTypes = types.filter((type) => !type.id && !type.label)
 				if (invalidTypes.length > 0) {
 					console.error('The following types MUST have a proper id and label key', invalidTypes)
 					return false
@@ -155,8 +165,8 @@ export default {
 		dataSet: {
 			type: Array,
 			required: true,
-			validator: data => {
-				data.forEach(source => {
+			validator: (data) => {
+				data.forEach((source) => {
 					if (!source.id || !source.label) {
 						console.error('The following source MUST have a proper id and label key', source)
 					}
@@ -232,6 +242,7 @@ export default {
 				}
 				return this.localSelection
 			},
+
 			set(selection) {
 				if (this.selection !== null) {
 					this.$emit('update:selection', selection)
@@ -266,7 +277,7 @@ export default {
 		 */
 		searchPlaceholderTypes() {
 			const types = this.dataTypes
-				.map(type => type.label)
+				.map((type) => type.label)
 				.join(', ')
 			return `${types}…`
 		},
@@ -280,7 +291,7 @@ export default {
 		searchSet() {
 			// If internal search is enabled and we have a search query, filter data set
 			if (this.internalSearch && this.searchQuery && this.searchQuery.trim !== '') {
-				return this.dataSet.filter(entity => {
+				return this.dataSet.filter((entity) => {
 					return entity.label.toLowerCase().indexOf(this.searchQuery.toLowerCase()) > -1
 				})
 			}
@@ -299,8 +310,8 @@ export default {
 			}
 
 			// Else group by types
-			return this.dataTypes.map(type => {
-				const dataSet = this.searchSet.filter(entity => entity.type === type.id)
+			return this.dataTypes.map((type) => {
+				const dataSet = this.searchSet.filter((entity) => entity.type === type.id)
 				const dataList = [
 					{
 						id: type.id,
@@ -338,6 +349,7 @@ export default {
 			 */
 			this.$emit('close')
 		},
+
 		onSubmit() {
 			/**
 			 * Emitted when user submit the form

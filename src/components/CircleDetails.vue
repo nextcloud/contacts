@@ -8,7 +8,8 @@
 		<div class="circle-details-grid" :class="{ 'is-editing': isEditing }">
 			<div class="circle-details__header-wrapper">
 				<div class="circle-details-grid__avatar">
-					<Avatar :disable-tooltip="true"
+					<Avatar
+						:disable-tooltip="true"
 						:display-name="circle.displayName"
 						:is-no-user="true"
 						:size="75" />
@@ -19,20 +20,23 @@
 							<span :title="circle.displayName">{{ circle.displayName }}</span>
 							<NcLoading v-if="loadingName" :size="24" />
 						</h2>
-						<NcTextField v-else
+						<NcTextField
+							v-else
 							v-model="circle.displayName"
 							:placeholder="t('contacts', 'Team name')"
 							label="Team name" />
 					</div>
 					<div v-if="!isEditing" class="subtitle">
-						<span>{{ t('files', 'Team owner') }}</span> <UserBubble :user="circle.owner.userId"
-							:display-name="circle.isOwner ? 'you': circle.owner.displayName" />
+						<span>{{ t('files', 'Team owner') }}</span> <UserBubble
+							:user="circle.owner.userId"
+							:display-name="circle.isOwner ? 'you' : circle.owner.displayName" />
 					</div>
 					<div v-if="showDescription" class="circle-description-wrapper">
 						<div v-if="!isEditing" class="circle-description">
 							{{ circle.description }}
 						</div>
-						<NcTextArea v-else
+						<NcTextArea
+							v-else
 							v-model="circle.description"
 							:placeholder="descriptionPlaceholder"
 							label="Description"
@@ -40,45 +44,48 @@
 					</div>
 					<div class="actions">
 						<template v-if="!isEditing">
-							<Button v-if="canManageTeam" variant="primary" @click="startEditing">
+							<NcButton v-if="canManageTeam" variant="primary" @click="startEditing">
 								<template #icon>
 									<PencilIcon :size="20" />
 								</template>
 								{{ t('contacts', 'Edit') }}
-							</Button>
-							<Button variant="secondary"
+							</NcButton>
+							<NcButton
+								variant="secondary"
 								:href="circleUrl"
 								@click.stop.prevent="copyToClipboard(circleUrl)">
 								<template #icon>
 									<CopyIcon :size="20" />
 								</template>
 								{{ t('contacts', 'Copy link') }}
-							</Button>
+							</NcButton>
 
 							<!-- Team settings popover -->
-							<NcPopover v-if="canManageTeam"
+							<NcPopover
+								v-if="canManageTeam"
 								:shown="isSettingsPopoverShown"
 								popup-role="dialog"
 								@update:shown="isSettingsPopoverShown = $event">
 								<template #trigger>
-									<Button @click="isSettingsPopoverShown = true">
+									<NcButton @click="isSettingsPopoverShown = true">
 										<template #icon>
 											<CogIcon :size="20" />
 										</template>
-									</Button>
+									</NcButton>
 								</template>
 								<CircleSettings :circle="circle" @leave="onLeave" @delete="onDelete" />
 							</NcPopover>
 						</template>
 						<template v-else>
-							<Button variant="secondary" @click="cancelEditing">
+							<NcButton variant="secondary" @click="cancelEditing">
 								{{ t('contacts', 'Cancel') }}
-							</Button>
-							<Button variant="primary" @click="saveChanges">
+							</NcButton>
+							<NcButton variant="primary" @click="saveChanges">
 								{{ t('contacts', 'Save') }}
-							</Button>
+							</NcButton>
 						</template>
-						<Button v-if="!circle.isPendingMember && !circle.isMember && circle.canJoin"
+						<NcButton
+							v-if="!circle.isPendingMember && !circle.isMember && circle.canJoin"
 							:disabled="loadingJoin"
 							class="primary"
 							@click="joinCircle">
@@ -86,10 +93,11 @@
 								<LoginIcon :size="16" />
 							</template>
 							{{ t('contacts', 'Request to join') }}
-						</Button>
+						</NcButton>
 
-						<!-- Leave team button -->
-						<Button v-if="circle.isMember && circle.canLeave"
+						<!-- Leave team Ncbutton -->
+						<NcButton
+							v-if="circle.isMember && circle.canLeave"
 							:disabled="loadingLeave"
 							variant="warning"
 							@click="confirmLeaveCircle">
@@ -97,7 +105,7 @@
 								<LogoutIcon :size="16" />
 							</template>
 							{{ t('contacts', 'Leave team') }}
-						</Button>
+						</NcButton>
 					</div>
 				</div>
 			</div>
@@ -107,15 +115,17 @@
 				<!-- not a member -->
 				<template v-if="!circle.isMember">
 					<!-- Pending request validation -->
-					<NcEmptyContent v-if="circle.isPendingMember"
+					<NcEmptyContent
+						v-if="circle.isPendingMember"
 						:name="t('contacts', 'Your request to join this team is pending approval')">
 						<template #icon>
 							<NcLoadingIcon :size="20" />
 						</template>
 					</NcEmptyContent>
 
-					<NcEmptyContent v-else
-						:name="t('contacts', 'You are not a member of {circle}', { circle: circle.displayName})">
+					<NcEmptyContent
+						v-else
+						:name="t('contacts', 'You are not a member of {circle}', { circle: circle.displayName })">
 						<template #icon>
 							<IconAccountGroup :size="20" />
 						</template>
@@ -128,7 +138,8 @@
 							<ContentHeading>{{ group.name }}</ContentHeading>
 						</div>
 						<ul class="item-list">
-							<ListItem v-for="resource in group.resources"
+							<ListItem
+								v-for="resource in group.resources"
 								:key="resource.id"
 								:href="resource.url"
 								:name="resource.label">
@@ -147,12 +158,12 @@
 						<div class="member-section-layout">
 							<div class="section-header">
 								<ContentHeading>{{ t('contacts', 'Members') }}</ContentHeading>
-								<Button v-if="circle.canManageMembers" variant="tertiary" @click="addMembers">
+								<NcButton v-if="circle.canManageMembers" variant="tertiary" @click="addMembers">
 									<template #icon>
 										<AccountPlusIcon :size="20" />
 									</template>
 									{{ t('contacts', 'Add') }}
-								</Button>
+								</NcButton>
 							</div>
 							<MemberList ref="memberList" :list="members" />
 						</div>
@@ -164,37 +175,35 @@
 </template>
 
 <script>
-import { ref } from 'vue'
-import { useElementSize } from '@vueuse/core'
-import { generateOcsUrl } from '@nextcloud/router'
-import { showError } from '@nextcloud/dialogs'
 import axios from '@nextcloud/axios'
-
+import { showError } from '@nextcloud/dialogs'
+import { generateOcsUrl } from '@nextcloud/router'
 import {
 	NcAvatar as Avatar,
-	NcButton as Button,
-	NcEmptyContent,
 	NcListItem as ListItem,
+	NcButton,
+	NcEmptyContent,
 	NcLoadingIcon,
 	NcPopover,
-	NcUserBubble as UserBubble,
-	NcTextField,
 	NcTextArea,
+	NcTextField,
+	NcUserBubble as UserBubble,
 } from '@nextcloud/vue'
-
+import { useElementSize } from '@vueuse/core'
+import { ref } from 'vue'
+import IconAccountGroup from 'vue-material-design-icons/AccountGroupOutline.vue'
+import AccountPlusIcon from 'vue-material-design-icons/AccountPlusOutline.vue'
 import CogIcon from 'vue-material-design-icons/CogOutline.vue'
 import CopyIcon from 'vue-material-design-icons/ContentCopy.vue'
+import FileDocumentOutline from 'vue-material-design-icons/FileDocumentOutline.vue'
 import LoginIcon from 'vue-material-design-icons/Login.vue'
 import LogoutIcon from 'vue-material-design-icons/Logout.vue'
-import AccountPlusIcon from 'vue-material-design-icons/AccountPlusOutline.vue'
 import PencilIcon from 'vue-material-design-icons/PencilOutline.vue'
-import IconAccountGroup from 'vue-material-design-icons/AccountGroupOutline.vue'
-import FileDocumentOutline from 'vue-material-design-icons/FileDocumentOutline.vue'
-import { CircleEdit, editCircle } from '../services/circles.ts'
-import CircleActionsMixin from '../mixins/CircleActionsMixin'
 import CircleSettings from './CircleDetails/CircleSettings.vue'
-import MemberList from './MemberList/MemberList.vue'
 import ContentHeading from './CircleDetails/ContentHeading.vue'
+import MemberList from './MemberList/MemberList.vue'
+import CircleActionsMixin from '../mixins/CircleActionsMixin.js'
+import { CircleEdit, editCircle } from '../services/circles.ts'
 
 export default {
 	name: 'CircleDetails',
@@ -202,7 +211,7 @@ export default {
 	components: {
 		AccountPlusIcon,
 		Avatar,
-		Button,
+		NcButton,
 		ContentHeading,
 		ListItem,
 		CogIcon,
@@ -217,7 +226,6 @@ export default {
 		NcLoadingIcon,
 		NcPopover,
 		PencilIcon,
-
 		UserBubble,
 		NcTextField,
 		NcTextArea,
@@ -317,7 +325,7 @@ export default {
 
 		resourcesForProvider() {
 			return (providerId) => {
-				return this.resources?.filter(res => res.provider.id === providerId) ?? []
+				return this.resources?.filter((res) => res.provider.id === providerId) ?? []
 			}
 		},
 	},
@@ -327,6 +335,7 @@ export default {
 			handler() {
 				this.fetchTeamResources()
 			},
+
 			immediate: true,
 		},
 	},
@@ -335,14 +344,17 @@ export default {
 		addMembers() {
 			this.$refs.memberList.onShowPicker(this.circle.id)
 		},
+
 		onLeave() {
 			this.isSettingsPopoverShown = false
 			this.confirmLeaveCircle()
 		},
+
 		onDelete() {
 			this.isSettingsPopoverShown = false
 			this.confirmDeleteCircle()
 		},
+
 		startEditing() {
 			this.originalDisplayName = this.circle.displayName
 			this.originalDescription = this.circle.description
@@ -360,6 +372,7 @@ export default {
 			this.resources = response.data.ocs.data.resources
 			console.debug('Team resources', this.resources)
 		},
+
 		/**
 		 * Autocomplete @mentions on the description
 		 *
@@ -368,7 +381,7 @@ export default {
 		 */
 		onAutocomplete(search, callback) {
 			// TODO: implement autocompletion. Disabled for now
-			// eslint-disable-next-line n/no-callback-literal
+
 			callback([])
 		},
 
