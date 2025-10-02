@@ -5,7 +5,8 @@
 
 <template>
 	<div v-if="propModel && showProperty" class="property">
-		<PropertyTitle icon="icon-contacts-dark"
+		<PropertyTitle
+			icon="icon-contacts-dark"
 			:readable-name="t('contacts', 'Contact groups')"
 			:is-read-only="isReadOnly" />
 
@@ -16,13 +17,14 @@
 
 			<!-- multiselect taggable groups -->
 			<div class="property__value">
-				<NcSelect v-if="!isReadOnly"
+				<NcSelect
+					v-if="!isReadOnly"
 					v-model="localValue"
 					:options="groups"
 					:no-wrap="true"
 					:placeholder="t('contacts', 'Add contact in group')"
 					:multiple="true"
-					:close-on-select="false"
+					:keep-open="true"
 					:clearable="true"
 					:deselect-from-dropdown="true"
 					:taggable="true"
@@ -40,7 +42,7 @@
 					</template>
 				</NcSelect>
 				<div v-else>
-					<span v-if="localValue.length === 0">{{ t('contacts','None') }}</span>
+					<span v-if="localValue.length === 0">{{ t('contacts', 'None') }}</span>
 
 					<div v-else class="group__list">
 						<span v-for="(group, index) in localValue" :key="index">
@@ -58,9 +60,9 @@
 
 <script>
 import { NcSelect } from '@nextcloud/vue'
-import Contact from '../../models/contact.js'
-import PropertyTitle from './PropertyTitle.vue'
 import naturalCompare from 'string-natural-compare'
+import PropertyTitle from './PropertyTitle.vue'
+import Contact from '../../models/contact.js'
 
 export default {
 	name: 'PropertyGroups',
@@ -73,19 +75,19 @@ export default {
 	props: {
 		propModel: {
 			type: Object,
-			default: () => {},
 			required: true,
 		},
+
 		value: {
 			type: Array,
-			default: () => [],
 			required: true,
 		},
+
 		contact: {
 			type: Contact,
-			default: null,
 			required: true,
 		},
+
 		// Is it read-only?
 		isReadOnly: {
 			type: Boolean,
@@ -103,11 +105,13 @@ export default {
 		showAsText() {
 			return this.isReadOnly && this.localValue.length <= 1
 		},
+
 		showProperty() {
 			return (this.isReadOnly && this.localValue.length > 0) || !this.isReadOnly
 		},
+
 		groups() {
-			return this.$store.getters.getGroups.slice(0).map(group => group.name)
+			return this.$store.getters.getGroups.slice(0).map((group) => group.name)
 				.sort((a, b) => naturalCompare(a, b, { caseInsensitive: true }))
 		},
 
@@ -132,6 +136,7 @@ export default {
 		value() {
 			this.localValue = this.value
 		},
+
 		selectType() {
 			this.localType = this.selectType
 		},

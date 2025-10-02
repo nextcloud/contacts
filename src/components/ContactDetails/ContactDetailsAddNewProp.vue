@@ -10,7 +10,8 @@
 
 		<!-- Extra div container to fix the poper position -->
 		<div class="property__value">
-			<Actions menu-align="right"
+			<Actions
+				menu-align="right"
 				event=""
 				variant="secondary"
 				:menu-name="t('contacts', 'Add more info')"
@@ -19,7 +20,8 @@
 					<IconAdd :size="20" />
 				</template>
 				<template v-if="!moreActionsOpen">
-					<ActionButton v-for="option in availablePrimaryProperties"
+					<ActionButton
+						v-for="option in availablePrimaryProperties"
 						:key="option.id"
 						class="action--primary"
 						:close-after-click="true"
@@ -29,25 +31,30 @@
 						</template>
 						{{ option.name }}
 					</ActionButton>
-					<ActionButton :close-after-click="false"
-						@click="moreActionsOpen=true">
+					<ActionButton
+						:close-after-click="false"
+						@click="moreActionsOpen = true">
 						<template #icon>
-							<DotsHorizontalIcon :title="t('contacts', 'More fields')"
+							<DotsHorizontalIcon
+								:title="t('contacts', 'More fields')"
 								:size="20" />
 						</template>
 						{{ t('contacts', 'More fields') }}
 					</ActionButton>
 				</template>
 				<template v-if="moreActionsOpen">
-					<ActionButton :close-after-click="false"
-						@click="moreActionsOpen=false">
+					<ActionButton
+						:close-after-click="false"
+						@click="moreActionsOpen = false">
 						<template #icon>
-							<ChevronLeft :title="t('contacts', 'More fields')"
+							<ChevronLeft
+								:title="t('contacts', 'More fields')"
 								:size="20" />
 							{{ t('contacts', 'More fields') }}
 						</template>
 					</ActionButton>
-					<ActionButton v-for="option in availableSecondaryProperties"
+					<ActionButton
+						v-for="option in availableSecondaryProperties"
 						:key="option.id"
 						class="action--primary"
 						:close-after-click="true"
@@ -67,15 +74,15 @@
 </template>
 
 <script>
-import OrgChartsMixin from '../../mixins/OrgChartsMixin.js'
-import { NcActions as Actions, NcActionButton as ActionButton } from '@nextcloud/vue'
-import Contact from '../../models/contact.js'
-import rfcProps from '../../models/rfcProps.js'
+import { NcActionButton as ActionButton, NcActions as Actions } from '@nextcloud/vue'
 import ICAL from 'ical.js'
-import PropertyTitleIcon from '../Properties/PropertyTitleIcon.vue'
 import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue'
 import DotsHorizontalIcon from 'vue-material-design-icons/DotsHorizontal.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
+import PropertyTitleIcon from '../Properties/PropertyTitleIcon.vue'
+import OrgChartsMixin from '../../mixins/OrgChartsMixin.js'
+import Contact from '../../models/contact.js'
+import rfcProps from '../../models/rfcProps.js'
 
 export default {
 	name: 'ContactDetailsAddNewProp',
@@ -98,16 +105,19 @@ export default {
 			type: Contact,
 			default: null,
 		},
+
 		bus: {
 			type: Object,
 			required: true,
 		},
 	},
+
 	data() {
 		return {
 			moreActionsOpen: false,
 		}
 	},
+
 	computed: {
 		/**
 		 * Rfc props
@@ -133,7 +143,7 @@ export default {
 		 * @return {string[]}
 		 */
 		usedProperties() {
-			return this.contact.jCal[1].map(prop => prop[0])
+			return this.contact.jCal[1].map((prop) => prop[0])
 		},
 
 		/**
@@ -145,9 +155,9 @@ export default {
 		availablePrimaryProperties() {
 			return Object.keys(this.properties)
 				// show primary or secondary props
-				.filter(key => this.properties[key].primary)
+				.filter((key) => this.properties[key].primary)
 				// usable array of objects
-				.map(key => {
+				.map((key) => {
 					return {
 						id: key,
 						name: this.properties[key].readableName,
@@ -155,6 +165,7 @@ export default {
 					}
 				}).sort((a, b) => this.propertiesOrder.indexOf(a.id) - this.propertiesOrder.indexOf(b.id))
 		},
+
 		/**
 		 * List of every secondary properties you are allowed to add
 		 * on this contact
@@ -164,9 +175,9 @@ export default {
 		availableSecondaryProperties() {
 			return Object.keys(this.properties)
 				// show primary or secondary props
-				.filter(key => !this.properties[key].primary)
+				.filter((key) => !this.properties[key].primary)
 				// usable array of objects
-				.map(key => {
+				.map((key) => {
 					return {
 						id: key,
 						name: this.properties[key].readableName,

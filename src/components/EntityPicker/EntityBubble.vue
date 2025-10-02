@@ -3,12 +3,14 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<UserBubble class="entity-picker__bubble"
+	<UserBubble
+		class="entity-picker__bubble"
 		:margin="0"
 		:size="22"
 		:display-name="label">
 		<template #name>
-			<a href="#"
+			<a
+				href="#"
 				:title="t('contacts', 'Remove {type}', { type })"
 				class="entity-picker__bubble-delete icon-close"
 				@click="onDelete" />

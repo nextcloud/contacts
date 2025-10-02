@@ -8,7 +8,8 @@
 		<div class="usergroup-details-grid">
 			<div class="usergroup-details__header-wrapper">
 				<div class="usergroup-details-grid__avatar">
-					<NcAvatar :disable-tooltip="true"
+					<NcAvatar
+						:disable-tooltip="true"
 						:display-name="userGroup.displayName"
 						:is-no-user="true"
 						:size="75" />
@@ -37,7 +38,8 @@
 					{{ t('contacts', 'Members') }}
 				</h3>
 				<div class="usergroup-details__member-grid">
-					<UserGroupMember v-for="member in userGroup.members"
+					<UserGroupMember
+						v-for="member in userGroup.members"
 						:key="`user-group-member-${member}`"
 						:member="member" />
 				</div>
@@ -49,10 +51,9 @@
 <script>
 import { NcAvatar, NcButton } from '@nextcloud/vue'
 import CopyIcon from 'vue-material-design-icons/ContentCopy.vue'
-
+import UserGroupMember from './UserGroupDetails/UserGroupMember.vue'
 import CopyToClipboardMixin from '../mixins/CopyToClipboardMixin.js'
 import UserGroup from '../models/userGroup.ts'
-import UserGroupMember from './UserGroupDetails/UserGroupMember.vue'
 
 export default {
 	name: 'UserGroupDetails',

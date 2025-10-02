@@ -6,14 +6,16 @@
 <template>
 	<Content :app-name="appName">
 		<!-- new-contact-button + navigation + settings -->
-		<RootNavigation :contacts-list="contactsList"
+		<RootNavigation
+			:contacts-list="contactsList"
 			:loading="loadingContacts || loadingCircles"
 			:selected-group="selectedGroup"
 			:selected-contact="selectedContact">
 			<div class="import-and-new-contact-buttons">
 				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView" />
 				<!-- new-contact-button -->
-				<Button v-if="!loadingContacts"
+				<NcButton
+					v-if="!loadingContacts"
 					:disabled="!defaultAddressbook"
 					variant="secondary"
 					wide
@@ -21,25 +23,30 @@
 					<template #icon>
 						<IconAdd :size="20" />
 					</template>
-					{{ isCirclesView ? t('contacts','Add member') : t('contacts','New contact') }}
-				</Button>
+					{{ isCirclesView ? t('contacts', 'Add member') : t('contacts', 'New contact') }}
+				</NcButton>
 			</div>
 		</RootNavigation>
 
 		<!-- Main content: circle, chart or contacts -->
-		<UserGroupContent v-if="selectedUserGroup"
+		<UserGroupContent
+			v-if="selectedUserGroup"
 			:loding="loadingCircles" />
-		<CircleContent v-if="selectedCircle || selectedUserGroup"
+		<CircleContent
+			v-if="selectedCircle || selectedUserGroup"
 			:loading="loadingCircles" />
-		<ChartContent v-else-if="selectedChart"
+		<ChartContent
+			v-else-if="selectedChart"
 			:contacts-list="contacts" />
-		<ContactsContent v-else
+		<ContactsContent
+			v-else
 			:contacts-list="contactsList"
 			:loading="loadingContacts"
 			@new-contact="newContact" />
 
 		<!-- Import modal -->
-		<Modal v-if="isImporting"
+		<Modal
+			v-if="isImporting"
 			:clear-view-delay="-1"
 			:can-close="isImportDone"
 			@close="closeImport">
@@ -52,45 +59,38 @@
 </template>
 
 <script>
-import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE, ROUTE_USER_GROUP } from '../models/constants.ts'
-
-import {
-	NcButton as Button,
-	NcContent as Content,
-	NcModal as Modal,
-} from '@nextcloud/vue'
-
 import { getCurrentUser } from '@nextcloud/auth'
 import { showError } from '@nextcloud/dialogs'
+import { emit } from '@nextcloud/event-bus'
+import {
+	NcContent as Content,
+	NcModal as Modal,
+	NcButton,
+} from '@nextcloud/vue'
 import ICAL from 'ical.js'
-
-import CircleContent from '../components/AppContent/CircleContent.vue'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
 import ChartContent from '../components/AppContent/ChartContent.vue'
+import CircleContent from '../components/AppContent/CircleContent.vue'
 import ContactsContent from '../components/AppContent/ContactsContent.vue'
-import ContactsPicker from '../components/EntityPicker/ContactsPicker.vue'
-import ImportView from './Processing/ImportView.vue'
 import RootNavigation from '../components/AppNavigation/RootNavigation.vue'
 import SettingsImportContacts from '../components/AppNavigation/Settings/SettingsImportContacts.vue'
-import IconAdd from 'vue-material-design-icons/Plus.vue'
-
+import ContactsPicker from '../components/EntityPicker/ContactsPicker.vue'
+import ImportView from './Processing/ImportView.vue'
+import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import RouterMixin from '../mixins/RouterMixin.js'
-
+import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE, ROUTE_USER_GROUP } from '../models/constants.ts'
 import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
-
 import client from '../services/cdav.js'
 import isCirclesEnabled from '../services/isCirclesEnabled.js'
-import { emit } from '@nextcloud/event-bus'
-
 import usePrincipalsStore from '../store/principals.js'
 import useUserGroupStore from '../store/userGroup.ts'
-import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 
 export default {
 	name: 'Contacts',
 
 	components: {
-		Button,
+		NcButton,
 		CircleContent,
 		ChartContent,
 		ContactsContent,
@@ -125,30 +125,39 @@ export default {
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
 		},
+
 		contacts() {
 			return this.$store.getters.getContacts
 		},
+
 		sortedContacts() {
 			return this.$store.getters.getSortedContacts
 		},
+
 		groups() {
 			return this.$store.getters.getGroups
 		},
+
 		circles() {
 			return this.$store.getters.getCircles
 		},
+
 		orderKey() {
 			return this.$store.getters.getOrderKey
 		},
+
 		importState() {
 			return this.$store.getters.getImportState
 		},
+
 		isEmptyGroup() {
 			return this.contactsList.length === 0
 		},
+
 		isChartView() {
 			return !!this.selectedChart
 		},
+
 		/**
 		 * Are we importing contacts ?
 		 *
@@ -157,6 +166,7 @@ export default {
 		isImporting() {
 			return this.importState.stage !== 'default'
 		},
+
 		/**
 		 * Are we done importing contacts ?
 		 *
@@ -168,7 +178,7 @@ export default {
 
 		// first enabled addressbook of the list
 		defaultAddressbook() {
-			return this.addressbooks.find(addressbook => !addressbook.readOnly && addressbook.enabled)
+			return this.addressbooks.find((addressbook) => !addressbook.readOnly && addressbook.enabled)
 		},
 
 		/**
@@ -183,13 +193,13 @@ export default {
 			if (this.selectedGroup === GROUP_ALL_CONTACTS) {
 				return this.sortedContacts
 			} else if (this.selectedGroup === GROUP_NO_GROUP_CONTACTS) {
-				return this.ungroupedContacts.map(contact => this.sortedContacts.find(item => item.key === contact.key))
+				return this.ungroupedContacts.map((contact) => this.sortedContacts.find((item) => item.key === contact.key))
 			} else if (this.selectedGroup === ROUTE_CIRCLE || this.selectedGroup === ROUTE_USER_GROUP) {
 				return []
 			}
-			const group = this.groups.filter(group => group.name === this.selectedGroup)[0]
+			const group = this.groups.filter((group) => group.name === this.selectedGroup)[0]
 			if (group) {
-				return this.sortedContacts.filter(contact => group.contacts.indexOf(contact.key) >= 0)
+				return this.sortedContacts.filter((contact) => group.contacts.indexOf(contact.key) >= 0)
 			}
 			return []
 		},
@@ -199,7 +209,7 @@ export default {
 		},
 
 		ungroupedContacts() {
-			return this.sortedContacts.filter(contact => this.contacts[contact.key].groups && this.contacts[contact.key].groups.length === 0)
+			return this.sortedContacts.filter((contact) => this.contacts[contact.key].groups && this.contacts[contact.key].groups.length === 0)
 		},
 	},
 
@@ -210,6 +220,7 @@ export default {
 				this.selectFirstContactIfNone()
 			}
 		},
+
 		// watch url change and contact select
 		selectedContact() {
 			if (!this.isMobile && !this.selectedChart) {
@@ -234,7 +245,7 @@ export default {
 			principalsStore.setCurrentUserPrincipal(client)
 			this.$store.dispatch('getAddressbooks')
 				.then((addressbooks) => {
-					const writeableAddressBooks = addressbooks.filter(addressbook => !addressbook.readOnly)
+					const writeableAddressBooks = addressbooks.filter((addressbook) => !addressbook.readOnly)
 
 					// No writeable addressbooks? Create a new one!
 					if (writeableAddressBooks.length === 0) {
@@ -272,13 +283,15 @@ export default {
 				return
 			}
 
-			const contact = new Contact(`
+			const contact = new Contact(
+				`
 				BEGIN:VCARD
 				VERSION:4.0
 				PRODID:-//Nextcloud Contacts v${appVersion}
 				END:VCARD
 			`.trim().replace(/\t/gm, ''),
-			this.defaultAddressbook)
+				this.defaultAddressbook,
+			)
 
 			contact.fullName = t('contacts', 'Name')
 
@@ -298,7 +311,6 @@ export default {
 					// add default type
 					if (defaultData.type) {
 						property.setParameter('type', defaultData.type)
-
 					}
 				}
 			}
@@ -341,13 +353,12 @@ export default {
 			// wait for all addressbooks to have fetch their contacts
 			// don't filter disabled at this point, because sum of contacts per address book is shown
 			Promise.all(this.addressbooks
-				.map(addressbook => {
+				.map((addressbook) => {
 					if (!addressbook.enabled) {
 						return Promise.resolve()
 					}
 					return this.$store.dispatch('getContactsFromAddressBook', { addressbook })
-				}),
-			).then(() => {
+				})).then(() => {
 				this.loadingContacts = false
 				if (!this.isMobile && !this.selectedChart) {
 					this.selectFirstContactIfNone()
@@ -365,7 +376,7 @@ export default {
 				return
 			}
 
-			const inList = this.contactsList.findIndex(contact => contact.key === this.selectedContact) > -1
+			const inList = this.contactsList.findIndex((contact) => contact.key === this.selectedContact) > -1
 			if (!this.selectedContact || !inList) {
 				// Unknown contact
 				if (this.selectedContact && !inList) {
@@ -381,7 +392,7 @@ export default {
 				// Unknown group
 				if (!this.selectedCircle
 					&& !this.selectedUserGroup
-					&& !this.groups.find(group => group.name === this.selectedGroup)
+					&& !this.groups.find((group) => group.name === this.selectedGroup)
 					&& GROUP_ALL_CONTACTS !== this.selectedGroup
 					&& GROUP_NO_GROUP_CONTACTS !== this.selectedGroup
 					&& ROUTE_CIRCLE !== this.selectedGroup

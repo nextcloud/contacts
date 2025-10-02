@@ -3,14 +3,14 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { v4 as uuid } from 'uuid'
-import ICAL from 'ical.js'
-import b64toBlob from 'b64-to-blob'
-import { shallowRef, unref } from 'vue'
-
-import store from '../store/index.js'
-import updateDesignSet from '../services/updateDesignSet.js'
 import sanitizeSVG from '@mattkrick/sanitize-svg'
+import b64toBlob from 'b64-to-blob'
+import { Buffer } from 'buffer'
+import ICAL from 'ical.js'
+import { v4 as uuid } from 'uuid'
+import { shallowRef, unref } from 'vue'
+import updateDesignSet from '../services/updateDesignSet.js'
+import store from '../store/index.js'
 
 /**
  * Check if the given value is an empty array or an empty string
@@ -18,7 +18,7 @@ import sanitizeSVG from '@mattkrick/sanitize-svg'
  * @param {string|Array} value the value to check
  * @return {boolean}
  */
-const isEmpty = value => {
+function isEmpty(value) {
 	return (Array.isArray(value) && value.join('') === '') || (!Array.isArray(value) && value === '')
 }
 
@@ -29,7 +29,6 @@ export const MinimalContactProperties = [
 ].concat(ContactKindProperties)
 
 export default class Contact {
-
 	/**
 	 * Creates an instance of Contact
 	 *
@@ -290,8 +289,8 @@ export default class Contact {
 		const groupsProp = this.vCard.getFirstProperty('categories')
 		if (groupsProp) {
 			return groupsProp.getValues()
-				.filter(group => typeof group === 'string')
-				.filter(group => group.trim() !== '')
+				.filter((group) => typeof group === 'string')
+				.filter((group) => group.trim() !== '')
 		}
 		return []
 	}
@@ -328,13 +327,11 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get kind() {
-		return this.firstIfArray(
-			ContactKindProperties
-				.map(s => s.toLowerCase())
-				.map(s => this.vCard.getFirstPropertyValue(s))
-				.flat()
-				.filter(k => k),
-		)
+		return this.firstIfArray(ContactKindProperties
+			.map((s) => s.toLowerCase())
+			.map((s) => this.vCard.getFirstPropertyValue(s))
+			.flat()
+			.filter((k) => k))
 	}
 
 	/**
@@ -449,21 +446,21 @@ export default class Contact {
 		// ! 'xxxx'.join('') !== ''
 		if (orderKey && n && !isEmpty(n)) {
 			switch (orderKey) {
-			case 'firstName':
+				case 'firstName':
 				// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
 				// -> John Stevenson
-				if (isEmpty(n[0])) {
-					return n[1]
-				}
-				return n.slice(0, 2).reverse().join(' ')
+					if (isEmpty(n[0])) {
+						return n[1]
+					}
+					return n.slice(0, 2).reverse().join(' ')
 
-			case 'lastName':
+				case 'lastName':
 				// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
 				// -> Stevenson, John
-				if (isEmpty(n[0])) {
-					return n[1]
-				}
-				return n.slice(0, 2).join(', ')
+					if (isEmpty(n[0])) {
+						return n[1]
+					}
+					return n.slice(0, 2).join(', ')
 			}
 		}
 		// otherwise the FN is enough
@@ -485,7 +482,6 @@ export default class Contact {
 			return Array.isArray(org) ? org[0] : org
 		}
 		return ''
-
 	}
 
 	/**
@@ -546,7 +542,7 @@ export default class Contact {
 	 */
 	socialLink(type) {
 		if (this.vCard.hasProperty('x-socialprofile')) {
-			const x = this.vCard.getAllProperties('x-socialprofile').filter(a => a.jCal[1].type.toString() === type)
+			const x = this.vCard.getAllProperties('x-socialprofile').filter((a) => a.jCal[1].type.toString() === type)
 
 			if (x.length > 0) {
 				return x[0].jCal[3].toString()
@@ -589,7 +585,7 @@ export default class Contact {
 	 * @return {string[]}
 	 */
 	get searchData() {
-		return this.jCal[1].map(x => x[0] + ':' + x[3])
+		return this.jCal[1].map((x) => x[0] + ':' + x[3])
 	}
 
 	/**
@@ -613,5 +609,4 @@ export default class Contact {
 		const card = this.vCard.toString()
 		return card.replace(regexp, 'TYPE=$1')
 	}
-
 }

@@ -21,6 +21,7 @@
 		<CircleDetails v-else :circle="circle" />
 	</AppContent>
 </template>
+
 <script>
 import { showError } from '@nextcloud/dialogs'
 import {
@@ -28,13 +29,13 @@ import {
 	NcEmptyContent as EmptyContent,
 	NcLoadingIcon as IconLoading,
 } from '@nextcloud/vue'
+import { mapStores } from 'pinia'
 import AccountGroup from 'vue-material-design-icons/AccountGroupOutline.vue'
 import CircleDetails from '../CircleDetails.vue'
-import RouterMixin from '../../mixins/RouterMixin.js'
-import IsMobileMixin from '../../mixins/IsMobileMixin.ts'
 import UserGroupDetails from '../UserGroupDetails.vue'
+import IsMobileMixin from '../../mixins/IsMobileMixin.ts'
+import RouterMixin from '../../mixins/RouterMixin.js'
 import useUserGroupStore from '../../store/userGroup.ts'
-import { mapStores } from 'pinia'
 
 export default {
 	name: 'CircleContent',
@@ -68,12 +69,15 @@ export default {
 		circles() {
 			return this.$store.getters.getCircles
 		},
+
 		circle() {
 			return this.$store.getters.getCircle(this.selectedCircle)
 		},
+
 		userGroup() {
 			return this.userGroupStore.getUserGroup(this.selectedUserGroup)
 		},
+
 		members() {
 			return Object.values(this.circle?.members || [])
 		},
@@ -86,6 +90,7 @@ export default {
 		isEmptyCircle() {
 			return this.members.length === 0
 		},
+
 		...mapStores(useUserGroupStore),
 	},
 
@@ -95,6 +100,7 @@ export default {
 				this.fetchCircleMembers(newCircle.id)
 			}
 		},
+
 		userGroup(newUserGroup) {
 			if (newUserGroup?.id) {
 				this.fetchUserGroupMembers(newUserGroup.id)
@@ -126,6 +132,7 @@ export default {
 				this.loadingList = false
 			}
 		},
+
 		async fetchUserGroupMembers(userGroupId) {
 			this.loadingList = true
 

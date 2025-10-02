@@ -4,12 +4,14 @@
 -->
 
 <template>
-	<AppSettingsDialog id="app-settings-dialog"
+	<AppSettingsDialog
+		id="app-settings-dialog"
 		v-model:open="showSettings"
 		:name="t('contacts', 'Contacts settings')"
 		:show-navigation="true">
 		<AppSettingsSection id="general-settings" :name="t('contacts', 'General settings')">
-			<CheckboxRadioSwitch :model-value="enableSocialSync"
+			<CheckboxRadioSwitch
+				:model-value="enableSocialSync"
 				:loading="enableSocialSyncLoading"
 				:disabled="enableSocialSyncLoading"
 				class="social-sync__checkbox contacts-settings-modal__form__row"
@@ -31,7 +33,8 @@
 					</ul>
 				</div>
 				<SettingsNewAddressbook class="contacts-settings-modal__form__row settings-new-addressbook" :addressbooks="addressbooks" />
-				<SettingsImportContacts :addressbooks="addressbooks"
+				<SettingsImportContacts
+					:addressbooks="addressbooks"
 					class="contacts-settings-modal__form__row"
 					@clicked="onClickImport"
 					@file-loaded="onLoad" />
@@ -43,13 +46,13 @@
 <script>
 
 import axios from '@nextcloud/axios'
-import { generateUrl } from '@nextcloud/router'
 import { loadState } from '@nextcloud/initial-state'
+import { generateUrl } from '@nextcloud/router'
+import { NcAppSettingsDialog as AppSettingsDialog, NcAppSettingsSection as AppSettingsSection, NcCheckboxRadioSwitch as CheckboxRadioSwitch } from '@nextcloud/vue'
 import SettingsAddressbook from './Settings/SettingsAddressbook.vue'
-import SettingsNewAddressbook from './Settings/SettingsNewAddressbook.vue'
 import SettingsImportContacts from './Settings/SettingsImportContacts.vue'
+import SettingsNewAddressbook from './Settings/SettingsNewAddressbook.vue'
 import SettingsSortContacts from './Settings/SettingsSortContacts.vue'
-import { NcCheckboxRadioSwitch as CheckboxRadioSwitch, NcAppSettingsDialog as AppSettingsDialog, NcAppSettingsSection as AppSettingsSection } from '@nextcloud/vue'
 import { CONTACTS_SETTINGS } from '../../models/constants.ts'
 
 export default {
@@ -63,12 +66,14 @@ export default {
 		SettingsSortContacts,
 		CheckboxRadioSwitch,
 	},
+
 	props: {
 		open: {
 			required: true,
 			type: Boolean,
 		},
 	},
+
 	data() {
 		return {
 			CONTACTS_SETTINGS,
@@ -78,35 +83,40 @@ export default {
 			showSettings: false,
 		}
 	},
+
 	computed: {
 		// store getters
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
 		},
 	},
+
 	watch: {
 		showSettings(value) {
 			if (!value) {
 				this.$emit('update:open', value)
 			}
 		},
+
 		async open(value) {
 			if (value) {
 				await this.onOpen()
 			}
 		},
 	},
+
 	methods: {
 		onClickImport(event) {
 			this.$emit('clicked', event)
 		},
+
 		async toggleSocialSync() {
 			this.enableSocialSync = !this.enableSocialSync
 			this.enableSocialSyncLoading = true
 
 			// store value
 			let setting = 'yes'
-			this.enableSocialSync ? setting = 'yes' : setting = 'no'
+			setting = this.allowSocialSync ? 'yes' : 'no'
 			try {
 				await axios.put(generateUrl('apps/contacts/api/v1/social/config/user/enableSocialSync'), {
 					allow: setting,
@@ -115,9 +125,11 @@ export default {
 				this.enableSocialSyncLoading = false
 			}
 		},
+
 		onLoad() {
 			this.$emit('file-loaded', false)
 		},
+
 		async onOpen() {
 			this.showSettings = true
 		},

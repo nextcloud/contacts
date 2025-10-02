@@ -5,12 +5,13 @@
 
 <template>
 	<h4 v-if="source.heading" :key="source.id" class="entity-picker__option-caption">
-		{{ t('contacts', 'Add {type}', {type: source.label.toLowerCase()}) }}
+		{{ t('contacts', 'Add {type}', { type: source.label.toLowerCase() }) }}
 	</h4>
 
-	<UserBubble v-else
+	<UserBubble
+		v-else
 		class="entity-picker__bubble"
-		:class="{'entity-picker__bubble--selected': isSelected}"
+		:class="{ 'entity-picker__bubble--selected': isSelected }"
 		:display-name="source.label"
 		:user="source.user"
 		:margin="6"
@@ -40,10 +41,12 @@ export default {
 				return {}
 			},
 		},
+
 		onClick: {
 			type: Function,
 			default() {},
 		},
+
 		selection: {
 			type: Object,
 			default: () => ({}),

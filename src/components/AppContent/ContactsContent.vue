@@ -5,7 +5,7 @@
 
 <template>
 	<AppContent v-if="loading">
-		<EmptyContent class="empty-content" :name="t('contacts', 'Loading contacts …')">
+		<EmptyContent class="empty-content" :name="t('contacts', 'Loading contacts …')">
 			<template #icon>
 				<IconLoading :size="20" />
 			</template>
@@ -18,9 +18,9 @@
 				<IconContact :size="20" />
 			</template>
 			<template #desc>
-				<Button variant="primary" @click="newContact">
+				<NcButton variant="primary" @click="newContact">
 					{{ t('contacts', 'Create contact') }}
-				</Button>
+				</NcButton>
 			</template>
 		</EmptyContent>
 	</AppContent>
@@ -31,20 +31,21 @@
 				<IconContact :size="20" />
 			</template>
 			<template #desc>
-				<Button v-if="contacts.length === 0" variant="primary" @click="addContactsToGroup(selectedGroup)">
+				<NcButton v-if="contacts.length === 0" variant="primary" @click="addContactsToGroup(selectedGroup)">
 					{{ t('contacts', 'Create contacts') }}
-				</Button>
-				<Button v-else variant="primary" @click="addContactsToGroup(selectedGroup)">
+				</NcButton>
+				<NcButton v-else variant="primary" @click="addContactsToGroup(selectedGroup)">
 					{{ t('contacts', 'Add contacts') }}
-				</Button>
+				</NcButton>
 			</template>
 		</EmptyContent>
 	</AppContent>
 
-	<AppContent v-else :show-details="showDetails" @update:showDetails="hideDetails">
+	<AppContent v-else :show-details="showDetails" @update:show-details="hideDetails">
 		<!-- contacts list -->
 		<template #list>
-			<ContactsList :list="contactsList"
+			<ContactsList
+				:list="contactsList"
 				:contacts="contacts"
 				:search-query="searchQuery"
 				:reload-bus="reloadBus" />
@@ -54,27 +55,27 @@
 		<ContactDetails :contact-key="selectedContact" :contacts="sortedContacts" :reload-bus="reloadBus" />
 	</AppContent>
 </template>
+
 <script>
 import { emit } from '@nextcloud/event-bus'
 import {
 	NcAppContent as AppContent,
-	NcButton as Button,
 	NcEmptyContent as EmptyContent,
 	NcLoadingIcon as IconLoading,
+	NcButton,
 } from '@nextcloud/vue'
-
+import mitt from 'mitt'
+import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import ContactDetails from '../ContactDetails.vue'
 import ContactsList from '../ContactsList.vue'
-import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
-import mitt from 'mitt'
 
 export default {
 	name: 'ContactsContent',
 
 	components: {
 		AppContent,
-		Button,
+		NcButton,
 		ContactDetails,
 		ContactsList,
 		EmptyContent,
@@ -109,9 +110,11 @@ export default {
 		contacts() {
 			return this.$store.getters.getContacts
 		},
+
 		groups() {
 			return this.$store.getters.getGroups
 		},
+
 		sortedContacts() {
 			return this.$store.getters.getSortedContacts
 		},
@@ -123,8 +126,9 @@ export default {
 		 * @return {boolean}
 		 */
 		isRealGroup() {
-			return this.groups.findIndex(group => group.name === this.selectedGroup) > -1
+			return this.groups.findIndex((group) => group.name === this.selectedGroup) > -1
 		},
+
 		/**
 		 * Is the current group empty
 		 *
@@ -171,6 +175,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .empty-content {
 	height: 100%;

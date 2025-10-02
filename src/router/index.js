@@ -3,11 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { createRouter, createWebHistory } from 'vue-router'
 import { generateUrl } from '@nextcloud/router'
-
-import { ROUTE_CIRCLE, ROUTE_CHART, ROUTE_USER_GROUP } from '../models/constants.ts'
+import { createRouter, createWebHistory } from 'vue-router'
 import Contacts from '../views/Contacts.vue'
+import { ROUTE_CHART, ROUTE_CIRCLE, ROUTE_USER_GROUP } from '../models/constants.ts'
 
 // if index.php is in the url AND we got this far, then it's working:
 // let's keep using index.php in the url

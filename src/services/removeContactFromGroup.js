@@ -10,12 +10,12 @@ import axios from '@nextcloud/axios'
  * @param {Contact} contact the contact model
  * @param {string} groupName the group name
  */
-const removeContactFromGroup = async function(contact, groupName) {
+async function removeContactFromGroup(contact, groupName) {
 	const foundGroups = contact.groups
 
-	let currentGroups = foundGroups.map(groupName => encodeURIComponent(groupName))
+	let currentGroups = foundGroups.map((groupName) => encodeURIComponent(groupName))
 
-	currentGroups = currentGroups.filter(e => e !== encodeURIComponent(groupName))
+	currentGroups = currentGroups.filter((e) => e !== encodeURIComponent(groupName))
 
 	return axios.patch(contact.url, {}, {
 		headers: {

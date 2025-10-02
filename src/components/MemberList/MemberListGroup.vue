@@ -4,7 +4,8 @@
 -->
 
 <script setup lang="ts">
-import type Member from '../../models/member'
+import type Member from '../../models/member.ts'
+
 import MemberListItem from './MemberListItem.vue'
 
 defineProps<{
@@ -16,12 +17,14 @@ defineProps<{
 
 <template>
 	<div class="member-list-group">
-		<h4 :id="`member-list-group-${type}`"
+		<h4
+			:id="`member-list-group-${type}`"
 			class="member-list-group__heading">
 			{{ label }}
 		</h4>
 		<ul :aria-labelledby="`member-list-group-${type}`" class="member-list-group__list">
-			<MemberListItem v-for="member in members"
+			<MemberListItem
+				v-for="member in members"
 				:key="member.singleId"
 				:source="member" />
 		</ul>

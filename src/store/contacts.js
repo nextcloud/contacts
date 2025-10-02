@@ -5,7 +5,6 @@
 
 import { showError } from '@nextcloud/dialogs'
 import ICAL from 'ical.js'
-
 import Contact from '../models/contact.js'
 import validate from '../services/validate.js'
 
@@ -26,7 +25,7 @@ import validate from '../services/validate.js'
 ICAL.design.vcard3.param.type.multiValueSeparateDQuote = true
 ICAL.design.vcard.param.type.multiValueSeparateDQuote = true
 
-const sortData = (a, b) => {
+function sortData(a, b) {
 	const nameA = typeof a.value === 'string'
 		? a.value.toUpperCase() // ignore upper and lowercase
 		: a.value.toUnixTime() // only other sorting we support is a vCardTime
@@ -79,11 +78,9 @@ const mutations = {
 	 */
 	deleteContact(state, contact) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
-
-			const index = state.sortedContacts.findIndex(search => search.key === contact.key)
+			const index = state.sortedContacts.findIndex((search) => search.key === contact.key)
 			state.sortedContacts.splice(index, 1)
 			delete state.contacts[contact.key]
-
 		} else {
 			console.error('Error while deleting the following contact', contact)
 		}
@@ -97,7 +94,6 @@ const mutations = {
 	 */
 	addContact(state, contact) {
 		if (contact instanceof Contact) {
-
 			// Checking contact validity 🔍🙈
 			validate(contact)
 
@@ -125,7 +121,6 @@ const mutations = {
 
 			// default contacts list
 			state.contacts[contact.key] = contact
-
 		} else {
 			console.error('Error while adding the following contact', contact)
 		}
@@ -139,10 +134,9 @@ const mutations = {
 	 */
 	updateContact(state, contact) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
-
 			// replace contact object data
 			state.contacts[contact.key].updateContact(contact.jCal)
-			const sortedContact = state.sortedContacts.find(search => search.key === contact.key)
+			const sortedContact = state.sortedContacts.find((search) => search.key === contact.key)
 
 			// has the sort key changed for this contact ?
 			const hasChanged = sortedContact.value !== contact[state.orderKey]
@@ -152,7 +146,6 @@ const mutations = {
 				// and then we sort again
 				state.sortedContacts.sort(sortData)
 			}
-
 		} else {
 			console.error('Error while replacing the following contact', contact)
 		}
@@ -186,7 +179,7 @@ const mutations = {
 			state.contacts[newContact.ke] = newContact
 
 			// Update sorted contacts list, replace at exact same position
-			const index = state.sortedContacts.findIndex(search => search.key === oldKey)
+			const index = state.sortedContacts.findIndex((search) => search.key === oldKey)
 			state.sortedContacts[index].key = newContact.key
 			state.sortedContacts[index].value = newContact[state.orderKey]
 		} else {
@@ -208,7 +201,6 @@ const mutations = {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
 			// replace contact object data
 			state.contacts[contact.key].dav.etag = etag
-
 		} else {
 			console.error('Error while replacing the etag of following contact', contact)
 		}
@@ -222,11 +214,10 @@ const mutations = {
 	 * @param {object} state the store data
 	 */
 	sortContacts(state) {
-
 		state.sortedContacts = Object.values(state.contacts)
 			// exclude groups
-			.filter(contact => contact.kind !== 'group')
-			.map(contact => { return { key: contact.key, value: contact[state.orderKey] } })
+			.filter((contact) => contact.kind !== 'group')
+			.map((contact) => { return { key: contact.key, value: contact[state.orderKey] } })
 			.sort(sortData)
 	},
 
@@ -275,10 +266,10 @@ const mutations = {
 }
 
 const getters = {
-	getContacts: state => state.contacts,
-	getSortedContacts: state => state.sortedContacts,
+	getContacts: (state) => state.contacts,
+	getSortedContacts: (state) => state.sortedContacts,
 	getContact: (state) => (key) => state.contacts[key],
-	getOrderKey: state => state.orderKey,
+	getOrderKey: (state) => state.orderKey,
 }
 
 const actions = {
@@ -325,7 +316,6 @@ const actions = {
 	 * @return {Promise}
 	 */
 	async updateContact(context, contact) {
-
 		// Checking contact validity 🙈
 		validate(contact)
 
@@ -387,7 +377,7 @@ const actions = {
 			await context.commit('updateContactEtag', { contact, etag })
 		}
 		return contact.dav.fetchCompleteData(forceReFetch)
-			.then((response) => {
+			.then(() => {
 				const newContact = new Contact(contact.dav.data, contact.addressbook)
 				context.commit('updateContact', newContact)
 			})

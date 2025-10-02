@@ -9,7 +9,8 @@
 			<h3>{{ t('contacts', 'Confirm merging contacts') }}</h3>
 			<div class="merging-title__addressbooks">
 				<IconCloseCircleOutline v-if="chosenAddressBook === null" :size="20" class="needs-action" />
-				<NcSelect v-bind="addressBookSelect"
+				<NcSelect
+					v-bind="addressBookSelect"
 					v-model="chosenAddressBook"
 					:disabled="contactsList[0].addressbook.id === contactsList[1].addressbook.id"
 					:title="t('contacts', 'Select address book')"
@@ -17,45 +18,55 @@
 			</div>
 		</div>
 
-		<NcNoteCard v-if="conflictsToResolve"
+		<NcNoteCard
+			v-if="conflictsToResolve"
 			type="warning"
 			:text="t('contacts', 'The selected contacts have conflicting information. Choose which information to keep')" />
 
-		<NcNoteCard v-else
+		<NcNoteCard
+			v-else
 			type="success"
 			:text="t('contacts', 'Contacts can be merged')" />
 
 		<div class="merging__conflicts">
-			<div v-for="(property, index) in sortedProperties"
+			<div
+				v-for="(property, index) in sortedProperties"
 				:key="property"
-				:class="['merging__conflicts__row', {
+				class="merging__conflicts__row"
+				:class="[{
 					conflict: (conflictInformation[property]?.type === 'conflict' || conflictInformation[property]?.type === 'conflictWithMultipleValues'),
-					last: index === sortedProperties.length - 1
+					last: index === sortedProperties.length - 1,
 				}]">
 				<!-- Indicators for whether there is a conflict -->
-				<IconCheckCircleOutline v-if="(conflictInformation[property]?.type !== 'conflict' || resolvedConflicts.get(property) !== undefined)
+				<IconCheckCircleOutline
+					v-if="(conflictInformation[property]?.type !== 'conflict' || resolvedConflicts.get(property) !== undefined)
 						&& (conflictInformation[property]?.type !== 'conflictWithMultipleValues' || resolvedConflicts.get(property)?.size)"
 					:size="20" />
 				<IconCloseCircleOutline v-if="conflictInformation[property]?.type === 'conflict' && resolvedConflicts.get(property) === undefined" :size="20" class="needs-action" />
 				<IconCloseCircleOutline v-if="conflictInformation[property]?.type === 'conflictWithMultipleValues' && !resolvedConflicts.get(property)?.size" :size="20" class="needs-action" />
 
 				<!-- Checkboxes for resolving single conflicts or conflicts with multiple possible values, for contact 0 -->
-				<NcCheckboxRadioSwitch v-if="conflictInformation[property]?.type === 'conflict'"
+				<NcCheckboxRadioSwitch
+					v-if="conflictInformation[property]?.type === 'conflict'"
 					:model-value="resolvedConflicts.get(property) === 0"
 					type="radio"
 					@update:model-value="resolveConflict(0, property)" />
-				<NcCheckboxRadioSwitch v-if="conflictInformation[property]?.type === 'conflictWithMultipleValues'"
+				<NcCheckboxRadioSwitch
+					v-if="conflictInformation[property]?.type === 'conflictWithMultipleValues'"
 					:model-value="resolvedConflicts.get(property)?.has(0)"
 					@update:model-value="resolveMultiConflict(0, property)" />
 
 				<!-- Information of contact 0, either shown through DetailsProperty if possible or in a custom way -->
-				<div v-if="conflictInformation[property]?.type !== 'onlyInSecond'"
-					:class="['merging__conflicts__property', {
-						'no-conflict': conflictInformation[property]?.type !== 'conflict' &&
-							conflictInformation[property]?.type !== 'conflictWithMultipleValues'
+				<div
+					v-if="conflictInformation[property]?.type !== 'onlyInSecond'"
+					class="merging__conflicts__property"
+					:class="[{
+						'no-conflict': conflictInformation[property]?.type !== 'conflict'
+							&& conflictInformation[property]?.type !== 'conflictWithMultipleValues',
 					}]">
 					<div v-if="!simpleProperties.includes(property)">
-						<ContactDetailsProperty v-for="(singleProperty, propertyIndex) in dividedProperties[0][property]"
+						<ContactDetailsProperty
+							v-for="(singleProperty, propertyIndex) in dividedProperties[0][property]"
 							:key="singleProperty.jCal"
 							:is-first-property="propertyIndex === 0"
 							:is-last-property="false"
@@ -77,22 +88,27 @@
 				<div v-if="conflictInformation[property]?.type === 'onlyInSecond'" class="merging-conflicts__filler" />
 
 				<!-- Checkboxes for resolving single conflicts or conflicts with multiple possible values, for contact 1 -->
-				<NcCheckboxRadioSwitch v-if="conflictInformation[property]?.type === 'conflict'"
+				<NcCheckboxRadioSwitch
+					v-if="conflictInformation[property]?.type === 'conflict'"
 					:model-value="resolvedConflicts.get(property) === 1"
 					type="radio"
 					@update:model-value="resolveConflict(1, property)" />
-				<NcCheckboxRadioSwitch v-if="conflictInformation[property]?.type === 'conflictWithMultipleValues'"
+				<NcCheckboxRadioSwitch
+					v-if="conflictInformation[property]?.type === 'conflictWithMultipleValues'"
 					:model-value="resolvedConflicts.get(property)?.has(1)"
 					@update:model-value="resolveMultiConflict(1, property)" />
 
 				<!-- Information of contact 1, either shown through DetailsProperty if possible or in a custom way -->
-				<div v-if="conflictInformation[property]?.type !== 'onlyInFirst'"
-					:class="['merging__conflicts__property', {
-						'no-conflict': conflictInformation[property]?.type !== 'conflict' &&
-							conflictInformation[property]?.type !== 'conflictWithMultipleValues'
+				<div
+					v-if="conflictInformation[property]?.type !== 'onlyInFirst'"
+					class="merging__conflicts__property"
+					:class="[{
+						'no-conflict': conflictInformation[property]?.type !== 'conflict'
+							&& conflictInformation[property]?.type !== 'conflictWithMultipleValues',
 					}]">
 					<div v-if="!simpleProperties.includes(property)">
-						<ContactDetailsProperty v-for="(singleProperty, propertyIndex) in dividedProperties[1][property]"
+						<ContactDetailsProperty
+							v-for="(singleProperty, propertyIndex) in dividedProperties[1][property]"
 							:key="singleProperty.jCal"
 							:is-first-property="propertyIndex === 0"
 							:is-last-property="false"
@@ -115,8 +131,11 @@
 		</div>
 
 		<div v-if="contactsList[0].groups.length || contactsList[1].groups.length" class="merging__groups">
-			<h4 class="merging__groups__header">{{ t('contacts', 'Groups') }}</h4>
-			<NcSelect v-model="selectedGroups"
+			<h4 class="merging__groups__header">
+				{{ t('contacts', 'Groups') }}
+			</h4>
+			<NcSelect
+				v-model="selectedGroups"
 				:options="contactsList[0].groups.concat(contactsList[1].groups)"
 				:multiple="true"
 				:placeholder="t('contacts', 'Select groups to add the merged contact to')"
@@ -137,18 +156,16 @@
 </template>
 
 <script>
-import { NcButton, NcNoteCard, NcCheckboxRadioSwitch, NcSelect, NcLoadingIcon } from '@nextcloud/vue'
-
-import IconCheckCircleOutline from 'vue-material-design-icons/CheckCircleOutline.vue'
-import IconCloseCircleOutline from 'vue-material-design-icons/CloseCircleOutline.vue'
-import IconSetMerge from 'vue-material-design-icons/SetMerge.vue'
-import IconDomain from 'vue-material-design-icons/Domain.vue'
+import { NcButton, NcCheckboxRadioSwitch, NcLoadingIcon, NcNoteCard, NcSelect } from '@nextcloud/vue'
+import mitt from 'mitt'
 import IconAccount from 'vue-material-design-icons/AccountOutline.vue'
 import IconBadgeAccount from 'vue-material-design-icons/BadgeAccountOutline.vue'
-
+import IconCheckCircleOutline from 'vue-material-design-icons/CheckCircleOutline.vue'
+import IconCloseCircleOutline from 'vue-material-design-icons/CloseCircleOutline.vue'
+import IconDomain from 'vue-material-design-icons/Domain.vue'
+import IconSetMerge from 'vue-material-design-icons/SetMerge.vue'
 import ContactDetailsProperty from '../ContactDetails/ContactDetailsProperty.vue'
 import rfcProps from '../../models/rfcProps.js'
-import mitt from 'mitt'
 
 export default {
 	name: 'Merging',
@@ -187,15 +204,18 @@ export default {
 					description: this.t('contacts', 'Name'),
 					icon: IconAccount,
 				},
+
 				org: {
 					description: this.t('contacts', 'Company'),
 					icon: IconDomain,
 				},
+
 				title: {
 					description: this.t('contacts', 'Title'),
 					icon: IconBadgeAccount,
 				},
 			},
+
 			chosenAddressBook: null,
 			selectedGroups: [],
 			isLoading: false,
@@ -204,12 +224,14 @@ export default {
 
 	computed: {
 		contactsList() {
-			return Array.from(this.contacts.values()).map(contact => (contact))
+			return Array.from(this.contacts.values()).map((contact) => (contact))
 		},
 
 		dividedProperties() {
 			const [contactA, contactB] = this.contactsList
-			if (!contactA || !contactB) return {}
+			if (!contactA || !contactB) {
+				return {}
+			}
 
 			const sortedA = this.sortProperties(contactA)
 			const sortedB = this.sortProperties(contactB)
@@ -221,13 +243,13 @@ export default {
 		},
 
 		usedProperties() {
-			const allKeys = this.dividedProperties.flatMap(map => Object.keys(map))
-			return [...new Set(allKeys)].filter(key => {
-				const valA = this.dividedProperties[0][key] ? this.dividedProperties[0][key].map(value => this.getPropertyValue(value)) : []
-				const valB = this.dividedProperties[1][key] ? this.dividedProperties[1][key].map(value => this.getPropertyValue(value)) : []
+			const allKeys = this.dividedProperties.flatMap((map) => Object.keys(map))
+			return [...new Set(allKeys)].filter((key) => {
+				const valA = this.dividedProperties[0][key] ? this.dividedProperties[0][key].map((value) => this.getPropertyValue(value)) : []
+				const valB = this.dividedProperties[1][key] ? this.dividedProperties[1][key].map((value) => this.getPropertyValue(value)) : []
 				return (
-					(!valA.every(val => val === null || val === undefined || val === ''))
-					|| (!valB.every(val => val === null || val === undefined || val === ''))
+					(!valA.every((val) => val === null || val === undefined || val === ''))
+					|| (!valB.every((val) => val === null || val === undefined || val === ''))
 				)
 			})
 		},
@@ -235,20 +257,20 @@ export default {
 		conflictInformation() {
 			const conflictInformation = {}
 
-			this.usedProperties.forEach(property => {
-				if ((this.dividedProperties[0][property] ?? []).every(val => this.checkIfPropertyEmpty(val))) {
+			this.usedProperties.forEach((property) => {
+				if ((this.dividedProperties[0][property] ?? []).every((val) => this.checkIfPropertyEmpty(val))) {
 					conflictInformation[property] = {
 						type: 'onlyInSecond',
-						value: this.dividedProperties[1][property].map(val => this.getPropertyValue(val)),
+						value: this.dividedProperties[1][property].map((val) => this.getPropertyValue(val)),
 					}
 
 					return
 				}
 
-				if ((this.dividedProperties[1][property] ?? []).every(val => this.checkIfPropertyEmpty(val))) {
+				if ((this.dividedProperties[1][property] ?? []).every((val) => this.checkIfPropertyEmpty(val))) {
 					conflictInformation[property] = {
 						type: 'onlyInFirst',
-						value: this.dividedProperties[0][property].map(val => this.getPropertyValue(val)),
+						value: this.dividedProperties[0][property].map((val) => this.getPropertyValue(val)),
 					}
 
 					return
@@ -258,13 +280,13 @@ export default {
 
 				if (
 					equalEvery(
-						(this.dividedProperties[0][property] ?? []).map(val => this.getPropertyValue(val)),
-						(this.dividedProperties[1][property] ?? []).map(val => this.getPropertyValue(val))
+						(this.dividedProperties[0][property] ?? []).map((val) => this.getPropertyValue(val)),
+						(this.dividedProperties[1][property] ?? []).map((val) => this.getPropertyValue(val)),
 					)
 				) {
 					conflictInformation[property] = {
 						type: 'equal',
-						value: this.dividedProperties[0][property].map(val => this.getPropertyValue(val)),
+						value: this.dividedProperties[0][property].map((val) => this.getPropertyValue(val)),
 					}
 
 					return
@@ -332,6 +354,7 @@ export default {
 			this.$forceUpdate()
 			this.calculateConflictsToResolve()
 		},
+
 		resolveMultiConflict(version, property) {
 			if (this.resolvedConflicts.has(property)) {
 				const currentVersions = this.resolvedConflicts.get(property)
@@ -349,6 +372,7 @@ export default {
 			this.$forceUpdate()
 			this.calculateConflictsToResolve()
 		},
+
 		/**
 		 * Should display the property
 		 *
@@ -369,7 +393,6 @@ export default {
 		/**
 		 * Contact properties copied and sorted by rfcProps.fieldOrder
 		 *
-		 * @param contact
 		 * @return {Array}
 		 */
 		sortProperties(contact) {
@@ -385,7 +408,6 @@ export default {
 		/**
 		 * Contact properties filtered and grouped by rfcProps.fieldOrder
 		 *
-		 * @param sortedProperties
 		 * @return {object}
 		 */
 		groupedProperties(sortedProperties) {
@@ -418,7 +440,7 @@ export default {
 		calculateConflictsToResolve() {
 			let conflictsCount = 0
 
-			this.usedProperties.forEach(property => {
+			this.usedProperties.forEach((property) => {
 				if (this.conflictInformation[property]?.type === 'conflict' && this.resolvedConflicts.get(property) === undefined) {
 					conflictsCount++
 				}
@@ -457,7 +479,7 @@ export default {
 			}
 
 			if (Array.isArray(value)) {
-				return value.every(v => v === '' || v === undefined)
+				return value.every((v) => v === '' || v === undefined)
 			}
 
 			return false
@@ -485,16 +507,16 @@ export default {
 
 			const finalProperties = {}
 
-			this.usedProperties.forEach(property => {
+			this.usedProperties.forEach((property) => {
 				if (this.conflictInformation[property]?.type === 'conflict') {
 					const resolvedVersion = this.resolvedConflicts.get(property)
 					if (resolvedVersion !== undefined) {
-						 finalProperties[property] = [this.dividedProperties[resolvedVersion][property]]
+						finalProperties[property] = [this.dividedProperties[resolvedVersion][property]]
 					}
 				} else if (this.conflictInformation[property]?.type === 'conflictWithMultipleValues') {
 					const resolvedVersions = this.resolvedConflicts.get(property)
 					if (resolvedVersions?.size) {
-						finalProperties[property] = Array.from(resolvedVersions).map(version => this.dividedProperties[version][property])
+						finalProperties[property] = Array.from(resolvedVersions).map((version) => this.dividedProperties[version][property])
 					}
 				} else if (this.conflictInformation[property]?.type === 'onlyInSecond') {
 					finalProperties[property] = [this.dividedProperties[1][property]]
@@ -503,7 +525,7 @@ export default {
 				}
 			})
 
-			this.usedProperties.forEach(name => {
+			this.usedProperties.forEach((name) => {
 				if (finalProperties[name] !== undefined && finalProperties[name].length > 0) {
 					finalProperties[name].flat().forEach((property, index) => {
 						if (index === 0) {

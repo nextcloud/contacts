@@ -3,11 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { getUserGroups, getUserGroupMembers } from '../services/userGroup.ts'
-import logger from '../services/logger.js'
-import UserGroup from '../models/userGroup.ts'
-
 import { defineStore } from 'pinia'
+import UserGroup from '../models/userGroup.ts'
+import logger from '../services/logger.js'
+import { getUserGroupMembers, getUserGroups } from '../services/userGroup.ts'
 
 export default defineStore('userGroup', {
 	state: () => ({
@@ -20,10 +19,10 @@ export default defineStore('userGroup', {
 	},
 
 	actions: {
-		async getUserGroups(userId: string): object[] {
+		async getUserGroups(userId: string): Promise<object[]> {
 			const userGroups = await getUserGroups(userId)
 
-			userGroups.forEach(group => {
+			userGroups.forEach((group) => {
 				try {
 					const newUserGroup = new UserGroup(group)
 					this.userGroups[newUserGroup.id] = newUserGroup
@@ -34,10 +33,10 @@ export default defineStore('userGroup', {
 
 			return userGroups
 		},
-		async getUserGroupMembers(groupId: string): string[] {
+		async getUserGroupMembers(groupId: string): Promise<string[]> {
 			const members = await getUserGroupMembers(groupId)
 
-			members.forEach(member => {
+			members.forEach((member) => {
 				this.getUserGroup(groupId).addMember(member)
 			})
 

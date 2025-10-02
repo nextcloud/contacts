@@ -5,29 +5,30 @@
 
 <template>
 	<div>
-		<ProcessingScreen :progress="progress"
+		<ProcessingScreen
+			:progress="progress"
 			:total="total"
 			:desc="failed > 0 ? messageFailed : ''"
 			:title="total === progress
 				? finishedHeader
 				: progressHeader" />
 		<div class="close__button">
-			<Button v-if="total === progress" class="primary" @click="onClose">
+			<NcButton v-if="total === progress" class="primary" @click="onClose">
 				{{ t('contacts', 'Close') }}
-			</Button>
+			</NcButton>
 		</div>
 	</div>
 </template>
 
 <script>
+import { NcButton } from '@nextcloud/vue'
 import ProcessingScreen from '../../components/ProcessingScreen.vue'
-import { NcButton as Button } from '@nextcloud/vue'
 export default {
 	name: 'AddToGroupView',
 
 	components: {
 		ProcessingScreen,
-		Button,
+		NcButton,
 	},
 
 	props: {
@@ -35,18 +36,22 @@ export default {
 			type: Number,
 			default: 0,
 		},
+
 		progress: {
 			type: Number,
 			default: 0,
 		},
+
 		success: {
 			type: Number,
 			default: 0,
 		},
+
 		total: {
 			type: Number,
 			default: 0,
 		},
+
 		name: {
 			type: String,
 			default: '',
@@ -55,7 +60,8 @@ export default {
 
 	computed: {
 		progressHeader() {
-			return n('contacts',
+			return n(
+				'contacts',
 				'{success} contact added to {name}',
 				'{success} contacts added to {name}',
 				this.success,
@@ -64,7 +70,8 @@ export default {
 		},
 
 		finishedHeader() {
-			return n('contacts',
+			return n(
+				'contacts',
 				'Adding {success} contact to {name}',
 				'Adding {success} contacts to {name}',
 				this.success,
@@ -73,7 +80,8 @@ export default {
 		},
 
 		messageFailed() {
-			return n('contacts',
+			return n(
+				'contacts',
 				'{count} error',
 				'{count} errors',
 				this.failed,
@@ -89,6 +97,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .close__button {
 	padding: 12px;

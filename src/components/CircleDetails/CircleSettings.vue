@@ -12,7 +12,8 @@
 				</ContentHeading>
 
 				<ul class="circle-config__list">
-					<NcCheckboxRadioSwitch v-for="(label, config) in configs"
+					<NcCheckboxRadioSwitch
+						v-for="(label, config) in configs"
 						:key="'circle-config' + config"
 						:checked="isChecked(config)"
 						:loading="loading === config"
@@ -28,8 +29,9 @@
 		<CirclePasswordSettings :circle="circle" />
 
 		<!-- leave circle -->
-		<NcButton v-if="circle.canLeave"
-			type="warning"
+		<NcButton
+			v-if="circle.canLeave"
+			variant="warning"
 			@click="$emit('leave')">
 			<template #icon>
 				<IconLogout :size="16" />
@@ -38,8 +40,9 @@
 		</NcButton>
 
 		<!-- delete circle -->
-		<NcButton v-if="circle.canDelete"
-			type="error"
+		<NcButton
+			v-if="circle.canDelete"
+			variant="error"
 			href="#"
 			@click.prevent.stop="$emit('delete')">
 			<template #icon>
@@ -51,16 +54,15 @@
 </template>
 
 <script lang="ts">
+import { showError } from '@nextcloud/dialogs'
+import { t } from '@nextcloud/l10n'
 import { defineComponent } from 'vue'
 import NcButton from '@nextcloud/vue/components/NcButton'
 import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
+import IconLogout from 'vue-material-design-icons/Logout.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import CirclePasswordSettings from './CirclePasswordSettings.vue'
 import ContentHeading from './ContentHeading.vue'
-import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
-import IconLogout from 'vue-material-design-icons/Logout.vue'
-import { t } from '@nextcloud/l10n'
-import { showError } from '@nextcloud/dialogs'
-
 import { PUBLIC_CIRCLE_CONFIG } from '../../models/constants.ts'
 import { CircleEdit, editCircle } from '../../services/circles.ts'
 
@@ -74,22 +76,26 @@ export default defineComponent({
 		NcButton,
 		NcCheckboxRadioSwitch,
 	},
+
 	props: {
 		circle: {
 			type: Object,
 			required: true,
 		},
 	},
+
 	emits: ['leave', 'delete'],
 	setup() {
 		return { t }
 	},
+
 	data() {
 		return {
 			PUBLIC_CIRCLE_CONFIG,
 			loading: false,
 		}
 	},
+
 	methods: {
 		isChecked(config) {
 			return (this.circle.config & config) !== 0
@@ -107,10 +113,8 @@ export default defineComponent({
 			this.loading = config
 			const prevConfig = this.circle.config
 			if (checked) {
-				// eslint-disable-next-line vue/no-mutating-props
 				config = prevConfig | config
 			} else {
-				// eslint-disable-next-line vue/no-mutating-props
 				config = prevConfig & ~config
 			}
 
@@ -118,7 +122,6 @@ export default defineComponent({
 				const circleData = await editCircle(this.circle.id, CircleEdit.Config, config)
 				// eslint-disable-next-line vue/no-mutating-props
 				this.circle.config = circleData.config
-
 			} catch (error) {
 				this.logger.error('Unable to edit circle config', { prevConfig, config, error })
 				showError(t('contacts', 'An error happened during the config change'))

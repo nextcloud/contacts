@@ -5,18 +5,20 @@
 
 <template>
 	<AppContentList class="content-list">
-		<NcDialog :open="showDeleteConfirmationDialog"
+		<NcDialog
+			:open="showDeleteConfirmationDialog"
 			:name="n(
 				'contacts',
 				'Delete {number} contact',
 				'Delete {number} contacts',
 				multiSelectedContacts.size,
-				{ number: multiSelectedContacts.size }
+				{ number: multiSelectedContacts.size },
 			)"
 			:buttons="buttons"
 			no-close>
 			{{ t('contacts', 'Are you sure you want to proceed?') }}
-			<NcNoteCard v-if="readOnlyMultiSelectedCount"
+			<NcNoteCard
+				v-if="readOnlyMultiSelectedCount"
 				variant="info"
 				:text="n('contacts',
 					'Please note that {number} contact is read only and will not be deleted',
@@ -25,7 +27,8 @@
 					{ number: readOnlyMultiSelectedCount })" />
 		</NcDialog>
 
-		<NcModal v-if="isMerging"
+		<NcModal
+			v-if="isMerging"
 			:name="t('contacts', 'Merge contacts')"
 			size="large"
 			@close="isMerging = false">
@@ -34,26 +37,29 @@
 
 		<div class="contacts-list__header">
 			<div class="search-contacts-field">
-				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
+				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
 			</div>
 		</div>
 		<transition name="contacts-list__multiselect-header">
 			<div v-if="isMultiSelecting" class="contacts-list__multiselect-header">
-				<NcButton variant="tertiary"
+				<NcButton
+					variant="tertiary"
 					:title="t('contacts', 'Unselect {number}', { number: multiSelectedContacts.size })"
 					:close-after-click="true"
 					@click.prevent="unselectAllMultiSelected">
 					<IconSelect :size="16" />
 				</NcButton>
-				<NcButton variant="tertiary"
+				<NcButton
+					variant="tertiary"
 					:disabled="!isAtLeastOneEditable"
 					:title="deleteActionTitle"
 					:close-after-click="true"
 					@click.prevent="attemptDeleteAllMultiSelected">
 					<IconDelete :size="16" />
 				</NcButton>
-				<NcButton v-if="!isMergingLoading"
-					type="tertiary"
+				<NcButton
+					v-if="!isMergingLoading"
+					variant="tertiary"
 					:disabled="!areTwoEditable"
 					:title="mergeActionTitle"
 					:close-after-click="true"
@@ -64,11 +70,13 @@
 			</div>
 		</transition>
 
-		<VList v-slot="{ item, index }"
+		<VList
+			v-slot="{ item, index }"
 			ref="scroller"
 			class="contacts-list"
 			:data="filteredList">
-			<ContactsListItem :key="item.key"
+			<ContactsListItem
+				:key="item.key"
 				:index="index"
 				:source="item"
 				:reload-bus="reloadBus"
@@ -78,18 +86,16 @@
 </template>
 
 <script>
-import { NcAppContentList as AppContentList, NcButton, NcDialog, NcNoteCard, NcModal, NcLoadingIcon } from '@nextcloud/vue'
-import ContactsListItem from './ContactsList/ContactsListItem.vue'
+
+import IconCancelRaw from '@mdi/svg/svg/cancel.svg?raw'
+import IconDeleteRaw from '@mdi/svg/svg/delete-outline.svg'
+import { NcAppContentList as AppContentList, NcButton, NcDialog, NcLoadingIcon, NcModal, NcNoteCard } from '@nextcloud/vue'
 import { VList } from 'virtua/vue'
 import IconSelect from 'vue-material-design-icons/CloseThick.vue'
-import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconSetMerge from 'vue-material-design-icons/SetMerge.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
+import ContactsListItem from './ContactsList/ContactsListItem.vue'
 import Merging from './ContactsList/Merging.vue'
-
-// eslint-disable-next-line import/no-unresolved
-import IconCancelRaw from '@mdi/svg/svg/cancel.svg?raw'
-// eslint-disable-next-line import/no-unresolved
-import IconDeleteRaw from '@mdi/svg/svg/delete-outline.svg'
 import RouterMixin from '../mixins/RouterMixin.js'
 
 export default {
@@ -119,14 +125,17 @@ export default {
 			type: Array,
 			required: true,
 		},
+
 		contacts: {
 			type: Object,
 			required: true,
 		},
+
 		searchQuery: {
 			type: String,
 			default: '',
 		},
+
 		reloadBus: {
 			type: Object,
 			required: true,
@@ -152,6 +161,7 @@ export default {
 					callback: () => { this.deleteAllMultiSelected() },
 				},
 			],
+
 			lastToggledIndex: undefined,
 			isMerging: false,
 			isMergingLoading: false,
@@ -161,10 +171,10 @@ export default {
 	computed: {
 		filteredList() {
 			let contactsList = this.list
-				.filter(item => this.matchSearch(this.contacts[item.key]))
-				.map(item => this.contacts[item.key])
+				.filter((item) => this.matchSearch(this.contacts[item.key]))
+				.map((item) => this.contacts[item.key])
 
-			contactsList = contactsList.filter(item => item !== undefined)
+			contactsList = contactsList.filter((item) => item !== undefined)
 
 			contactsList.forEach((contact, index) => {
 				if (contact !== undefined) {
@@ -174,9 +184,11 @@ export default {
 
 			return contactsList
 		},
+
 		isMultiSelecting() {
 			return this.multiSelectedContacts.size > 0
 		},
+
 		readOnlyMultiSelectedCount() {
 			let count = 0
 
@@ -188,17 +200,21 @@ export default {
 
 			return count
 		},
+
 		isAtLeastOneEditable() {
 			return this.readOnlyMultiSelectedCount !== this.multiSelectedContacts.size
 		},
+
 		areTwoEditable() {
 			return this.multiSelectedContacts.size - this.readOnlyMultiSelectedCount === 2
 		},
+
 		deleteActionTitle() {
 			return this.isAtLeastOneEditable
 				? n('contacts', 'Delete {number} contact', 'Delete {number} contacts', this.multiSelectedContacts.size, { number: this.multiSelectedContacts.size })
 				: t('contacts', 'Please select at least one editable contact to delete')
 		},
+
 		mergeActionTitle() {
 			return this.areTwoEditable
 				? t('contacts', 'Merge contacts')
@@ -215,6 +231,7 @@ export default {
 			await this.$nextTick()
 			this.scrollToContact(key)
 		},
+
 		list(val, old) {
 			// we just loaded the list and the url already have a selected contact
 			// if not, the selectedContact watcher will take over
@@ -249,7 +266,7 @@ export default {
 		 * @param {string} key the contact unique key
 		 */
 		scrollToContact(key) {
-			const index = this.list.findIndex(contact => contact.key === key)
+			const index = this.list.findIndex((contact) => contact.key === key)
 			if (index === -1) {
 				return
 			}
@@ -343,7 +360,7 @@ export default {
 					// Do not try to delete read only contacts
 					return
 				}
-				await new Promise(resolve => setTimeout(resolve, 500))
+				await new Promise((resolve) => setTimeout(resolve, 500))
 				await this.$store.dispatch('deleteContact', { contact })
 			})
 			this.unselectAllMultiSelected()
