@@ -41,6 +41,7 @@ use OCP\IUserSession;
 use OCP\L10N\IFactory;
 use OCP\Mail\IMailer;
 use OCP\Mail\IMessage;
+use OCP\OCM\IOCMDiscoveryService;
 use OCP\Util;
 use Psr\Log\LoggerInterface;
 use Sabre\DAV\UUIDUtil;
@@ -65,6 +66,7 @@ class FederatedInvitesController extends PageController {
 		private IFactory $languageFactory,
 		private IManager $contactsManager,
 		private IMailer $mailer,
+		private IOCMDiscoveryService $discovery,
 		private IUserSession $userSession,
 		private IWayfProvider $wayfProvider,
 		private SocialApiService $socialApiService,
@@ -238,55 +240,66 @@ class FederatedInvitesController extends PageController {
 			$localUser = $this->userSession->getUser();
 			$recipientProvider = $this->federatedInvitesService->getProviderFQDN();
 			$client = $this->httpClient->newClient();
-			$responseData = null;
-			$response = $client->post(
-				// TODO take provider as is, or do some verification ??
-				"https://$provider/ocm/invite-accepted",
-				[
-					'body'
-					=> [
-						'recipientProvider' => $recipientProvider,
-						'token' => $token,
-						'userId' => $localUser->getUID(),
-						'email' => $localUser->getEMailAddress(),
-						'name' => $localUser->getDisplayName(),
-					],
-					'connect_timeout' => 10,
-				]
-			);
-			$responseData = $response->getBody();
-			$data = json_decode($responseData, true);
+			/**
+			 * @var OCP\OCM\ICapabilityAwareOCMProvider $discovered
+			 *
+			 */
+			$discovered = $this->discovery->discover($provider);
+			$capabilities = $discovered->getCapabilities();
+			if (in_array('invites', $capabilities) || in_array('/invite-accepted', $capabilities)) {
 
-			// Creating a contact does not return a specific 'contact already exists' error,
-			// so we must check that explicitly
-			$cloudId = $data['userID'] . '@' . $this->addressHandler->removeProtocolFromUrl($provider);
-			$searchResult = $this->contactsManager->search($cloudId, ['CLOUD']);
-			if (count($searchResult) > 0) {
-				$this->logger->info('Contact with cloud id ' . $cloudId . ' already exists.', ['app' => Application::APP_ID]);
-				return new JSONResponse(['message' => "Contact with cloudID $cloudId already exists."], Http::STATUS_CONFLICT);
+				$api = $discovered->getEndPoint();
+				$response = $client->post(
+					$api . '/invite-accepted',
+					[
+						'body'
+						=> [
+							'recipientProvider' => $recipientProvider,
+							'token' => $token,
+							'userId' => $localUser->getUID(),
+							'email' => $localUser->getEMailAddress(),
+							'name' => $localUser->getDisplayName(),
+						],
+						'connect_timeout' => 10,
+					]
+				);
+				$responseData = $response->getBody();
+				$data = json_decode($responseData, true);
+
+				// Creating a contact does not return a specific 'contact already exists' error,
+				// so we must check that explicitly
+				$cloudId = $data['userID'] . '@' . $this->addressHandler->removeProtocolFromUrl($provider);
+				$searchResult = $this->contactsManager->search($cloudId, ['CLOUD']);
+				if (count($searchResult) > 0) {
+					$this->logger->info('Contact with cloud id ' . $cloudId . ' already exists.', ['app' => Application::APP_ID]);
+					return new JSONResponse(['message' => "Contact with cloudID $cloudId already exists."], Http::STATUS_CONFLICT);
+				}
+
+				$newContact = $this->socialApiService->createFederatedContact(
+					// the ocm address: nextcloud cloud id format
+					$cloudId,
+					$data['email'],
+					$data['name'],
+					$localUser->getUID(),
+				);
+				if (!isset($newContact)) {
+					$this->logger->error("Error accepting invite (token=$token, provider=$provider): Could not create new contact.", ['app' => Application::APP_ID]);
+					return new JSONResponse(['message' => 'An unexpected error occurred trying to accept invite: could not create new contact'], Http::STATUS_NOT_FOUND);
+				}
+				$this->logger->info('Created new contact with UID: ' . $newContact['UID'] . ' for user with UID: ' . $localUser->getUID(), ['app' => Application::APP_ID]);
+
+				$contact = $newContact['UID'] . '~' . CardDavBackend::PERSONAL_ADDRESSBOOK_URI;
+				$key = base64_encode($contact);
+				$url = $this->urlGenerator->getAbsoluteURL(
+					$this->urlGenerator->linkToRoute('contacts.page.index') . $this->il10->t('All contacts') . '/' . $key
+				);
+				return new JSONResponse(['contact' => $url], Http::STATUS_OK);
+			} else {
+				$this->logger->error('Provider: ' . $provider . ' does not support invites.', ['app' => Application::APP_ID]);
+				return new JSONResponse(['message' => 'Provider: ' . $provider . ' does not support invites.'], Http::STATUS_NOT_FOUND);
 			}
-
-			$newContact = $this->socialApiService->createFederatedContact(
-				// the ocm address: nextcloud cloud id format
-				$cloudId,
-				$data['email'],
-				$data['name'],
-				$localUser->getUID(),
-			);
-			if (!isset($newContact)) {
-				$this->logger->error("Error accepting invite (token=$token, provider=$provider): Could not create new contact.", ['app' => Application::APP_ID]);
-				return new JSONResponse(['message' => 'An unexpected error occurred trying to accept invite: could not create new contact'], Http::STATUS_NOT_FOUND);
-			}
-			$this->logger->info('Created new contact with UID: ' . $newContact['UID'] . ' for user with UID: ' . $localUser->getUID(), ['app' => Application::APP_ID]);
-
-			$contact = $newContact['UID'] . '~' . CardDavBackend::PERSONAL_ADDRESSBOOK_URI;
-			$key = base64_encode($contact);
-			$url = $this->urlGenerator->getAbsoluteURL(
-				$this->urlGenerator->linkToRoute('contacts.page.index') . $this->il10->t('All contacts') . '/' . $key
-			);
-			return new JSONResponse(['contact' => $url], Http::STATUS_OK);
 		} catch (\GuzzleHttp\Exception\RequestException $e) {
-			$this->logger->error('/invite-accepted returned an error: ' . print_r($responseData, true), ['app' => Application::APP_ID]);
+			$this->logger->error('/invite-accepted returned an error: ' . $e->getMessage() , ['app' => Application::APP_ID]);
 			/**
 			 * 400: Invalid or non existing token
 			 * 409: Invite already accepted
@@ -354,51 +367,36 @@ class FederatedInvitesController extends PageController {
 		if ($base === '') {
 			return new DataResponse(['error' => 'empty base'], 400);
 		}
-
-		// normalize base
 		if (!preg_match('#^https?://#i', $base)) {
 			$base = 'https://' . $base;
 		}
 		$base = rtrim($base, '/');
 
-		$client = $this->httpClient->newClient([
-			'timeout' => 5,
-			'connect_timeout' => 5,
-			'allow_redirects' => true,
-		]);
-
-		foreach ([$base . '/.well-known/ocm', $base . '/ocm-provider'] as $ep) {
-			try {
-				$resp = $client->get($ep, ['headers' => ['Accept' => 'application/json']]);
-				$code = $resp->getStatusCode();
-				if ($code >= 200 && $code < 300) {
-					$data = json_decode($resp->getBody(), true);
-					if (is_array($data) && !empty($data['inviteAcceptDialog'])) {
-						$dialog = $data['inviteAcceptDialog'];
-						$absolute = preg_match('#^https?://#i', $dialog) ? $dialog : $base . $dialog;
-						return new DataResponse([
-							'base' => $base,
-							'inviteAcceptDialog' => $dialog,
-							'inviteAcceptDialogAbsolute' => $absolute,
-							'raw' => $data,
-						]);
-					} elseif (empty($data['inviteAcceptDialog'])) {
-						// We can not check and see, because we have to be logged in here
-						// so we will just risk it.
-						$dialog = $base . $this->wayfProvider::INVITE_ACCEPT_DIALOG;
-						$absolute = preg_match('#^https?://#i', $dialog) ? $dialog : $base . $dialog;
-						return new DataResponse([
-							'base' => $base,
-							'inviteAcceptDialog' => $dialog,
-							'inviteAcceptDialogAbsolute' => $absolute,
-							'raw' => $data,
-						]);
-					}
-
-				}
-			} catch (\Throwable $e) {
-				// try next endpoint
-			}
+		/**
+		 * @var OCP\OCM\ICapabilityAwareOCMProvider $provider
+		 *
+		 */
+		$provider = $this->discovery->discover($base);
+		$dialog = $provider->getInviteAcceptDialog();
+		if (!empty($dialog)) {
+			$absolute = preg_match('#^https?://#i', $dialog) ? $dialog : $base . $dialog;
+			return new DataResponse([
+				'base' => $base,
+				'inviteAcceptDialog' => $dialog,
+				'inviteAcceptDialogAbsolute' => $absolute,
+				'raw' => $provider->jsonSerialize(),
+			]);
+		} elseif (empty($dialog)) {
+			// We can not check and see, because we have to be logged in here
+			// so we will just risk it.
+			$dialog = $base . $this->wayfProvider::INVITE_ACCEPT_DIALOG;
+			$absolute = preg_match('#^https?://#i', $dialog) ? $dialog : $base . $dialog;
+			return new DataResponse([
+				'base' => $base,
+				'inviteAcceptDialog' => $dialog,
+				'inviteAcceptDialogAbsolute' => $absolute,
+				'raw' => $provider->jsonSerialize(),
+			]);
 		}
 		return new DataResponse(['error' => 'OCM discovery failed', 'base' => $base], 404);
 	}
@@ -424,7 +422,6 @@ class FederatedInvitesController extends PageController {
 				'providerDomain' => $providerDomain,
 				'token' => $token,
 			]);
-
 		} catch (Exception $e) {
 			$this->logger->error($e->getMessage() . ' Trace: ' . $e->getTraceAsString(), ['app' => Application::APP_ID]);
 		}
@@ -475,5 +472,4 @@ class FederatedInvitesController extends PageController {
 
 		return new JSONResponse([], Http::STATUS_OK);
 	}
-
 }
