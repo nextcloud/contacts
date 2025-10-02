@@ -78,8 +78,7 @@ jobs:
           CYPRESS_INSTALL_BINARY: 0
           PUPPETEER_SKIP_DOWNLOAD: true
         run: |
-          mkdir npm-cache
-          npm ci --cache npm-cache
+          npm install --omit=optional
           npm rebuild
 
       - name: Lint
