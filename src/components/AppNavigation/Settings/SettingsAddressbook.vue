@@ -62,24 +62,24 @@
 						@update:model-value="toggleAddressbookEnabled">
 						{{ t('contacts', 'Show') }}
 					</ActionCheckbox>
-					<ActionNcButton v-else>
+					<ActionButton v-else>
 						<template #icon>
 							<IconLoading :size="20" />
 						</template>
 						{{ t('contacts', 'Show') }}
-					</ActionNcButton>
+					</ActionButton>
 				</template>
 
 				<template v-if="!addressbook.readOnly">
 					<!-- rename addressbook -->
-					<ActionNcButton
+					<ActionButton
 						v-if="!editingName"
 						@click.stop.prevent="renameAddressbook">
 						<template #icon>
 							<IconRename :size="20" />
 						</template>
 						{{ t('contacts', 'Rename') }}
-					</ActionNcButton>
+					</ActionButton>
 					<ActionInput
 						v-else
 						ref="renameInput"
@@ -93,7 +93,7 @@
 					</ActionInput>
 				</template>
 				<!-- delete addressbook -->
-				<ActionNcButton
+				<ActionButton
 					v-if="hasMultipleAddressbooks && addressbook.owner !== principalUrl && addressbook.owner !== '/remote.php/dav/principals/system/system/'"
 					@click="confirmUnshare">
 					<template #icon>
@@ -101,8 +101,8 @@
 						<IconDelete :size="20" />
 					</template>
 					{{ t('contacts', 'Unshare from me') }}
-				</ActionNcButton>
-				<ActionNcButton
+				</ActionButton>
+				<ActionButton
 					v-else-if="hasMultipleAddressbooks && addressbook.owner !== '/remote.php/dav/principals/system/system/'"
 					@click="confirmDeletion">
 					<template #icon>
@@ -110,7 +110,7 @@
 						<IconDelete :size="20" />
 					</template>
 					{{ t('contacts', 'Delete') }}
-				</ActionNcButton>
+				</ActionButton>
 			</Actions>
 			<!-- sharing input -->
 			<ShareAddressBook v-if="shareOpen && !addressbook.readOnly" :addressbook="addressbook" />
@@ -121,10 +121,10 @@
 <script>
 import { showError } from '@nextcloud/dialogs'
 import {
+	NcActionButton as ActionButton,
 	NcActionCheckbox as ActionCheckbox,
 	NcActionInput as ActionInput,
 	NcActionLink as ActionLink,
-	NcActionNcButton as ActionNcButton,
 	NcActions as Actions,
 	NcLoadingIcon as IconLoading,
 	NcButton,
@@ -142,7 +142,7 @@ export default {
 	name: 'SettingsAddressbook',
 
 	components: {
-		ActionNcButton,
+		ActionButton,
 		ActionCheckbox,
 		ActionInput,
 		ActionLink,

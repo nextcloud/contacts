@@ -113,7 +113,6 @@ import {
 	NcLoadingIcon as IconLoading,
 	NcModal as Modal,
 	NcButton,
-	NcButton,
 } from '@nextcloud/vue'
 import debounce from 'debounce'
 import { VList } from 'virtua/vue'

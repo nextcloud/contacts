@@ -33,7 +33,7 @@
 <script>
 import { NcSelectUsers } from '@nextcloud/vue'
 import debounce from 'debounce'
-import { addressBookSharee as AddressBookSharee } from './SettingsAddressbookSharee.vue'
+import AddressBookSharee from './SettingsAddressbookSharee.vue'
 import client from '../../../services/cdav.js'
 import isGroupSharingEnabled from '../../../services/isGroupSharingEnabled.js'
 import { urldecode } from '../../../utils/url.js'

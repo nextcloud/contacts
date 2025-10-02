@@ -60,7 +60,6 @@
 import {
 	NcCheckboxRadioSwitch as CheckboxRadioSwitch,
 	NcButton,
-	NcButton,
 } from '@nextcloud/vue'
 
 // Circle setting keys
