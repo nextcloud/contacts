@@ -3,10 +3,11 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import type { MemberLevel, MemberLevels, MemberType } from '../models/constants.ts'
+import type { MemberLevel, MemberType } from '../models/constants.ts'
 
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
+import { MemberLevels } from '../models/constants.ts'
 interface MemberPairs {
 	id: string
 	type: MemberType
