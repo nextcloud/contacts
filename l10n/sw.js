@@ -200,6 +200,8 @@ OC.L10N.register(
     "Loading members list …" : "Inapakia orodha ya wanachama",
     "The list of members is only visible to members of this team" : "Orodha ya wanachama inaonekana tu kwa wanachama wa timu",
     "You currently have no access to the member list" : "Kwa sasa huna ufukikaji wa orodha ya wanachama",
+    "Add to {team}" : "Ongeza kwenye {team}",
+    "Invite members to {team}" : "Alika wanachama kwenye {team}",
     "Pending" : "Inasubiri",
     "Select chart …" : "Chagua chati",
     "Chart" : "Chati",

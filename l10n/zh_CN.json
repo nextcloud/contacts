@@ -198,6 +198,8 @@
     "Loading members list …" : "正在加载成员列表 ...",
     "The list of members is only visible to members of this team" : "成员列表仅对此团队的成员可见",
     "You currently have no access to the member list" : "您目前无法访问成员列表",
+    "Add to {team}" : "添加到 {team}",
+    "Invite members to {team}" : "邀请成员加入 {team}",
     "Pending" : "待定",
     "Select chart …" : "选择图表 ...",
     "Chart" : "图表",
