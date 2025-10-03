@@ -13,7 +13,7 @@
 			<label>Token</label><span style="margin: 05em;">{{ token }}</span>
 		</div>
 		<div class="invitation-provider">
-			<label>Provider</label><span style="margin: 05em;">{{ providerDomain }}</span>
+			<label>Provider</label><span style="margin: 05em;">{{ provider }}</span>
 		</div>
 		<div class="actions">
 			<slot name="accept-invite-actions" />
@@ -32,7 +32,7 @@ export default {
 			default: '',
 			required: true,
 		},
-		providerDomain: {
+		provider: {
 			type: String,
 			default: '',
 			required: true,
@@ -43,5 +43,11 @@ export default {
 <style lang="scss" scoped>
 .contact-header__infos {
 	margin: 1em;;
+}
+.invitation-token {
+	margin-top: 1em;
+}
+.invitation-provider {
+	margin-bottom: 1.3em;
 }
 </style>
