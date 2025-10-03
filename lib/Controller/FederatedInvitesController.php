@@ -198,8 +198,9 @@ class FederatedInvitesController extends PageController {
 			return new JSONResponse(['message' => 'An unexpected error occurred creating the invite.'], Http::STATUS_NOT_FOUND);
 		}
 
+		$senderProvider = $this->federatedInvitesService->getProviderFQDN();
 		/** @var JSONResponse */
-		$response = $this->sendEmail($token, $email, $message);
+		$response = $this->sendEmail($token, $senderProvider, $email, $message);
 		if ($response->getStatus() !== Http::STATUS_OK) {
 			// delete invite in case sending the email has failed
 			try {
@@ -348,8 +349,9 @@ class FederatedInvitesController extends PageController {
 				$sendDate
 			]
 		);
+		$senderProvider = $this->federatedInvitesService->getProviderFQDN();
 		/** @var JSONResponse */
-		$response = $this->sendEmail($token, $invite->getRecipientEmail(), $message);
+		$response = $this->sendEmail($token, $senderProvider, $invite->getRecipientEmail(), $message);
 		if ($response->getStatus() !== Http::STATUS_OK) {
 			$this->logger->error("An unexpected error occurred resending the invite with token $token. HTTP response status: " . $response->getStatus(), ['app' => Application::APP_ID]);
 			return $response;
@@ -438,11 +440,12 @@ class FederatedInvitesController extends PageController {
 
 	/**
 	 * @param string $token the invite token
+	 * @param string $senderProvider this provider
 	 * @param string $address the recipient email address to send the invitation to
 	 * @param string $message the optional message to send with the invitation
 	 * @return JSONResponse
 	 */
-	private function sendEmail(string $token, string $address, string $message): JSONResponse {
+	private function sendEmail(string $token, string $senderProvider, string $address, string $message): JSONResponse {
 		/** @var IMessage */
 		$email = $this->mailer->createMessage();
 		if (!$this->mailer->validateMailAddress($address)) {
@@ -467,7 +470,12 @@ class FederatedInvitesController extends PageController {
 		$wayfEndpoint = $this->wayfProvider->getWayfEndpoint();
 		$inviteLink = "$wayfEndpoint?token=$token";
 
-		$body = "$message\nThe invite link: $inviteLink";
+		$header = $this->il10->t('Hi there,<br><br>%1$s invites you to exchange cloud IDs.', [$initiatorDisplayName]);
+		$inviteLinkNote = $this->il10->t('To accept this invite use the following invite link: %1$s <br>There you will be requested to sign in at your Cloud Provider.', [$inviteLink]);
+		$encoded = base64_encode("$token@$senderProvider");
+		$inviteDetails = $this->il10->t('Invitation details:<br>base64 encoded: %1$s<br>token: %2$s<br>provider: %3$s', [$encoded, $token, $senderProvider]);
+		$message = trim($message) === '' ? '' : "---\n$message\n---";
+		$body = "$header\n\n$message\n\n$inviteLinkNote\n\n$inviteDetails";
 		$email->setPlainBody($body);
 
 		/** @var string[] */
