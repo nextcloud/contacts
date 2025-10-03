@@ -233,12 +233,19 @@ class FederatedInvitesController extends PageController {
 			$this->logger->error("Both token and provider must be specified. Received: token=$token, provider=$provider", ['app' => Application::APP_ID]);
 			return new JSONResponse(['message' => 'Both token and provider must be specified.'], Http::STATUS_NOT_FOUND);
 		}
+		$localUser = $this->userSession->getUser();
+		$recipientProvider = $this->federatedInvitesService->getProviderFQDN();
+		$userId = $localUser->getUID();
+		$email = $localUser->getEMailAddress();
+		$name = $localUser->getDisplayName();
+		if ($recipientProvider === '' || $userId === '' || $email === '' || $name === '') {
+			$this->logger->error("All of these must be set: recipientProvider: $recipientProvider, email: $email, userId: $userId, name: $name", ['app' => Application::APP_ID]);
+			return new JSONResponse(['message' => 'Could not accept invite, user data is incomplete.'], Http::STATUS_NOT_FOUND);
+		}
 		try {
 			// accept the invite by calling provider OCM /invite-accepted
 			// this returns a response with the following data signature: ['userID', 'email', 'name']
 			// @link https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&repo=OCM-API&user=cs3org#/paths/~1invite-accepted/post
-			$localUser = $this->userSession->getUser();
-			$recipientProvider = $this->federatedInvitesService->getProviderFQDN();
 			$client = $this->httpClient->newClient();
 			/**
 			 * @var OCP\OCM\ICapabilityAwareOCMProvider $discovered
@@ -256,9 +263,9 @@ class FederatedInvitesController extends PageController {
 						=> [
 							'recipientProvider' => $recipientProvider,
 							'token' => $token,
-							'userId' => $localUser->getUID(),
-							'email' => $localUser->getEMailAddress(),
-							'name' => $localUser->getDisplayName(),
+							'userID' => $userId,
+							'email' => $email,
+							'name' => $name,
 						],
 						'connect_timeout' => 10,
 					]
@@ -299,7 +306,7 @@ class FederatedInvitesController extends PageController {
 				return new JSONResponse(['message' => 'Provider: ' . $provider . ' does not support invites.'], Http::STATUS_NOT_FOUND);
 			}
 		} catch (\GuzzleHttp\Exception\RequestException $e) {
-			$this->logger->error('/invite-accepted returned an error: ' . $e->getMessage() , ['app' => Application::APP_ID]);
+			$this->logger->error('/invite-accepted returned an error: ' . $e->getMessage(), ['app' => Application::APP_ID]);
 			/**
 			 * 400: Invalid or non existing token
 			 * 409: Invite already accepted
