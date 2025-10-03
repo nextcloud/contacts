@@ -200,6 +200,8 @@ OC.L10N.register(
     "Loading members list …" : "Hämtar lista över medlemmar …",
     "The list of members is only visible to members of this team" : "Listan över medlemmar är endast synlig för medlemmar i detta team",
     "You currently have no access to the member list" : "Du har för närvarande inte tillgång till medlemslistan",
+    "Add to {team}" : "Lägg till {team}",
+    "Invite members to {team}" : "Bjud in medlemmar till {team}",
     "Pending" : "Väntande",
     "Select chart …" : "Välj schema ...",
     "Chart" : "Diagram",
