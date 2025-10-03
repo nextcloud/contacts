@@ -61,17 +61,32 @@ export default {
   },
   methods: {
     parseInvite(str) {
-      const s = String(str || "").trim();
-      const idx = s.lastIndexOf("@");
-      if (idx === -1) {
-        throw new Error("No @ found in invite");
+      function tryParse(s) {
+        const idx = s.lastIndexOf("@");
+        if (idx === -1) return null;
+        const token = s.slice(0, idx).trim();
+        const provider = s.slice(idx + 1).trim();
+        if (!token || !provider) return null;
+        return { provider, token };
       }
-      const token = s.slice(0, idx);
-      const provider = s.slice(idx + 1);
-      if (!token || !provider) {
-        throw new Error("Malformed invite");
+
+      let s = String(str || "").trim();
+      let result = tryParse(s);
+
+      if (!result) {
+        // Try base64 decoding and parse again
+        try {
+          const decoded = atob(s);
+          result = tryParse(decoded);
+        } catch (e) {
+          // Ignore decoding errors, will throw below if still invalid
+        }
       }
-      return { provider, token };
+
+      if (!result) {
+        throw new Error("Invite must contain '@' separating token and provider, even after base64 decoding");
+      }
+      return result;
     },
 
     accept() {
