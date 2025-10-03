@@ -804,9 +804,6 @@ export default defineComponent({
 		nextcloudVersionAtLeast28() {
 			return parseInt(window.OC.config.version.split('.')[0]) >= 28
 		},
-		isNewContact() {
-			return !this.localContact.dav ? true : false
-		}
 	},
 
 	watch: {
