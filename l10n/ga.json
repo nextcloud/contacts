@@ -198,6 +198,8 @@
     "Loading members list …" : "Liosta ball á lódáil…",
     "The list of members is only visible to members of this team" : "Níl liosta na mball le feiceáil ach ag baill na foirne seo",
     "You currently have no access to the member list" : "Níl rochtain agat ar liosta na mball faoi láthair",
+    "Add to {team}" : "Cuir le {team}",
+    "Invite members to {team}" : "Tabhair cuireadh do bhaill chuig {team}",
     "Pending" : "Ar feitheamh",
     "Select chart …" : "Roghnaigh cairt…",
     "Chart" : "Cairt",
