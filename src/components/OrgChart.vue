@@ -191,12 +191,5 @@ export default {
 		}
 	}
 
-	.node-button-div {
-		filter: var(--background-invert-if-dark);
-
-		& > div > div {
-			filter: var(--background-invert-if-dark);
-		}
-	}
 }
 </style>
