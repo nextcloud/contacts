@@ -200,6 +200,8 @@ OC.L10N.register(
     "Loading members list …" : "Lade Mitgliederliste …",
     "The list of members is only visible to members of this team" : "Die Mitgliederliste ist nur für Mitglieder dieses Teams sichtbar.",
     "You currently have no access to the member list" : "Du hast derzeit keinen Zugriff auf die Mitgliederliste.",
+    "Add to {team}" : "Zu {team} hinzufügen",
+    "Invite members to {team}" : "Mitglieder zu {team} einladen",
     "Pending" : "Mitgliedsanfrage ablehnen",
     "Select chart …" : "Diagramm auswählen …",
     "Chart" : "Diagramm",
