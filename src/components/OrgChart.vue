@@ -194,10 +194,7 @@ export default {
 
 	.node-button-div {
 		filter: var(--background-invert-if-dark);
-
-		& > div > div {
-			filter: var(--background-invert-if-dark);
-		}
+		background-color: var(--color-main-background) !important;
 	}
 }
 </style>
