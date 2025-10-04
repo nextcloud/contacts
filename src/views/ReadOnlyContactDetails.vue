@@ -9,7 +9,8 @@
 			<NcLoadingIcon />
 		</div>
 		<!-- nothing selected or contact not found -->
-		<NcEmptyContent v-else-if="!contact"
+		<NcEmptyContent
+			v-else-if="!contact"
 			class="empty-content"
 			:name="t('mail', 'No data for this contact')"
 			:description="t('mail', 'No data for this contact on their profile')">
@@ -17,7 +18,8 @@
 				<IconContact :size="20" />
 			</template>
 		</NcEmptyContent>
-		<div v-else
+		<div
+			v-else
 			class="recipient-details-content">
 			<div class="contact-title">
 				<h6>{{ contact.fullName }}</h6>
@@ -25,9 +27,11 @@
 				<span v-html="formattedSubtitle" />
 			</div>
 			<div class="contact-details-wrapper">
-				<div v-for="(properties, name) in groupedProperties"
+				<div
+					v-for="(properties, name) in groupedProperties"
 					:key="name">
-					<ContactDetailsProperty v-for="(property, index) in properties"
+					<ContactDetailsProperty
+						v-for="(property, index) in properties"
 						:key="`${index}-${contact.key}-${property.name}`"
 						:is-first-property="index === 0"
 						:is-last-property="index === properties.length - 1"
@@ -44,19 +48,19 @@
 </template>
 
 <script>
-import escape from 'lodash/fp/escape.js'
-import { NcEmptyContent, NcLoadingIcon } from '@nextcloud/vue'
-import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
-import mitt from 'mitt'
 import { namespaces as NS } from '@nextcloud/cdav-library'
 import { loadState } from '@nextcloud/initial-state'
+import { NcEmptyContent, NcLoadingIcon } from '@nextcloud/vue'
+import escape from 'lodash/fp/escape.js'
+import mitt from 'mitt'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 import ContactDetailsProperty from '../components/ContactDetails/ContactDetailsProperty.vue'
+import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
-import validate from '../services/validate.js'
 import client from '../services/cdav.js'
+import validate from '../services/validate.js'
 import usePrincipalsStore from '../store/principals.js'
-import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 
 const { profileEnabled } = loadState('user_status', 'profileEnabled', false)
 
@@ -77,6 +81,7 @@ export default {
 			type: String,
 			required: true,
 		},
+
 		desc: {
 			type: String,
 			required: false,
@@ -121,9 +126,11 @@ export default {
 
 			return ''
 		},
+
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
 		},
+
 		/**
 		 * Contact properties copied and sorted by rfcProps.fieldOrder
 		 *
@@ -161,6 +168,7 @@ export default {
 				return list
 			}, {})
 		},
+
 		/**
 		 * The address book is read-only (e.g. shared with me).
 		 *
@@ -169,6 +177,7 @@ export default {
 		addressbookIsReadOnly() {
 			return this.contact.addressbook?.readOnly
 		},
+
 		/**
 		 * Usable addressbook object linked to the local contact
 		 *
@@ -190,14 +199,17 @@ export default {
 			}
 		},
 	},
+
 	watch: {
 		contact: {
 			handler(contact) {
 				this.updateLocalContact(contact)
 			},
+
 			immediate: true,
 		},
 	},
+
 	async beforeMount() {
 		// Init client and stores
 		await client.connect({ enableCardDAV: true })
@@ -208,31 +220,28 @@ export default {
 		// Fetch contact
 		await this.fetchContact()
 	},
+
 	methods: {
 		async fetchContact() {
 			try {
 				const email = this.contactEmailAddress
-				const result = await Promise.all(
-					this.addressbooks.map(async (addressBook) => [
-						addressBook.dav,
-						await addressBook.dav.addressbookQuery([
-							{
-								name: [NS.IETF_CARDDAV, 'prop-filter'],
-								attributes: [['name', 'EMAIL']],
-								children: [
-									{
-										name: [NS.IETF_CARDDAV, 'text-match'],
-										value: email,
-									},
-								],
-							},
-						]),
+				const result = await Promise.all(this.addressbooks.map(async (addressBook) => [
+					addressBook.dav,
+					await addressBook.dav.addressbookQuery([
+						{
+							name: [NS.IETF_CARDDAV, 'prop-filter'],
+							attributes: [['name', 'EMAIL']],
+							children: [
+								{
+									name: [NS.IETF_CARDDAV, 'text-match'],
+									value: email,
+								},
+							],
+						},
 					]),
-				)
+				]))
 
-				const contacts = result.flatMap(([addressBook, vcards]) =>
-					vcards.map((vcard) => new Contact(vcard.data, addressBook)),
-				)
+				const contacts = result.flatMap(([addressBook, vcards]) => vcards.map((vcard) => new Contact(vcard.data, addressBook)))
 
 				this.contact = contacts.find((contact) => contact.email === email)
 			} catch (error) {
@@ -241,9 +250,11 @@ export default {
 				this.loading = false
 			}
 		},
+
 		updateGroups(value) {
 			this.newGroupsValue = value
 		},
+
 		/**
 		 *  Update this.localContact
 		 *
@@ -265,6 +276,7 @@ export default {
 			this.localContact = localContact
 			this.newGroupsValue = [...this.localContact.groups]
 		},
+
 		/**
 		 * Should display the property
 		 *

@@ -4,11 +4,13 @@
 -->
 
 <template>
-	<NcListItem compact
+	<NcListItem
+		compact
 		:name="source.displayName"
 		class="members-list-item">
 		<template #icon>
-			<NcAvatar disable-menu
+			<NcAvatar
+				disable-menu
 				:size="avatarSize"
 				:display-name="source.displayName"
 				:is-no-user="!source.isUser" />
@@ -37,7 +39,7 @@
 
 		<template v-else #actions>
 			<NcActionText v-if="loading" icon="icon-loading-small">
-				{{ t('contacts', 'Loading …') }}
+				{{ t('contacts', 'Loading …') }}
 			</NcActionText>
 
 			<!-- Normal menu -->
@@ -50,7 +52,8 @@
 							<IconShieldCheck :size="16" />
 						</template>
 					</NcActionText>
-					<NcActionButton v-for="level in availableLevelsChange"
+					<NcActionButton
+						v-for="level in availableLevelsChange"
 						:key="level"
 						icon=""
 						@click="changeLevel(level)">
@@ -79,24 +82,22 @@
 </template>
 
 <script>
-import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberStatus } from '../../models/constants.ts'
-
+import { DialogBuilder, showError } from '@nextcloud/dialogs'
 import {
+	NcActionButton,
+	NcActionSeparator,
+	NcActionText,
 	NcAvatar,
 	NcListItem,
-	NcActionSeparator,
-	NcActionButton,
-	NcActionText,
 } from '@nextcloud/vue'
 import IconCheck from 'vue-material-design-icons/Check.vue'
 import IconClose from 'vue-material-design-icons/Close.vue'
-import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconExitToApp from 'vue-material-design-icons/ExitToApp.vue'
 import IconShieldCheck from 'vue-material-design-icons/ShieldCheckOutline.vue'
-
-import { changeMemberLevel } from '../../services/circles.ts'
-import { showError, DialogBuilder } from '@nextcloud/dialogs'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
+import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberStatus } from '../../models/constants.ts'
+import { changeMemberLevel } from '../../services/circles.ts'
 
 export default {
 	name: 'MemberListItem',
@@ -179,9 +180,9 @@ export default {
 		availableLevelsChange() {
 			const levels = Object.keys(CIRCLES_MEMBER_LEVELS)
 				// Object.keys returns those as string
-				.map(level => parseInt(level, 10))
+				.map((level) => parseInt(level, 10))
 				// we cannot set to a level higher or equal than the current user's level
-				.filter(level => level < this.currentUserLevel)
+				.filter((level) => level < this.currentUserLevel)
 
 			// Admins can promote others as Admin too
 			if (this.currentUserLevel === MemberLevels.ADMIN) {
@@ -194,7 +195,7 @@ export default {
 			}
 
 			// we cannot set to the level this member is already
-			return levels.filter(level => level !== this.source.level)
+			return levels.filter((level) => level !== this.source.level)
 		},
 
 		/**
@@ -247,6 +248,7 @@ export default {
 			return parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-clickable-area'))
 		},
 	},
+
 	methods: {
 		/**
 		 * Return the promote/demote member action label

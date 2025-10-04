@@ -11,8 +11,9 @@
 			</template>
 			{{ t('contacts', 'Delete') }}
 		</NcActionButton>
-		<component v-for="action in actions"
+		<component
 			:is="action"
+			v-for="action in actions"
 			:key="action.name"
 			:component="propertyComponent" />
 	</NcActions>
@@ -20,8 +21,8 @@
 
 <script>
 import {
-	NcActions,
 	NcActionButton,
+	NcActions,
 } from '@nextcloud/vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 
@@ -39,6 +40,7 @@ export default {
 			type: Array,
 			default: () => [],
 		},
+
 		propertyComponent: {
 			type: Object,
 			required: true,
@@ -52,6 +54,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .material-design-icon {
 	opacity: 0.8;

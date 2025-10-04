@@ -6,7 +6,8 @@
 <template>
 	<div class="new-addressbook-entry">
 		<IconLoading v-if="loading" :size="20" />
-		<NcInputField v-model:model-value="displayName"
+		<NcInputField
+			v-model:model-value="displayName"
 			class="new-addressbook"
 			:disabled="loading"
 			:label="t('contacts', 'Add new address book')"
@@ -26,10 +27,10 @@
 </template>
 
 <script>
-import { NcInputField } from '@nextcloud/vue'
 import { showError } from '@nextcloud/dialogs'
-import IconAdd from 'vue-material-design-icons/Plus.vue'
+import { NcInputField } from '@nextcloud/vue'
 import IconLoading from 'vue-material-design-icons/Loading.vue'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
 
 export default {
 	name: 'SettingsNewAddressbook',
@@ -38,12 +39,14 @@ export default {
 		IconAdd,
 		IconLoading,
 	},
+
 	data() {
 		return {
 			loading: false,
 			displayName: '',
 		}
 	},
+
 	computed: {
 		inputErrorState() {
 			if (this.displayName === '') {
@@ -54,6 +57,7 @@ export default {
 			return /[/\\]/.test(this.displayName)
 		},
 	},
+
 	methods: {
 		/**
 		 * Add a new address book

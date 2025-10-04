@@ -11,10 +11,11 @@
 		{{ t('contacts', 'Copy to full name') }}
 	</ActionButton>
 </template>
+
 <script>
 import { NcActionButton as ActionButton } from '@nextcloud/vue'
-import ActionsMixin from '../../mixins/ActionsMixin.js'
 import IconCopy from 'vue-material-design-icons/ContentCopy.vue'
+import ActionsMixin from '../../mixins/ActionsMixin.js'
 
 export default {
 	name: 'ActionCopyNtoFN',
@@ -22,6 +23,7 @@ export default {
 		ActionButton,
 		IconCopy,
 	},
+
 	mixins: [ActionsMixin],
 	methods: {
 		copyNToFN() {

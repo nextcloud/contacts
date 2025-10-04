@@ -5,14 +5,16 @@
 <template>
 	<div class="org-chart-node">
 		<div class="inner-box">
-			<router-link :to="{
-				name: 'contact',
-				params: {
-					selectedGroup: selectedChart,
-					selectedContact: chartData.key,
-				},
-			}">
-				<Avatar :disable-tooltip="true"
+			<router-link
+				:to="{
+					name: 'contact',
+					params: {
+						selectedGroup: selectedChart,
+						selectedContact: chartData.key,
+					},
+				}">
+				<Avatar
+					:disable-tooltip="true"
 					:display-name="chartData.fullName"
 					:is-no-user="true"
 					:size="60"
@@ -48,16 +50,19 @@ export default {
 	components: {
 		Avatar,
 	},
+
 	props: {
 		chartData: {
 			type: Object,
 			default: () => {},
 		},
+
 		onAvatarClick: {
 			type: Function,
 			default: () => {},
 		},
 	},
+
 	computed: {
 		selectedChart() {
 			return this.$route.params.selectedChart

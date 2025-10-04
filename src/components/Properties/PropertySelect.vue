@@ -6,7 +6,8 @@
 <template>
 	<div v-if="propModel && showProperty && !isSingleOption" class="property">
 		<!-- title if first element -->
-		<PropertyTitle v-if="isFirstProperty && propModel.icon"
+		<PropertyTitle
+			v-if="isFirstProperty && propModel.icon"
 			:property="property"
 			:is-multiple="isMultiple"
 			:is-read-only="isReadOnly"
@@ -28,7 +29,8 @@
 			</div>
 
 			<div class="property__value">
-				<NcSelect v-if="!isReadOnly"
+				<NcSelect
+					v-if="!isReadOnly"
 					v-model="matchedOptions"
 					:options="selectableOptions"
 					:no-wrap="true"
@@ -43,7 +45,8 @@
 
 			<!-- props actions -->
 			<div class="property__actions">
-				<PropertyActions v-if="!isReadOnly && !hideActions"
+				<PropertyActions
+					v-if="!isReadOnly && !hideActions"
 					:actions="actions"
 					:property-component="this"
 					@delete="deleteProperty" />
@@ -54,9 +57,9 @@
 
 <script>
 import { NcSelect } from '@nextcloud/vue'
-import PropertyMixin from '../../mixins/PropertyMixin.js'
-import PropertyTitle from './PropertyTitle.vue'
 import PropertyActions from './PropertyActions.vue'
+import PropertyTitle from './PropertyTitle.vue'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
 
 export default {
 	name: 'PropertySelect',
@@ -72,9 +75,9 @@ export default {
 	props: {
 		value: {
 			type: [Object, String, Array],
-			default: '',
 			required: true,
 		},
+
 		hideActions: {
 			type: Boolean,
 			default: false,
@@ -85,6 +88,7 @@ export default {
 		showProperty() {
 			return (this.isReadOnly && this.localValue) || !this.isReadOnly
 		},
+
 		/**
 		 * Store getters filtered and mapped to usable object
 		 * This is the list of addressbooks that are available to write
@@ -93,8 +97,8 @@ export default {
 		 */
 		selectableOptions() {
 			return this.options
-				.filter(option => !option.readOnly)
-				.map(addressbook => {
+				.filter((option) => !option.readOnly)
+				.map((addressbook) => {
 					return {
 						id: addressbook.id,
 						name: addressbook.name,
@@ -112,7 +116,7 @@ export default {
 			get() {
 				const options = this.options || this.propModel.options
 				// match lowercase as well
-				let selected = options.find(option => option.id === this.localValue
+				let selected = options.find((option) => option.id === this.localValue
 					|| option.id === this.localValue.toLowerCase())
 
 				// if the model provided a custom match fallback, use it
@@ -132,6 +136,7 @@ export default {
 					name: this.localValue,
 				}
 			},
+
 			set(value) {
 				// only keeping the array if the original value was one
 				if (Array.isArray(this.localValue)) {

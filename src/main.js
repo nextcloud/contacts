@@ -3,24 +3,19 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-// eslint-disable-next-line import/no-unresolved, n/no-missing-import
-import 'vite/modulepreload-polyfill'
-
+import { createPinia } from 'pinia'
 import { createApp } from 'vue'
-
 import App from './ContactsRoot.vue'
-import router from './router/index.js'
-import store from './store/index.js'
 import LegacyGlobalMixin from './mixins/LegacyGlobalMixin.js'
+import router from './router/index.js'
 import logger from './services/logger.js'
+import store from './store/index.js'
 
+import 'vite/modulepreload-polyfill'
 // Global scss sheets
 import './css/contacts.scss'
-
 // Dialogs css
 import '@nextcloud/dialogs/style.css'
-
-import { createPinia } from 'pinia'
 
 const app = createApp(App)
 

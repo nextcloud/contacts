@@ -5,7 +5,8 @@
 
 <template>
 	<div class="contact-header-avatar__wrapper">
-		<input id="contact-avatar-upload"
+		<input
+			id="contact-avatar-upload"
 			ref="uploadInput"
 			type="file"
 			class="hidden"
@@ -13,13 +14,15 @@
 			@change="handleUploadedFile">
 
 		<!-- Avatar display -->
-		<Avatar v-if="contact.addressbook.id === 'z-server-generated--system'"
+		<Avatar
+			v-if="contact.addressbook.id === 'z-server-generated--system'"
 			disable-menu
 			:show-user-status="false"
 			:user="contact.uid"
 			:size="75"
 			class="contact-header-avatar__photo" />
-		<Avatar v-else
+		<Avatar
+			v-else
 			:disable-tooltip="true"
 			:display-name="contact.displayName"
 			:is-no-user="true"
@@ -30,14 +33,16 @@
 		<NcModal v-model:show="showCropper" size="small" @close="cancel">
 			<div class="avatar__container">
 				<h2>{{ t('contacts', 'Crop contact photo') }}</h2>
-				<VueCropper ref="cropper"
+				<VueCropper
+					ref="cropper"
 					class="avatar__cropper"
 					v-bind="cropperOptions" />
 				<div class="avatar__cropper-buttons">
 					<NcButton variant="tertiary" @click="cancel">
 						{{ t('contacts', 'Cancel') }}
 					</NcButton>
-					<NcButton variant="primary"
+					<NcButton
+						variant="primary"
 						@click="saveAvatar">
 						{{ t('contacts', 'Save') }}
 					</NcButton>
@@ -45,30 +50,34 @@
 			</div>
 		</NcModal>
 
-		<Actions v-if="!isReadOnly"
+		<Actions
+			v-if="!isReadOnly"
 			v-model:open="opened"
 			:force-menu="true"
 			class="contact-header-avatar__menu">
 			<template #icon>
 				<IconImage :size="20" fill-color="#fff" />
 			</template>
-			<ActionButton :close-after-click="true"
+			<ActionButton
+				:close-after-click="true"
 				@click.stop.prevent="selectFileInput">
 				<template #icon>
 					<IconUpload :size="20" />
 				</template>
 				{{ t('contacts', 'Upload a new picture') }}
 			</ActionButton>
-			<ActionButton :close-after-click="true"
+			<ActionButton
+				:close-after-click="true"
 				@click="selectFilePicker">
 				<template #icon>
 					<IconFolder :size="20" />
 				</template>
 				{{ t('contacts', 'Choose from Files') }}
 			</ActionButton>
-			<ActionButton v-for="network in supportedSocial"
-				:close-after-click="true"
+			<ActionButton
+				v-for="network in supportedSocial"
 				:key="network"
+				:close-after-click="true"
 				@click="getSocialAvatar(network)">
 				<template #icon>
 					<IconCloudDownload :size="20" />
@@ -78,7 +87,8 @@
 
 			<template v-if="contact.photo">
 				<!-- FIXME: the link seems to have a bigger font size than the button caption -->
-				<ActionLink :href="`${contact.url}?photo`"
+				<ActionLink
+					:href="`${contact.url}?photo`"
 					target="_blank"
 					:close-after-click="true">
 					<template #icon>
@@ -86,7 +96,8 @@
 					</template>
 					{{ t('contacts', 'Download picture') }}
 				</ActionLink>
-				<ActionButton :close-after-click="true"
+				<ActionButton
+					:close-after-click="true"
 					@click="removePhoto">
 					<template #icon>
 						<IconDelete :size="20" />
@@ -99,32 +110,30 @@
 </template>
 
 <script>
+import sanitizeSVG from '@mattkrick/sanitize-svg'
+import { getCurrentUser } from '@nextcloud/auth'
+import axios from '@nextcloud/axios'
+import { getFilePickerBuilder, showError, showInfo, showSuccess } from '@nextcloud/dialogs'
+import { loadState } from '@nextcloud/initial-state'
+import { generateRemoteUrl, generateUrl } from '@nextcloud/router'
 import {
-	NcAvatar as Avatar,
-	NcActions as Actions,
 	NcActionButton as ActionButton,
 	NcActionLink as ActionLink,
+	NcActions as Actions,
+	NcAvatar as Avatar,
 	NcButton,
 	NcModal,
 } from '@nextcloud/vue'
-import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
+import VueCropper from 'vue-cropperjs'
 import IconCloudDownload from 'vue-material-design-icons/CloudDownloadOutline.vue'
-import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
-import IconUpload from 'vue-material-design-icons/UploadOutline.vue'
 import IconFolder from 'vue-material-design-icons/FolderOutline.vue'
 import IconImage from 'vue-material-design-icons/ImageOutline.vue'
-import VueCropper from 'vue-cropperjs'
-// eslint-disable-next-line n/no-extraneous-import
-import 'cropperjs/dist/cropper.css'
-
-import { showError, showInfo, getFilePickerBuilder, showSuccess } from '@nextcloud/dialogs'
-import { generateUrl, generateRemoteUrl } from '@nextcloud/router'
-import { getCurrentUser } from '@nextcloud/auth'
-import { loadState } from '@nextcloud/initial-state'
-import sanitizeSVG from '@mattkrick/sanitize-svg'
-import axios from '@nextcloud/axios'
-
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
+import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
+import IconUpload from 'vue-material-design-icons/UploadOutline.vue'
 import logger from '../../services/logger.js'
+
+import 'cropperjs/dist/cropper.css'
 
 const supportedNetworks = loadState('contacts', 'supportedNetworks')
 
@@ -152,10 +161,12 @@ export default {
 			type: Object,
 			required: true,
 		},
+
 		isReadOnly: {
 			type: Boolean,
 			required: true,
 		},
+
 		reloadBus: {
 			type: Object,
 			required: true,
@@ -188,18 +199,18 @@ export default {
 			const emails = this.contact.vCard.getAllProperties('email')
 			// get social networks set for the current contact
 			const availableSocial = this.contact.vCard.getAllProperties('x-socialprofile')
-				.map(a => a.jCal[1].type.toString().toLowerCase())
+				.map((a) => a.jCal[1].type.toString().toLowerCase())
 			const availableMessenger = this.contact.vCard.getAllProperties('impp')
-				.map(a => a.jCal[1].type.toString().toLowerCase())
+				.map((a) => a.jCal[1].type.toString().toLowerCase())
 			const available = [].concat(availableSocial, availableMessenger)
 			// get list of social networks that allow for avatar download
-			const supported = supportedNetworks.map(v => v.toLowerCase())
+			const supported = supportedNetworks.map((v) => v.toLowerCase())
 			if (emails.length) {
 				available.push('gravatar')
 			}
 			// return supported social networks which are set
-			return supported.filter(i => available.includes(i))
-				.map(j => this.capitalize(j))
+			return supported.filter((i) => available.includes(i))
+				.map((j) => this.capitalize(j))
 		},
 	},
 
@@ -226,7 +237,6 @@ export default {
 		 * @return {boolean}
 		 */
 		async processPicture(data) {
-
 			const type = this.getMimetype(data)
 
 			if (!type.startsWith('image/')) {
@@ -274,7 +284,6 @@ export default {
 				reader.onload = (e) => {
 					try {
 						if (typeof e.target.result === 'object') {
-
 							const data = Buffer.from(e.target.result, 'binary')
 
 							if (this.processPicture(data)) {
@@ -283,7 +292,6 @@ export default {
 
 							throw new Error('Wrong image mimetype')
 						}
-
 					} catch (error) {
 						console.error(error)
 						showError(t('contacts', 'Invalid image'))
@@ -304,6 +312,7 @@ export default {
 			this.$refs.uploadInput.value = ''
 			this.loading = false
 		},
+
 		/**
 		 * Return the word with (only) the first letter capitalized
 		 *
@@ -313,6 +322,7 @@ export default {
 		capitalize(word) {
 			return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
 		},
+
 		/**
 		 * Return the mimetype based on the first 4 byte
 		 *
@@ -339,19 +349,19 @@ export default {
 			}
 
 			switch (hex.slice(0, 8)) {
-			case '89504E47':
-				return 'image/png'
-			case '47494638':
-				return 'image/gif'
-			case '3C3F786D':
-			case '3C737667':
-				return 'image/svg+xml'
-			case 'FFD8FFDB':
-			case 'FFD8FFE0':
-			case 'FFD8FFE1':
-				return 'image/jpeg'
-			default:
-				return 'application/octet-stream'
+				case '89504E47':
+					return 'image/png'
+				case '47494638':
+					return 'image/gif'
+				case '3C3F786D':
+				case '3C737667':
+					return 'image/svg+xml'
+				case 'FFD8FFDB':
+				case 'FFD8FFE0':
+				case 'FFD8FFE1':
+					return 'image/jpeg'
+				default:
+					return 'application/octet-stream'
 			}
 		},
 
@@ -487,7 +497,6 @@ export default {
 				if (file) {
 					this.loading = true
 					try {
-
 						const response = await axios.get(`${this.root}${file}`, {
 							responseType: 'arraybuffer',
 						})
@@ -495,7 +504,6 @@ export default {
 						const data = Buffer.from(response.data, 'binary')
 
 						this.processPicture(data)
-
 					} catch (error) {
 						showError(t('contacts', 'Error while processing the picture.'))
 						console.error(error)
@@ -513,9 +521,7 @@ export default {
 		 * @param {string} network the social network to use (or 'any' for first match)
 		 */
 		async getSocialAvatar(network) {
-
 			if (!this.loading) {
-
 				this.loading = true
 				try {
 					const response = await axios.put(generateUrl('/apps/contacts/api/v1/social/avatar/{network}/{id}/{uid}', {
@@ -560,6 +566,7 @@ export default {
 
 }
 </script>
+
 <style lang="scss" scoped>
 .avatar {
 	&__container {

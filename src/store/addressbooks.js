@@ -5,12 +5,10 @@
 
 import { showError } from '@nextcloud/dialogs'
 import pLimit from 'p-limit'
-
 import Contact, { MinimalContactProperties } from '../models/contact.js'
-import { sortAddressbooks } from '../utils/addressbookUtils.js'
-
 import client from '../services/cdav.js'
 import parseVcf from '../services/parseVcf.js'
+import { sortAddressbooks } from '../utils/addressbookUtils.js'
 
 const addressbookModel = {
 	id: '',
@@ -54,7 +52,7 @@ export function mapDavCollectionToAddressbook(addressbook) {
 		url: addressbook.url,
 		dav: addressbook,
 		shares: addressbook.shares
-			? addressbook.shares.map(sharee => Object.assign({}, mapDavShareeToSharee(sharee)))
+			? addressbook.shares.map((sharee) => ({ ...mapDavShareeToSharee(sharee) }))
 			: [],
 	}
 }
@@ -89,7 +87,7 @@ const mutations = {
 	 */
 	addAddressbook(state, addressbook) {
 		// extend the addressbook to the default model
-		const newAddressbook = Object.assign({}, addressbookModel, addressbook)
+		const newAddressbook = { ...addressbookModel, ...addressbook }
 		// force reinit of the contacts object to prevent
 		// data passed as references
 		newAddressbook.contacts = {}
@@ -113,7 +111,7 @@ const mutations = {
 	 * @param {object} addressbook the addressbook to toggle
 	 */
 	toggleAddressbookEnabled(context, addressbook) {
-		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
+		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
 		addressbook.enabled = !addressbook.enabled
 	},
 
@@ -126,7 +124,7 @@ const mutations = {
 	 * @param {string} data.newName the new name of the addressbook
 	 */
 	renameAddressbook(context, { addressbook, newName }) {
-		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
+		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
 		addressbook.displayName = newName
 	},
 
@@ -140,7 +138,7 @@ const mutations = {
 	 * @param {Contact[]} data.contacts array of contacts to append
 	 */
 	appendContactsToAddressbook(state, { addressbook, contacts }) {
-		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
+		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
 
 		// convert list into an array and remove duplicate
 		addressbook.contacts = contacts.reduce((list, contact) => {
@@ -159,7 +157,7 @@ const mutations = {
 	 * @param {Contact} contact the contact to add
 	 */
 	addContactToAddressbook(state, contact) {
-		const addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
+		const addressbook = state.addressbooks.find((search) => search.id === contact.addressbook.id)
 		addressbook.contacts[contact.uid] = contact
 	},
 
@@ -170,7 +168,7 @@ const mutations = {
 	 * @param {Contact} contact the contact to delete
 	 */
 	deleteContactFromAddressbook(state, contact) {
-		const addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
+		const addressbook = state.addressbooks.find((search) => search.id === contact.addressbook.id)
 		delete addressbook.contacts[contact.uid]
 	},
 
@@ -186,7 +184,7 @@ const mutations = {
 	 * @param {boolean} data.isGroup is this a group ?
 	 */
 	shareAddressbook(state, { addressbook, user, displayName, uri, isGroup }) {
-		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
+		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
 		const newSharee = {
 			displayName,
 			id: user,
@@ -208,8 +206,8 @@ const mutations = {
 	 * @param {string} data.uri the sharee uri
 	 */
 	removeSharee(state, { addressbook, uri }) {
-		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
-		const shareIndex = addressbook.shares.findIndex(sharee => sharee.uri === uri)
+		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
+		const shareIndex = addressbook.shares.findIndex((sharee) => sharee.uri === uri)
 		addressbook.shares.splice(shareIndex, 1)
 	},
 
@@ -222,8 +220,8 @@ const mutations = {
 	 * @param {string} data.uri the sharee uri
 	 */
 	updateShareeWritable(state, { addressbook, uri }) {
-		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
-		const sharee = addressbook.shares.find(sharee => sharee.uri === uri)
+		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
+		const sharee = addressbook.shares.find((sharee) => sharee.uri === uri)
 		sharee.writeable = !sharee.writeable
 	},
 
@@ -238,7 +236,7 @@ const mutations = {
 }
 
 const getters = {
-	getAddressbooks: state => state.addressbooks,
+	getAddressbooks: (state) => state.addressbooks,
 }
 
 const actions = {
@@ -256,14 +254,14 @@ const actions = {
 
 		const addressbooks = await client.addressBookHomes[0]
 			.findAllAddressBooks()
-			.then(addressbooks => {
-				return addressbooks.map(addressbook => {
+			.then((addressbooks) => {
+				return addressbooks.map((addressbook) => {
 					// formatting addressbooks
 					return mapDavCollectionToAddressbook(addressbook)
 				})
 			})
 
-		addressbooks.forEach(addressbook => {
+		addressbooks.forEach((addressbook) => {
 			context.commit('addAddressbook', addressbook)
 		})
 
@@ -301,10 +299,10 @@ const actions = {
 	async deleteAddressbook(context, addressbook) {
 		return addressbook.dav
 			.delete()
-			.then((response) => {
+			.then(() => {
 				// delete all the contacts from the store that belong to this addressbook
 				Object.values(addressbook.contacts)
-					.forEach(contact => context.commit('deleteContact', contact))
+					.forEach((contact) => context.commit('deleteContact', contact))
 				// then delete the addressbook
 				context.commit('deleteAddressbook', addressbook)
 			})
@@ -354,6 +352,9 @@ const actions = {
 	 * @param {string} data.newName the new name of the addressbook
 	 * @param data.addressbook.addressbook
 	 * @param data.addressbook.newName
+	 * @param root0
+	 * @param root0.addressbook
+	 * @param root0.newName
 	 * @return {Promise}
 	 */
 	async renameAddressbook(context, { addressbook, newName }) {
@@ -440,7 +441,7 @@ const actions = {
 		const requests = []
 
 		// create the array of requests to send
-		contacts.map(async contact => {
+		contacts.map(async (contact) => {
 			console.info(contact)
 
 			// Get vcard string
@@ -462,8 +463,7 @@ const actions = {
 						// error
 						context.commit('incrementDenied')
 						console.error(error)
-					}),
-				))
+					})))
 			} catch (e) {
 				context.commit('incrementDenied')
 			}
@@ -509,7 +509,6 @@ const actions = {
 			console.error(error)
 			throw error
 		}
-
 	},
 
 	/**
@@ -526,6 +525,12 @@ const actions = {
 	 * @param data.addressbook.displayName
 	 * @param data.addressbook.uri
 	 * @param data.addressbook.isGroup
+	 * @param root0
+	 * @param root0.addressbook
+	 * @param root0.user
+	 * @param root0.displayName
+	 * @param root0.uri
+	 * @param root0.isGroup
 	 */
 	async shareAddressbook(context, { addressbook, user, displayName, uri, isGroup }) {
 		// Share addressbook with entered group or user

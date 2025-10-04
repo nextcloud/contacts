@@ -8,48 +8,52 @@
 		<IconLoading v-if="loading" :size="20" />
 		<IconGroup v-else-if="sharee.isGroup && !loading" />
 		<IconUser v-else-if="!sharee.isGroup && !loading" />
-		<span class="addressbook-sharee__identifier"
+		<span
+			class="addressbook-sharee__identifier"
 			:title="sharee.displayName">
 			{{ sharee.displayName }}
 		</span>
 		<span class="addressbook-sharee__utils">
-			<input :id="uid"
+			<input
+				:id="uid"
 				:checked="writeable"
 				:disabled="loading"
 				class="checkbox"
 				name="editable"
 				type="checkbox"
 				@change="editSharee">
-			<label :for="uid"
+			<label
+				:for="uid"
 				:title="t('contacts', 'can edit')">
 				{{ t('contacts', 'can edit') }}
 			</label>
-			<Button :class="{'addressbook-sharee__utils--disabled': loading}"
+			<NcButton
+				:class="{ 'addressbook-sharee__utils--disabled': loading }"
 				href="#"
 				title="Delete"
 				@click="deleteSharee">
 				<template #icon>
 					<IconDelete :size="20" />
 				</template>
-			</Button>
+			</NcButton>
 		</span>
 	</li>
 </template>
 
 <script>
 import { showError } from '@nextcloud/dialogs'
-import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
+import {
+	NcLoadingIcon as IconLoading,
+	NcButton,
+} from '@nextcloud/vue'
 import IconGroup from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconUser from 'vue-material-design-icons/AccountOutline.vue'
-import {
-	NcButton as Button,
-	NcLoadingIcon as IconLoading,
-} from '@nextcloud/vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 
 export default {
 	name: 'SettingsAddressbookSharee',
 	components: {
-		Button,
+		NcButton,
 		IconDelete,
 		IconGroup,
 		IconLoading,
@@ -61,6 +65,7 @@ export default {
 			type: Object,
 			required: true,
 		},
+
 		sharee: {
 			type: Object,
 			required: true,
@@ -77,6 +82,7 @@ export default {
 		writeable() {
 			return this.sharee.writeable
 		},
+
 		// generated id for this sharee
 		uid() {
 			return this.sharee.id + this.addressbook.id + Math.floor(Math.random() * 1000)
@@ -102,6 +108,7 @@ export default {
 				this.loading = false
 			}
 		},
+
 		async editSharee() {
 			if (this.loading) {
 				return false
@@ -124,6 +131,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .addressbook-sharee__utils {
 	text-overflow: ellipsis;
@@ -135,7 +143,7 @@ export default {
 	width: 107px;
 }
 
-:deep(.button-vue--vue-secondary) {
+:deep(.NcButton-vue--vue-secondary) {
 	background-color: transparent;
 	border: none;
 	box-shadow: none;

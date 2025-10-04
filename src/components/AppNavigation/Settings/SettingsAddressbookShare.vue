@@ -5,14 +5,15 @@
 
 <template>
 	<div class="addressbook-shares">
-		<NcSelectUsers id="users-groups-search"
+		<NcSelectUsers
+			id="users-groups-search"
 			:options="usersOrGroups"
 			:searchable="true"
 			:internal-search="false"
 			:max-height="600"
 			:show-no-results="true"
 			:placeholder="placeholder"
-			:class="{ 'showContent': inputGiven, 'icon-loading': isLoading }"
+			:class="{ showContent: inputGiven, 'icon-loading': isLoading }"
 			:get-option-key="(option) => option.user"
 			open-direction="bottom"
 			label="displayName"
@@ -20,7 +21,8 @@
 			@update:model-value="shareAddressbook" />
 		<!-- list of user or groups addressbook is shared with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressbook-shares__list">
-			<addressBookSharee v-for="sharee in addressbook.shares"
+			<AddressBookSharee
+				v-for="sharee in addressbook.shares"
 				:key="sharee.uri"
 				:sharee="sharee"
 				:addressbook="addressbook" />
@@ -30,11 +32,10 @@
 
 <script>
 import { NcSelectUsers } from '@nextcloud/vue'
+import debounce from 'debounce'
+import AddressBookSharee from './SettingsAddressbookSharee.vue'
 import client from '../../../services/cdav.js'
 import isGroupSharingEnabled from '../../../services/isGroupSharingEnabled.js'
-
-import addressBookSharee from './SettingsAddressbookSharee.vue'
-import debounce from 'debounce'
 import { urldecode } from '../../../utils/url.js'
 
 export default {
@@ -42,7 +43,7 @@ export default {
 
 	components: {
 		NcSelectUsers,
-		addressBookSharee,
+		AddressBookSharee,
 	},
 
 	props: {
@@ -53,6 +54,7 @@ export default {
 			},
 		},
 	},
+
 	data() {
 		return {
 			isLoading: false,
@@ -60,6 +62,7 @@ export default {
 			usersOrGroups: [],
 		}
 	},
+
 	computed: {
 		placeholder() {
 			if (isGroupSharingEnabled) {
@@ -68,14 +71,17 @@ export default {
 				return t('contacts', 'Share with users')
 			}
 		},
+
 		noResult() {
 			return t('contacts', 'No users or groups')
 		},
 	},
+
 	mounted() {
 		// This ensures that the multiselect input is in focus as soon as the user clicks share
 		document.getElementById('users-groups-search').focus()
 	},
+
 	methods: {
 		/**
 		 * Share addressbook
@@ -129,6 +135,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .addressbook-shares__list {
 	margin-inline-start: calc(var(--default-grid-baseline) * -2);
