@@ -49,6 +49,7 @@
 
 	<background-jobs>
 		<job>OCA\Contacts\Cron\SocialUpdateRegistration</job>
+		<job>OCA\Contacts\Cron\UpdateOcmProviders</job>
 	</background-jobs>
 
 	<settings>
@@ -67,4 +68,10 @@
 	<contactsmenu>
 		<provider>OCA\Contacts\ContactsMenu\Providers\DetailsProvider</provider>
 	</contactsmenu>
+
+	<commands>
+		<command>OCA\Contacts\Command\EnableOcmInvites</command>
+		<command>OCA\Contacts\Command\DisableOcmInvites</command>
+		<command>OCA\Contacts\Command\SetMeshProvidersService</command>
+	</commands>
 </info>

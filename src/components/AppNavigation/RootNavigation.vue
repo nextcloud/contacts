@@ -77,6 +77,22 @@
 				</template>
 			</AppNavigationItem>
 
+			<!-- All OCM invites -->
+			<AppNavigationItem v-if="isOcmInvitesEnabled"
+				id="ocm-invites"
+				:name="GROUP_ALL_OCM_INVITES"
+				:to="{
+					name: ROUTE_NAME_ALL_OCM_INVITES,
+				}">
+				<template #icon>
+					<IconAccountSwitchOutline :size="20" />
+				</template>
+				<template #counter>
+					<NcCounterBubble v-if="ocmInvites.length"
+						:count="ocmInvites.length" />
+				</template>
+			</AppNavigationItem>
+
 			<AppNavigationCaption id="newgroup"
 				v-model:menu-open="isNewGroupMenuOpen"
 				:force-menu="true"
@@ -168,7 +184,7 @@
 </template>
 
 <script>
-import { GROUP_ALL_CONTACTS, CHART_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC, CONTACTS_SETTINGS } from '../../models/constants.ts'
+import { GROUP_ALL_CONTACTS, CHART_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC, CONTACTS_SETTINGS, GROUP_ALL_OCM_INVITES, ROUTE_NAME_ALL_OCM_INVITES } from '../../models/constants.ts'
 import useUserGroupStore from '../../store/userGroup.ts'
 
 import {
@@ -193,8 +209,10 @@ import NewCircleIntro from '../EntityPicker/NewCircleIntro.vue'
 
 import isCirclesEnabled from '../../services/isCirclesEnabled.js'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled.js'
-import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
-import IconUser from 'vue-material-design-icons/AccountOutline.vue'
+import IconAccountSwitchOutline from 'vue-material-design-icons/AccountSwitchOutline.vue'
+import isOcmInvitesEnabled from '../../services/isOcmInvitesEnabled.js'
+import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import IconUser from 'vue-material-design-icons/Account.vue'
 import IconRecentlyContacted from '../Icons/IconRecentlyContacted.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 import IconError from 'vue-material-design-icons/AlertCircleOutline.vue'
@@ -218,6 +236,7 @@ export default {
 		Cog,
 		ContactsSettings,
 		GroupNavigationItem,
+		IconAccountSwitchOutline,
 		IconContact,
 		IconUser,
 		IconAdd,
@@ -250,6 +269,8 @@ export default {
 			CHART_ALL_CONTACTS,
 			GROUP_NO_GROUP_CONTACTS,
 			GROUP_RECENTLY_CONTACTED,
+			GROUP_ALL_OCM_INVITES,
+			ROUTE_NAME_ALL_OCM_INVITES,
 
 			// create group
 			isNewGroupMenuOpen: false,
@@ -267,6 +288,7 @@ export default {
 			collapsedCircles: true,
 
 			showSettings: false,
+			isOcmInvitesEnabled,
 		}
 	},
 
@@ -292,6 +314,9 @@ export default {
 		},
 		userGroups() {
 			return this.userGroupStore.userGroupList
+		},
+		ocmInvites() {
+			return this.$store.getters.getSortedOcmInvites
 		},
 
 		// list all the contacts that doesn't have a group
