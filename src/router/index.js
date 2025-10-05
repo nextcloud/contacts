@@ -6,7 +6,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import { generateUrl } from '@nextcloud/router'
 
-import { ROUTE_CIRCLE, ROUTE_CHART, ROUTE_USER_GROUP } from '../models/constants.ts'
+import { ROUTE_CIRCLE, ROUTE_CHART, ROUTE_USER_GROUP, GROUP_ALL_OCM_INVITES, ROUTE_ALL_OCM_INVITES, ROUTE_NAME_OCM_INVITE, ROUTE_NAME_ALL_OCM_INVITES, ROUTE_NAME_INVITE_ACCEPT_DIALOG, ROUTE_INVITE_ACCEPT_DIALOG } from '../models/constants.ts'
 import Contacts from '../views/Contacts.vue'
 
 // if index.php is in the url AND we got this far, then it's working:
@@ -28,6 +28,23 @@ export default createRouter({
 				params: { selectedGroup: t('contacts', 'All contacts') },
 			},
 			children: [
+				{
+					path: `/${ROUTE_ALL_OCM_INVITES}`,
+					name: ROUTE_NAME_ALL_OCM_INVITES,
+					component: Contacts,
+					meta: { selectedGroup: GROUP_ALL_OCM_INVITES },
+				},
+				{
+					path: `/${ROUTE_ALL_OCM_INVITES}/:selectedInvite`,
+					name: ROUTE_NAME_OCM_INVITE,
+					component: Contacts,
+					meta: { selectedGroup: GROUP_ALL_OCM_INVITES },
+				},
+				{
+					path: ROUTE_INVITE_ACCEPT_DIALOG,
+					name: ROUTE_NAME_INVITE_ACCEPT_DIALOG,
+					component: Contacts,
+				},
 				{
 					path: `/${ROUTE_CHART}/:selectedChart`,
 					name: 'chart',
