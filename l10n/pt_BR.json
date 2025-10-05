@@ -198,6 +198,8 @@
     "Loading members list …" : "Carregando lista de membros …",
     "The list of members is only visible to members of this team" : "A lista de membros só é visível para membros desta equipe",
     "You currently have no access to the member list" : "No momento, você não tem acesso à lista de membros",
+    "Add to {team}" : "Adicionar a {team}",
+    "Invite members to {team}" : "Convidar membros para {team}",
     "Pending" : "Pendente",
     "Select chart …" : "Selecione gráfico …",
     "Chart" : "Gráfico",
