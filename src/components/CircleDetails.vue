@@ -154,7 +154,7 @@
 									{{ t('contacts', 'Add') }}
 								</Button>
 							</div>
-							<MemberList ref="memberList" :list="members" />
+							<MemberList ref="memberList" :list="members" :key="`member-list-${circle.id}`" />
 						</div>
 					</div>
 				</section>
