@@ -17,17 +17,17 @@
 			<template #icon>
 				<div class="contacts-list__item-icon"
 					@click.exact.prevent="onSelectMultiple"
-					@mouseenter="hoveringAvatar = true"
-					@mouseleave="hoveringAvatar = false">
-					<NcAvatar v-if="!source.isMultiSelected && !hoveringAvatar && source.addressbook.id === 'z-server-generated--system'"
+					@mouseenter="hoverAvatar(true)"
+					@mouseleave="hoverAvatar(false)">
+					<NcAvatar v-if="((!source.isMultiSelected && !hoveringAvatar) || isStatic) && source.addressbook.id === 'z-server-generated--system'"
 						:user="source.uid"
 						:show-user-status="false"
 						:size="40" />
-					<NcAvatar v-if="!source.isMultiSelected && !hoveringAvatar && source.addressbook.id !== 'z-server-generated--system'"
+					<NcAvatar v-if="((!source.isMultiSelected && !hoveringAvatar) || isStatic) && source.addressbook.id !== 'z-server-generated--system'"
 						:display-name="source.displayName"
 						:url="avatarUrl"
 						:size="40" />
-					<CheckIcon v-if="source.isMultiSelected || hoveringAvatar"
+					<CheckIcon v-if="(source.isMultiSelected || hoveringAvatar) && !isStatic"
 						:size="28"
 						:class="{ 'contacts-list__item-avatar-selected': source.isMultiSelected, 'contacts-list__item-avatar-hovered': !source.isMultiSelected }" />
 				</div>
@@ -81,6 +81,11 @@ export default {
 			type: Function,
 			default: () => {},
 		},
+		isStatic: {
+			type: Boolean,
+			default: false,
+			required: false,
+		}
 	},
 
 	data() {
@@ -93,7 +98,7 @@ export default {
 	computed: {
 		// contact is not draggable when it has not been saved on server as it can't be added to groups/circles before
 		isDraggable() {
-			return !!this.source.dav && this.source.addressbook.id !== 'z-server-generated--system'
+			return !!this.source.dav && this.source.addressbook.id !== 'z-server-generated--system' && !this.isStatic
 		},
 		// usable and valid html id for scrollTo
 		id() {
@@ -178,11 +183,23 @@ export default {
 			})
 		},
 		onSelectMultiple() {
+			if (this.isStatic) {
+				return
+			}
 			// This weirdness of passing a function as a prop is because the VirtualList extra-props prop object does not support listening to custom events (afaik)
 			this.onSelectMultipleFromParent(this.source, this.index)
 		},
 		onSelectMultipleRange() {
+			if (this.isStatic) {
+				return
+			}
 			this.onSelectMultipleFromParent(this.source, this.index, true)
+		},
+		hoverAvatar(newState) {
+			if (this.isStatic) {
+				return
+			}
+			this.hoveringAvatar = newState
 		},
 	},
 }

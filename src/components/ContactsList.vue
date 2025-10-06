@@ -32,6 +32,13 @@
 			<Merging :contacts="multiSelectedContacts" @finished="finishContactMerging" />
 		</NcModal>
 
+		<NcModal v-if="isGrouping"
+			:name="t('contacts', 'Add contacts to group')"
+				 size="large"
+				 @close="isGrouping = false">
+			<Batch :contacts="Array.from(multiSelectedContacts.values())" />
+		</NcModal>
+
 		<div class="contacts-list__header">
 			<div class="search-contacts-field">
 				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
@@ -61,6 +68,13 @@
 					<IconSetMerge :size="20" />
 				</NcButton>
 				<NcLoadingIcon v-else :size="20" />
+				<NcButton type="tertiary"
+					:disabled="!isAtLeastOneEditable"
+					:title="groupActionTitle"
+					:close-after-click="true"
+					@click.prevent="isGrouping = true">
+					<IconAccountMultiple :size="20" />
+				</NcButton>
 			</div>
 		</transition>
 
@@ -84,7 +98,9 @@ import { VList } from 'virtua/vue'
 import IconSelect from 'vue-material-design-icons/CloseThick.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconSetMerge from 'vue-material-design-icons/SetMerge.vue'
+import IconAccountMultiple from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import Merging from './ContactsList/Merging.vue'
+import Batch from './ContactsList/Batch.vue'
 
 // eslint-disable-next-line import/no-unresolved
 import IconCancelRaw from '@mdi/svg/svg/cancel.svg?raw'
@@ -103,11 +119,13 @@ export default {
 		IconSelect,
 		IconDelete,
 		IconSetMerge,
+		IconAccountMultiple,
 		NcDialog,
 		NcModal,
 		Merging,
 		NcLoadingIcon,
 		ContactsListItem,
+		Batch,
 	},
 
 	mixins: [
@@ -155,6 +173,7 @@ export default {
 			lastToggledIndex: undefined,
 			isMerging: false,
 			isMergingLoading: false,
+			isGrouping: false,
 		}
 	},
 
@@ -203,6 +222,11 @@ export default {
 			return this.areTwoEditable
 				? t('contacts', 'Merge contacts')
 				: t('contacts', 'Please select two editable contacts to merge')
+		},
+		groupActionTitle() {
+			return this.isAtLeastOneEditable
+				? n('contacts', 'Add {number} contact to group', 'Add {number} contacts to group', this.multiSelectedContacts.size, { number: this.multiSelectedContacts.size })
+				: t('contacts', 'Please select at least one editable contact to add to a group')
 		},
 	},
 
