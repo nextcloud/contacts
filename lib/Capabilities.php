@@ -28,8 +28,9 @@ class Capabilities implements ICapability {
 	#[\Override]
 	public function getCapabilities(): array {
 		return [
-			'declarativeui' => [
+			'client_integration' => [
 				'contacts' => [
+					'version' => 0.1,
 					'context-menu' => [
 						[
 							'name' => $this->l10n->t('Import contacts'),
