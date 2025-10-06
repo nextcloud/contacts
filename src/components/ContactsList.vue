@@ -35,6 +35,22 @@
 			<Merging :contacts="multiSelectedContacts" @finished="finishContactMerging" />
 		</NcModal>
 
+		<NcModal
+			v-if="isGrouping"
+			:name="t('contacts', 'Add contacts to group')"
+			size="large"
+			@close="isGrouping = false">
+			<Batch :contacts="Array.from(multiSelectedContacts.values())" mode="group" @submit="finishBatch" />
+		</NcModal>
+
+		<NcModal
+			v-if="isMovingAddressbook"
+			:name="t('contacts', 'Move contacts to addressbook')"
+			size="large"
+			@close="isMovingAddressbook = false">
+			<Batch :contacts="Array.from(multiSelectedContacts.values())" mode="move" @submit="finishBatch" />
+		</NcModal>
+
 		<div class="contacts-list__header">
 			<div class="search-contacts-field">
 				<NcTextField
@@ -56,7 +72,7 @@
 				</NcButton>
 				<NcButton
 					variant="tertiary"
-					:disabled="!isAtLeastOneEditable"
+					:disabled="!canDeleteAnySelected"
 					:title="deleteActionTitle"
 					:close-after-click="true"
 					@click.prevent="attemptDeleteAllMultiSelected">
@@ -65,13 +81,29 @@
 				<NcButton
 					v-if="!isMergingLoading"
 					variant="tertiary"
-					:disabled="!areTwoEditable"
+					:disabled="!canMergeSelected"
 					:title="mergeActionTitle"
 					:close-after-click="true"
 					@click.prevent="initiateContactMerging">
 					<IconSetMerge :size="20" />
 				</NcButton>
 				<NcLoadingIcon v-else :size="20" />
+				<NcButton
+					variant="tertiary"
+					:title="groupActionTitle"
+					:disabled="!canModifyAnySelected"
+					:close-after-click="true"
+					@click.prevent="isGrouping = true">
+					<IconAccountMultiple :size="20" />
+				</NcButton>
+				<NcButton
+					variant="tertiary"
+					:title="moveActionTitle"
+					:disabled="!canDeleteAnySelected"
+					:close-after-click="true"
+					@click.prevent="isMovingAddressbook = true">
+					<IconBookAccount :size="20" />
+				</NcButton>
 			</div>
 		</transition>
 
@@ -103,9 +135,12 @@ import {
 	NcTextField,
 } from '@nextcloud/vue'
 import { VList } from 'virtua/vue'
+import IconAccountMultiple from 'vue-material-design-icons/AccountMultipleOutline.vue'
+import IconBookAccount from 'vue-material-design-icons/BookAccountOutline.vue'
 import IconSelect from 'vue-material-design-icons/CloseThick.vue'
 import IconSetMerge from 'vue-material-design-icons/SetMerge.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
+import Batch from './ContactsList/Batch.vue'
 import ContactsListItem from './ContactsList/ContactsListItem.vue'
 import Merging from './ContactsList/Merging.vue'
 import RouterMixin from '../mixins/RouterMixin.js'
@@ -121,11 +156,14 @@ export default {
 		IconSelect,
 		IconDelete,
 		IconSetMerge,
+		IconAccountMultiple,
+		IconBookAccount,
 		NcDialog,
 		NcModal,
 		Merging,
 		NcLoadingIcon,
 		ContactsListItem,
+		Batch,
 		NcTextField,
 	},
 
@@ -178,6 +216,8 @@ export default {
 			lastToggledIndex: undefined,
 			isMerging: false,
 			isMergingLoading: false,
+			isGrouping: false,
+			isMovingAddressbook: false,
 		}
 	},
 
@@ -214,16 +254,44 @@ export default {
 			return count
 		},
 
-		isAtLeastOneEditable() {
-			return this.readOnlyMultiSelectedCount !== this.multiSelectedContacts.size
+		selectedEditable() {
+			let count = 0
+
+			this.multiSelectedContacts.forEach((contact) => {
+				if (contact.addressbook.canModifyCard) {
+					count++
+				}
+			})
+
+			return count
 		},
 
-		areTwoEditable() {
-			return this.multiSelectedContacts.size - this.readOnlyMultiSelectedCount === 2
+		selectedDeletable() {
+			let count = 0
+
+			this.multiSelectedContacts.forEach((contact) => {
+				if (contact.addressbook.canDeleteCard) {
+					count++
+				}
+			})
+
+			return count
+		},
+
+		canModifyAnySelected() {
+			return this.selectedEditable > 0
+		},
+
+		canDeleteAnySelected() {
+			return this.selectedDeletable > 0
+		},
+
+		canMergeSelected() {
+			return this.multiSelectedContacts.size === 2 && this.selectedEditable === this.multiSelectedContacts.size
 		},
 
 		deleteActionTitle() {
-			return this.isAtLeastOneEditable
+			return this.canDeleteAnySelected
 				? n('contacts', 'Delete {number} contact', 'Delete {number} contacts', this.multiSelectedContacts.size, { number: this.multiSelectedContacts.size })
 				: t('contacts', 'Please select at least one editable contact to delete')
 		},
@@ -232,6 +300,18 @@ export default {
 			return this.areTwoEditable
 				? t('contacts', 'Merge contacts')
 				: t('contacts', 'Please select two editable contacts to merge')
+		},
+
+		groupActionTitle() {
+			return this.canModifyAnySelected
+				? n('contacts', 'Add {number} contact to group', 'Add {number} contacts to group', this.multiSelectedContacts.size, { number: this.multiSelectedContacts.size })
+				: t('contacts', 'Please select at least one editable contact to add to a group')
+		},
+
+		moveActionTitle() {
+			return this.canDeleteAnySelected
+				? n('contacts', 'Move {number} contact to addressbook', 'Move {number} contacts to addressbook', this.multiSelectedContacts.size, { number: this.multiSelectedContacts.size })
+				: t('contacts', 'Please select at least one editable contact to move to an addressbook')
 		},
 	},
 
@@ -409,6 +489,18 @@ export default {
 			await this.$router.push({
 				name: 'root',
 			})
+		},
+
+		async finishBatch() {
+			if (this.isGrouping) {
+				for (const contact of this.multiSelectedContacts.values()) {
+					await this.$store.dispatch('fetchFullContact', { contact, forceReFetch: true })
+				}
+			}
+
+			this.isGrouping = false
+			this.isMovingAddressbook = false
+			this.unselectAllMultiSelected()
 		},
 	},
 }
