@@ -5,16 +5,16 @@
 /**
  * Match a list of types against the available types
  *
- * @param {Array<string>} selectedTypes
- * @param {Array<{id: string, name: string}>} options
+ * @param selectedTypes
+ * @param options
  */
 export declare function matchTypes(selectedTypes: Array<string>, options: Array<{
-    id: string;
-    name: string;
+	id: string
+	name: string
 }>): {
-    type: {
-        id: string;
-        name: string;
-    };
-    score: number;
-} | undefined;
+	type: {
+		id: string
+		name: string
+	}
+	score: number
+} | undefined

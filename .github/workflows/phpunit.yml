@@ -20,9 +20,13 @@ jobs:
       # do not stop on another job's failure
       fail-fast: false
       matrix:
-        php-versions: ['8.1']
+        php-versions: ['8.2']
         databases: ['sqlite']
         server-versions: ['master', 'stable32']
+        include:
+          - php-versions: '8.1'
+            databases: 'sqlite'
+            server-versions: 'stable32'
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
@@ -86,9 +90,13 @@ jobs:
       # do not stop on another job's failure
       fail-fast: false
       matrix:
-        php-versions: ['8.1', '8.2', '8.3', '8.4']
+        php-versions: ['8.2', '8.3', '8.4']
         databases: ['mysql']
         server-versions: ['master', 'stable32']
+        include:
+          - php-versions: '8.1'
+            databases: 'mysql'
+            server-versions: 'stable32'
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
@@ -156,9 +164,13 @@ jobs:
       # do not stop on another job's failure
       fail-fast: false
       matrix:
-        php-versions: ['8.1']
+        php-versions: ['8.2']
         databases: ['pgsql']
         server-versions: ['master', 'stable32']
+        include:
+          - php-versions: '8.1'
+            databases: 'pgsql'
+            server-versions: 'stable32'
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
     services:
@@ -217,11 +229,11 @@ jobs:
   summary:
 
     runs-on: ubuntu-latest
-    needs: 
+    needs:
       - php
       - mysql
       - pgsql
-    
+
     if: always()
 
     name: php-test-summary

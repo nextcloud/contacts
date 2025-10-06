@@ -10,13 +10,14 @@ import ICAL from 'ical.js'
  * example), so we iterate through the vCard to find these properties and
  * add them to the ical.js design set.
  *
- * @link https://github.com/nextcloud/contacts/issues/42
+ * { @link https://github.com/nextcloud/contacts/issues/42 }
+ *
  * @param {Array} vCard The ical.js vCard
  * @return {boolean} Whether or not the design set has been altered.
  */
-const addGroupedProperties = vCard => {
+function addGroupedProperties(vCard) {
 	let madeChanges = false
-	vCard[1].forEach(prop => {
+	vCard[1].forEach((prop) => {
 		const propGroup = prop[0].split('.')
 
 		// if this is a grouped property, update the designSet
@@ -33,7 +34,7 @@ const addGroupedProperties = vCard => {
  *
  * @return {boolean} Whether or not the design set has been altered.
  */
-const setTypeMultiValueSeparateDQuote = () => {
+function setTypeMultiValueSeparateDQuote() {
 	if (
 		!ICAL.design.vcard.param.type
 		|| ICAL.design.vcard.param.type.multiValueSeparateDQuote !== false

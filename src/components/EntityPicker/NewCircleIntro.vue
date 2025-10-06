@@ -4,13 +4,15 @@
 -->
 
 <template>
-	<Modal size="normal"
+	<Modal
+		size="normal"
 		@close="onCancel">
 		<!-- Wrapper for content & navigation -->
 		<div class="entity-picker">
 			<!-- Search -->
 			<div class="entity-picker__new">
-				<input ref="input"
+				<input
+					ref="input"
 					v-model="circleName"
 					:placeholder="t('contacts', 'New team name')"
 					class="entity-picker__new-input"
@@ -24,7 +26,8 @@
 
 				<!-- Personal circle, TODO: IMPLEMENT -->
 				<template v-if="false">
-					<CheckboxRadioSwitch v-model:model-value="isPersonal"
+					<CheckboxRadioSwitch
+						v-model:model-value="isPersonal"
 						:disabled="loading !== false">
 						{{ t('contacts', 'Personal team') }}
 					</CheckboxRadioSwitch>
@@ -35,7 +38,8 @@
 
 				<!-- Local circle -->
 				<template v-if="isGlobalScale">
-					<CheckboxRadioSwitch v-model:model-value="isLocal"
+					<CheckboxRadioSwitch
+						v-model:model-value="isLocal"
 						:disabled="loading !== false">
 						{{ t('contacts', 'Local team') }}
 					</CheckboxRadioSwitch>
@@ -46,12 +50,14 @@
 			</div>
 
 			<div class="entity-picker__navigation">
-				<button :disabled="loading"
+				<button
+					:disabled="loading"
 					class="navigation__button-left"
 					@click="onCancel">
 					{{ t('contacts', 'Cancel') }}
 				</button>
-				<button :disabled="isEmptyName || loading"
+				<button
+					:disabled="isEmptyName || loading"
 					class="navigation__button-right primary"
 					@click="onSubmit">
 					{{ t('contacts', 'Create team') }}
@@ -67,7 +73,6 @@ import {
 	NcCheckboxRadioSwitch as CheckboxRadioSwitch,
 	NcModal as Modal,
 } from '@nextcloud/vue'
-
 import { CIRCLE_DESC } from '../../models/constants.ts'
 
 export default {
@@ -119,6 +124,7 @@ export default {
 			 */
 			this.$emit('close')
 		},
+
 		onSubmit() {
 			/**
 			 * Emitted when user submit the form

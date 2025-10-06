@@ -5,12 +5,12 @@
 
 export default {
 	name: 'duplicate types',
-	run: contact => {
+	run: (contact) => {
 		try {
 			const props = contact.vCard.getAllProperties()
-				.map(prop => prop.getParameter('type'))
-				.filter(prop => Array.isArray(prop))
-			const fixed = props.map(prop => [...new Set(prop)])
+				.map((prop) => prop.getParameter('type'))
+				.filter((prop) => Array.isArray(prop))
+			const fixed = props.map((prop) => [...new Set(prop)])
 			if (props.join('') !== fixed.join('')) {
 				return true
 			}
@@ -19,11 +19,11 @@ export default {
 		}
 		return false
 	},
-	fix: contact => {
+	fix: (contact) => {
 		let results = false
 		try {
 			const props = contact.vCard.getAllProperties()
-			props.forEach(prop => {
+			props.forEach((prop) => {
 				const icalString = prop.toICALString()
 				// ['WORK', 'pref', 'pref'] => ['WORK', 'pref']
 				const param = prop.getParameter('type')

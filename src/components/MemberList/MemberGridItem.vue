@@ -5,7 +5,8 @@
 
 <template>
 	<div class="member-grid-item">
-		<NcAvatar v-if="isTeam"
+		<NcAvatar
+			v-if="isTeam"
 			:display-name="member.displayName"
 			:is-no-user="true"
 			:size="32">
@@ -13,7 +14,8 @@
 				<IconAccountGroupOutline :size="20" />
 			</template>
 		</NcAvatar>
-		<NcAvatar v-else
+		<NcAvatar
+			v-else
 			:user="member.userId"
 			:display-name="member.displayName"
 			:size="32" />
@@ -38,7 +40,7 @@
 
 		<NcActions v-else>
 			<NcActionText v-if="loading" icon="icon-loading-small">
-				{{ t('contacts', 'Loading …') }}
+				{{ t('contacts', 'Loading …') }}
 			</NcActionText>
 
 			<template v-else>
@@ -49,7 +51,8 @@
 							<IconShieldCheckOutline :size="16" />
 						</template>
 					</NcActionText>
-					<NcActionButton v-for="level in availableLevelsChange"
+					<NcActionButton
+						v-for="level in availableLevelsChange"
 						:key="level"
 						icon=""
 						@click="changeLevel(level)">
@@ -77,19 +80,18 @@
 </template>
 
 <script>
-import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberStatus } from '../../models/constants.ts'
-import Circle from '../../models/circle.ts'
-import { NcAvatar, NcActions, NcActionButton, NcActionSeparator, NcActionText, NcButton } from '@nextcloud/vue'
+import { DialogBuilder, showError } from '@nextcloud/dialogs'
+import { NcActionButton, NcActions, NcActionSeparator, NcActionText, NcAvatar, NcButton } from '@nextcloud/vue'
 import IconAccountGroupOutline from 'vue-material-design-icons/AccountGroupOutline.vue'
 import IconCheckOutline from 'vue-material-design-icons/CheckOutline.vue'
 import IconCloseOutline from 'vue-material-design-icons/CloseOutline.vue'
-import IconDeleteOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconExitToApp from 'vue-material-design-icons/ExitToApp.vue'
 import IconShieldCheckOutline from 'vue-material-design-icons/ShieldCheckOutline.vue'
-
-import { changeMemberLevel } from '../../services/circles.ts'
-import { showError, DialogBuilder } from '@nextcloud/dialogs'
+import IconDeleteOutline from 'vue-material-design-icons/TrashCanOutline.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
+import Circle from '../../models/circle.ts'
+import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberStatus } from '../../models/constants.ts'
+import { changeMemberLevel } from '../../services/circles.ts'
 
 export default {
 	name: 'MemberGridItem',
@@ -107,12 +109,14 @@ export default {
 		IconCloseOutline,
 		NcButton,
 	},
+
 	mixins: [RouterMixin],
 	props: {
 		member: {
 			type: Object,
 			required: true,
 		},
+
 		isTeam: {
 			type: Boolean,
 			default: false,
@@ -246,6 +250,7 @@ export default {
 			return CIRCLES_MEMBER_LEVELS[this.member.level] || null
 		},
 	},
+
 	methods: {
 		/**
 		 * Return the promote/demote member action label

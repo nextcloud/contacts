@@ -3,10 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { ROUTE_USER_GROUP } from './constants'
+import { ROUTE_USER_GROUP } from './constants.ts'
 
 export default class UserGroup {
-
 	private _data: object
 	private _members: string[]
 
@@ -69,5 +68,4 @@ export default class UserGroup {
 	toString(): string {
 		return this.displayName
 	}
-
 }

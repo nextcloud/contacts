@@ -6,20 +6,22 @@
 <template>
 	<div class="import-contact">
 		<template v-if="!isNoAddressbookAvailable">
-			<Button class="import-contact__button-main" @click="toggleModal">
+			<NcButton class="import-contact__button-main" @click="toggleModal">
 				<template #icon>
 					<IconUpload :size="20" />
 				</template>
 				{{ t('contacts', 'Import contacts') }}
-			</Button>
-			<Modal v-if="isOpened"
+			</NcButton>
+			<Modal
+				v-if="isOpened"
 				ref="modal"
 				class="import-contact__modal"
 				:name="t('contacts', 'Import contacts')"
 				@close="toggleModal">
 				<section class="import-contact__modal-addressbook">
 					<h2>{{ t('contacts', 'Import contacts') }}</h2>
-					<NcSelect v-if="!isSingleAddressbook"
+					<NcSelect
+						v-if="!isSingleAddressbook"
 						id="select-addressbook"
 						v-model="selectedAddressbookOption"
 						:allow-empty="false"
@@ -35,21 +37,24 @@
 					</NcSelect>
 				</section>
 				<section class="import-contact__modal-pick">
-					<input id="contact-import"
+					<input
+						id="contact-import"
 						ref="contact-import-input"
 						:disabled="loading || isImporting"
 						type="file"
 						class="hidden-visually"
 						@change="processFile">
-					<Button :disabled="loading"
+					<NcButton
+						:disabled="loading"
 						class="import-contact__button import-contact__button--local"
 						@click="clickImportInput">
 						<template #icon>
 							<IconUpload :size="20" />
 						</template>
 						{{ t('contacts', 'Select local file') }}
-					</Button>
-					<Button variant="primary"
+					</NcButton>
+					<NcButton
+						variant="primary"
 						:disabled="loading"
 						class="import-contact__button import-contact__button--files"
 						@click="openPicker">
@@ -58,11 +63,12 @@
 							<IconFolder :size="20" />
 						</template>
 						{{ t('contacts', 'Import from files') }}
-					</Button>
+					</NcButton>
 				</section>
 			</Modal>
 		</template>
-		<Button v-else
+		<NcButton
+			v-else
 			id="upload"
 			for="contact-import"
 			class="button import-contact__button-disabled import-contact__multiselect-label import-contact__multiselect--no-select">
@@ -70,25 +76,25 @@
 				<IconError :size="20" />
 			</template>
 			{{ t('contacts', 'Importing is disabled because there are no address books available') }}
-		</Button>
+		</NcButton>
 	</div>
 </template>
 
 <script>
-import {
-	NcButton as Button,
-	NcModal as Modal,
-	NcSelect,
-	NcLoadingIcon as IconLoading,
-} from '@nextcloud/vue'
-import { encodePath } from '@nextcloud/paths'
 import { getCurrentUser } from '@nextcloud/auth'
-import { generateRemoteUrl } from '@nextcloud/router'
-import { getFilePickerBuilder } from '@nextcloud/dialogs'
 import axios from '@nextcloud/axios'
-import IconUpload from 'vue-material-design-icons/UploadOutline.vue'
+import { getFilePickerBuilder } from '@nextcloud/dialogs'
+import { encodePath } from '@nextcloud/paths'
+import { generateRemoteUrl } from '@nextcloud/router'
+import {
+	NcLoadingIcon as IconLoading,
+	NcModal as Modal,
+	NcButton,
+	NcSelect,
+} from '@nextcloud/vue'
 import IconError from 'vue-material-design-icons/AlertCircleOutline.vue'
 import IconFolder from 'vue-material-design-icons/FolderOutline.vue'
+import IconUpload from 'vue-material-design-icons/UploadOutline.vue'
 
 const CancelToken = axios.CancelToken
 
@@ -103,7 +109,7 @@ export default {
 	name: 'SettingsImportContacts',
 
 	components: {
-		Button,
+		NcButton,
 		Modal,
 		NcSelect,
 		IconUpload,
@@ -126,30 +132,33 @@ export default {
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
 		},
+
 		// filter out disabled and read-only addressbooks
 		availableAddressbooks() {
 			return this.addressbooks
-				.filter(addressbook => !addressbook.readOnly && addressbook.enabled)
+				.filter((addressbook) => !addressbook.readOnly && addressbook.enabled)
 		},
 
 		// available options for the multiselect
 		options() {
 			return this.availableAddressbooks
-				.map(addressbook => {
+				.map((addressbook) => {
 					return {
 						id: addressbook.id,
 						displayName: addressbook.displayName,
 					}
 				})
 		},
+
 		selectedAddressbook: {
 			get() {
 				if (this.importDestination) {
-					return this.availableAddressbooks.find(addressbook => addressbook.id === this.importDestination.id)
+					return this.availableAddressbooks.find((addressbook) => addressbook.id === this.importDestination.id)
 				}
 				// default is first address book of the list
 				return this.availableAddressbooks[0]
 			},
+
 			set(value) {
 				this.importDestination = value
 			},
@@ -163,6 +172,7 @@ export default {
 			get() {
 				return this.options.find((option) => option.id === this.selectedAddressbook.id)
 			},
+
 			set(value) {
 				this.selectedAddressbook = this.availableAddressbooks
 					.find((addressbook) => addressbook.id === value.id)
@@ -173,6 +183,7 @@ export default {
 		isSingleAddressbook() {
 			return this.options.length === 1
 		},
+
 		isNoAddressbookAvailable() {
 			return this.options.length < 1
 		},
@@ -181,6 +192,7 @@ export default {
 		importState() {
 			return this.$store.getters.getImportState
 		},
+
 		// are we currently importing ?
 		isImporting() {
 			return this.importState.stage !== 'default'
@@ -279,7 +291,6 @@ export default {
 					await this.processLocalFile(path)
 				}
 				this.resetState()
-
 			} catch (error) {
 				this.loading = false
 				console.error('Something wrong happened while picking a file', error)

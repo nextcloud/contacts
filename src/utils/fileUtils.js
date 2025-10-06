@@ -5,10 +5,10 @@
 import camelcase from 'camelcase'
 import { isNumber } from './numberUtils.js'
 
-export const formatObject = function(obj) {
+export function formatObject(obj) {
 	const data = {}
 
-	Object.keys(obj).forEach(key => {
+	Object.keys(obj).forEach((key) => {
 		const data = obj[key]
 
 		// flatten object if any

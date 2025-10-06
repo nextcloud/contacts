@@ -6,7 +6,8 @@
 <template>
 	<div v-if="propModel" class="property">
 		<!-- title if first element -->
-		<PropertyTitle v-if="isFirstProperty && propModel.icon"
+		<PropertyTitle
+			v-if="isFirstProperty && propModel.icon"
 			:property="property"
 			:is-multiple="isMultiple"
 			:is-read-only="isReadOnly"
@@ -17,7 +18,8 @@
 		<div class="property__row">
 			<div class="property__label">
 				<!-- type selector -->
-				<NcSelect v-if="propModel.options"
+				<NcSelect
+					v-if="propModel.options"
 					v-model="localType"
 					:options="options"
 					:searchable="false"
@@ -39,7 +41,8 @@
 
 			<div class="property__value">
 				<!-- Real input where the picker shows -->
-				<DateTimePicker v-if="!isReadOnly"
+				<DateTimePicker
+					v-if="!isReadOnly"
 					:model-value="datePickerValue"
 					:minute-step="10"
 					:lang="lang"
@@ -49,14 +52,16 @@
 					:formatter="dateFormat"
 					@update:model-value="debounceUpdateValue" />
 
-				<input v-else
+				<input
+					v-else
 					:readonly="true"
 					:value="formatDateTime()">
 			</div>
 
 			<!-- props actions -->
 			<div class="property__actions">
-				<PropertyActions v-if="!isReadOnly"
+				<PropertyActions
+					v-if="!isReadOnly"
 					:actions="actions"
 					:property-component="this"
 					@delete="deleteProperty" />
@@ -66,19 +71,18 @@
 </template>
 
 <script>
-import debounce from 'debounce'
+import { getLocale } from '@nextcloud/l10n'
 import moment from '@nextcloud/moment'
 import {
 	NcDateTimePicker as DateTimePicker,
 	NcSelect,
 } from '@nextcloud/vue'
+import debounce from 'debounce'
 import ICAL from 'ical.js'
-import { getLocale } from '@nextcloud/l10n'
 import { toRaw } from 'vue'
-
-import PropertyMixin from '../../mixins/PropertyMixin.js'
-import PropertyTitle from './PropertyTitle.vue'
 import PropertyActions from './PropertyActions.vue'
+import PropertyTitle from './PropertyTitle.vue'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
 
 export default {
 	name: 'PropertyDateTime',
@@ -96,7 +100,6 @@ export default {
 		value: {
 			type: [ICAL.VCardTime, String],
 			default: '',
-			required: true,
 		},
 	},
 
@@ -117,10 +120,12 @@ export default {
 					date: t('contacts', 'Select Date'),
 				},
 			},
+
 			dateFormat: {
 				stringify: (date) => {
 					return date ? this.formatDateTime() : null
 				},
+
 				parse: (value) => {
 					return value ? moment(value, ['LL', 'L']).toDate() : null
 				},
@@ -132,11 +137,11 @@ export default {
 		// make sure the property is valid
 		vcardTimeLocalValue() {
 			if (typeof this.localValue === 'string') {
-				// eslint-disable-next-line new-cap
 				return new ICAL.VCardTime.fromDateAndOrTimeString(this.localValue, this.propType)
 			}
 			return this.localValue
 		},
+
 		datePickerValue() {
 			if (!this.vcardTimeLocalValue) {
 				return this.vcardTimeLocalValue
@@ -284,13 +289,11 @@ export default {
 			// Use input type to properly format our data
 			if (datetime === '') {
 				datetime = moment(datetimeData)
-					.format(
-						this.inputType === 'datetime'
-							? 'llll' // date & time display
-							: this.inputType === 'date'
-								? 'll' // only date
-								: 'LTS', // only time
-					)
+					.format(this.inputType === 'datetime'
+						? 'llll' // date & time display
+						: this.inputType === 'date'
+							? 'll' // only date
+							: 'LTS' /* only time */)
 			}
 
 			return datetimeData.year === null

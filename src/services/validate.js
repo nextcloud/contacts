@@ -12,12 +12,10 @@ import checks from './checks/index.js'
 export default function(contact) {
 	let result = false
 	if (contact instanceof Contact) {
-
 		// Going through every checks
-		checks.forEach(check => {
+		checks.forEach((check) => {
 			try {
 				if (check.run(contact)) {
-
 					// A fix is needed, running ⏳
 					if (!check.fix(contact)) {
 						// FAILURE 🙅

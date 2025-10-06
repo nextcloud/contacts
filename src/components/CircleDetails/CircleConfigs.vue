@@ -11,7 +11,8 @@
 			</ContentHeading>
 
 			<ul class="circle-config__list">
-				<CheckboxRadioSwitch v-for="(label, config) in configs"
+				<CheckboxRadioSwitch
+					v-for="(label, config) in configs"
 					:key="'circle-config' + config"
 					:model-value="isChecked(config)"
 					:loading="loading === config"
@@ -26,13 +27,12 @@
 </template>
 
 <script>
+import { showError } from '@nextcloud/dialogs'
 import { NcCheckboxRadioSwitch as CheckboxRadioSwitch } from '@nextcloud/vue'
 import ContentHeading from './ContentHeading.vue'
-
-import { PUBLIC_CIRCLE_CONFIG } from '../../models/constants.ts'
 import Circle from '../../models/circle.ts'
+import { PUBLIC_CIRCLE_CONFIG } from '../../models/constants.ts'
 import { CircleEdit, editCircle } from '../../services/circles.ts'
-import { showError } from '@nextcloud/dialogs'
 
 export default {
 	name: 'CircleConfigs',
@@ -74,10 +74,8 @@ export default {
 			this.loading = config
 			const prevConfig = this.circle.config
 			if (checked) {
-				// eslint-disable-next-line vue/no-mutating-props
 				config = prevConfig | config
 			} else {
-				// eslint-disable-next-line vue/no-mutating-props
 				config = prevConfig & ~config
 			}
 
@@ -85,7 +83,6 @@ export default {
 				const circleData = await editCircle(this.circle.id, CircleEdit.Config, config)
 				// eslint-disable-next-line vue/no-mutating-props
 				this.circle.config = circleData.config
-
 			} catch (error) {
 				console.error('Unable to edit circle config', prevConfig, config, error)
 				showError(t('contacts', 'An error happened during the config change'))

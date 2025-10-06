@@ -3,7 +3,8 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<AppNavigationItem :key="circle.key"
+	<AppNavigationItem
+		:key="circle.key"
 		:name="circle.displayName"
 		:to="circle.router">
 		<template #icon>
@@ -16,10 +17,11 @@
 				<template #icon>
 					<IconLoading :size="20" />
 				</template>
-				{{ t('contacts', 'Loading …') }}
+				{{ t('contacts', 'Loading …') }}
 			</ActionText>
 			<template v-else>
-				<ActionButton v-if="circle.canManageMembers"
+				<ActionButton
+					v-if="circle.canManageMembers"
 					:close-after-click="true"
 					@click="addMemberToCircle">
 					<template #icon>
@@ -29,14 +31,16 @@
 				</ActionButton>
 
 				<!-- copy circle link -->
-				<ActionLink :href="circleUrl"
+				<ActionLink
+					:href="circleUrl"
 					:icon="copyLinkIcon"
 					@click.stop.prevent="copyToClipboard(circleUrl)">
 					{{ copyButtonText }}
 				</ActionLink>
 
 				<!-- leave circle -->
-				<ActionButton v-if="circle.canLeave"
+				<ActionButton
+					v-if="circle.canLeave"
 					@click="confirmLeaveCircle">
 					{{ t('contacts', 'Leave team') }}
 					<template #icon>
@@ -45,7 +49,8 @@
 				</ActionButton>
 
 				<!-- join circle -->
-				<ActionButton v-else-if="!circle.isMember && circle.canJoin"
+				<ActionButton
+					v-else-if="!circle.isMember && circle.canJoin"
 					:disabled="loadingJoin"
 					@click="joinCircle">
 					{{ joinButtonTitle }}
@@ -55,7 +60,8 @@
 				</ActionButton>
 
 				<!-- delete circle -->
-				<ActionButton v-if="circle.canDelete"
+				<ActionButton
+					v-if="circle.canDelete"
 					@click="confirmDeleteCircle">
 					<template #icon>
 						<IconDelete :size="20" />
@@ -66,7 +72,8 @@
 		</template>
 
 		<template #counter>
-			<NcCounterBubble v-if="memberCount > 0"
+			<NcCounterBubble
+				v-if="memberCount > 0"
 				:count="memberCount" />
 		</template>
 	</AppNavigationItem>
@@ -77,21 +84,19 @@ import {
 	NcActionButton as ActionButton,
 	NcActionLink as ActionLink,
 	NcActionText as ActionText,
-	NcCounterBubble,
 	NcAppNavigationItem as AppNavigationItem,
 	NcLoadingIcon as IconLoading,
+	NcCounterBubble,
 } from '@nextcloud/vue'
-
-import ExitToApp from 'vue-material-design-icons/ExitToApp.vue'
-import IconCog from 'vue-material-design-icons/CogOutline.vue'
-import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
-import LocationEnter from 'vue-material-design-icons/LocationEnter.vue'
-import AccountStar from 'vue-material-design-icons/AccountStarOutline.vue'
 import AccountGroup from 'vue-material-design-icons/AccountGroup.vue'
 import AccountGroupOutline from 'vue-material-design-icons/AccountGroupOutline.vue'
-
-import Circle from '../../models/circle.ts'
+import AccountStar from 'vue-material-design-icons/AccountStarOutline.vue'
+import IconCog from 'vue-material-design-icons/CogOutline.vue'
+import ExitToApp from 'vue-material-design-icons/ExitToApp.vue'
+import LocationEnter from 'vue-material-design-icons/LocationEnter.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import CircleActionsMixin from '../../mixins/CircleActionsMixin.js'
+import Circle from '../../models/circle.ts'
 import UserGroup from '../../models/userGroup.ts'
 
 export default {

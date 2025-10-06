@@ -1,14 +1,13 @@
+import { showError } from '@nextcloud/dialogs'
 /**
  * SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 import { emit } from '@nextcloud/event-bus'
-import { showError } from '@nextcloud/dialogs'
-
-import { joinCircle } from '../services/circles.ts'
 import Circle from '../models/circle.ts'
-import CopyToClipboardMixin from './CopyToClipboardMixin.js'
 import Member from '../models/member.ts'
+import { joinCircle } from '../services/circles.ts'
+import CopyToClipboardMixin from './CopyToClipboardMixin.js'
 
 export default {
 
@@ -86,7 +85,6 @@ export default {
 			} finally {
 				this.loadingAction = false
 			}
-
 		},
 
 		async joinCircle() {
@@ -106,7 +104,6 @@ export default {
 			} finally {
 				this.loadingJoin = false
 			}
-
 		},
 
 		confirmDeleteCircle() {
@@ -144,7 +141,9 @@ export default {
 			try {
 				// Avoid VueRouter NavigationDuplicated
 				await this.$router.push(this.circle.router)
-			} catch (error) {}
+			} catch (error) {
+				console.error('Could not open circle member picker', error)
+			}
 			emit('contacts:circles:append', this.circle.id)
 		},
 	},

@@ -3,20 +3,17 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-// eslint-disable-next-line import/no-unresolved, n/no-missing-import
-import 'vite/modulepreload-polyfill'
-
-// Global scss sheets
-import './css/contacts.scss'
-
-// Dialogs css
-import '@nextcloud/dialogs/style.css'
-
+import { createPinia } from 'pinia'
 import { createApp } from 'vue'
 import ReadOnlyContactDetails from './views/ReadOnlyContactDetails.vue'
-import { createPinia } from 'pinia'
-import store from './store/index.js'
 import LegacyGlobalMixin from './mixins/LegacyGlobalMixin.js'
+import store from './store/index.js'
+
+import 'vite/modulepreload-polyfill'
+// Global scss sheets
+import './css/contacts.scss'
+// Dialogs css
+import '@nextcloud/dialogs/style.css'
 
 declare global {
 	interface Window {
@@ -32,9 +29,9 @@ declare global {
 				mountContactDetails(
 					el: HTMLElement,
 					contactEmailAddress: string,
-				): Promise<{ $destroy(): void }>,
-			},
-		},
+				): Promise<{ $destroy(): void }>
+			}
+		}
 	}
 }
 

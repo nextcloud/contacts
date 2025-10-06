@@ -5,7 +5,8 @@
 
 <template>
 	<!-- If not in the rfcProps then we don't want to display it -->
-	<component :is="componentInstance"
+	<component
+		:is="componentInstance"
 		ref="component"
 		v-model:select-type="selectType"
 		v-model:value="value"
@@ -29,14 +30,13 @@
 
 <script>
 import ICAL from 'ical.js'
-import rfcProps from '../../models/rfcProps.js'
-import Contact from '../../models/contact.js'
-
-import OrgChartsMixin from '../../mixins/OrgChartsMixin.js'
-import PropertyText from '../Properties/PropertyText.vue'
-import PropertyMultipleText from '../Properties/PropertyMultipleText.vue'
 import PropertyDateTime from '../Properties/PropertyDateTime.vue'
+import PropertyMultipleText from '../Properties/PropertyMultipleText.vue'
 import PropertySelect from '../Properties/PropertySelect.vue'
+import PropertyText from '../Properties/PropertyText.vue'
+import OrgChartsMixin from '../../mixins/OrgChartsMixin.js'
+import Contact from '../../models/contact.js'
+import rfcProps from '../../models/rfcProps.js'
 import { matchTypes } from '../../utils/matchTypes.ts'
 
 export default {
@@ -59,6 +59,7 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+
 		/**
 		 * Is it the last property of its kind
 		 */
@@ -71,18 +72,22 @@ export default {
 			type: Contact,
 			default: null,
 		},
+
 		localContact: {
 			type: Contact,
 			default: null,
 		},
+
 		contacts: {
 			type: Array,
 			default: () => [],
 		},
+
 		bus: {
 			type: Object,
 			required: true,
 		},
+
 		isReadOnly: {
 			type: Boolean,
 			required: true,
@@ -179,7 +184,7 @@ export default {
 				})
 			} else {
 				return this.propModel.options.reduce((list, option) => {
-					if (!list.find(search => search.name === option.name)) {
+					if (!list.find((search) => search.name === option.name)) {
 						list.push(option)
 					}
 					return list
@@ -223,12 +228,11 @@ export default {
 					}
 				}
 				if (this.propModel && this.propModel.options && this.type) {
-
 					const selectedType = this.type
 						// vcard 3.0 save pref alongside TYPE
-						.filter(type => type !== 'pref')
+						.filter((type) => type !== 'pref')
 						// we only use uppercase strings
-						.map(str => str.toUpperCase())
+						.map((str) => str.toUpperCase())
 
 					const matchingType = matchTypes(
 						selectedType,
@@ -242,7 +246,7 @@ export default {
 				if (this.type) {
 					// vcard 3.0 save pref alongside TYPE
 					const selectedType = this.type
-						.filter(type => type !== 'pref')
+						.filter((type) => type !== 'pref')
 						.join(',')
 					if (selectedType.trim() !== '') {
 						return {
@@ -253,6 +257,7 @@ export default {
 				}
 				return null
 			},
+
 			set(data) {
 				// Skip setting type if select is cleared
 				if (!data) {
@@ -272,8 +277,8 @@ export default {
 
 					// checking if there is any other property in this group
 					const groups = this.localContact.jCal[1]
-						.map(prop => prop[0])
-						.filter(name => name.startsWith(`${this.propGroup[0]}.`))
+						.map((prop) => prop[0])
+						.filter((name) => name.startsWith(`${this.propGroup[0]}.`))
 					if (groups.length === 1) {
 						// then this prop is the latest of its group
 						// -> converting back to simple prop
@@ -301,17 +306,20 @@ export default {
 					// Try to find the matching contact by display name
 					// TODO: this only *shows* the display name but doesn't assign the missing UID
 					const displayName = this.property.getFirstValue()
-					const other = this.otherContacts(this.contact).find(contact => contact.displayName === displayName)
+					const other = this.otherContacts(this.contact).find((contact) => contact.displayName === displayName)
 					return other?.key
 				}
 				return this.property.getFirstValue()
 			},
+
 			set(data) {
 				if (this.property.isMultiValue) {
 					// differences between values types :x;x;x;x;x and x,x,x,x,x
-					this.property.isStructuredValue
-						? this.property.setValues([data])
-						: this.property.setValues(data)
+					if (this.property.isStructuredValue) {
+						this.property.setValues([data])
+					} else {
+						this.property.setValues(data)
+					}
 				} else {
 					if (this.propName === 'x-managersname') {
 						const manager = this.$store.getters.getContact(data)
@@ -334,6 +342,7 @@ export default {
 				}
 				return null
 			},
+
 			set(data) {
 				this.property.setParameter('type', data)
 			},
@@ -344,6 +353,7 @@ export default {
 			get() {
 				return this.property.getParameter('pref')
 			},
+
 			set(data) {
 				this.property.setParameter('pref', data)
 			},

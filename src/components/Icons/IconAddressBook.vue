@@ -3,11 +3,13 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<span :aria-hidden="!title"
+	<span
+		:aria-hidden="!title"
 		:aria-label="title"
 		class="material-design-icon icon-address-book"
 		role="img">
-		<svg :fill="fillColor"
+		<svg
+			:fill="fillColor"
 			class="material-design-icon__svg"
 			:width="size"
 			:height="size"
@@ -27,10 +29,12 @@ export default {
 			type: String,
 			default: '',
 		},
+
 		size: {
 			type: Number,
 			default: 20,
 		},
+
 		fillColor: {
 			type: String,
 			default: 'currentColor',

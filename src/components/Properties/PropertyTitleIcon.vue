@@ -31,30 +31,30 @@
 </template>
 
 <script>
-import IconPlus from 'vue-material-design-icons/Plus.vue'
-import IconAddressBook from '../Icons/IconAddressBook.vue'
-import IconEmail from 'vue-material-design-icons/EmailOutline.vue'
-import IconPhone from 'vue-material-design-icons/PhoneOutline.vue'
-import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
-import IconAccount from 'vue-material-design-icons/AccountOutline.vue'
-import IconPencil from 'vue-material-design-icons/PencilOutline.vue'
-import IconMapMaker from 'vue-material-design-icons/MapMarkerOutline.vue'
+import IconAccountBoxMultiple from 'vue-material-design-icons/AccountBoxMultipleOutline.vue'
 import IconMultiple from 'vue-material-design-icons/AccountMultipleOutline.vue'
-import IconWeb from 'vue-material-design-icons/Web.vue'
-import IconCakeVariant from 'vue-material-design-icons/CakeVariantOutline.vue'
-import IconMessageReplyText from 'vue-material-design-icons/MessageReplyTextOutline.vue'
-import IconHeart from 'vue-material-design-icons/HeartOutline.vue'
+import IconAccount from 'vue-material-design-icons/AccountOutline.vue'
 import IconAccountSupervisor from 'vue-material-design-icons/AccountSupervisorOutline.vue'
-import IconCalendarHeartOutline from 'vue-material-design-icons/CalendarHeartOutline.vue'
-import IconCoffin from 'vue-material-design-icons/Coffin.vue'
+import IconAccountSwitch from 'vue-material-design-icons/AccountSwitchOutline.vue'
 import IconBadgeAccountHorizontal from 'vue-material-design-icons/BadgeAccountHorizontalOutline.vue'
+import IconCakeVariant from 'vue-material-design-icons/CakeVariantOutline.vue'
+import IconCalendarHeartOutline from 'vue-material-design-icons/CalendarHeartOutline.vue'
 import IconCloud from 'vue-material-design-icons/CloudOutline.vue'
-import IconMessageProcessing from 'vue-material-design-icons/MessageProcessingOutline.vue'
+import IconCoffin from 'vue-material-design-icons/Coffin.vue'
+import IconEmail from 'vue-material-design-icons/EmailOutline.vue'
+import IconHeart from 'vue-material-design-icons/HeartOutline.vue'
+import IconMapMaker from 'vue-material-design-icons/MapMarkerOutline.vue'
 import IconMap from 'vue-material-design-icons/MapOutline.vue'
+import IconMessageProcessing from 'vue-material-design-icons/MessageProcessingOutline.vue'
+import IconMessageReplyText from 'vue-material-design-icons/MessageReplyTextOutline.vue'
+import IconPencil from 'vue-material-design-icons/PencilOutline.vue'
+import IconPhone from 'vue-material-design-icons/PhoneOutline.vue'
+import IconPlus from 'vue-material-design-icons/Plus.vue'
 import IconText from 'vue-material-design-icons/Text.vue'
 import IconTranslateVariant from 'vue-material-design-icons/TranslateVariant.vue'
-import IconAccountBoxMultiple from 'vue-material-design-icons/AccountBoxMultipleOutline.vue'
-import IconAccountSwitch from 'vue-material-design-icons/AccountSwitchOutline.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
+import IconWeb from 'vue-material-design-icons/Web.vue'
+import IconAddressBook from '../Icons/IconAddressBook.vue'
 export default {
 	name: 'PropertyTitleIcon',
 	components: {
@@ -83,6 +83,7 @@ export default {
 		IconAccountBoxMultiple,
 		IconAccountSwitch,
 	},
+
 	props: {
 		icon: {
 			type: String,
@@ -92,6 +93,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .material-design-icon {
 	opacity: 0.8;

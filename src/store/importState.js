@@ -75,7 +75,7 @@ const mutations = {
 }
 
 const getters = {
-	getImportState: state => state.importState,
+	getImportState: (state) => state.importState,
 }
 
 const actions = {

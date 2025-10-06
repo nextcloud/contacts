@@ -11,7 +11,7 @@ export default {
 	name: 'invalid REV',
 	silent: true,
 
-	run: contact => {
+	run: (contact) => {
 		try {
 			const hasRev = contact.vCard.hasProperty('rev')
 			return !hasRev
@@ -20,7 +20,7 @@ export default {
 		}
 	},
 
-	fix: contact => {
+	fix: (contact) => {
 		try {
 			// removing old invalid data
 			contact.vCard.removeProperty('rev')

@@ -3,13 +3,13 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { MemberLevel, MemberLevels, MemberType, MemberTypes } from './constants'
-import Circle from './circle'
+import type { MemberLevel, MemberType } from './constants.ts'
+
 import logger from '../services/logger.js'
+import Circle from './circle.ts'
+import { MemberLevels, MemberTypes } from './constants.ts'
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export default class Member {
-
 	_data: any = {}
 	_circle: Circle
 
@@ -146,5 +146,4 @@ export default class Member {
 		this.circle.deleteMember(this)
 		this._data = undefined
 	}
-
 }

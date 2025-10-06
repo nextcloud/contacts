@@ -3,8 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { n, t } from '@nextcloud/l10n'
 import logger from '../services/logger.js'
-import { t, n } from '@nextcloud/l10n'
 
 /**
  * Mixin for translations and legacy stuff.
