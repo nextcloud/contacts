@@ -22,7 +22,7 @@ jobs:
       matrix:
         php-versions: ['8.1']
         databases: ['sqlite']
-        server-versions: ['master', 'stable31', 'stable30']
+        server-versions: ['stable32', 'stable31', 'stable30']
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
@@ -60,12 +60,12 @@ jobs:
           php -S localhost:8080 &
 
       - name: PHPUnit & coverage
-        if: ${{ matrix.server-versions == 'master' }}
+        if: ${{ matrix.server-versions == 'stable32' }}
         working-directory: apps/${{ env.APP_NAME }}
         run: ./vendor/phpunit/phpunit/phpunit --coverage-clover coverage.xml -c phpunit.xml
 
       - name: PHPUnit
-        if: ${{ matrix.server-versions != 'master' }}
+        if: ${{ matrix.server-versions != 'stable32' }}
         working-directory: apps/${{ env.APP_NAME }}
         run: ./vendor/phpunit/phpunit/phpunit -c phpunit.xml
 
@@ -88,7 +88,7 @@ jobs:
       matrix:
         php-versions: ['8.1', '8.2', '8.3', '8.4']
         databases: ['mysql']
-        server-versions: ['master', 'stable31', 'stable30']
+        server-versions: ['stable32', 'stable31', 'stable30']
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
@@ -158,7 +158,7 @@ jobs:
       matrix:
         php-versions: ['8.1']
         databases: ['pgsql']
-        server-versions: ['master']
+        server-versions: ['stable32']
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
     services:
