@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Details" : "Detailer",
     "Contacts" : "Kontakter",
-    "Loading …" : "Loading …",
     "Rename" : "Ëmbenennen",
     "Delete" : "Läschen",
     "Copy link" : "Link kopéieren",
@@ -44,6 +43,7 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Voice",
     "Relative" : "Relativ",
-    "Unknown" : "Onbekannt"
+    "Unknown" : "Onbekannt",
+    "Loading …" : "Loading …"
 },
 "nplurals=2; plural=(n != 1);");

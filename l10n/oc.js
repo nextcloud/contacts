@@ -4,7 +4,6 @@ OC.L10N.register(
     "Details" : "Detalhs",
     "All contacts" : "Totes los contactes",
     "Contacts" : "Contactes",
-    "Loading …" : "Cargament…",
     "General settings" : "Paramètres generals",
     "Rename" : "Renomenar",
     "Send email" : "Enviar email",
@@ -23,7 +22,6 @@ OC.L10N.register(
     "Title" : "Títol",
     "Company" : "Entrepresa",
     "Groups" : "Gropes",
-    "Search contacts …" : "Cercar pels contactes…",
     "No results" : "Cap de resultat",
     "Pending" : "En espèra",
     "None" : "Pas cap",
@@ -62,6 +60,8 @@ OC.L10N.register(
     "Voice" : "Votz",
     "Relative" : "Relatiu",
     "Unknown" : "Desconegut",
-    "Spoken languages" : "Lengas parladas"
+    "Spoken languages" : "Lengas parladas",
+    "Loading …" : "Cargament…",
+    "Search contacts …" : "Cercar pels contactes…"
 },
 "nplurals=2; plural=(n > 1);");

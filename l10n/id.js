@@ -23,7 +23,6 @@ OC.L10N.register(
     "Invalid image" : "Gambar tidak sah",
     "Name" : "Nama",
     "Title" : "Judul",
-    "Search contacts …" : "Cari kontak ...",
     "No results" : "Tidak ada hasil",
     "Pending" : "Tunggu",
     "None" : "Tidak ada",
@@ -67,6 +66,7 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Suara",
     "Social network" : "Media sosial",
-    "Unknown" : "Tidak diketahui"
+    "Unknown" : "Tidak diketahui",
+    "Search contacts …" : "Cari kontak ..."
 },
 "nplurals=1; plural=0;");

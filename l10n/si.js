@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "විස්තර",
-    "Loading …" : "පූරණය වෙමින් …",
     "Rename" : "නැවත නම් කරන්න",
     "Copy link" : "සබැඳිය පිටපත් කරන්න",
     "Download" : "බාගන්න",
@@ -49,6 +48,7 @@ OC.L10N.register(
     "Spouse" : "කලත්‍රයා",
     "Mother" : "මව",
     "Father" : "පියා",
-    "Unknown" : "නොදන්නා"
+    "Unknown" : "නොදන්නා",
+    "Loading …" : "පූරණය වෙමින් …"
 },
 "nplurals=2; plural=(n != 1);");

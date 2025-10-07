@@ -2,7 +2,6 @@ OC.L10N.register(
     "contacts",
     {
     "Contacts" : "Contacts",
-    "Loading contacts …" : "Loading contacts …",
     "Rename" : "Nomini o'zgartirish",
     "Delete" : "O'chirish",
     "Download" : "Yuklab olish",
@@ -12,7 +11,6 @@ OC.L10N.register(
     "Invalid image" : "Invalid image",
     "Name" : "Name",
     "Title" : "Sarlavha",
-    "Search contacts …" : "Search contacts …",
     "Pending" : "Pending",
     "None" : "Yo'q",
     "Member" : "Member",
@@ -20,6 +18,8 @@ OC.L10N.register(
     "Admin" : "Admin",
     "Users" : "Users",
     "Notes" : "Notes",
-    "Unknown" : "Unknown"
+    "Unknown" : "Unknown",
+    "Loading contacts …" : "Loading contacts …",
+    "Search contacts …" : "Search contacts …"
 },
 "nplurals=1; plural=0;");
