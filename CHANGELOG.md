@@ -1,3 +1,27 @@
+## [7.3.3](https://github.com/nextcloud/contacts/compare/v7.3.2...v7.3.3) (2025-10-07)
+
+
+### Bug Fixes
+
+* allow team owners to transfer ownership ([0251e33](https://github.com/nextcloud/contacts/commit/0251e330cf257e1b59316eb08e3c6d6e3688d033))
+* detect addressbook ACL's properly ([02d615d](https://github.com/nextcloud/contacts/commit/02d615d2c88cc98a6495e2f96b5405a95518df4d))
+* **l10n:** Update translations from Transifex ([5cfc94d](https://github.com/nextcloud/contacts/commit/5cfc94d9dfaf4f2e2b5387cedada608950ec6e90))
+* **l10n:** Update translations from Transifex ([00e3fd4](https://github.com/nextcloud/contacts/commit/00e3fd40414a2bfbc8dc302ec1e407efbba08e6a))
+* **l10n:** Update translations from Transifex ([a09cecb](https://github.com/nextcloud/contacts/commit/a09cecb962df135896dd9bd2bdd0b4aa76b2f797))
+* **l10n:** Update translations from Transifex ([00e3460](https://github.com/nextcloud/contacts/commit/00e346098e25f18b5070c513e21640bc0a439561))
+* **l10n:** Update translations from Transifex ([0bd7c47](https://github.com/nextcloud/contacts/commit/0bd7c470473c4804550e4a177ccf8a36102252a4))
+* **l10n:** Update translations from Transifex ([fd68d49](https://github.com/nextcloud/contacts/commit/fd68d49df4e0a65c2fdabca545299b62b8415791))
+* **l10n:** Update translations from Transifex ([987f84b](https://github.com/nextcloud/contacts/commit/987f84b9cb6c0689bf9bc25d14f26b4f4fc26bab))
+* **l10n:** Update translations from Transifex ([c4c9693](https://github.com/nextcloud/contacts/commit/c4c96934128b3a7724fdaebb8cdc331caf66750d))
+* **l10n:** Update translations from Transifex ([a174cfb](https://github.com/nextcloud/contacts/commit/a174cfbb464df835c49058acb5b229d932a1bb25))
+* **l10n:** Update translations from Transifex ([74f38ab](https://github.com/nextcloud/contacts/commit/74f38ab741de9b0fd6c2b3a2711ba752ebbe4f10))
+* **l10n:** Update translations from Transifex ([a324cea](https://github.com/nextcloud/contacts/commit/a324ceaa43ace5429cb77127d41238f94e3bd17b))
+* **l10n:** Update translations from Transifex ([a564aca](https://github.com/nextcloud/contacts/commit/a564acabd0d454c054a433b276b574c3125a18d9))
+* **l10n:** Update translations from Transifex ([e313775](https://github.com/nextcloud/contacts/commit/e313775bb906cdf8bfaa511b11b66d8a747e5074))
+* **l10n:** Update translations from Transifex ([9780d21](https://github.com/nextcloud/contacts/commit/9780d21d28a20d82b53aa29b5a29af8ae90ed303))
+
+
+
 ## [7.3.2](https://github.com/nextcloud/contacts/compare/v7.3.1...v7.3.2) (2025-09-22)
 
 
