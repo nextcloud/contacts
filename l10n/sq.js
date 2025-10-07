@@ -7,7 +7,6 @@ OC.L10N.register(
     "A contacts app for Nextcloud" : "Një aplikacion kontaktesh për Nextcloud",
     "Copy to full name" : "Kopje të emrit të plotë ",
     "Omit year" : "Shmang vitin",
-    "Loading contacts …" : "Duke ngarkuar kontaktet ...",
     "General settings" : "Opsjonet e Pergjithshme",
     "Rename" : "Riemëro",
     "Send email" : "Dërgo email",
@@ -43,7 +42,6 @@ OC.L10N.register(
     "Company" : "Kompania",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Ky kontakt ishte prishur dhe u rregullua. Ju lutem rishikoni përmbajtjen dhe klikoni këtu për ta ruajtur atë.",
     "Generate QR Code" : "Gjeneroni Kodin QR",
-    "Search contacts …" : "Kërko kontakte ...",
     "No results" : "Asnjë rezultat",
     "Pending" : "Në Pritje të Konfirmimit",
     "Select Date" : "Zgjidhni Datën",
@@ -111,6 +109,8 @@ OC.L10N.register(
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "Unknown" : "I/E panjohur"
+    "Unknown" : "I/E panjohur",
+    "Loading contacts …" : "Duke ngarkuar kontaktet ...",
+    "Search contacts …" : "Kërko kontakte ..."
 },
 "nplurals=2; plural=(n != 1);");

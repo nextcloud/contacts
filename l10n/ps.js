@@ -10,13 +10,13 @@ OC.L10N.register(
     "Cancel" : "پرېښول",
     "Invalid image" : "انځور سم نه دی",
     "Name" : "نوم",
-    "Search contacts …" : "اړيکي پلټل ...",
     "Pending" : "د انتظار په حال کې",
     "Close" : "بندول",
     "Admin" : "ستر کارن",
     "Notes" : "شسیب",
     "Home" : "کور",
     "Work" : "دفتر",
-    "Other" : "نور"
+    "Other" : "نور",
+    "Search contacts …" : "اړيکي پلټل ..."
 },
 "nplurals=2; plural=(n != 1);");

@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Details" : "ລາຍລະອຽດ",
     "Contacts" : "ຕິດຕໍ່",
-    "Loading …" : "ກຳລັງໂຫຼດ",
     "Rename" : "ປ່ຽນຊື່",
     "Delete" : "ລຶບ",
     "Copy link" : "ສຳເນົາລິງ",
@@ -14,7 +13,6 @@ OC.L10N.register(
     "Invalid image" : "ບໍ່ມີຮູບພາບ",
     "Name" : "ຊື່",
     "Company" : "ບໍລິສັດ",
-    "Search contacts …" : "ຄົ້ນຫາຕິດຕໍ່ ...",
     "No results" : "ບໍ່ມີຜົນ",
     "Pending" : "ທີ່ກໍາລັງລໍຖ້າ",
     "None" : "ບໍ່ມີ",
@@ -30,6 +28,8 @@ OC.L10N.register(
     "Address" : "ທີ່ຢູ່",
     "City" : "ເມືອງ",
     "Country" : "ປະເທດ",
-    "Unknown" : "ບໍ່ຮູ້"
+    "Unknown" : "ບໍ່ຮູ້",
+    "Loading …" : "ກຳລັງໂຫຼດ",
+    "Search contacts …" : "ຄົ້ນຫາຕິດຕໍ່ ..."
 },
 "nplurals=1; plural=0;");

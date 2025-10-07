@@ -4,8 +4,6 @@ OC.L10N.register(
     "Details" : "Detalles",
     "All contacts" : "Todos los contactos",
     "Contacts" : "Contactos",
-    "Loading contacts …" : "Cargando contactos ...",
-    "Loading …" : "Cargando …",
     "General settings" : "Configuraciones generales",
     "Rename" : "Renombrar",
     "Send email" : "Enviar correo electrónico",
@@ -25,7 +23,6 @@ OC.L10N.register(
     "Address book" : "Libreta de direcciones",
     "Name" : "Nombre",
     "Title" : "Título",
-    "Search contacts …" : "Buscar contactos ...",
     "No results" : "No hay resultados",
     "Pending" : "Pendiente",
     "None" : "Ninguno",
@@ -92,6 +89,9 @@ OC.L10N.register(
     "Gender" : "Género",
     "Female" : "Femenino",
     "Male" : "Masculino",
-    "Unknown" : "Desconocido"
+    "Unknown" : "Desconocido",
+    "Loading contacts …" : "Cargando contactos ...",
+    "Loading …" : "Cargando …",
+    "Search contacts …" : "Buscar contactos ..."
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

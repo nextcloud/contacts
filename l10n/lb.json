@@ -1,7 +1,6 @@
 { "translations": {
     "Details" : "Detailer",
     "Contacts" : "Kontakter",
-    "Loading …" : "Loading …",
     "Rename" : "Ëmbenennen",
     "Delete" : "Läschen",
     "Copy link" : "Link kopéieren",
@@ -42,6 +41,7 @@
     "Pager" : "Pager",
     "Voice" : "Voice",
     "Relative" : "Relativ",
-    "Unknown" : "Onbekannt"
+    "Unknown" : "Onbekannt",
+    "Loading …" : "Loading …"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

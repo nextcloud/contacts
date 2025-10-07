@@ -1,6 +1,5 @@
 { "translations": {
     "Contacts" : "Contacts",
-    "Loading contacts …" : "Loading contacts …",
     "Rename" : "Nomini o'zgartirish",
     "Delete" : "O'chirish",
     "Download" : "Yuklab olish",
@@ -10,7 +9,6 @@
     "Invalid image" : "Invalid image",
     "Name" : "Name",
     "Title" : "Sarlavha",
-    "Search contacts …" : "Search contacts …",
     "Pending" : "Pending",
     "None" : "Yo'q",
     "Member" : "Member",
@@ -18,6 +16,8 @@
     "Admin" : "Admin",
     "Users" : "Users",
     "Notes" : "Notes",
-    "Unknown" : "Unknown"
+    "Unknown" : "Unknown",
+    "Loading contacts …" : "Loading contacts …",
+    "Search contacts …" : "Search contacts …"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

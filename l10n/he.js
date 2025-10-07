@@ -10,13 +10,11 @@ OC.L10N.register(
     "Copy to full name" : "העתקת שם מלא",
     "Omit year" : "השמטת שנה",
     "Allow updating avatars from social media" : "לאפשר לעדכן תמונה ייצוגית מרשתות חברתיות",
-    "Loading contacts …" : "אנשי הקשר נטענים…",
     "There are no contacts yet" : "אין עדיין אנשי קשר",
     "Create contact" : "צור איש קשר",
     "There are no contacts in this group" : "אין אנשי קשר בקבוצה זו",
     "Create contacts" : "צור אנשי קשר",
     "Add contacts" : "הוספת אנשי קשר",
-    "Loading …" : "בטעינה",
     "General settings" : "הגדרות כלליות",
     "Update avatars from social media" : "עדכן אווטרים מהמדיה החברתית",
     "(refreshed once per week)" : "(רענן פעם בשבוע)",
@@ -78,7 +76,6 @@ OC.L10N.register(
     "Generate QR Code" : "יצירת קוד QR",
     "Pick an address book" : "נא לבחור ספר כתובות",
     "Select address book" : "בחירת ספר כתובות",
-    "Search contacts …" : "חיפוש אנשי קשר…",
     "Remove {type}" : "הסר את {type}",
     "Add to group" : "הוסף לקבוצה",
     "Search {types}" : "חפש {types}",
@@ -168,6 +165,9 @@ OC.L10N.register(
     "Unknown" : "לא ידוע",
     "Spoken languages" : "שפות מדוברות",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["הקריאה של איש קשר אחד נכשלה","הקריאה של {failed} אנשי קשר נכשלה","הקריאה של {failed} אנשי קשר נכשלה"],
-    "Unable to delete contact" : "לא ניתן למחוק איש קשר"
+    "Unable to delete contact" : "לא ניתן למחוק איש קשר",
+    "Loading contacts …" : "אנשי הקשר נטענים…",
+    "Loading …" : "בטעינה",
+    "Search contacts …" : "חיפוש אנשי קשר…"
 },
 "nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;");

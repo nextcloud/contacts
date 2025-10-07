@@ -5,7 +5,6 @@ OC.L10N.register(
     "All contacts" : "Alle kontakte",
     "Contacts" : "Kontakte",
     "A contacts app for Nextcloud" : "’n Kontakte-toep vir Nextcloud",
-    "Loading …" : "Laai …",
     "Rename" : "Hernoem",
     "Delete" : "Skrap",
     "Copied" : "Gekopieer",
@@ -26,7 +25,6 @@ OC.L10N.register(
     "Name" : "Naam",
     "Title" : "Titel",
     "Company" : "Maatskappy",
-    "Search contacts …" : "Soek kontakte …",
     "Pending" : "Hangend",
     "Select Date" : "Kies Datum",
     "Select type" : "Kies tipe",
@@ -94,6 +92,8 @@ OC.L10N.register(
     "Gender" : "Geslag",
     "Female" : "Vroulik",
     "Male" : "Manlik",
-    "Unknown" : "Onbekend"
+    "Unknown" : "Onbekend",
+    "Loading …" : "Laai …",
+    "Search contacts …" : "Soek kontakte …"
 },
 "nplurals=2; plural=(n != 1);");

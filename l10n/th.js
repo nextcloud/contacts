@@ -10,13 +10,11 @@ OC.L10N.register(
     "Allow updating avatars from social media" : "อนุญาตให้อัปเดตภาพแทนตัวจากโซเชียลมีเดีย",
     "Please select a team" : "โปรดเลือกทีม",
     "Loading team…" : "กำลังโหลด ทีม",
-    "Loading contacts …" : "กำลังโหลดรายชื่อ …",
     "There are no contacts yet" : "ยังไม่มีรายชื่อผู้ติดต่อ",
     "Create contact" : "สร้างรายชื่อ",
     "There are no contacts in this group" : "ไม่มีรายชื่อในกลุ่มนี้",
     "Create contacts" : "สร้างรายชื่อ",
     "Add contacts" : "เพิ่มรายชื่อ",
-    "Loading …" : "กำลังโหลด …",
     "Contacts settings" : "การตั้งค่ารายชื่อ",
     "General settings" : "การตั้งค่าทั่วไป",
     "Update avatars from social media" : "อัปเดตภาพแทนตัวจากโซเชียลมีเดีย",
@@ -57,7 +55,6 @@ OC.L10N.register(
     "Name" : "ชื่อ",
     "Title" : "ชื่อเรื่อง",
     "Company" : "บริษัท",
-    "Search contacts …" : "ค้นหารายชื่อผู้ติดต่อ …",
     "No results" : "ไม่มีผลลัพธ์",
     "Pending" : "รอดำเนินการ",
     "None" : "ไม่มี",
@@ -104,6 +101,9 @@ OC.L10N.register(
     "Voice" : "เสียงพูด",
     "Social network" : "เครือข่ายโซเชียล",
     "Relative" : "สัมพัทธ์",
-    "Unknown" : "ไม่ทราบ"
+    "Unknown" : "ไม่ทราบ",
+    "Loading contacts …" : "กำลังโหลดรายชื่อ …",
+    "Loading …" : "กำลังโหลด …",
+    "Search contacts …" : "ค้นหารายชื่อผู้ติดต่อ …"
 },
 "nplurals=1; plural=0;");

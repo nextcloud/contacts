@@ -8,13 +8,11 @@
     "Copy to full name" : "Sao chép sang tên đầy đủ",
     "Omit year" : "Bỏ qua năm",
     "Allow updating avatars from social media" : "Cho phép cập nhật ảnh đại diện từ mạng xã hội",
-    "Loading contacts …" : "Đang nạp tên liên lạc",
     "There are no contacts yet" : "Chưa có liên hệ nào",
     "Create contact" : "Tạo liên hệ",
     "There are no contacts in this group" : "Không có liên hệ nào trong nhóm này",
     "Create contacts" : "Tạo các liên hệ",
     "Add contacts" : "Thêm liên hệ",
-    "Loading …" : "Đang tải...",
     "General settings" : "Cài đặt chung",
     "Update avatars from social media" : "Cập nhật ảnh đại diện từ mạng xã hội",
     "(refreshed once per week)" : "(được làm mới một lần mỗi tuần)",
@@ -77,7 +75,6 @@
     "Generate QR Code" : "Tạo lập mã QR",
     "Pick an address book" : "Chọn một sổ địa chỉ",
     "Select address book" : "Chọn sổ địa chỉ",
-    "Search contacts …" : "Tìm liên hệ ...",
     "Remove {type}" : "Xóa {type}",
     "Add to group" : "Thêm vào nhóm",
     "Search {types}" : "Tìm kiếm {type}",
@@ -166,6 +163,9 @@
     "Unknown" : "Không xác định",
     "Spoken languages" : "Ngôn ngữ có thể nói",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} liên hệ không thể đọc được"],
-    "Unable to delete contact" : "Không thể xoá liên hệ"
+    "Unable to delete contact" : "Không thể xoá liên hệ",
+    "Loading contacts …" : "Đang nạp tên liên lạc",
+    "Loading …" : "Đang tải...",
+    "Search contacts …" : "Tìm liên hệ ..."
 },"pluralForm" :"nplurals=1; plural=0;"
 }
