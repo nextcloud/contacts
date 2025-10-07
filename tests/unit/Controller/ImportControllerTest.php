@@ -17,9 +17,12 @@ use OCP\Files\Folder;
 use OCP\Files\IRootFolder;
 use OCP\IAddressBook;
 use OCP\ICreateContactFromString;
+use OCP\IL10N;
 use OCP\IRequest;
+use OCP\L10N\IFactory as IL10nFactory;
 use OCP\Security\ISecureRandom;
 use PHPUnit\Framework\MockObject\MockObject;
+use Psr\Log\LoggerInterface;
 
 class ImportControllerTest extends TestCase {
 	private const USER_ID = 'user1';
@@ -27,24 +30,37 @@ class ImportControllerTest extends TestCase {
 	private ImportController $controller;
 
 	private IRequest&MockObject $request;
+	private IL10nFactory&MockObject $l10nFactory;
+	private IL10N&MockObject $l10n;
 	private IContactsManager&MockObject $contactsManager;
 	private IRootFolder&MockObject $rootFolder;
 	private ISecureRandom&MockObject $secureRandom;
+	private LoggerInterface&MockObject $logger;
 
 	protected function setUp(): void {
 		parent::setUp();
 
 		$this->request = $this->createMock(IRequest::class);
+		$this->l10nFactory = $this->createMock(IL10nFactory::class);
 		$this->contactsManager = $this->createMock(IContactsManager::class);
 		$this->rootFolder = $this->createMock(IRootFolder::class);
 		$this->secureRandom = $this->createMock(ISecureRandom::class);
+		$this->logger = $this->createMock(LoggerInterface::class);
+
+		$this->l10n = $this->createMock(IL10N::class);
+		$this->l10nFactory->expects(self::once())
+			->method('get')
+			->with('contacts')
+			->willReturn($this->l10n);
 
 		$this->controller = new ImportController(
 			$this->request,
+			$this->l10nFactory,
 			self::USER_ID,
 			$this->contactsManager,
 			$this->rootFolder,
 			$this->secureRandom,
+			$this->logger,
 		);
 	}
 
@@ -122,15 +138,10 @@ class ImportControllerTest extends TestCase {
 				['RANDOM-UID.vcf', $vCard2],
 			]);
 
+		$this->mockL10n();
+
 		$actual = $this->controller->import(42, 'foo');
-		$this->assertEqualsCanonicalizing([
-			'importedContactUris' => [
-				'RANDOM-UID.vcf',
-				'RANDOM-UID.vcf',
-			],
-			'skipped' => 0,
-			'errors' => [],
-		], $actual->getData());
+		$this->assertEqualsCanonicalizing('Imported %n contacts', $actual->getData());
 		$this->assertEquals(200, $actual->getStatus());
 	}
 
@@ -201,15 +212,10 @@ class ImportControllerTest extends TestCase {
 				['RANDOM-UID.vcf', $vCard2],
 			]);
 
+		$this->mockL10n();
+
 		$actual = $this->controller->import(42);
-		$this->assertEqualsCanonicalizing([
-			'importedContactUris' => [
-				'RANDOM-UID.vcf',
-				'RANDOM-UID.vcf',
-			],
-			'skipped' => 0,
-			'errors' => [],
-		], $actual->getData());
+		$this->assertEquals('Imported %n contacts', $actual->getData());
 		$this->assertEquals(200, $actual->getStatus());
 	}
 
@@ -256,22 +262,28 @@ class ImportControllerTest extends TestCase {
 		$addressBook1->expects(self::never())
 			->method('createFromString');
 
+		$this->mockL10n();
+
 		$actual = $this->controller->import(42, 'contacts');
-		$this->assertEqualsCanonicalizing([
-			'importedContactUris' => [],
-			'skipped' => 1,
-			'errors' => [],
-		], $actual->getData());
+		$this->assertEquals('Imported %n contacts (skipped %d)', $actual->getData());
 		$this->assertEquals(200, $actual->getStatus());
 	}
 
 	public function testImportWithoutUserSession(): void {
+		$l10nFactory = $this->createMock(IL10nFactory::class);
+		$l10nFactory->expects(self::once())
+			->method('get')
+			->with('contacts')
+			->willReturn($this->createMock(IL10N::class));
+
 		$controller = new ImportController(
 			$this->request,
+			$l10nFactory,
 			null,
 			$this->contactsManager,
 			$this->rootFolder,
 			$this->secureRandom,
+			$this->logger,
 		);
 
 		$actual = $controller->import(42);
@@ -467,5 +479,16 @@ class ImportControllerTest extends TestCase {
 		$actual = $this->controller->import(42);
 		$this->assertEqualsCanonicalizing('Not a vCard file', $actual->getData());
 		$this->assertEquals(400, $actual->getStatus());
+	}
+
+	private function mockL10n(): void {
+		$this->l10n->method('n')
+			->willReturnCallback(function (string $singular, string $plural, int $count) {
+				if ($count === 1) {
+					return $singular;
+				}
+
+				return $plural;
+			});
 	}
 }
