@@ -11,13 +11,11 @@ OC.L10N.register(
     "Omit year" : "Omitir o ano",
     "Allow updating avatars from social media" : "Permitir atualização do avatar a partir das redes sociais",
     "There was an error fetching the member list" : "Ocorreu um erro ao transferir a lista de membros",
-    "Loading contacts …" : "A carregar os contactos…",
     "There are no contacts yet" : "Ainda não existem contactos",
     "Create contact" : "Criar contacto",
     "There are no contacts in this group" : "Não existem contactos neste grupo",
     "Create contacts" : "Criar contactos",
     "Add contacts" : "Adicionar contactos",
-    "Loading …" : "A carregar...",
     "Contacts settings" : "Definições dos contactos",
     "General settings" : "Definições Gerais",
     "Update avatars from social media" : "Atualizar avatar a partir das redes sociais",
@@ -84,7 +82,6 @@ OC.L10N.register(
     "Pick an address book" : "Escolha livro de endereços",
     "Select address book" : "Selecionar livro de endereços",
     "No shared items with this contact" : "Sem itens partilhados com este contacto",
-    "Search contacts …" : "Pesquisar contactos...",
     "Add to group" : "Adicionar ao grupo",
     "No results" : "Sem resultados",
     "Add {type}" : "Adicionar (tipo)",
@@ -171,6 +168,9 @@ OC.L10N.register(
     "Time zone" : "Fuso horário",
     "Spoken languages" : "Línguas faladas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contactos cuja leitura falhou","{failed} contactos cuja leitura falhou","{failed} contactos cuja leitura falhou"],
-    "Unable to delete contact" : "Não é possível eliminar o contacto."
+    "Unable to delete contact" : "Não é possível eliminar o contacto.",
+    "Loading contacts …" : "A carregar os contactos…",
+    "Loading …" : "A carregar...",
+    "Search contacts …" : "Pesquisar contactos..."
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

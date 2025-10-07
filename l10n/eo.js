@@ -8,7 +8,6 @@ OC.L10N.register(
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Tiu aplikaĵo estas interfaco por la CardDAV-servilo de Nextcloud. Senpene sinkronigu viajn kontaktojn el diversaj aparatoj al Nextcloud kaj redaktu ilin rete.\n\n* 🚀 **Integrado kun aliaj Nextcloud-aplikaĵoj!** Nuntempe Retmesagô (Mail) kaj Kalendaro (Calendar), pli en la estonteco.\n* 🎉 **Neniam forgesu datrevenon!** Vi povas sinkronigi datrevenojn kaj aliaj ripetiĝantajn eventoj.\n* 👥 **Kunhavigo de adresaro!** Ĉu vi volas kunhavigi kontaktojn kun amikoj aŭ kolegoj? Neniu problemo!\n* 🙈 **Ni ne elpensis la radon!** Devenigita de la granda kaj malferma biblioteko SabreDAV.",
     "Copy to full name" : "Kopii al plena nomo",
     "Omit year" : "Ne uzi jaron",
-    "Loading …" : "Ŝargas …",
     "Rename" : "Alinomi",
     "Send email" : "Sendi retpoŝtmesaĝon",
     "Delete" : "Forigi",
@@ -44,7 +43,6 @@ OC.L10N.register(
     "Company" : "Firmao",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Tiu kontakto difektiĝis kaj estis riparita. Kontrolu la enhavon kaj alklaku ĉi tie por konservi ĝin.",
     "Generate QR Code" : "Generi rapidrespondan (QR) kodon",
-    "Search contacts …" : "Serĉi kontaktojn…",
     "No results" : "Neniu rezulto",
     "Pending" : "Pritraktota",
     "Select Date" : "Elekti daton",
@@ -121,6 +119,8 @@ OC.L10N.register(
     "Male" : "Vira",
     "Unknown" : "Nekonata",
     "Spoken languages" : "Lingvoj parolataj",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"]
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"],
+    "Loading …" : "Ŝargas …",
+    "Search contacts …" : "Serĉi kontaktojn…"
 },
 "nplurals=2; plural=(n != 1);");

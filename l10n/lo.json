@@ -1,7 +1,6 @@
 { "translations": {
     "Details" : "ລາຍລະອຽດ",
     "Contacts" : "ຕິດຕໍ່",
-    "Loading …" : "ກຳລັງໂຫຼດ",
     "Rename" : "ປ່ຽນຊື່",
     "Delete" : "ລຶບ",
     "Copy link" : "ສຳເນົາລິງ",
@@ -12,7 +11,6 @@
     "Invalid image" : "ບໍ່ມີຮູບພາບ",
     "Name" : "ຊື່",
     "Company" : "ບໍລິສັດ",
-    "Search contacts …" : "ຄົ້ນຫາຕິດຕໍ່ ...",
     "No results" : "ບໍ່ມີຜົນ",
     "Pending" : "ທີ່ກໍາລັງລໍຖ້າ",
     "None" : "ບໍ່ມີ",
@@ -28,6 +26,8 @@
     "Address" : "ທີ່ຢູ່",
     "City" : "ເມືອງ",
     "Country" : "ປະເທດ",
-    "Unknown" : "ບໍ່ຮູ້"
+    "Unknown" : "ບໍ່ຮູ້",
+    "Loading …" : "ກຳລັງໂຫຼດ",
+    "Search contacts …" : "ຄົ້ນຫາຕິດຕໍ່ ..."
 },"pluralForm" :"nplurals=1; plural=0;"
 }

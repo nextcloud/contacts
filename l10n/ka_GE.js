@@ -4,7 +4,6 @@ OC.L10N.register(
     "Details" : "დეტალები",
     "All contacts" : "ყველა კონტაქტი",
     "Contacts" : "კონტაქტები",
-    "Loading contacts …" : "კონტაქტების ჩატვირთვა ...",
     "General settings" : "მთავარი პარამეტრები",
     "Rename" : "სახელის შეცვლა",
     "Send email" : "ელ-წერილის გაგზავნა",
@@ -24,7 +23,6 @@ OC.L10N.register(
     "Address book" : "მისამართების წიგნი",
     "Name" : "სახელი",
     "Title" : "სათაური",
-    "Search contacts …" : "მოძებნეთ კონტაქტები ...",
     "No results" : "შედეგები არაა",
     "Pending" : "მოლოდინში",
     "None" : "არც ერთი",
@@ -88,6 +86,8 @@ OC.L10N.register(
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
     "Male" : "მამრობითი",
-    "Unknown" : "ამოუცნობი"
+    "Unknown" : "ამოუცნობი",
+    "Loading contacts …" : "კონტაქტების ჩატვირთვა ...",
+    "Search contacts …" : "მოძებნეთ კონტაქტები ..."
 },
 "nplurals=2; plural=(n!=1);");

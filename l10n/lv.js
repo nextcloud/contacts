@@ -8,7 +8,6 @@ OC.L10N.register(
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Kontaktpersonu lietotne ir Nextcloud iebūvētā CardDAV servera grafiskā saskarne. Tas ļauj vienkārši sinhronizēt kontaktpersonu informāciju no vairākām ierīcēm ar Tavu Nextcloud serveri un labot tās tiešsaistē.\n\n* 🚀 **Savienojums ar citām Nextcloud lietotnēm.** Pašlaik ar pastu un kalendāru - drīzumā vēl.\n* 🎉  **Nekad neaizmirsti kāda dzimšanas dienu!** Tu vari sinhronizēt dzimšanas dienas un citas atkārtojošos notikumus ar savu Nextcloud kalendāru.\n* 👥 **Adrešu grāmatu kopīgošana.** Vēlies kopīgot savas kontaktpersonas ar saviem draugiem vai darbabiedriem? Kāda runa!\n* 🙈 **Mēs nemēģinām no jaunaizgudrot riteni.** Balstīta uz lieliskās atvērtā koda bibliotēkas SabreDAV.",
     "Copy to full name" : "Kopēt uz pilnu vārdu",
     "Omit year" : "Izlaiduma gads",
-    "Loading …" : "Notiek ielāde ...",
     "Contacts settings" : "Kontaktpersonu iestatījumi",
     "General settings" : "Vispārīgi iestatījumi",
     "Address books" : "Adrešu grāmatas",
@@ -60,7 +59,6 @@ OC.L10N.register(
     "Title" : "Amats",
     "Company" : "Uzņēmums",
     "Generate QR Code" : "Izveidot kvadrātkodu",
-    "Search contacts …" : "Meklēt kontaktpersonas…",
     "No results" : "Nav iznākuma",
     "Pending" : "Gaida",
     "Select Date" : "Atlasīt datumu",
@@ -137,6 +135,8 @@ OC.L10N.register(
     "Male" : "Vīrietis",
     "Unknown" : "Nezināms",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontaktpersonas neizdevās nolasīt","{failed} kontaktpersonu neizdevās nolasīt","{failed} kontaktpersonas neizdevās nolasīt"],
-    "An error has occurred in team(s). Check the console for more details." : "Atgadījās kļūda komandā(s). Jāpārbauda konsole, lai iegūtu vairāk informācijas."
+    "An error has occurred in team(s). Check the console for more details." : "Atgadījās kļūda komandā(s). Jāpārbauda konsole, lai iegūtu vairāk informācijas.",
+    "Loading …" : "Notiek ielāde ...",
+    "Search contacts …" : "Meklēt kontaktpersonas…"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");

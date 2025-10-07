@@ -3,7 +3,6 @@
     "All contacts" : "Бүх харилцагчид",
     "Contacts" : "Харилцагчид",
     "Copy to full name" : "Бүтэн нэр хуулах",
-    "Loading …" : "Уншиж байна...",
     "Rename" : "Нэр солих",
     "Delete" : "Устгах",
     "Copied" : "Хуулагдсан",
@@ -81,6 +80,7 @@
     "Female" : "Эмэгтэй",
     "Male" : "Эрэгтэй",
     "Unknown" : "Үл танигдах зүйл",
-    "Time zone" : "Цагийн бүс"
+    "Time zone" : "Цагийн бүс",
+    "Loading …" : "Уншиж байна..."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

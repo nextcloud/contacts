@@ -6,12 +6,10 @@ OC.L10N.register(
     "Copy to full name" : "Скапіяваць у поўнае імя",
     "Please select a team" : "Выберыце каманду",
     "Loading team…" : "Загрузка каманды…",
-    "Loading contacts …" : "Загрузка кантактаў …",
     "There are no contacts yet" : "Пакуль няма кантактаў.",
     "Create contact" : "Стварыць кантакт",
     "Create contacts" : "Стварыць кантакты",
     "Add contacts" : "Дадаць кантакты",
-    "Loading …" : "Загрузка …",
     "Manage team" : "Кіраванне камандай",
     "Leave team" : "Выйсці з каманды",
     "Delete team" : "Выдаліць каманду",
@@ -73,6 +71,8 @@ OC.L10N.register(
     "Birthday" : "Дзень нараджэння",
     "Place of birth" : "Месца нараджэння",
     "Unknown" : "Невядомы",
+    "Loading contacts …" : "Загрузка кантактаў …",
+    "Loading …" : "Загрузка …",
     "Add to {circle}" : "Дадаць у {circle}"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

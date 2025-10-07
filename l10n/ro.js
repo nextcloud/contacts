@@ -4,8 +4,6 @@ OC.L10N.register(
     "Details" : "Detalii",
     "All contacts" : "Toate contactele",
     "Contacts" : "Contacte",
-    "Loading contacts …" : "Se încarcă contactele ...",
-    "Loading …" : "Se încarcă…",
     "Rename" : "Redenumește",
     "Send email" : "Trimite email-ul",
     "Delete" : "Șterge",
@@ -26,7 +24,6 @@ OC.L10N.register(
     "Name" : "Nume",
     "Title" : "Titlu",
     "Company" : "Companie",
-    "Search contacts …" : "Caută contacte ...",
     "No results" : "Niciun rezultat",
     "Pending" : "În așteptare",
     "None" : "Niciuna",
@@ -92,6 +89,9 @@ OC.L10N.register(
     "Gender" : "Sex",
     "Female" : "Femeie",
     "Male" : "Bărbat",
-    "Unknown" : "Necunoscut"
+    "Unknown" : "Necunoscut",
+    "Loading contacts …" : "Se încarcă contactele ...",
+    "Loading …" : "Se încarcă…",
+    "Search contacts …" : "Caută contacte ..."
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");

@@ -5,7 +5,6 @@ OC.L10N.register(
     "All contacts" : "Бүх харилцагчид",
     "Contacts" : "Харилцагчид",
     "Copy to full name" : "Бүтэн нэр хуулах",
-    "Loading …" : "Уншиж байна...",
     "Rename" : "Нэр солих",
     "Delete" : "Устгах",
     "Copied" : "Хуулагдсан",
@@ -83,6 +82,7 @@ OC.L10N.register(
     "Female" : "Эмэгтэй",
     "Male" : "Эрэгтэй",
     "Unknown" : "Үл танигдах зүйл",
-    "Time zone" : "Цагийн бүс"
+    "Time zone" : "Цагийн бүс",
+    "Loading …" : "Уншиж байна..."
 },
 "nplurals=2; plural=(n != 1);");
