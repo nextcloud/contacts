@@ -34,9 +34,9 @@
 
 		<NcModal v-if="isGrouping"
 			:name="t('contacts', 'Add contacts to group')"
-				 size="large"
-				 @close="isGrouping = false">
-			<Batch :contacts="Array.from(multiSelectedContacts.values())" />
+			 size="large"
+			 @close="isGrouping = false">
+			<Batch :contacts="Array.from(multiSelectedContacts.values())" @submit="isGrouping = false" />
 		</NcModal>
 
 		<div class="contacts-list__header">

@@ -11,7 +11,7 @@
 			:key="source.key"
 			class="list-item-style envelope"
 			:name="source.displayName"
-			:to="{ name: 'contact', params: { selectedGroup: selectedGroup, selectedContact: source.key } }">
+			:to="isStatic ? undefined : { name: 'contact', params: { selectedGroup: selectedGroup, selectedContact: source.key } }">
 			<!-- @slot Icon slot -->
 
 			<template #icon>
@@ -176,6 +176,9 @@ export default {
 		 * Select this contact within the list
 		 */
 		selectContact() {
+			if (this.isStatic) {
+				return
+			}
 			// change url with router
 			this.$router.push({
 				name: 'contact',
