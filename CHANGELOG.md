@@ -1,3 +1,29 @@
+## [8.0.3](https://github.com/nextcloud/contacts/compare/v8.0.2...v8.0.3) (2025-10-07)
+
+
+### Bug Fixes
+
+* **deps:** Fix npm audit ([bad01d5](https://github.com/nextcloud/contacts/commit/bad01d5f40750919ca52fa0dae02ed4c5ecc9273))
+* detect addressbook ACL's properly ([90f99a3](https://github.com/nextcloud/contacts/commit/90f99a32c4f47d2bf496de135f3a31b6bf886d49))
+* **l10n:** Update translations from Transifex ([b957b2f](https://github.com/nextcloud/contacts/commit/b957b2f3219b1016a00015049f63246b2a17af5e))
+* **l10n:** Update translations from Transifex ([b958531](https://github.com/nextcloud/contacts/commit/b95853197925a185fee7807bcb851ff55e5d6705))
+* **l10n:** Update translations from Transifex ([321ed00](https://github.com/nextcloud/contacts/commit/321ed00af11d240788e12df62358714eef343819))
+* **l10n:** Update translations from Transifex ([27b5a54](https://github.com/nextcloud/contacts/commit/27b5a54d938ffe0c344b9cea0ac1d55003d119b9))
+* **l10n:** Update translations from Transifex ([4b3e9b6](https://github.com/nextcloud/contacts/commit/4b3e9b6fa4b62d84f3cb94736bb2675928d17af6))
+* **l10n:** Update translations from Transifex ([47d5a89](https://github.com/nextcloud/contacts/commit/47d5a89b943013d56cb1096a690f87249dcc7557))
+* **l10n:** Update translations from Transifex ([b44921a](https://github.com/nextcloud/contacts/commit/b44921ac372f3be7f08c55708ce4965e9e2bf8be))
+* **l10n:** Update translations from Transifex ([d744049](https://github.com/nextcloud/contacts/commit/d7440492fe82abe49db93dd8546c10b8cf8c9e62))
+* **l10n:** Update translations from Transifex ([634d3b4](https://github.com/nextcloud/contacts/commit/634d3b4cc02724cd5c80be0d150dd4e8724a606e))
+* **l10n:** Update translations from Transifex ([f6a51dc](https://github.com/nextcloud/contacts/commit/f6a51dc5bd2563dc9806c495b4ea8cd672926e3d))
+* **l10n:** Update translations from Transifex ([a4039b5](https://github.com/nextcloud/contacts/commit/a4039b5f36e3cfde480ae02c98be9038ce9362a3))
+* **l10n:** Update translations from Transifex ([9e3756b](https://github.com/nextcloud/contacts/commit/9e3756bb31c1af8dd5b0c0e401acbbdddd05f653))
+* **l10n:** Update translations from Transifex ([b0df45f](https://github.com/nextcloud/contacts/commit/b0df45f4f2bea322e602e82064b7df1f579d6a74))
+* **l10n:** Update translations from Transifex ([0b0f1b8](https://github.com/nextcloud/contacts/commit/0b0f1b8ab690ee1e7c72e6f31faf6738aeae76b7))
+* restore breaking changes of OCA.Contacts.mountContactDetails ([5f4175d](https://github.com/nextcloud/contacts/commit/5f4175d2d27c45e92e3d43dc8c9a77b7ef57785a))
+* **SettingsAddressbook:** prevent sharing an addressbook that has been shared with you ([2309fc6](https://github.com/nextcloud/contacts/commit/2309fc65d23e2b962e8d5a7020a4011a33794f80))
+
+
+
 ## [8.0.2](https://github.com/nextcloud/contacts/compare/v8.0.1...v8.0.2) (2025-09-22)
 
 
