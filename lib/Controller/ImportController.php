@@ -22,20 +22,29 @@ use OCP\Files\File;
 use OCP\Files\IRootFolder;
 use OCP\IAddressBook;
 use OCP\ICreateContactFromString;
+use OCP\IL10N;
 use OCP\IRequest;
+use OCP\L10N\IFactory as IL10nFactory;
 use OCP\Security\ISecureRandom;
+use Psr\Log\LoggerInterface;
 
 class ImportController extends OCSController {
 	private const UID_PREFIX = 'UID:';
 
+	private readonly IL10N $l10n;
+
 	public function __construct(
 		IRequest $request,
+		IL10nFactory $l10nFactory,
 		private readonly ?string $userId,
 		private readonly IContactsManager $contactsManager,
 		private readonly IRootFolder $rootFolder,
 		private readonly ISecureRandom $random,
+		private readonly LoggerInterface $logger,
 	) {
 		parent::__construct(Application::APP_ID, $request);
+
+		$this->l10n = $l10nFactory->get(Application::APP_ID);
 	}
 
 	/**
@@ -45,7 +54,7 @@ class ImportController extends OCSController {
 	 *
 	 * @param int $fileId The id of a vCard file to import
 	 * @param ?string $addressBookUri Optional URI of the address book to import into - {@see \OCP\IAddressBook::getUri}
-	 * @return DataResponse A list of imported contact URIs, amount of skipped contacts and a list of errors.
+	 * @return DataResponse A translated string indicating the outcome of the import action.
 	 *
 	 * 200: Contacts were processed (check the response data for stats)
 	 * 400: Not a vCard file or given both $addressBookKey and $addressBookUri
@@ -143,17 +152,35 @@ class ImportController extends OCSController {
 				$addressBook->createFromString($uri, $vcf);
 			} catch (\Exception $e) {
 				$errors[] = $e->getMessage();
+				$skipped++;
 				continue;
 			}
 
 			$imported[] = $uri;
 		}
 
-		return new DataResponse([
-			'skipped' => $skipped,
-			'errors' => $errors,
-			'importedContactUris' => $imported,
-		]);
+		if (!empty($errors)) {
+			$this->logger->error('Failed to import ' . count($errors) . ' contacts via OCS', [
+				'errors' => $errors,
+				'fileId' => $fileId,
+			]);
+		}
+
+		if ($skipped === 0) {
+			$message = $this->l10n->n(
+				'Imported 1 contact',
+				'Imported %n contacts',
+				count($imported),
+			);
+		} else {
+			$message = $this->l10n->n(
+				'Imported 1 contact (skipped %d)',
+				'Imported %n contacts (skipped %d)',
+				count($imported),
+				[$skipped],
+			);
+		}
+		return new DataResponse($message);
 	}
 
 	private function findUserAddressBook(?string $uri): ?ICreateContactFromString {
