@@ -69,7 +69,6 @@
 				</NcButton>
 				<NcLoadingIcon v-else :size="20" />
 				<NcButton type="tertiary"
-					:disabled="!isAtLeastOneEditable"
 					:title="groupActionTitle"
 					:close-after-click="true"
 					@click.prevent="isGrouping = true">

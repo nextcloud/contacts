@@ -110,12 +110,16 @@ export default {
 	},
 
 	created() {
-		this.reloadBus.on('reload-avatar', this.reloadAvatarUrl)
-		this.reloadBus.on('delete-avatar', this.deleteAvatar)
+		if (!this.isStatic) {
+			this.reloadBus.on('reload-avatar', this.reloadAvatarUrl)
+			this.reloadBus.on('delete-avatar', this.deleteAvatar)
+		}
 	},
 	unmounted() {
-		this.reloadBus.off('reload-avatar', this.reloadAvatarUrl)
-		this.reloadBus.off('delete-avatar', this.deleteAvatar)
+		if (!this.isStatic) {
+			this.reloadBus.off('reload-avatar', this.reloadAvatarUrl)
+			this.reloadBus.off('delete-avatar', this.deleteAvatar)
+		}
 	},
 	async mounted() {
 		await this.loadAvatarUrl()

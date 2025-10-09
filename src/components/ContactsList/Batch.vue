@@ -121,10 +121,9 @@ export default {
 	},
 
 	methods: {
-		submit() {
+		async submit() {
 			const allGroups = this.$store.getters.getGroups
 			const allTeams = this.$store.getters.getCircles
-			const contacts = this.contacts
 
 			// Add to groups
 			this.selectedGroups.forEach(groupName => {
@@ -133,7 +132,7 @@ export default {
 					console.error('Cannot add contact to an undefined group', groupName)
 					return
 				}
-				contacts.forEach(contact => {
+				this.contacts.forEach(contact => {
 					if (!contact.addressbook.canModifyCard) return // skip read-only for groups
 					if (contact.groups && contact.groups.includes(group.name)) return
 					appendContactToGroup(contact, group.name)
@@ -147,24 +146,21 @@ export default {
 			})
 
 			// Add to teams/circles
-			this.selectedCircles.forEach(circleId => {
+			for (const circleId of this.selectedCircles) {
+
 				const team = allTeams.find(c => c.id === circleId.value)
 				if (!team) {
 					console.error('Cannot add contact to an undefined team', circleId.value)
 					return
 				}
-				const memberPairs = contacts.map(contact => ({
-					id: contact.id,
-					type: 'contact',
+
+				const selection = this.contacts.map(contact => ({
+					id: contact.email,
+					type: 4,
 				}))
-				addMembers(team.id, memberPairs)
-					.then(() => {
-						this.$store.dispatch('addContactsToTeam', { contacts, teamId: team.id })
-					})
-					.catch((error) => {
-						console.error(error)
-					})
-			})
+
+				await this.$store.dispatch('addMembersToCircle', { circleId: team.id, selection })
+			}
 
 			this.$emit('submit')
 		},
