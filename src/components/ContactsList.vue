@@ -398,6 +398,7 @@ export default {
 // Make virtual scroller scrollable
 .contacts-list {
 	flex: 1 auto;
+	contain: none !important;
 }
 
 // Add empty header to contacts-list that solves overlapping of contacts with app-navigation-toogle
