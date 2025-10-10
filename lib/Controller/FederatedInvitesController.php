@@ -476,7 +476,9 @@ class FederatedInvitesController extends PageController {
 		$inviteDetails = $this->il10->t('Details:<br>Invite string: %1$s<br>token: %2$s<br>provider: %3$s', [$encoded, $token, $senderProvider]);
 		$message = trim($message) === '' ? '' : "---\n$message\n---";
 		$body = "$header\n\n$message\n\n$inviteLinkNote\n\n$inviteDetails";
-		$email->setPlainBody($body);
+
+		$email->setHtmlBody($body);
+		$email->setPlainBody(strip_tags(str_replace(['<br>', '<br/>', '<br />'], "\n", $body)));
 
 		/** @var string[] */
 		$failedRecipients = $this->mailer->send($email);
