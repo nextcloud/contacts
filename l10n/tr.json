@@ -2,6 +2,8 @@
     "Import contacts" : "Kişileri içe aktar",
     "Details" : "Ayrıntılar",
     "All contacts" : "Tüm kişiler",
+    "_Imported 1 contact_::_Imported %n contacts_" : ["1 kişi içe aktarıldı","%n kişi içe aktarıldı"],
+    "_Imported 1 contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["1 kişi içe aktarıldı (%d atlandı)","%n kişi içe aktarıldı (%d atlandı)"],
     "Contacts" : "Kişiler",
     "A contacts app for Nextcloud" : "Nextcloud kişiler uygulaması",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Kişiler uygulaması Nextcloud Card DAV sunucusunun ara yüzüdür. Çeşitli aygıtlar üzerindeki kişileri kolayca Nextcloud hesabınız ile eşitler ve çevrim içi olarak düzenlemenizi sağlar.\n\n* 🚀 **Diğer Nextcloud uygulamaları ile bütünleşiktir!** Şu anda Takvim, diğerleri yolda.\n* 🎉 **Doğum günlerini unutmayın!** Doğum günü ve diğer yinelenen etkinlikleri Nextcloud takviminiz üzerinden izleyebilirsiniz.\n* 👥 **Adres defterlerini paylaşma!** Kişilerinizi arkadaşlarınız ve iş arkadaşlarınız ile paylaşmak isterseniz sorun değil!\n* 🙈 **Tekerleği yeniden keşfetmiyoruz!** Harika açık SabreDAV kitaplığını kullanıyoruz.",
