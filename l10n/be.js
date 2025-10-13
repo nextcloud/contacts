@@ -1,6 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
+    "Import contacts" : "Імпарт кантактаў",
     "All contacts" : "Усе кантакты",
     "_Imported 1 contact_::_Imported %n contacts_" : ["Імпартаваны 1 кантакт","Імпартаваны %n кантакты","Імпартавана %n кантактаў","Імпартавана %n кантактаў"],
     "Contacts" : "Кантакты",
