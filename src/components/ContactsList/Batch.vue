@@ -14,14 +14,6 @@
 			:multiple="true"
 			:options="groupOptions" />
 
-		<div v-if="circlesEnabled" class="batch__teams">
-			<h6>{{ t('contacts', 'Add contacts to teams') }}</h6>
-			<NcSelect v-model="selectedCircles"
-				:input-label="t('contacts', 'Select teams')"
-				:multiple="true"
-				:options="teamOptions" />
-		</div>
-
 		<h6>{{ t('contacts', 'Selected contacts') }}</h6>
 		<NcNoteCard v-if="amountOfReadOnlyContacts > 0" type="info">
 			{{ t('contacts', 'Please note that {count} contact{p} readonly and will not be added to groups. If you want to include them all you can create a Team instead.', { count: amountOfReadOnlyContacts, p: amountOfReadOnlyContacts === 1 ? ' is' : 's are' }) }}
@@ -47,7 +39,7 @@
 		</NcButton>
 
 		<div class="batch__footer">
-			<NcButton variant="primary" :disabled="selectedGroups.length === 0 && selectedCircles.length === 0" @click="submit">
+			<NcButton variant="primary" :disabled="selectedGroups.length === 0" @click="submit">
 				<template #icon>
 					<IconAccountPlus :size="20" />
 				</template>
@@ -63,7 +55,6 @@ import { NcButton, NcSelect, NcNoteCard } from '@nextcloud/vue'
 import IconPlus from 'vue-material-design-icons/Plus.vue'
 import IconAccountPlus from 'vue-material-design-icons/AccountMultiplePlusOutline.vue'
 import appendContactToGroup from '../../services/appendContactToGroup.js'
-import { addMembers } from '../../services/circles.ts'
 
 export default {
 	name: 'Batch',
@@ -89,7 +80,6 @@ export default {
 			reloadBus: null,
 			showAllContacts: false,
 			selectedGroups: [],
-			selectedCircles: [],
 		}
 	},
 
@@ -106,15 +96,6 @@ export default {
 				value: group.name,
 			}))
 		},
-		teamOptions() {
-			return this.$store.getters.getCircles.map(circle => ({
-				label: circle.displayName || circle.name,
-				value: circle.id,
-			}))
-		},
-		circlesEnabled() {
-			return this.$store.getters.getCircles && this.$store.getters.getCircles.length > 0
-		},
 		amountOfReadOnlyContacts() {
 			return this.contacts.filter(contact => !contact.addressbook.canModifyCard).length
 		},
@@ -123,7 +104,6 @@ export default {
 	methods: {
 		async submit() {
 			const allGroups = this.$store.getters.getGroups
-			const allTeams = this.$store.getters.getCircles
 
 			// Add to groups
 			this.selectedGroups.forEach(groupName => {
@@ -144,23 +124,6 @@ export default {
 						})
 				})
 			})
-
-			// Add to teams/circles
-			for (const circleId of this.selectedCircles) {
-
-				const team = allTeams.find(c => c.id === circleId.value)
-				if (!team) {
-					console.error('Cannot add contact to an undefined team', circleId.value)
-					return
-				}
-
-				const selection = this.contacts.map(contact => ({
-					id: contact.email,
-					type: 4,
-				}))
-
-				await this.$store.dispatch('addMembersToCircle', { circleId: team.id, selection })
-			}
 
 			this.$emit('submit')
 		},
