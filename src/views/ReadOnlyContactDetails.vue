@@ -58,9 +58,7 @@ import ContactDetailsProperty from '../components/ContactDetails/ContactDetailsP
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
-import client from '../services/cdav.js'
 import validate from '../services/validate.js'
-import usePrincipalsStore from '../store/principals.js'
 import useReadOnlyContactDetailsStore from '../store/readOnlyContactDetails.ts'
 
 const { profileEnabled } = loadState('user_status', 'profileEnabled', false)
