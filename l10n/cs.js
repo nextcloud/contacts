@@ -18,6 +18,7 @@ OC.L10N.register(
     "There are no contacts in this group" : "V této skupině nejsou žádné kontakty",
     "Create contacts" : "Vytvořit kontakty",
     "Add contacts" : "Přidat kontakty",
+    "Loading …" : "Načítání …",
     "Manage team" : "Spravovat tým",
     "Leave team" : "Opustit tým",
     "Delete team" : "Smazat tým",
