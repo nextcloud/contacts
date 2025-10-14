@@ -252,6 +252,8 @@ const actions = {
 			return context.getters.getAddressbooks
 		}
 
+		context.state.addressbooksFetched = true
+
 		const addressbooks = await client.addressBookHomes[0]
 			.findAllAddressBooks()
 			.then((addressbooks) => {
@@ -266,8 +268,6 @@ const actions = {
 		})
 
 		context.commit('resortAddressbooks')
-
-		context.state.addressbooksFetched = true
 
 		return addressbooks
 	},
