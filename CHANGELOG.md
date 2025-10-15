@@ -1,3 +1,19 @@
+## [7.3.4](https://github.com/nextcloud/contacts/compare/v7.3.3...v7.3.4) (2025-10-15)
+
+
+### Bug Fixes
+
+* improve expand button visibility in OrgChart dark mode ([3762060](https://github.com/nextcloud/contacts/commit/3762060d23befce38ece534f2d369867ad5a8a30))
+* **l10n:** Update translations from Transifex ([8382ec5](https://github.com/nextcloud/contacts/commit/8382ec5f7d350d5dcc74b7679e06664c659a8e61))
+* **l10n:** Update translations from Transifex ([ef9be7f](https://github.com/nextcloud/contacts/commit/ef9be7fa4d472eed030baef94c4434a80e0b5ea5))
+* **l10n:** Update translations from Transifex ([36fb0ca](https://github.com/nextcloud/contacts/commit/36fb0ca6c5707b3cd37a45dc293538a6d3e20d18))
+* **l10n:** Update translations from Transifex ([f602e50](https://github.com/nextcloud/contacts/commit/f602e50bccae1457e7a54ef7a1065c99fa8cc488))
+* **l10n:** Update translations from Transifex ([698ee6c](https://github.com/nextcloud/contacts/commit/698ee6c4b6cce5fe201c01b24c18bdf2ad07c8dc))
+* **l10n:** Update translations from Transifex ([af2ea14](https://github.com/nextcloud/contacts/commit/af2ea149495019539aec124d5ae8e8773b563ba6))
+* **l10n:** Update translations from Transifex ([98ec72c](https://github.com/nextcloud/contacts/commit/98ec72cbb8bf59ef0575c159165cc0c548d2462f))
+
+
+
 ## [7.3.3](https://github.com/nextcloud/contacts/compare/v7.3.2...v7.3.3) (2025-10-07)
 
 
