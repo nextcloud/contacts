@@ -1,3 +1,22 @@
+## [8.0.4](https://github.com/nextcloud/contacts/compare/v8.0.3...v8.0.4) (2025-10-15)
+
+
+### Bug Fixes
+
+* allow team owners to transfer ownership ([47ccfde](https://github.com/nextcloud/contacts/commit/47ccfde30e372490fa92a4b8dbc572999f579ca4))
+* **ContactsList:** not being visible on small screens ([9d3798a](https://github.com/nextcloud/contacts/commit/9d3798ac4b065a953ce44a3250e37efec301a380))
+* improve expand button visibility in OrgChart dark mode ([0da33ae](https://github.com/nextcloud/contacts/commit/0da33ae4bfc450f53b441366998f90e565279f4b))
+* **l10n:** Update translations from Transifex ([80c2b81](https://github.com/nextcloud/contacts/commit/80c2b819e013e4b80b1156be31987630ca82a9ba))
+* **l10n:** Update translations from Transifex ([c10aaad](https://github.com/nextcloud/contacts/commit/c10aaad1c7f0c8c0e7e4b600bd37b783e959c9bb))
+* **l10n:** Update translations from Transifex ([f8e0a85](https://github.com/nextcloud/contacts/commit/f8e0a857507f9dffa77dc8d2553615885f576caa))
+* **l10n:** Update translations from Transifex ([5edd2de](https://github.com/nextcloud/contacts/commit/5edd2de83abf351fe99432c7389b217f62b3dc5a))
+* **l10n:** Update translations from Transifex ([3881983](https://github.com/nextcloud/contacts/commit/38819834e7569c47da4fc08df7da9eb1b5be94df))
+* **l10n:** Update translations from Transifex ([a90ff0a](https://github.com/nextcloud/contacts/commit/a90ff0a8fbfa4661ca7a1726591a724b43fd1536))
+* **l10n:** Update translations from Transifex ([04d4755](https://github.com/nextcloud/contacts/commit/04d475593bb83457b8af8dbe6139b1ff5f1380e6))
+* use untranslated category for grouping contacts ([dd259d6](https://github.com/nextcloud/contacts/commit/dd259d6dbb0afa9502a65fc63efcba7285ba11a8))
+
+
+
 ## [8.0.3](https://github.com/nextcloud/contacts/compare/v8.0.2...v8.0.3) (2025-10-07)
 
 
