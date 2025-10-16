@@ -206,6 +206,7 @@ OC.L10N.register(
     "Add to {team}" : "Adicionar a {team}",
     "Invite members to {team}" : "Convidar membros para {team}",
     "Pending" : "Pendente",
+    "Select chart …" : "Selecione um gráfico …",
     "Chart" : "Gráfico",
     "Select Date" : "Selecionar Data",
     "Select type" : "Selecionar tipo",

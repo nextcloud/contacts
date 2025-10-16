@@ -27,7 +27,7 @@ OC.L10N.register(
     "(refreshed once per week)" : "(opfriskes en gang om ugen)",
     "Address books" : "Adressebøger",
     "Rename" : "Omdøb",
-    "Export" : "Eksporter",
+    "Export" : "Eksportér",
     "Send email" : "Send e-mail",
     "Send email as BCC" : "Send e-mail som BCC",
     "Delete" : "Slet",
