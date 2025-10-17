@@ -470,15 +470,19 @@ class FederatedInvitesController extends PageController {
 		$wayfEndpoint = $this->wayfProvider->getWayfEndpoint();
 		$inviteLink = "$wayfEndpoint?token=$token";
 
-		$header = $this->il10->t('Hi there,<br><br>%1$s invites you to exchange cloud IDs.', [$initiatorDisplayName]);
-		$inviteLinkNote = $this->il10->t('To accept this invite use the following invite link: %1$s <br>There you will be requested to sign in at your Cloud Provider.', [$inviteLink]);
-		$encoded = base64_encode("$token@$senderProvider");
-		$inviteDetails = $this->il10->t('Details:<br>Invite string: %1$s<br>token: %2$s<br>provider: %3$s', [$encoded, $token, $senderProvider]);
-		$message = trim($message) === '' ? '' : "---\n$message\n---";
-		$body = "$header\n\n$message\n\n$inviteLinkNote\n\n$inviteDetails";
+		$this->logger->debug("message: $message : " . print_r($message, true));
 
-		$email->setHtmlBody($body);
-		$email->setPlainBody(strip_tags(str_replace(['<br>', '<br/>', '<br />'], "\n", $body)));
+        $header = $this->il10->t('Hi there,<br><br>%1$s invites you to exchange cloud IDs.<br>', [$initiatorDisplayName]);
+        $inviteLinkNote = $this->il10->t('<br>To accept this invite use the following invite link: %1$s <br>There you will be requested to sign in at your Cloud Provider.<br>', [$inviteLink]);
+        $encoded = base64_encode("$token@$senderProvider");
+		$inviteDetails = $this->il10->t('<br>Details:<br>Invite string: %1$s<br>token: %2$s<br>provider: %3$s<br>', [$encoded, $token, $senderProvider]);
+
+		$messageLineBreaksToHtml = str_replace("\n", "<br>", $message);
+		$message = trim($message) === '' ? '' : "<br>---<br>$messageLineBreaksToHtml<br>---<br>";
+
+        $body = "$header$message$inviteLinkNote$inviteDetails";
+        $email->setHtmlBody($body);
+        $email->setPlainBody(strip_tags(str_replace(['<br>', '<br/>', '<br />'], "\n", $body)));
 
 		/** @var string[] */
 		$failedRecipients = $this->mailer->send($email);
