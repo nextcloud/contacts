@@ -34,9 +34,16 @@
 
 		<NcModal v-if="isGrouping"
 			:name="t('contacts', 'Add contacts to group')"
-			 size="large"
-			 @close="isGrouping = false">
-			<Batch :contacts="Array.from(multiSelectedContacts.values())" @submit="isGrouping = false" />
+			size="large"
+			@close="isGrouping = false">
+			<Batch :contacts="Array.from(multiSelectedContacts.values())" mode="grouping" @submit="isGrouping = false" />
+		</NcModal>
+
+		<NcModal v-if="isMovingAddressbook"
+			:name="t('contacts', 'Move contacts to addressbook')"
+			size="large"
+			@close="isMovingAddressbook = false">
+			<Batch :contacts="Array.from(multiSelectedContacts.values())" mode="ab" @submit="isMovingAddressbook = false" />
 		</NcModal>
 
 		<div class="contacts-list__header">
@@ -60,7 +67,7 @@
 					<IconDelete :size="16" />
 				</NcButton>
 				<NcButton v-if="!isMergingLoading"
-					type="tertiary"
+					variant="tertiary"
 					:disabled="!areTwoEditable"
 					:title="mergeActionTitle"
 					:close-after-click="true"
@@ -68,11 +75,21 @@
 					<IconSetMerge :size="20" />
 				</NcButton>
 				<NcLoadingIcon v-else :size="20" />
-				<NcButton type="tertiary"
+				<NcButton variant="tertiary"
 					:title="groupActionTitle"
+					:disabled="!isAtLeastOneEditable"
 					:close-after-click="true"
+						  @submit="finishBatch"
 					@click.prevent="isGrouping = true">
 					<IconAccountMultiple :size="20" />
+				</NcButton>
+				<NcButton variant="tertiary"
+					:title="addressbookActionTitle"
+					:disabled="!isAtLeastOneEditable"
+					:close-after-click="true"
+						  @submit="finishBatch"
+					@click.prevent="isMovingAddressbook = true">
+					<IconBookAccount :size="20" />
 				</NcButton>
 			</div>
 		</transition>
@@ -98,6 +115,7 @@ import IconSelect from 'vue-material-design-icons/CloseThick.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconSetMerge from 'vue-material-design-icons/SetMerge.vue'
 import IconAccountMultiple from 'vue-material-design-icons/AccountMultipleOutline.vue'
+import IconBookAccount from 'vue-material-design-icons/BookAccountOutline.vue'
 import Merging from './ContactsList/Merging.vue'
 import Batch from './ContactsList/Batch.vue'
 
@@ -119,6 +137,7 @@ export default {
 		IconDelete,
 		IconSetMerge,
 		IconAccountMultiple,
+		IconBookAccount,
 		NcDialog,
 		NcModal,
 		Merging,
@@ -173,6 +192,7 @@ export default {
 			isMerging: false,
 			isMergingLoading: false,
 			isGrouping: false,
+			isMovingAddressbook: false,
 		}
 	},
 
@@ -226,6 +246,11 @@ export default {
 			return this.isAtLeastOneEditable
 				? n('contacts', 'Add {number} contact to group', 'Add {number} contacts to group', this.multiSelectedContacts.size, { number: this.multiSelectedContacts.size })
 				: t('contacts', 'Please select at least one editable contact to add to a group')
+		},
+		addressbookActionTitle() {
+			return this.isAtLeastOneEditable
+				? n('contacts', 'Move {number} contact to addressbook', 'Move {number} contacts to addressbook', this.multiSelectedContacts.size, { number: this.multiSelectedContacts.size })
+				: t('contacts', 'Please select at least one editable contact to move to an addressbook')
 		},
 	},
 
@@ -395,6 +420,17 @@ export default {
 			await this.$router.push({
 				name: 'root',
 			})
+		},
+
+		async finishBatch() {
+			this.isGrouping = false
+			this.isMovingAddressbook = false
+
+			for (const contact of this.multiSelectedContacts.values()) {
+				await this.$store.dispatch('fetchFullContact', { contact, forceReFetch: true })
+			}
+
+			this.unselectAllMultiSelected()
 		},
 	},
 }
