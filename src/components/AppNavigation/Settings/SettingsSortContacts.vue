@@ -11,10 +11,9 @@
 			:searchable="false"
 			:allow-empty="false"
 			:options="options"
-			:custom-label="formatSortByLabel"
-			:get-option-key="(option) => option.key"
+			:input-label="t('contacts', 'Sort by')"
 			label="label"
-			@input="sortContacts" />
+			@update:model-value="sortContacts" />
 	</div>
 </template>
 
@@ -30,33 +29,39 @@ export default {
 		IconList,
 	},
 
+	data() {
+		return {
+			selected: null,
+		}
+	},
+
 	computed: {
 		/* Order Keys */
 		options() {
 			return [
 				{
 					label: t('contacts', 'First name'),
-					key: 'firstName',
+					value: 'firstName',
 				},
 				{
 					label: t('contacts', 'Last name'),
-					key: 'lastName',
+					value: 'lastName',
 				},
 				{
 					label: t('contacts', 'Phonetic first name'),
-					key: 'phoneticFirstName',
+					value: 'phoneticFirstName',
 				},
 				{
 					label: t('contacts', 'Phonetic last name'),
-					key: 'phoneticLastName',
+					value: 'phoneticLastName',
 				},
 				{
 					label: t('contacts', 'Display name'),
-					key: 'displayName',
+					value: 'displayName',
 				},
 				{
 					label: t('contacts', 'Last modified'),
-					key: 'rev',
+					value: 'rev',
 				},
 			]
 		},
@@ -69,9 +74,9 @@ export default {
 		},
 	},
 	methods: {
-		sortContacts(orderKey) {
-			const key = orderKey && orderKey.key ? orderKey.key : 'displayName'
-			this.$store.commit('setOrder', key)
+		sortContacts(selected) {
+			const value = selected && selected.value ? selected.value : 'displayName'
+			this.$store.commit('setOrder', value)
 			this.$store.commit('sortContacts')
 			localStorage.setItem('orderKey', key)
 		},
