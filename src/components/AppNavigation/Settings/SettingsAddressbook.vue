@@ -4,40 +4,39 @@
 -->
 <template>
 	<div class="settings-addressbook-list">
-		<IconContactPlus class="settings-line__icon" />
-		<li :class="{ 'addressbook--disabled': !addressbook.enabled }" class="addressbook">
-			<div class="addressbook__content">
-				<!-- addressbook name -->
-				<span class="addressbook__name" :title="addressbook.displayName">
-					{{ addressbook.enabled ? addressbook.displayName : t('contacts', '{addressbookname} (Hidden)', { addressbookname: addressbook.displayName }) }}
-				</span>
+		<NcListItem
+			:class="{ 'addressbook--disabled': !addressbook.enabled }"
+			:force-display-actions="true"
+			:name="addressbook.enabled ? addressbook.displayName : t('contacts', '{addressbookname} (Hidden)', { addressbookname: addressbook.displayName })">
+			<template #icon>
+				<IconContactPlus class="settings-line__icon" />
+			</template>
 
-				<div v-if="addressbook.dav.description" class="addressbook__description">
-					{{ addressbook.dav.description }}
-				</div>
-				<!-- counters -->
-				<div v-if="addressbook.enabled" class="addressbook__count-wrapper">
+			<template #subname>
+				<span v-if="addressbook.dav.description">{{ addressbook.dav.description }}, </span>
+				<span v-if="addressbook.enabled" class="addressbook__count-wrapper">
 					<span class="addressbook__count">{{ n('contacts', '%n contact', '%n contacts', contactsCount) }}</span>
-					<span class="addressbook__count">- {{ n('contacts', '%n group', '%n groups', groupsCount) }}</span>
-				</div>
-			</div>
+					<span class="addressbook__count"> - {{ n('contacts', '%n group', '%n groups', groupsCount) }}</span>
+				</span>
+			</template>
 
-			<!-- sharing Ncbutton -->
-			<NcButton
-				v-if="!addressbook.readOnly && !isSharedWithMe"
-				v-tooltip.top="sharedWithTooltip"
-				:class="{ 'addressbook__share--shared': hasShares }"
-				:name="sharedWithTooltip"
-				href="#"
-				class="addressbook__share"
-				@click="toggleShare">
-				<template #icon>
-					<IconShare :size="20" />
-				</template>
-			</NcButton>
+			<template #extra-actions>
+				<!-- sharing Ncbutton -->
+				<ActionButton
+					v-if="!addressbook.readOnly && !isSharedWithMe"
+					:title="sharedWithTooltip"
+					:class="{ 'addressbook__share--shared': hasShares }"
+					variant="tertiary"
+					href="#"
+					class="addressbook__share"
+					@click="toggleShare">
+					<template #icon>
+						<IconShare :size="20" />
+					</template>
+				</ActionButton>
+			</template>
 
-			<!-- popovermenu -->
-			<Actions class="addressbook__menu" menu-align="right">
+			<template #actions>
 				<!-- copy addressbook link -->
 				<ActionLink
 					:href="addressbook.url"
@@ -111,10 +110,9 @@
 					</template>
 					{{ t('contacts', 'Delete') }}
 				</ActionButton>
-			</Actions>
-			<!-- sharing input -->
-			<ShareAddressBook v-if="shareOpen && !addressbook.readOnly" :addressbook="addressbook" />
-		</li>
+			</template>
+		</NcListItem>
+		<ShareAddressBook v-if="shareOpen && !addressbook.readOnly" :addressbook="addressbook" />
 	</div>
 </template>
 
@@ -125,9 +123,8 @@ import {
 	NcActionCheckbox as ActionCheckbox,
 	NcActionInput as ActionInput,
 	NcActionLink as ActionLink,
-	NcActions as Actions,
 	NcLoadingIcon as IconLoading,
-	NcButton,
+	NcListItem,
 } from '@nextcloud/vue'
 import IconContactPlus from 'vue-material-design-icons/AccountMultiplePlusOutline.vue'
 import IconRename from 'vue-material-design-icons/PencilOutline.vue'
@@ -146,8 +143,6 @@ export default {
 		ActionCheckbox,
 		ActionInput,
 		ActionLink,
-		Actions,
-		NcButton,
 		IconDelete,
 		IconDownload,
 		IconRename,
@@ -155,6 +150,7 @@ export default {
 		IconShare,
 		IconLoading,
 		ShareAddressBook,
+		NcListItem,
 	},
 
 	mixins: [CopyToClipboardMixin],
@@ -358,88 +354,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.addressbook {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	padding: var(--default-grid-baseline) 0;
-
-	> .addressbook__content {
-		+ a,
-		+ div {
-			// put actions at the end
-			margin-inline-start: auto;
-		}
-	}
-
-	&__name {
-		display: block;
-		flex: 0 1 auto;
-		white-space: nowrap;
-		overflow: hidden;
-		text-overflow: ellipsis;
-	}
-
-	&__content {
-		display: flex;
-		flex-wrap: wrap;
-		flex-direction: column;
-		flex: 0 1 auto;
-		max-width: calc(100% - 2 * 44px);
-	}
-
-	&__description {
-		color: var(--color-text-lighter);
-	}
-
-	&__count-wrapper {
-		display: flex;
-	}
-
-	&__count {
-		margin-inline-start: calc(var(--default-grid-baseline) * 0.5);
-		font-size: smaller;
-		color: var(--color-text-lighter);
-	}
-
-	&__count:not(:last-child) {
-		margin-inline-end: var(--default-grid-baseline);
-	}
-
-	&__share,
-	&__menu .icon-more {
-		opacity: .5;
-		&:hover,
-		&:focus,
-		&:active {
-			opacity: .7;
-		}
-	}
-	&__share {
-		background-color: transparent;
-		border: none;
-		box-shadow: none;
-
-		&--shared {
-			opacity: .7;
-		}
-	}
-	&--disabled &__name {
-		opacity: .5;
-	}
-}
-
 .settings-addressbook-list {
 	display: flex;
-	width: 100%;
-	.material-design-icon {
-		justify-content: flex-start;
-	}
-}
-
-.addressbook-shares {
-	padding-top: calc(var(--default-grid-baseline) * 2);
+	flex-direction: column;
 }
 </style>

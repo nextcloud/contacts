@@ -5,7 +5,6 @@
 
 <template>
 	<div class="sort-contacts">
-		<IconList class="settings-line__icon" />
 		<NcSelect
 			id="sort-by"
 			:value="orderKeyOption"
@@ -14,6 +13,7 @@
 			:options="options"
 			:custom-label="formatSortByLabel"
 			:get-option-key="(option) => option.key"
+			:input-label="t('contacts', 'Sort by')"
 			label="label"
 			@input="sortContacts" />
 	</div>
@@ -21,14 +21,12 @@
 
 <script>
 import { NcSelect } from '@nextcloud/vue'
-import IconList from 'vue-material-design-icons/FormatListBulletedSquare.vue'
 
 export default {
 	name: 'SettingsSortContacts',
 
 	components: {
 		NcSelect,
-		IconList,
 	},
 
 	computed: {
@@ -89,6 +87,13 @@ export default {
 
 <style lang="scss" scoped>
 .sort-contacts {
+	width: 100%;
 	display: flex;
+	justify-content: stretch;
+	margin-bottom: calc(var(--default-grid-baseline) * 2);
+
+	#sort-by {
+		flex-grow: 1;
+	}
 }
 </style>
