@@ -68,7 +68,7 @@
     "lodash": "^4.17.21",
     "mitt": "^3.0.1",
     "moment": "^2.30.1",
-    "p-limit": "^7.1.1",
+    "p-limit": "^7.2.0",
     "pinia": "^3.0.3",
     "qreator": "^9.7.2",
     "string-natural-compare": "^3.0.1",
