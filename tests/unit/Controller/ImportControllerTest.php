@@ -86,9 +86,13 @@ class ImportControllerTest extends TestCase {
 		$addressBook1 = $this->createMock(ICreateContactFromString::class);
 		$addressBook1->method('getUri')
 			->willReturn('contacts');
+		$addressBook1->method(('getPermissions'))
+			->willReturn(Constants::PERMISSION_UPDATE);
 		$addressBook2 = $this->createMock(ICreateContactFromString::class);
 		$addressBook2->method('getUri')
 			->willReturn('foo');
+		$addressBook2->method(('getPermissions'))
+			->willReturn(Constants::PERMISSION_UPDATE);
 		$this->contactsManager->expects(self::once())
 			->method('getUserAddressBooks')
 			->willReturn([
@@ -225,6 +229,8 @@ class ImportControllerTest extends TestCase {
 		$addressBook1 = $this->createMock(ICreateContactFromString::class);
 		$addressBook1->method('getUri')
 			->willReturn('contacts');
+		$addressBook1->method(('getPermissions'))
+			->willReturn(Constants::PERMISSION_UPDATE);
 		$this->contactsManager->expects(self::once())
 			->method('getUserAddressBooks')
 			->willReturn([
@@ -267,6 +273,25 @@ class ImportControllerTest extends TestCase {
 		$actual = $this->controller->import(42, 'contacts');
 		$this->assertEquals('Imported %n contacts (skipped %d)', $actual->getData());
 		$this->assertEquals(200, $actual->getStatus());
+	}
+
+	public function testImportWithNoPermissions(): void {
+		$uri = 'contacts_shared_from_another_user';
+		$addressBook1 = $this->createMock(ICreateContactFromString::class);
+		$addressBook1->method('getUri')
+			->willReturn($uri);
+
+		$addressBook1->method('getPermissions')
+			->willReturn(Constants::PERMISSION_READ);
+		$this->contactsManager->expects(self::once())
+			->method('getUserAddressBooks')
+			->willReturn([
+				$addressBook1,
+			]);
+
+		$actual = $this->controller->import(42, addressBookUri: $uri);
+		$this->assertEquals(expected: 'Insufficient permissions to import into the address book ' . $uri, actual: $actual->getData());
+		$this->assertEquals(expected: 403, actual: $actual->getStatus());
 	}
 
 	public function testImportWithoutUserSession(): void {
