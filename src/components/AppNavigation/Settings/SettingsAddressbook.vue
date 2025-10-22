@@ -9,7 +9,7 @@
 			<div class="addressbook__content">
 				<!-- addressbook name -->
 				<span class="addressbook__name" :title="addressbook.displayName">
-					{{ addressbook.enabled ? addressbook.displayName : t('contacts', '{addressbookname} (Disabled)', { addressbookname: addressbook.displayName }) }}
+					{{ addressbook.enabled ? addressbook.displayName : t('contacts', '{addressbookname} (Hidden)', { addressbookname: addressbook.displayName }) }}
 				</span>
 
 				<div v-if="addressbook.dav.description" class="addressbook__description">
