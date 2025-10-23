@@ -26,7 +26,6 @@ OC.L10N.register(
     "Unshare {addressbook}?" : "Atcelt {addressbook} koplietošanu?",
     "Deletion of address book was not successful." : "Adrešu grāmatas izdzēšana nebija sekmīga.",
     "Renaming of address book was not successful." : "Adrešu grāmatas pārdēvēšana nebija sekmīga",
-    "{addressbookname} (Disabled)" : "{addressbookname} (atspējota)",
     "Download" : "Lejupielādēt",
     "Share with users or groups" : "Koplietot ar lietotājiem vai grupām",
     "No users or groups" : "Nav lietotāji vai grupas",
@@ -137,6 +136,7 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontaktpersonas neizdevās nolasīt","{failed} kontaktpersonu neizdevās nolasīt","{failed} kontaktpersonas neizdevās nolasīt"],
     "An error has occurred in team(s). Check the console for more details." : "Atgadījās kļūda komandā(s). Jāpārbauda konsole, lai iegūtu vairāk informācijas.",
     "Loading …" : "Notiek ielāde ...",
+    "{addressbookname} (Disabled)" : "{addressbookname} (atspējota)",
     "Search contacts …" : "Meklēt kontaktpersonas…"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");

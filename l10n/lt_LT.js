@@ -55,7 +55,6 @@ OC.L10N.register(
     "Unshare {addressbook}?" : "Nustoti bendrinti {addressbook}?",
     "Deletion of address book was not successful." : "Adresų knygos ištrynimas buvo nesėkmingas",
     "Renaming of address book was not successful." : "Adresų knygos pervadinimas buvo nesėkmingas",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Išjungta)",
     "Download" : "Atsisiųsti",
     "Show" : "Rodyti",
     "_%n contact_::_%n contacts_" : ["%n adresatas","%n adresatai","%n adresatų","%n adresatas"],
@@ -268,6 +267,7 @@ OC.L10N.register(
     "Unable to delete contact" : "Nepavyko ištrinti adresato",
     "Loading contacts …" : "Įkeliami adresatai…",
     "Loading …" : "Įkeliama…",
+    "{addressbookname} (Disabled)" : "{addressbookname} (Išjungta)",
     "Search contacts …" : "Ieškoti adresatų…",
     "Loading members list …" : "Įkeliamas narių sąrašas…",
     "Add to {circle}" : "Pridėti į {circle}"
