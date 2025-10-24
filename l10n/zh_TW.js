@@ -62,6 +62,7 @@ OC.L10N.register(
     "Unshare {addressbook}?" : "取消分享 {addressbook}？",
     "Deletion of address book was not successful." : "刪除通訊錄失敗。",
     "Renaming of address book was not successful." : "重新命名通訊錄失敗。",
+    "{addressbookname} (Hidden)" : "{addressbookname}（隱藏）",
     "Download" : "下載",
     "Show" : "顯示",
     "Unshare from me" : "取消與我分享",
