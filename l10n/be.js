@@ -61,6 +61,7 @@ OC.L10N.register(
     "Unshare {addressbook}?" : "Скасаваць абагульванне {addressbook}?",
     "Deletion of address book was not successful." : "Не ўдалося выдаліць адрасную кнігу",
     "Renaming of address book was not successful." : "Не ўдалося перайменаваць адрасную кнігу",
+    "{addressbookname} (Hidden)" : "{addressbookname} (Схаваная)",
     "Download" : "Спампаваць",
     "Show" : "Паказаць",
     "Unshare from me" : "Скасаваць абагульванне са мной",

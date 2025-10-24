@@ -62,6 +62,7 @@ OC.L10N.register(
     "Unshare {addressbook}?" : "Quere deixar de compartir {addressbook}?",
     "Deletion of address book was not successful." : "Non foi posíbel eliminar o caderno de enderezos.",
     "Renaming of address book was not successful." : "Non foi posíbel cambiarlle o nome ao caderno de enderezos.",
+    "{addressbookname} (Hidden)" : "{addressbookname}  (Agochado)",
     "Download" : "Descargar",
     "Show" : "Amosar",
     "Unshare from me" : "Deixar de compartir comigo",

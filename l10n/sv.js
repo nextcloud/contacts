@@ -62,6 +62,7 @@ OC.L10N.register(
     "Unshare {addressbook}?" : "Ta bort delning av {addressbook}?",
     "Deletion of address book was not successful." : "Radering av adressboken lyckades inte.",
     "Renaming of address book was not successful." : "Namnbyte av adressboken lyckades inte.",
+    "{addressbookname} (Hidden)" : "{addressbookname} (Dold)",
     "Download" : "Hämta",
     "Show" : "Visa",
     "Unshare from me" : "Sluta dela från mig",
