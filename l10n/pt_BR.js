@@ -62,6 +62,7 @@ OC.L10N.register(
     "Unshare {addressbook}?" : "Descompartilhar {addressbook}?",
     "Deletion of address book was not successful." : "A exclusão do catálogo de endereços não foi bem-sucedida.",
     "Renaming of address book was not successful." : "A renomeação do catálogo de endereços não foi bem-sucedida.",
+    "{addressbookname} (Hidden)" : "{addressbookname} (Oculto)",
     "Download" : "Baixar",
     "Show" : "Mostrar",
     "Unshare from me" : "Descompartilhar de mim",

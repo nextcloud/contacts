@@ -62,6 +62,7 @@ OC.L10N.register(
     "Unshare {addressbook}?" : "Kas eemalda „{addressbook}“ aadressiraamatu jagamise?",
     "Deletion of address book was not successful." : "Aadressiraamatu kustutamine ei õnnestunud.",
     "Renaming of address book was not successful." : "Aadressiraamatu nime muutmine ei õnnestunud.",
+    "{addressbookname} (Hidden)" : "{addressbookname} (Peidetud)",
     "Download" : "Laadi alla",
     "Show" : "Näita",
     "Unshare from me" : "Eemalda minult see jagamine",

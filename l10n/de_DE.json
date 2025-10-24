@@ -60,6 +60,7 @@
     "Unshare {addressbook}?" : "{addressbook} nicht mehr teilen?",
     "Deletion of address book was not successful." : "Das Löschen des Adressbuches war nicht erfolgreich.",
     "Renaming of address book was not successful." : "Das Umbenennen des Adressbuches war nicht erfolgreich.",
+    "{addressbookname} (Hidden)" : "{addressbookname} (versteckt)",
     "Download" : "Herunterladen",
     "Show" : "Anzeigen",
     "Unshare from me" : "Nicht mehr mit mir teilen",
