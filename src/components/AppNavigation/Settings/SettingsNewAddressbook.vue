@@ -5,8 +5,14 @@
 
 <template>
 	<div class="new-addressbook-entry">
+		<NcButton v-if="!enabled" @click="enabled = true">
+			<template #icon>
+				<IconAdd :size="20" />
+			</template>
+			{{ t('contacts', 'New address book') }}
+		</NcButton>
 		<IconLoading v-if="loading" :size="20" />
-		<NcInputField
+		<NcInputField v-if="enabled"
 			v-model:model-value="displayName"
 			class="new-addressbook"
 			:disabled="loading"
@@ -28,7 +34,7 @@
 
 <script>
 import { showError } from '@nextcloud/dialogs'
-import { NcInputField } from '@nextcloud/vue'
+import { NcInputField, NcButton } from '@nextcloud/vue'
 import IconLoading from 'vue-material-design-icons/Loading.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 
@@ -38,12 +44,14 @@ export default {
 		NcInputField,
 		IconAdd,
 		IconLoading,
+		NcButton,
 	},
 
 	data() {
 		return {
 			loading: false,
 			displayName: '',
+			enabled: false,
 		}
 	},
 
@@ -82,3 +90,17 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+
+.new-addressbook-entry {
+	display: flex;
+	width: 100%;
+	justify-content: stretch;
+	margin-top: calc(var(--default-grid-baseline) * 2);
+
+	> * {
+		flex-grow: 1;
+	}
+}
+</style>
