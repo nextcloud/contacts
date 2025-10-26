@@ -62,6 +62,7 @@ OC.L10N.register(
     "Unshare {addressbook}?" : "Unshare {addressbook}?",
     "Deletion of address book was not successful." : "Deletion of address book was not successful.",
     "Renaming of address book was not successful." : "Renaming of address book was not successful.",
+    "{addressbookname} (Hidden)" : "{addressbookname} (Hidden)",
     "Download" : "Download",
     "Show" : "Show",
     "Unshare from me" : "Unshare from me",
