@@ -1,7 +1,7 @@
 OC.L10N.register(
     "contacts",
     {
-    "Import contacts" : "Importer kontakter",
+    "Import contacts" : "Importér kontakter",
     "Details" : "Detaljer",
     "All contacts" : "Alle kontakter",
     "Contacts" : "Kontakter",
@@ -70,7 +70,7 @@ OC.L10N.register(
     "Unable to change permissions" : "Kan ikke ændre tilladelser",
     "can edit" : "kan redigere",
     "Choose a vCard file to import" : "Vælg en vCard fil at importere",
-    "Import into the {addressbookName} address book" : "Importer til adressebogen {addressbookName}",
+    "Import into the {addressbookName} address book" : "Importér til adressebogen {addressbookName}",
     "Select local file" : "Vælg lokal fil",
     "Import from files" : "Importér fra filer",
     "Importing is disabled because there are no address books available" : "Indlæsning er deaktiveret da der ikke er nogen adressebog tilgængelig",
