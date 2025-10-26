@@ -34,7 +34,11 @@
 
 		<div class="contacts-list__header">
 			<div class="search-contacts-field">
-				<input v-model="query" type="text" :placeholder="t('contacts', 'Search contacts …')">
+				<NcTextField v-model="query"
+					:label="t('contacts', 'Search contacts …')"
+					trailing-button-icon="close"
+					:show-trailing-button="query !== ''"
+					@trailing-button-click="query = ''" />
 			</div>
 		</div>
 		<transition name="contacts-list__multiselect-header">
@@ -78,7 +82,15 @@
 </template>
 
 <script>
-import { NcAppContentList as AppContentList, NcButton, NcDialog, NcNoteCard, NcModal, NcLoadingIcon } from '@nextcloud/vue'
+import {
+	NcAppContentList as AppContentList,
+	NcButton,
+	NcDialog,
+	NcLoadingIcon,
+	NcModal,
+	NcNoteCard,
+	NcTextField,
+} from '@nextcloud/vue'
 import ContactsListItem from './ContactsList/ContactsListItem.vue'
 import { VList } from 'virtua/vue'
 import IconSelect from 'vue-material-design-icons/CloseThick.vue'
@@ -108,6 +120,7 @@ export default {
 		Merging,
 		NcLoadingIcon,
 		ContactsListItem,
+		NcTextField,
 	},
 
 	mixins: [
