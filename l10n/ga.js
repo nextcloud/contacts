@@ -62,6 +62,7 @@ OC.L10N.register(
     "Unshare {addressbook}?" : "An dteastaíonn uait an {addressbook} a dhíchomhroinnt?",
     "Deletion of address book was not successful." : "Níor éirigh le scriosadh an leabhair sheoltaí.",
     "Renaming of address book was not successful." : "Níor éirigh le hathainmniú an leabhair sheoltaí.",
+    "{addressbookname} (Hidden)" : "{addressbookname} (I bhfolach)",
     "Download" : "Íosluchtaigh",
     "Show" : "Taispeáin",
     "Unshare from me" : "Dí-roinn uaim",
