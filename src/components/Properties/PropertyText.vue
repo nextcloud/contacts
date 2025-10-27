@@ -209,7 +209,9 @@ export default {
 	},
 
 	mounted() {
-		this.resizeHeight()
+		if (this.propName === 'note') {
+			this.resizeHeight()
+		}
 	},
 
 	methods: {
