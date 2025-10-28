@@ -1,3 +1,25 @@
+## [8.0.5](https://github.com/nextcloud/contacts/compare/v8.0.4...v8.0.5) (2025-10-28)
+
+
+### Bug Fixes
+
+* **ContactDetailsAvatar:** border radius cropping too much ([5b9bc0b](https://github.com/nextcloud/contacts/commit/5b9bc0bde97e4443e48d01593adb5c7f3a2dab2d))
+* **deps:** Fix npm audit ([fd37ec6](https://github.com/nextcloud/contacts/commit/fd37ec6c74264321950afb7ec230999fb5b41c78))
+* **deps:** Fix npm audit ([0a5ad23](https://github.com/nextcloud/contacts/commit/0a5ad238b7d454db0216c6dbba8749033b36c333))
+* **l10n:** Update translations from Transifex ([67c7931](https://github.com/nextcloud/contacts/commit/67c79318847a6074af3d62b1bb7a47ba9fca303d))
+* **l10n:** Update translations from Transifex ([a89f245](https://github.com/nextcloud/contacts/commit/a89f245bda0d77c6483c7ddfdb0c24a8655d58d0))
+* **l10n:** Update translations from Transifex ([c3b1f64](https://github.com/nextcloud/contacts/commit/c3b1f64a93157d13f78748e5baec96c40d3fa536))
+* **l10n:** Update translations from Transifex ([bf23507](https://github.com/nextcloud/contacts/commit/bf235076e901d4d00e16eb6ea5493a77384dafd1))
+* **l10n:** Update translations from Transifex ([84700de](https://github.com/nextcloud/contacts/commit/84700dee761eb855930ec3f9b5042b3de46a52c5))
+* **l10n:** Update translations from Transifex ([d45ce5d](https://github.com/nextcloud/contacts/commit/d45ce5d1ccd897326e1f1f69f7a49851dc3f0aa3))
+* **l10n:** Update translations from Transifex ([2958801](https://github.com/nextcloud/contacts/commit/295880175d9fd47ef1f739951e92cb72c3fca6b0))
+* **l10n:** Update translations from Transifex ([2eaf32a](https://github.com/nextcloud/contacts/commit/2eaf32a10dc8a1b755c08e5b8e9ace202764c099))
+* **l10n:** Update translations from Transifex ([5ffc2e3](https://github.com/nextcloud/contacts/commit/5ffc2e3ecf5121cda18a9b6390067882fc30084b))
+* **l10n:** Update translations from Transifex ([c4e91b1](https://github.com/nextcloud/contacts/commit/c4e91b1c1bb4a969b74c592ac416c061b96094a5))
+* **proprety-text:** only resize text area when the ref is defined ([66e1780](https://github.com/nextcloud/contacts/commit/66e17809a56c6272c47d1ada527542264c40b5cf))
+
+
+
 ## [8.0.4](https://github.com/nextcloud/contacts/compare/v8.0.3...v8.0.4) (2025-10-15)
 
 
