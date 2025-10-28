@@ -62,6 +62,7 @@ OC.L10N.register(
     "Unshare {addressbook}?" : "usishirikishe {addressbook}",
     "Deletion of address book was not successful." : "Ufutaji wa kitabu cha anwani haukufanikiwa",
     "Renaming of address book was not successful." : "Ubadilishaji jina wa kitabu cha anwani haukufanikiwa",
+    "{addressbookname} (Hidden)" : "{addressbookname}(Imefichwa) ",
     "Download" : "Pakua",
     "Show" : "Onesha",
     "Unshare from me" : "Usishirikishe kutoka kwangu",
