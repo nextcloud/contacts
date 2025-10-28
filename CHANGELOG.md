@@ -1,3 +1,22 @@
+## [7.3.5](https://github.com/nextcloud/contacts/compare/v7.3.4...v7.3.5) (2025-10-28)
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([28b14f0](https://github.com/nextcloud/contacts/commit/28b14f0043e8513437bce5a93a77b39328338ee2))
+* **l10n:** Update translations from Transifex ([b864a6e](https://github.com/nextcloud/contacts/commit/b864a6e6bd516336b20de4cda8e971f3b0f15556))
+* **l10n:** Update translations from Transifex ([d4e7a57](https://github.com/nextcloud/contacts/commit/d4e7a570a636392dd631b597c5ed6adff7bdf717))
+* **l10n:** Update translations from Transifex ([9f0db8e](https://github.com/nextcloud/contacts/commit/9f0db8ea3020877e82d73e94f585a0726d55ba20))
+* **l10n:** Update translations from Transifex ([4e3e29d](https://github.com/nextcloud/contacts/commit/4e3e29d8dba1e58a4f4c154f456442a5b6ff9b00))
+* **l10n:** Update translations from Transifex ([69b2693](https://github.com/nextcloud/contacts/commit/69b2693036f40c34b35dee378bff186429c5227b))
+* **l10n:** Update translations from Transifex ([1c1f86b](https://github.com/nextcloud/contacts/commit/1c1f86b2c65e5a03130b87954a7ad9b344752e1c))
+* **l10n:** Update translations from Transifex ([92da3e9](https://github.com/nextcloud/contacts/commit/92da3e95be31bfe432720075a1396067e357eef0))
+* **l10n:** Update translations from Transifex ([da48808](https://github.com/nextcloud/contacts/commit/da48808c43ff3feb35b67d7a17ef22d05a0b68b4))
+* **l10n:** Update translations from Transifex ([72cfdae](https://github.com/nextcloud/contacts/commit/72cfdae8f891dffea9bbc4375b9bb96c4bdceea1))
+* **proprety-text:** only resize text area when the ref is defined ([2f53d36](https://github.com/nextcloud/contacts/commit/2f53d36e116737b02c02001cadacc833f98c0ea9))
+
+
+
 ## [7.3.4](https://github.com/nextcloud/contacts/compare/v7.3.3...v7.3.4) (2025-10-15)
 
 
