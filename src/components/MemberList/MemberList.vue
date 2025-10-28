@@ -42,8 +42,8 @@
 			v-if="showPicker"
 			ref="entityPicker"
 			v-model:selection="pickerSelection"
-			:confirm-label="t('contacts', 'Add to {team}', { team: circle.displayName })"
-			:title-label="t('contacts', 'Invite members to {team}', { team: circle.displayName })"
+			:confirm-label="t('contacts', 'Add to {team}', { team: decodedTeamName })"
+			:title-label="t('contacts', 'Invite members to {team}', { team: decodedTeamName })"
 			:data-types="pickerTypes"
 			:data-set="filteredPickerData"
 			:internal-search="false"
@@ -114,6 +114,17 @@ export default defineComponent({
 		 */
 		circle() {
 			return this.$store.getters.getCircle(this.selectedCircle)
+		},
+
+		// Decode HTML entities in the circle display name so apostrophes (') and other
+		// HTML-encoded chars (e.g. &#39;) are shown correctly in the picker labels.
+		decodedTeamName(): string {
+			const raw = this.circle && this.circle.displayName ? this.circle.displayName : ''
+			// Use a DOM textarea element to decode HTML entities safely.
+			// This works for common entities such as &amp;, &lt;, &gt;, &#39;, etc.
+			const ta = document.createElement('textarea')
+			ta.innerHTML = raw
+			return ta.value
 		},
 
 		filteredPickerData() {
