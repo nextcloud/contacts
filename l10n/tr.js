@@ -62,6 +62,7 @@ OC.L10N.register(
     "Unshare {addressbook}?" : "{addressbook} paylaşımdan kaldırılsın mı?",
     "Deletion of address book was not successful." : "Adres defteri silinemedi.",
     "Renaming of address book was not successful." : "Adres defteri yeniden adlandırılamadı.",
+    "{addressbookname} (Hidden)" : "{addressbookname} (gizli)",
     "Download" : "İndir",
     "Show" : "Görüntüle",
     "Unshare from me" : "Benimle paylaşımı kaldır",
