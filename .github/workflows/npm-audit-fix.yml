@@ -14,6 +14,9 @@ on:
     # At 2:30 on Sundays
     - cron: '30 2 * * 0'
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,15 +24,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        branches: ['main', 'stable7.0','stable6.1', 'stable6.0']
+        branches: ['main', 'stable7.3', 'stable8.0']
 
     name: npm-audit-fix-${{ matrix.branches }}
 
     steps:
       - name: Checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        id: checkout
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
         with:
+          persist-credentials: false
           ref: ${{ matrix.branches }}
+        continue-on-error: true
 
       - name: Read package.json node and npm engines version
         uses: skjnldsv/read-package-engines-version-actions@06d6baf7d8f41934ab630e97d9e6c0bc9c9ac5e4 # v3
@@ -39,7 +45,7 @@ jobs:
           fallbackNpm: '^10'
 
       - name: Set up node ${{ steps.versions.outputs.nodeVersion }}
-        uses: actions/setup-node@39370e3970a6d050c480ffad4ff0ed4d3fdee5af # v4.1.0
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6.0.0
         with:
           node-version: ${{ steps.versions.outputs.nodeVersion }}
 
@@ -48,10 +54,10 @@ jobs:
 
       - name: Fix npm audit
         id: npm-audit
-        uses: nextcloud-libraries/npm-audit-action@2a60bd2e79cc77f2cc4d9a3fe40f1a69896f3a87 # v0.1.0
+        uses: nextcloud-libraries/npm-audit-action@1b1728b2b4a7a78d69de65608efcf4db0e3e42d0 # v0.2.0
 
       - name: Run npm ci and npm run build
-        if: always()
+        if: steps.checkout.outcome == 'success'
         env:
           CYPRESS_INSTALL_BINARY: 0
         run: |
@@ -59,8 +65,8 @@ jobs:
           npm run build --if-present
 
       - name: Create Pull Request
-        if: always()
-        uses: peter-evans/create-pull-request@67ccf781d68cd99b580ae25a5c18a1cc84ffff1f # v7.0.6
+        if: steps.checkout.outcome == 'success'
+        uses: peter-evans/create-pull-request@271a8d0340265f705b14b6d32b9829c1cb33d45e # v7.0.8
         with:
           token: ${{ secrets.COMMAND_BOT_PAT }}
           commit-message: 'fix(deps): Fix npm audit'

@@ -56,6 +56,7 @@ class SocialUpdateRegistration extends TimedJob {
 	/**
 	 * @inheritDoc
 	 */
+	#[\Override]
 	protected function run($argument) {
 		// check if admin allows for social updates:
 		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');

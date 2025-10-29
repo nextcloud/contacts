@@ -5,7 +5,7 @@
 
 // contacts settings section
 .app-contacts #app-settings-content {
-	padding-left: 0px !important;
+	padding-inline-start: 0px !important;
 }
 
 #app-settings-content {
@@ -35,7 +35,7 @@
 		width: calc(100% - 44px);
 	}
 	&__header {
-		padding-left: 44px;
+		padding-inline-start: 44px;
 		color: var(--color-primary-element);
 		padding-top: 8px;
 	}
@@ -53,7 +53,7 @@
 		width: calc(100% - 44px);
 		margin: 0;
 		.multiselect__single {
-			padding-right: 24px !important;
+			padding-inline-end: 24px !important;
 			background-repeat: no-repeat;
 			background-position: right 4px center;
 		}
@@ -72,7 +72,7 @@
 		width: 100%;
 		margin: 0;
 		padding: 6px 12px;
-		padding-left: 34px;
+		padding-inline-start: 34px;
 		border-radius: var(--border-radius) var(--border-radius) 0 0;
 		background-position: left 9px center;
 		&--no-select {
@@ -85,7 +85,7 @@
 		margin-top: -1px;
 	}
 	&__button-main {
-		margin-left: 10px;
+		margin-inline-start: 10px;
 		width: calc(100% - 10px) !important;
 	}
 }

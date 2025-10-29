@@ -6,7 +6,8 @@
 <template>
 	<div v-if="propModel && showProperty" class="property">
 		<!-- title if first element -->
-		<PropertyTitle v-if="isFirstProperty && propModel.icon"
+		<PropertyTitle
+			v-if="isFirstProperty && propModel.icon"
 			:property="property"
 			:is-multiple="isMultiple"
 			:is-read-only="isReadOnly"
@@ -22,17 +23,17 @@
 				</span>
 
 				<!-- type selector -->
-				<NcSelect v-else-if="!isReadOnly && propModel.options"
+				<NcSelect
+					v-else-if="!isReadOnly && propModel.options"
 					v-model="localType"
 					:options="options"
 					:placeholder="t('contacts', 'Select type')"
 					:taggable="true"
 					tag-placeholder="create"
 					:disabled="isReadOnly"
-					track-by="id"
 					label="name"
 					@option:created="createLabel"
-					@input="updateType" />
+					@update:model-value="updateType" />
 
 				<!-- if we do not support any type on our model but one is set anyway -->
 				<span v-else-if="selectType">
@@ -47,28 +48,48 @@
 
 			<!-- textarea for note -->
 			<div class="property__value">
-				<NcTextArea v-if="propName === 'note'"
+				<NcTextArea
+					v-if="propName === 'note'"
 					id="textarea"
 					ref="textarea"
-					:value.sync="localValue"
+					v-model:model-value="localValue"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
-					@update:value="updateValueNoDebounce"
+					@update:model-value="updateValueNoDebounce"
 					@mousemove="resizeHeight"
 					@keypress="resizeHeight" />
 
-				<!-- OR default to input -->
-				<NcTextField v-else
-					:value.sync="localValue"
+				<!-- email with validation-->
+				<NcTextField
+					v-else-if="propName === 'email'"
+					ref="email"
+					v-model:model-value="localValue"
+					:class="{ 'property__value--with-ext': haveExtHandler }"
+					autocapitalize="none"
+					autocomplete="email"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
-					:class="{'property__value--with-ext': haveExtHandler}"
+					:error="!isEmailValid"
+					:helper-text="!emailHelpText || isReadonly ? '' : emailHelpText"
+					label-outside
+					:placeholder="placeholder"
+					type="email"
+					@update:model-value="updateEmailValue" />
+
+				<!-- OR default to input -->
+				<NcTextField
+					v-else
+					v-model:model-value="localValue"
+					:inputmode="inputmode"
+					:readonly="isReadOnly"
+					:class="{ 'property__value--with-ext': haveExtHandler }"
 					type="text"
 					:placeholder="placeholder"
-					@update:value="updateValue" />
+					@update:model-value="updateValue" />
 
 				<!-- external link -->
-				<a v-if="haveExtHandler && isReadOnly"
+				<a
+					v-if="haveExtHandler && isReadOnly"
 					:href="externalHandler"
 					class="property__ext"
 					target="_blank">
@@ -78,7 +99,8 @@
 
 			<!-- props actions -->
 			<div class="property__actions">
-				<PropertyActions v-if="!isReadOnly"
+				<PropertyActions
+					v-if="!isReadOnly"
 					:actions="actions"
 					:property-component="this"
 					@delete="deleteProperty" />
@@ -90,10 +112,11 @@
 <script>
 import { NcSelect, NcTextArea, NcTextField } from '@nextcloud/vue'
 import debounce from 'debounce'
-import PropertyMixin from '../../mixins/PropertyMixin.js'
-import PropertyTitle from './PropertyTitle.vue'
-import PropertyActions from './PropertyActions.vue'
+import isEmail from 'validator/lib/isEmail.js'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
+import PropertyActions from './PropertyActions.vue'
+import PropertyTitle from './PropertyTitle.vue'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
 
 export default {
 	name: 'PropertyText',
@@ -108,24 +131,32 @@ export default {
 	},
 
 	mixins: [PropertyMixin],
+	inject: ['sharedState'],
 
 	props: {
 		propName: {
 			type: String,
 			default: 'text',
-			required: true,
 		},
+
 		value: {
 			type: String,
-			default: '',
 			required: true,
 		},
+	},
+
+	data() {
+		return {
+			emailHelpText: null,
+			isEmailValid: true,
+		}
 	},
 
 	computed: {
 		showProperty() {
 			return (this.isReadOnly && this.localValue) || !this.isReadOnly
 		},
+
 		inputmode() {
 			if (this.propName === 'tel') {
 				return 'tel'
@@ -136,6 +167,7 @@ export default {
 			}
 			return false
 		},
+
 		URLScheme() {
 			if (this.propName === 'tel') {
 				return 'tel:'
@@ -177,17 +209,35 @@ export default {
 	},
 
 	mounted() {
-		this.resizeHeight()
+		if (this.propName === 'note') {
+			this.resizeHeight()
+		}
 	},
 
 	methods: {
+		updateEmailValue() {
+			// If email valid or empty
+			this.isEmailValid = this.localValue === '' || isEmail(this.localValue)
+			if (this.isEmailValid) {
+				this.emailHelpText = null
+				this.updateValue(this.localValue)
+				this.sharedState.validEmail = true
+				return
+			}
+			this.sharedState.validEmail = false
+			this.emailHelpText = this.$refs.email.$refs.inputField.$refs.input.validationMessage || null
+		},
+
 		/**
 		 * Watch textarea resize and update the gridSize accordingly
 		 */
 		resizeHeight: debounce(function() {
-			if (this.$refs.textarea && this.$refs.textarea.offsetHeight) {
+			const textarea = this.$refs.textarea !== undefined ? this.$refs.textarea.$el.querySelector('textarea') : undefined
+
+			if (textarea && textarea?.offsetHeight) {
 				// adjust textarea size to content (2 = border)
-				this.$refs.textarea.style.height = `${this.$refs.textarea.scrollHeight + 2}px`
+				textarea.style.height = 'auto'
+				textarea.style.height = `${textarea.scrollHeight + 2}px`
 			}
 		}, 100),
 
@@ -215,4 +265,11 @@ export default {
 	}
 }
 
+:deep(.textarea__main-wrapper) {
+	height: unset;
+
+	textarea {
+		resize: none !important;
+	}
+}
 </style>

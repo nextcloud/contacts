@@ -1,7 +1,6 @@
 { "translations": {
     "Details" : "Detailer",
     "Contacts" : "Kontakter",
-    "Loading …" : "Loading …",
     "Rename" : "Ëmbenennen",
     "Delete" : "Läschen",
     "Copy link" : "Link kopéieren",
@@ -11,10 +10,7 @@
     "Add" : "Derbäimaachen",
     "First name" : "Virnumm",
     "Last name" : "Famillje Numm",
-    "Password protection" : "Password protection",
     "Save" : "Späicheren",
-    "Description" : "Beschreiwung",
-    "Settings" : "Settings",
     "Cancel" : "Ofbriechen",
     "Invalid image" : "Ongülteg d'Bild",
     "Name" : "Numm",
@@ -45,6 +41,7 @@
     "Pager" : "Pager",
     "Voice" : "Voice",
     "Relative" : "Relativ",
-    "Unknown" : "Onbekannt"
+    "Unknown" : "Onbekannt",
+    "Loading …" : "Loading …"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -31,12 +32,13 @@ class DiasporaProvider implements ISocialProvider {
 	 *
 	 * @return bool
 	 */
+	#[\Override]
 	public function supportsContact(array $contact):bool {
 		if (!array_key_exists('X-SOCIALPROFILE', $contact)) {
 			return false;
 		}
 		$socialprofiles = $this->getProfileIds($contact);
-		return isset($socialprofiles) && count($socialprofiles) > 0;
+		return count($socialprofiles) > 0;
 	}
 
 	/**
@@ -46,6 +48,7 @@ class DiasporaProvider implements ISocialProvider {
 	 *
 	 * @return array
 	 */
+	#[\Override]
 	public function getImageUrls(array $contact):array {
 		$profileIds = $this->getProfileIds($contact);
 		$urls = [];

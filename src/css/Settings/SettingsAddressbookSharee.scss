@@ -10,7 +10,7 @@
 	width: 100%;
 
 	.icon {
-		margin-right: var(--default-grid-baseline);
+		margin-inline-end: var(--default-grid-baseline);
 		opacity: 0.2;
 		width: 16px;
 		height: 16px;
@@ -33,7 +33,7 @@
 
 	&__utils {
 		padding: 0 !important;
-		float: right;
+		float: inline-end;
 		position: relative !important;
 		display: inline-flex;
 		align-items: center;
@@ -46,7 +46,7 @@
 			height: 20px;
 			opacity: 0.4;
 			margin-bottom: calc(var(--default-grid-baseline) / 2);
-			margin-left: var(--default-grid-baseline);
+			margin-inline-start: var(--default-grid-baseline);
 		}
 
 		// loading state

@@ -5,35 +5,19 @@
 import ICAL from 'ical.js'
 
 /**
- * Prevents ical.js from adding 'VALUE=PHONE-NUMBER' in vCard 3.0.
- * While not wrong according to the RFC, there's a bug in sabreio/vobject (used
- * by Nextcloud Server) that prevents saving vCards with this parameters.
- *
- * @link https://github.com/nextcloud/contacts/pull/1393#issuecomment-570945735
- * @return {boolean} Whether or not the design set has been altered.
- */
-const removePhoneNumberValueType = () => {
-	if (ICAL.design.vcard3.property.tel) {
-		delete ICAL.design.vcard3.property.tel
-		return true
-	}
-
-	return false
-}
-
-/**
  * Some clients group properties by naming them something like 'ITEM1.URL'.
  * These should be treated the same as their original (i.e. 'URL' in this
  * example), so we iterate through the vCard to find these properties and
  * add them to the ical.js design set.
  *
- * @link https://github.com/nextcloud/contacts/issues/42
+ * { @link https://github.com/nextcloud/contacts/issues/42 }
+ *
  * @param {Array} vCard The ical.js vCard
  * @return {boolean} Whether or not the design set has been altered.
  */
-const addGroupedProperties = vCard => {
+function addGroupedProperties(vCard) {
 	let madeChanges = false
-	vCard[1].forEach(prop => {
+	vCard[1].forEach((prop) => {
 		const propGroup = prop[0].split('.')
 
 		// if this is a grouped property, update the designSet
@@ -50,7 +34,7 @@ const addGroupedProperties = vCard => {
  *
  * @return {boolean} Whether or not the design set has been altered.
  */
-const setTypeMultiValueSeparateDQuote = () => {
+function setTypeMultiValueSeparateDQuote() {
 	if (
 		!ICAL.design.vcard.param.type
 		|| ICAL.design.vcard.param.type.multiValueSeparateDQuote !== false
@@ -78,7 +62,6 @@ export default function(vCard) {
 	let madeChanges = false
 
 	madeChanges |= setTypeMultiValueSeparateDQuote()
-	madeChanges |= removePhoneNumberValueType()
 	madeChanges |= addGroupedProperties(vCard)
 
 	return madeChanges

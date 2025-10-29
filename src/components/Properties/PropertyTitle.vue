@@ -10,7 +10,7 @@
 		</div>
 
 		<h3 class="property__value">
-			{{ readableName }}
+			{{ displayName }}
 		</h3>
 
 		<div class="property__actions">
@@ -29,12 +29,12 @@
 </template>
 
 <script>
-import PropertyTitleIcon from './PropertyTitleIcon.vue'
 import {
 	NcActionButton as ActionButton,
 	NcActions as Actions,
 } from '@nextcloud/vue'
 import IconPlus from 'vue-material-design-icons/Plus.vue'
+import PropertyTitleIcon from './PropertyTitleIcon.vue'
 export default {
 	name: 'PropertyTitle',
 	components: {
@@ -43,34 +43,51 @@ export default {
 		ActionButton,
 		PropertyTitleIcon,
 	},
+
 	props: {
 		icon: {
 			type: String,
-			default: '',
 			required: true,
 		},
+
 		readableName: {
 			type: String,
-			default: '',
 			required: true,
 		},
+
 		isReadOnly: {
 			type: Boolean,
 			required: true,
 		},
+
 		property: {
 			type: Object,
 			default: () => {},
 		},
+
 		isMultiple: {
 			type: Boolean,
 			default: false,
 		},
+
 		bus: {
 			type: Object,
 			required: false,
 		},
 	},
+
+	computed: {
+		displayName() {
+			if (this.property) {
+				if (this.property.name === 'bday' || this.property.name === 'deathdate' || this.property.name === 'anniversary') {
+					return this.t('contacts', 'Personal dates')
+				}
+			}
+
+			return this.readableName
+		},
+	},
+
 	methods: {
 		/**
 		 * Add prop of type id

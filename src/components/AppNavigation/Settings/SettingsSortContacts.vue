@@ -6,13 +6,14 @@
 <template>
 	<div class="sort-contacts">
 		<IconList class="settings-line__icon" />
-		<NcSelect id="sort-by"
+		<NcSelect
+			id="sort-by"
 			:value="orderKeyOption"
 			:searchable="false"
 			:allow-empty="false"
 			:options="options"
 			:custom-label="formatSortByLabel"
-			track-by="key"
+			:get-option-key="(option) => option.key"
 			label="label"
 			@input="sortContacts" />
 	</div>
@@ -60,14 +61,17 @@ export default {
 				},
 			]
 		},
+
 		/* Current order Key */
 		orderKey() {
 			return this.$store.getters.getOrderKey
 		},
+
 		orderKeyOption() {
-			return this.options.filter(option => option.key === this.orderKey)[0]
+			return this.options.filter((option) => option.key === this.orderKey)[0]
 		},
 	},
+
 	methods: {
 		sortContacts(orderKey) {
 			const key = orderKey && orderKey.key ? orderKey.key : 'displayName'
@@ -75,12 +79,14 @@ export default {
 			this.$store.commit('sortContacts')
 			localStorage.setItem('orderKey', key)
 		},
+
 		formatSortByLabel(option) {
 			return t('contacts', 'Sort by {sorting}', { sorting: option.label })
 		},
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .sort-contacts {
 	display: flex;

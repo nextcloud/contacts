@@ -8,7 +8,8 @@
 			<h3>
 				{{ t('contacts', 'Chart') }}:
 			</h3>
-			<NcSelect v-model="chart"
+			<NcSelect
+				v-model="chart"
 				class="chart-selection"
 				:disabled="data.length === 1"
 				:options="charts"
@@ -17,42 +18,46 @@
 				:placeholder="placeholder"
 				input-id="select-chart-input"
 				label="label"
-				@input="chartChanged" />
+				@update:model-value="chartChanged" />
 		</div>
 		<div ref="svgElementContainer" class="org-chart__container" />
 	</div>
 </template>
 
 <script>
-import * as d3 from 'd3'
-import ChartTemplate from './ChartTemplate.vue'
 import { getLocale } from '@nextcloud/l10n'
 import { NcSelect } from '@nextcloud/vue'
+import * as d3 from 'd3'
 import { OrgChart } from 'd3-org-chart'
+import { createApp } from 'vue'
+import ChartTemplate from './ChartTemplate.vue'
+import LegacyGlobalMixin from '../mixins/LegacyGlobalMixin.js'
 import router from './../router/index.js'
-import Vue from 'vue'
 
 export default {
 	name: 'OrgChart',
 	components: {
 		NcSelect,
 	},
+
 	props: {
 		data: {
 			type: Array,
 			default: () => [],
 		},
 	},
+
 	data() {
 		return {
 			chartReference: null,
 			chart: 0,
 		}
 	},
+
 	computed: {
 		charts() {
 			return this.data.map((nodes, index) => {
-				const head = nodes.find(node => node.parentNodeId === null)
+				const head = nodes.find((node) => node.parentNodeId === null)
 				return {
 					id: index,
 					label: head.org ? `${head.org} (${head.fullName})` : head.fullName,
@@ -65,10 +70,12 @@ export default {
 				)
 			})
 		},
+
 		placeholder() {
-			return t('contacts', 'Select chart …')
+			return t('contacts', 'Select chart …')
 		},
 	},
+
 	watch: {
 		data() {
 			if (this.data[this.chart]?.length) {
@@ -76,15 +83,18 @@ export default {
 			}
 		},
 	},
+
 	mounted() {
 		if (this.data[this.chart]?.length) {
 			this.renderChart(this.data[this.chart])
 		}
 	},
+
 	methods: {
 		chartChanged(inputProps) {
 			this.renderChart(this.data[inputProps.id])
 		},
+
 		goToContact(key) {
 			this.$router.push({
 				name: 'contact',
@@ -94,6 +104,7 @@ export default {
 				},
 			})
 		},
+
 		renderChart(data) {
 			// eslint-disable-next-line @typescript-eslint/no-this-alias
 			const that = this
@@ -121,16 +132,16 @@ export default {
 						if (d.data.rendered) {
 							containerHTMLElement.appendChild(d.data.rendered)
 						} else {
-							const ComponentClass = Vue.extend(ChartTemplate)
-							const instance = new ComponentClass({
-								propsData: {
-									data: d.data,
-									onAvatarClick: (uid) => that.goToContact(uid),
-								},
-								router,
-							}).$mount()
-							d.data.rendered = instance.$el
-							containerHTMLElement.appendChild(instance.$el)
+							const app = createApp(ChartTemplate, {
+								chartData: d.data,
+								onAvatarClick: (uid) => that.goToContact(uid),
+							})
+							app.use(router)
+							app.mixin(LegacyGlobalMixin)
+							const $el = document.createElement('div')
+							app.mount($el)
+							d.data.rendered = $el
+							containerHTMLElement.appendChild($el)
 						}
 					}
 
@@ -141,16 +152,14 @@ export default {
 				.linkUpdate(function(d) {
 					d3.select(this)
 						.attr('stroke', () => 'var(--color-primary-element)')
-						.attr('stroke-width', (dRect) =>
-							dRect.data._upToTheRootHighlighted ? 2 : 1,
-						)
+						.attr('stroke-width', (dRect) => dRect.data._upToTheRootHighlighted ? 2 : 1)
 
 					if (d.data._upToTheRootHighlighted) {
 						d3.select(this).raise()
 					}
 				})
-				.onNodeClick(d => {
-					if (!this.chartReference.data().filter(item => item.nodeId === d)[0]._upToTheRootHighlighted) {
+				.onNodeClick((d) => {
+					if (!this.chartReference.data().filter((item) => item.nodeId === d)[0]._upToTheRootHighlighted) {
 						this.chartReference.clearHighlighting()
 						this.chartReference.setUpToTheRootHighlighted(d).render()
 					} else {
@@ -176,8 +185,7 @@ export default {
 		border: 1px solid var(--color-border);
 
 		h3 {
-			padding-left: 50px;
-			padding-right: 10px;
+			padding-inline: 50px 10px;
 			margin: 9px 0;
 		}
 	}
@@ -192,12 +200,5 @@ export default {
 		}
 	}
 
-	.node-button-div {
-		filter: var(--background-invert-if-dark);
-
-		& > div > div {
-			filter: var(--background-invert-if-dark);
-		}
-	}
 }
 </style>

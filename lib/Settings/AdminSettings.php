@@ -1,4 +1,5 @@
 <?php
+
 /**
  * SPDX-FileCopyrightText: 2020 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -31,6 +32,7 @@ class AdminSettings implements ISettings {
 	/**
 	 * @return TemplateResponse
 	 */
+	#[\Override]
 	public function getForm() {
 		foreach (Application::AVAIL_SETTINGS as $key => $default) {
 			$data = $this->config->getAppValue($this->appName, $key, $default);
@@ -42,6 +44,7 @@ class AdminSettings implements ISettings {
 	/**
 	 * @return string the section ID, e.g. 'sharing'
 	 */
+	#[\Override]
 	public function getSection() {
 		return 'groupware';
 	}
@@ -51,6 +54,7 @@ class AdminSettings implements ISettings {
 	 *             the admin section. The forms are arranged in ascending order of the
 	 *             priority values. It is required to return a value between 0 and 100.
 	 */
+	#[\Override]
 	public function getPriority() {
 		return 75;
 	}

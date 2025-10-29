@@ -5,8 +5,6 @@
 
 import { showError } from '@nextcloud/dialogs'
 import ICAL from 'ical.js'
-import Vue from 'vue'
-
 import Contact from '../models/contact.js'
 import validate from '../services/validate.js'
 
@@ -27,7 +25,7 @@ import validate from '../services/validate.js'
 ICAL.design.vcard3.param.type.multiValueSeparateDQuote = true
 ICAL.design.vcard.param.type.multiValueSeparateDQuote = true
 
-const sortData = (a, b) => {
+function sortData(a, b) {
 	const nameA = typeof a.value === 'string'
 		? a.value.toUpperCase() // ignore upper and lowercase
 		: a.value.toUnixTime() // only other sorting we support is a vCardTime
@@ -64,7 +62,7 @@ const mutations = {
 	appendContacts(state, contacts = []) {
 		state.contacts = contacts.reduce(function(list, contact) {
 			if (contact instanceof Contact) {
-				Vue.set(list, contact.key, contact)
+				list[contact.key] = contact
 			} else {
 				console.error('Invalid contact object', contact)
 			}
@@ -80,11 +78,9 @@ const mutations = {
 	 */
 	deleteContact(state, contact) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
-
-			const index = state.sortedContacts.findIndex(search => search.key === contact.key)
+			const index = state.sortedContacts.findIndex((search) => search.key === contact.key)
 			state.sortedContacts.splice(index, 1)
-			Vue.delete(state.contacts, contact.key)
-
+			delete state.contacts[contact.key]
 		} else {
 			console.error('Error while deleting the following contact', contact)
 		}
@@ -98,7 +94,6 @@ const mutations = {
 	 */
 	addContact(state, contact) {
 		if (contact instanceof Contact) {
-
 			// Checking contact validity 🔍🙈
 			validate(contact)
 
@@ -125,8 +120,7 @@ const mutations = {
 			}
 
 			// default contacts list
-			Vue.set(state.contacts, contact.key, contact)
-
+			state.contacts[contact.key] = contact
 		} else {
 			console.error('Error while adding the following contact', contact)
 		}
@@ -140,10 +134,9 @@ const mutations = {
 	 */
 	updateContact(state, contact) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
-
 			// replace contact object data
 			state.contacts[contact.key].updateContact(contact.jCal)
-			const sortedContact = state.sortedContacts.find(search => search.key === contact.key)
+			const sortedContact = state.sortedContacts.find((search) => search.key === contact.key)
 
 			// has the sort key changed for this contact ?
 			const hasChanged = sortedContact.value !== contact[state.orderKey]
@@ -153,7 +146,6 @@ const mutations = {
 				// and then we sort again
 				state.sortedContacts.sort(sortData)
 			}
-
 		} else {
 			console.error('Error while replacing the following contact', contact)
 		}
@@ -178,20 +170,18 @@ const mutations = {
 			const newContact = contact
 
 			// delete old key, cut reference
-			Vue.delete(state.contacts, oldKey)
+			delete state.contacts[oldKey]
 
 			// replace addressbook
-			Vue.set(newContact, 'addressbook', addressbook)
+			newContact.addressbook = addressbook
 
 			// set new key, re-assign reference
-			Vue.set(state.contacts, newContact.key, newContact)
+			state.contacts[newContact.ke] = newContact
 
 			// Update sorted contacts list, replace at exact same position
-			const index = state.sortedContacts.findIndex(search => search.key === oldKey)
-			state.sortedContacts[index] = {
-				key: newContact.key,
-				value: newContact[state.orderKey],
-			}
+			const index = state.sortedContacts.findIndex((search) => search.key === oldKey)
+			state.sortedContacts[index].key = newContact.key
+			state.sortedContacts[index].value = newContact[state.orderKey]
 		} else {
 			console.error('Error while replacing the addressbook of following contact', contact)
 		}
@@ -211,7 +201,6 @@ const mutations = {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
 			// replace contact object data
 			state.contacts[contact.key].dav.etag = etag
-
 		} else {
 			console.error('Error while replacing the etag of following contact', contact)
 		}
@@ -225,11 +214,10 @@ const mutations = {
 	 * @param {object} state the store data
 	 */
 	sortContacts(state) {
-
 		state.sortedContacts = Object.values(state.contacts)
 			// exclude groups
-			.filter(contact => contact.kind !== 'group')
-			.map(contact => { return { key: contact.key, value: contact[state.orderKey] } })
+			.filter((contact) => contact.kind !== 'group')
+			.map((contact) => { return { key: contact.key, value: contact[state.orderKey] } })
 			.sort(sortData)
 	},
 
@@ -270,7 +258,7 @@ const mutations = {
 	setContactDav(state, { contact, dav }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
 			contact = state.contacts[contact.key]
-			Vue.set(contact, 'dav', dav)
+			contact.dav = dav
 		} else {
 			console.error('Error while handling the following contact', contact)
 		}
@@ -278,10 +266,10 @@ const mutations = {
 }
 
 const getters = {
-	getContacts: state => state.contacts,
-	getSortedContacts: state => state.sortedContacts,
+	getContacts: (state) => state.contacts,
+	getSortedContacts: (state) => state.sortedContacts,
 	getContact: (state) => (key) => state.contacts[key],
-	getOrderKey: state => state.orderKey,
+	getOrderKey: (state) => state.orderKey,
 }
 
 const actions = {
@@ -328,14 +316,17 @@ const actions = {
 	 * @return {Promise}
 	 */
 	async updateContact(context, contact) {
-
 		// Checking contact validity 🙈
 		validate(contact)
 
 		// Update REV
-		const rev = new ICAL.VCardTime()
-		rev.fromUnixTime(Date.now() / 1000)
-		contact.rev = rev
+		if (contact.version === '4.0') {
+			contact.rev = ICAL.Time.fromJSDate(new Date(), true)
+		}
+		if (contact.version === '3.0') {
+			contact.rev = ICAL.VCardTime.fromDateAndOrTimeString(new Date().toISOString(), 'date-time')
+		}
+		contact.rev = ICAL.VCardTime.now().convertToZone(ICAL.Timezone.utcTimezone)
 
 		const vData = contact.toStringStripQuotes()
 
@@ -386,7 +377,7 @@ const actions = {
 			await context.commit('updateContactEtag', { contact, etag })
 		}
 		return contact.dav.fetchCompleteData(forceReFetch)
-			.then((response) => {
+			.then(() => {
 				const newContact = new Contact(contact.dav.data, contact.addressbook)
 				context.commit('updateContact', newContact)
 			})

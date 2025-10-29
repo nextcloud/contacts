@@ -5,12 +5,13 @@
 
 <template>
 	<h4 v-if="source.heading" :key="source.id" class="entity-picker__option-caption">
-		{{ t('contacts', 'Add {type}', {type: source.label.toLowerCase()}) }}
+		{{ t('contacts', 'Add {type}', { type: source.label.toLowerCase() }) }}
 	</h4>
 
-	<UserBubble v-else
+	<UserBubble
+		v-else
 		class="entity-picker__bubble"
-		:class="{'entity-picker__bubble--selected': isSelected}"
+		:class="{ 'entity-picker__bubble--selected': isSelected }"
 		:display-name="source.label"
 		:user="source.user"
 		:margin="6"
@@ -40,10 +41,12 @@ export default {
 				return {}
 			},
 		},
+
 		onClick: {
 			type: Function,
 			default() {},
 		},
+
 		selection: {
 			type: Object,
 			default: () => ({}),
@@ -78,13 +81,11 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 .entity-picker {
 	&__option {
 		&-caption {
-			padding-left: 10px;
 			list-style-type: none;
 			user-select: none;
 			white-space: nowrap;
 			text-overflow: ellipsis;
 			pointer-events: none;
-			color: var(--color-primary-element);
 			box-shadow: none !important;
 			line-height: $clickable-area;
 
@@ -128,8 +129,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 	.user-bubble__secondary {
 		// Force show checkmark
 		display: inline-flex;
-		margin-right: 4px;
-		margin-left: auto;
+		margin-inline: auto 4px;
 	}
 	&, * {
 		// the whole row is clickable,let's force the proper cursor

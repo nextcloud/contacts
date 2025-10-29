@@ -3,18 +3,14 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import Vue from 'vue'
-import Vuex, { Store } from 'vuex'
-
+import { Store } from 'vuex'
+import isCirclesEnabled from '../services/isCirclesEnabled.js'
 import addressbooks from './addressbooks.js'
 import circles from './circles.js'
 import contacts from './contacts.js'
 import groups from './groups.js'
 import importState from './importState.js'
-
-import isCirclesEnabled from '../services/isCirclesEnabled.js'
-
-Vue.use(Vuex)
+import ocminvites from './ocminvites.js'
 
 const mutations = {}
 
@@ -23,6 +19,7 @@ const modules = {
 	contacts,
 	groups,
 	importState,
+	ocminvites,
 }
 
 // If circles is enabled let's init the store

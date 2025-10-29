@@ -9,12 +9,10 @@ declare(strict_types=1);
 
 namespace OCA\Contacts\Service;
 
+use Exception;
 use OCA\Contacts\AppInfo\Application;
 use OCA\Contacts\Service\Social\CompositeSocialProvider;
-
-use OCA\DAV\CardDAV\CardDavBackend;
 use OCA\DAV\CardDAV\ContactsManager;
-use OCA\DAV\Db\PropertyMapper;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Utility\ITimeFactory;
@@ -24,21 +22,23 @@ use OCP\IAddressBook;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
+use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 class SocialApiService {
 	private $appName;
 
 	public function __construct(
 		private CompositeSocialProvider $socialProvider,
+		private ContainerInterface $serverContainer,
 		private IManager $manager,
 		private IConfig $config,
 		private IClientService $clientService,
 		private IL10N $l10n,
 		private IURLGenerator $urlGen,
-		private CardDavBackend $davBackend,
 		private ITimeFactory $timeFactory,
 		private ImageResizer $imageResizer,
-		private PropertyMapper $propertyMapper,
+		private LoggerInterface $logger,
 	) {
 		$this->appName = Application::APP_ID;
 	}
@@ -47,7 +47,7 @@ class SocialApiService {
 	/**
 	 * returns an array of supported social networks
 	 *
-	 * @return {array} array of the supported social networks
+	 * @return array array of the supported social networks
 	 */
 	public function getSupportedNetworks() : array {
 		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
@@ -116,7 +116,7 @@ class SocialApiService {
 	 * @param {IManager} the contact manager to load
 	 */
 	protected function registerAddressbooks($userId, IManager $manager) {
-		$coma = new ContactsManager($this->davBackend, $this->l10n, $this->propertyMapper);
+		$coma = $this->serverContainer->get(ContactsManager::class);
 		$coma->setupContactsProvider($manager, $userId, $this->urlGen);
 		$this->manager = $manager;
 	}
@@ -179,7 +179,7 @@ class SocialApiService {
 					$httpResult = $this->clientService->newClient()->get($url);
 					$socialdata = $httpResult->getBody();
 					$imageType = $httpResult->getHeader('content-type');
-					if (isset($socialdata) && isset($imageType)) {
+					if (isset($socialdata) && !empty($imageType)) {
 						break;
 					}
 				} catch (\Exception $e) {
@@ -211,11 +211,66 @@ class SocialApiService {
 				return new JSONResponse([], Http::STATUS_NOT_MODIFIED);
 			}
 
-			$addressBook->createOrUpdate($changes, $addressbookId);
+			$addressBook->createOrUpdate($changes);
 		} catch (\Exception $e) {
 			return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
 		return new JSONResponse([], Http::STATUS_OK);
+	}
+
+	/**
+	 * Creates a federated contact and adds it to the address book of the local user with the specified userId,
+	 * unless a contact with the specified cloudId already exists for that local user.
+	 *
+	 * @param {string} cloudId the cloud id of the federated contact
+	 * @param {string} email the email of the federated contact
+	 * @param {string} name the name of the federated contact
+	 * @param {string} userId the uid of the local user
+	 */
+	public function createFederatedContact(string $cloudId, string $email, string $name, string $userId): ?array {
+		try {
+			// Set up the contacts provider for the user with the specified uid
+			$cm = $this->serverContainer->get(ContactsManager::class);
+			$cm->setupContactsProvider($this->manager, $userId, $this->urlGen);
+
+			// if contact already exists we simply return
+			$searchResult = $this->manager->search($cloudId, ['CLOUD']);
+			if (count($searchResult) > 0) {
+				$this->logger->info('Contact with cloud id ' . $cloudId . ' already exists.', ['app' => Application::APP_ID]);
+				return null;
+			}
+
+			/** @var \OCP\IAddressBook */
+			$addressBook = null;
+			$addressBooks = $this->manager->getUserAddressBooks();
+			foreach ($addressBooks as $_addressBook) {
+				// TODO properly resolve the correct addressbook to add the contact to
+				// Resolve by uri seems a bit risky ... can we be sure the uri equals 'contacts' ?
+				// Perhaps add to the first 'non system' addressbook we find ?
+				// (although we still would like to add to the 'Contacts' addressbook I guess)
+				if ($_addressBook->getUri() === 'contacts') {
+					$addressBook = $_addressBook;
+					break;
+				}
+			}
+			if (!isset($addressBook)) {
+				$this->logger->error('Contacts address book not found. Unable to add the new contact on invite accepted.', ['app' => Application::APP_ID]);
+				return null;
+			}
+
+			$newContact = $this->manager->createOrUpdate(
+				[
+					'FN' => $name,
+					'EMAIL' => $email,
+					'CLOUD' => $cloudId,
+				],
+				$addressBook->getKey()
+			);
+			return $newContact;
+		} catch (Exception $e) {
+			$this->logger->error('An exception occurred creating a federated contact: ' . $e->getTraceAsString(), ['app' => Application::APP_ID]);
+		}
+		return null;
 	}
 
 	/**
@@ -228,9 +283,8 @@ class SocialApiService {
 	 */
 	public function existsAddressBook(string $searchBookId, string $userId): bool {
 		$manager = $this->manager;
-		$coma = new ContactsManager($this->davBackend, $this->l10n, $this->propertyMapper);
+		$coma = $this->serverContainer->get(ContactsManager::class);
 		$coma->setupContactsProvider($manager, $userId, $this->urlGen);
-		$addressBooks = $manager->getUserAddressBooks();
 		return $this->getAddressBook($searchBookId, $manager) !== null;
 	}
 
@@ -246,7 +300,7 @@ class SocialApiService {
 	public function existsContact(string $searchContactId, string $searchBookId, string $userId): bool {
 		// load address books for the user
 		$manager = $this->manager;
-		$coma = new ContactsManager($this->davBackend, $this->l10n, $this->propertyMapper);
+		$coma = $this->serverContainer->get(ContactsManager::class);
 		$coma->setupContactsProvider($manager, $userId, $this->urlGen);
 		$addressBook = $this->getAddressBook($searchBookId, $manager);
 		if ($addressBook == null) {
@@ -343,8 +397,8 @@ class SocialApiService {
 		usort($addressBooks, [$this, 'sortAddressBooks']); // make sure the order stays the same in consecutive calls
 
 		foreach ($addressBooks as $addressBook) {
-			if ((is_null($addressBook) ||
-				($addressBook->isShared() || $addressBook->isSystemAddressBook()))) {
+			if ((is_null($addressBook)
+				|| ($addressBook->isShared() || $addressBook->isSystemAddressBook()))) {
 				// TODO: filter out deactivated books, see https://github.com/nextcloud/server/issues/17537
 				continue;
 			}

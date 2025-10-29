@@ -3,16 +3,12 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import Vue from 'vue'
-import Member from './member'
-
-import { CircleConfigs, MemberLevels, ROUTE_CIRCLE } from './constants'
+import { CircleConfigs, MemberLevels, ROUTE_CIRCLE } from './constants.ts'
+import Member from './member.ts'
 
 type MemberList = Record<string, Member>
 
-/* eslint-disable @typescript-eslint/no-explicit-any */
 export default class Circle {
-
 	_data: any = {}
 	_members: MemberList = {}
 	_owner: Member
@@ -106,7 +102,7 @@ export default class Circle {
 	 * user info for this circle
 	 * null if not a member
 	 */
-	get initiator(): Member|null {
+	get initiator(): Member | null {
 		return this._initiator
 	}
 
@@ -114,11 +110,11 @@ export default class Circle {
 	 * Set new circle initiator
 	 * null if not a member
 	 */
-	set initiator(initiator: Member|null) {
+	set initiator(initiator: Member) {
 		if (initiator && initiator.constructor.name !== Member.name) {
 			throw new Error('Initiator must be a Member type')
 		}
-		Vue.set(this, '_initiator', initiator)
+		this._initiator = initiator
 	}
 
 	/**
@@ -135,7 +131,7 @@ export default class Circle {
 		if (owner.constructor.name !== Member.name) {
 			throw new Error('Owner must be a Member type')
 		}
-		Vue.set(this, '_owner', owner)
+		this._owner = owner
 	}
 
 	/**
@@ -166,7 +162,7 @@ export default class Circle {
 		if (this._members[singleId]) {
 			console.warn('Replacing existing member data', member)
 		}
-		Vue.set(this._members, singleId, member)
+		this._members[singleId] = member
 	}
 
 	/**
@@ -185,7 +181,7 @@ export default class Circle {
 		}
 
 		// Delete and clear memory
-		Vue.delete(this._members, singleId)
+		delete this._members[singleId]
 	}
 
 	// CONFIGS --------------------------------------------
@@ -293,7 +289,7 @@ export default class Circle {
 	get canManageMembers() {
 		return (this.initiator?.level
 			&& this.initiator?.level >= MemberLevels.MODERATOR)
-			|| (this.config & CircleConfigs.FRIEND) !== 0
+		|| (this.config & CircleConfigs.FRIEND) !== 0
 	}
 
 	// PARAMS ---------------------------------------------
@@ -314,5 +310,4 @@ export default class Circle {
 	toString() {
 		return this.displayName
 	}
-
 }

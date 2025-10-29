@@ -1,6 +1,6 @@
 name: "Bug report for circles"
 description: "Help us improving by reporting a bug for the contacts feature of this app"
-labels: ["bug", "0. Needs triage", "feature: circles"]
+labels: ["bug", "0. Needs triage", "feature: teams"]
 body:
   - type: markdown
     attributes:

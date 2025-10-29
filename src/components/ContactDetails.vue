@@ -6,7 +6,8 @@
 <template>
 	<AppContentDetails>
 		<!-- nothing selected or contact not found -->
-		<EmptyContent v-if="!contact"
+		<EmptyContent
+			v-if="!contact"
 			class="empty-content"
 			:name="t('contacts', 'No contact selected')"
 			:description="t('contacts', 'Select a contact on the list to begin')">
@@ -21,7 +22,8 @@
 			<DetailsHeader>
 				<!-- avatar and upload photo -->
 				<template #avatar>
-					<ContactAvatar :contact="contact"
+					<ContactAvatar
+						:contact="contact"
 						:is-read-only="isReadOnly"
 						:reload-bus="reloadBus"
 						@update-local-contact="updateLocalContact" />
@@ -32,7 +34,8 @@
 					<div v-if="isReadOnly" class="contact-title">
 						{{ contact.fullName }}
 					</div>
-					<input v-else
+					<input
+						v-else
 						id="contact-fullname"
 						ref="fullname"
 						v-model="contact.fullName"
@@ -51,7 +54,8 @@
 						<span v-html="formattedSubtitle" />
 					</template>
 					<template v-else>
-						<input id="contact-title"
+						<input
+							id="contact-title"
 							v-model="contact.title"
 							:placeholder="t('contacts', 'Title')"
 							type="text"
@@ -59,7 +63,8 @@
 							autocorrect="off"
 							spellcheck="false"
 							name="title">
-						<input id="contact-org"
+						<input
+							id="contact-org"
 							v-model="contact.org"
 							:placeholder="t('contacts', 'Company')"
 							type="text"
@@ -72,23 +77,27 @@
 
 				<template #quick-actions>
 					<div v-if="!editMode && !loadingData">
-						<Actions :inline="6"
-							type="secondary">
-							<ActionButton v-if="isTalkEnabled && isInSystemAddressBook"
-								:aria-label="(t('contacts', 'Go to talk conversation'))"
-								:name="(t('contacts', 'Go to talk conversation'))"
+						<Actions
+							:inline="6"
+							variant="secondary">
+							<ActionButton
+								v-if="isTalkEnabled && isInSystemAddressBook"
+								:aria-label="t('contacts', 'Go to talk conversation')"
+								:name="t('contacts', 'Go to talk conversation')"
 								class="icon-talk quick-action"
 								:href="callUrl" />
-							<ActionButton v-if="profilePageLink"
+							<ActionButton
+								v-if="profilePageLink"
 								class="quick-action"
-								:aria-label="(t('contacts','View profile'))"
-								:name="(t('contacts','View profile'))"
+								:aria-label="t('contacts', 'View profile')"
+								:name="t('contacts', 'View profile')"
 								:href="profilePageLink">
 								<template #icon>
 									<IconAccount :size="20" />
 								</template>
 							</ActionButton>
-							<ActionLink v-for="emailAddress in emailAddressList"
+							<ActionLink
+								v-for="emailAddress in emailAddressList"
 								:key="emailAddress"
 								class="quick-action"
 								:href="'mailto:' + emailAddress">
@@ -97,7 +106,8 @@
 								</template>
 								{{ emailAddress }}
 							</ActionLink>
-							<ActionLink v-for="phoneNumber in phoneNumberList"
+							<ActionLink
+								v-for="phoneNumber in phoneNumberList"
 								:key="phoneNumber"
 								class="quick-action"
 								:href="'tel:' + phoneNumber">
@@ -113,48 +123,42 @@
 				<!-- actions -->
 				<template #actions>
 					<!-- warning message -->
-					<component :is="warning.icon"
+					<component
+						:is="warning.icon"
 						v-if="warning"
-						v-tooltip.bottom="{
-							content: warning ? warning.msg : '',
-							trigger: 'hover focus'
-						}"
+						:title="warning ? warning.msg : ''"
 						class="header-icon"
 						:classes="warning.classes" />
 
 					<!-- conflict message -->
-					<div v-if="conflict"
-						v-tooltip="{
-							content: conflict,
-							show: true,
-							trigger: 'manual',
-						}"
+					<div
+						v-if="conflict"
+						:title="conflict"
 						class="header-icon header-icon--pulse icon-history"
 						@click="refreshContact" />
 
 					<!-- repaired contact message -->
-					<div v-if="fixed"
-						v-tooltip="{
-							content: t('contacts', 'This contact was broken and received a fix. Please review the content and click here to save it.'),
-							show: true,
-							trigger: 'manual',
-						}"
+					<div
+						v-if="fixed"
+						:title="t('contacts', 'This contact was broken and received a fix. Please review the content and click here to save it.')"
 						class="header-icon header-icon--pulse icon-up"
 						@click="updateContact" />
 
 					<!-- edit and save buttons -->
-					<template v-if="!addressbookIsReadOnly">
-						<NcButton v-if="!editMode"
-							:type="isMobile ? 'secondary' : 'tertiary'"
+					<template v-if="canModifyCard">
+						<NcButton
+							v-if="!editMode"
+							:variant="isMobile ? 'secondary' : 'tertiary'"
 							@click="editMode = true">
 							<template #icon>
 								<PencilIcon :size="20" />
 							</template>
 							{{ t('contacts', 'Edit') }}
 						</NcButton>
-						<NcButton v-else
-							type="secondary"
-							:disabled="loadingUpdate"
+						<NcButton
+							v-else
+							variant="secondary"
+							:disabled="loadingUpdate || !isDataValid"
 							@click="onSave">
 							<template #icon>
 								<IconLoading v-if="loadingUpdate" :size="20" />
@@ -166,7 +170,8 @@
 				</template>
 				<!-- menu actions -->
 				<template #actions-menu>
-					<ActionLink :href="contact.url"
+					<ActionLink
+						:href="contact.url"
 						:download="`${contact.displayName}.vcf`">
 						<template #icon>
 							<IconDownload :size="20" />
@@ -174,7 +179,8 @@
 						{{ t('contacts', 'Download') }}
 					</ActionLink>
 					<!-- user can clone if there is at least one option available -->
-					<ActionButton v-if="isReadOnly && addressbooksOptions.length > 0"
+					<ActionButton
+						v-if="isReadOnly && addressbooksOptions.length > 0"
 						ref="cloneAction"
 						:close-after-click="true"
 						@click="cloneContact">
@@ -189,7 +195,8 @@
 						</template>
 						{{ t('contacts', 'Generate QR Code') }}
 					</ActionButton>
-					<ActionButton v-if="enableToggleBirthdayExclusion"
+					<ActionButton
+						v-if="enableToggleBirthdayExclusion"
 						:close-after-click="true"
 						@click="toggleBirthdayExclusionForContact">
 						<template #icon>
@@ -197,7 +204,8 @@
 						</template>
 						{{ excludeFromBirthdayLabel }}
 					</ActionButton>
-					<ActionButton v-if="!addressbookIsReadOnly"
+					<ActionButton
+						v-if="canDeleteCard"
 						@click="deleteContact">
 						<template #icon>
 							<IconDelete :size="20" />
@@ -208,32 +216,35 @@
 			</DetailsHeader>
 
 			<!-- qrcode -->
-			<Modal v-if="qrcode"
+			<Modal
+				v-if="qrcode"
 				id="qrcode-modal"
 				size="small"
 				:clear-view-delay="-1"
 				:name="contact.displayName"
 				:close-button-contained="false"
 				@close="closeQrModal">
-				<img :src="`data:image/svg+xml;base64,${qrcode}`"
+				<img
+					:src="`data:image/svg+xml;base64,${qrcode}`"
 					:alt="t('contacts', 'Contact vCard as QR code')"
 					class="qrcode"
 					width="400">
 			</Modal>
 
 			<!-- pick addressbook when cloning contact -->
-			<Modal v-if="showPickAddressbookModal"
+			<Modal
+				v-if="showPickAddressbookModal"
 				id="pick-addressbook-modal"
 				:clear-view-delay="-1"
 				:name="t('contacts', 'Pick an address book')"
 				@close="closePickAddressbookModal">
-				<NcSelect ref="pickAddressbook"
+				<NcSelect
+					ref="pickAddressbook"
 					v-model="pickedAddressbook"
 					class="address-book"
 					:allow-empty="false"
 					:options="copyableAddressbooksOptions"
 					:placeholder="t('contacts', 'Select address book')"
-					track-by="id"
 					label="name" />
 				<button @click="closePickAddressbookModal">
 					{{ t('contacts', 'Cancel') }}
@@ -252,11 +263,28 @@
 					<!-- properties iteration -->
 					<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
 
-					<div v-for="(properties, name) in groupedProperties"
-						:key="name">
-						<ContactDetailsProperty v-for="(property, index) in properties"
+					<!-- Special handling for lifeEvents -->
+					<div v-if="name === 'lifeEvents'" class="life-events-group">
+						<ContactDetailsProperty
+							v-for="(property, index) in properties"
 							:key="`${index}-${contact.key}-${property.name}`"
-							:is-first-property="index===0"
+							:is-first-property="index === 0"
+							:is-last-property="index === properties.length - 1"
+							:property="property"
+							:contact="contact"
+							:local-contact="localContact"
+							:contacts="contacts"
+							:bus="bus"
+							:is-read-only="isReadOnly" />
+					</div>
+
+					<div
+						v-for="(properties, name) in groupedProperties"
+						:key="name">
+						<ContactDetailsProperty
+							v-for="(property, index) in properties"
+							:key="`${index}-${contact.key}-${property.name}`"
+							:is-first-property="index === 0"
 							:is-last-property="index === properties.length - 1"
 							:property="property"
 							:contact="contact"
@@ -271,26 +299,30 @@
 					empty property because this is a required prop on regular property-select. But since
 					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
 					duplication, we created a fake propModel and property with our own options here) -->
-				<PropertySelect :prop-model="addressbookModel"
+				<PropertySelect
+					:prop-model="addressbookModel"
 					:options="addressbooksOptions"
-					:value.sync="addressbook"
+					:value="addressbook"
 					:is-first-property="true"
 					:is-last-property="true"
 					:property="{}"
 					:hide-actions="true"
 					:is-read-only="isReadOnly"
-					class="property--addressbooks property--last" />
+					class="property--addressbooks property--last"
+					@update:value="updateAddressbook" />
 
 				<!-- Groups always visible -->
-				<PropertyGroups :prop-model="groupsModel"
-					:value.sync="localContact.groups"
+				<PropertyGroups
+					:value="localContact.groups"
+					:prop-model="groupsModel"
 					:contact="contact"
 					:is-read-only="isReadOnly"
 					class="property--groups property--last"
 					@update:value="updateGroups" />
 			</div>
 			<div v-if="nextcloudVersionAtLeast28 && !editMode" class="related-resources">
-				<NcRelatedResourcesPanel v-if="!filesPanelHasError"
+				<NcRelatedResourcesPanel
+					v-if="!filesPanelHasError"
 					provider-id="account"
 					resource-type="files"
 					:description="desc"
@@ -300,7 +332,8 @@
 					:primary="true"
 					@has-resources="value => hasFilesResources = value"
 					@has-error="value => filesPanelHasError = value" />
-				<NcRelatedResourcesPanel v-if="!talkPanelHasError"
+				<NcRelatedResourcesPanel
+					v-if="!talkPanelHasError"
 					provider-id="account"
 					resource-type="talk"
 					:description="desc"
@@ -310,7 +343,8 @@
 					:primary="true"
 					@has-resources="value => hasTalkResources = value"
 					@has-error="value => talkPanelHasError = value" />
-				<NcRelatedResourcesPanel v-if="!calendarPanelHasError"
+				<NcRelatedResourcesPanel
+					v-if="!calendarPanelHasError"
 					provider-id="account"
 					resource-type="calendar"
 					:description="desc"
@@ -320,7 +354,8 @@
 					:primary="true"
 					@has-resources="value => hasCalendarResources = value"
 					@has-error="value => calendarPanelHasError = value" />
-				<NcRelatedResourcesPanel v-if="!deckPanelHasError"
+				<NcRelatedResourcesPanel
+					v-if="!deckPanelHasError"
 					provider-id="account"
 					resource-type="deck"
 					:description="desc"
@@ -330,7 +365,8 @@
 					:primary="true"
 					@has-resources="value => hasDeckResources = value"
 					@has-error="value => deckPanelHasError = value" />
-				<NcEmptyContent v-if="!hasRelatedResources && !loadingData"
+				<NcEmptyContent
+					v-if="!hasRelatedResources && !loadingData"
 					:name="t('contacts', 'No shared items with this contact')">
 					<template #icon>
 						<FolderMultipleImage :size="20" />
@@ -338,7 +374,8 @@
 				</NcEmptyContent>
 			</div>
 			<!-- new property select -->
-			<AddNewProp v-if="!isReadOnly"
+			<AddNewProp
+				v-if="!isReadOnly"
 				class="last-edit"
 				:bus="bus"
 				:contact="contact" />
@@ -350,43 +387,42 @@
 </template>
 
 <script>
+import { getBuilder } from '@nextcloud/browser-storage'
 import { showError } from '@nextcloud/dialogs'
-
-import ICAL from 'ical.js'
-import { getSVG } from '@shortcm/qr-image/lib/svg'
-import mitt from 'mitt'
+import { loadState } from '@nextcloud/initial-state'
+import { generateUrl } from '@nextcloud/router'
 import {
-	NcActions as Actions,
 	NcActionButton as ActionButton,
 	NcActionLink as ActionLink,
+	NcActions as Actions,
 	NcAppContentDetails as AppContentDetails,
 	NcEmptyContent as EmptyContent,
-	NcModal as Modal,
-	NcSelect,
 	NcLoadingIcon as IconLoading,
+	NcModal as Modal,
 	NcButton,
-	NcRelatedResourcesPanel,
-	isMobile,
 	NcEmptyContent,
+	NcRelatedResourcesPanel,
+	NcSelect,
 } from '@nextcloud/vue'
-import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
-import IconDownload from 'vue-material-design-icons/Download.vue'
-import IconDelete from 'vue-material-design-icons/Delete.vue'
-import IconQr from 'vue-material-design-icons/Qrcode.vue'
+import ICAL from 'ical.js'
+import escape from 'lodash/fp/escape.js'
+import mitt from 'mitt'
+import { getSVG } from 'qreator/lib/svg'
+import { defineComponent, reactive, toRaw } from 'vue'
+import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
+import IconAccount from 'vue-material-design-icons/AccountOutline.vue'
 import CakeIcon from 'vue-material-design-icons/Cake.vue'
-import IconMail from 'vue-material-design-icons/Email.vue'
-import IconCall from 'vue-material-design-icons/Phone.vue'
-import IconMessage from 'vue-material-design-icons/MessageProcessing.vue'
-import IconAccount from 'vue-material-design-icons/Account.vue'
-import IconCopy from 'vue-material-design-icons/ContentCopy.vue'
-import PencilIcon from 'vue-material-design-icons/Pencil.vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
-import EyeCircleIcon from 'vue-material-design-icons/EyeCircle.vue'
+import IconCopy from 'vue-material-design-icons/ContentCopy.vue'
+import IconMail from 'vue-material-design-icons/EmailOutline.vue'
+import EyeCircleIcon from 'vue-material-design-icons/EyeCircleOutline.vue'
 import FolderMultipleImage from 'vue-material-design-icons/FolderMultipleImage.vue'
-
-import rfcProps from '../models/rfcProps.js'
-import validate from '../services/validate.js'
-
+import IconMessage from 'vue-material-design-icons/MessageProcessingOutline.vue'
+import PencilIcon from 'vue-material-design-icons/PencilOutline.vue'
+import IconCall from 'vue-material-design-icons/PhoneOutline.vue'
+import IconQr from 'vue-material-design-icons/Qrcode.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
+import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
 import AddNewProp from './ContactDetails/ContactDetailsAddNewProp.vue'
 import ContactAvatar from './ContactDetails/ContactDetailsAvatar.vue'
 import ContactDetailsProperty from './ContactDetails/ContactDetailsProperty.vue'
@@ -394,13 +430,15 @@ import DetailsHeader from './DetailsHeader.vue'
 import PropertyGroups from './Properties/PropertyGroups.vue'
 import PropertyRev from './Properties/PropertyRev.vue'
 import PropertySelect from './Properties/PropertySelect.vue'
-import { generateUrl } from '@nextcloud/router'
-import { loadState } from '@nextcloud/initial-state'
+import IsMobileMixin from '../mixins/IsMobileMixin.ts'
+import rfcProps from '../models/rfcProps.js'
 import isTalkEnabled from '../services/isTalkEnabled.js'
+import validate from '../services/validate.js'
 
 const { profileEnabled } = loadState('user_status', 'profileEnabled', false)
+const browserStorage = getBuilder('contacts').persist().build()
 
-export default {
+export default defineComponent({
 	name: 'ContactDetails',
 
 	components: {
@@ -437,21 +475,30 @@ export default {
 		FolderMultipleImage,
 	},
 
-	mixins: [isMobile],
+	mixins: [IsMobileMixin],
+
+	provide() {
+		return {
+			sharedState: this.sharedState,
+		}
+	},
 
 	props: {
 		contactKey: {
 			type: String,
 			default: undefined,
 		},
+
 		contacts: {
 			type: Array,
 			default: () => [],
 		},
+
 		reloadBus: {
 			type: Object,
 			required: true,
 		},
+
 		desc: {
 			type: String,
 			required: false,
@@ -477,6 +524,7 @@ export default {
 			pickedAddressbook: null,
 			editMode: false,
 			newGroupsValue: [],
+			newAddressBook: null,
 			contactDetailsSelector: '.contact-details',
 			excludeFromBirthdayKey: 'x-nc-exclude-from-birthday-calendar',
 
@@ -493,7 +541,8 @@ export default {
 			filesPanelHasError: false,
 			talkPanelHasError: false,
 			calendarPanelHasError: false,
-
+			sharedState: reactive({ validEmail: true }),
+			lastUsedAddressBook: undefined,
 		}
 	},
 
@@ -501,13 +550,23 @@ export default {
 		hasRelatedResources() {
 			return this.hasFilesResources || this.hasTalkResources || this.hasCalendarResources || this.hasDeckResources
 		},
+
 		/**
-		 * The address book is read-only (e.g. shared with me).
+		 * True if the contact is in the system address book
 		 *
 		 * @return {boolean}
 		 */
-		addressbookIsReadOnly() {
-			return this.contact.addressbook?.readOnly
+		canModifyCard() {
+			return this.contact.addressbook?.canModifyCard
+		},
+
+		/**
+		 * True if the contact is in the system address book
+		 *
+		 * @return {boolean}
+		 */
+		canDeleteCard() {
+			return this.contact.addressbook?.canDeleteCard
 		},
 
 		/**
@@ -516,7 +575,11 @@ export default {
 		 * @return {boolean}
 		 */
 		isReadOnly() {
-			return this.addressbookIsReadOnly || !this.editMode
+			return !this.canModifyCard || !this.editMode
+		},
+
+		isDataValid() {
+			return this.sharedState.validEmail
 		},
 
 		/**
@@ -525,7 +588,7 @@ export default {
 		 * @return {object | boolean}
 		 */
 		warning() {
-			if (this.addressbookIsReadOnly) {
+			if (this.canModifyCard === false) {
 				return {
 					icon: EyeCircleIcon,
 					classes: [],
@@ -575,6 +638,15 @@ export default {
 						return list
 					}
 
+					// Group bday and deathdate together under 'lifeEvents'
+					if (property.name === 'bday' || property.name === 'deathdate' || property.name === 'anniversary') {
+						if (!list.lifeEvents) {
+							list.lifeEvents = []
+						}
+						list.lifeEvents.push(property)
+						return list
+					}
+
 					// Init if needed
 					if (!list[property.name]) {
 						list[property.name] = []
@@ -601,19 +673,10 @@ export default {
 		/**
 		 * Usable addressbook object linked to the local contact
 		 *
-		 * @param {string} [addressbookId] set the addressbook id
 		 * @return {string}
 		 */
-		addressbook: {
-			get() {
-				return this.contact.addressbook.id
-			},
-			set(addressbookId) {
-				// Only move when the address book actually changed to prevent a conflict.
-				if (this.contact.addressbook.id !== addressbookId) {
-					this.moveContactToAddressbook(addressbookId)
-				}
-			},
+		addressbook() {
+			return this.lastUsedAddressBook?.id || this.contact.addressbook.id
 		},
 
 		/**
@@ -636,8 +699,8 @@ export default {
 		 */
 		addressbooksOptions() {
 			return this.addressbooks
-				.filter(addressbook => addressbook.enabled)
-				.map(addressbook => {
+				.filter((addressbook) => addressbook.enabled)
+				.map((addressbook) => {
 					return {
 						id: addressbook.id,
 						name: addressbook.displayName,
@@ -654,9 +717,9 @@ export default {
 		 */
 		copyableAddressbooksOptions() {
 			return this.addressbooksOptions
-				.filter(option => !option.readOnly)
-				.filter(option => option.id !== this.contact.addressbook.id)
-				.map(addressbook => {
+				.filter((option) => !option.readOnly)
+				.filter((option) => option.id !== this.contact.addressbook.id)
+				.map((addressbook) => {
 					return {
 						id: addressbook.id,
 						name: addressbook.name,
@@ -668,6 +731,7 @@ export default {
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
 		},
+
 		contact() {
 			return this.$store.getters.getContact(this.contactKey)
 		},
@@ -678,9 +742,15 @@ export default {
 				: t('contacts', 'Exclude contact from Birthday Calendar')
 		},
 
+		/**
+		 * True if the contact can be excluded from (or added to) the user's birthday calendar
+		 *
+		 * @return {boolean}
+		 */
 		enableToggleBirthdayExclusion() {
-			return parseInt(window.OC.config.version.split('.')[0]) >= 26
-				&& this.localContact?.vCard // Wait until localContact was fetched
+			// Wait until localContact was fetched
+			const isFetched = !!this.localContact?.vCard
+			return isFetched && !this.isInSystemAddressBook
 		},
 
 		/**
@@ -698,37 +768,46 @@ export default {
 					organization,
 				})
 			} else if (title) {
-				return title
+				return escape(title)
 			} else if (organization) {
-				return organization
+				return escape(organization)
 			}
 
 			return ''
 		},
+
 		profilePageLink() {
 			return this.contact.socialLink('NEXTCLOUD')
 		},
+
 		emailAddressProperties() {
-			return this.localContact.properties.find(property => property.name === 'email')
+			return this.localContact.properties.find((property) => property.name === 'email')
 		},
+
 		emailAddress() {
 			return this.emailAddressProperties?.getFirstValue()
 		},
+
 		phoneNumberProperties() {
-			return this.localContact.properties.find(property => property.name === 'tel')
+			return this.localContact.properties.find((property) => property.name === 'tel')
 		},
+
 		phoneNumberList() {
-			return this.groupedProperties?.tel?.map(prop => prop.getFirstValue()).filter(tel => !!tel)
+			return this.groupedProperties?.tel?.map((prop) => prop.getFirstValue()).filter((tel) => !!tel)
 		},
+
 		emailAddressList() {
-			return this.groupedProperties?.email?.map(prop => prop.getFirstValue()).filter(address => !!address)
+			return this.groupedProperties?.email?.map((prop) => prop.getFirstValue()).filter((address) => !!address)
 		},
+
 		callUrl() {
 			return generateUrl('/apps/spreed/?callUser={uid}', { uid: this.contact.uid })
 		},
+
 		isInSystemAddressBook() {
 			return this.contact.addressbook.id === 'z-server-generated--system'
 		},
+
 		nextcloudVersionAtLeast28() {
 			return parseInt(window.OC.config.version.split('.')[0]) >= 28
 		},
@@ -750,9 +829,11 @@ export default {
 
 		// capture ctrl+s
 		document.addEventListener('keydown', this.onCtrlSave)
+
+		this.lastUsedAddressBook = this.getLastUsedAddressBook()
 	},
 
-	beforeDestroy() {
+	beforeUnmount() {
 		// unbind capture ctrl+s
 		document.removeEventListener('keydown', this.onCtrlSave)
 	},
@@ -761,6 +842,11 @@ export default {
 		updateGroups(value) {
 			this.newGroupsValue = value
 		},
+
+		updateAddressbook(value) {
+			this.newAddressBook = value
+		},
+
 		/**
 		 * Send the local clone of contact to the store
 		 */
@@ -789,7 +875,7 @@ export default {
 		async showQRcode() {
 			const jCal = this.contact.jCal.slice(0)
 			// do not encode photo
-			jCal[1] = jCal[1].filter(props => props[0] !== 'photo')
+			jCal[1] = jCal[1].filter((props) => props[0] !== 'photo')
 
 			const data = ICAL.stringify(jCal)
 			if (data.length > 0) {
@@ -876,7 +962,7 @@ export default {
 		 * @param {string} addressbookId the desired addressbook ID
 		 */
 		async moveContactToAddressbook(addressbookId) {
-			const addressbook = this.addressbooks.find(search => search.id === addressbookId)
+			const addressbook = this.addressbooks.find((search) => search.id === addressbookId)
 			this.loadingUpdate = true
 			if (addressbook) {
 				try {
@@ -909,7 +995,7 @@ export default {
 		 * @param {string} addressbookId the desired addressbook ID
 		 */
 		async copyContactToAddressbook(addressbookId) {
-			const addressbook = this.addressbooks.find(search => search.id === addressbookId)
+			const addressbook = this.addressbooks.find((search) => search.id === addressbookId)
 			this.loadingUpdate = true
 			if (addressbook) {
 				try {
@@ -985,7 +1071,7 @@ export default {
 		 */
 		async cloneContact() {
 			// only one addressbook, let's clone it there
-			if (this.pickedAddressbook && this.addressbooks.find(addressbook => addressbook.id === this.pickedAddressbook.id)) {
+			if (this.pickedAddressbook && this.addressbooks.find((addressbook) => addressbook.id === this.pickedAddressbook.id)) {
 				this.logger.debug('Cloning contact to', { name: this.pickedAddressbook.name })
 				await this.copyContactToAddressbook(this.pickedAddressbook.id)
 				this.closePickAddressbookModal()
@@ -1030,13 +1116,47 @@ export default {
 					contact: this.contact,
 				})
 				await this.updateContact()
+				if (this.newAddressBook && this.newAddressBook !== this.contact.addressbook.id) {
+					this.updateAddressBookAccesses(this.newAddressBook)
+					this.moveContactToAddressbook(this.newAddressBook)
+					this.newAddressBook = null
+				}
 				this.editMode = false
+				await this.$store.commit('resortAddressbooks')
 			} catch (error) {
+				this.logger.error('error while saving contact', { error })
 				showError(t('contacts', 'Unable to update contact'))
+				this.logger.error(`Unable to update contact: ${error}`, {
+					error,
+					contact: toRaw(this.contact),
+					localContact: toRaw(this.localContact),
+				})
 			}
 		},
+
+		getLastUsedAddressBook() {
+			const lastUsed = JSON.parse(browserStorage.getItem('last-used-addressbook') || '{}')
+
+			if (lastUsed?.id === null || lastUsed?.id === undefined) {
+				return
+			}
+
+			return this.addressbooksOptions?.find((option) => option.id === lastUsed.id) ?? undefined
+		},
+
+		updateAddressBookAccesses(newAddressBook) {
+			let lastUsedAddressBook = JSON.parse(browserStorage.getItem('last-used-addressbook') || '{}')
+
+			if (!lastUsedAddressBook || typeof lastUsedAddressBook !== 'object') {
+				lastUsedAddressBook = {}
+			}
+
+			lastUsedAddressBook.id = newAddressBook
+
+			browserStorage.setItem('last-used-addressbook', JSON.stringify(lastUsedAddressBook))
+		},
 	},
-}
+})
 </script>
 
 <style lang="scss" scoped>
@@ -1046,7 +1166,7 @@ export default {
 	align-items: flex-start;
 	padding-bottom: calc(var(--default-grid-baseline) * 5);
 	gap: calc(var(--default-grid-baseline) * 4);
-	float: left;
+	float: inline-start;
 }
 @media only screen and (max-width: 600px) {
 	.contact-details-wrapper {
@@ -1121,9 +1241,9 @@ section.contact-details {
 }
 @media only screen and (max-width: 1600px) {
 	.related-resources {
-		float: left;
+		float: inline-start;
 		display: inline-grid;
-		margin-left: 80px;
+		margin-inline-start: 80px;
 		flex-direction: column;
 		margin-bottom: 0;
 		margin-top: 40px;

@@ -7,7 +7,6 @@ OC.L10N.register(
     "A contacts app for Nextcloud" : "Ap cysylltiadau ar gyfer Nextcloud",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Mae'r app cysylltiadau Nextcloud yn rhyngwyneb defnyddiwr ar gyfer gweinydd CardDAV Nextcloud. YMae'n hawdd i gydweddu cysylltiadau o wahanol ddyfeisiau â'ch Nextcloud a'u golygu ar-lein.\n\n* 🚀 ** Integreiddio ag apiau Nextcloud eraill! ** Post a Chalendr ar hyn o bryd - mwy i ddod.\n* 🎉 ** Peidiwch byth ag anghofio pen-blwydd! ** Gallwch gysoni penblwyddi a digwyddiadau cylchol eraill gyda'ch Calendr Nextcloud.\n* 👥 ** Rhannu Llyfrau Cyfeiriadau! ** Gallwch rannu'ch cysylltiadau gyda'ch ffrindiau neu gydweithwyr? Dim problem!\n* 🙈 ** Nid ydym yn ailddyfeisio'r olwyn! ** Yn seiliedig ar lyfrgell wych ac agored SabreDAV.",
     "Copy to full name" : "Copi i'r enw llawn",
-    "Loading …" : "Yn llwytho …",
     "Rename" : "Ailenwi",
     "Delete" : "Dileu",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid"],
@@ -24,10 +23,7 @@ OC.L10N.register(
     "Display name" : "Enw Dangos",
     "Last modified" : "Newidiwyd diwethaf",
     "Sort by {sorting}" : "Trefnu yn ôl {sorting}",
-    "Password protection" : "Password protection",
     "Save" : "Cadw",
-    "Description" : "Disgrifiad",
-    "Settings" : "Settings",
     "Cancel" : "Diddymu",
     "Pick an avatar" : "Dewiswch afatar",
     "Error while processing the picture." : "Gwall wrth brosesu'r llun.",
@@ -116,6 +112,6 @@ OC.L10N.register(
     "Male" : "Gwryw",
     "Unknown" : "Anhysbys",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt"],
-    "Manager" : "Rheolwr"
+    "Loading …" : "Yn llwytho …"
 },
 "nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3;");

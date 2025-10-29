@@ -18,7 +18,8 @@
 		<!-- groups list -->
 		<template #list>
 			<!-- All contacts group -->
-			<AppNavigationItem id="everyone"
+			<AppNavigationItem
+				id="everyone"
 				:name="GROUP_ALL_CONTACTS"
 				:to="{
 					name: 'group',
@@ -28,14 +29,15 @@
 					<IconContact :size="20" />
 				</template>
 				<template #counter>
-					<NcCounterBubble v-if="sortedContacts.length">
-						{{ sortedContacts.length }}
-					</NcCounterBubble>
+					<NcCounterBubble
+						v-if="sortedContacts.length"
+						:count="sortedContacts.length" />
 				</template>
 			</AppNavigationItem>
 
 			<!-- Organization chart -->
-			<AppNavigationItem v-if="existChart"
+			<AppNavigationItem
+				v-if="existChart"
 				id="chart"
 				:name="CHART_ALL_CONTACTS"
 				:to="{
@@ -45,7 +47,8 @@
 				icon="icon-category-monitoring" />
 
 			<!-- Not grouped group -->
-			<AppNavigationItem v-if="ungroupedContacts.length > 0"
+			<AppNavigationItem
+				v-if="ungroupedContacts.length > 0"
 				id="notgrouped"
 				:name="GROUP_NO_GROUP_CONTACTS"
 				:to="{
@@ -56,16 +59,17 @@
 					<IconUser :size="20" />
 				</template>
 				<template #counter>
-					<NcCounterBubble v-if="ungroupedContacts.length">
-						{{ ungroupedContacts.length }}
-					</NcCounterBubble>
+					<NcCounterBubble
+						v-if="ungroupedContacts.length"
+						:count="ungroupedContacts.length" />
 				</template>
 			</AppNavigationItem>
 
 			<!-- Recently contacted group -->
-			<AppNavigationItem v-if="isContactsInteractionEnabled && recentlyContactedContacts && recentlyContactedContacts.contacts.length > 0"
+			<AppNavigationItem
+				v-if="isContactsInteractionEnabled && recentlyContactedContacts && recentlyContactedContacts.contacts.length > 0"
 				id="recentlycontacted"
-				:name="GROUP_RECENTLY_CONTACTED"
+				:name="t('contacts', 'Recently contacted')"
 				:to="{
 					name: 'group',
 					params: { selectedGroup: GROUP_RECENTLY_CONTACTED },
@@ -74,15 +78,32 @@
 					<IconRecentlyContacted :size="20" />
 				</template>
 				<template #counter>
-					<NcCounterBubble v-if="recentlyContactedContacts.contacts.length">
-						{{ recentlyContactedContacts.contacts.length }}
-					</NcCounterBubble>
+					<NcCounterBubble
+						v-if="recentlyContactedContacts.contacts.length"
+						:count="recentlyContactedContacts.contacts.length" />
 				</template>
 			</AppNavigationItem>
 
-			<AppNavigationCaption id="newgroup"
+			<!-- All OCM invites -->
+			<AppNavigationItem v-if="isOcmInvitesEnabled"
+				id="ocm-invites"
+				:name="GROUP_ALL_OCM_INVITES"
+				:to="{
+					name: ROUTE_NAME_ALL_OCM_INVITES,
+				}">
+				<template #icon>
+					<IconAccountSwitchOutline :size="20" />
+				</template>
+				<template #counter>
+					<NcCounterBubble v-if="ocmInvites.length"
+						:count="ocmInvites.length" />
+				</template>
+			</AppNavigationItem>
+
+			<AppNavigationCaption
+				id="newgroup"
+				v-model:menu-open="isNewGroupMenuOpen"
 				:force-menu="true"
-				:menu-open.sync="isNewGroupMenuOpen"
 				:name="t('contacts', 'Contact groups')"
 				@click.prevent.stop="toggleNewGroupMenu">
 				<template #actionsTriggerIcon>
@@ -96,28 +117,32 @@
 						</template>
 						{{ createGroupError ? createGroupError : t('contacts', 'Create a new contact group') }}
 					</ActionText>
-					<ActionInput v-show="isNewGroupMenuOpen"
+					<ActionInput
+						v-show="isNewGroupMenuOpen"
 						icon=""
-						:placeholder="t('contacts','Contact group name')"
+						:placeholder="t('contacts', 'Contact group name')"
 						@submit.prevent.stop="createNewGroup" />
 				</template>
 			</AppNavigationCaption>
 
 			<!-- Custom groups -->
-			<GroupNavigationItem v-for="group in ellipsisGroupsMenu"
+			<GroupNavigationItem
+				v-for="group in ellipsisGroupsMenu"
 				:key="group.key"
 				:group="group" />
 
 			<template v-if="isCirclesEnabled">
 				<!-- Toggle groups ellipsis -->
-				<AppNavigationItem v-if="groupsMenu.length > ELLIPSIS_COUNT"
+				<AppNavigationItem
+					v-if="groupsMenu.length > ELLIPSIS_COUNT"
 					:name="collapseGroupsTitle"
 					class="app-navigation__collapse"
 					icon=""
 					@click="onToggleGroups" />
 
 				<!-- New circle button caption and modal -->
-				<AppNavigationCaption id="newcircle"
+				<AppNavigationCaption
+					id="newcircle"
 					:name="t('contacts', 'Teams')">
 					<template #actions>
 						<NcActionButton @click="toggleNewCircleModal">
@@ -128,19 +153,22 @@
 						</NcActionButton>
 					</template>
 				</AppNavigationCaption>
-				<NewCircleIntro v-if="isNewCircleModalOpen"
+				<NewCircleIntro
+					v-if="isNewCircleModalOpen"
 					:loading="createCircleLoading"
 					@close="closeNewCircleIntro"
 					@submit="createNewCircle" />
 
 				<template v-if="circlesMenu.length > 0">
 					<!-- Circles -->
-					<CircleNavigationItem v-for="circle in ellipsisCirclesMenu"
+					<CircleNavigationItem
+						v-for="circle in ellipsisCirclesMenu"
 						:key="circle.key"
 						:circle="circle" />
 
 					<!-- Toggle circles ellipsis -->
-					<AppNavigationItem v-if="circlesMenu.length > ELLIPSIS_COUNT"
+					<AppNavigationItem
+						v-if="circlesMenu.length > ELLIPSIS_COUNT"
 						:name="collapseCirclesTitle"
 						class="app-navigation__collapse"
 						icon=""
@@ -157,50 +185,53 @@
 
 		<template #footer>
 			<div class="contacts-settings">
-				<AppNavigationItem :aria-label="t('contacts', 'Open the contacts app settings')"
+				<AppNavigationItem
+					:aria-label="t('contacts', 'Open the contacts app settings')"
 					:name="CONTACTS_SETTINGS"
 					@click="showContactsSettings">
-					<Cog slot="icon" :size="20" />
+					<template #icon>
+						<Cog :size="20" />
+					</template>
 				</AppNavigationItem>
 			</div>
 		</template>
-		<ContactsSettings :open.sync="showSettings" />
+		<ContactsSettings v-model:open="showSettings" />
 	</AppNavigation>
 </template>
 
 <script>
-import { GROUP_ALL_CONTACTS, CHART_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ELLIPSIS_COUNT, CIRCLE_DESC, CONTACTS_SETTINGS } from '../../models/constants.ts'
+import { showError } from '@nextcloud/dialogs'
+import { emit } from '@nextcloud/event-bus'
+import { CHART_ALL_CONTACTS, CIRCLE_DESC, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, GROUP_ALL_OCM_INVITES, ROUTE_NAME_ALL_OCM_INVITES } from '../../models/constants.ts'
 
 import {
 	NcActionInput as ActionInput,
 	NcActionText as ActionText,
-	NcActionButton,
 	NcAppNavigation as AppNavigation,
-	NcCounterBubble,
-	NcAppNavigationItem as AppNavigationItem,
 	NcAppNavigationCaption as AppNavigationCaption,
+	NcAppNavigationItem as AppNavigationItem,
 	NcLoadingIcon as IconLoading,
+	NcActionButton,
+	NcCounterBubble,
 } from '@nextcloud/vue'
-
+import { mapStores } from 'pinia'
 import naturalCompare from 'string-natural-compare'
-
+import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
+import IconUser from 'vue-material-design-icons/AccountOutline.vue'
+import IconError from 'vue-material-design-icons/AlertCircleOutline.vue'
+import Cog from 'vue-material-design-icons/CogOutline.vue'
+import IconAdd from 'vue-material-design-icons/Plus.vue'
+import NewCircleIntro from '../EntityPicker/NewCircleIntro.vue'
+import IconRecentlyContacted from '../Icons/IconRecentlyContacted.vue'
 import CircleNavigationItem from './CircleNavigationItem.vue'
-import Cog from 'vue-material-design-icons/Cog.vue'
 import ContactsSettings from './ContactsSettings.vue'
 import GroupNavigationItem from './GroupNavigationItem.vue'
-import NewCircleIntro from '../EntityPicker/NewCircleIntro.vue'
-
+import RouterMixin from '../../mixins/RouterMixin.js'
 import isCirclesEnabled from '../../services/isCirclesEnabled.js'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled.js'
-import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
-import IconUser from 'vue-material-design-icons/Account.vue'
-import IconRecentlyContacted from '../Icons/IconRecentlyContacted.vue'
-import IconAdd from 'vue-material-design-icons/Plus.vue'
-import IconError from 'vue-material-design-icons/AlertCircle.vue'
-
-import RouterMixin from '../../mixins/RouterMixin.js'
-import { showError } from '@nextcloud/dialogs'
-import { emit } from '@nextcloud/event-bus'
+import useUserGroupStore from '../../store/userGroup.ts'
+import IconAccountSwitchOutline from 'vue-material-design-icons/AccountSwitchOutline.vue'
+import isOcmInvitesEnabled from '../../services/isOcmInvitesEnabled.js'
 
 export default {
 	name: 'RootNavigation',
@@ -217,6 +248,7 @@ export default {
 		Cog,
 		ContactsSettings,
 		GroupNavigationItem,
+		IconAccountSwitchOutline,
 		IconContact,
 		IconUser,
 		IconAdd,
@@ -249,6 +281,8 @@ export default {
 			CHART_ALL_CONTACTS,
 			GROUP_NO_GROUP_CONTACTS,
 			GROUP_RECENTLY_CONTACTED,
+			GROUP_ALL_OCM_INVITES,
+			ROUTE_NAME_ALL_OCM_INVITES,
 
 			// create group
 			isNewGroupMenuOpen: false,
@@ -266,6 +300,7 @@ export default {
 			collapsedCircles: true,
 
 			showSettings: false,
+			isOcmInvitesEnabled,
 		}
 	},
 
@@ -274,30 +309,47 @@ export default {
 		circles() {
 			return this.$store.getters.getCircles
 		},
+
 		contacts() {
+			const contacts = this.$store.getters.getContacts
+			if (contacts.undefined) {
+				contacts[this.selectedContact] = contacts.undefined
+				delete contacts.undefined
+			}
+
 			return this.$store.getters.getContacts
 		},
+
 		groups() {
 			return this.$store.getters.getGroups
 		},
+
 		sortedContacts() {
 			return this.$store.getters.getSortedContacts
 		},
 
+		userGroups() {
+			return this.userGroupStore.userGroupList
+		},
+		ocmInvites() {
+			return this.$store.getters.getSortedOcmInvites
+		},
+
 		// list all the contacts that doesn't have a group
 		ungroupedContacts() {
-			return this.sortedContacts.filter(contact => this.contacts[contact.key].groups && this.contacts[contact.key].groups.length === 0)
+			return this.sortedContacts.filter((contact) => this.contacts[contact.key]?.groups && this.contacts[contact.key]?.groups?.length === 0)
 		},
 
 		// check if any contact has manager, if not then is no need for organization chart menu
 		existChart() {
-			return !!Object.keys(this.contacts).filter(key => this.contacts[key].managersName).length
+			return !!Object.keys(this.contacts).filter((key) => this.contacts[key].managersName).length
 		},
 
 		// generate groups menu from the groups store
 		groupsMenu() {
-			const menu = this.groups.map(group => {
-				return Object.assign({}, group, {
+			const menu = this.groups.map((group) => {
+				return {
+					...group,
 					id: group.name.replace(' ', '_'),
 					key: group.name.replace(' ', '_'),
 					router: {
@@ -305,18 +357,19 @@ export default {
 						params: { selectedGroup: group.name },
 					},
 					toString: () => group.name,
-				})
+				}
 			})
 			menu.sort((a, b) => naturalCompare(a.toString(), b.toString(), { caseInsensitive: true }))
 
 			// Find the Recently Contacted group, delete it from array
-			const recentlyIndex = menu.findIndex(group => group.name === GROUP_RECENTLY_CONTACTED)
+			const recentlyIndex = menu.findIndex((group) => group.name === GROUP_RECENTLY_CONTACTED)
 			if (recentlyIndex >= 0) {
 				menu.splice(recentlyIndex, 1)
 			}
 
 			return menu
 		},
+
 		ellipsisGroupsMenu() {
 			// If circles is not enabled, we show everything
 			if (this.isCirclesEnabled && this.collapsedGroups) {
@@ -327,7 +380,8 @@ export default {
 
 		// generate circles menu from the circles store
 		circlesMenu() {
-			const menu = this.circles || []
+			const menu = [...(this.circles || []), ...(this.userGroups || [])]
+
 			menu.sort((a, b) => {
 				// If user is member of a and b, sort by level
 				if (a?.initiator?.level !== b?.initiator?.level && a?.initiator?.level && b?.initiator?.level) {
@@ -350,6 +404,7 @@ export default {
 
 			return menu
 		},
+
 		ellipsisCirclesMenu() {
 			if (this.collapsedCircles) {
 				return this.circlesMenu.slice(0, ELLIPSIS_COUNT)
@@ -359,7 +414,7 @@ export default {
 
 		// Recently contacted data
 		recentlyContactedContacts() {
-			return this.groups.find(group => group.name === GROUP_RECENTLY_CONTACTED)
+			return this.groups.find((group) => group.name === GROUP_RECENTLY_CONTACTED)
 		},
 
 		// Titles for the ellipsis toggle buttons
@@ -368,17 +423,21 @@ export default {
 				? t('contacts', 'Show all groups')
 				: t('contacts', 'Collapse groups')
 		},
+
 		collapseCirclesTitle() {
 			return this.collapsedCircles
 				? t('contacts', 'Show all teams')
 				: t('contacts', 'Collapse teams')
 		},
+
+		...mapStores(useUserGroupStore),
 	},
 
 	methods: {
 		toggleNewGroupMenu() {
 			this.isNewGroupMenuOpen = !this.isNewGroupMenuOpen
 		},
+
 		createNewGroup(e) {
 			const input = e.target.querySelector('input[type=text]')
 			const groupName = input.value.trim()
@@ -389,9 +448,9 @@ export default {
 			this.logger.debug('Creating new group', { groupName })
 
 			// Check if already exists
-			if (this.groups.find(group => group.name === groupName)) {
+			if (this.groups.find((group) => group.name === groupName)) {
 				this.createGroupError = t('contacts', 'This group already exists')
-				emit('contacts:group:append', this.groups.find(group => group.name === groupName).name)
+				emit('contacts:group:append', this.groups.find((group) => group.name === groupName).name)
 				return
 			}
 
@@ -411,6 +470,7 @@ export default {
 		onToggleGroups() {
 			this.collapsedGroups = !this.collapsedGroups
 		},
+
 		onToggleCircles() {
 			this.collapsedCircles = !this.collapsedCircles
 		},
@@ -418,13 +478,14 @@ export default {
 		toggleNewCircleModal() {
 			this.isNewCircleModalOpen = true
 		},
+
 		async createNewCircle(circleName, isPersonal, isLocal) {
 			this.logger.debug('Creating new team', { circleName })
 
 			this.createCircleLoading = true
 
 			// Check if already exists
-			if (this.circles.find(circle => circle.name === circleName)) {
+			if (this.circles.find((circle) => circle.name === circleName)) {
 				this.createCircleError = t('contacts', 'This team already exists')
 				return
 			}
@@ -447,6 +508,7 @@ export default {
 				this.createCircleLoading = false
 			}
 		},
+
 		closeNewCircleIntro() {
 			this.isNewCircleModalOpen = false
 		},

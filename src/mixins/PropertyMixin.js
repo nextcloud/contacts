@@ -107,6 +107,9 @@ export default {
 		deleteProperty() {
 			this.$emit('delete')
 		},
+		saveInvite() {
+			this.$emit('saveInvite')
+		},
 
 		/**
 		 * Debounce and send update event to parent
@@ -140,9 +143,9 @@ export default {
 
 		getNcGroupCount() {
 			const props = this.localContact.jCal[1]
-				.map(prop => prop[0].split('.')[0]) // itemxxx.adr => itemxxx
-				.filter(name => name.startsWith('nextcloud')) // filter nextcloudxxx.adr
-				.map(prop => parseInt(prop.split('nextcloud')[1])) // nextcloudxxx => xxx
+				.map((prop) => prop[0].split('.')[0]) // itemxxx.adr => itemxxx
+				.filter((name) => name.startsWith('nextcloud')) // filter nextcloudxxx.adr
+				.map((prop) => parseInt(prop.split('nextcloud')[1])) // nextcloudxxx => xxx
 			return props.length > 0
 				? Math.max.apply(null, props) // get max iteration of nextcloud grouped props
 				: 0

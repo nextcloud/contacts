@@ -5,12 +5,10 @@
 
 import { showError } from '@nextcloud/dialogs'
 import pLimit from 'p-limit'
-import Vue from 'vue'
-
 import Contact, { MinimalContactProperties } from '../models/contact.js'
-
 import client from '../services/cdav.js'
 import parseVcf from '../services/parseVcf.js'
+import { sortAddressbooks } from '../utils/addressbookUtils.js'
 
 const addressbookModel = {
 	id: '',
@@ -21,11 +19,16 @@ const addressbookModel = {
 	contacts: {},
 	url: '',
 	readOnly: false,
+	canCreateCard: false,
+	canModifyCard: false,
+	canDeleteCard: false,
+	writeProps: false,
 	dav: false,
 }
 
 const state = {
 	addressbooks: [],
+	addressbooksFetched: false,
 }
 
 /**
@@ -43,10 +46,13 @@ export function mapDavCollectionToAddressbook(addressbook) {
 		owner: addressbook.owner,
 		readOnly: addressbook.readOnly === true,
 		writeProps: addressbook.currentUserPrivilegeSet.includes('{DAV:}write-properties') === true,
+		canCreateCard: addressbook.currentUserPrivilegeSet.includes('{DAV:}bind') || addressbook.currentUserPrivilegeSet.includes('{DAV:}write') || addressbook.currentUserPrivilegeSet.includes('{DAV:}all') === true,
+		canModifyCard: addressbook.currentUserPrivilegeSet.includes('{DAV:}write-content') || addressbook.currentUserPrivilegeSet.includes('{DAV:}write') || addressbook.currentUserPrivilegeSet.includes('{DAV:}all') === true,
+		canDeleteCard: addressbook.currentUserPrivilegeSet.includes('{DAV:}unbind') || addressbook.currentUserPrivilegeSet.includes('{DAV:}write') || addressbook.currentUserPrivilegeSet.includes('{DAV:}all') === true,
 		url: addressbook.url,
 		dav: addressbook,
 		shares: addressbook.shares
-			? addressbook.shares.map(sharee => Object.assign({}, mapDavShareeToSharee(sharee)))
+			? addressbook.shares.map((sharee) => ({ ...mapDavShareeToSharee(sharee) }))
 			: [],
 	}
 }
@@ -81,7 +87,7 @@ const mutations = {
 	 */
 	addAddressbook(state, addressbook) {
 		// extend the addressbook to the default model
-		const newAddressbook = Object.assign({}, addressbookModel, addressbook)
+		const newAddressbook = { ...addressbookModel, ...addressbook }
 		// force reinit of the contacts object to prevent
 		// data passed as references
 		newAddressbook.contacts = {}
@@ -105,7 +111,7 @@ const mutations = {
 	 * @param {object} addressbook the addressbook to toggle
 	 */
 	toggleAddressbookEnabled(context, addressbook) {
-		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
+		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
 		addressbook.enabled = !addressbook.enabled
 	},
 
@@ -118,7 +124,7 @@ const mutations = {
 	 * @param {string} data.newName the new name of the addressbook
 	 */
 	renameAddressbook(context, { addressbook, newName }) {
-		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
+		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
 		addressbook.displayName = newName
 	},
 
@@ -132,14 +138,14 @@ const mutations = {
 	 * @param {Contact[]} data.contacts array of contacts to append
 	 */
 	appendContactsToAddressbook(state, { addressbook, contacts }) {
-		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
+		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
 
 		// convert list into an array and remove duplicate
 		addressbook.contacts = contacts.reduce((list, contact) => {
 			if (list[contact.uid]) {
 				console.info('Duplicate contact overrided', list[contact.uid], contact)
 			}
-			Vue.set(list, contact.uid, contact)
+			list[contact.uid] = contact
 			return list
 		}, addressbook.contacts)
 	},
@@ -151,8 +157,8 @@ const mutations = {
 	 * @param {Contact} contact the contact to add
 	 */
 	addContactToAddressbook(state, contact) {
-		const addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
-		Vue.set(addressbook.contacts, contact.uid, contact)
+		const addressbook = state.addressbooks.find((search) => search.id === contact.addressbook.id)
+		addressbook.contacts[contact.uid] = contact
 	},
 
 	/**
@@ -162,8 +168,8 @@ const mutations = {
 	 * @param {Contact} contact the contact to delete
 	 */
 	deleteContactFromAddressbook(state, contact) {
-		const addressbook = state.addressbooks.find(search => search.id === contact.addressbook.id)
-		Vue.delete(addressbook.contacts, contact.uid)
+		const addressbook = state.addressbooks.find((search) => search.id === contact.addressbook.id)
+		delete addressbook.contacts[contact.uid]
 	},
 
 	/**
@@ -178,7 +184,7 @@ const mutations = {
 	 * @param {boolean} data.isGroup is this a group ?
 	 */
 	shareAddressbook(state, { addressbook, user, displayName, uri, isGroup }) {
-		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
+		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
 		const newSharee = {
 			displayName,
 			id: user,
@@ -200,8 +206,8 @@ const mutations = {
 	 * @param {string} data.uri the sharee uri
 	 */
 	removeSharee(state, { addressbook, uri }) {
-		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
-		const shareIndex = addressbook.shares.findIndex(sharee => sharee.uri === uri)
+		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
+		const shareIndex = addressbook.shares.findIndex((sharee) => sharee.uri === uri)
 		addressbook.shares.splice(shareIndex, 1)
 	},
 
@@ -214,15 +220,23 @@ const mutations = {
 	 * @param {string} data.uri the sharee uri
 	 */
 	updateShareeWritable(state, { addressbook, uri }) {
-		addressbook = state.addressbooks.find(search => search.id === addressbook.id)
-		const sharee = addressbook.shares.find(sharee => sharee.uri === uri)
+		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
+		const sharee = addressbook.shares.find((sharee) => sharee.uri === uri)
 		sharee.writeable = !sharee.writeable
 	},
 
+	/**
+	 * Needed to track indirect state changes for addressbook sorting
+	 *
+	 * @param state
+	 */
+	resortAddressbooks(state) {
+		state.addressbooks = sortAddressbooks(state.addressbooks)
+	},
 }
 
 const getters = {
-	getAddressbooks: state => state.addressbooks,
+	getAddressbooks: (state) => state.addressbooks,
 }
 
 const actions = {
@@ -234,18 +248,26 @@ const actions = {
 	 * @return {object[]} the addressbooks
 	 */
 	async getAddressbooks(context) {
+		if (context.state.addressbooksFetched) {
+			return context.getters.getAddressbooks
+		}
+
 		const addressbooks = await client.addressBookHomes[0]
 			.findAllAddressBooks()
-			.then(addressbooks => {
-				return addressbooks.map(addressbook => {
+			.then((addressbooks) => {
+				return addressbooks.map((addressbook) => {
 					// formatting addressbooks
 					return mapDavCollectionToAddressbook(addressbook)
 				})
 			})
 
-		addressbooks.forEach(addressbook => {
+		addressbooks.forEach((addressbook) => {
 			context.commit('addAddressbook', addressbook)
 		})
+
+		context.commit('resortAddressbooks')
+
+		context.state.addressbooksFetched = true
 
 		return addressbooks
 	},
@@ -277,10 +299,10 @@ const actions = {
 	async deleteAddressbook(context, addressbook) {
 		return addressbook.dav
 			.delete()
-			.then((response) => {
+			.then(() => {
 				// delete all the contacts from the store that belong to this addressbook
 				Object.values(addressbook.contacts)
-					.forEach(contact => context.commit('deleteContact', contact))
+					.forEach((contact) => context.commit('deleteContact', contact))
 				// then delete the addressbook
 				context.commit('deleteAddressbook', addressbook)
 			})
@@ -298,9 +320,16 @@ const actions = {
 		addressbook.dav.enabled = !addressbook.enabled
 		return addressbook.dav
 			.update()
-			.then((response) => {
+			.then(async (response) => {
 				context.commit('toggleAddressbookEnabled', addressbook)
 				if (addressbook.enabled) {
+					const contacts = Object.values(addressbook.contacts)
+
+					// If the address book is disabled on first load, the store does not fetch/store the AB's contacts
+					if (contacts.length === 0) {
+						await context.dispatch('getContactsFromAddressBook', { addressbook })
+					}
+
 					// Add contacts from the just enabled address book to the contacts store
 					Object.values(addressbook.contacts).forEach((contact) => {
 						context.commit('addContact', contact)
@@ -323,6 +352,9 @@ const actions = {
 	 * @param {string} data.newName the new name of the addressbook
 	 * @param data.addressbook.addressbook
 	 * @param data.addressbook.newName
+	 * @param root0
+	 * @param root0.addressbook
+	 * @param root0.newName
 	 * @return {Promise}
 	 */
 	async renameAddressbook(context, { addressbook, newName }) {
@@ -353,7 +385,7 @@ const actions = {
 					.reduce((contacts, item) => {
 						try {
 							const contact = new Contact(item.data, addressbook)
-							Vue.set(contact, 'dav', item)
+							contact.dav = item
 							contacts.push(contact)
 						} catch (error) {
 							// PARSING FAILED
@@ -409,7 +441,7 @@ const actions = {
 		const requests = []
 
 		// create the array of requests to send
-		contacts.map(async contact => {
+		contacts.map(async (contact) => {
 			console.info(contact)
 
 			// Get vcard string
@@ -419,7 +451,7 @@ const actions = {
 				requests.push(limit(() => contact.addressbook.dav.createVCard(vData)
 					.then((response) => {
 						// setting the contact dav property
-						Vue.set(contact, 'dav', response)
+						contact.dav = response
 
 						// success, update store
 						context.commit('addContact', contact)
@@ -431,8 +463,7 @@ const actions = {
 						// error
 						context.commit('incrementDenied')
 						console.error(error)
-					}),
-				))
+					})))
 			} catch (e) {
 				context.commit('incrementDenied')
 			}
@@ -478,7 +509,6 @@ const actions = {
 			console.error(error)
 			throw error
 		}
-
 	},
 
 	/**
@@ -495,6 +525,12 @@ const actions = {
 	 * @param data.addressbook.displayName
 	 * @param data.addressbook.uri
 	 * @param data.addressbook.isGroup
+	 * @param root0
+	 * @param root0.addressbook
+	 * @param root0.user
+	 * @param root0.displayName
+	 * @param root0.uri
+	 * @param root0.isGroup
 	 */
 	async shareAddressbook(context, { addressbook, user, displayName, uri, isGroup }) {
 		// Share addressbook with entered group or user
@@ -526,9 +562,12 @@ const actions = {
 				throw error
 			}
 		}
+		const groups = contact.groups
 		await context.commit('deleteContactFromAddressbook', contact)
+		await context.commit('removeContactFromGroups', contact)
 		await context.commit('updateContactAddressbook', { contact, addressbook })
 		await context.commit('addContactToAddressbook', contact)
+		await context.commit('addContactToGroups', { contact, groupNames: groups })
 		return contact
 	},
 
@@ -549,7 +588,7 @@ const actions = {
 		try {
 			const response = await contact.dav.copy(addressbook.dav)
 			// setting the contact dav property
-			Vue.set(newContact, 'dav', response)
+			newContact.dav = response
 		} catch (error) {
 			console.error(error)
 			throw error

@@ -6,7 +6,8 @@
 <template>
 	<div v-if="propModel" class="property">
 		<!-- title if first element -->
-		<PropertyTitle v-if="isFirstProperty && propModel.icon"
+		<PropertyTitle
+			v-if="isFirstProperty && propModel.icon"
 			:property="property"
 			:is-multiple="isMultiple"
 			:is-read-only="isReadOnly"
@@ -17,15 +18,15 @@
 		<div class="property__row">
 			<div class="property__label">
 				<!-- type selector -->
-				<NcSelect v-if="propModel.options"
+				<NcSelect
+					v-if="propModel.options"
 					v-model="localType"
 					:options="options"
 					:searchable="false"
 					:placeholder="t('contacts', 'Select type')"
 					:disabled="isReadOnly"
-					track-by="id"
 					label="name"
-					@input="updateType" />
+					@update:model-value="updateType" />
 
 				<!-- if we do not support any type on our model but one is set anyway -->
 				<span v-else-if="selectType">
@@ -40,25 +41,27 @@
 
 			<div class="property__value">
 				<!-- Real input where the picker shows -->
-				<DateTimePicker v-if="!isReadOnly"
-					:value="vcardTimeLocalValue.toJSDate()"
+				<DateTimePicker
+					v-if="!isReadOnly"
+					:model-value="datePickerValue"
 					:minute-step="10"
 					:lang="lang"
 					:clearable="false"
 					:first-day-of-week="firstDay"
 					:type="inputType"
-					:readonly="isReadOnly"
 					:formatter="dateFormat"
-					@change="debounceUpdateValue" />
+					@update:model-value="debounceUpdateValue" />
 
-				<input v-else
+				<input
+					v-else
 					:readonly="true"
 					:value="formatDateTime()">
 			</div>
 
 			<!-- props actions -->
 			<div class="property__actions">
-				<PropertyActions v-if="!isReadOnly"
+				<PropertyActions
+					v-if="!isReadOnly"
 					:actions="actions"
 					:property-component="this"
 					@delete="deleteProperty" />
@@ -68,18 +71,18 @@
 </template>
 
 <script>
-import debounce from 'debounce'
-import moment from 'moment'
+import { getLocale } from '@nextcloud/l10n'
+import moment from '@nextcloud/moment'
 import {
 	NcDateTimePicker as DateTimePicker,
 	NcSelect,
 } from '@nextcloud/vue'
-import { getLocale } from '@nextcloud/l10n'
+import debounce from 'debounce'
 import ICAL from 'ical.js'
-
-import PropertyMixin from '../../mixins/PropertyMixin.js'
-import PropertyTitle from './PropertyTitle.vue'
+import { toRaw } from 'vue'
 import PropertyActions from './PropertyActions.vue'
+import PropertyTitle from './PropertyTitle.vue'
+import PropertyMixin from '../../mixins/PropertyMixin.js'
 
 export default {
 	name: 'PropertyDateTime',
@@ -97,7 +100,6 @@ export default {
 		value: {
 			type: [ICAL.VCardTime, String],
 			default: '',
-			required: true,
 		},
 	},
 
@@ -110,8 +112,6 @@ export default {
 					? 'date'
 					: 'time',
 
-			// locale and lang data
-			locale: 'en',
 			firstDay: window.firstDay === 0 ? 7 : window.firstDay, // provided by nextcloud
 			lang: {
 				days: window.dayNamesShort, // provided by nextcloud
@@ -120,10 +120,12 @@ export default {
 					date: t('contacts', 'Select Date'),
 				},
 			},
+
 			dateFormat: {
 				stringify: (date) => {
 					return date ? this.formatDateTime() : null
 				},
+
 				parse: (value) => {
 					return value ? moment(value, ['LL', 'L']).toDate() : null
 				},
@@ -135,10 +137,18 @@ export default {
 		// make sure the property is valid
 		vcardTimeLocalValue() {
 			if (typeof this.localValue === 'string') {
-				// eslint-disable-next-line new-cap
-				return new ICAL.VCardTime.fromDateAndOrTimeString(this.localValue)
+				return new ICAL.VCardTime.fromDateAndOrTimeString(this.localValue, this.propType)
 			}
 			return this.localValue
+		},
+
+		datePickerValue() {
+			if (!this.vcardTimeLocalValue) {
+				return this.vcardTimeLocalValue
+			}
+
+			// ical.js can't cope with proxies, hence we need to unwrap the proxy first
+			return toRaw(this.vcardTimeLocalValue).toJSDate()
 		},
 	},
 
@@ -232,7 +242,8 @@ export default {
 
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			// Use moment to convert the JsDate to Object
-			this.$emit('update:value', this.localValue)
+			// ical.js can't cope with proxies, hence we need to unwrap the proxy first
+			this.$emit('update:value', toRaw(this.localValue))
 		},
 
 		/**
@@ -267,27 +278,22 @@ export default {
 			// No hour, no minute and no second = date only
 			if (datetimeData.hour === null && datetimeData.minute === null && datetimeData.second === null) {
 				datetime = moment(datetimeData)
-					.locale(this.locale)
 					.format('LL')
 
 			// No year, no month and no day = time only
 			} else if (datetimeData.year === null && datetimeData.month === null && datetimeData.day === null) {
 				datetime = moment(datetimeData)
-					.locale(this.locale)
 					.format('LTS')
 			}
 
 			// Use input type to properly format our data
 			if (datetime === '') {
 				datetime = moment(datetimeData)
-					.locale(this.locale)
-					.format(
-						this.inputType === 'datetime'
-							? 'llll' // date & time display
-							: this.inputType === 'date'
-								? 'll' // only date
-								: 'LTS', // only time
-					)
+					.format(this.inputType === 'datetime'
+						? 'llll' // date & time display
+						: this.inputType === 'date'
+							? 'll' // only date
+							: 'LTS' /* only time */)
 			}
 
 			return datetimeData.year === null

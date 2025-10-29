@@ -3,7 +3,6 @@
     "All contacts" : "Alle kontakte",
     "Contacts" : "Kontakte",
     "A contacts app for Nextcloud" : "’n Kontakte-toep vir Nextcloud",
-    "Loading …" : "Laai …",
     "Rename" : "Hernoem",
     "Delete" : "Skrap",
     "Copied" : "Gekopieer",
@@ -18,14 +17,12 @@
     "Display name" : "Vertoonnaam",
     "Last modified" : "Laas gewysig",
     "Save" : "Bewaar",
-    "Description" : "Beskrywing",
+    "Edit" : "Wysig",
     "Cancel" : "Kanselleer",
     "Invalid image" : "Ongeldige beeld",
     "Name" : "Naam",
     "Title" : "Titel",
     "Company" : "Maatskappy",
-    "Edit" : "Wysig",
-    "Search contacts …" : "Soek kontakte …",
     "Pending" : "Hangend",
     "Select Date" : "Kies Datum",
     "Select type" : "Kies tipe",
@@ -41,6 +38,7 @@
     "Contact" : "Kontak",
     "Admin" : "Admin",
     "Owner" : "Eienaar",
+    "Privacy" : "Privaatheid",
     "Detailed name" : "Gedetailleerde naam",
     "Additional names" : "Addisionele name",
     "Prefix" : "Voorvoegsel",
@@ -93,6 +91,7 @@
     "Female" : "Vroulik",
     "Male" : "Manlik",
     "Unknown" : "Onbekend",
-    "Manager" : "Bestuurder"
+    "Loading …" : "Laai …",
+    "Search contacts …" : "Soek kontakte …"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

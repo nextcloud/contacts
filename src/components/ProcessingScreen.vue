@@ -4,7 +4,8 @@
 -->
 <template>
 	<div>
-		<EmptyContent :description="desc"
+		<EmptyContent
+			:description="desc"
 			:name="title"
 			class="processing-screen__wrapper">
 			<template #icon>
@@ -19,7 +20,7 @@
 
 <script>
 import { NcEmptyContent as EmptyContent } from '@nextcloud/vue'
-import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
+import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 export default {
 	name: 'ProcessingScreen',
 
@@ -33,14 +34,17 @@ export default {
 			type: Number,
 			required: true,
 		},
+
 		progress: {
 			type: Number,
 			required: true,
 		},
+
 		desc: {
 			type: String,
 			required: true,
 		},
+
 		title: {
 			type: String,
 			required: true,

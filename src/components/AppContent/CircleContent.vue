@@ -5,7 +5,7 @@
 
 <template>
 	<AppContent>
-		<EmptyContent v-if="!circle" :name="t('contacts', 'Please select a team')">
+		<EmptyContent v-if="!circle && !userGroup" :name="t('contacts', 'Please select a team')">
 			<template #icon>
 				<AccountGroup :size="20" />
 			</template>
@@ -17,20 +17,25 @@
 			</template>
 		</EmptyContent>
 
+		<UserGroupDetails v-else-if="userGroup" :user-group="userGroup" />
 		<CircleDetails v-else :circle="circle" />
 	</AppContent>
 </template>
+
 <script>
 import { showError } from '@nextcloud/dialogs'
 import {
 	NcAppContent as AppContent,
 	NcEmptyContent as EmptyContent,
 	NcLoadingIcon as IconLoading,
-	isMobile,
 } from '@nextcloud/vue'
-import AccountGroup from 'vue-material-design-icons/AccountGroup.vue'
+import { mapStores } from 'pinia'
+import AccountGroup from 'vue-material-design-icons/AccountGroupOutline.vue'
 import CircleDetails from '../CircleDetails.vue'
+import UserGroupDetails from '../UserGroupDetails.vue'
+import IsMobileMixin from '../../mixins/IsMobileMixin.ts'
 import RouterMixin from '../../mixins/RouterMixin.js'
+import useUserGroupStore from '../../store/userGroup.ts'
 
 export default {
 	name: 'CircleContent',
@@ -41,9 +46,10 @@ export default {
 		EmptyContent,
 		AccountGroup,
 		IconLoading,
+		UserGroupDetails,
 	},
 
-	mixins: [isMobile, RouterMixin],
+	mixins: [IsMobileMixin, RouterMixin],
 
 	props: {
 		loading: {
@@ -63,9 +69,15 @@ export default {
 		circles() {
 			return this.$store.getters.getCircles
 		},
+
 		circle() {
 			return this.$store.getters.getCircle(this.selectedCircle)
 		},
+
+		userGroup() {
+			return this.userGroupStore.getUserGroup(this.selectedUserGroup)
+		},
+
 		members() {
 			return Object.values(this.circle?.members || [])
 		},
@@ -78,6 +90,8 @@ export default {
 		isEmptyCircle() {
 			return this.members.length === 0
 		},
+
+		...mapStores(useUserGroupStore),
 	},
 
 	watch: {
@@ -86,11 +100,21 @@ export default {
 				this.fetchCircleMembers(newCircle.id)
 			}
 		},
+
+		userGroup(newUserGroup) {
+			if (newUserGroup?.id) {
+				this.fetchUserGroupMembers(newUserGroup.id)
+			}
+		},
 	},
 
 	beforeMount() {
 		if (this.circle?.id) {
 			this.fetchCircleMembers(this.circle.id)
+		}
+
+		if (this.userGroup?.id) {
+			this.fetchUserGroupMembers(this.userGroup.id)
 		}
 	},
 
@@ -101,6 +125,19 @@ export default {
 
 			try {
 				await this.$store.dispatch('getCircleMembers', circleId)
+			} catch (error) {
+				console.error(error)
+				showError(t('contacts', 'There was an error fetching the member list'))
+			} finally {
+				this.loadingList = false
+			}
+		},
+
+		async fetchUserGroupMembers(userGroupId) {
+			this.loadingList = true
+
+			try {
+				await this.userGroupStore.getUserGroupMembers(userGroupId)
 			} catch (error) {
 				console.error(error)
 				showError(t('contacts', 'There was an error fetching the member list'))
@@ -120,7 +157,7 @@ button {
 	justify-content: center;
 	align-items: center;
 	span {
-		margin-right: 10px;
+		margin-inline-end: 10px;
 	}
 }
 

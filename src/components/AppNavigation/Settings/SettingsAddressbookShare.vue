@@ -5,23 +5,24 @@
 
 <template>
 	<div class="addressbook-shares">
-		<NcSelect id="users-groups-search"
+		<NcSelectUsers
+			id="users-groups-search"
 			:options="usersOrGroups"
 			:searchable="true"
 			:internal-search="false"
 			:max-height="600"
 			:show-no-results="true"
 			:placeholder="placeholder"
-			:class="{ 'showContent': inputGiven, 'icon-loading': isLoading }"
-			:user-select="true"
+			:class="{ showContent: inputGiven, 'icon-loading': isLoading }"
+			:get-option-key="(option) => option.user"
 			open-direction="bottom"
-			track-by="user"
 			label="displayName"
 			@search="findSharee"
-			@input="shareAddressbook" />
+			@update:model-value="shareAddressbook" />
 		<!-- list of user or groups addressbook is shared with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressbook-shares__list">
-			<address-book-sharee v-for="sharee in addressbook.shares"
+			<AddressBookSharee
+				v-for="sharee in addressbook.shares"
 				:key="sharee.uri"
 				:sharee="sharee"
 				:addressbook="addressbook" />
@@ -30,20 +31,19 @@
 </template>
 
 <script>
-import { NcSelect } from '@nextcloud/vue'
+import { NcSelectUsers } from '@nextcloud/vue'
+import debounce from 'debounce'
+import AddressBookSharee from './SettingsAddressbookSharee.vue'
 import client from '../../../services/cdav.js'
 import isGroupSharingEnabled from '../../../services/isGroupSharingEnabled.js'
-
-import addressBookSharee from './SettingsAddressbookSharee.vue'
-import debounce from 'debounce'
 import { urldecode } from '../../../utils/url.js'
 
 export default {
 	name: 'SettingsAddressbookShare',
 
 	components: {
-		NcSelect,
-		addressBookSharee,
+		NcSelectUsers,
+		AddressBookSharee,
 	},
 
 	props: {
@@ -54,6 +54,7 @@ export default {
 			},
 		},
 	},
+
 	data() {
 		return {
 			isLoading: false,
@@ -61,6 +62,7 @@ export default {
 			usersOrGroups: [],
 		}
 	},
+
 	computed: {
 		placeholder() {
 			if (isGroupSharingEnabled) {
@@ -69,14 +71,17 @@ export default {
 				return t('contacts', 'Share with users')
 			}
 		},
+
 		noResult() {
 			return t('contacts', 'No users or groups')
 		},
 	},
+
 	mounted() {
 		// This ensures that the multiselect input is in focus as soon as the user clicks share
 		document.getElementById('users-groups-search').focus()
 	},
+
 	methods: {
 		/**
 		 * Share addressbook
@@ -130,9 +135,10 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .addressbook-shares__list {
-	margin-left: calc(var(--default-grid-baseline) * -2);
+	margin-inline-start: calc(var(--default-grid-baseline) * -2);
 	width: 282px;
 }
 </style>

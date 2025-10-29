@@ -5,35 +5,37 @@
 <template>
 	<div class="org-chart-node">
 		<div class="inner-box">
-			<router-link :to="{
-				name: 'contact',
-				params: {
-					selectedGroup: selectedChart,
-					selectedContact: data.key,
-				},
-			}">
-				<Avatar :disable-tooltip="true"
-					:display-name="data.fullName"
+			<router-link
+				:to="{
+					name: 'contact',
+					params: {
+						selectedGroup: selectedChart,
+						selectedContact: chartData.key,
+					},
+				}">
+				<Avatar
+					:disable-tooltip="true"
+					:display-name="chartData.fullName"
 					:is-no-user="true"
 					:size="60"
-					:url="data.photoUrl"
+					:url="chartData.photoUrl"
 					class="org-chart-node__avatar" />
 			</router-link>
 			<div class="panel" />
 			<div class="main-container">
 				<h3 class="fullName">
-					{{ data.fullName }}
+					{{ chartData.fullName }}
 				</h3>
 				<h4 class="title">
-					{{ data.title }}
+					{{ chartData.title }}
 				</h4>
 			</div>
 			<div class="description">
-				<p v-if="data._directSubordinates">
-					{{ t('contacts', 'Manages') }}: {{ data._directSubordinates }}
+				<p v-if="chartData._directSubordinates">
+					{{ t('contacts', 'Manages') }}: {{ chartData._directSubordinates }}
 				</p>
-				<p v-if="data._totalSubordinates">
-					{{ t('contacts', 'Oversees') }}: {{ data._totalSubordinates }}
+				<p v-if="chartData._totalSubordinates">
+					{{ t('contacts', 'Oversees') }}: {{ chartData._totalSubordinates }}
 				</p>
 			</div>
 		</div>
@@ -48,16 +50,19 @@ export default {
 	components: {
 		Avatar,
 	},
+
 	props: {
-		data: {
+		chartData: {
 			type: Object,
 			default: () => {},
 		},
+
 		onAvatarClick: {
 			type: Function,
 			default: () => {},
 		},
 	},
+
 	computed: {
 		selectedChart() {
 			return this.$route.params.selectedChart
@@ -121,8 +126,8 @@ export default {
 		margin: -34px -1px 0 -1px;
 		background-color: var(--color-primary-element);
 		height: 15px;
-		border-top-left-radius: var(--border-radius-large);
-		border-top-right-radius: var(--border-radius-large);
+		border-start-start-radius: var(--border-radius-large);
+		border-start-end-radius: var(--border-radius-large);
 	}
 }
 </style>

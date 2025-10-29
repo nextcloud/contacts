@@ -1,19 +1,16 @@
 { "translations": {
     "Details" : "ລາຍລະອຽດ",
     "Contacts" : "ຕິດຕໍ່",
-    "Loading …" : "ກຳລັງໂຫຼດ",
     "Rename" : "ປ່ຽນຊື່",
     "Delete" : "ລຶບ",
     "Copy link" : "ສຳເນົາລິງ",
     "Download" : "ດາວໂຫລດ",
     "Add" : "ເພີ່ມ",
-    "Password protection" : "ລະຫັດປ້ອງກັນ",
     "Save" : "ບັນທຶກ",
     "Cancel" : "ຍົກເລີກ",
     "Invalid image" : "ບໍ່ມີຮູບພາບ",
     "Name" : "ຊື່",
     "Company" : "ບໍລິສັດ",
-    "Search contacts …" : "ຄົ້ນຫາຕິດຕໍ່ ...",
     "No results" : "ບໍ່ມີຜົນ",
     "Pending" : "ທີ່ກໍາລັງລໍຖ້າ",
     "None" : "ບໍ່ມີ",
@@ -23,11 +20,14 @@
     "Email" : "ອິເມວ",
     "Admin" : "ຜູ້ເບິ່ງເເຍງລະບົບ",
     "Owner" : "ເຈົ້າຂອງ",
+    "Privacy" : "ຄວາມເປັນສ່ວນຕົວ",
     "Website" : "ເວັບໄຊ",
     "Home" : "ໜ້າຫຼັກ",
     "Address" : "ທີ່ຢູ່",
     "City" : "ເມືອງ",
     "Country" : "ປະເທດ",
-    "Unknown" : "ບໍ່ຮູ້"
+    "Unknown" : "ບໍ່ຮູ້",
+    "Loading …" : "ກຳລັງໂຫຼດ",
+    "Search contacts …" : "ຄົ້ນຫາຕິດຕໍ່ ..."
 },"pluralForm" :"nplurals=1; plural=0;"
 }

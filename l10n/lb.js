@@ -3,7 +3,6 @@ OC.L10N.register(
     {
     "Details" : "Detailer",
     "Contacts" : "Kontakter",
-    "Loading …" : "Loading …",
     "Rename" : "Ëmbenennen",
     "Delete" : "Läschen",
     "Copy link" : "Link kopéieren",
@@ -13,10 +12,7 @@ OC.L10N.register(
     "Add" : "Derbäimaachen",
     "First name" : "Virnumm",
     "Last name" : "Famillje Numm",
-    "Password protection" : "Password protection",
     "Save" : "Späicheren",
-    "Description" : "Beschreiwung",
-    "Settings" : "Settings",
     "Cancel" : "Ofbriechen",
     "Invalid image" : "Ongülteg d'Bild",
     "Name" : "Numm",
@@ -47,6 +43,7 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Voice",
     "Relative" : "Relativ",
-    "Unknown" : "Onbekannt"
+    "Unknown" : "Onbekannt",
+    "Loading …" : "Loading …"
 },
 "nplurals=2; plural=(n != 1);");

@@ -5,27 +5,28 @@
 <template>
 	<div class="settings-addressbook-list">
 		<IconContactPlus class="settings-line__icon" />
-		<li :class="{'addressbook--disabled': !addressbook.enabled}" class="addressbook">
+		<li :class="{ 'addressbook--disabled': !addressbook.enabled }" class="addressbook">
 			<div class="addressbook__content">
 				<!-- addressbook name -->
 				<span class="addressbook__name" :title="addressbook.displayName">
-					{{ addressbook.enabled ? addressbook.displayName : t('contacts', '{addressbookname} (Disabled)', {addressbookname: addressbook.displayName}) }}
+					{{ addressbook.enabled ? addressbook.displayName : t('contacts', '{addressbookname} (Hidden)', { addressbookname: addressbook.displayName }) }}
 				</span>
 
 				<div v-if="addressbook.dav.description" class="addressbook__description">
 					{{ addressbook.dav.description }}
 				</div>
 				<!-- counters -->
-				<div class="addressbook__count-wrapper">
+				<div v-if="addressbook.enabled" class="addressbook__count-wrapper">
 					<span class="addressbook__count">{{ n('contacts', '%n contact', '%n contacts', contactsCount) }}</span>
 					<span class="addressbook__count">- {{ n('contacts', '%n group', '%n groups', groupsCount) }}</span>
 				</div>
 			</div>
 
-			<!-- sharing button -->
-			<Button v-if="!addressbook.readOnly"
+			<!-- sharing Ncbutton -->
+			<NcButton
+				v-if="!addressbook.readOnly && !isSharedWithMe"
 				v-tooltip.top="sharedWithTooltip"
-				:class="{'addressbook__share--shared': hasShares}"
+				:class="{ 'addressbook__share--shared': hasShares }"
 				:name="sharedWithTooltip"
 				href="#"
 				class="addressbook__share"
@@ -33,15 +34,16 @@
 				<template #icon>
 					<IconShare :size="20" />
 				</template>
-			</Button>
+			</NcButton>
 
 			<!-- popovermenu -->
 			<Actions class="addressbook__menu" menu-align="right">
 				<!-- copy addressbook link -->
-				<ActionLink :href="addressbook.url"
+				<ActionLink
+					:href="addressbook.url"
 					:icon="copyLinkIcon"
 					@click.stop.prevent="copyToClipboard(addressbookUrl)">
-					{{ copyButtonText }}
+					{{ copyNcButtonText }}
 				</ActionLink>
 
 				<!-- download addressbook -->
@@ -54,9 +56,10 @@
 
 				<template v-if="addressbook.writeProps">
 					<!-- enable/disable addressbook -->
-					<ActionCheckbox v-if="!toggleEnabledLoading"
-						:checked="enabled"
-						@change.stop.prevent="toggleAddressbookEnabled">
+					<ActionCheckbox
+						v-if="!toggleEnabledLoading"
+						:model-value="enabled"
+						@update:model-value="toggleAddressbookEnabled">
 						{{ t('contacts', 'Show') }}
 					</ActionCheckbox>
 					<ActionButton v-else>
@@ -69,14 +72,16 @@
 
 				<template v-if="!addressbook.readOnly">
 					<!-- rename addressbook -->
-					<ActionButton v-if="!editingName"
+					<ActionButton
+						v-if="!editingName"
 						@click.stop.prevent="renameAddressbook">
 						<template #icon>
 							<IconRename :size="20" />
 						</template>
 						{{ t('contacts', 'Rename') }}
 					</ActionButton>
-					<ActionInput v-else
+					<ActionInput
+						v-else
 						ref="renameInput"
 						:disabled="renameLoading"
 						:value="addressbook.displayName"
@@ -88,7 +93,8 @@
 					</ActionInput>
 				</template>
 				<!-- delete addressbook -->
-				<ActionButton v-if="hasMultipleAddressbooks && addressbook.owner !== principalUrl && addressbook.owner !== '/remote.php/dav/principals/system/system/'"
+				<ActionButton
+					v-if="hasMultipleAddressbooks && addressbook.owner !== principalUrl && addressbook.owner !== '/remote.php/dav/principals/system/system/'"
 					@click="confirmUnshare">
 					<template #icon>
 						<IconLoading v-if="deleteAddressbookLoading" :size="20" />
@@ -96,7 +102,8 @@
 					</template>
 					{{ t('contacts', 'Unshare from me') }}
 				</ActionButton>
-				<ActionButton v-else-if="hasMultipleAddressbooks && addressbook.owner !== '/remote.php/dav/principals/system/system/'"
+				<ActionButton
+					v-else-if="hasMultipleAddressbooks && addressbook.owner !== '/remote.php/dav/principals/system/system/'"
 					@click="confirmDeletion">
 					<template #icon>
 						<IconLoading v-if="deleteAddressbookLoading" :size="20" />
@@ -112,25 +119,23 @@
 </template>
 
 <script>
-import {
-	NcActions as Actions,
-	NcActionLink as ActionLink,
-	NcActionButton as ActionButton,
-	NcActionInput as ActionInput,
-	NcActionCheckbox as ActionCheckbox,
-	NcLoadingIcon as IconLoading,
-	NcButton as Button,
-} from '@nextcloud/vue'
-import IconDownload from 'vue-material-design-icons/Download.vue'
-import IconRename from 'vue-material-design-icons/Pencil.vue'
-import IconDelete from 'vue-material-design-icons/Delete.vue'
-import IconContactPlus from 'vue-material-design-icons/AccountMultiplePlus.vue'
-import IconShare from 'vue-material-design-icons/ShareVariant.vue'
-import ShareAddressBook from './SettingsAddressbookShare.vue'
 import { showError } from '@nextcloud/dialogs'
-
+import {
+	NcActionButton as ActionButton,
+	NcActionCheckbox as ActionCheckbox,
+	NcActionInput as ActionInput,
+	NcActionLink as ActionLink,
+	NcActions as Actions,
+	NcLoadingIcon as IconLoading,
+	NcButton,
+} from '@nextcloud/vue'
+import IconContactPlus from 'vue-material-design-icons/AccountMultiplePlusOutline.vue'
+import IconRename from 'vue-material-design-icons/PencilOutline.vue'
+import IconShare from 'vue-material-design-icons/ShareVariantOutline.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
+import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
+import ShareAddressBook from './SettingsAddressbookShare.vue'
 import CopyToClipboardMixin from '../../../mixins/CopyToClipboardMixin.js'
-
 import usePrincipalsStore from '../../../store/principals.js'
 
 export default {
@@ -142,7 +147,7 @@ export default {
 		ActionInput,
 		ActionLink,
 		Actions,
-		Button,
+		NcButton,
 		IconDelete,
 		IconDownload,
 		IconRename,
@@ -178,12 +183,15 @@ export default {
 		enabled() {
 			return this.addressbook.enabled
 		},
+
 		hasShares() {
 			return this.addressbook.shares.length > 0
 		},
+
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
 		},
+
 		hasMultipleAddressbooks() {
 			return this.addressbooks.length > 1
 		},
@@ -191,16 +199,19 @@ export default {
 		// info tooltip about number of shares
 		sharedWithTooltip() {
 			return this.hasShares
-				? n('contacts',
-					'Shared with {num} entity',
-					'Shared with {num} entities',
-					this.addressbook.shares.length, {
-						num: this.addressbook.shares.length,
-					})
+				? n(
+						'contacts',
+						'Shared with {num} entity',
+						'Shared with {num} entities',
+						this.addressbook.shares.length,
+						{
+							num: this.addressbook.shares.length,
+						},
+					)
 				: '' // disable the tooltip
 		},
 
-		copyButtonText() {
+		copyNcButtonText() {
 			if (this.copied) {
 				return this.copySuccess
 					? t('contacts', 'Copied')
@@ -219,7 +230,7 @@ export default {
 
 		groups() {
 			const allGroups = this.contacts
-				.flatMap(contact => contact.vCard.getAllProperties('categories').map(prop => prop.getFirstValue()))
+				.flatMap((contact) => contact.vCard.getAllProperties('categories').map((prop) => prop.getFirstValue()))
 			// Deduplicate
 			return [...new Set(allGroups)]
 		},
@@ -231,11 +242,17 @@ export default {
 		groupsCount() {
 			return this.groups.length
 		},
+
 		principalUrl() {
 			const principalsStore = usePrincipalsStore()
 			return principalsStore.currentUserPrincipal.principalUrl
 		},
+
+		isSharedWithMe() {
+			return this.addressbook.owner !== this.principalUrl
+		},
 	},
+
 	watch: {
 		menuOpen() {
 			if (this.menuOpen === false) {
@@ -243,20 +260,25 @@ export default {
 			}
 		},
 	},
+
 	mounted() {
 		// required if popup needs to stay opened after menu click
 		this.popupItem = this.$el
 	},
+
 	methods: {
 		closeMenu() {
 			this.menuOpen = false
 		},
+
 		toggleMenu() {
 			this.menuOpen = !this.menuOpen
 		},
+
 		toggleShare() {
 			this.shareOpen = !this.shareOpen
 		},
+
 		async toggleAddressbookEnabled() {
 			// change to loading status
 			this.toggleEnabledLoading = true
@@ -271,6 +293,7 @@ export default {
 				this.toggleEnabledLoading = false
 			}
 		},
+
 		confirmDeletion() {
 			window.OC.dialogs.confirm(
 				t('contacts', 'This will delete the address book and every contacts within it'),
@@ -279,6 +302,7 @@ export default {
 				true,
 			)
 		},
+
 		confirmUnshare() {
 			window.OC.dialogs.confirm(
 				t('contacts', 'This will unshare the address book and every contacts within it'),
@@ -287,6 +311,7 @@ export default {
 				true,
 			)
 		},
+
 		async deleteAddressbook(confirm) {
 			if (confirm) {
 				// change to loading status
@@ -303,9 +328,11 @@ export default {
 				}
 			}
 		},
+
 		renameAddressbook() {
 			this.editingName = true
 		},
+
 		async updateAddressbookName() {
 			const addressbook = this.addressbook
 			// New name for addressbook - inputed value from form
@@ -343,7 +370,7 @@ export default {
 		+ a,
 		+ div {
 			// put actions at the end
-			margin-left: auto;
+			margin-inline-start: auto;
 		}
 	}
 
@@ -372,13 +399,13 @@ export default {
 	}
 
 	&__count {
-		margin-left: calc(var(--default-grid-baseline) * 0.5);
+		margin-inline-start: calc(var(--default-grid-baseline) * 0.5);
 		font-size: smaller;
 		color: var(--color-text-lighter);
 	}
 
 	&__count:not(:last-child) {
-		margin-right: var(--default-grid-baseline);
+		margin-inline-end: var(--default-grid-baseline);
 	}
 
 	&__share,

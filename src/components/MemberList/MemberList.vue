@@ -5,17 +5,14 @@
 
 <template>
 	<section class="member-list">
-		<ContentHeading>
-			{{ t('contacts', 'Team members') }}
-		</ContentHeading>
-
-		<NcEmptyContent v-if="loading" class="empty-content" :name="t('contacts', 'Loading members list …')">
+		<NcEmptyContent v-if="loading" class="empty-content" :name="t('contacts', 'Loading members list …')">
 			<template #icon>
 				<IconLoading :size="20" />
 			</template>
 		</NcEmptyContent>
 
-		<NcEmptyContent v-else-if="!circle.isMember"
+		<NcEmptyContent
+			v-else-if="!circle.isMember"
 			class="empty-content"
 			:name="t('contacts', 'The list of members is only visible to members of this team')">
 			<template #icon>
@@ -23,7 +20,8 @@
 			</template>
 		</NcEmptyContent>
 
-		<NcEmptyContent v-else-if="!hasMembers"
+		<NcEmptyContent
+			v-else-if="!hasMembers"
 			class="empty-content"
 			:name="t('contacts', 'You currently have no access to the member list')">
 			<template #icon>
@@ -31,31 +29,25 @@
 			</template>
 		</NcEmptyContent>
 
-		<div v-else>
-			<div class="member-list__new">
-				<NcButton v-if="circle.canManageMembers"
-					@click="onShowPicker(circle.id)">
-					<template #icon>
-						<NcLoadingIcon v-if="loading" />
-						<IconAdd v-else :size="20" />
-					</template>
-					{{ t('contacts', 'Add members') }}
-				</NcButton>
-			</div>
-
-			<MemberListGroup v-for="group, index in groupedList"
-				:key="`member-list-group-${index}`"
-				v-bind="group" />
+		<div v-else class="member-grid">
+			<MemberGridItem
+				v-for="member in flatList"
+				:key="`member-grid-item-${member.id}`"
+				:member="member"
+				:is-team="!member.isUser" />
 		</div>
 
 		<!-- member picker -->
-		<EntityPicker v-if="showPicker"
-			:confirm-label="t('contacts', 'Add to {circle}', { circle: circle.displayName })"
+		<EntityPicker
+			v-if="showPicker"
+			ref="entityPicker"
+			v-model:selection="pickerSelection"
+			:confirm-label="t('contacts', 'Add to {team}', { team: circle.displayName })"
+			:title-label="t('contacts', 'Invite members to {team}', { team: circle.displayName })"
 			:data-types="pickerTypes"
 			:data-set="filteredPickerData"
 			:internal-search="false"
 			:loading="pickerLoading"
-			:selection.sync="pickerSelection"
 			@close="resetPicker"
 			@search="onSearch"
 			@submit="onPickerPick" />
@@ -63,25 +55,18 @@
 </template>
 
 <script lang="ts">
-import {
-	NcButton,
-	NcEmptyContent,
-	NcLoadingIcon,
-	isMobile,
-} from '@nextcloud/vue'
-
-import MemberListGroup from './MemberListGroup.vue'
-import EntityPicker from '../EntityPicker/EntityPicker.vue'
-import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
-import IconAdd from 'vue-material-design-icons/Plus.vue'
-import RouterMixin from '../../mixins/RouterMixin.js'
-
 import { showError, showWarning } from '@nextcloud/dialogs'
 import { subscribe } from '@nextcloud/event-bus'
 import { t } from '@nextcloud/l10n'
-import { getRecommendations, getSuggestions } from '../../services/collaborationAutocompletion.js'
-import { SHARES_TYPES_MEMBER_MAP, CIRCLES_MEMBER_GROUPING } from '../../models/constants'
+import { NcEmptyContent } from '@nextcloud/vue'
 import { defineComponent } from 'vue'
+import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
+import EntityPicker from '../EntityPicker/EntityPicker.vue'
+import MemberGridItem from './MemberGridItem.vue'
+import IsMobileMixin from '../../mixins/IsMobileMixin.ts'
+import RouterMixin from '../../mixins/RouterMixin.js'
+import { CIRCLES_MEMBER_GROUPING, SHARES_TYPES_MEMBER_MAP } from '../../models/constants.ts'
+import { getRecommendations, getSuggestions } from '../../services/collaborationAutocompletion.js'
 
 export default defineComponent({
 	name: 'MemberList',
@@ -89,14 +74,11 @@ export default defineComponent({
 	components: {
 		EntityPicker,
 		IconContact,
-		IconAdd,
-		MemberListGroup,
-		NcButton,
+		MemberGridItem,
 		NcEmptyContent,
-		NcLoadingIcon,
 	},
 
-	mixins: [isMobile, RouterMixin],
+	mixins: [IsMobileMixin, RouterMixin],
 
 	props: {
 		list: {
@@ -128,18 +110,14 @@ export default defineComponent({
 		/**
 		 * Return the current circle
 		 *
-		 * @return {Circle}
+		 * @return {object}
 		 */
 		circle() {
 			return this.$store.getters.getCircle(this.selectedCircle)
 		},
 
-		hasMembers() {
-			return this.groupedList.length > 0
-		},
-
 		filteredPickerData() {
-			return this.pickerData.filter(entity => {
+			return this.pickerData.filter((entity) => {
 				const type = SHARES_TYPES_MEMBER_MAP[entity.shareType]
 				const list = this.list.filter(({ userType }) => userType === type)
 				if (list) {
@@ -150,19 +128,20 @@ export default defineComponent({
 			})
 		},
 
-		groupedList() {
-			return CIRCLES_MEMBER_GROUPING
-				.map(({ labelStandalone, type }) => ({
-					type,
-					label: labelStandalone,
-					members: [...this.list.filter(({ userType }) => userType === type)],
-				}))
-				.filter(({ members }) => members.length > 0)
+		flatList() {
+			const teams = this.list.filter((member) => !member.isUser)
+			const users = this.list.filter((member) => member.isUser)
+			return [...teams, ...users]
+		},
+
+		hasMembers() {
+			return this.flatList.length > 0
 		},
 	},
 
 	mounted() {
 		subscribe('contacts:circles:append', this.onShowPicker)
+		subscribe('guests:user:created', this.onGuestCreated)
 	},
 
 	methods: {
@@ -227,7 +206,7 @@ export default defineComponent({
 
 			this.pickerLoading = true
 
-			selection = selection.map(entry => ({
+			selection = selection.map((entry) => ({
 				id: entry.shareWith,
 				type: SHARES_TYPES_MEMBER_MAP[entry.shareType],
 			}))
@@ -260,6 +239,11 @@ export default defineComponent({
 			this.pickerData = []
 			this.pickerSelection = {}
 		},
+
+		async onGuestCreated(guest) {
+			const results = await getSuggestions(guest.username)
+			this.$refs.entityPicker.onClick(results[0])
+		},
 	},
 })
 </script>
@@ -271,19 +255,22 @@ export default defineComponent({
 	max-width: 900px;
 	overflow: auto;
 
-	&__new {
-		padding: 10px;
-		display: inline-flex;
-
-		button {
-			background-position: 14px center;
-			text-align: left;
-
-		}
-	}
-
 	:deep(.empty-content) {
 		margin: auto;
+	}
+}
+
+.member-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	gap: 8px;
+
+	@media (max-width: 768px) {
+		grid-template-columns: 1fr;
+	}
+
+	@media (min-width: 1200px) {
+		grid-template-columns: repeat(3, 1fr);
 	}
 }
 

@@ -4,22 +4,28 @@
 -->
 
 <template>
-	<ActionCheckbox :checked="omitYear"
-		@check="removeYear"
-		@uncheck="addYear">
+	<NcActionCheckbox
+		:model-value="omitYear"
+		@update:model-value="onUpdate">
 		{{ t('contacts', 'Omit year') }}
-	</ActionCheckbox>
+	</NcActionCheckbox>
 </template>
+
 <script>
-import { NcActionCheckbox as ActionCheckbox } from '@nextcloud/vue'
+import { NcActionCheckbox } from '@nextcloud/vue'
 import ActionsMixin from '../../mixins/ActionsMixin.js'
 
 export default {
-	name: 'ActionToggleYear',
+	// Name needs to start with NcAction!
+	// Otherwise, it won't be rendered inside an NcActions menu.
+	name: 'NcActionToggleYear',
+
 	components: {
-		ActionCheckbox,
+		NcActionCheckbox,
 	},
+
 	mixins: [ActionsMixin],
+
 	data() {
 		return {
 			omitYear: false,
@@ -28,10 +34,20 @@ export default {
 
 	beforeMount() {
 		this.omitYear = !!this.component.property.getFirstParameter('x-apple-omit-year')
-				|| !this.component.value.year // if null
+			|| !this.component.value.year // if null
 	},
 
 	methods: {
+		onUpdate(omitYear) {
+			if (omitYear) {
+				this.removeYear()
+			} else {
+				this.addYear()
+			}
+
+			this.omitYear = omitYear
+		},
+
 		removeYear() {
 			const dateObject = this.component.localValue.toJSON()
 
@@ -51,12 +67,11 @@ export default {
 					})
 				}
 			}
-			this.omitYear = !this.omitYear
 		},
+
 		addYear() {
 			const dateObject = this.component.localValue.toJSON()
 			this.component.updateValue(dateObject, true)
-			this.omitYear = !this.omitYear
 		},
 	},
 }

@@ -5,19 +5,19 @@
 import { generateUrl } from '@nextcloud/router'
 import { GROUP_ALL_CONTACTS } from '../models/constants.ts'
 
-export const getChart = (allNodes, currentNode) => {
+export function getChart(allNodes, currentNode) {
 	const result = [currentNode]
-	const children = allNodes.filter(node => {
+	const children = allNodes.filter((node) => {
 		return node.nodeId !== currentNode.nodeId && node.parentNodeId === currentNode.nodeId
 	})
 
 	return [
 		...result,
-		...children.flatMap(child => getChart(allNodes, child)),
+		...children.flatMap((child) => getChart(allNodes, child)),
 	]
 }
 
-export const transformNode = (contact) => {
+export function transformNode(contact) {
 	return {
 		nodeId: contact.uid,
 		key: contact.key,
@@ -31,11 +31,9 @@ export const transformNode = (contact) => {
 	}
 }
 
-export const otherContacts = ({ $store, self }) => {
-	return $store.getters.getSortedContacts.filter(
-		({ key }) => {
-			const contact = $store.getters.getContact(key)
-			return contact.addressbook.id === self.addressbook.id && contact.uid !== self.uid
-		},
-	)
+export function otherContacts({ $store, self }) {
+	return $store.getters.getSortedContacts.filter(({ key }) => {
+		const contact = $store.getters.getContact(key)
+		return contact.addressbook.id === self.addressbook.id && contact.uid !== self.uid
+	})
 }

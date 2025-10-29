@@ -11,13 +11,13 @@ import axios from '@nextcloud/axios'
  * @param {string} oldGroupName name that gets removed
  * @param {string} newGroupName name that gets added
  */
-const renameContactFromGroup = async function(contact, oldGroupName, newGroupName) {
+async function renameContactFromGroup(contact, oldGroupName, newGroupName) {
 	const foundGroups = contact.groups
 	foundGroups.push(newGroupName)
 
-	let currentGroups = foundGroups.map(groupName => encodeURIComponent(groupName))
+	let currentGroups = foundGroups.map((groupName) => encodeURIComponent(groupName))
 
-	currentGroups = currentGroups.filter(e => e !== encodeURIComponent(oldGroupName))
+	currentGroups = currentGroups.filter((e) => e !== encodeURIComponent(oldGroupName))
 
 	return axios.patch(contact.url, {}, {
 		headers: {

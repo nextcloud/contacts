@@ -4,23 +4,41 @@
 -->
 
 <template>
-	<Modal size="normal"
+	<Modal
+		size="normal"
 		@close="onCancel">
 		<!-- Wrapper for content & navigation -->
 		<div class="entity-picker">
 			<!-- Search -->
-			<div class="entity-picker__search">
-				<div class="entity-picker__search-icon icon-search" />
-				<input ref="input"
-					v-model="searchQuery"
-					:placeholder="t('contacts', 'Search {types}', {types: searchPlaceholderTypes})"
-					class="entity-picker__search-input"
-					type="search"
-					@input="onSearch">
+			<div class="entity-picker__heading">
+				<h3 class="entity-picker__title">
+					{{ titleLabel }}
+				</h3>
+			</div>
+			<div class="entity-picker__search-container">
+				<div class="entity-picker__search">
+					<div class="entity-picker__search-icon icon-search" />
+					<input
+						ref="input"
+						v-model="searchQuery"
+						:placeholder="t('contacts', 'Search {types}', { types: searchPlaceholderTypes })"
+						class="entity-picker__search-input"
+						type="search"
+						@input="onSearch">
+				</div>
+				<NcButton
+					v-if="canInviteGuests"
+					type="button"
+					variant="tertiary-no-background"
+					:title="t('contacts', 'Add guest')"
+					:aria-label="t('contacts', 'Add guest')"
+					@click="onGuestButtonClick">
+					<IconAccountPlusOutline :size="20" />
+				</NcButton>
 			</div>
 
 			<!-- Loading -->
-			<EmptyContent v-if="loading" :name="t('contacts', 'Loading …')">
+			<EmptyContent v-if="loading" :name="t('contacts', 'Loading …')">
 				<template #icon>
 					<IconLoading :size="20" />
 				</template>
@@ -28,31 +46,40 @@
 
 			<template v-else>
 				<!-- Picked entities -->
-				<transition-group v-if="Object.keys(selectionSet).length > 0"
+				<transition-group
+					v-if="Object.keys(selectionSet).length > 0"
 					name="zoom"
 					tag="ul"
 					class="entity-picker__selection">
-					<EntityBubble v-for="entity in selectionSet"
+					<EntityBubble
+						v-for="entity in selectionSet"
 						:key="entity.key || `entity-${entity.type}-${entity.id}`"
 						v-bind="entity"
 						@delete="onDelete(entity)" />
 				</transition-group>
 
 				<!-- No recommendations -->
-				<EmptyContent v-if="dataSet.length === 0" :name="t('contacts', 'Search for people to add')">
+				<EmptyContent
+					v-if="dataSet.length === 0"
+					:name="t('contacts', 'Search for people to add')"
+					:description="emptyDataSetDescription">
 					<template #icon>
 						<IconSearch :size="20" />
 					</template>
 				</EmptyContent>
 
 				<!-- Searched & picked entities -->
-				<VirtualList v-else-if="searchSet.length > 0 && availableEntities.length > 0"
+				<VList
+					v-else-if="searchSet.length > 0 && availableEntities.length > 0"
+					v-slot="{ item }"
 					class="entity-picker__options"
-					data-key="id"
-					:data-sources="availableEntities"
-					:data-component="EntitySearchResult"
-					:estimate-size="44"
-					:extra-props="{ selection: selectionSet, onClick }" />
+					:data="availableEntities">
+					<EntitySearchResult
+						:key="item.id"
+						:source="item"
+						:selection="selectionSet"
+						:on-click="onClick" />
+				</VList>
 
 				<EmptyContent v-else-if="searchQuery" :name="t('contacts', 'No results')">
 					<template #icon>
@@ -61,16 +88,18 @@
 				</EmptyContent>
 
 				<div class="entity-picker__navigation">
-					<button :disabled="loading"
+					<NcButton
+						:disabled="loading"
 						class="navigation__button-left"
 						@click="onCancel">
 						{{ t('contacts', 'Cancel') }}
-					</button>
-					<button :disabled="isEmptySelection || loading"
+					</NcButton>
+					<NcButton
+						:disabled="isEmptySelection || loading"
 						class="navigation__button-right primary"
 						@click="onSubmit">
 						{{ confirmLabel }}
-					</button>
+					</NcButton>
 				</div>
 			</template>
 		</div>
@@ -78,13 +107,16 @@
 </template>
 
 <script>
-import debounce from 'debounce'
-import VirtualList from 'vue-virtual-scroll-list'
+import { subscribe } from '@nextcloud/event-bus'
 import {
 	NcEmptyContent as EmptyContent,
 	NcLoadingIcon as IconLoading,
 	NcModal as Modal,
+	NcButton,
 } from '@nextcloud/vue'
+import debounce from 'debounce'
+import { VList } from 'virtua/vue'
+import IconAccountPlusOutline from 'vue-material-design-icons/AccountPlusOutline.vue'
 import IconSearch from 'vue-material-design-icons/Magnify.vue'
 import EntityBubble from './EntityBubble.vue'
 import EntitySearchResult from './EntitySearchResult.vue'
@@ -93,12 +125,15 @@ export default {
 	name: 'EntityPicker',
 
 	components: {
+		NcButton,
 		EmptyContent,
 		EntityBubble,
+		IconAccountPlusOutline,
 		IconSearch,
 		IconLoading,
 		Modal,
-		VirtualList,
+		VList,
+		EntitySearchResult,
 	},
 
 	props: {
@@ -114,8 +149,8 @@ export default {
 		dataTypes: {
 			type: Array,
 			required: true,
-			validator: types => {
-				const invalidTypes = types.filter(type => !type.id && !type.label)
+			validator: (types) => {
+				const invalidTypes = types.filter((type) => !type.id && !type.label)
 				if (invalidTypes.length > 0) {
 					console.error('The following types MUST have a proper id and label key', invalidTypes)
 					return false
@@ -130,8 +165,8 @@ export default {
 		dataSet: {
 			type: Array,
 			required: true,
-			validator: data => {
-				data.forEach(source => {
+			validator: (data) => {
+				data.forEach((source) => {
 					if (!source.id || !source.label) {
 						console.error('The following source MUST have a proper id and label key', source)
 					}
@@ -157,6 +192,14 @@ export default {
 		},
 
 		/**
+		 * Title text
+		 */
+		titleLabel: {
+			type: String,
+			default: t('contacts', 'Add members to group'),
+		},
+
+		/**
 		 * The input will also filter the dataSet based on the label.
 		 * If you are using the search event to inject a different dataSet, you can disable this
 		 */
@@ -173,13 +216,18 @@ export default {
 			type: Object,
 			default: null,
 		},
+
+		emptyDataSetDescription: {
+			type: String,
+			default: '',
+		},
 	},
 
 	data() {
 		return {
+			canInviteGuests: !!window?.OCA?.Guests?.openGuestDialog,
 			searchQuery: '',
 			localSelection: {},
-			EntitySearchResult,
 		}
 	},
 
@@ -194,6 +242,7 @@ export default {
 				}
 				return this.localSelection
 			},
+
 			set(selection) {
 				if (this.selection !== null) {
 					this.$emit('update:selection', selection)
@@ -228,7 +277,7 @@ export default {
 		 */
 		searchPlaceholderTypes() {
 			const types = this.dataTypes
-				.map(type => type.label)
+				.map((type) => type.label)
 				.join(', ')
 			return `${types}…`
 		},
@@ -242,7 +291,7 @@ export default {
 		searchSet() {
 			// If internal search is enabled and we have a search query, filter data set
 			if (this.internalSearch && this.searchQuery && this.searchQuery.trim !== '') {
-				return this.dataSet.filter(entity => {
+				return this.dataSet.filter((entity) => {
 					return entity.label.toLowerCase().indexOf(this.searchQuery.toLowerCase()) > -1
 				})
 			}
@@ -261,8 +310,8 @@ export default {
 			}
 
 			// Else group by types
-			return this.dataTypes.map(type => {
-				const dataSet = this.searchSet.filter(entity => entity.type === type.id)
+			return this.dataTypes.map((type) => {
+				const dataSet = this.searchSet.filter((entity) => entity.type === type.id)
 				const dataList = [
 					{
 						id: type.id,
@@ -287,6 +336,10 @@ export default {
 			this.$refs.input.focus()
 			this.$refs.input.select()
 		})
+
+		if (this.canInviteGuests) {
+			subscribe('guests:user:created', this.addGuest)
+		}
 	},
 
 	methods: {
@@ -296,6 +349,7 @@ export default {
 			 */
 			this.$emit('close')
 		},
+
 		onSubmit() {
 			/**
 			 * Emitted when user submit the form
@@ -320,7 +374,7 @@ export default {
 		 * @param {object} entity the entity to remove
 		 */
 		onDelete(entity) {
-			this.$delete(this.selectionSet, entity.id, entity)
+			delete this.selectionSet[entity.id]
 			console.debug('Removing entity from selection', entity)
 		},
 
@@ -331,12 +385,12 @@ export default {
 		 */
 		onClick(entity) {
 			if (entity.id in this.selectionSet) {
-				this.$delete(this.selectionSet, entity.id)
+				delete this.selectionSet[entity.id]
 				console.debug('Removed entity to selection', entity)
 				return
 			}
 
-			this.$set(this.selectionSet, entity.id, entity)
+			this.selectionSet[entity.id] = entity
 			console.debug('Added entity to selection', entity)
 		},
 
@@ -350,6 +404,12 @@ export default {
 				this.onDelete(entity)
 			} else {
 				this.onPick(entity)
+			}
+		},
+
+		onGuestButtonClick() {
+			if (this.canInviteGuests) {
+				window?.OCA?.Guests?.openGuestDialog('contacts')
 			}
 		},
 	},
@@ -386,18 +446,30 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 	min-height: $dialog-height;
 	height: 100%;
 	padding: $dialog-padding;
+	padding-top: 10px;
 	box-sizing: border-box;
+
+	&__title {
+		margin-top: 0px;
+	}
 
 	&__search {
 		position: relative;
 		display: flex;
 		align-items: center;
 		width: 95%;
+
+		&-container {
+			display: flex;
+			flex-flow: row nowrap;
+			column-gap: 12px;
+		}
+
 		&-input {
 			width: 100%;
 			height: $clickable-area - $entity-spacing !important;
 			margin: $entity-spacing 0;
-			padding-left: $clickable-area !important;
+			padding-inline-start: $clickable-area !important;
 			font-size: 16px;
 			line-height: $clickable-area - $entity-spacing;
 		}
@@ -412,7 +484,6 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 		display: flex;
 		overflow-y: auto;
 		align-content: flex-start;
-		flex: 1 0 auto;
 		flex-wrap: wrap;
 		justify-content: flex-start;
 		// half a line height to know there is more lines
@@ -424,14 +495,14 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 		// Allows 2 per line
 		.entity-picker__bubble {
 			max-width: calc(50% - #{$entity-spacing});
-			margin-right: $entity-spacing;
+			margin-inline-end: $entity-spacing;
 			margin-bottom: $entity-spacing;
 		}
 	}
 
 	&__options {
 		overflow-y: auto;
-		flex: 1 1 100%;
+		flex: 1 1 auto;
 		margin: $entity-spacing 0;
 	}
 
@@ -445,7 +516,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 		width: 100%;
 		box-shadow: 0 -10px 5px var(--color-main-background);
 		&__button-right {
-			margin-left: auto;
+			margin-inline-start: auto;
 		}
 	}
 }
@@ -462,7 +533,7 @@ it back */
 }
 
 :deep(.modal-container__close) {
-	margin-top: 19px;
+	margin-top: 10px;
 }
 
 </style>

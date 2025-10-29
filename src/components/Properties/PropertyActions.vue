@@ -4,33 +4,34 @@
 -->
 
 <template>
-	<Actions>
-		<ActionButton @click="deleteProperty">
+	<NcActions>
+		<NcActionButton @click="deleteProperty">
 			<template #icon>
 				<IconDelete :size="20" />
 			</template>
 			{{ t('contacts', 'Delete') }}
-		</ActionButton>
-		<component :is="action"
+		</NcActionButton>
+		<component
+			:is="action"
 			v-for="action in actions"
 			:key="action.name"
 			:component="propertyComponent" />
-	</Actions>
+	</NcActions>
 </template>
 
 <script>
 import {
-	NcActions as Actions,
-	NcActionButton as ActionButton,
+	NcActionButton,
+	NcActions,
 } from '@nextcloud/vue'
-import IconDelete from 'vue-material-design-icons/Delete.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 
 export default {
 	name: 'PropertyActions',
 
 	components: {
-		Actions,
-		ActionButton,
+		NcActions,
+		NcActionButton,
 		IconDelete,
 	},
 
@@ -39,6 +40,7 @@ export default {
 			type: Array,
 			default: () => [],
 		},
+
 		propertyComponent: {
 			type: Object,
 			required: true,
@@ -52,6 +54,7 @@ export default {
 	},
 }
 </script>
+
 <style lang="scss" scoped>
 .material-design-icon {
 	opacity: 0.8;

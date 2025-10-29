@@ -4,11 +4,13 @@
 -->
 
 <template>
-	<NcListItem compact
+	<NcListItem
+		compact
 		:name="source.displayName"
 		class="members-list-item">
 		<template #icon>
-			<NcAvatar disable-menu
+			<NcAvatar
+				disable-menu
 				:size="avatarSize"
 				:display-name="source.displayName"
 				:is-no-user="!source.isUser" />
@@ -37,7 +39,7 @@
 
 		<template v-else #actions>
 			<NcActionText v-if="loading" icon="icon-loading-small">
-				{{ t('contacts', 'Loading …') }}
+				{{ t('contacts', 'Loading …') }}
 			</NcActionText>
 
 			<!-- Normal menu -->
@@ -50,7 +52,8 @@
 							<IconShieldCheck :size="16" />
 						</template>
 					</NcActionText>
-					<NcActionButton v-for="level in availableLevelsChange"
+					<NcActionButton
+						v-for="level in availableLevelsChange"
 						:key="level"
 						icon=""
 						@click="changeLevel(level)">
@@ -79,24 +82,22 @@
 </template>
 
 <script>
-import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberStatus } from '../../models/constants.ts'
-
+import { DialogBuilder, showError } from '@nextcloud/dialogs'
 import {
+	NcActionButton,
+	NcActionSeparator,
+	NcActionText,
 	NcAvatar,
 	NcListItem,
-	NcActionSeparator,
-	NcActionButton,
-	NcActionText,
 } from '@nextcloud/vue'
 import IconCheck from 'vue-material-design-icons/Check.vue'
 import IconClose from 'vue-material-design-icons/Close.vue'
-import IconDelete from 'vue-material-design-icons/Delete.vue'
 import IconExitToApp from 'vue-material-design-icons/ExitToApp.vue'
-import IconShieldCheck from 'vue-material-design-icons/ShieldCheck.vue'
-
-import { changeMemberLevel } from '../../services/circles.ts'
-import { showError } from '@nextcloud/dialogs'
+import IconShieldCheck from 'vue-material-design-icons/ShieldCheckOutline.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
+import { CIRCLES_MEMBER_LEVELS, MemberLevels, MemberStatus } from '../../models/constants.ts'
+import { changeMemberLevel } from '../../services/circles.ts'
 
 export default {
 	name: 'MemberListItem',
@@ -179,9 +180,9 @@ export default {
 		availableLevelsChange() {
 			const levels = Object.keys(CIRCLES_MEMBER_LEVELS)
 				// Object.keys returns those as string
-				.map(level => parseInt(level, 10))
+				.map((level) => parseInt(level, 10))
 				// we cannot set to a level higher or equal than the current user's level
-				.filter(level => level < this.currentUserLevel)
+				.filter((level) => level < this.currentUserLevel)
 
 			// Admins can promote others as Admin too
 			if (this.currentUserLevel === MemberLevels.ADMIN) {
@@ -194,7 +195,7 @@ export default {
 			}
 
 			// we cannot set to the level this member is already
-			return levels.filter(level => level !== this.source.level)
+			return levels.filter((level) => level !== this.source.level)
 		},
 
 		/**
@@ -247,6 +248,7 @@ export default {
 			return parseInt(window.getComputedStyle(document.body).getPropertyValue('--default-clickable-area'))
 		},
 	},
+
 	methods: {
 		/**
 		 * Return the promote/demote member action label
@@ -269,6 +271,42 @@ export default {
 		 * Delete the current member
 		 */
 		async deleteMember() {
+			if (this.isCurrentUser) {
+				try {
+					const dialog = new DialogBuilder()
+						.setName(t('contacts', 'Leave team'))
+						.setText(t('contacts', 'Are you sure you want to leave this team? This action cannot be undone.'))
+						.setButtons([
+							{
+								label: t('contacts', 'Cancel'),
+								type: 'secondary',
+								callback: () => { /* do nothing, just close */ },
+							},
+							{
+								label: t('contacts', 'Leave team'),
+								type: 'error',
+								callback: async () => {
+									try {
+										await this.doDeleteMember()
+									} catch (e) {
+										this.logger.error('Error in delete member callback', { e })
+										showError(t('contacts', 'Leave team failed.'))
+									}
+								},
+							},
+						])
+						.build()
+
+					await dialog.show()
+				} catch (error) {
+					// User cancelled the dialog - no action needed
+				}
+			} else {
+				await this.doDeleteMember()
+			}
+		},
+
+		async doDeleteMember() {
 			this.loading = true
 
 			try {
@@ -281,7 +319,7 @@ export default {
 					this.logger.debug('Member is not in circle')
 					return
 				}
-				console.error('Could not delete the member', this.source, error)
+				this.logger.error('Could not delete the member', { member: this.source, error })
 				showError(t('contacts', 'Could not delete the member {displayName}', this.source))
 			} finally {
 				this.loading = false
@@ -306,7 +344,7 @@ export default {
 				// eslint-disable-next-line vue/no-mutating-props
 				this.source.level = level
 			} catch (error) {
-				console.error('Could not change the member level to', CIRCLES_MEMBER_LEVELS[level])
+				this.logger.error('Could not change the member level', { level: CIRCLES_MEMBER_LEVELS[level], error })
 				showError(t('contacts', 'Could not change the member level to {level}', {
 					level: CIRCLES_MEMBER_LEVELS[level],
 				}))
@@ -324,7 +362,7 @@ export default {
 					memberId: this.source.id,
 				})
 			} catch (error) {
-				console.error('Could not accept membership request', this.source, error)
+				this.logger.error('Could not accept membership request', { member: this.source, error })
 				showError(t('contacts', 'Could not accept membership request'))
 			} finally {
 				this.loading = false

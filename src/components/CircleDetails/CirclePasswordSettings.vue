@@ -2,50 +2,50 @@
   - SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
-
 <template>
 	<ul>
 		<li class="circle-config">
-			<ContentHeading class="circle-config__title">
-				{{ t('contacts', 'Password protection') }}
-			</ContentHeading>
-
 			<ul class="circle-config__list">
-				<CheckboxRadioSwitch :checked="enforcePasswordProtection"
+				<CheckboxRadioSwitch
+					:model-value="enforcePasswordProtection"
 					:loading="loading.includes(ENFORCE_PASSWORD_PROTECTION)"
 					:disabled="loading.length > 0"
 					wrapper-element="li"
-					@update:checked="changePasswordProtection">
+					@update:model-value="changePasswordProtection">
 					{{ t('contacts', 'Enforce password protection on files shared to this team') }}
 				</CheckboxRadioSwitch>
 
-				<CheckboxRadioSwitch v-if="enforcePasswordProtection"
-					:checked="useUniquePassword || showUniquePasswordInput"
+				<CheckboxRadioSwitch
+					v-if="enforcePasswordProtection"
+					:model-value="useUniquePassword || showUniquePasswordInput"
 					:loading="loading.includes(USE_UNIQUE_PASSWORD)"
 					:disabled="loading.length > 0"
 					wrapper-element="li"
-					@update:checked="changeUseUniquePassword">
+					@update:model-value="changeUseUniquePassword">
 					{{ t('contacts', 'Use a unique password for all shares to this team') }}
 				</CheckboxRadioSwitch>
 
 				<li class="unique-password">
 					<template v-if="showUniquePasswordInput">
-						<input v-model="uniquePassword"
+						<input
+							v-model="uniquePassword"
 							:disabled="loading.length > 0"
-							:placeholder="t('contacts', 'Unique password …')"
+							:placeholder="t('contacts', 'Unique password …')"
 							type="text"
 							@keyup.enter="saveUniquePassword">
-						<Button type="tertiary-no-background"
+						<NcButton
+							variant="tertiary-no-background"
 							:disabled="loading.length > 0 || uniquePassword.length === 0"
 							@click="saveUniquePassword">
 							{{ t('contacts', 'Save') }}
-						</Button>
+						</NcButton>
 					</template>
-					<Button v-else-if="useUniquePassword"
+					<NcButton
+						v-else-if="useUniquePassword"
 						class="change-unique-password"
 						@click="onClickChangePassword">
 						{{ t('contacts', 'Change unique password') }}
-					</Button>
+					</NcButton>
 
 					<div v-if="uniquePasswordError" class="unique-password-error">
 						{{ t('contacts', 'Failed to save password. Please try again later.') }}
@@ -57,10 +57,9 @@
 </template>
 
 <script>
-import ContentHeading from './ContentHeading.vue'
 import {
 	NcCheckboxRadioSwitch as CheckboxRadioSwitch,
-	NcButton as Button,
+	NcButton,
 } from '@nextcloud/vue'
 
 // Circle setting keys
@@ -71,16 +70,17 @@ const UNIQUE_PASSWORD = 'password_single'
 export default {
 	name: 'CirclePasswordSettings',
 	components: {
-		ContentHeading,
 		CheckboxRadioSwitch,
-		Button,
+		NcButton,
 	},
+
 	props: {
 		circle: {
 			type: Object,
 			required: true,
 		},
 	},
+
 	data() {
 		return {
 			ENFORCE_PASSWORD_PROTECTION,
@@ -94,6 +94,7 @@ export default {
 			showUniquePasswordInput: false,
 		}
 	},
+
 	computed: {
 		/**
 		 * @return {string}
@@ -118,6 +119,7 @@ export default {
 			return value === '1' || value === 'true'
 		},
 	},
+
 	methods: {
 		/**
 		 * Change handler for enforcePasswordProtection checkbox.
@@ -145,7 +147,7 @@ export default {
 					},
 				})
 			} finally {
-				this.loading = this.loading.filter(item => item !== ENFORCE_PASSWORD_PROTECTION)
+				this.loading = this.loading.filter((item) => item !== ENFORCE_PASSWORD_PROTECTION)
 			}
 		},
 
@@ -185,7 +187,7 @@ export default {
 					this.showUniquePasswordInput = false
 				}
 			} finally {
-				this.loading = this.loading.filter(item => item !== USE_UNIQUE_PASSWORD)
+				this.loading = this.loading.filter((item) => item !== USE_UNIQUE_PASSWORD)
 			}
 		},
 
@@ -212,18 +214,18 @@ export default {
 					},
 				})
 
-				// Show change button after saving the password
+				// Show change NcButton after saving the password
 				this.showUniquePasswordInput = false
 				this.uniquePassword = ''
 			} catch {
 				this.uniquePasswordError = true
 			} finally {
-				this.loading = this.loading.filter(item => item !== UNIQUE_PASSWORD)
+				this.loading = this.loading.filter((item) => item !== UNIQUE_PASSWORD)
 			}
 		},
 
 		/**
-		 * Click handler for the button to show the uniquePassword input.
+		 * Click handler for the NcButton to show the uniquePassword input.
 		 */
 		onClickChangePassword() {
 			this.showUniquePasswordInput = true
@@ -233,6 +235,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+ul {
+	margin-top: -12px; // Merge with privacy settings list
+}
+
 .unique-password {
 	display: flex;
 	align-items: center;

@@ -4,22 +4,20 @@
  */
 
 import { showError } from '@nextcloud/dialogs'
-import Vue from 'vue'
-
+import Circle from '../models/circle.ts'
+import Member from '../models/member.ts'
 import {
 	acceptMember,
+	addMembers,
 	createCircle,
 	deleteCircle,
 	deleteMember,
-	getCircleMembers,
+	editCircleSetting,
 	getCircle,
+	getCircleMembers,
 	getCircles,
 	leaveCircle,
-	addMembers,
-	editCircleSetting,
 } from '../services/circles.ts'
-import Member from '../models/member.ts'
-import Circle from '../models/circle.ts'
 import logger from '../services/logger.js'
 
 const state = {
@@ -39,7 +37,7 @@ const mutations = {
 		if (circle.constructor.name !== Circle.name) {
 			throw new Error('circle must be a Circle type')
 		}
-		Vue.set(state.circles, circle.id, circle)
+		state.circles[circle.id] = circle
 	},
 
 	/**
@@ -52,7 +50,7 @@ const mutations = {
 		if (!(circle.id in state.circles)) {
 			logger.warn('Skipping deletion of unknown circle', { circle })
 		}
-		Vue.delete(state.circles, circle.id)
+		delete state.circles[circle.id]
 	},
 
 	/**
@@ -63,7 +61,7 @@ const mutations = {
 	 * @param {Members[]} members array of members to append
 	 */
 	appendMembersToCircle(state, members) {
-		members.forEach(member => member.circle.addMember(member))
+		members.forEach((member) => member.circle.addMember(member))
 	},
 
 	/**
@@ -91,13 +89,13 @@ const mutations = {
 	},
 
 	setCircleSettings(state, { circleId, settings }) {
-		Vue.set(state.circles[circleId]._data, 'settings', settings)
+		state.circles[circleId]._data.settings = settings
 	},
 }
 
 const getters = {
-	getCircles: state => Object.values(state.circles),
-	getCircle: state => (id) => state.circles[id],
+	getCircles: (state) => Object.values(state.circles),
+	getCircle: (state) => (id) => state.circles[id],
 }
 
 const actions = {
@@ -112,7 +110,7 @@ const actions = {
 		logger.debug(`Retrieved ${circles.length} circle(s)`, { circles })
 
 		let failure = false
-		circles.forEach(circle => {
+		circles.forEach((circle) => {
 			try {
 				const newCircle = new Circle(circle)
 				context.commit('addCircle', newCircle)
@@ -161,7 +159,7 @@ const actions = {
 		const members = await getCircleMembers(circleId)
 
 		logger.debug(`${circleId} have ${members.length} member(s)`, { members })
-		context.commit('appendMembersToCircle', members.map(member => new Member(member, circle)))
+		context.commit('appendMembersToCircle', members.map((member) => new Member(member, circle)))
 	},
 
 	/**
@@ -217,7 +215,7 @@ const actions = {
 	async addMembersToCircle(context, { circleId, selection }) {
 		const circle = context.getters.getCircle(circleId)
 		const results = await addMembers(circleId, selection)
-		const members = results.map(member => new Member(member, circle))
+		const members = results.map((member) => new Member(member, circle))
 
 		logger.debug('Added members to circle', { circle, members })
 		context.commit('appendMembersToCircle', members)

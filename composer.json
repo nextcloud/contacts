@@ -3,9 +3,12 @@
 	"config": {
 		"optimize-autoloader": true,
 		"platform": {
-			"php": "7.4"
+			"php": "8.1"
 		},
-		"autoloader-suffix": "Contacts"
+		"autoloader-suffix": "Contacts",
+		"allow-plugins": {
+			"bamarni/composer-bin-plugin": true
+		}
 	},
 	"autoload": {
 		"psr-4": {
@@ -14,17 +17,34 @@
 	},
 	"scripts": {
 		"cs:fix": "php-cs-fixer fix",
+		"cs:fix:force": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix",
 		"cs:check": "php-cs-fixer fix --dry-run --diff",
+		"cs:check:force": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --dry-run --diff",
 		"lint": "find . -name \\*.php -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
 		"test:unit": "phpunit -c phpunit.xml --fail-on-warning",
-		"test:integration": "phpunit -c phpunit.integration.xml --fail-on-warning"
+		"test:unit:dev": "phpunit -c phpunit.xml --fail-on-warning --stop-on-error --stop-on-failure",
+		"test:integration": "phpunit -c phpunit.integration.xml --fail-on-warning",
+		"psalm": "psalm",
+		"post-install-cmd": [
+			"@composer bin all install --ansi"
+		],
+		"post-update-cmd": [
+			"@composer bin all update --ansi"
+		]
 	},
 	"require": {
-		"php": ">=7.4 <=8.3"
+		"php": ">=8.1 <=8.4",
+		"bamarni/composer-bin-plugin": "^1.8"
 	},
 	"require-dev": {
-        "christophwurst/nextcloud_testing": "^1.0.0",
+        "christophwurst/nextcloud_testing": "^1.0.1",
 		"phpunit/phpunit": "^9",
-		"nextcloud/coding-standard": "^1.3.2"
+		"nextcloud/coding-standard": "^1.4"
+	},
+	"extra": {
+		"bamarni-bin": {
+			"bin-links": true,
+			"forward-command": false
+		}
 	}
 }
