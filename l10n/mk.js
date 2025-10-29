@@ -62,6 +62,7 @@ OC.L10N.register(
     "Unshare {addressbook}?" : "Отстрани споделување {addressbook}?",
     "Deletion of address book was not successful." : "Неуспешно бришење на адресарот.",
     "Renaming of address book was not successful." : "Неуспешно преименување на адресарот",
+    "{addressbookname} (Hidden)" : "{addressbookname} (Невидлив)",
     "Download" : "Преземи",
     "Show" : "Прикажи",
     "Unshare from me" : "Не споделувај со мене",
