@@ -90,7 +90,7 @@ class WayfProvider {
 		}
 		return $federations;
 	}
-
+	
 	/**
 	 * Returns all mesh providers from cache if possible.
 	 *
