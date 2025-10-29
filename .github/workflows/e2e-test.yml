@@ -7,6 +7,9 @@ on: pull_request
 permissions:
   contents: read
 
+env:
+  NODE_VERSION: "20" # TODO: Extract automatically using another action
+
 jobs:
   matrix:
     runs-on: ubuntu-latest-low
@@ -15,7 +18,7 @@ jobs:
       branches-min: ${{ steps.versions.outputs.branches-min }}
     steps:
       - name: Checkout app
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
       - name: Get version matrix
         id: versions
         uses: icewind1991/nextcloud-version-matrix@58becf3b4bb6dc6cef677b15e2fd8e7d48c0908f # v1.3.1
@@ -30,6 +33,7 @@ jobs:
         with:
           nextcloud-version: ${{ needs.matrix.outputs.branches-min }}
           php-version: ${{ needs.matrix.outputs.php-min }}
+          node-version: ${{ env.NODE_VERSION }}
           install: true
       - name: Configure Nextcloud for testing
         run: |
@@ -38,27 +42,18 @@ jobs:
           php -f nextcloud/occ config:system:set overwritehost --value=localhost
           php -f nextcloud/occ config:system:set overwrite.cli.url --value=https://localhost
       - name: Check out the app
-        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5
         with:
           path: nextcloud/apps/contacts
-      - name: Read package.json node and npm engines version
-        uses: skjnldsv/read-package-engines-version-actions@06d6baf7d8f41934ab630e97d9e6c0bc9c9ac5e4 # v3
-        id: package-engines-versions
-        with:
-          fallbackNode: '^24'
-          fallbackNpm: '^11'
-          path: nextcloud/apps/contacts
-      - name: Set up node ${{ steps.package-engines-versions.outputs.nodeVersion }}
-        uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f # v6
-        with:
-          node-version: ${{ steps.package-engines-versions.outputs.nodeVersion }}
-      - name: Set up npm ${{ steps.package-engines-versions.outputs.npmVersion }}
-        run: npm i -g 'npm@${{ steps.package-engines-versions.outputs.npmVersion }}'
       - name: Install php dependencies
         working-directory: nextcloud/apps/contacts
         run: composer install
       - name: Install the app
         run: php -f nextcloud/occ app:enable contacts
+      - name: Set up node ${{ env.NODE_VERSION }}
+        uses: actions/setup-node@2028fbc5c25fe9cf00d9f06a71cc4710d4507903 # v6
+        with:
+          node-version: ${{ env.NODE_VERSION }}
       - name: Install npm dependencies
         working-directory: nextcloud/apps/contacts
         run: npm ci
@@ -81,10 +76,10 @@ jobs:
       - name: Run Playwright tests
         working-directory: nextcloud/apps/contacts
         run: DEBUG=pw:api npx playwright test
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         if: always()
         with:
-          name: playwright-report-${{ github.event.number }}-nc${{ needs.matrix.outputs.branches-min }}-php${{ needs.matrix.outputs.php-min }}-node${{ steps.package-engines-versions.outputs.nodeVersion }}
+          name: playwright-report-${{ github.event.number }}-nc${{ needs.matrix.outputs.branches-min }}-php${{ needs.matrix.outputs.php-min }}-node${{ env.NODE_VERSION }}
           path: nextcloud/apps/contacts/playwright-report/
           retention-days: 14
       - name: Print server logs
