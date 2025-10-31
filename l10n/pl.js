@@ -18,6 +18,7 @@ OC.L10N.register(
     "There are no contacts in this group" : "W tej grupie nie ma żadnych kontaktów",
     "Create contacts" : "Utwórz kontakty",
     "Add contacts" : "Dodaj kontakty",
+    "Loading …" : "Ładowanie …",
     "Manage team" : "Zarządzaj zespołem",
     "Leave team" : "Opuść zespół",
     "Delete team" : "Usuń zespół",
