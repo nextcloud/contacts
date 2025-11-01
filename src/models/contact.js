@@ -27,6 +27,8 @@ export const MinimalContactProperties = [
 	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED',
 ].concat(ContactKindProperties)
 
+const SearchIgnoreProperties = ['version', 'prodid', 'uid', 'rev', 'fn']
+
 export default class Contact {
 
 	/**
