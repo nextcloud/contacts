@@ -575,6 +575,19 @@ export default class Contact {
 	}
 
 	/**
+	 * Returns phone numbers normalized (i.e. everything but digits, '+' and '#' stripped) joined as string
+	 *
+	 * @return {string}
+	 */
+	get normalizedTels() {
+		if (this.vCard.hasProperty('tel')) {
+			return this.vCard.getAllProperties('tel')
+				.map((x) => x.jCal[3].replace(/[^0-9+#]/g, ''))
+		}
+		return ''
+	}
+
+	/**
 	 * Return an array of formatted properties for the search
 	 *
 	 * @readonly
