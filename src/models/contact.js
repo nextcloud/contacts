@@ -28,8 +28,6 @@ export const MinimalContactProperties = [
 	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED',
 ].concat(ContactKindProperties)
 
-const SearchIgnoreProperties = ['version', 'prodid', 'uid', 'rev', 'fn']
-
 export default class Contact {
 
 	/**
@@ -584,19 +582,6 @@ export default class Contact {
 	}
 
 	/**
-	 * Returns phone numbers normalized (i.e. everything but digits, '+' and '#' stripped) joined as string
-	 *
-	 * @return {string}
-	 */
-	get normalizedTels() {
-		if (this.vCard.hasProperty('tel')) {
-			return this.vCard.getAllProperties('tel')
-				.map((x) => x.jCal[3].replace(/[^0-9+#]/g, ''))
-		}
-		return ''
-	}
-
-	/**
 	 * Return an array of formatted properties for the search
 	 *
 	 * @readonly
@@ -604,7 +589,21 @@ export default class Contact {
 	 * @return {string[]}
 	 */
 	get searchData() {
-		return this.jCal[1].map(x => x[0] + ':' + x[3])
+		const MinimalContactPropertiesLower = MinimalContactProperties.map((prop) => prop.toLowerCase())
+		const filtered = this.jCal[1]
+			.filter((x) => MinimalContactPropertiesLower.includes(x[0].toLowerCase()))
+			.map((x) => {
+				if (x[0].toLowerCase() === 'tel') {
+					return this.normalizedTels(x[3])
+				}
+				return x[3].toString()
+			})
+		return filtered
+	}
+
+	// support numbers in weird formats for searching e.g. +49 (0) 123 456-789
+	normalizedTels(number) {
+		return number.replace(/[^0-9+#]/g, '')
 	}
 
 	/**
