@@ -311,7 +311,14 @@ export default {
 		 */
 		matchSearch(contact) {
 			if (this.query.trim() !== '') {
-				return contact.searchData.toString().toLowerCase().search(this.query.trim().toLowerCase()) !== -1
+				try {
+					return contact.searchData.toString().toLowerCase().search(this.query.trim().toLowerCase()) !== -1
+				} catch (e) {
+					if (e instanceof SyntaxError) {
+						// this.query likely is an invalid regex (i.e. just `+`)
+						return contact.searchData.toString().toLowerCase().includes(this.query.trim().toLowerCase())
+					}
+				}
 			}
 			return true
 		},
