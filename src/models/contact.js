@@ -28,6 +28,8 @@ export const MinimalContactProperties = [
 	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED',
 ].concat(ContactKindProperties)
 
+const SearchIgnoreProperties = ['version', 'prodid', 'uid', 'rev', 'fn']
+
 export default class Contact {
 	/**
 	 * Creates an instance of Contact
@@ -585,7 +587,9 @@ export default class Contact {
 	 * @return {string[]}
 	 */
 	get searchData() {
-		return this.jCal[1].map((x) => x[0] + ':' + x[3])
+		return this.jCal[1]
+			.filter((x) => !SearchIgnoreProperties.includes(x[0]))
+			.map((x) => x[3])
 	}
 
 	/**
