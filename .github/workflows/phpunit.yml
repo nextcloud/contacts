@@ -175,7 +175,7 @@ jobs:
 
     services:
       postgres:
-        image: postgres:17
+        image: postgres:18
         ports:
           - 4444:5432/tcp
         env:
