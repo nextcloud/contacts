@@ -16,7 +16,7 @@
 * 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 	</description>
 
-	<version>8.1.0-dev.0</version>
+	<version>8.1.0-rc.1</version>
 	<licence>agpl</licence>
 
 	<author mail="hamza221@users.noreply.github.com">Hamza Mahjoubi</author>
@@ -44,7 +44,7 @@
 
 	<dependencies>
 		<php min-version="8.1" max-version="8.4" />
-		<nextcloud min-version="32" max-version="33" />
+		<nextcloud min-version="32" max-version="32" />
 	</dependencies>
 
 	<background-jobs>
