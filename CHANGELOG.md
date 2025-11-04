@@ -1,3 +1,22 @@
+## [8.0.6](https://github.com/nextcloud/contacts/compare/v8.0.5...v8.0.6) (2025-11-04)
+
+
+### Bug Fixes
+
+* **contact:** Add normalized phone numbers to searchData ([dc538e4](https://github.com/nextcloud/contacts/commit/dc538e4b4bec95ab84dbc85562c8fc89147a45bb))
+* **contact:** don't add metadata properties and property names to searchData ([b900c58](https://github.com/nextcloud/contacts/commit/b900c58276b6ee1d12be909a5c16027aa0ffbec6)), closes [#1176](https://github.com/nextcloud/contacts/issues/1176)
+* **contact:** include phone numbers when getting contacts for address book ([8e5f4a7](https://github.com/nextcloud/contacts/commit/8e5f4a7c4e2654150eac27750b18d63e5b1a2120)), closes [#3112](https://github.com/nextcloud/contacts/issues/3112)
+* **ContactsList:** don't choke when filtering for `+` ([cef0431](https://github.com/nextcloud/contacts/commit/cef0431c980954265ecde1fbac1d4979888fed09))
+* **deps:** Fix npm audit ([394cc27](https://github.com/nextcloud/contacts/commit/394cc2750a587ffb30d6a6629b2eb3e8af49c817))
+* **l10n:** Update translations from Transifex ([0f85059](https://github.com/nextcloud/contacts/commit/0f85059f4133b861014b5dc984e1ebe4594c47bd))
+* **l10n:** Update translations from Transifex ([684dece](https://github.com/nextcloud/contacts/commit/684dece65406aab4f7add242e215f567fdb63477))
+* **l10n:** Update translations from Transifex ([7f99477](https://github.com/nextcloud/contacts/commit/7f99477b0c63a14eaf797f786c9aba4c1d43298d))
+* **l10n:** Update translations from Transifex ([3caefbf](https://github.com/nextcloud/contacts/commit/3caefbfa2aa810aa2b97d6f9e12fccb33e75b9bf))
+* **l10n:** Update translations from Transifex ([fd40017](https://github.com/nextcloud/contacts/commit/fd4001765f9669456312ea07ce3a2f381d638e85))
+* search should have a way to clear contents ([3cabb26](https://github.com/nextcloud/contacts/commit/3cabb266060df4eec5bcb3a610191a6c289ae864))
+
+
+
 ## [8.0.5](https://github.com/nextcloud/contacts/compare/v8.0.4...v8.0.5) (2025-10-28)
 
 
