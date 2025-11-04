@@ -4,8 +4,6 @@ OC.L10N.register(
     "Import contacts" : "導入聯絡人",
     "Details" : "詳細資料",
     "All contacts" : "所有聯絡人",
-    "_Imported 1 contact_::_Imported %n contacts_" : ["已導入 %n 個聯絡人"],
-    "_Imported 1 contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["已導入 %n 個聯絡人（略過 %d 個）"],
     "Contacts" : "通訊錄",
     "A contacts app for Nextcloud" : "Nextcloud 的通訊錄應用程式",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Nextcloud 通訊錄應用程式是 Nextcloud 的 CardDAV 伺服器的用戶界面。可輕鬆使用您的 Nextcloud 同步各個裝置上的聯絡人，並在線上編輯。\n\n* 🚀 **與其他 Nextcloud 應用程式整合！** 目前有電子郵件與日曆，還會有更多。\n* 🎉 **不會忘記生日！** 您可以將生日與其他重複的活動與您的 Nextcloud 日曆同步。\n* 👥 **分享通訊錄！** 您想與您的朋友或同事分享您的聯絡人嗎？沒問題！\n* 🙈 **我們沒有無謂地重複開發！** 以超棒且開放的 SabreDAV 函式庫為基礎。",

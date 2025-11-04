@@ -4,8 +4,6 @@ OC.L10N.register(
     "Import contacts" : "Impordi kontaktid",
     "Details" : "Üksikasjad",
     "All contacts" : "Kõik kontaktid",
-    "_Imported 1 contact_::_Imported %n contacts_" : ["Importisin 1 kontakti","Importisin %n kontakti"],
-    "_Imported 1 contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Importisin 1 kontakti (%d jätsin vahele)","Importisin %n kontakti (%d jätsin vahele)"],
     "Contacts" : "Kontaktid",
     "A contacts app for Nextcloud" : "Kontaktide rakendus Nextcloudi jaoks",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Nextcloudi kontaktirakendus on Nextcloudi CardDAV-i serveri kasutajaliides. Sünkroniseeri kontakte mugavalt oma Nextcloudi serveriga ja halda neid veebiliideses.\n\n* 🚀 **Lõiming muude Nextcloudi rakendustega!** Hetkel E-post ja Kalender, aga täiendavaid rakendusi lisandub õige pea.\n* 🎉 **Ära enam unusta ühtegi sünnipäeva!** Sa saad sünkroniseerida sünnipäevi ja muid korduvaid sündmusi oma Nextcloudi Kalendriga.\n* 👥 **Aadressiraamatute jagamine!** Sa tahad omi kontakte jagada sõprade ja kolleegidega? Pole probleemi!\n* 🙈 **Me ei hakanud ratast leiutama!** Aluseks on suurepärane avatud lähtekoodil põhinev SabreDAV-i teek.",

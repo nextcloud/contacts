@@ -4,8 +4,6 @@ OC.L10N.register(
     "Import contacts" : "Importera kontakter",
     "Details" : "Detaljer",
     "All contacts" : "Alla kontakter",
-    "_Imported 1 contact_::_Imported %n contacts_" : ["Importerade 1 kontakt","Importerade %n kontakter"],
-    "_Imported 1 contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Importerade 1 kontakt (skippade %d)","Importerade %n kontakter (skippade %d)"],
     "Contacts" : "Kontakter",
     "A contacts app for Nextcloud" : "En kontakt-app för Nextcloud",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Nextclouds kontakt-app är ett gränssnitt för Nextclouds CardDAV-server. Synkronisera enkelt kontakter mellan olika enheter och ditt Nextcloud och redigera dem online.\n\n* 🚀 **Integration med andra Nextcloud-appar!** För närvarande E-post och Kalendrar – fler är på gång.\n* 🎉 **Glöm inte en födelsedag!** Du kan synkronisera födelsedagar och andra återkommande händelser med din Nextcloud-kalender.\n* 👥 **Dela adressböcker!** Vill du dela kontakter med dina vänner eller kollegor? Inga problem!\n* 🙈 **Vi återuppfinner inte hjulet!** Kontakter är baserat på det utmärkta och öppna SabreDAV-biblioteket.",
