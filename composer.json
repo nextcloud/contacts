@@ -24,13 +24,7 @@
 		"test:unit": "phpunit -c phpunit.xml --fail-on-warning",
 		"test:unit:dev": "phpunit -c phpunit.xml --fail-on-warning --stop-on-error --stop-on-failure",
 		"test:integration": "phpunit -c phpunit.integration.xml --fail-on-warning",
-		"psalm": "psalm",
-		"post-install-cmd": [
-			"@composer bin all install --ansi"
-		],
-		"post-update-cmd": [
-			"@composer bin all update --ansi"
-		]
+		"psalm": "psalm"
 	},
 	"require": {
 		"php": ">=8.1 <=8.4"
@@ -44,7 +38,7 @@
 	"extra": {
 		"bamarni-bin": {
 			"bin-links": true,
-			"forward-command": false
+			"forward-command": true
 		}
 	}
 }
