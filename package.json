@@ -74,7 +74,7 @@
     "string-natural-compare": "^3.0.1",
     "uuid": "^13.0.0",
     "validator": "^13.15.20",
-    "virtua": "^0.46.3",
+    "virtua": "^0.46.6",
     "vue": "^3.5.18",
     "vue-cropperjs": "^5.0.0",
     "vue-material-design-icons": "^5.3.1",
