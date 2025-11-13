@@ -84,6 +84,22 @@
 				</template>
 			</AppNavigationItem>
 
+			<!-- All OCM invites -->
+			<AppNavigationItem v-if="isOcmInvitesEnabled"
+				id="ocm-invites"
+				:name="GROUP_ALL_OCM_INVITES"
+				:to="{
+					name: ROUTE_NAME_ALL_OCM_INVITES,
+				}">
+				<template #icon>
+					<IconAccountSwitchOutline :size="20" />
+				</template>
+				<template #counter>
+					<NcCounterBubble v-if="ocmInvites.length"
+						:count="ocmInvites.length" />
+				</template>
+			</AppNavigationItem>
+
 			<AppNavigationCaption
 				id="newgroup"
 				v-model:menu-open="isNewGroupMenuOpen"
@@ -186,6 +202,8 @@
 <script>
 import { showError } from '@nextcloud/dialogs'
 import { emit } from '@nextcloud/event-bus'
+import { CHART_ALL_CONTACTS, CIRCLE_DESC, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, GROUP_ALL_OCM_INVITES, ROUTE_NAME_ALL_OCM_INVITES } from '../../models/constants.ts'
+
 import {
 	NcActionInput as ActionInput,
 	NcActionText as ActionText,
@@ -209,10 +227,11 @@ import CircleNavigationItem from './CircleNavigationItem.vue'
 import ContactsSettings from './ContactsSettings.vue'
 import GroupNavigationItem from './GroupNavigationItem.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
-import { CHART_ALL_CONTACTS, CIRCLE_DESC, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED } from '../../models/constants.ts'
 import isCirclesEnabled from '../../services/isCirclesEnabled.js'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled.js'
 import useUserGroupStore from '../../store/userGroup.ts'
+import IconAccountSwitchOutline from 'vue-material-design-icons/AccountSwitchOutline.vue'
+import isOcmInvitesEnabled from '../../services/isOcmInvitesEnabled.js'
 
 export default {
 	name: 'RootNavigation',
@@ -229,6 +248,7 @@ export default {
 		Cog,
 		ContactsSettings,
 		GroupNavigationItem,
+		IconAccountSwitchOutline,
 		IconContact,
 		IconUser,
 		IconAdd,
@@ -261,6 +281,8 @@ export default {
 			CHART_ALL_CONTACTS,
 			GROUP_NO_GROUP_CONTACTS,
 			GROUP_RECENTLY_CONTACTED,
+			GROUP_ALL_OCM_INVITES,
+			ROUTE_NAME_ALL_OCM_INVITES,
 
 			// create group
 			isNewGroupMenuOpen: false,
@@ -278,6 +300,7 @@ export default {
 			collapsedCircles: true,
 
 			showSettings: false,
+			isOcmInvitesEnabled,
 		}
 	},
 
@@ -307,6 +330,9 @@ export default {
 
 		userGroups() {
 			return this.userGroupStore.userGroupList
+		},
+		ocmInvites() {
+			return this.$store.getters.getSortedOcmInvites
 		},
 
 		// list all the contacts that doesn't have a group
