@@ -9,21 +9,27 @@
 		v-model:open="showSettings"
 		:name="t('contacts', 'Contacts settings')"
 		:show-navigation="true">
-		<AppSettingsSection id="general-settings" :name="t('contacts', 'General settings')">
+		<AppSettingsSection id="general-settings" :name="t('contacts', 'General')">
+			<SettingsSortContacts class="contacts-settings-modal__form__row" />
 			<CheckboxRadioSwitch
 				:model-value="enableSocialSync"
 				:loading="enableSocialSyncLoading"
 				:disabled="enableSocialSyncLoading"
+				type="switch"
 				class="social-sync__checkbox contacts-settings-modal__form__row"
+				:description="t('contacts', 'Refreshed once per week')"
 				@update:model-value="toggleSocialSync">
 				<div class="social-sync__checkbox__label">
 					<span>
 						{{ t('contacts', 'Update avatars from social media') }}
-						<em>{{ t('contacts', '(refreshed once per week)') }}</em>
 					</span>
 				</div>
 			</CheckboxRadioSwitch>
-			<SettingsSortContacts class="contacts-settings-modal__form__row" />
+			<SettingsImportContacts
+				:addressbooks="addressbooks"
+				class="contacts-settings-modal__form__row"
+				@clicked="onClickImport"
+				@file-loaded="onLoad" />
 		</AppSettingsSection>
 		<AppSettingsSection id="address-books" :name="t('contacts', 'Address books')">
 			<div class="contacts-settings-modal__form">
@@ -33,11 +39,6 @@
 					</ul>
 				</div>
 				<SettingsNewAddressbook class="contacts-settings-modal__form__row settings-new-addressbook" :addressbooks="addressbooks" />
-				<SettingsImportContacts
-					:addressbooks="addressbooks"
-					class="contacts-settings-modal__form__row"
-					@clicked="onClickImport"
-					@file-loaded="onLoad" />
 			</div>
 		</AppSettingsSection>
 	</AppSettingsDialog>
