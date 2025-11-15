@@ -15,11 +15,11 @@
 					<NcCheckboxRadioSwitch
 						v-for="(label, config) in configs"
 						:key="'circle-config' + config"
-						:checked="isChecked(config)"
+						:model-value="isChecked(config)"
 						:loading="loading === config"
 						:disabled="loading !== false"
 						wrapper-element="li"
-						@update:checked="onChange(config, $event)">
+						@update:model-value="onChange(config, $event)">
 						{{ label }}
 					</NcCheckboxRadioSwitch>
 				</ul>
@@ -56,9 +56,9 @@
 <script lang="ts">
 import { showError } from '@nextcloud/dialogs'
 import { t } from '@nextcloud/l10n'
+import { NcNcCheckboxRadioSwitch } from '@nextcloud/vue'
 import { defineComponent } from 'vue'
 import NcButton from '@nextcloud/vue/components/NcButton'
-import NcCheckboxRadioSwitch from '@nextcloud/vue/components/NcCheckboxRadioSwitch'
 import IconLogout from 'vue-material-design-icons/Logout.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import CirclePasswordSettings from './CirclePasswordSettings.vue'
