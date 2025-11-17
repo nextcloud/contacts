@@ -188,7 +188,7 @@ OC.L10N.register(
     "Promote as sole owner" : "Promover como propietario único",
     "Promote to {level}" : "Promover a {level}",
     "Demote to {level}" : "Relegar a {level}",
-    "Are you sure you want to leave this team? This action cannot be undone." : "Confirma que quere abandonar este equipo? Non é posíbel desfacer esta operación.",
+    "Are you sure you want to leave this team? This action cannot be undone." : "Confirma que quere abandonar este equipo?Esta acción non é posíbel desfacela.",
     "Leave team failed." : "Produciuse un fallo ao abandonar o equipo",
     "Could not delete the member {displayName}" : "Non foi posíbel eliminar o membro {displayName}",
     "Could not change the member level to {level}" : "Non foi posíbel cambiar o nivel do membro a {level}",
