@@ -4,30 +4,33 @@
 -->
 
 <template>
-	<div class="sort-contacts">
-		<IconList class="settings-line__icon" />
-		<NcSelect
-			id="sort-by"
-			v-model="selected"
-			:searchable="false"
-			:allow-empty="false"
-			:options="options"
-			:input-label="t('contacts', 'Sort by')"
-			label="label"
-			@update:model-value="sortContacts" />
-	</div>
+	<NcFormBox>
+		<div class="sort-contacts">
+			<label for="sort-by" class="sort-contacts__label">
+				{{ t('contacts', 'Sort by') }}
+			</label>
+			<NcSelect
+				id="sort-by"
+				v-model="selected"
+				:searchable="false"
+				:allow-empty="false"
+				:options="options"
+				label="label"
+				@update:model-value="sortContacts" />
+		</div>
+	</NcFormBox>
 </template>
 
 <script>
 import { NcSelect } from '@nextcloud/vue'
-import IconList from 'vue-material-design-icons/FormatListBulletedSquare.vue'
+import NcFormBox from '@nextcloud/vue/components/NcFormBox'
 
 export default {
 	name: 'SettingsSortContacts',
 
 	components: {
+		NcFormBox,
 		NcSelect,
-		IconList,
 	},
 
 	data() {
@@ -37,7 +40,6 @@ export default {
 	},
 
 	computed: {
-		/* Order Keys */
 		options() {
 			return [
 				{
@@ -69,7 +71,7 @@ export default {
 	},
 
 	beforeMount() {
-		this.selected = this.options.find((option) => option.value === this.$store.getters.getOrderKey)?.label ?? null
+		this.selected = this.options.find((option) => option.value === this.$store.getters.getOrderKey) ?? null
 	},
 
 	methods: {
@@ -86,5 +88,7 @@ export default {
 <style lang="scss" scoped>
 .sort-contacts {
 	display: flex;
+	flex-direction: column;
+	gap: calc(var(--default-grid-baseline) * 2);
 }
 </style>
