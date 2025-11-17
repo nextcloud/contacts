@@ -21,7 +21,32 @@
 			<template #trailing-button-icon>
 				<IconAdd :size="20" />
 			</template>
-		</NcInputField>
+			{{ t('contacts', 'New address book') }}
+		</NcButton>
+		<IconLoading v-if="loading" :size="20" />
+
+		<NcModal v-if="modalOpen" size="small" @close="onModalCancel">
+			<div class="new-addressbook-modal">
+				<NcInputField
+					v-model:model-value="displayName"
+					class="new-addressbook"
+					:disabled="loading"
+					:label="t('contacts', 'Add new address book')"
+					type="text"
+					autocomplete="off"
+					autocorrect="off"
+					spellcheck="false" />
+
+				<div class="new-addressbook-modal__buttons">
+					<NcButton variant="tertiary" :disabled="loading" @click="onModalCancel">
+						{{ t('contacts', 'Cancel') }}
+					</NcButton>
+					<NcButton variant="primary" :disabled="loading || inputErrorState" @click="onModalSubmit">
+						{{ t('contacts', 'Add') }}
+					</NcButton>
+				</div>
+			</div>
+		</NcModal>
 	</div>
 </template>
 
@@ -37,11 +62,14 @@ export default {
 		NcInputField,
 		IconAdd,
 		IconLoading,
+		NcButton,
+		NcModal,
 	},
 	data() {
 		return {
 			loading: false,
 			displayName: '',
+			modalOpen: false,
 		}
 	},
 	computed: {
@@ -55,6 +83,21 @@ export default {
 		},
 	},
 	methods: {
+		openModal() {
+			this.modalOpen = true
+		},
+
+		onModalCancel() {
+			this.modalOpen = false
+			this.displayName = ''
+			this.loading = false
+		},
+
+		async onModalSubmit() {
+			await this.addAddressbook()
+			this.modalOpen = false
+		},
+
 		/**
 		 * Add a new address book
 		 */
@@ -78,3 +121,32 @@ export default {
 	},
 }
 </script>
+
+<style lang="scss" scoped>
+
+.new-addressbook-entry {
+	display: flex;
+	width: 100%;
+	justify-content: stretch;
+	margin-top: calc(var(--default-grid-baseline) * 2);
+
+	> * {
+		flex-grow: 1;
+	}
+}
+
+.new-addressbook-modal {
+	padding: calc(var(--default-grid-baseline) * 4);
+	padding-top: calc(var(--default-grid-baseline) * 8);
+	> * {
+		width: 100%;
+	}
+
+	&__buttons {
+		display: flex;
+		justify-content: end;
+		gap: calc(var(--default-grid-baseline) * 2);
+		margin-top: calc(var(--default-grid-baseline) * 2);
+	}
+}
+</style>

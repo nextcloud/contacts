@@ -23,6 +23,7 @@
 			</CheckboxRadioSwitch>
 			<SettingsSortContacts class="contacts-settings-modal__form__row" />
 		</AppSettingsSection>
+
 		<AppSettingsSection id="address-books" :name="t('contacts', 'Address books')">
 			<div class="contacts-settings-modal__form">
 				<div class="contacts-settings-modal__form__row">
@@ -57,11 +58,12 @@ export default {
 	components: {
 		AppSettingsDialog,
 		AppSettingsSection,
+		NcFormBox,
+		NcFormBoxSwitch,
 		SettingsAddressbook,
 		SettingsNewAddressbook,
 		SettingsImportContacts,
 		SettingsSortContacts,
-		CheckboxRadioSwitch,
 	},
 	props: {
 		open: {
@@ -71,7 +73,6 @@ export default {
 	},
 	data() {
 		return {
-			CONTACTS_SETTINGS,
 			allowSocialSync: loadState('contacts', 'allowSocialSync') !== 'no',
 			enableSocialSync: loadState('contacts', 'enableSocialSync') !== 'no',
 			enableSocialSyncLoading: false,
@@ -111,6 +112,10 @@ export default {
 				await axios.put(generateUrl('apps/contacts/api/v1/social/config/user/enableSocialSync'), {
 					allow: setting,
 				})
+				showSuccess(t('contacts', 'Setting saved'))
+			} catch {
+				showError(t('contacts', 'Failed to save setting'))
+				this.enableSocialSync = !value
 			} finally {
 				this.enableSocialSyncLoading = false
 			}
@@ -125,36 +130,33 @@ export default {
 }
 </script>
 
-<style scoped>
->>> .app-settings__title {
-	padding: 20px 0;
-	margin-bottom: 0;
-}
+<style lang="scss" scoped>
+.addressbook-list {
+	list-style: none;
+	padding: 0;
+	margin: 0 0 calc(var(--default-grid-baseline) * 2);
 
-.app-settings-section {
-	margin-bottom: 45px;
-	padding: 25px 25px 0 25px;
-}
+	:deep(.settings-addressbook-list) {
+		display: flex;
+		align-items: center;
+		gap: calc(var(--default-grid-baseline) * 2);
+		padding: calc(var(--default-grid-baseline) * 2) 0;
+		border-bottom: 1px solid var(--color-border);
 
-.social-sync__checkbox, .settings-new-addressbook  {
-	margin-bottom: 20px;
-}
+		&:last-child {
+			border-bottom: none;
+		}
 
-.contacts-settings-modal__form__row >>> .material-design-icon {
-	justify-content: flex-start;
-}
+		.settings-line__icon {
+			flex-shrink: 0;
+			width: 44px;
+			height: 44px;
+		}
 
-.settings-new-addressbook >>> .new-addressbook-input {
-	min-height: 44px;
-	height: 44px;
-	width: 100%;
+		.addressbook {
+			flex: 1;
+			padding: 0;
+		}
+	}
 }
-
-.settings-new-addressbook >>> .icon-confirm {
-	min-height: 44px;
-	height: 44px;
-	border-color: var(--color-border-dark) !important;
-	border-inline-start: none;
-}
-
 </style>

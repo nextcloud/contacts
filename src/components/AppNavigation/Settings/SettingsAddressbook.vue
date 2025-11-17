@@ -412,6 +412,26 @@ export default {
 .settings-addressbook-list {
 	display: flex;
 	width: 100%;
+	align-items: center;
+	gap: calc(var(--default-grid-baseline) * 2);
+	padding: calc(var(--default-grid-baseline) * 2) 0;
+	border-bottom: 1px solid var(--color-border);
+
+	&:last-child {
+		border-bottom: none;
+	}
+
+	.settings-line__icon {
+		flex-shrink: 0;
+		width: 44px;
+		height: 44px;
+	}
+
+	.addressbook {
+		flex: 1;
+		padding: 0;
+	}
+
 	.material-design-icon {
 		justify-content: flex-start;
 	}

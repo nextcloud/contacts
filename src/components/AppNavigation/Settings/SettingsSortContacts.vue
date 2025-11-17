@@ -20,18 +20,17 @@
 
 <script>
 import { NcSelect } from '@nextcloud/vue'
-import IconList from 'vue-material-design-icons/FormatListBulletedSquare.vue'
+import NcFormBox from '@nextcloud/vue/components/NcFormBox'
 
 export default {
 	name: 'SettingsSortContacts',
 
 	components: {
+		NcFormBox,
 		NcSelect,
-		IconList,
 	},
 
 	computed: {
-		/* Order Keys */
 		options() {
 			return [
 				{
@@ -84,5 +83,7 @@ export default {
 <style lang="scss" scoped>
 .sort-contacts {
 	display: flex;
+	flex-direction: column;
+	gap: calc(var(--default-grid-baseline) * 2);
 }
 </style>
