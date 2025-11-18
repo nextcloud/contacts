@@ -17,14 +17,14 @@ OC.L10N.register(
     "No users or groups" : "Dim defnyddwyr na grwpiau",
     "can edit" : "yn gallu golygu",
     "Importing is disabled because there are no address books available" : "Mae mewnforio wedi ei analluogi oherwydd nad oes llyfrau cyfeiriadau ar gael",
+    "Cancel" : "Diddymu",
     "Add" : "Ychwanegu",
     "First name" : "Enw cyntaf",
     "Last name" : "Cyfenw",
     "Display name" : "Enw Dangos",
     "Last modified" : "Newidiwyd diwethaf",
-    "Sort by {sorting}" : "Trefnu yn ôl {sorting}",
     "Save" : "Cadw",
-    "Cancel" : "Diddymu",
+    "Close" : "Cau",
     "Pick an avatar" : "Dewiswch afatar",
     "Error while processing the picture." : "Gwall wrth brosesu'r llun.",
     "Upload a new picture" : "Llwythwch lun newydd i fyny",
@@ -49,7 +49,6 @@ OC.L10N.register(
     "Unable to create the contact." : "Methu creu'r cyswllt.",
     "Contact not found" : "Heb ganfod cyswllt",
     "New contact" : "Cysylltiad newydd",
-    "Close" : "Cau",
     "Import" : "Mewnforio",
     "Not grouped" : "Heb ei grwpio",
     "User" : "User",
@@ -112,6 +111,7 @@ OC.L10N.register(
     "Male" : "Gwryw",
     "Unknown" : "Anhysbys",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt"],
-    "Loading …" : "Yn llwytho …"
+    "Loading …" : "Yn llwytho …",
+    "Sort by {sorting}" : "Trefnu yn ôl {sorting}"
 },
 "nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3;");
