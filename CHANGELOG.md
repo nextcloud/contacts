@@ -1,11 +1,19 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-# 8.1.0 (unreleased)
+# 8.1.0 (2026-11-18)
 
 ### Features
 
 * Import contacts from files via ocs
+
+### Bug Fixes
+
+* Update component SettingsSortContacts it to latest NcSelect
+
+### Refactors
+
+* Reorganize settings dialog with new form components
 
 # [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0-beta.Z) (2025-01-09)
 
