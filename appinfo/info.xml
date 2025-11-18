@@ -16,7 +16,7 @@
 * 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 	</description>
 
-	<version>8.1.0-rc.2</version>
+	<version>8.1.0</version>
 	<licence>agpl</licence>
 
 	<author mail="hamza221@users.noreply.github.com">Hamza Mahjoubi</author>
