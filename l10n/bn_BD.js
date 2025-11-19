@@ -15,6 +15,7 @@ OC.L10N.register(
     "Last name" : "নামের শেষাংশ",
     "Save" : "সংরক্ষণ",
     "Close" : "বন্ধ",
+    "Create" : "তৈরী কর",
     "Invalid image" : "অবৈধ চিত্র",
     "Name" : "নাম",
     "Title" : "শিরোনাম",
