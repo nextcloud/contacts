@@ -57,6 +57,7 @@ OC.L10N.register(
     "Close" : "Zarrar",
     "There is no description for this team" : "Nun hai nenguna descripción pa esti equipu",
     "Enter a description for the team" : "Introduz una descripción pal equipu",
+    "Conversation name" : "Nome de la conversación",
     "Team name" : "Nome del equipu",
     "Edit" : "Editar",
     "Members" : "Miiembros",
