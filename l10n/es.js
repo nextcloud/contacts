@@ -82,6 +82,7 @@ OC.L10N.register(
     "Phonetic last name" : "Apellido fonético",
     "Display name" : "Nombre mostrado",
     "Last modified" : "Última modificación",
+    "Sort by" : "Filtrado por",
     "Manages" : "Gestiona",
     "Oversees" : "Vigila",
     "An error happened during the config change" : "Ha ocurrido un error durante el cambio de la configuración",

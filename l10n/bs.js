@@ -96,6 +96,7 @@ OC.L10N.register(
     "Team name" : "Team name",
     "Edit" : "Edit",
     "Request to join" : "Request to join",
+    "Create" : "Ustvari",
     "Your request to join this team is pending approval" : "Your request to join this team is pending approval",
     "You are not a member of {circle}" : "You are not a member of {circle}",
     "Confirm" : "Confirm",
