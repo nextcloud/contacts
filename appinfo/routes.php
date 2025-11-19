@@ -5,7 +5,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-use OCA\Contacts\IWayfProvider;
+use OCA\Contacts\WayfProvider;
 use OCA\Contacts\Service\FederatedInvitesService;
 
 return [
@@ -19,8 +19,8 @@ return [
 		['name' => 'federated_invites#invite_accepted', 'url' => '/ocm/invitations/{token}/accept', 'verb' => 'PATCH'],
 		['name' => 'federated_invites#resend_invite', 'url' => '/ocm/invitations/{token}/resend', 'verb' => 'PATCH'],
 		['name' => 'federated_invites#invite_accept_dialog', 'url' => FederatedInvitesService::OCM_INVITE_ACCEPT_DIALOG_ROUTE, 'verb' => 'GET'],
-		['name' => 'federated_invites#wayf', 'url' => IWayfProvider::WAYF_ROUTE, 'verb' => 'GET'],
-		['name' => 'federated_invites#discover', 'url' => IWayfProvider::DISCOVERY_ROUTE, 'verb' => 'GET'],
+		['name' => 'federated_invites#wayf', 'url' => WayfProvider::WAYF_ROUTE, 'verb' => 'GET'],
+		['name' => 'federated_invites#discover', 'url' => WayfProvider::DISCOVERY_ROUTE, 'verb' => 'GET'],
 
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
 		['name' => 'page#index', 'url' => '/{group}', 'verb' => 'GET', 'postfix' => 'group'],

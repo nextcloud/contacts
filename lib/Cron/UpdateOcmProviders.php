@@ -10,7 +10,7 @@ declare(strict_types=1);
 namespace OCA\Contacts\Cron;
 
 use OCA\Contacts\AppInfo\Application;
-use OCA\Contacts\IWayfProvider;
+use OCA\Contacts\WayfProvider;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\BackgroundJob\TimedJob;
 use OCP\IAppConfig;
@@ -21,7 +21,7 @@ class UpdateOcmProviders extends TimedJob {
 	public function __construct(
 		ITimeFactory $time,
 		private IAppConfig $appConfig,
-		private IWayfProvider $wayfProvider,
+		private WayfProvider $wayfProvider,
 	) {
 		parent::__construct($time);
 		$this->setInterval($this->expire_time);

@@ -2,6 +2,7 @@
 
 namespace OCA\Contacts;
 
+use Error;
 use Exception;
 use OCA\Contacts\AppInfo\Application;
 use OCA\Contacts\Service\FederatedInvitesService;
@@ -16,7 +17,12 @@ use Psr\Log\LoggerInterface;
  * Provides a basic WAYF (Where Are You From) login implementation build from the list of available mesh providers.
  *
  */
-class WayfProvider implements IWayfProvider {
+class WayfProvider {
+
+	// The default wayf page route.
+	public const WAYF_ROUTE = '/wayf';
+	public const DISCOVERY_ROUTE = '/discover';
+	public const INVITE_ACCEPT_DIALOG = '/index.php/apps/contacts' . FederatedInvitesService::OCM_INVITE_ACCEPT_DIALOG_ROUTE;
 
 	public function __construct(
 		private IAppConfig $appConfig,
@@ -69,7 +75,7 @@ class WayfProvider implements IWayfProvider {
 					}
 					if ($inviteAcceptDialog === '') {
 						// We fall back on Nextcloud default path
-						$inviteAcceptDialog = $prov['url'] . $this::INVITE_ACCEPT_DIALOG;
+						$inviteAcceptDialog = $prov['url'] . WayfProvider::INVITE_ACCEPT_DIALOG;
 					}
 					$federations[$fed][] = [
 						'provider' => $disc->getProvider(),
@@ -111,10 +117,30 @@ class WayfProvider implements IWayfProvider {
 	 * Can be read from the app config key 'wayf_endpoint'.
 	 * If not set the endpoint the WAYF page implementation of this app is returned.
 	 * Note that the invitation link still needs the token and provider parameters, eg. "https://<wayf-page-endpoint>?token=$token&provider=$provider"
-	 * @return string the WAYF login page endpoint
+	 * @return string|null the WAYF login page endpoint or null if it could not be created
 	 */
-	public function getWayfEndpoint(): string {
-		$wayfEndpoint = 'https://' . $this->federatedInvitesService->getProviderFQDN() . '/apps/' . Application::APP_ID . self::WAYF_ROUTE;
+	public function getWayfEndpoint(): string|null {
+		$appRootUrl = $this->getAppRootUrl();
+		if(empty($appRootUrl)) {
+			$this->logger->error("Unable to create WAYF endpoint", ['app' => Application::APP_ID]);
+			return null;
+		}
+		$appRootUrl = trim($appRootUrl, '/');
+		$wayfEndpoint = 'https://' . $this->federatedInvitesService->getProviderFQDN() . "/$appRootUrl/" . Application::APP_ID . WayfProvider::WAYF_ROUTE;
 		return $this->appConfig->getValueString(Application::APP_ID, 'wayf_endpoint', $wayfEndpoint);
+	}
+
+	/**
+	 * Returns this app root url. Currently either '/apps' or '/custom_apps'.
+	 * @return string|null the app root url or null if the app root url could not be determined
+	 */
+	private function getAppRootUrl(): string|null {
+		foreach(\OC::$APPSROOTS as $appRoot) {
+			if(str_starts_with(__DIR__, $appRoot['path'])) {
+				return $appRoot['url'];
+			}
+		}
+		$this->logger->error("Could not determine app root url", ['app' => Application::APP_ID]);
+		return null;
 	}
 }

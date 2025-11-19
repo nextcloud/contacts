@@ -10,7 +10,6 @@ use OCA\CloudFederationAPI\Events\FederatedInviteAcceptedEvent;
 use OCA\Contacts\Capabilities;
 use OCA\Contacts\Dav\PatchPlugin;
 use OCA\Contacts\Event\LoadContactsOcaApiEvent;
-use OCA\Contacts\IWayfProvider;
 use OCA\Contacts\Listener\FederatedInviteAcceptedListener;
 use OCA\Contacts\Listener\LoadContactsFilesActions;
 use OCA\Contacts\Listener\LoadContactsOcaApi;
@@ -37,7 +36,6 @@ class Application extends App implements IBootstrap {
 	#[\Override]
 	public function register(IRegistrationContext $context): void {
 		$context->registerCapability(Capabilities::class);
-		$context->registerServiceAlias(IWayfProvider::class, WayfProvider::class);
 
 		$context->registerEventListener(LoadAdditionalScriptsEvent::class, LoadContactsFilesActions::class);
 		$context->registerEventListener(LoadContactsOcaApiEvent::class, LoadContactsOcaApi::class);

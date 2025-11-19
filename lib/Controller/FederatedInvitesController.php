@@ -12,10 +12,10 @@ use OC\App\CompareVersion;
 use OCA\Contacts\AppInfo\Application;
 use OCA\Contacts\Db\FederatedInvite;
 use OCA\Contacts\Db\FederatedInviteMapper;
-use OCA\Contacts\IWayfProvider;
 use OCA\Contacts\Service\FederatedInvitesService;
 use OCA\Contacts\Service\GroupSharingService;
 use OCA\Contacts\Service\SocialApiService;
+use OCA\Contacts\WayfProvider;
 use OCA\DAV\CardDAV\CardDavBackend;
 use OCA\FederatedFileSharing\AddressHandler;
 use OCP\App\IAppManager;
@@ -68,7 +68,7 @@ class FederatedInvitesController extends PageController {
 		private IMailer $mailer,
 		private IOCMDiscoveryService $discovery,
 		private IUserSession $userSession,
-		private IWayfProvider $wayfProvider,
+		private WayfProvider $wayfProvider,
 		private SocialApiService $socialApiService,
 		private ITimeFactory $timeFactory,
 		private CompareVersion $compareVersion,
@@ -398,7 +398,7 @@ class FederatedInvitesController extends PageController {
 		} elseif (empty($dialog)) {
 			// We can not check and see, because we have to be logged in here
 			// so we will just risk it.
-			$dialog = $base . $this->wayfProvider::INVITE_ACCEPT_DIALOG;
+			$dialog = $base . WayfProvider::INVITE_ACCEPT_DIALOG;
 			$absolute = preg_match('#^https?://#i', $dialog) ? $dialog : $base . $dialog;
 			return new DataResponse([
 				'base' => $base,
@@ -468,6 +468,10 @@ class FederatedInvitesController extends PageController {
 		$email->setSubject($subject);
 
 		$wayfEndpoint = $this->wayfProvider->getWayfEndpoint();
+		if(empty($wayfEndpoint)) {
+			$this->logger->error("Invalid WAYF endpoint (null).", ['app' => Application::APP_ID]);
+			return new JSONResponse(['message' => "Could not sent invite."], Http::STATUS_NOT_FOUND);
+		}
 		$inviteLink = "$wayfEndpoint?token=$token";
 
 		$this->logger->debug("message: $message : " . print_r($message, true));
