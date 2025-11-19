@@ -171,11 +171,14 @@ class ImportController extends OCSController {
 		}
 
 		if ($skipped === 0) {
-			$message = $this->l10n->n(
-				'Imported %n contact',
-				'Imported %n contacts',
-				count($imported),
-			);
+			$message = [
+				'version' => 0.1,
+				'tooltip' => $this->l10n->n(
+					'Imported %n contact',
+					'Imported %n contacts',
+					count($imported)
+				)
+			];
 		} else {
 			$message = $this->l10n->n(
 				'Imported %n contact (skipped %d)',
