@@ -99,7 +99,6 @@ class FederatedInvitesController extends PageController {
 	 * @return JSONResponse
 	 */
 	#[NoAdminRequired]
-	#[NoCSRFRequired]
 	public function getInvites(): JSONResponse {
 		$_invites = $this->federatedInviteMapper->findOpenInvitesByUid($this->userSession->getUser()->getUID());
 		$invites = [];
@@ -121,7 +120,6 @@ class FederatedInvitesController extends PageController {
 	 * @return JSONResponse with data signature ['token' | 'message'] - the token of the deleted invitation or an error message in case of error
 	 */
 	#[NoAdminRequired]
-	#[NoCSRFRequired]
 	public function deleteInvite(string $token): JSONResponse {
 		if (!isset($token)) {
 			return new JSONResponse(['message' => 'Token is required'], Http::STATUS_BAD_REQUEST);
@@ -148,7 +146,6 @@ class FederatedInvitesController extends PageController {
 	 * @return TemplateResponse
 	 */
 	#[NoAdminRequired]
-	#[NoCSRFRequired]
 	public function inviteAcceptDialog(string $token = '', string $providerDomain = ''): TemplateResponse {
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'inviteToken', $token);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'inviteProvider', $providerDomain);
@@ -165,7 +162,6 @@ class FederatedInvitesController extends PageController {
 	 * @return JSONResponse with data signature ['token' | 'message'] - the token of the invitation or an error message in case of error
 	 */
 	#[NoAdminRequired]
-	#[NoCSRFRequired]
 	public function createInvite(string $email, string $message): JSONResponse {
 		if (!isset($email)) {
 			return new JSONResponse(['message' => 'Recipient email is required'], Http::STATUS_BAD_REQUEST);
@@ -228,7 +224,6 @@ class FederatedInvitesController extends PageController {
 	 * @return JSONResponse with data signature ['contact' | 'message'] - the new contact url or an error message in case of error
 	 */
 	#[NoAdminRequired]
-	#[NoCSRFRequired]
 	public function inviteAccepted(string $token = '', string $provider = ''): JSONResponse {
 		if ($token === '' || $provider === '') {
 			$this->logger->error("Both token and provider must be specified. Received: token=$token, provider=$provider", ['app' => Application::APP_ID]);
@@ -333,7 +328,6 @@ class FederatedInvitesController extends PageController {
 	 *
 	 */
 	#[NoAdminRequired]
-	#[NoCSRFRequired]
 	public function resendInvite(string $token): JSONResponse {
 		$invite = $this->federatedInviteMapper->findByToken($token);
 		$sendDate = date('Y-m-d', $invite->getCreatedAt());
@@ -370,7 +364,6 @@ class FederatedInvitesController extends PageController {
 	 * @return DataResponse
 	 */
 	#[PublicPage]
-	#[NoCSRFRequired]
 	public function discover(string $base): DataResponse {
 		$base = trim($base);
 		if ($base === '') {
