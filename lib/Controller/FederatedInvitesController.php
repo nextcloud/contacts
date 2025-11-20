@@ -121,9 +121,6 @@ class FederatedInvitesController extends PageController {
 	 */
 	#[NoAdminRequired]
 	public function deleteInvite(string $token): JSONResponse {
-		if (!isset($token)) {
-			return new JSONResponse(['message' => 'Token is required'], Http::STATUS_BAD_REQUEST);
-		}
 		try {
 			$uid = $this->userSession->getUser()->getUID();
 			$invite = $this->federatedInviteMapper->findInviteByTokenAndUidd($token, $uid);
