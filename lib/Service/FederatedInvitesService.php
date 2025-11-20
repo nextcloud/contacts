@@ -31,9 +31,7 @@ class FederatedInvitesService {
 	}
 
 	public function isOcmInvitesEnabled():bool {
-		$val = $this->appConfig->getValueBool(Application::APP_ID, 'ocm_invites_enabled', FederatedInvitesService::OCM_INVITES_ENABLED_BY_DEFAULT);
-		$boolval = (is_string($val) ? filter_var($val, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE) : (bool)$val);
-		return ($boolval === null ? false : $boolval);
+		return $this->appConfig->getValueBool(Application::APP_ID, 'ocm_invites_enabled', FederatedInvitesService::OCM_INVITES_ENABLED_BY_DEFAULT);
 	}
 
 	/**
