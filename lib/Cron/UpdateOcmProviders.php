@@ -31,6 +31,6 @@ class UpdateOcmProviders extends TimedJob {
 		$data = $this->wayfProvider->getMeshProviders();
 		$data['expires'] = time() + $this->expire_time;
 		$json = json_encode($data);
-		$this->appConfig->setValueString(Application::APP_ID, 'federations_cache', $json);
+		$this->appConfig->setValueArray(Application::APP_ID, 'federations_cache', $data, true);
 	}
 }

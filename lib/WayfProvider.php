@@ -39,8 +39,6 @@ class WayfProvider {
 	 *
 	 * @return array an array containing all mesh providers
 	 */
-
-
 	public function getMeshProviders(): array {
 		$urls = preg_split('/\s+/', trim($this->appConfig->getValueString(Application::APP_ID, 'mesh_providers_service')));
 		$federations = [];
@@ -92,16 +90,14 @@ class WayfProvider {
 		}
 		return $federations;
 	}
+
 	/**
 	 * Returns all mesh providers from cache if possible.
 	 *
 	 * @return array an array containing all mesh providers
 	 */
-
-
 	public function getMeshProvidersFromCache(): array {
-		$json = $this->appConfig->getValueString(Application::APP_ID, 'federations_cache');
-		$data = json_decode($json, true);
+		$data = $this->appConfig->getValueArray(Application::APP_ID, 'federations_cache', [], true);
 		if (isset($data) && array_key_exists('expires', $data)) {
 			$this->logger->debug('Cache hit, expires at: ' . $data['expires'], ['app' => Application::APP_ID]);
 			unset($data['expires']);
