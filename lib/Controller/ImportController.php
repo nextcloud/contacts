@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace OCA\Contacts\Controller;
 
 use OCA\Contacts\AppInfo\Application;
-use OCA\Contacts\Exception\InsufficientPermissionsException;
 use OCA\DAV\CardDAV\CardDavBackend;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\Attribute\ApiRoute;
@@ -68,11 +67,8 @@ class ImportController extends OCSController {
 		if ($this->userId === null) {
 			return new DataResponse('Not logged in', Http::STATUS_UNAUTHORIZED);
 		}
-		try {
-			$addressBook = $this->findUserAddressBook($addressBookUri);
-		} catch (InsufficientPermissionsException $e) {
-			return new DataResponse($e->getMessage(), Http::STATUS_FORBIDDEN);
-		}
+
+		$addressBook = $this->findUserAddressBook($addressBookUri);
 		if ($addressBook === null) {
 			return new DataResponse('Address book not found', Http::STATUS_NOT_FOUND);
 		}
@@ -172,13 +168,13 @@ class ImportController extends OCSController {
 
 		if ($skipped === 0) {
 			$message = $this->l10n->n(
-				'Imported %n contact',
+				'Imported 1 contact',
 				'Imported %n contacts',
 				count($imported),
 			);
 		} else {
 			$message = $this->l10n->n(
-				'Imported %n contact (skipped %d)',
+				'Imported 1 contact (skipped %d)',
 				'Imported %n contacts (skipped %d)',
 				count($imported),
 				[$skipped],
@@ -193,13 +189,11 @@ class ImportController extends OCSController {
 			$this->contactsManager->getUserAddressBooks(),
 			static fn ($addressBook) => $addressBook instanceof ICreateContactFromString,
 		);
+
 		// Try the given address book by URI first
 		if ($uri !== null) {
 			foreach ($addressBooks as $addressBook) {
 				if ($addressBook->getUri() === $uri) {
-					if (! ($addressBook->getPermissions() & Constants::PERMISSION_UPDATE)) {
-						throw new InsufficientPermissionsException('Insufficient permissions to import into the address book ' . $uri);
-					}
 					return $addressBook;
 				}
 			}

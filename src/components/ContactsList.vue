@@ -194,7 +194,6 @@ export default {
 					contact.isMultiSelected = this.multiSelectedContacts.has(index)
 				}
 			})
-
 			return contactsList
 		},
 
@@ -311,14 +310,7 @@ export default {
 		 */
 		matchSearch(contact) {
 			if (this.query.trim() !== '') {
-				try {
-					return contact.searchData.toString().toLowerCase().search(this.query.trim().toLowerCase()) !== -1
-				} catch (e) {
-					if (e instanceof SyntaxError) {
-						// this.query likely is an invalid regex (i.e. just `+`)
-						return contact.searchData.toString().toLowerCase().includes(this.query.trim().toLowerCase())
-					}
-				}
+				return contact.searchData.toString().toLowerCase().search(this.query.trim().toLowerCase()) !== -1
 			}
 			return true
 		},
