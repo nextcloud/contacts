@@ -22,6 +22,7 @@ OC.L10N.register(
     "Leave team" : "كوماندىدىن ئايرىلىش",
     "Delete team" : "گۇرۇپپىنى ئۆچۈرۈڭ",
     "Contacts settings" : "ئالاقىلىشىش تەڭشەكلىرى",
+    "General" : "ئۇمۇمىي",
     "Update avatars from social media" : "ئىجتىمائىي تاراتقۇلاردىكى باش سۈرەتلەرنى يېڭىلاڭ",
     "Address books" : "ئادرېس كىتابلىرى",
     "Rename" : "ئات ئۆزگەرت",
