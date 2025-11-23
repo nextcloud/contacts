@@ -26,6 +26,7 @@ OC.L10N.register(
     "Leave team" : "Quitter l'équipe",
     "Delete team" : "Supprimer l'équipe",
     "Contacts settings" : "Paramètres de Contacts",
+    "General" : "Général",
     "Update avatars from social media" : "Mettre à jour les avatars à partir des réseaux sociaux",
     "Refreshed once per week" : "Rafraîchi une fois par semaine",
     "Address books" : "Carnets d'adresses",
