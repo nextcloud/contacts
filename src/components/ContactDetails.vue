@@ -257,7 +257,7 @@
 			<!-- contact details loading -->
 			<IconLoading v-if="loadingData" :size="20" class="contact-details" />
 			<!-- quick actions -->
-			<div v-else-if="!loadingData" class="contact-details-wrapper">
+			<div v-else-if="!loadingData" class="contact-details-wrapper" :class="[{ 'contact-details-wrapper-read-only': isReadOnly }]">
 				<!-- contact details -->
 				<section class="contact-details">
 					<!-- properties iteration -->
@@ -1272,5 +1272,9 @@ section.contact-details {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+:deep(.contact-details-wrapper-read-only  .input-field__input) {
+	box-shadow: none !important;
 }
 </style>
