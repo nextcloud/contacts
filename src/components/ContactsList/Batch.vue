@@ -14,14 +14,16 @@
 			</h3>
 		</div>
 
-		<NcSelect v-if="mode === 'grouping'"
+		<NcSelect
+			v-if="mode === 'grouping'"
 			v-model="selectedGroups"
 			:input-label="t('contacts', 'Select groups')"
 			:multiple="true"
 			:options="groupOptions" />
 
 		<!-- Addressbook selector for move mode -->
-		<NcSelect v-if="mode === 'ab'"
+		<NcSelect
+			v-if="mode === 'ab'"
 			v-model="selectedAddressesBook"
 			:input-label="t('contacts', 'Select addressbook')"
 			:options="addressbookOptions" />
@@ -33,54 +35,58 @@
 
 		<div class="contacts-list">
 			<div v-for="(contact, index) in contactsLimited" :key="contact.key" class="contact-item">
-				<ContactsListItem :key="contact.key"
-					:class="{ disabled: !contact.addressbook.canModifyCard }"
+				<ContactsListItem
+					:key="contact.key"
+					:class="{ disabled: !contact.addressbook.canDeleteCard }"
 					:index="index"
 					:source="contact"
 					:reload-bus="reloadBus"
-					:title="contact.addressbook.canModifyCard ? '' : t('contacts', 'This contact is read-only and cannot be modified.')"
+					:title="contact.addressbook.canDeleteCard ? '' : t('contacts', 'This contact is read-only and cannot be modified.')"
 					:is-static="true" />
 			</div>
 		</div>
 
-		<NcButton v-if="contacts.length > 9"
+		<NcButton
+			v-if="contacts.length > 9"
 			variant="secondary"
 			@click="showAllContacts = !showAllContacts">
- 			<template #icon>
- 				<IconPlus :size="20" />
- 			</template>
- 			{{ t('contacts', showAllContacts ? 'Show less' : 'Show all') }}
- 		</NcButton>
+			<template #icon>
+				<IconPlus :size="20" />
+			</template>
+			{{ t('contacts', showAllContacts ? 'Show less' : 'Show all') }}
+		</NcButton>
 
- 		<div class="batch__footer">
-			<NcButton v-if="mode === 'grouping'"
+		<div class="batch__footer">
+			<NcButton
+				v-if="mode === 'grouping'"
 				variant="primary"
 				:disabled="selectedGroups.length === 0"
 				@click="submit">
- 				<template #icon>
- 					<IconAccountPlus :size="20" />
- 				</template>
- 				{{ t('contacts', 'Add') }}
- 			</NcButton>
-			<NcButton v-if="mode === 'ab'"
+				<template #icon>
+					<IconAccountPlus :size="20" />
+				</template>
+				{{ t('contacts', 'Add') }}
+			</NcButton>
+			<NcButton
+				v-if="mode === 'ab'"
 				variant="primary"
 				:disabled="!selectedAddressesBook"
 				@click="submit">
- 				<template #icon>
- 					<IconBookArrow :size="20" />
- 				</template>
- 				{{ t('contacts', 'Move') }}
- 			</NcButton>
+				<template #icon>
+					<IconBookArrow :size="20" />
+				</template>
+				{{ t('contacts', 'Move') }}
+			</NcButton>
 		</div>
 	</div>
 </template>
 
 <script>
-import ContactsListItem from './ContactsListItem.vue'
-import { NcButton, NcSelect, NcNoteCard } from '@nextcloud/vue'
-import IconPlus from 'vue-material-design-icons/Plus.vue'
+import { NcButton, NcNoteCard, NcSelect } from '@nextcloud/vue'
 import IconAccountPlus from 'vue-material-design-icons/AccountMultiplePlusOutline.vue'
 import IconBookArrow from 'vue-material-design-icons/BookArrowRightOutline.vue'
+import IconPlus from 'vue-material-design-icons/Plus.vue'
+import ContactsListItem from './ContactsListItem.vue'
 import appendContactToGroup from '../../services/appendContactToGroup.js'
 
 export default {
@@ -101,6 +107,7 @@ export default {
 			type: Array,
 			required: true,
 		},
+
 		mode: {
 			type: String,
 			required: false,
@@ -126,20 +133,23 @@ export default {
 			}
 			return this.contacts.slice(0, 9)
 		},
+
 		groupOptions() {
-			return this.$store.getters.getGroups.map(group => ({
+			return this.$store.getters.getGroups.map((group) => ({
 				label: group.name,
 				value: group.name,
 			}))
 		},
+
 		amountOfReadOnlyContacts() {
-			return this.contacts.filter(contact => !contact.addressbook.canModifyCard).length
+			return this.contacts.filter((contact) => !contact.addressbook.canModifyCard).length
 		},
+
 		addressbookOptions() {
 			// Provide only enabled, writable addressbooks to move to
 			return this.$store.getters.getAddressbooks
-				.filter(ab => !ab.readOnly && ab.enabled)
-				.map(ab => ({ label: ab.displayName || ab.label || ab.addressbook, value: ab.id || ab.addressbook }))
+				.filter((ab) => !ab.readOnly && ab.enabled)
+				.map((ab) => ({ label: ab.displayName || ab.label || ab.addressbook, value: ab.id || ab.addressbook }))
 		},
 	},
 
@@ -158,15 +168,19 @@ export default {
 			const allGroups = this.$store.getters.getGroups
 
 			// Add to groups
-			this.selectedGroups.forEach(selectedGroup => {
-				const group = allGroups.find(g => g.name === selectedGroup.value)
+			this.selectedGroups.forEach((selectedGroup) => {
+				const group = allGroups.find((g) => g.name === selectedGroup.value)
 				if (!group) {
 					console.error('Cannot add contact to an undefined group', selectedGroup)
 					return
 				}
-				this.contacts.forEach(contact => {
-					if (!contact.addressbook.canModifyCard) return // skip read-only for groups
-					if (contact.groups && contact.groups.includes(group.name)) return
+				this.contacts.forEach((contact) => {
+					if (!contact.addressbook.canModifyCard) {
+						return
+					} // skip read-only for groups
+					if (contact.groups && contact.groups.includes(group.name)) {
+						return
+					}
 					appendContactToGroup(contact, group.name)
 						.then(() => {
 							this.$store.dispatch('addContactToGroup', { contact, groupName: group.name })
@@ -181,15 +195,17 @@ export default {
 		},
 
 		async moveToAddressbook() {
-			if (!this.selectedAddressesBook) return
-			const addressbook = this.$store.getters.getAddressbooks.find(ab => ab.id === this.selectedAddressesBook.value)
+			if (!this.selectedAddressesBook) {
+				return
+			}
+			const addressbook = this.$store.getters.getAddressbooks.find((ab) => ab.id === this.selectedAddressesBook.value)
 			if (!addressbook) {
 				console.error('Selected addressbook not found', this.selectedAddressesBook)
 				return
 			}
 
 			const movePromises = this.contacts.map(async (contact) => {
-				if (!contact.addressbook.canModifyCard || contact.addressbook.id === addressbook.id) {
+				if (!contact.addressbook.canDeleteCard || contact.addressbook.id === addressbook.id) {
 					return null
 				}
 				try {
@@ -202,6 +218,8 @@ export default {
 			})
 
 			await Promise.all(movePromises)
+
+			await this.$store.dispatch('getContactsFromAddressBook', { addressbook })
 			this.$emit('submit')
 		},
 	},

@@ -40,7 +40,7 @@
 			:name="t('contacts', 'Add contacts to group')"
 			size="large"
 			@close="isGrouping = false">
-			<Batch :contacts="Array.from(multiSelectedContacts.values())" mode="grouping" @submit="isGrouping = false" />
+			<Batch :contacts="Array.from(multiSelectedContacts.values())" mode="grouping" @submit="finishBatch" />
 		</NcModal>
 
 		<NcModal
@@ -48,7 +48,7 @@
 			:name="t('contacts', 'Move contacts to addressbook')"
 			size="large"
 			@close="isMovingAddressbook = false">
-			<Batch :contacts="Array.from(multiSelectedContacts.values())" mode="ab" @submit="isMovingAddressbook = false" />
+			<Batch :contacts="Array.from(multiSelectedContacts.values())" mode="ab" @submit="finishBatch" />
 		</NcModal>
 
 		<div class="contacts-list__header">
@@ -93,7 +93,6 @@
 					:title="groupActionTitle"
 					:disabled="!isAtLeastOneEditable"
 					:close-after-click="true"
-					@submit="finishBatch"
 					@click.prevent="isGrouping = true">
 					<IconAccountMultiple :size="20" />
 				</NcButton>
@@ -102,7 +101,6 @@
 					:title="addressbookActionTitle"
 					:disabled="!isAtLeastOneEditable"
 					:close-after-click="true"
-					@submit="finishBatch"
 					@click.prevent="isMovingAddressbook = true">
 					<IconBookAccount :size="20" />
 				</NcButton>
@@ -459,13 +457,14 @@ export default {
 		},
 
 		async finishBatch() {
-			this.isGrouping = false
-			this.isMovingAddressbook = false
-
-			for (const contact of this.multiSelectedContacts.values()) {
-				await this.$store.dispatch('fetchFullContact', { contact, forceReFetch: true })
+			if (this.isGrouping) {
+				for (const contact of this.multiSelectedContacts.values()) {
+					await this.$store.dispatch('fetchFullContact', { contact, forceReFetch: true })
+				}
 			}
 
+			this.isGrouping = false
+			this.isMovingAddressbook = false
 			this.unselectAllMultiSelected()
 		},
 	},
