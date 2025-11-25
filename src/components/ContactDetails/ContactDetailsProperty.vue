@@ -377,8 +377,14 @@ export default {
 		onFocusProp(id) {
 			if (id === this.propName && this.isLastProperty) {
 				this.$nextTick(() => {
-					const inputs = this.$refs.component.$el.querySelectorAll('input, textarea')
-					if (inputs === undefined || inputs.length === 0) {
+					const comp = this.$refs.component
+					const el = comp?.$el instanceof HTMLElement ? comp.$el : (comp instanceof HTMLElement ? comp : null)
+					if (!el || !el.querySelectorAll) {
+						console.warn('No focusable element found for property', this.propName)
+						return
+					}
+					const inputs = el.querySelectorAll('input, textarea')
+					if (!inputs || inputs.length === 0) {
 						console.warn('no input to focus found')
 					} else {
 						inputs[0].focus()
