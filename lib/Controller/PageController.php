@@ -83,4 +83,17 @@ class PageController extends Controller {
 
 		return new TemplateResponse(Application::APP_ID, 'main');
 	}
+
+	/**
+	 * @NoAdminRequired
+	 * @NoCSRFRequired
+	 */
+	public function joinInvitation(string $invitationCode): TemplateResponse {
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'invitationCode', $invitationCode);
+
+		Util::addStyle(Application::APP_ID, 'contacts-join-invitation');
+		Util::addScript(Application::APP_ID, 'contacts-join-invitation');
+
+		return new TemplateResponse(Application::APP_ID, 'join-invitation');
+	}
 }

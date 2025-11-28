@@ -10,6 +10,7 @@ import {
 	acceptMember,
 	addMembers,
 	createCircle,
+	createInvitationLink,
 	deleteCircle,
 	deleteMember,
 	editCircleSetting,
@@ -17,6 +18,7 @@ import {
 	getCircleMembers,
 	getCircles,
 	leaveCircle,
+	revokeInvitationLink,
 } from '../services/circles.ts'
 import logger from '../services/logger.js'
 
@@ -90,6 +92,10 @@ const mutations = {
 
 	setCircleSettings(state, { circleId, settings }) {
 		state.circles[circleId]._data.settings = settings
+	},
+
+	setInvitationCode(state, { circleId, invitationCode }) {
+		state.circles[circleId]._data.invitationCode = invitationCode
 	},
 }
 
@@ -277,6 +283,21 @@ const actions = {
 		})
 	},
 
+	async createInvitationLink(context, { circleId }) {
+		const { invitationCode } = await createInvitationLink(circleId)
+		await context.commit('setInvitationCode', {
+			circleId,
+			invitationCode,
+		})
+	},
+
+	async revokeInvitationLink(context, { circleId }) {
+		const { invitationCode } = await revokeInvitationLink(circleId)
+		await context.commit('setInvitationCode', {
+			circleId,
+			invitationCode,
+		})
+	},
 }
 
 export default { state, mutations, getters, actions }

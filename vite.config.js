@@ -10,6 +10,7 @@ export default createAppConfig({
 	'main': path.join(__dirname, 'src', 'main.js'),
 	'files-action': path.join(__dirname, 'src', 'files-action.js'),
 	'admin-settings': path.join(__dirname, 'src', 'admin-settings.js'),
+	'join-invitation': path.join(__dirname, 'src', 'join-invitation.js'),
 	'oca': path.join(__dirname, 'src', 'oca.ts'),
 }, {
 	inlineCSS: false,
