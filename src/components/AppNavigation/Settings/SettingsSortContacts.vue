@@ -11,7 +11,7 @@
 			:searchable="false"
 			:allow-empty="false"
 			:options="options"
-			:custom-label="formatSortByLabel"
+			:input-label="t('contacts', 'Sort contacts by')"
 			track-by="key"
 			label="label"
 			@input="sortContacts" />
@@ -74,9 +74,6 @@ export default {
 			this.$store.commit('setOrder', key)
 			this.$store.commit('sortContacts')
 			localStorage.setItem('orderKey', key)
-		},
-		formatSortByLabel(option) {
-			return t('contacts', 'Sort by {sorting}', { sorting: option.label })
 		},
 	},
 }
