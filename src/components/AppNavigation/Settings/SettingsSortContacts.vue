@@ -7,7 +7,7 @@
 	<NcFormBox>
 		<div class="sort-contacts">
 			<label for="sort-by" class="sort-contacts__label">
-				{{ t('contacts', 'Sort by') }}
+				{{ t('contacts', 'Sort contacts by') }}
 			</label>
 			<NcSelect
 				id="sort-by"
