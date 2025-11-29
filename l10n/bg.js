@@ -236,7 +236,6 @@ OC.L10N.register(
     "Loading …" : "Зарежда …",
     "General settings" : "Общи настройки",
     "(refreshed once per week)" : "(опреснява се веднъж седмично)",
-    "Sort by {sorting}" : "Сортиране по {sorting}",
     "Unique password …" : "Уникална парола …",
     "Search contacts …" : "Търсене в контактите ...",
     "Loading members list …" : "Зарежда се списък с членове …",

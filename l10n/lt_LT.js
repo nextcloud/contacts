@@ -268,7 +268,6 @@ OC.L10N.register(
     "General settings" : "Bendri nustatymai",
     "(refreshed once per week)" : "(įkeliama iš naujo kartą per savaitę)",
     "{addressbookname} (Disabled)" : "{addressbookname} (Išjungta)",
-    "Sort by {sorting}" : "Rikiuoti pagal {sorting}",
     "Search contacts …" : "Ieškoti adresatų…",
     "Loading members list …" : "Įkeliamas narių sąrašas…",
     "Add to {circle}" : "Pridėti į {circle}"

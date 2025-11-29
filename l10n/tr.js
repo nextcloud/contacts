@@ -338,7 +338,6 @@ OC.L10N.register(
     "General settings" : "Genel ayarlar",
     "(refreshed once per week)" : "(haftada bir yenilenir)",
     "{addressbookname} (Disabled)" : "{addressbookname} (kullanımdan kaldırılmış)",
-    "Sort by {sorting}" : "{sorting} alanına göre sırala",
     "Unique password …" : "Benzersiz parola…",
     "Search contacts …" : "Kişi arama…",
     "Invite members to team" : "Takıma üyeler davet edin",

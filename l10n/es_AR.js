@@ -210,7 +210,6 @@ OC.L10N.register(
     "Loading …" : "Cargando …",
     "General settings" : "Configuraciones generales",
     "(refreshed once per week)" : "(actualizado una vez a la semana)",
-    "Sort by {sorting}" : "Ordenar por {sorting}",
     "Unique password …" : "Contraseña única ...",
     "Search contacts …" : "Buscar contactos ...",
     "Loading members list …" : "Cargando la lista de miembros ...",

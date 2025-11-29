@@ -287,7 +287,6 @@ OC.L10N.register(
     "General settings" : "Yleiset asetukset",
     "(refreshed once per week)" : "(päivitetään kerran viikossa)",
     "{addressbookname} (Disabled)" : "{addressbookname} (pois käytöstä)",
-    "Sort by {sorting}" : "Järjestysperuste {sorting}",
     "Unique password …" : "Ainutkertainen salasana…",
     "Search contacts …" : "Etsi yhteystietoja…",
     "Invite members to team" : "Kutsu jäseniä tiimiin",

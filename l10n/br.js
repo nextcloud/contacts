@@ -15,7 +15,6 @@ OC.L10N.register(
     "Cancel" : "Nullañ",
     "Add" : "Ouzhpennañ",
     "Display name" : "Anv ardivink",
-    "Sort by" : "Renkañ dre",
     "Save" : "Enrollañ",
     "Close" : "Seriñ",
     "Calendar" : "Deiziataer",

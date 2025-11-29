@@ -20,7 +20,6 @@ OC.L10N.register(
     "Last name" : "Van",
     "Display name" : "Vertoonnaam",
     "Last modified" : "Laas gewysig",
-    "Sort by" : "Sorteer volgens",
     "Save" : "Bewaar",
     "Close" : "Sluit",
     "Folder name" : "Vouernaam",

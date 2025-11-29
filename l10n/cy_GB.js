@@ -25,6 +25,7 @@ OC.L10N.register(
     "Last modified" : "Newidiwyd diwethaf",
     "Save" : "Cadw",
     "Close" : "Cau",
+    "Create" : "Creu",
     "Pick an avatar" : "Dewiswch afatar",
     "Error while processing the picture." : "Gwall wrth brosesu'r llun.",
     "Upload a new picture" : "Llwythwch lun newydd i fyny",
@@ -111,7 +112,6 @@ OC.L10N.register(
     "Male" : "Gwryw",
     "Unknown" : "Anhysbys",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt"],
-    "Loading …" : "Yn llwytho …",
-    "Sort by {sorting}" : "Trefnu yn ôl {sorting}"
+    "Loading …" : "Yn llwytho …"
 },
 "nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3;");

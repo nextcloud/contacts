@@ -294,7 +294,6 @@ OC.L10N.register(
     "General settings" : "Configuraciones generales",
     "(refreshed once per week)" : "(actualizado una vez por semana)",
     "{addressbookname} (Disabled)" : "{addressbookname} (Deshabilitado)",
-    "Sort by {sorting}" : "Ordenar por {sorting}",
     "Unique password …" : "Contraseña única ...",
     "Search contacts …" : "Buscar contactos ...",
     "Loading members list …" : "Cargando la lista de miembros ...",

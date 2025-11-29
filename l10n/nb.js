@@ -296,7 +296,6 @@ OC.L10N.register(
     "General settings" : "Generelle innstillinger",
     "(refreshed once per week)" : "(oppdateres en gang i uken)",
     "{addressbookname} (Disabled)" : "{addressbookname} (Deaktivert)",
-    "Sort by {sorting}" : "Sorter etter {sorting}",
     "Unique password …" : "Unikt passord...",
     "Search contacts …" : "Søk etter kontakter…",
     "Loading members list …" : "Laster liste over medlemmer...",

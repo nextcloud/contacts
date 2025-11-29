@@ -263,7 +263,6 @@ OC.L10N.register(
     "General settings" : "Algemene instellingen",
     "(refreshed once per week)" : "(wordt eens per week bijgewerkt)",
     "{addressbookname} (Disabled)" : "{addressbookname} (Uitgeschakeld)",
-    "Sort by {sorting}" : "Sorteren op {sorting}",
     "Unique password …" : "Uniek wachtwoord ...",
     "Search contacts …" : "Zoek contacten ...",
     "Loading members list …" : "Laden ledenlijst ...",
