@@ -24,9 +24,12 @@
 				:to="{
 					name: 'group',
 					params: { selectedGroup: GROUP_ALL_CONTACTS },
-				}">
+				}"
+				:active="routeState === 'all'"
+				@click="updateRouteState('all')">
 				<template #icon>
-					<IconContact :size="20" />
+					<IconContactFilled v-if="routeState === 'all'" :size="20" />
+					<IconContact v-else :size="20" />
 				</template>
 				<template #counter>
 					<NcCounterBubble
@@ -44,7 +47,9 @@
 					name: 'chart',
 					params: { selectedChart: GROUP_ALL_CONTACTS },
 				}"
-				icon="icon-category-monitoring" />
+				:active="routeState === 'orgchart'"
+				icon="icon-category-monitoring"
+				@click="updateRouteState('orgchart')" />
 
 			<!-- Not grouped group -->
 			<AppNavigationItem
@@ -54,9 +59,12 @@
 				:to="{
 					name: 'group',
 					params: { selectedGroup: GROUP_NO_GROUP_CONTACTS },
-				}">
+				}"
+				:active="routeState === 'notgrouped'"
+				@click="updateRouteState('notgrouped')">
 				<template #icon>
-					<IconUser :size="20" />
+					<IconUserFilled v-if="routeState === 'notgrouped'" :size="20" />
+					<IconUser v-else :size="20" />
 				</template>
 				<template #counter>
 					<NcCounterBubble
@@ -73,7 +81,9 @@
 				:to="{
 					name: 'group',
 					params: { selectedGroup: GROUP_RECENTLY_CONTACTED },
-				}">
+				}"
+				:active="routeState === 'recentlycontacted'"
+				@click="updateRouteState('recentlycontacted')">
 				<template #icon>
 					<IconRecentlyContacted :size="20" />
 				</template>
@@ -113,7 +123,9 @@
 			<GroupNavigationItem
 				v-for="group in ellipsisGroupsMenu"
 				:key="group.key"
-				:group="group" />
+				:route-state="routeState"
+				:group="group"
+				@update-route-state="updateRouteState" />
 
 			<template v-if="isCirclesEnabled">
 				<!-- Toggle groups ellipsis -->
@@ -148,7 +160,8 @@
 					<CircleNavigationItem
 						v-for="circle in ellipsisCirclesMenu"
 						:key="circle.key"
-						:circle="circle" />
+						:circle="circle"
+						@click="updateRouteState(`circle:${circle.id}`)" />
 
 					<!-- Toggle circles ellipsis -->
 					<AppNavigationItem
@@ -198,6 +211,8 @@ import {
 } from '@nextcloud/vue'
 import { mapStores } from 'pinia'
 import naturalCompare from 'string-natural-compare'
+import IconUserFilled from 'vue-material-design-icons/Account.vue'
+import IconContactFilled from 'vue-material-design-icons/AccountMultiple.vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconUser from 'vue-material-design-icons/AccountOutline.vue'
 import IconError from 'vue-material-design-icons/AlertCircleOutline.vue'
@@ -230,7 +245,9 @@ export default {
 		ContactsSettings,
 		GroupNavigationItem,
 		IconContact,
+		IconContactFilled,
 		IconUser,
+		IconUserFilled,
 		IconAdd,
 		IconError,
 		IconLoading,
@@ -243,12 +260,7 @@ export default {
 	props: {
 		loading: {
 			type: Boolean,
-			default: true,
-		},
-
-		contactsList: {
-			type: Array,
-			required: true,
+			default: false,
 		},
 	},
 
@@ -278,6 +290,8 @@ export default {
 			collapsedCircles: true,
 
 			showSettings: false,
+
+			routeState: 'all',
 		}
 	},
 
@@ -492,6 +506,10 @@ export default {
 		 */
 		showContactsSettings() {
 			this.showSettings = true
+		},
+
+		updateRouteState(state) {
+			this.routeState = state
 		},
 	},
 }

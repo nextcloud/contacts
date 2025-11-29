@@ -14,9 +14,12 @@
 		<AppNavigationItem
 			:key="group.key"
 			:to="group.router"
-			:name="group.name">
+			:name="group.name"
+			:active="routeState === `group:${group.id}`"
+			@click="$emit('updateRouteState', `group:${group.id}`)">
 			<template #icon>
-				<IconContact :size="20" />
+				<IconContactFilled v-if="routeState === `group:${group.id}`" :size="20" />
+				<IconContact v-else :size="20" />
 			</template>
 			<template #actions>
 				<ActionButton
@@ -87,6 +90,7 @@ import {
 } from '@nextcloud/vue'
 import download from 'downloadjs'
 import moment from 'moment'
+import IconContactFilled from 'vue-material-design-icons/AccountMultiple.vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconEmail from 'vue-material-design-icons/EmailOutline.vue'
 import IconRename from 'vue-material-design-icons/FolderEditOutline.vue'
@@ -111,11 +115,17 @@ export default {
 		IconRename,
 		IconDelete,
 		IconLoading,
+		IconContactFilled,
 	},
 
 	props: {
 		group: {
 			type: Object,
+			required: true,
+		},
+
+		routeState: {
+			type: String,
 			required: true,
 		},
 	},
