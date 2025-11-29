@@ -57,7 +57,6 @@ OC.L10N.register(
     "Phonetic last name" : "Sambenadu fonèticu",
     "Display name" : "Nùmene visualizadu",
     "Last modified" : "Ùrtima modìfica",
-    "Sort by" : "Assenta segundu",
     "An error happened during the config change" : "B'at àpidu un'errore in su càmbiu de cunfigratzione",
     "Save" : "Sarva",
     "Close" : "Serra",
@@ -215,7 +214,6 @@ OC.L10N.register(
     "Loading …" : "Carrrighende …",
     "General settings" : "Cunfiguratzione generale",
     "(refreshed once per week)" : "(agiornadu una borta a sa chida)",
-    "Sort by {sorting}" : "Assenta segundu {sorting}",
     "Search contacts …" : "Chirca cuntatos ...",
     "Loading members list …" : "Carrighende s'elencu de is membros ... ",
     "Add to {circle}" : "Agiunghe a {circle}"

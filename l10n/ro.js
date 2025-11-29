@@ -19,7 +19,6 @@ OC.L10N.register(
     "First name" : "Prenume",
     "Last name" : "Nume",
     "Display name" : "Nume afișat",
-    "Sort by" : "Sortează după",
     "Save" : "Salvează",
     "Close" : "Închide",
     "Create" : "Creează",

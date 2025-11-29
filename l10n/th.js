@@ -103,7 +103,6 @@ OC.L10N.register(
     "Loading …" : "กำลังโหลด …",
     "General settings" : "การตั้งค่าทั่วไป",
     "(refreshed once per week)" : "(รีเฟรชใหม่สัปดาห์ละครั้ง)",
-    "Sort by {sorting}" : "เรียงตาม {sorting}",
     "Search contacts …" : "ค้นหารายชื่อผู้ติดต่อ …"
 },
 "nplurals=1; plural=0;");

@@ -320,7 +320,6 @@ OC.L10N.register(
     "General settings" : "Агульныя налады",
     "(refreshed once per week)" : "(абнаўляецца раз у тыдзень)",
     "{addressbookname} (Disabled)" : "{addressbookname} (Адключана)",
-    "Sort by {sorting}" : "Сартаваць па {sorting}",
     "Unique password …" : "Унікальны пароль …",
     "Search contacts …" : "Пошук кантактаў …",
     "Add to {circle}" : "Дадаць у {circle}",

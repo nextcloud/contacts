@@ -47,7 +47,6 @@ OC.L10N.register(
     "Phonetic last name" : "Họ phiên âm",
     "Display name" : "Tên hiển thị",
     "Last modified" : "Lần cuối chỉnh sửa",
-    "Sort by" : "Sắp xếp theo",
     "Save" : "Lưu",
     "Close" : "Đóng",
     "Create" : "Tạo mới",
@@ -169,7 +168,6 @@ OC.L10N.register(
     "Loading …" : "Đang tải...",
     "General settings" : "Cài đặt chung",
     "(refreshed once per week)" : "(được làm mới một lần mỗi tuần)",
-    "Sort by {sorting}" : "Sắp xếp theo {sorting}",
     "Search contacts …" : "Tìm liên hệ ..."
 },
 "nplurals=1; plural=0;");

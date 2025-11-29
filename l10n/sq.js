@@ -22,7 +22,6 @@ OC.L10N.register(
     "Last name" : "Mbiemër",
     "Display name" : "Shfaq emrin",
     "Last modified" : "Ndryshuar së fundmi",
-    "Sort by" : "I renditur nga",
     "Save" : "Ruaj",
     "Close" : "Mbylleni",
     "Folder name" : "Emri i dosjes",

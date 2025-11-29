@@ -336,7 +336,6 @@ OC.L10N.register(
     "General settings" : "Impostazioni generali",
     "(refreshed once per week)" : "(aggiornato una volta a settimana)",
     "{addressbookname} (Disabled)" : "{addressbookname} (Disattivato)",
-    "Sort by {sorting}" : "Ordina per {sorting}",
     "Unique password …" : "Password unica…",
     "Search contacts …" : "Cerca contatti...",
     "Invite members to team" : "Invita i membri a unirsi al team",

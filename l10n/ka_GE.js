@@ -17,7 +17,6 @@ OC.L10N.register(
     "Last name" : "გვარი",
     "Display name" : "დისპლეი სახელი",
     "Last modified" : "ბოლო ცვლილება",
-    "Sort by" : "დალაგება",
     "Save" : "შენახვა",
     "Close" : "დახურვა",
     "Create" : "შექმნა",

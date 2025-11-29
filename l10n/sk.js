@@ -308,7 +308,6 @@ OC.L10N.register(
     "General settings" : "Všeobecné nastavenia",
     "(refreshed once per week)" : "(aktualizovať raz za týždeň)",
     "{addressbookname} (Disabled)" : "{addressbookname} (Vypnuté)",
-    "Sort by {sorting}" : "Zoradiť podľa {sorting}",
     "Unique password …" : "Unikátne heslo ...",
     "Search contacts …" : "Prehľadať kontakty...",
     "Loading members list …" : "Načítavam zoznam členov ...",

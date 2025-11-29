@@ -19,7 +19,6 @@ OC.L10N.register(
     "Last name" : "Nama belakang",
     "Display name" : "Nama tampilan",
     "Last modified" : "Terakhir diubah",
-    "Sort by" : "Urut berdasarkan",
     "Save" : "Simpan",
     "Close" : "Tutup",
     "Folder name" : "Nama Folder",

@@ -170,7 +170,6 @@ OC.L10N.register(
     "Loading …" : "A carregar...",
     "General settings" : "Definições Gerais",
     "(refreshed once per week)" : "(atualizado uma vez por semana)",
-    "Sort by {sorting}" : "Ordenar por {sorting}",
     "Search contacts …" : "Pesquisar contactos..."
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

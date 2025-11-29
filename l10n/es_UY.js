@@ -17,7 +17,6 @@ OC.L10N.register(
     "Last name" : "Apellido",
     "Display name" : "Nombre a desplegar",
     "Last modified" : "Última modificación",
-    "Sort by" : "Ordenar por",
     "Save" : "Guardar",
     "Close" : "Cerrar",
     "Create" : "Crear",

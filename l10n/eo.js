@@ -27,6 +27,7 @@ OC.L10N.register(
     "Last modified" : "Laste modifita",
     "Save" : "Konservi",
     "Close" : "Malfermi",
+    "Create" : "Krei",
     "Invalid image" : "Nevalida bildo",
     "Pick an avatar" : "Elekti avataron",
     "Error while processing the picture." : "Eraro dum prilaboro de la bildo.",
@@ -120,7 +121,6 @@ OC.L10N.register(
     "Spoken languages" : "Lingvoj parolataj",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"],
     "Loading …" : "Ŝargas …",
-    "Sort by {sorting}" : "Ordigi laŭ {sorting}",
     "Search contacts …" : "Serĉi kontaktojn…"
 },
 "nplurals=2; plural=(n != 1);");

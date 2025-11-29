@@ -16,7 +16,6 @@ OC.L10N.register(
     "First name" : "Prime nomine",
     "Last name" : "Ultime nomine",
     "Display name" : "Monstrar nomine",
-    "Sort by" : "Arrangiar per",
     "Save" : "Salveguardar",
     "Close" : "Clauder",
     "Create" : "Crear",
