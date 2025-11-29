@@ -44,7 +44,6 @@
     "Phonetic last name" : "שם משפחה פונטי",
     "Display name" : "שם התצוגה",
     "Last modified" : "שינוי אחרון",
-    "Sort by" : "מיון",
     "Save" : "שמירה",
     "Close" : "סגירה",
     "Folder name" : "שם תיקייה",
@@ -169,7 +168,6 @@
     "Loading …" : "בטעינה",
     "General settings" : "הגדרות כלליות",
     "(refreshed once per week)" : "(רענן פעם בשבוע)",
-    "Sort by {sorting}" : "מיון לפי {sorting}",
     "Search contacts …" : "חיפוש אנשי קשר…"
 },"pluralForm" :"nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;"
 }

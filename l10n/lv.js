@@ -137,7 +137,6 @@ OC.L10N.register(
     "Loading …" : "Notiek ielāde ...",
     "General settings" : "Vispārīgi iestatījumi",
     "{addressbookname} (Disabled)" : "{addressbookname} (atspējota)",
-    "Sort by {sorting}" : "Kārtot pēc {sorting}",
     "Search contacts …" : "Meklēt kontaktpersonas…"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");

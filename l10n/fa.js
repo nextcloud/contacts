@@ -243,7 +243,6 @@ OC.L10N.register(
     "General settings" : "تنظیمات عمومی",
     "(refreshed once per week)" : "(تازه‌سازی هفته‌ای یک بار)",
     "{addressbookname} (Disabled)" : "{addressbookname} (از کار افتاده)",
-    "Sort by {sorting}" : "چینش بر اساس {sorting}",
     "Unique password …" : "گذرواژهٔ یکتا …",
     "Search contacts …" : "جست‌وجوی آشنایان …",
     "Loading members list …" : "Loading members list …",

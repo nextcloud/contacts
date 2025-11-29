@@ -340,7 +340,6 @@ OC.L10N.register(
     "General settings" : "Опште поставке",
     "(refreshed once per week)" : "(освежава се једном недељно)",
     "{addressbookname} (Disabled)" : "{addressbookname} (Искључен)",
-    "Sort by {sorting}" : "Сортирање: {sorting}",
     "Unique password …" : "Јединствена лозинка ...",
     "Search contacts …" : "Претражи контакте ...",
     "Invite members to team" : "Позови чланове у тим",

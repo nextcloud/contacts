@@ -305,7 +305,6 @@ OC.L10N.register(
     "General settings" : "General settings",
     "(refreshed once per week)" : "(refreshed once per week)",
     "{addressbookname} (Disabled)" : "{addressbookname} (Disabled)",
-    "Sort by {sorting}" : "Sort by {sorting}",
     "Unique password …" : "Unique password …",
     "Search contacts …" : "Search contacts …",
     "Loading members list …" : "Loading members list …",

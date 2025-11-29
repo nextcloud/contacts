@@ -10,7 +10,6 @@ OC.L10N.register(
     "can edit" : "može da menja",
     "Cancel" : "Otkaži",
     "Add" : "Dodaj",
-    "Sort by" : "Razvrstaj",
     "Save" : "Sačuvaj",
     "Close" : "Zatvori",
     "Create" : "Napravi",

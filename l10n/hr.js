@@ -206,7 +206,6 @@ OC.L10N.register(
     "Loading …" : "Učitavanje…",
     "General settings" : "Opće postavke",
     "(refreshed once per week)" : "(osvježava se jednom tjedno)",
-    "Sort by {sorting}" : "Poredaj po {sorting}",
     "Search contacts …" : "Pretraži kontakte...",
     "Loading members list …" : "Učitavanje popisa članova…",
     "Add to {circle}" : "Dodaj u {circle}"
