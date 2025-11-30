@@ -92,6 +92,7 @@ OC.L10N.register(
     "Phonetic last name" : "Foneetiline perenimi",
     "Display name" : "Kuvatav nimi",
     "Last modified" : "Viimati muudetud",
+    "Sort contacts by" : "Kontaktide järjestus",
     "Manages" : "Haldab",
     "Oversees" : "Juhendab",
     "An error happened during the config change" : "Seadistuste muutmisel tekkis viga",

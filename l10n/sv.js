@@ -92,6 +92,7 @@ OC.L10N.register(
     "Phonetic last name" : "Fonetiskt efternamn",
     "Display name" : "Visningsnamn",
     "Last modified" : "Senast ändrad",
+    "Sort contacts by" : "Sortera kontakter efter",
     "Manages" : "Leder",
     "Oversees" : "Har uppsikt över",
     "An error happened during the config change" : "Ett fel uppstod vid inställningsändringen",
