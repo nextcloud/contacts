@@ -292,6 +292,14 @@ export default class Circle {
 		|| (this.config & CircleConfigs.FRIEND) !== 0
 	}
 
+	get invitationCode() {
+		return this._data.invitationCode
+	}
+
+	set invitationCode(invitationCode: string) {
+		this._data.invitationCode = invitationCode
+	}
+
 	// PARAMS ---------------------------------------------
 	/**
 	 * Vue router param

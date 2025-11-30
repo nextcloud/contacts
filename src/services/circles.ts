@@ -197,3 +197,12 @@ export async function editCircleSetting(circleId: string, setting: CircleSetting
 	)
 	return response.data.ocs.data
 }
+
+export async function createInvitationLink(circleId: string) {
+	const response = await axios.put(generateOcsUrl('apps/circles/circles/{circleId}/invitation', { circleId }))
+	return response.data.ocs.data
+}
+export async function revokeInvitationLink(circleId: string) {
+	const response = await axios.delete(generateOcsUrl('apps/circles/circles/{circleId}/invitation', { circleId }))
+	return response.data.ocs.data
+}

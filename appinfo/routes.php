@@ -10,6 +10,10 @@ return [
 		['name' => 'contacts#direct', 'url' => '/direct/contact/{contact}', 'verb' => 'GET'],
 		['name' => 'contacts#directcircle', 'url' => '/direct/circle/{singleId}', 'verb' => 'GET'],
 		['name' => 'page#index', 'url' => '/', 'verb' => 'GET'],
+
+		['name' => 'invitation#viewInvitation', 'url' => '/join/{invitationCode}', 'verb' => 'GET'],
+		['name' => 'invitation#acceptInvitation', 'url' => '/api/v1/join/{invitationCode}', 'verb' => 'POST'],
+
 		['name' => 'page#index', 'url' => '/{group}', 'verb' => 'GET', 'postfix' => 'group'],
 		['name' => 'page#index', 'url' => '/{group}/{contact}', 'verb' => 'GET', 'postfix' => 'group.contact'],
 		['name' => 'social_api#update_contact',  'url' => '/api/v1/social/avatar/{network}/{addressbookId}/{contactId}', 'verb' => 'PUT'],
