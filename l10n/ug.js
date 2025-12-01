@@ -92,6 +92,7 @@ OC.L10N.register(
     "Phonetic last name" : "فونېتىكىلىق فامىلىسى",
     "Display name" : "كۆرسىتىش ئىسمى",
     "Last modified" : "ئاخىرقى قېتىم ئۆزگەرتىلگەن",
+    "Sort contacts by" : "ئالاقىداشنى بىلەن رەتكە تىز",
     "Manages" : "باشقۇرۇش",
     "Oversees" : "نازارەتچىلەر",
     "An error happened during the config change" : "سەپلىمە ئۆزگەرتىش جەريانىدا خاتالىق كۆرۈلدى",
