@@ -1,6 +1,12 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# 8.2.0 (unreleased)
+
+### Features
+
+* Implement quick create for team resources
+
 # [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0-beta.Z) (2025-01-09)
 
 
