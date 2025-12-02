@@ -92,6 +92,7 @@ OC.L10N.register(
     "Phonetic last name" : "語音姓",
     "Display name" : "顯示名稱",
     "Last modified" : "上次修改",
+    "Sort contacts by" : "按以下條件對聯絡人排序：",
     "Manages" : "管理",
     "Oversees" : "監督",
     "An error happened during the config change" : "變更設定時發生錯誤",
