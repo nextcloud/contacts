@@ -22,7 +22,7 @@
 		<div v-if="!resourceType.noInput" class="resource-creation-popover">
 			<div class="popover-content">
 				<NcTextField
-					:value="inputValue"
+					:model-value="inputValue"
 					:placeholder="resourceType.placeholder"
 					:label="resourceType.inputLabel"
 					@update:value="updateInput"
