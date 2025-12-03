@@ -102,7 +102,7 @@
     "ts-jest": "^29.4.5",
     "ts-loader": "^9.5.4",
     "typescript": "^5.9.3",
-    "vite": "^7.1.12"
+    "vite": "^7.2.6"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
