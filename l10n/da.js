@@ -74,7 +74,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "Indlæsning er deaktiveret da der ikke er nogen adressebog tilgængelig",
     "An error occurred, unable to create the address book" : "Der opstod en fejl, og adressebogen kunne ikke oprettes",
     "Add new address book" : "Tilføj ny adressebog",
-    "Cancel" : "Annuller",
+    "Cancel" : "Annullér",
     "Add" : "Add",
     "First name" : "Fornavn",
     "Last name" : "Efternavn",
