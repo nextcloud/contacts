@@ -176,7 +176,7 @@ const mutations = {
 			newContact.addressbook = addressbook
 
 			// set new key, re-assign reference
-			state.contacts[newContact.ke] = newContact
+			state.contacts[newContact.key] = newContact
 
 			// Update sorted contacts list, replace at exact same position
 			const index = state.sortedContacts.findIndex((search) => search.key === oldKey)
