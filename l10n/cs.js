@@ -92,6 +92,7 @@ OC.L10N.register(
     "Phonetic last name" : "Příjmení foneticky",
     "Display name" : "Zobrazované jméno",
     "Last modified" : "Naposledy upraveno",
+    "Sort contacts by" : "Řadit kontakty dle",
     "Manages" : "Spravuje",
     "Oversees" : "Dohlíží",
     "An error happened during the config change" : "V průběhu měnění nastavení došlo k chybě",
