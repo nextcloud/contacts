@@ -92,6 +92,7 @@ OC.L10N.register(
     "Phonetic last name" : "Jina la mwisho la kifonetiki",
     "Display name" : "Onesha jina",
     "Last modified" : "Iliyoboreshwa mwisho",
+    "Sort contacts by" : "Panga mawasiliano kwa",
     "Manages" : "Inadhibiti",
     "Oversees" : "Inasimamia",
     "An error happened during the config change" : "Hitilafu imetokea wakati wa mabadiliko ya usanidi",
