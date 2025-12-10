@@ -24,6 +24,7 @@ OC.L10N.register(
     "Leave team" : "Takımdan ayrıl",
     "Delete team" : "Takımı sil",
     "Contacts settings" : "Kişiler ayarları",
+    "General" : "Genel",
     "Update avatars from social media" : "Avatarlar sosyal ağ üzerinden güncellensin",
     "Address books" : "Adres defterleri",
     "Rename" : "Yeniden adlandır",
