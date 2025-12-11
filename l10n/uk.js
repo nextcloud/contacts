@@ -92,6 +92,7 @@ OC.L10N.register(
     "Phonetic last name" : "Прізвище за вимовою",
     "Display name" : "Ім'я для показу",
     "Last modified" : "Востаннє змінено",
+    "Sort contacts by" : "Впорядковувати контакти за",
     "Manages" : "Керує",
     "Oversees" : "Наглядає",
     "An error happened during the config change" : "Помилка під час внесення змін до конфігурації",
