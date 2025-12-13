@@ -6,6 +6,8 @@
 
 import { translate as t } from '@nextcloud/l10n'
 import { ShareType } from '@nextcloud/sharing'
+import CircleConfigCheckboxesList from '../components/CircleDetails/CircleConfigs/CircleConfigCheckboxesList.vue'
+import CircleConfigInvitationLink from '../components/CircleDetails/CircleConfigs/CircleConfigInvitationLink.vue'
 
 export type DefaultGroup = string
 export type DefaultChart = string
@@ -92,20 +94,41 @@ export const CIRCLES_MEMBER_LEVELS = {
 // Available circle configs in the circle details view
 export const PUBLIC_CIRCLE_CONFIG = {
 	[t('contacts', 'Invites')]: {
-		[CIRCLE_CONFIG_OPEN]: t('contacts', 'Anyone can request membership'),
-		[CIRCLE_CONFIG_INVITE]: t('contacts', 'Members need to accept invitation'),
-		[CIRCLE_CONFIG_REQUEST]: t('contacts', 'Memberships must be confirmed/accepted by a Moderator (requires "Anyone can request membership")'),
-		[CIRCLE_CONFIG_FRIEND]: t('contacts', 'Members can also invite'),
+		component: CircleConfigCheckboxesList,
+		props: {
+			configs: {
+				[CIRCLE_CONFIG_OPEN]: t('contacts', 'Anyone can request membership'),
+				[CIRCLE_CONFIG_INVITE]: t('contacts', 'Members need to accept invitation'),
+				[CIRCLE_CONFIG_REQUEST]: t('contacts', 'Memberships must be confirmed/accepted by a Moderator (requires "Anyone can request membership")'),
+				[CIRCLE_CONFIG_FRIEND]: t('contacts', 'Members can also invite'),
+			},
+		},
+	},
+
+	[t('contacts', 'Invitation links')]: {
+		component: CircleConfigInvitationLink,
+		props: {},
 	},
 
 	[t('contacts', 'Membership')]: {
-		// TODO: implement backend
-		// [CIRCLE_CONFIG_CIRCLE_INVITE]: t('contacts', 'Team must confirm when invited in another circle'),
-		[CIRCLE_CONFIG_ROOT]: t('contacts', 'Prevent teams from being a member of another team'),
+		component: CircleConfigCheckboxesList,
+		props: {
+			configs: {
+
+				// TODO: implement backend
+				// [CIRCLE_CONFIG_CIRCLE_INVITE]: t('contacts', 'Team must confirm when invited in another circle'),
+				[CIRCLE_CONFIG_ROOT]: t('contacts', 'Prevent teams from being a member of another team'),
+			},
+		},
 	},
 
 	[t('contacts', 'Privacy')]: {
-		[CIRCLE_CONFIG_VISIBLE]: t('contacts', 'Visible to everyone'),
+		component: CircleConfigCheckboxesList,
+		props: {
+			configs: {
+				[CIRCLE_CONFIG_VISIBLE]: t('contacts', 'Visible to everyone'),
+			},
+		},
 	},
 }
 
