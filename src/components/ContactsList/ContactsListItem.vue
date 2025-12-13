@@ -13,27 +13,27 @@
 			:key="source.key"
 			class="list-item-style envelope"
 			:name="source.displayName"
-			:to="{ name: 'contact', params: { selectedGroup: selectedGroup, selectedContact: source.key } }">
+			:to="isStatic ? undefined : { name: 'contact', params: { selectedGroup: selectedGroup, selectedContact: source.key } }">
 			<!-- @slot Icon slot -->
 
 			<template #icon>
 				<div
 					class="contacts-list__item-icon"
 					@click.exact.prevent="onSelectMultiple"
-					@mouseenter="hoveringAvatar = true"
-					@mouseleave="hoveringAvatar = false">
+					@mouseenter="hoverAvatar(true)"
+					@mouseleave="hoverAvatar(false)">
 					<NcAvatar
-						v-if="!source.isMultiSelected && !hoveringAvatar && source.addressbook.id === 'z-server-generated--system'"
+						v-if="((!source.isMultiSelected && !hoveringAvatar) || isStatic) && source.addressbook.id === 'z-server-generated--system'"
 						:user="source.uid"
 						:hide-status="true"
 						:size="40" />
 					<NcAvatar
-						v-if="!source.isMultiSelected && !hoveringAvatar && source.addressbook.id !== 'z-server-generated--system'"
+						v-if="((!source.isMultiSelected && !hoveringAvatar) || isStatic) && source.addressbook.id !== 'z-server-generated--system'"
 						:display-name="source.displayName"
 						:url="avatarUrl"
 						:size="40" />
 					<CheckIcon
-						v-if="source.isMultiSelected || hoveringAvatar"
+						v-if="(source.isMultiSelected || hoveringAvatar) && !isStatic"
 						:size="28"
 						:class="{ 'contacts-list__item-avatar-selected': source.isMultiSelected, 'contacts-list__item-avatar-hovered': !source.isMultiSelected }" />
 				</div>
@@ -42,6 +42,11 @@
 				<div class="envelope__subtitle">
 					<span class="envelope__subtitle__subject">
 						{{ source.email ? source.email : getTel }}
+					</span>
+				</div>
+				<div v-if="showAddressbook" class="envelope__subtitle">
+					<span class="envelope__subtitle__addressbook">
+						{{ t('contacts', 'from {addressbook}', { addressbook: source.addressbook.displayName }) }}
 					</span>
 				</div>
 			</template>
@@ -90,6 +95,18 @@ export default {
 			type: Function,
 			default: () => {},
 		},
+
+		isStatic: {
+			type: Boolean,
+			default: false,
+			required: false,
+		},
+
+		showAddressbook: {
+			type: Boolean,
+			default: false,
+			required: false,
+		},
 	},
 
 	data() {
@@ -102,7 +119,7 @@ export default {
 	computed: {
 		// contact is not draggable when it has not been saved on server as it can't be added to groups/circles before
 		isDraggable() {
-			return !!this.source.dav && this.source.addressbook.id !== 'z-server-generated--system'
+			return !!this.source.dav && this.source.addressbook.id !== 'z-server-generated--system' && !this.isStatic
 		},
 
 		// usable and valid html id for scrollTo
@@ -116,13 +133,17 @@ export default {
 	},
 
 	created() {
-		this.reloadBus.on('reload-avatar', this.reloadAvatarUrl)
-		this.reloadBus.on('delete-avatar', this.deleteAvatar)
+		if (!this.isStatic) {
+			this.reloadBus.on('reload-avatar', this.reloadAvatarUrl)
+			this.reloadBus.on('delete-avatar', this.deleteAvatar)
+		}
 	},
 
 	unmounted() {
-		this.reloadBus.off('reload-avatar', this.reloadAvatarUrl)
-		this.reloadBus.off('delete-avatar', this.deleteAvatar)
+		if (!this.isStatic) {
+			this.reloadBus.off('reload-avatar', this.reloadAvatarUrl)
+			this.reloadBus.off('delete-avatar', this.deleteAvatar)
+		}
 	},
 
 	async mounted() {
@@ -185,6 +206,9 @@ export default {
 		 * Select this contact within the list
 		 */
 		selectContact() {
+			if (this.isStatic) {
+				return
+			}
 			// change url with router
 			this.$router.push({
 				name: 'contact',
@@ -193,12 +217,25 @@ export default {
 		},
 
 		onSelectMultiple() {
+			if (this.isStatic) {
+				return
+			}
 			// This weirdness of passing a function as a prop is because the VirtualList extra-props prop object does not support listening to custom events (afaik)
 			this.onSelectMultipleFromParent(this.source, this.index)
 		},
 
 		onSelectMultipleRange() {
+			if (this.isStatic) {
+				return
+			}
 			this.onSelectMultipleFromParent(this.source, this.index, true)
+		},
+
+		hoverAvatar(newState) {
+			if (this.isStatic) {
+				return
+			}
+			this.hoveringAvatar = newState
 		},
 	},
 }
@@ -219,6 +256,11 @@ export default {
 			line-height: 130%;
 			overflow: hidden;
 			text-overflow: ellipsis;
+		}
+
+		&__addressbook {
+			line-height: 130%;
+			color: var(--color-text-maxcontrast);
 		}
 	}
 }
