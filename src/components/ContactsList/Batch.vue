@@ -46,7 +46,7 @@
 					:index="index"
 					:source="contact"
 					:reload-bus="reloadBus"
-					:title="contact.addressbook.canModifyCard ? '' : t('contacts', 'This contact can not be grouped')"
+					:title="contact.addressbook.canModifyCard ? '' : t('contacts', 'This contact cannot be grouped')"
 					:is-static="true"
 					:show-addressbook="true" />
 
@@ -57,7 +57,7 @@
 					:index="index"
 					:source="contact"
 					:reload-bus="reloadBus"
-					:title="contact.addressbook.canDeleteCard ? '' : t('contacts', 'This contact can not be moved')"
+					:title="contact.addressbook.canDeleteCard ? '' : t('contacts', 'This contact cannot be moved')"
 					:is-static="true"
 					:show-addressbook="true" />
 			</div>
