@@ -157,6 +157,7 @@ OC.L10N.register(
     "Calendar events with you" : "Догађаји календара са вама",
     "Deck cards with you" : "Шпилови картица са вама",
     "No shared items with this contact" : "Нема ставки подељених са овим контактом",
+    "Move" : "Move",
     "Confirm merging contacts" : "Потврди спајање контаката",
     "The selected contacts have conflicting information. Choose which information to keep" : "Информације изабраних контаката су у конфликту. Изаберите информације које желите да се задрже",
     "Contacts can be merged" : "Контакти могу да се споје",

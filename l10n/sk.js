@@ -148,6 +148,7 @@ OC.L10N.register(
     "Calendar events with you" : "Kalendárne udalosti s vami",
     "Deck cards with you" : "Karty Desk s vami",
     "No shared items with this contact" : "Žiadne zdieľané položky s týmto kontaktom",
+    "Move" : "Move",
     "Groups" : "Skupiny",
     "Add to {group}" : "Pridať do {group}",
     "Remove {type}" : "Odstrániť {type}",

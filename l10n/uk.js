@@ -181,6 +181,7 @@ OC.L10N.register(
     "Calendar events with you" : "Календарні події з вами",
     "Deck cards with you" : "Картки Deck з вами",
     "No shared items with this contact" : "Відсутні спільні з цим контактом ресурси",
+    "Move" : "Move",
     "Confirm merging contacts" : "Підтвердити об'єднання контактів",
     "The selected contacts have conflicting information. Choose which information to keep" : "Вибрані контакти містять суперечливу інформацію. Виберіть, яку інформацію зберегти.",
     "Contacts can be merged" : "Контакти можна об'єднати",

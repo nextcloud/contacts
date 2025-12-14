@@ -19,6 +19,7 @@ OC.L10N.register(
     "Invalid image" : "Ongülteg d'Bild",
     "Name" : "Numm",
     "Title" : "Titel",
+    "Move" : "Move",
     "Pending" : "Ausstoend",
     "None" : "Keng",
     "Import" : "Importéieren",

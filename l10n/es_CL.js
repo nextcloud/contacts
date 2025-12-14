@@ -24,6 +24,7 @@ OC.L10N.register(
     "Address book" : "Libreta de direcciones",
     "Name" : "Nombre",
     "Title" : "Título",
+    "Move" : "Move",
     "No results" : "No hay resultados",
     "Pending" : "Pendiente",
     "None" : "Ninguno",

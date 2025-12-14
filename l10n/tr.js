@@ -181,6 +181,7 @@ OC.L10N.register(
     "Calendar events with you" : "Sizinle ilgili takvim etkinlikleri",
     "Deck cards with you" : "Sizinle ilgili tahta kartları",
     "No shared items with this contact" : "Bu kişi ile paylaşılmış bir öge yok",
+    "Move" : "Move",
     "Confirm merging contacts" : "Kişileri birleştirmeyi onayla",
     "The selected contacts have conflicting information. Choose which information to keep" : "Seçilmiş kişilerde çatışan bilgiler var. Hangi bilgilerin tutulacağını seçin",
     "Contacts can be merged" : "Kişiler birleştirilebilir",

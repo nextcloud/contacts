@@ -156,6 +156,8 @@ OC.L10N.register(
     "Calendar events with you" : "Calendario eventi con te",
     "Deck cards with you" : "Deck di cards con te",
     "No shared items with this contact" : "Nessun elemento condiviso con questo contatto",
+    "Select addressbook" : "Seleziona rubrica",
+    "Move" : "Sposta",
     "Confirm merging contacts" : "Conferma l'unione dei contatti",
     "The selected contacts have conflicting information. Choose which information to keep" : "I contatti selezionati contengono informazioni contrastanti. Scegli quali informazioni conservare",
     "Contacts can be merged" : "I contatti possono essere uniti",

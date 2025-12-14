@@ -58,6 +58,7 @@ OC.L10N.register(
     "Title" : "Amats",
     "Company" : "Uzņēmums",
     "Generate QR Code" : "Izveidot kvadrātkodu",
+    "Move" : "Move",
     "No results" : "Nav iznākuma",
     "Pending" : "Gaida",
     "Select Date" : "Atlasīt datumu",

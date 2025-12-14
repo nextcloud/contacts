@@ -181,6 +181,7 @@ OC.L10N.register(
     "Calendar events with you" : "Události v kalendáři s vámi",
     "Deck cards with you" : "Deck karty s vámi",
     "No shared items with this contact" : "S tímto kontaktem nemáte žádné sdílené položky",
+    "Select addressbook" : "Vybrat adresář kontaktů",
     "Confirm merging contacts" : "Potvrďte sloučení kontaktů",
     "The selected contacts have conflicting information. Choose which information to keep" : "Označené kontakty mají kolidující informace. Zvolte které informace ponechat",
     "Contacts can be merged" : "Kontakty je možné sloučit",
