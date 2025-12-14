@@ -144,6 +144,7 @@ OC.L10N.register(
     "Calendar events with you" : "Kalenderhendelser med deg",
     "Deck cards with you" : "Deck-kort med deg",
     "No shared items with this contact" : "Ingen delte elementer med denne kontakten",
+    "Move" : "Move",
     "Add to {group}" : "Legg til i {group}",
     "Remove {type}" : "Fjern {type}",
     "Add to group" : "Legg til gruppe",

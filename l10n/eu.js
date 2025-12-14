@@ -147,6 +147,7 @@ OC.L10N.register(
     "Calendar events with you" : "Egutegiko gertaerak zurekin",
     "Deck cards with you" : "Deck txartelak zurekin",
     "No shared items with this contact" : "Ez dago partekatutako elementurik kontaktu honekin",
+    "Move" : "Move",
     "Add to {group}" : "Gehitu {group} taldera",
     "Remove {type}" : "Kendu {type}",
     "Add to group" : "Gehitu taldera",

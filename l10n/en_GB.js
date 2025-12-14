@@ -181,6 +181,7 @@ OC.L10N.register(
     "Calendar events with you" : "Calendar events with you",
     "Deck cards with you" : "Deck cards with you",
     "No shared items with this contact" : "No shared items with this contact",
+    "Move" : "Move",
     "Confirm merging contacts" : "Confirm merging contacts",
     "The selected contacts have conflicting information. Choose which information to keep" : "The selected contacts have conflicting information. Choose which information to keep",
     "Contacts can be merged" : "Contacts can be merged",

@@ -131,6 +131,7 @@ OC.L10N.register(
     "Contact vCard as QR code" : "Adresato vCard kaip QR kodas",
     "Pick an address book" : "Pasirinkti adresų knygą",
     "Select address book" : "Pasirinkti adresų knygą",
+    "Move" : "Move",
     "Add to {group}" : "Pridėti į {group}",
     "Remove {type}" : "Šalinti {type}",
     "Add to group" : "Pridėti į grupę",

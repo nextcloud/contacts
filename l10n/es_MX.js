@@ -143,6 +143,7 @@ OC.L10N.register(
     "Calendar events with you" : "Eventos de calendario con Ud.",
     "Deck cards with you" : "Tarjetas de Deck con Ud.",
     "No shared items with this contact" : "No hay elementos compartidos con este contacto",
+    "Move" : "Move",
     "Add to {group}" : "Añadir a {group}",
     "Remove {type}" : "Eliminar {type}",
     "Add to group" : "Añadir al grupo",

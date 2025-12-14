@@ -32,6 +32,7 @@ OC.L10N.register(
     "Name" : "Нэр",
     "Title" : "Цол/Албан тушаал",
     "Select address book" : "Хаягийн бүртгэл сонгох",
+    "Move" : "Move",
     "Groups" : "Багууд",
     "No results" : "Үр дүн байхгүй",
     "Pending" : "Хүлээгдэж байгаа",

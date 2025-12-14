@@ -40,6 +40,7 @@ OC.L10N.register(
     "Title" : "Teitl",
     "Company" : "Cwmni",
     "Generate QR Code" : "Cynhyrchu Cod QR",
+    "Move" : "Move",
     "No results" : "Dim canlyniadau",
     "Pending" : "I ddod",
     "Select Date" : "Dewis Dyddiad",

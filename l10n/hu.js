@@ -158,6 +158,7 @@ OC.L10N.register(
     "Calendar events with you" : "Naptáresemények megosztva Önnel",
     "Deck cards with you" : "Kártyák megosztva Önnel",
     "No shared items with this contact" : "Nincsenek megosztások ezzel a névjeggyel",
+    "Move" : "Move",
     "Confirm merging contacts" : "Névjegyek egyesítésének megerősítése",
     "The selected contacts have conflicting information. Choose which information to keep" : "A kiválasztott névjegyek ütköző információkat tartalmaznak. Válassza ki a megtartandó információkat.",
     "Contacts can be merged" : "A névjegyek egyesíthetőek",

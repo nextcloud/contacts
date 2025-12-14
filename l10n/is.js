@@ -149,6 +149,7 @@ OC.L10N.register(
     "Calendar events with you" : "Atburðir dagatals með þér",
     "Deck cards with you" : "Deck-spjöld með þér",
     "No shared items with this contact" : "Engin samnýtt (deild) atriði með þessum tengilið",
+    "Move" : "Move",
     "Groups" : "Hópar",
     "Add to {group}" : "Bæta í {group}",
     "Remove {type}" : "Fjarlægja {type}",
