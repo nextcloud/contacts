@@ -150,6 +150,7 @@ OC.L10N.register(
     "Contact vCard as QR code" : "Yhteystiedon vCard QR-koodina",
     "Pick an address book" : "Valitse osoitekirja",
     "Select address book" : "Valitse osoitekirja",
+    "Move" : "Move",
     "Confirm merging contacts" : "Vahvista yhteystietojen yhdistäminen",
     "Contacts can be merged" : "Yhteystiedot voi yhdistää",
     "Groups" : "Ryhmät",

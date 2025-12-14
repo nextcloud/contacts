@@ -181,6 +181,7 @@ OC.L10N.register(
     "Calendar events with you" : "與您分享的日曆活動",
     "Deck cards with you" : "與您分享的 Deck 卡片",
     "No shared items with this contact" : "沒有與該聯絡人分享的項目",
+    "Move" : "移動",
     "Confirm merging contacts" : "確認合併聯絡人",
     "The selected contacts have conflicting information. Choose which information to keep" : "所選的聯絡人有衝突的資訊。請選擇要保留的資訊",
     "Contacts can be merged" : "聯絡人可以合併",

@@ -143,6 +143,7 @@ OC.L10N.register(
     "Calendar events with you" : "Dogodki koledarja v souporabi z vami",
     "Deck cards with you" : "Kartice Deck v souporabi z vami",
     "No shared items with this contact" : "Ni predmetov v souporabi s tem stikom",
+    "Move" : "Move",
     "Add to {group}" : "Dodaj skupino {group}",
     "Remove {type}" : "Odstrani {type}",
     "Add to group" : "Dodaj skupino",

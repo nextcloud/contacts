@@ -181,6 +181,7 @@ OC.L10N.register(
     "Calendar events with you" : "Imeachtaí féilire leat",
     "Deck cards with you" : "Cártaí amadán leat",
     "No shared items with this contact" : "Níl aon mhír roinnte leis an teagmhálaí seo",
+    "Move" : "Bog",
     "Confirm merging contacts" : "Deimhnigh teagmhálacha a chumasc",
     "The selected contacts have conflicting information. Choose which information to keep" : "Tá faisnéis choimhlinteach sna teagmhálaithe roghnaithe. Roghnaigh cén fhaisnéis atá le coinneáil.",
     "Contacts can be merged" : "Is féidir teagmhálacha a chumasc",
