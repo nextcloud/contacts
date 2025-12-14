@@ -151,6 +151,7 @@ OC.L10N.register(
     "Calendar events with you" : "Συμβάντα ημερολογίου με εσάς",
     "Deck cards with you" : "Κάρτες Deck με εσάς",
     "No shared items with this contact" : "Δεν υπάρχουν κοινόχρηστα στοιχεία με αυτήν την επαφή",
+    "Move" : "Move",
     "Confirm merging contacts" : "Επιβεβαίωση συγχώνευσης επαφών",
     "The selected contacts have conflicting information. Choose which information to keep" : "Οι επιλεγμένες επαφές έχουν αντικρουόμενες πληροφορίες. Επιλέξτε ποιες πληροφορίες να διατηρήσετε",
     "Contacts can be merged" : "Οι επαφές μπορούν να συγχωνευθούν",

@@ -26,6 +26,7 @@ OC.L10N.register(
     "Invalid image" : "Gambar tidak sah",
     "Name" : "Nama",
     "Title" : "Judul",
+    "Move" : "Move",
     "No results" : "Tidak ada hasil",
     "Pending" : "Tunggu",
     "None" : "Tidak ada",

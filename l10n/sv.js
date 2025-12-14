@@ -181,6 +181,7 @@ OC.L10N.register(
     "Calendar events with you" : "Kalenderhändelser med dig",
     "Deck cards with you" : "Deck-kort med dig",
     "No shared items with this contact" : "Inga delade objekt med den här kontakten",
+    "Move" : "Move",
     "Confirm merging contacts" : "Bekräfta sammanslagning av kontakter",
     "The selected contacts have conflicting information. Choose which information to keep" : "De valda kontakterna har motstridig information. Välj vilken information som ska behållas",
     "Contacts can be merged" : "Kontakter kan slås samman",

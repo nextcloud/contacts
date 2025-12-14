@@ -181,6 +181,7 @@ OC.L10N.register(
     "Calendar events with you" : "Matukio ya kalenda na wewe",
     "Deck cards with you" : "Kadi za staha na wewe",
     "No shared items with this contact" : "Hakuna vifungu vilivyoshirikishwa na mawasiliano haya",
+    "Move" : "Hama",
     "Confirm merging contacts" : "Thibitisha kuunganisha mawasiliano",
     "The selected contacts have conflicting information. Choose which information to keep" : "Mawasiliano yalizochaguliwa yana maelezo yanayokinzana. Chagua ni taarifa gani utahifadhi",
     "Contacts can be merged" : "Mawasiliano yanaweza kuunganishwa",

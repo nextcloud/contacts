@@ -78,6 +78,7 @@ OC.L10N.register(
     "Generate QR Code" : "יצירת קוד QR",
     "Pick an address book" : "נא לבחור ספר כתובות",
     "Select address book" : "בחירת ספר כתובות",
+    "Move" : "Move",
     "Remove {type}" : "הסר את {type}",
     "Add to group" : "הוסף לקבוצה",
     "Search {types}" : "חפש {types}",

@@ -22,6 +22,7 @@ OC.L10N.register(
     "Invalid image" : "Imagine invalide",
     "Name" : "Nomine",
     "Title" : "Titulo",
+    "Move" : "Move",
     "Pending" : "Pendente",
     "None" : "Nulle",
     "New contact" : "Nove contacto",

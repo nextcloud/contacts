@@ -24,6 +24,7 @@ OC.L10N.register(
     "Address book" : "მისამართების წიგნი",
     "Name" : "სახელი",
     "Title" : "სათაური",
+    "Move" : "Move",
     "No results" : "შედეგები არაა",
     "Pending" : "მოლოდინში",
     "None" : "არც ერთი",

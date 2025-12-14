@@ -15,6 +15,7 @@ OC.L10N.register(
     "Create" : "Napravi",
     "Name" : "naziv",
     "Title" : "Naslov",
+    "Move" : "Move",
     "No results" : "Nema rezultata",
     "Pending" : "Na čekanju",
     "None" : "Ništa",

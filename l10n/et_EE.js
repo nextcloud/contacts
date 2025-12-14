@@ -181,6 +181,7 @@ OC.L10N.register(
     "Calendar events with you" : "Sinuga ühised kalendrisündmused",
     "Deck cards with you" : "Sinuga ühised kanbani kaardid",
     "No shared items with this contact" : "Selle kontaktiga pole jagatud ühtegi objekti",
+    "Move" : "Move",
     "Confirm merging contacts" : "Mesti oma kontaktid",
     "The selected contacts have conflicting information. Choose which information to keep" : "Valitud kontaktidel on vastuoluline teave. Palun vali, mida neist soovid säilitada",
     "Contacts can be merged" : "Kontaktide mestimine on võimalik",

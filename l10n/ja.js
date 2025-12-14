@@ -148,6 +148,7 @@ OC.L10N.register(
     "Calendar events with you" : "カレンダーイベント",
     "Deck cards with you" : "デッキカード",
     "No shared items with this contact" : "この連絡先との共有アイテムはありません",
+    "Move" : "Move",
     "Groups" : "グループ",
     "Add to {group}" : "{group}に追加",
     "Add members to {group}" : "ユーザーを{group}に追加",

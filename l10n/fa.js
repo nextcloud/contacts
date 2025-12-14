@@ -116,6 +116,7 @@ OC.L10N.register(
     "Contact vCard as QR code" : "Contact vCard as QR code",
     "Pick an address book" : "Pick an address book",
     "Select address book" : "Select address book",
+    "Move" : "Move",
     "Add to {group}" : "افزودن به {group}",
     "Remove {type}" : "برداشتن {type}",
     "Add to group" : "افزودن به گروه",

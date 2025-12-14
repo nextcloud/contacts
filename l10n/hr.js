@@ -87,6 +87,7 @@ OC.L10N.register(
     "Contact vCard as QR code" : "VCard kontakta kao QR kod",
     "Pick an address book" : "Odaberi adresar",
     "Select address book" : "Označi adresar",
+    "Move" : "Move",
     "Add to {group}" : "Dodaj u {group}",
     "Remove {type}" : "Ukloni {type}",
     "Add to group" : "Dodaj u grupu",
