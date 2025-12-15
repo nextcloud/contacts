@@ -22,6 +22,8 @@
     "Manage team" : "Hallitse tiimiä",
     "Leave team" : "Poistu tiimistä",
     "Delete team" : "Poista tiimi",
+    "Setting saved" : "Asetus tallennettu",
+    "Failed to save setting" : "Asetuksen tallentaminen epäonnistui",
     "Contacts settings" : "Yhteystietojen asetukset",
     "General" : "Yleiset",
     "Update avatars from social media" : "Päivitä avatar-kuvat sosiaalisesta mediasta",
