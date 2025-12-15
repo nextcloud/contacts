@@ -87,6 +87,7 @@ OC.L10N.register(
     "View profile" : "Ver el perfil",
     "Clone contact" : "Clonar el contautu",
     "Generate QR Code" : "Xenerar un códigu QR",
+    "Move" : "Mover",
     "Personal team" : "Equipu personal",
     "Local team" : "Equipu llocal",
     "Unable to get the results" : "Nun ye posible consiguir los resultaos",
