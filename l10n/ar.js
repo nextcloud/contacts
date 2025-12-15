@@ -149,6 +149,7 @@ OC.L10N.register(
     "Calendar events with you" : "أحداثك على التقويم",
     "Deck cards with you" : "بطاقات لك",
     "No shared items with this contact" : "لا توجد عناصر مُشارَكة مع جهة الاتصال هذه",
+    "Move" : "Move",
     "Groups" : "مجموعات",
     "Add to {group}" : "إضافة إلى {group}",
     "Remove {type}" : "حذف {type}",

@@ -181,6 +181,7 @@ OC.L10N.register(
     "Calendar events with you" : "كالېندار پائالىيىتى سىز بىلەن",
     "Deck cards with you" : "كارتىڭىزنى سىز بىلەن بىللە",
     "No shared items with this contact" : "بۇ ئالاقىدە ئورتاق بەھرىلىنىدىغان تۈر يوق",
+    "Move" : "يۆتكە",
     "Confirm merging contacts" : "ئالاقىداشلارنى بىرلەشتۈرۈشنى جەزىملە",
     "The selected contacts have conflicting information. Choose which information to keep" : "تاللانغان ئالاقىلىشىش ئۇچۇرلىرى توقۇنۇشۇۋاتىدۇ. قايسى ئۇچۇرلارنى ساقلاشنى تاللاڭ.",
     "Contacts can be merged" : "ئالاقىداشلارنى بىرلەشتۈرگىلى بولىدۇ",
