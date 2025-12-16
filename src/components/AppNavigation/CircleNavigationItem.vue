@@ -9,7 +9,6 @@
 		:to="circle.router">
 		<template #icon>
 			<AccountStar v-if="circle.isOwner" :size="20" />
-			<AccountGroup v-else-if="circle.isMember" :size="20" />
 			<AccountGroupOutline v-else :size="20" />
 		</template>
 		<template #actions>
@@ -88,7 +87,6 @@ import {
 	NcLoadingIcon as IconLoading,
 	NcCounterBubble,
 } from '@nextcloud/vue'
-import AccountGroup from 'vue-material-design-icons/AccountGroup.vue'
 import AccountGroupOutline from 'vue-material-design-icons/AccountGroupOutline.vue'
 import AccountStar from 'vue-material-design-icons/AccountStarOutline.vue'
 import IconCog from 'vue-material-design-icons/CogOutline.vue'
@@ -113,7 +111,6 @@ export default {
 		IconDelete,
 		LocationEnter,
 		AccountStar,
-		AccountGroup,
 		AccountGroupOutline,
 		IconLoading,
 	},
