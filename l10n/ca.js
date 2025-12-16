@@ -146,6 +146,7 @@ OC.L10N.register(
     "Calendar events with you" : "Esdeveniments de Calendari amb tu",
     "Deck cards with you" : "Pila de Targetes amb tu",
     "No shared items with this contact" : "No s'ha compartit cap element amb aquest contacte",
+    "Move" : "Move",
     "Groups" : "Grups",
     "Add to {group}" : "Afegeix a {group}",
     "Remove {type}" : "Suprimeix {type}",

@@ -188,8 +188,6 @@ OC.L10N.register(
     "Selected contacts" : "Valitud kontaktid",
     "Please note that only {count} of the {total} contacts can be added to a group" : "Palun arvesta, et gruppi lisada saad vaid {count} kontakti {total}-st",
     "Please note that only {count} of the {total} contacts can be moved" : "Palun arvesta, et teisaldada saad vaid {count} kontakti {total}-st",
-    "This contact can not be grouped" : "Seda kontakti ei saa grupeerida",
-    "This contact can not be moved" : "Seda kontakti ei saa teisaldada",
     "Move" : "Teisalda",
     "from {addressbook}" : "aadressiraamatust {addressbook}",
     "Confirm merging contacts" : "Mesti oma kontaktid",
