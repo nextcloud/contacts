@@ -186,8 +186,6 @@
     "Selected contacts" : "Seçilmiş kişiler",
     "Please note that only {count} of the {total} contacts can be added to a group" : "Yalnızca {count} / {total} kişinin bir gruba eklenebileceğini lütfen unutmayın",
     "Please note that only {count} of the {total} contacts can be moved" : "Yalnızca {count} / {total} kişinin taşınabileceğini lütfen unutmayın",
-    "This contact can not be grouped" : "Bu kişi gruba eklenemez",
-    "This contact can not be moved" : "Bu kişi taşınamaz",
     "Move" : "Taşı",
     "from {addressbook}" : "{addressbook} adres defterinden",
     "Confirm merging contacts" : "Kişileri birleştirmeyi onayla",

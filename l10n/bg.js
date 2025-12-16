@@ -106,6 +106,7 @@ OC.L10N.register(
     "Contact vCard as QR code" : "Свързване с vCard, като QR код",
     "Pick an address book" : "Избор на адресна книга",
     "Select address book" : "Изберете адресна книга",
+    "Move" : "Move",
     "Add to {group}" : "Добавяне към {group}",
     "Remove {type}" : "Премахване на {type}",
     "Add to group" : "Добавяне към група",
