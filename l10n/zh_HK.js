@@ -188,8 +188,6 @@ OC.L10N.register(
     "Selected contacts" : "已選的聯絡人",
     "Please note that only {count} of the {total} contacts can be added to a group" : "請注意：在 {total} 個聯絡人中，只能將其中 {count} 個加入群組",
     "Please note that only {count} of the {total} contacts can be moved" : "請注意：在 {total} 個聯絡人中，只能將其中 {count} 個移動",
-    "This contact can not be grouped" : "此聯絡人無法加入群組",
-    "This contact can not be moved" : "無法移動此聯絡人",
     "Move" : "移動",
     "from {addressbook}" : "從 {addressbook}",
     "Confirm merging contacts" : "確認合併聯絡人",
