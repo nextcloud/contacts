@@ -21,9 +21,12 @@
 			<directory name="vendor-bin" />
 		</ignoreFiles>
 	</projectFiles>
+	<stubs>
+		<file name="tests/stubs/oca_dav_events_sabrepluginaddevent.php" />
+	</stubs>
 	<extraFiles>
 		<directory name="vendor" />
-		<directory name="vendor/nextcloud/ocp" />
+		<directory name="vendor-bin/psalm/vendor/nextcloud/ocp" />
 	</extraFiles>
 	<issueHandlers>
 		<UndefinedClass>

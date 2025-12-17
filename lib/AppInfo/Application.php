@@ -18,7 +18,6 @@ use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\EventDispatcher\IEventDispatcher;
-use OCP\SabrePluginEvent;
 
 class Application extends App implements IBootstrap {
 	public const APP_ID = 'contacts';
