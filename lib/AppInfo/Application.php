@@ -45,10 +45,6 @@ class Application extends App implements IBootstrap {
 		/** @var IEventDispatcher $eventDispatcher */
 		$eventDispatcher = $serverContainer->get(IEventDispatcher::class);
 		$eventDispatcher->addListener(SabrePluginAddEvent::class, static function (SabrePluginAddEvent $event) use ($appContainer) {
-			if ($event->getServer() === null) {
-				return;
-			}
-
 			// We have to register the PatchPlugin here and not info.xml,
 			// because info.xml plugins are loaded, after the
 			// beforeMethod:* hook has already been emitted.

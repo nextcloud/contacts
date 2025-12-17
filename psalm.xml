@@ -26,7 +26,7 @@
 	</stubs>
 	<extraFiles>
 		<directory name="vendor" />
-		<directory name="vendor-bin/psalm/vendor/nextcloud/ocp" />
+		<directory name="vendor/nextcloud/ocp" />
 	</extraFiles>
 	<issueHandlers>
 		<UndefinedClass>
