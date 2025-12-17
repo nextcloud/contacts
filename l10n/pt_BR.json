@@ -186,6 +186,8 @@
     "Selected contacts" : "Contatos selecionados",
     "Please note that only {count} of the {total} contacts can be added to a group" : "Observe que apenas {count} dos {total} contatos podem ser adicionados a um grupo",
     "Please note that only {count} of the {total} contacts can be moved" : "Observe que apenas {count} dos {total} contatos podem ser movidos",
+    "This contact cannot be grouped" : "Este contato não pode ser agrupado",
+    "This contact cannot be moved" : "Este contato não pode ser movido",
     "Move" : "Mover",
     "from {addressbook}" : "de {addressbook}",
     "Confirm merging contacts" : "Confirmar a fusão de contatos",

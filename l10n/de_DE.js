@@ -188,6 +188,8 @@ OC.L10N.register(
     "Selected contacts" : "Ausgewählte Kontakte",
     "Please note that only {count} of the {total} contacts can be added to a group" : "Bitte beachten, dass nur {count} der {total} Kontakte einer Gruppe zugeordnet werden können",
     "Please note that only {count} of the {total} contacts can be moved" : "Bitte beachten, dass nur {count} der {total} Kontakte verschoben werden können",
+    "This contact cannot be grouped" : "Dieser Kontakt kann nicht einer Gruppe zugeordnet werden",
+    "This contact cannot be moved" : "Dieser Kontakt kann nicht verschoben werden",
     "Move" : "Verschieben",
     "from {addressbook}" : "aus {addressbook}",
     "Confirm merging contacts" : "Zusammenführen der Kontakte bestätigen",
