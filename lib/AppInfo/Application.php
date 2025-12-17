@@ -11,6 +11,7 @@ use OCA\Contacts\Dav\PatchPlugin;
 use OCA\Contacts\Event\LoadContactsOcaApiEvent;
 use OCA\Contacts\Listener\LoadContactsFilesActions;
 use OCA\Contacts\Listener\LoadContactsOcaApi;
+use OCA\DAV\Events\SabrePluginAddEvent;
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
@@ -44,7 +45,7 @@ class Application extends App implements IBootstrap {
 
 		/** @var IEventDispatcher $eventDispatcher */
 		$eventDispatcher = $serverContainer->get(IEventDispatcher::class);
-		$eventDispatcher->addListener('OCA\DAV\Connector\Sabre::addPlugin', static function (SabrePluginEvent $event) use ($appContainer) {
+		$eventDispatcher->addListener(SabrePluginAddEvent::class, static function (SabrePluginAddEvent $event) use ($appContainer) {
 			if ($event->getServer() === null) {
 				return;
 			}
