@@ -1,3 +1,22 @@
+## [7.3.9](https://github.com/nextcloud/contacts/compare/v7.3.8...v7.3.9) (2025-12-17)
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([af64f7a](https://github.com/nextcloud/contacts/commit/af64f7abd590d15ef305e27c1c32d4f33c25ff79))
+* **l10n:** Update translations from Transifex ([231ca4e](https://github.com/nextcloud/contacts/commit/231ca4e04367bd19b8a44200c48712a90fc42ec1))
+* **l10n:** Update translations from Transifex ([3381594](https://github.com/nextcloud/contacts/commit/3381594e3c0484e7745cebae9351c5ee2dfd2a3d))
+* **l10n:** Update translations from Transifex ([157fc25](https://github.com/nextcloud/contacts/commit/157fc2573bb9d3a0aa4570d623c09e9daedfc09b))
+* **l10n:** Update translations from Transifex ([4846b4e](https://github.com/nextcloud/contacts/commit/4846b4e6008c3baf55ca61791b4cfb8600cdbebd))
+* **l10n:** Update translations from Transifex ([84b17e8](https://github.com/nextcloud/contacts/commit/84b17e8ebc0082e60c1769a4754d979b87d4876d))
+* **l10n:** Update translations from Transifex ([d192e70](https://github.com/nextcloud/contacts/commit/d192e708ee05a4ecd13ee0b33980008d098bf7c7))
+* **l10n:** Update translations from Transifex ([1c4248d](https://github.com/nextcloud/contacts/commit/1c4248d9f6126770f731c4a72608bea5487ca3a3))
+* **l10n:** Update translations from Transifex ([d46b937](https://github.com/nextcloud/contacts/commit/d46b93724e0c1fe807239f608878edaeacdc7009))
+* **l10n:** Update translations from Transifex ([afccc1a](https://github.com/nextcloud/contacts/commit/afccc1ab8b42050eb7288cfaef5684973c9b84f6))
+* **l10n:** Update translations from Transifex ([4442630](https://github.com/nextcloud/contacts/commit/4442630b65df2871f4fc8a6b12bd7db3bea94302))
+
+
+
 ## [7.3.8](https://github.com/nextcloud/contacts/compare/v7.3.7...v7.3.8) (2025-12-02)
 
 
