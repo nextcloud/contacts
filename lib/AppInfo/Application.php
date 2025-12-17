@@ -11,13 +11,13 @@ use OCA\Contacts\Dav\PatchPlugin;
 use OCA\Contacts\Event\LoadContactsOcaApiEvent;
 use OCA\Contacts\Listener\LoadContactsFilesActions;
 use OCA\Contacts\Listener\LoadContactsOcaApi;
+use OCA\DAV\Events\SabrePluginAddEvent;
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\EventDispatcher\IEventDispatcher;
-use OCP\SabrePluginEvent;
 
 class Application extends App implements IBootstrap {
 	public const APP_ID = 'contacts';
@@ -44,11 +44,7 @@ class Application extends App implements IBootstrap {
 
 		/** @var IEventDispatcher $eventDispatcher */
 		$eventDispatcher = $serverContainer->get(IEventDispatcher::class);
-		$eventDispatcher->addListener('OCA\DAV\Connector\Sabre::addPlugin', static function (SabrePluginEvent $event) use ($appContainer) {
-			if ($event->getServer() === null) {
-				return;
-			}
-
+		$eventDispatcher->addListener(SabrePluginAddEvent::class, static function (SabrePluginAddEvent $event) use ($appContainer) {
 			// We have to register the PatchPlugin here and not info.xml,
 			// because info.xml plugins are loaded, after the
 			// beforeMethod:* hook has already been emitted.
