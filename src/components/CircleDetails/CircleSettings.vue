@@ -15,11 +15,11 @@
 					<NcCheckboxRadioSwitch
 						v-for="(label, config) in configs"
 						:key="'circle-config' + config"
-						:checked="isChecked(config)"
+						:model-value="isChecked(config)"
 						:loading="loading === config"
 						:disabled="loading !== false"
 						wrapper-element="li"
-						@update:checked="onChange(config, $event)">
+						@update:model-value="onChange(config, $event)">
 						{{ label }}
 					</NcCheckboxRadioSwitch>
 				</ul>
