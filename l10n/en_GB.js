@@ -188,6 +188,8 @@ OC.L10N.register(
     "Selected contacts" : "Selected contacts",
     "Please note that only {count} of the {total} contacts can be added to a group" : "Please note that only {count} of the {total} contacts can be added to a group",
     "Please note that only {count} of the {total} contacts can be moved" : "Please note that only {count} of the {total} contacts can be moved",
+    "This contact cannot be grouped" : "This contact cannot be grouped",
+    "This contact cannot be moved" : "This contact cannot be moved",
     "Move" : "Move",
     "from {addressbook}" : "from {addressbook}",
     "Confirm merging contacts" : "Confirm merging contacts",
