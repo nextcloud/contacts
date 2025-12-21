@@ -186,6 +186,8 @@
     "Selected contacts" : "已選的聯絡人",
     "Please note that only {count} of the {total} contacts can be added to a group" : "請注意：在 {total} 個聯絡人中，只能將其中 {count} 個加入群組",
     "Please note that only {count} of the {total} contacts can be moved" : "請注意：在 {total} 個聯絡人中，只能將其中 {count} 個移動",
+    "This contact cannot be grouped" : "無法將此聯絡人分組",
+    "This contact cannot be moved" : "無法將此聯絡人移動",
     "Move" : "移動",
     "from {addressbook}" : "從 {addressbook}",
     "Confirm merging contacts" : "確認合併聯絡人",
