@@ -271,7 +271,7 @@ class ImportControllerTest extends TestCase {
 		$this->mockL10n();
 
 		$actual = $this->controller->import(42, 'contacts');
-		$this->assertEquals('Imported %n contacts (skipped %d)', $actual->getData());
+		$this->assertEquals('Imported %n contacts (skipped %n contact)', $actual->getData());
 		$this->assertEquals(200, $actual->getStatus());
 	}
 
