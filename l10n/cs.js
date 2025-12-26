@@ -184,6 +184,7 @@ OC.L10N.register(
     "Select groups" : "Vybrat skupiny",
     "Select addressbook" : "Vybrat adresář kontaktů",
     "Selected contacts" : "Vybrané kontakty",
+    "Please note that only {count} of the {total} contacts can be added to a group" : "Všimněte si, že pouze {count} z {total} kontaktů je možné přidat do skupiny",
     "Move" : "Přesunout",
     "from {addressbook}" : "od {addressbook}",
     "Confirm merging contacts" : "Potvrďte sloučení kontaktů",
