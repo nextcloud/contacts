@@ -47,7 +47,7 @@ OC.L10N.register(
     "Open the contacts app settings" : "Abrir las ajustes de la aplicación Contactos",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Compartido con {num} entidad","Compartido con {num} entidades","Compartido con {num} entidades"],
     "Copied" : "Copiado",
-    "Cannot copy" : "No se pudo copiar",
+    "Cannot copy" : "No se ha podido copiar",
     "Copy link" : "Copiar enlace",
     "Toggling of address book was not successful" : "El cambio de la libreta de direcciones falló",
     "This will delete the address book and every contacts within it" : "Esto eliminará la libreta de direcciones y todos los contactos que hay en ella",
