@@ -676,7 +676,7 @@ export default defineComponent({
 		 * @return {string}
 		 */
 		addressbook() {
-			return this.lastUsedAddressBook?.id || this.contact.addressbook.id
+			return this.contact?.addressbook?.id || this.lastUsedAddressBook?.id
 		},
 
 		/**
