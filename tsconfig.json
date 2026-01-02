@@ -1,14 +1,16 @@
 {
+	"include": ["src/**/*.ts", "src/**/*.vue", "src/env.d.ts"],
 	"compilerOptions": {
 		"module": "ESNext",
 		"moduleResolution": "bundler",
 		"target": "ESNext",
 		"strictNullChecks": true,
 		"sourceMap": true,
+		"declaration": false,
 		"allowSyntheticDefaultImports": true,
-		"declaration": true,
-	},
-	"include": [
-		"./src/**/*"
-	]
+		"allowImportingTsExtensions": true,
+		"paths": {
+			"@/*": ["./src/*"]
+		}
+	}
 }
