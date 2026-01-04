@@ -38,7 +38,7 @@
 						v-else
 						id="contact-fullname"
 						ref="fullname"
-						v-model="contact.fullName"
+						v-model="localContact.fullName"
 						:placeholder="t('contacts', 'Name')"
 						type="text"
 						autocomplete="off"
@@ -56,7 +56,7 @@
 					<template v-else>
 						<input
 							id="contact-title"
-							v-model="contact.title"
+							v-model="localContact.title"
 							:placeholder="t('contacts', 'Title')"
 							type="text"
 							autocomplete="off"
@@ -65,7 +65,7 @@
 							name="title">
 						<input
 							id="contact-org"
-							v-model="contact.org"
+							v-model="localContact.org"
 							:placeholder="t('contacts', 'Company')"
 							type="text"
 							autocomplete="off"
@@ -144,7 +144,7 @@
 						class="header-icon header-icon--pulse icon-up"
 						@click="updateContact" />
 
-					<!-- edit and save buttons -->
+					<!-- edit, save, and cancel buttons -->
 					<template v-if="canModifyCard">
 						<NcButton
 							v-if="!editMode"
@@ -155,17 +155,28 @@
 							</template>
 							{{ t('contacts', 'Edit') }}
 						</NcButton>
-						<NcButton
-							v-else
-							variant="secondary"
-							:disabled="loadingUpdate || !isDataValid"
-							@click="onSave">
-							<template #icon>
-								<IconLoading v-if="loadingUpdate" :size="20" />
-								<CheckIcon v-else :size="20" />
-							</template>
-							{{ t('contacts', 'Save') }}
-						</NcButton>
+						<div v-else class="edit-buttons">
+							<NcButton
+								variant="secondary"
+								:disabled="loadingUpdate || !isDataValid"
+								@click="onSave">
+								<template #icon>
+									<IconLoading v-if="loadingUpdate" :size="20" />
+									<CheckIcon v-else :size="20" />
+								</template>
+								{{ t('contacts', 'Save') }}
+							</NcButton>
+							<NcButton
+								v-if="contact.dav"
+								variant="secondary"
+								:disabled="loadingUpdate || !isDataValid"
+								@click="onCancel">
+								<template #icon>
+									<CloseIcon :size="20" />
+								</template>
+								{{ t('contacts', 'Cancel') }}
+							</NcButton>
+						</div>
 					</template>
 				</template>
 				<!-- menu actions -->
@@ -257,7 +268,9 @@
 			<!-- contact details loading -->
 			<IconLoading v-if="loadingData" :size="20" class="contact-details" />
 			<!-- quick actions -->
-			<div v-else-if="!loadingData" class="contact-details-wrapper" :class="[{ 'contact-details-wrapper-read-only': isReadOnly }]">
+			<div v-else-if="!loadingData"
+				class="contact-details-wrapper"
+				:class="[{ 'contact-details-wrapper-read-only': isReadOnly }]">
 				<!-- contact details -->
 				<section class="contact-details">
 					<!-- properties iteration -->
@@ -413,6 +426,7 @@ import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconAccount from 'vue-material-design-icons/AccountOutline.vue'
 import CakeIcon from 'vue-material-design-icons/Cake.vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
+import CloseIcon from 'vue-material-design-icons/Close.vue'
 import IconCopy from 'vue-material-design-icons/ContentCopy.vue'
 import IconMail from 'vue-material-design-icons/EmailOutline.vue'
 import EyeCircleIcon from 'vue-material-design-icons/EyeCircleOutline.vue'
@@ -464,6 +478,7 @@ export default defineComponent({
 		IconLoading,
 		PencilIcon,
 		CheckIcon,
+		CloseIcon,
 		Modal,
 		NcSelect,
 		PropertyGroups,
@@ -863,7 +878,7 @@ export default defineComponent({
 			// localContact to match the proper store contact
 			if (!this.localContact.dav) {
 				this.logger.debug('New contact synced!', { localContact: this.localContact })
-				// fetching newly created & storred contact
+				// fetching newly created & stored contact
 				const contact = this.$store.getters.getContact(this.localContact.key)
 				await this.updateLocalContact(contact)
 			}
@@ -1049,6 +1064,10 @@ export default defineComponent({
 				contact,
 			)
 
+			// Deep clone jCal to avoid mutating the original contact
+			localContact.jCal = JSON.parse(JSON.stringify(contact.jCal))
+			localContact.vCard = new ICAL.Component(localContact.jCal)
+
 			this.fixed = validate(localContact)
 
 			this.localContact = localContact
@@ -1132,6 +1151,19 @@ export default defineComponent({
 					localContact: toRaw(this.localContact),
 				})
 			}
+		},
+
+		/**
+		 * Cancel current edits. This handler is triggered by the cancel button.
+		 */
+		async onCancel() {
+			// Restore the original contact state
+			await this.updateLocalContact(this.contact)
+			// Reset any pending changes
+			this.newGroupsValue = [...this.contact.groups]
+			this.newAddressBook = null
+			// Exit edit mode
+			this.editMode = false
 		},
 
 		getLastUsedAddressBook() {
@@ -1276,5 +1308,15 @@ section.contact-details {
 
 :deep(.contact-details-wrapper-read-only  .input-field__input) {
 	box-shadow: none !important;
+}
+
+.edit-buttons {
+	display: flex;
+	flex-direction: column;
+	gap: 6px;
+
+	:deep(button) {
+		width: 100%;
+	}
 }
 </style>
