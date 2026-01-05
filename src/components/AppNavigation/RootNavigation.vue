@@ -157,11 +157,13 @@
 
 		<template #footer>
 			<div class="contacts-settings">
-				<AppNavigationItem :aria-label="t('contacts', 'Open the contacts app settings')"
-					:name="CONTACTS_SETTINGS"
+				<NcButton :aria-label="t('contacts', 'Open the contacts app settings')"
+					variant="tertiary"
+					:wide="true"
 					@click="showContactsSettings">
 					<Cog slot="icon" :size="20" />
-				</AppNavigationItem>
+					{{ CONTACTS_SETTINGS }}
+				</NcButton>
 			</div>
 		</template>
 		<ContactsSettings :open.sync="showSettings" />
@@ -180,6 +182,7 @@ import {
 	NcAppNavigationItem as AppNavigationItem,
 	NcAppNavigationCaption as AppNavigationCaption,
 	NcLoadingIcon as IconLoading,
+	NcButton,
 } from '@nextcloud/vue'
 
 import naturalCompare from 'string-natural-compare'
@@ -224,6 +227,7 @@ export default {
 		IconLoading,
 		IconRecentlyContacted,
 		NewCircleIntro,
+		NcButton,
 	},
 
 	mixins: [RouterMixin],
@@ -497,5 +501,9 @@ $caption-padding: 22px;
 .contacts-settings-button {
 	width: 100%;
 	justify-content: start !important;
+}
+
+:deep(.button-vue__wrapper){
+	justify-content: flex-start !important;
 }
 </style>
