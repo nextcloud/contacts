@@ -182,14 +182,16 @@
 
 		<template #footer>
 			<div class="contacts-settings">
-				<AppNavigationItem
+				<NcButton
 					:aria-label="t('contacts', 'Open the contacts app settings')"
-					:name="CONTACTS_SETTINGS"
+					variant="tertiary"
+					:wide="true"
 					@click="showContactsSettings">
 					<template #icon>
 						<Cog :size="20" />
 					</template>
-				</AppNavigationItem>
+					{{ CONTACTS_SETTINGS }}
+				</NcButton>
 			</div>
 		</template>
 		<ContactsSettings v-model:open="showSettings" />
@@ -207,6 +209,7 @@ import {
 	NcAppNavigationItem as AppNavigationItem,
 	NcLoadingIcon as IconLoading,
 	NcActionButton,
+	NcButton,
 	NcCounterBubble,
 } from '@nextcloud/vue'
 import { mapStores } from 'pinia'
@@ -253,6 +256,7 @@ export default {
 		IconLoading,
 		IconRecentlyContacted,
 		NewCircleIntro,
+		NcButton,
 	},
 
 	mixins: [RouterMixin],
@@ -551,5 +555,9 @@ $caption-padding: 22px;
 .contacts-settings-button {
 	width: 100%;
 	justify-content: start !important;
+}
+
+:deep(.button-vue__wrapper){
+	justify-content: flex-start !important;
 }
 </style>
