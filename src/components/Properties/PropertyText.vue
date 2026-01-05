@@ -50,6 +50,7 @@
 				<NcTextArea v-if="propName === 'note'"
 					id="textarea"
 					ref="textarea"
+					:aria-label="t('mail', 'note')"
 					:value.sync="localValue"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
@@ -65,6 +66,7 @@
 					autocomplete="email"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
+					:aria-label="t('mail', 'email')"
 					:error="!isEmailValid"
 					:helper-text="!emailHelpText || isReadonly ? '' : emailHelpText"
 					label-outside
@@ -80,6 +82,7 @@
 					:readonly="isReadOnly"
 					:class="{'property__value--with-ext': haveExtHandler}"
 					type="text"
+					:aria-label="propName"
 					:placeholder="placeholder"
 					@update:value="updateValue" />
 
