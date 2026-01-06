@@ -1,3 +1,21 @@
+## [7.3.10](https://github.com/nextcloud/contacts/compare/v7.3.9...v7.3.10) (2026-01-06)
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([c3cb3e7](https://github.com/nextcloud/contacts/commit/c3cb3e75cc176a87b4f48026edaff377be003354))
+* **l10n:** Update translations from Transifex ([1345924](https://github.com/nextcloud/contacts/commit/13459241dfb9ecc2d70935f5861b8b8123206068))
+* **l10n:** Update translations from Transifex ([a887ef0](https://github.com/nextcloud/contacts/commit/a887ef07fe2deeacc06063914d29d723a4ebafc8))
+* **l10n:** Update translations from Transifex ([45ce33d](https://github.com/nextcloud/contacts/commit/45ce33defe675807497615e7d81d79567af76598))
+* **l10n:** Update translations from Transifex ([cfcb49e](https://github.com/nextcloud/contacts/commit/cfcb49e9afcba44e6399f5b2882aaae84f4b8c29))
+* **l10n:** Update translations from Transifex ([78abae4](https://github.com/nextcloud/contacts/commit/78abae41618d07328037d545c811af3306c7386a))
+* **l10n:** Update translations from Transifex ([2d521d4](https://github.com/nextcloud/contacts/commit/2d521d4210dbfea7b4b2927325ef8058d75e1f9c))
+* **l10n:** Update translations from Transifex ([8c8141e](https://github.com/nextcloud/contacts/commit/8c8141ea5542c35959a9873aab7ebe463f38d4c7))
+* reference error in property text ([46cec08](https://github.com/nextcloud/contacts/commit/46cec087c59a893303ebf1cb0e967a6f5351ddb9))
+* show address book in read only mode ([f926e46](https://github.com/nextcloud/contacts/commit/f926e46ea6ed9facf4851cd5e46cca03075dce94))
+
+
+
 ## [7.3.9](https://github.com/nextcloud/contacts/compare/v7.3.8...v7.3.9) (2025-12-17)
 
 
