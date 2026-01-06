@@ -37,31 +37,18 @@
 			{{ t('contacts', 'Please note that only {count} of the {total} contacts can be moved', { count: canDeleteCount, total: contacts.length }) }}
 		</NcNoteCard>
 
-		<div class="contacts-list">
-			<div v-for="(contact, index) in contactsLimited" :key="contact.key" class="contact-item">
-				<ContactsListItem
-					v-if="mode === 'group'"
-					:key="contact.key"
-					:class="{ disabled: !contact.addressbook.canModifyCard }"
-					:index="index"
-					:source="contact"
-					:reload-bus="reloadBus"
-					:title="contact.addressbook.canModifyCard ? '' : t('contacts', 'This contact cannot be grouped')"
-					:is-static="true"
-					:show-addressbook="true" />
-
-				<ContactsListItem
-					v-if="mode === 'move'"
-					:key="contact.key"
-					:class="{ disabled: !contact.addressbook.canDeleteCard }"
-					:index="index"
-					:source="contact"
-					:reload-bus="reloadBus"
-					:title="contact.addressbook.canDeleteCard ? '' : t('contacts', 'This contact cannot be moved')"
-					:is-static="true"
-					:show-addressbook="true" />
-			</div>
-		</div>
+		<ul class="contacts-list">
+			<ContactsListItem
+				v-for="(contact, index) in contactsLimited"
+				:key="contact.key"
+				:class="{ disabled: !contact.addressbook.canDeleteCard }"
+				:index="index"
+				:source="contact"
+				:reload-bus="reloadBus"
+				:title="listItemTitle(contact)"
+				:is-static="true"
+				:show-addressbook="true" />
+		</ul>
 
 		<NcButton
 			v-if="contacts.length > 9"
@@ -184,6 +171,17 @@ export default {
 			if (this.mode === 'move') {
 				this.moveToAddressbook()
 			}
+		},
+
+		listItemTitle(contact) {
+			if (this.mode === 'move') {
+				return contact.addressbook.canDeleteCard ? '' : this.$t('contacts', 'This contact cannot be moved')
+			}
+			if (this.mode === 'group') {
+				return contact.addressbook.canModifyCard ? '' : this.$t('contacts', 'This contact cannot be grouped')
+			}
+			// shouldn't end up here
+			return ''
 		},
 
 		async group() {
