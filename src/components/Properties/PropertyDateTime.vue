@@ -55,6 +55,7 @@
 				<input
 					v-else
 					:readonly="true"
+					:aria-label="propModel.readableName"
 					:value="formatDateTime()">
 			</div>
 
