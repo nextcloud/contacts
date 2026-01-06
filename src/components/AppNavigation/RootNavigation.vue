@@ -147,9 +147,9 @@
 						@click="onToggleCircles" />
 				</template>
 
-				<p class="app-navigation__circle-desc">
+				<li class="app-navigation__circle-desc">
 					{{ CIRCLE_DESC }}
-				</p>
+				</li>
 			</template>
 		</template>
 
