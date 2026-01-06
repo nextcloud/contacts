@@ -159,9 +159,9 @@ export default {
 					}
 				})
 				.onNodeClick((d) => {
-					if (!this.chartReference.data().filter((item) => item.nodeId === d)[0]._upToTheRootHighlighted) {
+					if (!this.chartReference.data().filter((item) => item.nodeId === d.id)[0]?._upToTheRootHighlighted) {
 						this.chartReference.clearHighlighting()
-						this.chartReference.setUpToTheRootHighlighted(d).render()
+						this.chartReference.setUpToTheRootHighlighted(d.id).render()
 					} else {
 						this.chartReference.clearHighlighting()
 					}
