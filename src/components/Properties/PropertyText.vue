@@ -87,6 +87,7 @@
 				<a v-if="haveExtHandler && isReadOnly"
 					:href="externalHandler"
 					class="property__ext"
+					:aria-label="t('mail', 'send an email')"
 					target="_blank">
 					<OpenInNewIcon :size="20" />
 				</a>
