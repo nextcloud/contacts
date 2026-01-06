@@ -1,11 +1,18 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-# 8.2.0 (unreleased)
+# 8.2.0 (2026-01-06)
 
 ### Features
 
 * Implement quick create for team resources
+
+### Bug Fixes
+
+* Make scrolling on mobile work again
+* Show address book in read only mode
+* Wrong address book displayed on details view
+* Reference error in property text
 
 # [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0-beta.Z) (2025-01-09)
 
