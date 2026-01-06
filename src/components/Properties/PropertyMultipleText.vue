@@ -58,6 +58,7 @@
 				<!-- show the first input if not a structured value -->
 				<input v-if="!property.isStructuredValue"
 					v-model.trim="localValue[0]"
+					:aria-label="(localType && localType.name) || '' "
 					:readonly="isReadOnly"
 					type="text"
 					@input="updateValue">
@@ -86,6 +87,7 @@
 							:readonly="isReadOnly"
 							type="text"
 							:label-outside="true"
+							:aria-label="propModel.readableValues[index]"
 							:label="propModel.readableValues[index]"
 							@update:value="updateValue" />
 					</div>
