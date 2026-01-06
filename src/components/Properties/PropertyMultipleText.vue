@@ -61,6 +61,7 @@
 				<input
 					v-if="!property.isStructuredValue"
 					v-model.trim="localValue[0]"
+					:aria-label="(localType && localType.name) || '' "
 					:readonly="isReadOnly"
 					type="text"
 					@input="updateValue">
@@ -92,6 +93,7 @@
 							:readonly="isReadOnly"
 							type="text"
 							:label-outside="true"
+							:aria-label="propModel.readableValues[index]"
 							:label="propModel.readableValues[index]"
 							@update:model-value="updateValue" />
 					</div>
@@ -173,6 +175,10 @@ export default {
 				|| !!this.selectType
 				|| !this.property.isStructuredValue
 		},
+	},
+
+	mounted() {
+		console.log('-----------------', this.propModel)
 	},
 }
 
