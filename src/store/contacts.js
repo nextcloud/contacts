@@ -326,7 +326,6 @@ const actions = {
 		if (contact.version === '3.0') {
 			contact.rev = ICAL.VCardTime.fromDateAndOrTimeString(new Date().toISOString(), 'date-time')
 		}
-		contact.rev = ICAL.VCardTime.now().convertToZone(ICAL.Timezone.utcTimezone)
 
 		const vData = contact.toStringStripQuotes()
 
