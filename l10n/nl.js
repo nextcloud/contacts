@@ -164,6 +164,7 @@ OC.L10N.register(
     "Add contact in group" : "Voeg contactpersoon aan groep toe",
     "None" : "Geen",
     "Select option" : "Selecteer optie",
+    "email" : "e-mailadres",
     "Add property of this type" : "Voeg eigenschap van dit type toe",
     "Member" : "Lid",
     "Unable to create the contact." : "Kan contactpersoon niet aanmaken.",
