@@ -215,6 +215,7 @@ OC.L10N.register(
     "Add contact in group" : "Aggiungi contatto a gruppo",
     "None" : "Nessuno",
     "Select option" : "Seleziona opzione",
+    "email" : "email",
     "Personal dates" : "Date personali",
     "Add property of this type" : "Aggiungi proprietà di questo tipo",
     "Member" : "Membro",
