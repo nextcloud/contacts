@@ -18,6 +18,7 @@ OC.L10N.register(
     "There are no contacts in this group" : "Er zijn geen contactpersonen in deze groep",
     "Create contacts" : "Contactpersonen aanmaken",
     "Add contacts" : "Toevoegen contactpersonen",
+    "Loading …" : "Aan het laden…",
     "Manage team" : "Team beheren",
     "Leave team" : "Team verlaten",
     "Delete team" : "Team verwijderen",
