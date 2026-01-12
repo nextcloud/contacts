@@ -51,7 +51,7 @@
 				<!-- org, title -->
 				<template #subtitle>
 					<template v-if="isReadOnly">
-						<span v-html="formattedSubtitle" />
+						<span :innerHTML="formattedSubtitle" />
 					</template>
 					<template v-else>
 						<NcInputField
@@ -100,13 +100,13 @@
 								<IconMail :size="20" />
 							</template>
 							<ActionLink
-								v-for="emailAddress in emailAddressList"
-								:key="emailAddress"
-								:href="'mailto:' + emailAddress">
+								v-for="email in emailAddressList"
+								:key="email"
+								:href="'mailto:' + email">
 								<template #icon>
 									<IconMail :size="20" />
 								</template>
-								{{ emailAddress }}
+								{{ email }}
 							</ActionLink>
 						</Actions>
 						<Actions
@@ -200,7 +200,6 @@
 					<!-- user can clone if there is at least one option available -->
 					<ActionButton
 						v-if="isReadOnly && addressbooksOptions.length > 0"
-						ref="cloneAction"
 						:close-after-click="true"
 						@click="cloneContact">
 						<template #icon>
@@ -258,7 +257,6 @@
 				:name="t('contacts', 'Pick an address book')"
 				@close="closePickAddressbookModal">
 				<NcSelect
-					ref="pickAddressbook"
 					v-model="pickedAddressbook"
 					class="address-book"
 					:allow-empty="false"

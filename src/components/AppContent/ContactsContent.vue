@@ -88,7 +88,7 @@ export default {
 	props: {
 		loading: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 
 		contactsList: {
@@ -96,6 +96,8 @@ export default {
 			required: true,
 		},
 	},
+
+	emits: ['new-contact'],
 
 	data() {
 		return {

@@ -193,6 +193,8 @@ export default {
 		},
 	},
 
+	emits: ['finished'],
+
 	data() {
 		return {
 			bus: mitt(),

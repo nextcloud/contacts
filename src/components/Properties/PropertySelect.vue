@@ -73,11 +73,6 @@ export default {
 	mixins: [PropertyMixin],
 
 	props: {
-		value: {
-			type: [Object, String, Array],
-			required: true,
-		},
-
 		hideActions: {
 			type: Boolean,
 			default: false,

@@ -14,7 +14,6 @@
 			</NcButton>
 			<Modal
 				v-if="isOpened"
-				ref="modal"
 				class="import-contact__modal"
 				:name="t('contacts', 'Import contacts')"
 				@close="toggleModal">
