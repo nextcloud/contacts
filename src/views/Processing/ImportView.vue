@@ -31,6 +31,8 @@ export default {
 		NcButton,
 	},
 
+	emits: ['close'],
+
 	computed: {
 		importState() {
 			return this.$store.getters.getImportState

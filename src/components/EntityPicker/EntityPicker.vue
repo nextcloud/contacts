@@ -176,14 +176,6 @@ export default {
 		},
 
 		/**
-		 * The sorting key for the dataSet
-		 */
-		sort: {
-			type: String,
-			default: 'label',
-		},
-
-		/**
 		 * Confirm button text
 		 */
 		confirmLabel: {
@@ -205,7 +197,7 @@ export default {
 		 */
 		internalSearch: {
 			type: Boolean,
-			default: true,
+			default: false,
 		},
 
 		/**
@@ -222,6 +214,8 @@ export default {
 			default: '',
 		},
 	},
+
+	emits: ['update:selection', 'close', 'submit', 'search'],
 
 	data() {
 		return {

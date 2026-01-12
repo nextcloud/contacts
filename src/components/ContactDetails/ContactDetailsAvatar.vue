@@ -173,6 +173,8 @@ export default {
 		},
 	},
 
+	emits: ['update-local-contact'],
+
 	data() {
 		return {
 			opened: false,

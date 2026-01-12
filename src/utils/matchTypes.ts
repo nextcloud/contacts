@@ -6,8 +6,8 @@
 /**
  * Match a list of types against the available types
  *
- * @param selectedTypes
- * @param options
+ * @param selectedTypes the selected types to match
+ * @param options the available type options
  */
 export function matchTypes(selectedTypes: Array<string>, options: Array<{ id: string, name: string }>) {
 	const items = options.map((option) => {

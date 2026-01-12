@@ -61,6 +61,7 @@ import { t } from '@nextcloud/l10n'
 import { NcEmptyContent } from '@nextcloud/vue'
 import { defineComponent } from 'vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
+import IconLoading from 'vue-material-design-icons/Loading.vue'
 import EntityPicker from '../EntityPicker/EntityPicker.vue'
 import MemberGridItem from './MemberGridItem.vue'
 import IsMobileMixin from '../../mixins/IsMobileMixin.ts'
@@ -74,6 +75,7 @@ export default defineComponent({
 	components: {
 		EntityPicker,
 		IconContact,
+		IconLoading,
 		MemberGridItem,
 		NcEmptyContent,
 	},

@@ -57,7 +57,7 @@ export default {
 
 		disabled: {
 			type: Boolean,
-			default: undefined,
+			default: false,
 		},
 	},
 

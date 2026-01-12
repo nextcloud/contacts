@@ -83,17 +83,14 @@ export default {
 			required: true,
 		},
 
-		contact: {
-			type: Contact,
-			required: true,
-		},
-
 		// Is it read-only?
 		isReadOnly: {
 			type: Boolean,
 			required: true,
 		},
 	},
+
+	emits: ['update:value'],
 
 	data() {
 		return {

@@ -72,6 +72,7 @@ import IconAdd from 'vue-material-design-icons/Plus.vue'
 import ChartContent from '../components/AppContent/ChartContent.vue'
 import CircleContent from '../components/AppContent/CircleContent.vue'
 import ContactsContent from '../components/AppContent/ContactsContent.vue'
+import UserGroupContent from '../components/AppContent/UserGroupContent.vue'
 import RootNavigation from '../components/AppNavigation/RootNavigation.vue'
 import SettingsImportContacts from '../components/AppNavigation/Settings/SettingsImportContacts.vue'
 import ContactsPicker from '../components/EntityPicker/ContactsPicker.vue'
@@ -94,6 +95,7 @@ export default {
 		CircleContent,
 		ChartContent,
 		ContactsContent,
+		UserGroupContent,
 		ContactsPicker,
 		Content,
 		ImportView,

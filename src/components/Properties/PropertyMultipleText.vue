@@ -105,7 +105,7 @@
 		<!-- no order enforced: just iterate on all the values -->
 		<template v-else>
 			<div
-				v-for="(value, index) in filteredValue"
+				v-for="(item, index) in filteredValue"
 				:key="index"
 				class="property__row">
 				<template v-if="(isReadOnly && filteredValue[index]) || !isReadOnly">

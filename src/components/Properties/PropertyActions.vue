@@ -47,6 +47,8 @@ export default {
 		},
 	},
 
+	emits: ['delete'],
+
 	methods: {
 		deleteProperty() {
 			this.$emit('delete')

@@ -88,6 +88,7 @@ import {
 	NcActionSeparator,
 	NcActionText,
 	NcAvatar,
+	NcButton,
 	NcListItem,
 } from '@nextcloud/vue'
 import IconCheck from 'vue-material-design-icons/Check.vue'
@@ -113,6 +114,7 @@ export default {
 		NcActionSeparator,
 		NcActionText,
 		NcAvatar,
+		NcButton,
 	},
 
 	mixins: [RouterMixin],
