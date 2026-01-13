@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace OCA\Contacts\Service;
 
+use Exception;
 use OCA\Contacts\AppInfo\Application;
 use OCA\Contacts\Service\Social\CompositeSocialProvider;
 use OCA\DAV\CardDAV\ContactsManager;
@@ -22,6 +23,7 @@ use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 class SocialApiService {
 	private $appName;
@@ -36,6 +38,7 @@ class SocialApiService {
 		private IURLGenerator $urlGen,
 		private ITimeFactory $timeFactory,
 		private ImageResizer $imageResizer,
+		private LoggerInterface $logger,
 	) {
 		$this->appName = Application::APP_ID;
 	}
@@ -213,6 +216,61 @@ class SocialApiService {
 			return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 		}
 		return new JSONResponse([], Http::STATUS_OK);
+	}
+
+	/**
+	 * Creates a federated contact and adds it to the address book of the local user with the specified userId,
+	 * unless a contact with the specified cloudId already exists for that local user.
+	 *
+	 * @param {string} cloudId the cloud id of the federated contact
+	 * @param {string} email the email of the federated contact
+	 * @param {string} name the name of the federated contact
+	 * @param {string} userId the uid of the local user
+	 */
+	public function createFederatedContact(string $cloudId, string $email, string $name, string $userId): ?array {
+		try {
+			// Set up the contacts provider for the user with the specified uid
+			$cm = $this->serverContainer->get(ContactsManager::class);
+			$cm->setupContactsProvider($this->manager, $userId, $this->urlGen);
+
+			// if contact already exists we simply return
+			$searchResult = $this->manager->search($cloudId, ['CLOUD']);
+			if (count($searchResult) > 0) {
+				$this->logger->info('Contact with cloud id ' . $cloudId . ' already exists.', ['app' => Application::APP_ID]);
+				return null;
+			}
+
+			/** @var \OCP\IAddressBook */
+			$addressBook = null;
+			$addressBooks = $this->manager->getUserAddressBooks();
+			foreach ($addressBooks as $_addressBook) {
+				// TODO properly resolve the correct addressbook to add the contact to
+				// Resolve by uri seems a bit risky ... can we be sure the uri equals 'contacts' ?
+				// Perhaps add to the first 'non system' addressbook we find ?
+				// (although we still would like to add to the 'Contacts' addressbook I guess)
+				if ($_addressBook->getUri() === 'contacts') {
+					$addressBook = $_addressBook;
+					break;
+				}
+			}
+			if (!isset($addressBook)) {
+				$this->logger->error('Contacts address book not found. Unable to add the new contact on invite accepted.', ['app' => Application::APP_ID]);
+				return null;
+			}
+
+			$newContact = $this->manager->createOrUpdate(
+				[
+					'FN' => $name,
+					'EMAIL' => $email,
+					'CLOUD' => $cloudId,
+				],
+				$addressBook->getKey()
+			);
+			return $newContact;
+		} catch (Exception $e) {
+			$this->logger->error('An exception occurred creating a federated contact: ' . $e->getTraceAsString(), ['app' => Application::APP_ID]);
+		}
+		return null;
 	}
 
 	/**
