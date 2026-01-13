@@ -2,35 +2,40 @@
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import { registerWidget, registerCustomPickerElement, NcCustomPickerRenderResult } from '@nextcloud/vue/dist/Components/NcRichText.js'
+import { registerWidget, registerCustomPickerElement, NcCustomPickerRenderResult } from '@nextcloud/vue/components/NcRichText'
 
 registerWidget('users_picker_profile', async (el, { richObjectType, richObject, accessible }) => {
-	const { default: Vue } = await import('vue')
+	const { createApp } = await import('vue')
 	const { default: ProfilePickerReferenceWidget } = await import('./components/ProfilePicker/ProfilePickerReferenceWidget.vue')
-	Vue.mixin({ methods: { t, n } })
-	const Widget = Vue.extend(ProfilePickerReferenceWidget)
-	new Widget({
-		propsData: {
+
+	const app = createApp(
+		ProfilePickerReferenceWidget,
+		{
 			richObjectType,
 			richObject,
 			accessible,
 		},
-	}).$mount(el)
+	)
+	app.mixin({ methods: { t, n } })
+	app.mount(el)
 }, () => {}, { hasInteractiveView: false })
 
 registerCustomPickerElement('profile_picker', async (el, { providerId, accessible }) => {
-	const { default: Vue } = await import(/* webpackChunkName: "vue-lazy" */'vue')
-	Vue.mixin({ methods: { t, n } })
+	const { createApp } = await import('vue')
 	const { default: ProfilesCustomPicker } = await import('./components/ProfilePicker/ProfilesCustomPicker.vue')
-	const Element = Vue.extend(ProfilesCustomPicker)
-	const vueElement = new Element({
-		propsData: {
+
+	const app = createApp(
+		ProfilesCustomPicker,
+		{
 			providerId,
 			accessible,
 		},
-	}).$mount(el)
-	return new NcCustomPickerRenderResult(vueElement.$el, vueElement)
+	)
+	app.mixin({ methods: { t, n } })
+	app.mount(el)
+
+	return new NcCustomPickerRenderResult(el, app)
 }, (el, renderResult) => {
 	console.debug('Profile custom picker destroy callback. el', el, 'renderResult:', renderResult)
-	renderResult.object.$destroy()
+	renderResult.object.unmount()
 }, 'normal')

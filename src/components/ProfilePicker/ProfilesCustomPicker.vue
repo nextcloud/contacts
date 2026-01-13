@@ -18,6 +18,7 @@
 					:placeholder="t('contacts', 'Search for a user profile')"
 					:clear-search-on-blur="() => false"
 					:user-select="true"
+					label="displayName"
 					:multiple="false"
 					:options="options"
 					@search="searchForProfile"
@@ -35,7 +36,7 @@
 		</div>
 		<div class="profile-picker__footer">
 			<NcButton v-if="selectedProfile !== null"
-				type="primary"
+				variant="primary"
 				:aria-label="t('contacts', 'Insert selected user profile link')"
 				:disabled="loading || selectedProfile === null"
 				@click="submit">
@@ -54,11 +55,9 @@ import { generateOcsUrl, generateUrl } from '@nextcloud/router'
 
 import debounce from 'debounce'
 
-import {
-	NcSelect,
-	NcButton,
-	NcEmptyContent,
-} from '@nextcloud/vue'
+import NcSelect from '@nextcloud/vue/components/NcSelect'
+import NcButton from '@nextcloud/vue/components/NcButton'
+import NcEmptyContent from '@nextcloud/vue/components/NcEmptyContent'
 
 import Account from 'vue-material-design-icons/Account.vue'
 import ArrowRightIcon from 'vue-material-design-icons/ArrowRight.vue'
@@ -156,15 +155,16 @@ export default {
 		submit() {
 			this.resultUrl = window.location.origin + generateUrl(`/u/${this.selectedProfile.user.trim().toLowerCase()}`, null, { noRewrite: true })
 			this.$emit('submit', this.resultUrl)
+			this.$el.dispatchEvent(new CustomEvent('submit', { detail: this.resultUrl, bubbles: true }))
 		},
 
-		resolveResult(selectedItem) {
+		async resolveResult(selectedItem) {
 			this.loading = true
 			this.abortController = new AbortController()
 			this.selectedProfile = selectedItem
 			this.resultUrl = window.location.origin + generateUrl(`/u/${this.selectedProfile.user.trim().toLowerCase()}`, null, { noRewrite: true })
 			try {
-				const res = axios.get(generateOcsUrl('references/resolve', 2) + '?reference=' + encodeURIComponent(this.resultUrl), {
+				const res = await axios.get(generateOcsUrl('references/resolve', 2) + '?reference=' + encodeURIComponent(this.resultUrl), {
 					signal: this.abortController.signal,
 				})
 				this.reference = res.data.ocs.data.references[this.resultUrl]

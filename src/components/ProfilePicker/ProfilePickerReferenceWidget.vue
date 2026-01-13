@@ -23,7 +23,7 @@
 						{{ richObject.headline }}
 					</span>
 					<span v-if="richObject.location" class="location">
-						<MapMarker :size="20" />
+						<MapMarkerOutline :size="20" />
 						<template v-if="richObject.location_url">
 							<a :href="richObject.location_url" class="external" target="_blank">{{ richObject.location }}</a>
 						</template>
@@ -56,10 +56,10 @@
 </template>
 
 <script>
-import NcAvatar from '@nextcloud/vue/dist/Components/NcAvatar.js'
+import NcAvatar from '@nextcloud/vue/components/NcAvatar'
 
 import Account from 'vue-material-design-icons/Account.vue'
-import MapMarker from 'vue-material-design-icons/MapMarker.vue'
+import MapMarkerOutline from 'vue-material-design-icons/MapMarkerOutline.vue'
 import Web from 'vue-material-design-icons/Web.vue'
 import Domain from 'vue-material-design-icons/Domain.vue'
 import Handshake from 'vue-material-design-icons/Handshake.vue'
@@ -70,7 +70,7 @@ export default {
 	components: {
 		NcAvatar,
 		Account,
-		MapMarker,
+		MapMarkerOutline,
 		Web,
 		Domain,
 		Handshake,
