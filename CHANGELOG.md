@@ -1,3 +1,21 @@
+## [7.3.11](https://github.com/nextcloud/contacts/compare/v7.3.10...v7.3.11) (2026-01-13)
+
+
+### Bug Fixes
+
+* **a11y:** add missing input lables ([bc65570](https://github.com/nextcloud/contacts/commit/bc65570f72649ef6bdbb4d9c3ff67c327df3a7f2))
+* **a11y:** add missing link text ([f3533cc](https://github.com/nextcloud/contacts/commit/f3533cc6e44373592db9af156ca5621130bceed3))
+* **a11y:** switch contacts settings to a button and preserve styling ([31e55a3](https://github.com/nextcloud/contacts/commit/31e55a32b30452abf7925948765b9945279b1dbc))
+* **a11y:** turn teams description into a list item ([ddfe62f](https://github.com/nextcloud/contacts/commit/ddfe62f944bdddac439bf2f8f0795486fb1ffd1b))
+* **l10n:** Update translations from Transifex ([db171c1](https://github.com/nextcloud/contacts/commit/db171c17ba91a018139034353347fe813486a6ce))
+* **l10n:** Update translations from Transifex ([a092528](https://github.com/nextcloud/contacts/commit/a09252808b07b2b933a6005c70ae6388a05abfbf))
+* **l10n:** Update translations from Transifex ([fe177aa](https://github.com/nextcloud/contacts/commit/fe177aa6756944df888ea8fa5eece2873c4b3acd))
+* **l10n:** Update translations from Transifex ([71afbe7](https://github.com/nextcloud/contacts/commit/71afbe76d986f3808843c67fafbe40dc4c67fdac))
+* **l10n:** Update translations from Transifex ([bda3592](https://github.com/nextcloud/contacts/commit/bda3592f3e6c47d49cb2ac10b214f215d49d9048))
+* **orgchart:** revive node highlighting ([bd36972](https://github.com/nextcloud/contacts/commit/bd369724fdee213269a2279c5606ebb0942160d8))
+
+
+
 ## [7.3.10](https://github.com/nextcloud/contacts/compare/v7.3.9...v7.3.10) (2026-01-06)
 
 
