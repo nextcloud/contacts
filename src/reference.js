@@ -2,7 +2,11 @@
  * SPDX-FileCopyrightText: 2024 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
-import { registerWidget, registerCustomPickerElement, NcCustomPickerRenderResult } from '@nextcloud/vue/components/NcRichText'
+import {
+	NcCustomPickerRenderResult,
+	registerCustomPickerElement,
+	registerWidget,
+} from '@nextcloud/vue/components/NcRichText'
 
 registerWidget('users_picker_profile', async (el, { richObjectType, richObject, accessible }) => {
 	const { createApp } = await import('vue')

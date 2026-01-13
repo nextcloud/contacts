@@ -43,7 +43,8 @@
 						<Handshake :size="20" />
 						{{ richObject.role }}
 					</span>
-					<span v-if="richObject.bio"
+					<span
+						v-if="richObject.bio"
 						class="bio"
 						:title="richObject.full_bio">
 						<TextAccount :size="20" />
@@ -57,13 +58,12 @@
 
 <script>
 import NcAvatar from '@nextcloud/vue/components/NcAvatar'
-
 import Account from 'vue-material-design-icons/Account.vue'
-import MapMarkerOutline from 'vue-material-design-icons/MapMarkerOutline.vue'
-import Web from 'vue-material-design-icons/Web.vue'
 import Domain from 'vue-material-design-icons/Domain.vue'
 import Handshake from 'vue-material-design-icons/Handshake.vue'
+import MapMarkerOutline from 'vue-material-design-icons/MapMarkerOutline.vue'
 import TextAccount from 'vue-material-design-icons/TextAccount.vue'
+import Web from 'vue-material-design-icons/Web.vue'
 
 export default {
 	name: 'ProfilePickerReferenceWidget',
@@ -76,15 +76,18 @@ export default {
 		Handshake,
 		TextAccount,
 	},
+
 	props: {
 		richObjectType: {
 			type: String,
 			default: '',
 		},
+
 		richObject: {
 			type: Object,
 			default: null,
 		},
+
 		accessible: {
 			type: Boolean,
 			default: true,
@@ -108,7 +111,7 @@ export default {
 		&__header {
 			width: 100%;
 			min-height: 70px;
-			padding-left: 12px;
+			padding-inline-start: 12px;
 			background-color: var(--color-primary);
 			background-image: var(--gradient-primary-background);
 			position: relative;
@@ -135,14 +138,14 @@ export default {
 
 		.headline {
 			font-style: italic;
-			padding-left: 5px;
+			padding-inline-start: 5px;
 		}
 
 		.profile-content__subline {
 			padding: 0 0 0 10px;
 
 			& span.material-design-icon {
-				margin-right: 5px;
+				margin-inline-end: 5px;
 			}
 
 			& > span {
