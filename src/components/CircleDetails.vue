@@ -131,6 +131,7 @@
 									:resource-type="resourceType"
 									:value="resourceInputs[resourceType.id] || ''"
 									:is-open="activePopover === resourceType.id"
+									:helper-text="resourceType.helperText"
 									@update:value="updateResourceInput(resourceType.id, $event)"
 									@update:is-open="setActivePopover(resourceType.id, $event)"
 									@create="handleResourceCreation">
@@ -400,9 +401,10 @@ export default {
 			return [
 				{
 					id: 'folder',
-					label: t('contacts', 'Team folder'),
-					inputLabel: t('contacts', 'New Team folder'),
+					label: t('contacts', 'Folder'),
+					inputLabel: t('contacts', 'New folder'),
 					placeholder: t('contacts', 'Folder name'),
+					helperText: t('contacts', 'This will create a regular folder shared with the team. To create a Team Folder, please contact your {productName} administrator', { productName: OC.theme.name }),
 					icon: 'FolderIcon',
 					apiPath: 'files',
 					enabled: enabledApps.files !== undefined,
