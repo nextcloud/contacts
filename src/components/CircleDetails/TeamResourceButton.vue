@@ -47,12 +47,17 @@
 					</NcButton>
 				</div>
 			</div>
+			<div v-if="resourceType.helperText" class="popover-helper-text">
+				<NcNoteCard type="info">
+					{{ resourceType.helperText }}
+				</NcNoteCard>
+			</div>
 		</div>
 	</NcPopover>
 </template>
 
 <script>
-import { NcButton, NcPopover, NcTextField } from '@nextcloud/vue'
+import { NcButton, NcNoteCard, NcPopover, NcTextField } from '@nextcloud/vue'
 import CheckOutlineIcon from 'vue-material-design-icons/Check.vue'
 import CloseOutlineIcon from 'vue-material-design-icons/Close.vue'
 
@@ -61,6 +66,7 @@ export default {
 
 	components: {
 		NcButton,
+		NcNoteCard,
 		NcPopover,
 		NcTextField,
 		CloseOutlineIcon,
@@ -174,6 +180,18 @@ export default {
 			display: flex;
 			gap: var(--default-grid-baseline);
 			align-items: center;
+		}
+	}
+
+	.popover-helper-text {
+		margin-top: calc(var(--default-grid-baseline) * 4);
+		margin-bottom: 0;
+		width: 0;
+		min-width: 100%;
+
+		:deep(.notecard) {
+			text-align: start;
+			margin: 0;
 		}
 	}
 }
