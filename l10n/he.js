@@ -48,6 +48,7 @@ OC.L10N.register(
     "Last modified" : "שינוי אחרון",
     "Save" : "שמירה",
     "Close" : "סגירה",
+    "Folder" : "Folder",
     "Folder name" : "שם תיקייה",
     "Conversation name" : "שם הדיון",
     "Create" : "יצירה",

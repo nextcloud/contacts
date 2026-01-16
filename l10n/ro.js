@@ -21,6 +21,7 @@ OC.L10N.register(
     "Display name" : "Nume afișat",
     "Save" : "Salvează",
     "Close" : "Închide",
+    "Folder" : "Folder",
     "Create" : "Creează",
     "Invalid image" : "Imagine invalidă",
     "Address book" : "Listă de contacte",

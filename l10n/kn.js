@@ -10,6 +10,7 @@ OC.L10N.register(
     "Add" : "﻿ಸೇರಿಸಿ",
     "Save" : "﻿ಉಳಿಸಿ",
     "Close" : "ಮುಚ್ಚು",
+    "Folder" : "Folder",
     "Create" : "ಸೃಷ್ಟಿಸಿ",
     "Invalid image" : "ಅಸಾಮರ್ಥ್ಯ ಚಿತ್ರ",
     "Name" : "﻿ಹೆಸರು",

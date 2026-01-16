@@ -93,6 +93,7 @@ OC.L10N.register(
     "Close" : "Tanca",
     "There is no description for this team" : "No hi ha cap descripció per a aquest equip",
     "Enter a description for the team" : "Introduïu una descripció per a l'equip",
+    "Folder" : "Folder",
     "Team name" : "Nom de l'equip",
     "Edit" : "Edita",
     "Request to join" : "Sol·licita unir-m'hi",

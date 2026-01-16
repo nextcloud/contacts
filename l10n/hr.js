@@ -56,6 +56,7 @@ OC.L10N.register(
     "An error happened during the config change" : "Došlo je do pogreške tijekom promjene konfiguracije",
     "Save" : "Spremi",
     "Close" : "Zatvori",
+    "Folder" : "Folder",
     "Conversation name" : "Naziv razgovora",
     "Request to join" : "Zahtjev za pridruživanje",
     "You are not a member of {circle}" : "Niste član {circle}",

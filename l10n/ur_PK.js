@@ -9,6 +9,7 @@ OC.L10N.register(
     "Add" : "شامل کریں",
     "Save" : "حفظ",
     "Close" : "بند ",
+    "Folder" : "Folder",
     "Invalid image" : "غلط تصویر",
     "Name" : "اسم",
     "Title" : "عنوان",

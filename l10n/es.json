@@ -3,7 +3,6 @@
     "Details" : "Detalles",
     "All contacts" : "Todos los contactos",
     "_Imported %n contact_::_Imported %n contacts_" : ["%n contacto importado","%n contactos importados","%n contactos importados"],
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n contacto importado (%d omitidos)","%n contactos importados (%d omitidos)","%n contactos importados (%d omitidos)"],
     "Contacts" : "Contactos",
     "A contacts app for Nextcloud" : "Una app de contactos para Nextcloud.",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "La app de Contactos de Nextcloud es una interfaz de usuario para el servidor CardDAV de Nextcloud. Sincroniza fácilmente los contactos de varios dispositivos con tu Nextcloud y edítalos en línea\n\n* 🚀 **Integración con otras apps de Nextcloud.** Actualmente Correo y Calendario; más por llegar.\n* 🎉 **No olvides nunca un calendario.** Puedes sincronizar los calendarios y otros eventos recurrentes con tu calendario de Nextcloud.\n* 👥 **Compartir libretas de dirección.** ¿Quieres compartir tus contactos con tus amigos y colegas? ¡No hay problema!\n* 🙈 **No reinventamos la rueda.l** Basada en la gran biblioteca de código abierto SabreDAV.",
@@ -103,8 +102,6 @@
     "Close" : "Cerrar",
     "There is no description for this team" : "No hay descripción para este equipo",
     "Enter a description for the team" : "Ingrese una descripción para el equipo",
-    "Team folder" : "Carpeta de equipo",
-    "New Team folder" : "Nueva carpeta de equipo",
     "Folder name" : "Nombre de la carpeta",
     "Talk conversation" : "Conversación de Talk",
     "New Talk conversation" : "Nueva conversación de Talk",
@@ -373,6 +370,9 @@
     "Invite members to team" : "Invitar miembros al equipo",
     "Loading members list …" : "Cargando lista de miembros …",
     "Add to {circle}" : "Añadir a {circle}",
-    "Select chart …" : "Seleccionar organigrama …"
+    "Select chart …" : "Seleccionar organigrama …",
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n contacto importado (%d omitidos)","%n contactos importados (%d omitidos)","%n contactos importados (%d omitidos)"],
+    "Team folder" : "Carpeta de equipo",
+    "New Team folder" : "Nueva carpeta de equipo"
 },"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

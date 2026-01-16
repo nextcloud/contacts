@@ -72,6 +72,7 @@ OC.L10N.register(
     "Change unique password" : "تغییر گذرواژهٔ یکتا",
     "Failed to save password. Please try again later." : "رمز عبور ذخیره نشد. لطفاً بعداً دوباره امتحان کنید.",
     "Close" : "بستن",
+    "Folder" : "Folder",
     "Edit" : "ویرایش",
     "Request to join" : "Request to join",
     "Create" : "ایجاد شده",

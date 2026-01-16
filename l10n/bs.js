@@ -93,6 +93,7 @@ OC.L10N.register(
     "Close" : "Zatvori",
     "There is no description for this team" : "There is no description for this team",
     "Enter a description for the team" : "Enter a description for the team",
+    "Folder" : "Folder",
     "Team name" : "Team name",
     "Edit" : "Edit",
     "Request to join" : "Request to join",

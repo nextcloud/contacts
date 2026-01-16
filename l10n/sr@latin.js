@@ -12,6 +12,7 @@ OC.L10N.register(
     "Add" : "Dodaj",
     "Save" : "Sačuvaj",
     "Close" : "Zatvori",
+    "Folder" : "Folder",
     "Create" : "Napravi",
     "Name" : "naziv",
     "Title" : "Naslov",

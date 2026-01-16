@@ -15,6 +15,7 @@ OC.L10N.register(
     "Last name" : "Famillje Numm",
     "Save" : "Späicheren",
     "Close" : "Zoumaachen",
+    "Folder" : "Folder",
     "Create" : "Erstellen",
     "Invalid image" : "Ongülteg d'Bild",
     "Name" : "Numm",

@@ -93,6 +93,7 @@ OC.L10N.register(
     "Close" : "閉じる",
     "There is no description for this team" : "このチームの説明はありません",
     "Enter a description for the team" : "チームの説明を入力します",
+    "Folder" : "フォルダ",
     "Conversation name" : "会話名",
     "Team name" : "チーム名",
     "Edit" : "編集",

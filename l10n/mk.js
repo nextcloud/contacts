@@ -5,7 +5,6 @@ OC.L10N.register(
     "Details" : "Детали",
     "All contacts" : "Сите контакти",
     "_Imported %n contact_::_Imported %n contacts_" : ["Увезен %n контакт","Увезени %n контакти"],
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Увезен %n контакт (прескокнати %d)","Увезени %n контакти (прескокнати %d)"],
     "Contacts" : "Контакти",
     "A contacts app for Nextcloud" : "Апликација за контакти за Nextcloud",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Апликацијата Контакти за Nextcloud е кориснички интерфејс за  „CardDAV“ на Nextcloud сервер. Лесно синхронизирајте контакти од разни уреди со вашиот Nextcloud и изменете ги на Интернет.\n\n* 🚀 ** Интеграција со други апликации Nextcloud! ** Моментално со Е-пошта и календар.\n* 🎉 ** Никогаш не заборавајте роденден! ** Може да ги синхронизирате родендените и другите настани од вашиот Календар.\n* 👥 ** Споделување на адресари! ** Дали сакате да ги споделите вашите контакти со вашите пријатели или соработници? Нема проблем!\n* 🙈 ** Ние не го реинвестираме тркалото! ** Врз основа на одличната и отворена библиотека SabreDAV .",
@@ -104,8 +103,7 @@ OC.L10N.register(
     "Close" : "Затвори",
     "There is no description for this team" : "Нема опис за овој тим",
     "Enter a description for the team" : "Внеси опис за тимот",
-    "Team folder" : "Тимска папка",
-    "New Team folder" : "Нова тимска папка",
+    "Folder" : "Folder",
     "Folder name" : "Име на папка",
     "Talk conversation" : "Talk раговор",
     "New Talk conversation" : "Нов Talk разговор",
@@ -369,6 +367,9 @@ OC.L10N.register(
     "Invite members to team" : "Покани членови во тимот",
     "Loading members list …" : "Вчитување на листата со членови ...",
     "Add to {circle}" : "Додади во {circle}",
-    "Select chart …" : "Избери график ..."
+    "Select chart …" : "Избери график ...",
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Увезен %n контакт (прескокнати %d)","Увезени %n контакти (прескокнати %d)"],
+    "Team folder" : "Тимска папка",
+    "New Team folder" : "Нова тимска папка"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");
