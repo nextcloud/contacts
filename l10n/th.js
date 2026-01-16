@@ -41,6 +41,7 @@ OC.L10N.register(
     "Manages" : "จัดการ",
     "Save" : "บันทึก",
     "Close" : "ปิด",
+    "Folder" : "Folder",
     "Edit" : "แก้ไข",
     "Request to join" : "ขอเข้าร่วม",
     "Invalid image" : "รูปภาพไม่ถูกต้อง",

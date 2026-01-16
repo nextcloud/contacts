@@ -25,6 +25,7 @@ OC.L10N.register(
     "Last modified" : "Newidiwyd diwethaf",
     "Save" : "Cadw",
     "Close" : "Cau",
+    "Folder" : "Folder",
     "Create" : "Creu",
     "Pick an avatar" : "Dewiswch afatar",
     "Error while processing the picture." : "Gwall wrth brosesu'r llun.",

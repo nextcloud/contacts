@@ -3,7 +3,6 @@
     "Details" : "Részletek",
     "All contacts" : "Összes névjegy",
     "_Imported %n contact_::_Imported %n contacts_" : ["%n névjegy importálva","%n névjegy importálva"],
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n névjegy importálva (%d kihagyva)","%n névjegy importálva (%d kihagyva)"],
     "Contacts" : "Névjegyek",
     "A contacts app for Nextcloud" : "Névjegyek alkalmazás a Nextcloudhoz",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "A Nextcloud Névjegyek alkalmazás egy felhasználói felület a Nextcloud CardDAV-kiszolgálójához. Az alkalmazás segítségével könnyedén szinkronizálható a többféle eszközön meglévő névjegylista, amely szinkronizálás után online szerkeszthető.\n\n* 🚀 **Integráció más nextcloudos alkalmazásokkal!** Jelenleg a Levelek és a Naptár alkalmazással – de továbbiak várhatóak.\n* 🎉 **Ne hagyjon ki egy születésnapot sem!** A névjegyekben található születésnapok és más események szinkronizálhatók a Naptár alkalmazással.\n* 👥 **Névjegyek megosztása!** Meg akarja osztani a névjegyeit a barátaival vagy kollégáival? Nem probléma!\n* 🙈 **Nem találtuk fel újra kereket!** A nagyszerű és nyílt forráskódú SabreDav programkönyvtárra építünk.",
@@ -345,6 +344,7 @@
     "Invite members to team" : "Tagok meghívása a csapatba",
     "Loading members list …" : "Taglista betöltése…",
     "Add to {circle}" : "Hozzáadása a(z) {circle} körhöz",
-    "Select chart …" : "Válasszon diagramot…"
+    "Select chart …" : "Válasszon diagramot…",
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n névjegy importálva (%d kihagyva)","%n névjegy importálva (%d kihagyva)"]
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

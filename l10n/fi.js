@@ -95,8 +95,6 @@ OC.L10N.register(
     "Close" : "Sulje",
     "There is no description for this team" : "Tällä tiimillä ei ole kuvausta",
     "Enter a description for the team" : "Anna kuvaus tiimille",
-    "Team folder" : "Tiimikansio",
-    "New Team folder" : "Uusi tiimikansio",
     "Folder name" : "Kansion nimi",
     "Conversation name" : "Keskustelun nimi",
     "Calendar" : "Kalenteri",
@@ -312,6 +310,8 @@ OC.L10N.register(
     "Invite members to team" : "Kutsu jäseniä tiimiin",
     "Loading members list …" : "Ladataan jäsenluetteloa…",
     "Add to {circle}" : "Lisää piiriin {circle}",
-    "Select chart …" : "Valitse kaavio…"
+    "Select chart …" : "Valitse kaavio…",
+    "Team folder" : "Tiimikansio",
+    "New Team folder" : "Uusi tiimikansio"
 },
 "nplurals=2; plural=(n != 1);");

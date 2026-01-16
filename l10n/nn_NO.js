@@ -14,6 +14,7 @@ OC.L10N.register(
     "Last modified" : "Siste endra",
     "Save" : "Lagre",
     "Close" : "Lukk",
+    "Folder" : "Folder",
     "Folder name" : "Mappe namn",
     "Create" : "Lag",
     "Invalid image" : "Ugyldig bilete",

@@ -27,6 +27,7 @@ OC.L10N.register(
     "Last modified" : "Laste modifita",
     "Save" : "Konservi",
     "Close" : "Malfermi",
+    "Folder" : "Folder",
     "Create" : "Krei",
     "Invalid image" : "Nevalida bildo",
     "Pick an avatar" : "Elekti avataron",

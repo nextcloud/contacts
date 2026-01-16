@@ -12,6 +12,7 @@ OC.L10N.register(
     "Add" : "បញ្ចូល",
     "Save" : "រក្សាទុក",
     "Close" : "បិទ",
+    "Folder" : "Folder",
     "Create" : "បង្កើត",
     "Invalid image" : "រូបភាព​មិន​ត្រឹម​ត្រូវ",
     "Name" : "ឈ្មោះ",

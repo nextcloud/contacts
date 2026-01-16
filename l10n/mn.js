@@ -22,6 +22,8 @@ OC.L10N.register(
     "Last modified" : "Сүүлд өөрчилсөн",
     "Save" : "Хадгалах",
     "Close" : "Хаах",
+    "Folder" : "Folder",
+    "New folder" : "Шинэ хавтас",
     "Create" : "Үүсгэх",
     "Invalid image" : "буруу зураг",
     "Upload a new picture" : "Шинэ зураг оруулах",

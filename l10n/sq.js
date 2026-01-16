@@ -24,6 +24,7 @@ OC.L10N.register(
     "Last modified" : "Ndryshuar së fundmi",
     "Save" : "Ruaj",
     "Close" : "Mbylleni",
+    "Folder" : "Skedari",
     "Folder name" : "Emri i dosjes",
     "Create" : "Krijoni",
     "Invalid image" : "Figurë e pavlefshme",
