@@ -5,7 +5,6 @@ OC.L10N.register(
     "Details" : "Sonraí",
     "All contacts" : "Gach teagmhálaí",
     "_Imported %n contact_::_Imported %n contacts_" : ["Iompórtáladh %n teagmhálaí","Iompórtáladh %n teagmhálacha","Iompórtáladh %n teagmhálacha","Iompórtáladh %n teagmhálacha","Iompórtáladh %n teagmhálacha"],
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Iompórtáladh %n teagmhálaí (scipeadh %d)","%n teagmhálacha allmhairithe (%d scipeáilte)","%n teagmhálacha allmhairithe (%d scipeáilte)","%n teagmhálacha allmhairithe (%d scipeáilte)","%n teagmhálacha allmhairithe (%d scipeáilte)"],
     "Contacts" : "Teagmhálaithe",
     "A contacts app for Nextcloud" : "Aip teagmhálaithe do Nextcloud",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Is comhéadan úsáideora é an aip teagmhálacha Nextcloud do fhreastalaí CardDAV Nextcloud. Sioncronaigh go héasca teagmhálacha ó ghléasanna éagsúla le do Nextcloud agus cuir in eagar iad ar líne.\n\n* 🚀 **Comhtháthú le haipeanna eile Nextcloud!** Ríomhphost agus Féilire faoi láthair – tuilleadh le teacht.\n* 🎉 **Ná déan dearmad ar bhreithlá!** Is féidir leat breithlaethanta agus imeachtaí athfhillteacha eile a shioncronú le d’Fhéilire Nextcloud.\n* 👥 **Leabhar Seoltaí á Roinnt!** Ar mhaith leat do theagmhálacha a roinnt le do chairde nó le do chomhoibrithe? Fadhb ar bith!\n* 🙈 **Níl an roth á athchruthú againn!** Bunaithe ar leabharlann iontach oscailte SabreDAV.",
@@ -105,8 +104,7 @@ OC.L10N.register(
     "Close" : "Dún",
     "There is no description for this team" : "Níl aon tuairisc ar an bhfoireann seo",
     "Enter a description for the team" : "Iontráil cur síos don fhoireann",
-    "Team folder" : "Fillteán foirne",
-    "New Team folder" : "Fillteán Foirne Nua",
+    "Folder" : "Fillteán",
     "Folder name" : "Ainm fillteáin",
     "Talk conversation" : "Comhrá cainte",
     "New Talk conversation" : "Comhrá Cainte Nua",
@@ -388,6 +386,9 @@ OC.L10N.register(
     "Invite members to team" : "Tabhair cuireadh do bhaill chuig an bhfoireann",
     "Loading members list …" : "Liosta ball á lódáil…",
     "Add to {circle}" : "Cuir le {circle}",
-    "Select chart …" : "Roghnaigh cairt…"
+    "Select chart …" : "Roghnaigh cairt…",
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Iompórtáladh %n teagmhálaí (scipeadh %d)","%n teagmhálacha allmhairithe (%d scipeáilte)","%n teagmhálacha allmhairithe (%d scipeáilte)","%n teagmhálacha allmhairithe (%d scipeáilte)","%n teagmhálacha allmhairithe (%d scipeáilte)"],
+    "Team folder" : "Fillteán foirne",
+    "New Team folder" : "Fillteán Foirne Nua"
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");

@@ -5,7 +5,6 @@ OC.L10N.register(
     "Details" : "Detalhes",
     "All contacts" : "Todos os contatos",
     "_Imported %n contact_::_Imported %n contacts_" : ["%n contato importado","%n de contatos importados","%n contatos importados"],
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n contato importado (%d ignorados)","%n de contatos importados (%d ignorados)","%n contatos importados (%d ignorados)"],
     "Contacts" : "Contatos",
     "A contacts app for Nextcloud" : "Um aplicativo de contatos para Nextcloud",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "O aplicativo Nextcloud Contatos é uma interface de usuário para o servidor CardDAV do Nextcloud. Sincronize facilmente os contatos em vários dispositivos e edite-os on-line.\n\n* 🚀 **Integração com outros aplicativos Nextcloud!** Atualmente, E-mail e Calendário – mais por vir.\n* 🎉 **Nunca esqueça um aniversário!** Você pode sincronizar aniversários e outros eventos recorrentes com o seu Calendário do Nextcloud.\n* 👥 **Compartilhamento de Catálogo de Endereços!** Você quer compartilhar seus contatos com seus amigos ou colegas de trabalho? Tranquilo!\n* 🙈 **Não estamos reinventando a roda!** Com base na grande e aberta biblioteca SabreDAV.",
@@ -105,8 +104,6 @@ OC.L10N.register(
     "Close" : "Fechar",
     "There is no description for this team" : "Não há descrição para esta equipe",
     "Enter a description for the team" : "Insira uma descrição para a equipe",
-    "Team folder" : "Pasta de equipe",
-    "New Team folder" : "Nova pasta de equipe",
     "Folder name" : "Nome da pasta",
     "Talk conversation" : "Conversa Talk",
     "New Talk conversation" : "Nova conversa do Talk",
@@ -388,6 +385,9 @@ OC.L10N.register(
     "Invite members to team" : "Convidar membros para a equipe",
     "Loading members list …" : "Carregando lista de membros …",
     "Add to {circle}" : "Adicionar a {circle}",
-    "Select chart …" : "Selecione gráfico …"
+    "Select chart …" : "Selecione gráfico …",
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n contato importado (%d ignorados)","%n de contatos importados (%d ignorados)","%n contatos importados (%d ignorados)"],
+    "Team folder" : "Pasta de equipe",
+    "New Team folder" : "Nova pasta de equipe"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

@@ -19,6 +19,7 @@ OC.L10N.register(
     "Last modified" : "ბოლო ცვლილება",
     "Save" : "შენახვა",
     "Close" : "დახურვა",
+    "Folder" : "დირექტორია",
     "Create" : "შექმნა",
     "Invalid image" : "არასწორი სურათი",
     "Address book" : "მისამართების წიგნი",

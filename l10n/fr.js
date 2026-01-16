@@ -5,7 +5,6 @@ OC.L10N.register(
     "Details" : "Détails",
     "All contacts" : "Tous les contacts",
     "_Imported %n contact_::_Imported %n contacts_" : ["%n contact importé","%n contacts importés","%n contacts importés"],
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n contact importé (%d ignoré⋅s)","%n contacts importés (%d ignoré⋅s)","%n contacts importés (%d ignoré⋅s)"],
     "Contacts" : "Contacts",
     "A contacts app for Nextcloud" : "Application contacts pour Nextcloud",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "L'application de contacts Nextcloud est une interface utilisateur pour le serveur CardDAV de Nextcloud. Synchronisez facilement les contacts de divers appareils avec votre Nextcloud et modifiez-les en ligne.\n\n* 🚀 ** Intégration avec d'autres applications Nextcloud! ** Actuellement Mail et  agenda - plus à venir.\n* 🎉 ** N'oubliez jamais plus d'anniversaire! ** Vous pouvez synchroniser les anniversaires et autres événements récurrents avec votre agenda Nextcloud.\n* 👥 ** Partage de carnet d’adresses !  ** Vous souhaitez partager vos contacts avec vos amis ou vos collègues? Aucun problème!\n* 🙈 ** Nous ne réinventons pas la roue! ** Basé sur la superbe bibliothèque ouverte SabreDAV.",
@@ -105,8 +104,6 @@ OC.L10N.register(
     "Close" : "Fermer",
     "There is no description for this team" : "Il n'y a pas de description pour cette équipe",
     "Enter a description for the team" : "Entrez une description pour cette équipe",
-    "Team folder" : "Dossier d'équipe",
-    "New Team folder" : "Nouveau dossier d'équipe",
     "Folder name" : "Nom du dossier",
     "Talk conversation" : "Conversation Talk",
     "New Talk conversation" : "Nouvelle conversation Talk",
@@ -371,6 +368,9 @@ OC.L10N.register(
     "Invite members to team" : "Inviter des membres à rejoindre l'équipe",
     "Loading members list …" : "Chargement de la liste des membres...",
     "Add to {circle}" : "Ajouter à {circle}",
-    "Select chart …" : "Sélectionnez un organigramme..."
+    "Select chart …" : "Sélectionnez un organigramme...",
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n contact importé (%d ignoré⋅s)","%n contacts importés (%d ignoré⋅s)","%n contacts importés (%d ignoré⋅s)"],
+    "Team folder" : "Dossier d'équipe",
+    "New Team folder" : "Nouveau dossier d'équipe"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

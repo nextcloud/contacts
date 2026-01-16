@@ -98,8 +98,6 @@ OC.L10N.register(
     "Close" : "Закрыть",
     "There is no description for this team" : "Для этой команды нет описания",
     "Enter a description for the team" : "Введите описание команды",
-    "Team folder" : "Папка команды",
-    "New Team folder" : "Имя папки команды",
     "Folder name" : "Имя папки",
     "Conversation name" : "Название беседы",
     "Collective" : "Группа",
@@ -338,6 +336,8 @@ OC.L10N.register(
     "Search contacts …" : "Поиск контакта…",
     "Loading members list …" : "Загрузка списка участников…",
     "Add to {circle}" : "Добавить в круг {circle}",
-    "Select chart …" : "Выберите структуру…"
+    "Select chart …" : "Выберите структуру…",
+    "Team folder" : "Папка команды",
+    "New Team folder" : "Имя папки команды"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

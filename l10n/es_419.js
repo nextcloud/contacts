@@ -19,6 +19,7 @@ OC.L10N.register(
     "Last modified" : "Última modificación",
     "Save" : "Guardar",
     "Close" : "Cerrar",
+    "Folder" : "Folder",
     "Create" : "Crear",
     "Invalid image" : "Imagen inválida",
     "Address book" : "Libreta de direcciones",

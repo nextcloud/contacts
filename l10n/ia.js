@@ -18,6 +18,7 @@ OC.L10N.register(
     "Display name" : "Monstrar nomine",
     "Save" : "Salveguardar",
     "Close" : "Clauder",
+    "Folder" : "Folder",
     "Create" : "Crear",
     "Invalid image" : "Imagine invalide",
     "Name" : "Nomine",
