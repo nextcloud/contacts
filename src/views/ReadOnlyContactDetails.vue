@@ -316,8 +316,4 @@ export default {
 .recipient-details-loading {
 	margin-top: 64px;
 }
-
-:deep(input) {
-	box-shadow: none !important;
-}
 </style>
