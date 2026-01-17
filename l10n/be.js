@@ -101,6 +101,7 @@ OC.L10N.register(
     "Close" : "Закрыць",
     "There is no description for this team" : "У гэтай каманды няма апісання",
     "Enter a description for the team" : "Увядзіце апісанне каманды",
+    "Folder" : "Folder",
     "Talk conversation" : "Размова ў Talk",
     "New Talk conversation" : "Новая размова ў Talk",
     "Conversation name" : "Назва размовы",
