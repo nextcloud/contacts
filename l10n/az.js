@@ -13,6 +13,7 @@ OC.L10N.register(
     "Add" : "Əlavə etmək",
     "Save" : "Saxla",
     "Close" : "Bağla",
+    "Folder" : "Folder",
     "Create" : "Yarat",
     "Invalid image" : "Yalnış şəkil",
     "Name" : "Ad",
