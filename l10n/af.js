@@ -22,6 +22,7 @@ OC.L10N.register(
     "Last modified" : "Laas gewysig",
     "Save" : "Bewaar",
     "Close" : "Sluit",
+    "New folder" : "Nuwe vouer",
     "Folder name" : "Vouernaam",
     "Edit" : "Wysig",
     "Create" : "Skep",
