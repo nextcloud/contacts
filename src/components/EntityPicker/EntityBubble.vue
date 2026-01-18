@@ -54,6 +54,8 @@ export default {
 		},
 	},
 
+	emits: ['delete'],
+
 	methods: {
 		onDelete() {
 			// Emit delete. Be aware it might be unique

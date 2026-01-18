@@ -24,7 +24,7 @@
 			<div class="contact-title">
 				<h6>{{ contact.fullName }}</h6>
 				<!-- Subtitle -->
-				<span v-html="formattedSubtitle" />
+				<span :innerHTML="formattedSubtitle" />
 			</div>
 			<div class="contact-details-wrapper">
 				<div
@@ -80,12 +80,6 @@ export default {
 		contactEmailAddress: {
 			type: String,
 			required: true,
-		},
-
-		desc: {
-			type: String,
-			required: false,
-			default: '',
 		},
 	},
 

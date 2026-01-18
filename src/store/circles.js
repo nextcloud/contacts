@@ -226,9 +226,10 @@ const actions = {
 	/**
 	 * Delete a member from a circle
 	 *
-	 * @param {object} context the store mutations Current context
-	 * @param {Member} member the member to remove
-	 * @param {boolean} [leave] leave the circle instead of removing the member
+	 * @param {object} context the store mutations current context
+	 * @param {object} data destructuring object
+	 * @param {Member} data.member the member to remove
+	 * @param {boolean} data.leave whether to leave the circle instead of removing the member
 	 */
 	async deleteMemberFromCircle(context, { member, leave = false }) {
 		const circleId = member.circle.id

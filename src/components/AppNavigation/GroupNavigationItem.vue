@@ -130,6 +130,8 @@ export default {
 		},
 	},
 
+	emits: ['updateRouteState'],
+
 	data() {
 		return {
 			newGroupName: '',
@@ -248,8 +250,8 @@ export default {
 		/**
 		 * Open mailto: for contacts in a group
 		 *
-		 * @param {object} group of contacts to be emailed
-		 * @param {string} mode
+		 * @param {object} group contacts to be emailed
+		 * @param {string} mode the email mode
 		 */
 		emailGroup(group, mode = 'to') {
 			const emails = []

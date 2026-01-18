@@ -668,10 +668,10 @@ export default {
 		},
 
 		/**
-		 * Autocomplete @mentions on the description
+		 * Autocomplete \@mentions on the description
 		 *
 		 * @param {string} search the search term
-		 * @param {Function} callback callback to be called with results array
+		 * @param {(results: Array) => void} callback callback to be called with results array
 		 */
 		onAutocomplete(search, callback) {
 			// TODO: implement autocompletion. Disabled for now
