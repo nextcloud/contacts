@@ -7,6 +7,8 @@
 		":semanticCommits",
 		":gitSignOff"
 	],
+	"assigneesFromCodeOwners": true,
+	"expandCodeOwnersGroups": true,
 	"timezone": "Europe/Berlin",
 	"schedule": [
 		"before 5am on tuesday"
@@ -35,11 +37,7 @@
 	"packageRules": [
 		{
 			"description": "Request JavaScript reviews",
-			"matchManagers": ["npm"],
-			"reviewers": [
-				"hamza221",
-				"GVodyanov"
-			]
+			"matchManagers": ["npm"]
 		},
 		{
 			"description": "Ignore Vue 3 packages",
@@ -67,21 +65,12 @@
 		},
 		{
 			"description": "Request PHP reviews",
-			"matchManagers": ["composer"],
-			"reviewers": [
-				"hamza221",
-				"SebastianKrupinski"
-			]
+			"matchManagers": ["composer"]
 		},
 		{
 			"description": "Bump Github actions monthly and request reviews",
 			"matchManagers": ["github-actions"],
-			"extends": ["schedule:monthly"],
-			"reviewers": [
-				"hamza221",
-				"GVodyanov",
-				"SebastianKrupinski"
-			]
+			"extends": ["schedule:monthly"]
 		},
 		{
 			"matchUpdateTypes": ["minor", "patch"],
@@ -102,10 +91,6 @@
 			"labels": [
 				"dependencies",
 				"3. to review"
-			],
-			"reviewers": [
-				"hamza221",
-				"GVodyanov"
 			]
 		},
 		{
@@ -115,10 +100,6 @@
 			"labels": [
 				"dependencies",
 				"3. to review"
-			],
-			"reviewers": [
-				"hamza221",
-				"SebastianKrupinski"
 			]
 		},
 		{
