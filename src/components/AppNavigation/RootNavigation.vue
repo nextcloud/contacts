@@ -550,6 +550,10 @@ $caption-padding: 22px;
 
 .contacts-settings {
 	padding: calc(var(--default-grid-baseline, 4px) * 2);
+
+	:deep(.button-vue__wrapper) {
+		justify-content: flex-start !important;
+	}
 }
 
 .contacts-settings-button {
@@ -557,7 +561,4 @@ $caption-padding: 22px;
 	justify-content: start !important;
 }
 
-:deep(.button-vue__wrapper){
-	justify-content: flex-start !important;
-}
 </style>
