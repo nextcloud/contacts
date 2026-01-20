@@ -1,3 +1,17 @@
+## [7.3.12](https://github.com/nextcloud/contacts/compare/v7.3.11...v7.3.12) (2026-01-20)
+
+
+### Bug Fixes
+
+* Icon button alignment ([c266895](https://github.com/nextcloud/contacts/commit/c266895ab44a619466a71355394c0f56810353e5))
+* **l10n:** Update translations from Transifex ([2cacd27](https://github.com/nextcloud/contacts/commit/2cacd27363c2fdf2cd614c8d25d49e80f91bb05f))
+* **l10n:** Update translations from Transifex ([d8d2f66](https://github.com/nextcloud/contacts/commit/d8d2f66317f12e016a7baf779733fe91da189c48))
+* **l10n:** Update translations from Transifex ([ea4a22a](https://github.com/nextcloud/contacts/commit/ea4a22a74f7b873de840d9bbd7c3802d78601bc7))
+* **l10n:** Update translations from Transifex ([f0f9a57](https://github.com/nextcloud/contacts/commit/f0f9a576c5af7a661af650492b5452d35a499703))
+* **l10n:** Update translations from Transifex ([eeca964](https://github.com/nextcloud/contacts/commit/eeca9647883ac9bac2221ce77657a391343eaa22))
+
+
+
 ## [7.3.11](https://github.com/nextcloud/contacts/compare/v7.3.10...v7.3.11) (2026-01-13)
 
 
