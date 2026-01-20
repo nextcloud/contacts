@@ -1,6 +1,25 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+# [8.3.0](https://github.com/nextcloud/contacts/compare/v8.3.0...v8.2.0) (2026-01-20)
+
+* Make scrolling on mobile work again 
+* Show address book in read only mode
+* Wrong address book displayed on details view
+* Reference error in property text
+* **OrgChart** Revive node highlighting
+* **A11y** Add missing input lables
+* **A11y** Switch contacts settings to a button and preserve styling
+* **A11y** Turn teams description into a list item
+* **A11y** Add missing link text
+* **Teams** Replace 'Team folder' create button with 'Folder' and add notice text 
+
+### Features
+
+* Add cancel button for contact editing
+* **RootNavigation** Fill active icons
+
+
 # [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0-beta.Z) (2025-01-09)
 
 
