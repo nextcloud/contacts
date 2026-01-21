@@ -390,8 +390,6 @@ OC.L10N.register(
     "Loading members list …" : "Carregando lista de membros …",
     "Add to {circle}" : "Adicionar a {circle}",
     "Select chart …" : "Selecione gráfico …",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n contato importado (%d ignorados)","%n de contatos importados (%d ignorados)","%n contatos importados (%d ignorados)"],
-    "Team folder" : "Pasta de equipe",
-    "New Team folder" : "Nova pasta de equipe"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n contato importado (%d ignorados)","%n de contatos importados (%d ignorados)","%n contatos importados (%d ignorados)"]
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

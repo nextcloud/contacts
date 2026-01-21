@@ -390,8 +390,6 @@ OC.L10N.register(
     "Loading members list …" : "Liosta ball á lódáil…",
     "Add to {circle}" : "Cuir le {circle}",
     "Select chart …" : "Roghnaigh cairt…",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Iompórtáladh %n teagmhálaí (scipeadh %d)","%n teagmhálacha allmhairithe (%d scipeáilte)","%n teagmhálacha allmhairithe (%d scipeáilte)","%n teagmhálacha allmhairithe (%d scipeáilte)","%n teagmhálacha allmhairithe (%d scipeáilte)"],
-    "Team folder" : "Fillteán foirne",
-    "New Team folder" : "Fillteán Foirne Nua"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Iompórtáladh %n teagmhálaí (scipeadh %d)","%n teagmhálacha allmhairithe (%d scipeáilte)","%n teagmhálacha allmhairithe (%d scipeáilte)","%n teagmhálacha allmhairithe (%d scipeáilte)","%n teagmhálacha allmhairithe (%d scipeáilte)"]
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");

@@ -386,8 +386,6 @@ OC.L10N.register(
     "Loading members list …" : "正在加载成员列表…",
     "Add to {circle}" : "添加到 {circle}",
     "Select chart …" : "选择图表…",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["已导入 %n 位联系人（跳过 %d 位）"],
-    "Team folder" : "团队文件夹",
-    "New Team folder" : "新团队文件夹"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["已导入 %n 位联系人（跳过 %d 位）"]
 },
 "nplurals=1; plural=0;");

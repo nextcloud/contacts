@@ -384,8 +384,6 @@ OC.L10N.register(
     "Loading members list …" : "ئەزالار تىزىملىكى يۈكلىنىۋاتىدۇ…",
     "Add to {circle}" : "{circle} غا قوش",
     "Select chart …" : "جەدۋەلنى تاللاڭ…",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n ئالاقىداش كىرگۈزۈلدى (%d ئۆتكۈزۋېتىلدى)","%n ئالاقىداش كىرگۈزۈلدى (%d ئۆتكۈزۋېتىلدى)"],
-    "Team folder" : "ئەتىرەت قىسقۇچى",
-    "New Team folder" : "يېڭى ئەتىرەت قىسقۇچى"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n ئالاقىداش كىرگۈزۈلدى (%d ئۆتكۈزۋېتىلدى)","%n ئالاقىداش كىرگۈزۈلدى (%d ئۆتكۈزۋېتىلدى)"]
 },
 "nplurals=2; plural=(n != 1);");

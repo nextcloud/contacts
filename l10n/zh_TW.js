@@ -390,8 +390,6 @@ OC.L10N.register(
     "Loading members list …" : "正在載入成員清單……",
     "Add to {circle}" : "新增至 {circle}",
     "Select chart …" : "選取圖表……",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["已匯入 %n 個聯絡人（略過 %d 個）"],
-    "Team folder" : "團隊資料夾",
-    "New Team folder" : "新團隊資料夾"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["已匯入 %n 個聯絡人（略過 %d 個）"]
 },
 "nplurals=1; plural=0;");

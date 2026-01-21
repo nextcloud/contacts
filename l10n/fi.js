@@ -310,8 +310,6 @@ OC.L10N.register(
     "Invite members to team" : "Kutsu jäseniä tiimiin",
     "Loading members list …" : "Ladataan jäsenluetteloa…",
     "Add to {circle}" : "Lisää piiriin {circle}",
-    "Select chart …" : "Valitse kaavio…",
-    "Team folder" : "Tiimikansio",
-    "New Team folder" : "Uusi tiimikansio"
+    "Select chart …" : "Valitse kaavio…"
 },
 "nplurals=2; plural=(n != 1);");
