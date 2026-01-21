@@ -368,8 +368,6 @@ OC.L10N.register(
     "Loading members list …" : "Вчитување на листата со членови ...",
     "Add to {circle}" : "Додади во {circle}",
     "Select chart …" : "Избери график ...",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Увезен %n контакт (прескокнати %d)","Увезени %n контакти (прескокнати %d)"],
-    "Team folder" : "Тимска папка",
-    "New Team folder" : "Нова тимска папка"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Увезен %n контакт (прескокнати %d)","Увезени %n контакти (прескокнати %d)"]
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

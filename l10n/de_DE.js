@@ -390,8 +390,6 @@ OC.L10N.register(
     "Loading members list …" : "Lade Mitgliederliste …",
     "Add to {circle}" : "Zu {circle} hinzufügen",
     "Select chart …" : "Diagramm auswählen …",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n Kontakt importiert (%d übersprungen)","%n Kontakte importiert (%d übersprungen)"],
-    "Team folder" : "Team-Ordner",
-    "New Team folder" : "Neuer Team-Ordner"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n Kontakt importiert (%d übersprungen)","%n Kontakte importiert (%d übersprungen)"]
 },
 "nplurals=2; plural=(n != 1);");

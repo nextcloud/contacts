@@ -385,8 +385,6 @@
     "Loading members list …" : "Laadin liikmete loendit…",
     "Add to {circle}" : "Lisa „{circle}“ tiimi",
     "Select chart …" : "Vali joonis…",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Importisin %n kontakti (%d jätsin vahele)","Importisin %n kontakti (%d jätsin vahele)"],
-    "Team folder" : "Tiimikaust",
-    "New Team folder" : "Uus tiimikaust"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Importisin %n kontakti (%d jätsin vahele)","Importisin %n kontakti (%d jätsin vahele)"]
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

@@ -387,8 +387,6 @@ OC.L10N.register(
     "Loading members list …" : "Cargando a lista de membros…",
     "Add to {circle}" : "Engadir a {circle}",
     "Select chart …" : "Seleccionar o gráfico…",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Importado %n contacto (omitidos %d)","Importados %n contactos (omitidos %d)"],
-    "Team folder" : "Cartafol de equipo",
-    "New Team folder" : "Novo cartafol de equipo"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Importado %n contacto (omitidos %d)","Importados %n contactos (omitidos %d)"]
 },
 "nplurals=2; plural=(n != 1);");

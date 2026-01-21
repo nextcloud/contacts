@@ -369,8 +369,6 @@ OC.L10N.register(
     "Loading members list …" : "Chargement de la liste des membres...",
     "Add to {circle}" : "Ajouter à {circle}",
     "Select chart …" : "Sélectionnez un organigramme...",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n contact importé (%d ignoré⋅s)","%n contacts importés (%d ignoré⋅s)","%n contacts importés (%d ignoré⋅s)"],
-    "Team folder" : "Dossier d'équipe",
-    "New Team folder" : "Nouveau dossier d'équipe"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n contact importé (%d ignoré⋅s)","%n contacts importés (%d ignoré⋅s)","%n contacts importés (%d ignoré⋅s)"]
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

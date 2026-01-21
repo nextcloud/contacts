@@ -390,8 +390,6 @@ OC.L10N.register(
     "Loading members list …" : "Üye listesi ekleniyor …",
     "Add to {circle}" : "{circle} takımına ekle",
     "Select chart …" : "Çizelge seçin…",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n kişi içe aktarıldı (%d atlandı)","%n kişi içe aktarıldı (%d atlandı)"],
-    "Team folder" : "Takım klasörü",
-    "New Team folder" : "Yeni takım klasörü"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n kişi içe aktarıldı (%d atlandı)","%n kişi içe aktarıldı (%d atlandı)"]
 },
 "nplurals=2; plural=(n > 1);");

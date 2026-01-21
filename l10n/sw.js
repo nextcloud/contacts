@@ -368,8 +368,6 @@ OC.L10N.register(
     "Loading members list …" : "Inapakia orodha ya wanachama",
     "Add to {circle}" : "Ongeza hadi {circle}",
     "Select chart …" : "Chagua chati",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Imported %n contact (skipped %d)","Imeingiza anwani %n (imerukwa %d)"],
-    "Team folder" : "Folda ya timu",
-    "New Team folder" : "Folda mpya ya timu"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Imported %n contact (skipped %d)","Imeingiza anwani %n (imerukwa %d)"]
 },
 "nplurals=2; plural=(n != 1);");

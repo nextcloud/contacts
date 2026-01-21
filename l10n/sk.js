@@ -384,8 +384,6 @@ OC.L10N.register(
     "Loading members list …" : "Načítavam zoznam členov ...",
     "Add to {circle}" : "Pridať do {circle}",
     "Select chart …" : "Vybrať graf ...",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Importovaný %n kontakt (preskočených %d)","Importovaných %n kontaktov (preskočených %d)","Importovaných %n kontaktov (preskočených %d)","Importované %n kontakty (preskočených %d)"],
-    "Team folder" : "Tímový adresár",
-    "New Team folder" : "Nový Tímový adresár"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Importovaný %n kontakt (preskočených %d)","Importovaných %n kontaktov (preskočených %d)","Importovaných %n kontaktov (preskočených %d)","Importované %n kontakty (preskočených %d)"]
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

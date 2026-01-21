@@ -367,8 +367,6 @@ OC.L10N.register(
     "Loading members list …" : "Loading members list …",
     "Add to {circle}" : "Add to {circle}",
     "Select chart …" : "Select chart …",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Imported %n contact (skipped %d)"],
-    "Team folder" : "Team folder",
-    "New Team folder" : "New Team folder"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Imported %n contact (skipped %d)"]
 },
 "nplurals=1; plural=0;");

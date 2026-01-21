@@ -383,8 +383,6 @@ OC.L10N.register(
     "Loading members list …" : "Läser in medlemslista …",
     "Add to {circle}" : "Lägg till i {circle}",
     "Select chart …" : "Välj schema ...",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Importerade %n kontakt (skippade %d)","Importerade %n kontakter (skippade %d)"],
-    "Team folder" : "Teammapp",
-    "New Team folder" : "Ny teammapp"
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Importerade %n kontakt (skippade %d)","Importerade %n kontakter (skippade %d)"]
 },
 "nplurals=2; plural=(n != 1);");
