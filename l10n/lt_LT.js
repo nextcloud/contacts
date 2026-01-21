@@ -86,6 +86,7 @@ OC.L10N.register(
     "Close" : "Užverti",
     "There is no description for this team" : "Ši komanda neturi aprašo",
     "Enter a description for the team" : "Įveskite komandos aprašą",
+    "Folder" : "Folder",
     "Team name" : "Komandos pavadinimas",
     "Edit" : "Taisyt",
     "Request to join" : "Prašyti prisijungti",

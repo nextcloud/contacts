@@ -5,7 +5,7 @@ OC.L10N.register(
     "Details" : "詳細資料",
     "All contacts" : "所有聯絡人",
     "_Imported %n contact_::_Imported %n contacts_" : ["已導入 %n 個聯絡人"],
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["已導入 %n 個聯絡人（略過 %d 個）"],
+    "_(skipped %n contact)_::_(skipped %n contacts)_" : ["（已略過 %n 個聯絡人）"],
     "Contacts" : "通訊錄",
     "A contacts app for Nextcloud" : "Nextcloud 的通訊錄應用程式",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Nextcloud 通訊錄應用程式是 Nextcloud 的 CardDAV 伺服器的用戶界面。可輕鬆使用您的 Nextcloud 同步各個裝置上的聯絡人，並在線上編輯。\n\n* 🚀 **與其他 Nextcloud 應用程式整合！** 目前有電子郵件與日曆，還會有更多。\n* 🎉 **不會忘記生日！** 您可以將生日與其他重複的活動與您的 Nextcloud 日曆同步。\n* 👥 **分享通訊錄！** 您想與您的朋友或同事分享您的聯絡人嗎？沒問題！\n* 🙈 **我們沒有無謂地重複開發！** 以超棒且開放的 SabreDAV 函式庫為基礎。",
@@ -105,9 +105,10 @@ OC.L10N.register(
     "Close" : "關閉",
     "There is no description for this team" : "此團隊沒有描述",
     "Enter a description for the team" : "輸入團隊的描述",
-    "Team folder" : "團隊資料夾",
-    "New Team folder" : "新團隊資料夾",
+    "Folder" : "Folder",
+    "New folder" : "新資料夾",
     "Folder name" : "資料夾名字",
+    "This will create a regular folder shared with the team. To create a Team Folder, please contact your {productName} administrator" : "這將會建立分享給團隊的一般資料夾。要建立團隊資料夾，請聯絡您的 {productName} 管理員",
     "Talk conversation" : "Talk 對話",
     "New Talk conversation" : "新 Talk 對話",
     "Conversation name" : "對話名稱",
@@ -255,6 +256,7 @@ OC.L10N.register(
     "None" : "無",
     "Select option" : "選擇選項",
     "note" : "備註",
+    "email" : "電郵地址",
     "send an email" : "傳送電子郵件",
     "Personal dates" : "個人日期",
     "Add property of this type" : "添加此類型的屬性",
@@ -387,6 +389,7 @@ OC.L10N.register(
     "Invite members to team" : "邀請成員加入團隊",
     "Loading members list …" : "正在加載成員清單 …",
     "Add to {circle}" : "添加到 {circle}",
-    "Select chart …" : "選擇圖表 ..."
+    "Select chart …" : "選擇圖表 ...",
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["已導入 %n 個聯絡人（略過 %d 個）"]
 },
 "nplurals=1; plural=0;");

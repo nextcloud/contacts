@@ -18,6 +18,7 @@ OC.L10N.register(
     "Display name" : "Nom afichat",
     "Save" : "Enregistrar",
     "Close" : "Tampar",
+    "Folder" : "Folder",
     "Conversation name" : "Nom de conversacion",
     "Invalid image" : "Imatge invalid",
     "Name" : "Nom",

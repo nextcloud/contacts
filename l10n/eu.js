@@ -92,6 +92,7 @@ OC.L10N.register(
     "Close" : "Itxi",
     "There is no description for this team" : "Ez dago deskribapenik lantalde honentzat",
     "Enter a description for the team" : "Gehitu deskribapen bat lantalde honentzat",
+    "Folder" : "Folder",
     "Conversation name" : "Elkarrizketaren izena",
     "Team name" : "Lantaldearen izena",
     "Edit" : "Aldatu",

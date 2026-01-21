@@ -59,6 +59,7 @@ OC.L10N.register(
     "Last modified" : "Última modificação",
     "Save" : "Guardar",
     "Close" : "Fechar",
+    "Folder" : "Folder",
     "You are not a member of {circle}" : "Não é um membro de {circle}",
     "Invalid image" : "Imagem inválida",
     "Pick an avatar" : "Escolhe um avatar",

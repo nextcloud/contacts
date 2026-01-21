@@ -93,6 +93,7 @@ OC.L10N.register(
     "Close" : "Luk",
     "There is no description for this team" : "Der er ingen beskrivelse for dette team",
     "Enter a description for the team" : "Angiv en beskrivelse for dette team",
+    "Folder" : "Folder",
     "Calendar" : "Kalender",
     "Team name" : "Teamnavn",
     "Edit" : "Redigér",

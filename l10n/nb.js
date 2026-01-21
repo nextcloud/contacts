@@ -91,6 +91,7 @@ OC.L10N.register(
     "Close" : "Lukk",
     "There is no description for this team" : "Det er ingen beskrivelse for dette laget",
     "Enter a description for the team" : "Angi en beskrivelse for laget",
+    "Folder" : "Folder",
     "Team name" : "Lagnavn",
     "Edit" : "Redigere",
     "Request to join" : "Spør om å bli med",

@@ -89,6 +89,7 @@ OC.L10N.register(
     "Close" : "Zapri",
     "There is no description for this team" : "Za to skupino ni navedenega opisa",
     "Enter a description for the team" : "Vpišite opis skupine",
+    "Folder" : "Folder",
     "Conversation name" : "Naslov pogovora",
     "Team name" : "Naziv skupine",
     "Edit" : "Uredi",

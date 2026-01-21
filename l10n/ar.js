@@ -93,6 +93,7 @@ OC.L10N.register(
     "Close" : "إغلاق",
     "There is no description for this team" : "لا يوجد وصف لهذا الفريق",
     "Enter a description for the team" : "أدخِل وصف الفريق",
+    "Folder" : "Folder",
     "Conversation name" : "اسم المحادثة",
     "Calendar" : "التقويم",
     "Team name" : "اسم الفريق",

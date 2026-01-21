@@ -5,7 +5,6 @@ OC.L10N.register(
     "Details" : "Maelezo ya kina",
     "All contacts" : "Mawasiliano yote",
     "_Imported %n contact_::_Imported %n contacts_" : ["Imported %n contact","Imeingiza anwani %n"],
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Imported %n contact (skipped %d)","Imeingiza anwani %n (imerukwa %d)"],
     "Contacts" : "Mawasiliano",
     "A contacts app for Nextcloud" : "Programu ya mawasiliano kwa Nextcloud",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Programu ya mawasiliano ya Nextcloud ni kiolesura cha mtumiaji cha seva ya Nextcloud ya CardDAV. Sawazisha anwani kutoka kwa vifaa mbalimbali kwa urahisi na Nextcloud yako na uzihariri mtandaoni.\n\n* 🚀 **Muunganisho na programu zingine za Nextcloud!** Kwa sasa Barua pepe na Kalenda - zaidi yajayo.\n* 🎉 **Usisahau kamwe siku ya kuzaliwa!** Unaweza kusawazisha siku za kuzaliwa na matukio mengine yanayojirudia kwa kutumia Kalenda yako ya Nextcloud.\n* 👥 **Kushiriki Vitabu vya Anwani!** Je, ungependa kushiriki anwani zako na marafiki au wafanyakazi wenzako? Hakuna tatizo!\n* 🙈 **Hatubuni tena gurudumu!** Kulingana na maktaba kuu na wazi ya SabreDAV",
@@ -105,8 +104,6 @@ OC.L10N.register(
     "Close" : "Funga",
     "There is no description for this team" : "Hakuna maelezo ya kina kwa timu hii",
     "Enter a description for the team" : "Ingiza maelezo ya kina kwa timu hii",
-    "Team folder" : "Folda ya timu",
-    "New Team folder" : "Folda mpya ya timu",
     "Folder name" : "Jina la folda",
     "Talk conversation" : "Mazungumzo ya Talk ",
     "New Talk conversation" : "Mazungumzo mapya ya Talk ",
@@ -370,6 +367,7 @@ OC.L10N.register(
     "Invite members to team" : "Alika wanachama kwenye timu",
     "Loading members list …" : "Inapakia orodha ya wanachama",
     "Add to {circle}" : "Ongeza hadi {circle}",
-    "Select chart …" : "Chagua chati"
+    "Select chart …" : "Chagua chati",
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Imported %n contact (skipped %d)","Imeingiza anwani %n (imerukwa %d)"]
 },
 "nplurals=2; plural=(n != 1);");

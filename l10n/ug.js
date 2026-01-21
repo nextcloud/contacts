@@ -5,7 +5,6 @@ OC.L10N.register(
     "Details" : "تەپسىلاتى",
     "All contacts" : "بارلىق ئالاقىداشلار",
     "_Imported %n contact_::_Imported %n contacts_" : ["%n ئالاقىداش كىرگۈزۈلدى","%n ئالاقىداش كىرگۈزۈلدى"],
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n ئالاقىداش كىرگۈزۈلدى (%d ئۆتكۈزۋېتىلدى)","%n ئالاقىداش كىرگۈزۈلدى (%d ئۆتكۈزۋېتىلدى)"],
     "Contacts" : "ئالاقەداشلار",
     "A contacts app for Nextcloud" : "Nextcloud نىڭ ئالاقىلىشىش دېتالى",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Nextcloud ئالاقىلىشىش دېتالى Nextcloud نىڭ CardDAV مۇلازىمېتىرى ئۈچۈن ئىشلەتكۈچى كۆرۈنمە يۈزى. Nextcloud بىلەن ھەر خىل ئۈسكۈنىلەرنىڭ ئالاقىسىنى ئاسانلا ماسقەدەملەپ ، توردا تەھرىرلەڭ.\n\n* 🚀 ** باشقا Nextcloud ئەپلىرى بىلەن بىرلەشتۈرۈش! ** ھازىر خەت ۋە كالېندار - تېخىمۇ كۆپ.\n* 🎉 ** تۇغۇلغان كۈننى ھەرگىز ئۇنتۇپ قالماڭ! ** تۇغۇلغان كۈن ۋە باشقا تەكرارلانغان ۋەقەلەرنى كېيىنكى بۇلۇت كالېندارىڭىز بىلەن ماسقەدەملىيەلەيسىز.\n* 👥 ** ئېلان دەپتىرىنى ھەمبەھىرلەش! ** ئالاقىداشلىرىڭىزنى دوستلىرىڭىز ياكى خىزمەتداشلىرىڭىز بىلەن ئورتاقلاشماقچىمۇ؟ چاتاق يوق!\n* 🙈 ** بىز چاقنى ئەسلىگە كەلتۈرمەيمىز! ** ئېسىل ۋە ئوچۇق SabreDAV كۈتۈپخانىسىنى ئاساس قىلغان.",
@@ -105,8 +104,7 @@ OC.L10N.register(
     "Close" : "ياپ",
     "There is no description for this team" : "بۇ كوماندىغا ھېچقانداق چۈشەنچە يوق",
     "Enter a description for the team" : "گۇرۇپپا ئۈچۈن چۈشەندۈرۈش كىرگۈزۈڭ",
-    "Team folder" : "ئەتىرەت قىسقۇچى",
-    "New Team folder" : "يېڭى ئەتىرەت قىسقۇچى",
+    "Folder" : "Folder",
     "Folder name" : "قىسقۇچ ئاتى",
     "Talk conversation" : "پاراڭ سۆھپىتى",
     "New Talk conversation" : "يېڭى پاراڭ سۆھپىتى",
@@ -385,6 +383,7 @@ OC.L10N.register(
     "Invite members to team" : "ئەزالارنى ئەتىرەتكە تەكلىپ قىل",
     "Loading members list …" : "ئەزالار تىزىملىكى يۈكلىنىۋاتىدۇ…",
     "Add to {circle}" : "{circle} غا قوش",
-    "Select chart …" : "جەدۋەلنى تاللاڭ…"
+    "Select chart …" : "جەدۋەلنى تاللاڭ…",
+    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n ئالاقىداش كىرگۈزۈلدى (%d ئۆتكۈزۋېتىلدى)","%n ئالاقىداش كىرگۈزۈلدى (%d ئۆتكۈزۋېتىلدى)"]
 },
 "nplurals=2; plural=(n != 1);");

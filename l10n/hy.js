@@ -14,6 +14,7 @@ OC.L10N.register(
     "Last name" : "Ազգանուն",
     "Save" : "Պահպանել",
     "Close" : "Փակել",
+    "Folder" : "Folder",
     "Create" : "Ստեղծել",
     "Name" : "Անուն",
     "Title" : "Վերնագիր",

@@ -98,8 +98,6 @@ OC.L10N.register(
     "Close" : "Закрыть",
     "There is no description for this team" : "Для этой команды нет описания",
     "Enter a description for the team" : "Введите описание команды",
-    "Team folder" : "Папка команды",
-    "New Team folder" : "Имя папки команды",
     "Folder name" : "Имя папки",
     "Conversation name" : "Название беседы",
     "Collective" : "Группа",
