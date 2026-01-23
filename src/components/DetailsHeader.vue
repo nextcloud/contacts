@@ -153,8 +153,6 @@ $top-padding: 50px;
 		display: flex;
 		flex: 1 0 auto;
 		gap: 5px;
-		align-self: flex-start;
-		margin: 3px;
 	}
 }
 </style>
