@@ -334,8 +334,6 @@ const actions = {
 			// create contact
 			const dav = await contact.addressbook.dav.createVCard(vData)
 			context.commit('setContactDav', { contact, dav })
-			// Ensure the store reflects the updated contact data (displayName, sorting, ...)
-			context.commit('updateContact', contact)
 			return
 		}
 
