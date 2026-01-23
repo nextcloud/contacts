@@ -3,8 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import path from 'path'
 import { createAppConfig } from '@nextcloud/vite-config'
+import path from 'path'
+import { defineConfig } from 'vite'
 
 export default createAppConfig({
 	'main': path.join(__dirname, 'src', 'main.js'),
@@ -13,4 +14,9 @@ export default createAppConfig({
 	'oca': path.join(__dirname, 'src', 'oca.ts'),
 }, {
 	inlineCSS: false,
+	config: defineConfig(({ mode }) => ({
+		define: {
+			'process.env.NODE_ENV': JSON.stringify(mode),
+		},
+	})),
 })
