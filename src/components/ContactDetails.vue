@@ -263,21 +263,6 @@
 					<!-- properties iteration -->
 					<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
 
-					<!-- Special handling for lifeEvents -->
-					<div v-if="name === 'lifeEvents'" class="life-events-group">
-						<ContactDetailsProperty
-							v-for="(property, index) in properties"
-							:key="`${index}-${contact.key}-${property.name}`"
-							:is-first-property="index === 0"
-							:is-last-property="index === properties.length - 1"
-							:property="property"
-							:contact="contact"
-							:local-contact="localContact"
-							:contacts="contacts"
-							:bus="bus"
-							:is-read-only="isReadOnly" />
-					</div>
-
 					<div
 						v-for="(properties, name) in groupedProperties"
 						:key="name">
