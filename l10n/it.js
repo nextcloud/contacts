@@ -47,7 +47,7 @@ OC.L10N.register(
     "Contact group name" : "Nome gruppo contatti",
     "Teams" : "Team",
     "Create a new team" : "Crea un nuovo team",
-    "Open the contacts app settings" : "Apri le impostazioni dell'app Contatti",
+    "Open the contacts app settings" : "Apri le impostazioni dell'applicazione Contatti",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Condiviso con {num} entità","Condiviso con {num} entità","Condiviso con {num} entità"],
     "Copied" : "Copiato",
     "Cannot copy" : "Impossibile copiare",
