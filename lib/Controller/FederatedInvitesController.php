@@ -8,10 +8,12 @@
 namespace OCA\Contacts\Controller;
 
 use Exception;
+use GuzzleHttp\Exception\RequestException;
 use OC\App\CompareVersion;
 use OCA\Contacts\AppInfo\Application;
 use OCA\Contacts\Db\FederatedInvite;
 use OCA\Contacts\Db\FederatedInviteMapper;
+use OCA\Contacts\Exception\ContactExistsException;
 use OCA\Contacts\Service\FederatedInvitesService;
 use OCA\Contacts\Service\GroupSharingService;
 use OCA\Contacts\Service\SocialApiService;
@@ -41,7 +43,10 @@ use OCP\IUserSession;
 use OCP\L10N\IFactory;
 use OCP\Mail\IMailer;
 use OCP\Mail\IMessage;
+use OCP\OCM\Exceptions\OCMProviderException;
+use OCP\OCM\Exceptions\OCMRequestException;
 use OCP\OCM\IOCMDiscoveryService;
+use OCP\OCM\IOCMProvider;
 use OCP\Util;
 use Psr\Log\LoggerInterface;
 use Sabre\DAV\UUIDUtil;
@@ -221,7 +226,7 @@ class FederatedInvitesController extends PageController {
 	 * @return JSONResponse with data signature ['contact' | 'message'] - the new contact url or an error message in case of error
 	 */
 	#[NoAdminRequired]
-	public function inviteAccepted(string $token = '', string $provider = ''): JSONResponse {
+	public function acceptInvite(string $token = '', string $provider = ''): JSONResponse {
 		if ($token === '' || $provider === '') {
 			$this->logger->error("Both token and provider must be specified. Received: token=$token, provider=$provider", ['app' => Application::APP_ID]);
 			return new JSONResponse(['message' => 'Both token and provider must be specified.'], Http::STATUS_NOT_FOUND);
@@ -241,64 +246,53 @@ class FederatedInvitesController extends PageController {
 			// @link https://cs3org.github.io/OCM-API/docs.html?branch=v1.1.0&repo=OCM-API&user=cs3org#/paths/~1invite-accepted/post
 			$client = $this->httpClient->newClient();
 			/**
-			 * @var OCP\OCM\ICapabilityAwareOCMProvider $discovered
+			 * @var IOCMProvider $discovered
 			 *
 			 */
 			$discovered = $this->discovery->discover($provider);
 			$capabilities = $discovered->getCapabilities();
-			if (in_array('invites', $capabilities) || in_array('/invite-accepted', $capabilities)) {
+			if (in_array('invite-accepted', $capabilities)) {
 
-				$api = $discovered->getEndPoint();
-				$response = $client->post(
-					$api . '/invite-accepted',
+				$response = $this->discovery->requestRemoteOcmEndpoint(
+					null,
+					$provider,
+					'/invite-accepted',
 					[
-						'body'
-						=> [
-							'recipientProvider' => $recipientProvider,
-							'token' => $token,
-							'userID' => $userId,
-							'email' => $email,
-							'name' => $name,
-						],
-						'connect_timeout' => 10,
-					]
+						'recipientProvider' => $recipientProvider,
+						'token' => $token,	
+						'userID' => $userId,
+						'email' => $email,
+						'name' => $name
+					],
+					'POST',
+					$client
 				);
 				$responseData = $response->getBody();
 				$data = json_decode($responseData, true);
 
-				// Creating a contact does not return a specific 'contact already exists' error,
-				// so we must check that explicitly
 				$cloudId = $data['userID'] . '@' . $this->addressHandler->removeProtocolFromUrl($provider);
-				$searchResult = $this->contactsManager->search($cloudId, ['CLOUD']);
-				if (count($searchResult) > 0) {
-					$this->logger->info('Contact with cloud id ' . $cloudId . ' already exists.', ['app' => Application::APP_ID]);
-					return new JSONResponse(['message' => "Contact with cloudID $cloudId already exists."], Http::STATUS_CONFLICT);
-				}
 
-				$newContact = $this->socialApiService->createFederatedContact(
-					// the ocm address: nextcloud cloud id format
+				$contactRef = $this->federatedInvitesService->createNewContact(
 					$cloudId,
 					$data['email'],
 					$data['name'],
-					$localUser->getUID(),
+					null
 				);
-				if (!isset($newContact)) {
-					$this->logger->error("Error accepting invite (token=$token, provider=$provider): Could not create new contact.", ['app' => Application::APP_ID]);
-					return new JSONResponse(['message' => 'An unexpected error occurred trying to accept invite: could not create new contact'], Http::STATUS_NOT_FOUND);
+				if(!isset($contactRef)) {
+					return new JSONResponse(['message' => 'An unexpected error occurred trying to accept invite.'], Http::STATUS_NOT_FOUND);
 				}
-				$this->logger->info('Created new contact with UID: ' . $newContact['UID'] . ' for user with UID: ' . $localUser->getUID(), ['app' => Application::APP_ID]);
-
-				$contact = $newContact['UID'] . '~' . CardDavBackend::PERSONAL_ADDRESSBOOK_URI;
-				$key = base64_encode($contact);
-				$url = $this->urlGenerator->getAbsoluteURL(
+				$key = base64_encode($contactRef);
+				$contactUrl = $this->urlGenerator->getAbsoluteURL(
 					$this->urlGenerator->linkToRoute('contacts.page.index') . $this->il10->t('All contacts') . '/' . $key
 				);
-				return new JSONResponse(['contact' => $url], Http::STATUS_OK);
+				return new JSONResponse(['contact' => $contactUrl], Http::STATUS_OK);
 			} else {
 				$this->logger->error('Provider: ' . $provider . ' does not support invites.', ['app' => Application::APP_ID]);
 				return new JSONResponse(['message' => 'Provider: ' . $provider . ' does not support invites.'], Http::STATUS_NOT_FOUND);
 			}
-		} catch (\GuzzleHttp\Exception\RequestException $e) {
+		} catch (ContactExistsException $e) {
+			return new JSONResponse(['message' => 'Contact with cloudID ' . $cloudId . ' already exists.'], Http::STATUS_CONFLICT);
+		} catch (RequestException $e) { // this should catch OCM API request exceptions
 			$this->logger->error('/invite-accepted returned an error: ' . $e->getMessage(), ['app' => Application::APP_ID]);
 			/**
 			 * 400: Invalid or non existing token
@@ -313,7 +307,7 @@ class FederatedInvitesController extends PageController {
 			}
 			$this->logger->error("An unexpected error occurred accepting invite with token=$token and provider=$provider. Stacktrace: " . $e->getTraceAsString(), ['app' => Application::APP_ID]);
 			return new JSONResponse(['message' => 'An unexpected error occurred trying to accept invite.'], Http::STATUS_NOT_FOUND);
-		} catch (Exception $e) {
+		} catch (OCMProviderException|OCMRequestException|Exception $e) {
 			$this->logger->error("An unexpected error occurred accepting invite with token=$token and provider=$provider. Stacktrace: " . $e->getTraceAsString(), ['app' => Application::APP_ID]);
 			return new JSONResponse(['message' => 'An unexpected error occurred trying to accept invite'], Http::STATUS_NOT_FOUND);
 		}

@@ -11,6 +11,7 @@ namespace OCA\Contacts\Service;
 
 use Exception;
 use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\Exception\ContactExistsException;
 use OCA\Contacts\Service\Social\CompositeSocialProvider;
 use OCA\DAV\CardDAV\ContactsManager;
 use OCP\AppFramework\Http;
@@ -219,25 +220,26 @@ class SocialApiService {
 	}
 
 	/**
-	 * Creates a federated contact and adds it to the address book of the local user with the specified userId,
+	 * Creates a contact and adds it to the address book of the local user with the specified userId,
 	 * unless a contact with the specified cloudId already exists for that local user.
 	 *
-	 * @param {string} cloudId the cloud id of the federated contact
-	 * @param {string} email the email of the federated contact
-	 * @param {string} name the name of the federated contact
+	 * @param {string} cloudId the cloud id of the contact
+	 * @param {string} email the email of the contact
+	 * @param {string} name the name of the contact
 	 * @param {string} userId the uid of the local user
+	 * @throws ContactExistsException
 	 */
-	public function createFederatedContact(string $cloudId, string $email, string $name, string $userId): ?array {
+	public function createContact(string $cloudId, string $email, string $name, string $userId): ?array {
 		try {
 			// Set up the contacts provider for the user with the specified uid
 			$cm = $this->serverContainer->get(ContactsManager::class);
 			$cm->setupContactsProvider($this->manager, $userId, $this->urlGen);
 
-			// if contact already exists we simply return
+			// if contact already exists we throw ContactExistsException
 			$searchResult = $this->manager->search($cloudId, ['CLOUD']);
 			if (count($searchResult) > 0) {
 				$this->logger->info('Contact with cloud id ' . $cloudId . ' already exists.', ['app' => Application::APP_ID]);
-				return null;
+				throw new ContactExistsException('Contact with cloud id ' . $cloudId . ' already exists.');
 			}
 
 			/** @var \OCP\IAddressBook */
@@ -267,8 +269,10 @@ class SocialApiService {
 				$addressBook->getKey()
 			);
 			return $newContact;
+		} catch (ContactExistsException $e) {
+			throw $e;
 		} catch (Exception $e) {
-			$this->logger->error('An exception occurred creating a federated contact: ' . $e->getTraceAsString(), ['app' => Application::APP_ID]);
+			$this->logger->error('An exception occurred creating a new contact: ' . $e->getTraceAsString(), ['app' => Application::APP_ID]);
 		}
 		return null;
 	}

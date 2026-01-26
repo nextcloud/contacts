@@ -9,7 +9,7 @@
 namespace OCA\Contacts\Service;
 
 use ChristophWurst\Nextcloud\Testing\TestCase;
-
+use OCA\Contacts\Exception\ContactExistsException;
 use OCA\Contacts\Service\Social\CompositeSocialProvider;
 use OCA\Contacts\Service\Social\ISocialProvider;
 use OCA\DAV\CardDAV\ContactsManager;
@@ -556,5 +556,22 @@ class SocialApiServiceTest extends TestCase {
 		// invalid addressbookId:
 		$result = $this->service->existsContact('11111111-1111-1111-1111-111111111111', 'not-existing', 'admin');
 		$this->assertEquals(false, $result);
+	}
+
+	public function testCreateContactExists(): void {
+		$cloudId = 'cloud@host.com';
+		$this->manager->expects(self::any())
+			->method('search')
+			->willReturn([
+				[
+					'UID' => '11111111-1111-1111-1111-111111111111',
+					'FN' => 'Valid Contact One',
+					'VERSION' => '4.0',
+					'X-SOCIALPROFILE' => [['type' => 'someNetwork', 'value' => 'someId1']],
+					'CLOUD' => $cloudId,
+				]
+			]);
+		$this->expectException(ContactExistsException::class);
+		$contact = $this->service->createContact($cloudId, 'email', 'name', '11111111-1111-1111-1111-111111111111');
 	}
 }

@@ -9,21 +9,31 @@ declare(strict_types=1);
 
 namespace OCA\Contacts\Db;
 
-use OCA\CloudFederationAPI\Db\FederatedInviteMapper as DbFederatedInviteMapper;
+use OCP\AppFramework\Db\QBMapper;
 use OCP\DB\QueryBuilder\IQueryBuilder;
 use OCP\IDBConnection;
-use Psr\Log\LoggerInterface;
 
 /**
  * @template-extends QBMapper<FederatedInvite>
  */
-class FederatedInviteMapper extends DbFederatedInviteMapper {
+class FederatedInviteMapper extends QBMapper {
+	public const TABLE_NAME = 'federated_invites';
 
-	public function __construct(
-		IDBConnection $db,
-		private LoggerInterface $logger,
-	) {
+	public function __construct(IDBConnection $db) {
 		parent::__construct($db, self::TABLE_NAME);
+	}
+
+	/**
+	 * Returns the federated invite with the specified token
+	 * 
+	 * @return FederatedInvite
+	 */
+	public function findByToken(string $token): FederatedInvite {
+		$qb = $this->db->getQueryBuilder();
+		$qb->select('*')
+			->from('federated_invites')
+			->where($qb->expr()->eq('token', $qb->createNamedParameter($token)));
+		return $this->findEntity($qb);
 	}
 
 	/**
