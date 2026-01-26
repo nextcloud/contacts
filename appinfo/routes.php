@@ -16,7 +16,7 @@ return [
 		['name' => 'federated_invites#get_invites', 'url' => '/ocm/invitations', 'verb' => 'GET'],
 		['name' => 'federated_invites#delete_invite', 'url' => '/ocm/invitations/{token}', 'verb' => 'DELETE'],
 		['name' => 'federated_invites#create_invite', 'url' => '/ocm/invitations', 'verb' => 'POST'],
-		['name' => 'federated_invites#invite_accepted', 'url' => '/ocm/invitations/{token}/accept', 'verb' => 'PATCH'],
+		['name' => 'federated_invites#accept_invite', 'url' => '/ocm/invitations/{token}/accept', 'verb' => 'PATCH'],
 		['name' => 'federated_invites#resend_invite', 'url' => '/ocm/invitations/{token}/resend', 'verb' => 'PATCH'],
 		['name' => 'federated_invites#invite_accept_dialog', 'url' => FederatedInvitesService::OCM_INVITE_ACCEPT_DIALOG_ROUTE, 'verb' => 'GET'],
 		['name' => 'federated_invites#wayf', 'url' => WayfProvider::WAYF_ROUTE, 'verb' => 'GET'],

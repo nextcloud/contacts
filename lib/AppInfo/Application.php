@@ -20,6 +20,7 @@ use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\EventDispatcher\IEventDispatcher;
+use OCP\OCM\Events\OCMEndpointRequestEvent;
 
 class Application extends App implements IBootstrap {
 	public const APP_ID = 'contacts';
@@ -38,7 +39,7 @@ class Application extends App implements IBootstrap {
 
 		$context->registerEventListener(LoadAdditionalScriptsEvent::class, LoadContactsFilesActions::class);
 		$context->registerEventListener(LoadContactsOcaApiEvent::class, LoadContactsOcaApi::class);
-		$context->registerEventListener(FederatedInviteAcceptedEvent::class, FederatedInviteAcceptedListener::class);
+		$context->registerEventListener(OCMEndpointRequestEvent::class, FederatedInviteAcceptedListener::class);
 	}
 
 	#[\Override]
