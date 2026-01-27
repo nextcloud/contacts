@@ -13,6 +13,7 @@ use OCA\Contacts\Event\LoadContactsOcaApiEvent;
 use OCA\Contacts\Listener\FederatedInviteAcceptedListener;
 use OCA\Contacts\Listener\LoadContactsFilesActions;
 use OCA\Contacts\Listener\LoadContactsOcaApi;
+use OCA\Contacts\Listener\OcmDiscoveryListener;
 use OCA\DAV\Events\SabrePluginAddEvent;
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCP\AppFramework\App;
@@ -20,6 +21,7 @@ use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\EventDispatcher\IEventDispatcher;
+use OCP\OCM\Events\LocalOCMDiscoveryEvent;
 use OCP\OCM\Events\OCMEndpointRequestEvent;
 
 class Application extends App implements IBootstrap {
@@ -40,6 +42,7 @@ class Application extends App implements IBootstrap {
 		$context->registerEventListener(LoadAdditionalScriptsEvent::class, LoadContactsFilesActions::class);
 		$context->registerEventListener(LoadContactsOcaApiEvent::class, LoadContactsOcaApi::class);
 		$context->registerEventListener(OCMEndpointRequestEvent::class, FederatedInviteAcceptedListener::class);
+		$context->registerEventListener(LocalOCMDiscoveryEvent::class, OcmDiscoveryListener::class);
 	}
 
 	#[\Override]
