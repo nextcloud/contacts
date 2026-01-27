@@ -142,11 +142,6 @@ export default {
 			type: String,
 			default: 'text',
 		},
-
-		value: {
-			type: String,
-			required: true,
-		},
 	},
 
 	data() {

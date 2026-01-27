@@ -29,7 +29,7 @@ interface CircleSetting {
 /**
  * Get the circles list without the members
  *
- * @return
+ * @return the circles list
  */
 export async function getCircles() {
 	const response = await axios.get(generateOcsUrl('apps/circles/circles'))
@@ -39,8 +39,8 @@ export async function getCircles() {
 /**
  * Get a specific circle
  *
- * @param circleId
- * @return
+ * @param circleId the circle id
+ * @return the circle data
  */
 export async function getCircle(circleId: string) {
 	const response = await axios.get(generateOcsUrl('apps/circles/circles/{circleId}', { circleId }))
@@ -51,9 +51,9 @@ export async function getCircle(circleId: string) {
  * Create a new circle
  *
  * @param name the circle name
- * @param personal
- * @param local
- * @return
+ * @param personal whether the circle is personal
+ * @param local whether the circle is local
+ * @return the created circle data
  */
 export async function createCircle(name: string, personal: boolean, local: boolean) {
 	const response = await axios.post(generateOcsUrl('apps/circles/circles'), {
@@ -80,9 +80,8 @@ export async function deleteCircle(circleId: string) {
  *
  * @param circleId the circle id
  * @param type the edit type
- * @param data the data
- * @param value
- * @return
+ * @param value the data value
+ * @return the updated circle data
  */
 export async function editCircle(circleId: string, type: CircleEditType, value: any) {
 	const response = await axios.put(generateOcsUrl('apps/circles/circles/{circleId}/{type}', { circleId, type }), { value })

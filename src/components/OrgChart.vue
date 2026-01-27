@@ -25,6 +25,7 @@
 </template>
 
 <script>
+/* eslint-disable vue/one-component-per-file */
 import { getLocale } from '@nextcloud/l10n'
 import { NcSelect } from '@nextcloud/vue'
 import * as d3 from 'd3'

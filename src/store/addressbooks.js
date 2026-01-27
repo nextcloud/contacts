@@ -228,7 +228,7 @@ const mutations = {
 	/**
 	 * Needed to track indirect state changes for addressbook sorting
 	 *
-	 * @param state
+	 * @param {object} state the store state
 	 */
 	resortAddressbooks(state) {
 		state.addressbooks = sortAddressbooks(state.addressbooks)
@@ -347,15 +347,11 @@ const actions = {
 	/**
 	 * Rename a Addressbook
 	 *
-	 * @param {object} context the store mutations Current context
+	 * @param {object} context the store mutations current context
+	 * @param {object} data destructuring object
 	 * @param {object} data.addressbook the addressbook to rename
 	 * @param {string} data.newName the new name of the addressbook
-	 * @param data.addressbook.addressbook
-	 * @param data.addressbook.newName
-	 * @param root0
-	 * @param root0.addressbook
-	 * @param root0.newName
-	 * @return {Promise}
+	 * @return {Promise} the updated addressbook
 	 */
 	async renameAddressbook(context, { addressbook, newName }) {
 		addressbook.dav.displayname = newName
@@ -370,9 +366,9 @@ const actions = {
 	 * and commit the results
 	 *
 	 * @param {object} context the store mutations
-	 * @param {object} importDetails = { vcf, addressbook }
-	 * @param importDetails.addressbook
-	 * @return {Promise}
+	 * @param {object} data destructuring object containing addressbook
+	 * @param {object} data.addressbook the addressbook to fetch contacts from
+	 * @return {Promise} promise that resolves when complete
 	 */
 	async getContactsFromAddressBook(context, { addressbook }) {
 		return addressbook.dav
@@ -426,11 +422,12 @@ const actions = {
 	},
 
 	/**
+	 * Import contacts into an addressbook
 	 *
 	 * @param {object} context the store mutations
-	 * @param {object} importDetails = { vcf, addressbook }
-	 * @param importDetails.vcf
-	 * @param importDetails.addressbook
+	 * @param {object} data destructuring object
+	 * @param {string} data.vcf the vcard data to import
+	 * @param {object} data.addressbook the addressbook to import into
 	 */
 	async importContactsIntoAddressbook(context, { vcf, addressbook }) {
 		const contacts = parseVcf(vcf, addressbook)
@@ -514,23 +511,13 @@ const actions = {
 	/**
 	 * Share Adressbook with User or Group
 	 *
-	 * @param {object} context the store mutations Current context
-	 * @param {object} data.addressbook the addressbook
+	 * @param {object} context the store mutations current context
+	 * @param {object} data destructuring object
+	 * @param {object} data.addressbook the addressbook to share
 	 * @param {string} data.user the userId
-	 * @param {string} data.displayName the displayName
-	 * @param {string} data.uri the sharing principalScheme uri
-	 * @param {boolean} data.isGroup is this a group ?
-	 * @param data.addressbook.addressbook
-	 * @param data.addressbook.user
-	 * @param data.addressbook.displayName
-	 * @param data.addressbook.uri
-	 * @param data.addressbook.isGroup
-	 * @param root0
-	 * @param root0.addressbook
-	 * @param root0.user
-	 * @param root0.displayName
-	 * @param root0.uri
-	 * @param root0.isGroup
+	 * @param {string} data.displayName the display name of the sharee
+	 * @param {string} data.uri the sharing principal scheme uri
+	 * @param {boolean} data.isGroup whether this is a group
 	 */
 	async shareAddressbook(context, { addressbook, user, displayName, uri, isGroup }) {
 		// Share addressbook with entered group or user
