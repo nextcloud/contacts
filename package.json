@@ -68,7 +68,7 @@
     "debounce": "^3.0.0",
     "downloadjs": "^1.4.7",
     "ical.js": "^2.2.1",
-    "lodash": "^4.17.21",
+    "lodash": "^4.17.23",
     "mitt": "^3.0.1",
     "moment": "^2.30.1",
     "p-limit": "^7.2.0",
