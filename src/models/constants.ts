@@ -126,19 +126,20 @@ export const CIRCLES_MEMBER_GROUPING = [
 		share: ShareType.Group,
 		type: MEMBER_TYPE_GROUP,
 	},
-	// TODO: implement federated
-	// {
-	// id: `picker-${ShareType.Remote}`,
-	// label: t('contacts', 'federated users'),
-	// share: ShareType.Remote,
-	// type: MEMBER_TYPE_USER
-	// },
-	// {
-	// id: `picker-${ShareType.RemoteGroup}`,
-	// label: t('contacts', 'federated groups'),
-	// share: ShareType.RemoteGroup,
-	// type: MEMBER_TYPE_GROUP
-	// },
+	{
+		id: `picker-${ShareType.Remote}`,
+		label: t('contacts', 'federated users'),
+		labelStandalone: t('contacts', 'Federated users'),
+		share: ShareType.Remote,
+		type: MEMBER_TYPE_USER,
+	},
+	{
+		id: `picker-${ShareType.RemoteGroup}`,
+		label: t('contacts', 'federated groups'),
+		labelStandalone: t('contacts', 'Federated groups'),
+		share: ShareType.RemoteGroup,
+		type: MEMBER_TYPE_GROUP,
+	},
 	{
 		id: `picker-${ShareType.Team}`,
 		label: t('contacts', 'teams'),
