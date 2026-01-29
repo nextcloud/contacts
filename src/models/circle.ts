@@ -90,10 +90,17 @@ export default class Circle {
 	}
 
 	/**
-	 * Circle member count
+	 * Circle direct member count (excluding nested circles)
 	 */
 	get population() {
 		return this._data.population
+	}
+
+	/**
+	 * Circle total member count (direct + inherited from nested circles)
+	 */
+	get populationInherited() {
+		return this._data.populationInherited
 	}
 
 	// MEMBERSHIP -----------------------------------------

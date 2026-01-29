@@ -91,6 +91,18 @@ const mutations = {
 	setCircleSettings(state, { circleId, settings }) {
 		state.circles[circleId]._data.settings = settings
 	},
+
+	/**
+	 * Update circle population count
+	 *
+	 * @param {object} state the store data
+	 * @param {object} data destructuring object
+	 * @param {string} data.circleId the circle to update the population
+	 * @param {number} data.populationInherited the inherited population count
+	 */
+	updateCirclePopulationCount(state, { circleId, populationInherited }) {
+		state.circles[circleId]._data.populationInherited = populationInherited
+	},
 }
 
 const getters = {
@@ -178,6 +190,7 @@ const actions = {
 			const circle = new Circle(response)
 			context.commit('addCircle', circle)
 			logger.debug('Created circle', { circleName, circle })
+			context.dispatch('updateCirclesPopulationCount')
 			return circle
 		} catch (error) {
 			console.error(error)
@@ -197,10 +210,27 @@ const actions = {
 			await deleteCircle(circleId)
 			context.commit('deleteCircle', circle)
 			logger.debug('Deleted circle', { circleId })
+			context.dispatch('updateCirclesPopulationCount')
 		} catch (error) {
 			console.error(error)
 			showError(t('contacts', 'Unable to delete team {circleId}', circleId))
 		}
+	},
+
+	/**
+	 * Update population count for all circles
+	 *
+	 * @param {object} context the store mutations Current context
+	 */
+	async updateCirclesPopulationCount(context) {
+		const circles = await getCircles()
+		circles.forEach((circle) => {
+			context.commit('updateCirclePopulationCount', {
+				circleId: circle.id,
+				populationInherited: circle.populationInherited,
+			})
+		})
+		logger.debug('Updated population count for all circles')
 	},
 
 	/**
@@ -217,8 +247,9 @@ const actions = {
 		const results = await addMembers(circleId, selection)
 		const members = results.map((member) => new Member(member, circle))
 
-		logger.debug('Added members to circle', { circle, members })
 		context.commit('appendMembersToCircle', members)
+		logger.debug('Added members to circle', { circle, members })
+		context.dispatch('updateCirclesPopulationCount')
 
 		return members
 	},
@@ -250,6 +281,7 @@ const actions = {
 		// success, let's remove from store
 		context.commit('deleteMemberFromCircle', member)
 		logger.debug('Deleted member', { circleId, memberId })
+		context.dispatch('updateCirclesPopulationCount')
 	},
 
 	/**
@@ -267,6 +299,7 @@ const actions = {
 		const member = new Member(result, circle)
 
 		await context.commit('addMemberToCircle', { circleId, member })
+		context.dispatch('updateCirclesPopulationCount')
 	},
 
 	async editCircleSetting(context, { circleId, setting }) {
