@@ -46,9 +46,13 @@ export default class Circle {
 	 */
 	set description(text: string)
 	/**
-	 * Circle member count
+	 * Circle direct member count (excluding nested circles)
 	 */
 	get population(): any
+	/**
+	 * Circle total member count (direct + inherited from nested circles)
+	 */
+	get populationInherited(): any
 	/**
 	 * Circle ini_initiator the current
 	 * user info for this circle
