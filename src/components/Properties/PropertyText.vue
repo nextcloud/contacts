@@ -188,6 +188,9 @@ export default {
 
 		// format external link
 		externalHandler() {
+			if (this.propName === 'impp' && this.localType.id === 'MATRIX') {
+				return this.matrixIdToURL(this.localValue)
+			}
 			if (this.URLScheme !== false) {
 				return `${this.URLScheme}${this.localValue}`
 			}
@@ -258,6 +261,15 @@ export default {
 		updateValueNoDebounce(e) {
 			this.resizeHeight(e)
 			this.updateValue(e)
+		},
+
+		matrixIdToURL(id) {
+			const re = /^@(?<userID>[a-z][\w.]*):(?<homeserver>.+)$/
+			const result = id.match(re)
+			if (result === null) {
+				return ''
+			}
+			return `matrix:u/${result.groups.userID}:${result.groups.homeserver}?action=chat`
 		},
 	},
 }
