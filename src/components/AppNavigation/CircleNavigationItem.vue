@@ -124,14 +124,7 @@ export default {
 
 	computed: {
 		memberCount() {
-			const count = Object.keys(this.circle?.members || []).length
-
-			// If member list is empty, let's try the population initial count
-			if (count === 0 && this.circle.population > 0) {
-				return this.circle.population
-			}
-
-			return count
+			return this.circle.populationInherited || 0
 		},
 	},
 }
