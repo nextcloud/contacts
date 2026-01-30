@@ -22,12 +22,10 @@ class WayfProvider {
 	// The default wayf page route.
 	public const WAYF_ROUTE = '/wayf';
 	public const DISCOVERY_ROUTE = '/discover';
-	public const INVITE_ACCEPT_DIALOG = '/index.php/apps/contacts' . FederatedInvitesService::OCM_INVITE_ACCEPT_DIALOG_ROUTE;
 
 	public function __construct(
 		private IAppConfig $appConfig,
 		private IClientService $httpClient,
-		private FederatedInvitesService $federatedInvitesService,
 		private LoggerInterface $logger,
 		private IOCMDiscoveryService $discovery,
 		private IURLGenerator $urlGenerator,
@@ -73,7 +71,8 @@ class WayfProvider {
 					}
 					if ($inviteAcceptDialog === '') {
 						// We fall back on Nextcloud default path
-						$inviteAcceptDialog = $prov['url'] . WayfProvider::INVITE_ACCEPT_DIALOG;
+						$inviteAcceptDialogPath = self::getInviteAcceptDialogPath();
+						$inviteAcceptDialog = rtrim($prov['url'], '/') . $inviteAcceptDialogPath;
 					}
 					$federations[$fed][] = [
 						'provider' => $disc->getProvider(),
@@ -116,27 +115,17 @@ class WayfProvider {
 	 * @return string|null the WAYF login page endpoint or null if it could not be created
 	 */
 	public function getWayfEndpoint(): string|null {
-		$appRootUrl = $this->getAppRootUrl();
-		if(empty($appRootUrl)) {
-			$this->logger->error("Unable to create WAYF endpoint", ['app' => Application::APP_ID]);
-			return null;
-		}
-		$appRootUrl = trim($appRootUrl, '/');
-		$wayfEndpoint = 'https://' . $this->federatedInvitesService->getProviderFQDN() . "/$appRootUrl/" . Application::APP_ID . WayfProvider::WAYF_ROUTE;
-		return $this->appConfig->getValueString(Application::APP_ID, 'wayf_endpoint', $wayfEndpoint);
+		// default wayf endpoint
+		$defaultWayfEndpoint = $this->urlGenerator->linkToRouteAbsolute(Application::APP_ID . '.federated_invites.wayf');
+		return $this->appConfig->getValueString(Application::APP_ID, 'wayf_endpoint', $defaultWayfEndpoint);
 	}
 
 	/**
-	 * Returns this app root url. Currently either '/apps' or '/custom_apps'.
-	 * @return string|null the app root url or null if the app root url could not be determined
+	 * Returns the path of the invite accept dialog route.
+	 * 
+	 * @return string
 	 */
-	private function getAppRootUrl(): string|null {
-		foreach(\OC::$APPSROOTS as $appRoot) {
-			if(str_starts_with(__DIR__, $appRoot['path'])) {
-				return $appRoot['url'];
-			}
-		}
-		$this->logger->error("Could not determine app root url", ['app' => Application::APP_ID]);
-		return null;
+	public function getInviteAcceptDialogPath(): string {
+		return $this->urlGenerator->linkToRoute(Application::APP_ID . '.federated_invites.invite_accept_dialog');
 	}
 }

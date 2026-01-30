@@ -17,7 +17,7 @@ use OCP\Migration\IOutput;
 use OCP\Migration\SimpleMigrationStep;
 
 #[CreateTable(table: 'federated_invites', columns: ['id', 'user_id', 'recipient_provider', 'recipient_user_id', 'recipient_name', 'recipient_email', 'token', 'accepted', 'created_at', 'expired_at', 'accepted_at'], description: 'Supporting the OCM Invitation Flow feature')]
-class Version1016Date202502262004 extends SimpleMigrationStep {
+class Version8004Date20260130131217 extends SimpleMigrationStep {
 	/**
 	 * @param IOutput $output
 	 * @param Closure $schemaClosure The `\Closure` returns a `ISchemaWrapper`
