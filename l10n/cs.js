@@ -253,6 +253,7 @@ OC.L10N.register(
     "Add contact in group" : "Přidat kontakt do skupiny",
     "None" : "Žádné",
     "Select option" : "Vybrat volbu",
+    "note" : "poznámka",
     "email" : "e-mail",
     "Personal dates" : "Osobní data",
     "Add property of this type" : "Přidat vlastnost tohoto typu",
