@@ -71,35 +71,42 @@
 				</template>
 
 				<template #quick-actions>
-					<div v-if="!editMode && !loadingData">
-						<Actions :inline="6"
-							type="secondary">
-							<ActionButton v-if="isTalkEnabled && isInSystemAddressBook"
-								:aria-label="(t('contacts', 'Go to talk conversation'))"
-								:name="(t('contacts', 'Go to talk conversation'))"
-								class="icon-talk quick-action"
-								:href="callUrl" />
-							<ActionButton v-if="profilePageLink"
-								class="quick-action"
-								:aria-label="(t('contacts','View profile'))"
-								:name="(t('contacts','View profile'))"
-								:href="profilePageLink">
-								<template #icon>
-									<IconAccount :size="20" />
-								</template>
-							</ActionButton>
+					<div v-if="!editMode && !loadingData" class="quick-actions">
+						<NcButton v-if="isTalkEnabled && isInSystemAddressBook"
+							:aria-label="(t('contacts', 'Go to talk conversation'))"
+							:name="(t('contacts', 'Go to talk conversation'))"
+							class="icon-talk quick-action"
+							:href="callUrl" />
+						<NcButton v-if="profilePageLink"
+							class="quick-action"
+							:aria-label="(t('contacts','View profile'))"
+							:name="(t('contacts','View profile'))"
+							:href="profilePageLink">
+							<template #icon>
+								<IconAccount :size="20" />
+							</template>
+						</NcButton>
+						<Actions class="quick-action"
+							variant="secondary">
+							<template #icon>
+								<IconMail :size="20" />
+							</template>
 							<ActionLink v-for="emailAddress in emailAddressList"
 								:key="emailAddress"
-								class="quick-action"
 								:href="'mailto:' + emailAddress">
 								<template #icon>
 									<IconMail :size="20" />
 								</template>
 								{{ emailAddress }}
 							</ActionLink>
+						</Actions>
+						<Actions class="quick-action"
+							variant="secondary">
+							<template #icon>
+								<IconCall :size="20" />
+							</template>
 							<ActionLink v-for="phoneNumber in phoneNumberList"
 								:key="phoneNumber"
-								class="quick-action"
 								:href="'tel:' + phoneNumber">
 								<template #icon>
 									<IconCall :size="20" />
@@ -1202,5 +1209,9 @@ section.contact-details {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
+}
+
+.quick-actions {
+	display: flex;
 }
 </style>
