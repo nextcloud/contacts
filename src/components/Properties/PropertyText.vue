@@ -92,15 +92,33 @@
 					:placeholder="placeholder"
 					@update:model-value="updateValue" />
 
-				<!-- external link -->
-				<a
-					v-if="haveExtHandler && isReadOnly"
-					:href="externalHandler"
-					class="property__ext"
-					:aria-label="t('mail', 'send an email')"
-					target="_blank">
-					<OpenInNewIcon :size="20" />
-				</a>
+				<NcActions
+					v-if="isReadOnly"
+					:inline="2"
+					variant="tertiary-no-background">
+					<!-- copy button -->
+					<NcActionButton
+						class="property__ext"
+						variant="tertiary-no-background"
+						:aria-label="t('contacts', 'copy')"
+						@click.stop.prevent="copyValueToClipboard(localValue)">
+						<template #icon>
+							<CopyIcon :size="20" />
+						</template>
+					</NcActionButton>
+
+					<!-- external link -->
+					<NcActionLink
+						v-if="haveExtHandler"
+						class="property__ext"
+						:href="externalHandler"
+						:aria-label="t('mail', 'send an email')"
+						target="_blank">
+						<template #icon>
+							<OpenInNewIcon :size="20" />
+						</template>
+					</NcActionLink>
+				</NcActions>
 			</div>
 
 			<!-- props actions -->
@@ -116,13 +134,15 @@
 </template>
 
 <script>
-import { NcSelect, NcTextArea, NcTextField } from '@nextcloud/vue'
+import { NcActionButton, NcActionLink, NcActions, NcSelect, NcTextArea, NcTextField } from '@nextcloud/vue'
 import debounce from 'debounce'
 import isEmail from 'validator/lib/isEmail.js'
+import CopyIcon from 'vue-material-design-icons/ContentCopy.vue'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 import PropertyActions from './PropertyActions.vue'
 import PropertyTitle from './PropertyTitle.vue'
 import PropertyMixin from '../../mixins/PropertyMixin.js'
+import { copyValueToClipboard } from '../../utils/clipboardUtils.js'
 
 export default {
 	name: 'PropertyText',
@@ -134,6 +154,10 @@ export default {
 		PropertyTitle,
 		PropertyActions,
 		OpenInNewIcon,
+		CopyIcon,
+		NcActions,
+		NcActionButton,
+		NcActionLink,
 	},
 
 	mixins: [PropertyMixin],
@@ -261,6 +285,8 @@ export default {
 			this.resizeHeight(e)
 			this.updateValue(e)
 		},
+
+		copyValueToClipboard,
 	},
 }
 </script>
