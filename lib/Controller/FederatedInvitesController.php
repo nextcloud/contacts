@@ -141,13 +141,14 @@ class FederatedInvitesController extends PageController {
 	}
 
 	/**
-	 * Sets the token and provider states which triggers display of the invite accept dialog.
+	 * Results in displaying the invite accept dialog upon following the invite link.
 	 *
 	 * @param string $token
 	 * @param string $providerDomain
 	 * @return TemplateResponse
 	 */
 	#[NoAdminRequired]
+	#[NoCSRFRequired]
 	public function inviteAcceptDialog(string $token = '', string $providerDomain = ''): TemplateResponse {
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'inviteToken', $token);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'inviteProvider', $providerDomain);
@@ -157,14 +158,14 @@ class FederatedInvitesController extends PageController {
 	}
 
 	/**
-	 * Creates an invitation to exchange contact info for the user with the specified uid.
+	 * Creates an invitation to exchange contact info with the remote user.
 	 *
-	 * @param string $emailAddress the recipient email address to send the invitation to
-	 * @param string $message the optional message to send with the invitation
-	 * @return JSONResponse with data signature ['token' | 'message'] - the token of the invitation or an error message in case of error
+	 * @param string $emailAddress the recipient's (remote user's) email address to send the invitation to.
+	 * @param string $message optional message to send with the invitation.
+	 * @return JSONResponse with data signature ['invite' | 'message'] - the invite url or an error message in case of error.
 	 */
 	#[NoAdminRequired]
-	public function createInvite(string $email, string $message): JSONResponse {
+	public function createInvite(string $email, ?string $message): JSONResponse {
 		if (!isset($email)) {
 			return new JSONResponse(['message' => 'Recipient email is required'], Http::STATUS_BAD_REQUEST);
 		}
@@ -382,7 +383,7 @@ class FederatedInvitesController extends PageController {
 		} elseif (empty($dialog)) {
 			// We can not check and see, because we have to be logged in here
 			// so we will just risk it.
-			$dialog = $base . WayfProvider::INVITE_ACCEPT_DIALOG;
+			$dialog = $base . $this->wayfProvider->getInviteAcceptDialogPath();
 			$absolute = preg_match('#^https?://#i', $dialog) ? $dialog : $base . $dialog;
 			return new DataResponse([
 				'base' => $base,
