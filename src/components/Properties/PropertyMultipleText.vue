@@ -56,15 +56,27 @@
 				</span>
 			</div>
 
-			<div class="property__value">
+			<div
+				v-if="!property.isStructuredValue"
+				class="property__value">
 				<!-- show the first input if not a structured value -->
 				<input
-					v-if="!property.isStructuredValue"
 					v-model.trim="localValue[0]"
 					:aria-label="(localType && localType.name) || '' "
 					:readonly="isReadOnly"
 					type="text"
 					@input="updateValue">
+
+				<NcButton
+					v-if="isReadOnly"
+					class="property__ext"
+					variant="tertiary-no-background"
+					:aria-label="t('contacts', 'copy')"
+					@click.stop.prevent="copyValueToClipboard(localValue[0])">
+					<template #icon>
+						<CopyIcon :size="20" />
+					</template>
+				</NcButton>
 			</div>
 
 			<!-- props actions -->
@@ -96,6 +108,16 @@
 							:aria-label="propModel.readableValues[index]"
 							:label="propModel.readableValues[index]"
 							@update:model-value="updateValue" />
+						<NcButton
+							v-if="isReadOnly"
+							class="property__ext"
+							variant="tertiary-no-background"
+							:aria-label="t('contacts', 'copy')"
+							@click.stop.prevent="copyValueToClipboard(localValue[index])">
+							<template #icon>
+								<CopyIcon :size="20" />
+							</template>
+						</NcButton>
 					</div>
 					<div class="property__actions" />
 				</template>
@@ -118,6 +140,16 @@
 							:label="propModel.readableValues[index]"
 							type="text"
 							@update:model-value="updateValue" />
+						<NcButton
+							v-if="isReadOnly"
+							class="property__ext"
+							variant="tertiary-no-background"
+							:aria-label="t('contacts', 'copy')"
+							@click.stop.prevent="copyValueToClipboard(filteredValue[index])">
+							<template #icon>
+								<CopyIcon :size="20" />
+							</template>
+						</NcButton>
 					</div>
 					<div class="property__actions" />
 				</template>
@@ -127,19 +159,23 @@
 </template>
 
 <script>
-import { NcSelect, NcTextField } from '@nextcloud/vue'
+import { NcButton, NcSelect, NcTextField } from '@nextcloud/vue'
+import CopyIcon from 'vue-material-design-icons/ContentCopy.vue'
 import PropertyActions from './PropertyActions.vue'
 import PropertyTitle from './PropertyTitle.vue'
 import PropertyMixin from '../../mixins/PropertyMixin.js'
+import { copyValueToClipboard } from '../../utils/clipboardUtils.js'
 
 export default {
 	name: 'PropertyMultipleText',
 
 	components: {
+		NcButton,
 		NcSelect,
 		NcTextField,
 		PropertyTitle,
 		PropertyActions,
+		CopyIcon,
 	},
 
 	mixins: [PropertyMixin],
@@ -175,6 +211,10 @@ export default {
 				|| !!this.selectType
 				|| !this.property.isStructuredValue
 		},
+	},
+
+	methods: {
+		copyValueToClipboard,
 	},
 
 }
