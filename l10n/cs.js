@@ -108,6 +108,7 @@ OC.L10N.register(
     "Folder" : "Složka",
     "New folder" : "Nová složka",
     "Folder name" : "Název složky",
+    "This will create a regular folder shared with the team. To create a Team Folder, please contact your {productName} administrator" : "Toto vytvoří běžnou složku nasdílenou týmu. Pro vytvoření týmové složky se obraťte na svého správce {productName}",
     "Talk conversation" : "Konverzace v Talk",
     "New Talk conversation" : "Nová konverzace v Talk",
     "Conversation name" : "Název konverzace",
