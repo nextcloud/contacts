@@ -86,6 +86,7 @@
 </template>
 
 <script>
+import { t } from '@nextcloud/l10n'
 import { NcButton, NcNoteCard, NcSelect } from '@nextcloud/vue'
 import IconAccountPlus from 'vue-material-design-icons/AccountMultiplePlusOutline.vue'
 import IconBookArrow from 'vue-material-design-icons/BookArrowRightOutline.vue'
@@ -175,10 +176,10 @@ export default {
 
 		listItemTitle(contact) {
 			if (this.mode === 'move') {
-				return contact.addressbook.canDeleteCard ? '' : this.$t('contacts', 'This contact cannot be moved')
+				return contact.addressbook.canDeleteCard ? '' : t('contacts', 'This contact cannot be moved')
 			}
 			if (this.mode === 'group') {
-				return contact.addressbook.canModifyCard ? '' : this.$t('contacts', 'This contact cannot be grouped')
+				return contact.addressbook.canModifyCard ? '' : t('contacts', 'This contact cannot be grouped')
 			}
 			// shouldn't end up here
 			return ''
