@@ -129,16 +129,15 @@ class XingProviderTest extends TestCase {
 			$this->response
 				->method('getBody')
 				->willReturnOnConsecutiveCalls(...$htmls);
-
-			$urlArgs = array_map(function ($url) {
-				return [$url];
-			}, $urls);
+			$expectedUrls = array_values($urls);
 
 			$this->client
 				->expects($this->exactly(count($urls)))
 				->method('get')
-				->withConsecutive(...$urlArgs)
-				->willReturn($this->response);
+				->willReturnCallback(function (string $url) use (&$expectedUrls) {
+					$this->assertSame(array_shift($expectedUrls), $url);
+					return $this->response;
+				});
 		}
 
 		$result = $this->provider->getImageUrls($contact);

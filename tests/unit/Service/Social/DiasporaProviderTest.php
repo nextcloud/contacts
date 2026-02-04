@@ -123,14 +123,9 @@ class DiasporaProviderTest extends TestCase {
 				->method('getBody')
 				->willReturnOnConsecutiveCalls(...$htmls);
 
-			$urlArgs = array_map(function ($url) {
-				return [$url];
-			}, $urls);
-
 			$this->client
 				->expects($this->exactly(count($urls)))
 				->method('get')
-				->withConsecutive(...$urlArgs)
 				->willReturn($this->response);
 		}
 
@@ -157,7 +152,6 @@ class DiasporaProviderTest extends TestCase {
 		$this->client
 			->expects($this->exactly(2))
 			->method('get')
-			->withConsecutive([$url1], [$url2])
 			->willReturn($this->response);
 
 		$result = $this->provider->getImageUrls($contact);
