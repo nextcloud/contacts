@@ -52,7 +52,9 @@ jobs:
 
       - name: Set up PHPUnit
         working-directory: apps/${{ env.APP_NAME }}
-        run: composer i
+        run: |
+          composer install
+          composer bin all install
 
       - name: Set up Nextcloud
         env:
@@ -66,16 +68,16 @@ jobs:
       - name: PHPUnit & coverage
         if: ${{ matrix.server-versions == 'master' }}
         working-directory: apps/${{ env.APP_NAME }}
-        run: ./vendor/phpunit/phpunit/phpunit --coverage-clover coverage.xml -c phpunit.xml
+        run: composer run test:unit:coverage
 
       - name: PHPUnit
         if: ${{ matrix.server-versions != 'master' }}
         working-directory: apps/${{ env.APP_NAME }}
-        run: ./vendor/phpunit/phpunit/phpunit -c phpunit.xml
+        run: composer run test:unit
 
       # - name: PHPUnit integration
       #   working-directory: apps/${{ env.APP_NAME }}
-      #   run: ./vendor/phpunit/phpunit/phpunit -c phpunit.integration.xml
+      #   run: composer run test:test:integration
 
       - name: Upload coverage
         working-directory: apps/${{ env.APP_NAME }}
@@ -138,7 +140,9 @@ jobs:
 
       - name: Set up PHPUnit
         working-directory: apps/${{ env.APP_NAME }}
-        run: composer i
+        run: |
+          composer install
+          composer bin all install
 
       - name: Set up Nextcloud
         env:
@@ -151,11 +155,11 @@ jobs:
 
       - name: PHPUnit
         working-directory: apps/${{ env.APP_NAME }}
-        run: ./vendor/phpunit/phpunit/phpunit -c phpunit.xml
+        run: composer run test:unit
 
       # - name: PHPUnit integration
       #   working-directory: apps/${{ env.APP_NAME }}
-      #   run: ./vendor/phpunit/phpunit/phpunit -c phpunit.integration.xml
+      #   run:  composer run test:integration
 
   pgsql:
     runs-on: ubuntu-latest
@@ -207,7 +211,9 @@ jobs:
 
       - name: Set up PHPUnit
         working-directory: apps/${{ env.APP_NAME }}
-        run: composer i
+        run: |
+          composer install
+          composer bin all install
 
       - name: Set up Nextcloud
         env:
@@ -220,11 +226,11 @@ jobs:
 
       - name: PHPUnit
         working-directory: apps/${{ env.APP_NAME }}
-        run: ./vendor/phpunit/phpunit/phpunit -c phpunit.xml
+        run: composer run test:unit
 
       # - name: PHPUnit integration
       #   working-directory: apps/${{ env.APP_NAME }}
-      #   run: ./vendor/phpunit/phpunit/phpunit -c phpunit.integration.xml
+      #   composer run test:integration
 
   summary:
 
