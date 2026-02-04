@@ -103,11 +103,11 @@ export const PUBLIC_CIRCLE_CONFIG = {
 		// [CIRCLE_CONFIG_CIRCLE_INVITE]: t('contacts', 'Team must confirm when invited in another circle'),
 		[CIRCLE_CONFIG_ROOT]: t('contacts', 'Prevent teams from being a member of another team'),
 	},
-	
+
 	[t('contacts', 'Federation')]: {
 		[CIRCLE_CONFIG_FEDERATED]: t('contacts', 'Allow federated members'),
 	},
-	
+
 	[t('contacts', 'Privacy')]: {
 		[CIRCLE_CONFIG_VISIBLE]: t('contacts', 'Visible to everyone'),
 	},
