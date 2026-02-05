@@ -4,6 +4,7 @@
  */
 /// <reference types="@nextcloud/typings" />
 
+import { loadState } from '@nextcloud/initial-state'
 import { translate as t } from '@nextcloud/l10n'
 import { ShareType } from '@nextcloud/sharing'
 
@@ -28,6 +29,14 @@ export const CHART_ALL_CONTACTS: DefaultChart = t('contacts', 'Organization char
 export const ROUTE_CIRCLE = 'circle'
 export const ROUTE_CHART = 'chart'
 export const ROUTE_USER_GROUP = 'user_group'
+
+const acceptInviteDialogUrl = loadState('contacts', 'acceptInviteDialogUrl', '')
+export const ROUTE_INVITE_ACCEPT_DIALOG = acceptInviteDialogUrl
+export const ROUTE_NAME_INVITE_ACCEPT_DIALOG = 'invite_accept_dialog'
+export const ROUTE_ALL_OCM_INVITES = 'ocm-invites'
+export const ROUTE_NAME_ALL_OCM_INVITES = 'all_ocm_invites'
+export const ROUTE_NAME_OCM_INVITE = 'ocm_invite'
+export const GROUP_ALL_OCM_INVITES = t('contacts', 'All invites')
 
 // Contact settings
 export const CONTACTS_SETTINGS: DefaultGroup = t('contacts', 'Contacts settings')
