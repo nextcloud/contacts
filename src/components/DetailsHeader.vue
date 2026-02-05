@@ -83,20 +83,6 @@ $top-padding: 50px;
 		padding: 5px 0;
 	}
 
-	@media (max-width: 1024px) {
-		// Top padding of 44px is already included in AppContent by default on mobile
-		padding-top: calc($top-padding - 44px);
-		&__no-wrap {
-			width: 100%;
-		}
-		&__actions .header-menu {
-			margin-inline-start: auto;
-		}
-		&__avatar {
-			width: 150px !important;
-		}
-	}
-
 	&__no-wrap {
 		display: flex;
 		gap: $contact-details-row-gap;
@@ -121,14 +107,15 @@ $top-padding: 50px;
 		// Global single column layout
 		display: flex;
 		flex: 0 1 auto;
+		gap: calc(var(--default-grid-baseline) * 3.5);
 		width: $contact-details-value-max-width;
 		min-width: 0; // Has to be zero unless we implement wrapping
 
 		&-title,
 		&-subtitle {
 			display: flex;
-			flex-wrap: wrap;
 			margin: 0;
+			gap: var(--default-grid-baseline);
 		}
 
 		&__quick-actions {
@@ -145,6 +132,25 @@ $top-padding: 50px;
 
 		&-subtitle:placeholder-shown {
 			max-width: 20%;
+		}
+	}
+
+	@media (max-width: 1024px) {
+		// Top padding of 44px is already included in AppContent by default on mobile
+		padding-top: calc($top-padding - 44px);
+		&__no-wrap {
+			width: 100%;
+		}
+		&__actions .header-menu {
+			margin-inline-start: auto;
+		}
+		&__avatar {
+			width: 150px !important;
+		}
+		&__infos {
+			&-subtitle {
+				flex-direction: column;
+			}
 		}
 	}
 
