@@ -23,9 +23,7 @@
 
 	&__identifier {
 		width: 100%;
-		overflow: hidden;
 		white-space: nowrap;
-		text-overflow: ellipsis;
 		display: inline-block;
 		vertical-align: top;
 		opacity: 0.7;
@@ -53,7 +51,7 @@
 		&--disabled {
 			opacity: .2 !important;
 		}
-		.checkbox + label {
+		.checkbox {
 			padding: 0 !important;
 		}
 		label {
