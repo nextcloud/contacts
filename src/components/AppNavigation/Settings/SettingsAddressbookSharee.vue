@@ -24,8 +24,8 @@
 				@change="editSharee">
 			<label
 				:for="uid"
-				:title="t('contacts', 'can edit')">
-				{{ t('contacts', 'can edit') }}
+				:title="t('contacts', 'can create and edit')">
+				{{ t('contacts', 'can create and edit') }}
 			</label>
 			<NcButton
 				:class="{ 'addressbook-sharee__utils--disabled': loading }"
@@ -138,9 +138,7 @@ export default {
 }
 
 .addressbook-sharee__utils label {
-	overflow: hidden;
-	text-overflow: ellipsis;
-	width: 107px;
+	padding-inline-end: 4px;
 }
 
 :deep(.NcButton-vue--vue-secondary) {

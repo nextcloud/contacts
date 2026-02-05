@@ -202,7 +202,7 @@ class ImportController extends OCSController {
 		if ($uri !== null) {
 			foreach ($addressBooks as $addressBook) {
 				if ($addressBook->getUri() === $uri) {
-					if (! ($addressBook->getPermissions() & Constants::PERMISSION_UPDATE)) {
+					if (! ($addressBook->getPermissions() & Constants::PERMISSION_CREATE)) {
 						throw new InsufficientPermissionsException('Insufficient permissions to import into the address book ' . $uri);
 					}
 					return $addressBook;
