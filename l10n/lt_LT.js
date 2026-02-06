@@ -62,7 +62,6 @@ OC.L10N.register(
     "No users or groups" : "Nėra jokių naudotojų ar grupių",
     "Unable to delete the share" : "Nepavyko ištrinti viešinio",
     "Unable to change permissions" : "Nepavyko pakeisti leidimų",
-    "can edit" : "gali redaguoti",
     "Choose a vCard file to import" : "Pasirinkite norimą importuoti vCard failą",
     "Import into the {addressbookName} address book" : "Importuoti į {addressbookName} adresų knygą",
     "Select local file" : "Pasirinkti vietinį failą",
@@ -270,6 +269,7 @@ OC.L10N.register(
     "General settings" : "Bendri nustatymai",
     "(refreshed once per week)" : "(įkeliama iš naujo kartą per savaitę)",
     "{addressbookname} (Disabled)" : "{addressbookname} (Išjungta)",
+    "can edit" : "gali redaguoti",
     "Search contacts …" : "Ieškoti adresatų…",
     "Loading members list …" : "Įkeliamas narių sąrašas…",
     "Add to {circle}" : "Pridėti į {circle}"

@@ -13,7 +13,6 @@ OC.L10N.register(
     "Copy link" : "Холбоос хуулах",
     "Download" : "Татаж авах",
     "Share with users or groups" : "Бусдад түгээх",
-    "can edit" : "засаж чадна",
     "Cancel" : "болиулах",
     "Add" : "нэмэх",
     "First name" : "Нэр",
@@ -88,6 +87,7 @@ OC.L10N.register(
     "Male" : "Эрэгтэй",
     "Unknown" : "Үл танигдах зүйл",
     "Time zone" : "Цагийн бүс",
-    "Loading …" : "Уншиж байна..."
+    "Loading …" : "Уншиж байна...",
+    "can edit" : "засаж чадна"
 },
 "nplurals=2; plural=(n != 1);");

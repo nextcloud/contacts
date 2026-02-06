@@ -42,7 +42,6 @@ OC.L10N.register(
     "No users or groups" : "Peruna utèntzia o grupu",
     "Unable to delete the share" : "Non faghet a cantzellare sa cumpartzidura",
     "Unable to change permissions" : "Non faghet a cambiare is permissos",
-    "can edit" : "podet modificare",
     "Choose a vCard file to import" : "Sèbera un'archìviu vCard de importare",
     "Import into the {addressbookName} address book" : "Importa in sa rubrica {addressbookName}",
     "Select local file" : "Sèbera archìviu locale",
@@ -214,6 +213,7 @@ OC.L10N.register(
     "Loading …" : "Carrrighende …",
     "General settings" : "Cunfiguratzione generale",
     "(refreshed once per week)" : "(agiornadu una borta a sa chida)",
+    "can edit" : "podet modificare",
     "Search contacts …" : "Chirca cuntatos ...",
     "Loading members list …" : "Carrighende s'elencu de is membros ... ",
     "Add to {circle}" : "Agiunghe a {circle}"

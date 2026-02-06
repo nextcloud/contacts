@@ -8,7 +8,6 @@ OC.L10N.register(
     "Copy link" : "Link kopéieren",
     "Download" : "Eroflueden",
     "Share with users or groups" : "Mat Benotzer oder Gruppen deelen",
-    "can edit" : "kann änneren",
     "Cancel" : "Ofbriechen",
     "Add" : "Derbäimaachen",
     "First name" : "Virnumm",
@@ -47,6 +46,7 @@ OC.L10N.register(
     "Voice" : "Voice",
     "Relative" : "Relativ",
     "Unknown" : "Onbekannt",
-    "Loading …" : "Loading …"
+    "Loading …" : "Loading …",
+    "can edit" : "kann änneren"
 },
 "nplurals=2; plural=(n != 1);");

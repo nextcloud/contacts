@@ -7,7 +7,6 @@ OC.L10N.register(
     "Send email" : "ផ្ញើ​អ៊ីមែល",
     "Delete" : "លុប",
     "Download" : "ទាញយក",
-    "can edit" : "អាច​កែប្រែ",
     "Cancel" : "បោះបង់",
     "Add" : "បញ្ចូល",
     "Save" : "រក្សាទុក",
@@ -32,6 +31,7 @@ OC.L10N.register(
     "Work" : "ធ្វើការ",
     "Other" : "ផ្សេងៗ",
     "Address" : "អាសយដ្ឋាន",
-    "Birthday" : "ថ្ងៃ​កំណើត"
+    "Birthday" : "ថ្ងៃ​កំណើត",
+    "can edit" : "អាច​កែប្រែ"
 },
 "nplurals=1; plural=0;");

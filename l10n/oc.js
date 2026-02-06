@@ -10,7 +10,6 @@ OC.L10N.register(
     "Recently contacted" : "Contactat recentament",
     "Copy link" : "Copiar lo ligam",
     "Download" : "Telecargar",
-    "can edit" : "pòt modificar",
     "Cancel" : "Anullar",
     "Add" : "Ajustar",
     "First name" : "Prenom",
@@ -64,6 +63,7 @@ OC.L10N.register(
     "Spoken languages" : "Lengas parladas",
     "Loading …" : "Cargament…",
     "General settings" : "Paramètres generals",
+    "can edit" : "pòt modificar",
     "Search contacts …" : "Cercar pels contactes…"
 },
 "nplurals=2; plural=(n > 1);");

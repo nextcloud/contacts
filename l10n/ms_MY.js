@@ -5,7 +5,6 @@ OC.L10N.register(
     "Rename" : "Namakan",
     "Delete" : "Padam",
     "Download" : "Muat turun",
-    "can edit" : "boleh mengubah",
     "Cancel" : "Batal",
     "Add" : "Tambah",
     "Save" : "Simpan",
@@ -35,6 +34,7 @@ OC.L10N.register(
     "Mobile" : "Mudah alih",
     "Fax" : "Fax",
     "Pager" : "Alat Kelui",
-    "Voice" : "Suara"
+    "Voice" : "Suara",
+    "can edit" : "boleh mengubah"
 },
 "nplurals=1; plural=0;");

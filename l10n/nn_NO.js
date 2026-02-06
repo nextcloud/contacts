@@ -6,7 +6,6 @@ OC.L10N.register(
     "Rename" : "Gje nytt namn",
     "Delete" : "Ta bort",
     "Download" : "Last ned",
-    "can edit" : "kan endra",
     "Cancel" : "Avbryt",
     "Add" : "Legg til",
     "First name" : "Fornamn",
@@ -48,6 +47,7 @@ OC.L10N.register(
     "Fax" : "Faks",
     "Pager" : "Personsøkjar",
     "Voice" : "Tale",
-    "Unknown" : "Ukjend"
+    "Unknown" : "Ukjend",
+    "can edit" : "kan endra"
 },
 "nplurals=2; plural=(n != 1);");

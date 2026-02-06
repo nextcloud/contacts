@@ -11,7 +11,6 @@
     "Copy link" : "Холбоос хуулах",
     "Download" : "Татаж авах",
     "Share with users or groups" : "Бусдад түгээх",
-    "can edit" : "засаж чадна",
     "Cancel" : "болиулах",
     "Add" : "нэмэх",
     "First name" : "Нэр",
@@ -86,6 +85,7 @@
     "Male" : "Эрэгтэй",
     "Unknown" : "Үл танигдах зүйл",
     "Time zone" : "Цагийн бүс",
-    "Loading …" : "Уншиж байна..."
+    "Loading …" : "Уншиж байна...",
+    "can edit" : "засаж чадна"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
