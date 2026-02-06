@@ -28,7 +28,6 @@ OC.L10N.register(
     "Download" : "Lejupielādēt",
     "Share with users or groups" : "Koplietot ar lietotājiem vai grupām",
     "No users or groups" : "Nav lietotāji vai grupas",
-    "can edit" : "var labot",
     "Import into the {addressbookName} address book" : "Ievietot adrešu grāmatā \"{addressbookName}\"",
     "Import from files" : "Ievietot no datnēm",
     "Importing is disabled because there are no address books available" : "Ievietošana ir atspējota, jo nav pieejama neviena adrešu grāmata",
@@ -138,6 +137,7 @@ OC.L10N.register(
     "Loading …" : "Notiek ielāde ...",
     "General settings" : "Vispārīgi iestatījumi",
     "{addressbookname} (Disabled)" : "{addressbookname} (atspējota)",
+    "can edit" : "var labot",
     "Search contacts …" : "Meklēt kontaktpersonas…"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");

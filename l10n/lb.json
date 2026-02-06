@@ -6,7 +6,6 @@
     "Copy link" : "Link kopéieren",
     "Download" : "Eroflueden",
     "Share with users or groups" : "Mat Benotzer oder Gruppen deelen",
-    "can edit" : "kann änneren",
     "Cancel" : "Ofbriechen",
     "Add" : "Derbäimaachen",
     "First name" : "Virnumm",
@@ -45,6 +44,7 @@
     "Voice" : "Voice",
     "Relative" : "Relativ",
     "Unknown" : "Onbekannt",
-    "Loading …" : "Loading …"
+    "Loading …" : "Loading …",
+    "can edit" : "kann änneren"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

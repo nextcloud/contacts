@@ -5,7 +5,6 @@ OC.L10N.register(
     "Send email" : "ಇ-ಅಂಚೆಯನ್ನು  ಕಳುಹಿಸಿ",
     "Delete" : "﻿ಅಳಿಸಿ",
     "Download" : "ಪ್ರತಿಯನ್ನು ಸ್ಥಳೀಯವಾಗಿ ಉಳಿಸಿಕೊಳ್ಳಿ",
-    "can edit" : "﻿ಸಂಪಾದಿಸಬಹುದು",
     "Cancel" : "﻿ರದ್ದು",
     "Add" : "﻿ಸೇರಿಸಿ",
     "Save" : "﻿ಉಳಿಸಿ",
@@ -26,6 +25,7 @@ OC.L10N.register(
     "Notes" : "Notes",
     "Home" : "﻿ಮುಖಪುಟ",
     "Other" : "﻿ಇತರೆ",
-    "Address" : "ವಿಳಾಸ"
+    "Address" : "ವಿಳಾಸ",
+    "can edit" : "﻿ಸಂಪಾದಿಸಬಹುದು"
 },
 "nplurals=2; plural=(n > 1);");

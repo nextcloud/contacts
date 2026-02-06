@@ -10,7 +10,6 @@ OC.L10N.register(
     "Copy link" : "Copiar liga",
     "Download" : "Descargar",
     "Share with users or groups" : "Compartir con otros usuarios o grupos",
-    "can edit" : "puede editar",
     "Cancel" : "Cancelar",
     "Add" : "Agregar",
     "First name" : "Nombre",
@@ -92,6 +91,7 @@ OC.L10N.register(
     "Unknown" : "Desconocido",
     "Loading contacts …" : "Cargando contactos ...",
     "General settings" : "Configuraciones generales",
+    "can edit" : "puede editar",
     "Search contacts …" : "Buscar contactos ..."
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

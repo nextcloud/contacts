@@ -8,7 +8,6 @@ OC.L10N.register(
     "Delete" : "Sil",
     "Copy link" : "linki nüsxələ",
     "Download" : "Yüklə",
-    "can edit" : "dəyişmək olar",
     "Cancel" : "Dayandır",
     "Add" : "Əlavə etmək",
     "Save" : "Saxla",
@@ -44,6 +43,7 @@ OC.L10N.register(
     "Phone" : "Telefon",
     "Mobile" : "Mobil",
     "Fax" : "Faks",
-    "Pager" : "Peycer"
+    "Pager" : "Peycer",
+    "can edit" : "dəyişmək olar"
 },
 "nplurals=2; plural=(n != 1);");

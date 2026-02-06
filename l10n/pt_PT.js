@@ -42,7 +42,6 @@ OC.L10N.register(
     "No users or groups" : "Sem utilizadores ou grupos",
     "Unable to delete the share" : "Não é possível eliminar a partilha",
     "Unable to change permissions" : "Não é possível alterar as permissões.",
-    "can edit" : "pode editar",
     "Choose a vCard file to import" : "Escolher um vCard para importar",
     "Import into the {addressbookName} address book" : "Importar para o livro de endereços {addressbookName}",
     "Select local file" : "Escolher um ficheiro local",
@@ -173,6 +172,7 @@ OC.L10N.register(
     "Loading …" : "A carregar...",
     "General settings" : "Definições Gerais",
     "(refreshed once per week)" : "(atualizado uma vez por semana)",
+    "can edit" : "pode editar",
     "Search contacts …" : "Pesquisar contactos..."
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

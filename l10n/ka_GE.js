@@ -10,7 +10,6 @@ OC.L10N.register(
     "Copy link" : "ბმულის კოპირება",
     "Download" : "ჩამოტვირთვა",
     "Share with users or groups" : "გაზიარება მოხმარებლებთან ან ჯგუფებთან",
-    "can edit" : "შეუძლია შეცვლა",
     "Cancel" : "უარყოფა",
     "Add" : "დამატება",
     "First name" : "სახელი",
@@ -91,6 +90,7 @@ OC.L10N.register(
     "Unknown" : "ამოუცნობი",
     "Loading contacts …" : "კონტაქტების ჩატვირთვა ...",
     "General settings" : "მთავარი პარამეტრები",
+    "can edit" : "შეუძლია შეცვლა",
     "Search contacts …" : "მოძებნეთ კონტაქტები ..."
 },
 "nplurals=2; plural=(n!=1);");

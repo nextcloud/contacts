@@ -32,7 +32,6 @@ OC.L10N.register(
     "No users or groups" : "אין משתמשים או קבוצות",
     "Unable to delete the share" : "לא ניתן למחוק את השיתוף",
     "Unable to change permissions" : "לא ניתן לשנות את ההרשאות",
-    "can edit" : "יש הרשאת עריכה",
     "Choose a vCard file to import" : "נא לבחור קובץ vCard לייבוא",
     "Select local file" : "בחירת קובץ מקומי",
     "Import from files" : "ייבוא מקבצים",
@@ -172,6 +171,7 @@ OC.L10N.register(
     "Loading …" : "בטעינה",
     "General settings" : "הגדרות כלליות",
     "(refreshed once per week)" : "(רענן פעם בשבוע)",
+    "can edit" : "יש הרשאת עריכה",
     "Search contacts …" : "חיפוש אנשי קשר…"
 },
 "nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;");

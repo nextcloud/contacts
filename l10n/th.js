@@ -31,7 +31,6 @@ OC.L10N.register(
     "Copy link" : "คัดลอกลิงก์",
     "Download" : "ดาวน์โหลด",
     "Share with users or groups" : "แชร์กับผู้ใช้หรือกลุ่ม",
-    "can edit" : "สามารถแก้ไข",
     "Cancel" : "ยกเลิก",
     "Add" : "เพิ่ม",
     "First name" : "ชื่อจริง",
@@ -105,6 +104,7 @@ OC.L10N.register(
     "Loading …" : "กำลังโหลด …",
     "General settings" : "การตั้งค่าทั่วไป",
     "(refreshed once per week)" : "(รีเฟรชใหม่สัปดาห์ละครั้ง)",
+    "can edit" : "สามารถแก้ไข",
     "Search contacts …" : "ค้นหารายชื่อผู้ติดต่อ …"
 },
 "nplurals=1; plural=0;");

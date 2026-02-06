@@ -15,7 +15,6 @@ OC.L10N.register(
     "Download" : "Llwytho i lawr",
     "Share with users or groups" : "Rhannwch gyda defnyddwyr neu grwpiau",
     "No users or groups" : "Dim defnyddwyr na grwpiau",
-    "can edit" : "yn gallu golygu",
     "Importing is disabled because there are no address books available" : "Mae mewnforio wedi ei analluogi oherwydd nad oes llyfrau cyfeiriadau ar gael",
     "Cancel" : "Diddymu",
     "Add" : "Ychwanegu",
@@ -114,6 +113,7 @@ OC.L10N.register(
     "Male" : "Gwryw",
     "Unknown" : "Anhysbys",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt"],
-    "Loading …" : "Yn llwytho …"
+    "Loading …" : "Yn llwytho …",
+    "can edit" : "yn gallu golygu"
 },
 "nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3;");

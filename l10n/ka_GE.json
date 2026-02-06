@@ -8,7 +8,6 @@
     "Copy link" : "ბმულის კოპირება",
     "Download" : "ჩამოტვირთვა",
     "Share with users or groups" : "გაზიარება მოხმარებლებთან ან ჯგუფებთან",
-    "can edit" : "შეუძლია შეცვლა",
     "Cancel" : "უარყოფა",
     "Add" : "დამატება",
     "First name" : "სახელი",
@@ -89,6 +88,7 @@
     "Unknown" : "ამოუცნობი",
     "Loading contacts …" : "კონტაქტების ჩატვირთვა ...",
     "General settings" : "მთავარი პარამეტრები",
+    "can edit" : "შეუძლია შეცვლა",
     "Search contacts …" : "მოძებნეთ კონტაქტები ..."
 },"pluralForm" :"nplurals=2; plural=(n!=1);"
 }

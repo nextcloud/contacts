@@ -7,7 +7,6 @@ OC.L10N.register(
     "Delete" : "Delete",
     "Copy link" : "Kopiraj vezu",
     "Download" : "Preuzmi",
-    "can edit" : "može da menja",
     "Cancel" : "Otkaži",
     "Add" : "Dodaj",
     "Save" : "Sačuvaj",
@@ -33,6 +32,7 @@ OC.L10N.register(
     "Work" : "Posao",
     "Other" : "Ostali",
     "Address" : "Adresa",
-    "Unknown" : "Nepoznato"
+    "Unknown" : "Nepoznato",
+    "can edit" : "može da menja"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");
