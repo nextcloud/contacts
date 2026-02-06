@@ -7,7 +7,6 @@ OC.L10N.register(
     "Copy link" : "Պատճենել հղումը",
     "Download" : "Ներբեռնել",
     "Share with users or groups" : "Կիսվել օգտատերերի կամ խմբերի հետ",
-    "can edit" : "կարող է խմբագրել",
     "Cancel" : "ընդհատել",
     "Add" : "Ավելացնել",
     "First name" : "Անուն",
@@ -32,6 +31,7 @@ OC.L10N.register(
     "Country" : "Երկիր",
     "Birthday" : "Ծննդյան օր",
     "Relative" : "Հարաբերական",
-    "Unknown" : "Անհայտ"
+    "Unknown" : "Անհայտ",
+    "can edit" : "կարող է խմբագրել"
 },
 "nplurals=2; plural=(n != 1);");

@@ -17,7 +17,6 @@ OC.L10N.register(
     "Download" : "Elŝuti",
     "Share with users or groups" : "Kunhavigi kun uzantoj aŭ grupoj",
     "No users or groups" : "Neniu uzanto aŭ grupo",
-    "can edit" : "povas redakti",
     "Importing is disabled because there are no address books available" : "Importado estas malebligita, ĉar neniu adresaro disponeblas",
     "Cancel" : "Nuligi",
     "Add" : "Aldoni",
@@ -123,6 +122,7 @@ OC.L10N.register(
     "Spoken languages" : "Lingvoj parolataj",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"],
     "Loading …" : "Ŝargas …",
+    "can edit" : "povas redakti",
     "Search contacts …" : "Serĉi kontaktojn…"
 },
 "nplurals=2; plural=(n != 1);");

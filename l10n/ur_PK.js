@@ -4,7 +4,6 @@ OC.L10N.register(
     "Rename" : "Rename",
     "Delete" : "حذف کریں",
     "Download" : "ڈاؤن لوڈ",
-    "can edit" : "تبدیل کر سکے ھیں",
     "Cancel" : "منسوخ کریں",
     "Add" : "شامل کریں",
     "Save" : "حفظ",
@@ -22,6 +21,7 @@ OC.L10N.register(
     "Location" : "مقام",
     "Work" : "کام",
     "Other" : "دیگر",
-    "Birthday" : "سالگرہ"
+    "Birthday" : "سالگرہ",
+    "can edit" : "تبدیل کر سکے ھیں"
 },
 "nplurals=2; plural=(n != 1);");

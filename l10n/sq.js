@@ -15,7 +15,6 @@ OC.L10N.register(
     "Copy link" : "Kopjo linkun",
     "Download" : "Shkarko",
     "Share with users or groups" : "Nda me përdoruesit ose grupet",
-    "can edit" : "mund të modifikoni",
     "Cancel" : "Anullo",
     "Add" : "Shto",
     "First name" : "Emër",
@@ -115,6 +114,7 @@ OC.L10N.register(
     "Unknown" : "I/E panjohur",
     "Loading contacts …" : "Duke ngarkuar kontaktet ...",
     "General settings" : "Opsjonet e Pergjithshme",
+    "can edit" : "mund të modifikoni",
     "Search contacts …" : "Kërko kontakte ..."
 },
 "nplurals=2; plural=(n != 1);");

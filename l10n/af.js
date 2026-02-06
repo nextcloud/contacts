@@ -13,7 +13,6 @@ OC.L10N.register(
     "Download" : "Laai Af",
     "Share with users or groups" : "Deel met gebruikers of groepe",
     "No users or groups" : "Geen gebruikers of groepe",
-    "can edit" : "kan wysig",
     "Cancel" : "Kanselleer",
     "Add" : "Voeg by",
     "First name" : "Naam",
@@ -98,6 +97,7 @@ OC.L10N.register(
     "Male" : "Manlik",
     "Unknown" : "Onbekend",
     "Loading …" : "Laai …",
+    "can edit" : "kan wysig",
     "Search contacts …" : "Soek kontakte …"
 },
 "nplurals=2; plural=(n != 1);");

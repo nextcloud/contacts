@@ -3,7 +3,6 @@
     "Rename" : "Namakan",
     "Delete" : "Padam",
     "Download" : "Muat turun",
-    "can edit" : "boleh mengubah",
     "Cancel" : "Batal",
     "Add" : "Tambah",
     "Save" : "Simpan",
@@ -33,6 +32,7 @@
     "Mobile" : "Mudah alih",
     "Fax" : "Fax",
     "Pager" : "Alat Kelui",
-    "Voice" : "Suara"
+    "Voice" : "Suara",
+    "can edit" : "boleh mengubah"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

@@ -8,7 +8,6 @@ OC.L10N.register(
     "Delete" : "মুছে",
     "Copy link" : "লিঙ্ক কপি করো",
     "Download" : "ডাউনলোড",
-    "can edit" : "সম্পাদনা করতে পারবেন",
     "Cancel" : "বাতির",
     "Add" : "যোগ করুন",
     "First name" : "নামের প্রথমাংশ ",
@@ -50,6 +49,7 @@ OC.L10N.register(
     "Fax" : "ফ্যাক্স",
     "Pager" : "পেজার",
     "Voice" : "কন্ঠ",
-    "Unknown" : "অজানা"
+    "Unknown" : "অজানা",
+    "can edit" : "সম্পাদনা করতে পারবেন"
 },
 "nplurals=2; plural=(n != 1);");

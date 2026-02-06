@@ -33,7 +33,6 @@ OC.L10N.register(
     "No users or groups" : "Không có người dùng hay nhóm",
     "Unable to delete the share" : "Không thể xóa chia sẻ",
     "Unable to change permissions" : "Không thể thay đổi quyền",
-    "can edit" : "Có thể chỉnh sửa",
     "Choose a vCard file to import" : "Chọn một tệp vCard để nhập",
     "Select local file" : "Chọn tệp từ máy",
     "Import from files" : "Nhập từ tệp",
@@ -171,6 +170,7 @@ OC.L10N.register(
     "Loading …" : "Đang tải...",
     "General settings" : "Cài đặt chung",
     "(refreshed once per week)" : "(được làm mới một lần mỗi tuần)",
+    "can edit" : "Có thể chỉnh sửa",
     "Search contacts …" : "Tìm liên hệ ..."
 },
 "nplurals=1; plural=0;");

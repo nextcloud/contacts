@@ -10,7 +10,6 @@ OC.L10N.register(
     "Copy link" : "Copiar ligamine",
     "Download" : "Discargar",
     "Share with users or groups" : "Compartir con usatores o gruppos",
-    "can edit" : "pote modificar",
     "Cancel" : "Cancellar",
     "Add" : "Adder",
     "First name" : "Prime nomine",
@@ -64,6 +63,7 @@ OC.L10N.register(
     "Voice" : "Voce",
     "Social network" : "Medios Social",
     "Relative" : "Relative",
-    "Unknown" : "Incognite"
+    "Unknown" : "Incognite",
+    "can edit" : "pote modificar"
 },
 "nplurals=2; plural=(n != 1);");

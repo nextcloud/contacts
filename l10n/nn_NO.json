@@ -4,7 +4,6 @@
     "Rename" : "Gje nytt namn",
     "Delete" : "Ta bort",
     "Download" : "Last ned",
-    "can edit" : "kan endra",
     "Cancel" : "Avbryt",
     "Add" : "Legg til",
     "First name" : "Fornamn",
@@ -46,6 +45,7 @@
     "Fax" : "Faks",
     "Pager" : "Personsøkjar",
     "Voice" : "Tale",
-    "Unknown" : "Ukjend"
+    "Unknown" : "Ukjend",
+    "can edit" : "kan endra"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

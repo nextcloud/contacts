@@ -2,7 +2,6 @@
     "Rename" : "Rename",
     "Delete" : "حذف کریں",
     "Download" : "ڈاؤن لوڈ",
-    "can edit" : "تبدیل کر سکے ھیں",
     "Cancel" : "منسوخ کریں",
     "Add" : "شامل کریں",
     "Save" : "حفظ",
@@ -20,6 +19,7 @@
     "Location" : "مقام",
     "Work" : "کام",
     "Other" : "دیگر",
-    "Birthday" : "سالگرہ"
+    "Birthday" : "سالگرہ",
+    "can edit" : "تبدیل کر سکے ھیں"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

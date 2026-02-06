@@ -13,7 +13,6 @@ OC.L10N.register(
     "Download" : "Descărcare",
     "Share with users or groups" : "Partajează cu utilizatori sau grupuri",
     "No users or groups" : "Nu sunt utilizatori sau grupuri",
-    "can edit" : "poate edita",
     "Cancel" : "Anulează",
     "Add" : "Add",
     "First name" : "Prenume",
@@ -95,6 +94,7 @@ OC.L10N.register(
     "Unknown" : "Necunoscut",
     "Loading contacts …" : "Se încarcă contactele ...",
     "Loading …" : "Se încarcă…",
+    "can edit" : "poate edita",
     "Search contacts …" : "Caută contacte ..."
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");

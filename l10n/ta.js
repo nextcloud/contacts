@@ -6,7 +6,6 @@ OC.L10N.register(
     "Rename" : "பெயர்மாற்றம்",
     "Delete" : "நீக்குக",
     "Download" : "பதிவிறக்குக",
-    "can edit" : "தொகுக்க முடியும்",
     "Cancel" : "இரத்து செய்க",
     "First name" : "முதல் பெயர்",
     "Last name" : "கடைசிப் பெயர்",
@@ -40,6 +39,7 @@ OC.L10N.register(
     "Fax" : "தொலை நகல்",
     "Pager" : "தொலை அழைப்பான்",
     "Voice" : "குரல்",
-    "Unknown" : "தெரியாத"
+    "Unknown" : "தெரியாத",
+    "can edit" : "தொகுக்க முடியும்"
 },
 "nplurals=2; plural=(n != 1);");
