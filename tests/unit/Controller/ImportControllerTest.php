@@ -87,12 +87,12 @@ class ImportControllerTest extends TestCase {
 		$addressBook1->method('getUri')
 			->willReturn('contacts');
 		$addressBook1->method(('getPermissions'))
-			->willReturn(Constants::PERMISSION_UPDATE);
+			->willReturn(Constants::PERMISSION_CREATE);
 		$addressBook2 = $this->createMock(ICreateContactFromString::class);
 		$addressBook2->method('getUri')
 			->willReturn('foo');
 		$addressBook2->method(('getPermissions'))
-			->willReturn(Constants::PERMISSION_UPDATE);
+			->willReturn(Constants::PERMISSION_CREATE);
 		$this->contactsManager->expects(self::once())
 			->method('getUserAddressBooks')
 			->willReturn([
@@ -230,7 +230,7 @@ class ImportControllerTest extends TestCase {
 		$addressBook1->method('getUri')
 			->willReturn('contacts');
 		$addressBook1->method(('getPermissions'))
-			->willReturn(Constants::PERMISSION_UPDATE);
+			->willReturn(Constants::PERMISSION_CREATE);
 		$this->contactsManager->expects(self::once())
 			->method('getUserAddressBooks')
 			->willReturn([
