@@ -151,13 +151,14 @@ class MastodonProviderTest extends TestCase {
 	public function testGetImageUrls($contact, $api, $urls, $imgs) {
 		if (count($urls)) {
 			$this->response->method('getBody')->willReturnOnConsecutiveCalls(...$api);
+			$expectedUrls = array_values($urls);
 			$this->client
 				->expects($this->exactly(count($urls)))
 				->method('get')
-				->withConsecutive(...array_map(function ($a) {
-					return [$a];
-				}, $urls))
-				->willReturn($this->response);
+				->willReturnCallback(function (string $url) use (&$expectedUrls) {
+					$this->assertSame(array_shift($expectedUrls), $url);
+					return $this->response;
+				});
 		}
 		$result = $this->provider->getImageUrls($contact);
 		$this->assertEquals($imgs, $result);
