@@ -41,7 +41,6 @@ export default {
 <style lang="scss" scoped>
 .property {
 	&__value {
-		opacity: .5;
 		color: var(--color-text-lighter);
 		line-height: 44px;
 	}
