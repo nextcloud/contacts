@@ -75,6 +75,7 @@ OC.L10N.register(
     "No users or groups" : "Nema korisnika ili grupa",
     "Unable to delete the share" : "Nije moguće izbrisati dijeljenje",
     "Unable to change permissions" : "Nije moguće promijeniti dopuštenja",
+    "can create and edit" : "stvaranje i uređivanje moguće",
     "Choose a vCard file to import" : "Odaberite datoteku vCard za uvoz",
     "Import into the {addressbookName} address book" : "Uvezi u adresar {addressbookName}",
     "Select local file" : "Odaberi lokalnu datoteku",
