@@ -1245,7 +1245,7 @@ section.contact-details {
 
 :deep(.vs__selected) {
 	height: calc(var(--default-clickable-area) - var(--default-grid-baseline)) !important;
-	margin: calc(var(--default-grid-baseline) / 2);
+	margin: 0 !important;
 }
 
 #pick-addressbook-modal {
@@ -1318,6 +1318,14 @@ section.contact-details {
 
 :deep(.contact-details-wrapper-read-only  .input-field__input) {
 	box-shadow: none !important;
+}
+
+:deep(.vs__selected-options) {
+	max-height: 30px;
+}
+
+:deep(.v-select) {
+	margin-bottom: 0 !important;
 }
 
 .quick-actions {
