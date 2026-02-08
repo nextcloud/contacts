@@ -32,7 +32,7 @@
 	},
 	"require-dev": {
 		"nextcloud/coding-standard": "^1.4",
-		"bamarni/composer-bin-plugin": "^1.9.0"
+		"bamarni/composer-bin-plugin": "^1.9.1"
 	},
 	"extra": {
 		"bamarni-bin": {
