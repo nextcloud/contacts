@@ -20,7 +20,7 @@ export async function getSuggestions(search) {
 	const request = await axios.get(generateOcsUrl('apps/files_sharing/api/v1/sharees'), {
 		params: {
 			format: 'json',
-			itemType: 'contacts',
+			itemType: 'teams',
 			search,
 			perPage: maxAutocompleteResults,
 			shareType,
