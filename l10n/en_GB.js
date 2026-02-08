@@ -75,6 +75,7 @@ OC.L10N.register(
     "No users or groups" : "No users or groups",
     "Unable to delete the share" : "Unable to delete the share",
     "Unable to change permissions" : "Unable to change permissions",
+    "can create and edit" : "can create and edit",
     "Choose a vCard file to import" : "Choose a vCard file to import",
     "Import into the {addressbookName} address book" : "Import into the {addressbookName} address book",
     "Select local file" : "Select local file",
