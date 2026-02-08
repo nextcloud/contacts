@@ -58,13 +58,13 @@
 
 			<div class="property__value">
 				<!-- show the first input if not a structured value -->
-				<input
+				<NcTextField
 					v-if="!property.isStructuredValue"
-					v-model.trim="localValue[0]"
-					:aria-label="(localType && localType.name) || '' "
+					v-model:model-value="localValue[0]"
+					:label="propModel.readableName"
 					:readonly="isReadOnly"
 					type="text"
-					@input="updateValue">
+					@update:model-value="updateValue" />
 			</div>
 
 			<!-- props actions -->
@@ -84,16 +84,12 @@
 				:key="index"
 				class="property__row">
 				<template v-if="(isReadOnly && localValue[index]) || !isReadOnly">
-					<div class="property__label">
-						<span>{{ propModel.readableValues[index] }}</span>
-					</div>
+					<div class="property__label" />
 					<div class="property__value">
 						<NcTextField
 							v-model:model-value="localValue[index]"
 							:readonly="isReadOnly"
 							type="text"
-							:label-outside="true"
-							:aria-label="propModel.readableValues[index]"
 							:label="propModel.readableValues[index]"
 							@update:model-value="updateValue" />
 					</div>
@@ -114,7 +110,6 @@
 						<NcTextField
 							v-model:model-value="filteredValue[index]"
 							:readonly="isReadOnly"
-							:label-outside="true"
 							:label="propModel.readableValues[index]"
 							type="text"
 							@update:model-value="updateValue" />

@@ -87,20 +87,6 @@ $property-row-gap: $contact-details-row-gap;
 		}
 	}
 
-	&__label,
-	&__value {
-		// Fix default multiselect styling
-		> .multiselect {
-			width: 100%;
-			min-width: unset;
-		}
-
-		// Fix default date time picker styling
-		> .mx-datepicker {
-			width: 100%;
-		}
-	}
-
 	// Mobile tweaks
 	@media (max-width: 1024px) {
 		// Left align labels on mobile

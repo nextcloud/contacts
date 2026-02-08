@@ -50,13 +50,14 @@
 					:first-day-of-week="firstDay"
 					:type="inputType"
 					:formatter="dateFormat"
+					:aria-label="propModel.readableName"
 					@update:model-value="debounceUpdateValue" />
 
-				<input
+				<NcTextField
 					v-else
 					:readonly="true"
-					:aria-label="propModel.readableName"
-					:value="formatDateTime()">
+					:model-value="formatDateTime()"
+					:label="propModel.readableName" />
 			</div>
 
 			<!-- props actions -->
@@ -77,6 +78,7 @@ import moment from '@nextcloud/moment'
 import {
 	NcDateTimePicker as DateTimePicker,
 	NcSelect,
+	NcTextField,
 } from '@nextcloud/vue'
 import debounce from 'debounce'
 import ICAL from 'ical.js'
@@ -90,6 +92,7 @@ export default {
 
 	components: {
 		NcSelect,
+		NcTextField,
 		DateTimePicker,
 		PropertyTitle,
 		PropertyActions,
