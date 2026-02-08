@@ -32,6 +32,13 @@ $property-row-gap: $contact-details-row-gap;
 		input {
 			margin-inline-end: 0;
 		}
+
+		// Show ext buttons on full row hover
+		&:hover {
+			.property__ext {
+				opacity: .7;
+			}
+		}
 	}
 
 	// property label or multiselect within row
@@ -106,13 +113,6 @@ $property-row-gap: $contact-details-row-gap;
 		// Left align labels on mobile
 		&__label {
 			justify-content: flex-start;
-		}
-	}
-
-	// Show ext buttons on full row hover
-	&:hover {
-		.property__ext {
-			opacity: .7;
 		}
 	}
 
