@@ -75,6 +75,7 @@ OC.L10N.register(
     "No users or groups" : "Ei ole kasutajaid või gruppe",
     "Unable to delete the share" : "Ei õnnestu jaosmeediat kustutada",
     "Unable to change permissions" : "Ei õnnestu muuta õigusi",
+    "can create and edit" : "võib luua ja muuta",
     "Choose a vCard file to import" : "Vali imporditav vCardi fail",
     "Import into the {addressbookName} address book" : "Impordi aadressiraamatusse „{addressbookName}“",
     "Select local file" : "Vali kohalik fail",
