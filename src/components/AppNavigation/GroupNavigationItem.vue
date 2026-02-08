@@ -167,14 +167,14 @@ export default {
 				if (contactFromStore && !this.isInGroup(contactFromStore.groups, group.id)) {
 					const contact = this.$store.getters.getContact(Buffer.from(`${contactFromDropData.uid}~${contactFromDropData.addressbookId}`, 'utf-8').toString('base64'))
 					await this.$store.dispatch('updateContactGroups', {
-						groupNames: [...contactFromStore.groups, group.id],
+						groupNames: [...contactFromStore.groups, group.name],
 						contact,
 					})
 					const localContact = Object.assign(
 						Object.create(Object.getPrototypeOf(contact)),
 						contact,
 					)
-					localContact.groups = [...contactFromStore.groups, group.id]
+					localContact.groups = [...contactFromStore.groups, group.name]
 					await this.$store.dispatch('updateContact', localContact)
 				}
 			} catch (e) {
