@@ -114,7 +114,7 @@ export default {
 		updateValue: debounce(function(e) {
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
 			this.$emit('update:value', this.localValue)
-		}, 500),
+		}, 250),
 
 		updateType: debounce(function(e) {
 			// https://vuejs.org/v2/guide/components-custom-events.html#sync-Modifier
