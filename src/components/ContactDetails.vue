@@ -34,18 +34,18 @@
 					<div v-if="isReadOnly" class="contact-title">
 						{{ contact.fullName }}
 					</div>
-					<input
+					<NcInputField
 						v-else
 						id="contact-fullname"
 						ref="fullname"
 						v-model="contact.fullName"
-						:placeholder="t('contacts', 'Name')"
+						:label="t('contacts', 'Name')"
 						type="text"
 						autocomplete="off"
 						autocorrect="off"
 						spellcheck="false"
 						name="fullname"
-						@click="selectInput">
+						@click="selectInput" />
 				</template>
 
 				<!-- org, title -->
@@ -54,24 +54,24 @@
 						<span v-html="formattedSubtitle" />
 					</template>
 					<template v-else>
-						<input
+						<NcInputField
 							id="contact-title"
-							v-model="contact.title"
-							:placeholder="t('contacts', 'Title')"
+							v-model="contactTitle"
+							:label="t('contacts', 'Title')"
 							type="text"
 							autocomplete="off"
 							autocorrect="off"
 							spellcheck="false"
-							name="title">
-						<input
+							name="title" />
+						<NcInputField
 							id="contact-org"
-							v-model="contact.org"
-							:placeholder="t('contacts', 'Company')"
+							v-model="contactOrg"
+							:label="t('contacts', 'Company')"
 							type="text"
 							autocomplete="off"
 							autocorrect="off"
 							spellcheck="false"
-							name="org">
+							name="org" />
 					</template>
 				</template>
 
@@ -409,6 +409,7 @@ import {
 	NcModal as Modal,
 	NcButton,
 	NcEmptyContent,
+	NcInputField,
 	NcRelatedResourcesPanel,
 	NcSelect,
 } from '@nextcloud/vue'
@@ -474,6 +475,7 @@ export default defineComponent({
 		CheckIcon,
 		Modal,
 		NcSelect,
+		NcInputField,
 		PropertyGroups,
 		PropertyRev,
 		PropertySelect,
@@ -555,6 +557,30 @@ export default defineComponent({
 	},
 
 	computed: {
+		contactTitle: {
+			get() {
+				return this.contact?.title ?? ''
+			},
+
+			set(value) {
+				if (this.contact) {
+					this.contact.title = value
+				}
+			},
+		},
+
+		contactOrg: {
+			get() {
+				return this.contact?.org ?? ''
+			},
+
+			set(value) {
+				if (this.contact) {
+					this.contact.org = value
+				}
+			},
+		},
+
 		hasRelatedResources() {
 			return this.hasFilesResources || this.hasTalkResources || this.hasCalendarResources || this.hasDeckResources
 		},
@@ -907,7 +933,7 @@ export default defineComponent({
 		 * Select the text in the input if it is still set to 'Name'
 		 */
 		selectInput() {
-			if (this.$refs.fullname && this.$refs.fullname.value === t('contacts', 'Name')) {
+			if (this.$refs.fullname && this.contact.fullName === t('contacts', 'Name')) {
 				this.$refs.fullname.select()
 			}
 		},
