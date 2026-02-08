@@ -145,7 +145,7 @@ class ImportControllerTest extends TestCase {
 		$this->mockL10n();
 
 		$actual = $this->controller->import(42, 'foo');
-		$this->assertEqualsCanonicalizing('Imported %n contacts', $actual->getData());
+		$this->assertEqualsCanonicalizing('Imported %n contacts', $actual->getData()['tooltip']);
 		$this->assertEquals(200, $actual->getStatus());
 	}
 
@@ -219,7 +219,7 @@ class ImportControllerTest extends TestCase {
 		$this->mockL10n();
 
 		$actual = $this->controller->import(42);
-		$this->assertEquals('Imported %n contacts', $actual->getData());
+		$this->assertEquals('Imported %n contacts', $actual->getData()['tooltip']);
 		$this->assertEquals(200, $actual->getStatus());
 	}
 
@@ -271,7 +271,7 @@ class ImportControllerTest extends TestCase {
 		$this->mockL10n();
 
 		$actual = $this->controller->import(42, 'contacts');
-		$this->assertEquals('Imported %n contacts (skipped %n contact)', $actual->getData());
+		$this->assertEquals('Imported %n contacts (skipped %n contact)', $actual->getData()['tooltip']);
 		$this->assertEquals(200, $actual->getStatus());
 	}
 
