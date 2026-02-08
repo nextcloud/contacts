@@ -171,11 +171,14 @@ class ImportController extends OCSController {
 		}
 
 		if ($skipped === 0) {
-			$message = $this->l10n->n(
-				'Imported %n contact',
-				'Imported %n contacts',
-				count($imported),
-			);
+			$message = [
+				'version' => 0.1,
+				'tooltip' => $this->l10n->n(
+					'Imported %n contact',
+					'Imported %n contacts',
+					count($imported)
+				)
+			];
 		} else {
 			$importedMessage = $this->l10n->n(
 				'Imported %n contact',
@@ -187,7 +190,10 @@ class ImportController extends OCSController {
 				'(skipped %n contacts)',
 				$skipped,
 			);
-			$message = $importedMessage . ' ' . $skippedMessage;
+			$message = [
+				'version' => 0.1,
+				'tooltip' => $importedMessage . ' ' . $skippedMessage
+			];
 		}
 		return new DataResponse($message);
 	}
