@@ -61,12 +61,13 @@
 				<p v-if="!property.isStructuredValue && isReadOnly">
 					{{ localValue[0] }}
 				</p>
-				<input
+				<NcTextField
 					v-else-if="!property.isStructuredValue"
-					v-model.trim="localValue[0]"
-					:aria-label="(localType && localType.name) || '' "
+					v-model:model-value="localValue[0]"
+					:label="propModel.readableName"
+					:readonly="isReadOnly"
 					type="text"
-					@input="updateValue">
+					@update:model-value="updateValue" />
 
 				<!-- TRANSLATORS verb -->
 				<NcButton
@@ -99,7 +100,7 @@
 				class="property__row">
 				<template v-if="(isReadOnly && localValue[index]) || !isReadOnly">
 					<div class="property__label">
-						<span>{{ propModel.readableValues[index] }}</span>
+						<span v-if="isReadOnly">{{ propModel.readableValues[index] }}</span>
 					</div>
 					<div class="property__value">
 						<p v-if="isReadOnly">
@@ -109,7 +110,6 @@
 							v-else
 							v-model:model-value="localValue[index]"
 							type="text"
-							:label-outside="true"
 							:aria-label="propModel.readableValues[index]"
 							:label="propModel.readableValues[index]"
 							@update:model-value="updateValue" />
@@ -144,7 +144,6 @@
 						<NcTextField
 							v-else
 							v-model:model-value="filteredValue[index]"
-							:label-outside="true"
 							:label="propModel.readableValues[index]"
 							type="text"
 							@update:model-value="updateValue" />
