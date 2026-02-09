@@ -1,3 +1,28 @@
+## [7.3.13](https://github.com/nextcloud/contacts/compare/v7.3.12...v7.3.13) (2026-02-09)
+
+
+### Bug Fixes
+
+* group multiple emails or phone numbers ([b737ff3](https://github.com/nextcloud/contacts/commit/b737ff342c4ab6f12f7d6802c2305738148e02ef))
+* **l10n:** Update translations from Transifex ([bccfd20](https://github.com/nextcloud/contacts/commit/bccfd202b76bce6c9433b0a5ecb98c020809861b))
+* **l10n:** Update translations from Transifex ([6981271](https://github.com/nextcloud/contacts/commit/6981271c9008108e229f936b0f5fffafb0ef9046))
+* **l10n:** Update translations from Transifex ([400544f](https://github.com/nextcloud/contacts/commit/400544f1fc7fe9eb9f7dd35ceabb5dfa4cea2f7a))
+* **l10n:** Update translations from Transifex ([7650c20](https://github.com/nextcloud/contacts/commit/7650c2074510861421c2dc796402575843fc9855))
+* **l10n:** Update translations from Transifex ([40c443f](https://github.com/nextcloud/contacts/commit/40c443f4f9baf2c892e51d90f074fa59728a82e9))
+* **l10n:** Update translations from Transifex ([97234c5](https://github.com/nextcloud/contacts/commit/97234c5120098ccaf11003999fe81589bfc0c631))
+* **l10n:** Update translations from Transifex ([75ce6d1](https://github.com/nextcloud/contacts/commit/75ce6d132e7cb3cef790013ae2b8f95e45180633))
+* **l10n:** Update translations from Transifex ([0b80047](https://github.com/nextcloud/contacts/commit/0b8004747d32606039bece2ff19c521187b742ea))
+* **l10n:** Update translations from Transifex ([3f21b98](https://github.com/nextcloud/contacts/commit/3f21b98b75a7f0de670e38cd00104538b5d00b68))
+* **l10n:** Update translations from Transifex ([76a479f](https://github.com/nextcloud/contacts/commit/76a479f798cacc7b6deafce17fcfc30eddb221fd))
+* **l10n:** Update translations from Transifex ([da8a7c6](https://github.com/nextcloud/contacts/commit/da8a7c6b2b10e52b846bec8ed4ae313e0a6925c3))
+* **l10n:** Update translations from Transifex ([bd9266e](https://github.com/nextcloud/contacts/commit/bd9266e37417d2e36126e74f88075e7cbdb0cd3f))
+* **l10n:** Update translations from Transifex ([04a618e](https://github.com/nextcloud/contacts/commit/04a618e1fa7b80c3755497574c24051206281714))
+* **l10n:** Update translations from Transifex ([293f81b](https://github.com/nextcloud/contacts/commit/293f81b00252ca1d0e589ddedeab423f0b1a8ecf))
+* **l10n:** Update translations from Transifex ([6db3000](https://github.com/nextcloud/contacts/commit/6db300066aca54feecabb355ec2acbfc6eb4e04b))
+* **PropertyRev:** make text have accessible contrast ([03d76b2](https://github.com/nextcloud/contacts/commit/03d76b2884f4376fa0a63ec5fae76e78a6989ba9))
+
+
+
 ## [7.3.12](https://github.com/nextcloud/contacts/compare/v7.3.11...v7.3.12) (2026-01-20)
 
 
