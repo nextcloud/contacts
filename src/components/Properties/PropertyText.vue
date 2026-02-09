@@ -79,11 +79,13 @@
 					@update:model-value="updateEmailValue" />
 
 				<!-- OR default to input -->
+				<p v-else-if="isReadOnly">
+					{{ localValue }}
+				</p>
 				<NcTextField
 					v-else
 					v-model:model-value="localValue"
 					:inputmode="inputmode"
-					:readonly="isReadOnly"
 					:aria-label="propName"
 					:class="{ 'property__value--with-ext': haveExtHandler }"
 					type="text"
@@ -268,6 +270,11 @@ export default {
 	&__value {
 		&--note {
 			white-space: pre-line;
+		}
+
+		p {
+			width: 100%;
+			overflow-wrap: break-word;
 		}
 	}
 }

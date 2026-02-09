@@ -58,11 +58,13 @@
 
 			<div class="property__value">
 				<!-- show the first input if not a structured value -->
+				<p v-if="!property.isStructuredValue && isReadOnly">
+					{{ localValue[0] }}
+				</p>
 				<input
-					v-if="!property.isStructuredValue"
+					v-else-if="!property.isStructuredValue"
 					v-model.trim="localValue[0]"
 					:aria-label="(localType && localType.name) || '' "
-					:readonly="isReadOnly"
 					type="text"
 					@input="updateValue">
 			</div>
@@ -88,9 +90,12 @@
 						<span>{{ propModel.readableValues[index] }}</span>
 					</div>
 					<div class="property__value">
+						<p v-if="isReadOnly">
+							{{ localValue[index] }}
+						</p>
 						<NcTextField
+							v-else
 							v-model:model-value="localValue[index]"
-							:readonly="isReadOnly"
 							type="text"
 							:label-outside="true"
 							:aria-label="propModel.readableValues[index]"
@@ -111,9 +116,12 @@
 				<template v-if="(isReadOnly && filteredValue[index]) || !isReadOnly">
 					<div class="property__label" />
 					<div class="property__value">
+						<p v-if="isReadOnly">
+							{{ filteredValue[index] }}
+						</p>
 						<NcTextField
+							v-else
 							v-model:model-value="filteredValue[index]"
-							:readonly="isReadOnly"
 							:label-outside="true"
 							:label="propModel.readableValues[index]"
 							type="text"
@@ -180,3 +188,14 @@ export default {
 }
 
 </script>
+
+<style lang="scss" scoped>
+.property {
+	&__value {
+		p {
+			max-width: 100%;
+			overflow-wrap: break-word;
+		}
+	}
+}
+</style>
