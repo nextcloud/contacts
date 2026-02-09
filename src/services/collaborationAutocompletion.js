@@ -5,6 +5,7 @@
 
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
+import { ShareType } from '@nextcloud/sharing'
 import { SHARES_TYPES_MEMBER_MAP } from '../models/constants.ts'
 
 // generate allowed shareType from SHARES_TYPES_MEMBER_MAP
@@ -33,8 +34,14 @@ export async function getSuggestions(search) {
 	data.exact = [] // removing exact from general results
 
 	// flatten array of arrays
-	const rawExactSuggestions = Object.values(exact).reduce((arr, elem) => arr.concat(elem), [])
-	const rawSuggestions = Object.values(data).reduce((arr, elem) => arr.concat(elem), [])
+	let rawExactSuggestions = Object.values(exact).reduce((arr, elem) => arr.concat(elem), [])
+	let rawSuggestions = Object.values(data).reduce((arr, elem) => arr.concat(elem), [])
+
+	// remove results from untrusted remote servers
+	rawExactSuggestions = rawExactSuggestions
+		.filter((result) => !(result.value?.shareType === ShareType.Remote && result.value?.isTrustedServer === false))
+	rawSuggestions = rawSuggestions
+		.filter((result) => !(result.value?.shareType === ShareType.Remote && result.value?.isTrustedServer === false))
 
 	// remove invalid data and format to user-select layout
 	const exactSuggestions = rawExactSuggestions
