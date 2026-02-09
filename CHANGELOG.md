@@ -1,3 +1,32 @@
+## [8.3.2](https://github.com/nextcloud/contacts/compare/v8.3.1...v8.3.2) (2026-02-09)
+
+
+### Bug Fixes
+
+* **Batch:** incorrect translations import ([0969b46](https://github.com/nextcloud/contacts/commit/0969b46c44b39f611e1c5166b62874ce27c0a432))
+* clarify addressbook sharing permissions ([d927967](https://github.com/nextcloud/contacts/commit/d927967628d5724ad2d2c9761363f41ea16f8652))
+* client integration: correct tooltip format ([d667b79](https://github.com/nextcloud/contacts/commit/d667b79feafe916259ec74ff9b477e6f3c2223be))
+* **contactsDetails:** remove inaccessible code ([2afc744](https://github.com/nextcloud/contacts/commit/2afc7444df399445c15ef72f2f7e649fc7e03f63))
+* **deps:** Fix npm audit ([7b9ade4](https://github.com/nextcloud/contacts/commit/7b9ade4bc03e001fe4a3c4b8c493db2d7ec8de59))
+* **deps:** Fix npm audit ([d7fd672](https://github.com/nextcloud/contacts/commit/d7fd6729160c26640b427c50f63923e5731d98d0))
+* group multiple emails or phone numbers ([a6645a7](https://github.com/nextcloud/contacts/commit/a6645a7395127d6aba3856d74e2c550b8ad09326))
+* **ImportController:** fix translation string for imported messages ([447f0ff](https://github.com/nextcloud/contacts/commit/447f0ff64eb92e3a08e74bbd2fcfaac63b2d00ad))
+* **l10n:** Update translations from Transifex ([ccd59c6](https://github.com/nextcloud/contacts/commit/ccd59c60f5556f5808ae6d3f356e529a88c0809b))
+* **l10n:** Update translations from Transifex ([c145eb7](https://github.com/nextcloud/contacts/commit/c145eb76a91c0113697188f8404053f466389203))
+* **l10n:** Update translations from Transifex ([5a01909](https://github.com/nextcloud/contacts/commit/5a019097a2cafcd2e99fe8d79233ed7ca7af7bf8))
+* **l10n:** Update translations from Transifex ([695cb4c](https://github.com/nextcloud/contacts/commit/695cb4ca6431a1112308532ee301649d1756fd63))
+* **l10n:** Update translations from Transifex ([c23667a](https://github.com/nextcloud/contacts/commit/c23667a8878ecc9a742d39f9d01dcecc6e2beace))
+* **l10n:** Update translations from Transifex ([28155bd](https://github.com/nextcloud/contacts/commit/28155bda71d4c643958cd9a43bd0939047c047ec))
+* **l10n:** Update translations from Transifex ([c35186b](https://github.com/nextcloud/contacts/commit/c35186ba3c97c676fb0117c0b526ab3beefdec01))
+* **l10n:** Update translations from Transifex ([6ce7448](https://github.com/nextcloud/contacts/commit/6ce74482eb7b2908b83039bd5dd62984ec88db65))
+* **l10n:** Update translations from Transifex ([ee37d97](https://github.com/nextcloud/contacts/commit/ee37d97c4439bd889375541d5a1802b6e563a769))
+* **l10n:** Update translations from Transifex ([18d01f1](https://github.com/nextcloud/contacts/commit/18d01f1b4d1807d985c8f312040c9146f305921f))
+* **PropertyRev:** make text have accessible contrast ([ef46ee4](https://github.com/nextcloud/contacts/commit/ef46ee42e072f72bd3fa05cce4fe824756235c3f))
+* **PropertyText,PropertyMultipleText:** make readonly inputs p for proper wrapping and a11y ([815a6a9](https://github.com/nextcloud/contacts/commit/815a6a981499d346cc3e002ab23c98ee37ac57ac))
+* **teams:** always use populationInherited for population count and update count on population change ([5fc380c](https://github.com/nextcloud/contacts/commit/5fc380c164829d50497a613ed4088908d6f517a4))
+
+
+
 ## [8.3.1](https://github.com/nextcloud/contacts/compare/v8.3.0...v8.3.1) (2026-01-26)
 
 
