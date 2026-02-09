@@ -344,7 +344,6 @@
     "Invite members to team" : "Позови чланове у тим",
     "Loading members list …" : "Учитавање листе чланова ...",
     "Add to {circle}" : "Додај у {circle}",
-    "Select chart …" : "Изаберите график ...",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Увезен је %n контакт (прескочен %d)","Увезена су %n контакта (прескочено %d)","Увезено је %n контаката (прескочено %d)"]
+    "Select chart …" : "Изаберите график ..."
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
 }

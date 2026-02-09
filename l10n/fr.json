@@ -387,7 +387,6 @@
     "Invite members to team" : "Inviter des membres à rejoindre l'équipe",
     "Loading members list …" : "Chargement de la liste des membres...",
     "Add to {circle}" : "Ajouter à {circle}",
-    "Select chart …" : "Sélectionnez un organigramme...",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n contact importé (%d ignoré⋅s)","%n contacts importés (%d ignoré⋅s)","%n contacts importés (%d ignoré⋅s)"]
+    "Select chart …" : "Sélectionnez un organigramme..."
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

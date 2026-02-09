@@ -387,7 +387,6 @@ OC.L10N.register(
     "Invite members to team" : "Bjud in medlemmar till teamet",
     "Loading members list …" : "Läser in medlemslista …",
     "Add to {circle}" : "Lägg till i {circle}",
-    "Select chart …" : "Välj schema ...",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Importerade %n kontakt (skippade %d)","Importerade %n kontakter (skippade %d)"]
+    "Select chart …" : "Välj schema ..."
 },
 "nplurals=2; plural=(n != 1);");

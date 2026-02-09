@@ -392,7 +392,6 @@ OC.L10N.register(
     "Invite members to team" : "邀請成員加入團隊",
     "Loading members list …" : "正在加載成員清單 …",
     "Add to {circle}" : "添加到 {circle}",
-    "Select chart …" : "選擇圖表 ...",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["已導入 %n 個聯絡人（略過 %d 個）"]
+    "Select chart …" : "選擇圖表 ..."
 },
 "nplurals=1; plural=0;");

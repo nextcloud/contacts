@@ -390,7 +390,6 @@
     "Invite members to team" : "Pozovi članove u tim",
     "Loading members list …" : "Učitavanje popisa članova…",
     "Add to {circle}" : "Dodaj u {circle}",
-    "Select chart …" : "Odaberi grafikon …",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Uvezen %n kontakt (preskočeno %d)","Uvezena %n kontakta (preskočeno %d)","Uvezeno %n kontakata (preskočeno %d)"]
+    "Select chart …" : "Odaberi grafikon …"
 },"pluralForm" :"nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;"
 }

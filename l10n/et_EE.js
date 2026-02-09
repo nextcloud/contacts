@@ -392,7 +392,6 @@ OC.L10N.register(
     "Invite members to team" : "Kutsu tiimi uusi liikmeid",
     "Loading members list …" : "Laadin liikmete loendit…",
     "Add to {circle}" : "Lisa „{circle}“ tiimi",
-    "Select chart …" : "Vali joonis…",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Importisin %n kontakti (%d jätsin vahele)","Importisin %n kontakti (%d jätsin vahele)"]
+    "Select chart …" : "Vali joonis…"
 },
 "nplurals=2; plural=(n != 1);");
