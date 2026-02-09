@@ -368,7 +368,6 @@
     "Invite members to team" : "Покани членови во тимот",
     "Loading members list …" : "Вчитување на листата со членови ...",
     "Add to {circle}" : "Додади во {circle}",
-    "Select chart …" : "Избери график ...",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Увезен %n контакт (прескокнати %d)","Увезени %n контакти (прескокнати %d)"]
+    "Select chart …" : "Избери график ..."
 },"pluralForm" :"nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;"
 }

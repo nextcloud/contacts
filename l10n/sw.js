@@ -367,7 +367,6 @@ OC.L10N.register(
     "Invite members to team" : "Alika wanachama kwenye timu",
     "Loading members list …" : "Inapakia orodha ya wanachama",
     "Add to {circle}" : "Ongeza hadi {circle}",
-    "Select chart …" : "Chagua chati",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Imported %n contact (skipped %d)","Imeingiza anwani %n (imerukwa %d)"]
+    "Select chart …" : "Chagua chati"
 },
 "nplurals=2; plural=(n != 1);");

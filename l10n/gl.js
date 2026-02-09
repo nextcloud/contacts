@@ -392,7 +392,6 @@ OC.L10N.register(
     "Invite members to team" : "Convidar aos membros ao equipo",
     "Loading members list …" : "Cargando a lista de membros…",
     "Add to {circle}" : "Engadir a {circle}",
-    "Select chart …" : "Seleccionar o gráfico…",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Importado %n contacto (omitidos %d)","Importados %n contactos (omitidos %d)"]
+    "Select chart …" : "Seleccionar o gráfico…"
 },
 "nplurals=2; plural=(n != 1);");

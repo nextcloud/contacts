@@ -392,7 +392,6 @@ OC.L10N.register(
     "Invite members to team" : "Takıma üyeler davet edin",
     "Loading members list …" : "Üye listesi ekleniyor …",
     "Add to {circle}" : "{circle} takımına ekle",
-    "Select chart …" : "Çizelge seçin…",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n kişi içe aktarıldı (%d atlandı)","%n kişi içe aktarıldı (%d atlandı)"]
+    "Select chart …" : "Çizelge seçin…"
 },
 "nplurals=2; plural=(n > 1);");
