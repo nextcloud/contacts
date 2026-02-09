@@ -17,6 +17,7 @@ import {
 	getCircleMembers,
 	getCircles,
 	leaveCircle,
+	removeCircleFromParentCircles,
 } from '../services/circles.ts'
 import logger from '../services/logger.js'
 
@@ -214,6 +215,23 @@ const actions = {
 		} catch (error) {
 			console.error(error)
 			showError(t('contacts', 'Unable to delete team {circleId}', circleId))
+		}
+	},
+
+	/**
+	 * Remove circle from all parent circles it belongs to
+	 *
+	 * @param {object} context the store mutations Current context
+	 * @param {string} circleId the circle id
+	 */
+	async removeCircleFromParentCircles(context, circleId) {
+		try {
+			await removeCircleFromParentCircles(circleId)
+			logger.debug('Removed circle from parent circles', { circleId })
+			context.dispatch('updateCirclesPopulationCount')
+		} catch (error) {
+			console.error(error)
+			throw error
 		}
 	},
 

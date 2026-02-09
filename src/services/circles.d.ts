@@ -48,6 +48,12 @@ export declare const createCircle: (name: string, personal: boolean, local: bool
  */
 export declare const deleteCircle: (circleId: string) => Promise<any>
 /**
+ * Remove a circle from all parent circles it belongs to
+ *
+ * @param {string} circleId the circle id
+ */
+export declare const removeCircleFromParentCircles: (circleId: string) => Promise<any>
+/**
  * Edit an existing circle
  *
  * @param {string} circleId the circle id
