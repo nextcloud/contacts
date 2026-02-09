@@ -389,7 +389,6 @@ OC.L10N.register(
     "Invite members to team" : "Undang anggota ke tim",
     "Loading members list …" : "Memuat daftar anggota …",
     "Add to {circle}" : "Tambahkan ke {circle}",
-    "Select chart …" : "Pilih bagan …",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Mengimpor %n kontak (melewati %d)"]
+    "Select chart …" : "Pilih bagan …"
 },
 "nplurals=1; plural=0;");

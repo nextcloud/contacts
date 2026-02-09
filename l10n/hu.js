@@ -346,7 +346,6 @@ OC.L10N.register(
     "Invite members to team" : "Tagok meghívása a csapatba",
     "Loading members list …" : "Taglista betöltése…",
     "Add to {circle}" : "Hozzáadása a(z) {circle} körhöz",
-    "Select chart …" : "Válasszon diagramot…",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["%n névjegy importálva (%d kihagyva)","%n névjegy importálva (%d kihagyva)"]
+    "Select chart …" : "Válasszon diagramot…"
 },
 "nplurals=2; plural=(n != 1);");

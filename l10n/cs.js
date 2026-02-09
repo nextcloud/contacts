@@ -392,7 +392,6 @@ OC.L10N.register(
     "Invite members to team" : "Pozvat členy do týmu",
     "Loading members list …" : "Načítání seznamu členů …",
     "Add to {circle}" : "Přidat do {circle}",
-    "Select chart …" : "Vybrat graf …",
-    "_Imported %n contact (skipped %d)_::_Imported %n contacts (skipped %d)_" : ["Naimportován %n kontakt (přeskočeno %d)","Naimportovány %n kontakty (přeskočeno %d)","Naimportováno %n kontaktů (přeskočeno %d)","Naimportovány %n kontakty (přeskočeno %d)"]
+    "Select chart …" : "Vybrat graf …"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");
