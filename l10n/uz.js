@@ -17,6 +17,7 @@ OC.L10N.register(
     "None" : "Yo'q",
     "Member" : "Member",
     "Admin" : "Admin",
+    "Federation" : "Jamg'arma",
     "Users" : "Users",
     "Notes" : "Notes",
     "Unknown" : "Unknown",
