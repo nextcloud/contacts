@@ -19,7 +19,7 @@
 						:loading="loading === config"
 						:disabled="loading !== false"
 						wrapper-element="li"
-						@update:model-value="onChange(config, $event)">
+						@update:model-value="onChange(Number(config), $event)">
 						{{ label }}
 					</NcCheckboxRadioSwitch>
 				</ul>
@@ -63,7 +63,8 @@ import IconLogout from 'vue-material-design-icons/Logout.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import CirclePasswordSettings from './CirclePasswordSettings.vue'
 import ContentHeading from './ContentHeading.vue'
-import { PUBLIC_CIRCLE_CONFIG } from '../../models/constants.ts'
+import CircleActionsMixin from '../../mixins/CircleActionsMixin.js'
+import { CircleConfigs, PUBLIC_CIRCLE_CONFIG } from '../../models/constants.ts'
 import { CircleEdit, editCircle } from '../../services/circles.ts'
 
 export default defineComponent({
@@ -77,6 +78,8 @@ export default defineComponent({
 		NcCheckboxRadioSwitch,
 	},
 
+	mixins: [CircleActionsMixin],
+
 	props: {
 		circle: {
 			type: Object,
@@ -84,7 +87,7 @@ export default defineComponent({
 		},
 	},
 
-	emits: ['leave', 'delete'],
+	emits: ['leave', 'delete', 'close-settings-popover'],
 	setup() {
 		return { t }
 	},
@@ -109,6 +112,14 @@ export default defineComponent({
 		 */
 		async onChange(config: number, checked: boolean) {
 			this.logger.debug(`Circle config ${config} is set to ${checked}`)
+
+			if (checked && config === CircleConfigs.FEDERATED) {
+				this.$emit('close-settings-popover')
+				const confirmed = await this.confirmEnableFederationForCircle()
+				if (!confirmed) {
+					return
+				}
+			}
 
 			this.loading = config
 			const prevConfig = this.circle.config

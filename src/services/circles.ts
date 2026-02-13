@@ -76,6 +76,16 @@ export async function deleteCircle(circleId: string) {
 }
 
 /**
+ * Remove a circle from all parent circles it belongs to
+ *
+ * @param circleId the circle id
+ */
+export async function removeCircleFromParentCircles(circleId: string) {
+	const response = await axios.put(generateOcsUrl('apps/circles/circles/{circleId}/leave-parent-circles', { circleId }))
+	return response.data.ocs.data
+}
+
+/**
  * Edit an existing circle
  *
  * @param circleId the circle id

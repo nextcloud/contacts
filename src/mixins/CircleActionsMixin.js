@@ -1,4 +1,4 @@
-import { showError } from '@nextcloud/dialogs'
+import { showConfirmation, showError, showSuccess } from '@nextcloud/dialogs'
 /**
  * SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -129,6 +129,39 @@ export default {
 				this.$store.dispatch('deleteCircle', this.circle.id)
 			} catch (error) {
 				showError(t('contacts', 'Unable to delete the team'))
+			} finally {
+				this.loadingAction = false
+			}
+		},
+
+		async confirmEnableFederationForCircle() {
+			const confirmed = await showConfirmation({
+				name: t('contacts', 'Confirm enabling federation'),
+				text: t('contacts', 'Enabling this will remove {circle} from all the teams it belongs to.\nAre you sure?', {
+					circle: this.circle.displayName,
+				}),
+				labelConfirm: t('contacts', 'Enable federation'),
+				labelReject: t('contacts', 'Cancel'),
+				severity: 'warning',
+			})
+			if (!confirmed) {
+				this.logger.debug('Enable federation cancelled')
+				return false
+			}
+			return await this.removeCircleFromParentCircles()
+		},
+
+		async removeCircleFromParentCircles() {
+			this.loadingAction = true
+			try {
+				await this.$store.dispatch('removeCircleFromParentCircles', this.circle.id)
+				showSuccess(t('contacts', 'Federation enabled for {circle}', {
+					circle: this.circle.displayName,
+				}))
+				return true
+			} catch (error) {
+				showError(t('contacts', 'Unable to enable federation'))
+				return false
 			} finally {
 				this.loadingAction = false
 			}
