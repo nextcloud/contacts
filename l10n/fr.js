@@ -257,7 +257,7 @@ OC.L10N.register(
     "note" : "note",
     "email" : "email",
     "send an email" : "Envoyer un email",
-    "Personal dates" : "Rendez-vous personnels",
+    "Personal dates" : "Dates personnelles",
     "Add property of this type" : "Ajouter une propriété de ce type",
     "Member" : "Membre",
     "This is a read-only group managed by administrators. Group members can only view this group." : "Il s'agit d'un groupe en lecture seule géré par les administrateurs. Les membres du groupe peuvent uniquement consulter ce groupe.",
