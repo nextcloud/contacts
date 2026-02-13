@@ -249,7 +249,6 @@ import isContactsInteractionEnabled from '../../services/isContactsInteractionEn
 import useUserGroupStore from '../../store/userGroup.ts'
 import IconAccountSwitchOutline from 'vue-material-design-icons/AccountSwitchOutline.vue'
 import isOcmInvitesEnabled from '../../services/isOcmInvitesEnabled.js'
-import IconContact from 'vue-material-design-icons/AccountMultiple.vue'
 
 export default {
 	name: 'RootNavigation',

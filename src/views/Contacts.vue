@@ -125,6 +125,7 @@ import {
 	NcContent as Content,
 	NcLoadingIcon as IconLoading,
 	NcModal as Modal,
+	NcButton,
 } from '@nextcloud/vue'
 import ICAL from 'ical.js'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
