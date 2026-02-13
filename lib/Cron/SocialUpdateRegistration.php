@@ -17,7 +17,6 @@ use OCP\BackgroundJob\TimedJob;
 use OCP\IConfig;
 use OCP\IUser;
 use OCP\IUserManager;
-use function method_exists;
 
 class SocialUpdateRegistration extends TimedJob {
 	private $appName;
@@ -45,12 +44,8 @@ class SocialUpdateRegistration extends TimedJob {
 
 		// Run once a week
 		$this->setInterval(7 * 24 * 60 * 60);
-		/**
-		 * @todo remove check with 24+
-		 */
-		if (method_exists($this, 'setTimeSensitivity')) {
-			$this->setTimeSensitivity(self::TIME_INSENSITIVE);
-		}
+
+		$this->setTimeSensitivity(self::TIME_INSENSITIVE);
 	}
 
 	/**
