@@ -298,8 +298,8 @@ export default {
 			}
 
 			return datetimeData.year === null
-				// replace year and remove double spaces
-				? datetime.replace(moment(this.vcardTimeLocalValue).year(), '').replace(/\s\s+/g, ' ')
+				// replace year, remove commas near it, remove double spaces, and trim
+				? datetime.replace(moment(this.vcardTimeLocalValue).year(), '').replace(/,\s*$/, '').replace(/\s\s+/g, ' ').trim()
 				: datetime
 		},
 	},
