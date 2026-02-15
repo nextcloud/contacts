@@ -152,6 +152,17 @@
 						class="header-icon header-icon--pulse icon-up"
 						@click="updateContact" />
 
+					<!-- edit button for own contact -->
+					<NcButton
+						v-if="isOwnContact"
+						:href="profileSettingsUrl"
+						:variant="isMobile ? 'secondary' : 'tertiary'">
+						<template #icon>
+							<PencilIcon :size="20" />
+						</template>
+						{{ t('contacts', 'Edit profile') }}
+					</NcButton>
+
 					<!-- edit and save buttons -->
 					<template v-if="canModifyCard">
 						<NcButton
@@ -380,6 +391,7 @@
 </template>
 
 <script>
+import { getCurrentUser } from '@nextcloud/auth'
 import { getBuilder } from '@nextcloud/browser-storage'
 import { showError } from '@nextcloud/dialogs'
 import { loadState } from '@nextcloud/initial-state'
@@ -607,6 +619,9 @@ export default defineComponent({
 		 * @return {object | boolean}
 		 */
 		warning() {
+			if (this.isOwnContact === true) {
+				return false
+			}
 			if (this.canModifyCard === false) {
 				return {
 					icon: EyeCircleIcon,
@@ -829,6 +844,14 @@ export default defineComponent({
 
 		nextcloudVersionAtLeast28() {
 			return parseInt(window.OC.config.version.split('.')[0]) >= 28
+		},
+
+		isOwnContact() {
+			return this.isInSystemAddressBook && this.contact.uid === getCurrentUser().uid
+		},
+
+		profileSettingsUrl() {
+			return generateUrl('settings/user')
 		},
 	},
 
