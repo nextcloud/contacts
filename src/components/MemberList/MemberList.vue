@@ -186,7 +186,7 @@ export default defineComponent({
 			this.pickerLoading = true
 
 			try {
-				const results = await getSuggestions(term)
+				const results = await getSuggestions(term, this.circle)
 				this.pickerData = results
 			} catch (error) {
 				console.error('Unable to get the results', error)
@@ -241,7 +241,7 @@ export default defineComponent({
 		},
 
 		async onGuestCreated(guest) {
-			const results = await getSuggestions(guest.username)
+			const results = await getSuggestions(guest.username, this.circle)
 			this.$refs.entityPicker.onClick(results[0])
 		},
 	},
