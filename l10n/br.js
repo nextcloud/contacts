@@ -23,6 +23,7 @@ OC.L10N.register(
     "Title" : "Titl",
     "Company" : "Embregerez",
     "View profile" : "Gwelet ar profil",
+    "Edit profile" : "Embann an drolinenn",
     "Search for people to add" : "Klask tud da ouzhpennañ",
     "No results" : "Disoc'h ebet",
     "Pending" : "O c'hortoz",

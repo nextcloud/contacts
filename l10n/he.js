@@ -74,6 +74,7 @@ OC.L10N.register(
     "Title" : "תפקיד",
     "Company" : "חברה",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "איש קשר זה נפגם וקיבל תיקון. נא לסקור את התוכן וללחוץ כדי לשמור אותו.",
+    "Edit profile" : "עריכת פרופיל",
     "Clone contact" : "שכפול איש קשר",
     "Generate QR Code" : "יצירת קוד QR",
     "Pick an address book" : "נא לבחור ספר כתובות",

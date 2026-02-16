@@ -138,6 +138,7 @@ OC.L10N.register(
     "Go to talk conversation" : "Fara í samtal",
     "View profile" : "Skoða notandasnið",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Þessi tengiliður var gallaður og var hann lagfærður. Yfirfarðu upplýsingarnar og smelltu síðan hér til að vista tengiliðinn.",
+    "Edit profile" : "Breyta sniði",
     "Clone contact" : "Klóna tengilið",
     "Generate QR Code" : "Útbúa QR-kóða",
     "Contact vCard as QR code" : "vCard-upplýsingar tengiliðar sem QR-kóði",

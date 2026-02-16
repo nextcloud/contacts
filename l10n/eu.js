@@ -137,6 +137,7 @@ OC.L10N.register(
     "Go to talk conversation" : "Joan talk elkarrizketara",
     "View profile" : "Ikusi profila",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Kontaktu hau apurtuta zegoen eta konpondu egin da. Mesedez berrikusi edukia eta egin klik hemen gordetzeko.",
+    "Edit profile" : "Editatu profila",
     "Clone contact" : "Klonatu kontaktua",
     "Generate QR Code" : "Sortu QR kodea",
     "Contact vCard as QR code" : "Kontaktuaren vCard QR kode bezala",

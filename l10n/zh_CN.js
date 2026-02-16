@@ -171,6 +171,7 @@ OC.L10N.register(
     "Go to talk conversation" : "前往对话",
     "View profile" : "查看个人资料",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "此联系人资料损坏但已被修复。请查看内容并点击这里以保存它。",
+    "Edit profile" : "编辑简介",
     "Clone contact" : "克隆联系人",
     "Generate QR Code" : "生成二维码",
     "Contact vCard as QR code" : "联系人名片作为二维码",

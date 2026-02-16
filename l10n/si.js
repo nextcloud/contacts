@@ -13,6 +13,7 @@ OC.L10N.register(
     "Invalid image" : "වලංගු නොවන පින්තූරයකි",
     "Name" : "නම",
     "Company" : "සමාගම",
+    "Edit profile" : "පැතිකඩ සංස්කරණය",
     "Remove {type}" : "{type} ඉවත් කරන්න",
     "Add to group" : "සමූහයට එකතු කරන්න ",
     "Search {types}" : "{types}  සොයන්න",

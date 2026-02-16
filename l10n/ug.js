@@ -168,6 +168,7 @@ OC.L10N.register(
     "Go to talk conversation" : "پاراڭلىشىشقا بېرىڭ",
     "View profile" : "ئارخىپنى كۆرۈڭ",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "بۇ ئالاقى بۇزۇلۇپ ئوڭشالدى. مەزمۇننى قايتا كۆرۈپ بۇ يەرنى چېكىڭ.",
+    "Edit profile" : "ئارخىپنى تەھرىرلەش",
     "Clone contact" : "كلون ئالاقىسى",
     "Generate QR Code" : "QR كودى ھاسىل قىلىڭ",
     "Contact vCard as QR code" : "QC كودى سۈپىتىدە vCard بىلەن ئالاقىلىشىڭ",

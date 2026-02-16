@@ -140,6 +140,7 @@ OC.L10N.register(
     "Go to talk conversation" : "Μετάβαση στη συνομιλία Talk",
     "View profile" : "Προβολή προφίλ",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Η επαφή παρουσίασε σφάλμα και διορθώθηκε. Παρακαλώ ελέγξτε την καταχώρηση και αποθηκεύστε εδώ.",
+    "Edit profile" : "Επεξεργασία προφίλ",
     "Clone contact" : "Κλωνοποίηση επαφής",
     "Generate QR Code" : "Δημιουργία Κώδικα QR",
     "Contact vCard as QR code" : "Κάρτα επαφής vCard ως κώδικας QR",

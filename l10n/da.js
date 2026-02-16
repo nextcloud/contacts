@@ -138,6 +138,7 @@ OC.L10N.register(
     "Go to talk conversation" : "Gå til Snak samtale",
     "View profile" : "Vis profil",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Der var en fejl i denne kontakt, som er blevet rettet . Gennemgå indholdet, og klik her for at gemme det.",
+    "Edit profile" : "Rediger profil",
     "Clone contact" : "Klon kontakt",
     "Generate QR Code" : "Generer QR-kode",
     "Contact vCard as QR code" : "Kontakt vCard som QR-kode",

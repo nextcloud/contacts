@@ -136,6 +136,7 @@ OC.L10N.register(
     "Go to talk conversation" : "Anar a conversa",
     "View profile" : "Visualitza el perfil",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Aquest contacte estava trencat i s'ha corregit. Reviseu-ne el contingut i feu clic aquí per a desar-lo.",
+    "Edit profile" : "Edita el perfil",
     "Clone contact" : "Clona el contacte",
     "Generate QR Code" : "Genera un codi QR",
     "Contact vCard as QR code" : "Contacte vCard com a codi QR",
