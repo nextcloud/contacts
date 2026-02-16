@@ -68,6 +68,7 @@
 					type="text"
 					@input="updateValue">
 
+				<!-- TRANSLATORS verb -->
 				<NcButton
 					v-if="!property.isStructuredValue && isReadOnly"
 					class="property__ext"
