@@ -27,6 +27,7 @@ OC.L10N.register(
     "Name" : "Nume",
     "Title" : "Titlu",
     "Company" : "Companie",
+    "Edit profile" : "Editează profilul",
     "Move" : "Move",
     "No results" : "Niciun rezultat",
     "Pending" : "În așteptare",

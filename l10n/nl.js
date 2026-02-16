@@ -163,6 +163,7 @@ OC.L10N.register(
     "Go to talk conversation" : "Ga naar het Talk gesprek",
     "View profile" : "Bekijk profiel",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Dit contactpersoon was beschadigd en is hersteld. Controleer alstublieft of de contactpersoon correct hersteld is en klik hier om het te bewaren.",
+    "Edit profile" : "Bewerken profiel",
     "Clone contact" : "Klonen contactpersoon",
     "Generate QR Code" : "Genereer QR code",
     "Contact vCard as QR code" : "Contactpersoon vCard als QR code",

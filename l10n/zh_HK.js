@@ -172,6 +172,7 @@ OC.L10N.register(
     "Go to talk conversation" : "前往對話",
     "View profile" : "檢視個人檔案",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "此聯絡人的資料有問題，已修復。請審閱內容並點擊此處以儲存。",
+    "Edit profile" : "編輯個人設定",
     "Clone contact" : "複製聯絡人",
     "Generate QR Code" : "生成 QR Code",
     "Contact vCard as QR code" : "QR Code 形式的聯絡人 vCard",

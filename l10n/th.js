@@ -53,6 +53,7 @@ OC.L10N.register(
     "Name" : "ชื่อ",
     "Title" : "ชื่อเรื่อง",
     "Company" : "บริษัท",
+    "Edit profile" : "แก้ไขโปรไฟล์",
     "Move" : "้ายย",
     "No results" : "ไม่มีผลลัพธ์",
     "Pending" : "รอดำเนินการ",

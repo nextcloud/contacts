@@ -133,6 +133,7 @@ OC.L10N.register(
     "Go to talk conversation" : "Pojdi na pogovor",
     "View profile" : "Pokaži profil",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Podatki tega stika so bili okvarjeni in nato popravljeni. Preverite pravilnost podatkov in kliknite za shranjevanje.",
+    "Edit profile" : "Uredi profil",
     "Clone contact" : "Kloniraj stik",
     "Generate QR Code" : "Ustvari kodo QR",
     "Contact vCard as QR code" : "Kartica vCard stika kot koda QR",
