@@ -146,6 +146,7 @@ OC.L10N.register(
     "Go to talk conversation" : "Ugrás a beszélgetéshez",
     "View profile" : "Profil megtekintése",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Ez a névjegy hibás volt és javítást kapott. Tekintse át a tartalmat, és kattintson ide a mentéshez.",
+    "Edit profile" : "Profil szerkesztése",
     "Clone contact" : "Névjegy klónozása",
     "Generate QR Code" : "QR-kód másolása",
     "Contact vCard as QR code" : "Névjegy vCard QR-kódként",

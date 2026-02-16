@@ -111,6 +111,7 @@ OC.L10N.register(
     "Go to talk conversation" : "Go to talk conversation",
     "View profile" : "دیدن نمایه",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "This contact was broken and received a fix. Please review the content and click here to save it.",
+    "Edit profile" : "ویرایش نمایه",
     "Clone contact" : "Clone contact",
     "Generate QR Code" : "Generate QR Code",
     "Contact vCard as QR code" : "Contact vCard as QR code",

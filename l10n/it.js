@@ -153,6 +153,7 @@ OC.L10N.register(
     "Go to talk conversation" : "Vai alla conversazione",
     "View profile" : "Vedi profilo",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Questo contatto era danneggiato e ha ricevuto una correzione. Rivedi il contenuto e fai clic qui per salvarlo.",
+    "Edit profile" : "Modifica il profilo",
     "Clone contact" : "Clona contatto",
     "Generate QR Code" : "Genera codice QR",
     "Contact vCard as QR code" : "vCard del contatto come codice QR",

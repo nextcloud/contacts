@@ -56,6 +56,7 @@ OC.L10N.register(
     "Select a contact on the list to begin" : "Jāatlasa kontaktpersona no saraksta, lai sāktu",
     "Title" : "Amats",
     "Company" : "Uzņēmums",
+    "Edit profile" : "Labot profilu",
     "Generate QR Code" : "Izveidot kvadrātkodu",
     "Move" : "Move",
     "No results" : "Nav iznākuma",

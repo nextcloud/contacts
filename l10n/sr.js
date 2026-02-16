@@ -146,6 +146,7 @@ OC.L10N.register(
     "Go to talk conversation" : "Иди на talk разговор",
     "View profile" : "Погледај профил",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Контакт је био неисправан и поправљен је. Прегледајте садржај и кликните овде да га сачувате.",
+    "Edit profile" : "Уреди профил",
     "Clone contact" : "Клонирај контакт",
     "Generate QR Code" : "Генериши КуеР код",
     "Contact vCard as QR code" : "vCard контакта као QR кôд",

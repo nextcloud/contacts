@@ -172,6 +172,7 @@ OC.L10N.register(
     "Go to talk conversation" : "Téigh chuig comhrá cainte",
     "View profile" : "Féach ar phróifíl",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Briseadh an teagmhálaí seo agus fuarthas réiteach. Déan athbhreithniú ar an ábhar agus cliceáil anseo chun é a shábháil le do thoil.",
+    "Edit profile" : "Cuir próifíl in eagar",
     "Clone contact" : "Teagmháil clón",
     "Generate QR Code" : "Gin Cód QR",
     "Contact vCard as QR code" : "Déan teagmháil le vCard mar chód QR",

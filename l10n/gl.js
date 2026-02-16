@@ -172,6 +172,7 @@ OC.L10N.register(
     "Go to talk conversation" : "Ir á conversa en Parladoiro",
     "View profile" : "Ver o perfil",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Este contacto rachou e recibiu unha solución. Revise o contido e prema aquí para gardalo.",
+    "Edit profile" : "Editar o perfil",
     "Clone contact" : "Clonar o contacto",
     "Generate QR Code" : "Xerar un código QR",
     "Contact vCard as QR code" : "vCard de contacto como código QR",

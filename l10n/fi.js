@@ -146,6 +146,7 @@ OC.L10N.register(
     "Company" : "Yritys",
     "View profile" : "Näytä profiili",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Tämä yhteystieto oli rikki ja sai korjauksen. Ole hyvä ja tarkista sisältö, ja sitten paina tästä tallentaaksesi.",
+    "Edit profile" : "Muokkaa profiilia",
     "Clone contact" : "Kloonaa yhteystieto",
     "Generate QR Code" : "Luo QR-koodi",
     "Contact vCard as QR code" : "Yhteystiedon vCard QR-koodina",
