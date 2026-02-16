@@ -46,14 +46,14 @@
 		<ChartContent
 			v-else-if="selectedChart"
 			:contacts-list="contacts" />
+		<OcmInvitesContent v-if="isInvitesView"
+			:invitesList="invitesList"
+			:loading="loadingInvites" />
 		<ContactsContent
 			v-else
 			:contacts-list="contactsList"
 			:loading="loadingContacts"
 			@new-contact="newContact" />
-		<OcmInvitesContent v-if="isInvitesView"
-			:invitesList="invitesList"
-			:loading="loadingInvites" />
 
 		<!-- Import modal -->
 		<Modal

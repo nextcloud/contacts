@@ -100,7 +100,9 @@
 				:name="GROUP_ALL_OCM_INVITES"
 				:to="{
 					name: ROUTE_NAME_ALL_OCM_INVITES,
-				}">
+				}"
+				:active="routeState === 'ocmInvites'"
+				@click="updateRouteState('ocmInvites')">
 				<template #icon>
 					<IconAccountSwitchOutline :size="20" />
 				</template>
