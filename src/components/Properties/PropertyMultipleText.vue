@@ -68,12 +68,11 @@
 					type="text"
 					@input="updateValue">
 
-				<!-- TRANSLATORS verb -->
 				<NcButton
 					v-if="!property.isStructuredValue && isReadOnly"
 					class="property__ext"
 					variant="tertiary-no-background"
-					:aria-label="t('contacts', 'copy')"
+					:aria-label="copyLabel"
 					@click.stop.prevent="copyValueToClipboard(localValue[0])">
 					<template #icon>
 						<CopyIcon :size="20" />
@@ -218,6 +217,11 @@ export default {
 			return !!this.propModel.options
 				|| !!this.selectType
 				|| !this.property.isStructuredValue
+		},
+
+		copyLabel() {
+			// TRANSLATORS verb
+			return this.t('contacts', 'copy')
 		},
 	},
 
