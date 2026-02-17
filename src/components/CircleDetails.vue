@@ -73,7 +73,11 @@
 										</template>
 									</NcButton>
 								</template>
-								<CircleSettings :circle="circle" @leave="onLeave" @delete="onDelete" />
+								<CircleSettings
+									:circle="circle"
+									@leave="onLeave"
+									@delete="onDelete"
+									@close-settings-popover="onCloseSettingsPopover" />
 							</NcPopover>
 						</template>
 						<template v-else>
@@ -647,6 +651,10 @@ export default {
 		onDelete() {
 			this.isSettingsPopoverShown = false
 			this.confirmDeleteCircle()
+		},
+
+		onCloseSettingsPopover() {
+			this.isSettingsPopoverShown = false
 		},
 
 		startEditing() {

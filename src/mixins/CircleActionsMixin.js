@@ -1,4 +1,4 @@
-import { showError } from '@nextcloud/dialogs'
+import { showConfirmation, showError, showSuccess } from '@nextcloud/dialogs'
 /**
  * SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
@@ -132,6 +132,23 @@ export default {
 			} finally {
 				this.loadingAction = false
 			}
+		},
+
+		async confirmEnableFederationForCircle() {
+			const confirmed = await showConfirmation({
+				name: t('contacts', 'Confirm enabling federation'),
+				text: t('contacts', 'Enabling this will prevent {circle} from being a member of other teams.\nAre you sure?', {
+					circle: this.circle.displayName,
+				}),
+				labelConfirm: t('contacts', 'Enable federation'),
+				labelReject: t('contacts', 'Cancel'),
+				severity: 'warning',
+			})
+			if (!confirmed) {
+				this.logger.debug('Enable federation cancelled')
+				return false
+			}
+			return true
 		},
 
 		/**
