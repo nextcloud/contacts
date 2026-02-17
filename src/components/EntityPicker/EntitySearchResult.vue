@@ -13,7 +13,7 @@
 		class="entity-picker__bubble"
 		:class="{ 'entity-picker__bubble--selected': isSelected }"
 		:display-name="source.label"
-		:user="source.user"
+		:user="source.shareType === ShareType.User ? source.user : undefined"
 		:margin="6"
 		:size="44"
 		url="#"
@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { ShareType } from '@nextcloud/sharing'
 import { NcUserBubble as UserBubble } from '@nextcloud/vue'
 
 export default {
@@ -51,6 +52,12 @@ export default {
 			type: Object,
 			default: () => ({}),
 		},
+	},
+
+	setup() {
+		return {
+			ShareType,
+		}
 	},
 
 	computed: {

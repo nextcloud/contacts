@@ -5,7 +5,8 @@
 
 import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
-import { SHARES_TYPES_MEMBER_MAP } from '../models/constants.ts'
+import { ShareType } from '@nextcloud/sharing'
+import { CircleConfigs, SHARES_TYPES_MEMBER_MAP } from '../models/constants.ts'
 
 // generate allowed shareType from SHARES_TYPES_MEMBER_MAP
 const shareType = Object.keys(SHARES_TYPES_MEMBER_MAP)
@@ -15,12 +16,13 @@ const maxAutocompleteResults = parseInt(window.OC.config['sharing.maxAutocomplet
  * Get suggestions
  *
  * @param {string} search the search query
+ * @param {object|null} circle - the circle object
  */
-export async function getSuggestions(search) {
+export async function getSuggestions(search, circle = null) {
 	const request = await axios.get(generateOcsUrl('apps/files_sharing/api/v1/sharees'), {
 		params: {
 			format: 'json',
-			itemType: 'contacts',
+			itemType: 'teams',
 			search,
 			perPage: maxAutocompleteResults,
 			shareType,
@@ -33,8 +35,24 @@ export async function getSuggestions(search) {
 	data.exact = [] // removing exact from general results
 
 	// flatten array of arrays
-	const rawExactSuggestions = Object.values(exact).reduce((arr, elem) => arr.concat(elem), [])
-	const rawSuggestions = Object.values(data).reduce((arr, elem) => arr.concat(elem), [])
+	let rawExactSuggestions = Object.values(exact).reduce((arr, elem) => arr.concat(elem), [])
+	let rawSuggestions = Object.values(data).reduce((arr, elem) => arr.concat(elem), [])
+
+	// check if federation flag is enabled using bitwise AND on circle config
+	const isCircleFederated = circle ? (circle.config & CircleConfigs.FEDERATED) !== 0 : false
+	if (isCircleFederated) {
+		// remove results from untrusted remote servers
+		rawExactSuggestions = rawExactSuggestions
+			.filter((result) => !(result.value?.shareType === ShareType.Remote && result.value?.isTrustedServer === false))
+		rawSuggestions = rawSuggestions
+			.filter((result) => !(result.value?.shareType === ShareType.Remote && result.value?.isTrustedServer === false))
+	} else {
+		// remove all results from remote servers
+		rawExactSuggestions = rawExactSuggestions
+			.filter((result) => result.value?.shareType !== ShareType.Remote)
+		rawSuggestions = rawSuggestions
+			.filter((result) => result.value?.shareType !== ShareType.Remote)
+	}
 
 	// remove invalid data and format to user-select layout
 	const exactSuggestions = rawExactSuggestions
