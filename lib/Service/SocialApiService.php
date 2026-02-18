@@ -22,8 +22,15 @@ use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
 use Psr\Container\ContainerInterface;
+use function in_array;
 
 class SocialApiService {
+
+	protected const ALLOWED_CONTENT_TYPES = [
+		'image/png',
+		'image/jpeg',
+		'image/gif'
+	];
 	private $appName;
 
 	public function __construct(
@@ -185,6 +192,9 @@ class SocialApiService {
 
 			if (!$socialdata || $imageType === null) {
 				return new JSONResponse([], Http::STATUS_NOT_FOUND);
+			}
+			if (!in_array($imageType, self::ALLOWED_CONTENT_TYPES)) {
+				return new JSONResponse([], Http::STATUS_UNSUPPORTED_MEDIA_TYPE);
 			}
 
 			if (is_resource($socialdata)) {
