@@ -9,6 +9,7 @@ namespace OCA\Contacts\Controller;
 
 use OC\App\CompareVersion;
 use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\Service\FederatedInvitesService;
 use OCA\Contacts\Service\GroupSharingService;
 use OCA\Contacts\Service\SocialApiService;
 use OCP\App\IAppManager;
@@ -25,6 +26,7 @@ class PageController extends Controller {
 
 	public function __construct(
 		IRequest $request,
+		private FederatedInvitesService $federatedInvitesService,
 		private IConfig $config,
 		private IInitialStateService $initialStateService,
 		private IFactory $languageFactory,
@@ -67,6 +69,7 @@ class PageController extends Controller {
 		$isTalkEnabled = $this->appManager->isEnabledForUser('spreed') === true;
 
 		$isTalkVersionCompatible = $this->compareVersion->isCompatible($talkVersion ? $talkVersion : '0.0.0', 2);
+		$isOcmInvitesEnabled = $this->federatedInvitesService->isOcmInvitesEnabled();
 
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isGroupSharingEnabled', $isGroupSharingEnabled);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'locales', $locales);
@@ -77,6 +80,7 @@ class PageController extends Controller {
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isContactsInteractionEnabled', $isContactsInteractionEnabled);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isCirclesEnabled', $isCirclesEnabled && $isCircleVersionCompatible);
 		$this->initialStateService->provideInitialState(Application::APP_ID, 'isTalkEnabled', $isTalkEnabled && $isTalkVersionCompatible);
+		$this->initialStateService->provideInitialState(Application::APP_ID, 'isOcmInvitesEnabled', $isOcmInvitesEnabled);
 
 		Util::addStyle(Application::APP_ID, 'contacts-main');
 		Util::addScript(Application::APP_ID, 'contacts-main');
