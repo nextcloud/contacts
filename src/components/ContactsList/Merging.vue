@@ -55,15 +55,15 @@
 					v-if="conflictInformation[property]?.type === 'conflictWithMultipleValues'"
 					:model-value="resolvedConflicts.get(property)?.has(0)"
 					@update:model-value="resolveMultiConflict(0, property)" />
+				<!-- Spacer when no checkbox is needed for contact 0 -->
+				<div
+					v-if="conflictInformation[property]?.type !== 'conflict' && conflictInformation[property]?.type !== 'conflictWithMultipleValues'"
+					class="checkbox-spacer" />
 
 				<!-- Information of contact 0, either shown through DetailsProperty if possible or in a custom way -->
 				<div
 					v-if="conflictInformation[property]?.type !== 'onlyInSecond'"
-					class="merging__conflicts__property"
-					:class="[{
-						'no-conflict': conflictInformation[property]?.type !== 'conflict'
-							&& conflictInformation[property]?.type !== 'conflictWithMultipleValues',
-					}]">
+					class="merging__conflicts__property">
 					<div v-if="!simpleProperties.includes(property)">
 						<ContactDetailsProperty
 							v-for="(singleProperty, propertyIndex) in dividedProperties[0][property]"
@@ -85,7 +85,7 @@
 						<span v-for="singleProperty in dividedProperties[0][property]" :key="singleProperty.jCal">{{ singleProperty.getFirstValue() }}</span>
 					</div>
 				</div>
-				<div v-if="conflictInformation[property]?.type === 'onlyInSecond'" class="merging-conflicts__filler" />
+				<div v-if="conflictInformation[property]?.type === 'onlyInSecond'" class="merging__conflicts__filler" />
 
 				<!-- Checkboxes for resolving single conflicts or conflicts with multiple possible values, for contact 1 -->
 				<NcCheckboxRadioSwitch
@@ -97,15 +97,15 @@
 					v-if="conflictInformation[property]?.type === 'conflictWithMultipleValues'"
 					:model-value="resolvedConflicts.get(property)?.has(1)"
 					@update:model-value="resolveMultiConflict(1, property)" />
+				<!-- Spacer when no checkbox is needed for contact 1 -->
+				<div
+					v-if="conflictInformation[property]?.type !== 'conflict' && conflictInformation[property]?.type !== 'conflictWithMultipleValues'"
+					class="checkbox-spacer" />
 
 				<!-- Information of contact 1, either shown through DetailsProperty if possible or in a custom way -->
 				<div
 					v-if="conflictInformation[property]?.type !== 'onlyInFirst'"
-					class="merging__conflicts__property"
-					:class="[{
-						'no-conflict': conflictInformation[property]?.type !== 'conflict'
-							&& conflictInformation[property]?.type !== 'conflictWithMultipleValues',
-					}]">
+					class="merging__conflicts__property">
 					<div v-if="!simpleProperties.includes(property)">
 						<ContactDetailsProperty
 							v-for="(singleProperty, propertyIndex) in dividedProperties[1][property]"
@@ -157,6 +157,7 @@
 
 <script>
 import { NcButton, NcCheckboxRadioSwitch, NcLoadingIcon, NcNoteCard, NcSelect } from '@nextcloud/vue'
+import ICAL from 'ical.js'
 import mitt from 'mitt'
 import IconAccount from 'vue-material-design-icons/AccountOutline.vue'
 import IconBadgeAccount from 'vue-material-design-icons/BadgeAccountOutline.vue'
@@ -458,6 +459,9 @@ export default {
 		},
 
 		getPropertyValue(property) {
+			if (!property) {
+				return null
+			}
 			if (property.isMultiValue) {
 				// differences between values types :x;x;x;x;x and x,x,x,x,x
 				return property.isStructuredValue
@@ -527,12 +531,23 @@ export default {
 
 			this.usedProperties.forEach((name) => {
 				if (finalProperties[name] !== undefined && finalProperties[name].length > 0) {
-					finalProperties[name].flat().forEach((property, index) => {
-						if (index === 0) {
-							contactToSave.vCard.updatePropertyWithValue(name, this.getPropertyValue(property))
-						} else {
-							contactToSave.vCard.addProperty(property)
-						}
+					const properties = finalProperties[name].flat().filter((property) => property !== null && property !== undefined)
+
+					properties.forEach((property) => {
+						// Get the actual property name (for lifeEvents group, properties have their real names like 'bday')
+						const actualName = property.name
+
+						// Remove any existing property with this name from the target vCard
+						const existingProps = contactToSave.vCard.getAllProperties(actualName)
+						existingProps.forEach((prop) => contactToSave.vCard.removeProperty(prop))
+					})
+
+					// Now add all the selected properties
+					properties.forEach((property) => {
+						// Deep clone the jCal data to avoid reference issues with complex types like dates
+						const clonedJCal = JSON.parse(JSON.stringify(property.jCal))
+						const clonedProperty = new ICAL.Property(clonedJCal)
+						contactToSave.vCard.addProperty(clonedProperty)
 					})
 				}
 			})
@@ -597,8 +612,9 @@ export default {
 		margin: auto;
 
 		&__row {
-			display: flex;
-			gap: calc(var(--default-grid-baseline) * 5);
+			display: grid;
+			grid-template-columns: calc(var(--default-grid-baseline) * 6) calc(var(--clickable-area-large) - var(--default-grid-baseline)) var(--navigation-width) calc(var(--clickable-area-large) - var(--default-grid-baseline)) var(--navigation-width);
+			gap: calc(var(--default-grid-baseline) * 2);
 			align-items: start;
 			border-bottom: var(--border-width-input) solid var(--color-background-darker);
 			padding-bottom: calc(var(--default-grid-baseline) * 3);
@@ -606,10 +622,6 @@ export default {
 			.material-design-icon {
 				align-self: start;
 				margin-top: calc(var(--default-grid-baseline) * 4 + 2px);
-			}
-
-			.no-conflict {
-				margin-inline-start: 55px;
 			}
 
 			:deep(.property__label) {
@@ -627,8 +639,13 @@ export default {
 		}
 
 		&__filler {
-			min-width: 352px;
+			min-width: 300px;
 		}
+	}
+
+	.checkbox-spacer {
+		width: calc(var(--clickable-area-large) - var(--default-grid-baseline));
+		min-width: calc(var(--clickable-area-large) - var(--default-grid-baseline));
 	}
 
 	.last {
