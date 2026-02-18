@@ -1,3 +1,20 @@
+## [8.3.3](https://github.com/nextcloud/contacts/compare/v8.3.2...v8.3.3) (2026-02-18)
+
+
+### Bug Fixes
+
+* **deps:** Fix npm audit ([9004e5c](https://github.com/nextcloud/contacts/commit/9004e5c4cfcbe0b40b6251fe9219521e9ddc0a94))
+* **l10n:** Update translations from Transifex ([0aa7db9](https://github.com/nextcloud/contacts/commit/0aa7db961051ddd6350db93843f0e94385cdb37a))
+* **l10n:** Update translations from Transifex ([47d264e](https://github.com/nextcloud/contacts/commit/47d264e5e3c1d2b7b3df3bb451788d6b56b8bf09))
+* **l10n:** Update translations from Transifex ([fcd05d9](https://github.com/nextcloud/contacts/commit/fcd05d998369486daf7524495fcc778f415b46c9))
+* **l10n:** Update translations from Transifex ([674acf3](https://github.com/nextcloud/contacts/commit/674acf30434e99daf825981f8b25e2f83783accf))
+* **l10n:** Update translations from Transifex ([642ed0e](https://github.com/nextcloud/contacts/commit/642ed0e5b9046f3f41bcca1d6db5a90201e5c719))
+* **l10n:** Update translations from Transifex ([29210ca](https://github.com/nextcloud/contacts/commit/29210cae922a62862206c75bfa64e9c41e53318f))
+* **Merging:** bdays weren't working and misalignments ([8217216](https://github.com/nextcloud/contacts/commit/82172166b50a5d59c95ebe570e88023d9a9731c2))
+* **socialApi:** check avatar mimetype againt allow list ([1f8d627](https://github.com/nextcloud/contacts/commit/1f8d627bbd4ac186007d0523235ad4ca4b4890b2))
+
+
+
 ## [8.3.2](https://github.com/nextcloud/contacts/compare/v8.3.1...v8.3.2) (2026-02-09)
 
 
