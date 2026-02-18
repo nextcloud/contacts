@@ -255,7 +255,7 @@ OC.L10N.register(
     "Select type" : "Vali tüüp",
     "Add contact in group" : "Lisa kontakt gruppi",
     "None" : "Pole",
-    "copy" : "koopia",
+    "copy" : "koopeeri",
     "Select option" : "Vali eelistus",
     "note" : "märge",
     "email" : "e-post",
