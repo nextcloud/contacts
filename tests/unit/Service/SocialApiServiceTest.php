@@ -24,7 +24,6 @@ use OCP\IAddressBook;
 use OCP\IConfig;
 use OCP\IL10N;
 use OCP\IURLGenerator;
-use OCP\Util;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
@@ -53,7 +52,7 @@ class SocialApiServiceTest extends TestCase {
 
 	public function allSocialProfileProviders(): array {
 		$body = 'the body';
-		$imageType = 'jpg';
+		$imageType = 'image/jpeg';
 		$contact = [
 			'URI' => '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
 			'VERSION' => '4.0'
@@ -183,7 +182,7 @@ class SocialApiServiceTest extends TestCase {
 	public function testUpdateContactWithNetworkVersion3() {
 		$network = 'mastodon';
 		$body = 'the body';
-		$imageType = 'jpg';
+		$imageType = 'image/jpeg';
 		$addressBookId = 'contacts';
 		$contactId = '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0';
 		$contact = [
@@ -236,7 +235,7 @@ class SocialApiServiceTest extends TestCase {
 		$changes = [
 			'URI' => $contact['URI'],
 			'VERSION' => $contact['VERSION'],
-			'PHOTO;ENCODING=b;TYPE=' . $imageType . ';VALUE=BINARY' => base64_encode($body)
+			'PHOTO;ENCODING=b;TYPE=jpeg;VALUE=BINARY' => base64_encode($body)
 		];
 
 		$this->socialProvider
@@ -256,7 +255,7 @@ class SocialApiServiceTest extends TestCase {
 	public function testUpdateContactWithNetworkVersion4() {
 		$network = 'mastodon';
 		$body = 'the body';
-		$imageType = 'jpg';
+		$imageType = 'image/jpeg';
 		$addressBookId = 'contacts';
 		$contactId = '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0';
 		$contact = [
@@ -326,6 +325,75 @@ class SocialApiServiceTest extends TestCase {
 		$this->assertEquals(Http::STATUS_OK, $result->getStatus());
 	}
 
+	public function testUpdateContactWithUnallowedMimeVersion4() {
+		$network = 'mastodon';
+		$body = 'the body';
+		$imageType = 'application/pdf';
+		$addressBookId = 'contacts';
+		$contactId = '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0';
+		$contact = [
+			'URI' => $contactId,
+			'VERSION' => '4.0'
+		];
+		$provider = $this->createMock(ISocialProvider::class);
+		$provider->method('supportsContact')->willReturn(true);
+		$provider->method('getImageUrls')->willReturn(['https://url1.com/an-url']);
+
+		$addressbook = $this->createMock(IAddressBook::class);
+		$addressbook
+			->method('getUri')
+			->willReturn('contacts');
+		$addressbook
+			->method('search')
+			->willReturn([$contact]);
+
+		$this->manager
+			->method('getUserAddressBooks')
+			->willReturn([$addressbook]);
+
+		$this->socialProvider
+			->method('getSocialConnectors')
+			->willReturn([$provider]);
+
+		$this->socialProvider
+			->method('getSocialConnector')
+			->willReturn($provider);
+
+		$response = $this->createMock(IResponse::class);
+		$response
+			->method('getBody')
+			->willReturn($body);
+		$response
+			->method('getHeader')
+			->willReturn($imageType);
+		$client = $this->createMock(IClient::class);
+		$client
+			->method('get')
+			->willReturn($response);
+		$this->clientService
+			->method('newClient')
+			->willReturn($client);
+
+		$changes = [
+			'URI' => $contact['URI'],
+			'VERSION' => $contact['VERSION'],
+			'PHOTO' => 'data:' . $imageType . ';base64,' . base64_encode($body)
+		];
+
+		$this->socialProvider
+			->expects($this->once())->method('getSocialConnector')->with($network);
+		$provider->expects($this->once())->method('supportsContact')->with($contact);
+		$addressbook->expects($this->never())->method('createOrUpdate');
+
+		$result = $this->service
+			->updateContact(
+				$addressBookId,
+				$contactId,
+				$network);
+
+		$this->assertEquals(Http::STATUS_UNSUPPORTED_MEDIA_TYPE, $result->getStatus());
+	}
+
 	protected function setupAddressbooks() {
 		$validContact1 = [
 			'UID' => '11111111-1111-1111-1111-111111111111',
@@ -337,7 +405,7 @@ class SocialApiServiceTest extends TestCase {
 			'UID' => '22222222-2222-2222-2222-222222222222',
 			'FN' => 'Valid Contact Two',
 			'VERSION' => '4.0',
-			'PHOTO' => 'data:someHeader;base64,' . base64_encode('someBody'),
+			'PHOTO' => 'data:image/jpeg;base64,' . base64_encode('someBody'),
 			'X-SOCIALPROFILE' => [['type' => 'someNetwork', 'value' => 'someId2']],
 		];
 		$emptyContact = [
@@ -356,13 +424,6 @@ class SocialApiServiceTest extends TestCase {
 		$addressbook1->method('getUri')->willReturn('contacts1');
 		$addressbook2 = $this->createMock(IAddressBook::class);
 		$addressbook2->method('getUri')->willReturn('contacts2');
-		if (Util::getVersion()[0] >= 20) {
-			// TODO: check can be removed as soon as min-dependency of contacts is NCv20
-			$addressbook1->method('isShared')->willReturn(false);
-			$addressbook1->method('isSystemAddressBook')->willReturn(false);
-			$addressbook2->method('isShared')->willReturn(false);
-			$addressbook2->method('isSystemAddressBook')->willReturn(false);
-		}
 
 		$searchMap1 = [
 			['', ['UID'], ['types' => true], [$validContact1, $invalidContact]],
@@ -420,7 +481,7 @@ class SocialApiServiceTest extends TestCase {
 			->willReturn('someBody');
 		$validResponse
 			->method('getHeader')
-			->willReturn('someHeader');
+			->willReturn('image/jpeg');
 
 		$client = $this->createMock(IClient::class);
 		$client
