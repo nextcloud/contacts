@@ -1,3 +1,18 @@
+## [7.3.14](https://github.com/nextcloud/contacts/compare/v7.3.13...v7.3.14) (2026-02-18)
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([717a946](https://github.com/nextcloud/contacts/commit/717a94606ddb2d3c17342962485e784a088f5124))
+* **l10n:** Update translations from Transifex ([07f3f1e](https://github.com/nextcloud/contacts/commit/07f3f1e424ab7929735bdfb2e375455364053262))
+* **l10n:** Update translations from Transifex ([eb5883d](https://github.com/nextcloud/contacts/commit/eb5883d5a2d1079ddd74bef2cf2e282b3fb2f368))
+* **l10n:** Update translations from Transifex ([8780bce](https://github.com/nextcloud/contacts/commit/8780bce7bf3e808c756d0a361494803d11219c96))
+* **l10n:** Update translations from Transifex ([c8fc8ec](https://github.com/nextcloud/contacts/commit/c8fc8ec8e672711181968898a46f2f26745de0af))
+* **l10n:** Update translations from Transifex ([7cd44dd](https://github.com/nextcloud/contacts/commit/7cd44dd48c3767d646f8e1f9a51561a78edbbecf))
+* **socialApi:** check avatar mimetype againt allow list ([495c48f](https://github.com/nextcloud/contacts/commit/495c48f400f1d11bcf7d18dc5440208aa6df8359))
+
+
+
 ## [7.3.13](https://github.com/nextcloud/contacts/compare/v7.3.12...v7.3.13) (2026-02-09)
 
 
