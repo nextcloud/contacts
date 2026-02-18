@@ -255,6 +255,7 @@ OC.L10N.register(
     "Select type" : "Vybrat typ",
     "Add contact in group" : "Přidat kontakt do skupiny",
     "None" : "Žádné",
+    "copy" : "zkopírovat",
     "Select option" : "Vybrat volbu",
     "note" : "poznámka",
     "email" : "e-mail",
