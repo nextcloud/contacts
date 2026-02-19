@@ -4,6 +4,10 @@
  */
 // eslint-disable-next-line node/no-extraneous-import
 import 'regenerator-runtime/runtime'
+
+if (typeof structuredClone === 'undefined') {
+	global.structuredClone = (val) => JSON.parse(JSON.stringify(val))
+}
 import Vue from 'vue'
 
 jest.mock('@nextcloud/l10n', () => ({
