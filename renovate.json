@@ -21,7 +21,9 @@
 	"rebaseWhen": "conflicted",
 	"ignoreUnstable": false,
 	"baseBranches": [
-		"main"
+		"main",
+		"stable8.4",
+		"stable8.3"
 	],
 	"enabledManagers": [
 		"composer",
