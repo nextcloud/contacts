@@ -58,9 +58,8 @@ import ContactDetailsProperty from '../components/ContactDetails/ContactDetailsP
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
-import client from '../services/cdav.js'
 import validate from '../services/validate.js'
-import usePrincipalsStore from '../store/principals.js'
+import useReadOnlyContactDetailsStore from '../store/readOnlyContactDetails.ts'
 
 const { profileEnabled } = loadState('user_status', 'profileEnabled', false)
 
@@ -211,11 +210,9 @@ export default {
 	},
 
 	async beforeMount() {
-		// Init client and stores
-		await client.connect({ enableCardDAV: true })
-		const principalsStore = usePrincipalsStore()
-		principalsStore.setCurrentUserPrincipal(client)
-		await this.$store.dispatch('getAddressbooks')
+		// Init store
+		const store = useReadOnlyContactDetailsStore()
+		await store.init()
 
 		// Fetch contact
 		await this.fetchContact()
