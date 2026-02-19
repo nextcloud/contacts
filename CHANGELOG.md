@@ -1,3 +1,13 @@
+## [7.3.15](https://github.com/nextcloud/contacts/compare/v7.3.14...v7.3.15) (2026-02-19)
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([7d92a21](https://github.com/nextcloud/contacts/commit/7d92a21858da419fe25286cd18c5397db39a3aaa))
+* rev timestamp on contact update ([a35340c](https://github.com/nextcloud/contacts/commit/a35340cd203ed05375fc0e8593630e4cd0aacd80))
+
+
+
 ## [7.3.14](https://github.com/nextcloud/contacts/compare/v7.3.13...v7.3.14) (2026-02-18)
 
 
