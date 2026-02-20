@@ -292,17 +292,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Det har oppstått en feil i laget(ene). Sjekk konsollen hvis du vil ha mer informasjon.",
     "Unable to create team {circleName}" : "Ikke i stand til å opprette lag {circleName}",
     "Unable to delete team {circleId}" : "Ikke i stand til å slette lag {circleId}",
-    "Unable to delete contact" : "Ikke i stand til å slette kontakt",
-    "Loading contacts …" : "Laster inn kontakter…",
-    "Loading …" : "Laster...",
-    "General settings" : "Generelle innstillinger",
-    "(refreshed once per week)" : "(oppdateres en gang i uken)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Deaktivert)",
-    "can edit" : "kan redigere",
-    "Unique password …" : "Unikt passord...",
-    "Search contacts …" : "Søk etter kontakter…",
-    "Loading members list …" : "Laster liste over medlemmer...",
-    "Add to {circle}" : "Legg til i {circle}",
-    "Select chart …" : "Velg kart..."
+    "Unable to delete contact" : "Ikke i stand til å slette kontakt"
 },
 "nplurals=2; plural=(n != 1);");

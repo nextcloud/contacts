@@ -100,12 +100,6 @@ OC.L10N.register(
     "Voice" : "เสียงพูด",
     "Social network" : "เครือข่ายโซเชียล",
     "Relative" : "สัมพัทธ์",
-    "Unknown" : "ไม่ทราบ",
-    "Loading contacts …" : "กำลังโหลดรายชื่อ …",
-    "Loading …" : "กำลังโหลด …",
-    "General settings" : "การตั้งค่าทั่วไป",
-    "(refreshed once per week)" : "(รีเฟรชใหม่สัปดาห์ละครั้ง)",
-    "can edit" : "สามารถแก้ไข",
-    "Search contacts …" : "ค้นหารายชื่อผู้ติดต่อ …"
+    "Unknown" : "ไม่ทราบ"
 },
 "nplurals=1; plural=0;");

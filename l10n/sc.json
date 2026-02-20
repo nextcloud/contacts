@@ -207,14 +207,6 @@
     "Time zone" : "Zona orària",
     "Spoken languages" : "Limbas faeddadas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["no at fatu a lèghere {failed} ","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu",
-    "Loading contacts …" : "Carrighende is cuntatos ...",
-    "Loading …" : "Carrrighende …",
-    "General settings" : "Cunfiguratzione generale",
-    "(refreshed once per week)" : "(agiornadu una borta a sa chida)",
-    "can edit" : "podet modificare",
-    "Search contacts …" : "Chirca cuntatos ...",
-    "Loading members list …" : "Carrighende s'elencu de is membros ... ",
-    "Add to {circle}" : "Agiunghe a {circle}"
+    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

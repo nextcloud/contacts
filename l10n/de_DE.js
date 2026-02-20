@@ -389,18 +389,6 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Fehler beim Löschen des Teams {circleId}",
     "Unable to delete contact" : "Kontakt konnte nicht gelöscht werden",
     "Value copied to the clipboard" : "Wert in die Zwischenablage kopiert",
-    "Could not copy value to the clipboard." : "Wert konnte nicht in die Zwischenablage kopiert werden.",
-    "Loading contacts …" : "Lade Kontakte …",
-    "Loading …" : "Lade …",
-    "General settings" : "Allgemeine Einstellungen",
-    "(refreshed once per week)" : "(Einmal wöchentlich aktualisiert)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (deaktiviert)",
-    "can edit" : "kann bearbeiten",
-    "Unique password …" : "Eindeutiges Passwort …",
-    "Search contacts …" : "Kontakte suchen…",
-    "Invite members to team" : "Mitglieder in das Team einladen",
-    "Loading members list …" : "Lade Mitgliederliste …",
-    "Add to {circle}" : "Zu {circle} hinzufügen",
-    "Select chart …" : "Diagramm auswählen …"
+    "Could not copy value to the clipboard." : "Wert konnte nicht in die Zwischenablage kopiert werden."
 },
 "nplurals=2; plural=(n != 1);");

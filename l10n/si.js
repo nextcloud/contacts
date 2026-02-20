@@ -49,7 +49,6 @@ OC.L10N.register(
     "Spouse" : "කලත්‍රයා",
     "Mother" : "මව",
     "Father" : "පියා",
-    "Unknown" : "නොදන්නා",
-    "Loading …" : "පූරණය වෙමින් …"
+    "Unknown" : "නොදන්නා"
 },
 "nplurals=2; plural=(n != 1);");

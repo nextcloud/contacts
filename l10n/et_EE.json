@@ -387,18 +387,6 @@
     "Unable to delete team {circleId}" : "„{circleId}“ tiimi kustutamine pole võimalik",
     "Unable to delete contact" : "Ei õnnestu kustutada kontakti",
     "Value copied to the clipboard" : "Väärtus on kopeeritud lõikelauale.",
-    "Could not copy value to the clipboard." : "Väärtuse kopeerimine lõikelauale ei õnnestunud.",
-    "Loading contacts …" : "Laadin kontakte ...",
-    "Loading …" : "Laadimisel...",
-    "General settings" : "Üldised seadistused",
-    "(refreshed once per week)" : "(värskendatud kord nädalas)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (pole kasutusel)",
-    "can edit" : "saab muuta",
-    "Unique password …" : "Unikaalne salasõna…",
-    "Search contacts …" : "Otsi kontakte",
-    "Invite members to team" : "Kutsu tiimi uusi liikmeid",
-    "Loading members list …" : "Laadin liikmete loendit…",
-    "Add to {circle}" : "Lisa „{circle}“ tiimi",
-    "Select chart …" : "Vali joonis…"
+    "Could not copy value to the clipboard." : "Väärtuse kopeerimine lõikelauale ei õnnestunud."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

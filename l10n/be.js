@@ -320,16 +320,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "У камандзе(-ах) адбылася памылка. Падрабязней глядзіце ў кансолі.",
     "Unable to create team {circleName}" : "Немагчыма стварыць каманду {circleName}",
     "Unable to delete team {circleId}" : "Немагчыма выдаліць каманду {circleId}",
-    "Unable to delete contact" : "Немагчыма выдаліць кантакт",
-    "Loading contacts …" : "Загрузка кантактаў …",
-    "Loading …" : "Загрузка …",
-    "General settings" : "Агульныя налады",
-    "(refreshed once per week)" : "(абнаўляецца раз у тыдзень)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Адключана)",
-    "can edit" : "можа рэдагаваць",
-    "Unique password …" : "Унікальны пароль …",
-    "Search contacts …" : "Пошук кантактаў …",
-    "Add to {circle}" : "Дадаць у {circle}",
-    "Select chart …" : "Выберыце дыяграму …"
+    "Unable to delete contact" : "Немагчыма выдаліць кантакт"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

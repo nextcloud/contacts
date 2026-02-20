@@ -111,10 +111,6 @@ OC.L10N.register(
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "Unknown" : "I/E panjohur",
-    "Loading contacts …" : "Duke ngarkuar kontaktet ...",
-    "General settings" : "Opsjonet e Pergjithshme",
-    "can edit" : "mund të modifikoni",
-    "Search contacts …" : "Kërko kontakte ..."
+    "Unknown" : "I/E panjohur"
 },
 "nplurals=2; plural=(n != 1);");

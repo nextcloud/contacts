@@ -239,17 +239,6 @@ OC.L10N.register(
     "Time zone" : "Time zone",
     "Spoken languages" : "Spoken languages",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contact failed to be read","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Unable to delete contact",
-    "Loading contacts …" : "Loading contacts …",
-    "Loading …" : "Loading …",
-    "General settings" : "General settings",
-    "(refreshed once per week)" : "(refreshed once per week)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Disabled)",
-    "can edit" : "can edit",
-    "Unique password …" : "Unique password …",
-    "Search contacts …" : "Search contacts …",
-    "Loading members list …" : "Loading members list …",
-    "Add to {circle}" : "Add to {circle}",
-    "Select chart …" : "Select chart …"
+    "Unable to delete contact" : "Unable to delete contact"
 },
 "nplurals=2; plural=(n!=1);");

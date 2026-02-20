@@ -379,18 +379,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Terjadi kesalahan pada tim. Periksa konsol untuk detail lebih lanjut.",
     "Unable to create team {circleName}" : "Tidak dapat membuat tim {circleName}",
     "Unable to delete team {circleId}" : "Tidak dapat menghapus tim {circleId}",
-    "Unable to delete contact" : "Tidak dapat menghapus kontak",
-    "Loading contacts …" : "Memuat kontak …",
-    "Loading …" : "Memuat …",
-    "General settings" : "Pengaturan umum",
-    "(refreshed once per week)" : "(disegarkan sekali per minggu)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Dinonaktifkan)",
-    "can edit" : "dapat menyunting",
-    "Unique password …" : "Kata sandi unik …",
-    "Search contacts …" : "Cari kontak …",
-    "Invite members to team" : "Undang anggota ke tim",
-    "Loading members list …" : "Memuat daftar anggota …",
-    "Add to {circle}" : "Tambahkan ke {circle}",
-    "Select chart …" : "Pilih bagan …"
+    "Unable to delete contact" : "Tidak dapat menghapus kontak"
 },
 "nplurals=1; plural=0;");

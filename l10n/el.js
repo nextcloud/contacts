@@ -324,18 +324,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Παρουσιάστηκε σφάλμα στην ομάδα/ομάδες. Ελέγξτε την κονσόλα για περισσότερες λεπτομέρειες.",
     "Unable to create team {circleName}" : "Αδυναμία δημιουργίας ομάδας {circleName}",
     "Unable to delete team {circleId}" : "Αδυναμία διαγραφής ομάδας {circleId}",
-    "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής",
-    "Loading contacts …" : "Φόρτωση επαφών …",
-    "Loading …" : "Φόρτωση…",
-    "General settings" : "Γενικές ρυθμίσεις",
-    "(refreshed once per week)" : "(ανανεώνεται μία φορά την εβδομάδα)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Απενεργοποιημένο)",
-    "can edit" : "με δυνατότητα επεξεργασίας",
-    "Unique password …" : "Μοναδικός συνθηματικό…",
-    "Search contacts …" : "Αναζήτηση επαφών …",
-    "Invite members to team" : "Πρόσκληση μελών στην ομάδα",
-    "Loading members list …" : "Φόρτωση λίστας μελών …",
-    "Add to {circle}" : "Προσθήκη σε {circle}",
-    "Select chart …" : "Επιλέξτε διάγραμμα …"
+    "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής"
 },
 "nplurals=2; plural=(n != 1);");

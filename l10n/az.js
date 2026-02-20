@@ -43,7 +43,6 @@ OC.L10N.register(
     "Phone" : "Telefon",
     "Mobile" : "Mobil",
     "Fax" : "Faks",
-    "Pager" : "Peycer",
-    "can edit" : "dəyişmək olar"
+    "Pager" : "Peycer"
 },
 "nplurals=2; plural=(n != 1);");

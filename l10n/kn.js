@@ -25,7 +25,6 @@ OC.L10N.register(
     "Notes" : "Notes",
     "Home" : "﻿ಮುಖಪುಟ",
     "Other" : "﻿ಇತರೆ",
-    "Address" : "ವಿಳಾಸ",
-    "can edit" : "﻿ಸಂಪಾದಿಸಬಹುದು"
+    "Address" : "ವಿಳಾಸ"
 },
 "nplurals=2; plural=(n > 1);");

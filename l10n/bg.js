@@ -232,16 +232,6 @@ OC.L10N.register(
     "Time zone" : "Часова зона",
     "Spoken languages" : "Говорими езици",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контактите не бяха прочетени","{failed} контактите не бяха прочетени"],
-    "Unable to delete contact" : "Контактът не може да се изтрие",
-    "Loading contacts …" : "Зареждане на контактите ...",
-    "Loading …" : "Зарежда …",
-    "General settings" : "Общи настройки",
-    "(refreshed once per week)" : "(опреснява се веднъж седмично)",
-    "can edit" : "може да редактира",
-    "Unique password …" : "Уникална парола …",
-    "Search contacts …" : "Търсене в контактите ...",
-    "Loading members list …" : "Зарежда се списък с членове …",
-    "Add to {circle}" : "Добавяне към {circle}",
-    "Select chart …" : "Избор на диаграма ..."
+    "Unable to delete contact" : "Контактът не може да се изтрие"
 },
 "nplurals=2; plural=(n != 1);");
