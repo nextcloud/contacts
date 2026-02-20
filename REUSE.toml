@@ -48,7 +48,7 @@ SPDX-FileCopyrightText = "2024 Nextcloud GmbH and Nextcloud contributors"
 SPDX-License-Identifier = "AGPL-3.0-or-later"
 
 [[annotations]]
-path = ["img/address-book.svg", "img/circles.svg", "img/clone.svg", "img/eye.svg", "img/language.svg", "img/phone.svg", "img/qrcode.svg", "img/recent-actors.svg", "img/social.svg", "img/sync.svg", "img/up.svg", "img/contacts.svg", "img/app.svg", "img/group.svg"]
+path = ["img/address-book.svg", "img/circles.svg", "img/clone.svg", "img/eye.svg", "img/language.svg", "img/phone.svg", "img/qrcode.svg", "img/recent-actors.svg", "img/social.svg", "img/sync.svg", "img/up.svg", "img/contacts.svg", "img/app.svg", "img/group.svg", "img/profile.svg", "img/profile-dark.svg"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2018-2024 Google LLC"
 SPDX-License-Identifier = "Apache-2.0"

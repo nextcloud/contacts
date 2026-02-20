@@ -11,12 +11,15 @@ use OCA\Contacts\Dav\PatchPlugin;
 use OCA\Contacts\Event\LoadContactsOcaApiEvent;
 use OCA\Contacts\Listener\LoadContactsFilesActions;
 use OCA\Contacts\Listener\LoadContactsOcaApi;
+use OCA\Contacts\Listener\ProfilePickerReferenceListener;
+use OCA\Contacts\Reference\ProfilePickerReferenceProvider;
 use OCA\DAV\Events\SabrePluginAddEvent;
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCP\AppFramework\App;
 use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
+use OCP\Collaboration\Reference\RenderReferenceEvent;
 use OCP\EventDispatcher\IEventDispatcher;
 
 class Application extends App implements IBootstrap {
@@ -35,6 +38,9 @@ class Application extends App implements IBootstrap {
 		$context->registerCapability(Capabilities::class);
 		$context->registerEventListener(LoadAdditionalScriptsEvent::class, LoadContactsFilesActions::class);
 		$context->registerEventListener(LoadContactsOcaApiEvent::class, LoadContactsOcaApi::class);
+
+		$context->registerEventListener(RenderReferenceEvent::class, ProfilePickerReferenceListener::class);
+		$context->registerReferenceProvider(ProfilePickerReferenceProvider::class);
 	}
 
 	#[\Override]

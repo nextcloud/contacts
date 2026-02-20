@@ -12,6 +12,7 @@ export default createAppConfig({
 	'files-action': path.join(__dirname, 'src', 'files-action.js'),
 	'admin-settings': path.join(__dirname, 'src', 'admin-settings.js'),
 	'oca': path.join(__dirname, 'src', 'oca.ts'),
+	'reference': path.join(__dirname, 'src', 'reference.js'),
 }, {
 	inlineCSS: false,
 	config: defineConfig(({ mode }) => ({
