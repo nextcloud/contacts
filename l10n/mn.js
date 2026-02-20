@@ -86,8 +86,6 @@ OC.L10N.register(
     "Female" : "Эмэгтэй",
     "Male" : "Эрэгтэй",
     "Unknown" : "Үл танигдах зүйл",
-    "Time zone" : "Цагийн бүс",
-    "Loading …" : "Уншиж байна...",
-    "can edit" : "засаж чадна"
+    "Time zone" : "Цагийн бүс"
 },
 "nplurals=2; plural=(n != 1);");

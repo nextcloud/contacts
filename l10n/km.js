@@ -31,7 +31,6 @@ OC.L10N.register(
     "Work" : "ធ្វើការ",
     "Other" : "ផ្សេងៗ",
     "Address" : "អាសយដ្ឋាន",
-    "Birthday" : "ថ្ងៃ​កំណើត",
-    "can edit" : "អាច​កែប្រែ"
+    "Birthday" : "ថ្ងៃ​កំណើត"
 },
 "nplurals=1; plural=0;");

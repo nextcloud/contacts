@@ -120,9 +120,6 @@ OC.L10N.register(
     "Male" : "Vira",
     "Unknown" : "Nekonata",
     "Spoken languages" : "Lingvoj parolataj",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"],
-    "Loading …" : "Ŝargas …",
-    "can edit" : "povas redakti",
-    "Search contacts …" : "Serĉi kontaktojn…"
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"]
 },
 "nplurals=2; plural=(n != 1);");

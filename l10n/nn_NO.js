@@ -47,7 +47,6 @@ OC.L10N.register(
     "Fax" : "Faks",
     "Pager" : "Personsøkjar",
     "Voice" : "Tale",
-    "Unknown" : "Ukjend",
-    "can edit" : "kan endra"
+    "Unknown" : "Ukjend"
 },
 "nplurals=2; plural=(n != 1);");

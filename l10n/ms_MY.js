@@ -34,7 +34,6 @@ OC.L10N.register(
     "Mobile" : "Mudah alih",
     "Fax" : "Fax",
     "Pager" : "Alat Kelui",
-    "Voice" : "Suara",
-    "can edit" : "boleh mengubah"
+    "Voice" : "Suara"
 },
 "nplurals=1; plural=0;");

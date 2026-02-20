@@ -95,9 +95,6 @@ OC.L10N.register(
     "Gender" : "Geslag",
     "Female" : "Vroulik",
     "Male" : "Manlik",
-    "Unknown" : "Onbekend",
-    "Loading …" : "Laai …",
-    "can edit" : "kan wysig",
-    "Search contacts …" : "Soek kontakte …"
+    "Unknown" : "Onbekend"
 },
 "nplurals=2; plural=(n != 1);");

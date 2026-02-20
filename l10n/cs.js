@@ -389,18 +389,6 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Nedaří se smazat tým {circleId}",
     "Unable to delete contact" : "Nedaří se smazat kontakt",
     "Value copied to the clipboard" : "Hodnota zkopírována do schránky",
-    "Could not copy value to the clipboard." : "Nebylo možné zkopírovat hodnotu do schránky.",
-    "Loading contacts …" : "Načítání kontaktů …",
-    "Loading …" : "Načítání …",
-    "General settings" : "Obecná nastavení",
-    "(refreshed once per week)" : "(znovu načteno každý týden)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (vypnuto)",
-    "can edit" : "může upravovat",
-    "Unique password …" : "Neopakující se heslo …",
-    "Search contacts …" : "Hledat v kontaktech …",
-    "Invite members to team" : "Pozvat členy do týmu",
-    "Loading members list …" : "Načítání seznamu členů …",
-    "Add to {circle}" : "Přidat do {circle}",
-    "Select chart …" : "Vybrat graf …"
+    "Could not copy value to the clipboard." : "Nebylo možné zkopírovat hodnotu do schránky."
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

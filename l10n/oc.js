@@ -60,10 +60,6 @@ OC.L10N.register(
     "Voice" : "Votz",
     "Relative" : "Relatiu",
     "Unknown" : "Desconegut",
-    "Spoken languages" : "Lengas parladas",
-    "Loading …" : "Cargament…",
-    "General settings" : "Paramètres generals",
-    "can edit" : "pòt modificar",
-    "Search contacts …" : "Cercar pels contactes…"
+    "Spoken languages" : "Lengas parladas"
 },
 "nplurals=2; plural=(n > 1);");

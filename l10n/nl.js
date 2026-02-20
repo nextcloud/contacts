@@ -297,17 +297,6 @@ OC.L10N.register(
     "Time zone" : "Tijdzone",
     "Spoken languages" : "Gesproken talen",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contactpersoon werd niet ingelezen","{failed} contactpersonen werden niet ingelezen"],
-    "Unable to delete contact" : "Kan contactpersoon niet verwijderen",
-    "Loading contacts …" : "Contacten laden ...",
-    "Loading …" : "Laden ...",
-    "General settings" : "Algemene instellingen",
-    "(refreshed once per week)" : "(wordt eens per week bijgewerkt)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Uitgeschakeld)",
-    "can edit" : "kan bewerken",
-    "Unique password …" : "Uniek wachtwoord ...",
-    "Search contacts …" : "Zoek contacten ...",
-    "Loading members list …" : "Laden ledenlijst ...",
-    "Add to {circle}" : "Toevoegen aan {circle}",
-    "Select chart …" : "Selecteer grafiek ..."
+    "Unable to delete contact" : "Kan contactpersoon niet verwijderen"
 },
 "nplurals=2; plural=(n != 1);");

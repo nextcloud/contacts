@@ -301,17 +301,6 @@
     "An error has occurred in team(s). Check the console for more details." : "En fejl er opstået i team(s). Kontroller konsollen for flere detaljer.",
     "Unable to create team {circleName}" : "Kan ikke oprette team {circleName}",
     "Unable to delete team {circleId}" : "Kan ikke slette team {circleId}",
-    "Unable to delete contact" : "Kan ikke slette kontakten",
-    "Loading contacts …" : "Henter kontakter …",
-    "Loading …" : "Indlæser…",
-    "General settings" : "Generelle indstillinger",
-    "(refreshed once per week)" : "(opfriskes en gang om ugen)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Deaktiveret)",
-    "can edit" : "kan redigere",
-    "Unique password …" : "Unik adgangskode …",
-    "Search contacts …" : "Søg efter brugere ...",
-    "Loading members list …" : "Indlæser medlemsliste...",
-    "Add to {circle}" : "Føj til {cirkel}",
-    "Select chart …" : "Vælg diagram ..."
+    "Unable to delete contact" : "Kan ikke slette kontakten"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

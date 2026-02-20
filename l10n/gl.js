@@ -389,18 +389,6 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Non é posíbel eliminar o equipo {circleId}",
     "Unable to delete contact" : "Non é posíbel eliminar o contacto",
     "Value copied to the clipboard" : "O valor foi copiado no portapapeis",
-    "Could not copy value to the clipboard." : "Non foi posíbel copiar o valor no portapapeis.",
-    "Loading contacts …" : "Cargando contactos…",
-    "Loading …" : "Cargando…",
-    "General settings" : "Axustes xerais",
-    "(refreshed once per week)" : "(actualizado unha vez por semana)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Desactivdo)",
-    "can edit" : "pode editar",
-    "Unique password …" : "Contrasinal único…",
-    "Search contacts …" : "Buscar contactos…",
-    "Invite members to team" : "Convidar aos membros ao equipo",
-    "Loading members list …" : "Cargando a lista de membros…",
-    "Add to {circle}" : "Engadir a {circle}",
-    "Select chart …" : "Seleccionar o gráfico…"
+    "Could not copy value to the clipboard." : "Non foi posíbel copiar o valor no portapapeis."
 },
 "nplurals=2; plural=(n != 1);");

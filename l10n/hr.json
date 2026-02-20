@@ -382,18 +382,6 @@
     "Unable to delete team {circleId}" : "Nije moguće izbrisati tim {circleId}",
     "Unable to delete contact" : "Nije moguće izbrisati kontakt",
     "Value copied to the clipboard" : "Vrijednost kopirana u međuspremnik",
-    "Could not copy value to the clipboard." : "Kopiranje vrijednosti u međuspremnik nije uspjelo.",
-    "Loading contacts …" : "Učitavanje kontakata…",
-    "Loading …" : "Učitavanje…",
-    "General settings" : "Opće postavke",
-    "(refreshed once per week)" : "(osvježava se jednom tjedno)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Onemogućeno)",
-    "can edit" : "uređivanje moguće",
-    "Unique password …" : "Jedinstvena lozinka …",
-    "Search contacts …" : "Pretraži kontakte...",
-    "Invite members to team" : "Pozovi članove u tim",
-    "Loading members list …" : "Učitavanje popisa članova…",
-    "Add to {circle}" : "Dodaj u {circle}",
-    "Select chart …" : "Odaberi grafikon …"
+    "Could not copy value to the clipboard." : "Kopiranje vrijednosti u međuspremnik nije uspjelo."
 },"pluralForm" :"nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;"
 }

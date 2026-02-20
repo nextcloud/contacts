@@ -146,11 +146,6 @@ OC.L10N.register(
     "Spoken languages" : "Llingües falaes",
     "Unable to create team {circleName}" : "Nun ye posible crear l'equipu «{circleName}»",
     "Unable to delete team {circleId}" : "Nun ye posible crear l'equipu «{circled}»",
-    "Unable to delete contact" : "Nun ye posible desaniciar el contautu",
-    "Loading contacts …" : "Cargando los contautos…",
-    "Loading …" : "Cargando…",
-    "General settings" : "Configuración xeneral",
-    "Unique password …" : "Contraseña única…",
-    "Loading members list …" : "Cargando la llista de miembros…"
+    "Unable to delete contact" : "Nun ye posible desaniciar el contautu"
 },
 "nplurals=2; plural=(n != 1);");

@@ -167,12 +167,6 @@ OC.L10N.register(
     "Time zone" : "Fuso horário",
     "Spoken languages" : "Línguas faladas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contactos cuja leitura falhou","{failed} contactos cuja leitura falhou","{failed} contactos cuja leitura falhou"],
-    "Unable to delete contact" : "Não é possível eliminar o contacto.",
-    "Loading contacts …" : "A carregar os contactos…",
-    "Loading …" : "A carregar...",
-    "General settings" : "Definições Gerais",
-    "(refreshed once per week)" : "(atualizado uma vez por semana)",
-    "can edit" : "pode editar",
-    "Search contacts …" : "Pesquisar contactos..."
+    "Unable to delete contact" : "Não é possível eliminar o contacto."
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

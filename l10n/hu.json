@@ -333,18 +333,6 @@
     "An error has occurred in team(s). Check the console for more details." : "Hiba történt a csapatokban. További részletekért nézze meg a konzolt.",
     "Unable to create team {circleName}" : "A(z) {circleName} csapat nem hozható létre",
     "Unable to delete team {circleId}" : "A(z) {circleId} csapat nem törölhető",
-    "Unable to delete contact" : "A névjegy törlése sikertelen",
-    "Loading contacts …" : "Névjegyek betöltése…",
-    "Loading …" : "Betöltés…",
-    "General settings" : "Általános beállítások",
-    "(refreshed once per week)" : "(hetente egyszer frissítve)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (letiltva)",
-    "can edit" : "szerkesztheti",
-    "Unique password …" : "Egyedi jelszó…",
-    "Search contacts …" : "Névjegyek keresése…",
-    "Invite members to team" : "Tagok meghívása a csapatba",
-    "Loading members list …" : "Taglista betöltése…",
-    "Add to {circle}" : "Hozzáadása a(z) {circle} körhöz",
-    "Select chart …" : "Válasszon diagramot…"
+    "Unable to delete contact" : "A névjegy törlése sikertelen"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

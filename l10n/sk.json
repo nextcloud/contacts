@@ -379,18 +379,6 @@
     "An error has occurred in team(s). Check the console for more details." : "V aplikácii Tím sa vyskytla chyba. Pre viac informácií skontrolujte konzolu.",
     "Unable to create team {circleName}" : "Nie je možné vytvoriť tím {circleName}",
     "Unable to delete team {circleId}" : "Nie je možné zmazať tím {circleId}",
-    "Unable to delete contact" : "Nepodarilo sa zmazať kontakt.",
-    "Loading contacts …" : "Načítavajú sa kontakty ...",
-    "Loading …" : "Načítava sa...",
-    "General settings" : "Všeobecné nastavenia",
-    "(refreshed once per week)" : "(aktualizovať raz za týždeň)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Vypnuté)",
-    "can edit" : "môže upravovať",
-    "Unique password …" : "Unikátne heslo ...",
-    "Search contacts …" : "Prehľadať kontakty...",
-    "Invite members to team" : "Pozvať členov do tímu",
-    "Loading members list …" : "Načítavam zoznam členov ...",
-    "Add to {circle}" : "Pridať do {circle}",
-    "Select chart …" : "Vybrať graf ..."
+    "Unable to delete contact" : "Nepodarilo sa zmazať kontakt."
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);"
 }

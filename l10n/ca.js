@@ -300,17 +300,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "S'ha produït un error al(s) equip(s). Consulteu la consola per obtenir més detalls.",
     "Unable to create team {circleName}" : "No es pot crear l'equip {circleName}",
     "Unable to delete team {circleId}" : "No es pot suprimir l'equip {circleId}",
-    "Unable to delete contact" : "No s'ha pogut suprimir el contacte",
-    "Loading contacts …" : "S'estan carregant els contactes …",
-    "Loading …" : "S'està carregant…",
-    "General settings" : "Paràmetres generals",
-    "(refreshed once per week)" : "(s'actualitza una vegada la setmana)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (desactivat)",
-    "can edit" : "pot editar",
-    "Unique password …" : "Contrasenya única …",
-    "Search contacts …" : "Cerqueu contactes…",
-    "Loading members list …" : "S'està carregant la llista de membres …",
-    "Add to {circle}" : "Afegeix a {circle}",
-    "Select chart …" : "Seleccioneu el gràfic …"
+    "Unable to delete contact" : "No s'ha pogut suprimir el contacte"
 },
 "nplurals=2; plural=(n != 1);");

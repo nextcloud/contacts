@@ -381,18 +381,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Takımlarda bir sorun çıktı. Ayrıntılı bilgi almak için konsola bakabilirsiniz.",
     "Unable to create team {circleName}" : "{circleName} takımı eklenemedi",
     "Unable to delete team {circleId}" : "{circleName} takımı silinemedi",
-    "Unable to delete contact" : "Kişi silinemedi",
-    "Loading contacts …" : "Kişiler yükleniyor…",
-    "Loading …" : "Yükleniyor …",
-    "General settings" : "Genel ayarlar",
-    "(refreshed once per week)" : "(haftada bir yenilenir)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (kullanımdan kaldırılmış)",
-    "can edit" : "düzenleyebilir",
-    "Unique password …" : "Benzersiz parola…",
-    "Search contacts …" : "Kişi arama…",
-    "Invite members to team" : "Takıma üyeler davet edin",
-    "Loading members list …" : "Üye listesi ekleniyor …",
-    "Add to {circle}" : "{circle} takımına ekle",
-    "Select chart …" : "Çizelge seçin…"
+    "Unable to delete contact" : "Kişi silinemedi"
 },
 "nplurals=2; plural=(n > 1);");

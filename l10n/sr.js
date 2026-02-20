@@ -335,18 +335,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Дошло је до грешке у тиму/тимовима. Погледајте конзолу за више детаља.",
     "Unable to create team {circleName}" : "Не може да се креира тим {circleName}",
     "Unable to delete team {circleId}" : "Не може да се обрише тим {circleId}",
-    "Unable to delete contact" : "Не могу да обришем контакт",
-    "Loading contacts …" : "Учитавам контакте …",
-    "Loading …" : "Учитавање…",
-    "General settings" : "Опште поставке",
-    "(refreshed once per week)" : "(освежава се једном недељно)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Искључен)",
-    "can edit" : "може да уређује",
-    "Unique password …" : "Јединствена лозинка ...",
-    "Search contacts …" : "Претражи контакте ...",
-    "Invite members to team" : "Позови чланове у тим",
-    "Loading members list …" : "Учитавање листе чланова ...",
-    "Add to {circle}" : "Додај у {circle}",
-    "Select chart …" : "Изаберите график ..."
+    "Unable to delete contact" : "Не могу да обришем контакт"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

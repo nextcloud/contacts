@@ -289,17 +289,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Ocurrió un error en el(los) equipo(s). Compruebe la consola para más detalles.",
     "Unable to create team {circleName}" : "No se pudo crear el equipo {circleName}",
     "Unable to delete team {circleId}" : "No se pudo eliminar el equipo {circleId}",
-    "Unable to delete contact" : "No se pudo eliminar el contacto",
-    "Loading contacts …" : "Cargando contactos ...",
-    "Loading …" : "Cargando …",
-    "General settings" : "Configuraciones generales",
-    "(refreshed once per week)" : "(actualizado una vez por semana)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Deshabilitado)",
-    "can edit" : "puede editar",
-    "Unique password …" : "Contraseña única ...",
-    "Search contacts …" : "Buscar contactos ...",
-    "Loading members list …" : "Cargando la lista de miembros ...",
-    "Add to {circle}" : "Añadir a {circle}",
-    "Select chart …" : "Seleccionar gráfico ..."
+    "Unable to delete contact" : "No se pudo eliminar el contacto"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

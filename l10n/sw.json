@@ -353,18 +353,6 @@
     "An error has occurred in team(s). Check the console for more details." : "Hitilafu imetokea katika vipengele. Angalia mixer kwa maelezo zaidii",
     "Unable to create team {circleName}" : "Haiwezi kutengeneza timu {circleName}",
     "Unable to delete team {circleId}" : "Haiwezi kufuta timu {circleId}",
-    "Unable to delete contact" : "Haiwezi kufuta mawasiliano",
-    "Loading contacts …" : "Inapakia mawasiliano",
-    "Loading …" : "Inapakia",
-    "General settings" : "Mpangilio wa jumla",
-    "(refreshed once per week)" : "(changamsha mara moja kwa wiki)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Haikuwezeshwa)",
-    "can edit" : "inaweza kuhariri",
-    "Unique password …" : "Nenosiri la kipekee",
-    "Search contacts …" : "Tafuta mawasiliano",
-    "Invite members to team" : "Alika wanachama kwenye timu",
-    "Loading members list …" : "Inapakia orodha ya wanachama",
-    "Add to {circle}" : "Ongeza hadi {circle}",
-    "Select chart …" : "Chagua chati"
+    "Unable to delete contact" : "Haiwezi kufuta mawasiliano"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

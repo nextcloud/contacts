@@ -31,7 +31,6 @@ OC.L10N.register(
     "Country" : "Երկիր",
     "Birthday" : "Ծննդյան օր",
     "Relative" : "Հարաբերական",
-    "Unknown" : "Անհայտ",
-    "can edit" : "կարող է խմբագրել"
+    "Unknown" : "Անհայտ"
 },
 "nplurals=2; plural=(n != 1);");
