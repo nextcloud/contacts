@@ -48,12 +48,16 @@
 
 			<!-- textarea for note -->
 			<div class="property__value">
+				<p v-if="isReadOnly">
+					{{ localValue }}
+				</p>
+
 				<NcTextArea
-					v-if="propName === 'note'"
+					v-else-if="propName === 'note'"
 					id="textarea"
 					ref="textarea"
 					v-model:model-value="localValue"
-					:aria-label="t('mail', 'note')"
+					:label="t('contacts', 'Notes')"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
 					@update:model-value="updateValueNoDebounce"
@@ -65,7 +69,7 @@
 					v-else-if="propName === 'email'"
 					ref="email"
 					v-model:model-value="localValue"
-					:aria-label="t('mail', 'email')"
+					:label="propModel.readableName"
 					:class="{ 'property__value--with-ext': haveExtHandler }"
 					autocapitalize="none"
 					autocomplete="email"
@@ -73,18 +77,15 @@
 					:readonly="isReadOnly"
 					:error="!isEmailValid"
 					:helper-text="!emailHelpText || isReadonly ? '' : emailHelpText"
-					label-outside
 					:placeholder="placeholder"
 					type="email"
 					@update:model-value="updateEmailValue" />
 
 				<!-- OR default to input -->
-				<p v-else-if="isReadOnly">
-					{{ localValue }}
-				</p>
 				<NcTextField
 					v-else
 					v-model:model-value="localValue"
+					:label="propModel.readableName"
 					:inputmode="inputmode"
 					:aria-label="propName"
 					:class="{ 'property__value--with-ext': haveExtHandler }"
