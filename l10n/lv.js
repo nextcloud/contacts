@@ -134,11 +134,6 @@ OC.L10N.register(
     "Male" : "Vīrietis",
     "Unknown" : "Nezināms",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontaktpersonas neizdevās nolasīt","{failed} kontaktpersonu neizdevās nolasīt","{failed} kontaktpersonas neizdevās nolasīt"],
-    "An error has occurred in team(s). Check the console for more details." : "Atgadījās kļūda komandā(s). Jāpārbauda konsole, lai iegūtu vairāk informācijas.",
-    "Loading …" : "Notiek ielāde ...",
-    "General settings" : "Vispārīgi iestatījumi",
-    "{addressbookname} (Disabled)" : "{addressbookname} (atspējota)",
-    "can edit" : "var labot",
-    "Search contacts …" : "Meklēt kontaktpersonas…"
+    "An error has occurred in team(s). Check the console for more details." : "Atgadījās kļūda komandā(s). Jāpārbauda konsole, lai iegūtu vairāk informācijas."
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");

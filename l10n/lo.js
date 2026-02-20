@@ -355,18 +355,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "An error has occurred in team(s). Check the console for more details.",
     "Unable to create team {circleName}" : "Unable to create team {circleName}",
     "Unable to delete team {circleId}" : "Unable to delete team {circleId}",
-    "Unable to delete contact" : "Unable to delete contact",
-    "Loading contacts …" : "Loading contacts …",
-    "Loading …" : "ກຳລັງໂຫຼດ",
-    "General settings" : "General settings",
-    "(refreshed once per week)" : "(refreshed once per week)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Disabled)",
-    "can edit" : "can edit",
-    "Unique password …" : "Unique password …",
-    "Search contacts …" : "ຄົ້ນຫາຕິດຕໍ່ ...",
-    "Invite members to team" : "Invite members to team",
-    "Loading members list …" : "Loading members list …",
-    "Add to {circle}" : "Add to {circle}",
-    "Select chart …" : "Select chart …"
+    "Unable to delete contact" : "Unable to delete contact"
 },
 "nplurals=1; plural=0;");

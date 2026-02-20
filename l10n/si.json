@@ -47,7 +47,6 @@
     "Spouse" : "කලත්‍රයා",
     "Mother" : "මව",
     "Father" : "පියා",
-    "Unknown" : "නොදන්නා",
-    "Loading …" : "පූරණය වෙමින් …"
+    "Unknown" : "නොදන්නා"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

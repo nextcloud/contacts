@@ -239,17 +239,6 @@ OC.L10N.register(
     "Time zone" : "منطقهٔ زمانی",
     "Spoken languages" : "زبان‌های صحبت",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contact failed to be read","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Unable to delete contact",
-    "Loading contacts …" : "بار کردن آشنایان …",
-    "Loading …" : "بار کردن …",
-    "General settings" : "تنظیمات عمومی",
-    "(refreshed once per week)" : "(تازه‌سازی هفته‌ای یک بار)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (از کار افتاده)",
-    "can edit" : "توانایی ویرایش",
-    "Unique password …" : "گذرواژهٔ یکتا …",
-    "Search contacts …" : "جست‌وجوی آشنایان …",
-    "Loading members list …" : "Loading members list …",
-    "Add to {circle}" : "افزودن به {circle}",
-    "Select chart …" : "گزینش نمودار …"
+    "Unable to delete contact" : "Unable to delete contact"
 },
 "nplurals=2; plural=(n > 1);");

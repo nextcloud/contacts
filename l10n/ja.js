@@ -305,17 +305,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "チームでエラーが発生しました。詳細については、コンソールを確認してください。",
     "Unable to create team {circleName}" : "チーム{circleName}を作成できません",
     "Unable to delete team {circleId}" : "チーム {circleId} を削除できません",
-    "Unable to delete contact" : "連絡先を削除できません。",
-    "Loading contacts …" : "連絡先を読み込み中...",
-    "Loading …" : "読み込み中…",
-    "General settings" : "一般設定",
-    "(refreshed once per week)" : "(週に1回更新)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (無効)",
-    "can edit" : "編集を許可",
-    "Unique password …" : "固有パスワード...",
-    "Search contacts …" : "連絡先を検索...",
-    "Loading members list …" : "メンバーリストを読み込んでいます…",
-    "Add to {circle}" : "{circle} に追加",
-    "Select chart …" : "組織図を選択..."
+    "Unable to delete contact" : "連絡先を削除できません。"
 },
 "nplurals=1; plural=0;");

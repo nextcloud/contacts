@@ -378,18 +378,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "团队中出现错误。有关更多详情，请查看控制台。",
     "Unable to create team {circleName}" : "无法创建团队 {circleName}",
     "Unable to delete team {circleId}" : "无法删除团队 {circleId}",
-    "Unable to delete contact" : "无法删除联系人",
-    "Loading contacts …" : "正在加载联系人…",
-    "Loading …" : "正在加载…",
-    "General settings" : "一般设置",
-    "(refreshed once per week)" : "（每周刷新）",
-    "{addressbookname} (Disabled)" : "{addressbookname}（已禁用）",
-    "can edit" : "可编辑",
-    "Unique password …" : "唯一密码…",
-    "Search contacts …" : "搜索联系人…",
-    "Invite members to team" : "邀请成员加入团队",
-    "Loading members list …" : "正在加载成员列表…",
-    "Add to {circle}" : "添加到 {circle}",
-    "Select chart …" : "选择图表…"
+    "Unable to delete contact" : "无法删除联系人"
 },
 "nplurals=1; plural=0;");

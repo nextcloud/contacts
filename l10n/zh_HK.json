@@ -382,18 +382,6 @@
     "Unable to delete team {circleId}" : "無法刪除團隊 {circleId}",
     "Unable to delete contact" : "無法刪除聯絡人",
     "Value copied to the clipboard" : "已複製數值至剪貼板",
-    "Could not copy value to the clipboard." : "無法複製數值至剪貼板",
-    "Loading contacts …" : "正在載入通訊錄 …",
-    "Loading …" : "正在載入 …",
-    "General settings" : "一般設定",
-    "(refreshed once per week)" : "（每週重新整理一次）",
-    "{addressbookname} (Disabled)" : "{addressbookname}（已停用）",
-    "can edit" : "允許編輯",
-    "Unique password …" : "獨一無二的密碼 ...",
-    "Search contacts …" : "搜尋聯絡人…",
-    "Invite members to team" : "邀請成員加入團隊",
-    "Loading members list …" : "正在加載成員清單 …",
-    "Add to {circle}" : "添加到 {circle}",
-    "Select chart …" : "選擇圖表 ..."
+    "Could not copy value to the clipboard." : "無法複製數值至剪貼板"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

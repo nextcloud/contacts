@@ -379,18 +379,6 @@
     "An error has occurred in team(s). Check the console for more details." : "團隊中出現錯誤。請檢查主控台以取得更多詳細資訊。",
     "Unable to create team {circleName}" : "無法建立團隊 {circleName}",
     "Unable to delete team {circleId}" : "無法刪除團隊 {circleId}",
-    "Unable to delete contact" : "無法刪除聯絡人",
-    "Loading contacts …" : "正在載入聯絡人……",
-    "Loading …" : "正在載入……",
-    "General settings" : "一般設定",
-    "(refreshed once per week)" : "（每週重新整理一次）",
-    "{addressbookname} (Disabled)" : "{addressbookname}（已停用）",
-    "can edit" : "允許編輯",
-    "Unique password …" : "獨一無二的密碼……",
-    "Search contacts …" : "搜尋聯絡人……",
-    "Invite members to team" : "邀請成員加入團隊",
-    "Loading members list …" : "正在載入成員清單……",
-    "Add to {circle}" : "新增至 {circle}",
-    "Select chart …" : "選取圖表……"
+    "Unable to delete contact" : "無法刪除聯絡人"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

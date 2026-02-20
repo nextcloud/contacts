@@ -63,7 +63,6 @@ OC.L10N.register(
     "Voice" : "Voce",
     "Social network" : "Medios Social",
     "Relative" : "Relative",
-    "Unknown" : "Incognite",
-    "can edit" : "pote modificar"
+    "Unknown" : "Incognite"
 },
 "nplurals=2; plural=(n != 1);");

@@ -21,7 +21,6 @@ OC.L10N.register(
     "Location" : "مقام",
     "Work" : "کام",
     "Other" : "دیگر",
-    "Birthday" : "سالگرہ",
-    "can edit" : "تبدیل کر سکے ھیں"
+    "Birthday" : "سالگرہ"
 },
 "nplurals=2; plural=(n != 1);");

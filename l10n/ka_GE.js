@@ -87,10 +87,6 @@ OC.L10N.register(
     "Gender" : "სქესი",
     "Female" : "მდედორობითი",
     "Male" : "მამრობითი",
-    "Unknown" : "ამოუცნობი",
-    "Loading contacts …" : "კონტაქტების ჩატვირთვა ...",
-    "General settings" : "მთავარი პარამეტრები",
-    "can edit" : "შეუძლია შეცვლა",
-    "Search contacts …" : "მოძებნეთ კონტაქტები ..."
+    "Unknown" : "ამოუცნობი"
 },
 "nplurals=2; plural=(n!=1);");

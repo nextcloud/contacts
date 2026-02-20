@@ -20,8 +20,6 @@ OC.L10N.register(
     "Federation" : "Jamg'arma",
     "Users" : "Users",
     "Notes" : "Notes",
-    "Unknown" : "Unknown",
-    "Loading contacts …" : "Loading contacts …",
-    "Search contacts …" : "Search contacts …"
+    "Unknown" : "Unknown"
 },
 "nplurals=1; plural=0;");

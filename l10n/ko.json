@@ -238,17 +238,6 @@
     "Time zone" : "시간대",
     "Spoken languages" : "사용 언어",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["연락처 {failed}개를 읽을 수 없음"],
-    "Unable to delete contact" : "연락처를 삭제할 수 없음",
-    "Loading contacts …" : "연락처 불러오는 중…",
-    "Loading …" : "불러오는 중 …",
-    "General settings" : "일반 설정",
-    "(refreshed once per week)" : "(주 1회 새로고침)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (비활성화됨)",
-    "can edit" : "편집 가능",
-    "Unique password …" : "독자 암호 ...",
-    "Search contacts …" : "연락처 검색…",
-    "Loading members list …" : "회원 목록 불러오는 중 ...",
-    "Add to {circle}" : "{circle}에 추가",
-    "Select chart …" : "차트 선택 ..."
+    "Unable to delete contact" : "연락처를 삭제할 수 없음"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

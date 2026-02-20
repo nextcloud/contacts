@@ -384,18 +384,6 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Unable to delete team {circleId}",
     "Unable to delete contact" : "Unable to delete contact",
     "Value copied to the clipboard" : "Value copied to the clipboard",
-    "Could not copy value to the clipboard." : "Could not copy value to the clipboard.",
-    "Loading contacts …" : "Loading contacts …",
-    "Loading …" : "Loading …",
-    "General settings" : "General settings",
-    "(refreshed once per week)" : "(refreshed once per week)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Disabled)",
-    "can edit" : "can edit",
-    "Unique password …" : "Unique password …",
-    "Search contacts …" : "Search contacts …",
-    "Invite members to team" : "Invite members to team",
-    "Loading members list …" : "Loading members list …",
-    "Add to {circle}" : "Add to {circle}",
-    "Select chart …" : "Select chart …"
+    "Could not copy value to the clipboard." : "Could not copy value to the clipboard."
 },
 "nplurals=2; plural=(n != 1);");

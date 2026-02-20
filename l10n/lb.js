@@ -45,8 +45,6 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Voice",
     "Relative" : "Relativ",
-    "Unknown" : "Onbekannt",
-    "Loading …" : "Loading …",
-    "can edit" : "kann änneren"
+    "Unknown" : "Onbekannt"
 },
 "nplurals=2; plural=(n != 1);");

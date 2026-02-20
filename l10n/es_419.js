@@ -88,10 +88,6 @@ OC.L10N.register(
     "Gender" : "Género",
     "Female" : "Femenino",
     "Male" : "Masculino",
-    "Unknown" : "Desconocido",
-    "Loading contacts …" : "Cargando contactos ...",
-    "General settings" : "Configuraciones generales",
-    "can edit" : "puede editar",
-    "Search contacts …" : "Buscar contactos ..."
+    "Unknown" : "Desconocido"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

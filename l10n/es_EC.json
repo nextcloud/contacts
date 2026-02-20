@@ -231,17 +231,6 @@
     "Time zone" : "Zona horaria",
     "Spoken languages" : "Idiomas hablados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se pudo leer","{failed} contactos no se pudieron leer","{failed} contactos no se pudieron leer"],
-    "Unable to delete contact" : "No se pudo eliminar el contacto",
-    "Loading contacts …" : "Cargando contactos ...",
-    "Loading …" : "Cargando...",
-    "General settings" : "Configuraciones generales",
-    "(refreshed once per week)" : "(actualizado una vez por semana)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (Desactivado)",
-    "can edit" : "puede editar",
-    "Unique password …" : "Contraseña única...",
-    "Search contacts …" : "Buscar contactos ...",
-    "Loading members list …" : "Cargando lista de miembros...",
-    "Add to {circle}" : "Añadir a {circle}",
-    "Select chart …" : "Seleccionar gráfico..."
+    "Unable to delete contact" : "No se pudo eliminar el contacto"
 },"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

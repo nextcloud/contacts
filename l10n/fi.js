@@ -304,18 +304,6 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} yhteystietoa ei voitu lukea","{failed} yhteystietoa ei voitu lukea"],
     "Unable to create team {circleName}" : "Tiimiä {circleName} ei voitu luoda",
     "Unable to delete team {circleId}" : "Tiimiä {circleId} ei voitu poistaa",
-    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa",
-    "Loading contacts …" : "Ladataan yhteystietoja…",
-    "Loading …" : "Ladataan…",
-    "General settings" : "Yleiset asetukset",
-    "(refreshed once per week)" : "(päivitetään kerran viikossa)",
-    "{addressbookname} (Disabled)" : "{addressbookname} (pois käytöstä)",
-    "can edit" : "voi muokata",
-    "Unique password …" : "Ainutkertainen salasana…",
-    "Search contacts …" : "Etsi yhteystietoja…",
-    "Invite members to team" : "Kutsu jäseniä tiimiin",
-    "Loading members list …" : "Ladataan jäsenluetteloa…",
-    "Add to {circle}" : "Lisää piiriin {circle}",
-    "Select chart …" : "Valitse kaavio…"
+    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa"
 },
 "nplurals=2; plural=(n != 1);");

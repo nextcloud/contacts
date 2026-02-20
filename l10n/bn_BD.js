@@ -49,7 +49,6 @@ OC.L10N.register(
     "Fax" : "ফ্যাক্স",
     "Pager" : "পেজার",
     "Voice" : "কন্ঠ",
-    "Unknown" : "অজানা",
-    "can edit" : "সম্পাদনা করতে পারবেন"
+    "Unknown" : "অজানা"
 },
 "nplurals=2; plural=(n != 1);");
