@@ -1,0 +1,25 @@
+OC.L10N.register(
+    "contacts",
+    {
+    "Details" : "Mion-fhiosrachadh",
+    "Rename" : "Thoir ainm ùr air",
+    "Delete" : "Sguab às",
+    "Copy link" : "Dèan lethbhreac dhen cheangal",
+    "Download" : "Luchdaich a-nuas",
+    "Cancel" : "Sguir dheth",
+    "Save" : "Sàbhail",
+    "Close" : "Dùin",
+    "Invalid image" : "Dealbh mì-dhligheach",
+    "Name" : "Ainm",
+    "No results" : "Gun toradh",
+    "Pending" : "Ri dhèiligeadh",
+    "None" : "Chan eil gin",
+    "User" : "Cleachdaiche",
+    "Email" : "Post-d",
+    "Notes" : "Nòtaichean",
+    "Website" : "Làrach-lìn",
+    "Home" : "Dachaigh",
+    "Address" : "Seòladh",
+    "Unknown" : "Chan eil fhios"
+},
+"nplurals=4; plural=(n==1 || n==11) ? 0 : (n==2 || n==12) ? 1 : (n > 2 && n < 20) ? 2 : 3;");
