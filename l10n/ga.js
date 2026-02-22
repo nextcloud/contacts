@@ -255,6 +255,7 @@ OC.L10N.register(
     "Select type" : "Roghnaigh cineál",
     "Add contact in group" : "Cuir teagmhálaí leis sa ghrúpa",
     "None" : "Dada",
+    "copy" : "cóip",
     "Select option" : "Roghnaigh rogha",
     "note" : "nóta",
     "email" : "ríomhphost",
@@ -286,6 +287,9 @@ OC.L10N.register(
     "You are about to delete {circle}.\nAre you sure?" : "Tá tú ar tí {circle} a scriosadh.\nAn bhfuil tú cinnte?",
     "Please confirm team deletion" : "Deimhnigh scriosadh na foirne le do thoil",
     "Unable to delete the team" : "Ní féidir an fhoireann a scriosadh",
+    "Confirm enabling federation" : "Deimhnigh go gcuirfí cónaidhm ar bun",
+    "Enabling this will prevent {circle} from being a member of other teams.\nAre you sure?" : "Má chumasaítear é seo, cuirfear cosc ​​ar {circle} a bheith ina bhall de fhoirne eile.\nAn bhfuil tú cinnte?",
+    "Enable federation" : "Cumasaigh cónaidhm",
     "Link copied to the clipboard" : "Cóipeáladh an nasc chuig an ngearrthaisce",
     "Could not copy link to the clipboard." : "Níorbh fhéidir nasc chuig an ngearrthaisce a chóipeáil.",
     "Not grouped" : "Gan grúpáil",
@@ -313,6 +317,8 @@ OC.L10N.register(
     "users" : "úsáideoirí",
     "Users" : "Úsáideoirí",
     "groups" : "grúpaí",
+    "federated users" : "úsáideoirí cónaidhme",
+    "Federated users" : "Úsáideoirí cónaidhme",
     "teams" : "foirne",
     "email addresses" : "seoltaí ríomhphoist",
     "Email addresses" : "Seoltaí ríomhphoist",
@@ -381,6 +387,8 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Tharla earráid san fhoireann(í). Seiceáil an consól le haghaidh tuilleadh sonraí.",
     "Unable to create team {circleName}" : "Ní féidir foireann {circleName} a chruthú",
     "Unable to delete team {circleId}" : "Ní féidir foireann {circleId} a scriosadh",
-    "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh"
+    "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh",
+    "Value copied to the clipboard" : "Luach cóipeáilte chuig an ghearrthaisce",
+    "Could not copy value to the clipboard." : "Níorbh fhéidir luach a chóipeáil chuig an ghearrthaisce."
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");
