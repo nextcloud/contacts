@@ -289,7 +289,7 @@ OC.L10N.register(
     "Unable to delete the team" : "Ei õnnestu tiimi kustutada",
     "Confirm enabling federation" : "Kinnita födereerimise (liitpilve) kasutuselevõtmine",
     "Enabling this will prevent {circle} from being a member of other teams.\nAre you sure?" : "Selle valiku kasutamisel ei saa „{circle}“ tiim olla teiste tiimide liige.\nKas oled oma soovis kindel?",
-    "Enable federation" : "Kinnita födereerimine (liitpilve) sisse",
+    "Enable federation" : "Lülita födereerimine (liitpilve kasutamine) sisse",
     "Link copied to the clipboard" : "Link on kopeeritud lõikelauale.",
     "Could not copy link to the clipboard." : "Lingi kopeerimine lõikelauale ei õnnestunud.",
     "Not grouped" : "Pole grupeeritud",
