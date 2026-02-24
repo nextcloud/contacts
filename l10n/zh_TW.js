@@ -255,6 +255,7 @@ OC.L10N.register(
     "Select type" : "選取類型",
     "Add contact in group" : "新增聯絡人到群組",
     "None" : "無",
+    "copy" : "複製",
     "Select option" : "選取選項",
     "note" : "備註",
     "email" : "電子郵件",
@@ -286,6 +287,9 @@ OC.L10N.register(
     "You are about to delete {circle}.\nAre you sure?" : "您將要刪除 {circle}。\n您確定嗎？",
     "Please confirm team deletion" : "請確認您要刪除團隊",
     "Unable to delete the team" : "無法刪除這個團隊",
+    "Confirm enabling federation" : "確認啟用聯盟功能",
+    "Enabling this will prevent {circle} from being a member of other teams.\nAre you sure?" : "啟用後，{circle} 將無法加入其他團隊。\n您確定嗎？",
+    "Enable federation" : "啟用聯盟",
     "Link copied to the clipboard" : "連結已複製到剪貼簿",
     "Could not copy link to the clipboard." : "無法複製連結至剪貼簿。",
     "Not grouped" : "未歸類",
@@ -313,6 +317,8 @@ OC.L10N.register(
     "users" : "使用者",
     "Users" : "使用者",
     "groups" : "群組",
+    "federated users" : "聯盟使用者",
+    "Federated users" : "聯盟使用者",
     "teams" : "團隊",
     "email addresses" : "電子郵件地址",
     "Email addresses" : "電子郵件地址",
@@ -381,6 +387,8 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "團隊中出現錯誤。請檢查主控台以取得更多詳細資訊。",
     "Unable to create team {circleName}" : "無法建立團隊 {circleName}",
     "Unable to delete team {circleId}" : "無法刪除團隊 {circleId}",
-    "Unable to delete contact" : "無法刪除聯絡人"
+    "Unable to delete contact" : "無法刪除聯絡人",
+    "Value copied to the clipboard" : "值複製給剪貼簿",
+    "Could not copy value to the clipboard." : "無法複製值到剪貼簿。"
 },
 "nplurals=1; plural=0;");
