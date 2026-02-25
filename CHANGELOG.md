@@ -1,3 +1,13 @@
+## [7.3.16](https://github.com/nextcloud/contacts/compare/v7.3.15...v7.3.16) (2026-02-25)
+
+
+### Bug Fixes
+
+* **deps:** Upgrade @nextcloud/vue to fix focus-trap compatibility ([68fb7aa](https://github.com/nextcloud/contacts/commit/68fb7aaa6a3c38b363281bf36dc77b4f62af6a1f))
+* **test:** Add structuredClone polyfill for Jest environment ([acb4df2](https://github.com/nextcloud/contacts/commit/acb4df20fb7fe00bfa5cac303927fde74ee88ff4))
+
+
+
 ## [7.3.15](https://github.com/nextcloud/contacts/compare/v7.3.14...v7.3.15) (2026-02-19)
 
 
