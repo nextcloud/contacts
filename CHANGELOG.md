@@ -1,3 +1,18 @@
+## [8.3.4](https://github.com/nextcloud/contacts/compare/v8.3.3...v8.3.4) (2026-02-25)
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([3b6b545](https://github.com/nextcloud/contacts/commit/3b6b545f24e17034fc634f845d3765173690c904))
+* **l10n:** Update translations from Transifex ([3052243](https://github.com/nextcloud/contacts/commit/3052243ae82e3f84b0d9a7db3d5ccff760a2ada6))
+* **l10n:** Update translations from Transifex ([f9ba53c](https://github.com/nextcloud/contacts/commit/f9ba53cba9a7c0169779ec1a508e9a80a1777a3b))
+* **l10n:** Update translations from Transifex ([c6e80be](https://github.com/nextcloud/contacts/commit/c6e80bef40c252838afe23a8eb51b163341cc182))
+* **l10n:** Update translations from Transifex ([5b9a7ea](https://github.com/nextcloud/contacts/commit/5b9a7ea9287861bba567906dfcfde831bb9b0d66))
+* **l10n:** Update translations from Transifex ([7a31443](https://github.com/nextcloud/contacts/commit/7a314438f4a07a24a251d3e2a2969515ea7905ba))
+* **l10n:** Update translations from Transifex ([b80682f](https://github.com/nextcloud/contacts/commit/b80682f8f8a1001aef7a39b460adcd55c8247aaf))
+
+
+
 ## [8.3.3](https://github.com/nextcloud/contacts/compare/v8.3.2...v8.3.3) (2026-02-18)
 
 
