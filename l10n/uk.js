@@ -16,7 +16,7 @@ OC.L10N.register(
     "Please select a team" : "Будь ласка, оберіть команду",
     "Loading team…" : "Завантаження команди...",
     "Loading contacts …" : "Завантаження контактів …",
-    "There are no contacts yet" : "Поки що відсутні контакти",
+    "There are no contacts yet" : "Контакти відсутні",
     "Create contact" : "Створити контакт",
     "There are no contacts in this group" : "В цій групі відсутні контакти",
     "Create contacts" : "Створити контакти",
