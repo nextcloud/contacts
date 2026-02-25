@@ -255,6 +255,7 @@ OC.L10N.register(
     "Select type" : "Türü seçin",
     "Add contact in group" : "Kişiyi şu gruba ekle",
     "None" : "Yok",
+    "copy" : "kopya",
     "Select option" : "Seçeneği seçin",
     "note" : "not",
     "email" : "e-posta",
@@ -286,6 +287,9 @@ OC.L10N.register(
     "You are about to delete {circle}.\nAre you sure?" : "{circle} takımını silmek üzeresiniz.\nBunu yapmak istediğinize emin misiniz?",
     "Please confirm team deletion" : "Lütfen takımı silmek istediğinizi onaylayın",
     "Unable to delete the team" : "Takım silinemedi",
+    "Confirm enabling federation" : "Birliği açmayı onayla",
+    "Enabling this will prevent {circle} from being a member of other teams.\nAre you sure?" : "Bu açıldığında, {circle} diğer taımların üyesi olamayacak.\nEmin misiniz?",
+    "Enable federation" : "Birliği aç",
     "Link copied to the clipboard" : "Bağlantı panoya kopyalandı",
     "Could not copy link to the clipboard." : "Bağlantı panoya kopyalanamadı.",
     "Not grouped" : "Gruplanmamış",
@@ -313,6 +317,8 @@ OC.L10N.register(
     "users" : "kullanıcı",
     "Users" : "Kullanıcılar",
     "groups" : "grup",
+    "federated users" : "birleşik kullanıcılar",
+    "Federated users" : "Birleşik kullanıcılar",
     "teams" : "takım",
     "email addresses" : "e-posta adresi",
     "Email addresses" : "E-posta adresleri",
@@ -381,6 +387,8 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Takımlarda bir sorun çıktı. Ayrıntılı bilgi almak için konsola bakabilirsiniz.",
     "Unable to create team {circleName}" : "{circleName} takımı eklenemedi",
     "Unable to delete team {circleId}" : "{circleName} takımı silinemedi",
-    "Unable to delete contact" : "Kişi silinemedi"
+    "Unable to delete contact" : "Kişi silinemedi",
+    "Value copied to the clipboard" : "Değer panoya kopyalandı",
+    "Could not copy value to the clipboard." : "Değer panoya kopyalanamadı."
 },
 "nplurals=2; plural=(n > 1);");
