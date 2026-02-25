@@ -1,7 +1,7 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-# [8.4.0] (unreleased)
+# [8.4.0] (2026-02-25)
 
 ### Features
 
