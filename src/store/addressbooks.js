@@ -475,6 +475,28 @@ const actions = {
 	},
 
 	/**
+	 * Unshare an addressbook from the current user
+	 * This is used when a user wants to remove a shared addressbook
+	 * from their own account, including group-shared addressbooks
+	 *
+	 * @param {object} context the store mutations Current context
+	 * @param {object} data destructuring object
+	 * @param {object} data.addressbook the addressbook to unshare
+	 * @param {string} data.uri the current user's principal scheme uri
+	 */
+	async unshareAddressbookFromMe(context, { addressbook, uri }) {
+		try {
+			await addressbook.dav.unshare(uri)
+			Object.values(addressbook.contacts)
+				.forEach((contact) => context.commit('deleteContact', contact))
+			context.commit('deleteAddressbook', addressbook)
+		} catch (error) {
+			console.error(error)
+			throw error
+		}
+	},
+
+	/**
 	 * Remove sharee from Addressbook
 	 *
 	 * @param {object} context the store mutations Current context
