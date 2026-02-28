@@ -307,7 +307,7 @@ export default {
 			window.OC.dialogs.confirm(
 				t('contacts', 'This will unshare the address book and every contacts within it'),
 				t('contacts', 'Unshare {addressbook}?', { addressbook: this.addressbook.displayName }),
-				this.deleteAddressbook,
+				this.unshareFromMe,
 				true,
 			)
 		},
@@ -324,6 +324,22 @@ export default {
 					showError(t('contacts', 'Deletion of address book was not successful.'))
 				} finally {
 					// stop loading status regardless of outcome
+					this.deleteAddressbookLoading = false
+				}
+			}
+		},
+
+		async unshareFromMe(confirm) {
+			if (confirm) {
+				this.deleteAddressbookLoading = true
+				try {
+					const principalsStore = usePrincipalsStore()
+					const uri = principalsStore.currentUserPrincipal.principalScheme
+					await this.$store.dispatch('unshareAddressbookFromMe', { addressbook: this.addressbook, uri })
+				} catch (err) {
+					console.error(err)
+					showError(t('contacts', 'Unsharing of address book was not successful.'))
+				} finally {
 					this.deleteAddressbookLoading = false
 				}
 			}
