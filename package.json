@@ -81,7 +81,7 @@
     "vue": "^3.5.28",
     "vue-cropperjs": "^5.0.0",
     "vue-material-design-icons": "^5.3.1",
-    "vue-router": "^4.5.1",
+    "vue-router": "^4.6.4",
     "vuex": "^4.1.0"
   },
   "devDependencies": {
