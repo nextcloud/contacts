@@ -1320,6 +1320,18 @@ section.contact-details {
 	box-shadow: none !important;
 }
 
+:deep(.vs__selected-options) {
+	max-height: 30px;
+}
+
+:deep(.vs__selected) {
+	margin: 0 !important;
+}
+
+:deep(.v-select) {
+	margin-bottom: 0 !important;
+}
+
 .quick-actions {
 	display: flex;
 }

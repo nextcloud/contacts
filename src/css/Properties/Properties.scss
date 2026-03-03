@@ -25,7 +25,7 @@ $property-row-gap: $contact-details-row-gap;
 	&__row {
 		margin-top: var(--default-grid-baseline);
 		display: flex;
-		align-items: center;
+		align-items: end;
 		gap: $property-row-gap;
 
 		// fix default margin from server stylesheet causing slight misalignment
@@ -94,20 +94,6 @@ $property-row-gap: $contact-details-row-gap;
 		}
 	}
 
-	&__label,
-	&__value {
-		// Fix default multiselect styling
-		> .multiselect {
-			width: 100%;
-			min-width: unset;
-		}
-
-		// Fix default date time picker styling
-		> .mx-datepicker {
-			width: 100%;
-		}
-	}
-
 	// Mobile tweaks
 	@media (max-width: 1024px) {
 		// Left align labels on mobile
@@ -131,4 +117,8 @@ $property-row-gap: $contact-details-row-gap;
 		z-index: 10;
 		width: 44px;
 	}
+}
+
+.contact-details-wrapper-read-only .property__row {
+	align-items: center;
 }
