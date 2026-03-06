@@ -615,6 +615,11 @@ export default {
 	padding-inline: 20px;
 	margin-top: 1rem;
 
+	@media (max-width: 1024px) {
+		// Push content below the sidebar navigation toggle button
+		margin-top: calc(var(--default-clickable-area) + 1rem);
+	}
+
 	.circle-details-grid {
 		display: grid;
 		grid-template-columns: 1fr;
@@ -627,12 +632,18 @@ export default {
 			grid-template-columns: auto 1fr;
 			align-items: center;
 			gap: 24px;
+
+			@media (max-width: 1024px) {
+				.circle-details-grid__avatar {
+					display: none;
+				}
+			}
 		}
 
 		.circle-details__main-content {
 			margin-inline-start: 99px;
 
-			@media (max-width: 768px) {
+			@media (max-width: 1024px) {
 				margin-inline-start: 0;
 			}
 		}
@@ -664,6 +675,7 @@ export default {
 		.actions {
 			display: flex;
 			gap: 8px;
+			flex-wrap: wrap;
 		}
 	}
 
@@ -761,6 +773,11 @@ export default {
 			gap: calc(var(--default-grid-baseline) * 2);
 			align-items: center;
 			overflow-x: auto;
+
+			@media (max-width: 1024px) {
+				flex-wrap: wrap;
+				overflow-x: visible;
+			}
 		}
 	}
 
