@@ -94,7 +94,10 @@ export const PUBLIC_CIRCLE_CONFIG = {
 	[t('contacts', 'Invites')]: {
 		[CIRCLE_CONFIG_OPEN]: t('contacts', 'Anyone can request membership'),
 		[CIRCLE_CONFIG_INVITE]: t('contacts', 'Members need to accept invitation'),
-		[CIRCLE_CONFIG_REQUEST]: t('contacts', 'Memberships must be confirmed/accepted by a Moderator (requires "Anyone can request membership")'),
+		[CIRCLE_CONFIG_REQUEST]: {
+			label: t('contacts', 'Memberships must be confirmed/accepted by a Moderator'),
+			description: t('contacts', 'Requires "Anyone can request membership"'),
+		},
 		[CIRCLE_CONFIG_FRIEND]: t('contacts', 'Members can also invite'),
 	},
 
@@ -106,10 +109,6 @@ export const PUBLIC_CIRCLE_CONFIG = {
 
 	[t('contacts', 'Federation')]: {
 		[CIRCLE_CONFIG_FEDERATED]: t('contacts', 'Allow federated members'),
-	},
-
-	[t('contacts', 'Privacy')]: {
-		[CIRCLE_CONFIG_VISIBLE]: t('contacts', 'Visible to everyone'),
 	},
 }
 
