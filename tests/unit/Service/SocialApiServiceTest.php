@@ -424,6 +424,22 @@ class SocialApiServiceTest extends TestCase {
 		$addressbook1->method('getUri')->willReturn('contacts1');
 		$addressbook2 = $this->createMock(IAddressBook::class);
 		$addressbook2->method('getUri')->willReturn('contacts2');
+<<<<<<< Updated upstream
+||||||| Stash base
+		if (Util::getVersion()[0] >= 20) {
+			// TODO: check can be removed as soon as min-dependency of contacts is NCv20
+			$addressbook1->method('isShared')->willReturn(false);
+			$addressbook1->method('isSystemAddressBook')->willReturn(false);
+			$addressbook2->method('isShared')->willReturn(false);
+			$addressbook2->method('isSystemAddressBook')->willReturn(false);
+		}
+=======
+		// TODO: check can be removed as soon as min-dependency of contacts is NCv20
+		$addressbook1->method('isShared')->willReturn(false);
+		$addressbook1->method('isSystemAddressBook')->willReturn(false);
+		$addressbook2->method('isShared')->willReturn(false);
+		$addressbook2->method('isSystemAddressBook')->willReturn(false);
+>>>>>>> Stashed changes
 
 		$searchMap1 = [
 			['', ['UID'], ['types' => true], [$validContact1, $invalidContact]],
