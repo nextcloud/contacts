@@ -278,7 +278,6 @@ const properties = {
 		options: [
 			{ id: 'FACEBOOK', name: 'Facebook', placeholder: 'https://facebook.com/…' },
 			{ id: 'GITHUB', name: 'GitHub', placeholder: 'https://github.com/…' },
-			{ id: 'GOOGLEPLUS', name: 'Google+', placeholder: 'https://plus.google.com/…' },
 			{ id: 'INSTAGRAM', name: 'Instagram', placeholder: 'https://instagram.com/…' },
 			{ id: 'LINKEDIN', name: 'LinkedIn', placeholder: 'https://linkedin.com/…' },
 			{ id: 'XING', name: 'Xing', placeholder: 'https://www.xing.com/profile/…' },
