@@ -1,12 +1,10 @@
- /*
+/*
  * SPDX-FileCopyrightText: 2025 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { defineConfig } from 'eslint/config'
-
-// TODO: replace with recommended when migrating to Vue 3
 import { recommended } from '@nextcloud/eslint-config'
+import { defineConfig } from 'eslint/config'
 
 export default defineConfig([
 	...recommended,
@@ -22,9 +20,7 @@ export default defineConfig([
 			'jsdoc/require-jsdoc': 'off',
 			'jsdoc/require-param': 'off',
 			// Forbid empty JSDocs
-			// TODO: Enable this rule once @nextcloud/eslint-config was updated and pulls the
-			//       newest version of eslint-plugin-jsdoc (is a recent feature/rule).
-			// 'jsdoc/no-blank-blocks': 'error',
+			'jsdoc/no-blank-blocks': 'error',
 		},
 	},
 ])
