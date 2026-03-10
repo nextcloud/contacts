@@ -185,7 +185,11 @@
 								<template #icon>
 									<!-- eslint-disable-next-line vue/no-v-html -->
 									<div v-if="resource.iconSvg" class="resource__icon" v-html="resource.iconSvg" />
-									<img v-else-if="resource.iconURL" :src="resource.iconURL" class="resource__icon">
+									<img
+										v-else-if="resource.iconURL"
+										:src="resource.iconURL"
+										:alt="resource.label"
+										class="resource__icon">
 									<FileDocumentOutline v-else :size="20" />
 								</template>
 							</ListItem>
