@@ -53,7 +53,7 @@
 					id="textarea"
 					ref="textarea"
 					v-model:model-value="localValue"
-					:aria-label="t('mail', 'note')"
+					:aria-label="t('contacts', 'note')"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
 					@update:model-value="updateValueNoDebounce"
@@ -65,7 +65,7 @@
 					v-else-if="propName === 'email'"
 					ref="email"
 					v-model:model-value="localValue"
-					:aria-label="t('mail', 'email')"
+					:aria-label="t('contacts', 'email')"
 					:class="{ 'property__value--with-ext': haveExtHandler }"
 					autocapitalize="none"
 					autocomplete="email"
@@ -112,7 +112,7 @@
 						v-if="haveExtHandler"
 						class="property__ext"
 						:href="externalHandler"
-						:aria-label="t('mail', 'send an email')"
+						:aria-label="t('contacts', 'send an email')"
 						target="_blank">
 						<template #icon>
 							<OpenInNewIcon :size="20" />
