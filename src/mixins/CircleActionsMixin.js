@@ -126,7 +126,7 @@ export default {
 			this.loadingAction = true
 
 			try {
-				this.$store.dispatch('deleteCircle', this.circle.id)
+				await this.$store.dispatch('deleteCircle', this.circle.id)
 			} catch (error) {
 				showError(t('contacts', 'Unable to delete the team'))
 			} finally {
