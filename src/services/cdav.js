@@ -7,9 +7,6 @@ import { getRequestToken } from '@nextcloud/auth'
 import DavClient from '@nextcloud/cdav-library'
 import { generateRemoteUrl } from '@nextcloud/router'
 
-/**
- *
- */
 function xhrProvider() {
 	const headers = {
 		'X-Requested-With': 'XMLHttpRequest',
