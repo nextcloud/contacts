@@ -38,7 +38,7 @@ class CompositeSocialProvider {
 	/**
 	 * returns an array of supported social providers
 	 *
-	 * @returns String[] array of the supported social networks
+	 * @return string[] array of the supported social networks
 	 */
 	public function getSupportedNetworks() : array {
 		return array_keys($this->providers);

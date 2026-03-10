@@ -17,7 +17,7 @@ class GravatarProvider implements ISocialProvider {
 	/**
 	 * Returns if this provider supports this contact
 	 *
-	 * @param {array} contact info
+	 * @param array $contact contact info
 	 *
 	 * @return bool
 	 */
@@ -33,7 +33,7 @@ class GravatarProvider implements ISocialProvider {
 	/**
 	 * Returns the profile-picture url
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
 	 *
 	 * @return array
 	 */

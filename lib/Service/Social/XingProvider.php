@@ -24,7 +24,7 @@ class XingProvider implements ISocialProvider {
 	/**
 	 * Returns if this provider supports this contact
 	 *
-	 * @param {array} contact info
+	 * @param array $contact contact info
 	 *
 	 * @return bool
 	 */
@@ -40,7 +40,7 @@ class XingProvider implements ISocialProvider {
 	/**
 	 * Returns all possible profile-picture urls
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
 	 *
 	 * @return array
 	 */
@@ -62,7 +62,7 @@ class XingProvider implements ISocialProvider {
 	/**
 	 * Returns the profile-picture url
 	 *
-	 * @param {string} profile url
+	 * @param string $profileUrl profile url
 	 *
 	 * @return string|null
 	 */
@@ -85,9 +85,9 @@ class XingProvider implements ISocialProvider {
 	/**
 	 * Returns the profile-id
 	 *
-	 * @param {string} the value from the contact's x-socialprofile
+	 * @param string $candidate the value from the contact's x-socialprofile
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	protected function cleanupId(string $candidate):?string {
 		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
@@ -104,7 +104,9 @@ class XingProvider implements ISocialProvider {
 	/**
 	 * Returns all possible profile ids for contact
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
+	 *
+	 * @return array
 	 */
 	protected function getProfileIds($contact):array {
 		$socialprofiles = $contact['X-SOCIALPROFILE'];

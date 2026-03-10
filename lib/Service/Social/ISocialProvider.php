@@ -11,7 +11,7 @@ interface ISocialProvider {
 	/**
 	 * Returns true if provider supports the contact
 	 *
-	 * @param {array} contact details
+	 * @param array $contact contact details
 	 *
 	 * @return boolean
 	 */
@@ -20,7 +20,7 @@ interface ISocialProvider {
 	/**
 	 * Returns all possible profile-picture urls
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
 	 *
 	 * @return array
 	 */
