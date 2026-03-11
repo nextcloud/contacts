@@ -1,3 +1,20 @@
+## [8.3.5](https://github.com/nextcloud/contacts/compare/v8.3.4...v8.3.5) (2026-03-11)
+
+
+### Bug Fixes
+
+* add missing await ([3bb86e3](https://github.com/nextcloud/contacts/commit/3bb86e3388bbb80eb37c5eb08434941fec3e24a2))
+* add missing translations ([9b5fe1e](https://github.com/nextcloud/contacts/commit/9b5fe1e903790429245073ab5ce83fed708783d2))
+* Decode HTML entities in team display names ([f9b88a7](https://github.com/nextcloud/contacts/commit/f9b88a74b4c3de950f2b6caf8be9c61f34b46e6b))
+* **deps:** Fix npm audit ([ec5be6a](https://github.com/nextcloud/contacts/commit/ec5be6a2d06268c64958c790aca98af3c4193bc3))
+* **deps:** Fix npm audit ([90da205](https://github.com/nextcloud/contacts/commit/90da20596060fc7d7443c965e2226d65a08117e8))
+* drop google+ ([ae43438](https://github.com/nextcloud/contacts/commit/ae43438da4cbd98bf401df3bcfe9416bb8028c47))
+* **l10n:** Update translations from Transifex ([86eb2ce](https://github.com/nextcloud/contacts/commit/86eb2ce0208c835c605ac928633cd9e467f45b2c))
+* **l10n:** Update translations from Transifex ([9a86ec8](https://github.com/nextcloud/contacts/commit/9a86ec8785439394f8d07c9756347a5309702a42))
+* **l10n:** Update translations from Transifex ([3d7a225](https://github.com/nextcloud/contacts/commit/3d7a225a1732400240e7fd8243202c1b1325d766))
+
+
+
 ## [8.3.4](https://github.com/nextcloud/contacts/compare/v8.3.3...v8.3.4) (2026-02-25)
 
 
