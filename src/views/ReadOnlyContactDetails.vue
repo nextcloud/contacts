@@ -12,8 +12,8 @@
 		<NcEmptyContent
 			v-else-if="!contact"
 			class="empty-content"
-			:name="t('mail', 'No data for this contact')"
-			:description="t('mail', 'No data for this contact on their profile')">
+			:name="t('contacts', 'No data for this contact')"
+			:description="t('contacts', 'No data for this contact on their profile')">
 			<template #icon>
 				<IconContact :size="20" />
 			</template>
@@ -194,7 +194,7 @@ export default {
 		 */
 		groupsModel() {
 			return {
-				readableName: t('mail', 'Contact groups'),
+				readableName: t('contacts', 'Contact groups'),
 				icon: 'icon-contacts-dark',
 			}
 		},
