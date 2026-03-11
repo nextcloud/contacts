@@ -30,7 +30,7 @@
 			<NcButton
 				:class="{ 'addressbook-sharee__utils--disabled': loading }"
 				href="#"
-				title="Delete"
+				:title="t('contacts', 'Delete')"
 				@click="deleteSharee">
 				<template #icon>
 					<IconDelete :size="20" />
