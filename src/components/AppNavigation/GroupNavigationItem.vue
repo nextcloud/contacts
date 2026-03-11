@@ -179,7 +179,7 @@ export default {
 				}
 			} catch (e) {
 				console.error(e)
-				showError('Tried to drop an invalid contact!')
+				showError(this.t('contacts', 'Tried to drop an invalid contact!'))
 			} finally {
 				event.target.closest('.group-drop-area').removeAttribute('drop-active')
 			}
