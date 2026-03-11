@@ -13,8 +13,8 @@ use OCA\Contacts\Service\GroupSharingService;
 use OCA\Contacts\Service\SocialApiService;
 use OCP\App\IAppManager;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
-use OCP\IInitialStateService;
 use OCP\IRequest;
 use OCP\IUser;
 use OCP\IUserSession;
@@ -30,7 +30,7 @@ class PageControllerTest extends TestCase {
 	/** @var IConfig|MockObject */
 	private $config;
 
-	/** @var IInitialStateService|MockObject */
+	/** @var IInitialState|MockObject */
 	private $initialStateService;
 
 	/** @var IFactory|MockObject */
@@ -55,7 +55,7 @@ class PageControllerTest extends TestCase {
 
 		$this->request = $this->createMock(IRequest::class);
 		$this->config = $this->createMock(IConfig::class);
-		$this->initialStateService = $this->createMock(IInitialStateService::class);
+		$this->initialStateService = $this->createMock(IInitialState::class);
 		$this->languageFactory = $this->createMock(IFactory::class);
 		$this->userSession = $this->createMock(IUserSession::class);
 		$this->socialApi = $this->createMock(SocialApiService::class);

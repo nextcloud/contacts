@@ -14,8 +14,8 @@ use OCA\Contacts\Service\SocialApiService;
 use OCP\App\IAppManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
-use OCP\IInitialStateService;
 use OCP\IRequest;
 use OCP\IUserSession;
 use OCP\L10N\IFactory;
@@ -26,7 +26,7 @@ class PageController extends Controller {
 	public function __construct(
 		IRequest $request,
 		private IConfig $config,
-		private IInitialStateService $initialStateService,
+		private IInitialState $initialState,
 		private IFactory $languageFactory,
 		private IUserSession $userSession,
 		private SocialApiService $socialApiService,
@@ -68,15 +68,15 @@ class PageController extends Controller {
 
 		$isTalkVersionCompatible = $this->compareVersion->isCompatible($talkVersion ? $talkVersion : '0.0.0', 2);
 
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'isGroupSharingEnabled', $isGroupSharingEnabled);
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'locales', $locales);
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'defaultProfile', $defaultProfile);
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'supportedNetworks', $supportedNetworks);
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'allowSocialSync', $syncAllowedByAdmin);
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'enableSocialSync', $bgSyncEnabledByUser);
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'isContactsInteractionEnabled', $isContactsInteractionEnabled);
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'isCirclesEnabled', $isCirclesEnabled && $isCircleVersionCompatible);
-		$this->initialStateService->provideInitialState(Application::APP_ID, 'isTalkEnabled', $isTalkEnabled && $isTalkVersionCompatible);
+		$this->initialState->provideInitialState('isGroupSharingEnabled', $isGroupSharingEnabled);
+		$this->initialState->provideInitialState('locales', $locales);
+		$this->initialState->provideInitialState('defaultProfile', $defaultProfile);
+		$this->initialState->provideInitialState('supportedNetworks', $supportedNetworks);
+		$this->initialState->provideInitialState('allowSocialSync', $syncAllowedByAdmin);
+		$this->initialState->provideInitialState('enableSocialSync', $bgSyncEnabledByUser);
+		$this->initialState->provideInitialState('isContactsInteractionEnabled', $isContactsInteractionEnabled);
+		$this->initialState->provideInitialState('isCirclesEnabled', $isCirclesEnabled && $isCircleVersionCompatible);
+		$this->initialState->provideInitialState('isTalkEnabled', $isTalkEnabled && $isTalkVersionCompatible);
 
 		Util::addStyle(Application::APP_ID, 'contacts-main');
 		Util::addScript(Application::APP_ID, 'contacts-main');

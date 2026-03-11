@@ -9,8 +9,8 @@ namespace OCA\Contacts\Settings;
 
 use OCA\Contacts\AppInfo\Application;
 use OCP\AppFramework\Http\TemplateResponse;
+use OCP\AppFramework\Services\IInitialState;
 use OCP\IConfig;
-use OCP\IInitialStateService;
 use OCP\Settings\ISettings;
 
 class AdminSettings implements ISettings {
@@ -24,7 +24,7 @@ class AdminSettings implements ISettings {
 	 */
 	public function __construct(
 		private IConfig $config,
-		private IInitialStateService $initialStateService,
+		private IInitialState $initialState,
 	) {
 		$this->appName = Application::APP_ID;
 	}
@@ -36,7 +36,7 @@ class AdminSettings implements ISettings {
 	public function getForm() {
 		foreach (Application::AVAIL_SETTINGS as $key => $default) {
 			$data = $this->config->getAppValue($this->appName, $key, $default);
-			$this->initialStateService->provideInitialState($this->appName, $key, $data);
+			$this->initialState->provideInitialState($key, $data);
 		}
 		return new TemplateResponse($this->appName, 'settings/admin');
 	}
