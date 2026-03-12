@@ -64,16 +64,6 @@ export default class Contact {
 			this.vCard.addPropertyWithValue('uid', uuid())
 		}
 
-		// if no rev set, init one
-		if (!this.vCard.hasProperty('rev')) {
-			const version = this.vCard.getFirstPropertyValue('version')
-			if (version === '4.0') {
-				this.vCard.addPropertyWithValue('rev', ICAL.Time.fromJSDate(new Date(), true))
-			}
-			if (version === '3.0') {
-				this.vCard.addPropertyWithValue('rev', ICAL.VCardTime.fromDateAndOrTimeString(new Date().toISOString(), 'date-time'))
-			}
-		}
 	}
 
 	get vCard() {
