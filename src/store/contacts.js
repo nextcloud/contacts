@@ -111,7 +111,7 @@ const mutations = {
 
 			const sortedContact = {
 				key: contact.key,
-				value: contact[state.orderKey],
+				value: extractSortValue(contact, state.orderKey),
 			}
 
 			// Not using sort, splice has far better performances
