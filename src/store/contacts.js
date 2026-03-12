@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { toRaw } from 'vue'
 import { showError } from '@nextcloud/dialogs'
 import ICAL from 'ical.js'
+import { toRaw } from 'vue'
 import Contact from '../models/contact.js'
 import validate from '../services/validate.js'
 
@@ -31,9 +31,15 @@ function sortData(a, b) {
 	const nameB = typeof b.value === 'string' ? b.value.toUpperCase() : b.value
 
 	// Push null/undefined values to the end
-	if (nameA == null && nameB == null) return a.key.localeCompare(b.key)
-	if (nameA == null) return 1
-	if (nameB == null) return -1
+	if (nameA === null && nameB === null) {
+		return a.key.localeCompare(b.key)
+	}
+	if (nameA === null) {
+		return 1
+	}
+	if (nameB === null) {
+		return -1
+	}
 
 	const score = typeof nameA === 'string'
 		? nameA.localeCompare(nameB)
@@ -43,8 +49,12 @@ function sortData(a, b) {
 
 function extractSortValue(contact, orderKey) {
 	const val = contact[orderKey]
-	if (val == null) return null
-	if (typeof val === 'string') return val
+	if (val === null || val === undefined) {
+		return null
+	}
+	if (typeof val === 'string') {
+		return val
+	}
 	// ICAL.Time / VCardTime → unix timestamp (number)
 	// toRaw() unwraps Vue Proxy before calling ical.js methods
 	try {
