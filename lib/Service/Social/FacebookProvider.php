@@ -24,7 +24,7 @@ class FacebookProvider implements ISocialProvider {
 	/**
 	 * Returns if this provider supports this contact
 	 *
-	 * @param {array} contact info
+	 * @param array $contact contact info
 	 *
 	 * @return bool
 	 */
@@ -40,7 +40,7 @@ class FacebookProvider implements ISocialProvider {
 	/**
 	 * Returns the profile-picture url
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
 	 *
 	 * @return array
 	 */
@@ -59,7 +59,7 @@ class FacebookProvider implements ISocialProvider {
 	/**
 	 * Returns the profile-id
 	 *
-	 * @param {string} the value from the contact's x-socialprofile
+	 * @param string $candidate the value from the contact's x-socialprofile
 	 *
 	 * @return string
 	 */
@@ -74,7 +74,7 @@ class FacebookProvider implements ISocialProvider {
 	/**
 	 * Returns all possible profile ids for contact
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
 	 *
 	 * @return array of string profile ids
 	 */
@@ -94,7 +94,7 @@ class FacebookProvider implements ISocialProvider {
 	/**
 	 * Returns all possible profile ids for contact
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
 	 *
 	 * @return array of string profile ids
 	 */
@@ -113,7 +113,7 @@ class FacebookProvider implements ISocialProvider {
 	 * Fallback: return profile name
 	 * (will give oauth error from facebook except if profile is public)
 	 *
-	 * @param {string} profileName the user's profile name
+	 * @param string $profileName the user's profile name
 	 *
 	 * @return string
 	 */

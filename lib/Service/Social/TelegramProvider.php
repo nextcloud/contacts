@@ -31,7 +31,7 @@ class TelegramProvider implements ISocialProvider {
 	/**
 	 * Returns if this provider supports this contact
 	 *
-	 * @param {array} contact info
+	 * @param array $contact contact info
 	 *
 	 * @return bool
 	 */
@@ -47,7 +47,7 @@ class TelegramProvider implements ISocialProvider {
 	/**
 	 * Returns the profile-picture url
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
 	 *
 	 * @return array
 	 */
@@ -67,7 +67,7 @@ class TelegramProvider implements ISocialProvider {
 	/**
 	 * Returns the profile-id
 	 *
-	 * @param {string} the value from the contact's x-socialprofile
+	 * @param string $candidate the value from the contact's x-socialprofile
 	 *
 	 * @return string
 	 */
@@ -82,7 +82,7 @@ class TelegramProvider implements ISocialProvider {
 	/**
 	 * Returns all possible profile ids for contact
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
 	 *
 	 * @return array of string profile ids
 	 */
@@ -102,10 +102,10 @@ class TelegramProvider implements ISocialProvider {
 	/**
 	 * extracts desired value from an html page
 	 *
-	 * @param {string} url the target from where to fetch the content
-	 * @param {String} the desired catchword to filter for
+	 * @param string $url the target from where to fetch the content
+	 * @param string $desired the desired catchword to filter for
 	 *
-	 * @returns {String} the extracted value (first match) or null if not present
+	 * @return string|null the extracted value (first match) or null if not present
 	 */
 	protected function getFromHtml(string $url, string $desired) : ?string {
 		try {

@@ -31,7 +31,7 @@ class InstagramProvider implements ISocialProvider {
 	/**
 	 * Returns if this provider supports this contact
 	 *
-	 * @param {array} contact info
+	 * @param array $contact contact info
 	 *
 	 * @return bool
 	 */
@@ -47,7 +47,7 @@ class InstagramProvider implements ISocialProvider {
 	/**
 	 * Returns the profile-picture url
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
 	 *
 	 * @return array
 	 */
@@ -67,7 +67,7 @@ class InstagramProvider implements ISocialProvider {
 	/**
 	 * Returns the profile-id
 	 *
-	 * @param {string} the value from the contact's x-socialprofile
+	 * @param string $candidate the value from the contact's x-socialprofile
 	 *
 	 * @return string
 	 */
@@ -79,7 +79,7 @@ class InstagramProvider implements ISocialProvider {
 	/**
 	 * Returns all possible profile urls for contact
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
 	 *
 	 * @return array of string profile urls
 	 */
@@ -99,7 +99,7 @@ class InstagramProvider implements ISocialProvider {
 	/**
 	 * Returns all possible profile ids for contact
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
 	 *
 	 * @return array of string profile ids
 	 */
@@ -115,10 +115,10 @@ class InstagramProvider implements ISocialProvider {
 	/**
 	 * extracts desired value from a json
 	 *
-	 * @param {string} url the target from where to fetch the json
-	 * @param {String} the desired key to filter for (nesting possible with '->')
+	 * @param string $url the target from where to fetch the json
+	 * @param string $desired the desired key to filter for (nesting possible with '->')
 	 *
-	 * @returns {String} the extracted value or null if not present
+	 * @return string|null the extracted value or null if not present
 	 */
 	protected function getFromJson(string $url, string $desired) : ?string {
 		try {

@@ -34,10 +34,10 @@ class SocialApiController extends ApiController {
 	/**
 	 * update appconfig (admin setting)
 	 *
-	 * @param {String} key the identifier to change
-	 * @param {String} allow the value to set
+	 * @param string $key the identifier to change
+	 * @param string $allow the value to set
 	 *
-	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
+	 * @return JSONResponse an empty JSONResponse with respective http status code
 	 */
 	public function setAppConfig($key, $allow) {
 		$permittedKeys = ['allowSocialSync'];
@@ -53,10 +53,10 @@ class SocialApiController extends ApiController {
 	 *
 	 * update appconfig (user setting)
 	 *
-	 * @param {String} key the identifier to change
-	 * @param {String} allow the value to set
+	 * @param string $key the identifier to change
+	 * @param string $allow the value to set
 	 *
-	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
+	 * @return JSONResponse an empty JSONResponse with respective http status code
 	 */
 	public function setUserConfig($key, $allow) {
 		$user = $this->userSession->getUser();
@@ -74,9 +74,9 @@ class SocialApiController extends ApiController {
 	 *
 	 * retrieve appconfig (user setting)
 	 *
-	 * @param {String} key the identifier to retrieve
+	 * @param string $key the identifier to retrieve
 	 *
-	 * @returns {string} the desired value or null if not existing
+	 * @return string|null the desired value or null if not existing
 	 */
 	public function getUserConfig($key) {
 		$user = $this->userSession->getUser();
@@ -93,7 +93,7 @@ class SocialApiController extends ApiController {
 	 *
 	 * returns an array of supported social networks
 	 *
-	 * @returns {array} array of the supported social networks
+	 * @return array array of the supported social networks
 	 */
 	public function getSupportedNetworks() : array {
 		return $this->socialApiService->getSupportedNetworks();
@@ -105,11 +105,11 @@ class SocialApiController extends ApiController {
 	 *
 	 * Retrieves social profile data for a contact and updates the entry
 	 *
-	 * @param {String} addressbookId the addressbook identifier
-	 * @param {String} contactId the contact identifier
-	 * @param {String} network the social network to use (if unkown: take first match)
+	 * @param string $addressbookId the addressbook identifier
+	 * @param string $contactId the contact identifier
+	 * @param string $network the social network to use (if unknown: take first match)
 	 *
-	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
+	 * @return JSONResponse an empty JSONResponse with respective http status code
 	 */
 	public function updateContact(string $addressbookId, string $contactId, string $network) : JSONResponse {
 		return $this->socialApiService->updateContact($addressbookId, $contactId, $network);

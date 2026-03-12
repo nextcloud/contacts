@@ -65,9 +65,9 @@ class SocialApiService {
 	/**
 	 * Adds/updates photo for contact
 	 *
-	 * @param {pointer} contact reference to the contact to update
-	 * @param {string} imageType the image type of the photo
-	 * @param {string} photo the photo as base64 string
+	 * @param array $contact reference to the contact to update
+	 * @param string $imageType the image type of the photo
+	 * @param string $photo the photo as base64 string
 	 */
 	protected function addPhoto(array &$contact, string $imageType, string $photo) {
 		$version = $contact['VERSION'];
@@ -93,10 +93,10 @@ class SocialApiService {
 	/**
 	 * Gets the addressbook of an addressbookId
 	 *
-	 * @param {String} addressbookId the identifier of the addressbook
-	 * @param {IManager} manager optional a ContactManager to use
+	 * @param string $addressbookId the identifier of the addressbook
+	 * @param IManager|null $manager optional a ContactManager to use
 	 *
-	 * @returns {IAddressBook} the corresponding addressbook or null
+	 * @return IAddressBook|null the corresponding addressbook or null
 	 */
 	protected function getAddressBook(string $addressbookId, ?IManager $manager = null) : ?IAddressBook {
 		$addressBook = null;
@@ -116,8 +116,8 @@ class SocialApiService {
 	/**
 	 * Retrieves and initiates all addressbooks from a user
 	 *
-	 * @param {string} userId the user to query
-	 * @param {IManager} the contact manager to load
+	 * @param string $userId the user to query
+	 * @param IManager $manager the contact manager to load
 	 */
 	protected function registerAddressbooks($userId, IManager $manager) {
 		$coma = $this->serverContainer->get(ContactsManager::class);
@@ -128,11 +128,11 @@ class SocialApiService {
 	/**
 	 * Retrieves social profile data for a contact and updates the entry
 	 *
-	 * @param {String} addressbookId the addressbook identifier
-	 * @param {String} contactId the contact identifier
-	 * @param {String} network the social network to use (if unkown: take first match)
+	 * @param string $addressbookId the addressbook identifier
+	 * @param string $contactId the contact identifier
+	 * @param string|null $network the social network to use (if unknown: take first match)
 	 *
-	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
+	 * @return JSONResponse an empty JSONResponse with respective http status code
 	 */
 	public function updateContact(string $addressbookId, string $contactId, ?string $network) : JSONResponse {
 		$socialdata = null;
@@ -228,10 +228,10 @@ class SocialApiService {
 	/**
 	 * checks an addressbook is existing
 	 *
-	 * @param {string} searchBookId the UID of the addressbook to verify
-	 * @param {string} userId the user that should have access
+	 * @param string $searchBookId the UID of the addressbook to verify
+	 * @param string $userId the user that should have access
 	 *
-	 * @returns {bool} true if the addressbook exists
+	 * @return bool true if the addressbook exists
 	 */
 	public function existsAddressBook(string $searchBookId, string $userId): bool {
 		$manager = $this->manager;
@@ -243,11 +243,11 @@ class SocialApiService {
 	/**
 	 * checks a contact exists in an addressbook
 	 *
-	 * @param string searchContactId the UID of the contact to verify
-	 * @param string searchBookId the UID of the addressbook to look in
-	 * @param string userId the user that should have access
+	 * @param string $searchContactId the UID of the contact to verify
+	 * @param string $searchBookId the UID of the addressbook to look in
+	 * @param string $userId the user that should have access
 	 *
-	 * @returns bool true if the contact exists
+	 * @return bool true if the contact exists
 	 */
 	public function existsContact(string $searchContactId, string $searchBookId, string $userId): bool {
 		// load address books for the user
@@ -267,11 +267,11 @@ class SocialApiService {
 	 * Stores the result of social avatar updates for each contact
 	 * (used during batch updates in updateAddressbooks)
 	 *
-	 * @param {array} report where the results are added
-	 * @param {String} entry the element to add
-	 * @param {int} status the (http) status code
+	 * @param array $report where the results are added
+	 * @param string $entry the element to add
+	 * @param int $status the (http) status code
 	 *
-	 * @returns {array} the report including the new entry
+	 * @return array the report including the new entry
 	 */
 	protected function registerUpdateResult(array $report, string $entry, int $status) : array {
 		// initialize report on first call
@@ -302,10 +302,10 @@ class SocialApiService {
 	/**
 	 * sorts an array of address books
 	 *
-	 * @param {IAddressBook} a
-	 * @param {IAddressBook} b
+	 * @param IAddressBook $a
+	 * @param IAddressBook $b
 	 *
-	 * @returns {bool} comparison by URI
+	 * @return int comparison by URI
 	 */
 	protected function sortAddressBooks(IAddressBook $a, IAddressBook $b) {
 		return strcmp($a->getURI(), $b->getURI());
@@ -314,10 +314,10 @@ class SocialApiService {
 	/**
 	 * sorts an array of contacts
 	 *
-	 * @param {array} a
-	 * @param {array} b
+	 * @param array $a
+	 * @param array $b
 	 *
-	 * @returns {bool} comparison by UID
+	 * @return int comparison by UID
 	 */
 	protected function sortContacts(array $a, array $b) {
 		return strcmp($a['UID'], $b['UID']);
@@ -326,10 +326,12 @@ class SocialApiService {
 	/**
 	 * Updates social profile data for all contacts of an addressbook
 	 *
-	 * @param {String|null} network the social network to use (take first match if unset)
-	 * @param {String} userId the address book owner
+	 * @param string $userId the address book owner
+	 * @param string|null $offsetBook the addressbook to resume from
+	 * @param string|null $offsetContact the contact to resume from
+	 * @param string|null $network the social network to use (take first match if unset)
 	 *
-	 * @returns {JSONResponse} JSONResponse with the list of changed and failed contacts
+	 * @return JSONResponse JSONResponse with the list of changed and failed contacts
 	 */
 	public function updateAddressbooks(string $userId, ?string $offsetBook = null, ?string $offsetContact = null, ?string $network = null) : JSONResponse {
 		// double check!

@@ -24,7 +24,7 @@ class MastodonProvider implements ISocialProvider {
 	/**
 	 * Returns if this provider supports this contact
 	 *
-	 * @param {array} contact info
+	 * @param array $contact contact info
 	 *
 	 * @return bool
 	 */
@@ -40,7 +40,7 @@ class MastodonProvider implements ISocialProvider {
 	/**
 	 * Returns all possible profile-picture urls
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
 	 *
 	 * @return array
 	 */
@@ -60,7 +60,7 @@ class MastodonProvider implements ISocialProvider {
 	/**
 	 * Returns the profile-picture url
 	 *
-	 * @param {array} contact information
+	 * @param string $profileUrl profile URL
 	 *
 	 * @return string|null
 	 */
@@ -77,7 +77,7 @@ class MastodonProvider implements ISocialProvider {
 	/**
 	 * Returns all possible profile URI for contact by searching the mastodon instance
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
 	 *
 	 * @return array of possible profileIds
 	 */
@@ -116,9 +116,9 @@ class MastodonProvider implements ISocialProvider {
 	/**
 	 * Returns the profile-id
 	 *
-	 * @param {string} the value from the contact's x-socialprofile
+	 * @param string $candidate the value from the contact's x-socialprofile
 	 *
-	 * @return array username and server instance
+	 * @return array|null username and server instance
 	 */
 	protected function cleanupId(string $candidate):?array {
 		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);

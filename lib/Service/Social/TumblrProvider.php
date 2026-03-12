@@ -17,7 +17,7 @@ class TumblrProvider implements ISocialProvider {
 	/**
 	 * Returns if this provider supports this contact
 	 *
-	 * @param {array} contact info
+	 * @param array $contact contact info
 	 *
 	 * @return bool
 	 */
@@ -33,7 +33,7 @@ class TumblrProvider implements ISocialProvider {
 	/**
 	 * Returns the profile-picture url
 	 *
-	 * @param {string} profileId the profile-id
+	 * @param string $profileId the profile-id
 	 *
 	 * @return array
 	 */
@@ -52,9 +52,9 @@ class TumblrProvider implements ISocialProvider {
 	/**
 	 * Returns the profile-id
 	 *
-	 * @param {string} the value from the contact's x-socialprofile
+	 * @param string $candidate the value from the contact's x-socialprofile
 	 *
-	 * @return string
+	 * @return string|null
 	 */
 	protected function cleanupId(string $candidate):?string {
 		$candidate = preg_replace('/^' . preg_quote('x-apple:', '/') . '/', '', $candidate);
@@ -68,7 +68,7 @@ class TumblrProvider implements ISocialProvider {
 	/**
 	 * Returns all possible profile ids for contact
 	 *
-	 * @param {array} contact information
+	 * @param array $contact contact information
 	 *
 	 * @return array of string profile ids
 	 */
