@@ -64,9 +64,12 @@ function extractRevTimestamp(contact) {
 		}
 		if (/T\d{6}/.test(s)) {
 			s = s.replace(/T(\d{2})(\d{2})(\d{2})/, 'T$1:$2:$3')
+		} else if (/T\d{4}[Z+-]/.test(s)) {
+			// Basic time without seconds: "T1925Z" → "T19:25:00Z"
+			s = s.replace(/T(\d{2})(\d{2})([Z+-])/, 'T$1:$2:00$3')
 		}
-		// Fix missing seconds: "T19:25:Z" → "T19:25:00Z"
-		s = s.replace(/:Z$/, ':00Z')
+		// Fix missing seconds: "T19:25:Z" or "T19:25Z" → "T19:25:00Z"
+		s = s.replace(/T(\d{2}:\d{2}):?Z$/, 'T$1:00Z')
 		const ts = Date.parse(s)
 		return isNaN(ts) ? null : Math.floor(ts / 1000)
 	} catch {
@@ -184,19 +187,23 @@ const mutations = {
 	 * @param {object} state the store data
 	 * @param {Contact} contact the contact to update
 	 */
-	updateContact(state, contact) {
+	updateContact(state, payload) {
+		const contact = payload instanceof Contact ? payload : payload.contact
+		const skipSort = payload instanceof Contact ? false : (payload.skipSort ?? false)
 		if (state.contacts[contact.key] && contact instanceof Contact) {
 			// replace contact object data
 			state.contacts[contact.key].updateContact(contact.jCal)
-			const sortedContact = state.sortedContacts.find((search) => search.key === contact.key)
+			if (!skipSort) {
+				const sortedContact = state.sortedContacts.find((search) => search.key === contact.key)
 
-			// has the sort key changed for this contact ?
-			const newValue = extractSortValue(contact, state.orderKey)
-			if (sortedContact.value !== newValue) {
-				// then update the new data
-				sortedContact.value = newValue
-				// and then we sort again
-				state.sortedContacts.sort(sortData)
+				// has the sort key changed for this contact ?
+				const newValue = extractSortValue(contact, state.orderKey)
+				if (sortedContact.value !== newValue) {
+					// then update the new data
+					sortedContact.value = newValue
+					// and then we sort again
+					state.sortedContacts.sort(sortData)
+				}
 			}
 		} else {
 			console.error('Error while replacing the following contact', contact)
@@ -429,26 +436,9 @@ const actions = {
 		}
 		return contact.dav.fetchCompleteData(forceReFetch)
 			.then(() => {
-				let vcardData = contact.dav.data
-
-				// If server vCard has no REV, inject the existing contact's REV
-				// to prevent the constructor from generating a fake REV=NOW
-				if (!/^REV[;:]/im.test(vcardData)) {
-					const existing = context.state.contacts[contact.key]
-					if (existing) {
-						const revProp = toRaw(existing).vCard.getFirstProperty('rev')
-						if (revProp) {
-							const revLine = revProp.toICALString()
-							vcardData = vcardData.replace(
-								/(\r?\n)(END:VCARD)/i,
-								'$1' + revLine + '$1$2',
-							)
-						}
-					}
-				}
-
+				const vcardData = contact.dav.data
 				const newContact = new Contact(vcardData, contact.addressbook)
-				context.commit('updateContact', newContact)
+				context.commit('updateContact', { contact: newContact, skipSort: true })
 			})
 			.catch((error) => { throw error })
 	},
