@@ -12,12 +12,7 @@ export default {
 	silent: true,
 
 	run: (contact) => {
-		try {
-			const hasRev = contact.vCard.hasProperty('rev')
-			return !hasRev
-		} catch (error) {
-			return true
-		}
+		return false
 	},
 
 	fix: (contact) => {
