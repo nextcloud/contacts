@@ -27,20 +27,18 @@ ICAL.design.vcard3.param.type.multiValueSeparateDQuote = true
 ICAL.design.vcard.param.type.multiValueSeparateDQuote = true
 
 function sortData(a, b) {
-	const nameA = typeof a.value === 'string'
-		? a.value.toUpperCase() // ignore upper and lowercase
-		: a.value.toUnixTime() // only other sorting we support is a vCardTime
-	const nameB = typeof b.value === 'string'
-		? b.value.toUpperCase() // ignore upper and lowercase
-		: b.value.toUnixTime() // only other sorting we support is a vCardTime
+	const nameA = typeof a.value === 'string' ? a.value.toUpperCase() : a.value
+	const nameB = typeof b.value === 'string' ? b.value.toUpperCase() : b.value
 
-	const score = nameA.localeCompare
+	// Push null/undefined values to the end
+	if (nameA == null && nameB == null) return a.key.localeCompare(b.key)
+	if (nameA == null) return 1
+	if (nameB == null) return -1
+
+	const score = typeof nameA === 'string'
 		? nameA.localeCompare(nameB)
-		: nameB - nameA
-	// if equal, fallback to the key
-	return score !== 0
-		? score
-		: a.key.localeCompare(b.key)
+		: nameB - nameA // descending: newest first
+	return score !== 0 ? score : a.key.localeCompare(b.key)
 }
 
 function extractSortValue(contact, orderKey) {
