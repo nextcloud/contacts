@@ -229,7 +229,7 @@ const mutations = {
 		state.sortedContacts = Object.values(state.contacts)
 			// exclude groups
 			.filter((contact) => contact.kind !== 'group')
-			.map((contact) => { return { key: contact.key, value: contact[state.orderKey] } })
+			.map((contact) => { return { key: contact.key, value: extractSortValue(contact, state.orderKey) } })
 			.sort(sortData)
 	},
 
