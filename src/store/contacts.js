@@ -151,10 +151,10 @@ const mutations = {
 			const sortedContact = state.sortedContacts.find((search) => search.key === contact.key)
 
 			// has the sort key changed for this contact ?
-			const hasChanged = sortedContact.value !== contact[state.orderKey]
-			if (hasChanged) {
+			const newValue = extractSortValue(contact, state.orderKey)
+			if (sortedContact.value !== newValue) {
 				// then update the new data
-				sortedContact.value = contact[state.orderKey]
+				sortedContact.value = newValue
 				// and then we sort again
 				state.sortedContacts.sort(sortData)
 			}
