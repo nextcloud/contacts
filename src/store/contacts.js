@@ -3,6 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { toRaw } from 'vue'
 import { showError } from '@nextcloud/dialogs'
 import ICAL from 'ical.js'
 import Contact from '../models/contact.js'
@@ -40,6 +41,19 @@ function sortData(a, b) {
 	return score !== 0
 		? score
 		: a.key.localeCompare(b.key)
+}
+
+function extractSortValue(contact, orderKey) {
+	const val = contact[orderKey]
+	if (val == null) return null
+	if (typeof val === 'string') return val
+	// ICAL.Time / VCardTime → unix timestamp (number)
+	// toRaw() unwraps Vue Proxy before calling ical.js methods
+	try {
+		return toRaw(val).toUnixTime()
+	} catch {
+		return null
+	}
 }
 
 const state = {
