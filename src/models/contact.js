@@ -63,7 +63,6 @@ export default class Contact {
 			console.info('This contact did not have a proper uid. Setting a new one for ', this)
 			this.vCard.addPropertyWithValue('uid', uuid())
 		}
-
 	}
 
 	get vCard() {
