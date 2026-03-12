@@ -389,7 +389,25 @@ const actions = {
 		}
 		return contact.dav.fetchCompleteData(forceReFetch)
 			.then(() => {
-				const newContact = new Contact(contact.dav.data, contact.addressbook)
+				let vcardData = contact.dav.data
+
+				// If server vCard has no REV, inject the existing contact's REV
+				// to prevent the constructor from generating a fake REV=NOW
+				if (!/^REV[;:]/im.test(vcardData)) {
+					const existing = context.state.contacts[contact.key]
+					if (existing) {
+						const revProp = toRaw(existing).vCard.getFirstProperty('rev')
+						if (revProp) {
+							const revLine = revProp.toICALString()
+							vcardData = vcardData.replace(
+								/(\r?\n)(END:VCARD)/i,
+								'$1' + revLine + '$1$2',
+							)
+						}
+					}
+				}
+
+				const newContact = new Contact(vcardData, contact.addressbook)
 				context.commit('updateContact', newContact)
 			})
 			.catch((error) => { throw error })
