@@ -178,7 +178,11 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get rev() {
-		return this.vCard.getFirstPropertyValue('rev')
+		try {
+			return this.vCard.getFirstPropertyValue('rev')
+		} catch {
+			return null
+		}
 	}
 
 	/**
