@@ -32,6 +32,7 @@ OC.L10N.register(
     "Update avatars from social media" : "從社群媒體更新大頭照",
     "Refreshed once per week" : "每週重新整理一次",
     "Address books" : "通訊錄",
+    "Tried to drop an invalid contact!" : "嘗試丟棄無效的聯絡人",
     "Rename" : "重新命名",
     "Export" : "匯出",
     "Send email" : "傳送電子郵件",

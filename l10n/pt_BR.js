@@ -32,6 +32,7 @@ OC.L10N.register(
     "Update avatars from social media" : "Atualizar avatares pela mídia social",
     "Refreshed once per week" : "Atualizado uma vez por semana",
     "Address books" : "Catálogos de endereços",
+    "Tried to drop an invalid contact!" : "Tentou excluir um contato inválido!",
     "Rename" : "Renomear",
     "Export" : "Exportar",
     "Send email" : "Enviar e-mail",
