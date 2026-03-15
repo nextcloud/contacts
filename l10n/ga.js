@@ -32,6 +32,7 @@ OC.L10N.register(
     "Update avatars from social media" : "Íosluchtaigh avatars ó líonraí sóisialta",
     "Refreshed once per week" : "Athnuachan uair sa tseachtain",
     "Address books" : "Leabhair seoltaí",
+    "Tried to drop an invalid contact!" : "Rinneadh iarracht teagmhálaí neamhbhailí a chailleadh!",
     "Rename" : "Athainmnigh",
     "Export" : "Easpórtáil",
     "Send email" : "Seol ríomhphost",
