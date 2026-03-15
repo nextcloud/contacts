@@ -24,9 +24,19 @@
 					:close-after-click="true"
 					@click="addMemberToCircle">
 					<template #icon>
+						<AccountPlusIcon :size="20" />
+					</template>
+					{{ t('contacts', 'Add members') }}
+				</ActionButton>
+
+				<ActionButton
+					v-if="canManageTeam"
+					:close-after-click="true"
+					@click="showSettings = true">
+					<template #icon>
 						<IconCog :size="20" />
 					</template>
-					{{ t('contacts', 'Manage team') }}
+					{{ t('contacts', 'Manage settings') }}
 				</ActionButton>
 
 				<!-- copy circle link -->
@@ -76,6 +86,7 @@
 				:count="memberCount" />
 		</template>
 	</AppNavigationItem>
+	<CircleSettings v-model:open="showSettings" :circle="circle" />
 </template>
 
 <script>
@@ -88,11 +99,13 @@ import {
 	NcCounterBubble,
 } from '@nextcloud/vue'
 import AccountGroupOutline from 'vue-material-design-icons/AccountGroupOutline.vue'
+import AccountPlusIcon from 'vue-material-design-icons/AccountPlusOutline.vue'
 import AccountStar from 'vue-material-design-icons/AccountStarOutline.vue'
 import IconCog from 'vue-material-design-icons/CogOutline.vue'
 import ExitToApp from 'vue-material-design-icons/ExitToApp.vue'
 import LocationEnter from 'vue-material-design-icons/LocationEnter.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
+import CircleSettings from '../CircleDetails/CircleSettings.vue'
 import CircleActionsMixin from '../../mixins/CircleActionsMixin.js'
 import Circle from '../../models/circle.ts'
 import UserGroup from '../../models/userGroup.ts'
@@ -104,6 +117,7 @@ export default {
 		ActionButton,
 		ActionLink,
 		ActionText,
+		CircleSettings,
 		NcCounterBubble,
 		AppNavigationItem,
 		ExitToApp,
@@ -112,6 +126,7 @@ export default {
 		LocationEnter,
 		AccountStar,
 		AccountGroupOutline,
+		AccountPlusIcon,
 		IconLoading,
 	},
 
@@ -124,7 +139,17 @@ export default {
 		},
 	},
 
+	data() {
+		return {
+			showSettings: false,
+		}
+	},
+
 	computed: {
+		canManageTeam() {
+			return (this.circle.isOwner || this.circle.isAdmin) && !this.circle.isPersonal
+		},
+
 		memberCount() {
 			return this.circle.populationInherited || 0
 		},

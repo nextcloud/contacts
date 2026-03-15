@@ -5,7 +5,7 @@
 
 <template>
 	<div class="circle-details-container">
-		<div class="circle-details-grid" :class="{ 'is-editing': isEditing }">
+		<div class="circle-details-grid">
 			<div class="circle-details__header-wrapper">
 				<div class="circle-details-grid__avatar">
 					<Avatar
@@ -16,78 +16,38 @@
 				</div>
 				<div class="circle-details__header">
 					<div class="circle-name-wrapper">
-						<h2 v-if="!isEditing" class="circle-name">
+						<h2 class="circle-name">
 							<span :title="circle.displayName">{{ circle.displayName }}</span>
-							<NcLoadingIcon v-if="loadingName" :size="24" />
 						</h2>
-						<NcTextField
-							v-else
-							v-model="circle.displayName"
-							:placeholder="t('contacts', 'Team name')"
-							label="Team name" />
 					</div>
-					<div v-if="!isEditing" class="subtitle">
+					<div class="subtitle">
 						<span>{{ t('files', 'Team owner') }}</span> <UserBubble
 							:user="circle.owner.userId"
 							:display-name="circle.isOwner ? 'you' : circle.owner.displayName" />
 					</div>
 					<div v-if="showDescription" class="circle-description-wrapper">
-						<div v-if="!isEditing" class="circle-description">
+						<div class="circle-description">
 							{{ circle.description }}
 						</div>
-						<NcTextArea
-							v-else
-							v-model="circle.description"
-							:placeholder="descriptionPlaceholder"
-							label="Description"
-							:maxlength="1024" />
 					</div>
 					<div class="actions">
-						<template v-if="!isEditing">
-							<NcButton v-if="canManageTeam" variant="primary" @click="startEditing">
-								<template #icon>
-									<PencilIcon :size="20" />
-								</template>
-								{{ t('contacts', 'Edit') }}
-							</NcButton>
-							<NcButton
-								variant="secondary"
-								:href="circleUrl"
-								@click.stop.prevent="copyToClipboard(circleUrl)">
-								<template #icon>
-									<CopyIcon :size="20" />
-								</template>
-								{{ t('contacts', 'Copy link') }}
-							</NcButton>
+						<NcButton
+							variant="secondary"
+							:href="circleUrl"
+							@click.stop.prevent="copyToClipboard(circleUrl)">
+							<template #icon>
+								<CopyIcon :size="20" />
+							</template>
+							{{ t('contacts', 'Copy link') }}
+						</NcButton>
 
-							<!-- Team settings popover -->
-							<NcPopover
-								v-if="canManageTeam"
-								:shown="isSettingsPopoverShown"
-								popup-role="dialog"
-								@update:shown="isSettingsPopoverShown = $event">
-								<template #trigger>
-									<NcButton @click="isSettingsPopoverShown = true">
-										<template #icon>
-											<CogIcon :size="20" />
-										</template>
-									</NcButton>
-								</template>
-								<CircleSettings
-									:circle="circle"
-									@leave="onLeave"
-									@delete="onDelete"
-									@close-settings-popover="onCloseSettingsPopover" />
-							</NcPopover>
-						</template>
-						<template v-else>
-							<NcButton variant="secondary" @click="cancelEditing">
-								{{ t('contacts', 'Cancel') }}
-							</NcButton>
-							<NcButton variant="primary" @click="saveChanges">
-								{{ t('contacts', 'Save') }}
-							</NcButton>
-						</template>
+						<!-- Team settings modal -->
+						<NcButton v-if="canManageTeam" @click="showSettings = true">
+							<template #icon>
+								<CogIcon :size="20" />
+							</template>
+						</NcButton>
+
 						<NcButton
 							v-if="!circle.isPendingMember && !circle.isMember && circle.canJoin"
 							:disabled="loadingJoin"
@@ -111,6 +71,8 @@
 							{{ t('contacts', 'Leave team') }}
 						</NcButton>
 					</div>
+
+					<CircleSettings v-model:open="showSettings" :circle="circle" />
 
 					<!-- Team resource creation shortcuts -->
 					<div v-if="circle.isMember" class="resource-shortcuts">
@@ -230,9 +192,6 @@ import {
 	NcButton,
 	NcEmptyContent,
 	NcLoadingIcon,
-	NcPopover,
-	NcTextArea,
-	NcTextField,
 	NcUserBubble as UserBubble,
 } from '@nextcloud/vue'
 import { useElementSize } from '@vueuse/core'
@@ -249,14 +208,12 @@ import FolderIcon from 'vue-material-design-icons/FolderOutline.vue'
 import LoginIcon from 'vue-material-design-icons/Login.vue'
 import LogoutIcon from 'vue-material-design-icons/Logout.vue'
 import MessageIcon from 'vue-material-design-icons/MessageOutline.vue'
-import PencilIcon from 'vue-material-design-icons/PencilOutline.vue'
 import ViewDashboardIcon from 'vue-material-design-icons/ViewDashboard.vue'
 import CircleSettings from './CircleDetails/CircleSettings.vue'
 import ContentHeading from './CircleDetails/ContentHeading.vue'
 import TeamResourceButton from './CircleDetails/TeamResourceButton.vue'
 import MemberList from './MemberList/MemberList.vue'
 import CircleActionsMixin from '../mixins/CircleActionsMixin.js'
-import { CircleEdit, editCircle } from '../services/circles.ts'
 
 export default {
 	name: 'CircleDetails',
@@ -278,11 +235,7 @@ export default {
 		TeamResourceButton,
 		NcEmptyContent,
 		NcLoadingIcon,
-		NcPopover,
-		PencilIcon,
 		UserBubble,
-		NcTextField,
-		NcTextArea,
 		NcActions,
 		NcActionButton,
 		FolderIcon,
@@ -304,18 +257,13 @@ export default {
 	data() {
 		return {
 			active: false,
-			isEditing: false,
 			showMembersModal: false,
 			loading: false,
 			loadingJoin: false,
 			loadingLeave: false,
-			loadingName: false,
-			loadingDescription: false,
-			isSettingsPopoverShown: false,
+			showSettings: false,
 
 			resources: [],
-			originalDisplayName: '',
-			originalDescription: '',
 
 			// Resource creation
 			activePopover: null,
@@ -328,13 +276,6 @@ export default {
 	},
 
 	computed: {
-		descriptionPlaceholder() {
-			if (this.circle.description.trim() === '') {
-				return t('contacts', 'There is no description for this team')
-			}
-			return t('contacts', 'Enter a description for the team')
-		},
-
 		isEmptyDescription() {
 			return this.circle.description.trim() === ''
 		},
@@ -647,32 +588,6 @@ export default {
 			}
 		},
 
-		onLeave() {
-			this.isSettingsPopoverShown = false
-			this.confirmLeaveCircle()
-		},
-
-		onDelete() {
-			this.isSettingsPopoverShown = false
-			this.confirmDeleteCircle()
-		},
-
-		onCloseSettingsPopover() {
-			this.isSettingsPopoverShown = false
-		},
-
-		startEditing() {
-			this.originalDisplayName = this.circle.displayName
-			this.originalDescription = this.circle.description
-			this.isEditing = true
-		},
-
-		cancelEditing() {
-			this.circle.displayName = this.originalDisplayName
-			this.circle.description = this.originalDescription
-			this.isEditing = false
-		},
-
 		async fetchTeamResources() {
 			const response = await axios.get(generateOcsUrl(`/teams/${this.circle.id}/resources`))
 			this.resources = response.data.ocs.data.resources
@@ -691,51 +606,6 @@ export default {
 			callback([])
 		},
 
-		async saveChanges() {
-			const errors = []
-
-			// Save name and description sequentially to avoid race conditions
-			// Save name if changed
-			if (this.circle.displayName !== this.originalDisplayName) {
-				this.loadingName = true
-				try {
-					await editCircle(this.circle.id, CircleEdit.Name, this.circle.displayName)
-					this.originalDisplayName = this.circle.displayName
-				} catch (error) {
-					console.error('Unable to edit name', this.circle.displayName, error)
-					errors.push('name')
-					this.circle.displayName = this.originalDisplayName
-				} finally {
-					this.loadingName = false
-				}
-			}
-
-			// Save description if changed
-			if (this.circle.description !== this.originalDescription) {
-				this.loadingDescription = true
-				try {
-					await editCircle(this.circle.id, CircleEdit.Description, this.circle.description)
-					this.originalDescription = this.circle.description
-				} catch (error) {
-					console.error('Unable to edit team description', this.circle.description, error)
-					errors.push('description')
-					this.circle.description = this.originalDescription
-				} finally {
-					this.loadingDescription = false
-				}
-			}
-
-			// Show error if any saves failed
-			if (errors.length > 0) {
-				const errorFields = errors.join(' and ')
-				showError(t('contacts', 'An error happened while saving {fields}', { fields: errorFields }))
-				return
-			}
-
-			// Only exit editing mode if all saves succeeded
-			this.isEditing = false
-		},
-
 		openCalendarApp() {
 			window.open(generateUrl('/apps/calendar/'), '_blank')
 			this.showCalendarSuccessNotification = false
@@ -749,6 +619,11 @@ export default {
 	padding-inline: 20px;
 	margin-top: 1rem;
 
+	@media (max-width: 1024px) {
+		// Push content below the sidebar navigation toggle button
+		margin-top: calc(var(--default-clickable-area) + 1rem);
+	}
+
 	.circle-details-grid {
 		display: grid;
 		grid-template-columns: 1fr;
@@ -756,24 +631,23 @@ export default {
 		max-width: 800px;
 		margin-inline: auto;
 
-		&.is-editing {
-			.circle-name-wrapper,
-			.circle-description-wrapper {
-				width: 100%;
-			}
-		}
-
 		.circle-details__header-wrapper {
 			display: grid;
 			grid-template-columns: auto 1fr;
 			align-items: center;
 			gap: 24px;
+
+			@media (max-width: 1024px) {
+				.circle-details-grid__avatar {
+					display: none;
+				}
+			}
 		}
 
 		.circle-details__main-content {
 			margin-inline-start: 99px;
 
-			@media (max-width: 768px) {
+			@media (max-width: 1024px) {
 				margin-inline-start: 0;
 			}
 		}
@@ -805,6 +679,7 @@ export default {
 		.actions {
 			display: flex;
 			gap: 8px;
+			flex-wrap: wrap;
 		}
 	}
 
@@ -902,6 +777,11 @@ export default {
 			gap: calc(var(--default-grid-baseline) * 2);
 			align-items: center;
 			overflow-x: auto;
+
+			@media (max-width: 1024px) {
+				flex-wrap: wrap;
+				overflow-x: visible;
+			}
 		}
 	}
 

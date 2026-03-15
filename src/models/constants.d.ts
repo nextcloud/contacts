@@ -26,7 +26,7 @@ export declare const CIRCLES_MEMBER_LEVELS: {
 }
 export declare const PUBLIC_CIRCLE_CONFIG: {
 	[x: string]: {
-		[x: number]: string
+		[x: number]: string | { label: string, description?: string }
 	}
 }
 export declare const CIRCLES_MEMBER_GROUPING: {

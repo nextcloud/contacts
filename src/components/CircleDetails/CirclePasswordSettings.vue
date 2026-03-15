@@ -10,6 +10,7 @@
 					:model-value="enforcePasswordProtection"
 					:loading="loading.includes(ENFORCE_PASSWORD_PROTECTION)"
 					:disabled="loading.length > 0"
+					type="switch"
 					wrapper-element="li"
 					@update:model-value="changePasswordProtection">
 					{{ t('contacts', 'Enforce password protection on files shared to this team') }}
@@ -20,6 +21,7 @@
 					:model-value="useUniquePassword || showUniquePasswordInput"
 					:loading="loading.includes(USE_UNIQUE_PASSWORD)"
 					:disabled="loading.length > 0"
+					type="switch"
 					wrapper-element="li"
 					@update:model-value="changeUseUniquePassword">
 					{{ t('contacts', 'Use a unique password for all shares to this team') }}
@@ -235,10 +237,6 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-ul {
-	margin-top: -12px; // Merge with privacy settings list
-}
-
 .unique-password {
 	display: flex;
 	align-items: center;
