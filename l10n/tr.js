@@ -32,6 +32,7 @@ OC.L10N.register(
     "Update avatars from social media" : "Avatarlar sosyal ağ üzerinden güncellensin",
     "Refreshed once per week" : "Haftada bir yenilenir",
     "Address books" : "Adres defterleri",
+    "Tried to drop an invalid contact!" : "Geçersiz bir kişi kaldırılmaya çalışıldı!",
     "Rename" : "Yeniden adlandır",
     "Export" : "Dışa aktar",
     "Send email" : "E-posta gönder",
