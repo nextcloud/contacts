@@ -32,6 +32,7 @@ OC.L10N.register(
     "Update avatars from social media" : "Оновлювати аватарки з соціальних мереж",
     "Refreshed once per week" : "Оновлюється щотижня",
     "Address books" : "Адресні книги",
+    "Tried to drop an invalid contact!" : "Спроба додати недійсний контакт!",
     "Rename" : "Перейменувати",
     "Export" : "Експортувати",
     "Send email" : "Надіслати лист",
