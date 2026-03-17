@@ -5,6 +5,6 @@
 		}
 	},
     "require-dev": {
-        "christophwurst/nextcloud_testing": "^1.1.1"
+        "christophwurst/nextcloud_testing": "^1.1.3"
     }
 }
