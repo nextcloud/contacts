@@ -12,6 +12,9 @@
 			<h3 v-if="mode === 'move'">
 				{{ t('contacts', 'Move contacts to addressbook') }}
 			</h3>
+			<h3 v-if="mode === 'removeFromGroup'">
+				{{ t('contacts', 'Remove contacts from group {groupName}', { groupName }) }}
+			</h3>
 		</div>
 
 		<!-- Group selector for group mode -->
@@ -35,6 +38,9 @@
 		</NcNoteCard>
 		<NcNoteCard v-if="mode === 'move' && canDeleteCount !== contacts.length" type="info">
 			{{ t('contacts', 'Please note that only {count} of the {total} contacts can be moved', { count: canDeleteCount, total: contacts.length }) }}
+		</NcNoteCard>
+		<NcNoteCard v-if="mode === 'removeFromGroup' && canModifyCount !== contacts.length" type="info">
+			{{ t('contacts', 'Please note that only {count} of the {total} contacts can be removed from a group', { count: canModifyCount, total: contacts.length }) }}
 		</NcNoteCard>
 
 		<ul class="contacts-list">
@@ -81,18 +87,30 @@
 				</template>
 				{{ t('contacts', 'Move') }}
 			</NcButton>
+			<NcButton
+				v-if="mode === 'removeFromGroup'"
+				variant="primary"
+				@click="submit">
+				<template #icon>
+					<IconAccountMinus :size="20" />
+				</template>
+				{{ t('contacts', 'Remove') }}
+			</NcButton>
 		</div>
 	</div>
 </template>
 
 <script>
+import { showError } from '@nextcloud/dialogs'
 import { t } from '@nextcloud/l10n'
 import { NcButton, NcNoteCard, NcSelect } from '@nextcloud/vue'
+import IconAccountMinus from 'vue-material-design-icons/AccountMultipleMinusOutline.vue'
 import IconAccountPlus from 'vue-material-design-icons/AccountMultiplePlusOutline.vue'
 import IconBookArrow from 'vue-material-design-icons/BookArrowRightOutline.vue'
 import IconPlus from 'vue-material-design-icons/Plus.vue'
 import ContactsListItem from './ContactsListItem.vue'
 import appendContactToGroup from '../../services/appendContactToGroup.js'
+import removeContactFromGroup from '../../services/removeContactFromGroup.js'
 import contacts from '../../store/contacts.js'
 
 export default {
@@ -104,6 +122,7 @@ export default {
 		NcSelect,
 		IconPlus,
 		IconAccountPlus,
+		IconAccountMinus,
 		IconBookArrow,
 		NcNoteCard,
 	},
@@ -118,6 +137,12 @@ export default {
 			type: String,
 			required: false,
 			default: 'group',
+		},
+
+		groupName: {
+			type: String,
+			required: false,
+			default: null,
 		},
 	},
 
@@ -172,6 +197,10 @@ export default {
 			if (this.mode === 'move') {
 				this.moveToAddressbook()
 			}
+
+			if (this.mode === 'removeFromGroup') {
+				this.removeFromGroup()
+			}
 		},
 
 		listItemTitle(contact) {
@@ -180,6 +209,9 @@ export default {
 			}
 			if (this.mode === 'group') {
 				return contact.addressbook.canModifyCard ? '' : t('contacts', 'This contact cannot be grouped')
+			}
+			if (this.mode === 'removeFromGroup') {
+				return contact.addressbook.canModifyCard ? '' : t('contacts', 'This contact cannot be modified')
 			}
 			// shouldn't end up here
 			return ''
@@ -211,6 +243,34 @@ export default {
 						})
 				})
 			})
+
+			this.$emit('submit')
+		},
+
+		async removeFromGroup() {
+			// Remove from the current group (provided via the groupName prop)
+			const removePromises = []
+			for (const contact of this.contacts) {
+				// skip read-only contacts
+				if (!contact.addressbook.canModifyCard) {
+					continue
+				}
+				// skip if contact is not in this group
+				if (!contact.groups || !contact.groups.includes(this.groupName)) {
+					continue
+				}
+				const promise = removeContactFromGroup(contact, this.groupName)
+					.then(() => {
+						this.$store.dispatch('removeContactFromGroup', { contact, groupName: this.groupName })
+					})
+					.catch((error) => {
+						console.error(error)
+						showError(t('contacts', 'An error occurred while removing a contact from the group'))
+					})
+				removePromises.push(promise)
+			}
+
+			await Promise.all(removePromises)
 
 			this.$emit('submit')
 		},
