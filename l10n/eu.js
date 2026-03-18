@@ -194,7 +194,7 @@ OC.L10N.register(
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} kontaktuak gehitu dira {name}-ra","{success} kontaktuak gehitu dira {name}-ra"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["{success} kontaktuak {name}-ra gehitzen","{success} kontaktuak gehitu dira {name}-ra"],
     "_{count} error_::_{count} errors_" : ["{count} errorea","{count} erroreak"],
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Kontaktu %n inportatzen {addressbook}(e)ra","%n kontaktu inportaten {addressbook}(e)ra"],
+    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Kontaktu %n inportatzen {addressbook}(e)ra","%n kontaktu inportatzen {addressbook}(e)ra"],
     "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Kontaktu %n inportatu da {addressbook}(e)ra"," %n kontaktu inportatu dira {addressbook}(e)ra"],
     "Import" : "Inportatu",
     "Are you sure you want to import this contact file?" : "Ziur kontaktuen fitxategi hau inportatu nahi duzula?",
