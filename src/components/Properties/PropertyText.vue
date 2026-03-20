@@ -78,6 +78,18 @@
 					type="email"
 					@update:model-value="updateEmailValue" />
 
+				<NcTextField
+					v-else-if="propName === 'url'"
+					v-model:model-value="localValue"
+					:inputmode="inputmode"
+					:aria-label="propName"
+					:class="{ 'property__value--with-ext': haveExtHandler }"
+					:error="!isUrlValid"
+					:helper-text="!urlHelpText || isReadonly ? '' : urlHelpText"
+					type="url"
+					:placeholder="placeholder"
+					@update:model-value="updateUrlValue" />
+
 				<!-- OR default to input -->
 				<p v-else-if="isReadOnly">
 					{{ localValue }}
@@ -179,6 +191,8 @@ export default {
 		return {
 			emailHelpText: null,
 			isEmailValid: true,
+			urlHelpText: null,
+			isUrlValid: true,
 		}
 	},
 
@@ -199,7 +213,10 @@ export default {
 		},
 
 		URLScheme() {
-			if (this.propName === 'tel') {
+			// block javascript URIs
+			if (this.localValue?.trim().toLowerCase()?.startsWith('javascript:')) {
+				return false
+			} else if (this.propName === 'tel') {
 				return 'tel:'
 			} else if (this.propName === 'email') {
 				return 'mailto:'
@@ -256,6 +273,19 @@ export default {
 			}
 			this.sharedState.validEmail = false
 			this.emailHelpText = this.$refs.email.$refs.inputField.$refs.input.validationMessage || null
+		},
+
+		updateUrlValue() {
+			// Block javascript: URLs as a security measure, accept everything else
+			this.isUrlValid = !/^\s*javascript\s*:/i.test(this.localValue)
+			if (this.isUrlValid) {
+				this.urlHelpText = null
+				this.updateValue(this.localValue)
+				this.sharedState.validUrl = true
+				return
+			}
+			this.sharedState.validUrl = false
+			this.urlHelpText = t('contacts', 'JavaScript URIs are not allowed')
 		},
 
 		/**
