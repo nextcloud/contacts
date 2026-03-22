@@ -32,6 +32,7 @@ OC.L10N.register(
     "Update avatars from social media" : "Aktualizovat zástupné obrázky ze sociálních médií",
     "Refreshed once per week" : "Znovu načteno jednou týdně",
     "Address books" : "Adresáře kontaktů",
+    "Tried to drop an invalid contact!" : "Pokus o zahození neplatného kontaktu!",
     "Rename" : "Přejmenovat",
     "Export" : "Exportovat",
     "Send email" : "Odeslat e-mail",
