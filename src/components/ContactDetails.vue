@@ -548,7 +548,7 @@ export default defineComponent({
 			filesPanelHasError: false,
 			talkPanelHasError: false,
 			calendarPanelHasError: false,
-			sharedState: reactive({ validEmail: true }),
+			sharedState: reactive({ validEmail: true, validUrl: true }),
 			lastUsedAddressBook: undefined,
 		}
 	},
@@ -610,7 +610,7 @@ export default defineComponent({
 		},
 
 		isDataValid() {
-			return this.sharedState.validEmail
+			return this.sharedState.validEmail && this.sharedState.validUrl
 		},
 
 		/**
