@@ -1,3 +1,13 @@
+## [7.3.17](https://github.com/nextcloud/contacts/compare/v7.3.16...v7.3.17) (2026-03-25)
+
+
+### Bug Fixes
+
+* dont allow javascript uri as website ([3a2dc4f](https://github.com/nextcloud/contacts/commit/3a2dc4ff50f01e1cdf4f799de7b3e66a2281951a))
+* **ReadOnlyContactDetails:** remove box shadow ([9e839a9](https://github.com/nextcloud/contacts/commit/9e839a90407ce7644f0e30f19a86f875d909b575))
+
+
+
 ## [7.3.16](https://github.com/nextcloud/contacts/compare/v7.3.15...v7.3.16) (2026-02-25)
 
 
