@@ -1,3 +1,26 @@
+## [8.4.2](https://github.com/nextcloud/contacts/compare/v8.4.1...v8.4.2) (2026-03-25)
+
+
+### Bug Fixes
+
+* **deps:** Fix npm audit ([1d0d035](https://github.com/nextcloud/contacts/commit/1d0d035489a81cff1ef0a8ec8d667c15b7446293))
+* **deps:** Fix npm audit ([44bed8a](https://github.com/nextcloud/contacts/commit/44bed8a56c56b893e542bc65fd99b4e6d5db1fe9))
+* dont allow javascript uri as website ([c273ba5](https://github.com/nextcloud/contacts/commit/c273ba53c30acfca96fe505f107cd511a4179b56))
+* **l10n:** Update translations from Transifex ([a9174d2](https://github.com/nextcloud/contacts/commit/a9174d2613a48ede2036e92e2a777cd142b14053))
+* **l10n:** Update translations from Transifex ([a4d5c6a](https://github.com/nextcloud/contacts/commit/a4d5c6ab952dc27848f84dfadb163ccaa55ddb47))
+* **l10n:** Update translations from Transifex ([70d04a7](https://github.com/nextcloud/contacts/commit/70d04a78bac28667534e3d7348b29f689350d8b6))
+* **l10n:** Update translations from Transifex ([f600466](https://github.com/nextcloud/contacts/commit/f600466df34e70a4fc9fc060b6c54a6001d6a88a))
+* **l10n:** Update translations from Transifex ([268cd0c](https://github.com/nextcloud/contacts/commit/268cd0cf99c9d1cf5d1f50f8469fca9f03679538))
+* **l10n:** Update translations from Transifex ([e307ce1](https://github.com/nextcloud/contacts/commit/e307ce12cf39c684e80a34c55f786fd0974605df))
+* **l10n:** Update translations from Transifex ([5ab0050](https://github.com/nextcloud/contacts/commit/5ab0050a12125a1ec8e1e1e452b054febc077c4d))
+* **l10n:** Update translations from Transifex ([ac6e5a0](https://github.com/nextcloud/contacts/commit/ac6e5a0fef96ebe35656bf7ac2c96bc04d640121))
+* **l10n:** Update translations from Transifex ([d1b862b](https://github.com/nextcloud/contacts/commit/d1b862bfb6bfd83a9cdb8092ef73b35c57fbf30d))
+* **l10n:** Update translations from Transifex ([e70dfa5](https://github.com/nextcloud/contacts/commit/e70dfa5db4d927de399b10c4c0f0d3fa51eb13f9))
+* **l10n:** Update translations from Transifex ([bfea823](https://github.com/nextcloud/contacts/commit/bfea82335044f2f45fe03e4df2b3bfabbdeedbc7))
+* **l10n:** Update translations from Transifex ([f45ea4a](https://github.com/nextcloud/contacts/commit/f45ea4aa2d62d34e7b0834f2547357c24d39aa98))
+
+
+
 ## [8.4.1](https://github.com/nextcloud/contacts/compare/v8.4.0...v8.4.1) (2026-03-11)
 
 
