@@ -523,7 +523,7 @@ export default {
 			filesPanelHasError: false,
 			talkPanelHasError: false,
 			calendarPanelHasError: false,
-			sharedState: Vue.observable({ validEmail: true }),
+			sharedState: Vue.observable({ validEmail: true, validUrl: true }),
 
 		}
 	},
@@ -559,7 +559,7 @@ export default {
 		},
 
 		isDataValid() {
-			return this.sharedState.validEmail
+			return this.sharedState.validEmail && this.sharedState.validUrl
 		},
 
 		/**
