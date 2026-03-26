@@ -256,8 +256,7 @@ OC.L10N.register(
     "None" : "Ingen",
     "copy" : "kopiera",
     "Select option" : "Välj alternativ",
-    "note" : "anteckning",
-    "email" : "e-post",
+    "Notes" : "Anteckningar",
     "send an email" : "skicka ett mejl",
     "Personal dates" : "Personliga datum",
     "Add property of this type" : "Lägg till egenskap av denna typ",
@@ -327,7 +326,6 @@ OC.L10N.register(
     "Prefix" : "Prefix",
     "Suffix" : "Suffix",
     "Nickname" : "Smeknamn",
-    "Notes" : "Anteckningar",
     "Website" : "Webbplats",
     "Location" : "Plats",
     "Federated Cloud ID" : "Federerat Moln-ID",
@@ -388,6 +386,8 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Kan inte ta bort team {circleId}",
     "Unable to delete contact" : "Kunde inte radera kontakten",
     "Value copied to the clipboard" : "Värdet kopierat till urklipp",
-    "Could not copy value to the clipboard." : "Det gick inte att kopiera värdet till urklipp."
+    "Could not copy value to the clipboard." : "Det gick inte att kopiera värdet till urklipp.",
+    "note" : "anteckning",
+    "email" : "e-post"
 },
 "nplurals=2; plural=(n != 1);");

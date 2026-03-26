@@ -249,8 +249,7 @@ OC.L10N.register(
     "None" : "—é—É —á “Ø–≥“Ø–π",
     "copy" : "хуулах",
     "Select option" : "Сонголт сонгох",
-    "note" : "тэмдэглэл",
-    "email" : "и-мэйл",
+    "Notes" : "–¢—ç–º–¥—ç–≥–ª—ç–ª",
     "send an email" : "и-мэйл илгээх",
     "Personal dates" : "Хувийн огноонууд",
     "Add property of this type" : "Энэ төрлийн шинж чанар нэмэх",
@@ -320,7 +319,6 @@ OC.L10N.register(
     "Prefix" : "Угтвар",
     "Suffix" : "Дагавар",
     "Nickname" : "–¢–æ–≤—á –Ω—ç—Ä",
-    "Notes" : "–¢—ç–º–¥—ç–≥–ª—ç–ª",
     "Website" : "–¶–∞—Ö–∏–º —Ö—É—É–¥–∞—Å",
     "Location" : "–ë–∞–π—Ä—à–∏–ª",
     "Federated Cloud ID" : "Федераци үүлний ID",
@@ -381,6 +379,8 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "{circleId} баг устгах боломжгүй",
     "Unable to delete contact" : "Харилцагч устгах боломжгүй",
     "Value copied to the clipboard" : "Утгыг санах ойд хуулсан",
-    "Could not copy value to the clipboard." : "Утгыг санах ойд хуулах боломжгүй байна."
+    "Could not copy value to the clipboard." : "Утгыг санах ойд хуулах боломжгүй байна.",
+    "note" : "тэмдэглэл",
+    "email" : "и-мэйл"
 },
 "nplurals=2; plural=(n != 1);");

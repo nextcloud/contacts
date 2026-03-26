@@ -255,8 +255,7 @@ OC.L10N.register(
     "Add contact in group" : "Ajouter le contact dans un groupe",
     "None" : "Aucun",
     "Select option" : "Sélectionnez une option",
-    "note" : "note",
-    "email" : "email",
+    "Notes" : "Notes",
     "send an email" : "Envoyer un email",
     "Personal dates" : "Dates personnelles",
     "Add property of this type" : "Ajouter une propriété de ce type",
@@ -319,7 +318,6 @@ OC.L10N.register(
     "Prefix" : "Civilité",
     "Suffix" : "Suffixe",
     "Nickname" : "Surnom",
-    "Notes" : "Notes",
     "Website" : "Site web",
     "Location" : "Position",
     "Federated Cloud ID" : "ID de Cloud Fédéré",
@@ -378,6 +376,8 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Une erreur est survenue dans le(s) équipe(s). Vérifiez la console pour plus de détails.",
     "Unable to create team {circleName}" : "Impossible de créer l'équipe {circleName}",
     "Unable to delete team {circleId}" : "Impossible de supprimer l'équipe {circleId}",
-    "Unable to delete contact" : "Impossible de supprimer le contact."
+    "Unable to delete contact" : "Impossible de supprimer le contact.",
+    "note" : "note",
+    "email" : "email"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

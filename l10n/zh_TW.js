@@ -258,8 +258,7 @@ OC.L10N.register(
     "None" : "無",
     "copy" : "複製",
     "Select option" : "選取選項",
-    "note" : "備註",
-    "email" : "電子郵件",
+    "Notes" : "筆記",
     "send an email" : "傳送電子郵件",
     "Personal dates" : "個人日期",
     "Add property of this type" : "新增此類型的屬性",
@@ -329,7 +328,6 @@ OC.L10N.register(
     "Prefix" : "前綴",
     "Suffix" : "後綴",
     "Nickname" : "暱稱",
-    "Notes" : "筆記",
     "Website" : "網站",
     "Location" : "地點",
     "Federated Cloud ID" : "雲端聯邦 ID",
@@ -390,6 +388,8 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "無法刪除團隊 {circleId}",
     "Unable to delete contact" : "無法刪除聯絡人",
     "Value copied to the clipboard" : "值複製給剪貼簿",
-    "Could not copy value to the clipboard." : "無法複製值到剪貼簿。"
+    "Could not copy value to the clipboard." : "無法複製值到剪貼簿。",
+    "note" : "備註",
+    "email" : "電子郵件"
 },
 "nplurals=1; plural=0;");

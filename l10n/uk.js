@@ -258,8 +258,7 @@ OC.L10N.register(
     "None" : "Відсутній",
     "copy" : "копіювати",
     "Select option" : "Виберіть",
-    "note" : "примітка",
-    "email" : "ел. пошта",
+    "Notes" : "Примітки",
     "send an email" : "надіслати ел. пошту",
     "Personal dates" : "Приватні дати",
     "Add property of this type" : "Додайте властивості такого типу",
@@ -329,7 +328,6 @@ OC.L10N.register(
     "Prefix" : "Префікс",
     "Suffix" : "Суфікс",
     "Nickname" : "Прізвисько",
-    "Notes" : "Примітки",
     "Website" : "Вебсайт",
     "Location" : "Розташування",
     "Federated Cloud ID" : "Ідентифікатор хмари",
@@ -390,6 +388,8 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Не вдалося вилучити команду {circleId}",
     "Unable to delete contact" : "Неможливо вилучити контакт",
     "Value copied to the clipboard" : "Значення скопійовано до буфера обміну",
-    "Could not copy value to the clipboard." : "Не вдалося скопіювати значення до буфера обміну"
+    "Could not copy value to the clipboard." : "Не вдалося скопіювати значення до буфера обміну",
+    "note" : "примітка",
+    "email" : "ел. пошта"
 },
 "nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);");
