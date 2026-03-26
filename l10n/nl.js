@@ -233,7 +233,7 @@ OC.L10N.register(
     "Add contact in group" : "Voeg contactpersoon aan groep toe",
     "None" : "Geen",
     "Select option" : "Selecteer optie",
-    "email" : "e-mailadres",
+    "Notes" : "Notities",
     "Add property of this type" : "Voeg eigenschap van dit type toe",
     "Member" : "Lid",
     "Unable to create the contact." : "Kan contactpersoon niet aanmaken.",
@@ -274,7 +274,6 @@ OC.L10N.register(
     "Prefix" : "Voorvoegsel",
     "Suffix" : "Achtervoegsel",
     "Nickname" : "Roepnaam",
-    "Notes" : "Notities",
     "Website" : "Website",
     "Location" : "Locatie",
     "Federated Cloud ID" : "Gefedereerde Cloud ID",
@@ -327,6 +326,7 @@ OC.L10N.register(
     "Time zone" : "Tijdzone",
     "Spoken languages" : "Gesproken talen",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contactpersoon werd niet ingelezen","{failed} contactpersonen werden niet ingelezen"],
-    "Unable to delete contact" : "Kan contactpersoon niet verwijderen"
+    "Unable to delete contact" : "Kan contactpersoon niet verwijderen",
+    "email" : "e-mailadres"
 },
 "nplurals=2; plural=(n != 1);");

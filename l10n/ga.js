@@ -258,8 +258,7 @@ OC.L10N.register(
     "None" : "Dada",
     "copy" : "cóip",
     "Select option" : "Roghnaigh rogha",
-    "note" : "nóta",
-    "email" : "ríomhphost",
+    "Notes" : "Nótaí",
     "send an email" : "seol ríomhphost",
     "Personal dates" : "Dátaí pearsanta",
     "Add property of this type" : "Cuir airí den chineál seo leis",
@@ -329,7 +328,6 @@ OC.L10N.register(
     "Prefix" : "Réimír",
     "Suffix" : "Iarmhír",
     "Nickname" : "Leasainm",
-    "Notes" : "Nótaí",
     "Website" : "Suíomh Gréasáin",
     "Location" : "Suíomh",
     "Federated Cloud ID" : "ID Cloud Cónaidhme",
@@ -390,6 +388,8 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Ní féidir foireann {circleId} a scriosadh",
     "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh",
     "Value copied to the clipboard" : "Luach cóipeáilte chuig an ghearrthaisce",
-    "Could not copy value to the clipboard." : "Níorbh fhéidir luach a chóipeáil chuig an ghearrthaisce."
+    "Could not copy value to the clipboard." : "Níorbh fhéidir luach a chóipeáil chuig an ghearrthaisce.",
+    "note" : "nóta",
+    "email" : "ríomhphost"
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");

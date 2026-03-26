@@ -257,8 +257,7 @@ OC.L10N.register(
     "None" : "Ninguno",
     "copy" : "copiar",
     "Select option" : "Selecciona opción",
-    "note" : "nota",
-    "email" : "correo electrónico",
+    "Notes" : "Notas",
     "send an email" : "enviar correo electrónico",
     "Personal dates" : "Fechas personales",
     "Add property of this type" : "Añadir una propiedad de este tipo",
@@ -328,7 +327,6 @@ OC.L10N.register(
     "Prefix" : "Prefijo",
     "Suffix" : "Sufijo",
     "Nickname" : "Apodo",
-    "Notes" : "Notas",
     "Website" : "Sitio web",
     "Location" : "Ubicación",
     "Federated Cloud ID" : "ID Nube Federada",
@@ -389,6 +387,8 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "No se pudo eliminar el equipo {circleId}",
     "Unable to delete contact" : "No se ha podido eliminar el contacto",
     "Value copied to the clipboard" : "Copiado al portapapeles",
-    "Could not copy value to the clipboard." : "No se pudo copiar al portapapeles"
+    "Could not copy value to the clipboard." : "No se pudo copiar al portapapeles",
+    "note" : "nota",
+    "email" : "correo electrónico"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

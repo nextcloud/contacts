@@ -258,8 +258,7 @@ OC.L10N.register(
     "None" : "Žádné",
     "copy" : "zkopírovat",
     "Select option" : "Vybrat volbu",
-    "note" : "poznámka",
-    "email" : "e-mail",
+    "Notes" : "Poznámky",
     "send an email" : "odeslat e-mail",
     "Personal dates" : "Osobní data",
     "Add property of this type" : "Přidat vlastnost tohoto typu",
@@ -329,7 +328,6 @@ OC.L10N.register(
     "Prefix" : "Předpona",
     "Suffix" : "Přípona",
     "Nickname" : "Přezdívka",
-    "Notes" : "Poznámky",
     "Website" : "Webová stránka",
     "Location" : "Umístění",
     "Federated Cloud ID" : "Identifikátor v rámci federovaného cloudu",
@@ -390,6 +388,8 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Nedaří se smazat tým {circleId}",
     "Unable to delete contact" : "Nedaří se smazat kontakt",
     "Value copied to the clipboard" : "Hodnota zkopírována do schránky",
-    "Could not copy value to the clipboard." : "Nebylo možné zkopírovat hodnotu do schránky."
+    "Could not copy value to the clipboard." : "Nebylo možné zkopírovat hodnotu do schránky.",
+    "note" : "poznámka",
+    "email" : "e-mail"
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

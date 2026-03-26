@@ -256,8 +256,7 @@
     "None" : "None",
     "copy" : "copy",
     "Select option" : "Select option",
-    "note" : "note",
-    "email" : "email",
+    "Notes" : "Notes",
     "send an email" : "send an email",
     "Personal dates" : "Personal dates",
     "Add property of this type" : "Add property of this type",
@@ -327,7 +326,6 @@
     "Prefix" : "Prefix",
     "Suffix" : "Suffix",
     "Nickname" : "Nickname",
-    "Notes" : "Notes",
     "Website" : "Website",
     "Location" : "Location",
     "Federated Cloud ID" : "Federated Cloud ID",
@@ -388,6 +386,8 @@
     "Unable to delete team {circleId}" : "Unable to delete team {circleId}",
     "Unable to delete contact" : "Unable to delete contact",
     "Value copied to the clipboard" : "Value copied to the clipboard",
-    "Could not copy value to the clipboard." : "Could not copy value to the clipboard."
+    "Could not copy value to the clipboard." : "Could not copy value to the clipboard.",
+    "note" : "note",
+    "email" : "email"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
