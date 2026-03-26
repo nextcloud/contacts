@@ -256,8 +256,7 @@ OC.L10N.register(
     "None" : "Tidak ada",
     "copy" : "salin",
     "Select option" : "Pilih opsi",
-    "note" : "catatan",
-    "email" : "email",
+    "Notes" : "Catatan",
     "send an email" : "kirim email",
     "Personal dates" : "Tanggal pribadi",
     "Add property of this type" : "Tambahkan properti jenis ini",
@@ -320,7 +319,6 @@ OC.L10N.register(
     "Prefix" : "Prefix",
     "Suffix" : "Suffix",
     "Nickname" : "Nama panggilan",
-    "Notes" : "Catatan",
     "Website" : "Situs Web",
     "Location" : "Lokasi",
     "Federated Cloud ID" : "Federated Cloud ID",
@@ -379,6 +377,8 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Terjadi kesalahan pada tim. Periksa konsol untuk detail lebih lanjut.",
     "Unable to create team {circleName}" : "Tidak dapat membuat tim {circleName}",
     "Unable to delete team {circleId}" : "Tidak dapat menghapus tim {circleId}",
-    "Unable to delete contact" : "Tidak dapat menghapus kontak"
+    "Unable to delete contact" : "Tidak dapat menghapus kontak",
+    "note" : "catatan",
+    "email" : "email"
 },
 "nplurals=1; plural=0;");

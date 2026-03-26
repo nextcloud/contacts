@@ -258,8 +258,7 @@ OC.L10N.register(
     "None" : "None",
     "copy" : "copy",
     "Select option" : "Select option",
-    "note" : "note",
-    "email" : "email",
+    "Notes" : "Notes",
     "send an email" : "send an email",
     "Personal dates" : "Personal dates",
     "Add property of this type" : "Add property of this type",
@@ -329,7 +328,6 @@ OC.L10N.register(
     "Prefix" : "Prefix",
     "Suffix" : "Suffix",
     "Nickname" : "Nickname",
-    "Notes" : "Notes",
     "Website" : "Website",
     "Location" : "Location",
     "Federated Cloud ID" : "Federated Cloud ID",
@@ -390,6 +388,8 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Unable to delete team {circleId}",
     "Unable to delete contact" : "Unable to delete contact",
     "Value copied to the clipboard" : "Value copied to the clipboard",
-    "Could not copy value to the clipboard." : "Could not copy value to the clipboard."
+    "Could not copy value to the clipboard." : "Could not copy value to the clipboard.",
+    "note" : "note",
+    "email" : "email"
 },
 "nplurals=2; plural=(n != 1);");

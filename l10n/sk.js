@@ -256,8 +256,7 @@ OC.L10N.register(
     "Add contact in group" : "Pridať kontakt do skupiny",
     "None" : "Žiadne",
     "Select option" : "Vyberte možnosť",
-    "note" : "poznámka",
-    "email" : "email",
+    "Notes" : "Poznámky",
     "send an email" : "odoslať e-mail",
     "Personal dates" : "Osobné termíny",
     "Add property of this type" : "Pridať vlastnosť tohto typu",
@@ -322,7 +321,6 @@ OC.L10N.register(
     "Prefix" : "Titul pred menom",
     "Suffix" : "Titul po mene",
     "Nickname" : "Prezývka",
-    "Notes" : "Poznámky",
     "Website" : "Webstránka",
     "Location" : "Umiestnenie",
     "Federated Cloud ID" : "Identifikátor federovaného cloudu",
@@ -381,6 +379,8 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "V aplikácii Tím sa vyskytla chyba. Pre viac informácií skontrolujte konzolu.",
     "Unable to create team {circleName}" : "Nie je možné vytvoriť tím {circleName}",
     "Unable to delete team {circleId}" : "Nie je možné zmazať tím {circleId}",
-    "Unable to delete contact" : "Nepodarilo sa zmazať kontakt."
+    "Unable to delete contact" : "Nepodarilo sa zmazať kontakt.",
+    "note" : "poznámka",
+    "email" : "email"
 },
 "nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);");

@@ -258,8 +258,7 @@ OC.L10N.register(
     "None" : "Yok",
     "copy" : "kopya",
     "Select option" : "Seçeneği seçin",
-    "note" : "not",
-    "email" : "e-posta",
+    "Notes" : "Notlar",
     "send an email" : "bir e-posta gönder",
     "Personal dates" : "Kişisel tarihler",
     "Add property of this type" : "Bu türün özniteliğini ekle",
@@ -329,7 +328,6 @@ OC.L10N.register(
     "Prefix" : "Ön ek",
     "Suffix" : "Son ek",
     "Nickname" : "Takma ad",
-    "Notes" : "Notlar",
     "Website" : "Site",
     "Location" : "Konum",
     "Federated Cloud ID" : "Birleşik bulut kimliği",
@@ -390,6 +388,8 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "{circleName} takımı silinemedi",
     "Unable to delete contact" : "Kişi silinemedi",
     "Value copied to the clipboard" : "Değer panoya kopyalandı",
-    "Could not copy value to the clipboard." : "Değer panoya kopyalanamadı."
+    "Could not copy value to the clipboard." : "Değer panoya kopyalanamadı.",
+    "note" : "not",
+    "email" : "e-posta"
 },
 "nplurals=2; plural=(n > 1);");

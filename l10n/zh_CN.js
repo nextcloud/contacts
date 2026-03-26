@@ -258,8 +258,7 @@ OC.L10N.register(
     "None" : "无",
     "copy" : "复制",
     "Select option" : "选择选项",
-    "note" : "备注",
-    "email" : "电子邮件",
+    "Notes" : "备注",
     "send an email" : "发送邮件",
     "Personal dates" : "个人行程",
     "Add property of this type" : "为此类型添加属性",
@@ -329,7 +328,6 @@ OC.L10N.register(
     "Prefix" : "前缀",
     "Suffix" : "后缀",
     "Nickname" : "昵称",
-    "Notes" : "备注",
     "Website" : "网站",
     "Location" : "地点",
     "Federated Cloud ID" : "联合云 ID",
@@ -390,6 +388,8 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "无法删除团队 {circleId}",
     "Unable to delete contact" : "无法删除联系人",
     "Value copied to the clipboard" : "值已复制到剪贴板",
-    "Could not copy value to the clipboard." : "无法将值复制到剪贴板。"
+    "Could not copy value to the clipboard." : "无法将值复制到剪贴板。",
+    "note" : "备注",
+    "email" : "电子邮件"
 },
 "nplurals=1; plural=0;");

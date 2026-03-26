@@ -258,8 +258,7 @@ OC.L10N.register(
     "None" : "Nema",
     "copy" : "kopiraj",
     "Select option" : "Odaberi opciju",
-    "note" : "bilješka",
-    "email" : "e-pošta",
+    "Notes" : "Bilješke",
     "send an email" : "pošalji poruku e-pošte",
     "Personal dates" : "Osobni datumi",
     "Add property of this type" : "Dodaj svojstvo ove vrste",
@@ -329,7 +328,6 @@ OC.L10N.register(
     "Prefix" : "Prefiks",
     "Suffix" : "Sufiks",
     "Nickname" : "Nadimak",
-    "Notes" : "Bilješke",
     "Website" : "Web-mjesto",
     "Location" : "Lokacija",
     "Federated Cloud ID" : "ID udruženog oblaka",
@@ -390,6 +388,8 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Nije moguće izbrisati tim {circleId}",
     "Unable to delete contact" : "Nije moguće izbrisati kontakt",
     "Value copied to the clipboard" : "Vrijednost kopirana u međuspremnik",
-    "Could not copy value to the clipboard." : "Kopiranje vrijednosti u međuspremnik nije uspjelo."
+    "Could not copy value to the clipboard." : "Kopiranje vrijednosti u međuspremnik nije uspjelo.",
+    "note" : "bilješka",
+    "email" : "e-pošta"
 },
 "nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;");

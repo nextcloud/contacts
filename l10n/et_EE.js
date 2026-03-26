@@ -258,8 +258,7 @@ OC.L10N.register(
     "None" : "Pole",
     "copy" : "koopeeri",
     "Select option" : "Vali eelistus",
-    "note" : "märge",
-    "email" : "e-post",
+    "Notes" : "Märkmed",
     "send an email" : "saada e-kiri",
     "Personal dates" : "Isiklikud kuupäevad",
     "Add property of this type" : "Lisa seda tüüpi omadus",
@@ -329,7 +328,6 @@ OC.L10N.register(
     "Prefix" : "Eesliide",
     "Suffix" : "Järelliide",
     "Nickname" : "Hüüdnimi",
-    "Notes" : "Märkmed",
     "Website" : "Veebileht",
     "Location" : "Asukoht",
     "Federated Cloud ID" : "Liitpilve tunnus",
@@ -390,6 +388,8 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "„{circleId}“ tiimi kustutamine pole võimalik",
     "Unable to delete contact" : "Ei õnnestu kustutada kontakti",
     "Value copied to the clipboard" : "Väärtus on kopeeritud lõikelauale.",
-    "Could not copy value to the clipboard." : "Väärtuse kopeerimine lõikelauale ei õnnestunud."
+    "Could not copy value to the clipboard." : "Väärtuse kopeerimine lõikelauale ei õnnestunud.",
+    "note" : "märge",
+    "email" : "e-post"
 },
 "nplurals=2; plural=(n != 1);");
