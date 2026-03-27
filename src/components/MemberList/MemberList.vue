@@ -29,13 +29,17 @@
 			</template>
 		</NcEmptyContent>
 
-		<div v-else class="member-grid">
+		<VList
+			v-else
+			v-slot="{ item }"
+			class="member-list__virtual"
+			:style="virtualListStyle"
+			:data="flatList">
 			<MemberGridItem
-				v-for="member in flatList"
-				:key="`member-grid-item-${member.id}`"
-				:member="member"
-				:is-team="!member.isUser" />
-		</div>
+				:key="`member-grid-item-${item.id}`"
+				:member="item"
+				:is-team="!item.isUser" />
+		</VList>
 
 		<!-- member picker -->
 		<EntityPicker
@@ -59,6 +63,7 @@ import { showError, showWarning } from '@nextcloud/dialogs'
 import { subscribe } from '@nextcloud/event-bus'
 import { t } from '@nextcloud/l10n'
 import { NcEmptyContent } from '@nextcloud/vue'
+import { VList } from 'virtua/vue'
 import { defineComponent } from 'vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import EntityPicker from '../EntityPicker/EntityPicker.vue'
@@ -76,6 +81,7 @@ export default defineComponent({
 		IconContact,
 		MemberGridItem,
 		NcEmptyContent,
+		VList,
 	},
 
 	mixins: [IsMobileMixin, RouterMixin],
@@ -103,6 +109,8 @@ export default defineComponent({
 			pickerData: [],
 			pickerSelection: {},
 			pickerTypes: CIRCLES_MEMBER_GROUPING,
+
+			circleHeaderHeight: 0,
 		}
 	},
 
@@ -148,14 +156,47 @@ export default defineComponent({
 		hasMembers() {
 			return this.flatList.length > 0
 		},
+
+		virtualListStyle() {
+			const gridBaseline = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--default-grid-baseline')) || 4
+			const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 50
+			const padding = gridBaseline * 32
+			const availableHeight = window.innerHeight - headerHeight - this.circleHeaderHeight - padding
+			return {
+				height: `${Math.max(availableHeight, 200)}px`,
+			}
+		},
 	},
 
 	mounted() {
 		subscribe('contacts:circles:append', this.onShowPicker)
 		subscribe('guests:user:created', this.onGuestCreated)
+		this.measureCircleHeader()
+	},
+
+	beforeUnmount() {
+		this.resizeObserver?.disconnect()
 	},
 
 	methods: {
+		/**
+		 * Measure the circle details header height from the DOM
+		 * and keep it updated via ResizeObserver.
+		 */
+		measureCircleHeader() {
+			const header = document.querySelector('.circle-details__header-wrapper')
+			if (!header) {
+				return
+			}
+			this.circleHeaderHeight = header.getBoundingClientRect().height
+			this.resizeObserver = new ResizeObserver((entries) => {
+				for (const entry of entries) {
+					this.circleHeaderHeight = entry.contentRect.height
+				}
+			})
+			this.resizeObserver.observe(header)
+		},
+
 		/**
 		 * Show picker and fetch for recommendations
 		 * Cache the circleId in case the url change or something
@@ -261,27 +302,10 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .member-list {
-	// Make virtual scroller scrollable
-	max-height: 100%;
 	max-width: 900px;
-	overflow: auto;
 
 	:deep(.empty-content) {
 		margin: auto;
-	}
-}
-
-.member-grid {
-	display: grid;
-	grid-template-columns: repeat(2, 1fr);
-	gap: 8px;
-
-	@media (max-width: 768px) {
-		grid-template-columns: 1fr;
-	}
-
-	@media (min-width: 1200px) {
-		grid-template-columns: repeat(3, 1fr);
 	}
 }
 
