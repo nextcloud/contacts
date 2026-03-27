@@ -258,6 +258,7 @@ OC.L10N.register(
     "None" : "無",
     "copy" : "複製",
     "Select option" : "選取選項",
+    "JavaScript URIs are not allowed" : "不允許 JavaScript URI",
     "Notes" : "筆記",
     "send an email" : "傳送電子郵件",
     "Personal dates" : "個人日期",

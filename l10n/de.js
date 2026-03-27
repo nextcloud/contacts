@@ -258,6 +258,7 @@ OC.L10N.register(
     "None" : "Keine",
     "copy" : "Kopieren",
     "Select option" : "Option auswählen",
+    "JavaScript URIs are not allowed" : "JavaScript URIs sind unzulässig",
     "Notes" : "Notizen",
     "send an email" : "Eine E-Mail senden",
     "Personal dates" : "Persönliche Daten",
