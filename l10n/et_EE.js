@@ -258,6 +258,7 @@ OC.L10N.register(
     "None" : "Pole",
     "copy" : "koopeeri",
     "Select option" : "Vali eelistus",
+    "JavaScript URIs are not allowed" : "JavaScripti URI-d pole lubatud",
     "Notes" : "Märkmed",
     "send an email" : "saada e-kiri",
     "Personal dates" : "Isiklikud kuupäevad",

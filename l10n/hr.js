@@ -258,6 +258,7 @@ OC.L10N.register(
     "None" : "Nema",
     "copy" : "kopiraj",
     "Select option" : "Odaberi opciju",
+    "JavaScript URIs are not allowed" : "JavaScript URI-ji nisu dopušteni",
     "Notes" : "Bilješke",
     "send an email" : "pošalji poruku e-pošte",
     "Personal dates" : "Osobni datumi",
