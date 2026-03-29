@@ -258,6 +258,7 @@ OC.L10N.register(
     "None" : "Dada",
     "copy" : "cóip",
     "Select option" : "Roghnaigh rogha",
+    "JavaScript URIs are not allowed" : "Ní cheadaítear URIanna JavaScript",
     "Notes" : "Nótaí",
     "send an email" : "seol ríomhphost",
     "Personal dates" : "Dátaí pearsanta",

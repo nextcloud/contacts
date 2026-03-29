@@ -258,6 +258,7 @@ OC.L10N.register(
     "None" : "Відсутній",
     "copy" : "копіювати",
     "Select option" : "Виберіть",
+    "JavaScript URIs are not allowed" : "URI Javascript не дозволено",
     "Notes" : "Примітки",
     "send an email" : "надіслати ел. пошту",
     "Personal dates" : "Приватні дати",
