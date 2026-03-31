@@ -213,7 +213,7 @@ const actions = {
 			context.dispatch('updateCirclesPopulationCount')
 		} catch (error) {
 			console.error(error)
-			showError(t('contacts', 'Unable to delete team {circleId}', circleId))
+			showError(t('contacts', 'Unable to delete team {circleId}', { circleId }))
 		}
 	},
 
