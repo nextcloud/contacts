@@ -1,3 +1,19 @@
+## [8.4.3](https://github.com/nextcloud/contacts/compare/v8.4.2...v8.4.3) (2026-03-31)
+
+
+### Bug Fixes
+
+* **deps:** Fix npm audit ([7bfff2e](https://github.com/nextcloud/contacts/commit/7bfff2e53d801aa39bbf0c1660d723a1071e1196))
+* error message "Unable to delete team" ([1c21941](https://github.com/nextcloud/contacts/commit/1c219418ecd9b92c95d366229d2a6780b3989599)), closes [#4680](https://github.com/nextcloud/contacts/issues/4680)
+* **l10n:** Update translations from Transifex ([31af062](https://github.com/nextcloud/contacts/commit/31af0620ec0de3b02f91091edee9c56a4f26a499))
+* **l10n:** Update translations from Transifex ([78265b6](https://github.com/nextcloud/contacts/commit/78265b6c9dc26c786abb26f3ab5b50ad992053cd))
+* **l10n:** Update translations from Transifex ([81a3c3f](https://github.com/nextcloud/contacts/commit/81a3c3f93447908f631bcbfc4b3506f43acdc1da))
+* **l10n:** Update translations from Transifex ([fde23fd](https://github.com/nextcloud/contacts/commit/fde23fd9c66567e460bfa4f198512ff030bce783))
+* **MemberList:** implement lazy loading ([0ed5015](https://github.com/nextcloud/contacts/commit/0ed5015931e12c45950c9eaa1ac2558926074f42))
+* **PropertyDateTime:** date formatting ([8c9a3ce](https://github.com/nextcloud/contacts/commit/8c9a3cea3f589e9d087ca070e78cc5447bc8ec7c))
+
+
+
 ## [8.4.2](https://github.com/nextcloud/contacts/compare/v8.4.1...v8.4.2) (2026-03-25)
 
 
