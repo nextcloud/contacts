@@ -1,3 +1,20 @@
+## [8.3.7](https://github.com/nextcloud/contacts/compare/v8.3.6...v8.3.7) (2026-03-31)
+
+
+### Bug Fixes
+
+* **deps:** Fix npm audit ([e2e95c1](https://github.com/nextcloud/contacts/commit/e2e95c1a1b067cbb40ca106483905a3b41934291))
+* error message "Unable to delete team" ([904c564](https://github.com/nextcloud/contacts/commit/904c564867c30c0b339c4a1dd8805f39d717bd7e)), closes [#4680](https://github.com/nextcloud/contacts/issues/4680)
+* **GroupNavigationItem:** incorrect group dropping handling ([c9c4192](https://github.com/nextcloud/contacts/commit/c9c419285b45e109670da115740975b6b940d983))
+* **l10n:** Update translations from Transifex ([96ee6a3](https://github.com/nextcloud/contacts/commit/96ee6a3c2bf41be5157ea8cd42d0baa3e090cd88))
+* **l10n:** Update translations from Transifex ([c88f630](https://github.com/nextcloud/contacts/commit/c88f630ee5fc54a7b9dbf26334ed2ea6ba3119da))
+* **l10n:** Update translations from Transifex ([a540065](https://github.com/nextcloud/contacts/commit/a540065140dea238cfdef9ae7c87b301fb3164aa))
+* **l10n:** Update translations from Transifex ([db82561](https://github.com/nextcloud/contacts/commit/db82561c9d4728ef8a1fb62a50096b208dd05e03))
+* **MemberList:** implement lazy loading ([5224226](https://github.com/nextcloud/contacts/commit/5224226472c1f7f11769cef5a4f38b5020dee473))
+* **PropertyDateTime:** date formatting ([60d06df](https://github.com/nextcloud/contacts/commit/60d06df012dd0365d2a98dbbfc1e5458ab4efe78))
+
+
+
 ## [8.3.6](https://github.com/nextcloud/contacts/compare/v8.3.5...v8.3.6) (2026-03-25)
 
 
