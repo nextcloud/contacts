@@ -22,6 +22,7 @@ OC.L10N.register(
     "Leave team" : "Išeiti iš komandos",
     "Delete team" : "Ištrinti komandą",
     "Contacts settings" : "Adresatų nustatymai",
+    "General" : "Bendra",
     "Update avatars from social media" : "Atnaujinti avatarus iš socialinių tinklų",
     "Address books" : "Adresų knygos",
     "Rename" : "Pervadinti",
