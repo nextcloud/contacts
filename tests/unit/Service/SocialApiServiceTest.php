@@ -27,6 +27,7 @@ use OCP\IURLGenerator;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 class SocialApiServiceTest extends TestCase {
 	private SocialApiService $service;
@@ -47,6 +48,8 @@ class SocialApiServiceTest extends TestCase {
 	private $timeFactory;
 	/** @var ImageResizer&MockObject */
 	private $imageResizer;
+	/** @var LoggerInterface&MockObject */
+	private $logger;
 	/** @var ContainerInterface&MockObject */
 	private $container;
 
@@ -114,6 +117,7 @@ class SocialApiServiceTest extends TestCase {
 		$this->urlGen = $this->createMock(IURLGenerator::class);
 		$this->timeFactory = $this->createMock(ITimeFactory::class);
 		$this->imageResizer = $this->createMock(ImageResizer::class);
+		$this->logger = $this->createMock(LoggerInterface::class);
 		$this->container = $this->createMock(ContainerInterface::class);
 		$this->container
 			->method('get')
@@ -128,6 +132,7 @@ class SocialApiServiceTest extends TestCase {
 			$this->urlGen,
 			$this->timeFactory,
 			$this->imageResizer,
+			$this->logger,
 		);
 	}
 
