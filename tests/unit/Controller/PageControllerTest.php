@@ -9,6 +9,7 @@ namespace OCA\Contacts\Controller;
 
 use ChristophWurst\Nextcloud\Testing\TestCase;
 use OC\App\CompareVersion;
+use OCA\Contacts\Service\FederatedInvitesService;
 use OCA\Contacts\Service\GroupSharingService;
 use OCA\Contacts\Service\SocialApiService;
 use OCP\App\IAppManager;
@@ -48,6 +49,7 @@ class PageControllerTest extends TestCase {
 	/** @var CompareVersion|MockObject */
 	private $compareVersion;
 
+	private FederatedInvitesService|MockObject $federatedInvitesService;
 	private GroupSharingService|MockObject $groupSharingService;
 
 	protected function setUp(): void {
@@ -61,10 +63,12 @@ class PageControllerTest extends TestCase {
 		$this->socialApi = $this->createMock(SocialApiService::class);
 		$this->appManager = $this->createMock(IAppManager::class);
 		$this->compareVersion = $this->createMock(CompareVersion::class);
+		$this->federatedInvitesService = $this->createMock(FederatedInvitesService::class);
 		$this->groupSharingService = $this->createMock(GroupSharingService::class);
 
 		$this->controller = new PageController(
 			$this->request,
+			$this->federatedInvitesService,
 			$this->config,
 			$this->initialStateService,
 			$this->languageFactory,

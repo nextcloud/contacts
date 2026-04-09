@@ -4,6 +4,7 @@
  */
 /// <reference types="@nextcloud/typings" />
 
+import { loadState } from '@nextcloud/initial-state'
 import { translate as t } from '@nextcloud/l10n'
 import { ShareType } from '@nextcloud/sharing'
 
@@ -28,6 +29,14 @@ export const CHART_ALL_CONTACTS: DefaultChart = t('contacts', 'Organization char
 export const ROUTE_CIRCLE = 'circle'
 export const ROUTE_CHART = 'chart'
 export const ROUTE_USER_GROUP = 'user_group'
+
+const acceptInviteDialogUrl = loadState('contacts', 'acceptInviteDialogUrl', '')
+export const ROUTE_INVITE_ACCEPT_DIALOG = acceptInviteDialogUrl
+export const ROUTE_NAME_INVITE_ACCEPT_DIALOG = 'invite_accept_dialog'
+export const ROUTE_ALL_OCM_INVITES = 'ocm-invites'
+export const ROUTE_NAME_ALL_OCM_INVITES = 'all_ocm_invites'
+export const ROUTE_NAME_OCM_INVITE = 'ocm_invite'
+export const GROUP_ALL_OCM_INVITES = t('contacts', 'All invites')
 
 // Contact settings
 export const CONTACTS_SETTINGS: DefaultGroup = t('contacts', 'Contacts settings')
@@ -104,10 +113,6 @@ export const PUBLIC_CIRCLE_CONFIG = {
 		[CIRCLE_CONFIG_ROOT]: t('contacts', 'Prevent teams from being a member of another team'),
 	},
 
-	[t('contacts', 'Federation')]: {
-		[CIRCLE_CONFIG_FEDERATED]: t('contacts', 'Allow federated members'),
-	},
-
 	[t('contacts', 'Privacy')]: {
 		[CIRCLE_CONFIG_VISIBLE]: t('contacts', 'Visible to everyone'),
 	},
@@ -130,13 +135,13 @@ export const CIRCLES_MEMBER_GROUPING = [
 		share: ShareType.Group,
 		type: MEMBER_TYPE_GROUP,
 	},
-	{
-		id: `picker-${ShareType.Remote}`,
-		label: t('contacts', 'federated users'),
-		labelStandalone: t('contacts', 'Federated users'),
-		share: ShareType.Remote,
-		type: MEMBER_TYPE_USER,
-	},
+	// TODO: implement federated
+	// {
+	// id: `picker-${ShareType.Remote}`,
+	// label: t('contacts', 'federated users'),
+	// share: ShareType.Remote,
+	// type: MEMBER_TYPE_USER
+	// },
 	// {
 	// id: `picker-${ShareType.RemoteGroup}`,
 	// label: t('contacts', 'federated groups'),
