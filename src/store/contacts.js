@@ -48,9 +48,38 @@ const state = {
 	contacts: {},
 	sortedContacts: [],
 	orderKey: 'displayName',
+	// Stores contact keys that the current user has marked as favorites.
+	// TODO [backend_value]: replace initial value with data fetched from
+	// GET /apps/contacts/api/v1/favorites
+	favorites: new Set(),
 }
 
 const mutations = {
+
+	/**
+	 * Set or unset a contact as a favorite.
+	 * Called by the toggleFavorite action.
+	 *
+	 * @param {object} state the store data
+	 * @param {object} contact object
+	 * @param {string} contact key
+	 * @param {boolean} boolean state true = favorite, false = not favorite
+	 */
+	setFavorite(state, { key, value }) {
+		if (value) {
+			state.favorites.add(key)
+		} else {
+			state.favorites.delete(key)
+		}
+		state.sortedContacts.sort((a, b) => {
+			const af = state.favorites.has(a.key)
+			const bf = state.favorites.has(b.key)
+			if (af !== bf) {
+				return af ? -1 : 1
+			}
+			return sortData(a, b)
+		})
+	},
 
 	/**
 	 * Store raw contacts into state
@@ -102,10 +131,19 @@ const mutations = {
 				value: contact[state.orderKey],
 			}
 
+			const isFav = state.favorites.has(contact.key)
+
 			// Not using sort, splice has far better performances
 			// https://jsperf.com/sort-vs-splice-in-array
 			for (let i = 0, len = state.sortedContacts.length; i < len; i++) {
-				if (sortData(state.sortedContacts[i], sortedContact) >= 0) {
+				const other = state.sortedContacts[i]
+				const otherIsFav = state.favorites.has(other.key)
+
+				if (otherIsFav && !isFav) {
+					continue
+				}
+
+				if (sortData(other, sortedContact) >= 0) {
 					state.sortedContacts.splice(i, 0, sortedContact)
 					break
 				} else if (i + 1 === len) {
@@ -218,7 +256,14 @@ const mutations = {
 			// exclude groups
 			.filter((contact) => contact.kind !== 'group')
 			.map((contact) => { return { key: contact.key, value: contact[state.orderKey] } })
-			.sort(sortData)
+			.sort((a, b) => {
+				const af = state.favorites.has(a.key)
+				const bf = state.favorites.has(b.key)
+				if (af !== bf) {
+					return af ? -1 : 1
+				}
+				return sortData(a, b)
+			})
 	},
 
 	/**
@@ -270,10 +315,36 @@ const getters = {
 	getSortedContacts: (state) => state.sortedContacts,
 	getContact: (state) => (key) => state.contacts[key],
 	getOrderKey: (state) => state.orderKey,
+	isFavorite: (state) => (key) => state.favorites.has(key),
+	getFavorites: (state) => state.favorites,
 }
 
 const actions = {
 
+	/**
+	 * Toggle the favorite state of a contact.
+	 * Updates the store, then persists to the backend.
+	 *
+	 * @param {object} context the store mutations
+	 * @param {string} contactKey the contact key to toggle
+	 */
+	async toggleFavorite(context, contactKey) {
+		const newValue = !context.getters.isFavorite(contactKey)
+
+		context.commit('setFavorite', { key: contactKey, value: newValue })
+
+		// TODO [backend_calue]
+		// try {
+		// await axios.post(
+		// generateUrl(`/apps/contacts/api/v1/favorites/${contactKey}`),
+		// { favorite: newValue }
+		// )
+		// } catch (error) {
+		// console.error('Failed to save favorite state', error)
+		// showError(t('contacts', 'Could not save favorite'))
+		// context.commit('setFavorite', { key: contactKey, value: !newValue })
+		//   }
+	},
 	/**
 	 * Delete a contact from the list and from the associated addressbook
 	 *
