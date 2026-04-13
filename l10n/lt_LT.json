@@ -316,10 +316,12 @@
     "users" : "naudotojai",
     "Users" : "Naudotojai",
     "groups" : "grupės",
-    "federated users" : "\"Federalizuotas\" vartotojas",
+    "federated users" : "\"federalizuoti\" vartotojai",
+    "Federated users" : "\"Federalizuoti\" vartotojai",
     "teams" : "komandos",
     "email addresses" : "el. pašto adresai",
     "Email addresses" : "El. pašto adresai",
+    "contacts" : "kontaktai",
     "Detailed name" : "Išsamus vardas",
     "Additional names" : "Papildomi vardai",
     "Prefix" : "Priešvardis",
@@ -355,6 +357,7 @@
     "Voice" : "Balso pašto",
     "Car" : "Automobilis",
     "Work pager" : "Darbo pranešimų gaviklis",
+    "Line manager" : "Tiesioginis vadovas",
     "Social network" : "Socialinis tinklas",
     "Relationship to you" : "Ryšys su jumis",
     "Spouse" : "Sutuoktinis",
@@ -379,8 +382,13 @@
     "Time zone" : "Laiko juosta",
     "Spoken languages" : "Šnekamosios kalbos",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Nepavyko perskaityti {failed} adresato","Nepavyko perskaityti {failed} adresatų","Nepavyko perskaityti {failed} adresatų","Nepavyko perskaityti {failed} adresato"],
+    "An error has occurred in team(s). Check the console for more details." : "Komandoje (-ose) įvyko klaida. Daugiau informacijos rasite konsolėje.",
     "Unable to create team {circleName}" : "Nepavyko sukurti komandos {circleName}",
     "Unable to delete team {circleId}" : "Nepavyko ištrinti komandos {circleId}",
-    "Unable to delete contact" : "Nepavyko ištrinti adresato"
+    "Unable to delete contact" : "Nepavyko ištrinti adresato",
+    "Value copied to the clipboard" : "Vertė nukopijuota į iškarpinę",
+    "Could not copy value to the clipboard." : "Nepavyko nukopijuoti vertės į iškarpinę.",
+    "note" : "pastaba",
+    "email" : "elektroninis paštas"
 },"pluralForm" :"nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);"
 }
