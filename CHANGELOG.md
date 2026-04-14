@@ -1,3 +1,19 @@
+## [8.4.4](https://github.com/nextcloud/contacts/compare/v8.4.3...v8.4.4) (2026-04-14)
+
+
+### Bug Fixes
+
+* **deps:** Fix npm audit ([3e85e26](https://github.com/nextcloud/contacts/commit/3e85e2620134b2488103afba4b10519185b9c395))
+* **l10n:** Update translations from Transifex ([6067ad7](https://github.com/nextcloud/contacts/commit/6067ad7eb3300ed4078d97ed6bfe2426af8bd3c2))
+* **l10n:** Update translations from Transifex ([67b8a76](https://github.com/nextcloud/contacts/commit/67b8a7669dc35527b1c7ed7937032a5ca71f9e74))
+* **l10n:** Update translations from Transifex ([b13a829](https://github.com/nextcloud/contacts/commit/b13a829c65843d212ecb615d86549d00e96a26e4))
+* **l10n:** Update translations from Transifex ([9daa8c1](https://github.com/nextcloud/contacts/commit/9daa8c19b146004f849776aec3a6ed52a77a32b9))
+* **l10n:** Update translations from Transifex ([4b1e2aa](https://github.com/nextcloud/contacts/commit/4b1e2aab685f7ac1595b3caec636de97189c276e))
+* **l10n:** Update translations from Transifex ([f61fdb7](https://github.com/nextcloud/contacts/commit/f61fdb7b2eee2ca5d44137522ec1700615846396))
+* **l10n:** Update translations from Transifex ([491da87](https://github.com/nextcloud/contacts/commit/491da87d64d922408ebaeb34da16edc5809f3417))
+
+
+
 ## [8.4.3](https://github.com/nextcloud/contacts/compare/v8.4.2...v8.4.3) (2026-03-31)
 
 
