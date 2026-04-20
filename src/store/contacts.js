@@ -154,11 +154,11 @@ const mutations = {
 	 * Update a contact
 	 *
 	 * @param {object} state the store data
-	 * @param {Contact} contact the contact to update
+	 * @param {object} payload destructuring object
+	 * @param {Contact} payload.contact the contact to update
+	 * @param {boolean} [payload.skipSort] skip the re-sort after updating (default false)
 	 */
-	updateContact(state, payload) {
-		const contact = payload instanceof Contact ? payload : payload.contact
-		const skipSort = payload instanceof Contact ? false : (payload.skipSort ?? false)
+	updateContact(state, { contact, skipSort = false }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
 			// replace contact object data
 			state.contacts[contact.key].updateContact(contact.jCal)
@@ -371,7 +371,7 @@ const actions = {
 			try {
 				await contact.dav.update()
 				// all clear, let's update the store
-				context.commit('updateContact', contact)
+				context.commit('updateContact', { contact })
 			} catch (error) {
 				console.error(error)
 
