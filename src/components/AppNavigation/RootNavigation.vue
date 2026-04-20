@@ -536,7 +536,8 @@ $caption-padding: 22px;
 }
 
 .app-navigation__circle-desc {
-	margin: 0 $caption-padding;
+	margin: var(--default-grid-baseline, 4px) calc(var(--default-grid-baseline, 4px) * 2);
+	color: var(--color-text-maxcontrast);
 }
 
 .app-navigation__collapse :deep(a) {
