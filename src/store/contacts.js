@@ -47,39 +47,9 @@ function sortData(a, b) {
 	return score !== 0 ? score : a.key.localeCompare(b.key)
 }
 
-function extractRevTimestamp(contact) {
-	try {
-		const prop = toRaw(contact).vCard.getFirstProperty('rev')
-		if (!prop) {
-			return null
-		}
-		const raw = prop.jCal[3]
-		if (!raw || typeof raw !== 'string') {
-			return null
-		}
-		// Normalize basic ISO format: "20260312T192500Z" → "2026-03-12T19:25:00Z"
-		let s = raw
-		if (/^\d{8}T/.test(s)) {
-			s = s.replace(/^(\d{4})(\d{2})(\d{2})T/, '$1-$2-$3T')
-		}
-		if (/T\d{6}/.test(s)) {
-			s = s.replace(/T(\d{2})(\d{2})(\d{2})/, 'T$1:$2:$3')
-		} else if (/T\d{4}[Z+-]/.test(s)) {
-			// Basic time without seconds: "T1925Z" → "T19:25:00Z"
-			s = s.replace(/T(\d{2})(\d{2})([Z+-])/, 'T$1:$2:00$3')
-		}
-		// Fix missing seconds: "T19:25:Z" or "T19:25Z" → "T19:25:00Z"
-		s = s.replace(/T(\d{2}:\d{2}):?Z$/, 'T$1:00Z')
-		const ts = Date.parse(s)
-		return isNaN(ts) ? null : Math.floor(ts / 1000)
-	} catch {
-		return null
-	}
-}
-
 function extractSortValue(contact, orderKey) {
 	if (orderKey === 'rev') {
-		return extractRevTimestamp(contact)
+		return contact.revTimestamp
 	}
 	const val = contact[orderKey]
 	if (val === null || val === undefined) {
@@ -88,8 +58,7 @@ function extractSortValue(contact, orderKey) {
 	if (typeof val === 'string') {
 		return val
 	}
-	// ICAL.Time / VCardTime → unix timestamp (number)
-	// toRaw() unwraps Vue Proxy before calling ical.js methods
+	// ical.js methods don't work through Vue's reactive proxy; unwrap first.
 	try {
 		return toRaw(val).toUnixTime()
 	} catch {

@@ -8,7 +8,7 @@ import b64toBlob from 'b64-to-blob'
 import { Buffer } from 'buffer'
 import ICAL from 'ical.js'
 import { v4 as uuid } from 'uuid'
-import { shallowRef, unref } from 'vue'
+import { shallowRef, toRaw, unref } from 'vue'
 import updateDesignSet from '../services/updateDesignSet.js'
 import store from '../store/index.js'
 
@@ -182,6 +182,41 @@ export default class Contact {
 	 */
 	set rev(rev) {
 		this.vCard.updatePropertyWithValue('rev', rev)
+	}
+
+	/**
+	 * REV as a unix timestamp (seconds), or null if missing/unparseable.
+	 * Bypasses ICAL.Time parsing so malformed-but-salvageable basic-ISO
+	 * strings ("20260312T192500Z", "T1925Z", trailing "T19:25Z") still sort.
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get revTimestamp() {
+		try {
+			const prop = toRaw(this).vCard.getFirstProperty('rev')
+			if (!prop) {
+				return null
+			}
+			const raw = prop.jCal[3]
+			if (!raw || typeof raw !== 'string') {
+				return null
+			}
+			let s = raw
+			if (/^\d{8}T/.test(s)) {
+				s = s.replace(/^(\d{4})(\d{2})(\d{2})T/, '$1-$2-$3T')
+			}
+			if (/T\d{6}/.test(s)) {
+				s = s.replace(/T(\d{2})(\d{2})(\d{2})/, 'T$1:$2:$3')
+			} else if (/T\d{4}[Z+-]/.test(s)) {
+				s = s.replace(/T(\d{2})(\d{2})([Z+-])/, 'T$1:$2:00$3')
+			}
+			s = s.replace(/T(\d{2}:\d{2}):?Z$/, 'T$1:00Z')
+			const ts = Date.parse(s)
+			return isNaN(ts) ? null : Math.floor(ts / 1000)
+		} catch {
+			return null
+		}
 	}
 
 	/**
