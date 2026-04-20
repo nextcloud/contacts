@@ -407,6 +407,9 @@ const actions = {
 			.then(() => {
 				const vcardData = contact.dav.data
 				const newContact = new Contact(vcardData, contact.addressbook)
+				// skipSort: opening a contact must not visibly reorder the list.
+				// The server's REV rarely differs from the cached one here; if it
+				// does, the next mutation will re-sort.
 				context.commit('updateContact', { contact: newContact, skipSort: true })
 			})
 			.catch((error) => { throw error })
