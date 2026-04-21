@@ -285,7 +285,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Холбоосыг санах ойд хуулах боломжгүй.",
     "Not grouped" : "–ë–∞–≥—Ç –æ—Ä–æ–æ–≥“Ø–π",
     "Organization chart" : "Байгууллагын бүтцийн диаграм",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Багууд гэдэг нь та өөрөө үүсгэж, мэдээлэл хуваалцах боломжтой хүмүүсийн бүлгүүд юм. Тэдгээр нь Nextcloud-ийн бусад бүртгэл эсвэл бүртгэлийн бүлгүүд, хаягийн дэвтрийн харилцагчид, эсвэл зүгээр л имэйл хаягаа оруулснаар гадны хүмүүсээс бүрдэж болно.",
     "Team" : "Баг",
     "User" : "–•—ç—Ä—ç–≥–ª—ç–≥—á",
     "Group" : "–ë“Ø–ª—ç–≥",

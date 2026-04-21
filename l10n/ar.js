@@ -218,7 +218,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "تعذّر نسخ الرابط إلى الحافظة",
     "Not grouped" : "غير مُجمّعٍ",
     "Organization chart" : "الهيكل التنظيمي",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "الفرق هي مجموعات من الأشخاص يمكنك إنشاؤها بنفسك ويمكنك مشاركة البيانات معهم. يمكن أن تتكون من حسابات أو مجموعات حسابات أخرى على خوادم نكست كلاود. و أيضًا من جهات الاتصال من دفتر عناوينك أو حتى من أشخاص خارجيين بمجرد إدخال عناوين بريدهم الإلكتروني.",
     "Team" : "الفريق",
     "User" : "المستخدم",
     "Group" : "المجموعة",

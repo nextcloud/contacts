@@ -292,7 +292,6 @@
     "Could not copy link to the clipboard." : "Bağlantı panoya kopyalanamadı.",
     "Not grouped" : "Gruplanmamış",
     "Organization chart" : "Organizasyon şeması",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Takımlar, kendi oluşturabileceğiniz ve verileri paylaşabileceğiniz kişi gruplarıdır. Bunlar, Nextcloud kopyasındaki diğer hesaplardan veya hesap gruplarından oluşabileceği gibi, adres defterinizdeki kişilerden ve yalnızca e-posta adreslerini yazacağınız dışarıdaki kişilerden oluşabilir.",
     "Team" : "Takım",
     "User" : "Kullanıcı",
     "Group" : "Grup",

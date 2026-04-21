@@ -289,7 +289,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Nie można skopiować linku do schowka.",
     "Not grouped" : "Nie pogrupowane",
     "Organization chart" : "Schemat organizacyjny",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Zespoły to grupy osób, które możesz sam utworzyć i którym możesz udostępniać dane. Mogą tworzyć je inne konta lub grupy kont instancji Nextcloud, ale także kontakty z Twojej książki adresowej czy nawet osoby z zewnątrz, po prostu wpisując ich adresy e-mail.",
     "Team" : "Zespół",
     "User" : "Użytkownik",
     "Group" : "Grupa",

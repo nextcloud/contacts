@@ -293,7 +293,6 @@
     "Could not copy link to the clipboard." : "Kopiranje poveznice u međuspremnik nije uspjelo.",
     "Not grouped" : "Nije grupirano",
     "Organization chart" : "Organizacijski dijagram",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Timovi su grupe ljudi koje možete sami stvoriti i s kojima možete dijeliti podatke. Mogu se sastojati od drugih računa ili grupa računa na ovoj Nextcloud instanci, ali i od kontakata iz vašeg adresara, pa čak i vanjskih osoba jednostavnim unosom njihovih adresa e-pošte.",
     "Team" : "Tim",
     "User" : "Korisnik",
     "Group" : "Grupa",

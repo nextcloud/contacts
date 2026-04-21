@@ -216,7 +216,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Kunne ikke kopiere linket til udklipsholderen.",
     "Not grouped" : "Ikke i gruppe",
     "Organization chart" : "Organisationsdiagram",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Teams er grupper af mennesker, som du selv kan oprette, og som du kan dele data med. De kan bestå af andre konti eller grupper af konti i Nextcloud-instansen, men også af kontakter fra din adressebog eller endda eksterne personer ved blot at indtaste deres e-mailadresser.",
     "Team" : "Team",
     "User" : "Bruger",
     "Group" : "Gruppe",
