@@ -210,7 +210,6 @@
     "Could not copy link to the clipboard." : "Ezin izan da esteka arbelera kopiatu",
     "Not grouped" : "Taldekatu gabe",
     "Organization chart" : "Erakundearen diagrama",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Lantaldeak zuk zeuk sortu ditzakezun eta haiekin datuak parteka ditzakezun pertsona-taldeak dira. Nextcloud instantziaren beste kontu edo kontu talde batzuek osatuta egon daitezke, baina baita zure helbide-liburuko kontaktuek edo baita kanpoko pertsonek ere haien helbide elektronikoak sartuta.",
     "Team" : "Lantaldea",
     "User" : "Erabiltzailea",
     "Group" : "Taldea",

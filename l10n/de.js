@@ -295,7 +295,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Link konnte nicht in die Zwischenablage kopiert werden",
     "Not grouped" : "Nicht gruppiert",
     "Organization chart" : "Organigramm",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Teams sind Gruppen von Personen, die du selbst erstellen und mit denen du Daten teilen kannst. Sie können aus anderen Konten oder Kontogruppen der Nextcloud-Instanz bestehen, aber auch aus Kontakten aus deinem Adressbuch oder sogar aus externen Personen, indem du einfach deren E-Mail-Adressen eingibst.",
     "Team" : "Team",
     "User" : "Benutzer",
     "Group" : "Gruppe",

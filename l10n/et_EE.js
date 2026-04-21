@@ -295,7 +295,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Lingi kopeerimine lõikelauale ei õnnestunud.",
     "Not grouped" : "Pole grupeeritud",
     "Organization chart" : "Organisatsiooniskeem",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Tiimid on kasutajate rühmad, mida saad ise luua ning nendega andmeid jagada. Nad võivad koosneda serveris leiduvates kasutajakontodest või kasutajakontode gruppidest, aga ka aadressiraamatus leiduvatest kontaktidest või välistest osalejatest, keda saad lisada e-posti aadressi alusel.",
     "Team" : "Tiim",
     "User" : "Kasutaja",
     "Group" : "Grupp",

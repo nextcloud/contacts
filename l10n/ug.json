@@ -282,7 +282,6 @@
     "Could not copy link to the clipboard." : "چاپلاش تاختىسىغا ئۇلىنىشنى كۆچۈرەلمىدى.",
     "Not grouped" : "گۇرۇپپا ئەمەس",
     "Organization chart" : "تەشكىلات جەدۋىلى",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "گۇرۇپپىلار سىز ئۆزىڭىز قۇرالايدىغان ۋە ئۇلار بىلەن سانلىق مەلۇماتلارنى ئورتاقلىشالايدىغان كىشىلەر توپى. ئۇلار Nextcloud مىسالىدىكى باشقا ھېساباتلار ياكى ھېسابات گۇرۇپپىلىرىدىن تەركىب تاپىدۇ ، شۇنداقلا ئېلېكترونلۇق خەت ئادرېسىڭىزنى كىرگۈزۈش ئارقىلىق ئادرېس دەپتىرىڭىز ياكى ھەتتا سىرتقى كىشىلەر بىلەن ئالاقىلاشسىڭىز بولىدۇ.",
     "Team" : "ئەتىرەت",
     "User" : "ئىشلەتكۈچى",
     "Group" : "گۇرۇپپا",

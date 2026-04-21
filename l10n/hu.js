@@ -247,7 +247,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "A hivatkozás másolása a vágólapra sikertelen.",
     "Not grouped" : "Nem csoportosított",
     "Organization chart" : "Szervezeti diagram",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "A csapatok emberek csoportjai, amelyeket Ön hozhat létre, és akikkel adatokat oszthat meg. Állhatnak a Nextcloud-példányon lévő más fiókokból vagy fiókok csoportjából, de akár állhatnak címjegyzékekben szereplő névjegyekből, vagy az e-mail-címük felsorolásával megadott külsősökből is.",
     "Team" : "Csapat",
     "User" : "Felhasználó",
     "Group" : "Csoport",

@@ -293,7 +293,6 @@
     "Could not copy link to the clipboard." : "Неможливо скопіювати посилання до буфера обміну",
     "Not grouped" : "Поза групами",
     "Organization chart" : "Органограма",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Команди - це групи користувачів, які ви можете самостійно створювати і яким ви можете надавати спільний доступ до ресурсів. Команди можна утворювати з інших облікових записів користувачів або груп цього примірника хмари Nextcloud, а також з контактів з вашої адресною книги або зовнішніх користувачів за допомогою введенння їхніх адрес ел. пошти.",
     "Team" : "Команда",
     "User" : "Користувач",
     "Group" : "Група",

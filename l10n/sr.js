@@ -247,7 +247,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Линк није могао да се копира у клипборд.",
     "Not grouped" : "Негруписани",
     "Organization chart" : "Организациони график",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Тимови су групе људи које сами можете да креирате и са којима можете да делите своје податке. Они могу да се састоје од осталих налога или група налога на Nextcloud инстанци, али такође и од контаката из вашег адресара или чак од спољних људи простим уносом њихових и-мејл адреса.",
     "Team" : "Тим",
     "User" : "Корисник",
     "Group" : "Група",

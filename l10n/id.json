@@ -287,7 +287,6 @@
     "Could not copy link to the clipboard." : "Tidak dapat menyalin tautan ke papan klip.",
     "Not grouped" : "Tidak dikelompokkan",
     "Organization chart" : "Bagan organisasi",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Tim adalah kelompok orang yang dapat Anda buat sendiri dan dengan siapa Anda dapat berbagi data. Tim dapat terdiri dari akun lain atau grup akun dari instansi Nextcloud, tetapi juga kontak dari buku alamat Anda atau bahkan orang eksternal dengan hanya memasukkan alamat email mereka.",
     "Team" : "Tim",
     "User" : "Pengguna",
     "Group" : "Grup",

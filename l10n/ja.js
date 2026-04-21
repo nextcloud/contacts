@@ -219,7 +219,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "クリップボードにコピーできませんでした",
     "Not grouped" : "グループ化されていません",
     "Organization chart" : "組織図",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "チームは、自分で作成し、データを共有できるユーザーのグループです。Nextcloudインスタンスの他のアカウントやアカウントのグループだけでなく、アドレス帳の連絡先や、電子メールアドレスを入力するだけの外部のユーザーで構成することもできます。",
     "Team" : "チーム",
     "User" : "ユーザー",
     "Group" : "グループ",

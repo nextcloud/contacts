@@ -212,7 +212,6 @@
     "Could not copy link to the clipboard." : "No s'ha pogut copiar l'enllaç al porta-retalls.",
     "Not grouped" : "Sense grup",
     "Organization chart" : "Organigrama",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Els equips són grups de persones que pots crear tu mateix i amb qui pots compartir dades. Poden estar formats per altres comptes o grups de comptes de la instància Nextcloud, però també per contactes de la vostra llibreta d'adreces o fins i tot persones externes simplement introduint les seves adreces de correu electrònic.",
     "Team" : "Equip",
     "User" : "Usuari",
     "Group" : "Grup",

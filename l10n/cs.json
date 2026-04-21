@@ -292,7 +292,6 @@
     "Could not copy link to the clipboard." : "Odkaz se nedaří zkopírovat do schránky.",
     "Not grouped" : "Neseskupené",
     "Organization chart" : "Organizační graf",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Týmy jsou skupiny (lidí), které jste si sami vytvořili a se kterými sdílíte data. Mohou být tvořeny jinými účty či jejich skupinami z instance Nextcloud, ale také kontakty z vašeho adresáře kontaktů nebo i externí lidé – stačí jen zadat jejich e-mailové adresy.",
     "Team" : "Tým",
     "User" : "Uživatel",
     "Group" : "Skupina",
