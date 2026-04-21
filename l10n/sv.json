@@ -293,7 +293,6 @@
     "Could not copy link to the clipboard." : "Kunde inte kopiera länken till urklipp.",
     "Not grouped" : "Inte grupperad",
     "Organization chart" : "Organisationsschema",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Team är grupper av personer som du kan skapa själv och som du kan dela data med. De kan bestå av andra konton eller grupper av konton från Nextcloud, men också av kontakter från din adressbok eller till och med externa personer genom att helt enkelt ange deras e-postadresser.",
     "Team" : "Team",
     "User" : "Användare",
     "Group" : "Grupp",

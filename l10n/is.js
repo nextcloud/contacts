@@ -216,7 +216,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Gat ekki afritað tengil á klippispjald.",
     "Not grouped" : "Ekki hópaður",
     "Organization chart" : "Skipulagsgraf",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Teymi eru hópar af fólki sem þú getur útbúið sjálf/ur, með þeim geturðu deilt ýmsum gögnum. Hóparnir geta verið myndaðir úr öðrum notendaaðgöngum eða hópum aðganga á Nextcloud-þjóninum, en einnig með tengiliðum úr nafnaskránni þinni eða jafnvel utanaðkomandi fólki sem þú setur einfaldlega inn tölvupóstfang fyrir.",
     "Team" : "Teymi",
     "User" : "Notandi",
     "Group" : "Hópur",

@@ -295,7 +295,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Nepodarilo sa skopírovať do schránky.",
     "Not grouped" : "Bez skupiny",
     "Organization chart" : "Organizačný diagram",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Tímy sú skupiny ľudí, ktoré si môžete vytvoriť sami a s ktorými môžete sprístupniť údaje. Môžu byť tvorené inými účtami alebo skupinami účtov z inštancie Nextcloud, ale aj kontaktmi z vášho adresára alebo dokonca externými osobami jednoduchým zadaním ich e-mailových adries.",
     "Team" : "Tím",
     "User" : "Užívateľ",
     "Group" : "Skupina",

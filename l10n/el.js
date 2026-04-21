@@ -236,7 +236,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Δεν ήταν δυνατή η αντιγραφή του συνδέσμου στο πρόχειρο.",
     "Not grouped" : "Χωρίς ομάδα",
     "Organization chart" : "Οργανόγραμμα",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Οι ομάδες είναι ομάδες ανθρώπων που μπορείτε να δημιουργήσετε μόνοι σας και με τους οποίους μπορείτε να μοιράζεστε δεδομένα. Μπορούν να αποτελούνται από άλλους λογαριασμούς ή ομάδες λογαριασμών του Nextcloud, αλλά και από επαφές από το βιβλίο διευθύνσεών σας ή ακόμα και από εξωτερικά άτομα εισάγοντας απλώς τις διευθύνσεις email τους.",
     "Team" : "Ομάδα",
     "User" : "Χρήστης",
     "Group" : "Ομάδα",

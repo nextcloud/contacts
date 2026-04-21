@@ -294,7 +294,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "无法复制链接到剪贴板",
     "Not grouped" : "未分组",
     "Organization chart" : "组织图",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "团队是一群人，您可以自己创建，也可以与他们共享数据。它们可以由 Nextcloud 实例的其它账号或账号组组成，也可以由通讯录中的联系人组成，甚至可以由外部人员组成，只需输入他们的电子邮件地址即可。",
     "Team" : "团队",
     "User" : "用户",
     "Group" : "群组",
