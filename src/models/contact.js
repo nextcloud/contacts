@@ -93,6 +93,7 @@ export default class Contact {
 	updateContact(jCal) {
 		this.jCal = jCal
 		this.vCard = new ICAL.Component(this.jCal)
+		this.favorite = this.vCard.getFirstPropertyValue('x-favorite') === 'true'
 	}
 
 	/**
@@ -229,6 +230,32 @@ export default class Contact {
 	 */
 	get hasPhoto() {
 		return this.dav && this.dav.hasphoto
+	}
+
+	/**
+	 * Return whether the contact is marked as favorite
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get favorite() {
+		const value = this.vCard.getFirstPropertyValue('x-favorite')
+		return value === 'true' || value === true || value === 'YES'
+	}
+
+	/**
+	 * Set the favorite state of the contact
+	 *
+	 * @param {boolean} value true to mark as favorite, false to remove
+	 * @memberof Contact
+	 */
+	set favorite(value) {
+		if (!value) {
+			this.vCard.removeProperty('x-favorite')
+			return
+		}
+
+		this.vCard.updatePropertyWithValue('x-favorite', 'true')
 	}
 
 	/**
