@@ -362,7 +362,6 @@ export default {
 	right: -4px;
 	opacity: 0;
 	cursor: pointer;
-	transition: opacity 0.2s ease;
 }
 
 .contacts-list__item-icon:hover .favorite-star {
