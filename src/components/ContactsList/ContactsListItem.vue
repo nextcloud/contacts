@@ -44,9 +44,6 @@
 							v-if="isFavorite"
 							:size="16"
 							fill-color="#FFCC00" />
-						<StarOutlineIcon
-							v-else
-							:size="16" />
 					</div>
 				</div>
 			</template>

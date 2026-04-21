@@ -99,7 +99,8 @@ const mutations = {
 				key: contact.key,
 				value: contact[state.orderKey],
 			}
-
+			// Not using sort, splice has far better performances
+			// https://jsperf.com/sort-vs-splice-in-array
 			const isFav = contact.favorite
 
 			for (let i = 0, len = state.sortedContacts.length; i < len; i++) {
@@ -305,7 +306,7 @@ const actions = {
 
 	/**
 	 * Toggle the favorite state of a contact.
-	 * Updates the store, then persists to the backend.
+	 * Updates the store
 	 *
 	 * @param {object} context the store mutations
 	 * @param {string} contactKey the contact key to toggle
