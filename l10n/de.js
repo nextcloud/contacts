@@ -295,6 +295,7 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Link konnte nicht in die Zwischenablage kopiert werden",
     "Not grouped" : "Nicht gruppiert",
     "Organization chart" : "Organigramm",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Erstellen deine eigenen Gruppen zum Teilen. Füge Nextcloud-Benutzer, Kontakte oder beliebige Personen per E-Mail hinzu.",
     "Team" : "Team",
     "User" : "Benutzer",
     "Group" : "Gruppe",
