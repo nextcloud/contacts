@@ -238,9 +238,6 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get favorite() {
-		const raw = this.vCard.getFirstPropertyValue('x-favorite')
-		console.log('favorite getter for', this.displayName, '→ raw value:', raw, typeof raw)
-		return raw === true || raw === 'true'
 		const value = this.vCard.getFirstPropertyValue('x-favorite')
 		return value === '1'
 	}
