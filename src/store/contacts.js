@@ -24,8 +24,6 @@ import validate from '../services/validate.js'
  */
 ICAL.design.vcard3.param.type.multiValueSeparateDQuote = true
 ICAL.design.vcard.param.type.multiValueSeparateDQuote = true
-ICAL.design.vcard.property['x-favorite'] = { defaultType: 'text' }
-ICAL.design.vcard3.property['x-favorite'] = { defaultType: 'text' }
 
 function sortData(a, b) {
 	const nameA = typeof a.value === 'string'
@@ -157,7 +155,9 @@ const mutations = {
 				sortedContact.favorite = contact.favorite
 
 				state.sortedContacts.sort((a, b) => {
-					if (a.favorite !== b.favorite) return a.favorite ? -1 : 1
+					if (a.favorite !== b.favorite) {
+						return a.favorite ? -1 : 1
+					}
 					return sortData(a, b)
 				})
 			}
@@ -238,7 +238,9 @@ const mutations = {
 				favorite: contact.favorite || false,
 			}))
 			.sort((a, b) => {
-				if (a.favorite !== b.favorite) return a.favorite ? -1 : 1
+				if (a.favorite !== b.favorite) {
+					return a.favorite ? -1 : 1
+				}
 				return sortData(a, b)
 			})
 	},
@@ -310,7 +312,7 @@ const actions = {
 	async toggleFavorite(context, contact) {
 		contact.favorite = !contact.favorite
 		try {
-			await context.dispatch('updateContact', contact)
+			await context.dispatch('markFavorite', contact)
 		} catch (error) {
 			contact.favorite = !contact.favorite
 			showError(t('contacts', 'Could not update favorite state'))
@@ -325,7 +327,7 @@ const actions = {
 	 * @param {Contact} data.contact the contact to delete
 	 * @param {boolean} [data.dav] trigger a dav deletion
 	 */
-	async deleteContact(context, { contact, dav = true }) {
+	async deleteContact(context, { contact, dav = true}) {
 		// only local delete if the contact doesn't exists on the server
 		if (contact.dav && dav) {
 			await contact.dav.delete()
@@ -349,6 +351,18 @@ const actions = {
 		await context.commit('addContact', contact)
 		await context.commit('addContactToAddressbook', contact)
 		await context.commit('extractGroupsFromContacts', [contact])
+	},
+
+	async markFavorite(contact) {
+		try {
+			await contact.dav.toggleFavorite()
+		} catch (error) {
+			if (error && error?.status === 412) {
+				console.error('This contact is not marked as favorite, the server refused it', contact)
+			}
+			}x-favo
+			throw (error)
+		}
 	},
 
 	/**

@@ -25,7 +25,7 @@ function isEmpty(value) {
 export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
 
 export const MinimalContactProperties = [
-	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED', 'X-FAVORITE',
+	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED',
 ].concat(ContactKindProperties)
 
 export default class Contact {
@@ -229,31 +229,6 @@ export default class Contact {
 	 */
 	get hasPhoto() {
 		return this.dav && this.dav.hasphoto
-	}
-
-	/**
-	 * Return whether the contact is marked as favorite
-	 *
-	 * @readonly
-	 * @memberof Contact
-	 */
-	get favorite() {
-		const value = this.vCard.getFirstPropertyValue('x-favorite')
-		return value === '1'
-	}
-
-	/**
-	 * Set the favorite state of the contact
-	 *
-	 * @param {boolean} value true to mark as favorite, false to remove
-	 * @memberof Contact
-	 */
-	set favorite(value) {
-		this.vCard.removeProperty('x-favorite')
-
-		if (value) {
-			this.vCard.addPropertyWithValue('x-favorite', '1')
-		}
 	}
 
 	/**

@@ -61,7 +61,7 @@
 			</template>
 			<template #actions>
 				<NcActionButton
-					v-if="!isStatic && canModify"
+					v-if="!isStatic"
 					@click="toggleFavorite">
 					<template #icon>
 						<StarIcon
@@ -150,10 +150,6 @@ export default {
 	computed: {
 		isFavorite() {
 			return this.source.favorite
-		},
-
-		canModify() {
-			return this.source?.addressbook?.canModifyCard === true
 		},
 
 		// contact is not draggable when it has not been saved on server as it can't be added to groups/circles before
