@@ -386,8 +386,6 @@ const actions = {
 						try {
 							const contact = new Contact(item.data, addressbook)
 							contact.dav = item
-							console.log('loaded contact', contact.displayName, 'favorite:', contact.favorite, 'raw vcard snippet:', item.data.includes('x-favorite') ? 'HAS x-favorite' : 'NO x-favorite')
-							contacts.push(contact)
 							contacts.push(contact)
 						} catch (error) {
 							// PARSING FAILED
