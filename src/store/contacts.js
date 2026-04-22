@@ -401,9 +401,6 @@ const actions = {
 				context.commit('updateContact', contact)
 			} catch (error) {
 				console.error(error)
-				console.error('status:', error?.status)
-				console.error('response:', error?.xhr?.responseText)
-				console.error('vData sent:', vData)
 
 				// wrong etag, we most likely have a conflict
 				if (error && error?.status === 412) {
