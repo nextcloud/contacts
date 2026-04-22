@@ -327,7 +327,7 @@ const actions = {
 	 * @param {Contact} data.contact the contact to delete
 	 * @param {boolean} [data.dav] trigger a dav deletion
 	 */
-	async deleteContact(context, { contact, dav = true}) {
+	async deleteContact(context, { contact, dav = true }) {
 		// only local delete if the contact doesn't exists on the server
 		if (contact.dav && dav) {
 			await contact.dav.delete()
@@ -360,8 +360,6 @@ const actions = {
 			if (error && error?.status === 412) {
 				console.error('This contact is not marked as favorite, the server refused it', contact)
 			}
-			}x-favo
-			throw (error)
 		}
 	},
 
