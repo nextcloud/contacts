@@ -93,7 +93,6 @@ export default class Contact {
 	updateContact(jCal) {
 		this.jCal = jCal
 		this.vCard = new ICAL.Component(this.jCal)
-		this.favorite = this.vCard.getFirstPropertyValue('x-favorite') === 'true'
 	}
 
 	/**
@@ -240,7 +239,7 @@ export default class Contact {
 	 */
 	get favorite() {
 		const value = this.vCard.getFirstPropertyValue('x-favorite')
-		return value === 'true' || value === true || value === 'YES'
+		return value === '1'
 	}
 
 	/**
@@ -250,12 +249,11 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	set favorite(value) {
-		if (!value) {
-			this.vCard.removeProperty('x-favorite')
-			return
-		}
+		this.vCard.removeProperty('x-favorite')
 
-		this.vCard.updatePropertyWithValue('x-favorite', 'true')
+		if (value) {
+			this.vCard.addPropertyWithValue('x-favorite', '1')
+		}
 	}
 
 	/**
