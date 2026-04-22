@@ -25,7 +25,7 @@ function isEmpty(value) {
 export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
 
 export const MinimalContactProperties = [
-	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED',
+	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED', 'X-FAVORITE',
 ].concat(ContactKindProperties)
 
 export default class Contact {
@@ -238,6 +238,9 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get favorite() {
+		const raw = this.vCard.getFirstPropertyValue('x-favorite')
+		console.log('favorite getter for', this.displayName, '→ raw value:', raw, typeof raw)
+		return raw === true || raw === 'true'
 		const value = this.vCard.getFirstPropertyValue('x-favorite')
 		return value === '1'
 	}

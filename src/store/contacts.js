@@ -24,6 +24,8 @@ import validate from '../services/validate.js'
  */
 ICAL.design.vcard3.param.type.multiValueSeparateDQuote = true
 ICAL.design.vcard.param.type.multiValueSeparateDQuote = true
+ICAL.design.vcard.property['x-favorite'] = { defaultType: 'text' }
+ICAL.design.vcard3.property['x-favorite'] = { defaultType: 'text' }
 
 function sortData(a, b) {
 	const nameA = typeof a.value === 'string'
@@ -137,7 +139,6 @@ const mutations = {
 	 */
 	updateContact(state, contact) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
-			// replace contact object data
 			state.contacts[contact.key].updateContact(contact.jCal)
 
 			state.contacts[contact.key].favorite = contact.favorite
@@ -156,9 +157,7 @@ const mutations = {
 				sortedContact.favorite = contact.favorite
 
 				state.sortedContacts.sort((a, b) => {
-					if (a.favorite !== b.favorite) {
-						return b.favorite - a.favorite
-					}
+					if (a.favorite !== b.favorite) return a.favorite ? -1 : 1
 					return sortData(a, b)
 				})
 			}
@@ -239,10 +238,7 @@ const mutations = {
 				favorite: contact.favorite || false,
 			}))
 			.sort((a, b) => {
-				if (a.favorite !== b.favorite) {
-					return b.favorite - a.favorite
-				}
-
+				if (a.favorite !== b.favorite) return a.favorite ? -1 : 1
 				return sortData(a, b)
 			})
 	},
@@ -309,11 +305,17 @@ const actions = {
 	 * Updates the store
 	 *
 	 * @param {object} context the store mutations
-	 * @param {string} contactKey the contact key to toggle
+	 * @param {string} contact the contact key to toggle
 	 */
 	async toggleFavorite(context, contact) {
 		contact.favorite = !contact.favorite
-		await context.dispatch('updateContact', contact)
+		try {
+			await context.dispatch('updateContact', contact)
+		} catch (error) {
+			contact.favorite = !contact.favorite
+			showError(t('contacts', 'Could not update favorite state'))
+			console.error('Could not toggle favorite state', error)
+		}
 	},
 	/**
 	 * Delete a contact from the list and from the associated addressbook
@@ -387,6 +389,9 @@ const actions = {
 				context.commit('updateContact', contact)
 			} catch (error) {
 				console.error(error)
+				console.error('status:', error?.status)
+				console.error('response:', error?.xhr?.responseText)
+				console.error('vData sent:', vData)
 
 				// wrong etag, we most likely have a conflict
 				if (error && error?.status === 412) {

@@ -61,7 +61,7 @@
 			</template>
 			<template #actions>
 				<NcActionButton
-					v-if="!isStatic"
+					v-if="!isStatic && canModify"
 					@click="toggleFavorite">
 					<template #icon>
 						<StarIcon
@@ -152,6 +152,10 @@ export default {
 			return this.source.favorite
 		},
 
+		canModify() {
+			return this.source?.addressbook?.canModifyCard === true
+		},
+
 		// contact is not draggable when it has not been saved on server as it can't be added to groups/circles before
 		isDraggable() {
 			return !!this.source.dav && this.source.addressbook.id !== 'z-server-generated--system' && !this.isStatic
@@ -187,6 +191,9 @@ export default {
 
 	methods: {
 		async toggleFavorite() {
+			if (!this.source.addressbook?.canModifyCard) {
+				return
+			}
 			try {
 				await this.$store.dispatch('toggleFavorite', this.source)
 			} catch (error) {
