@@ -16,6 +16,7 @@ use OCA\DAV\CardDAV\ContactsManager;
 
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Utility\ITimeFactory;
+use OCP\Constants;
 use OCP\Contacts\IManager;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
@@ -75,6 +76,9 @@ class SocialApiServiceTest extends TestCase {
 		$addressbookEmpty
 			->method('search')
 			->willReturn(null);
+		$addressbookEmpty
+			->method('getPermissions')
+			->willReturn(Constants::PERMISSION_UPDATE);
 
 		$addressbook = $this->createMock(IAddressBook::class);
 		$addressbook
@@ -83,6 +87,9 @@ class SocialApiServiceTest extends TestCase {
 		$addressbook
 			->method('search')
 			->willReturn([$contact]);
+		$addressbook
+			->method('getPermissions')
+			->willReturn(Constants::PERMISSION_UPDATE);
 
 		return [
 			'no address book found' => [null, [], '', '', Http::STATUS_BAD_REQUEST],
@@ -138,6 +145,35 @@ class SocialApiServiceTest extends TestCase {
 
 		$result = $this->service->getSupportedNetworks();
 		$this->assertEmpty($result);
+	}
+
+	public function testUpdateContactWithoutUpdatePermission() {
+		$contact = [
+			'URI' => '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
+			'VERSION' => '4.0'
+		];
+
+		$addressBook = $this->createMock(IAddressBook::class);
+		$addressBook
+			->method('getUri')
+			->willReturn('contacts');
+		$addressBook
+			->method('search')
+			->willReturn([$contact]);
+		$addressBook
+			->method('getPermissions')
+			->willReturn(Constants::PERMISSION_READ);
+
+		$this->manager
+			->method('getUserAddressBooks')
+			->willReturn([$addressBook]);
+
+		$result = $this->service
+			->updateContact(
+				'contacts',
+				'3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
+				null);
+		$this->assertEquals(Http::STATUS_BAD_REQUEST, $result->getStatus());
 	}
 
 	/**
@@ -200,6 +236,9 @@ class SocialApiServiceTest extends TestCase {
 		$addressbook
 			->method('search')
 			->willReturn([$contact]);
+		$addressbook
+			->method('getPermissions')
+			->willReturn(Constants::PERMISSION_UPDATE);
 
 		$this->manager
 			->method('getUserAddressBooks')
@@ -273,6 +312,9 @@ class SocialApiServiceTest extends TestCase {
 		$addressbook
 			->method('search')
 			->willReturn([$contact]);
+		$addressbook
+			->method('getPermissions')
+			->willReturn(Constants::PERMISSION_UPDATE);
 
 		$this->manager
 			->method('getUserAddressBooks')
@@ -346,6 +388,9 @@ class SocialApiServiceTest extends TestCase {
 		$addressbook
 			->method('search')
 			->willReturn([$contact]);
+		$addressbook
+			->method('getPermissions')
+			->willReturn(Constants::PERMISSION_UPDATE);
 
 		$this->manager
 			->method('getUserAddressBooks')
@@ -440,9 +485,17 @@ class SocialApiServiceTest extends TestCase {
 		$addressbook1
 			->method('search')
 			->will($this->returnValueMap($searchMap1));
+		$addressbook1
+			->method('getPermissions')
+			->willReturn(Constants::PERMISSION_UPDATE);
+
 		$addressbook2
 			->method('search')
 			->will($this->returnValueMap($searchMap2));
+		$addressbook2
+			->method('getPermissions')
+			->willReturn(Constants::PERMISSION_UPDATE);
+
 		$this->manager
 			->method('getUserAddressBooks')
 			->willReturn([$addressbook1, $addressbook2]);
