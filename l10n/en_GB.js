@@ -295,6 +295,7 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Could not copy link to the clipboard.",
     "Not grouped" : "Not grouped",
     "Organization chart" : "Organisation chart",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email.",
     "Team" : "Team",
     "User" : "User",
     "Group" : "Group",
