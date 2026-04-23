@@ -15,6 +15,7 @@ use OCA\DAV\CardDAV\ContactsManager;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\JSONResponse;
 use OCP\AppFramework\Utility\ITimeFactory;
+use OCP\Constants;
 use OCP\Contacts\IManager;
 use OCP\Http\Client\IClientService;
 use OCP\IAddressBook;
@@ -93,22 +94,30 @@ class SocialApiService {
 	/**
 	 * Gets the addressbook of an addressbookId
 	 *
-	 * @param string $addressbookId the identifier of the addressbook
+	 * @param string $addressBookId the identifier of the addressbook
 	 * @param IManager|null $manager optional a ContactManager to use
 	 *
 	 * @return IAddressBook|null the corresponding addressbook or null
 	 */
-	protected function getAddressBook(string $addressbookId, ?IManager $manager = null) : ?IAddressBook {
+	protected function getAddressBook(string $addressBookId, ?IManager $manager = null) : ?IAddressBook {
 		$addressBook = null;
 		if ($manager === null) {
 			$manager = $this->manager;
 		}
 		$addressBooks = $manager->getUserAddressBooks();
 		foreach ($addressBooks as $ab) {
-			if ($ab->getUri() === $addressbookId) {
+			if ($ab->getUri() === $addressBookId) {
 				$addressBook = $ab;
 			}
 		}
+
+		$addressBookIsUpdatable = $addressBook !== null
+			&& ($addressBook->getPermissions() & Constants::PERMISSION_UPDATE);
+
+		if (!$addressBookIsUpdatable) {
+			return null;
+		}
+
 		return $addressBook;
 	}
 
