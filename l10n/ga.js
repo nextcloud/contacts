@@ -295,6 +295,7 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Níorbh fhéidir nasc chuig an ngearrthaisce a chóipeáil.",
     "Not grouped" : "Gan grúpáil",
     "Organization chart" : "Cairt Eagrúcháin",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Cruthaigh do ghrúpaí féin le haghaidh comhroinnte. Cuir úsáideoirí Nextcloud, teagmhálaithe, nó aon duine leis trí ríomhphost.",
     "Team" : "Foireann",
     "User" : "Úsáideoir",
     "Group" : "Grúpa",
