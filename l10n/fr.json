@@ -258,7 +258,7 @@
     "Personal dates" : "Dates personnelles",
     "Add property of this type" : "Ajouter une propriété de ce type",
     "Member" : "Membre",
-    "This is a read-only group managed by administrators. Group members can only view this group." : "Il s'agit d'un groupe en lecture seule géré par les administrateurs. Les membres du groupe peuvent uniquement consulter ce groupe.",
+    "This is a read-only group managed by administrators. Group members can only view this group." : "Il s'agit d'un groupe en lecture seule, géré par les administrateurs. Seuls les membres du groupe peuvent consulter ce groupe.",
     "Unable to create the contact." : "Impossible de créer le contact.",
     "Contact not found" : "Contact introuvable",
     "Group {group} not found" : "Groupe {group} introuvable",
