@@ -163,19 +163,22 @@ export default {
 		async onDrop(event, group) {
 			try {
 				const contactFromDropData = JSON.parse(event.dataTransfer.getData('item'))
-				const contactFromStore = this.$store.getters.getContact(Buffer.from(`${contactFromDropData.uid}~${contactFromDropData.addressbookId}`, 'utf-8').toString('base64'))
-				if (contactFromStore && !this.isInGroup(contactFromStore.groups, group.id)) {
-					const contact = this.$store.getters.getContact(Buffer.from(`${contactFromDropData.uid}~${contactFromDropData.addressbookId}`, 'utf-8').toString('base64'))
+				const contactId = Buffer.from(`${contactFromDropData.uid}~${contactFromDropData.addressbookId}`, 'utf-8').toString('base64')
+				let contact = this.$store.getters.getContact(contactId)
+				if (!contact) {
+					return
+				} 
+
+				await this.$store.dispatch('fetchFullContact', { contact })
+				contact = this.$store.getters.getContact(contactId)
+
+				if (!this.isInGroup(contact.groups, group.id)) {
+					contact.groups = [...contact.groups, group.name]
 					await this.$store.dispatch('updateContactGroups', {
-						groupNames: [...contactFromStore.groups, group.name],
+						groupNames: contact.groups,
 						contact,
 					})
-					const localContact = Object.assign(
-						Object.create(Object.getPrototypeOf(contact)),
-						contact,
-					)
-					localContact.groups = [...contactFromStore.groups, group.name]
-					await this.$store.dispatch('updateContact', localContact)
+					await this.$store.dispatch('updateContact', contact)
 				}
 			} catch (e) {
 				console.error(e)
