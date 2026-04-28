@@ -5,6 +5,7 @@
 
 import { showError } from '@nextcloud/dialogs'
 import ICAL from 'ical.js'
+import { toRaw } from 'vue'
 import Contact from '../models/contact.js'
 import validate from '../services/validate.js'
 
@@ -26,20 +27,43 @@ ICAL.design.vcard3.param.type.multiValueSeparateDQuote = true
 ICAL.design.vcard.param.type.multiValueSeparateDQuote = true
 
 function sortData(a, b) {
-	const nameA = typeof a.value === 'string'
-		? a.value.toUpperCase() // ignore upper and lowercase
-		: a.value.toUnixTime() // only other sorting we support is a vCardTime
-	const nameB = typeof b.value === 'string'
-		? b.value.toUpperCase() // ignore upper and lowercase
-		: b.value.toUnixTime() // only other sorting we support is a vCardTime
+	const nameA = typeof a.value === 'string' ? a.value.toUpperCase() : a.value
+	const nameB = typeof b.value === 'string' ? b.value.toUpperCase() : b.value
 
-	const score = nameA.localeCompare
+	// Push null/undefined values to the end
+	if (nameA === null && nameB === null) {
+		return a.key.localeCompare(b.key)
+	}
+	if (nameA === null) {
+		return 1
+	}
+	if (nameB === null) {
+		return -1
+	}
+
+	const score = typeof nameA === 'string'
 		? nameA.localeCompare(nameB)
-		: nameB - nameA
-	// if equal, fallback to the key
-	return score !== 0
-		? score
-		: a.key.localeCompare(b.key)
+		: nameB - nameA // descending: newest first
+	return score !== 0 ? score : a.key.localeCompare(b.key)
+}
+
+function extractSortValue(contact, orderKey) {
+	if (orderKey === 'rev') {
+		return contact.revTimestamp
+	}
+	const val = contact[orderKey]
+	if (val === null || val === undefined) {
+		return null
+	}
+	if (typeof val === 'string') {
+		return val
+	}
+	// ical.js methods don't work through Vue's reactive proxy; unwrap first.
+	try {
+		return toRaw(val).toUnixTime()
+	} catch {
+		return null
+	}
 }
 
 const state = {
@@ -99,7 +123,7 @@ const mutations = {
 
 			const sortedContact = {
 				key: contact.key,
-				value: contact[state.orderKey],
+				value: extractSortValue(contact, state.orderKey),
 			}
 
 			// Not using sort, splice has far better performances
@@ -130,21 +154,25 @@ const mutations = {
 	 * Update a contact
 	 *
 	 * @param {object} state the store data
-	 * @param {Contact} contact the contact to update
+	 * @param {object} payload destructuring object
+	 * @param {Contact} payload.contact the contact to update
+	 * @param {boolean} [payload.skipSort] skip the re-sort after updating (default false)
 	 */
-	updateContact(state, contact) {
+	updateContact(state, { contact, skipSort = false }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
 			// replace contact object data
 			state.contacts[contact.key].updateContact(contact.jCal)
-			const sortedContact = state.sortedContacts.find((search) => search.key === contact.key)
+			if (!skipSort) {
+				const sortedContact = state.sortedContacts.find((search) => search.key === contact.key)
 
-			// has the sort key changed for this contact ?
-			const hasChanged = sortedContact.value !== contact[state.orderKey]
-			if (hasChanged) {
-				// then update the new data
-				sortedContact.value = contact[state.orderKey]
-				// and then we sort again
-				state.sortedContacts.sort(sortData)
+				// has the sort key changed for this contact ?
+				const newValue = extractSortValue(contact, state.orderKey)
+				if (sortedContact.value !== newValue) {
+					// then update the new data
+					sortedContact.value = newValue
+					// and then we sort again
+					state.sortedContacts.sort(sortData)
+				}
 			}
 		} else {
 			console.error('Error while replacing the following contact', contact)
@@ -181,7 +209,7 @@ const mutations = {
 			// Update sorted contacts list, replace at exact same position
 			const index = state.sortedContacts.findIndex((search) => search.key === oldKey)
 			state.sortedContacts[index].key = newContact.key
-			state.sortedContacts[index].value = newContact[state.orderKey]
+			state.sortedContacts[index].value = extractSortValue(newContact, state.orderKey)
 		} else {
 			console.error('Error while replacing the addressbook of following contact', contact)
 		}
@@ -217,7 +245,7 @@ const mutations = {
 		state.sortedContacts = Object.values(state.contacts)
 			// exclude groups
 			.filter((contact) => contact.kind !== 'group')
-			.map((contact) => { return { key: contact.key, value: contact[state.orderKey] } })
+			.map((contact) => { return { key: contact.key, value: extractSortValue(contact, state.orderKey) } })
 			.sort(sortData)
 	},
 
@@ -343,7 +371,7 @@ const actions = {
 			try {
 				await contact.dav.update()
 				// all clear, let's update the store
-				context.commit('updateContact', contact)
+				context.commit('updateContact', { contact })
 			} catch (error) {
 				console.error(error)
 
@@ -377,8 +405,12 @@ const actions = {
 		}
 		return contact.dav.fetchCompleteData(forceReFetch)
 			.then(() => {
-				const newContact = new Contact(contact.dav.data, contact.addressbook)
-				context.commit('updateContact', newContact)
+				const vcardData = contact.dav.data
+				const newContact = new Contact(vcardData, contact.addressbook)
+				// skipSort: opening a contact must not visibly reorder the list.
+				// The server's REV rarely differs from the cached one here; if it
+				// does, the next mutation will re-sort.
+				context.commit('updateContact', { contact: newContact, skipSort: true })
 			})
 			.catch((error) => { throw error })
 	},
