@@ -1,3 +1,22 @@
+## [8.4.5](https://github.com/nextcloud/contacts/compare/v8.4.4...v8.4.5) (2026-04-28)
+
+
+### Bug Fixes
+
+* **deps:** Fix npm audit ([35c7aee](https://github.com/nextcloud/contacts/commit/35c7aeeee6be632bf0f263d2de2f2568fce4d899))
+* **deps:** Fix npm audit ([a1ed696](https://github.com/nextcloud/contacts/commit/a1ed696ec6c0d30670be0e9b2f40f79e11c174ae))
+* **deps:** update dependency uuid to v14 ([a2366f7](https://github.com/nextcloud/contacts/commit/a2366f74314fec799ec134e782126e7937ae25a8))
+* Fix Teams description in nav. Shorten text, fix alignment, improve text color ([f3b521e](https://github.com/nextcloud/contacts/commit/f3b521e9318f1e8ae171eb2ead06c8c9168040dd))
+* **l10n:** Update translations from Transifex ([7cefaef](https://github.com/nextcloud/contacts/commit/7cefaef6a974b414b50729045501e88cdffd8878))
+* **l10n:** Update translations from Transifex ([3b539f3](https://github.com/nextcloud/contacts/commit/3b539f3e737593eef35824dbc179900c6dbe12f5))
+* **l10n:** Update translations from Transifex ([b4a4684](https://github.com/nextcloud/contacts/commit/b4a4684845add97ecb84356e495855eced6035c3))
+* **l10n:** Update translations from Transifex ([ccc720c](https://github.com/nextcloud/contacts/commit/ccc720c71967502d3e293d206ec018b68609d932))
+* **l10n:** Update translations from Transifex ([b46b629](https://github.com/nextcloud/contacts/commit/b46b629635152122dd21874b88196e7afc5696ed))
+* **l10n:** Update translations from Transifex ([6ecb516](https://github.com/nextcloud/contacts/commit/6ecb51629d48d3957f0c729355440534103f0ef2))
+* **SocialApi:** Ensure the address book permissions are sufficent before doing update ([0ffa345](https://github.com/nextcloud/contacts/commit/0ffa345ad3fe7bf66131bb91cf9c76db2868ddde))
+
+
+
 ## [8.4.4](https://github.com/nextcloud/contacts/compare/v8.4.3...v8.4.4) (2026-04-14)
 
 
