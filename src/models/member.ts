@@ -16,8 +16,8 @@ export default class Member {
 	/**
 	 * Creates an instance of Member
 	 *
-	 * @param data
-	 * @param circle
+	 * @param data the member data
+	 * @param circle the circle this member belongs to
 	 */
 	constructor(data: any, circle: Circle) {
 		if (typeof data !== 'object') {

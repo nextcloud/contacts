@@ -107,6 +107,8 @@ export default {
 		},
 	},
 
+	emits: ['update:value'],
+
 	data() {
 		return {
 			// input type following DatePicker docs
