@@ -51,7 +51,6 @@ const state = {
 }
 
 const mutations = {
-
 	/**
 	 * Store raw contacts into state
 	 * Used by the first contact fetch
@@ -93,17 +92,17 @@ const mutations = {
 	 * @param {Contact} contact the contact to add
 	 */
 	addContact(state, contact) {
+		// Checking contact validity 🔍🙈
 		if (contact instanceof Contact) {
-			// Checking contact validity 🔍🙈
 			validate(contact)
 
 			const sortedContact = {
 				key: contact.key,
 				value: contact[state.orderKey],
 			}
-
 			// Not using sort, splice has far better performances
 			// https://jsperf.com/sort-vs-splice-in-array
+
 			for (let i = 0, len = state.sortedContacts.length; i < len; i++) {
 				if (sortData(state.sortedContacts[i], sortedContact) >= 0) {
 					state.sortedContacts.splice(i, 0, sortedContact)
@@ -114,12 +113,10 @@ const mutations = {
 				}
 			}
 
-			// sortedContact is empty, just push it
 			if (state.sortedContacts.length === 0) {
 				state.sortedContacts.push(sortedContact)
 			}
 
-			// default contacts list
 			state.contacts[contact.key] = contact
 		} else {
 			console.error('Error while adding the following contact', contact)
@@ -134,8 +131,8 @@ const mutations = {
 	 */
 	updateContact(state, contact) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
-			// replace contact object data
 			state.contacts[contact.key].updateContact(contact.jCal)
+
 			const sortedContact = state.sortedContacts.find((search) => search.key === contact.key)
 
 			// has the sort key changed for this contact ?
@@ -143,7 +140,6 @@ const mutations = {
 			if (hasChanged) {
 				// then update the new data
 				sortedContact.value = contact[state.orderKey]
-				// and then we sort again
 				state.sortedContacts.sort(sortData)
 			}
 		} else {
@@ -217,7 +213,8 @@ const mutations = {
 		state.sortedContacts = Object.values(state.contacts)
 			// exclude groups
 			.filter((contact) => contact.kind !== 'group')
-			.map((contact) => { return { key: contact.key, value: contact[state.orderKey] } })
+			.map((contact) => {
+				return {key: contact.key, value: contact[state.orderKey] } })
 			.sort(sortData)
 	},
 
@@ -273,6 +270,48 @@ const getters = {
 }
 
 const actions = {
+
+	/**
+	 * Toggle the favorite state of a contact.
+	 * Updates the store
+	 *
+	 * @param {object} context the store mutations
+	 * @param {string} contact the contact key to toggle
+	 */
+	async toggleFavorite(context, contact) {
+		const oldStatus = contact.favorite
+		const newStatus = !contact.favorite
+
+		try {
+			// Change favorite state in store
+			context.commit('updateContactFavorite', { contact, newStatus })
+
+			// Try to push the new state on server
+			await contact.dav.updateMetaProperties()
+		} catch (error) {
+			// Revert changes in store in case of error on push
+			context.commit('updateContactFavorite', { contact, oldStatus })
+
+			showError(t('contacts', 'Could not update favorite state'))
+			console.error('Could not toggle favorite state', error)
+		}
+	},
+
+	/**
+	 * Store favorite state into store
+	 *
+	 * @param {object} state Default state
+	 * @param {Contact} contact Contact
+	 * @param {boolean} newStatus
+	 */
+	updateContactFavorite(state, { contact, newStatus }) {
+		if (state.contacts[contact.key] && contact instanceof Contact) {
+			const contactToUpdate = state.contacts[contact.key]
+			contactToUpdate.favorite = newStatus
+		} else {
+			console.error('Error while replacing favorite state of following contact', contact)
+		}
+	},
 
 	/**
 	 * Delete a contact from the list and from the associated addressbook
