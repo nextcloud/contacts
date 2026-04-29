@@ -86,7 +86,13 @@ export default class Contact {
 	}
 
 	get favorite() {
-		return this.dav.userFavorite ?? false
+		const defaultValue = false
+
+		if (this.dav) {
+			return this.dav.userFavorite ?? defaultValue
+		}
+
+		return defaultValue
 	}
 
 	set favorite(value) {
