@@ -33,6 +33,7 @@ export default class Contact {
 	 * Creates an instance of Contact
 	 *
 	 * @param {string} vcard the vcard data as string with proper new lines
+	 * @param {boolean} userFavorite whether the contact is a user favorite or not
 	 * @param {object} addressbook the addressbook which the contat belongs to
 	 * @memberof Contact
 	 */
@@ -82,6 +83,14 @@ export default class Contact {
 
 	set vCard(value) {
 		this._vCard = shallowRef(value)
+	}
+
+	get favorite() {
+		return this.dav.userFavorite ?? false
+	}
+
+	set favorite(value) {
+		this.dav.userFavorite = value
 	}
 
 	/**

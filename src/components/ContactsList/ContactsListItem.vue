@@ -187,9 +187,6 @@ export default {
 
 	methods: {
 		async toggleFavorite() {
-			if (!this.source.addressbook?.canModifyCard) {
-				return
-			}
 			try {
 				await this.$store.dispatch('toggleFavorite', this.source)
 			} catch (error) {
