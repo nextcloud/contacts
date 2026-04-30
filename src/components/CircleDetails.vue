@@ -12,6 +12,7 @@
 						:disable-tooltip="true"
 						:display-name="circle.displayName"
 						:is-no-user="true"
+						:url="displayAvatarUrl"
 						:size="75" />
 				</div>
 				<div class="circle-details__header">
@@ -41,6 +42,54 @@
 							:placeholder="descriptionPlaceholder"
 							label="Description"
 							:maxlength="1024" />
+					</div>
+					<div class="circle-avatar-buttons-wrapper">
+						<NcButton
+							v-if="isEditing"
+							@click="openLocalFilePicker">
+							<template #icon>
+								<TrayArrowUpIcon :size="20" />
+							</template>
+							{{ t('contacts', 'Upload team picture') }}
+						</NcButton>
+						<NcButton
+							v-if="isEditing"
+							@click="openFilePicker">
+							<template #icon>
+								<FolderIcon :size="20" />
+							</template>
+							{{ t('contacts', 'Choose from Nextcloud Files') }}
+						</NcButton>
+						<NcButton
+							v-if="isEditing && displayAvatarUrl !== undefined"
+							@click="removeAvatar">
+							<template #icon>
+								<TrashCanOutlineIcon :size="20" />
+							</template>
+							{{ t('contacts', 'Delete picture') }}
+						</NcButton>
+						<input
+							ref="avatarInput"
+							type="file"
+							class="hidden-visually"
+							@change="onAvatarInputChange">
+					</div>
+					<!-- Use v-show to ensure early cropper ref availability -->
+					<div v-show="showCropper" class="circle-avatar-cropper-wrapper">
+						<VueCropper
+							ref="cropper"
+							class="circle-avatar-cropper"
+							v-bind="cropperOptions" />
+						<div class="circle-avatar-cropper-buttons">
+							<NcButton @click="cancelSetAvatar">
+								{{ t('settings', 'Cancel') }}
+							</NcButton>
+							<NcButton
+								variant="primary"
+								@click="setAvatar">
+								{{ t('settings', 'Apply') }}
+							</NcButton>
+						</div>
 					</div>
 					<div class="actions">
 						<template v-if="!isEditing">
@@ -220,8 +269,9 @@
 <script>
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
-import { showError, showSuccess } from '@nextcloud/dialogs'
-import { generateOcsUrl, generateUrl } from '@nextcloud/router'
+import { FilePickerClosed, getFilePickerBuilder, showError, showSuccess } from '@nextcloud/dialogs'
+import { encodePath } from '@nextcloud/paths'
+import { generateOcsUrl, generateRemoteUrl, generateUrl } from '@nextcloud/router'
 import {
 	NcAvatar as Avatar,
 	NcListItem as ListItem,
@@ -237,6 +287,7 @@ import {
 } from '@nextcloud/vue'
 import { useElementSize } from '@vueuse/core'
 import { reactive, ref } from 'vue'
+import VueCropper from 'vue-cropperjs'
 import IconAccountGroup from 'vue-material-design-icons/AccountGroupOutline.vue'
 import AccountPlusIcon from 'vue-material-design-icons/AccountPlusOutline.vue'
 import BookOpenPageVariantIcon from 'vue-material-design-icons/BookOpenPageVariant.vue'
@@ -245,11 +296,14 @@ import CheckIcon from 'vue-material-design-icons/Check.vue'
 import CogIcon from 'vue-material-design-icons/CogOutline.vue'
 import CopyIcon from 'vue-material-design-icons/ContentCopy.vue'
 import FileDocumentOutline from 'vue-material-design-icons/FileDocumentOutline.vue'
-import FolderIcon from 'vue-material-design-icons/FolderOutline.vue'
+import FolderIcon from 'vue-material-design-icons/Folder.vue'
+import FolderOutlineIcon from 'vue-material-design-icons/FolderOutline.vue'
 import LoginIcon from 'vue-material-design-icons/Login.vue'
 import LogoutIcon from 'vue-material-design-icons/Logout.vue'
 import MessageIcon from 'vue-material-design-icons/MessageOutline.vue'
 import PencilIcon from 'vue-material-design-icons/PencilOutline.vue'
+import TrashCanOutlineIcon from 'vue-material-design-icons/TrashCanOutline.vue'
+import TrayArrowUpIcon from 'vue-material-design-icons/TrayArrowUp.vue'
 import ViewDashboardIcon from 'vue-material-design-icons/ViewDashboard.vue'
 import CircleSettings from './CircleDetails/CircleSettings.vue'
 import ContentHeading from './CircleDetails/ContentHeading.vue'
@@ -257,6 +311,22 @@ import TeamResourceButton from './CircleDetails/TeamResourceButton.vue'
 import MemberList from './MemberList/MemberList.vue'
 import CircleActionsMixin from '../mixins/CircleActionsMixin.js'
 import { CircleEdit, editCircle } from '../services/circles.ts'
+
+import 'cropperjs/dist/cropper.css'
+
+const VALID_MIME_TYPES = ['image/png', 'image/jpeg']
+
+const AVATAR_ACTIONS = Object.freeze({
+	SET: 'set',
+	DELETE: 'delete',
+})
+
+const picker = getFilePickerBuilder(t('contacts', 'Choose a team picture'))
+	.setMultiSelect(false)
+	.setMimeTypeFilter(VALID_MIME_TYPES)
+	.setType(1)
+	.allowDirectories(false)
+	.build()
 
 export default {
 	name: 'CircleDetails',
@@ -285,12 +355,16 @@ export default {
 		NcTextArea,
 		NcActions,
 		NcActionButton,
-		FolderIcon,
+		FolderOutlineIcon,
 		MessageIcon,
 		CalendarIcon,
 		ViewDashboardIcon,
 		BookOpenPageVariantIcon,
 		CheckIcon,
+		FolderIcon,
+		TrashCanOutlineIcon,
+		TrayArrowUpIcon,
+		VueCropper,
 	},
 
 	mixins: [CircleActionsMixin],
@@ -324,6 +398,23 @@ export default {
 			createdCalendar: null,
 			showCalendarSuccessNotification: false,
 			createdCalendarName: '',
+
+			// Avatar
+			avatarUrl: undefined,
+			pendingAvatarBlob: null,
+			pendingAvatarAction: null,
+			pendingAvatarPreviewUrl: undefined,
+			showCropper: false,
+			cropperOptions: {
+				aspectRatio: 1 / 1,
+				viewMode: 1,
+				guides: false,
+				center: false,
+				highlight: false,
+				autoCropArea: 1,
+				minContainerWidth: 300,
+				minContainerHeight: 300,
+			},
 		}
 	},
 
@@ -352,6 +443,16 @@ export default {
 
 		circleUrl() {
 			return window.location.href
+		},
+
+		displayAvatarUrl() {
+			if (this.pendingAvatarAction === AVATAR_ACTIONS.DELETE) {
+				return undefined
+			}
+			if (this.pendingAvatarPreviewUrl) {
+				return this.pendingAvatarPreviewUrl
+			}
+			return this.avatarUrl
 		},
 
 		canManageTeam() {
@@ -413,7 +514,7 @@ export default {
 					inputLabel: t('contacts', 'New folder'),
 					placeholder: t('contacts', 'Folder name'),
 					helperText: t('contacts', 'This will create a regular folder shared with the team. To create a Team Folder, please contact your {productName} administrator', { productName: OC.theme.name }),
-					icon: 'FolderIcon',
+					icon: 'FolderOutlineIcon',
 					apiPath: 'files',
 					enabled: enabledApps.files !== undefined,
 				},
@@ -462,10 +563,20 @@ export default {
 		'circle.id': {
 			handler() {
 				this.fetchTeamResources()
+				this.loadAvatarUrl()
 			},
 
 			immediate: true,
 		},
+	},
+
+	beforeUnmount() {
+		if (this.avatarUrl !== undefined) {
+			URL.revokeObjectURL(this.avatarUrl)
+		}
+		if (this.pendingAvatarPreviewUrl !== undefined) {
+			URL.revokeObjectURL(this.pendingAvatarPreviewUrl)
+		}
 	},
 
 	methods: {
@@ -530,7 +641,6 @@ export default {
 
 					case 'calendar': {
 						const DavClient = (await import('@nextcloud/cdav-library')).default
-						const { generateRemoteUrl } = await import('@nextcloud/router')
 
 						const client = new DavClient({
 							rootUrl: generateRemoteUrl('dav'),
@@ -647,6 +757,98 @@ export default {
 			}
 		},
 
+		openLocalFilePicker() {
+			this.$refs.avatarInput.value = null
+			this.$refs.avatarInput.click()
+		},
+
+		async onAvatarInputChange(e) {
+			try {
+				const file = e.target.files[0]
+				if (!['image/png', 'image/jpeg'].includes(file.type)) {
+					showError(t('contacts', 'Please select a valid png or jpg file'))
+					return
+				}
+				const reader = new FileReader()
+				reader.onload = (e) => {
+					this.$refs.cropper.replace(e.target.result)
+					this.showCropper = true
+				}
+				reader.readAsDataURL(file)
+			} catch (error) {
+				console.error('Error picking avatar file', error)
+				showError(t('contacts', 'Error picking team picture'))
+			}
+		},
+
+		async openFilePicker() {
+			try {
+				const path = await picker.pick()
+				if (!path) {
+					return
+				}
+				const fileResponse = await axios.get(
+					generateRemoteUrl(`dav/files/${getCurrentUser().uid}`) + encodePath(path),
+					{ responseType: 'blob' },
+				)
+				const reader = new FileReader()
+				reader.onload = (e) => {
+					this.$refs.cropper.replace(e.target.result)
+					this.showCropper = true
+				}
+				reader.readAsDataURL(fileResponse.data)
+			} catch (error) {
+				if (error instanceof FilePickerClosed) {
+					return
+				}
+				console.error('Error picking avatar file', error)
+				showError(t('contacts', 'Error picking team picture'))
+			}
+		},
+
+		setAvatar() {
+			this.showCropper = false
+			const canvasData = this.$refs.cropper.getCroppedCanvas()
+			const scaleFactor = canvasData.width > 512 ? 512 / canvasData.width : 1
+
+			this.$refs.cropper.scale(scaleFactor, scaleFactor).getCroppedCanvas().toBlob(async (blob) => {
+				if (blob === null) {
+					showError(t('settings', 'Error cropping avatar picture'))
+					this.cancelSetAvatar()
+					return
+				}
+				if (this.pendingAvatarPreviewUrl) {
+					URL.revokeObjectURL(this.pendingAvatarPreviewUrl)
+				}
+				this.pendingAvatarBlob = blob
+				this.pendingAvatarAction = AVATAR_ACTIONS.SET
+				this.pendingAvatarPreviewUrl = URL.createObjectURL(blob)
+			})
+		},
+
+		cancelSetAvatar() {
+			this.showCropper = false
+			this.$refs.avatarInput.value = null
+		},
+
+		removeAvatar() {
+			if (this.pendingAvatarPreviewUrl) {
+				URL.revokeObjectURL(this.pendingAvatarPreviewUrl)
+			}
+			this.pendingAvatarBlob = null
+			this.pendingAvatarAction = AVATAR_ACTIONS.DELETE
+			this.pendingAvatarPreviewUrl = undefined
+		},
+
+		clearPendingAvatar() {
+			if (this.pendingAvatarPreviewUrl) {
+				URL.revokeObjectURL(this.pendingAvatarPreviewUrl)
+			}
+			this.pendingAvatarBlob = null
+			this.pendingAvatarAction = null
+			this.pendingAvatarPreviewUrl = undefined
+		},
+
 		onLeave() {
 			this.isSettingsPopoverShown = false
 			this.confirmLeaveCircle()
@@ -670,6 +872,8 @@ export default {
 		cancelEditing() {
 			this.circle.displayName = this.originalDisplayName
 			this.circle.description = this.originalDescription
+			this.cancelSetAvatar()
+			this.clearPendingAvatar()
 			this.isEditing = false
 		},
 
@@ -677,6 +881,24 @@ export default {
 			const response = await axios.get(generateOcsUrl(`/teams/${this.circle.id}/resources`))
 			this.resources = response.data.ocs.data.resources
 			console.debug('Team resources', this.resources)
+		},
+
+		async loadAvatarUrl() {
+			try {
+				const response = await axios.get(
+					generateOcsUrl(`/apps/circles/circles/${this.circle.id}/avatar`),
+					{ responseType: 'blob' },
+				)
+				if (this.avatarUrl !== undefined) {
+					URL.revokeObjectURL(this.avatarUrl)
+				}
+				this.avatarUrl = URL.createObjectURL(response.data)
+			} catch {
+				if (this.avatarUrl !== undefined) {
+					URL.revokeObjectURL(this.avatarUrl)
+					this.avatarUrl = undefined
+				}
+			}
 		},
 
 		/**
@@ -694,7 +916,7 @@ export default {
 		async saveChanges() {
 			const errors = []
 
-			// Save name and description sequentially to avoid race conditions
+			// Save name, description and avatar sequentially to avoid race conditions
 			// Save name if changed
 			if (this.circle.displayName !== this.originalDisplayName) {
 				this.loadingName = true
@@ -722,6 +944,32 @@ export default {
 					this.circle.description = this.originalDescription
 				} finally {
 					this.loadingDescription = false
+				}
+			}
+
+			// Upload pending avatar if set
+			if (this.pendingAvatarAction === AVATAR_ACTIONS.SET && this.pendingAvatarBlob) {
+				const formData = new FormData()
+				formData.append('file', this.pendingAvatarBlob)
+				try {
+					await axios.post(generateOcsUrl(`/apps/circles/circles/${this.circle.id}/avatar`), formData)
+					this.clearPendingAvatar()
+					this.loadAvatarUrl()
+				} catch {
+					console.error('Unable to save avatar picture')
+					errors.push('avatar')
+				}
+			}
+
+			// Delete avatar if marked for deletion
+			if (this.pendingAvatarAction === AVATAR_ACTIONS.DELETE) {
+				try {
+					await axios.delete(generateOcsUrl(`/apps/circles/circles/${this.circle.id}/avatar`))
+					this.clearPendingAvatar()
+					this.loadAvatarUrl()
+				} catch {
+					console.error('Unable to remove avatar')
+					errors.push('avatar')
 				}
 			}
 
@@ -905,6 +1153,46 @@ export default {
 		}
 	}
 
-}
+	.circle-avatar-buttons-wrapper {
+		width: 275px;
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		margin-bottom: 16px;
 
+		:deep(.button-vue) {
+			width: 100%;
+		}
+
+		@media (max-width: 768px) {
+			width: 100%;
+		}
+	}
+
+	.circle-avatar-cropper-wrapper {
+		margin-bottom: 16px;
+
+		.circle-avatar-cropper {
+			width: 300px;
+			height: 300px;
+			overflow: hidden;
+
+			:deep(.cropper-view-box) {
+				border-radius: 50%;
+			}
+		}
+
+		.circle-avatar-cropper-buttons {
+			display: flex;
+			flex-direction: row;
+			justify-content: space-between;
+			gap: 8px;
+			margin-top: 8px;
+
+			:deep(.button-vue) {
+				flex: 1;
+			}
+		}
+	}
+}
 </style>
