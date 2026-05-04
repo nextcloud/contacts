@@ -5,40 +5,25 @@
 
 <template>
 	<ul>
-		<li v-for="(configs, title) in PUBLIC_CIRCLE_CONFIG" :key="title" class="circle-config">
+		<li v-for="(config, title) in PUBLIC_CIRCLE_CONFIG" :key="title" class="circle-config">
 			<ContentHeading class="circle-config__title">
 				{{ title }}
 			</ContentHeading>
 
-			<ul class="circle-config__list">
-				<CheckboxRadioSwitch
-					v-for="(label, config) in configs"
-					:key="'circle-config' + config"
-					:model-value="isChecked(config)"
-					:loading="loading === config"
-					:disabled="loading !== false"
-					wrapper-element="li"
-					@update:model-value="onChange(config, $event)">
-					{{ label }}
-				</CheckboxRadioSwitch>
-			</ul>
+			<component :is="config.component" v-bind="config.props" :circle="circle" />
 		</li>
 	</ul>
 </template>
 
 <script>
-import { showError } from '@nextcloud/dialogs'
-import { NcCheckboxRadioSwitch as CheckboxRadioSwitch } from '@nextcloud/vue'
 import ContentHeading from './ContentHeading.vue'
 import Circle from '../../models/circle.ts'
 import { PUBLIC_CIRCLE_CONFIG } from '../../models/constants.ts'
-import { CircleEdit, editCircle } from '../../services/circles.ts'
 
 export default {
 	name: 'CircleConfigs',
 
 	components: {
-		CheckboxRadioSwitch,
 		ContentHeading,
 	},
 
@@ -52,44 +37,7 @@ export default {
 	data() {
 		return {
 			PUBLIC_CIRCLE_CONFIG,
-
-			loading: false,
 		}
-	},
-
-	methods: {
-		isChecked(config) {
-			return (this.circle.config & config) !== 0
-		},
-
-		/**
-		 * On toggle, add or remove the config bitwise
-		 *
-		 * @param {CircleConfig} config the circle config to manage
-		 * @param {boolean} checked checked or not
-		 */
-		async onChange(config, checked) {
-			this.logger.debug(`Circle config ${config} is set to ${checked}`)
-
-			this.loading = config
-			const prevConfig = this.circle.config
-			if (checked) {
-				config = prevConfig | config
-			} else {
-				config = prevConfig & ~config
-			}
-
-			try {
-				const circleData = await editCircle(this.circle.id, CircleEdit.Config, config)
-				// eslint-disable-next-line vue/no-mutating-props
-				this.circle.config = circleData.config
-			} catch (error) {
-				console.error('Unable to edit circle config', prevConfig, config, error)
-				showError(t('contacts', 'An error happened during the config change'))
-			} finally {
-				this.loading = false
-			}
-		},
 	},
 }
 </script>
