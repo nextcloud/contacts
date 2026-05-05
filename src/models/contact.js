@@ -8,7 +8,7 @@ import b64toBlob from 'b64-to-blob'
 import { Buffer } from 'buffer'
 import ICAL from 'ical.js'
 import { v4 as uuid } from 'uuid'
-import { shallowRef, unref } from 'vue'
+import { shallowRef, toRaw, unref } from 'vue'
 import updateDesignSet from '../services/updateDesignSet.js'
 import store from '../store/index.js'
 
@@ -25,7 +25,7 @@ function isEmpty(value) {
 export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
 
 export const MinimalContactProperties = [
-	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED',
+	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED', 'REV',
 ].concat(ContactKindProperties)
 
 export default class Contact {
@@ -62,17 +62,6 @@ export default class Contact {
 		if (!this.vCard.hasProperty('uid')) {
 			console.info('This contact did not have a proper uid. Setting a new one for ', this)
 			this.vCard.addPropertyWithValue('uid', uuid())
-		}
-
-		// if no rev set, init one
-		if (!this.vCard.hasProperty('rev')) {
-			const version = this.vCard.getFirstPropertyValue('version')
-			if (version === '4.0') {
-				this.vCard.addPropertyWithValue('rev', ICAL.Time.fromJSDate(new Date(), true))
-			}
-			if (version === '3.0') {
-				this.vCard.addPropertyWithValue('rev', ICAL.VCardTime.fromDateAndOrTimeString(new Date().toISOString(), 'date-time'))
-			}
 		}
 	}
 
@@ -178,7 +167,11 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get rev() {
-		return this.vCard.getFirstPropertyValue('rev')
+		try {
+			return this.vCard.getFirstPropertyValue('rev')
+		} catch {
+			return null
+		}
 	}
 
 	/**
@@ -189,6 +182,41 @@ export default class Contact {
 	 */
 	set rev(rev) {
 		this.vCard.updatePropertyWithValue('rev', rev)
+	}
+
+	/**
+	 * REV as a unix timestamp (seconds), or null if missing/unparseable.
+	 * Bypasses ICAL.Time parsing so malformed-but-salvageable basic-ISO
+	 * strings ("20260312T192500Z", "T1925Z", trailing "T19:25Z") still sort.
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get revTimestamp() {
+		try {
+			const prop = toRaw(this).vCard.getFirstProperty('rev')
+			if (!prop) {
+				return null
+			}
+			const raw = prop.jCal[3]
+			if (!raw || typeof raw !== 'string') {
+				return null
+			}
+			let s = raw
+			if (/^\d{8}T/.test(s)) {
+				s = s.replace(/^(\d{4})(\d{2})(\d{2})T/, '$1-$2-$3T')
+			}
+			if (/T\d{6}/.test(s)) {
+				s = s.replace(/T(\d{2})(\d{2})(\d{2})/, 'T$1:$2:$3')
+			} else if (/T\d{4}[Z+-]/.test(s)) {
+				s = s.replace(/T(\d{2})(\d{2})([Z+-])/, 'T$1:$2:00$3')
+			}
+			s = s.replace(/T(\d{2}:\d{2}):?Z$/, 'T$1:00Z')
+			const ts = Date.parse(s)
+			return isNaN(ts) ? null : Math.floor(ts / 1000)
+		} catch {
+			return null
+		}
 	}
 
 	/**
