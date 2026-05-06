@@ -84,6 +84,19 @@ export default class Contact {
 		this._vCard = shallowRef(value)
 	}
 
+	get favorite() {
+		if (this.dav) {
+			return this.dav.favorite ?? false
+		}
+		return false
+	}
+
+	set favorite(value) {
+		if (this.dav) {
+			this.dav.favorite = value
+		}
+	}
+
 	/**
 	 * Update internal data of this contact
 	 *
