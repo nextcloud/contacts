@@ -39,7 +39,7 @@
 					<div
 						class="favorite-star"
 						:class="{ favorite: isFavorite }"
-						@click="toggleFavorite">
+						@click.stop="toggleFavorite">
 						<StarIcon
 							v-if="isFavorite"
 							:size="16"

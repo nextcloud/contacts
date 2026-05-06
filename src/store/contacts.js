@@ -74,7 +74,6 @@ const mutations = {
 	 *
 	 * @param {object} state Default state
 	 * @param {Contact} contact Contact
-	 * @param {boolean} newStatus
 	 */
 	updateContactFavorite(state, contact) {
 		if (!state.contacts[contact.key] || !(contact instanceof Contact)) {
@@ -135,16 +134,23 @@ const mutations = {
 			// Not using sort, splice has far better performances
 			// https://jsperf.com/sort-vs-splice-in-array
 			for (let i = 0, len = state.sortedContacts.length; i < len; i++) {
-				if (
-					(state.sortedContacts[i].favorite !== sortedContact.favorite
-						? state.sortedContacts[i].favorite < sortedContact.favorite
-						: sortData(state.sortedContacts[i], sortedContact) >= 0)
-				) {
-					state.sortedContacts.splice(i, 0, sortedContact)
-					break
-				} else if (i + 1 === len) {
-					state.sortedContacts.push(sortedContact)
+				const other = state.sortedContacts[i]
+
+				// favorite comes before non-favorite
+				const differentFavStatus = other.favorite !== sortedContact.favorite
+				const otherShouldComeFirst = differentFavStatus && other.favorite
+				const sameFavAndSortedFirst = !differentFavStatus && sortData(other, sortedContact) >= 0
+
+				if (otherShouldComeFirst || sameFavAndSortedFirst) {
+					continue
 				}
+
+				if (i + 1 === len) {
+					state.sortedContacts.push(sortedContact)
+				} else {
+					state.sortedContacts.splice(i, 0, sortedContact)
+				}
+				break
 			}
 
 			if (state.sortedContacts.length === 0) {
@@ -188,6 +194,8 @@ const mutations = {
 					return sortData(a, b)
 				})
 			}
+		} else {
+			console.error('Error while replacing the following contact', contact)
 		}
 	},
 
