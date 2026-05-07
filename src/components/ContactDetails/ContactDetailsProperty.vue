@@ -307,7 +307,7 @@ export default {
 					// TODO: this only *shows* the display name but doesn't assign the missing UID
 					const displayName = this.property.getFirstValue()
 					const other = this.otherContacts(this.contact).find((contact) => contact.displayName === displayName)
-					return other?.key
+					return other?.key ?? ''
 				}
 				return this.property.getFirstValue()
 			},
