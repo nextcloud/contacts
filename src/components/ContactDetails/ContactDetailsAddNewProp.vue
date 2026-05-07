@@ -207,12 +207,20 @@ export default {
 				return
 			}
 
+			let shouldFocusProp = true
 			if (id === 'x-managersname') {
 				const others = this.otherContacts(this.contact)
+				if (others.length === 0) {
+					this.moreActionsOpen = false
+					return
+				}
 				if (others.length === 1) {
 					// Pick the first and only other contact
-					await this.contact.vCard.addPropertyWithValue(id, others[0].key)
+					const manager = this.$store.getters.getContact(others[0].key)
+					const property = await this.contact.vCard.addPropertyWithValue(id, manager.displayName)
+					property.setParameter('uid', manager.uid)
 					await this.$store.dispatch('updateContact', this.contact)
+					shouldFocusProp = false
 				} else {
 					await this.contact.vCard.addPropertyWithValue(id, '')
 				}
@@ -233,7 +241,9 @@ export default {
 				}
 			}
 			this.moreActionsOpen = false
-			this.bus.emit('focus-prop', id)
+			if (shouldFocusProp) {
+				this.bus.emit('focus-prop', id)
+			}
 		},
 	},
 }
