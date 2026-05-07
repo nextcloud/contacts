@@ -115,9 +115,12 @@ export default {
 		matchedOptions: {
 			get() {
 				const options = this.options || this.propModel.options
+				const localValueLowerCase = typeof this.localValue === 'string'
+					? this.localValue.toLowerCase()
+					: null
 				// match lowercase as well
 				let selected = options.find((option) => option.id === this.localValue
-					|| option.id === this.localValue.toLowerCase())
+					|| option.id === localValueLowerCase)
 
 				// if the model provided a custom match fallback, use it
 				if (!selected && this.propModel.greedyMatch) {
