@@ -14,10 +14,16 @@
 				<input
 					ref="input"
 					v-model="circleName"
-					:placeholder="t('contacts', 'New team name')"
+					:placeholder="t('contacts', 'New team name (min. 3 characters)')"
 					class="entity-picker__new-input"
 					type="text"
 					@keypress.enter="onSubmit">
+
+				<p
+					v-if="circleName && isInvalidName"
+					class="entity-picker__hint">
+					{{ t('contacts', 'Name must be at least 3 characters') }}
+				</p>
 			</div>
 
 			<div class="entity-picker__content">
@@ -57,7 +63,7 @@
 					{{ t('contacts', 'Cancel') }}
 				</button>
 				<button
-					:disabled="isEmptyName || loading"
+					:disabled="isInvalidName || loading"
 					class="navigation__button-right primary"
 					@click="onSubmit">
 					{{ t('contacts', 'Create team') }}
@@ -101,8 +107,8 @@ export default {
 	},
 
 	computed: {
-		isEmptyName() {
-			return this.circleName.trim() === ''
+		isInvalidName() {
+			return this.circleName.trim().length < 3
 		},
 
 		isGlobalScale() {
@@ -131,6 +137,10 @@ export default {
 			 *
 			 * @type {Array} the selected entities
 			 */
+			if (this.loading || this.isInvalidName) {
+				return
+			}
+
 			this.$emit('submit', this.circleName, this.isPersonal, this.isLocal)
 		},
 	},
@@ -169,7 +179,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 	box-sizing: border-box;
 
 	&__new {
-		position: relative;
+	    position: relative;
 		display: flex;
 		align-items: center;
 		&-input {
@@ -179,6 +189,15 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 			font-size: 16px;
 			line-height: $clickable-area - $entity-spacing;
 		}
+	}
+
+	&__hint {
+		position: absolute;
+		top: 100%;
+		inset-inline-start: 0;
+		width: 100%;
+		font-size: 0.75rem;
+		color:  var(--color-text-error);
 	}
 
 	&__content {
