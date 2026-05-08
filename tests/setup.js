@@ -12,6 +12,23 @@ jest.mock('@nextcloud/initial-state', () => ({
 	loadState: (app, key, fallback) => fallback,
 }))
 
+jest.mock('@nextcloud/cdav-library', () => ({
+	__esModule: true,
+	default: jest.fn(),
+	namespaces: {},
+}))
+
+jest.mock('@nextcloud/axios', () => ({
+	__esModule: true,
+	default: {
+		get: jest.fn(),
+		post: jest.fn(),
+		put: jest.fn(),
+		patch: jest.fn(),
+		delete: jest.fn(),
+	},
+}), { virtual: true })
+
 global.appName = 'contacts'
 
 global.OC = {
