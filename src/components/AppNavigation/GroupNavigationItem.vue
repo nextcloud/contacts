@@ -167,7 +167,7 @@ export default {
 				let contact = this.$store.getters.getContact(contactId)
 				if (!contact) {
 					return
-				} 
+				}
 
 				await this.$store.dispatch('fetchFullContact', { contact })
 				contact = this.$store.getters.getContact(contactId)
