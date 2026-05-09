@@ -92,6 +92,8 @@ OC.L10N.register(
     "Contact vCard as QR code" : "vCard de cuntatu comente còdighe QR",
     "Pick an address book" : "Sèbera una rubrica",
     "Select address book" : "Seletziona una rubrica",
+    "Remove from favorites" : "Boga•nche•ddu dae preferidos",
+    "Add to favorites" : "Agiunghe a is preferidos",
     "Groups" : "Grupos ",
     "Add to {group}" : "Agiunghe a {group}",
     "Remove {type}" : "Boga {type}",

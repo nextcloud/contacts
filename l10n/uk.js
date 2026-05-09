@@ -195,6 +195,8 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be moved" : "Зауважте, що лише {count} із {total} контактів можна перемістити",
     "Move" : "Move",
     "from {addressbook}" : "з {addressbook}",
+    "Remove from favorites" : "Прибрати зірочку",
+    "Add to favorites" : "Додати зірочку",
     "Confirm merging contacts" : "Підтвердити об'єднання контактів",
     "The selected contacts have conflicting information. Choose which information to keep" : "Вибрані контакти містять суперечливу інформацію. Виберіть, яку інформацію зберегти.",
     "Contacts can be merged" : "Контакти можна об'єднати",

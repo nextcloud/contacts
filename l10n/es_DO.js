@@ -24,6 +24,8 @@ OC.L10N.register(
     "Address book" : "Libreta de direcciones",
     "Name" : "Nombre",
     "Title" : "Título",
+    "Remove from favorites" : "Eliminar de favoritos",
+    "Add to favorites" : "Agregar a tus favoritos",
     "No results" : "No hay resultados",
     "Pending" : "Pendiente",
     "None" : "Ninguno",

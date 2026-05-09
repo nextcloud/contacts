@@ -24,6 +24,8 @@ OC.L10N.register(
     "Company" : "Embregerez",
     "View profile" : "Gwelet ar profil",
     "Edit profile" : "Embann an drolinenn",
+    "Remove from favorites" : "Diverkañañ eus ar pennrolloù",
+    "Add to favorites" : "Ouzhpennañ er pennrolloù",
     "Search for people to add" : "Klask tud da ouzhpennañ",
     "No results" : "Disoc'h ebet",
     "Pending" : "O c'hortoz",

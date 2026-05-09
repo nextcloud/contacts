@@ -195,6 +195,8 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be moved" : "Tabhair faoi deara nach féidir ach {count} de na {total} teagmhálaithe a bhogadh",
     "Move" : "Bog",
     "from {addressbook}" : "ó {addressbook}",
+    "Remove from favorites" : "Bain ó cheanáin",
+    "Add to favorites" : "Cuir le ceanáin",
     "Confirm merging contacts" : "Deimhnigh teagmhálacha a chumasc",
     "The selected contacts have conflicting information. Choose which information to keep" : "Tá faisnéis choimhlinteach sna teagmhálaithe roghnaithe. Roghnaigh cén fhaisnéis atá le coinneáil.",
     "Contacts can be merged" : "Is féidir teagmhálacha a chumasc",

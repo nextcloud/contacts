@@ -193,6 +193,8 @@
     "Please note that only {count} of the {total} contacts can be moved" : "Imajte na umu da se može premjestiti samo {count} od ukupno {total} kontakata",
     "Move" : "Premjesti",
     "from {addressbook}" : "iz {addressbook}",
+    "Remove from favorites" : "Ukloni iz favorita",
+    "Add to favorites" : "Dodaj u favorite",
     "Confirm merging contacts" : "Potvrdi spajanje kontakata",
     "The selected contacts have conflicting information. Choose which information to keep" : "Odabrani kontakti imaju proturječne podatke. Odaberite koje podatke želite zadržati",
     "Contacts can be merged" : "Kontakte je moguće spojiti",

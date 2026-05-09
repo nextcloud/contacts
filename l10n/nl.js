@@ -194,6 +194,7 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be moved" : "Let op dat maar {count} van de {total} contactpersonen kan worden verplaatst",
     "Move" : "Verplaats",
     "from {addressbook}" : "van {addressbook}",
+    "Remove from favorites" : "Verwijderen uit favorieten",
     "Confirm merging contacts" : "Bevestig samenvoegen contactpersonen",
     "The selected contacts have conflicting information. Choose which information to keep" : "De geselecteerde contactpersonen hebben conflicterende informatie. Kies welke informatie behouden moet worden",
     "Contacts can be merged" : "Contactpersonen kunnen worden samengevoegd",

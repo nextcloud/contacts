@@ -145,6 +145,8 @@ OC.L10N.register(
     "Deck cards with you" : "Kartice Deck v souporabi z vami",
     "No shared items with this contact" : "Ni predmetov v souporabi s tem stikom",
     "Move" : "Move",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Add to {group}" : "Dodaj skupino {group}",
     "Remove {type}" : "Odstrani {type}",
     "Add to group" : "Dodaj skupino",

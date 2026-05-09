@@ -191,6 +191,7 @@
     "Please note that only {count} of the {total} contacts can be moved" : "Merci de noter que seul(s) {count} contact(s) parmi {total} peut/peuvent être déplacé(s)",
     "Move" : "Déplacer",
     "from {addressbook}" : "de {addressbook}",
+    "Add to favorites" : "Add to favorites",
     "Confirm merging contacts" : "Confirmer la fusion des contacts",
     "The selected contacts have conflicting information. Choose which information to keep" : "Les contacts sélectionnés contiennent des informations en conflit. Choisissez les informations à conserver.",
     "Contacts can be merged" : "Les contacts peuvent être fusionnés",

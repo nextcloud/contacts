@@ -19,6 +19,7 @@ OC.L10N.register(
     "Invalid image" : "অবৈধ চিত্র",
     "Name" : "নাম",
     "Title" : "শিরোনাম",
+    "Add to favorites" : "Add to favorites",
     "Pending" : "মুলতুবি",
     "None" : "কোনটিই নয়",
     "Notes" : "নোট",

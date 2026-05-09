@@ -23,6 +23,8 @@ OC.L10N.register(
     "Name" : "Nomine",
     "Title" : "Titulo",
     "Move" : "Move",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Pending" : "Pendente",
     "None" : "Nulle",
     "Notes" : "Notas",
