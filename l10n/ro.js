@@ -29,6 +29,8 @@ OC.L10N.register(
     "Company" : "Companie",
     "Edit profile" : "Editează profilul",
     "Move" : "Move",
+    "Remove from favorites" : "Șterge din favorite",
+    "Add to favorites" : "Adăugați la favorite",
     "No results" : "Niciun rezultat",
     "Pending" : "În așteptare",
     "None" : "Niciuna",

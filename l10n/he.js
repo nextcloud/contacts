@@ -80,6 +80,8 @@ OC.L10N.register(
     "Pick an address book" : "נא לבחור ספר כתובות",
     "Select address book" : "בחירת ספר כתובות",
     "Move" : "Move",
+    "Remove from favorites" : "הסרה מהמועדפים",
+    "Add to favorites" : "הוספה למועדפים",
     "Remove {type}" : "הסר את {type}",
     "Add to group" : "הוסף לקבוצה",
     "Search {types}" : "חפש {types}",

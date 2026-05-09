@@ -14,6 +14,7 @@ OC.L10N.register(
     "Create" : "உருவாக்குக",
     "Name" : "பெயர்",
     "Title" : "தலைப்பு",
+    "Add to favorites" : "Add to favorites",
     "Pending" : "நிலுவையிலுள்ள",
     "None" : "ஒன்றுமில்லை",
     "Notes" : "குறிப்புகள்",

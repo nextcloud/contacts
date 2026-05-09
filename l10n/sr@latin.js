@@ -16,6 +16,8 @@ OC.L10N.register(
     "Name" : "naziv",
     "Title" : "Naslov",
     "Move" : "Move",
+    "Remove from favorites" : "Ukloni iz omiljenih",
+    "Add to favorites" : "Dodaj u omiljene",
     "No results" : "Nema rezultata",
     "Pending" : "Na čekanju",
     "None" : "Ništa",

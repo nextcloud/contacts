@@ -149,6 +149,8 @@ OC.L10N.register(
     "Deck cards with you" : "Deck txartelak zurekin",
     "No shared items with this contact" : "Ez dago partekatutako elementurik kontaktu honekin",
     "Move" : "Move",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Gehitu gogokoetan",
     "Add to {group}" : "Gehitu {group} taldera",
     "Remove {type}" : "Kendu {type}",
     "Add to group" : "Gehitu taldera",

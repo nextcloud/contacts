@@ -193,6 +193,8 @@
     "Please note that only {count} of the {total} contacts can be moved" : "Uwaga: tylko {count} z {total} kontaktów można przenieść",
     "Move" : "Move",
     "from {addressbook}" : "z {addressbook}",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Confirm merging contacts" : "Potwierdź scalanie kontaktów",
     "The selected contacts have conflicting information. Choose which information to keep" : "Wybrane kontakty mają sprzeczne informacje. Wybierz, które informacje zachować",
     "Contacts can be merged" : "Kontakty mogą zostać scalone",

@@ -41,6 +41,8 @@ OC.L10N.register(
     "Company" : "Cwmni",
     "Generate QR Code" : "Cynhyrchu Cod QR",
     "Move" : "Move",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "No results" : "Dim canlyniadau",
     "Pending" : "I ddod",
     "Select Date" : "Dewis Dyddiad",

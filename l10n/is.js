@@ -150,6 +150,8 @@ OC.L10N.register(
     "Deck cards with you" : "Deck-spjöld með þér",
     "No shared items with this contact" : "Engin samnýtt (deild) atriði með þessum tengilið",
     "Move" : "Move",
+    "Remove from favorites" : "Fjarlægja úr eftirlætum",
+    "Add to favorites" : "Bæta í eftirlæti",
     "Groups" : "Hópar",
     "Add to {group}" : "Bæta í {group}",
     "Remove {type}" : "Fjarlægja {type}",

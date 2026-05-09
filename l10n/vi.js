@@ -79,6 +79,8 @@ OC.L10N.register(
     "Pick an address book" : "Chọn một sổ địa chỉ",
     "Select address book" : "Chọn sổ địa chỉ",
     "Move" : "Move",
+    "Remove from favorites" : "Xóa khỏi ưa thích",
+    "Add to favorites" : "Thêm vào ưa thích",
     "Remove {type}" : "Xóa {type}",
     "Add to group" : "Thêm vào nhóm",
     "Search {types}" : "Tìm kiếm {type}",

@@ -19,6 +19,8 @@ OC.L10N.register(
     "Invalid image" : "Ugyldig bilete",
     "Name" : "Namn",
     "Title" : "Tittel",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Pending" : "Under vegs",
     "None" : "Ingen",
     "Notes" : "Notat",
