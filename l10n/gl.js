@@ -194,6 +194,8 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be moved" : "Teña en conta que só é posíbel mover {count} dos {total} contactos a un grupo",
     "Move" : "Move",
     "from {addressbook}" : "desde {addressbook}",
+    "Remove from favorites" : "Retirar de favoritos",
+    "Add to favorites" : "Engadir a favoritos",
     "Confirm merging contacts" : "Confirmar a combinación de contactos",
     "The selected contacts have conflicting information. Choose which information to keep" : "Os contactos seleccionados teñen información contraditoria. Escolla a información que debe gardar",
     "Contacts can be merged" : "É posíbel combinar os contactos",

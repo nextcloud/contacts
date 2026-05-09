@@ -16,6 +16,8 @@ OC.L10N.register(
     "Invalid image" : "រូបភាព​មិន​ត្រឹម​ត្រូវ",
     "Name" : "ឈ្មោះ",
     "Title" : "ចំណងជើង",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Pending" : "កំពុង​រង់ចាំ",
     "Chart" : "ក្រាប",
     "None" : "គ្មាន",

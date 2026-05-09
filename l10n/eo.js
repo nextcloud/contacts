@@ -45,6 +45,8 @@ OC.L10N.register(
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Tiu kontakto difektiĝis kaj estis riparita. Kontrolu la enhavon kaj alklaku ĉi tie por konservi ĝin.",
     "Generate QR Code" : "Generi rapidrespondan (QR) kodon",
     "Move" : "Move",
+    "Remove from favorites" : "Forigi el pliŝataĵoj",
+    "Add to favorites" : "Aldoni al pliŝataĵoj",
     "No results" : "Neniu rezulto",
     "Pending" : "Pritraktota",
     "Select Date" : "Elekti daton",

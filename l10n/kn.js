@@ -14,6 +14,8 @@ OC.L10N.register(
     "Invalid image" : "ಅಸಾಮರ್ಥ್ಯ ಚಿತ್ರ",
     "Name" : "﻿ಹೆಸರು",
     "Title" : "ಶೀರ್ಷಿಕೆ",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Pending" : "﻿ಬಾಕಿ ಇದೆ",
     "None" : "﻿ಯಾವುದೂ ಇಲ್ಲ",
     "Notes" : "Notes",

@@ -20,6 +20,8 @@ OC.L10N.register(
     "Name" : "Numm",
     "Title" : "Titel",
     "Move" : "Move",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Pending" : "Ausstoend",
     "None" : "Keng",
     "Notes" : "Notizen",

@@ -120,6 +120,8 @@ OC.L10N.register(
     "Calendar events with you" : "Calendar events with you",
     "Deck cards with you" : "Deck cards with you",
     "No shared items with this contact" : "No shared items with this contact",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Add to {group}" : "Add to {group}",
     "Remove {type}" : "Remove {type}",
     "Add to group" : "Add to group",

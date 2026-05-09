@@ -12,6 +12,8 @@ OC.L10N.register(
     "Invalid image" : "غلط تصویر",
     "Name" : "اسم",
     "Title" : "عنوان",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Notes" : "Notes",
     "User" : "User",
     "Group" : "Group",

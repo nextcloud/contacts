@@ -163,6 +163,8 @@ OC.L10N.register(
     "Calendar events with you" : "Календарь событий с вами",
     "Deck cards with you" : "Карточки с вами",
     "No shared items with this contact" : "Связанных с этим контактом элементов нет",
+    "Remove from favorites" : "Удалить из избранного",
+    "Add to favorites" : "Добавить в избранные",
     "The selected contacts have conflicting information. Choose which information to keep" : "Выбранные контакты содержат противоречивую информацию. Выберите, какую информацию сохранить.",
     "Groups" : "Группы",
     "_Delete {number} contact_::_Delete {number} contacts_" : ["Удалить {number} контакт","Удалить {number} контакта","Удалить {number} контактов","Удалить {number} контактов"],

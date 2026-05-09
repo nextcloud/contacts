@@ -59,6 +59,8 @@ OC.L10N.register(
     "Edit profile" : "Labot profilu",
     "Generate QR Code" : "Izveidot kvadrātkodu",
     "Move" : "Move",
+    "Remove from favorites" : "Noņemt no izlases",
+    "Add to favorites" : "Pievienot izlasei",
     "No results" : "Nav iznākuma",
     "Pending" : "Gaida",
     "Select Date" : "Atlasīt datumu",

@@ -193,6 +193,8 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be moved" : "Harap diperhatikan bahwa hanya {count} dari {total} kontak yang dapat dipindahkan",
     "Move" : "Move",
     "from {addressbook}" : "dari {addressbook}",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Tambah ke favorit",
     "Confirm merging contacts" : "Konfirmasi penggabungan kontak",
     "The selected contacts have conflicting information. Choose which information to keep" : "Kontak yang dipilih memiliki informasi yang bertentangan. Pilih informasi mana yang akan disimpan",
     "Contacts can be merged" : "Kontak dapat digabungkan",

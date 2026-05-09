@@ -187,6 +187,8 @@
     "Please note that only {count} of the {total} contacts can be moved" : "Зөвхөн {total} харилцагчийн {count}-г зөөх боломжтойг анхаарна уу",
     "Move" : "Move",
     "from {addressbook}" : "{addressbook}-с",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Confirm merging contacts" : "Харилцагч нэгтгэхийг баталгаажуулах",
     "The selected contacts have conflicting information. Choose which information to keep" : "Сонгосон харилцагчид зөрчилтэй мэдээлэлтэй байна. Аль мэдээллийг хадгалахаа сонгоно уу.",
     "Contacts can be merged" : "Харилцагчдыг нэгтгэх боломжтой",

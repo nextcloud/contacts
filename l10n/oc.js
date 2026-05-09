@@ -23,6 +23,8 @@ OC.L10N.register(
     "Name" : "Nom",
     "Title" : "Títol",
     "Company" : "Entrepresa",
+    "Remove from favorites" : "Tirar dels favorits",
+    "Add to favorites" : "Apondre als favorits",
     "Groups" : "Gropes",
     "No results" : "Cap de resultat",
     "Pending" : "En espèra",
