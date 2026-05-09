@@ -118,6 +118,8 @@ OC.L10N.register(
     "Pick an address book" : "Pick an address book",
     "Select address book" : "Select address book",
     "Move" : "Move",
+    "Remove from favorites" : "حذف از برگزیده‌ها",
+    "Add to favorites" : "اضافه کردن به برگزیده ها",
     "Add to {group}" : "افزودن به {group}",
     "Remove {type}" : "برداشتن {type}",
     "Add to group" : "افزودن به گروه",

@@ -193,6 +193,8 @@
     "Please note that only {count} of the {total} contacts can be moved" : "Atkreipkite dėmesį, kad tik {count} iš {total} kontaktų gali būti perkelti",
     "Move" : "Perkelti",
     "from {addressbook}" : "iš {addressbook}",
+    "Remove from favorites" : "Šalinti iš mėgstamų",
+    "Add to favorites" : "Pridėti į mėgstamus",
     "Confirm merging contacts" : "Patvirtinti kontaktų sujungimą",
     "The selected contacts have conflicting information. Choose which information to keep" : "Pasirinktuose kontaktuose yra prieštaringa informacija. Pasirinkite, kurią informaciją norite išsaugoti",
     "Contacts can be merged" : "Kontaktus galima sujungti",

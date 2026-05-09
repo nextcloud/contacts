@@ -45,6 +45,8 @@ OC.L10N.register(
     "Company" : "Kompania",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Ky kontakt ishte prishur dhe u rregullua. Ju lutem rishikoni përmbajtjen dhe klikoni këtu për ta ruajtur atë.",
     "Generate QR Code" : "Gjeneroni Kodin QR",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Shtoje tek të parapëlqyerat",
     "No results" : "Asnjë rezultat",
     "Pending" : "Në Pritje të Konfirmimit",
     "Select Date" : "Zgjidhni Datën",

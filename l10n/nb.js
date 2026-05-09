@@ -146,6 +146,8 @@ OC.L10N.register(
     "Deck cards with you" : "Deck-kort med deg",
     "No shared items with this contact" : "Ingen delte elementer med denne kontakten",
     "Move" : "Move",
+    "Remove from favorites" : "Fjern fra favoritter",
+    "Add to favorites" : "Legg til i favoritter",
     "Add to {group}" : "Legg til i {group}",
     "Remove {type}" : "Fjern {type}",
     "Add to group" : "Legg til gruppe",

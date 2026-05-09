@@ -190,6 +190,8 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be moved" : "پەقەت {total} دىن {count} ئالاقىداشنى يۆتكىگىلى بولىدىغانلىقىغا دىققەت قىلىڭ",
     "Move" : "يۆتكە",
     "from {addressbook}" : "{addressbook} دىن",
+    "Remove from favorites" : "ياقتۇردىغاندىن چىقىرۋەت",
+    "Add to favorites" : "ياقتۇردىغانغا قوش",
     "Confirm merging contacts" : "ئالاقىداشلارنى بىرلەشتۈرۈشنى جەزىملە",
     "The selected contacts have conflicting information. Choose which information to keep" : "تاللانغان ئالاقىلىشىش ئۇچۇرلىرى توقۇنۇشۇۋاتىدۇ. قايسى ئۇچۇرلارنى ساقلاشنى تاللاڭ.",
     "Contacts can be merged" : "ئالاقىداشلارنى بىرلەشتۈرگىلى بولىدۇ",

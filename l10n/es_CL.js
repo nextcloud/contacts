@@ -25,6 +25,8 @@ OC.L10N.register(
     "Name" : "Nombre",
     "Title" : "Título",
     "Move" : "Move",
+    "Remove from favorites" : "Eliminar de favoritos",
+    "Add to favorites" : "Agregar a tus favoritos",
     "No results" : "No hay resultados",
     "Pending" : "Pendiente",
     "None" : "Ninguno",

@@ -193,6 +193,7 @@
     "Please note that only {count} of the {total} contacts can be moved" : "Observera att endast {count} av {total} kontakter kan flyttas",
     "Move" : "Move",
     "from {addressbook}" : "från {addressbook}",
+    "Add to favorites" : "Lägg till som favorit",
     "Confirm merging contacts" : "Bekräfta sammanslagning av kontakter",
     "The selected contacts have conflicting information. Choose which information to keep" : "De valda kontakterna har motstridig information. Välj vilken information som ska behållas",
     "Contacts can be merged" : "Kontakter kan slås samman",

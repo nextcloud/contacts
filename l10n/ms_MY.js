@@ -12,6 +12,8 @@ OC.L10N.register(
     "Create" : "Buat",
     "Name" : "Nama",
     "Title" : "Judul",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Pending" : "Dalam proses",
     "Notes" : "Nota",
     "Import" : "Import",

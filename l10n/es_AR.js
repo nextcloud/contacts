@@ -92,6 +92,8 @@ OC.L10N.register(
     "Pick an address book" : "Escoge una libreta de direcciones",
     "Select address book" : "Selecciona una libreta de direcciones",
     "Move" : "Move",
+    "Remove from favorites" : "Eliminado de favoritos",
+    "Add to favorites" : "Agregar a favoritos",
     "Add to {group}" : "Añadir a {group}",
     "Remove {type}" : "Eliminar {type}",
     "Add to group" : "Añadir a grupo",

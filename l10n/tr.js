@@ -195,6 +195,8 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be moved" : "Yalnızca {count} / {total} kişinin taşınabileceğini lütfen unutmayın",
     "Move" : "Taşı",
     "from {addressbook}" : "{addressbook} adres defterinden",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Confirm merging contacts" : "Kişileri birleştirmeyi onayla",
     "The selected contacts have conflicting information. Choose which information to keep" : "Seçilmiş kişilerde çatışan bilgiler var. Hangi bilgilerin tutulacağını seçin",
     "Contacts can be merged" : "Kişiler birleştirilebilir",

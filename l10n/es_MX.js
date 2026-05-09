@@ -144,6 +144,8 @@ OC.L10N.register(
     "Deck cards with you" : "Tarjetas de Deck con Ud.",
     "No shared items with this contact" : "No hay elementos compartidos con este contacto",
     "Move" : "Move",
+    "Remove from favorites" : "Eliminar de favoritos",
+    "Add to favorites" : "Agregar a favoritos",
     "Add to {group}" : "Añadir a {group}",
     "Remove {type}" : "Eliminar {type}",
     "Add to group" : "Añadir al grupo",

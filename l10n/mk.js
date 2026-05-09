@@ -182,6 +182,8 @@ OC.L10N.register(
     "Select addressbook" : "Означи адресар",
     "Move" : "Move",
     "from {addressbook}" : "од {addressbook}",
+    "Remove from favorites" : "Отстрани од фаворити",
+    "Add to favorites" : "Додади во фаворити",
     "Confirm merging contacts" : "Потврда за спојување на контакти",
     "The selected contacts have conflicting information. Choose which information to keep" : "Избраните контакти имаат конфликтни информации. Избери кои информации да се чуваат",
     "Contacts can be merged" : "Контактите може да се спојат",

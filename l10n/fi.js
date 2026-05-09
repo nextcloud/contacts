@@ -158,6 +158,8 @@ OC.L10N.register(
     "Select groups" : "Valitse ryhmät",
     "Select addressbook" : "Valitse osoitekirja",
     "Move" : "Move",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Confirm merging contacts" : "Vahvista yhteystietojen yhdistäminen",
     "Contacts can be merged" : "Yhteystiedot voi yhdistää",
     "Groups" : "Ryhmät",

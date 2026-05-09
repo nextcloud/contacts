@@ -123,6 +123,8 @@ OC.L10N.register(
     "Calendar events with you" : "나와의 달력 일정",
     "No shared items with this contact" : "이 연락처와 공유된 항목 없음",
     "Move" : "Move",
+    "Remove from favorites" : "즐겨찾기에서 제거",
+    "Add to favorites" : "즐겨찾기에 추가",
     "Add to {group}" : "{group}에 추가",
     "Remove {type}" : "{type} 삭제",
     "Add to group" : "그룹에 추가",

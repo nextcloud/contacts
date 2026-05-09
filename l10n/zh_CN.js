@@ -195,6 +195,8 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be moved" : "请注意，{total} 位联系人中只有 {count} 位可以移动。",
     "Move" : "移动",
     "from {addressbook}" : "从 {addressbook}",
+    "Remove from favorites" : "从收藏夹移除",
+    "Add to favorites" : "添加到收藏夹",
     "Confirm merging contacts" : "确认合并联系人",
     "The selected contacts have conflicting information. Choose which information to keep" : "所选联系人的信息存在冲突。请选择要保留的信息",
     "Contacts can be merged" : "联系人可以合并",

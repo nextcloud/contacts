@@ -195,6 +195,7 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be moved" : "Všimněte si, že pouze {count} z {total} kontaktů je možné přesunout",
     "Move" : "Přesunout",
     "from {addressbook}" : "od {addressbook}",
+    "Add to favorites" : "Add to favorites",
     "Confirm merging contacts" : "Potvrďte sloučení kontaktů",
     "The selected contacts have conflicting information. Choose which information to keep" : "Označené kontakty mají kolidující informace. Zvolte které informace ponechat",
     "Contacts can be merged" : "Kontakty je možné sloučit",

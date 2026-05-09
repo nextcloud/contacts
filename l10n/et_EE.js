@@ -195,6 +195,8 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be moved" : "Palun arvesta, et teisaldada saad vaid {count} kontakti {total}-st",
     "Move" : "Teisalda",
     "from {addressbook}" : "aadressiraamatust {addressbook}",
+    "Remove from favorites" : "Eemalda lemmikutest",
+    "Add to favorites" : "Lisa lemmikuks",
     "Confirm merging contacts" : "Kinnita kontaktide mestimine",
     "The selected contacts have conflicting information. Choose which information to keep" : "Valitud kontaktidel on vastuoluline teave. Palun vali, mida neist soovid säilitada",
     "Contacts can be merged" : "Kontaktide mestimine on võimalik",

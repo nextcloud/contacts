@@ -148,6 +148,8 @@ OC.L10N.register(
     "Deck cards with you" : "Pila de Targetes amb tu",
     "No shared items with this contact" : "No s'ha compartit cap element amb aquest contacte",
     "Move" : "Move",
+    "Remove from favorites" : "Suprimeix de preferits",
+    "Add to favorites" : "Afegeix a favorits",
     "Groups" : "Grups",
     "Add to {group}" : "Afegeix a {group}",
     "Remove {type}" : "Suprimeix {type}",
