@@ -29,6 +29,8 @@ OC.L10N.register(
     "Name" : "Naam",
     "Title" : "Titel",
     "Company" : "Maatskappy",
+    "Remove from favorites" : "Verwyder uit gunstelinge",
+    "Add to favorites" : "Voeg by gunstelinge",
     "Pending" : "Hangend",
     "Select Date" : "Kies Datum",
     "Select type" : "Kies tipe",
