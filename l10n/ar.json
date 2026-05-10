@@ -149,6 +149,8 @@
     "Deck cards with you" : "بطاقات لك",
     "No shared items with this contact" : "لا توجد عناصر مُشارَكة مع جهة الاتصال هذه",
     "Move" : "Move",
+    "Remove from favorites" : "إزالة مِن \"المُفضّلة\"",
+    "Add to favorites" : "إضافة إلى المفضلة",
     "Groups" : "مجموعات",
     "Add to {group}" : "إضافة إلى {group}",
     "Remove {type}" : "حذف {type}",
