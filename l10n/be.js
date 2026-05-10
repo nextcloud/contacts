@@ -165,6 +165,8 @@ OC.L10N.register(
     "Deck cards with you" : "Карткі Deck з вамі",
     "No shared items with this contact" : "Няма абагуленых элементаў з гэтым кантактам",
     "Move" : "Перамясціць",
+    "Remove from favorites" : "Выдаліць з абранага",
+    "Add to favorites" : "У абранае",
     "Confirm merging contacts" : "Пацвердзіць аб'яднанне кантактаў",
     "The selected contacts have conflicting information. Choose which information to keep" : "Выбраныя кантакты маюць супярэчлівую інфармацыю. Выберыце, якую інфармацыю пакінуць.",
     "Contacts can be merged" : "Кантакты можна аб'яднаць",
