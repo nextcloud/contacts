@@ -130,6 +130,8 @@ export default {
 		},
 	},
 
+	emits: ['updateRouteState'],
+
 	data() {
 		return {
 			newGroupName: '',

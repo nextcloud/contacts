@@ -95,6 +95,8 @@ export default {
 		},
 	},
 
+	emits: ['update:value'],
+
 	data() {
 		return {
 			localValue: [...this.value].sort(),

@@ -58,6 +58,8 @@ export default {
 		},
 	},
 
+	emits: ['close'],
+
 	computed: {
 		progressHeader() {
 			return n(

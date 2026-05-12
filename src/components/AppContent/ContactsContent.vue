@@ -97,6 +97,8 @@ export default {
 		},
 	},
 
+	emits: ['new-contact'],
+
 	data() {
 		return {
 			searchQuery: '',

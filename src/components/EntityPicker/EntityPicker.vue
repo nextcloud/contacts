@@ -223,6 +223,8 @@ export default {
 		},
 	},
 
+	emits: ['update:selection', 'close', 'submit', 'search'],
+
 	data() {
 		return {
 			canInviteGuests: !!window?.OCA?.Guests?.openGuestDialog,
