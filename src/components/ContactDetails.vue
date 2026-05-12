@@ -51,6 +51,7 @@
 				<!-- org, title -->
 				<template #subtitle>
 					<template v-if="isReadOnly">
+						<!-- eslint-disable-next-line vue/no-v-html -- title and organization are escaped in formattedSubtitle -->
 						<span v-html="formattedSubtitle" />
 					</template>
 					<template v-else>
@@ -100,13 +101,13 @@
 								<IconMail :size="20" />
 							</template>
 							<ActionLink
-								v-for="emailAddress in emailAddressList"
-								:key="emailAddress"
-								:href="'mailto:' + emailAddress">
+								v-for="address in emailAddressList"
+								:key="address"
+								:href="'mailto:' + address">
 								<template #icon>
 									<IconMail :size="20" />
 								</template>
-								{{ emailAddress }}
+								{{ address }}
 							</ActionLink>
 						</Actions>
 						<Actions

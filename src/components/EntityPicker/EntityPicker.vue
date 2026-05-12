@@ -197,7 +197,7 @@ export default {
 		 */
 		internalSearch: {
 			type: Boolean,
-			default: true,
+			default: true, // eslint-disable-line vue/no-boolean-default -- default is true for backward compatibility with existing callers
 		},
 
 		/**

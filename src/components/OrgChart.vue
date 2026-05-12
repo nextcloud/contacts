@@ -34,6 +34,7 @@ import ChartTemplate from './ChartTemplate.vue'
 import LegacyGlobalMixin from '../mixins/LegacyGlobalMixin.js'
 import router from './../router/index.js'
 
+/* eslint-disable vue/one-component-per-file -- ChartTemplate is dynamically mounted via createApp() for d3 node rendering */
 export default {
 	name: 'OrgChart',
 	components: {

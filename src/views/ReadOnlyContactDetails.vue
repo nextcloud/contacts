@@ -24,6 +24,7 @@
 			<div class="contact-title">
 				<h6>{{ contact.fullName }}</h6>
 				<!-- Subtitle -->
+				<!-- eslint-disable-next-line vue/no-v-html -- title and organization are escaped in formattedSubtitle -->
 				<span v-html="formattedSubtitle" />
 			</div>
 			<div class="contact-details-wrapper">
