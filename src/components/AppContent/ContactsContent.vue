@@ -52,7 +52,7 @@
 		</template>
 
 		<!-- main contacts details -->
-		<ContactDetails :contact-key="selectedContact" :contacts="sortedContacts" :reload-bus="reloadBus" />
+		<ContactDetails :contact-key="selectedContact" :reload-bus="reloadBus" />
 	</AppContent>
 </template>
 

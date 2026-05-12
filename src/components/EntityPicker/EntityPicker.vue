@@ -176,14 +176,6 @@ export default {
 		},
 
 		/**
-		 * The sorting key for the dataSet
-		 */
-		sort: {
-			type: String,
-			default: 'label',
-		},
-
-		/**
 		 * Confirm button text
 		 */
 		confirmLabel: {

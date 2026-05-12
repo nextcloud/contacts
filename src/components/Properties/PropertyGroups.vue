@@ -62,7 +62,6 @@
 import { NcSelect } from '@nextcloud/vue'
 import naturalCompare from 'string-natural-compare'
 import PropertyTitle from './PropertyTitle.vue'
-import Contact from '../../models/contact.js'
 
 export default {
 	name: 'PropertyGroups',
@@ -80,11 +79,6 @@ export default {
 
 		value: {
 			type: Array,
-			required: true,
-		},
-
-		contact: {
-			type: Contact,
 			required: true,
 		},
 

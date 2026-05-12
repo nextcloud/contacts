@@ -200,7 +200,6 @@
 					<!-- user can clone if there is at least one option available -->
 					<ActionButton
 						v-if="isReadOnly && addressbooksOptions.length > 0"
-						ref="cloneAction"
 						:close-after-click="true"
 						@click="cloneContact">
 						<template #icon>
@@ -258,7 +257,6 @@
 				:name="t('contacts', 'Pick an address book')"
 				@close="closePickAddressbookModal">
 				<NcSelect
-					ref="pickAddressbook"
 					v-model="pickedAddressbook"
 					class="address-book"
 					:allow-empty="false"
@@ -293,7 +291,6 @@
 							:property="property"
 							:contact="contact"
 							:local-contact="localContact"
-							:contacts="contacts"
 							:bus="bus"
 							:is-read-only="isReadOnly" />
 					</div>
@@ -319,7 +316,6 @@
 				<PropertyGroups
 					:value="localContact.groups"
 					:prop-model="groupsModel"
-					:contact="contact"
 					:is-read-only="isReadOnly"
 					class="property--groups property--last"
 					@update:value="updateGroups" />
@@ -494,11 +490,6 @@ export default defineComponent({
 		contactKey: {
 			type: String,
 			default: undefined,
-		},
-
-		contacts: {
-			type: Array,
-			default: () => [],
 		},
 
 		reloadBus: {

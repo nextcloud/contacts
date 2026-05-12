@@ -106,8 +106,6 @@ export default {
 		},
 
 		renderChart(data) {
-			// eslint-disable-next-line @typescript-eslint/no-this-alias
-			const that = this
 			if (!this.chartReference) {
 				this.chartReference = new OrgChart()
 			}
@@ -134,7 +132,6 @@ export default {
 						} else {
 							const app = createApp(ChartTemplate, {
 								chartData: d.data,
-								onAvatarClick: (uid) => that.goToContact(uid),
 							})
 							app.use(router)
 							app.mixin(LegacyGlobalMixin)

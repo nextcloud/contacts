@@ -81,12 +81,6 @@ export default {
 			type: String,
 			required: true,
 		},
-
-		desc: {
-			type: String,
-			required: false,
-			default: '',
-		},
 	},
 
 	data() {
