@@ -36,6 +36,19 @@
 						v-if="(source.isMultiSelected || hoveringAvatar) && !isStatic"
 						:size="28"
 						:class="{ 'contacts-list__item-avatar-selected': source.isMultiSelected, 'contacts-list__item-avatar-hovered': !source.isMultiSelected }" />
+					<div
+						class="favorite-star"
+						:class="{ favorite: isFavorite }"
+						@click.stop="toggleFavorite">
+						<StarIcon
+							v-if="isFavorite"
+							:size="16"
+							class="favorite-icon" />
+						<StarOutlineIcon
+							v-else
+							:size="16"
+							class="favorite-icon" />
+					</div>
 				</div>
 			</template>
 			<template #subname>
@@ -50,16 +63,36 @@
 					</span>
 				</div>
 			</template>
+			<template #actions>
+				<NcActionButton
+					v-if="!isStatic"
+					@click="toggleFavorite">
+					<template #icon>
+						<StarIcon
+							v-if="isFavorite"
+							:size="20"
+							class="favorite-icon" />
+						<StarOutlineIcon
+							v-else
+							:size="20" />
+					</template>
+					{{ isFavorite ? t('contacts', 'Remove from favorites') : t('contacts', 'Add to favorites') }}
+				</NcActionButton>
+			</template>
 		</ListItem>
 	</div>
 </template>
 
 <script>
+import { showError } from '@nextcloud/dialogs'
 import {
 	NcListItem as ListItem,
+	NcActionButton,
 	NcAvatar,
 } from '@nextcloud/vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
+import StarIcon from 'vue-material-design-icons/Star.vue'
+import StarOutlineIcon from 'vue-material-design-icons/StarOutline.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
 
 export default {
@@ -69,6 +102,9 @@ export default {
 		ListItem,
 		NcAvatar,
 		CheckIcon,
+		NcActionButton,
+		StarIcon,
+		StarOutlineIcon,
 	},
 
 	mixins: [
@@ -117,6 +153,10 @@ export default {
 	},
 
 	computed: {
+		isFavorite() {
+			return this.source.favorite
+		},
+
 		// contact is not draggable when it has not been saved on server as it can't be added to groups/circles before
 		isDraggable() {
 			return !!this.source.dav && this.source.addressbook.id !== 'z-server-generated--system' && !this.isStatic
@@ -151,6 +191,26 @@ export default {
 	},
 
 	methods: {
+		async toggleFavorite() {
+			const contact = this.$store.getters.getContact(this.source.key)
+			if (!contact) {
+				this.logger.error('Could not find contact in store', this.source.key)
+				showError(t('contacts', 'Could not update favorite status'))
+				return
+			}
+			if (!contact.dav) {
+				this.logger.error('Missing DAV object for contact', { contactKey: contact.key })
+				showError(t('contacts', 'Could not update favorite status'))
+				return
+			}
+			try {
+				await this.$store.dispatch('toggleFavorite', contact)
+			} catch (error) {
+				logger.error('Could not toggle favorite state', error)
+				showError(t('contacts', 'Could not update favorite status'))
+			}
+		},
+
 		startDrag(evt, item) {
 			evt.dataTransfer.dropEffect = 'move'
 			evt.dataTransfer.effectAllowed = 'move'
@@ -286,6 +346,7 @@ export default {
 
 .contacts-list__item-icon {
 	cursor: pointer !important;
+	position: relative;
 }
 
 .contacts-list__item-avatar {
@@ -308,5 +369,26 @@ export default {
 		color: var(--color-primary-hover);
 		background-color: var(--color-primary-light-hover);
 	}
+}
+
+.favorite-star {
+	position: absolute;
+	top: calc(var(--default-grid-baseline) * -1);
+	inset-inline-end: calc(var(--default-grid-baseline) * -1);
+	opacity: 0;
+	cursor: pointer;
+}
+
+.contacts-list__item-icon:hover .favorite-star {
+	opacity: 1;
+}
+
+.favorite-star.favorite {
+	opacity: 1;
+	color: var(--color-favorite)
+}
+
+.favorite-icon {
+	color: var(--color-favorite);
 }
 </style>
