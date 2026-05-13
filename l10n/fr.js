@@ -289,6 +289,7 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Impossible de copier le lien dans le presse-papier",
     "Not grouped" : "Non groupé",
     "Organization chart" : "Organigramme",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Créez vos propres groupes effectuer des partages. Ajoutez des utilisateurs Nextcloud, des contacts ou n'importe qui par e-mail.",
     "Team" : "Équipe",
     "User" : "Utilisateur",
     "Group" : "Groupe",
