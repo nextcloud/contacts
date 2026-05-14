@@ -298,7 +298,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "無法複製連結至剪貼簿。",
     "Not grouped" : "未歸類",
     "Organization chart" : "組織圖表",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "建立專屬群組以進行分享。您可以加入 Nextcloud 使用者、通訊錄中的聯絡人，或透過電子郵件邀請任何人加入。",
     "Team" : "團隊",
     "User" : "使用者",
     "Group" : "群組",
@@ -395,6 +394,7 @@ OC.L10N.register(
     "Value copied to the clipboard" : "值複製給剪貼簿",
     "Could not copy value to the clipboard." : "無法複製值到剪貼簿。",
     "note" : "備註",
-    "email" : "電子郵件"
+    "email" : "電子郵件",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "建立專屬群組以進行分享。您可以加入 Nextcloud 使用者、通訊錄中的聯絡人，或透過電子郵件邀請任何人加入。"
 },
 "nplurals=1; plural=0;");
