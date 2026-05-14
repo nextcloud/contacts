@@ -297,7 +297,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "无法复制链接到剪贴板",
     "Not grouped" : "未分组",
     "Organization chart" : "组织图",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "创建您自己的共享群组。添加 Nextcloud 用户、联系人或通过电子邮件添加任何人。",
     "Team" : "团队",
     "User" : "用户",
     "Group" : "群组",
@@ -393,6 +392,7 @@ OC.L10N.register(
     "Value copied to the clipboard" : "值已复制到剪贴板",
     "Could not copy value to the clipboard." : "无法将值复制到剪贴板。",
     "note" : "备注",
-    "email" : "电子邮件"
+    "email" : "电子邮件",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "创建您自己的共享群组。添加 Nextcloud 用户、联系人或通过电子邮件添加任何人。"
 },
 "nplurals=1; plural=0;");

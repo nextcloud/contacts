@@ -298,7 +298,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Kunde inte kopiera länken till urklipp.",
     "Not grouped" : "Inte grupperad",
     "Organization chart" : "Organisationsschema",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Skapa egna grupper för delning. Lägg till Nextcloud-användare, kontakter eller vem som helst via e-post.",
     "Team" : "Team",
     "User" : "Användare",
     "Group" : "Grupp",
@@ -395,6 +394,7 @@ OC.L10N.register(
     "Value copied to the clipboard" : "Värdet kopierat till urklipp",
     "Could not copy value to the clipboard." : "Det gick inte att kopiera värdet till urklipp.",
     "note" : "anteckning",
-    "email" : "e-post"
+    "email" : "e-post",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Skapa egna grupper för delning. Lägg till Nextcloud-användare, kontakter eller vem som helst via e-post."
 },
 "nplurals=2; plural=(n != 1);");

@@ -297,7 +297,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Could not copy link to the clipboard.",
     "Not grouped" : "Not grouped",
     "Organization chart" : "Organisation chart",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email.",
     "Team" : "Team",
     "User" : "User",
     "Group" : "Group",
@@ -393,6 +392,7 @@ OC.L10N.register(
     "Value copied to the clipboard" : "Value copied to the clipboard",
     "Could not copy value to the clipboard." : "Could not copy value to the clipboard.",
     "note" : "note",
-    "email" : "email"
+    "email" : "email",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email."
 },
 "nplurals=2; plural=(n != 1);");
