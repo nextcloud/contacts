@@ -298,7 +298,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Nepavyko nukopijuoti nuorodos į iškarpinę.",
     "Not grouped" : "Nesugrupuoti",
     "Organization chart" : "Organizacijos diagrama",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Kurkite savo grupes bendrinimui. Pridėkite „Nextcloud“ naudotojus, kontaktus ar bet ką el. paštu.",
     "Team" : "Komanda",
     "User" : "Vartotojas",
     "Group" : "Grupė",
@@ -395,6 +394,7 @@ OC.L10N.register(
     "Value copied to the clipboard" : "Vertė nukopijuota į iškarpinę",
     "Could not copy value to the clipboard." : "Nepavyko nukopijuoti vertės į iškarpinę.",
     "note" : "pastaba",
-    "email" : "elektroninis paštas"
+    "email" : "elektroninis paštas",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Kurkite savo grupes bendrinimui. Pridėkite „Nextcloud“ naudotojus, kontaktus ar bet ką el. paštu."
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

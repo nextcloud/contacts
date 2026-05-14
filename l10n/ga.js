@@ -298,7 +298,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Níorbh fhéidir nasc chuig an ngearrthaisce a chóipeáil.",
     "Not grouped" : "Gan grúpáil",
     "Organization chart" : "Cairt Eagrúcháin",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Cruthaigh do ghrúpaí féin le haghaidh comhroinnte. Cuir úsáideoirí Nextcloud, teagmhálaithe, nó aon duine leis trí ríomhphost.",
     "Team" : "Foireann",
     "User" : "Úsáideoir",
     "Group" : "Grúpa",
@@ -395,6 +394,7 @@ OC.L10N.register(
     "Value copied to the clipboard" : "Luach cóipeáilte chuig an ghearrthaisce",
     "Could not copy value to the clipboard." : "Níorbh fhéidir luach a chóipeáil chuig an ghearrthaisce.",
     "note" : "nóta",
-    "email" : "ríomhphost"
+    "email" : "ríomhphost",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Cruthaigh do ghrúpaí féin le haghaidh comhroinnte. Cuir úsáideoirí Nextcloud, teagmhálaithe, nó aon duine leis trí ríomhphost."
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");
