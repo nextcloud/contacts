@@ -131,7 +131,7 @@ jobs:
       matrix:
         php-versions: ['8.4']
         databases: ['mysql']
-        server-versions: ['master', 'stable33', 'stable32']
+        server-versions: ['master', 'stable34', 'stable33', 'stable32']
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
@@ -208,7 +208,7 @@ jobs:
       matrix:
         php-versions: ['8.5']
         databases: ['pgsql']
-        server-versions: ['master', 'stable33', 'stable32']
+        server-versions: ['master', 'stable34', 'stable33', 'stable32']
         exclude:
           - php-versions: '8.5'
             server-versions: 'stable32'
