@@ -298,6 +298,7 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Lingi kopeerimine lõikelauale ei õnnestunud.",
     "Not grouped" : "Pole grupeeritud",
     "Organization chart" : "Organisatsiooniskeem",
+    "Create your own teams for sharing. Add Nextcloud users, contacts, or anyone via email." : "Loo jagamiseks omad tiimid. Lisa sinna Nextcloudi kasutajaid, kontakte või keda iganes e-posti aadressi alusel.",
     "Team" : "Tiim",
     "User" : "Kasutaja",
     "Group" : "Grupp",
