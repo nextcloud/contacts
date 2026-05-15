@@ -10,7 +10,7 @@ module.exports = {
 	preset: 'ts-jest',
 	moduleFileExtensions: ['js', 'vue', 'ts'],
 	collectCoverageFrom: [
-		'src/**/*.{js,vue}',
+		'src/**/*.{js,ts,vue}',
 		'!**/node_modules/**',
 	],
 	setupFilesAfterEnv: [
