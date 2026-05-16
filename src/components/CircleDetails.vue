@@ -8,7 +8,9 @@
 		<div class="circle-details-grid" :class="{ 'is-editing': isEditing }">
 			<div class="circle-details__header-wrapper">
 				<div class="circle-details-grid__avatar">
+					<NcLoadingIcon v-if="loadingAvatar" :size="75" />
 					<Avatar
+						v-else
 						:disable-tooltip="true"
 						:display-name="circle.displayName"
 						:is-no-user="true"
@@ -46,6 +48,7 @@
 					<div class="circle-avatar-buttons-wrapper">
 						<NcButton
 							v-if="isEditing"
+							:disabled="loadingAvatar"
 							@click="openLocalFilePicker">
 							<template #icon>
 								<TrayArrowUpIcon :size="20" />
@@ -54,6 +57,7 @@
 						</NcButton>
 						<NcButton
 							v-if="isEditing"
+							:disabled="loadingAvatar"
 							@click="openFilePicker">
 							<template #icon>
 								<FolderIcon :size="20" />
@@ -62,6 +66,7 @@
 						</NcButton>
 						<NcButton
 							v-if="isEditing && displayAvatarUrl !== undefined"
+							:disabled="loadingAvatar"
 							@click="removeAvatar">
 							<template #icon>
 								<TrashCanOutlineIcon :size="20" />
@@ -71,6 +76,7 @@
 						<input
 							ref="avatarInput"
 							type="file"
+							:accept="avatarAccept"
 							class="hidden-visually"
 							@change="onAvatarInputChange">
 					</div>
@@ -82,12 +88,12 @@
 							v-bind="cropperOptions" />
 						<div class="circle-avatar-cropper-buttons">
 							<NcButton @click="cancelSetAvatar">
-								{{ t('settings', 'Cancel') }}
+								{{ t('contacts', 'Cancel') }}
 							</NcButton>
 							<NcButton
 								variant="primary"
 								@click="setAvatar">
-								{{ t('settings', 'Apply') }}
+								{{ t('contacts', 'Apply') }}
 							</NcButton>
 						</div>
 					</div>
@@ -269,7 +275,7 @@
 <script>
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
-import { FilePickerClosed, getFilePickerBuilder, showError, showSuccess } from '@nextcloud/dialogs'
+import { FilePickerClosed, FilePickerType, getFilePickerBuilder, showError, showSuccess } from '@nextcloud/dialogs'
 import { encodePath } from '@nextcloud/paths'
 import { generateOcsUrl, generateRemoteUrl, generateUrl } from '@nextcloud/router'
 import {
@@ -324,7 +330,7 @@ const AVATAR_ACTIONS = Object.freeze({
 const picker = getFilePickerBuilder(t('contacts', 'Choose a team picture'))
 	.setMultiSelect(false)
 	.setMimeTypeFilter(VALID_MIME_TYPES)
-	.setType(1)
+	.setType(FilePickerType.Choose)
 	.allowDirectories(false)
 	.build()
 
@@ -372,7 +378,8 @@ export default {
 	setup() {
 		const avatarList = ref()
 		const { width } = useElementSize(avatarList)
-		return { avatarList, width }
+		const avatarAccept = VALID_MIME_TYPES.join(',')
+		return { avatarList, width, avatarAccept }
 	},
 
 	data() {
@@ -405,6 +412,7 @@ export default {
 			pendingAvatarAction: null,
 			pendingAvatarPreviewUrl: undefined,
 			showCropper: false,
+			loadingAvatar: false,
 			cropperOptions: {
 				aspectRatio: 1 / 1,
 				viewMode: 1,
@@ -562,6 +570,9 @@ export default {
 	watch: {
 		'circle.id': {
 			handler() {
+				this.cancelSetAvatar()
+				this.clearPendingAvatar()
+				this.isEditing = false
 				this.fetchTeamResources()
 				this.loadAvatarUrl()
 			},
@@ -765,7 +776,7 @@ export default {
 		async onAvatarInputChange(e) {
 			try {
 				const file = e.target.files[0]
-				if (!['image/png', 'image/jpeg'].includes(file.type)) {
+				if (!VALID_MIME_TYPES.includes(file.type)) {
 					showError(t('contacts', 'Please select a valid png or jpg file'))
 					return
 				}
@@ -808,12 +819,14 @@ export default {
 
 		setAvatar() {
 			this.showCropper = false
-			const canvasData = this.$refs.cropper.getCroppedCanvas()
-			const scaleFactor = canvasData.width > 512 ? 512 / canvasData.width : 1
-
-			this.$refs.cropper.scale(scaleFactor, scaleFactor).getCroppedCanvas().toBlob(async (blob) => {
+			this.$refs.cropper.getCroppedCanvas({
+				minWidth: 16,
+				minHeight: 16,
+				maxWidth: 512,
+				maxHeight: 512,
+			}).toBlob(async (blob) => {
 				if (blob === null) {
-					showError(t('settings', 'Error cropping avatar picture'))
+					showError(t('contacts', 'Error cropping avatar picture'))
 					this.cancelSetAvatar()
 					return
 				}
@@ -828,7 +841,9 @@ export default {
 
 		cancelSetAvatar() {
 			this.showCropper = false
-			this.$refs.avatarInput.value = null
+			if (this.$refs.avatarInput) {
+				this.$refs.avatarInput.value = null
+			}
 		},
 
 		removeAvatar() {
@@ -916,6 +931,9 @@ export default {
 		async saveChanges() {
 			const errors = []
 
+			// Close avatar cropper if still open/pending on save
+			this.cancelSetAvatar()
+
 			// Save name, description and avatar sequentially to avoid race conditions
 			// Save name if changed
 			if (this.circle.displayName !== this.originalDisplayName) {
@@ -949,27 +967,33 @@ export default {
 
 			// Upload pending avatar if set
 			if (this.pendingAvatarAction === AVATAR_ACTIONS.SET && this.pendingAvatarBlob) {
+				this.loadingAvatar = true
 				const formData = new FormData()
 				formData.append('file', this.pendingAvatarBlob)
 				try {
 					await axios.post(generateOcsUrl(`/apps/circles/circles/${this.circle.id}/avatar`), formData)
 					this.clearPendingAvatar()
-					this.loadAvatarUrl()
+					await this.loadAvatarUrl()
 				} catch {
 					console.error('Unable to save avatar picture')
 					errors.push('avatar')
+				} finally {
+					this.loadingAvatar = false
 				}
 			}
 
 			// Delete avatar if marked for deletion
 			if (this.pendingAvatarAction === AVATAR_ACTIONS.DELETE) {
+				this.loadingAvatar = true
 				try {
 					await axios.delete(generateOcsUrl(`/apps/circles/circles/${this.circle.id}/avatar`))
 					this.clearPendingAvatar()
-					this.loadAvatarUrl()
+					await this.loadAvatarUrl()
 				} catch {
 					console.error('Unable to remove avatar')
 					errors.push('avatar')
+				} finally {
+					this.loadingAvatar = false
 				}
 			}
 
