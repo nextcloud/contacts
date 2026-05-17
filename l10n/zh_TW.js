@@ -194,7 +194,10 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be added to a group" : "請注意：在 {total} 個聯絡人中，僅能新增 {count} 個至群組",
     "Please note that only {count} of the {total} contacts can be moved" : "請注意：在 {total} 個聯絡人中，僅能移動 {count} 個聯絡人",
     "Move" : "Move",
+    "Could not update favorite status" : "無法更新喜愛狀態",
     "from {addressbook}" : "來自 {addressbook}",
+    "Remove from favorites" : "從喜愛移除",
+    "Add to favorites" : "新增至喜愛",
     "Confirm merging contacts" : "確認合併聯絡人",
     "The selected contacts have conflicting information. Choose which information to keep" : "選定的聯絡人有互相衝突的資訊。請選擇要保留的資訊",
     "Contacts can be merged" : "可以合併聯絡人",
@@ -295,7 +298,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "無法複製連結至剪貼簿。",
     "Not grouped" : "未歸類",
     "Organization chart" : "組織圖表",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "團隊是您可以自行建立並與他們分享資料的一群人。其可以由 Nextcloud 站台的其他帳號或帳號群組所組成，但也可以由您通訊錄中的聯絡人組成，甚至可以透過輸入電子郵件地址來組成外部人員。",
     "Team" : "團隊",
     "User" : "使用者",
     "Group" : "群組",
@@ -387,10 +389,12 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "團隊中出現錯誤。請檢查主控台以取得更多詳細資訊。",
     "Unable to create team {circleName}" : "無法建立團隊 {circleName}",
     "Unable to delete team {circleId}" : "無法刪除團隊 {circleId}",
+    "Could not update favorite state" : "無法更新喜愛狀態",
     "Unable to delete contact" : "無法刪除聯絡人",
     "Value copied to the clipboard" : "值複製給剪貼簿",
     "Could not copy value to the clipboard." : "無法複製值到剪貼簿。",
     "note" : "備註",
-    "email" : "電子郵件"
+    "email" : "電子郵件",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "建立專屬群組以進行分享。您可以加入 Nextcloud 使用者、通訊錄中的聯絡人，或透過電子郵件邀請任何人加入。"
 },
 "nplurals=1; plural=0;");

@@ -107,6 +107,8 @@ OC.L10N.register(
     "Pick an address book" : "Избор на адресна книга",
     "Select address book" : "Изберете адресна книга",
     "Move" : "Move",
+    "Remove from favorites" : "Премахни от любимите",
+    "Add to favorites" : "Добави към любимите",
     "Add to {group}" : "Добавяне към {group}",
     "Remove {type}" : "Премахване на {type}",
     "Add to group" : "Добавяне към група",

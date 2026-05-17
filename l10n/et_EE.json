@@ -192,7 +192,10 @@
     "Please note that only {count} of the {total} contacts can be added to a group" : "Palun arvesta, et gruppi lisada saad vaid {count} kontakti {total}-st",
     "Please note that only {count} of the {total} contacts can be moved" : "Palun arvesta, et teisaldada saad vaid {count} kontakti {total}-st",
     "Move" : "Teisalda",
+    "Could not update favorite status" : "Olekut lemmikuna polnud võimalik uuendada",
     "from {addressbook}" : "aadressiraamatust {addressbook}",
+    "Remove from favorites" : "Eemalda lemmikutest",
+    "Add to favorites" : "Lisa lemmikuks",
     "Confirm merging contacts" : "Kinnita kontaktide mestimine",
     "The selected contacts have conflicting information. Choose which information to keep" : "Valitud kontaktidel on vastuoluline teave. Palun vali, mida neist soovid säilitada",
     "Contacts can be merged" : "Kontaktide mestimine on võimalik",
@@ -293,7 +296,7 @@
     "Could not copy link to the clipboard." : "Lingi kopeerimine lõikelauale ei õnnestunud.",
     "Not grouped" : "Pole grupeeritud",
     "Organization chart" : "Organisatsiooniskeem",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Tiimid on kasutajate rühmad, mida saad ise luua ning nendega andmeid jagada. Nad võivad koosneda serveris leiduvates kasutajakontodest või kasutajakontode gruppidest, aga ka aadressiraamatus leiduvatest kontaktidest või välistest osalejatest, keda saad lisada e-posti aadressi alusel.",
+    "Create your own teams for sharing. Add Nextcloud users, contacts, or anyone via email." : "Loo jagamiseks omad tiimid. Lisa sinna Nextcloudi kasutajaid, kontakte või keda iganes e-posti aadressi alusel.",
     "Team" : "Tiim",
     "User" : "Kasutaja",
     "Group" : "Grupp",
@@ -385,10 +388,12 @@
     "An error has occurred in team(s). Check the console for more details." : "Tiimi(de)s tekkis viga. Lisateavet palun vaata konsoolilt.",
     "Unable to create team {circleName}" : "„{circleName}“ tiimi loomine pole võimalik",
     "Unable to delete team {circleId}" : "„{circleId}“ tiimi kustutamine pole võimalik",
+    "Could not update favorite state" : "Olekut lemmikuna polnud võimalik uuendada",
     "Unable to delete contact" : "Ei õnnestu kustutada kontakti",
     "Value copied to the clipboard" : "Väärtus on kopeeritud lõikelauale.",
     "Could not copy value to the clipboard." : "Väärtuse kopeerimine lõikelauale ei õnnestunud.",
     "note" : "märge",
-    "email" : "e-post"
+    "email" : "e-post",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Loo oma grupid jagamise jaoks. Lisa Nextcloudi kasutajaid, kontakte ning e-posti aadressi alusel keda iganes."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

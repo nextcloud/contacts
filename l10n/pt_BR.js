@@ -194,7 +194,10 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be added to a group" : "Observe que apenas {count} dos {total} contatos podem ser adicionados a um grupo",
     "Please note that only {count} of the {total} contacts can be moved" : "Observe que apenas {count} dos {total} contatos podem ser movidos",
     "Move" : "Mover",
+    "Could not update favorite status" : "Não foi possível atualizar o status de favorito",
     "from {addressbook}" : "de {addressbook}",
+    "Remove from favorites" : "Remover dos favoritos",
+    "Add to favorites" : "Adicionar aos favoritos",
     "Confirm merging contacts" : "Confirmar a fusão de contatos",
     "The selected contacts have conflicting information. Choose which information to keep" : "Os contatos selecionados têm informações conflitantes. Escolha quais informações deseja manter.",
     "Contacts can be merged" : "Os contatos podem ser mesclados",
@@ -295,7 +298,7 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Não foi possível copiar o link para a área de transferência.",
     "Not grouped" : "Não agrupado",
     "Organization chart" : "Organograma",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Equipes são grupos de pessoas que você mesmo pode criar e com quem pode compartilhar dados. Eles podem ser formados por outras contas ou grupos de contas da instância Nextcloud, mas também por contatos do seu catálogo de endereços ou mesmo por pessoas externas, bastando inserir seus endereços de e-mail.",
+    "Create your own teams for sharing. Add Nextcloud users, contacts, or anyone via email." : "Crie suas próprias equipes para compartilhar. Adicione usuários do Nextcloud, contatos ou qualquer pessoa por e-mail.",
     "Team" : "Equipe",
     "User" : "Usuário",
     "Group" : "Grupo",
@@ -387,10 +390,12 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Ocorreu um erro na(s) equipe(s). Verifique o console para mais detalhes.",
     "Unable to create team {circleName}" : "Não foi possível criar a equipe {circleName}",
     "Unable to delete team {circleId}" : "Não foi possível excluir a equipe {circleId}",
+    "Could not update favorite state" : "Não foi possível atualizar o status de favorito",
     "Unable to delete contact" : "Não foi possível excluir o contato",
     "Value copied to the clipboard" : "Valor copiado para a área de transferência",
     "Could not copy value to the clipboard." : "Não foi possível copiar o valor para a área de transferência.",
     "note" : "nota",
-    "email" : "e-mail"
+    "email" : "e-mail",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Crie seus próprios grupos para compartilhar. Adicione usuários do Nextcloud, contatos ou qualquer pessoa por e-mail."
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

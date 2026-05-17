@@ -51,7 +51,7 @@ const MEMBER_TYPE_MAIL: MemberType = 4
 const MEMBER_TYPE_CONTACT: MemberType = 8
 const MEMBER_TYPE_CIRCLE: MemberType = 16
 
-export const CIRCLE_DESC = t('contacts', 'Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email.')
+export const CIRCLE_DESC = t('contacts', 'Create your own teams for sharing. Add Nextcloud users, contacts, or anyone via email.')
 
 // Circles config flags
 

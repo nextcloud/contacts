@@ -193,6 +193,7 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be moved" : "Merci de noter que seul(s) {count} contact(s) parmi {total} peut/peuvent être déplacé(s)",
     "Move" : "Déplacer",
     "from {addressbook}" : "de {addressbook}",
+    "Add to favorites" : "Add to favorites",
     "Confirm merging contacts" : "Confirmer la fusion des contacts",
     "The selected contacts have conflicting information. Choose which information to keep" : "Les contacts sélectionnés contiennent des informations en conflit. Choisissez les informations à conserver.",
     "Contacts can be merged" : "Les contacts peuvent être fusionnés",
@@ -260,7 +261,7 @@ OC.L10N.register(
     "Personal dates" : "Dates personnelles",
     "Add property of this type" : "Ajouter une propriété de ce type",
     "Member" : "Membre",
-    "This is a read-only group managed by administrators. Group members can only view this group." : "Il s'agit d'un groupe en lecture seule géré par les administrateurs. Les membres du groupe peuvent uniquement consulter ce groupe.",
+    "This is a read-only group managed by administrators. Group members can only view this group." : "Il s'agit d'un groupe en lecture seule, géré par les administrateurs. Seuls les membres du groupe peuvent consulter ce groupe.",
     "Unable to create the contact." : "Impossible de créer le contact.",
     "Contact not found" : "Contact introuvable",
     "Group {group} not found" : "Groupe {group} introuvable",
@@ -288,7 +289,6 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "Impossible de copier le lien dans le presse-papier",
     "Not grouped" : "Non groupé",
     "Organization chart" : "Organigramme",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Les équipes sont des groupes de personnes que vous pouvez créer vous-même et avec lesquels vous pouvez partager des données. Ils peuvent être constitués d'autres comptes ou groupes de comptes de l'instance Nextcloud, mais aussi de contacts de votre carnet d'adresses ou même de personnes externes en entrant simplement leur adresse e-mail.",
     "Team" : "Équipe",
     "User" : "Utilisateur",
     "Group" : "Groupe",
@@ -378,6 +378,7 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Impossible de supprimer l'équipe {circleId}",
     "Unable to delete contact" : "Impossible de supprimer le contact.",
     "note" : "note",
-    "email" : "email"
+    "email" : "email",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Créez vos propres groupes effectuer des partages. Ajoutez des utilisateurs Nextcloud, des contacts ou n'importe qui par e-mail."
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

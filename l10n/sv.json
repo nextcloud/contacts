@@ -192,7 +192,10 @@
     "Please note that only {count} of the {total} contacts can be added to a group" : "Observera att endast {count} av {total} kontakter kan läggas till i en grupp",
     "Please note that only {count} of the {total} contacts can be moved" : "Observera att endast {count} av {total} kontakter kan flyttas",
     "Move" : "Move",
+    "Could not update favorite status" : "Kunde inte uppdatera favoritstatus",
     "from {addressbook}" : "från {addressbook}",
+    "Remove from favorites" : "Ta bort från favoriter",
+    "Add to favorites" : "Lägg till som favorit",
     "Confirm merging contacts" : "Bekräfta sammanslagning av kontakter",
     "The selected contacts have conflicting information. Choose which information to keep" : "De valda kontakterna har motstridig information. Välj vilken information som ska behållas",
     "Contacts can be merged" : "Kontakter kan slås samman",
@@ -293,7 +296,7 @@
     "Could not copy link to the clipboard." : "Kunde inte kopiera länken till urklipp.",
     "Not grouped" : "Inte grupperad",
     "Organization chart" : "Organisationsschema",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Team är grupper av personer som du kan skapa själv och som du kan dela data med. De kan bestå av andra konton eller grupper av konton från Nextcloud, men också av kontakter från din adressbok eller till och med externa personer genom att helt enkelt ange deras e-postadresser.",
+    "Create your own teams for sharing. Add Nextcloud users, contacts, or anyone via email." : "Skapa egna grupper för delning. Lägg till Nextcloud-användare, kontakter eller vem som helst via e-post.",
     "Team" : "Team",
     "User" : "Användare",
     "Group" : "Grupp",
@@ -385,10 +388,12 @@
     "An error has occurred in team(s). Check the console for more details." : "Ett fel har uppstått i team(s). Kontrollera konsolen för mer information.",
     "Unable to create team {circleName}" : "Kunde inte skapa team {circleName}",
     "Unable to delete team {circleId}" : "Kan inte ta bort team {circleId}",
+    "Could not update favorite state" : "Kunde inte uppdatera favoritläget",
     "Unable to delete contact" : "Kunde inte radera kontakten",
     "Value copied to the clipboard" : "Värdet kopierat till urklipp",
     "Could not copy value to the clipboard." : "Det gick inte att kopiera värdet till urklipp.",
     "note" : "anteckning",
-    "email" : "e-post"
+    "email" : "e-post",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Skapa egna grupper för delning. Lägg till Nextcloud-användare, kontakter eller vem som helst via e-post."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

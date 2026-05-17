@@ -83,6 +83,8 @@ OC.L10N.register(
     "Select address book" : "Selecionar livro de endereços",
     "No shared items with this contact" : "Sem itens partilhados com este contacto",
     "Move" : "Move",
+    "Remove from favorites" : "Remover de favoritos",
+    "Add to favorites" : "Adicionar aos favoritos",
     "Add to group" : "Adicionar ao grupo",
     "No results" : "Sem resultados",
     "Add {type}" : "Adicionar (tipo)",

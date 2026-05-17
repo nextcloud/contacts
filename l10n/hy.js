@@ -17,6 +17,8 @@ OC.L10N.register(
     "Create" : "Ստեղծել",
     "Name" : "Անուն",
     "Title" : "Վերնագիր",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Notes" : "Նոթեր",
     "Import" : "Ներմուծում",
     "User" : "User",

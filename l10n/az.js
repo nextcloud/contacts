@@ -17,6 +17,8 @@ OC.L10N.register(
     "Invalid image" : "Yalnış şəkil",
     "Name" : "Ad",
     "Title" : "Başlıq",
+    "Remove from favorites" : "Remove from favorites",
+    "Add to favorites" : "Add to favorites",
     "Pending" : "Gözləmə",
     "None" : "Heç bir",
     "Notes" : "Qeydlər",

@@ -192,7 +192,10 @@
     "Please note that only {count} of the {total} contacts can be added to a group" : "Tabhair faoi deara nach féidir ach {count} de na {total} teagmhálaithe a chur le grúpa",
     "Please note that only {count} of the {total} contacts can be moved" : "Tabhair faoi deara nach féidir ach {count} de na {total} teagmhálaithe a bhogadh",
     "Move" : "Bog",
+    "Could not update favorite status" : "Níorbh fhéidir stádas is fearr leat a nuashonrú",
     "from {addressbook}" : "ó {addressbook}",
+    "Remove from favorites" : "Bain ó cheanáin",
+    "Add to favorites" : "Cuir le ceanáin",
     "Confirm merging contacts" : "Deimhnigh teagmhálacha a chumasc",
     "The selected contacts have conflicting information. Choose which information to keep" : "Tá faisnéis choimhlinteach sna teagmhálaithe roghnaithe. Roghnaigh cén fhaisnéis atá le coinneáil.",
     "Contacts can be merged" : "Is féidir teagmhálacha a chumasc",
@@ -293,7 +296,7 @@
     "Could not copy link to the clipboard." : "Níorbh fhéidir nasc chuig an ngearrthaisce a chóipeáil.",
     "Not grouped" : "Gan grúpáil",
     "Organization chart" : "Cairt Eagrúcháin",
-    "Teams are groups of people that you can create yourself and with whom you can share data. They can be made up of other accounts or groups of accounts of the Nextcloud instance, but also of contacts from your address book or even external people by simply entering their e-mail addresses." : "Is grúpaí daoine iad foirne ar féidir leat iad féin a chruthú agus ar féidir leat sonraí a roinnt leo. Is féidir iad a bheith comhdhéanta de chuntais eile nó de ghrúpaí cuntas ar an ásc Nextcloud, ach freisin de theagmhálaithe ó do leabhar seoltaí nó fiú daoine seachtracha ach a gcuid seoltaí ríomhphoist a chur isteach.",
+    "Create your own teams for sharing. Add Nextcloud users, contacts, or anyone via email." : "Cruthaigh do fhoirne féin le roinnt. Cuir úsáideoirí Nextcloud, teagmhálaithe, nó aon duine leis trí ríomhphost.",
     "Team" : "Foireann",
     "User" : "Úsáideoir",
     "Group" : "Grúpa",
@@ -385,10 +388,12 @@
     "An error has occurred in team(s). Check the console for more details." : "Tharla earráid san fhoireann(í). Seiceáil an consól le haghaidh tuilleadh sonraí.",
     "Unable to create team {circleName}" : "Ní féidir foireann {circleName} a chruthú",
     "Unable to delete team {circleId}" : "Ní féidir foireann {circleId} a scriosadh",
+    "Could not update favorite state" : "Níorbh fhéidir an stát is fearr leat a nuashonrú",
     "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh",
     "Value copied to the clipboard" : "Luach cóipeáilte chuig an ghearrthaisce",
     "Could not copy value to the clipboard." : "Níorbh fhéidir luach a chóipeáil chuig an ghearrthaisce.",
     "note" : "nóta",
-    "email" : "ríomhphost"
+    "email" : "ríomhphost",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Cruthaigh do ghrúpaí féin le haghaidh comhroinnte. Cuir úsáideoirí Nextcloud, teagmhálaithe, nó aon duine leis trí ríomhphost."
 },"pluralForm" :"nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);"
 }

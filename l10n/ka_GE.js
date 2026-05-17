@@ -25,6 +25,8 @@ OC.L10N.register(
     "Name" : "სახელი",
     "Title" : "სათაური",
     "Move" : "Move",
+    "Remove from favorites" : "რჩეულებიდან ამოშლა",
+    "Add to favorites" : "რჩეულებში დამატება",
     "No results" : "შედეგები არაა",
     "Pending" : "მოლოდინში",
     "None" : "არც ერთი",
