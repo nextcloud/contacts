@@ -363,24 +363,7 @@ export default {
 			if (index === -1) {
 				return
 			}
-
-			const scroller = this.$refs.scroller
-			const scrollerBoundingRect = scroller.$el.getBoundingClientRect()
-			const item = this.$el.querySelector('#' + key.slice(0, -2))
-			const itemBoundingRect = item?.getBoundingClientRect()
-
-			// Try to scroll the item fully into view
-			if (!item || itemBoundingRect.y < scrollerBoundingRect.y) {
-				// Item is above the current scroll window (or partly overlapping)
-				scroller.scrollToIndex(index)
-			} else if (item) {
-				const itemHeight = scroller.getItemSize(index)
-				const pos = itemBoundingRect.y + itemHeight - (this.$el.offsetHeight + 50)
-				if (pos > 0) {
-					// Item is below the current scroll window (or partly overlapping)
-					scroller.scrollTo(scroller.scrollOffset + pos)
-				}
-			}
+			this.$refs.scroller.scrollToIndex(index, { align: 'nearest' })
 		},
 
 		/**

@@ -5,6 +5,7 @@
 
 import { showError } from '@nextcloud/dialogs'
 import ICAL from 'ical.js'
+import { toRaw } from 'vue'
 import Contact from '../models/contact.js'
 import validate from '../services/validate.js'
 
@@ -26,38 +27,48 @@ ICAL.design.vcard3.param.type.multiValueSeparateDQuote = true
 ICAL.design.vcard.param.type.multiValueSeparateDQuote = true
 
 function sortData(a, b) {
-	const nameA = typeof a.value === 'string'
-		? a.value.toUpperCase() // ignore upper and lowercase
-		: a.value.toUnixTime() // only other sorting we support is a vCardTime
-	const nameB = typeof b.value === 'string'
-		? b.value.toUpperCase() // ignore upper and lowercase
-		: b.value.toUnixTime() // only other sorting we support is a vCardTime
-
-	const score = nameA.localeCompare
-		? nameA.localeCompare(nameB)
-		: nameB - nameA
-	// if equal, fallback to the key
-	return score !== 0
-		? score
-		: a.key.localeCompare(b.key)
-}
-
-function sortByFavoriteAndName(a, b) {
 	// favorites always on top
 	if (a.favorite !== b.favorite) {
 		return a.favorite ? -1 : 1
 	}
-	// alphabetical within each group
-	if (!a.value && !b.value) {
-		return 0
+
+	const nameA = typeof a.value === 'string' ? a.value.toUpperCase() : a.value
+	const nameB = typeof b.value === 'string' ? b.value.toUpperCase() : b.value
+
+	// Push null/undefined values to the end
+	if (nameA === null && nameB === null) {
+		return a.key.localeCompare(b.key)
 	}
-	if (!a.value) {
+	if (nameA === null) {
 		return 1
 	}
-	if (!b.value) {
+	if (nameB === null) {
 		return -1
 	}
-	return a.value.localeCompare(b.value)
+
+	const score = typeof nameA === 'string'
+		? nameA.localeCompare(nameB)
+		: nameB - nameA // descending: newest first
+	return score !== 0 ? score : a.key.localeCompare(b.key)
+}
+
+function extractSortValue(contact, orderKey) {
+	if (orderKey === 'rev') {
+		return contact.revTimestamp
+	}
+	const val = contact[orderKey]
+	if (val === null || val === undefined) {
+		return null
+	}
+	if (typeof val === 'string') {
+		return val
+	}
+	// ical.js methods don't work through Vue's reactive proxy; unwrap first.
+	try {
+		return toRaw(val).toUnixTime()
+	} catch {
+		return null
+	}
 }
 
 const state = {
@@ -112,10 +123,10 @@ const mutations = {
 			.filter((c) => c.kind !== 'group')
 			.map((c) => ({
 				key: c.key,
-				value: (c[state.orderKey] || '').toString().toLowerCase(),
+				value: extractSortValue(c, state.orderKey),
 				favorite: c.favorite || false,
 			}))
-			.sort(sortByFavoriteAndName)
+			.sort(sortData)
 	},
 	/**
 	 * Delete a contact from the global contacts list
@@ -146,8 +157,8 @@ const mutations = {
 
 			const sortedContact = {
 				key: contact.key,
-				value: (contact[state.orderKey] || '').toString().toLowerCase(),
-				favorite: contact.favorite,
+				value: extractSortValue(contact, state.orderKey),
+				favorite: contact.favorite || false,
 			}
 
 			// Not using sort, splice has far better performances
@@ -186,9 +197,11 @@ const mutations = {
 	 * Update a contact
 	 *
 	 * @param {object} state the store data
-	 * @param {Contact} contact the contact to update
+	 * @param {object} payload destructuring object
+	 * @param {Contact} payload.contact the contact to update
+	 * @param {boolean} [payload.skipSort] skip the re-sort after updating (default false)
 	 */
-	updateContact(state, contact) {
+	updateContact(state, { contact, skipSort = false }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
 			const existingFavorite = state.contacts[contact.key].dav?.favorite || false
 			state.contacts[contact.key].updateContact(contact.jCal)
@@ -198,21 +211,21 @@ const mutations = {
 				state.contacts[contact.key].dav.favorite = existingFavorite
 			}
 
-			const sortedContact = state.sortedContacts.find((search) => search.key === contact.key)
+			if (!skipSort) {
+				const sortedContact = state.sortedContacts.find((search) => search.key === contact.key)
 
-			if (!sortedContact) {
-				console.warn('sortedContact not found for', contact.key)
-				return
-			}
+				if (!sortedContact) {
+					console.warn('sortedContact not found for', contact.key)
+					return
+				}
 
-			const hasValueChanged = sortedContact.value !== contact[state.orderKey]
-			const hasFavoriteChanged = sortedContact.favorite !== (state.contacts[contact.key].dav?.favorite || false)
-
-			if (hasValueChanged || hasFavoriteChanged) {
-				sortedContact.value = contact[state.orderKey]
-				sortedContact.favorite = state.contacts[contact.key].dav?.favorite || false
-
-				state.sortedContacts.sort(sortByFavoriteAndName)
+				const newValue = extractSortValue(contact, state.orderKey)
+				const newFavorite = state.contacts[contact.key].dav?.favorite || false
+				if (sortedContact.value !== newValue || sortedContact.favorite !== newFavorite) {
+					sortedContact.value = newValue
+					sortedContact.favorite = newFavorite
+					state.sortedContacts.sort(sortData)
+				}
 			}
 		} else {
 			console.error('Error while replacing the following contact', contact)
@@ -249,7 +262,7 @@ const mutations = {
 			// Update sorted contacts list, replace at exact same position
 			const index = state.sortedContacts.findIndex((search) => search.key === oldKey)
 			state.sortedContacts[index].key = newContact.key
-			state.sortedContacts[index].value = newContact[state.orderKey]
+			state.sortedContacts[index].value = extractSortValue(newContact, state.orderKey)
 		} else {
 			console.error('Error while replacing the addressbook of following contact', contact)
 		}
@@ -286,10 +299,10 @@ const mutations = {
 			.filter((contact) => contact.kind !== 'group')
 			.map((contact) => ({
 				key: contact.key,
-				value: contact[state.orderKey],
+				value: extractSortValue(contact, state.orderKey),
 				favorite: contact.favorite || false,
 			}))
-			.sort(sortByFavoriteAndName)
+			.sort(sortData)
 	},
 
 	/**
@@ -441,7 +454,7 @@ const actions = {
 			try {
 				await contact.dav.update()
 				// all clear, let's update the store
-				context.commit('updateContact', contact)
+				context.commit('updateContact', { contact })
 			} catch (error) {
 				console.error(error)
 
@@ -484,7 +497,10 @@ const actions = {
 				const newContact = new Contact(davObject.data, contact.addressbook)
 				newContact.dav = davObject
 				newContact.dav.favorite = savedFavorite
-				context.commit('updateContact', newContact)
+				// skipSort: opening a contact must not visibly reorder the list.
+				// The server's REV rarely differs from the cached one here; if it
+				// does, the next mutation will re-sort.
+				context.commit('updateContact', { contact: newContact, skipSort: true })
 			})
 			.catch((error) => { throw error })
 	},
