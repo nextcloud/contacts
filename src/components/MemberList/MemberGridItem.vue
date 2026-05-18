@@ -81,6 +81,7 @@
 
 <script>
 import { DialogBuilder, showError } from '@nextcloud/dialogs'
+import { emit } from '@nextcloud/event-bus'
 import { NcActionButton, NcActions, NcActionSeparator, NcActionText, NcAvatar, NcButton } from '@nextcloud/vue'
 import IconAccountGroupOutline from 'vue-material-design-icons/AccountGroupOutline.vue'
 import IconCheckOutline from 'vue-material-design-icons/CheckOutline.vue'
@@ -317,6 +318,7 @@ export default {
 					member: this.member,
 					leave: this.isCurrentUser,
 				})
+				emit('contacts:circles:member:deleted')
 			} catch (error) {
 				if (error?.response?.status === 404) {
 					this.logger.debug('Member is not in circle')
@@ -346,6 +348,7 @@ export default {
 				// this.member is a class. We're modifying the class setter, not the prop itself
 				// eslint-disable-next-line vue/no-mutating-props
 				this.member.level = level
+				emit('contacts:circles:member:changed')
 			} catch (error) {
 				this.logger.error('Could not change the member level', { level: CIRCLES_MEMBER_LEVELS[level], error })
 				showError(t('contacts', 'Could not change the member level to {level}', {

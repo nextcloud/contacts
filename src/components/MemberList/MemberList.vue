@@ -5,14 +5,8 @@
 
 <template>
 	<section class="member-list">
-		<NcEmptyContent v-if="loading" class="empty-content" :name="t('contacts', 'Loading members list …')">
-			<template #icon>
-				<IconLoading :size="20" />
-			</template>
-		</NcEmptyContent>
-
 		<NcEmptyContent
-			v-else-if="!circle.isMember"
+			v-if="!circle.isMember"
 			class="empty-content"
 			:name="t('contacts', 'The list of members is only visible to members of this team')">
 			<template #icon>
@@ -20,26 +14,66 @@
 			</template>
 		</NcEmptyContent>
 
-		<NcEmptyContent
-			v-else-if="!hasMembers"
-			class="empty-content"
-			:name="t('contacts', 'You currently have no access to the member list')">
-			<template #icon>
-				<IconContact :size="20" />
-			</template>
-		</NcEmptyContent>
+		<template v-else>
+			<div class="member-list__filters" :class="{ 'member-list__filters--mobile': isMobile }">
+				<NcTextField
+					v-model="searchQuery"
+					class="member-list__search"
+					:label="t('contacts', 'Search among current members')"
+					trailing-button-icon="close"
+					:show-trailing-button="searchQuery !== ''"
+					@trailing-button-click="searchQuery = ''">
+					<template #icon>
+						<IconSearch :size="20" />
+					</template>
+				</NcTextField>
 
-		<VList
-			v-else
-			v-slot="{ item }"
-			class="member-list__virtual"
-			:style="virtualListStyle"
-			:data="flatList">
-			<MemberGridItem
-				:key="`member-grid-item-${item.id}`"
-				:member="item"
-				:is-team="!item.isUser" />
-		</VList>
+				<NcSelect
+					v-model="searchRole"
+					:options="roles"
+					:placeholder="t('contacts', 'Role')"
+					:multiple="false"
+					style="min-width: 160px;" />
+			</div>
+
+			<NcEmptyContent
+				v-if="loading || loadingList"
+				class="empty-content"
+				:name="t('contacts', 'Loading members list …')">
+				<template #icon>
+					<NcLoadingIcon :size="20" />
+				</template>
+			</NcEmptyContent>
+
+			<NcEmptyContent
+				v-else-if="!hasMembers"
+				class="empty-content"
+				:name="hasActiveFilters ? t('contacts', 'No members found matching your search') : t('contacts', 'You currently have no access to the member list')">
+				<template #icon>
+					<IconContact :size="20" />
+				</template>
+			</NcEmptyContent>
+
+			<template v-else>
+				<div class="member-list__virtual" :style="virtualListStyle">
+					<Virtualizer
+						v-slot="{ item }"
+						:data="flatList">
+						<MemberGridItem
+							:key="`member-grid-item-${item.id}`"
+							:member="item"
+							:is-team="!item.isUser" />
+					</Virtualizer>
+
+					<NcNoteCard v-if="isMembersLisTooLarge" type="warning" class="member-list__too-large">
+						{{ t('contacts', 'Users list too large. Please adjust your filters.') }}
+						<NcButton variant="primary" @click="onLoadAllMembers">
+							{{ t('contacts', 'Load all members') }}
+						</NcButton>
+					</NcNoteCard>
+				</div>
+			</template>
+		</template>
 
 		<!-- member picker -->
 		<EntityPicker
@@ -61,27 +95,40 @@
 <script lang="ts">
 import { showError, showWarning } from '@nextcloud/dialogs'
 import { subscribe } from '@nextcloud/event-bus'
-import { t } from '@nextcloud/l10n'
-import { NcEmptyContent } from '@nextcloud/vue'
-import { VList } from 'virtua/vue'
-import { defineComponent } from 'vue'
+import { NcButton, NcEmptyContent, NcLoadingIcon, NcNoteCard, NcSelect, NcTextField } from '@nextcloud/vue'
+import { refDebounced } from '@vueuse/core'
+import { Virtualizer } from 'virtua/vue'
+import { defineComponent, readonly, ref } from 'vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
+import IconSearch from 'vue-material-design-icons/Magnify.vue'
 import EntityPicker from '../EntityPicker/EntityPicker.vue'
 import MemberGridItem from './MemberGridItem.vue'
 import IsMobileMixin from '../../mixins/IsMobileMixin.ts'
 import RouterMixin from '../../mixins/RouterMixin.js'
-import { CIRCLES_MEMBER_GROUPING, SHARES_TYPES_MEMBER_MAP } from '../../models/constants.ts'
+import {
+	CIRCLES_MEMBER_GROUPING,
+	CIRCLES_MEMBER_LEVELS,
+	MAX_MEMBERS_TO_RENDER,
+	MemberLevels,
+	SHARES_TYPES_MEMBER_MAP,
+} from '../../models/constants.ts'
 import { getRecommendations, getSuggestions } from '../../services/collaborationAutocompletion.js'
 
 export default defineComponent({
 	name: 'MemberList',
 
 	components: {
+		IconSearch,
+		NcButton,
+		NcNoteCard,
+		NcSelect,
+		NcTextField,
 		EntityPicker,
 		IconContact,
 		MemberGridItem,
 		NcEmptyContent,
-		VList,
+		Virtualizer,
+		NcLoadingIcon,
 	},
 
 	mixins: [IsMobileMixin, RouterMixin],
@@ -98,8 +145,31 @@ export default defineComponent({
 		},
 	},
 
+	setup() {
+		const searchQuery = ref('')
+		const searchQueryDebounced = refDebounced(searchQuery, 500)
+
+		const searchRole = ref(null)
+		const roles = Object.entries(CIRCLES_MEMBER_LEVELS).map(([id, label]) => ({
+			id: Number(id),
+			label,
+		}))
+		roles.unshift({
+			id: Number(MemberLevels.NONE),
+			label: t('contacts', 'Pending'),
+		})
+
+		return {
+			searchQuery,
+			searchQueryDebounced,
+			searchRole,
+			roles: readonly(roles),
+		}
+	},
+
 	data() {
 		return {
+			loadingList: false,
 			pickerLoading: false,
 			showPicker: false,
 			showPickerIntro: true,
@@ -111,6 +181,7 @@ export default defineComponent({
 			pickerTypes: CIRCLES_MEMBER_GROUPING,
 
 			circleHeaderHeight: 0,
+			loadAllMembers: false,
 		}
 	},
 
@@ -118,10 +189,18 @@ export default defineComponent({
 		/**
 		 * Return the current circle
 		 *
-		 * @return {object}
+		 * @return {Circle}
 		 */
 		circle() {
 			return this.$store.getters.getCircle(this.selectedCircle)
+		},
+
+		members() {
+			return Object.values(this.$store.getters.getCircle(this.circle.id)?.members || [])
+		},
+
+		isMembersLisTooLarge() {
+			return !this.loadAllMembers && this.flatList.length > MAX_MEMBERS_TO_RENDER
 		},
 
 		// Decode HTML entities in the circle display name so apostrophes (') and other
@@ -157,6 +236,10 @@ export default defineComponent({
 			return this.flatList.length > 0
 		},
 
+		hasActiveFilters() {
+			return this.searchQuery !== '' || this.searchRole !== null
+		},
+
 		virtualListStyle() {
 			const gridBaseline = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--default-grid-baseline')) || 4
 			const headerHeight = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--header-height')) || 50
@@ -168,9 +251,31 @@ export default defineComponent({
 		},
 	},
 
+	watch: {
+		searchQueryDebounced() {
+			this.loadAllMembers = false
+			this.fetchCircleMembers()
+		},
+
+		searchRole() {
+			this.loadAllMembers = false
+			this.fetchCircleMembers()
+		},
+
+		'circle.id': {
+			handler() {
+				this.fetchCircleMembers()
+			},
+
+			immediate: true,
+		},
+	},
+
 	mounted() {
 		subscribe('contacts:circles:append', this.onShowPicker)
 		subscribe('guests:user:created', this.onGuestCreated)
+		subscribe('contacts:circles:member:changed', this.onMemberChanged)
+		subscribe('contacts:circles:member:deleted', this.onMemberChanged)
 		this.measureCircleHeader()
 	},
 
@@ -296,6 +401,39 @@ export default defineComponent({
 			const results = await getSuggestions(guest.username, this.circle)
 			this.$refs.entityPicker.onClick(results[0])
 		},
+
+		async fetchCircleMembers(silent = false) {
+			if (!this.circle?.canManageMembers) {
+				return
+			}
+
+			if (!silent) {
+				this.loadingList = true
+			}
+			const payload = { circleId: this.circle.id, search: this.searchQuery || null, role: this.searchRole?.id, limit: this.loadAllMembers ? 0 : undefined }
+			this.logger.debug('Fetching members for', payload)
+
+			try {
+				await this.$store.dispatch('getCircleMembers', payload)
+				console.log('debug: getCircleMembers', this.list)
+			} catch (error) {
+				console.error(error)
+				showError(t('contacts', 'There was an error fetching the member list'))
+			} finally {
+				if (!silent) {
+					this.loadingList = false
+				}
+			}
+		},
+
+		onLoadAllMembers() {
+			this.loadAllMembers = true
+			this.fetchCircleMembers()
+		},
+
+		onMemberChanged() {
+			this.fetchCircleMembers(true)
+		},
 	},
 })
 </script>
@@ -311,5 +449,29 @@ export default defineComponent({
 
 .empty-content {
 	height: 100%;
+}
+
+.member-list__virtual {
+	overflow: auto;
+}
+
+.member-list__too-large {
+	margin-top: calc(var(--default-grid-baseline) * 2);
+}
+
+.member-list__filters {
+	display: flex;
+	align-items: flex-end;
+	gap: calc(var(--default-grid-baseline) * 2);
+	margin-bottom: calc(var(--default-grid-baseline) * 4);
+
+	&--mobile {
+		flex-direction: column;
+		align-items: stretch;
+	}
+}
+
+.member-list__search {
+	flex: 1;
 }
 </style>
