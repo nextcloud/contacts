@@ -36,6 +36,7 @@ class FederatedInviteAcceptedListener implements IEventListener {
 	 * OCMRequestController as response to an OCM request. This handler manages
 	 * the invite-accepted capability.
 	 */
+	#[\Override]
 	public function handle(Event $event): void {
 		if (!($event instanceof OCMEndpointRequestEvent)
 			|| $event->getRequestedCapability() !== 'invite-accepted') {

@@ -10,7 +10,7 @@ import Wayf from './components/Ocm/Wayf.vue'
 
 import './css/wayf.scss'
 
-const mountWayf = () => {
+function mountWayf() {
 	const props = loadState('contacts', 'wayf')
 	const app = createApp(Wayf, props)
 	app.config.globalProperties.t = t

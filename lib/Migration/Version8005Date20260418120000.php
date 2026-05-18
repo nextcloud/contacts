@@ -48,6 +48,7 @@ class Version8005Date20260418120000 extends SimpleMigrationStep {
 	) {
 	}
 
+	#[\Override]
 	public function preSchemaChange(IOutput $output, Closure $schemaClosure, array $options): void {
 		$qb = $this->connection->getQueryBuilder();
 		$qb->update('federated_invites')
@@ -56,6 +57,7 @@ class Version8005Date20260418120000 extends SimpleMigrationStep {
 		$qb->executeStatement();
 	}
 
+	#[\Override]
 	public function changeSchema(IOutput $output, Closure $schemaClosure, array $options): ?ISchemaWrapper {
 		/** @var ISchemaWrapper $schema */
 		$schema = $schemaClosure();
@@ -80,6 +82,7 @@ class Version8005Date20260418120000 extends SimpleMigrationStep {
 		return $schema;
 	}
 
+	#[\Override]
 	public function postSchemaChange(IOutput $output, Closure $schemaClosure, array $options): void {
 		$this->createPartialUniqueIndex($output);
 	}

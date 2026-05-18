@@ -1,4 +1,4 @@
-<?php
+final <?php
 
 declare(strict_types=1);
 
@@ -28,6 +28,7 @@ class UpdateOcmProviders extends TimedJob {
 		$this->setInterval($this->expire_time);
 	}
 
+	#[\Override]
 	protected function run($argument) {
 		$data = $this->wayfProvider->getMeshProviders();
 		$data['expires'] = time() + $this->expire_time;

@@ -456,44 +456,7 @@ export default {
 		...mapStores(useOcmInvitesStore, useUserGroupStore),
 	},
 
-	// watch: {
-	// 	$route: {
-	// 		immediate: true,
-	// 		handler(route) {
-	// 			this.routeState = this.getRouteStateFromRoute(route)
-	// 		},
-	// 	},
-	// },
-
 	methods: {
-		// getRouteStateFromRoute(route) {
-		// 	const routeName = route?.name
-		// 	if (routeName === ROUTE_NAME_ALL_OCM_INVITES || routeName === ROUTE_NAME_OCM_INVITE) {
-		// 		return 'ocm-invites'
-		// 	}
-		// 	if (routeName === 'chart') {
-		// 		return 'orgchart'
-		// 	}
-		// 	if (routeName === 'circle' && route?.params?.selectedCircle) {
-		// 		return `circle:${route.params.selectedCircle}`
-		// 	}
-		// 	if (routeName === 'user_group' && route?.params?.selectedUserGroup) {
-		// 		return `circle:${route.params.selectedUserGroup}`
-		// 	}
-
-		// 	const selectedGroup = route?.params?.selectedGroup
-		// 	if (selectedGroup === GROUP_NO_GROUP_CONTACTS) {
-		// 		return 'notgrouped'
-		// 	}
-		// 	if (selectedGroup === GROUP_RECENTLY_CONTACTED) {
-		// 		return 'recentlycontacted'
-		// 	}
-		// 	if (typeof selectedGroup === 'string' && selectedGroup !== '' && selectedGroup !== GROUP_ALL_CONTACTS) {
-		// 		return `group:${selectedGroup.replace(' ', '_')}`
-		// 	}
-		// 	return 'all'
-		// },
-
 		toggleNewGroupMenu() {
 			this.isNewGroupMenuOpen = !this.isNewGroupMenuOpen
 		},

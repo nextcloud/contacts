@@ -33,10 +33,12 @@ class ConfigLexicon implements ILexicon {
 	public const WAYF_ENDPOINT = 'wayf_endpoint';
 	public const FEDERATIONS_CACHE = 'federations_cache';
 
+	#[\Override]
 	public function getStrictness(): Strictness {
 		return Strictness::NOTICE;
 	}
 
+	#[\Override]
 	public function getAppConfigs(): array {
 		return [
 			new Entry(
@@ -100,6 +102,7 @@ class ConfigLexicon implements ILexicon {
 		];
 	}
 
+	#[\Override]
 	public function getUserConfigs(): array {
 		return [];
 	}

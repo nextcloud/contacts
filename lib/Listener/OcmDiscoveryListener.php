@@ -35,6 +35,7 @@ class OcmDiscoveryListener implements IEventListener {
 	 * @param Event $event an event of type LocalOCMDiscoveryEvent or ResourceTypeRegisterEvent
 	 * @return void
 	 */
+	#[\Override]
 	public function handle(Event $event): void {
 		if (!$this->isOcmDiscoveryEvent($event)) {
 			return;
