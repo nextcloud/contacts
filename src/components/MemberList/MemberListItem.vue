@@ -336,7 +336,7 @@ export default {
 				// If we changed an owner, let's refresh the whole dataset to update all ownership & memberships
 				if (level === MemberLevels.OWNER) {
 					await this.$store.dispatch('getCircle', this.circle.id)
-					await this.$store.dispatch('getCircleMembers', this.circle.id)
+					await this.$store.dispatch('getCircleMembers', { circleId: this.circle.id })
 					return
 				}
 
