@@ -6,6 +6,9 @@
 <script setup lang="ts">
 import type Member from '../../models/member.ts'
 
+import { t } from '@nextcloud/l10n'
+import { NcEmptyContent } from '@nextcloud/vue'
+import IconSearch from 'vue-material-design-icons/Magnify.vue'
 import MemberListItem from './MemberListItem.vue'
 
 defineProps<{
@@ -22,6 +25,17 @@ defineProps<{
 			class="member-list-group__heading">
 			{{ label }}
 		</h4>
+
+		<template v-if="!members.length">
+			<div style="margin-top: 2rem;">
+				<NcEmptyContent :name="t('contacts', 'No results found')">
+					<template #icon>
+						<IconSearch :size="20" />
+					</template>
+				</NcEmptyContent>
+			</div>
+		</template>
+
 		<ul :aria-labelledby="`member-list-group-${type}`" class="member-list-group__list">
 			<MemberListItem
 				v-for="member in members"
@@ -32,6 +46,15 @@ defineProps<{
 </template>
 
 <style scoped lang="scss">
+#member-list-group-1 {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.member-list-group__list-extended {
+  max-height: 200px;
+}
+
 .member-list-group {
 	&__heading {
 		display: flex;
