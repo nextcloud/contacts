@@ -80,23 +80,6 @@
 							class="hidden-visually"
 							@change="onAvatarInputChange">
 					</div>
-					<!-- Use v-show to ensure early cropper ref availability -->
-					<div v-show="showCropper" class="circle-avatar-cropper-wrapper">
-						<VueCropper
-							ref="cropper"
-							class="circle-avatar-cropper"
-							v-bind="cropperOptions" />
-						<div class="circle-avatar-cropper-buttons">
-							<NcButton @click="cancelSetAvatar">
-								{{ t('contacts', 'Cancel') }}
-							</NcButton>
-							<NcButton
-								variant="primary"
-								@click="setAvatar">
-								{{ t('contacts', 'Apply') }}
-							</NcButton>
-						</div>
-					</div>
 					<div class="actions">
 						<template v-if="!isEditing">
 							<NcButton v-if="canManageTeam" variant="primary" @click="startEditing">
@@ -269,6 +252,27 @@
 				</section>
 			</div>
 		</div>
+
+		<!-- Avatar cropper dialog -->
+		<NcDialog
+			v-if="showCropper"
+			:name="t('contacts', 'Edit team picture')"
+			:open="showCropper"
+			size="normal"
+			@closing="cancelSetAvatar">
+			<VueCropper
+				ref="cropper"
+				class="circle-avatar-cropper"
+				v-bind="cropperOptions" />
+			<template #actions>
+				<NcButton @click="cancelSetAvatar">
+					{{ t('contacts', 'Cancel') }}
+				</NcButton>
+				<NcButton variant="primary" @click="setAvatar">
+					{{ t('contacts', 'Apply') }}
+				</NcButton>
+			</template>
+		</NcDialog>
 	</div>
 </template>
 
@@ -284,6 +288,7 @@ import {
 	NcActionButton,
 	NcActions,
 	NcButton,
+	NcDialog,
 	NcEmptyContent,
 	NcLoadingIcon,
 	NcPopover,
@@ -341,6 +346,7 @@ export default {
 		AccountPlusIcon,
 		Avatar,
 		NcButton,
+		NcDialog,
 		ContentHeading,
 		ListItem,
 		CogIcon,
@@ -781,9 +787,10 @@ export default {
 					return
 				}
 				const reader = new FileReader()
-				reader.onload = (e) => {
-					this.$refs.cropper.replace(e.target.result)
+				reader.onload = async (e) => {
 					this.showCropper = true
+					await this.$nextTick()
+					this.$refs.cropper.replace(e.target.result)
 				}
 				reader.readAsDataURL(file)
 			} catch (error) {
@@ -803,9 +810,10 @@ export default {
 					{ responseType: 'blob' },
 				)
 				const reader = new FileReader()
-				reader.onload = (e) => {
-					this.$refs.cropper.replace(e.target.result)
+				reader.onload = async (e) => {
 					this.showCropper = true
+					await this.$nextTick()
+					this.$refs.cropper.replace(e.target.result)
 				}
 				reader.readAsDataURL(fileResponse.data)
 			} catch (error) {
@@ -1192,31 +1200,17 @@ export default {
 			width: 100%;
 		}
 	}
+}
 
-	.circle-avatar-cropper-wrapper {
-		margin-bottom: 16px;
+.circle-avatar-cropper {
+	width: 300px;
+	height: 300px;
+	overflow: hidden;
+	margin-inline: auto;
+	margin-bottom: 16px;
 
-		.circle-avatar-cropper {
-			width: 300px;
-			height: 300px;
-			overflow: hidden;
-
-			:deep(.cropper-view-box) {
-				border-radius: 50%;
-			}
-		}
-
-		.circle-avatar-cropper-buttons {
-			display: flex;
-			flex-direction: row;
-			justify-content: space-between;
-			gap: 8px;
-			margin-top: 8px;
-
-			:deep(.button-vue) {
-				flex: 1;
-			}
-		}
+	:deep(.cropper-view-box) {
+		border-radius: 50%;
 	}
 }
 </style>
