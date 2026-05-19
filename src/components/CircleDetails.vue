@@ -45,7 +45,7 @@
 							label="Description"
 							:maxlength="1024" />
 					</div>
-					<div class="circle-avatar-buttons-wrapper">
+					<div v-if="avatarSupported" class="circle-avatar-buttons-wrapper">
 						<NcButton
 							v-if="isEditing"
 							:disabled="loadingAvatar"
@@ -385,7 +385,9 @@ export default {
 		const avatarList = ref()
 		const { width } = useElementSize(avatarList)
 		const avatarAccept = VALID_MIME_TYPES.join(',')
-		return { avatarList, width, avatarAccept }
+		const nextcloudMajorVersion = parseInt(window.OC.config.version.split('.')[0])
+		const avatarSupported = nextcloudMajorVersion >= 34
+		return { avatarList, width, avatarAccept, avatarSupported }
 	},
 
 	data() {
@@ -460,6 +462,9 @@ export default {
 		},
 
 		displayAvatarUrl() {
+			if (!this.avatarSupported) {
+				return undefined
+			}
 			if (this.pendingAvatarAction === AVATAR_ACTIONS.DELETE) {
 				return undefined
 			}
@@ -576,11 +581,13 @@ export default {
 	watch: {
 		'circle.id': {
 			handler() {
-				this.cancelSetAvatar()
-				this.clearPendingAvatar()
 				this.isEditing = false
 				this.fetchTeamResources()
-				this.loadAvatarUrl()
+				if (this.avatarSupported) {
+					this.cancelSetAvatar()
+					this.clearPendingAvatar()
+					this.loadAvatarUrl()
+				}
 			},
 
 			immediate: true,
@@ -907,6 +914,9 @@ export default {
 		},
 
 		async loadAvatarUrl() {
+			if (!this.avatarSupported) {
+				return
+			}
 			try {
 				const response = await axios.get(
 					generateOcsUrl(`/apps/circles/circles/${this.circle.id}/avatar`),
@@ -974,7 +984,7 @@ export default {
 			}
 
 			// Upload pending avatar if set
-			if (this.pendingAvatarAction === AVATAR_ACTIONS.SET && this.pendingAvatarBlob) {
+			if (this.avatarSupported && this.pendingAvatarAction === AVATAR_ACTIONS.SET && this.pendingAvatarBlob) {
 				this.loadingAvatar = true
 				const formData = new FormData()
 				formData.append('file', this.pendingAvatarBlob)
@@ -991,7 +1001,7 @@ export default {
 			}
 
 			// Delete avatar if marked for deletion
-			if (this.pendingAvatarAction === AVATAR_ACTIONS.DELETE) {
+			if (this.avatarSupported && this.pendingAvatarAction === AVATAR_ACTIONS.DELETE) {
 				this.loadingAvatar = true
 				try {
 					await axios.delete(generateOcsUrl(`/apps/circles/circles/${this.circle.id}/avatar`))
