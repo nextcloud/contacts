@@ -115,10 +115,22 @@ export async function leaveCircle(circleId: string) {
  * Get the circle members without the members
  *
  * @param circleId the circle id
+ * @param search the search query
+ * @param role the role
+ * @param limit the limit
  * @return
  */
-export async function getCircleMembers(circleId: string) {
-	const response = await axios.get(generateOcsUrl('apps/circles/circles/{circleId}/members', { circleId }))
+export async function getCircleMembers(circleId: string, search?: string, role?: string, limit: number = 100) {
+	const response = await axios.get(
+		generateOcsUrl('apps/circles/circles/{circleId}/members', { circleId }),
+		{
+			params: {
+				search,
+				role,
+				limit,
+			},
+		},
+	)
 	return response.data.ocs.data
 }
 
