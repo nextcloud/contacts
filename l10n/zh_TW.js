@@ -298,6 +298,7 @@ OC.L10N.register(
     "Could not copy link to the clipboard." : "無法複製連結至剪貼簿。",
     "Not grouped" : "未歸類",
     "Organization chart" : "組織圖表",
+    "Create your own teams for sharing. Add Nextcloud users, contacts, or anyone via email." : "建立您用來分享的團隊。新增 Nextcloud 使用者、聯絡人或透過電子郵件新增任何人。",
     "Team" : "團隊",
     "User" : "使用者",
     "Group" : "群組",
