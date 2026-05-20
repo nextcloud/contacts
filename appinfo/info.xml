@@ -17,7 +17,7 @@
 	</description>
 
 	<version>8.6.0-dev.0</version>
-	<licence>agpl</licence>
+	<licence>AGPL-3.0-or-later</licence>
 
 	<author mail="hamza221@users.noreply.github.com">Hamza Mahjoubi</author>
 	<author homepage="https://github.com/nextcloud/groupware">Nextcloud Groupware Team</author>
@@ -44,7 +44,7 @@
 
 	<dependencies>
 		<php min-version="8.1" max-version="8.5" />
-		<nextcloud min-version="32" max-version="34" />
+		<nextcloud min-version="32" max-version="35" />
 	</dependencies>
 
 	<background-jobs>
