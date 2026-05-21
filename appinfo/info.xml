@@ -49,7 +49,12 @@
 
 	<background-jobs>
 		<job>OCA\Contacts\Cron\SocialUpdateRegistration</job>
+		<job>OCA\Contacts\Cron\UpdateOcmProviders</job>
 	</background-jobs>
+
+	<commands>
+		<command>OCA\Contacts\Command\OcmInvitesConfig</command>
+	</commands>
 
 	<settings>
 		<admin>OCA\Contacts\Settings\AdminSettings</admin>
