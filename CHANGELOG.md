@@ -1,10 +1,60 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
-# 8.5.0 (unreleased)
+# [8.5.0](https://github.com/nextcloud/contacts/compare/v8.4.6...v8.5.0) (2026-05-19)
 
-### Features 
-* Sort favorite contact first in list
+### Features
+
+* Sort favorite contact first in list ([24e0f54](https://github.com/nextcloud/contacts/commit/24e0f541))
+* **MemberList:** implement lazy loading ([4255092](https://github.com/nextcloud/contacts/commit/4255092f))
+
+### Bug Fixes
+
+* **SocialApi:** ensure the address book permissions are sufficient before doing update ([be156c8](https://github.com/nextcloud/contacts/commit/be156c84))
+* **socialApi:** check avatar mimetype against allow list ([9ac2684](https://github.com/nextcloud/contacts/commit/9ac26847))
+* don't allow `javascript:` URI as website ([25ccb32](https://github.com/nextcloud/contacts/commit/25ccb329))
+* decode HTML entities in team display names ([c16083a](https://github.com/nextcloud/contacts/commit/c16083a6))
+* Teams description in nav: shorten text, fix alignment, improve text color ([4d449f8](https://github.com/nextcloud/contacts/commit/4d449f84))
+* error message "Unable to delete team" ([5f0ae25](https://github.com/nextcloud/contacts/commit/5f0ae257))
+* **GroupNavigationItem:** incorrect group dropping handling ([de368fa](https://github.com/nextcloud/contacts/commit/de368fa5))
+* **PropertyDateTime:** date formatting ([25ba4c8](https://github.com/nextcloud/contacts/commit/25ba4c8f))
+* make property labels accessible ([f5a66f7](https://github.com/nextcloud/contacts/commit/f5a66f78))
+* **a11y:** add alt to img ([8b1a9aa](https://github.com/nextcloud/contacts/commit/8b1a9aab))
+* add missing translations ([ec4c6f9](https://github.com/nextcloud/contacts/commit/ec4c6f96))
+* **transifex:** use correct app name ([b0e1bbb](https://github.com/nextcloud/contacts/commit/b0e1bbb8))
+* drop Google+ ([6b1cb9c](https://github.com/nextcloud/contacts/commit/6b1cb9cb))
+* add missing `await` ([23d98bb](https://github.com/nextcloud/contacts/commit/23d98bb6))
+* async return ([137b021](https://github.com/nextcloud/contacts/commit/137b0210))
+* remove redundant check ([561922f](https://github.com/nextcloud/contacts/commit/561922f3))
+
+### Dependencies
+
+* **deps:** bump `@nextcloud/cdav-library` to `^2.5.0` ([52473d8](https://github.com/nextcloud/contacts/commit/52473d8d))
+* **deps:** bump `@nextcloud/auth` to `^2.6.0` ([74b532f](https://github.com/nextcloud/contacts/commit/74b532f1))
+* **deps:** bump `@nextcloud/paths` to `^3.1.0` ([439e7ab](https://github.com/nextcloud/contacts/commit/439e7aba))
+* **deps:** bump `@vueuse/core` to `^14.3.0` ([170310e](https://github.com/nextcloud/contacts/commit/170310ef))
+* **deps:** bump `vue` to `^3.5.33` ([3ca005f](https://github.com/nextcloud/contacts/commit/3ca005f8))
+* **deps:** bump `vue-router` to `^4.6.4` ([ca89263](https://github.com/nextcloud/contacts/commit/ca89263f))
+* **deps:** bump `uuid` to `v14` ([0f7765c](https://github.com/nextcloud/contacts/commit/0f7765c5))
+* **deps:** bump `qreator` to `^9.9.0` ([6ff01fb](https://github.com/nextcloud/contacts/commit/6ff01fbb))
+* **deps:** bump `validator` to `^13.15.35` ([6381103](https://github.com/nextcloud/contacts/commit/6381103c))
+* **deps:** bump `vite` to `v7.3.2` ([250bd88](https://github.com/nextcloud/contacts/commit/250bd883))
+* **deps:** multiple `npm audit` security fixes
+
+### Maintenance
+
+* **php:** set minimum version to 8.2 ([37453c1](https://github.com/nextcloud/contacts/commit/37453c1d))
+* drop use of deprecated `IInitialStateService` ([b8927ab](https://github.com/nextcloud/contacts/commit/b8927ab8))
+* **eol:** drop stable 7.3 support ([d4a8abd](https://github.com/nextcloud/contacts/commit/d4a8abd3))
+* finish ESLint TODOs ([6bbda8d](https://github.com/nextcloud/contacts/commit/6bbda8d9))
+* correct PHP docs ([40769c7](https://github.com/nextcloud/contacts/commit/40769c72))
+* drop legacy Renovate config ([b401bdd](https://github.com/nextcloud/contacts/commit/b401bdd7))
+* **ci:** thin out PHPUnit runs ([f60844b](https://github.com/nextcloud/contacts/commit/f60844bf))
+* **test:** mock axios and cdav-library ([23b93c2](https://github.com/nextcloud/contacts/commit/23b93c29))
+
+### Translations
+
+* 68 Transifex updates from translators
 
 # [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0-beta.Z) (2025-01-09)
 

@@ -16,8 +16,8 @@
 * 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 	</description>
 
-	<version>8.5.0-rc.2</version>
-	<licence>agpl</licence>
+	<version>8.5.0</version>
+	<licence>AGPL-3.0-or-later</licence>
 
 	<author mail="hamza221@users.noreply.github.com">Hamza Mahjoubi</author>
 	<author homepage="https://github.com/nextcloud/groupware">Nextcloud Groupware Team</author>
