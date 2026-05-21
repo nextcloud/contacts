@@ -74,7 +74,7 @@ jobs:
           path: apps/${{ env.APP_NAME }}
 
       - name: Set up php ${{ matrix.php-versions }}
-        uses: shivammathur/setup-php@85c019fd025f731a83ac9fbc1cdd9ba69d76b6e3 # v2.36.0 with verbose logging due to stuck runs
+        uses: shivammathur/setup-php@7c071dfe9dc99bdf297fa79cb49ea005b9fcadbc # 2.37.1 with verbose logging due to stuck runs
         with:
           php-version: ${{ matrix.php-versions }}
           tools: phpunit
@@ -162,7 +162,7 @@ jobs:
           sed -i 's/max-version="8.1"/max-version="8.2"/' apps/${{ env.APP_NAME }}/appinfo/info.xml
 
       - name: Set up php ${{ matrix.php-versions }}
-        uses: shivammathur/setup-php@85c019fd025f731a83ac9fbc1cdd9ba69d76b6e3 # v2.36.0 with verbose logging due to stuck runs
+        uses: shivammathur/setup-php@7c071dfe9dc99bdf297fa79cb49ea005b9fcadbc # 2.37.1 with verbose logging due to stuck runs
         with:
           php-version: ${{ matrix.php-versions }}
           tools: phpunit
@@ -235,7 +235,7 @@ jobs:
           path: apps/${{ env.APP_NAME }}
 
       - name: Set up php ${{ matrix.php-versions }}
-        uses: shivammathur/setup-php@85c019fd025f731a83ac9fbc1cdd9ba69d76b6e3 # v2.36.0 with verbose logging due to stuck runs
+        uses: shivammathur/setup-php@7c071dfe9dc99bdf297fa79cb49ea005b9fcadbc # 2.37.1 with verbose logging due to stuck runs
         with:
           php-version: ${{ matrix.php-versions }}
           tools: phpunit
