@@ -402,6 +402,7 @@ OC.L10N.register(
     "Unable to delete contact" : "Kişi silinemedi",
     "Value copied to the clipboard" : "Değer panoya kopyalandı",
     "Could not copy value to the clipboard." : "Değer panoya kopyalanamadı.",
+    "No other contacts available to select as line manager" : "Hat yöneticisi olarak seçilebilecek başka kişi yok",
     "note" : "not",
     "email" : "e-posta",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Paylaşmak için kendi gruplarınızı oluşturun. Nextcloud kullanıcılarını, kişilerini veya herhangi birini e-posta ile ekleyin."
