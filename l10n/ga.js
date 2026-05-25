@@ -402,6 +402,7 @@ OC.L10N.register(
     "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh",
     "Value copied to the clipboard" : "Luach cóipeáilte chuig an ghearrthaisce",
     "Could not copy value to the clipboard." : "Níorbh fhéidir luach a chóipeáil chuig an ghearrthaisce.",
+    "No other contacts available to select as line manager" : "Níl aon teagmhálaithe eile ar fáil le roghnú mar bhainisteoir líne",
     "note" : "nóta",
     "email" : "ríomhphost",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Cruthaigh do ghrúpaí féin le haghaidh comhroinnte. Cuir úsáideoirí Nextcloud, teagmhálaithe, nó aon duine leis trí ríomhphost."

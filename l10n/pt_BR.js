@@ -402,6 +402,7 @@ OC.L10N.register(
     "Unable to delete contact" : "Não foi possível excluir o contato",
     "Value copied to the clipboard" : "Valor copiado para a área de transferência",
     "Could not copy value to the clipboard." : "Não foi possível copiar o valor para a área de transferência.",
+    "No other contacts available to select as line manager" : "Não há outros contatos disponíveis para selecionar como superior hierárquico",
     "note" : "nota",
     "email" : "e-mail",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Crie seus próprios grupos para compartilhar. Adicione usuários do Nextcloud, contatos ou qualquer pessoa por e-mail."
