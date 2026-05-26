@@ -256,6 +256,7 @@
 		<!-- Avatar cropper dialog -->
 		<NcDialog
 			v-if="showCropper"
+			class="circle-avatar-cropper-dialog"
 			:name="t('contacts', 'Edit team picture')"
 			:open="showCropper"
 			size="normal"
@@ -1051,6 +1052,14 @@ export default {
 			.circle-description-wrapper {
 				width: 100%;
 			}
+
+			.actions {
+				width: 100%;
+
+				:deep(.button-vue) {
+					flex: 1;
+				}
+			}
 		}
 
 		.circle-details__header-wrapper {
@@ -1076,6 +1085,7 @@ export default {
 		align-items: flex-start;
 		gap: 2px;
 		width: 100%;
+		max-width: 500px;
 
 		.circle-description-wrapper {
 			margin-bottom: 4px;
@@ -1196,7 +1206,7 @@ export default {
 	}
 
 	.circle-avatar-buttons-wrapper {
-		width: 275px;
+		width: 100%;
 		display: flex;
 		flex-direction: column;
 		gap: 8px;
@@ -1217,10 +1227,34 @@ export default {
 	height: 300px;
 	overflow: hidden;
 	margin-inline: auto;
+	margin-top: calc(-1 * var(--default-clickable-area));
 	margin-bottom: 16px;
 
 	:deep(.cropper-view-box) {
 		border-radius: 50%;
 	}
+}
+
+:deep(.dialog .dialog__content) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+:deep(.dialog .dialog__actions) {
+	width: 100%;
+	gap: 8px;
+
+	.button-vue {
+		flex: 1;
+	}
+}
+</style>
+
+<style lang="scss">
+@media only screen and (min-width: 513px) {
+    .circle-avatar-cropper-dialog .modal-wrapper--normal .modal-container {
+        width: 324px !important;
+    }
 }
 </style>
