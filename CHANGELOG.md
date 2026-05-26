@@ -1,3 +1,19 @@
+## [8.3.12](https://github.com/nextcloud/contacts/compare/v8.3.11...v8.3.12) (2026-05-26)
+
+
+### Bug Fixes
+
+* **contacts:** handle line manager property creation ([f7f6af4](https://github.com/nextcloud/contacts/commit/f7f6af4d701bed6dc4350df0b7e6d44d06fa3f34)), closes [nextcloud/contacts#4454](https://github.com/nextcloud/contacts/issues/4454)
+* **deps:** Fix npm audit ([6610d05](https://github.com/nextcloud/contacts/commit/6610d055cdf0890aac8c5a7705fde1d47322d05b))
+* **l10n:** Update translations from Transifex ([4f75590](https://github.com/nextcloud/contacts/commit/4f7559031f57c682e8abeab3bea256e5a087abe7))
+* **l10n:** Update translations from Transifex ([5e5562e](https://github.com/nextcloud/contacts/commit/5e5562eb9b2f65414764b69bbbad5e9ee4f0cad6))
+* **l10n:** Update translations from Transifex ([b9dd783](https://github.com/nextcloud/contacts/commit/b9dd7835170aebc820ad59c5ebbf297e9e58be45))
+* **l10n:** Update translations from Transifex ([6e6a396](https://github.com/nextcloud/contacts/commit/6e6a39600786aa493d160024f21037fcd7601ac5))
+* **l10n:** Update translations from Transifex ([8d88288](https://github.com/nextcloud/contacts/commit/8d882880196e46a9b029594238926a69ff782d03))
+* **l10n:** Update translations from Transifex ([f319631](https://github.com/nextcloud/contacts/commit/f319631edd884ed1bf9f531a6f894766e37a7a3c))
+
+
+
 ## [8.3.11](https://github.com/nextcloud/contacts/compare/v8.3.10...v8.3.11) (2026-05-19)
 
 
