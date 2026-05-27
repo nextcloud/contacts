@@ -15,6 +15,8 @@ import './css/contacts.scss'
 // Dialogs css
 import '@nextcloud/dialogs/style.css'
 
+const pinia = createPinia()
+
 declare global {
 	interface Window {
 		OCA: {
@@ -42,7 +44,6 @@ window.OCA.Contacts = {
 			contactEmailAddress,
 		})
 
-		const pinia = createPinia()
 		app.use(pinia)
 		app.use(store)
 
