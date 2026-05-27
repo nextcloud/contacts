@@ -210,7 +210,11 @@
 				</template>
 
 				<section v-else>
-					<div v-for="(group, providerId) in groupedResources" :key="providerId" class="circle-details-section">
+					<div
+						v-for="(group, providerId) in groupedResources"
+						:key="providerId"
+						class="circle-details-section"
+						:class="`circle-details-section--${providerId}`">
 						<div class="section-header">
 							<ContentHeading>{{ group.name }}</ContentHeading>
 						</div>
@@ -1170,6 +1174,15 @@ export default {
 					height: 32px;
 				}
 			}
+
+		}
+
+		&.circle-details-section--talk .item-list :deep(img.resource__icon) {
+			border-radius: var(--border-radius-pill);
+		}
+
+		&.circle-details-section--files .item-list :deep(img.resource__icon) {
+			border-radius: var(--border-radius-small);
 		}
 
 		.avatar-list {
