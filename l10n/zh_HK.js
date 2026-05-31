@@ -402,6 +402,7 @@ OC.L10N.register(
     "Unable to delete contact" : "無法刪除聯絡人",
     "Value copied to the clipboard" : "已複製數值至剪貼板",
     "Could not copy value to the clipboard." : "無法複製數值至剪貼板",
+    "No other contacts available to select as line manager" : "沒有其他可選擇為直屬主管的聯絡人",
     "note" : "備註",
     "email" : "電郵地址",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "建立專屬群組以進行分享。您可以加入 Nextcloud 使用者、通訊錄中的聯絡人，或透過電子郵件邀請任何人加入。"
