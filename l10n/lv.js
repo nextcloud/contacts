@@ -129,7 +129,7 @@ OC.L10N.register(
     "Assistant" : "Asistents",
     "Agent" : "Aģents",
     "Emergency" : "Ārkārtas gadījums",
-    "Co-worker" : "Darba biedrs",
+    "Co-worker" : "Darbabiedrs",
     "Gender" : "Dzimums",
     "Female" : "Sieviete",
     "Male" : "Vīrietis",
