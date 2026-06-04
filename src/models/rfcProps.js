@@ -91,7 +91,7 @@ const properties = {
 		force: 'text',
 		default: true,
 		defaultValue: {
-			value: [''],
+			value: '',
 			type: [defaultProfileState],
 		},
 		options: [
