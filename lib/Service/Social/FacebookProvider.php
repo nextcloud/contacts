@@ -7,6 +7,7 @@
 
 namespace OCA\Contacts\Service\Social;
 
+use OCP\AppFramework\Http;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 
@@ -120,7 +121,7 @@ class FacebookProvider implements ISocialProvider {
 	protected function findFacebookId(string $profileName):string {
 		try {
 			$result = $this->httpClient->get('https://facebook.com/' . $profileName);
-			if ($result->getStatusCode() !== 200) {
+			if ($result->getStatusCode() !== Http::STATUS_OK) {
 				return $profileName;
 			}
 			$htmlResult = $result->getBody();
