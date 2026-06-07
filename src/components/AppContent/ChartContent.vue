@@ -3,7 +3,7 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<AppContent>
+	<AppContent :aria-label="t('contacts', 'Organization chart')">
 		<OrgChart :data="transformData" />
 	</AppContent>
 </template>
