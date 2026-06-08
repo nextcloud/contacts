@@ -7,10 +7,7 @@
 	<Content :app-name="appName">
 		<!-- new-contact-button + navigation + settings -->
 		<RootNavigation
-			:contacts-list="contactsList"
-			:loading="loadingContacts || loadingCircles"
-			:selected-group="selectedGroup"
-			:selected-contact="selectedContact">
+			:loading="loadingContacts || loadingCircles">
 			<div class="import-and-new-contact-buttons">
 				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView" />
 				<!-- new-contact-button -->
