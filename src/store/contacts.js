@@ -3,10 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { showError } from '@nextcloud/dialogs'
-import ICAL from 'ical.js'
-import Contact from '../models/contact.js'
-import validate from '../services/validate.js'
+import { showError } from '@nextcloud/dialogs';
+import ICAL from 'ical.js';
+import Contact from '../models/contact.js';
+import validate from '../services/validate.js';
 
 /*
  * Currently ical.js does not serialize parameters with multiple values correctly. This is
@@ -22,472 +22,507 @@ import validate from '../services/validate.js'
  * to be merged for ical.js. Until this fix is merged and released the following configuration
  * changes apply the workaround described above.
  */
-ICAL.design.vcard3.param.type.multiValueSeparateDQuote = true
-ICAL.design.vcard.param.type.multiValueSeparateDQuote = true
+ICAL.design.vcard3.param.type.multiValueSeparateDQuote = true;
+ICAL.design.vcard.param.type.multiValueSeparateDQuote = true;
 
 function sortData(a, b) {
-	const nameA = typeof a.value === 'string'
-		? a.value.toUpperCase() // ignore upper and lowercase
-		: a.value.toUnixTime() // only other sorting we support is a vCardTime
-	const nameB = typeof b.value === 'string'
-		? b.value.toUpperCase() // ignore upper and lowercase
-		: b.value.toUnixTime() // only other sorting we support is a vCardTime
+  const nameA =
+    typeof a.value === 'string'
+      ? a.value.toUpperCase() // ignore upper and lowercase
+      : a.value.toUnixTime(); // only other sorting we support is a vCardTime
+  const nameB =
+    typeof b.value === 'string'
+      ? b.value.toUpperCase() // ignore upper and lowercase
+      : b.value.toUnixTime(); // only other sorting we support is a vCardTime
 
-	const score = nameA.localeCompare
-		? nameA.localeCompare(nameB)
-		: nameB - nameA
-	// if equal, fallback to the key
-	return score !== 0
-		? score
-		: a.key.localeCompare(b.key)
+  const score = nameA.localeCompare
+    ? nameA.localeCompare(nameB)
+    : nameB - nameA;
+  // if equal, fallback to the key
+  return score !== 0 ? score : a.key.localeCompare(b.key);
 }
 
 function sortByFavoriteAndName(a, b) {
-	// favorites always on top
-	if (a.favorite !== b.favorite) {
-		return a.favorite ? -1 : 1
-	}
-	// alphabetical within each group
-	if (!a.value && !b.value) {
-		return 0
-	}
-	if (!a.value) {
-		return 1
-	}
-	if (!b.value) {
-		return -1
-	}
-	return a.value.localeCompare(b.value)
+  // favorites always on top
+  if (a.favorite !== b.favorite) {
+    return a.favorite ? -1 : 1;
+  }
+  // alphabetical within each group
+  if (!a.value && !b.value) {
+    return 0;
+  }
+  if (!a.value) {
+    return 1;
+  }
+  if (!b.value) {
+    return -1;
+  }
+  return a.value.localeCompare(b.value);
 }
 
 const state = {
-	// Using objects for performance
-	// https://codepen.io/skjnldsv/pen/ZmKvQo
-	contacts: {},
-	sortedContacts: [],
-	orderKey: 'displayName',
-}
+  // Using objects for performance
+  // https://codepen.io/skjnldsv/pen/ZmKvQo
+  contacts: {},
+  sortedContacts: [],
+  orderKey: 'displayName',
+};
 
 const mutations = {
-	/**
-	 * Store raw contacts into state
-	 * Used by the first contact fetch
-	 *
-	 * @param {object} state Default state
-	 * @param {Array<Contact>} contacts Contacts
-	 */
-	appendContacts(state, contacts = []) {
-		state.contacts = contacts.reduce(function(list, contact) {
-			if (contact instanceof Contact) {
-				list[contact.key] = contact
-			} else {
-				console.error('Invalid contact object', contact)
-			}
-			return list
-		}, state.contacts)
-	},
+  /**
+   * Store raw contacts into state
+   * Used by the first contact fetch
+   *
+   * @param {object} state Default state
+   * @param {Array<Contact>} contacts Contacts
+   */
+  appendContacts(state, contacts = []) {
+    state.contacts = contacts.reduce(function (list, contact) {
+      if (contact instanceof Contact) {
+        list[contact.key] = contact;
+      } else {
+        console.error('Invalid contact object', contact);
+      }
+      return list;
+    }, state.contacts);
+  },
 
-	/**
-	 * Store favorite state into store
-	 *
-	 * @param {object} state Default state
-	 * @param {Contact} contact Contact
-	 */
-	updateContactFavorite(state, contact) {
-		if (!state.contacts[contact.key] || !(contact instanceof Contact)) {
-			console.error('Invalid contact update', contact)
-			return
-		}
+  /**
+   * Store favorite state into store
+   *
+   * @param {object} state Default state
+   * @param {Contact} contact Contact
+   */
+  updateContactFavorite(state, contact) {
+    if (!state.contacts[contact.key] || !(contact instanceof Contact)) {
+      console.error('Invalid contact update', contact);
+      return;
+    }
 
-		if (state.contacts[contact.key].dav) {
-			state.contacts[contact.key].dav.favorite = contact.dav.favorite
-		}
+    if (state.contacts[contact.key].dav) {
+      state.contacts[contact.key].dav.favorite = contact.dav.favorite;
+    }
 
-		const sortedContact = state.sortedContacts.find((c) => c.key === contact.key)
-		if (sortedContact) {
-			sortedContact.favorite = contact.favorite || false
-		}
+    const sortedContact = state.sortedContacts.find(
+      (c) => c.key === contact.key,
+    );
+    if (sortedContact) {
+      sortedContact.favorite = contact.favorite || false;
+    }
 
-		state.sortedContacts = Object.values(state.contacts)
-			.filter((c) => c.kind !== 'group')
-			.map((c) => ({
-				key: c.key,
-				value: (c[state.orderKey] || '').toString().toLowerCase(),
-				favorite: c.favorite || false,
-			}))
-			.sort(sortByFavoriteAndName)
-	},
-	/**
-	 * Delete a contact from the global contacts list
-	 *
-	 * @param {object} state the store data
-	 * @param {Contact} contact the contact to delete
-	 */
-	deleteContact(state, contact) {
-		if (state.contacts[contact.key] && contact instanceof Contact) {
-			const index = state.sortedContacts.findIndex((search) => search.key === contact.key)
-			state.sortedContacts.splice(index, 1)
-			delete state.contacts[contact.key]
-		} else {
-			console.error('Error while deleting the following contact', contact)
-		}
-	},
+    state.sortedContacts = Object.values(state.contacts)
+      .filter((c) => c.kind !== 'group')
+      .map((c) => ({
+        key: c.key,
+        value: (c[state.orderKey] || '').toString().toLowerCase(),
+        favorite: c.favorite || false,
+      }))
+      .sort(sortByFavoriteAndName);
+  },
+  /**
+   * Delete a contact from the global contacts list
+   *
+   * @param {object} state the store data
+   * @param {Contact} contact the contact to delete
+   */
+  deleteContact(state, contact) {
+    if (state.contacts[contact.key] && contact instanceof Contact) {
+      const index = state.sortedContacts.findIndex(
+        (search) => search.key === contact.key,
+      );
+      state.sortedContacts.splice(index, 1);
+      delete state.contacts[contact.key];
+    } else {
+      console.error('Error while deleting the following contact', contact);
+    }
+  },
 
-	/**
-	 * Insert new contact into sorted array
-	 *
-	 * @param {object} state the store data
-	 * @param {Contact} contact the contact to add
-	 */
-	addContact(state, contact) {
-		// Checking contact validity 🔍🙈
-		if (contact instanceof Contact) {
-			validate(contact)
+  /**
+   * Insert new contact into sorted array
+   *
+   * @param {object} state the store data
+   * @param {Contact} contact the contact to add
+   */
+  addContact(state, contact) {
+    // Checking contact validity 🔍🙈
+    if (contact instanceof Contact) {
+      validate(contact);
 
-			const sortedContact = {
-				key: contact.key,
-				value: (contact[state.orderKey] || '').toString().toLowerCase(),
-				favorite: contact.favorite,
-			}
+      const sortedContact = {
+        key: contact.key,
+        value: (contact[state.orderKey] || '').toString().toLowerCase(),
+        favorite: contact.favorite,
+      };
 
-			// Not using sort, splice has far better performances
-			// https://jsperf.com/sort-vs-splice-in-array
-			for (let i = 0, len = state.sortedContacts.length; i < len; i++) {
-				const other = state.sortedContacts[i]
+      // Not using sort, splice has far better performances
+      // https://jsperf.com/sort-vs-splice-in-array
+      for (let i = 0, len = state.sortedContacts.length; i < len; i++) {
+        const other = state.sortedContacts[i];
 
-				// favorite comes before non-favorite
-				const differentFavStatus = other.favorite !== sortedContact.favorite
-				const otherShouldComeFirst = differentFavStatus && other.favorite
-				const sameFavAndSortedFirst = !differentFavStatus && sortData(other, sortedContact) >= 0
+        // favorite comes before non-favorite
+        const differentFavStatus = other.favorite !== sortedContact.favorite;
+        const otherShouldComeFirst = differentFavStatus && other.favorite;
+        const sameFavAndSortedFirst =
+          !differentFavStatus && sortData(other, sortedContact) >= 0;
 
-				if (otherShouldComeFirst || sameFavAndSortedFirst) {
-					continue
-				}
+        if (otherShouldComeFirst || sameFavAndSortedFirst) {
+          continue;
+        }
 
-				if (i + 1 === len) {
-					state.sortedContacts.push(sortedContact)
-				} else {
-					state.sortedContacts.splice(i, 0, sortedContact)
-				}
-				break
-			}
+        if (i + 1 === len) {
+          state.sortedContacts.push(sortedContact);
+        } else {
+          state.sortedContacts.splice(i, 0, sortedContact);
+        }
+        break;
+      }
 
-			if (state.sortedContacts.length === 0) {
-				state.sortedContacts.push(sortedContact)
-			}
+      if (state.sortedContacts.length === 0) {
+        state.sortedContacts.push(sortedContact);
+      }
 
-			state.contacts[contact.key] = contact
-		} else {
-			console.error('Error while adding the following contact', contact)
-		}
-	},
+      state.contacts[contact.key] = contact;
+    } else {
+      console.error('Error while adding the following contact', contact);
+    }
+  },
 
-	/**
-	 * Update a contact
-	 *
-	 * @param {object} state the store data
-	 * @param {Contact} contact the contact to update
-	 */
-	updateContact(state, contact) {
-		if (state.contacts[contact.key] && contact instanceof Contact) {
-			const existingFavorite = state.contacts[contact.key].dav?.favorite || false
-			state.contacts[contact.key].updateContact(contact.jCal)
+  /**
+   * Update a contact
+   *
+   * @param {object} state the store data
+   * @param {Contact} contact the contact to update
+   */
+  updateContact(state, contact) {
+    if (state.contacts[contact.key] && contact instanceof Contact) {
+      const existingFavorite =
+        state.contacts[contact.key].dav?.favorite || false;
+      state.contacts[contact.key].updateContact(contact.jCal);
 
-			// restore favorite on dav if it was lost during the update
-			if (state.contacts[contact.key].dav && state.contacts[contact.key].dav.favorite === undefined) {
-				state.contacts[contact.key].dav.favorite = existingFavorite
-			}
+      // restore favorite on dav if it was lost during the update
+      if (
+        state.contacts[contact.key].dav &&
+        state.contacts[contact.key].dav.favorite === undefined
+      ) {
+        state.contacts[contact.key].dav.favorite = existingFavorite;
+      }
 
-			const sortedContact = state.sortedContacts.find((search) => search.key === contact.key)
+      const sortedContact = state.sortedContacts.find(
+        (search) => search.key === contact.key,
+      );
 
-			if (!sortedContact) {
-				console.warn('sortedContact not found for', contact.key)
-				return
-			}
+      if (!sortedContact) {
+        console.warn('sortedContact not found for', contact.key);
+        return;
+      }
 
-			const hasValueChanged = sortedContact.value !== contact[state.orderKey]
-			const hasFavoriteChanged = sortedContact.favorite !== (state.contacts[contact.key].dav?.favorite || false)
+      const hasValueChanged = sortedContact.value !== contact[state.orderKey];
+      const hasFavoriteChanged =
+        sortedContact.favorite !==
+        (state.contacts[contact.key].dav?.favorite || false);
 
-			if (hasValueChanged || hasFavoriteChanged) {
-				sortedContact.value = contact[state.orderKey]
-				sortedContact.favorite = state.contacts[contact.key].dav?.favorite || false
+      if (hasValueChanged || hasFavoriteChanged) {
+        sortedContact.value = contact[state.orderKey];
+        sortedContact.favorite =
+          state.contacts[contact.key].dav?.favorite || false;
 
-				state.sortedContacts.sort(sortByFavoriteAndName)
-			}
-		} else {
-			console.error('Error while replacing the following contact', contact)
-		}
-	},
+        state.sortedContacts.sort(sortByFavoriteAndName);
+      }
+    } else {
+      console.error('Error while replacing the following contact', contact);
+    }
+  },
 
-	/**
-	 * Update a contact addressbook
-	 *
-	 * @param {object} state the store data
-	 * @param {object} data destructuring object
-	 * @param data.contact
-	 * @param {Contact} contact the contact to update
-	 * @param {object} addressbook the addressbook to set
-	 * @param data.addressbook
-	 */
-	updateContactAddressbook(state, { contact, addressbook }) {
-		if (state.contacts[contact.key] && contact instanceof Contact) {
-			// replace contact object data by creating a new contact
-			const oldKey = contact.key
+  /**
+   * Update a contact addressbook
+   *
+   * @param {object} state the store data
+   * @param {object} data destructuring object
+   * @param data.contact
+   * @param {Contact} contact the contact to update
+   * @param {object} addressbook the addressbook to set
+   * @param data.addressbook
+   */
+  updateContactAddressbook(state, { contact, addressbook }) {
+    if (state.contacts[contact.key] && contact instanceof Contact) {
+      // replace contact object data by creating a new contact
+      const oldKey = contact.key;
 
-			// hijack reference
-			const newContact = contact
+      // hijack reference
+      const newContact = contact;
 
-			// delete old key, cut reference
-			delete state.contacts[oldKey]
+      // delete old key, cut reference
+      delete state.contacts[oldKey];
 
-			// replace addressbook
-			newContact.addressbook = addressbook
+      // replace addressbook
+      newContact.addressbook = addressbook;
 
-			// set new key, re-assign reference
-			state.contacts[newContact.key] = newContact
+      // set new key, re-assign reference
+      state.contacts[newContact.key] = newContact;
 
-			// Update sorted contacts list, replace at exact same position
-			const index = state.sortedContacts.findIndex((search) => search.key === oldKey)
-			state.sortedContacts[index].key = newContact.key
-			state.sortedContacts[index].value = newContact[state.orderKey]
-		} else {
-			console.error('Error while replacing the addressbook of following contact', contact)
-		}
-	},
+      // Update sorted contacts list, replace at exact same position
+      const index = state.sortedContacts.findIndex(
+        (search) => search.key === oldKey,
+      );
+      state.sortedContacts[index].key = newContact.key;
+      state.sortedContacts[index].value = newContact[state.orderKey];
+    } else {
+      console.error(
+        'Error while replacing the addressbook of following contact',
+        contact,
+      );
+    }
+  },
 
-	/**
-	 * Update a contact etag
-	 *
-	 * @param {object} state the store data
-	 * @param {object} data destructuring object
-	 * @param data.contact
-	 * @param {Contact} contact the contact to update
-	 * @param {string} etag the contact etag
-	 * @param data.etag
-	 */
-	updateContactEtag(state, { contact, etag }) {
-		if (state.contacts[contact.key] && contact instanceof Contact) {
-			// replace contact object data
-			state.contacts[contact.key].dav.etag = etag
-		} else {
-			console.error('Error while replacing the etag of following contact', contact)
-		}
-	},
+  /**
+   * Update a contact etag
+   *
+   * @param {object} state the store data
+   * @param {object} data destructuring object
+   * @param data.contact
+   * @param {Contact} contact the contact to update
+   * @param {string} etag the contact etag
+   * @param data.etag
+   */
+  updateContactEtag(state, { contact, etag }) {
+    if (state.contacts[contact.key] && contact instanceof Contact) {
+      // replace contact object data
+      state.contacts[contact.key].dav.etag = etag;
+    } else {
+      console.error(
+        'Error while replacing the etag of following contact',
+        contact,
+      );
+    }
+  },
 
-	/**
-	 * Order the contacts list. Filters have terrible performances.
-	 * We do not want to run the sorting function every time.
-	 * Let's only run it on additions and create an index
-	 *
-	 * @param {object} state the store data
-	 */
-	sortContacts(state) {
-		state.sortedContacts = Object.values(state.contacts)
-			.filter((contact) => contact.kind !== 'group')
-			.map((contact) => ({
-				key: contact.key,
-				value: contact[state.orderKey],
-				favorite: contact.favorite || false,
-			}))
-			.sort(sortByFavoriteAndName)
-	},
+  /**
+   * Order the contacts list. Filters have terrible performances.
+   * We do not want to run the sorting function every time.
+   * Let's only run it on additions and create an index
+   *
+   * @param {object} state the store data
+   */
+  sortContacts(state) {
+    state.sortedContacts = Object.values(state.contacts)
+      .filter((contact) => contact.kind !== 'group')
+      .map((contact) => ({
+        key: contact.key,
+        value: contact[state.orderKey],
+        favorite: contact.favorite || false,
+      }))
+      .sort(sortByFavoriteAndName);
+  },
 
-	/**
-	 * Set the order key
-	 *
-	 * @param {object} state the store data
-	 * @param {string} [orderKey] the order key to sort by
-	 */
-	setOrder(state, orderKey = 'displayName') {
-		state.orderKey = orderKey
-	},
+  /**
+   * Set the order key
+   *
+   * @param {object} state the store data
+   * @param {string} [orderKey] the order key to sort by
+   */
+  setOrder(state, orderKey = 'displayName') {
+    state.orderKey = orderKey;
+  },
 
-	/**
-	 * Set a contact as `in conflict` with the server data
-	 *
-	 * @param {object} state the store data
-	 * @param {object} data destructuring object
-	 * @param {Contact} data.contact the contact to update
-	 * @param {string} data.etag the etag to set
-	 */
-	setContactAsConflict(state, { contact, etag }) {
-		if (state.contacts[contact.key] && contact instanceof Contact) {
-			state.contacts[contact.key].conflict = etag
-		} else {
-			console.error('Error while handling the following contact', contact)
-		}
-	},
+  /**
+   * Set a contact as `in conflict` with the server data
+   *
+   * @param {object} state the store data
+   * @param {object} data destructuring object
+   * @param {Contact} data.contact the contact to update
+   * @param {string} data.etag the etag to set
+   */
+  setContactAsConflict(state, { contact, etag }) {
+    if (state.contacts[contact.key] && contact instanceof Contact) {
+      state.contacts[contact.key].conflict = etag;
+    } else {
+      console.error('Error while handling the following contact', contact);
+    }
+  },
 
-	/**
-	 * Set a contact dav property
-	 *
-	 * @param {object} state the store data
-	 * @param {object} data destructuring object
-	 * @param {Contact} data.contact the contact to update
-	 * @param {object} data.dav the dav object returned by the cdav library
-	 */
-	setContactDav(state, { contact, dav }) {
-		if (state.contacts[contact.key] && contact instanceof Contact) {
-			contact = state.contacts[contact.key]
-			contact.dav = dav
-		} else {
-			console.error('Error while handling the following contact', contact)
-		}
-	},
-}
+  /**
+   * Set a contact dav property
+   *
+   * @param {object} state the store data
+   * @param {object} data destructuring object
+   * @param {Contact} data.contact the contact to update
+   * @param {object} data.dav the dav object returned by the cdav library
+   */
+  setContactDav(state, { contact, dav }) {
+    if (state.contacts[contact.key] && contact instanceof Contact) {
+      contact = state.contacts[contact.key];
+      contact.dav = dav;
+    } else {
+      console.error('Error while handling the following contact', contact);
+    }
+  },
+};
 
 const getters = {
-	getContacts: (state) => state.contacts,
-	getSortedContacts: (state) => state.sortedContacts,
-	getContact: (state) => (key) => state.contacts[key],
-	getOrderKey: (state) => state.orderKey,
-}
+  getContacts: (state) => state.contacts,
+  getSortedContacts: (state) => state.sortedContacts,
+  getContact: (state) => (key) => state.contacts[key],
+  getOrderKey: (state) => state.orderKey,
+};
 
 const actions = {
+  /**
+   * Toggle the favorite state of a contact.
+   * Updates the store
+   *
+   * @param {object} context the store mutations
+   * @param {object} contact the contact key to toggle
+   */
+  async toggleFavorite(context, contact) {
+    if (!contact.dav) {
+      throw new Error(`Missing DAV object for contact ${contact.key}`);
+    }
 
-	/**
-	 * Toggle the favorite state of a contact.
-	 * Updates the store
-	 *
-	 * @param {object} context the store mutations
-	 * @param {object} contact the contact key to toggle
-	 */
-	async toggleFavorite(context, contact) {
-		if (!contact.dav) {
-			throw new Error(`Missing DAV object for contact ${contact.key}`)
-		}
+    const oldValue = contact.dav.favorite || false;
+    const newValue = !oldValue;
 
-		const oldValue = contact.dav.favorite || false
-		const newValue = !oldValue
+    try {
+      contact.dav.favorite = newValue;
+      await contact.dav.updateProperties();
+      context.commit('updateContactFavorite', contact);
+    } catch (error) {
+      contact.dav.favorite = oldValue;
+      context.commit('updateContactFavorite', contact);
+      showError(t('contacts', 'Could not update favorite state'));
+      console.error('Could not toggle favorite state', error);
+    }
+  },
 
-		try {
-			contact.dav.favorite = newValue
-			await contact.dav.updateProperties()
-			context.commit('updateContactFavorite', contact)
-		} catch (error) {
-			contact.dav.favorite = oldValue
-			context.commit('updateContactFavorite', contact)
-			showError(t('contacts', 'Could not update favorite state'))
-			console.error('Could not toggle favorite state', error)
-		}
-	},
+  /**
+   * Delete a contact from the list and from the associated addressbook
+   *
+   * @param {object} context the store mutations
+   * @param {object} data destructuring object
+   * @param {Contact} data.contact the contact to delete
+   * @param {boolean} [data.dav] trigger a dav deletion
+   */
+  async deleteContact(context, { contact, dav = true }) {
+    // only local delete if the contact doesn't exists on the server
+    if (contact.dav && dav) {
+      await contact.dav.delete().catch((error) => {
+        console.error(error);
+        showError(t('contacts', 'Unable to delete contact'));
+      });
+    }
+    context.commit('deleteContact', contact);
+    context.commit('deleteContactFromAddressbook', contact);
+    context.commit('removeContactFromGroups', contact);
+  },
 
-	/**
-	 * Delete a contact from the list and from the associated addressbook
-	 *
-	 * @param {object} context the store mutations
-	 * @param {object} data destructuring object
-	 * @param {Contact} data.contact the contact to delete
-	 * @param {boolean} [data.dav] trigger a dav deletion
-	 */
-	async deleteContact(context, { contact, dav = true }) {
-		// only local delete if the contact doesn't exists on the server
-		if (contact.dav && dav) {
-			await contact.dav.delete()
-				.catch((error) => {
-					console.error(error)
-					showError(t('contacts', 'Unable to delete contact'))
-				})
-		}
-		context.commit('deleteContact', contact)
-		context.commit('deleteContactFromAddressbook', contact)
-		context.commit('removeContactFromGroups', contact)
-	},
+  /**
+   * Add a contact to the list, the associated addressbook and to the groups
+   *
+   * @param {object} context the store mutations
+   * @param {Contact} contact the contact to delete
+   */
+  async addContact(context, contact) {
+    await context.commit('addContact', contact);
+    await context.commit('addContactToAddressbook', contact);
+    await context.commit('extractGroupsFromContacts', [contact]);
+  },
 
-	/**
-	 * Add a contact to the list, the associated addressbook and to the groups
-	 *
-	 * @param {object} context the store mutations
-	 * @param {Contact} contact the contact to delete
-	 */
-	async addContact(context, contact) {
-		await context.commit('addContact', contact)
-		await context.commit('addContactToAddressbook', contact)
-		await context.commit('extractGroupsFromContacts', [contact])
-	},
+  /**
+   * Replace a contact by this new object
+   *
+   * @param {object} context the store mutations
+   * @param {Contact} contact the contact to update
+   * @return {Promise}
+   */
+  async updateContact(context, contact) {
+    // Checking contact validity 🙈
+    validate(contact);
 
-	/**
-	 * Replace a contact by this new object
-	 *
-	 * @param {object} context the store mutations
-	 * @param {Contact} contact the contact to update
-	 * @return {Promise}
-	 */
-	async updateContact(context, contact) {
-		// Checking contact validity 🙈
-		validate(contact)
+    // Update REV
+    if (contact.version === '4.0') {
+      contact.rev = ICAL.Time.fromJSDate(new Date(), true);
+    }
+    if (contact.version === '3.0') {
+      contact.rev = ICAL.VCardTime.fromDateAndOrTimeString(
+        new Date().toISOString(),
+        'date-time',
+      );
+    }
 
-		// Update REV
-		if (contact.version === '4.0') {
-			contact.rev = ICAL.Time.fromJSDate(new Date(), true)
-		}
-		if (contact.version === '3.0') {
-			contact.rev = ICAL.VCardTime.fromDateAndOrTimeString(new Date().toISOString(), 'date-time')
-		}
+    const vData = contact.toStringStripQuotes();
 
-		const vData = contact.toStringStripQuotes()
+    // if no dav key, contact does not exists on server
+    if (!contact.dav) {
+      // create contact
+      const dav = await contact.addressbook.dav.createVCard(vData);
+      context.commit('setContactDav', { contact, dav });
+      return;
+    }
 
-		// if no dav key, contact does not exists on server
-		if (!contact.dav) {
-			// create contact
-			const dav = await contact.addressbook.dav.createVCard(vData)
-			context.commit('setContactDav', { contact, dav })
-			return
-		}
+    // if contact already exists
+    if (!contact.conflict) {
+      contact.dav.data = vData;
+      try {
+        await contact.dav.update();
+        // all clear, let's update the store
+        context.commit('updateContact', contact);
+      } catch (error) {
+        console.error(error);
 
-		// if contact already exists
-		if (!contact.conflict) {
-			contact.dav.data = vData
-			try {
-				await contact.dav.update()
-				// all clear, let's update the store
-				context.commit('updateContact', contact)
-			} catch (error) {
-				console.error(error)
+        // wrong etag, we most likely have a conflict
+        if (error && error?.status === 412) {
+          // saving the new etag so that the user can manually
+          // trigger a fetchCompleteData without any further errors
+          context.commit('setContactAsConflict', {
+            contact,
+            etag: error.xhr.getResponseHeader('etag'),
+          });
+          console.error(
+            'This contact is outdated, the server refused it',
+            contact,
+          );
+        }
+        throw error;
+      }
+    } else {
+      console.error('This contact is outdated, refusing to push', contact);
+    }
+  },
 
-				// wrong etag, we most likely have a conflict
-				if (error && error?.status === 412) {
-					// saving the new etag so that the user can manually
-					// trigger a fetchCompleteData without any further errors
-					context.commit('setContactAsConflict', { contact, etag: error.xhr.getResponseHeader('etag') })
-					console.error('This contact is outdated, the server refused it', contact)
-				}
-				throw (error)
-			}
-		} else {
-			console.error('This contact is outdated, refusing to push', contact)
-		}
-	},
+  /**
+   * Fetch the full vCard from the dav server
+   *
+   * @param {object} context the store mutations
+   * @param {object} data destructuring object
+   * @param {Contact} data.contact the contact to fetch
+   * @param {string} data.etag the contact etag to override in case of conflict
+   * @param data.forceReFetch
+   * @return {Promise}
+   */
+  async fetchFullContact(
+    context,
+    { contact, etag = '', forceReFetch = false },
+  ) {
+    if (etag.trim() !== '') {
+      await context.commit('updateContactEtag', { contact, etag });
+    }
 
-	/**
-	 * Fetch the full vCard from the dav server
-	 *
-	 * @param {object} context the store mutations
-	 * @param {object} data destructuring object
-	 * @param {Contact} data.contact the contact to fetch
-	 * @param {string} data.etag the contact etag to override in case of conflict
-	 * @param data.forceReFetch
-	 * @return {Promise}
-	 */
-	async fetchFullContact(context, { contact, etag = '', forceReFetch = false }) {
-		if (etag.trim() !== '') {
-			await context.commit('updateContactEtag', { contact, etag })
-		}
+    const storeContact = context.getters.getContact(contact.key);
+    const davObject = storeContact?.dav || contact.dav;
 
-		const storeContact = context.getters.getContact(contact.key)
-		const davObject = storeContact?.dav || contact.dav
+    const savedFavorite = davObject.favorite;
 
-		const savedFavorite = davObject.favorite
+    return davObject
+      .fetchCompleteData(forceReFetch)
+      .then(() => {
+        const newContact = new Contact(davObject.data, contact.addressbook);
+        newContact.dav = davObject;
+        newContact.dav.favorite = savedFavorite;
+        context.commit('updateContact', newContact);
+      })
+      .catch((error) => {
+        throw error;
+      });
+  },
+};
 
-		return davObject.fetchCompleteData(forceReFetch)
-			.then(() => {
-				const newContact = new Contact(davObject.data, contact.addressbook)
-				newContact.dav = davObject
-				newContact.dav.favorite = savedFavorite
-				context.commit('updateContact', newContact)
-			})
-			.catch((error) => { throw error })
-	},
-}
-
-export default { state, mutations, getters, actions }
+export default { state, mutations, getters, actions };
