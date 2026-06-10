@@ -1,4 +1,8 @@
-## [8.6.1-rc.0](https://github.com/nextcloud/contacts/compare/v8.6.0-rc.1...v8.6.1-rc.0) (2026-06-10)
+# [8.7.0](https://github.com/nextcloud/contacts/compare/v6.0.0-rc1...v8.7.0) (2026-06-10)
+
+
+
+## 8.6.1-rc.0 (2026-06-10)
 
 
 ### Bug Fixes
@@ -12,7 +16,7 @@
 
 
 
-# [8.6.0-rc.1](https://github.com/nextcloud/contacts/compare/v7.0.0-beta.2...v8.6.0-rc.1) (2026-05-26)
+# 8.6.0-rc.1 (2026-05-26)
 
 
 ### Bug Fixes
@@ -762,15 +766,15 @@
 
 
 
-# [4.0.0-rc.0](https://github.com/nextcloud/contacts/compare/v4.0.0-beta.3...v4.0.0-rc.0) (2021-07-05)
+# 4.0.0-rc.0 (2021-07-05)
 
 
 
-# [4.0.0-beta.3](https://github.com/nextcloud/contacts/compare/v4.0.0-beta.2...v4.0.0-beta.3) (2021-06-21)
+# 4.0.0-beta.3 (2021-06-21)
 
 
 
-# [4.0.0-beta.2](https://github.com/nextcloud/contacts/compare/v3.5.1...v4.0.0-beta.2) (2021-06-17)
+# 4.0.0-beta.2 (2021-06-17)
 
 
 
