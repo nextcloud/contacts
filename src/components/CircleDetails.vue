@@ -566,15 +566,6 @@ export default {
 					apiPath: 'calendar',
 					enabled: enabledApps.calendar !== undefined,
 				},
-				{
-					id: 'deck',
-					label: t('contacts', 'Deck board'),
-					inputLabel: t('contacts', 'New Deck board'),
-					placeholder: t('contacts', 'Board name'),
-					icon: 'ViewDashboardIcon',
-					apiPath: 'deck',
-					enabled: enabledApps.deck !== undefined,
-				},
 			].filter((resource) => resource.enabled)
 		},
 	},
@@ -688,11 +679,6 @@ export default {
 							throw new Error(`CALENDAR_EXISTS:${name}`)
 						}
 						break
-					}
-
-					case 'deck': {
-						showError(t('contacts', 'Deck app is not installed. Please install it to create team boards.'))
-						return
 					}
 
 					default: {
