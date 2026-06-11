@@ -42,7 +42,9 @@ import { matchTypes } from '../../utils/matchTypes.ts'
 export default {
 	name: 'ContactDetailsProperty',
 
-	mixins: [OrgChartsMixin],
+	mixins: [
+		OrgChartsMixin,
+	],
 
 	props: {
 		property: {
@@ -98,10 +100,7 @@ export default {
 			// dynamic matching
 			if (this.property.isMultiValue && this.propType === 'text') {
 				return PropertyMultipleText
-			} else if (
-				this.propType
-				&& ['date-and-or-time', 'date-time', 'time', 'date'].indexOf(this.propType) > -1
-			) {
+			} else if (this.propType && ['date-and-or-time', 'date-time', 'time', 'date'].indexOf(this.propType) > -1) {
 				return PropertyDateTime
 			} else if (this.propType && this.propType === 'select') {
 				return PropertySelect
@@ -184,15 +183,12 @@ export default {
 					selectType: this.selectType,
 				})
 			} else {
-				return this.propModel.options.reduce(
-					(list, option) => {
-						if (!list.find((search) => search.name === option.name)) {
-							list.push(option)
-						}
-						return list
-					},
-					this.selectType ? [this.selectType] : [],
-				)
+				return this.propModel.options.reduce((list, option) => {
+					if (!list.find((search) => search.name === option.name)) {
+						list.push(option)
+					}
+					return list
+				}, this.selectType ? [this.selectType] : [])
 			}
 		},
 
@@ -247,12 +243,15 @@ export default {
 				}
 				if (this.propModel && this.propModel.options && this.type) {
 					const selectedType = this.type
-					// vcard 3.0 save pref alongside TYPE
+						// vcard 3.0 save pref alongside TYPE
 						.filter((type) => type !== 'pref')
-					// we only use uppercase strings
+						// we only use uppercase strings
 						.map((str) => str.toUpperCase())
 
-					const matchingType = matchTypes(selectedType, this.propModel.options)
+					const matchingType = matchTypes(
+						selectedType,
+						this.propModel.options,
+					)
 
 					if (matchingType) {
 						return matchingType.type
@@ -328,12 +327,7 @@ export default {
 				}
 				if (this.propName === 'x-managersname') {
 					if (this.property.getParameter('uid')) {
-						return Buffer.from(
-							this.property.getParameter('uid')
-							+ '~'
-							+ this.contact.addressbook.id,
-							'utf-8',
-						).toString('base64')
+						return Buffer.from(this.property.getParameter('uid') + '~' + this.contact.addressbook.id, 'utf-8').toString('base64')
 					}
 					// Try to find the matching contact by display name
 					// TODO: this only *shows* the display name but doesn't assign the missing UID
@@ -410,17 +404,9 @@ export default {
 			if (id === this.propName && this.isLastProperty) {
 				this.$nextTick(() => {
 					const comp = this.$refs.component
-					const el
-						= comp?.$el instanceof HTMLElement
-							? comp.$el
-							: comp instanceof HTMLElement
-								? comp
-								: null
+					const el = comp?.$el instanceof HTMLElement	? comp.$el : (comp instanceof HTMLElement ? comp : null)
 					if (!el || !el.querySelectorAll) {
-						console.warn(
-							'No focusable element found for property',
-							this.propName,
-						)
+						console.warn('No focusable element found for property',	this.propName)
 						return
 					}
 					const inputs = el.querySelectorAll('input, textarea')

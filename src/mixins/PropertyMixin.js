@@ -145,11 +145,9 @@ export default {
 			const group = propGroup.split('.')[0]
 			const name = propGroup.split('.')[1]
 
-			this.localContact.vCard.addPropertyWithValue(
-				`${group}.x-ablabel`,
-				label.name,
-			)
+			this.localContact.vCard.addPropertyWithValue(`${group}.x-ablabel`, label.name)
 			setPropertyAlias(name, propGroup)
+			
 			this.$emit('update')
 		},
 

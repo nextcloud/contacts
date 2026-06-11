@@ -93,7 +93,9 @@
 								<IconAccount :size="20" />
 							</template>
 						</NcButton>
-						<Actions class="quick-action" variant="secondary">
+						<Actions 
+							class="quick-action" 
+							variant="secondary">
 							<template #icon>
 								<IconMail :size="20" />
 							</template>
@@ -107,7 +109,9 @@
 								{{ emailAddress }}
 							</ActionLink>
 						</Actions>
-						<Actions class="quick-action" variant="secondary">
+						<Actions 
+							class="quick-action" 
+							variant="secondary">
 							<template #icon>
 								<IconCall :size="20" />
 							</template>
@@ -144,12 +148,7 @@
 					<!-- repaired contact message -->
 					<div
 						v-if="fixed"
-						:title="
-							t(
-								'contacts',
-								'This contact was broken and received a fix. Please review the content and click here to save it.',
-							)
-						"
+						:title="t('contacts', 'This contact was broken and received a fix. Please review the content and click here to save it.')"
 						class="header-icon header-icon--pulse icon-up"
 						@click="updateContact" />
 
@@ -224,7 +223,9 @@
 						</template>
 						{{ excludeFromBirthdayLabel }}
 					</ActionButton>
-					<ActionButton v-if="canDeleteCard" @click="deleteContact">
+					<ActionButton 
+						v-if="canDeleteCard" 
+						@click="deleteContact">
 						<template #icon>
 							<IconDelete :size="20" />
 						</template>
@@ -275,16 +276,15 @@
 			<!-- contact details loading -->
 			<IconLoading v-if="loadingData" :size="20" class="contact-details" />
 			<!-- quick actions -->
-			<div
-				v-else-if="!loadingData"
-				class="contact-details-wrapper"
-				:class="[{ 'contact-details-wrapper-read-only': isReadOnly }]">
+			<div v-else-if="!loadingData" class="contact-details-wrapper" :class="[{ 'contact-details-wrapper-read-only': isReadOnly }]">
 				<!-- contact details -->
 				<section class="contact-details">
 					<!-- properties iteration -->
 					<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
 
-					<div v-for="(properties, name) in groupedProperties" :key="name">
+					<div 
+						v-for="(properties, name) in groupedProperties" 
+						:key="name">
 						<ContactDetailsProperty
 							v-for="(property, index) in properties"
 							:key="`${index}-${contact.key}-${property.name}`"
@@ -324,9 +324,7 @@
 					class="property--groups property--last"
 					@update:value="updateGroups" />
 			</div>
-			<div
-				v-if="nextcloudVersionAtLeast28 && !editMode"
-				class="related-resources">
+			<div v-if="nextcloudVersionAtLeast28 && !editMode" class="related-resources">
 				<NcRelatedResourcesPanel
 					v-if="!filesPanelHasError"
 					provider-id="account"
@@ -336,8 +334,8 @@
 					:header="t('contacts', 'Media shares with you')"
 					:item-id="contact.uid"
 					:primary="true"
-					@has-resources="(value) => (hasFilesResources = value)"
-					@has-error="(value) => (filesPanelHasError = value)" />
+					@has-resources="value => hasFilesResources = value"
+					@has-error="value => filesPanelHasError = value" />
 				<NcRelatedResourcesPanel
 					v-if="!talkPanelHasError"
 					provider-id="account"
@@ -347,8 +345,8 @@
 					:header="t('contacts', 'Talk conversations with you')"
 					:item-id="contact.uid"
 					:primary="true"
-					@has-resources="(value) => (hasTalkResources = value)"
-					@has-error="(value) => (talkPanelHasError = value)" />
+					@has-resources="value => hasTalkResources = value"
+					@has-error="value => talkPanelHasError = value" />
 				<NcRelatedResourcesPanel
 					v-if="!calendarPanelHasError"
 					provider-id="account"
@@ -358,8 +356,8 @@
 					:header="t('contacts', 'Calendar events with you')"
 					:item-id="contact.uid"
 					:primary="true"
-					@has-resources="(value) => (hasCalendarResources = value)"
-					@has-error="(value) => (calendarPanelHasError = value)" />
+					@has-resources="value => hasCalendarResources = value"
+					@has-error="value => calendarPanelHasError = value" />
 				<NcRelatedResourcesPanel
 					v-if="!deckPanelHasError"
 					provider-id="account"
@@ -369,8 +367,8 @@
 					:header="t('contacts', 'Deck cards with you')"
 					:item-id="contact.uid"
 					:primary="true"
-					@has-resources="(value) => (hasDeckResources = value)"
-					@has-error="(value) => (deckPanelHasError = value)" />
+					@has-resources="value => hasDeckResources = value"
+					@has-error="value => deckPanelHasError = value" />
 				<NcEmptyContent
 					v-if="!hasRelatedResources && !loadingData"
 					:name="t('contacts', 'No shared items with this contact')">
@@ -581,12 +579,7 @@ export default defineComponent({
 		},
 
 		hasRelatedResources() {
-			return (
-				this.hasFilesResources
-				|| this.hasTalkResources
-				|| this.hasCalendarResources
-				|| this.hasDeckResources
-			)
+			return this.hasFilesResources || this.hasTalkResources || this.hasCalendarResources || this.hasDeckResources
 		},
 
 		/**
@@ -633,10 +626,7 @@ export default defineComponent({
 				return {
 					icon: EyeCircleIcon,
 					classes: [],
-					msg: t(
-						'contacts',
-						'This contact is in read-only mode. You do not have permission to edit this contact.',
-					),
+					msg: t('contacts', 'This contact is in read-only mode. You do not have permission to edit this contact.'),
 				}
 			}
 			return false
@@ -649,10 +639,7 @@ export default defineComponent({
 		 */
 		conflict() {
 			if (this.contact.conflict) {
-				return t(
-					'contacts',
-					'The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded.',
-				)
+				return t('contacts', 'The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded.')
 			}
 			return false
 		},
@@ -663,14 +650,13 @@ export default defineComponent({
 		 * @return {Array}
 		 */
 		sortedProperties() {
-			return this.localContact.properties.slice(0).sort((a, b) => {
-				const nameA = a.name.split('.').pop()
-				const nameB = b.name.split('.').pop()
-				return (
-					rfcProps.fieldOrder.indexOf(nameA)
-					- rfcProps.fieldOrder.indexOf(nameB)
-				)
-			})
+			return this.localContact.properties
+				.slice(0)
+				.sort((a, b) => {
+					const nameA = a.name.split('.').pop()
+					const nameB = b.name.split('.').pop()
+					return rfcProps.fieldOrder.indexOf(nameA) - rfcProps.fieldOrder.indexOf(nameB)
+				})
 		},
 
 		/**
@@ -679,33 +665,30 @@ export default defineComponent({
 		 * @return {object}
 		 */
 		groupedProperties() {
-			return this.sortedProperties.reduce((list, property) => {
-				// If there is no component to display this prop, ignore it
-				if (!this.canDisplay(property)) {
-					return list
-				}
-
-				// Group bday and deathdate together under 'lifeEvents'
-				if (
-					property.name === 'bday'
-					|| property.name === 'deathdate'
-					|| property.name === 'anniversary'
-				) {
-					if (!list.lifeEvents) {
-						list.lifeEvents = []
+			return this.sortedProperties
+				.reduce((list, property) => {
+					// If there is no component to display this prop, ignore it
+					if (!this.canDisplay(property)) {
+						return list
 					}
-					list.lifeEvents.push(property)
+
+					// Group bday and deathdate together under 'lifeEvents'
+					if (property.name === 'bday' || property.name === 'deathdate' || property.name === 'anniversary') {
+						if (!list.lifeEvents) {
+							list.lifeEvents = []
+						}
+						list.lifeEvents.push(property)
+						return list
+					}
+
+					// Init if needed
+					if (!list[property.name]) {
+						list[property.name] = []
+					}
+
+					list[property.name].push(property)
 					return list
-				}
-
-				// Init if needed
-				if (!list[property.name]) {
-					list[property.name] = []
-				}
-
-				list[property.name].push(property)
-				return list
-			}, {})
+				}, {})
 		},
 
 		/**
@@ -844,21 +827,15 @@ export default defineComponent({
 		},
 
 		phoneNumberList() {
-			return this.groupedProperties?.tel
-				?.map((prop) => prop.getFirstValue())
-				.filter((tel) => !!tel)
+			return this.groupedProperties?.tel?.map((prop) => prop.getFirstValue()).filter((tel) => !!tel)
 		},
 
 		emailAddressList() {
-			return this.groupedProperties?.email
-				?.map((prop) => prop.getFirstValue())
-				.filter((address) => !!address)
+			return this.groupedProperties?.email?.map((prop) => prop.getFirstValue()).filter((address) => !!address)
 		},
 
 		callUrl() {
-			return generateUrl('/apps/spreed/?callUser={uid}', {
-				uid: this.contact.uid,
-			})
+			return generateUrl('/apps/spreed/?callUser={uid}', { uid: this.contact.uid })
 		},
 
 		isInSystemAddressBook() {
@@ -870,9 +847,7 @@ export default defineComponent({
 		},
 
 		isOwnContact() {
-			return (
-				this.isInSystemAddressBook && this.contact.uid === getCurrentUser().uid
-			)
+			return this.isInSystemAddressBook && this.contact.uid === getCurrentUser().uid
 		},
 
 		profileSettingsUrl() {
@@ -929,9 +904,7 @@ export default defineComponent({
 			// if we just created the contact, we need to force update the
 			// localContact to match the proper store contact
 			if (!this.localContact.dav) {
-				this.logger.debug('New contact synced!', {
-					localContact: this.localContact,
-				})
+				this.logger.debug('New contact synced!', { localContact: this.localContact })
 				// fetching newly created & storred contact
 				const contact = this.$store.getters.getContact(this.localContact.key)
 				await this.updateLocalContact(contact)
@@ -956,10 +929,7 @@ export default defineComponent({
 
 		async toggleBirthdayExclusionForContact() {
 			if (!this.localContact.vCard.hasProperty(this.excludeFromBirthdayKey)) {
-				this.localContact.vCard.addPropertyWithValue(
-					this.excludeFromBirthdayKey,
-					true,
-				)
+				this.localContact.vCard.addPropertyWithValue(this.excludeFromBirthdayKey, true)
 			} else {
 				this.localContact.vCard.removeProperty(this.excludeFromBirthdayKey)
 			}
@@ -971,10 +941,7 @@ export default defineComponent({
 		 * Select the text in the input if it is still set to 'Name'
 		 */
 		selectInput() {
-			if (
-				this.$refs.fullname
-				&& this.contact.fullName === t('contacts', 'Name')
-			) {
+			if (this.$refs.fullname && this.contact.fullName === t('contacts', 'Name')) {
 				this.$refs.fullname.select()
 			}
 		},
@@ -1004,22 +971,13 @@ export default defineComponent({
 						if (error.name === 'ParserError') {
 							showError(t('contacts', 'Syntax error. Cannot open the contact.'))
 						} else if (error?.status === 404) {
-							showError(t(
-								'contacts',
-								'The contact does not exist on the server anymore.',
-							))
+							showError(t('contacts', 'The contact does not exist on the server anymore.'))
 						} else {
-							showError(t(
-								'contacts',
-								'Unable to retrieve the contact from the server, please check your network connection.',
-							))
+							showError(t('contacts', 'Unable to retrieve the contact from the server, please check your network connection.'))
 						}
 						console.error(error)
 						// trigger a local deletion from the store only
-						this.$store.dispatch('deleteContact', {
-							contact: this.contact,
-							dav: false,
-						})
+						this.$store.dispatch('deleteContact', { contact: this.contact, dav: false })
 					}
 				} else {
 					// clone to a local editable variable
@@ -1050,15 +1008,12 @@ export default defineComponent({
 			this.loadingUpdate = true
 			if (addressbook) {
 				try {
-					const contact = await this.$store.dispatch(
-						'moveContactToAddressbook',
-						{
-							// we need to use the store contact, not the local contact
-							// using this.contact and not this.localContact
-							contact: this.contact,
-							addressbook,
-						},
-					)
+					const contact = await this.$store.dispatch('moveContactToAddressbook', {
+						// we need to use the store contact, not the local contact
+						// using this.contact and not this.localContact
+						contact: this.contact,
+						addressbook,
+					})
 					// select the contact again
 					this.$router.push({
 						name: 'contact',
@@ -1086,15 +1041,12 @@ export default defineComponent({
 			this.loadingUpdate = true
 			if (addressbook) {
 				try {
-					const contact = await this.$store.dispatch(
-						'copyContactToAddressbook',
-						{
-							// we need to use the store contact, not the local contact
-							// using this.contact and not this.localContact
-							contact: this.contact,
-							addressbook,
-						},
-					)
+					const contact = await this.$store.dispatch('copyContactToAddressbook', {
+						// we need to use the store contact, not the local contact
+						// using this.contact and not this.localContact
+						contact: this.contact,
+						addressbook,
+					})
 					// select the contact again
 					this.$router.push({
 						name: 'contact',
@@ -1116,11 +1068,7 @@ export default defineComponent({
 		 * Refresh the data of a contact
 		 */
 		refreshContact() {
-			this.$store
-				.dispatch('fetchFullContact', {
-					contact: this.contact,
-					etag: this.conflict,
-				})
+			this.$store.dispatch('fetchFullContact', { contact: this.contact, etag: this.conflict })
 				.then(() => {
 					this.contact.conflict = false
 				})
@@ -1154,10 +1102,7 @@ export default defineComponent({
 				return
 			}
 
-			if (
-				e.keyCode === 83
-				&& (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey)
-			) {
+			if (e.keyCode === 83 && (navigator.platform.match('Mac') ? e.metaKey : e.ctrlKey)) {
 				e.preventDefault()
 				this.onSave()
 			}
@@ -1168,19 +1113,12 @@ export default defineComponent({
 		 */
 		async cloneContact() {
 			// only one addressbook, let's clone it there
-			if (
-				this.pickedAddressbook
-				&& this.addressbooks.find((addressbook) => addressbook.id === this.pickedAddressbook.id)
-			) {
-				this.logger.debug('Cloning contact to', {
-					name: this.pickedAddressbook.name,
-				})
+			if (this.pickedAddressbook && this.addressbooks.find((addressbook) => addressbook.id === this.pickedAddressbook.id)) {
+				this.logger.debug('Cloning contact to', { name: this.pickedAddressbook.name })
 				await this.copyContactToAddressbook(this.pickedAddressbook.id)
 				this.closePickAddressbookModal()
 			} else if (this.addressbooksOptions.length === 1) {
-				this.logger.debug('Cloning contact to', {
-					name: this.addressbooksOptions[0].name,
-				})
+				this.logger.debug('Cloning contact to', {name: this.addressbooksOptions[0].name})
 				await this.copyContactToAddressbook(this.addressbooksOptions[0].id)
 			} else {
 				this.showPickAddressbookModal = true
@@ -1202,10 +1140,9 @@ export default defineComponent({
 			// Make sure we have some model for the property and check for ITEM.PROP custom label format
 			const propModel = rfcProps.properties[property.name.split('.').pop()]
 
-			const propType
-				= propModel && propModel.force
-					? propModel.force
-					: property.getDefaultType()
+			const propType = propModel && propModel.force
+				? propModel.force
+				: property.getDefaultType()
 
 			return propModel && propType !== 'unknown'
 		},
@@ -1221,10 +1158,7 @@ export default defineComponent({
 					contact: this.contact,
 				})
 				await this.updateContact()
-				if (
-					this.newAddressBook
-					&& this.newAddressBook !== this.contact.addressbook.id
-				) {
+				if (this.newAddressBook	&& this.newAddressBook !== this.contact.addressbook.id) {
 					this.updateAddressBookAccesses(this.newAddressBook)
 					this.moveContactToAddressbook(this.newAddressBook)
 					this.newAddressBook = null
@@ -1249,10 +1183,7 @@ export default defineComponent({
 				return
 			}
 
-			return (
-				this.addressbooksOptions?.find((option) => option.id === lastUsed.id)
-				?? undefined
-			)
+			return this.addressbooksOptions?.find((option) => option.id === lastUsed.id) ?? undefined
 		},
 
 		updateAddressBookAccesses(newAddressBook) {
@@ -1264,10 +1195,7 @@ export default defineComponent({
 
 			lastUsedAddressBook.id = newAddressBook
 
-			browserStorage.setItem(
-				'last-used-addressbook',
-				JSON.stringify(lastUsedAddressBook),
-			)
+			browserStorage.setItem('last-used-addressbook',	JSON.stringify(lastUsedAddressBook))
 		},
 	},
 })
@@ -1276,134 +1204,131 @@ export default defineComponent({
 <style lang="scss" scoped>
 // List of all properties
 .contact-details-wrapper {
-  display: inline;
-  align-items: flex-start;
-  padding-bottom: calc(var(--default-grid-baseline) * 5);
-  gap: calc(var(--default-grid-baseline) * 4);
-  float: inline-start;
+	display: inline;
+	align-items: flex-start;
+	padding-bottom: calc(var(--default-grid-baseline) * 5);
+	gap: calc(var(--default-grid-baseline) * 4);
+	float: inline-start;
 }
 @media only screen and (max-width: 600px) {
-  .contact-details-wrapper {
-    display: block;
-  }
+	.contact-details-wrapper {
+		display: block;
+	}
 }
 
 section.contact-details {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+  	display: flex;
+  	flex-direction: column;
+  	gap: 10px;
 }
 
 #qrcode-modal {
-  :deep(.modal-container) {
-    display: flex;
-    padding: 10px;
-    background-color: #fff;
-    .qrcode {
-      max-width: 100%;
-    }
-  }
+	:deep(.modal-container) {
+		display: flex;
+		padding: 10px;
+		background-color: #fff;
+		.qrcode {
+		max-width: 100%;
+		}
+	}
 }
 
 :deep(.v-select.select) {
-  min-width: 0;
-  flex: 1 auto;
+	min-width: 0;
+	flex: 1 auto;
 }
 
-:deep(.v-select.select .vs__selected-options),
-:deep(.vs__search) {
-  min-height: unset;
-  margin: 0 !important;
+:deep(.v-select.select .vs__selected-options), :deep(.vs__search) {
+	min-height: unset;
+	margin: 0 !important;
 }
 
 :deep(.vs__selected) {
-  height: calc(
-    var(--default-clickable-area) - var(--default-grid-baseline)
-  ) !important;
-  margin: 0 !important;
+  	height: calc(var(--default-clickable-area) - var(--default-grid-baseline)) !important;
+  	margin: 0 !important;
 }
 
 #pick-addressbook-modal {
-  :deep(.modal-container) {
-    display: flex;
-    overflow: visible;
-    flex-wrap: wrap;
-    justify-content: space-evenly;
-    margin-bottom: 20px;
-    padding: 10px;
-    background-color: #fff;
-    .multiselect {
-      flex: 1 1 100%;
-      width: 100%;
-      margin-bottom: 20px;
-    }
-  }
+	:deep(.modal-container) {
+		display: flex;
+		overflow: visible;
+		flex-wrap: wrap;
+		justify-content: space-evenly;
+		margin-bottom: 20px;
+		padding: 10px;
+		background-color: #fff;
+		.multiselect {
+		flex: 1 1 100%;
+		width: 100%;
+		margin-bottom: 20px;
+		}
+	}
 }
 
 .action-item {
-  background-color: var(--color-primary-element-light);
-  border-radius: var(--border-radius-rounded);
+	background-color: var(--color-primary-element-light);
+	border-radius: var(--border-radius-rounded);
 }
 
 :deep(.button-vue--vue-tertiary:hover),
 :deep(.button-vue--vue-tertiary:active) {
-  background-color: var(--color-primary-element-light-hover) !important;
+  	background-color: var(--color-primary-element-light-hover) !important;
 }
 
 .related-resources {
-  display: inline-grid;
-  margin-top: 88px;
-  flex-direction: column;
-  margin-bottom: -30px;
+	display: inline-grid;
+	margin-top: 88px;
+	flex-direction: column;
+	margin-bottom: -30px;
 }
 @media only screen and (max-width: 1600px) {
-  .related-resources {
-    float: inline-start;
-    display: inline-grid;
-    margin-inline-start: 80px;
-    flex-direction: column;
-    margin-bottom: 0;
-    margin-top: 40px;
-  }
+	.related-resources {
+		float: inline-start;
+		display: inline-grid;
+		margin-inline-start: 80px;
+		flex-direction: column;
+		margin-bottom: 0;
+		margin-top: 40px;
+	}
 }
 
 .last-edit {
-  display: inline-flex;
+  	display: inline-flex;
 }
 // forcing the size only for contacts app to fit the text size of the contacts app
 :deep(.related-resources__header h5) {
-  font-size: medium;
-  opacity: 0.7;
-  color: var(--color-primary-element);
+	font-size: medium;
+	opacity: 0.7;
+	color: var(--color-primary-element);
 }
 
 .address-book {
-  min-width: 260px !important;
+  	min-width: 260px !important;
 }
 
 .empty-content {
-  height: 100%;
+  	height: 100%;
 }
 
 .contact-title {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 
-:deep(.contact-details-wrapper-read-only .input-field__input) {
-  box-shadow: none !important;
+:deep(.contact-details-wrapper-read-only  .input-field__input) {
+  	box-shadow: none !important;
 }
 
 :deep(.vs__selected-options) {
-  max-height: 30px;
+ 	max-height: 30px;
 }
 
 :deep(.v-select) {
-  margin-bottom: 0 !important;
+  	margin-bottom: 0 !important;
 }
 
 .quick-actions {
-  display: flex;
+  	display: flex;
 }
 </style>
