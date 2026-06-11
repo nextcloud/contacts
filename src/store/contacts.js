@@ -26,20 +26,20 @@ ICAL.design.vcard3.param.type.multiValueSeparateDQuote = true
 ICAL.design.vcard.param.type.multiValueSeparateDQuote = true
 
 function sortData(a, b) {
-	const nameA
-		= typeof a.value === 'string'
-			? a.value.toUpperCase() // ignore upper and lowercase
-			: a.value.toUnixTime() // only other sorting we support is a vCardTime
-	const nameB
-		= typeof b.value === 'string'
-			? b.value.toUpperCase() // ignore upper and lowercase
-			: b.value.toUnixTime() // only other sorting we support is a vCardTime
+	const nameA = typeof a.value === 'string'
+		? a.value.toUpperCase() // ignore upper and lowercase
+		: a.value.toUnixTime() // only other sorting we support is a vCardTime
+	const nameB = typeof b.value === 'string'
+		? b.value.toUpperCase() // ignore upper and lowercase
+		: b.value.toUnixTime() // only other sorting we support is a vCardTime
 
 	const score = nameA.localeCompare
 		? nameA.localeCompare(nameB)
 		: nameB - nameA
 	// if equal, fallback to the key
-	return score !== 0 ? score : a.key.localeCompare(b.key)
+	return score !== 0 
+	? score 
+	: a.key.localeCompare(b.key)
 }
 
 function sortByFavoriteAndName(a, b) {
@@ -158,8 +158,7 @@ const mutations = {
 				// favorite comes before non-favorite
 				const differentFavStatus = other.favorite !== sortedContact.favorite
 				const otherShouldComeFirst = differentFavStatus && other.favorite
-				const sameFavAndSortedFirst
-					= !differentFavStatus && sortData(other, sortedContact) >= 0
+				const sameFavAndSortedFirst	= !differentFavStatus && sortData(other, sortedContact) >= 0
 
 				if (otherShouldComeFirst || sameFavAndSortedFirst) {
 					continue
@@ -191,15 +190,11 @@ const mutations = {
 	 */
 	updateContact(state, contact) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
-			const existingFavorite
-				= state.contacts[contact.key].dav?.favorite || false
+			const existingFavorite = state.contacts[contact.key].dav?.favorite || false
 			state.contacts[contact.key].updateContact(contact.jCal)
 
 			// restore favorite on dav if it was lost during the update
-			if (
-				state.contacts[contact.key].dav
-				&& state.contacts[contact.key].dav.favorite === undefined
-			) {
+			if (state.contacts[contact.key].dav	&& state.contacts[contact.key].dav.favorite === undefined) {
 				state.contacts[contact.key].dav.favorite = existingFavorite
 			}
 
@@ -211,14 +206,11 @@ const mutations = {
 			}
 
 			const hasValueChanged = sortedContact.value !== contact[state.orderKey]
-			const hasFavoriteChanged
-				= sortedContact.favorite
-					!== (state.contacts[contact.key].dav?.favorite || false)
+			const hasFavoriteChanged = sortedContact.favorite !== (state.contacts[contact.key].dav?.favorite || false)
 
 			if (hasValueChanged || hasFavoriteChanged) {
 				sortedContact.value = contact[state.orderKey]
-				sortedContact.favorite
-					= state.contacts[contact.key].dav?.favorite || false
+				sortedContact.favorite = state.contacts[contact.key].dav?.favorite || false
 
 				state.sortedContacts.sort(sortByFavoriteAndName)
 			}
@@ -259,10 +251,7 @@ const mutations = {
 			state.sortedContacts[index].key = newContact.key
 			state.sortedContacts[index].value = newContact[state.orderKey]
 		} else {
-			console.error(
-				'Error while replacing the addressbook of following contact',
-				contact,
-			)
+			console.error('Error while replacing the addressbook of following contact',	contact)
 		}
 	},
 
@@ -281,10 +270,7 @@ const mutations = {
 			// replace contact object data
 			state.contacts[contact.key].dav.etag = etag
 		} else {
-			console.error(
-				'Error while replacing the etag of following contact',
-				contact,
-			)
+			console.error('Error while replacing the etag of following contact', contact)
 		}
 	},
 
@@ -358,6 +344,7 @@ const getters = {
 }
 
 const actions = {
+
 	/**
 	 * Toggle the favorite state of a contact.
 	 * Updates the store
@@ -396,10 +383,11 @@ const actions = {
 	async deleteContact(context, { contact, dav = true }) {
 		// only local delete if the contact doesn't exists on the server
 		if (contact.dav && dav) {
-			await contact.dav.delete().catch((error) => {
-				console.error(error)
-				showError(t('contacts', 'Unable to delete contact'))
-			})
+			await contact.dav.delete()
+				.catch((error) => {
+					console.error(error)
+					showError(t('contacts', 'Unable to delete contact'))
+				})
 		}
 		context.commit('deleteContact', contact)
 		context.commit('deleteContactFromAddressbook', contact)
@@ -434,10 +422,7 @@ const actions = {
 			contact.rev = ICAL.Time.fromJSDate(new Date(), true)
 		}
 		if (contact.version === '3.0') {
-			contact.rev = ICAL.VCardTime.fromDateAndOrTimeString(
-				new Date().toISOString(),
-				'date-time',
-			)
+			contact.rev = ICAL.VCardTime.fromDateAndOrTimeString(new Date().toISOString(), 'date-time')
 		}
 
 		const vData = contact.toStringStripQuotes()
@@ -464,16 +449,10 @@ const actions = {
 				if (error && error?.status === 412) {
 					// saving the new etag so that the user can manually
 					// trigger a fetchCompleteData without any further errors
-					context.commit('setContactAsConflict', {
-						contact,
-						etag: error.xhr.getResponseHeader('etag'),
-					})
-					console.error(
-						'This contact is outdated, the server refused it',
-						contact,
-					)
+					context.commit('setContactAsConflict', { contact, etag: error.xhr.getResponseHeader('etag') })
+					console.error('This contact is outdated, the server refused it', contact)
 				}
-				throw error
+				throw (error)
 			}
 		} else {
 			console.error('This contact is outdated, refusing to push', contact)
@@ -490,10 +469,7 @@ const actions = {
 	 * @param data.forceReFetch
 	 * @return {Promise}
 	 */
-	async fetchFullContact(
-		context,
-		{ contact, etag = '', forceReFetch = false },
-	) {
+	async fetchFullContact(context, { contact, etag = '', forceReFetch = false }) {
 		if (etag.trim() !== '') {
 			await context.commit('updateContactEtag', { contact, etag })
 		}
@@ -503,17 +479,14 @@ const actions = {
 
 		const savedFavorite = davObject.favorite
 
-		return davObject
-			.fetchCompleteData(forceReFetch)
+		return davObject.fetchCompleteData(forceReFetch)
 			.then(() => {
 				const newContact = new Contact(davObject.data, contact.addressbook)
 				newContact.dav = davObject
 				newContact.dav.favorite = savedFavorite
 				context.commit('updateContact', newContact)
 			})
-			.catch((error) => {
-				throw error
-			})
+			.catch((error) => {	throw error	})
 	},
 }
 

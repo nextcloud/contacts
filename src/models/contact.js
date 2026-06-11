@@ -19,28 +19,13 @@ import store from '../store/index.js'
  * @return {boolean}
  */
 function isEmpty(value) {
-	return (
-		(Array.isArray(value) && value.join('') === '')
-		|| (!Array.isArray(value) && value === '')
-	)
+	return (Array.isArray(value) && value.join('') === '')	|| (!Array.isArray(value) && value === '')
 }
 
 export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
 
 export const MinimalContactProperties = [
-	'EMAIL',
-	'UID',
-	'TEL',
-	'CATEGORIES',
-	'FN',
-	'ORG',
-	'N',
-	'X-PHONETIC-FIRST-NAME',
-	'X-PHONETIC-LAST-NAME',
-	'X-MANAGERSNAME',
-	'TITLE',
-	'NOTE',
-	'RELATED',
+	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED',
 ].concat(ContactKindProperties)
 
 export default class Contact {
@@ -75,10 +60,7 @@ export default class Contact {
 
 		// if no uid set, create one
 		if (!this.vCard.hasProperty('uid')) {
-			console.info(
-				'This contact did not have a proper uid. Setting a new one for ',
-				this,
-			)
+			console.info('This contact did not have a proper uid. Setting a new one for ', this)
 			this.vCard.addPropertyWithValue('uid', uuid())
 		}
 
@@ -86,19 +68,10 @@ export default class Contact {
 		if (!this.vCard.hasProperty('rev')) {
 			const version = this.vCard.getFirstPropertyValue('version')
 			if (version === '4.0') {
-				this.vCard.addPropertyWithValue(
-					'rev',
-					ICAL.Time.fromJSDate(new Date(), true),
-				)
+				this.vCard.addPropertyWithValue('rev', ICAL.Time.fromJSDate(new Date(), true))
 			}
 			if (version === '3.0') {
-				this.vCard.addPropertyWithValue(
-					'rev',
-					ICAL.VCardTime.fromDateAndOrTimeString(
-						new Date().toISOString(),
-						'date-time',
-					),
-				)
+				this.vCard.addPropertyWithValue('rev', ICAL.VCardTime.fromDateAndOrTimeString(new Date().toISOString(), 'date-time'))
 			}
 		}
 	}
@@ -304,11 +277,7 @@ export default class Contact {
 			const cleanSvg = await sanitizeSVG(imageSvg)
 
 			if (!cleanSvg) {
-				console.error(
-					'Invalid SVG for the following contact. Ignoring...',
-					this.contact,
-					{ photoB64, photoType },
-				)
+				console.error('Invalid SVG for the following contact. Ignoring...', this.contact, { photoB64, photoType })
 				return false
 			}
 		}
@@ -318,11 +287,7 @@ export default class Contact {
 			const blob = b64toBlob(photoB64Data, `image/${photoType}`)
 			return URL.createObjectURL(blob)
 		} catch {
-			console.error(
-				'Invalid photo for the following contact. Ignoring...',
-				this.contact,
-				{ photoB64, photoType },
-			)
+			console.error('Invalid photo for the following contact. Ignoring...', this.contact, { photoB64, photoType })
 			return false
 		}
 	}
@@ -336,8 +301,7 @@ export default class Contact {
 	get groups() {
 		const groupsProp = this.vCard.getFirstProperty('categories')
 		if (groupsProp) {
-			return groupsProp
-				.getValues()
+			return groupsProp.getValues()
 				.filter((group) => typeof group === 'string')
 				.filter((group) => group.trim() !== '')
 		}
@@ -376,7 +340,8 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get kind() {
-		return this.firstIfArray(ContactKindProperties.map((s) => s.toLowerCase())
+		return this.firstIfArray(ContactKindProperties
+			.map((s) => s.toLowerCase())
 			.map((s) => this.vCard.getFirstPropertyValue(s))
 			.flat()
 			.filter((k) => k))
@@ -495,16 +460,16 @@ export default class Contact {
 		if (orderKey && n && !isEmpty(n)) {
 			switch (orderKey) {
 				case 'firstName':
-					// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
-					// -> John Stevenson
+				// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
+				// -> John Stevenson
 					if (isEmpty(n[0])) {
 						return n[1]
 					}
 					return n.slice(0, 2).reverse().join(' ')
 
 				case 'lastName':
-					// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
-					// -> Stevenson, John
+				// Stevenson;John;Philip,Paul;Dr.;Jr.,M.D.,A.C.P.
+				// -> Stevenson, John
 					if (isEmpty(n[0])) {
 						return n[1]
 					}
@@ -590,10 +555,8 @@ export default class Contact {
 	 */
 	socialLink(type) {
 		if (this.vCard.hasProperty('x-socialprofile')) {
-			const x = this.vCard
-				.getAllProperties('x-socialprofile')
-				.filter((a) => a.jCal[1].type.toString() === type)
-
+			const x = this.vCard.getAllProperties('x-socialprofile').filter((a) => a.jCal[1].type.toString() === type)
+			
 			if (x.length > 0) {
 				return x[0].jCal[3].toString()
 			}
@@ -661,9 +624,7 @@ export default class Contact {
 	addToGroup(group) {
 		if (this.groups.indexOf(group) === -1) {
 			if (this.groups.length > 0) {
-				this.vCard
-					.getFirstProperty('categories')
-					.setValues(this.groups.concat(group))
+				this.vCard.getFirstProperty('categories').setValues(this.groups.concat(group))
 			} else {
 				this.vCard.updatePropertyWithValue('categories', [group])
 			}
@@ -671,7 +632,7 @@ export default class Contact {
 	}
 
 	toStringStripQuotes() {
-		const regexp = /TYPE="([a-zA-Z-,]+)"/gim
+		const regexp = /TYPE="([a-zA-Z-,]+)"/gmi
 		const card = this.vCard.toString()
 		return card.replace(regexp, 'TYPE=$1')
 	}
