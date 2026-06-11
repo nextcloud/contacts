@@ -37,9 +37,9 @@ function sortData(a, b) {
 		? nameA.localeCompare(nameB)
 		: nameB - nameA
 	// if equal, fallback to the key
-	return score !== 0 
-	? score 
-	: a.key.localeCompare(b.key)
+	return score !== 0
+		? score
+		: a.key.localeCompare(b.key)
 }
 
 function sortByFavoriteAndName(a, b) {
@@ -158,7 +158,7 @@ const mutations = {
 				// favorite comes before non-favorite
 				const differentFavStatus = other.favorite !== sortedContact.favorite
 				const otherShouldComeFirst = differentFavStatus && other.favorite
-				const sameFavAndSortedFirst	= !differentFavStatus && sortData(other, sortedContact) >= 0
+				const sameFavAndSortedFirst = !differentFavStatus && sortData(other, sortedContact) >= 0
 
 				if (otherShouldComeFirst || sameFavAndSortedFirst) {
 					continue
@@ -194,7 +194,7 @@ const mutations = {
 			state.contacts[contact.key].updateContact(contact.jCal)
 
 			// restore favorite on dav if it was lost during the update
-			if (state.contacts[contact.key].dav	&& state.contacts[contact.key].dav.favorite === undefined) {
+			if (state.contacts[contact.key].dav && state.contacts[contact.key].dav.favorite === undefined) {
 				state.contacts[contact.key].dav.favorite = existingFavorite
 			}
 
@@ -251,7 +251,7 @@ const mutations = {
 			state.sortedContacts[index].key = newContact.key
 			state.sortedContacts[index].value = newContact[state.orderKey]
 		} else {
-			console.error('Error while replacing the addressbook of following contact',	contact)
+			console.error('Error while replacing the addressbook of following contact', contact)
 		}
 	},
 
@@ -486,7 +486,7 @@ const actions = {
 				newContact.dav.favorite = savedFavorite
 				context.commit('updateContact', newContact)
 			})
-			.catch((error) => {	throw error	})
+				.catch((error) => { throw error })
 	},
 }
 

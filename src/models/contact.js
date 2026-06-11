@@ -19,7 +19,7 @@ import store from '../store/index.js'
  * @return {boolean}
  */
 function isEmpty(value) {
-	return (Array.isArray(value) && value.join('') === '')	|| (!Array.isArray(value) && value === '')
+	return (Array.isArray(value) && value.join('') === '') || (!Array.isArray(value) && value === '')
 }
 
 export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
@@ -556,7 +556,7 @@ export default class Contact {
 	socialLink(type) {
 		if (this.vCard.hasProperty('x-socialprofile')) {
 			const x = this.vCard.getAllProperties('x-socialprofile').filter((a) => a.jCal[1].type.toString() === type)
-			
+
 			if (x.length > 0) {
 				return x[0].jCal[3].toString()
 			}

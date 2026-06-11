@@ -93,8 +93,8 @@
 								<IconAccount :size="20" />
 							</template>
 						</NcButton>
-						<Actions 
-							class="quick-action" 
+						<Actions
+							class="quick-action"
 							variant="secondary">
 							<template #icon>
 								<IconMail :size="20" />
@@ -109,8 +109,8 @@
 								{{ emailAddress }}
 							</ActionLink>
 						</Actions>
-						<Actions 
-							class="quick-action" 
+						<Actions
+							class="quick-action"
 							variant="secondary">
 							<template #icon>
 								<IconCall :size="20" />
@@ -223,8 +223,8 @@
 						</template>
 						{{ excludeFromBirthdayLabel }}
 					</ActionButton>
-					<ActionButton 
-						v-if="canDeleteCard" 
+					<ActionButton
+						v-if="canDeleteCard"
 						@click="deleteContact">
 						<template #icon>
 							<IconDelete :size="20" />
@@ -282,8 +282,8 @@
 					<!-- properties iteration -->
 					<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
 
-					<div 
-						v-for="(properties, name) in groupedProperties" 
+					<div
+						v-for="(properties, name) in groupedProperties"
 						:key="name">
 						<ContactDetailsProperty
 							v-for="(property, index) in properties"
@@ -1118,7 +1118,7 @@ export default defineComponent({
 				await this.copyContactToAddressbook(this.pickedAddressbook.id)
 				this.closePickAddressbookModal()
 			} else if (this.addressbooksOptions.length === 1) {
-				this.logger.debug('Cloning contact to', {name: this.addressbooksOptions[0].name})
+				this.logger.debug('Cloning contact to', { name: this.addressbooksOptions[0].name })
 				await this.copyContactToAddressbook(this.addressbooksOptions[0].id)
 			} else {
 				this.showPickAddressbookModal = true
@@ -1158,7 +1158,7 @@ export default defineComponent({
 					contact: this.contact,
 				})
 				await this.updateContact()
-				if (this.newAddressBook	&& this.newAddressBook !== this.contact.addressbook.id) {
+				if (this.newAddressBook && this.newAddressBook !== this.contact.addressbook.id) {
 					this.updateAddressBookAccesses(this.newAddressBook)
 					this.moveContactToAddressbook(this.newAddressBook)
 					this.newAddressBook = null
@@ -1195,7 +1195,7 @@ export default defineComponent({
 
 			lastUsedAddressBook.id = newAddressBook
 
-			browserStorage.setItem('last-used-addressbook',	JSON.stringify(lastUsedAddressBook))
+			browserStorage.setItem('last-used-addressbook', JSON.stringify(lastUsedAddressBook))
 		},
 	},
 })
@@ -1217,9 +1217,9 @@ export default defineComponent({
 }
 
 section.contact-details {
-  	display: flex;
-  	flex-direction: column;
-  	gap: 10px;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
 #qrcode-modal {
@@ -1228,7 +1228,7 @@ section.contact-details {
 		padding: 10px;
 		background-color: #fff;
 		.qrcode {
-		max-width: 100%;
+			max-width: 100%;
 		}
 	}
 }
@@ -1244,8 +1244,8 @@ section.contact-details {
 }
 
 :deep(.vs__selected) {
-  	height: calc(var(--default-clickable-area) - var(--default-grid-baseline)) !important;
-  	margin: 0 !important;
+	height: calc(var(--default-clickable-area) - var(--default-grid-baseline)) !important;
+	margin: 0 !important;
 }
 
 #pick-addressbook-modal {
@@ -1258,9 +1258,9 @@ section.contact-details {
 		padding: 10px;
 		background-color: #fff;
 		.multiselect {
-		flex: 1 1 100%;
-		width: 100%;
-		margin-bottom: 20px;
+			flex: 1 1 100%;
+			width: 100%;
+			margin-bottom: 20px;
 		}
 	}
 }
@@ -1272,11 +1272,11 @@ section.contact-details {
 
 :deep(.button-vue--vue-tertiary:hover),
 :deep(.button-vue--vue-tertiary:active) {
-  	background-color: var(--color-primary-element-light-hover) !important;
+	background-color: var(--color-primary-element-light-hover) !important;
 }
 
 .related-resources {
-	display: inline-grid;
+	display:inline-grid;
 	margin-top: 88px;
 	flex-direction: column;
 	margin-bottom: -30px;
@@ -1293,21 +1293,21 @@ section.contact-details {
 }
 
 .last-edit {
-  	display: inline-flex;
+	display: inline-flex;
 }
 // forcing the size only for contacts app to fit the text size of the contacts app
 :deep(.related-resources__header h5) {
 	font-size: medium;
-	opacity: 0.7;
+	opacity: .7;
 	color: var(--color-primary-element);
 }
 
 .address-book {
-  	min-width: 260px !important;
+	min-width: 260px !important;
 }
 
 .empty-content {
-  	height: 100%;
+	height: 100%;
 }
 
 .contact-title {
@@ -1317,18 +1317,18 @@ section.contact-details {
 }
 
 :deep(.contact-details-wrapper-read-only  .input-field__input) {
-  	box-shadow: none !important;
+	box-shadow: none !important;
 }
 
 :deep(.vs__selected-options) {
- 	max-height: 30px;
+	max-height: 30px;
 }
 
 :deep(.v-select) {
-  	margin-bottom: 0 !important;
+	margin-bottom: 0 !important;
 }
 
 .quick-actions {
-  	display: flex;
+	display: flex;
 }
 </style>
