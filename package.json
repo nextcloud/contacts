@@ -73,7 +73,7 @@
     "moment": "^2.30.1",
     "p-limit": "^7.3.0",
     "pinia": "^3.0.4",
-    "qreator": "^9.9.0",
+    "qreator": "^10.0.2",
     "string-natural-compare": "^3.0.1",
     "uuid": "^14.0.0",
     "validator": "^13.15.35",
