@@ -404,9 +404,9 @@ export default {
 			if (id === this.propName && this.isLastProperty) {
 				this.$nextTick(() => {
 					const comp = this.$refs.component
-					const el = comp?.$el instanceof HTMLElement	? comp.$el : (comp instanceof HTMLElement ? comp : null)
+					const el = comp?.$el instanceof HTMLElement ? comp.$el : (comp instanceof HTMLElement ? comp : null)
 					if (!el || !el.querySelectorAll) {
-						console.warn('No focusable element found for property',	this.propName)
+						console.warn('No focusable element found for property', this.propName)
 						return
 					}
 					const inputs = el.querySelectorAll('input, textarea')

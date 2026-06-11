@@ -147,7 +147,7 @@ export default {
 
 			this.localContact.vCard.addPropertyWithValue(`${group}.x-ablabel`, label.name)
 			setPropertyAlias(name, propGroup)
-			
+
 			this.$emit('update')
 		},
 
