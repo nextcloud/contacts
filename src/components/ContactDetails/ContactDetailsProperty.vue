@@ -314,6 +314,7 @@ export default {
 					}
 				}
 			},
+
 		},
 
 		// property value(s)
