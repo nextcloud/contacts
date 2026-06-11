@@ -486,7 +486,7 @@ const actions = {
 				newContact.dav.favorite = savedFavorite
 				context.commit('updateContact', newContact)
 			})
-				.catch((error) => { throw error })
+			.catch((error) => { throw error })
 	},
 }
 
