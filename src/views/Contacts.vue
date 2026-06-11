@@ -6,12 +6,10 @@
 <template>
 	<Content :app-name="appName">
 		<!-- new-contact-button + navigation + settings -->
-		<RootNavigation :loading="loadingContacts || loadingCircles">
+		<RootNavigation
+			:loading="loadingContacts || loadingCircles">
 			<div class="import-and-new-contact-buttons">
-				<SettingsImportContacts
-					v-if="
-						!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView
-					" />
+				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView" />
 				<!-- new-contact-button -->
 				<NcButton
 					v-if="!loadingContacts"
@@ -22,21 +20,21 @@
 					<template #icon>
 						<IconAdd :size="20" />
 					</template>
-					{{
-						isCirclesView
-							? t('contacts', 'Add member')
-							: t('contacts', 'New contact')
-					}}
+					{{ isCirclesView ? t('contacts', 'Add member') : t('contacts', 'New contact') }}
 				</NcButton>
 			</div>
 		</RootNavigation>
 
 		<!-- Main content: circle, chart or contacts -->
-		<UserGroupContent v-if="selectedUserGroup" :loding="loadingCircles" />
+		<UserGroupContent
+			v-if="selectedUserGroup"
+			:loding="loadingCircles" />
 		<CircleContent
 			v-if="selectedCircle || selectedUserGroup"
 			:loading="loadingCircles" />
-		<ChartContent v-else-if="selectedChart" :contacts-list="contacts" />
+		<ChartContent
+			v-else-if="selectedChart"
+			:contacts-list="contacts" />
 		<ContactsContent
 			v-else
 			:contacts-list="contactsList"
@@ -77,12 +75,7 @@ import ContactsPicker from '../components/EntityPicker/ContactsPicker.vue'
 import ImportView from './Processing/ImportView.vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import RouterMixin from '../mixins/RouterMixin.js'
-import {
-	GROUP_ALL_CONTACTS,
-	GROUP_NO_GROUP_CONTACTS,
-	ROUTE_CIRCLE,
-	ROUTE_USER_GROUP,
-} from '../models/constants.ts'
+import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE, ROUTE_USER_GROUP } from '../models/constants.ts'
 import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
 import client from '../services/cdav.js'
@@ -107,7 +100,10 @@ export default {
 		SettingsImportContacts,
 	},
 
-	mixins: [IsMobileMixin, RouterMixin],
+	mixins: [
+		IsMobileMixin,
+		RouterMixin,
+	],
 
 	data() {
 		return {
@@ -195,10 +191,7 @@ export default {
 				return this.sortedContacts
 			} else if (this.selectedGroup === GROUP_NO_GROUP_CONTACTS) {
 				return this.ungroupedContacts.map((contact) => this.sortedContacts.find((item) => item.key === contact.key))
-			} else if (
-				this.selectedGroup === ROUTE_CIRCLE
-				|| this.selectedGroup === ROUTE_USER_GROUP
-			) {
+			} else if (this.selectedGroup === ROUTE_CIRCLE || this.selectedGroup === ROUTE_USER_GROUP) {
 				return []
 			}
 			const group = this.groups.filter((group) => group.name === this.selectedGroup)[0]
@@ -209,15 +202,11 @@ export default {
 		},
 
 		isCirclesView() {
-			return (
-				this.selectedGroup === ROUTE_CIRCLE
-				|| this.selectedGroup === ROUTE_USER_GROUP
-			)
+			return this.selectedGroup === ROUTE_CIRCLE || this.selectedGroup === ROUTE_USER_GROUP
 		},
 
 		ungroupedContacts() {
-			return this.sortedContacts.filter((contact) => this.contacts[contact.key].groups
-				&& this.contacts[contact.key].groups.length === 0)
+			return this.sortedContacts.filter((contact) => this.contacts[contact.key].groups && this.contacts[contact.key].groups.length === 0)
 		},
 	},
 
@@ -251,24 +240,22 @@ export default {
 			this.logger.debug('Connected to dav!', { client })
 			const principalsStore = usePrincipalsStore()
 			principalsStore.setCurrentUserPrincipal(client)
-			this.$store.dispatch('getAddressbooks').then((addressbooks) => {
-				const writeableAddressBooks = addressbooks.filter((addressbook) => !addressbook.readOnly)
+			this.$store.dispatch('getAddressbooks')
+				.then((addressbooks) => {
+					const writeableAddressBooks = addressbooks.filter((addressbook) => !addressbook.readOnly)
 
-				// No writeable addressbooks? Create a new one!
-				if (writeableAddressBooks.length === 0) {
-					this.$store
-						.dispatch('appendAddressbook', {
-							displayName: t('contacts', 'Contacts'),
-						})
-						.then(() => {
-							this.fetchContacts()
-						})
+					// No writeable addressbooks? Create a new one!
+					if (writeableAddressBooks.length === 0) {
+						this.$store.dispatch('appendAddressbook', { displayName: t('contacts', 'Contacts') })
+							.then(() => {
+								this.fetchContacts()
+							})
 					// else, let's get those contacts!
-				} else {
-					this.fetchContacts()
-				}
-			})
-			// check local storage for orderKey
+					} else {
+						this.fetchContacts()
+					}
+				})
+				// check local storage for orderKey
 			if (localStorage.getItem('orderKey')) {
 				// run setOrder mutation with local storage key
 				this.$store.commit('setOrder', localStorage.getItem('orderKey'))
@@ -278,8 +265,7 @@ export default {
 		// Get circles if enabled
 		if (isCirclesEnabled) {
 			const userGroupStore = useUserGroupStore()
-			this.$store
-				.dispatch('getCircles')
+			this.$store.dispatch('getCircles')
 				.then(userGroupStore.getUserGroups(getCurrentUser().uid))
 				.then(() => {
 					this.loadingCircles = false
@@ -300,9 +286,7 @@ export default {
 				VERSION:4.0
 				PRODID:-//Nextcloud Contacts v${appVersion}
 				END:VCARD
-			`
-					.trim()
-					.replace(/\t/gm, ''),
+			`.trim().replace(/\t/gm, ''),
 				this.defaultAddressbook,
 			)
 
@@ -320,10 +304,7 @@ export default {
 						defaultValue = [...defaultValue]
 					}
 					// add default field
-					const property = contact.vCard.addPropertyWithValue(
-						name,
-						defaultValue,
-					)
+					const property = contact.vCard.addPropertyWithValue(name, defaultValue)
 					// add default type
 					if (defaultData.type) {
 						property.setParameter('type', defaultData.type)
@@ -377,14 +358,13 @@ export default {
 		fetchContacts() {
 			// wait for all addressbooks to have fetch their contacts
 			// don't filter disabled at this point, because sum of contacts per address book is shown
-			Promise.all(this.addressbooks.map((addressbook) => {
-				if (!addressbook.enabled) {
-					return Promise.resolve()
-				}
-				return this.$store.dispatch('getContactsFromAddressBook', {
-					addressbook,
-				})
-			})).then(() => {
+			Promise.all(this.addressbooks
+				.map((addressbook) => {
+					if (!addressbook.enabled) {
+						return Promise.resolve()
+					}
+					return this.$store.dispatch('getContactsFromAddressBook', { addressbook })
+				})).then(() => {
 				this.loadingContacts = false
 				if (!this.isMobile && !this.selectedChart) {
 					this.selectFirstContactIfNone()
@@ -402,8 +382,7 @@ export default {
 				return
 			}
 
-			const inList
-				= this.contactsList.findIndex((contact) => contact.key === this.selectedContact) > -1
+			const inList = this.contactsList.findIndex((contact) => contact.key === this.selectedContact) > -1
 			if (!this.selectedContact || !inList) {
 				// Unknown contact
 				if (this.selectedContact && !inList) {
@@ -417,18 +396,14 @@ export default {
 				}
 
 				// Unknown group
-				if (
-					!this.selectedCircle
+				if (!this.selectedCircle
 					&& !this.selectedUserGroup
 					&& !this.groups.find((group) => group.name === this.selectedGroup)
 					&& GROUP_ALL_CONTACTS !== this.selectedGroup
 					&& GROUP_NO_GROUP_CONTACTS !== this.selectedGroup
 					&& ROUTE_CIRCLE !== this.selectedGroup
-					&& ROUTE_USER_GROUP !== this.selectedGroup
-				) {
-					showError(t('contacts', 'Group {group} not found', {
-						group: this.selectedGroup,
-					}))
+					&& ROUTE_USER_GROUP !== this.selectedGroup) {
+					showError(t('contacts', 'Group {group} not found', { group: this.selectedGroup }))
 					console.error('Group not found', this.selectedGroup)
 
 					this.$router.push({
@@ -461,8 +436,8 @@ export default {
 
 <style lang="scss" scoped>
 .import-and-new-contact-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+	display: flex;
+	flex-direction: column;
+	gap: 4px;
 }
 </style>
