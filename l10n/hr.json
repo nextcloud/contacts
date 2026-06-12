@@ -115,10 +115,6 @@
     "Calendar" : "Kalendar",
     "New calendar" : "Novi kalendar",
     "Calendar name" : "Naziv kalendara",
-    "Deck board" : "Deck ploča",
-    "New Deck board" : "Nova Deck ploča",
-    "Board name" : "Naziv ploče",
-    "Deck app is not installed. Please install it to create team boards." : "Aplikacija Deck nije instalirana. Instalirajte je kako biste stvorili timske ploče.",
     "Unknown resource type" : "Nepoznata vrsta resursa",
     "Team calendar \"{resourceName}\" created and shared with team" : "Timski kalendar „{resourceName}” je stvoren i podijeljen s timom",
     "{resourceType} \"{resourceName}\" created and shared with team" : "{resourceType} „{resourceName}” je stvoren i podijeljen s timom",
@@ -389,6 +385,10 @@
     "Unable to delete contact" : "Nije moguće izbrisati kontakt",
     "Value copied to the clipboard" : "Vrijednost kopirana u međuspremnik",
     "Could not copy value to the clipboard." : "Kopiranje vrijednosti u međuspremnik nije uspjelo.",
+    "Deck board" : "Deck ploča",
+    "New Deck board" : "Nova Deck ploča",
+    "Board name" : "Naziv ploče",
+    "Deck app is not installed. Please install it to create team boards." : "Aplikacija Deck nije instalirana. Instalirajte je kako biste stvorili timske ploče.",
     "note" : "bilješka",
     "email" : "e-pošta"
 },"pluralForm" :"nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;"

@@ -113,10 +113,6 @@
     "Calendar" : "Kalender",
     "New calendar" : "Kalender baru",
     "Calendar name" : "Nama kalender",
-    "Deck board" : "Papan Deck",
-    "New Deck board" : "Papan Deck baru",
-    "Board name" : "Nama papan",
-    "Deck app is not installed. Please install it to create team boards." : "Aplikasi Deck tidak terpasang. Silakan pasang untuk membuat papan tim.",
     "Unknown resource type" : "Jenis sumber daya tidak dikenal",
     "Team calendar \"{resourceName}\" created and shared with team" : "Kalender tim \"{resourceName}\" dibuat dan dibagikan dengan tim",
     "{resourceType} \"{resourceName}\" created and shared with team" : "{resourceType} \"{resourceName}\" dibuat dan dibagikan dengan tim",
@@ -377,6 +373,10 @@
     "Unable to create team {circleName}" : "Tidak dapat membuat tim {circleName}",
     "Unable to delete team {circleId}" : "Tidak dapat menghapus tim {circleId}",
     "Unable to delete contact" : "Tidak dapat menghapus kontak",
+    "Deck board" : "Papan Deck",
+    "New Deck board" : "Papan Deck baru",
+    "Board name" : "Nama papan",
+    "Deck app is not installed. Please install it to create team boards." : "Aplikasi Deck tidak terpasang. Silakan pasang untuk membuat papan tim.",
     "note" : "catatan",
     "email" : "email"
 },"pluralForm" :"nplurals=1; plural=0;"

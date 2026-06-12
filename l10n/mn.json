@@ -109,10 +109,6 @@
     "Calendar" : "Календар",
     "New calendar" : "Шинэ календар",
     "Calendar name" : "Календарын нэр",
-    "Deck board" : "Deck самбар",
-    "New Deck board" : "Шинэ Deck самбар",
-    "Board name" : "Самбарын нэр",
-    "Deck app is not installed. Please install it to create team boards." : "Deck апп суулгаагүй байна. Багийн самбар үүсгэхийн тулд суулгана уу.",
     "Unknown resource type" : "Тодорхойгүй нөөцийн төрөл",
     "Team calendar \"{resourceName}\" created and shared with team" : "Багийн календар \"{resourceName}\" үүсгэгдэж багтай хуваалцсан",
     "{resourceType} \"{resourceName}\" created and shared with team" : "{resourceType} \"{resourceName}\" үүсгэгдэж багтай хуваалцсан",
@@ -379,6 +375,10 @@
     "Unable to delete contact" : "Харилцагч устгах боломжгүй",
     "Value copied to the clipboard" : "Утгыг санах ойд хуулсан",
     "Could not copy value to the clipboard." : "Утгыг санах ойд хуулах боломжгүй байна.",
+    "Deck board" : "Deck самбар",
+    "New Deck board" : "Шинэ Deck самбар",
+    "Board name" : "Самбарын нэр",
+    "Deck app is not installed. Please install it to create team boards." : "Deck апп суулгаагүй байна. Багийн самбар үүсгэхийн тулд суулгана уу.",
     "note" : "тэмдэглэл",
     "email" : "и-мэйл"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

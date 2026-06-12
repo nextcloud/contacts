@@ -111,10 +111,6 @@ OC.L10N.register(
     "Calendar" : "Kalenda",
     "New calendar" : "Kalenda mpya",
     "Calendar name" : "Jina la kalenda",
-    "Deck board" : "Ubao wa deki",
-    "New Deck board" : "Ubao mpya wa deki",
-    "Board name" : "Jina la ubao",
-    "Deck app is not installed. Please install it to create team boards." : "Programu ya sitaha haijasakinishwa. Tafadhali isakinishe ili kuunda bodi za timu.",
     "Unknown resource type" : "Aina ya rasilimali isiyojulikana",
     "Team calendar \"{resourceName}\" created and shared with team" : "Kalenda ya timu \"{resourceName}\" imeundwa na kushirikiwa na timu",
     "{resourceType} \"{resourceName}\" created and shared with team" : "{resourceType} \"{resourceName}\" imeundwa na kushirikiwa na timu",
@@ -356,6 +352,10 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Hitilafu imetokea katika vipengele. Angalia mixer kwa maelezo zaidii",
     "Unable to create team {circleName}" : "Haiwezi kutengeneza timu {circleName}",
     "Unable to delete team {circleId}" : "Haiwezi kufuta timu {circleId}",
-    "Unable to delete contact" : "Haiwezi kufuta mawasiliano"
+    "Unable to delete contact" : "Haiwezi kufuta mawasiliano",
+    "Deck board" : "Ubao wa deki",
+    "New Deck board" : "Ubao mpya wa deki",
+    "Board name" : "Jina la ubao",
+    "Deck app is not installed. Please install it to create team boards." : "Programu ya sitaha haijasakinishwa. Tafadhali isakinishe ili kuunda bodi za timu."
 },
 "nplurals=2; plural=(n != 1);");

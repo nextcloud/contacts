@@ -103,9 +103,6 @@ OC.L10N.register(
     "Calendar" : "Календарь",
     "New calendar" : "Новый календарь",
     "Calendar name" : "Название календаря",
-    "Deck board" : "Доска",
-    "New Deck board" : "Новая доска",
-    "Board name" : "Название доски",
     "Team name" : "Название команды",
     "Team owner" : "Владелец команды",
     "Delete picture" : "Удалить изображение",
@@ -327,6 +324,9 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Произошла ошибка в команде(ах). Проверьте консоль для получения более подробной информации.",
     "Unable to create team {circleName}" : "Невозможно создать команду {circleName}",
     "Unable to delete team {circleId}" : "Невозможно удалить команду {circleId}",
-    "Unable to delete contact" : "Невозможно удалить контакт"
+    "Unable to delete contact" : "Невозможно удалить контакт",
+    "Deck board" : "Доска",
+    "New Deck board" : "Новая доска",
+    "Board name" : "Название доски"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");
