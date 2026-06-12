@@ -60,3 +60,37 @@ describe('Test stripping quotes from TYPE', () => {
 	})
 
 })
+
+describe('Test groups setter', () => {
+
+	let contact
+
+	beforeEach(() => {
+		contact = new Contact(
+			'BEGIN:VCARD\nVERSION:3.0\nUID:123456789-123465-123456-123456789\nFN:Test contact\nEND:VCARD',
+		)
+	})
+
+	test('groups setter updates jCal so the group is included in serialization', () => {
+		contact.groups = ['Friends']
+
+		expect(contact.groups).toEqual(['Friends'])
+		expect(contact.vCard.toString()).toContain('CATEGORIES:Friends')
+	})
+
+	test('groups setter replaces existing groups', () => {
+		contact.groups = ['OldGroup']
+		contact.groups = ['NewGroup']
+
+		expect(contact.groups).toEqual(['NewGroup'])
+	})
+
+	test('groups setter with empty array removes categories property', () => {
+		contact.groups = ['SomeGroup']
+		contact.groups = []
+
+		expect(contact.groups).toEqual([])
+		expect(contact.vCard.hasProperty('categories')).toBe(false)
+	})
+
+})
