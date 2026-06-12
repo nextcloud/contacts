@@ -72,7 +72,7 @@ export default {
 
 		bus: {
 			type: Object,
-			required: false,
+			default: null,
 		},
 	},
 

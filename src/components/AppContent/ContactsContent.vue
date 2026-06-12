@@ -52,7 +52,7 @@
 		</template>
 
 		<!-- main contacts details -->
-		<ContactDetails :contact-key="selectedContact" :contacts="sortedContacts" :reload-bus="reloadBus" />
+		<ContactDetails :contact-key="selectedContact" :reload-bus="reloadBus" />
 	</AppContent>
 </template>
 
@@ -88,7 +88,7 @@ export default {
 	props: {
 		loading: {
 			type: Boolean,
-			default: true,
+			required: true,
 		},
 
 		contactsList: {
@@ -96,6 +96,8 @@ export default {
 			required: true,
 		},
 	},
+
+	emits: ['new-contact'],
 
 	data() {
 		return {
