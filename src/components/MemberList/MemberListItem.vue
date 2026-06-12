@@ -83,6 +83,7 @@
 
 <script>
 import { DialogBuilder, showError } from '@nextcloud/dialogs'
+import { emit } from '@nextcloud/event-bus'
 import {
 	NcActionButton,
 	NcActionSeparator,
@@ -314,6 +315,7 @@ export default {
 					member: this.source,
 					leave: this.isCurrentUser,
 				})
+				emit('contacts:circles:member:deleted')
 			} catch (error) {
 				if (error?.response?.status === 404) {
 					this.logger.debug('Member is not in circle')
@@ -336,13 +338,14 @@ export default {
 				// If we changed an owner, let's refresh the whole dataset to update all ownership & memberships
 				if (level === MemberLevels.OWNER) {
 					await this.$store.dispatch('getCircle', this.circle.id)
-					await this.$store.dispatch('getCircleMembers', this.circle.id)
+					await this.$store.dispatch('getCircleMembers', { circleId: this.circle.id })
 					return
 				}
 
 				// this.source is a class. We're modifying the class setter, not the prop itself
 				// eslint-disable-next-line vue/no-mutating-props
 				this.source.level = level
+				emit('contacts:circles:member:changed')
 			} catch (error) {
 				this.logger.error('Could not change the member level', { level: CIRCLES_MEMBER_LEVELS[level], error })
 				showError(t('contacts', 'Could not change the member level to {level}', {

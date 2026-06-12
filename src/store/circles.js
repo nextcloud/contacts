@@ -5,6 +5,7 @@
 
 import { showError } from '@nextcloud/dialogs'
 import Circle from '../models/circle.ts'
+import { MAX_MEMBERS_TO_RENDER } from '../models/constants.ts'
 import Member from '../models/member.ts'
 import {
 	acceptMember,
@@ -51,6 +52,16 @@ const mutations = {
 			logger.warn('Skipping deletion of unknown circle', { circle })
 		}
 		delete state.circles[circle.id]
+	},
+
+	/**
+	 * Reset circle members
+	 *
+	 * @param {object} state the store data
+	 * @param {string} circleId the circle id
+	 */
+	resetCircleMembers(state, circleId) {
+		state.circles[circleId].members = []
 	},
 
 	/**
@@ -164,13 +175,21 @@ const actions = {
 	 * Retrieve and commit circle members
 	 *
 	 * @param {object} context the store mutations
-	 * @param {string} circleId the circle id
+	 * @param {object} data destructuring object
+	 * @param {string} data.circleId the circle id
+	 * @param {string} data.search the search query
+	 * @param {string} data.role the role
+	 * @param {number} data.limit the limit
 	 */
-	async getCircleMembers(context, circleId) {
+	async getCircleMembers(context, { circleId, search, role, limit }) {
 		const circle = context.getters.getCircle(circleId)
-		const members = await getCircleMembers(circleId)
+		if (limit === undefined) {
+			limit = MAX_MEMBERS_TO_RENDER + 1
+		}
+		const members = await getCircleMembers(circleId, search, role, limit)
 
 		logger.debug(`${circleId} have ${members.length} member(s)`, { members })
+		context.commit('resetCircleMembers', circle.id)
 		context.commit('appendMembersToCircle', members.map((member) => new Member(member, circle)))
 	},
 
