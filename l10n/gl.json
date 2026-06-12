@@ -114,10 +114,6 @@
     "Calendar" : "Calendario",
     "New calendar" : "Novo calendario",
     "Calendar name" : "Nome do calendario",
-    "Deck board" : "Taboleiro da Gabeta",
-    "New Deck board" : "Novo taboleiro da Gabeta",
-    "Board name" : "Nome do taboleiro",
-    "Deck app is not installed. Please install it to create team boards." : "A aplicación Gabeta non está instalada. Instálea para crear taboleiros de equipo.",
     "Unknown resource type" : "Tipo de recurso descoñecido",
     "Team calendar \"{resourceName}\" created and shared with team" : "Calendario do equipo «{resourceName}» creado e compartido co equipo",
     "{resourceType} \"{resourceName}\" created and shared with team" : "{resourceType} «{resourceName}» creado e compartido co equipo",
@@ -387,6 +383,10 @@
     "Unable to delete contact" : "Non é posíbel eliminar o contacto",
     "Value copied to the clipboard" : "O valor foi copiado no portapapeis",
     "Could not copy value to the clipboard." : "Non foi posíbel copiar o valor no portapapeis.",
+    "Deck board" : "Taboleiro da Gabeta",
+    "New Deck board" : "Novo taboleiro da Gabeta",
+    "Board name" : "Nome do taboleiro",
+    "Deck app is not installed. Please install it to create team boards." : "A aplicación Gabeta non está instalada. Instálea para crear taboleiros de equipo.",
     "note" : "nota",
     "email" : "correo"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

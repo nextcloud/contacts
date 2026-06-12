@@ -111,10 +111,6 @@ OC.L10N.register(
     "Calendar" : "Calendar",
     "New calendar" : "New calendar",
     "Calendar name" : "Calendar name",
-    "Deck board" : "Deck board",
-    "New Deck board" : "New Deck board",
-    "Board name" : "Board name",
-    "Deck app is not installed. Please install it to create team boards." : "Deck app is not installed. Please install it to create team boards.",
     "Unknown resource type" : "Unknown resource type",
     "Team calendar \"{resourceName}\" created and shared with team" : "Team calendar \"{resourceName}\" created and shared with team",
     "{resourceType} \"{resourceName}\" created and shared with team" : "{resourceType} \"{resourceName}\" created and shared with team",
@@ -355,6 +351,10 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "An error has occurred in team(s). Check the console for more details.",
     "Unable to create team {circleName}" : "Unable to create team {circleName}",
     "Unable to delete team {circleId}" : "Unable to delete team {circleId}",
-    "Unable to delete contact" : "Unable to delete contact"
+    "Unable to delete contact" : "Unable to delete contact",
+    "Deck board" : "Deck board",
+    "New Deck board" : "New Deck board",
+    "Board name" : "Board name",
+    "Deck app is not installed. Please install it to create team boards." : "Deck app is not installed. Please install it to create team boards."
 },
 "nplurals=1; plural=0;");

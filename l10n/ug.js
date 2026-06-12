@@ -112,10 +112,6 @@ OC.L10N.register(
     "Calendar" : "كالېندار",
     "New calendar" : "يېڭى يىلنامە",
     "Calendar name" : "كالېندار ئىسمى",
-    "Deck board" : "پالۋان تاختىسى",
-    "New Deck board" : "يېڭى پالۋان تاختىسى",
-    "Board name" : "مۇدىرىيەت ئىسمى",
-    "Deck app is not installed. Please install it to create team boards." : "پالۋان ئەپ قاچىلانمىدى. ئەتىرەت مۇدىريىتى قۇرۇش ئۈچۈن ئۇنى قاچىلاڭ.",
     "Unknown resource type" : "نامەلۇم بايلىق تىپى",
     "Team calendar \"{resourceName}\" created and shared with team" : "ئەتىرەت كالىندارى \"{resourceName}\" قۇرۇلدى ھەمدە ئەتىرەت بىلەن ئورتاقلىشىلدى",
     "{resourceType} \"{resourceName}\" created and shared with team" : "{resourceType} \"{resourceName}\" قۇرۇلدى ھەمدە ئەتىرەت بىلەن ئورتاقلىشىلدى",
@@ -373,6 +369,10 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "گۇرۇپپا (لار) دا خاتالىق كۆرۈلدى. تېخىمۇ كۆپ تەپسىلاتلارنى كونترول سۇپىسىدىن تەكشۈرۈڭ.",
     "Unable to create team {circleName}" : "گۇرۇپپا {circleName} create قۇرالمىدى",
     "Unable to delete team {circleId}" : "گۇرۇپپا {circleId} ئۆچۈرگىلى بولمىدى",
-    "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى"
+    "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى",
+    "Deck board" : "پالۋان تاختىسى",
+    "New Deck board" : "يېڭى پالۋان تاختىسى",
+    "Board name" : "مۇدىرىيەت ئىسمى",
+    "Deck app is not installed. Please install it to create team boards." : "پالۋان ئەپ قاچىلانمىدى. ئەتىرەت مۇدىريىتى قۇرۇش ئۈچۈن ئۇنى قاچىلاڭ."
 },
 "nplurals=2; plural=(n != 1);");
