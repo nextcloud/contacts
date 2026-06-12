@@ -113,10 +113,6 @@ OC.L10N.register(
     "Calendar" : "Календар",
     "New calendar" : "Нов календар",
     "Calendar name" : "Име на календар",
-    "Deck board" : "Deck табла",
-    "New Deck board" : "Нова Deck табла",
-    "Board name" : "Име на табла",
-    "Deck app is not installed. Please install it to create team boards." : "Deck апликацијата не е инсталирана. Инсталирајте ја за да креирате тимски табли.",
     "Unknown resource type" : "Непознат вид на ресурс",
     "Team calendar \"{resourceName}\" created and shared with team" : "Календар \"{resourceName}\" е креиран и споделен со тимот",
     "{resourceType} \"{resourceName}\" created and shared with team" : "{resourceType} \"{resourceName}\" е креирано и споделено со тимот",
@@ -359,6 +355,10 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Настана грешка во некои тим(ови). Проверете ја конзолата за повеќе детали.",
     "Unable to create team {circleName}" : "Неможе да се креира тим {circleName}",
     "Unable to delete team {circleId}" : "Неможе да се избрише тимот {circleId}",
-    "Unable to delete contact" : "Неможе да се избрише контакт"
+    "Unable to delete contact" : "Неможе да се избрише контакт",
+    "Deck board" : "Deck табла",
+    "New Deck board" : "Нова Deck табла",
+    "Board name" : "Име на табла",
+    "Deck app is not installed. Please install it to create team boards." : "Deck апликацијата не е инсталирана. Инсталирајте ја за да креирате тимски табли."
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");
