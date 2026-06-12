@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<AppContent>
+	<AppContent :aria-label="t('contacts', 'Teams')">
 		<EmptyContent v-if="!circle && !userGroup" :name="t('contacts', 'Please select a team')">
 			<template #icon>
 				<AccountGroup :size="20" />

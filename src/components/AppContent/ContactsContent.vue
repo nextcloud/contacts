@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<AppContent v-if="loading">
+	<AppContent v-if="loading" :aria-label="t('contacts', 'Contacts')">
 		<EmptyContent class="empty-content" :name="t('contacts', 'Loading contacts …')">
 			<template #icon>
 				<IconLoading :size="20" />
@@ -12,7 +12,7 @@
 		</EmptyContent>
 	</AppContent>
 
-	<AppContent v-else-if="isEmptyGroup && !isRealGroup">
+	<AppContent v-else-if="isEmptyGroup && !isRealGroup" :aria-label="t('contacts', 'Contacts')">
 		<EmptyContent class="empty-content" :name="t('contacts', 'There are no contacts yet')">
 			<template #icon>
 				<IconContact :size="20" />
@@ -25,7 +25,7 @@
 		</EmptyContent>
 	</AppContent>
 
-	<AppContent v-else-if="isEmptyGroup && isRealGroup">
+	<AppContent v-else-if="isEmptyGroup && isRealGroup" :aria-label="t('contacts', 'Contacts')">
 		<EmptyContent class="empty-content" :name=" t('contacts', 'There are no contacts in this group')">
 			<template #icon>
 				<IconContact :size="20" />
@@ -41,7 +41,11 @@
 		</EmptyContent>
 	</AppContent>
 
-	<AppContent v-else :show-details="showDetails" @update:show-details="hideDetails">
+	<AppContent
+		v-else
+		:aria-label="t('contacts', 'Contacts')"
+		:show-details="showDetails"
+		@update:show-details="hideDetails">
 		<!-- contacts list -->
 		<template #list>
 			<ContactsList
