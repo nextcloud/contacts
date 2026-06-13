@@ -22,10 +22,7 @@
 					@update:model-value="toggleSocialSync" />
 			</NcFormBox>
 
-			<SettingsImportContacts
-				:addressbooks="addressbooks"
-				@clicked="onClickImport"
-				@file-loaded="onLoad" />
+			<SettingsImportContacts />
 		</AppSettingsSection>
 
 		<AppSettingsSection id="address-books" :name="t('contacts', 'Address books')">
@@ -105,10 +102,6 @@ export default {
 	},
 
 	methods: {
-		onClickImport(event) {
-			this.$emit('clicked', event)
-		},
-
 		async toggleSocialSync(value) {
 			this.enableSocialSyncLoading = true
 
@@ -124,10 +117,6 @@ export default {
 			} finally {
 				this.enableSocialSyncLoading = false
 			}
-		},
-
-		onLoad() {
-			this.$emit('file-loaded', false)
 		},
 
 		async onOpen() {

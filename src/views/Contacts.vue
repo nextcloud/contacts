@@ -9,7 +9,8 @@
 		<RootNavigation
 			:loading="loadingContacts || loadingCircles">
 			<div class="import-and-new-contact-buttons">
-				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView"
+				<SettingsImportContacts
+					v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView"
 					:is-ocm-invites-enabled="isOcmInvitesEnabled" />
 				<!-- new-contact-button -->
 				<NcButton
@@ -71,15 +72,6 @@
 			:contacts-list="contactsList"
 			:loading="loadingContacts"
 			@new-contact="newContact" />
-
-		<!-- Import modal -->
-		<Modal
-			v-if="isImporting"
-			:clear-view-delay="-1"
-			:can-close="isImportDone"
-			@close="closeImport">
-			<ImportView @close="closeImport" />
-		</Modal>
 
 		<!-- new invite form -->
 		<Modal
@@ -180,7 +172,6 @@ import ContactsPicker from '../components/EntityPicker/ContactsPicker.vue'
 import OcmAcceptForm from '../components/Ocm/OcmAcceptForm.vue'
 import OcmInviteAccept from '../components/Ocm/OcmInviteAccept.vue'
 import OcmInviteForm from '../components/Ocm/OcmInviteForm.vue'
-import ImportView from './Processing/ImportView.vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import RouterMixin from '../mixins/RouterMixin.js'
 import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE, ROUTE_NAME_ALL_OCM_INVITES, ROUTE_NAME_INVITE_ACCEPT_DIALOG, ROUTE_NAME_OCM_INVITE, ROUTE_USER_GROUP } from '../models/constants.ts'
@@ -210,7 +201,6 @@ const _default = {
 		ContactsContent,
 		ContactsPicker,
 		Content,
-		ImportView,
 		IconAccountArrowDownOutline,
 		IconAccountSwitchOutline,
 		IconAdd,
@@ -282,34 +272,12 @@ const _default = {
 			return this.$store.getters.getOrderKey
 		},
 
-		importState() {
-			return this.$store.getters.getImportState
-		},
-
 		isEmptyGroup() {
 			return this.contactsList.length === 0
 		},
 
 		isChartView() {
 			return !!this.selectedChart
-		},
-
-		/**
-		 * Are we importing contacts ?
-		 *
-		 * @return {boolean}
-		 */
-		isImporting() {
-			return this.importState.stage !== 'default'
-		},
-
-		/**
-		 * Are we done importing contacts ?
-		 *
-		 * @return {boolean}
-		 */
-		isImportDone() {
-			return this.importState.stage === 'done'
 		},
 
 		// first enabled addressbook of the list
@@ -675,13 +643,6 @@ const _default = {
 					})
 				}
 			}
-		},
-
-		/**
-		 * Done importing, the user closed the import status screen
-		 */
-		closeImport() {
-			this.$store.dispatch('changeStage', 'default')
 		},
 
 		/**
