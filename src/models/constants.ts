@@ -43,6 +43,10 @@ export const OCM_INVITES_CONFIG_KEYS = {
 	encodedCopyButton: 'ocm_invites_encoded_copy_button',
 } as const
 
+// Import destination placeholder for a new address book. Address book ids are a single
+// URI path segment, so a value containing a slash can never collide with an existing one.
+export const IMPORT_NEW_ADDRESSBOOK_ID = '/new'
+
 // Contact settings
 export const CONTACTS_SETTINGS: DefaultGroup = t('contacts', 'Contacts settings')
 
