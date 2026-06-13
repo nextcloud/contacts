@@ -9,7 +9,6 @@ import addressbooks from './addressbooks.js'
 import circles from './circles.js'
 import contacts from './contacts.js'
 import groups from './groups.js'
-import importState from './importState.js'
 
 const mutations = {}
 
@@ -17,7 +16,6 @@ const modules = {
 	addressbooks,
 	contacts,
 	groups,
-	importState,
 }
 
 // If circles is enabled let's init the store
