@@ -41,15 +41,6 @@
 			:loading="loadingContacts"
 			@new-contact="newContact" />
 
-		<!-- Import modal -->
-		<Modal
-			v-if="isImporting"
-			:clear-view-delay="-1"
-			:can-close="isImportDone"
-			@close="closeImport">
-			<ImportView @close="closeImport" />
-		</Modal>
-
 		<!-- Select contacts group modal -->
 		<ContactsPicker />
 	</Content>
@@ -61,7 +52,6 @@ import { showError } from '@nextcloud/dialogs'
 import { emit } from '@nextcloud/event-bus'
 import {
 	NcContent as Content,
-	NcModal as Modal,
 	NcButton,
 } from '@nextcloud/vue'
 import ICAL from 'ical.js'
@@ -72,7 +62,6 @@ import ContactsContent from '../components/AppContent/ContactsContent.vue'
 import RootNavigation from '../components/AppNavigation/RootNavigation.vue'
 import SettingsImportContacts from '../components/AppNavigation/Settings/SettingsImportContacts.vue'
 import ContactsPicker from '../components/EntityPicker/ContactsPicker.vue'
-import ImportView from './Processing/ImportView.vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import RouterMixin from '../mixins/RouterMixin.js'
 import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE, ROUTE_USER_GROUP } from '../models/constants.ts'
@@ -93,9 +82,7 @@ export default {
 		ContactsContent,
 		ContactsPicker,
 		Content,
-		ImportView,
 		IconAdd,
-		Modal,
 		RootNavigation,
 		SettingsImportContacts,
 	},
@@ -143,34 +130,12 @@ export default {
 			return this.$store.getters.getOrderKey
 		},
 
-		importState() {
-			return this.$store.getters.getImportState
-		},
-
 		isEmptyGroup() {
 			return this.contactsList.length === 0
 		},
 
 		isChartView() {
 			return !!this.selectedChart
-		},
-
-		/**
-		 * Are we importing contacts ?
-		 *
-		 * @return {boolean}
-		 */
-		isImporting() {
-			return this.importState.stage !== 'default'
-		},
-
-		/**
-		 * Are we done importing contacts ?
-		 *
-		 * @return {boolean}
-		 */
-		isImportDone() {
-			return this.importState.stage === 'done'
 		},
 
 		// first enabled addressbook of the list
@@ -413,13 +378,6 @@ export default {
 					})
 				}
 			}
-		},
-
-		/**
-		 * Done importing, the user closed the import status screen
-		 */
-		closeImport() {
-			this.$store.dispatch('changeStage', 'default')
 		},
 	},
 }
