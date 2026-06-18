@@ -1,3 +1,18 @@
+## [8.7.1](https://github.com/nextcloud/contacts/compare/v8.7.0...v8.7.1) (2026-06-18)
+
+
+### Bug Fixes
+
+* **deps:** update dependency vite to v7.3.5 ([72a278a](https://github.com/nextcloud/contacts/commit/72a278a3e541712d5b103d15f4f02531b0ac7cc4))
+* **l10n:** Update translations from Transifex ([5e90124](https://github.com/nextcloud/contacts/commit/5e90124e0f25c876853859f4741a877f34bc2acd))
+* **l10n:** Update translations from Transifex ([e26950f](https://github.com/nextcloud/contacts/commit/e26950f3d2f69cd9838db1306c58093fd97b7506))
+* **l10n:** Update translations from Transifex ([1d6bf62](https://github.com/nextcloud/contacts/commit/1d6bf6265e5db5b958df314c4dc52ff42033a3b6))
+* **l10n:** Update translations from Transifex ([001eb11](https://github.com/nextcloud/contacts/commit/001eb11e7d6267126bec8ecee20abfb4b04620e2))
+* remove create deck board button ([d2870f5](https://github.com/nextcloud/contacts/commit/d2870f5c39766a67361c7ef71fc4f2f5bbbb0bd3))
+* **test:** wrong addressbook key return type ([471e0cd](https://github.com/nextcloud/contacts/commit/471e0cd347e36a8185a18204aa65e42cdc9b0ea8))
+
+
+
 # [8.7.0](https://github.com/nextcloud/contacts/compare/v6.0.0-rc1...v8.7.0) (2026-06-10)
 
 
