@@ -1,3 +1,20 @@
+## [8.3.13](https://github.com/nextcloud/contacts/compare/v8.3.12...v8.3.13) (2026-06-18)
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([f0a9a01](https://github.com/nextcloud/contacts/commit/f0a9a01451b3f0d31f2223cadd85221d68a666a8))
+* **l10n:** Update translations from Transifex ([5a3deab](https://github.com/nextcloud/contacts/commit/5a3deab9fab571d3cfbd49005b45d35813408544))
+* **l10n:** Update translations from Transifex ([79cfffb](https://github.com/nextcloud/contacts/commit/79cfffbc393b7f5f1eec1d1f9df32cf8f522ff7f))
+* **l10n:** Update translations from Transifex ([cb29898](https://github.com/nextcloud/contacts/commit/cb29898a3f080f97b987b7672be28cdc5452da23))
+* **l10n:** Update translations from Transifex ([46338c4](https://github.com/nextcloud/contacts/commit/46338c48729e7fd788fdc75aeddfa4d98e57ed27))
+* **l10n:** Update translations from Transifex ([ca5d72b](https://github.com/nextcloud/contacts/commit/ca5d72b5d1ed4780a27cf57087440e4e6d8b146b))
+* **l10n:** Update translations from Transifex ([e20e3b0](https://github.com/nextcloud/contacts/commit/e20e3b0214440a47fa134bdeca56c890845c6390))
+* **l10n:** Update translations from Transifex ([c694a52](https://github.com/nextcloud/contacts/commit/c694a52d8bed8dad9e1022562ea60f098ae19287))
+* **test:** wrong addressbook key return type ([3d245a2](https://github.com/nextcloud/contacts/commit/3d245a2a23abc8749e2396aee2138656b3a289c4))
+
+
+
 ## [8.3.12](https://github.com/nextcloud/contacts/compare/v8.3.11...v8.3.12) (2026-05-26)
 
 
