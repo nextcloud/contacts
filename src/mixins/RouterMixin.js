@@ -13,8 +13,12 @@ export default {
 		},
 		selectedGroup() {
 			const { name } = this.$route
-			if (name === 'circle') { return ROUTE_CIRCLE }
-			if (name === 'user_group') { return ROUTE_USER_GROUP }
+			if (name === 'circle') { 
+				return ROUTE_CIRCLE 
+			}
+			if (name === 'user_group') { 
+				return ROUTE_USER_GROUP 
+			}
 			return this.$route.params.selectedGroup
 		},
 		selectedCircle() {
