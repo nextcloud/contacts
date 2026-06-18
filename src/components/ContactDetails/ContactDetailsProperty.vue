@@ -213,11 +213,15 @@ export default {
 		 * @return {ICAL.Property}
 		 */
 		propLabel() {
-			if (!this.propGroup[1]) { return null } // not a grouped property
+			if (!this.propGroup[1]) { 
+				return null 
+			} // not a grouped property
 			const group = this.propGroup[0]
 
 			const dottedLabel = this.localContact.vCard.getFirstProperty(`${group}.x-ablabel`)
-			if (dottedLabel) { return dottedLabel }
+			if (dottedLabel) { 
+				return dottedLabel 
+			}
 			return (
 				this.localContact.vCard
 					.getAllProperties('x-ablabel')

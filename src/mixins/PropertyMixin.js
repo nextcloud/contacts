@@ -135,7 +135,9 @@ export default {
 				const oldLabel = this.localContact.vCard
 					.getAllProperties('x-ablabel')
 					.find((p) => p.getParameter('group') === existingGroup)
-				if (oldLabel) { this.localContact.vCard.removeProperty(oldLabel) }
+				if (oldLabel) { 
+					this.localContact.vCard.removeProperty(oldLabel) 
+				}
 			} else if (!this.property.name.startsWith('nextcloud')) {
 				propGroup = `nextcloud${this.getNcGroupCount() + 1}.${this.property.name}`
 				this.property.jCal[0] = propGroup
@@ -155,7 +157,9 @@ export default {
 			const props = this.localContact.jCal[1]
 				.map((prop) => {
 					const nameGroup = prop[0].split('.')[0]
-					if (nameGroup.startsWith('nextcloud')) { return nameGroup }
+					if (nameGroup.startsWith('nextcloud')) { 
+						return nameGroup 
+					}
 					return (prop[1] && prop[1].group) || ''
 				})
 				.filter((name) => name.startsWith('nextcloud'))
