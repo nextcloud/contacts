@@ -1,5 +1,10 @@
 # Changelog
 
+## 6.0.7 - 2026-06-24
+### Fixed 
+- Respect global social media settings
+- Use correct constructor signature for ContactsManager
+
 ## 6.0.6 - 2025-08-18
 ### Fixed 
 - Escape organization/title properties
