@@ -51,10 +51,8 @@ class PageController extends Controller {
 		$defaultProfile = $this->config->getAppValue(Application::APP_ID, 'defaultProfile', 'HOME');
 
 		$supportedNetworks = $this->socialApiService->getSupportedNetworks();
-		// allow users to retrieve avatars from social networks (default: yes)
-		$syncAllowedByAdmin = $this->config->getAppValue(Application::APP_ID, 'allowSocialSync', 'yes');
-		// automated background syncs for social avatars (default: no)
-		$bgSyncEnabledByUser = $this->config->getUserValue($userId, Application::APP_ID, 'enableSocialSync', 'no');
+		$syncAllowedByAdmin = $this->socialApiService->syncAllowedByAdmin();
+		$bgSyncEnabledByUser = $this->socialApiService->backgroundSyncEnabled($userId);
 
 		$circleVersion = $this->appManager->getAppVersion('circles');
 		$isContactsInteractionEnabled = $this->appManager->isEnabledForUser('contactsinteraction') === true;
