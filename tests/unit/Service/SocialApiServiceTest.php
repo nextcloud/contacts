@@ -162,10 +162,27 @@ class SocialApiServiceTest extends TestCase {
 		$this->assertEmpty($result);
 	}
 
+	public function testUpdateContactWithDeactivatedSocial() {
+		$this->config
+			->method('getAppValue')
+			->willReturn('no');
+
+		$result = $this->service
+			->updateContact(
+				'contacts',
+				'3225c0d5-1bd2-43e5-a08c-4e65eaa406b0',
+				null);
+		$this->assertEquals(HTTP::STATUS_FORBIDDEN, $result->getStatus());
+	}
+
 	/**
 	 * @dataProvider allSocialProfileProviders
 	 */
 	public function testUpdateContactWithoutNetwork($addressbooks, $providers, $body, $imageType, $status) {
+		$this->config
+			->method('getAppValue')
+			->willReturn('yes');
+
 		$this->manager
 			->method('getUserAddressBooks')
 			->willReturn($addressbooks);
@@ -211,6 +228,11 @@ class SocialApiServiceTest extends TestCase {
 			'URI' => $contactId,
 			'VERSION' => '3.0'
 		];
+
+		$this->config
+			->method('getAppValue')
+			->willReturn('yes');
+
 		$provider = $this->createMock(ISocialProvider::class);
 		$provider->method('supportsContact')->willReturn(true);
 		$provider->method('getImageUrls')->willReturn(["https://url1.com/an-url"]);
@@ -284,6 +306,11 @@ class SocialApiServiceTest extends TestCase {
 			'URI' => $contactId,
 			'VERSION' => '4.0'
 		];
+
+		$this->config
+			->method('getAppValue')
+			->willReturn('yes');
+
 		$provider = $this->createMock(ISocialProvider::class);
 		$provider->method('supportsContact')->willReturn(true);
 		$provider->method('getImageUrls')->willReturn(["https://url1.com/an-url"]);
