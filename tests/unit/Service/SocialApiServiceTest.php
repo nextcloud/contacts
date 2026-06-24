@@ -606,7 +606,7 @@ class SocialApiServiceTest extends TestCase {
 			->expects($this->never())
 			->method('getSocialConnector');
 
-		$result = $this->service->updateAddressbooks('mrstest');
+		$result = $this->service->updateAddressBooks('mrstest');
 
 		$this->assertEquals($expected, $result->getStatus());
 
@@ -637,7 +637,7 @@ class SocialApiServiceTest extends TestCase {
 
 		$this->setupAddressbooks();
 
-		$result = $this->service->updateAddressbooks('msstest');
+		$result = $this->service->updateAddressBooks('msstest');
 
 		$this->assertEquals(Http::STATUS_PARTIAL_CONTENT, $result->getStatus());
 
@@ -665,7 +665,7 @@ class SocialApiServiceTest extends TestCase {
 
 		$this->setupAddressbooks();
 
-		$result = $this->service->updateAddressbooks('mrstest', 'contacts2', '22222222-2222-2222-2222-222222222222');
+		$result = $this->service->updateAddressBooks('mrstest', 'contacts2', '22222222-2222-2222-2222-222222222222');
 
 		$this->assertEquals($expected, $result->getStatus());
 
