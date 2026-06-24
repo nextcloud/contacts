@@ -40,7 +40,7 @@ class SocialUpdate extends QueuedJob {
 		}
 
 		// update contacts with first available social media profile
-		$result = $this->social->updateAddressbooks($userId, $offsetBook, $offsetContact);
+		$result = $this->social->updateAddressBooks($userId, $offsetBook, $offsetContact);
 
 		if ($result->getStatus() === Http::STATUS_PARTIAL_CONTENT) {
 			// not finished; schedule a follow-up
