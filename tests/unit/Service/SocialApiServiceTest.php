@@ -31,6 +31,7 @@ use OCP\AppFramework\Http;
 use OCP\Http\Client\IClient;
 use OCP\Http\Client\IResponse;
 use OCP\Http\Client\IClientService;
+use OCP\IAppConfig;
 use OCP\IConfig;
 use OCP\Contacts\IManager;
 use OCP\IAddressBook;
@@ -53,6 +54,8 @@ class SocialApiServiceTest extends TestCase {
 	private $manager;
 	/** @var IConfig&MockObject */
 	private $config;
+	/** @var IAppConfig&MockObject */
+	private $appConfig;
 	/** @var IClientService&MockObject */
 	private $clientService;
 	/** @var IL10N&MockObject	*/
@@ -126,6 +129,7 @@ class SocialApiServiceTest extends TestCase {
 
 		$this->manager = $this->createMock(IManager::class);
 		$this->config = $this->createMock(IConfig::class);
+		$this->appConfig = $this->createMock(IAppConfig::class);
 		$this->socialProvider = $this->createMock(CompositeSocialProvider::class);
 		$this->clientService = $this->createMock(IClientService::class);
 		$this->l10n = $this->createMock(IL10N::class);
@@ -138,6 +142,7 @@ class SocialApiServiceTest extends TestCase {
 			$this->socialProvider,
 			$this->manager,
 			$this->config,
+			$this->appConfig,
 			$this->clientService,
 			$this->l10n,
 			$this->urlGen,
