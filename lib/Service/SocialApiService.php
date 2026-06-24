@@ -48,6 +48,21 @@ class SocialApiService {
 		$this->appName = Application::APP_ID;
 	}
 
+	/**
+	 * Allow users to retrieve avatars from social networks (default: yes)
+	 */
+	public function syncAllowedByAdmin() : bool {
+		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
+		return $syncAllowedByAdmin === 'yes';
+	}
+
+	/**
+	 * Automated background syncs for social avatars (default: no)
+	 */
+	public function backgroundSyncEnabled(string $userId) : bool {
+		$backgroundSyncEnabledByUser = $this->config->getUserValue($userId, $this->appName, 'enableSocialSync', 'no');
+		return $this->syncAllowedByAdmin() && ($backgroundSyncEnabledByUser === 'yes');
+	}
 
 	/**
 	 * returns an array of supported social networks
@@ -55,13 +70,11 @@ class SocialApiService {
 	 * @return array array of the supported social networks
 	 */
 	public function getSupportedNetworks() : array {
-		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
-		if ($syncAllowedByAdmin !== 'yes') {
+		if (!$this->syncAllowedByAdmin()) {
 			return [];
 		}
 		return $this->socialProvider->getSupportedNetworks();
 	}
-
 
 	/**
 	 * Adds/updates photo for contact
@@ -144,6 +157,10 @@ class SocialApiService {
 	 * @returns {JSONResponse} an empty JSONResponse with respective http status code
 	 */
 	public function updateContact(string $addressbookId, string $contactId, ?string $network) : JSONResponse {
+		if (!$this->syncAllowedByAdmin()) {
+			return new JSONResponse([], Http::STATUS_FORBIDDEN);
+		}
+
 		$socialdata = null;
 		$imageType = null;
 		$urls = [];
@@ -341,10 +358,7 @@ class SocialApiService {
 	 * @returns {JSONResponse} JSONResponse with the list of changed and failed contacts
 	 */
 	public function updateAddressbooks(string $userId, ?string $offsetBook = null, ?string $offsetContact = null, ?string $network = null) : JSONResponse {
-		// double check!
-		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
-		$bgSyncEnabledByUser = $this->config->getUserValue($userId, $this->appName, 'enableSocialSync', 'no');
-		if (($syncAllowedByAdmin !== 'yes') || ($bgSyncEnabledByUser !== 'yes')) {
+		if (!$this->backgroundSyncEnabled($userId)) {
 			return new JSONResponse([], Http::STATUS_FORBIDDEN);
 		}
 
