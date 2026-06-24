@@ -1,3 +1,13 @@
+## [7.3.18](https://github.com/nextcloud/contacts/compare/v7.3.17...v7.3.18) (2026-06-24)
+
+
+### Bug Fixes
+
+* **GroupNavigationItem:** incorrect group dropping handling ([5c2137e](https://github.com/nextcloud/contacts/commit/5c2137e4728b70838ecb9edbe3e92fea7e57a998))
+* **SocialApi:** Respect global social media settings ([a7197e1](https://github.com/nextcloud/contacts/commit/a7197e1807a0fa335a62e17c47cc9ed71fead3db))
+
+
+
 ## [7.3.17](https://github.com/nextcloud/contacts/compare/v7.3.16...v7.3.17) (2026-03-25)
 
 
