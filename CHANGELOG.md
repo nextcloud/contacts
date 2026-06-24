@@ -1,3 +1,14 @@
+## [8.7.2](https://github.com/nextcloud/contacts/compare/v8.7.1...v8.7.2) (2026-06-24)
+
+
+### Bug Fixes
+
+* **l10n:** Update translations from Transifex ([28678ca](https://github.com/nextcloud/contacts/commit/28678caff68d500b666a98d735e66e12a292f9c3))
+* **l10n:** Update translations from Transifex ([5d9ca5b](https://github.com/nextcloud/contacts/commit/5d9ca5bfe6e683e21e794fe37e171bced626a1d4))
+* **SocialApi:** Respect global social media settings ([babe45a](https://github.com/nextcloud/contacts/commit/babe45a5ac16bf877fc2fee28d2df38d094f6874))
+
+
+
 ## [8.7.1](https://github.com/nextcloud/contacts/compare/v8.7.0...v8.7.1) (2026-06-18)
 
 
