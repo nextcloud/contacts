@@ -238,7 +238,7 @@ OC.L10N.register(
     "This team will not be shared with the other instances of the global scale" : "Dieses Team wird nicht mit den anderen Instanzen des \"Global Scales\" geteilt",
     "Create team" : "Team erstellen",
     "Promote as sole owner" : "Als Alleineigentümer ernennen",
-    "Promote to {level}" : "Zum {level} ernennen",
+    "Promote to {level}" : "Zum/Zur {level} ernennen",
     "Demote to {level}" : "Herabstufen auf {level}",
     "Are you sure you want to leave this team? This action cannot be undone." : "Möchten Sie das Team verlassen? Dieser Vorgang kann nicht rückgängig gemacht werden.",
     "Leave team failed." : "Team verlassen fehlgeschlagen",
