@@ -134,6 +134,7 @@ OC.L10N.register(
     "Your request to join this team is pending approval" : "Vaše žádost o přidání do tohoto týmu čeká na schválení",
     "You are not a member of {circle}" : "Nejste členy {circle}",
     "Members" : "Členové",
+    "Apply" : "Použít",
     "Confirm" : "Potvrdit",
     "Add more info" : "Přidat další informace",
     "More fields" : "Další kolonky",
