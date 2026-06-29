@@ -149,6 +149,7 @@ OC.L10N.register(
     "Federation" : "Federação",
     "Allow federated members" : "Permitir membros federados",
     "Privacy" : "Privacidade",
+    "Users" : "Usuários",
     "groups" : "grupos",
     "teams" : "equipes",
     "Email addresses" : "Endereço de e-mail",
