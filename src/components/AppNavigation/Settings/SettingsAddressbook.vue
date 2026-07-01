@@ -245,7 +245,7 @@ export default {
 
 		principalUrl() {
 			const principalsStore = usePrincipalsStore()
-			return principalsStore.currentUserPrincipal?.url
+			return principalsStore.currentUserPrincipal.principalUrl
 		},
 
 		isSharedWithMe() {
