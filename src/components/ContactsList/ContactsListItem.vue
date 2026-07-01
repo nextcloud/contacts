@@ -13,7 +13,7 @@
 			:key="source.key"
 			class="list-item-style envelope"
 			:name="source.displayName"
-			:to="isStatic ? undefined : { name: 'contact', params: { selectedGroup: selectedGroup, selectedContact: source.key } }">
+			:to="isStatic ? undefined : contactRoute">
 			<!-- @slot Icon slot -->
 
 			<template #icon>
@@ -94,6 +94,7 @@ import CheckIcon from 'vue-material-design-icons/Check.vue'
 import StarIcon from 'vue-material-design-icons/Star.vue'
 import StarOutlineIcon from 'vue-material-design-icons/StarOutline.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
+import { GROUP_ALL_CONTACTS } from '../../models/constants.ts'
 
 export default {
 	name: 'ContactsListItem',
@@ -153,6 +154,25 @@ export default {
 	},
 
 	computed: {
+		contactRoute() {
+			if (this.selectedAddressbook) {
+				return {
+					name: 'contact',
+					params: {
+						selectedGroup: GROUP_ALL_CONTACTS,
+						selectedContact: this.source.key,
+					},
+				}
+			}
+			return {
+				name: 'contact',
+				params: {
+					selectedGroup: this.selectedGroup,
+					selectedContact: this.source.key,
+				},
+			}
+		},
+
 		isFavorite() {
 			return this.source.favorite
 		},
@@ -269,11 +289,7 @@ export default {
 			if (this.isStatic) {
 				return
 			}
-			// change url with router
-			this.$router.push({
-				name: 'contact',
-				params: { selectedGroup: this.selectedGroup, selectedContact: this.source.key },
-			})
+			this.$router.push(this.contactRoute)
 		},
 
 		onSelectMultiple() {

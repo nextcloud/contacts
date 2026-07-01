@@ -190,8 +190,10 @@ export default {
 			if (this.selectedAddressbook) {
 				const addressbook = this.addressbooks.find((ab) => ab.id === this.selectedAddressbook)
 				if (addressbook) {
-					const keys = Object.keys(addressbook.contacts)
-					return this.sortedContacts.filter((contact) => keys.includes(contact.key))
+					const contactKeys = new Set(
+						Object.values(addressbook.contacts).map((c) => c.key),
+					)
+					return this.sortedContacts.filter((contact) => contactKeys.has(contact.key))
 				}
 				return []
 			}
@@ -288,6 +290,10 @@ export default {
 				return
 			}
 
+			const targetAddressbook = this.selectedAddressbook
+				? this.addressbooks.find((ab) => ab.id === this.selectedAddressbook) ?? this.defaultAddressbook
+				: this.defaultAddressbook
+
 			const contact = new Contact(
 				`
 				BEGIN:VCARD
@@ -295,7 +301,7 @@ export default {
 				PRODID:-//Nextcloud Contacts v${appVersion}
 				END:VCARD
 			`.trim().replace(/\t/gm, ''),
-				this.defaultAddressbook,
+				targetAddressbook,
 			)
 
 			contact.fullName = t('contacts', 'Name')
@@ -331,7 +337,7 @@ export default {
 				await this.$router.push({
 					name: 'contact',
 					params: {
-						selectedGroup: this.selectedGroup,
+						selectedGroup: this.selectedAddressbook ? GROUP_ALL_CONTACTS : this.selectedGroup,
 						selectedContact: contact.key,
 					},
 				})
@@ -376,8 +382,8 @@ export default {
 		 * if none are selected already
 		 */
 		selectFirstContactIfNone() {
-			// Do not redirect if pending import
-			if (this.$route.name === 'import') {
+			// Do not redirect if pending import or browsing an address book
+			if (this.$route.name === 'import' || this.$route.name === 'addressbook') {
 				return
 			}
 
@@ -397,6 +403,7 @@ export default {
 				// Unknown group
 				if (!this.selectedCircle
 					&& !this.selectedUserGroup
+					&& !this.selectedAddressbook
 					&& !this.groups.find((group) => group.name === this.selectedGroup)
 					&& GROUP_ALL_CONTACTS !== this.selectedGroup
 					&& GROUP_NO_GROUP_CONTACTS !== this.selectedGroup
@@ -411,7 +418,7 @@ export default {
 					return
 				}
 
-				if (Object.keys(this.contactsList).length) {
+				if (Object.keys(this.contactsList).length && !this.selectedAddressbook) {
 					this.$router.push({
 						name: 'contact',
 						params: {
