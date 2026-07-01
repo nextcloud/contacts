@@ -124,7 +124,7 @@ function formatResults(result) {
 		label: result.label,
 		id: `${type}-${result.value.shareWith}`,
 		// If this is a user, set as user for avatar display by UserBubble
-		user: [window.OC.Share.SHARE_TYPE_USER, window.OC.Share.SHARE_TYPE_REMOTE].indexOf(result.value.shareType) > -1
+		user: [ShareType.User, ShareType.Remote].indexOf(result.value.shareType) > -1
 			? result.value.shareWith
 			: null,
 		type,
