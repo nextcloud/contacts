@@ -94,6 +94,29 @@
 				</template>
 			</AppNavigationItem>
 
+			<!-- Address books section -->
+			<AppNavigationCaption
+				:name="t('contacts', 'Address books')" />
+			<AppNavigationItem
+				v-for="addressbook in enabledAddressbooks"
+				:key="addressbook.id"
+				:name="addressbook.displayName"
+				:to="{
+					name: 'addressbook',
+					params: { selectedAddressbook: addressbook.id },
+				}"
+				:active="routeState === `addressbook:${addressbook.id}`"
+				@click="updateRouteState(`addressbook:${addressbook.id}`)">
+				<template #icon>
+					<IconAddressBook :size="20" />
+				</template>
+				<template #counter>
+					<NcCounterBubble
+						v-if="addressbookContactCount(addressbook)"
+						:count="addressbookContactCount(addressbook)" />
+				</template>
+			</AppNavigationItem>
+
 			<AppNavigationCaption
 				id="newgroup"
 				v-model:menu-open="isNewGroupMenuOpen"
@@ -218,6 +241,7 @@ import IconUserFilled from 'vue-material-design-icons/Account.vue'
 import IconContactFilled from 'vue-material-design-icons/AccountMultiple.vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconUser from 'vue-material-design-icons/AccountOutline.vue'
+import IconAddressBook from 'vue-material-design-icons/BookAccountOutline.vue'
 import IconError from 'vue-material-design-icons/AlertCircleOutline.vue'
 import Cog from 'vue-material-design-icons/CogOutline.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
@@ -247,6 +271,7 @@ export default {
 		Cog,
 		ContactsSettings,
 		GroupNavigationItem,
+		IconAddressBook,
 		IconContact,
 		IconContactFilled,
 		IconUser,
@@ -301,6 +326,14 @@ export default {
 
 	computed: {
 		// store variables
+		addressbooks() {
+			return this.$store.getters.getAddressbooks
+		},
+
+		enabledAddressbooks() {
+			return this.addressbooks.filter((ab) => ab.enabled)
+		},
+
 		circles() {
 			return this.$store.getters.getCircles
 		},
@@ -426,6 +459,10 @@ export default {
 	},
 
 	methods: {
+		addressbookContactCount(addressbook) {
+			return Object.keys(addressbook.contacts || {}).length
+		},
+
 		toggleNewGroupMenu() {
 			this.isNewGroupMenuOpen = !this.isNewGroupMenuOpen
 		},

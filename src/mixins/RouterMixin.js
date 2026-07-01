@@ -20,5 +20,8 @@ export default {
 		selectedChart() {
 			return this.$route.params.selectedChart
 		},
+		selectedAddressbook() {
+			return this.$route.params.selectedAddressbook
+		},
 	},
 }

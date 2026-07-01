@@ -187,6 +187,14 @@ export default {
 		 * @return {Array}
 		 */
 		contactsList() {
+			if (this.selectedAddressbook) {
+				const addressbook = this.addressbooks.find((ab) => ab.id === this.selectedAddressbook)
+				if (addressbook) {
+					const keys = Object.keys(addressbook.contacts)
+					return this.sortedContacts.filter((contact) => keys.includes(contact.key))
+				}
+				return []
+			}
 			if (this.selectedGroup === GROUP_ALL_CONTACTS) {
 				return this.sortedContacts
 			} else if (this.selectedGroup === GROUP_NO_GROUP_CONTACTS) {
