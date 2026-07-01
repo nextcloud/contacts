@@ -62,6 +62,11 @@ export default createRouter({
 					name: 'addressbook',
 					component: Contacts,
 				},
+				{
+					path: `${ROUTE_ADDRESSBOOK}/:selectedAddressbook/:selectedContact`,
+					name: 'addressbook-contact',
+					component: Contacts,
+				},
 			],
 		},
 	],

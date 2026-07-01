@@ -94,7 +94,6 @@ import CheckIcon from 'vue-material-design-icons/Check.vue'
 import StarIcon from 'vue-material-design-icons/Star.vue'
 import StarOutlineIcon from 'vue-material-design-icons/StarOutline.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
-import { GROUP_ALL_CONTACTS } from '../../models/constants.ts'
 
 export default {
 	name: 'ContactsListItem',
@@ -155,10 +154,19 @@ export default {
 
 	computed: {
 		contactRoute() {
+			if (this.selectedAddressbook) {
+				return {
+					name: 'addressbook-contact',
+					params: {
+						selectedAddressbook: this.selectedAddressbook,
+						selectedContact: this.source.key,
+					},
+				}
+			}
 			return {
 				name: 'contact',
 				params: {
-					selectedGroup: this.selectedAddressbook ? GROUP_ALL_CONTACTS : this.selectedGroup,
+					selectedGroup: this.selectedGroup,
 					selectedContact: this.source.key,
 				},
 			}

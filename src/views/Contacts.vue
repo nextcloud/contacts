@@ -332,13 +332,23 @@ export default {
 			try {
 				// this will trigger the proper commits to groups, contacts and addressbook
 				await this.$store.dispatch('addContact', contact)
-				await this.$router.push({
-					name: 'contact',
-					params: {
-						selectedGroup: this.selectedAddressbook ? GROUP_ALL_CONTACTS : this.selectedGroup,
-						selectedContact: contact.key,
-					},
-				})
+				if (this.selectedAddressbook) {
+					await this.$router.push({
+						name: 'addressbook-contact',
+						params: {
+							selectedAddressbook: this.selectedAddressbook,
+							selectedContact: contact.key,
+						},
+					})
+				} else {
+					await this.$router.push({
+						name: 'contact',
+						params: {
+							selectedGroup: this.selectedGroup,
+							selectedContact: contact.key,
+						},
+					})
+				}
 			} catch (error) {
 				showError(t('contacts', 'Unable to create the contact.'))
 				console.error(error)
@@ -381,7 +391,7 @@ export default {
 		 */
 		selectFirstContactIfNone() {
 			// Do not redirect if pending import or browsing an address book
-			if (this.$route.name === 'import' || this.$route.name === 'addressbook') {
+			if (this.$route.name === 'import' || this.$route.name === 'addressbook' || this.$route.name === 'addressbook-contact') {
 				return
 			}
 
