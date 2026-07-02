@@ -56,11 +56,6 @@ export default {
 			type: Object,
 			default: () => {},
 		},
-
-		onAvatarClick: {
-			type: Function,
-			default: () => {},
-		},
 	},
 
 	computed: {

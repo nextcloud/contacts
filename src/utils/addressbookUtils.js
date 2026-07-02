@@ -12,7 +12,7 @@ import usePrincipalsStore from '../store/principals.js'
  *
  *  Withing each group, addressbooks are sorted by the number of contacts, from highest to lowest
  *
- * @param {Array} addressbooks
+ * @param {Array} addressbooks the addressbooks to sort
  * @return {Array}
  */
 export function sortAddressbooks(addressbooks) {
@@ -43,8 +43,10 @@ export function sortAddressbooks(addressbooks) {
 }
 
 /**
+ * Return the priority group of an addressbook.
  *
- * @param ab
+ * @param {object} ab the addressbook
+ * @return {number} the priority group (lower is higher priority)
  */
 function getPriorityGroup(ab) {
 	const principalsStore = usePrincipalsStore()

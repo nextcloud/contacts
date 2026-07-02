@@ -182,6 +182,7 @@ export default {
 			default: 'text',
 		},
 
+		// eslint-disable-next-line vue/no-unused-properties -- consumed by PropertyMixin
 		value: {
 			type: String,
 			required: true,
