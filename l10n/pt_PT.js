@@ -75,6 +75,7 @@ OC.L10N.register(
     "Please select a valid png or jpg file" : "Por favor, selecione um arquivo PNG ou JPG válido",
     "Error picking team picture" : "Erro ao selecionar a imagem de equipe",
     "Delete picture" : "Apagar imagem",
+    "Edit" : "Editar",
     "Create" : "Criar",
     "You are not a member of {circle}" : "Não é um membro de {circle}",
     "Confirm" : "Confirmar",
