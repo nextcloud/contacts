@@ -215,3 +215,5 @@ export enum MemberStatus {
 	MEMBER = 'Member',
 	REQUESTING = 'Requesting',
 }
+
+export const MAX_MEMBERS_TO_RENDER = 100

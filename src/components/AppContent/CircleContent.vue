@@ -58,12 +58,6 @@ export default {
 		},
 	},
 
-	data() {
-		return {
-			loadingList: false,
-		}
-	},
-
 	computed: {
 		// store variables
 		circles() {
@@ -82,25 +76,10 @@ export default {
 			return Object.values(this.circle?.members || [])
 		},
 
-		/**
-		 * Is the current circle empty
-		 *
-		 * @return {boolean}
-		 */
-		isEmptyCircle() {
-			return this.members.length === 0
-		},
-
 		...mapStores(useUserGroupStore),
 	},
 
 	watch: {
-		circle(newCircle) {
-			if (newCircle?.id) {
-				this.fetchCircleMembers(newCircle.id)
-			}
-		},
-
 		userGroup(newUserGroup) {
 			if (newUserGroup?.id) {
 				this.fetchUserGroupMembers(newUserGroup.id)
@@ -109,40 +88,18 @@ export default {
 	},
 
 	beforeMount() {
-		if (this.circle?.id) {
-			this.fetchCircleMembers(this.circle.id)
-		}
-
 		if (this.userGroup?.id) {
 			this.fetchUserGroupMembers(this.userGroup.id)
 		}
 	},
 
 	methods: {
-		async fetchCircleMembers(circleId) {
-			this.loadingList = true
-			this.logger.debug('Fetching members for', { circleId })
-
-			try {
-				await this.$store.dispatch('getCircleMembers', circleId)
-			} catch (error) {
-				console.error(error)
-				showError(t('contacts', 'There was an error fetching the member list'))
-			} finally {
-				this.loadingList = false
-			}
-		},
-
 		async fetchUserGroupMembers(userGroupId) {
-			this.loadingList = true
-
 			try {
 				await this.userGroupStore.getUserGroupMembers(userGroupId)
 			} catch (error) {
 				console.error(error)
 				showError(t('contacts', 'There was an error fetching the member list'))
-			} finally {
-				this.loadingList = false
 			}
 		},
 	},
