@@ -123,16 +123,31 @@ export default {
 
 		createLabel(label) {
 			let propGroup = this.property.name
-			if (!this.property.name.startsWith('nextcloud')) {
+			const existingGroup = this.property.getParameter('group')
+
+			if (existingGroup) {
+				// Server-loaded form: embed group into name, remove group param to avoid double prefix
+				propGroup = `${existingGroup}.${this.property.name}`
+				this.property.jCal[0] = propGroup
+				delete this.property.jCal[1].group // prevent NEXTCLOUD1.NEXTCLOUD1.TEL
+
+				// Remove old X-ABLABEL in server-loaded form (group-param form)
+				const oldLabel = this.localContact.vCard
+					.getAllProperties('x-ablabel')
+					.find((p) => p.getParameter('group') === existingGroup)
+				if (oldLabel) { 
+					this.localContact.vCard.removeProperty(oldLabel) 
+				}
+			} else if (!this.property.name.startsWith('nextcloud')) {
 				propGroup = `nextcloud${this.getNcGroupCount() + 1}.${this.property.name}`
 				this.property.jCal[0] = propGroup
 			}
+			// else: already has a valid nextcloud group prefix in name — reuse it
+
 			const group = propGroup.split('.')[0]
 			const name = propGroup.split('.')[1]
 
 			this.localContact.vCard.addPropertyWithValue(`${group}.x-ablabel`, label.name)
-
-			// force update the main design sets
 			setPropertyAlias(name, propGroup)
 
 			this.$emit('update')
@@ -140,12 +155,17 @@ export default {
 
 		getNcGroupCount() {
 			const props = this.localContact.jCal[1]
-				.map((prop) => prop[0].split('.')[0]) // itemxxx.adr => itemxxx
-				.filter((name) => name.startsWith('nextcloud')) // filter nextcloudxxx.adr
-				.map((prop) => parseInt(prop.split('nextcloud')[1])) // nextcloudxxx => xxx
-			return props.length > 0
-				? Math.max.apply(null, props) // get max iteration of nextcloud grouped props
-				: 0
+				.map((prop) => {
+					const nameGroup = prop[0].split('.')[0]
+					if (nameGroup.startsWith('nextcloud')) { 
+						return nameGroup 
+					}
+					return (prop[1] && prop[1].group) || ''
+				})
+				.filter((name) => name.startsWith('nextcloud'))
+				.map((prop) => parseInt(prop.replace('nextcloud', '')))
+				.filter((n) => !isNaN(n))
+			return props.length > 0 ? Math.max.apply(null, props) : 0
 		},
 	},
 }
