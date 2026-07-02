@@ -187,6 +187,14 @@ export default {
 		 * @return {Array}
 		 */
 		contactsList() {
+			if (this.selectedAddressbook) {
+				const addressbook = this.addressbooks.find((ab) => ab.id === this.selectedAddressbook)
+				if (addressbook) {
+					const contactKeys = new Set(Object.values(addressbook.contacts).map((c) => c.key))
+					return this.sortedContacts.filter((contact) => contactKeys.has(contact.key))
+				}
+				return []
+			}
 			if (this.selectedGroup === GROUP_ALL_CONTACTS) {
 				return this.sortedContacts
 			} else if (this.selectedGroup === GROUP_NO_GROUP_CONTACTS) {
@@ -280,6 +288,10 @@ export default {
 				return
 			}
 
+			const targetAddressbook = this.selectedAddressbook
+				? this.addressbooks.find((ab) => ab.id === this.selectedAddressbook) ?? this.defaultAddressbook
+				: this.defaultAddressbook
+
 			const contact = new Contact(
 				`
 				BEGIN:VCARD
@@ -287,7 +299,7 @@ export default {
 				PRODID:-//Nextcloud Contacts v${appVersion}
 				END:VCARD
 			`.trim().replace(/\t/gm, ''),
-				this.defaultAddressbook,
+				targetAddressbook,
 			)
 
 			contact.fullName = t('contacts', 'Name')
@@ -320,13 +332,23 @@ export default {
 			try {
 				// this will trigger the proper commits to groups, contacts and addressbook
 				await this.$store.dispatch('addContact', contact)
-				await this.$router.push({
-					name: 'contact',
-					params: {
-						selectedGroup: this.selectedGroup,
-						selectedContact: contact.key,
-					},
-				})
+				if (this.selectedAddressbook) {
+					await this.$router.push({
+						name: 'addressbook-contact',
+						params: {
+							selectedAddressbook: this.selectedAddressbook,
+							selectedContact: contact.key,
+						},
+					})
+				} else {
+					await this.$router.push({
+						name: 'contact',
+						params: {
+							selectedGroup: this.selectedGroup,
+							selectedContact: contact.key,
+						},
+					})
+				}
 			} catch (error) {
 				showError(t('contacts', 'Unable to create the contact.'))
 				console.error(error)
@@ -368,8 +390,8 @@ export default {
 		 * if none are selected already
 		 */
 		selectFirstContactIfNone() {
-			// Do not redirect if pending import
-			if (this.$route.name === 'import') {
+			// Do not redirect if pending import or browsing an address book
+			if (this.$route.name === 'import' || this.$route.name === 'addressbook' || this.$route.name === 'addressbook-contact') {
 				return
 			}
 
@@ -389,6 +411,7 @@ export default {
 				// Unknown group
 				if (!this.selectedCircle
 					&& !this.selectedUserGroup
+					&& !this.selectedAddressbook
 					&& !this.groups.find((group) => group.name === this.selectedGroup)
 					&& GROUP_ALL_CONTACTS !== this.selectedGroup
 					&& GROUP_NO_GROUP_CONTACTS !== this.selectedGroup
