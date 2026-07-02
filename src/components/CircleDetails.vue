@@ -8,13 +8,10 @@
 		<div class="circle-details-grid" :class="{ 'is-editing': isEditing }">
 			<div class="circle-details__header-wrapper">
 				<div class="circle-details-grid__avatar">
-					<NcLoadingIcon v-if="loadingAvatar" :size="75" />
 					<Avatar
-						v-else
 						:disable-tooltip="true"
 						:display-name="circle.displayName"
 						:is-no-user="true"
-						:url="displayAvatarUrl"
 						:size="75" />
 				</div>
 				<div class="circle-details__header">
@@ -44,41 +41,6 @@
 							:placeholder="descriptionPlaceholder"
 							label="Description"
 							:maxlength="1024" />
-					</div>
-					<div v-if="avatarSupported" class="circle-avatar-buttons-wrapper">
-						<NcButton
-							v-if="isEditing"
-							:disabled="loadingAvatar"
-							@click="openLocalFilePicker">
-							<template #icon>
-								<TrayArrowUpIcon :size="20" />
-							</template>
-							{{ t('contacts', 'Upload team picture') }}
-						</NcButton>
-						<NcButton
-							v-if="isEditing"
-							:disabled="loadingAvatar"
-							@click="openFilePicker">
-							<template #icon>
-								<FolderIcon :size="20" />
-							</template>
-							{{ t('contacts', 'Choose from Nextcloud Files') }}
-						</NcButton>
-						<NcButton
-							v-if="isEditing && displayAvatarUrl !== undefined"
-							:disabled="loadingAvatar"
-							@click="removeAvatar">
-							<template #icon>
-								<TrashCanOutlineIcon :size="20" />
-							</template>
-							{{ t('contacts', 'Delete picture') }}
-						</NcButton>
-						<input
-							ref="avatarInput"
-							type="file"
-							:accept="avatarAccept"
-							class="hidden-visually"
-							@change="onAvatarInputChange">
 					</div>
 					<div class="actions">
 						<template v-if="!isEditing">
@@ -252,44 +214,20 @@
 				</section>
 			</div>
 		</div>
-
-		<!-- Avatar cropper dialog -->
-		<NcDialog
-			v-if="showCropper"
-			class="circle-avatar-cropper-dialog"
-			:name="t('contacts', 'Edit team picture')"
-			:open="showCropper"
-			size="normal"
-			@closing="cancelSetAvatar">
-			<VueCropper
-				ref="cropper"
-				class="circle-avatar-cropper"
-				v-bind="cropperOptions" />
-			<template #actions>
-				<NcButton @click="cancelSetAvatar">
-					{{ t('contacts', 'Cancel') }}
-				</NcButton>
-				<NcButton variant="primary" @click="setAvatar">
-					{{ t('contacts', 'Apply') }}
-				</NcButton>
-			</template>
-		</NcDialog>
 	</div>
 </template>
 
 <script>
 import { getCurrentUser } from '@nextcloud/auth'
 import axios from '@nextcloud/axios'
-import { FilePickerClosed, FilePickerType, getFilePickerBuilder, showError, showSuccess } from '@nextcloud/dialogs'
-import { encodePath } from '@nextcloud/paths'
-import { generateOcsUrl, generateRemoteUrl, generateUrl } from '@nextcloud/router'
+import { showError, showSuccess } from '@nextcloud/dialogs'
+import { generateOcsUrl, generateUrl } from '@nextcloud/router'
 import {
 	NcAvatar as Avatar,
 	NcListItem as ListItem,
 	NcActionButton,
 	NcActions,
 	NcButton,
-	NcDialog,
 	NcEmptyContent,
 	NcLoadingIcon,
 	NcPopover,
@@ -299,7 +237,6 @@ import {
 } from '@nextcloud/vue'
 import { useElementSize } from '@vueuse/core'
 import { reactive, ref } from 'vue'
-import VueCropper from 'vue-cropperjs'
 import IconAccountGroup from 'vue-material-design-icons/AccountGroupOutline.vue'
 import AccountPlusIcon from 'vue-material-design-icons/AccountPlusOutline.vue'
 import BookOpenPageVariantIcon from 'vue-material-design-icons/BookOpenPageVariant.vue'
@@ -308,14 +245,11 @@ import CheckIcon from 'vue-material-design-icons/Check.vue'
 import CogIcon from 'vue-material-design-icons/CogOutline.vue'
 import CopyIcon from 'vue-material-design-icons/ContentCopy.vue'
 import FileDocumentOutline from 'vue-material-design-icons/FileDocumentOutline.vue'
-import FolderIcon from 'vue-material-design-icons/Folder.vue'
-import FolderOutlineIcon from 'vue-material-design-icons/FolderOutline.vue'
+import FolderIcon from 'vue-material-design-icons/FolderOutline.vue'
 import LoginIcon from 'vue-material-design-icons/Login.vue'
 import LogoutIcon from 'vue-material-design-icons/Logout.vue'
 import MessageIcon from 'vue-material-design-icons/MessageOutline.vue'
 import PencilIcon from 'vue-material-design-icons/PencilOutline.vue'
-import TrashCanOutlineIcon from 'vue-material-design-icons/TrashCanOutline.vue'
-import TrayArrowUpIcon from 'vue-material-design-icons/TrayArrowUp.vue'
 import ViewDashboardIcon from 'vue-material-design-icons/ViewDashboard.vue'
 import CircleSettings from './CircleDetails/CircleSettings.vue'
 import ContentHeading from './CircleDetails/ContentHeading.vue'
@@ -324,22 +258,6 @@ import MemberList from './MemberList/MemberList.vue'
 import CircleActionsMixin from '../mixins/CircleActionsMixin.js'
 import { CircleEdit, editCircle } from '../services/circles.ts'
 
-import 'cropperjs/dist/cropper.css'
-
-const VALID_MIME_TYPES = ['image/png', 'image/jpeg']
-
-const AVATAR_ACTIONS = Object.freeze({
-	SET: 'set',
-	DELETE: 'delete',
-})
-
-const picker = getFilePickerBuilder(t('contacts', 'Choose a team picture'))
-	.setMultiSelect(false)
-	.setMimeTypeFilter(VALID_MIME_TYPES)
-	.setType(FilePickerType.Choose)
-	.allowDirectories(false)
-	.build()
-
 export default {
 	name: 'CircleDetails',
 
@@ -347,7 +265,6 @@ export default {
 		AccountPlusIcon,
 		Avatar,
 		NcButton,
-		NcDialog,
 		ContentHeading,
 		ListItem,
 		CogIcon,
@@ -368,16 +285,12 @@ export default {
 		NcTextArea,
 		NcActions,
 		NcActionButton,
-		FolderOutlineIcon,
+		FolderIcon,
 		MessageIcon,
 		CalendarIcon,
 		ViewDashboardIcon,
 		BookOpenPageVariantIcon,
 		CheckIcon,
-		FolderIcon,
-		TrashCanOutlineIcon,
-		TrayArrowUpIcon,
-		VueCropper,
 	},
 
 	mixins: [CircleActionsMixin],
@@ -385,10 +298,7 @@ export default {
 	setup() {
 		const avatarList = ref()
 		const { width } = useElementSize(avatarList)
-		const avatarAccept = VALID_MIME_TYPES.join(',')
-		const nextcloudMajorVersion = parseInt(window.OC.config.version.split('.')[0])
-		const avatarSupported = nextcloudMajorVersion >= 34
-		return { avatarList, width, avatarAccept, avatarSupported }
+		return { avatarList, width }
 	},
 
 	data() {
@@ -414,24 +324,6 @@ export default {
 			createdCalendar: null,
 			showCalendarSuccessNotification: false,
 			createdCalendarName: '',
-
-			// Avatar
-			avatarUrl: undefined,
-			pendingAvatarBlob: null,
-			pendingAvatarAction: null,
-			pendingAvatarPreviewUrl: undefined,
-			showCropper: false,
-			loadingAvatar: false,
-			cropperOptions: {
-				aspectRatio: 1 / 1,
-				viewMode: 1,
-				guides: false,
-				center: false,
-				highlight: false,
-				autoCropArea: 1,
-				minContainerWidth: 300,
-				minContainerHeight: 300,
-			},
 		}
 	},
 
@@ -460,19 +352,6 @@ export default {
 
 		circleUrl() {
 			return window.location.href
-		},
-
-		displayAvatarUrl() {
-			if (!this.avatarSupported) {
-				return undefined
-			}
-			if (this.pendingAvatarAction === AVATAR_ACTIONS.DELETE) {
-				return undefined
-			}
-			if (this.pendingAvatarPreviewUrl) {
-				return this.pendingAvatarPreviewUrl
-			}
-			return this.avatarUrl
 		},
 
 		canManageTeam() {
@@ -534,7 +413,7 @@ export default {
 					inputLabel: t('contacts', 'New folder'),
 					placeholder: t('contacts', 'Folder name'),
 					helperText: t('contacts', 'This will create a regular folder shared with the team. To create a Team Folder, please contact your {productName} administrator', { productName: OC.theme.name }),
-					icon: 'FolderOutlineIcon',
+					icon: 'FolderIcon',
 					apiPath: 'files',
 					enabled: enabledApps.files !== undefined,
 				},
@@ -566,6 +445,15 @@ export default {
 					apiPath: 'calendar',
 					enabled: enabledApps.calendar !== undefined,
 				},
+				{
+					id: 'deck',
+					label: t('contacts', 'Deck board'),
+					inputLabel: t('contacts', 'New Deck board'),
+					placeholder: t('contacts', 'Board name'),
+					icon: 'ViewDashboardIcon',
+					apiPath: 'deck',
+					enabled: enabledApps.deck !== undefined,
+				},
 			].filter((resource) => resource.enabled)
 		},
 	},
@@ -573,26 +461,11 @@ export default {
 	watch: {
 		'circle.id': {
 			handler() {
-				this.isEditing = false
 				this.fetchTeamResources()
-				if (this.avatarSupported) {
-					this.cancelSetAvatar()
-					this.clearPendingAvatar()
-					this.loadAvatarUrl()
-				}
 			},
 
 			immediate: true,
 		},
-	},
-
-	beforeUnmount() {
-		if (this.avatarUrl !== undefined) {
-			URL.revokeObjectURL(this.avatarUrl)
-		}
-		if (this.pendingAvatarPreviewUrl !== undefined) {
-			URL.revokeObjectURL(this.pendingAvatarPreviewUrl)
-		}
 	},
 
 	methods: {
@@ -657,6 +530,7 @@ export default {
 
 					case 'calendar': {
 						const DavClient = (await import('@nextcloud/cdav-library')).default
+						const { generateRemoteUrl } = await import('@nextcloud/router')
 
 						const client = new DavClient({
 							rootUrl: generateRemoteUrl('dav'),
@@ -679,6 +553,11 @@ export default {
 							throw new Error(`CALENDAR_EXISTS:${name}`)
 						}
 						break
+					}
+
+					case 'deck': {
+						showError(t('contacts', 'Deck app is not installed. Please install it to create team boards.'))
+						return
 					}
 
 					default: {
@@ -768,104 +647,6 @@ export default {
 			}
 		},
 
-		openLocalFilePicker() {
-			this.$refs.avatarInput.value = null
-			this.$refs.avatarInput.click()
-		},
-
-		async onAvatarInputChange(e) {
-			try {
-				const file = e.target.files[0]
-				if (!VALID_MIME_TYPES.includes(file.type)) {
-					showError(t('contacts', 'Please select a valid png or jpg file'))
-					return
-				}
-				const reader = new FileReader()
-				reader.onload = async (e) => {
-					this.showCropper = true
-					await this.$nextTick()
-					this.$refs.cropper.replace(e.target.result)
-				}
-				reader.readAsDataURL(file)
-			} catch (error) {
-				console.error('Error picking avatar file', error)
-				showError(t('contacts', 'Error picking team picture'))
-			}
-		},
-
-		async openFilePicker() {
-			try {
-				const path = await picker.pick()
-				if (!path) {
-					return
-				}
-				const fileResponse = await axios.get(
-					generateRemoteUrl(`dav/files/${getCurrentUser().uid}`) + encodePath(path),
-					{ responseType: 'blob' },
-				)
-				const reader = new FileReader()
-				reader.onload = async (e) => {
-					this.showCropper = true
-					await this.$nextTick()
-					this.$refs.cropper.replace(e.target.result)
-				}
-				reader.readAsDataURL(fileResponse.data)
-			} catch (error) {
-				if (error instanceof FilePickerClosed) {
-					return
-				}
-				console.error('Error picking avatar file', error)
-				showError(t('contacts', 'Error picking team picture'))
-			}
-		},
-
-		setAvatar() {
-			this.showCropper = false
-			this.$refs.cropper.getCroppedCanvas({
-				minWidth: 16,
-				minHeight: 16,
-				maxWidth: 512,
-				maxHeight: 512,
-			}).toBlob(async (blob) => {
-				if (blob === null) {
-					showError(t('contacts', 'Error cropping avatar picture'))
-					this.cancelSetAvatar()
-					return
-				}
-				if (this.pendingAvatarPreviewUrl) {
-					URL.revokeObjectURL(this.pendingAvatarPreviewUrl)
-				}
-				this.pendingAvatarBlob = blob
-				this.pendingAvatarAction = AVATAR_ACTIONS.SET
-				this.pendingAvatarPreviewUrl = URL.createObjectURL(blob)
-			})
-		},
-
-		cancelSetAvatar() {
-			this.showCropper = false
-			if (this.$refs.avatarInput) {
-				this.$refs.avatarInput.value = null
-			}
-		},
-
-		removeAvatar() {
-			if (this.pendingAvatarPreviewUrl) {
-				URL.revokeObjectURL(this.pendingAvatarPreviewUrl)
-			}
-			this.pendingAvatarBlob = null
-			this.pendingAvatarAction = AVATAR_ACTIONS.DELETE
-			this.pendingAvatarPreviewUrl = undefined
-		},
-
-		clearPendingAvatar() {
-			if (this.pendingAvatarPreviewUrl) {
-				URL.revokeObjectURL(this.pendingAvatarPreviewUrl)
-			}
-			this.pendingAvatarBlob = null
-			this.pendingAvatarAction = null
-			this.pendingAvatarPreviewUrl = undefined
-		},
-
 		onLeave() {
 			this.isSettingsPopoverShown = false
 			this.confirmLeaveCircle()
@@ -889,8 +670,6 @@ export default {
 		cancelEditing() {
 			this.circle.displayName = this.originalDisplayName
 			this.circle.description = this.originalDescription
-			this.cancelSetAvatar()
-			this.clearPendingAvatar()
 			this.isEditing = false
 		},
 
@@ -898,27 +677,6 @@ export default {
 			const response = await axios.get(generateOcsUrl(`/teams/${this.circle.id}/resources`))
 			this.resources = response.data.ocs.data.resources
 			console.debug('Team resources', this.resources)
-		},
-
-		async loadAvatarUrl() {
-			if (!this.avatarSupported) {
-				return
-			}
-			try {
-				const response = await axios.get(
-					generateOcsUrl(`/apps/circles/circles/${this.circle.id}/avatar`),
-					{ responseType: 'blob' },
-				)
-				if (this.avatarUrl !== undefined) {
-					URL.revokeObjectURL(this.avatarUrl)
-				}
-				this.avatarUrl = URL.createObjectURL(response.data)
-			} catch {
-				if (this.avatarUrl !== undefined) {
-					URL.revokeObjectURL(this.avatarUrl)
-					this.avatarUrl = undefined
-				}
-			}
 		},
 
 		/**
@@ -936,10 +694,7 @@ export default {
 		async saveChanges() {
 			const errors = []
 
-			// Close avatar cropper if still open/pending on save
-			this.cancelSetAvatar()
-
-			// Save name, description and avatar sequentially to avoid race conditions
+			// Save name and description sequentially to avoid race conditions
 			// Save name if changed
 			if (this.circle.displayName !== this.originalDisplayName) {
 				this.loadingName = true
@@ -967,38 +722,6 @@ export default {
 					this.circle.description = this.originalDescription
 				} finally {
 					this.loadingDescription = false
-				}
-			}
-
-			// Upload pending avatar if set
-			if (this.avatarSupported && this.pendingAvatarAction === AVATAR_ACTIONS.SET && this.pendingAvatarBlob) {
-				this.loadingAvatar = true
-				const formData = new FormData()
-				formData.append('file', this.pendingAvatarBlob)
-				try {
-					await axios.post(generateOcsUrl(`/apps/circles/circles/${this.circle.id}/avatar`), formData)
-					this.clearPendingAvatar()
-					await this.loadAvatarUrl()
-				} catch {
-					console.error('Unable to save avatar picture')
-					errors.push('avatar')
-				} finally {
-					this.loadingAvatar = false
-				}
-			}
-
-			// Delete avatar if marked for deletion
-			if (this.avatarSupported && this.pendingAvatarAction === AVATAR_ACTIONS.DELETE) {
-				this.loadingAvatar = true
-				try {
-					await axios.delete(generateOcsUrl(`/apps/circles/circles/${this.circle.id}/avatar`))
-					this.clearPendingAvatar()
-					await this.loadAvatarUrl()
-				} catch {
-					console.error('Unable to remove avatar')
-					errors.push('avatar')
-				} finally {
-					this.loadingAvatar = false
 				}
 			}
 
@@ -1038,14 +761,6 @@ export default {
 			.circle-description-wrapper {
 				width: 100%;
 			}
-
-			.actions {
-				width: 100%;
-
-				:deep(.button-vue) {
-					flex: 1;
-				}
-			}
 		}
 
 		.circle-details__header-wrapper {
@@ -1071,7 +786,6 @@ export default {
 		align-items: flex-start;
 		gap: 2px;
 		width: 100%;
-		max-width: 500px;
 
 		.circle-description-wrapper {
 			margin-bottom: 4px;
@@ -1191,56 +905,6 @@ export default {
 		}
 	}
 
-	.circle-avatar-buttons-wrapper {
-		width: 100%;
-		display: flex;
-		flex-direction: column;
-		gap: 8px;
-		margin-bottom: 16px;
-
-		:deep(.button-vue) {
-			width: 100%;
-		}
-
-		@media (max-width: 768px) {
-			width: 100%;
-		}
-	}
 }
 
-.circle-avatar-cropper {
-	width: 300px;
-	height: 300px;
-	overflow: hidden;
-	margin-inline: auto;
-	margin-top: calc(-1 * var(--default-clickable-area));
-	margin-bottom: 16px;
-
-	:deep(.cropper-view-box) {
-		border-radius: 50%;
-	}
-}
-
-:deep(.dialog .dialog__content) {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-:deep(.dialog .dialog__actions) {
-	width: 100%;
-	gap: 8px;
-
-	.button-vue {
-		flex: 1;
-	}
-}
-</style>
-
-<style lang="scss">
-@media only screen and (min-width: 513px) {
-    .circle-avatar-cropper-dialog .modal-wrapper--normal .modal-container {
-        width: 324px !important;
-    }
-}
 </style>
