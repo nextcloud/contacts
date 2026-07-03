@@ -117,7 +117,8 @@
 				:index="index"
 				:source="item"
 				:reload-bus="reloadBus"
-				:on-select-multiple-from-parent="onSelectMultiple" />
+				:on-select-multiple-from-parent="onSelectMultiple"
+				:on-navigate-from-parent="onNavigateContact" />
 		</VList>
 	</AppContentList>
 </template>
@@ -144,6 +145,7 @@ import Batch from './ContactsList/Batch.vue'
 import ContactsListItem from './ContactsList/ContactsListItem.vue'
 import Merging from './ContactsList/Merging.vue'
 import RouterMixin from '../mixins/RouterMixin.js'
+import { getNextContactKey, getPreviousContactKey } from '../utils/contactNavigation.ts'
 
 export default {
 	name: 'ContactsList',
@@ -366,7 +368,7 @@ export default {
 
 			const scroller = this.$refs.scroller
 			const scrollerBoundingRect = scroller.$el.getBoundingClientRect()
-			const item = this.$el.querySelector('#' + key.slice(0, -2))
+			const item = document.getElementById(key.slice(0, -2))
 			const itemBoundingRect = item?.getBoundingClientRect()
 
 			// Try to scroll the item fully into view
@@ -443,6 +445,49 @@ export default {
 			this.multiSelectedContacts = newSelection
 
 			return true
+		},
+
+		/**
+		 * Move focus to the previous/next contact in the filtered list, scrolling it into view if necessary
+		 *
+		 * @param {number} index index of the contact the navigation started from
+		 * @param {'up'|'down'} direction direction to navigate to
+		 */
+		async onNavigateContact(index, direction) {
+			const currentKey = this.filteredList[index]?.key
+			if (!currentKey) {
+				return
+			}
+
+			const targetKey = direction === 'down'
+				? getNextContactKey(this.filteredList, currentKey)
+				: getPreviousContactKey(this.filteredList, currentKey)
+
+			if (!targetKey) {
+				return
+			}
+
+			this.scrollToContact(targetKey)
+			const anchor = await this.waitForContactAnchor(targetKey)
+			anchor?.focus()
+		},
+
+		/**
+		 * Wait for the given contact's anchor to be mounted by the virtual scroller
+		 *
+		 * @param {string} key the contact unique key
+		 * @return {Promise<HTMLElement|null>}
+		 */
+		async waitForContactAnchor(key) {
+			const id = key.slice(0, -2)
+			for (let attempt = 0; attempt < 5; attempt++) {
+				await this.$nextTick()
+				const anchor = document.getElementById(id)?.querySelector('a')
+				if (anchor) {
+					return anchor
+				}
+			}
+			return null
 		},
 
 		unselectAllMultiSelected() {
