@@ -31,7 +31,7 @@
 		"php": ">=8.1 <=8.4"
 	},
 	"require-dev": {
-		"nextcloud/coding-standard": "^1.4",
+		"nextcloud/coding-standard": "^1.5.0",
 		"bamarni/composer-bin-plugin": "^1.8.3"
 	},
 	"extra": {
