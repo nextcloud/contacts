@@ -309,7 +309,7 @@ OC.L10N.register(
     "Email" : "E-post",
     "Contact" : "Kontakt",
     "Moderator" : "Moderaator",
-    "Admin" : "Admin",
+    "Admin" : "Peakasutaja",
     "Owner" : "Omanik",
     "Invites" : "Kutsed",
     "Anyone can request membership" : "Kõik võivad paluda võimalust liituda",
