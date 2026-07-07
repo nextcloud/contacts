@@ -60,7 +60,7 @@ jobs:
 
     steps:
       - name: Checkout server
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
           persist-credentials: false
           repository: nextcloud/server
@@ -68,7 +68,7 @@ jobs:
           submodules: true
 
       - name: Checkout app
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
           persist-credentials: false
           path: apps/${{ env.APP_NAME }}
@@ -142,7 +142,7 @@ jobs:
 
     steps:
       - name: Checkout server
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
           persist-credentials: false
           repository: nextcloud/server
@@ -150,7 +150,7 @@ jobs:
           submodules: true
 
       - name: Checkout app
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
           persist-credentials: false
           path: apps/${{ env.APP_NAME }}
@@ -221,7 +221,7 @@ jobs:
 
     steps:
       - name: Checkout server
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
           persist-credentials: false
           repository: nextcloud/server
@@ -229,7 +229,7 @@ jobs:
           submodules: true
 
       - name: Checkout app
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7
         with:
           persist-credentials: false
           path: apps/${{ env.APP_NAME }}
