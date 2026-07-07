@@ -1,3 +1,23 @@
+## [8.7.3](https://github.com/nextcloud/contacts/compare/v8.7.2...v8.7.3) (2026-07-07)
+
+
+### Bug Fixes
+
+* **collaborationAutocompletion:** replace legacy SHARE_TYPE_USER with ShareType.User ([f4f7deb](https://github.com/nextcloud/contacts/commit/f4f7deb7fc540bc2d3ebf565926e5294487e52b9))
+* **deps:** Fix npm audit ([6ad4098](https://github.com/nextcloud/contacts/commit/6ad40981154128d0700b22e2647e5d5d0027d2c4))
+* **deps:** Fix npm audit ([697c6ff](https://github.com/nextcloud/contacts/commit/697c6ff6138a6444bfcbfb825b9307b6415d7f92))
+* **l10n:** Update translations from Transifex ([6cd6be4](https://github.com/nextcloud/contacts/commit/6cd6be4beb31621238b58f461444769f97c2a6d3))
+* **l10n:** Update translations from Transifex ([cecfd1c](https://github.com/nextcloud/contacts/commit/cecfd1cdf7251d0f86b018cb1a24e0377368b5a6))
+* **l10n:** Update translations from Transifex ([db8a56a](https://github.com/nextcloud/contacts/commit/db8a56acd0984e520e4e45a270bf8be5587a8628))
+* **l10n:** Update translations from Transifex ([344bc31](https://github.com/nextcloud/contacts/commit/344bc310a79054865987103acc23c0178221edac))
+* **l10n:** Update translations from Transifex ([71eb436](https://github.com/nextcloud/contacts/commit/71eb43618771eb787650e3a92b22ef7222f458a6))
+* **l10n:** Update translations from Transifex ([4f727e9](https://github.com/nextcloud/contacts/commit/4f727e9e8833ebef73f6409bd8f2385f84fc6cca))
+* **l10n:** Update translations from Transifex ([53c693b](https://github.com/nextcloud/contacts/commit/53c693b53e58aa660ec9f5c5884ea930b4bce7cc))
+* **l10n:** Update translations from Transifex ([2643694](https://github.com/nextcloud/contacts/commit/26436946c8bd3ad6d35173daa2261f66775d5d56))
+* **l10n:** Update translations from Transifex ([0b4c846](https://github.com/nextcloud/contacts/commit/0b4c846933cfb12eb2479500ff5eb05903374ef4))
+
+
+
 ## [8.7.2](https://github.com/nextcloud/contacts/compare/v8.7.1...v8.7.2) (2026-06-24)
 
 
