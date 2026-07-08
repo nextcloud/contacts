@@ -198,38 +198,32 @@ export default class Contact {
 	}
 
 	/**
-	 * REV as a unix timestamp (seconds), or null if missing/unparseable.
-	 * Bypasses ICAL.Time parsing so malformed-but-salvageable basic-ISO
-	 * strings ("20260312T192500Z", "T1925Z", trailing "T19:25Z") still sort.
+	 * REV as a unix timestamp (seconds), or null if missing or unparseable.
+	 * Reads the raw jCal value instead of going through ICAL.Time, which
+	 * throws on malformed REV values and broke sorting (see issue #5158).
 	 *
 	 * @readonly
 	 * @memberof Contact
 	 */
 	get revTimestamp() {
-		try {
-			const prop = toRaw(this).vCard.getFirstProperty('rev')
-			if (!prop) {
-				return null
-			}
-			const raw = prop.jCal[3]
-			if (!raw || typeof raw !== 'string') {
-				return null
-			}
-			let s = raw
-			if (/^\d{8}T/.test(s)) {
-				s = s.replace(/^(\d{4})(\d{2})(\d{2})T/, '$1-$2-$3T')
-			}
-			if (/T\d{6}/.test(s)) {
-				s = s.replace(/T(\d{2})(\d{2})(\d{2})/, 'T$1:$2:$3')
-			} else if (/T\d{4}[Z+-]/.test(s)) {
-				s = s.replace(/T(\d{2})(\d{2})([Z+-])/, 'T$1:$2:00$3')
-			}
-			s = s.replace(/T(\d{2}:\d{2}):?Z$/, 'T$1:00Z')
-			const ts = Date.parse(s)
-			return isNaN(ts) ? null : Math.floor(ts / 1000)
-		} catch {
+		const raw = toRaw(this).vCard.getFirstProperty('rev')?.jCal?.[3]
+		if (typeof raw !== 'string') {
 			return null
 		}
+		// The jCal value may be basic ISO 8601 ("20260312T192500Z"), extended
+		// ("2026-03-12T19:25:00Z"), or carry misplaced separators from ical.js
+		// reformatting a REV with missing seconds ("2026-03-12T19::25Z").
+		// Strip all separators and rebuild the extended format for Date.parse.
+		// Seconds default to 00, a missing zone is treated as UTC.
+		const match = raw.replace(/[-:]/g, '')
+			.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})?(Z|[+-]\d{4})?$/)
+		if (!match) {
+			return null
+		}
+		const [, year, month, day, hour, minute, second = '00', zone = 'Z'] = match
+		const offset = zone.replace(/^([+-]\d{2})/, '$1:')
+		const timestamp = Date.parse(`${year}-${month}-${day}T${hour}:${minute}:${second}${offset}`)
+		return Number.isNaN(timestamp) ? null : Math.floor(timestamp / 1000)
 	}
 
 	/**
