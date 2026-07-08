@@ -12,7 +12,6 @@ namespace unit\Service;
 use ChristophWurst\Nextcloud\Testing\TestCase;
 use OCA\Contacts\Service\GroupSharingService;
 use OCP\IConfig;
-use OCP\IGroup;
 use OCP\IGroupManager;
 use OCP\IUser;
 use OCP\Share\IManager as IShareManager;
@@ -78,21 +77,15 @@ class GroupSharingServiceTest extends TestCase {
 		string $excludeGroups,
 	): void {
 		$user = $this->createMock(IUser::class);
-		$group1 = $this->createMock(IGroup::class);
-		$group1->method('getGID')
-			->willReturn('group1');
-		$group2 = $this->createMock(IGroup::class);
-		$group2->method('getGID')
-			->willReturn('group2');
 
 		$this->shareManager->expects(self::once())
 			->method('allowGroupSharing')
 			->willReturn($allowGroupSharing);
 		if ($allowGroupSharing) {
 			$this->groupManager->expects(self::once())
-				->method('getUserGroups')
+				->method('getUserGroupIds')
 				->with($user)
-				->willReturn([$group1, $group2]);
+				->willReturn(['group1', 'group2']);
 			$this->config->expects(self::exactly(2))
 				->method('getAppValue')
 				->willReturnMap([
@@ -101,7 +94,7 @@ class GroupSharingServiceTest extends TestCase {
 				]);
 		} else {
 			$this->groupManager->expects(self::never())
-				->method('getUserGroups');
+				->method('getUserGroupIds');
 			$this->config->expects(self::never())
 				->method('getAppValue');
 		}
