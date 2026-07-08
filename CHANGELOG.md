@@ -1,3 +1,23 @@
+## [8.1.3](https://github.com/nextcloud/contacts/compare/v8.1.2...v8.1.3) (2026-07-08)
+
+
+### Bug Fixes
+
+* **CircleDetails:** Use CheckboxRadioSwitch from @nextcloud/vue 9.x.x ([050db26](https://github.com/nextcloud/contacts/commit/050db2616acd5251121c3fda4e74c181463c9355))
+* **deps:** Fix npm audit ([078996d](https://github.com/nextcloud/contacts/commit/078996dd264ecbdbb76f3aef55994d65c5e328ff))
+* **deps:** Fix npm audit ([8e18410](https://github.com/nextcloud/contacts/commit/8e18410751da278a16665935e147637e362e87c0))
+* **l10n:** Update translations from Transifex ([ca0327e](https://github.com/nextcloud/contacts/commit/ca0327e619d6f107b3777a3b556f930756700e08))
+* **l10n:** Update translations from Transifex ([8b30d7a](https://github.com/nextcloud/contacts/commit/8b30d7ae4a6daac88e1ec94c14b25e2149663953))
+* **l10n:** Update translations from Transifex ([ee59130](https://github.com/nextcloud/contacts/commit/ee591305dd4bc816dffcea06c45443c87ce2431c))
+* **l10n:** Update translations from Transifex ([5877048](https://github.com/nextcloud/contacts/commit/58770489c9eb1a6ac5c4ffaa36ace6c0f576aa7f))
+* **l10n:** Update translations from Transifex ([28c40df](https://github.com/nextcloud/contacts/commit/28c40df2b392fdd3fbc24b3f901b973c2212ec0f))
+* **l10n:** Update translations from Transifex ([9ece24f](https://github.com/nextcloud/contacts/commit/9ece24f73617062d9dc01fe8edb274d01d32dd3e))
+* **l10n:** Update translations from Transifex ([86b21d2](https://github.com/nextcloud/contacts/commit/86b21d262028fce1808a1d81dab4d6538c645a30))
+* **l10n:** Update translations from Transifex ([7f346f1](https://github.com/nextcloud/contacts/commit/7f346f1a379d21664b05636f7b1f65bc09822c17))
+* **ReadOnlyContactDetails:** remove box shadow ([bb95118](https://github.com/nextcloud/contacts/commit/bb95118815e0212215dfddb6d64d2a7573a16231))
+
+
+
 ## [8.1.2](https://github.com/nextcloud/contacts/compare/v8.1.1...v8.1.2) (2025-12-17)
 
 
