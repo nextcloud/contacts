@@ -131,11 +131,6 @@ export default {
 		 * @return {string}
 		 */
 		propName() {
-			// ! is this a ITEMXX.XXX property??
-			if (this.propGroup[1]) {
-				return this.propGroup[1]
-			}
-
 			return this.property.name
 		},
 
@@ -193,22 +188,27 @@ export default {
 		},
 
 		/**
-		 * Return the id and type of a property group
-		 * e.g ITEMXX.tel => ['ITEMXX', 'tel']
+		 * Return the group of the property if any
+		 * e.g NEXTCLOUD1.TEL => 'nextcloud1'
 		 *
-		 * @return {Array}
+		 * @return {string|undefined}
 		 */
-		propGroup() {
-			return this.property.name.split('.')
+		propGroupName() {
+			return this.property.getParameter('group')
 		},
 
 		/**
 		 * Return the associated X-ABLABEL if any
 		 *
-		 * @return {ICAL.Property}
+		 * @return {ICAL.Property|undefined}
 		 */
 		propLabel() {
-			return this.localContact.vCard.getFirstProperty(`${this.propGroup[0]}.x-ablabel`)
+			if (!this.propGroupName) {
+				return undefined
+			}
+			return this.localContact.vCard
+				.getAllProperties('x-ablabel')
+				.find((label) => label.getParameter('group') === this.propGroupName)
 		},
 
 		/**
@@ -272,18 +272,21 @@ export default {
 				} else {
 					// ical.js take types as arrays
 					this.type = data.id.split(',')
-					// only one can coexist
-					this.localContact.vCard.removeProperty(`${this.propGroup[0]}.x-ablabel`)
 
-					// checking if there is any other property in this group
-					const groups = this.localContact.jCal[1]
-						.map((prop) => prop[0])
-						.filter((name) => name.startsWith(`${this.propGroup[0]}.`))
-					if (groups.length === 1) {
-						// then this prop is the latest of its group
-						// -> converting back to simple prop
-						// eslint-disable-next-line vue/no-mutating-props
-						this.property.jCal[0] = this.propGroup[1]
+					// only one can coexist
+					if (this.propLabel) {
+						this.localContact.vCard.removeProperty(this.propLabel)
+					}
+
+					if (this.propGroupName) {
+						// checking if there is any other property in this group
+						const members = this.localContact.jCal[1]
+							.filter((prop) => prop[1].group === this.propGroupName)
+						if (members.length === 1) {
+							// then this prop is the latest of its group
+							// -> converting back to simple prop
+							this.property.removeParameter('group')
+						}
 					}
 				}
 			},

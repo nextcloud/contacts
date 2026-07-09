@@ -41,14 +41,12 @@ export default class Contact {
 			throw new Error('Invalid vCard')
 		}
 
-		let jCal = ICAL.parse(vcard)
+		const jCal = ICAL.parse(vcard)
 		if (jCal[0] !== 'vcard') {
 			throw new Error('Only one contact is allowed in the vcard data')
 		}
 
-		if (updateDesignSet(jCal)) {
-			jCal = ICAL.parse(vcard)
-		}
+		updateDesignSet()
 
 		this.jCal = jCal
 		this.addressbook = addressbook
