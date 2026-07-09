@@ -36,7 +36,7 @@ OC.L10N.register(
     "Address books" : "Адресні книги",
     "Tried to drop an invalid contact!" : "Спроба додати недійсний контакт!",
     "Rename" : "Перейменувати",
-    "Export" : "Експортувати",
+    "Export" : "Експорт",
     "Send email" : "Надіслати лист",
     "Send email as BCC" : "Надіслати лист ел.поштою у прихованій копії",
     "Delete" : "Вилучити",
