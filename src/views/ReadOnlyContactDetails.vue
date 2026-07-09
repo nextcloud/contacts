@@ -243,7 +243,7 @@ export default {
 
 				const contacts = result.flatMap(([addressBook, vcards]) => vcards.map((vcard) => new Contact(vcard.data, addressBook)))
 
-				this.contact = contacts.find((contact) => contact.email === email)
+				this.contact = contacts.find((contact) => contact.hasEmail(email))
 			} catch (error) {
 				console.error('Error fetching contact:', error)
 			} finally {
