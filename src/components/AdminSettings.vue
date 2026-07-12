@@ -26,7 +26,7 @@ export default {
 	name: 'AdminSettings',
 	data() {
 		return {
-			allowSocialSync: loadState('contacts', 'allowSocialSync') === 'yes',
+			allowSocialSync: loadState('contacts', 'allowSocialSync', false),
 		}
 	},
 
