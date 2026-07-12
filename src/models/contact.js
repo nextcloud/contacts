@@ -22,6 +22,29 @@ function isEmpty(value) {
 	return (Array.isArray(value) && value.join('') === '') || (!Array.isArray(value) && value === '')
 }
 
+/**
+ * Detect the image type from the magic bytes of base64 encoded image data
+ *
+ * @param {string} photoB64Data the base64 encoded image data
+ * @return {string} the image type, jpeg if unknown
+ */
+function detectImageType(photoB64Data) {
+	// base64 encodings of the magic bytes of the common image formats
+	const signatures = {
+		'/9j/': 'jpeg',
+		iVBOR: 'png',
+		R0lGO: 'gif',
+		UklGR: 'webp',
+		Qk: 'bmp',
+		PHN2Z: 'svg+xml', // '<svg'
+		PD94b: 'svg+xml', // '<?xml'
+	}
+	const signature = Object.keys(signatures).find((signature) => photoB64Data.startsWith(signature))
+	// browsers detect raster images in an img element from the content,
+	// so a wrong subtype still renders fine
+	return signature ? signatures[signature] : 'jpeg'
+}
+
 export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
 
 export const MinimalContactProperties = [
@@ -271,13 +294,19 @@ export default class Contact {
 			photoType = photoB64.split(';')[0].split('/').pop()
 		}
 
+		// The TYPE parameter is optional (e.g. `PHOTO;ENCODING=b:…`),
+		// so fall back to the magic bytes of the image data (see issue #5401)
+		if (!photoType) {
+			photoType = detectImageType(photoB64Data)
+		}
+
 		// Verify if SVG is valid
 		if (photoType.toLowerCase().startsWith('svg')) {
 			const imageSvg = atob(photoB64Data)
 			const cleanSvg = await sanitizeSVG(imageSvg)
 
 			if (!cleanSvg) {
-				console.error('Invalid SVG for the following contact. Ignoring...', this.contact, { photoB64, photoType })
+				console.error('Invalid SVG for the following contact. Ignoring...', this, { photoB64, photoType })
 				return false
 			}
 		}
@@ -287,7 +316,7 @@ export default class Contact {
 			const blob = b64toBlob(photoB64Data, `image/${photoType}`)
 			return URL.createObjectURL(blob)
 		} catch {
-			console.error('Invalid photo for the following contact. Ignoring...', this.contact, { photoB64, photoType })
+			console.error('Invalid photo for the following contact. Ignoring...', this, { photoB64, photoType })
 			return false
 		}
 	}

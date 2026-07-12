@@ -9,6 +9,50 @@ const getPropertyLines = (property, vcard) => {
 	return vcard.match(new RegExp(`^${property}[;:].*`, 'gmi'))
 }
 
+describe('Test getPhotoUrl', () => {
+
+	// 1x1 transparent PNG
+	const pngB64 = 'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg=='
+
+	const buildContact = (photoLine, version = '3.0') => new Contact(`
+		BEGIN:VCARD
+		VERSION:${version}
+		UID:123456789-123465-123456-123456789
+		FN:Test contact
+		${photoLine}
+		END:VCARD`.replace(/\t/gmi, ''),
+	{ id: 'addressbook1' })
+
+	beforeAll(() => {
+		global.URL.createObjectURL = jest.fn((blob) => `blob:${blob.type}`)
+	})
+
+	test('photo with an explicit TYPE parameter', async () => {
+		const contact = buildContact(`PHOTO;ENCODING=b;TYPE=png:${pngB64}`)
+
+		expect(await contact.getPhotoUrl()).toStrictEqual('blob:image/png')
+	})
+
+	test('photo without a TYPE parameter is detected from the image data (issue #5401)', async () => {
+		const contact = buildContact(`PHOTO;ENCODING=b:${pngB64}`)
+
+		expect(await contact.getPhotoUrl()).toStrictEqual('blob:image/png')
+	})
+
+	test('jpeg photo without a TYPE parameter', async () => {
+		const contact = buildContact('PHOTO;ENCODING=b:/9j/4AAQSkZJRgABAQ==')
+
+		expect(await contact.getPhotoUrl()).toStrictEqual('blob:image/jpeg')
+	})
+
+	test('photo from a data uri (vCard 4.0)', async () => {
+		const contact = buildContact(`PHOTO:data:image/png;base64,${pngB64}`, '4.0')
+
+		expect(await contact.getPhotoUrl()).toStrictEqual('blob:image/png')
+	})
+
+})
+
 describe('Test stripping quotes from TYPE', () => {
 
 	let contact
