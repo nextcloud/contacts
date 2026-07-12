@@ -480,11 +480,18 @@ export default {
 		},
 
 		async finishContactMerging(mergedContact) {
-			// After merging, we need to update the contact in the store
-			await this.$store.dispatch('fetchFullContact', { contact: mergedContact, forceReFetch: true })
-
-			this.unselectAllMultiSelected()
-			this.isMerging = false
+			try {
+				// After merging, we need to update the contact in the store
+				await this.$store.dispatch('fetchFullContact', { contact: mergedContact, forceReFetch: true })
+			} catch (error) {
+				// The merge itself already succeeded on the server, so we must
+				// not leave the dialog stuck in a loading state if refreshing
+				// the merged contact fails.
+				console.error('Could not refresh the merged contact', error)
+			} finally {
+				this.unselectAllMultiSelected()
+				this.isMerging = false
+			}
 
 			await this.$router.push({
 				name: 'root',
