@@ -213,14 +213,18 @@ export default class Contact {
 		// The jCal value may be basic ISO 8601 ("20260312T192500Z"), extended
 		// ("2026-03-12T19:25:00Z"), or carry misplaced separators from ical.js
 		// reformatting a REV with missing seconds ("2026-03-12T19::25Z").
-		// Strip all separators and rebuild the extended format for Date.parse.
-		// Seconds default to 00, a missing zone is treated as UTC.
-		const match = raw.replace(/[-:]/g, '')
-			.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})?(Z|[+-]\d{4})?$/)
+		// Split off the zone before stripping separators so the sign of a
+		// negative UTC offset survives, then rebuild the extended format for
+		// Date.parse. Seconds default to 00, a missing zone is treated as UTC.
+		const zoneMatch = raw.match(/(Z|[+-]\d{2}:?\d{2})$/)
+		const zone = zoneMatch?.[1].replace(':', '') ?? 'Z'
+		const datetime = zoneMatch ? raw.slice(0, -zoneMatch[1].length) : raw
+		const match = datetime.replace(/[-:]/g, '')
+			.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})?$/)
 		if (!match) {
 			return null
 		}
-		const [, year, month, day, hour, minute, second = '00', zone = 'Z'] = match
+		const [, year, month, day, hour, minute, second = '00'] = match
 		const offset = zone.replace(/^([+-]\d{2})/, '$1:')
 		const timestamp = Date.parse(`${year}-${month}-${day}T${hour}:${minute}:${second}${offset}`)
 		return Number.isNaN(timestamp) ? null : Math.floor(timestamp / 1000)

@@ -88,6 +88,8 @@ describe('Test revTimestamp', () => {
 	test.each([
 		['20260312T202500+0100', '3.0'],
 		['2026-03-12T20:25:00+01:00', '3.0'],
+		['20260312T142500-0500', '3.0'],
+		['2026-03-12T14:25:00-05:00', '3.0'],
 	])('parses REV:%s with UTC offset (vCard %s)', (rev, version) => {
 		expect(contactWithRev(rev, version).revTimestamp).toBe(expected)
 	})
