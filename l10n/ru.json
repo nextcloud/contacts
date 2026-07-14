@@ -8,7 +8,9 @@
     "Copy to full name" : "Скопировать в полное имя",
     "Omit year" : "Пропустить год",
     "Allow updating avatars from social media" : "Разрешить обновление аватарок из соцсетей",
+    "Organization chart" : "Организационная структура",
     "There was an error fetching the member list" : "Не удалось получить список участников",
+    "Teams" : "Команды",
     "Please select a team" : "Пожалуйста, выберите команду",
     "Loading team…" : "Загрузка команды…",
     "There are no contacts yet" : "Нет ни одного контакта",
@@ -44,7 +46,6 @@
     "Contact groups" : "Группы контакта",
     "Create a new contact group" : "Создать новую группу контактов",
     "Contact group name" : "Название группы",
-    "Teams" : "Команды",
     "Create a new team" : "Создайте новую команду",
     "Open the contacts app settings" : "Откройте настройки приложения «Контакты».",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Общее для одной записи","Общее для {num} записей","Общее для {num} записей","Общее для {num} записей"],
@@ -101,9 +102,6 @@
     "Calendar" : "Календарь",
     "New calendar" : "Новый календарь",
     "Calendar name" : "Название календаря",
-    "Deck board" : "Доска",
-    "New Deck board" : "Новая доска",
-    "Board name" : "Название доски",
     "Team name" : "Название команды",
     "Team owner" : "Владелец команды",
     "Delete picture" : "Удалить изображение",
@@ -237,7 +235,6 @@
     "Link copied to the clipboard" : "Ссылка скопирована в буфер обмена",
     "Could not copy link to the clipboard." : "Не удалось скопировать ссылку в буфер обмена",
     "Not grouped" : "Без группы",
-    "Organization chart" : "Организационная структура",
     "Team" : "Команда",
     "User" : "Пользователь",
     "Group" : "Группа",
@@ -325,6 +322,9 @@
     "An error has occurred in team(s). Check the console for more details." : "Произошла ошибка в команде(ах). Проверьте консоль для получения более подробной информации.",
     "Unable to create team {circleName}" : "Невозможно создать команду {circleName}",
     "Unable to delete team {circleId}" : "Невозможно удалить команду {circleId}",
-    "Unable to delete contact" : "Невозможно удалить контакт"
+    "Unable to delete contact" : "Невозможно удалить контакт",
+    "Deck board" : "Доска",
+    "New Deck board" : "Новая доска",
+    "Board name" : "Название доски"
 },"pluralForm" :"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);"
 }
