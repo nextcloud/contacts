@@ -301,6 +301,7 @@ export default {
 <style lang="scss" scoped>
 
 .empty-content {
+	width: 100%;
 	height: 100%;
 }
 
