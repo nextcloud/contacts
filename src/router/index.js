@@ -6,7 +6,8 @@
 import { generateUrl } from '@nextcloud/router'
 import { createRouter, createWebHistory } from 'vue-router'
 import Contacts from '../views/Contacts.vue'
-import { ROUTE_CHART, ROUTE_CIRCLE, ROUTE_USER_GROUP } from '../models/constants.ts'
+import { GROUP_ALL_CONTACTS, ROUTE_CHART, ROUTE_CIRCLE, ROUTE_USER_GROUP } from '../models/constants.ts'
+import { generateContactKey } from '../models/contact.js'
 
 // if index.php is in the url AND we got this far, then it's working:
 // let's keep using index.php in the url
@@ -56,6 +57,17 @@ export default createRouter({
 					path: `${ROUTE_USER_GROUP}/:selectedUserGroup`,
 					name: 'user_group',
 					component: Contacts,
+				},
+				{
+					path: 'u/:userId',
+					name: 'profile-redirect',
+					redirect: (to) => ({
+						name: 'contact',
+						params: {
+							selectedGroup: GROUP_ALL_CONTACTS,
+							selectedContact: generateContactKey(to.params.userId, 'z-server-generated--system'),
+						},
+					}),
 				},
 			],
 		},

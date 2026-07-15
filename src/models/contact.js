@@ -28,6 +28,10 @@ export const MinimalContactProperties = [
 	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED',
 ].concat(ContactKindProperties)
 
+export function generateContactKey(uid, addressbookId) {
+	return Buffer.from(uid + '~' + addressbookId, 'utf8').toString('base64')
+}
+
 export default class Contact {
 	/**
 	 * Creates an instance of Contact
@@ -211,7 +215,7 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get key() {
-		return Buffer.from(this.uid + '~' + this.addressbook.id, 'utf8').toString('base64')
+		return generateContactKey(this.uid, this.addressbook.id)
 	}
 
 	/**
