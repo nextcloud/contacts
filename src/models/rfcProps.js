@@ -189,8 +189,8 @@ const properties = {
 		readableName: t('contacts', 'Instant messaging'),
 		icon: 'icon-instant-message',
 		defaultValue: {
-			value: [''],
-			type: ['SKYPE'],
+			value: '',
+			type: ['SIGNAL'],
 		},
 		options: [
 			{ id: 'DISCORD', name: 'Discord' },
