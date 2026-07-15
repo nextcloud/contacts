@@ -362,6 +362,19 @@ export default class Contact {
 	}
 
 	/**
+	 * Check whether any of the contact's email addresses matches
+	 * the given email (case insensitive)
+	 *
+	 * @param {string} email the email address to look for
+	 * @return {boolean}
+	 * @memberof Contact
+	 */
+	hasEmail(email) {
+		return this.vCard.getAllProperties('email')
+			.some((property) => property.getFirstValue()?.toLowerCase() === email.toLowerCase())
+	}
+
+	/**
 	 * Return the first org
 	 *
 	 * @readonly
