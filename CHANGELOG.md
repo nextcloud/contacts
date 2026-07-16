@@ -1,3 +1,27 @@
+## [8.7.4](https://github.com/nextcloud/contacts/compare/v8.7.3...v8.7.4) (2026-07-16)
+
+
+### Bug Fixes
+
+* centering notice about empty contact ([0c16fba](https://github.com/nextcloud/contacts/commit/0c16fbac28d07daeeaba93ffa1dbecd0a5de3b81))
+* **contacts:** add instant messaging field with default type ([9f273e0](https://github.com/nextcloud/contacts/commit/9f273e0d11b1948203b744a4d1b7721e3a1114fd))
+* **deps:** Fix npm audit ([cddd681](https://github.com/nextcloud/contacts/commit/cddd681cdf6e89151dc865d3caef40284f1910c5))
+* **l10n:** Update translations from Transifex ([2c6118d](https://github.com/nextcloud/contacts/commit/2c6118d2ca3f808e19e38f4cc67e130d6db93b2b))
+* **l10n:** Update translations from Transifex ([930e222](https://github.com/nextcloud/contacts/commit/930e2227c5f83dc260c05aca4663c85e30b543e7))
+* **l10n:** Update translations from Transifex ([a3fa6e7](https://github.com/nextcloud/contacts/commit/a3fa6e71c7a4d3c110818b6b95da37a5cd410cc5))
+* **ReadOnlyContactDetails:** match by all email addresses for a contact ([7016cd1](https://github.com/nextcloud/contacts/commit/7016cd12424d3e490307ce6283bc288f72697cb7))
+* remove skype and add whatsapp and discord ([9bbbf77](https://github.com/nextcloud/contacts/commit/9bbbf77b6c7d037222b3fb511963279533aa80ef))
+* **router:** redirect profile details view to internal contacts list ([5010c7c](https://github.com/nextcloud/contacts/commit/5010c7c1173659e6a0b4aa535d8119f592e3fa25))
+* **router:** refactor the generating of a contact key ([fde21b4](https://github.com/nextcloud/contacts/commit/fde21b48c6222b3f8f66a4f961ae2804484ec6ec))
+* **teams:** circular Talk previews, border-radius-small for Files previews ([850b57b](https://github.com/nextcloud/contacts/commit/850b57b3c4f8ac4876ed21cbae590c1fb3f0f652))
+
+
+### Performance Improvements
+
+* Don't fetch full group information ([268c375](https://github.com/nextcloud/contacts/commit/268c3756437c1e53d71cb8338e478813c2263dea))
+
+
+
 ## [8.7.3](https://github.com/nextcloud/contacts/compare/v8.7.2...v8.7.3) (2026-07-07)
 
 
