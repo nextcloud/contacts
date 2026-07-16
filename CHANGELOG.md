@@ -1,3 +1,19 @@
+## [8.3.16](https://github.com/nextcloud/contacts/compare/v8.3.15...v8.3.16) (2026-07-16)
+
+
+### Bug Fixes
+
+* **contacts:** add instant messaging field with default type ([34d6062](https://github.com/nextcloud/contacts/commit/34d606240d54154b80be4a312eeb325ed90adfdf))
+* **deps:** Fix npm audit ([08dc369](https://github.com/nextcloud/contacts/commit/08dc369ed545d1a0ede5013d3e9a739ce5f6ec58))
+* **l10n:** Update translations from Transifex ([23ab93a](https://github.com/nextcloud/contacts/commit/23ab93a2c039ba986ccde57d7a1dd9d8009af5ab))
+* **l10n:** Update translations from Transifex ([665073a](https://github.com/nextcloud/contacts/commit/665073a761bcb46ba637998bdac9d857c1bd89fe))
+* **l10n:** Update translations from Transifex ([00b8967](https://github.com/nextcloud/contacts/commit/00b8967c9097179014b39df207e071087cd60ecd))
+* **router:** redirect profile details view to internal contacts list ([5c29580](https://github.com/nextcloud/contacts/commit/5c29580d592ea52c2188037fe061492343d4f035))
+* **router:** refactor the generating of a contact key ([062d1c4](https://github.com/nextcloud/contacts/commit/062d1c467bbbed6bce016da59261e232496453e8))
+* **teams:** circular Talk previews, border-radius-small for Files previews ([77c580e](https://github.com/nextcloud/contacts/commit/77c580e401c79143bf9b2e51f9f97489cb63166f))
+
+
+
 ## [8.3.15](https://github.com/nextcloud/contacts/compare/v8.3.14...v8.3.15) (2026-07-07)
 
 
