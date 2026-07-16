@@ -1015,13 +1015,23 @@ export default defineComponent({
 						addressbook,
 					})
 					// select the contact again
-					this.$router.push({
-						name: 'contact',
-						params: {
-							selectedGroup: this.$route.params.selectedGroup,
-							selectedContact: contact.key,
-						},
-					})
+					if (this.$route.params.selectedAddressbook) {
+						this.$router.push({
+							name: 'addressbook-contact',
+							params: {
+								selectedAddressbook: this.$route.params.selectedAddressbook,
+								selectedContact: contact.key,
+							},
+						})
+					} else {
+						this.$router.push({
+							name: 'contact',
+							params: {
+								selectedGroup: this.$route.params.selectedGroup,
+								selectedContact: contact.key,
+							},
+						})
+					}
 				} catch (error) {
 					console.error(error)
 					showError(t('contacts', 'An error occurred while trying to move the contact'))
@@ -1048,13 +1058,23 @@ export default defineComponent({
 						addressbook,
 					})
 					// select the contact again
-					this.$router.push({
-						name: 'contact',
-						params: {
-							selectedGroup: this.$route.params.selectedGroup,
-							selectedContact: contact.key,
-						},
-					})
+					if (this.$route.params.selectedAddressbook) {
+						this.$router.push({
+							name: 'addressbook-contact',
+							params: {
+								selectedAddressbook: this.$route.params.selectedAddressbook,
+								selectedContact: contact.key,
+							},
+						})
+					} else {
+						this.$router.push({
+							name: 'contact',
+							params: {
+								selectedGroup: this.$route.params.selectedGroup,
+								selectedContact: contact.key,
+							},
+						})
+					}
 				} catch (error) {
 					console.error(error)
 					showError(t('contacts', 'An error occurred while trying to copy the contact'))

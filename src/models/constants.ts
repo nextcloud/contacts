@@ -28,6 +28,7 @@ export const CHART_ALL_CONTACTS: DefaultChart = t('contacts', 'Organization char
 export const ROUTE_CIRCLE = 'circle'
 export const ROUTE_CHART = 'chart'
 export const ROUTE_USER_GROUP = 'user_group'
+export const ROUTE_ADDRESSBOOK = 'addressbook'
 
 // Contact settings
 export const CONTACTS_SETTINGS: DefaultGroup = t('contacts', 'Contacts settings')
