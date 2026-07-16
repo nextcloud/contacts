@@ -45,6 +45,17 @@ describe('Test getPhotoUrl', () => {
 		expect(await contact.getPhotoUrl()).toStrictEqual('blob:image/jpeg')
 	})
 
+	test('photo of an unknown type falls back to jpeg and warns', async () => {
+		const warn = jest.spyOn(console, 'warn').mockImplementation(() => {})
+		// base64 that matches none of the known magic byte signatures
+		const contact = buildContact('PHOTO;ENCODING=b:Zm9vYmFyYmF6cXV4')
+
+		expect(await contact.getPhotoUrl()).toStrictEqual('blob:image/jpeg')
+		expect(warn).toHaveBeenCalled()
+
+		warn.mockRestore()
+	})
+
 	test('photo from a data uri (vCard 4.0)', async () => {
 		const contact = buildContact(`PHOTO:data:image/png;base64,${pngB64}`, '4.0')
 

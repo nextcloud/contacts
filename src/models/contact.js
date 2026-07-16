@@ -40,9 +40,13 @@ function detectImageType(photoB64Data) {
 		PD94b: 'svg+xml', // '<?xml'
 	}
 	const signature = Object.keys(signatures).find((signature) => photoB64Data.startsWith(signature))
-	// browsers detect raster images in an img element from the content,
-	// so a wrong subtype still renders fine
-	return signature ? signatures[signature] : 'jpeg'
+	if (!signature) {
+		// browsers detect raster images in an img element from the content,
+		// so an assumed subtype still renders fine, but warn about the guess
+		console.warn('Could not detect the photo type from its content, assuming JPEG')
+		return 'jpeg'
+	}
+	return signatures[signature]
 }
 
 export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
