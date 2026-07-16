@@ -73,6 +73,37 @@
 				</template>
 			</AppNavigationItem>
 
+			<!-- Address books -->
+			<AppNavigationCaption :name="t('contacts', 'Address books')">
+				<template #actions>
+					<NcActionButton @click="$refs.newAddressbook.openModal()">
+						<template #icon>
+							<IconAdd :size="20" />
+						</template>
+						{{ t('contacts', 'Add address book') }}
+					</NcActionButton>
+				</template>
+			</AppNavigationCaption>
+			<AppNavigationItem
+				v-for="addressbook in enabledAddressbooks"
+				:key="addressbook.id"
+				:name="addressbook.displayName"
+				:to="{
+					name: ROUTE_ADDRESSBOOK,
+					params: { selectedAddressbook: addressbook.id },
+				}"
+				:active="routeState === `${ROUTE_ADDRESSBOOK}:${addressbook.id}`"
+				@click="updateRouteState(`${ROUTE_ADDRESSBOOK}:${addressbook.id}`)">
+				<template #icon>
+					<IconAddressBook :size="20" />
+				</template>
+				<template #counter>
+					<NcCounterBubble
+						v-if="addressbookContactCount(addressbook)"
+						:count="addressbookContactCount(addressbook)" />
+				</template>
+			</AppNavigationItem>
+
 			<!-- Recently contacted group -->
 			<AppNavigationItem
 				v-if="isContactsInteractionEnabled && recentlyContactedContacts && recentlyContactedContacts.contacts.length > 0"
@@ -195,6 +226,7 @@
 			</div>
 		</template>
 		<ContactsSettings v-model:open="showSettings" />
+		<SettingsNewAddressbook ref="newAddressbook" hide-button />
 	</AppNavigation>
 </template>
 
@@ -219,6 +251,7 @@ import IconContactFilled from 'vue-material-design-icons/AccountMultiple.vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconUser from 'vue-material-design-icons/AccountOutline.vue'
 import IconError from 'vue-material-design-icons/AlertCircleOutline.vue'
+import IconAddressBook from 'vue-material-design-icons/BookAccountOutline.vue'
 import Cog from 'vue-material-design-icons/CogOutline.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 import NewCircleIntro from '../EntityPicker/NewCircleIntro.vue'
@@ -226,8 +259,9 @@ import IconRecentlyContacted from '../Icons/IconRecentlyContacted.vue'
 import CircleNavigationItem from './CircleNavigationItem.vue'
 import ContactsSettings from './ContactsSettings.vue'
 import GroupNavigationItem from './GroupNavigationItem.vue'
+import SettingsNewAddressbook from './Settings/SettingsNewAddressbook.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
-import { CHART_ALL_CONTACTS, CIRCLE_DESC, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED } from '../../models/constants.ts'
+import { CHART_ALL_CONTACTS, CIRCLE_DESC, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ROUTE_ADDRESSBOOK } from '../../models/constants.ts'
 import isCirclesEnabled from '../../services/isCirclesEnabled.js'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled.js'
 import useUserGroupStore from '../../store/userGroup.ts'
@@ -247,6 +281,7 @@ export default {
 		Cog,
 		ContactsSettings,
 		GroupNavigationItem,
+		IconAddressBook,
 		IconContact,
 		IconContactFilled,
 		IconUser,
@@ -257,6 +292,7 @@ export default {
 		IconRecentlyContacted,
 		NewCircleIntro,
 		NcButton,
+		SettingsNewAddressbook,
 	},
 
 	mixins: [RouterMixin],
@@ -277,6 +313,7 @@ export default {
 			CHART_ALL_CONTACTS,
 			GROUP_NO_GROUP_CONTACTS,
 			GROUP_RECENTLY_CONTACTED,
+			ROUTE_ADDRESSBOOK,
 
 			// create group
 			isNewGroupMenuOpen: false,
@@ -301,6 +338,14 @@ export default {
 
 	computed: {
 		// store variables
+		addressbooks() {
+			return this.$store.getters.getAddressbooks
+		},
+
+		enabledAddressbooks() {
+			return this.addressbooks.filter((ab) => ab.enabled)
+		},
+
 		circles() {
 			return this.$store.getters.getCircles
 		},
@@ -426,6 +471,11 @@ export default {
 	},
 
 	methods: {
+		addressbookContactCount(addressbook) {
+			// contact groups are stored as contacts too, but never listed as such
+			return Object.values(addressbook.contacts || {}).filter((contact) => contact.kind !== 'group').length
+		},
+
 		toggleNewGroupMenu() {
 			this.isNewGroupMenuOpen = !this.isNewGroupMenuOpen
 		},

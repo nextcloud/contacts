@@ -6,7 +6,7 @@
 import { generateUrl } from '@nextcloud/router'
 import { createRouter, createWebHistory } from 'vue-router'
 import Contacts from '../views/Contacts.vue'
-import { GROUP_ALL_CONTACTS, ROUTE_CHART, ROUTE_CIRCLE, ROUTE_USER_GROUP } from '../models/constants.ts'
+import { GROUP_ALL_CONTACTS, ROUTE_ADDRESSBOOK, ROUTE_CHART, ROUTE_CIRCLE, ROUTE_USER_GROUP } from '../models/constants.ts'
 import { generateContactKey } from '../models/contact.js'
 
 // if index.php is in the url AND we got this far, then it's working:
@@ -68,6 +68,16 @@ export default createRouter({
 							selectedContact: generateContactKey(to.params.userId, 'z-server-generated--system'),
 						},
 					}),
+				},
+				{
+					path: `${ROUTE_ADDRESSBOOK}/:selectedAddressbook`,
+					name: 'addressbook',
+					component: Contacts,
+				},
+				{
+					path: `${ROUTE_ADDRESSBOOK}/:selectedAddressbook/:selectedContact`,
+					name: 'addressbook-contact',
+					component: Contacts,
 				},
 			],
 		},
