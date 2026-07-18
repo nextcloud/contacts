@@ -199,6 +199,11 @@ export default {
 		 * @return {Array}
 		 */
 		propGroup() {
+			const group = this.property.getParameter('group')
+			if (group) {
+				return [group, this.property.name]
+			}
+			// for group embedded in the name, e.g. ITEMXX.tel
 			return this.property.name.split('.')
 		},
 
@@ -208,7 +213,20 @@ export default {
 		 * @return {ICAL.Property}
 		 */
 		propLabel() {
-			return this.localContact.vCard.getFirstProperty(`${this.propGroup[0]}.x-ablabel`)
+			if (!this.propGroup[1]) { 
+				return null 
+			} // not a grouped property
+			const group = this.propGroup[0]
+
+			const dottedLabel = this.localContact.vCard.getFirstProperty(`${group}.x-ablabel`)
+			if (dottedLabel) { 
+				return dottedLabel 
+			}
+			return (
+				this.localContact.vCard
+					.getAllProperties('x-ablabel')
+					.find((prop) => prop.getParameter('group') === group) || null
+			)
 		},
 
 		/**
@@ -272,18 +290,31 @@ export default {
 				} else {
 					// ical.js take types as arrays
 					this.type = data.id.split(',')
-					// only one can coexist
-					this.localContact.vCard.removeProperty(`${this.propGroup[0]}.x-ablabel`)
 
-					// checking if there is any other property in this group
+					const group = this.propGroup[0]
+					this.localContact.vCard.removeProperty(`${group}.x-ablabel`)
+
+					const paramLabel = this.localContact.vCard
+						.getAllProperties('x-ablabel')
+						.find((p) => p.getParameter('group') === group)
+					if (paramLabel) {
+						this.localContact.vCard.removeProperty(paramLabel)
+					}
+
 					const groups = this.localContact.jCal[1]
 						.map((prop) => prop[0])
-						.filter((name) => name.startsWith(`${this.propGroup[0]}.`))
-					if (groups.length === 1) {
-						// then this prop is the latest of its group
-						// -> converting back to simple prop
-						// eslint-disable-next-line vue/no-mutating-props
+						.filter((name) => name.startsWith(`${group}.`))
+
+					const paramGroups = this.localContact.jCal[1].filter((prop) => prop[1] && prop[1].group === group)
+					const allGroups = [
+						...new Set([...groups, ...paramGroups.map((p) => p[0])]),
+					]
+
+					if (allGroups.length === 1) {
 						this.property.jCal[0] = this.propGroup[1]
+						if (this.property.getParameter('group')) {
+							delete this.property.jCal[1].group
+						}
 					}
 				}
 			},
