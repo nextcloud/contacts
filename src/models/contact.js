@@ -8,7 +8,7 @@ import b64toBlob from 'b64-to-blob'
 import { Buffer } from 'buffer'
 import ICAL from 'ical.js'
 import { v4 as uuid } from 'uuid'
-import { shallowRef, unref } from 'vue'
+import { shallowRef, toRaw, unref } from 'vue'
 import updateDesignSet from '../services/updateDesignSet.js'
 import store from '../store/index.js'
 
@@ -25,7 +25,7 @@ function isEmpty(value) {
 export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
 
 export const MinimalContactProperties = [
-	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED',
+	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED', 'REV',
 ].concat(ContactKindProperties)
 
 export function generateContactKey(uid, addressbookId) {
@@ -66,17 +66,6 @@ export default class Contact {
 		if (!this.vCard.hasProperty('uid')) {
 			console.info('This contact did not have a proper uid. Setting a new one for ', this)
 			this.vCard.addPropertyWithValue('uid', uuid())
-		}
-
-		// if no rev set, init one
-		if (!this.vCard.hasProperty('rev')) {
-			const version = this.vCard.getFirstPropertyValue('version')
-			if (version === '4.0') {
-				this.vCard.addPropertyWithValue('rev', ICAL.Time.fromJSDate(new Date(), true))
-			}
-			if (version === '3.0') {
-				this.vCard.addPropertyWithValue('rev', ICAL.VCardTime.fromDateAndOrTimeString(new Date().toISOString(), 'date-time'))
-			}
 		}
 	}
 
@@ -195,7 +184,11 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get rev() {
-		return this.vCard.getFirstPropertyValue('rev')
+		try {
+			return this.vCard.getFirstPropertyValue('rev')
+		} catch {
+			return null
+		}
 	}
 
 	/**
@@ -206,6 +199,39 @@ export default class Contact {
 	 */
 	set rev(rev) {
 		this.vCard.updatePropertyWithValue('rev', rev)
+	}
+
+	/**
+	 * REV as a unix timestamp (seconds), or null if missing or unparseable.
+	 * Reads the raw jCal value instead of going through ICAL.Time, which
+	 * throws on malformed REV values and broke sorting (see issue #5158).
+	 *
+	 * @readonly
+	 * @memberof Contact
+	 */
+	get revTimestamp() {
+		const raw = toRaw(this).vCard.getFirstProperty('rev')?.jCal?.[3]
+		if (typeof raw !== 'string') {
+			return null
+		}
+		// The jCal value may be basic ISO 8601 ("20260312T192500Z"), extended
+		// ("2026-03-12T19:25:00Z"), or carry misplaced separators from ical.js
+		// reformatting a REV with missing seconds ("2026-03-12T19::25Z").
+		// Split off the zone before stripping separators so the sign of a
+		// negative UTC offset survives, then rebuild the extended format for
+		// Date.parse. Seconds default to 00, a missing zone is treated as UTC.
+		const zoneMatch = raw.match(/(Z|[+-]\d{2}:?\d{2})$/)
+		const zone = zoneMatch?.[1].replace(':', '') ?? 'Z'
+		const datetime = zoneMatch ? raw.slice(0, -zoneMatch[1].length) : raw
+		const match = datetime.replace(/[-:]/g, '')
+			.match(/^(\d{4})(\d{2})(\d{2})T(\d{2})(\d{2})(\d{2})?$/)
+		if (!match) {
+			return null
+		}
+		const [, year, month, day, hour, minute, second = '00'] = match
+		const offset = zone.replace(/^([+-]\d{2})/, '$1:')
+		const timestamp = Date.parse(`${year}-${month}-${day}T${hour}:${minute}:${second}${offset}`)
+		return Number.isNaN(timestamp) ? null : Math.floor(timestamp / 1000)
 	}
 
 	/**
