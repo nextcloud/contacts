@@ -39,7 +39,7 @@ export async function getCircles() {
 /**
  * Get a specific circle
  *
- * @param circleId
+ * @param circleId the circle id
  * @return
  */
 export async function getCircle(circleId: string) {
@@ -51,8 +51,8 @@ export async function getCircle(circleId: string) {
  * Create a new circle
  *
  * @param name the circle name
- * @param personal
- * @param local
+ * @param personal whether the circle is personal
+ * @param local whether the circle is local
  * @return
  */
 export async function createCircle(name: string, personal: boolean, local: boolean) {
@@ -80,8 +80,7 @@ export async function deleteCircle(circleId: string) {
  *
  * @param circleId the circle id
  * @param type the edit type
- * @param data the data
- * @param value
+ * @param value the new value
  * @return
  */
 export async function editCircle(circleId: string, type: CircleEditType, value: any) {
