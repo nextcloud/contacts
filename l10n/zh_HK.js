@@ -36,7 +36,7 @@ OC.L10N.register(
     "Address books" : "通訊錄",
     "Tried to drop an invalid contact!" : "嘗試丟棄無效的聯絡人!",
     "Rename" : "重新命名",
-    "Export" : "導出",
+    "Export" : "匯出",
     "Send email" : "傳送電郵",
     "Send email as BCC" : "以 BCC 方式發送電郵",
     "Delete" : "刪除",
