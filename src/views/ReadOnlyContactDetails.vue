@@ -306,8 +306,23 @@ export default {
 }
 
 .contact-title {
-	margin-inline-start: 100px;
-	margin-top: 40px;
+	margin-block-start: calc(var(--default-grid-baseline) * 2);
+	text-align: start;
+
+	h6 {
+		font-size: calc(var(--default-font-size) * 0.9);
+		font-weight: normal;
+		color: var(--color-text-maxcontrast);
+		margin: 0;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+	}
+
+	span {
+		font-size: calc(var(--default-font-size) * 0.85);
+		color: var(--color-text-maxcontrast);
+	}
 }
 
 :deep(.property__value) {
