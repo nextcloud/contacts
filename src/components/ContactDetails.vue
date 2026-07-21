@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<AppContentDetails>
+	<AppContentDetails ref="detailsRoot" tabindex="-1">
 		<!-- nothing selected or contact not found -->
 		<EmptyContent
 			v-if="!contact"
@@ -871,6 +871,7 @@ export default defineComponent({
 
 		// capture ctrl+s
 		document.addEventListener('keydown', this.onCtrlSave)
+		this.reloadBus.on('focus-details', this.focusDetails)
 
 		this.lastUsedAddressBook = this.getLastUsedAddressBook()
 	},
@@ -878,9 +879,17 @@ export default defineComponent({
 	beforeUnmount() {
 		// unbind capture ctrl+s
 		document.removeEventListener('keydown', this.onCtrlSave)
+		this.reloadBus.off('focus-details', this.focusDetails)
 	},
 
 	methods: {
+		/**
+		 * Move focus into the details panel, used when navigating here from the contact list via keyboard
+		 */
+		focusDetails() {
+			this.$refs.detailsRoot?.$el?.focus()
+		},
+
 		updateGroups(value) {
 			this.newGroupsValue = value
 		},

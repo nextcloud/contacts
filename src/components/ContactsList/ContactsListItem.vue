@@ -7,7 +7,8 @@
 		class="contacts-list__item-wrapper"
 		:draggable="isDraggable"
 		@dragstart="startDrag($event, source)"
-		@click.shift.exact.prevent="onSelectMultipleRange">
+		@click.shift.exact.prevent="onSelectMultipleRange"
+		@keydown="onListKeydown">
 		<ListItem
 			:id="id"
 			:key="source.key"
@@ -19,7 +20,14 @@
 			<template #icon>
 				<div
 					class="contacts-list__item-icon"
+					:role="isStatic ? undefined : 'checkbox'"
+					:tabindex="isStatic ? undefined : 0"
+					:aria-checked="isStatic ? undefined : source.isMultiSelected"
+					:aria-label="isStatic ? undefined : selectAriaLabel"
 					@click.exact.prevent="onSelectMultiple"
+					@keydown.space.exact.prevent="onSelectMultiple"
+					@keydown.enter.exact.prevent="onSelectMultiple"
+					@keydown.shift.space.exact.prevent="onSelectMultipleRange"
 					@mouseenter="hoverAvatar(true)"
 					@mouseleave="hoverAvatar(false)">
 					<NcAvatar
@@ -132,6 +140,11 @@ export default {
 			default: () => {},
 		},
 
+		onNavigateFromParent: {
+			type: Function,
+			default: () => {},
+		},
+
 		isStatic: {
 			type: Boolean,
 			default: false,
@@ -169,6 +182,12 @@ export default {
 
 		getTel() {
 			return this.source.properties.find((property) => property.name === 'tel')?.getFirstValue()
+		},
+
+		selectAriaLabel() {
+			return this.source.isMultiSelected
+				? t('contacts', 'Unselect {name}', { name: this.source.displayName })
+				: t('contacts', 'Select {name}', { name: this.source.displayName })
 		},
 	},
 
@@ -289,6 +308,31 @@ export default {
 				return
 			}
 			this.onSelectMultipleFromParent(this.source, this.index, true)
+		},
+
+		/**
+		 * Handle arrow key navigation from this contact:
+		 * - right moves focus into the contact details
+		 * - up/down moves focus to the previous/next contact in the list
+		 *
+		 * @param {KeyboardEvent} event the keydown event
+		 */
+		onListKeydown(event) {
+			if (this.isStatic) {
+				return
+			}
+
+			if (event.key === 'ArrowRight') {
+				event.preventDefault()
+				this.selectContact()
+				this.reloadBus.emit('focus-details')
+			} else if (event.key === 'ArrowDown') {
+				event.preventDefault()
+				this.onNavigateFromParent(this.index, 'down')
+			} else if (event.key === 'ArrowUp') {
+				event.preventDefault()
+				this.onNavigateFromParent(this.index, 'up')
+			}
 		},
 
 		hoverAvatar(newState) {
