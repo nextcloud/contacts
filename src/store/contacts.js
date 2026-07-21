@@ -283,12 +283,24 @@ const mutations = {
 	 */
 	sortContacts(state) {
 		state.sortedContacts = Object.values(state.contacts)
-			.filter((contact) => contact.kind !== 'group')
-			.map((contact) => ({
-				key: contact.key,
-				value: contact[state.orderKey],
-				favorite: contact.favorite || false,
-			}))
+			.reduce((sortedContacts, contact) => {
+				// ical.js getters can throw on malformed property values,
+				// e.g. a compact `REV:20230911` when sorting by last modified.
+				// Skip the broken contact instead of blanking the whole list
+				// (see issues #5149, #5250)
+				try {
+					if (contact.kind !== 'group') {
+						sortedContacts.push({
+							key: contact.key,
+							value: contact[state.orderKey],
+							favorite: contact.favorite || false,
+						})
+					}
+				} catch (error) {
+					console.error('Could not sort the following contact, skipping', contact, error)
+				}
+				return sortedContacts
+			}, [])
 			.sort(sortByFavoriteAndName)
 	},
 

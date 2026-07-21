@@ -175,7 +175,15 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get uid() {
-		return this.vCard.getFirstPropertyValue('uid')
+		const uid = this.vCard.getFirstProperty('uid')
+		if (!uid) {
+			return null
+		}
+		// Read the raw jCal value, which is always a plain string.
+		// getFirstPropertyValue() returns a parsed object for value-typed
+		// properties (e.g. UID;VALUE=DATE-TIME) whose stringification can
+		// throw and break every consumer of uid and key (see issue #5149)
+		return String(uid.jCal[3])
 	}
 
 	/**
