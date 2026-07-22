@@ -63,6 +63,10 @@ class SocialApiController extends ApiController {
 		if (is_null($user)) {
 			return new JSONResponse([], Http::STATUS_PRECONDITION_FAILED);
 		}
+		$permittedKeys = ['enableSocialSync'];
+		if (!in_array($key, $permittedKeys)) {
+			return new JSONResponse([], Http::STATUS_FORBIDDEN);
+		}
 		$userId = $user->getUid();
 		$this->config->setUserValue($userId, $this->appName, $key, $allow);
 		return new JSONResponse([], Http::STATUS_OK);
