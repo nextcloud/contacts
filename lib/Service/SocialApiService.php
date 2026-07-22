@@ -9,8 +9,11 @@ declare(strict_types=1);
 
 namespace OCA\Contacts\Service;
 
+use Exception;
 use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\Exception\ContactAlreadyExistsException;
 use OCA\Contacts\Service\Social\CompositeSocialProvider;
+use OCA\DAV\CardDAV\CardDavBackend;
 use OCA\DAV\CardDAV\ContactsManager;
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Http\JSONResponse;
@@ -20,9 +23,10 @@ use OCP\Contacts\IManager;
 use OCP\Http\Client\IClientService;
 use OCP\IAddressBook;
 use OCP\IConfig;
-use OCP\IL10N;
+use OCP\ICreateContactFromString;
 use OCP\IURLGenerator;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 use function in_array;
 
 class SocialApiService {
@@ -40,10 +44,10 @@ class SocialApiService {
 		private IManager $manager,
 		private IConfig $config,
 		private IClientService $clientService,
-		private IL10N $l10n,
 		private IURLGenerator $urlGen,
 		private ITimeFactory $timeFactory,
 		private ImageResizer $imageResizer,
+		private LoggerInterface $logger,
 	) {
 		$this->appName = Application::APP_ID;
 	}
@@ -107,30 +111,22 @@ class SocialApiService {
 	/**
 	 * Gets the address book of an addressBookId
 	 *
-	 * @param string $addressBookId the identifier of the addressbook
+	 * @param string $addressbookId the identifier of the addressbook
 	 * @param IManager|null $manager optional a ContactManager to use
 	 *
 	 * @return IAddressBook|null the corresponding addressbook or null
 	 */
-	protected function getAddressBook(string $addressBookId, ?IManager $manager = null) : ?IAddressBook {
+	protected function getAddressBook(string $addressbookId, ?IManager $manager = null) : ?IAddressBook {
 		$addressBook = null;
 		if ($manager === null) {
 			$manager = $this->manager;
 		}
 		$addressBooks = $manager->getUserAddressBooks();
 		foreach ($addressBooks as $ab) {
-			if ($ab->getUri() === $addressBookId) {
+			if ($ab->getUri() === $addressbookId) {
 				$addressBook = $ab;
 			}
 		}
-
-		$addressBookIsUpdatable = $addressBook !== null
-			&& ($addressBook->getPermissions() & Constants::PERMISSION_UPDATE);
-
-		if (!$addressBookIsUpdatable) {
-			return null;
-		}
-
 		return $addressBook;
 	}
 
@@ -183,7 +179,11 @@ class SocialApiService {
 			$contact = $contacts[0];
 
 			if ($network) {
-				$allConnectors = [$this->socialProvider->getSocialConnector($network)];
+				$connector = $this->socialProvider->getSocialConnector($network);
+				if ($connector === null) {
+					return new JSONResponse([], Http::STATUS_BAD_REQUEST);
+				}
+				$allConnectors = [$connector];
 			}
 
 			$connectors = array_filter($allConnectors, function ($connector) use ($contact) {
@@ -252,7 +252,131 @@ class SocialApiService {
 	}
 
 	/**
-	 * checks an address book is existing
+	 * Creates a contact and adds it to the address book of the local user with the specified userId,
+	 * unless a contact with the specified cloudId already exists for that local user.
+	 *
+	 * @param string $cloudId the cloud id of the contact
+	 * @param string $email the email of the contact
+	 * @param string $name the name of the contact
+	 * @param string $userId the uid of the local user
+	 * @throws ContactAlreadyExistsException
+	 */
+	public function createContact(string $cloudId, string $email, string $name, string $userId): ?array {
+		try {
+			// Set up the contacts provider for the user with the specified uid
+			$cm = $this->serverContainer->get(ContactsManager::class);
+			$cm->setupContactsProvider($this->manager, $userId, $this->urlGen);
+
+			// if contact already exists we throw ContactAlreadyExistsException
+			$searchResult = $this->manager->search($cloudId, ['CLOUD']);
+			if (count($searchResult) > 0) {
+				$this->logger->info('Contact with cloud id ' . $cloudId . ' already exists.', ['app' => Application::APP_ID]);
+				throw new ContactAlreadyExistsException('Contact with cloud id ' . $cloudId . ' already exists.');
+			}
+
+			$addressBook = $this->pickAddressBookForContactCreation($this->manager->getUserAddressBooks());
+			if (!isset($addressBook)) {
+				$this->logger->error('No suitable address book found. Unable to add the new contact on invite accepted.', ['app' => Application::APP_ID]);
+				return null;
+			}
+
+			$newContact = $this->manager->createOrUpdate(
+				[
+					'FN' => $name,
+					'EMAIL' => $email,
+					'CLOUD' => $cloudId,
+				],
+				$addressBook->getKey()
+			);
+			$newContact['ADDRESSBOOK_URI'] = $addressBook->getUri();
+			return $newContact;
+		} catch (ContactAlreadyExistsException $e) {
+			throw $e;
+		} catch (Exception $e) {
+			$this->logger->error('An exception occurred creating a new contact: ' . $e->getTraceAsString(), ['app' => Application::APP_ID]);
+		}
+		return null;
+	}
+
+	/**
+	 * Creates a federated contact (no thrown exceptions; null on duplicate or
+	 * when no suitable writable address book exists).
+	 *
+	 * Used by the FederatedInviteAcceptedListener on the inviter side, where
+	 * there is no user session and the inviter UID must be passed explicitly.
+	 *
+	 * @param string $cloudId the cloud id of the federated contact
+	 * @param string $email the email of the federated contact
+	 * @param string $name the display name of the federated contact
+	 * @param string $userId the uid of the local (inviter) user
+	 *
+	 * @return array|null the created contact array, or null if a contact with
+	 *                    that cloud id already exists or there is no suitable
+	 *                    writable address book for the inviter
+	 */
+	public function createFederatedContact(string $cloudId, string $email, string $name, string $userId): ?array {
+		try {
+			$cm = $this->serverContainer->get(ContactsManager::class);
+			$cm->setupContactsProvider($this->manager, $userId, $this->urlGen);
+
+			$searchResult = $this->manager->search($cloudId, ['CLOUD']);
+			if (count($searchResult) > 0) {
+				$this->logger->info('Contact with cloud id ' . $cloudId . ' already exists.', ['app' => Application::APP_ID]);
+				return null;
+			}
+
+			$addressBook = $this->pickAddressBookForContactCreation($this->manager->getUserAddressBooks());
+			if (!isset($addressBook)) {
+				$this->logger->error('No suitable address book found. Unable to add the new contact on invite accepted.', ['app' => Application::APP_ID]);
+				return null;
+			}
+
+			$newContact = $this->manager->createOrUpdate(
+				[
+					'FN' => $name,
+					'EMAIL' => $email,
+					'CLOUD' => $cloudId,
+				],
+				$addressBook->getKey()
+			);
+			return $newContact;
+		} catch (Exception $e) {
+			$this->logger->error('An exception occurred creating a federated contact: ' . $e->getMessage(), ['exception' => $e]);
+		}
+		return null;
+	}
+
+	/**
+	 * Pick a destination book using the same order as ImportController:
+	 * personal address book first, then first writable non-shared.
+	 */
+	private function pickAddressBookForContactCreation(array $addressBooks): ?ICreateContactFromString {
+		$creatableAddressBooks = array_filter(
+			$addressBooks,
+			static fn (IAddressBook $addressBook): bool => $addressBook instanceof ICreateContactFromString,
+		);
+
+		foreach ($creatableAddressBooks as $addressBook) {
+			if ($addressBook->getUri() === CardDavBackend::PERSONAL_ADDRESSBOOK_URI) {
+				return $addressBook;
+			}
+		}
+
+		foreach ($creatableAddressBooks as $addressBook) {
+			if ($addressBook->isShared()) {
+				continue;
+			}
+			if (($addressBook->getPermissions() & Constants::PERMISSION_CREATE) === 0) {
+				continue;
+			}
+			return $addressBook;
+		}
+
+		return null;
+	}
+
+	/**
+	 * checks an addressbook is existing
 	 *
 	 * @param string $searchBookId the UID of the addressbook to verify
 	 * @param string $userId the user that should have access
