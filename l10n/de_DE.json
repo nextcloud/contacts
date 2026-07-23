@@ -197,6 +197,8 @@
     "Please note that only {count} of the {total} contacts can be added to a group" : "Bitte beachten, dass nur {count} der {total} Kontakte einer Gruppe zugeordnet werden können",
     "Please note that only {count} of the {total} contacts can be moved" : "Bitte beachten, dass nur {count} der {total} Kontakte verschoben werden können",
     "Move" : "Verschieben",
+    "Unselect {name}" : "{name} abwählen",
+    "Select {name}" : "{name} auswählen",
     "Could not update favorite status" : "Favoritenstatus konnte nicht aktualisiert werden",
     "from {addressbook}" : "aus {addressbook}",
     "Remove from favorites" : "Aus Favoriten entfernen",

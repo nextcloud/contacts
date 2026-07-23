@@ -199,6 +199,8 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be added to a group" : "Atkreipkite dėmesį, kad į grupę galima pridėti tik {count} iš {total} kontaktų",
     "Please note that only {count} of the {total} contacts can be moved" : "Atkreipkite dėmesį, kad tik {count} iš {total} kontaktų gali būti perkelti",
     "Move" : "Perkelti",
+    "Unselect {name}" : "Atšaukti pasirinkimą {name}",
+    "Select {name}" : "Pasirinkti {name}",
     "Could not update favorite status" : "Nepavyko atnaujinti mėgstamiausio būsenos",
     "from {addressbook}" : "iš {addressbook}",
     "Remove from favorites" : "Šalinti iš mėgstamų",

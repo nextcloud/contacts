@@ -199,6 +199,8 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be added to a group" : "Palun arvesta, et gruppi lisada saad vaid {count} kontakti {total}-st",
     "Please note that only {count} of the {total} contacts can be moved" : "Palun arvesta, et teisaldada saad vaid {count} kontakti {total}-st",
     "Move" : "Teisalda",
+    "Unselect {name}" : "Eemalda valik: {name}",
+    "Select {name}" : "Vali {name}",
     "Could not update favorite status" : "Olekut lemmikuna polnud võimalik uuendada",
     "from {addressbook}" : "aadressiraamatust {addressbook}",
     "Remove from favorites" : "Eemalda lemmikutest",
