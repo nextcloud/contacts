@@ -168,6 +168,10 @@ const actions = {
 	 */
 	async getCircleMembers(context, circleId) {
 		const circle = context.getters.getCircle(circleId)
+		// skip if current user is not a member (e.g. visible circle)
+		if (!circle.isMember) {
+			return
+		}
 		const members = await getCircleMembers(circleId)
 
 		logger.debug(`${circleId} have ${members.length} member(s)`, { members })
