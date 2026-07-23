@@ -306,8 +306,13 @@ export default {
 }
 
 .contact-title {
-	margin-inline-start: 100px;
-	margin-top: 40px;
+	margin-block-start: calc(var(--default-grid-baseline) * 2);
+	text-align: center;
+	color: var(--color-text-maxcontrast);
+}
+
+.contact-details-wrapper {
+	color: var(--color-text-maxcontrast);
 }
 
 :deep(.property__value) {
