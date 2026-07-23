@@ -199,6 +199,8 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be added to a group" : "Observe que apenas {count} dos {total} contatos podem ser adicionados a um grupo",
     "Please note that only {count} of the {total} contacts can be moved" : "Observe que apenas {count} dos {total} contatos podem ser movidos",
     "Move" : "Mover",
+    "Unselect {name}" : "Desselecionar {name}",
+    "Select {name}" : "Selecionar {name}",
     "Could not update favorite status" : "Não foi possível atualizar o status de favorito",
     "from {addressbook}" : "de {addressbook}",
     "Remove from favorites" : "Remover dos favoritos",
