@@ -199,6 +199,8 @@ OC.L10N.register(
     "Please note that only {count} of the {total} contacts can be added to a group" : "請注意：在 {total} 個聯絡人中，只能將其中 {count} 個加入群組",
     "Please note that only {count} of the {total} contacts can be moved" : "請注意：在 {total} 個聯絡人中，只能將其中 {count} 個移動",
     "Move" : "移動",
+    "Unselect {name}" : "取消選擇 {name}",
+    "Select {name}" : "選擇 {name}",
     "Could not update favorite status" : "無法更新喜好狀態",
     "from {addressbook}" : "從 {addressbook}",
     "Remove from favorites" : "從收藏夾移除",
