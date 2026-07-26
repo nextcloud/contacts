@@ -197,6 +197,8 @@
     "Please note that only {count} of the {total} contacts can be added to a group" : "Tabhair faoi deara nach féidir ach {count} de na {total} teagmhálaithe a chur le grúpa",
     "Please note that only {count} of the {total} contacts can be moved" : "Tabhair faoi deara nach féidir ach {count} de na {total} teagmhálaithe a bhogadh",
     "Move" : "Bog",
+    "Unselect {name}" : "Díroghnaigh {name}",
+    "Select {name}" : "Roghnaigh {name}",
     "Could not update favorite status" : "Níorbh fhéidir stádas is fearr leat a nuashonrú",
     "from {addressbook}" : "ó {addressbook}",
     "Remove from favorites" : "Bain ó cheanáin",
