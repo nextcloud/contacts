@@ -62,7 +62,7 @@
 			<template #subname>
 				<div class="envelope__subtitle">
 					<span class="envelope__subtitle__subject">
-						{{ source.email ? source.email : getTel }}
+						{{ subtitle }}
 					</span>
 				</div>
 				<div v-if="showAddressbook" class="envelope__subtitle">
@@ -168,6 +168,21 @@ export default {
 	computed: {
 		isFavorite() {
 			return this.source.favorite
+		},
+
+		subtitle() {
+			if (this.source.org) {
+				return this.source.org
+			} else if (this.source.email) {
+				return this.source.email
+			} else {
+				const tel = this.getTel
+				if (tel) {
+					return tel
+				}
+			}
+
+			return ''
 		},
 
 		// contact is not draggable when it has not been saved on server as it can't be added to groups/circles before
