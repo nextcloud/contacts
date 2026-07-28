@@ -75,9 +75,8 @@
 					type="email"
 					@update:value="updateEmailValue" />
 
-				<NcTextField
-					v-else-if="propName === 'url'"
-					v-model:model-value="localValue"
+				<NcTextField v-else-if="propName === 'url'"
+					:value.sync="localValue"
 					:inputmode="inputmode"
 					:aria-label="propName"
 					:class="{ 'property__value--with-ext': haveExtHandler }"
@@ -85,7 +84,7 @@
 					:helper-text="!urlHelpText || isReadonly ? '' : urlHelpText"
 					type="url"
 					:placeholder="placeholder"
-					@update:model-value="updateUrlValue" />
+					@update:value="updateUrlValue" />
 
 				<!-- OR default to input -->
 				<NcTextField v-else
