@@ -1,3 +1,21 @@
+## [8.7.5](https://github.com/nextcloud/contacts/compare/v8.7.4...v8.7.5) (2026-07-28)
+
+
+### Bug Fixes
+
+* **circles:** avoid attempting to fetch protected resources when user is not a member ([8ebf646](https://github.com/nextcloud/contacts/commit/8ebf6463a2d71348105854f90faf76b19ace8f22))
+* **l10n:** Update translations from Transifex ([a09822d](https://github.com/nextcloud/contacts/commit/a09822de4dca0e5729f69402d6acdd4b6d9ffa11))
+* **l10n:** Update translations from Transifex ([5d4d3dc](https://github.com/nextcloud/contacts/commit/5d4d3dca07cfc18bd08f60fa65e4e2b299b454c2))
+* **l10n:** Update translations from Transifex ([16b2c1e](https://github.com/nextcloud/contacts/commit/16b2c1ea34590f3e07a049125622201a65dea0d4))
+* **l10n:** Update translations from Transifex ([dd96e12](https://github.com/nextcloud/contacts/commit/dd96e12000abe53ac291973b9b192dbceefd3f75))
+* **l10n:** Update translations from Transifex ([4098dea](https://github.com/nextcloud/contacts/commit/4098deae1c60ee59a4e609076f50788f33c2f3f6))
+* **l10n:** Update translations from Transifex ([cf0c8ee](https://github.com/nextcloud/contacts/commit/cf0c8ee125e2c098b39ccd8382fc9dd0e6a7b9a3))
+* **l10n:** Update translations from Transifex ([f7397cd](https://github.com/nextcloud/contacts/commit/f7397cd7c51c68d35d47d019f2da048de525ed4f))
+* **l10n:** Update translations from Transifex ([55342a4](https://github.com/nextcloud/contacts/commit/55342a4ec9cd722402233b79d51bc3542414b0da))
+* **socialApi:** add a key-allowlist for setting user config ([9ad51fa](https://github.com/nextcloud/contacts/commit/9ad51fa485d5564cf854e3af9a680dc8f91f90c1))
+
+
+
 ## [8.7.4](https://github.com/nextcloud/contacts/compare/v8.7.3...v8.7.4) (2026-07-16)
 
 
