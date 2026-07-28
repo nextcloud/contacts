@@ -1,3 +1,14 @@
+## [7.3.19](https://github.com/nextcloud/contacts/compare/v7.3.18...v7.3.19) (2026-07-28)
+
+
+### Bug Fixes
+
+* **circles:** avoid attempting to fetch protected resources when user is not a member ([58b301d](https://github.com/nextcloud/contacts/commit/58b301dbeaa1e6623e54b67fe4522025c8ab2b75))
+* **socialApi:** add a key-allowlist for setting user config ([ae7f8b3](https://github.com/nextcloud/contacts/commit/ae7f8b355fdaf397dcd1ea8950e1aa1ef8e861dc))
+* use untranslated category for grouping contacts ([b83a05f](https://github.com/nextcloud/contacts/commit/b83a05fbd92076d9daa5e5bb30235ba372f234a3))
+
+
+
 ## [7.3.18](https://github.com/nextcloud/contacts/compare/v7.3.17...v7.3.18) (2026-06-24)
 
 
