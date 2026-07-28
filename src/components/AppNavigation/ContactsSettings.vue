@@ -74,6 +74,8 @@ export default {
 		},
 	},
 
+	emits: ['update:open', 'clicked', 'file-loaded'],
+
 	data() {
 		return {
 			allowSocialSync: loadState('contacts', 'allowSocialSync') !== 'no',

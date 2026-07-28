@@ -62,7 +62,7 @@
 import { showError, showWarning } from '@nextcloud/dialogs'
 import { subscribe } from '@nextcloud/event-bus'
 import { t } from '@nextcloud/l10n'
-import { NcEmptyContent } from '@nextcloud/vue'
+import { NcLoadingIcon as IconLoading, NcEmptyContent } from '@nextcloud/vue'
 import { VList } from 'virtua/vue'
 import { defineComponent } from 'vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
@@ -79,6 +79,7 @@ export default defineComponent({
 	components: {
 		EntityPicker,
 		IconContact,
+		IconLoading,
 		MemberGridItem,
 		NcEmptyContent,
 		VList,

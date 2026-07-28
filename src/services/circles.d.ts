@@ -35,8 +35,8 @@ export declare const getCircle: (circleId: string) => Promise<any>
  * Create a new circle
  *
  * @param {string} name the circle name
- * @param personal
- * @param local
+ * @param {boolean} personal whether the circle is personal
+ * @param {boolean} local whether the circle is local
  * @return {object}
  */
 export declare const createCircle: (name: string, personal: boolean, local: boolean) => Promise<any>
@@ -52,8 +52,7 @@ export declare const deleteCircle: (circleId: string) => Promise<any>
  *
  * @param {string} circleId the circle id
  * @param {CircleEditType} type the edit type
- * @param {any} data the data
- * @param value
+ * @param value the new value
  * @return {object}
  */
 export declare const editCircle: (circleId: string, type: CircleEditType, value: any) => Promise<any>

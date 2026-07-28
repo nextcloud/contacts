@@ -224,10 +224,8 @@ const mutations = {
 	 *
 	 * @param {object} state the store data
 	 * @param {object} data destructuring object
-	 * @param data.contact
-	 * @param {Contact} contact the contact to update
-	 * @param {object} addressbook the addressbook to set
-	 * @param data.addressbook
+	 * @param {Contact} data.contact the contact to update
+	 * @param {object} data.addressbook the addressbook to set
 	 */
 	updateContactAddressbook(state, { contact, addressbook }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
@@ -260,10 +258,8 @@ const mutations = {
 	 *
 	 * @param {object} state the store data
 	 * @param {object} data destructuring object
-	 * @param data.contact
-	 * @param {Contact} contact the contact to update
-	 * @param {string} etag the contact etag
-	 * @param data.etag
+	 * @param {Contact} data.contact the contact to update
+	 * @param {string} data.etag the contact etag
 	 */
 	updateContactEtag(state, { contact, etag }) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
@@ -466,7 +462,7 @@ const actions = {
 	 * @param {object} data destructuring object
 	 * @param {Contact} data.contact the contact to fetch
 	 * @param {string} data.etag the contact etag to override in case of conflict
-	 * @param data.forceReFetch
+	 * @param {boolean} data.forceReFetch force re-fetching the contact data
 	 * @return {Promise}
 	 */
 	async fetchFullContact(context, { contact, etag = '', forceReFetch = false }) {

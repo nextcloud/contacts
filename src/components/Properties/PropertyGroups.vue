@@ -62,7 +62,6 @@
 import { NcSelect } from '@nextcloud/vue'
 import naturalCompare from 'string-natural-compare'
 import PropertyTitle from './PropertyTitle.vue'
-import Contact from '../../models/contact.js'
 
 export default {
 	name: 'PropertyGroups',
@@ -83,17 +82,14 @@ export default {
 			required: true,
 		},
 
-		contact: {
-			type: Contact,
-			required: true,
-		},
-
 		// Is it read-only?
 		isReadOnly: {
 			type: Boolean,
 			required: true,
 		},
 	},
+
+	emits: ['update:value'],
 
 	data() {
 		return {

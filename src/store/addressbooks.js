@@ -228,7 +228,7 @@ const mutations = {
 	/**
 	 * Needed to track indirect state changes for addressbook sorting
 	 *
-	 * @param state
+	 * @param {object} state the store state
 	 */
 	resortAddressbooks(state) {
 		state.addressbooks = sortAddressbooks(state.addressbooks)
@@ -348,13 +348,9 @@ const actions = {
 	 * Rename a Addressbook
 	 *
 	 * @param {object} context the store mutations Current context
+	 * @param {object} data destructuring object
 	 * @param {object} data.addressbook the addressbook to rename
 	 * @param {string} data.newName the new name of the addressbook
-	 * @param data.addressbook.addressbook
-	 * @param data.addressbook.newName
-	 * @param root0
-	 * @param root0.addressbook
-	 * @param root0.newName
 	 * @return {Promise}
 	 */
 	async renameAddressbook(context, { addressbook, newName }) {
@@ -371,7 +367,7 @@ const actions = {
 	 *
 	 * @param {object} context the store mutations
 	 * @param {object} importDetails = { vcf, addressbook }
-	 * @param importDetails.addressbook
+	 * @param {object} importDetails.addressbook the addressbook
 	 * @return {Promise}
 	 */
 	async getContactsFromAddressBook(context, { addressbook }) {
@@ -426,11 +422,12 @@ const actions = {
 	},
 
 	/**
+	 * Import contacts into an addressbook
 	 *
 	 * @param {object} context the store mutations
 	 * @param {object} importDetails = { vcf, addressbook }
-	 * @param importDetails.vcf
-	 * @param importDetails.addressbook
+	 * @param {string} importDetails.vcf the vcf data
+	 * @param {object} importDetails.addressbook the target addressbook
 	 */
 	async importContactsIntoAddressbook(context, { vcf, addressbook }) {
 		const contacts = parseVcf(vcf, addressbook)
@@ -515,22 +512,12 @@ const actions = {
 	 * Share Adressbook with User or Group
 	 *
 	 * @param {object} context the store mutations Current context
+	 * @param {object} data destructuring object
 	 * @param {object} data.addressbook the addressbook
 	 * @param {string} data.user the userId
 	 * @param {string} data.displayName the displayName
 	 * @param {string} data.uri the sharing principalScheme uri
 	 * @param {boolean} data.isGroup is this a group ?
-	 * @param data.addressbook.addressbook
-	 * @param data.addressbook.user
-	 * @param data.addressbook.displayName
-	 * @param data.addressbook.uri
-	 * @param data.addressbook.isGroup
-	 * @param root0
-	 * @param root0.addressbook
-	 * @param root0.user
-	 * @param root0.displayName
-	 * @param root0.uri
-	 * @param root0.isGroup
 	 */
 	async shareAddressbook(context, { addressbook, user, displayName, uri, isGroup }) {
 		// Share addressbook with entered group or user
