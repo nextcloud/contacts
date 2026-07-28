@@ -57,7 +57,7 @@
 					v-else
 					:readonly="true"
 					:model-value="formatDateTime()"
-					:label="propModel.readableName" />
+					:label-outside="true" />
 			</div>
 
 			<!-- props actions -->
