@@ -25,9 +25,8 @@
 			<!-- sharing Ncbutton -->
 			<NcButton
 				v-if="!addressbook.readOnly && !isSharedWithMe"
-				v-tooltip.top="sharedWithTooltip"
+				:title="sharedWithTooltip"
 				:class="{ 'addressbook__share--shared': hasShares }"
-				:name="sharedWithTooltip"
 				href="#"
 				class="addressbook__share"
 				@click="toggleShare">
