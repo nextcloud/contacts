@@ -11,9 +11,6 @@ export default {
 		selectedGroup() {
 			return this.$route.params.selectedGroup
 		},
-		selectedCircle() {
-			return this.$route.params.selectedCircle
-		},
 		selectedUserGroup() {
 			return this.$route.params.selectedUserGroup
 		},

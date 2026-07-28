@@ -7,9 +7,9 @@
 	<Content :app-name="appName">
 		<!-- new-contact-button + navigation + settings -->
 		<RootNavigation
-			:loading="loadingContacts || loadingCircles">
+			:loading="loadingContacts">
 			<div class="import-and-new-contact-buttons">
-				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView" />
+				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView" />
 				<!-- new-contact-button -->
 				<NcButton
 					v-if="!loadingContacts"
@@ -20,20 +20,14 @@
 					<template #icon>
 						<IconAdd :size="20" />
 					</template>
-					{{ isCirclesView ? t('contacts', 'Add member') : t('contacts', 'New contact') }}
+					{{ t('contacts', 'New contact') }}
 				</NcButton>
 			</div>
 		</RootNavigation>
 
-		<!-- Main content: circle, chart or contacts -->
-		<UserGroupContent
-			v-if="selectedUserGroup"
-			:loding="loadingCircles" />
-		<CircleContent
-			v-if="selectedCircle || selectedUserGroup"
-			:loading="loadingCircles" />
+		<!-- Main content: chart or contacts -->
 		<ChartContent
-			v-else-if="selectedChart"
+			v-if="selectedChart"
 			:contacts-list="contacts" />
 		<ContactsContent
 			v-else
@@ -56,9 +50,7 @@
 </template>
 
 <script>
-import { getCurrentUser } from '@nextcloud/auth'
 import { showError } from '@nextcloud/dialogs'
-import { emit } from '@nextcloud/event-bus'
 import {
 	NcContent as Content,
 	NcModal as Modal,
@@ -67,7 +59,7 @@ import {
 import ICAL from 'ical.js'
 import { defineAsyncComponent } from 'vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
-import CircleContent from '../components/AppContent/CircleContent.vue'
+import ChartContent from '../components/AppContent/ChartContent.vue'
 import ContactsContent from '../components/AppContent/ContactsContent.vue'
 import RootNavigation from '../components/AppNavigation/RootNavigation.vue'
 import SettingsImportContacts from '../components/AppNavigation/Settings/SettingsImportContacts.vue'
@@ -75,21 +67,18 @@ import ContactsPicker from '../components/EntityPicker/ContactsPicker.vue'
 import ImportView from './Processing/ImportView.vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import RouterMixin from '../mixins/RouterMixin.js'
-import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE, ROUTE_USER_GROUP } from '../models/constants.ts'
+import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_USER_GROUP } from '../models/constants.ts'
 import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
 import client from '../services/cdav.js'
-import isCirclesEnabled from '../services/isCirclesEnabled.js'
 import logger from '../services/logger.js'
 import usePrincipalsStore from '../store/principals.js'
-import useUserGroupStore from '../store/userGroup.ts'
 
 export default {
 	name: 'Contacts',
 
 	components: {
 		NcButton,
-		CircleContent,
 		// Lazy loaded: pulls in d3 and is only rendered on the org chart view
 		ChartContent: defineAsyncComponent(() => import('../components/AppContent/ChartContent.vue')),
 		ContactsContent,
@@ -112,9 +101,6 @@ export default {
 			// The object shorthand syntax is breaking builds (bug in @babel/preset-env)
 			/* eslint-disable object-shorthand */
 			appName: appName,
-
-			// Let's but the loading state to true if circles is enabled
-			loadingCircles: isCirclesEnabled,
 			loadingContacts: true,
 		}
 	},
@@ -135,10 +121,6 @@ export default {
 
 		groups() {
 			return this.$store.getters.getGroups
-		},
-
-		circles() {
-			return this.$store.getters.getCircles
 		},
 
 		orderKey() {
@@ -196,7 +178,7 @@ export default {
 				return this.sortedContacts
 			} else if (this.selectedGroup === GROUP_NO_GROUP_CONTACTS) {
 				return this.ungroupedContacts.map((contact) => this.sortedContacts.find((item) => item.key === contact.key))
-			} else if (this.selectedGroup === ROUTE_CIRCLE || this.selectedGroup === ROUTE_USER_GROUP) {
+			} else if (this.selectedGroup === ROUTE_USER_GROUP) {
 				return []
 			}
 			const group = this.groups.filter((group) => group.name === this.selectedGroup)[0]
@@ -204,10 +186,6 @@ export default {
 				return this.sortedContacts.filter((contact) => group.contacts.indexOf(contact.key) >= 0)
 			}
 			return []
-		},
-
-		isCirclesView() {
-			return this.selectedGroup === ROUTE_CIRCLE || this.selectedGroup === ROUTE_USER_GROUP
 		},
 
 		ungroupedContacts() {
@@ -239,11 +217,6 @@ export default {
 	},
 
 	mounted() {
-		if (this.isCirclesEnabled) {
-			this.logger.info('Circles frontend enabled')
-		} else {
-			this.logger.info('No compatible version of circles found')
-		}
 	},
 
 	async beforeMount() {
@@ -277,25 +250,10 @@ export default {
 				this.$store.commit('setOrder', localStorage.getItem('orderKey'))
 			}
 		})
-
-		// Get circles if enabled
-		if (isCirclesEnabled) {
-			const userGroupStore = useUserGroupStore()
-			this.$store.dispatch('getCircles')
-				.then(userGroupStore.getUserGroups(getCurrentUser().uid))
-				.then(() => {
-					this.loadingCircles = false
-				})
-		}
 	},
 
 	methods: {
 		async newContact() {
-			if (this.isCirclesView) {
-				emit('contacts:circles:append', this.selectedCircle.id)
-				return
-			}
-
 			// fall back to the default address book if the selected one is not writeable
 			const targetAddressbook = this.selectedAddressbook
 				? this.addressbooks.find((ab) => ab.id === this.selectedAddressbook && !ab.readOnly) ?? this.defaultAddressbook
@@ -418,13 +376,12 @@ export default {
 				}
 
 				// Unknown group
-				if (!this.selectedCircle
-					&& !this.selectedUserGroup
+
+				if (!this.selectedUserGroup
 					&& !this.selectedAddressbook
 					&& !this.groups.find((group) => group.name === this.selectedGroup)
 					&& GROUP_ALL_CONTACTS !== this.selectedGroup
 					&& GROUP_NO_GROUP_CONTACTS !== this.selectedGroup
-					&& ROUTE_CIRCLE !== this.selectedGroup
 					&& ROUTE_USER_GROUP !== this.selectedGroup) {
 					showError(t('contacts', 'Group {group} not found', { group: this.selectedGroup }))
 					logger.error('Group not found', { selectedGroup: this.selectedGroup })

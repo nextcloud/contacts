@@ -48,7 +48,7 @@ export default {
 		},
 
 		/**
-		 * Type of the entity. e.g user, circle, group...
+		 * Type of the entity. e.g user, group...
 		 */
 		type: {
 			type: String,

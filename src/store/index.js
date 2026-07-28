@@ -4,9 +4,7 @@
  */
 
 import { Store } from 'vuex'
-import isCirclesEnabled from '../services/isCirclesEnabled.js'
 import addressbooks from './addressbooks.js'
-import circles from './circles.js'
 import contacts from './contacts.js'
 import groups from './groups.js'
 import importState from './importState.js'
@@ -18,11 +16,6 @@ const modules = {
 	contacts,
 	groups,
 	importState,
-}
-
-// If circles is enabled let's init the store
-if (isCirclesEnabled) {
-	modules.circles = circles
 }
 
 export default new Store({
