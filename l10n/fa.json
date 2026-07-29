@@ -197,6 +197,8 @@
     "Please note that only {count} of the {total} contacts can be added to a group" : "لطفاً توجه داشته باشید که فقط {count} از {total} مخاطب می‌توانند به یک گروه اضافه شوند",
     "Please note that only {count} of the {total} contacts can be moved" : "لطفاً توجه داشته باشید که فقط {count} از {total} مخاطب می‌توانند جابجا شوند",
     "Move" : "انتقال",
+    "Unselect {name}" : "لغو انتخاب {name}",
+    "Select {name}" : "انتخاب {name}",
     "Could not update favorite status" : "به‌روزرسانی وضعیت موردعلاقه امکان‌پذیر نیست",
     "from {addressbook}" : "از {addressbook}",
     "Remove from favorites" : "حذف از موارد دلخواه",
