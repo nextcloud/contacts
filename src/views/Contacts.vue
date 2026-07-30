@@ -9,10 +9,10 @@
 		<RootNavigation
 			:loading="loadingContacts || loadingCircles">
 			<div class="import-and-new-contact-buttons">
-				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView" />
+				<SettingsImportContacts v-if="!loadingContacts && importEnabled" />
 				<!-- new-contact-button -->
 				<NcButton
-					v-if="!loadingContacts"
+					v-if="!loadingContacts && addingContactEnabled"
 					:disabled="!defaultAddressbook"
 					variant="secondary"
 					wide
@@ -20,15 +20,12 @@
 					<template #icon>
 						<IconAdd :size="20" />
 					</template>
-					{{ isCirclesView ? t('contacts', 'Add member') : t('contacts', 'New contact') }}
+					{{ selectedCircle ? t('contacts', 'Add member') : t('contacts', 'New contact') }}
 				</NcButton>
 			</div>
 		</RootNavigation>
 
 		<!-- Main content: circle, chart or contacts -->
-		<UserGroupContent
-			v-if="selectedUserGroup"
-			:loding="loadingCircles" />
 		<CircleContent
 			v-if="selectedCircle || selectedUserGroup"
 			:loading="loadingCircles" />
@@ -75,7 +72,7 @@ import ContactsPicker from '../components/EntityPicker/ContactsPicker.vue'
 import ImportView from './Processing/ImportView.vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import RouterMixin from '../mixins/RouterMixin.js'
-import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE, ROUTE_USER_GROUP } from '../models/constants.ts'
+import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS } from '../models/constants.ts'
 import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
 import client from '../services/cdav.js'
@@ -147,14 +144,6 @@ export default {
 			return this.$store.getters.getImportState
 		},
 
-		isEmptyGroup() {
-			return this.contactsList.length === 0
-		},
-
-		isChartView() {
-			return !!this.selectedChart
-		},
-
 		/**
 		 * Are we importing contacts ?
 		 *
@@ -171,6 +160,14 @@ export default {
 		 */
 		isImportDone() {
 			return this.importState.stage === 'done'
+		},
+
+		importEnabled() {
+			return !this.selectedUserGroup && !this.selectedCircle && !this.selectedUserGroup && !this.selectedChart && this.contactsList.length === 0
+		},
+
+		addingContactEnabled() {
+			return !this.selectedUserGroup
 		},
 
 		// first enabled addressbook of the list
@@ -191,18 +188,13 @@ export default {
 				return this.sortedContacts
 			} else if (this.selectedGroup === GROUP_NO_GROUP_CONTACTS) {
 				return this.ungroupedContacts.map((contact) => this.sortedContacts.find((item) => item.key === contact.key))
-			} else if (this.selectedGroup === ROUTE_CIRCLE || this.selectedGroup === ROUTE_USER_GROUP) {
-				return []
 			}
+
 			const group = this.groups.filter((group) => group.name === this.selectedGroup)[0]
 			if (group) {
 				return this.sortedContacts.filter((contact) => group.contacts.indexOf(contact.key) >= 0)
 			}
 			return []
-		},
-
-		isCirclesView() {
-			return this.selectedGroup === ROUTE_CIRCLE || this.selectedGroup === ROUTE_USER_GROUP
 		},
 
 		ungroupedContacts() {
@@ -275,7 +267,7 @@ export default {
 
 	methods: {
 		async newContact() {
-			if (this.isCirclesView) {
+			if (this.selectedCircle) {
 				emit('contacts:circles:append', this.selectedCircle.id)
 				return
 			}
@@ -391,9 +383,7 @@ export default {
 					&& !this.selectedUserGroup
 					&& !this.groups.find((group) => group.name === this.selectedGroup)
 					&& GROUP_ALL_CONTACTS !== this.selectedGroup
-					&& GROUP_NO_GROUP_CONTACTS !== this.selectedGroup
-					&& ROUTE_CIRCLE !== this.selectedGroup
-					&& ROUTE_USER_GROUP !== this.selectedGroup) {
+					&& GROUP_NO_GROUP_CONTACTS !== this.selectedGroup) {
 					showError(t('contacts', 'Group {group} not found', { group: this.selectedGroup }))
 					console.error('Group not found', this.selectedGroup)
 
