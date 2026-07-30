@@ -17,7 +17,7 @@
 			<template #icon>
 				<IconContact :size="20" />
 			</template>
-			<template #desc>
+			<template #description>
 				<NcButton variant="primary" @click="newContact">
 					{{ t('contacts', 'Create contact') }}
 				</NcButton>
@@ -30,7 +30,7 @@
 			<template #icon>
 				<IconContact :size="20" />
 			</template>
-			<template #desc>
+			<template #description>
 				<NcButton v-if="contacts.length === 0" variant="primary" @click="addContactsToGroup(selectedGroup)">
 					{{ t('contacts', 'Create contacts') }}
 				</NcButton>
