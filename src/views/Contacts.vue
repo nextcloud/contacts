@@ -246,7 +246,11 @@ export default {
 
 					// No writeable addressbooks? Create a new one!
 					if (writeableAddressBooks.length === 0) {
-						this.$store.dispatch('appendAddressbook', { displayName: t('contacts', 'Contacts') })
+						// Untranslated on purpose: the DAV URI is derived from the display name,
+						// so translating it here would make the path language dependent
+						// (e.g. /kontakte, or /- for languages without ASCII letters).
+						// The server translates the display name of contacts/Contacts for us.
+						this.$store.dispatch('appendAddressbook', { displayName: 'Contacts' })
 							.then(() => {
 								this.fetchContacts()
 							})
