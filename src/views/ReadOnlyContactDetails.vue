@@ -51,7 +51,7 @@
 import { namespaces as NS } from '@nextcloud/cdav-library'
 import { loadState } from '@nextcloud/initial-state'
 import { NcEmptyContent, NcLoadingIcon } from '@nextcloud/vue'
-import escape from 'lodash/fp/escape.js'
+import escape from 'lodash/escape.js'
 import mitt from 'mitt'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import ContactDetailsProperty from '../components/ContactDetails/ContactDetailsProperty.vue'

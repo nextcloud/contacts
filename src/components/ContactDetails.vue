@@ -411,9 +411,8 @@ import {
 	NcSelect,
 } from '@nextcloud/vue'
 import ICAL from 'ical.js'
-import escape from 'lodash/fp/escape.js'
+import escape from 'lodash/escape.js'
 import mitt from 'mitt'
-import { getSVG } from 'qreator/lib/svg'
 import { defineComponent, reactive, toRaw } from 'vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconAccount from 'vue-material-design-icons/AccountOutline.vue'
@@ -930,6 +929,7 @@ export default defineComponent({
 
 			const data = ICAL.stringify(jCal)
 			if (data.length > 0) {
+				const { getSVG } = await import('qreator/lib/svg')
 				const svgBytes = await getSVG(data)
 				const svgString = new TextDecoder().decode(svgBytes)
 				this.qrcode = btoa(svgString)
