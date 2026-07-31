@@ -133,7 +133,7 @@ OC.L10N.register(
     "Upload team picture" : "Téléverser une image pour l’équipe",
     "Choose from Nextcloud Files" : "Choisir dans les fichiers Nextcloud",
     "Delete picture" : "Supprimer l'image",
-    "Edit" : "Éditer",
+    "Edit" : "Modifier",
     "Request to join" : "Demander à rejoindre",
     "Create" : "Créer",
     "Show in Calendar" : "Afficher dans le calendrier",
