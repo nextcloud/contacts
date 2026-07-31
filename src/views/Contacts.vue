@@ -65,8 +65,8 @@ import {
 	NcButton,
 } from '@nextcloud/vue'
 import ICAL from 'ical.js'
+import { defineAsyncComponent } from 'vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
-import ChartContent from '../components/AppContent/ChartContent.vue'
 import CircleContent from '../components/AppContent/CircleContent.vue'
 import ContactsContent from '../components/AppContent/ContactsContent.vue'
 import RootNavigation from '../components/AppNavigation/RootNavigation.vue'
@@ -89,7 +89,8 @@ export default {
 	components: {
 		NcButton,
 		CircleContent,
-		ChartContent,
+		// Lazy loaded: pulls in d3 and is only rendered on the org chart view
+		ChartContent: defineAsyncComponent(() => import('../components/AppContent/ChartContent.vue')),
 		ContactsContent,
 		ContactsPicker,
 		Content,
