@@ -213,7 +213,6 @@ OC.L10N.register(
     "Pending" : "На чекању",
     "Select chart …" : "Изаберите график …",
     "Chart" : "График",
-    "Select Date" : "Одаберите датум",
     "Select type" : "Одаберите тип",
     "Add contact in group" : "Додај контакт у групу",
     "None" : "Ништа",
@@ -336,6 +335,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Дошло је до грешке у тиму/тимовима. Погледајте конзолу за више детаља.",
     "Unable to create team {circleName}" : "Не може да се креира тим {circleName}",
     "Unable to delete team {circleId}" : "Не може да се обрише тим {circleId}",
-    "Unable to delete contact" : "Не могу да обришем контакт"
+    "Unable to delete contact" : "Не могу да обришем контакт",
+    "Select Date" : "Одаберите датум"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

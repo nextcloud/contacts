@@ -258,7 +258,6 @@
     "Pending" : "待定",
     "Select chart …" : "选择图表 …",
     "Chart" : "图表",
-    "Select Date" : "选择日期",
     "Select type" : "选择类型",
     "Add contact in group" : "添加联系人到群组",
     "None" : "无",
@@ -401,6 +400,7 @@
     "Board name" : "面板名称",
     "Deck app is not installed. Please install it to create team boards." : "未安装 Deck 应用。请安装它以创建团队面板。",
     "No other contacts available to select as line manager" : "没有其他联系人可供选择担任部门经理",
+    "Select Date" : "选择日期",
     "note" : "备注",
     "email" : "电子邮件",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "创建您自己的共享群组。添加 Nextcloud 用户、联系人或通过电子邮件添加任何人。"

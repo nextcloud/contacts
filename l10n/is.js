@@ -184,7 +184,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "Þú ert í augnablikinu ekki ekki aðgang að meðlimalistanum",
     "Pending" : "Í bið",
     "Chart" : "Graf",
-    "Select Date" : "Veldu dagsetningu",
     "Select type" : "Veldu gerð",
     "Add contact in group" : "Bæta tengilið í hóp",
     "None" : "Ekkert",
@@ -304,6 +303,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Villa hefur átt sér stað í teymi/teymum. Skoðaðu stjórnskjáinn til að sjá nánari upplýsingar.",
     "Unable to create team {circleName}" : "Tókst ekki að búa til teymið {circleName}",
     "Unable to delete team {circleId}" : "Tókst ekki að eyða teyminu {circleId}",
-    "Unable to delete contact" : "Tókst ekki að eyða tengilið"
+    "Unable to delete contact" : "Tókst ekki að eyða tengilið",
+    "Select Date" : "Veldu dagsetningu"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

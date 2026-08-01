@@ -185,7 +185,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "لا يحق لك حاليّاً الوصول إلى قائمة الأعضاء",
     "Pending" : "في انتظار الموافقة",
     "Chart" : "شكل Chart",
-    "Select Date" : "اختر التاريخ ",
     "Select type" : "إختر نوعاً",
     "Add contact in group" : "إضافة جهة اتصال في المجموعة",
     "None" : "لا شيء",
@@ -305,6 +304,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "حدث خطأ في الفريق أو الفرق. إفحص شاشة التحكم (console) لمزيد من التفاصيل.",
     "Unable to create team {circleName}" : "تعذّر إنشاء الفريق {circleName}",
     "Unable to delete team {circleId}" : "تعذّر حذف الفريق {circleId}",
-    "Unable to delete contact" : "تعذّر حذف جهة الاتصال"
+    "Unable to delete contact" : "تعذّر حذف جهة الاتصال",
+    "Select Date" : "اختر التاريخ "
 },
 "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;");

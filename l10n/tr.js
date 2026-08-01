@@ -260,7 +260,6 @@ OC.L10N.register(
     "Pending" : "Bekleyen",
     "Select chart …" : "Çizelge seçin…",
     "Chart" : "Çizelge",
-    "Select Date" : "Tarih seçin",
     "Select type" : "Türü seçin",
     "Add contact in group" : "Kişiyi şu gruba ekle",
     "None" : "Yok",
@@ -403,6 +402,7 @@ OC.L10N.register(
     "Board name" : "Pano adı",
     "Deck app is not installed. Please install it to create team boards." : "Tahta uygulaması kurulmamış. Lütfen takım panoları oluşturmak için kurun.",
     "No other contacts available to select as line manager" : "Hat yöneticisi olarak seçilebilecek başka kişi yok",
+    "Select Date" : "Tarih seçin",
     "note" : "not",
     "email" : "e-posta",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Paylaşmak için kendi gruplarınızı oluşturun. Nextcloud kullanıcılarını, kişilerini veya herhangi birini e-posta ile ekleyin."

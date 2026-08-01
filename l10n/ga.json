@@ -260,7 +260,6 @@
     "Pending" : "Ar feitheamh",
     "Select chart …" : "Roghnaigh cairt …",
     "Chart" : "Cairt",
-    "Select Date" : "Roghnaigh Dáta",
     "Select type" : "Roghnaigh cineál",
     "Add contact in group" : "Cuir teagmhálaí leis sa ghrúpa",
     "None" : "Dada",
@@ -403,6 +402,7 @@
     "Board name" : "Ainm an bhoird",
     "Deck app is not installed. Please install it to create team boards." : "Níl an aip deic suiteáilte. Suiteáil í le do thoil chun boird foirne a chruthú.",
     "No other contacts available to select as line manager" : "Níl aon teagmhálaithe eile ar fáil le roghnú mar bhainisteoir líne",
+    "Select Date" : "Roghnaigh Dáta",
     "note" : "nóta",
     "email" : "ríomhphost",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Cruthaigh do ghrúpaí féin le haghaidh comhroinnte. Cuir úsáideoirí Nextcloud, teagmhálaithe, nó aon duine leis trí ríomhphost."

@@ -117,7 +117,6 @@ OC.L10N.register(
     "Some members could not be added" : "B'at membros chi no si podent agiùnghere",
     "Pending" : "In suspesu",
     "Chart" : "Gràficu",
-    "Select Date" : "Seletziona data",
     "Select type" : "Sèbera genia",
     "Add contact in group" : "Agiunghe cuntatu a su grupu",
     "None" : "Nessunu",
@@ -211,6 +210,7 @@ OC.L10N.register(
     "Time zone" : "Zona orària",
     "Spoken languages" : "Limbas faeddadas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["no at fatu a lèghere {failed} ","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu"
+    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu",
+    "Select Date" : "Seletziona data"
 },
 "nplurals=2; plural=(n != 1);");

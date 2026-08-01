@@ -202,7 +202,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "В настоящее время у вас нет доступа к списку участников",
     "Pending" : "В очереди",
     "Chart" : "График",
-    "Select Date" : "Выберите дату",
     "Select type" : "Выбор типа",
     "Add contact in group" : "Добавить контакт в группу",
     "None" : "Никто",
@@ -327,6 +326,7 @@ OC.L10N.register(
     "Unable to delete contact" : "Невозможно удалить контакт",
     "Deck board" : "Доска",
     "New Deck board" : "Новая доска",
-    "Board name" : "Название доски"
+    "Board name" : "Название доски",
+    "Select Date" : "Выберите дату"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

@@ -260,7 +260,6 @@ OC.L10N.register(
     "Pending" : "Очікування",
     "Select chart …" : "Виберіть діаграму …",
     "Chart" : "Діаграма",
-    "Select Date" : "Вкажіть дату",
     "Select type" : "Виберіть вид",
     "Add contact in group" : "Додати контакт до групи",
     "None" : "Відсутній",
@@ -403,6 +402,7 @@ OC.L10N.register(
     "Board name" : "Назва дошки",
     "Deck app is not installed. Please install it to create team boards." : "Застосунок Deck не встановлено. Встановіть його, щоби створювати дошки команди.",
     "No other contacts available to select as line manager" : "Відсутні контакти для вибору безпосереднього керівника.",
+    "Select Date" : "Вкажіть дату",
     "note" : "примітка",
     "email" : "ел. пошта",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Створюйте власні групи для спільної роботи. Додавайте до груп користувачів Nextcloud, ваші контакти або будь-кого через ел. пошту."

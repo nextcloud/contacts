@@ -186,7 +186,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "メンバーリストへのアクセス権がありません",
     "Pending" : "保留中",
     "Chart" : "チャート",
-    "Select Date" : "日付を選択",
     "Select type" : "タイプを選択",
     "Add contact in group" : "グループに連絡先を追加",
     "None" : "なし",
@@ -220,7 +219,8 @@ OC.L10N.register(
     "Unable to delete the team" : "チームを削除できません",
     "Link copied to the clipboard" : "クリップボードにリンクをコピーしました",
     "Could not copy link to the clipboard." : "クリップボードにコピーできませんでした",
-    "Not grouped" : "グループ化されていません",
+    "Not grouped" : "グループ化されていない連絡先",
+    "Create your own teams for sharing. Add Nextcloud users, contacts, or anyone via email." : "共有用のあなたのチームを作成しましょう。Nextcloudのユーザーや連絡先、あるいはメールを使用して誰でも追加できます。",
     "Team" : "チーム",
     "User" : "ユーザー",
     "Group" : "グループ",
@@ -306,6 +306,8 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "チームでエラーが発生しました。詳細については、コンソールを確認してください。",
     "Unable to create team {circleName}" : "チーム{circleName}を作成できません",
     "Unable to delete team {circleId}" : "チーム {circleId} を削除できません",
-    "Unable to delete contact" : "連絡先を削除できません。"
+    "Unable to delete contact" : "連絡先を削除できません。",
+    "Select Date" : "日付を選択",
+    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "共有用のあなたのグループを作成しましょう。Nextcloudのユーザーや連絡先、あるいはメールを使用して誰でも追加できます。"
 },
 "nplurals=1; plural=0;");

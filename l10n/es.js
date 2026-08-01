@@ -250,7 +250,6 @@ OC.L10N.register(
     "Pending" : "Pendiente",
     "Select chart …" : "Seleccionar organigrama …",
     "Chart" : "Organigrama",
-    "Select Date" : "Seleccione la fecha",
     "Select type" : "Selecciona tipo",
     "Add contact in group" : "Añadir contacto en grupo",
     "None" : "Ninguno",
@@ -389,6 +388,7 @@ OC.L10N.register(
     "New Deck board" : "Nuevo tablero de Deck",
     "Board name" : "Nombre del tablero",
     "Deck app is not installed. Please install it to create team boards." : "La app Deck no está instalada. Por favor, instálala para crear tableros de equipo.",
+    "Select Date" : "Seleccione la fecha",
     "note" : "nota",
     "email" : "correo electrónico"
 },

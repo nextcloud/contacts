@@ -148,7 +148,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "현재 이 구성원 목록에 접근할 수 없습니다",
     "Pending" : "보류 중",
     "Chart" : "차트",
-    "Select Date" : "날짜 선택",
     "Select type" : "종류 선택",
     "Add contact in group" : "그룹에 연락처 추가",
     "None" : "없음",
@@ -243,6 +242,7 @@ OC.L10N.register(
     "Time zone" : "시간대",
     "Spoken languages" : "사용 언어",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["연락처 {failed}개를 읽을 수 없음"],
-    "Unable to delete contact" : "연락처를 삭제할 수 없음"
+    "Unable to delete contact" : "연락처를 삭제할 수 없음",
+    "Select Date" : "날짜 선택"
 },
 "nplurals=1; plural=0;");

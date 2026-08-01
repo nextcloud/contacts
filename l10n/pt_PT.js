@@ -212,7 +212,6 @@ OC.L10N.register(
     "Pending" : "Pendente",
     "Select chart …" : "Selecione um gráfico …",
     "Chart" : "Gráfico",
-    "Select Date" : "Escolha a data",
     "Select type" : "Escolha o tipo",
     "Add contact in group" : "Adicionar contacto ao grupo",
     "None" : "Nenhum",
@@ -341,6 +340,7 @@ OC.L10N.register(
     "Board name" : "Nome do painel",
     "Deck app is not installed. Please install it to create team boards." : "O aplicativo Deck não está instalado. Por favor, instale-o para criar painéis de equipe.",
     "No other contacts available to select as line manager" : "Não há outros contatos disponíveis para selecionar como superior hierárquico",
+    "Select Date" : "Escolha a data",
     "note" : "nota"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

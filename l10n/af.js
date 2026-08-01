@@ -32,7 +32,6 @@ OC.L10N.register(
     "Remove from favorites" : "Verwyder uit gunstelinge",
     "Add to favorites" : "Voeg by gunstelinge",
     "Pending" : "Hangend",
-    "Select Date" : "Kies Datum",
     "Select type" : "Kies tipe",
     "None" : "Geen",
     "Select option" : "Kies opsie",
@@ -97,6 +96,7 @@ OC.L10N.register(
     "Gender" : "Geslag",
     "Female" : "Vroulik",
     "Male" : "Manlik",
-    "Unknown" : "Onbekend"
+    "Unknown" : "Onbekend",
+    "Select Date" : "Kies Datum"
 },
 "nplurals=2; plural=(n != 1);");

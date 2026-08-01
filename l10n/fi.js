@@ -198,7 +198,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "Sinulla ei ole pääsyä käyttäjälistaan",
     "Pending" : "Odottaa",
     "Chart" : "Kaavio",
-    "Select Date" : "Valitse päivä",
     "Select type" : "Valitse tyyppi",
     "Add contact in group" : "Lisää yhteystieto ryhmään",
     "None" : "Ei mitään",
@@ -309,6 +308,7 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} yhteystietoa ei voitu lukea","{failed} yhteystietoa ei voitu lukea"],
     "Unable to create team {circleName}" : "Tiimiä {circleName} ei voitu luoda",
     "Unable to delete team {circleId}" : "Tiimiä {circleId} ei voitu poistaa",
-    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa"
+    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa",
+    "Select Date" : "Valitse päivä"
 },
 "nplurals=2; plural=(n != 1);");

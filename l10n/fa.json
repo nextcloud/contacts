@@ -260,7 +260,6 @@
     "Pending" : "در انتظار",
     "Select chart …" : "انتخاب نمودار …",
     "Chart" : "نمودار",
-    "Select Date" : "انتخاب تاریخ",
     "Select type" : "انتخاب نوع",
     "Add contact in group" : "افزودن مخاطب در گروه",
     "None" : "هیچ‌کدام",
@@ -403,6 +402,7 @@
     "Board name" : "نام برد",
     "Deck app is not installed. Please install it to create team boards." : "برنامه کارتابل نصب نشده است. لطفاً برای ایجاد بردهای تیمی آن را نصب کنید.",
     "No other contacts available to select as line manager" : "هیچ مخاطب دیگری برای انتخاب به عنوان مدیر خط در دسترس نیست.",
+    "Select Date" : "انتخاب تاریخ",
     "note" : "یادداشت",
     "email" : "ایمیل",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "گروه‌های خود را برای اشتراک‌گذاری ایجاد کنید. کاربران نکست‌کلود، مخاطبان یا هر فردی را از طریق ایمیل اضافه کنید."

@@ -251,7 +251,6 @@ OC.L10N.register(
     "Pending" : "Čakajúce",
     "Select chart …" : "Vybrať graf ...",
     "Chart" : "Graf",
-    "Select Date" : "Vybrať dátum",
     "Select type" : "Vyberte typ",
     "Add contact in group" : "Pridať kontakt do skupiny",
     "None" : "Žiadne",
@@ -391,6 +390,7 @@ OC.L10N.register(
     "New Deck board" : "Nová nástenka aplikácie Deck",
     "Board name" : "Názov nástenky",
     "Deck app is not installed. Please install it to create team boards." : "Aplikácia Deck nie je nainštalovaná. Nainštalujte ju, aby ste mohli vytvárať tímové nástenky.",
+    "Select Date" : "Vybrať dátum",
     "note" : "poznámka",
     "email" : "email"
 },

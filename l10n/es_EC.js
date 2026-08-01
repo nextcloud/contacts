@@ -138,7 +138,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "Actualmente no tienes acceso a la lista de miembros",
     "Pending" : "Pendiente",
     "Chart" : "Gráfico",
-    "Select Date" : "Seleccionar fecha",
     "Select type" : "Seleccionar tipo",
     "Add contact in group" : "Añadir contacto en grupo",
     "None" : "Ninguno",
@@ -235,6 +234,7 @@ OC.L10N.register(
     "Time zone" : "Zona horaria",
     "Spoken languages" : "Idiomas hablados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se pudo leer","{failed} contactos no se pudieron leer","{failed} contactos no se pudieron leer"],
-    "Unable to delete contact" : "No se pudo eliminar el contacto"
+    "Unable to delete contact" : "No se pudo eliminar el contacto",
+    "Select Date" : "Seleccionar fecha"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

@@ -258,7 +258,6 @@
     "Pending" : "Väntande",
     "Select chart …" : "Välj schema …",
     "Chart" : "Diagram",
-    "Select Date" : "Välj datum",
     "Select type" : "Välj typ",
     "Add contact in group" : "Lägg till kontakt i grupp",
     "None" : "Ingen",
@@ -401,6 +400,7 @@
     "Board name" : "Tavlans namn",
     "Deck app is not installed. Please install it to create team boards." : "Deck-appen är inte installerad. Installera den för att skapa teamtavlor.",
     "No other contacts available to select as line manager" : "Inga andra kontakter tillgängliga att välja som linjechef",
+    "Select Date" : "Välj datum",
     "note" : "anteckning",
     "email" : "e-post",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Skapa egna grupper för delning. Lägg till Nextcloud-användare, kontakter eller vem som helst via e-post."

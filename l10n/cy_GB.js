@@ -45,7 +45,6 @@ OC.L10N.register(
     "Add to favorites" : "Add to favorites",
     "No results" : "Dim canlyniadau",
     "Pending" : "I ddod",
-    "Select Date" : "Dewis Dyddiad",
     "Select type" : "Dewiswch y math",
     "Add contact in group" : "Ychwanegu cyswllt yn y grŵp",
     "None" : "Dim",
@@ -114,6 +113,7 @@ OC.L10N.register(
     "Female" : "Benyw",
     "Male" : "Gwryw",
     "Unknown" : "Anhysbys",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt"]
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt"],
+    "Select Date" : "Dewis Dyddiad"
 },
 "nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3;");

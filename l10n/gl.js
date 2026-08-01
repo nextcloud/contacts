@@ -250,7 +250,6 @@ OC.L10N.register(
     "Pending" : "Pendentes",
     "Select chart …" : "Seleccionar o gráfico…",
     "Chart" : "Gráfico",
-    "Select Date" : "Seleccione a data",
     "Select type" : "Seleccione o tipo",
     "Add contact in group" : "Engadir contacto en grupo",
     "None" : "Ningún",
@@ -389,6 +388,7 @@ OC.L10N.register(
     "New Deck board" : "Novo taboleiro da Gabeta",
     "Board name" : "Nome do taboleiro",
     "Deck app is not installed. Please install it to create team boards." : "A aplicación Gabeta non está instalada. Instálea para crear taboleiros de equipo.",
+    "Select Date" : "Seleccione a data",
     "note" : "nota",
     "email" : "correo"
 },
