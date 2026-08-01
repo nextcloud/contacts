@@ -178,7 +178,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "Trenutno nimate dostopa do seznama članov",
     "Pending" : "Na čakanju",
     "Chart" : "Diagram",
-    "Select Date" : "Izbor datuma",
     "Select type" : "Izbor vrste",
     "Add contact in group" : "Dodaj stik v skupino",
     "None" : "Brez",
@@ -283,6 +282,7 @@ OC.L10N.register(
     "Spoken languages" : "Govorjeni jezik",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} stika ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati"],
     "An error has occurred in team(s). Check the console for more details." : "Prišlo je do napake v nekaterih skupinah. Preverite konzolo za več podrobnosti.",
-    "Unable to delete contact" : "Ni mogoče izbrisati stika"
+    "Unable to delete contact" : "Ni mogoče izbrisati stika",
+    "Select Date" : "Izbor datuma"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");

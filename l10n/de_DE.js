@@ -262,7 +262,6 @@ OC.L10N.register(
     "Pending" : "Ausstehend",
     "Select chart …" : "Diagramm auswählen …",
     "Chart" : "Diagramm",
-    "Select Date" : "Datum auswählen",
     "Select type" : "Typ auswählen",
     "Add contact in group" : "Kontakt zur Gruppe hinzufügen",
     "None" : "Keine",
@@ -405,6 +404,7 @@ OC.L10N.register(
     "Board name" : "Boardname",
     "Deck app is not installed. Please install it to create team boards." : "Die Deck-App ist nicht installiert. Bitte Deck installieren, um Team-Boards zu erstellen.",
     "No other contacts available to select as line manager" : "Es stehen keine weiteren Kontakte zur Auswahl als Vorgesetzter.",
+    "Select Date" : "Datum auswählen",
     "note" : "Notiz",
     "email" : "E-Mail",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Erstellen Sie Ihre eigenen Gruppen zum Teilen. Fügen Sie Nextcloud-Benutzer, Kontakte oder beliebige Personen per E-Mail hinzu."

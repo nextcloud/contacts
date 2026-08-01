@@ -229,7 +229,6 @@ OC.L10N.register(
     "Pending" : "Inasubiri",
     "Select chart …" : "Chagua jedwali ...",
     "Chart" : "Chati",
-    "Select Date" : "Chagua tarehe",
     "Select type" : "Chagua aina",
     "Add contact in group" : "Ongeza mawasiliano katika kundi",
     "None" : "Hakuna",
@@ -356,6 +355,7 @@ OC.L10N.register(
     "Deck board" : "Ubao wa deki",
     "New Deck board" : "Ubao mpya wa deki",
     "Board name" : "Jina la ubao",
-    "Deck app is not installed. Please install it to create team boards." : "Programu ya sitaha haijasakinishwa. Tafadhali isakinishe ili kuunda bodi za timu."
+    "Deck app is not installed. Please install it to create team boards." : "Programu ya sitaha haijasakinishwa. Tafadhali isakinishe ili kuunda bodi za timu.",
+    "Select Date" : "Chagua tarehe"
 },
 "nplurals=2; plural=(n != 1);");

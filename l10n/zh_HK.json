@@ -260,7 +260,6 @@
     "Pending" : "待定的",
     "Select chart …" : "選擇圖表 ...",
     "Chart" : "圖表",
-    "Select Date" : "選擇日期",
     "Select type" : "選擇類型",
     "Add contact in group" : "新增聯絡人到群組",
     "None" : "無",
@@ -403,6 +402,7 @@
     "Board name" : "面板名稱",
     "Deck app is not installed. Please install it to create team boards." : "未安裝 Deck 應用程式。請安裝以建立團隊面板。",
     "No other contacts available to select as line manager" : "沒有其他可選擇為直屬主管的聯絡人",
+    "Select Date" : "選擇日期",
     "note" : "備註",
     "email" : "電郵地址",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "建立專屬群組以進行分享。您可以加入 Nextcloud 使用者、通訊錄中的聯絡人，或透過電子郵件邀請任何人加入。"

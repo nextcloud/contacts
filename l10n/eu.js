@@ -182,7 +182,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "Ez duzu sarbiderik kideen zerrendara",
     "Pending" : "Zain",
     "Chart" : "Diagrama",
-    "Select Date" : "Hautatu data",
     "Select type" : "Hautatu mota",
     "Add contact in group" : "Gehitu kontaktua taldera",
     "None" : "Bat ere ez",
@@ -298,6 +297,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Errore bat gertatu da lantaldeetan. Begiratu kontsola xehetasun gehiago lortzeko.",
     "Unable to create team {circleName}" : "Ezin izan da {circleName} lantaldea sortu",
     "Unable to delete team {circleId}" : "Ezin izan da {circleId} lantaldea ezabatu",
-    "Unable to delete contact" : "Ezin izan da kontaktua ezabatu"
+    "Unable to delete contact" : "Ezin izan da kontaktua ezabatu",
+    "Select Date" : "Hautatu data"
 },
 "nplurals=2; plural=(n != 1);");

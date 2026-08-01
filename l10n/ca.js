@@ -182,7 +182,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "Actualment no teniu accés a la llista de membres",
     "Pending" : "Pendent",
     "Chart" : "Gràfic",
-    "Select Date" : "Seleccioneu una data",
     "Select type" : "Seleccioneu un tipus",
     "Add contact in group" : "Afegeix el contacte a un grup",
     "None" : "Cap",
@@ -301,6 +300,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "S'ha produït un error al(s) equip(s). Consulteu la consola per obtenir més detalls.",
     "Unable to create team {circleName}" : "No es pot crear l'equip {circleName}",
     "Unable to delete team {circleId}" : "No es pot suprimir l'equip {circleId}",
-    "Unable to delete contact" : "No s'ha pogut suprimir el contacte"
+    "Unable to delete contact" : "No s'ha pogut suprimir el contacte",
+    "Select Date" : "Seleccioneu una data"
 },
 "nplurals=2; plural=(n != 1);");

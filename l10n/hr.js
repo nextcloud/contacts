@@ -251,7 +251,6 @@ OC.L10N.register(
     "Pending" : "Na čekanju",
     "Select chart …" : "Odaberi grafikon …",
     "Chart" : "Grafikon",
-    "Select Date" : "Odaberi datum",
     "Select type" : "Odaberi vrstu",
     "Add contact in group" : "Dodaj kontakt u grupu",
     "None" : "Nema",
@@ -391,6 +390,7 @@ OC.L10N.register(
     "New Deck board" : "Nova Deck ploča",
     "Board name" : "Naziv ploče",
     "Deck app is not installed. Please install it to create team boards." : "Aplikacija Deck nije instalirana. Instalirajte je kako biste stvorili timske ploče.",
+    "Select Date" : "Odaberi datum",
     "note" : "bilješka",
     "email" : "e-pošta"
 },

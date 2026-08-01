@@ -228,7 +228,6 @@ OC.L10N.register(
     "Pending" : "ທີ່ກໍາລັງລໍຖ້າ",
     "Select chart …" : "Select chart …",
     "Chart" : "Chart",
-    "Select Date" : "Select Date",
     "Select type" : "Select type",
     "Add contact in group" : "Add contact in group",
     "None" : "ບໍ່ມີ",
@@ -355,6 +354,7 @@ OC.L10N.register(
     "Deck board" : "Deck board",
     "New Deck board" : "New Deck board",
     "Board name" : "Board name",
-    "Deck app is not installed. Please install it to create team boards." : "Deck app is not installed. Please install it to create team boards."
+    "Deck app is not installed. Please install it to create team boards." : "Deck app is not installed. Please install it to create team boards.",
+    "Select Date" : "Select Date"
 },
 "nplurals=1; plural=0;");

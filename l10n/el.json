@@ -260,7 +260,6 @@
     "Pending" : "Εκκρεμεί",
     "Select chart …" : "Επιλέξτε διάγραμμα …",
     "Chart" : "Διάγραμμα",
-    "Select Date" : "Επιλέξτε ημερομηνία",
     "Select type" : "Επιλέξτε τύπο",
     "Add contact in group" : "Προσθήκη επαφής στην ομάδα",
     "None" : "Κανένα",
@@ -403,6 +402,7 @@
     "Board name" : "Όνομα πίνακα",
     "Deck app is not installed. Please install it to create team boards." : "Η εφαρμογή Deck δεν είναι εγκατεστημένη. Παρακαλώ εγκαταστήστε την για να δημιουργήσετε πίνακες ομάδας.",
     "No other contacts available to select as line manager" : "Δεν υπάρχουν άλλες διαθέσιμες επαφές για να επιλεγούν ως προϊστάμενος",
+    "Select Date" : "Επιλέξτε ημερομηνία",
     "note" : "σημείωση",
     "email" : "email",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Δημιουργήστε τις δικές σας ομάδες για κοινή χρήση. Προσθέστε χρήστες του Nextcloud, επαφές ή οποιονδήποτε μέσω email."

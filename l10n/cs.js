@@ -251,7 +251,6 @@ OC.L10N.register(
     "Pending" : "Čekající",
     "Select chart …" : "Vybrat graf …",
     "Chart" : "Graf",
-    "Select Date" : "Vybrat datum",
     "Select type" : "Vybrat typ",
     "Add contact in group" : "Přidat kontakt do skupiny",
     "None" : "Žádné",
@@ -390,6 +389,7 @@ OC.L10N.register(
     "New Deck board" : "Nová tabule v aplikaci Deck",
     "Board name" : "Název tabule",
     "Deck app is not installed. Please install it to create team boards." : "Aplikace Deck není nainstalována. Pokud chcete vytvářet týmové tabule, nainstalujte ji.",
+    "Select Date" : "Vybrat datum",
     "note" : "poznámka",
     "email" : "e-mail"
 },

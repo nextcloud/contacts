@@ -213,7 +213,6 @@ OC.L10N.register(
     "Pending" : "Függőben",
     "Select chart …" : "Válasszon diagramot…",
     "Chart" : "Diagram",
-    "Select Date" : "Válasszon dátumot",
     "Select type" : "Válasszon típust",
     "Add contact in group" : "Névjegy hozzáadása a csoporthoz",
     "None" : "Egyik sem",
@@ -336,6 +335,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Hiba történt a csapatokban. További részletekért nézze meg a konzolt.",
     "Unable to create team {circleName}" : "A(z) {circleName} csapat nem hozható létre",
     "Unable to delete team {circleId}" : "A(z) {circleId} csapat nem törölhető",
-    "Unable to delete contact" : "A névjegy törlése sikertelen"
+    "Unable to delete contact" : "A névjegy törlése sikertelen",
+    "Select Date" : "Válasszon dátumot"
 },
 "nplurals=2; plural=(n != 1);");

@@ -49,7 +49,6 @@ OC.L10N.register(
     "Add to favorites" : "Aldoni al pliŝataĵoj",
     "No results" : "Neniu rezulto",
     "Pending" : "Pritraktota",
-    "Select Date" : "Elekti daton",
     "Select type" : "Elekti tipon",
     "Add contact in group" : "Aldoni kontakton en grupon",
     "None" : "Nenio",
@@ -122,6 +121,7 @@ OC.L10N.register(
     "Male" : "Vira",
     "Unknown" : "Nekonata",
     "Spoken languages" : "Lingvoj parolataj",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"]
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakto malsukcesis esti legita","{failed} kontaktoj malsukcesis esti legitaj"],
+    "Select Date" : "Elekti daton"
 },
 "nplurals=2; plural=(n != 1);");

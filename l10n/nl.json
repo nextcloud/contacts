@@ -258,7 +258,6 @@
     "Pending" : "In behandeling",
     "Select chart …" : "Selecteer diagram …",
     "Chart" : "Grafiek",
-    "Select Date" : "Selecteer datum",
     "Select type" : "Selecteer type",
     "Add contact in group" : "Voeg contactpersoon aan groep toe",
     "None" : "Geen",
@@ -401,6 +400,7 @@
     "Board name" : "Bordnaam",
     "Deck app is not installed. Please install it to create team boards." : "Deck app is niet geïnstalleerd. Installeer deze om teamborden te maken.",
     "No other contacts available to select as line manager" : "Geen andere contacten beschikbaar om als lijnmanager te selecteren",
+    "Select Date" : "Selecteer datum",
     "note" : "notitie",
     "email" : "e-mailadres",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Maak je eigen groepen aan om te delen. Voeg Nextcloud gebruikers, contactpersonen of anderen via e-mail toe."

@@ -135,7 +135,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "В момента нямате достъп до списъка с членове",
     "Pending" : "Чакащ",
     "Chart" : "Диаграма",
-    "Select Date" : "Изберете дата",
     "Select type" : "Изберете тип",
     "Add contact in group" : "Добавяне на контакта в група",
     "None" : "Без",
@@ -234,6 +233,7 @@ OC.L10N.register(
     "Time zone" : "Часова зона",
     "Spoken languages" : "Говорими езици",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контактите не бяха прочетени","{failed} контактите не бяха прочетени"],
-    "Unable to delete contact" : "Контактът не може да се изтрие"
+    "Unable to delete contact" : "Контактът не може да се изтрие",
+    "Select Date" : "Изберете дата"
 },
 "nplurals=2; plural=(n != 1);");

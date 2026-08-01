@@ -49,7 +49,6 @@ OC.L10N.register(
     "Add to favorites" : "Shtoje tek të parapëlqyerat",
     "No results" : "Asnjë rezultat",
     "Pending" : "Në Pritje të Konfirmimit",
-    "Select Date" : "Zgjidhni Datën",
     "Select type" : "Zgjidhni llojin",
     "Add contact in group" : "Shto kontaktin në grup",
     "None" : "Asnjë",
@@ -113,6 +112,7 @@ OC.L10N.register(
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "Unknown" : "I/E panjohur"
+    "Unknown" : "I/E panjohur",
+    "Select Date" : "Zgjidhni Datën"
 },
 "nplurals=2; plural=(n != 1);");

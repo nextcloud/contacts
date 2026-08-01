@@ -145,7 +145,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "You currently have no access to the member list",
     "Pending" : "Pending",
     "Chart" : "Chart",
-    "Select Date" : "Select Date",
     "Select type" : "Select type",
     "Add contact in group" : "Add contact in group",
     "None" : "None",
@@ -241,6 +240,7 @@ OC.L10N.register(
     "Time zone" : "Time zone",
     "Spoken languages" : "Spoken languages",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contact failed to be read","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Unable to delete contact"
+    "Unable to delete contact" : "Unable to delete contact",
+    "Select Date" : "Select Date"
 },
 "nplurals=2; plural=(n!=1);");
