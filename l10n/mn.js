@@ -242,7 +242,6 @@ OC.L10N.register(
     "Invite members to {team}" : "{team}-д гишүүд урих",
     "Pending" : "–•“Ø–ª—ç—ç–≥–¥—ç–∂ –±–∞–π–≥–∞–∞",
     "Chart" : "Диаграм",
-    "Select Date" : "Огноо сонгох",
     "Select type" : "Төрөл сонгох",
     "Add contact in group" : "Бүлэгт харилцагч нэмэх",
     "None" : "—é—É —á “Ø–≥“Ø–π",
@@ -381,6 +380,7 @@ OC.L10N.register(
     "New Deck board" : "Шинэ Deck самбар",
     "Board name" : "Самбарын нэр",
     "Deck app is not installed. Please install it to create team boards." : "Deck апп суулгаагүй байна. Багийн самбар үүсгэхийн тулд суулгана уу.",
+    "Select Date" : "Огноо сонгох",
     "note" : "тэмдэглэл",
     "email" : "и-мэйл"
 },

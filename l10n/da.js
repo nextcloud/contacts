@@ -184,7 +184,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "Du har i øjeblikket ingen adgang til medlemslisten",
     "Pending" : "Afventer",
     "Chart" : "Diagram",
-    "Select Date" : "Vælg dato",
     "Select type" : "Vælg type",
     "Add contact in group" : "Føj kontakt til gruppe",
     "None" : "Ingen",
@@ -304,6 +303,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "En fejl er opstået i team(s). Kontroller konsollen for flere detaljer.",
     "Unable to create team {circleName}" : "Kan ikke oprette team {circleName}",
     "Unable to delete team {circleId}" : "Kan ikke slette team {circleId}",
-    "Unable to delete contact" : "Kan ikke slette kontakten"
+    "Unable to delete contact" : "Kan ikke slette kontakten",
+    "Select Date" : "Vælg dato"
 },
 "nplurals=2; plural=(n != 1);");

@@ -177,7 +177,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "Actualmente no tiene acceso a la lista de miembros",
     "Pending" : "Pendiente",
     "Chart" : "Gráfico",
-    "Select Date" : "Seleccionar fecha",
     "Select type" : "Seleccionar tipo",
     "Add contact in group" : "Añadir contacto en el grupo",
     "None" : "Ninguno",
@@ -290,6 +289,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Ocurrió un error en el(los) equipo(s). Compruebe la consola para más detalles.",
     "Unable to create team {circleName}" : "No se pudo crear el equipo {circleName}",
     "Unable to delete team {circleId}" : "No se pudo eliminar el equipo {circleId}",
-    "Unable to delete contact" : "No se pudo eliminar el contacto"
+    "Unable to delete contact" : "No se pudo eliminar el contacto",
+    "Select Date" : "Seleccionar fecha"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

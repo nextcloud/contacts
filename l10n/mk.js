@@ -232,7 +232,6 @@ OC.L10N.register(
     "Pending" : "Чекање",
     "Select chart …" : "Избери график …",
     "Chart" : "График",
-    "Select Date" : "Избери датум",
     "Select type" : "Избери вид",
     "Add contact in group" : "Додади контакт во група",
     "None" : "Ништо",
@@ -359,6 +358,7 @@ OC.L10N.register(
     "Deck board" : "Deck табла",
     "New Deck board" : "Нова Deck табла",
     "Board name" : "Име на табла",
-    "Deck app is not installed. Please install it to create team boards." : "Deck апликацијата не е инсталирана. Инсталирајте ја за да креирате тимски табли."
+    "Deck app is not installed. Please install it to create team boards." : "Deck апликацијата не е инсталирана. Инсталирајте ја за да креирате тимски табли.",
+    "Select Date" : "Избери датум"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

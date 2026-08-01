@@ -262,7 +262,6 @@ OC.L10N.register(
     "Pending" : "Ootel",
     "Select chart …" : "Vali joonis…",
     "Chart" : "Joonis",
-    "Select Date" : "Vali kuupäev",
     "Select type" : "Vali tüüp",
     "Add contact in group" : "Lisa kontakt gruppi",
     "None" : "Pole",
@@ -405,6 +404,7 @@ OC.L10N.register(
     "Board name" : "Tahvli nimi",
     "Deck app is not installed. Please install it to create team boards." : "Nextcloudi Kanbani rakendus pole paigaldatud. Tiimi tahvlite kasutamiseks palun paigalda rakendus",
     "No other contacts available to select as line manager" : "Ei leidu muid kontakte, keda saaks valida vahetuks ülemuseks",
+    "Select Date" : "Vali kuupäev",
     "note" : "märge",
     "email" : "e-post",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Loo oma grupid jagamise jaoks. Lisa Nextcloudi kasutajaid, kontakte ning e-posti aadressi alusel keda iganes."

@@ -249,7 +249,6 @@ OC.L10N.register(
     "Pending" : "Tunggu",
     "Select chart …" : "Pilih bagan …",
     "Chart" : "Bagan",
-    "Select Date" : "Pilih Tanggal",
     "Select type" : "Pilih jenis",
     "Add contact in group" : "Tambahkan kontak dalam grup",
     "None" : "Tidak ada",
@@ -379,6 +378,7 @@ OC.L10N.register(
     "New Deck board" : "Papan Deck baru",
     "Board name" : "Nama papan",
     "Deck app is not installed. Please install it to create team boards." : "Aplikasi Deck tidak terpasang. Silakan pasang untuk membuat papan tim.",
+    "Select Date" : "Pilih Tanggal",
     "note" : "catatan",
     "email" : "email"
 },

@@ -260,7 +260,6 @@
     "Pending" : "En attente",
     "Select chart …" : "Sélectionnez un organigramme …",
     "Chart" : "Organigramme",
-    "Select Date" : "Sélectionnez une date",
     "Select type" : "Sélectionnez le type",
     "Add contact in group" : "Ajouter le contact dans un groupe",
     "None" : "Aucun",
@@ -403,6 +402,7 @@
     "Board name" : "Nom de tableau",
     "Deck app is not installed. Please install it to create team boards." : "L'application Deck n'est pas installée. Veuillez l'installer pour créer des tableaux d'équipe.",
     "No other contacts available to select as line manager" : "Aucun autre contact n’est disponible pour être sélectionné comme responsable hiérarchique",
+    "Select Date" : "Sélectionnez une date",
     "note" : "note",
     "email" : "email",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Créez vos propres groupes effectuer des partages. Ajoutez des utilisateurs Nextcloud, des contacts ou n'importe qui par e-mail."

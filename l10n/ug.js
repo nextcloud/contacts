@@ -246,7 +246,6 @@ OC.L10N.register(
     "Pending" : "كۈتۈۋاتىدۇ",
     "Select chart …" : "دىئاگرامما تاللا ...",
     "Chart" : "دىئاگرامما",
-    "Select Date" : "چېسلانى تاللاڭ",
     "Select type" : "تىپنى تاللاڭ",
     "Add contact in group" : "گۇرۇپپىغا ئالاقىلىشىڭ",
     "None" : "يوق",
@@ -373,6 +372,7 @@ OC.L10N.register(
     "Deck board" : "پالۋان تاختىسى",
     "New Deck board" : "يېڭى پالۋان تاختىسى",
     "Board name" : "مۇدىرىيەت ئىسمى",
-    "Deck app is not installed. Please install it to create team boards." : "پالۋان ئەپ قاچىلانمىدى. ئەتىرەت مۇدىريىتى قۇرۇش ئۈچۈن ئۇنى قاچىلاڭ."
+    "Deck app is not installed. Please install it to create team boards." : "پالۋان ئەپ قاچىلانمىدى. ئەتىرەت مۇدىريىتى قۇرۇش ئۈچۈن ئۇنى قاچىلاڭ.",
+    "Select Date" : "چېسلانى تاللاڭ"
 },
 "nplurals=2; plural=(n != 1);");

@@ -87,7 +87,6 @@ OC.L10N.register(
     "No results" : "Không có kết quả",
     "Add {type}" : "Thêm {type}",
     "Pending" : "Đang dừng",
-    "Select Date" : "Chọn ngày",
     "Select type" : "Chọn loại",
     "Add contact in group" : "Thêm liên hệ vào nhóm",
     "None" : "Không có",
@@ -167,6 +166,7 @@ OC.L10N.register(
     "Unknown" : "Không xác định",
     "Spoken languages" : "Ngôn ngữ có thể nói",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} liên hệ không thể đọc được"],
-    "Unable to delete contact" : "Không thể xoá liên hệ"
+    "Unable to delete contact" : "Không thể xoá liên hệ",
+    "Select Date" : "Chọn ngày"
 },
 "nplurals=1; plural=0;");

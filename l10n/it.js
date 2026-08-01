@@ -252,7 +252,6 @@ OC.L10N.register(
     "Pending" : "In attesa",
     "Select chart …" : "Seleziona grafico …",
     "Chart" : "Grafico",
-    "Select Date" : "Seleziona data",
     "Select type" : "Seleziona tipo",
     "Add contact in group" : "Aggiungi contatto a gruppo",
     "None" : "Nessuno",
@@ -394,6 +393,7 @@ OC.L10N.register(
     "New Deck board" : "Nuova bacheca",
     "Board name" : "Nome bacheca",
     "Deck app is not installed. Please install it to create team boards." : "L'app Deck non è installata. Installala per creare bacheche di team.",
+    "Select Date" : "Seleziona data",
     "note" : "nota",
     "email" : "email",
     "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Crea i tuoi gruppi per condividere contenuti. Aggiungi utenti, contatti o persone esterne tramite email."

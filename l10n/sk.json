@@ -249,7 +249,6 @@
     "Pending" : "Čakajúce",
     "Select chart …" : "Vybrať graf ...",
     "Chart" : "Graf",
-    "Select Date" : "Vybrať dátum",
     "Select type" : "Vyberte typ",
     "Add contact in group" : "Pridať kontakt do skupiny",
     "None" : "Žiadne",
@@ -389,6 +388,7 @@
     "New Deck board" : "Nová nástenka aplikácie Deck",
     "Board name" : "Názov nástenky",
     "Deck app is not installed. Please install it to create team boards." : "Aplikácia Deck nie je nainštalovaná. Nainštalujte ju, aby ste mohli vytvárať tímové nástenky.",
+    "Select Date" : "Vybrať dátum",
     "note" : "poznámka",
     "email" : "email"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);"
