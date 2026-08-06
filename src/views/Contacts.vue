@@ -187,6 +187,9 @@ export default {
 		 * @return {Array}
 		 */
 		contactsList() {
+			if (this.selectedAddressbook) {
+				return this.sortedContacts.filter((contact) => this.contacts[contact.key]?.addressbook.id === this.selectedAddressbook)
+			}
 			if (this.selectedGroup === GROUP_ALL_CONTACTS) {
 				return this.sortedContacts
 			} else if (this.selectedGroup === GROUP_NO_GROUP_CONTACTS) {
@@ -213,6 +216,13 @@ export default {
 	watch: {
 		// watch url change and group select
 		selectedGroup() {
+			if (!this.isMobile && !this.selectedChart) {
+				this.selectFirstContactIfNone()
+			}
+		},
+
+		// watch url change and address book select
+		selectedAddressbook() {
 			if (!this.isMobile && !this.selectedChart) {
 				this.selectFirstContactIfNone()
 			}
@@ -280,6 +290,11 @@ export default {
 				return
 			}
 
+			// fall back to the default address book if the selected one is not writeable
+			const targetAddressbook = this.selectedAddressbook
+				? this.addressbooks.find((ab) => ab.id === this.selectedAddressbook && !ab.readOnly) ?? this.defaultAddressbook
+				: this.defaultAddressbook
+
 			const contact = new Contact(
 				`
 				BEGIN:VCARD
@@ -287,7 +302,7 @@ export default {
 				PRODID:-//Nextcloud Contacts v${appVersion}
 				END:VCARD
 			`.trim().replace(/\t/gm, ''),
-				this.defaultAddressbook,
+				targetAddressbook,
 			)
 
 			contact.fullName = t('contacts', 'Name')
@@ -314,19 +329,22 @@ export default {
 
 			// set group if it's selected already
 			// BUT NOT if it's the _fake_ groups like all contacts and not grouped
-			if ([GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS].indexOf(this.selectedGroup) === -1) {
+			if (this.selectedGroup && [GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS].indexOf(this.selectedGroup) === -1) {
 				contact.groups = [this.selectedGroup]
 			}
 			try {
 				// this will trigger the proper commits to groups, contacts and addressbook
 				await this.$store.dispatch('addContact', contact)
-				await this.$router.push({
-					name: 'contact',
-					params: {
-						selectedGroup: this.selectedGroup,
-						selectedContact: contact.key,
-					},
-				})
+				// follow the address book the contact was actually created in, it might not be the selected one
+				await this.$router.push(this.selectedAddressbook
+					? {
+							name: 'addressbook-contact',
+							params: {
+								selectedAddressbook: targetAddressbook.id,
+								selectedContact: contact.key,
+							},
+						}
+					: this.contactRoute(contact.key))
 			} catch (error) {
 				showError(t('contacts', 'Unable to create the contact.'))
 				console.error(error)
@@ -378,17 +396,25 @@ export default {
 				// Unknown contact
 				if (this.selectedContact && !inList) {
 					showError(t('contacts', 'Contact not found'))
+					this.$router.push(this.listRoute())
+				}
+
+				// Unknown address book
+				if (this.selectedAddressbook
+					&& !this.addressbooks.find((addressbook) => addressbook.id === this.selectedAddressbook)) {
+					showError(t('contacts', 'Address book {addressbook} not found', { addressbook: this.selectedAddressbook }))
+					this.logger.error('Address book not found', this.selectedAddressbook)
+
 					this.$router.push({
-						name: 'group',
-						params: {
-							selectedGroup: this.selectedGroup,
-						},
+						name: 'root',
 					})
+					return
 				}
 
 				// Unknown group
 				if (!this.selectedCircle
 					&& !this.selectedUserGroup
+					&& !this.selectedAddressbook
 					&& !this.groups.find((group) => group.name === this.selectedGroup)
 					&& GROUP_ALL_CONTACTS !== this.selectedGroup
 					&& GROUP_NO_GROUP_CONTACTS !== this.selectedGroup
@@ -404,13 +430,7 @@ export default {
 				}
 
 				if (Object.keys(this.contactsList).length) {
-					this.$router.push({
-						name: 'contact',
-						params: {
-							selectedGroup: this.selectedGroup,
-							selectedContact: Object.values(this.contactsList)[0].key,
-						},
-					})
+					this.$router.push(this.contactRoute(Object.values(this.contactsList)[0].key))
 				}
 			}
 		},

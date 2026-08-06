@@ -5,7 +5,7 @@
 
 <template>
 	<div class="new-addressbook-entry">
-		<NcButton v-if="!modalOpen && !loading" @click="openModal">
+		<NcButton v-if="!hideButton && !modalOpen && !loading" @click="openModal">
 			<template #icon>
 				<IconAdd :size="20" />
 			</template>
@@ -52,6 +52,13 @@ export default {
 		IconLoading,
 		NcButton,
 		NcModal,
+	},
+
+	props: {
+		hideButton: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
