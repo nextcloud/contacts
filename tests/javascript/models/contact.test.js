@@ -9,6 +9,39 @@ const getPropertyLines = (property, vcard) => {
 	return vcard.match(new RegExp(`^${property}[;:].*`, 'gmi'))
 }
 
+describe('Test uid getter robustness', () => {
+
+	test('uid is returned as a plain string for a regular UID', () => {
+		const contact = new Contact(`
+			BEGIN:VCARD
+			VERSION:3.0
+			UID:123456789-123465-123456-123456789
+			FN:Test contact
+			END:VCARD`.replace(/\t/gmi, ''),
+		{ id: 'addressbook1' })
+
+		expect(contact.uid).toStrictEqual('123456789-123465-123456-123456789')
+		expect(typeof contact.key).toStrictEqual('string')
+	})
+
+	test('uid does not throw for a value-typed UID (issue #5149)', () => {
+		// vCard diagnosed in https://github.com/nextcloud/contacts/issues/5149
+		const contact = new Contact(`
+			BEGIN:VCARD
+			VERSION:3.0
+			FN:Foo
+			N:Bar;Baz;;;
+			UID;VALUE=DATE-TIME:20260203T091857Z
+			REV:20260203T091742Z
+			END:VCARD`.replace(/\t/gmi, ''),
+		{ id: 'addressbook1' })
+
+		expect(typeof contact.uid).toStrictEqual('string')
+		expect(typeof contact.key).toStrictEqual('string')
+	})
+
+})
+
 describe('Test stripping quotes from TYPE', () => {
 
 	let contact

@@ -375,54 +375,66 @@ const actions = {
 	 * @return {Promise}
 	 */
 	async getContactsFromAddressBook(context, { addressbook }) {
-		return addressbook.dav
-			.findAllAndFilterBySimpleProperties(MinimalContactProperties)
-			.then((response) => {
-				// We don't want to lose the url information
-				// so we need to parse one by one
-				let failed = 0
-				const contacts = response
-					.reduce((contacts, item) => {
-						try {
-							const contact = new Contact(item.data, addressbook)
-							contact.dav = item
-							contacts.push(contact)
-						} catch (error) {
-							// PARSING FAILED
-							console.error('Error reading contact', item.url, item.data)
-							console.error(error)
-							failed++
-						}
-						return contacts
-					}, [])
+		let response
+		try {
+			response = await addressbook.dav
+				.findAllAndFilterBySimpleProperties(MinimalContactProperties)
+		} catch (error) {
+			// unrecoverable error, if no contacts were loaded,
+			// remove the addressbook
+			// TODO: create a failed addressbook state and show that there was an issue?
+			context.commit('deleteAddressbook', addressbook)
+			console.error(error)
+			return
+		}
 
-				if (failed > 0) {
-					showError(n(
-						'contacts',
-						'{failed} contact failed to be read',
-						'{failed} contacts failed to be read',
-						failed,
-						{ failed },
-					))
-				}
+		try {
+			// We don't want to lose the url information
+			// so we need to parse one by one
+			let failed = 0
+			const contacts = response
+				.reduce((contacts, item) => {
+					try {
+						const contact = new Contact(item.data, addressbook)
+						contact.dav = item
+						contacts.push(contact)
+					} catch (error) {
+						// PARSING FAILED
+						console.error('Error reading contact', item.url, item.data)
+						console.error(error)
+						failed++
+					}
+					return contacts
+				}, [])
 
-				context.commit('appendContactsToAddressbook', { addressbook, contacts })
-				context.commit('extractGroupsFromContacts', contacts)
+			if (failed > 0) {
+				showError(n(
+					'contacts',
+					'{failed} contact failed to be read',
+					'{failed} contacts failed to be read',
+					failed,
+					{ failed },
+				))
+			}
 
-				// don't add contacts from disabled address book to contacts store
-				if (addressbook.enabled) {
-					context.commit('appendContacts', contacts)
-					context.commit('sortContacts')
-				}
-				return contacts
-			})
-			.catch((error) => {
-				// unrecoverable error, if no contacts were loaded,
-				// remove the addressbook
-				// TODO: create a failed addressbook state and show that there was an issue?
-				context.commit('deleteAddressbook', addressbook)
-				console.error(error)
-			})
+			context.commit('appendContactsToAddressbook', { addressbook, contacts })
+			context.commit('extractGroupsFromContacts', contacts)
+
+			// don't add contacts from disabled address book to contacts store
+			if (addressbook.enabled) {
+				context.commit('appendContacts', contacts)
+				context.commit('sortContacts')
+			}
+			return contacts
+		} catch (error) {
+			// The contacts were fetched, so the addressbook itself is fine:
+			// keep it in the store instead of hiding it from the user
+			// (see issues #5149, #5250)
+			console.error('Error processing the contacts of the following addressbook', addressbook.id, error)
+			showError(t('contacts', 'Errors occurred while processing the contacts of {addressbook}', {
+				addressbook: addressbook.displayName,
+			}))
+		}
 	},
 
 	/**
