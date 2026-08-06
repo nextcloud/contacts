@@ -134,6 +134,10 @@ export default class Circle {
 	 */
 	get isMember(): boolean | 0 | undefined
 	/**
+	 * Is the initiator an invited member of this circle, waiting an approval?
+	 */
+	get isInvitedMember(): boolean
+	/**
 	 * Is the initiator a pending member of this circle?
 	 */
 	get isPendingMember(): boolean

@@ -191,9 +191,38 @@
 			<div class="circle-details__main-content">
 				<!-- not a member -->
 				<template v-if="!circle.isMember">
+					<!-- Pending invitation validation -->
+					<div v-if="circle.isInvitedMember" class="pending-invitation">
+						<h2>
+						{{ t('contacts', 'You have to accept or refuse the invitation to join this team') }}
+						</h2>
+
+						<div class="buttons">
+							<NcButton
+								:disabled="loadingJoin"
+								class="primary"
+								@click="joinCircle">
+								<template #icon>
+									<LoginIcon :size="16" />
+								</template>
+								{{ t('contacts', 'Accept invitation') }}
+							</NcButton>
+
+							<NcButton
+								:disabled="loadingLeave"
+								variant="warning"
+								@click="confirmLeaveCircle">
+								<template #icon>
+									<LogoutIcon :size="16" />
+								</template>
+								{{ t('contacts', 'Refuse invitation') }}
+							</NcButton>
+						</div>
+					</div>
+
 					<!-- Pending request validation -->
 					<NcEmptyContent
-						v-if="circle.isPendingMember"
+						v-else-if="circle.isPendingMember"
 						:name="t('contacts', 'Your request to join this team is pending approval')">
 						<template #icon>
 							<NcLoadingIcon :size="20" />
@@ -1061,6 +1090,17 @@ export default {
 
 		.circle-details__main-content {
 			margin-inline-start: 99px;
+
+			.pending-invitation {
+				text-align: center;
+
+				.buttons {
+					display: flex;
+					flex-direction: row;
+					justify-content: center;
+					gap: 24px;
+				}
+			}
 
 			@media (max-width: 768px) {
 				margin-inline-start: 0;

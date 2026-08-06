@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { CircleConfigs, MemberLevels, ROUTE_CIRCLE } from './constants.ts'
+import { CircleConfigs, MemberLevels, MemberStatus, ROUTE_CIRCLE } from './constants.ts'
 import Member from './member.ts'
 
 type MemberList = Record<string, Member>
@@ -267,6 +267,13 @@ export default class Circle {
 	get isMember() {
 		return this.initiator?.level
 			&& this.initiator?.level > MemberLevels.NONE
+	}
+
+	/**
+	 * Is the initiator an invited member of this circle, waiting an approval?
+	 */
+	get isInvitedMember() {
+		return this.initiator?.status === MemberStatus.INVITED
 	}
 
 	/**
