@@ -4,10 +4,8 @@
  */
 
 import { showError } from '@nextcloud/dialogs'
-import pLimit from 'p-limit'
 import Contact, { MinimalContactProperties } from '../models/contact.js'
 import client from '../services/cdav.js'
-import parseVcf from '../services/parseVcf.js'
 import { sortAddressbooks } from '../utils/addressbookUtils.js'
 
 const addressbookModel = {
@@ -423,55 +421,6 @@ const actions = {
 				context.commit('deleteAddressbook', addressbook)
 				console.error(error)
 			})
-	},
-
-	/**
-	 *
-	 * @param {object} context the store mutations
-	 * @param {object} importDetails = { vcf, addressbook }
-	 * @param importDetails.vcf
-	 * @param importDetails.addressbook
-	 */
-	async importContactsIntoAddressbook(context, { vcf, addressbook }) {
-		const contacts = parseVcf(vcf, addressbook)
-		context.commit('changeStage', 'importing')
-
-		// max simultaneous requests
-		const limit = pLimit(3)
-		const requests = []
-
-		// create the array of requests to send
-		contacts.map(async (contact) => {
-			console.info(contact)
-
-			// Get vcard string
-			try {
-				const vData = contact.toStringStripQuotes()
-				// push contact to server and use limit
-				requests.push(limit(() => contact.addressbook.dav.createVCard(vData)
-					.then((response) => {
-						// setting the contact dav property
-						contact.dav = response
-
-						// success, update store
-						context.commit('addContact', contact)
-						context.commit('addContactToAddressbook', contact)
-						context.commit('extractGroupsFromContacts', [contact])
-						context.commit('incrementAccepted')
-					})
-					.catch((error) => {
-						// error
-						context.commit('incrementDenied')
-						console.error(error)
-					})))
-			} catch (e) {
-				context.commit('incrementDenied')
-			}
-		})
-
-		Promise.all(requests).then(() => {
-			context.commit('changeStage', 'done')
-		})
 	},
 
 	/**
