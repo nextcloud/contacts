@@ -5,6 +5,7 @@
 
 import Contact from '../models/contact.js'
 import Store from '../store/index.js'
+import logger from './logger.js'
 
 /**
  * Parse a vcf data string, add them to the store
@@ -19,12 +20,12 @@ export default function parseVcf(data, addressbook) {
 	const vCards = data.match(regexp)
 
 	if (!vCards) {
-		console.error('Error during the parsing of the following vcf file', data)
+		logger.error('Error during the parsing of the following vcf file', { data })
 		return []
 	}
 
 	if (!addressbook) {
-		console.error('Invalid addressbook', addressbook)
+		logger.error('Invalid addressbook', { addressbook })
 		return []
 	}
 
@@ -34,13 +35,12 @@ export default function parseVcf(data, addressbook) {
 	// map force to return at least undefined
 	return vCards.reduce((contacts, vCard) => {
 		try {
-			// console.log(vCards.indexOf(vCard))
 			const contact = new Contact(vCard, addressbook)
 			contacts.push(contact)
 		} catch (e) {
 			// Parse error! Do not stop here...
 			Store.dispatch('incrementDenied')
-			console.error(e)
+			logger.error(e)
 		}
 		return contacts
 	}, [])

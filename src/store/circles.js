@@ -197,7 +197,7 @@ const actions = {
 			context.dispatch('updateCirclesPopulationCount')
 			return circle
 		} catch (error) {
-			console.error(error)
+			logger.error(error)
 			showError(t('contacts', 'Unable to create team {circleName}', { circleName }))
 		}
 	},
@@ -216,7 +216,7 @@ const actions = {
 			logger.debug('Deleted circle', { circleId })
 			context.dispatch('updateCirclesPopulationCount')
 		} catch (error) {
-			console.error(error)
+			logger.error(error)
 			showError(t('contacts', 'Unable to delete team {circleId}', { circleId }))
 		}
 	},

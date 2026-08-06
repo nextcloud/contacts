@@ -35,6 +35,7 @@ import CircleDetails from '../CircleDetails.vue'
 import UserGroupDetails from '../UserGroupDetails.vue'
 import IsMobileMixin from '../../mixins/IsMobileMixin.ts'
 import RouterMixin from '../../mixins/RouterMixin.js'
+import logger from '../../services/logger.js'
 import useUserGroupStore from '../../store/userGroup.ts'
 
 export default {
@@ -126,7 +127,7 @@ export default {
 			try {
 				await this.$store.dispatch('getCircleMembers', circleId)
 			} catch (error) {
-				console.error(error)
+				logger.error(error)
 				showError(t('contacts', 'There was an error fetching the member list'))
 			} finally {
 				this.loadingList = false
@@ -139,7 +140,7 @@ export default {
 			try {
 				await this.userGroupStore.getUserGroupMembers(userGroupId)
 			} catch (error) {
-				console.error(error)
+				logger.error(error)
 				showError(t('contacts', 'There was an error fetching the member list'))
 			} finally {
 				this.loadingList = false

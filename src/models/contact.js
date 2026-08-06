@@ -9,6 +9,7 @@ import { Buffer } from 'buffer'
 import ICAL from 'ical.js'
 import { v4 as uuid } from 'uuid'
 import { shallowRef, unref } from 'vue'
+import logger from '../services/logger.js'
 import updateDesignSet from '../services/updateDesignSet.js'
 import store from '../store/index.js'
 
@@ -64,7 +65,7 @@ export default class Contact {
 
 		// if no uid set, create one
 		if (!this.vCard.hasProperty('uid')) {
-			console.info('This contact did not have a proper uid. Setting a new one for ', this)
+			logger.info('This contact did not have a proper uid. Setting a new one for ', { contact: this })
 			this.vCard.addPropertyWithValue('uid', uuid())
 		}
 
@@ -281,7 +282,7 @@ export default class Contact {
 			const cleanSvg = await sanitizeSVG(imageSvg)
 
 			if (!cleanSvg) {
-				console.error('Invalid SVG for the following contact. Ignoring...', this.contact, { photoB64, photoType })
+				logger.error('Invalid SVG for the following contact. Ignoring...', { contact: this, photoB64, photoType })
 				return false
 			}
 		}
@@ -291,7 +292,7 @@ export default class Contact {
 			const blob = b64toBlob(photoB64Data, `image/${photoType}`)
 			return URL.createObjectURL(blob)
 		} catch {
-			console.error('Invalid photo for the following contact. Ignoring...', this.contact, { photoB64, photoType })
+			logger.error('Invalid photo for the following contact. Ignoring...', { contact: this, photoB64, photoType })
 			return false
 		}
 	}

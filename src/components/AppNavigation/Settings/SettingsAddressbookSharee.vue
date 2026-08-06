@@ -49,6 +49,7 @@ import {
 import IconGroup from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconUser from 'vue-material-design-icons/AccountOutline.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
+import logger from '../../../services/logger.js'
 
 export default {
 	name: 'SettingsAddressbookSharee',
@@ -102,7 +103,7 @@ export default {
 					uri: this.sharee.uri,
 				})
 			} catch (error) {
-				console.error(error)
+				logger.error(error)
 				showError(t('contacts', 'Unable to delete the share'))
 			} finally {
 				this.loading = false
@@ -122,7 +123,7 @@ export default {
 					writeable: !this.sharee.writeable,
 				})
 			} catch (error) {
-				console.error(error)
+				logger.error(error)
 				showError(t('contacts', 'Unable to change permissions'))
 			} finally {
 				this.loading = false

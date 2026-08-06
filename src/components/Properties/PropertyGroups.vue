@@ -30,8 +30,7 @@
 					:taggable="true"
 					tag-placeholder="create"
 					@option:deselected="updateValue"
-					@close="updateValue">
-				</NcSelect>
+					@close="updateValue" />
 				<div v-else>
 					<span v-if="localValue.length === 0">{{ t('contacts', 'None') }}</span>
 

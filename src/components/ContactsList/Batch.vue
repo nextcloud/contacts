@@ -93,6 +93,7 @@ import IconBookArrow from 'vue-material-design-icons/BookArrowRightOutline.vue'
 import IconPlus from 'vue-material-design-icons/Plus.vue'
 import ContactsListItem from './ContactsListItem.vue'
 import appendContactToGroup from '../../services/appendContactToGroup.js'
+import logger from '../../services/logger.js'
 import contacts from '../../store/contacts.js'
 
 export default {
@@ -192,7 +193,7 @@ export default {
 			this.selectedGroups.forEach((selectedGroup) => {
 				const group = allGroups.find((g) => g.name === selectedGroup.value)
 				if (!group) {
-					console.error('Cannot add contact to an undefined group', selectedGroup)
+					logger.error('Cannot add contact to an undefined group', { selectedGroup })
 					return
 				}
 				this.contacts.forEach((contact) => {
@@ -207,7 +208,7 @@ export default {
 							this.$store.dispatch('addContactToGroup', { contact, groupName: group.name })
 						})
 						.catch((error) => {
-							console.error(error)
+							logger.error(error)
 						})
 				})
 			})
@@ -221,7 +222,7 @@ export default {
 			}
 			const addressbook = this.$store.getters.getAddressbooks.find((ab) => ab.id === this.selectedAddressesBook.value)
 			if (!addressbook) {
-				console.error('Selected addressbook not found', this.selectedAddressesBook)
+				logger.error('Selected addressbook not found', { selectedAddressesBook: this.selectedAddressesBook })
 				return
 			}
 
@@ -233,7 +234,7 @@ export default {
 					await this.$store.dispatch('moveContactToAddressbook', { contact, addressbook })
 					return contact
 				} catch (error) {
-					console.error('Failed to move contact', contact, error)
+					logger.error('Failed to move contact', { contact, error })
 					return null
 				}
 			})

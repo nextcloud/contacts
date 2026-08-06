@@ -5,6 +5,7 @@
 
 import Contact from '../models/contact.js'
 import checks from './checks/index.js'
+import logger from './logger.js'
 
 /**
  * @param contact
@@ -19,18 +20,18 @@ export default function(contact) {
 					// A fix is needed, running ⏳
 					if (!check.fix(contact)) {
 						// FAILURE 🙅
-						console.warn('The following contact needed a correction that failed:', check.name, contact)
+						logger.warn('The following contact needed a correction that failed:', { name: check.name, contact })
 					} else {
 						// SUCCESS 💪
 						// Only display visual feedback if the fix is not silent
 						if (!check.silent) {
 							result = true
 						}
-						console.info('The following contact has been repaired:', check.name, contact)
+						logger.info('The following contact has been repaired:', { name: check.name, contact })
 					}
 				}
 			} catch (error) {
-				console.error('Error during the check:', check.name, contact, error)
+				logger.error('Error during the check:', { name: check.name, contact, error })
 			}
 		})
 		return result

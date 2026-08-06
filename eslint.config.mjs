@@ -11,7 +11,6 @@ export default defineConfig([
 	{
 		rules: {
 			// Relax some rules for now. Can be improved later one (baseline).
-			'no-console': 'off',
 			'no-unused-vars': 'off',
 			'@typescript-eslint/no-unused-vars': 'off',
 			'@typescript-eslint/no-explicit-any': 'off',
