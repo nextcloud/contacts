@@ -43,6 +43,7 @@ import { showError } from '@nextcloud/dialogs'
 import { NcButton, NcInputField, NcModal } from '@nextcloud/vue'
 import IconLoading from 'vue-material-design-icons/Loading.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
+import logger from '../../../services/logger.js'
 
 export default {
 	name: 'SettingsNewAddressbook',
@@ -111,7 +112,7 @@ export default {
 					this.loading = false
 				})
 				.catch((error) => {
-					console.error(error)
+					logger.error(error)
 					showError(t('contacts', 'An error occurred, unable to create the address book'))
 					this.loading = false
 				})

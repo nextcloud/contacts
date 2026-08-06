@@ -85,6 +85,7 @@ import { toRaw } from 'vue'
 import PropertyActions from './PropertyActions.vue'
 import PropertyTitle from './PropertyTitle.vue'
 import PropertyMixin from '../../mixins/PropertyMixin.js'
+import logger from '../../services/logger.js'
 
 export default {
 	name: 'PropertyDateTime',
@@ -181,14 +182,14 @@ export default {
 				await import(/* webpackChunkName: 'moment' */'moment/locale/' + locale)
 			} catch (e) {
 				// failure, fallback to english
-				console.debug('Fallback to locale', 'en')
+				logger.debug('Fallback to locale', { locale: 'en' })
 				locale = 'en'
 			}
 		} finally {
 			// force locale change to update
 			// the component once done loading
 			this.locale = locale
-			console.debug('Locale used', locale)
+			logger.debug('Locale used', { locale })
 		}
 	},
 

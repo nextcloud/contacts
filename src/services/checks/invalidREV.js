@@ -4,6 +4,7 @@
  */
 
 import ICAL from 'ical.js'
+import logger from '../logger.js'
 
 // https://tools.ietf.org/html/rfc6350#section-6.7.4
 
@@ -36,7 +37,7 @@ export default {
 
 			return true
 		} catch (error) {
-			console.error('Error fixing invalid REV:', error)
+			logger.error('Error fixing invalid REV:', { error })
 			return false
 		}
 	},

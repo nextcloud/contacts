@@ -59,6 +59,7 @@ import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
 import client from '../services/cdav.js'
+import logger from '../services/logger.js'
 import validate from '../services/validate.js'
 import usePrincipalsStore from '../store/principals.js'
 
@@ -245,7 +246,7 @@ export default {
 
 				this.contact = contacts.find((contact) => contact.hasEmail(email))
 			} catch (error) {
-				console.error('Error fetching contact:', error)
+				logger.error('Error fetching contact:', { error })
 			} finally {
 				this.loading = false
 			}

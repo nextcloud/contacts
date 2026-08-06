@@ -102,6 +102,7 @@ import CheckIcon from 'vue-material-design-icons/Check.vue'
 import StarIcon from 'vue-material-design-icons/Star.vue'
 import StarOutlineIcon from 'vue-material-design-icons/StarOutline.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
+import logger from '../../services/logger.js'
 
 export default {
 	name: 'ContactsListItem',
@@ -286,7 +287,7 @@ export default {
 			if (this.source.photo) {
 				const photoUrl = await this.source.getPhotoUrl()
 				if (!photoUrl) {
-					console.warn('contact has an invalid photo')
+					logger.warn('contact has an invalid photo')
 					// Invalid photo data
 					return
 				}

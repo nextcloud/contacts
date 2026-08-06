@@ -37,6 +37,7 @@ import PropertyText from '../Properties/PropertyText.vue'
 import OrgChartsMixin from '../../mixins/OrgChartsMixin.js'
 import Contact from '../../models/contact.js'
 import rfcProps from '../../models/rfcProps.js'
+import logger from '../../services/logger.js'
 import { matchTypes } from '../../utils/matchTypes.ts'
 
 export default {
@@ -380,12 +381,12 @@ export default {
 					const comp = this.$refs.component
 					const el = comp?.$el instanceof HTMLElement ? comp.$el : (comp instanceof HTMLElement ? comp : null)
 					if (!el || !el.querySelectorAll) {
-						console.warn('No focusable element found for property', this.propName)
+						logger.warn('No focusable element found for property', { propName: this.propName })
 						return
 					}
 					const inputs = el.querySelectorAll('input, textarea')
 					if (!inputs || inputs.length === 0) {
-						console.warn('no input to focus found')
+						logger.warn('no input to focus found')
 					} else {
 						inputs[0].focus()
 					}

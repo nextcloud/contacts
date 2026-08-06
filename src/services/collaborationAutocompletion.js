@@ -7,6 +7,7 @@ import axios from '@nextcloud/axios'
 import { generateOcsUrl } from '@nextcloud/router'
 import { ShareType } from '@nextcloud/sharing'
 import { CircleConfigs, SHARES_TYPES_MEMBER_MAP } from '../models/constants.ts'
+import logger from './logger.js'
 
 // generate allowed shareType from SHARES_TYPES_MEMBER_MAP
 const shareType = Object.keys(SHARES_TYPES_MEMBER_MAP)
@@ -88,7 +89,7 @@ export async function getSuggestions(search, circle = null) {
 		return item
 	})
 
-	console.info('suggestions', finalResults)
+	logger.info('suggestions', { finalResults })
 
 	return finalResults
 }
@@ -113,7 +114,7 @@ export async function getRecommendations() {
 	const finalResults = recommendations
 		.map((share) => formatResults(share))
 
-	console.info('recommendations', finalResults)
+	logger.info('recommendations', { finalResults })
 
 	return finalResults
 }

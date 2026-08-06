@@ -80,6 +80,7 @@ import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
 import client from '../services/cdav.js'
 import isCirclesEnabled from '../services/isCirclesEnabled.js'
+import logger from '../services/logger.js'
 import usePrincipalsStore from '../store/principals.js'
 import useUserGroupStore from '../store/userGroup.ts'
 
@@ -352,7 +353,7 @@ export default {
 					: this.contactRoute(contact.key))
 			} catch (error) {
 				showError(t('contacts', 'Unable to create the contact.'))
-				console.error(error)
+				logger.error(error)
 			}
 		},
 
@@ -426,7 +427,7 @@ export default {
 					&& ROUTE_CIRCLE !== this.selectedGroup
 					&& ROUTE_USER_GROUP !== this.selectedGroup) {
 					showError(t('contacts', 'Group {group} not found', { group: this.selectedGroup }))
-					console.error('Group not found', this.selectedGroup)
+					logger.error('Group not found', { selectedGroup: this.selectedGroup })
 
 					this.$router.push({
 						name: 'root',

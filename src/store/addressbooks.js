@@ -7,6 +7,7 @@ import { showError } from '@nextcloud/dialogs'
 import pLimit from 'p-limit'
 import Contact, { MinimalContactProperties } from '../models/contact.js'
 import client from '../services/cdav.js'
+import logger from '../services/logger.js'
 import parseVcf from '../services/parseVcf.js'
 import { sortAddressbooks } from '../utils/addressbookUtils.js'
 
@@ -143,7 +144,7 @@ const mutations = {
 		// convert list into an array and remove duplicate
 		addressbook.contacts = contacts.reduce((list, contact) => {
 			if (list[contact.uid]) {
-				console.info('Duplicate contact overrided', list[contact.uid], contact)
+				logger.info('Duplicate contact overrided', { previous: list[contact.uid], contact })
 			}
 			list[contact.uid] = contact
 			return list
@@ -389,8 +390,8 @@ const actions = {
 							contacts.push(contact)
 						} catch (error) {
 							// PARSING FAILED
-							console.error('Error reading contact', item.url, item.data)
-							console.error(error)
+							logger.error('Error reading contact', { url: item.url, data: item.data })
+							logger.error(error)
 							failed++
 						}
 						return contacts
@@ -421,7 +422,7 @@ const actions = {
 				// remove the addressbook
 				// TODO: create a failed addressbook state and show that there was an issue?
 				context.commit('deleteAddressbook', addressbook)
-				console.error(error)
+				logger.error(error)
 			})
 	},
 
@@ -442,7 +443,7 @@ const actions = {
 
 		// create the array of requests to send
 		contacts.map(async (contact) => {
-			console.info(contact)
+			logger.info('Importing contact', { contact })
 
 			// Get vcard string
 			try {
@@ -462,7 +463,7 @@ const actions = {
 					.catch((error) => {
 						// error
 						context.commit('incrementDenied')
-						console.error(error)
+						logger.error(error)
 					})))
 			} catch (e) {
 				context.commit('incrementDenied')
@@ -487,7 +488,7 @@ const actions = {
 			await addressbook.dav.unshare(uri)
 			context.commit('removeSharee', { addressbook, uri })
 		} catch (error) {
-			console.error(error)
+			logger.error(error)
 			throw error
 		}
 	},
@@ -506,7 +507,7 @@ const actions = {
 			await addressbook.dav.share(uri, writeable)
 			context.commit('updateShareeWritable', { addressbook, uri, writeable })
 		} catch (error) {
-			console.error(error)
+			logger.error(error)
 			throw error
 		}
 	},
@@ -538,7 +539,7 @@ const actions = {
 			await addressbook.dav.share(uri)
 			context.commit('shareAddressbook', { addressbook, user, displayName, uri, isGroup })
 		} catch (error) {
-			console.error(error)
+			logger.error(error)
 			throw error
 		}
 	},
@@ -558,7 +559,7 @@ const actions = {
 			try {
 				await contact.dav.move(addressbook.dav)
 			} catch (error) {
-				console.error(error)
+				logger.error(error)
 				throw error
 			}
 		}
@@ -590,7 +591,7 @@ const actions = {
 			// setting the contact dav property
 			newContact.dav = response
 		} catch (error) {
-			console.error(error)
+			logger.error(error)
 			throw error
 		}
 		// success, update store

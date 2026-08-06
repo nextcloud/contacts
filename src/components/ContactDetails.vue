@@ -438,6 +438,7 @@ import PropertySelect from './Properties/PropertySelect.vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import rfcProps from '../models/rfcProps.js'
 import isTalkEnabled from '../services/isTalkEnabled.js'
+import logger from '../services/logger.js'
 import validate from '../services/validate.js'
 
 const { profileEnabled } = loadState('user_status', 'profileEnabled', false)
@@ -984,7 +985,7 @@ export default defineComponent({
 						} else {
 							showError(t('contacts', 'Unable to retrieve the contact from the server, please check your network connection.'))
 						}
-						console.error(error)
+						logger.error(error)
 						// trigger a local deletion from the store only
 						this.$store.dispatch('deleteContact', { contact: this.contact, dav: false })
 					}
@@ -1042,7 +1043,7 @@ export default defineComponent({
 						})
 					}
 				} catch (error) {
-					console.error(error)
+					logger.error(error)
 					showError(t('contacts', 'An error occurred while trying to move the contact'))
 				} finally {
 					this.loadingUpdate = false
@@ -1085,7 +1086,7 @@ export default defineComponent({
 						})
 					}
 				} catch (error) {
-					console.error(error)
+					logger.error(error)
 					showError(t('contacts', 'An error occurred while trying to copy the contact'))
 				} finally {
 					this.loadingUpdate = false

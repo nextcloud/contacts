@@ -327,6 +327,7 @@ import TeamResourceButton from './CircleDetails/TeamResourceButton.vue'
 import MemberList from './MemberList/MemberList.vue'
 import CircleActionsMixin from '../mixins/CircleActionsMixin.js'
 import { CircleEdit, editCircle } from '../services/circles.ts'
+import logger from '../services/logger.js'
 
 import 'cropperjs/dist/cropper.css'
 
@@ -679,7 +680,7 @@ export default {
 						} catch (calendarError) {
 							// Since cdav-library doesn't expose HTTP status properly,
 							// assume MKCOL errors on calendar paths are name conflicts (405)
-							console.error('Calendar creation failed for name:', name)
+							logger.error('Calendar creation failed for name:', { name })
 							throw new Error(`CALENDAR_EXISTS:${name}`)
 						}
 						break
@@ -713,7 +714,7 @@ export default {
 					this.fetchTeamResources()
 				}
 			} catch (error) {
-				console.error('Failed to create resource:', error)
+				logger.error('Failed to create resource:', { error })
 
 				// Check for calendar exists error
 				if (error.message && error.message.startsWith('CALENDAR_EXISTS:')) {
@@ -792,7 +793,7 @@ export default {
 				}
 				reader.readAsDataURL(file)
 			} catch (error) {
-				console.error('Error picking avatar file', error)
+				logger.error('Error picking avatar file', { error })
 				showError(t('contacts', 'Error picking team picture'))
 			}
 		},
@@ -818,7 +819,7 @@ export default {
 				if (error instanceof FilePickerClosed) {
 					return
 				}
-				console.error('Error picking avatar file', error)
+				logger.error('Error picking avatar file', { error })
 				showError(t('contacts', 'Error picking team picture'))
 			}
 		},
@@ -901,7 +902,7 @@ export default {
 		async fetchTeamResources() {
 			const response = await axios.get(generateOcsUrl(`/teams/${this.circle.id}/resources`))
 			this.resources = response.data.ocs.data.resources
-			console.debug('Team resources', this.resources)
+			logger.debug('Team resources', { resources: this.resources })
 		},
 
 		async loadAvatarUrl() {
@@ -951,7 +952,7 @@ export default {
 					await editCircle(this.circle.id, CircleEdit.Name, this.circle.displayName)
 					this.originalDisplayName = this.circle.displayName
 				} catch (error) {
-					console.error('Unable to edit name', this.circle.displayName, error)
+					logger.error('Unable to edit name', { displayName: this.circle.displayName, error })
 					errors.push('name')
 					this.circle.displayName = this.originalDisplayName
 				} finally {
@@ -966,7 +967,7 @@ export default {
 					await editCircle(this.circle.id, CircleEdit.Description, this.circle.description)
 					this.originalDescription = this.circle.description
 				} catch (error) {
-					console.error('Unable to edit team description', this.circle.description, error)
+					logger.error('Unable to edit team description', { description: this.circle.description, error })
 					errors.push('description')
 					this.circle.description = this.originalDescription
 				} finally {
@@ -984,7 +985,7 @@ export default {
 					this.clearPendingAvatar()
 					await this.loadAvatarUrl()
 				} catch {
-					console.error('Unable to save avatar picture')
+					logger.error('Unable to save avatar picture')
 					errors.push('avatar')
 				} finally {
 					this.loadingAvatar = false
@@ -999,7 +1000,7 @@ export default {
 					this.clearPendingAvatar()
 					await this.loadAvatarUrl()
 				} catch {
-					console.error('Unable to remove avatar')
+					logger.error('Unable to remove avatar')
 					errors.push('avatar')
 				} finally {
 					this.loadingAvatar = false

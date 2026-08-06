@@ -6,6 +6,7 @@
 import { showError } from '@nextcloud/dialogs'
 import ICAL from 'ical.js'
 import Contact from '../models/contact.js'
+import logger from '../services/logger.js'
 import validate from '../services/validate.js'
 
 /*
@@ -81,7 +82,7 @@ const mutations = {
 			if (contact instanceof Contact) {
 				list[contact.key] = contact
 			} else {
-				console.error('Invalid contact object', contact)
+				logger.error('Invalid contact object', { contact })
 			}
 			return list
 		}, state.contacts)
@@ -95,7 +96,7 @@ const mutations = {
 	 */
 	updateContactFavorite(state, contact) {
 		if (!state.contacts[contact.key] || !(contact instanceof Contact)) {
-			console.error('Invalid contact update', contact)
+			logger.error('Invalid contact update', { contact })
 			return
 		}
 
@@ -129,7 +130,7 @@ const mutations = {
 			state.sortedContacts.splice(index, 1)
 			delete state.contacts[contact.key]
 		} else {
-			console.error('Error while deleting the following contact', contact)
+			logger.error('Error while deleting the following contact', { contact })
 		}
 	},
 
@@ -178,7 +179,7 @@ const mutations = {
 
 			state.contacts[contact.key] = contact
 		} else {
-			console.error('Error while adding the following contact', contact)
+			logger.error('Error while adding the following contact', { contact })
 		}
 	},
 
@@ -201,7 +202,7 @@ const mutations = {
 			const sortedContact = state.sortedContacts.find((search) => search.key === contact.key)
 
 			if (!sortedContact) {
-				console.warn('sortedContact not found for', contact.key)
+				logger.warn('sortedContact not found for', { key: contact.key })
 				return
 			}
 
@@ -215,7 +216,7 @@ const mutations = {
 				state.sortedContacts.sort(sortByFavoriteAndName)
 			}
 		} else {
-			console.error('Error while replacing the following contact', contact)
+			logger.error('Error while replacing the following contact', { contact })
 		}
 	},
 
@@ -251,7 +252,7 @@ const mutations = {
 			state.sortedContacts[index].key = newContact.key
 			state.sortedContacts[index].value = newContact[state.orderKey]
 		} else {
-			console.error('Error while replacing the addressbook of following contact', contact)
+			logger.error('Error while replacing the addressbook of following contact', { contact })
 		}
 	},
 
@@ -270,7 +271,7 @@ const mutations = {
 			// replace contact object data
 			state.contacts[contact.key].dav.etag = etag
 		} else {
-			console.error('Error while replacing the etag of following contact', contact)
+			logger.error('Error while replacing the etag of following contact', { contact })
 		}
 	},
 
@@ -314,7 +315,7 @@ const mutations = {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
 			state.contacts[contact.key].conflict = etag
 		} else {
-			console.error('Error while handling the following contact', contact)
+			logger.error('Error while handling the following contact', { contact })
 		}
 	},
 
@@ -331,7 +332,7 @@ const mutations = {
 			contact = state.contacts[contact.key]
 			contact.dav = dav
 		} else {
-			console.error('Error while handling the following contact', contact)
+			logger.error('Error while handling the following contact', { contact })
 		}
 	},
 }
@@ -368,7 +369,7 @@ const actions = {
 			contact.dav.favorite = oldValue
 			context.commit('updateContactFavorite', contact)
 			showError(t('contacts', 'Could not update favorite state'))
-			console.error('Could not toggle favorite state', error)
+			logger.error('Could not toggle favorite state', { error })
 		}
 	},
 
@@ -385,7 +386,7 @@ const actions = {
 		if (contact.dav && dav) {
 			await contact.dav.delete()
 				.catch((error) => {
-					console.error(error)
+					logger.error(error)
 					showError(t('contacts', 'Unable to delete contact'))
 				})
 		}
@@ -443,19 +444,19 @@ const actions = {
 				// all clear, let's update the store
 				context.commit('updateContact', contact)
 			} catch (error) {
-				console.error(error)
+				logger.error(error)
 
 				// wrong etag, we most likely have a conflict
 				if (error && error?.status === 412) {
 					// saving the new etag so that the user can manually
 					// trigger a fetchCompleteData without any further errors
 					context.commit('setContactAsConflict', { contact, etag: error.xhr.getResponseHeader('etag') })
-					console.error('This contact is outdated, the server refused it', contact)
+					logger.error('This contact is outdated, the server refused it', { contact })
 				}
 				throw (error)
 			}
 		} else {
-			console.error('This contact is outdated, refusing to push', contact)
+			logger.error('This contact is outdated, refusing to push', { contact })
 		}
 	},
 

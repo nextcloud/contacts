@@ -31,6 +31,7 @@ import pLimit from 'p-limit'
 import AddToGroupView from '../../views/Processing/AddToGroupView.vue'
 import EntityPicker from './EntityPicker.vue'
 import appendContactToGroup from '../../services/appendContactToGroup.js'
+import logger from '../../services/logger.js'
 
 export default {
 	name: 'ContactsPicker',
@@ -90,14 +91,14 @@ export default {
 	methods: {
 		// Bulk contacts group management handlers
 		addContactsToGroup(group) {
-			console.debug('Contacts picker opened for group', group)
+			logger.debug('Contacts picker opened for group', { group })
 
 			this.passedGroupName = group.name ? group.name : group
 			// Get the full group if we provided the group name only
 			if (typeof group === 'string') {
 				group = this.groups.find((a) => a.name === group)
 				if (!group) {
-					console.error('Cannot add contact to an undefined group', group)
+					logger.error('Cannot add contact to an undefined group', { group })
 					return
 				}
 			}
@@ -129,7 +130,7 @@ export default {
 		},
 
 		onContactPickerPick(selection) {
-			console.debug('Adding', selection, 'to group', this.pickerforGroup)
+			logger.debug('Adding selection to group', { selection, group: this.pickerforGroup })
 			const groupName = this.pickerforGroup.name
 
 			this.isProcessing = true
@@ -160,10 +161,10 @@ export default {
 						.catch((error) => {
 							this.processStatus.progress++
 							this.processStatus.error++
-							console.error(error)
+							logger.error(error)
 						})))
 				} catch (e) {
-					console.error(e)
+					logger.error(e)
 				}
 			})
 
