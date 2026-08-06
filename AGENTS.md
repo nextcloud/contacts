@@ -60,6 +60,7 @@ Single-page Vue 3 app with Vite bundling. Entry point: `main.js`, root component
 - **`mixins/`** — Shared component logic.
 
 ### Key Conventions
+- **Logging (frontend)**: Never use `console.*`. Use the app logger from `src/services/logger.js` — `this.logger.error(…)` inside components (provided by `LegacyGlobalMixin`), or `import logger from '…/services/logger.js'` elsewhere.
 - **Registration**: `appinfo/info.xml` registers background jobs, admin settings, navigation, and DAV providers. `AppInfo/Application.php` bootstraps services and event listeners.
 - **Events**: Domain events in `lib/Event/` are dispatched after contact/address book state changes; `lib/Listener/` reacts to them.
 - **CardDAV**: Contact data flows through SabreDAV's CardDAV plugin; contacts are stored as vCard format files.

@@ -14,6 +14,7 @@ yarn-error.log*
 *.ntvs*
 *.njsproj
 *.sln
+.claude
 
 .marginalia
 
