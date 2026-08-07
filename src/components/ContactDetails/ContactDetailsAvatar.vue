@@ -30,7 +30,7 @@
 			:url="photoUrl"
 			class="contact-header-avatar__photo" />
 
-		<NcModal v-model:show="showCropper" size="small" @close="cancel">
+		<NcModal v-if="showCropper" size="small" @close="cancel">
 			<div class="avatar__container">
 				<h2>{{ t('contacts', 'Crop contact photo') }}</h2>
 				<VueCropper
@@ -262,10 +262,11 @@ export default {
 		 * @param {Buffer} data the image
 		 * @param {string} type of the image
 		 */
-		openCropper(data, type) {
+		async openCropper(data, type) {
 			const ccc = `data:${type};base64,${data.toString('base64')}`
-			this.$refs.cropper.replace(ccc)
 			this.showCropper = true
+			await this.$nextTick()
+			this.$refs.cropper.replace(ccc)
 		},
 
 		/**
