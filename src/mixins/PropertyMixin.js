@@ -4,7 +4,6 @@
  */
 import debounce from 'debounce'
 import Contact from '../models/contact.js'
-import { setPropertyAlias } from '../services/updateDesignSet.js'
 
 export default {
 	props: {
@@ -122,29 +121,34 @@ export default {
 		}, 500),
 
 		createLabel(label) {
-			let propGroup = this.property.name
-			if (!this.property.name.startsWith('nextcloud')) {
-				propGroup = `nextcloud${this.getNcGroupCount() + 1}.${this.property.name}`
-				this.property.jCal[0] = propGroup
+			let group = this.property.getParameter('group')
+			if (!group) {
+				group = `nextcloud${this.getNcGroupCount() + 1}`
+				this.property.setParameter('group', group)
 			}
-			const group = propGroup.split('.')[0]
-			const name = propGroup.split('.')[1]
 
-			this.localContact.vCard.addPropertyWithValue(`${group}.x-ablabel`, label.name)
-
-			// force update the main design sets
-			setPropertyAlias(name, propGroup)
+			const labelProperty = this.localContact.vCard
+				.getAllProperties('x-ablabel')
+				.find((property) => property.getParameter('group') === group)
+			if (labelProperty) {
+				labelProperty.setValue(label.name)
+			} else {
+				this.localContact.vCard
+					.addPropertyWithValue('x-ablabel', label.name)
+					.setParameter('group', group)
+			}
 
 			this.$emit('update')
 		},
 
 		getNcGroupCount() {
-			const props = this.localContact.jCal[1]
-				.map((prop) => prop[0].split('.')[0]) // itemxxx.adr => itemxxx
-				.filter((name) => name.startsWith('nextcloud')) // filter nextcloudxxx.adr
-				.map((prop) => parseInt(prop.split('nextcloud')[1])) // nextcloudxxx => xxx
-			return props.length > 0
-				? Math.max.apply(null, props) // get max iteration of nextcloud grouped props
+			const counts = this.localContact.jCal[1]
+				.map((prop) => prop[1].group) // property group, e.g. nextcloudxxx
+				.filter((group) => group && group.startsWith('nextcloud'))
+				.map((group) => parseInt(group.slice('nextcloud'.length))) // nextcloudxxx => xxx
+				.filter((count) => !isNaN(count))
+			return counts.length > 0
+				? Math.max.apply(null, counts) // get max iteration of nextcloud grouped props
 				: 0
 		},
 	},
