@@ -9,7 +9,9 @@
     "Copy to full name" : "Másolás a teljes névbe",
     "Omit year" : "Év kihagyása",
     "Allow updating avatars from social media" : "A profilképek közösségi médiából történő frissítésének engedélyezése",
+    "Organization chart" : "Szervezeti diagram",
     "There was an error fetching the member list" : "Hiba történt a taglista lekérésekor",
+    "Teams" : "Csapatok",
     "Please select a team" : "Válasszon egy csapatot",
     "Loading team…" : "Csapat betöltése…",
     "Loading contacts …" : "Névjegyek betöltése…",
@@ -44,7 +46,6 @@
     "Contact groups" : "Névjegycsoportok",
     "Create a new contact group" : "Új névjegycsoport létrehozása",
     "Contact group name" : "Névjegycsoport neve",
-    "Teams" : "Csapatok",
     "Create a new team" : "Új csapat létrehozása",
     "Open the contacts app settings" : "Névjegyek alkalmazás beállításainak megnyitása",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Megosztva {num} entitással","Megosztva {num} entitással"],
@@ -101,6 +102,7 @@
     "An error happened while saving {fields}" : "Hiba történt a mentése során: {fields}",
     "Team name" : "Csapatnév",
     "Team owner" : "Csapattulajdonos",
+    "Delete picture" : "Kép törlése",
     "Edit" : "Szerkesztés",
     "Request to join" : "Csatlakozás kérése",
     "Create" : "Létrehozás",
@@ -123,7 +125,6 @@
     "Upload a new picture" : "Új kép feltöltése",
     "Choose from Files" : "Válasszon a Fájlokból",
     "Download picture" : "Kép letöltése",
-    "Delete picture" : "Kép törlése",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Ez a névjegy csak olvasható. Nincs jogosultsága szerkeszteni ezt a névjegyet.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "A szerkesztett névjegy megváltozott. Frissítse kézileg a névjegyet. Minden további módosítás figyelmen kívül lesz hagyva.",
     "Address book" : "Címjegyzék",
@@ -210,7 +211,6 @@
     "Pending" : "Függőben",
     "Select chart …" : "Válasszon diagramot…",
     "Chart" : "Diagram",
-    "Select Date" : "Válasszon dátumot",
     "Select type" : "Válasszon típust",
     "Add contact in group" : "Névjegy hozzáadása a csoporthoz",
     "None" : "Egyik sem",
@@ -246,7 +246,6 @@
     "Link copied to the clipboard" : "Hivatkozás a vágólapra másolva",
     "Could not copy link to the clipboard." : "A hivatkozás másolása a vágólapra sikertelen.",
     "Not grouped" : "Nem csoportosított",
-    "Organization chart" : "Szervezeti diagram",
     "Team" : "Csapat",
     "User" : "Felhasználó",
     "Group" : "Csoport",
@@ -334,6 +333,7 @@
     "An error has occurred in team(s). Check the console for more details." : "Hiba történt a csapatokban. További részletekért nézze meg a konzolt.",
     "Unable to create team {circleName}" : "A(z) {circleName} csapat nem hozható létre",
     "Unable to delete team {circleId}" : "A(z) {circleId} csapat nem törölhető",
-    "Unable to delete contact" : "A névjegy törlése sikertelen"
+    "Unable to delete contact" : "A névjegy törlése sikertelen",
+    "Select Date" : "Válasszon dátumot"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

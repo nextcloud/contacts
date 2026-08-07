@@ -95,6 +95,7 @@ import {
 import IconError from 'vue-material-design-icons/AlertCircleOutline.vue'
 import IconFolder from 'vue-material-design-icons/FolderOutline.vue'
 import IconUpload from 'vue-material-design-icons/UploadOutline.vue'
+import logger from '../../../services/logger.js'
 
 const CancelToken = axios.CancelToken
 
@@ -240,7 +241,7 @@ export default {
 		},
 
 		async processLocalFile(path) {
-			console.debug('Importing', path)
+			logger.debug('Importing', { path })
 			try {
 				this.cancelRequest()
 
@@ -260,7 +261,7 @@ export default {
 					await this.$store.dispatch('importContactsIntoAddressbook', { vcf: file.data, addressbook })
 				}
 			} catch (error) {
-				console.error('Something wrong happened while processing local file', error)
+				logger.error('Something wrong happened while processing local file', { error })
 			}
 		},
 
@@ -293,7 +294,7 @@ export default {
 				this.resetState()
 			} catch (error) {
 				this.loading = false
-				console.error('Something wrong happened while picking a file', error)
+				logger.error('Something wrong happened while picking a file', { error })
 			}
 		},
 

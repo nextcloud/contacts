@@ -3,7 +3,7 @@
   - SPDX-License-Identifier: AGPL-3.0-or-later
 -->
 <template>
-	<AppContent>
+	<AppContent :aria-label="t('contacts', 'Organization chart')">
 		<OrgChart :data="transformData" />
 	</AppContent>
 </template>
@@ -59,7 +59,9 @@ export default {
 
 			const charts = headManagers.map((managerNode) => getChart(tempContacts, managerNode))
 			// Debugging logs to figure out why a graph might not show. Leave this in place until the logic is bulletproof
-			console.debug('Org charts', charts.map((nodes, index) => nodes.map((n) => `list ${index} ${n.nodeId} (${n.fullName}) -> ${n.parentNodeId}`)))
+			logger.debug('Org charts', {
+				charts: charts.map((nodes, index) => nodes.map((n) => `list ${index} ${n.nodeId} (${n.fullName}) -> ${n.parentNodeId}`)),
+			})
 			return charts
 		},
 	},

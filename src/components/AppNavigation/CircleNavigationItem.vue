@@ -6,7 +6,11 @@
 	<AppNavigationItem
 		:key="circle.key"
 		:name="circle.displayName"
-		:to="circle.router">
+		:to="circle.router"
+		:force-menu="true">
+		<!-- force-menu avoids a Tab-trap in NcAppNavigationItem/NcActions when only
+			one action (copy link) is available: their Tab handler focuses a menu
+			trigger button that isn't rendered in single-inline-action mode. -->
 		<template #icon>
 			<AccountStar v-if="circle.isOwner" :size="20" />
 			<AccountGroupOutline v-else :size="20" />

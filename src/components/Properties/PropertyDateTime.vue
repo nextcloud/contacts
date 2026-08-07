@@ -45,11 +45,10 @@
 					v-if="!isReadOnly"
 					:model-value="datePickerValue"
 					:minute-step="10"
-					:lang="lang"
+					:class="{ 'omit-year': omitYear }"
 					:clearable="false"
-					:first-day-of-week="firstDay"
 					:type="inputType"
-					:formatter="dateFormat"
+					:format="dateFormat"
 					:aria-label="propModel.readableName"
 					@update:model-value="debounceUpdateValue" />
 
@@ -86,6 +85,7 @@ import { toRaw } from 'vue'
 import PropertyActions from './PropertyActions.vue'
 import PropertyTitle from './PropertyTitle.vue'
 import PropertyMixin from '../../mixins/PropertyMixin.js'
+import logger from '../../services/logger.js'
 
 export default {
 	name: 'PropertyDateTime',
@@ -115,25 +115,6 @@ export default {
 				: this.propType === 'date'
 					? 'date'
 					: 'time',
-
-			firstDay: window.firstDay === 0 ? 7 : window.firstDay, // provided by nextcloud
-			lang: {
-				days: window.dayNamesShort, // provided by nextcloud
-				months: window.monthNamesShort, // provided by nextcloud
-				placeholder: {
-					date: t('contacts', 'Select Date'),
-				},
-			},
-
-			dateFormat: {
-				stringify: (date) => {
-					return date ? this.formatDateTime() : null
-				},
-
-				parse: (value) => {
-					return value ? moment(value, ['LL', 'L']).toDate() : null
-				},
-			},
 		}
 	},
 
@@ -154,6 +135,35 @@ export default {
 			// ical.js can't cope with proxies, hence we need to unwrap the proxy first
 			return toRaw(this.vcardTimeLocalValue).toJSDate()
 		},
+
+		omitYear() {
+			const datetimeData = this.vcardTimeLocalValue.toJSON()
+			const ignoreYear = this.property.getParameter('x-apple-omit-year')
+
+			// VCards 4.0 do not need the property x-apple-omit-year, yet we
+			// need an explicit method to recognize if the year is enabled or
+			// not. In this case: if the month is set, but year is not, we
+			// assume we are in "omit year mode"
+			return (ignoreYear || (datetimeData.month && datetimeData.year === null))
+		},
+
+		dateFormat() {
+			let dFormat = ''
+			let tFormat = ''
+
+			if (this.inputType === 'datetime' || this.inputType === 'date') {
+				dFormat = window.datepickerFormatDate
+				if (this.omitYear) {
+					dFormat = dFormat.replace(/[Yy]/g, '').replace(/^\/+|\/+$/g, '')
+				}
+			}
+
+			if (this.inputType === 'datetime' || this.inputType === 'time') {
+				tFormat = 'HH:mm:ss'
+			}
+
+			return (dFormat + ' ' + tFormat).trim()
+		},
 	},
 
 	async mounted() {
@@ -172,14 +182,14 @@ export default {
 				await import(/* webpackChunkName: 'moment' */'moment/locale/' + locale)
 			} catch (e) {
 				// failure, fallback to english
-				console.debug('Fallback to locale', 'en')
+				logger.debug('Fallback to locale', { locale: 'en' })
 				locale = 'en'
 			}
 		} finally {
 			// force locale change to update
 			// the component once done loading
 			this.locale = locale
-			console.debug('Locale used', locale)
+			logger.debug('Locale used', { locale })
 		}
 	},
 
@@ -309,3 +319,13 @@ export default {
 }
 
 </script>
+
+<style lang="scss" scoped>
+.omit-year {
+	:deep(.dp__month_year_wrap) {
+		[data-dp-element="overlay-year"] {
+			display: none;
+		}
+	}
+}
+</style>

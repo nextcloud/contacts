@@ -46,6 +46,22 @@ describe('Test stripping quotes from TYPE', () => {
 		expect(line).toStrictEqual('TEL;TYPE=WORK,VOICE:+00 123 456 789')
 	})
 
+	test('Test hasEmail matches any email address case insensitively', () => {
+		const contactWithEmails = new Contact(`
+			BEGIN:VCARD
+			VERSION:3.0
+			UID:123456789-123465-123456-123456789
+			FN:Test contact
+			EMAIL:first@example.com
+			EMAIL:Second@Example.com
+			END:VCARD`.replace(/\t/gmi, '')
+		)
+
+		expect(contactWithEmails.hasEmail('first@example.com')).toBe(true)
+		expect(contactWithEmails.hasEmail('second@example.com')).toBe(true)
+		expect(contactWithEmails.hasEmail('third@example.com')).toBe(false)
+	})
+
 	test('Test stripping quotes from MULTIPLE SPLIT TYPES and MULTIPLE PROPERTIES', () => {
 		const property2 = contact.vCard.addPropertyWithValue('TEl', '+99 876 543 210')
 		property.setParameter('type', ['WORK,VOICE'])

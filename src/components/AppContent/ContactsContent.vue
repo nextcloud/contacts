@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<AppContent v-if="loading">
+	<AppContent v-if="loading" :aria-label="t('contacts', 'Contacts')">
 		<EmptyContent class="empty-content" :name="t('contacts', 'Loading contacts …')">
 			<template #icon>
 				<IconLoading :size="20" />
@@ -12,25 +12,25 @@
 		</EmptyContent>
 	</AppContent>
 
-	<AppContent v-else-if="isEmptyGroup && !isRealGroup">
+	<AppContent v-else-if="isEmptyGroup && !isRealGroup" :aria-label="t('contacts', 'Contacts')">
 		<EmptyContent class="empty-content" :name="t('contacts', 'There are no contacts yet')">
 			<template #icon>
 				<IconContact :size="20" />
 			</template>
-			<template #desc>
-				<NcButton variant="primary" @click="newContact">
+			<template #description>
+				<NcButton v-if="!isReadOnlyAddressbook" variant="primary" @click="newContact">
 					{{ t('contacts', 'Create contact') }}
 				</NcButton>
 			</template>
 		</EmptyContent>
 	</AppContent>
 
-	<AppContent v-else-if="isEmptyGroup && isRealGroup">
+	<AppContent v-else-if="isEmptyGroup && isRealGroup" :aria-label="t('contacts', 'Contacts')">
 		<EmptyContent class="empty-content" :name=" t('contacts', 'There are no contacts in this group')">
 			<template #icon>
 				<IconContact :size="20" />
 			</template>
-			<template #desc>
+			<template #description>
 				<NcButton v-if="contacts.length === 0" variant="primary" @click="addContactsToGroup(selectedGroup)">
 					{{ t('contacts', 'Create contacts') }}
 				</NcButton>
@@ -41,7 +41,11 @@
 		</EmptyContent>
 	</AppContent>
 
-	<AppContent v-else :show-details="showDetails" @update:show-details="hideDetails">
+	<AppContent
+		v-else
+		:aria-label="t('contacts', 'Contacts')"
+		:show-details="showDetails"
+		@update:show-details="hideDetails">
 		<!-- contacts list -->
 		<template #list>
 			<ContactsList
@@ -138,6 +142,16 @@ export default {
 			return this.contactsList.length === 0
 		},
 
+		/**
+		 * Is the selected address book read only
+		 *
+		 * @return {boolean}
+		 */
+		isReadOnlyAddressbook() {
+			return !!this.$store.getters.getAddressbooks
+				.find((addressbook) => addressbook.id === this.selectedAddressbook)?.readOnly
+		},
+
 		showDetails() {
 			return !!this.selectedContact
 		},
@@ -165,12 +179,7 @@ export default {
 		 */
 		hideDetails() {
 			// Reset the selected contact
-			this.$router.push({
-				name: 'group',
-				params: {
-					selectedGroup: this.selectedGroup,
-				},
-			})
+			this.$router.push(this.listRoute())
 		},
 	},
 }

@@ -10,6 +10,7 @@ OC.L10N.register(
     "Copy to full name" : "전체 이름으로 복사",
     "Omit year" : "연도 생략",
     "Allow updating avatars from social media" : "소셜 네트워크에서 아바타 업데이트를 허용",
+    "Organization chart" : "조직도",
     "There was an error fetching the member list" : "회원 목록을 불러오는 중 오류 발생",
     "There are no contacts yet" : "연락처 없음",
     "Create contact" : "연락처 생성",
@@ -72,6 +73,7 @@ OC.L10N.register(
     "Folder" : "Folder",
     "Conversation name" : "대화명",
     "Calendar" : "달력",
+    "Delete picture" : "그림 삭제",
     "Edit" : "편집",
     "Request to join" : "등록 요청",
     "Create" : "생성",
@@ -91,7 +93,6 @@ OC.L10N.register(
     "Upload a new picture" : "새 그림 업로드",
     "Choose from Files" : "파일에서 선택",
     "Download picture" : "그림 다운로드",
-    "Delete picture" : "그림 삭제",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "이 연락처는 읽기 전용 모드입니다. 편집할 수 있는 권한이 없습니다.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "편집하려고 하는 연락처가 변경되었습니다. 연락처를 직접 새로 고치십시오. 추가 변경 사항은 손실됩니다.",
     "Address book" : "주소록",
@@ -147,7 +148,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "현재 이 구성원 목록에 접근할 수 없습니다",
     "Pending" : "보류 중",
     "Chart" : "차트",
-    "Select Date" : "날짜 선택",
     "Select type" : "종류 선택",
     "Add contact in group" : "그룹에 연락처 추가",
     "None" : "없음",
@@ -171,7 +171,6 @@ OC.L10N.register(
     "Link copied to the clipboard" : "링크가 클립보드에 복사됨",
     "Could not copy link to the clipboard." : "링크를 클립보드에 복사할 수 없음",
     "Not grouped" : "그룹되지 않음",
-    "Organization chart" : "조직도",
     "User" : "사용자",
     "Group" : "그룹",
     "Email" : "이메일",
@@ -243,6 +242,7 @@ OC.L10N.register(
     "Time zone" : "시간대",
     "Spoken languages" : "사용 언어",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["연락처 {failed}개를 읽을 수 없음"],
-    "Unable to delete contact" : "연락처를 삭제할 수 없음"
+    "Unable to delete contact" : "연락처를 삭제할 수 없음",
+    "Select Date" : "날짜 선택"
 },
 "nplurals=1; plural=0;");

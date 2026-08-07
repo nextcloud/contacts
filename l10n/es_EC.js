@@ -10,6 +10,7 @@ OC.L10N.register(
     "Copy to full name" : "Copiar al nombre completo",
     "Omit year" : "Omitir año",
     "Allow updating avatars from social media" : "Permitir actualizar avatares desde redes sociales",
+    "Organization chart" : "Organigrama",
     "There was an error fetching the member list" : "Ocurrió un error al obtener la lista de miembros",
     "There are no contacts yet" : "Aún no hay contactos",
     "Create contact" : "Crear contacto",
@@ -70,6 +71,7 @@ OC.L10N.register(
     "Change unique password" : "Cambiar contraseña única",
     "Failed to save password. Please try again later." : "Error al guardar la contraseña. Por favor, inténtalo de nuevo más tarde.",
     "Close" : "Cerrar",
+    "Delete picture" : "Eliminar imagen",
     "Edit" : "Editar",
     "Request to join" : "Solicitud para unirse",
     "Create" : "Crear",
@@ -88,7 +90,6 @@ OC.L10N.register(
     "Upload a new picture" : "Cargar una nueva imagen",
     "Choose from Files" : "Elegir desde Archivos",
     "Download picture" : "Descargar imagen",
-    "Delete picture" : "Eliminar imagen",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Este contacto está en modo de solo lectura. No tienes permiso para editar este contacto.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "El contacto que intentabas editar ha cambiado. Actualiza manualmente el contacto. Cualquier edición adicional se descartará.",
     "Address book" : "Libreta de direcciones",
@@ -137,7 +138,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "Actualmente no tienes acceso a la lista de miembros",
     "Pending" : "Pendiente",
     "Chart" : "Gráfico",
-    "Select Date" : "Seleccionar fecha",
     "Select type" : "Seleccionar tipo",
     "Add contact in group" : "Añadir contacto en grupo",
     "None" : "Ninguno",
@@ -162,7 +162,6 @@ OC.L10N.register(
     "Link copied to the clipboard" : "Enlace copiado al portapapeles",
     "Could not copy link to the clipboard." : "No se pudo copiar el enlace al portapapeles.",
     "Not grouped" : "No agrupado",
-    "Organization chart" : "Organigrama",
     "User" : "Usuario",
     "Group" : "Grupo",
     "Email" : "Correo electrónico",
@@ -235,6 +234,7 @@ OC.L10N.register(
     "Time zone" : "Zona horaria",
     "Spoken languages" : "Idiomas hablados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se pudo leer","{failed} contactos no se pudieron leer","{failed} contactos no se pudieron leer"],
-    "Unable to delete contact" : "No se pudo eliminar el contacto"
+    "Unable to delete contact" : "No se pudo eliminar el contacto",
+    "Select Date" : "Seleccionar fecha"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

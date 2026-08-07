@@ -8,7 +8,9 @@
     "Copy to full name" : "Kopier til fuldt navn",
     "Omit year" : "Udelad år",
     "Allow updating avatars from social media" : "Tillad opdatering af avatarer fra sociale medier",
+    "Organization chart" : "Organisationsdiagram",
     "There was an error fetching the member list" : "Der opstod en fejl under hentning af medlemslisten",
+    "Teams" : "Teams",
     "Please select a team" : "Vælg venligst et team",
     "Loading team…" : "Indlæser team...",
     "There are no contacts yet" : "Der er ingen kontakter endnu",
@@ -40,7 +42,6 @@
     "Contact groups" : "Kontaktgrupper",
     "Create a new contact group" : "Opret en ny kontaktgruppe",
     "Contact group name" : "Navn på kontaktgruppe",
-    "Teams" : "Teams",
     "Create a new team" : "Opret et nyt team",
     "Open the contacts app settings" : "Åben kontaktens app indstillinger",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Delt med {num} element","Delt med {num} elementer"],
@@ -93,6 +94,7 @@
     "Folder" : "Mappe",
     "Calendar" : "Kalender",
     "Team name" : "Teamnavn",
+    "Delete picture" : "Slet billede",
     "Edit" : "Redigér",
     "Request to join" : "Anmod om at deltage",
     "Create" : "Opret",
@@ -115,7 +117,6 @@
     "Upload a new picture" : "Upload et nyt billede",
     "Choose from Files" : "Vælg fra Filer",
     "Download picture" : "Hent billede",
-    "Delete picture" : "Slet billede",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Kontakten er skrivebeskyttet. Du har ikke tilladelse til at redigere denne kontakt.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakten du er i gang med at redigere er ændret. Venligst genopfrisk kontaktvisningen manuelt. Alle videre modifikationer vil blive tabt.",
     "Address book" : "Adressebog",
@@ -181,7 +182,6 @@
     "You currently have no access to the member list" : "Du har i øjeblikket ingen adgang til medlemslisten",
     "Pending" : "Afventer",
     "Chart" : "Diagram",
-    "Select Date" : "Vælg dato",
     "Select type" : "Vælg type",
     "Add contact in group" : "Føj kontakt til gruppe",
     "None" : "Ingen",
@@ -215,7 +215,6 @@
     "Link copied to the clipboard" : "Linket er kopieret til udklipsholderen",
     "Could not copy link to the clipboard." : "Kunne ikke kopiere linket til udklipsholderen.",
     "Not grouped" : "Ikke i gruppe",
-    "Organization chart" : "Organisationsdiagram",
     "Team" : "Team",
     "User" : "Bruger",
     "Group" : "Gruppe",
@@ -302,6 +301,7 @@
     "An error has occurred in team(s). Check the console for more details." : "En fejl er opstået i team(s). Kontroller konsollen for flere detaljer.",
     "Unable to create team {circleName}" : "Kan ikke oprette team {circleName}",
     "Unable to delete team {circleId}" : "Kan ikke slette team {circleId}",
-    "Unable to delete contact" : "Kan ikke slette kontakten"
+    "Unable to delete contact" : "Kan ikke slette kontakten",
+    "Select Date" : "Vælg dato"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

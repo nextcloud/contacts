@@ -227,7 +227,8 @@ export default {
 				if (Array.isArray(defaultValue)) {
 					defaultValue = [...defaultValue]
 				}
-				const property = await this.contact.vCard.addPropertyWithValue(id, defaultValue)
+
+				const property = this.contact.vCard.addPropertyWithValue(id, defaultValue)
 				if (defaultData && defaultData.type) {
 					property.setParameter('type', defaultData.type)
 				}

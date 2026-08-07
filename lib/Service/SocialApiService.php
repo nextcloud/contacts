@@ -48,6 +48,21 @@ class SocialApiService {
 		$this->appName = Application::APP_ID;
 	}
 
+	/**
+	 * Allow users to retrieve avatars from social networks (default: yes)
+	 */
+	public function syncAllowedByAdmin() : bool {
+		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
+		return $syncAllowedByAdmin === 'yes';
+	}
+
+	/**
+	 * Automated background syncs for social avatars (default: no)
+	 */
+	public function backgroundSyncEnabled(string $userId) : bool {
+		$backgroundSyncEnabledByUser = $this->config->getUserValue($userId, $this->appName, 'enableSocialSync', 'no');
+		return $this->syncAllowedByAdmin() && ($backgroundSyncEnabledByUser === 'yes');
+	}
 
 	/**
 	 * returns an array of supported social networks
@@ -55,13 +70,11 @@ class SocialApiService {
 	 * @return array array of the supported social networks
 	 */
 	public function getSupportedNetworks() : array {
-		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
-		if ($syncAllowedByAdmin !== 'yes') {
+		if (!$this->syncAllowedByAdmin()) {
 			return [];
 		}
 		return $this->socialProvider->getSupportedNetworks();
 	}
-
 
 	/**
 	 * Adds/updates photo for contact
@@ -92,7 +105,7 @@ class SocialApiService {
 
 
 	/**
-	 * Gets the addressbook of an addressbookId
+	 * Gets the address book of an addressBookId
 	 *
 	 * @param string $addressBookId the identifier of the addressbook
 	 * @param IManager|null $manager optional a ContactManager to use
@@ -123,12 +136,12 @@ class SocialApiService {
 
 
 	/**
-	 * Retrieves and initiates all addressbooks from a user
+	 * Retrieves and initiates all address books from a user
 	 *
 	 * @param string $userId the user to query
 	 * @param IManager $manager the contact manager to load
 	 */
-	protected function registerAddressbooks($userId, IManager $manager) {
+	protected function registerAddressBooks($userId, IManager $manager) {
 		$coma = $this->serverContainer->get(ContactsManager::class);
 		$coma->setupContactsProvider($manager, $userId, $this->urlGen);
 		$this->manager = $manager;
@@ -137,26 +150,30 @@ class SocialApiService {
 	/**
 	 * Retrieves social profile data for a contact and updates the entry
 	 *
-	 * @param string $addressbookId the addressbook identifier
+	 * @param string $addressBookId the address book identifier
 	 * @param string $contactId the contact identifier
 	 * @param string|null $network the social network to use (if unknown: take first match)
 	 *
 	 * @return JSONResponse an empty JSONResponse with respective http status code
 	 */
-	public function updateContact(string $addressbookId, string $contactId, ?string $network) : JSONResponse {
-		$socialdata = null;
+	public function updateContact(string $addressBookId, string $contactId, ?string $network) : JSONResponse {
+		if (!$this->syncAllowedByAdmin()) {
+			return new JSONResponse([], Http::STATUS_FORBIDDEN);
+		}
+
+		$socialData = null;
 		$imageType = null;
 		$urls = [];
 		$allConnectors = $this->socialProvider->getSocialConnectors();
 
 		try {
-			// get corresponding addressbook
-			$addressBook = $this->getAddressBook(urldecode($addressbookId));
+			// get corresponding address book
+			$addressBook = $this->getAddressBook(urldecode($addressBookId));
 			if (is_null($addressBook)) {
 				return new JSONResponse([], Http::STATUS_BAD_REQUEST);
 			}
 
-			// search contact in that addressbook, get social data
+			// search contact in that address book, get social data
 			$contacts = $addressBook->search($contactId, ['UID'], ['types' => true]);
 
 			if (!isset($contacts[0])) {
@@ -190,29 +207,29 @@ class SocialApiService {
 			foreach ($urls as $url) {
 				try {
 					$httpResult = $this->clientService->newClient()->get($url);
-					$socialdata = $httpResult->getBody();
+					$socialData = $httpResult->getBody();
 					$imageType = $httpResult->getHeader('content-type');
-					if (isset($socialdata) && !empty($imageType)) {
+					if (isset($socialData) && !empty($imageType)) {
 						break;
 					}
 				} catch (\Exception $e) {
 				}
 			}
 
-			if (!$socialdata || $imageType === null) {
+			if (!$socialData || $imageType === null) {
 				return new JSONResponse([], Http::STATUS_NOT_FOUND);
 			}
 			if (!in_array($imageType, self::ALLOWED_CONTENT_TYPES)) {
 				return new JSONResponse([], Http::STATUS_UNSUPPORTED_MEDIA_TYPE);
 			}
 
-			if (is_resource($socialdata)) {
-				$socialdata = stream_get_contents($socialdata);
+			if (is_resource($socialData)) {
+				$socialData = stream_get_contents($socialData);
 			}
 
-			$socialdata = $this->imageResizer->resizeImage($socialdata);
+			$socialData = $this->imageResizer->resizeImage($socialData);
 
-			if (!$socialdata) {
+			if (!$socialData) {
 				return new JSONResponse([], Http::STATUS_INTERNAL_SERVER_ERROR);
 			}
 
@@ -221,7 +238,7 @@ class SocialApiService {
 			$changes['URI'] = $contact['URI'];
 			$changes['VERSION'] = $contact['VERSION'];
 
-			$this->addPhoto($changes, $imageType, base64_encode($socialdata));
+			$this->addPhoto($changes, $imageType, base64_encode($socialData));
 
 			if (isset($changes['PHOTO'], $contact['PHOTO']) && $changes['PHOTO'] === $contact['PHOTO']) {
 				return new JSONResponse([], Http::STATUS_NOT_MODIFIED);
@@ -235,7 +252,7 @@ class SocialApiService {
 	}
 
 	/**
-	 * checks an addressbook is existing
+	 * checks an address book is existing
 	 *
 	 * @param string $searchBookId the UID of the addressbook to verify
 	 * @param string $userId the user that should have access
@@ -250,7 +267,7 @@ class SocialApiService {
 	}
 
 	/**
-	 * checks a contact exists in an addressbook
+	 * checks a contact exists in an address book
 	 *
 	 * @param string $searchContactId the UID of the contact to verify
 	 * @param string $searchBookId the UID of the addressbook to look in
@@ -274,7 +291,7 @@ class SocialApiService {
 
 	/**
 	 * Stores the result of social avatar updates for each contact
-	 * (used during batch updates in updateAddressbooks)
+	 * (used during batch updates in updateAddressBooks)
 	 *
 	 * @param array $report where the results are added
 	 * @param string $entry the element to add
@@ -333,7 +350,7 @@ class SocialApiService {
 	}
 
 	/**
-	 * Updates social profile data for all contacts of an addressbook
+	 * Updates social profile data for all contacts of an address book
 	 *
 	 * @param string $userId the address book owner
 	 * @param string|null $offsetBook the addressbook to resume from
@@ -342,11 +359,8 @@ class SocialApiService {
 	 *
 	 * @return JSONResponse JSONResponse with the list of changed and failed contacts
 	 */
-	public function updateAddressbooks(string $userId, ?string $offsetBook = null, ?string $offsetContact = null, ?string $network = null) : JSONResponse {
-		// double check!
-		$syncAllowedByAdmin = $this->config->getAppValue($this->appName, 'allowSocialSync', 'yes');
-		$bgSyncEnabledByUser = $this->config->getUserValue($userId, $this->appName, 'enableSocialSync', 'no');
-		if (($syncAllowedByAdmin !== 'yes') || ($bgSyncEnabledByUser !== 'yes')) {
+	public function updateAddressBooks(string $userId, ?string $offsetBook = null, ?string $offsetContact = null, ?string $network = null) : JSONResponse {
+		if (!$this->backgroundSyncEnabled($userId)) {
 			return new JSONResponse([], Http::STATUS_FORBIDDEN);
 		}
 
@@ -354,8 +368,8 @@ class SocialApiService {
 		$response = [];
 		$startTime = $this->timeFactory->getTime();
 
-		// get corresponding addressbook
-		$this->registerAddressbooks($userId, $this->manager);
+		// get corresponding address book
+		$this->registerAddressBooks($userId, $this->manager);
 		$addressBooks = $this->manager->getUserAddressBooks();
 		usort($addressBooks, [$this, 'sortAddressBooks']); // make sure the order stays the same in consecutive calls
 
@@ -374,7 +388,8 @@ class SocialApiService {
 				$offsetBook = null;
 			}
 
-			// get contacts in that addressbook
+			// get contacts in that address book
+			/** @noinspection SpellCheckingInspection */
 			$contacts = $addressBook->search('', ['X-SOCIALPROFILE'], ['types' => true]);
 			usort($contacts, [$this, 'sortContacts']); // make sure the order stays the same in consecutive calls
 

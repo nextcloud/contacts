@@ -226,7 +226,7 @@ export default {
 
 	methods: {
 		onLoad(...args) {
-			console.debug(...args)
+			logger.debug('Avatar loaded', { args })
 		},
 
 		/**
@@ -293,7 +293,7 @@ export default {
 							throw new Error('Wrong image mimetype')
 						}
 					} catch (error) {
-						console.error(error)
+						logger.error(error)
 						showError(t('contacts', 'Invalid image'))
 					} finally {
 						this.resetPicker()
@@ -406,7 +406,7 @@ export default {
 			if (this.contact.photo) {
 				const photoUrl = await this.contact.getPhotoUrl()
 				if (!photoUrl) {
-					console.warn('contact has an invalid photo')
+					logger.warn('contact has an invalid photo')
 					return
 				}
 				this.photoUrl = photoUrl
@@ -506,7 +506,7 @@ export default {
 						this.processPicture(data)
 					} catch (error) {
 						showError(t('contacts', 'Error while processing the picture.'))
-						console.error(error)
+						logger.error(error)
 						this.loading = false
 					} finally {
 						this.resetPicker()
@@ -551,7 +551,7 @@ export default {
 						showInfo(t('contacts', 'Avatar already up to date'))
 					} else {
 						showError(t('contacts', 'Avatar download failed'))
-						console.debug(error)
+						logger.debug('Avatar download failed', { error })
 					}
 				}
 			}

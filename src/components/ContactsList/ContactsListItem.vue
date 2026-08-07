@@ -7,19 +7,27 @@
 		class="contacts-list__item-wrapper"
 		:draggable="isDraggable"
 		@dragstart="startDrag($event, source)"
-		@click.shift.exact.prevent="onSelectMultipleRange">
+		@click.shift.exact.prevent="onSelectMultipleRange"
+		@keydown="onListKeydown">
 		<ListItem
 			:id="id"
 			:key="source.key"
 			class="list-item-style envelope"
 			:name="source.displayName"
-			:to="isStatic ? undefined : { name: 'contact', params: { selectedGroup: selectedGroup, selectedContact: source.key } }">
+			:to="isStatic ? undefined : contactRoute(source.key)">
 			<!-- @slot Icon slot -->
 
 			<template #icon>
 				<div
 					class="contacts-list__item-icon"
+					:role="isStatic ? undefined : 'checkbox'"
+					:tabindex="isStatic ? undefined : 0"
+					:aria-checked="isStatic ? undefined : source.isMultiSelected"
+					:aria-label="isStatic ? undefined : selectAriaLabel"
 					@click.exact.prevent="onSelectMultiple"
+					@keydown.space.exact.prevent="onSelectMultiple"
+					@keydown.enter.exact.prevent="onSelectMultiple"
+					@keydown.shift.space.exact.prevent="onSelectMultipleRange"
 					@mouseenter="hoverAvatar(true)"
 					@mouseleave="hoverAvatar(false)">
 					<NcAvatar
@@ -54,7 +62,7 @@
 			<template #subname>
 				<div class="envelope__subtitle">
 					<span class="envelope__subtitle__subject">
-						{{ source.email ? source.email : getTel }}
+						{{ subtitle }}
 					</span>
 				</div>
 				<div v-if="showAddressbook" class="envelope__subtitle">
@@ -94,6 +102,7 @@ import CheckIcon from 'vue-material-design-icons/Check.vue'
 import StarIcon from 'vue-material-design-icons/Star.vue'
 import StarOutlineIcon from 'vue-material-design-icons/StarOutline.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
+import logger from '../../services/logger.js'
 
 export default {
 	name: 'ContactsListItem',
@@ -132,6 +141,11 @@ export default {
 			default: () => {},
 		},
 
+		onNavigateFromParent: {
+			type: Function,
+			default: () => {},
+		},
+
 		isStatic: {
 			type: Boolean,
 			default: false,
@@ -157,6 +171,21 @@ export default {
 			return this.source.favorite
 		},
 
+		subtitle() {
+			if (this.source.org) {
+				return this.source.org
+			} else if (this.source.email) {
+				return this.source.email
+			} else {
+				const tel = this.getTel
+				if (tel) {
+					return tel
+				}
+			}
+
+			return ''
+		},
+
 		// contact is not draggable when it has not been saved on server as it can't be added to groups/circles before
 		isDraggable() {
 			return !!this.source.dav && this.source.addressbook.id !== 'z-server-generated--system' && !this.isStatic
@@ -169,6 +198,12 @@ export default {
 
 		getTel() {
 			return this.source.properties.find((property) => property.name === 'tel')?.getFirstValue()
+		},
+
+		selectAriaLabel() {
+			return this.source.isMultiSelected
+				? t('contacts', 'Unselect {name}', { name: this.source.displayName })
+				: t('contacts', 'Select {name}', { name: this.source.displayName })
 		},
 	},
 
@@ -252,7 +287,7 @@ export default {
 			if (this.source.photo) {
 				const photoUrl = await this.source.getPhotoUrl()
 				if (!photoUrl) {
-					console.warn('contact has an invalid photo')
+					logger.warn('contact has an invalid photo')
 					// Invalid photo data
 					return
 				}
@@ -269,11 +304,7 @@ export default {
 			if (this.isStatic) {
 				return
 			}
-			// change url with router
-			this.$router.push({
-				name: 'contact',
-				params: { selectedGroup: this.selectedGroup, selectedContact: this.source.key },
-			})
+			this.$router.push(this.contactRoute(this.source.key))
 		},
 
 		onSelectMultiple() {
@@ -289,6 +320,31 @@ export default {
 				return
 			}
 			this.onSelectMultipleFromParent(this.source, this.index, true)
+		},
+
+		/**
+		 * Handle arrow key navigation from this contact:
+		 * - right moves focus into the contact details
+		 * - up/down moves focus to the previous/next contact in the list
+		 *
+		 * @param {KeyboardEvent} event the keydown event
+		 */
+		onListKeydown(event) {
+			if (this.isStatic) {
+				return
+			}
+
+			if (event.key === 'ArrowRight') {
+				event.preventDefault()
+				this.selectContact()
+				this.reloadBus.emit('focus-details')
+			} else if (event.key === 'ArrowDown') {
+				event.preventDefault()
+				this.onNavigateFromParent(this.index, 'down')
+			} else if (event.key === 'ArrowUp') {
+				event.preventDefault()
+				this.onNavigateFromParent(this.index, 'up')
+			}
 		},
 
 		hoverAvatar(newState) {

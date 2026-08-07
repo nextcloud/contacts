@@ -8,7 +8,9 @@
     "Copy to full name" : "Kopier til fullt navn",
     "Omit year" : "Utelat år",
     "Allow updating avatars from social media" : "Tillat oppdatering av avatarer fra sosiale medier",
+    "Organization chart" : "Organisasjonskart",
     "There was an error fetching the member list" : "Det oppstod en feil under henting av medlemslisten",
+    "Teams" : "Lag",
     "Please select a team" : "Vennligst velg et lag",
     "Loading team…" : "Laster lag...",
     "There are no contacts yet" : "Det finnes ingen kontakter enda",
@@ -38,7 +40,6 @@
     "Contact groups" : "Kontaktgrupper",
     "Create a new contact group" : "Opprett en ny kontaktgruppe",
     "Contact group name" : "Kontaktgruppenavn",
-    "Teams" : "Lag",
     "Create a new team" : "Opprett et nytt lag",
     "Open the contacts app settings" : "Åpne innstillingene for kontakterappen",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Delt med {num} entitet","Delt med {num} entiteter"],
@@ -90,6 +91,7 @@
     "Enter a description for the team" : "Angi en beskrivelse for laget",
     "Folder" : "Folder",
     "Team name" : "Lagnavn",
+    "Delete picture" : "Slett bilde",
     "Edit" : "Redigere",
     "Request to join" : "Spør om å bli med",
     "Create" : "Ny",
@@ -111,7 +113,6 @@
     "Upload a new picture" : "Last opp et nytt bilde",
     "Choose from Files" : "Velg fra Filer",
     "Download picture" : "Last ned bilde",
-    "Delete picture" : "Slett bilde",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Kontakten er skrivebeskyttet. Du har ikke tillatelse til å redigere denne kontakten.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakten du prøvde å redigere, har blitt endret. Vennligst oppdater manuelt. Ytterligere endringer vil ikke kunne lagres.",
     "Address book" : "Adressebok",
@@ -176,7 +177,6 @@
     "You currently have no access to the member list" : "Du har for øyeblikket ingen adgang til medlemslisten",
     "Pending" : "Venter",
     "Chart" : "Kart",
-    "Select Date" : "Velg dato",
     "Select type" : "Velg type",
     "Add contact in group" : "Legg kontakt til gruppe",
     "None" : "Ingen",
@@ -208,7 +208,6 @@
     "Link copied to the clipboard" : "Lenke kopiert til utklippstavlen",
     "Could not copy link to the clipboard." : "Kunne ikke kopiere lenke til utklippstavlen",
     "Not grouped" : "Ikke gruppert",
-    "Organization chart" : "Organisasjonskart",
     "Team" : "Lag",
     "User" : "Bruker",
     "Group" : "Gruppe",
@@ -291,6 +290,7 @@
     "An error has occurred in team(s). Check the console for more details." : "Det har oppstått en feil i laget(ene). Sjekk konsollen hvis du vil ha mer informasjon.",
     "Unable to create team {circleName}" : "Ikke i stand til å opprette lag {circleName}",
     "Unable to delete team {circleId}" : "Ikke i stand til å slette lag {circleId}",
-    "Unable to delete contact" : "Ikke i stand til å slette kontakt"
+    "Unable to delete contact" : "Ikke i stand til å slette kontakt",
+    "Select Date" : "Velg dato"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

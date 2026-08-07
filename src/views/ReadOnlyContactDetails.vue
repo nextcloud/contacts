@@ -51,7 +51,7 @@
 import { namespaces as NS } from '@nextcloud/cdav-library'
 import { loadState } from '@nextcloud/initial-state'
 import { NcEmptyContent, NcLoadingIcon } from '@nextcloud/vue'
-import escape from 'lodash/fp/escape.js'
+import escape from 'lodash/escape.js'
 import mitt from 'mitt'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import ContactDetailsProperty from '../components/ContactDetails/ContactDetailsProperty.vue'
@@ -59,6 +59,7 @@ import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
 import client from '../services/cdav.js'
+import logger from '../services/logger.js'
 import validate from '../services/validate.js'
 import usePrincipalsStore from '../store/principals.js'
 
@@ -243,9 +244,9 @@ export default {
 
 				const contacts = result.flatMap(([addressBook, vcards]) => vcards.map((vcard) => new Contact(vcard.data, addressBook)))
 
-				this.contact = contacts.find((contact) => contact.email === email)
+				this.contact = contacts.find((contact) => contact.hasEmail(email))
 			} catch (error) {
-				console.error('Error fetching contact:', error)
+				logger.error('Error fetching contact:', { error })
 			} finally {
 				this.loading = false
 			}
@@ -301,6 +302,7 @@ export default {
 <style lang="scss" scoped>
 
 .empty-content {
+	width: 100%;
 	height: 100%;
 }
 

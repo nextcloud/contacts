@@ -6,6 +6,7 @@ import { loadState } from '@nextcloud/initial-state'
 import ICAL from 'ical.js'
 import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN.vue'
 import NcActionToggleYear from '../components/Actions/NcActionToggleYear.vue'
+import logger from '../services/logger.js'
 import { otherContacts } from '../utils/chartUtils.js'
 import zones from './zones.js'
 
@@ -19,8 +20,7 @@ const locales = localesState
 		}))
 	: []
 
-console.debug('Initial state loaded', 'defaultProfileState', defaultProfileState)
-console.debug('Initial state loaded', 'localesState', localesState)
+logger.debug('Initial state loaded', { defaultProfileState, localesState })
 
 const properties = {
 	n: {
@@ -189,10 +189,11 @@ const properties = {
 		readableName: t('contacts', 'Instant messaging'),
 		icon: 'icon-instant-message',
 		defaultValue: {
-			value: [''],
-			type: ['SKYPE'],
+			value: '',
+			type: ['SIGNAL'],
 		},
 		options: [
+			{ id: 'DISCORD', name: 'Discord' },
 			{ id: 'IRC', name: 'IRC' },
 			{ id: 'KAKAOTALK', name: 'KakaoTalk' },
 			{ id: 'KIK', name: 'KiK' },
@@ -201,10 +202,10 @@ const properties = {
 			{ id: 'QQ', name: 'QQ' },
 			{ id: 'SIGNAL', name: 'Signal' },
 			{ id: 'SIP', name: 'SIP' },
-			{ id: 'SKYPE', name: 'Skype' },
 			{ id: 'TELEGRAM', name: 'Telegram' },
 			{ id: 'THREEMA', name: 'Threema' },
 			{ id: 'WECHAT', name: 'WeChat' },
+			{ id: 'WHATSAPP', name: 'WhatsApp' },
 			{ id: 'XMPP', name: 'XMPP' },
 			{ id: 'ZOOM', name: 'Zoom' },
 		],

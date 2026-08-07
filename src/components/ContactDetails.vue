@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<AppContentDetails>
+	<AppContentDetails ref="detailsRoot" tabindex="-1">
 		<!-- nothing selected or contact not found -->
 		<EmptyContent
 			v-if="!contact"
@@ -411,9 +411,8 @@ import {
 	NcSelect,
 } from '@nextcloud/vue'
 import ICAL from 'ical.js'
-import escape from 'lodash/fp/escape.js'
+import escape from 'lodash/escape.js'
 import mitt from 'mitt'
-import { getSVG } from 'qreator/lib/svg'
 import { defineComponent, reactive, toRaw } from 'vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconAccount from 'vue-material-design-icons/AccountOutline.vue'
@@ -439,6 +438,7 @@ import PropertySelect from './Properties/PropertySelect.vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import rfcProps from '../models/rfcProps.js'
 import isTalkEnabled from '../services/isTalkEnabled.js'
+import logger from '../services/logger.js'
 import validate from '../services/validate.js'
 
 const { profileEnabled } = loadState('user_status', 'profileEnabled', false)
@@ -871,6 +871,7 @@ export default defineComponent({
 
 		// capture ctrl+s
 		document.addEventListener('keydown', this.onCtrlSave)
+		this.reloadBus.on('focus-details', this.focusDetails)
 
 		this.lastUsedAddressBook = this.getLastUsedAddressBook()
 	},
@@ -878,9 +879,17 @@ export default defineComponent({
 	beforeUnmount() {
 		// unbind capture ctrl+s
 		document.removeEventListener('keydown', this.onCtrlSave)
+		this.reloadBus.off('focus-details', this.focusDetails)
 	},
 
 	methods: {
+		/**
+		 * Move focus into the details panel, used when navigating here from the contact list via keyboard
+		 */
+		focusDetails() {
+			this.$refs.detailsRoot?.$el?.focus()
+		},
+
 		updateGroups(value) {
 			this.newGroupsValue = value
 		},
@@ -921,6 +930,7 @@ export default defineComponent({
 
 			const data = ICAL.stringify(jCal)
 			if (data.length > 0) {
+				const { getSVG } = await import('qreator/lib/svg')
 				const svgBytes = await getSVG(data)
 				const svgString = new TextDecoder().decode(svgBytes)
 				this.qrcode = btoa(svgString)
@@ -975,7 +985,7 @@ export default defineComponent({
 						} else {
 							showError(t('contacts', 'Unable to retrieve the contact from the server, please check your network connection.'))
 						}
-						console.error(error)
+						logger.error(error)
 						// trigger a local deletion from the store only
 						this.$store.dispatch('deleteContact', { contact: this.contact, dav: false })
 					}
@@ -1015,15 +1025,25 @@ export default defineComponent({
 						addressbook,
 					})
 					// select the contact again
-					this.$router.push({
-						name: 'contact',
-						params: {
-							selectedGroup: this.$route.params.selectedGroup,
-							selectedContact: contact.key,
-						},
-					})
+					if (this.$route.params.selectedAddressbook) {
+						this.$router.push({
+							name: 'addressbook-contact',
+							params: {
+								selectedAddressbook: this.$route.params.selectedAddressbook,
+								selectedContact: contact.key,
+							},
+						})
+					} else {
+						this.$router.push({
+							name: 'contact',
+							params: {
+								selectedGroup: this.$route.params.selectedGroup,
+								selectedContact: contact.key,
+							},
+						})
+					}
 				} catch (error) {
-					console.error(error)
+					logger.error(error)
 					showError(t('contacts', 'An error occurred while trying to move the contact'))
 				} finally {
 					this.loadingUpdate = false
@@ -1048,15 +1068,25 @@ export default defineComponent({
 						addressbook,
 					})
 					// select the contact again
-					this.$router.push({
-						name: 'contact',
-						params: {
-							selectedGroup: this.$route.params.selectedGroup,
-							selectedContact: contact.key,
-						},
-					})
+					if (this.$route.params.selectedAddressbook) {
+						this.$router.push({
+							name: 'addressbook-contact',
+							params: {
+								selectedAddressbook: this.$route.params.selectedAddressbook,
+								selectedContact: contact.key,
+							},
+						})
+					} else {
+						this.$router.push({
+							name: 'contact',
+							params: {
+								selectedGroup: this.$route.params.selectedGroup,
+								selectedContact: contact.key,
+							},
+						})
+					}
 				} catch (error) {
-					console.error(error)
+					logger.error(error)
 					showError(t('contacts', 'An error occurred while trying to copy the contact'))
 				} finally {
 					this.loadingUpdate = false

@@ -7,10 +7,7 @@
 	<Content :app-name="appName">
 		<!-- new-contact-button + navigation + settings -->
 		<RootNavigation
-			:contacts-list="contactsList"
-			:loading="loadingContacts || loadingCircles"
-			:selected-group="selectedGroup"
-			:selected-contact="selectedContact">
+			:loading="loadingContacts || loadingCircles">
 			<div class="import-and-new-contact-buttons">
 				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView" />
 				<!-- new-contact-button -->
@@ -68,8 +65,8 @@ import {
 	NcButton,
 } from '@nextcloud/vue'
 import ICAL from 'ical.js'
+import { defineAsyncComponent } from 'vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
-import ChartContent from '../components/AppContent/ChartContent.vue'
 import CircleContent from '../components/AppContent/CircleContent.vue'
 import ContactsContent from '../components/AppContent/ContactsContent.vue'
 import RootNavigation from '../components/AppNavigation/RootNavigation.vue'
@@ -83,6 +80,7 @@ import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
 import client from '../services/cdav.js'
 import isCirclesEnabled from '../services/isCirclesEnabled.js'
+import logger from '../services/logger.js'
 import usePrincipalsStore from '../store/principals.js'
 import useUserGroupStore from '../store/userGroup.ts'
 
@@ -92,7 +90,8 @@ export default {
 	components: {
 		NcButton,
 		CircleContent,
-		ChartContent,
+		// Lazy loaded: pulls in d3 and is only rendered on the org chart view
+		ChartContent: defineAsyncComponent(() => import('../components/AppContent/ChartContent.vue')),
 		ContactsContent,
 		ContactsPicker,
 		Content,
@@ -190,6 +189,9 @@ export default {
 		 * @return {Array}
 		 */
 		contactsList() {
+			if (this.selectedAddressbook) {
+				return this.sortedContacts.filter((contact) => this.contacts[contact.key]?.addressbook.id === this.selectedAddressbook)
+			}
 			if (this.selectedGroup === GROUP_ALL_CONTACTS) {
 				return this.sortedContacts
 			} else if (this.selectedGroup === GROUP_NO_GROUP_CONTACTS) {
@@ -216,6 +218,13 @@ export default {
 	watch: {
 		// watch url change and group select
 		selectedGroup() {
+			if (!this.isMobile && !this.selectedChart) {
+				this.selectFirstContactIfNone()
+			}
+		},
+
+		// watch url change and address book select
+		selectedAddressbook() {
 			if (!this.isMobile && !this.selectedChart) {
 				this.selectFirstContactIfNone()
 			}
@@ -249,7 +258,11 @@ export default {
 
 					// No writeable addressbooks? Create a new one!
 					if (writeableAddressBooks.length === 0) {
-						this.$store.dispatch('appendAddressbook', { displayName: t('contacts', 'Contacts') })
+						// Untranslated on purpose: the DAV URI is derived from the display name,
+						// so translating it here would make the path language dependent
+						// (e.g. /kontakte, or /- for languages without ASCII letters).
+						// The server translates the display name of contacts/Contacts for us.
+						this.$store.dispatch('appendAddressbook', { displayName: 'Contacts' })
 							.then(() => {
 								this.fetchContacts()
 							})
@@ -283,6 +296,11 @@ export default {
 				return
 			}
 
+			// fall back to the default address book if the selected one is not writeable
+			const targetAddressbook = this.selectedAddressbook
+				? this.addressbooks.find((ab) => ab.id === this.selectedAddressbook && !ab.readOnly) ?? this.defaultAddressbook
+				: this.defaultAddressbook
+
 			const contact = new Contact(
 				`
 				BEGIN:VCARD
@@ -290,7 +308,7 @@ export default {
 				PRODID:-//Nextcloud Contacts v${appVersion}
 				END:VCARD
 			`.trim().replace(/\t/gm, ''),
-				this.defaultAddressbook,
+				targetAddressbook,
 			)
 
 			contact.fullName = t('contacts', 'Name')
@@ -317,22 +335,25 @@ export default {
 
 			// set group if it's selected already
 			// BUT NOT if it's the _fake_ groups like all contacts and not grouped
-			if ([GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS].indexOf(this.selectedGroup) === -1) {
+			if (this.selectedGroup && [GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS].indexOf(this.selectedGroup) === -1) {
 				contact.groups = [this.selectedGroup]
 			}
 			try {
 				// this will trigger the proper commits to groups, contacts and addressbook
 				await this.$store.dispatch('addContact', contact)
-				await this.$router.push({
-					name: 'contact',
-					params: {
-						selectedGroup: this.selectedGroup,
-						selectedContact: contact.key,
-					},
-				})
+				// follow the address book the contact was actually created in, it might not be the selected one
+				await this.$router.push(this.selectedAddressbook
+					? {
+							name: 'addressbook-contact',
+							params: {
+								selectedAddressbook: targetAddressbook.id,
+								selectedContact: contact.key,
+							},
+						}
+					: this.contactRoute(contact.key))
 			} catch (error) {
 				showError(t('contacts', 'Unable to create the contact.'))
-				console.error(error)
+				logger.error(error)
 			}
 		},
 
@@ -381,24 +402,32 @@ export default {
 				// Unknown contact
 				if (this.selectedContact && !inList) {
 					showError(t('contacts', 'Contact not found'))
+					this.$router.push(this.listRoute())
+				}
+
+				// Unknown address book
+				if (this.selectedAddressbook
+					&& !this.addressbooks.find((addressbook) => addressbook.id === this.selectedAddressbook)) {
+					showError(t('contacts', 'Address book {addressbook} not found', { addressbook: this.selectedAddressbook }))
+					this.logger.error('Address book not found', this.selectedAddressbook)
+
 					this.$router.push({
-						name: 'group',
-						params: {
-							selectedGroup: this.selectedGroup,
-						},
+						name: 'root',
 					})
+					return
 				}
 
 				// Unknown group
 				if (!this.selectedCircle
 					&& !this.selectedUserGroup
+					&& !this.selectedAddressbook
 					&& !this.groups.find((group) => group.name === this.selectedGroup)
 					&& GROUP_ALL_CONTACTS !== this.selectedGroup
 					&& GROUP_NO_GROUP_CONTACTS !== this.selectedGroup
 					&& ROUTE_CIRCLE !== this.selectedGroup
 					&& ROUTE_USER_GROUP !== this.selectedGroup) {
 					showError(t('contacts', 'Group {group} not found', { group: this.selectedGroup }))
-					console.error('Group not found', this.selectedGroup)
+					logger.error('Group not found', { selectedGroup: this.selectedGroup })
 
 					this.$router.push({
 						name: 'root',
@@ -407,13 +436,7 @@ export default {
 				}
 
 				if (Object.keys(this.contactsList).length) {
-					this.$router.push({
-						name: 'contact',
-						params: {
-							selectedGroup: this.selectedGroup,
-							selectedContact: Object.values(this.contactsList)[0].key,
-						},
-					})
+					this.$router.push(this.contactRoute(Object.values(this.contactsList)[0].key))
 				}
 			}
 		},

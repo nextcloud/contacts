@@ -33,6 +33,7 @@ import ContentHeading from './ContentHeading.vue'
 import Circle from '../../models/circle.ts'
 import { PUBLIC_CIRCLE_CONFIG } from '../../models/constants.ts'
 import { CircleEdit, editCircle } from '../../services/circles.ts'
+import logger from '../../services/logger.js'
 
 export default {
 	name: 'CircleConfigs',
@@ -84,7 +85,7 @@ export default {
 				// eslint-disable-next-line vue/no-mutating-props
 				this.circle.config = circleData.config
 			} catch (error) {
-				console.error('Unable to edit circle config', prevConfig, config, error)
+				logger.error('Unable to edit circle config', { prevConfig, config, error })
 				showError(t('contacts', 'An error happened during the config change'))
 			} finally {
 				this.loading = false

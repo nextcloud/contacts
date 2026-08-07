@@ -8,25 +8,16 @@
 namespace OCA\Contacts\Settings;
 
 use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\Service\SocialApiService;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
-use OCP\IConfig;
 use OCP\Settings\ISettings;
 
 class AdminSettings implements ISettings {
-	protected $appName;
-
-	/**
-	 * Admin constructor.
-	 *
-	 * @param IConfig $config
-	 * @param IL10N $l
-	 */
 	public function __construct(
-		private IConfig $config,
 		private IInitialState $initialState,
+		private SocialApiService $socialApiService,
 	) {
-		$this->appName = Application::APP_ID;
 	}
 
 	/**
@@ -34,11 +25,8 @@ class AdminSettings implements ISettings {
 	 */
 	#[\Override]
 	public function getForm() {
-		foreach (Application::AVAIL_SETTINGS as $key => $default) {
-			$data = $this->config->getAppValue($this->appName, $key, $default);
-			$this->initialState->provideInitialState($key, $data);
-		}
-		return new TemplateResponse($this->appName, 'settings/admin');
+		$this->initialState->provideInitialState('allowSocialSync', $this->socialApiService->syncAllowedByAdmin());
+		return new TemplateResponse(Application::APP_ID, 'settings/admin');
 	}
 
 	/**

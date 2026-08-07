@@ -3,6 +3,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import logger from '../logger.js'
+
 export default {
 	name: 'duplicate types',
 	run: (contact) => {
@@ -32,12 +34,12 @@ export default {
 					&& Array.isArray(param)
 					&& param.join('') !== fixed.join('')) {
 					prop.setParameter('type', fixed)
-					console.debug('Additional debug: duplicate types', { old: icalString, new: prop.toICALString() })
+					logger.debug('Additional debug: duplicate types', { old: icalString, new: prop.toICALString() })
 					results = true
 				}
 			})
 		} catch (error) {
-			console.error(error)
+			logger.error(error)
 		}
 		return results
 	},

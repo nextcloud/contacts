@@ -25,9 +25,8 @@
 			<!-- sharing Ncbutton -->
 			<NcButton
 				v-if="!addressbook.readOnly && !isSharedWithMe"
-				v-tooltip.top="sharedWithTooltip"
+				:title="sharedWithTooltip"
 				:class="{ 'addressbook__share--shared': hasShares }"
-				:name="sharedWithTooltip"
 				href="#"
 				class="addressbook__share"
 				@click="toggleShare">
@@ -136,6 +135,7 @@ import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
 import ShareAddressBook from './SettingsAddressbookShare.vue'
 import CopyToClipboardMixin from '../../../mixins/CopyToClipboardMixin.js'
+import logger from '../../../services/logger.js'
 import usePrincipalsStore from '../../../store/principals.js'
 
 export default {
@@ -286,7 +286,7 @@ export default {
 				await this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
 			} catch (err) {
 				// error handling
-				console.error(err)
+				logger.error(err)
 				showError(t('contacts', 'Toggling of address book was not successful'))
 			} finally {
 				// stop loading status regardless of outcome
@@ -320,7 +320,7 @@ export default {
 					await this.$store.dispatch('deleteAddressbook', this.addressbook)
 				} catch (err) {
 					// error handling
-					console.error(err)
+					logger.error(err)
 					showError(t('contacts', 'Deletion of address book was not successful.'))
 				} finally {
 					// stop loading status regardless of outcome
@@ -343,7 +343,7 @@ export default {
 				await this.$store.dispatch('renameAddressbook', { addressbook, newName })
 			} catch (err) {
 				// error handling
-				console.error(err)
+				logger.error(err)
 				showError(t('contacts', 'Renaming of address book was not successful.'))
 			} finally {
 				this.editingName = false

@@ -4,7 +4,7 @@
  */
 
 import ContactSvg from '@mdi/svg/svg/account-multiple.svg?raw'
-import { DefaultType, FileAction, Permission, registerFileAction } from '@nextcloud/files'
+import { DefaultType, Permission, registerFileAction } from '@nextcloud/files'
 import { translate as t } from '@nextcloud/l10n'
 import { generateUrl } from '@nextcloud/router'
 import { createApp } from 'vue'
@@ -16,19 +16,19 @@ import 'vite/modulepreload-polyfill'
 const mime = 'text/vcard'
 const name = 'contacts-import'
 
-registerFileAction(new FileAction({
+registerFileAction({
 	id: name,
 	displayName: () => t('contacts', 'Import'),
 	default: DefaultType.DEFAULT,
-	enabled: (nodes) => {
+	enabled: ({ nodes }) => {
 		if (nodes.length !== 1) {
 			return false
 		}
 		const node = nodes[0]
-		return node.mime === mime && (node.permissions & Permission.READ)
+		return node.mime === mime && Boolean(node.permissions & Permission.READ)
 	},
 	iconSvgInline: () => ContactSvg,
-	async exec(file) {
+	async exec({ nodes: [file] }) {
 		let app
 		try {
 			// Open the confirmation dialog
@@ -58,4 +58,4 @@ registerFileAction(new FileAction({
 		// No toast should be shown -> indicate "unknown" action state
 		return null
 	},
-}))
+})

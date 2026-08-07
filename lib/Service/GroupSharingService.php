@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace OCA\Contacts\Service;
 
 use OCP\IConfig;
-use OCP\IGroup;
 use OCP\IGroupManager;
 use OCP\IUser;
 use OCP\Share\IManager as IShareManager;
@@ -29,8 +28,7 @@ class GroupSharingService {
 			return false;
 		}
 
-		$userGroups = $this->groupManager->getUserGroups($user);
-		$userGroupNames = array_map(static fn (IGroup $group) => $group->getGID(), $userGroups);
+		$userGroupIds = $this->groupManager->getUserGroupIds($user);
 
 		$excludeGroupList = json_decode($this->config->getAppValue('core', 'shareapi_exclude_groups_list', '[]'), true);
 		$excludeGroups = $this->config->getAppValue('core', 'shareapi_exclude_groups');
@@ -39,8 +37,8 @@ class GroupSharingService {
 		// "yes"   => Exclude listed groups from sharing
 		// "allow" => Limit sharing to listed groups
 		return match ($excludeGroups) {
-			'yes' => count(array_intersect($userGroupNames, $excludeGroupList)) === 0,
-			'allow' => count(array_intersect($userGroupNames, $excludeGroupList)) > 0,
+			'yes' => count(array_intersect($userGroupIds, $excludeGroupList)) === 0,
+			'allow' => count(array_intersect($userGroupIds, $excludeGroupList)) > 0,
 			default => true,
 		};
 	}

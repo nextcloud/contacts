@@ -25,12 +25,12 @@ OC.L10N.register(
     "Save" : "Cadw",
     "Close" : "Cau",
     "Folder" : "Folder",
+    "Delete picture" : "Dileu llun",
     "Create" : "Creu",
     "Pick an avatar" : "Dewiswch afatar",
     "Error while processing the picture." : "Gwall wrth brosesu'r llun.",
     "Upload a new picture" : "Llwythwch lun newydd i fyny",
     "Download picture" : "Llwytho llun i lawr",
-    "Delete picture" : "Dileu llun",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Mae'r cyswllt hwn yn y modd darllen yn unig. Nid oes gennych ganiatâd i olygu'r cyswllt hwn.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Mae'r cyswllt yr oeddech yn ceisio ei olygu wedi newid. Adnewyddwch y cyswllt â llaw. Bydd unrhyw olygiadau pellach yn cael eu ddileu.",
     "Name" : "Enw",
@@ -45,7 +45,6 @@ OC.L10N.register(
     "Add to favorites" : "Add to favorites",
     "No results" : "Dim canlyniadau",
     "Pending" : "I ddod",
-    "Select Date" : "Dewis Dyddiad",
     "Select type" : "Dewiswch y math",
     "Add contact in group" : "Ychwanegu cyswllt yn y grŵp",
     "None" : "Dim",
@@ -114,6 +113,7 @@ OC.L10N.register(
     "Female" : "Benyw",
     "Male" : "Gwryw",
     "Unknown" : "Anhysbys",
-    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt"]
+    "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt","Methwyd â darllen {failed} cyswllt"],
+    "Select Date" : "Dewis Dyddiad"
 },
 "nplurals=4; plural=(n==1) ? 0 : (n==2) ? 1 : (n != 8 && n != 11) ? 2 : 3;");

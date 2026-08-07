@@ -97,6 +97,7 @@ import IconRename from 'vue-material-design-icons/FolderEditOutline.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
+import logger from '../../services/logger.js'
 import removeContactFromGroup from '../../services/removeContactFromGroup.js'
 import renameContactFromGroup from '../../services/renameContactFromGroup.js'
 
@@ -178,7 +179,7 @@ export default {
 					await this.$store.dispatch('updateContact', localContact)
 				}
 			} catch (e) {
-				console.error(e)
+				logger.error(e)
 				showError(this.t('contacts', 'Tried to drop an invalid contact!'))
 			} finally {
 				event.target.closest('.group-drop-area').removeAttribute('drop-active')
@@ -291,7 +292,7 @@ export default {
 				try {
 					await renameContactFromGroup(contact, this.group.name, this.newGroupName)
 				} catch (e) {
-					console.error('Error renaming group', e)
+					logger.error('Error renaming group', { e })
 				}
 			}
 
@@ -317,7 +318,7 @@ export default {
 				try {
 					await removeContactFromGroup(contact, this.group.name)
 				} catch (e) {
-					console.error('Error deleting group', e)
+					logger.error('Error deleting group', { e })
 				}
 			}
 

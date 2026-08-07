@@ -58,6 +58,7 @@
     "Failed to save password. Please try again later." : "No se ha podido guardar la contraseña. Por favor, inténtelo de nuevo más tarde.",
     "Close" : "Cerrar",
     "Folder" : "Folder",
+    "Delete picture" : "Eliminar imagen",
     "Request to join" : "Solicitud de unión",
     "Create" : "Crear",
     "You are not a member of {circle}" : "No eres miembro de {circle}",
@@ -70,7 +71,6 @@
     "Upload a new picture" : "Subir una nueva imagen",
     "Choose from Files" : "Escoger desde Archivos",
     "Download picture" : "Descargar imágen",
-    "Delete picture" : "Eliminar imagen",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Este contacto está en modo de sólo lectura. No tienes permiso para editar este contacto.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "El contacto que intentabas editar ha cambiado. Por favor actualice manualmente el contacto. Cualquier otra edición será descartada.",
     "Address book" : "libreta de direcciones",
@@ -112,7 +112,6 @@
     "Unable to get the results" : "No se puede obtener los resultados",
     "Some members could not be added" : "Algunos miembros no se han podido añadir",
     "Pending" : "Pendiente",
-    "Select Date" : "Seleccionar fecha",
     "Select type" : "Seleccionar tipo",
     "Add contact in group" : "Añadir contacto en grupo",
     "None" : "Ninguno",
@@ -206,6 +205,7 @@
     "Time zone" : "Zona horaria",
     "Spoken languages" : "Idiomas hablados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se ha podido leer","{failed} contactos no se han podido leer","{failed} contactos no se han podido leer"],
-    "Unable to delete contact" : "No se ha podido eliminar el contacto"
+    "Unable to delete contact" : "No se ha podido eliminar el contacto",
+    "Select Date" : "Seleccionar fecha"
 },"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

@@ -75,7 +75,7 @@ class DetailsProviderTest extends Base {
 
 		$addressbook->expects($this->once())
 			->method('getKey')
-			->willReturn(1);
+			->willReturn('1');
 
 		$addressbook->expects($this->once())
 			->method('getUri')
@@ -150,7 +150,7 @@ class DetailsProviderTest extends Base {
 
 		$addressbook->expects($this->once())
 			->method('getKey')
-			->willReturn(1);
+			->willReturn('1');
 
 		$addressbook->expects($this->once())
 			->method('getUri')

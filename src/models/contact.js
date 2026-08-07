@@ -9,6 +9,7 @@ import { Buffer } from 'buffer'
 import ICAL from 'ical.js'
 import { v4 as uuid } from 'uuid'
 import { shallowRef, toRaw, unref } from 'vue'
+import logger from '../services/logger.js'
 import updateDesignSet from '../services/updateDesignSet.js'
 import store from '../store/index.js'
 
@@ -27,6 +28,10 @@ export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
 export const MinimalContactProperties = [
 	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED', 'REV',
 ].concat(ContactKindProperties)
+
+export function generateContactKey(uid, addressbookId) {
+	return Buffer.from(uid + '~' + addressbookId, 'utf8').toString('base64')
+}
 
 export default class Contact {
 	/**
@@ -60,7 +65,7 @@ export default class Contact {
 
 		// if no uid set, create one
 		if (!this.vCard.hasProperty('uid')) {
-			console.info('This contact did not have a proper uid. Setting a new one for ', this)
+			logger.info('This contact did not have a proper uid. Setting a new one for ', { contact: this })
 			this.vCard.addPropertyWithValue('uid', uuid())
 		}
 	}
@@ -237,7 +242,7 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get key() {
-		return Buffer.from(this.uid + '~' + this.addressbook.id, 'utf8').toString('base64')
+		return generateContactKey(this.uid, this.addressbook.id)
 	}
 
 	/**
@@ -303,7 +308,7 @@ export default class Contact {
 			const cleanSvg = await sanitizeSVG(imageSvg)
 
 			if (!cleanSvg) {
-				console.error('Invalid SVG for the following contact. Ignoring...', this.contact, { photoB64, photoType })
+				logger.error('Invalid SVG for the following contact. Ignoring...', { contact: this, photoB64, photoType })
 				return false
 			}
 		}
@@ -313,7 +318,7 @@ export default class Contact {
 			const blob = b64toBlob(photoB64Data, `image/${photoType}`)
 			return URL.createObjectURL(blob)
 		} catch {
-			console.error('Invalid photo for the following contact. Ignoring...', this.contact, { photoB64, photoType })
+			logger.error('Invalid photo for the following contact. Ignoring...', { contact: this, photoB64, photoType })
 			return false
 		}
 	}
@@ -381,6 +386,19 @@ export default class Contact {
 	 */
 	get email() {
 		return this.firstIfArray(this.vCard.getFirstPropertyValue('email'))
+	}
+
+	/**
+	 * Check whether any of the contact's email addresses matches
+	 * the given email (case insensitive)
+	 *
+	 * @param {string} email the email address to look for
+	 * @return {boolean}
+	 * @memberof Contact
+	 */
+	hasEmail(email) {
+		return this.vCard.getAllProperties('email')
+			.some((property) => property.getFirstValue()?.toLowerCase() === email.toLowerCase())
 	}
 
 	/**

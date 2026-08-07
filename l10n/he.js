@@ -50,6 +50,7 @@ OC.L10N.register(
     "Folder" : "Folder",
     "Folder name" : "שם תיקייה",
     "Conversation name" : "שם הדיון",
+    "Delete picture" : "מחיקת תמונה",
     "Create" : "יצירה",
     "Invalid image" : "תמונה לא חוקית",
     "Pick an avatar" : "נא לבחור תמונה מייצגת",
@@ -60,7 +61,6 @@ OC.L10N.register(
     "Upload a new picture" : "העלאת תמונה חדשה",
     "Choose from Files" : "בחר מתוך קבצים",
     "Download picture" : "הורדת תמונה",
-    "Delete picture" : "מחיקת תמונה",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "איש קשר זה הוא במצב קריאה בלבד. אין לך הרשאה לערוך את איש הקשר הזה.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "איש הקשר שניסית לערוך כבר נערך. נא לרענן את איש הקשר ידנית. כל העריכות הבאות לא תחולנה.",
     "Address book" : "ספר כתובות",
@@ -89,7 +89,6 @@ OC.L10N.register(
     "Add {type}" : "הוסף {type}",
     "Pending" : "בהמתנה",
     "Chart" : "תרשים",
-    "Select Date" : "בחירת תאריך",
     "Select type" : "בחירת סוג",
     "Add contact in group" : "הוספת איש קשר בקבוצה",
     "None" : "אין",
@@ -169,6 +168,7 @@ OC.L10N.register(
     "Unknown" : "לא ידוע",
     "Spoken languages" : "שפות מדוברות",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["הקריאה של איש קשר אחד נכשלה","הקריאה של {failed} אנשי קשר נכשלה","הקריאה של {failed} אנשי קשר נכשלה"],
-    "Unable to delete contact" : "לא ניתן למחוק איש קשר"
+    "Unable to delete contact" : "לא ניתן למחוק איש קשר",
+    "Select Date" : "בחירת תאריך"
 },
 "nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;");

@@ -9,7 +9,9 @@
     "Copy to full name" : "Копирај у пуно име",
     "Omit year" : "без године",
     "Allow updating avatars from social media" : "Дозволи ажурирање аватара са друштвених медија",
+    "Organization chart" : "Организациони график",
     "There was an error fetching the member list" : "Дошло је до грешке приликом добављања листе чланова",
+    "Teams" : "Тимови",
     "Please select a team" : "Молимо вас да изаберете тим",
     "Loading team…" : "Тим се учитава…",
     "Loading contacts …" : "Учитавају се контакти …",
@@ -43,7 +45,6 @@
     "Contact groups" : "Групе контаката",
     "Create a new contact group" : "Креирај нову групу контаката",
     "Contact group name" : "Назив групе контаката",
-    "Teams" : "Тимови",
     "Create a new team" : "Креирај нови тим",
     "Open the contacts app settings" : "Отвара подешавања апликације контаката",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Дељено са {num} ентитетом","Дељено са {num} ентитета","Дељено са {num} ентитета"],
@@ -101,6 +102,7 @@
     "An error happened while saving {fields}" : "Дошло је до грешке током чувања {fields}",
     "Team name" : "Назив тима",
     "Team owner" : "Власник тима",
+    "Delete picture" : "Обриши слику",
     "Edit" : "Уреди",
     "Request to join" : "Захтев за приступ",
     "Create" : "Направи",
@@ -123,7 +125,6 @@
     "Upload a new picture" : "Отпреми нову слику",
     "Choose from Files" : "Изаберите из Фајлова",
     "Download picture" : "Преузми слику",
-    "Delete picture" : "Обриши слику",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Контакт је у режиму само за читање. Немате дозволе да га уређујете.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Контакт који уређујете је промењен. Освежите га ручно. Свака даља измена биће одбачена.",
     "Address book" : "Адресар",
@@ -210,7 +211,6 @@
     "Pending" : "На чекању",
     "Select chart …" : "Изаберите график …",
     "Chart" : "График",
-    "Select Date" : "Одаберите датум",
     "Select type" : "Одаберите тип",
     "Add contact in group" : "Додај контакт у групу",
     "None" : "Ништа",
@@ -246,7 +246,6 @@
     "Link copied to the clipboard" : "Линк је копиран у клипборд",
     "Could not copy link to the clipboard." : "Линк није могао да се копира у клипборд.",
     "Not grouped" : "Негруписани",
-    "Organization chart" : "Организациони график",
     "Team" : "Тим",
     "User" : "Корисник",
     "Group" : "Група",
@@ -334,6 +333,7 @@
     "An error has occurred in team(s). Check the console for more details." : "Дошло је до грешке у тиму/тимовима. Погледајте конзолу за више детаља.",
     "Unable to create team {circleName}" : "Не може да се креира тим {circleName}",
     "Unable to delete team {circleId}" : "Не може да се обрише тим {circleId}",
-    "Unable to delete contact" : "Не могу да обришем контакт"
+    "Unable to delete contact" : "Не могу да обришем контакт",
+    "Select Date" : "Одаберите датум"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
 }

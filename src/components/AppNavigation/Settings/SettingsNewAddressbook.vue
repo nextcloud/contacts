@@ -5,7 +5,7 @@
 
 <template>
 	<div class="new-addressbook-entry">
-		<NcButton v-if="!modalOpen && !loading" @click="openModal">
+		<NcButton v-if="!hideButton && !modalOpen && !loading" @click="openModal">
 			<template #icon>
 				<IconAdd :size="20" />
 			</template>
@@ -43,6 +43,7 @@ import { showError } from '@nextcloud/dialogs'
 import { NcButton, NcInputField, NcModal } from '@nextcloud/vue'
 import IconLoading from 'vue-material-design-icons/Loading.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
+import logger from '../../../services/logger.js'
 
 export default {
 	name: 'SettingsNewAddressbook',
@@ -52,6 +53,13 @@ export default {
 		IconLoading,
 		NcButton,
 		NcModal,
+	},
+
+	props: {
+		hideButton: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -104,7 +112,7 @@ export default {
 					this.loading = false
 				})
 				.catch((error) => {
-					console.error(error)
+					logger.error(error)
 					showError(t('contacts', 'An error occurred, unable to create the address book'))
 					this.loading = false
 				})

@@ -25,7 +25,7 @@ jobs:
       src: ${{ steps.changes.outputs.src}}
 
     steps:
-      - uses: dorny/paths-filter@fbd0ab8f3e69293af611ebaee6363fc25e6d187d # v4.0.1
+      - uses: dorny/paths-filter@7b450fff21473bca461d4b92ce414b9d0420d706 # v4.0.2
         id: changes
         continue-on-error: true
         with:
@@ -52,19 +52,15 @@ jobs:
       # do not stop on another job's failure
       fail-fast: false
       matrix:
-        php-versions: ['8.2', '8.3', '8.4', '8.5']
+        php-versions: ['8.3', '8.4', '8.5']
         databases: ['sqlite']
         server-versions: ['master']
-        include:
-          - php-versions: '8.1'
-            databases: 'sqlite'
-            server-versions: 'stable32'
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
     steps:
       - name: Checkout server
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
           repository: nextcloud/server
@@ -72,13 +68,13 @@ jobs:
           submodules: true
 
       - name: Checkout app
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
           path: apps/${{ env.APP_NAME }}
 
       - name: Set up php ${{ matrix.php-versions }}
-        uses: shivammathur/setup-php@85c019fd025f731a83ac9fbc1cdd9ba69d76b6e3 # v2.36.0 with verbose logging due to stuck runs
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2 with verbose logging due to stuck runs
         with:
           php-version: ${{ matrix.php-versions }}
           tools: phpunit
@@ -131,13 +127,13 @@ jobs:
       matrix:
         php-versions: ['8.4']
         databases: ['mysql']
-        server-versions: ['master', 'stable33', 'stable32']
+        server-versions: ['master', 'stable34', 'stable33']
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
     services:
       mysql:
-        image: mariadb:12.1
+        image: mariadb:12.3
         ports:
           - 4444:3306/tcp
         env:
@@ -146,7 +142,7 @@ jobs:
 
     steps:
       - name: Checkout server
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
           repository: nextcloud/server
@@ -154,7 +150,7 @@ jobs:
           submodules: true
 
       - name: Checkout app
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
           path: apps/${{ env.APP_NAME }}
@@ -166,7 +162,7 @@ jobs:
           sed -i 's/max-version="8.1"/max-version="8.2"/' apps/${{ env.APP_NAME }}/appinfo/info.xml
 
       - name: Set up php ${{ matrix.php-versions }}
-        uses: shivammathur/setup-php@85c019fd025f731a83ac9fbc1cdd9ba69d76b6e3 # v2.36.0 with verbose logging due to stuck runs
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2 with verbose logging due to stuck runs
         with:
           php-version: ${{ matrix.php-versions }}
           tools: phpunit
@@ -208,14 +204,7 @@ jobs:
       matrix:
         php-versions: ['8.5']
         databases: ['pgsql']
-        server-versions: ['master', 'stable33', 'stable32']
-        exclude:
-          - php-versions: '8.5'
-            server-versions: 'stable32'
-        include:
-          - php-versions: '8.1'
-            databases: 'pgsql'
-            server-versions: 'stable32'
+        server-versions: ['master', 'stable34', 'stable33']
 
     name: php${{ matrix.php-versions }}-${{ matrix.databases }}-${{ matrix.server-versions }}
 
@@ -232,7 +221,7 @@ jobs:
 
     steps:
       - name: Checkout server
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
           repository: nextcloud/server
@@ -240,13 +229,13 @@ jobs:
           submodules: true
 
       - name: Checkout app
-        uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
         with:
           persist-credentials: false
           path: apps/${{ env.APP_NAME }}
 
       - name: Set up php ${{ matrix.php-versions }}
-        uses: shivammathur/setup-php@85c019fd025f731a83ac9fbc1cdd9ba69d76b6e3 # v2.36.0 with verbose logging due to stuck runs
+        uses: shivammathur/setup-php@f3e473d116dcccaddc5834248c87452386958240 # 2.37.2 with verbose logging due to stuck runs
         with:
           php-version: ${{ matrix.php-versions }}
           tools: phpunit

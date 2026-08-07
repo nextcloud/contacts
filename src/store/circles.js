@@ -168,6 +168,10 @@ const actions = {
 	 */
 	async getCircleMembers(context, circleId) {
 		const circle = context.getters.getCircle(circleId)
+		// skip if current user is not a member (e.g. visible circle)
+		if (!circle.isMember) {
+			return
+		}
 		const members = await getCircleMembers(circleId)
 
 		logger.debug(`${circleId} have ${members.length} member(s)`, { members })
@@ -193,7 +197,7 @@ const actions = {
 			context.dispatch('updateCirclesPopulationCount')
 			return circle
 		} catch (error) {
-			console.error(error)
+			logger.error(error)
 			showError(t('contacts', 'Unable to create team {circleName}', { circleName }))
 		}
 	},
@@ -212,7 +216,7 @@ const actions = {
 			logger.debug('Deleted circle', { circleId })
 			context.dispatch('updateCirclesPopulationCount')
 		} catch (error) {
-			console.error(error)
+			logger.error(error)
 			showError(t('contacts', 'Unable to delete team {circleId}', { circleId }))
 		}
 	},

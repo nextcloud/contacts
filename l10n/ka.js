@@ -10,6 +10,7 @@ OC.L10N.register(
     "Copy to full name" : "Copy to full name",
     "Omit year" : "Omit year",
     "Allow updating avatars from social media" : "Allow updating avatars from social media",
+    "Organization chart" : "Organization chart",
     "There was an error fetching the member list" : "There was an error fetching the member list",
     "There are no contacts yet" : "There are no contacts yet",
     "Create contact" : "Create contact",
@@ -72,6 +73,7 @@ OC.L10N.register(
     "Change unique password" : "Change unique password",
     "Failed to save password. Please try again later." : "Failed to save password. Please try again later.",
     "Close" : "Close",
+    "Delete picture" : "Delete picture",
     "Edit" : "Edit",
     "Request to join" : "Request to join",
     "You are not a member of {circle}" : "You are not a member of {circle}",
@@ -89,7 +91,6 @@ OC.L10N.register(
     "Upload a new picture" : "Upload a new picture",
     "Choose from Files" : "Choose from Files",
     "Download picture" : "Download picture",
-    "Delete picture" : "Delete picture",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "This contact is in read-only mode. You do not have permission to edit this contact.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded.",
     "Address book" : "Address book",
@@ -144,7 +145,6 @@ OC.L10N.register(
     "You currently have no access to the member list" : "You currently have no access to the member list",
     "Pending" : "Pending",
     "Chart" : "Chart",
-    "Select Date" : "Select Date",
     "Select type" : "Select type",
     "Add contact in group" : "Add contact in group",
     "None" : "None",
@@ -169,7 +169,6 @@ OC.L10N.register(
     "Link copied to the clipboard" : "Link copied to the clipboard",
     "Could not copy link to the clipboard." : "Could not copy link to the clipboard.",
     "Not grouped" : "Not grouped",
-    "Organization chart" : "Organization chart",
     "User" : "User",
     "Group" : "Group",
     "Email" : "Email",
@@ -241,6 +240,7 @@ OC.L10N.register(
     "Time zone" : "Time zone",
     "Spoken languages" : "Spoken languages",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contact failed to be read","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Unable to delete contact"
+    "Unable to delete contact" : "Unable to delete contact",
+    "Select Date" : "Select Date"
 },
 "nplurals=2; plural=(n!=1);");

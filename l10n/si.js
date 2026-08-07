@@ -18,7 +18,6 @@ OC.L10N.register(
     "Add to group" : "සමූහයට එකතු කරන්න ",
     "Search {types}" : "{types}  සොයන්න",
     "No results" : "ප්‍රතිථල නැත",
-    "Select Date" : "දිනය තෝරන්න",
     "Notes" : "සටහන්",
     "Member" : "සාමාජික",
     "_{count} error_::_{count} errors_" : ["දෝෂ {count}","දෝෂ {count}"],
@@ -49,6 +48,7 @@ OC.L10N.register(
     "Spouse" : "කලත්‍රයා",
     "Mother" : "මව",
     "Father" : "පියා",
-    "Unknown" : "නොදන්නා"
+    "Unknown" : "නොදන්නා",
+    "Select Date" : "දිනය තෝරන්න"
 },
 "nplurals=2; plural=(n != 1);");

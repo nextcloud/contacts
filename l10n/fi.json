@@ -9,7 +9,9 @@
     "Copy to full name" : "Kopioi koko nimeksi",
     "Omit year" : "Jätä vuosiluku pois",
     "Allow updating avatars from social media" : "Salli avatar-kuvien päivittäminen sosiaalisesta mediasta",
+    "Organization chart" : "Organisaatiokaavio",
     "There was an error fetching the member list" : "Jäsen listan hakemisessa tapahtui virhe",
+    "Teams" : "Tiimit",
     "Please select a team" : "Valitse tiimi",
     "Loading team…" : "Ladataan tiimiä…",
     "Loading contacts …" : "Ladataan yhteystietoja …",
@@ -46,7 +48,6 @@
     "Contact groups" : "Yhteystietoryhmät",
     "Create a new contact group" : "Luo uusi yhteystietoryhmä",
     "Contact group name" : "Yhteystietoryhmän nimi",
-    "Teams" : "Tiimit",
     "Create a new team" : "Luo uusi tiimi",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Jaettu {num} entiteetin kanssa","Jaettu {num} entiteetin kanssa"],
     "Copied" : "Kopioitu",
@@ -104,6 +105,7 @@
     "Unknown resource type" : "Tuntematon resurssityyppi",
     "Team name" : "Tiimin nimi",
     "Team owner" : "Tiimin omistaja",
+    "Delete picture" : "Poista kuva",
     "Edit" : "Muokkaa",
     "Request to join" : "Pyydä liittymistä",
     "Create" : "Luo",
@@ -126,7 +128,6 @@
     "Upload a new picture" : "Lähetä uusi kuva",
     "Choose from Files" : "Valitse Tiedostoista",
     "Download picture" : "Lataa kuva",
-    "Delete picture" : "Poista kuva",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Tämä yhteystieto on \"vain luku\"-tilassa. Sinulla ei ole oikeuksia muokata tätä yhteystietoa.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Yhteystieto, jota yritit muokata, muuttui. Ole hyvä ja päivitä yhteystieto manuaalisesti. Seuraavia muutoksia ei tallenneta.",
     "Address book" : "Osoitekirja",
@@ -195,7 +196,6 @@
     "You currently have no access to the member list" : "Sinulla ei ole pääsyä käyttäjälistaan",
     "Pending" : "Odottaa",
     "Chart" : "Kaavio",
-    "Select Date" : "Valitse päivä",
     "Select type" : "Valitse tyyppi",
     "Add contact in group" : "Lisää yhteystieto ryhmään",
     "None" : "Ei mitään",
@@ -227,7 +227,6 @@
     "Link copied to the clipboard" : "Linkki kopioitu leikepöydälle",
     "Could not copy link to the clipboard." : "Linkkiä ei voitu kopioida leikepöydälle.",
     "Not grouped" : "Ei ryhmitelty",
-    "Organization chart" : "Organisaatiokaavio",
     "Team" : "Tiimi",
     "User" : "Käyttäjä",
     "Group" : "Ryhmä",
@@ -307,6 +306,7 @@
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} yhteystietoa ei voitu lukea","{failed} yhteystietoa ei voitu lukea"],
     "Unable to create team {circleName}" : "Tiimiä {circleName} ei voitu luoda",
     "Unable to delete team {circleId}" : "Tiimiä {circleId} ei voitu poistaa",
-    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa"
+    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa",
+    "Select Date" : "Valitse päivä"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
