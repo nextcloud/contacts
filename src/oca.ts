@@ -9,7 +9,6 @@ import ReadOnlyContactDetails from './views/ReadOnlyContactDetails.vue'
 import LegacyGlobalMixin from './mixins/LegacyGlobalMixin.js'
 import store from './store/index.js'
 
-import 'vite/modulepreload-polyfill'
 // Global scss sheets
 import './css/contacts.scss'
 // Dialogs css

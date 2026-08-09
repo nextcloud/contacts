@@ -11,8 +11,6 @@ import { createApp } from 'vue'
 import ConfirmationDialog from './components/ConfirmationDialog.vue'
 import LegacyGlobalMixin from './mixins/LegacyGlobalMixin.js'
 
-import 'vite/modulepreload-polyfill'
-
 const mime = 'text/vcard'
 const name = 'contacts-import'
 
