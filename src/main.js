@@ -11,7 +11,6 @@ import router from './router/index.js'
 import logger from './services/logger.js'
 import store from './store/index.js'
 
-import 'vite/modulepreload-polyfill'
 // Global scss sheets
 import './css/contacts.scss'
 // Dialogs css

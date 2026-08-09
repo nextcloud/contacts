@@ -25,8 +25,10 @@
   ],
   "type": "module",
   "scripts": {
-    "build": "vite build --mode production",
-    "dev": "vite build --mode development",
+    "build": "rspack build --env production",
+    "dev": "rspack build --env development",
+    "analyze": "RSDOCTOR=true rspack build --env production",
+    "stats": "rspack build --env production --json js/stats.json",
     "lint": "eslint --ext .js,.ts,.vue src",
     "lint:fix": "eslint --ext .js,.ts,.vue src --fix",
     "stylelint": "stylelint  \"src/**/*.scss\" \"src/**/*.vue\"",
@@ -36,7 +38,7 @@
     "test:e2e": "playwright test",
     "test:e2e:ui": "playwright test --ui",
     "test:watch": "jest --watch",
-    "watch": "vite build --mode development --watch"
+    "watch": "rspack build --env development --watch"
   },
   "browserslist": [
     "extends @nextcloud/browserslist-config"
@@ -80,6 +82,7 @@
     "virtua": "^0.50.0",
     "vue": "^3.5.39",
     "vue-cropperjs": "^5.0.0",
+    "vue-loader": "^17.4.2",
     "vue-material-design-icons": "^5.3.1",
     "vue-router": "^5.1.0",
     "vuex": "^4.1.0"
@@ -90,18 +93,23 @@
     "@nextcloud/eslint-config": "^9.0.0-rc.6",
     "@nextcloud/stylelint-config": "^3.1.1",
     "@nextcloud/typings": "^1.10.0",
-    "@nextcloud/vite-config": "^2.5.4",
     "@playwright/test": "^1.61.1",
+    "@rsdoctor/rspack-plugin": "^1.6.1",
+    "@rspack/cli": "^2.1.8",
+    "@rspack/core": "^2.1.8",
+    "@rspack/plugin-node-polyfill": "^0.5.8",
     "@types/jest": "^29.5.14",
     "@vue/vue3-jest": "^29.2.6",
     "babel-jest": "^29.7.0",
+    "css-loader": "^7.1.4",
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^30.4.1",
     "jest-transform-stub": "^2.0.0",
+    "sass": "^1.102.0",
+    "sass-loader": "^17.0.0",
     "ts-jest": "^29.4.11",
     "ts-loader": "^9.6.2",
-    "typescript": "^5.9.3",
-    "vite": "^7.3.6"
+    "typescript": "^5.9.3"
   },
   "engines": {
     "node": "^24.0.0",

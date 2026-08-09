@@ -1,7 +1,6 @@
 # SPDX-FileCopyrightText: 2022 Nextcloud GmbH and Nextcloud contributors
 # SPDX-License-Identifier: AGPL-3.0-or-later
 .editorconfig
-.eslintrc.js
 .git
 .git-blame-ignore-revs
 .github
@@ -12,10 +11,8 @@
 .php-cs-fixer.cache
 .php-cs-fixer.dist.php
 .scrutinizer.yml
-.stylelintignore
-.stylelintrc
 .tx
-babel.config.js
+babel.config.cjs
 build
 composer.json
 composer.lock
@@ -30,7 +27,11 @@ phpunit.unit.xml
 README.md
 screenshots
 src
-stylelint.config.js
+stylelint.config.cjs
 tests
 timezones
-webpack.*
+eslint.config.mjs
+rspack.config.js
+jest.config.cjs
+playwright.config.js
+tsconfig.json
