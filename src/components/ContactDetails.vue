@@ -235,43 +235,34 @@
 			</DetailsHeader>
 
 			<!-- qrcode -->
-			<Modal
+			<NcDialog
 				v-if="qrcode"
 				id="qrcode-modal"
 				size="small"
-				:clear-view-delay="-1"
 				:name="contact.displayName"
-				:close-button-contained="false"
 				@close="closeQrModal">
 				<img
 					:src="`data:image/svg+xml;base64,${qrcode}`"
 					:alt="t('contacts', 'Contact vCard as QR code')"
 					class="qrcode"
 					width="400">
-			</Modal>
+			</NcDialog>
 
 			<!-- pick addressbook when cloning contact -->
-			<Modal
+			<NcDialog
 				v-if="showPickAddressbookModal"
 				id="pick-addressbook-modal"
-				:clear-view-delay="-1"
-				:name="t('contacts', 'Pick an address book')"
+				:name="t('contacts', 'Clone contact')"
+				:buttons="buttonsPickAddressbookModal"
 				@close="closePickAddressbookModal">
 				<NcSelect
-					ref="pickAddressbook"
 					v-model="pickedAddressbook"
-					class="address-book"
-					:allow-empty="false"
+					required
 					:options="copyableAddressbooksOptions"
 					:placeholder="t('contacts', 'Select address book')"
+					:aria-label-combobox="t('contacts', 'Select address book')"
 					label="name" />
-				<button @click="closePickAddressbookModal">
-					{{ t('contacts', 'Cancel') }}
-				</button>
-				<button class="primary" @click="cloneContact">
-					{{ t('contacts', 'Clone contact') }}
-				</button>
-			</Modal>
+			</NcDialog>
 
 			<!-- contact details loading -->
 			<IconLoading v-if="loadingData" :size="20" class="contact-details" />
@@ -403,8 +394,8 @@ import {
 	NcAppContentDetails as AppContentDetails,
 	NcEmptyContent as EmptyContent,
 	NcLoadingIcon as IconLoading,
-	NcModal as Modal,
 	NcButton,
+	NcDialog,
 	NcEmptyContent,
 	NcInputField,
 	NcRelatedResourcesPanel,
@@ -470,7 +461,7 @@ export default defineComponent({
 		IconLoading,
 		PencilIcon,
 		CheckIcon,
-		Modal,
+		NcDialog,
 		NcSelect,
 		NcInputField,
 		PropertyGroups,
@@ -550,6 +541,19 @@ export default defineComponent({
 			calendarPanelHasError: false,
 			sharedState: reactive({ validEmail: true, validUrl: true }),
 			lastUsedAddressBook: undefined,
+
+			buttonsPickAddressbookModal: [
+				{
+					variant: 'tertiary',
+					callback: this.closePickAddressbookModal,
+					label: t('contacts', 'Cancel'),
+				},
+				{
+					variant: 'primary',
+					callback: this.cloneContact,
+					label: t('contacts', 'Clone contact'),
+				},
+			],
 		}
 	},
 
@@ -1122,6 +1126,7 @@ export default defineComponent({
 				await this.copyContactToAddressbook(this.addressbooksOptions[0].id)
 			} else {
 				this.showPickAddressbookModal = true
+				return false
 			}
 		},
 
@@ -1223,46 +1228,16 @@ section.contact-details {
 }
 
 #qrcode-modal {
-	:deep(.modal-container) {
-		display: flex;
-		padding: 10px;
-		background-color: #fff;
-		.qrcode {
-			max-width: 100%;
-		}
+	.qrcode {
+		max-width: 100%;
 	}
 }
 
 :deep(.v-select.select) {
 	min-width: 0;
-	flex: 1 auto;
-}
-
-:deep(.v-select.select .vs__selected-options), :deep(.vs__search) {
-	min-height: unset;
-	margin: 0 !important;
-}
-
-:deep(.vs__selected) {
-	height: calc(var(--default-clickable-area) - var(--default-grid-baseline)) !important;
-	margin: 0 !important;
-}
-
-#pick-addressbook-modal {
-	:deep(.modal-container) {
-		display: flex;
-		overflow: visible;
-		flex-wrap: wrap;
-		justify-content: space-evenly;
-		margin-bottom: 20px;
-		padding: 10px;
-		background-color: #fff;
-		.multiselect {
-			flex: 1 1 100%;
-			width: 100%;
-			margin-bottom: 20px;
-		}
-	}
+	width: 100%;
+	max-width: 100%;
+	margin: 0;
 }
 
 .action-item {
@@ -1302,10 +1277,6 @@ section.contact-details {
 	color: var(--color-primary-element);
 }
 
-.address-book {
-	min-width: 260px !important;
-}
-
 .empty-content {
 	height: 100%;
 }
@@ -1318,14 +1289,6 @@ section.contact-details {
 
 :deep(.contact-details-wrapper-read-only  .input-field__input) {
 	box-shadow: none !important;
-}
-
-:deep(.vs__selected-options) {
-	max-height: 30px;
-}
-
-:deep(.v-select) {
-	margin-bottom: 0 !important;
 }
 
 .quick-actions {
