@@ -55,7 +55,7 @@ export default {
 	props: {
 		loading: {
 			type: Boolean,
-			default: true,
+			required: true,
 		},
 	},
 

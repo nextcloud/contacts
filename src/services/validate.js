@@ -8,7 +8,10 @@ import checks from './checks/index.js'
 import logger from './logger.js'
 
 /**
- * @param contact
+ * Run all repair checks on a contact and apply fixes when needed.
+ *
+ * @param {Contact} contact the contact to validate
+ * @return {boolean} true if a non-silent fix was applied
  */
 export default function(contact) {
 	let result = false

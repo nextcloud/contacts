@@ -177,14 +177,6 @@ export default {
 		},
 
 		/**
-		 * The sorting key for the dataSet
-		 */
-		sort: {
-			type: String,
-			default: 'label',
-		},
-
-		/**
 		 * Confirm button text
 		 */
 		confirmLabel: {
@@ -206,7 +198,7 @@ export default {
 		 */
 		internalSearch: {
 			type: Boolean,
-			default: true,
+			default: true, // eslint-disable-line vue/no-boolean-default -- default is true for backward compatibility with existing callers
 		},
 
 		/**
@@ -223,6 +215,8 @@ export default {
 			default: '',
 		},
 	},
+
+	emits: ['update:selection', 'close', 'submit', 'search'],
 
 	data() {
 		return {

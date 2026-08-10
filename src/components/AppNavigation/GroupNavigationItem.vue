@@ -131,6 +131,8 @@ export default {
 		},
 	},
 
+	emits: ['updateRouteState'],
+
 	data() {
 		return {
 			newGroupName: '',
@@ -250,7 +252,7 @@ export default {
 		 * Open mailto: for contacts in a group
 		 *
 		 * @param {object} group of contacts to be emailed
-		 * @param {string} mode
+		 * @param {string} mode the recipient header to use (to, cc, bcc)
 		 */
 		emailGroup(group, mode = 'to') {
 			const emails = []

@@ -34,6 +34,7 @@ import ChartTemplate from './ChartTemplate.vue'
 import LegacyGlobalMixin from '../mixins/LegacyGlobalMixin.js'
 import router from './../router/index.js'
 
+/* eslint-disable vue/one-component-per-file -- ChartTemplate is dynamically mounted via createApp() for d3 node rendering */
 export default {
 	name: 'OrgChart',
 	components: {
@@ -106,8 +107,6 @@ export default {
 		},
 
 		renderChart(data) {
-			// eslint-disable-next-line @typescript-eslint/no-this-alias
-			const that = this
 			if (!this.chartReference) {
 				this.chartReference = new OrgChart()
 			}
@@ -134,7 +133,6 @@ export default {
 						} else {
 							const app = createApp(ChartTemplate, {
 								chartData: d.data,
-								onAvatarClick: (uid) => that.goToContact(uid),
 							})
 							app.use(router)
 							app.mixin(LegacyGlobalMixin)

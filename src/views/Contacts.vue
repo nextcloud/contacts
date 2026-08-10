@@ -26,9 +26,6 @@
 		</RootNavigation>
 
 		<!-- Main content: circle, chart or contacts -->
-		<UserGroupContent
-			v-if="selectedUserGroup"
-			:loding="loadingCircles" />
 		<CircleContent
 			v-if="selectedCircle || selectedUserGroup"
 			:loading="loadingCircles" />

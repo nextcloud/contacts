@@ -72,6 +72,8 @@ export default {
 		},
 	},
 
+	emits: ['delete'],
+
 	setup() {
 		return {
 			ShareType,

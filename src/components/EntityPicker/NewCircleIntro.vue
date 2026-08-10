@@ -90,6 +90,8 @@ export default {
 		},
 	},
 
+	emits: ['close', 'submit'],
+
 	data() {
 		return {
 			circleName: '',

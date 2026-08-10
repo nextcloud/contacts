@@ -73,6 +73,7 @@ export default {
 	mixins: [PropertyMixin],
 
 	props: {
+		// eslint-disable-next-line vue/no-unused-properties -- consumed by PropertyMixin
 		value: {
 			type: [Object, String, Array],
 			required: true,
