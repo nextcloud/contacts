@@ -1,3 +1,27 @@
+## [8.7.6](https://github.com/nextcloud/contacts/compare/v8.7.5...v8.7.6) (2026-08-11)
+
+
+### Bug Fixes
+
+* **deps:** Fix npm audit ([87e4add](https://github.com/nextcloud/contacts/commit/87e4add3c8cb7a4ffc7dc3966297c626964caff1))
+* **deps:** Fix npm audit ([d573f32](https://github.com/nextcloud/contacts/commit/d573f320da472f79165535d439e306f67cb1207e))
+* description for empty content ([ce92b69](https://github.com/nextcloud/contacts/commit/ce92b692e76469eb5c41fcd834458e3596f44586))
+* **l10n:** Update translations from Transifex ([26854b5](https://github.com/nextcloud/contacts/commit/26854b5d00ee9da985696619fb766926563910a2))
+* **l10n:** Update translations from Transifex ([4a17948](https://github.com/nextcloud/contacts/commit/4a17948e4f06fa42bc2b522a181b4dd85cd522a2))
+* **l10n:** Update translations from Transifex ([8205e34](https://github.com/nextcloud/contacts/commit/8205e343638b347bbad5d75fc7ffc386c53a7290))
+* **l10n:** Update translations from Transifex ([2e65fe1](https://github.com/nextcloud/contacts/commit/2e65fe113b66d5693314568ee53e89aa969fc91d))
+* **l10n:** Update translations from Transifex ([b269798](https://github.com/nextcloud/contacts/commit/b2697983cdcddd388f64f3d0910a2b6493ad3e57))
+* **l10n:** Update translations from Transifex ([1ea4e76](https://github.com/nextcloud/contacts/commit/1ea4e7681fa9040ff5b28f5c5806b8a736d522c9))
+* **l10n:** Update translations from Transifex ([3003540](https://github.com/nextcloud/contacts/commit/3003540ddc435bd58955fd8e0eb384659b2808d9))
+* **l10n:** Update translations from Transifex ([a3df339](https://github.com/nextcloud/contacts/commit/a3df3394ea93059665c50e451cc3cf6870e11212))
+* **l10n:** Update translations from Transifex ([c0b520f](https://github.com/nextcloud/contacts/commit/c0b520f5e50c25caf901175b1fac4dceafe64cec))
+* omit year for birthdays ([f5bf161](https://github.com/nextcloud/contacts/commit/f5bf16127f96818af1166e53889f5c4b9601f440))
+* removed references to v-tooltip directive ([a967185](https://github.com/nextcloud/contacts/commit/a9671856ad1a9425b04ade747073b2eb09f4bdff))
+* **settings:** read social sync initial state as boolean ([3dcac51](https://github.com/nextcloud/contacts/commit/3dcac51c6256844bcd8fa03553c5d7b2cb285158)), closes [#5561](https://github.com/nextcloud/contacts/issues/5561)
+* unify `allowSocialSync` frontend type ([59dfd2b](https://github.com/nextcloud/contacts/commit/59dfd2b46c961f067ae4f178c80b586e3cdf3f7d))
+
+
+
 ## [8.7.5](https://github.com/nextcloud/contacts/compare/v8.7.4...v8.7.5) (2026-07-28)
 
 
