@@ -10,19 +10,16 @@
     "First name" : "Անուն",
     "Last name" : "Ազգանուն",
     "Save" : "Պահպանել",
-    "Close" : "Փակել",
-    "Folder" : "Folder",
-    "Create" : "Ստեղծել",
     "Name" : "Անուն",
     "Title" : "Վերնագիր",
     "Remove from favorites" : "Remove from favorites",
     "Add to favorites" : "Add to favorites",
     "Notes" : "Նոթեր",
+    "Close" : "Փակել",
     "Import" : "Ներմուծում",
     "User" : "User",
     "Group" : "Խումբ",
     "Email" : "Էլ. հասցե",
-    "Owner" : "Owner",
     "Nickname" : "Մականուն",
     "Location" : "Տեղակայություն",
     "Other" : "Այլ",
@@ -31,6 +28,9 @@
     "Country" : "Երկիր",
     "Birthday" : "Ծննդյան օր",
     "Relative" : "Հարաբերական",
-    "Unknown" : "Անհայտ"
+    "Unknown" : "Անհայտ",
+    "Folder" : "Folder",
+    "Create" : "Ստեղծել",
+    "Owner" : "Owner"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
