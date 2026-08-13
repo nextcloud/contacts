@@ -8,20 +8,16 @@
     "First name" : "முதல் பெயர்",
     "Last name" : "கடைசிப் பெயர்",
     "Save" : "சேமிக்க ",
-    "Close" : "மூடுக",
-    "Create" : "உருவாக்குக",
     "Name" : "பெயர்",
     "Title" : "தலைப்பு",
     "Add to favorites" : "Add to favorites",
-    "Pending" : "நிலுவையிலுள்ள",
     "None" : "ஒன்றுமில்லை",
     "Notes" : "குறிப்புகள்",
+    "Close" : "மூடுக",
     "Import" : "இறக்குமதி",
     "User" : "User",
     "Group" : "Group",
     "Email" : "மின்னஞ்சல்",
-    "Admin" : "நிர்வாகம்",
-    "Owner" : "Owner",
     "Additional names" : "மேலதிக பெயர்கள்",
     "Nickname" : "பட்டப்பெயர்",
     "Location" : "இடம்",
@@ -38,6 +34,10 @@
     "Fax" : "தொலை நகல்",
     "Pager" : "தொலை அழைப்பான்",
     "Voice" : "குரல்",
-    "Unknown" : "தெரியாத"
+    "Unknown" : "தெரியாத",
+    "Create" : "உருவாக்குக",
+    "Pending" : "நிலுவையிலுள்ள",
+    "Admin" : "நிர்வாகம்",
+    "Owner" : "Owner"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
