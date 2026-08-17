@@ -9,6 +9,7 @@ namespace OCA\Contacts\Controller;
 
 use OC\App\CompareVersion;
 use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\Service\FederatedInvitesService;
 use OCA\Contacts\Service\GroupSharingService;
 use OCA\Contacts\Service\SocialApiService;
 use OCP\App\IAppManager;
@@ -25,6 +26,7 @@ class PageController extends Controller {
 
 	public function __construct(
 		IRequest $request,
+		private FederatedInvitesService $federatedInvitesService,
 		private IConfig $config,
 		private IInitialState $initialState,
 		private IFactory $languageFactory,
@@ -41,9 +43,18 @@ class PageController extends Controller {
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
 	 *
-	 * Default routing
+	 * Default routing.
+	 *
+	 * @param string $token external invitation token
+	 * @param string $providerDomain external invitation provider domain
 	 */
-	public function index(): TemplateResponse {
+	public function index(string $token = '', string $providerDomain = ''): TemplateResponse {
+		if ($token !== '' && $providerDomain !== '') {
+			// if both token and providerDomain are set they will be provided to the template system for displaying the invite accept dialog
+			$this->initialState->provideInitialState('inviteToken', $token);
+			$this->initialState->provideInitialState('inviteProvider', $providerDomain);
+			$this->initialState->provideInitialState('acceptInviteDialogUrl', FederatedInvitesService::OCM_INVITE_ACCEPT_DIALOG_ROUTE);
+		}
 		$user = $this->userSession->getUser();
 		$userId = $user->getUid();
 
@@ -65,6 +76,8 @@ class PageController extends Controller {
 		$isTalkEnabled = $this->appManager->isEnabledForUser('spreed') === true;
 
 		$isTalkVersionCompatible = $this->compareVersion->isCompatible($talkVersion ? $talkVersion : '0.0.0', 2);
+		$isOcmInvitesEnabled = $this->federatedInvitesService->isOcmInvitesEnabled();
+		$ocmInvitesConfig = $this->federatedInvitesService->getOcmInvitesConfig();
 
 		$this->initialState->provideInitialState('isGroupSharingEnabled', $isGroupSharingEnabled);
 		$this->initialState->provideInitialState('locales', $locales);
@@ -75,6 +88,8 @@ class PageController extends Controller {
 		$this->initialState->provideInitialState('isContactsInteractionEnabled', $isContactsInteractionEnabled);
 		$this->initialState->provideInitialState('isCirclesEnabled', $isCirclesEnabled && $isCircleVersionCompatible);
 		$this->initialState->provideInitialState('isTalkEnabled', $isTalkEnabled && $isTalkVersionCompatible);
+		$this->initialState->provideInitialState('isOcmInvitesEnabled', $isOcmInvitesEnabled);
+		$this->initialState->provideInitialState('ocmInvitesConfig', $ocmInvitesConfig);
 
 		Util::addStyle(Application::APP_ID, 'contacts-main');
 		Util::addScript(Application::APP_ID, 'contacts-main');

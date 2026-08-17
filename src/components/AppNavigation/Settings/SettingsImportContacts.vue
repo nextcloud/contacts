@@ -4,7 +4,9 @@
 -->
 
 <template>
-	<div class="import-contact">
+	<div
+		class="import-contact"
+		:class="{ 'ocm-invites-enabled': isOcmInvitesEnabled }">
 		<template v-if="!isNoAddressbookAvailable">
 			<NcButton class="import-contact__button-main" @click="toggleModal">
 				<template #icon>
@@ -117,6 +119,13 @@ export default {
 		IconError,
 		IconFolder,
 		IconLoading,
+	},
+
+	props: {
+		isOcmInvitesEnabled: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	data() {
@@ -307,6 +316,10 @@ export default {
 			this.isOpened = false
 			this.loading = false
 		},
+
+		getOcmInvitesActiveClass() {
+
+		},
 	},
 }
 </script>
@@ -362,6 +375,10 @@ export default {
 			background-color: transparent;
 		}
 	}
+}
+
+.import-contact.ocm-invites-enabled {
+	width: calc(50% - (var(--default-grid-baseline) + var(--default-clickable-area)) * .5);
 }
 
 </style>

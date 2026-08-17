@@ -12,6 +12,7 @@ use ChristophWurst\Nextcloud\Testing\TestCase;
 
 use OCA\Contacts\Service\Social\CompositeSocialProvider;
 use OCA\Contacts\Service\Social\ISocialProvider;
+use OCA\DAV\CardDAV\CardDavBackend;
 use OCA\DAV\CardDAV\ContactsManager;
 
 use OCP\AppFramework\Http;
@@ -23,11 +24,12 @@ use OCP\Http\Client\IClientService;
 use OCP\Http\Client\IResponse;
 use OCP\IAddressBook;
 use OCP\IConfig;
-use OCP\IL10N;
+use OCP\ICreateContactFromString;
 use OCP\IURLGenerator;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use Psr\Container\ContainerInterface;
+use Psr\Log\LoggerInterface;
 
 class SocialApiServiceTest extends TestCase {
 	private SocialApiService $service;
@@ -40,14 +42,14 @@ class SocialApiServiceTest extends TestCase {
 	private $config;
 	/** @var IClientService&MockObject */
 	private $clientService;
-	/** @var IL10N&MockObject */
-	private $l10n;
 	/** @var IURLGenerator&MockObject */
 	private $urlGen;
 	/** @var ITimeFactory&MockObject */
 	private $timeFactory;
 	/** @var ImageResizer&MockObject */
 	private $imageResizer;
+	/** @var LoggerInterface&MockObject */
+	private $logger;
 	/** @var ContainerInterface&MockObject */
 	private $container;
 
@@ -76,9 +78,6 @@ class SocialApiServiceTest extends TestCase {
 		$addressbookEmpty
 			->method('search')
 			->willReturn(null);
-		$addressbookEmpty
-			->method('getPermissions')
-			->willReturn(Constants::PERMISSION_UPDATE);
 
 		$addressbook = $this->createMock(IAddressBook::class);
 		$addressbook
@@ -87,9 +86,6 @@ class SocialApiServiceTest extends TestCase {
 		$addressbook
 			->method('search')
 			->willReturn([$contact]);
-		$addressbook
-			->method('getPermissions')
-			->willReturn(Constants::PERMISSION_UPDATE);
 
 		return [
 			'no address book found' => [null, [], '', '', Http::STATUS_BAD_REQUEST],
@@ -117,10 +113,10 @@ class SocialApiServiceTest extends TestCase {
 		$this->config = $this->createMock(IConfig::class);
 		$this->socialProvider = $this->createMock(CompositeSocialProvider::class);
 		$this->clientService = $this->createMock(IClientService::class);
-		$this->l10n = $this->createMock(IL10N::class);
 		$this->urlGen = $this->createMock(IURLGenerator::class);
 		$this->timeFactory = $this->createMock(ITimeFactory::class);
 		$this->imageResizer = $this->createMock(ImageResizer::class);
+		$this->logger = $this->createMock(LoggerInterface::class);
 		$this->container = $this->createMock(ContainerInterface::class);
 		$this->container
 			->method('get')
@@ -131,10 +127,10 @@ class SocialApiServiceTest extends TestCase {
 			$this->manager,
 			$this->config,
 			$this->clientService,
-			$this->l10n,
 			$this->urlGen,
 			$this->timeFactory,
 			$this->imageResizer,
+			$this->logger,
 		);
 	}
 
@@ -258,9 +254,6 @@ class SocialApiServiceTest extends TestCase {
 		$addressbook
 			->method('search')
 			->willReturn([$contact]);
-		$addressbook
-			->method('getPermissions')
-			->willReturn(Constants::PERMISSION_UPDATE);
 
 		$this->manager
 			->method('getUserAddressBooks')
@@ -339,9 +332,6 @@ class SocialApiServiceTest extends TestCase {
 		$addressbook
 			->method('search')
 			->willReturn([$contact]);
-		$addressbook
-			->method('getPermissions')
-			->willReturn(Constants::PERMISSION_UPDATE);
 
 		$this->manager
 			->method('getUserAddressBooks')
@@ -394,6 +384,70 @@ class SocialApiServiceTest extends TestCase {
 		$this->assertEquals(Http::STATUS_OK, $result->getStatus());
 	}
 
+	public function testUpdateContactAcceptsContentTypeWithParameters() {
+		$network = 'mastodon';
+		$body = 'the body';
+		$imageType = 'image/png';
+		$addressBookId = 'contacts';
+		$contactId = '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0';
+		$contact = [
+			'URI' => $contactId,
+			'VERSION' => '4.0'
+		];
+
+		$this->config
+			->method('getAppValue')
+			->willReturn('yes');
+
+		$provider = $this->createMock(ISocialProvider::class);
+		$provider->method('supportsContact')->willReturn(true);
+		$provider->method('getImageUrls')->willReturn(['https://url1.com/an-url']);
+
+		$addressbook = $this->createMock(IAddressBook::class);
+		$addressbook->method('getUri')->willReturn('contacts');
+		$addressbook->method('search')->willReturn([$contact]);
+
+		$this->manager->method('getUserAddressBooks')->willReturn([$addressbook]);
+		$this->socialProvider->method('getSocialConnectors')->willReturn([$provider]);
+		$this->socialProvider->method('getSocialConnector')->willReturn($provider);
+
+		$response = $this->createMock(IResponse::class);
+		$response->method('getBody')->willReturn($body);
+		$response->method('getHeader')->willReturn($imageType);
+		$client = $this->createMock(IClient::class);
+		$client->method('get')->willReturn($response);
+		$this->clientService->method('newClient')->willReturn($client);
+		$this->imageResizer->expects($this->once())->method('resizeImage')->willReturn($body);
+		$addressbook->expects($this->once())->method('createOrUpdate');
+
+		$result = $this->service->updateContact($addressBookId, $contactId, $network);
+
+		$this->assertEquals(Http::STATUS_OK, $result->getStatus());
+	}
+
+	public function testUpdateContactWithUnknownNetworkReturnsBadRequest() {
+		$addressBookId = 'contacts';
+		$contactId = '3225c0d5-1bd2-43e5-a08c-4e65eaa406b0';
+		$contact = [
+			'URI' => $contactId,
+			'VERSION' => '4.0'
+		];
+		$addressbook = $this->createMock(IAddressBook::class);
+		$addressbook->method('getUri')->willReturn('contacts');
+		$addressbook->method('search')->willReturn([$contact]);
+
+		$this->config
+			->method('getAppValue')
+			->willReturn('yes');
+		$this->manager->method('getUserAddressBooks')->willReturn([$addressbook]);
+		$this->socialProvider->method('getSocialConnectors')->willReturn([]);
+		$this->socialProvider->expects($this->once())->method('getSocialConnector')->with('unknown')->willReturn(null);
+
+		$result = $this->service->updateContact($addressBookId, $contactId, 'unknown');
+
+		$this->assertEquals(Http::STATUS_BAD_REQUEST, $result->getStatus());
+	}
+
 	public function testUpdateContactWithUnallowedMimeVersion4() {
 		$network = 'mastodon';
 		$body = 'the body';
@@ -420,9 +474,6 @@ class SocialApiServiceTest extends TestCase {
 		$addressbook
 			->method('search')
 			->willReturn([$contact]);
-		$addressbook
-			->method('getPermissions')
-			->willReturn(Constants::PERMISSION_UPDATE);
 
 		$this->manager
 			->method('getUserAddressBooks')
@@ -517,17 +568,9 @@ class SocialApiServiceTest extends TestCase {
 		$addressbook1
 			->method('search')
 			->will($this->returnValueMap($searchMap1));
-		$addressbook1
-			->method('getPermissions')
-			->willReturn(Constants::PERMISSION_UPDATE);
-
 		$addressbook2
 			->method('search')
 			->will($this->returnValueMap($searchMap2));
-		$addressbook2
-			->method('getPermissions')
-			->willReturn(Constants::PERMISSION_UPDATE);
-
 		$this->manager
 			->method('getUserAddressBooks')
 			->willReturn([$addressbook1, $addressbook2]);
@@ -697,5 +740,220 @@ class SocialApiServiceTest extends TestCase {
 		// invalid addressbookId:
 		$result = $this->service->existsContact('11111111-1111-1111-1111-111111111111', 'not-existing', 'admin');
 		$this->assertEquals(false, $result);
+	}
+
+	public function testCreateContactPrefersPersonalAddressBook(): void {
+		$cloudId = 'mahdi@nextcloud2.docker';
+		$email = 'mahdi@example.org';
+		$name = 'Mahdi';
+		$persisted = ['UID' => 'new-uid'];
+
+		$workBook = $this->createMock(ICreateContactFromString::class);
+		$workBook->method('getUri')->willReturn('work');
+		$workBook->method('isShared')->willReturn(false);
+		$workBook->method('getPermissions')->willReturn(Constants::PERMISSION_CREATE);
+		$workBook->method('getKey')->willReturn('work-key');
+
+		$personalBook = $this->createMock(ICreateContactFromString::class);
+		$personalBook->method('getUri')->willReturn(CardDavBackend::PERSONAL_ADDRESSBOOK_URI);
+		$personalBook->method('getKey')->willReturn('personal-key');
+
+		$this->manager->expects($this->once())
+			->method('search')
+			->with($cloudId, ['CLOUD'])
+			->willReturn([]);
+		$this->manager->expects($this->once())
+			->method('getUserAddressBooks')
+			->willReturn([$workBook, $personalBook]);
+		$this->manager->expects($this->once())
+			->method('createOrUpdate')
+			->with(
+				['FN' => $name, 'EMAIL' => $email, 'CLOUD' => $cloudId],
+				'personal-key',
+			)
+			->willReturn($persisted);
+
+		$result = $this->service->createContact($cloudId, $email, $name, 'mahdi');
+		$this->assertNotNull($result);
+		$this->assertSame('new-uid', $result['UID']);
+		$this->assertSame(CardDavBackend::PERSONAL_ADDRESSBOOK_URI, $result['ADDRESSBOOK_URI']);
+	}
+
+	public function testCreateContactFallsBackToWritableOwnedAddressBook(): void {
+		$cloudId = 'mahdi@nextcloud2.docker';
+		$email = 'mahdi@example.org';
+		$name = 'Mahdi';
+		$persisted = ['UID' => 'new-uid'];
+
+		$sharedBook = $this->createMock(IAddressBook::class);
+		$sharedBook->method('getUri')->willReturn('shared');
+		$sharedBook->method('isShared')->willReturn(true);
+		$sharedBook->method('getPermissions')->willReturn(Constants::PERMISSION_CREATE);
+
+		$readOnlyBook = $this->createMock(IAddressBook::class);
+		$readOnlyBook->method('getUri')->willReturn('readonly');
+		$readOnlyBook->method('isShared')->willReturn(false);
+		$readOnlyBook->method('getPermissions')->willReturn(0);
+
+		$writableBook = $this->createMock(ICreateContactFromString::class);
+		$writableBook->method('getUri')->willReturn('team');
+		$writableBook->method('isShared')->willReturn(false);
+		$writableBook->method('getPermissions')->willReturn(Constants::PERMISSION_CREATE);
+		$writableBook->method('getKey')->willReturn('team-key');
+
+		$this->manager->expects($this->once())
+			->method('search')
+			->with($cloudId, ['CLOUD'])
+			->willReturn([]);
+		$this->manager->expects($this->once())
+			->method('getUserAddressBooks')
+			->willReturn([$sharedBook, $readOnlyBook, $writableBook]);
+		$this->manager->expects($this->once())
+			->method('createOrUpdate')
+			->with(
+				['FN' => $name, 'EMAIL' => $email, 'CLOUD' => $cloudId],
+				'team-key',
+			)
+			->willReturn($persisted);
+
+		$result = $this->service->createContact($cloudId, $email, $name, 'mahdi');
+		$this->assertNotNull($result);
+		$this->assertSame('team', $result['ADDRESSBOOK_URI']);
+	}
+
+	public function testCreateContactReturnsNullWhenNoSuitableAddressBook(): void {
+		$cloudId = 'mahdi@nextcloud2.docker';
+
+		$sharedBook = $this->createMock(IAddressBook::class);
+		$sharedBook->method('getUri')->willReturn('shared');
+		$sharedBook->method('isShared')->willReturn(true);
+		$sharedBook->method('getPermissions')->willReturn(Constants::PERMISSION_CREATE);
+
+		$readOnlyBook = $this->createMock(IAddressBook::class);
+		$readOnlyBook->method('getUri')->willReturn('readonly');
+		$readOnlyBook->method('isShared')->willReturn(false);
+		$readOnlyBook->method('getPermissions')->willReturn(0);
+
+		$this->manager->expects($this->once())
+			->method('search')
+			->with($cloudId, ['CLOUD'])
+			->willReturn([]);
+		$this->manager->expects($this->once())
+			->method('getUserAddressBooks')
+			->willReturn([$sharedBook, $readOnlyBook]);
+		$this->manager->expects($this->never())
+			->method('createOrUpdate');
+		$this->logger->expects($this->once())
+			->method('error')
+			->with($this->stringContains('No suitable address book found'), $this->anything());
+
+		$result = $this->service->createContact($cloudId, 'mahdi@example.org', 'Mahdi', 'mahdi');
+		$this->assertNull($result);
+	}
+
+	public function testCreateFederatedContactReturnsNullWhenContactExists(): void {
+		$cloudId = 'mahdi@nextcloud2.docker';
+		$existingContact = ['URI' => 'existing-contact-uri', 'CLOUD' => $cloudId];
+
+		$this->manager
+			->expects($this->once())
+			->method('search')
+			->with($cloudId, ['CLOUD'])
+			->willReturn([$existingContact]);
+
+		$this->manager
+			->expects($this->never())
+			->method('getUserAddressBooks');
+		$this->manager
+			->expects($this->never())
+			->method('createOrUpdate');
+
+		$result = $this->service->createFederatedContact($cloudId, 'mahdi@example.org', 'Mahdi', 'mahdi');
+		$this->assertNull($result);
+	}
+
+	public function testCreateFederatedContactReturnsNullWhenNoContactsAddressBook(): void {
+		$cloudId = 'mahdi@nextcloud2.docker';
+
+		$otherBook = $this->createMock(IAddressBook::class);
+		$otherBook->method('getUri')->willReturn('shared-with-me');
+		$otherBook->method('isShared')->willReturn(true);
+
+		$this->manager
+			->expects($this->once())
+			->method('search')
+			->with($cloudId, ['CLOUD'])
+			->willReturn([]);
+		$this->manager
+			->expects($this->once())
+			->method('getUserAddressBooks')
+			->willReturn([$otherBook]);
+		$this->manager
+			->expects($this->never())
+			->method('createOrUpdate');
+
+		$this->logger
+			->expects($this->once())
+			->method('error')
+			->with($this->stringContains('No suitable address book found'), $this->anything());
+
+		$result = $this->service->createFederatedContact($cloudId, 'mahdi@example.org', 'Mahdi', 'mahdi');
+		$this->assertNull($result);
+	}
+
+	public function testCreateFederatedContactPersistsToContactsAddressBook(): void {
+		$cloudId = 'mahdi@nextcloud2.docker';
+		$email = 'mahdi@example.org';
+		$name = 'Mahdi';
+		$bookKey = 'addressbookid-42';
+		$persisted = ['URI' => 'new-uri', 'FN' => $name, 'EMAIL' => $email, 'CLOUD' => $cloudId];
+
+		$contactsBook = $this->createMock(ICreateContactFromString::class);
+		$contactsBook->method('getUri')->willReturn('contacts');
+		$contactsBook->method('isShared')->willReturn(false);
+		$contactsBook->method('getPermissions')->willReturn(Constants::PERMISSION_CREATE);
+		$contactsBook->method('getKey')->willReturn($bookKey);
+
+		$otherBook = $this->createMock(IAddressBook::class);
+		$otherBook->method('getUri')->willReturn('work');
+
+		$this->manager
+			->expects($this->once())
+			->method('search')
+			->with($cloudId, ['CLOUD'])
+			->willReturn([]);
+		$this->manager
+			->expects($this->once())
+			->method('getUserAddressBooks')
+			->willReturn([$otherBook, $contactsBook]);
+		$this->manager
+			->expects($this->once())
+			->method('createOrUpdate')
+			->with(
+				['FN' => $name, 'EMAIL' => $email, 'CLOUD' => $cloudId],
+				$bookKey,
+			)
+			->willReturn($persisted);
+
+		$result = $this->service->createFederatedContact($cloudId, $email, $name, 'mahdi');
+		$this->assertSame($persisted, $result);
+	}
+
+	public function testCreateFederatedContactSwallowsExceptionsAndReturnsNull(): void {
+		$cloudId = 'mahdi@nextcloud2.docker';
+
+		$this->manager
+			->expects($this->once())
+			->method('search')
+			->with($cloudId, ['CLOUD'])
+			->willThrowException(new \RuntimeException('boom'));
+
+		$this->logger
+			->expects($this->once())
+			->method('error')
+			->with($this->stringContains('exception occurred creating a federated contact'), $this->anything());
+
+		$result = $this->service->createFederatedContact($cloudId, 'mahdi@example.org', 'Mahdi', 'mahdi');
+		$this->assertNull($result);
 	}
 }

@@ -49,6 +49,8 @@
 
 	<background-jobs>
 		<job>OCA\Contacts\Cron\SocialUpdateRegistration</job>
+		<job>OCA\Contacts\Cron\UpdateOcmProviders</job>
+		<job>OCA\Contacts\Cron\UpdateDeltaOcmProviders</job>
 	</background-jobs>
 
 	<settings>
