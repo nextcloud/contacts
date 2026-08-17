@@ -56,7 +56,7 @@
 		</template>
 
 		<!-- main contacts details -->
-		<ContactDetails :contact-key="selectedContact" :contacts="sortedContacts" :reload-bus="reloadBus" />
+		<ContactDetails :contact-key="selectedContact" :reload-bus="reloadBus" />
 	</AppContent>
 </template>
 
@@ -117,10 +117,6 @@ export default {
 
 		groups() {
 			return this.$store.getters.getGroups
-		},
-
-		sortedContacts() {
-			return this.$store.getters.getSortedContacts
 		},
 
 		/**

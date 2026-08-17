@@ -79,11 +79,6 @@ export default {
 			default: null,
 		},
 
-		contacts: {
-			type: Array,
-			default: () => [],
-		},
-
 		bus: {
 			type: Object,
 			required: true,
