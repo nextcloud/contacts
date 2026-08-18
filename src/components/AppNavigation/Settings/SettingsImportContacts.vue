@@ -29,6 +29,7 @@
 						:options="options"
 						:disabled="isSingleAddressbook || isImporting"
 						:placeholder="t('contacts', 'Contacts')"
+						:aria-label-combobox="t('contacts', 'Pick an address book')"
 						label="displayName"
 						class="import-contact__modal-addressbook__select">
 						<template #selected-option="{ displayName }">
