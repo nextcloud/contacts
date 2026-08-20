@@ -9,7 +9,14 @@ import { defineConfig } from 'eslint/config'
 export default defineConfig([
 	...recommended,
 	{
+		languageOptions: {
+			globals: {
+				// polyfilled by vite-plugin-node-polyfills via @nextcloud/vite-config
+				Buffer: 'readonly',
+			},
+		},
 		rules: {
+			'no-undef': 'error',
 			// Relax some rules for now. Can be improved later one (baseline).
 			'no-unused-vars': 'off',
 			'@typescript-eslint/no-unused-vars': 'off',
