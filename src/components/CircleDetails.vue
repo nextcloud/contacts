@@ -151,7 +151,7 @@
 					</div>
 
 					<!-- Team resource creation shortcuts -->
-					<div v-if="circle.isMember" class="resource-shortcuts">
+					<div v-if="circle.isMember && resourceTypes.length > 0" class="resource-shortcuts">
 						<h3 class="resource-shortcuts__title">
 							{{ t('contacts', 'Create') }}
 						</h3>
@@ -327,6 +327,7 @@ import TeamResourceButton from './CircleDetails/TeamResourceButton.vue'
 import MemberList from './MemberList/MemberList.vue'
 import CircleActionsMixin from '../mixins/CircleActionsMixin.js'
 import { CircleEdit, editCircle } from '../services/circles.ts'
+import hideTeamSharedFolderCreation from '../services/hideTeamSharedFolderCreation.js'
 
 import 'cropperjs/dist/cropper.css'
 
@@ -540,7 +541,7 @@ export default {
 					helperText: t('contacts', 'This will create a regular folder shared with the team. To create a Team Folder, please contact your {productName} administrator', { productName: OC.theme.name }),
 					icon: 'FolderOutlineIcon',
 					apiPath: 'files',
-					enabled: enabledApps.files !== undefined,
+					enabled: enabledApps.files !== undefined && !hideTeamSharedFolderCreation,
 				},
 				{
 					id: 'talk',

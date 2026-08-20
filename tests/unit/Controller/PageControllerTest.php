@@ -88,4 +88,25 @@ class PageControllerTest extends TestCase {
 		$this->assertEquals('user', $result->getRenderAs());
 		$this->assertTrue($result instanceof TemplateResponse);
 	}
+
+	public function testIndexProvidesHideTeamSharedFolderCreation() {
+		$user = $this->createMock(IUser::class);
+		$user->method('getUid')->willReturn('mrstest');
+		$this->userSession->method('getUser')->willReturn($user);
+
+		$this->config->expects($this->once())
+			->method('getSystemValueBool')
+			->with('contacts.hide_team_shared_folder_creation', false)
+			->willReturn(true);
+
+		$states = [];
+		$this->initialStateService->method('provideInitialState')
+			->willReturnCallback(function (string $key, mixed $value) use (&$states): void {
+				$states[$key] = $value;
+			});
+
+		$this->controller->index();
+
+		$this->assertTrue($states['hideTeamSharedFolderCreation']);
+	}
 }

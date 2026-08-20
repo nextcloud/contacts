@@ -66,6 +66,8 @@ class PageController extends Controller {
 
 		$isTalkVersionCompatible = $this->compareVersion->isCompatible($talkVersion ? $talkVersion : '0.0.0', 2);
 
+		$hideTeamSharedFolderCreation = $this->config->getSystemValueBool(Application::CONFIG_HIDE_TEAM_SHARED_FOLDER_CREATION, false);
+
 		$this->initialState->provideInitialState('isGroupSharingEnabled', $isGroupSharingEnabled);
 		$this->initialState->provideInitialState('locales', $locales);
 		$this->initialState->provideInitialState('defaultProfile', $defaultProfile);
@@ -75,6 +77,7 @@ class PageController extends Controller {
 		$this->initialState->provideInitialState('isContactsInteractionEnabled', $isContactsInteractionEnabled);
 		$this->initialState->provideInitialState('isCirclesEnabled', $isCirclesEnabled && $isCircleVersionCompatible);
 		$this->initialState->provideInitialState('isTalkEnabled', $isTalkEnabled && $isTalkVersionCompatible);
+		$this->initialState->provideInitialState('hideTeamSharedFolderCreation', $hideTeamSharedFolderCreation);
 
 		Util::addStyle(Application::APP_ID, 'contacts-main');
 		Util::addScript(Application::APP_ID, 'contacts-main');

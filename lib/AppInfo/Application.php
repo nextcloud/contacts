@@ -22,6 +22,12 @@ use OCP\EventDispatcher\IEventDispatcher;
 class Application extends App implements IBootstrap {
 	public const APP_ID = 'contacts';
 
+	/**
+	 * System config key (config.php) to hide the "create a personal folder
+	 * and share it with the team" button on the team page.
+	 */
+	public const CONFIG_HIDE_TEAM_SHARED_FOLDER_CREATION = 'contacts.hide_team_shared_folder_creation';
+
 	public function __construct() {
 		parent::__construct(self::APP_ID);
 	}
