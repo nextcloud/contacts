@@ -30,7 +30,7 @@
 			:url="photoUrl"
 			class="contact-header-avatar__photo" />
 
-		<NcModal v-model:show="showCropper" size="small" @close="cancel">
+		<NcModal v-if="showCropper" size="small" @close="cancel">
 			<div class="avatar__container">
 				<h2>{{ t('contacts', 'Crop contact photo') }}</h2>
 				<VueCropper
@@ -252,7 +252,7 @@ export default {
 				}
 			}
 
-			this.openCropper(data, type)
+			await this.openCropper(data, type)
 			return true
 		},
 
@@ -262,10 +262,11 @@ export default {
 		 * @param {Buffer} data the image
 		 * @param {string} type of the image
 		 */
-		openCropper(data, type) {
+		async openCropper(data, type) {
 			const ccc = `data:${type};base64,${data.toString('base64')}`
-			this.$refs.cropper.replace(ccc)
 			this.showCropper = true
+			await this.$nextTick()
+			this.$refs.cropper.replace(ccc)
 		},
 
 		/**
@@ -281,16 +282,13 @@ export default {
 
 				const reader = new FileReader()
 
-				reader.onload = (e) => {
+				reader.onload = async (e) => {
 					try {
 						if (typeof e.target.result === 'object') {
 							const data = Buffer.from(e.target.result, 'binary')
 
-							if (this.processPicture(data)) {
-								return
-							}
-
-							throw new Error('Wrong image mimetype')
+							// processPicture shows its own error on an invalid mimetype
+							await this.processPicture(data)
 						}
 					} catch (error) {
 						logger.error(error)
@@ -503,7 +501,7 @@ export default {
 
 						const data = Buffer.from(response.data, 'binary')
 
-						this.processPicture(data)
+						await this.processPicture(data)
 					} catch (error) {
 						showError(t('contacts', 'Error while processing the picture.'))
 						logger.error(error)
