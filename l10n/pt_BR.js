@@ -176,7 +176,7 @@ OC.L10N.register(
     "Add to group" : "Adicionar ao grupo",
     "Add members to group" : "Adicionar membros ao grupo",
     "Search {types}" : "Pesquisar {types}",
-    "Add guest" : "Adicionar convidado",
+    "Add guest" : "Adicionar visitante",
     "Loading …" : "Carregando …",
     "Search for people to add" : "Pesquisar pessoas para adicionar",
     "No results" : "Sem resultados",
