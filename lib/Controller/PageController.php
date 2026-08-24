@@ -9,6 +9,7 @@ namespace OCA\Contacts\Controller;
 
 use OC\App\CompareVersion;
 use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\Service\CustomPropertiesService;
 use OCA\Contacts\Service\GroupSharingService;
 use OCA\Contacts\Service\SocialApiService;
 use OCP\App\IAppManager;
@@ -33,6 +34,7 @@ class PageController extends Controller {
 		private IAppManager $appManager,
 		private CompareVersion $compareVersion,
 		private GroupSharingService $groupSharingService,
+		private CustomPropertiesService $customPropertiesService,
 	) {
 		parent::__construct(Application::APP_ID, $request);
 	}
@@ -75,6 +77,10 @@ class PageController extends Controller {
 		$this->initialState->provideInitialState('isContactsInteractionEnabled', $isContactsInteractionEnabled);
 		$this->initialState->provideInitialState('isCirclesEnabled', $isCirclesEnabled && $isCircleVersionCompatible);
 		$this->initialState->provideInitialState('isTalkEnabled', $isTalkEnabled && $isTalkVersionCompatible);
+		$this->initialState->provideInitialState(
+			'customProperties',
+			$this->customPropertiesService->getCustomProperties(),
+		);
 
 		Util::addStyle(Application::APP_ID, 'contacts-main');
 		Util::addScript(Application::APP_ID, 'contacts-main');
