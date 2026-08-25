@@ -3,15 +3,40 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+interface PropertyTypeOption {
+	id: string
+	name: string
+}
+
+export interface CustomPropertyConfig {
+	name: string
+	label: string
+	force?: 'text' | 'select'
+	options?: PropertyTypeOption[]
+	multiple?: boolean
+	primary?: boolean
+	icon?: string
+}
+
+interface CustomPropertyModel {
+	readableName: string
+	icon: string
+	force: 'text' | 'select'
+	multiple: boolean
+	primary: boolean
+	options?: PropertyTypeOption[]
+	defaultValue?: { value: string, type: string[] }
+}
+
 /**
  * Merge admin-defined custom property types (app config "customProperties",
  * validated server-side by CustomPropertiesService) into the property registry.
  *
- * @param {object} properties the rfcProps.properties registry to extend
- * @param {string[]} fieldOrder the rfcProps.fieldOrder list to extend
- * @param {object[]} customProperties sanitized entries from the initial state
+ * @param properties the rfcProps.properties registry to extend
+ * @param fieldOrder the rfcProps.fieldOrder list to extend
+ * @param customProperties sanitized entries from the initial state
  */
-export function applyCustomProperties(properties, fieldOrder, customProperties) {
+export function applyCustomProperties(properties: Record<string, object>, fieldOrder: string[], customProperties: CustomPropertyConfig[]) {
 	if (!Array.isArray(customProperties)) {
 		return
 	}
@@ -22,7 +47,7 @@ export function applyCustomProperties(properties, fieldOrder, customProperties) 
 			return
 		}
 
-		const model = {
+		const model: CustomPropertyModel = {
 			readableName: custom.label,
 			icon: custom.icon || 'icon-detailed-name',
 			force: custom.force === 'select' ? 'select' : 'text',

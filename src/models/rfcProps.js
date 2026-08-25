@@ -8,7 +8,7 @@ import ActionCopyNtoFN from '../components/Actions/ActionCopyNtoFN.vue'
 import NcActionToggleYear from '../components/Actions/NcActionToggleYear.vue'
 import logger from '../services/logger.js'
 import { otherContacts } from '../utils/chartUtils.js'
-import { applyCustomProperties } from './customProperties.js'
+import { applyCustomProperties } from './customProperties.ts'
 import zones from './zones.js'
 
 // Load the default profile (for example, home or work) configured by the user

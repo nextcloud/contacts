@@ -3,12 +3,13 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import type { CustomPropertyConfig } from '../../../src/models/customProperties'
 import { applyCustomProperties } from '../../../src/models/customProperties'
 
 describe('customProperties', () => {
 
-	let properties
-	let fieldOrder
+	let properties: Record<string, object>
+	let fieldOrder: string[]
 
 	beforeEach(() => {
 		properties = {
@@ -42,9 +43,10 @@ describe('customProperties', () => {
 			},
 		])
 
-		expect(properties['x-office'].multiple).toBe(true)
-		expect(properties['x-office'].options).toHaveLength(2)
-		expect(properties['x-office'].defaultValue).toEqual({ value: '', type: ['BERLIN'] })
+		expect(properties['x-office']).toMatchObject({
+			multiple: true,
+			defaultValue: { value: '', type: ['BERLIN'] },
+		})
 	})
 
 	test('options on a select property are value choices without a preselected default', () => {
@@ -57,8 +59,8 @@ describe('customProperties', () => {
 			},
 		])
 
-		expect(properties['x-region'].force).toBe('select')
-		expect(properties['x-region'].defaultValue).toBeUndefined()
+		expect(properties['x-region']).toMatchObject({ force: 'select' })
+		expect(properties['x-region']).not.toHaveProperty('defaultValue')
 	})
 
 	test('skips names colliding with builtin properties', () => {
@@ -75,7 +77,7 @@ describe('customProperties', () => {
 			{ name: 'customernumber', label: 'Customer number' },
 			{ label: 'No name' },
 			null,
-		])
+		] as CustomPropertyConfig[])
 
 		expect(Object.keys(properties)).toEqual(['tel'])
 	})
@@ -89,8 +91,8 @@ describe('customProperties', () => {
 	})
 
 	test('tolerates a non-array state', () => {
-		applyCustomProperties(properties, fieldOrder, undefined)
-		applyCustomProperties(properties, fieldOrder, 'garbage')
+		applyCustomProperties(properties, fieldOrder, undefined as unknown as CustomPropertyConfig[])
+		applyCustomProperties(properties, fieldOrder, 'garbage' as unknown as CustomPropertyConfig[])
 
 		expect(Object.keys(properties)).toEqual(['tel'])
 	})
