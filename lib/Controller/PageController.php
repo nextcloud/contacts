@@ -19,6 +19,7 @@ use OCP\IConfig;
 use OCP\IRequest;
 use OCP\IUserSession;
 use OCP\L10N\IFactory;
+use OCP\ServerVersion;
 use OCP\Util;
 
 class PageController extends Controller {
@@ -33,6 +34,7 @@ class PageController extends Controller {
 		private IAppManager $appManager,
 		private CompareVersion $compareVersion,
 		private GroupSharingService $groupSharingService,
+		private ServerVersion $serverVersion,
 	) {
 		parent::__construct(Application::APP_ID, $request);
 	}
@@ -59,6 +61,9 @@ class PageController extends Controller {
 		$isCirclesEnabled = $this->appManager->isEnabledForUser('circles') === true;
 		// if circles is not installed, we use 0.0.0
 		$isCircleVersionCompatible = $this->compareVersion->isCompatible($circleVersion ? $circleVersion : '0.0.0', 22);
+		// Feature gate: teams are managed by the Teams app from Nextcloud 35 on,
+		// so we only render our own team management UI on older servers.
+		$isServerVersionWithTeamManagement = $this->serverVersion->getMajorVersion() <= Application::MAX_SERVER_VERSION_WITH_TEAM_MANAGEMENT;
 		// Check whether group sharing is enabled or not
 		$isGroupSharingEnabled = $this->groupSharingService->isGroupSharingAllowed($user);
 		$talkVersion = $this->appManager->getAppVersion('spreed');
@@ -73,7 +78,7 @@ class PageController extends Controller {
 		$this->initialState->provideInitialState('allowSocialSync', $syncAllowedByAdmin);
 		$this->initialState->provideInitialState('enableSocialSync', $bgSyncEnabledByUser);
 		$this->initialState->provideInitialState('isContactsInteractionEnabled', $isContactsInteractionEnabled);
-		$this->initialState->provideInitialState('isCirclesEnabled', $isCirclesEnabled && $isCircleVersionCompatible);
+		$this->initialState->provideInitialState('isTeamManagementEnabled', $isCirclesEnabled && $isCircleVersionCompatible && $isServerVersionWithTeamManagement);
 		$this->initialState->provideInitialState('isTalkEnabled', $isTalkEnabled && $isTalkVersionCompatible);
 
 		Util::addStyle(Application::APP_ID, 'contacts-main');

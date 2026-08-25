@@ -25,10 +25,7 @@
 			</div>
 		</RootNavigation>
 
-		<!-- Main content: circle, chart or contacts -->
-		<UserGroupContent
-			v-if="selectedUserGroup"
-			:loding="loadingCircles" />
+		<!-- Main content: team, chart or contacts -->
 		<CircleContent
 			v-if="selectedCircle || selectedUserGroup"
 			:loading="loadingCircles" />
@@ -79,7 +76,7 @@ import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE, ROUTE_USER_G
 import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
 import client from '../services/cdav.js'
-import isCirclesEnabled from '../services/isCirclesEnabled.js'
+import isTeamManagementEnabled from '../services/isTeamManagementEnabled.js'
 import logger from '../services/logger.js'
 import usePrincipalsStore from '../store/principals.js'
 import useUserGroupStore from '../store/userGroup.ts'
@@ -113,8 +110,8 @@ export default {
 			/* eslint-disable object-shorthand */
 			appName: appName,
 
-			// Let's but the loading state to true if circles is enabled
-			loadingCircles: isCirclesEnabled,
+			// Only wait for the teams to load if we manage them ourselves
+			loadingCircles: isTeamManagementEnabled,
 			loadingContacts: true,
 		}
 	},
@@ -239,10 +236,10 @@ export default {
 	},
 
 	mounted() {
-		if (this.isCirclesEnabled) {
-			this.logger.info('Circles frontend enabled')
+		if (isTeamManagementEnabled) {
+			logger.info('Team management frontend enabled')
 		} else {
-			this.logger.info('No compatible version of circles found')
+			logger.info('Team management frontend disabled')
 		}
 	},
 
@@ -279,7 +276,7 @@ export default {
 		})
 
 		// Get circles if enabled
-		if (isCirclesEnabled) {
+		if (isTeamManagementEnabled) {
 			const userGroupStore = useUserGroupStore()
 			this.$store.dispatch('getCircles')
 				.then(userGroupStore.getUserGroups(getCurrentUser().uid))

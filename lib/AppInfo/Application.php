@@ -22,6 +22,14 @@ use OCP\EventDispatcher\IEventDispatcher;
 class Application extends App implements IBootstrap {
 	public const APP_ID = 'contacts';
 
+	/**
+	 * Last server major version that ships team management inside Contacts.
+	 *
+	 * Starting with Nextcloud 35 teams are managed by the dedicated Teams app,
+	 * so the team management UI of this app is only exposed up to this version.
+	 */
+	public const MAX_SERVER_VERSION_WITH_TEAM_MANAGEMENT = 34;
+
 	public function __construct() {
 		parent::__construct(self::APP_ID);
 	}

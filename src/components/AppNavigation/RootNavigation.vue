@@ -158,7 +158,7 @@
 				:group="group"
 				@update-route-state="updateRouteState" />
 
-			<template v-if="isCirclesEnabled">
+			<template v-if="isTeamManagementEnabled">
 				<!-- Toggle groups ellipsis -->
 				<AppNavigationItem
 					v-if="groupsMenu.length > ELLIPSIS_COUNT"
@@ -262,8 +262,8 @@ import GroupNavigationItem from './GroupNavigationItem.vue'
 import SettingsNewAddressbook from './Settings/SettingsNewAddressbook.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
 import { CHART_ALL_CONTACTS, CIRCLE_DESC, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ROUTE_ADDRESSBOOK } from '../../models/constants.ts'
-import isCirclesEnabled from '../../services/isCirclesEnabled.js'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled.js'
+import isTeamManagementEnabled from '../../services/isTeamManagementEnabled.js'
 import useUserGroupStore from '../../store/userGroup.ts'
 
 export default {
@@ -324,7 +324,7 @@ export default {
 			createCircleLoading: false,
 			createCircleError: null,
 
-			isCirclesEnabled,
+			isTeamManagementEnabled,
 			isContactsInteractionEnabled,
 
 			collapsedGroups: true,
@@ -409,7 +409,7 @@ export default {
 
 		ellipsisGroupsMenu() {
 			// If circles is not enabled, we show everything
-			if (this.isCirclesEnabled && this.collapsedGroups) {
+			if (this.isTeamManagementEnabled && this.collapsedGroups) {
 				return this.groupsMenu.slice(0, ELLIPSIS_COUNT)
 			}
 			return this.groupsMenu
