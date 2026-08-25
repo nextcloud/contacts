@@ -4,6 +4,7 @@
  */
 const esModules = [
 	'p-limit',
+	'nostics',
 ].join('|')
 
 module.exports = {
@@ -19,10 +20,10 @@ module.exports = {
 	testEnvironment: 'jsdom',
 	transform: {
 		'^.+\\.ts$': 'ts-jest',
-		'^.+\\.js$': 'babel-jest',
+		'^.+\\.m?js$': 'babel-jest',
 		'^.+\\.vue$': '@vue/vue3-jest',
 		'^.+\\.(css|styl|less|sass|scss|jpg|jpeg|png|svg|gif|eot|otf|webp|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga|avif)$': 'jest-transform-stub',
 	},
-	transformIgnorePatterns: [`/node_modules/(?!${esModules})/.+\\.js$`],
+	transformIgnorePatterns: [`/node_modules/(?!${esModules})/.+\\.m?js$`],
 	testPathIgnorePatterns: ['tests/javascript/e2e'],
 }
