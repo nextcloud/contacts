@@ -1,0 +1,137 @@
+<!--
+  - SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
+  - SPDX-License-Identifier: AGPL-3.0-or-later
+-->
+<template>
+	<AppNavigationItem
+		:key="circle.key"
+		:name="circle.displayName"
+		:to="circle.router"
+		:force-menu="true">
+		<!-- force-menu avoids a Tab-trap in NcAppNavigationItem/NcActions when only
+			one action (copy link) is available: their Tab handler focuses a menu
+			trigger button that isn't rendered in single-inline-action mode. -->
+		<template #icon>
+			<AccountStar v-if="circle.isOwner" :size="20" />
+			<AccountGroupOutline v-else :size="20" />
+		</template>
+		<template #actions>
+			<ActionText v-if="loadingAction">
+				<template #icon>
+					<IconLoading :size="20" />
+				</template>
+				{{ t('contacts', 'Loading …') }}
+			</ActionText>
+			<template v-else>
+				<ActionButton
+					v-if="circle.canManageMembers"
+					:close-after-click="true"
+					@click="addMemberToCircle">
+					<template #icon>
+						<IconCog :size="20" />
+					</template>
+					{{ t('contacts', 'Manage team') }}
+				</ActionButton>
+
+				<!-- copy circle link -->
+				<ActionLink
+					:href="circleUrl"
+					:icon="copyLinkIcon"
+					@click.stop.prevent="copyToClipboard(circleUrl)">
+					{{ copyButtonText }}
+				</ActionLink>
+
+				<!-- leave circle -->
+				<ActionButton
+					v-if="circle.canLeave"
+					@click="confirmLeaveCircle">
+					{{ t('contacts', 'Leave team') }}
+					<template #icon>
+						<ExitToApp :size="16" />
+					</template>
+				</ActionButton>
+
+				<!-- join circle -->
+				<ActionButton
+					v-else-if="!circle.isMember && circle.canJoin"
+					:disabled="loadingJoin"
+					@click="joinCircle">
+					{{ joinButtonTitle }}
+					<template #icon>
+						<LocationEnter :size="16" />
+					</template>
+				</ActionButton>
+
+				<!-- delete circle -->
+				<ActionButton
+					v-if="circle.canDelete"
+					@click="confirmDeleteCircle">
+					<template #icon>
+						<IconDelete :size="20" />
+					</template>
+					{{ t('contacts', 'Delete team') }}
+				</ActionButton>
+			</template>
+		</template>
+
+		<template #counter>
+			<NcCounterBubble
+				v-if="memberCount > 0"
+				:count="memberCount" />
+		</template>
+	</AppNavigationItem>
+</template>
+
+<script>
+import {
+	NcActionButton as ActionButton,
+	NcActionLink as ActionLink,
+	NcActionText as ActionText,
+	NcAppNavigationItem as AppNavigationItem,
+	NcLoadingIcon as IconLoading,
+	NcCounterBubble,
+} from '@nextcloud/vue'
+import AccountGroupOutline from 'vue-material-design-icons/AccountGroupOutline.vue'
+import AccountStar from 'vue-material-design-icons/AccountStarOutline.vue'
+import IconCog from 'vue-material-design-icons/CogOutline.vue'
+import ExitToApp from 'vue-material-design-icons/ExitToApp.vue'
+import LocationEnter from 'vue-material-design-icons/LocationEnter.vue'
+import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
+import CircleActionsMixin from '../../mixins/CircleActionsMixin.js'
+import Circle from '../../models/circle.ts'
+import UserGroup from '../../models/userGroup.ts'
+
+export default {
+	name: 'CircleNavigationItem',
+
+	components: {
+		ActionButton,
+		ActionLink,
+		ActionText,
+		NcCounterBubble,
+		AppNavigationItem,
+		ExitToApp,
+		IconCog,
+		IconDelete,
+		LocationEnter,
+		AccountStar,
+		AccountGroupOutline,
+		IconLoading,
+	},
+
+	mixins: [CircleActionsMixin],
+
+	props: {
+		circle: {
+			type: [Circle, UserGroup],
+			required: true,
+		},
+	},
+
+	computed: {
+		memberCount() {
+			return this.circle.populationInherited || 0
+		},
+	},
+}
+</script>
