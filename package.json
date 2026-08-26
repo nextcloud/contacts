@@ -1,6 +1,6 @@
 {
   "name": "contacts",
-  "version": "8.9.0-dev.1",
+  "version": "8.10.0-dev.0",
   "private": true,
   "description": "A contacts app for Nextcloud. Easily sync contacts from various devices, share and edit them online.",
   "keywords": [
