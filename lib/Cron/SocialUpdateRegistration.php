@@ -19,7 +19,7 @@ use OCP\IUser;
 use OCP\IUserManager;
 
 class SocialUpdateRegistration extends TimedJob {
-	private $appName;
+	private string $appName;
 
 	/**
 	 * RegisterSocialUpdate constructor.
