@@ -157,6 +157,56 @@
 				:route-state="routeState"
 				:group="group"
 				@update-route-state="updateRouteState" />
+
+			<template v-if="isTeamManagementEnabled">
+				<!-- Toggle groups ellipsis -->
+				<AppNavigationItem
+					v-if="groupsMenu.length > ELLIPSIS_COUNT"
+					:name="collapseGroupsTitle"
+					class="app-navigation__collapse"
+					icon=""
+					@click="onToggleGroups" />
+
+				<!-- New circle button caption and modal -->
+				<AppNavigationCaption
+					id="newcircle"
+					:name="t('contacts', 'Teams')">
+					<template #actions>
+						<NcActionButton @click="toggleNewCircleModal">
+							<template #icon>
+								<IconAdd :size="20" />
+							</template>
+							{{ t('contacts', 'Create a new team') }}
+						</NcActionButton>
+					</template>
+				</AppNavigationCaption>
+				<NewCircleIntro
+					v-if="isNewCircleModalOpen"
+					:loading="createCircleLoading"
+					@close="closeNewCircleIntro"
+					@submit="createNewCircle" />
+
+				<template v-if="circlesMenu.length > 0">
+					<!-- Circles -->
+					<CircleNavigationItem
+						v-for="circle in ellipsisCirclesMenu"
+						:key="circle.key"
+						:circle="circle"
+						@click="updateRouteState(`circle:${circle.id}`)" />
+
+					<!-- Toggle circles ellipsis -->
+					<AppNavigationItem
+						v-if="circlesMenu.length > ELLIPSIS_COUNT"
+						:name="collapseCirclesTitle"
+						class="app-navigation__collapse"
+						icon=""
+						@click="onToggleCircles" />
+				</template>
+
+				<li class="app-navigation__circle-desc">
+					{{ CIRCLE_DESC }}
+				</li>
+			</template>
 		</template>
 
 		<!-- settings -->
@@ -190,6 +240,7 @@ import {
 	NcAppNavigationCaption as AppNavigationCaption,
 	NcAppNavigationItem as AppNavigationItem,
 	NcLoadingIcon as IconLoading,
+	NcActionButton,
 	NcButton,
 	NcCounterBubble,
 } from '@nextcloud/vue'
@@ -203,13 +254,16 @@ import IconError from 'vue-material-design-icons/AlertCircleOutline.vue'
 import IconAddressBook from 'vue-material-design-icons/BookAccountOutline.vue'
 import Cog from 'vue-material-design-icons/CogOutline.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
+import NewCircleIntro from '../EntityPicker/NewCircleIntro.vue'
 import IconRecentlyContacted from '../Icons/IconRecentlyContacted.vue'
+import CircleNavigationItem from './CircleNavigationItem.vue'
 import ContactsSettings from './ContactsSettings.vue'
 import GroupNavigationItem from './GroupNavigationItem.vue'
 import SettingsNewAddressbook from './Settings/SettingsNewAddressbook.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
-import { CHART_ALL_CONTACTS, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ROUTE_ADDRESSBOOK } from '../../models/constants.ts'
+import { CHART_ALL_CONTACTS, CIRCLE_DESC, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ROUTE_ADDRESSBOOK } from '../../models/constants.ts'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled.js'
+import isTeamManagementEnabled from '../../services/isTeamManagementEnabled.js'
 import useUserGroupStore from '../../store/userGroup.ts'
 
 export default {
@@ -218,10 +272,12 @@ export default {
 	components: {
 		ActionInput,
 		ActionText,
+		NcActionButton,
 		AppNavigation,
 		NcCounterBubble,
 		AppNavigationItem,
 		AppNavigationCaption,
+		CircleNavigationItem,
 		Cog,
 		ContactsSettings,
 		GroupNavigationItem,
@@ -234,6 +290,7 @@ export default {
 		IconError,
 		IconLoading,
 		IconRecentlyContacted,
+		NewCircleIntro,
 		NcButton,
 		SettingsNewAddressbook,
 	},
@@ -249,6 +306,7 @@ export default {
 
 	data() {
 		return {
+			CIRCLE_DESC,
 			CONTACTS_SETTINGS,
 			ELLIPSIS_COUNT,
 			GROUP_ALL_CONTACTS,
@@ -261,9 +319,16 @@ export default {
 			isNewGroupMenuOpen: false,
 			createGroupError: null,
 
+			// create circle
+			isNewCircleModalOpen: false,
+			createCircleLoading: false,
+			createCircleError: null,
+
+			isTeamManagementEnabled,
 			isContactsInteractionEnabled,
 
 			collapsedGroups: true,
+			collapsedCircles: true,
 
 			showSettings: false,
 
@@ -279,6 +344,10 @@ export default {
 
 		enabledAddressbooks() {
 			return this.addressbooks.filter((ab) => ab.enabled)
+		},
+
+		circles() {
+			return this.$store.getters.getCircles
 		},
 
 		contacts() {
@@ -339,10 +408,45 @@ export default {
 		},
 
 		ellipsisGroupsMenu() {
-			if (this.collapsedGroups) {
+			// If circles is not enabled, we show everything
+			if (this.isTeamManagementEnabled && this.collapsedGroups) {
 				return this.groupsMenu.slice(0, ELLIPSIS_COUNT)
 			}
 			return this.groupsMenu
+		},
+
+		// generate circles menu from the circles store
+		circlesMenu() {
+			const menu = [...(this.circles || []), ...(this.userGroups || [])]
+
+			menu.sort((a, b) => {
+				// If user is member of a and b, sort by level
+				if (a?.initiator?.level !== b?.initiator?.level && a?.initiator?.level && b?.initiator?.level) {
+					return b.initiator.level - a.initiator.level
+				}
+
+				// If user is member of a and not b, sort a first
+				if (a.initiator && !b.initiator) {
+					return -1
+				}
+
+				// If user is member of b and not a, sort b first
+				if (!a.initiator && b.initiator) {
+					return 1
+				}
+
+				// Else we sort by name
+				return naturalCompare(a.toString(), b.toString(), { caseInsensitive: true })
+			})
+
+			return menu
+		},
+
+		ellipsisCirclesMenu() {
+			if (this.collapsedCircles) {
+				return this.circlesMenu.slice(0, ELLIPSIS_COUNT)
+			}
+			return this.circlesMenu
 		},
 
 		// Recently contacted data
@@ -355,6 +459,12 @@ export default {
 			return this.collapsedGroups
 				? t('contacts', 'Show all groups')
 				: t('contacts', 'Collapse groups')
+		},
+
+		collapseCirclesTitle() {
+			return this.collapsedCircles
+				? t('contacts', 'Show all teams')
+				: t('contacts', 'Collapse teams')
 		},
 
 		...mapStores(useUserGroupStore),
@@ -403,6 +513,48 @@ export default {
 			this.collapsedGroups = !this.collapsedGroups
 		},
 
+		onToggleCircles() {
+			this.collapsedCircles = !this.collapsedCircles
+		},
+
+		toggleNewCircleModal() {
+			this.isNewCircleModalOpen = true
+		},
+
+		async createNewCircle(circleName, isPersonal, isLocal) {
+			this.logger.debug('Creating new team', { circleName })
+
+			this.createCircleLoading = true
+
+			// Check if already exists
+			if (this.circles.find((circle) => circle.name === circleName)) {
+				this.createCircleError = t('contacts', 'This team already exists')
+				return
+			}
+			this.createCircleError = null
+
+			try {
+				const circle = await this.$store.dispatch('createCircle', { circleName, isPersonal, isLocal })
+				this.closeNewCircleIntro()
+
+				// Select group
+				this.$router.push({
+					name: 'circle',
+					params: {
+						selectedCircle: circle.id,
+					},
+				})
+			} catch (error) {
+				showError(t('contacts', 'An error happened during the creation of the team'))
+			} finally {
+				this.createCircleLoading = false
+			}
+		},
+
+		closeNewCircleIntro() {
+			this.isNewCircleModalOpen = false
+		},
+
 		/**
 		 * Shows the contacts settings
 		 */
@@ -424,12 +576,18 @@ $caption-padding: 22px;
 	padding: calc(var(--default-grid-baseline, 4px) * 2);
 }
 
-#newgroup {
+#newgroup,
+#newcircle {
 	margin-top: $caption-padding;
 
 	:deep(a) {
 		color: var(--color-text-maxcontrast)
 	}
+}
+
+.app-navigation__circle-desc {
+	margin: var(--default-grid-baseline, 4px) calc(var(--default-grid-baseline, 4px) * 2);
+	color: var(--color-text-maxcontrast);
 }
 
 .app-navigation__collapse :deep(a) {
