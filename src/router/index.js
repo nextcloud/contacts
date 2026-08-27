@@ -6,7 +6,7 @@
 import { generateUrl } from '@nextcloud/router'
 import { createRouter, createWebHistory } from 'vue-router'
 import Contacts from '../views/Contacts.vue'
-import { GROUP_ALL_CONTACTS, ROUTE_ADDRESSBOOK, ROUTE_CHART, ROUTE_CIRCLE, ROUTE_USER_GROUP } from '../models/constants.ts'
+import { GROUP_ALL_CONTACTS, GROUP_ALL_OCM_INVITES, ROUTE_ADDRESSBOOK, ROUTE_ALL_OCM_INVITES, ROUTE_CHART, ROUTE_CIRCLE, ROUTE_INVITE_ACCEPT_DIALOG, ROUTE_NAME_ALL_OCM_INVITES, ROUTE_NAME_INVITE_ACCEPT_DIALOG, ROUTE_NAME_OCM_INVITE, ROUTE_USER_GROUP } from '../models/constants.ts'
 import { generateContactKey } from '../models/contact.js'
 import isTeamManagementEnabled from '../services/isTeamManagementEnabled.js'
 
@@ -29,6 +29,23 @@ export default createRouter({
 				params: { selectedGroup: t('contacts', 'All contacts') },
 			},
 			children: [
+				{
+					path: `/${ROUTE_ALL_OCM_INVITES}`,
+					name: ROUTE_NAME_ALL_OCM_INVITES,
+					component: Contacts,
+					meta: { selectedGroup: GROUP_ALL_OCM_INVITES },
+				},
+				{
+					path: `/${ROUTE_ALL_OCM_INVITES}/:selectedInvite`,
+					name: ROUTE_NAME_OCM_INVITE,
+					component: Contacts,
+					meta: { selectedGroup: GROUP_ALL_OCM_INVITES },
+				},
+				{
+					path: ROUTE_INVITE_ACCEPT_DIALOG,
+					name: ROUTE_NAME_INVITE_ACCEPT_DIALOG,
+					component: Contacts,
+				},
 				{
 					path: `/${ROUTE_CHART}/:selectedChart`,
 					name: 'chart',
