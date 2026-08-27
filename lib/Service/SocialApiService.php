@@ -32,7 +32,7 @@ class SocialApiService {
 		'image/jpeg',
 		'image/gif'
 	];
-	private $appName;
+	private string $appName;
 
 	public function __construct(
 		private CompositeSocialProvider $socialProvider,

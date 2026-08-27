@@ -13,19 +13,16 @@ use OCP\Http\Client\IClientService;
 use Psr\Log\LoggerInterface;
 
 class TelegramProvider implements ISocialProvider {
-	/** @var IClient */
-	private $httpClient;
-
-	/** @var LoggerInterface */
-	private $logger;
+	private IClient $httpClient;
 
 	/** @var string */
 	public $name = 'telegram';
 
-	public function __construct(IClientService $httpClient,
-		LoggerInterface $logger) {
+	public function __construct(
+		IClientService $httpClient,
+		private LoggerInterface $logger,
+	) {
 		$this->httpClient = $httpClient->newClient();
-		$this->logger = $logger;
 	}
 
 	/**

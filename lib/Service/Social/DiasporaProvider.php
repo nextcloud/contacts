@@ -11,11 +11,9 @@ use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 
 class DiasporaProvider implements ISocialProvider {
-	/** @var IClient */
-	private $httpClient;
+	private IClient $httpClient;
 
-	/** @var bool */
-	private $looping;
+	private bool $looping;
 
 	/** @var string */
 	public $name = 'diaspora';
