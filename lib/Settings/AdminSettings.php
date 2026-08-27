@@ -8,6 +8,7 @@
 namespace OCA\Contacts\Settings;
 
 use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\Service\FederatedInvitesService;
 use OCA\Contacts\Service\SocialApiService;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
@@ -17,15 +18,14 @@ class AdminSettings implements ISettings {
 	public function __construct(
 		private IInitialState $initialState,
 		private SocialApiService $socialApiService,
+		private FederatedInvitesService $federatedInvitesService,
 	) {
 	}
 
-	/**
-	 * @return TemplateResponse
-	 */
 	#[\Override]
 	public function getForm() {
 		$this->initialState->provideInitialState('allowSocialSync', $this->socialApiService->syncAllowedByAdmin());
+		$this->initialState->provideInitialState('ocmInvitesConfig', $this->federatedInvitesService->getOcmInvitesConfig());
 		return new TemplateResponse(Application::APP_ID, 'settings/admin');
 	}
 

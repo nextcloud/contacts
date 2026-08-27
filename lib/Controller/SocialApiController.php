@@ -30,7 +30,6 @@ class SocialApiController extends ApiController {
 		$this->appName = Application::APP_ID;
 	}
 
-
 	/**
 	 * update appconfig (admin setting)
 	 *
@@ -72,7 +71,6 @@ class SocialApiController extends ApiController {
 		return new JSONResponse([], Http::STATUS_OK);
 	}
 
-
 	/**
 	 * @NoAdminRequired
 	 *
@@ -91,7 +89,6 @@ class SocialApiController extends ApiController {
 		return $this->config->getUserValue($userId, $this->appName, $key, 'null');
 	}
 
-
 	/**
 	 * @NoAdminRequired
 	 *
@@ -102,7 +99,6 @@ class SocialApiController extends ApiController {
 	public function getSupportedNetworks() : array {
 		return $this->socialApiService->getSupportedNetworks();
 	}
-
 
 	/**
 	 * @NoAdminRequired

@@ -5,7 +5,6 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-
 namespace OCA\Contacts\Service\Social;
 
 use ChristophWurst\Nextcloud\Testing\TestCase;
@@ -140,7 +139,6 @@ class InstagramProviderTest extends TestCase {
 					return $this->response;
 				});
 		}
-
 
 		$result = $this->provider->getImageUrls($contact);
 		$this->assertEquals($imgs, $result);
