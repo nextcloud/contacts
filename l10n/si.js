@@ -8,8 +8,9 @@ OC.L10N.register(
     "Cancel" : "අවලංගු කරන්න",
     "First name" : "මුල් නම",
     "Last name" : "අවසන් නම",
-    "Invalid image" : "වලංගු නොවන පින්තූරයකි",
     "Save" : "සුරකින්න",
+    "Close" : "වසන්න",
+    "Invalid image" : "වලංගු නොවන පින්තූරයකි",
     "Name" : "නම",
     "Company" : "සමාගම",
     "Edit profile" : "පැතිකඩ සංස්කරණය",
@@ -20,10 +21,11 @@ OC.L10N.register(
     "Notes" : "සටහන්",
     "Member" : "සාමාජික",
     "_{count} error_::_{count} errors_" : ["දෝෂ {count}","දෝෂ {count}"],
-    "Close" : "වසන්න",
     "User" : "පරිශීලක",
     "Group" : "සමූහය",
     "Email" : "විද්‍යුත් තැපෑල",
+    "Admin" : "පරිපාලක",
+    "Owner" : "හිමිකරු",
     "Detailed name" : "විස්තරාත්මක නම",
     "Additional names" : "අමතර නම්",
     "Nickname" : "අන්වර්ථ නාමය",
@@ -47,8 +49,6 @@ OC.L10N.register(
     "Mother" : "මව",
     "Father" : "පියා",
     "Unknown" : "නොදන්නා",
-    "Select Date" : "දිනය තෝරන්න",
-    "Admin" : "පරිපාලක",
-    "Owner" : "හිමිකරු"
+    "Select Date" : "දිනය තෝරන්න"
 },
 "nplurals=2; plural=(n != 1);");
