@@ -6,8 +6,9 @@
 import { generateUrl } from '@nextcloud/router'
 import { createRouter, createWebHistory } from 'vue-router'
 import Contacts from '../views/Contacts.vue'
-import { GROUP_ALL_CONTACTS, ROUTE_ADDRESSBOOK, ROUTE_CHART, ROUTE_USER_GROUP } from '../models/constants.ts'
+import { GROUP_ALL_CONTACTS, ROUTE_ADDRESSBOOK, ROUTE_CHART, ROUTE_CIRCLE, ROUTE_USER_GROUP } from '../models/constants.ts'
 import { generateContactKey } from '../models/contact.js'
+import isTeamManagementEnabled from '../services/isTeamManagementEnabled.js'
 
 // if index.php is in the url AND we got this far, then it's working:
 // let's keep using index.php in the url
@@ -38,6 +39,15 @@ export default createRouter({
 					name: 'import',
 					component: Contacts,
 				},
+				// The team views depend on the circles store module, which is only
+				// registered when we manage teams ourselves
+				...(isTeamManagementEnabled
+					? [{
+							path: `${ROUTE_CIRCLE}/:selectedCircle`,
+							name: 'circle',
+							component: Contacts,
+						}]
+					: []),
 				{
 					path: ':selectedGroup',
 					name: 'group',

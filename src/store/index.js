@@ -4,7 +4,9 @@
  */
 
 import { Store } from 'vuex'
+import isTeamManagementEnabled from '../services/isTeamManagementEnabled.js'
 import addressbooks from './addressbooks.js'
+import circles from './circles.js'
 import contacts from './contacts.js'
 import groups from './groups.js'
 import importState from './importState.js'
@@ -16,6 +18,11 @@ const modules = {
 	contacts,
 	groups,
 	importState,
+}
+
+// Only register the teams store when we manage teams ourselves
+if (isTeamManagementEnabled) {
+	modules.circles = circles
 }
 
 export default new Store({
