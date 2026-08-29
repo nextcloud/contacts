@@ -204,6 +204,7 @@ OC.L10N.register(
     "Add to {team}" : "Дадаць у {team}",
     "Pending" : "У чаканні",
     "Accept" : "Прыняць",
+    "Send" : "Адправіць",
     "Continue" : "Працягнуць",
     "Select chart …" : "Выберыце дыяграму …",
     "Chart" : "Дыяграма",
