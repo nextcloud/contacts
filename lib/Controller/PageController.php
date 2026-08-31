@@ -9,6 +9,7 @@ namespace OCA\Contacts\Controller;
 
 use OC\App\CompareVersion;
 use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\ConfigLexicon;
 use OCA\Contacts\Service\FederatedInvitesService;
 use OCA\Contacts\Service\GroupSharingService;
 use OCA\Contacts\Service\SocialApiService;
@@ -16,6 +17,7 @@ use OCP\App\IAppManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
+use OCP\IAppConfig;
 use OCP\IConfig;
 use OCP\IRequest;
 use OCP\IUserSession;
@@ -29,6 +31,7 @@ class PageController extends Controller {
 		IRequest $request,
 		private FederatedInvitesService $federatedInvitesService,
 		private IConfig $config,
+		private IAppConfig $appConfig,
 		private IInitialState $initialState,
 		private IFactory $languageFactory,
 		private IUserSession $userSession,
@@ -83,6 +86,10 @@ class PageController extends Controller {
 		$isTalkVersionCompatible = $this->compareVersion->isCompatible($talkVersion ? $talkVersion : '0.0.0', 2);
 		$isOcmInvitesEnabled = $this->federatedInvitesService->isOcmInvitesEnabled();
 		$ocmInvitesConfig = $this->federatedInvitesService->getOcmInvitesConfig();
+		$hideTeamSharedFolderCreation = $this->appConfig->getValueBool(
+			Application::APP_ID,
+			ConfigLexicon::HIDE_TEAM_SHARED_FOLDER_CREATION,
+		);
 
 		$this->initialState->provideInitialState('isGroupSharingEnabled', $isGroupSharingEnabled);
 		$this->initialState->provideInitialState('locales', $locales);
@@ -95,6 +102,7 @@ class PageController extends Controller {
 		$this->initialState->provideInitialState('isTalkEnabled', $isTalkEnabled && $isTalkVersionCompatible);
 		$this->initialState->provideInitialState('isOcmInvitesEnabled', $isOcmInvitesEnabled);
 		$this->initialState->provideInitialState('ocmInvitesConfig', $ocmInvitesConfig);
+		$this->initialState->provideInitialState('hideTeamSharedFolderCreation', $hideTeamSharedFolderCreation);
 
 		Util::addStyle(Application::APP_ID, 'contacts-main');
 		Util::addScript(Application::APP_ID, 'contacts-main');
