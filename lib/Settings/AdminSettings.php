@@ -8,25 +8,17 @@
 namespace OCA\Contacts\Settings;
 
 use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\Service\SocialApiService;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\IConfig;
 use OCP\IInitialStateService;
 use OCP\Settings\ISettings;
 
 class AdminSettings implements ISettings {
-	protected $appName;
-
-	/**
-	 * Admin constructor.
-	 *
-	 * @param IConfig $config
-	 * @param IL10N $l
-	 */
 	public function __construct(
 		private IConfig $config,
 		private IInitialStateService $initialStateService,
 	) {
-		$this->appName = Application::APP_ID;
 	}
 
 	/**
