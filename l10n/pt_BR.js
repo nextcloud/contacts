@@ -17,7 +17,7 @@ OC.L10N.register(
     "This is a copy of an invite sent to you previously by %1$s on %2$s" : "Esta é uma cópia de um convite que lhe foi enviado anteriormente por %1$s em %2$s",
     "Invite already has an email address." : "O destinatário do convite já possui um endereço de e-mail.",
     "An open invite for this email already exists." : "Já existe um convite aberto para este e-mail.",
-    "Could not claim invite for this email; please refresh and try again." : "Não foi possível resgatar o convite para este e-mail; atualize a página e tente novamente.",
+    "Could not claim invite for this email; please refresh and try again." : "Não foi possível usar o convite para este e-mail; atualize a página e tente novamente.",
     "Could not revert invite after delivery failure. Please refresh and try again." : "Não foi possível reverter o convite após uma falha na entrega. Atualize a página e tente novamente.",
     "OCM invites are disabled." : "Os convites OCM estão desativados.",
     "Recipient email address is invalid." : "O endereço de e-mail do destinatário é inválido.",
