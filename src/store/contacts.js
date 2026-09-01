@@ -26,23 +26,6 @@ import validate from '../services/validate.js'
 ICAL.design.vcard3.param.type.multiValueSeparateDQuote = true
 ICAL.design.vcard.param.type.multiValueSeparateDQuote = true
 
-function sortData(a, b) {
-	const nameA = typeof a.value === 'string'
-		? a.value.toUpperCase() // ignore upper and lowercase
-		: a.value.toUnixTime() // only other sorting we support is a vCardTime
-	const nameB = typeof b.value === 'string'
-		? b.value.toUpperCase() // ignore upper and lowercase
-		: b.value.toUnixTime() // only other sorting we support is a vCardTime
-
-	const score = nameA.localeCompare
-		? nameA.localeCompare(nameB)
-		: nameB - nameA
-	// if equal, fallback to the key
-	return score !== 0
-		? score
-		: a.key.localeCompare(b.key)
-}
-
 function sortByFavoriteAndName(a, b) {
 	// favorites always on top
 	if (a.favorite !== b.favorite) {
@@ -151,31 +134,13 @@ const mutations = {
 				favorite: contact.favorite,
 			}
 
-			// Not using sort, splice has far better performances
-			// https://jsperf.com/sort-vs-splice-in-array
-			for (let i = 0, len = state.sortedContacts.length; i < len; i++) {
-				const other = state.sortedContacts[i]
-
-				// favorite comes before non-favorite
-				const differentFavStatus = other.favorite !== sortedContact.favorite
-				const otherShouldComeFirst = differentFavStatus && other.favorite
-				const sameFavAndSortedFirst = !differentFavStatus && sortData(other, sortedContact) >= 0
-
-				if (otherShouldComeFirst || sameFavAndSortedFirst) {
-					continue
-				}
-
-				if (i + 1 === len) {
-					state.sortedContacts.push(sortedContact)
-				} else {
-					state.sortedContacts.splice(i, 0, sortedContact)
-				}
-				break
-			}
-
-			if (state.sortedContacts.length === 0) {
-				state.sortedContacts.push(sortedContact)
-			}
+			// Keep insertion linear without re-sorting the whole contacts list.
+			const insertionIndex = state.sortedContacts.findIndex((other) => sortByFavoriteAndName(sortedContact, other) < 0)
+			state.sortedContacts.splice(
+				insertionIndex === -1 ? state.sortedContacts.length : insertionIndex,
+				0,
+				sortedContact,
+			)
 
 			state.contacts[contact.key] = contact
 		} else {
