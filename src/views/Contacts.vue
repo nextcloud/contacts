@@ -58,7 +58,7 @@
 			v-else-if="selectedChart"
 			:contacts-list="contacts" />
 		<OcmInvitesContent
-			v-if="isInvitesView"
+			v-else-if="isInvitesView"
 			:invites-list="invitesList"
 			:invite-actions-enabled="!!defaultAddressbook"
 			:error-message="ocmInvitesLoadError"
