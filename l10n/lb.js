@@ -18,6 +18,7 @@ OC.L10N.register(
     "Folder" : "Folder",
     "Edit" : "Beaarbechten",
     "Create" : "Erstellen",
+    "Confirm" : "Bestätegen",
     "Invalid image" : "Ongülteg d'Bild",
     "Name" : "Numm",
     "Title" : "Titel",
@@ -27,6 +28,7 @@ OC.L10N.register(
     "Pending" : "Ausstoend",
     "Continue" : "Weider",
     "None" : "Keng",
+    "Select option" : "Optioun auswielen",
     "Notes" : "Notizen",
     "Member" : "Member",
     "Import" : "Importéieren",
@@ -38,6 +40,7 @@ OC.L10N.register(
     "Owner" : "Besëtzer",
     "Invites" : "Invitatiounen",
     "Privacy" : "Dateschutz",
+    "Users" : "Benotzer",
     "Additional names" : "Weider Nimm",
     "Prefix" : "Prefix",
     "Nickname" : "Spëtznumm",
@@ -56,6 +59,7 @@ OC.L10N.register(
     "Pager" : "Pager",
     "Voice" : "Voice",
     "Relative" : "Relativ",
+    "Assistant" : "Assistent",
     "Unknown" : "Onbekannt"
 },
 "nplurals=2; plural=(n != 1);");

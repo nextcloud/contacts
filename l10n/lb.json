@@ -16,6 +16,7 @@
     "Folder" : "Folder",
     "Edit" : "Beaarbechten",
     "Create" : "Erstellen",
+    "Confirm" : "Bestätegen",
     "Invalid image" : "Ongülteg d'Bild",
     "Name" : "Numm",
     "Title" : "Titel",
@@ -25,6 +26,7 @@
     "Pending" : "Ausstoend",
     "Continue" : "Weider",
     "None" : "Keng",
+    "Select option" : "Optioun auswielen",
     "Notes" : "Notizen",
     "Member" : "Member",
     "Import" : "Importéieren",
@@ -36,6 +38,7 @@
     "Owner" : "Besëtzer",
     "Invites" : "Invitatiounen",
     "Privacy" : "Dateschutz",
+    "Users" : "Benotzer",
     "Additional names" : "Weider Nimm",
     "Prefix" : "Prefix",
     "Nickname" : "Spëtznumm",
@@ -54,6 +57,7 @@
     "Pager" : "Pager",
     "Voice" : "Voice",
     "Relative" : "Relativ",
+    "Assistant" : "Assistent",
     "Unknown" : "Onbekannt"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }
