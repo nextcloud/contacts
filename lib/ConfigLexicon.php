@@ -33,6 +33,7 @@ class ConfigLexicon implements ILexicon {
 	public const FEDERATIONS_CACHE = 'federations_cache';
 	public const FEDERATIONS_CACHE_EXPIRES = 'expires';
 	public const FEDERATIONS_CACHE_DELTA_EXPIRES = 'delta_expires';
+	public const HIDE_TEAM_SHARED_FOLDER_CREATION = 'hide_team_shared_folder_creation';
 
 	#[\Override]
 	public function getStrictness(): Strictness {
@@ -105,6 +106,13 @@ class ConfigLexicon implements ILexicon {
 				ValueType::INT,
 				defaultRaw: 0,
 				definition: 'Federations cache update (delta) expiration time.',
+				lazy: true,
+			),
+			new Entry(
+				self::HIDE_TEAM_SHARED_FOLDER_CREATION,
+				ValueType::BOOL,
+				defaultRaw: false,
+				definition: 'Hide the team-page button that creates a personal folder and shares it with the team.',
 				lazy: true,
 			),
 		];

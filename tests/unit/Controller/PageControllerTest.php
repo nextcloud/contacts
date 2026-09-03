@@ -10,12 +10,14 @@ namespace OCA\Contacts\Controller;
 use ChristophWurst\Nextcloud\Testing\TestCase;
 use OC\App\CompareVersion;
 use OCA\Contacts\AppInfo\Application;
+use OCA\Contacts\ConfigLexicon;
 use OCA\Contacts\Service\FederatedInvitesService;
 use OCA\Contacts\Service\GroupSharingService;
 use OCA\Contacts\Service\SocialApiService;
 use OCP\App\IAppManager;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
+use OCP\IAppConfig;
 use OCP\IConfig;
 use OCP\IRequest;
 use OCP\IUser;
@@ -32,6 +34,9 @@ class PageControllerTest extends TestCase {
 
 	/** @var IConfig|MockObject */
 	private $config;
+
+	/** @var IAppConfig|MockObject */
+	private $appConfig;
 
 	/** @var IInitialState|MockObject */
 	private $initialStateService;
@@ -59,6 +64,7 @@ class PageControllerTest extends TestCase {
 
 		$this->request = $this->createMock(IRequest::class);
 		$this->config = $this->createMock(IConfig::class);
+		$this->appConfig = $this->createMock(IAppConfig::class);
 		$this->initialStateService = $this->createMock(IInitialState::class);
 		$this->languageFactory = $this->createMock(IFactory::class);
 		$this->userSession = $this->createMock(IUserSession::class);
@@ -76,6 +82,7 @@ class PageControllerTest extends TestCase {
 			$this->request,
 			$this->federatedInvitesService,
 			$this->config,
+			$this->appConfig,
 			$this->initialStateService,
 			$this->languageFactory,
 			$this->userSession,
@@ -97,6 +104,47 @@ class PageControllerTest extends TestCase {
 		$this->assertEquals('main', $result->getTemplateName());
 		$this->assertEquals('user', $result->getRenderAs());
 		$this->assertTrue($result instanceof TemplateResponse);
+	}
+
+	public function testIndexProvidesHideTeamSharedFolderCreation() {
+		$user = $this->createMock(IUser::class);
+		$user->method('getUid')->willReturn('mrstest');
+		$this->userSession->method('getUser')->willReturn($user);
+
+		$this->appConfig->method('getValueBool')
+			->willReturnCallback(function (string $app, string $key, bool $default = false) {
+				$this->assertSame(Application::APP_ID, $app);
+				if ($key === ConfigLexicon::HIDE_TEAM_SHARED_FOLDER_CREATION) {
+					return true;
+				}
+				return $default;
+			});
+
+		$states = [];
+		$this->initialStateService->method('provideInitialState')
+			->willReturnCallback(function (string $key, mixed $value) use (&$states): void {
+				$states[$key] = $value;
+			});
+
+		$this->controller->index();
+
+		$this->assertTrue($states['hideTeamSharedFolderCreation']);
+	}
+
+	public function testIndexHideTeamSharedFolderCreationDefaultsToFalse() {
+		$user = $this->createMock(IUser::class);
+		$user->method('getUid')->willReturn('mrstest');
+		$this->userSession->method('getUser')->willReturn($user);
+
+		$states = [];
+		$this->initialStateService->method('provideInitialState')
+			->willReturnCallback(function (string $key, mixed $value) use (&$states): void {
+				$states[$key] = $value;
+			});
+
+		$this->controller->index();
+
+		$this->assertFalse($states['hideTeamSharedFolderCreation']);
 	}
 
 	public static function teamManagementDataProvider(): array {
