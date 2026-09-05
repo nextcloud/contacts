@@ -102,12 +102,12 @@ class ImportController extends OCSController {
 		foreach ($vcfLines as $line) {
 			$line = rtrim($line, "\r");
 
-			if ($line === 'BEGIN:VCARD') {
+			if (strtoupper($line) === 'BEGIN:VCARD') {
 				$currentContact = [$line];
 				continue;
 			}
 
-			if ($line === 'END:VCARD') {
+			if (strtoupper($line) === 'END:VCARD') {
 				$currentContact[] = $line;
 				$contacts[] = [
 					'uid' => $currentContactUid,
@@ -122,8 +122,8 @@ class ImportController extends OCSController {
 				continue;
 			}
 
-			if (str_starts_with($line, self::UID_PREFIX)) {
-				$currentContactUid = substr($line, strlen(self::UID_PREFIX));
+			if (str_starts_with(strtoupper($line), self::UID_PREFIX)) {
+				$currentContactUid = trim(substr($line, strlen(self::UID_PREFIX)));
 			}
 
 			$currentContact[] = $line;
