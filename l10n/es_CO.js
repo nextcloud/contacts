@@ -27,6 +27,7 @@ OC.L10N.register(
     "Add to favorites" : "Agregar a tus favoritos",
     "No results" : "No hay resultados",
     "Pending" : "Pendiente",
+    "Continue" : "Continuar",
     "None" : "Ninguno",
     "Notes" : "Notas",
     "Member" : "Miembro",

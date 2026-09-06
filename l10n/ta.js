@@ -16,6 +16,8 @@ OC.L10N.register(
     "Title" : "தலைப்பு",
     "Add to favorites" : "Add to favorites",
     "Pending" : "நிலுவையிலுள்ள",
+    "Label" : "Label",
+    "Continue" : "Continue",
     "None" : "ஒன்றுமில்லை",
     "Notes" : "குறிப்புகள்",
     "Import" : "இறக்குமதி",

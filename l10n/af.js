@@ -32,6 +32,8 @@ OC.L10N.register(
     "Remove from favorites" : "Verwyder uit gunstelinge",
     "Add to favorites" : "Voeg by gunstelinge",
     "Pending" : "Hangend",
+    "Label" : "Etiket",
+    "Created" : "Geskep",
     "Select type" : "Kies tipe",
     "None" : "Geen",
     "Select option" : "Kies opsie",

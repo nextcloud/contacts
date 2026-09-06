@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace OCA\Contacts\Cron;
 
 use OCA\Contacts\AppInfo\Application;
-
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\BackgroundJob\IJobList;
 use OCP\BackgroundJob\TimedJob;
@@ -19,7 +18,7 @@ use OCP\IUser;
 use OCP\IUserManager;
 
 class SocialUpdateRegistration extends TimedJob {
-	private $appName;
+	private string $appName;
 
 	/**
 	 * RegisterSocialUpdate constructor.

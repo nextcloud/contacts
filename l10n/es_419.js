@@ -30,6 +30,7 @@ OC.L10N.register(
     "Groups" : "Grupos",
     "No results" : "No hay resultados",
     "Pending" : "Pendiente",
+    "Created" : "Creado",
     "None" : "Ninguno",
     "Notes" : "Notas",
     "Member" : "Miembro",

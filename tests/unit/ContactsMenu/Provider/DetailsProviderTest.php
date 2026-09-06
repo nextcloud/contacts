@@ -139,7 +139,6 @@ class DetailsProviderTest extends Base {
 		$iconUrl = 'core/img/actions/info.svg';
 		$resultUri = "$domain/index.php/apps/contacts/direct/contact/ZTNhNzE2MTQtYzYwMi00ZWI1LTk5OTQtNDdlZWM1NTE1NDJiLcOpfmNvbnRhY3RzLTE=";
 
-
 		$entry->expects($this->exactly(3))
 			->method('getProperty')
 			->will($this->returnValueMap([

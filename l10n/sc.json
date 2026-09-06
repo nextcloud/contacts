@@ -14,6 +14,7 @@
     "There are no contacts in this group" : "Non ddoe at cuntatos in custu grupu",
     "Create contacts" : "Crea cuntatos ",
     "Add contacts" : "Agiunghe cuntatos",
+    "Retry" : "Torra a proare",
     "General" : "Generale",
     "Update avatars from social media" : "Agiorna is avatar de is retes sotziales",
     "Address books" : "Rubricas",
@@ -70,6 +71,7 @@
     "Upload a new picture" : "Càrriga·nche un'immàgine noa",
     "Choose from Files" : "Sèbera dae Archìvios",
     "Download picture" : "Iscàrriga immàgine",
+    "Clone contact" : "Clona cuntatu",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Custu cuntatu est in modalidade de letura sola. Non tenes su permissu pro modificare custu cuntatu.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Su cuntatu chi ses proende a modificare est cambiadu. Pro praghere, agiorna tue etotu su cuntatu. Cale si siat àtera modìfica at a èssere iscartada. ",
     "Address book" : "Rubrica",
@@ -85,10 +87,8 @@
     "View profile" : "Ammustra su profilu",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Custu cuntatu fiat dannegiadu e ddoe at àpidu una curretzione. Pro praghere, revisiona su cuntenutu e incarca inoghe pro ddu sarvare.",
     "Edit profile" : "Modìfica profilu",
-    "Clone contact" : "Clona cuntatu",
     "Generate QR Code" : "Gènera unu còdighe QR",
     "Contact vCard as QR code" : "vCard de cuntatu comente còdighe QR",
-    "Pick an address book" : "Sèbera una rubrica",
     "Select address book" : "Seletziona una rubrica",
     "Remove from favorites" : "Boga•nche•ddu dae preferidos",
     "Add to favorites" : "Agiunghe a is preferidos",
@@ -114,6 +114,8 @@
     "Unable to get the results" : "No faghet a otènnere resurtados",
     "Some members could not be added" : "B'at membros chi no si podent agiùnghere",
     "Pending" : "In suspesu",
+    "Send" : "Imbia",
+    "Continue" : "Sighi",
     "Chart" : "Gràficu",
     "Select type" : "Sèbera genia",
     "Add contact in group" : "Agiunghe cuntatu a su grupu",
@@ -209,6 +211,7 @@
     "Spoken languages" : "Limbas faeddadas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["no at fatu a lèghere {failed} ","{failed} contacts failed to be read"],
     "Unable to delete contact" : "Non faghet a cantzellare su cuntatu",
+    "Pick an address book" : "Sèbera una rubrica",
     "Select Date" : "Seletziona data"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

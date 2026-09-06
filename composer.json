@@ -21,6 +21,8 @@
 		"cs:check": "php-cs-fixer fix --dry-run --diff",
 		"cs:check:force": "PHP_CS_FIXER_IGNORE_ENV=1 php-cs-fixer fix --dry-run --diff",
 		"lint": "find . -name \\*.php -not -path './vendor/*' -print0 | xargs -0 -n1 php -l",
+		"rector:apply": "rector && composer cs:fix",
+		"rector:check": "rector --dry-run",
 		"test:unit": "phpunit -c phpunit.xml --fail-on-warning",
 		"test:unit:coverage": "phpunit --coverage-clover coverage.xml -c phpunit.xml --fail-on-warning ",
 		"test:unit:dev": "phpunit -c phpunit.xml --fail-on-warning --stop-on-error --stop-on-failure",

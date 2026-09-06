@@ -10,7 +10,6 @@ declare(strict_types=1);
 namespace OCA\Contacts\Cron;
 
 use OCA\Contacts\Service\SocialApiService;
-
 use OCP\AppFramework\Http;
 use OCP\AppFramework\Utility\ITimeFactory;
 use OCP\BackgroundJob\IJobList;

@@ -61,6 +61,7 @@ OC.L10N.register(
     "Upload a new picture" : "העלאת תמונה חדשה",
     "Choose from Files" : "בחר מתוך קבצים",
     "Download picture" : "הורדת תמונה",
+    "Clone contact" : "שכפול איש קשר",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "איש קשר זה הוא במצב קריאה בלבד. אין לך הרשאה לערוך את איש הקשר הזה.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "איש הקשר שניסית לערוך כבר נערך. נא לרענן את איש הקשר ידנית. כל העריכות הבאות לא תחולנה.",
     "Address book" : "ספר כתובות",
@@ -75,9 +76,7 @@ OC.L10N.register(
     "Company" : "חברה",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "איש קשר זה נפגם וקיבל תיקון. נא לסקור את התוכן וללחוץ כדי לשמור אותו.",
     "Edit profile" : "עריכת פרופיל",
-    "Clone contact" : "שכפול איש קשר",
     "Generate QR Code" : "יצירת קוד QR",
-    "Pick an address book" : "נא לבחור ספר כתובות",
     "Select address book" : "בחירת ספר כתובות",
     "Move" : "Move",
     "Remove from favorites" : "הסרה מהמועדפים",
@@ -88,6 +87,7 @@ OC.L10N.register(
     "No results" : "אין תוצאות",
     "Add {type}" : "הוסף {type}",
     "Pending" : "בהמתנה",
+    "Created" : "מועד היצירה",
     "Chart" : "תרשים",
     "Select type" : "בחירת סוג",
     "Add contact in group" : "הוספת איש קשר בקבוצה",
@@ -169,6 +169,7 @@ OC.L10N.register(
     "Spoken languages" : "שפות מדוברות",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["הקריאה של איש קשר אחד נכשלה","הקריאה של {failed} אנשי קשר נכשלה","הקריאה של {failed} אנשי קשר נכשלה"],
     "Unable to delete contact" : "לא ניתן למחוק איש קשר",
+    "Pick an address book" : "נא לבחור ספר כתובות",
     "Select Date" : "בחירת תאריך"
 },
 "nplurals=3; plural=(n == 1 && n % 1 == 0) ? 0 : (n == 2 && n % 1 == 0) ? 1: 2;");

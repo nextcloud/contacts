@@ -90,6 +90,7 @@ OC.L10N.register(
     "Upload a new picture" : "Cargar una nueva imagen",
     "Choose from Files" : "Elegir desde Archivos",
     "Download picture" : "Descargar imagen",
+    "Clone contact" : "Clonar contacto",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Este contacto está en modo de solo lectura. No tienes permiso para editar este contacto.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "El contacto que intentabas editar ha cambiado. Actualiza manualmente el contacto. Cualquier edición adicional se descartará.",
     "Address book" : "Libreta de direcciones",
@@ -109,10 +110,8 @@ OC.L10N.register(
     "Company" : "Empresa",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Este contacto estaba dañado y se ha corregido. Por favor, revisa el contenido y haz clic aquí para guardarlo.",
     "Edit profile" : "Editar perfil",
-    "Clone contact" : "Clonar contacto",
     "Generate QR Code" : "Generar código QR",
     "Contact vCard as QR code" : "vCard de contacto como código QR",
-    "Pick an address book" : "Elegir una libreta de direcciones",
     "Select address book" : "Seleccionar libreta de direcciones",
     "Remove from favorites" : "Eliminar de favoritos",
     "Add to favorites" : "Agregar a tus favoritos",
@@ -235,6 +234,7 @@ OC.L10N.register(
     "Spoken languages" : "Idiomas hablados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se pudo leer","{failed} contactos no se pudieron leer","{failed} contactos no se pudieron leer"],
     "Unable to delete contact" : "No se pudo eliminar el contacto",
+    "Pick an address book" : "Elegir una libreta de direcciones",
     "Select Date" : "Seleccionar fecha"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

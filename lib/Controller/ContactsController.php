@@ -24,7 +24,6 @@ class ContactsController extends Controller {
 		parent::__construct(Application::APP_ID, $request);
 	}
 
-
 	/**
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
@@ -43,7 +42,6 @@ class ContactsController extends Controller {
 		);
 		return new RedirectResponse($url);
 	}
-
 
 	/**
 	 * @NoAdminRequired

@@ -22,6 +22,7 @@ OC.L10N.register(
     "Remove from favorites" : "Remove from favorites",
     "Add to favorites" : "Add to favorites",
     "Pending" : "Under vegs",
+    "Created" : "Lagd",
     "None" : "Ingen",
     "Notes" : "Notat",
     "Import" : "Importer",

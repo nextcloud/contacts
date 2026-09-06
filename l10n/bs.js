@@ -117,6 +117,7 @@ OC.L10N.register(
     "Upload a new picture" : "Upload a new picture",
     "Choose from Files" : "Choose from Files",
     "Download picture" : "Download picture",
+    "Clone contact" : "Clone contact",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "This contact is in read-only mode. You do not have permission to edit this contact.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded.",
     "Address book" : "Address book",
@@ -137,10 +138,8 @@ OC.L10N.register(
     "Go to talk conversation" : "Go to talk conversation",
     "View profile" : "View profile",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "This contact was broken and received a fix. Please review the content and click here to save it.",
-    "Clone contact" : "Clone contact",
     "Generate QR Code" : "Generate QR Code",
     "Contact vCard as QR code" : "Contact vCard as QR code",
-    "Pick an address book" : "Pick an address book",
     "Select address book" : "Select address book",
     "Media shares with you" : "Media shares with you",
     "Talk conversations with you" : "Talk conversations with you",
@@ -300,6 +299,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "Unable to create team {circleName}",
     "Unable to delete team {circleId}" : "Unable to delete team {circleId}",
     "Unable to delete contact" : "Unable to delete contact",
+    "Pick an address book" : "Pick an address book",
     "Select Date" : "Select Date"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

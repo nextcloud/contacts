@@ -24,7 +24,6 @@ class ContactsControllerTest extends TestCase {
 	/** @var IURLGenerator|MockObject */
 	private $urlGenerator;
 
-
 	protected function setUp(): void {
 		parent::setUp();
 

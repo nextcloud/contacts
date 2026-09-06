@@ -114,6 +114,7 @@ OC.L10N.register(
     "Upload a new picture" : "Cargar una nueva imagen",
     "Choose from Files" : "Elegir desde Archivos",
     "Download picture" : "Descargar imagen",
+    "Clone contact" : "Clonar contacto",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "El contacto está en modo de sólo lectura. No tiene permiso para editar este contacto.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "El contacto que intentaba editar ha cambiado. Por favor, actualice el contacto manualmente. Cualquier otra edición será descartada.",
     "Address book" : "Libreta de direcciones",
@@ -134,10 +135,8 @@ OC.L10N.register(
     "Go to talk conversation" : "Ir a la conversación de Talk",
     "View profile" : "Ver perfil",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Este contacto estaba dañado y se ha reparado. Por favor, revise el contenido y haga clic aquí para guardarlo.",
-    "Clone contact" : "Clonar contacto",
     "Generate QR Code" : "Generar código QR",
     "Contact vCard as QR code" : "vCard de contacto como código QR",
-    "Pick an address book" : "Elegir una libreta de direcciones",
     "Select address book" : "Seleccionar una libreta de direcciones",
     "Media shares with you" : "Multimedia compartido con Ud.",
     "Talk conversations with you" : "Conversaciones Talk con Ud.",
@@ -290,6 +289,7 @@ OC.L10N.register(
     "Unable to create team {circleName}" : "No se pudo crear el equipo {circleName}",
     "Unable to delete team {circleId}" : "No se pudo eliminar el equipo {circleId}",
     "Unable to delete contact" : "No se pudo eliminar el contacto",
+    "Pick an address book" : "Elegir una libreta de direcciones",
     "Select Date" : "Seleccionar fecha"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

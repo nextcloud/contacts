@@ -61,6 +61,7 @@ OC.L10N.register(
     "Upload a new picture" : "Tải lên một ảnh mới",
     "Choose from Files" : "Chọn từ Tệp",
     "Download picture" : "Tải xuống hình ảnh",
+    "Clone contact" : "Liên hệ nhân bản",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Liên hệ này đang trong chế độ chỉ đọc. Bạn không có quyền để sửa đổi liên hệ này.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Liên hệ bạn cố gắng sửa đổi đã thay đổi. Vui lòng làm mới thủ công liên hệ này. Bất cứ sửa đổi nào xa hơn sẽ bị loại bỏ. ",
     "Address book" : "Sổ địa chỉ",
@@ -74,9 +75,7 @@ OC.L10N.register(
     "Title" : "Tiêu đề",
     "Company" : "Công ty",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Liên hệ này đã bị lỗi và đã được sửa lại. Vui lòng kiểm tra lại nội dung và bấm vào đây để lưu lại",
-    "Clone contact" : "Liên hệ nhân bản",
     "Generate QR Code" : "Tạo lập mã QR",
-    "Pick an address book" : "Chọn một sổ địa chỉ",
     "Select address book" : "Chọn sổ địa chỉ",
     "Move" : "Move",
     "Remove from favorites" : "Xóa khỏi ưa thích",
@@ -87,6 +86,7 @@ OC.L10N.register(
     "No results" : "Không có kết quả",
     "Add {type}" : "Thêm {type}",
     "Pending" : "Đang dừng",
+    "Created" : "Đã tạo",
     "Select type" : "Chọn loại",
     "Add contact in group" : "Thêm liên hệ vào nhóm",
     "None" : "Không có",
@@ -167,6 +167,7 @@ OC.L10N.register(
     "Spoken languages" : "Ngôn ngữ có thể nói",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} liên hệ không thể đọc được"],
     "Unable to delete contact" : "Không thể xoá liên hệ",
+    "Pick an address book" : "Chọn một sổ địa chỉ",
     "Select Date" : "Chọn ngày"
 },
 "nplurals=1; plural=0;");

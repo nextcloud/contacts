@@ -49,6 +49,7 @@ OC.L10N.register(
     "Add to favorites" : "Shtoje tek të parapëlqyerat",
     "No results" : "Asnjë rezultat",
     "Pending" : "Në Pritje të Konfirmimit",
+    "Label" : "Etiketa.",
     "Select type" : "Zgjidhni llojin",
     "Add contact in group" : "Shto kontaktin në grup",
     "None" : "Asnjë",

@@ -11,6 +11,7 @@
 <script>
 import { NcAppContent as AppContent } from '@nextcloud/vue'
 import OrgChart from '../OrgChart.vue'
+import logger from '../../services/logger.js'
 import { getChart, transformNode } from '../../utils/chartUtils.js'
 
 export default {

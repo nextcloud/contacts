@@ -63,6 +63,8 @@ OC.L10N.register(
     "Add to favorites" : "Pievienot izlasei",
     "No results" : "Nav iznākuma",
     "Pending" : "Gaida",
+    "Label" : "Iezīme",
+    "Created" : "Izveidots",
     "Select type" : "Atlasīt veidu",
     "Add contact in group" : "Pievienot kontaktpersonu grupai",
     "None" : "Nav",

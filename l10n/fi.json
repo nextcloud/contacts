@@ -20,6 +20,7 @@
     "There are no contacts in this group" : "Tässä ryhmässä ei ole yhteystietoja",
     "Create contacts" : "Luo yhteystietoja",
     "Add contacts" : "Lisää yhteystietoja",
+    "Retry" : "Yritä uudelleen",
     "Loading …" : "Ladataan …",
     "Manage team" : "Hallitse tiimiä",
     "Leave team" : "Poistu tiimistä",
@@ -128,6 +129,7 @@
     "Upload a new picture" : "Lähetä uusi kuva",
     "Choose from Files" : "Valitse Tiedostoista",
     "Download picture" : "Lataa kuva",
+    "Clone contact" : "Kloonaa yhteystieto",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Tämä yhteystieto on \"vain luku\"-tilassa. Sinulla ei ole oikeuksia muokata tätä yhteystietoa.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Yhteystieto, jota yritit muokata, muuttui. Ole hyvä ja päivitä yhteystieto manuaalisesti. Seuraavia muutoksia ei tallenneta.",
     "Address book" : "Osoitekirja",
@@ -148,10 +150,8 @@
     "View profile" : "Näytä profiili",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Tämä yhteystieto oli rikki ja sai korjauksen. Ole hyvä ja tarkista sisältö, ja sitten paina tästä tallentaaksesi.",
     "Edit profile" : "Muokkaa profiilia",
-    "Clone contact" : "Kloonaa yhteystieto",
     "Generate QR Code" : "Luo QR-koodi",
     "Contact vCard as QR code" : "Yhteystiedon vCard QR-koodina",
-    "Pick an address book" : "Valitse osoitekirja",
     "Select address book" : "Valitse osoitekirja",
     "No shared items with this contact" : "Ei jakoja tämän yhteystiedon kanssa",
     "Select groups" : "Valitse ryhmät",
@@ -195,6 +195,8 @@
     "The list of members is only visible to members of this team" : "Jäsenlista on näkyvissä vain muille tämän tiimin jäsenille",
     "You currently have no access to the member list" : "Sinulla ei ole pääsyä käyttäjälistaan",
     "Pending" : "Odottaa",
+    "Send" : "Lähetä",
+    "Created" : "Luotu",
     "Chart" : "Kaavio",
     "Select type" : "Valitse tyyppi",
     "Add contact in group" : "Lisää yhteystieto ryhmään",
@@ -307,6 +309,7 @@
     "Unable to create team {circleName}" : "Tiimiä {circleName} ei voitu luoda",
     "Unable to delete team {circleId}" : "Tiimiä {circleId} ei voitu poistaa",
     "Unable to delete contact" : "Yhteystietoa ei voitu poistaa",
+    "Pick an address book" : "Valitse osoitekirja",
     "Select Date" : "Valitse päivä"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

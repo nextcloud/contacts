@@ -12,7 +12,7 @@ namespace OCA\Contacts\Service\Social;
  */
 class CompositeSocialProvider {
 	/** @var ISocialProvider[] */
-	private $providers;
+	private array $providers;
 
 	public function __construct(InstagramProvider $instagramProvider,
 		MastodonProvider $mastodonProvider,

@@ -132,6 +132,7 @@
     "Upload a new picture" : "Запампаваць новы відарыс",
     "Choose from Files" : "Выбраць у Файлах",
     "Download picture" : "Спампаваць відарыс",
+    "Clone contact" : "Кланіраваць кантакт",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Гэты кантакт толькі для чытання. У вас няма дазволу на яго рэдагаванне.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Кантакт, які вы спрабавалі рэдагаваць, змяніўся. Абнавіце кантакт уручную. Усе далейшыя змены будуць адхілены.",
     "Address book" : "Адрасная кніга",
@@ -153,10 +154,8 @@
     "View profile" : "Праглядзець профіль",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Гэты кантакт быў пашкоджаны, а пасля выпраўлены. Праглядзіце змесціва і націсніце тут, каб захаваць яго.",
     "Edit profile" : "Рэдагаваць профіль",
-    "Clone contact" : "Кланіраваць кантакт",
     "Generate QR Code" : "Згенерыраваць QR-код",
     "Contact vCard as QR code" : "vCard кантакту ў выглядзе QR-кода",
-    "Pick an address book" : "Выберыце адрасную кнігу",
     "Select address book" : "Выбраць адрасную кнігу",
     "Media shares with you" : "Абагуленыя з вамі медыя",
     "Talk conversations with you" : "Размовы ў Talk з вамі",
@@ -202,6 +201,9 @@
     "Unable to get the results" : "Не ўдалося атрымаць вынікі",
     "Add to {team}" : "Дадаць у {team}",
     "Pending" : "У чаканні",
+    "Accept" : "Прыняць",
+    "Send" : "Адправіць",
+    "Continue" : "Працягнуць",
     "Select chart …" : "Выберыце дыяграму …",
     "Chart" : "Дыяграма",
     "Select type" : "Выберыце тып",
@@ -320,6 +322,7 @@
     "Unable to create team {circleName}" : "Немагчыма стварыць каманду {circleName}",
     "Unable to delete team {circleId}" : "Немагчыма выдаліць каманду {circleId}",
     "Unable to delete contact" : "Немагчыма выдаліць кантакт",
+    "Pick an address book" : "Выберыце адрасную кнігу",
     "Select Date" : "Выберыце дату"
 },"pluralForm" :"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);"
 }

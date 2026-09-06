@@ -142,6 +142,7 @@
     "Upload a new picture" : "Upload a new picture",
     "Choose from Files" : "Choose from Files",
     "Download picture" : "Download picture",
+    "Clone contact" : "Clone contact",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "This contact is in read-only mode. You do not have permission to edit this contact.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded.",
     "Address book" : "Address book",
@@ -163,10 +164,8 @@
     "View profile" : "View profile",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "This contact was broken and received a fix. Please review the content and click here to save it.",
     "Edit profile" : "ແກ້ໄຂໜ້າປົກ",
-    "Clone contact" : "Clone contact",
     "Generate QR Code" : "Generate QR Code",
     "Contact vCard as QR code" : "Contact vCard as QR code",
-    "Pick an address book" : "Pick an address book",
     "Select address book" : "Select address book",
     "Media shares with you" : "Media shares with you",
     "Talk conversations with you" : "Talk conversations with you",
@@ -224,6 +223,7 @@
     "Add to {team}" : "Add to {team}",
     "Invite members to {team}" : "Invite members to {team}",
     "Pending" : "ທີ່ກໍາລັງລໍຖ້າ",
+    "Label" : "Label",
     "Select chart …" : "Select chart …",
     "Chart" : "Chart",
     "Select type" : "Select type",
@@ -353,6 +353,7 @@
     "New Deck board" : "New Deck board",
     "Board name" : "Board name",
     "Deck app is not installed. Please install it to create team boards." : "Deck app is not installed. Please install it to create team boards.",
+    "Pick an address book" : "Pick an address book",
     "Select Date" : "Select Date"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

@@ -4,13 +4,17 @@
  * SPDX-FileCopyrightText: 2018 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
 namespace OCA\Contacts\AppInfo;
 
 use OCA\Contacts\Capabilities;
+use OCA\Contacts\ConfigLexicon;
 use OCA\Contacts\Dav\PatchPlugin;
 use OCA\Contacts\Event\LoadContactsOcaApiEvent;
+use OCA\Contacts\Listener\FederatedInviteAcceptedListener;
 use OCA\Contacts\Listener\LoadContactsFilesActions;
 use OCA\Contacts\Listener\LoadContactsOcaApi;
+use OCA\Contacts\Listener\OcmDiscoveryListener;
 use OCA\DAV\Events\SabrePluginAddEvent;
 use OCA\Files\Event\LoadAdditionalScriptsEvent;
 use OCP\AppFramework\App;
@@ -18,9 +22,20 @@ use OCP\AppFramework\Bootstrap\IBootContext;
 use OCP\AppFramework\Bootstrap\IBootstrap;
 use OCP\AppFramework\Bootstrap\IRegistrationContext;
 use OCP\EventDispatcher\IEventDispatcher;
+use OCP\OCM\Events\LocalOCMDiscoveryEvent;
+use OCP\OCM\Events\OCMEndpointRequestEvent;
+use OCP\OCM\Events\ResourceTypeRegisterEvent;
 
 class Application extends App implements IBootstrap {
 	public const APP_ID = 'contacts';
+
+	/**
+	 * Last server major version that ships team management inside Contacts.
+	 *
+	 * Starting with Nextcloud 35 teams are managed by the dedicated Teams app,
+	 * so the team management UI of this app is only exposed up to this version.
+	 */
+	public const MAX_SERVER_VERSION_WITH_TEAM_MANAGEMENT = 34;
 
 	public function __construct() {
 		parent::__construct(self::APP_ID);
@@ -29,8 +44,15 @@ class Application extends App implements IBootstrap {
 	#[\Override]
 	public function register(IRegistrationContext $context): void {
 		$context->registerCapability(Capabilities::class);
+		$context->registerConfigLexicon(ConfigLexicon::class);
+
 		$context->registerEventListener(LoadAdditionalScriptsEvent::class, LoadContactsFilesActions::class);
 		$context->registerEventListener(LoadContactsOcaApiEvent::class, LoadContactsOcaApi::class);
+		$context->registerEventListener(OCMEndpointRequestEvent::class, FederatedInviteAcceptedListener::class);
+		$ocmDiscoveryEvent = class_exists(LocalOCMDiscoveryEvent::class)
+			? LocalOCMDiscoveryEvent::class
+			: ResourceTypeRegisterEvent::class;
+		$context->registerEventListener($ocmDiscoveryEvent, OcmDiscoveryListener::class);
 	}
 
 	#[\Override]

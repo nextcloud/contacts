@@ -11,8 +11,7 @@ use OCP\Http\Client\IClient;
 use OCP\Http\Client\IClientService;
 
 class XingProvider implements ISocialProvider {
-	/** @var IClient */
-	private $httpClient;
+	private IClient $httpClient;
 
 	/** @var string */
 	public $name = 'xing';

@@ -31,15 +31,19 @@
 	<issueHandlers>
 		<UndefinedClass>
 			<errorLevel type="suppress">
+				<referencedClass name="GuzzleHttp\Exception\RequestException" />
 				<referencedClass name="OCA\DAV\CardDAV\CardDavBackend" />
 				<referencedClass name="OCA\DAV\CardDAV\ContactsManager" />
+				<referencedClass name="OCA\FederatedFileSharing\AddressHandler" />
 				<referencedClass name="OCA\Files\Event\LoadAdditionalScriptsEvent" />
 				<referencedClass name="OC\App\CompareVersion" />
 				<referencedClass name="Sabre\DAV\Server" />
+				<referencedClass name="Sabre\DAV\UUIDUtil" />
 			</errorLevel>
 		</UndefinedClass>
 		<UndefinedDocblockClass>
 			<errorLevel type="suppress">
+				<referencedClass name="Doctrine\DBAL\Schema\Table" />
 				<referencedClass name="OCA\Files\Event\LoadAdditionalScriptsEvent" />
 				<referencedClass name="Sabre\DAV\Server" />
 			</errorLevel>

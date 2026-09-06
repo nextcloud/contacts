@@ -20,6 +20,7 @@
     "There are no contacts in this group" : "Нема контаката у овој групи",
     "Create contacts" : "Направи контакте",
     "Add contacts" : "Додај контакте",
+    "Retry" : "Покушај поново",
     "Loading …" : "Учитава се …",
     "Manage team" : "Управљај тимом",
     "Leave team" : "Напусти тим",
@@ -125,6 +126,7 @@
     "Upload a new picture" : "Отпреми нову слику",
     "Choose from Files" : "Изаберите из Фајлова",
     "Download picture" : "Преузми слику",
+    "Clone contact" : "Клонирај контакт",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Контакт је у режиму само за читање. Немате дозволе да га уређујете.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Контакт који уређујете је промењен. Освежите га ручно. Свака даља измена биће одбачена.",
     "Address book" : "Адресар",
@@ -146,10 +148,8 @@
     "View profile" : "Погледај профил",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Контакт је био неисправан и поправљен је. Прегледајте садржај и кликните овде да га сачувате.",
     "Edit profile" : "Уреди профил",
-    "Clone contact" : "Клонирај контакт",
     "Generate QR Code" : "Генериши КуеР код",
     "Contact vCard as QR code" : "vCard контакта као QR кôд",
-    "Pick an address book" : "Изабери адресар",
     "Select address book" : "Одаберите адресар",
     "Media shares with you" : "Медији подељени са вама",
     "Talk conversations with you" : "Talk разговори са вама",
@@ -209,6 +209,8 @@
     "Add to {team}" : "Додај у {team}",
     "Invite members to {team}" : "Позови чланове у {team}",
     "Pending" : "На чекању",
+    "Accept" : "Прихвати",
+    "Label" : "Ознака",
     "Select chart …" : "Изаберите график …",
     "Chart" : "График",
     "Select type" : "Одаберите тип",
@@ -334,6 +336,7 @@
     "Unable to create team {circleName}" : "Не може да се креира тим {circleName}",
     "Unable to delete team {circleId}" : "Не може да се обрише тим {circleId}",
     "Unable to delete contact" : "Не могу да обришем контакт",
+    "Pick an address book" : "Изабери адресар",
     "Select Date" : "Одаберите датум"
 },"pluralForm" :"nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);"
 }

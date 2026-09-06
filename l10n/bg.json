@@ -16,6 +16,7 @@
     "There are no contacts in this group" : "Няма контакти в тази група",
     "Create contacts" : "Създаване на контакти",
     "Add contacts" : "Добавяне на контакти",
+    "Retry" : "Повторен опит",
     "Contacts settings" : "Настрройки на контакти",
     "Update avatars from social media" : "Актуализиране на аватари от социалните медии",
     "Address books" : "Адресни книги",
@@ -82,6 +83,7 @@
     "Upload a new picture" : "Качи нова снимка",
     "Choose from Files" : "Избор от Файлове",
     "Download picture" : "Изтегляне на снимка",
+    "Clone contact" : "Клонирай контакта",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Този контакт е в режим само за четене. Нямате право да редактирате този контакт.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Контактът, който се опитвахте да редактирате, е променен. Моля, опреснете контакта ръчно. Всякакви допълнителни редакции ще бъдат отхвърлени.",
     "Address book" : "Адресна книга",
@@ -100,10 +102,8 @@
     "Company" : "Фирма",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Този контакт се повреди и беше поправен. Моля, прегледайте съдържанието и кликнете тук, за да го запишете.",
     "Edit profile" : "Промяна на профила",
-    "Clone contact" : "Клонирай контакта",
     "Generate QR Code" : "Генериране на QR код",
     "Contact vCard as QR code" : "Свързване с vCard, като QR код",
-    "Pick an address book" : "Избор на адресна книга",
     "Select address book" : "Изберете адресна книга",
     "Move" : "Move",
     "Remove from favorites" : "Премахни от любимите",
@@ -132,6 +132,8 @@
     "The list of members is only visible to members of this team" : "Списъкът с членове е видим само за членовете на този екип",
     "You currently have no access to the member list" : "В момента нямате достъп до списъка с членове",
     "Pending" : "Чакащ",
+    "Label" : "Име",
+    "Created" : "Създаден",
     "Chart" : "Диаграма",
     "Select type" : "Изберете тип",
     "Add contact in group" : "Добавяне на контакта в група",
@@ -232,6 +234,7 @@
     "Spoken languages" : "Говорими езици",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контактите не бяха прочетени","{failed} контактите не бяха прочетени"],
     "Unable to delete contact" : "Контактът не може да се изтрие",
+    "Pick an address book" : "Избор на адресна книга",
     "Select Date" : "Изберете дата"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

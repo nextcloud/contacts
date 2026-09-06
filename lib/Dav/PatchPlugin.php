@@ -11,6 +11,7 @@ namespace OCA\Contacts\Dav;
 
 use Sabre\CardDAV\Card;
 use Sabre\DAV;
+use Sabre\DAV\Exception\BadRequest;
 use Sabre\DAV\Server;
 use Sabre\DAV\ServerPlugin;
 use Sabre\HTTP\RequestInterface;
@@ -91,7 +92,7 @@ class PatchPlugin extends ServerPlugin {
 		// Init property name & value
 		$propertyName = $request->getHeader('X-Property');
 		if (is_null($propertyName)) {
-			throw new DAV\Exception\BadRequest('No valid "X-Property" found in the headers');
+			throw new BadRequest('No valid "X-Property" found in the headers');
 		}
 
 		$propertyData = $request->getHeader('X-Property-Replace');
@@ -100,7 +101,7 @@ class PatchPlugin extends ServerPlugin {
 			$propertyData = $request->getHeader('X-Property-Append');
 			$method = self::METHOD_APPEND;
 			if (is_null($propertyData)) {
-				throw new DAV\Exception\BadRequest('No valid "X-Property-Append" or "X-Property-Replace" found in the headers');
+				throw new BadRequest('No valid "X-Property-Append" or "X-Property-Replace" found in the headers');
 			}
 		}
 
@@ -112,7 +113,7 @@ class PatchPlugin extends ServerPlugin {
 
 		// We cannot know which one to update in that case
 		if (count($properties) > 1) {
-			throw new DAV\Exception\BadRequest('The specified property appear more than once');
+			throw new BadRequest('The specified property appear more than once');
 		}
 
 		// Init if not in the vcard

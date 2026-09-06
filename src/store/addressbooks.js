@@ -108,25 +108,25 @@ const mutations = {
 	/**
 	 * Toggle whether a Addressbook is Enabled
 	 *
-	 * @param {object} context the store mutations
+	 * @param {object} state the store data
 	 * @param {object} addressbook the addressbook to toggle
 	 */
-	toggleAddressbookEnabled(context, addressbook) {
-		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
-		addressbook.enabled = !addressbook.enabled
+	toggleAddressbookEnabled(state, addressbook) {
+		const storedAddressbook = state.addressbooks.find((search) => search.id === addressbook.id)
+		storedAddressbook.enabled = !storedAddressbook.enabled
 	},
 
 	/**
 	 * Rename a Addressbook
 	 *
-	 * @param {object} context the store mutations
+	 * @param {object} state the store data
 	 * @param {object} data destructuring object
 	 * @param {object} data.addressbook the addressbook to rename
 	 * @param {string} data.newName the new name of the addressbook
 	 */
-	renameAddressbook(context, { addressbook, newName }) {
-		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
-		addressbook.displayName = newName
+	renameAddressbook(state, { addressbook, newName }) {
+		const storedAddressbook = state.addressbooks.find((search) => search.id === addressbook.id)
+		storedAddressbook.displayName = newName
 	},
 
 	/**

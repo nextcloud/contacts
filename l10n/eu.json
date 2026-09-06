@@ -18,6 +18,7 @@
     "There are no contacts in this group" : "Ez dago kontakturik talde honetan",
     "Create contacts" : "Sortu kontaktuak",
     "Add contacts" : "Gehitu kontaktuak",
+    "Retry" : "Saiatu berriro",
     "Manage team" : "Kudeatu taldea",
     "Leave team" : "Utzi lantaldea",
     "Delete team" : "Ezabatu lantaldea",
@@ -116,6 +117,7 @@
     "Upload a new picture" : "Igo irudi berri bat",
     "Choose from Files" : "Aukeratu Fitxategiak-etik",
     "Download picture" : "Deskargatu irudia",
+    "Clone contact" : "Klonatu kontaktua",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Kontaktu hau irakurtzeko soilik moduan dago. Ez daukazu baimenik kontaktu hau editatzeko.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Editatzen saiatu zaren kontaktua aldatu egin da. Mesedez freskatu kontaktua eskuz. Hurrengo editatze guztiak baztertu egingo dira.",
     "Address book" : "Helbide liburua",
@@ -137,10 +139,8 @@
     "View profile" : "Ikusi profila",
     "This contact was broken and received a fix. Please review the content and click here to save it." : "Kontaktu hau apurtuta zegoen eta konpondu egin da. Mesedez berrikusi edukia eta egin klik hemen gordetzeko.",
     "Edit profile" : "Editatu profila",
-    "Clone contact" : "Klonatu kontaktua",
     "Generate QR Code" : "Sortu QR kodea",
     "Contact vCard as QR code" : "Kontaktuaren vCard QR kode bezala",
-    "Pick an address book" : "Aukeratu helbide-liburu bat",
     "Select address book" : "Hautatu helbide-liburua",
     "Media shares with you" : "Multimedia partekatzeak zurekin",
     "Talk conversations with you" : "Talk elkarrizketak zurekin",
@@ -179,6 +179,8 @@
     "The list of members is only visible to members of this team" : "Kideen zerrenda lantalde honetako kideentzat bakarrik dago ikusgarri",
     "You currently have no access to the member list" : "Ez duzu sarbiderik kideen zerrendara",
     "Pending" : "Zain",
+    "Accept" : "Onartu",
+    "Created" : "Sortuta",
     "Chart" : "Diagrama",
     "Select type" : "Hautatu mota",
     "Add contact in group" : "Gehitu kontaktua taldera",
@@ -296,6 +298,7 @@
     "Unable to create team {circleName}" : "Ezin izan da {circleName} lantaldea sortu",
     "Unable to delete team {circleId}" : "Ezin izan da {circleId} lantaldea ezabatu",
     "Unable to delete contact" : "Ezin izan da kontaktua ezabatu",
+    "Pick an address book" : "Aukeratu helbide-liburu bat",
     "Select Date" : "Hautatu data"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

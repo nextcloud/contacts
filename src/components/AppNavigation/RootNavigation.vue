@@ -125,6 +125,26 @@
 				</template>
 			</AppNavigationItem>
 
+			<!-- OCM invitations -->
+			<AppNavigationItem
+				v-if="isOcmInvitesEnabled"
+				id="ocm-invites"
+				:name="GROUP_ALL_OCM_INVITES"
+				:to="{
+					name: ROUTE_NAME_ALL_OCM_INVITES,
+				}"
+				:active="routeState === 'ocm-invites'"
+				@click="updateRouteState('ocm-invites')">
+				<template #icon>
+					<IconAccountSwitchOutline :size="20" />
+				</template>
+				<template #counter>
+					<NcCounterBubble
+						v-if="pendingOcmInvitesCount"
+						:count="pendingOcmInvitesCount" />
+				</template>
+			</AppNavigationItem>
+
 			<AppNavigationCaption
 				id="newgroup"
 				v-model:menu-open="isNewGroupMenuOpen"
@@ -158,7 +178,7 @@
 				:group="group"
 				@update-route-state="updateRouteState" />
 
-			<template v-if="isCirclesEnabled">
+			<template v-if="isTeamManagementEnabled">
 				<!-- Toggle groups ellipsis -->
 				<AppNavigationItem
 					v-if="groupsMenu.length > ELLIPSIS_COUNT"
@@ -250,6 +270,7 @@ import IconUserFilled from 'vue-material-design-icons/Account.vue'
 import IconContactFilled from 'vue-material-design-icons/AccountMultiple.vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconUser from 'vue-material-design-icons/AccountOutline.vue'
+import IconAccountSwitchOutline from 'vue-material-design-icons/AccountSwitchOutline.vue'
 import IconError from 'vue-material-design-icons/AlertCircleOutline.vue'
 import IconAddressBook from 'vue-material-design-icons/BookAccountOutline.vue'
 import Cog from 'vue-material-design-icons/CogOutline.vue'
@@ -261,9 +282,11 @@ import ContactsSettings from './ContactsSettings.vue'
 import GroupNavigationItem from './GroupNavigationItem.vue'
 import SettingsNewAddressbook from './Settings/SettingsNewAddressbook.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
-import { CHART_ALL_CONTACTS, CIRCLE_DESC, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ROUTE_ADDRESSBOOK } from '../../models/constants.ts'
-import isCirclesEnabled from '../../services/isCirclesEnabled.js'
+import { CHART_ALL_CONTACTS, CIRCLE_DESC, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_ALL_OCM_INVITES, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ROUTE_ADDRESSBOOK, ROUTE_NAME_ALL_OCM_INVITES } from '../../models/constants.ts'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled.js'
+import isOcmInvitesEnabled from '../../services/isOcmInvitesEnabled.js'
+import isTeamManagementEnabled from '../../services/isTeamManagementEnabled.js'
+import useOcmInvitesStore from '../../store/ocminvites.ts'
 import useUserGroupStore from '../../store/userGroup.ts'
 
 export default {
@@ -282,6 +305,7 @@ export default {
 		ContactsSettings,
 		GroupNavigationItem,
 		IconAddressBook,
+		IconAccountSwitchOutline,
 		IconContact,
 		IconContactFilled,
 		IconUser,
@@ -314,6 +338,8 @@ export default {
 			GROUP_NO_GROUP_CONTACTS,
 			GROUP_RECENTLY_CONTACTED,
 			ROUTE_ADDRESSBOOK,
+			GROUP_ALL_OCM_INVITES,
+			ROUTE_NAME_ALL_OCM_INVITES,
 
 			// create group
 			isNewGroupMenuOpen: false,
@@ -324,7 +350,7 @@ export default {
 			createCircleLoading: false,
 			createCircleError: null,
 
-			isCirclesEnabled,
+			isTeamManagementEnabled,
 			isContactsInteractionEnabled,
 
 			collapsedGroups: true,
@@ -333,6 +359,7 @@ export default {
 			showSettings: false,
 
 			routeState: 'all',
+			isOcmInvitesEnabled,
 		}
 	},
 
@@ -372,6 +399,13 @@ export default {
 			return this.userGroupStore.userGroupList
 		},
 
+		// Only invitations the recipient has not accepted yet should drive
+		// the navigation badge, so it reads as a pending-action count.
+		pendingOcmInvitesCount() {
+			return Object.values(this.ocminvitesStore.ocmInvites)
+				.filter((invite) => !invite.accepted).length
+		},
+
 		// list all the contacts that doesn't have a group
 		ungroupedContacts() {
 			return this.sortedContacts.filter((contact) => this.contacts[contact.key]?.groups && this.contacts[contact.key]?.groups?.length === 0)
@@ -409,7 +443,7 @@ export default {
 
 		ellipsisGroupsMenu() {
 			// If circles is not enabled, we show everything
-			if (this.isCirclesEnabled && this.collapsedGroups) {
+			if (this.isTeamManagementEnabled && this.collapsedGroups) {
 				return this.groupsMenu.slice(0, ELLIPSIS_COUNT)
 			}
 			return this.groupsMenu
@@ -467,7 +501,7 @@ export default {
 				: t('contacts', 'Collapse teams')
 		},
 
-		...mapStores(useUserGroupStore),
+		...mapStores(useOcmInvitesStore, useUserGroupStore),
 	},
 
 	methods: {
@@ -576,6 +610,7 @@ $caption-padding: 22px;
 	padding: calc(var(--default-grid-baseline, 4px) * 2);
 }
 
+#external-invitations,
 #newgroup,
 #newcircle {
 	margin-top: $caption-padding;
