@@ -324,8 +324,6 @@ export default {
 			collapsedCircles: true,
 
 			showSettings: false,
-
-			routeState: 'all',
 		}
 	},
 
