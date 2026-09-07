@@ -128,8 +128,7 @@
 				:to="{
 					name: ROUTE_NAME_ALL_OCM_INVITES,
 				}"
-				:active="routeState === 'ocm-invites'"
-				@click="updateRouteState('ocm-invites')">
+				:active="routeState === 'ocm-invites'">
 				<template #icon>
 					<IconAccountSwitchOutline :size="20" />
 				</template>
@@ -362,6 +361,9 @@ export default {
 			}
 			if (this.selectedChart) {
 				return 'orgchart'
+			}
+			if (this.$route.meta.selectedGroup === GROUP_ALL_OCM_INVITES) {
+				return 'ocm-invites'
 			}
 			switch (this.selectedGroup) {
 				case GROUP_ALL_CONTACTS:
