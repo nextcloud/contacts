@@ -284,7 +284,6 @@
 							:property="property"
 							:contact="contact"
 							:local-contact="localContact"
-							:contacts="contacts"
 							:bus="bus"
 							:is-read-only="isReadOnly" />
 					</div>
@@ -485,11 +484,6 @@ export default defineComponent({
 		contactKey: {
 			type: String,
 			default: undefined,
-		},
-
-		contacts: {
-			type: Array,
-			default: () => [],
 		},
 
 		reloadBus: {
