@@ -5,6 +5,7 @@
 
 import { showError } from '@nextcloud/dialogs'
 import ICAL from 'ical.js'
+import { toRaw } from 'vue'
 import Contact from '../models/contact.js'
 import logger from '../services/logger.js'
 import validate from '../services/validate.js'
@@ -27,38 +28,83 @@ ICAL.design.vcard3.param.type.multiValueSeparateDQuote = true
 ICAL.design.vcard.param.type.multiValueSeparateDQuote = true
 
 function sortData(a, b) {
-	const nameA = typeof a.value === 'string'
-		? a.value.toUpperCase() // ignore upper and lowercase
-		: a.value.toUnixTime() // only other sorting we support is a vCardTime
-	const nameB = typeof b.value === 'string'
-		? b.value.toUpperCase() // ignore upper and lowercase
-		: b.value.toUnixTime() // only other sorting we support is a vCardTime
+	// contacts without a value always come last
+	if ((a.value === '') !== (b.value === '')) {
+		return a.value === '' ? 1 : -1
+	}
 
-	const score = nameA.localeCompare
-		? nameA.localeCompare(nameB)
-		: nameB - nameA
+	// a malformed rev is indexed as a string, so never compare a timestamp with text:
+	// that would be non-transitive. Timestamps come first, text keeps its own ordering
+	const aIsTime = typeof a.value === 'number'
+	const bIsTime = typeof b.value === 'number'
+	if (aIsTime !== bIsTime) {
+		return aIsTime ? -1 : 1
+	}
+
+	const score = aIsTime
+		? b.value - a.value // timestamps (rev), most recent first
+		: a.value.toUpperCase().localeCompare(b.value.toUpperCase()) // ignore upper and lowercase
+
 	// if equal, fallback to the key
 	return score !== 0
 		? score
 		: a.key.localeCompare(b.key)
 }
 
-function sortByFavoriteAndName(a, b) {
-	// favorites always on top
+/**
+ * Favorites first, then by the current order key.
+ *
+ * @param {object} a a sorted contacts index entry
+ * @param {object} b a sorted contacts index entry
+ * @return {number}
+ */
+function sortByFavoriteAndData(a, b) {
 	if (a.favorite !== b.favorite) {
 		return a.favorite ? -1 : 1
 	}
-	// alphabetical within each group
-	if (!a.value && !b.value) {
-		return 0
+	return sortData(a, b)
+}
+
+/**
+ * Insert an entry at its sorted position in the sorted contacts index
+ *
+ * @param {object} state the store data
+ * @param {object} entry a sorted contacts index entry
+ */
+function insertSortedEntry(state, entry) {
+	const index = state.sortedContacts.findIndex((other) => sortByFavoriteAndData(other, entry) >= 0)
+	if (index === -1) {
+		state.sortedContacts.push(entry)
+	} else {
+		state.sortedContacts.splice(index, 0, entry)
 	}
-	if (!a.value) {
-		return 1
+}
+
+/**
+ * Build an entry of the sorted contacts index
+ *
+ * @param {Contact} contact the contact to index
+ * @param {string} orderKey the contact property to sort on
+ * @return {object}
+ */
+function sortedEntry(contact, orderKey) {
+	let value
+	try {
+		value = contact[orderKey]
+	} catch (error) {
+		// a malformed property (an invalid REV for instance) throws when ical.js decodes it
+		logger.warn('Could not read the sort value of a contact', { key: contact.key, orderKey, error })
+		value = ''
 	}
-	if (!b.value) {
-		return -1
+
+	return {
+		key: contact.key,
+		// vCardTime values (rev) are indexed as timestamps, anything else as a string:
+		// structured name components can be arrays (multiple given names in vCard 4.0).
+		// ical.js reads its own internals, which fails through the reactive proxy, so unwrap first
+		value: value?.toUnixTime ? toRaw(value).toUnixTime() : String(value ?? ''),
+		favorite: contact.favorite || false,
 	}
-	return a.value.localeCompare(b.value)
 }
 
 const state = {
@@ -107,16 +153,8 @@ const mutations = {
 		const sortedContact = state.sortedContacts.find((c) => c.key === contact.key)
 		if (sortedContact) {
 			sortedContact.favorite = contact.favorite || false
+			state.sortedContacts.sort(sortByFavoriteAndData)
 		}
-
-		state.sortedContacts = Object.values(state.contacts)
-			.filter((c) => c.kind !== 'group')
-			.map((c) => ({
-				key: c.key,
-				value: (c[state.orderKey] || '').toString().toLowerCase(),
-				favorite: c.favorite || false,
-			}))
-			.sort(sortByFavoriteAndName)
 	},
 	/**
 	 * Delete a contact from the global contacts list
@@ -127,7 +165,9 @@ const mutations = {
 	deleteContact(state, contact) {
 		if (state.contacts[contact.key] && contact instanceof Contact) {
 			const index = state.sortedContacts.findIndex((search) => search.key === contact.key)
-			state.sortedContacts.splice(index, 1)
+			if (index !== -1) {
+				state.sortedContacts.splice(index, 1)
+			}
 			delete state.contacts[contact.key]
 		} else {
 			logger.error('Error while deleting the following contact', { contact })
@@ -145,37 +185,7 @@ const mutations = {
 		if (contact instanceof Contact) {
 			validate(contact)
 
-			const sortedContact = {
-				key: contact.key,
-				value: (contact[state.orderKey] || '').toString().toLowerCase(),
-				favorite: contact.favorite,
-			}
-
-			// Not using sort, splice has far better performances
-			// https://jsperf.com/sort-vs-splice-in-array
-			for (let i = 0, len = state.sortedContacts.length; i < len; i++) {
-				const other = state.sortedContacts[i]
-
-				// favorite comes before non-favorite
-				const differentFavStatus = other.favorite !== sortedContact.favorite
-				const otherShouldComeFirst = differentFavStatus && other.favorite
-				const sameFavAndSortedFirst = !differentFavStatus && sortData(other, sortedContact) >= 0
-
-				if (otherShouldComeFirst || sameFavAndSortedFirst) {
-					continue
-				}
-
-				if (i + 1 === len) {
-					state.sortedContacts.push(sortedContact)
-				} else {
-					state.sortedContacts.splice(i, 0, sortedContact)
-				}
-				break
-			}
-
-			if (state.sortedContacts.length === 0) {
-				state.sortedContacts.push(sortedContact)
-			}
+			insertSortedEntry(state, sortedEntry(contact, state.orderKey))
 
 			state.contacts[contact.key] = contact
 		} else {
@@ -206,14 +216,13 @@ const mutations = {
 				return
 			}
 
-			const hasValueChanged = sortedContact.value !== contact[state.orderKey]
-			const hasFavoriteChanged = sortedContact.favorite !== (state.contacts[contact.key].dav?.favorite || false)
+			const updatedEntry = sortedEntry(state.contacts[contact.key], state.orderKey)
 
-			if (hasValueChanged || hasFavoriteChanged) {
-				sortedContact.value = contact[state.orderKey]
-				sortedContact.favorite = state.contacts[contact.key].dav?.favorite || false
+			if (sortedContact.value !== updatedEntry.value || sortedContact.favorite !== updatedEntry.favorite) {
+				sortedContact.value = updatedEntry.value
+				sortedContact.favorite = updatedEntry.favorite
 
-				state.sortedContacts.sort(sortByFavoriteAndName)
+				state.sortedContacts.sort(sortByFavoriteAndData)
 			}
 		} else {
 			logger.error('Error while replacing the following contact', { contact })
@@ -247,10 +256,12 @@ const mutations = {
 			// set new key, re-assign reference
 			state.contacts[newContact.key] = newContact
 
-			// Update sorted contacts list, replace at exact same position
+			// the new key can order differently against equal sort values, so reinsert
 			const index = state.sortedContacts.findIndex((search) => search.key === oldKey)
-			state.sortedContacts[index].key = newContact.key
-			state.sortedContacts[index].value = newContact[state.orderKey]
+			if (index !== -1) {
+				state.sortedContacts.splice(index, 1)
+				insertSortedEntry(state, sortedEntry(newContact, state.orderKey))
+			}
 		} else {
 			logger.error('Error while replacing the addressbook of following contact', { contact })
 		}
@@ -285,12 +296,8 @@ const mutations = {
 	sortContacts(state) {
 		state.sortedContacts = Object.values(state.contacts)
 			.filter((contact) => contact.kind !== 'group')
-			.map((contact) => ({
-				key: contact.key,
-				value: contact[state.orderKey],
-				favorite: contact.favorite || false,
-			}))
-			.sort(sortByFavoriteAndName)
+			.map((contact) => sortedEntry(contact, state.orderKey))
+			.sort(sortByFavoriteAndData)
 	},
 
 	/**
