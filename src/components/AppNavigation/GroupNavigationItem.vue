@@ -15,8 +15,7 @@
 			:key="group.key"
 			:to="group.router"
 			:name="group.name"
-			:active="routeState === `group:${group.id}`"
-			@click="$emit('updateRouteState', `group:${group.id}`)">
+			:active="routeState === `group:${group.id}`">
 			<template #icon>
 				<IconContactFilled v-if="routeState === `group:${group.id}`" :size="20" />
 				<IconContact v-else :size="20" />
