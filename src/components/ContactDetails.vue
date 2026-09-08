@@ -436,6 +436,7 @@ import PropertyGroups from './Properties/PropertyGroups.vue'
 import PropertyRev from './Properties/PropertyRev.vue'
 import PropertySelect from './Properties/PropertySelect.vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
+import RouterMixin from '../mixins/RouterMixin.js'
 import rfcProps from '../models/rfcProps.js'
 import isTalkEnabled from '../services/isTalkEnabled.js'
 import logger from '../services/logger.js'
@@ -482,7 +483,7 @@ export default defineComponent({
 		FolderMultipleImage,
 	},
 
-	mixins: [IsMobileMixin],
+	mixins: [IsMobileMixin, RouterMixin],
 
 	provide() {
 		return {
@@ -1002,10 +1003,12 @@ export default defineComponent({
 		},
 
 		/**
-		 * Dispatch contact deletion request
+		 * Dispatch contact deletion request and drop the deleted contact from
+		 * the route, which would otherwise keep pointing at it
 		 */
-		deleteContact() {
-			this.$store.dispatch('deleteContact', { contact: this.contact })
+		async deleteContact() {
+			await this.$store.dispatch('deleteContact', { contact: this.contact })
+			this.$router.replace(this.listRoute())
 		},
 
 		/**
