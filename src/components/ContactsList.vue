@@ -499,17 +499,26 @@ export default {
 			this.showDeleteConfirmationDialog = true
 		},
 
-		deleteAllMultiSelected() {
-			this.multiSelectedContacts.forEach(async (contact) => {
-				if (contact.addressbook.readOnly) {
-					// Do not try to delete read only contacts
-					return
-				}
+		async deleteAllMultiSelected() {
+			// read only contacts are not deleted, so they must not affect the route either
+			const deletable = Array.from(this.multiSelectedContacts.values())
+				.filter((contact) => !contact.addressbook.readOnly)
+			const deletesSelectedContact = deletable
+				.some((contact) => contact.key === this.selectedContact)
+
+			const deletions = deletable.map(async (contact) => {
 				await new Promise((resolve) => setTimeout(resolve, 500))
 				await this.$store.dispatch('deleteContact', { contact })
 			})
 			this.unselectAllMultiSelected()
 			this.showDeleteConfirmationDialog = false
+
+			await Promise.all(deletions)
+
+			// the route would otherwise keep pointing at a deleted contact
+			if (deletesSelectedContact) {
+				this.$router.replace(this.listRoute())
+			}
 		},
 
 		async initiateContactMerging() {
