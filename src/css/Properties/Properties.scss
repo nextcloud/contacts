@@ -52,8 +52,12 @@ $property-row-gap: $contact-details-row-gap;
 		@media screen and (max-width: 1024px) {
 			width: fit-content;
 		}
+		// NcSelect enforces a 260px min-width, which overflows the label column
+		> .nc-select.v-select.select {
+			min-width: 0;
+		}
 		// Text label styling
-		> :not(.multiselect):not(.material-design-icon) {
+		> :not(.nc-select):not(.material-design-icon) {
 			overflow: hidden;
 			white-space: nowrap;
 			text-overflow: ellipsis;
