@@ -25,8 +25,7 @@
 					name: 'group',
 					params: { selectedGroup: GROUP_ALL_CONTACTS },
 				}"
-				:active="routeState === 'all'"
-				@click="updateRouteState('all')">
+				:active="routeState === 'all'">
 				<template #icon>
 					<IconContactFilled v-if="routeState === 'all'" :size="20" />
 					<IconContact v-else :size="20" />
@@ -48,8 +47,7 @@
 					params: { selectedChart: GROUP_ALL_CONTACTS },
 				}"
 				:active="routeState === 'orgchart'"
-				icon="icon-category-monitoring"
-				@click="updateRouteState('orgchart')" />
+				icon="icon-category-monitoring" />
 
 			<!-- Not grouped group -->
 			<AppNavigationItem
@@ -60,8 +58,7 @@
 					name: 'group',
 					params: { selectedGroup: GROUP_NO_GROUP_CONTACTS },
 				}"
-				:active="routeState === 'notgrouped'"
-				@click="updateRouteState('notgrouped')">
+				:active="routeState === 'notgrouped'">
 				<template #icon>
 					<IconUserFilled v-if="routeState === 'notgrouped'" :size="20" />
 					<IconUser v-else :size="20" />
@@ -92,8 +89,7 @@
 					name: ROUTE_ADDRESSBOOK,
 					params: { selectedAddressbook: addressbook.id },
 				}"
-				:active="routeState === `${ROUTE_ADDRESSBOOK}:${addressbook.id}`"
-				@click="updateRouteState(`${ROUTE_ADDRESSBOOK}:${addressbook.id}`)">
+				:active="routeState === `${ROUTE_ADDRESSBOOK}:${addressbook.id}`">
 				<template #icon>
 					<IconAddressBook :size="20" />
 				</template>
@@ -113,8 +109,7 @@
 					name: 'group',
 					params: { selectedGroup: GROUP_RECENTLY_CONTACTED },
 				}"
-				:active="routeState === 'recentlycontacted'"
-				@click="updateRouteState('recentlycontacted')">
+				:active="routeState === 'recentlycontacted'">
 				<template #icon>
 					<IconRecentlyContacted :size="20" />
 				</template>
@@ -155,8 +150,7 @@
 				v-for="group in ellipsisGroupsMenu"
 				:key="group.key"
 				:route-state="routeState"
-				:group="group"
-				@update-route-state="updateRouteState" />
+				:group="group" />
 
 			<template v-if="isTeamManagementEnabled">
 				<!-- Toggle groups ellipsis -->
@@ -191,8 +185,7 @@
 					<CircleNavigationItem
 						v-for="circle in ellipsisCirclesMenu"
 						:key="circle.key"
-						:circle="circle"
-						@click="updateRouteState(`circle:${circle.id}`)" />
+						:circle="circle" />
 
 					<!-- Toggle circles ellipsis -->
 					<AppNavigationItem
@@ -331,12 +324,31 @@ export default {
 			collapsedCircles: true,
 
 			showSettings: false,
-
-			routeState: 'all',
 		}
 	},
 
 	computed: {
+		// navigation entry matching the current route
+		routeState() {
+			if (this.selectedAddressbook) {
+				return `${ROUTE_ADDRESSBOOK}:${this.selectedAddressbook}`
+			}
+			if (this.selectedChart) {
+				return 'orgchart'
+			}
+			switch (this.selectedGroup) {
+				case GROUP_ALL_CONTACTS:
+					return 'all'
+				case GROUP_NO_GROUP_CONTACTS:
+					return 'notgrouped'
+				case GROUP_RECENTLY_CONTACTED:
+					return 'recentlycontacted'
+				default:
+				// group ids are built the same way in groupsMenu
+					return this.selectedGroup ? `group:${this.selectedGroup.replace(' ', '_')}` : ''
+			}
+		},
+
 		// store variables
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
@@ -562,9 +574,6 @@ export default {
 			this.showSettings = true
 		},
 
-		updateRouteState(state) {
-			this.routeState = state
-		},
 	},
 }
 </script>
