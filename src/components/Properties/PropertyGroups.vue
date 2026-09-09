@@ -23,6 +23,7 @@
 					:options="groups"
 					:no-wrap="true"
 					:placeholder="t('contacts', 'Add contact in group')"
+					:aria-label-combobox="t('contacts', 'Add contact in group')"
 					:multiple="true"
 					:keep-open="true"
 					:clearable="true"
