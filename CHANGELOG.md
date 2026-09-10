@@ -6,6 +6,13 @@ All notable changes to this project will be documented in this file.
 
 * **OCM-Invites** Implement exchanging cloud IDs through OCM invitation workflow
 
+### Bug Fixes
+
+* **Chart** Remove empty content
+* **teams** Allow hiding the shared folder button via app config Admins can hide the team-page shortcut that creates a personal folder and shares it with the team. The setting is registered in the app config
+* **routes** Navigation and not found
+* **navigation** Derive OCM invites active state from the route
+
 # [7.0.0](https://github.com/nextcloud/contacts/compare/v6.1.0-alpha.2...v7.0.0-beta.Z) (2025-01-09)
 
 
