@@ -388,7 +388,7 @@ OC.L10N.register(
     "New contact" : "Nový kontakt",
     "_{success} contact added to {name}_::_{success} contacts added to {name}_" : ["{success} kontakt pridaný pre {name}","{success} kontakty pridané pre {name}","{success} kontakty pridané pre {name}","{success} kontakty pridané pre {name}"],
     "_Adding {success} contact to {name}_::_Adding {success} contacts to {name}_" : ["Pridanie kontaktu k {name} bolo {success}","Pridanie kontaktov k {name} bolo {success}","Pridanie kontaktov k {name} bolo {success}","Pridanie kontaktov k {name} bolo {success}"],
-    "_{count} error_::_{count} errors_" : ["{count} chyba","{count} chýb","{count} chýb","{count} chýb"],
+    "_{count} error_::_{count} errors_" : ["{count} chyba","{count} chyby","{count} chýb","{count} chýb"],
     "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importuje sa %n kontakt do {addressbook}","Importujú sa %n kontakty do {addressbook}","Importujú sa %n kontakty do {addressbook}","Importuje sa %n kontaktov do {addressbook}"],
     "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Do {addressbook} bol dokončený import %n kontaktu","Do {addressbook} bol dokončený import %n kontaktov","Do {addressbook} bol dokončený import %n kontaktov","Do {addressbook} bol dokončený import %n kontaktov"],
     "No data for this contact" : "Pre tento kontak neexistujú žiadne dáta",
