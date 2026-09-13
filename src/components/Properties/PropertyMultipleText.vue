@@ -57,14 +57,13 @@
 			</div>
 
 			<div class="property__value">
-				<!-- show the first input if not a structured value -->
 				<p v-if="!property.isStructuredValue && isReadOnly">
 					{{ localValue[0] }}
 				</p>
 				<NcTextField
-					v-else-if="!property.isStructuredValue"
-					v-model:model-value="localValue[0]"
-					:label="propModel.readableName"
+					v-else-if="!isReadOnly"
+					v-model:model-value="localValue[propModel.displayOrder ? propModel.displayOrder[0] : 0]"
+					:label="propModel.displayOrder ? propModel.readableValues[propModel.displayOrder[0]] : propModel.readableName"
 					:readonly="isReadOnly"
 					type="text"
 					@update:model-value="updateValue" />
@@ -94,10 +93,10 @@
 		<!-- force order based on model -->
 		<template v-if="propModel.displayOrder && propModel.readableValues">
 			<div
-				v-for="index in propModel.displayOrder"
+				v-for="(index, offset) in propModel.displayOrder"
 				:key="index"
 				class="property__row">
-				<template v-if="(isReadOnly && localValue[index]) || !isReadOnly">
+				<template v-if="(isReadOnly && localValue[index]) || (!isReadOnly && offset !== 0)">
 					<div class="property__label">
 						<span v-if="isReadOnly">{{ propModel.readableValues[index] }}</span>
 					</div>
