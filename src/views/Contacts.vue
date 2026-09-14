@@ -398,7 +398,7 @@ const _default = {
 
 		// watch url change and address book select
 		selectedAddressbook() {
-			if (!this.isMobile && !this.selectedChart) {
+			if (this.addressbook && !this.isMobile && !this.selectedChart) {
 				this.selectFirstContactIfNone()
 			}
 		},
@@ -644,11 +644,8 @@ const _default = {
 					&& GROUP_NO_GROUP_CONTACTS !== this.selectedGroup
 					&& ROUTE_CIRCLE !== this.selectedGroup
 					&& ROUTE_USER_GROUP !== this.selectedGroup) {
-					// no 'group not found' error when displaying invite accept dialog
-					if (this.$route.name !== ROUTE_NAME_INVITE_ACCEPT_DIALOG) {
-						showError(t('contacts', 'Group {group} not found', { group: this.selectedGroup }))
-						logger.error('Group not found', { selectedGroup: this.selectedGroup })
-					}
+					showError(t('contacts', 'Group {group} not found', { group: this.selectedGroup }))
+					logger.error('Group not found', { selectedGroup: this.selectedGroup })
 					this.$router.push({
 						name: 'root',
 					})
