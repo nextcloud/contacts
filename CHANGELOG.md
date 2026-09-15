@@ -1,6 +1,6 @@
 # Changelog
 All notable changes to this project will be documented in this file.
-# 8.9.0 (unreleased)
+# 8.9.0 (2026-09-15)
 
 ### Features 
 
