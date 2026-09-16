@@ -15,6 +15,7 @@ use OCP\Contacts\IManager as IContactsManager;
 use OCP\Files\File;
 use OCP\Files\Folder;
 use OCP\Files\IRootFolder;
+use OCP\Files\IUserFolder;
 use OCP\IAddressBook;
 use OCP\ICreateContactFromString;
 use OCP\IL10N;
@@ -64,6 +65,11 @@ class ImportControllerTest extends TestCase {
 		);
 	}
 
+	// IUserFolder only exists since server 36, CI still runs stable33-35
+	private function createUserFolderMock(): Folder&MockObject {
+		return $this->createMock(interface_exists(IUserFolder::class) ? IUserFolder::class : Folder::class);
+	}
+
 	public static function provideImportFileData(): array {
 		return [
 			// Correct mime type and ending
@@ -108,7 +114,7 @@ class ImportControllerTest extends TestCase {
 		$file->expects(self::once())
 			->method('getContent')
 			->willReturn($vCards);
-		$userFolder = $this->createMock(Folder::class);
+		$userFolder = $this->createUserFolderMock();
 		$userFolder->expects(self::once())
 			->method('getFirstNodeById')
 			->with(42)
@@ -194,7 +200,7 @@ class ImportControllerTest extends TestCase {
 		$file->expects(self::once())
 			->method('getContent')
 			->willReturn($vCards);
-		$userFolder = $this->createMock(Folder::class);
+		$userFolder = $this->createUserFolderMock();
 		$userFolder->expects(self::once())
 			->method('getFirstNodeById')
 			->with(42)
@@ -245,7 +251,7 @@ class ImportControllerTest extends TestCase {
 		$file->expects(self::once())
 			->method('getContent')
 			->willReturn($vCard);
-		$userFolder = $this->createMock(Folder::class);
+		$userFolder = $this->createUserFolderMock();
 		$userFolder->expects(self::once())
 			->method('getFirstNodeById')
 			->with(42)
@@ -412,7 +418,7 @@ class ImportControllerTest extends TestCase {
 				$addressBook2,
 			]);
 
-		$userFolder = $this->createMock(Folder::class);
+		$userFolder = $this->createUserFolderMock();
 		$userFolder->expects(self::once())
 			->method('getFirstNodeById')
 			->with(42)
@@ -447,7 +453,7 @@ class ImportControllerTest extends TestCase {
 			]);
 
 		$file = $this->createMock(Folder::class);
-		$userFolder = $this->createMock(Folder::class);
+		$userFolder = $this->createUserFolderMock();
 		$userFolder->expects(self::once())
 			->method('getFirstNodeById')
 			->with(42)
@@ -486,7 +492,7 @@ class ImportControllerTest extends TestCase {
 			->willReturn('invalid/mimetype');
 		$file->method('getExtension')
 			->willReturn('baz');
-		$userFolder = $this->createMock(Folder::class);
+		$userFolder = $this->createUserFolderMock();
 		$userFolder->expects(self::once())
 			->method('getFirstNodeById')
 			->with(42)
