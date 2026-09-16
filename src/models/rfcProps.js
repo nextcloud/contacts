@@ -90,7 +90,7 @@ const properties = {
 		readableName: t('contacts', 'Federated Cloud ID'),
 		force: 'text',
 		defaultValue: {
-			value: [''],
+			value: '',
 			type: [defaultProfileState],
 		},
 		options: [
