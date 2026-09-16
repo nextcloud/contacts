@@ -13,34 +13,28 @@
 		</NcButton>
 		<IconLoading v-if="loading" :size="20" />
 
-		<NcModal v-if="modalOpen" size="small" @close="onModalCancel">
-			<div class="new-addressbook-modal">
-				<NcInputField
-					v-model:model-value="displayName"
-					class="new-addressbook"
-					:disabled="loading"
-					:label="t('contacts', 'Add new address book')"
-					type="text"
-					autocomplete="off"
-					autocorrect="off"
-					spellcheck="false" />
-
-				<div class="new-addressbook-modal__buttons">
-					<NcButton variant="tertiary" :disabled="loading" @click="onModalCancel">
-						{{ t('contacts', 'Cancel') }}
-					</NcButton>
-					<NcButton variant="primary" :disabled="loading || inputErrorState" @click="onModalSubmit">
-						{{ t('contacts', 'Add') }}
-					</NcButton>
-				</div>
-			</div>
-		</NcModal>
+		<NcDialog
+			v-if="modalOpen"
+			size="small"
+			:name="t('contacts', 'Add new address book')"
+			:buttons="buttons"
+			@close="onModalCancel">
+			<NcInputField
+				v-model:model-value="displayName"
+				class="new-addressbook"
+				:disabled="loading"
+				:label="t('contacts', 'Name of new address book')"
+				type="text"
+				autocomplete="off"
+				autocorrect="off"
+				spellcheck="false" />
+		</NcDialog>
 	</div>
 </template>
 
 <script>
 import { showError } from '@nextcloud/dialogs'
-import { NcButton, NcInputField, NcModal } from '@nextcloud/vue'
+import { NcButton, NcDialog, NcInputField } from '@nextcloud/vue'
 import IconLoading from 'vue-material-design-icons/Loading.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 import logger from '../../../services/logger.js'
@@ -52,7 +46,7 @@ export default {
 		IconAdd,
 		IconLoading,
 		NcButton,
-		NcModal,
+		NcDialog,
 	},
 
 	props: {
@@ -71,6 +65,23 @@ export default {
 	},
 
 	computed: {
+		buttons() {
+			return [
+				{
+					variant: 'tertiary',
+					disabled: this.loading,
+					callback: this.onModalCancel,
+					label: t('contacts', 'Cancel'),
+				},
+				{
+					variant: 'primary',
+					disabled: this.loading || this.inputErrorState,
+					callback: this.onModalSubmit,
+					label: t('contacts', 'Add'),
+				},
+			]
+		},
+
 		inputErrorState() {
 			if (this.displayName === '') {
 				return false
@@ -100,52 +111,24 @@ export default {
 		/**
 		 * Add a new address book
 		 */
-		addAddressbook() {
+		async addAddressbook() {
 			if (this.displayName === '') {
 				return
 			}
 
 			this.loading = true
-			this.$store.dispatch('appendAddressbook', { displayName: this.displayName })
+
+			await this.$store.dispatch('appendAddressbook', { displayName: this.displayName })
 				.then(() => {
 					this.displayName = ''
-					this.loading = false
 				})
 				.catch((error) => {
 					logger.error(error)
 					showError(t('contacts', 'An error occurred, unable to create the address book'))
-					this.loading = false
 				})
+
+			this.loading = false
 		},
 	},
 }
 </script>
-
-<style lang="scss" scoped>
-
-.new-addressbook-entry {
-	display: flex;
-	width: 100%;
-	justify-content: stretch;
-	margin-top: calc(var(--default-grid-baseline) * 2);
-
-	> * {
-		flex-grow: 1;
-	}
-}
-
-.new-addressbook-modal {
-	padding: calc(var(--default-grid-baseline) * 4);
-	padding-top: calc(var(--default-grid-baseline) * 8);
-	> * {
-		width: 100%;
-	}
-
-	&__buttons {
-		display: flex;
-		justify-content: end;
-		gap: calc(var(--default-grid-baseline) * 2);
-		margin-top: calc(var(--default-grid-baseline) * 2);
-	}
-}
-</style>
