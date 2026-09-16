@@ -151,8 +151,9 @@
 					</div>
 
 					<!-- Team resource creation shortcuts -->
+					<!-- Changes by SURF - Folder option disabled -->
 					<div v-if="circle.isMember && resourceTypes.length > 0" class="resource-shortcuts">
-						<h3 class="resource-shortcuts__title">
+						<h3 v-if="(resourceTypes || []).length > 0" class="resource-shortcuts__title">
 							{{ t('contacts', 'Create') }}
 						</h3>
 						<div class="resource-shortcuts__buttons">
@@ -533,6 +534,7 @@ export default {
 		resourceTypes() {
 			const enabledApps = window.OC?.appswebroots || {}
 
+			// Changes by SURF - Folder option disabled
 			return [
 				{
 					id: 'folder',
@@ -542,7 +544,7 @@ export default {
 					helperText: t('contacts', 'This will create a regular folder shared with the team. To create a Team Folder, please contact your {productName} administrator', { productName: OC.theme.name }),
 					icon: 'FolderOutlineIcon',
 					apiPath: 'files',
-					enabled: enabledApps.files !== undefined && !hideTeamSharedFolderCreation,
+					enabled: false,
 				},
 				{
 					id: 'talk',
