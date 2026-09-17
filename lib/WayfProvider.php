@@ -70,52 +70,68 @@ class WayfProvider {
 					continue;
 				}
 				$data = json_decode($res->getBody(), true);
-				$fed = $data['federation'] ?? 'Unknown';
-				$federations[$fed] = $federations[$fed] ?? [];
+				if (!is_array($data)) {
+					$this->logger->error("Invalid JSON received from service at $url.", ['app' => Application::APP_ID]);
+					continue;
+				}
+				// the service may return a single federation object or a list of them
+				$entries = array_is_list($data) ? $data : [$data];
 
-				$servers = is_array($data['servers'] ?? null) ? $data['servers'] : [];
-				foreach ($servers as $prov) {
-					$providerUrl = is_array($prov) && isset($prov['url']) ? (string)$prov['url'] : '';
-					if ($providerUrl === '') {
+				foreach ($entries as $entry) {
+					if (!is_array($entry)) {
 						continue;
 					}
-					$fqdn = parse_url($providerUrl, PHP_URL_HOST);
-					if (!is_string($fqdn) || $fqdn === '') {
-						continue;
-					}
-					if (($ourFqdn !== '' && $ourFqdn === $fqdn) || in_array($fqdn, $found, true)) {
-						continue;
-					}
-					$cachedProvider = $this->getProviderFromCache($fqdn);
+					$fed = $entry['federation'] ?? 'Unknown';
+					$federations[$fed] = $federations[$fed] ?? [];
 
-					// allways discover a new provider
-					if (empty($cachedProvider) || $refresh) {
-						$inviteAcceptDialog = '';
-						try {
-							$disc = $this->discovery->discover($providerUrl, true);
-							$inviteAcceptDialog = $disc->getInviteAcceptDialog();
-						} catch (Exception $e) {
-							$this->logger->error('Discovery failed for ' . $providerUrl . ': ' . $e->getMessage(), ['app' => Application::APP_ID]);
+					$servers = is_array($entry['servers'] ?? null) ? $entry['servers'] : [];
+					foreach ($servers as $prov) {
+						$providerUrl = is_array($prov) && isset($prov['url']) ? (string)$prov['url'] : '';
+						if ($providerUrl === '') {
 							continue;
 						}
-						if ($inviteAcceptDialog === '') {
-							// We fall back on Nextcloud default path
-							$inviteAcceptDialogPath = self::getInviteAcceptDialogPath();
-							$inviteAcceptDialog = rtrim($providerUrl, '/') . $inviteAcceptDialogPath;
+						// the directory service may list bare domains without a scheme
+						if (!preg_match('#^https?://#i', $providerUrl)) {
+							$providerUrl = 'https://' . $providerUrl;
 						}
-						$federations[$fed][] = [
-							'provider' => $disc->getProvider(),
-							'name' => (string)($prov['displayName'] ?? $fqdn),
-							'fqdn' => $fqdn,
-							'inviteAcceptDialog' => $inviteAcceptDialog,
-						];
-					} else {
-						// used cached data
-						$federations[$fed][] = $cachedProvider;
+						$fqdn = parse_url($providerUrl, PHP_URL_HOST);
+						if (!is_string($fqdn) || $fqdn === '') {
+							continue;
+						}
+						if (($ourFqdn !== '' && $ourFqdn === $fqdn) || in_array($fqdn, $found, true)) {
+							continue;
+						}
+						$cachedProvider = $this->getProviderFromCache($fqdn);
+
+						// allways discover a new provider
+						if (empty($cachedProvider) || $refresh) {
+							$inviteAcceptDialog = '';
+							try {
+								$disc = $this->discovery->discover($providerUrl, true);
+								$inviteAcceptDialog = $disc->getInviteAcceptDialog();
+							} catch (Exception $e) {
+								$this->logger->error('Discovery failed for ' . $providerUrl . ': ' . $e->getMessage(), ['app' => Application::APP_ID]);
+								continue;
+							}
+							if ($inviteAcceptDialog === '') {
+								// We fall back on Nextcloud default path
+								$inviteAcceptDialogPath = self::getInviteAcceptDialogPath();
+								$inviteAcceptDialog = rtrim($providerUrl, '/') . $inviteAcceptDialogPath;
+							}
+							$federations[$fed][] = [
+								'provider' => $disc->getProvider(),
+								'name' => (string)($prov['displayName'] ?? $fqdn),
+								'fqdn' => $fqdn,
+								'inviteAcceptDialog' => $inviteAcceptDialog,
+							];
+						} else {
+							// used cached data
+							$federations[$fed][] = $cachedProvider;
+						}
+						array_push($found, $fqdn);
 					}
-					array_push($found, $fqdn);
+					usort($federations[$fed], fn ($a, $b) => strcmp($a['name'], $b['name']));
 				}
-				usort($federations[$fed], fn ($a, $b) => strcmp($a['name'], $b['name']));
 			} catch (Exception $e) {
 				$this->logger->error('Fetch failed for ' . $url . ': ' . $e->getMessage(), ['app' => Application::APP_ID]);
 			}
