@@ -207,8 +207,6 @@ OC.L10N.register(
     "Time zone" : "Zona horaria",
     "Spoken languages" : "Idiomas hablados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se ha podido leer","{failed} contactos no se han podido leer","{failed} contactos no se han podido leer"],
-    "Unable to delete contact" : "No se ha podido eliminar el contacto",
-    "Pick an address book" : "Escoge una libreta de direcciones",
-    "Select Date" : "Seleccionar fecha"
+    "Unable to delete contact" : "No se ha podido eliminar el contacto"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

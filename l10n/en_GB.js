@@ -506,15 +506,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Could not update favourite state",
     "Unable to delete contact" : "Unable to delete contact",
     "Value copied to the clipboard" : "Value copied to the clipboard",
-    "Could not copy value to the clipboard." : "Could not copy value to the clipboard.",
-    "Deck board" : "Deck board",
-    "New Deck board" : "New Deck board",
-    "Board name" : "Board name",
-    "Deck app is not installed. Please install it to create team boards." : "Deck app is not installed. Please install it to create team boards.",
-    "Pick an address book" : "Pick an address book",
-    "Select Date" : "Select Date",
-    "note" : "note",
-    "email" : "email",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email."
+    "Could not copy value to the clipboard." : "Could not copy value to the clipboard."
 },
 "nplurals=2; plural=(n != 1);");

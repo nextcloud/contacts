@@ -241,8 +241,6 @@ OC.L10N.register(
     "Time zone" : "Time zone",
     "Spoken languages" : "Spoken languages",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contact failed to be read","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Unable to delete contact",
-    "Pick an address book" : "Pick an address book",
-    "Select Date" : "Select Date"
+    "Unable to delete contact" : "Unable to delete contact"
 },
 "nplurals=2; plural=(n!=1);");

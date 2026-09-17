@@ -504,15 +504,6 @@
     "Could not update favorite state" : "Status favorit tidak dapat diperbarui",
     "Unable to delete contact" : "Tidak dapat menghapus kontak",
     "Value copied to the clipboard" : "Nilai disalin ke papan klip",
-    "Could not copy value to the clipboard." : "Nilai tidak dapat disalin ke papan klip.",
-    "Deck board" : "Papan Deck",
-    "New Deck board" : "Papan Deck baru",
-    "Board name" : "Nama papan",
-    "Deck app is not installed. Please install it to create team boards." : "Aplikasi Deck tidak terpasang. Silakan pasang untuk membuat papan tim.",
-    "Pick an address book" : "Pilih buku alamat",
-    "Select Date" : "Pilih Tanggal",
-    "note" : "catatan",
-    "email" : "email",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Buat grup Anda sendiri untuk berbagi. Tambahkan pengguna Nextcloud, kontak, atau siapa pun melalui email."
+    "Could not copy value to the clipboard." : "Nilai tidak dapat disalin ke papan klip."
 },"pluralForm" :"nplurals=1; plural=0;"
 }

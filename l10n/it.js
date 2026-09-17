@@ -389,15 +389,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Non è stato possibile aggiornare lo stato di preferito",
     "Unable to delete contact" : "Impossibile eliminare il contatto",
     "Value copied to the clipboard" : "Valore copiato negli appunti",
-    "Could not copy value to the clipboard." : "Non è stato possibile copiare il valore negli appunti.",
-    "Deck board" : "Bacheca",
-    "New Deck board" : "Nuova bacheca",
-    "Board name" : "Nome bacheca",
-    "Deck app is not installed. Please install it to create team boards." : "L'app Deck non è installata. Installala per creare bacheche di team.",
-    "Pick an address book" : "Scegli una rubrica",
-    "Select Date" : "Seleziona data",
-    "note" : "nota",
-    "email" : "email",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Crea i tuoi gruppi per condividere contenuti. Aggiungi utenti, contatti o persone esterne tramite email."
+    "Could not copy value to the clipboard." : "Non è stato possibile copiare il valore negli appunti."
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

@@ -396,15 +396,6 @@
     "Could not update favorite state" : "无法更新收藏状态",
     "Unable to delete contact" : "无法删除联系人",
     "Value copied to the clipboard" : "值已复制到剪贴板",
-    "Could not copy value to the clipboard." : "无法将值复制到剪贴板。",
-    "Deck board" : "Deck 面板",
-    "New Deck board" : "新 Deck 面板",
-    "Board name" : "面板名称",
-    "Deck app is not installed. Please install it to create team boards." : "未安装 Deck 应用。请安装它以创建团队面板。",
-    "Pick an address book" : "选择一个通讯录",
-    "Select Date" : "选择日期",
-    "note" : "备注",
-    "email" : "电子邮件",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "创建您自己的共享群组。添加 Nextcloud 用户、联系人或通过电子邮件添加任何人。"
+    "Could not copy value to the clipboard." : "无法将值复制到剪贴板。"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

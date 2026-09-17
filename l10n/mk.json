@@ -352,12 +352,6 @@
     "An error has occurred in team(s). Check the console for more details." : "Настана грешка во некои тим(ови). Проверете ја конзолата за повеќе детали.",
     "Unable to create team {circleName}" : "Неможе да се креира тим {circleName}",
     "Unable to delete team {circleId}" : "Неможе да се избрише тимот {circleId}",
-    "Unable to delete contact" : "Неможе да се избрише контакт",
-    "Deck board" : "Deck табла",
-    "New Deck board" : "Нова Deck табла",
-    "Board name" : "Име на табла",
-    "Deck app is not installed. Please install it to create team boards." : "Deck апликацијата не е инсталирана. Инсталирајте ја за да креирате тимски табли.",
-    "Pick an address book" : "Избери адресар",
-    "Select Date" : "Избери датум"
+    "Unable to delete contact" : "Неможе да се избрише контакт"
 },"pluralForm" :"nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;"
 }

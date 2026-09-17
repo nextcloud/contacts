@@ -400,15 +400,6 @@
     "Could not update favorite state" : "Не вдалося оновити статус із зірочкою",
     "Unable to delete contact" : "Неможливо вилучити контакт",
     "Value copied to the clipboard" : "Значення скопійовано до буфера обміну",
-    "Could not copy value to the clipboard." : "Не вдалося скопіювати значення до буфера обміну",
-    "Deck board" : "Дошка",
-    "New Deck board" : "Нова дошка",
-    "Board name" : "Назва дошки",
-    "Deck app is not installed. Please install it to create team boards." : "Застосунок Deck не встановлено. Встановіть його, щоби створювати дошки команди.",
-    "Pick an address book" : "Виберіть адресну книгу",
-    "Select Date" : "Вкажіть дату",
-    "note" : "примітка",
-    "email" : "ел. пошта",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Створюйте власні групи для спільної роботи. Додавайте до груп користувачів Nextcloud, ваші контакти або будь-кого через ел. пошту."
+    "Could not copy value to the clipboard." : "Не вдалося скопіювати значення до буфера обміну"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);"
 }

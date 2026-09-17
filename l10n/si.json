@@ -46,7 +46,6 @@
     "Spouse" : "කලත්‍රයා",
     "Mother" : "මව",
     "Father" : "පියා",
-    "Unknown" : "නොදන්නා",
-    "Select Date" : "දිනය තෝරන්න"
+    "Unknown" : "නොදන්නා"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

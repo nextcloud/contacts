@@ -247,8 +247,6 @@ OC.L10N.register(
     "Time zone" : "시간대",
     "Spoken languages" : "사용 언어",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["연락처 {failed}개를 읽을 수 없음"],
-    "Unable to delete contact" : "연락처를 삭제할 수 없음",
-    "Pick an address book" : "주소록 선택",
-    "Select Date" : "날짜 선택"
+    "Unable to delete contact" : "연락처를 삭제할 수 없음"
 },
 "nplurals=1; plural=0;");

@@ -109,8 +109,6 @@ OC.L10N.register(
     "Female" : "Tawtemt",
     "Male" : "Awtem",
     "Unknown" : "Arussin",
-    "Time zone" : "Tamnaḍt tasragant",
-    "note" : "tazmilt",
-    "email" : "imayl"
+    "Time zone" : "Tamnaḍt tasragant"
 },
 "nplurals=2; plural=(n != 1);");

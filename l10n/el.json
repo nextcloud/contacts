@@ -400,15 +400,6 @@
     "Could not update favorite state" : "Δεν ήταν δυνατή η ενημέρωση της κατάστασης αγαπημένου",
     "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής",
     "Value copied to the clipboard" : "Η τιμή αντιγράφηκε στο πρόχειρο",
-    "Could not copy value to the clipboard." : "Δεν ήταν δυνατή η αντιγραφή της τιμής στο πρόχειρο.",
-    "Deck board" : "Πίνακας Deck",
-    "New Deck board" : "Νέος πίνακας Deck",
-    "Board name" : "Όνομα πίνακα",
-    "Deck app is not installed. Please install it to create team boards." : "Η εφαρμογή Deck δεν είναι εγκατεστημένη. Παρακαλώ εγκαταστήστε την για να δημιουργήσετε πίνακες ομάδας.",
-    "Pick an address book" : "Επιλέξτε ένα βιβλίο διευθύνσεων",
-    "Select Date" : "Επιλέξτε ημερομηνία",
-    "note" : "σημείωση",
-    "email" : "email",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Δημιουργήστε τις δικές σας ομάδες για κοινή χρήση. Προσθέστε χρήστες του Nextcloud, επαφές ή οποιονδήποτε μέσω email."
+    "Could not copy value to the clipboard." : "Δεν ήταν δυνατή η αντιγραφή της τιμής στο πρόχειρο."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

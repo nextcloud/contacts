@@ -404,15 +404,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Nepavyko atnaujinti mėgstamiausio būsenos",
     "Unable to delete contact" : "Nepavyko ištrinti adresato",
     "Value copied to the clipboard" : "Vertė nukopijuota į iškarpinę",
-    "Could not copy value to the clipboard." : "Nepavyko nukopijuoti vertės į iškarpinę.",
-    "Deck board" : "Darbų lenta",
-    "New Deck board" : "Nauja Darbų lenta",
-    "Board name" : "Lentos pavadinimas",
-    "Deck app is not installed. Please install it to create team boards." : "Programėlė „Darbai“ nėra įdiegta. Įdiekite ją, kad galėtumėte kurti komandos lentas.",
-    "Pick an address book" : "Pasirinkti adresų knygą",
-    "Select Date" : "Pasirinkti datą",
-    "note" : "pastaba",
-    "email" : "el. laiškas",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Kurkite savo grupes bendrinimui. Pridėkite „Nextcloud“ vartotojus, kontaktus ar bet ką el. paštu."
+    "Could not copy value to the clipboard." : "Nepavyko nukopijuoti vertės į iškarpinę."
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

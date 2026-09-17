@@ -235,8 +235,6 @@ OC.L10N.register(
     "Time zone" : "Часова зона",
     "Spoken languages" : "Говорими езици",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контактите не бяха прочетени","{failed} контактите не бяха прочетени"],
-    "Unable to delete contact" : "Контактът не може да се изтрие",
-    "Pick an address book" : "Избор на адресна книга",
-    "Select Date" : "Изберете дата"
+    "Unable to delete contact" : "Контактът не може да се изтрие"
 },
 "nplurals=2; plural=(n != 1);");

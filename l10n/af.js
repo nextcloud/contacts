@@ -98,7 +98,6 @@ OC.L10N.register(
     "Gender" : "Geslag",
     "Female" : "Vroulik",
     "Male" : "Manlik",
-    "Unknown" : "Onbekend",
-    "Select Date" : "Kies Datum"
+    "Unknown" : "Onbekend"
 },
 "nplurals=2; plural=(n != 1);");

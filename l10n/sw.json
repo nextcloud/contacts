@@ -353,12 +353,6 @@
     "An error has occurred in team(s). Check the console for more details." : "Hitilafu imetokea katika vipengele. Angalia mixer kwa maelezo zaidii",
     "Unable to create team {circleName}" : "Haiwezi kutengeneza timu {circleName}",
     "Unable to delete team {circleId}" : "Haiwezi kufuta timu {circleId}",
-    "Unable to delete contact" : "Haiwezi kufuta mawasiliano",
-    "Deck board" : "Ubao wa deki",
-    "New Deck board" : "Ubao mpya wa deki",
-    "Board name" : "Jina la ubao",
-    "Deck app is not installed. Please install it to create team boards." : "Programu ya sitaha haijasakinishwa. Tafadhali isakinishe ili kuunda bodi za timu.",
-    "Pick an address book" : "Chagua kitabu cha anwani",
-    "Select Date" : "Chagua tarehe"
+    "Unable to delete contact" : "Haiwezi kufuta mawasiliano"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

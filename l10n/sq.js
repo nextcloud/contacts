@@ -113,7 +113,6 @@ OC.L10N.register(
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "Unknown" : "I/E panjohur",
-    "Select Date" : "Zgjidhni Datën"
+    "Unknown" : "I/E panjohur"
 },
 "nplurals=2; plural=(n != 1);");
