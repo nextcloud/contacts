@@ -384,14 +384,6 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Non é posíbel eliminar o equipo {circleId}",
     "Unable to delete contact" : "Non é posíbel eliminar o contacto",
     "Value copied to the clipboard" : "O valor foi copiado no portapapeis",
-    "Could not copy value to the clipboard." : "Non foi posíbel copiar o valor no portapapeis.",
-    "Deck board" : "Taboleiro da Gabeta",
-    "New Deck board" : "Novo taboleiro da Gabeta",
-    "Board name" : "Nome do taboleiro",
-    "Deck app is not installed. Please install it to create team boards." : "A aplicación Gabeta non está instalada. Instálea para crear taboleiros de equipo.",
-    "Pick an address book" : "Escolla un caderno de enderezos",
-    "Select Date" : "Seleccione a data",
-    "note" : "nota",
-    "email" : "correo"
+    "Could not copy value to the clipboard." : "Non foi posíbel copiar o valor no portapapeis."
 },
 "nplurals=2; plural=(n != 1);");

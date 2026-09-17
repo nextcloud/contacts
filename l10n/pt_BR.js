@@ -506,15 +506,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Não foi possível atualizar o status de favorito",
     "Unable to delete contact" : "Não foi possível excluir o contato",
     "Value copied to the clipboard" : "Valor copiado para a área de transferência",
-    "Could not copy value to the clipboard." : "Não foi possível copiar o valor para a área de transferência.",
-    "Deck board" : "Quadro do Deck",
-    "New Deck board" : "Novo quadro do Deck",
-    "Board name" : "Nome do quadro",
-    "Deck app is not installed. Please install it to create team boards." : "O aplicativo Deck não está instalado. Por favor, instale-o para criar quadros de equipe.",
-    "Pick an address book" : "Escolha um catálogo de endereços",
-    "Select Date" : "Selecionar Data",
-    "note" : "nota",
-    "email" : "e-mail",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Crie seus próprios grupos para compartilhar. Adicione usuários do Nextcloud, contatos ou qualquer pessoa por e-mail."
+    "Could not copy value to the clipboard." : "Não foi possível copiar o valor para a área de transferência."
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

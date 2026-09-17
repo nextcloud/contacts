@@ -48,7 +48,6 @@ OC.L10N.register(
     "Spouse" : "කලත්‍රයා",
     "Mother" : "මව",
     "Father" : "පියා",
-    "Unknown" : "නොදන්නා",
-    "Select Date" : "දිනය තෝරන්න"
+    "Unknown" : "නොදන්නා"
 },
 "nplurals=2; plural=(n != 1);");

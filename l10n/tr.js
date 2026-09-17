@@ -506,15 +506,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Sık kullanılan durumu güncellenemedi",
     "Unable to delete contact" : "Kişi silinemedi",
     "Value copied to the clipboard" : "Değer panoya kopyalandı",
-    "Could not copy value to the clipboard." : "Değer panoya kopyalanamadı.",
-    "Deck board" : "Deste panosu",
-    "New Deck board" : "Yeni Deste panosu",
-    "Board name" : "Pano adı",
-    "Deck app is not installed. Please install it to create team boards." : "Deste uygulaması kurulmamış. Lütfen takım panoları oluşturmak için kurun.",
-    "Pick an address book" : "Bir adres defteri seçin",
-    "Select Date" : "Tarih seçin",
-    "note" : "not",
-    "email" : "e-posta",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Paylaşmak için kendi gruplarınızı oluşturun. Nextcloud kullanıcılarını, kişilerini veya herhangi birini e-posta ile ekleyin."
+    "Could not copy value to the clipboard." : "Değer panoya kopyalanamadı."
 },
 "nplurals=2; plural=(n > 1);");

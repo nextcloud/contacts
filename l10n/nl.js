@@ -397,15 +397,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Kon favorietstatus niet bijwerken",
     "Unable to delete contact" : "Kan contactpersoon niet verwijderen",
     "Value copied to the clipboard" : "Waarde gekopieerd van het klembord",
-    "Could not copy value to the clipboard." : "Kan waarde niet kopiëren naar het klembord",
-    "Deck board" : "Deck bord",
-    "New Deck board" : "Nieuw Deck bord",
-    "Board name" : "Bordnaam",
-    "Deck app is not installed. Please install it to create team boards." : "Deck app is niet geïnstalleerd. Installeer deze om teamborden te maken.",
-    "Pick an address book" : "Kies een adresboek",
-    "Select Date" : "Selecteer datum",
-    "note" : "notitie",
-    "email" : "e-mailadres",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Maak je eigen groepen aan om te delen. Voeg Nextcloud gebruikers, contactpersonen of anderen via e-mail toe."
+    "Could not copy value to the clipboard." : "Kan waarde niet kopiëren naar het klembord"
 },
 "nplurals=2; plural=(n != 1);");

@@ -299,8 +299,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Errore bat gertatu da lantaldeetan. Begiratu kontsola xehetasun gehiago lortzeko.",
     "Unable to create team {circleName}" : "Ezin izan da {circleName} lantaldea sortu",
     "Unable to delete team {circleId}" : "Ezin izan da {circleId} lantaldea ezabatu",
-    "Unable to delete contact" : "Ezin izan da kontaktua ezabatu",
-    "Pick an address book" : "Aukeratu helbide-liburu bat",
-    "Select Date" : "Hautatu data"
+    "Unable to delete contact" : "Ezin izan da kontaktua ezabatu"
 },
 "nplurals=2; plural=(n != 1);");

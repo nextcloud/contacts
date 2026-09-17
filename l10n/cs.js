@@ -391,14 +391,6 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Nedaří se smazat tým {circleId}",
     "Unable to delete contact" : "Nedaří se smazat kontakt",
     "Value copied to the clipboard" : "Hodnota zkopírována do schránky",
-    "Could not copy value to the clipboard." : "Nebylo možné zkopírovat hodnotu do schránky.",
-    "Deck board" : "Tabule aplikace Deck",
-    "New Deck board" : "Nová tabule v aplikaci Deck",
-    "Board name" : "Název tabule",
-    "Deck app is not installed. Please install it to create team boards." : "Aplikace Deck není nainstalována. Pokud chcete vytvářet týmové tabule, nainstalujte ji.",
-    "Pick an address book" : "Zvolit adresář kontaktů",
-    "Select Date" : "Vybrat datum",
-    "note" : "poznámka",
-    "email" : "e-mail"
+    "Could not copy value to the clipboard." : "Nebylo možné zkopírovat hodnotu do schránky."
 },
 "nplurals=4; plural=(n == 1 && n % 1 == 0) ? 0 : (n >= 2 && n <= 4 && n % 1 == 0) ? 1: (n % 1 != 0 ) ? 2 : 3;");

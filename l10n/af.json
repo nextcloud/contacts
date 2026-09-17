@@ -96,7 +96,6 @@
     "Gender" : "Geslag",
     "Female" : "Vroulik",
     "Male" : "Manlik",
-    "Unknown" : "Onbekend",
-    "Select Date" : "Kies Datum"
+    "Unknown" : "Onbekend"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

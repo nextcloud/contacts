@@ -372,12 +372,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "گۇرۇپپا (لار) دا خاتالىق كۆرۈلدى. تېخىمۇ كۆپ تەپسىلاتلارنى كونترول سۇپىسىدىن تەكشۈرۈڭ.",
     "Unable to create team {circleName}" : "گۇرۇپپا {circleName} create قۇرالمىدى",
     "Unable to delete team {circleId}" : "گۇرۇپپا {circleId} ئۆچۈرگىلى بولمىدى",
-    "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى",
-    "Deck board" : "پالۋان تاختىسى",
-    "New Deck board" : "يېڭى پالۋان تاختىسى",
-    "Board name" : "مۇدىرىيەت ئىسمى",
-    "Deck app is not installed. Please install it to create team boards." : "پالۋان ئەپ قاچىلانمىدى. ئەتىرەت مۇدىريىتى قۇرۇش ئۈچۈن ئۇنى قاچىلاڭ.",
-    "Pick an address book" : "ئادرېس دەپتىرىنى تاللاڭ",
-    "Select Date" : "چېسلانى تاللاڭ"
+    "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى"
 },
 "nplurals=2; plural=(n != 1);");

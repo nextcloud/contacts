@@ -506,15 +506,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Níorbh fhéidir an stát is fearr leat a nuashonrú",
     "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh",
     "Value copied to the clipboard" : "Luach cóipeáilte chuig an ghearrthaisce",
-    "Could not copy value to the clipboard." : "Níorbh fhéidir luach a chóipeáil chuig an ghearrthaisce.",
-    "Deck board" : "Clár deic",
-    "New Deck board" : "Clár Deic Nua",
-    "Board name" : "Ainm an bhoird",
-    "Deck app is not installed. Please install it to create team boards." : "Níl an aip deic suiteáilte. Suiteáil í le do thoil chun boird foirne a chruthú.",
-    "Pick an address book" : "Roghnaigh leabhar seoltaí",
-    "Select Date" : "Roghnaigh Dáta",
-    "note" : "nóta",
-    "email" : "ríomhphost",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Cruthaigh do ghrúpaí féin le haghaidh comhroinnte. Cuir úsáideoirí Nextcloud, teagmhálaithe, nó aon duine leis trí ríomhphost."
+    "Could not copy value to the clipboard." : "Níorbh fhéidir luach a chóipeáil chuig an ghearrthaisce."
 },
 "nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);");

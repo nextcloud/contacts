@@ -398,15 +398,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Nie udało się zaktualizować stanu ulubionych",
     "Unable to delete contact" : "Nie można usunąć kontaktu",
     "Value copied to the clipboard" : "Wartość skopiowana do schowka",
-    "Could not copy value to the clipboard." : "Nie można skopiować wartości do schowka.",
-    "Deck board" : "Tablica Deck",
-    "New Deck board" : "Nowa tablica Deck",
-    "Board name" : "Nazwa tablicy",
-    "Deck app is not installed. Please install it to create team boards." : "Aplikacja Deck nie jest zainstalowana. Zainstaluj ją, aby tworzyć tablice zespołów.",
-    "Pick an address book" : "Wybierz z książki adresowej",
-    "Select Date" : "Wybierz datę",
-    "note" : "notatka",
-    "email" : "e-mail",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Twórz własne grupy do udostępniania. Dodawaj użytkowników Nextcloud, kontakty lub dowolne osoby przez e-mail."
+    "Could not copy value to the clipboard." : "Nie można skopiować wartości do schowka."
 },
 "nplurals=4; plural=(n==1 ? 0 : (n%10>=2 && n%10<=4) && (n%100<12 || n%100>14) ? 1 : n!=1 && (n%10>=0 && n%10<=1) || (n%10>=5 && n%10<=9) || (n%100>=12 && n%100<=14) ? 2 : 3);");

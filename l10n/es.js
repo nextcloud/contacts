@@ -384,14 +384,6 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "No se pudo eliminar el equipo {circleId}",
     "Unable to delete contact" : "No se ha podido eliminar el contacto",
     "Value copied to the clipboard" : "Copiado al portapapeles",
-    "Could not copy value to the clipboard." : "No se pudo copiar al portapapeles",
-    "Deck board" : "Tablero de Deck",
-    "New Deck board" : "Nuevo tablero de Deck",
-    "Board name" : "Nombre del tablero",
-    "Deck app is not installed. Please install it to create team boards." : "La app Deck no está instalada. Por favor, instálala para crear tableros de equipo.",
-    "Pick an address book" : "Escoge una libreta de direcciones",
-    "Select Date" : "Seleccione la fecha",
-    "note" : "nota",
-    "email" : "correo electrónico"
+    "Could not copy value to the clipboard." : "No se pudo copiar al portapapeles"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

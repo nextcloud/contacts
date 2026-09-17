@@ -506,15 +506,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Det gick inte att uppdatera favoritstatusen",
     "Unable to delete contact" : "Det gick inte att ta bort kontakten",
     "Value copied to the clipboard" : "Värdet har kopierats till urklipp",
-    "Could not copy value to the clipboard." : "Det gick inte att kopiera värdet till urklipp.",
-    "Deck board" : "Deck-tavla",
-    "New Deck board" : "Ny Deck-tavla",
-    "Board name" : "Tavlans namn",
-    "Deck app is not installed. Please install it to create team boards." : "Deck-appen är inte installerad. Installera den för att skapa teamtavlor.",
-    "Pick an address book" : "Välj en adressbok",
-    "Select Date" : "Välj datum",
-    "note" : "anteckning",
-    "email" : "e-post",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Skapa egna grupper för delning. Lägg till Nextcloud-användare, kontakter eller vem som helst via e-post."
+    "Could not copy value to the clipboard." : "Det gick inte att kopiera värdet till urklipp."
 },
 "nplurals=2; plural=(n != 1);");

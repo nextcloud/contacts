@@ -400,15 +400,6 @@
     "Could not update favorite state" : "お気に入りの状態を更新できませんでした",
     "Unable to delete contact" : "連絡先を削除できません。",
     "Value copied to the clipboard" : "クリップボードに値をコピーしました",
-    "Could not copy value to the clipboard." : "クリップボードに値をコピーできませんでした。",
-    "Deck board" : "Deckボード",
-    "New Deck board" : "新しいDeckボード",
-    "Board name" : "ボード名",
-    "Deck app is not installed. Please install it to create team boards." : "Deckアプリがインストールされていません。チームボードを作成するには、アプリをインストールしてください。",
-    "Pick an address book" : "アドレス帳を選ぶ",
-    "Select Date" : "日付を選択",
-    "note" : "ノート",
-    "email" : "メール",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "共有用のあなたのグループを作成しましょう。Nextcloudのユーザーや連絡先、あるいはメールを使用して誰でも追加できます。"
+    "Could not copy value to the clipboard." : "クリップボードに値をコピーできませんでした。"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

@@ -399,15 +399,6 @@
     "Could not update favorite state" : "به‌روزرسانی وضعیت موردعلاقه امکان‌پذیر نیست",
     "Unable to delete contact" : "امکان حذف مخاطب وجود ندارد",
     "Value copied to the clipboard" : "مقدار در کلیپ‌بورد کپی شد",
-    "Could not copy value to the clipboard." : "امکان کپی کردن مقدار در کلیپ‌بورد وجود نداشت.",
-    "Deck board" : "تابلو کارتابل",
-    "New Deck board" : "تابلود کارتابل جدید",
-    "Board name" : "نام برد",
-    "Deck app is not installed. Please install it to create team boards." : "برنامه کارتابل نصب نشده است. لطفاً برای ایجاد بردهای تیمی آن را نصب کنید.",
-    "Pick an address book" : "انتخاب یک دفترچه آدرس",
-    "Select Date" : "انتخاب تاریخ",
-    "note" : "یادداشت",
-    "email" : "ایمیل",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "گروه‌های خود را برای اشتراک‌گذاری ایجاد کنید. کاربران نکست‌کلود، مخاطبان یا هر فردی را از طریق ایمیل اضافه کنید."
+    "Could not copy value to the clipboard." : "امکان کپی کردن مقدار در کلیپ‌بورد وجود نداشت."
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

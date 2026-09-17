@@ -374,14 +374,6 @@
     "Unable to delete team {circleId}" : "{circleId} баг устгах боломжгүй",
     "Unable to delete contact" : "Харилцагч устгах боломжгүй",
     "Value copied to the clipboard" : "Утгыг санах ойд хуулсан",
-    "Could not copy value to the clipboard." : "Утгыг санах ойд хуулах боломжгүй байна.",
-    "Deck board" : "Deck самбар",
-    "New Deck board" : "Шинэ Deck самбар",
-    "Board name" : "Самбарын нэр",
-    "Deck app is not installed. Please install it to create team boards." : "Deck апп суулгаагүй байна. Багийн самбар үүсгэхийн тулд суулгана уу.",
-    "Pick an address book" : "Хаягийн дэвтэр сонгох",
-    "Select Date" : "Огноо сонгох",
-    "note" : "тэмдэглэл",
-    "email" : "и-мэйл"
+    "Could not copy value to the clipboard." : "Утгыг санах ойд хуулах боломжгүй байна."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

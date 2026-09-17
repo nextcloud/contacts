@@ -111,7 +111,6 @@
     "Gender" : "Gjinia",
     "Female" : "Femër",
     "Male" : "Mashkull",
-    "Unknown" : "I/E panjohur",
-    "Select Date" : "Zgjidhni Datën"
+    "Unknown" : "I/E panjohur"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

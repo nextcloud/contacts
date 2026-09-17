@@ -506,15 +506,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Favoritenzustand konnte nicht aktualisiert werden",
     "Unable to delete contact" : "Kontakt konnte nicht gelöscht werden",
     "Value copied to the clipboard" : "Wert in die Zwischenablage kopiert",
-    "Could not copy value to the clipboard." : "Wert konnte nicht in die Zwischenablage kopiert werden.",
-    "Deck board" : "Deck-Board",
-    "New Deck board" : "Neues Deck-Board",
-    "Board name" : "Boardname",
-    "Deck app is not installed. Please install it to create team boards." : "Die Deck-App ist nicht installiert. Bitte Deck installieren, um Team-Boards zu erstellen.",
-    "Pick an address book" : "Ein Adressbuch auswählen",
-    "Select Date" : "Datum auswählen",
-    "note" : "Notiz",
-    "email" : "E-Mail",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "Erstellen Sie Ihre eigenen Gruppen zum Teilen. Fügen Sie Nextcloud-Benutzer, Kontakte oder beliebige Personen per E-Mail hinzu."
+    "Could not copy value to the clipboard." : "Wert konnte nicht in die Zwischenablage kopiert werden."
 },
 "nplurals=2; plural=(n != 1);");

@@ -212,8 +212,6 @@ OC.L10N.register(
     "Time zone" : "Zona orària",
     "Spoken languages" : "Limbas faeddadas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["no at fatu a lèghere {failed} ","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu",
-    "Pick an address book" : "Sèbera una rubrica",
-    "Select Date" : "Seletziona data"
+    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu"
 },
 "nplurals=2; plural=(n != 1);");

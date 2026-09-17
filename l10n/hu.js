@@ -336,8 +336,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Hiba történt a csapatokban. További részletekért nézze meg a konzolt.",
     "Unable to create team {circleName}" : "A(z) {circleName} csapat nem hozható létre",
     "Unable to delete team {circleId}" : "A(z) {circleId} csapat nem törölhető",
-    "Unable to delete contact" : "A névjegy törlése sikertelen",
-    "Pick an address book" : "Válasszon címjegyzéket",
-    "Select Date" : "Válasszon dátumot"
+    "Unable to delete contact" : "A névjegy törlése sikertelen"
 },
 "nplurals=2; plural=(n != 1);");

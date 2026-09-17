@@ -506,15 +506,6 @@ OC.L10N.register(
     "Could not update favorite state" : "無法更新喜愛狀態",
     "Unable to delete contact" : "無法刪除聯絡人",
     "Value copied to the clipboard" : "已複製數值至剪貼板",
-    "Could not copy value to the clipboard." : "無法複製數值至剪貼板",
-    "Deck board" : "Deck 面板",
-    "New Deck board" : "新 Deck 面板",
-    "Board name" : "面板名稱",
-    "Deck app is not installed. Please install it to create team boards." : "未安裝 Deck 應用程式。請安裝以建立團隊面板。",
-    "Pick an address book" : "選取一個通訊錄",
-    "Select Date" : "選擇日期",
-    "note" : "備註",
-    "email" : "電郵地址",
-    "Create your own groups for sharing. Add Nextcloud users, contacts, or anyone via email." : "建立專屬群組以進行分享。您可以加入 Nextcloud 使用者、通訊錄中的聯絡人，或透過電子郵件邀請任何人加入。"
+    "Could not copy value to the clipboard." : "無法複製數值至剪貼板"
 },
 "nplurals=1; plural=0;");
