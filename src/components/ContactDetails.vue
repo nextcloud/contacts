@@ -208,6 +208,16 @@
 						</template>
 						{{ t('contacts', 'Clone contact') }}
 					</ActionButton>
+					<!-- user can duplicate the contact inside its own addressbook -->
+					<ActionButton
+						v-if="isReadOnly && canModifyCard"
+						:close-after-click="true"
+						@click="duplicateContact">
+						<template #icon>
+							<IconContentDuplicate :size="20" />
+						</template>
+						{{ t('contacts', 'Duplicate contact') }}
+					</ActionButton>
 					<ActionButton :close-after-click="true" @click="showQRcode">
 						<template #icon>
 							<IconQr :size="20" />
@@ -409,6 +419,7 @@ import IconAccount from 'vue-material-design-icons/AccountOutline.vue'
 import CakeIcon from 'vue-material-design-icons/Cake.vue'
 import CheckIcon from 'vue-material-design-icons/Check.vue'
 import IconCopy from 'vue-material-design-icons/ContentCopy.vue'
+import IconContentDuplicate from 'vue-material-design-icons/ContentDuplicate.vue'
 import IconMail from 'vue-material-design-icons/EmailOutline.vue'
 import EyeCircleIcon from 'vue-material-design-icons/EyeCircleOutline.vue'
 import FolderMultipleImage from 'vue-material-design-icons/FolderMultipleImage.vue'
@@ -458,6 +469,7 @@ export default defineComponent({
 		IconQr,
 		CakeIcon,
 		IconCopy,
+		IconContentDuplicate,
 		IconLoading,
 		PencilIcon,
 		CheckIcon,
@@ -1160,6 +1172,13 @@ export default defineComponent({
 		closePickAddressbookModal() {
 			this.showPickAddressbookModal = false
 			this.pickedAddressbook = null
+		},
+
+		/**
+		 * Duplicate the current contact inside its own addressbook
+		 */
+		async duplicateContact() {
+			await this.copyContactToAddressbook(this.contact.addressbook.id)
 		},
 
 		/**
