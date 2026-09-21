@@ -141,7 +141,7 @@ OC.L10N.register(
     "Unique password …" : "Einzigartiges Passwort …",
     "Save" : "Speichern",
     "Change unique password" : "Eindeutiges Passwort ändern",
-    "Failed to save password. Please try again later." : "Das Passwort konnte nicht gespeichert werden. Bitte versuchen Sie es später erneut.",
+    "Failed to save password. Please try again later." : "Das Passwort konnte nicht gespeichert werden. Bitte später erneut versuchen.",
     "Close" : "Schließen",
     "Choose a team picture" : "Ein Teambild auswählen",
     "There is no description for this team" : "Es existiert keine Beschreibung für dieses Team",
