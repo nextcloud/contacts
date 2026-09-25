@@ -29,4 +29,14 @@ describe('RFC props', () => {
 		expect(property.getParameter('type')).toEqual(defaultData.type)
 		expect(contact.vCard.toString()).toMatch(/^IMPP;TYPE=.+:$/m)
 	})
+
+	test('related default value produces a serializable single-value property', () => {
+		const defaultData = rfcProps.properties.related.defaultValue
+		const property = contact.vCard.addPropertyWithValue('related', defaultData.value)
+		property.setParameter('type', defaultData.type)
+
+		expect(typeof property.getFirstValue()).toBe('string')
+		expect(property.getParameter('type')).toEqual(defaultData.type)
+		expect(contact.vCard.toString()).toMatch(/^RELATED;TYPE=.+:$/m)
+	})
 })
