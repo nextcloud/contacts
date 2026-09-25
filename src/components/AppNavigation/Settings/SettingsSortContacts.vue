@@ -5,19 +5,15 @@
 
 <template>
 	<NcFormBox>
-		<div class="sort-contacts">
-			<label for="sort-by" class="sort-contacts__label">
-				{{ t('contacts', 'Sort contacts by') }}
-			</label>
-			<NcSelect
-				id="sort-by"
-				v-model="selected"
-				:searchable="false"
-				:allow-empty="false"
-				:options="options"
-				label="label"
-				@update:model-value="sortContacts" />
-		</div>
+		<NcSelect
+			id="sort-by"
+			v-model="selected"
+			:searchable="false"
+			:allow-empty="false"
+			:options="options"
+			:input-label="t('contacts', 'Sort contacts by')"
+			label="label"
+			@update:model-value="sortContacts" />
 	</NcFormBox>
 </template>
 
@@ -84,11 +80,3 @@ export default {
 	},
 }
 </script>
-
-<style lang="scss" scoped>
-.sort-contacts {
-	display: flex;
-	flex-direction: column;
-	gap: calc(var(--default-grid-baseline) * 2);
-}
-</style>

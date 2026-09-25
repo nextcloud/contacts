@@ -35,6 +35,7 @@
 					:options="selectableOptions"
 					:no-wrap="true"
 					:placeholder="t('contacts', 'Select option')"
+					:aria-label-combobox="t('contacts', 'Select option')"
 					:disabled="isSingleOption || isReadOnly"
 					label="name"
 					@update:model-value="updateValue" />
