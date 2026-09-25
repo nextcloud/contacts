@@ -314,7 +314,7 @@
 					class="property--groups property--last"
 					@update:value="updateGroups" />
 			</div>
-			<div v-if="nextcloudVersionAtLeast28 && !editMode" class="related-resources">
+			<div v-if="!editMode" class="related-resources">
 				<NcRelatedResourcesPanel
 					v-if="!filesPanelHasError"
 					provider-id="account"
@@ -839,10 +839,6 @@ export default defineComponent({
 
 		isInSystemAddressBook() {
 			return this.contact.addressbook.id === 'z-server-generated--system'
-		},
-
-		nextcloudVersionAtLeast28() {
-			return parseInt(window.OC.config.version.split('.')[0]) >= 28
 		},
 
 		isOwnContact() {
