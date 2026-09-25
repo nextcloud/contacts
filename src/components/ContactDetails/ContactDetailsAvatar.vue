@@ -332,32 +332,26 @@ export default {
 			})
 			const hex = bytes.join('').toUpperCase()
 
-			const nextcloudMajorVersion = parseInt(window.OC.config.version.split('.')[0])
-			if (nextcloudMajorVersion >= 31
-				&& hex.slice(0, 8) === '52494646'
-				&& hex.slice(16, 24) === '57454250'
-			) {
+			if (hex.slice(0, 8) === '52494646' && hex.slice(16, 24) === '57454250') {
 				return 'image/webp'
-			}
-
-			if (nextcloudMajorVersion >= 32 && hex.slice(8, 24) === '6674797061766966') {
+			} else if (hex.slice(8, 24) === '6674797061766966') {
 				return 'image/avif'
-			}
-
-			switch (hex.slice(0, 8)) {
-				case '89504E47':
-					return 'image/png'
-				case '47494638':
-					return 'image/gif'
-				case '3C3F786D':
-				case '3C737667':
-					return 'image/svg+xml'
-				case 'FFD8FFDB':
-				case 'FFD8FFE0':
-				case 'FFD8FFE1':
-					return 'image/jpeg'
-				default:
-					return 'application/octet-stream'
+			} else {
+				switch (hex.slice(0, 8)) {
+					case '89504E47':
+						return 'image/png'
+					case '47494638':
+						return 'image/gif'
+					case '3C3F786D':
+					case '3C737667':
+						return 'image/svg+xml'
+					case 'FFD8FFDB':
+					case 'FFD8FFE0':
+					case 'FFD8FFE1':
+						return 'image/jpeg'
+					default:
+						return 'application/octet-stream'
+				}
 			}
 		},
 
