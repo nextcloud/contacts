@@ -83,6 +83,7 @@
 
 				<NcTextField
 					v-else-if="propName === 'url'"
+					ref="url"
 					v-model:model-value="localValue"
 					:inputmode="inputmode"
 					:aria-label="propName"
@@ -149,7 +150,7 @@
 <script>
 import { NcActionButton, NcActionLink, NcActions, NcSelect, NcTextArea, NcTextField } from '@nextcloud/vue'
 import debounce from 'debounce'
-import isEmail from 'validator/lib/isEmail.js'
+import { isEmail, isURL } from 'validator'
 import CopyIcon from 'vue-material-design-icons/ContentCopy.vue'
 import OpenInNewIcon from 'vue-material-design-icons/OpenInNew.vue'
 import PropertyActions from './PropertyActions.vue'
@@ -277,16 +278,26 @@ export default {
 		},
 
 		updateUrlValue() {
-			// Block javascript: URLs as a security measure, accept everything else
-			this.isUrlValid = !/^\s*javascript\s*:/i.test(this.localValue)
+			this.isUrlValid = this.localValue === '' || isURL(this.localValue, {
+				require_protocol: true,
+				require_valid_protocol: true,
+			})
+
 			if (this.isUrlValid) {
-				this.urlHelpText = null
-				this.updateValue(this.localValue)
-				this.sharedState.validUrl = true
-				return
+				// Block javascript: URLs as a security measure, accept everything else
+				this.isUrlValid = !/^\s*javascript\s*:/i.test(this.localValue)
+				if (this.isUrlValid) {
+					this.urlHelpText = null
+					this.updateValue(this.localValue)
+					this.sharedState.validUrl = true
+				} else {
+					this.sharedState.validUrl = false
+					this.urlHelpText = t('contacts', 'JavaScript URIs are not allowed')
+				}
+			} else {
+				this.sharedState.validUrl = false
+				this.urlHelpText = this.$refs.url.$refs.inputField.$refs.input.validationMessage || null
 			}
-			this.sharedState.validUrl = false
-			this.urlHelpText = t('contacts', 'JavaScript URIs are not allowed')
 		},
 
 		/**
