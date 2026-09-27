@@ -618,7 +618,7 @@ export default {
 $caption-padding: 22px;
 
 .header {
-	padding: calc(var(--default-grid-baseline, 4px) * 2);
+	padding: var(--app-navigation-padding);
 }
 
 #external-invitations,
@@ -640,22 +640,11 @@ $caption-padding: 22px;
 	color: var(--color-text-maxcontrast)
 }
 
-:deep(.settings-button__label) {
-	opacity: .7;
-	font-weight: bold;
-}
-
 .contacts-settings {
-	padding: calc(var(--default-grid-baseline, 4px) * 2);
+	padding: var(--app-navigation-padding);
 
 	:deep(.button-vue__wrapper) {
 		justify-content: flex-start !important;
 	}
 }
-
-.contacts-settings-button {
-	width: 100%;
-	justify-content: start !important;
-}
-
 </style>
