@@ -13,6 +13,7 @@ use OCA\Contacts\Service\SocialApiService;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
 use OCP\Settings\ISettings;
+use OCP\Util;
 
 class AdminSettings implements ISettings {
 	public function __construct(
@@ -26,6 +27,9 @@ class AdminSettings implements ISettings {
 	public function getForm() {
 		$this->initialState->provideInitialState('allowSocialSync', $this->socialApiService->syncAllowedByAdmin());
 		$this->initialState->provideInitialState('ocmInvitesConfig', $this->federatedInvitesService->getOcmInvitesConfig());
+
+		Util::addScript(Application::APP_ID, 'contacts-admin-settings');
+		Util::addStyle(Application::APP_ID, 'contacts-admin-settings');
 		return new TemplateResponse(Application::APP_ID, 'settings/admin');
 	}
 
