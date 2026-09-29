@@ -855,9 +855,12 @@ export default defineComponent({
 	},
 
 	watch: {
-		contact(newContact, oldContact) {
+		async contact(newContact, oldContact) {
 			if (this.contactKey && newContact !== oldContact) {
-				this.selectContact(this.contactKey)
+				await this.selectContact(this.contactKey)
+				if (this.editMode) {
+					this.selectInput()
+				}
 			}
 		},
 	},
