@@ -582,12 +582,16 @@ const actions = {
 	 * @return {Contact} the new contact object
 	 */
 	async copyContactToAddressbook(context, { contact, addressbook }) {
-		// init new contact & strip old uid
+		// init new contact & strip old uid (a fresh one is generated on construction)
 		const vData = contact.vCard.toString().replace(/^UID.+/im, '')
 		const newContact = new Contact(vData, addressbook)
 
 		try {
-			const response = await contact.dav.copy(addressbook.dav)
+			// Create the copy with a fresh resource name instead of a server-side COPY.
+			// A DAV COPY keeps the source file name, so the copy and the original would
+			// share the same URI and a later move into that address book would be
+			// rejected with "412 Precondition Failed".
+			const response = await addressbook.dav.createVCard(newContact.toStringStripQuotes())
 			// setting the contact dav property
 			newContact.dav = response
 		} catch (error) {
