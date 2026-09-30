@@ -14,7 +14,7 @@ export default {
 
 	run: (contact) => {
 		try {
-			const hasRev = contact.vCard.hasProperty('rev')
+			const hasRev = contact.vCard.getFirstPropertyValue('rev')
 			return !hasRev
 		} catch (error) {
 			return true
