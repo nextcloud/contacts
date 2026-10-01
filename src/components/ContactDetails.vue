@@ -301,6 +301,7 @@
 					:is-last-property="true"
 					:property="{}"
 					:hide-actions="true"
+					:clearable="false"
 					:is-read-only="isReadOnly"
 					class="property--addressbooks property--last"
 					@update:value="updateAddressbook" />
