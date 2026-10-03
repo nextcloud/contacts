@@ -308,7 +308,7 @@ OC.L10N.register(
     "The recipient will receive an email with the invite link. Their email address will be saved on the invite so you can resend later." : "Príjemca dostane e-mail s odkazom na pozvánku. Jeho e-mailová adresa sa uloží k pozvánke, aby ste ju mohli neskôr znova odoslať.",
     "Recipient email (required)" : "E-mail príjemcu (povinné)",
     "email@example.com" : "email@example.com",
-    "Personal message (optional)" : "Osobná správa (voliteľné)",
+    "Personal message (optional)" : "Osobná správa (voliteľná)",
     "Message to include in the email" : "Správa, ktorá sa zahrnie do e-mailu",
     "Sending…" : "Odosiela sa…",
     "Send" : "Odoslať",
