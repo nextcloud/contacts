@@ -40,7 +40,7 @@
 	<website>https://github.com/nextcloud/contacts#readme</website>
 	<bugs>https://github.com/nextcloud/contacts/issues</bugs>
 	<repository type="git">https://github.com/nextcloud/contacts.git</repository>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts-hub10.png</screenshot>
 
 	<dependencies>
 		<php min-version="8.2" max-version="8.5" />
