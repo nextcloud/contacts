@@ -36,6 +36,7 @@
 					:no-wrap="true"
 					:placeholder="t('contacts', 'Select option')"
 					:disabled="isSingleOption || isReadOnly"
+					:clearable="clearable"
 					label="name"
 					@update:model-value="updateValue" />
 				<p v-else>
@@ -81,6 +82,11 @@ export default {
 		hideActions: {
 			type: Boolean,
 			default: false,
+		},
+
+		clearable: {
+			type: Boolean,
+			default: true,
 		},
 	},
 
