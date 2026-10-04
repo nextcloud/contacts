@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import Contact from '../../../src/models/contact'
+import Contact, { MinimalContactProperties } from '../../../src/models/contact'
 
 const getPropertyLines = (property, vcard) => {
 	return vcard.match(new RegExp(`^${property}[;:].*`, 'gmi'))
@@ -60,6 +60,10 @@ describe('Test stripping quotes from TYPE', () => {
 		expect(contactWithEmails.hasEmail('first@example.com')).toBe(true)
 		expect(contactWithEmails.hasEmail('second@example.com')).toBe(true)
 		expect(contactWithEmails.hasEmail('third@example.com')).toBe(false)
+	})
+
+	test('Test pronouns are included in the lightweight property list', () => {
+		expect(MinimalContactProperties).toContain('PRONOUNS')
 	})
 
 	test('Test stripping quotes from MULTIPLE SPLIT TYPES and MULTIPLE PROPERTIES', () => {
