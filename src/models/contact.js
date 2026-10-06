@@ -609,11 +609,11 @@ export default class Contact {
 	}
 
 	/**
-	 * Return an array of formatted properties for the search
+	 * Return an aggregation of formatted properties for the search
 	 *
 	 * @readonly
 	 * @memberof Contact
-	 * @return {string[]}
+	 * @return {string}
 	 */
 	get searchData() {
 		const MinimalContactPropertiesLower = MinimalContactProperties.map((prop) => prop.toLowerCase())
@@ -625,7 +625,7 @@ export default class Contact {
 				}
 				return x[3].toString()
 			})
-		return filtered
+		return filtered.toString().toLowerCase()
 	}
 
 	// support numbers in weird formats for searching e.g. +49 (0) 123 456-789
