@@ -9,6 +9,7 @@ import Contacts from '../views/Contacts.vue'
 import { GROUP_ALL_CONTACTS, GROUP_ALL_OCM_INVITES, ROUTE_ADDRESSBOOK, ROUTE_ALL_OCM_INVITES, ROUTE_CHART, ROUTE_CIRCLE, ROUTE_INVITE_ACCEPT_DIALOG, ROUTE_NAME_ALL_OCM_INVITES, ROUTE_NAME_INVITE_ACCEPT_DIALOG, ROUTE_NAME_OCM_INVITE, ROUTE_USER_GROUP } from '../models/constants.ts'
 import { generateContactKey } from '../models/contact.js'
 import isTeamManagementEnabled from '../services/isTeamManagementEnabled.js'
+import { getLastContactsRoute } from '../services/lastContactsRoute.js'
 
 // if index.php is in the url AND we got this far, then it's working:
 // let's keep using index.php in the url
@@ -23,11 +24,8 @@ export default createRouter({
 			component: Contacts,
 			props: true,
 			name: 'root',
-			// always load default group
-			redirect: {
-				name: 'group',
-				params: { selectedGroup: t('contacts', 'All contacts') },
-			},
+			// restore last group/contact when revisiting the app root
+			redirect: () => getLastContactsRoute(),
 			children: [
 				{
 					path: `/${ROUTE_ALL_OCM_INVITES}`,
