@@ -225,7 +225,7 @@ OC.L10N.register(
     "Media shares with you" : "Mediá zdieľané s vami",
     "Talk conversations with you" : "Talk konverzácie s vami",
     "Calendar events with you" : "Kalendárne udalosti s vami",
-    "Deck cards with you" : "Karty Desk s vami",
+    "Deck cards with you" : "Karty Deck s vami",
     "No shared items with this contact" : "Žiadne zdieľané položky s týmto kontaktom",
     "This contact cannot be moved" : "Tento kontakt nemožno presunúť",
     "This contact cannot be grouped" : "Tento kontakt nemožno zaradiť do skupiny",
