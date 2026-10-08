@@ -21,7 +21,6 @@
 					v-if="!isReadOnly"
 					v-model="localValue"
 					:options="groups"
-					:no-wrap="true"
 					:placeholder="t('contacts', 'Add contact in group')"
 					:multiple="true"
 					:keep-open="true"
