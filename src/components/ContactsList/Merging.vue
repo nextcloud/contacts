@@ -24,6 +24,11 @@
 			:text="t('contacts', 'The selected contacts have conflicting information. Choose which information to keep')" />
 
 		<NcNoteCard
+			v-else-if="chosenAddressBook === null"
+			type="info"
+			:text="t('contacts', 'Select the address book to merge the contacts into')" />
+
+		<NcNoteCard
 			v-else
 			type="success"
 			:text="t('contacts', 'Contacts can be merged')" />
@@ -144,7 +149,7 @@
 		</div>
 
 		<div class="merging__actions">
-			<NcButton :disabled="conflictsToResolve !== 0" variant="secondary" @click="mergeContacts">
+			<NcButton :disabled="!canMerge || isLoading" variant="secondary" @click="mergeContacts">
 				{{ t('contacts', 'Merge contacts') }}
 				<template #icon>
 					<IconSetMerge v-if="!isLoading" :size="20" />
@@ -156,6 +161,7 @@
 </template>
 
 <script>
+import { showError } from '@nextcloud/dialogs'
 import { NcButton, NcCheckboxRadioSwitch, NcLoadingIcon, NcNoteCard, NcSelect } from '@nextcloud/vue'
 import ICAL from 'ical.js'
 import mitt from 'mitt'
@@ -167,6 +173,7 @@ import IconDomain from 'vue-material-design-icons/Domain.vue'
 import IconSetMerge from 'vue-material-design-icons/SetMerge.vue'
 import ContactDetailsProperty from '../ContactDetails/ContactDetailsProperty.vue'
 import rfcProps from '../../models/rfcProps.js'
+import { comparePropertyLists, getPropertyValue, isPropertyListEmpty } from '../../utils/mergeContacts.ts'
 
 export default {
 	name: 'Merging',
@@ -192,6 +199,8 @@ export default {
 			required: true,
 		},
 	},
+
+	emits: ['finished'],
 
 	data() {
 		return {
@@ -246,12 +255,13 @@ export default {
 		usedProperties() {
 			const allKeys = this.dividedProperties.flatMap((map) => Object.keys(map))
 			return [...new Set(allKeys)].filter((key) => {
-				const valA = this.dividedProperties[0][key] ? this.dividedProperties[0][key].map((value) => this.getPropertyValue(value)) : []
-				const valB = this.dividedProperties[1][key] ? this.dividedProperties[1][key].map((value) => this.getPropertyValue(value)) : []
-				return (
-					(!valA.every((val) => val === null || val === undefined || val === ''))
-					|| (!valB.every((val) => val === null || val === undefined || val === ''))
-				)
+				// Only consider a property "used" if at least one of the contacts
+				// holds a non-empty value for it. This correctly handles structured
+				// and multi-value properties (e.g. an empty "ADR:;;;;;;" or an empty
+				// "CATEGORIES:") which would otherwise show up as phantom rows.
+				const isAEmpty = isPropertyListEmpty(this.dividedProperties[0][key])
+				const isBEmpty = isPropertyListEmpty(this.dividedProperties[1][key])
+				return !(isAEmpty && isBEmpty)
 			})
 		},
 
@@ -259,52 +269,38 @@ export default {
 			const conflictInformation = {}
 
 			this.usedProperties.forEach((property) => {
-				if ((this.dividedProperties[0][property] ?? []).every((val) => this.checkIfPropertyEmpty(val))) {
+				const type = comparePropertyLists(
+					this.dividedProperties[0][property],
+					this.dividedProperties[1][property],
+				)
+
+				if (type === 'onlyInSecond') {
 					conflictInformation[property] = {
-						type: 'onlyInSecond',
-						value: this.dividedProperties[1][property].map((val) => this.getPropertyValue(val)),
+						type,
+						value: this.dividedProperties[1][property].map((val) => getPropertyValue(val)),
 					}
-
-					return
-				}
-
-				if ((this.dividedProperties[1][property] ?? []).every((val) => this.checkIfPropertyEmpty(val))) {
+				} else if (type === 'onlyInFirst') {
 					conflictInformation[property] = {
-						type: 'onlyInFirst',
-						value: this.dividedProperties[0][property].map((val) => this.getPropertyValue(val)),
+						type,
+						value: this.dividedProperties[0][property].map((val) => getPropertyValue(val)),
 					}
-
-					return
-				}
-
-				const equalEvery = (a, b) => a.length === b.length && a.every((v, i) => v === b[i])
-
-				if (
-					equalEvery(
-						(this.dividedProperties[0][property] ?? []).map((val) => this.getPropertyValue(val)),
-						(this.dividedProperties[1][property] ?? []).map((val) => this.getPropertyValue(val)),
-					)
-				) {
+				} else if (type === 'equal') {
 					conflictInformation[property] = {
-						type: 'equal',
-						value: this.dividedProperties[0][property].map((val) => this.getPropertyValue(val)),
+						type,
+						value: this.dividedProperties[0][property].map((val) => getPropertyValue(val)),
 					}
-
-					return
-				}
-
-				if (rfcProps.properties[property]?.multiple === true) {
+				} else if (rfcProps.properties[property]?.multiple === true) {
+					// A property that can hold several values (e.g. tel, email):
+					// let the user pick any combination of the two sides.
 					conflictInformation[property] = {
 						type: 'conflictWithMultipleValues',
 						value: null,
 					}
-
-					return
-				}
-
-				conflictInformation[property] = {
-					type: 'conflict',
-					value: null,
+				} else {
+					conflictInformation[property] = {
+						type: 'conflict',
+						value: null,
+					}
 				}
 			})
 
@@ -325,6 +321,16 @@ export default {
 					},
 				],
 			}
+		},
+
+		/**
+		 * Whether the contacts can be merged: all field conflicts are resolved
+		 * and a target address book has been chosen.
+		 *
+		 * @return {boolean}
+		 */
+		canMerge() {
+			return this.conflictsToResolve === 0 && this.chosenAddressBook !== null
 		},
 	},
 
@@ -451,42 +457,7 @@ export default {
 				}
 			})
 
-			if (this.chosenAddressBook === null) {
-				conflictsCount++
-			}
-
 			this.conflictsToResolve = conflictsCount
-		},
-
-		getPropertyValue(property) {
-			if (!property) {
-				return null
-			}
-			if (property.isMultiValue) {
-				// differences between values types :x;x;x;x;x and x,x,x,x,x
-				return property.isStructuredValue
-					? property.getValues()[0]
-					: property.getValues()
-			}
-			return property.getFirstValue()
-		},
-
-		checkIfPropertyEmpty(property) {
-			if (property === undefined) {
-				return true
-			}
-
-			const value = this.getPropertyValue(property)
-
-			if (value === '' || value === null || (Array.isArray(value) && value.length === 0)) {
-				return true
-			}
-
-			if (Array.isArray(value)) {
-				return value.every((v) => v === '' || v === undefined)
-			}
-
-			return false
 		},
 
 		sortUsedProperties() {
@@ -506,60 +477,87 @@ export default {
 		},
 
 		async mergeContacts() {
+			if (this.isLoading || !this.canMerge) {
+				return
+			}
+
 			this.isLoading = true
-			const contactToSave = this.contactsList[0]
 
-			const finalProperties = {}
+			try {
+				const contactToSave = this.contactsList[0]
 
-			this.usedProperties.forEach((property) => {
-				if (this.conflictInformation[property]?.type === 'conflict') {
-					const resolvedVersion = this.resolvedConflicts.get(property)
-					if (resolvedVersion !== undefined) {
-						finalProperties[property] = [this.dividedProperties[resolvedVersion][property]]
+				const finalProperties = {}
+
+				this.usedProperties.forEach((property) => {
+					if (this.conflictInformation[property]?.type === 'conflict') {
+						const resolvedVersion = this.resolvedConflicts.get(property)
+						if (resolvedVersion !== undefined) {
+							finalProperties[property] = [this.dividedProperties[resolvedVersion][property]]
+						}
+					} else if (this.conflictInformation[property]?.type === 'conflictWithMultipleValues') {
+						const resolvedVersions = this.resolvedConflicts.get(property)
+						if (resolvedVersions?.size) {
+							finalProperties[property] = Array.from(resolvedVersions).map((version) => this.dividedProperties[version][property])
+						}
+					} else if (this.conflictInformation[property]?.type === 'onlyInSecond') {
+						finalProperties[property] = [this.dividedProperties[1][property]]
+					} else {
+						finalProperties[property] = [this.dividedProperties[0][property]]
 					}
-				} else if (this.conflictInformation[property]?.type === 'conflictWithMultipleValues') {
-					const resolvedVersions = this.resolvedConflicts.get(property)
-					if (resolvedVersions?.size) {
-						finalProperties[property] = Array.from(resolvedVersions).map((version) => this.dividedProperties[version][property])
+				})
+
+				this.usedProperties.forEach((name) => {
+					if (finalProperties[name] !== undefined && finalProperties[name].length > 0) {
+						const properties = finalProperties[name].flat().filter((property) => property !== null && property !== undefined)
+
+						properties.forEach((property) => {
+							// Get the actual property name (for lifeEvents group, properties have their real names like 'bday')
+							const actualName = property.name
+
+							// Remove any existing property with this name from the target vCard
+							const existingProps = contactToSave.vCard.getAllProperties(actualName)
+							existingProps.forEach((prop) => contactToSave.vCard.removeProperty(prop))
+						})
+
+						// Now add all the selected properties
+						properties.forEach((property) => {
+							// Deep clone the jCal data to avoid reference issues with complex types like dates
+							const clonedJCal = JSON.parse(JSON.stringify(property.jCal))
+							const clonedProperty = new ICAL.Property(clonedJCal)
+							contactToSave.vCard.addProperty(clonedProperty)
+						})
 					}
-				} else if (this.conflictInformation[property]?.type === 'onlyInSecond') {
-					finalProperties[property] = [this.dividedProperties[1][property]]
-				} else {
-					finalProperties[property] = [this.dividedProperties[0][property]]
-				}
-			})
+				})
 
-			this.usedProperties.forEach((name) => {
-				if (finalProperties[name] !== undefined && finalProperties[name].length > 0) {
-					const properties = finalProperties[name].flat().filter((property) => property !== null && property !== undefined)
+				contactToSave.groups = this.selectedGroups
 
-					properties.forEach((property) => {
-						// Get the actual property name (for lifeEvents group, properties have their real names like 'bday')
-						const actualName = property.name
+				const targetAddressbook = this.contactsList[this.chosenAddressBook.id].addressbook
 
-						// Remove any existing property with this name from the target vCard
-						const existingProps = contactToSave.vCard.getAllProperties(actualName)
-						existingProps.forEach((prop) => contactToSave.vCard.removeProperty(prop))
-					})
+				// Persist the merged data on the surviving contact. It still lives
+				// in its original address book at this point.
+				await this.$store.dispatch('updateContact', contactToSave)
 
-					// Now add all the selected properties
-					properties.forEach((property) => {
-						// Deep clone the jCal data to avoid reference issues with complex types like dates
-						const clonedJCal = JSON.parse(JSON.stringify(property.jCal))
-						const clonedProperty = new ICAL.Property(clonedJCal)
-						contactToSave.vCard.addProperty(clonedProperty)
+				// Remove the contact that was merged into the surviving one.
+				await this.$store.dispatch('deleteContact', { contact: this.contactsList[1] })
+
+				// If the user chose a different address book, perform a proper
+				// move so the contact is actually relocated on the server and the
+				// store stays consistent (a plain addressbook reassignment would
+				// only change the key and silently desync the store).
+				if (contactToSave.addressbook.id !== targetAddressbook.id) {
+					await this.$store.dispatch('moveContactToAddressbook', {
+						contact: contactToSave,
+						addressbook: targetAddressbook,
 					})
 				}
-			})
 
-			contactToSave.groups = this.selectedGroups
-			contactToSave.addressbook = this.contactsList[this.chosenAddressBook.id].addressbook
-
-			await this.$store.dispatch('updateContact', contactToSave)
-
-			await this.$store.dispatch('deleteContact', { contact: this.contactsList[1] })
-
-			this.$emit('finished', contactToSave)
+				this.$emit('finished', contactToSave)
+			} catch (error) {
+				console.error('Could not merge the contacts', error)
+				showError(this.t('contacts', 'Could not merge the contacts'))
+			} finally {
+				this.isLoading = false
+			}
 		},
 	},
 }
