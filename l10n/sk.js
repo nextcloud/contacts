@@ -277,7 +277,7 @@ OC.L10N.register(
     "Local team" : "Lokálny tím",
     "This team will not be shared with the other instances of the global scale" : "Tento tím nebude zdieľaný z inými inštanciami globálneho rozsahu.",
     "Create team" : "Vytvoriť tím",
-    "Promote as sole owner" : "Povýšiť ako jediný vlastník",
+    "Promote as sole owner" : "Povýšiť na jediného vlastníka",
     "Promote to {level}" : "Povýšiť na {level}",
     "Demote to {level}" : "Degradovať na {level}",
     "Are you sure you want to leave this team? This action cannot be undone." : "Ste si istí, že chcete opustiť tento tím? Túto akciu nie je možné vrátiť späť.",
