@@ -4,11 +4,11 @@
 -->
 
 <template>
-	<NcButton v-if="!hideButton && !modalOpen" @click="openModal">
+	<NcButton v-if="!hideButton && !modalOpen && !loading" @click="openModal">
 		<template #icon>
 			<IconAdd :size="20" />
 		</template>
-		{{ t('contacts', 'New address book') }}
+		{{ t('contacts', 'New contact group') }}
 	</NcButton>
 	<IconLoading v-if="loading" :size="20" />
 
@@ -17,12 +17,12 @@
 		:is-form="true"
 		size="small"
 		:buttons="buttons"
-		:name="t('contacts', 'Add new address book')"
+		:name="t('contacts', 'Add new contact group')"
 		@closing="onModalCancel">
 		<NcTextField
 			v-model:model-value="displayName"
 			:disabled="loading"
-			:label="t('contacts', 'Address book name')"
+			:label="t('contacts', 'Contact group name')"
 			autocomplete="off"
 			autocorrect="off"
 			spellcheck="false" />
@@ -31,13 +31,14 @@
 
 <script>
 import { showError } from '@nextcloud/dialogs'
+import { emit } from '@nextcloud/event-bus'
 import { NcButton, NcDialog, NcTextField } from '@nextcloud/vue'
 import IconLoading from 'vue-material-design-icons/Loading.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 import logger from '../../../services/logger.js'
 
 export default {
-	name: 'SettingsNewAddressbook',
+	name: 'SettingsNewGroup',
 	components: {
 		NcTextField,
 		IconAdd,
@@ -79,13 +80,12 @@ export default {
 			]
 		},
 
-		inputErrorState() {
-			if (this.displayName === '') {
-				return true
-			}
+		groups() {
+			return this.$store.getters.getGroups
+		},
 
-			// no slashes!
-			return /[/\\]/.test(this.displayName)
+		inputErrorState() {
+			return this.displayName === ''
 		},
 	},
 
@@ -101,31 +101,25 @@ export default {
 		},
 
 		async onModalSubmit() {
-			return this.addAddressbook()
-		},
+			const groupName = this.displayName
 
-		/**
-		 * Add a new address book
-		 */
-		addAddressbook() {
-			if (this.displayName === '') {
+			if (this.groups.find((group) => group.name === groupName)) {
+				showError(t('contacts', 'This group already exists'))
 				return false
 			}
 
 			this.loading = true
-			return this.$store.dispatch('appendAddressbook', { displayName: this.displayName })
-				.then(() => {
-					this.displayName = ''
-					this.loading = false
-					this.modalOpen = false
-					return true
-				})
-				.catch((error) => {
-					this.loading = false
-					logger.error(error)
-					showError(t('contacts', 'An error occurred, unable to create the address book'))
-					return false
-				})
+
+			try {
+				emit('contacts:group:append', groupName)
+			} catch (error) {
+				showError(t('contacts', 'An error occurred while creating the group'))
+			}
+
+			this.displayName = ''
+			this.loading = false
+			this.modalOpen = false
+			return true
 		},
 	},
 }
