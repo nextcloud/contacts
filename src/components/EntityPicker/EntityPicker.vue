@@ -452,6 +452,7 @@ $icon-margin: math.div($clickable-area - $icon-size, 2);
 
 	&__title {
 		margin-top: 0px;
+		padding-inline-end: calc(var(--default-clickable-area) + 12px);
 	}
 
 	&__search {
