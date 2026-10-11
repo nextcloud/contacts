@@ -6,6 +6,7 @@
 jest.mock('@nextcloud/l10n', () => ({
 	translate: (app, text) => text,
 	translatePlural: (app, text) => text,
+	getLocale: () => 'en',
 }))
 
 jest.mock('@nextcloud/initial-state', () => ({
