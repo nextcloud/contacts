@@ -15,7 +15,7 @@ export default {
 			|| ( // we don't want to fix newly created contacts
 				contact.dav // Existing contact
 				&& contact.vCard.getFirstPropertyValue('fn')
-					.toLowerCase() === t('contacts', 'New contact').toLowerCase() // AND Unchanged FN
+					.toLowerCase() === t('contacts', 'Name').toLowerCase() // AND Unchanged FN
 			)
 	},
 	fix: (contact) => {
