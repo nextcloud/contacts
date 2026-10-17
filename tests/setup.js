@@ -29,6 +29,11 @@ jest.mock('@nextcloud/axios', () => ({
 	},
 }), { virtual: true })
 
+// jsdom does not provide these globals, but Node does
+const { TextDecoder, TextEncoder } = require('util')
+global.TextEncoder = global.TextEncoder ?? TextEncoder
+global.TextDecoder = global.TextDecoder ?? TextDecoder
+
 global.appName = 'contacts'
 
 global.OC = {
