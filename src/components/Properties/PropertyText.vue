@@ -28,6 +28,7 @@
 					v-model="localType"
 					:options="options"
 					:placeholder="t('contacts', 'Select type')"
+					:aria-label-combobox="t('contacts', 'Select type')"
 					:taggable="true"
 					tag-placeholder="create"
 					:disabled="isReadOnly"
