@@ -29,4 +29,14 @@ describe('RFC props', () => {
 		expect(property.getParameter('type')).toEqual(defaultData.type)
 		expect(contact.vCard.toString()).toMatch(/^IMPP;TYPE=.+:$/m)
 	})
+
+	test('pronouns is a serializable RFC 9554 text property', () => {
+		const property = contact.vCard.addPropertyWithValue('pronouns', 'they/them')
+
+		expect(rfcProps.properties.pronouns.readableName).toBe(t('contacts', 'Pronouns'))
+		expect(rfcProps.properties.pronouns.multiple).toBe(true)
+		expect(rfcProps.fieldOrder.indexOf('pronouns')).toBeGreaterThan(rfcProps.fieldOrder.indexOf('gender'))
+		expect(rfcProps.properties.pronouns.force).toBe('text')
+		expect(contact.vCard.toString()).toMatch(/^PRONOUNS:they\/them$/m)
+	})
 })
