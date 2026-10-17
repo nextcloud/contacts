@@ -1188,10 +1188,31 @@ export default defineComponent({
 					groupNames: this.newGroupsValue,
 					contact: this.contact,
 				})
+
+				// New contact + different address book: move locally before createVCard
+				// so Activity credits the final book (create-then-move logged the default).
+				// See https://github.com/nextcloud/contacts/issues/5757
+				const pendingAddressBookId = this.newAddressBook
+				const isNewContact = !this.contact.dav
+				if (
+					isNewContact
+					&& pendingAddressBookId
+					&& pendingAddressBookId !== this.contact.addressbook.id
+				) {
+					const addressbook = this.addressbooks.find((ab) => ab.id === pendingAddressBookId)
+					if (addressbook) {
+						this.updateAddressBookAccesses(pendingAddressBookId)
+						// createVCard uses localContact.addressbook — keep the clone in sync
+						this.localContact.addressbook = addressbook
+						await this.moveContactToAddressbook(pendingAddressBookId)
+						this.newAddressBook = null
+					}
+				}
+
 				await this.updateContact()
 				if (this.newAddressBook && this.newAddressBook !== this.contact.addressbook.id) {
 					this.updateAddressBookAccesses(this.newAddressBook)
-					this.moveContactToAddressbook(this.newAddressBook)
+					await this.moveContactToAddressbook(this.newAddressBook)
 					this.newAddressBook = null
 				}
 				this.editMode = false
