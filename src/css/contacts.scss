@@ -37,4 +37,9 @@ $grid-input-height-with-margin: $grid-height-unit - $grid-input-margin * 2;
 		// Cancel scrolling
 		overflow: visible;
 	}
+
+	// Fix for contact count label being truncated (#4269)
+	.app-navigation-entry__counter-wrapper {
+		flex-shrink: 0;
+	}
 }
