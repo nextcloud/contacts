@@ -15,8 +15,8 @@
 	<!-- contacts picker -->
 	<EntityPicker
 		v-else-if="showPicker"
-		:confirm-label="t('contacts', 'Add to {group}', { group: pickerforGroup.name })"
-		:title-label="t('contacts', 'Add members to {group}', { group: pickerforGroup.name })"
+		:confirm-label="t('contacts', 'Add to {group}', { group: passedGroupName })"
+		:title-label="t('contacts', 'Add members to {group}', { group: passedGroupName })"
 		:data-types="pickerTypes"
 		:data-set="pickerData"
 		:empty-data-set-description="t('contacts', 'Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added.')"
@@ -47,7 +47,6 @@ export default {
 		return {
 			// Entity picker
 			showPicker: false,
-			pickerforGroup: null,
 			pickerData: [],
 			pickerTypes: [{
 				id: 'contact',
@@ -94,14 +93,6 @@ export default {
 			logger.debug('Contacts picker opened for group', { group })
 
 			this.passedGroupName = group.name ? group.name : group
-			// Get the full group if we provided the group name only
-			if (typeof group === 'string') {
-				group = this.groups.find((a) => a.name === group)
-				if (!group) {
-					logger.error('Cannot add contact to an undefined group', { group })
-					return
-				}
-			}
 
 			// Init data set
 			this.pickerData = this.sortedContacts
@@ -118,10 +109,9 @@ export default {
 				// No read only contacts
 				.filter((contact) => !contact.readOnly)
 				// No contacts already present in group
-				.filter((contact) => contact.groups.indexOf(group.name) === -1)
+				.filter((contact) => contact.groups.indexOf(this.passedGroupName) === -1)
 
 			this.showPicker = true
-			this.pickerforGroup = group
 		},
 
 		onContactPickerClose() {
@@ -130,14 +120,14 @@ export default {
 		},
 
 		onContactPickerPick(selection) {
-			logger.debug('Adding selection to group', { selection, group: this.pickerforGroup })
-			const groupName = this.pickerforGroup.name
+			logger.debug('Adding selection to group', { selection, group: this.passedGroupName })
+			const groupName = this.passedGroupName
 
 			this.isProcessing = true
 			this.showPicker = false
 
 			this.processStatus.total = selection.length
-			this.processStatus.name = this.pickerforGroup.name
+			this.processStatus.name = this.passedGroupName
 			this.processStatus.progress = 0
 			this.processStatus.failed = 0
 
@@ -188,7 +178,6 @@ export default {
 		},
 
 		closeProcess() {
-			this.pickerforGroup = null
 			this.isProcessing = false
 			this.isProcessDone = false
 

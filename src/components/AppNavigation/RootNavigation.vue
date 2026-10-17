@@ -139,28 +139,14 @@
 				</template>
 			</AppNavigationItem>
 
-			<AppNavigationCaption
-				id="newgroup"
-				v-model:menu-open="isNewGroupMenuOpen"
-				:force-menu="true"
-				:name="t('contacts', 'Contact groups')"
-				@click.prevent.stop="toggleNewGroupMenu">
-				<template #actionsTriggerIcon>
-					<IconAdd :size="20" />
-				</template>
+			<AppNavigationCaption :name="t('contacts', 'Contact groups')">
 				<template #actions>
-					<ActionText v-show="isNewGroupMenuOpen">
+					<NcActionButton @click="$refs.newGroup.openModal()">
 						<template #icon>
-							<IconError v-if="createGroupError" :size="20" />
-							<IconContact v-else-if="!createGroupError" :size="20" />
+							<IconAdd :size="20" />
 						</template>
-						{{ createGroupError ? createGroupError : t('contacts', 'Create a new contact group') }}
-					</ActionText>
-					<ActionInput
-						v-show="isNewGroupMenuOpen"
-						icon=""
-						:placeholder="t('contacts', 'Contact group name')"
-						@submit.prevent.stop="createNewGroup" />
+						{{ t('contacts', 'Add contact group') }}
+					</NcActionButton>
 				</template>
 			</AppNavigationCaption>
 
@@ -239,15 +225,13 @@
 		</template>
 		<ContactsSettings v-model:open="showSettings" />
 		<SettingsNewAddressbook ref="newAddressbook" hide-button />
+		<SettingsNewGroup ref="newGroup" hide-button />
 	</AppNavigation>
 </template>
 
 <script>
 import { showError } from '@nextcloud/dialogs'
-import { emit } from '@nextcloud/event-bus'
 import {
-	NcActionInput as ActionInput,
-	NcActionText as ActionText,
 	NcAppNavigation as AppNavigation,
 	NcAppNavigationCaption as AppNavigationCaption,
 	NcAppNavigationItem as AppNavigationItem,
@@ -263,7 +247,6 @@ import IconContactFilled from 'vue-material-design-icons/AccountMultiple.vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconUser from 'vue-material-design-icons/AccountOutline.vue'
 import IconAccountSwitchOutline from 'vue-material-design-icons/AccountSwitchOutline.vue'
-import IconError from 'vue-material-design-icons/AlertCircleOutline.vue'
 import IconAddressBook from 'vue-material-design-icons/BookAccountOutline.vue'
 import Cog from 'vue-material-design-icons/CogOutline.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
@@ -273,6 +256,7 @@ import CircleNavigationItem from './CircleNavigationItem.vue'
 import ContactsSettings from './ContactsSettings.vue'
 import GroupNavigationItem from './GroupNavigationItem.vue'
 import SettingsNewAddressbook from './Settings/SettingsNewAddressbook.vue'
+import SettingsNewGroup from './Settings/SettingsNewGroup.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
 import { CHART_ALL_CONTACTS, CIRCLE_DESC, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_ALL_OCM_INVITES, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ROUTE_ADDRESSBOOK, ROUTE_NAME_ALL_OCM_INVITES } from '../../models/constants.ts'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled.js'
@@ -285,8 +269,6 @@ export default {
 	name: 'RootNavigation',
 
 	components: {
-		ActionInput,
-		ActionText,
 		NcActionButton,
 		AppNavigation,
 		NcCounterBubble,
@@ -303,12 +285,12 @@ export default {
 		IconUser,
 		IconUserFilled,
 		IconAdd,
-		IconError,
 		IconLoading,
 		IconRecentlyContacted,
 		NewCircleIntro,
 		NcButton,
 		SettingsNewAddressbook,
+		SettingsNewGroup,
 	},
 
 	mixins: [RouterMixin],
@@ -332,10 +314,6 @@ export default {
 			ROUTE_ADDRESSBOOK,
 			GROUP_ALL_OCM_INVITES,
 			ROUTE_NAME_ALL_OCM_INVITES,
-
-			// create group
-			isNewGroupMenuOpen: false,
-			createGroupError: null,
 
 			// create circle
 			isNewCircleModalOpen: false,
@@ -522,38 +500,6 @@ export default {
 		addressbookContactCount(addressbook) {
 			// contact groups are stored as contacts too, but never listed as such
 			return Object.values(addressbook.contacts || {}).filter((contact) => contact.kind !== 'group').length
-		},
-
-		toggleNewGroupMenu() {
-			this.isNewGroupMenuOpen = !this.isNewGroupMenuOpen
-		},
-
-		createNewGroup(e) {
-			const input = e.target.querySelector('input[type=text]')
-			const groupName = input.value.trim()
-			if (groupName.length === 0) {
-				showError(t('contacts', 'Group name cannot be empty'))
-				return
-			}
-			this.logger.debug('Creating new group', { groupName })
-
-			// Check if already exists
-			if (this.groups.find((group) => group.name === groupName)) {
-				this.createGroupError = t('contacts', 'This group already exists')
-				emit('contacts:group:append', this.groups.find((group) => group.name === groupName).name)
-				return
-			}
-
-			this.createGroupError = null
-			this.logger.debug('Created new local group', { groupName })
-
-			try {
-				this.$store.dispatch('addGroup', groupName)
-				this.isNewGroupMenuOpen = false
-				emit('contacts:group:append', groupName)
-			} catch (error) {
-				showError(t('contacts', 'An error occurred while creating the group'))
-			}
 		},
 
 		// Ellipsis item toggles
