@@ -76,3 +76,37 @@ describe('Test stripping quotes from TYPE', () => {
 	})
 
 })
+
+describe('Grouped properties (custom labels)', () => {
+
+	const vcard = `
+		BEGIN:VCARD
+		VERSION:3.0
+		UID:123456789-123465-123456-123456789
+		FN:Test contact
+		NEXTCLOUD1.TEL;TYPE=HOME,VOICE:+32382938
+		NEXTCLOUD1.X-ABLABEL:Custom label
+		END:VCARD`.replace(/\t/gmi, '')
+
+	test('grouped properties parse into the group parameter form', () => {
+		const contact = new Contact(vcard)
+
+		const tel = contact.vCard.getFirstProperty('tel')
+		expect(tel.getParameter('group')).toEqual('nextcloud1')
+		expect(tel.getFirstValue()).toEqual('+32382938')
+
+		const label = contact.vCard.getFirstProperty('x-ablabel')
+		expect(label.getParameter('group')).toEqual('nextcloud1')
+		expect(label.getFirstValue()).toEqual('Custom label')
+	})
+
+	test('grouped properties survive a serialization round trip', () => {
+		const contact = new Contact(vcard)
+
+		const telLine = getPropertyLines('NEXTCLOUD1.TEL', contact.toStringStripQuotes())[0]
+		expect(telLine).toStrictEqual('NEXTCLOUD1.TEL;TYPE=HOME,VOICE:+32382938')
+
+		const labelLine = getPropertyLines('NEXTCLOUD1.X-ABLABEL', contact.toStringStripQuotes())[0]
+		expect(labelLine).toStrictEqual('NEXTCLOUD1.X-ABLABEL:Custom label')
+	})
+})
