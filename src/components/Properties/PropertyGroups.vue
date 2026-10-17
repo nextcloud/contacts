@@ -49,9 +49,9 @@
 
 <script>
 import { NcSelect } from '@nextcloud/vue'
-import naturalCompare from 'string-natural-compare'
 import PropertyTitle from './PropertyTitle.vue'
 import Contact from '../../models/contact.js'
+import { sortStrings } from '../../utils/strings.js'
 
 export default {
 	name: 'PropertyGroups',
@@ -101,7 +101,7 @@ export default {
 
 		groups() {
 			return this.$store.getters.getGroups.slice(0).map((group) => group.name)
-				.sort((a, b) => naturalCompare(a, b, { caseInsensitive: true }))
+				.sort((a, b) => sortStrings(a, b))
 		},
 
 		/**
