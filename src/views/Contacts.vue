@@ -183,6 +183,7 @@ import OcmInviteForm from '../components/Ocm/OcmInviteForm.vue'
 import ImportView from './Processing/ImportView.vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import RouterMixin from '../mixins/RouterMixin.js'
+import { persistContactsRoute } from '../services/lastContactsRoute.js'
 import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE, ROUTE_NAME_ALL_OCM_INVITES, ROUTE_NAME_INVITE_ACCEPT_DIALOG, ROUTE_NAME_OCM_INVITE, ROUTE_USER_GROUP } from '../models/constants.ts'
 import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
@@ -391,6 +392,14 @@ const _default = {
 	},
 
 	watch: {
+		// persist last group/contact so revisiting /apps/contacts restores it
+		'$route': {
+			handler(route) {
+				persistContactsRoute(route)
+			},
+			deep: true,
+		},
+
 		// watch url change and group select
 		selectedGroup() {
 			this.syncPrimarySelectionIfNeeded()

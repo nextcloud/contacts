@@ -8,6 +8,7 @@ import { createApp } from 'vue'
 import App from './ContactsRoot.vue'
 import LegacyGlobalMixin from './mixins/LegacyGlobalMixin.js'
 import router from './router/index.js'
+import { getLastContactsRoute } from './services/lastContactsRoute.js'
 import logger from './services/logger.js'
 import store from './store/index.js'
 
@@ -40,10 +41,7 @@ app.mixin(LegacyGlobalMixin)
 // Force redirect if rewrite enabled but accessed through index.php
 if (window.location.pathname.split('/')[1] === 'index.php'
 	&& window.OC.config.modRewriteWorking) {
-	router.push({
-		name: 'group',
-		params: { selectedGroup: t('contacts', 'All contacts') },
-	})
+	router.push(getLastContactsRoute())
 }
 
 app.mount('#content')
