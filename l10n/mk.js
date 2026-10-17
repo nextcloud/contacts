@@ -267,6 +267,7 @@ OC.L10N.register(
     "Link copied to the clipboard" : "Линкот е копиран во клипборд",
     "Could not copy link to the clipboard." : "Линкот неможе да се копира во клипборд.",
     "Not grouped" : "Не групирани",
+    "Create your own teams for sharing. Add Nextcloud users, contacts, or anyone via email." : "Создадете сопствени тимови за споделување. Додајте корисници на Nextcloud, контакти или кој било преку е-пошта.",
     "Team" : "Тим",
     "User" : "Корисник",
     "Group" : "Група",
