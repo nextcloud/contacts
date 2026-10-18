@@ -2,6 +2,8 @@
     "Import contacts" : "Importovat kontakty",
     "Details" : "Podrobnosti",
     "All contacts" : "Všechny kontakty",
+    "Email address is required." : "Je vyžadována e-mailová adresa.",
+    "Hi there," : "Zdravíme,",
     "_Imported %n contact_::_Imported %n contacts_" : ["Naimportován %n kontakt","Naimportovány %n kontakty","Naimportováno %n kontaktů","Naimportovány %n kontakty"],
     "_(skipped %n contact)_::_(skipped %n contacts)_" : ["(přeskočen %n kontakt)","(přeskočeny %n kontakty)","(přeskočeno %n kontaktů)","(přeskočeny %n kontakty)"],
     "Contacts" : "Kontakty",
