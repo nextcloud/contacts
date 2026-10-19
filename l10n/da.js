@@ -153,7 +153,7 @@ OC.L10N.register(
     "Talk conversation" : "Talk-samtale",
     "New Talk conversation" : "Ny Talk samtale",
     "Conversation name" : "Navn på samtale",
-    "Collective" : "Kollektiv",
+    "Collective" : "Arbejdsområde",
     "Calendar" : "Kalender",
     "New calendar" : "Ny kalender",
     "Calendar name" : "Kalendernavn",
