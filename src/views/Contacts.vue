@@ -205,7 +205,7 @@ export default {
 		},
 
 		isCirclesView() {
-			return this.selectedGroup === ROUTE_CIRCLE || this.selectedGroup === ROUTE_USER_GROUP
+			return !!this.selectedCircle
 		},
 
 		ungroupedContacts() {
@@ -279,7 +279,7 @@ export default {
 	methods: {
 		async newContact() {
 			if (this.isCirclesView) {
-				emit('contacts:circles:append', this.selectedCircle.id)
+				emit('contacts:circles:append', this.selectedCircle)
 				return
 			}
 
@@ -317,7 +317,7 @@ export default {
 
 			// set group if it's selected already
 			// BUT NOT if it's the _fake_ groups like all contacts and not grouped
-			if ([GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS].indexOf(this.selectedGroup) === -1) {
+			if (this.selectedGroup && [GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS].indexOf(this.selectedGroup) === -1) {
 				contact.groups = [this.selectedGroup]
 			}
 			try {
@@ -326,7 +326,7 @@ export default {
 				await this.$router.push({
 					name: 'contact',
 					params: {
-						selectedGroup: this.selectedGroup,
+						selectedGroup: this.selectedGroup ?? GROUP_ALL_CONTACTS,
 						selectedContact: contact.key,
 					},
 				})
