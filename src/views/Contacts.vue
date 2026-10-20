@@ -349,7 +349,7 @@ const _default = {
 		},
 
 		isCirclesView() {
-			return this.selectedGroup === ROUTE_CIRCLE || this.selectedGroup === ROUTE_USER_GROUP
+			return !!this.selectedCircle
 		},
 
 		invitesList() {
@@ -482,7 +482,7 @@ const _default = {
 	methods: {
 		async newContact() {
 			if (this.isCirclesView) {
-				emit('contacts:circles:append', this.selectedCircle.id)
+				emit('contacts:circles:append', this.selectedCircle)
 				return
 			}
 
@@ -522,11 +522,6 @@ const _default = {
 					}
 				}
 			}
-
-			// reset to default group if 'New contact' is triggered from within the OCM invites view
-			const group = this.isInvitesView
-				? GROUP_ALL_CONTACTS
-				: this.selectedGroup
 
 			// set group if it's selected already
 			// BUT NOT if it's the _fake_ groups like all contacts and not grouped
