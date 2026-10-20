@@ -30,6 +30,12 @@
 			:url="photoUrl"
 			class="contact-header-avatar__photo" />
 
+		<RecognizeFacePicker
+			v-if="showFacePicker"
+			:contact="contact"
+			@pick="onFacePicked"
+			@close="showFacePicker = false" />
+
 		<NcModal v-if="cropperSrc" size="small" @close="cancel">
 			<div class="avatar__container">
 				<h2>{{ t('contacts', 'Crop contact photo') }}</h2>
@@ -74,6 +80,15 @@
 					<IconFolder :size="20" />
 				</template>
 				{{ t('contacts', 'Choose from Files') }}
+			</ActionButton>
+			<ActionButton
+				v-if="isRecognizeAvailable"
+				:close-after-click="true"
+				@click="openFacePicker">
+				<template #icon>
+					<IconFaceRecognition :size="20" />
+				</template>
+				{{ t('contacts', 'Choose from recognized faces') }}
 			</ActionButton>
 			<ActionButton
 				v-for="network in supportedSocial"
@@ -127,12 +142,15 @@ import {
 } from '@nextcloud/vue'
 import VueCropper from 'vue-cropperjs'
 import IconCloudDownload from 'vue-material-design-icons/CloudDownloadOutline.vue'
+import IconFaceRecognition from 'vue-material-design-icons/FaceRecognition.vue'
 import IconFolder from 'vue-material-design-icons/FolderOutline.vue'
 import IconImage from 'vue-material-design-icons/ImageOutline.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
 import IconUpload from 'vue-material-design-icons/UploadOutline.vue'
+import RecognizeFacePicker from './RecognizeFacePicker.vue'
 import logger from '../../services/logger.js'
+import { getFacePreviewUrl, isRecognizeFaceLinkingAvailable } from '../../services/recognizeFaces.js'
 
 import 'cropperjs/dist/cropper.css'
 
@@ -150,11 +168,13 @@ export default {
 		IconDownload,
 		IconDelete,
 		IconUpload,
+		IconFaceRecognition,
 		IconFolder,
 		IconImage,
 		NcButton,
 		VueCropper,
 		NcModal,
+		RecognizeFacePicker,
 	},
 
 	props: {
@@ -181,6 +201,7 @@ export default {
 			photoUrl: undefined,
 			root: generateRemoteUrl(`dav/files/${getCurrentUser().uid}`),
 			cropperSrc: undefined,
+			showFacePicker: false,
 			cropperOptions: {
 				aspectRatio: 1 / 1,
 				viewMode: 3,
@@ -196,6 +217,15 @@ export default {
 	},
 
 	computed: {
+		/**
+		 * Recognized faces can only be looked up for contacts that exist on the server
+		 *
+		 * @return {boolean}
+		 */
+		isRecognizeAvailable() {
+			return isRecognizeFaceLinkingAvailable() && this.contact.dav !== undefined
+		},
+
 		supportedSocial() {
 			const emails = this.contact.vCard.getAllProperties('email')
 			// get social networks set for the current contact
@@ -546,6 +576,37 @@ export default {
 				}
 			}
 			this.loading = false
+		},
+
+		/**
+		 * Picker handlers from recognized faces
+		 */
+		openFacePicker() {
+			if (!this.loading) {
+				this.closeMenu()
+				this.showFacePicker = true
+			}
+		},
+
+		/**
+		 * Load the picked face at full size and hand it to the cropper
+		 *
+		 * @param {{id: number}} detection the picked face
+		 */
+		async onFacePicked(detection) {
+			this.showFacePicker = false
+			this.loading = true
+			try {
+				const response = await axios.get(getFacePreviewUrl(detection.id, 512), {
+					responseType: 'arraybuffer',
+				})
+				await this.processPicture(Buffer.from(response.data, 'binary'))
+			} catch (error) {
+				showError(t('contacts', 'Error while processing the picture.'))
+				logger.error(error)
+			} finally {
+				this.loading = false
+			}
 		},
 
 		closeMenu() {
