@@ -4,7 +4,7 @@
  */
 
 import logger from '../services/logger.js'
-import { CircleConfigs, MemberLevels, ROUTE_CIRCLE } from './constants.ts'
+import { CircleConfigs, MemberLevels } from './constants.ts'
 import Member from './member.ts'
 
 type MemberList = Record<string, Member>
@@ -307,7 +307,7 @@ export default class Circle {
 	get router() {
 		return {
 			name: 'circle',
-			params: { selectedCircle: this.id, selectedGroup: ROUTE_CIRCLE },
+			params: { selectedCircle: this.id },
 		}
 	}
 

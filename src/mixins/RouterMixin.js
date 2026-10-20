@@ -2,6 +2,9 @@
  * SPDX-FileCopyrightText: 2021 Nextcloud GmbH and Nextcloud contributors
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
+
+import { GROUP_ALL_CONTACTS } from '../models/constants.ts'
+
 export default {
 	computed: {
 		// router variables
@@ -34,7 +37,7 @@ export default {
 		listRoute() {
 			return this.selectedAddressbook
 				? { name: 'addressbook', params: { selectedAddressbook: this.selectedAddressbook } }
-				: { name: 'group', params: { selectedGroup: this.selectedGroup } }
+				: { name: 'group', params: { selectedGroup: this.selectedGroup ?? GROUP_ALL_CONTACTS } }
 		},
 
 		/**
@@ -46,7 +49,7 @@ export default {
 		contactRoute(selectedContact) {
 			return this.selectedAddressbook
 				? { name: 'addressbook-contact', params: { selectedAddressbook: this.selectedAddressbook, selectedContact } }
-				: { name: 'contact', params: { selectedGroup: this.selectedGroup, selectedContact } }
+				: { name: 'contact', params: { selectedGroup: this.selectedGroup ?? GROUP_ALL_CONTACTS, selectedContact } }
 		},
 	},
 }
