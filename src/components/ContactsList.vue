@@ -392,17 +392,33 @@ export default {
 		 * @return {boolean}
 		 */
 		matchSearch(contact) {
-			if (this.query.trim() !== '') {
+			let test = true
+			const plainQuery = this.query.trim().toLowerCase()
+			if (plainQuery !== '') {
+				const searchData = contact.searchData
+
 				try {
-					return contact.searchData.toString().toLowerCase().search(this.query.trim().toLowerCase()) !== -1
+					test = searchData.search(plainQuery) !== -1
 				} catch (e) {
 					if (e instanceof SyntaxError) {
-						// this.query likely is an invalid regex (i.e. just `+`)
-						return contact.searchData.toString().toLowerCase().includes(this.query.trim().toLowerCase())
+						// plainQuery likely is an invalid regex (i.e. just `+`)
+						test = searchData.includes(plainQuery)
+					}
+				}
+
+				if (test === false) {
+					// retry search on normalized text with no diacritics
+					const normalizedSearchData = searchData.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+					try {
+						test = normalizedSearchData.search(plainQuery) !== -1
+					} catch (e) {
+						if (e instanceof SyntaxError) {
+							test = normalizedSearchData.includes(plainQuery)
+						}
 					}
 				}
 			}
-			return true
+			return test
 		},
 
 		onSelectMultiple(contact, index, isRange = false) {
