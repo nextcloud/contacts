@@ -13,6 +13,7 @@ OC.L10N.register(
     "Share with users or groups" : "გაზიარება მოხმარებლებთან ან ჯგუფებთან",
     "Cancel" : "უარყოფა",
     "Add" : "დამატება",
+    "Address book name" : "მისამართების წიგნის სახელი",
     "First name" : "სახელი",
     "Last name" : "გვარი",
     "Display name" : "დისპლეი სახელი",

@@ -15,6 +15,7 @@ OC.L10N.register(
     "No users or groups" : "Geen gebruikers of groepe",
     "Cancel" : "Kanselleer",
     "Add" : "Voeg by",
+    "Address book name" : "Adresboeknaam",
     "First name" : "Naam",
     "Last name" : "Van",
     "Display name" : "Vertoonnaam",

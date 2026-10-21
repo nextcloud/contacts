@@ -17,6 +17,7 @@ OC.L10N.register(
     "Share with users or groups" : "Nda me përdoruesit ose grupet",
     "Cancel" : "Anullo",
     "Add" : "Shto",
+    "Address book name" : "Emër libri adresash",
     "First name" : "Emër",
     "Last name" : "Mbiemër",
     "Display name" : "Shfaq emrin",
