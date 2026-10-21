@@ -17,7 +17,7 @@
 				</div>
 				<!-- counters -->
 				<div v-if="addressbook.enabled" class="addressbook__count-wrapper">
-					<span class="addressbook__count">{{ n('contacts', '%n contact', '%n contacts', contactsCount) }}</span>
+					<span class="addressbook__count">{{ contactsCountLabel }}</span>
 					<span class="addressbook__count">- {{ n('contacts', '%n group', '%n groups', groupsCount) }}</span>
 				</div>
 			</div>
@@ -135,6 +135,7 @@ import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
 import ShareAddressBook from './SettingsAddressbookShare.vue'
 import CopyToClipboardMixin from '../../../mixins/CopyToClipboardMixin.js'
+import { isContactsPagingEnabled, parseContactKey } from '../../../services/contactsPaging.js'
 import logger from '../../../services/logger.js'
 import usePrincipalsStore from '../../../store/principals.js'
 
@@ -239,7 +240,21 @@ export default {
 			return this.contacts.length
 		},
 
+		contactsCountLabel() {
+			// more pages of this address book remain to be loaded
+			if (this.addressbook.continuationToken) {
+				return n('contacts', '%n+ contact', '%n+ contacts', this.contactsCount)
+			}
+			return n('contacts', '%n contact', '%n contacts', this.contactsCount)
+		},
+
 		groupsCount() {
+			// loaded contacts don't cover the address book, but the groups store has every member
+			if (isContactsPagingEnabled()) {
+				return this.$store.getters.getGroups
+					.filter((group) => group.contacts.some((key) => parseContactKey(key)?.addressbookId === this.addressbook.id))
+					.length
+			}
 			return this.groups.length
 		},
 
@@ -284,6 +299,9 @@ export default {
 			this.toggleEnabledLoading = true
 			try {
 				await this.$store.dispatch('toggleAddressbookEnabled', this.addressbook)
+				if (this.addressbook.enabled) {
+					this.$store.dispatch('fetchGroupMembers', { addressbooks: [this.addressbook] })
+				}
 			} catch (err) {
 				// error handling
 				logger.error(err)

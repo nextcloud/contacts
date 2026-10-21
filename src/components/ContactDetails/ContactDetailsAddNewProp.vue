@@ -101,6 +101,12 @@ export default {
 		OrgChartsMixin,
 	],
 
+	inject: {
+		loadManagerOptions: {
+			default: () => async () => {},
+		},
+	},
+
 	props: {
 		contact: {
 			type: Contact,
@@ -210,6 +216,7 @@ export default {
 
 			let shouldFocusProp = true
 			if (id === 'x-managersname') {
+				await this.loadManagerOptions()
 				const others = this.otherContacts(this.contact)
 				if (others.length === 0) {
 					showWarning(t('contacts', 'No other contacts available to select as line manager'))

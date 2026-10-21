@@ -9,7 +9,8 @@
 		<RootNavigation
 			:loading="loadingContacts || loadingCircles">
 			<div class="import-and-new-contact-buttons">
-				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView"
+				<SettingsImportContacts
+					v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView"
 					:is-ocm-invites-enabled="isOcmInvitesEnabled" />
 				<!-- new-contact-button -->
 				<NcButton
@@ -187,6 +188,7 @@ import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE, ROUTE_NAME_A
 import Contact from '../models/contact.js'
 import rfcProps from '../models/rfcProps.js'
 import client from '../services/cdav.js'
+import { isContactsPagingEnabled, loadContactByKey, loadGroupContacts } from '../services/contactsPaging.js'
 import isOcmInvitesEnabled from '../services/isOcmInvitesEnabled.js'
 import isTeamManagementEnabled from '../services/isTeamManagementEnabled.js'
 import logger from '../services/logger.js'
@@ -393,6 +395,7 @@ const _default = {
 	watch: {
 		// watch url change and group select
 		selectedGroup() {
+			this.loadRouteSelection()
 			this.syncPrimarySelectionIfNeeded()
 		},
 
@@ -405,12 +408,20 @@ const _default = {
 
 		// watch url change and contact select
 		selectedContact() {
+			this.loadRouteSelection()
 			this.syncPrimarySelectionIfNeeded()
 		},
 
 		invitesList() {
 			if (!this.isMobile && this.$route.name === ROUTE_NAME_ALL_OCM_INVITES) {
 				this.selectFirstOcmInviteIfNone()
+			}
+		},
+
+		// the groups summary reads whole address books, only start it once the first pages are shown
+		loadingContacts(loading) {
+			if (!loading) {
+				this.$store.dispatch('fetchGroupMembers')
 			}
 		},
 	},
@@ -447,6 +458,7 @@ const _default = {
 					} else {
 						this.fetchContacts()
 					}
+					this.loadRouteSelection()
 					if (isOcmInvitesEnabled) {
 						this.fetchOcmInvites()
 					}
@@ -548,10 +560,12 @@ const _default = {
 		},
 
 		/**
-		 * Fetch the contacts of each addressbooks
+		 * Fetch the contacts of each enabled addressbook:
+		 * the first page when the server supports paging, everything otherwise.
+		 * Further pages are loaded by the contacts list while scrolling.
 		 */
 		fetchContacts() {
-			// wait for all addressbooks to have fetch their contacts
+			// wait for all addressbooks to have fetched their first contacts
 			// don't filter disabled at this point, because sum of contacts per address book is shown
 			Promise.all(this.addressbooks
 				.map((addressbook) => {
@@ -585,6 +599,33 @@ const _default = {
 			}
 		},
 
+		/**
+		 * Load the contacts the current route needs when address books are loaded page by page:
+		 * every member of the selected group and the selected contact
+		 *
+		 * @return {Promise<void>}
+		 */
+		async loadRouteSelection() {
+			const loads = []
+			if (this.selectedGroup
+				&& !this.selectedAddressbook
+				&& !this.selectedCircle
+				&& !this.selectedUserGroup
+				&& !this.selectedChart
+				&& ![GROUP_ALL_CONTACTS, ROUTE_CIRCLE, ROUTE_USER_GROUP].includes(this.selectedGroup)) {
+				loads.push(loadGroupContacts(this.$store, this.selectedGroup))
+			}
+			if (this.selectedContact) {
+				loads.push(loadContactByKey(this.$store, this.selectedContact))
+			}
+
+			try {
+				await Promise.all(loads)
+			} catch (error) {
+				logger.error('Unable to load the contacts of the current route', { error })
+			}
+		},
+
 		syncPrimarySelectionIfNeeded() {
 			if (this.isMobile || this.selectedChart || this.selectedInvite) {
 				return
@@ -604,10 +645,15 @@ const _default = {
 		 * Select the first contact of the list
 		 * if none are selected already
 		 */
-		selectFirstContactIfNone() {
+		async selectFirstContactIfNone() {
 			// Do not redirect if pending import
 			if (this.$route.name === 'import' || this.$route.name === ROUTE_NAME_INVITE_ACCEPT_DIALOG) {
 				return
+			}
+
+			// make sure the members of the selected group and the selected contact are loaded
+			if (isContactsPagingEnabled()) {
+				await this.loadRouteSelection()
 			}
 
 			const inList = this.contactsList.findIndex((contact) => contact.key === this.selectedContact) > -1

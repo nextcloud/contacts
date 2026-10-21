@@ -111,7 +111,8 @@
 			v-slot="{ item, index }"
 			ref="scroller"
 			class="contacts-list"
-			:data="filteredList">
+			:data="filteredList"
+			@scroll="loadMoreIfNeeded">
 			<ContactsListItem
 				:key="item.key"
 				:index="index"
@@ -120,12 +121,16 @@
 				:on-select-multiple-from-parent="onSelectMultiple"
 				:on-navigate-from-parent="onNavigateContact" />
 		</VList>
+		<div v-if="loadingMore" class="contacts-list__loading">
+			<NcLoadingIcon :size="20" :name="t('contacts', 'Loading contacts …')" />
+		</div>
 	</AppContentList>
 </template>
 
 <script>
 import IconCancelRaw from '@mdi/svg/svg/cancel.svg?raw'
 import IconDeleteRaw from '@mdi/svg/svg/delete-outline.svg'
+import { showError } from '@nextcloud/dialogs'
 import {
 	NcAppContentList as AppContentList,
 	NcButton,
@@ -135,6 +140,7 @@ import {
 	NcNoteCard,
 	NcTextField,
 } from '@nextcloud/vue'
+import debounce from 'debounce'
 import { VList } from 'virtua/vue'
 import IconAccountMultiple from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconBookAccount from 'vue-material-design-icons/BookAccountOutline.vue'
@@ -145,7 +151,15 @@ import Batch from './ContactsList/Batch.vue'
 import ContactsListItem from './ContactsList/ContactsListItem.vue'
 import Merging from './ContactsList/Merging.vue'
 import RouterMixin from '../mixins/RouterMixin.js'
+import client from '../services/cdav.js'
+import logger from '../services/logger.js'
 import { getNextContactKey, getPreviousContactKey } from '../utils/contactNavigation.ts'
+
+// load the next page when at most this many contacts are left below the viewport
+const LOAD_MORE_THRESHOLD = 20
+
+// delay between the last search input and the server side search
+const SEARCH_DEBOUNCE_DELAY = 300
 
 export default {
 	name: 'ContactsList',
@@ -220,6 +234,7 @@ export default {
 			isMergingLoading: false,
 			isGrouping: false,
 			isMovingAddressbook: false,
+			loadingMore: false,
 		}
 	},
 
@@ -242,6 +257,26 @@ export default {
 
 		isMultiSelecting() {
 			return this.multiSelectedContacts.size > 0
+		},
+
+		/**
+		 * Whether the server side search results replace the contacts pages
+		 *
+		 * @return {boolean}
+		 */
+		isSearching() {
+			return this.query.trim() !== ''
+		},
+
+		/**
+		 * Whether more contacts or search results can be loaded from the server
+		 *
+		 * @return {boolean}
+		 */
+		hasMore() {
+			return this.isSearching
+				? this.$store.getters.hasMoreSearchResults
+				: this.$store.getters.hasMoreContacts
 		},
 
 		readOnlyMultiSelectedCount() {
@@ -337,13 +372,111 @@ export default {
 				})
 			}
 		},
+
+		query(query) {
+			if (query.trim() === '') {
+				this.debouncedSearchOnServer.clear()
+				this.resetServerSearch()
+				return
+			}
+			this.debouncedSearchOnServer(query)
+		},
+
+		// a too short list can't be scrolled, so keep loading until the viewport is filled
+		'filteredList.length': async function() {
+			await this.$nextTick()
+			this.loadMoreIfNeeded()
+		},
+
+		async hasMore() {
+			await this.$nextTick()
+			this.loadMoreIfNeeded()
+		},
 	},
 
-	mounted() {
+	created() {
+		this.debouncedSearchOnServer = debounce(this.searchOnServer, SEARCH_DEBOUNCE_DELAY)
+	},
+
+	async mounted() {
 		this.query = this.searchQuery
+		await this.$nextTick()
+		this.loadMoreIfNeeded()
+	},
+
+	beforeUnmount() {
+		this.debouncedSearchOnServer.clear()
+		if (this.isSearching) {
+			this.resetServerSearch()
+		}
 	},
 
 	methods: {
+		/**
+		 * Whether the server returns contacts page by page
+		 *
+		 * @return {boolean}
+		 */
+		isPagingSupported() {
+			return client.isAddressBookQueryContinuationSupported()
+		},
+
+		/**
+		 * Search the contacts on the server, the loaded contacts are filtered meanwhile
+		 *
+		 * @param {string} query the search query
+		 */
+		async searchOnServer(query) {
+			if (!this.isPagingSupported()) {
+				return
+			}
+			try {
+				await this.$store.dispatch('searchContacts', { query })
+			} catch (error) {
+				logger.error('Could not search contacts', { error })
+				showError(t('contacts', 'Could not search contacts'))
+			}
+		},
+
+		/**
+		 * Drop the server side search, results of a running search are ignored
+		 */
+		resetServerSearch() {
+			if (this.isPagingSupported()) {
+				this.$store.dispatch('searchContacts', { query: '' })
+			}
+		},
+
+		/**
+		 * Load the next contacts or search results page when the end of the list is about to be shown
+		 */
+		async loadMoreIfNeeded() {
+			const scroller = this.$refs.scroller
+			if (this.loadingMore || !this.hasMore || !scroller) {
+				return
+			}
+
+			const lastVisibleIndex = scroller.findItemIndex(scroller.scrollOffset + scroller.viewportSize)
+			if (this.filteredList.length - 1 - lastVisibleIndex > LOAD_MORE_THRESHOLD) {
+				return
+			}
+
+			this.loadingMore = true
+			try {
+				await this.$store.dispatch(this.isSearching ? 'loadMoreSearchResults' : 'loadMoreContacts')
+			} catch (error) {
+				logger.error('Could not load more contacts', { error })
+				showError(t('contacts', 'Could not load more contacts'))
+				return
+			} finally {
+				this.loadingMore = false
+			}
+
+			// the new page might not reach the end of the viewport, e.g. when the search filters it out
+			await this.$nextTick()
+			this.loadMoreIfNeeded()
+		},
+
 		// Select closest contact on deletion
 		selectContact(oldIndex) {
 			if (this.list.length > 0 && oldIndex < this.list.length) {
@@ -566,6 +699,13 @@ export default {
 	max-height: calc(100vh - var(--header-height) - var(--default-grid-baseline) * 14);
 	flex: 1 auto;
 	contain: none !important;
+}
+
+// Shown below the list while the next contacts page loads
+.contacts-list__loading {
+	display: flex;
+	justify-content: center;
+	padding: calc(var(--default-grid-baseline) * 2) 0;
 }
 
 // Add empty header to contacts-list that solves overlapping of contacts with app-navigation-toogle

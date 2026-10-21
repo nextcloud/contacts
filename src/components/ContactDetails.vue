@@ -5,9 +5,19 @@
 
 <template>
 	<AppContentDetails ref="detailsRoot" tabindex="-1">
+		<!-- loading a contact that is not loaded yet -->
+		<EmptyContent
+			v-if="!contact && loadingContact"
+			class="empty-content"
+			:name="t('contacts', 'Loading contact …')">
+			<template #icon>
+				<IconLoading :size="20" />
+			</template>
+		</EmptyContent>
+
 		<!-- nothing selected or contact not found -->
 		<EmptyContent
-			v-if="!contact"
+			v-else-if="!contact"
 			class="empty-content"
 			:name="t('contacts', 'No contact selected')"
 			:description="t('contacts', 'Select a contact on the list to begin')">
@@ -270,6 +280,12 @@
 			<div v-else-if="!loadingData" class="contact-details-wrapper" :class="[{ 'contact-details-wrapper-read-only': isReadOnly }]">
 				<!-- contact details -->
 				<section class="contact-details">
+					<!-- line manager options need every contact of the address book -->
+					<div v-if="loadingManagers" class="contact-details__loading-managers">
+						<IconLoading :size="20" />
+						{{ t('contacts', 'Loading line manager options …') }}
+					</div>
+
 					<!-- properties iteration -->
 					<!-- using contact.key in the key and index as key to avoid conflicts between similar data and exact key -->
 
@@ -429,6 +445,7 @@ import PropertySelect from './Properties/PropertySelect.vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import RouterMixin from '../mixins/RouterMixin.js'
 import rfcProps from '../models/rfcProps.js'
+import { isContactsPagingEnabled, loadContactByKey, loadContactByUid } from '../services/contactsPaging.js'
 import isTalkEnabled from '../services/isTalkEnabled.js'
 import logger from '../services/logger.js'
 import validate from '../services/validate.js'
@@ -479,6 +496,7 @@ export default defineComponent({
 	provide() {
 		return {
 			sharedState: this.sharedState,
+			loadManagerOptions: this.loadManagerOptions,
 		}
 	},
 
@@ -512,6 +530,8 @@ export default defineComponent({
 			 */
 			localContact: undefined,
 			loadingData: true,
+			loadingContact: false,
+			loadingManagers: false,
 			loadingUpdate: false,
 			qrcode: '',
 			showPickAddressbookModal: false,
@@ -860,6 +880,19 @@ export default defineComponent({
 				}
 			}
 		},
+
+		contactKey(key) {
+			if (key && !this.contact) {
+				this.loadMissingContact(key)
+			}
+		},
+
+		editMode(editMode) {
+			// the line manager select lists the other contacts of the address book
+			if (editMode && this.localContact?.vCard.hasProperty('x-managersname')) {
+				this.loadManagerOptions()
+			}
+		},
 	},
 
 	beforeMount() {
@@ -976,6 +1009,7 @@ export default defineComponent({
 						await this.$store.dispatch('fetchFullContact', { contact })
 						// clone to a local editable variable
 						await this.updateLocalContact(contact)
+						this.loadManager(contact)
 					} catch (error) {
 						if (error.name === 'ParserError') {
 							showError(t('contacts', 'Syntax error. Cannot open the contact.'))
@@ -995,9 +1029,70 @@ export default defineComponent({
 					// enable edit mode by default when creating a new contact
 					this.editMode = true
 				}
+			} else {
+				this.loadMissingContact(key)
 			}
 
 			this.loadingData = false
+		},
+
+		/**
+		 * Load a routed contact that is not loaded yet,
+		 * once loaded the contact watcher selects it
+		 *
+		 * @param {string} key the contact key
+		 */
+		async loadMissingContact(key) {
+			if (!isContactsPagingEnabled()) {
+				return
+			}
+
+			this.loadingContact = true
+			try {
+				await loadContactByKey(this.$store, key)
+			} catch (error) {
+				logger.error('Unable to load the contact', { key, error })
+			} finally {
+				this.loadingContact = false
+			}
+		},
+
+		/**
+		 * Load the line manager of a contact so that it can be displayed
+		 *
+		 * @param {Contact} contact the contact
+		 */
+		async loadManager(contact) {
+			if (!contact.managersName) {
+				return
+			}
+			try {
+				await loadContactByUid(this.$store, contact.addressbook.id, contact.managersName)
+			} catch (error) {
+				logger.error('Unable to load the line manager', { error })
+			}
+		},
+
+		/**
+		 * Load every contact of the address book of the selected contact,
+		 * as they are the line manager options
+		 *
+		 * @return {Promise<void>}
+		 */
+		async loadManagerOptions() {
+			const addressbook = this.addressbooks.find((addressbook) => addressbook.id === this.contact?.addressbook.id)
+			if (!addressbook?.continuationToken) {
+				return
+			}
+
+			this.loadingManagers = true
+			try {
+				await this.$store.dispatch('loadAllContacts', { addressbook })
+			} catch (error) {
+				logger.error('Unable to load the line manager options', { error })
+			} finally {
+				this.loadingManagers = false
+			}
 		},
 
 		/**
@@ -1252,6 +1347,13 @@ section.contact-details {
 	display: flex;
 	flex-direction: column;
 	gap: 10px;
+}
+
+.contact-details__loading-managers {
+	display: flex;
+	align-items: center;
+	gap: calc(var(--default-grid-baseline) * 2);
+	color: var(--color-text-maxcontrast);
 }
 
 #qrcode-modal {

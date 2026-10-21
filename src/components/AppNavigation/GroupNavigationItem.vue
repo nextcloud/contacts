@@ -96,6 +96,7 @@ import IconRename from 'vue-material-design-icons/FolderEditOutline.vue'
 import IconAdd from 'vue-material-design-icons/Plus.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
+import { loadGroupContacts } from '../../services/contactsPaging.js'
 import logger from '../../services/logger.js'
 import removeContactFromGroup from '../../services/removeContactFromGroup.js'
 import renameContactFromGroup from '../../services/renameContactFromGroup.js'
@@ -202,14 +203,30 @@ export default {
 		},
 
 		/**
+		 * Make sure every member of the group is loaded,
+		 * when address books are loaded page by page
+		 *
+		 * @return {Promise<void>}
+		 */
+		async loadGroupMembers() {
+			try {
+				await loadGroupContacts(this.$store, this.group.name)
+			} catch (error) {
+				logger.error('Unable to load the contacts of the group', { group: this.group.name, error })
+			}
+		},
+
+		/**
 		 * Download group of contacts
 		 *
 		 * @param {object} group of contacts to be downloaded
 		 */
-		downloadGroup(group) {
+		async downloadGroup(group) {
+			await this.loadGroupMembers()
+
 			// get grouped contacts
 			let groupedContacts = {}
-			group.contacts.forEach((key) => {
+			group.contacts.filter((key) => this.contacts[key]).forEach((key) => {
 				const id = this.contacts[key].addressbook.id
 				groupedContacts = {
 					[id]: {
@@ -251,9 +268,11 @@ export default {
 		 * @param {object} group of contacts to be emailed
 		 * @param {string} mode
 		 */
-		emailGroup(group, mode = 'to') {
+		async emailGroup(group, mode = 'to') {
+			await this.loadGroupMembers()
+
 			const emails = []
-			group.contacts.filter((key) => this.contacts[key].email !== null).forEach((key) => {
+			group.contacts.filter((key) => this.contacts[key] && this.contacts[key].email !== null).forEach((key) => {
 				// The email property could contain "John Doe <john.doe@example.com>", but vcard spec only
 				// allows addr-spec, not name-addr, so to stay compliant, replace everything outside of <>
 				const email = this.contacts[key].email.replace(/(.*<)([^>]*)(>)/g, '$2').trim()
@@ -281,11 +300,12 @@ export default {
 			}
 
 			this.renaming = true
+			await this.loadGroupMembers()
 			for (const key of this.group.contacts) {
 				const contact = this.$store.getters.getContact(key)
 
 				if (contact === undefined) {
-					return
+					continue
 				}
 
 				try {
@@ -307,11 +327,12 @@ export default {
 		 */
 		async deleteGroup() {
 			this.deleting = true
+			await this.loadGroupMembers()
 			for (const key of this.group.contacts) {
 				const contact = this.$store.getters.getContact(key)
 
 				if (contact === undefined) {
-					return
+					continue
 				}
 
 				try {

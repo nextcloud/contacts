@@ -4,12 +4,21 @@
 -->
 <template>
 	<AppContent :aria-label="t('contacts', 'Organization chart')">
-		<OrgChart :data="transformData" />
+		<EmptyContent v-if="loading" :name="t('contacts', 'Loading contacts …')">
+			<template #icon>
+				<IconLoading :size="20" />
+			</template>
+		</EmptyContent>
+		<OrgChart v-else :data="transformData" />
 	</AppContent>
 </template>
 
 <script>
-import { NcAppContent as AppContent } from '@nextcloud/vue'
+import {
+	NcAppContent as AppContent,
+	NcEmptyContent as EmptyContent,
+	NcLoadingIcon as IconLoading,
+} from '@nextcloud/vue'
 import OrgChart from '../OrgChart.vue'
 import logger from '../../services/logger.js'
 import { getChart, transformNode } from '../../utils/chartUtils.js'
@@ -18,6 +27,8 @@ export default {
 	name: 'ChartContent',
 	components: {
 		AppContent,
+		EmptyContent,
+		IconLoading,
 		OrgChart,
 	},
 
@@ -32,6 +43,7 @@ export default {
 		return {
 			data: [],
 			searchQuery: '',
+			loading: false,
 		}
 	},
 
@@ -64,6 +76,40 @@ export default {
 				charts: charts.map((nodes, index) => nodes.map((n) => `list ${index} ${n.nodeId} (${n.fullName}) -> ${n.parentNodeId}`)),
 			})
 			return charts
+		},
+
+		hasMoreContacts() {
+			return this.$store.getters.hasMoreContacts
+		},
+	},
+
+	watch: {
+		// the chart needs every contact, not only the loaded pages
+		hasMoreContacts: {
+			handler(hasMoreContacts) {
+				if (hasMoreContacts) {
+					this.loadAllContacts()
+				}
+			},
+
+			immediate: true,
+		},
+	},
+
+	methods: {
+		async loadAllContacts() {
+			if (this.loading) {
+				return
+			}
+
+			this.loading = true
+			try {
+				await this.$store.dispatch('loadAllContacts')
+			} catch (error) {
+				logger.error('Unable to load all contacts for the organization chart', { error })
+			} finally {
+				this.loading = false
+			}
 		},
 	},
 }
