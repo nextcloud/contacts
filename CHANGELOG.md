@@ -1,3 +1,32 @@
+## [8.9.2](https://github.com/nextcloud/contacts/compare/v8.9.1...v8.9.2) (2026-10-21)
+
+
+### Bug Fixes
+
+* **deps:** Fix npm audit ([42a8f39](https://github.com/nextcloud/contacts/commit/42a8f39f041e563588192d3caa06c9e7fda62c60))
+* **deps:** Fix npm audit ([78a02ab](https://github.com/nextcloud/contacts/commit/78a02ab327b8a9f1acbde38cc8d2b9d958b02f62))
+* dont allow clearing addressbook selection ([58df19f](https://github.com/nextcloud/contacts/commit/58df19f8673bfe13a4c1147fe78eb9ef7a5df8ca))
+* **l10n:** Update translations from Transifex ([07b3768](https://github.com/nextcloud/contacts/commit/07b37684365f9e05b633693afbaf2a3b2f2ae790))
+* **l10n:** Update translations from Transifex ([d8612d3](https://github.com/nextcloud/contacts/commit/d8612d37d3e323604b96bb4f2398bab2f32bbebe))
+* **l10n:** Update translations from Transifex ([5e15694](https://github.com/nextcloud/contacts/commit/5e15694f7f3d418a6a76986ffffce632c6c8273c))
+* **l10n:** Update translations from Transifex ([84b46ed](https://github.com/nextcloud/contacts/commit/84b46ed41eb954b20e208dda5c107f647826ae6e))
+* **l10n:** Update translations from Transifex ([af6c6fd](https://github.com/nextcloud/contacts/commit/af6c6fddf7c85bb1de8a3e221c2ba07d17f75520))
+* **l10n:** Update translations from Transifex ([4e3aa91](https://github.com/nextcloud/contacts/commit/4e3aa9137aeddfe840c2fbcc0a171c1ae1d33e4e))
+* **l10n:** Update translations from Transifex ([e7e3956](https://github.com/nextcloud/contacts/commit/e7e3956e095f160cdb8566045fac7c7f968f4487))
+* **l10n:** Update translations from Transifex ([8822056](https://github.com/nextcloud/contacts/commit/882205688fcc19435eebdac7228a84d511036971))
+* **l10n:** Update translations from Transifex ([42ec530](https://github.com/nextcloud/contacts/commit/42ec530b546c5c4bd52dcb0378bb1935f12f5526))
+* **l10n:** Update translations from Transifex ([3ecc422](https://github.com/nextcloud/contacts/commit/3ecc4222cee1e669d3daf4e045fc43a61e1f01f5))
+* **l10n:** Update translations from Transifex ([fb93f14](https://github.com/nextcloud/contacts/commit/fb93f14316ab2c1e11467fb5c0e76aa2bb00a12b))
+* **l10n:** Update translations from Transifex ([a6a0b04](https://github.com/nextcloud/contacts/commit/a6a0b04cf203de28a40bfaf3c120098a1154fac2))
+* **l10n:** Update translations from Transifex ([5a72029](https://github.com/nextcloud/contacts/commit/5a720298fe1cb11091c2e898c79b715ecdeb9664))
+* **l10n:** Update translations from Transifex ([6ba9f20](https://github.com/nextcloud/contacts/commit/6ba9f20d7c19e7c0b9a48671bf631542873e292d))
+* normalized behavior of contact groups creation with address book creation ([328b904](https://github.com/nextcloud/contacts/commit/328b9047eca3d61dc246b6e54ff122909658367a))
+* recovering from invalid "rev" in imported vcard ([b3f38f9](https://github.com/nextcloud/contacts/commit/b3f38f9eb64ec2983a9833b0c1501e40df2a9c7f))
+* **teams:** open member picker instead of creating a contact in team view ([c82a44e](https://github.com/nextcloud/contacts/commit/c82a44edea042fba9be12168e7e7fb718cb477e2))
+* wrapping contact group in editing ([c65f9a6](https://github.com/nextcloud/contacts/commit/c65f9a6806064f86c6d50a6672d333f8feca981f))
+
+
+
 ## [8.9.1](https://github.com/nextcloud/contacts/compare/v8.9.0...v8.9.1) (2026-09-30)
 
 
