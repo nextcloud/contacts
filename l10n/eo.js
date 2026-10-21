@@ -20,6 +20,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "Importado estas malebligita, ĉar neniu adresaro disponeblas",
     "Cancel" : "Nuligi",
     "Add" : "Aldoni",
+    "Address book name" : "Nomo de adresaro",
     "First name" : "Persona nomo",
     "Last name" : "Familia nomo",
     "Display name" : "Montra nomo",

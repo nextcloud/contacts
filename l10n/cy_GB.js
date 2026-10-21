@@ -18,6 +18,7 @@ OC.L10N.register(
     "Importing is disabled because there are no address books available" : "Mae mewnforio wedi ei analluogi oherwydd nad oes llyfrau cyfeiriadau ar gael",
     "Cancel" : "Diddymu",
     "Add" : "Ychwanegu",
+    "Address book name" : "Enw'r llyfr cyfeiriadau",
     "First name" : "Enw cyntaf",
     "Last name" : "Cyfenw",
     "Display name" : "Enw Dangos",

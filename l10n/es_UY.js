@@ -12,6 +12,7 @@ OC.L10N.register(
     "Share with users or groups" : "Compartir con otros usuarios o grupos",
     "Cancel" : "Cancelar",
     "Add" : "Agregar",
+    "Address book name" : "Nombre de la libreta de direcciones",
     "First name" : "Nombre",
     "Last name" : "Apellido",
     "Display name" : "Nombre a desplegar",
