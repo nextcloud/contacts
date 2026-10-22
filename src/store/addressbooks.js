@@ -3,8 +3,10 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
+import { namespaces as NS } from '@nextcloud/cdav-library'
 import { showError } from '@nextcloud/dialogs'
 import pLimit from 'p-limit'
+import { CONTACTS_PAGE_SIZE } from '../models/constants.ts'
 import Contact, { MinimalContactProperties } from '../models/contact.js'
 import client from '../services/cdav.js'
 import logger from '../services/logger.js'
@@ -25,11 +27,261 @@ const addressbookModel = {
 	canDeleteCard: false,
 	writeProps: false,
 	dav: false,
+	// token of the next contacts page, null when fully loaded or never paged
+	continuationToken: null,
+	// whether the contacts were loaded page by page
+	paginated: false,
 }
 
 const state = {
 	addressbooks: [],
 	addressbooksFetched: false,
+	// server side search over the enabled address books
+	search: {
+		query: '',
+		// address book id => token of the next search results page
+		continuationTokens: {},
+	},
+}
+
+// vCard properties matched by the server side search. Must only contain properties
+// indexed in oc_cards_properties (CardDavBackend::INDEXED_PROPERTIES); otherwise the
+// server cannot push the anyof filter down to SQL and parses every card instead.
+export const SearchContactProperties = ['FN', 'N', 'EMAIL', 'TEL', 'ORG', 'TITLE', 'CATEGORIES', 'NOTE']
+
+// address book id => promise of the contacts page being loaded
+const pageLoads = new Map()
+
+// address book id => promise of the search results page being loaded
+let searchPageLoads = new Map()
+
+// incremented on every search, responses of older searches are ignored
+let searchGeneration = 0
+
+/**
+ * Whether the server can return address book queries page by page
+ *
+ * @return {boolean}
+ */
+function isPagingSupported() {
+	return client.isAddressBookQueryContinuationSupported()
+}
+
+/**
+ * Build the CardDAV filter matching contacts with any searchable property containing the query
+ *
+ * @param {string} query the search query
+ * @return {object[]} the children of the CARDDAV:filter element
+ */
+export function buildSearchFilter(query) {
+	return SearchContactProperties.map((name) => ({
+		name: [NS.IETF_CARDDAV, 'prop-filter'],
+		attributes: [['name', name]],
+		children: [{
+			name: [NS.IETF_CARDDAV, 'text-match'],
+			attributes: [
+				['collation', 'i;unicode-casemap'],
+				['match-type', 'contains'],
+			],
+			value: query,
+		}],
+	}))
+}
+
+/**
+ * Parse the vCards returned by the server into contacts
+ *
+ * @param {object[]} vcards the VCard objects from the cdav library
+ * @param {object} addressbook the addressbook the vCards belong to
+ * @return {Contact[]}
+ */
+function parseVCards(vcards, addressbook) {
+	// We don't want to lose the url information
+	// so we need to parse one by one
+	let failed = 0
+	const contacts = vcards.reduce((contacts, item) => {
+		try {
+			const contact = new Contact(item.data, addressbook)
+			contact.dav = item
+			contacts.push(contact)
+		} catch (error) {
+			// PARSING FAILED
+			logger.error('Error reading contact', { url: item.url, data: item.data })
+			logger.error(error)
+			failed++
+		}
+		return contacts
+	}, [])
+
+	if (failed > 0) {
+		showError(n(
+			'contacts',
+			'{failed} contact failed to be read',
+			'{failed} contacts failed to be read',
+			failed,
+			{ failed },
+		))
+	}
+
+	return contacts
+}
+
+/**
+ * Merge loaded contacts into the store.
+ * Contacts already in the address book are kept as they are, so a contact returned
+ * again by another page, query or search is never duplicated.
+ *
+ * @param {object} context the store context
+ * @param {object} addressbook the addressbook the contacts belong to
+ * @param {Contact[]} contacts the loaded contacts
+ * @return {string[]} the keys of the loaded contacts
+ */
+function mergeContacts(context, addressbook, contacts) {
+	const storedAddressbook = context.state.addressbooks.find((search) => search.id === addressbook.id)
+	if (!storedAddressbook) {
+		return []
+	}
+
+	const uids = new Set()
+	const newContacts = contacts.filter((contact) => {
+		if (storedAddressbook.contacts[contact.uid] || uids.has(contact.uid)) {
+			return false
+		}
+		uids.add(contact.uid)
+		return true
+	})
+
+	if (newContacts.length > 0) {
+		context.commit('appendContactsToAddressbook', { addressbook: storedAddressbook, contacts: newContacts })
+		context.commit('extractGroupsFromContacts', newContacts)
+
+		// don't add contacts from disabled address book to contacts store
+		if (storedAddressbook.enabled) {
+			context.commit('appendContacts', newContacts)
+			context.commit('sortContacts')
+		}
+	}
+
+	return [...new Set(contacts.map((contact) => contact.key))]
+}
+
+/**
+ * Load the next contacts page of an address book, or its first page.
+ * Only one page of an address book is loaded at a time, concurrent calls share the running load.
+ *
+ * @param {object} context the store context
+ * @param {object} addressbook the addressbook to load
+ * @param {boolean} firstPage load the first page instead of the next one
+ * @return {Promise<Contact[]>}
+ */
+function loadContactsPage(context, addressbook, firstPage) {
+	// the continuation token is read from the stored address book
+	addressbook = context.state.addressbooks.find((search) => search.id === addressbook.id) ?? addressbook
+	const running = pageLoads.get(addressbook.id)
+	if (running) {
+		return running
+	}
+
+	const load = (async () => {
+		const page = await addressbook.dav.findPageAndFilterBySimpleProperties(MinimalContactProperties, {
+			limit: CONTACTS_PAGE_SIZE,
+			continuationToken: firstPage ? null : addressbook.continuationToken,
+		})
+		const contacts = parseVCards(page.vcards, addressbook)
+		mergeContacts(context, addressbook, contacts)
+		context.commit('setAddressbookContinuationToken', { addressbook, continuationToken: page.continuationToken })
+		return contacts
+	})().finally(() => {
+		pageLoads.delete(addressbook.id)
+	})
+
+	pageLoads.set(addressbook.id, load)
+	return load
+}
+
+/**
+ * Run an addressbook query on one address book and return the matching contacts
+ *
+ * @param {object} addressbook the addressbook to query
+ * @param {object} query destructuring object
+ * @param {object[]} query.filter the children of the CARDDAV:filter element
+ * @param {string} query.test either anyof or allof
+ * @param {boolean} query.all load every page instead of the first one
+ * @return {Promise<Contact[]>}
+ */
+async function queryAddressbook(addressbook, { filter, test, all }) {
+	if (!isPagingSupported()) {
+		const vcards = await addressbook.dav.addressbookQuery(filter, null, null, test)
+		return parseVCards(vcards, addressbook)
+	}
+
+	const contacts = []
+	let continuationToken = null
+	do {
+		const page = await addressbook.dav.findPageAndFilterBySimpleProperties(MinimalContactProperties, {
+			limit: CONTACTS_PAGE_SIZE,
+			continuationToken,
+			filter,
+			test,
+		})
+		contacts.push(...parseVCards(page.vcards, addressbook))
+		continuationToken = page.continuationToken
+	} while (all && continuationToken)
+	return contacts
+}
+
+/**
+ * Load a page of the current search results of an address book.
+ * Only one search page of an address book is loaded at a time, results of an outdated search are ignored.
+ *
+ * @param {object} context the store context
+ * @param {object} addressbook the addressbook to search
+ * @param {string|null} continuationToken token of the page to load, null for the first page
+ * @return {Promise<string[]>} the keys of the found contacts
+ */
+function loadSearchPage(context, addressbook, continuationToken) {
+	const running = searchPageLoads.get(addressbook.id)
+	if (running) {
+		return running
+	}
+
+	const generation = searchGeneration
+	const loads = searchPageLoads
+	const query = context.state.search.query
+	const load = (async () => {
+		const page = await addressbook.dav.findPageAndFilterBySimpleProperties(MinimalContactProperties, {
+			limit: CONTACTS_PAGE_SIZE,
+			continuationToken,
+			filter: buildSearchFilter(query),
+			test: 'anyof',
+		})
+		if (generation !== searchGeneration) {
+			return []
+		}
+		const keys = mergeContacts(context, addressbook, parseVCards(page.vcards, addressbook))
+		context.commit('setSearchContinuationToken', { addressbook, continuationToken: page.continuationToken })
+		return keys
+	})().finally(() => {
+		loads.delete(addressbook.id)
+	})
+
+	loads.set(addressbook.id, load)
+	return load
+}
+
+/**
+ * Wait for all promises and throw the first failure, if any
+ *
+ * @param {Promise[]} promises the promises to wait for
+ * @return {Promise<Array>} the results of the promises
+ */
+async function settleAll(promises) {
+	const results = await Promise.allSettled(promises)
+	const failure = results.find((result) => result.status === 'rejected')
+	if (failure) {
+		throw failure.reason
+	}
+	return results.map((result) => result.value)
 }
 
 /**
@@ -234,10 +486,53 @@ const mutations = {
 	resortAddressbooks(state) {
 		state.addressbooks = sortAddressbooks(state.addressbooks)
 	},
+
+	/**
+	 * Store the token of the next contacts page of an addressbook
+	 *
+	 * @param {object} state the store data
+	 * @param {object} data destructuring object
+	 * @param {object} data.addressbook the addressbook
+	 * @param {string|null} data.continuationToken the token, null when the last page was loaded
+	 */
+	setAddressbookContinuationToken(state, { addressbook, continuationToken }) {
+		addressbook = state.addressbooks.find((search) => search.id === addressbook.id)
+		if (addressbook) {
+			addressbook.continuationToken = continuationToken
+			addressbook.paginated = true
+		}
+	},
+
+	/**
+	 * Start a new server side search
+	 *
+	 * @param {object} state the store data
+	 * @param {string} query the search query
+	 */
+	resetContactSearch(state, query) {
+		state.search.query = query
+		state.search.continuationTokens = {}
+	},
+
+	/**
+	 * Store the token of the next search results page of an addressbook
+	 *
+	 * @param {object} state the store data
+	 * @param {object} data destructuring object
+	 * @param {object} data.addressbook the addressbook
+	 * @param {string|null} data.continuationToken the token, null when the last page was loaded
+	 */
+	setSearchContinuationToken(state, { addressbook, continuationToken }) {
+		state.search.continuationTokens[addressbook.id] = continuationToken
+	},
 }
 
 const getters = {
 	getAddressbooks: (state) => state.addressbooks,
+	hasMoreContacts: (state) => state.addressbooks
+		.some((addressbook) => addressbook.enabled && !!addressbook.continuationToken),
+	hasMoreSearchResults: (state) => state.addressbooks
+		.some((addressbook) => addressbook.enabled && !!state.search.continuationTokens[addressbook.id]),
 }
 
 const actions = {
@@ -326,9 +621,11 @@ const actions = {
 				if (addressbook.enabled) {
 					const contacts = Object.values(addressbook.contacts)
 
-					// If the address book is disabled on first load, the store does not fetch/store the AB's contacts
+					// If the address book is disabled on first load, the store does not fetch/store the AB's contacts.
+					// The fetched contacts are added to the contacts store, as the address book is enabled now
 					if (contacts.length === 0) {
 						await context.dispatch('getContactsFromAddressBook', { addressbook })
+						return
 					}
 
 					// Add contacts from the just enabled address book to the contacts store
@@ -368,62 +665,138 @@ const actions = {
 
 	/**
 	 * Retrieve the contacts of the specified addressbook
-	 * and commit the results
+	 * and commit the results.
+	 * Only the first page is loaded when the server supports paging, everything otherwise.
 	 *
 	 * @param {object} context the store mutations
-	 * @param {object} importDetails = { vcf, addressbook }
-	 * @param importDetails.addressbook
-	 * @return {Promise}
+	 * @param {object} data destructuring object
+	 * @param {object} data.addressbook the addressbook to load
+	 * @return {Promise<Contact[]|undefined>}
 	 */
 	async getContactsFromAddressBook(context, { addressbook }) {
-		return addressbook.dav
-			.findAllAndFilterBySimpleProperties(MinimalContactProperties)
-			.then((response) => {
-				// We don't want to lose the url information
-				// so we need to parse one by one
-				let failed = 0
-				const contacts = response
-					.reduce((contacts, item) => {
-						try {
-							const contact = new Contact(item.data, addressbook)
-							contact.dav = item
-							contacts.push(contact)
-						} catch (error) {
-							// PARSING FAILED
-							logger.error('Error reading contact', { url: item.url, data: item.data })
-							logger.error(error)
-							failed++
-						}
-						return contacts
-					}, [])
+		try {
+			if (isPagingSupported()) {
+				return await loadContactsPage(context, addressbook, true)
+			}
 
-				if (failed > 0) {
-					showError(n(
-						'contacts',
-						'{failed} contact failed to be read',
-						'{failed} contacts failed to be read',
-						failed,
-						{ failed },
-					))
+			const vcards = await addressbook.dav.findAllAndFilterBySimpleProperties(MinimalContactProperties)
+			const contacts = parseVCards(vcards, addressbook)
+			mergeContacts(context, addressbook, contacts)
+			return contacts
+		} catch (error) {
+			// unrecoverable error, if no contacts were loaded,
+			// remove the addressbook
+			// TODO: create a failed addressbook state and show that there was an issue?
+			context.commit('deleteAddressbook', addressbook)
+			logger.error(error)
+		}
+	},
+
+	/**
+	 * Load the next contacts page of every enabled addressbook with remaining contacts
+	 *
+	 * @param {object} context the store mutations
+	 * @return {Promise<boolean>} whether contacts remain to be loaded
+	 */
+	async loadMoreContacts(context) {
+		const addressbooks = context.state.addressbooks
+			.filter((addressbook) => addressbook.enabled && addressbook.continuationToken)
+		await settleAll(addressbooks.map((addressbook) => loadContactsPage(context, addressbook, false)))
+		return context.getters.hasMoreContacts
+	},
+
+	/**
+	 * Load all remaining contacts pages of an addressbook, or of every enabled addressbook
+	 *
+	 * @param {object} context the store mutations
+	 * @param {object} [data] destructuring object
+	 * @param {object} [data.addressbook] the addressbook to load, every enabled addressbook if omitted
+	 * @return {Promise}
+	 */
+	async loadAllContacts(context, { addressbook } = {}) {
+		const addressbooks = addressbook
+			? context.state.addressbooks.filter((search) => search.id === addressbook.id)
+			: context.state.addressbooks.filter((search) => search.enabled)
+
+		await settleAll(addressbooks.map(async (addressbook) => {
+			if (!isPagingSupported()) {
+				// everything is loaded at once, unless the address book was never loaded
+				if (Object.keys(addressbook.contacts).length === 0) {
+					await context.dispatch('getContactsFromAddressBook', { addressbook })
 				}
+				return
+			}
 
-				context.commit('appendContactsToAddressbook', { addressbook, contacts })
-				context.commit('extractGroupsFromContacts', contacts)
+			if (!addressbook.paginated) {
+				await loadContactsPage(context, addressbook, true)
+			}
+			while (addressbook.continuationToken) {
+				await loadContactsPage(context, addressbook, false)
+			}
+		}))
+	},
 
-				// don't add contacts from disabled address book to contacts store
-				if (addressbook.enabled) {
-					context.commit('appendContacts', contacts)
-					context.commit('sortContacts')
-				}
-				return contacts
-			})
-			.catch((error) => {
-				// unrecoverable error, if no contacts were loaded,
-				// remove the addressbook
-				// TODO: create a failed addressbook state and show that there was an issue?
-				context.commit('deleteAddressbook', addressbook)
-				logger.error(error)
-			})
+	/**
+	 * Run an addressbook query and merge the matching contacts into the store
+	 *
+	 * @param {object} context the store mutations
+	 * @param {object} data destructuring object
+	 * @param {object} [data.addressbook] the addressbook to query, every enabled addressbook if omitted
+	 * @param {object[]} data.filter the children of the CARDDAV:filter element
+	 * @param {string} [data.test] either anyof or allof
+	 * @param {boolean} [data.all] load every page of the results instead of the first one
+	 * @return {Promise<string[]>} the keys of the matching contacts
+	 */
+	async queryContacts(context, { addressbook, filter, test = 'anyof', all = true }) {
+		const addressbooks = addressbook
+			? context.state.addressbooks.filter((search) => search.id === addressbook.id)
+			: context.state.addressbooks.filter((search) => search.enabled)
+
+		const keys = await settleAll(addressbooks.map(async (addressbook) => {
+			const contacts = await queryAddressbook(addressbook, { filter, test, all })
+			return mergeContacts(context, addressbook, contacts)
+		}))
+		return keys.flat()
+	},
+
+	/**
+	 * Search the enabled addressbooks on the server and merge the first page of results into the store.
+	 * An empty query only resets the search.
+	 *
+	 * @param {object} context the store mutations
+	 * @param {object} data destructuring object
+	 * @param {string} data.query the search query
+	 * @return {Promise<string[]>} the keys of the found contacts, empty when the search was replaced meanwhile
+	 */
+	async searchContacts(context, { query }) {
+		query = query.trim()
+		searchGeneration++
+		searchPageLoads = new Map()
+		context.commit('resetContactSearch', query)
+
+		if (query === '' || !isPagingSupported()) {
+			return []
+		}
+
+		const generation = searchGeneration
+		const keys = await settleAll(context.state.addressbooks
+			.filter((addressbook) => addressbook.enabled)
+			.map((addressbook) => loadSearchPage(context, addressbook, null)))
+		return generation === searchGeneration ? keys.flat() : []
+	},
+
+	/**
+	 * Load the next page of the current search results of every enabled addressbook with remaining results
+	 *
+	 * @param {object} context the store mutations
+	 * @return {Promise<boolean>} whether search results remain to be loaded
+	 */
+	async loadMoreSearchResults(context) {
+		const { continuationTokens } = context.state.search
+		await settleAll(context.state.addressbooks
+			.filter((addressbook) => addressbook.enabled && continuationTokens[addressbook.id])
+			.map((addressbook) => loadSearchPage(context, addressbook, continuationTokens[addressbook.id])))
+		return context.getters.hasMoreSearchResults
 	},
 
 	/**

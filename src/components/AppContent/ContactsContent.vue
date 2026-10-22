@@ -130,12 +130,13 @@ export default {
 		},
 
 		/**
-		 * Is the current group empty
+		 * Is the current group empty.
+		 * While contacts pages remain, the list is shown and loads them
 		 *
 		 * @return {boolean}
 		 */
 		isEmptyGroup() {
-			return this.contactsList.length === 0
+			return this.contactsList.length === 0 && !this.$store.getters.hasMoreContacts
 		},
 
 		/**

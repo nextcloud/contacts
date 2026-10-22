@@ -9,6 +9,7 @@ export type CircleConfig = number
 export type MemberLevel = number
 export type MemberType = number
 export declare const LIST_SIZE = 60
+export declare const CONTACTS_PAGE_SIZE = 100
 export declare const GROUP_ALL_CONTACTS: DefaultGroup
 export declare const GROUP_NO_GROUP_CONTACTS: DefaultGroup
 export declare const GROUP_RECENTLY_CONTACTED: DefaultGroup

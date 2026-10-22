@@ -33,7 +33,7 @@
 				<template #counter>
 					<NcCounterBubble
 						v-if="sortedContacts.length"
-						:count="sortedContacts.length" />
+						v-bind="contactsCounterProps(sortedContacts.length, hasMoreContacts)" />
 				</template>
 			</AppNavigationItem>
 
@@ -51,7 +51,7 @@
 
 			<!-- Not grouped group -->
 			<AppNavigationItem
-				v-if="ungroupedContacts.length > 0"
+				v-if="ungroupedContacts.length > 0 || hasMoreContacts"
 				id="notgrouped"
 				:name="GROUP_NO_GROUP_CONTACTS"
 				:to="{
@@ -66,7 +66,7 @@
 				<template #counter>
 					<NcCounterBubble
 						v-if="ungroupedContacts.length"
-						:count="ungroupedContacts.length" />
+						v-bind="contactsCounterProps(ungroupedContacts.length, hasMoreContacts)" />
 				</template>
 			</AppNavigationItem>
 
@@ -96,7 +96,7 @@
 				<template #counter>
 					<NcCounterBubble
 						v-if="addressbookContactCount(addressbook)"
-						:count="addressbookContactCount(addressbook)" />
+						v-bind="contactsCounterProps(addressbookContactCount(addressbook), !!addressbook.continuationToken)" />
 				</template>
 			</AppNavigationItem>
 
@@ -264,6 +264,7 @@ import isOcmInvitesEnabled from '../../services/isOcmInvitesEnabled.js'
 import isTeamManagementEnabled from '../../services/isTeamManagementEnabled.js'
 import useOcmInvitesStore from '../../store/ocminvites.ts'
 import useUserGroupStore from '../../store/userGroup.ts'
+import { contactsCounterProps } from '../../utils/counterUtils.js'
 
 export default {
 	name: 'RootNavigation',
@@ -387,6 +388,10 @@ export default {
 			return this.$store.getters.getSortedContacts
 		},
 
+		hasMoreContacts() {
+			return this.$store.getters.hasMoreContacts
+		},
+
 		userGroups() {
 			return this.userGroupStore.userGroupList
 		},
@@ -405,7 +410,10 @@ export default {
 
 		// check if any contact has manager, if not then is no need for organization chart menu
 		existChart() {
-			return !!Object.keys(this.contacts).filter((key) => this.contacts[key].managersName).length
+			// loaded pages don't cover the whole address books, the groups summary does
+			const addressbooksWithManagers = this.$store.getters.getAddressbooksWithManagers
+			return this.enabledAddressbooks.some((addressbook) => addressbooksWithManagers[addressbook.id])
+				|| !!Object.keys(this.contacts).filter((key) => this.contacts[key].managersName).length
 		},
 
 		// generate groups menu from the groups store
@@ -497,6 +505,8 @@ export default {
 	},
 
 	methods: {
+		contactsCounterProps,
+
 		addressbookContactCount(addressbook) {
 			// contact groups are stored as contacts too, but never listed as such
 			return Object.values(addressbook.contacts || {}).filter((contact) => contact.kind !== 'group').length

@@ -19,6 +19,7 @@
 		:title-label="t('contacts', 'Add members to {group}', { group: passedGroupName })"
 		:data-types="pickerTypes"
 		:data-set="pickerData"
+		:loading="loadingPickerData"
 		:empty-data-set-description="t('contacts', 'Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added.')"
 		@close="onContactPickerClose"
 		@submit="onContactPickerPick" />
@@ -48,6 +49,7 @@ export default {
 			// Entity picker
 			showPicker: false,
 			pickerData: [],
+			loadingPickerData: false,
 			pickerTypes: [{
 				id: 'contact',
 				label: t('contacts', 'Contacts'),
@@ -89,10 +91,26 @@ export default {
 
 	methods: {
 		// Bulk contacts group management handlers
-		addContactsToGroup(group) {
+		async addContactsToGroup(group) {
 			logger.debug('Contacts picker opened for group', { group })
 
 			this.passedGroupName = group.name ? group.name : group
+			this.pickerData = []
+			this.showPicker = true
+
+			// the picker lists every contact of the writable address books, not only the loaded pages
+			const partiallyLoaded = this.$store.getters.getAddressbooks
+				.filter((addressbook) => addressbook.enabled && !addressbook.readOnly && addressbook.continuationToken)
+			if (partiallyLoaded.length > 0) {
+				this.loadingPickerData = true
+				try {
+					await Promise.all(partiallyLoaded.map((addressbook) => this.$store.dispatch('loadAllContacts', { addressbook })))
+				} catch (error) {
+					logger.error('Unable to load all contacts for the picker', { error })
+				} finally {
+					this.loadingPickerData = false
+				}
+			}
 
 			// Init data set
 			this.pickerData = this.sortedContacts
@@ -110,8 +128,6 @@ export default {
 				.filter((contact) => !contact.readOnly)
 				// No contacts already present in group
 				.filter((contact) => contact.groups.indexOf(this.passedGroupName) === -1)
-
-			this.showPicker = true
 		},
 
 		onContactPickerClose() {

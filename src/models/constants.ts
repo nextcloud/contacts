@@ -17,6 +17,9 @@ export type MemberType = number
 // Global sizes
 export const LIST_SIZE = 60
 
+// Number of contacts requested per address book page
+export const CONTACTS_PAGE_SIZE = 100
+
 // Dynamic default groups
 export const GROUP_ALL_CONTACTS: DefaultGroup = t('contacts', 'All contacts')
 export const GROUP_NO_GROUP_CONTACTS: DefaultGroup = t('contacts', 'Not grouped')
