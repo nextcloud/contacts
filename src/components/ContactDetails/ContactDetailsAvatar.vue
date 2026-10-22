@@ -91,6 +91,16 @@
 				{{ t('contacts', 'Choose from recognized faces') }}
 			</ActionButton>
 			<ActionButton
+				v-for="person in linkedPeople"
+				:key="person.id"
+				:close-after-click="true"
+				@click="unlinkPerson(person)">
+				<template #icon>
+					<IconLinkOff :size="20" />
+				</template>
+				{{ unlinkLabel(person) }}
+			</ActionButton>
+			<ActionButton
 				v-for="network in supportedSocial"
 				:key="network"
 				:close-after-click="true"
@@ -145,12 +155,13 @@ import IconCloudDownload from 'vue-material-design-icons/CloudDownloadOutline.vu
 import IconFaceRecognition from 'vue-material-design-icons/FaceRecognition.vue'
 import IconFolder from 'vue-material-design-icons/FolderOutline.vue'
 import IconImage from 'vue-material-design-icons/ImageOutline.vue'
+import IconLinkOff from 'vue-material-design-icons/LinkVariantOff.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
 import IconUpload from 'vue-material-design-icons/UploadOutline.vue'
 import RecognizeFacePicker from './RecognizeFacePicker.vue'
 import logger from '../../services/logger.js'
-import { getFacePreviewUrl, isRecognizeFaceLinkingAvailable } from '../../services/recognizeFaces.js'
+import { fetchContactFaces, getFacePreviewUrl, isRecognizeFaceLinkingAvailable, unlinkFace } from '../../services/recognizeFaces.js'
 
 import 'cropperjs/dist/cropper.css'
 
@@ -171,6 +182,7 @@ export default {
 		IconFaceRecognition,
 		IconFolder,
 		IconImage,
+		IconLinkOff,
 		NcButton,
 		VueCropper,
 		NcModal,
@@ -202,6 +214,8 @@ export default {
 			root: generateRemoteUrl(`dav/files/${getCurrentUser().uid}`),
 			cropperSrc: undefined,
 			showFacePicker: false,
+			/** The recognized people linked to this contact, when Recognize is available */
+			linkedPeople: [],
 			cropperOptions: {
 				aspectRatio: 1 / 1,
 				viewMode: 3,
@@ -248,11 +262,13 @@ export default {
 	watch: {
 		async contact() {
 			await this.loadPhotoUrl()
+			await this.loadLinkedPeople()
 		},
 	},
 
 	async mounted() {
 		await this.loadPhotoUrl()
+		await this.loadLinkedPeople()
 	},
 
 	methods: {
@@ -579,6 +595,53 @@ export default {
 		},
 
 		/**
+		 * Look up which recognized people are linked to the contact
+		 */
+		async loadLinkedPeople() {
+			if (!this.isRecognizeAvailable) {
+				this.linkedPeople = []
+				return
+			}
+			try {
+				const { faces } = await fetchContactFaces(this.contact.addressbook.id, this.contact.uid)
+				this.linkedPeople = faces
+			} catch (error) {
+				// The menu simply offers no unlink entries when the lookup fails
+				logger.debug('Could not load the recognized people linked to the contact', { error })
+				this.linkedPeople = []
+			}
+		},
+
+		/**
+		 * Label of the menu entry that unlinks a person; the name only matters when several people are linked
+		 *
+		 * @param {{title: string}} person a linked person
+		 * @return {string}
+		 */
+		unlinkLabel(person) {
+			if (this.linkedPeople.length === 1) {
+				return t('contacts', 'Unlink from recognized faces')
+			}
+			return t('contacts', 'Unlink {person} from recognized faces', { person: person.title || t('contacts', 'Unnamed person') })
+		},
+
+		/**
+		 * Remove the link between the contact and a recognized person
+		 *
+		 * @param {{id: number, title: string}} person the person to unlink
+		 */
+		async unlinkPerson(person) {
+			try {
+				await unlinkFace(person.id)
+				this.linkedPeople = this.linkedPeople.filter((linked) => linked.id !== person.id)
+				showSuccess(t('contacts', '{person} is no longer linked to this contact', { person: person.title || t('contacts', 'Unnamed person') }))
+			} catch (error) {
+				showError(t('contacts', 'Could not unlink the person from the contact'))
+				logger.error('Could not unlink the person from the contact', { error })
+			}
+		},
+
+		/**
 		 * Picker handlers from recognized faces
 		 */
 		openFacePicker() {
@@ -596,6 +659,8 @@ export default {
 		async onFacePicked(detection) {
 			this.showFacePicker = false
 			this.loading = true
+			// Picking a face of an unlinked person has linked them
+			await this.loadLinkedPeople()
 			try {
 				const response = await axios.get(getFacePreviewUrl(detection.id, 512), {
 					responseType: 'arraybuffer',

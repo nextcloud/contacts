@@ -10,6 +10,7 @@ import {
 	getFacePreviewUrl,
 	isRecognizeFaceLinkingAvailable,
 	linkFaceToContact,
+	unlinkFace,
 } from '../../../src/services/recognizeFaces.js'
 
 jest.mock('@nextcloud/capabilities', () => ({
@@ -52,5 +53,12 @@ describe('recognizeFaces service', () => {
 
 		await expect(linkFaceToContact(7, 'contacts', 'uid-1')).resolves.toEqual({ id: 7, contact: { uid: 'uid-1' } })
 		expect(axios.put).toHaveBeenCalledWith('/ocs/v2.php/apps/recognize/api/v1/faces/7/contact', { addressBook: 'contacts', uid: 'uid-1' })
+	})
+
+	test('unlinks a person from its contact', async () => {
+		axios.delete.mockResolvedValue({ data: { ocs: { data: { id: 7, contact: null, linkSource: 'manual' } } } })
+
+		await expect(unlinkFace(7)).resolves.toEqual({ id: 7, contact: null, linkSource: 'manual' })
+		expect(axios.delete).toHaveBeenCalledWith('/ocs/v2.php/apps/recognize/api/v1/faces/7/contact')
 	})
 })

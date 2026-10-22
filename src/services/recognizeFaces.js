@@ -64,6 +64,17 @@ export function getFacePreviewUrl(detectionId, size = 256) {
 }
 
 /**
+ * Remove the link between a person and the contact. The person is not linked again automatically.
+ *
+ * @param {number} faceId the id of the person
+ * @return {Promise<object>} the updated person
+ */
+export async function unlinkFace(faceId) {
+	const response = await axios.delete(generateOcsUrl(`${API_BASE}/faces/{faceId}/contact`, { faceId }))
+	return response.data.ocs.data
+}
+
+/**
  * Link a person to a contact.
  *
  * @param {number} faceId the id of the person
