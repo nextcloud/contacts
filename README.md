@@ -13,7 +13,7 @@
 
 This app only support vCard **3.0** and **4.0**. This app is compatible with the same browsers as server **except IE**!
 
-![](https://raw.githubusercontent.com/nextcloud/contacts/main/screenshots/contacts-8.10.png)
+![](https://raw.githubusercontent.com/nextcloud/contacts/main/screenshots/contacts-8.11.png)
 
 ## :blue_heart: :tada: Why is this so awesome?
 
