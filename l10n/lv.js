@@ -16,6 +16,8 @@ OC.L10N.register(
     "Delete" : "Dzēst",
     "Contact groups" : "Kontaktpersonu kopas",
     "Open the contacts app settings" : "Atvērt kontaktpersonu lietotnes iestatījumus",
+    "Cancel" : "Atcelt",
+    "File" : "File",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Kopīgots ar {num} entītijām","Kopīgots ar {num} entītiju","Kopīgots ar {num} entītijām"],
     "Copied" : "Nokopēts",
     "Copy link" : "Ievietot saiti starpliktuvē",
@@ -26,10 +28,7 @@ OC.L10N.register(
     "Download" : "Lejupielādēt",
     "Share with users or groups" : "Koplietot ar lietotājiem vai grupām",
     "No users or groups" : "Nav lietotāji vai grupas",
-    "Import into the {addressbookName} address book" : "Ievietot adrešu grāmatā \"{addressbookName}\"",
-    "Import from files" : "Ievietot no datnēm",
     "Importing is disabled because there are no address books available" : "Ievietošana ir atspējota, jo nav pieejama neviena adrešu grāmata",
-    "Cancel" : "Atcelt",
     "Add" : "Pievienot",
     "Address book name" : "Adrešu grāmatas nosaukums",
     "Contact group name" : "Kontaktpersonu kopas nosaukums",
@@ -136,6 +135,8 @@ OC.L10N.register(
     "Male" : "Vīrietis",
     "Unknown" : "Nezināms",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontaktpersonas neizdevās nolasīt","{failed} kontaktpersonu neizdevās nolasīt","{failed} kontaktpersonas neizdevās nolasīt"],
-    "An error has occurred in team(s). Check the console for more details." : "Atgadījās kļūda komandā(s). Jāpārbauda konsole, lai iegūtu vairāk informācijas."
+    "An error has occurred in team(s). Check the console for more details." : "Atgadījās kļūda komandā(s). Jāpārbauda konsole, lai iegūtu vairāk informācijas.",
+    "Import into the {addressbookName} address book" : "Ievietot adrešu grāmatā \"{addressbookName}\"",
+    "Import from files" : "Ievietot no datnēm"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n != 0 ? 1 : 2);");
