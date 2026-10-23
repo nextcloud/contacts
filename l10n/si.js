@@ -3,9 +3,9 @@ OC.L10N.register(
     {
     "Details" : "විස්තර",
     "Rename" : "නැවත නම් කරන්න",
+    "Cancel" : "අවලංගු කරන්න",
     "Copy link" : "සබැඳිය පිටපත් කරන්න",
     "Download" : "බාගන්න",
-    "Cancel" : "අවලංගු කරන්න",
     "First name" : "මුල් නම",
     "Last name" : "අවසන් නම",
     "Save" : "සුරකින්න",
