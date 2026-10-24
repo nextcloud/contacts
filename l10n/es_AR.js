@@ -204,11 +204,6 @@ OC.L10N.register(
     "Time zone" : "Zona horaria",
     "Spoken languages" : "Idiomas hablados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se ha podido leer","{failed} contactos no se han podido leer","{failed} contactos no se han podido leer"],
-    "Unable to delete contact" : "No se ha podido eliminar el contacto",
-    "Choose a vCard file to import" : "Elige un archivo vCard para importar",
-    "Import into the {addressbookName} address book" : "Importar en la libreta de direcciones {addressbookName}",
-    "Select local file" : "Selecciona archivo local",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importando %n contacto en {addressbook}","Importandos %n contactos en {addressbook}","Importando %n contactos en {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Completado importando %n contacto en {addressbook}","Completado importando %n contactos en {addressbook}","Completado importando %n contactos en {addressbook}"]
+    "Unable to delete contact" : "No se ha podido eliminar el contacto"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

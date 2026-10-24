@@ -8,6 +8,7 @@ OC.L10N.register(
     "Send email" : "Enviar correo electrónico",
     "Delete" : "Borrar",
     "Cancel" : "Cancelar",
+    "File" : "File",
     "Address book" : "Libreta de direcciones",
     "Copy link" : "Copiar liga",
     "Download" : "Descargar",

@@ -350,12 +350,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Настана грешка во некои тим(ови). Проверете ја конзолата за повеќе детали.",
     "Unable to create team {circleName}" : "Неможе да се креира тим {circleName}",
     "Unable to delete team {circleId}" : "Неможе да се избрише тимот {circleId}",
-    "Unable to delete contact" : "Неможе да се избрише контакт",
-    "Choose a vCard file to import" : "Избери vCard датотека за увоз",
-    "Import into the {addressbookName} address book" : "Увези во адресарот {addressbookName}",
-    "Select local file" : "Избери локална датотека",
-    "Import from files" : "Увези од датотеките",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Импортирање на %n контакт во {addressbook}","Импортирање на %n контакти во {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Импортиран е  %n контакт во  {addressbook}","Импортирани се %n контакти во {addressbook}"]
+    "Unable to delete contact" : "Неможе да се избрише контакт"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

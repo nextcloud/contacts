@@ -300,12 +300,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Villa hefur átt sér stað í teymi/teymum. Skoðaðu stjórnskjáinn til að sjá nánari upplýsingar.",
     "Unable to create team {circleName}" : "Tókst ekki að búa til teymið {circleName}",
     "Unable to delete team {circleId}" : "Tókst ekki að eyða teyminu {circleId}",
-    "Unable to delete contact" : "Tókst ekki að eyða tengilið",
-    "Choose a vCard file to import" : "Veldu vCard-skrá sem á að flytja inn",
-    "Import into the {addressbookName} address book" : "Flytja inn í {addressbookName} nafnaskrána",
-    "Select local file" : "Veldu skrá á tölvunni",
-    "Import from files" : "Flytja inn úr skrám",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Flyt %n tengilið inn í {addressbook}","Flyt %n tengiliði inn í {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Kláraði að flytja %n tengilið inn í {addressbook}","Kláraði að flytja %n tengiliði inn í {addressbook}"]
+    "Unable to delete contact" : "Tókst ekki að eyða tengilið"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

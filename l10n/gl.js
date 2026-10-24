@@ -378,12 +378,6 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Non é posíbel eliminar o equipo {circleId}",
     "Unable to delete contact" : "Non é posíbel eliminar o contacto",
     "Value copied to the clipboard" : "O valor foi copiado no portapapeis",
-    "Could not copy value to the clipboard." : "Non foi posíbel copiar o valor no portapapeis.",
-    "Choose a vCard file to import" : "Escolla un ficheiro vCard para importalo",
-    "Import into the {addressbookName} address book" : "Importar ao caderno de enderezos {addressbookName}",
-    "Select local file" : "Seleccionar ficheiro local",
-    "Import from files" : "Importar desde ficheiros",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importando %n contacto en {addressbook}","Importando %n contactos en {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Finalizada a importación de %n contacto en {addressbook}","Finalizada a importación de %n contactos en {addressbook}"]
+    "Could not copy value to the clipboard." : "Non foi posíbel copiar o valor no portapapeis."
 },
 "nplurals=2; plural=(n != 1);");

@@ -342,12 +342,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "An error has occurred in team(s). Check the console for more details.",
     "Unable to create team {circleName}" : "Unable to create team {circleName}",
     "Unable to delete team {circleId}" : "Unable to delete team {circleId}",
-    "Unable to delete contact" : "Unable to delete contact",
-    "Choose a vCard file to import" : "Choose a vCard file to import",
-    "Import into the {addressbookName} address book" : "Import into the {addressbookName} address book",
-    "Select local file" : "Select local file",
-    "Import from files" : "Import from files",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importing %n contacts into {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Done importing %n contacts into {addressbook}"]
+    "Unable to delete contact" : "Unable to delete contact"
 },
 "nplurals=1; plural=0;");

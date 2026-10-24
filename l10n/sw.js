@@ -348,12 +348,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Hitilafu imetokea katika vipengele. Angalia mixer kwa maelezo zaidii",
     "Unable to create team {circleName}" : "Haiwezi kutengeneza timu {circleName}",
     "Unable to delete team {circleId}" : "Haiwezi kufuta timu {circleId}",
-    "Unable to delete contact" : "Haiwezi kufuta mawasiliano",
-    "Choose a vCard file to import" : "Chagua faili la vCard la kuagiza",
-    "Import into the {addressbookName} address book" : "Agiza ndani ya {addressbookName} kitabu cha mawasiliano",
-    "Select local file" : "Chagua faili la ndani",
-    "Import from files" : "Agiza kutoka katika mafaili",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importing %n contact into {addressbook}","Agiza %n mawasiliano katika {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Done importing %n contact into {addressbook}","Uagizaji umefanyika %n mawasiliano katika {addressbook}"]
+    "Unable to delete contact" : "Haiwezi kufuta mawasiliano"
 },
 "nplurals=2; plural=(n != 1);");

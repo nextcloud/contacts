@@ -393,12 +393,6 @@
     "Could not update favorite state" : "به‌روزرسانی وضعیت موردعلاقه امکان‌پذیر نیست",
     "Unable to delete contact" : "امکان حذف مخاطب وجود ندارد",
     "Value copied to the clipboard" : "مقدار در کلیپ‌بورد کپی شد",
-    "Could not copy value to the clipboard." : "امکان کپی کردن مقدار در کلیپ‌بورد وجود نداشت.",
-    "Choose a vCard file to import" : "انتخاب یک فایل vCard برای وارد کردن",
-    "Import into the {addressbookName} address book" : "وارد کردن به دفترچه آدرس {addressbookName}",
-    "Select local file" : "انتخاب فایل محلی",
-    "Import from files" : "وارد کردن از فایل‌ها",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importing %n contact into {addressbook}","ÙˆØ§Ø±Ø¯ Ú©Ø±Ø¯Ù† Ù…Ø®Ø§Ø·Ø¨ÛŒÙ† Ø¨Ù‡ {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Done importing %n contact into {addressbook}","ÙˆØ§Ø±Ø¯ Ú©Ø±Ø¯Ù† Ù…Ø®Ø§Ø·Ø¨ÛŒÙ† Ø¨Ù‡ {addressbook} Ø§Ù†Ø¬Ø§Ù… Ø´Ø¯"]
+    "Could not copy value to the clipboard." : "امکان کپی کردن مقدار در کلیپ‌بورد وجود نداشت."
 },"pluralForm" :"nplurals=2; plural=(n > 1);"
 }

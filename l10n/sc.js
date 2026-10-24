@@ -206,12 +206,6 @@ OC.L10N.register(
     "Time zone" : "Zona orària",
     "Spoken languages" : "Limbas faeddadas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["no at fatu a lèghere {failed} ","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu",
-    "Choose a vCard file to import" : "Sèbera un'archìviu vCard de importare",
-    "Import into the {addressbookName} address book" : "Importa in sa rubrica {addressbookName}",
-    "Select local file" : "Sèbera archìviu locale",
-    "Import from files" : "Importa dae is archìvios",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importende %n cuntatos in {addressbook}","Importing %n contacts into {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Importados %n cuntatos in {addressbook}","Done importing %n contacts into {addressbook}"]
+    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu"
 },
 "nplurals=2; plural=(n != 1);");

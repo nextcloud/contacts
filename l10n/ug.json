@@ -363,12 +363,6 @@
     "An error has occurred in team(s). Check the console for more details." : "گۇرۇپپا (لار) دا خاتالىق كۆرۈلدى. تېخىمۇ كۆپ تەپسىلاتلارنى كونترول سۇپىسىدىن تەكشۈرۈڭ.",
     "Unable to create team {circleName}" : "گۇرۇپپا {circleName} create قۇرالمىدى",
     "Unable to delete team {circleId}" : "گۇرۇپپا {circleId} ئۆچۈرگىلى بولمىدى",
-    "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى",
-    "Choose a vCard file to import" : "ئەكىرىش ئۈچۈن vCard ھۆججىتىنى تاللاڭ",
-    "Import into the {addressbookName} address book" : "{addressbookName} ئادرېس دەپتىرىگە ئەكىرىڭ",
-    "Select local file" : "يەرلىك ھۆججەتنى تاللاڭ",
-    "Import from files" : "ھۆججەتلەردىن ئەكىرىش",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["%n ئالاقىداشلار {addressbook} غا كىرگۈزۈلدى","%n ئالاقىداشلار {addressbook} غا كىرگۈزۈلدى"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["%n ئالاقىداشلارنى {addressbook} غا كىرگۈزۈش تاماملاندى","%n ئالاقىداشلارنى {addressbook} غا كىرگۈزۈش تاماملاندى"]
+    "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

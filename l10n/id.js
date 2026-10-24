@@ -500,12 +500,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Status favorit tidak dapat diperbarui",
     "Unable to delete contact" : "Tidak dapat menghapus kontak",
     "Value copied to the clipboard" : "Nilai disalin ke papan klip",
-    "Could not copy value to the clipboard." : "Nilai tidak dapat disalin ke papan klip.",
-    "Choose a vCard file to import" : "Pilih berkas vCard untuk diimpor",
-    "Import into the {addressbookName} address book" : "Impor ke buku alamat {addressbookName}",
-    "Select local file" : "Pilih berkas lokal",
-    "Import from files" : "Impor dari berkas",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Mengimpor %n kontak ke {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Selesai mengimpor %n kontak ke {addressbook}"]
+    "Could not copy value to the clipboard." : "Nilai tidak dapat disalin ke papan klip."
 },
 "nplurals=1; plural=0;");

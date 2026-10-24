@@ -42,6 +42,7 @@ OC.L10N.register(
     "Create a new team" : "Create a new team",
     "Open the contacts app settings" : "Open the contacts app settings",
     "Cancel" : "Otkaži",
+    "File" : "File",
     "Address book" : "Address book",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Shared with {num} entity","Shared with {num} entities","Shared with {num} entities"],
     "Copied" : "Copied",
@@ -290,12 +291,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "An error has occurred in team(s). Check the console for more details.",
     "Unable to create team {circleName}" : "Unable to create team {circleName}",
     "Unable to delete team {circleId}" : "Unable to delete team {circleId}",
-    "Unable to delete contact" : "Unable to delete contact",
-    "Choose a vCard file to import" : "Choose a vCard file to import",
-    "Import into the {addressbookName} address book" : "Import into the {addressbookName} address book",
-    "Select local file" : "Select local file",
-    "Import from files" : "Import from files",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importing %n contact into {addressbook}","Importing %n contacts into {addressbook}","Importing %n contacts into {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Done importing %n contact into {addressbook}","Done importing %n contacts into {addressbook}","Done importing %n contacts into {addressbook}"]
+    "Unable to delete contact" : "Unable to delete contact"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");

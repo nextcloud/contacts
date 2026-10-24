@@ -240,12 +240,6 @@
     "Time zone" : "시간대",
     "Spoken languages" : "사용 언어",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["연락처 {failed}개를 읽을 수 없음"],
-    "Unable to delete contact" : "연락처를 삭제할 수 없음",
-    "Choose a vCard file to import" : "불러올 vCard 파일을 고르기",
-    "Import into the {addressbookName} address book" : "{addressbookName} 주소록에 불러오기",
-    "Select local file" : "로컬 파일 선택",
-    "Import from files" : "파일로부터 가져오기",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["{addressbook}에 %n 연락처를 가져오는 중"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["{addressbook}에 %n 연락처 가져오기 완료"]
+    "Unable to delete contact" : "연락처를 삭제할 수 없음"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

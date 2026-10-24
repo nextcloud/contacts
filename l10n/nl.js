@@ -390,12 +390,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Kon favorietstatus niet bijwerken",
     "Unable to delete contact" : "Kan contactpersoon niet verwijderen",
     "Value copied to the clipboard" : "Waarde gekopieerd van het klembord",
-    "Could not copy value to the clipboard." : "Kan waarde niet kopiëren naar het klembord",
-    "Choose a vCard file to import" : "Kies een vCard bestand om te importeren",
-    "Import into the {addressbookName} address book" : "Importeren in het {addressbookName} adresboek",
-    "Select local file" : "Selecteer lokaal bestand",
-    "Import from files" : "Importeren uit bestanden",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importeren %n contactpersoon in {addressbook}","Importeren %n contactpersonen in {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Klaar met het importeren van %n contactpersoon in {addressbook}","Klaar met het importeren van %n contactpersonen in {addressbook}"]
+    "Could not copy value to the clipboard." : "Kan waarde niet kopiëren naar het klembord"
 },
 "nplurals=2; plural=(n != 1);");

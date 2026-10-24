@@ -498,12 +498,6 @@
     "Could not update favorite state" : "Онцолсон төлөвийг шинэчилж чадсангүй",
     "Unable to delete contact" : "Харилцагч устгах боломжгүй",
     "Value copied to the clipboard" : "Утгыг санах ойд хуулсан",
-    "Could not copy value to the clipboard." : "Утгыг санах ойд хуулах боломжгүй байна.",
-    "Choose a vCard file to import" : "Импортлох vCard файл сонгоно уу",
-    "Import into the {addressbookName} address book" : "{addressbookName} хаягийн дэвтэр рүү импортлох",
-    "Select local file" : "Локал файл сонгох",
-    "Import from files" : "Файлуудаас импортлох",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["%n харилцагчийг {addressbook}-д импортлож байна","%n харилцагчийг {addressbook}-д импортлож байна"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["%n харилцагчийг {addressbook}-д импортлож дууслаа","%n харилцагчийг {addressbook}-д импортлож дууслаа"]
+    "Could not copy value to the clipboard." : "Утгыг санах ойд хуулах боломжгүй байна."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

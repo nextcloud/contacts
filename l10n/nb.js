@@ -288,12 +288,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Det har oppstått en feil i laget(ene). Sjekk konsollen hvis du vil ha mer informasjon.",
     "Unable to create team {circleName}" : "Ikke i stand til å opprette lag {circleName}",
     "Unable to delete team {circleId}" : "Ikke i stand til å slette lag {circleId}",
-    "Unable to delete contact" : "Ikke i stand til å slette kontakt",
-    "Choose a vCard file to import" : "Velg en vCard-fil å importere",
-    "Import into the {addressbookName} address book" : "Importer til {addressbookName}-adresseboken",
-    "Select local file" : "Velg lokal fil",
-    "Import from files" : "Importer fra filer",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importerer %n kontakt til {addressbook}","Importerer %n kontakter til {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Ferdig med å importere %n kontakt til {addressbook}","Ferdig med å importere %n kontakter til {addressbook}"]
+    "Unable to delete contact" : "Ikke i stand til å slette kontakt"
 },
 "nplurals=2; plural=(n != 1);");

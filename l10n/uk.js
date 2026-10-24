@@ -400,12 +400,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Не вдалося оновити статус із зірочкою",
     "Unable to delete contact" : "Неможливо вилучити контакт",
     "Value copied to the clipboard" : "Значення скопійовано до буфера обміну",
-    "Could not copy value to the clipboard." : "Не вдалося скопіювати значення до буфера обміну",
-    "Choose a vCard file to import" : "Виберіть файл vCard для імпорту",
-    "Import into the {addressbookName} address book" : "Імпорт до адресної книги {addressbookName}",
-    "Select local file" : "Виберіть файл на вашому комп'ютері",
-    "Import from files" : "Імпорт з файлів",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Імпорт %n контакту до {addressbook}","Імпорт %n контактів до {addressbook}","Імпорт %n контактів до {addressbook}","Імпорт %n контактів до {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Виконано імпорт %n контакту до {addressbook}","Виконано імпорт %n контактів до {addressbook}","Виконано імпорт %n контактів до {addressbook}","Виконано імпорт %n контактів до {addressbook}"]
+    "Could not copy value to the clipboard." : "Не вдалося скопіювати значення до буфера обміну"
 },
 "nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);");

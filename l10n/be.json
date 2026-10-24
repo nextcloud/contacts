@@ -45,6 +45,7 @@
     "Open the contacts app settings" : "Адкрыць налады праграмы Кантакты",
     "Cancel" : "Скасаваць",
     "New address book" : "Новая адрасная кніга",
+    "File" : "Файл",
     "Address book" : "Адрасная кніга",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Агулена з {num} аб'ектам","Агулена з {num} аб'ектамі","Агулена з {num} аб'ектамі","Агулена з {num} аб'ектамі"],
     "Copied" : "Скапіявана",
@@ -313,12 +314,6 @@
     "An error has occurred in team(s). Check the console for more details." : "У камандзе(-ах) адбылася памылка. Падрабязней глядзіце ў кансолі.",
     "Unable to create team {circleName}" : "Немагчыма стварыць каманду {circleName}",
     "Unable to delete team {circleId}" : "Немагчыма выдаліць каманду {circleId}",
-    "Unable to delete contact" : "Немагчыма выдаліць кантакт",
-    "Choose a vCard file to import" : "Выберыце файл vCard для імпарту",
-    "Import into the {addressbookName} address book" : "Імпарт у адрасную кнігу {addressbookName}",
-    "Select local file" : "Выбраць лакальны файл",
-    "Import from files" : "Імпарт з фалаў",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Ідзе імпарт %n кантакта ў {addressbook}","Ідзе імпарт %n кантактаў у {addressbook}","Ідзе імпарт %n кантактаў у {addressbook}","Ідзе імпарт %n кантактаў у {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["%n кантакт імпартаваны ў {addressbook}","%n кантакты імпартаваны ў {addressbook}","%n кантактаў імпартавана ў {addressbook}"," %n кантактаў імпартавана ў {addressbook}"]
+    "Unable to delete contact" : "Немагчыма выдаліць кантакт"
 },"pluralForm" :"nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);"
 }

@@ -7,6 +7,7 @@ OC.L10N.register(
     "Send email" : "Email yolla",
     "Delete" : "Sil",
     "Cancel" : "Dayandır",
+    "File" : "File",
     "Copy link" : "linki nüsxələ",
     "Download" : "Yüklə",
     "Add" : "Əlavə etmək",

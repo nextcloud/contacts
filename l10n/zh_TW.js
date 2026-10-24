@@ -503,12 +503,6 @@ OC.L10N.register(
     "Could not update favorite state" : "無法更新喜愛狀態",
     "Unable to delete contact" : "無法刪除聯絡人",
     "Value copied to the clipboard" : "值複製給剪貼簿",
-    "Could not copy value to the clipboard." : "無法複製值到剪貼簿。",
-    "Choose a vCard file to import" : "選取要匯入的 vCard 檔案",
-    "Import into the {addressbookName} address book" : "匯入至 {addressbookName} 通訊錄",
-    "Select local file" : "選取本機檔案",
-    "Import from files" : "從檔案匯入",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["正在匯入 %n 個聯絡人至 {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["完成匯入 %n 個聯絡人至 {addressbook}"]
+    "Could not copy value to the clipboard." : "無法複製值到剪貼簿。"
 },
 "nplurals=1; plural=0;");

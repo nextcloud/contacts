@@ -52,6 +52,7 @@ OC.L10N.register(
     "Open the contacts app settings" : "Abrir las ajustes de la aplicación Contactos",
     "Cancel" : "Cancelar",
     "New address book" : "Nueva libreta de contactos",
+    "File" : "Archivo",
     "Address book" : "Libreta de direcciones",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Compartido con {num} entidad","Compartido con {num} entidades","Compartido con {num} entidades"],
     "Copied" : "Copiado",
@@ -377,12 +378,6 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "No se pudo eliminar el equipo {circleId}",
     "Unable to delete contact" : "No se ha podido eliminar el contacto",
     "Value copied to the clipboard" : "Copiado al portapapeles",
-    "Could not copy value to the clipboard." : "No se pudo copiar al portapapeles",
-    "Choose a vCard file to import" : "Elija un archivo vCard para importar",
-    "Import into the {addressbookName} address book" : "Importar en la libreta de direcciones {addressbookName}",
-    "Select local file" : "Selecciona archivo local",
-    "Import from files" : "Importar desde archivos",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importando %n contacto en {addressbook}","Importando %n contactos en {addressbook}","Importando %n contactos en {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Importación de %n contacto en {addressbook} finalizada","Importación de %n contactos en {addressbook} finalizada","Importación de %n contactos en {addressbook} finalizada"]
+    "Could not copy value to the clipboard." : "No se pudo copiar al portapapeles"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");
