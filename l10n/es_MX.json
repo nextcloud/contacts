@@ -283,12 +283,6 @@
     "An error has occurred in team(s). Check the console for more details." : "Ocurrió un error en el(los) equipo(s). Compruebe la consola para más detalles.",
     "Unable to create team {circleName}" : "No se pudo crear el equipo {circleName}",
     "Unable to delete team {circleId}" : "No se pudo eliminar el equipo {circleId}",
-    "Unable to delete contact" : "No se pudo eliminar el contacto",
-    "Choose a vCard file to import" : "Elegir un archivo vCard para importar",
-    "Import into the {addressbookName} address book" : "Importar a la libreta de direcciones {addressbookName}",
-    "Select local file" : "Seleccionar archivo local",
-    "Import from files" : "Importar desde archivos",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importando %n contacto a {addressbook}","Importando %n contactos a {addressbook}","Importando %n contactos a {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Importación de %n contacto a {addressbook} completada","Importación de %n contactos a {addressbook} completada","Importación de %n contactos a {addressbook} completada"]
+    "Unable to delete contact" : "No se pudo eliminar el contacto"
 },"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

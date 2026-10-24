@@ -304,12 +304,6 @@ OC.L10N.register(
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} yhteystietoa ei voitu lukea","{failed} yhteystietoa ei voitu lukea"],
     "Unable to create team {circleName}" : "Tiimiä {circleName} ei voitu luoda",
     "Unable to delete team {circleId}" : "Tiimiä {circleId} ei voitu poistaa",
-    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa",
-    "Choose a vCard file to import" : "Valitse tuotava vCard-tiedosto",
-    "Import into the {addressbookName} address book" : "Tuo osoitekirjaan \"{addressbookName}\"",
-    "Select local file" : "Valitse paikallinen tiedosto",
-    "Import from files" : "Tuo tiedostoista",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Tuodaan %n yhteystieto osoitekirjaan {addressbook}","Tuodaan %n yhteystietoa osoitekirjaan {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["%n yhteystiedon tuominen osoitekirjaan {addressbook} valmistui","%n yhteystiedon tuominen osoitekirjaan {addressbook} onnistui"]
+    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa"
 },
 "nplurals=2; plural=(n != 1);");

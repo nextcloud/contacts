@@ -43,6 +43,7 @@ OC.L10N.register(
     "Create a new team" : "إنشاء فريق جديد",
     "Open the contacts app settings" : "إفتَح إعدادات تطبيق جهات الاتصال",
     "Cancel" : "إلغاء",
+    "File" : "File",
     "Address book" : "دفتر العناوين",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["تم مشاركته مع {num} كيانات","تم مشاركته مع {num} كيان","تم مشاركته مع {num} كيانات","تم مشاركته مع {num} كيانات","تم مشاركته مع {num} كيانات","تم مشاركته مع {num} كيانات"],
     "Copied" : "نُسخت ",
@@ -300,12 +301,6 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "حدث خطأ في الفريق أو الفرق. إفحص شاشة التحكم (console) لمزيد من التفاصيل.",
     "Unable to create team {circleName}" : "تعذّر إنشاء الفريق {circleName}",
     "Unable to delete team {circleId}" : "تعذّر حذف الفريق {circleId}",
-    "Unable to delete contact" : "تعذّر حذف جهة الاتصال",
-    "Choose a vCard file to import" : "إختر ملف vCard لاستيراده",
-    "Import into the {addressbookName} address book" : "الإستيراد إلى دفتر العناوين {addressbookName} ",
-    "Select local file" : "إختر ملف محلي",
-    "Import from files" : "إستيراد من تطبيق الملفات ",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["جار استيراد %n جهات اتصال إلى {addressbook}","جار استيراد %n جهة اتصال إلى {addressbook}","جار استيراد %n جهات اتصال إلى {addressbook}","جار استيراد %n جهات اتصال إلى {addressbook}","جار استيراد %n جهات اتصال إلى {addressbook}","جار استيراد %n جهات اتصال إلى {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["تم استيراد %nجهات اتصال إلى {addressbook}","تم استيراد %n جهة اتصال إلى {addressbook}","تم استيراد %nجهات اتصال إلى {addressbook}","تم استيراد %nجهات اتصال إلى {addressbook}","تم استيراد  %nجهات اتصال إلى {addressbook}","تم استيراد %n جهات اتصال إلى {addressbook}"]
+    "Unable to delete contact" : "تعذّر حذف جهة الاتصال"
 },
 "nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;");

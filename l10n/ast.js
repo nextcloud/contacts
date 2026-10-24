@@ -31,6 +31,7 @@ OC.L10N.register(
     "Contact groups" : "Grupos de contautos",
     "Create a new team" : "Crear un equipu",
     "Cancel" : "Encaboxar",
+    "File" : "Ficheru",
     "Address book" : "Llibreta de direiciones",
     "Copied" : "Copióse",
     "Cannot copy" : "Nun se pue copiar",

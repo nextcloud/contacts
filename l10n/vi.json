@@ -161,11 +161,6 @@
     "Unknown" : "Không xác định",
     "Spoken languages" : "Ngôn ngữ có thể nói",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} liên hệ không thể đọc được"],
-    "Unable to delete contact" : "Không thể xoá liên hệ",
-    "Choose a vCard file to import" : "Chọn một tệp vCard để nhập",
-    "Select local file" : "Chọn tệp từ máy",
-    "Import from files" : "Nhập từ tệp",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Đang nhập %n liên hệ vào {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Hoàn thành nhập %n liên hệ vào {addressbook}"]
+    "Unable to delete contact" : "Không thể xoá liên hệ"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

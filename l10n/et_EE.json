@@ -501,12 +501,6 @@
     "Could not update favorite state" : "Olekut lemmikuna polnud võimalik uuendada",
     "Unable to delete contact" : "Ei õnnestu kustutada kontakti",
     "Value copied to the clipboard" : "Väärtus on kopeeritud lõikelauale.",
-    "Could not copy value to the clipboard." : "Väärtuse kopeerimine lõikelauale ei õnnestunud.",
-    "Choose a vCard file to import" : "Vali imporditav vCardi fail",
-    "Import into the {addressbookName} address book" : "Impordi aadressiraamatusse „{addressbookName}“",
-    "Select local file" : "Vali kohalik fail",
-    "Import from files" : "Impordi failirakendusest",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Impordin %n kontakti teavet {addressbook} aadressiraamatusse","Impordin %n kontakti teavet {addressbook} aadressiraamatusse"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["%n kontakti teabe importimine {addressbook} aadressiraamatusse õnnestus","%n kontakti teabe importimine {addressbook} aadressiraamatusse õnnestus"]
+    "Could not copy value to the clipboard." : "Väärtuse kopeerimine lõikelauale ei õnnestunud."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

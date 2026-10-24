@@ -500,12 +500,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Nem sikerült a kedvenc állapot frissítése",
     "Unable to delete contact" : "A névjegy törlése sikertelen",
     "Value copied to the clipboard" : "Érték a vágólapra másolva",
-    "Could not copy value to the clipboard." : "Nem sikerült az érték vágólapra másolása.",
-    "Choose a vCard file to import" : "Válasszon egy importálandó vCard fájlt",
-    "Import into the {addressbookName} address book" : "Importálás a(z) {addressbookName} címjegyzékbe",
-    "Select local file" : "Helyi fájl kiválasztása",
-    "Import from files" : "Importálás fájlokból",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["%n névjegy importálása a(z) {addressbook} címjegyzékbe","%n névjegy importálása a(z) {addressbook} címjegyzékbe"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["%n névjegy importálása a(z) {addressbook} címjegyzékbe befejeződött","%n névjegy importálása a(z) {addressbook} címjegyzékbe befejeződött"]
+    "Could not copy value to the clipboard." : "Nem sikerült az érték vágólapra másolása."
 },
 "nplurals=2; plural=(n != 1);");

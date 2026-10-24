@@ -397,12 +397,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Nepavyko atnaujinti mėgstamiausio būsenos",
     "Unable to delete contact" : "Nepavyko ištrinti adresato",
     "Value copied to the clipboard" : "Vertė nukopijuota į iškarpinę",
-    "Could not copy value to the clipboard." : "Nepavyko nukopijuoti vertės į iškarpinę.",
-    "Choose a vCard file to import" : "Pasirinkite norimą importuoti vCard failą",
-    "Import into the {addressbookName} address book" : "Importuoti į {addressbookName} adresų knygą",
-    "Select local file" : "Pasirinkti vietinį failą",
-    "Import from files" : "Importuoti iš failų",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["%n kontaktas importuojamas į {addressbook}","%n kontaktai importuojami į {addressbook}","%n kontaktų importuojama į {addressbook}","%n kontaktas importuojamas į {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Atliktas %n adresato importavimas į {addressbook}","Atliktas %n kontaktų importavimas į {addressbook}","Atliktas %n kontaktų importavimas į {addressbook}","Atliktas %n kontakto importavimas į {addressbook}"]
+    "Could not copy value to the clipboard." : "Nepavyko nukopijuoti vertės į iškarpinę."
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

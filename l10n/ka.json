@@ -232,12 +232,6 @@
     "Time zone" : "Time zone",
     "Spoken languages" : "Spoken languages",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contact failed to be read","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Unable to delete contact",
-    "Choose a vCard file to import" : "Choose a vCard file to import",
-    "Import into the {addressbookName} address book" : "Import into the {addressbookName} address book",
-    "Select local file" : "Select local file",
-    "Import from files" : "Import from files",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importing %n contact into {addressbook}","Importing %n contacts into {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Done importing %n contact into {addressbook}","Done importing %n contacts into {addressbook}"]
+    "Unable to delete contact" : "Unable to delete contact"
 },"pluralForm" :"nplurals=2; plural=(n!=1);"
 }

@@ -88,6 +88,7 @@
     "Open the contacts app settings" : "Open the contacts app settings",
     "Cancel" : "Cancel",
     "New address book" : "New address book",
+    "File" : "File",
     "Address book" : "Address book",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Shared with {num} entity","Shared with {num} entities"],
     "Copied" : "Copied",
@@ -497,12 +498,6 @@
     "Could not update favorite state" : "Could not update favourite state",
     "Unable to delete contact" : "Unable to delete contact",
     "Value copied to the clipboard" : "Value copied to the clipboard",
-    "Could not copy value to the clipboard." : "Could not copy value to the clipboard.",
-    "Choose a vCard file to import" : "Choose a vCard file to import",
-    "Import into the {addressbookName} address book" : "Import into the {addressbookName} address book",
-    "Select local file" : "Select local file",
-    "Import from files" : "Import from files",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importing %n contact into {addressbook}","Importing %n contacts into {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Done importing %n contact into {addressbook}","Done importing %n contacts into {addressbook}"]
+    "Could not copy value to the clipboard." : "Could not copy value to the clipboard."
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

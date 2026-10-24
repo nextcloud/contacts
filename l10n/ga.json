@@ -497,12 +497,6 @@
     "Could not update favorite state" : "Níorbh fhéidir an stát is fearr leat a nuashonrú",
     "Unable to delete contact" : "Ní féidir teagmhálaí a scriosadh",
     "Value copied to the clipboard" : "Luach cóipeáilte chuig an ghearrthaisce",
-    "Could not copy value to the clipboard." : "Níorbh fhéidir luach a chóipeáil chuig an ghearrthaisce.",
-    "Choose a vCard file to import" : "Roghnaigh comhad vCard le hiompórtáil",
-    "Import into the {addressbookName} address book" : "Iompórtáil isteach sa leabhar seoltaí {addressbookName}",
-    "Select local file" : "Roghnaigh comhad áitiúil",
-    "Import from files" : "Iompórtáil ó chomhaid",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : [" %n agus teagmhálaí á iompórtáil isteach i {addressbook}"," %n agus teagmhálaithe á iompórtáil isteach i {addressbook}"," %n agus teagmhálaithe á iompórtáil isteach i {addressbook}"," %n agus teagmhálaithe á iompórtáil isteach i {addressbook}"," %n agus teagmhálaithe á iompórtáil isteach i {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Déanta ag iompórtáil %n agus teagmhálaí go {addressbook}","Déanta ag iompórtáil %n agus teagmhálaithe go {addressbook}","Déanta ag iompórtáil %n agus teagmhálaithe go {addressbook}","Déanta ag iompórtáil %n agus teagmhálaithe go {addressbook}","Déanta ag iompórtáil %n agus teagmhálaithe go {addressbook}"]
+    "Could not copy value to the clipboard." : "Níorbh fhéidir luach a chóipeáil chuig an ghearrthaisce."
 },"pluralForm" :"nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);"
 }

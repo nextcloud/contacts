@@ -34,6 +34,7 @@ OC.L10N.register(
     "Recently contacted" : "Наскоро влезли в контакт",
     "Contact groups" : "Групи за контакт",
     "Cancel" : "Отказ",
+    "File" : "File",
     "Address book" : "Адресна книга",
     "Copied" : "Копирано",
     "Cannot copy" : "Не може да се копира",
@@ -230,11 +231,6 @@ OC.L10N.register(
     "Time zone" : "Часова зона",
     "Spoken languages" : "Говорими езици",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контактите не бяха прочетени","{failed} контактите не бяха прочетени"],
-    "Unable to delete contact" : "Контактът не може да се изтрие",
-    "Choose a vCard file to import" : "Избор на vCard файл за импортиране",
-    "Import into the {addressbookName} address book" : "Внасяне в адресната книга {addressbookName}",
-    "Select local file" : "Избор на локален файл",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Импортиране на %n контакта в {addressbook}","Импортиране на %n контакта в {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Импортирането на%n контакта в {addressbook} приключи","Импортирането на %n контакта в {addressbook} приключи"]
+    "Unable to delete contact" : "Контактът не може да се изтрие"
 },
 "nplurals=2; plural=(n != 1);");

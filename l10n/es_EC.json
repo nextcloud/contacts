@@ -227,11 +227,6 @@
     "Time zone" : "Zona horaria",
     "Spoken languages" : "Idiomas hablados",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} contacto no se pudo leer","{failed} contactos no se pudieron leer","{failed} contactos no se pudieron leer"],
-    "Unable to delete contact" : "No se pudo eliminar el contacto",
-    "Choose a vCard file to import" : "Elige un archivo vCard para importar",
-    "Import into the {addressbookName} address book" : "Importar a la libreta de direcciones {addressbookName}",
-    "Select local file" : "Seleccionar archivo local",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importando %n contacto en {addressbook}","Importando %n contactos en {addressbook}","Importando %n contactos en {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Importación de %n contacto en {addressbook} finalizada","Importación de %n contactos en {addressbook} finalizada","Importación de %n contactos en {addressbook} finalizada"]
+    "Unable to delete contact" : "No se pudo eliminar el contacto"
 },"pluralForm" :"nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

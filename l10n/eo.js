@@ -12,6 +12,7 @@ OC.L10N.register(
     "Send email" : "Sendi retpoŝtmesaĝon",
     "Delete" : "Forigi",
     "Cancel" : "Nuligi",
+    "File" : "File",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Kunhavigitaj kun {num} entoj","Kunhavigitaj kun {num} entoj"],
     "Copied" : "Kopiita",
     "Copy link" : "Kopii ligilon",

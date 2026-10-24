@@ -390,12 +390,6 @@
     "Could not update favorite state" : "无法更新收藏状态",
     "Unable to delete contact" : "无法删除联系人",
     "Value copied to the clipboard" : "值已复制到剪贴板",
-    "Could not copy value to the clipboard." : "无法将值复制到剪贴板。",
-    "Choose a vCard file to import" : "选择要导入的 vCard（电子名片） 文件",
-    "Import into the {addressbookName} address book" : "导入 {addressbookName} 通讯录",
-    "Select local file" : "选择本地文件",
-    "Import from files" : "从文件导入",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["正在将 %n 位联系人导入 {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["已将 %n 位联系人导入 {addressbook}"]
+    "Could not copy value to the clipboard." : "无法将值复制到剪贴板。"
 },"pluralForm" :"nplurals=1; plural=0;"
 }

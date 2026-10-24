@@ -396,12 +396,6 @@ OC.L10N.register(
     "Could not update favorite state" : "お気に入りの状態を更新できませんでした",
     "Unable to delete contact" : "連絡先を削除できません。",
     "Value copied to the clipboard" : "クリップボードに値をコピーしました",
-    "Could not copy value to the clipboard." : "クリップボードに値をコピーできませんでした。",
-    "Choose a vCard file to import" : "インポートするvCardファイルを選択",
-    "Import into the {addressbookName} address book" : "アドレス帳 {addressbookName} にインポートします",
-    "Select local file" : "ローカルファイルの選択",
-    "Import from files" : "ファイルからインポート ",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["{addressbook} に %n の連絡先をインポートしています"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["{addressbook} に %n 連絡先のインポートが完了しました"]
+    "Could not copy value to the clipboard." : "クリップボードに値をコピーできませんでした。"
 },
 "nplurals=1; plural=0;");

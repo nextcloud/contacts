@@ -500,12 +500,6 @@ OC.L10N.register(
     "Could not update favorite state" : "Det gick inte att uppdatera favoritstatusen",
     "Unable to delete contact" : "Det gick inte att ta bort kontakten",
     "Value copied to the clipboard" : "Värdet har kopierats till urklipp",
-    "Could not copy value to the clipboard." : "Det gick inte att kopiera värdet till urklipp.",
-    "Choose a vCard file to import" : "Välj en vCard-fil att importera",
-    "Import into the {addressbookName} address book" : "Importera till adressboken {addressbookName}",
-    "Select local file" : "Välj lokal fil",
-    "Import from files" : "Importera från filer",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Importerar %n kontakt till adressboken {addressbook}","Importerar %n kontakter till adressboken {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Importen av %n kontakt till adressboken {addressbook} är klar","Importen av %n kontakter till adressboken {addressbook} är klar"]
+    "Could not copy value to the clipboard." : "Det gick inte att kopiera värdet till urklipp."
 },
 "nplurals=2; plural=(n != 1);");

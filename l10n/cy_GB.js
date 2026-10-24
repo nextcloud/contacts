@@ -10,6 +10,7 @@ OC.L10N.register(
     "Rename" : "Ailenwi",
     "Delete" : "Dileu",
     "Cancel" : "Diddymu",
+    "File" : "File",
     "_Shared with {num} entity_::_Shared with {num} entities_" : ["Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid","Rhannwyd gyda {num} endid"],
     "Copied" : "Copïwyd",
     "Copy link" : "Copïo dolen",

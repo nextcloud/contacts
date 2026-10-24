@@ -379,12 +379,6 @@
     "Unable to delete team {circleId}" : "Nije moguće izbrisati tim {circleId}",
     "Unable to delete contact" : "Nije moguće izbrisati kontakt",
     "Value copied to the clipboard" : "Vrijednost kopirana u međuspremnik",
-    "Could not copy value to the clipboard." : "Kopiranje vrijednosti u međuspremnik nije uspjelo.",
-    "Choose a vCard file to import" : "Odaberite datoteku vCard za uvoz",
-    "Import into the {addressbookName} address book" : "Uvezi u adresar {addressbookName}",
-    "Select local file" : "Odaberi lokalnu datoteku",
-    "Import from files" : "Uvezi iz datoteka",
-    "_Importing %n contact into {addressbook}_::_Importing %n contacts into {addressbook}_" : ["Uvoz %n kontakta u {addressbook}","Uvoz %n kontakta u {addressbook}","Uvoz %n kontakata u {addressbook}"],
-    "_Done importing %n contact into {addressbook}_::_Done importing %n contacts into {addressbook}_" : ["Završen uvoz %n kontakta u {addressbook}","Završen uvoz %n kontakta u {addressbook}","Završen uvoz %n kontakata u {addressbook}"]
+    "Could not copy value to the clipboard." : "Kopiranje vrijednosti u međuspremnik nije uspjelo."
 },"pluralForm" :"nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;"
 }
