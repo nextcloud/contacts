@@ -11,6 +11,7 @@ namespace OCA\Contacts\Controller;
 
 use ChristophWurst\Nextcloud\Testing\TestCase;
 use OC\App\CompareVersion;
+use OC\Mail\EMailTemplate;
 use OCA\Contacts\Db\FederatedInvite;
 use OCA\Contacts\Db\FederatedInviteMapper;
 use OCA\Contacts\Service\FederatedInvitesService;
@@ -411,15 +412,7 @@ class FederatedInvitesControllerTest extends TestCase {
 
 		$capturedHtml = null;
 		$capturedPlain = null;
-		$message = $this->createMock(\OCP\Mail\IMessage::class);
-		$message->method('setHtmlBody')->willReturnCallback(function ($body) use (&$capturedHtml, $message) {
-			$capturedHtml = $body;
-			return $message;
-		});
-		$message->method('setPlainBody')->willReturnCallback(function ($body) use (&$capturedPlain, $message) {
-			$capturedPlain = $body;
-			return $message;
-		});
+		$message = $this->createTemplateCapturingMessage($capturedHtml, $capturedPlain);
 		$this->mailer->method('createMessage')->willReturn($message);
 		$this->mailer->method('send')->willReturn([]);
 
@@ -481,15 +474,7 @@ class FederatedInvitesControllerTest extends TestCase {
 		$expiredAt = $invite->getExpiredAt();
 		$capturedHtml = null;
 		$capturedPlain = null;
-		$message = $this->createMock(\OCP\Mail\IMessage::class);
-		$message->method('setHtmlBody')->willReturnCallback(function ($body) use (&$capturedHtml, $message) {
-			$capturedHtml = $body;
-			return $message;
-		});
-		$message->method('setPlainBody')->willReturnCallback(function ($body) use (&$capturedPlain, $message) {
-			$capturedPlain = $body;
-			return $message;
-		});
+		$message = $this->createTemplateCapturingMessage($capturedHtml, $capturedPlain);
 
 		$this->mapper->method('findInviteByTokenAndUid')->willReturn($invite);
 		$this->mailer->method('validateMailAddress')->willReturn(true);
@@ -540,15 +525,7 @@ class FederatedInvitesControllerTest extends TestCase {
 	public function testCreateInviteIncludesPersonalMessageInFirstEmail(): void {
 		$capturedHtml = null;
 		$capturedPlain = null;
-		$message = $this->createMock(\OCP\Mail\IMessage::class);
-		$message->method('setHtmlBody')->willReturnCallback(function ($body) use (&$capturedHtml, $message) {
-			$capturedHtml = $body;
-			return $message;
-		});
-		$message->method('setPlainBody')->willReturnCallback(function ($body) use (&$capturedPlain, $message) {
-			$capturedPlain = $body;
-			return $message;
-		});
+		$message = $this->createTemplateCapturingMessage($capturedHtml, $capturedPlain);
 		$now = $this->createMock(\DateTimeImmutable::class);
 		$now->method('getTimestamp')->willReturn(1_800_000_000);
 
@@ -815,5 +792,32 @@ class FederatedInvitesControllerTest extends TestCase {
 		$response = $this->controller->setOcmInviteBoolSetting('not_a_real_key', true);
 
 		$this->assertSame(Http::STATUS_FORBIDDEN, $response->getStatus());
+	}
+
+	/**
+	 * Renders the controller's IEMailTemplate through the real server implementation
+	 * and captures the resulting bodies when the template is attached to the message.
+	 */
+	private function createTemplateCapturingMessage(?string &$capturedHtml, ?string &$capturedPlain): \OCP\Mail\IMessage|MockObject {
+		$this->languageFactory->method('get')->willReturn($this->l10n);
+		$this->mailer->method('createEMailTemplate')->willReturnCallback(
+			fn (string $emailId, array $data = []): \OCP\Mail\IEMailTemplate => new EMailTemplate(
+				$this->defaults,
+				$this->urlGenerator,
+				$this->languageFactory,
+				null,
+				null,
+				$emailId,
+				$data,
+			)
+		);
+
+		$message = $this->createMock(\OCP\Mail\IMessage::class);
+		$message->method('useTemplate')->willReturnCallback(function (\OCP\Mail\IEMailTemplate $template) use (&$capturedHtml, &$capturedPlain, $message) {
+			$capturedHtml = $template->renderHtml();
+			$capturedPlain = $template->renderText();
+			return $message;
+		});
+		return $message;
 	}
 }
