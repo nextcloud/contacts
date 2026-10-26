@@ -12,6 +12,7 @@ export declare const LIST_SIZE = 60
 export declare const GROUP_ALL_CONTACTS: DefaultGroup
 export declare const GROUP_NO_GROUP_CONTACTS: DefaultGroup
 export declare const GROUP_RECENTLY_CONTACTED: DefaultGroup
+export declare const ADDRESSBOOK_RECENTLY_CONTACTED = 'z-app-generated--contactsinteraction--recent'
 export declare const CHART_ALL_CONTACTS: DefaultChart
 export declare const ROUTE_CIRCLE = 'circle'
 export declare const ROUTE_CHART = 'chart'
