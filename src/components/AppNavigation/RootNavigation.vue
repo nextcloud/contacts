@@ -258,7 +258,7 @@ import GroupNavigationItem from './GroupNavigationItem.vue'
 import SettingsNewAddressbook from './Settings/SettingsNewAddressbook.vue'
 import SettingsNewGroup from './Settings/SettingsNewGroup.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
-import { CHART_ALL_CONTACTS, CIRCLE_DESC, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_ALL_OCM_INVITES, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ROUTE_ADDRESSBOOK, ROUTE_NAME_ALL_OCM_INVITES } from '../../models/constants.ts'
+import { ADDRESSBOOK_RECENTLY_CONTACTED, CHART_ALL_CONTACTS, CIRCLE_DESC, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_ALL_OCM_INVITES, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ROUTE_ADDRESSBOOK, ROUTE_NAME_ALL_OCM_INVITES } from '../../models/constants.ts'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled.js'
 import isOcmInvitesEnabled from '../../services/isOcmInvitesEnabled.js'
 import isTeamManagementEnabled from '../../services/isTeamManagementEnabled.js'
@@ -362,7 +362,7 @@ export default {
 		},
 
 		enabledAddressbooks() {
-			return this.addressbooks.filter((ab) => ab.enabled)
+			return this.addressbooks.filter((ab) => ab.enabled && ab.id !== ADDRESSBOOK_RECENTLY_CONTACTED)
 		},
 
 		circles() {
