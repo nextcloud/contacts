@@ -507,17 +507,20 @@ const actions = {
 		if (contact.dav) {
 			try {
 				await contact.dav.move(addressbook.dav)
+				// the server assigns a new etag to the moved card
+				await contact.dav.fetchCompleteData(true)
 			} catch (error) {
 				logger.error(error)
 				throw error
 			}
 		}
 		const groups = contact.groups
-		await context.commit('deleteContactFromAddressbook', contact)
-		await context.commit('removeContactFromGroups', contact)
-		await context.commit('updateContactAddressbook', { contact, addressbook })
-		await context.commit('addContactToAddressbook', contact)
-		await context.commit('addContactToGroups', { contact, groupNames: groups })
+		// commit synchronously so no render sees the contact detached from its groups
+		context.commit('deleteContactFromAddressbook', contact)
+		context.commit('removeContactFromGroups', contact)
+		context.commit('updateContactAddressbook', { contact, addressbook })
+		context.commit('addContactToAddressbook', contact)
+		context.commit('addContactToGroups', { contact, groupNames: groups })
 		return contact
 	},
 
