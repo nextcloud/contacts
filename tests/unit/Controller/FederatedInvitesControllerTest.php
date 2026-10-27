@@ -11,7 +11,6 @@ namespace OCA\Contacts\Controller;
 
 use ChristophWurst\Nextcloud\Testing\TestCase;
 use OC\App\CompareVersion;
-use OC\Mail\EMailTemplate;
 use OCA\Contacts\Db\FederatedInvite;
 use OCA\Contacts\Db\FederatedInviteMapper;
 use OCA\Contacts\Service\FederatedInvitesService;
@@ -795,27 +794,44 @@ class FederatedInvitesControllerTest extends TestCase {
 	}
 
 	/**
-	 * Renders the controller's IEMailTemplate through the real server implementation
-	 * and captures the resulting bodies when the template is attached to the message.
+	 * Captures the bodies built through IEMailTemplate when the template is attached to the message.
+	 * Text is HTML-escaped only when the plain text falls back to it, as documented by IEMailTemplate.
 	 */
 	private function createTemplateCapturingMessage(?string &$capturedHtml, ?string &$capturedPlain): \OCP\Mail\IMessage|MockObject {
-		$this->languageFactory->method('get')->willReturn($this->l10n);
-		$this->mailer->method('createEMailTemplate')->willReturnCallback(
-			fn (string $emailId, array $data = []): \OCP\Mail\IEMailTemplate => new EMailTemplate(
-				$this->defaults,
-				$this->urlGenerator,
-				$this->languageFactory,
-				null,
-				null,
-				$emailId,
-				$data,
-			)
-		);
+		$html = '';
+		$plain = '';
+		$append = static function (string $text, string|bool $plainText) use (&$html, &$plain): void {
+			if ($plainText === '' || $plainText === true) {
+				$html .= htmlspecialchars($text) . "\n";
+				$plain .= $text . "\n";
+				return;
+			}
+			$html .= $text . "\n";
+			if ($plainText !== false) {
+				$plain .= $plainText . "\n";
+			}
+		};
+
+		$template = $this->createMock(\OCP\Mail\IEMailTemplate::class);
+		$template->method('addHeading')->willReturnCallback(static fn (string $title, string|bool $plainTitle = '') => $append($title, $plainTitle));
+		$template->method('addBodyText')->willReturnCallback(static fn (string $text, string|bool $plainText = '') => $append($text, $plainText));
+		$template->method('addBodyListItem')->willReturnCallback(static function (string $text, string $metaInfo = '', string $icon = '', string|bool $plainText = '', string|bool $plainMetaInfo = '') use ($append): void {
+			$append($metaInfo, $plainMetaInfo);
+			$append($text, $plainText);
+		});
+		$template->method('addBodyButton')->willReturnCallback(static function (string $text, string $url, string|bool $plainText = '') use (&$html, &$plain): void {
+			$html .= htmlspecialchars($text) . ' ' . htmlspecialchars($url) . "\n";
+			if ($plainText !== false) {
+				$plain .= ($plainText === '' ? $text : $plainText) . ': ' . $url . "\n";
+			}
+		});
+		$this->mailer->method('createEMailTemplate')->willReturn($template);
 
 		$message = $this->createMock(\OCP\Mail\IMessage::class);
-		$message->method('useTemplate')->willReturnCallback(function (\OCP\Mail\IEMailTemplate $template) use (&$capturedHtml, &$capturedPlain, $message) {
-			$capturedHtml = $template->renderHtml();
-			$capturedPlain = $template->renderText();
+		$message->method('useTemplate')->willReturnCallback(function (\OCP\Mail\IEMailTemplate $usedTemplate) use (&$capturedHtml, &$capturedPlain, &$html, &$plain, $template, $message) {
+			$this->assertSame($template, $usedTemplate);
+			$capturedHtml = $html;
+			$capturedPlain = $plain;
 			return $message;
 		});
 		return $message;

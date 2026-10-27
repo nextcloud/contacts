@@ -777,18 +777,17 @@ class FederatedInvitesController extends Controller {
 
 		$emailTemplate->setSubject($subject);
 		$emailTemplate->addHeader();
-		$emailTemplate->addHeading($this->il10->t('%1$s invites you to exchange contact information.', [$initiatorDisplayName]), false);
+		$emailTemplate->addHeading($this->il10->t('%1$s invites you to exchange contact information.', [$initiatorDisplayName]));
 
 		if ($isSenderCopy) {
 			$emailTemplate->addBodyText($this->il10->t('This is a copy of the invitation you\'ve sent to %1$s', [$recipientEmail]));
 		}
 
-		$emailTemplate->addBodyText($this->il10->t('Hi there,'));
-		$emailTemplate->addBodyText($this->il10->t('%1$s invites you to exchange cloud accounts and contact information.', [$initiatorDisplayName]));
 		$emailTemplate->addBodyText($this->il10->t('This will allow you to share data with each other.'));
 
 		if (trim($message) !== '') {
-			$emailTemplate->addBodyListItem($message, $this->il10->t('Message:'));
+			$messageLabel = $this->il10->t('Message:');
+			$emailTemplate->addBodyListItem($message, $messageLabel, '', '', '', mb_strlen($messageLabel));
 		}
 
 		$emailTemplate->addBodyText($this->il10->t('To accept this invite, click the button below and sign in with your cloud provider:'));
@@ -796,10 +795,20 @@ class FederatedInvitesController extends Controller {
 			$this->il10->t('Accept invitation'),
 			$inviteLink
 		);
+		$emailTemplate->addBodyText(
+			htmlspecialchars($this->il10->t('If the button does not work, copy this link into your browser: %1$s', [$inviteLink]), ENT_QUOTES, 'UTF-8'),
+			false
+		);
 
-		$emailTemplate->addBodyText($this->il10->t('Invitation details:'));
-		$emailTemplate->addBodyText($this->il10->t('Invite code: %1$s', ["$token@$senderProvider"]));
-		$emailTemplate->addBodyText($this->il10->t('Encoded invite: %1$s', [$encoded]));
+		$details = [
+			$this->il10->t('Invitation details:'),
+			$this->il10->t('Invite code: %1$s', ["$token@$senderProvider"]),
+			$this->il10->t('Encoded invite: %1$s', [$encoded]),
+		];
+		$emailTemplate->addBodyText(
+			'<small>' . implode('<br>', array_map(static fn (string $line): string => htmlspecialchars($line, ENT_QUOTES, 'UTF-8'), $details)) . '</small>',
+			implode(PHP_EOL, $details)
+		);
 
 		$emailTemplate->addFooter();
 
