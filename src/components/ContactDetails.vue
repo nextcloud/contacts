@@ -125,6 +125,16 @@
 								{{ phoneNumber }}
 							</ActionLink>
 						</Actions>
+
+						<NcButton
+							v-if="isRecentlyContacted && copyableAddressbooksOptions.length > 0"
+							variant="primary"
+							@click="addToAddressbook">
+							<template #icon>
+								<IconPlus :size="20" />
+							</template>
+							{{ t('contacts', 'Add to address book') }}
+						</NcButton>
 					</div>
 				</template>
 
@@ -248,11 +258,11 @@
 					width="400">
 			</NcDialog>
 
-			<!-- pick addressbook when cloning contact -->
+			<!-- pick addressbook when cloning contact or adding a recently contacted one -->
 			<NcDialog
 				v-if="showPickAddressbookModal"
 				id="pick-addressbook-modal"
-				:name="t('contacts', 'Clone contact')"
+				:name="pickAddressbookModalLabel"
 				:buttons="buttonsPickAddressbookModal"
 				@close="closePickAddressbookModal">
 				<NcSelect
@@ -416,6 +426,7 @@ import FolderMultipleImage from 'vue-material-design-icons/FolderMultipleImage.v
 import IconMessage from 'vue-material-design-icons/MessageProcessingOutline.vue'
 import PencilIcon from 'vue-material-design-icons/PencilOutline.vue'
 import IconCall from 'vue-material-design-icons/PhoneOutline.vue'
+import IconPlus from 'vue-material-design-icons/Plus.vue'
 import IconQr from 'vue-material-design-icons/Qrcode.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
@@ -428,6 +439,7 @@ import PropertyRev from './Properties/PropertyRev.vue'
 import PropertySelect from './Properties/PropertySelect.vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import RouterMixin from '../mixins/RouterMixin.js'
+import { ADDRESSBOOK_RECENTLY_CONTACTED, GROUP_ALL_CONTACTS } from '../models/constants.ts'
 import rfcProps from '../models/rfcProps.js'
 import isTalkEnabled from '../services/isTalkEnabled.js'
 import logger from '../services/logger.js'
@@ -456,6 +468,7 @@ export default defineComponent({
 		IconAccount,
 		IconDownload,
 		IconDelete,
+		IconPlus,
 		IconQr,
 		CakeIcon,
 		IconCopy,
@@ -517,6 +530,7 @@ export default defineComponent({
 			showPickAddressbookModal: false,
 			pickedAddressbook: null,
 			editMode: false,
+			editModeContactKey: null,
 			newGroupsValue: [],
 			newAddressBook: null,
 			contactDetailsSelector: '.contact-details',
@@ -534,22 +548,10 @@ export default defineComponent({
 			deckPanelHasError: false,
 			filesPanelHasError: false,
 			talkPanelHasError: false,
+			addingToAddressbook: false,
 			calendarPanelHasError: false,
 			sharedState: reactive({ validEmail: true, validUrl: true }),
 			lastUsedAddressBook: undefined,
-
-			buttonsPickAddressbookModal: [
-				{
-					variant: 'tertiary',
-					callback: this.closePickAddressbookModal,
-					label: t('contacts', 'Cancel'),
-				},
-				{
-					variant: 'primary',
-					callback: this.cloneContact,
-					label: t('contacts', 'Clone contact'),
-				},
-			],
 		}
 	},
 
@@ -598,6 +600,31 @@ export default defineComponent({
 		 */
 		canDeleteCard() {
 			return this.contact.addressbook?.canDeleteCard
+		},
+
+		isRecentlyContacted() {
+			return this.contact?.addressbook?.id === ADDRESSBOOK_RECENTLY_CONTACTED
+		},
+
+		pickAddressbookModalLabel() {
+			return this.addingToAddressbook
+				? t('contacts', 'Add to address book')
+				: t('contacts', 'Clone contact')
+		},
+
+		buttonsPickAddressbookModal() {
+			return [
+				{
+					variant: 'tertiary',
+					callback: this.closePickAddressbookModal,
+					label: t('contacts', 'Cancel'),
+				},
+				{
+					variant: 'primary',
+					callback: this.addingToAddressbook ? this.addToAddressbook : this.cloneContact,
+					label: this.pickAddressbookModalLabel,
+				},
+			]
 		},
 
 		/**
@@ -860,6 +887,12 @@ export default defineComponent({
 				}
 			}
 		},
+
+		contactKey(key) {
+			if (key !== this.editModeContactKey) {
+				this.editModeContactKey = null
+			}
+		},
 	},
 
 	beforeMount() {
@@ -887,6 +920,41 @@ export default defineComponent({
 		 */
 		focusDetails() {
 			this.$refs.detailsRoot?.$el?.focus()
+		},
+
+		/**
+		 * Move a recently contacted contact to a writable addressbook
+		 * and open it in edit mode
+		 */
+		async addToAddressbook() {
+			const addressbookId = this.pickedAddressbook?.id
+				?? (this.copyableAddressbooksOptions.length === 1 ? this.copyableAddressbooksOptions[0].id : null)
+			const addressbook = this.addressbooks.find((search) => search.id === addressbookId)
+			if (!addressbook) {
+				this.addingToAddressbook = true
+				this.showPickAddressbookModal = true
+				return false
+			}
+
+			this.loadingUpdate = true
+			try {
+				const contact = await this.$store.dispatch('moveContactToAddressbook', {
+					contact: this.contact,
+					addressbook,
+				})
+				this.editModeContactKey = contact.key
+				this.closePickAddressbookModal()
+				await this.$router.push({
+					name: 'contact',
+					params: { selectedGroup: GROUP_ALL_CONTACTS, selectedContact: contact.key },
+				})
+				await this.selectContact(contact.key)
+			} catch (error) {
+				logger.error(error)
+				showError(t('contacts', 'An error occurred while trying to move the contact'))
+			} finally {
+				this.loadingUpdate = false
+			}
 		},
 
 		updateGroups(value) {
@@ -995,6 +1063,11 @@ export default defineComponent({
 					// enable edit mode by default when creating a new contact
 					this.editMode = true
 				}
+			}
+
+			// the store can trigger concurrent selections, keep a requested edit mode
+			if (key === this.editModeContactKey) {
+				this.editMode = true
 			}
 
 			this.loadingData = false
@@ -1160,6 +1233,7 @@ export default defineComponent({
 		closePickAddressbookModal() {
 			this.showPickAddressbookModal = false
 			this.pickedAddressbook = null
+			this.addingToAddressbook = false
 		},
 
 		/**
@@ -1183,6 +1257,7 @@ export default defineComponent({
 		 * Save the contact. This handler is triggered by the save button.
 		 */
 		async onSave() {
+			this.editModeContactKey = null
 			try {
 				this.localContact.groups = [...this.newGroupsValue]
 				await this.$store.dispatch('updateContactGroups', {
