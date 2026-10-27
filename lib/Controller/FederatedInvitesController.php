@@ -289,7 +289,6 @@ class FederatedInvitesController extends Controller {
 		$recipientProviderFqdn = $this->federatedInvitesService->getProviderFQDN();
 		// do not accept an invite from this instance
 		$senderProviderFqdn = parse_url($provider)['host'];
-		$this->logger->debug("acceptInvite() - $recipientProviderFqdn === $senderProviderFqdn");
 		if ($recipientProviderFqdn === $senderProviderFqdn) {
 			return new JSONResponse(['message' => $this->il10->t('Unable to accept this invitation. You are trying to accept an outgoing invitation.')], Http::STATUS_BAD_REQUEST);
 		}
