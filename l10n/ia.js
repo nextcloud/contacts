@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Details" : "Detalios",
     "All contacts" : "Tote contactos",
+    "Copy" : "Copiar",
     "Contacts" : "Contactos",
     "Rename" : "Renominar",
     "Send email" : "Inviar message de e-posta",

@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "Detailer",
+    "Copy" : "Kopéieren",
     "Contacts" : "Kontakter",
     "Retry" : "Widderhuelen",
     "Rename" : "Ëmbenennen",

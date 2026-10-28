@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Details" : "დეტალები",
     "All contacts" : "ყველა კონტაქტი",
+    "Copy" : "კოპირება",
     "Contacts" : "კონტაქტები",
     "Retry" : "ხელახლა ცდა",
     "Rename" : "სახელის შეცვლა",

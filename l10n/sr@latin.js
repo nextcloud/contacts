@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "Detalji",
+    "Copy" : "Kopija",
     "General" : "Opšte",
     "Rename" : "Rename",
     "Delete" : "Delete",

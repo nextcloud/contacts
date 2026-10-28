@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "விவரங்கள்",
+    "Copy" : "Copy",
     "Contacts" : "தொடர்புகள்",
     "Rename" : "பெயர்மாற்றம்",
     "Delete" : "நீக்குக",
