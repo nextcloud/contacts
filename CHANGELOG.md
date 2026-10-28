@@ -1,3 +1,23 @@
+## [8.9.3](https://github.com/nextcloud/contacts/compare/v8.9.2...v8.9.3) (2026-10-28)
+
+
+### Bug Fixes
+
+* **deps:** bump minimum PHP platform to 8.2 ([d0a4d95](https://github.com/nextcloud/contacts/commit/d0a4d952d5fc6063eb461f200f22d04179bd3fc0))
+* **deps:** Fix npm audit ([bbdc197](https://github.com/nextcloud/contacts/commit/bbdc197dde9011560e7e92323cf7a8565c4e769c))
+* import ([820ba35](https://github.com/nextcloud/contacts/commit/820ba35b4f85cfbcbbdb0245a120e63700bf6303))
+* **l10n:** Update translations from Transifex ([5b0afea](https://github.com/nextcloud/contacts/commit/5b0afea82c73fc4d616ecd3ccbca4a3fa1ed8ae0))
+* **l10n:** Update translations from Transifex ([3082f39](https://github.com/nextcloud/contacts/commit/3082f3923ea1c8020058605e48a79263d964bf33))
+* **l10n:** Update translations from Transifex ([b65dfb8](https://github.com/nextcloud/contacts/commit/b65dfb879ca22fa7bbf8b1a551bf66cf400ec5c3))
+* **l10n:** Update translations from Transifex ([682b193](https://github.com/nextcloud/contacts/commit/682b193387ef4374e60deb1494d0b9ff56afc413))
+* **l10n:** Update translations from Transifex ([a4273dd](https://github.com/nextcloud/contacts/commit/a4273dd75fc0c95c9092a0a0801a2f6257f92e36))
+* **l10n:** Update translations from Transifex ([c1171f8](https://github.com/nextcloud/contacts/commit/c1171f83d725d8200c7ee279fb278b9899ab8a59))
+* **l10n:** Update translations from Transifex ([213e368](https://github.com/nextcloud/contacts/commit/213e368dc8ee9530b0284d57398278d444f60431))
+* remove recently contacted from addressbook navigation ([4f072e0](https://github.com/nextcloud/contacts/commit/4f072e084c8b2106dbcaf1c316b0af5875e9cc7e))
+* **teams:** hide member actions the user is not allowed to perform ([9a5aaa5](https://github.com/nextcloud/contacts/commit/9a5aaa5e09dbad2dbe7bb20de01ee14a24f6f60d))
+
+
+
 ## [8.9.2](https://github.com/nextcloud/contacts/compare/v8.9.1...v8.9.2) (2026-10-21)
 
 
