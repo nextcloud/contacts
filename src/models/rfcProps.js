@@ -321,7 +321,7 @@ const properties = {
 		readableName: t('contacts', 'Related contacts'),
 		icon: 'icon-related-contact',
 		defaultValue: {
-			value: [''],
+			value: '',
 			type: ['CONTACT'],
 		},
 		options: [
