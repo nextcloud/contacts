@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Details" : "Detajet",
     "All contacts" : "Të gjithë kontaktet",
+    "Copy" : "Kopjo",
     "Contacts" : "Kontaktet",
     "A contacts app for Nextcloud" : "Një aplikacion kontaktesh për Nextcloud",
     "Copy to full name" : "Kopje të emrit të plotë ",

@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "Մանրամասներ",
+    "Copy" : "պատճենահանել",
     "Rename" : "Վերանվանել",
     "Delete" : "հեռացնել",
     "Cancel" : "ընդհատել",
