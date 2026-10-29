@@ -25,8 +25,6 @@ OC.L10N.register(
     "%1$s invites you to exchange contact information." : "%1$s mengundang Anda untuk bertukar informasi kontak.",
     "Copy" : "Salin",
     "This is a copy of the invitation you've sent to %1$s" : "Ini adalah salinan undangan yang telah Anda kirimkan kepada %1$s",
-    "Hi there," : "Halo,",
-    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s mengundang Anda untuk bertukar akun cloud dan informasi kontak.",
     "This will allow you to share data with each other." : "Hal ini akan memungkinkan Anda untuk saling berbagi data.",
     "Accept invitation" : "Terima undangan",
     "Invitation details:" : "Rincian undangan:",
@@ -332,6 +330,7 @@ OC.L10N.register(
     "Resend email" : "Kirim ulang email",
     "Send via email" : "Kirim melalui email",
     "Send invitation via email" : "Kirim undangan melalui email",
+    "Hi there," : "Halo,",
     "{name} invites you to exchange cloud accounts and contact information." : "{name} mengundang Anda untuk bertukar akun cloud dan informasi kontak.",
     "To accept this invite, click the link below and sign in with your cloud provider:" : "Untuk menerima undangan ini, klik tautan di bawah ini dan masuk menggunakan penyedia cloud Anda:",
     "The invite link and code are added automatically when you send the invitation." : "Tautan dan kode undangan ditambahkan secara otomatis saat Anda mengirim undangan.",
@@ -501,6 +500,7 @@ OC.L10N.register(
     "Unable to delete contact" : "Tidak dapat menghapus kontak",
     "Value copied to the clipboard" : "Nilai disalin ke papan klip",
     "Could not copy value to the clipboard." : "Nilai tidak dapat disalin ke papan klip.",
+    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s mengundang Anda untuk bertukar akun cloud dan informasi kontak.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Untuk menerima undangan ini, gunakan URL di bawah ini untuk masuk menggunakan penyedia cloud Anda:"
 },
 "nplurals=1; plural=0;");

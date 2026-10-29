@@ -23,9 +23,9 @@
     "%1$s invites you to exchange contact information." : "%1$s inviterer dig til at udveksle kontaktoplysninger.",
     "Copy" : "Kopiér",
     "This is a copy of the invitation you've sent to %1$s" : "Dette er en kopi af den invitation, du har sendt til %1$s",
-    "Hi there," : "Hej,",
-    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s inviterer dig til at udveksle cloud-konti og kontaktoplysninger.",
     "This will allow you to share data with each other." : "Så kan I dele data med hinanden.",
+    "Message:" : "Besked:",
+    "To accept this invite, click the button below and sign in with your cloud provider:" : "Klik på knappen nedenfor, og log ind hos din cloud-udbyder for at acceptere invitationen:",
     "Accept invitation" : "Accepter invitation",
     "Invitation details:" : "Detaljer om invitationen:",
     "Invite code: %1$s" : "Invitationskode: %1$s",
@@ -218,6 +218,7 @@
     "Upload a new picture" : "Overfør et nyt billede",
     "Choose from Files" : "Vælg fra Filer",
     "Download picture" : "Hent billede",
+    "Add to address book" : "Tilføj til adressebog",
     "Clone contact" : "Klon kontakt",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Kontakten er skrivebeskyttet. Du har ikke rettigheder til at redigere kontakten.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakten, du er i gang med at redigere, er ændret. Opdater kontakten manuelt. Yderligere ændringer bliver kasseret.",
@@ -356,6 +357,7 @@
     "Resend email" : "Send e-mail igen",
     "Send via email" : "Send via e-mail",
     "Send invitation via email" : "Send invitationen via e-mail",
+    "Hi there," : "Hej,",
     "{name} invites you to exchange cloud accounts and contact information." : "{name} inviterer dig til at udveksle cloud-konti og kontaktoplysninger.",
     "To accept this invite, click the link below and sign in with your cloud provider:" : "Klik på linket nedenfor, og log ind hos din cloud-udbyder for at acceptere invitationen:",
     "The invite link and code are added automatically when you send the invitation." : "Invitationslinket og -koden tilføjes automatisk, når du sender invitationen.",
@@ -526,6 +528,7 @@
     "Import failed" : "Importen mislykkedes",
     "Value copied to the clipboard" : "Værdien er kopieret til udklipsholderen",
     "Could not copy value to the clipboard." : "Værdien kunne ikke kopieres til udklipsholderen.",
+    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s inviterer dig til at udveksle cloud-konti og kontaktoplysninger.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Brug URL'en nedenfor til at logge ind hos din cloud-udbyder for at acceptere invitationen:"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

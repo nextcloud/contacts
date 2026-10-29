@@ -25,8 +25,6 @@ OC.L10N.register(
     "%1$s invites you to exchange contact information." : "%1$s soovib sinuga kontakte vahetada.",
     "Copy" : "Kopeeri",
     "This is a copy of the invitation you've sent to %1$s" : "See on kutse koopia, mille oled saatnud kasutajale %1$s",
-    "Hi there," : "Tere,",
-    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s on saatnud sulle kutse millega soovib vahetada kontakteavet liitpilves.",
     "This will allow you to share data with each other." : "Muu hulgas võimaldab see omavahel teavet ja andmeid jagada.",
     "Accept invitation" : "Nõustu kutsega",
     "Invitation details:" : "Kutse üksikasjad:",
@@ -340,6 +338,7 @@ OC.L10N.register(
     "Resend email" : "Saada e-kiri uuesti",
     "Send via email" : "Saada e-kiriga",
     "Send invitation via email" : "Saada kutse e-kirjaga",
+    "Hi there," : "Tere,",
     "{name} invites you to exchange cloud accounts and contact information." : "{name} on saatnud sulle kutse millega soovib vahetada kontakteavet liitpilves.",
     "To accept this invite, click the link below and sign in with your cloud provider:" : "Kutsega nõustumiseks klõpsa järgnevat linki ja logi sisse oma pilveteenuse pakkujaga.",
     "The invite link and code are added automatically when you send the invitation." : "Kutse saatmisel lisatakse kutselink ja kood automaatselt.",
@@ -509,6 +508,7 @@ OC.L10N.register(
     "Unable to delete contact" : "Ei õnnestu kustutada kontakti",
     "Value copied to the clipboard" : "Väärtus on kopeeritud lõikelauale.",
     "Could not copy value to the clipboard." : "Väärtuse kopeerimine lõikelauale ei õnnestunud.",
+    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s on saatnud sulle kutse millega soovib vahetada kontakteavet liitpilves.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Kutsega nõustumiseks klõpsa järgnevat linki ja logi sisse oma teenusepakkuja kasutajakontoga:"
 },
 "nplurals=2; plural=(n != 1);");

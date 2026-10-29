@@ -3,6 +3,7 @@ OC.L10N.register(
     {
     "Details" : "Details",
     "All contacts" : "Alle kontakte",
+    "Copy" : "Kopieer",
     "Contacts" : "Kontakte",
     "A contacts app for Nextcloud" : "’n Kontakte-toep vir Nextcloud",
     "General" : "Algemeen",

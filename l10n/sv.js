@@ -25,8 +25,6 @@ OC.L10N.register(
     "%1$s invites you to exchange contact information." : "%1$s bjuder in dig att utbyta kontaktuppgifter.",
     "Copy" : "Kopiera",
     "This is a copy of the invitation you've sent to %1$s" : "Detta är en kopia av inbjudan du skickade till %1$s",
-    "Hi there," : "Hej!",
-    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s bjuder in dig att utbyta molnkonton och kontaktuppgifter.",
     "This will allow you to share data with each other." : "Detta gör det möjligt att dela data med varandra.",
     "Accept invitation" : "Acceptera inbjudan",
     "Invitation details:" : "Inbjudningsdetaljer:",
@@ -332,6 +330,7 @@ OC.L10N.register(
     "Resend email" : "Skicka e-post igen",
     "Send via email" : "Skicka via e-post",
     "Send invitation via email" : "Skicka inbjudan via e-post",
+    "Hi there," : "Hej!",
     "{name} invites you to exchange cloud accounts and contact information." : "{name} bjuder in dig att utbyta molnkonton och kontaktuppgifter.",
     "To accept this invite, click the link below and sign in with your cloud provider:" : "Klicka på länken nedan och logga in med din molnleverantör för att acceptera inbjudan:",
     "The invite link and code are added automatically when you send the invitation." : "Inbjudningslänken och koden läggs till automatiskt när du skickar inbjudan.",
@@ -501,6 +500,7 @@ OC.L10N.register(
     "Unable to delete contact" : "Det gick inte att ta bort kontakten",
     "Value copied to the clipboard" : "Värdet har kopierats till urklipp",
     "Could not copy value to the clipboard." : "Det gick inte att kopiera värdet till urklipp.",
+    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s bjuder in dig att utbyta molnkonton och kontaktuppgifter.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Använd webbadressen nedan och logga in med din molnleverantör för att acceptera inbjudan:"
 },
 "nplurals=2; plural=(n != 1);");

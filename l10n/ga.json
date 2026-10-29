@@ -23,8 +23,6 @@
     "%1$s invites you to exchange contact information." : "Tugann %1$s cuireadh duit eolas teagmhála a mhalartú.",
     "Copy" : "Cóip",
     "This is a copy of the invitation you've sent to %1$s" : "Seo cóip den chuireadh a sheol tú chuig %1$s",
-    "Hi there," : "Haigh,",
-    "%1$s invites you to exchange cloud accounts and contact information." : "Tugann %1$s cuireadh duit cuntais scamall agus faisnéis teagmhála a mhalartú.",
     "This will allow you to share data with each other." : "Cuirfidh sé seo ar do chumas sonraí a roinnt lena chéile.",
     "Accept invitation" : "Glac leis an gcuireadh",
     "Invitation details:" : "Sonraí an chuireadh:",
@@ -356,6 +354,7 @@
     "Resend email" : "Athsheol ríomhphost",
     "Send via email" : "Seol trí ríomhphost",
     "Send invitation via email" : "Seol cuireadh trí ríomhphost",
+    "Hi there," : "Haigh,",
     "{name} invites you to exchange cloud accounts and contact information." : "Tugann {name} cuireadh duit cuntais scamall agus faisnéis teagmhála a mhalartú.",
     "To accept this invite, click the link below and sign in with your cloud provider:" : "Chun glacadh leis an gcuireadh seo, cliceáil ar an nasc thíos agus sínigh isteach le do sholáthraí scamall:",
     "The invite link and code are added automatically when you send the invitation." : "Cuirtear an nasc cuireadh agus an cód leis go huathoibríoch nuair a sheolann tú an cuireadh.",
@@ -526,6 +525,7 @@
     "Import failed" : "Theip ar an iompórtáil",
     "Value copied to the clipboard" : "Luach cóipeáilte chuig an ghearrthaisce",
     "Could not copy value to the clipboard." : "Níorbh fhéidir luach a chóipeáil chuig an ghearrthaisce.",
+    "%1$s invites you to exchange cloud accounts and contact information." : "Tugann %1$s cuireadh duit cuntais scamall agus faisnéis teagmhála a mhalartú.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Chun glacadh leis an gcuireadh seo, bain úsáid as an url thíos chun síniú isteach le do sholáthraí scamall:"
 },"pluralForm" :"nplurals=5; plural=(n==1 ? 0 : n==2 ? 1 : n<7 ? 2 : n<11 ? 3 : 4);"
 }

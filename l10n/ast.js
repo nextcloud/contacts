@@ -4,6 +4,7 @@ OC.L10N.register(
     "Import contacts" : "Importar contautos",
     "Details" : "Detalles",
     "All contacts" : "Tolos contautos",
+    "Copy" : "Copiar",
     "Contacts" : "Contautos",
     "Omit year" : "Omitir l'añu",
     "There was an error fetching the member list" : "Hebo un error al dir en cata de la llista de miembros",

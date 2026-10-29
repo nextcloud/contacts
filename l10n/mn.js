@@ -25,8 +25,6 @@ OC.L10N.register(
     "%1$s invites you to exchange contact information." : "%1$s таныг харилцагчийн мэдээлэл солилцохыг урьж байна.",
     "Copy" : "Хуулах",
     "This is a copy of the invitation you've sent to %1$s" : "Энэ бол таны %1$s-д илгээсэн урилгын хуулбар юм",
-    "Hi there," : "Сайн байна уу,",
-    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s таныг үүлэн бүртгэл болон харилцагчийн мэдээлэл солилцохыг урьж байна.",
     "This will allow you to share data with each other." : "Ингэснээр та хоёр бие биетэйгээ өгөгдөл түгээх боломжтой болно.",
     "Accept invitation" : "Урилгыг хүлээж авах",
     "Invitation details:" : "Урилгын дэлгэрэнгүй:",
@@ -332,6 +330,7 @@ OC.L10N.register(
     "Resend email" : "Цахим шуудан дахин илгээх",
     "Send via email" : "Цахим шуудангаар илгээх",
     "Send invitation via email" : "Урилгыг цахим шуудангаар илгээх",
+    "Hi there," : "Сайн байна уу,",
     "{name} invites you to exchange cloud accounts and contact information." : "{name} таныг үүлэн бүртгэл болон харилцагчийн мэдээлэл солилцохыг урьж байна.",
     "To accept this invite, click the link below and sign in with your cloud provider:" : "Энэ урилгыг хүлээж авахын тулд доорх холбоос дээр дарж, үүлэн үйлчилгээ үзүүлэгчээрээ нэвтэрнэ үү:",
     "The invite link and code are added automatically when you send the invitation." : "Урилга илгээх үед урилгын холбоос болон код автоматаар нэмэгдэнэ.",
@@ -501,6 +500,7 @@ OC.L10N.register(
     "Unable to delete contact" : "Харилцагч устгах боломжгүй",
     "Value copied to the clipboard" : "Утгыг санах ойд хуулсан",
     "Could not copy value to the clipboard." : "Утгыг санах ойд хуулах боломжгүй байна.",
+    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s таныг үүлэн бүртгэл болон харилцагчийн мэдээлэл солилцохыг урьж байна.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Энэ урилгыг хүлээж авахын тулд доорх url-г ашиглан үүлэн үйлчилгээ үзүүлэгчээрээ нэвтэрнэ үү:"
 },
 "nplurals=2; plural=(n != 1);");

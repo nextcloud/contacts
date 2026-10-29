@@ -4,6 +4,7 @@ OC.L10N.register(
     "Import contacts" : "Імпарт кантактаў",
     "Details" : "Падрабязнасці",
     "All contacts" : "Усе кантакты",
+    "Copy" : "Капіяваць",
     "_Imported %n contact_::_Imported %n contacts_" : ["Імпартаваны %n кантакт","Імпартаваны %n кантакты","Імпартавана %n кантактаў","Імпартавана %n кантактаў"],
     "Contacts" : "Кантакты",
     "A contacts app for Nextcloud" : "Праграма Кантакты для Nextcloud",

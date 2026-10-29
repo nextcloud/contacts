@@ -2,6 +2,7 @@ OC.L10N.register(
     "contacts",
     {
     "Details" : "Munudoù",
+    "Copy" : "Eilañ",
     "Contacts" : "Darempredoù",
     "Add contacts" : "Ouzhpennañ darempredoù",
     "Rename" : "Adenvel",
