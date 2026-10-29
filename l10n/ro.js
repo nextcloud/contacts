@@ -25,8 +25,6 @@ OC.L10N.register(
     "%1$s invites you to exchange contact information." : "%1$s te invită să faceți schimb de informații de contact.",
     "Copy" : "Copiază",
     "This is a copy of the invitation you've sent to %1$s" : "Aceasta este o copie a invitației pe care ai trimis-o către %1$s",
-    "Hi there," : "Bună,",
-    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s te invită să faceți schimb de conturi cloud și informații de contact.",
     "This will allow you to share data with each other." : "Astfel veți putea partaja date unul cu celălalt.",
     "Accept invitation" : "Acceptă invitația",
     "Invitation details:" : "Detaliile invitației:",
@@ -335,6 +333,7 @@ OC.L10N.register(
     "Resend email" : "Retrimite e-mailul",
     "Send via email" : "Trimite prin e-mail",
     "Send invitation via email" : "Trimite invitația prin e-mail",
+    "Hi there," : "Bună,",
     "{name} invites you to exchange cloud accounts and contact information." : "{name} te invită să faceți schimb de conturi cloud și informații de contact.",
     "To accept this invite, click the link below and sign in with your cloud provider:" : "Pentru a accepta această invitație, dă clic pe linkul de mai jos și autentifică-te la furnizorul tău de cloud:",
     "The invite link and code are added automatically when you send the invitation." : "Linkul și codul invitației sunt adăugate automat când trimiți invitația.",
@@ -504,6 +503,7 @@ OC.L10N.register(
     "Unable to delete contact" : "Contactul nu a putut fi șters",
     "Value copied to the clipboard" : "Valoarea a fost copiată în clipboard",
     "Could not copy value to the clipboard." : "Valoarea nu a putut fi copiată în clipboard.",
+    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s te invită să faceți schimb de conturi cloud și informații de contact.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Pentru a accepta această invitație, folosește URL-ul de mai jos pentru a te autentifica la furnizorul tău de cloud:"
 },
 "nplurals=3; plural=(n==1?0:(((n%100>19)||((n%100==0)&&(n!=0)))?2:1));");

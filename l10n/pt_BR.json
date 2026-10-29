@@ -21,10 +21,11 @@
     "Recipient email address is invalid." : "O endereço de e-mail do destinatário é inválido.",
     "%1$s via %2$s" : "%1$s via %2$s",
     "%1$s invites you to exchange contact information." : "%1$s convida você a trocar informações de contato.",
+    "Copy" : "Cópia",
     "This is a copy of the invitation you've sent to %1$s" : "Esta é uma cópia do convite que você enviou para %1$s",
-    "Hi there," : "Olá,",
-    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s convida você a trocar contas na nuvem e informações de contato.",
     "This will allow you to share data with each other." : "Isso permitirá que vocês compartilhem dados entre si.",
+    "Message:" : "Mensagem",
+    "To accept this invite, click the button below and sign in with your cloud provider:" : "Para aceitar este convite, clique no botão abaixo e faça login no seu provedor de nuvem:",
     "Accept invitation" : "Aceitar convite",
     "Invitation details:" : "Detalhes do convite:",
     "Invite code: %1$s" : "Código de convite: %1$s",
@@ -217,6 +218,7 @@
     "Upload a new picture" : "Enviar uma nova imagem",
     "Choose from Files" : "Escolher de Arquivos",
     "Download picture" : "Baixar imagem",
+    "Add to address book" : "Adicionar ao catálogo de endereços",
     "Clone contact" : "Clonar contato",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Este contato é somente leitura. Você não tem permissão para editar este contato.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "O contato que você estava tentando editar foi alterado. Atualize manualmente o contato. Qualquer outra edição será descartada.",
@@ -355,6 +357,7 @@
     "Resend email" : "Reenviar e-mail",
     "Send via email" : "Enviar por e-mail",
     "Send invitation via email" : "Enviar convite por e-mail",
+    "Hi there," : "Olá,",
     "{name} invites you to exchange cloud accounts and contact information." : "{name} convida você a trocar contas na nuvem e informações de contato.",
     "To accept this invite, click the link below and sign in with your cloud provider:" : "Para aceitar este convite, clique no link abaixo e faça login com seu provedor de nuvem:",
     "The invite link and code are added automatically when you send the invitation." : "O link e o código de convite são adicionados automaticamente quando você envia o convite.",
@@ -525,6 +528,7 @@
     "Import failed" : "A importação falhou",
     "Value copied to the clipboard" : "Valor copiado para a área de transferência",
     "Could not copy value to the clipboard." : "Não foi possível copiar o valor para a área de transferência.",
+    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s convida você a trocar contas na nuvem e informações de contato.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Para aceitar este convite, use o URL abaixo para fazer login com seu provedor de nuvem:"
 },"pluralForm" :"nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;"
 }

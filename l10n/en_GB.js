@@ -25,8 +25,6 @@ OC.L10N.register(
     "%1$s invites you to exchange contact information." : "%1$s invites you to exchange contact information.",
     "Copy" : "Copy",
     "This is a copy of the invitation you've sent to %1$s" : "This is a copy of the invitation you've sent to %1$s",
-    "Hi there," : "Hi there,",
-    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s invites you to exchange cloud accounts and contact information.",
     "This will allow you to share data with each other." : "This will allow you to share data with each other.",
     "Accept invitation" : "Accept invitation",
     "Invitation details:" : "Invitation details:",
@@ -358,6 +356,7 @@ OC.L10N.register(
     "Resend email" : "Resend email",
     "Send via email" : "Send via email",
     "Send invitation via email" : "Send invitation via email",
+    "Hi there," : "Hi there,",
     "{name} invites you to exchange cloud accounts and contact information." : "{name} invites you to exchange cloud accounts and contact information.",
     "To accept this invite, click the link below and sign in with your cloud provider:" : "To accept this invite, click the link below and sign in with your cloud provider:",
     "The invite link and code are added automatically when you send the invitation." : "The invite link and code are added automatically when you send the invitation.",
@@ -528,6 +527,7 @@ OC.L10N.register(
     "Import failed" : "Import failed",
     "Value copied to the clipboard" : "Value copied to the clipboard",
     "Could not copy value to the clipboard." : "Could not copy value to the clipboard.",
+    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s invites you to exchange cloud accounts and contact information.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "To accept this invite, use the url below to sign in with your cloud provider:"
 },
 "nplurals=2; plural=(n != 1);");

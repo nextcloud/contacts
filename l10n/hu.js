@@ -24,8 +24,6 @@ OC.L10N.register(
     "%1$s via %2$s" : "%1$s ezen keresztül: %2$s",
     "%1$s invites you to exchange contact information." : "%1$s meghívta, hogy névjegy-információkat cseréljenek.",
     "This is a copy of the invitation you've sent to %1$s" : "Ez a(z) %1$s számára küldött meghívó másolata",
-    "Hi there," : "Üdvözöljük,",
-    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s meghívta, hogy felhőfiókot és névjegy-információkat cseréljenek.",
     "This will allow you to share data with each other." : "Ez lehetővé teszi, hogy adatokat osszanak meg egymással.",
     "Accept invitation" : "Meghívás elfogadása",
     "Invitation details:" : "Meghívó részletei:",
@@ -331,6 +329,7 @@ OC.L10N.register(
     "Resend email" : "E-mail-cím újraküldése",
     "Send via email" : "Küldés e-mailben",
     "Send invitation via email" : "Meghívó küldése e-mailben",
+    "Hi there," : "Üdvözöljük,",
     "{name} invites you to exchange cloud accounts and contact information." : "{name} meghívta, hogy felhőfiókot és névjegy-információkat cseréljenek.",
     "To accept this invite, click the link below and sign in with your cloud provider:" : "A meghívó elfogadásához kattintson az alábbi hivatkozásra, és jelentkezzen be a felhőszolgáltatójával:",
     "The invite link and code are added automatically when you send the invitation." : "A meghívási hivatkozás és kód automatikusan hozzá lesz adva, amikor elküldi a hivatkozást.",
@@ -500,6 +499,7 @@ OC.L10N.register(
     "Unable to delete contact" : "A névjegy törlése sikertelen",
     "Value copied to the clipboard" : "Érték a vágólapra másolva",
     "Could not copy value to the clipboard." : "Nem sikerült az érték vágólapra másolása.",
+    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s meghívta, hogy felhőfiókot és névjegy-információkat cseréljenek.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "A meghívó elfogadásához használja az alábbi webcímet, és jelentkezzen be a felhőszolgáltatójával:"
 },
 "nplurals=2; plural=(n != 1);");

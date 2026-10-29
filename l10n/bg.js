@@ -4,6 +4,7 @@ OC.L10N.register(
     "Import contacts" : "Внасяне на контакти",
     "Details" : "Подробности",
     "All contacts" : "Всички контакти",
+    "Copy" : "Копиране",
     "Contacts" : "Контакти",
     "A contacts app for Nextcloud" : "Контакти за Nextcloud",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "Приложението Contacts е интерфейс в Nextcloud към CardDAV сървър. Чрез него можете да синхронизирате контакти към Nextcloud и да ги редактирате онлайн.\n\n* 🚀 **Интеграция с други приложения!** В момента Mail и Calendar – ще бъдат добавени и други.\n* 🎉 **Не забравяйте рожден ден!** Можете да синхронизирате рождени дати и и други повтарящи се събития.\n* 👥 **Споделяйте адресни книги!** Желаете да споделите контактите си с приятел или колега? Няма проблем!\n* 🙈 **Ние не преоткриваме колелото!** Ползваме библиотеката SabreDAV.",

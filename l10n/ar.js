@@ -4,6 +4,7 @@ OC.L10N.register(
     "Import contacts" : "إستيراد جهات الاتصال",
     "Details" : "التفاصيل",
     "All contacts" : "كل جهات الإتصال",
+    "Copy" : "إنسَخ",
     "Contacts" : "جهات الاتصال",
     "A contacts app for Nextcloud" : "تطبيق \"جهات الاتصال\" Contacts لنكست كلاود",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "تطبيق \"جهات الاتصال\" Contacts لنكست كلاود هو واجهة مستخدم لخادم CardDAV الخاص بـنكست كلاود. يمكنك مزامنة جهات الاتصال بسهولة من مختلف الأجهزة مع نكست كلاود وتحريرها عبر الإنترنت. \n\n* 🚀 ** التكامل مع تطبيقات نكست كلاود الأخرى! ** حاليًا البريد والتقويم - المزيد في المستقبل. \n* 🎉 ** يمكنك مزامنة أعياد الميلاد والأحداث المتكررة الأخرى مع تقويم نكست كلاود الخاص بك. \n* 👥 ** مشاركة دفاتر العناوين! ** تريد مشاركة جهات الاتصال الخاصة بك مع أصدقائك أو زملائك في العمل؟ لا مشكلة! \n* 🙈 ** نحن لا نعيد اختراع العجلة! ** استنادًا إلى مكتبة SabreDAV الرائعة والمفتوحة.",

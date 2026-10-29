@@ -25,8 +25,6 @@ OC.L10N.register(
     "%1$s invites you to exchange contact information." : "%1$s 邀請你交換聯絡資料。",
     "Copy" : "Copy",
     "This is a copy of the invitation you've sent to %1$s" : "這是你傳送給 %1$s 的邀請副本",
-    "Hi there," : "你好：",
-    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s 邀請你交換雲端帳戶及聯絡資料。",
     "This will allow you to share data with each other." : "這樣你們便可互相共享資料。",
     "Accept invitation" : "接受邀請",
     "Invitation details:" : "邀請詳情：",
@@ -358,6 +356,7 @@ OC.L10N.register(
     "Resend email" : "重新傳送電郵",
     "Send via email" : "透過電郵傳送",
     "Send invitation via email" : "透過電郵傳送邀請",
+    "Hi there," : "你好：",
     "{name} invites you to exchange cloud accounts and contact information." : "{name} 邀請你交換雲端帳戶及聯絡資料。",
     "To accept this invite, click the link below and sign in with your cloud provider:" : "要接受此邀請，請按以下連結並使用你的雲端服務供應商登入：",
     "The invite link and code are added automatically when you send the invitation." : "傳送邀請時，邀請連結及代碼會自動加入。",
@@ -528,6 +527,7 @@ OC.L10N.register(
     "Import failed" : "匯入失敗",
     "Value copied to the clipboard" : "已複製數值至剪貼板",
     "Could not copy value to the clipboard." : "無法複製數值至剪貼板",
+    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s 邀請你交換雲端帳戶及聯絡資料。",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "要接受此邀請，請使用以下網址登入你的雲端服務供應商："
 },
 "nplurals=1; plural=0;");

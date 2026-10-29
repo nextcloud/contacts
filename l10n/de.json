@@ -23,8 +23,6 @@
     "%1$s invites you to exchange contact information." : "%1$s lädt dich zum Austausch von Kontaktdaten ein.",
     "Copy" : "Kopieren",
     "This is a copy of the invitation you've sent to %1$s" : "Dies ist eine Kopie der Einladung, die du an %1$s gesendet hst",
-    "Hi there," : "Hallo,",
-    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s lädt dich zum Austausch von Cloud-Konten und Kontaktinformationen ein.",
     "This will allow you to share data with each other." : "Dies ermöglicht es dir, Daten untereinander auszutauschen.",
     "Accept invitation" : "Einladung annehmen",
     "Invitation details:" : "Einladungsdetails:",
@@ -356,6 +354,7 @@
     "Resend email" : "E-Mail erneut senden",
     "Send via email" : "Per E-Mail senden",
     "Send invitation via email" : "Einladung per E-Mail senden",
+    "Hi there," : "Hallo,",
     "{name} invites you to exchange cloud accounts and contact information." : "{name} lädt dich zum Austausch von Cloud-Konten und Kontaktinformationen ein.",
     "To accept this invite, click the link below and sign in with your cloud provider:" : "Um diese Einladung anzunehmen, auf den unten stehenden Link klicken und dich mit deinem Cloud-Anbieter anmelden:",
     "The invite link and code are added automatically when you send the invitation." : "Der Einladungslink und der Code werden beim Versenden der Einladung automatisch hinzugefügt.",
@@ -526,6 +525,7 @@
     "Import failed" : "Import fehlgeschlagen",
     "Value copied to the clipboard" : "Wert in die Zwischenablage kopiert",
     "Could not copy value to the clipboard." : "Wert konnte nicht in die Zwischenablage kopiert werden.",
+    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s lädt dich zum Austausch von Cloud-Konten und Kontaktinformationen ein.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Um diese Einladung anzunehmen, verwende bitte die unten stehende URL, um dich bei deinem Cloud-Anbieter anzumelden:"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

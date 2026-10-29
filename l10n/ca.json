@@ -2,6 +2,7 @@
     "Import contacts" : "Importa contactes",
     "Details" : "Detalls",
     "All contacts" : "Tots els contactes",
+    "Copy" : "Copia",
     "Contacts" : "Contactes",
     "A contacts app for Nextcloud" : "Una aplicació de contactes per al Nextcloud",
     "The Nextcloud contacts app is a user interface for Nextcloud's CardDAV server. Easily sync contacts from various devices with your Nextcloud and edit them online.\n\n* 🚀 **Integration with other Nextcloud apps!** Currently Mail and Calendar – more to come.\n* 🎉 **Never forget a birthday!** You can sync birthdays and other recurring events with your Nextcloud Calendar.\n* 👥 **Sharing of Adressbooks!** You want to share your contacts with your friends or coworkers? No problem!\n* 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library." : "L'aplicació Contactes del Nextcloud és una interfície d'usuari per al servidor CardDAV del Nextcloud. Sincronitzeu fàcilment els contactes de diversos dispositius amb el Nextcloud i editeu-los en línia.\n\n* 🚀 **Integració amb altres aplicacions del Nextcloud.** Actualment, Correu i Calendari. Pròximament hi haurà més integracions.\n* 🎉 **No oblidareu mai els aniversaris.** Podeu sincronitzar els aniversaris i altres esdeveniments periòdics amb el vostre calendari del Nextcloud.\n* 👥 **Ús compartit de llibretes d'adreces.** Voleu compartir els vostres contactes amb amics o companys de feina? Cap problema!\n* 🙈 **No reinventem la roda.** Es basa en la fantàstica llibreria SabreDAV, de codi obert.",

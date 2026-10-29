@@ -23,9 +23,9 @@
     "%1$s invites you to exchange contact information." : "%1$s vás pozýva na výmenu kontaktných údajov.",
     "Copy" : "Kopírovať",
     "This is a copy of the invitation you've sent to %1$s" : "Toto je kópia pozvánky, ktorú ste odoslali používateľovi %1$s",
-    "Hi there," : "Ahoj,",
-    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s vás pozýva na výmenu cloudových účtov a kontaktných údajov.",
     "This will allow you to share data with each other." : "Umožní vám to navzájom zdieľať údaje.",
+    "Message:" : "Správa:",
+    "To accept this invite, click the button below and sign in with your cloud provider:" : "Ak chcete prijať toto pozvanie, kliknite na tlačidlo nižšie a prihláste sa pomocou svojho poskytovateľa cloudových služieb:",
     "Accept invitation" : "Prijať pozvánku",
     "Invitation details:" : "Podrobnosti pozvánky:",
     "Invite code: %1$s" : "Kód pozvánky: %1$s",
@@ -218,6 +218,7 @@
     "Upload a new picture" : "Nahrať nový obrázok",
     "Choose from Files" : "Vybrať zo Súborov",
     "Download picture" : "Stiahnuť obrázok",
+    "Add to address book" : "Pridať do adresára",
     "Clone contact" : "Duplikovať kontakt",
     "This contact is in read-only mode. You do not have permission to edit this contact." : "Tento kontakt je iba na čítanie. Nemáte oprávnenie na úpravu tohto kontaktu.",
     "The contact you were trying to edit has changed. Please manually refresh the contact. Any further edits will be discarded." : "Kontakt ktorý sa snažíte modifikovať sa zmenil.  Prosím manuálne obnovte kontakt.  Akékoľvek ďalšie zmeny nebudú brané do úvahy.",
@@ -356,6 +357,7 @@
     "Resend email" : "Znova odoslať e-mail",
     "Send via email" : "Odoslať e-mailom",
     "Send invitation via email" : "Odoslať pozvánku e-mailom",
+    "Hi there," : "Ahoj,",
     "{name} invites you to exchange cloud accounts and contact information." : "{name} vás pozýva na výmenu cloudových účtov a kontaktných údajov.",
     "To accept this invite, click the link below and sign in with your cloud provider:" : "Ak chcete prijať túto pozvánku, kliknite na odkaz nižšie a prihláste sa u svojho poskytovateľa cloudu:",
     "The invite link and code are added automatically when you send the invitation." : "Odkaz a kód pozvánky sa pri odoslaní pozvánky pridajú automaticky.",
@@ -526,6 +528,7 @@
     "Import failed" : "Import zlyhal",
     "Value copied to the clipboard" : "Hodnota skopírovaná do schránky",
     "Could not copy value to the clipboard." : "Nepodarilo sa skopírovať hodnotu do schránky.",
+    "%1$s invites you to exchange cloud accounts and contact information." : "%1$s vás pozýva na výmenu cloudových účtov a kontaktných údajov.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Ak chcete prijať túto pozvánku, použite adresu URL nižšie a prihláste sa u svojho poskytovateľa cloudu:"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);"
 }
