@@ -29,6 +29,7 @@ OC.L10N.register(
     "Message:" : "Besked:",
     "To accept this invite, click the button below and sign in with your cloud provider:" : "Klik på knappen nedenfor, og log ind hos din cloud-udbyder for at acceptere invitationen:",
     "Accept invitation" : "Accepter invitation",
+    "If the button does not work, copy this link into your browser: %1$s" : "Hvis knappen ikke virker, så kopiér dette link ind i din browser: %1$s",
     "Invitation details:" : "Detaljer om invitationen:",
     "Invite code: %1$s" : "Invitationskode: %1$s",
     "Encoded invite: %1$s" : "Kodet invitation: %1$s",

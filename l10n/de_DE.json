@@ -27,6 +27,7 @@
     "Message:" : "Nachricht:",
     "To accept this invite, click the button below and sign in with your cloud provider:" : "Um diese Einladung anzunehmen, auf die Schaltfläche unten klicken und mit Ihrem Cloud-Anbieter anmelden:",
     "Accept invitation" : "Einladung annehmen",
+    "If the button does not work, copy this link into your browser: %1$s" : "Wenn die Schaltfläche nicht funktioniert, diesen Link in den Browser kopieren: %1$s",
     "Invitation details:" : "Einladungsdetails:",
     "Invite code: %1$s" : "Einladungs-Code: %1$s",
     "Encoded invite: %1$s" : "Verschlüsselte Einladung: %1$s",

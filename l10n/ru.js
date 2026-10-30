@@ -29,6 +29,7 @@ OC.L10N.register(
     "Message:" : "Сообщение:",
     "To accept this invite, click the button below and sign in with your cloud provider:" : "Чтобы принять приглашение, нажмите кнопку ниже и войдите в своё облако:",
     "Accept invitation" : "Принять приглашение",
+    "If the button does not work, copy this link into your browser: %1$s" : "Если кнопка не работает, скопируйте эту ссылку в адресную строку браузера: %1$s",
     "Invitation details:" : "Сведения о приглашении:",
     "Invite code: %1$s" : "Код приглашения: %1$s",
     "Encoded invite: %1$s" : "Закодированное приглашение: %1$s",
