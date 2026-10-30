@@ -362,6 +362,16 @@ const properties = {
 		],
 		primary: false,
 	},
+	pronouns: {
+		multiple: true,
+		readableName: t('contacts', 'Pronouns'),
+		icon: 'icon-gender',
+		force: 'text',
+		defaultValue: {
+			value: '',
+		},
+		primary: false,
+	},
 	tz: {
 		readableName: t('contacts', 'Time zone'),
 		force: 'select',
@@ -420,6 +430,7 @@ const fieldOrder = [
 	'x-phonetic-first-name',
 	'x-phonetic-last-name',
 	'gender',
+	'pronouns',
 	'cloud',
 	'impp',
 	'geo',
