@@ -29,6 +29,7 @@ OC.L10N.register(
     "Message:" : "訊息：",
     "To accept this invite, click the button below and sign in with your cloud provider:" : "要接受此邀請，請點選下方按鈕並使用您的雲端提供者登入：",
     "Accept invitation" : "接受邀請",
+    "If the button does not work, copy this link into your browser: %1$s" : "若按鈕無法運作，請複製此連結到您的瀏覽器中：%1$s",
     "Invitation details:" : "邀請詳細資訊：",
     "Invite code: %1$s" : "邀請碼：%1$s",
     "Encoded invite: %1$s" : "編碼後的邀請：%1$s",

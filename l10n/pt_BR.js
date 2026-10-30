@@ -29,6 +29,7 @@ OC.L10N.register(
     "Message:" : "Mensagem",
     "To accept this invite, click the button below and sign in with your cloud provider:" : "Para aceitar este convite, clique no botão abaixo e faça login no seu provedor de nuvem:",
     "Accept invitation" : "Aceitar convite",
+    "If the button does not work, copy this link into your browser: %1$s" : "Se o botão não funcionar, copie este link no seu navegador: %1$s",
     "Invitation details:" : "Detalhes do convite:",
     "Invite code: %1$s" : "Código de convite: %1$s",
     "Encoded invite: %1$s" : "Convite codificado: %1$s",
