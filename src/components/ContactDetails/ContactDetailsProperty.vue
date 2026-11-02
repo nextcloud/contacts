@@ -8,23 +8,23 @@
 	<component
 		:is="componentInstance"
 		ref="component"
-		v-model:select-type="selectType"
+		v-model:selectType="selectType"
 		v-model:value="value"
-		:prop-model="propModel"
-		:is-first-property="isFirstProperty"
+		:propModel="propModel"
+		:isFirstProperty="isFirstProperty"
 		:property="property"
-		:is-last-property="isLastProperty"
+		:isLastProperty="isLastProperty"
 		:class="{
 			'property--last': isLastProperty,
 			[`property-${propName}`]: true,
 		}"
-		:local-contact="localContact"
-		:prop-name="propName"
-		:prop-type="propType"
+		:localContact="localContact"
+		:propName="propName"
+		:propType="propType"
 		:options="sortedModelOptions"
-		:is-read-only="isReadOnly"
+		:isReadOnly="isReadOnly"
 		:bus="bus"
-		:is-multiple="isMultiple"
+		:isMultiple="isMultiple"
 		@delete="onDelete" />
 </template>
 

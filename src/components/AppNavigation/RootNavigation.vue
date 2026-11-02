@@ -154,7 +154,7 @@
 			<GroupNavigationItem
 				v-for="group in ellipsisGroupsMenu"
 				:key="group.key"
-				:route-state="routeState"
+				:routeState="routeState"
 				:group="group" />
 
 			<template v-if="isTeamManagementEnabled">
@@ -224,8 +224,8 @@
 			</div>
 		</template>
 		<ContactsSettings v-model:open="showSettings" />
-		<SettingsNewAddressbook ref="newAddressbook" hide-button />
-		<SettingsNewGroup ref="newGroup" hide-button />
+		<SettingsNewAddressbook ref="newAddressbook" hideButton />
+		<SettingsNewGroup ref="newGroup" hideButton />
 	</AppNavigation>
 </template>
 

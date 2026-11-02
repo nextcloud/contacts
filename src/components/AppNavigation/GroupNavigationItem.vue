@@ -22,7 +22,7 @@
 			</template>
 			<template #actions>
 				<ActionButton
-					:close-after-click="true"
+					:closeAfterClick="true"
 					@click="addContactsToGroup(group)">
 					<template #icon>
 						<IconAdd :size="20" />
@@ -30,7 +30,7 @@
 					{{ t('contacts', 'Add contacts') }}
 				</ActionButton>
 				<ActionInput
-					v-model:model-value="newGroupName"
+					v-model:modelValue="newGroupName"
 					:disabled="renaming"
 					@submit="renameGroup">
 					<template #icon>
@@ -40,7 +40,7 @@
 					{{ t('contacts', 'Rename') }}
 				</ActionInput>
 				<ActionButton
-					:close-after-click="true"
+					:closeAfterClick="true"
 					@click="downloadGroup(group)">
 					<template #icon>
 						<IconDownload :size="20" />

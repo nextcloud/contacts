@@ -8,7 +8,7 @@
 		class="import-modal"
 		size="normal"
 		:name="t('contacts', 'Import destination selection')"
-		:no-close="!isSelecting"
+		:noClose="!isSelecting"
 		@close="cancelImport">
 		<template v-if="isSelecting">
 			<transition-group class="import-modal__file-list" tag="ul">

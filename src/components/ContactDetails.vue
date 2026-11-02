@@ -24,9 +24,9 @@
 				<template #avatar>
 					<ContactAvatar
 						:contact="contact"
-						:is-read-only="isReadOnly"
-						:reload-bus="reloadBus"
-						@update-local-contact="updateLocalContact" />
+						:isReadOnly="isReadOnly"
+						:reloadBus="reloadBus"
+						@updateLocalContact="updateLocalContact" />
 				</template>
 
 				<!-- fullname -->
@@ -75,7 +75,7 @@
 					</template>
 				</template>
 
-				<template #quick-actions>
+				<template #quickActions>
 					<div v-if="!editMode && !loadingData" class="quick-actions">
 						<NcButton
 							v-if="isTalkEnabled && isInSystemAddressBook"
@@ -198,7 +198,7 @@
 					</template>
 				</template>
 				<!-- menu actions -->
-				<template #actions-menu>
+				<template #actionsMenu>
 					<ActionLink
 						:href="contact.url"
 						:download="`${contact.displayName}.vcf`">
@@ -211,14 +211,14 @@
 					<ActionButton
 						v-if="isReadOnly && addressbooksOptions.length > 0"
 						ref="cloneAction"
-						:close-after-click="true"
+						:closeAfterClick="true"
 						@click="cloneContact">
 						<template #icon>
 							<IconCopy :size="20" />
 						</template>
 						{{ t('contacts', 'Clone contact') }}
 					</ActionButton>
-					<ActionButton :close-after-click="true" @click="showQRcode">
+					<ActionButton :closeAfterClick="true" @click="showQRcode">
 						<template #icon>
 							<IconQr :size="20" />
 						</template>
@@ -226,7 +226,7 @@
 					</ActionButton>
 					<ActionButton
 						v-if="enableToggleBirthdayExclusion"
-						:close-after-click="true"
+						:closeAfterClick="true"
 						@click="toggleBirthdayExclusionForContact">
 						<template #icon>
 							<CakeIcon :size="20" />
@@ -289,13 +289,13 @@
 						<ContactDetailsProperty
 							v-for="(property, index) in properties"
 							:key="`${index}-${contact.key}-${property.name}`"
-							:is-first-property="index === 0"
-							:is-last-property="index === properties.length - 1"
+							:isFirstProperty="index === 0"
+							:isLastProperty="index === properties.length - 1"
 							:property="property"
 							:contact="contact"
-							:local-contact="localContact"
+							:localContact="localContact"
 							:bus="bus"
-							:is-read-only="isReadOnly" />
+							:isReadOnly="isReadOnly" />
 					</div>
 				</section>
 
@@ -304,72 +304,72 @@
 					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
 					duplication, we created a fake propModel and property with our own options here) -->
 				<PropertySelect
-					:prop-model="addressbookModel"
+					:propModel="addressbookModel"
 					:options="addressbooksOptions"
 					:value="addressbook"
-					:is-first-property="true"
-					:is-last-property="true"
+					:isFirstProperty="true"
+					:isLastProperty="true"
 					:property="{}"
-					:hide-actions="true"
+					:hideActions="true"
 					:clearable="false"
-					:is-read-only="isReadOnly"
+					:isReadOnly="isReadOnly"
 					class="property--addressbooks property--last"
 					@update:value="updateAddressbook" />
 
 				<!-- Groups always visible -->
 				<PropertyGroups
 					:value="localContact.groups"
-					:prop-model="groupsModel"
+					:propModel="groupsModel"
 					:contact="contact"
-					:is-read-only="isReadOnly"
+					:isReadOnly="isReadOnly"
 					class="property--groups property--last"
 					@update:value="updateGroups" />
 			</div>
 			<div v-if="!editMode" class="related-resources">
 				<NcRelatedResourcesPanel
 					v-if="!filesPanelHasError"
-					provider-id="account"
-					resource-type="files"
+					providerId="account"
+					resourceType="files"
 					:description="desc"
 					:limit="5"
 					:header="t('contacts', 'Media shares with you')"
-					:item-id="contact.uid"
+					:itemId="contact.uid"
 					:primary="true"
-					@has-resources="value => hasFilesResources = value"
-					@has-error="value => filesPanelHasError = value" />
+					@hasResources="value => hasFilesResources = value"
+					@hasError="value => filesPanelHasError = value" />
 				<NcRelatedResourcesPanel
 					v-if="!talkPanelHasError"
-					provider-id="account"
-					resource-type="talk"
+					providerId="account"
+					resourceType="talk"
 					:description="desc"
 					:limit="5"
 					:header="t('contacts', 'Talk conversations with you')"
-					:item-id="contact.uid"
+					:itemId="contact.uid"
 					:primary="true"
-					@has-resources="value => hasTalkResources = value"
-					@has-error="value => talkPanelHasError = value" />
+					@hasResources="value => hasTalkResources = value"
+					@hasError="value => talkPanelHasError = value" />
 				<NcRelatedResourcesPanel
 					v-if="!calendarPanelHasError"
-					provider-id="account"
-					resource-type="calendar"
+					providerId="account"
+					resourceType="calendar"
 					:description="desc"
 					:limit="5"
 					:header="t('contacts', 'Calendar events with you')"
-					:item-id="contact.uid"
+					:itemId="contact.uid"
 					:primary="true"
-					@has-resources="value => hasCalendarResources = value"
-					@has-error="value => calendarPanelHasError = value" />
+					@hasResources="value => hasCalendarResources = value"
+					@hasError="value => calendarPanelHasError = value" />
 				<NcRelatedResourcesPanel
 					v-if="!deckPanelHasError"
-					provider-id="account"
-					resource-type="deck"
+					providerId="account"
+					resourceType="deck"
 					:description="desc"
 					:limit="5"
 					:header="t('contacts', 'Deck cards with you')"
-					:item-id="contact.uid"
+					:itemId="contact.uid"
 					:primary="true"
-					@has-resources="value => hasDeckResources = value"
-					@has-error="value => deckPanelHasError = value" />
+					@hasResources="value => hasDeckResources = value"
+					@hasError="value => deckPanelHasError = value" />
 				<NcEmptyContent
 					v-if="!hasRelatedResources && !loadingData"
 					:name="t('contacts', 'No shared items with this contact')">

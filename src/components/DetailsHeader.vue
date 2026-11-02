@@ -8,7 +8,7 @@
 	<header class="contact-header" :style="cssStyle">
 		<div class="contact-header__no-wrap">
 			<div class="contact-header__avatar">
-				<slot name="avatar" :avatar-size="avatarSize" />
+				<slot name="avatar" :avatarSize="avatarSize" />
 			</div>
 
 			<!-- fullname, org, title -->
@@ -20,7 +20,7 @@
 					<slot name="subtitle" />
 				</div>
 				<div class="contact-header__quick-actions">
-					<slot name="quick-actions" />
+					<slot name="quickActions" />
 				</div>
 			</div>
 		</div>
@@ -33,9 +33,9 @@
 			<Actions
 				ref="actions"
 				class="header-menu"
-				menu-align="right"
+				menuAlign="right"
 				v-bind="$attrs">
-				<slot name="actions-menu" />
+				<slot name="actionsMenu" />
 			</Actions>
 		</div>
 	</header>

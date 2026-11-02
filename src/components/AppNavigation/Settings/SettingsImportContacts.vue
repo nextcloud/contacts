@@ -43,9 +43,9 @@
 			:entries="entries"
 			:stage="stage"
 			:totals="totals"
-			:active-session="activeSession"
-			@cancel-import="cancelImport"
-			@import-contacts="importContacts" />
+			:activeSession="activeSession"
+			@cancelImport="cancelImport"
+			@importContacts="importContacts" />
 	</div>
 </template>
 

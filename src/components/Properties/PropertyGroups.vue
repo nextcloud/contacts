@@ -7,8 +7,8 @@
 	<div v-if="propModel && showProperty" class="property">
 		<PropertyTitle
 			icon="icon-contacts-dark"
-			:readable-name="t('contacts', 'Contact groups')"
-			:is-read-only="isReadOnly" />
+			:readableName="t('contacts', 'Contact groups')"
+			:isReadOnly="isReadOnly" />
 
 		<div class="property__row">
 			<div class="property__label">
@@ -23,11 +23,11 @@
 					:options="groups"
 					:placeholder="t('contacts', 'Add contact in group')"
 					:multiple="true"
-					:keep-open="true"
+					:keepOpen="true"
 					:clearable="true"
-					:deselect-from-dropdown="true"
+					:deselectFromDropdown="true"
 					:taggable="true"
-					tag-placeholder="create"
+					tagPlaceholder="create"
 					@option:deselected="updateValue"
 					@close="updateValue" />
 				<div v-else>

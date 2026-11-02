@@ -12,7 +12,7 @@
 		v-else
 		class="entity-picker__bubble"
 		:class="{ 'entity-picker__bubble--selected': isSelected }"
-		:display-name="source.label"
+		:displayName="source.label"
 		:user="source.shareType === ShareType.User ? source.user : undefined"
 		:margin="6"
 		:size="44"

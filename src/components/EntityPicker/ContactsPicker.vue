@@ -6,8 +6,8 @@
 	<!-- Bulk contacts edit modal -->
 	<Modal
 		v-if="isProcessing || isProcessDone"
-		:clear-view-delay="-1"
-		:can-close="isProcessDone"
+		:clearViewDelay="-1"
+		:canClose="isProcessDone"
 		@close="closeProcess">
 		<AddToGroupView v-bind="processStatus" @close="closeProcess" />
 	</Modal>
@@ -15,8 +15,8 @@
 	<!-- contacts picker -->
 	<EntityPicker
 		v-else-if="showPicker"
-		:confirm-label="t('contacts', 'Add to {group}', { group: passedGroupName })"
-		:title-label="t('contacts', 'Add members to {group}', { group: passedGroupName })"
+		:confirmLabel="t('contacts', 'Add to {group}', { group: passedGroupName })"
+		:titleLabel="t('contacts', 'Add members to {group}', { group: passedGroupName })"
 		:data-types="pickerTypes"
 		:data-set="pickerData"
 		:empty-data-set-description="t('contacts', 'Please note that you can only add contacts from writable address books to contact groups. Contacts from read-only address books, such as the system address book, cannot be added.')"
