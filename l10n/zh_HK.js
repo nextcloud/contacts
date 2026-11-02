@@ -170,7 +170,7 @@ OC.L10N.register(
     "Choose a team picture" : "選擇團隊圖片",
     "There is no description for this team" : "此團隊沒有描述",
     "Enter a description for the team" : "輸入團隊的描述",
-    "Folder" : "Folder",
+    "Folder" : "資料夾",
     "New folder" : "新資料夾",
     "Folder name" : "資料夾名字",
     "This will create a regular folder shared with the team. To create a Team Folder, please contact your {productName} administrator" : "這將會建立分享給團隊的一般資料夾。要建立團隊資料夾，請聯絡您的 {productName} 管理員",
