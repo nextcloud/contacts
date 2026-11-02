@@ -106,5 +106,8 @@
   "engines": {
     "node": "^24.0.0",
     "npm": "^11.3.0"
+  },
+  "overrides": {
+    "eslint-plugin-vue": "10.6.2"
   }
 }
