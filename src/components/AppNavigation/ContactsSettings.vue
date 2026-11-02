@@ -8,7 +8,7 @@
 		id="app-settings-dialog"
 		v-model:open="showSettings"
 		:name="t('contacts', 'Contacts settings')"
-		:show-navigation="true">
+		:showNavigation="true">
 		<AppSettingsSection id="general" :name="t('contacts', 'General')">
 			<SettingsSortContacts />
 
@@ -19,7 +19,7 @@
 					:description="t('contacts', 'Refreshed once per week')"
 					:loading="enableSocialSyncLoading"
 					:disabled="enableSocialSyncLoading"
-					@update:model-value="toggleSocialSync" />
+					@update:modelValue="toggleSocialSync" />
 			</NcFormBox>
 
 			<SettingsImportContacts />

@@ -6,7 +6,7 @@
 <template>
 	<NcPopover
 		:shown="isPopoverOpen"
-		popup-role="dialog"
+		popupRole="dialog"
 		@update:shown="handlePopoverToggle">
 		<template #trigger>
 			<NcButton
@@ -22,7 +22,7 @@
 		<div v-if="!resourceType.noInput" class="resource-creation-popover">
 			<div class="popover-content">
 				<NcTextField
-					:model-value="inputValue"
+					:modelValue="inputValue"
 					:placeholder="resourceType.placeholder"
 					:label="resourceType.inputLabel"
 					@update:value="updateInput"

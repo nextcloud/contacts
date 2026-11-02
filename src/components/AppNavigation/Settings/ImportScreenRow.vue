@@ -13,10 +13,10 @@
 				<NcSelect
 					v-model="selectedAddressbook"
 					:class="itemClass"
-					:input-id="addressbookInputId"
-					:input-label="t('contacts', 'Address book')"
+					:inputId="addressbookInputId"
+					:inputLabel="t('contacts', 'Address book')"
 					:options="addressbookOptions"
-					:allow-empty="false"
+					:allowEmpty="false"
 					:clearable="false"
 					label="displayName" />
 			</NcFormBox>
@@ -24,20 +24,20 @@
 				<NcSelect
 					v-model="selectedFormat"
 					:class="itemClass"
-					:input-id="formatInputId"
-					:input-label="t('contacts', 'File format')"
+					:inputId="formatInputId"
+					:inputLabel="t('contacts', 'File format')"
 					:options="formatOptions"
-					:allow-empty="false"
+					:allowEmpty="false"
 					:clearable="false"
 					label="label" />
 			</NcFormBox>
 			<NcFormBox v-if="isStreamImportSupported" v-slot="{ itemClass }">
 				<NcFormBoxSwitch
 					:class="itemClass"
-					:model-value="supersede"
+					:modelValue="supersede"
 					:label="t('contacts', 'Overwrite existing contacts')"
 					:description="t('contacts', 'Replace contacts in the address book that match the imported ones instead of skipping them.')"
-					@update:model-value="setSupersede" />
+					@update:modelValue="setSupersede" />
 			</NcFormBox>
 		</NcFormGroup>
 	</li>

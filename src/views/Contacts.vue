@@ -4,14 +4,14 @@
 -->
 
 <template>
-	<Content :app-name="appName">
+	<Content :appName="appName">
 		<!-- new-contact-button + navigation + settings -->
 		<RootNavigation
 			:loading="loadingContacts || loadingCircles">
 			<div class="import-and-new-contact-buttons">
 				<SettingsImportContacts
 					v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView"
-					:is-ocm-invites-enabled="isOcmInvitesEnabled" />
+					:isOcmInvitesEnabled="isOcmInvitesEnabled" />
 				<!-- new-contact-button -->
 				<NcButton
 					v-if="!loadingContacts"
@@ -32,7 +32,7 @@
 						<IconAccountSwitchOutline :size="20" />
 					</template>
 					<NcActionButton
-						close-after-click
+						closeAfterClick
 						@click="openCreateInvite">
 						<template #icon>
 							<IconAdd :size="20" />
@@ -40,7 +40,7 @@
 						{{ t('contacts', 'Create invitation') }}
 					</NcActionButton>
 					<NcActionButton
-						close-after-click
+						closeAfterClick
 						@click="openAcceptInvite">
 						<template #icon>
 							<IconAccountArrowDownOutline :size="20" />
@@ -57,29 +57,29 @@
 			:loading="loadingCircles" />
 		<ChartContent
 			v-else-if="selectedChart"
-			:contacts-list="contacts" />
+			:contactsList="contacts" />
 		<OcmInvitesContent
 			v-else-if="isInvitesView"
-			:invites-list="invitesList"
-			:invite-actions-enabled="!!defaultAddressbook"
-			:error-message="ocmInvitesLoadError"
+			:invitesList="invitesList"
+			:inviteActionsEnabled="!!defaultAddressbook"
+			:errorMessage="ocmInvitesLoadError"
 			:loading="loadingInvites"
-			@open-create-invite="openCreateInvite"
-			@open-accept-invite="openAcceptInvite"
-			@retry-load="fetchOcmInvites" />
+			@openCreateInvite="openCreateInvite"
+			@openAcceptInvite="openAcceptInvite"
+			@retryLoad="fetchOcmInvites" />
 		<ContactsContent
 			v-else
-			:contacts-list="contactsList"
+			:contactsList="contactsList"
 			:loading="loadingContacts"
-			@new-contact="newContact" />
+			@newContact="newContact" />
 
 		<!-- new invite form -->
 		<Modal
 			v-if="showNewInviteForm"
-			:no-close="loadingUpdate"
+			:noClose="loadingUpdate"
 			@close="cancelNewInvite">
-			<OcmInviteForm v-model:ocm-invite="ocmInvite" :loading-update="loadingUpdate">
-				<template #new-invite-actions>
+			<OcmInviteForm v-model:ocmInvite="ocmInvite" :loadingUpdate="loadingUpdate">
+				<template #newInviteActions>
 					<div class="new-invite-form__buttons-row">
 						<NcButton
 							variant="tertiary"
@@ -105,10 +105,10 @@
 		</Modal>
 		<Modal
 			v-if="showManualInvite"
-			:no-close="loadingUpdate"
+			:noClose="loadingUpdate"
 			@close="manualInviteCancel">
 			<OcmAcceptForm
-				:loading-update="loadingUpdate"
+				:loadingUpdate="loadingUpdate"
 				@accept="handleAccept"
 				@cancel="manualInviteCancel" />
 		</Modal>
@@ -116,10 +116,10 @@
 		<!-- invite accept dialog -->
 		<Modal
 			v-if="showInviteAcceptDialog"
-			:no-close="loadingUpdate"
+			:noClose="loadingUpdate"
 			@close="cancelInvite">
 			<OcmInviteAccept :token="inviteToken" :provider="inviteProvider">
-				<template #accept-invite-actions>
+				<template #acceptInviteActions>
 					<div class="invite-accept-form__buttons-row">
 						<NcButton variant="tertiary" :disabled="loadingUpdate" @click="cancelInvite">
 							{{ t("contacts", "Cancel") }}

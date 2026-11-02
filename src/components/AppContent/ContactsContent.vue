@@ -44,19 +44,19 @@
 	<AppContent
 		v-else
 		:aria-label="t('contacts', 'Contacts')"
-		:show-details="showDetails"
-		@update:show-details="hideDetails">
+		:showDetails="showDetails"
+		@update:showDetails="hideDetails">
 		<!-- contacts list -->
 		<template #list>
 			<ContactsList
 				:list="contactsList"
 				:contacts="contacts"
-				:search-query="searchQuery"
-				:reload-bus="reloadBus" />
+				:searchQuery="searchQuery"
+				:reloadBus="reloadBus" />
 		</template>
 
 		<!-- main contacts details -->
-		<ContactDetails :contact-key="selectedContact" :reload-bus="reloadBus" />
+		<ContactDetails :contactKey="selectedContact" :reloadBus="reloadBus" />
 	</AppContent>
 </template>
 
@@ -167,7 +167,7 @@ export default {
 		 * Forward the newContact event to the parent
 		 */
 		newContact() {
-			this.$emit('new-contact')
+			this.$emit('newContact')
 		},
 
 		/**

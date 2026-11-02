@@ -10,10 +10,10 @@
 		class="members-list-item">
 		<template #icon>
 			<NcAvatar
-				disable-menu
+				disableMenu
 				:size="avatarSize"
-				:display-name="source.displayName"
-				:is-no-user="!source.isUser" />
+				:displayName="source.displayName"
+				:isNoUser="!source.isUser" />
 		</template>
 
 		<!-- Level -->

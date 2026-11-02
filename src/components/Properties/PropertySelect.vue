@@ -9,11 +9,11 @@
 		<PropertyTitle
 			v-if="isFirstProperty && propModel.icon"
 			:property="property"
-			:is-multiple="isMultiple"
-			:is-read-only="isReadOnly"
+			:isMultiple="isMultiple"
+			:isReadOnly="isReadOnly"
 			:bus="bus"
 			:icon="propModel.icon"
-			:readable-name="propModel.readableName" />
+			:readableName="propModel.readableName" />
 
 		<div class="property__row">
 			<div class="property__label">
@@ -33,12 +33,12 @@
 					v-if="!isReadOnly"
 					v-model="matchedOptions"
 					:options="selectableOptions"
-					:no-wrap="true"
+					:noWrap="true"
 					:placeholder="t('contacts', 'Select option')"
 					:disabled="isSingleOption || isReadOnly"
 					:clearable="clearable"
 					label="name"
-					@update:model-value="updateValue" />
+					@update:modelValue="updateValue" />
 				<p v-else>
 					{{ matchedOptions.name }}
 				</p>
@@ -49,7 +49,7 @@
 				<PropertyActions
 					v-if="!isReadOnly && !hideActions"
 					:actions="actions"
-					:property-component="this"
+					:propertyComponent="this"
 					@delete="deleteProperty" />
 			</div>
 		</div>

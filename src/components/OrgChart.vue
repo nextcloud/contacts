@@ -13,12 +13,12 @@
 				class="chart-selection"
 				:disabled="data.length === 1"
 				:options="charts"
-				:allow-empty="false"
+				:allowEmpty="false"
 				:searchable="false"
 				:placeholder="placeholder"
-				input-id="select-chart-input"
+				inputId="select-chart-input"
 				label="label"
-				@update:model-value="chartChanged" />
+				@update:modelValue="chartChanged" />
 		</div>
 		<div ref="svgElementContainer" class="org-chart__container" />
 	</div>

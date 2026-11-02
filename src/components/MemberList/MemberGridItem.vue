@@ -7,8 +7,8 @@
 	<div class="member-grid-item">
 		<NcAvatar
 			v-if="isTeam"
-			:display-name="member.displayName"
-			:is-no-user="true"
+			:displayName="member.displayName"
+			:isNoUser="true"
 			:size="32">
 			<template #icon>
 				<IconAccountGroupOutline :size="20" />
@@ -17,7 +17,7 @@
 		<NcAvatar
 			v-else
 			:user="member.userId"
-			:display-name="member.displayName"
+			:displayName="member.displayName"
 			:size="32" />
 		<div class="member-info">
 			<span class="member-name">{{ member.displayName }}</span>
