@@ -28,6 +28,7 @@
 	<IconTranslateVariant v-else-if="icon === 'icon-spoken-lang'" :size="20" />
 	<IconAccountBoxMultiple v-else-if="icon === 'icon-related-contact'" :size="20" />
 	<IconAccountSwitch v-else-if="icon === 'icon-relation-to-you'" :size="20" />
+	<IconSlashForward v-else-if="icon === 'icon-pronouns'" :size="20" />
 </template>
 
 <script>
@@ -50,6 +51,7 @@ import IconMessageReplyText from 'vue-material-design-icons/MessageReplyTextOutl
 import IconPencil from 'vue-material-design-icons/PencilOutline.vue'
 import IconPhone from 'vue-material-design-icons/PhoneOutline.vue'
 import IconPlus from 'vue-material-design-icons/Plus.vue'
+import IconSlashForward from 'vue-material-design-icons/SlashForward.vue'
 import IconText from 'vue-material-design-icons/Text.vue'
 import IconTranslateVariant from 'vue-material-design-icons/TranslateVariant.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
@@ -82,6 +84,7 @@ export default {
 		IconTranslateVariant,
 		IconAccountBoxMultiple,
 		IconAccountSwitch,
+		IconSlashForward,
 	},
 
 	props: {

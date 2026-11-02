@@ -52,6 +52,23 @@ function setTypeMultiValueSeparateDQuote() {
 }
 
 /**
+ * Registers RFC 9554 PRONOUNS as a text property so its value is escaped
+ * and unescaped, which ical.js does not do for unknown properties.
+ *
+ * @return {boolean} Whether or not the design set has been altered.
+ */
+function addPronounsProperty() {
+	if (ICAL.design.vcard.property.pronouns && ICAL.design.vcard3.property.pronouns) {
+		return false
+	}
+
+	ICAL.design.vcard.property.pronouns = { defaultType: 'text' }
+	ICAL.design.vcard3.property.pronouns = { defaultType: 'text' }
+
+	return true
+}
+
+/**
 /**
  * Check whether the ical.js design sets need updating (and if so, do it)
  *
@@ -62,6 +79,7 @@ export default function(vCard) {
 	let madeChanges = false
 
 	madeChanges |= setTypeMultiValueSeparateDQuote()
+	madeChanges |= addPronounsProperty()
 	madeChanges |= addGroupedProperties(vCard)
 
 	return madeChanges
