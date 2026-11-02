@@ -241,7 +241,6 @@ import {
 	NcCounterBubble,
 } from '@nextcloud/vue'
 import { mapStores } from 'pinia'
-import naturalCompare from 'string-natural-compare'
 import IconUserFilled from 'vue-material-design-icons/Account.vue'
 import IconContactFilled from 'vue-material-design-icons/AccountMultiple.vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
@@ -264,6 +263,7 @@ import isOcmInvitesEnabled from '../../services/isOcmInvitesEnabled.js'
 import isTeamManagementEnabled from '../../services/isTeamManagementEnabled.js'
 import useOcmInvitesStore from '../../store/ocminvites.ts'
 import useUserGroupStore from '../../store/userGroup.ts'
+import { sortStrings } from '../../utils/strings.js'
 
 export default {
 	name: 'RootNavigation',
@@ -422,7 +422,7 @@ export default {
 					toString: () => group.name,
 				}
 			})
-			menu.sort((a, b) => naturalCompare(a.toString(), b.toString(), { caseInsensitive: true }))
+			menu.sort((a, b) => sortStrings(a, b))
 
 			// Find the Recently Contacted group, delete it from array
 			const recentlyIndex = menu.findIndex((group) => group.name === GROUP_RECENTLY_CONTACTED)
@@ -462,7 +462,7 @@ export default {
 				}
 
 				// Else we sort by name
-				return naturalCompare(a.toString(), b.toString(), { caseInsensitive: true })
+				return sortStrings(a, b)
 			})
 
 			return menu
