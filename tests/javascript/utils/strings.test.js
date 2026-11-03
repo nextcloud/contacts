@@ -8,12 +8,12 @@ import { sortStrings } from '../../../src/utils/strings'
 /**
  * Load sortStrings with the collator built for the given locale
  *
- * @param {string} locale the user locale returned by getLocale()
+ * @param {string} locale the user locale returned by getCanonicalLocale()
  * @return {Function} sortStrings bound to that locale
  */
 function loadSortStrings(locale) {
 	jest.resetModules()
-	jest.doMock('@nextcloud/l10n', () => ({ getLocale: () => locale }))
+	jest.doMock('@nextcloud/l10n', () => ({ getCanonicalLocale: () => locale }))
 	return require('../../../src/utils/strings').sortStrings
 }
 
@@ -31,6 +31,14 @@ describe('utils/strings test suite', () => {
 	it('natural sorting', () => {
 		const test = sortStrings('Group 9', 'Group 10')
 		expect(test < 0).toEqual(true)
+	})
+
+	it('builds the collator from a locale with a region', () => {
+		const sort = loadSortStrings('en-GB')
+
+		const sorted = ['Zebra', 'Group 10', 'Group 9'].sort(sort)
+
+		expect(sorted).toEqual(['Group 9', 'Group 10', 'Zebra'])
 	})
 
 	it('sorts Å, Ä, Ö after Z in Swedish', () => {
