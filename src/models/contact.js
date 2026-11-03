@@ -208,7 +208,13 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get rev() {
-		return this.vCard.getFirstPropertyValue('rev')
+		try {
+			const rev = this.vCard.getFirstPropertyValue('rev')
+			return typeof rev?.toUnixTime === 'function' ? rev : null
+		} catch {
+			// a malformed REV must not prevent the contact from being displayed
+			return null
+		}
 	}
 
 	/**
