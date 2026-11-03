@@ -1,3 +1,13 @@
+## [8.9.5](https://github.com/nextcloud/contacts/compare/v8.9.4...v8.9.5) (2026-11-03)
+
+
+### Bug Fixes
+
+* get locale in canonical format ([92758d9](https://github.com/nextcloud/contacts/commit/92758d968fd0b4ef0afb42633564dbd377f5fc06))
+* use canonical locale in org chart and fix l10n test mocks ([1d11a45](https://github.com/nextcloud/contacts/commit/1d11a45225262a6247ebb30fd6540859dcbdf80a))
+
+
+
 ## [8.9.4](https://github.com/nextcloud/contacts/compare/v8.9.3...v8.9.4) (2026-11-03)
 
 
