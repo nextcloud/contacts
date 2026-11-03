@@ -1,5 +1,30 @@
 # Changelog
 All notable changes to this project will be documented in this file.
+# 8.10.0 (unreleased)
+
+### Features
+
+* **contacts** Support pronouns property
+* **contacts** Move recently contacted contact to writable address book and open in edit mode
+* **federation** Use Nextcloud default mail template for OCM invitation mail
+
+### Bug Fixes
+
+* **sorting** Sort groups and circles considering diacritics
+* **federation** Tidy OCM invitation mail layout
+* **navigation** Remove recently contacted from address book navigation
+* **teams** Hide member actions the user is not allowed to perform
+* **teams** Open member picker instead of creating a contact in team view
+* **groups** Normalize contact group creation with address book creation
+* **groups** Wrap contact group in editing
+* **import** Recover from invalid "rev" in imported vCard
+* **address book** Don't allow clearing address book selection
+* **urls** Enforce URL format
+* **settings** Fix switches in admin settings panel
+* **contacts** Autofocus name field on new contact
+* **navigation** Normalize padding for navigation sidebar
+* **deps** Bump minimum PHP platform to 8.2
+
 # 8.9.0 (unreleased)
 
 ### Features 
