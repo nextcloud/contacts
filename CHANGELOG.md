@@ -1,3 +1,20 @@
+## [8.9.4](https://github.com/nextcloud/contacts/compare/v8.9.3...v8.9.4) (2026-11-03)
+
+
+### Bug Fixes
+
+* **deps:** Fix npm audit ([9d57698](https://github.com/nextcloud/contacts/commit/9d57698e5f538384d009592add3ddee910248514))
+* **deps:** pin eslint-plugin-vue to 10.6.2 for eslint-config compatibility ([7c6c720](https://github.com/nextcloud/contacts/commit/7c6c7208aa525ccd9c1f9201333b01523c9ebf18))
+* **l10n:** Update translations from Transifex ([5208a4d](https://github.com/nextcloud/contacts/commit/5208a4daedf1d1debd48be05c0a23fb8b0a948ca))
+* **l10n:** Update translations from Transifex ([1c1f14b](https://github.com/nextcloud/contacts/commit/1c1f14bb97f546ad0e6202054f8ecd82764fd983))
+* **l10n:** Update translations from Transifex ([94607df](https://github.com/nextcloud/contacts/commit/94607df701ad67572b16ee6c29f2ece3bc6c6a6d))
+* **l10n:** Update translations from Transifex ([1a7bd34](https://github.com/nextcloud/contacts/commit/1a7bd34975eec375544b64275eeef30cc63f3a08))
+* **l10n:** Update translations from Transifex ([93f2c94](https://github.com/nextcloud/contacts/commit/93f2c9409f49adfe1c72d24e264614851631e3d0))
+* **l10n:** Update translations from Transifex ([49ce476](https://github.com/nextcloud/contacts/commit/49ce47610c827827d500309140ab5440f6bf7f66))
+* sorting groups and circles considering diacritics ([58c6992](https://github.com/nextcloud/contacts/commit/58c6992b7d858d4b8e6e8d2030a1a0c872847c35))
+
+
+
 ## [8.9.3](https://github.com/nextcloud/contacts/compare/v8.9.2...v8.9.3) (2026-10-28)
 
 
