@@ -23,6 +23,7 @@ All notable changes to this project will be documented in this file.
 * **settings** Fix switches in admin settings panel
 * **contacts** Autofocus name field on new contact
 * **navigation** Normalize padding for navigation sidebar
+* **sorting** Use canonical locale for sorting and org chart
 * **deps** Bump minimum PHP platform to 8.2
 
 # 8.9.0 (unreleased)
