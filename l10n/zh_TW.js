@@ -520,6 +520,7 @@ OC.L10N.register(
     "Female" : "女性",
     "Male" : "男性",
     "Unknown" : "不明",
+    "Pronouns" : "代名詞",
     "Time zone" : "時區",
     "Spoken languages" : "會說的語言",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} 個聯絡人讀取失敗"],
