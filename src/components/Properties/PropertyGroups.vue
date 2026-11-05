@@ -7,8 +7,8 @@
 	<div v-if="propModel && showProperty" class="property">
 		<PropertyTitle
 			icon="icon-contacts-dark"
-			:readable-name="t('contacts', 'Contact groups')"
-			:is-read-only="isReadOnly" />
+			:readableName="t('contacts', 'Contact groups')"
+			:isReadOnly="isReadOnly" />
 
 		<div class="property__row">
 			<div class="property__label">
@@ -21,14 +21,13 @@
 					v-if="!isReadOnly"
 					v-model="localValue"
 					:options="groups"
-					:no-wrap="true"
 					:placeholder="t('contacts', 'Add contact in group')"
 					:multiple="true"
-					:keep-open="true"
+					:keepOpen="true"
 					:clearable="true"
-					:deselect-from-dropdown="true"
+					:deselectFromDropdown="true"
 					:taggable="true"
-					tag-placeholder="create"
+					tagPlaceholder="create"
 					@option:deselected="updateValue"
 					@close="updateValue" />
 				<div v-else>
@@ -50,9 +49,9 @@
 
 <script>
 import { NcSelect } from '@nextcloud/vue'
-import naturalCompare from 'string-natural-compare'
 import PropertyTitle from './PropertyTitle.vue'
 import Contact from '../../models/contact.js'
+import { sortStrings } from '../../utils/strings.js'
 
 export default {
 	name: 'PropertyGroups',
@@ -102,7 +101,7 @@ export default {
 
 		groups() {
 			return this.$store.getters.getGroups.slice(0).map((group) => group.name)
-				.sort((a, b) => naturalCompare(a, b, { caseInsensitive: true }))
+				.sort((a, b) => sortStrings(a, b))
 		},
 
 		/**

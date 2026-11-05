@@ -13,7 +13,7 @@
 
 This app only support vCard **3.0** and **4.0**. This app is compatible with the same browsers as server **except IE**!
 
-![](https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png)
+![](https://raw.githubusercontent.com/nextcloud/contacts/main/screenshots/contacts-8.10.png)
 
 ## :blue_heart: :tada: Why is this so awesome?
 
@@ -75,6 +75,15 @@ npm run test
 # run tests continuously after every change
 npm run test:watch
 ```
+
+## App Store screenshots
+The screenshots referenced in `appinfo/info.xml` live in `screenshots/` and are generated with Playwright against a running Nextcloud server with the app enabled. The script recreates a demo user `jane` and logs in as `admin`/`admin` to do so (override with `NC_ADMIN_USER` and `NC_ADMIN_PASSWORD`).
+
+```
+PLAYWRIGHT_BASE_URL=https://nextcloud.local npm run screenshots
+```
+
+Captured files get the major.minor version of `appinfo/info.xml` as suffix (e.g. `contacts-8.10.png`) and the screenshot URLs in `appinfo/info.xml` and this README are pointed at them, so the App Store cache picks up the new images. The `App Store screenshots` workflow regenerates them on release pull requests of a new minor or major version.
 
 ## :v: Code of conduct
 

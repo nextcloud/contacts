@@ -4,11 +4,9 @@
  */
 
 import { showError } from '@nextcloud/dialogs'
-import pLimit from 'p-limit'
 import Contact, { MinimalContactProperties } from '../models/contact.js'
 import client from '../services/cdav.js'
 import logger from '../services/logger.js'
-import parseVcf from '../services/parseVcf.js'
 import { sortAddressbooks } from '../utils/addressbookUtils.js'
 
 const addressbookModel = {
@@ -427,55 +425,6 @@ const actions = {
 	},
 
 	/**
-	 *
-	 * @param {object} context the store mutations
-	 * @param {object} importDetails = { vcf, addressbook }
-	 * @param importDetails.vcf
-	 * @param importDetails.addressbook
-	 */
-	async importContactsIntoAddressbook(context, { vcf, addressbook }) {
-		const contacts = parseVcf(vcf, addressbook)
-		context.commit('changeStage', 'importing')
-
-		// max simultaneous requests
-		const limit = pLimit(3)
-		const requests = []
-
-		// create the array of requests to send
-		contacts.map(async (contact) => {
-			logger.info('Importing contact', { contact })
-
-			// Get vcard string
-			try {
-				const vData = contact.toStringStripQuotes()
-				// push contact to server and use limit
-				requests.push(limit(() => contact.addressbook.dav.createVCard(vData)
-					.then((response) => {
-						// setting the contact dav property
-						contact.dav = response
-
-						// success, update store
-						context.commit('addContact', contact)
-						context.commit('addContactToAddressbook', contact)
-						context.commit('extractGroupsFromContacts', [contact])
-						context.commit('incrementAccepted')
-					})
-					.catch((error) => {
-						// error
-						context.commit('incrementDenied')
-						logger.error(error)
-					})))
-			} catch (e) {
-				context.commit('incrementDenied')
-			}
-		})
-
-		Promise.all(requests).then(() => {
-			context.commit('changeStage', 'done')
-		})
-	},
-
-	/**
 	 * Remove sharee from Addressbook
 	 *
 	 * @param {object} context the store mutations Current context
@@ -558,17 +507,20 @@ const actions = {
 		if (contact.dav) {
 			try {
 				await contact.dav.move(addressbook.dav)
+				// the server assigns a new etag to the moved card
+				await contact.dav.fetchCompleteData(true)
 			} catch (error) {
 				logger.error(error)
 				throw error
 			}
 		}
 		const groups = contact.groups
-		await context.commit('deleteContactFromAddressbook', contact)
-		await context.commit('removeContactFromGroups', contact)
-		await context.commit('updateContactAddressbook', { contact, addressbook })
-		await context.commit('addContactToAddressbook', contact)
-		await context.commit('addContactToGroups', { contact, groupNames: groups })
+		// commit synchronously so no render sees the contact detached from its groups
+		context.commit('deleteContactFromAddressbook', contact)
+		context.commit('removeContactFromGroups', contact)
+		context.commit('updateContactAddressbook', { contact, addressbook })
+		context.commit('addContactToAddressbook', contact)
+		context.commit('addContactToGroups', { contact, groupNames: groups })
 		return contact
 	},
 

@@ -13,19 +13,19 @@
 				class="chart-selection"
 				:disabled="data.length === 1"
 				:options="charts"
-				:allow-empty="false"
+				:allowEmpty="false"
 				:searchable="false"
 				:placeholder="placeholder"
-				input-id="select-chart-input"
+				inputId="select-chart-input"
 				label="label"
-				@update:model-value="chartChanged" />
+				@update:modelValue="chartChanged" />
 		</div>
 		<div ref="svgElementContainer" class="org-chart__container" />
 	</div>
 </template>
 
 <script>
-import { getLocale } from '@nextcloud/l10n'
+import { getCanonicalLocale } from '@nextcloud/l10n'
 import { NcSelect } from '@nextcloud/vue'
 import * as d3 from 'd3'
 import { OrgChart } from 'd3-org-chart'
@@ -65,7 +65,7 @@ export default {
 			}).sort((a, b) => {
 				return a.label.localeCompare(
 					b.label,
-					getLocale().replace('_', '-'),
+					getCanonicalLocale(),
 					{ sensitivity: 'base' },
 				)
 			})

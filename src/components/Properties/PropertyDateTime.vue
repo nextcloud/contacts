@@ -9,11 +9,11 @@
 		<PropertyTitle
 			v-if="isFirstProperty && propModel.icon"
 			:property="property"
-			:is-multiple="isMultiple"
-			:is-read-only="isReadOnly"
+			:isMultiple="isMultiple"
+			:isReadOnly="isReadOnly"
 			:bus="bus"
 			:icon="propModel.icon"
-			:readable-name="propModel.readableName" />
+			:readableName="propModel.readableName" />
 
 		<div class="property__row">
 			<div class="property__label">
@@ -26,7 +26,7 @@
 					:placeholder="t('contacts', 'Select type')"
 					:disabled="isReadOnly"
 					label="name"
-					@update:model-value="updateType" />
+					@update:modelValue="updateType" />
 
 				<!-- if we do not support any type on our model but one is set anyway -->
 				<span v-else-if="selectType">
@@ -43,19 +43,19 @@
 				<!-- Real input where the picker shows -->
 				<DateTimePicker
 					v-if="!isReadOnly"
-					:model-value="datePickerValue"
-					:minute-step="10"
+					:modelValue="datePickerValue"
+					:minuteStep="10"
 					:class="{ 'omit-year': omitYear }"
 					:clearable="false"
 					:type="inputType"
 					:format="dateFormat"
 					:aria-label="propModel.readableName"
-					@update:model-value="debounceUpdateValue" />
+					@update:modelValue="debounceUpdateValue" />
 
 				<NcTextField
 					v-else
 					:readonly="true"
-					:model-value="formatDateTime()"
+					:modelValue="formatDateTime()"
 					:label="propModel.readableName" />
 			</div>
 
@@ -64,7 +64,7 @@
 				<PropertyActions
 					v-if="!isReadOnly"
 					:actions="actions"
-					:property-component="this"
+					:propertyComponent="this"
 					@delete="deleteProperty" />
 			</div>
 		</div>

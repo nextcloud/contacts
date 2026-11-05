@@ -22,7 +22,7 @@
 			</dd>
 		</dl>
 		<div class="actions">
-			<slot name="accept-invite-actions" />
+			<slot name="acceptInviteActions" />
 		</div>
 	</div>
 </template>

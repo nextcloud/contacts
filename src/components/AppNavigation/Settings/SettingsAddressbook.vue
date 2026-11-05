@@ -36,7 +36,7 @@
 			</NcButton>
 
 			<!-- popovermenu -->
-			<Actions class="addressbook__menu" menu-align="right">
+			<Actions class="addressbook__menu" menuAlign="right">
 				<!-- copy addressbook link -->
 				<ActionLink
 					:href="addressbook.url"
@@ -57,8 +57,8 @@
 					<!-- enable/disable addressbook -->
 					<ActionCheckbox
 						v-if="!toggleEnabledLoading"
-						:model-value="enabled"
-						@update:model-value="toggleAddressbookEnabled">
+						:modelValue="enabled"
+						@update:modelValue="toggleAddressbookEnabled">
 						{{ t('contacts', 'Show') }}
 					</ActionCheckbox>
 					<ActionButton v-else>

@@ -18,7 +18,7 @@
 		<NcSelect
 			v-if="mode === 'group'"
 			v-model="selectedGroups"
-			:input-label="t('contacts', 'Select groups')"
+			:inputLabel="t('contacts', 'Select groups')"
 			:multiple="true"
 			:options="groupOptions" />
 
@@ -26,7 +26,7 @@
 		<NcSelect
 			v-if="mode === 'move'"
 			v-model="selectedAddressesBook"
-			:input-label="t('contacts', 'Select addressbook')"
+			:inputLabel="t('contacts', 'Select addressbook')"
 			:options="moveTargetOptions" />
 
 		<h6>{{ t('contacts', 'Selected contacts') }}</h6>
@@ -44,10 +44,10 @@
 				:class="{ disabled: !contact.addressbook.canDeleteCard }"
 				:index="index"
 				:source="contact"
-				:reload-bus="reloadBus"
+				:reloadBus="reloadBus"
 				:title="listItemTitle(contact)"
-				:is-static="true"
-				:show-addressbook="true" />
+				:isStatic="true"
+				:showAddressbook="true" />
 		</ul>
 
 		<NcButton

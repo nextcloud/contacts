@@ -7,8 +7,8 @@
 	<div class="member-grid-item">
 		<NcAvatar
 			v-if="isTeam"
-			:display-name="member.displayName"
-			:is-no-user="true"
+			:displayName="member.displayName"
+			:isNoUser="true"
 			:size="32">
 			<template #icon>
 				<IconAccountGroupOutline :size="20" />
@@ -17,7 +17,7 @@
 		<NcAvatar
 			v-else
 			:user="member.userId"
-			:display-name="member.displayName"
+			:displayName="member.displayName"
 			:size="32" />
 		<div class="member-info">
 			<span class="member-name">{{ member.displayName }}</span>
@@ -174,8 +174,8 @@ export default {
 				return levels
 			}
 
-			// From MODERATOR, you can set ADMIN
-			if (this.currentUserLevel >= MemberLevels.MODERATOR && this.member.level !== MemberLevels.ADMIN) {
+			// From ADMIN, you can set ADMIN
+			if (this.currentUserLevel >= MemberLevels.ADMIN && this.member.level !== MemberLevels.ADMIN) {
 				levels.push(MemberLevels.ADMIN)
 			}
 
@@ -203,7 +203,7 @@ export default {
 		 * @return {boolean}
 		 */
 		isCurrentUser() {
-			return this.member.id === this.currentUserId
+			return this.member.singleId === this.currentUserId
 		},
 
 		/**
@@ -233,9 +233,11 @@ export default {
 		 * @return {boolean}
 		 */
 		canDelete() {
+			// Removing members requires at least moderator, even if members can invite
 			return this.circle.canManageMembers
-				&& this.member.level <= this.currentUserLevel
+				&& this.member.level < this.currentUserLevel
 				&& !this.isCurrentUser
+				&& this.member.level !== MemberLevels.OWNER
 		},
 
 		/**

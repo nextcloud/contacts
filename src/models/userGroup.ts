@@ -3,8 +3,6 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { ROUTE_USER_GROUP } from './constants.ts'
-
 export default class UserGroup {
 	private _data: object
 	private _members: string[]
@@ -61,7 +59,7 @@ export default class UserGroup {
 	get router(): object {
 		return {
 			name: 'user_group',
-			params: { selectedUserGroup: this.id, selectedGroup: ROUTE_USER_GROUP },
+			params: { selectedUserGroup: this.id },
 		}
 	}
 

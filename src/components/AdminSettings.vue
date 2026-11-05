@@ -10,7 +10,7 @@
 				id="allow-social-sync"
 				v-model="allowSocialSync"
 				type="switch"
-				@update:model-value="updateSocialSetting('allowSocialSync')">
+				@update:modelValue="updateSocialSetting('allowSocialSync')">
 				{{ t('contacts', 'Allow updating avatars from social media') }}
 			</NcCheckboxRadioSwitch>
 		</p>
@@ -21,7 +21,7 @@
 				id="ocm-invites-optional-mail"
 				v-model="ocmInvitesConfig.optionalMail"
 				type="switch"
-				@update:model-value="updateOcmSetting(ocmInviteConfigKeys.optionalMail, ocmInvitesConfig.optionalMail)">
+				@update:modelValue="updateOcmSetting(ocmInviteConfigKeys.optionalMail, ocmInvitesConfig.optionalMail)">
 				{{ t('contacts', 'Allow creating invites without an email address (link-only)') }}
 			</NcCheckboxRadioSwitch>
 		</p>
@@ -30,7 +30,7 @@
 				id="ocm-invites-encoded-copy-button"
 				v-model="ocmInvitesConfig.encodedCopyButton"
 				type="switch"
-				@update:model-value="updateOcmSetting(ocmInviteConfigKeys.encodedCopyButton, ocmInvitesConfig.encodedCopyButton)">
+				@update:modelValue="updateOcmSetting(ocmInviteConfigKeys.encodedCopyButton, ocmInvitesConfig.encodedCopyButton)">
 				{{ t('contacts', 'Show the "Copy encoded invite" button on invite details') }}
 			</NcCheckboxRadioSwitch>
 		</p>

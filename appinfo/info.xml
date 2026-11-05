@@ -16,7 +16,7 @@
 * 🙈 **We’re not reinventing the wheel!** Based on the great and open SabreDAV library.
 	</description>
 
-	<version>8.10.0-dev.0</version>
+	<version>8.11.0-dev.0</version>
 	<licence>AGPL-3.0-or-later</licence>
 
 	<author mail="hamza221@users.noreply.github.com">Hamza Mahjoubi</author>
@@ -40,7 +40,8 @@
 	<website>https://github.com/nextcloud/contacts#readme</website>
 	<bugs>https://github.com/nextcloud/contacts/issues</bugs>
 	<repository type="git">https://github.com/nextcloud/contacts.git</repository>
-	<screenshot>https://raw.githubusercontent.com/nextcloud/screenshots/master/apps/Contacts/contacts.png</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/contacts/main/screenshots/contacts-8.10.png</screenshot>
+	<screenshot>https://raw.githubusercontent.com/nextcloud/contacts/main/screenshots/organization-chart-8.10.png</screenshot>
 
 	<dependencies>
 		<php min-version="8.2" max-version="8.5" />

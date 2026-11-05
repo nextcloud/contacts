@@ -59,7 +59,6 @@ jest.mock('../../../src/components/EntityPicker/ContactsPicker.vue', () => ({ de
 jest.mock('../../../src/components/Ocm/OcmAcceptForm.vue', () => ({ default: {} }))
 jest.mock('../../../src/components/Ocm/OcmInviteAccept.vue', () => ({ default: {} }))
 jest.mock('../../../src/components/Ocm/OcmInviteForm.vue', () => ({ default: {} }))
-jest.mock('../../../src/views/Processing/ImportView.vue', () => ({ default: {} }))
 jest.mock('../../../src/mixins/IsMobileMixin.ts', () => ({ default: {} }))
 jest.mock('../../../src/mixins/RouterMixin.js', () => ({ default: {} }))
 jest.mock('../../../src/models/constants.ts', () => ({

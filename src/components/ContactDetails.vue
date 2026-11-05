@@ -24,9 +24,9 @@
 				<template #avatar>
 					<ContactAvatar
 						:contact="contact"
-						:is-read-only="isReadOnly"
-						:reload-bus="reloadBus"
-						@update-local-contact="updateLocalContact" />
+						:isReadOnly="isReadOnly"
+						:reloadBus="reloadBus"
+						@updateLocalContact="updateLocalContact" />
 				</template>
 
 				<!-- fullname -->
@@ -75,7 +75,7 @@
 					</template>
 				</template>
 
-				<template #quick-actions>
+				<template #quickActions>
 					<div v-if="!editMode && !loadingData" class="quick-actions">
 						<NcButton
 							v-if="isTalkEnabled && isInSystemAddressBook"
@@ -125,6 +125,16 @@
 								{{ phoneNumber }}
 							</ActionLink>
 						</Actions>
+
+						<NcButton
+							v-if="isRecentlyContacted && copyableAddressbooksOptions.length > 0"
+							variant="primary"
+							@click="addToAddressbook">
+							<template #icon>
+								<IconPlus :size="20" />
+							</template>
+							{{ t('contacts', 'Add to address book') }}
+						</NcButton>
 					</div>
 				</template>
 
@@ -188,7 +198,7 @@
 					</template>
 				</template>
 				<!-- menu actions -->
-				<template #actions-menu>
+				<template #actionsMenu>
 					<ActionLink
 						:href="contact.url"
 						:download="`${contact.displayName}.vcf`">
@@ -201,14 +211,14 @@
 					<ActionButton
 						v-if="isReadOnly && addressbooksOptions.length > 0"
 						ref="cloneAction"
-						:close-after-click="true"
+						:closeAfterClick="true"
 						@click="cloneContact">
 						<template #icon>
 							<IconCopy :size="20" />
 						</template>
 						{{ t('contacts', 'Clone contact') }}
 					</ActionButton>
-					<ActionButton :close-after-click="true" @click="showQRcode">
+					<ActionButton :closeAfterClick="true" @click="showQRcode">
 						<template #icon>
 							<IconQr :size="20" />
 						</template>
@@ -216,7 +226,7 @@
 					</ActionButton>
 					<ActionButton
 						v-if="enableToggleBirthdayExclusion"
-						:close-after-click="true"
+						:closeAfterClick="true"
 						@click="toggleBirthdayExclusionForContact">
 						<template #icon>
 							<CakeIcon :size="20" />
@@ -248,11 +258,11 @@
 					width="400">
 			</NcDialog>
 
-			<!-- pick addressbook when cloning contact -->
+			<!-- pick addressbook when cloning contact or adding a recently contacted one -->
 			<NcDialog
 				v-if="showPickAddressbookModal"
 				id="pick-addressbook-modal"
-				:name="t('contacts', 'Clone contact')"
+				:name="pickAddressbookModalLabel"
 				:buttons="buttonsPickAddressbookModal"
 				@close="closePickAddressbookModal">
 				<NcSelect
@@ -279,13 +289,13 @@
 						<ContactDetailsProperty
 							v-for="(property, index) in properties"
 							:key="`${index}-${contact.key}-${property.name}`"
-							:is-first-property="index === 0"
-							:is-last-property="index === properties.length - 1"
+							:isFirstProperty="index === 0"
+							:isLastProperty="index === properties.length - 1"
 							:property="property"
 							:contact="contact"
-							:local-contact="localContact"
+							:localContact="localContact"
 							:bus="bus"
-							:is-read-only="isReadOnly" />
+							:isReadOnly="isReadOnly" />
 					</div>
 				</section>
 
@@ -294,71 +304,72 @@
 					we are hijacking this... (this is supposed to be used with a ICAL.property, but to avoid code
 					duplication, we created a fake propModel and property with our own options here) -->
 				<PropertySelect
-					:prop-model="addressbookModel"
+					:propModel="addressbookModel"
 					:options="addressbooksOptions"
 					:value="addressbook"
-					:is-first-property="true"
-					:is-last-property="true"
+					:isFirstProperty="true"
+					:isLastProperty="true"
 					:property="{}"
-					:hide-actions="true"
-					:is-read-only="isReadOnly"
+					:hideActions="true"
+					:clearable="false"
+					:isReadOnly="isReadOnly"
 					class="property--addressbooks property--last"
 					@update:value="updateAddressbook" />
 
 				<!-- Groups always visible -->
 				<PropertyGroups
 					:value="localContact.groups"
-					:prop-model="groupsModel"
+					:propModel="groupsModel"
 					:contact="contact"
-					:is-read-only="isReadOnly"
+					:isReadOnly="isReadOnly"
 					class="property--groups property--last"
 					@update:value="updateGroups" />
 			</div>
 			<div v-if="!editMode" class="related-resources">
 				<NcRelatedResourcesPanel
 					v-if="!filesPanelHasError"
-					provider-id="account"
-					resource-type="files"
+					providerId="account"
+					resourceType="files"
 					:description="desc"
 					:limit="5"
 					:header="t('contacts', 'Media shares with you')"
-					:item-id="contact.uid"
+					:itemId="contact.uid"
 					:primary="true"
-					@has-resources="value => hasFilesResources = value"
-					@has-error="value => filesPanelHasError = value" />
+					@hasResources="value => hasFilesResources = value"
+					@hasError="value => filesPanelHasError = value" />
 				<NcRelatedResourcesPanel
 					v-if="!talkPanelHasError"
-					provider-id="account"
-					resource-type="talk"
+					providerId="account"
+					resourceType="talk"
 					:description="desc"
 					:limit="5"
 					:header="t('contacts', 'Talk conversations with you')"
-					:item-id="contact.uid"
+					:itemId="contact.uid"
 					:primary="true"
-					@has-resources="value => hasTalkResources = value"
-					@has-error="value => talkPanelHasError = value" />
+					@hasResources="value => hasTalkResources = value"
+					@hasError="value => talkPanelHasError = value" />
 				<NcRelatedResourcesPanel
 					v-if="!calendarPanelHasError"
-					provider-id="account"
-					resource-type="calendar"
+					providerId="account"
+					resourceType="calendar"
 					:description="desc"
 					:limit="5"
 					:header="t('contacts', 'Calendar events with you')"
-					:item-id="contact.uid"
+					:itemId="contact.uid"
 					:primary="true"
-					@has-resources="value => hasCalendarResources = value"
-					@has-error="value => calendarPanelHasError = value" />
+					@hasResources="value => hasCalendarResources = value"
+					@hasError="value => calendarPanelHasError = value" />
 				<NcRelatedResourcesPanel
 					v-if="!deckPanelHasError"
-					provider-id="account"
-					resource-type="deck"
+					providerId="account"
+					resourceType="deck"
 					:description="desc"
 					:limit="5"
 					:header="t('contacts', 'Deck cards with you')"
-					:item-id="contact.uid"
+					:itemId="contact.uid"
 					:primary="true"
-					@has-resources="value => hasDeckResources = value"
-					@has-error="value => deckPanelHasError = value" />
+					@hasResources="value => hasDeckResources = value"
+					@hasError="value => deckPanelHasError = value" />
 				<NcEmptyContent
 					v-if="!hasRelatedResources && !loadingData"
 					:name="t('contacts', 'No shared items with this contact')">
@@ -415,6 +426,7 @@ import FolderMultipleImage from 'vue-material-design-icons/FolderMultipleImage.v
 import IconMessage from 'vue-material-design-icons/MessageProcessingOutline.vue'
 import PencilIcon from 'vue-material-design-icons/PencilOutline.vue'
 import IconCall from 'vue-material-design-icons/PhoneOutline.vue'
+import IconPlus from 'vue-material-design-icons/Plus.vue'
 import IconQr from 'vue-material-design-icons/Qrcode.vue'
 import IconDelete from 'vue-material-design-icons/TrashCanOutline.vue'
 import IconDownload from 'vue-material-design-icons/TrayArrowDown.vue'
@@ -427,6 +439,7 @@ import PropertyRev from './Properties/PropertyRev.vue'
 import PropertySelect from './Properties/PropertySelect.vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import RouterMixin from '../mixins/RouterMixin.js'
+import { ADDRESSBOOK_RECENTLY_CONTACTED, GROUP_ALL_CONTACTS } from '../models/constants.ts'
 import rfcProps from '../models/rfcProps.js'
 import isTalkEnabled from '../services/isTalkEnabled.js'
 import logger from '../services/logger.js'
@@ -455,6 +468,7 @@ export default defineComponent({
 		IconAccount,
 		IconDownload,
 		IconDelete,
+		IconPlus,
 		IconQr,
 		CakeIcon,
 		IconCopy,
@@ -516,6 +530,7 @@ export default defineComponent({
 			showPickAddressbookModal: false,
 			pickedAddressbook: null,
 			editMode: false,
+			editModeContactKey: null,
 			newGroupsValue: [],
 			newAddressBook: null,
 			contactDetailsSelector: '.contact-details',
@@ -533,22 +548,10 @@ export default defineComponent({
 			deckPanelHasError: false,
 			filesPanelHasError: false,
 			talkPanelHasError: false,
+			addingToAddressbook: false,
 			calendarPanelHasError: false,
 			sharedState: reactive({ validEmail: true, validUrl: true }),
 			lastUsedAddressBook: undefined,
-
-			buttonsPickAddressbookModal: [
-				{
-					variant: 'tertiary',
-					callback: this.closePickAddressbookModal,
-					label: t('contacts', 'Cancel'),
-				},
-				{
-					variant: 'primary',
-					callback: this.cloneContact,
-					label: t('contacts', 'Clone contact'),
-				},
-			],
 		}
 	},
 
@@ -597,6 +600,31 @@ export default defineComponent({
 		 */
 		canDeleteCard() {
 			return this.contact.addressbook?.canDeleteCard
+		},
+
+		isRecentlyContacted() {
+			return this.contact?.addressbook?.id === ADDRESSBOOK_RECENTLY_CONTACTED
+		},
+
+		pickAddressbookModalLabel() {
+			return this.addingToAddressbook
+				? t('contacts', 'Add to address book')
+				: t('contacts', 'Clone contact')
+		},
+
+		buttonsPickAddressbookModal() {
+			return [
+				{
+					variant: 'tertiary',
+					callback: this.closePickAddressbookModal,
+					label: t('contacts', 'Cancel'),
+				},
+				{
+					variant: 'primary',
+					callback: this.addingToAddressbook ? this.addToAddressbook : this.cloneContact,
+					label: this.pickAddressbookModalLabel,
+				},
+			]
 		},
 
 		/**
@@ -859,6 +887,12 @@ export default defineComponent({
 				}
 			}
 		},
+
+		contactKey(key) {
+			if (key !== this.editModeContactKey) {
+				this.editModeContactKey = null
+			}
+		},
 	},
 
 	beforeMount() {
@@ -886,6 +920,41 @@ export default defineComponent({
 		 */
 		focusDetails() {
 			this.$refs.detailsRoot?.$el?.focus()
+		},
+
+		/**
+		 * Move a recently contacted contact to a writable addressbook
+		 * and open it in edit mode
+		 */
+		async addToAddressbook() {
+			const addressbookId = this.pickedAddressbook?.id
+				?? (this.copyableAddressbooksOptions.length === 1 ? this.copyableAddressbooksOptions[0].id : null)
+			const addressbook = this.addressbooks.find((search) => search.id === addressbookId)
+			if (!addressbook) {
+				this.addingToAddressbook = true
+				this.showPickAddressbookModal = true
+				return false
+			}
+
+			this.loadingUpdate = true
+			try {
+				const contact = await this.$store.dispatch('moveContactToAddressbook', {
+					contact: this.contact,
+					addressbook,
+				})
+				this.editModeContactKey = contact.key
+				this.closePickAddressbookModal()
+				await this.$router.push({
+					name: 'contact',
+					params: { selectedGroup: GROUP_ALL_CONTACTS, selectedContact: contact.key },
+				})
+				await this.selectContact(contact.key)
+			} catch (error) {
+				logger.error(error)
+				showError(t('contacts', 'An error occurred while trying to move the contact'))
+			} finally {
+				this.loadingUpdate = false
+			}
 		},
 
 		updateGroups(value) {
@@ -994,6 +1063,11 @@ export default defineComponent({
 					// enable edit mode by default when creating a new contact
 					this.editMode = true
 				}
+			}
+
+			// the store can trigger concurrent selections, keep a requested edit mode
+			if (key === this.editModeContactKey) {
+				this.editMode = true
 			}
 
 			this.loadingData = false
@@ -1159,6 +1233,7 @@ export default defineComponent({
 		closePickAddressbookModal() {
 			this.showPickAddressbookModal = false
 			this.pickedAddressbook = null
+			this.addingToAddressbook = false
 		},
 
 		/**
@@ -1182,6 +1257,7 @@ export default defineComponent({
 		 * Save the contact. This handler is triggered by the save button.
 		 */
 		async onSave() {
+			this.editModeContactKey = null
 			try {
 				this.localContact.groups = [...this.newGroupsValue]
 				await this.$store.dispatch('updateContactGroups', {

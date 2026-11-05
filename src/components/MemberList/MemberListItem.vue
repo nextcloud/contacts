@@ -10,10 +10,10 @@
 		class="members-list-item">
 		<template #icon>
 			<NcAvatar
-				disable-menu
+				disableMenu
 				:size="avatarSize"
-				:display-name="source.displayName"
-				:is-no-user="!source.isUser" />
+				:displayName="source.displayName"
+				:isNoUser="!source.isUser" />
 		</template>
 
 		<!-- Level -->
@@ -383,6 +383,6 @@ export default {
 .members-list-item {
 	user-select: none;
 	box-sizing: border-box;
-	page-break-inside: avoid;
+	break-inside: avoid;
 }
 </style>

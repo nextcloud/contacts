@@ -3,7 +3,7 @@
 	"config": {
 		"optimize-autoloader": true,
 		"platform": {
-			"php": "8.1"
+			"php": "8.2"
 		},
 		"autoloader-suffix": "Contacts",
 		"allow-plugins": {
@@ -30,7 +30,7 @@
 		"psalm": "psalm"
 	},
 	"require": {
-		"php": ">=8.1 <=8.4"
+		"php": ">=8.2 <=8.4"
 	},
 	"require-dev": {
 		"nextcloud/coding-standard": "^1.5.0",

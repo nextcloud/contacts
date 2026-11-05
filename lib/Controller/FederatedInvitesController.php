@@ -755,9 +755,11 @@ class FederatedInvitesController extends Controller {
 			]
 		);
 		$email->setFrom([Util::getDefaultEmailAddress($instanceName) => $senderName]);
-		$subjectPrefix = $isSenderCopy ? '[Copy] ' : '';
-		$subject = $this->il10->t($subjectPrefix . '%1$s invites you to exchange contact information.', [$initiatorDisplayName]);
-		$email->setSubject($subject);
+
+		$subject = $this->il10->t('%1$s invites you to exchange contact information.', [$initiatorDisplayName]);
+		if ($isSenderCopy) {
+			$subject = '[' . $this->il10->t('Copy') . '] ' . $subject;
+		}
 
 		$wayfEndpoint = $this->wayfProvider->getWayfEndpoint();
 		if (empty($wayfEndpoint)) {
@@ -767,40 +769,50 @@ class FederatedInvitesController extends Controller {
 		$inviteLink = $this->buildWayfInviteLink($wayfEndpoint, $token, $senderProvider);
 		$encoded = base64_encode("$token@$senderProvider");
 
-		$initiatorDisplayNameH = htmlspecialchars($initiatorDisplayName, ENT_QUOTES, 'UTF-8');
-		$inviteLinkH = htmlspecialchars($inviteLink, ENT_QUOTES, 'UTF-8');
-		$tokenSenderH = htmlspecialchars("$token@$senderProvider", ENT_QUOTES, 'UTF-8');
-		$encodedH = htmlspecialchars($encoded, ENT_QUOTES, 'UTF-8');
-		$messageH = nl2br(htmlspecialchars($message, ENT_QUOTES, 'UTF-8'), false);
+		$emailTemplate = $this->mailer->createEMailTemplate('contacts.FederatedInvite', [
+			'initiatorDisplayName' => $initiatorDisplayName,
+			'inviteLink' => $inviteLink,
+			'message' => $message,
+		]);
 
-		$header = $isSenderCopy
-			? $this->il10->t('This is a copy of the invitation you\'ve sent to %1$s', [htmlspecialchars($recipientEmail, ENT_QUOTES, 'UTF-8')])
-			: '';
-		$greeting = $this->il10->t('Hi there,', []);
-		$explanationLine1 = $this->il10->t('%1$s invites you to exchange cloud accounts and contact information.', [$initiatorDisplayNameH]);
-		$explanationLine2 = $this->il10->t('This will allow you to share data with each other.', []);
-		$htmlHeader = $header === '' ? $header : "$header<br><hr><br>";
-		$htmlInvitation = "$htmlHeader$greeting<br><br>$explanationLine1<br>$explanationLine2";
-		$htmlPersonalMessage = trim($message) === '' ? '' : "<br>---<br>$messageH<br>---<br>";
+		$emailTemplate->setSubject($subject);
+		$emailTemplate->addHeader();
+		$emailTemplate->addHeading($this->il10->t('%1$s invites you to exchange contact information.', [$initiatorDisplayName]));
 
-		$inviteLinkNote = $this->il10->t('To accept this invite, click the link below and sign in with your cloud provider:', []);
-		$htmlInviteLink = "<a href=\"$inviteLinkH\">$inviteLinkH</a>";
+		if ($isSenderCopy) {
+			$emailTemplate->addBodyText($this->il10->t('This is a copy of the invitation you\'ve sent to %1$s', [$recipientEmail]));
+		}
 
-		$technicalDetailsNote = $this->il10->t('Invitation details:', []);
-		$technicalDetailsInviteCode = $this->il10->t('Invite code: %1$s', [$tokenSenderH]);
-		$technicalDetailsEncodedInvite = $this->il10->t('Encoded invite: %1$s', [$encodedH]);
-		$htmlTechnicalDetails = "<small>$technicalDetailsNote<br>$technicalDetailsInviteCode<br>$technicalDetailsEncodedInvite</small>";
-		$htmlBody = "$htmlInvitation<br>$htmlPersonalMessage<br>$inviteLinkNote<br>$htmlInviteLink<br><br>$htmlTechnicalDetails";
-		$email->setHtmlBody($htmlBody);
+		$emailTemplate->addBodyText($this->il10->t('This will allow you to share data with each other.'));
 
-		$plainHeader = $header === '' ? $header : "$header\n---------\n\n";
-		$plainInvitation = "$plainHeader$greeting\n\n$explanationLine1\n$explanationLine2";
-		$plainPersonalMessage = trim($message) === '' ? '' : "\n---\n$message\n---\n";
-		$plainInviteLinkNote = $this->il10->t('To accept this invite, use the url below to sign in with your cloud provider:', []);
-		$plainTechnicalDetails = "$technicalDetailsNote\n$technicalDetailsInviteCode\n$technicalDetailsEncodedInvite";
+		if (trim($message) !== '') {
+			$messageLabel = $this->il10->t('Message:');
+			$emailTemplate->addBodyListItem($message, $messageLabel, '', '', '', mb_strlen($messageLabel));
+		}
 
-		$plainBody = "$plainInvitation\n$plainPersonalMessage\n$plainInviteLinkNote\n$inviteLink\n\n$plainTechnicalDetails\n";
-		$email->setPlainBody($plainBody);
+		$emailTemplate->addBodyText($this->il10->t('To accept this invite, click the button below and sign in with your cloud provider:'));
+		$emailTemplate->addBodyButton(
+			$this->il10->t('Accept invitation'),
+			$inviteLink
+		);
+		$emailTemplate->addBodyText(
+			htmlspecialchars($this->il10->t('If the button does not work, copy this link into your browser: %1$s', [$inviteLink]), ENT_QUOTES, 'UTF-8'),
+			false
+		);
+
+		$details = [
+			$this->il10->t('Invitation details:'),
+			$this->il10->t('Invite code: %1$s', ["$token@$senderProvider"]),
+			$this->il10->t('Encoded invite: %1$s', [$encoded]),
+		];
+		$emailTemplate->addBodyText(
+			'<small>' . implode('<br>', array_map(static fn (string $line): string => htmlspecialchars($line, ENT_QUOTES, 'UTF-8'), $details)) . '</small>',
+			implode(PHP_EOL, $details)
+		);
+
+		$emailTemplate->addFooter();
+
+		$email->useTemplate($emailTemplate);
 
 		try {
 			/** @var string[] $failedRecipients */

@@ -15,7 +15,7 @@
 				{ number: multiSelectedContacts.size },
 			)"
 			:buttons="buttons"
-			no-close>
+			noClose>
 			{{ t('contacts', 'Are you sure you want to proceed?') }}
 			<NcNoteCard
 				v-if="readOnlyMultiSelectedCount"
@@ -56,9 +56,9 @@
 				<NcTextField
 					v-model="query"
 					:label="t('contacts', 'Search contacts …')"
-					trailing-button-icon="close"
-					:show-trailing-button="query !== ''"
-					@trailing-button-click="query = ''" />
+					trailingButtonIcon="close"
+					:showTrailingButton="query !== ''"
+					@trailingButtonClick="query = ''" />
 			</div>
 		</div>
 		<transition name="contacts-list__multiselect-header">
@@ -66,7 +66,7 @@
 				<NcButton
 					variant="tertiary"
 					:title="t('contacts', 'Unselect {number}', { number: multiSelectedContacts.size })"
-					:close-after-click="true"
+					:closeAfterClick="true"
 					@click.prevent="unselectAllMultiSelected">
 					<IconSelect :size="16" />
 				</NcButton>
@@ -74,7 +74,7 @@
 					variant="tertiary"
 					:disabled="!canDeleteAnySelected"
 					:title="deleteActionTitle"
-					:close-after-click="true"
+					:closeAfterClick="true"
 					@click.prevent="attemptDeleteAllMultiSelected">
 					<IconDelete :size="16" />
 				</NcButton>
@@ -83,7 +83,7 @@
 					variant="tertiary"
 					:disabled="!canMergeSelected"
 					:title="mergeActionTitle"
-					:close-after-click="true"
+					:closeAfterClick="true"
 					@click.prevent="initiateContactMerging">
 					<IconSetMerge :size="20" />
 				</NcButton>
@@ -92,7 +92,7 @@
 					variant="tertiary"
 					:title="groupActionTitle"
 					:disabled="!canModifyAnySelected"
-					:close-after-click="true"
+					:closeAfterClick="true"
 					@click.prevent="isGrouping = true">
 					<IconAccountMultiple :size="20" />
 				</NcButton>
@@ -100,7 +100,7 @@
 					variant="tertiary"
 					:title="moveActionTitle"
 					:disabled="!canDeleteAnySelected"
-					:close-after-click="true"
+					:closeAfterClick="true"
 					@click.prevent="isMovingAddressbook = true">
 					<IconBookAccount :size="20" />
 				</NcButton>
@@ -116,9 +116,9 @@
 				:key="item.key"
 				:index="index"
 				:source="item"
-				:reload-bus="reloadBus"
-				:on-select-multiple-from-parent="onSelectMultiple"
-				:on-navigate-from-parent="onNavigateContact" />
+				:reloadBus="reloadBus"
+				:onSelectMultipleFromParent="onSelectMultiple"
+				:onNavigateFromParent="onNavigateContact" />
 		</VList>
 	</AppContentList>
 </template>
