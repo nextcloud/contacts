@@ -520,6 +520,7 @@ OC.L10N.register(
     "Female" : "Femme",
     "Male" : "Homme",
     "Unknown" : "Inconnu",
+    "Pronouns" : "Pronoms",
     "Time zone" : "Fuseau horaire",
     "Spoken languages" : "Langues parlées",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Erreur de lecture pour {failed} contact","Erreur de lecture pour {failed} contacts","Erreur de lecture pour {failed} contacts"],

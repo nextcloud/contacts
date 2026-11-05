@@ -520,6 +520,7 @@ OC.L10N.register(
     "Female" : "Naine",
     "Male" : "Mees",
     "Unknown" : "Teadmata",
+    "Pronouns" : "Asesõnad pöördumisel",
     "Time zone" : "Ajavöönd",
     "Spoken languages" : "Keelteoskus",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakti lugemine ei õnnestunud","{failed} kontakti lugemine ei õnnestunud"],

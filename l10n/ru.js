@@ -520,6 +520,7 @@ OC.L10N.register(
     "Female" : "Женщина",
     "Male" : "Мужчина",
     "Unknown" : "Неизвестно",
+    "Pronouns" : "Местоимения",
     "Time zone" : "Часовой пояс",
     "Spoken languages" : "Языки общения",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} контакт не удалось прочесть","{failed} контакта не удалось прочесть","{failed} контактов не удалось прочесть","{failed} контакта не удалось прочесть"],
