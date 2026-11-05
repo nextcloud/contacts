@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import { getLocale } from '@nextcloud/l10n'
+import { getCanonicalLocale } from '@nextcloud/l10n'
 
-const compareFn = Intl.Collator(getLocale(), { numeric: true }).compare
+const compareFn = Intl.Collator(getCanonicalLocale(), { numeric: true }).compare
 
 /**
  * Sort strings accordingly current locale and natural sorting

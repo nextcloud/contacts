@@ -520,6 +520,7 @@ OC.L10N.register(
     "Female" : "Kadın",
     "Male" : "Erkek",
     "Unknown" : "Bilinmiyor",
+    "Pronouns" : "Hitaplar",
     "Time zone" : "Saat dilimi",
     "Spoken languages" : "Konuşulan diller",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kişi okunamadı","{failed} kişi okunamadı"],
