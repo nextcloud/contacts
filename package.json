@@ -101,7 +101,7 @@
     "ts-jest": "^29.4.15",
     "ts-loader": "^9.6.2",
     "typescript": "^5.9.3",
-    "vite": "^7.3.7"
+    "vite": "^8.3.6"
   },
   "engines": {
     "node": "^24.0.0",
