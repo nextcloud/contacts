@@ -10,7 +10,7 @@ jest.mock('../../../src/models/circle.ts', () => ({}))
 jest.mock('../../../src/services/circles.ts', () => ({}))
 
 import MemberGridItem from '../../../src/components/MemberList/MemberGridItem.vue'
-import { CircleConfigs, MemberLevels } from '../../../src/models/constants.ts'
+import { CircleConfigs, MemberLevels, MemberStatus } from '../../../src/models/constants.ts'
 
 const { computed } = MemberGridItem.default || MemberGridItem
 
@@ -76,5 +76,17 @@ describe('MemberGridItem permissions', () => {
 		expect(result.levels).toEqual([MemberLevels.ADMIN, MemberLevels.MODERATOR])
 		expect(result.canDelete).toBe(true)
 		expect(permissions(admin, user('owner', MemberLevels.OWNER)).canDelete).toBe(false)
+	})
+})
+
+describe('MemberGridItem pending approval', () => {
+	const isPendingApproval = (member) => computed.isPendingApproval.call({ member })
+
+	test('join request awaiting moderator approval is pending', () => {
+		expect(isPendingApproval({ level: MemberLevels.NONE, status: MemberStatus.REQUESTING })).toBe(true)
+	})
+
+	test('invited user is not pending approval', () => {
+		expect(isPendingApproval({ level: MemberLevels.NONE, status: MemberStatus.INVITED })).toBe(false)
 	})
 })
