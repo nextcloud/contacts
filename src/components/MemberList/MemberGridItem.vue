@@ -213,7 +213,7 @@ export default {
 		 */
 		isPendingApproval() {
 			return this.member.level === MemberLevels.NONE
-				&& this.member.status === MemberStatus.PENDING
+				&& this.member.status === MemberStatus.REQUESTING
 		},
 
 		/**
