@@ -153,6 +153,22 @@ END:VCARD`, addressbook)
 		expect(keys()).toEqual([valid.key, broken.key])
 	})
 
+	test('a contact without a rev sorts after the dated ones', () => {
+		store.commit('setOrder', 'rev')
+		const undated = contact('Alice')
+		const older = contactWithRev('Bob', '20200101T000000Z')
+		const newer = contactWithRev('Zoe', '20260101T000000Z')
+
+		store.commit('addContact', undated)
+		store.commit('addContact', older)
+		store.commit('addContact', newer)
+		expect(keys()).toEqual([newer.key, older.key, undated.key])
+
+		store.commit('appendContacts', [undated, older, newer])
+		store.commit('sortContacts')
+		expect(keys()).toEqual([newer.key, older.key, undated.key])
+	})
+
 	test('a rev that decodes to a plain string does not break the sort', () => {
 		store.commit('setOrder', 'rev')
 		const text = new Contact(`BEGIN:VCARD

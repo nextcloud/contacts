@@ -3,8 +3,7 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-import ICAL from 'ical.js'
-import logger from '../logger.js'
+import { readRev } from '../../utils/rev.js'
 
 // https://tools.ietf.org/html/rfc6350#section-6.7.4
 
@@ -12,33 +11,11 @@ export default {
 	name: 'invalid REV',
 	silent: true,
 
-	run: (contact) => {
-		try {
-			const hasRev = contact.vCard.getFirstPropertyValue('rev')
-			return !hasRev
-		} catch (error) {
-			return true
-		}
-	},
+	run: (contact) => contact.vCard.hasProperty('rev') && readRev(contact.vCard) === null,
 
+	// an unusable REV is dropped rather than replaced, saving the contact writes a valid one
 	fix: (contact) => {
-		try {
-			// removing old invalid data
-			contact.vCard.removeProperty('rev')
-
-			// creating new value
-			const version = contact.version
-			if (version === '4.0') {
-				contact.vCard.addPropertyWithValue('rev', ICAL.Time.fromJSDate(new Date(), true))
-			}
-			if (version === '3.0') {
-				contact.vCard.addPropertyWithValue('rev', ICAL.VCardTime.fromDateAndOrTimeString(new Date().toISOString(), 'date-time'))
-			}
-
-			return true
-		} catch (error) {
-			logger.error('Error fixing invalid REV:', { error })
-			return false
-		}
+		contact.vCard.removeAllProperties('rev')
+		return true
 	},
 }
