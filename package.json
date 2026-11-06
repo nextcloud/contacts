@@ -63,7 +63,7 @@
     "@nextcloud/vue": "^9.14.1",
     "@vueuse/core": "^14.4.0",
     "b64-to-blob": "^1.2.19",
-    "camelcase": "^9.0.0",
+    "camelcase": "^10.0.0",
     "d3": "^7.9.2",
     "d3-org-chart": "^3.1.1",
     "debounce": "^3.0.0",
