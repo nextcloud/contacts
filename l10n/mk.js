@@ -21,6 +21,8 @@ OC.L10N.register(
     "Omit year" : "Изостави година",
     "Allow updating avatars from social media" : "Дозволи ажурирање на аватарите од социјалните мрежи",
     "External invitations" : "Надворешни покани",
+    "Allow creating invites without an email address (link-only)" : "Овозможи креирање покани без адреса на е-пошта (само преку линк)",
+    "Show the \"Copy encoded invite\" button on invite details" : "Прикажи го копчето „Копирај кодирана покана“ во деталите за поканата",
     "Organization chart" : "Огранизациски графил",
     "There was an error fetching the member list" : "Настана грешка при вчитувањето на листата на членови",
     "Teams" : "Тимови",
