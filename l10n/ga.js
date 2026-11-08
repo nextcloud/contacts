@@ -520,6 +520,7 @@ OC.L10N.register(
     "Female" : "Mná",
     "Male" : "Fireann",
     "Unknown" : "Anaithnid",
+    "Pronouns" : "Forainmneacha",
     "Time zone" : "Crios ama",
     "Spoken languages" : "Teangacha labhartha",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["Theip ar {failed} teagmhálaí a léamh","Theip ar {failed} teagmhálaithe a léamh","Theip ar {failed} teagmhálaithe a léamh","Theip ar {failed} teagmhálaithe a léamh","Theip ar {failed} teagmhálaithe a léamh"],
