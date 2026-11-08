@@ -14,6 +14,7 @@ use OCA\Contacts\ConfigLexicon;
 use OCA\Contacts\Service\FederatedInvitesService;
 use OCA\Contacts\Service\GroupSharingService;
 use OCA\Contacts\Service\SocialApiService;
+use OCA\Contacts\Service\SubtitleOrderService;
 use OCP\App\IAppManager;
 use OCP\AppFramework\Http\TemplateResponse;
 use OCP\AppFramework\Services\IInitialState;
@@ -58,6 +59,7 @@ class PageControllerTest extends TestCase {
 
 	private FederatedInvitesService|MockObject $federatedInvitesService;
 	private GroupSharingService|MockObject $groupSharingService;
+	private SubtitleOrderService|MockObject $subtitleOrderService;
 
 	protected function setUp(): void {
 		parent::setUp();
@@ -73,6 +75,7 @@ class PageControllerTest extends TestCase {
 		$this->compareVersion = $this->createMock(CompareVersion::class);
 		$this->federatedInvitesService = $this->createMock(FederatedInvitesService::class);
 		$this->groupSharingService = $this->createMock(GroupSharingService::class);
+		$this->subtitleOrderService = $this->createMock(SubtitleOrderService::class);
 
 		$this->controller = $this->buildController(new StaticServerVersion(Application::MAX_SERVER_VERSION_WITH_TEAM_MANAGEMENT));
 	}
@@ -91,6 +94,7 @@ class PageControllerTest extends TestCase {
 			$this->compareVersion,
 			$this->groupSharingService,
 			$serverVersion,
+			$this->subtitleOrderService,
 		);
 	}
 
@@ -145,6 +149,24 @@ class PageControllerTest extends TestCase {
 		$this->controller->index();
 
 		$this->assertFalse($states['hideTeamSharedFolderCreation']);
+	}
+
+	public function testIndexProvidesTheUsersSubtitleOrder() {
+		$user = $this->createMock(IUser::class);
+		$user->method('getUid')->willReturn('mrstest');
+		$this->userSession->method('getUser')->willReturn($user);
+		$this->subtitleOrderService->method('getOrder')
+			->with('mrstest')
+			->willReturn(['tel', 'org', 'email']);
+		$states = [];
+		$this->initialStateService->method('provideInitialState')
+			->willReturnCallback(function (string $key, mixed $value) use (&$states): void {
+				$states[$key] = $value;
+			});
+
+		$this->controller->index();
+
+		$this->assertSame(['tel', 'org', 'email'], $states['subtitleOrder']);
 	}
 
 	public static function teamManagementDataProvider(): array {

@@ -11,6 +11,7 @@
 		:showNavigation="true">
 		<AppSettingsSection id="general" :name="t('contacts', 'General')">
 			<SettingsSortContacts />
+			<SettingsSubtitleOrder />
 
 			<NcFormBox v-if="allowSocialSync">
 				<NcFormBoxSwitch
@@ -50,6 +51,7 @@ import SettingsAddressbook from './Settings/SettingsAddressbook.vue'
 import SettingsImportContacts from './Settings/SettingsImportContacts.vue'
 import SettingsNewAddressbook from './Settings/SettingsNewAddressbook.vue'
 import SettingsSortContacts from './Settings/SettingsSortContacts.vue'
+import SettingsSubtitleOrder from './Settings/SettingsSubtitleOrder.vue'
 
 export default {
 	name: 'ContactsSettings',
@@ -62,6 +64,7 @@ export default {
 		SettingsNewAddressbook,
 		SettingsImportContacts,
 		SettingsSortContacts,
+		SettingsSubtitleOrder,
 	},
 
 	props: {
