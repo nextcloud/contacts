@@ -14,8 +14,6 @@ import store from './store/index.js'
 import 'vite/modulepreload-polyfill'
 // Global scss sheets
 import './css/contacts.scss'
-// Dialogs css
-import '@nextcloud/dialogs/style.css'
 
 const app = createApp(App)
 
