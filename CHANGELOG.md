@@ -1,6 +1,6 @@
 # Changelog
 All notable changes to this project will be documented in this file.
-# 8.10.0 (unreleased)
+# 8.10.0 (2026-11-11)
 
 ### Features
 
@@ -24,6 +24,9 @@ All notable changes to this project will be documented in this file.
 * **contacts** Autofocus name field on new contact
 * **navigation** Normalize padding for navigation sidebar
 * **sorting** Use canonical locale for sorting and org chart
+* **teams** Show accept button for membership requests
+* **social** Remove Instagram avatar provider
+* **deps** Bump lodash and @microsoft/api-extractor
 * **deps** Bump minimum PHP platform to 8.2
 
 # 8.9.0 (unreleased)
