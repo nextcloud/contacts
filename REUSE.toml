@@ -72,12 +72,6 @@ SPDX-FileCopyrightText = "2024 Meta"
 SPDX-License-Identifier = "LicenseRef-FacebookTrademarks"
 
 [[annotations]]
-path = "img/instagram.svg"
-precedence = "aggregate"
-SPDX-FileCopyrightText = "2024 Meta"
-SPDX-License-Identifier = "LicenseRef-InstagramTrademarks"
-
-[[annotations]]
 path = "img/diaspora.svg"
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2024 Diaspora"
