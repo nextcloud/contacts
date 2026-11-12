@@ -518,6 +518,7 @@
     "Female" : "Kvinna",
     "Male" : "Man",
     "Unknown" : "Okänd",
+    "Pronouns" : "Pronomen",
     "Time zone" : "Tidszon",
     "Spoken languages" : "Talade språk",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} kontakt kunde inte läsas","{failed} kontakter kunde inte läsas"],
