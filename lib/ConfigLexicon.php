@@ -9,6 +9,7 @@ declare(strict_types=1);
 
 namespace OCA\Contacts;
 
+use OCA\Contacts\Service\SubtitleOrderService;
 use OCP\Config\Lexicon\Entry;
 use OCP\Config\Lexicon\ILexicon;
 use OCP\Config\Lexicon\Strictness;
@@ -34,6 +35,7 @@ class ConfigLexicon implements ILexicon {
 	public const FEDERATIONS_CACHE_EXPIRES = 'expires';
 	public const FEDERATIONS_CACHE_DELTA_EXPIRES = 'delta_expires';
 	public const HIDE_TEAM_SHARED_FOLDER_CREATION = 'hide_team_shared_folder_creation';
+	public const SUBTITLE_ORDER = 'subtitle_order';
 
 	#[\Override]
 	public function getStrictness(): Strictness {
@@ -120,6 +122,13 @@ class ConfigLexicon implements ILexicon {
 
 	#[\Override]
 	public function getUserConfigs(): array {
-		return [];
+		return [
+			new Entry(
+				self::SUBTITLE_ORDER,
+				ValueType::ARRAY,
+				defaultRaw: SubtitleOrderService::DEFAULT_ORDER,
+				definition: 'Order in which the contacts list tries org, email and tel for the line under each name.',
+			),
+		];
 	}
 }
