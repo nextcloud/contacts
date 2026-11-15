@@ -367,6 +367,15 @@ export default {
 			this.scrollToContact(key)
 		},
 
+		// The selection is keyed by list index, so it does not carry over to another list
+		selectedGroup() {
+			this.unselectAllMultiSelected()
+		},
+
+		selectedAddressbook() {
+			this.unselectAllMultiSelected()
+		},
+
 		list(val, old) {
 			// we just loaded the list and the url already have a selected contact
 			// if not, the selectedContact watcher will take over
