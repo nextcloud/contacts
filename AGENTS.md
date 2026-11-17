@@ -160,3 +160,7 @@ Do not leave any magic numbers. If you need more specific control over dimension
 
 You can find the CSS variables already in use in this repository, and the full documentation available at this link: https://docs.nextcloud.com/server/latest/developer_manual/html_css_design/css.html.
 
+### Screenshots
+
+For changes to the UI, create the PR screenshots with the skill in `.skills/nextcloud-pr-screenshots/`: read its `SKILL.md` and use its scripts.
+

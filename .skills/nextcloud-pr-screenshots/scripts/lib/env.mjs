@@ -3,16 +3,12 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-// Shared settings for all scripts, cached in ~/.cache/nc-pr-shots/env.json by preflight.mjs.
-// Environment variables always win over the cached file.
-
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 
-export const CACHE_DIR = process.env.NC_SHOTS_CACHE
-	?? path.join(process.env.XDG_CACHE_HOME ?? path.join(os.homedir(), '.cache'), 'nc-pr-shots')
+export const CACHE_DIR = process.env.NC_SHOTS_CACHE ?? path.join(process.env.XDG_CACHE_HOME ?? path.join(os.homedir(), '.cache'), 'nc-pr-shots')
 const ENV_FILE = path.join(CACHE_DIR, 'env.json')
 
 export const VIEWPORTS = {
@@ -21,76 +17,52 @@ export const VIEWPORTS = {
 	mobile: { width: 375, height: 812 },
 }
 
+/**
+ * Settings from env vars, falling back to what preflight.mjs and seed.mjs cached
+ */
 export function loadEnv() {
-	let cached = {}
-	try {
-		cached = JSON.parse(fs.readFileSync(ENV_FILE, 'utf8'))
-	} catch {}
+	const cached = fs.existsSync(ENV_FILE) ? JSON.parse(fs.readFileSync(ENV_FILE, 'utf8')) : {}
 	const url = (process.env.NC_URL ?? cached.url ?? 'http://nextcloud.local').replace(/\/$/, '')
-	const sameInstance = cached.url === url
+	const userId = process.env.NC_SHOTS_USER ?? 'shotuser'
+	const sameUser = cached.url === url && cached.user?.id === userId
 	return {
 		url,
-		// '' when pretty URLs work, '/index.php' otherwise
-		prefix: process.env.NC_URL_PREFIX ?? (sameInstance ? cached.prefix : undefined) ?? '/index.php',
-		hostResolverRule: sameInstance ? cached.hostResolverRule : undefined,
-		chromePath: process.env.NC_SHOTS_CHROME ?? cached.chromePath,
-		admin: {
-			user: process.env.NC_ADMIN_USER ?? cached.admin?.user ?? 'admin',
-			password: process.env.NC_ADMIN_PASS ?? cached.admin?.password ?? 'admin',
-		},
+		prefix: cached.url === url ? cached.prefix : '/index.php',
+		admin: { user: process.env.NC_ADMIN_USER ?? 'admin', password: process.env.NC_ADMIN_PASS ?? 'admin' },
 		user: {
-			id: process.env.NC_SHOTS_USER ?? cached.user?.id ?? 'shotuser',
-			displayName: cached.user?.displayName ?? 'Sam Tester',
-			password: cached.user?.password ?? 'Shots-' + Math.random().toString(36).slice(2, 10) + '-2026!',
+			id: userId,
+			displayName: 'Sam Tester',
+			password: sameUser ? cached.user.password : `Shots-${Math.random().toString(36).slice(2, 12)}!`,
 		},
 	}
 }
 
-export function saveEnv(env) {
+export function saveEnv({ url, prefix, user }) {
 	fs.mkdirSync(CACHE_DIR, { recursive: true })
-	fs.writeFileSync(ENV_FILE, JSON.stringify(env, null, '\t'), { mode: 0o600 })
+	fs.writeFileSync(ENV_FILE, JSON.stringify({ url, prefix, user }, null, '\t'), { mode: 0o600 })
 }
 
-/**
- * Import Playwright from the skill's own install, the cache, or the current project
- */
 export async function importPlaywright() {
-	const candidates = [
-		path.join(CACHE_DIR, 'node_modules', 'playwright', 'index.mjs'),
-		path.join(process.cwd(), 'node_modules', 'playwright', 'index.mjs'),
-	]
-	for (const file of candidates) {
-		if (fs.existsSync(file)) {
-			return import(pathToFileURL(file).href)
-		}
+	const entry = path.join(CACHE_DIR, 'node_modules', 'playwright', 'index.mjs')
+	if (!fs.existsSync(entry)) {
+		throw new Error('Playwright is not installed. Run preflight.mjs first.')
 	}
-	try {
-		return await import('playwright')
-	} catch {
-		throw new Error(`Playwright is not installed. Run: node ${path.join(import.meta.dirname, '..', 'preflight.mjs')}`)
-	}
+	return import(pathToFileURL(entry).href)
 }
 
 /**
- * Parse --key value / --flag arguments
- *
- * @param {string[]} argv process.argv.slice(2)
+ * Parse `--key value`, `--key=value` and `--flag` arguments
  */
 export function parseArgs(argv) {
 	const args = { _: [] }
 	for (let i = 0; i < argv.length; i++) {
-		const a = argv[i]
-		if (!a.startsWith('--')) {
-			args._.push(a)
-			continue
-		}
-		const [key, inline] = a.slice(2).split('=', 2)
-		if (inline !== undefined) {
+		const [key, inline] = argv[i].startsWith('--') ? argv[i].slice(2).split('=', 2) : []
+		if (!key) {
+			args._.push(argv[i])
+		} else if (inline !== undefined) {
 			args[key] = inline
-		} else if (argv[i + 1] !== undefined && !argv[i + 1].startsWith('--')) {
-			args[key] = argv[++i]
 		} else {
-			args[key] = true
+			args[key] = argv[i + 1]?.startsWith('--') === false ? argv[++i] : true
 		}
 	}
 	return args

@@ -3,60 +3,33 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-// Minimal OCS and DAV clients with basic auth, for seeding and settings
-
-function authHeader({ user, password }) {
-	return 'Basic ' + Buffer.from(`${user}:${password}`).toString('base64')
-}
+const basic = ({ user, password }) => 'Basic ' + Buffer.from(`${user}:${password}`).toString('base64')
 
 /**
- * Call an OCS endpoint and return { status, ocsStatus, data }
+ * OCS request; `body` is sent as form data (an object or [[key, value], …] for arrays)
  *
- * @param {object} env from loadEnv()
- * @param {{user: string, password: string}} auth credentials
- * @param {string} method HTTP method
- * @param {string} path path after /ocs/v2.php, e.g. /cloud/users
- * @param {object} [body] sent as form data
+ * @return {Promise<{status: number, data: any}>}
  */
 export async function ocs(env, auth, method, path, body) {
 	const res = await fetch(`${env.url}/ocs/v2.php${path}${path.includes('?') ? '&' : '?'}format=json`, {
 		method,
-		headers: {
-			Authorization: authHeader(auth),
-			'OCS-APIRequest': 'true',
-			Accept: 'application/json',
-			...(body ? { 'Content-Type': 'application/x-www-form-urlencoded' } : {}),
-		},
+		headers: { Authorization: basic(auth), 'OCS-APIRequest': 'true', Accept: 'application/json' },
 		body: body ? new URLSearchParams(body) : undefined,
 	})
-	let json = {}
-	try {
-		json = await res.json()
-	} catch {}
-	return { status: res.status, ocsStatus: json.ocs?.meta?.statuscode, data: json.ocs?.data }
+	const json = await res.json().catch(() => ({}))
+	return { status: res.status, data: json.ocs?.data }
 }
 
 /**
- * Send a DAV request and return { status, text }
- *
- * @param {object} env from loadEnv()
- * @param {{user: string, password: string}} auth credentials
- * @param {string} method HTTP or DAV method
- * @param {string} path path after /remote.php/dav, e.g. /files/alice/a.txt
- * @param {string|Buffer} [body] request body
- * @param {object} [headers] extra headers
+ * DAV request; `path` is relative to /remote.php/dav
  */
 export async function dav(env, auth, method, path, body, headers = {}) {
-	const res = await fetch(`${env.url}/remote.php/dav${path}`, {
-		method,
-		headers: { Authorization: authHeader(auth), ...headers },
-		body,
-	})
+	const res = await fetch(`${env.url}/remote.php/dav${path}`, { method, headers: { Authorization: basic(auth), ...headers }, body })
 	return { status: res.status, text: await res.text() }
 }
 
 /**
- * List the hrefs one level below a DAV collection
+ * Paths of the direct children of a DAV collection
  */
 export async function davList(env, auth, path) {
 	const { status, text } = await dav(env, auth, 'PROPFIND', path, undefined, { Depth: '1' })
@@ -69,12 +42,7 @@ export async function davList(env, auth, path) {
 }
 
 /**
- * Run async tasks with limited concurrency. Dev instances often take ~0.5 s per request,
- * so seeding sequentially is slow.
- *
- * @param {Array} items inputs
- * @param {Function} fn async function called with each item
- * @param {number} [limit] parallel requests
+ * Map over items with limited concurrency; dev instances often take ~0.5 s per request
  */
 export async function pool(items, fn, limit = 8) {
 	const results = []
@@ -89,4 +57,4 @@ export async function pool(items, fn, limit = 8) {
 }
 
 export const userAuth = (env) => ({ user: env.user.id, password: env.user.password })
-export const adminAuth = (env) => ({ user: env.admin.user, password: env.admin.password })
+export const adminAuth = (env) => env.admin

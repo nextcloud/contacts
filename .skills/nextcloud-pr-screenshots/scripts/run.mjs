@@ -4,13 +4,8 @@
  * SPDX-License-Identifier: AGPL-3.0-or-later
  */
 
-// Run a shot list and write PNGs plus manifest.json for compose.mjs.
-// Usage: node run.mjs <shots.mjs> [--out dir] [--only scene,scene] [--workers 4]
-//                    [--explore] [--tag before|after] [--seed]
-//
-// --explore  only runs each scene's setup and saves an ARIA snapshot + screenshot per scene
-// --tag      marks the shots as "before" or "after"; compose.mjs puts each before next to its after
-// --seed     runs seed.mjs with the shot list's `fixtures` first
+// Run a shot list; writes PNGs and manifest.json to <shots dir>/out for compose.mjs.
+// Usage: node run.mjs <shots.mjs> [--seed] [--explore] [--tag before|after] [--workers 4]
 
 import { execFileSync } from 'node:child_process'
 import fs from 'node:fs'
@@ -20,148 +15,113 @@ import { loadEnv, parseArgs } from './lib/env.mjs'
 import { adminAuth, ocs, pool, userAuth } from './lib/http.mjs'
 import { createNc, ensureLogin, launchBrowser } from './lib/nc.mjs'
 
-const started = Date.now()
 const args = parseArgs(process.argv.slice(2))
 const shotsFile = path.resolve(args._[0] ?? '')
-if (!args._[0] || !fs.existsSync(shotsFile)) {
-	console.error('Usage: node run.mjs <shots.mjs> [--out dir] [--only a,b] [--workers 4] [--explore] [--tag before|after] [--seed]')
+if (!fs.existsSync(shotsFile) || !shotsFile.endsWith('.mjs')) {
+	console.error('Usage: node run.mjs <shots.mjs> [--seed] [--explore] [--tag before|after] [--workers 4]')
 	process.exit(2)
 }
 const config = (await import(pathToFileURL(shotsFile).href)).default
-const outDir = path.resolve(args.out ?? path.join(path.dirname(shotsFile), 'out'))
-fs.mkdirSync(outDir, { recursive: true })
+const outDir = path.join(path.dirname(shotsFile), 'out')
 const tag = typeof args.tag === 'string' ? args.tag : undefined
-const only = typeof args.only === 'string' ? args.only.split(',') : undefined
+fs.mkdirSync(outDir, { recursive: true })
 
-if (args.seed && config.fixtures) {
-	execFileSync(process.execPath, [path.join(import.meta.dirname, 'seed.mjs'), '--fixtures', config.fixtures], { stdio: 'inherit' })
+if (args.seed) {
+	execFileSync(process.execPath, [path.join(import.meta.dirname, 'seed.mjs'), ...(config.fixtures ? ['--fixtures', config.fixtures] : [])], { stdio: 'inherit' })
 }
-
 const env = loadEnv()
-const scenes = config.scenes.map((s, index) => ({ ...s, index, name: s.name ?? s.section ?? `scene-${index}` }))
-	.filter((s) => !only || only.includes(s.name))
 
-// Light and dark only need prefers-color-scheme; other themes and languages are user settings
-// on the server, so scenes are grouped by them and each setting is applied once.
-const CLIENT_THEMES = ['light', 'dark']
+// light/dark only need prefers-color-scheme; the other themes and the language are user settings,
+// so jobs are grouped by them and each group's setting is applied once
 const SERVER_THEMES = { highcontrast: 'light-highcontrast', 'dark-highcontrast': 'dark-highcontrast', dyslexia: 'opendyslexic' }
-const jobs = []
-for (const scene of scenes) {
+const jobs = config.scenes.flatMap((s, index) => {
+	const scene = { ...s, index, name: s.name ?? s.section ?? `scene-${index}` }
 	const themes = scene.themes ?? ['light']
-	const client = themes.filter((t) => CLIENT_THEMES.includes(t))
-	if (client.length) {
-		jobs.push({ scene, themes: client, theme: undefined, lang: scene.lang })
-	}
-	for (const t of themes.filter((t) => !CLIENT_THEMES.includes(t))) {
-		if (!SERVER_THEMES[t]) {
-			throw new Error(`Unknown theme "${t}" in scene "${scene.name}". Use: ${[...CLIENT_THEMES, ...Object.keys(SERVER_THEMES)].join(', ')}`)
-		}
-		jobs.push({ scene, themes: [t], theme: t, lang: scene.lang })
-	}
-}
-const groups = new Map()
-for (const job of jobs) {
-	const key = `${job.theme ?? ''}|${job.lang ?? ''}`
-	groups.set(key, [...(groups.get(key) ?? []), job])
-}
+	const client = themes.filter((t) => !SERVER_THEMES[t])
+	return [
+		...(client.length ? [{ scene, themes: client }] : []),
+		...themes.filter((t) => SERVER_THEMES[t]).map((t) => ({ scene, themes: [t], serverTheme: t })),
+	].map((job, i) => ({ ...job, lang: scene.lang, seqBase: i * 100 }))
+})
 
-async function applyUserSettings({ theme, lang }) {
-	if (theme) {
-		await ocs(env, userAuth(env), 'PUT', `/apps/theming/api/v1/theme/${SERVER_THEMES[theme]}/enable`)
+async function setUserSettings({ serverTheme, lang }, on) {
+	const calls = []
+	if (serverTheme) {
+		calls.push(ocs(env, userAuth(env), on ? 'PUT' : 'DELETE', `/apps/theming/api/v1/theme/${SERVER_THEMES[serverTheme]}${on ? '/enable' : ''}`))
 	}
 	if (lang) {
-		await ocs(env, adminAuth(env), 'PUT', `/cloud/users/${encodeURIComponent(env.user.id)}`, { key: 'language', value: lang })
+		calls.push(ocs(env, adminAuth(env), 'PUT', `/cloud/users/${encodeURIComponent(env.user.id)}`, { key: 'language', value: on ? lang : 'en' }))
 	}
-}
-async function resetUserSettings({ theme, lang }) {
-	if (theme) {
-		await ocs(env, userAuth(env), 'DELETE', `/apps/theming/api/v1/theme/${SERVER_THEMES[theme]}`)
-	}
-	if (lang) {
-		await ocs(env, adminAuth(env), 'PUT', `/cloud/users/${encodeURIComponent(env.user.id)}`, { key: 'language', value: 'en' })
+	if ((await Promise.all(calls)).some((r) => r.status !== 200)) {
+		throw new Error(`Could not ${on ? 'apply' : 'reset'} ${[serverTheme, lang].filter(Boolean).join(' / ')}`)
 	}
 }
 
-const browser = await launchBrowser(env)
+const browser = await launchBrowser()
 const storageState = await ensureLogin(browser, env)
 const entries = []
 const failures = []
-const explored = []
 
-async function runJob(job) {
-	const { scene } = job
-	// Jobs of one scene (one per server theme) number their shots in job order
-	const seqBase = jobs.filter((j) => j.scene === scene).indexOf(job) * 100
-	const nc = await createNc({ browser, env, storageState, scene, outDir, clock: config.clock, seqBase, record: (e) => entries.push({ ...e, name: scene.name, tag }) })
+async function runJob({ scene, themes, seqBase }) {
+	let nc
 	try {
-		await nc.setColorScheme(job.themes[0])
+		nc = await createNc({ browser, env, storageState, scene, outDir, tag, clock: config.clock, record: (e) => entries.push({ ...e, seq: e.seq + seqBase }) })
+		await nc.setTheme(themes[0])
 		await scene.setup?.(nc)
 		if (args.explore) {
-			explored.push(await nc.explore(job.theme ? `${scene.name}-${job.theme}` : scene.name))
+			console.log(`  ${await nc.explore(`${scene.name} ${themes[0]}`)}.aria.yml / .png`)
 			return
 		}
-		const viewports = scene.viewports ?? ['desktop']
-		for (const [i, vp] of viewports.entries()) {
+		for (const [i, viewport] of (scene.viewports ?? ['desktop']).entries()) {
 			if (i > 0) {
-				await nc.setViewport(vp)
-				// Resizing an open view can leave layout a real user at that width never sees,
-				// so set it up again unless the scene says resizing in place is fine
-				if (scene.keepOnResize) {
-					await scene.resize?.(nc)
-				} else {
-					await scene.setup?.(nc)
-				}
+				await nc.setViewport(viewport)
+				// A view resized while open can differ from what a user at that width sees
+				await (scene.keepOnResize ? scene.resize?.(nc) : scene.setup?.(nc))
 			}
-			for (const theme of job.themes) {
-				await nc.setColorScheme(theme)
+			for (const theme of themes) {
+				await nc.setTheme(theme)
 				await scene.capture(nc)
 			}
 		}
 	} catch (e) {
-		const shot = path.join(outDir, `error-${scene.name.replace(/[^a-z0-9]+/gi, '-')}.png`)
-		await nc.page.screenshot({ path: shot }).catch(() => {})
-		failures.push(`${scene.name}: ${e.message.split('\n')[0]}\n      screenshot of the failure: ${shot}`)
+		const shot = path.join(outDir, `error-${scene.index}.png`)
+		await nc?.page.screenshot({ path: shot }).catch(() => {})
+		failures.push(`${scene.name}: ${String(e?.message ?? e).split('\n')[0]} (see ${shot})`)
 	} finally {
-		await nc.close()
+		await nc?.close()
 	}
 }
 
-const workers = Number(args.workers ?? 4)
-for (const [key, groupJobs] of groups) {
-	const [theme, lang] = key.split('|')
-	const settings = { theme: theme || undefined, lang: lang || undefined }
-	await applyUserSettings(settings)
+if (!args.explore) {
+	// A tagged run replaces the shots with its tag; an untagged run replaces everything
+	fs.readdirSync(outDir).filter((f) => f.endsWith('.png') && (!tag || f.startsWith(`${tag}-`) || f.startsWith('error-')))
+		.forEach((f) => fs.rmSync(path.join(outDir, f)))
+}
+const groups = Map.groupBy(jobs, (j) => `${j.serverTheme ?? ''}|${j.lang ?? ''}`)
+for (const group of groups.values()) {
 	try {
-		// Scenes that change server state run alone, after the others
-		await pool(groupJobs.filter((j) => !j.scene.exclusive), runJob, workers)
-		for (const job of groupJobs.filter((j) => j.scene.exclusive)) {
-			await runJob(job)
-		}
-	} finally {
-		await resetUserSettings(settings)
+		await setUserSettings(group[0], true)
+	} catch (e) {
+		group.forEach((j) => failures.push(`${j.scene.name}: ${e.message}`))
+		continue
 	}
+	// Scenes that change server state run alone, after the others
+	await pool(group.filter((j) => !j.scene.exclusive), runJob, Number(args.workers ?? 4))
+	for (const job of group.filter((j) => j.scene.exclusive)) {
+		await runJob(job)
+	}
+	await setUserSettings(group[0], false).catch((e) => failures.push(e.message))
 }
 await browser.close()
 
-if (args.explore) {
-	console.log('Explore output (read the .aria.yml for selectors, the .png to see the state):')
-	explored.forEach((p) => console.log(`  ${p}.aria.yml / .png`))
-} else {
-	// Merge into the manifest: replace only what this run produced
+if (!args.explore) {
 	const manifestFile = path.join(outDir, 'manifest.json')
-	let previous = []
-	try {
-		previous = JSON.parse(fs.readFileSync(manifestFile, 'utf8')).entries
-	} catch {}
-	const ran = new Set(scenes.map((s) => s.name))
-	const kept = previous.filter((e) => !(ran.has(e.name) && e.tag === tag))
-	const all = [...kept, ...entries].sort((a, b) => a.scene - b.scene || (a.tag === 'before' ? -1 : 0) - (b.tag === 'before' ? -1 : 0) || a.seq - b.seq)
-	fs.writeFileSync(manifestFile, JSON.stringify({ shotsFile, entries: all }, null, '\t'))
-	console.log(`${entries.length} shot(s) in ${outDir} (${((Date.now() - started) / 1000).toFixed(1)} s)`)
-	entries.forEach((e) => console.log(`  ${e.file}  — ${e.section} / ${e.label}${e.tag ? ` [${e.tag}]` : ''}`))
+	const kept = tag && fs.existsSync(manifestFile) ? JSON.parse(fs.readFileSync(manifestFile, 'utf8')).filter((e) => e.tag && e.tag !== tag) : []
+	const all = [...kept, ...entries].sort((a, b) => a.scene - b.scene || a.seq - b.seq || (a.tag === 'before' ? -1 : 1))
+	fs.writeFileSync(manifestFile, JSON.stringify(all, null, '\t'))
+	console.log(`${entries.length} shot(s) in ${outDir}`)
 }
 if (failures.length) {
-	console.log(`\n${failures.length} scene(s) failed:`)
-	failures.forEach((f) => console.log(`  ${f}`))
+	console.log(`${failures.length} failure(s):\n  ${failures.join('\n  ')}`)
 	process.exit(1)
 }
