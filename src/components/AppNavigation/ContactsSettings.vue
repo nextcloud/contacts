@@ -110,11 +110,10 @@ export default {
 		},
 
 		appleCardDAV() {
-			const principalUrl = this.currentUserPrincipal?.url || this.currentUserPrincipal?.principalUrl
-			if (!principalUrl) {
+			if (!this.currentUserPrincipal) {
 				return ''
 			}
-			return new URL(principalUrl, this.primaryCardDAV).toString()
+			return new URL(this.currentUserPrincipal.url, this.primaryCardDAV).toString()
 		},
 	},
 
