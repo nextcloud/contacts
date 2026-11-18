@@ -6,6 +6,8 @@
 jest.mock('@nextcloud/l10n', () => ({
 	translate: (app, text) => text,
 	translatePlural: (app, text) => text,
+	getLocale: () => 'en',
+	getCanonicalLocale: () => 'en',
 }))
 
 jest.mock('@nextcloud/initial-state', () => ({
@@ -28,6 +30,11 @@ jest.mock('@nextcloud/axios', () => ({
 		delete: jest.fn(),
 	},
 }), { virtual: true })
+
+// jsdom does not provide these globals, but Node does
+const { TextDecoder, TextEncoder } = require('util')
+global.TextEncoder = global.TextEncoder ?? TextEncoder
+global.TextDecoder = global.TextDecoder ?? TextDecoder
 
 global.appName = 'contacts'
 

@@ -14,11 +14,11 @@
 				<CheckboxRadioSwitch
 					v-for="(label, config) in configs"
 					:key="'circle-config' + config"
-					:model-value="isChecked(config)"
+					:modelValue="isChecked(config)"
 					:loading="loading === config"
 					:disabled="loading !== false"
-					wrapper-element="li"
-					@update:model-value="onChange(config, $event)">
+					wrapperElement="li"
+					@update:modelValue="onChange(config, $event)">
 					{{ label }}
 				</CheckboxRadioSwitch>
 			</ul>

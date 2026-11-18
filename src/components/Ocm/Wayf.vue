@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<NcGuestContent app-name="contacts" class="wayf">
+	<NcGuestContent appName="contacts" class="wayf">
 		<template #default>
 			<div class="wayf-body">
 				<div v-if="token !== ''">
@@ -32,7 +32,7 @@
 											:key="p.fqdn"
 											:href="p.inviteUrl"
 											:name="p.name"
-											one-line>
+											oneLine>
 											<template #icon>
 												<NcListItemIcon :name="p.name" :subname="p.fqdn">
 													<WeatherCloudyArrowRight :size="20" />

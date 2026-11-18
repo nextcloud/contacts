@@ -15,11 +15,11 @@
 					<NcCheckboxRadioSwitch
 						v-for="(label, config) in configs"
 						:key="'circle-config' + config"
-						:model-value="isChecked(config)"
+						:modelValue="isChecked(config)"
 						:loading="loading === config"
 						:disabled="loading !== false"
-						wrapper-element="li"
-						@update:model-value="onChange(Number(config), $event)">
+						wrapperElement="li"
+						@update:modelValue="onChange(Number(config), $event)">
 						{{ label }}
 					</NcCheckboxRadioSwitch>
 				</ul>
@@ -87,7 +87,7 @@ export default defineComponent({
 		},
 	},
 
-	emits: ['leave', 'delete', 'close-settings-popover'],
+	emits: ['leave', 'delete', 'closeSettingsPopover'],
 	setup() {
 		return { t }
 	},
@@ -114,7 +114,7 @@ export default defineComponent({
 			this.logger.debug(`Circle config ${config} is set to ${checked}`)
 
 			if (checked && config === CircleConfigs.FEDERATED) {
-				this.$emit('close-settings-popover')
+				this.$emit('closeSettingsPopover')
 				const confirmed = await this.confirmEnableFederationForCircle()
 				if (!confirmed) {
 					return

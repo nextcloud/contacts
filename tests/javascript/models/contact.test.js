@@ -76,3 +76,27 @@ describe('Test stripping quotes from TYPE', () => {
 	})
 
 })
+
+describe('Test reading an invalid REV', () => {
+	test('Does not throw when reading a malformed revision', () => {
+		const contact = new Contact(`
+			BEGIN:VCARD
+			VERSION:3.0
+			FN:Test contact
+			REV:2026-08-04T10::24Z
+			END:VCARD`.replace(/\t/gmi, '')
+		)
+		expect(contact.rev).toBeNull()
+	})
+
+	test('Does not return a text revision', () => {
+		const contact = new Contact(`
+			BEGIN:VCARD
+			VERSION:4.0
+			FN:Test contact
+			REV;VALUE=TEXT:garbage
+			END:VCARD`.replace(/\t/gmi, '')
+		)
+		expect(contact.rev).toBeNull()
+	})
+})

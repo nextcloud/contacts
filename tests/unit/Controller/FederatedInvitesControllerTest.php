@@ -411,15 +411,7 @@ class FederatedInvitesControllerTest extends TestCase {
 
 		$capturedHtml = null;
 		$capturedPlain = null;
-		$message = $this->createMock(\OCP\Mail\IMessage::class);
-		$message->method('setHtmlBody')->willReturnCallback(function ($body) use (&$capturedHtml, $message) {
-			$capturedHtml = $body;
-			return $message;
-		});
-		$message->method('setPlainBody')->willReturnCallback(function ($body) use (&$capturedPlain, $message) {
-			$capturedPlain = $body;
-			return $message;
-		});
+		$message = $this->createTemplateCapturingMessage($capturedHtml, $capturedPlain);
 		$this->mailer->method('createMessage')->willReturn($message);
 		$this->mailer->method('send')->willReturn([]);
 
@@ -481,15 +473,7 @@ class FederatedInvitesControllerTest extends TestCase {
 		$expiredAt = $invite->getExpiredAt();
 		$capturedHtml = null;
 		$capturedPlain = null;
-		$message = $this->createMock(\OCP\Mail\IMessage::class);
-		$message->method('setHtmlBody')->willReturnCallback(function ($body) use (&$capturedHtml, $message) {
-			$capturedHtml = $body;
-			return $message;
-		});
-		$message->method('setPlainBody')->willReturnCallback(function ($body) use (&$capturedPlain, $message) {
-			$capturedPlain = $body;
-			return $message;
-		});
+		$message = $this->createTemplateCapturingMessage($capturedHtml, $capturedPlain);
 
 		$this->mapper->method('findInviteByTokenAndUid')->willReturn($invite);
 		$this->mailer->method('validateMailAddress')->willReturn(true);
@@ -540,15 +524,7 @@ class FederatedInvitesControllerTest extends TestCase {
 	public function testCreateInviteIncludesPersonalMessageInFirstEmail(): void {
 		$capturedHtml = null;
 		$capturedPlain = null;
-		$message = $this->createMock(\OCP\Mail\IMessage::class);
-		$message->method('setHtmlBody')->willReturnCallback(function ($body) use (&$capturedHtml, $message) {
-			$capturedHtml = $body;
-			return $message;
-		});
-		$message->method('setPlainBody')->willReturnCallback(function ($body) use (&$capturedPlain, $message) {
-			$capturedPlain = $body;
-			return $message;
-		});
+		$message = $this->createTemplateCapturingMessage($capturedHtml, $capturedPlain);
 		$now = $this->createMock(\DateTimeImmutable::class);
 		$now->method('getTimestamp')->willReturn(1_800_000_000);
 
@@ -815,5 +791,49 @@ class FederatedInvitesControllerTest extends TestCase {
 		$response = $this->controller->setOcmInviteBoolSetting('not_a_real_key', true);
 
 		$this->assertSame(Http::STATUS_FORBIDDEN, $response->getStatus());
+	}
+
+	/**
+	 * Captures the bodies built through IEMailTemplate when the template is attached to the message.
+	 * Text is HTML-escaped only when the plain text falls back to it, as documented by IEMailTemplate.
+	 */
+	private function createTemplateCapturingMessage(?string &$capturedHtml, ?string &$capturedPlain): \OCP\Mail\IMessage|MockObject {
+		$html = '';
+		$plain = '';
+		$append = static function (string $text, string|bool $plainText) use (&$html, &$plain): void {
+			if ($plainText === '' || $plainText === true) {
+				$html .= htmlspecialchars($text) . "\n";
+				$plain .= $text . "\n";
+				return;
+			}
+			$html .= $text . "\n";
+			if ($plainText !== false) {
+				$plain .= $plainText . "\n";
+			}
+		};
+
+		$template = $this->createMock(\OCP\Mail\IEMailTemplate::class);
+		$template->method('addHeading')->willReturnCallback(static fn (string $title, string|bool $plainTitle = '') => $append($title, $plainTitle));
+		$template->method('addBodyText')->willReturnCallback(static fn (string $text, string|bool $plainText = '') => $append($text, $plainText));
+		$template->method('addBodyListItem')->willReturnCallback(static function (string $text, string $metaInfo = '', string $icon = '', string|bool $plainText = '', string|bool $plainMetaInfo = '') use ($append): void {
+			$append($metaInfo, $plainMetaInfo);
+			$append($text, $plainText);
+		});
+		$template->method('addBodyButton')->willReturnCallback(static function (string $text, string $url, string|bool $plainText = '') use (&$html, &$plain): void {
+			$html .= htmlspecialchars($text) . ' ' . htmlspecialchars($url) . "\n";
+			if ($plainText !== false) {
+				$plain .= ($plainText === '' ? $text : $plainText) . ': ' . $url . "\n";
+			}
+		});
+		$this->mailer->method('createEMailTemplate')->willReturn($template);
+
+		$message = $this->createMock(\OCP\Mail\IMessage::class);
+		$message->method('useTemplate')->willReturnCallback(function (\OCP\Mail\IEMailTemplate $usedTemplate) use (&$capturedHtml, &$capturedPlain, &$html, &$plain, $template, $message) {
+			$this->assertSame($template, $usedTemplate);
+			$capturedHtml = $html;
+			$capturedPlain = $plain;
+			return $message;
+		});
+		return $message;
 	}
 }

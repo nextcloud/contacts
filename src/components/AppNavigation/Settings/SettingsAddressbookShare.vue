@@ -9,16 +9,16 @@
 			id="users-groups-search"
 			:options="usersOrGroups"
 			:searchable="true"
-			:internal-search="false"
+			:internalSearch="false"
 			:max-height="600"
-			:show-no-results="true"
+			:showNoResults="true"
 			:placeholder="placeholder"
 			:class="{ showContent: inputGiven, 'icon-loading': isLoading }"
-			:get-option-key="(option) => option.user"
-			open-direction="bottom"
+			:getOptionKey="(option) => option.user"
+			openDirection="bottom"
 			label="displayName"
 			@search="findSharee"
-			@update:model-value="shareAddressbook" />
+			@update:modelValue="shareAddressbook" />
 		<!-- list of user or groups addressbook is shared with -->
 		<ul v-if="addressbook.shares.length > 0" class="addressbook-shares__list">
 			<AddressBookSharee

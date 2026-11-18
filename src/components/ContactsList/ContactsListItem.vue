@@ -33,11 +33,11 @@
 					<NcAvatar
 						v-if="((!source.isMultiSelected && !hoveringAvatar) || isStatic) && source.addressbook.id === 'z-server-generated--system'"
 						:user="source.uid"
-						:hide-status="true"
+						:hideStatus="true"
 						:size="40" />
 					<NcAvatar
 						v-if="((!source.isMultiSelected && !hoveringAvatar) || isStatic) && source.addressbook.id !== 'z-server-generated--system'"
-						:display-name="source.displayName"
+						:displayName="source.displayName"
 						:url="avatarUrl"
 						:size="40" />
 					<CheckIcon

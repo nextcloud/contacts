@@ -19,7 +19,7 @@
 			:label="t('contacts', 'Invite link or code (required)')"
 			type="text"
 			:error="Boolean(error)"
-			:helper-text="error || t('contacts', 'Paste the invite link, or an invite code (token@provider), you received from the other person.')"
+			:helperText="error || t('contacts', 'Paste the invite link, or an invite code (token@provider), you received from the other person.')"
 			:required="true" />
 
 		<div class="ocm_manual_buttons">

@@ -78,7 +78,7 @@
 						:key="item.id"
 						:source="item"
 						:selection="selectionSet"
-						:on-click="onClick" />
+						:onClick="onClick" />
 				</VList>
 
 				<EmptyContent v-else-if="searchQuery" :name="t('contacts', 'No results')">

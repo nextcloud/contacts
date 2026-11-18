@@ -38,17 +38,17 @@
 		</EmptyContent>
 	</AppContent>
 
-	<AppContent v-else :show-details="showDetails">
+	<AppContent v-else :showDetails="showDetails">
 		<!-- OCM invites list -->
 		<template #list>
 			<OcmInvitesList
 				:list="invitesList"
 				:invites="invites"
-				:search-query="searchQuery" />
+				:searchQuery="searchQuery" />
 		</template>
 
 		<!-- OCM invite details -->
-		<OcmInviteDetails :invite-key="selectedInvite" />
+		<OcmInviteDetails :inviteKey="selectedInvite" />
 	</AppContent>
 </template>
 
@@ -103,7 +103,7 @@ export default {
 		},
 	},
 
-	emits: ['retry-load', 'open-create-invite'],
+	emits: ['retryLoad', 'openCreateInvite'],
 
 	data() {
 		return {
@@ -143,14 +143,14 @@ export default {
 
 	methods: {
 		retryLoad() {
-			this.$emit('retry-load')
+			this.$emit('retryLoad')
 		},
 
 		openCreateInvite() {
 			if (!this.inviteActionsEnabled) {
 				return
 			}
-			this.$emit('open-create-invite')
+			this.$emit('openCreateInvite')
 		},
 	},
 }

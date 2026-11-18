@@ -16,16 +16,16 @@
 		<!-- Avatar display -->
 		<Avatar
 			v-if="contact.addressbook.id === 'z-server-generated--system'"
-			disable-menu
-			:show-user-status="false"
+			disableMenu
+			:showUserStatus="false"
 			:user="contact.uid"
 			:size="75"
 			class="contact-header-avatar__photo" />
 		<Avatar
 			v-else
-			:disable-tooltip="true"
-			:display-name="contact.displayName"
-			:is-no-user="true"
+			:disableTooltip="true"
+			:displayName="contact.displayName"
+			:isNoUser="true"
 			:size="75"
 			:url="photoUrl"
 			class="contact-header-avatar__photo" />
@@ -54,13 +54,13 @@
 		<Actions
 			v-if="!isReadOnly"
 			v-model:open="opened"
-			:force-menu="true"
+			:forceMenu="true"
 			class="contact-header-avatar__menu">
 			<template #icon>
-				<IconImage :size="20" fill-color="#fff" />
+				<IconImage :size="20" fillColor="#fff" />
 			</template>
 			<ActionButton
-				:close-after-click="true"
+				:closeAfterClick="true"
 				@click.stop.prevent="selectFileInput">
 				<template #icon>
 					<IconUpload :size="20" />
@@ -68,7 +68,7 @@
 				{{ t('contacts', 'Upload a new picture') }}
 			</ActionButton>
 			<ActionButton
-				:close-after-click="true"
+				:closeAfterClick="true"
 				@click="selectFilePicker">
 				<template #icon>
 					<IconFolder :size="20" />
@@ -78,7 +78,7 @@
 			<ActionButton
 				v-for="network in supportedSocial"
 				:key="network"
-				:close-after-click="true"
+				:closeAfterClick="true"
 				@click="getSocialAvatar(network)">
 				<template #icon>
 					<IconCloudDownload :size="20" />
@@ -91,14 +91,14 @@
 				<ActionLink
 					:href="`${contact.url}?photo`"
 					target="_blank"
-					:close-after-click="true">
+					:closeAfterClick="true">
 					<template #icon>
 						<IconDownload :size="20" />
 					</template>
 					{{ t('contacts', 'Download picture') }}
 				</ActionLink>
 				<ActionButton
-					:close-after-click="true"
+					:closeAfterClick="true"
 					@click="removePhoto">
 					<template #icon>
 						<IconDelete :size="20" />
@@ -528,7 +528,7 @@ export default {
 
 					// Update local clone
 					const contact = this.$store.getters.getContact(this.contact.key)
-					await this.$emit('update-local-contact', contact)
+					await this.$emit('updateLocalContact', contact)
 
 					await this.loadPhotoUrl()
 

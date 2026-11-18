@@ -29,4 +29,20 @@ describe('RFC props', () => {
 		expect(property.getParameter('type')).toEqual(defaultData.type)
 		expect(contact.vCard.toString()).toMatch(/^IMPP;TYPE=.+:$/m)
 	})
+
+	test.each(['3.0', '4.0'])('pronouns text is escaped and unescaped in vCard %s', (version) => {
+		const pronouns = new Contact(`
+			BEGIN:VCARD
+			VERSION:${version}
+			UID:123456789-123465-123456-123456789
+			FN:Test contact
+			PRONOUNS:she\\, they
+			END:VCARD`.replace(/\t/gmi, ''))
+
+		expect(pronouns.vCard.getFirstPropertyValue('pronouns')).toBe('she, they')
+
+		pronouns.vCard.getFirstProperty('pronouns').setValue('xe, they')
+
+		expect(pronouns.vCard.toString()).toMatch(/^PRONOUNS:xe\\, they$/m)
+	})
 })

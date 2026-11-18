@@ -11,10 +11,10 @@
 		<!-- Extra div container to fix the poper position -->
 		<div class="property__value">
 			<Actions
-				menu-align="right"
+				menuAlign="right"
 				event=""
 				variant="secondary"
-				:menu-name="t('contacts', 'Add more info')"
+				:menuName="t('contacts', 'Add more info')"
 				@click.prevent>
 				<template #icon>
 					<IconAdd :size="20" />
@@ -24,7 +24,7 @@
 						v-for="option in availablePrimaryProperties"
 						:key="option.id"
 						class="action--primary"
-						:close-after-click="true"
+						:closeAfterClick="true"
 						@click.prevent="addProp(option.id)">
 						<template #icon>
 							<PropertyTitleIcon :icon="option.icon" />
@@ -32,7 +32,7 @@
 						{{ option.name }}
 					</ActionButton>
 					<ActionButton
-						:close-after-click="false"
+						:closeAfterClick="false"
 						@click="moreActionsOpen = true">
 						<template #icon>
 							<DotsHorizontalIcon
@@ -44,7 +44,7 @@
 				</template>
 				<template v-if="moreActionsOpen">
 					<ActionButton
-						:close-after-click="false"
+						:closeAfterClick="false"
 						@click="moreActionsOpen = false">
 						<template #icon>
 							<ChevronLeft
@@ -57,7 +57,7 @@
 						v-for="option in availableSecondaryProperties"
 						:key="option.id"
 						class="action--primary"
-						:close-after-click="true"
+						:closeAfterClick="true"
 						@click.prevent="addProp(option.id)">
 						<template #icon>
 							<PropertyTitleIcon :icon="option.icon" />

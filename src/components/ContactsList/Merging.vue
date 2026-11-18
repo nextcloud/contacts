@@ -14,7 +14,7 @@
 					v-model="chosenAddressBook"
 					:disabled="contactsList[0].addressbook.id === contactsList[1].addressbook.id"
 					:title="t('contacts', 'Select address book')"
-					@update:model-value="calculateConflictsToResolve" />
+					@update:modelValue="calculateConflictsToResolve" />
 			</div>
 		</div>
 
@@ -48,13 +48,13 @@
 				<!-- Checkboxes for resolving single conflicts or conflicts with multiple possible values, for contact 0 -->
 				<NcCheckboxRadioSwitch
 					v-if="conflictInformation[property]?.type === 'conflict'"
-					:model-value="resolvedConflicts.get(property) === 0"
+					:modelValue="resolvedConflicts.get(property) === 0"
 					type="radio"
-					@update:model-value="resolveConflict(0, property)" />
+					@update:modelValue="resolveConflict(0, property)" />
 				<NcCheckboxRadioSwitch
 					v-if="conflictInformation[property]?.type === 'conflictWithMultipleValues'"
-					:model-value="resolvedConflicts.get(property)?.has(0)"
-					@update:model-value="resolveMultiConflict(0, property)" />
+					:modelValue="resolvedConflicts.get(property)?.has(0)"
+					@update:modelValue="resolveMultiConflict(0, property)" />
 				<!-- Spacer when no checkbox is needed for contact 0 -->
 				<div
 					v-if="conflictInformation[property]?.type !== 'conflict' && conflictInformation[property]?.type !== 'conflictWithMultipleValues'"
@@ -68,14 +68,14 @@
 						<ContactDetailsProperty
 							v-for="(singleProperty, propertyIndex) in dividedProperties[0][property]"
 							:key="singleProperty.jCal"
-							:is-first-property="propertyIndex === 0"
-							:is-last-property="false"
+							:isFirstProperty="propertyIndex === 0"
+							:isLastProperty="false"
 							:property="singleProperty"
 							:contact="contactsList[0]"
-							:local-contact="contactsList[0]"
+							:localContact="contactsList[0]"
 							:contacts="contacts"
 							:bus="bus"
-							:is-read-only="true" />
+							:isReadOnly="true" />
 					</div>
 					<div v-else class="simple-property">
 						<div class="simple-property__title">
@@ -90,13 +90,13 @@
 				<!-- Checkboxes for resolving single conflicts or conflicts with multiple possible values, for contact 1 -->
 				<NcCheckboxRadioSwitch
 					v-if="conflictInformation[property]?.type === 'conflict'"
-					:model-value="resolvedConflicts.get(property) === 1"
+					:modelValue="resolvedConflicts.get(property) === 1"
 					type="radio"
-					@update:model-value="resolveConflict(1, property)" />
+					@update:modelValue="resolveConflict(1, property)" />
 				<NcCheckboxRadioSwitch
 					v-if="conflictInformation[property]?.type === 'conflictWithMultipleValues'"
-					:model-value="resolvedConflicts.get(property)?.has(1)"
-					@update:model-value="resolveMultiConflict(1, property)" />
+					:modelValue="resolvedConflicts.get(property)?.has(1)"
+					@update:modelValue="resolveMultiConflict(1, property)" />
 				<!-- Spacer when no checkbox is needed for contact 1 -->
 				<div
 					v-if="conflictInformation[property]?.type !== 'conflict' && conflictInformation[property]?.type !== 'conflictWithMultipleValues'"
@@ -110,14 +110,14 @@
 						<ContactDetailsProperty
 							v-for="(singleProperty, propertyIndex) in dividedProperties[1][property]"
 							:key="singleProperty.jCal"
-							:is-first-property="propertyIndex === 0"
-							:is-last-property="false"
+							:isFirstProperty="propertyIndex === 0"
+							:isLastProperty="false"
 							:property="singleProperty"
 							:contact="contactsList[1]"
-							:local-contact="contactsList[1]"
+							:localContact="contactsList[1]"
 							:contacts="contacts"
 							:bus="bus"
-							:is-read-only="true" />
+							:isReadOnly="true" />
 					</div>
 					<div v-else class="simple-property">
 						<div class="simple-property__title">
@@ -140,7 +140,7 @@
 				:multiple="true"
 				:placeholder="t('contacts', 'Select groups to add the merged contact to')"
 				:disabled="!contactsList[0].groups.length && !contactsList[1].groups.length"
-				@update:model-value="calculateConflictsToResolve" />
+				@update:modelValue="calculateConflictsToResolve" />
 		</div>
 
 		<div class="merging__actions">

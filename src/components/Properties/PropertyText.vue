@@ -9,11 +9,11 @@
 		<PropertyTitle
 			v-if="isFirstProperty && propModel.icon"
 			:property="property"
-			:is-multiple="isMultiple"
-			:is-read-only="isReadOnly"
+			:isMultiple="isMultiple"
+			:isReadOnly="isReadOnly"
 			:bus="bus"
 			:icon="propModel.icon"
-			:readable-name="propModel.readableName" />
+			:readableName="propModel.readableName" />
 
 		<div class="property__row">
 			<div class="property__label">
@@ -29,11 +29,11 @@
 					:options="options"
 					:placeholder="t('contacts', 'Select type')"
 					:taggable="true"
-					tag-placeholder="create"
+					tagPlaceholder="create"
 					:disabled="isReadOnly"
 					label="name"
 					@option:created="createLabel"
-					@update:model-value="updateType" />
+					@update:modelValue="updateType" />
 
 				<!-- if we do not support any type on our model but one is set anyway -->
 				<span v-else-if="selectType">
@@ -56,11 +56,11 @@
 					v-else-if="propName === 'note'"
 					id="textarea"
 					ref="textarea"
-					v-model:model-value="localValue"
+					v-model:modelValue="localValue"
 					:label="t('contacts', 'Notes')"
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
-					@update:model-value="updateValueNoDebounce"
+					@update:modelValue="updateValueNoDebounce"
 					@mousemove="resizeHeight"
 					@keypress="resizeHeight" />
 
@@ -68,7 +68,7 @@
 				<NcTextField
 					v-else-if="propName === 'email'"
 					ref="email"
-					v-model:model-value="localValue"
+					v-model:modelValue="localValue"
 					:label="propModel.readableName"
 					:class="{ 'property__value--with-ext': haveExtHandler }"
 					autocapitalize="none"
@@ -76,35 +76,35 @@
 					:inputmode="inputmode"
 					:readonly="isReadOnly"
 					:error="!isEmailValid"
-					:helper-text="!emailHelpText || isReadonly ? '' : emailHelpText"
+					:helperText="!emailHelpText || isReadonly ? '' : emailHelpText"
 					:placeholder="placeholder"
 					type="email"
-					@update:model-value="updateEmailValue" />
+					@update:modelValue="updateEmailValue" />
 
 				<NcTextField
 					v-else-if="propName === 'url'"
 					ref="url"
-					v-model:model-value="localValue"
+					v-model:modelValue="localValue"
 					:inputmode="inputmode"
 					:aria-label="propName"
 					:class="{ 'property__value--with-ext': haveExtHandler }"
 					:error="!isUrlValid"
-					:helper-text="!urlHelpText || isReadonly ? '' : urlHelpText"
+					:helperText="!urlHelpText || isReadonly ? '' : urlHelpText"
 					type="url"
 					:placeholder="placeholder"
-					@update:model-value="updateUrlValue" />
+					@update:modelValue="updateUrlValue" />
 
 				<!-- OR default to input -->
 				<NcTextField
 					v-else
-					v-model:model-value="localValue"
+					v-model:modelValue="localValue"
 					:label="propModel.readableName"
 					:inputmode="inputmode"
 					:aria-label="propName"
 					:class="{ 'property__value--with-ext': haveExtHandler }"
 					type="text"
 					:placeholder="placeholder"
-					@update:model-value="updateValue" />
+					@update:modelValue="updateValue" />
 
 				<NcActions
 					v-if="isReadOnly"
@@ -140,7 +140,7 @@
 				<PropertyActions
 					v-if="!isReadOnly"
 					:actions="actions"
-					:property-component="this"
+					:propertyComponent="this"
 					@delete="deleteProperty" />
 			</div>
 		</div>

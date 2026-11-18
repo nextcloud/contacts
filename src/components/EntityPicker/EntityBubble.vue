@@ -7,7 +7,7 @@
 		class="entity-picker__bubble"
 		:margin="0"
 		:size="22"
-		:display-name="label"
+		:displayName="label"
 		:user="shareType === ShareType.User ? user : undefined">
 		<template #name>
 			<a

@@ -26,7 +26,19 @@ function isEmpty(value) {
 export const ContactKindProperties = ['KIND', 'X-ADDRESSBOOKSERVER-KIND']
 
 export const MinimalContactProperties = [
-	'EMAIL', 'UID', 'TEL', 'CATEGORIES', 'FN', 'ORG', 'N', 'X-PHONETIC-FIRST-NAME', 'X-PHONETIC-LAST-NAME', 'X-MANAGERSNAME', 'TITLE', 'NOTE', 'RELATED',
+	'EMAIL',
+	'UID',
+	'TEL',
+	'CATEGORIES',
+	'FN',
+	'ORG',
+	'N',
+	'X-PHONETIC-FIRST-NAME',
+	'X-PHONETIC-LAST-NAME',
+	'X-MANAGERSNAME',
+	'TITLE',
+	'NOTE',
+	'RELATED',
 ].concat(ContactKindProperties)
 
 export function generateContactKey(uid, addressbookId) {
@@ -196,7 +208,13 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get rev() {
-		return this.vCard.getFirstPropertyValue('rev')
+		try {
+			const rev = this.vCard.getFirstPropertyValue('rev')
+			return typeof rev?.toUnixTime === 'function' ? rev : null
+		} catch {
+			// a malformed REV must not prevent the contact from being displayed
+			return null
+		}
 	}
 
 	/**

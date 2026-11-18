@@ -154,7 +154,7 @@
 			<GroupNavigationItem
 				v-for="group in ellipsisGroupsMenu"
 				:key="group.key"
-				:route-state="routeState"
+				:routeState="routeState"
 				:group="group" />
 
 			<template v-if="isTeamManagementEnabled">
@@ -224,8 +224,8 @@
 			</div>
 		</template>
 		<ContactsSettings v-model:open="showSettings" />
-		<SettingsNewAddressbook ref="newAddressbook" hide-button />
-		<SettingsNewGroup ref="newGroup" hide-button />
+		<SettingsNewAddressbook ref="newAddressbook" hideButton />
+		<SettingsNewGroup ref="newGroup" hideButton />
 	</AppNavigation>
 </template>
 
@@ -241,7 +241,6 @@ import {
 	NcCounterBubble,
 } from '@nextcloud/vue'
 import { mapStores } from 'pinia'
-import naturalCompare from 'string-natural-compare'
 import IconUserFilled from 'vue-material-design-icons/Account.vue'
 import IconContactFilled from 'vue-material-design-icons/AccountMultiple.vue'
 import IconContact from 'vue-material-design-icons/AccountMultipleOutline.vue'
@@ -258,12 +257,13 @@ import GroupNavigationItem from './GroupNavigationItem.vue'
 import SettingsNewAddressbook from './Settings/SettingsNewAddressbook.vue'
 import SettingsNewGroup from './Settings/SettingsNewGroup.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
-import { CHART_ALL_CONTACTS, CIRCLE_DESC, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_ALL_OCM_INVITES, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ROUTE_ADDRESSBOOK, ROUTE_NAME_ALL_OCM_INVITES } from '../../models/constants.ts'
+import { ADDRESSBOOK_RECENTLY_CONTACTED, CHART_ALL_CONTACTS, CIRCLE_DESC, CONTACTS_SETTINGS, ELLIPSIS_COUNT, GROUP_ALL_CONTACTS, GROUP_ALL_OCM_INVITES, GROUP_NO_GROUP_CONTACTS, GROUP_RECENTLY_CONTACTED, ROUTE_ADDRESSBOOK, ROUTE_NAME_ALL_OCM_INVITES } from '../../models/constants.ts'
 import isContactsInteractionEnabled from '../../services/isContactsInteractionEnabled.js'
 import isOcmInvitesEnabled from '../../services/isOcmInvitesEnabled.js'
 import isTeamManagementEnabled from '../../services/isTeamManagementEnabled.js'
 import useOcmInvitesStore from '../../store/ocminvites.ts'
 import useUserGroupStore from '../../store/userGroup.ts'
+import { sortStrings } from '../../utils/strings.js'
 
 export default {
 	name: 'RootNavigation',
@@ -362,7 +362,7 @@ export default {
 		},
 
 		enabledAddressbooks() {
-			return this.addressbooks.filter((ab) => ab.enabled)
+			return this.addressbooks.filter((ab) => ab.enabled && ab.id !== ADDRESSBOOK_RECENTLY_CONTACTED)
 		},
 
 		circles() {
@@ -422,7 +422,7 @@ export default {
 					toString: () => group.name,
 				}
 			})
-			menu.sort((a, b) => naturalCompare(a.toString(), b.toString(), { caseInsensitive: true }))
+			menu.sort((a, b) => sortStrings(a, b))
 
 			// Find the Recently Contacted group, delete it from array
 			const recentlyIndex = menu.findIndex((group) => group.name === GROUP_RECENTLY_CONTACTED)
@@ -462,7 +462,7 @@ export default {
 				}
 
 				// Else we sort by name
-				return naturalCompare(a.toString(), b.toString(), { caseInsensitive: true })
+				return sortStrings(a, b)
 			})
 
 			return menu

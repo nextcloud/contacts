@@ -11,9 +11,9 @@
 					<NcLoadingIcon v-if="loadingAvatar" :size="75" />
 					<Avatar
 						v-else
-						:disable-tooltip="true"
-						:display-name="circle.displayName"
-						:is-no-user="true"
+						:disableTooltip="true"
+						:displayName="circle.displayName"
+						:isNoUser="true"
 						:url="displayAvatarUrl"
 						:size="75" />
 				</div>
@@ -32,7 +32,7 @@
 					<div v-if="!isEditing" class="subtitle">
 						<span>{{ t('files', 'Team owner') }}</span> <UserBubble
 							:user="circle.owner.userId"
-							:display-name="circle.isOwner ? 'you' : circle.owner.displayName" />
+							:displayName="circle.isOwner ? 'you' : circle.owner.displayName" />
 					</div>
 					<div v-if="showDescription" class="circle-description-wrapper">
 						<div v-if="!isEditing" class="circle-description">
@@ -102,7 +102,7 @@
 							<NcPopover
 								v-if="canManageTeam"
 								:shown="isSettingsPopoverShown"
-								popup-role="dialog"
+								popupRole="dialog"
 								@update:shown="isSettingsPopoverShown = $event">
 								<template #trigger>
 									<NcButton @click="isSettingsPopoverShown = true">
@@ -115,7 +115,7 @@
 									:circle="circle"
 									@leave="onLeave"
 									@delete="onDelete"
-									@close-settings-popover="onCloseSettingsPopover" />
+									@closeSettingsPopover="onCloseSettingsPopover" />
 							</NcPopover>
 						</template>
 						<template v-else>
@@ -170,12 +170,12 @@
 								<!-- Show normal resource button otherwise -->
 								<TeamResourceButton
 									v-else
-									:resource-type="resourceType"
+									:resourceType="resourceType"
 									:value="resourceInputs[resourceType.id] || ''"
-									:is-open="activePopover === resourceType.id"
-									:helper-text="resourceType.helperText"
+									:isOpen="activePopover === resourceType.id"
+									:helperText="resourceType.helperText"
 									@update:value="updateResourceInput(resourceType.id, $event)"
-									@update:is-open="setActivePopover(resourceType.id, $event)"
+									@update:isOpen="setActivePopover(resourceType.id, $event)"
 									@create="handleResourceCreation">
 									<template #icon>
 										<component :is="resourceType.icon" :size="20" />
@@ -682,7 +682,7 @@ export default {
 							// Since cdav-library doesn't expose HTTP status properly,
 							// assume MKCOL errors on calendar paths are name conflicts (405)
 							logger.error('Calendar creation failed for name:', { name })
-							throw new Error(`CALENDAR_EXISTS:${name}`)
+							throw new Error(`CALENDAR_EXISTS:${name}`, { cause: calendarError })
 						}
 						break
 					}

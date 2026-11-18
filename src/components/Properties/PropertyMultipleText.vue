@@ -9,18 +9,18 @@
 		<PropertyTitle
 			v-if="isFirstProperty && propModel.icon"
 			:property="property"
-			:is-multiple="isMultiple"
-			:is-read-only="isReadOnly"
+			:isMultiple="isMultiple"
+			:isReadOnly="isReadOnly"
 			:bus="bus"
 			:icon="propModel.icon"
-			:readable-name="propModel.readableName">
+			:readableName="propModel.readableName">
 			<template #actions>
 				<!-- props actions -->
 				<PropertyActions
 					v-if="!showActionsInFirstRow && !isReadOnly"
 					class="property__actions"
 					:actions="actions"
-					:property-component="self"
+					:propertyComponent="self"
 					@delete="deleteProperty" />
 			</template>
 		</PropertyTitle>
@@ -39,10 +39,10 @@
 					:options="options"
 					:placeholder="t('contacts', 'Select type')"
 					:taggable="true"
-					tag-placeholder="create"
+					tagPlaceholder="create"
 					label="name"
 					@option:created="createLabel"
-					@update:model-value="updateType" />
+					@update:modelValue="updateType" />
 
 				<!-- if we do not support any type on our model but one is set anyway -->
 				<span v-else-if="selectType">
@@ -63,11 +63,11 @@
 				</p>
 				<NcTextField
 					v-else-if="!property.isStructuredValue"
-					v-model:model-value="localValue[0]"
+					v-model:modelValue="localValue[0]"
 					:label="propModel.readableName"
 					:readonly="isReadOnly"
 					type="text"
-					@update:model-value="updateValue" />
+					@update:modelValue="updateValue" />
 
 				<NcButton
 					v-if="!property.isStructuredValue && isReadOnly"
@@ -86,7 +86,7 @@
 				<PropertyActions
 					v-if="showActionsInFirstRow && !isReadOnly"
 					:actions="actions"
-					:property-component="this"
+					:propertyComponent="this"
 					@delete="deleteProperty" />
 			</div>
 		</div>
@@ -107,11 +107,11 @@
 						</p>
 						<NcTextField
 							v-else
-							v-model:model-value="localValue[index]"
+							v-model:modelValue="localValue[index]"
 							type="text"
 							:aria-label="propModel.readableValues[index]"
 							:label="propModel.readableValues[index]"
-							@update:model-value="updateValue" />
+							@update:modelValue="updateValue" />
 						<NcButton
 							v-if="isReadOnly"
 							class="property__ext"
@@ -142,10 +142,10 @@
 						</p>
 						<NcTextField
 							v-else
-							v-model:model-value="filteredValue[index]"
+							v-model:modelValue="filteredValue[index]"
 							:label="propModel.readableValues[index]"
 							type="text"
-							@update:model-value="updateValue" />
+							@update:modelValue="updateValue" />
 						<NcButton
 							v-if="isReadOnly"
 							class="property__ext"

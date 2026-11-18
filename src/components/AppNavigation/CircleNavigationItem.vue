@@ -7,7 +7,7 @@
 		:key="circle.key"
 		:name="circle.displayName"
 		:to="circle.router"
-		:force-menu="true">
+		:forceMenu="true">
 		<!-- force-menu avoids a Tab-trap in NcAppNavigationItem/NcActions when only
 			one action (copy link) is available: their Tab handler focuses a menu
 			trigger button that isn't rendered in single-inline-action mode. -->
@@ -25,7 +25,7 @@
 			<template v-else>
 				<ActionButton
 					v-if="circle.canManageMembers"
-					:close-after-click="true"
+					:closeAfterClick="true"
 					@click="addMemberToCircle">
 					<template #icon>
 						<IconCog :size="20" />

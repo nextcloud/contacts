@@ -14,13 +14,13 @@
 
 	<NcDialog
 		v-if="modalOpen"
-		:is-form="true"
+		:isForm="true"
 		size="small"
 		:buttons="buttons"
 		:name="t('contacts', 'Add new address book')"
 		@closing="onModalCancel">
 		<NcTextField
-			v-model:model-value="displayName"
+			v-model:modelValue="displayName"
 			:disabled="loading"
 			:label="t('contacts', 'Address book name')"
 			autocomplete="off"

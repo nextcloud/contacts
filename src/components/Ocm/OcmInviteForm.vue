@@ -17,10 +17,10 @@
 		<!-- Only show toggle if optional mail is enabled -->
 		<NcCheckboxRadioSwitch
 			v-if="optionalMailEnabled"
-			:model-value="sendEmail"
+			:modelValue="sendEmail"
 			:disabled="loadingUpdate"
 			data-testid="ocm-invite-send-email-checkbox"
-			@update:model-value="sendEmail = $event">
+			@update:modelValue="sendEmail = $event">
 			{{ t('contacts', 'Send invite via email') }}
 		</NcCheckboxRadioSwitch>
 		<div v-if="showEmailFields" class="ocm-invite-form__fields">
@@ -28,7 +28,7 @@
 				type="email"
 				:label="emailLabel"
 				:placeholder="t('contacts', 'email@example.com')"
-				:model-value="ocmInvite.email"
+				:modelValue="ocmInvite.email"
 				:required="emailRequired"
 				:disabled="loadingUpdate"
 				inputmode="email"
@@ -68,7 +68,7 @@
 		</div>
 
 		<div class="actions">
-			<slot name="new-invite-actions" />
+			<slot name="newInviteActions" />
 		</div>
 	</div>
 </template>

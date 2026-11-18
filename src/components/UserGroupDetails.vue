@@ -9,9 +9,9 @@
 			<div class="usergroup-details__header-wrapper">
 				<div class="usergroup-details-grid__avatar">
 					<NcAvatar
-						:disable-tooltip="true"
-						:display-name="userGroup.displayName"
-						:is-no-user="true"
+						:disableTooltip="true"
+						:displayName="userGroup.displayName"
+						:isNoUser="true"
 						:size="75" />
 				</div>
 				<div class="usergroup-details__header">

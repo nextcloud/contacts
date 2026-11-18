@@ -9,15 +9,15 @@ $grid-input-margin: 3px;
 $grid-input-height-with-margin: $grid-height-unit - $grid-input-margin * 2;
 
 // components
-@import 'SettingsSection';
-@import 'Settings/SettingsAddressbookShares';
-@import 'Settings/SettingsAddressbookSharee';
-@import 'ContactsListItem';
-@import 'Properties/Properties';
-@import 'ImportScreen';
+@import 'SettingsSection.scss';
+@import 'Settings/SettingsAddressbookShares.scss';
+@import 'Settings/SettingsAddressbookSharee.scss';
+@import 'ContactsListItem.scss';
+@import 'Properties/Properties.scss';
+@import 'ImportScreen.scss';
 
 // various
-@import 'animations';
+@import 'animations.scss';
 
 .app-contacts {
 	.app-content-details {

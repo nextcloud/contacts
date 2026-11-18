@@ -4,13 +4,14 @@
 -->
 
 <template>
-	<Content :app-name="appName">
+	<Content :appName="appName">
 		<!-- new-contact-button + navigation + settings -->
 		<RootNavigation
 			:loading="loadingContacts || loadingCircles">
 			<div class="import-and-new-contact-buttons">
-				<SettingsImportContacts v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView"
-					:is-ocm-invites-enabled="isOcmInvitesEnabled" />
+				<SettingsImportContacts
+					v-if="!loadingContacts && isEmptyGroup && !isChartView && !isCirclesView"
+					:isOcmInvitesEnabled="isOcmInvitesEnabled" />
 				<!-- new-contact-button -->
 				<NcButton
 					v-if="!loadingContacts"
@@ -31,7 +32,7 @@
 						<IconAccountSwitchOutline :size="20" />
 					</template>
 					<NcActionButton
-						close-after-click
+						closeAfterClick
 						@click="openCreateInvite">
 						<template #icon>
 							<IconAdd :size="20" />
@@ -39,7 +40,7 @@
 						{{ t('contacts', 'Create invitation') }}
 					</NcActionButton>
 					<NcActionButton
-						close-after-click
+						closeAfterClick
 						@click="openAcceptInvite">
 						<template #icon>
 							<IconAccountArrowDownOutline :size="20" />
@@ -56,38 +57,29 @@
 			:loading="loadingCircles" />
 		<ChartContent
 			v-else-if="selectedChart"
-			:contacts-list="contacts" />
+			:contactsList="contacts" />
 		<OcmInvitesContent
 			v-else-if="isInvitesView"
-			:invites-list="invitesList"
-			:invite-actions-enabled="!!defaultAddressbook"
-			:error-message="ocmInvitesLoadError"
+			:invitesList="invitesList"
+			:inviteActionsEnabled="!!defaultAddressbook"
+			:errorMessage="ocmInvitesLoadError"
 			:loading="loadingInvites"
-			@open-create-invite="openCreateInvite"
-			@open-accept-invite="openAcceptInvite"
-			@retry-load="fetchOcmInvites" />
+			@openCreateInvite="openCreateInvite"
+			@openAcceptInvite="openAcceptInvite"
+			@retryLoad="fetchOcmInvites" />
 		<ContactsContent
 			v-else
-			:contacts-list="contactsList"
+			:contactsList="contactsList"
 			:loading="loadingContacts"
-			@new-contact="newContact" />
-
-		<!-- Import modal -->
-		<Modal
-			v-if="isImporting"
-			:clear-view-delay="-1"
-			:can-close="isImportDone"
-			@close="closeImport">
-			<ImportView @close="closeImport" />
-		</Modal>
+			@newContact="newContact" />
 
 		<!-- new invite form -->
 		<Modal
 			v-if="showNewInviteForm"
-			:no-close="loadingUpdate"
+			:noClose="loadingUpdate"
 			@close="cancelNewInvite">
-			<OcmInviteForm v-model:ocm-invite="ocmInvite" :loading-update="loadingUpdate">
-				<template #new-invite-actions>
+			<OcmInviteForm v-model:ocmInvite="ocmInvite" :loadingUpdate="loadingUpdate">
+				<template #newInviteActions>
 					<div class="new-invite-form__buttons-row">
 						<NcButton
 							variant="tertiary"
@@ -113,10 +105,10 @@
 		</Modal>
 		<Modal
 			v-if="showManualInvite"
-			:no-close="loadingUpdate"
+			:noClose="loadingUpdate"
 			@close="manualInviteCancel">
 			<OcmAcceptForm
-				:loading-update="loadingUpdate"
+				:loadingUpdate="loadingUpdate"
 				@accept="handleAccept"
 				@cancel="manualInviteCancel" />
 		</Modal>
@@ -124,10 +116,10 @@
 		<!-- invite accept dialog -->
 		<Modal
 			v-if="showInviteAcceptDialog"
-			:no-close="loadingUpdate"
+			:noClose="loadingUpdate"
 			@close="cancelInvite">
 			<OcmInviteAccept :token="inviteToken" :provider="inviteProvider">
-				<template #accept-invite-actions>
+				<template #acceptInviteActions>
 					<div class="invite-accept-form__buttons-row">
 						<NcButton variant="tertiary" :disabled="loadingUpdate" @click="cancelInvite">
 							{{ t("contacts", "Cancel") }}
@@ -180,7 +172,6 @@ import ContactsPicker from '../components/EntityPicker/ContactsPicker.vue'
 import OcmAcceptForm from '../components/Ocm/OcmAcceptForm.vue'
 import OcmInviteAccept from '../components/Ocm/OcmInviteAccept.vue'
 import OcmInviteForm from '../components/Ocm/OcmInviteForm.vue'
-import ImportView from './Processing/ImportView.vue'
 import IsMobileMixin from '../mixins/IsMobileMixin.ts'
 import RouterMixin from '../mixins/RouterMixin.js'
 import { GROUP_ALL_CONTACTS, GROUP_NO_GROUP_CONTACTS, ROUTE_CIRCLE, ROUTE_NAME_ALL_OCM_INVITES, ROUTE_NAME_INVITE_ACCEPT_DIALOG, ROUTE_NAME_OCM_INVITE, ROUTE_USER_GROUP } from '../models/constants.ts'
@@ -210,7 +201,6 @@ const _default = {
 		ContactsContent,
 		ContactsPicker,
 		Content,
-		ImportView,
 		IconAccountArrowDownOutline,
 		IconAccountSwitchOutline,
 		IconAdd,
@@ -282,34 +272,12 @@ const _default = {
 			return this.$store.getters.getOrderKey
 		},
 
-		importState() {
-			return this.$store.getters.getImportState
-		},
-
 		isEmptyGroup() {
 			return this.contactsList.length === 0
 		},
 
 		isChartView() {
 			return !!this.selectedChart
-		},
-
-		/**
-		 * Are we importing contacts ?
-		 *
-		 * @return {boolean}
-		 */
-		isImporting() {
-			return this.importState.stage !== 'default'
-		},
-
-		/**
-		 * Are we done importing contacts ?
-		 *
-		 * @return {boolean}
-		 */
-		isImportDone() {
-			return this.importState.stage === 'done'
 		},
 
 		// first enabled addressbook of the list
@@ -675,13 +643,6 @@ const _default = {
 					})
 				}
 			}
-		},
-
-		/**
-		 * Done importing, the user closed the import status screen
-		 */
-		closeImport() {
-			this.$store.dispatch('changeStage', 'default')
 		},
 
 		/**

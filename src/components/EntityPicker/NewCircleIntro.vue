@@ -27,7 +27,7 @@
 				<!-- Personal circle, TODO: IMPLEMENT -->
 				<template v-if="false">
 					<CheckboxRadioSwitch
-						v-model:model-value="isPersonal"
+						v-model:modelValue="isPersonal"
 						:disabled="loading !== false">
 						{{ t('contacts', 'Personal team') }}
 					</CheckboxRadioSwitch>
@@ -39,7 +39,7 @@
 				<!-- Local circle -->
 				<template v-if="isGlobalScale">
 					<CheckboxRadioSwitch
-						v-model:model-value="isLocal"
+						v-model:modelValue="isLocal"
 						:disabled="loading !== false">
 						{{ t('contacts', 'Local team') }}
 					</CheckboxRadioSwitch>

@@ -33,13 +33,13 @@
 					<ContactDetailsProperty
 						v-for="(property, index) in properties"
 						:key="`${index}-${contact.key}-${property.name}`"
-						:is-first-property="index === 0"
-						:is-last-property="index === properties.length - 1"
+						:isFirstProperty="index === 0"
+						:isLastProperty="index === properties.length - 1"
 						:property="property"
 						:contact="contact"
-						:local-contact="localContact"
+						:localContact="localContact"
 						:contacts="[contact]"
-						:is-read-only="true"
+						:isReadOnly="true"
 						:bus="bus" />
 				</div>
 			</div>

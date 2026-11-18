@@ -22,6 +22,9 @@ export const GROUP_ALL_CONTACTS: DefaultGroup = t('contacts', 'All contacts')
 export const GROUP_NO_GROUP_CONTACTS: DefaultGroup = t('contacts', 'Not grouped')
 export const GROUP_RECENTLY_CONTACTED: DefaultGroup = 'Recently contacted'
 
+// Address book provided by the contactsinteraction app
+export const ADDRESSBOOK_RECENTLY_CONTACTED = 'z-app-generated--contactsinteraction--recent'
+
 // Organization default chart for all contacts
 export const CHART_ALL_CONTACTS: DefaultChart = t('contacts', 'Organization chart')
 
@@ -42,6 +45,10 @@ export const OCM_INVITES_CONFIG_KEYS = {
 	optionalMail: 'ocm_invites_optional_mail',
 	encodedCopyButton: 'ocm_invites_encoded_copy_button',
 } as const
+
+// Import destination placeholder for a new address book. Address book ids are a single
+// URI path segment, so a value containing a slash can never collide with an existing one.
+export const IMPORT_NEW_ADDRESSBOOK_ID = '/new'
 
 // Contact settings
 export const CONTACTS_SETTINGS: DefaultGroup = t('contacts', 'Contacts settings')

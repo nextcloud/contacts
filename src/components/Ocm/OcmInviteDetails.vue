@@ -56,11 +56,11 @@
 							{{ t('contacts', 'Useful for sharing through a chat app or for manual acceptance.') }}
 						</p>
 						<OcmInviteShareActions
-							:invite-link="wayfLink"
-							:invite-code="inviteCode"
-							:encoded-invite="base64InviteString"
-							:clipboard-kinds="clipboardKinds"
-							:encoded-copy-button-enabled="encodedCopyButtonEnabled"
+							:inviteLink="wayfLink"
+							:inviteCode="inviteCode"
+							:encodedInvite="base64InviteString"
+							:clipboardKinds="clipboardKinds"
+							:encodedCopyButtonEnabled="encodedCopyButtonEnabled"
 							@copy="onCopyAction" />
 					</div>
 				</div>
@@ -104,7 +104,7 @@
 			v-if="showAttachEmailForm"
 			v-model:show="showAttachEmailForm"
 			:name="t('contacts', 'Send invitation via email')"
-			:no-close="submittingAttachEmail">
+			:noClose="submittingAttachEmail">
 			<OcmAttachEmailForm
 				:loading="submittingAttachEmail"
 				@submit="onAttachEmailSubmit"

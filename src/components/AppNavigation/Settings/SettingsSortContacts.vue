@@ -13,10 +13,10 @@
 				id="sort-by"
 				v-model="selected"
 				:searchable="false"
-				:allow-empty="false"
+				:allowEmpty="false"
 				:options="options"
 				label="label"
-				@update:model-value="sortContacts" />
+				@update:modelValue="sortContacts" />
 		</div>
 	</NcFormBox>
 </template>

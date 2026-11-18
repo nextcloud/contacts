@@ -5,8 +5,8 @@
 
 <template>
 	<NcActionCheckbox
-		:model-value="omitYear"
-		@update:model-value="onUpdate">
+		:modelValue="omitYear"
+		@update:modelValue="onUpdate">
 		{{ t('contacts', 'Omit year') }}
 	</NcActionCheckbox>
 </template>

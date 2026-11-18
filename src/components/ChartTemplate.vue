@@ -14,9 +14,9 @@
 					},
 				}">
 				<Avatar
-					:disable-tooltip="true"
-					:display-name="chartData.fullName"
-					:is-no-user="true"
+					:disableTooltip="true"
+					:displayName="chartData.fullName"
+					:isNoUser="true"
 					:size="60"
 					:url="chartData.photoUrl"
 					class="org-chart-node__avatar" />

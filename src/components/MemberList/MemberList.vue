@@ -38,7 +38,7 @@
 			<MemberGridItem
 				:key="`member-grid-item-${item.id}`"
 				:member="item"
-				:is-team="!item.isUser" />
+				:isTeam="!item.isUser" />
 		</VList>
 
 		<!-- member picker -->
@@ -46,11 +46,11 @@
 			v-if="showPicker"
 			ref="entityPicker"
 			v-model:selection="pickerSelection"
-			:confirm-label="t('contacts', 'Add to {team}', { team: decodedTeamName })"
-			:title-label="t('contacts', 'Invite members to {team}', { team: decodedTeamName })"
+			:confirmLabel="t('contacts', 'Add to {team}', { team: decodedTeamName })"
+			:titleLabel="t('contacts', 'Invite members to {team}', { team: decodedTeamName })"
 			:data-types="pickerTypes"
 			:data-set="filteredPickerData"
-			:internal-search="false"
+			:internalSearch="false"
 			:loading="pickerLoading"
 			@close="resetPicker"
 			@search="onSearch"

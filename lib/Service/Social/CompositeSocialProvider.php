@@ -14,8 +14,7 @@ class CompositeSocialProvider {
 	/** @var ISocialProvider[] */
 	private array $providers;
 
-	public function __construct(InstagramProvider $instagramProvider,
-		MastodonProvider $mastodonProvider,
+	public function __construct(MastodonProvider $mastodonProvider,
 		// FacebookProvider $facebookProvider,
 		TumblrProvider $tumblrProvider,
 		DiasporaProvider $diasporaProvider,
@@ -24,7 +23,6 @@ class CompositeSocialProvider {
 		GravatarProvider $gravatarProvider) {
 		// This determines the priority of known providers
 		$this->providers = [
-			$instagramProvider->name => $instagramProvider,
 			$mastodonProvider->name => $mastodonProvider,
 			// $facebookProvider->name => $facebookProvider,
 			$tumblrProvider->name => $tumblrProvider,

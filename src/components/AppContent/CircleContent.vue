@@ -17,7 +17,7 @@
 			</template>
 		</EmptyContent>
 
-		<UserGroupDetails v-else-if="userGroup" :user-group="userGroup" />
+		<UserGroupDetails v-else-if="userGroup" :userGroup="userGroup" />
 		<CircleDetails v-else :circle="circle" />
 	</AppContent>
 </template>
