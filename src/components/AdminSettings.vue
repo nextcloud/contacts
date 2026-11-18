@@ -31,6 +31,7 @@
 				v-model="ocmInvitesConfig.encodedCopyButton"
 				type="switch"
 				@update:modelValue="updateOcmSetting(ocmInviteConfigKeys.encodedCopyButton, ocmInvitesConfig.encodedCopyButton)">
+				<!-- TRANSLATORS "Encoded invite" is the invite code (token@server) converted to Base64. It is not encrypted. -->
 				{{ t('contacts', 'Show the "Copy encoded invite" button on invite details') }}
 			</NcCheckboxRadioSwitch>
 		</p>

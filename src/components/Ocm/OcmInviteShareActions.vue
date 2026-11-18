@@ -36,6 +36,7 @@
 		</div>
 
 		<div v-if="encodedCopyButtonEnabled" class="share-row">
+			<!-- TRANSLATORS "Encoded invite" is the invite code (token@server) converted to Base64. It is not encrypted. Label next to the invite link and the invite code. -->
 			<span class="share-row__label">{{ t('contacts', 'Encoded invite') }}</span>
 			<span class="share-row__value" :title="encodedInvite">{{ encodedInvite }}</span>
 			<NcButton

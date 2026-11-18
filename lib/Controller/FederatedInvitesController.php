@@ -803,6 +803,7 @@ class FederatedInvitesController extends Controller {
 		$details = [
 			$this->il10->t('Invitation details:'),
 			$this->il10->t('Invite code: %1$s', ["$token@$senderProvider"]),
+			// TRANSLATORS "Encoded invite" is the invite code (token@server) converted to Base64. It is not encrypted. %1$s is that Base64 text.
 			$this->il10->t('Encoded invite: %1$s', [$encoded]),
 		];
 		$emailTemplate->addBodyText(
