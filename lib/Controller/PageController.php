@@ -13,6 +13,7 @@ use OCA\Contacts\ConfigLexicon;
 use OCA\Contacts\Service\FederatedInvitesService;
 use OCA\Contacts\Service\GroupSharingService;
 use OCA\Contacts\Service\SocialApiService;
+use OCA\Contacts\Service\SubtitleOrderService;
 use OCP\App\IAppManager;
 use OCP\AppFramework\Controller;
 use OCP\AppFramework\Http\TemplateResponse;
@@ -40,6 +41,7 @@ class PageController extends Controller {
 		private CompareVersion $compareVersion,
 		private GroupSharingService $groupSharingService,
 		private ServerVersion $serverVersion,
+		private SubtitleOrderService $subtitleOrderService,
 	) {
 		parent::__construct(Application::APP_ID, $request);
 	}
@@ -103,6 +105,7 @@ class PageController extends Controller {
 		$this->initialState->provideInitialState('isOcmInvitesEnabled', $isOcmInvitesEnabled);
 		$this->initialState->provideInitialState('ocmInvitesConfig', $ocmInvitesConfig);
 		$this->initialState->provideInitialState('hideTeamSharedFolderCreation', $hideTeamSharedFolderCreation);
+		$this->initialState->provideInitialState('subtitleOrder', $this->subtitleOrderService->getOrder($userId));
 
 		Util::addStyle(Application::APP_ID, 'contacts-main');
 		Util::addScript(Application::APP_ID, 'contacts-main');

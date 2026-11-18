@@ -103,6 +103,7 @@ import StarIcon from 'vue-material-design-icons/Star.vue'
 import StarOutlineIcon from 'vue-material-design-icons/StarOutline.vue'
 import RouterMixin from '../../mixins/RouterMixin.js'
 import logger from '../../services/logger.js'
+import { pickSubtitle } from '../../utils/subtitle.js'
 
 export default {
 	name: 'ContactsListItem',
@@ -172,18 +173,7 @@ export default {
 		},
 
 		subtitle() {
-			if (this.source.org) {
-				return this.source.org
-			} else if (this.source.email) {
-				return this.source.email
-			} else {
-				const tel = this.getTel
-				if (tel) {
-					return tel
-				}
-			}
-
-			return ''
+			return pickSubtitle(this.source, this.$store.getters.getSubtitleOrder)
 		},
 
 		// contact is not draggable when it has not been saved on server as it can't be added to groups/circles before
@@ -194,10 +184,6 @@ export default {
 		// usable and valid html id for scrollTo
 		id() {
 			return this.source.key.slice(0, -2)
-		},
-
-		getTel() {
-			return this.source.properties.find((property) => property.name === 'tel')?.getFirstValue()
 		},
 
 		selectAriaLabel() {

@@ -4,11 +4,13 @@
  */
 
 import { showError } from '@nextcloud/dialogs'
+import { loadState } from '@nextcloud/initial-state'
 import ICAL from 'ical.js'
 import { toRaw } from 'vue'
 import Contact from '../models/contact.js'
 import logger from '../services/logger.js'
 import validate from '../services/validate.js'
+import { DEFAULT_SUBTITLE_ORDER } from '../utils/subtitle.js'
 
 /*
  * Currently ical.js does not serialize parameters with multiple values correctly. This is
@@ -113,6 +115,7 @@ const state = {
 	contacts: {},
 	sortedContacts: [],
 	orderKey: 'displayName',
+	subtitleOrder: loadState('contacts', 'subtitleOrder', DEFAULT_SUBTITLE_ORDER),
 }
 
 const mutations = {
@@ -311,6 +314,16 @@ const mutations = {
 	},
 
 	/**
+	 * Set the order in which a contact's fields are tried for the line under its name
+	 *
+	 * @param {object} state the store data
+	 * @param {string[]} subtitleOrder org, email and tel, each exactly once
+	 */
+	setSubtitleOrder(state, subtitleOrder) {
+		state.subtitleOrder = subtitleOrder
+	},
+
+	/**
 	 * Set a contact as `in conflict` with the server data
 	 *
 	 * @param {object} state the store data
@@ -349,6 +362,7 @@ const getters = {
 	getSortedContacts: (state) => state.sortedContacts,
 	getContact: (state) => (key) => state.contacts[key],
 	getOrderKey: (state) => state.orderKey,
+	getSubtitleOrder: (state) => state.subtitleOrder,
 }
 
 const actions = {
