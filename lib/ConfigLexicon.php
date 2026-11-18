@@ -128,6 +128,7 @@ class ConfigLexicon implements ILexicon {
 				ValueType::ARRAY,
 				defaultRaw: SubtitleOrderService::DEFAULT_ORDER,
 				definition: 'Order in which the contacts list tries org, email and tel for the line under each name.',
+				lazy: true,
 			),
 		];
 	}

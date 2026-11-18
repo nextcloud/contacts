@@ -31,7 +31,7 @@ class SubtitleOrderService {
 	 * @return list<string> the user's order, or the default order if none or an invalid one is stored
 	 */
 	public function getOrder(string $userId): array {
-		$order = $this->userConfig->getValueArray($userId, Application::APP_ID, ConfigLexicon::SUBTITLE_ORDER, self::DEFAULT_ORDER);
+		$order = $this->userConfig->getValueArray($userId, Application::APP_ID, ConfigLexicon::SUBTITLE_ORDER, self::DEFAULT_ORDER, lazy: true);
 		return $this->isValidOrder($order) ? $order : self::DEFAULT_ORDER;
 	}
 
@@ -43,7 +43,7 @@ class SubtitleOrderService {
 		if (!$this->isValidOrder($order)) {
 			throw new InvalidArgumentException('The order must list org, email and tel, each exactly once');
 		}
-		$this->userConfig->setValueArray($userId, Application::APP_ID, ConfigLexicon::SUBTITLE_ORDER, $order);
+		$this->userConfig->setValueArray($userId, Application::APP_ID, ConfigLexicon::SUBTITLE_ORDER, $order, lazy: true);
 	}
 
 	private function isValidOrder(array $order): bool {

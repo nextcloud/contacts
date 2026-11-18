@@ -30,7 +30,7 @@ class SubtitleOrderServiceTest extends TestCase {
 
 	public function testGetOrderReturnsTheStoredOrder(): void {
 		$this->userConfig->method('getValueArray')
-			->with('user1', Application::APP_ID, ConfigLexicon::SUBTITLE_ORDER, SubtitleOrderService::DEFAULT_ORDER)
+			->with('user1', Application::APP_ID, ConfigLexicon::SUBTITLE_ORDER, SubtitleOrderService::DEFAULT_ORDER, true)
 			->willReturn(['tel', 'org', 'email']);
 
 		$order = $this->service->getOrder('user1');
@@ -50,7 +50,7 @@ class SubtitleOrderServiceTest extends TestCase {
 	public function testSetOrderStoresAValidOrder(): void {
 		$this->userConfig->expects(self::once())
 			->method('setValueArray')
-			->with('user1', Application::APP_ID, ConfigLexicon::SUBTITLE_ORDER, ['email', 'tel', 'org']);
+			->with('user1', Application::APP_ID, ConfigLexicon::SUBTITLE_ORDER, ['email', 'tel', 'org'], true);
 
 		$this->service->setOrder('user1', ['email', 'tel', 'org']);
 	}
