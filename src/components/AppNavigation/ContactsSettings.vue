@@ -23,6 +23,15 @@
 			</NcFormBox>
 
 			<SettingsImportContacts />
+
+			<NcFormGroup
+				:label="t('contacts', 'CardDAV')"
+				:description="t('contacts', 'Access Nextcloud contacts from other apps and devices')">
+				<NcFormBox>
+					<NcFormBoxCopyButton :label="t('contacts', 'CardDAV URL')" :value="primaryCardDAV" />
+					<NcFormBoxCopyButton :label="t('contacts', 'Server Address for iOS and macOS')" :value="appleCardDAV" />
+				</NcFormBox>
+			</NcFormGroup>
 		</AppSettingsSection>
 
 		<AppSettingsSection id="address-books" :name="t('contacts', 'Address books')">
@@ -39,17 +48,20 @@
 import axios from '@nextcloud/axios'
 import { showError, showSuccess } from '@nextcloud/dialogs'
 import { loadState } from '@nextcloud/initial-state'
-import { generateUrl } from '@nextcloud/router'
+import { generateRemoteUrl, generateUrl } from '@nextcloud/router'
 import {
 	NcAppSettingsDialog as AppSettingsDialog,
 	NcAppSettingsSection as AppSettingsSection,
 } from '@nextcloud/vue'
 import NcFormBox from '@nextcloud/vue/components/NcFormBox'
+import NcFormBoxCopyButton from '@nextcloud/vue/components/NcFormBoxCopyButton'
 import NcFormBoxSwitch from '@nextcloud/vue/components/NcFormBoxSwitch'
+import NcFormGroup from '@nextcloud/vue/components/NcFormGroup'
 import SettingsAddressbook from './Settings/SettingsAddressbook.vue'
 import SettingsImportContacts from './Settings/SettingsImportContacts.vue'
 import SettingsNewAddressbook from './Settings/SettingsNewAddressbook.vue'
 import SettingsSortContacts from './Settings/SettingsSortContacts.vue'
+import usePrincipalsStore from '../../store/principals.js'
 
 export default {
 	name: 'ContactsSettings',
@@ -57,7 +69,9 @@ export default {
 		AppSettingsDialog,
 		AppSettingsSection,
 		NcFormBox,
+		NcFormBoxCopyButton,
 		NcFormBoxSwitch,
+		NcFormGroup,
 		SettingsAddressbook,
 		SettingsNewAddressbook,
 		SettingsImportContacts,
@@ -84,6 +98,22 @@ export default {
 		// store getters
 		addressbooks() {
 			return this.$store.getters.getAddressbooks
+		},
+
+		currentUserPrincipal() {
+			const principalsStore = usePrincipalsStore()
+			return principalsStore.currentUserPrincipal
+		},
+
+		primaryCardDAV() {
+			return generateRemoteUrl('dav')
+		},
+
+		appleCardDAV() {
+			if (!this.currentUserPrincipal) {
+				return ''
+			}
+			return new URL(this.currentUserPrincipal.url, this.primaryCardDAV).toString()
 		},
 	},
 
