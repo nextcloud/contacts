@@ -1103,7 +1103,7 @@ export default defineComponent({
 						this.$router.push({
 							name: 'addressbook-contact',
 							params: {
-								selectedAddressbook: this.$route.params.selectedAddressbook,
+								selectedAddressbook: addressbook.id,
 								selectedContact: contact.key,
 							},
 						})
