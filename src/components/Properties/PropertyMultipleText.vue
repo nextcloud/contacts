@@ -96,7 +96,7 @@
 				v-for="(index, offset) in propModel.displayOrder"
 				:key="index"
 				class="property__row">
-				<template v-if="(isReadOnly && localValue[index]) || (!isReadOnly && offset !== 0)">
+				<template v-if="(isReadOnly && localValue[index]) || (!isReadOnly && (offset !== 0 || !showActionsInFirstRow))">
 					<div class="property__label">
 						<span v-if="isReadOnly">{{ propModel.readableValues[index] }}</span>
 					</div>
