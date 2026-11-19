@@ -295,7 +295,6 @@ OC.L10N.register(
     "Search for people to add" : "追加するメンバーを検索",
     "No results" : "該当なし",
     "Add {type}" : "{type}を追加",
-    "New team name" : "新しいチーム名",
     "Personal team" : "パーソナルチーム",
     "This team will only be visible to you. Other members will not be able to see or use it." : "このチームはあなたにしか見えません。他のメンバーは表示または使用できません。",
     "Local team" : "ローカルチーム",
@@ -532,6 +531,7 @@ OC.L10N.register(
     "Import failed" : "インポートに失敗しました",
     "Value copied to the clipboard" : "クリップボードに値をコピーしました",
     "Could not copy value to the clipboard." : "クリップボードに値をコピーできませんでした。",
+    "New team name" : "新しいチーム名",
     "%1$s invites you to exchange cloud accounts and contact information." : "%1$s があなたをクラウドアカウントと連絡先情報の交換に招待しています。",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "この招待を承諾するには、下のURLを使用して、ご利用のクラウドプロバイダーでサインインしてください:"
 },

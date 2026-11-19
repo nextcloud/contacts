@@ -265,7 +265,6 @@ OC.L10N.register(
     "Search for people to add" : "Cari orang untuk ditambahkan",
     "No results" : "Tidak ada hasil",
     "Add {type}" : "Tambahkan {type}",
-    "New team name" : "Nama tim baru",
     "Personal team" : "Tim pribadi",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Tim ini hanya akan terlihat oleh Anda. Anggota lain tidak akan dapat melihat atau menggunakannya.",
     "Local team" : "Tim lokal",
@@ -500,6 +499,7 @@ OC.L10N.register(
     "Unable to delete contact" : "Tidak dapat menghapus kontak",
     "Value copied to the clipboard" : "Nilai disalin ke papan klip",
     "Could not copy value to the clipboard." : "Nilai tidak dapat disalin ke papan klip.",
+    "New team name" : "Nama tim baru",
     "%1$s invites you to exchange cloud accounts and contact information." : "%1$s mengundang Anda untuk bertukar akun cloud dan informasi kontak.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Untuk menerima undangan ini, gunakan URL di bawah ini untuk masuk menggunakan penyedia cloud Anda:"
 },

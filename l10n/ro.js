@@ -295,7 +295,6 @@ OC.L10N.register(
     "Search for people to add" : "Caută persoane de adăugat",
     "No results" : "Niciun rezultat",
     "Add {type}" : "Adaugă {type}",
-    "New team name" : "Numele noii echipe",
     "Personal team" : "Echipă personală",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Această echipă va fi vizibilă doar pentru tine. Ceilalți membri nu o vor putea vedea sau folosi.",
     "Local team" : "Echipă locală",
@@ -531,6 +530,7 @@ OC.L10N.register(
     "Import failed" : "Importul a eșuat",
     "Value copied to the clipboard" : "Valoarea a fost copiată în clipboard",
     "Could not copy value to the clipboard." : "Valoarea nu a putut fi copiată în clipboard.",
+    "New team name" : "Numele noii echipe",
     "%1$s invites you to exchange cloud accounts and contact information." : "%1$s te invită să faceți schimb de conturi cloud și informații de contact.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Pentru a accepta această invitație, folosește URL-ul de mai jos pentru a te autentifica la furnizorul tău de cloud:"
 },

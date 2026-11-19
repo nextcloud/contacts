@@ -218,7 +218,6 @@ OC.L10N.register(
     "Search for people to add" : "Buscar personas para añadir",
     "No results" : "Sin resultados",
     "Add {type}" : "Añadir {type}",
-    "New team name" : "Nombre nuevo para el equipo",
     "Personal team" : "Equipo personal",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Este equipo solo será visible para Ud. Otros miembros no podrán utilizarlo o verlo.",
     "Local team" : "Equipo local",
@@ -379,6 +378,7 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "No se pudo eliminar el equipo {circleId}",
     "Unable to delete contact" : "No se ha podido eliminar el contacto",
     "Value copied to the clipboard" : "Copiado al portapapeles",
-    "Could not copy value to the clipboard." : "No se pudo copiar al portapapeles"
+    "Could not copy value to the clipboard." : "No se pudo copiar al portapapeles",
+    "New team name" : "Nombre nuevo para el equipo"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

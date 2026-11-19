@@ -295,7 +295,6 @@ OC.L10N.register(
     "Search for people to add" : "Eklenecek kişileri ara",
     "No results" : "Herhangi bir sonuç bulunamadı",
     "Add {type}" : "{type} ekle",
-    "New team name" : "Yeni takım adı",
     "Personal team" : "Kişisel takım",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Bu takımı yalnızca siz görebilirsiniz. Diğer üyeler bu takımı göremez ya da kullanamaz.",
     "Local team" : "Yerel takım",
@@ -532,6 +531,7 @@ OC.L10N.register(
     "Import failed" : "İçe aktarılamadı",
     "Value copied to the clipboard" : "Değer panoya kopyalandı",
     "Could not copy value to the clipboard." : "Değer panoya kopyalanamadı.",
+    "New team name" : "Yeni takım adı",
     "%1$s invites you to exchange cloud accounts and contact information." : "%1$s sizi bulut hesaplarınızı ve iletişim bilgilerinizi karşılıklı paylaşmaya davet ediyor.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Bu daveti kabul etmek için bulut hizmeti sağlayıcınızla oturum açmak üzere şu adresi kullanın:"
 },

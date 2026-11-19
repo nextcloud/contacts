@@ -215,7 +215,6 @@
     "Search for people to add" : "Buscar persoas para engadir",
     "No results" : "Sen resultados",
     "Add {type}" : "Engadir {type}",
-    "New team name" : "Novo nome do equipo",
     "Personal team" : "Equipo persoal",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Este equipo só será visíbel para Vde. Outros membros non poderán velo nin usalo.",
     "Local team" : "Equipo local",
@@ -376,6 +375,7 @@
     "Unable to delete team {circleId}" : "Non é posíbel eliminar o equipo {circleId}",
     "Unable to delete contact" : "Non é posíbel eliminar o contacto",
     "Value copied to the clipboard" : "O valor foi copiado no portapapeis",
-    "Could not copy value to the clipboard." : "Non foi posíbel copiar o valor no portapapeis."
+    "Could not copy value to the clipboard." : "Non foi posíbel copiar o valor no portapapeis.",
+    "New team name" : "Novo nome do equipo"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

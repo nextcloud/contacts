@@ -265,7 +265,6 @@ OC.L10N.register(
     "Search for people to add" : "Нэмэх хүн хайх",
     "No results" : "Үр дүн байхгүй",
     "Add {type}" : "{type} нэмэх",
-    "New team name" : "Шинэ багийн нэр",
     "Personal team" : "Хувийн баг",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Энэ баг зөвхөн танд харагдана. Бусад гишүүд үүнийг харах эсвэл ашиглах боломжгүй.",
     "Local team" : "Локал баг",
@@ -500,6 +499,7 @@ OC.L10N.register(
     "Unable to delete contact" : "Харилцагч устгах боломжгүй",
     "Value copied to the clipboard" : "Утгыг санах ойд хуулсан",
     "Could not copy value to the clipboard." : "Утгыг санах ойд хуулах боломжгүй байна.",
+    "New team name" : "Шинэ багийн нэр",
     "%1$s invites you to exchange cloud accounts and contact information." : "%1$s таныг үүлэн бүртгэл болон харилцагчийн мэдээлэл солилцохыг урьж байна.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Энэ урилгыг хүлээж авахын тулд доорх url-г ашиглан үүлэн үйлчилгээ үзүүлэгчээрээ нэвтэрнэ үү:"
 },

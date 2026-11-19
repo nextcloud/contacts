@@ -228,7 +228,6 @@ OC.L10N.register(
     "Search for people to add" : "搜索要添加的联系人",
     "No results" : "无结果",
     "Add {type}" : "添加  {type}",
-    "New team name" : "新团队名称",
     "Personal team" : "个人团队",
     "This team will only be visible to you. Other members will not be able to see or use it." : "此团队仅对您可见，其他成员将无法看到或使用它。",
     "Local team" : "本地团队",
@@ -392,6 +391,7 @@ OC.L10N.register(
     "Could not update favorite state" : "无法更新收藏状态",
     "Unable to delete contact" : "无法删除联系人",
     "Value copied to the clipboard" : "值已复制到剪贴板",
-    "Could not copy value to the clipboard." : "无法将值复制到剪贴板。"
+    "Could not copy value to the clipboard." : "无法将值复制到剪贴板。",
+    "New team name" : "新团队名称"
 },
 "nplurals=1; plural=0;");

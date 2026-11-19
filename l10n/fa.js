@@ -231,7 +231,6 @@ OC.L10N.register(
     "Search for people to add" : "جستجوی افراد برای افزودن",
     "No results" : "نتیجه‌ای یافت نشد",
     "Add {type}" : "افزودن {type}",
-    "New team name" : "نام جدید تیم",
     "Personal team" : "تیم شخصی",
     "This team will only be visible to you. Other members will not be able to see or use it." : "این تیم فقط برای شما قابل مشاهده خواهد بود. سایر اعضا نمی‌توانند آن را ببینند یا استفاده کنند.",
     "Local team" : "تیم محلی",
@@ -396,6 +395,7 @@ OC.L10N.register(
     "Could not update favorite state" : "به‌روزرسانی وضعیت موردعلاقه امکان‌پذیر نیست",
     "Unable to delete contact" : "امکان حذف مخاطب وجود ندارد",
     "Value copied to the clipboard" : "مقدار در کلیپ‌بورد کپی شد",
-    "Could not copy value to the clipboard." : "امکان کپی کردن مقدار در کلیپ‌بورد وجود نداشت."
+    "Could not copy value to the clipboard." : "امکان کپی کردن مقدار در کلیپ‌بورد وجود نداشت.",
+    "New team name" : "نام جدید تیم"
 },
 "nplurals=2; plural=(n > 1);");

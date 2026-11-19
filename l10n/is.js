@@ -158,7 +158,6 @@ OC.L10N.register(
     "Search for people to add" : "Leita að fólki til að bæta við",
     "No results" : "Engar niðurstöður",
     "Add {type}" : "Bæta við {type}",
-    "New team name" : "Nýtt heiti teymis",
     "Personal team" : "Persónulegt teymi",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Þetta teymi verður aðeins sýnilegt þér. Aðrir meðlimir munu ekki geta séð það eða notað.",
     "Local team" : "Staðvært teymi",
@@ -301,6 +300,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Villa hefur átt sér stað í teymi/teymum. Skoðaðu stjórnskjáinn til að sjá nánari upplýsingar.",
     "Unable to create team {circleName}" : "Tókst ekki að búa til teymið {circleName}",
     "Unable to delete team {circleId}" : "Tókst ekki að eyða teyminu {circleId}",
-    "Unable to delete contact" : "Tókst ekki að eyða tengilið"
+    "Unable to delete contact" : "Tókst ekki að eyða tengilið",
+    "New team name" : "Nýtt heiti teymis"
 },
 "nplurals=2; plural=(n % 10 != 1 || n % 100 == 11);");

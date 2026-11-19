@@ -295,7 +295,6 @@ OC.L10N.register(
     "Search for people to add" : "Search for people to add",
     "No results" : "No results",
     "Add {type}" : "Add {type}",
-    "New team name" : "New team name",
     "Personal team" : "Personal team",
     "This team will only be visible to you. Other members will not be able to see or use it." : "This team will only be visible to you. Other members will not be able to see or use it.",
     "Local team" : "Local team",
@@ -532,6 +531,7 @@ OC.L10N.register(
     "Import failed" : "Import failed",
     "Value copied to the clipboard" : "Value copied to the clipboard",
     "Could not copy value to the clipboard." : "Could not copy value to the clipboard.",
+    "New team name" : "New team name",
     "%1$s invites you to exchange cloud accounts and contact information." : "%1$s invites you to exchange cloud accounts and contact information.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "To accept this invite, use the url below to sign in with your cloud provider:"
 },

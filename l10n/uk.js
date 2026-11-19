@@ -234,7 +234,6 @@ OC.L10N.register(
     "Search for people to add" : "Шукати контакти для додавання",
     "No results" : "Немає результатів",
     "Add {type}" : "Додати {type}",
-    "New team name" : "Нова назва команди",
     "Personal team" : "Приватна команда",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Ця команда буде доступна тільки для вас. Решта учасників не побачать її та не зможуть її використовувати.",
     "Local team" : "Локальна команда",
@@ -401,6 +400,7 @@ OC.L10N.register(
     "Could not update favorite state" : "Не вдалося оновити статус із зірочкою",
     "Unable to delete contact" : "Неможливо вилучити контакт",
     "Value copied to the clipboard" : "Значення скопійовано до буфера обміну",
-    "Could not copy value to the clipboard." : "Не вдалося скопіювати значення до буфера обміну"
+    "Could not copy value to the clipboard." : "Не вдалося скопіювати значення до буфера обміну",
+    "New team name" : "Нова назва команди"
 },
 "nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);");

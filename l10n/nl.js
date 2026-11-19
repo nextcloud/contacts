@@ -228,7 +228,6 @@ OC.L10N.register(
     "Search for people to add" : "Zoek naar toe te voegen personen",
     "No results" : "Geen resultaten",
     "Add {type}" : "{type} toevoegen",
-    "New team name" : "Nieuwe teamnaam",
     "Personal team" : "Persoonlijk team",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Dit team is alleen zichtbaar voor jou. Andere leden kunnen het niet zien of gebruiken.",
     "Local team" : "Lokaal team",
@@ -391,6 +390,7 @@ OC.L10N.register(
     "Could not update favorite state" : "Kon favorietstatus niet bijwerken",
     "Unable to delete contact" : "Kan contactpersoon niet verwijderen",
     "Value copied to the clipboard" : "Waarde gekopieerd van het klembord",
-    "Could not copy value to the clipboard." : "Kan waarde niet kopiëren naar het klembord"
+    "Could not copy value to the clipboard." : "Kan waarde niet kopiëren naar het klembord",
+    "New team name" : "Nieuwe teamnaam"
 },
 "nplurals=2; plural=(n != 1);");
