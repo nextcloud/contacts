@@ -231,7 +231,6 @@ OC.L10N.register(
     "Search for people to add" : "Ieškoti norimų pridėti žmonių",
     "No results" : "Rezultatų nėra",
     "Add {type}" : "Pridėti {type}",
-    "New team name" : "Naujas komandos pavadinimas",
     "Personal team" : "Asmeninė komanda",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Ši komanda bus matoma tik jums. Kiti nariai negalės jos matyti ar ja naudotis.",
     "Local team" : "Vietinė komanda",
@@ -398,6 +397,7 @@ OC.L10N.register(
     "Could not update favorite state" : "Nepavyko atnaujinti mėgstamiausio būsenos",
     "Unable to delete contact" : "Nepavyko ištrinti adresato",
     "Value copied to the clipboard" : "Vertė nukopijuota į iškarpinę",
-    "Could not copy value to the clipboard." : "Nepavyko nukopijuoti vertės į iškarpinę."
+    "Could not copy value to the clipboard." : "Nepavyko nukopijuoti vertės į iškarpinę.",
+    "New team name" : "Naujas komandos pavadinimas"
 },
 "nplurals=4; plural=(n % 10 == 1 && (n % 100 > 19 || n % 100 < 11) ? 0 : (n % 10 >= 2 && n % 10 <=9) && (n % 100 > 19 || n % 100 < 11) ? 1 : n % 1 != 0 ? 2: 3);");

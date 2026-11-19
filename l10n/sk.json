@@ -293,7 +293,6 @@
     "Search for people to add" : "Hľadať ľudí, ktorých chcete pridať",
     "No results" : "Žiadne výsledky",
     "Add {type}" : "Pridať {type}",
-    "New team name" : "Názov nového tímu",
     "Personal team" : "Osobný tím",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Tento tím bude viditeľný iba pre vás. Ostatní členovia ho nebudú vidieť ani ho používať.",
     "Local team" : "Lokálny tím",
@@ -530,6 +529,7 @@
     "Import failed" : "Import zlyhal",
     "Value copied to the clipboard" : "Hodnota skopírovaná do schránky",
     "Could not copy value to the clipboard." : "Nepodarilo sa skopírovať hodnotu do schránky.",
+    "New team name" : "Názov nového tímu",
     "%1$s invites you to exchange cloud accounts and contact information." : "%1$s vás pozýva na výmenu cloudových účtov a kontaktných údajov.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Ak chcete prijať túto pozvánku, použite adresu URL nižšie a prihláste sa u svojho poskytovateľa cloudu:"
 },"pluralForm" :"nplurals=4; plural=(n % 1 == 0 && n == 1 ? 0 : n % 1 == 0 && n >= 2 && n <= 4 ? 1 : n % 1 != 0 ? 2: 3);"

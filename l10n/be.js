@@ -184,7 +184,6 @@ OC.L10N.register(
     "Search for people to add" : "Пошук людзей для дадавання",
     "No results" : "Няма вынікаў",
     "Add {type}" : "Дадаць {type}",
-    "New team name" : "Назва новай каманды",
     "Personal team" : "Асабістая каманда",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Гэта каманда будзе бачная толькі вам. Іншыя ўдзельнікі не змогуць бачыць яе або карыстацца ёю.",
     "Local team" : "Лакальная каманда",
@@ -317,6 +316,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "У камандзе(-ах) адбылася памылка. Падрабязней глядзіце ў кансолі.",
     "Unable to create team {circleName}" : "Немагчыма стварыць каманду {circleName}",
     "Unable to delete team {circleId}" : "Немагчыма выдаліць каманду {circleId}",
-    "Unable to delete contact" : "Немагчыма выдаліць кантакт"
+    "Unable to delete contact" : "Немагчыма выдаліць кантакт",
+    "New team name" : "Назва новай каманды"
 },
 "nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);");

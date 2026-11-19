@@ -293,7 +293,6 @@
     "Search for people to add" : "Otsi inimesi, keda liikmeks lisada",
     "No results" : "Vasteid ei leidu",
     "Add {type}" : "Lisa {type}",
-    "New team name" : "Tiimi uus nimi",
     "Personal team" : "Isiklik tiim",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Seda tiimi näed vaid sina. Tiimi liikmed ja muud kasutajad seda ei näe ega saa kasutada.",
     "Local team" : "Kohalik tiim",
@@ -530,6 +529,7 @@
     "Import failed" : "Importimine ei õnnestunud",
     "Value copied to the clipboard" : "Väärtus on kopeeritud lõikelauale.",
     "Could not copy value to the clipboard." : "Väärtuse kopeerimine lõikelauale ei õnnestunud.",
+    "New team name" : "Tiimi uus nimi",
     "%1$s invites you to exchange cloud accounts and contact information." : "%1$s on saatnud sulle kutse millega soovib vahetada kontakteavet liitpilves.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Kutsega nõustumiseks klõpsa järgnevat linki ja logi sisse oma teenusepakkuja kasutajakontoga:"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

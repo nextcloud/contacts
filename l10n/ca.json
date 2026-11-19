@@ -153,7 +153,6 @@
     "Search for people to add" : "Cerqueu persones per a afegir-les",
     "No results" : "Sense resultats",
     "Add {type}" : "Afegeix {type}",
-    "New team name" : "Nou nom de l'equip",
     "Personal team" : "Equip personal",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Aquest equip només serà visible per a tu. Els altres membres no el podran veure ni utilitzar.",
     "Local team" : "Equip local",
@@ -293,6 +292,7 @@
     "An error has occurred in team(s). Check the console for more details." : "S'ha produït un error al(s) equip(s). Consulteu la consola per obtenir més detalls.",
     "Unable to create team {circleName}" : "No es pot crear l'equip {circleName}",
     "Unable to delete team {circleId}" : "No es pot suprimir l'equip {circleId}",
-    "Unable to delete contact" : "No s'ha pogut suprimir el contacte"
+    "Unable to delete contact" : "No s'ha pogut suprimir el contacte",
+    "New team name" : "Nou nom de l'equip"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

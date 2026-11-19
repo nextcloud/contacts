@@ -171,7 +171,6 @@
     "Search for people to add" : "Etsi ihmisiä lisättäväksi",
     "No results" : "Ei tuloksia",
     "Add {type}" : "Lisää {type}",
-    "New team name" : "Uuden tiimin nimi",
     "Personal team" : "Henkilökohtainen tiimi",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Tämä tiimi on näkyvissä vain sinulle. Muut jäsenet eivät näe sitä tai voi käyttää sitä.",
     "Local team" : "Paikallinen tiimi",
@@ -303,6 +302,7 @@
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} yhteystietoa ei voitu lukea","{failed} yhteystietoa ei voitu lukea"],
     "Unable to create team {circleName}" : "Tiimiä {circleName} ei voitu luoda",
     "Unable to delete team {circleId}" : "Tiimiä {circleId} ei voitu poistaa",
-    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa"
+    "Unable to delete contact" : "Yhteystietoa ei voitu poistaa",
+    "New team name" : "Uuden tiimin nimi"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"
 }

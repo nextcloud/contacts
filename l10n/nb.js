@@ -154,7 +154,6 @@ OC.L10N.register(
     "Search for people to add" : "Søk etter personer å legge til",
     "No results" : "Ingen resultater",
     "Add {type}" : "Legg til {type}",
-    "New team name" : "Nytt lagnavn",
     "Personal team" : "Personlig lag",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Dette laget vil bare være synlig for deg. Andre medlemmer vil ikke kunne se eller bruke den.",
     "Local team" : "Lokalt lag",
@@ -289,6 +288,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Det har oppstått en feil i laget(ene). Sjekk konsollen hvis du vil ha mer informasjon.",
     "Unable to create team {circleName}" : "Ikke i stand til å opprette lag {circleName}",
     "Unable to delete team {circleId}" : "Ikke i stand til å slette lag {circleId}",
-    "Unable to delete contact" : "Ikke i stand til å slette kontakt"
+    "Unable to delete contact" : "Ikke i stand til å slette kontakt",
+    "New team name" : "Nytt lagnavn"
 },
 "nplurals=2; plural=(n != 1);");

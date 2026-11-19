@@ -156,7 +156,6 @@ OC.L10N.register(
     "Search for people to add" : "Bilatu gehitzeko pertsonak",
     "No results" : "Emaitzarik ez",
     "Add {type}" : "Gehitu {type}",
-    "New team name" : "Lantaldearen izen berria",
     "Personal team" : "Lantalde pertsonala",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Lantalde hau zuretzat bakarrik egongo da ikusgarri. Beste kideek ezingo dute ikusi edo erabili.",
     "Local team" : "Lantalde lokala",
@@ -294,6 +293,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Errore bat gertatu da lantaldeetan. Begiratu kontsola xehetasun gehiago lortzeko.",
     "Unable to create team {circleName}" : "Ezin izan da {circleName} lantaldea sortu",
     "Unable to delete team {circleId}" : "Ezin izan da {circleId} lantaldea ezabatu",
-    "Unable to delete contact" : "Ezin izan da kontaktua ezabatu"
+    "Unable to delete contact" : "Ezin izan da kontaktua ezabatu",
+    "New team name" : "Lantaldearen izen berria"
 },
 "nplurals=2; plural=(n != 1);");

@@ -219,7 +219,6 @@ OC.L10N.register(
     "Search for people to add" : "Potraži osobe za dodavanje",
     "No results" : "Nema rezultata",
     "Add {type}" : "Dodaj {type}",
-    "New team name" : "Naziv novog tima",
     "Personal team" : "Osobni tim",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Ovaj tim bit će vidljiv samo vama. Ostali članovi ga neće moći vidjeti ni koristiti.",
     "Local team" : "Lokalni tim",
@@ -382,6 +381,7 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Nije moguće izbrisati tim {circleId}",
     "Unable to delete contact" : "Nije moguće izbrisati kontakt",
     "Value copied to the clipboard" : "Vrijednost kopirana u međuspremnik",
-    "Could not copy value to the clipboard." : "Kopiranje vrijednosti u međuspremnik nije uspjelo."
+    "Could not copy value to the clipboard." : "Kopiranje vrijednosti u međuspremnik nije uspjelo.",
+    "New team name" : "Naziv novog tima"
 },
 "nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;");

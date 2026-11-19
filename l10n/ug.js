@@ -213,7 +213,6 @@ OC.L10N.register(
     "Search for people to add" : "قوشماقچى بولغان كىشىلەرنى ئىزدەڭ",
     "No results" : "ھېچقانداق نەتىجە يوق",
     "Add {type}" : "{type} نى قوش",
-    "New team name" : "يېڭى گۇرۇپپا ئىسمى",
     "Personal team" : "شەخسىي گۇرۇپپا",
     "This team will only be visible to you. Other members will not be able to see or use it." : "بۇ ئەترەت پەقەت سىزنىلا كۆرەلەيدۇ. باشقا ئەزالار ئۇنى كۆرەلمەيدۇ ياكى ئىشلىتەلمەيدۇ.",
     "Local team" : "يەرلىك كوماندا",
@@ -366,6 +365,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "گۇرۇپپا (لار) دا خاتالىق كۆرۈلدى. تېخىمۇ كۆپ تەپسىلاتلارنى كونترول سۇپىسىدىن تەكشۈرۈڭ.",
     "Unable to create team {circleName}" : "گۇرۇپپا {circleName} create قۇرالمىدى",
     "Unable to delete team {circleId}" : "گۇرۇپپا {circleId} ئۆچۈرگىلى بولمىدى",
-    "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى"
+    "Unable to delete contact" : "ئالاقىنى ئۆچۈرەلمىدى",
+    "New team name" : "يېڭى گۇرۇپپا ئىسمى"
 },
 "nplurals=2; plural=(n != 1);");

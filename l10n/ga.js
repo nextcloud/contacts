@@ -295,7 +295,6 @@ OC.L10N.register(
     "Search for people to add" : "Cuardaigh daoine le cur leis",
     "No results" : "Gan torthaí",
     "Add {type}" : "Cuir {type} leis",
-    "New team name" : "Ainm foirne nua",
     "Personal team" : "Foireann phearsanta",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Ní bheidh an fhoireann seo le feiceáil ach duit. Ní bheidh baill eile in ann é a fheiceáil ná a úsáid.",
     "Local team" : "Foireann áitiúil",
@@ -532,6 +531,7 @@ OC.L10N.register(
     "Import failed" : "Theip ar an iompórtáil",
     "Value copied to the clipboard" : "Luach cóipeáilte chuig an ghearrthaisce",
     "Could not copy value to the clipboard." : "Níorbh fhéidir luach a chóipeáil chuig an ghearrthaisce.",
+    "New team name" : "Ainm foirne nua",
     "%1$s invites you to exchange cloud accounts and contact information." : "Tugann %1$s cuireadh duit cuntais scamall agus faisnéis teagmhála a mhalartú.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Chun glacadh leis an gcuireadh seo, bain úsáid as an url thíos chun síniú isteach le do sholáthraí scamall:"
 },

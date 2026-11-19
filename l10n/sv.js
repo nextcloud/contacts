@@ -295,7 +295,6 @@ OC.L10N.register(
     "Search for people to add" : "Sök efter personer att lägga till",
     "No results" : "Inga resultat",
     "Add {type}" : "Lägg till {type}",
-    "New team name" : "Nytt namn på team",
     "Personal team" : "Personligt team",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Detta team kommer bara att vara synligt för dig. Andra medlemmar kommer inte att kunna se eller använda det.",
     "Local team" : "Lokalt team",
@@ -532,6 +531,7 @@ OC.L10N.register(
     "Import failed" : "Importen misslyckades",
     "Value copied to the clipboard" : "Värdet har kopierats till urklipp",
     "Could not copy value to the clipboard." : "Det gick inte att kopiera värdet till urklipp.",
+    "New team name" : "Nytt namn på team",
     "%1$s invites you to exchange cloud accounts and contact information." : "%1$s bjuder in dig att utbyta molnkonton och kontaktuppgifter.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Använd webbadressen nedan och logga in med din molnleverantör för att acceptera inbjudan:"
 },

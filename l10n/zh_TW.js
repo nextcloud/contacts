@@ -295,7 +295,6 @@ OC.L10N.register(
     "Search for people to add" : "搜尋要新增的人",
     "No results" : "沒有結果",
     "Add {type}" : "新增 {type}",
-    "New team name" : "新團隊名稱",
     "Personal team" : "個人團隊",
     "This team will only be visible to you. Other members will not be able to see or use it." : "此團隊僅有您可見。其他成員將無法看到或使用它。",
     "Local team" : "本地團隊",
@@ -532,6 +531,7 @@ OC.L10N.register(
     "Import failed" : "匯入失敗",
     "Value copied to the clipboard" : "值複製給剪貼簿",
     "Could not copy value to the clipboard." : "無法複製值到剪貼簿。",
+    "New team name" : "新團隊名稱",
     "%1$s invites you to exchange cloud accounts and contact information." : "%1$s 邀請您交換雲端帳號與聯絡人資訊。",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "若要接受此邀請，請使用以下網址透過您的雲端服務提供者登入："
 },
