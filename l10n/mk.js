@@ -216,7 +216,6 @@ OC.L10N.register(
     "Search for people to add" : "Барај луѓе за да додадеш",
     "No results" : "Нема резултати",
     "Add {type}" : "Додади {type}",
-    "New team name" : "Ново име на тимот",
     "Personal team" : "Личен тим",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Овој тим ќе биде единствено видлив за вас. Другите членови нема да може да се гледаат помеѓу себе.",
     "Local team" : "Локален тим",
@@ -368,6 +367,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "Настана грешка во некои тим(ови). Проверете ја конзолата за повеќе детали.",
     "Unable to create team {circleName}" : "Неможе да се креира тим {circleName}",
     "Unable to delete team {circleId}" : "Неможе да се избрише тимот {circleId}",
-    "Unable to delete contact" : "Неможе да се избрише контакт"
+    "Unable to delete contact" : "Неможе да се избрише контакт",
+    "New team name" : "Ново име на тимот"
 },
 "nplurals=2; plural=(n % 10 == 1 && n % 100 != 11) ? 0 : 1;");

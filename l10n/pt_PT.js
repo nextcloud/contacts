@@ -188,7 +188,6 @@ OC.L10N.register(
     "Add guest" : "Adicionar convidado",
     "No results" : "Sem resultados",
     "Add {type}" : "Adicionar (tipo)",
-    "New team name" : "Nome da nova equipe",
     "Personal team" : "Equipe pessoal",
     "This team will not be shared with the other instances of the global scale" : "Esta equipe não será compartilhada com as outras instâncias da escala global",
     "Create team" : "Criar equipe",
@@ -332,6 +331,7 @@ OC.L10N.register(
     "Unable to delete team {circleId}" : "Não foi possível excluir a equipe {circleId}",
     "Unable to delete contact" : "Não é possível eliminar o contacto.",
     "Value copied to the clipboard" : "Valor copiado para a área de transferência",
-    "Could not copy value to the clipboard." : "Não foi possível copiar o valor para a área de transferência."
+    "Could not copy value to the clipboard." : "Não foi possível copiar o valor para a área de transferência.",
+    "New team name" : "Nome da nova equipe"
 },
 "nplurals=3; plural=(n == 0 || n == 1) ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

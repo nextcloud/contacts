@@ -98,7 +98,6 @@ OC.L10N.register(
     "Search for people to add" : "Chirca persones de agiùnghere",
     "No results" : "Perunu resultadu",
     "Add {type}" : "Agiunghe {type}",
-    "New team name" : "Nùmene de s'iscuadra noa",
     "Promote as sole owner" : "Promove a mere",
     "Promote to {level}" : "Promove a {level}",
     "Demote to {level}" : "Torra a coa a {level}",
@@ -206,6 +205,7 @@ OC.L10N.register(
     "Time zone" : "Zona orària",
     "Spoken languages" : "Limbas faeddadas",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["no at fatu a lèghere {failed} ","{failed} contacts failed to be read"],
-    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu"
+    "Unable to delete contact" : "Non faghet a cantzellare su cuntatu",
+    "New team name" : "Nùmene de s'iscuadra noa"
 },
 "nplurals=2; plural=(n != 1);");

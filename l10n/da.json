@@ -293,7 +293,6 @@
     "Search for people to add" : "Søg efter personer, der skal tilføjes",
     "No results" : "Ingen resultater",
     "Add {type}" : "Tilføj {type}",
-    "New team name" : "Nyt teamnavn",
     "Personal team" : "Personligt team",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Dette team er kun synligt for dig. Andre medlemmer kan ikke se eller bruge det.",
     "Local team" : "Lokalt team",
@@ -530,6 +529,7 @@
     "Import failed" : "Importen mislykkedes",
     "Value copied to the clipboard" : "Værdien er kopieret til udklipsholderen",
     "Could not copy value to the clipboard." : "Værdien kunne ikke kopieres til udklipsholderen.",
+    "New team name" : "Nyt teamnavn",
     "%1$s invites you to exchange cloud accounts and contact information." : "%1$s inviterer dig til at udveksle cloud-konti og kontaktoplysninger.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Brug URL'en nedenfor til at logge ind hos din cloud-udbyder for at acceptere invitationen:"
 },"pluralForm" :"nplurals=2; plural=(n != 1);"

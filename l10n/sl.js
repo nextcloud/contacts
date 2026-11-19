@@ -152,7 +152,6 @@ OC.L10N.register(
     "Search for people to add" : "Poišči osebe za dodajanje",
     "No results" : "Ni zadetkov",
     "Add {type}" : "Dodaj {type}",
-    "New team name" : "Novo ime skupine",
     "Personal team" : "Osebna skupina",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Ta skupina je videna le vam. Drugi člani je ne bodo videli niti je ne bodo mogli uporabljati.",
     "Local team" : "Krajevna skupina",
@@ -279,6 +278,7 @@ OC.L10N.register(
     "Spoken languages" : "Govorjeni jezik",
     "_{failed} contact failed to be read_::_{failed} contacts failed to be read_" : ["{failed} stika ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati","{failed} stikov ni mogoče prebrati"],
     "An error has occurred in team(s). Check the console for more details." : "Prišlo je do napake v nekaterih skupinah. Preverite konzolo za več podrobnosti.",
-    "Unable to delete contact" : "Ni mogoče izbrisati stika"
+    "Unable to delete contact" : "Ni mogoče izbrisati stika",
+    "New team name" : "Novo ime skupine"
 },
 "nplurals=4; plural=(n%100==1 ? 0 : n%100==2 ? 1 : n%100==3 || n%100==4 ? 2 : 3);");

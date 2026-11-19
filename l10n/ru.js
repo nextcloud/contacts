@@ -295,7 +295,6 @@ OC.L10N.register(
     "Search for people to add" : "Поиск людей для добавления",
     "No results" : "Ничего не найдено",
     "Add {type}" : "Добавить {type}",
-    "New team name" : "Название новой команды",
     "Personal team" : "Личная команда",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Эта команда будет видна только вам. Другие участники не смогут её видеть или использовать.",
     "Local team" : "Локальная команда",
@@ -532,6 +531,7 @@ OC.L10N.register(
     "Import failed" : "Не удалось импортировать",
     "Value copied to the clipboard" : "Значение скопировано в буфер обмена.",
     "Could not copy value to the clipboard." : "Не удалось скопировать значение в буфер обмена.",
+    "New team name" : "Название новой команды",
     "%1$s invites you to exchange cloud accounts and contact information." : "%1$s приглашает вас обменяться облачными учётными записями и контактными данными.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "Чтобы принять приглашение, откройте адрес ниже и войдите в своё облако:"
 },

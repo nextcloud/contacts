@@ -230,7 +230,6 @@ OC.L10N.register(
     "Search for people to add" : "Αναζητήστε άτομα για προσθήκη",
     "No results" : "Κανένα αποτέλεσμα",
     "Add {type}" : "Προσθήκη {type}",
-    "New team name" : "Νέο όνομα ομάδας",
     "Personal team" : "Προσωπική ομάδα",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Αυτή η ομάδα θα είναι ορατή μόνο σε εσάς. Τα άλλα μέλη δεν θα μπορούν να τη δουν ή να τη χρησιμοποιήσουν.",
     "Local team" : "Τοπική ομάδα",
@@ -396,6 +395,7 @@ OC.L10N.register(
     "Could not update favorite state" : "Δεν ήταν δυνατή η ενημέρωση της κατάστασης αγαπημένου",
     "Unable to delete contact" : "Δεν είναι δυνατή η διαγραφή της επαφής",
     "Value copied to the clipboard" : "Η τιμή αντιγράφηκε στο πρόχειρο",
-    "Could not copy value to the clipboard." : "Δεν ήταν δυνατή η αντιγραφή της τιμής στο πρόχειρο."
+    "Could not copy value to the clipboard." : "Δεν ήταν δυνατή η αντιγραφή της τιμής στο πρόχειρο.",
+    "New team name" : "Νέο όνομα ομάδας"
 },
 "nplurals=2; plural=(n != 1);");

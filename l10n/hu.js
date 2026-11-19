@@ -264,7 +264,6 @@ OC.L10N.register(
     "Search for people to add" : "Hozzáadandó emberek keresése",
     "No results" : "Nincs találat",
     "Add {type}" : "{type} hozzáadása",
-    "New team name" : "Új csapat neve",
     "Personal team" : "Személyes csapat",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Ez a csapat csak az Ön számára látható. Más tagok nem fogják látni, és nem fogják tudni használni.",
     "Local team" : "Helyi csapat",
@@ -499,6 +498,7 @@ OC.L10N.register(
     "Unable to delete contact" : "A névjegy törlése sikertelen",
     "Value copied to the clipboard" : "Érték a vágólapra másolva",
     "Could not copy value to the clipboard." : "Nem sikerült az érték vágólapra másolása.",
+    "New team name" : "Új csapat neve",
     "%1$s invites you to exchange cloud accounts and contact information." : "%1$s meghívta, hogy felhőfiókot és névjegy-információkat cseréljenek.",
     "To accept this invite, use the url below to sign in with your cloud provider:" : "A meghívó elfogadásához használja az alábbi webcímet, és jelentkezzen be a felhőszolgáltatójával:"
 },

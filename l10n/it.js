@@ -218,7 +218,6 @@ OC.L10N.register(
     "Search for people to add" : "Cerca persone da aggiungere",
     "No results" : "Nessun risultato",
     "Add {type}" : "Aggiungi {type}",
-    "New team name" : "Nuovo nome del team",
     "Personal team" : "Team personale",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Questo team sarà visibile solo a te. Gli altri membri non potranno vederlo o utilizzarlo.",
     "Local team" : "Team locale",
@@ -382,6 +381,7 @@ OC.L10N.register(
     "Could not update favorite state" : "Non è stato possibile aggiornare lo stato di preferito",
     "Unable to delete contact" : "Impossibile eliminare il contatto",
     "Value copied to the clipboard" : "Valore copiato negli appunti",
-    "Could not copy value to the clipboard." : "Non è stato possibile copiare il valore negli appunti."
+    "Could not copy value to the clipboard." : "Non è stato possibile copiare il valore negli appunti.",
+    "New team name" : "Nuovo nome del team"
 },
 "nplurals=3; plural=n == 1 ? 0 : n != 0 && n % 1000000 == 0 ? 1 : 2;");

@@ -151,7 +151,6 @@ OC.L10N.register(
     "Search for people to add" : "Search for people to add",
     "No results" : "No results",
     "Add {type}" : "Add {type}",
-    "New team name" : "New team name",
     "Personal team" : "Personal team",
     "This team will only be visible to you. Other members will not be able to see or use it." : "This team will only be visible to you. Other members will not be able to see or use it.",
     "Local team" : "Local team",
@@ -291,6 +290,7 @@ OC.L10N.register(
     "An error has occurred in team(s). Check the console for more details." : "An error has occurred in team(s). Check the console for more details.",
     "Unable to create team {circleName}" : "Unable to create team {circleName}",
     "Unable to delete team {circleId}" : "Unable to delete team {circleId}",
-    "Unable to delete contact" : "Unable to delete contact"
+    "Unable to delete contact" : "Unable to delete contact",
+    "New team name" : "New team name"
 },
 "nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);");
