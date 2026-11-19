@@ -375,7 +375,8 @@ const actions = {
 	 */
 	async getContactsFromAddressBook(context, { addressbook }) {
 		return addressbook.dav
-			.findAllAndFilterBySimpleProperties(MinimalContactProperties)
+			// REV is needed to sort the list by last modification
+			.findAllAndFilterBySimpleProperties([...MinimalContactProperties, 'REV'])
 			.then((response) => {
 				// We don't want to lose the url information
 				// so we need to parse one by one

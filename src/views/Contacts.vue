@@ -156,7 +156,6 @@ import {
 	NcActions,
 	NcButton,
 } from '@nextcloud/vue'
-import ICAL from 'ical.js'
 import { mapStores } from 'pinia'
 import { defineAsyncComponent } from 'vue'
 import IconAccountArrowDownOutline from 'vue-material-design-icons/AccountArrowDownOutline.vue'
@@ -184,6 +183,7 @@ import logger from '../services/logger.js'
 import useOcmInvitesStore from '../store/ocminvites.ts'
 import usePrincipalsStore from '../store/principals.js'
 import useUserGroupStore from '../store/userGroup.ts'
+import { writeRev } from '../utils/rev.js'
 
 const inviteToken = loadState('contacts', 'inviteToken', '')
 const inviteProvider = loadState('contacts', 'inviteProvider', '')
@@ -471,7 +471,7 @@ const _default = {
 
 			contact.fullName = t('contacts', 'Name')
 
-			contact.rev = ICAL.Time.fromJSDate(new Date(), true)
+			writeRev(contact.vCard)
 
 			// itterate over all properties (filter is not usable on objects and we need the key of the property)
 			const properties = rfcProps.properties

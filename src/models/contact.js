@@ -12,6 +12,7 @@ import { shallowRef, unref } from 'vue'
 import logger from '../services/logger.js'
 import updateDesignSet from '../services/updateDesignSet.js'
 import store from '../store/index.js'
+import { readRev } from '../utils/rev.js'
 
 /**
  * Check if the given value is an empty array or an empty string
@@ -79,17 +80,6 @@ export default class Contact {
 		if (!this.vCard.hasProperty('uid')) {
 			logger.info('This contact did not have a proper uid. Setting a new one for ', { contact: this })
 			this.vCard.addPropertyWithValue('uid', uuid())
-		}
-
-		// if no rev set, init one
-		if (!this.vCard.hasProperty('rev')) {
-			const version = this.vCard.getFirstPropertyValue('version')
-			if (version === '4.0') {
-				this.vCard.addPropertyWithValue('rev', ICAL.Time.fromJSDate(new Date(), true))
-			}
-			if (version === '3.0') {
-				this.vCard.addPropertyWithValue('rev', ICAL.VCardTime.fromDateAndOrTimeString(new Date().toISOString(), 'date-time'))
-			}
 		}
 	}
 
@@ -208,23 +198,7 @@ export default class Contact {
 	 * @memberof Contact
 	 */
 	get rev() {
-		try {
-			const rev = this.vCard.getFirstPropertyValue('rev')
-			return typeof rev?.toUnixTime === 'function' ? rev : null
-		} catch {
-			// a malformed REV must not prevent the contact from being displayed
-			return null
-		}
-	}
-
-	/**
-	 * Set the rev
-	 *
-	 * @param {string} rev the rev to set
-	 * @memberof Contact
-	 */
-	set rev(rev) {
-		this.vCard.updatePropertyWithValue('rev', rev)
+		return readRev(this.vCard)
 	}
 
 	/**
