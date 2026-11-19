@@ -245,6 +245,7 @@ export default {
 				let message
 				switch (kind) {
 					case CLIPBOARD_KIND_ENCODED_INVITE:
+						// TRANSLATORS "Encoded invite" is the invite code (token@server) converted to Base64. It is not encrypted.
 						message = this.t('contacts', 'Encoded invite copied to clipboard')
 						break
 					case CLIPBOARD_KIND_INVITE_CODE:
