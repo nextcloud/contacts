@@ -4,7 +4,7 @@
 -->
 
 <template>
-	<div v-if="propModel && showProperty && (!isSingleOption || isReadOnly)" class="property">
+	<div v-if="propModel && showProperty && (!addressBookSelection || (!isSingleOption || isReadOnly))" class="property">
 		<!-- title if first element -->
 		<PropertyTitle
 			v-if="isFirstProperty && propModel.icon"
@@ -47,7 +47,7 @@
 			<!-- props actions -->
 			<div class="property__actions">
 				<PropertyActions
-					v-if="!isReadOnly && !hideActions"
+					v-if="!isReadOnly && !addressBookSelection"
 					:actions="actions"
 					:propertyComponent="this"
 					@delete="deleteProperty" />
@@ -79,7 +79,7 @@ export default {
 			required: true,
 		},
 
-		hideActions: {
+		addressBookSelection: {
 			type: Boolean,
 			default: false,
 		},
