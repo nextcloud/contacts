@@ -310,7 +310,7 @@
 					:isFirstProperty="true"
 					:isLastProperty="true"
 					:property="{}"
-					:hideActions="true"
+					:addressBookSelection="true"
 					:clearable="false"
 					:isReadOnly="isReadOnly"
 					class="property--addressbooks property--last"
