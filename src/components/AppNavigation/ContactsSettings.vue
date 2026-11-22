@@ -12,7 +12,7 @@
 		<AppSettingsSection id="general" :name="t('contacts', 'General')">
 			<SettingsSortContacts />
 
-			<NcFormBox>
+			<NcFormBox v-if="allowSocialSync">
 				<NcFormBoxSwitch
 					v-model="enableSocialSync"
 					:label="t('contacts', 'Update avatars from social media')"
@@ -76,8 +76,8 @@ export default {
 
 	data() {
 		return {
-			allowSocialSync: loadState('contacts', 'allowSocialSync') !== 'no',
-			enableSocialSync: loadState('contacts', 'enableSocialSync') !== 'no',
+			allowSocialSync: loadState('contacts', 'allowSocialSync', true),
+			enableSocialSync: loadState('contacts', 'enableSocialSync', false),
 			enableSocialSyncLoading: false,
 			showSettings: false,
 		}

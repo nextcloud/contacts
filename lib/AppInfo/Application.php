@@ -22,10 +22,6 @@ use OCP\EventDispatcher\IEventDispatcher;
 class Application extends App implements IBootstrap {
 	public const APP_ID = 'contacts';
 
-	public const AVAIL_SETTINGS = [
-		'allowSocialSync' => 'yes',
-	];
-
 	public function __construct() {
 		parent::__construct(self::APP_ID);
 	}
