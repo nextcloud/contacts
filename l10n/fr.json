@@ -297,6 +297,7 @@
     "Search for people to add" : "Chercher des personnes à ajouter",
     "No results" : "Aucun résultat",
     "Add {type}" : "Ajouter des {type}",
+    "New team name (min. 3 characters)" : "Nom de la nouvelle équipe (3 caractères minimum)",
     "Name must be at least 3 characters" : "Le nom doit contenir au moins 3 caractères.",
     "Personal team" : "Équipe personnelle",
     "This team will only be visible to you. Other members will not be able to see or use it." : "Cette équipe sera uniquement visible par vous. Les autres membres ne pourront ni le voir, ni l'utiliser.",
