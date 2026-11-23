@@ -296,6 +296,11 @@ export default {
 						: this.property.getValues()
 				}
 				if (this.propName === 'x-managersname') {
+					// I have no sortedModelOptions when I'm loading this component
+					// outside the Contacts app (e.g. in mountContactDetails())
+					if (this.sortedModelOptions.length === 0) {
+						return this.property.getFirstValue()
+					}
 					if (this.property.getParameter('uid')) {
 						return Buffer.from(this.property.getParameter('uid') + '~' + this.contact.addressbook.id, 'utf-8').toString('base64')
 					}
