@@ -44,7 +44,7 @@
 	<screenshot>https://raw.githubusercontent.com/nextcloud/contacts/main/screenshots/organization-chart-8.10.png</screenshot>
 
 	<dependencies>
-		<php min-version="8.2" max-version="8.5" />
+		<php min-version="8.2" max-version="8.6" />
 		<nextcloud min-version="33" max-version="36" />
 	</dependencies>
 
