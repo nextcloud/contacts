@@ -5,6 +5,6 @@
         }
     },
     "require-dev": {
-        "vimeo/psalm": "^6.20.10"
+        "vimeo/psalm": "^6.21.4"
     }
 }
