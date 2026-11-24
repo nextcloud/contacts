@@ -9,6 +9,7 @@ import { toRaw } from 'vue'
 import Contact from '../models/contact.js'
 import logger from '../services/logger.js'
 import validate from '../services/validate.js'
+import { writeRev } from '../utils/rev.js'
 
 /*
  * Currently ical.js does not serialize parameters with multiple values correctly. This is
@@ -33,15 +34,7 @@ function sortData(a, b) {
 		return a.value === '' ? 1 : -1
 	}
 
-	// a malformed rev is indexed as a string, so never compare a timestamp with text:
-	// that would be non-transitive. Timestamps come first, text keeps its own ordering
-	const aIsTime = typeof a.value === 'number'
-	const bIsTime = typeof b.value === 'number'
-	if (aIsTime !== bIsTime) {
-		return aIsTime ? -1 : 1
-	}
-
-	const score = aIsTime
+	const score = typeof a.value === 'number'
 		? b.value - a.value // timestamps (rev), most recent first
 		: a.value.toUpperCase().localeCompare(b.value.toUpperCase()) // ignore upper and lowercase
 
@@ -88,15 +81,7 @@ function insertSortedEntry(state, entry) {
  * @return {object}
  */
 function sortedEntry(contact, orderKey) {
-	let value
-	try {
-		value = contact[orderKey]
-	} catch (error) {
-		// a malformed property (an invalid REV for instance) throws when ical.js decodes it
-		logger.warn('Could not read the sort value of a contact', { key: contact.key, orderKey, error })
-		value = ''
-	}
-
+	const value = contact[orderKey]
 	return {
 		key: contact.key,
 		// vCardTime values (rev) are indexed as timestamps, anything else as a string:
@@ -425,13 +410,7 @@ const actions = {
 		// Checking contact validity 🙈
 		validate(contact)
 
-		// Update REV
-		if (contact.version === '4.0') {
-			contact.rev = ICAL.Time.fromJSDate(new Date(), true)
-		}
-		if (contact.version === '3.0') {
-			contact.rev = ICAL.VCardTime.fromDateAndOrTimeString(new Date().toISOString(), 'date-time')
-		}
+		writeRev(contact.vCard)
 
 		const vData = contact.toStringStripQuotes()
 

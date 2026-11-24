@@ -99,4 +99,15 @@ describe('Test reading an invalid REV', () => {
 		)
 		expect(contact.rev).toBeNull()
 	})
+
+	test('Does not invent a revision', () => {
+		const contact = new Contact(`
+			BEGIN:VCARD
+			VERSION:4.0
+			FN:Test contact
+			END:VCARD`.replace(/\t/gmi, '')
+		)
+		expect(contact.rev).toBeNull()
+		expect(contact.vCard.hasProperty('rev')).toBe(false)
+	})
 })

@@ -19,6 +19,7 @@ import { generateOcsUrl } from '@nextcloud/router'
 import pLimit from 'p-limit'
 import Contact from '../models/contact.js'
 import { isAtLeastVersion } from '../utils/nextcloudVersion.ts'
+import { writeRev } from '../utils/rev.js'
 import logger from './logger.js'
 
 const API_URL = generateOcsUrl('/contacts/import')
@@ -141,6 +142,9 @@ async function transceiveLegacy(
 	await Promise.all(vCards.map((vCard) => limit(async () => {
 		try {
 			const contact = new Contact(vCard, target.addressbook)
+			if (!contact.rev) {
+				writeRev(contact.vCard)
+			}
 			await target.addressbook.dav.createVCard(contact.toStringStripQuotes())
 			onData({ type: 'object', transaction: '', identifier: contact.uid, disposition: 'created', errors: [] })
 		} catch (error) {
