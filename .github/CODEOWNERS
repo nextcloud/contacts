@@ -1,12 +1,12 @@
 # App maintainers
-* @hamza221 @GVodyanov @SebastianKrupinski 
+* @hamza221 @GVodyanov @odzhychko
 
 # Front end
-/css @hamza221 @GVodyanov
-/src @hamza221 @GVodyanov
+/css @hamza221 @GVodyanov @odzhychko
+/src @hamza221 @GVodyanov @odzhychko
 
 # Back end
-/lib @hamza221 @SebastianKrupinski
+/lib @hamza221 @odzhychko
 
 # Release manager
 /appinfo/info.xml		@hamza221
