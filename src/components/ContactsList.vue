@@ -341,6 +341,10 @@ export default {
 
 	mounted() {
 		this.query = this.searchQuery
+
+		if (this.selectedContact) {
+			this.scrollToContact(this.selectedContact)
+		}
 	},
 
 	methods: {
