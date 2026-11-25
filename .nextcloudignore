@@ -12,6 +12,7 @@
 .php-cs-fixer.cache
 .php-cs-fixer.dist.php
 .scrutinizer.yml
+.skills
 .stylelintignore
 .stylelintrc
 .tx
