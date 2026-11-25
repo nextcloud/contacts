@@ -44,6 +44,18 @@
 		</NcModal>
 
 		<NcModal
+			v-if="isRemovingFromGroup"
+			:name="t('contacts', 'Remove contacts from group')"
+			size="large"
+			@close="isRemovingFromGroup = false">
+			<Batch
+				:contacts="Array.from(multiSelectedContacts.values())"
+				mode="removeFromGroup"
+				:group-name="selectedGroup"
+				@submit="finishBatch" />
+		</NcModal>
+
+		<NcModal
 			v-if="isMovingAddressbook"
 			:name="t('contacts', 'Move contacts to addressbook')"
 			size="large"
@@ -97,6 +109,15 @@
 					<IconAccountMultiple :size="20" />
 				</NcButton>
 				<NcButton
+					v-if="isCurrentGroupReal"
+					variant="tertiary"
+					:title="removeFromGroupActionTitle"
+					:disabled="!canModifyAnySelected"
+					:close-after-click="true"
+					@click.prevent="isRemovingFromGroup = true">
+					<IconAccountMultipleMinus :size="20" />
+				</NcButton>
+				<NcButton
 					variant="tertiary"
 					:title="moveActionTitle"
 					:disabled="!canDeleteAnySelected"
@@ -136,6 +157,7 @@ import {
 	NcTextField,
 } from '@nextcloud/vue'
 import { VList } from 'virtua/vue'
+import IconAccountMultipleMinus from 'vue-material-design-icons/AccountMultipleMinusOutline.vue'
 import IconAccountMultiple from 'vue-material-design-icons/AccountMultipleOutline.vue'
 import IconBookAccount from 'vue-material-design-icons/BookAccountOutline.vue'
 import IconSelect from 'vue-material-design-icons/CloseThick.vue'
@@ -159,6 +181,7 @@ export default {
 		IconDelete,
 		IconSetMerge,
 		IconAccountMultiple,
+		IconAccountMultipleMinus,
 		IconBookAccount,
 		NcDialog,
 		NcModal,
@@ -219,6 +242,7 @@ export default {
 			isMerging: false,
 			isMergingLoading: false,
 			isGrouping: false,
+			isRemovingFromGroup: false,
 			isMovingAddressbook: false,
 		}
 	},
@@ -242,6 +266,16 @@ export default {
 
 		isMultiSelecting() {
 			return this.multiSelectedContacts.size > 0
+		},
+
+		/**
+		 * Is the current selectedGroup a real (user-created) group?
+		 * Excludes virtual groups like "All contacts", "Not grouped", etc.
+		 *
+		 * @return {boolean}
+		 */
+		isCurrentGroupReal() {
+			return this.$store.getters.getGroups.findIndex((group) => group.name === this.selectedGroup) > -1
 		},
 
 		readOnlyMultiSelectedCount() {
@@ -310,6 +344,12 @@ export default {
 				: t('contacts', 'Please select at least one editable contact to add to a group')
 		},
 
+		removeFromGroupActionTitle() {
+			return this.canModifyAnySelected
+				? n('contacts', 'Remove {number} contact from group', 'Remove {number} contacts from group', this.multiSelectedContacts.size, { number: this.multiSelectedContacts.size })
+				: t('contacts', 'Please select at least one editable contact to remove from a group')
+		},
+
 		moveActionTitle() {
 			return this.canDeleteAnySelected
 				? n('contacts', 'Move {number} contact to addressbook', 'Move {number} contacts to addressbook', this.multiSelectedContacts.size, { number: this.multiSelectedContacts.size })
@@ -325,6 +365,15 @@ export default {
 
 			await this.$nextTick()
 			this.scrollToContact(key)
+		},
+
+		// The selection is keyed by list index, so it does not carry over to another list
+		selectedGroup() {
+			this.unselectAllMultiSelected()
+		},
+
+		selectedAddressbook() {
+			this.unselectAllMultiSelected()
 		},
 
 		list(val, old) {
@@ -546,13 +595,14 @@ export default {
 		},
 
 		async finishBatch() {
-			if (this.isGrouping) {
+			if (this.isGrouping || this.isRemovingFromGroup) {
 				for (const contact of this.multiSelectedContacts.values()) {
 					await this.$store.dispatch('fetchFullContact', { contact, forceReFetch: true })
 				}
 			}
 
 			this.isGrouping = false
+			this.isRemovingFromGroup = false
 			this.isMovingAddressbook = false
 			this.unselectAllMultiSelected()
 		},
