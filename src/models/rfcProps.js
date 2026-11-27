@@ -98,7 +98,7 @@ const properties = {
 			{ id: 'WORK', name: t('contacts', 'Work') },
 			{ id: 'OTHER', name: t('contacts', 'Other') },
 		],
-		primary: false,
+		primary: true,
 	},
 	adr: {
 		multiple: true,
@@ -414,6 +414,7 @@ const fieldOrder = [
 	// primary fields
 	'tel',
 	'email',
+	'cloud',
 	'adr',
 	'bday',
 	'url',
@@ -431,7 +432,6 @@ const fieldOrder = [
 	'x-phonetic-last-name',
 	'gender',
 	'pronouns',
-	'cloud',
 	'impp',
 	'geo',
 	'note',
