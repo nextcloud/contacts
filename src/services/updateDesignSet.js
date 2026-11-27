@@ -68,7 +68,16 @@ function addPronounsProperty() {
 	return true
 }
 
-/**
+// Remove when a released ical.js includes https://github.com/kewisch/ical.js/pull/1053.
+function fixVCard3NoteProperty() {
+	if (!('multiValue' in ICAL.design.vcard3.property.note)) {
+		return false
+	}
+
+	ICAL.design.vcard3.property.note = { defaultType: 'text' }
+	return true
+}
+
 /**
  * Check whether the ical.js design sets need updating (and if so, do it)
  *
@@ -80,6 +89,7 @@ export default function(vCard) {
 
 	madeChanges |= setTypeMultiValueSeparateDQuote()
 	madeChanges |= addPronounsProperty()
+	madeChanges |= fixVCard3NoteProperty()
 	madeChanges |= addGroupedProperties(vCard)
 
 	return madeChanges
